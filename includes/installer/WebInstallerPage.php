@@ -1567,7 +1567,7 @@ class WebInstallerReleaseNotes extends WebInstallerDocument {
 		global $wgVersion;
 
 		if ( !preg_match( '/^(\d+)\.(\d+).*/i', $wgVersion, $result ) ) {
-			throw new MWException( 'Variable $wgVersion has an invalid value.' );
+			throw new Exception( 'Variable $wgVersion has an invalid value.' );
 		}
 
 		return 'RELEASE-NOTES-' . $result[1] . '.' . $result[2];

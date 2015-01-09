@@ -105,7 +105,7 @@ abstract class ContentHandler {
 		wfDebugLog( 'ContentHandler', 'Accessing ' . $content->getModel() . ' content as text!' );
 
 		if ( $wgContentHandlerTextFallback == 'fail' ) {
-			throw new MWException(
+			throw new Exception(
 				"Attempt to get text from Content with model " .
 				$content->getModel()
 			);
@@ -145,7 +145,7 @@ abstract class ContentHandler {
 		$modelId = null, $format = null ) {
 		if ( is_null( $modelId ) ) {
 			if ( is_null( $title ) ) {
-				throw new MWException( "Must provide a Title object or a content model ID." );
+				throw new Exception( "Must provide a Title object or a content model ID." );
 			}
 
 			$modelId = $title->getContentModel();
@@ -321,18 +321,18 @@ abstract class ContentHandler {
 			Hooks::run( 'ContentHandlerForModelID', array( $modelId, &$handler ) );
 
 			if ( $handler === null ) {
-				throw new MWException( "No handler for model '$modelId' registered in \$wgContentHandlers" );
+				throw new Exception( "No handler for model '$modelId' registered in \$wgContentHandlers" );
 			}
 
 			if ( !( $handler instanceof ContentHandler ) ) {
-				throw new MWException( "ContentHandlerForModelID must supply a ContentHandler instance" );
+				throw new Exception( "ContentHandlerForModelID must supply a ContentHandler instance" );
 			}
 		} else {
 			$class = $wgContentHandlers[$modelId];
 			$handler = new $class( $modelId );
 
 			if ( !( $handler instanceof ContentHandler ) ) {
-				throw new MWException( "$class from \$wgContentHandlers is not " .
+				throw new Exception( "$class from \$wgContentHandlers is not " .
 					"compatible with ContentHandler" );
 			}
 		}
@@ -524,7 +524,7 @@ abstract class ContentHandler {
 	 */
 	protected function checkModelID( $model_id ) {
 		if ( $model_id !== $this->mModelID ) {
-			throw new MWException( "Bad content model: " .
+			throw new Exception( "Bad content model: " .
 				"expected {$this->mModelID} " .
 				"but got $model_id." );
 		}
@@ -588,7 +588,7 @@ abstract class ContentHandler {
 	 */
 	protected function checkFormat( $format ) {
 		if ( !$this->isSupportedFormat( $format ) ) {
-			throw new MWException(
+			throw new Exception(
 				"Format $format is not supported for content model "
 				. $this->getModelID()
 			);
@@ -1003,7 +1003,7 @@ abstract class ContentHandler {
 		} elseif ( $context === 'canonical' ) { // canonical settings
 			$options = ParserOptions::newFromUserAndLang( new User, $wgContLang );
 		} else {
-			throw new MWException( "Bad context for parser options: $context" );
+			throw new Exception( "Bad context for parser options: $context" );
 		}
 
 		$options->enableLimitReport( $wgEnableParserLimitReporting ); // show inclusion/loop reports

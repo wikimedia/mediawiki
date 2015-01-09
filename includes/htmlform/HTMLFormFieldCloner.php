@@ -50,7 +50,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		parent::__construct( $params );
 
 		if ( empty( $this->mParams['fields'] ) || !is_array( $this->mParams['fields'] ) ) {
-			throw new MWException( 'HTMLFormFieldCloner called without any fields' );
+			throw new Exception( 'HTMLFormFieldCloner called without any fields' );
 		}
 
 		// Make sure the delete button, if explicitly specified, is sane
@@ -62,7 +62,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			unset( $info['name'], $info['class'] );
 
 			if ( !isset( $info['type'] ) || $info['type'] !== 'submit' ) {
-				throw new MWException(
+				throw new Exception(
 					'HTMLFormFieldCloner delete field, if specified, must be of type "submit"'
 				);
 			}

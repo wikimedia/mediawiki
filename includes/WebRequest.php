@@ -58,7 +58,7 @@ class WebRequest {
 
 	public function __construct() {
 		if ( function_exists( 'get_magic_quotes_gpc' ) && get_magic_quotes_gpc() ) {
-			throw new MWException( "MediaWiki does not function when magic quotes are enabled." );
+			throw new Exception( "MediaWiki does not function when magic quotes are enabled." );
 		}
 
 		// POST overrides GET data
@@ -667,7 +667,7 @@ class WebRequest {
 			}
 		} else {
 			// This shouldn't happen!
-			throw new MWException( "Web server doesn't provide either " .
+			throw new Exception( "Web server doesn't provide either " .
 				"REQUEST_URI, HTTP_X_ORIGINAL_URL or SCRIPT_NAME. Report details " .
 				"of your web server configuration to http://bugzilla.wikimedia.org/" );
 		}
@@ -1045,7 +1045,7 @@ HTML;
 		}
 
 		if ( is_array( $_SERVER['REMOTE_ADDR'] ) || strpos( $_SERVER['REMOTE_ADDR'], ',' ) !== false ) {
-			throw new MWException( __METHOD__
+			throw new Exception( __METHOD__
 				. " : Could not determine the remote IP address due to multiple values." );
 		} else {
 			$ipchain = $_SERVER['REMOTE_ADDR'];
@@ -1074,7 +1074,7 @@ HTML;
 		# collect the originating ips
 		$ip = $this->getRawIP();
 		if ( !$ip ) {
-			throw new MWException( 'Unable to determine IP.' );
+			throw new Exception( 'Unable to determine IP.' );
 		}
 
 		# Append XFF
@@ -1107,7 +1107,7 @@ HTML;
 					if ( !$nextIP && $isConfigured ) {
 						// We have not yet made it past CDN/proxy servers of this site,
 						// so either they are misconfigured or there is some IP spoofing.
-						throw new MWException( "Invalid IP given in XFF '$forwardedFor'." );
+						throw new Exception( "Invalid IP given in XFF '$forwardedFor'." );
 					}
 					$ip = $nextIP;
 					// keep traversing the chain
@@ -1121,7 +1121,7 @@ HTML;
 		Hooks::run( 'GetIP', array( &$ip ) );
 
 		if ( !$ip ) {
-			throw new MWException( "Unable to determine IP." );
+			throw new Exception( "Unable to determine IP." );
 		}
 
 		wfDebug( "IP: $ip\n" );
@@ -1277,7 +1277,7 @@ class FauxRequest extends WebRequest {
 		if ( is_array( $data ) ) {
 			$this->data = $data;
 		} else {
-			throw new MWException( "FauxRequest() got bogus data" );
+			throw new Exception( "FauxRequest() got bogus data" );
 		}
 		$this->wasPosted = $wasPosted;
 		if ( $session ) {
@@ -1291,7 +1291,7 @@ class FauxRequest extends WebRequest {
 	 * @throws MWException
 	 */
 	private function notImplemented( $method ) {
-		throw new MWException( "{$method}() not implemented" );
+		throw new Exception( "{$method}() not implemented" );
 	}
 
 	/**
@@ -1347,7 +1347,7 @@ class FauxRequest extends WebRequest {
 
 	public function getRequestURL() {
 		if ( $this->requestUrl === null ) {
-			throw new MWException( 'Request URL not set' );
+			throw new Exception( 'Request URL not set' );
 		}
 		return $this->requestUrl;
 	}

@@ -121,7 +121,7 @@ class FormOptions implements ArrayAccess {
 		} elseif ( is_string( $data ) ) {
 			return self::STRING;
 		} else {
-			throw new MWException( 'Unsupported datatype' );
+			throw new Exception( 'Unsupported datatype' );
 		}
 	}
 
@@ -138,7 +138,7 @@ class FormOptions implements ArrayAccess {
 	public function validateName( $name, $strict = false ) {
 		if ( !isset( $this->options[$name] ) ) {
 			if ( $strict ) {
-				throw new MWException( "Invalid option $name" );
+				throw new Exception( "Invalid option $name" );
 			} else {
 				return false;
 			}
@@ -262,7 +262,7 @@ class FormOptions implements ArrayAccess {
 		$type = $this->options[$name]['type'];
 
 		if ( $type !== self::INT && $type !== self::FLOAT ) {
-			throw new MWException( "Option $name is not of type INT or FLOAT" );
+			throw new Exception( "Option $name is not of type INT or FLOAT" );
 		}
 
 		$value = $this->getValueReal( $this->options[$name] );
@@ -359,7 +359,7 @@ class FormOptions implements ArrayAccess {
 					$value = $r->getIntOrNull( $name );
 					break;
 				default:
-					throw new MWException( 'Unsupported datatype' );
+					throw new Exception( 'Unsupported datatype' );
 			}
 
 			if ( $value !== null ) {

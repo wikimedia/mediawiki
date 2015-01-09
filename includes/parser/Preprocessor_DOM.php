@@ -99,7 +99,7 @@ class Preprocessor_DOM implements Preprocessor {
 		}
 
 		if ( !$result ) {
-			throw new MWException( 'Parameters passed to ' . __METHOD__ . ' result in invalid XML' );
+			throw new Exception( 'Parameters passed to ' . __METHOD__ . ' result in invalid XML' );
 		}
 
 		$root = $dom->documentElement;
@@ -118,7 +118,7 @@ class Preprocessor_DOM implements Preprocessor {
 		$usage = memory_get_usage();
 		if ( $usage > $this->memoryLimit * 0.9 ) {
 			$limit = intval( $this->memoryLimit * 0.9 / 1048576 + 0.5 );
-			throw new MWException( "Preprocessor hit 90% memory limit ($limit MB)" );
+			throw new Exception( "Preprocessor hit 90% memory limit ($limit MB)" );
 		}
 		return $usage <= $this->memoryLimit * 0.8;
 	}
@@ -182,7 +182,7 @@ class Preprocessor_DOM implements Preprocessor {
 		if ( $this->parser->mGeneratedPPNodeCount > $max ) {
 			if ( $cacheable ) {
 			}
-			throw new MWException( __METHOD__ . ': generated node count limit exceeded' );
+			throw new Exception( __METHOD__ . ': generated node count limit exceeded' );
 		}
 
 		$dom = new DOMDocument;
@@ -204,7 +204,7 @@ class Preprocessor_DOM implements Preprocessor {
 		}
 
 		if ( !$result ) {
-			throw new MWException( __METHOD__ . ' generated invalid XML' );
+			throw new Exception( __METHOD__ . ' generated invalid XML' );
 		}
 		return $obj;
 	}
@@ -810,7 +810,7 @@ class PPDStack {
 
 	public function pop() {
 		if ( !count( $this->stack ) ) {
-			throw new MWException( __METHOD__ . ': no elements remaining' );
+			throw new Exception( __METHOD__ . ': no elements remaining' );
 		}
 		$temp = array_pop( $this->stack );
 
@@ -1274,7 +1274,7 @@ class PPFrame_DOM implements PPFrame {
 					$newIterator = $contextNode->childNodes;
 				}
 			} else {
-				throw new MWException( __METHOD__ . ': Invalid parameter type' );
+				throw new Exception( __METHOD__ . ': Invalid parameter type' );
 			}
 
 			if ( $newIterator !== false ) {
@@ -1871,7 +1871,7 @@ class PPNode_DOM implements PPNode {
 		$names = $xpath->query( 'name', $this->node );
 		$values = $xpath->query( 'value', $this->node );
 		if ( !$names->length || !$values->length ) {
-			throw new MWException( 'Invalid brace node passed to ' . __METHOD__ );
+			throw new Exception( 'Invalid brace node passed to ' . __METHOD__ );
 		}
 		$name = $names->item( 0 );
 		$index = $name->getAttribute( 'index' );
@@ -1895,7 +1895,7 @@ class PPNode_DOM implements PPNode {
 		$inners = $xpath->query( 'inner', $this->node );
 		$closes = $xpath->query( 'close', $this->node );
 		if ( !$names->length || !$attrs->length ) {
-			throw new MWException( 'Invalid ext node passed to ' . __METHOD__ );
+			throw new Exception( 'Invalid ext node passed to ' . __METHOD__ );
 		}
 		$parts = array(
 			'name' => new self( $names->item( 0 ) ),
@@ -1916,7 +1916,7 @@ class PPNode_DOM implements PPNode {
 	 */
 	public function splitHeading() {
 		if ( $this->getName() !== 'h' ) {
-			throw new MWException( 'Invalid h node passed to ' . __METHOD__ );
+			throw new Exception( 'Invalid h node passed to ' . __METHOD__ );
 		}
 		return array(
 			'i' => $this->node->getAttribute( 'i' ),

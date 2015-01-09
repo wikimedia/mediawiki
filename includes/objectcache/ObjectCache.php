@@ -65,7 +65,7 @@ class ObjectCache {
 		global $wgObjectCaches;
 
 		if ( !isset( $wgObjectCaches[$id] ) ) {
-			throw new MWException( "Invalid object cache type \"$id\" requested. " .
+			throw new Exception( "Invalid object cache type \"$id\" requested. " .
 				"It is not present in \$wgObjectCaches." );
 		}
 
@@ -87,7 +87,7 @@ class ObjectCache {
 			$class = $params['class'];
 			return new $class( $params );
 		} else {
-			throw new MWException( "The definition of cache type \""
+			throw new Exception( "The definition of cache type \""
 				. print_r( $params, true ) . "\" lacks both "
 				. "factory and class parameters." );
 		}
@@ -138,7 +138,7 @@ class ObjectCache {
 			if ( $fallback !== null ) {
 				return self::newFromId( $fallback );
 			}
-			throw new MWException( "CACHE_ACCEL requested but no suitable object " .
+			throw new Exception( "CACHE_ACCEL requested but no suitable object " .
 				"cache is present. You may want to install APC." );
 		}
 		return self::newFromId( $id );

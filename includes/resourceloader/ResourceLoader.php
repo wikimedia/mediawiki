@@ -277,7 +277,7 @@ class ResourceLoader {
 			// Disallow duplicate registrations
 			if ( isset( $this->moduleInfos[$name] ) ) {
 				// A module has already been registered by this name
-				throw new MWException(
+				throw new Exception(
 					'ResourceLoader duplicate registration error. ' .
 					'Another module has already been registered as ' . $name
 				);
@@ -285,7 +285,7 @@ class ResourceLoader {
 
 			// Check $name for validity
 			if ( !self::isValidModuleName( $name ) ) {
-				throw new MWException( "ResourceLoader module name '$name' is invalid, "
+				throw new Exception( "ResourceLoader module name '$name' is invalid, "
 					. "see ResourceLoader::isValidModuleName()" );
 			}
 
@@ -298,7 +298,7 @@ class ResourceLoader {
 				// New calling convention
 				$this->moduleInfos[$name] = $info;
 			} else {
-				throw new MWException(
+				throw new Exception(
 					'ResourceLoader module info type error for module \'' . $name .
 					'\': expected ResourceLoaderModule or array (got: ' . gettype( $info ) . ')'
 				);
@@ -353,7 +353,7 @@ class ResourceLoader {
 		global $IP;
 
 		if ( $this->config->get( 'EnableJavaScriptTest' ) !== true ) {
-			throw new MWException( 'Attempt to register JavaScript test modules '
+			throw new Exception( 'Attempt to register JavaScript test modules '
 				. 'but <code>$wgEnableJavaScriptTest</code> is false. '
 				. 'Edit your <code>LocalSettings.php</code> to enable it.' );
 		}
@@ -406,7 +406,7 @@ class ResourceLoader {
 
 		// Disallow duplicates
 		if ( isset( $this->sources[$id] ) ) {
-			throw new MWException(
+			throw new Exception(
 				'ResourceLoader duplicate source addition error. ' .
 				'Another source has already been registered as ' . $id
 			);
@@ -415,7 +415,7 @@ class ResourceLoader {
 		// Pre 1.24 backwards-compatibility
 		if ( is_array( $loadUrl ) ) {
 			if ( !isset( $loadUrl['loadScript'] ) ) {
-				throw new MWException(
+				throw new Exception(
 					__METHOD__ . ' was passed an array with no "loadScript" key.'
 				);
 			}
@@ -535,7 +535,7 @@ class ResourceLoader {
 	 */
 	public function getLoadScript( $source ) {
 		if ( !isset( $this->sources[$source] ) ) {
-			throw new MWException( "The $source source was never registered in ResourceLoader." );
+			throw new Exception( "The $source source was never registered in ResourceLoader." );
 		}
 		return $this->sources[$source];
 	}
@@ -1063,7 +1063,7 @@ class ResourceLoader {
 		if ( is_string( $scripts ) ) {
 			$scripts = new XmlJsCode( "function ( $, jQuery ) {\n{$scripts}\n}" );
 		} elseif ( !is_array( $scripts ) ) {
-			throw new MWException( 'Invalid scripts error. Array of URLs or string of code expected.' );
+			throw new Exception( 'Invalid scripts error. Array of URLs or string of code expected.' );
 		}
 
 		return Xml::encodeJsCall(
@@ -1533,10 +1533,10 @@ class ResourceLoader {
 		// is missing (at least for now; see bug 47564). If this is the case, throw an
 		// exception (caught by the installer) to prevent a fatal error later on.
 		if ( !class_exists( 'lessc' ) ) {
-			throw new MWException( 'MediaWiki requires the lessphp compiler' );
+			throw new Exception( 'MediaWiki requires the lessphp compiler' );
 		}
 		if ( !function_exists( 'ctype_digit' ) ) {
-			throw new MWException( 'lessc requires the Ctype extension' );
+			throw new Exception( 'lessc requires the Ctype extension' );
 		}
 
 		$less = new lessc();

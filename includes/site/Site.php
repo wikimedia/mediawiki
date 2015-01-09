@@ -154,7 +154,7 @@ class Site implements Serializable {
 	 */
 	public function setGlobalId( $globalId ) {
 		if ( $globalId !== null && !is_string( $globalId ) ) {
-			throw new MWException( '$globalId needs to be string or null' );
+			throw new Exception( '$globalId needs to be string or null' );
 		}
 
 		$this->globalId = $globalId;
@@ -193,7 +193,7 @@ class Site implements Serializable {
 	 */
 	public function setGroup( $group ) {
 		if ( !is_string( $group ) ) {
-			throw new MWException( '$group needs to be a string' );
+			throw new Exception( '$group needs to be a string' );
 		}
 
 		$this->group = $group;
@@ -221,7 +221,7 @@ class Site implements Serializable {
 	 */
 	public function setSource( $source ) {
 		if ( !is_string( $source ) ) {
-			throw new MWException( '$source needs to be a string' );
+			throw new Exception( '$source needs to be a string' );
 		}
 
 		$this->source = $source;
@@ -251,7 +251,7 @@ class Site implements Serializable {
 	 */
 	public function setForward( $shouldForward ) {
 		if ( !is_bool( $shouldForward ) ) {
-			throw new MWException( '$shouldForward needs to be a boolean' );
+			throw new Exception( '$shouldForward needs to be a boolean' );
 		}
 
 		$this->forward = $shouldForward;
@@ -294,7 +294,7 @@ class Site implements Serializable {
 
 		// Malformed URL
 		if ( $protocol === false ) {
-			throw new MWException( "failed to parse URL '$path'" );
+			throw new Exception( "failed to parse URL '$path'" );
 		}
 
 		// No schema
@@ -320,7 +320,7 @@ class Site implements Serializable {
 		$type = $this->getLinkPathType();
 
 		if ( $type === null ) {
-			throw new MWException( "This Site does not support link paths." );
+			throw new Exception( "This Site does not support link paths." );
 		}
 
 		$this->setPath( $type, $fullUrl );
@@ -584,7 +584,7 @@ class Site implements Serializable {
 	 */
 	public function setPath( $pathType, $fullUrl ) {
 		if ( !is_string( $fullUrl ) ) {
-			throw new MWException( '$fullUrl needs to be a string' );
+			throw new Exception( '$fullUrl needs to be a string' );
 		}
 
 		if ( !array_key_exists( 'paths', $this->extraData ) ) {

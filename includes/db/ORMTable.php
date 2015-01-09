@@ -119,7 +119,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 */
 	public function getName() {
 		if ( $this->tableName === '' ) {
-			throw new MWException( 'The table name needs to be set' );
+			throw new Exception( 'The table name needs to be set' );
 		}
 
 		return $this->tableName;
@@ -158,7 +158,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 */
 	public function getFields() {
 		if ( $this->fields === array() ) {
-			throw new MWException( 'The table needs to have one or more fields' );
+			throw new Exception( 'The table needs to have one or more fields' );
 		}
 
 		return $this->fields;
@@ -900,7 +900,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 
 				$fields[$name] = $value;
 			} else {
-				throw new MWException( 'Attempted to set unknown field ' . $name );
+				throw new Exception( 'Attempted to set unknown field ' . $name );
 			}
 		}
 
@@ -1116,7 +1116,7 @@ class ORMTable extends DBAccessBase implements IORMTable {
 	 */
 	public function addToField( array $conditions, $field, $amount ) {
 		if ( !array_key_exists( $field, $this->fields ) ) {
-			throw new MWException( 'Unknown field "' . $field . '" provided' );
+			throw new Exception( 'Unknown field "' . $field . '" provided' );
 		}
 
 		if ( $amount == 0 ) {

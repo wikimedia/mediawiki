@@ -53,7 +53,7 @@ class BcryptPassword extends ParameterizedPassword {
 	 */
 	public function crypt( $password ) {
 		if ( !defined( 'CRYPT_BLOWFISH' ) ) {
-			throw new MWException( 'Bcrypt is not supported.' );
+			throw new Exception( 'Bcrypt is not supported.' );
 		}
 
 		// Either use existing hash or make a new salt

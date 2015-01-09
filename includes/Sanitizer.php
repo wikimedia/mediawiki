@@ -1258,7 +1258,7 @@ class Sanitizer {
 			# For 'reduced' form, return explicitly the attribute name here.
 			return $set[1];
 		} else {
-			throw new MWException( "Tag conditions not met. This should never happen and is a bug." );
+			throw new Exception( "Tag conditions not met. This should never happen and is a bug." );
 		}
 	}
 

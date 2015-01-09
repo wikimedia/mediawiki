@@ -1632,7 +1632,7 @@ class OutputPage extends ContextSource {
 	public function addWikiText( $text, $linestart = true, $interface = true ) {
 		$title = $this->getTitle(); // Work around E_STRICT
 		if ( !$title ) {
-			throw new MWException( 'Title is null' );
+			throw new Exception( 'Title is null' );
 		}
 		$this->addWikiTextTitle( $text, $title, $linestart, /*tidy*/false, $interface );
 	}
@@ -1840,7 +1840,7 @@ class OutputPage extends ContextSource {
 		global $wgParser;
 
 		if ( is_null( $this->getTitle() ) ) {
-			throw new MWException( 'Empty $mTitle in ' . __METHOD__ );
+			throw new Exception( 'Empty $mTitle in ' . __METHOD__ );
 		}
 
 		$popts = $this->parserOptions();
@@ -2499,7 +2499,7 @@ class OutputPage extends ContextSource {
 	 */
 	public function readOnlyPage() {
 		if ( func_num_args() > 0 ) {
-			throw new MWException( __METHOD__ . ' no longer accepts arguments since 1.25.' );
+			throw new Exception( __METHOD__ . ' no longer accepts arguments since 1.25.' );
 		}
 
 		throw new ReadOnlyError;

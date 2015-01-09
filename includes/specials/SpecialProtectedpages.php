@@ -484,7 +484,7 @@ class ProtectedPagesPager extends TablePager {
 				break;
 
 			default:
-				throw new MWException( "Unknown field '$field'" );
+				throw new Exception( "Unknown field '$field'" );
 		}
 
 		return $formatted;

@@ -83,7 +83,7 @@ class RevisionDeleter {
 	public static function createList( $typeName, IContextSource $context, Title $title, array $ids ) {
 		$typeName = self::getCanonicalTypeName( $typeName );
 		if ( !$typeName ) {
-			throw new MWException( __METHOD__ . ": Unknown RevDel type '$typeName'" );
+			throw new Exception( __METHOD__ . ": Unknown RevDel type '$typeName'" );
 		}
 		return new self::$allowedTypes[$typeName]( $context, $title, $ids );
 	}

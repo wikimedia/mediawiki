@@ -119,7 +119,7 @@ class JobQueueGroup {
 			if ( $job instanceof IJobSpecification ) {
 				$jobsByType[$job->getType()][] = $job;
 			} else {
-				throw new MWException( "Attempted to push a non-Job object into a queue." );
+				throw new Exception( "Attempted to push a non-Job object into a queue." );
 			}
 		}
 

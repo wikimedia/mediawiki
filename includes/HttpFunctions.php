@@ -286,7 +286,7 @@ class MWHttpRequest {
 		if ( !Http::$httpEngine ) {
 			Http::$httpEngine = function_exists( 'curl_init' ) ? 'curl' : 'php';
 		} elseif ( Http::$httpEngine == 'curl' && !function_exists( 'curl_init' ) ) {
-			throw new MWException( __METHOD__ . ': curl (http://php.net/curl) is not installed, but' .
+			throw new Exception( __METHOD__ . ': curl (http://php.net/curl) is not installed, but' .
 				' Http::$httpEngine is set to "curl"' );
 		}
 
@@ -295,7 +295,7 @@ class MWHttpRequest {
 				return new CurlHttpRequest( $url, $options );
 			case 'php':
 				if ( !wfIniGetBool( 'allow_url_fopen' ) ) {
-					throw new MWException( __METHOD__ . ': allow_url_fopen ' .
+					throw new Exception( __METHOD__ . ': allow_url_fopen ' .
 						'needs to be enabled for pure PHP http requests to ' .
 						'work. If possible, curl should be used instead. See ' .
 						'http://php.net/curl.'
@@ -303,7 +303,7 @@ class MWHttpRequest {
 				}
 				return new PhpHttpRequest( $url, $options );
 			default:
-				throw new MWException( __METHOD__ . ': The setting of Http::$httpEngine is not valid.' );
+				throw new Exception( __METHOD__ . ': The setting of Http::$httpEngine is not valid.' );
 		}
 	}
 
@@ -410,7 +410,7 @@ class MWHttpRequest {
 	 */
 	public function setCallback( $callback ) {
 		if ( !is_callable( $callback ) ) {
-			throw new MWException( 'Invalid MwHttpRequest callback' );
+			throw new Exception( 'Invalid MwHttpRequest callback' );
 		}
 		$this->callback = $callback;
 	}
@@ -758,7 +758,7 @@ class CurlHttpRequest extends MWHttpRequest {
 		$curlHandle = curl_init( $this->url );
 
 		if ( !curl_setopt_array( $curlHandle, $this->curlOptions ) ) {
-			throw new MWException( "Error setting curl options." );
+			throw new Exception( "Error setting curl options." );
 		}
 
 		if ( $this->followRedirects && $this->canFollowRedirects() ) {
@@ -880,7 +880,7 @@ class PhpHttpRequest extends MWHttpRequest {
 		} elseif ( is_file( $this->caInfo ) ) {
 			$options['ssl']['cafile'] = $this->caInfo;
 		} elseif ( $this->caInfo ) {
-			throw new MWException( "Invalid CA info passed: {$this->caInfo}" );
+			throw new Exception( "Invalid CA info passed: {$this->caInfo}" );
 		}
 
 		$context = stream_context_create( $options );

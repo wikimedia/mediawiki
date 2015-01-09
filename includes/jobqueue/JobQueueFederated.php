@@ -88,7 +88,7 @@ class JobQueueFederated extends JobQueue {
 			? $params['sectionsByWiki'][$this->wiki]
 			: 'default';
 		if ( !isset( $params['partitionsBySection'][$section] ) ) {
-			throw new MWException( "No configuration for section '$section'." );
+			throw new Exception( "No configuration for section '$section'." );
 		}
 		$this->maxPartitionsTry = isset( $params['maxPartitionsTry'] )
 			? $params['maxPartitionsTry']
@@ -113,7 +113,7 @@ class JobQueueFederated extends JobQueue {
 		// Get the partition queue objects
 		foreach ( $partitionMap as $partition => $w ) {
 			if ( !isset( $params['configByPartition'][$partition] ) ) {
-				throw new MWException( "No configuration for partition '$partition'." );
+				throw new Exception( "No configuration for partition '$partition'." );
 			}
 			$this->partitionQueues[$partition] = JobQueue::factory(
 				$baseConfig + $params['configByPartition'][$partition] );
@@ -352,7 +352,7 @@ class JobQueueFederated extends JobQueue {
 
 	protected function doAck( Job $job ) {
 		if ( !isset( $job->metadata['QueuePartition'] ) ) {
-			throw new MWException( "The given job has no defined partition name." );
+			throw new Exception( "The given job has no defined partition name." );
 		}
 
 		return $this->partitionQueues[$job->metadata['QueuePartition']]->ack( $job );

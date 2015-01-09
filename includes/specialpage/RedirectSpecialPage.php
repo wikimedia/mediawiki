@@ -50,7 +50,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 			return $redirect;
 		} else {
 			$class = get_class( $this );
-			throw new MWException( "RedirectSpecialPage $class doesn't redirect!" );
+			throw new Exception( "RedirectSpecialPage $class doesn't redirect!" );
 		}
 	}
 

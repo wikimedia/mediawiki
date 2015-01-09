@@ -642,7 +642,7 @@ class SpecialUpload extends SpecialPage {
 				$this->showUploadError( $this->msg( $error, $args )->parse() );
 				break;
 			default:
-				throw new MWException( __METHOD__ . ": Unknown value `{$details['status']}`" );
+				throw new Exception( __METHOD__ . ": Unknown value `{$details['status']}`" );
 		}
 	}
 

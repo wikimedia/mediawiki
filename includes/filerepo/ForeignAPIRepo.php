@@ -579,13 +579,13 @@ class ForeignAPIRepo extends FileRepo {
 	 * @throws MWException
 	 */
 	function enumFiles( $callback ) {
-		throw new MWException( 'enumFiles is not supported by ' . get_class( $this ) );
+		throw new Exception( 'enumFiles is not supported by ' . get_class( $this ) );
 	}
 
 	/**
 	 * @throws MWException
 	 */
 	protected function assertWritableRepo() {
-		throw new MWException( get_class( $this ) . ': write operations are not supported.' );
+		throw new Exception( get_class( $this ) . ': write operations are not supported.' );
 	}
 }

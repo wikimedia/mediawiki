@@ -50,7 +50,7 @@ class Category {
 	 */
 	protected function initialize() {
 		if ( $this->mName === null && $this->mID === null ) {
-			throw new MWException( __METHOD__ . ' has both names and IDs null' );
+			throw new Exception( __METHOD__ . ' has both names and IDs null' );
 		} elseif ( $this->mID === null ) {
 			$where = array( 'cat_title' => $this->mName );
 		} elseif ( $this->mName === null ) {

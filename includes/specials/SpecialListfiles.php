@@ -321,7 +321,7 @@ class ImageListPager extends TablePager {
 		# Hacky...
 		$oldIndex = $this->mIndexField;
 		if ( substr( $this->mIndexField, 0, 4 ) !== 'img_' ) {
-			throw new MWException( "Expected to be sorting on an image table field" );
+			throw new Exception( "Expected to be sorting on an image table field" );
 		}
 		$this->mIndexField = 'oi_' . substr( $this->mIndexField, 4 );
 
@@ -496,7 +496,7 @@ class ImageListPager extends TablePager {
 				// Messages: listfiles-latestversion-yes, listfiles-latestversion-no
 				return $this->msg( 'listfiles-latestversion-' . $value );
 			default:
-				throw new MWException( "Unknown field '$field'" );
+				throw new Exception( "Unknown field '$field'" );
 		}
 	}
 

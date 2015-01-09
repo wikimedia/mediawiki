@@ -99,7 +99,7 @@ class MediaWikiSite extends Site {
 
 		// Check if we have strings as arguments.
 		if ( !is_string( $pageName ) ) {
-			throw new MWException( '$pageName must be a string' );
+			throw new Exception( '$pageName must be a string' );
 		}
 
 		// Go on call the external site

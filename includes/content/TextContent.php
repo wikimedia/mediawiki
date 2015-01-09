@@ -50,7 +50,7 @@ class TextContent extends AbstractContent {
 		}
 
 		if ( !is_string( $text ) ) {
-			throw new MWException( "TextContent expects a string in the constructor." );
+			throw new Exception( "TextContent expects a string in the constructor." );
 		}
 
 		$this->mText = $text;

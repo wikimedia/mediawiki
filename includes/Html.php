@@ -577,7 +577,7 @@ class Html {
 				// Remove duplicates and create the string
 				$value = implode( ' ', array_unique( $value ) );
 			} elseif ( is_array( $value ) ) {
-				throw new MWException( "HTML attribute $key can not contain a list of values" );
+				throw new Exception( "HTML attribute $key can not contain a list of values" );
 			}
 
 			// See the "Attributes" section in the HTML syntax part of HTML5,

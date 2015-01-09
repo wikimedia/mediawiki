@@ -190,7 +190,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 		$op = $up ? '>=' : '<=';
 		$dir = $up ? 'ASC' : 'DESC';
 		if ( !$this->category instanceof Title ) {
-			throw new MWException( 'No category set' );
+			throw new Exception( 'No category set' );
 		}
 		$qi = array(
 			'tables' => array( 'categorylinks', 'page' ),
@@ -265,7 +265,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 			)
 		);
 		if ( !$res ) {
-			throw new MWException( 'No entries in category' );
+			throw new Exception( 'No entries in category' );
 		}
 
 		return array( wfTimestamp( TS_UNIX, $res->low ), wfTimestamp( TS_UNIX, $res->high ) );

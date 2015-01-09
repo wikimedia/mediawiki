@@ -3,7 +3,7 @@
 class FileRepoTest extends MediaWikiTestCase {
 
 	/**
-	 * @expectedException MWException
+	 * @expectedException Exception
 	 * @covers FileRepo::__construct
 	 */
 	public function testFileRepoConstructionOptionCanNotBeNull() {
@@ -11,7 +11,7 @@ class FileRepoTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @expectedException MWException
+	 * @expectedException Exception
 	 * @covers FileRepo::__construct
 	 */
 	public function testFileRepoConstructionOptionCanNotBeAnEmptyArray() {
@@ -19,7 +19,7 @@ class FileRepoTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @expectedException MWException
+	 * @expectedException Exception
 	 * @covers FileRepo::__construct
 	 */
 	public function testFileRepoConstructionOptionNeedNameKey() {
@@ -29,7 +29,7 @@ class FileRepoTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @expectedException MWException
+	 * @expectedException Exception
 	 * @covers FileRepo::__construct
 	 */
 	public function testFileRepoConstructionOptionNeedBackendKey() {

@@ -108,7 +108,7 @@ class WebInstallerOutput {
 	 */
 	public function redirect( $url ) {
 		if ( $this->headerDone ) {
-			throw new MWException( __METHOD__ . ' called after sending headers' );
+			throw new Exception( __METHOD__ . ' called after sending headers' );
 		}
 		$this->redirectTarget = $url;
 	}

@@ -256,7 +256,7 @@ class BacklinkCache {
 			if ( $prefix ) {
 				return $prefix;
 			} else {
-				throw new MWException( "Invalid table \"$table\" in " . __CLASS__ );
+				throw new Exception( "Invalid table \"$table\" in " . __CLASS__ );
 			}
 		}
 	}
@@ -302,7 +302,7 @@ class BacklinkCache {
 				$conds = null;
 				Hooks::run( 'BacklinkCacheGetConditions', array( $table, $this->title, &$conds ) );
 				if ( !$conds ) {
-					throw new MWException( "Invalid table \"$table\" in " . __CLASS__ );
+					throw new Exception( "Invalid table \"$table\" in " . __CLASS__ );
 				}
 		}
 
@@ -479,7 +479,7 @@ class BacklinkCache {
 
 			# Sanity check order
 			if ( $start && $end && $start > $end ) {
-				throw new MWException( __METHOD__ . ': Internal error: query result out of order' );
+				throw new Exception( __METHOD__ . ': Internal error: query result out of order' );
 			}
 
 			$batches[] = array( $start, $end );

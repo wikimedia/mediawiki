@@ -137,7 +137,7 @@ class FileRepo {
 			|| !array_key_exists( 'name', $info )
 			|| !array_key_exists( 'backend', $info )
 		) {
-			throw new MWException( __CLASS__ .
+			throw new Exception( __CLASS__ .
 				" requires an array of options having both 'name' and 'backend' keys.\n" );
 		}
 
@@ -230,7 +230,7 @@ class FileRepo {
 		foreach ( (array)$doZones as $zone ) {
 			$root = $this->getZonePath( $zone );
 			if ( $root === null ) {
-				throw new MWException( "No '$zone' zone defined in the {$this->name} repo." );
+				throw new Exception( "No '$zone' zone defined in the {$this->name} repo." );
 			}
 		}
 
@@ -314,19 +314,19 @@ class FileRepo {
 	 */
 	public function resolveVirtualUrl( $url ) {
 		if ( substr( $url, 0, 9 ) != 'mwrepo://' ) {
-			throw new MWException( __METHOD__ . ': unknown protocol' );
+			throw new Exception( __METHOD__ . ': unknown protocol' );
 		}
 		$bits = explode( '/', substr( $url, 9 ), 3 );
 		if ( count( $bits ) != 3 ) {
-			throw new MWException( __METHOD__ . ": invalid mwrepo URL: $url" );
+			throw new Exception( __METHOD__ . ": invalid mwrepo URL: $url" );
 		}
 		list( $repo, $zone, $rel ) = $bits;
 		if ( $repo !== $this->name ) {
-			throw new MWException( __METHOD__ . ": fetching from a foreign repo is not supported" );
+			throw new Exception( __METHOD__ . ": fetching from a foreign repo is not supported" );
 		}
 		$base = $this->getZonePath( $zone );
 		if ( !$base ) {
-			throw new MWException( __METHOD__ . ": invalid zone: $zone" );
+			throw new Exception( __METHOD__ . ": invalid zone: $zone" );
 		}
 
 		return $base . '/' . rawurldecode( $rel );
@@ -858,10 +858,10 @@ class FileRepo {
 			// Resolve destination path
 			$root = $this->getZonePath( $dstZone );
 			if ( !$root ) {
-				throw new MWException( "Invalid zone: $dstZone" );
+				throw new Exception( "Invalid zone: $dstZone" );
 			}
 			if ( !$this->validateFilename( $dstRel ) ) {
-				throw new MWException( 'Validation error in $dstRel' );
+				throw new Exception( 'Validation error in $dstRel' );
 			}
 			$dstPath = "$root/$dstRel";
 			$dstDir = dirname( $dstPath );
@@ -1204,10 +1204,10 @@ class FileRepo {
 			// Resolve source to a storage path if virtual
 			$srcPath = $this->resolveToStoragePath( $srcPath );
 			if ( !$this->validateFilename( $dstRel ) ) {
-				throw new MWException( 'Validation error in $dstRel' );
+				throw new Exception( 'Validation error in $dstRel' );
 			}
 			if ( !$this->validateFilename( $archiveRel ) ) {
-				throw new MWException( 'Validation error in $archiveRel' );
+				throw new Exception( 'Validation error in $archiveRel' );
 			}
 
 			$publicRoot = $this->getZonePath( 'public' );
@@ -1416,9 +1416,9 @@ class FileRepo {
 		foreach ( $sourceDestPairs as $pair ) {
 			list( $srcRel, $archiveRel ) = $pair;
 			if ( !$this->validateFilename( $srcRel ) ) {
-				throw new MWException( __METHOD__ . ':Validation error in $srcRel' );
+				throw new Exception( __METHOD__ . ':Validation error in $srcRel' );
 			} elseif ( !$this->validateFilename( $archiveRel ) ) {
-				throw new MWException( __METHOD__ . ':Validation error in $archiveRel' );
+				throw new Exception( __METHOD__ . ':Validation error in $archiveRel' );
 			}
 
 			$publicRoot = $this->getZonePath( 'public' );
@@ -1472,7 +1472,7 @@ class FileRepo {
 	 */
 	public function getDeletedHashPath( $key ) {
 		if ( strlen( $key ) < 31 ) {
-			throw new MWException( "Invalid storage key '$key'." );
+			throw new Exception( "Invalid storage key '$key'." );
 		}
 		$path = '';
 		for ( $i = 0; $i < $this->deletedHashLevels; $i++ ) {
@@ -1879,6 +1879,6 @@ class FileRepo {
  */
 class TempFileRepo extends FileRepo {
 	public function getTempRepo() {
-		throw new MWException( "Cannot get a temp repo from a temp repo." );
+		throw new Exception( "Cannot get a temp repo from a temp repo." );
 	}
 }

@@ -638,7 +638,7 @@ class ZipDirectoryReader {
 						$pos += $fieldSize;
 						break;
 					default:
-						throw new MWException( __METHOD__ . ": invalid type \"$typeName\"" );
+						throw new Exception( __METHOD__ . ": invalid type \"$typeName\"" );
 				}
 			} else {
 				// Unsigned little-endian integer

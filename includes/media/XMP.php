@@ -117,7 +117,7 @@ class XMPReader {
 
 		if ( !function_exists( 'xml_parser_create_ns' ) ) {
 			// this should already be checked by this point
-			throw new MWException( 'XMP support requires XML Parser' );
+			throw new Exception( 'XMP support requires XML Parser' );
 		}
 
 		$this->items = XMPInfo::getItems();
@@ -291,7 +291,7 @@ class XMPReader {
 							break;
 						default:
 							//this should be impossible to get to
-							throw new MWException( "Invalid BOM" );
+							throw new Exception( "Invalid BOM" );
 					}
 				} else {
 					// standard specifically says, if no bom assume utf-8
@@ -416,7 +416,7 @@ class XMPReader {
 		}
 
 		if ( !isset( $this->mode[0] ) ) {
-			throw new MWException( 'Unexpected character data before first rdf:Description element' );
+			throw new Exception( 'Unexpected character data before first rdf:Description element' );
 		}
 
 		if ( $this->mode[0] === self::MODE_IGNORE ) {
@@ -426,7 +426,7 @@ class XMPReader {
 		if ( $this->mode[0] !== self::MODE_SIMPLE
 			&& $this->mode[0] !== self::MODE_QDESC
 		) {
-			throw new MWException( 'character data where not expected. (mode ' . $this->mode[0] . ')' );
+			throw new Exception( 'character data where not expected. (mode ' . $this->mode[0] . ')' );
 		}
 
 		// to check, how does this handle w.s.
@@ -508,7 +508,7 @@ class XMPReader {
 			&& !( $elm === self::NS_RDF . ' Description'
 				&& $this->mode[0] === self::MODE_STRUCT )
 		) {
-			throw new MWException( "nesting mismatch. got a </$elm> but expected a </" .
+			throw new Exception( "nesting mismatch. got a </$elm> but expected a </" .
 				$this->curItem[0] . '>' );
 		}
 
@@ -592,7 +592,7 @@ class XMPReader {
 				$this->results['xmp-' . $info['map_group']][$finalName]['_type'] = 'lang';
 			}
 		} else {
-			throw new MWException( __METHOD__ . " expected </rdf:seq> or </rdf:bag> but instead got $elm." );
+			throw new Exception( __METHOD__ . " expected </rdf:seq> or </rdf:bag> but instead got $elm." );
 		}
 	}
 
@@ -660,13 +660,13 @@ class XMPReader {
 		if ( count( $this->mode[0] ) === 0 ) {
 			// This should never ever happen and means
 			// there is a pretty major bug in this class.
-			throw new MWException( 'Encountered end element with no mode' );
+			throw new Exception( 'Encountered end element with no mode' );
 		}
 
 		if ( count( $this->curItem ) == 0 && $this->mode[0] !== self::MODE_INITIAL ) {
 			// just to be paranoid. Should always have a curItem, except for initially
 			// (aka during MODE_INITAL).
-			throw new MWException( "Hit end element </$elm> but no curItem" );
+			throw new Exception( "Hit end element </$elm> but no curItem" );
 		}
 
 		switch ( $this->mode[0] ) {
@@ -687,7 +687,7 @@ class XMPReader {
 				if ( $elm === self::NS_RDF . ' Description' ) {
 					array_shift( $this->mode );
 				} else {
-					throw new MWException( 'Element ended unexpectedly while in MODE_INITIAL' );
+					throw new Exception( 'Element ended unexpectedly while in MODE_INITIAL' );
 				}
 				break;
 			case self::MODE_LI:
@@ -732,7 +732,7 @@ class XMPReader {
 		if ( $elm === self::NS_RDF . ' Bag' ) {
 			array_unshift( $this->mode, self::MODE_LI );
 		} else {
-			throw new MWException( "Expected <rdf:Bag> but got $elm." );
+			throw new Exception( "Expected <rdf:Bag> but got $elm." );
 		}
 	}
 
@@ -752,7 +752,7 @@ class XMPReader {
 				. ' it is a Seq, since some buggy software is known to screw this up.' );
 			array_unshift( $this->mode, self::MODE_LI );
 		} else {
-			throw new MWException( "Expected <rdf:Seq> but got $elm." );
+			throw new Exception( "Expected <rdf:Seq> but got $elm." );
 		}
 	}
 
@@ -774,7 +774,7 @@ class XMPReader {
 		if ( $elm === self::NS_RDF . ' Alt' ) {
 			array_unshift( $this->mode, self::MODE_LI_LANG );
 		} else {
-			throw new MWException( "Expected <rdf:Seq> but got $elm." );
+			throw new Exception( "Expected <rdf:Seq> but got $elm." );
 		}
 	}
 
@@ -808,7 +808,7 @@ class XMPReader {
 			}
 		} elseif ( $elm === self::NS_RDF . ' value' ) {
 			// This should not be here.
-			throw new MWException( __METHOD__ . ' Encountered <rdf:value> where it was unexpected.' );
+			throw new Exception( __METHOD__ . ' Encountered <rdf:value> where it was unexpected.' );
 		} else {
 			// something else we don't recognize, like a qualifier maybe.
 			wfDebugLog( 'XMP', __METHOD__ .
@@ -883,7 +883,7 @@ class XMPReader {
 				if ( $this->charContent !== false ) {
 					// Something weird.
 					// Should not happen in valid XMP.
-					throw new MWException( 'tag nested in non-whitespace characters.' );
+					throw new Exception( 'tag nested in non-whitespace characters.' );
 				}
 			} else {
 				// This element is not on our list of allowed elements so ignore.
@@ -926,7 +926,7 @@ class XMPReader {
 				) {
 					// This assumes that we don't have inter-namespace nesting
 					// which we don't in all the properties we're interested in.
-					throw new MWException( " <$tag> appeared nested in <" . $this->ancestorStruct
+					throw new Exception( " <$tag> appeared nested in <" . $this->ancestorStruct
 						. "> where it is not allowed." );
 				}
 				array_unshift( $this->mode, $this->items[$ns][$tag]['mode'] );
@@ -934,7 +934,7 @@ class XMPReader {
 				if ( $this->charContent !== false ) {
 					// Something weird.
 					// Should not happen in valid XMP.
-					throw new MWException( "tag <$tag> nested in non-whitespace characters (" .
+					throw new Exception( "tag <$tag> nested in non-whitespace characters (" .
 						$this->charContent . ")." );
 				}
 			} else {
@@ -967,13 +967,13 @@ class XMPReader {
 	 */
 	private function startElementModeLi( $elm, $attribs ) {
 		if ( ( $elm ) !== self::NS_RDF . ' li' ) {
-			throw new MWException( "<rdf:li> expected but got $elm." );
+			throw new Exception( "<rdf:li> expected but got $elm." );
 		}
 
 		if ( !isset( $this->mode[1] ) ) {
 			// This should never ever ever happen. Checking for it
 			// to be paranoid.
-			throw new MWException( 'In mode Li, but no 2xPrevious mode!' );
+			throw new Exception( 'In mode Li, but no 2xPrevious mode!' );
 		}
 
 		if ( $this->mode[1] === self::MODE_BAGSTRUCT ) {
@@ -984,7 +984,7 @@ class XMPReader {
 
 			if ( !isset( $this->curItem[1] ) ) {
 				// be paranoid.
-				throw new MWException( 'Can not find parent of BAGSTRUCT.' );
+				throw new Exception( 'Can not find parent of BAGSTRUCT.' );
 			}
 			list( $curNS, $curTag ) = explode( ' ', $this->curItem[1] );
 			$this->ancestorStruct = isset( $this->items[$curNS][$curTag]['map_name'] )
@@ -1017,12 +1017,12 @@ class XMPReader {
 	 */
 	private function startElementModeLiLang( $elm, $attribs ) {
 		if ( $elm !== self::NS_RDF . ' li' ) {
-			throw new MWException( __METHOD__ . " <rdf:li> expected but got $elm." );
+			throw new Exception( __METHOD__ . " <rdf:li> expected but got $elm." );
 		}
 		if ( !isset( $attribs[self::NS_XML . ' lang'] )
 			|| !preg_match( '/^[-A-Za-z0-9]{2,}$/D', $attribs[self::NS_XML . ' lang'] )
 		) {
-			throw new MWException( __METHOD__
+			throw new Exception( __METHOD__
 				. " <rdf:li> did not contain, or has invalid xml:lang attribute in lang alternative" );
 		}
 
@@ -1081,7 +1081,7 @@ class XMPReader {
 
 		if ( count( $this->mode ) === 0 ) {
 			// This should not happen.
-			throw new MWException( 'Error extracting XMP, '
+			throw new Exception( 'Error extracting XMP, '
 				. "encountered <$elm> with no mode" );
 		}
 
@@ -1118,7 +1118,7 @@ class XMPReader {
 				$this->startElementModeQDesc( $elm );
 				break;
 			default:
-				throw new MWException( 'StartElement in unknown mode: ' . $this->mode[0] );
+				throw new Exception( 'StartElement in unknown mode: ' . $this->mode[0] );
 		}
 	}
 
@@ -1167,7 +1167,7 @@ class XMPReader {
 				}
 			} elseif ( isset( $this->items[$ns][$tag] ) ) {
 				if ( $this->mode[0] === self::MODE_SIMPLE ) {
-					throw new MWException( __METHOD__
+					throw new Exception( __METHOD__
 						. " $ns:$tag found as attribute where not allowed" );
 				}
 				$this->saveValue( $ns, $tag, $val );

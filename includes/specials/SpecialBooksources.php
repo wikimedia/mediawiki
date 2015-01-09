@@ -178,7 +178,7 @@ class SpecialBookSources extends SpecialPage {
 
 				return true;
 			} else {
-				throw new MWException( "Unexpected content type for book sources: " . $content->getModel() );
+				throw new Exception( "Unexpected content type for book sources: " . $content->getModel() );
 			}
 		}
 

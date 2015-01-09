@@ -69,11 +69,11 @@ abstract class JobQueue {
 			$this->order = $this->optimalOrder();
 		}
 		if ( !in_array( $this->order, $this->supportedOrders() ) ) {
-			throw new MWException( __CLASS__ . " does not support '{$this->order}' order." );
+			throw new Exception( __CLASS__ . " does not support '{$this->order}' order." );
 		}
 		$this->checkDelay = !empty( $params['checkDelay'] );
 		if ( $this->checkDelay && !$this->supportsDelayedJobs() ) {
-			throw new MWException( __CLASS__ . " does not support delayed jobs." );
+			throw new Exception( __CLASS__ . " does not support delayed jobs." );
 		}
 		$this->dupCache = wfGetCache( CACHE_ANYTHING );
 	}
@@ -112,11 +112,11 @@ abstract class JobQueue {
 	final public static function factory( array $params ) {
 		$class = $params['class'];
 		if ( !class_exists( $class ) ) {
-			throw new MWException( "Invalid job queue class '$class'." );
+			throw new Exception( "Invalid job queue class '$class'." );
 		}
 		$obj = new $class( $params );
 		if ( !( $obj instanceof self ) ) {
-			throw new MWException( "Class '$class' is not a " . __CLASS__ . " class." );
+			throw new Exception( "Class '$class' is not a " . __CLASS__ . " class." );
 		}
 
 		return $obj;
@@ -318,10 +318,10 @@ abstract class JobQueue {
 
 		foreach ( $jobs as $job ) {
 			if ( $job->getType() !== $this->type ) {
-				throw new MWException(
+				throw new Exception(
 					"Got '{$job->getType()}' job; expected a '{$this->type}' job." );
 			} elseif ( $job->getReleaseTimestamp() && !$this->checkDelay ) {
-				throw new MWException(
+				throw new Exception(
 					"Got delayed '{$job->getType()}' job; delays are not supported." );
 			}
 		}
@@ -348,10 +348,10 @@ abstract class JobQueue {
 		global $wgJobClasses;
 
 		if ( $this->wiki !== wfWikiID() ) {
-			throw new MWException( "Cannot pop '{$this->type}' job off foreign wiki queue." );
+			throw new Exception( "Cannot pop '{$this->type}' job off foreign wiki queue." );
 		} elseif ( !isset( $wgJobClasses[$this->type] ) ) {
 			// Do not pop jobs if there is no class for the queue type
-			throw new MWException( "Unrecognized job type '{$this->type}'." );
+			throw new Exception( "Unrecognized job type '{$this->type}'." );
 		}
 
 		$job = $this->doPop();
@@ -387,7 +387,7 @@ abstract class JobQueue {
 	 */
 	final public function ack( Job $job ) {
 		if ( $job->getType() !== $this->type ) {
-			throw new MWException( "Got '{$job->getType()}' job; expected '{$this->type}'." );
+			throw new Exception( "Got '{$job->getType()}' job; expected '{$this->type}'." );
 		}
 		$this->doAck( $job );
 	}
@@ -431,7 +431,7 @@ abstract class JobQueue {
 	 */
 	final public function deduplicateRootJob( Job $job ) {
 		if ( $job->getType() !== $this->type ) {
-			throw new MWException( "Got '{$job->getType()}' job; expected '{$this->type}'." );
+			throw new Exception( "Got '{$job->getType()}' job; expected '{$this->type}'." );
 		}
 		$ok = $this->doDeduplicateRootJob( $job );
 
@@ -446,7 +446,7 @@ abstract class JobQueue {
 	 */
 	protected function doDeduplicateRootJob( Job $job ) {
 		if ( !$job->hasRootJobParams() ) {
-			throw new MWException( "Cannot register root job; missing parameters." );
+			throw new Exception( "Cannot register root job; missing parameters." );
 		}
 		$params = $job->getRootJobParams();
 
@@ -474,7 +474,7 @@ abstract class JobQueue {
 	 */
 	final protected function isRootJobOldDuplicate( Job $job ) {
 		if ( $job->getType() !== $this->type ) {
-			throw new MWException( "Got '{$job->getType()}' job; expected '{$this->type}'." );
+			throw new Exception( "Got '{$job->getType()}' job; expected '{$this->type}'." );
 		}
 		$isDuplicate = $this->doIsRootJobOldDuplicate( $job );
 
@@ -526,7 +526,7 @@ abstract class JobQueue {
 	 * @throws MWException
 	 */
 	protected function doDelete() {
-		throw new MWException( "This method is not implemented." );
+		throw new Exception( "This method is not implemented." );
 	}
 
 	/**
@@ -697,7 +697,7 @@ abstract class JobQueue {
 	 * @throws MWException
 	 */
 	public function setTestingPrefix( $key ) {
-		throw new MWException( "Queue namespacing not supported for this queue type." );
+		throw new Exception( "Queue namespacing not supported for this queue type." );
 	}
 }
 

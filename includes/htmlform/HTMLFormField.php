@@ -137,7 +137,7 @@ abstract class HTMLFormField {
 				case 'AND':
 					foreach ( $params as $i => $p ) {
 						if ( !is_array( $p ) ) {
-							throw new MWException(
+							throw new Exception(
 								"Expected array, found " . gettype( $p ) . " at index $i"
 							);
 						}
@@ -150,7 +150,7 @@ abstract class HTMLFormField {
 				case 'OR':
 					foreach ( $params as $p ) {
 						if ( !is_array( $p ) ) {
-							throw new MWException(
+							throw new Exception(
 								"Expected array, found " . gettype( $p ) . " at index $i"
 							);
 						}
@@ -163,7 +163,7 @@ abstract class HTMLFormField {
 				case 'NAND':
 					foreach ( $params as $i => $p ) {
 						if ( !is_array( $p ) ) {
-							throw new MWException(
+							throw new Exception(
 								"Expected array, found " . gettype( $p ) . " at index $i"
 							);
 						}
@@ -176,7 +176,7 @@ abstract class HTMLFormField {
 				case 'NOR':
 					foreach ( $params as $p ) {
 						if ( !is_array( $p ) ) {
-							throw new MWException(
+							throw new Exception(
 								"Expected array, found " . gettype( $p ) . " at index $i"
 							);
 						}
@@ -188,11 +188,11 @@ abstract class HTMLFormField {
 
 				case 'NOT':
 					if ( count( $params ) !== 1 ) {
-						throw new MWException( "NOT takes exactly one parameter" );
+						throw new Exception( "NOT takes exactly one parameter" );
 					}
 					$p = $params[0];
 					if ( !is_array( $p ) ) {
-						throw new MWException(
+						throw new Exception(
 							"Expected array, found " . gettype( $p ) . " at index 0"
 						);
 					}
@@ -201,11 +201,11 @@ abstract class HTMLFormField {
 				case '===':
 				case '!==':
 					if ( count( $params ) !== 2 ) {
-						throw new MWException( "$op takes exactly two parameters" );
+						throw new Exception( "$op takes exactly two parameters" );
 					}
 					list( $field, $value ) = $params;
 					if ( !is_string( $field ) || !is_string( $value ) ) {
-						throw new MWException( "Parameters for $op must be strings" );
+						throw new Exception( "Parameters for $op must be strings" );
 					}
 					$testValue = $this->getNearestFieldByName( $alldata, $field );
 					switch ( $op ) {
@@ -216,10 +216,10 @@ abstract class HTMLFormField {
 					}
 
 				default:
-					throw new MWException( "Unknown operation" );
+					throw new Exception( "Unknown operation" );
 			}
 		} catch ( Exception $ex ) {
-			throw new MWException(
+			throw new Exception(
 				"Invalid hide-if specification for $this->mName: " .
 				$ex->getMessage() . " in " . var_export( $origParams, true ),
 				0, $ex
@@ -379,7 +379,7 @@ abstract class HTMLFormField {
 		$validName = Sanitizer::escapeId( $this->mName );
 		$validName = str_replace( array( '.5B', '.5D' ), array( '[', ']' ), $validName );
 		if ( $this->mName != $validName && !isset( $params['nodata'] ) ) {
-			throw new MWException( "Invalid name '{$this->mName}' passed to " . __METHOD__ );
+			throw new Exception( "Invalid name '{$this->mName}' passed to " . __METHOD__ );
 		}
 
 		$this->mID = "mw-input-{$this->mName}";
@@ -393,7 +393,7 @@ abstract class HTMLFormField {
 			$validId = Sanitizer::escapeId( $id );
 
 			if ( $id != $validId ) {
-				throw new MWException( "Invalid id '$id' passed to " . __METHOD__ );
+				throw new Exception( "Invalid id '$id' passed to " . __METHOD__ );
 			}
 
 			$this->mID = $id;
