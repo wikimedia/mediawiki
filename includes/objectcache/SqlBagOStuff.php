@@ -125,7 +125,7 @@ class SqlBagOStuff extends BagOStuff {
 
 		if ( !isset( $this->conns[$serverIndex] ) ) {
 			if ( $serverIndex >= $this->numServers ) {
-				throw new MWException( __METHOD__ . ": Invalid server index \"$serverIndex\"" );
+				throw new Exception( __METHOD__ . ": Invalid server index \"$serverIndex\"" );
 			}
 
 			# Don't keep timing out trying to connect for each call if the DB is down
@@ -767,7 +767,7 @@ class SqlBagOStuff extends BagOStuff {
 		for ( $serverIndex = 0; $serverIndex < $this->numServers; $serverIndex++ ) {
 			$db = $this->getDB( $serverIndex );
 			if ( $db->getType() !== 'mysql' ) {
-				throw new MWException( __METHOD__ . ' is not supported on this DB server' );
+				throw new Exception( __METHOD__ . ' is not supported on this DB server' );
 			}
 
 			for ( $i = 0; $i < $this->shards; $i++ ) {

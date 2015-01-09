@@ -94,7 +94,7 @@ abstract class Profiler {
 	 */
 	final public static function replaceStubInstance( Profiler $profiler ) {
 		if ( self::$__instance && !( self::$__instance instanceof ProfilerStub ) ) {
-			throw new MWException( 'Could not replace non-stub profiler instance.' );
+			throw new Exception( 'Could not replace non-stub profiler instance.' );
 		} else {
 			self::$__instance = $profiler;
 		}
@@ -172,7 +172,7 @@ abstract class Profiler {
 
 		foreach ( $output as $outType ) {
 			if ( !isset( self::$outputTypes[$outType] ) ) {
-				throw new MWException( "'$outType' is an invalid output type" );
+				throw new Exception( "'$outType' is an invalid output type" );
 			}
 			$class = self::$outputTypes[$outType];
 

@@ -674,7 +674,7 @@ class CategoryViewer extends ContextSource {
 				$fragment = 'mw-category-media';
 				break;
 			default:
-				throw new MWException( __METHOD__ .
+				throw new Exception( __METHOD__ .
 					" Invalid section $section." );
 		}
 

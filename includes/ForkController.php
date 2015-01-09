@@ -54,7 +54,7 @@ class ForkController {
 
 	public function __construct( $numProcs, $flags = 0 ) {
 		if ( PHP_SAPI != 'cli' ) {
-			throw new MWException( "ForkController cannot be used from the web." );
+			throw new Exception( "ForkController cannot be used from the web." );
 		}
 		$this->procsToStart = $numProcs;
 		$this->flags = $flags;

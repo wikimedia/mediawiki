@@ -201,7 +201,7 @@ class Revision implements IDBAccessObject {
 			// Pre-1.5 ar_text row
 			$attribs['text'] = self::getRevisionText( $row, 'ar_' );
 			if ( $attribs['text'] === false ) {
-				throw new MWException( 'Unable to load text from archive row (possibly bug 22624)' );
+				throw new Exception( 'Unable to load text from archive row (possibly bug 22624)' );
 			}
 		}
 		return new self( $attribs );
@@ -606,7 +606,7 @@ class Revision implements IDBAccessObject {
 			if ( !empty( $row['content'] ) ) {
 				// @todo when is that set? test with external store setup! check out insertOn() [dk]
 				if ( !empty( $row['text_id'] ) ) {
-					throw new MWException( "Text already stored in external store (id {$row['text_id']}), " .
+					throw new Exception( "Text already stored in external store (id {$row['text_id']}), " .
 						"can't serialize content object" );
 				}
 
@@ -645,7 +645,7 @@ class Revision implements IDBAccessObject {
 			// if we have a Content object, override mText and mContentModel
 			if ( !empty( $row['content'] ) ) {
 				if ( !( $row['content'] instanceof Content ) ) {
-					throw new MWException( '`content` field must contain a Content object.' );
+					throw new Exception( '`content` field must contain a Content object.' );
 				}
 
 				$handler = $this->getContentHandler();
@@ -689,7 +689,7 @@ class Revision implements IDBAccessObject {
 			$this->getContentModel();
 			$this->getContentFormat();
 		} else {
-			throw new MWException( 'Revision constructor passed invalid row format.' );
+			throw new Exception( 'Revision constructor passed invalid row format.' );
 		}
 		$this->mUnpatrolled = null;
 	}
@@ -1120,7 +1120,7 @@ class Revision implements IDBAccessObject {
 			$format = $this->getContentFormat();
 
 			if ( !$this->mContentHandler->isSupportedFormat( $format ) ) {
-				throw new MWException( "Oops, the content format $format is not supported for "
+				throw new Exception( "Oops, the content format $format is not supported for "
 					. "this content model, $model" );
 			}
 		}
@@ -1335,7 +1335,7 @@ class Revision implements IDBAccessObject {
 			// Store and get the URL
 			$data = ExternalStore::insertToDefault( $data );
 			if ( !$data ) {
-				throw new MWException( "Unable to store text to external storage" );
+				throw new Exception( "Unable to store text to external storage" );
 			}
 			if ( $flags ) {
 				$flags .= ',';
@@ -1394,7 +1394,7 @@ class Revision implements IDBAccessObject {
 			$title = $this->getTitle();
 
 			if ( $title === null ) {
-				throw new MWException( "Insufficient information to determine the title of the "
+				throw new Exception( "Insufficient information to determine the title of the "
 					. "revision's page!" );
 			}
 
@@ -1426,7 +1426,7 @@ class Revision implements IDBAccessObject {
 		if ( !$handler->isSupportedFormat( $format ) ) {
 			$t = $title->getPrefixedDBkey();
 
-			throw new MWException( "Can't use format $format with content model $model on $t" );
+			throw new Exception( "Can't use format $format with content model $model on $t" );
 		}
 
 		if ( !$wgContentHandlerUseDB && $title ) {
@@ -1440,7 +1440,7 @@ class Revision implements IDBAccessObject {
 			if ( $this->getContentModel() != $defaultModel ) {
 				$t = $title->getPrefixedDBkey();
 
-				throw new MWException( "Can't save non-default content model with "
+				throw new Exception( "Can't save non-default content model with "
 					. "\$wgContentHandlerUseDB disabled: model is $model, "
 					. "default for $t is $defaultModel" );
 			}
@@ -1448,7 +1448,7 @@ class Revision implements IDBAccessObject {
 			if ( $this->getContentFormat() != $defaultFormat ) {
 				$t = $title->getPrefixedDBkey();
 
-				throw new MWException( "Can't use non-default content format with "
+				throw new Exception( "Can't use non-default content format with "
 					. "\$wgContentHandlerUseDB disabled: format is $format, "
 					. "default for $t is $defaultFormat" );
 			}
@@ -1459,7 +1459,7 @@ class Revision implements IDBAccessObject {
 		if ( !$content || !$content->isValid() ) {
 			$t = $title->getPrefixedDBkey();
 
-			throw new MWException( "Content of $t is not valid! Content model is $model" );
+			throw new Exception( "Content of $t is not valid! Content model is $model" );
 		}
 	}
 

@@ -54,13 +54,13 @@ class PoolCounterWorkViaCallback extends PoolCounterWork {
 		foreach ( array( 'doWork', 'doCachedWork', 'fallback', 'error' ) as $name ) {
 			if ( isset( $callbacks[$name] ) ) {
 				if ( !is_callable( $callbacks[$name] ) ) {
-					throw new MWException( "Invalid callback provided for '$name' function." );
+					throw new Exception( "Invalid callback provided for '$name' function." );
 				}
 				$this->$name = $callbacks[$name];
 			}
 		}
 		if ( !isset( $this->doWork ) ) {
-			throw new MWException( "No callback provided for 'doWork' function." );
+			throw new Exception( "No callback provided for 'doWork' function." );
 		}
 		$this->cacheable = isset( $this->doCachedWork );
 	}

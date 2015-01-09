@@ -858,14 +858,14 @@ class ApiMain extends ApiBase {
 
 		// Check token, if necessary
 		if ( $module->needsToken() === true ) {
-			throw new MWException(
+			throw new Exception(
 				"Module '{$module->getModuleName()}' must be updated for the new token handling. " .
 				"See documentation for ApiBase::needsToken for details."
 			);
 		}
 		if ( $module->needsToken() ) {
 			if ( !$module->mustBePosted() ) {
-				throw new MWException(
+				throw new Exception(
 					"Module '{$module->getModuleName()}' must require POST to use tokens."
 				);
 			}

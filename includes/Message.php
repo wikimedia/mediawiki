@@ -602,7 +602,7 @@ class Message {
 			}
 		} else {
 			$type = gettype( $lang );
-			throw new MWException( __METHOD__ . " must be "
+			throw new Exception( __METHOD__ . " must be "
 				. "passed a String or Language object; $type given"
 			);
 		}

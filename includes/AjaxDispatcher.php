@@ -88,7 +88,7 @@ class AjaxDispatcher {
 			default:
 				return;
 				# Or we could throw an exception:
-				# throw new MWException( __METHOD__ . ' called without any data (mode empty).' );
+				# throw new Exception( __METHOD__ . ' called without any data (mode empty).' );
 		}
 
 	}

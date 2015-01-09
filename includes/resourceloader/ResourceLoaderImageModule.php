@@ -85,7 +85,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 		$this->localBasePath = self::extractLocalBasePath( $options, $localBasePath );
 
 		if ( !isset( $options['prefix'] ) || !$options['prefix'] ) {
-			throw new MWException(
+			throw new Exception(
 				"Required 'prefix' option not given or empty."
 			);
 		}
@@ -94,13 +94,13 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 			switch ( $member ) {
 				case 'images':
 					if ( !is_array( $option ) ) {
-						throw new MWException(
+						throw new Exception(
 							"Invalid collated file path list error. '$option' given, array expected."
 						);
 					}
 					foreach ( $option as $key => $value ) {
 						if ( !is_string( $key ) ) {
-							throw new MWException(
+							throw new Exception(
 								"Invalid collated file path list key error. '$key' given, string expected."
 							);
 						}
@@ -110,7 +110,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 
 				case 'variants':
 					if ( !is_array( $option ) ) {
-						throw new MWException(
+						throw new Exception(
 							"Invalid variant list error. '$option' given, array expected."
 						);
 					}

@@ -186,7 +186,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 				}
 			} else {
 				// Some sort of database error, probably unreachable
-				throw new MWException( 'Unknown database error in ' . __METHOD__ );
+				throw new Exception( 'Unknown database error in ' . __METHOD__ );
 			}
 		} else {
 			// The user didn't supply any data

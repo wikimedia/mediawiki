@@ -157,7 +157,7 @@ class WikiReference {
 				return substr( $this->mCanonicalServer, strlen( $prefix ) );
 			}
 		}
-		throw new MWException( "Invalid hostname for wiki {$this->mMinor}.{$this->mMajor}" );
+		throw new Exception( "Invalid hostname for wiki {$this->mMinor}.{$this->mMajor}" );
 	}
 
 	/**

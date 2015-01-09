@@ -45,7 +45,7 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 			}
 		}
 		if ( !is_array( $this->autocomplete ) || !$this->autocomplete ) {
-			throw new MWException( 'HTMLAutoCompleteSelectField called without any autocompletions' );
+			throw new Exception( 'HTMLAutoCompleteSelectField called without any autocompletions' );
 		}
 
 		$this->getOptions();

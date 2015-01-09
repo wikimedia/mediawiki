@@ -516,7 +516,7 @@ abstract class BaseTemplate extends QuickTemplate {
 				);
 				return Html::rawElement( 'button', $buttonAttrs, Html::element( 'img', $imgAttrs ) );
 			default:
-				throw new MWException( 'Unknown mode passed to BaseTemplate::makeSearchButton' );
+				throw new Exception( 'Unknown mode passed to BaseTemplate::makeSearchButton' );
 		}
 	}
 

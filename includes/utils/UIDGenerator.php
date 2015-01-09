@@ -108,7 +108,7 @@ class UIDGenerator {
 	 */
 	public static function newTimestampedUID88( $base = 10 ) {
 		if ( !is_integer( $base ) || $base > 36 || $base < 2 ) {
-			throw new MWException( "Base must an integer be between 2 and 36" );
+			throw new Exception( "Base must an integer be between 2 and 36" );
 		}
 		$gen = self::singleton();
 		$time = $gen->getTimestampAndDelay( 'lockFile88', 1, 1024 );
@@ -131,7 +131,7 @@ class UIDGenerator {
 		$id_bin .= $this->nodeId32;
 		// Convert to a 1-27 digit integer string
 		if ( strlen( $id_bin ) !== 88 ) {
-			throw new MWException( "Detected overflow for millisecond timestamp." );
+			throw new Exception( "Detected overflow for millisecond timestamp." );
 		}
 
 		return $id_bin;
@@ -153,7 +153,7 @@ class UIDGenerator {
 	 */
 	public static function newTimestampedUID128( $base = 10 ) {
 		if ( !is_integer( $base ) || $base > 36 || $base < 2 ) {
-			throw new MWException( "Base must be an integer between 2 and 36" );
+			throw new Exception( "Base must be an integer between 2 and 36" );
 		}
 		$gen = self::singleton();
 		$time = $gen->getTimestampAndDelay( 'lockFile128', 16384, 1048576 );
@@ -178,7 +178,7 @@ class UIDGenerator {
 		$id_bin .= $this->nodeId48;
 		// Convert to a 1-39 digit integer string
 		if ( strlen( $id_bin ) !== 128 ) {
-			throw new MWException( "Detected overflow for millisecond timestamp." );
+			throw new Exception( "Detected overflow for millisecond timestamp." );
 		}
 
 		return $id_bin;
@@ -268,9 +268,9 @@ class UIDGenerator {
 		if ( $count <= 0 ) {
 			return array(); // nothing to do
 		} elseif ( $count > 10000 ) {
-			throw new MWException( "Number of requested IDs ($count) is too high." );
+			throw new Exception( "Number of requested IDs ($count) is too high." );
 		} elseif ( $bits < 16 || $bits > 48 ) {
-			throw new MWException( "Requested bit size ($bits) is out of range." );
+			throw new Exception( "Requested bit size ($bits) is out of range." );
 		}
 
 		$counter = null; // post-increment persistent counter value
@@ -289,7 +289,7 @@ class UIDGenerator {
 			$counter = $cache->incr( $bucket, $count );
 			if ( $counter === false ) {
 				if ( !$cache->add( $bucket, (int)$count ) ) {
-					throw new MWException( 'Unable to set value to ' . get_class( $cache ) );
+					throw new Exception( 'Unable to set value to ' . get_class( $cache ) );
 				}
 				$counter = $count;
 			}
@@ -307,10 +307,10 @@ class UIDGenerator {
 			}
 			// Acquire the UID lock file
 			if ( $handle === false ) {
-				throw new MWException( "Could not open '{$path}'." );
+				throw new Exception( "Could not open '{$path}'." );
 			} elseif ( !flock( $handle, LOCK_EX ) ) {
 				fclose( $handle );
-				throw new MWException( "Could not acquire '{$path}'." );
+				throw new Exception( "Could not acquire '{$path}'." );
 			}
 			// Fetch the counter value and increment it...
 			rewind( $handle );
@@ -356,10 +356,10 @@ class UIDGenerator {
 		}
 		// Acquire the UID lock file
 		if ( $handle === false ) {
-			throw new MWException( "Could not open '{$this->$lockFile}'." );
+			throw new Exception( "Could not open '{$this->$lockFile}'." );
 		} elseif ( !flock( $handle, LOCK_EX ) ) {
 			fclose( $handle );
-			throw new MWException( "Could not acquire '{$this->$lockFile}'." );
+			throw new Exception( "Could not acquire '{$this->$lockFile}'." );
 		}
 		// Get the current timestamp, clock sequence number, last time, and counter
 		rewind( $handle );
@@ -381,7 +381,7 @@ class UIDGenerator {
 				$counter = (int)$data[3] % $counterSize;
 				if ( ++$counter >= $counterSize ) { // sanity (starts at 0)
 					flock( $handle, LOCK_UN ); // abort
-					throw new MWException( "Counter overflow for timestamp value." );
+					throw new Exception( "Counter overflow for timestamp value." );
 				}
 			}
 		} else { // last UID info not initialized
@@ -397,7 +397,7 @@ class UIDGenerator {
 			// We don't want processes using too high or low timestamps to avoid duplicate
 			// UIDs and clock sequence number churn. This process should just be restarted.
 			flock( $handle, LOCK_UN ); // abort
-			throw new MWException( "Process clock is outdated or drifted." );
+			throw new Exception( "Process clock is outdated or drifted." );
 		}
 		// If microtime() is synced and a clock change was detected, then the clock went back
 		if ( $clockChanged ) {
@@ -445,7 +445,7 @@ class UIDGenerator {
 		list( $sec, $msec ) = $time;
 		$ts = 1000 * $sec + $msec;
 		if ( $ts > pow( 2, 52 ) ) {
-			throw new MWException( __METHOD__ .
+			throw new Exception( __METHOD__ .
 				': sorry, this function doesn\'t work after the year 144680' );
 		}
 

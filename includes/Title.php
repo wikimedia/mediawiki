@@ -263,7 +263,7 @@ class Title {
 	 */
 	public static function newFromText( $text, $defaultNamespace = NS_MAIN ) {
 		if ( is_object( $text ) ) {
-			throw new MWException( 'Title::newFromText given an object' );
+			throw new Exception( 'Title::newFromText given an object' );
 		}
 
 		$cache = self::getTitleCache();
@@ -953,7 +953,7 @@ class Title {
 		}
 
 		if ( !$this->mContentModel ) {
-			throw new MWException( 'Failed to determine content model!' );
+			throw new Exception( 'Failed to determine content model!' );
 		}
 
 		return $this->mContentModel;
@@ -1329,7 +1329,7 @@ class Title {
 	 */
 	public function getOtherPage() {
 		if ( $this->isSpecialPage() ) {
-			throw new MWException( 'Special pages cannot have other pages' );
+			throw new Exception( 'Special pages cannot have other pages' );
 		}
 		if ( $this->isTalkPage() ) {
 			return $this->getSubjectPage();

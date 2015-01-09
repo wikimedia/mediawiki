@@ -524,9 +524,9 @@ class SiteConfiguration {
 			$res = array();
 			foreach ( $settings as $name ) {
 				if ( !preg_match( '/^wg[A-Z]/', $name ) ) {
-					throw new MWException( "Variable '$name' does start with 'wg'." );
+					throw new Exception( "Variable '$name' does start with 'wg'." );
 				} elseif ( !isset( $GLOBALS[$name] ) ) {
-					throw new MWException( "Variable '$name' is not set." );
+					throw new Exception( "Variable '$name' is not set." );
 				}
 				$res[$name] = $GLOBALS[$name];
 			}
@@ -537,7 +537,7 @@ class SiteConfiguration {
 					return $multi ? $res : current( $res ); // cache hit
 				}
 			} elseif ( !in_array( $wiki, $this->wikis ) ) {
-				throw new MWException( "No such wiki '$wiki'." );
+				throw new Exception( "No such wiki '$wiki'." );
 			} else {
 				$this->cfgCache[$wiki] = array();
 			}
@@ -553,11 +553,11 @@ class SiteConfiguration {
 			// ulimit5.sh breaks this call
 			$data = trim( wfShellExec( $cmd, $retVal, array(), array( 'memory' => 0 ) ) );
 			if ( $retVal != 0 || !strlen( $data ) ) {
-				throw new MWException( "Failed to run getConfiguration.php." );
+				throw new Exception( "Failed to run getConfiguration.php." );
 			}
 			$res = unserialize( $data );
 			if ( !is_array( $res ) ) {
-				throw new MWException( "Failed to unserialize configuration array." );
+				throw new Exception( "Failed to unserialize configuration array." );
 			}
 			$this->cfgCache[$wiki] = $this->cfgCache[$wiki] + $res;
 		}

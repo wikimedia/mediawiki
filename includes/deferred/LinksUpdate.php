@@ -89,12 +89,12 @@ class LinksUpdate extends SqlDataUpdate {
 		parent::__construct( false ); // no implicit transaction
 
 		if ( !( $title instanceof Title ) ) {
-			throw new MWException( "The calling convention to LinksUpdate::LinksUpdate() has changed. " .
+			throw new Exception( "The calling convention to LinksUpdate::LinksUpdate() has changed. " .
 				"Please see Article::editUpdates() for an invocation example.\n" );
 		}
 
 		if ( !( $parserOutput instanceof ParserOutput ) ) {
-			throw new MWException( "The calling convention to LinksUpdate::__construct() has changed. " .
+			throw new Exception( "The calling convention to LinksUpdate::__construct() has changed. " .
 				"Please see WikiPage::doEditUpdates() for an invocation example.\n" );
 		}
 
@@ -102,7 +102,7 @@ class LinksUpdate extends SqlDataUpdate {
 		$this->mId = $title->getArticleID();
 
 		if ( !$this->mId ) {
-			throw new MWException( "The Title object did not provide an article " .
+			throw new Exception( "The Title object did not provide an article " .
 				"ID. Perhaps the page doesn't exist?" );
 		}
 
@@ -949,7 +949,7 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 		$this->mPage = $page;
 
 		if ( !$page->exists() ) {
-			throw new MWException( "Page ID not known, perhaps the page doesn't exist?" );
+			throw new Exception( "Page ID not known, perhaps the page doesn't exist?" );
 		}
 	}
 

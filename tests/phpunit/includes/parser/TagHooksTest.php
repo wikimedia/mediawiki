@@ -45,7 +45,7 @@ class TagHookTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideBadNames
-	 * @expectedException MWException
+	 * @expectedException Exception
 	 * @covers Parser::setHook
 	 */
 	public function testBadTagHooks( $tag ) {
@@ -82,7 +82,7 @@ class TagHookTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideBadNames
-	 * @expectedException MWException
+	 * @expectedException Exception
 	 * @covers Parser::setFunctionTagHook
 	 */
 	public function testBadFunctionTagHooks( $tag ) {

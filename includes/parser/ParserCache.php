@@ -51,7 +51,7 @@ class ParserCache {
 	 */
 	protected function __construct( $memCached ) {
 		if ( !$memCached ) {
-			throw new MWException( "Tried to create a ParserCache with an invalid memcached" );
+			throw new Exception( "Tried to create a ParserCache with an invalid memcached" );
 		}
 		$this->mMemc = $memCached;
 	}

@@ -108,9 +108,9 @@ class WikiPage implements Page, IDBAccessObject {
 		$ns = $title->getNamespace();
 
 		if ( $ns == NS_MEDIA ) {
-			throw new MWException( "NS_MEDIA is a virtual namespace; use NS_FILE." );
+			throw new Exception( "NS_MEDIA is a virtual namespace; use NS_FILE." );
 		} elseif ( $ns < 0 ) {
-			throw new MWException( "Invalid or virtual namespace $ns given." );
+			throw new Exception( "Invalid or virtual namespace $ns given." );
 		}
 
 		switch ( $ns ) {
@@ -1452,7 +1452,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		if ( !$this->supportsSections() ) {
-			throw new MWException( "sections not supported for content model " .
+			throw new Exception( "sections not supported for content model " .
 				$this->getContentHandler()->getModelID() );
 		}
 
@@ -1530,7 +1530,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$newContent = $sectionContent;
 		} else {
 			if ( !$this->supportsSections() ) {
-				throw new MWException( "sections not supported for content model " .
+				throw new Exception( "sections not supported for content model " .
 					$this->getContentHandler()->getModelID() );
 			}
 
@@ -1697,7 +1697,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Low-level sanity check
 		if ( $this->mTitle->getText() === '' ) {
-			throw new MWException( 'Something is trying to edit an article with an empty title' );
+			throw new Exception( 'Something is trying to edit an article with an empty title' );
 		}
 
 		if ( !$content->getContentHandler()->canBeUsedOn( $this->getTitle() ) ) {
@@ -1778,7 +1778,7 @@ class WikiPage implements Page, IDBAccessObject {
 				return $status;
 			} elseif ( !$old_content ) {
 				// Sanity check for bug 37225
-				throw new MWException( "Could not find text for current revision {$oldid}." );
+				throw new Exception( "Could not find text for current revision {$oldid}." );
 			}
 
 			$revision = new Revision( array(
@@ -2664,7 +2664,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	protected static function flattenRestrictions( $limit ) {
 		if ( !is_array( $limit ) ) {
-			throw new MWException( 'WikiPage::flattenRestrictions given non-array restriction set' );
+			throw new Exception( 'WikiPage::flattenRestrictions given non-array restriction set' );
 		}
 
 		$bits = array();

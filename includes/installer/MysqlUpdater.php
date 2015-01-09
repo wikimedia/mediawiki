@@ -355,7 +355,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function doIndexUpdate() {
 		$meta = $this->db->fieldInfo( 'recentchanges', 'rc_timestamp' );
 		if ( $meta === false ) {
-			throw new MWException( 'Missing rc_timestamp field of recentchanges table. Should not happen.' );
+			throw new Exception( 'Missing rc_timestamp field of recentchanges table. Should not happen.' );
 		}
 		if ( $meta->isMultipleKey() ) {
 			$this->output( "...indexes seem up to 20031107 standards.\n" );

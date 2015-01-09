@@ -183,7 +183,7 @@ class SquidUpdate {
 
 		foreach ( $urlArr as $url ) {
 			if ( !is_string( $url ) ) {
-				throw new MWException( 'Bad purge URL' );
+				throw new Exception( 'Bad purge URL' );
 			}
 			$url = self::expand( $url );
 			$conf = self::getRuleForURL( $url, $wgHTCPRouting );
@@ -199,7 +199,7 @@ class SquidUpdate {
 			}
 			foreach ( $conf as $subconf ) {
 				if ( !isset( $subconf['host'] ) || !isset( $subconf['port'] ) ) {
-					throw new MWException( "Invalid HTCP rule for URL $url\n" );
+					throw new Exception( "Invalid HTCP rule for URL $url\n" );
 				}
 			}
 

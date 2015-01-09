@@ -239,7 +239,7 @@ class MWCryptRand {
 		// some of the ones we list are available as their own native functions
 		// But since we already require at least 5.2 and hash() was default in
 		// 5.1.2 we don't bother falling back to methods like sha1 and md5.
-		throw new MWException( "Could not find an acceptable hashing function in hash_algos()" );
+		throw new Exception( "Could not find an acceptable hashing function in hash_algos()" );
 	}
 
 	/**
@@ -284,7 +284,7 @@ class MWCryptRand {
 	 */
 	public function realWasStrong() {
 		if ( is_null( $this->strong ) ) {
-			throw new MWException( __METHOD__ . ' called before generation of random data' );
+			throw new Exception( __METHOD__ . ' called before generation of random data' );
 		}
 
 		return $this->strong;

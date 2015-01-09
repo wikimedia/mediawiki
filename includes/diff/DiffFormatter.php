@@ -139,7 +139,7 @@ abstract class DiffFormatter {
 			} elseif ( $edit->type == 'change' ) {
 				$this->changed( $edit->orig, $edit->closing );
 			} else {
-				throw new MWException( "Unknown edit type: {$edit->type}" );
+				throw new Exception( "Unknown edit type: {$edit->type}" );
 			}
 		}
 		$this->endBlock();

@@ -194,7 +194,7 @@ abstract class File {
 			$ret = Title::makeTitleSafe( NS_FILE, (string)$ret );
 		}
 		if ( !$ret && $exception !== false ) {
-			throw new MWException( "`$title` is not a valid file title." );
+			throw new Exception( "`$title` is not a valid file title." );
 		}
 
 		return $ret;
@@ -1715,7 +1715,7 @@ abstract class File {
 	 * @throws MWException
 	 */
 	function readOnlyError() {
-		throw new MWException( get_class( $this ) . ': write operations are not supported' );
+		throw new Exception( get_class( $this ) . ': write operations are not supported' );
 	}
 
 	/**
@@ -2184,7 +2184,7 @@ abstract class File {
 	 */
 	protected function assertRepoDefined() {
 		if ( !( $this->repo instanceof $this->repoClass ) ) {
-			throw new MWException( "A {$this->repoClass} object is not set for this File.\n" );
+			throw new Exception( "A {$this->repoClass} object is not set for this File.\n" );
 		}
 	}
 
@@ -2194,7 +2194,7 @@ abstract class File {
 	 */
 	protected function assertTitleDefined() {
 		if ( !( $this->title instanceof Title ) ) {
-			throw new MWException( "A Title object is not set for this File.\n" );
+			throw new Exception( "A Title object is not set for this File.\n" );
 		}
 	}
 

@@ -334,7 +334,7 @@ class MagicWord {
 		$wgContLang->getMagic( $this );
 		if ( !$this->mSynonyms ) {
 			$this->mSynonyms = array( 'brionmademeputthishere' );
-			throw new MWException( "Error: invalid magic word '$id'" );
+			throw new Exception( "Error: invalid magic word '$id'" );
 		}
 	}
 
@@ -884,14 +884,14 @@ class MagicWordArray {
 			if ( count( $parts ) != 2 ) {
 				// This shouldn't happen
 				// continue;
-				throw new MWException( __METHOD__ . ': bad parameter name' );
+				throw new Exception( __METHOD__ . ': bad parameter name' );
 			}
 			list( /* $synIndex */, $magicName ) = $parts;
 			$paramValue = next( $m );
 			return array( $magicName, $paramValue );
 		}
 		// This shouldn't happen either
-		throw new MWException( __METHOD__ . ': parameter not found' );
+		throw new Exception( __METHOD__ . ': parameter not found' );
 	}
 
 	/**

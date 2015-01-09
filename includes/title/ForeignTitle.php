@@ -69,7 +69,7 @@ class ForeignTitle {
 	 */
 	public function getNamespaceId() {
 		if ( is_null( $this->namespaceId ) ) {
-			throw new MWException(
+			throw new Exception(
 				"Attempted to call getNamespaceId when the namespace ID is not known" );
 		}
 		return $this->namespaceId;

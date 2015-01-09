@@ -325,7 +325,7 @@ class HtmlFormatter {
 			$type = 'TAG';
 			$rawName = $selector;
 		} else {
-			throw new MWException( __METHOD__ . "(): unrecognized selector '$selector'" );
+			throw new Exception( __METHOD__ . "(): unrecognized selector '$selector'" );
 		}
 
 		return true;

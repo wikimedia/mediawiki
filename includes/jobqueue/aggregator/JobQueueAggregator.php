@@ -48,7 +48,7 @@ abstract class JobQueueAggregator {
 			$class = $wgJobQueueAggregator['class'];
 			$obj = new $class( $wgJobQueueAggregator );
 			if ( !( $obj instanceof JobQueueAggregator ) ) {
-				throw new MWException( "Class '$class' is not a JobQueueAggregator class." );
+				throw new Exception( "Class '$class' is not a JobQueueAggregator class." );
 			}
 			self::$instance = $obj;
 		}

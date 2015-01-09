@@ -287,7 +287,7 @@ class HTMLForm extends ContextSource {
 	 */
 	public function setDisplayFormat( $format ) {
 		if ( !in_array( $format, $this->availableDisplayFormats ) ) {
-			throw new MWException( 'Display format must be one of ' .
+			throw new Exception( 'Display format must be one of ' .
 				print_r( $this->availableDisplayFormats, true ) );
 		}
 		$this->displayFormat = $format;
@@ -344,7 +344,7 @@ class HTMLForm extends ContextSource {
 		}
 
 		if ( !$class ) {
-			throw new MWException( "Descriptor with no class for $fieldname: "
+			throw new Exception( "Descriptor with no class for $fieldname: "
 				. print_r( $descriptor, true ) );
 		}
 
@@ -389,7 +389,7 @@ class HTMLForm extends ContextSource {
 	function prepareForm() {
 		# Check if we have the info we need
 		if ( !$this->mTitle instanceof Title && $this->mTitle !== false ) {
-			throw new MWException( "You must call setTitle() on an HTMLForm" );
+			throw new Exception( "You must call setTitle() on an HTMLForm" );
 		}
 
 		# Load data from the request.
@@ -493,7 +493,7 @@ class HTMLForm extends ContextSource {
 
 		$callback = $this->mSubmitCallback;
 		if ( !is_callable( $callback ) ) {
-			throw new MWException( 'HTMLForm: no submit callback provided. Use ' .
+			throw new Exception( 'HTMLForm: no submit callback provided. Use ' .
 				'setSubmitCallback() to set one.' );
 		}
 

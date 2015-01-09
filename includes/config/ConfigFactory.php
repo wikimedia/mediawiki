@@ -65,7 +65,7 @@ class ConfigFactory {
 	 */
 	public static function destroyDefaultInstance() {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			throw new MWException( __METHOD__ . ' was called outside of unit tests' );
+			throw new Exception( __METHOD__ . ' was called outside of unit tests' );
 		}
 
 		self::$self = null;

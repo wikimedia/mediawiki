@@ -310,7 +310,7 @@ class MediaStatisticsPage extends QueryPage {
 	 * @throws MWException
 	 */
 	public function formatResult( $skin, $result ) {
-		throw new MWException( "unimplemented" );
+		throw new Exception( "unimplemented" );
 	}
 
 	/**
