@@ -83,22 +83,6 @@ $forms_whitelist['bt'] = array(
  * Electronic Wallet *
  *********************/
 
-$forms_whitelist['ew-webmoney'] = array(
-	'file' => $form_dirs['gc'] . '/ew/ew-webmoney.html',
-	'gateway' => 'globalcollect',
-	'payment_methods' => array('ew' => 'ew_webmoney'),
-	'countries' => array( '+' => array( 'FI', 'RU' ), ),
-	'currencies' => array( '+' => array( 'EUR', 'RUB' ), ),
-);
-
-$forms_whitelist['ew-yandex'] = array(
-	'file' => $form_dirs['gc'] . '/ew/ew-yandex.html',
-	'gateway' => 'globalcollect',
-	'payment_methods' => array('ew' => 'ew_yandex'),
-	'countries' => array( '+' => array( 'RU', ), ),
-	'currencies' => array( '+' => array( 'RUB', ), ),
-);
-
 $forms_whitelist['ew-alipay'] = array(
 	'file' => $form_dirs['gc'] . '/ew/ew-alipay.html',
 	'gateway' => 'globalcollect',
