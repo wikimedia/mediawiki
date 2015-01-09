@@ -69,7 +69,7 @@ abstract class Job implements IJobSpecification {
 
 			return new $class( $title, $params );
 		}
-		throw new MWException( "Invalid job command `{$command}`" );
+		throw new Exception( "Invalid job command `{$command}`" );
 	}
 
 	/**

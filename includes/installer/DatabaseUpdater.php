@@ -171,7 +171,7 @@ abstract class DatabaseUpdater {
 
 			return new $class( $db, $shared, $maintenance );
 		} else {
-			throw new MWException( __METHOD__ . ' called for unsupported $wgDBtype' );
+			throw new Exception( __METHOD__ . ' called for unsupported $wgDBtype' );
 		}
 	}
 
@@ -621,7 +621,7 @@ abstract class DatabaseUpdater {
 	public function appendLine( $line ) {
 		$line = rtrim( $line ) . ";\n";
 		if ( fwrite( $this->fileHandle, $line ) === false ) {
-			throw new MWException( "trouble writing file" );
+			throw new Exception( "trouble writing file" );
 		}
 
 		return false;

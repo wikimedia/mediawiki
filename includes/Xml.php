@@ -74,7 +74,7 @@ class Xml {
 			}
 			return $out;
 		} else {
-			throw new MWException( 'Expected attribute array, got something else in ' . __METHOD__ );
+			throw new Exception( 'Expected attribute array, got something else in ' . __METHOD__ );
 		}
 	}
 

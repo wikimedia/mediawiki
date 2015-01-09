@@ -80,7 +80,7 @@ class MemcLockManager extends QuorumLockManager {
 			if ( $cache instanceof MemcachedBagOStuff ) {
 				$this->bagOStuffs[$name] = $cache;
 			} else {
-				throw new MWException(
+				throw new Exception(
 					'Only MemcachedBagOStuff classes are supported by MemcLockManager.' );
 			}
 		}

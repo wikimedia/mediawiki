@@ -204,7 +204,7 @@ class RequestContext implements IContextSource {
 		if ( $this->wikipage === null ) {
 			$title = $this->getTitle();
 			if ( $title === null ) {
-				throw new MWException( __METHOD__ . ' called without Title object set' );
+				throw new Exception( __METHOD__ . ' called without Title object set' );
 			}
 			$this->wikipage = WikiPage::factory( $title );
 		}
@@ -290,7 +290,7 @@ class RequestContext implements IContextSource {
 			$obj = Language::factory( $l );
 			$this->lang = $obj;
 		} else {
-			throw new MWException( __METHOD__ . " was passed an invalid type of data." );
+			throw new Exception( __METHOD__ . " was passed an invalid type of data." );
 		}
 	}
 
@@ -452,7 +452,7 @@ class RequestContext implements IContextSource {
 	 */
 	public static function resetMain() {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			throw new MWException( __METHOD__ . '() should be called only from unit tests!' );
+			throw new Exception( __METHOD__ . '() should be called only from unit tests!' );
 		}
 		self::$instance = null;
 	}
@@ -497,16 +497,16 @@ class RequestContext implements IContextSource {
 		if ( session_id() != '' && strlen( $params['sessionId'] ) ) {
 			// Sanity check to avoid sending random cookies for the wrong users.
 			// This method should only called by CLI scripts or by HTTP job runners.
-			throw new MWException( "Sessions can only be imported when none is active." );
+			throw new Exception( "Sessions can only be imported when none is active." );
 		} elseif ( !IP::isValid( $params['ip'] ) ) {
-			throw new MWException( "Invalid client IP address '{$params['ip']}'." );
+			throw new Exception( "Invalid client IP address '{$params['ip']}'." );
 		}
 
 		if ( $params['userId'] ) { // logged-in user
 			$user = User::newFromId( $params['userId'] );
 			$user->load();
 			if ( !$user->getId() ) {
-				throw new MWException( "No user with ID '{$params['userId']}'." );
+				throw new Exception( "No user with ID '{$params['userId']}'." );
 			}
 		} else { // anon user
 			$user = User::newFromName( $params['ip'], false );

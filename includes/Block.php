@@ -250,7 +250,7 @@ class Block {
 					break;
 
 				default:
-					throw new MWException( "Tried to load block with invalid type" );
+					throw new Exception( "Tried to load block with invalid type" );
 			}
 		}
 
@@ -417,7 +417,7 @@ class Block {
 		}
 
 		if ( !$this->getId() ) {
-			throw new MWException( "Block::delete() requires that the mId member be filled\n" );
+			throw new Exception( "Block::delete() requires that the mId member be filled\n" );
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -825,7 +825,7 @@ class Block {
 				list( $start, /*...*/ ) = IP::parseRange( $this->target );
 				return $start;
 			default:
-				throw new MWException( "Block with invalid type" );
+				throw new Exception( "Block with invalid type" );
 		}
 	}
 
@@ -844,7 +844,7 @@ class Block {
 				list( /*...*/, $end ) = IP::parseRange( $this->target );
 				return $end;
 			default:
-				throw new MWException( "Block with invalid type" );
+				throw new Exception( "Block with invalid type" );
 		}
 	}
 
@@ -1215,7 +1215,7 @@ class Block {
 		} elseif ( $blocksList['auto'] ) {
 			$chosenBlock = $blocksList['auto'];
 		} else {
-			throw new MWException( "Proxy block found, but couldn't be classified." );
+			throw new Exception( "Proxy block found, but couldn't be classified." );
 		}
 
 		return $chosenBlock;

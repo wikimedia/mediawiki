@@ -109,7 +109,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	/**
 	 * Exceptions with getTalk()
 	 * NS_MEDIA does not have talk pages. MediaWiki raise an exception for them.
-	 * @expectedException MWException
+	 * @expectedException Exception
 	 * @covers MWNamespace::getTalk
 	 */
 	public function testGetTalkExceptionsForNsMedia() {
@@ -119,7 +119,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	/**
 	 * Exceptions with getTalk()
 	 * NS_SPECIAL does not have talk pages. MediaWiki raise an exception for them.
-	 * @expectedException MWException
+	 * @expectedException Exception
 	 * @covers MWNamespace::getTalk
 	 */
 	public function testGetTalkExceptionsForNsSpecial() {
@@ -141,7 +141,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	### NS_MEDIA and NS_SPECIAL do not have talk pages. MediaWiki raises
 	### an exception for them.
 	/**
-	 * @expectedException MWException
+	 * @expectedException Exception
 	 * @covers MWNamespace::getAssociated
 	 */
 	public function testGetAssociatedExceptionsForNsMedia() {
@@ -149,7 +149,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @expectedException MWException
+	 * @expectedException Exception
 	 * @covers MWNamespace::getAssociated
 	 */
 	public function testGetAssociatedExceptionsForNsSpecial() {

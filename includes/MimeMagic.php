@@ -640,7 +640,7 @@ class MimeMagic {
 		$head = fread( $f, 1024 );
 		$tailLength = min( 65558, $fsize ); // 65558 = maximum size of a zip EOCDR
 		if ( fseek( $f, -1 * $tailLength, SEEK_END ) === -1 ) {
-			throw new MWException(
+			throw new Exception(
 				"Seeking $tailLength bytes from EOF failed in " . __METHOD__ );
 		}
 		$tail = fread( $f, $tailLength );

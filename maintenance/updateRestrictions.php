@@ -102,7 +102,7 @@ class UpdateRestrictions extends Maintenance {
 				$ok = $db->deadlockLoop( array( $db, 'insert' ), 'page_restrictions',
 					$batch, __FUNCTION__, array( 'IGNORE' ) );
 				if ( !$ok ) {
-					throw new MWException( "Deadlock loop failed wtf :(" );
+					throw new Exception( "Deadlock loop failed wtf :(" );
 				}
 			}
 			$blockStart += $this->mBatchSize - 1;

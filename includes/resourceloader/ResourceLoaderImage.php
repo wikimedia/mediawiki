@@ -61,11 +61,11 @@ class ResourceLoaderImage {
 		} );
 		$extensions = array_unique( $extensions );
 		if ( count( $extensions ) !== 1 ) {
-			throw new MWException( 'Image type for various images differs.' );
+			throw new Exception( 'Image type for various images differs.' );
 		}
 		$ext = $extensions[0];
 		if ( !isset( self::$fileTypes[$ext] ) ) {
-			throw new MWException( 'Invalid image type; svg, png, gif or jpg required.' );
+			throw new Exception( 'Invalid image type; svg, png, gif or jpg required.' );
 		}
 		$this->extension = $ext;
 	}

@@ -210,7 +210,7 @@ abstract class UploadBase {
 	public function initializePathInfo( $name, $tempPath, $fileSize, $removeTempFile = false ) {
 		$this->mDesiredDestName = $name;
 		if ( FileBackend::isStoragePath( $tempPath ) ) {
-			throw new MWException( __METHOD__ . " given storage path `$tempPath`." );
+			throw new Exception( __METHOD__ . " given storage path `$tempPath`." );
 		}
 		$this->mTempPath = $tempPath;
 		$this->mFileSize = $fileSize;

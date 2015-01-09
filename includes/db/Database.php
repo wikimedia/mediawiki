@@ -825,7 +825,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * not restored on unserialize.
 	 */
 	public function __sleep() {
-		throw new MWException( 'Database serialization may cause problems, since ' .
+		throw new Exception( 'Database serialization may cause problems, since ' .
 			'the connection is not restored on wakeup.' );
 	}
 
@@ -868,7 +868,7 @@ abstract class DatabaseBase implements IDatabase {
 				if ( in_array( $p['driver'], $possibleDrivers ) ) {
 					$driver = $p['driver'];
 				} else {
-					throw new MWException( __METHOD__ .
+					throw new Exception( __METHOD__ .
 						" cannot construct Database with type '$dbType' and driver '{$p['driver']}'" );
 				}
 			} else {
@@ -883,7 +883,7 @@ abstract class DatabaseBase implements IDatabase {
 			$driver = $dbType;
 		}
 		if ( $driver === false ) {
-			throw new MWException( __METHOD__ .
+			throw new Exception( __METHOD__ .
 				" no viable database extension found for type '$dbType'" );
 		}
 
@@ -976,7 +976,7 @@ abstract class DatabaseBase implements IDatabase {
 	 */
 	public function close() {
 		if ( count( $this->mTrxIdleCallbacks ) ) { // sanity
-			throw new MWException( "Transaction idle callbacks still pending." );
+			throw new Exception( "Transaction idle callbacks still pending." );
 		}
 		if ( $this->mConn ) {
 			if ( $this->trxLevel() ) {
@@ -2167,7 +2167,7 @@ abstract class DatabaseBase implements IDatabase {
 					unset( $value[$nullKey] );
 				}
 				if ( count( $value ) == 0 && !$includeNull ) {
-					throw new MWException( __METHOD__ . ": empty input for field $field" );
+					throw new Exception( __METHOD__ . ": empty input for field $field" );
 				} elseif ( count( $value ) == 0 ) {
 					// only check if $field is null
 					$list .= "$field IS NULL";
@@ -3747,7 +3747,7 @@ abstract class DatabaseBase implements IDatabase {
 	public function duplicateTableStructure( $oldName, $newName, $temporary = false,
 		$fname = __METHOD__
 	) {
-		throw new MWException(
+		throw new Exception(
 			'DatabaseBase::duplicateTableStructure is not implemented in descendant class' );
 	}
 
@@ -3759,7 +3759,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @throws MWException
 	 */
 	function listTables( $prefix = null, $fname = __METHOD__ ) {
-		throw new MWException( 'DatabaseBase::listTables is not implemented in descendant class' );
+		throw new Exception( 'DatabaseBase::listTables is not implemented in descendant class' );
 	}
 
 	/**
@@ -3782,7 +3782,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @since 1.22
 	 */
 	public function listViews( $prefix = null, $fname = __METHOD__ ) {
-		throw new MWException( 'DatabaseBase::listViews is not implemented in descendant class' );
+		throw new Exception( 'DatabaseBase::listViews is not implemented in descendant class' );
 	}
 
 	/**
@@ -3793,7 +3793,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @since 1.22
 	 */
 	public function isView( $name ) {
-		throw new MWException( 'DatabaseBase::isView is not implemented in descendant class' );
+		throw new Exception( 'DatabaseBase::isView is not implemented in descendant class' );
 	}
 
 	/**
@@ -3953,7 +3953,7 @@ abstract class DatabaseBase implements IDatabase {
 		wfRestoreWarnings();
 
 		if ( false === $fp ) {
-			throw new MWException( "Could not open \"{$filename}\".\n" );
+			throw new Exception( "Could not open \"{$filename}\".\n" );
 		}
 
 		if ( !$fname ) {

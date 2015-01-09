@@ -74,7 +74,7 @@ class APCBagOStuff extends BagOStuff {
 	 */
 	public function cas( $casToken, $key, $value, $exptime = 0 ) {
 		// APC's CAS functions only work on integers
-		throw new MWException( "CAS is not implemented in " . __CLASS__ );
+		throw new Exception( "CAS is not implemented in " . __CLASS__ );
 	}
 
 	/**

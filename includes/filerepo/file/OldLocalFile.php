@@ -46,7 +46,7 @@ class OldLocalFile extends LocalFile {
 	static function newFromTitle( $title, $repo, $time = null ) {
 		# The null default value is only here to avoid an E_STRICT
 		if ( $time === null ) {
-			throw new MWException( __METHOD__ . ' got null for $time parameter' );
+			throw new Exception( __METHOD__ . ' got null for $time parameter' );
 		}
 
 		return new self( $title, $repo, $time, null );
@@ -138,7 +138,7 @@ class OldLocalFile extends LocalFile {
 		$this->requestedTime = $time;
 		$this->archive_name = $archiveName;
 		if ( is_null( $time ) && is_null( $archiveName ) ) {
-			throw new MWException( __METHOD__ . ': must specify at least one of $time or $archiveName' );
+			throw new Exception( __METHOD__ . ': must specify at least one of $time or $archiveName' );
 		}
 	}
 
@@ -223,7 +223,7 @@ class OldLocalFile extends LocalFile {
 				$this->$name = $value;
 			}
 		} else {
-			throw new MWException( "Could not find data for image '{$this->archive_name}'." );
+			throw new Exception( "Could not find data for image '{$this->archive_name}'." );
 		}
 
 	}

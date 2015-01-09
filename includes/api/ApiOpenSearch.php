@@ -364,7 +364,7 @@ class ApiOpenSearch extends ApiBase {
 					. '?action=opensearch&format=xml&search={searchTerms}&namespace=' . $ns;
 
 			default:
-				throw new MWException( __METHOD__ . ": Unknown type '$type'" );
+				throw new Exception( __METHOD__ . ": Unknown type '$type'" );
 		}
 	}
 }

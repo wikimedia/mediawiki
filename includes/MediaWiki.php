@@ -278,7 +278,7 @@ class MediaWiki {
 			} elseif ( is_string( $article ) ) {
 				$output->redirect( $article );
 			} else {
-				throw new MWException( "Shouldn't happen: MediaWiki::initializeArticle()"
+				throw new Exception( "Shouldn't happen: MediaWiki::initializeArticle()"
 					. " returned neither an object nor a URL" );
 			}
 		}

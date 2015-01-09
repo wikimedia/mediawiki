@@ -71,14 +71,14 @@ class SVGReader {
 		// Don't use $file->getSize() since file object passed to SVGHandler::getMetadata is bogus.
 		$size = filesize( $source );
 		if ( $size === false ) {
-			throw new MWException( "Error getting filesize of SVG." );
+			throw new Exception( "Error getting filesize of SVG." );
 		}
 
 		if ( $size > $wgSVGMetadataCutoff ) {
 			$this->debug( "SVG is $size bytes, which is bigger than $wgSVGMetadataCutoff. Truncating." );
 			$contents = file_get_contents( $source, false, null, -1, $wgSVGMetadataCutoff );
 			if ( $contents === false ) {
-				throw new MWException( 'Error reading SVG file.' );
+				throw new Exception( 'Error reading SVG file.' );
 			}
 			$this->reader->XML( $contents, null, LIBXML_NOERROR | LIBXML_NOWARNING );
 		} else {
@@ -143,7 +143,7 @@ class SVGReader {
 		}
 
 		if ( $this->reader->localName != 'svg' || $this->reader->namespaceURI != self::NS_SVG ) {
-			throw new MWException( "Expected <svg> tag, got " .
+			throw new Exception( "Expected <svg> tag, got " .
 				$this->reader->localName . " in NS " . $this->reader->namespaceURI );
 		}
 		$this->debug( "<svg> tag is correct." );
@@ -231,7 +231,7 @@ class SVGReader {
 		if ( method_exists( $this->reader, 'readInnerXML' ) ) {
 			$this->metadata[$metafield] = trim( $this->reader->readInnerXML() );
 		} else {
-			throw new MWException( "The PHP XMLReader extension does not come " .
+			throw new Exception( "The PHP XMLReader extension does not come " .
 				"with readInnerXML() method. Your libxml is probably out of " .
 				"date (need 2.6.20 or later)." );
 		}

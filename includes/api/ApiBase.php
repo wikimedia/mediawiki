@@ -1051,7 +1051,7 @@ abstract class ApiBase extends ContextSource {
 		$tokenType = $this->needsToken();
 		$salts = ApiQueryTokens::getTokenTypeSalts();
 		if ( !isset( $salts[$tokenType] ) ) {
-			throw new MWException(
+			throw new Exception(
 				"Module '{$this->getModuleName()}' tried to use token type '$tokenType' " .
 					'without registering it'
 			);
@@ -1299,7 +1299,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function getErrorFromStatus( $status ) {
 		if ( $status->isGood() ) {
-			throw new MWException( 'Successful status passed to ApiBase::dieStatus' );
+			throw new Exception( 'Successful status passed to ApiBase::dieStatus' );
 		}
 
 		$errors = $status->getErrorsArray();
@@ -1934,7 +1934,7 @@ abstract class ApiBase extends ContextSource {
 	 * @throws MWException
 	 */
 	protected static function dieDebug( $method, $message ) {
-		throw new MWException( "Internal error in $method: $message" );
+		throw new Exception( "Internal error in $method: $message" );
 	}
 
 	/**@}*/

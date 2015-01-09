@@ -265,7 +265,7 @@ class UserMailer {
 			#
 
 			if ( !stream_resolve_include_path( 'Mail.php' ) ) {
-				throw new MWException( 'PEAR mail package is not installed' );
+				throw new Exception( 'PEAR mail package is not installed' );
 			}
 			require_once 'Mail.php';
 

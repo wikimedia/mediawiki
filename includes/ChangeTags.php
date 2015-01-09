@@ -101,7 +101,7 @@ class ChangeTags {
 		$tags = array_filter( $tags ); // Make sure we're submitting all tags...
 
 		if ( !$rc_id && !$rev_id && !$log_id ) {
-			throw new MWException( 'At least one of: RCID, revision ID, and log ID MUST be ' .
+			throw new Exception( 'At least one of: RCID, revision ID, and log ID MUST be ' .
 				'specified when adding a tag to a change!' );
 		}
 
@@ -220,7 +220,7 @@ class ChangeTags {
 		} elseif ( in_array( 'archive', $tables ) ) {
 			$join_cond = 'ct_rev_id=ar_rev_id';
 		} else {
-			throw new MWException( 'Unable to determine appropriate JOIN condition for tagging.' );
+			throw new Exception( 'Unable to determine appropriate JOIN condition for tagging.' );
 		}
 
 		$fields['ts_tags'] = wfGetDB( DB_SLAVE )->buildGroupConcatField(

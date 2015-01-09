@@ -273,7 +273,7 @@ abstract class DatabaseInstaller {
 			$msg = __METHOD__ . ': unexpected error while establishing'
 				. ' a database connection with message: '
 				. $status->getMessage()->plain();
-			throw new MWException( $msg );
+			throw new Exception( $msg );
 		}
 	}
 
@@ -285,7 +285,7 @@ abstract class DatabaseInstaller {
 	public function enableLB() {
 		$status = $this->getConnection();
 		if ( !$status->isOK() ) {
-			throw new MWException( __METHOD__ . ': unexpected DB connection error' );
+			throw new Exception( __METHOD__ . ': unexpected DB connection error' );
 		}
 		LBFactory::setInstance( new LBFactorySingle( array(
 			'connection' => $status->value ) ) );

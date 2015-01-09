@@ -189,7 +189,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 
 		$thumbnailImage = $file->transform( $params, $flags );
 		if ( !$thumbnailImage ) {
-			throw new MWException( 'Could not obtain thumbnail' );
+			throw new Exception( 'Could not obtain thumbnail' );
 		}
 
 		// we should have just generated it locally
@@ -258,11 +258,11 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			$errors = $status->getErrorsArray();
 			$errorStr = "Fetching thumbnail failed: " . print_r( $errors, 1 );
 			$errorStr .= "\nurl = $scalerThumbUrl\n";
-			throw new MWException( $errorStr );
+			throw new Exception( $errorStr );
 		}
 		$contentType = $req->getResponseHeader( "content-type" );
 		if ( !$contentType ) {
-			throw new MWException( "Missing content-type header" );
+			throw new Exception( "Missing content-type header" );
 		}
 
 		return $this->outputContents( $req->getContent(), $contentType );

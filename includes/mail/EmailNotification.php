@@ -224,7 +224,7 @@ class EmailNotification {
 
 		Hooks::run( 'UpdateUserMailerFormattedPageStatus', array( &$formattedPageStatus ) );
 		if ( !in_array( $this->pageStatus, $formattedPageStatus ) ) {
-			throw new MWException( 'Not a valid page status!' );
+			throw new Exception( 'Not a valid page status!' );
 		}
 
 		$userTalkId = false;

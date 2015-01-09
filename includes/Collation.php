@@ -66,7 +66,7 @@ abstract class Collation {
 				}
 
 				// If all else fails...
-				throw new MWException( __METHOD__ . ": unknown collation type \"$collationName\"" );
+				throw new Exception( __METHOD__ . ": unknown collation type \"$collationName\"" );
 		}
 	}
 
@@ -298,7 +298,7 @@ class IcuCollation extends Collation {
 
 	function __construct( $locale ) {
 		if ( !extension_loaded( 'intl' ) ) {
-			throw new MWException( 'An ICU collation was requested, ' .
+			throw new Exception( 'An ICU collation was requested, ' .
 				'but the intl extension is not available.' );
 		}
 
@@ -309,7 +309,7 @@ class IcuCollation extends Collation {
 
 		$this->mainCollator = Collator::create( $locale );
 		if ( !$this->mainCollator ) {
-			throw new MWException( "Invalid ICU locale specified for collation: $locale" );
+			throw new Exception( "Invalid ICU locale specified for collation: $locale" );
 		}
 
 		$this->primaryCollator = Collator::create( $locale );
@@ -401,7 +401,7 @@ class IcuCollation extends Collation {
 		} else {
 			$letters = wfGetPrecompiledData( "first-letters-{$this->locale}.ser" );
 			if ( $letters === false ) {
-				throw new MWException( "MediaWiki does not support ICU locale " .
+				throw new Exception( "MediaWiki does not support ICU locale " .
 					"\"{$this->locale}\"" );
 			}
 		}

@@ -271,7 +271,7 @@ class BitmapMetadataHandler {
 		if ( file_exists( $filename ) ) {
 			$byteOrder = self::getTiffByteOrder( $filename );
 			if ( !$byteOrder ) {
-				throw new MWException( "Error determining byte order of $filename" );
+				throw new Exception( "Error determining byte order of $filename" );
 			}
 			$exif = new Exif( $filename, $byteOrder );
 			$data = $exif->getFilteredData();
@@ -280,10 +280,10 @@ class BitmapMetadataHandler {
 
 				return $data;
 			} else {
-				throw new MWException( "Could not extract data from tiff file $filename" );
+				throw new Exception( "Could not extract data from tiff file $filename" );
 			}
 		} else {
-			throw new MWException( "File doesn't exist - $filename" );
+			throw new Exception( "File doesn't exist - $filename" );
 		}
 	}
 

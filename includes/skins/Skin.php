@@ -1050,7 +1050,7 @@ abstract class Skin extends ContextSource {
 
 		if ( $this->stylename === null ) {
 			$class = get_class( $this );
-			throw new MWException( "$class::\$stylename must be set to use getSkinStylePath()" );
+			throw new Exception( "$class::\$stylename must be set to use getSkinStylePath()" );
 		}
 
 		return "$wgStylePath/{$this->stylename}/$name?$wgStyleVersion";
@@ -1614,7 +1614,7 @@ abstract class Skin extends ContextSource {
 			return call_user_func_array( $realFunction, $args );
 		} else {
 			$className = get_class( $this );
-			throw new MWException( "Call to undefined method $className::$fname" );
+			throw new Exception( "Call to undefined method $className::$fname" );
 		}
 	}
 

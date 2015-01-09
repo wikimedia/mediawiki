@@ -1030,7 +1030,7 @@ class LoginForm extends SpecialPage {
 				$this->mainLoginForm( $this->msg( $error, $params )->text() );
 				break;
 			default:
-				throw new MWException( 'Unhandled case value' );
+				throw new Exception( 'Unhandled case value' );
 		}
 	}
 

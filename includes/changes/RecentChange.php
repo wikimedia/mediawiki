@@ -129,7 +129,7 @@ class RecentChange {
 			case 'external':
 				return RC_EXTERNAL;
 			default:
-				throw new MWException( "Unknown type '$type'" );
+				throw new Exception( "Unknown type '$type'" );
 		}
 	}
 
@@ -394,11 +394,11 @@ class RecentChange {
 
 		$scheme = parse_url( $uri, PHP_URL_SCHEME );
 		if ( !$scheme ) {
-			throw new MWException( __FUNCTION__ . ": Invalid stream logger URI: '$uri'" );
+			throw new Exception( __FUNCTION__ . ": Invalid stream logger URI: '$uri'" );
 		}
 
 		if ( !isset( $wgRCEngines[$scheme] ) ) {
-			throw new MWException( __FUNCTION__ . ": Unknown stream logger URI scheme: $scheme" );
+			throw new Exception( __FUNCTION__ . ": Unknown stream logger URI scheme: $scheme" );
 		}
 
 		return new $wgRCEngines[$scheme];
@@ -823,7 +823,7 @@ class RecentChange {
 		global $wgRequest;
 		if ( $ip ) {
 			if ( !IP::isIPAddress( $ip ) ) {
-				throw new MWException( "Attempt to write \"" . $ip .
+				throw new Exception( "Attempt to write \"" . $ip .
 					"\" as an IP address into recent changes" );
 			}
 		} else {

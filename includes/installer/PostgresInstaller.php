@@ -246,7 +246,7 @@ class PostgresInstaller extends DatabaseInstaller {
 
 				return $status;
 			default:
-				throw new MWException( "Invalid special connection type: \"$type\"" );
+				throw new Exception( "Invalid special connection type: \"$type\"" );
 		}
 	}
 

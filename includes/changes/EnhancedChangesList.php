@@ -42,7 +42,7 @@ class EnhancedChangesList extends ChangesList {
 			$context = $obj->getContext();
 		} else {
 			if ( !$obj instanceof IContextSource ) {
-				throw new MWException( 'EnhancedChangesList must be constructed with a '
+				throw new Exception( 'EnhancedChangesList must be constructed with a '
 					. 'context source or skin.' );
 			}
 

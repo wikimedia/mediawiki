@@ -70,7 +70,7 @@ abstract class AbstractContent implements Content {
 	 */
 	protected function checkModelID( $modelId ) {
 		if ( $modelId !== $this->model_id ) {
-			throw new MWException(
+			throw new Exception(
 				"Bad content model: " .
 				"expected {$this->model_id} " .
 				"but got $modelId."
@@ -131,7 +131,7 @@ abstract class AbstractContent implements Content {
 	 */
 	protected function checkFormat( $format ) {
 		if ( !$this->isSupportedFormat( $format ) ) {
-			throw new MWException(
+			throw new Exception(
 				"Format $format is not supported for content model " .
 				$this->getModel()
 			);
@@ -520,6 +520,6 @@ abstract class AbstractContent implements Content {
 		ParserOptions $options, $generateHtml, ParserOutput &$output
 	) {
 		// Don't make abstract, so subclasses that override getParserOutput() directly don't fail.
-		throw new MWException( 'Subclasses of AbstractContent must override fillParserOutput!' );
+		throw new Exception( 'Subclasses of AbstractContent must override fillParserOutput!' );
 	}
 }

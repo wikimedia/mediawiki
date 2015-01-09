@@ -41,7 +41,7 @@ class PageArchive {
 
 	function __construct( $title, Config $config = null ) {
 		if ( is_null( $title ) ) {
-			throw new MWException( __METHOD__ . ' given a null title.' );
+			throw new Exception( __METHOD__ . ' given a null title.' );
 		}
 		$this->title = $title;
 		if ( $config === null ) {

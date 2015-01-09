@@ -157,7 +157,7 @@ class ORMRow implements IORMRow {
 		} elseif ( !is_null( $default ) ) {
 			return $default;
 		} else {
-			throw new MWException( 'Attempted to get not-set field ' . $name );
+			throw new Exception( 'Attempted to get not-set field ' . $name );
 		}
 	}
 
