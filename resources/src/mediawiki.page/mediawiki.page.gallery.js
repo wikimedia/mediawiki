@@ -221,12 +221,14 @@
 				var imgWidth = $( this ).data( 'imgWidth' ),
 					imgHeight = $( this ).data( 'imgHeight' ),
 					width = $( this ).data( 'width' ),
-					captionWidth = $( this ).data( 'captionWidth' );
+					captionWidth = $( this ).data( 'captionWidth' ),
+					$innerDiv = $( this ).children( 'div' ).first(),
+					$imageDiv = $innerDiv.children( 'div.thumb' );
 
 				// Restore original sizes so we can arrange the elements as on freshly loaded page
 				$( this ).width( width );
-				$( this ).children( 'div' ).first().width( width );
-				$( this ).children( 'div' ).first().children( 'div.thumb' ).width( imgWidth );
+				$innerDiv.width( width );
+				$imageDiv.width( imgWidth );
 				$( this ).find( 'div.gallerytextwrapper' ).width( captionWidth );
 
 				var $imageElm = $( this ).find( 'img' ).first(),
@@ -234,6 +236,8 @@
 				if ( imageElm ) {
 					imageElm.width = imgWidth;
 					imageElm.height = imgHeight;
+				} else {
+					$imageDiv.height( imgHeight );
 				}
 			} );
 		} ) );
