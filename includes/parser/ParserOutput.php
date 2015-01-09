@@ -53,7 +53,8 @@ class ParserOutput extends CacheTime {
 		$mTOCEnabled = true;          # Whether TOC should be shown, can't override __NOTOC__
 	private $mIndexPolicy = '';       # 'index' or 'noindex'?  Any other value will result in no change.
 	private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
-	private $mSecondaryDataUpdates = null; # List of DataUpdate, used to save info from the page somewhere else.
+	private $mSecondaryDataUpdates = array(); # List of DataUpdate, used to save info from the page somewhere else.
+	private $mCustomDataUpdateCount = 0; # Number of custom updaters in $mSecondaryDataUpdates.
 	private $mExtensionData = array(); # extra data used by extensions
 	private $mLimitReportData = array(); # Parser limit report data
 	private $mParseStartTime = array(); # Timestamps for getTimeSinceStart()
@@ -70,8 +71,6 @@ class ParserOutput extends CacheTime {
 		$this->mCategories = $categoryLinks;
 		$this->mContainsOldMagic = $containsOldMagic;
 		$this->mTitleText = $titletext;
-
-		$this->mSecondaryDataUpdates = array();
 	}
 
 	public function getText() {
@@ -682,12 +681,30 @@ class ParserOutput extends CacheTime {
 	 * from the page's content. This is triggered by calling getSecondaryDataUpdates()
 	 * and is used for forward links updates on edit and backlink updates by jobs.
 	 *
+	 * @note: custom DataUpdates do not survive serialization of the ParserOutput!
+	 * This is especially relevant when using a cached ParserOutput for updating
+	 * the database, as WikiPage does if $wgAjaxStashEdit is enabled. For this
+	 * reason, ApiStashEdit will skip any ParserOutput that has custom DataUpdates.
+	 *
 	 * @since 1.20
 	 *
 	 * @param DataUpdate $update
 	 */
 	public function addSecondaryDataUpdate( DataUpdate $update ) {
 		$this->mSecondaryDataUpdates[] = $update;
+		$this->mCustomDataUpdateCount = count( $this->mSecondaryDataUpdates );
+	}
+
+	/**
+	 * Whether this ParserOutput contains custom DataUpdate objects that may not survive
+	 * serialization of the ParserOutput.
+	 *
+	 * @see __sleep()
+	 *
+	 * @return bool
+	 */
+	public function hasCustomDataUpdates() {
+		return ( $this->mCustomDataUpdateCount > 0 );
 	}
 
 	/**
@@ -714,10 +731,10 @@ class ParserOutput extends CacheTime {
 			$title = Title::newFromText( $this->getTitleText() );
 		}
 
-		if ( $this->mSecondaryDataUpdates === null ) {
-			//NOTE: This happens when mSecondaryDataUpdates are lost during serialization
+		if ( count( $this->mSecondaryDataUpdates ) !== $this->mCustomDataUpdateCount ) {
+			// NOTE: This happens when mSecondaryDataUpdates are lost during serialization
 			// (see __sleep below). After (un)serialization, getSecondaryDataUpdates()
-			// has no defined behavior, and should throw an exception.
+			// has no defined behavior in that case, and should throw an exception.
 			throw new MWException( 'getSecondaryDataUpdates() must not be called on ParserOutput restored from serialization.' );
 		}
 
