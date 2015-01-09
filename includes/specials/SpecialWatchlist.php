@@ -28,8 +28,26 @@
  * @ingroup SpecialPage
  */
 class SpecialWatchlist extends ChangesListSpecialPage {
+	protected $tag = 'watchlist';
+
 	public function __construct( $page = 'Watchlist', $restriction = 'viewmywatchlist' ) {
 		parent::__construct( $page, $restriction );
+	}
+
+	/**
+	 * Extract the name of the list from the query URL
+	 *
+	 * @param string $str
+	 * @return string
+	 */
+	public static function extractTagFromString( $str ) {
+		$args = explode( '/', $str );
+		// Deal with lists other than the default watchlist.
+		if ( count( $args ) > 1 ) {
+			return $args[1];
+		} else {
+			return 'watchlist';
+		}
 	}
 
 	/**
@@ -38,6 +56,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * @param string $subpage
 	 */
 	function execute( $subpage ) {
+		$this->tag = self::extractTagFromString( $subpage );
 		// Anons don't get a watchlist
 		$this->requireLogin( 'watchlistanontext' );
 
@@ -260,6 +279,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				$dbr->bitAnd( 'rc_deleted', $bitmask ) . " != $bitmask",
 			), LIST_OR );
 		}
+		$conds['wl_tag'] = $this->tag;
 
 		ChangeTags::modifyDisplayQuery(
 			$tables,
@@ -398,9 +418,20 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		$this->getOutput()->addSubtitle(
 			$this->msg( 'watchlistfor2', $user->getName() )
-				->rawParams( SpecialEditWatchlist::buildTools( null ) )
+				->rawParams( SpecialEditWatchlist::buildTools( $this->tag ) )
 		);
+		if ( $this->tag === 'watchlist' ) {
+			$this->doWatchlistOptions( $opts, $numRows );
+		}
+	}
 
+	/**
+	 * Add the watchlist options form to top of page.
+	 *
+	 * @param FormOptions $opts
+	 * @param int $numRows Number of rows in the result to show after this header
+	 */
+	protected function doWatchlistOptions( $opts, $numRows ) {
 		$this->setTopText( $opts );
 
 		$lang = $this->getLanguage();
@@ -607,7 +638,10 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	protected function countItems( $dbr ) {
 		# Fetch the raw count
 		$rows = $dbr->select( 'watchlist', array( 'count' => 'COUNT(*)' ),
-			array( 'wl_user' => $this->getUser()->getId() ), __METHOD__ );
+			array(
+				'wl_user' => $this->getUser()->getId(),
+				'wl_tag' => $this->tag,
+			), __METHOD__ );
 		$row = $dbr->fetchObject( $rows );
 		$count = $row->count;
 

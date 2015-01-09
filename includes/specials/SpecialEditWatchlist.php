@@ -43,6 +43,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	const EDIT_RAW = 2;
 	const EDIT_NORMAL = 3;
 
+	protected $tag;
+
 	protected $successMessage;
 
 	protected $collection;
@@ -61,6 +63,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @param int $mode
 	 */
 	public function execute( $mode ) {
+		$this->tag = SpecialWatchlist::extractTagFromString( $mode );
+
 		$this->setHeaders();
 
 		# Anons don't get a watchlist
@@ -82,6 +86,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				$mode = $args[3];
 			}
 		}
+
 		$mode = self::getMode( $this->getRequest(), $mode );
 
 		switch ( $mode ) {
@@ -115,7 +120,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	protected function outputSubtitle() {
 		$out = $this->getOutput();
 		$out->addSubtitle( $this->msg( 'watchlistfor2', $this->getUser()->getName() )
-			->rawParams( SpecialEditWatchlist::buildTools( null ) ) );
+			->rawParams( SpecialEditWatchlist::buildTools( $this->tag ) ) );
 	}
 
 	/**
@@ -332,6 +337,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	private function getWatchlistPageCollection() {
 		if ( !$this->collection ) {
 			$this->collection = new WatchlistPageCollection( $this->getUser() );
+			$this->collection->setTag( $this->tag );
 		}
 
 		return $this->collection;
@@ -612,7 +618,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		# Used message keys: 'accesskey-watchlistedit-raw-submit', 'tooltip-watchlistedit-raw-submit'
 		$form->setSubmitTooltip( 'watchlistedit-raw-submit' );
 		$form->setWrapperLegendMsg( 'watchlistedit-raw-legend' );
-		$form->addHeaderText( $this->msg( 'watchlistedit-raw-explain' )->parse() );
+		$form->addHeaderText( $this->msg( 'watchlistedit-raw-explain', $this->tag )->parse() );
 		$form->setSubmitCallback( array( $this, 'submitRaw' ) );
 
 		return $form;
@@ -648,6 +654,15 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 */
 	public static function getMode( $request, $par ) {
 		$mode = strtolower( $request->getVal( 'action', $par ) );
+		// list/foo/raw
+		// list/raw/
+		$args = explode( '/', $par );
+		// Then it is in the form <action>/<listname>
+		if ( count( $args ) > 1 ) {
+			// action is always the first
+			$mode = $args[0];
+		// Then it is in the form list/<listname>
+		}
 
 		switch ( $mode ) {
 			case 'clear':
@@ -668,16 +683,16 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * Build a set of links for convenient navigation
 	 * between watchlist viewing and editing modes
 	 *
-	 * @param null $unused
+	 * @param string $tag
 	 * @return string
 	 */
-	public static function buildTools( $unused ) {
+	public static function buildTools( $tag = 'watchlist' ) {
 		global $wgLang;
 
 		$tools = array();
 		$modes = array(
-			'view' => array( 'Watchlist', false ),
-			'edit' => array( 'EditWatchlist', false ),
+			'view' => array( 'Watchlist', 'list' ),
+			'edit' => array( 'EditWatchlist', 'list' ),
 			'raw' => array( 'EditWatchlist', 'raw' ),
 			'clear' => array( 'EditWatchlist', 'clear' ),
 		);
@@ -685,7 +700,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		foreach ( $modes as $mode => $arr ) {
 			// can use messages 'watchlisttools-view', 'watchlisttools-edit', 'watchlisttools-raw'
 			$tools[] = Linker::linkKnown(
-				SpecialPage::getTitleFor( $arr[0], $arr[1] ),
+				SpecialPage::getTitleFor( $arr[0], $arr[1] . '/' . $tag ),
 				wfMessage( "watchlisttools-{$mode}" )->escaped()
 			);
 		}
