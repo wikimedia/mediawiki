@@ -142,7 +142,7 @@ class MWExceptionHandler {
 	 *
 	 *   try {
 	 *       ...
-	 *   } catch ( MWException $e ) {
+	 *   } catch ( Exception $e ) {
 	 *       $e->report();
 	 *   } catch ( Exception $e ) {
 	 *       echo $e->__toString();

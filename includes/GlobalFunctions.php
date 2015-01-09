@@ -1328,7 +1328,7 @@ function wfLogProfilingData() {
 	// any knowledge about an URL and throw an exception instead.
 	try {
 		$ctx['url'] = urldecode( $wgRequest->getRequestURL() );
-	} catch ( MWException $ignored ) {
+	} catch ( Exception $ignored ) {
 		// no-op
 	}
 

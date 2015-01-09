@@ -218,7 +218,7 @@ abstract class HTMLFormField {
 				default:
 					throw new MWException( "Unknown operation" );
 			}
-		} catch ( MWException $ex ) {
+		} catch ( Exception $ex ) {
 			throw new MWException(
 				"Invalid hide-if specification for $this->mName: " .
 				$ex->getMessage() . " in " . var_export( $origParams, true ),

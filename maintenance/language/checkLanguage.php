@@ -29,6 +29,6 @@ $cli = new CheckLanguageCLI( $options );
 
 try {
 	$cli->execute();
-} catch ( MWException $e ) {
+} catch ( Exception $e ) {
 	print 'Error: ' . $e->getMessage() . "\n";
 }

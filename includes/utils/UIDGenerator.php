@@ -281,7 +281,7 @@ class UIDGenerator {
 		if ( ( $flags & self::QUICK_VOLATILE ) && PHP_SAPI !== 'cli' ) {
 			try {
 				$cache = ObjectCache::newAccelerator( array() );
-			} catch ( MWException $e ) {
+			} catch ( Exception $e ) {
 				// not supported
 			}
 		}

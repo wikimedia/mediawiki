@@ -1594,7 +1594,7 @@ class Article implements Page {
 		if ( !$reason ) {
 			try {
 				$reason = $this->generateReason( $hasHistory );
-			} catch ( MWException $e ) {
+			} catch ( Exception $e ) {
 				# if a page is horribly broken, we still want to be able to
 				# delete it. So be lenient about errors here.
 				wfDebug( "Error while building auto delete summary: $e" );

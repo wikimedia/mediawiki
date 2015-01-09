@@ -1844,7 +1844,7 @@ class WikiPage implements Page, IDBAccessObject {
 						}
 					}
 					$user->incEditCount();
-				} catch ( MWException $e ) {
+				} catch ( Exception $e ) {
 					$dbw->rollback( __METHOD__ );
 					// Question: Would it perhaps be better if this method turned all
 					// exceptions into $status's?
@@ -1947,7 +1947,7 @@ class WikiPage implements Page, IDBAccessObject {
 				}
 				$user->incEditCount();
 
-			} catch ( MWException $e ) {
+			} catch ( Exception $e ) {
 				$dbw->rollback( __METHOD__ );
 				throw $e;
 			}

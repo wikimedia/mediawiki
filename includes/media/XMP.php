@@ -316,7 +316,7 @@ class XMPReader {
 				$this->results = array(); // blank if error.
 				return false;
 			}
-		} catch ( MWException $e ) {
+		} catch ( Exception $e ) {
 			wfDebugLog( 'XMP', 'XMP parse error: ' . $e );
 			$this->results = array();
 

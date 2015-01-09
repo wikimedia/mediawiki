@@ -106,7 +106,7 @@ class JpegHandler extends ExifBitmapHandler {
 			$meta['MEDIAWIKI_EXIF_VERSION'] = Exif::version();
 
 			return serialize( $meta );
-		} catch ( MWException $e ) {
+		} catch ( Exception $e ) {
 			// BitmapMetadataHandler throws an exception in certain exceptional
 			// cases like if file does not exist.
 			wfDebug( __METHOD__ . ': ' . $e->getMessage() . "\n" );

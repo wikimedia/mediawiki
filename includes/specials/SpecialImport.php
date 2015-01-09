@@ -194,7 +194,7 @@ class SpecialImport extends SpecialPage {
 			$reporter->open();
 			try {
 				$importer->doImport();
-			} catch ( MWException $e ) {
+			} catch ( Exception $e ) {
 				$exception = $e;
 			}
 			$result = $reporter->close();

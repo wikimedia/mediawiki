@@ -64,7 +64,7 @@ class PPFuzzTester {
 				self::$currentTest = new PPFuzzTest( $this );
 				self::$currentTest->execute();
 				$passed = 'passed';
-			} catch ( MWException $e ) {
+			} catch ( Exception $e ) {
 				$testReport = self::$currentTest->getReport();
 				$exceptionReport = $e->getText();
 				$hash = md5( $testReport );

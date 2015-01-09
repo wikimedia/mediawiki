@@ -178,7 +178,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		if ( !is_null( $params['type'] ) ) {
 			try {
 				$this->addWhereFld( 'rc_type', RecentChange::parseToRCType( $params['type'] ) );
-			} catch ( MWException $e ) {
+			} catch ( Exception $e ) {
 				ApiBase::dieDebug( __METHOD__, $e->getMessage() );
 			}
 		}
@@ -716,3 +716,4 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		return 'https://www.mediawiki.org/wiki/API:Recentchanges';
 	}
 }
+https://gerrit.wikimedia.org/r/#/c/177001/3https://gerrit.wikimedia.org/r/#/c/177001/3https://gerrit.wikimedia.org/r/#/c/177001/3https://gerrit.wikimedia.org/r/#/c/177001/3

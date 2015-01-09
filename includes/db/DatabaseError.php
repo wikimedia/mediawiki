@@ -229,7 +229,7 @@ class DBConnectionError extends DBExpectedError {
 
 					return;
 				}
-			} catch ( MWException $e ) {
+			} catch ( Exception $e ) {
 				// Do nothing, just use the default page
 			}
 		}

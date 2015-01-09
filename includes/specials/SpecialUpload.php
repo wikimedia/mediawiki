@@ -988,7 +988,7 @@ class UploadForm extends HTMLForm {
 			$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash();
 			try {
 				$file = $stash->getFile( $this->mSessionKey );
-			} catch ( MWException $e ) {
+			} catch ( Exception $e ) {
 				$file = null;
 			}
 			if ( $file ) {

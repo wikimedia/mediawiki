@@ -153,7 +153,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 				? Revision::newFromArchiveRow( $row )
 				: new Revision( $row );
 			$text = $rev->getSerializedData();
-		} catch ( MWException $e ) {
+		} catch ( Exception $e ) {
 			$this->output( "Data of revision with {$idCol}={$row->$idCol} unavailable!\n" );
 
 			return false; // bug 22624?
@@ -182,7 +182,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 		$db = $this->getDB( DB_MASTER );
 		try {
 			$rev = Revision::newFromArchiveRow( $row );
-		} catch ( MWException $e ) {
+		} catch ( Exception $e ) {
 			$this->output( "Text of revision with timestamp {$row->ar_timestamp} unavailable!\n" );
 
 			return false; // bug 22624?

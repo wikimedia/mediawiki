@@ -79,7 +79,7 @@ class ApiImport extends ApiBase {
 
 		try {
 			$importer->doImport();
-		} catch ( MWException $e ) {
+		} catch ( Exception $e ) {
 			$this->dieUsageMsg( array( 'import-unknownerror', $e->getMessage() ) );
 		}
 

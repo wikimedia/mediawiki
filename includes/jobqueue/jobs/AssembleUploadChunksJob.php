@@ -94,7 +94,7 @@ class AssembleUploadChunksJob extends Job {
 					'status' => Status::newGood()
 				)
 			);
-		} catch ( MWException $e ) {
+		} catch ( Exception $e ) {
 			UploadBase::setSessionStatus(
 				$user,
 				$this->params['filekey'],

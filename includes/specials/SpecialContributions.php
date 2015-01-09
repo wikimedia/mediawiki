@@ -969,7 +969,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		try {
 			$rev = new Revision( $row );
 			$validRevision = (bool)$rev->getId();
-		} catch ( MWException $e ) {
+		} catch ( Exception $e ) {
 			$validRevision = false;
 		}
 		wfRestoreWarnings();
