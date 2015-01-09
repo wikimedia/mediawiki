@@ -94,7 +94,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			__METHOD__ );
 		$id = $dbw->insertId();
 		if ( !$id ) {
-			throw new MWException( __METHOD__ . ': no insert ID' );
+			throw new Exception( __METHOD__ . ': no insert ID' );
 		}
 
 		return "DB://$cluster/$id";

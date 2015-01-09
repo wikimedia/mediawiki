@@ -755,7 +755,7 @@ class DifferenceEngine extends ContextSource {
 	 */
 	protected function getDiffBodyCacheKey() {
 		if ( !$this->mOldid || !$this->mNewid ) {
-			throw new MWException( 'mOldid and mNewid must be set to get diff cache key.' );
+			throw new Exception( 'mOldid and mNewid must be set to get diff cache key.' );
 		}
 
 		return wfMemcKey( 'diff', 'version', MW_DIFF_VERSION,
@@ -783,12 +783,12 @@ class DifferenceEngine extends ContextSource {
 	 */
 	public function generateContentDiffBody( Content $old, Content $new ) {
 		if ( !( $old instanceof TextContent ) ) {
-			throw new MWException( "Diff not implemented for " . get_class( $old ) . "; " .
+			throw new Exception( "Diff not implemented for " . get_class( $old ) . "; " .
 				"override generateContentDiffBody to fix this." );
 		}
 
 		if ( !( $new instanceof TextContent ) ) {
-			throw new MWException( "Diff not implemented for " . get_class( $new ) . "; "
+			throw new Exception( "Diff not implemented for " . get_class( $new ) . "; "
 				. "override generateContentDiffBody to fix this." );
 		}
 

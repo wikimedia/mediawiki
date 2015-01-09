@@ -200,7 +200,7 @@ class Autopromote {
 				Hooks::run( 'AutopromoteCondition', array( $cond[0],
 					array_slice( $cond, 1 ), $user, &$result ) );
 				if ( $result === null ) {
-					throw new MWException( "Unrecognized condition {$cond[0]} for autopromotion!" );
+					throw new Exception( "Unrecognized condition {$cond[0]} for autopromotion!" );
 				}
 
 				return (bool)$result;

@@ -173,7 +173,7 @@ class MWTidy {
 		if ( $wgTidyInternal ) {
 			if ( wfIsHHVM() ) {
 				if ( $stderr ) {
-					throw new MWException( __METHOD__ . ": error text return from HHVM tidy is not supported" );
+					throw new Exception( __METHOD__ . ": error text return from HHVM tidy is not supported" );
 				}
 				return self::hhvmClean( $text, $retval );
 			} else {

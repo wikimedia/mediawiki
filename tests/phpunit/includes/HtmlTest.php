@@ -329,7 +329,7 @@ class HtmlTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers Html::expandAttributes
-	 * @expectedException MWException
+	 * @expectedException Exception
 	 */
 	public function testExpandAttributes_ArrayOnNonListValueAttribute_ThrowsException() {
 		// Real-life test case found in the Popups extension (see Gerrit cf0fd64),

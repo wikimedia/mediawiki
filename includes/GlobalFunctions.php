@@ -278,7 +278,7 @@ function wfArrayDiff2_cmp( $a, $b ) {
  */
 function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
 	if ( is_null( $changed ) ) {
-		throw new MWException( 'GlobalFunctions::wfAppendToArrayIfNotDefault got null' );
+		throw new Exception( 'GlobalFunctions::wfAppendToArrayIfNotDefault got null' );
 	}
 	if ( $default[$key] !== $value ) {
 		$changed[$key] = $value;
@@ -2549,7 +2549,7 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 	global $wgDirectoryMode;
 
 	if ( FileBackend::isStoragePath( $dir ) ) { // sanity
-		throw new MWException( __FUNCTION__ . " given storage path '$dir'." );
+		throw new Exception( __FUNCTION__ . " given storage path '$dir'." );
 	}
 
 	if ( !is_null( $caller ) ) {
@@ -3222,7 +3222,7 @@ function wfUsePHP( $req_ver ) {
 	$php_ver = PHP_VERSION;
 
 	if ( version_compare( $php_ver, (string)$req_ver, '<' ) ) {
-		throw new MWException( "PHP $req_ver required--this is only $php_ver" );
+		throw new Exception( "PHP $req_ver required--this is only $php_ver" );
 	}
 }
 
@@ -3251,7 +3251,7 @@ function wfUseMW( $req_ver ) {
 	global $wgVersion;
 
 	if ( version_compare( $wgVersion, (string)$req_ver, '<' ) ) {
-		throw new MWException( "MediaWiki $req_ver required--this is only $wgVersion" );
+		throw new Exception( "MediaWiki $req_ver required--this is only $wgVersion" );
 	}
 }
 
@@ -4048,7 +4048,7 @@ function wfUnpack( $format, $data, $length = false ) {
 	if ( $length !== false ) {
 		$realLen = strlen( $data );
 		if ( $realLen < $length ) {
-			throw new MWException( "Tried to use wfUnpack on a "
+			throw new Exception( "Tried to use wfUnpack on a "
 				. "string of length $realLen, but needed one "
 				. "of at least length $length."
 			);
@@ -4061,7 +4061,7 @@ function wfUnpack( $format, $data, $length = false ) {
 
 	if ( $result === false ) {
 		// If it cannot extract the packed data.
-		throw new MWException( "unpack could not unpack binary data" );
+		throw new Exception( "unpack could not unpack binary data" );
 	}
 	return $result;
 }

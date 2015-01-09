@@ -174,7 +174,7 @@ class WikiExporter {
 	public function pageByName( $name ) {
 		$title = Title::newFromText( $name );
 		if ( is_null( $title ) ) {
-			throw new MWException( "Can't export invalid title" );
+			throw new Exception( "Can't export invalid title" );
 		} else {
 			$this->pageByTitle( $title );
 		}
@@ -345,7 +345,7 @@ class WikiExporter {
 				$join['revision'] = array( 'INNER JOIN', 'page_id=rev_page AND page_latest=rev_id' );
 				# One, and only one hook should set this, and return false
 				if ( Hooks::run( 'WikiExporter::dumpStableQuery', array( &$tables, &$opts, &$join ) ) ) {
-					throw new MWException( __METHOD__ . " given invalid history dump type." );
+					throw new Exception( __METHOD__ . " given invalid history dump type." );
 				}
 			} elseif ( $this->history & WikiExporter::RANGE ) {
 				# Dump of revisions within a specified range
@@ -353,7 +353,7 @@ class WikiExporter {
 				$opts['ORDER BY'] = array( 'rev_page ASC', 'rev_id ASC' );
 			} else {
 				# Unknown history specification parameter?
-				throw new MWException( __METHOD__ . " given invalid history dump type." );
+				throw new Exception( __METHOD__ . " given invalid history dump type." );
 			}
 			# Query optimization hacks
 			if ( $cond == '' ) {
@@ -1021,7 +1021,7 @@ class DumpFileOutput extends DumpOutput {
 	 */
 	function renameOrException( $newname ) {
 			if ( !rename( $this->filename, $newname ) ) {
-				throw new MWException( __METHOD__ . ": rename of file {$this->filename} to $newname failed\n" );
+				throw new Exception( __METHOD__ . ": rename of file {$this->filename} to $newname failed\n" );
 			}
 	}
 
@@ -1033,7 +1033,7 @@ class DumpFileOutput extends DumpOutput {
 	function checkRenameArgCount( $newname ) {
 		if ( is_array( $newname ) ) {
 			if ( count( $newname ) > 1 ) {
-				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
+				throw new Exception( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
 			} else {
 				$newname = $newname[0];
 			}
@@ -1394,7 +1394,7 @@ class DumpNamespaceFilter extends DumpFilter {
 				$ns = intval( $key );
 				$this->namespaces[$ns] = true;
 			} else {
-				throw new MWException( "Unrecognized namespace key '$key'\n" );
+				throw new Exception( "Unrecognized namespace key '$key'\n" );
 			}
 		}
 	}

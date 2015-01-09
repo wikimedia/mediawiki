@@ -53,7 +53,7 @@ class MWNamespace {
 	 */
 	private static function isMethodValidFor( $index, $method ) {
 		if ( $index < NS_MAIN ) {
-			throw new MWException( "$method does not make any sense for given namespace $index" );
+			throw new Exception( "$method does not make any sense for given namespace $index" );
 		}
 		return true;
 	}

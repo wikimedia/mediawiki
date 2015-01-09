@@ -64,7 +64,7 @@ abstract class FileJournal {
 		$class = $config['class'];
 		$jrn = new $class( $config );
 		if ( !$jrn instanceof self ) {
-			throw new MWException( "Class given is not an instance of FileJournal." );
+			throw new Exception( "Class given is not an instance of FileJournal." );
 		}
 		$jrn->backend = $backend;
 

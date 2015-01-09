@@ -711,7 +711,7 @@ class Parser {
 			# have ever been initialized in the first place.
 			# Not really sure what the heck is supposed to be going on here.
 			return '';
-			# throw new MWException( "Accessing uninitialized mUniqPrefix" );
+			# throw new Exception( "Accessing uninitialized mUniqPrefix" );
 		}
 		return $this->mUniqPrefix;
 	}
@@ -847,7 +847,7 @@ class Parser {
 		} elseif ( $this->mOptions->getInterfaceMessage() ) {
 			return $this->mOptions->getUserLangObj();
 		} elseif ( is_null( $this->mTitle ) ) {
-			throw new MWException( __METHOD__ . ': $this->mTitle is null' );
+			throw new Exception( __METHOD__ . ': $this->mTitle is null' );
 		}
 
 		return $this->mTitle->getPageLanguage();
@@ -1418,7 +1418,7 @@ class Parser {
 				$cssClass = 'mw-magiclink-pmid';
 				$id = $m[4];
 			} else {
-				throw new MWException( __METHOD__ . ': unrecognised match type "' .
+				throw new Exception( __METHOD__ . ': unrecognised match type "' .
 					substr( $m[0], 0, 20 ) . '"' );
 			}
 			$url = wfMessage( $urlmsg, $id )->inContentLanguage()->text();
@@ -1743,7 +1743,7 @@ class Parser {
 
 		$bits = preg_split( $this->mExtLinkBracketedRegex, $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 		if ( $bits === false ) {
-			throw new MWException( "PCRE needs to be compiled with "
+			throw new Exception( "PCRE needs to be compiled with "
 				. "--enable-unicode-properties in order for MediaWiki to function" );
 		}
 		$s = array_shift( $bits );
@@ -2035,7 +2035,7 @@ class Parser {
 		}
 
 		if ( is_null( $this->mTitle ) ) {
-			throw new MWException( __METHOD__ . ": \$this->mTitle is null\n" );
+			throw new Exception( __METHOD__ . ": \$this->mTitle is null\n" );
 		}
 		$nottalk = !$this->mTitle->isTalkPage();
 
@@ -2852,7 +2852,7 @@ class Parser {
 				}
 				break;
 			default:
-				throw new MWException( "State machine error in " . __METHOD__ );
+				throw new Exception( "State machine error in " . __METHOD__ );
 			}
 		}
 		if ( $stack > 0 ) {
@@ -2882,7 +2882,7 @@ class Parser {
 			// later. Title should always be set since this
 			// should only be called in the middle of a parse
 			// operation (but the unit-tests do funky stuff)
-			throw new MWException( __METHOD__ . ' Should only be '
+			throw new Exception( __METHOD__ . ' Should only be '
 				. ' called while parsing (no title set)' );
 		}
 
@@ -3734,7 +3734,7 @@ class Parser {
 
 		# Workaround for PHP bug 35229 and similar
 		if ( !is_callable( $callback ) ) {
-			throw new MWException( "Tag hook for $function is not callable\n" );
+			throw new Exception( "Tag hook for $function is not callable\n" );
 		}
 
 		$allArgs = array( &$this );
@@ -4203,14 +4203,14 @@ class Parser {
 			if ( isset( $this->mTagHooks[$name] ) ) {
 				# Workaround for PHP bug 35229 and similar
 				if ( !is_callable( $this->mTagHooks[$name] ) ) {
-					throw new MWException( "Tag hook for $name is not callable\n" );
+					throw new Exception( "Tag hook for $name is not callable\n" );
 				}
 				$output = call_user_func_array( $this->mTagHooks[$name],
 					array( $content, $attributes, $this, $frame ) );
 			} elseif ( isset( $this->mFunctionTagHooks[$name] ) ) {
 				list( $callback, ) = $this->mFunctionTagHooks[$name];
 				if ( !is_callable( $callback ) ) {
-					throw new MWException( "Tag hook for $name is not callable\n" );
+					throw new Exception( "Tag hook for $name is not callable\n" );
 				}
 
 				$output = call_user_func_array( $callback, array( &$this, $frame, $content, $attributes ) );
@@ -4251,7 +4251,7 @@ class Parser {
 		} elseif ( $markerType === 'general' ) {
 			$this->mStripState->addGeneral( $marker, $output );
 		} else {
-			throw new MWException( __METHOD__ . ': invalid marker type' );
+			throw new Exception( __METHOD__ . ': invalid marker type' );
 		}
 		return $marker;
 	}
@@ -5081,7 +5081,7 @@ class Parser {
 	public function setHook( $tag, $callback ) {
 		$tag = strtolower( $tag );
 		if ( preg_match( '/[<>\r\n]/', $tag, $m ) ) {
-			throw new MWException( "Invalid character {$m[0]} in setHook('$tag', ...) call" );
+			throw new Exception( "Invalid character {$m[0]} in setHook('$tag', ...) call" );
 		}
 		$oldVal = isset( $this->mTagHooks[$tag] ) ? $this->mTagHooks[$tag] : null;
 		$this->mTagHooks[$tag] = $callback;
@@ -5112,7 +5112,7 @@ class Parser {
 	public function setTransparentTagHook( $tag, $callback ) {
 		$tag = strtolower( $tag );
 		if ( preg_match( '/[<>\r\n]/', $tag, $m ) ) {
-			throw new MWException( "Invalid character {$m[0]} in setTransparentHook('$tag', ...) call" );
+			throw new Exception( "Invalid character {$m[0]} in setTransparentHook('$tag', ...) call" );
 		}
 		$oldVal = isset( $this->mTransparentTagHooks[$tag] ) ? $this->mTransparentTagHooks[$tag] : null;
 		$this->mTransparentTagHooks[$tag] = $callback;
@@ -5181,7 +5181,7 @@ class Parser {
 		# Add to function cache
 		$mw = MagicWord::get( $id );
 		if ( !$mw ) {
-			throw new MWException( __METHOD__ . '() expecting a magic word identifier.' );
+			throw new Exception( __METHOD__ . '() expecting a magic word identifier.' );
 		}
 
 		$synonyms = $mw->getSynonyms();
@@ -5227,7 +5227,7 @@ class Parser {
 	public function setFunctionTagHook( $tag, $callback, $flags ) {
 		$tag = strtolower( $tag );
 		if ( preg_match( '/[<>\r\n]/', $tag, $m ) ) {
-			throw new MWException( "Invalid character {$m[0]} in setFunctionTagHook('$tag', ...) call" );
+			throw new Exception( "Invalid character {$m[0]} in setFunctionTagHook('$tag', ...) call" );
 		}
 		$old = isset( $this->mFunctionTagHooks[$tag] ) ?
 			$this->mFunctionTagHooks[$tag] : null;
@@ -5723,7 +5723,7 @@ class Parser {
 	public function disableCache() {
 		wfDebug( "Parser output marked as uncacheable.\n" );
 		if ( !$this->mOutput ) {
-			throw new MWException( __METHOD__ .
+			throw new Exception( __METHOD__ .
 				" can only be called when actually parsing something" );
 		}
 		$this->mOutput->setCacheTime( -1 ); // old style, for compatibility
@@ -6291,7 +6291,7 @@ class Parser {
 	 */
 	public function unserializeHalfParsedText( $data ) {
 		if ( !isset( $data['version'] ) || $data['version'] != self::HALF_PARSED_VERSION ) {
-			throw new MWException( __METHOD__ . ': invalid version' );
+			throw new Exception( __METHOD__ . ': invalid version' );
 		}
 
 		# First, extract the strip state.
@@ -6357,7 +6357,7 @@ class Parser {
 	 */
 	protected function lock() {
 		if ( $this->mInParse ) {
-			throw new MWException( "Parser state cleared while parsing. "
+			throw new Exception( "Parser state cleared while parsing. "
 				. "Did you call Parser::parse recursively?" );
 		}
 		$this->mInParse = true;

@@ -15,7 +15,7 @@ class MWCallableUpdate implements DeferrableUpdate {
 	 */
 	public function __construct( $callback ) {
 		if ( !is_callable( $callback ) ) {
-			throw new MWException( 'Not a valid callback/closure!' );
+			throw new Exception( 'Not a valid callback/closure!' );
 		}
 		$this->callback = $callback;
 	}

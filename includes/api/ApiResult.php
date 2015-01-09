@@ -523,13 +523,13 @@ class ApiResult extends ApiBase {
 	public function setContinueParam( ApiBase $module, $paramName, $paramValue ) {
 		$name = $module->getModuleName();
 		if ( !isset( $this->continueAllModules[$name] ) ) {
-			throw new MWException(
+			throw new Exception(
 				"Module '$name' called ApiResult::setContinueParam but was not " .
 				'passed to ApiResult::beginContinuation'
 			);
 		}
 		if ( !$this->continueAllModules[$name] ) {
-			throw new MWException(
+			throw new Exception(
 				"Module '$name' was not supposed to have been executed, but " .
 				'it was executed anyway'
 			);

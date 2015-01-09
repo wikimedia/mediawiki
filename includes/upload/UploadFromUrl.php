@@ -141,7 +141,7 @@ class UploadFromUrl extends UploadBase {
 		$this->mUrl = $url;
 		$this->mAsync = $wgAllowAsyncCopyUploads ? $async : false;
 		if ( $async ) {
-			throw new MWException( 'Asynchronous copy uploads are no longer possible as of r81612.' );
+			throw new Exception( 'Asynchronous copy uploads are no longer possible as of r81612.' );
 		}
 
 		$tempPath = $this->mAsync ? null : $this->makeTemporaryFile();

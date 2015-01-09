@@ -100,11 +100,11 @@ class GetConfiguration extends Maintenance {
 			# Values validation
 			foreach ( $this->settings_list as $name ) {
 				if ( !preg_match( '/^wg[A-Z]/', $name ) ) {
-					throw new MWException( "Variable '$name' does start with 'wg'." );
+					throw new Exception( "Variable '$name' does start with 'wg'." );
 				} elseif ( !isset( $GLOBALS[$name] ) ) {
-					throw new MWException( "Variable '$name' is not set." );
+					throw new Exception( "Variable '$name' is not set." );
 				} elseif ( !$this->isAllowedVariable( $GLOBALS[$name] ) ) {
-					throw new MWException( "Variable '$name' includes non-array, non-scalar, items." );
+					throw new Exception( "Variable '$name' includes non-array, non-scalar, items." );
 				}
 			}
 		}
@@ -151,10 +151,10 @@ class GetConfiguration extends Maintenance {
 				$out = FormatJson::encode( $res );
 				break;
 			default:
-				throw new MWException( "Invalid serialization format given." );
+				throw new Exception( "Invalid serialization format given." );
 		}
 		if ( !is_string( $out ) ) {
-			throw new MWException( "Failed to serialize the requested settings." );
+			throw new Exception( "Failed to serialize the requested settings." );
 		}
 
 		if ( $out ) {

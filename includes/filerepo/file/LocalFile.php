@@ -418,7 +418,7 @@ class LocalFile extends File {
 				$this->$name = $value;
 			}
 		} else {
-			throw new MWException( "Could not find data for image '{$this->getName()}'." );
+			throw new Exception( "Could not find data for image '{$this->getName()}'." );
 		}
 	}
 
@@ -460,7 +460,7 @@ class LocalFile extends File {
 
 		// Sanity check prefix once
 		if ( substr( key( $array ), 0, $prefixLength ) !== $prefix ) {
-			throw new MWException( __METHOD__ . ': incorrect $prefix parameter' );
+			throw new Exception( __METHOD__ . ': incorrect $prefix parameter' );
 		}
 
 		$decoded = array();
@@ -1835,7 +1835,7 @@ class LocalFile extends File {
 			$lockPaths = array( $this->getPath() ); // represents all versions of the file
 			$status = $backend->lockFiles( $lockPaths, LockManager::LOCK_EX, 5 );
 			if ( !$status->isGood() ) {
-				throw new MWException( "Could not acquire lock for '{$this->getName()}.'" );
+				throw new Exception( "Could not acquire lock for '{$this->getName()}.'" );
 			}
 			$dbw->onTransactionIdle( function () use ( $backend, $lockPaths ) {
 				$backend->unlockFiles( $lockPaths, LockManager::LOCK_EX ); // release on commit

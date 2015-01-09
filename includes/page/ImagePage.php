@@ -1072,7 +1072,7 @@ EOT
 	protected function getDisplayWidthHeight( $maxWidth, $maxHeight, $width, $height ) {
 		if ( !$maxWidth || !$maxHeight ) {
 			// should never happen
-			throw new MWException( 'Using a choice from $wgImageLimits that is 0x0' );
+			throw new Exception( 'Using a choice from $wgImageLimits that is 0x0' );
 		}
 
 		if ( !$width || !$height ) {

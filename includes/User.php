@@ -352,7 +352,7 @@ class User implements IDBAccessObject {
 				Hooks::run( 'UserLoadAfterLoadFromSession', array( $this ) );
 				break;
 			default:
-				throw new MWException( "Unrecognised value for User->mFrom: \"{$this->mFrom}\"" );
+				throw new Exception( "Unrecognised value for User->mFrom: \"{$this->mFrom}\"" );
 		}
 	}
 
@@ -970,7 +970,7 @@ class User implements IDBAccessObject {
 				}
 				break;
 			default:
-				throw new MWException( 'Invalid parameter value for $validate in ' . __METHOD__ );
+				throw new Exception( 'Invalid parameter value for $validate in ' . __METHOD__ );
 		}
 		return $name;
 	}
@@ -3671,7 +3671,7 @@ class User implements IDBAccessObject {
 				}
 			}
 			if ( !$loaded ) {
-				throw new MWException( __METHOD__ . ": hit a key conflict attempting " .
+				throw new Exception( __METHOD__ . ": hit a key conflict attempting " .
 					"to insert user '{$this->mName}' row, but it was not present in select!" );
 			}
 			return Status::newFatal( 'userexists' );

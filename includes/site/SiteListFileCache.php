@@ -95,14 +95,14 @@ class SiteListFileCache {
 	 */
 	private function loadJsonFile() {
 		if ( !is_readable( $this->cacheFile ) ) {
-			throw new MWException( 'SiteList cache file not found.' );
+			throw new Exception( 'SiteList cache file not found.' );
 		}
 
 		$contents = file_get_contents( $this->cacheFile );
 		$data = json_decode( $contents, true );
 
 		if ( !is_array( $data ) || !array_key_exists( 'sites', $data ) ) {
-			throw new MWException( 'SiteStore json cache data is invalid.' );
+			throw new Exception( 'SiteStore json cache data is invalid.' );
 		}
 
 		return $data;

@@ -76,7 +76,7 @@ class CloneDatabase {
 			if ( $wgSharedDB && in_array( $tbl, $wgSharedTables, true ) ) {
 				// Shared tables don't work properly when cloning due to
 				// how prefixes are handled (bug 65654)
-				throw new MWException( "Cannot clone shared table $tbl." );
+				throw new Exception( "Cannot clone shared table $tbl." );
 			}
 			# Clean up from previous aborted run.  So that table escaping
 			# works correctly across DB engines, we need to change the pre-
@@ -93,7 +93,7 @@ class CloneDatabase {
 			) {
 				if ( $oldTableName === $newTableName ) {
 					// Last ditch check to avoid data loss
-					throw new MWException( "Not dropping new table, as '$newTableName'"
+					throw new Exception( "Not dropping new table, as '$newTableName'"
 						. " is name of both the old and the new table." );
 				}
 				$this->db->dropTable( $tbl, __METHOD__ );

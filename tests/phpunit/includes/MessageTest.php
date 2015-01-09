@@ -366,7 +366,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @expectedException MWException
+	 * @expectedException Exception
 	 * @covers Message::inLanguage
 	 */
 	public function testInLanguageThrows() {

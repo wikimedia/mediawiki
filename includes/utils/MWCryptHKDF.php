@@ -107,7 +107,7 @@ class MWCryptHKDF {
 	 */
 	public function __construct( $secretKeyMaterial, $algorithm, $cache, $context ) {
 		if ( strlen( $secretKeyMaterial ) < 16 ) {
-			throw new MWException( "MWCryptHKDF secret was too short." );
+			throw new Exception( "MWCryptHKDF secret was too short." );
 		}
 		$this->skm = $secretKeyMaterial;
 		$this->algorithm = $algorithm;
@@ -165,7 +165,7 @@ class MWCryptHKDF {
 
 		$secret = $wgHKDFSecret ?: $wgSecretKey;
 		if ( !$secret ) {
-			throw new MWException( "Cannot use MWCryptHKDF without a secret." );
+			throw new Exception( "Cannot use MWCryptHKDF without a secret." );
 		}
 
 		// In HKDF, the context can be known to the attacker, but this will
@@ -289,7 +289,7 @@ class MWCryptHKDF {
 		$output = '';
 
 		if ( $bytes > 255 * $hashLen ) {
-			throw new MWException( "Too many bytes requested from HDKFExpand" );
+			throw new Exception( "Too many bytes requested from HDKFExpand" );
 		}
 
 		// K(1) = HMAC(PRK, CTXinfo || 1);

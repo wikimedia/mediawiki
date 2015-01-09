@@ -345,7 +345,7 @@ class CacheHelper implements ICacheHelper {
 	 */
 	protected function getCacheKeyString() {
 		if ( $this->cacheKey === array() ) {
-			throw new MWException( 'No cache key set, so cannot obtain or save the CacheHelper values.' );
+			throw new Exception( 'No cache key set, so cannot obtain or save the CacheHelper values.' );
 		}
 
 		return call_user_func_array( 'wfMemcKey', $this->cacheKey );

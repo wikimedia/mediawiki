@@ -345,7 +345,7 @@ class ThumbnailImage extends MediaTransformOutput {
 	 */
 	function toHtml( $options = array() ) {
 		if ( count( func_get_args() ) == 2 ) {
-			throw new MWException( __METHOD__ . ' called in the old style' );
+			throw new Exception( __METHOD__ . ' called in the old style' );
 		}
 
 		$alt = isset( $options['alt'] ) ? $options['alt'] : '';

@@ -297,7 +297,7 @@ class WebRequestTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @expectedException MWException
+	 * @expectedException Exception
 	 * @covers WebRequest::getIP
 	 */
 	public function testGetIpLackOfRemoteAddrThrowAnException() {

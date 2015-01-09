@@ -74,7 +74,7 @@ class FSRepo extends FileRepo {
 		parent::__construct( $info );
 
 		if ( !( $this->backend instanceof FSFileBackend ) ) {
-			throw new MWException( "FSRepo only supports FSFileBackend." );
+			throw new Exception( "FSRepo only supports FSFileBackend." );
 		}
 	}
 }
