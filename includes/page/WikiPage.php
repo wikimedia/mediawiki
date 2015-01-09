@@ -2044,7 +2044,7 @@ class WikiPage implements Page, IDBAccessObject {
 	public function prepareContentForEdit(
 		Content $content, $revid = null, User $user = null, $serialFormat = null, $useCache = true
 	) {
-		global $wgContLang, $wgUser;
+		global $wgContLang, $wgUser, $wgAjaxEditStash;
 
 		$user = is_null( $user ) ? $wgUser : $user;
 		//XXX: check $user->getId() here???
@@ -2066,7 +2066,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// The edit may have already been prepared via api.php?action=stashedit
-		$cachedEdit = $useCache
+		$cachedEdit = $useCache && $wgAjaxEditStash
 			? ApiStashEdit::checkCache( $this->getTitle(), $content, $user )
 			: false;
 
