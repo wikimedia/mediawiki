@@ -1,17 +1,15 @@
-// moment.js locale configuration
-// locale : japanese (ja)
-// author : LI Long : https://github.com/baryon
+//! moment.js locale configuration
+//! locale : japanese (ja)
+//! author : LI Long : https://github.com/baryon
 
-(function (factory) {
-    if (typeof define === 'function' && define.amd) {
-        define(['moment'], factory); // AMD
-    } else if (typeof exports === 'object') {
-        module.exports = factory(require('../moment')); // Node
-    } else {
-        factory((typeof global !== 'undefined' ? global : this).moment); // node or other global
-    }
-}(function (moment) {
-    return moment.defineLocale('ja', {
+(function (global, factory) {
+   typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('../moment')) :
+   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+   factory(global.moment)
+}(this, function (moment) { 'use strict';
+
+
+    var ja = moment.defineLocale('ja', {
         months : '1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月'.split('_'),
         monthsShort : '1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月'.split('_'),
         weekdays : '日曜日_月曜日_火曜日_水曜日_木曜日_金曜日_土曜日'.split('_'),
@@ -19,11 +17,15 @@
         weekdaysMin : '日_月_火_水_木_金_土'.split('_'),
         longDateFormat : {
             LT : 'Ah時m分',
-            LTS : 'LTs秒',
+            LTS : 'Ah時m分s秒',
             L : 'YYYY/MM/DD',
             LL : 'YYYY年M月D日',
-            LLL : 'YYYY年M月D日LT',
-            LLLL : 'YYYY年M月D日LT dddd'
+            LLL : 'YYYY年M月D日Ah時m分',
+            LLLL : 'YYYY年M月D日Ah時m分 dddd'
+        },
+        meridiemParse: /午前|午後/i,
+        isPM : function (input) {
+            return input === '午後';
         },
         meridiem : function (hour, minute, isLower) {
             if (hour < 12) {
@@ -56,4 +58,7 @@
             yy : '%d年'
         }
     });
+
+    return ja;
+
 }));
