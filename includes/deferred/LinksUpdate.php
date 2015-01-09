@@ -58,12 +58,6 @@ class LinksUpdate extends SqlDataUpdate {
 	/** @var array Map of arbitrary name to value */
 	public $mProperties;
 
-	/** @var DatabaseBase Database connection reference */
-	public $mDb;
-
-	/** @var array SELECT options to be used */
-	public $mOptions;
-
 	/** @var bool Whether to queue jobs for recursive updates */
 	public $mRecursive;
 
@@ -102,8 +96,8 @@ class LinksUpdate extends SqlDataUpdate {
 		$this->mId = $title->getArticleID();
 
 		if ( !$this->mId ) {
-			throw new MWException( "The Title object did not provide an article " .
-				"ID. Perhaps the page doesn't exist?" );
+			throw new MWException( "Title object did not provide a page ID. " .
+				"Perhaps the page doesn't exist?" );
 		}
 
 		$this->mParserOutput = $parserOutput;
@@ -928,12 +922,28 @@ class LinksUpdate extends SqlDataUpdate {
 			);
 		}
 	}
+
+	public function __sleep() {
+		return array_diff(
+			array_keys( get_object_vars( $this ) ),
+			array( 'mTitle' ) // bulky and timely
+		);
+	}
+
+	public function __wakeup() {
+		$this->mTitle = Title::newFromID( $this->mId, Title::GAID_FOR_UPDATE );
+		if ( !$this->mTitle ) {
+			throw new MWException( "The Title page ID no longer exists in the DB." );
+		}
+	}
 }
 
 /**
  * Update object handling the cleanup of links tables after a page was deleted.
  **/
 class LinksDeletionUpdate extends SqlDataUpdate {
+	/** @var integer */
+	protected $mId;
 	/** @var WikiPage The WikiPage that was deleted */
 	protected $mPage;
 
@@ -951,6 +961,8 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 		if ( !$page->exists() ) {
 			throw new MWException( "Page ID not known, perhaps the page doesn't exist?" );
 		}
+
+		$this->mId = $page->getId();
 	}
 
 	/**
@@ -1011,5 +1023,19 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 		$a->updateCategoryCounts(
 			array_keys( $added ), array_keys( $deleted )
 		);
+	}
+
+	public function __sleep() {
+		return array_diff(
+			array_keys( get_object_vars( $this ) ),
+			array( 'mPage' ) // bulky and timely
+		);
+	}
+
+	public function __wakeup() {
+		$this->mPage = WikiPage::newFromID( $this->mId, WikiPage::READ_LATEST );
+		if ( !$this->mPage ) {
+			throw new MWException( "The WikiPage page ID no longer exists in the DB." );
+		}
 	}
 }
