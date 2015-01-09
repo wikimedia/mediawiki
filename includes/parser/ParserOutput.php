@@ -53,7 +53,7 @@ class ParserOutput extends CacheTime {
 		$mTOCEnabled = true;          # Whether TOC should be shown, can't override __NOTOC__
 	private $mIndexPolicy = '';       # 'index' or 'noindex'?  Any other value will result in no change.
 	private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
-	private $mSecondaryDataUpdates = array(); # List of DataUpdate, used to save info from the page somewhere else.
+	private $mSecondaryDataUpdates = null; # List of DataUpdate, used to save info from the page somewhere else.
 	private $mExtensionData = array(); # extra data used by extensions
 	private $mLimitReportData = array(); # Parser limit report data
 	private $mParseStartTime = array(); # Timestamps for getTimeSinceStart()
@@ -70,6 +70,8 @@ class ParserOutput extends CacheTime {
 		$this->mCategories = $categoryLinks;
 		$this->mContainsOldMagic = $containsOldMagic;
 		$this->mTitleText = $titletext;
+
+		$this->mSecondaryDataUpdates = array();
 	}
 
 	public function getText() {
@@ -702,6 +704,9 @@ class ParserOutput extends CacheTime {
 	 *    be created based on $this->getTitleText()
 	 * @param bool $recursive Queue jobs for recursive updates?
 	 *
+	 * @throws MWException if called on a ParserOutput instance that was restored from serialization.
+	 *         DataUpdates are generally not serializable, so after serialization, they are undefined.
+	 *
 	 * @return array An array of instances of DataUpdate
 	 */
 	public function getSecondaryDataUpdates( Title $title = null, $recursive = true ) {
@@ -709,6 +714,15 @@ class ParserOutput extends CacheTime {
 			$title = Title::newFromText( $this->getTitleText() );
 		}
 
+		if ( $this->mSecondaryDataUpdates === null ) {
+			//NOTE: This happens when mSecondaryDataUpdates are lost during serialization
+			// (see __sleep below). After (un)serialization, getSecondaryDataUpdates()
+			// has no defined behavior, and should throw an exception.
+			throw new MWException( 'getSecondaryDataUpdates() must not be called on ParserOutput restored from serialization.' );
+		}
+
+		// NOTE: ApiStashEdit knows about this "magic" update object. If this goes away,
+		// ApiStashEdit::buildStashValue needs to be adjusted.
 		$linksUpdate = new LinksUpdate( $title, $this, $recursive );
 
 		return array_merge( $this->mSecondaryDataUpdates, array( $linksUpdate ) );

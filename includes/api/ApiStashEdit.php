@@ -333,7 +333,14 @@ class ApiStashEdit extends ApiBase {
 		// If an item is renewed, mind the cache TTL determined by config and parser functions
 		$since = time() - wfTimestamp( TS_UNIX, $parserOutput->getTimestamp() );
 		$ttl = min( $parserOutput->getCacheExpiry() - $since, 5 * 60 );
-		if ( $ttl > 0 && !$parserOutput->getFlag( 'vary-revision' ) ) {
+
+		// Note: ParserOutput with that contains secondary data update callbacks can not be
+		// stashed, since the callbacks are not serializable (see ParserOtput::__sleep).
+		// The first data update returned by getSecondaryDataUpdates() is always a LinksUpdate
+		// instance generated on the fly, so it can be ignored in this context.
+		$hasCustomDataUpdates = count( $parserOutput->getSecondaryDataUpdates() ) > 1;
+
+		if ( $ttl > 0 && !$parserOutput->getFlag( 'vary-revision' ) && !$hasCustomDataUpdates ) {
 			// Only store what is actually needed
 			$stashInfo = (object)array(
 				'pstContent' => $pstContent,
