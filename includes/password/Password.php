@@ -95,7 +95,7 @@ abstract class Password {
 	 */
 	final public function __construct( PasswordFactory $factory, array $config, $hash = null ) {
 		if ( !isset( $config['type'] ) ) {
-			throw new MWException( 'Password configuration must contain a type name.' );
+			throw new Exception( 'Password configuration must contain a type name.' );
 		}
 		$this->config = $config;
 		$this->factory = $factory;

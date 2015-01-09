@@ -66,7 +66,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @expectedException MWException
+	 * @expectedException Exception
 	 * @expectedExceptionMessage Parser state cleared while parsing. Did you call Parser::parse recursively?
 	 * @covers Parser::lock
 	 */

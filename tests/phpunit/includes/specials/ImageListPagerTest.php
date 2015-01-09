@@ -11,7 +11,7 @@
 
 class ImageListPagerTest extends MediaWikiTestCase {
 	/**
-	 * @expectedException MWException
+	 * @expectedException Exception
 	 * @expectedExceptionMessage invalid_field
 	 * @covers ImageListPager::formatValue
 	 */

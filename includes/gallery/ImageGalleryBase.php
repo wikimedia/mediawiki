@@ -106,7 +106,7 @@ abstract class ImageGalleryBase extends ContextSource {
 		if ( isset( self::$modeMapping[$mode] ) ) {
 			return new self::$modeMapping[$mode]( $mode, $context );
 		} else {
-			throw new MWException( "No gallery class registered for mode $mode" );
+			throw new Exception( "No gallery class registered for mode $mode" );
 		}
 	}
 

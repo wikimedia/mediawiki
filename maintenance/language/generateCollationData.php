@@ -387,7 +387,7 @@ class UcdXmlReader {
 		$this->xml = new XMLReader;
 		$this->xml->open( $this->fileName );
 		if ( !$this->xml ) {
-			throw new MWException( __METHOD__ . ": unable to open {$this->fileName}" );
+			throw new Exception( __METHOD__ . ": unable to open {$this->fileName}" );
 		}
 		while ( $this->xml->name !== 'ucd' && $this->xml->read() );
 		$this->xml->read();

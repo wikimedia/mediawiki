@@ -44,7 +44,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 */
 	public function __construct( $params ) {
 		if ( !isset( $params['caches'] ) ) {
-			throw new MWException( __METHOD__ . ': the caches parameter is required' );
+			throw new Exception( __METHOD__ . ': the caches parameter is required' );
 		}
 
 		$this->caches = array();
@@ -84,7 +84,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 * @throws MWException
 	 */
 	public function cas( $casToken, $key, $value, $exptime = 0 ) {
-		throw new MWException( "CAS is not implemented in " . __CLASS__ );
+		throw new Exception( "CAS is not implemented in " . __CLASS__ );
 	}
 
 	/**

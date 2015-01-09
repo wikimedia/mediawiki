@@ -65,7 +65,7 @@ abstract class BloomCache {
 	public function __construct( array $config ) {
 		$this->cacheID = $config['cacheId'];
 		if ( !preg_match( '!^[a-zA-Z0-9-_]{1,32}$!', $this->cacheID ) ) {
-			throw new MWException( "Cache ID '{$this->cacheID}' is invalid." );
+			throw new Exception( "Cache ID '{$this->cacheID}' is invalid." );
 		}
 	}
 

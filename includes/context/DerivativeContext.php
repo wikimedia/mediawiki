@@ -248,7 +248,7 @@ class DerivativeContext extends ContextSource {
 			$obj = Language::factory( $l );
 			$this->lang = $obj;
 		} else {
-			throw new MWException( __METHOD__ . " was passed an invalid type of data." );
+			throw new Exception( __METHOD__ . " was passed an invalid type of data." );
 		}
 	}
 

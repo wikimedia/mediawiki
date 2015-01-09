@@ -193,7 +193,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 
 	/**
 	 * ContentHandler::getContentText should have thrown an exception for non-text Content object
-	 * @expectedException MWException
+	 * @expectedException Exception
 	 * @covers ContentHandler::getContentText
 	 */
 	public function testGetContentText_NonTextContent_fail() {

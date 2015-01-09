@@ -352,7 +352,7 @@ class GitInfo {
 			if ( !file_exists( $cacheDir ) &&
 				!wfMkdirParents( $cacheDir, null, __METHOD__ )
 			) {
-				throw new MWException( "Unable to create GitInfo cache \"{$cacheDir}\"" );
+				throw new Exception( "Unable to create GitInfo cache \"{$cacheDir}\"" );
 			}
 
 			file_put_contents( $this->cacheFile, FormatJson::encode( $this->cache ) );

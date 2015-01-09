@@ -255,14 +255,14 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				case 'skinScripts':
 				case 'skinStyles':
 					if ( !is_array( $option ) ) {
-						throw new MWException(
+						throw new Exception(
 							"Invalid collated file path list error. " .
 							"'$option' given, array expected."
 						);
 					}
 					foreach ( $option as $key => $value ) {
 						if ( !is_string( $key ) ) {
-							throw new MWException(
+							throw new Exception(
 								"Invalid collated file path list key error. " .
 								"'$key' given, string expected."
 							);
@@ -493,7 +493,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 		$localPath = $this->getLocalPath( $this->skipFunction );
 		if ( !file_exists( $localPath ) ) {
-			throw new MWException( __METHOD__ . ": skip function file not found: \"$localPath\"" );
+			throw new Exception( __METHOD__ . ": skip function file not found: \"$localPath\"" );
 		}
 		$contents = file_get_contents( $localPath );
 		if ( $this->getConfig()->get( 'ResourceLoaderValidateStaticJS' ) ) {
@@ -835,7 +835,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		foreach ( array_unique( $scripts, SORT_REGULAR ) as $fileName ) {
 			$localPath = $this->getLocalPath( $fileName );
 			if ( !file_exists( $localPath ) ) {
-				throw new MWException( __METHOD__ . ": script file not found: \"$localPath\"" );
+				throw new Exception( __METHOD__ . ": script file not found: \"$localPath\"" );
 			}
 			$contents = file_get_contents( $localPath );
 			if ( $this->getConfig()->get( 'ResourceLoaderValidateStaticJS' ) ) {
@@ -894,7 +894,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		if ( !file_exists( $localPath ) ) {
 			$msg = __METHOD__ . ": style file not found: \"$localPath\"";
 			wfDebugLog( 'resourceloader', $msg );
-			throw new MWException( $msg );
+			throw new Exception( $msg );
 		}
 
 		if ( $this->getStyleSheetLang( $localPath ) === 'less' ) {
@@ -992,7 +992,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			} else {
 				$msg = __METHOD__ . ": template file not found: \"$localPath\"";
 				wfDebugLog( 'resourceloader', $msg );
-				throw new MWException( $msg );
+				throw new Exception( $msg );
 			}
 		}
 		return $templates;

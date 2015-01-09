@@ -120,7 +120,7 @@ class HooksTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @expectedException MWException
+	 * @expectedException Exception
 	 * @covers Hooks::run
 	 */
 	public function testUncallableFunction() {

@@ -343,7 +343,7 @@ class JobRunner {
 		}
 		$usedBytes = memory_get_usage();
 		if ( $maxBytes && $usedBytes >= 0.95 * $maxBytes ) {
-			throw new MWException( "Detected excessive memory usage ($usedBytes/$maxBytes)." );
+			throw new Exception( "Detected excessive memory usage ($usedBytes/$maxBytes)." );
 		}
 	}
 

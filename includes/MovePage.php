@@ -460,7 +460,7 @@ class MovePage {
 		# Save a null revision in the page's history notifying of the move
 		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, true, $user );
 		if ( !is_object( $nullRevision ) ) {
-			throw new MWException( 'No valid null revision produced in ' . __METHOD__ );
+			throw new Exception( 'No valid null revision produced in ' . __METHOD__ );
 		}
 
 		$nullRevision->insertOn( $dbw );

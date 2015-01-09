@@ -1166,7 +1166,7 @@ class FormatMetadata extends ContextSource {
 	 */
 	private function langItem( $value, $lang, $default = false, $noHtml = false ) {
 		if ( $lang === false && $default === false ) {
-			throw new MWException( '$lang and $default cannot both '
+			throw new Exception( '$lang and $default cannot both '
 				. 'be false.' );
 		}
 

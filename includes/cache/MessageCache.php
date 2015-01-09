@@ -698,7 +698,7 @@ class MessageCache {
 			// on their way here
 			$key = (string)$key;
 		} elseif ( !is_string( $key ) ) {
-			throw new MWException( 'Non-string key given' );
+			throw new Exception( 'Non-string key given' );
 		} elseif ( $key === '' ) {
 			// Shortcut: the empty key is always missing
 			return false;

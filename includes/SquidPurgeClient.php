@@ -151,7 +151,7 @@ class SquidPurgeClient {
 			if ( IP::isIPv4( $this->host ) ) {
 				$this->ip = $this->host;
 			} elseif ( IP::isIPv6( $this->host ) ) {
-				throw new MWException( '$wgSquidServers does not support IPv6' );
+				throw new Exception( '$wgSquidServers does not support IPv6' );
 			} else {
 				wfSuppressWarnings();
 				$this->ip = gethostbyname( $this->host );
@@ -337,7 +337,7 @@ class SquidPurgeClient {
 				return 'done';
 			}
 		default:
-			throw new MWException( __METHOD__ . ': unexpected state' );
+			throw new Exception( __METHOD__ . ': unexpected state' );
 		}
 	}
 

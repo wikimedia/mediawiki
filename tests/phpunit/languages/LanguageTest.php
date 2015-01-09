@@ -533,7 +533,7 @@ class LanguageTest extends LanguageClassesTestCase {
 
 	/**
 	 * Test too short timestamp
-	 * @expectedException MWException
+	 * @expectedException Exception
 	 * @covers Language::sprintfDate
 	 */
 	public function testSprintfDateTooShortTimestamp() {
@@ -542,7 +542,7 @@ class LanguageTest extends LanguageClassesTestCase {
 
 	/**
 	 * Test too long timestamp
-	 * @expectedException MWException
+	 * @expectedException Exception
 	 * @covers Language::sprintfDate
 	 */
 	public function testSprintfDateTooLongTimestamp() {
@@ -551,7 +551,7 @@ class LanguageTest extends LanguageClassesTestCase {
 
 	/**
 	 * Test too short timestamp
-	 * @expectedException MWException
+	 * @expectedException Exception
 	 * @covers Language::sprintfDate
 	 */
 	public function testSprintfDateNotAllDigitTimestamp() {
