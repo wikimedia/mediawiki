@@ -31,7 +31,7 @@
  *       the beginTransaction() and commitTransaction() methods.
  */
 abstract class SqlDataUpdate extends DataUpdate {
-	/** @var DatabaseBase Database connection reference */
+	/** @var IDatabase */
 	protected $mDb;
 
 	/** @var array SELECT options to be used (array) */
@@ -53,9 +53,7 @@ abstract class SqlDataUpdate extends DataUpdate {
 	public function __construct( $withTransaction = true ) {
 		parent::__construct();
 
-		// @todo Get connection only when it's needed? Make sure that doesn't
-		// break anything, especially transactions!
-		$this->mDb = wfGetDB( DB_MASTER );
+		$this->mDb = wfGetLB()->getLazyConnectionRef( DB_MASTER );
 
 		$this->mWithTransaction = $withTransaction;
 		$this->mHasTransaction = false;
@@ -147,5 +145,16 @@ abstract class SqlDataUpdate extends DataUpdate {
 				'page_touched < ' . $this->mDb->addQuotes( $now )
 			), __METHOD__
 		);
+	}
+
+	public function __sleep() {
+		return array_diff(
+			array_keys( get_object_vars( $this ) ),
+			array( 'mDb' ) // not serializable
+		);
+	}
+
+	public function __wakeup() {
+		$this->mDb = wfGetLB()->getLazyConnectionRef( DB_MASTER );
 	}
 }
