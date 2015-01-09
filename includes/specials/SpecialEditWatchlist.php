@@ -233,15 +233,30 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	}
 
 	public function submitClear( $data ) {
-		$current = $this->getWatchlist();
-		$this->getWatchlistPageCollection()->clearInDatabase();
+		$collection = $this->getWatchlistPageCollection();
+		$collection->loadFromDatabase();
+		$collection->clearInDatabase();
 		$this->getUser()->invalidateCache();
 		$this->successMessage = $this->msg( 'watchlistedit-clear-done' )->parse();
 		$this->successMessage .= ' ' . $this->msg( 'watchlistedit-clear-removed' )
-			->numParams( count( $current ) )->parse();
-		$this->showTitles( $current, $this->successMessage );
+			->numParams( count( $collection ) )->parse();
+		$this->showCollection( $collection, $this->successMessage );
 
 		return true;
+	}
+
+	/**
+	 * Render the given collection
+	 *
+	 * @param WatchlistPageCollection $collection
+	 * @param string $output
+	 */
+	private function showCollection( $collection, &$output ) {
+		$titles = array();
+		foreach ( $collection as $item ) {
+			$titles[] = $item->getTitle();
+		}
+		$this->showTitles( $titles, $output );
 	}
 
 	/**

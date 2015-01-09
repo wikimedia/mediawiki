@@ -7,7 +7,7 @@
 /**
  * A collection of PageCollectionItems
  */
-class PageCollection implements IteratorAggregate {
+class PageCollection implements IteratorAggregate, Countable {
 	/**
 	 * The user who owns the collection.
 	 *
@@ -29,6 +29,14 @@ class PageCollection implements IteratorAggregate {
 	 */
 	public function __construct( User $user ) {
 		$this->user = $user;
+	}
+
+	/**
+	 * Returns the size of the collection
+	 * @return integer
+	 */
+	public function count() {
+		return count( $this->items );
 	}
 
 	/**
