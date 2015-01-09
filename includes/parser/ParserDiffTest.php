@@ -33,7 +33,7 @@ class ParserDiffTest
 
 	public function __construct( $conf ) {
 		if ( !isset( $conf['parsers'] ) ) {
-			throw new MWException( __METHOD__ . ': no parsers specified' );
+			throw new Exception( __METHOD__ . ': no parsers specified' );
 		}
 		$this->conf = $conf;
 	}
@@ -104,7 +104,7 @@ class ParserDiffTest
 			}
 			$msg .= 'Results: ' . $this->formatArray( $results ) . "\n" .
 				"Diff: $diff\n";
-			throw new MWException( $msg );
+			throw new Exception( $msg );
 		}
 		return $lastResult;
 	}

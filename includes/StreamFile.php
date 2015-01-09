@@ -41,7 +41,7 @@ class StreamFile {
 	public static function stream( $fname, $headers = array(), $sendErrors = true ) {
 
 		if ( FileBackend::isStoragePath( $fname ) ) { // sanity
-			throw new MWException( __FUNCTION__ . " given storage path '$fname'." );
+			throw new Exception( __FUNCTION__ . " given storage path '$fname'." );
 		}
 
 		wfSuppressWarnings();

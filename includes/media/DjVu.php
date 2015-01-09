@@ -283,7 +283,7 @@ class DjVuHandler extends ImageHandler {
 				return $unser['xml'];
 			} else {
 				// Should never ever reach here.
-				throw new MWException( "Error unserializing DjVu metadata." );
+				throw new Exception( "Error unserializing DjVu metadata." );
 			}
 		}
 

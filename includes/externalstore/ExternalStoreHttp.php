@@ -38,6 +38,6 @@ class ExternalStoreHttp extends ExternalStoreMedium {
 	 * @see ExternalStoreMedium::store()
 	 */
 	public function store( $cluster, $data ) {
-		throw new MWException( "ExternalStoreHttp is read-only and does not support store()." );
+		throw new Exception( "ExternalStoreHttp is read-only and does not support store()." );
 	}
 }

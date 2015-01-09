@@ -633,12 +633,12 @@ class Preprocessor_Hash implements Preprocessor {
 							if ( !$node ) {
 								if ( $cacheable ) {
 								}
-								throw new MWException( __METHOD__ . ': eqpos not found' );
+								throw new Exception( __METHOD__ . ': eqpos not found' );
 							}
 							if ( $node->name !== 'equals' ) {
 								if ( $cacheable ) {
 								}
-								throw new MWException( __METHOD__ . ': eqpos is not equals' );
+								throw new Exception( __METHOD__ . ': eqpos is not equals' );
 							}
 							$equalsNode = $node;
 
@@ -964,7 +964,7 @@ class PPFrame_Hash implements PPFrame {
 			if ( $args instanceof PPNode_Hash_Array ) {
 				$args = $args->value;
 			} elseif ( !is_array( $args ) ) {
-				throw new MWException( __METHOD__ . ': $args must be array or PPNode_Hash_Array' );
+				throw new Exception( __METHOD__ . ': $args must be array or PPNode_Hash_Array' );
 			}
 			foreach ( $args as $arg ) {
 				$bits = $arg->splitArg();
@@ -1190,7 +1190,7 @@ class PPFrame_Hash implements PPFrame {
 					$newIterator = $contextNode->getChildren();
 				}
 			} else {
-				throw new MWException( __METHOD__ . ': Invalid parameter type' );
+				throw new Exception( __METHOD__ . ': Invalid parameter type' );
 			}
 
 			if ( $newIterator !== false ) {
@@ -1829,7 +1829,7 @@ class PPNode_Hash_Tree implements PPNode {
 		}
 
 		if ( !isset( $bits['name'] ) ) {
-			throw new MWException( 'Invalid brace node passed to ' . __METHOD__ );
+			throw new Exception( 'Invalid brace node passed to ' . __METHOD__ );
 		}
 		if ( !isset( $bits['index'] ) ) {
 			$bits['index'] = '';
@@ -1861,7 +1861,7 @@ class PPNode_Hash_Tree implements PPNode {
 			}
 		}
 		if ( !isset( $bits['name'] ) ) {
-			throw new MWException( 'Invalid ext node passed to ' . __METHOD__ );
+			throw new Exception( 'Invalid ext node passed to ' . __METHOD__ );
 		}
 		return $bits;
 	}
@@ -1874,7 +1874,7 @@ class PPNode_Hash_Tree implements PPNode {
 	 */
 	public function splitHeading() {
 		if ( $this->name !== 'h' ) {
-			throw new MWException( 'Invalid h node passed to ' . __METHOD__ );
+			throw new Exception( 'Invalid h node passed to ' . __METHOD__ );
 		}
 		$bits = array();
 		for ( $child = $this->firstChild; $child; $child = $child->nextSibling ) {
@@ -1888,7 +1888,7 @@ class PPNode_Hash_Tree implements PPNode {
 			}
 		}
 		if ( !isset( $bits['i'] ) ) {
-			throw new MWException( 'Invalid h node passed to ' . __METHOD__ );
+			throw new Exception( 'Invalid h node passed to ' . __METHOD__ );
 		}
 		return $bits;
 	}
@@ -1917,7 +1917,7 @@ class PPNode_Hash_Tree implements PPNode {
 			}
 		}
 		if ( !isset( $bits['title'] ) ) {
-			throw new MWException( 'Invalid node passed to ' . __METHOD__ );
+			throw new Exception( 'Invalid node passed to ' . __METHOD__ );
 		}
 		$bits['parts'] = new PPNode_Hash_Array( $parts );
 		return $bits;
@@ -1935,7 +1935,7 @@ class PPNode_Hash_Text implements PPNode {
 
 	public function __construct( $value ) {
 		if ( is_object( $value ) ) {
-			throw new MWException( __CLASS__ . ' given object instead of string' );
+			throw new Exception( __CLASS__ . ' given object instead of string' );
 		}
 		$this->value = $value;
 	}
@@ -1973,15 +1973,15 @@ class PPNode_Hash_Text implements PPNode {
 	}
 
 	public function splitArg() {
-		throw new MWException( __METHOD__ . ': not supported' );
+		throw new Exception( __METHOD__ . ': not supported' );
 	}
 
 	public function splitExt() {
-		throw new MWException( __METHOD__ . ': not supported' );
+		throw new Exception( __METHOD__ . ': not supported' );
 	}
 
 	public function splitHeading() {
-		throw new MWException( __METHOD__ . ': not supported' );
+		throw new Exception( __METHOD__ . ': not supported' );
 	}
 }
 
@@ -2031,15 +2031,15 @@ class PPNode_Hash_Array implements PPNode {
 	}
 
 	public function splitArg() {
-		throw new MWException( __METHOD__ . ': not supported' );
+		throw new Exception( __METHOD__ . ': not supported' );
 	}
 
 	public function splitExt() {
-		throw new MWException( __METHOD__ . ': not supported' );
+		throw new Exception( __METHOD__ . ': not supported' );
 	}
 
 	public function splitHeading() {
-		throw new MWException( __METHOD__ . ': not supported' );
+		throw new Exception( __METHOD__ . ': not supported' );
 	}
 }
 
@@ -2090,14 +2090,14 @@ class PPNode_Hash_Attr implements PPNode {
 	}
 
 	public function splitArg() {
-		throw new MWException( __METHOD__ . ': not supported' );
+		throw new Exception( __METHOD__ . ': not supported' );
 	}
 
 	public function splitExt() {
-		throw new MWException( __METHOD__ . ': not supported' );
+		throw new Exception( __METHOD__ . ': not supported' );
 	}
 
 	public function splitHeading() {
-		throw new MWException( __METHOD__ . ': not supported' );
+		throw new Exception( __METHOD__ . ': not supported' );
 	}
 }

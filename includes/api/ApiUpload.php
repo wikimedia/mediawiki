@@ -280,7 +280,7 @@ class ApiUpload extends ApiBase {
 			$stashFile = $this->mUpload->stashFile();
 
 			if ( !$stashFile ) {
-				throw new MWException( 'Invalid stashed file' );
+				throw new Exception( 'Invalid stashed file' );
 			}
 			$fileKey = $stashFile->getFileKey();
 		} catch ( Exception $e ) {

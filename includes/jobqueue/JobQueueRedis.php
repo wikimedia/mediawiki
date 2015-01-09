@@ -369,7 +369,7 @@ LUA;
 	 */
 	protected function doAck( Job $job ) {
 		if ( !isset( $job->metadata['uuid'] ) ) {
-			throw new MWException( "Job of type '{$job->getType()}' has no UUID." );
+			throw new Exception( "Job of type '{$job->getType()}' has no UUID." );
 		}
 
 		$conn = $this->getConnection();
@@ -413,7 +413,7 @@ LUA;
 	 */
 	protected function doDeduplicateRootJob( Job $job ) {
 		if ( !$job->hasRootJobParams() ) {
-			throw new MWException( "Cannot register root job; missing parameters." );
+			throw new Exception( "Cannot register root job; missing parameters." );
 		}
 		$params = $job->getRootJobParams();
 
@@ -571,7 +571,7 @@ LUA;
 			}
 			$item = $this->unserialize( $conn->hGet( $this->getQueueKey( 'h-data' ), $uid ) );
 			if ( !is_array( $item ) ) { // this shouldn't happen
-				throw new MWException( "Could not find job with ID '$uid'." );
+				throw new Exception( "Could not find job with ID '$uid'." );
 			}
 			$title = Title::makeTitle( $item['namespace'], $item['title'] );
 			$job = Job::factory( $item['type'], $title, $item['params'] );

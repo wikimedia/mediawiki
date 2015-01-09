@@ -153,7 +153,7 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	function getSQL() {
 		/* Implement getQueryInfo() instead */
-		throw new MWException( "Bug in a QueryPage: doesn't implement getQueryInfo() nor "
+		throw new Exception( "Bug in a QueryPage: doesn't implement getQueryInfo() nor "
 			. "getQuery() properly" );
 	}
 

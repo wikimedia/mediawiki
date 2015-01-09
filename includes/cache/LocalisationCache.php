@@ -208,7 +208,7 @@ class LocalisationCache {
 					$storeClass = $wgCacheDirectory ? 'LCStoreCDB' : 'LCStoreDB';
 					break;
 				default:
-					throw new MWException(
+					throw new Exception(
 						'Please set $wgLocalisationCacheConf[\'store\'] to something sensible.' );
 			}
 		}
@@ -448,7 +448,7 @@ class LocalisationCache {
 			if ( Language::isSupportedLanguage( $code ) ) {
 				$this->recache( $code );
 			} elseif ( $code === 'en' ) {
-				throw new MWException( 'MessagesEn.php is missing.' );
+				throw new Exception( 'MessagesEn.php is missing.' );
 			} else {
 				$this->initShallowFallback( $code, 'en' );
 			}
@@ -462,14 +462,14 @@ class LocalisationCache {
 			if ( $this->manualRecache ) {
 				// No Messages*.php file. Do shallow fallback to en.
 				if ( $code === 'en' ) {
-					throw new MWException( 'No localisation cache found for English. ' .
+					throw new Exception( 'No localisation cache found for English. ' .
 						'Please run maintenance/rebuildLocalisationCache.php.' );
 				}
 				$this->initShallowFallback( $code, 'en' );
 
 				return;
 			} else {
-				throw new MWException( 'Invalid or missing localisation cache.' );
+				throw new Exception( 'Invalid or missing localisation cache.' );
 			}
 		}
 		$this->data[$code] = $preload;
@@ -521,7 +521,7 @@ class LocalisationCache {
 		} elseif ( $_fileType == 'aliases' ) {
 			$data = compact( 'aliases' );
 		} else {
-			throw new MWException( __METHOD__ . ": Invalid file type: $_fileType" );
+			throw new Exception( __METHOD__ . ": Invalid file type: $_fileType" );
 		}
 
 		return $data;
@@ -549,7 +549,7 @@ class LocalisationCache {
 		$data = FormatJson::decode( $json, true );
 		if ( $data === null ) {
 
-			throw new MWException( __METHOD__ . ": Invalid JSON file: $fileName" );
+			throw new Exception( __METHOD__ . ": Invalid JSON file: $fileName" );
 		}
 
 		// Remove keys starting with '@', they're reserved for metadata and non-message data
@@ -647,7 +647,7 @@ class LocalisationCache {
 		// Use file_get_contents instead of DOMDocument::load (T58439)
 		$xml = file_get_contents( $fileName );
 		if ( !$xml ) {
-			throw new MWException( "Unable to read plurals file $fileName" );
+			throw new Exception( "Unable to read plurals file $fileName" );
 		}
 		$doc = new DOMDocument;
 		$doc->loadXML( $xml );
@@ -809,7 +809,7 @@ class LocalisationCache {
 		global $wgExtensionMessagesFiles;
 
 		if ( !$code ) {
-			throw new MWException( "Invalid language code requested" );
+			throw new Exception( "Invalid language code requested" );
 		}
 		$this->recachedLangs[$code] = true;
 
@@ -990,7 +990,7 @@ class LocalisationCache {
 		Hooks::run( 'LocalisationCacheRecache', array( $this, $code, &$allData, &$purgeBlobs ) );
 
 		if ( is_null( $allData['namespaceNames'] ) ) {
-			throw new MWException( __METHOD__ . ': Localisation data failed sanity check! ' .
+			throw new Exception( __METHOD__ . ': Localisation data failed sanity check! ' .
 				'Check that your languages/messages/MessagesEn.php file is intact.' );
 		}
 
@@ -1167,7 +1167,7 @@ class LCStoreDB implements LCStore {
 		if ( $this->readOnly ) {
 			return;
 		} elseif ( !$code ) {
-			throw new MWException( __METHOD__ . ": Invalid language \"$code\"" );
+			throw new Exception( __METHOD__ . ": Invalid language \"$code\"" );
 		}
 
 		$this->dbw = wfGetDB( DB_MASTER );
@@ -1180,7 +1180,7 @@ class LCStoreDB implements LCStore {
 		if ( $this->readOnly ) {
 			return;
 		} elseif ( is_null( $this->currentLang ) ) {
-			throw new MWException( __CLASS__ . ': must call startWrite() before finishWrite()' );
+			throw new Exception( __CLASS__ . ': must call startWrite() before finishWrite()' );
 		}
 
 		$this->dbw->begin( __METHOD__ );
@@ -1208,7 +1208,7 @@ class LCStoreDB implements LCStore {
 		if ( $this->readOnly ) {
 			return;
 		} elseif ( is_null( $this->currentLang ) ) {
-			throw new MWException( __CLASS__ . ': must call startWrite() before set()' );
+			throw new Exception( __CLASS__ . ': must call startWrite() before set()' );
 		}
 
 		$this->batch[] = array(
@@ -1288,7 +1288,7 @@ class LCStoreCDB implements LCStore {
 	public function startWrite( $code ) {
 		if ( !file_exists( $this->directory ) ) {
 			if ( !wfMkdirParents( $this->directory, null, __METHOD__ ) ) {
-				throw new MWException( "Unable to create the localisation store " .
+				throw new Exception( "Unable to create the localisation store " .
 					"directory \"{$this->directory}\"" );
 			}
 		}
@@ -1301,7 +1301,7 @@ class LCStoreCDB implements LCStore {
 		try {
 			$this->writer = CdbWriter::open( $this->getFileName( $code ) );
 		} catch ( CdbException $e ) {
-			throw new MWException( $e->getMessage() );
+			throw new Exception( $e->getMessage() );
 		}
 		$this->currentLang = $code;
 	}
@@ -1311,7 +1311,7 @@ class LCStoreCDB implements LCStore {
 		try {
 			$this->writer->close();
 		} catch ( CdbException $e ) {
-			throw new MWException( $e->getMessage() );
+			throw new Exception( $e->getMessage() );
 		}
 		$this->writer = null;
 		unset( $this->readers[$this->currentLang] );
@@ -1320,18 +1320,18 @@ class LCStoreCDB implements LCStore {
 
 	public function set( $key, $value ) {
 		if ( is_null( $this->writer ) ) {
-			throw new MWException( __CLASS__ . ': must call startWrite() before calling set()' );
+			throw new Exception( __CLASS__ . ': must call startWrite() before calling set()' );
 		}
 		try {
 			$this->writer->set( $key, serialize( $value ) );
 		} catch ( CdbException $e ) {
-			throw new MWException( $e->getMessage() );
+			throw new Exception( $e->getMessage() );
 		}
 	}
 
 	protected function getFileName( $code ) {
 		if ( strval( $code ) === '' || strpos( $code, '/' ) !== false ) {
-			throw new MWException( __METHOD__ . ": Invalid language \"$code\"" );
+			throw new Exception( __METHOD__ . ": Invalid language \"$code\"" );
 		}
 
 		return "{$this->directory}/l10n_cache-$code.cdb";

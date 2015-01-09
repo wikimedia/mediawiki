@@ -73,7 +73,7 @@ class WikitextContent extends TextContent {
 		$sectionModelId = $with->getModel();
 
 		if ( $sectionModelId != $myModelId ) {
-			throw new MWException( "Incompatible content model for section: " .
+			throw new Exception( "Incompatible content model for section: " .
 				"document uses $myModelId but " .
 				"section uses $sectionModelId." );
 		}
@@ -351,7 +351,7 @@ class WikitextContent extends TextContent {
 	 * @throws MWException
 	 */
 	protected function getHtml() {
-		throw new MWException(
+		throw new Exception(
 			"getHtml() not implemented for wikitext. "
 				. "Use getParserOutput()->getText()."
 		);

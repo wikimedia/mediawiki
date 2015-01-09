@@ -1891,7 +1891,7 @@ class Article implements Page {
 	 */
 	public function setParserOptions( ParserOptions $options ) {
 		if ( $this->mParserOptions ) {
-			throw new MWException( "can't change parser options after they have already been set" );
+			throw new Exception( "can't change parser options after they have already been set" );
 		}
 
 		// clone, so if $options is modified later, it doesn't confuse the parser cache.

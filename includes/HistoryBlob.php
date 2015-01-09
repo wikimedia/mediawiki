@@ -81,7 +81,7 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob {
 	 */
 	public function __construct() {
 		if ( !function_exists( 'gzdeflate' ) ) {
-			throw new MWException( "Need zlib support to read or write this "
+			throw new Exception( "Need zlib support to read or write this "
 				. "kind of history object (ConcatenatedGzipHistoryBlob)\n" );
 		}
 	}
@@ -395,7 +395,7 @@ class DiffHistoryBlob implements HistoryBlob {
 
 	function __construct() {
 		if ( !function_exists( 'gzdeflate' ) ) {
-			throw new MWException( "Need zlib support to read or write DiffHistoryBlob\n" );
+			throw new Exception( "Need zlib support to read or write DiffHistoryBlob\n" );
 		}
 	}
 
@@ -406,7 +406,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	 */
 	function addItem( $text ) {
 		if ( $this->mFrozen ) {
-			throw new MWException( __METHOD__ . ": Cannot add more items after sleep/wakeup" );
+			throw new Exception( __METHOD__ . ": Cannot add more items after sleep/wakeup" );
 		}
 
 		$this->mItems[] = $text;
@@ -442,7 +442,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	 */
 	function compress() {
 		if ( !function_exists( 'xdiff_string_rabdiff' ) ) {
-			throw new MWException( "Need xdiff 1.5+ support to write DiffHistoryBlob\n" );
+			throw new Exception( "Need xdiff 1.5+ support to write DiffHistoryBlob\n" );
 		}
 		if ( isset( $this->mDiffs ) ) {
 			// Already compressed

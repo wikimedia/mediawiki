@@ -480,7 +480,7 @@ class JobQueueDB extends JobQueue {
 	 */
 	protected function doAck( Job $job ) {
 		if ( !isset( $job->metadata['id'] ) ) {
-			throw new MWException( "Job of type '{$job->getType()}' has no ID." );
+			throw new Exception( "Job of type '{$job->getType()}' has no ID." );
 		}
 
 		$dbw = $this->getMasterDB();
@@ -511,9 +511,9 @@ class JobQueueDB extends JobQueue {
 	protected function doDeduplicateRootJob( Job $job ) {
 		$params = $job->getParams();
 		if ( !isset( $params['rootJobSignature'] ) ) {
-			throw new MWException( "Cannot register root job; missing 'rootJobSignature'." );
+			throw new Exception( "Cannot register root job; missing 'rootJobSignature'." );
 		} elseif ( !isset( $params['rootJobTimestamp'] ) ) {
-			throw new MWException( "Cannot register root job; missing 'rootJobTimestamp'." );
+			throw new Exception( "Cannot register root job; missing 'rootJobTimestamp'." );
 		}
 		$key = $this->getRootJobCacheKey( $params['rootJobSignature'] );
 		// Callers should call batchInsert() and then this function so that if the insert

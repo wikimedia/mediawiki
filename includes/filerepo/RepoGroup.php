@@ -422,12 +422,12 @@ class RepoGroup {
 	 */
 	function splitVirtualUrl( $url ) {
 		if ( substr( $url, 0, 9 ) != 'mwrepo://' ) {
-			throw new MWException( __METHOD__ . ': unknown protocol' );
+			throw new Exception( __METHOD__ . ': unknown protocol' );
 		}
 
 		$bits = explode( '/', substr( $url, 9 ), 3 );
 		if ( count( $bits ) != 3 ) {
-			throw new MWException( __METHOD__ . ": invalid mwrepo URL: $url" );
+			throw new Exception( __METHOD__ . ": invalid mwrepo URL: $url" );
 		}
 
 		return $bits;

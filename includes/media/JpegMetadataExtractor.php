@@ -59,31 +59,31 @@ class JpegMetadataExtractor {
 		);
 
 		if ( !$filename ) {
-			throw new MWException( "No filename specified for " . __METHOD__ );
+			throw new Exception( "No filename specified for " . __METHOD__ );
 		}
 		if ( !file_exists( $filename ) || is_dir( $filename ) ) {
-			throw new MWException( "Invalid file $filename passed to " . __METHOD__ );
+			throw new Exception( "Invalid file $filename passed to " . __METHOD__ );
 		}
 
 		$fh = fopen( $filename, "rb" );
 
 		if ( !$fh ) {
-			throw new MWException( "Could not open file $filename" );
+			throw new Exception( "Could not open file $filename" );
 		}
 
 		$buffer = fread( $fh, 2 );
 		if ( $buffer !== "\xFF\xD8" ) {
-			throw new MWException( "Not a jpeg, no SOI" );
+			throw new Exception( "Not a jpeg, no SOI" );
 		}
 		while ( !feof( $fh ) ) {
 			$buffer = fread( $fh, 1 );
 			$segmentCount++;
 			if ( $segmentCount > self::MAX_JPEG_SEGMENTS ) {
 				// this is just a sanity check
-				throw new MWException( 'Too many jpeg segments. Aborting' );
+				throw new Exception( 'Too many jpeg segments. Aborting' );
 			}
 			if ( $buffer !== "\xFF" ) {
-				throw new MWException( "Error reading jpeg file marker. " .
+				throw new Exception( "Error reading jpeg file marker. " .
 					"Expected 0xFF but got " . bin2hex( $buffer ) );
 			}
 
@@ -156,13 +156,13 @@ class JpegMetadataExtractor {
 				// segment we don't care about, so skip
 				$size = wfUnpack( "nint", fread( $fh, 2 ), 2 );
 				if ( $size['int'] <= 2 ) {
-					throw new MWException( "invalid marker size in jpeg" );
+					throw new Exception( "invalid marker size in jpeg" );
 				}
 				fseek( $fh, $size['int'] - 2, SEEK_CUR );
 			}
 		}
 		// shouldn't get here.
-		throw new MWException( "Reached end of jpeg file unexpectedly" );
+		throw new Exception( "Reached end of jpeg file unexpectedly" );
 	}
 
 	/**
@@ -174,11 +174,11 @@ class JpegMetadataExtractor {
 	private static function jpegExtractMarker( &$fh ) {
 		$size = wfUnpack( "nint", fread( $fh, 2 ), 2 );
 		if ( $size['int'] <= 2 ) {
-			throw new MWException( "invalid marker size in jpeg" );
+			throw new Exception( "invalid marker size in jpeg" );
 		}
 		$segment = fread( $fh, $size['int'] - 2 );
 		if ( strlen( $segment ) !== $size['int'] - 2 ) {
-			throw new MWException( "Segment shorter than expected" );
+			throw new Exception( "Segment shorter than expected" );
 		}
 
 		return $segment;
@@ -200,7 +200,7 @@ class JpegMetadataExtractor {
 	 */
 	public static function doPSIR( $app13 ) {
 		if ( !$app13 ) {
-			throw new MWException( "No App13 segment given" );
+			throw new Exception( "No App13 segment given" );
 		}
 		// First compare hash with real thing
 		// 0x404 contains IPTC, 0x425 has hash
@@ -247,14 +247,14 @@ class JpegMetadataExtractor {
 			// Which should never ever happen, as this has to be inside a segment
 			// which is limited to a 16 bit number.
 			if ( $lenData['len'] < 0 ) {
-				throw new MWException( "Too big PSIR (" . $lenData['len'] . ')' );
+				throw new Exception( "Too big PSIR (" . $lenData['len'] . ')' );
 			}
 
 			$offset += 4; // 4bytes length field;
 
 			// this should not happen, but check.
 			if ( $lenData['len'] + $offset > $appLen ) {
-				throw new MWException( "PSIR data too long. (item length=" . $lenData['len']
+				throw new Exception( "PSIR data too long. (item length=" . $lenData['len']
 					. "; offset=$offset; total length=$appLen)" );
 			}
 

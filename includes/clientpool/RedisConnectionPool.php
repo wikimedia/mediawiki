@@ -74,7 +74,7 @@ class RedisConnectionPool {
 	 */
 	protected function __construct( array $options ) {
 		if ( !class_exists( 'Redis' ) ) {
-			throw new MWException( __CLASS__ . ' requires a Redis client library. ' .
+			throw new Exception( __CLASS__ . ' requires a Redis client library. ' .
 				'See https://www.mediawiki.org/wiki/Redis#Setup' );
 		}
 		$this->connectTimeout = $options['connectTimeout'];
@@ -88,7 +88,7 @@ class RedisConnectionPool {
 		} elseif ( $options['serializer'] === 'none' ) {
 			$this->serializer = Redis::SERIALIZER_NONE;
 		} else {
-			throw new MWException( "Invalid serializer specified." );
+			throw new Exception( "Invalid serializer specified." );
 		}
 	}
 
@@ -190,7 +190,7 @@ class RedisConnectionPool {
 			// TCP connection
 			$hostPort = IP::splitHostAndPort( $server );
 			if ( !$hostPort ) {
-				throw new MWException( __CLASS__ . ": invalid configured server \"$server\"" );
+				throw new Exception( __CLASS__ . ": invalid configured server \"$server\"" );
 			}
 			list( $host, $port ) = $hostPort;
 			if ( $port === false ) {

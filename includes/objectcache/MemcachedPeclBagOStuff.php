@@ -99,13 +99,13 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 				break;
 			case 'igbinary':
 				if ( !Memcached::HAVE_IGBINARY ) {
-					throw new MWException( __CLASS__ . ': the igbinary extension is not available ' .
+					throw new Exception( __CLASS__ . ': the igbinary extension is not available ' .
 						'but igbinary serialization was requested.' );
 				}
 				$this->client->setOption( Memcached::OPT_SERIALIZER, Memcached::SERIALIZER_IGBINARY );
 				break;
 			default:
-				throw new MWException( __CLASS__ . ': invalid value for serializer parameter' );
+				throw new Exception( __CLASS__ . ': invalid value for serializer parameter' );
 		}
 		$servers = array();
 		foreach ( $params['servers'] as $host ) {

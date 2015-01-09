@@ -112,7 +112,7 @@ class RevDelRevisionList extends RevDelList {
 			return new RevDelArchivedRevisionItem( $this, $row );
 		} else {
 			// This shouldn't happen. :)
-			throw new MWException( 'Invalid row type in RevDelRevisionList' );
+			throw new Exception( 'Invalid row type in RevDelRevisionList' );
 		}
 	}
 

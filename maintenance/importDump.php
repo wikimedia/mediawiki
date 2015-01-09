@@ -141,7 +141,7 @@ TEXT;
 		} elseif ( $obj instanceof WikiRevision ) {
 			$ns = $obj->title->getNamespace();
 		} else {
-			throw new MWException( "Cannot get namespace of object in " . __METHOD__ );
+			throw new Exception( "Cannot get namespace of object in " . __METHOD__ );
 		}
 
 		return is_array( $this->nsFilter ) && !in_array( $ns, $this->nsFilter );

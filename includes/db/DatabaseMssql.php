@@ -844,7 +844,7 @@ class DatabaseMssql extends DatabaseBase {
 				$list .= "$value";
 			} elseif ( ( $mode == LIST_AND || $mode == LIST_OR ) && is_array( $value ) ) {
 				if ( count( $value ) == 0 ) {
-					throw new MWException( __METHOD__ . ": empty input for field $field" );
+					throw new Exception( __METHOD__ . ": empty input for field $field" );
 				} elseif ( count( $value ) == 1 ) {
 					// Special-case single values, as IN isn't terribly efficient
 					// Don't necessarily assume the single key is 0; we don't
@@ -1106,17 +1106,17 @@ class DatabaseMssql extends DatabaseBase {
 	 */
 	private function escapeIdentifier( $identifier ) {
 		if ( strlen( $identifier ) == 0 ) {
-			throw new MWException( "An identifier must not be empty" );
+			throw new Exception( "An identifier must not be empty" );
 		}
 		if ( strlen( $identifier ) > 128 ) {
-			throw new MWException( "The identifier '$identifier' is too long (max. 128)" );
+			throw new Exception( "The identifier '$identifier' is too long (max. 128)" );
 		}
 		if ( ( strpos( $identifier, '[' ) !== false )
 			|| ( strpos( $identifier, ']' ) !== false )
 		) {
 			// It may be allowed if you quoted with double quotation marks, but
 			// that would break if QUOTED_IDENTIFIER is OFF
-			throw new MWException( "Square brackets are not allowed in '$identifier'" );
+			throw new Exception( "Square brackets are not allowed in '$identifier'" );
 		}
 
 		return "[$identifier]";

@@ -514,7 +514,7 @@ class ManualLogEntry extends LogEntryBase {
 		$rows = array();
 		foreach ( $this->relations as $tag => $values ) {
 			if ( !strlen( $tag ) ) {
-				throw new MWException( "Got empty log search tag." );
+				throw new Exception( "Got empty log search tag." );
 			}
 
 			if ( !is_array( $values ) ) {

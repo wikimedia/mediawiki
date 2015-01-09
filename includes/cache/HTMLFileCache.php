@@ -50,7 +50,7 @@ class HTMLFileCache extends FileCacheBase {
 	public function __construct( $title, $action ) {
 		$allowedTypes = self::cacheablePageActions();
 		if ( !in_array( $action, $allowedTypes ) ) {
-			throw new MWException( 'Invalid file cache type given.' );
+			throw new Exception( 'Invalid file cache type given.' );
 		}
 		$this->mKey = ( $title instanceof Title )
 			? $title->getPrefixedDBkey()

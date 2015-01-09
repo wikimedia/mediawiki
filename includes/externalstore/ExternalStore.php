@@ -193,7 +193,7 @@ class ExternalStore {
 			list( $proto, $path ) = explode( '://', $storeUrl, 2 );
 			$store = self::getStoreObject( $proto, $params );
 			if ( $store === false ) {
-				throw new MWException( "Invalid external storage protocol - $storeUrl" );
+				throw new Exception( "Invalid external storage protocol - $storeUrl" );
 			}
 			try {
 				$url = $store->store( $path, $data ); // Try to save the object
@@ -213,7 +213,7 @@ class ExternalStore {
 		if ( $error ) {
 			throw $error; // rethrow the last error
 		} else {
-			throw new MWException( "Unable to store text to external storage" );
+			throw new Exception( "Unable to store text to external storage" );
 		}
 	}
 

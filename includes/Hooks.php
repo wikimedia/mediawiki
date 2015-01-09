@@ -71,7 +71,7 @@ class Hooks {
 	 */
 	public static function clear( $name ) {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			throw new MWException( 'Cannot reset hooks in operation.' );
+			throw new Exception( 'Cannot reset hooks in operation.' );
 		}
 
 		unset( self::$handlers[$name] );
@@ -176,13 +176,13 @@ class Hooks {
 			} elseif ( is_string( $hook[0] ) ) {
 				$func = $callback = array_shift( $hook );
 			} else {
-				throw new MWException( 'Unknown datatype in hooks for ' . $event . "\n" );
+				throw new Exception( 'Unknown datatype in hooks for ' . $event . "\n" );
 			}
 
 			// Run autoloader (workaround for call_user_func_array bug)
 			// and throw error if not callable.
 			if ( !is_callable( $callback ) ) {
-				throw new MWException( 'Invalid callback ' . $func . ' in hooks for ' . $event . "\n" );
+				throw new Exception( 'Invalid callback ' . $func . ' in hooks for ' . $event . "\n" );
 			}
 
 			/*
@@ -223,7 +223,7 @@ class Hooks {
 				throw new FatalError( $retval );
 			} elseif ( $badhookmsg !== null ) {
 				// Exception was thrown from Hooks::hookErrorHandler.
-				throw new MWException(
+				throw new Exception(
 					'Detected bug in an extension! ' .
 					"Hook $func has invalid call signature; " . $badhookmsg
 				);

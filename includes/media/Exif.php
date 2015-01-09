@@ -298,7 +298,7 @@ class Exif {
 			$data = exif_read_data( $this->file, 0, true );
 			wfRestoreWarnings();
 		} else {
-			throw new MWException( "Internal error: exif_read_data not present. " .
+			throw new Exception( "Internal error: exif_read_data not present. " .
 				"\$wgShowEXIF may be incorrectly set or not checked by an extension." );
 		}
 		/**

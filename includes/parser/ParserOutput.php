@@ -85,7 +85,7 @@ class ParserOutput extends CacheTime {
 					$editsectionContent = isset( $m[4] ) ? $m[3] : null;
 
 					if ( !is_object( $editsectionPage ) ) {
-						throw new MWException( "Bad parser output text." );
+						throw new Exception( "Bad parser output text." );
 					}
 
 					$skin = $wgOut->getSkin();
@@ -411,7 +411,7 @@ class ParserOutput extends CacheTime {
 	 */
 	public function addInterwikiLink( $title ) {
 		if ( !$title->isExternal() ) {
-			throw new MWException( 'Non-interwiki link passed, internal parser error.' );
+			throw new Exception( 'Non-interwiki link passed, internal parser error.' );
 		}
 		$prefix = $title->getInterwiki();
 		if ( !isset( $this->mInterwikiLinks[$prefix] ) ) {
@@ -735,7 +735,7 @@ class ParserOutput extends CacheTime {
 			// NOTE: This happens when mSecondaryDataUpdates are lost during serialization
 			// (see __sleep below). After (un)serialization, getSecondaryDataUpdates()
 			// has no defined behavior in that case, and should throw an exception.
-			throw new MWException( 'getSecondaryDataUpdates() must not be called on ParserOutput restored from serialization.' );
+			throw new Exception( 'getSecondaryDataUpdates() must not be called on ParserOutput restored from serialization.' );
 		}
 
 		// NOTE: ApiStashEdit knows about this "magic" update object. If this goes away,

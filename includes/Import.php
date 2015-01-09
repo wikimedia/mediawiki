@@ -488,7 +488,7 @@ class WikiImporter {
 
 		if ( $this->reader->name != 'mediawiki' ) {
 			libxml_disable_entity_loader( $oldDisable );
-			throw new MWException( "Expected <mediawiki> tag, got " .
+			throw new Exception( "Expected <mediawiki> tag, got " .
 				$this->reader->name );
 		}
 		$this->debug( "<mediawiki> tag is correct." );
@@ -1172,10 +1172,10 @@ class WikiRevision {
 		if ( is_object( $title ) ) {
 			$this->title = $title;
 		} elseif ( is_null( $title ) ) {
-			throw new MWException( "WikiRevision given a null title in import. "
+			throw new Exception( "WikiRevision given a null title in import. "
 				. "You may need to adjust \$wgLegalTitleChars." );
 		} else {
-			throw new MWException( "WikiRevision given non-object title in import." );
+			throw new Exception( "WikiRevision given non-object title in import." );
 		}
 	}
 

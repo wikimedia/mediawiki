@@ -137,7 +137,7 @@ class ArchivedFile {
 		}
 
 		if ( !$id && !$key && !( $title instanceof Title ) ) {
-			throw new MWException( "No specifications provided to ArchivedFile constructor." );
+			throw new Exception( "No specifications provided to ArchivedFile constructor." );
 		}
 	}
 
@@ -164,7 +164,7 @@ class ArchivedFile {
 		}
 
 		if ( !count( $conds ) ) {
-			throw new MWException( "No specific information for retrieving archived file" );
+			throw new Exception( "No specific information for retrieving archived file" );
 		}
 
 		if ( !$this->title || $this->title->getNamespace() == NS_FILE ) {
@@ -185,7 +185,7 @@ class ArchivedFile {
 			// initialize fields for filestore image object
 			$this->loadFromRow( $row );
 		} else {
-			throw new MWException( 'This title does not correspond to an image page.' );
+			throw new Exception( 'This title does not correspond to an image page.' );
 		}
 		$this->exists = true;
 
@@ -480,7 +480,7 @@ class ArchivedFile {
 			return $this->user;
 		}
 
-		throw new MWException( "Unknown type '$type'." );
+		throw new Exception( "Unknown type '$type'." );
 	}
 
 	/**

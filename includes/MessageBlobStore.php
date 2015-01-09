@@ -355,7 +355,7 @@ class MessageBlobStore {
 			$module = $resourceLoader->getModule( $row->mr_resource );
 			if ( !$module ) {
 				// This shouldn't be possible
-				throw new MWException( __METHOD__ . ' passed an invalid module name' );
+				throw new Exception( __METHOD__ . ' passed an invalid module name' );
 			}
 
 			// Update the module's blobs if the set of messages changed or if the blob is

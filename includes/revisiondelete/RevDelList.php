@@ -239,7 +239,7 @@ abstract class RevDelList extends RevisionListBase {
 		// Get the URL param's corresponding DB field
 		$field = RevisionDeleter::getRelationType( $this->getType() );
 		if ( !$field ) {
-			throw new MWException( "Bad log URL param type!" );
+			throw new Exception( "Bad log URL param type!" );
 		}
 		// Put things hidden from sysops in the oversight log
 		if ( ( $params['newBits'] | $params['oldBits'] ) & $this->getSuppressBit() ) {
