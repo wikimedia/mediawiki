@@ -266,6 +266,8 @@ class MysqlUpdater extends DatabaseUpdater {
 				'patch-oi_major_mime-chemical.sql' ),
 			array( 'modifyField', 'filearchive', 'fa_major_mime',
 				'patch-fa_major_mime-chemical.sql' ),
+
+			// 1.25
 			array( 'dropTable', 'hitcounter' ),
 			array( 'dropField', 'site_stats', 'ss_total_views', 'patch-drop-ss_total_views.sql' ),
 			array( 'dropField', 'page', 'page_counter', 'patch-drop-page_counter.sql' ),
