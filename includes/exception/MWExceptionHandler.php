@@ -83,8 +83,7 @@ class MWExceptionHandler {
 				}
 			}
 		} else {
-			$message = "Unexpected non-MediaWiki exception encountered, of type \"" .
-				get_class( $e ) . "\"";
+			$message = "Exception encountered, of type \"" . get_class( $e ) . "\"";
 
 			if ( $wgShowExceptionDetails ) {
 				$message .= "\n" . MWExceptionHandler::getLogMessage( $e ) . "\nBacktrace:\n" .
