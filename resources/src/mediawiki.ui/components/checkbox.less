@@ -61,6 +61,7 @@
 
 		// the pseudo before element of the label after the checkbox now looks like a checkbox
 		& + label::before {
+			.transition( 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) );
 			content: '';
 			cursor: pointer;
 			.box-sizing(border-box);
@@ -71,15 +72,17 @@
 			height: @checkboxSize;
 			background-color: #fff;
 			border: 1px solid @colorGray7;
-		}
-
-		// when the input is checked, style the label pseudo before element that followed as a checked checkbox
-		&:checked + label::before {
 			.background-image-svg('images/checked.svg', 'images/checked.png');
 			.background-size( @checkboxSize - 0.2em, @checkboxSize - 0.2em );
 			background-repeat: no-repeat;
 			background-position: center center;
 			background-origin: border-box;
+			background-size: 0 0;
+		}
+
+		// when the input is checked, style the label pseudo before element that followed as a checked checkbox
+		&:checked + label::before {
+			background-size: 100% 100%;
 		}
 
 		&:active + label::before {
