@@ -114,7 +114,7 @@ abstract class BloomCache {
 				if ( $useFilter ) {
 					return ( $this->isHit( 'shared', "$virtualKey:$member" ) !== false );
 				}
-			} catch ( MWException $e ) {
+			} catch ( Exception $e ) {
 				MWExceptionHandler::logException( $e );
 				return true;
 			}
@@ -143,7 +143,7 @@ abstract class BloomCache {
 				}
 
 				return $this->add( 'shared', $prefixedMembers );
-			} catch ( MWException $e ) {
+			} catch ( Exception $e ) {
 				MWExceptionHandler::logException( $e );
 				return false;
 			}

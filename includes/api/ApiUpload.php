@@ -161,7 +161,7 @@ class ApiUpload extends ApiBase {
 			}
 		} catch ( UploadStashException $e ) {
 			$this->handleStashException( $e );
-		} catch ( MWException $e ) {
+		} catch ( Exception $e ) {
 			$this->dieUsage( $e->getMessage(), 'stashfailed' );
 		}
 
@@ -182,7 +182,7 @@ class ApiUpload extends ApiBase {
 		try {
 			$result['filekey'] = $this->performStash();
 			$result['sessionkey'] = $result['filekey']; // backwards compatibility
-		} catch ( MWException $e ) {
+		} catch ( Exception $e ) {
 			$result['warnings']['stashfailed'] = $e->getMessage();
 		}
 
@@ -209,7 +209,7 @@ class ApiUpload extends ApiBase {
 				$filekey = $this->performStash();
 			} catch ( UploadStashException $e ) {
 				$this->handleStashException( $e );
-			} catch ( MWException $e ) {
+			} catch ( Exception $e ) {
 				// FIXME: Error handling here is wrong/different from rest of this
 				$this->dieUsage( $e->getMessage(), 'stashfailed' );
 			}
@@ -283,7 +283,7 @@ class ApiUpload extends ApiBase {
 				throw new MWException( 'Invalid stashed file' );
 			}
 			$fileKey = $stashFile->getFileKey();
-		} catch ( MWException $e ) {
+		} catch ( Exception $e ) {
 			$message = 'Stashing temporary file failed: ' . get_class( $e ) . ' ' . $e->getMessage();
 			wfDebug( __METHOD__ . ' ' . $message . "\n" );
 			$className = get_class( $e );
@@ -306,7 +306,7 @@ class ApiUpload extends ApiBase {
 		try {
 			$data['filekey'] = $this->performStash();
 			$data['sessionkey'] = $data['filekey'];
-		} catch ( MWException $e ) {
+		} catch ( Exception $e ) {
 			$data['stashfailed'] = $e->getMessage();
 		}
 		$data['invalidparameter'] = $parameter;

@@ -197,7 +197,7 @@ class ExternalStore {
 			}
 			try {
 				$url = $store->store( $path, $data ); // Try to save the object
-			} catch ( MWException $error ) {
+			} catch ( Exception $error ) {
 				$url = false;
 			}
 			if ( strlen( $url ) ) {

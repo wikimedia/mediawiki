@@ -647,7 +647,7 @@ class SwiftFileBackend extends FileBackendStore {
 			$timestamp = new MWTimestamp( $ts );
 
 			return $timestamp->getTimestamp( $format );
-		} catch ( MWException $e ) {
+		} catch ( Exception $e ) {
 			throw new FileBackendError( $e->getMessage() );
 		}
 	}

@@ -135,7 +135,7 @@ class JobRunner {
 					$status = $job->run();
 					$error = $job->getLastError();
 					wfGetLBFactory()->commitMasterChanges();
-				} catch ( MWException $e ) {
+				} catch ( Exception $e ) {
 					MWExceptionHandler::rollbackMasterChangesAndLog( $e );
 					$status = false;
 					$error = get_class( $e ) . ': ' . $e->getMessage();

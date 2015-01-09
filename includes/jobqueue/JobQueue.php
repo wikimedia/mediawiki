@@ -362,7 +362,7 @@ abstract class JobQueue {
 				JobQueue::incrStats( 'job-pop-duplicate', $this->type, 1, $this->wiki );
 				$job = DuplicateJob::newFromJob( $job ); // convert to a no-op
 			}
-		} catch ( MWException $e ) {
+		} catch ( Exception $e ) {
 			// don't lose jobs over this
 		}
 

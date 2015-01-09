@@ -107,7 +107,7 @@ class DeferredUpdates {
 					if ( $doCommit && $dbw->trxLevel() ) {
 						$dbw->commit( __METHOD__, 'flush' );
 					}
-				} catch ( MWException $e ) {
+				} catch ( Exception $e ) {
 					// We don't want exceptions thrown during deferred updates to
 					// be reported to the user since the output is already sent.
 					// Instead we just log them.

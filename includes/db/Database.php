@@ -3962,7 +3962,7 @@ abstract class DatabaseBase implements IDatabase {
 
 		try {
 			$error = $this->sourceStream( $fp, $lineCallback, $resultCallback, $fname, $inputCallback );
-		} catch ( MWException $e ) {
+		} catch ( Exception $e ) {
 			fclose( $fp );
 			throw $e;
 		}

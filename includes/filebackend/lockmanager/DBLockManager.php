@@ -97,7 +97,7 @@ abstract class DBLockManager extends QuorumLockManager {
 				// connection timeouts. This is useless if each bucket has one peer.
 				try {
 					$this->statusCache = ObjectCache::newAccelerator( array() );
-				} catch ( MWException $e ) {
+				} catch ( Exception $e ) {
 					trigger_error( __CLASS__ .
 						" using multiple DB peers without apc, xcache, or wincache." );
 				}
