@@ -8,6 +8,16 @@
  * A collection of items representing a set of pages that the user is watching.
  */
 class WatchlistPageCollection extends PageCollection {
+	protected $tag = 'watchlist';
+
+	public function getTag() {
+		return $this->tag;
+	}
+
+	public function setTag( $tag ) {
+		$this->tag = $tag;
+	}
+
 	/**
 	 * Get the database associated with the Watchlist.
 	 * @return DatabaseBase
@@ -33,6 +43,7 @@ class WatchlistPageCollection extends PageCollection {
 			),
 			array(
 				'wl_user' => $this->getOwner()->getId(),
+				'wl_tag' => $this->getTag(),
 			),
 			__METHOD__,
 			array( 'ORDER BY' => array( 'wl_namespace', 'wl_title' ) )
@@ -62,7 +73,10 @@ class WatchlistPageCollection extends PageCollection {
 		$dbw = $this->getDatabase();
 		$dbw->delete(
 			'watchlist',
-			array( 'wl_user' => $this->getOwner()->getId() ),
+			array(
+				'wl_user' => $this->getOwner()->getId(),
+				'wl_tag' => $this->getTag(),
+			),
 			__METHOD__
 		);
 	}
@@ -82,6 +96,8 @@ class WatchlistPageCollection extends PageCollection {
 				'wl_namespace' => MWNamespace::getSubject( $title->getNamespace() ),
 				'wl_title' => $title->getDBkey(),
 				'wl_notificationtimestamp' => null,
+				'wl_tag' => $this->getTag(),
+				'wl_timestamp' => wfTimestampNow(),
 			);
 			// add talk page
 			$rows[] = array(
@@ -89,6 +105,8 @@ class WatchlistPageCollection extends PageCollection {
 				'wl_namespace' => MWNamespace::getTalk( $title->getNamespace() ),
 				'wl_title' => $title->getDBkey(),
 				'wl_notificationtimestamp' => null,
+				'wl_tag' => $this->getTag(),
+				'wl_timestamp' => wfTimestampNow(),
 			);
 		}
 
@@ -105,6 +123,7 @@ class WatchlistPageCollection extends PageCollection {
 					'wl_user' => $this->getOwner()->getId(),
 					'wl_namespace' => MWNamespace::getSubject( $title->getNamespace() ),
 					'wl_title' => $title->getDBkey(),
+					'wl_tag' => $this->getTag(),
 				),
 				__METHOD__
 			);
@@ -116,6 +135,7 @@ class WatchlistPageCollection extends PageCollection {
 					'wl_user' => $this->getOwner()->getId(),
 					'wl_namespace' => MWNamespace::getTalk( $title->getNamespace() ),
 					'wl_title' => $title->getDBkey(),
+					'wl_tag' => $this->getTag(),
 				),
 				__METHOD__
 			);
