@@ -1,18 +1,14 @@
-// moment.js locale configuration
-// locale : hrvatski (hr)
-// author : Bojan Marković : https://github.com/bmarkovic
+//! moment.js locale configuration
+//! locale : hrvatski (hr)
+//! author : Bojan Marković : https://github.com/bmarkovic
 
-// based on (sl) translation by Robert Sedovšek
+(function (global, factory) {
+   typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('../moment')) :
+   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+   factory(global.moment)
+}(this, function (moment) { 'use strict';
 
-(function (factory) {
-    if (typeof define === 'function' && define.amd) {
-        define(['moment'], factory); // AMD
-    } else if (typeof exports === 'object') {
-        module.exports = factory(require('../moment')); // Node
-    } else {
-        factory((typeof global !== 'undefined' ? global : this).moment); // node or other global
-    }
-}(function (moment) {
+
     function translate(number, withoutSuffix, key) {
         var result = number + ' ';
         switch (key) {
@@ -66,24 +62,23 @@
         }
     }
 
-    return moment.defineLocale('hr', {
-        months : 'sječanj_veljača_ožujak_travanj_svibanj_lipanj_srpanj_kolovoz_rujan_listopad_studeni_prosinac'.split('_'),
-        monthsShort : 'sje._vel._ožu._tra._svi._lip._srp._kol._ruj._lis._stu._pro.'.split('_'),
+    var hr = moment.defineLocale('hr', {
+        months : 'siječanj_veljača_ožujak_travanj_svibanj_lipanj_srpanj_kolovoz_rujan_listopad_studeni_prosinac'.split('_'),
+        monthsShort : 'sij._velj._ožu._tra._svi._lip._srp._kol._ruj._lis._stu._pro.'.split('_'),
         weekdays : 'nedjelja_ponedjeljak_utorak_srijeda_četvrtak_petak_subota'.split('_'),
         weekdaysShort : 'ned._pon._uto._sri._čet._pet._sub.'.split('_'),
         weekdaysMin : 'ne_po_ut_sr_če_pe_su'.split('_'),
         longDateFormat : {
             LT : 'H:mm',
-            LTS : 'LT:ss',
+            LTS : 'H:mm:ss',
             L : 'DD. MM. YYYY',
             LL : 'D. MMMM YYYY',
-            LLL : 'D. MMMM YYYY LT',
-            LLLL : 'dddd, D. MMMM YYYY LT'
+            LLL : 'D. MMMM YYYY H:mm',
+            LLLL : 'dddd, D. MMMM YYYY H:mm'
         },
         calendar : {
             sameDay  : '[danas u] LT',
             nextDay  : '[sutra u] LT',
-
             nextWeek : function () {
                 switch (this.day()) {
                 case 0:
@@ -138,4 +133,7 @@
             doy : 7  // The week that contains Jan 1st is the first week of the year.
         }
     });
+
+    return hr;
+
 }));
