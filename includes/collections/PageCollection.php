@@ -7,13 +7,21 @@
 /**
  * A collection of PageCollectionItems
  */
-class PageCollection implements IteratorAggregate {
+class PageCollection implements IteratorAggregate, Countable {
 	/**
 	 * The internal collection of pages.
 	 *
 	 * @var PageCollectionItem[]
 	 */
 	protected $items = array();
+
+	/**
+	 * Returns the size of the collection
+	 * @return integer
+	 */
+	public function count() {
+		return count( $this->items );
+	}
 
 	/**
 	 * Adds an item to the collection.
