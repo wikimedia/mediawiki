@@ -47,7 +47,7 @@ abstract class DatabaseBase implements IDatabase {
 	const DEADLOCK_DELAY_MAX = 1500000;
 
 	/** How many row changes in a write query trigger a log entry */
-	const LOG_WRITE_THRESHOLD = 300;
+	const LOG_WRITE_THRESHOLD = 500;
 
 	protected $mLastQuery = '';
 	protected $mDoneWrites = false;
