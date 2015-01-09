@@ -1,23 +1,19 @@
-// moment.js locale configuration
-// locale : polish (pl)
-// author : Rafal Hirsz : https://github.com/evoL
+//! moment.js locale configuration
+//! locale : polish (pl)
+//! author : Rafal Hirsz : https://github.com/evoL
 
-(function (factory) {
-    if (typeof define === 'function' && define.amd) {
-        define(['moment'], factory); // AMD
-    } else if (typeof exports === 'object') {
-        module.exports = factory(require('../moment')); // Node
-    } else {
-        factory((typeof global !== 'undefined' ? global : this).moment); // node or other global
-    }
-}(function (moment) {
+(function (global, factory) {
+   typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('../moment')) :
+   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+   factory(global.moment)
+}(this, function (moment) { 'use strict';
+
+
     var monthsNominative = 'styczeń_luty_marzec_kwiecień_maj_czerwiec_lipiec_sierpień_wrzesień_październik_listopad_grudzień'.split('_'),
         monthsSubjective = 'stycznia_lutego_marca_kwietnia_maja_czerwca_lipca_sierpnia_września_października_listopada_grudnia'.split('_');
-
     function plural(n) {
         return (n % 10 < 5) && (n % 10 > 1) && ((~~(n / 10) % 10) !== 1);
     }
-
     function translate(number, withoutSuffix, key) {
         var result = number + ' ';
         switch (key) {
@@ -36,9 +32,14 @@
         }
     }
 
-    return moment.defineLocale('pl', {
+    var pl = moment.defineLocale('pl', {
         months : function (momentToFormat, format) {
-            if (/D MMMM/.test(format)) {
+            if (format === '') {
+                // Hack: if format empty we know this is used to generate
+                // RegExp by moment. Give then back both valid forms of months
+                // in RegExp ready format.
+                return '(' + monthsSubjective[momentToFormat.month()] + '|' + monthsNominative[momentToFormat.month()] + ')';
+            } else if (/D MMMM/.test(format)) {
                 return monthsSubjective[momentToFormat.month()];
             } else {
                 return monthsNominative[momentToFormat.month()];
@@ -50,11 +51,11 @@
         weekdaysMin : 'N_Pn_Wt_Śr_Cz_Pt_So'.split('_'),
         longDateFormat : {
             LT : 'HH:mm',
-            LTS : 'LT:ss',
+            LTS : 'HH:mm:ss',
             L : 'DD.MM.YYYY',
             LL : 'D MMMM YYYY',
-            LLL : 'D MMMM YYYY LT',
-            LLLL : 'dddd, D MMMM YYYY LT'
+            LLL : 'D MMMM YYYY HH:mm',
+            LLLL : 'dddd, D MMMM YYYY HH:mm'
         },
         calendar : {
             sameDay: '[Dziś o] LT',
@@ -97,4 +98,7 @@
             doy : 4  // The week that contains Jan 4th is the first week of the year.
         }
     });
+
+    return pl;
+
 }));
