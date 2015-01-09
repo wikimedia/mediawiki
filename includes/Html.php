@@ -198,8 +198,7 @@ class Html {
 	/**
 	 * Returns an HTML element in a string.  The major advantage here over
 	 * manually typing out the HTML is that it will escape all attribute
-	 * values.  If you're hardcoding all the attributes, or there are none, you
-	 * should probably just type out the html element yourself.
+	 * values.
 	 *
 	 * This is quite similar to Xml::tags(), but it implements some useful
 	 * HTML-specific logic.  For instance, there is no $allowShortTag
