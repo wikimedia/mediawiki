@@ -111,7 +111,6 @@ CREATE TABLE /*_*/page (
    page_namespace INT          NOT NULL,
    page_title     NVARCHAR(255)  NOT NULL,
    page_restrictions NVARCHAR(255) NOT NULL,
-   page_counter BIGINT            NOT NULL DEFAULT 0,
    page_is_redirect BIT           NOT NULL DEFAULT 0,
    page_is_new BIT                NOT NULL DEFAULT 0,
    page_random real     NOT NULL DEFAULT RAND(),
@@ -422,9 +421,6 @@ CREATE TABLE /*_*/site_stats (
   -- The single row should contain 1 here.
   ss_row_id int NOT NULL,
 
-  -- Total number of page views, if hit counters are enabled.
-  ss_total_views bigint default 0,
-
   -- Total number of edits performed.
   ss_total_edits bigint default 0,
 
@@ -450,18 +446,6 @@ CREATE TABLE /*_*/site_stats (
 
 -- Pointless index to assuage developer superstitions
 CREATE UNIQUE INDEX /*i*/ss_row_id ON /*_*/site_stats (ss_row_id);
-
-
---
--- Stores an ID for every time any article is visited;
--- depending on $wgHitcounterUpdateFreq, it is
--- periodically cleared and the page_counter column
--- in the page table updated for all the articles
--- that have been visited.)
---
-CREATE TABLE /*_*/hitcounter (
-  hc_id int NOT NULL
-);
 
 
 --
