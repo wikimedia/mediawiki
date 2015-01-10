@@ -102,6 +102,8 @@ class OracleUpdater extends DatabaseUpdater {
 
 			// 1.24
 			array( 'addField', 'page', 'page_lang', 'patch-page-page_lang.sql' ),
+
+			// 1.25
 			array( 'dropTable', 'hitcounter' ),
 			array( 'dropField', 'site_stats', 'ss_total_views', 'patch-drop-ss_total_views.sql' ),
 			array( 'dropField', 'page', 'page_counter', 'patch-drop-page_counter.sql' ),
