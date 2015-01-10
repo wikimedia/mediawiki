@@ -25,10 +25,9 @@
  * A special page looking for page without any category.
  *
  * @ingroup SpecialPage
- * @todo FIXME: Make $requestedNamespace selectable, unify all subclasses into one
  */
 class UncategorizedPagesPage extends PageQueryPage {
-	protected $requestedNamespace = false;
+	protected $requestedNamespace = null;
 
 	function __construct( $name = 'Uncategorizedpages' ) {
 		parent::__construct( $name );
@@ -46,6 +45,18 @@ class UncategorizedPagesPage extends PageQueryPage {
 		return false;
 	}
 
+	function execute( $par ) {
+		$request = $this->getRequest();
+		$namespace = ($request->getIntOrNull('namespace') !== null)
+			? $request->getIntOrNull('namespace')
+			: (int) $par;
+
+		if ( MWNamespace::exists($namespace) ) {
+			$this->requestedNamespace = $namespace;
+		}
+		parent::execute( $par );
+	}
+
 	function getQueryInfo() {
 		return array(
 			'tables' => array( 'page', 'categorylinks' ),
@@ -58,7 +69,7 @@ class UncategorizedPagesPage extends PageQueryPage {
 			// otherwise, page_namespace is requestedNamespace
 			'conds' => array(
 				'cl_from IS NULL',
-				'page_namespace' => $this->requestedNamespace !== false
+				'page_namespace' => $this->requestedNamespace !== null
 						? $this->requestedNamespace
 						: MWNamespace::getContentNamespaces(),
 				'page_is_redirect' => 0
@@ -72,7 +83,7 @@ class UncategorizedPagesPage extends PageQueryPage {
 	function getOrderFields() {
 		// For some crazy reason ordering by a constant
 		// causes a filesort
-		if ( $this->requestedNamespace === false && count( MWNamespace::getContentNamespaces() ) > 1 ) {
+		if ( $this->requestedNamespace === null && count( MWNamespace::getContentNamespaces() ) > 1 ) {
 			return array( 'page_namespace', 'page_title' );
 		}
 
@@ -81,5 +92,46 @@ class UncategorizedPagesPage extends PageQueryPage {
 
 	protected function getGroupName() {
 		return 'maintenance';
+	}
+
+	function getPageHeader() {
+		$fields = array(
+			'namespace' => array(
+				'name' => 'namespace',
+				'type' => 'namespaceselect',
+				'default' => $this->requestedNamespace === null ? 0 : $this->requestedNamespace,
+				'label-message' => 'namespace'
+			),
+		);
+		$form = new HTMLForm($fields, $this->getContext());
+		$form->setMethod( 'get' );
+		$form->setTitle($this->getPageTitle());
+		$form->setWrapperLegendMsg( 'uncategorizedpages' );
+		$form->prepareForm();
+		$form->setSubmitText($this->msg( 'allpagessubmit' )->text());
+
+		return $form->getHTML('');
+	}
+}
+
+/**
+ * Redirect page: Special:UncategorizedCategories --> Special:UncategorizedPages.
+ *
+ * @ingroup SpecialPage
+ */
+class UncategorizedCategoriesPage extends SpecialRedirectToSpecial {
+	public function __construct() {
+		parent::__construct( 'Uncategorizedcategories', 'Uncategorizedpages', NS_CATEGORY );
+	}
+}
+
+/**
+ * Redirect page: Special:UncategorizedTemplates --> Special:UncategorizedPages.
+ *
+ * @ingroup SpecialPage
+ */
+class UncategorizedTemplatesPage extends SpecialRedirectToSpecial {
+	public function __construct() {
+		parent::__construct( 'Uncategorizedtemplates', 'Uncategorizedpages', NS_TEMPLATE );
 	}
 }
