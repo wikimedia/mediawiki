@@ -1748,7 +1748,6 @@
 	"deleteprotected": "Ne možete obrisati ovu stranicu zato što je zaštićena.",
 	"deleting-backlinks-warning": "'''Upozorenje:''' brišete stranicu koja je uključena u [[Special:WhatLinksHere/{{FULLPAGENAME}}|druge stranice]] ili druge stranice vode na nju.",
 	"rollback": "Vrati izmene",
-	"rollback_short": "Vrati",
 	"rollbacklink": "vrati",
 	"rollbacklinkcount": "vrati $1 {{PLURAL:$1|izmenu|izmene|izmena}}",
 	"rollbacklinkcount-morethan": "vrati više od $1 {{PLURAL:$1|izmene|izmene|izmena}}",

@@ -1788,7 +1788,6 @@
 	"deleteprotected": "Du kan ikke slette denne siden fordi den er beskyttet.",
 	"deleting-backlinks-warning": "'''Advarsel:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Andre sider]] lenker til eller inkluderer siden du er i ferd med å slette.",
 	"rollback": "Fjern redigeringer",
-	"rollback_short": "Tilbakestill",
 	"rollbacklink": "tilbakestill",
 	"rollbacklinkcount": "tilbakestill {{PLURAL:$1|én endring|$1 endringer}}",
 	"rollbacklinkcount-morethan": "tilbakestill mer enn $1 {{PLURAL:$1|endring|endringer}}",

@@ -1797,7 +1797,6 @@
 	"deleteprotected": "شما نمی‌توانید این صفحه را پاک کنید چون که از آن محافظت شده‌است.",
 	"deleting-backlinks-warning": "''' هشدار:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|صفحه‌های دیگری]] هستند که به صفحه‌ای که شما در حال حذف آن هستید پیوند دارند یا آن را تراگنجانیده‌اند.",
 	"rollback": "واگردانی ویرایش‌ها",
-	"rollback_short": "واگردانی",
 	"rollbacklink": "واگردانی",
 	"rollbacklinkcount": "واگردانی $1 ویرایش",
 	"rollbacklinkcount-morethan": "واگردانی بیش از $1 ویرایش",

@@ -1823,7 +1823,6 @@
 	"deleteprotected": "Nie możesz usunąć tej strony, ponieważ została zabezpieczona.",
 	"deleting-backlinks-warning": "''' Uwaga:''' Do strony, którą masz zamiar usunąć, odwołują się [[Special:WhatLinksHere/{{FULLPAGENAME}}|inne strony]].",
 	"rollback": "Cofnij edycję",
-	"rollback_short": "Cofnij",
 	"rollbacklink": "cofnij",
 	"rollbacklinkcount": "cofnij $1 {{PLURAL:$1|edycję|edycje|edycji}}",
 	"rollbacklinkcount-morethan": "cofnij więcej niż $1 {{PLURAL:$1|edycję|edycje|edycji}}",

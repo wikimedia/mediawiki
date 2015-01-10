@@ -1633,7 +1633,6 @@
 	"delete-toobig": "Orrialde honek aldaketa historia luzea du, {{PLURAL:$1|berrikuspen batetik|$1 berrikuspenetik}} gorakoa.\nOrrialde horien ezabaketa mugatua dago {{SITENAME}}n ezbeharrak saihesteko.",
 	"delete-warning-toobig": "Orrialde honek aldaketa historia luzea du, {{PLURAL:$1|berrikuspen batetik|$1 berrikuspenetik}} gorakoa.\nEzabatzeak ezbeharrak eragin ditzake {{SITENAME}}ren datu-basean;\nkontu izan.",
 	"rollback": "Desegin aldaketak",
-	"rollback_short": "Desegin",
 	"rollbacklink": "desegin",
 	"rollbacklinkcount": "desegin {{PLURAL:$1|edizio bat|$1 edizio}}",
 	"rollbacklinkcount-morethan": "desegin {{PLURAL:$1|edizio bat|$1 edizio}} baino gehiago",

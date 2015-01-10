@@ -1753,7 +1753,6 @@
 	"deleteprotected": "আপনি এই পাতাটি মুছে ফেলতে পারবেন না কারণ এটি সুরক্ষিত করা হয়েছে।",
 	"deleting-backlinks-warning": "'''সতর্কীকরণ:''' আপনি যেটি মুছে ফেলতে যাচ্ছেন তা [[Special:WhatLinksHere/{{FULLPAGENAME}}|অন্যান্য পাতাসমূহে]] সংযুক্ত অথবা অন্তর্ভুক্ত রয়েছে।",
 	"rollback": "সম্পাদনা ফিরিয়ে নিন",
-	"rollback_short": "ফিরিয়ে নিন",
 	"rollbacklink": "পুনর্বহাল",
 	"rollbacklinkcount": "$1টি {{PLURAL:$1|সম্পাদনা}} রোলব্যাক করুন",
 	"rollbacklinkcount-morethan": "$1টির বেশি {{PLURAL:$1|সম্পাদনা|সম্পাদনাগুলো}} রোলব্যাক করুন",

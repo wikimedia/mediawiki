@@ -1781,7 +1781,6 @@
 	"deleteprotected": "Anda tidak boleh menghapuskan laman ini kerana ia telah dilindungi.",
 	"deleting-backlinks-warning": "'''Amaran:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Terdapat laman lain]] yang berpaut atau bertransklusi dengan laman yang hendak anda hapus ini.",
 	"rollback": "Undurkan suntingan.",
-	"rollback_short": "Undur",
 	"rollbacklink": "undur",
 	"rollbacklinkcount": "mengundurkan $1 {{PLURAL:$1|suntingan}}",
 	"rollbacklinkcount-morethan": "mengundurkan lebih daripada $1 {{PLURAL:$1|suntingan}}",
