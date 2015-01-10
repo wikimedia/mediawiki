@@ -25,6 +25,7 @@
  * Implements Special:Allpages
  *
  * @ingroup SpecialPage
+ * @todo Rewrite using IndexPager
  */
 class SpecialAllPages extends IncludableSpecialPage {
 
@@ -191,15 +192,13 @@ class SpecialAllPages extends IncludableSpecialPage {
 			list( , $toKey, $to ) = $toList;
 
 			$dbr = wfGetDB( DB_SLAVE );
-			$conds = array(
-				'page_namespace' => $namespace,
-				'page_title >= ' . $dbr->addQuotes( $fromKey )
-			);
-
+			$filterConds = array( 'page_namespace' => $namespace );
 			if ( $hideredirects ) {
-				$conds['page_is_redirect'] = 0;
+				$filterConds['page_is_redirect'] = 0;
 			}
 
+			$conds = $filterConds;
+			$conds[] = 'page_title >= ' . $dbr->addQuotes( $fromKey );
 			if ( $toKey !== "" ) {
 				$conds[] = 'page_title <= ' . $dbr->addQuotes( $toKey );
 			}
@@ -245,37 +244,22 @@ class SpecialAllPages extends IncludableSpecialPage {
 			// First chunk; no previous link.
 			$prevTitle = null;
 		} else {
-			# Get the last title from previous chunk
+			# Get the first title from previous chunk
 			$dbr = wfGetDB( DB_SLAVE );
 			$res_prev = $dbr->select(
 				'page',
 				'page_title',
-				array( 'page_namespace' => $namespace, 'page_title < ' . $dbr->addQuotes( $from ) ),
+				array_merge( $filterConds, array( 'page_title < ' . $dbr->addQuotes( $from ) ) ),
 				__METHOD__,
-				array( 'ORDER BY' => 'page_title DESC',
-					'LIMIT' => $this->maxPerPage, 'OFFSET' => ( $this->maxPerPage - 1 )
-				)
+				array( 'ORDER BY' => 'page_title DESC', 'LIMIT' => $this->maxPerPage )
 			);
 
-			# Get first title of previous complete chunk
-			if ( $dbr->numrows( $res_prev ) >= $this->maxPerPage ) {
-				$pt = $dbr->fetchObject( $res_prev );
+			if ( $res_prev->numRows() > 0 ) {
+				$res_prev->seek( $res_prev->numRows() - 1 );
+				$pt = $res_prev->fetchObject();
 				$prevTitle = Title::makeTitle( $namespace, $pt->page_title );
 			} else {
-				# The previous chunk is not complete, need to link to the very first title
-				# available in the database
-				$options = array( 'LIMIT' => 1 );
-				if ( !$dbr->implicitOrderby() ) {
-					$options['ORDER BY'] = 'page_title';
-				}
-				$reallyFirstPage_title = $dbr->selectField( 'page', 'page_title',
-					array( 'page_namespace' => $namespace ), __METHOD__, $options );
-				# Show the previous link if it s not the current requested chunk
-				if ( $from != $reallyFirstPage_title ) {
-					$prevTitle = Title::makeTitle( $namespace, $reallyFirstPage_title );
-				} else {
-					$prevTitle = null;
-				}
+				$prevTitle = null;
 			}
 		}
 
@@ -287,7 +271,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 		$bottomLinks = array();
 
 		# Do we put a previous link ?
-		if ( $prevTitle && $pt = $prevTitle->getText() ) {
+		if ( $prevTitle ) {
 			$query = array( 'from' => $prevTitle->getText() );
 
 			if ( $namespace ) {
@@ -300,7 +284,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 
 			$prevLink = Linker::linkKnown(
 				$self,
-				$this->msg( 'prevpage', $pt )->escaped(),
+				$this->msg( 'prevpage', $prevTitle->getText() )->escaped(),
 				array(),
 				$query
 			);
