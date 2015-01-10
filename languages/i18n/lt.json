@@ -1745,7 +1745,6 @@
 	"deleteprotected": "Jūs šio puslapio ištrinti negalite, nes jis apsaugotas.",
 	"deleting-backlinks-warning": "'''Dėmesio:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Kiti puslapiai]] nurodo ar įtraukia puslapį, kurį ruošiatės trinti.",
 	"rollback": "Atmesti keitimus",
-	"rollback_short": "Atmesti",
 	"rollbacklink": "atmesti",
 	"rollbacklinkcount": "atmesti $1 {{PLURAL:$1|keitimą|keitimus}}",
 	"rollbacklinkcount-morethan": "atmesti daugiau nei $1 {{PLURAL:$1|keitimą|keitimų}}",

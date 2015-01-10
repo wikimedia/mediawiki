@@ -1749,7 +1749,6 @@
 	"deleteprotected": "Ni allwch ddileu'r dudalen hon gan ei bod wedi'i chloi.",
 	"deleting-backlinks-warning": "'''Rhybudd:''' Mae [[Special:WhatLinksHere/{{FULLPAGENAME}}|tudalennau eraill]] yn cysylltu i'r dudalen yr ydych ar fin ei dileu, neu'n trawsgynnwys y dudalen hon.",
 	"rollback": "Gwrthdroi golygiadau",
-	"rollback_short": "Gwrthdroi",
 	"rollbacklink": "gwrthdröer",
 	"rollbacklinkcount": "gwrthdröer $1 {{PLURAL:$1||golygiad|olygiad|golygiad}}",
 	"rollbacklinkcount-morethan": "gwrthdröer mwy na $1 {{PLURAL:$1||golygiad|olygiad|golygiad}}",

@@ -113,7 +113,8 @@
 			"Orikrin1998",
 			"Automatik",
 			"Elodark",
-			"Macofe"
+			"Macofe",
+			"Sam"
 		]
 	},
 	"tog-underline": "Souligner les liens :",
@@ -1870,7 +1871,6 @@
 	"deleteprotected": "Vous ne pouvez pas supprimer cette page car elle a été protégée.",
 	"deleting-backlinks-warning": "'''Attention :''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|D’autres pages]] ont un lien vers ou incorporent la page que vous allez supprimer.",
 	"rollback": "Révoquer les modifications",
-	"rollback_short": "Révoquer",
 	"rollbacklink": "révoquer",
 	"rollbacklinkcount": "révoquer $1 {{PLURAL:$1|modification|modifications}}",
 	"rollbacklinkcount-morethan": "révoquer plus de $1 {{PLURAL:$1|modification|modifications}}",
@@ -1981,6 +1981,7 @@
 	"namespace": "Espace de noms :",
 	"invert": "Inverser la sélection",
 	"tooltip-invert": "Cochez cette case pour cacher les modifications des pages dans l'espace de noms sélectionné (et l'espace de noms associé si coché)",
+	"tooltip-whatlinkshere-invert": "Vérifier cette boîte pour cacher les liens des pages sans espace de nom sélectionné.",
 	"namespace_association": "Espace de noms associé",
 	"tooltip-namespace_association": "Cochez cette case pour inclure également l'espace de noms de discussion associé à l'espace de noms sélectionné",
 	"blanknamespace": "(Principal)",

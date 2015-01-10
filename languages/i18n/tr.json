@@ -1805,7 +1805,6 @@
 	"deleteprotected": "Bu sayfayı silemezsiniz çünkü sayfa korumaya alınmış.",
 	"deleting-backlinks-warning": "'''Uyarı:''' Silmek üzere olduğunuz sayfaya [[Özel:SayfayaBağlantılar/{{FULLPAGENAME}}|başka sayfalardan]] bağlantılar var veya sayfanın bazı bölümleri başka sayfalar tarafından alıntı olarak kullanılıyor.",
 	"rollback": "değişiklikleri geri al",
-	"rollback_short": "geri al",
 	"rollbacklink": "geri döndür",
 	"rollbacklinkcount": "$1 {{PLURAL:$1|değişikliği|değişikliği}} geri döndür",
 	"rollbacklinkcount-morethan": "$1 {{PLURAL:$1|değişiklikten|değişiklikten}} fazla geri döndür",

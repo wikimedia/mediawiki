@@ -1741,7 +1741,6 @@
 	"deleteprotected": "Dir däerft dëst Säit net läsche well se gespaart ass.",
 	"deleting-backlinks-warning": "'''Opgepasst:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Aner Säite]] linken op déi Säit déi Dir am Gaang sidd ze läschen oder déi Säit Déi Dir am Gaang sidd ze läschen ass an aner Säiten agebonn.",
 	"rollback": "Ännerungen zrécksetzen",
-	"rollback_short": "Zrécksetzen",
 	"rollbacklink": "Zrécksetzen",
 	"rollbacklinkcount": "{{PLURAL:$1|Eng Ännerung|$1 Ännerungen}} zrécksetzen",
 	"rollbacklinkcount-morethan": "méi wéi {{PLURAL:$1|Eng Ännerung|$1 Ännerungen}} zrécksetzen",

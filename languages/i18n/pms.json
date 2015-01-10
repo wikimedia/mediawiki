@@ -1769,7 +1769,6 @@
 	"deleteprotected": "A peul nen ëscancelé costa pàgina përchè a l'é proteta.",
 	"deleting-backlinks-warning": "'''Avis:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|D'àutre pàgine]] a l'han na liura o a transcludo la pàgina che chiel a veul ëscancelé.",
 	"rollback": "Gavé via le modìfiche",
-	"rollback_short": "Ripristiné",
 	"rollbacklink": "ripristiné j'archivi",
 	"rollbacklinkcount": "tiré andré $1 {{PLURAL:$1|modìfica|modìfiche}}",
 	"rollbacklinkcount-morethan": "tiré andré pi che $1 {{PLURAL:$1|modìfica|modìfiche}}",

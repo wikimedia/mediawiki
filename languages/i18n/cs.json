@@ -1778,7 +1778,6 @@
 	"deleteprotected": "Tuto stránku nemůžete smazat, protože je zamčena.",
 	"deleting-backlinks-warning": "'''Upozornění:''' Stránka, kterou se chystáte smazat, je [[Special:WhatLinksHere/{{FULLPAGENAME}}|na jiných stránkách]] odkazována nebo je do nich vložena.",
 	"rollback": "Vrátit zpět editace",
-	"rollback_short": "Vrátit zpět",
 	"rollbacklink": "vrácení zpět",
 	"rollbacklinkcount": "vrácení $1 {{PLURAL:$1|editace|editací}} zpět",
 	"rollbacklinkcount-morethan": "vrácení více než $1 {{PLURAL:$1|editace|editací}} zpět",

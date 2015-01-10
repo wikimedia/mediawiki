@@ -1757,7 +1757,6 @@
 	"delete-warning-toobig": "इस पृष्ठ का संपादन इतिहास $1 से अधिक {{PLURAL:$1|अवतरण}} होने की वजह से बहुत बड़ा है।\nइसे हटाने से {{SITENAME}} के डाटाबेस की गतिविधियों में व्यवधान आ सकता है;\nकृपया सोच समझ कर आगे बढ़ें।",
 	"deleting-backlinks-warning": "'''चेतावनी:''' जो पृष्ठ आप हटाने जा रहे हैं उससे [[Special:WhatLinksHere/{{FULLPAGENAME}}|अन्य पृष्ठ]] जुड़ते हैं अथवा उसे ट्रांसक्लूड करते हैं।",
 	"rollback": "संपादन वापिस लें",
-	"rollback_short": "वापिस लें",
 	"rollbacklink": "वापिस लें",
 	"rollbacklinkcount": "$1 {{PLURAL:$1|सम्पादन}} वापिस लें",
 	"rollbacklinkcount-morethan": "$1 से अधिक {{PLURAL:$1|सम्पादन}} वापिस लें",
