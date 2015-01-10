@@ -1815,7 +1815,6 @@
 	"deleteprotected": "Não é possível eliminar esta página porque foi protegida.",
 	"deleting-backlinks-warning": "'''Aviso:''' Existem [[Special:WhatLinksHere/{{FULLPAGENAME}}|páginas]] que contêm ligações para a página que está prestes a eliminar ou que a transcluem.",
 	"rollback": "Reverter edições",
-	"rollback_short": "Reverter",
 	"rollbacklink": "reverter",
 	"rollbacklinkcount": "reverter $1 {{PLURAL:$1|edição|edições}}",
 	"rollbacklinkcount-morethan": "reverter mais do que $1 {{PLURAL:$1|edição|edições}}",

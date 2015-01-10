@@ -1573,7 +1573,6 @@
 	"delete-warning-toobig": "Бұл бетте үлкен өңдеу тарихы бар, $1 {{PLURAL:$1|түзетуден|түзетуден}} астам.\nБұның жоюы {{SITENAME}} торабындағы дерекқор әрекеттерді үзіп тастауын мүмкін;\nбұны абайлап өткізіңіз.",
 	"deleting-backlinks-warning": "'''Ескерту:''' Сіз жоймақшы болған бетке [[Special:WhatLinksHere/{{FULLPAGENAME}}|басқа беттерден]] сілтенген немесе [[Special:WhatLinksHere/{{FULLPAGENAME}}|басқа беттерге]] кірістірілген.",
 	"rollback": "Өңдемелерді шегіндіру",
-	"rollback_short": "Шегіндіру",
 	"rollbacklink": "шегіндіру",
 	"rollbacklinkcount": "$1 {{PLURAL:$1|өңдемені|өңдемені}} шегіндіру",
 	"rollbacklinkcount-morethan": "$1-нан аса {{PLURAL:$1|өңдемені|өңдемелерді}} шегіндіру",

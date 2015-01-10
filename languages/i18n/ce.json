@@ -1608,7 +1608,6 @@
 	"delete-edit-reasonlist": "Бахьанин могӀам нисбар",
 	"deleting-backlinks-warning": "'''ДӀахьедар:''' Ахьа дӀайоккхуш йолчун тӀе товжийна [[Special:WhatLinksHere/{{FULLPAGENAME}}|кхин агӀонаш]] ю.",
 	"rollback": "Юхабаккха хийцам",
-	"rollback_short": "Юхаяккхар",
 	"rollbacklink": "юхаяккха",
 	"rollbacklinkcount": "юхадаккха $1 {{PLURAL:$1|1=нисдар|нисдарш}}",
 	"rollbacklinkcount-morethan": "Юхадаккха $1 дукха {{PLURAL:$1|нисдар|нисдарш|нисдарш}}",

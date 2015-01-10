@@ -1084,7 +1084,6 @@
 	"deletereason-dropdown": "*Dažnas trīnėma prižastīs\n** Autorė prašīms\n** Autorėniu teisiu pažeidėms\n** Vandalėzmos",
 	"delete-edit-reasonlist": "Keistė trėnėma prīžastis",
 	"rollback": "Atmestė pakeitėmos",
-	"rollback_short": "Atmestė",
 	"rollbacklink": "atmestė",
 	"rollbacklinkcount": "atmestė $1 {{PLURAL:$1|keitėms|keitėmo|keitėmus|keitėmu}}",
 	"rollbackfailed": "Atmetims napavīka",

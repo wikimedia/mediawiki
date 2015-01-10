@@ -1775,7 +1775,6 @@
 	"deleteprotected": "Nu puteți șterge această pagină, deoarece este protejată.",
 	"deleting-backlinks-warning": "'''Atenție:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Alte pagini]] se leagă sau transclud pagina pe care doriți să o ștergeți.",
 	"rollback": "Editări de revenire",
-	"rollback_short": "Revenire",
 	"rollbacklink": "revenire",
 	"rollbacklinkcount": "revenire asupra {{PLURAL:$1|unei modificări|a $1 modificări|a $1 de modificări}}",
 	"rollbacklinkcount-morethan": "revenire asupra a mai mult de {{PLURAL:$1|o modificare|$1 modificări|$1 de modificări}}",

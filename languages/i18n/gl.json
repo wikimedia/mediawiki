@@ -1768,7 +1768,6 @@
 	"deleteprotected": "Non pode borrar esta páxina porque está protexida.",
 	"deleting-backlinks-warning": "'''Atención:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Outras páxinas]] conteñen unha ligazón ou unha transclusión da páxina que está a piques de borrar.",
 	"rollback": "Reverter as edicións",
-	"rollback_short": "Reverter",
 	"rollbacklink": "reverter",
 	"rollbacklinkcount": "reverter $1 {{PLURAL:$1|edición|edicións}}",
 	"rollbacklinkcount-morethan": "reverter máis de $1 {{PLURAL:$1|edición|edicións}}",

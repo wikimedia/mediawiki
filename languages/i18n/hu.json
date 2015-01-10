@@ -1734,7 +1734,6 @@
 	"delete-toobig": "Ennek a lapnak a laptörténete több mint {{PLURAL:$1|egy|$1}} változatot őriz. A szervert kímélendő az ilyen lapok törlése nem engedélyezett.",
 	"delete-warning-toobig": "Ennek a lapnak a laptörténete több mint {{PLURAL:$1|egy|$1}} változatot őriz. Törlése fennakadásokat okozhat a wiki adatbázis-műveleteiben; óvatosan járj el.",
 	"rollback": "Szerkesztések visszaállítása",
-	"rollback_short": "Visszaállítás",
 	"rollbacklink": "visszaállítás",
 	"rollbacklinkcount": "$1 szerkesztés visszaállítása",
 	"rollbacklinkcount-morethan": "több mint $1 szerkesztés visszaállítása",

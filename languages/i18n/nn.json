@@ -1683,7 +1683,6 @@
 	"delete-warning-toobig": "Denne sida har ein lang endringshistorikk, med meir enn {{PLURAL:$1|$1&nbsp;endring|$1&nbsp;endringar}}. Dersom du slettar henne kan det forstyrre handlingar i databasen til {{SITENAME}}, ver varsam.",
 	"deleting-backlinks-warning": "'''Åtvaring''': Andre sider lenkjer til eller inkluderer sida du er i ferd med å sletta.",
 	"rollback": "Rull attende endringar",
-	"rollback_short": "Rull attende",
 	"rollbacklink": "rull attende",
 	"rollbacklinkcount": "rull attende {{PLURAL:$1|éi endring|$1 endringar}}",
 	"rollbacklinkcount-morethan": "rull attende meir enn {{PLURAL:$1|éi endring|$1 endringar}}",

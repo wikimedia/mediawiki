@@ -1832,7 +1832,6 @@
 	"deleteprotected": "Non puoi cancellare questa pagina perché è stata protetta.",
 	"deleting-backlinks-warning": "'''Attenzione:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|altre pagine]] contengono collegamenti o inclusioni alla pagina che stai per cancellare.",
 	"rollback": "Annulla le modifiche",
-	"rollback_short": "Rollback",
 	"rollbacklink": "rollback",
 	"rollbacklinkcount": "rollback di {{PLURAL:$1|una modifica|$1 modifiche}}",
 	"rollbacklinkcount-morethan": "rollback di più di {{PLURAL:$1|una modifica|$1 modifiche}}",
