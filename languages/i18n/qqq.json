@@ -2051,7 +2051,6 @@
 	"deleteprotected": "Used as error message when deleting the page.\n\n\"If protection keeps them from editing, they shouldn't be able to delete.\"",
 	"deleting-backlinks-warning": "A warning shown when a page that is being deleted has at least one link to it or is transcluded in at least one page.",
 	"rollback": "{{Identical|Rollback}}",
-	"rollback_short": "{{Identical|Rollback}}",
 	"rollbacklink": "{{Doc-actionlink}}\nThis link text appears on the recent changes page to users who have the \"rollback\" right.\nThis message has a tooltip {{msg-mw|tooltip-rollback}}\n{{Identical|Rollback}}",
 	"rollbacklinkcount": "{{doc-actionlink}}\nText of the rollback link showing the number of edits to be rolled back. See also {{msg-mw|rollbacklink}}.\n\nParameters:\n* $1 - the number of edits that will be rolled back. If $1 is over the value of <code>$wgShowRollbackEditCount</code> (default: 10) {{msg-mw|rollbacklinkcount-morethan}} is used.\n\nThe rollback link is displayed with a tooltip {{msg-mw|Tooltip-rollback}}",
 	"rollbacklinkcount-morethan": "{{doc-actionlink}}\nText of the rollback link when a greater number of edits is to be rolled back. See also {{msg-mw|rollbacklink}}.\n\nWhen the number of edits rolled back is smaller than [[mw:Special:MyLanguage/Manual:$wgShowRollbackEditCount|$wgShowRollbackEditCount]], {{msg-mw|rollbacklinkcount}} is used instead.\n\nParameters:\n* $1 - number of edits",
