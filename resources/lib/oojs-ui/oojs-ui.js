@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.6.1
+ * OOjs UI v0.6.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-01-05T13:04:40Z
+ * Date: 2015-01-10T01:25:19Z
  */
 ( function ( OO ) {
 
@@ -722,6 +722,7 @@ OO.ui.ActionSet.prototype.organize = function () {
  * @param {Object} [config] Configuration options
  * @cfg {Function} [$] jQuery for the frame the widget is in
  * @cfg {string[]} [classes] CSS class names to add
+ * @cfg {string} [id] HTML id attribute
  * @cfg {string} [text] Text to insert
  * @cfg {jQuery} [$content] Content elements to append (after text)
  * @cfg {Mixed} [data] Element data
@@ -741,6 +742,9 @@ OO.ui.Element = function OoUiElement( config ) {
 	// Initialization
 	if ( $.isArray( config.classes ) ) {
 		this.$element.addClass( config.classes.join( ' ' ) );
+	}
+	if ( config.id ) {
+		this.$element.attr( 'id', config.id );
 	}
 	if ( config.text ) {
 		this.$element.text( config.text );
@@ -3092,7 +3096,7 @@ OO.ui.WindowManager.prototype.addWindows = function ( windows ) {
  *
  * Windows will be closed before they are removed.
  *
- * @param {string} name Symbolic name of window to remove
+ * @param {string[]} names Symbolic names of windows to remove
  * @return {jQuery.Promise} Promise resolved when window is closed and removed
  * @throws {Error} If windows being removed are not being managed
  */
@@ -3238,12 +3242,11 @@ OO.ui.WindowManager.prototype.toggleAriaIsolation = function ( isolate ) {
 
 /**
  * Destroy window manager.
- *
- * Windows will not be closed, only removed from the DOM.
  */
 OO.ui.WindowManager.prototype.destroy = function () {
 	this.toggleGlobalEvents( false );
 	this.toggleAriaIsolation( false );
+	this.clearWindows();
 	this.$element.remove();
 };
 
@@ -10121,6 +10124,8 @@ OO.ui.RadioInputWidget.prototype.isSelected = function () {
  * @param {Object} [config] Configuration options
  * @cfg {string} [type='text'] HTML tag `type` attribute
  * @cfg {string} [placeholder] Placeholder text
+ * @cfg {boolean} [autofocus=false] Ask the browser to focus this widget, using the 'autofocus' HTML
+ *  attribute
  * @cfg {boolean} [readOnly=false] Prevent changes
  * @cfg {boolean} [multiline=false] Allow multiple lines of text
  * @cfg {boolean} [autosize=false] Automatically resize to fit content
@@ -10173,6 +10178,9 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	this.setReadOnly( config.readOnly );
 	if ( config.placeholder ) {
 		this.$input.attr( 'placeholder', config.placeholder );
+	}
+	if ( config.autofocus ) {
+		this.$input.attr( 'autofocus', 'autofocus' );
 	}
 	this.$element.attr( 'role', 'textbox' );
 };
