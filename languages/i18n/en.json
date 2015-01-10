@@ -1887,7 +1887,6 @@
 	"deleteprotected": "You cannot delete this page because it has been protected.",
 	"deleting-backlinks-warning": "'''Warning:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Other pages]] link to or transclude the page you are about to delete.",
 	"rollback": "Roll back edits",
-	"rollback_short": "Rollback",
 	"rollbacklink": "rollback",
 	"rollbacklinkcount": "rollback $1 {{PLURAL:$1|edit|edits}}",
 	"rollbacklinkcount-morethan": "rollback more than $1 {{PLURAL:$1|edit|edits}}",
