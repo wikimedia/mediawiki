@@ -1035,12 +1035,13 @@ class WebInstallerOptions extends WebInstallerPage {
 
 		if ( $skins ) {
 			$skinNames = array_map( 'strtolower', $skins );
+			$chosenSkinName = $this->getVar( 'wgDefaultSkin', $this->parent->getDefaultSkin( $skinNames ) );
 
 			$radioButtons = $this->parent->getRadioElements( array(
 				'var' => 'wgDefaultSkin',
 				'itemLabels' => array_fill_keys( $skinNames, 'config-skins-use-as-default' ),
 				'values' => $skinNames,
-				'value' => $this->getVar( 'wgDefaultSkin', $this->parent->getDefaultSkin( $skinNames ) ),
+				'value' => $chosenSkinName,
 			) );
 
 			foreach ( $skins as $skin ) {
@@ -1055,7 +1056,9 @@ class WebInstallerOptions extends WebInstallerPage {
 					'</div>';
 			}
 		} else {
-			$skinHtml .= $this->parent->getWarningBox( wfMessage( 'config-skins-missing' )->plain() );
+			$skinHtml .=
+				$this->parent->getWarningBox( wfMessage( 'config-skins-missing' )->plain() ) .
+				Html::hidden( 'config_wgDefaultSkin', $chosenSkinName );
 		}
 
 		$skinHtml .= $this->parent->getHelpBox( 'config-skins-help' ) .
