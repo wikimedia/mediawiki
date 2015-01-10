@@ -1815,7 +1815,6 @@
 	"deleteprotected": "U kunt deze pagina niet verwijderen omdat hij is beveiligd.",
 	"deleting-backlinks-warning": "'''Waarschuwing:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|andere pagina's]] gebruiken of verwijzen naar de pagina die u wilt verwijderen.",
 	"rollback": "Wijzigingen ongedaan maken",
-	"rollback_short": "Terugdraaien",
 	"rollbacklink": "terugdraaien",
 	"rollbacklinkcount": "{{PLURAL:$1|één bewerking|$1 bewerkingen}} terugdraaien",
 	"rollbacklinkcount-morethan": "Meer dan {{PLURAL:$1|één bewerking|$1 bewerkingen}} terugdraaien",

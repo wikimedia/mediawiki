@@ -1814,7 +1814,6 @@
 	"deleteprotected": "Du kan inte radera denna sida eftersom den är skyddad.",
 	"deleting-backlinks-warning": "'''Varning:'''\n[[Special:WhatLinksHere/{{FULLPAGENAME}}|Andra sidor]] länkar till eller inkluderar sidan som du är på väg att radera.",
 	"rollback": "Rulla tillbaka ändringar",
-	"rollback_short": "Tillbakarullning",
 	"rollbacklink": "rulla tillbaka",
 	"rollbacklinkcount": "rulla tillbaka $1 {{PLURAL:$1|redigering|redigeringar}}",
 	"rollbacklinkcount-morethan": "rulla tillbaka mer än $1 {{PLURAL:$1|redigering|redigeringar}}",

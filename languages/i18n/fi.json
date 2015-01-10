@@ -1795,7 +1795,6 @@
 	"deleteprotected": "Et voi poistaa tätä sivua, koska se on suojattu.",
 	"deleting-backlinks-warning": "'''Varoitus:''' Sivulle, jota olet poistamassa, johtaa [[Special:WhatLinksHere/{{FULLPAGENAME}}|linkkejä muilta sivuilta]], tai sivu on sisällytetty muuhun sivuun.",
 	"rollback": "palauta aiempaan versioon",
-	"rollback_short": "Palautus",
 	"rollbacklink": "palauta",
 	"rollbacklinkcount": "palauta $1 {{PLURAL:$1|muutos|muutosta}}",
 	"rollbacklinkcount-morethan": "palauta yli $1 {{PLURAL:$1|muutos|muutosta}}",

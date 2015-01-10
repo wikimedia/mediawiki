@@ -1763,7 +1763,6 @@
 	"deleteprotected": "Nun poi cancillari sta pàggina picchi' fu' prutiggiuta.",
 	"deleting-backlinks-warning": "'''Accura:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Autri pàggini]] su' culligati o trascludunu la pàggina chi' stai cancillannu.",
 	"rollback": "Annullamentu di canciamenti",
-	"rollback_short": "Canciu n'arreri",
 	"rollbacklink": "canciu n'arreri",
 	"rollbacklinkcount": "cancia n'arreri $1 {{PLURAL:$1|mudìfica|mudìfichi}}",
 	"rollbacklinkcount-morethan": "cancia n'arreri cchiu' ssai di $1 {{PLURAL:$1|mudìfica|mudìfichi}}",
