@@ -83,7 +83,7 @@
 	"apihelp-edit-param-bot": "Mark this edit as bot.",
 	"apihelp-edit-param-basetimestamp": "Timestamp of the base revision, used to detect edit conflicts. May be obtained through [[Special:ApiHelp/query+revisions|action=query&prop=revisions&rvprop=timestamp]].",
 	"apihelp-edit-param-starttimestamp": "Timestamp when you began the editing process, used to detect edit conflicts. An appropriate value may be obtained using [[Special:ApiHelp/main|curtimestamp]] when beginning the edit process (e.g. when loading the page content to edit).",
-	"apihelp-edit-param-recreate": "Override any errors about the article having been deleted in the meantime.",
+	"apihelp-edit-param-recreate": "Override any errors about the page having been deleted in the meantime.",
 	"apihelp-edit-param-createonly": "Don't edit the page if it exists already.",
 	"apihelp-edit-param-nocreate": "Throw an error if the page doesn't exist.",
 	"apihelp-edit-param-watch": "Add the page to your watchlist.",
