@@ -28,10 +28,13 @@
  * @todo FIXME: Make $requestedNamespace selectable, unify all subclasses into one
  */
 class UncategorizedPagesPage extends PageQueryPage {
-	protected $requestedNamespace = false;
+	protected $requestedNamespace = null;
 
 	function __construct( $name = 'Uncategorizedpages' ) {
 		parent::__construct( $name );
+		$request = $this->getRequest();
+
+		$this->requestedNamespace = $request->getIntOrNull( 'namespace' );
 	}
 
 	function sortDescending() {
@@ -58,7 +61,7 @@ class UncategorizedPagesPage extends PageQueryPage {
 			// otherwise, page_namespace is requestedNamespace
 			'conds' => array(
 				'cl_from IS NULL',
-				'page_namespace' => $this->requestedNamespace !== false
+				'page_namespace' => $this->requestedNamespace !== null
 						? $this->requestedNamespace
 						: MWNamespace::getContentNamespaces(),
 				'page_is_redirect' => 0
@@ -72,7 +75,7 @@ class UncategorizedPagesPage extends PageQueryPage {
 	function getOrderFields() {
 		// For some crazy reason ordering by a constant
 		// causes a filesort
-		if ( $this->requestedNamespace === false && count( MWNamespace::getContentNamespaces() ) > 1 ) {
+		if ( $this->requestedNamespace === null && count( MWNamespace::getContentNamespaces() ) > 1 ) {
 			return array( 'page_namespace', 'page_title' );
 		}
 
@@ -81,5 +84,32 @@ class UncategorizedPagesPage extends PageQueryPage {
 
 	protected function getGroupName() {
 		return 'maintenance';
+	}
+
+	function getPageHeader() {
+		$fields = array(
+			'namespace' => array(
+				'name' => 'namespace',
+				'type' => 'namespaceselect',
+				'default' => $this->requestedNamespace === null ? 0 : $this->requestedNamespace,
+				'label-message' => 'namespace'
+			),
+		);
+		$form = new HTMLForm($fields, $this->getContext());
+
+		$label = Xml::label( $this->msg( 'namespace' )->text(), 'namespace' );
+		$field = Html::namespaceSelector(
+			array( 'selected' => $this->requestedNamespace ),
+			array( 'name' => 'namespace', 'id' => 'namespace' )
+		);
+		$submit = Xml::submitButton( $this->msg( 'allpagessubmit' )->text() );
+
+		//$form = $label . $field . $submit;
+		$form->setMethod( 'get' );
+		$form->setWrapperLegendMsg( 'uncategorizedpages' );
+		$form->prepareForm();
+		$form->setSubmitText($this->msg( 'allpagessubmit' )->text());
+
+		return $form->getHTML('');
 	}
 }
