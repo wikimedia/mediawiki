@@ -1469,15 +1469,16 @@ abstract class Installer {
 	}
 
 	/**
-	 * Returns a default value to be used for $wgDefaultSkin: the preferred skin, if available among
-	 * the installed skins, or any other one otherwise.
+	 * Returns a default value to be used for $wgDefaultSkin: normally the one set in DefaultSettings,
+	 * but will fall back to another if the default skin is missing and some other one is present
+	 * instead.
 	 *
 	 * @param string[] $skinNames Names of installed skins.
 	 * @return string
 	 */
 	public function getDefaultSkin( array $skinNames ) {
 		$defaultSkin = $GLOBALS['wgDefaultSkin'];
-		if ( in_array( $defaultSkin, $skinNames ) ) {
+		if ( !$skinNames || in_array( $defaultSkin, $skinNames ) ) {
 			return $defaultSkin;
 		} else {
 			return $skinNames[0];
