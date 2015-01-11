@@ -1401,7 +1401,6 @@
 	"deletereason-dropdown": "*Əsas silmə səbəbi\n** Müəllif istəyi\n** Müəllif hüququ pozuntusu\n** Vandalizm",
 	"delete-edit-reasonlist": "Silmə səbəblərinin redaktəsi",
 	"rollback": "əvvəlki halına qaytar",
-	"rollback_short": "əvvəlki halına qaytar",
 	"rollbacklink": "əvvəlki halına qaytar",
 	"rollbacklinkcount": "$1 {{PLURAL:$1|dəyişikliyi|dəyişikliyi}} geri qaytar",
 	"rollbackfailed": "Geri qaytarma uğursuzdur",

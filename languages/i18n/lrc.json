@@ -1751,7 +1751,6 @@
 	"delete-edit-reasonlist": "دلیلیا پاکسا کردنه نه ویرایشت بکید",
 	"deleteprotected": "شما نمی تونیت ای بلگه نه پاکسا بکیت سی یه که وه پر و پیم بیه.",
 	"rollback": "چواشه کردن ویرایشتیا",
-	"rollback_short": "چواشه کردن",
 	"rollbacklink": "ورگشتن",
 	"rollbacklinkcount": "چواشه کردن $1 {{PLURAL:$1|ویرایشت|ویرایشتیا}}",
 	"rollbacklinkcount-morethan": "چواشه کردن بیشتر د$1 {{PLURAL:$1|ویرایشت|ویرایشتیا}}",

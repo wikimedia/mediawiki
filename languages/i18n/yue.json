@@ -1536,7 +1536,6 @@
 	"delete-toobig": "呢一版有一個好大量嘅編輯歷史，過咗$1次修訂。刪除呢類版嘅動作已經限制咗，以防止響{{SITENAME}}嘅意外擾亂。",
 	"delete-warning-toobig": "呢一版有一個好大量嘅編輯歷史，過咗$1次修訂。刪除佢可能會擾亂{{SITENAME}}嘅資料庫操作；響繼續嗰陣請小心。",
 	"rollback": "反轉修改",
-	"rollback_short": "反轉",
 	"rollbacklink": "反轉",
 	"rollbackfailed": "反轉唔到",
 	"cantrollback": "反轉唔到；上一位貢獻者係唯一修改過呢版嘅人。",
