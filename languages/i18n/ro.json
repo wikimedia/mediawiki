@@ -1884,6 +1884,7 @@
 	"namespace": "Spațiu de nume:",
 	"invert": "Inversează selecția",
 	"tooltip-invert": "Bifați această căsuță pentru a ascunde modificările efectuate asupra paginilor din spațiul de nume selectat (și din spațiile de nume asociate, dacă s-a bifat și această opțiune)",
+	"tooltip-whatlinkshere-invert": "Bifați această casetă pentru a ascunde legăturile din paginile aparținând spațiilor de nume selectate.",
 	"namespace_association": "Spații de nume asociate",
 	"tooltip-namespace_association": "Bifați această căsuță pentru a include și spațiul de nume destinat discuțiilor care este asociat cu spațiul de nume deja selectat",
 	"blanknamespace": "Articole",
