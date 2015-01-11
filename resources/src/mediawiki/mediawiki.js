@@ -191,7 +191,7 @@
 				}
 				return true;
 			}
-			if ( typeof selection === 'string' && arguments.length ) {
+			if ( typeof selection === 'string' && arguments.length > 1 ) {
 				this.values[selection] = value;
 				return true;
 			}
