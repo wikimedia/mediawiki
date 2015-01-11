@@ -72,13 +72,6 @@ class MysqlInstaller extends DatabaseInstaller {
 	}
 
 	/**
-	 * @return array
-	 */
-	public function getGlobalDefaults() {
-		return array();
-	}
-
-	/**
 	 * @return string
 	 */
 	public function getConnectForm() {
