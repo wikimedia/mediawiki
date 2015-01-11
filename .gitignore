@@ -13,6 +13,7 @@
 .project
 cscope.files
 cscope.out
+.*.orig
 ## NetBeans
 nbproject*
 project.index
