@@ -70,8 +70,8 @@ class ZhConverter extends LanguageConverter {
 			'zh-cn' => new ReplacementArray( $zh2CN ),
 			'zh-hk' => new ReplacementArray( $zh2HK ),
 			'zh-mo' => new ReplacementArray( $zh2HK ),
-			'zh-my' => new ReplacementArray( $zh2SG ),
-			'zh-sg' => new ReplacementArray( $zh2SG ),
+			'zh-my' => new ReplacementArray( $zh2CN ),
+			'zh-sg' => new ReplacementArray( $zh2CN ),
 			'zh-tw' => new ReplacementArray( $zh2TW ),
 			'zh' => new ReplacementArray
 		);
