@@ -1794,7 +1794,6 @@
 	"deleteprotected": "이 문서가 잠겨 있기 때문에 삭제할 수 없습니다.",
 	"deleting-backlinks-warning": "'''경고:''' 삭제하려는 문서가 [[Special:WhatLinksHere/{{FULLPAGENAME}}|다른 문서]]에 링크되어 있거나 끼워져 있습니다.",
 	"rollback": "편집 되돌리기",
-	"rollback_short": "되돌리기",
 	"rollbacklink": "되돌리기",
 	"rollbacklinkcount": "{{PLURAL:$1|편집}} $1회 되돌리기",
 	"rollbacklinkcount-morethan": "{{PLURAL:$1|편집}} $1회 이상 되돌리기",

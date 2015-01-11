@@ -1677,7 +1677,6 @@
 	"delete-warning-toobig": "Ova stranica ima veliku povijest uređivanja, preko $1 {{PLURAL:$1|promjene|promjena}}. Brisanje može poremetiti bazu podataka {{SITENAME}}; postupajte s oprezom.",
 	"deleting-backlinks-warning": "'''Upozorenje:''' brišete stranicu koja je uključena u druge ili druge stranice povezuju na nju.",
 	"rollback": "Ukloni posljednju promjenu",
-	"rollback_short": "Ukloni",
 	"rollbacklink": "ukloni",
 	"rollbacklinkcount": "ukloni $1 {{PLURAL:$1|uređivanje|uređivanja}}",
 	"rollbacklinkcount-morethan": "ukloni više od $1 {{PLURAL:$1|uređivanje|uređivanja}}",

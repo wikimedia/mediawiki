@@ -1771,7 +1771,6 @@
 	"deleteprotected": "Seda lehekülge ei saa kustutada, sest see on kaitstud.",
 	"deleting-backlinks-warning": "'''Hoiatus:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Teised leheküljed]] viitavad leheküljele, mida oled kustutamas, või see lehekülg on kasutuses mallina.",
 	"rollback": "Tühista muudatused",
-	"rollback_short": "Tühista",
 	"rollbacklink": "tühista",
 	"rollbacklinkcount": "tühista {{PLURAL:$1|üks muudatus|$1 muudatust}}",
 	"rollbacklinkcount-morethan": "tühista üle {{PLURAL:$1|ühe muudatuse|10 muudatuse}}",

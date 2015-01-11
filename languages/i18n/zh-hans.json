@@ -1836,7 +1836,6 @@
 	"deleteprotected": "您不能删除此页面因为它被保护。",
 	"deleting-backlinks-warning": "'''警告：'''有[[Special:WhatLinksHere/{{FULLPAGENAME}}|其他页面]]链接至或包含您要删除的页面。",
 	"rollback": "回退编辑",
-	"rollback_short": "回退",
 	"rollbacklink": "回退",
 	"rollbacklinkcount": "回退$1次编辑",
 	"rollbacklinkcount-morethan": "回退超过$1次的编辑",

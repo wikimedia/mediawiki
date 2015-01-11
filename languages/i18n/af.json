@@ -1687,7 +1687,6 @@
 	"delete-toobig": "Die bladsy het 'n lang wysigingsgeskiedenis, meer as $1 {{PLURAL:$1|weergawe|weergawes}}.\nVerwydering van die soort blaaie is beperk om ontwrigting van {{SITENAME}} te voorkom.",
 	"delete-warning-toobig": "Hierdie bladsy het 'n lang wysigingsgeskiedenis; meer as $1 {{PLURAL:$1|wysiging|wysigings}}.\nDeur weg te doen met hierdie bladsy mag dalk die werking van {{SITENAME}} versteur;\nTree asseblief versigtig op.",
 	"rollback": "Rol veranderinge terug",
-	"rollback_short": "Rol terug",
 	"rollbacklink": "Rol terug",
 	"rollbacklinkcount": "rol {{PLURAL:$1|een wysiging|$1 wysigings}} terug",
 	"rollbacklinkcount-morethan": "rol meer as {{PLURAL:$1|een wysiging|$1 wysigings}} terug",

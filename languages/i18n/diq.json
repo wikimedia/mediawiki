@@ -1718,7 +1718,6 @@
 	"delete-toobig": "no pel, pê $1 {{PLURAL:$1|tene vuriyayiş|tene vuriyayiş}}i wayirê yew tarixo kehen o.\nqey hewna nêşiyayişi wina pelani u {{SITENAME}}nêxerebnayişê keyepeli yew hed niyaya ro.",
 	"delete-warning-toobig": "no pel wayirê tarixê vurnayiş ê derg o, $1 {{PLURAL:$1|revizyonê|revizyonê}} seri de.\nhewn a kerdışê ıney {{SITENAME}} şuxul bıne gırano;\nbı diqqet dewam kerê.",
 	"rollback": "vurnayişan tepiya bıger",
-	"rollback_short": "Peyser bia",
 	"rollbacklink": "peyser bia",
 	"rollbacklinkcount": "$1 {{PLURAL:$1|vurnayış|vurnayışi}} peyd gıroti",
 	"rollbacklinkcount-morethan": "$1 {{PLURAL:$1|vurnayış|vuranyışi}} tewr peyd gırot",

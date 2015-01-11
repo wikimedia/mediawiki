@@ -106,7 +106,7 @@
 	"apihelp-expandtemplates-description": "{{doc-apihelp-description|expandtemplates}}",
 	"apihelp-expandtemplates-param-title": "{{doc-apihelp-param|expandtemplates|title}}",
 	"apihelp-expandtemplates-param-text": "{{doc-apihelp-param|expandtemplates|text}}",
-	"apihelp-expandtemplates-param-revid": "{{doc-apihelp-param|expandtemplates|revid}}",
+	"apihelp-expandtemplates-param-revid": "{{doc-apihelp-param|expandtemplates|revid}}\n{{doc-important|Do not translate <code><<nowiki />nowiki>{{<nowiki />REVISIONID}}<<nowiki />/nowiki></code>}}",
 	"apihelp-expandtemplates-param-prop": "{{doc-apihelp-param|expandtemplates|prop}}",
 	"apihelp-expandtemplates-param-includecomments": "{{doc-apihelp-param|expandtemplates|includecomments}}",
 	"apihelp-expandtemplates-param-generatexml": "{{doc-apihelp-param|expandtemplates|generatexml}}",

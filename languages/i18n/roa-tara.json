@@ -1655,7 +1655,6 @@
 	"delete-toobig": "Sta pàgene tène 'na storie de cangiaminde troppe longhe, sus a $1 {{PLURAL:$1|revisione|revisiune}}.\n'U scangellamende de stuèzze de pàgene avène ristrette pe prevenì 'ngasinaminde accidentale de {{SITENAME}}.",
 	"delete-warning-toobig": "Sta pàgene tène 'na storie troppo longhe, sus a $1 {{PLURAL:$1|revisione|revisiune}}.\nScangellanne pò ccreja casine sus a le operazione d'u database de {{SITENAME}};\nvà cunge cunge!",
 	"rollback": "Annulle le cangiaminde",
-	"rollback_short": "Annulle",
 	"rollbacklink": "annulle 'u cangiaminde",
 	"rollbacklinkcount": "annulle $1 {{PLURAL:$1|cangiamende|cangiaminde}}",
 	"rollbacklinkcount-morethan": "annulle cchiù de $1 {{PLURAL:$1|cangiamende|cangiaminde}}",
