@@ -557,6 +557,7 @@ class ApiMain extends ApiBase {
 
 			if ( !$preflight ) {
 				$response->header( 'Access-Control-Expose-Headers: MediaWiki-API-Error, Retry-After, X-Database-Lag' );
+				$response->header( 'Timing-Allow-Origin: true' );
 			}
 		}
 
