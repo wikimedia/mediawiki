@@ -5,7 +5,7 @@ require_once __DIR__ . '/Maintenance.php';
 class ConvertExtensionToRegistration extends Maintenance {
 
 	protected $custom = array(
-		'MessagesDirs' => 'removeAbsolutePath',
+		'MessagesDirs' => 'handleMessagesDirs',
 		'ExtensionMessagesFiles' => 'removeAbsolutePath',
 		'AutoloadClasses' => 'removeAbsolutePath',
 		'ExtensionCredits' => 'handleCredits',
@@ -21,18 +21,33 @@ class ConvertExtensionToRegistration extends Maintenance {
 		$this->mDescription = 'Converts extension entry points to the new JSON registration format';
 	}
 
+	protected function getAllGlobals() {
+		$processor = new ReflectionClass( 'ExtensionProcessor' );
+		$settings = $processor->getProperty( 'globalSettings' );
+		$settings->setAccessible( true );
+		return $settings->getValue();
+	}
+
 	public function execute() {
+		// Extensions will do stuff like $wgResourceModules += array(...) which is a
+		// fatal unless an array is already set. So set an empty value.
+		foreach ( array_merge( $this->getAllGlobals(), array_keys( $this->custom ) ) as $var ) {
+			$var = 'wg' . $var;
+			$$var = array();
+		}
+		unset( $var );
 		require $this->getArg( 0 );
 		// Try not to create any local variables before this line
 		$vars = get_defined_vars();
 		unset( $vars['this'] );
 		$this->dir = dirname( realpath( $this->getArg( 0 ) ) );
 		$this->json = array();
-		$processor = new ReflectionClass( 'ExtensionProcessor' );
-		$settings = $processor->getProperty( 'globalSettings' );
-		$settings->setAccessible( true );
-		$globalSettings = $settings->getValue();
+		$globalSettings = $this->getAllGlobals();
 		foreach ( $vars as $name => $value ) {
+			// If an empty array, assume it's the default we set, so skip it
+			if ( is_array( $value ) && count( $value ) === 0 ) {
+				continue;
+			}
 			$realName = substr( $name, 2 ); // Strip 'wg'
 			if ( isset( $this->custom[$realName] ) ) {
 				call_user_func_array( array( $this, $this->custom[$realName] ), array( $realName, $value ) );
@@ -45,7 +60,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 		}
 
 		$fname = "{$this->dir}/extension.json";
-		$prettyJSON = FormatJson::encode( $this->json, "\t" );
+		$prettyJSON = FormatJson::encode( $this->json, "\t", FormatJson::ALL_OK );
 		file_put_contents( $fname, $prettyJSON . "\n" );
 		$this->output( "Wrote output to $fname.\n" );
 	}
@@ -60,8 +75,18 @@ class ConvertExtensionToRegistration extends Maintenance {
 		$this->json[$realName] = $value;
 	}
 
+	protected function handleMessagesDirs( $realName, $value ) {
+		foreach ( $value as $key => $dirs ) {
+			foreach ( (array)$dirs as $dir ) {
+				$this->json[$realName][$key][] = $this->stripPath( $dir, $this->dir );
+			}
+		}
+	}
+
 	private function stripPath( $val, $dir ) {
-		if ( strpos( $val, $dir ) === 0 ) {
+		if ( $val === $dir ) {
+			$val = '';
+		} elseif ( strpos( $val, $dir ) === 0 ) {
 			// +1 is for the trailing / that won't be in $this->dir
 			$val = substr( $val, strlen( $dir ) + 1 );
 		}
