@@ -87,8 +87,6 @@ class Parser {
 	# \p{Zs} is unicode 'separator, space' category. It covers the space 0x20
 	# as well as U+3000 is IDEOGRAPHIC SPACE for bug 19052
 	const EXT_LINK_URL_CLASS = '[^][<>"\\x00-\\x20\\x7F\p{Zs}]';
-	const EXT_IMAGE_REGEX = '/^(http:\/\/|https:\/\/)([^][<>"\\x00-\\x20\\x7F\p{Zs}]+)
-		\\/([A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]+)\\.((?i)gif|png|jpg|jpeg)$/Sxu';
 
 	# Regular expression for a non-newline space
 	const SPACE_NOT_NL = '(?:\t|&nbsp;|&\#0*160;|&\#[Xx]0*[Aa]0;|\p{Zs})';
@@ -231,6 +229,12 @@ class Parser {
 	protected $mProfiler;
 
 	/**
+	 * @var ext_image_regex
+	 * This holds the regular expression for external link processing
+	 */
+	public $ext_image_regex;
+
+	/**
 	 * @param array $conf
 	 */
 	public function __construct( $conf = array() ) {
@@ -238,6 +242,7 @@ class Parser {
 		$this->mUrlProtocols = wfUrlProtocols();
 		$this->mExtLinkBracketedRegex = '/\[(((?i)' . $this->mUrlProtocols . ')' .
 			self::EXT_LINK_URL_CLASS . '+)\p{Zs}*([^\]\\x00-\\x08\\x0a-\\x1F]*?)\]/Su';
+		$this->ext_image_regex = $this->setExternalImageRegex();
 		if ( isset( $conf['preprocessorClass'] ) ) {
 			$this->mPreprocessorClass = $conf['preprocessorClass'];
 		} elseif ( defined( 'HPHP_VERSION' ) ) {
@@ -885,6 +890,25 @@ class Parser {
 			$this->mPreprocessor = new $class( $this );
 		}
 		return $this->mPreprocessor;
+	}
+
+	/**
+	 * Set regular expression for external link processing
+	 *
+	 * @return ext_image_regex
+	 */
+	public function setExternalImageRegex() {
+		global $wgAllowExternalSVG;
+		if ( $wgAllowExternalSVG === true ) {
+			$this->ext_image_regex = '/^(http:\/\/|https:\/\/)([^][<>"\\x00-\\x20\\x7F\p{Zs}]+)
+				\\/([A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]+)\\.((?i)gif|png|jpg|jpeg|svg)$/Sxu';
+			return $this->ext_image_regex;
+		}
+		else {
+			$this->ext_image_regex = '/^(http:\/\/|https:\/\/)([^][<>"\\x00-\\x20\\x7F\p{Zs}]+)
+				\\/([A-Za-z0-9_.,~%\\-+&;#*?!=()@\\x80-\\xFF]+)\\.((?i)gif|png|jpg|jpeg)$/Sxu';
+			return $this->ext_image_regex;
+		}
 	}
 
 	/**
@@ -1951,13 +1975,13 @@ class Parser {
 		if ( $this->mOptions->getAllowExternalImages()
 			|| ( $imagesexception && $imagematch )
 		) {
-			if ( preg_match( self::EXT_IMAGE_REGEX, $url ) ) {
+			if ( preg_match( $this->ext_image_regex, $url ) ) {
 				# Image found
 				$text = Linker::makeExternalImage( $url );
 			}
 		}
 		if ( !$text && $this->mOptions->getEnableImageWhitelist()
-			&& preg_match( self::EXT_IMAGE_REGEX, $url )
+			&& preg_match( $this->ext_image_regex, $url )
 		) {
 			$whitelist = explode(
 				"\n",
