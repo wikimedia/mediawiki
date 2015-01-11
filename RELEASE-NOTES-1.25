@@ -242,6 +242,8 @@ changes to languages because of Bugzilla reports.
 
 * (T66440) Kazakh (kk) wikis should no longer forcefully reset the user's
   interface language to kk where unexpected.
+* The Chinese conversion table was substantially updated to fix a lot of
+  bugs and ensure better reading experience for different variants.
 
 === Other changes in 1.25 ===
 * The skin autodiscovery mechanism, deprecated in MediaWiki 1.23, has been
