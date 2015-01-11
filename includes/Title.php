@@ -4690,7 +4690,9 @@ class Title {
 		$editnotice_ns = 'editnotice-' . $this->getNamespace();
 		$editnotice_ns_message = wfMessage( $editnotice_ns );
 		if ( $editnotice_ns_message->exists() ) {
-			$notices[$editnotice_ns] = $editnotice_ns_message->parseAsBlock();
+			$notices[$editnotice_ns] = '<div class="mw-editnotice mw-editnotice-namespace ' .
+				Sanitizer::escapeClass( "mw-$editnotice_ns" ) . '">' .
+				$editnotice_ns_message->parseAsBlock() . '</div>';
 		}
 		if ( MWNamespace::hasSubpages( $this->getNamespace() ) ) {
 			$parts = explode( '/', $this->getDBkey() );
@@ -4699,7 +4701,9 @@ class Title {
 				$editnotice_base .= '-' . array_shift( $parts );
 				$editnotice_base_msg = wfMessage( $editnotice_base );
 				if ( $editnotice_base_msg->exists() ) {
-					$notices[$editnotice_base] = $editnotice_base_msg->parseAsBlock();
+					$notices[$editnotice_base] = '<div class="mw-editnotice mw-editnotice-base ' .
+						Sanitizer::escapeClass( "mw-$editnotice_base" ) . '">' .
+						$editnotice_base_msg->parseAsBlock() . '</div>';
 				}
 			}
 		} else {
@@ -4707,7 +4711,9 @@ class Title {
 			$editnoticeText = $editnotice_ns . '-' . str_replace( '/', '-', $this->getDBkey() );
 			$editnoticeMsg = wfMessage( $editnoticeText );
 			if ( $editnoticeMsg->exists() ) {
-				$notices[$editnoticeText] = $editnoticeMsg->parseAsBlock();
+				$notices[$editnoticeText] = '<div class="mw-editnotice mw-editnotice-page ' .
+					Sanitizer::escapeClass( "mw-$editnoticeText" ) . '">' .
+					$editnoticeMsg->parseAsBlock() . '</div>';
 			}
 		}
 
