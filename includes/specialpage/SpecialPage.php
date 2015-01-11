@@ -462,7 +462,7 @@ class SpecialPage {
 	 * @return string
 	 */
 	function getDescription() {
-		return $this->msg( strtolower( $this->mName ) )->text();
+		return $this->msg( strtolower( $this->mName ) )->escaped();
 	}
 
 	/**
