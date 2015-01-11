@@ -387,13 +387,16 @@ class CategoryViewer extends ContextSource {
 
 		if ( $rescnt > 0 ) {
 			# Showing subcategories
-			$r .= "<div id=\"mw-subcategories\">\n";
-			$r .= '<h2>' . $this->msg( 'subcategories' )->text() . "</h2>\n";
+			$r .= Html::openElement( 'div', array( 'id' => 'mw-subcategories' ) );
+			$r .= "\n";
+			$r .= Html::element( 'h2', array(), $this->msg( 'subcategories' )->text() );
+			$r .= "\n";
 			$r .= $countmsg;
 			$r .= $this->getSectionPagingLinks( 'subcat' );
 			$r .= $this->formatList( $this->children, $this->children_start_char );
 			$r .= $this->getSectionPagingLinks( 'subcat' );
-			$r .= "\n</div>";
+			$r .= "\n";
+			$r .= Html::closeElement( 'div' );
 		}
 		return $r;
 	}
@@ -416,13 +419,16 @@ class CategoryViewer extends ContextSource {
 		$countmsg = $this->getCountMessage( $rescnt, $dbcnt, 'article' );
 
 		if ( $rescnt > 0 ) {
-			$r = "<div id=\"mw-pages\">\n";
-			$r .= '<h2>' . $this->msg( 'category_header', $ti )->text() . "</h2>\n";
+			$r .= Html::openElement( 'div', array( 'id' => 'mw-pages' ) );
+			$r .= "\n";
+			$r .= Html::element( 'h2', array(), $this->msg( 'category_header', $ti )->text() );
+			$r .= "\n";
 			$r .= $countmsg;
 			$r .= $this->getSectionPagingLinks( 'page' );
 			$r .= $this->formatList( $this->articles, $this->articles_start_char );
 			$r .= $this->getSectionPagingLinks( 'page' );
-			$r .= "\n</div>";
+			$r .= "\n";
+			$r .= Html::closeElement( 'div' );
 		}
 		return $r;
 	}
