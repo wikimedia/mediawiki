@@ -315,7 +315,7 @@ class DateFormatter {
 	}
 
 	/**
-	 * @todo document
+	 * Returns a regex string that will match any month or month abbreviation.
 	 * @return string
 	 */
 	public function getMonthRegex() {
@@ -338,7 +338,7 @@ class DateFormatter {
 	}
 
 	/**
-	 * @todo document
+	 * Makes an ISO year from a given year name
 	 * @param string $year Year name
 	 * @return string ISO year name
 	 */
@@ -356,7 +356,7 @@ class DateFormatter {
 	}
 
 	/**
-	 * @todo document
+	 * Makes a normal year from an ISO year
 	 * @param string $iso
 	 * @return int|string
 	 */
