@@ -732,26 +732,15 @@
 			 *
 			 * @private
 			 * @param {string} text CSS text
-			 * @param {HTMLElement|jQuery} [nextnode=document.head] The element where the style tag should be
-			 *  inserted before. Otherwise it will be appended to `<head>`.
+			 * @param {HTMLElement|jQuery} [nextnode=document.head] The element where the style tag
+			 *  should be inserted before. Otherwise it will be appended to `<head>`.
 			 * @return {HTMLElement} Reference to the created `<style>` element.
 			 */
 			function newStyleTag( text, nextnode ) {
 				var s = document.createElement( 'style' );
 				// Insert into document before setting cssText (bug 33305)
 				if ( nextnode ) {
-					// Must be inserted with native insertBefore, not $.fn.before.
-					// When using jQuery to insert it, like $nextnode.before( s ),
-					// then IE6 will throw "Access is denied" when trying to append
-					// to .cssText later. Some kind of weird security measure.
-					// http://stackoverflow.com/q/12586482/319266
-					// Works: jsfiddle.net/zJzMy/1
-					// Fails: jsfiddle.net/uJTQz
-					// Works again: http://jsfiddle.net/Azr4w/ (diff: the next 3 lines)
-					if ( nextnode.jquery ) {
-						nextnode = nextnode.get( 0 );
-					}
-					nextnode.parentNode.insertBefore( s, nextnode );
+					$( nextnode ).before( s );
 				} else {
 					document.getElementsByTagName( 'head' )[0].appendChild( s );
 				}
@@ -1421,7 +1410,9 @@
 					currReqBase
 				);
 				request = sortQuery( request );
-				// Append &* to avoid triggering the IE6 extension check
+				// Support: IE6
+				// Append &* to satisfy load.php's WebRequest::checkUrlExtension test. This script
+				// isn't actually used in IE6, but MediaWiki enforces it in general.
 				addScript( sourceLoadScript + '?' + $.param( request ) + '&*', null, async );
 			}
 
