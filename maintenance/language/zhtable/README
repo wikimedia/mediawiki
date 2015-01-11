@@ -1,13 +1,12 @@
 The various .manual files contains special mappings not included in the
-unihan database, and phrases not included in the SCIM package. 
+unihan database, and phrases not included in the SCIM package.
 
-- simp2trad.manual: Simplified to Traditional character mapping. Most
-  data adapted from
+- symme_supp.manual: Supplementary character mapping of symmetric conversion
+  (1 to 1) between Simplified and Traditional Chinese.
 
-   冯寿忠,“非对称繁简字”对照表, 《语文建设通讯》1997-9第53期.
-   /http://www.yywzw.com/jt/feng/fengb01.htm
+- simp2trad.manual: Simplified to Traditional asymmetric charactermapping. 
 
-- trad2simp.manual: Traditional to Simplified character mapping.
+- trad2simp.manual: Traditional to Simplified asymmetric character mapping.
 
 - simp2trad_noconvert.manual: Do not convert the chars as inapporiate.
 
@@ -18,16 +17,19 @@ unihan database, and phrases not included in the SCIM package.
 
 - simpphrases.manual: Phrases in Simplified Chinese.
 
-- tradphrases_exclude.manual: Excluding several phrases from 
-  the SCIM phrases as inappoiated.
+- tradphrases_exclude.manual: Excluding several phrases from
+  the SCIM phrasesas inappoiated.
 
 - simpphrases_exclude.manual: Excluding several phrases from
   the SCIM phrases as inapporated.
 
-- toTrad.manual, toSimp.manual: Special phrase mappings that 
+- toTrad.manual, toSimp.manual: Special phrase mappings that
   tradphrases.manual or simphrases.manual cannot be handled.
 
-- toTW.manual, toCN.manual, toSG.manual and toHK.manual: Special phrase
-  mappings. 
+- toTW.manual, toCN.manual and toHK.manual: Special phrase mappings.
+
+* 為方便轉換，以上均含不完整詞組，請勿隨意刪除。
 
 zhengzhu at gmail dot com & shinjiman at gmail dot com
+
+Modified by User:Chiefwei at Chinese Wikipedia in 2015.

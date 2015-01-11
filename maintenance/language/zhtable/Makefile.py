@@ -152,14 +152,12 @@ def applyExcludes( mlist, path ):
     return mlist
 
 def charManualTable( path ):
-    fp = open( path, 'r', encoding = 'U8' )
-    ret = {}
-    for line in fp:
-        elems = line.split( '#' )[0].split( '|' )
-        elems = unichr3( *elems )
-        if len( elems ) > 1:
-            ret[elems[0]] = elems[1:]
-    return ret
+   fp = open( path, 'r', encoding = 'U8' )
+   for line in fp:
+       elems = line.split( '#' )[0].split( '|' )
+       elems = unichr3( *elems )
+       if len( elems ) > 1:
+           yield elems[0], elems[1:]
         
 def toManyRules( src_table ):
     tomany = set()
@@ -299,7 +297,9 @@ def main():
     # Unihan.txt
     ( t2s_1tomany, s2t_1tomany ) = unihanParser( han_dest )
 
+    t2s_1tomany.update( charManualTable( 'symme_supp.manual' ) )
     t2s_1tomany.update( charManualTable( 'trad2simp.manual' ) )
+    s2t_1tomany.update( ( t[0], [f] ) for ( f, t ) in charManualTable( 'symme_supp.manual' ) )
     s2t_1tomany.update( charManualTable( 'simp2trad.manual' ) )
     
     if pyversion[:1] in ['2']:
@@ -369,8 +369,6 @@ def main():
     toCN = dictToSortedList( customRules( 'toCN.manual' ), 1 )
     # sorted list toHK
     toHK = dictToSortedList( customRules( 'toHK.manual' ), 1 )
-    # sorted list toSG
-    toSG = dictToSortedList( customRules( 'toSG.manual' ), 1 )
     # sorted list toTW
     toTW = dictToSortedList( customRules( 'toTW.manual' ), 1 )
     
@@ -395,8 +393,6 @@ $zh2Hant = array(\n'''
         +  PHPArray( toHK ) \
         +  '\n);\n\n$zh2CN = array(\n' \
         +  PHPArray( toCN ) \
-        +  '\n);\n\n$zh2SG = array(\n' \
-        +  PHPArray( toSG ) \
         +  '\n);\n'
     
     if pyversion[:1] in ['2']:
