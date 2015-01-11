@@ -420,6 +420,10 @@
 			"type": "object",
 			"description": "ResourceLoader import paths"
 		},
+		"ConfigRegistry": {
+			"type": "object",
+			"description": "Registry of factory functions to create Config objects"
+		},
 		"namespaces": {
 			"type": "object",
 			"description": "Method to add extra namespaces",

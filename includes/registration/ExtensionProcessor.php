@@ -23,6 +23,7 @@ class ExtensionProcessor implements Processor {
 		'RemoveGroups',
 		'AvailableRights',
 		'ContentHandlers',
+		'ConfigRegistry',
 		'RateLimits',
 		'ParserTestFiles',
 		'RecentChangesFlags',
