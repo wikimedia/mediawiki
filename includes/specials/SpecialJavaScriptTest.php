@@ -192,7 +192,6 @@ HTML;
 	 */
 	private function exportQUnit() {
 		$out = $this->getOutput();
-
 		$out->disable();
 
 		$rl = $out->getResourceLoader();

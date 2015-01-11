@@ -3,14 +3,14 @@
 <head>
 	<meta charset="utf-8">
 	<title>MediaWiki Code Example</title>
-	<script src="modules/startup.js"></script>
+	<script src="modules/src/startup.js"></script>
 	<script>
 		function startUp() {
 			mw.config = new mw.Map();
 		}
 	</script>
-	<script src="modules/jquery/jquery.js"></script>
-	<script src="modules/mediawiki/mediawiki.js"></script>
+	<script src="modules/lib/jquery/jquery.js"></script>
+	<script src="modules/src/mediawiki/mediawiki.js"></script>
 	<style>
 		.mw-jsduck-log {
 			position: relative;
@@ -78,7 +78,7 @@
 			eval( code );
 			callback && callback( true );
 		} catch ( e ) {
-			mw.log( 'Uncaught exception: ' + e );
+			mw.log( 'Uncaught ' + e );
 			callback && callback( false, e );
 			throw e;
 		}
