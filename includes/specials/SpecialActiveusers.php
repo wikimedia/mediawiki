@@ -269,9 +269,11 @@ class SpecialActiveUsers extends SpecialPage {
 
 		// Occasionally merge in new updates
 		$seconds = min( self::mergeActiveUsers( 300, $days ), $days * 86400 );
-		// Mention the level of staleness
-		$out->addWikiMsg( 'cachedspecial-viewing-cached-ttl',
-			$this->getLanguage()->formatDuration( $seconds ) );
+		if ( $seconds > 0 ) {
+			// Mention the level of staleness
+			$out->addWikiMsg( 'cachedspecial-viewing-cached-ttl',
+				$this->getLanguage()->formatDuration( $seconds ) );
+		}
 
 		$up = new ActiveUsersPager( $this->getContext(), null, $par );
 
