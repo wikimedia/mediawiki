@@ -53,7 +53,7 @@ class ParserOutput extends CacheTime {
 		$mTOCEnabled = true;          # Whether TOC should be shown, can't override __NOTOC__
 	private $mIndexPolicy = '';       # 'index' or 'noindex'?  Any other value will result in no change.
 	private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
-	private $mSecondaryDataUpdates = array(); # List of DataUpdate, used to save info from the page somewhere else.
+	private $mSecondaryDataUpdates = array(); # List of data updates objects, used to save info from the page somewhere else.
 	private $mCustomDataUpdateCount = 0; # Number of custom updaters in $mSecondaryDataUpdates.
 	private $mExtensionData = array(); # extra data used by extensions
 	private $mLimitReportData = array(); # Parser limit report data
@@ -681,18 +681,23 @@ class ParserOutput extends CacheTime {
 	 * from the page's content. This is triggered by calling getSecondaryDataUpdates()
 	 * and is used for forward links updates on edit and backlink updates by jobs.
 	 *
-	 * @note: custom DataUpdates do not survive serialization of the ParserOutput!
+	 * @note: custom DataUpdates should survive serialization of the ParserOutput!
 	 * This is especially relevant when using a cached ParserOutput for updating
 	 * the database, as WikiPage does if $wgAjaxStashEdit is enabled. For this
-	 * reason, ApiStashEdit will skip any ParserOutput that has custom DataUpdates.
+	 * reason, ApiStashEdit will skip any ParserOutput that has custom DataUpdates
+	 * that are not serializable. Use LazyDataUpdate instead of DataUpdate classes.
 	 *
 	 * @since 1.20
 	 *
-	 * @param DataUpdate $update
+	 * @param DataUpdate|LazyDataUpdate $update
 	 */
-	public function addSecondaryDataUpdate( DataUpdate $update ) {
-		$this->mSecondaryDataUpdates[] = $update;
-		$this->mCustomDataUpdateCount = count( $this->mSecondaryDataUpdates );
+	public function addSecondaryDataUpdate( $update ) {
+		if ( $update instanceof DataUpdate || $update instanceof LazyDataUpdate ) {
+			$this->mSecondaryDataUpdates[] = $update;
+			$this->mCustomDataUpdateCount = count( $this->mSecondaryDataUpdates );
+		} else {
+			throw new Exception( "Expected DataUpdate or LazyDataUpdate." );
+		}
 	}
 
 	/**
@@ -702,9 +707,27 @@ class ParserOutput extends CacheTime {
 	 * @see __sleep()
 	 *
 	 * @return bool
+	 * @since 1.25
 	 */
 	public function hasCustomDataUpdates() {
 		return ( $this->mCustomDataUpdateCount > 0 );
+	}
+
+	/**
+	 * Check if all secondary updates are either implicit or serializable
+	 *
+	 * This is mostly for use by ApiEditStash
+	 *
+	 * @return bool
+	 * @since 1.25
+	 */
+	public function areSecondaryUpdatesSerializable() {
+		foreach ( $this->mSecondaryDataUpdates as $update ) {
+			if ( ! $update instanceof LazyDataUpdate ) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
@@ -735,14 +758,20 @@ class ParserOutput extends CacheTime {
 			// NOTE: This happens when mSecondaryDataUpdates are lost during serialization
 			// (see __sleep below). After (un)serialization, getSecondaryDataUpdates()
 			// has no defined behavior in that case, and should throw an exception.
-			throw new MWException( 'getSecondaryDataUpdates() must not be called on ParserOutput restored from serialization.' );
+			throw new MWException( 'ParserOutput derived from unserialization with unserializable data updates.' );
 		}
 
-		// NOTE: ApiStashEdit knows about this "magic" update object. If this goes away,
-		// ApiStashEdit::buildStashValue needs to be adjusted.
-		$linksUpdate = new LinksUpdate( $title, $this, $recursive );
+		$updates = array();
+		foreach ( $this->mSecondaryDataUpdates as $update ) {
+			if ( $update instanceof LazyDataUpdate ) {
+				$updates[] = $update->resolve( $title, $this );
+			} else {
+				$updates[] = $update;
+			}
+		}
+		$updates[] = new LinksUpdate( $title, $this, $recursive );
 
-		return array_merge( $this->mSecondaryDataUpdates, array( $linksUpdate ) );
+		return $updates;
 	}
 
 	/**
@@ -889,14 +918,17 @@ class ParserOutput extends CacheTime {
 		return wfSetVar( $this->mPreventClickjacking, $flag );
 	}
 
-	/**
-	 * Save space for serialization by removing useless values
-	 * @return array
-	 */
-	public function __sleep() {
+	function __sleep() {
+		// Filter out updates that are not designed to be serializable.
+		// The getSecondaryDataUpdates() method knows when this happened.
+		$this->mSecondaryDataUpdates = array_filter(
+			$this->mSecondaryDataUpdates,
+			function ( $u ) { return $u instanceof LazyDataUpdate; }
+		);
+
 		return array_diff(
 			array_keys( get_object_vars( $this ) ),
-			array( 'mSecondaryDataUpdates', 'mParseStartTime' )
+			array( 'mParseStartTime' ) // useless
 		);
 	}
 }

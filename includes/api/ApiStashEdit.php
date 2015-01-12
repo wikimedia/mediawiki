@@ -336,9 +336,9 @@ class ApiStashEdit extends ApiBase {
 
 		// Note: ParserOutput with that contains secondary data update callbacks can not be
 		// stashed, since the callbacks are not serializable (see ParserOutput::__sleep).
-		$hasCustomDataUpdates = $parserOutput->hasCustomDataUpdates();
+		$fullySerializable = $parserOutput->areSecondaryUpdatesSerializable();
 
-		if ( $ttl > 0 && !$parserOutput->getFlag( 'vary-revision' ) && !$hasCustomDataUpdates ) {
+		if ( $ttl > 0 && !$parserOutput->getFlag( 'vary-revision' ) && $fullySerializable ) {
 			// Only store what is actually needed
 			$stashInfo = (object)array(
 				'pstContent' => $pstContent,
