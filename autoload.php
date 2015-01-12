@@ -637,6 +637,7 @@ $wgAutoloadLocalClasses = array(
 	'LanguageZh_hans' => __DIR__ . '/languages/classes/LanguageZh_hans.php',
 	'Languages' => __DIR__ . '/maintenance/language/languages.inc',
 	'LayeredParameterizedPassword' => __DIR__ . '/includes/password/LayeredParameterizedPassword.php',
+	'LazyDataUpdate' => __DIR__ . '/includes/deferred/LazyDataUpdate.php',
 	'LegacyLogFormatter' => __DIR__ . '/includes/logging/LogFormatter.php',
 	'License' => __DIR__ . '/includes/Licenses.php',
 	'Licenses' => __DIR__ . '/includes/Licenses.php',
