@@ -937,35 +937,37 @@ class UploadForm extends HTMLForm {
 		$config = $this->getConfig();
 
 		if ( $config->get( 'CheckFileExtensions' ) ) {
+			$fileExtensions = array_unique( $config->get( 'FileExtensions' ) );
 			if ( $config->get( 'StrictFileExtensions' ) ) {
 				# Everything not permitted is banned
 				$extensionsList =
 					'<div id="mw-upload-permitted">' .
 					$this->msg(
 						'upload-permitted',
-						$this->getContext()->getLanguage()->commaList(
-							array_unique( $config->get( 'FileExtensions' ) )
+						$this->getLanguage()->commaList(
+							$fileExtensions
 						)
-					)->parseAsBlock() .
+					)->numParams( count( $fileExtensions ) )->parseAsBlock() .
 					"</div>\n";
 			} else {
 				# We have to list both preferred and prohibited
+				$fileBlacklist = array_unique( $config->get( 'FileBlacklist' ) );
 				$extensionsList =
 					'<div id="mw-upload-preferred">' .
 						$this->msg(
 							'upload-preferred',
-							$this->getContext()->getLanguage()->commaList(
-								array_unique( $config->get( 'FileExtensions' ) )
+							$this->getLanguage()->commaList(
+								$fileExtensions
 							)
-						)->parseAsBlock() .
+						)->numParams( count( $fileExtensions ) )->parseAsBlock() .
 					"</div>\n" .
 					'<div id="mw-upload-prohibited">' .
 						$this->msg(
 							'upload-prohibited',
-							$this->getContext()->getLanguage()->commaList(
-								array_unique( $config->get( 'FileBlacklist' ) )
+							$this->getLanguage()->commaList(
+								$fileBlacklist
 							)
-						)->parseAsBlock() .
+						)->numParams( count( $fileBlacklist ) )->parseAsBlock() .
 					"</div>\n";
 			}
 		} else {
