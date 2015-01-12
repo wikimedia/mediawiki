@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Mormegil",
-			"YjM"
+			"YjM",
+			"Juandev"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page Dokumentace]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/API:FAQ FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api E-mailová konference]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Oznámení k API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Chyby a požadavky]\n</div>\n<strong>Stav:</strong> Všechny funkce uvedené na této stránce by měly fungovat, ale API se stále aktivně vyvíjí a může se kdykoli změnit. Upozornění na změny získáte přihlášením se k [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ e-mailové konferenci mediawiki-api-announce].\n\n<strong>Chybné požadavky:</strong> Pokud jsou do API zaslány chybné požadavky, bude vrácena HTTP hlavička s klíčem „MediaWiki-API-Error“ a hodnota této hlavičky a chybový kód budou nastaveny na stejnou hodnotu. Více informací najdete na stránce https://www.mediawiki.org/wiki/API:Errors_and_warnings.",
@@ -23,9 +24,11 @@
 	"apihelp-block-param-anononly": "Zablokovat pouze anonymní uživatele (tj. zakázat editovat anonymně z této IP).",
 	"apihelp-block-param-nocreate": "Nedovolit registraci nových uživatelů.",
 	"apihelp-block-param-noemail": "Zakázat uživateli posílat e-maily prostřednictvím wiki. (Vyžaduje oprávnění „blockemail“.)",
+	"apihelp-block-param-hidename": "Skryj uživatelské jméno v logu zablokování. (K tomu jsou potřeba práva \"hideuser\").",
 	"apihelp-block-param-allowusertalk": "Povolit uživateli editovat svou vlastní diskusní stránku (závisí na $wgBlockAllowsUTEdit).",
 	"apihelp-block-param-reblock": "Pokud již uživatel blokován je, přepsat současný blok.",
 	"apihelp-block-param-watchuser": "Sledovat uživatelskou a diskusní stranu tohoto uživatele nebo adresy IP.",
+	"apihelp-block-example-ip-simple": "Zablokuj IP 192.0.2.5 na tři dny s důvodem \"První útok\"",
 	"apihelp-block-example-user-complex": "Trvale zablokovat uživatele Vandal s odůvodněním „Vandalism“ a bránit vytváření nových účtů a e-mailování",
 	"apihelp-compare-description": "Vrátí rozdíl dvou stránek.\n\nVe „from“ a „to“ musíte zadat číslo revize, název stránky nebo ID stránky.",
 	"apihelp-compare-param-fromtitle": "Název první stránky k porovnání.",
@@ -42,6 +45,12 @@
 	"apihelp-createaccount-param-realname": "Skutečné jméno uživatele (nepovinné).",
 	"apihelp-createaccount-param-mailpassword": "Pokud je nastaveno na libovolnou hodnotu, zašle se náhodně vygenerované heslo na e-mail uživatele.",
 	"apihelp-delete-description": "Smazat stránku.",
+	"apihelp-edit-param-minor": "Malá editace.",
+	"apihelp-edit-param-notminor": "Nemalá editace.",
+	"apihelp-edit-param-bot": "Označ tuto editaci jako editaci bota.",
+	"apihelp-edit-param-createonly": "Needituj stráku, pokud již existuje.",
+	"apihelp-edit-param-watch": "Vlož stránku na seznam sledovaných stránek.",
+	"apihelp-edit-param-unwatch": "Odstraň stránku ze svého seznamu sledovaných stránek.",
 	"apihelp-help-description": "Zobrazuje nápovědu k uvedeným modulům.",
 	"apihelp-help-param-modules": "Moduly, pro které se má zobrazit nápověda (hodnoty parametrů action= a format= nebo „main“). Submoduly lze zadávat pomocí „+“.",
 	"apihelp-help-param-submodules": "Zahrnout nápovědu pro podmoduly uvedeného modulu.",

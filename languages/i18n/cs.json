@@ -1887,6 +1887,7 @@
 	"namespace": "Jmenný prostor:",
 	"invert": "Obrátit výběr",
 	"tooltip-invert": "Zaškrtnutím tohoto políčka skryjete změny stránek ve zvoleném jmenném prostoru (a souvisejícím jmenném prostoru, pokud je zaškrtnuto)",
+	"tooltip-whatlinkshere-invert": "Zaškrtnutím tohoto políčka skryjete odkazy ze stránek ve zvoleném jmenném prostoru.",
 	"namespace_association": "Související jmenný prostor",
 	"tooltip-namespace_association": "Zaškrtnutím tohoto políčka zahrnete i diskusní či obsahový jmenný prostor příslušný k vybranému jmennému prostoru",
 	"blanknamespace": "(Hlavní)",

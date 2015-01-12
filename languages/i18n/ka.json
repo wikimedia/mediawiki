@@ -834,7 +834,7 @@
 	"searchrelated": "მიბმული",
 	"searchall": "ყველა",
 	"showingresults": "ქვემოთ იხილეთ <b>$1</b>-მდე შედეგი დაწყებული #<b>$2</b>-იდან.",
-	"search-nonefound": "მოთხოვნის შესაბამისობა არ არის ნაპოვნი.",
+	"search-nonefound": "მსგავსი მოთხოვნით გვერდი ვერ მოიძებნა.",
 	"powersearch-legend": "გაფართოებული ძიება",
 	"powersearch-ns": "ძიება სახელთა სივრცეებში:",
 	"powersearch-togglelabel": "მონიშვნა:",

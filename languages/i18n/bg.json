@@ -1117,7 +1117,7 @@
 	"recentchanges": "Последни промени",
 	"recentchanges-legend": "Настройки на списъка с последни промени",
 	"recentchanges-summary": "Проследяване на последните промени в {{SITENAME}}.\n\nЛегенда: '''тек''' = разлика на текущата версия,\n'''ист''' = история на версиите",
-	"recentchanges-noresult": "Не бяха намерени промени за дадения период, които отговарят на критериите.",
+	"recentchanges-noresult": "За дадения период не бяха намерени промени, които да отговарят на критериите.",
 	"recentchanges-feed-description": "Проследяване на последните промени в {{SITENAME}}.",
 	"recentchanges-label-newpage": "Нова страница",
 	"recentchanges-label-minor": "Това е малка промяна",

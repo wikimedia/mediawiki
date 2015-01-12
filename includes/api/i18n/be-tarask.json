@@ -45,5 +45,6 @@
 	"apihelp-createaccount-param-password": "Пароль (ігнаруецца, калі выстаўлена $1mailpassword).",
 	"apihelp-createaccount-param-domain": "Дамэн для вонкавай аўтэнтыфікацыі (неабавязкова).",
 	"apihelp-createaccount-param-token": "Маркер стварэньня рахунку, атрыманы пры першым запыце.",
-	"apihelp-createaccount-param-email": "Адрас электроннай пошты ўдзельніка (неабавязкова)."
+	"apihelp-createaccount-param-email": "Адрас электроннай пошты ўдзельніка (неабавязкова).",
+	"apihelp-createaccount-param-realname": "Сапраўднае імя ўдзельніка (неабавязкова)."
 }

@@ -3049,7 +3049,7 @@
 	"logentry-newusers-create": "$1 사용자 계정을 {{GENDER:$2|만들었습니다}}",
 	"logentry-newusers-create2": "$1 사용자가 $3 사용자 계정을 {{GENDER:$2|만들었습니다}}",
 	"logentry-newusers-byemail": "$3 사용자 계정을 $1님이 {{GENDER:$2|만들었고}} 비밀번호는 이메일로 보냈습니다",
-	"logentry-newusers-autocreate": "$1 사용자 계정을 자동적으로 {{GENDER:$2|만들었습니다}}",
+	"logentry-newusers-autocreate": "$1 사용자 계정을 자동으로 {{GENDER:$2|만들었습니다}}",
 	"logentry-rights-rights": "$1 사용자가 $3 사용자의 권한을 $4에서 $5으로 {{GENDER:$2|바꾸었습니다}}",
 	"logentry-rights-rights-legacy": "$1 사용자가 $3 사용자의 권한을 {{GENDER:$2|바꾸었습니다}}",
 	"logentry-rights-autopromote": "$1 사용자의 권한을 자동적으로 $4에서 $5으로 {{GENDER:$2|바꾸었습니다}}",
