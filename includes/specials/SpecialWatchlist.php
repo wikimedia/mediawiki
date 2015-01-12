@@ -44,6 +44,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$output = $this->getOutput();
 		$request = $this->getRequest();
 		$this->addHelpLink( 'Help:Watching pages' );
+		$output->addModules( array(
+			'mediawiki.special.changeslist.visitedstatus',
+		) );
 
 		$mode = SpecialEditWatchlist::getMode( $request, $subpage );
 		if ( $mode !== false ) {
