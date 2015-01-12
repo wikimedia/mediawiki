@@ -68,7 +68,7 @@ class EnhancedChangesList extends ChangesList {
 		$this->rcCacheIndex = 0;
 		$this->lastdate = '';
 		$this->rclistOpen = false;
-		$this->getOutput()->addModuleStyles( array(
+		$this->getOutput()->addModules( array(
 			'mediawiki.special.changeslist',
 			'mediawiki.special.changeslist.enhanced',
 		) );
