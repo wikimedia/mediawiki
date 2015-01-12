@@ -1708,6 +1708,10 @@ return array(
 		'position' => 'top',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.enhanced.css',
 	),
+	'mediawiki.special.changeslist.visitedstatus' => array(
+		'position' => 'top',
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.visitedstatus.js',
+	),
 	'mediawiki.special.edittags' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.edittags.js',
 		'dependencies' => array(
