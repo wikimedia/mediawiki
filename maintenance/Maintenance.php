@@ -604,7 +604,7 @@ abstract class Maintenance {
 		global $wgProfiler;
 
 		$output = $this->getOption( 'profiler' );
-		if ( $output && is_array( $wgProfiler ) ) {
+		if ( $output && is_array( $wgProfiler ) && isset( $wgProfiler['class'] ) ) {
 			$class = $wgProfiler['class'];
 			$profiler = new $class(
 				array( 'sampling' => 1, 'output' => $output ) + $wgProfiler
