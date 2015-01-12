@@ -1328,6 +1328,7 @@ return array(
 		),
 	),
 	'mediawiki.special.changeslist.enhanced' => array(
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.enhanced.js',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.enhanced.css',
 	),
 	'mediawiki.special.import' => array(
