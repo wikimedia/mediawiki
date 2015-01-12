@@ -1671,6 +1671,7 @@ return array(
 	),
 	'mediawiki.special.changeslist.enhanced' => array(
 		'position' => 'top',
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.enhanced.js',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.enhanced.css',
 	),
 	'mediawiki.special.edittags' => array(
