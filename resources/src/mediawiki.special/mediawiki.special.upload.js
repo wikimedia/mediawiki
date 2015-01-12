@@ -202,6 +202,7 @@
 				// URLs are less likely to have a useful extension, so don't include them in the
 				// extension check.
 				if (
+					mw.config.get( 'wgCheckFileExtensions' ) &&
 					mw.config.get( 'wgStrictFileExtensions' ) &&
 					mw.config.get( 'wgFileExtensions' ) &&
 					$( this ).attr( 'id' ) !== 'wpUploadFileURL'
