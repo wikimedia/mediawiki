@@ -58,12 +58,6 @@ class LinksUpdate extends SqlDataUpdate {
 	/** @var array Map of arbitrary name to value */
 	public $mProperties;
 
-	/** @var DatabaseBase Database connection reference */
-	public $mDb;
-
-	/** @var array SELECT options to be used */
-	public $mOptions;
-
 	/** @var bool Whether to queue jobs for recursive updates */
 	public $mRecursive;
 
