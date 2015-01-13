@@ -1,0 +1,115 @@
+<?php
+/**
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
+
+
+/**
+ * PSR-3 logger instance factory.
+ *
+ * Creation of \Psr\Log\LoggerInterface instances is managed via the
+ * MWLoggerFactory::getInstance() static method which in turn delegates to the
+ * currently registered service provider.
+ *
+ * A service provider is any class implementing the MWLoggerSpi interface.
+ * There are two possible methods of registering a service provider. The
+ * MWLoggerFactory::registerProvider() static method can be called at any time
+ * to change the service provider. If MWLoggerFactory::getInstance() is called
+ * before any service provider has been registered, it will attempt to use the
+ * $wgMWLoggerDefaultSpi global to bootstrap MWLoggerSpi registration.
+ * $wgMWLoggerDefaultSpi is expected to be an array usable by
+ * ObjectFactory::getObjectFromSpec() to create a class.
+ *
+ * @see MWLoggerSpi
+ * @since 1.25
+ * @author Bryan Davis <bd808@wikimedia.org>
+ * @copyright © 2014 Bryan Davis and Wikimedia Foundation.
+ */
+class MWLoggerFactory {
+
+	/**
+	 * Service provider.
+	 * @var MWLoggerSpi $spi
+	 */
+	private static $spi;
+
+
+	/**
+	 * Register a service provider to create new \Psr\Log\LoggerInterface
+	 * instances.
+	 *
+	 * @param MWLoggerSpi $provider Provider to register
+	 */
+	public static function registerProvider( MWLoggerSpi $provider ) {
+		self::$spi = $provider;
+	}
+
+
+	/**
+	 * Get the registered service provider.
+	 *
+	 * If called before any service provider has been registered, it will
+	 * attempt to use the $wgMWLoggerDefaultSpi global to bootstrap
+	 * MWLoggerSpi registration. $wgMWLoggerDefaultSpi is expected to be an
+	 * array usable by ObjectFactory::getObjectFromSpec() to create a class.
+	 *
+	 * @return MWLoggerSpi
+	 * @see registerProvider()
+	 * @see ObjectFactory::getObjectFromSpec()
+	 */
+	public static function getProvider() {
+		if ( self::$spi === null ) {
+			global $wgMWLoggerDefaultSpi;
+			$provider = ObjectFactory::getObjectFromSpec(
+				$wgMWLoggerDefaultSpi
+			);
+			self::registerProvider( $provider );
+		}
+		return self::$spi;
+	}
+
+
+	/**
+	 * Get a named logger instance from the currently configured logger factory.
+	 *
+	 * @param string $channel Logger channel (name)
+	 * @return \Psr\Log\LoggerInterface
+	 */
+	public static function getInstance( $channel ) {
+		if ( !interface_exists( '\Psr\Log\LoggerInterface' ) ) {
+			$message = <<<TXT
+MediaWiki requires the <a href="https://github.com/php-fig/log">PSR-3 logging library</a> to be present. This library is not embedded directly in MediaWiki's git repository and must be installed separately by the end user.
+
+Please see <a href="https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries">mediawiki.org</a> for help on installing the required components.
+TXT;
+			echo $message;
+			trigger_error( $message, E_USER_ERROR );
+			die( 1 );
+		}
+
+		return self::getProvider()->getLogger( $channel );
+	}
+
+
+	/**
+	 * Construction of utility class is not allowed.
+	 */
+	private function __construct() {
+		// no-op
+	}
+}
