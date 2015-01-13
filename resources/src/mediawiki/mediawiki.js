@@ -43,6 +43,16 @@
 		}
 	}
 
+	// String format helper. Replaces $1, $2 .. $N placeholders with positional
+	// args. Used by Message.prototype.parser() and exported as mw.format().
+	function format( formatString ) {
+		var parameters = slice.call( arguments, 1 );
+		return formatString.replace( /\$(\d+)/g, function ( str, match ) {
+			var index = parseInt( match, 10 ) - 1;
+			return parameters[index] !== undefined ? parameters[index] : '$' + match;
+		} );
+	}
+
 	/* Object constructors */
 
 	/**
@@ -253,11 +263,7 @@
 		 * This function will not be called for nonexistent messages.
 		 */
 		parser: function () {
-			var parameters = this.parameters;
-			return this.map.get( this.key ).replace( /\$(\d+)/g, function ( str, match ) {
-				var index = parseInt( match, 10 ) - 1;
-				return parameters[index] !== undefined ? parameters[index] : '$' + match;
-			} );
+			return format.apply( null, [ this.map.get( this.key ) ].concat( this.parameters ) );
 		},
 
 		/**
@@ -390,6 +396,17 @@
 				function () { return navStart + perf.now(); } :
 				function () { return +new Date(); };
 		}() ),
+
+		/**
+		 * Format a string. Replace $1, $2 ... $N with positional arguments.
+		 *
+		 * @method
+		 * @since 1.25
+		 * @param {string} fmt Format string
+		 * @param {Mixed...} parameters Substitutions for $N placeholders.
+		 * @return {string} Formatted string
+		 */
+		format: format,
 
 		/**
 		 * Track an analytic event.
