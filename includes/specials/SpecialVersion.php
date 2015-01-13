@@ -38,6 +38,8 @@ class SpecialVersion extends SpecialPage {
 
 	protected static $extensionTypes = false;
 
+	protected static $skinTypes = false;
+
 	protected static $viewvcUrls = array(
 		'svn+ssh://svn.wikimedia.org/svnroot/mediawiki' => 'http://svn.wikimedia.org/viewvc/mediawiki',
 		'http://svn.wikimedia.org/svnroot/mediawiki' => 'http://svn.wikimedia.org/viewvc/mediawiki',
@@ -53,7 +55,7 @@ class SpecialVersion extends SpecialPage {
 	 * @param string|null $par
 	 */
 	public function execute( $par ) {
-		global $IP, $wgExtensionCredits;
+		global $IP, $wgExtensionCredits, $wgSkinCredits;
 
 		$this->setHeaders();
 		$this->outputHeader();
@@ -74,6 +76,15 @@ class SpecialVersion extends SpecialPage {
 					}
 				}
 			}
+			foreach ( $wgSkinCredits as $group => $skins ) {
+				foreach ( $skins as $skin ) {
+					if ( isset( $skin['name'] ) && ( $skin['name'] === $extName ) ) {
+						$extNode = &$skin;
+						break 2;
+					}
+				}
+			}
+
 			if ( !$extNode ) {
 				$out->setStatusCode( 404 );
 			}
@@ -283,7 +294,6 @@ class SpecialVersion extends SpecialPage {
 	 */
 	public static function getVersionLinked() {
 		global $wgVersion;
-
 		$gitVersion = self::getVersionLinkedGit();
 		if ( $gitVersion ) {
 			$v = $gitVersion;
@@ -387,6 +397,7 @@ class SpecialVersion extends SpecialPage {
 				'variable' => wfMessage( 'version-variables' )->text(),
 				'media' => wfMessage( 'version-mediahandlers' )->text(),
 				'antispam' => wfMessage( 'version-antispam' )->text(),
+				/* @deprecated since 1.25 please use SkinCredits and then skin */
 				'skin' => wfMessage( 'version-skins' )->text(),
 				'api' => wfMessage( 'version-api' )->text(),
 				'other' => wfMessage( 'version-other' )->text(),
@@ -396,6 +407,28 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		return self::$extensionTypes;
+	}
+
+	/**
+	 * Returns an array with the base skin types.
+	 * Type is stored as array key, the message as array value.
+	 *
+	 * TODO: ideally this would return all extension types.
+	 *
+	 * @since 1.25
+	 *
+	 * @return array
+	 */
+	public static function getSkinTypes() {
+		if ( self::$skinTypes === false ) {
+			self::$skinTypes = array(
+				'skin' => wfMessage( 'version-skins' )->text(),
+			);
+
+			Hooks::run( 'SkinTypes', array( &self::$skinTypes ) );
+		}
+
+		return self::$skinTypes;
 	}
 
 	/**
@@ -414,6 +447,21 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
+	 * Returns the internationalized name for an extension type.
+	 *
+	 * @since 1.25
+	 *
+	 * @param string $type
+	 *
+	 * @return string
+	 */
+	public static function getSkinTypeName( $type ) {
+		$types = self::getSkinTypes();
+
+		return isset( $types[$type] ) ? $types[$type] : $types['other'];
+	}
+
+	/**
 	 * Generate wikitext showing the name, URL, author and description of each extension.
 	 *
 	 * @return string Wikitext
@@ -422,9 +470,9 @@ class SpecialVersion extends SpecialPage {
 		global $wgExtensionCredits;
 
 		if (
-			count( $wgExtensionCredits ) === 0 ||
-			// Skins are displayed separately, see getSkinCredits()
-			( count( $wgExtensionCredits ) === 1 && isset( $wgExtensionCredits['skin'] ) )
+				count( $wgExtensionCredits ) === 0 ||
+				// Skins are displayed separately, see getSkinCredits()
+				( count( $wgExtensionCredits ) === 1 && isset( $wgExtensionCredits['skin'] ) )
 		) {
 			return '';
 		}
@@ -468,15 +516,18 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * Generate wikitext showing the name, URL, author and description of each skin.
+	 * Generate wikitext showing the name, URL, author and description of each extension.
 	 *
 	 * @return string Wikitext
 	 */
 	public function getSkinCredits() {
-		global $wgExtensionCredits;
-		if ( !isset( $wgExtensionCredits['skin'] ) || count( $wgExtensionCredits['skin'] ) === 0 ) {
+		global $wgSkinCredits;
+
+		if ( !isset( $wgSkinCredits['skin'] ) || count( $wgSkinCredits['skin'] ) === 0 ) {
 			return '';
 		}
+
+		$skinTypes = self::getSkinTypes();
 
 		$out = Xml::element(
 				'h2',
@@ -486,7 +537,11 @@ class SpecialVersion extends SpecialPage {
 			Xml::openElement( 'table', array( 'class' => 'wikitable plainlinks', 'id' => 'sv-skin' ) );
 
 		$this->firstExtOpened = false;
+
+		/* @deprecated since 1.25 please user SkinCredits instead of ExtensionCredits for skins */
 		$out .= $this->getExtensionCategory( 'skin', null );
+
+		$out .= $this->getSkinCategory( 'skin', null);
 
 		$out .= Xml::closeElement( 'table' );
 
@@ -624,6 +679,34 @@ class SpecialVersion extends SpecialPage {
 
 			foreach ( $wgExtensionCredits[$type] as $extension ) {
 				$out .= $this->getCreditsForExtension( $extension );
+			}
+		}
+
+		return $out;
+	}
+
+	/**
+	 * Creates and returns the HTML for a single extension category.
+	 *
+	 * @since 1.25
+	 *
+	 * @param string $type
+	 * @param string $message
+	 *
+	 * @return string
+	 */
+	protected function getSkinCategory( $type, $message ) {
+		global $wgSkinCredits;
+
+		$out = '';
+
+		if ( array_key_exists( $type, $wgSkinCredits ) && count( $wgSkinCredits[$type] ) > 0 ) {
+			$out .= $this->openExtType( $message, 'credits-' . $type );
+
+			usort( $wgSkinCredits[$type], array( $this, 'compare' ) );
+
+			foreach ( $wgSkinCredits[$type] as $skin ) {
+				$out .= $this->getCreditsForSkin( $skin );
 			}
 		}
 
@@ -840,6 +923,206 @@ class SpecialVersion extends SpecialPage {
 		$html .= Html::rawElement( 'td', array(), $licenseLink );
 		$html .= Html::rawElement( 'td', array( 'class' => 'mw-version-ext-description' ), $description );
 		$html .= Html::rawElement( 'td', array( 'class' => 'mw-version-ext-authors' ), $authors );
+
+		$html .= Html::closeElement( 'tr' );
+
+		return $html;
+	}
+
+	/**
+	 * Creates and formats a version line for a single extension.
+	 *
+	 * Information for five columns will be created. Parameters required in the
+	 * $extension array for part rendering are indicated in ()
+	 *  - The name of (name), and URL link to (url), the extension
+	 *  - Official version number (version) and if available version control system
+	 *    revision (path), link, and date
+	 *  - If available the short name of the license (license-name) and a linke
+	 *    to ((LICENSE)|(COPYING))(\.txt)? if it exists.
+	 *  - Description of extension (descriptionmsg or description)
+	 *  - List of authors (author) and link to a ((AUTHORS)|(CREDITS))(\.txt)? file if it exists
+	 *
+	 * @param array $extension
+	 *
+	 * @return string Raw HTML
+	 */
+	public function getCreditsForSkin( array $skin ) {
+		$out = $this->getOutput();
+
+		// We must obtain the information for all the bits and pieces!
+		// ... such as extension names and links
+		if ( isset( $skin['namemsg'] ) ) {
+			// Localized name of extension
+			$skinName = $this->msg( $skin['namemsg'] )->text();
+		} elseif ( isset( $skin['name'] ) ) {
+			// Non localized version
+			$skinName = $skin['name'];
+		} else {
+			$skinName = $this->msg( 'version-no-skin-name' )->text();
+		}
+
+		if ( isset( $skin['url'] ) ) {
+			$skinNameLink = Linker::makeExternalLink(
+				$skin['url'],
+				$skinName,
+				true,
+				'',
+				array( 'class' => 'mw-version-mediawiki-name' )
+			);
+		} else {
+			$skinNameLink = $skinName;
+		}
+
+		// ... and the version information
+		// If the extension path is set we will check that directory for GIT and SVN
+		// metadata in an attempt to extract date and vcs commit metadata.
+		$canonicalVersion = '&ndash;';
+		$skinPath = null;
+		$vcsVersion = null;
+		$vcsLink = null;
+		$vcsDate = null;
+
+		if ( isset( $skin['version'] ) ) {
+			$canonicalVersion = $out->parseInline( $skin['version'] );
+		}
+
+		if ( isset( $skin['path'] ) ) {
+			global $IP;
+			$skinPath = dirname( $skin['path'] );
+			if ( $this->coreId == '' ) {
+				wfDebug( 'Looking up core head id' );
+				$coreHeadSHA1 = self::getGitHeadSha1( $IP );
+				if ( $coreHeadSHA1 ) {
+					$this->coreId = $coreHeadSHA1;
+				} else {
+					$svnInfo = self::getSvnInfo( $IP );
+					if ( $svnInfo !== false ) {
+						$this->coreId = $svnInfo['checkout-rev'];
+					}
+				}
+			}
+			$cache = wfGetCache( CACHE_ANYTHING );
+			$memcKey = wfMemcKey( 'specialversion-skin-version-text', $skin['path'], $this->coreId );
+			list( $vcsVersion, $vcsLink, $vcsDate ) = $cache->get( $memcKey );
+
+			if ( !$vcsVersion ) {
+				wfDebug( "Getting VCS info for skin {$skin['name']}" );
+				$gitInfo = new GitInfo( $skinPath );
+				$vcsVersion = $gitInfo->getHeadSHA1();
+				if ( $vcsVersion !== false ) {
+					$vcsVersion = substr( $vcsVersion, 0, 7 );
+					$vcsLink = $gitInfo->getHeadViewUrl();
+					$vcsDate = $gitInfo->getHeadCommitDate();
+				} else {
+					$svnInfo = self::getSvnInfo( $skinPath );
+					if ( $svnInfo !== false ) {
+						$vcsVersion = $this->msg( 'version-svn-revision', $svnInfo['checkout-rev'] )->text();
+						$vcsLink = isset( $svnInfo['viewvc-url'] ) ? $svnInfo['viewvc-url'] : '';
+					}
+				}
+				$cache->set( $memcKey, array( $vcsVersion, $vcsLink, $vcsDate ), 60 * 60 * 24 );
+			} else {
+				wfDebug( "Pulled VCS info for skin {$skin['name']} from cache" );
+			}
+		}
+
+		$versionString = Html::rawElement(
+			'span',
+			array( 'class' => 'mw-version-skin-version' ),
+			$canonicalVersion
+		);
+
+		if ( $vcsVersion ) {
+			if ( $vcsLink ) {
+				$vcsVerString = Linker::makeExternalLink(
+					$vcsLink,
+					$this->msg( 'version-version', $vcsVersion ),
+					true,
+					'',
+					array( 'class' => 'mw-version-skin-vcs-version' )
+				);
+			} else {
+				$vcsVerString = Html::element( 'span',
+					array( 'class' => 'mw-version-skin-vcs-version' ),
+					"({$vcsVersion})"
+				);
+			}
+			$versionString .= " {$vcsVerString}";
+
+			if ( $vcsDate ) {
+				$vcsTimeString = Html::element( 'span',
+					array( 'class' => 'mw-version-skin-vcs-timestamp' ),
+					$this->getLanguage()->timeanddate( $vcsDate, true )
+				);
+				$versionString .= " {$vcsTimeString}";
+			}
+			$versionString = Html::rawElement( 'span',
+				array( 'class' => 'mw-version-skin-meta-version' ),
+				$versionString
+			);
+		}
+
+		// ... and license information; if a license file exists we
+		// will link to it
+		$licenseLink = '';
+		if ( isset( $skin['name'] ) ) {
+			$licenseName = null;
+			if ( isset( $skin['license-name'] ) ) {
+				$licenseName = $out->parseInline( $skin['license-name'] );
+			} elseif ( $this->getExtLicenseFileName( $extensionPath ) ) {
+				$licenseName = $this->msg( 'version-ext-license' );
+			}
+			if ( $licenseName !== null ) {
+				$licenseLink = Linker::link(
+					$this->getPageTitle( 'License/' . $skin['name'] ),
+					$licenseName,
+					array(
+						'class' => 'mw-version-skin-license',
+						'dir' => 'auto',
+					)
+				);
+			}
+		}
+
+		// ... and generate the description; which can be a parameterized l10n message
+		// in the form array( <msgname>, <parameter>, <parameter>... ) or just a straight
+		// up string
+		if ( isset( $skin['descriptionmsg'] ) ) {
+			// Localized description of extension
+			$descriptionMsg = $skin['descriptionmsg'];
+
+			if ( is_array( $descriptionMsg ) ) {
+				$descriptionMsgKey = $descriptionMsg[0]; // Get the message key
+				array_shift( $descriptionMsg ); // Shift out the message key to get the parameters only
+				array_map( "htmlspecialchars", $descriptionMsg ); // For sanity
+				$description = $this->msg( $descriptionMsgKey, $descriptionMsg )->text();
+			} else {
+				$description = $this->msg( $descriptionMsg )->text();
+			}
+		} elseif ( isset( $skin['description'] ) ) {
+			// Non localized version
+			$description = $skin['description'];
+		} else {
+			$description = '';
+		}
+		$description = $out->parseInline( $description );
+
+		// ... now get the authors for this extension
+		$authors = isset( $skin['author'] ) ? $skin['author'] : array();
+		$authors = $this->listAuthors( $authors, $skin['name'], $skinPath );
+
+		// Finally! Create the table
+		$html = Html::openElement( 'tr', array(
+				'class' => 'mw-version-skin',
+				'id' => "mw-version-skin-{$skin['name']}"
+			)
+		);
+
+		$html .= Html::rawElement( 'td', array(), $skinNameLink );
+		$html .= Html::rawElement( 'td', array(), $versionString );
+		$html .= Html::rawElement( 'td', array(), $licenseLink );
+		$html .= Html::rawElement( 'td', array( 'class' => 'mw-version-skin-description' ), $description );
+		$html .= Html::rawElement( 'td', array( 'class' => 'mw-version-skin-authors' ), $authors );
 
 		$html .= Html::closeElement( 'tr' );
 
