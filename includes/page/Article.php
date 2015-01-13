@@ -1129,7 +1129,7 @@ class Article implements Page {
 			return false;
 		}
 
-		if ( $rc->getPerformer()->getName() == $user->getName() ) {
+		if ( $rc->getPerformer()->equals( $user ) ) {
 			// Don't show a patrol link for own creations. If the user could
 			// patrol them, they already would be patrolled
 			return false;
