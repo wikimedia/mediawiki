@@ -40,7 +40,7 @@ use Monolog\Formatter\FormatterInterface;
  *         'class' => 'MWLoggerMonologSamplingHandler',
  *         'args' => array(
  *           function() {
- *             return MWLogger::getProvider()->getHandler( 'some-handler');
+ *             return MWLoggerFactory::getProvider()->getHandler( 'some-handler');
  *           },
  *           2, // emit logs with a 1:2 chance
  *         ),

@@ -31,7 +31,7 @@
  * See documentation in DefaultSettings.php for detailed explanations of each
  * variable.
  *
- * @see MWLogger
+ * @see MWLoggerFactory
  * @since 1.25
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2014 Bryan Davis and Wikimedia Foundation.

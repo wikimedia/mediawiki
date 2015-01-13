@@ -1078,7 +1078,7 @@ function wfDebug( $text, $dest = 'all', array $context = array() ) {
 		$context['prefix'] = $wgDebugLogPrefix;
 	}
 
-	$logger = MWLogger::getInstance( 'wfDebug' );
+	$logger = MWLoggerFactory::getInstance( 'wfDebug' );
 	$logger->debug( $text, $context );
 }
 
@@ -1182,7 +1182,7 @@ function wfDebugLog(
 		MWDebug::debugMsg( "[{$logGroup}] {$text}\n" );
 	}
 
-	$logger = MWLogger::getInstance( $logGroup );
+	$logger = MWLoggerFactory::getInstance( $logGroup );
 	$context['private'] = ( $dest === 'private' );
 	$logger->info( $text, $context );
 }
@@ -1196,7 +1196,7 @@ function wfDebugLog(
  * @param array $context Additional logging context data
  */
 function wfLogDBError( $text, array $context = array() ) {
-	$logger = MWLogger::getInstance( 'wfLogDBError' );
+	$logger = MWLoggerFactory::getInstance( 'wfLogDBError' );
 	$logger->error( trim( $text ), $context );
 }
 
@@ -1259,7 +1259,7 @@ function wfLogWarning( $msg, $callerOffset = 1, $level = E_USER_WARNING ) {
  */
 function wfErrorLog( $text, $file, array $context = array() ) {
 	wfDeprecated( __METHOD__, '1.25' );
-	$logger = MWLogger::getInstance( 'wfErrorLog' );
+	$logger = MWLoggerFactory::getInstance( 'wfErrorLog' );
 	$context['destination'] = $file;
 	$logger->info( trim( $text ), $context );
 }
@@ -1334,7 +1334,7 @@ function wfLogProfilingData() {
 
 	$ctx['output'] = $profiler->getOutput();
 
-	$log = MWLogger::getInstance( 'profileoutput' );
+	$log = MWLoggerFactory::getInstance( 'profileoutput' );
 	$log->info( "Elapsed: {elapsed}; URL: <{url}>\n{output}", $ctx );
 }
 

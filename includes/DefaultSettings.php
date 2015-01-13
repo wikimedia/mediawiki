@@ -5289,16 +5289,16 @@ $wgDebugDumpSqlLength = 500;
 $wgDebugLogGroups = array();
 
 /**
- * Default service provider for creating MWLogger instances.
+ * Default service provider for creating Psr\Log\LoggerInterface instances.
  *
  * The value should be an array suitable for use with
  * ObjectFactory::getObjectFromSpec(). The created object is expected to
  * implement the MWLoggerSpi interface. See ObjectFactory for additional
  * details.
  *
- * Alternately the MWLogger::registerProvider method can be called to inject
- * an MWLoggerSpi instance into MWLogger and bypass the use of this
- * configuration variable entirely.
+ * Alternately the MWLoggerFactory::registerProvider method can be called to
+ * inject an MWLoggerSpi instance into MWLoggerFactory and bypass the use of
+ * this configuration variable entirely.
  *
  * @since 1.25
  * @var array $wgMWLoggerDefaultSpi

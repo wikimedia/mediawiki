@@ -18,9 +18,10 @@
  * @file
  */
 
+
 /**
- * MWLogger service provider that creates \Psr\Log\NullLogger instances.
- * A NullLogger silently discards all log events sent to it.
+ * MWLoggerFactory service provider that creates \Psr\Log\NullLogger
+ * instances. A NullLogger silently discards all log events sent to it.
  *
  * Usage:
  * @code
@@ -29,7 +30,7 @@
  * );
  * @endcode
  *
- * @see MWLogger
+ * @see MWLoggerFactory
  * @since 1.25
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2014 Bryan Davis and Wikimedia Foundation.
@@ -51,7 +52,7 @@ class MWLoggerNullSpi implements MWLoggerSpi {
 	 * Get a logger instance.
 	 *
 	 * @param string $channel Logging channel
-	 * @return MWLogger Logger instance
+	 * @return \Psr\Log\NullLogger Logger instance
 	 */
 	public function getLogger( $channel ) {
 		return $this->singleton;
