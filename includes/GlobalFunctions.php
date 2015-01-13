@@ -4029,6 +4029,7 @@ function wfGetLangConverterCacheStorage() {
  * @deprecated 1.25
  */
 function wfRunHooks( $event, array $args = array(), $deprecatedVersion = null ) {
+	wfDeprecated( __METHOD__, '1.25' );
 	return Hooks::run( $event, $args, $deprecatedVersion );
 }
 
