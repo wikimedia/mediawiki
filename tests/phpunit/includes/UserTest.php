@@ -356,6 +356,9 @@ class UserTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @covers User::equals
+	 */
 	public function testEquals() {
 		$first = User::newFromName( 'EqualUser' );
 		$second = User::newFromName( 'EqualUser' );
