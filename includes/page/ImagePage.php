@@ -241,11 +241,12 @@ class ImagePage extends Article {
 			'<li><a href="#filehistory">' . $this->getContext()->msg( 'filehist' )->escaped() . '</a></li>',
 			'<li><a href="#filelinks">' . $this->getContext()->msg( 'imagelinks' )->escaped() . '</a></li>',
 		);
+
+		Hooks::run( 'ImagePageShowTOC', array( $this, &$r ) );
+
 		if ( $metadata ) {
 			$r[] = '<li><a href="#metadata">' . $this->getContext()->msg( 'metadata' )->escaped() . '</a></li>';
 		}
-
-		Hooks::run( 'ImagePageShowTOC', array( $this, &$r ) );
 
 		return '<ul id="filetoc">' . implode( "\n", $r ) . '</ul>';
 	}
