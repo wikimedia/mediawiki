@@ -47,8 +47,13 @@ class WikiImporter {
 	 * Creates an ImportXMLReader drawing from the source provided
 	 * @param ImportStreamSource $source
 	 * @param Config $config
+	 * @throws Exception
 	 */
 	function __construct( ImportStreamSource $source, Config $config = null ) {
+		if ( !class_exists( 'XMLReader' ) ) {
+			throw new Exception( 'Import requires PHP to have been compiled with libxml support' );
+		}
+
 		$this->reader = new XMLReader();
 		if ( !$config ) {
 			wfDeprecated( __METHOD__ . ' without a Config instance', '1.25' );
@@ -60,11 +65,22 @@ class WikiImporter {
 			stream_wrapper_register( 'uploadsource', 'UploadSourceAdapter' );
 		}
 		$id = UploadSourceAdapter::registerSource( $source );
+
+		// Enable the entity loader, as it is needed for loading external URLs via
+		// XMLReader::open (T86036)
+		$oldDisable = libxml_disable_entity_loader( false );
 		if ( defined( 'LIBXML_PARSEHUGE' ) ) {
-			$this->reader->open( "uploadsource://$id", null, LIBXML_PARSEHUGE );
+			$status = $this->reader->open( "uploadsource://$id", null, LIBXML_PARSEHUGE );
 		} else {
-			$this->reader->open( "uploadsource://$id" );
+			$status = $this->reader->open( "uploadsource://$id" );
 		}
+		if ( !$status ) {
+			$error = libxml_get_last_error();
+			libxml_disable_entity_loader( $oldDisable );
+			throw new MWException( 'Encountered an internal error while initializing WikiImporter object: ' .
+				$error->message );
+		}
+		libxml_disable_entity_loader( $oldDisable );
 
 		// Default callbacks
 		$this->setRevisionCallback( array( $this, "importRevision" ) );
