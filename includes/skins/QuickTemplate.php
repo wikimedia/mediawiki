@@ -51,6 +51,19 @@ abstract class QuickTemplate {
 	}
 
 	/**
+	* extends the $value by $name
+	* @param string $name
+	* @param mixed $value
+	*/
+	public function extend( $name, $value) {
+		if ( $this->haveData( $name ) ) {
+			$this->data[$name] = $this->data[$name] . $value;
+		} else {
+			$this->data[$name] = $value;
+		}
+	}
+
+	/**
 	 * Gets the template data requested
 	 * @since 1.22
 	 * @param string $name Key for the data

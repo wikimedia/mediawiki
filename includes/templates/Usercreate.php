@@ -248,6 +248,10 @@ class UsercreateTemplate extends BaseTemplate {
 				}
 			}
 
+			// A separate placeholder for any inserting any extrafields, e.g used by ConfirmEdit extension
+			if ( $this->haveData( 'extrafields' ) ) {
+				echo $this->data['extrafields'];
+			}
 			// JS attempts to move the image CAPTCHA below this part of the form,
 			// so skip one index.
 			$tabIndex++;
