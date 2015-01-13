@@ -307,6 +307,7 @@ return array(
 	),
 	'jquery.throttle-debounce' => array(
 		'scripts' => 'resources/lib/jquery/jquery.ba-throttle-debounce.js',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.validate' => array(
 		'scripts' => 'resources/lib/jquery/jquery.validate.js',
