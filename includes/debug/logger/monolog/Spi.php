@@ -19,7 +19,8 @@
  */
 
 /**
- * MWLogger service provider that creates loggers implemented by Monolog.
+ * MWLoggerFactory service provider that creates loggers implemented by
+ * Monolog.
  *
  * Configured using an array of configuration data with the keys 'loggers',
  * 'processors', 'handlers' and 'formatters'.
@@ -29,8 +30,8 @@
  * section.
  *
  * Configuration will most typically be provided in the $wgMWLoggerDefaultSpi
- * global configuration variable used by MWLogger to construct its default SPI
- * provider:
+ * global configuration variable used by MWLoggerFactory to construct its
+ * default SPI provider:
  * @code
  * $wgMWLoggerDefaultSpi = array(
  *   'class' => 'MWLoggerMonologSpi',
@@ -152,7 +153,7 @@ class MWLoggerMonologSpi implements MWLoggerSpi {
 	 * name will return the cached instance.
 	 *
 	 * @param string $channel Logging channel
-	 * @return MWLogger Logger instance
+	 * @return \Psr\Log\LoggerInterface Logger instance
 	 */
 	public function getLogger( $channel ) {
 		if ( !isset( $this->singletons['loggers'][$channel] ) ) {
@@ -163,7 +164,7 @@ class MWLoggerMonologSpi implements MWLoggerSpi {
 				$this->config['loggers']['@default'];
 
 			$monolog = $this->createLogger( $channel, $spec );
-			$this->singletons['loggers'][$channel] = new MWLogger( $monolog );
+			$this->singletons['loggers'][$channel] = $monolog;
 		}
 
 		return $this->singletons['loggers'][$channel];

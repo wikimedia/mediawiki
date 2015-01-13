@@ -19,7 +19,8 @@
  */
 
 /**
- * MWLogger service provider that creates MWLoggerLegacyLogger instances.
+ * MWLoggerFactory service provider that creates MWLoggerLegacyLogger
+ * instances.
  *
  * Usage:
  * @code
@@ -28,7 +29,7 @@
  * );
  * @endcode
  *
- * @see MWLogger
+ * @see MWLoggerFactory
  * @since 1.25
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2014 Bryan Davis and Wikimedia Foundation.
@@ -45,7 +46,7 @@ class MWLoggerLegacySpi implements MWLoggerSpi {
 	 * Get a logger instance.
 	 *
 	 * @param string $channel Logging channel
-	 * @return MWLogger Logger instance
+	 * @return \Psr\Log\LoggerInterface Logger instance
 	 */
 	public function getLogger( $channel ) {
 		if ( !isset( $this->singletons[$channel] ) ) {
