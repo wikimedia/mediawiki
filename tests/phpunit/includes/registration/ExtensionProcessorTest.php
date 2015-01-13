@@ -18,6 +18,23 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 		'name' => 'FooBar',
 	);
 
+	/**
+	 * @covers ExtensionProcessor::extractInfo
+	 */
+	public function testExtractInfo() {
+		// Test that attributes that begin with @ are ignored
+		$processor = new ExtensionProcessor();
+		$processor->extractInfo( $this->dir, self::$default + array(
+			'@metadata' => array( 'foobarbaz' ),
+			'AnAttribute' => array( 'omg' ),
+		) );
+
+		$extracted = $processor->getExtractedInfo();
+		$attributes = $extracted['attributes'];
+		$this->assertArrayHasKey( 'AnAttribute', $attributes );
+		$this->assertArrayNotHasKey( '@metadata', $attributes );
+	}
+
 	public static function provideRegisterHooks() {
 		return array(
 			// No hooks
