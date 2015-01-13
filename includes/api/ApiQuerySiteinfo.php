@@ -694,7 +694,97 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data = array();
 		$allowed = Skin::getAllowedSkins();
 		$default = Skin::normalizeKey( 'default' );
+		foreach ( $this->getConfig()->get( 'SkinCredits' ) as $type => $skins ) {
+			foreach ( $skins as $skin ) {
+				$ret = array();
+				$ret['type'] = $type;
+				if ( isset( $skin['name'] ) ) {
+					$ret['name'] = $skin['name'];
+				}
+				if ( isset( $skin['namemsg'] ) ) {
+					$ret['namemsg'] = $skin['namemsg'];
+				}
+				if ( isset( $skin['description'] ) ) {
+					$ret['description'] = $skin['description'];
+				}
+				if ( isset( $skin['descriptionmsg'] ) ) {
+					// Can be a string or array( key, param1, param2, ... )
+					if ( is_array( $skin['descriptionmsg'] ) ) {
+						$ret['descriptionmsg'] = $skin['descriptionmsg'][0];
+						$ret['descriptionmsgparams'] = array_slice( $skin['descriptionmsg'], 1 );
+						$this->getResult()->setIndexedTagName( $ret['descriptionmsgparams'], 'param' );
+					} else {
+						$ret['descriptionmsg'] = $skin['descriptionmsg'];
+					}
+				}
+				if ( isset( $skin['author'] ) ) {
+					$ret['author'] = is_array( $skin['author'] ) ?
+						implode( ', ', $skin['author'] ) : $skin['author'];
+				}
+				if ( isset( $skin['url'] ) ) {
+					$ret['url'] = $skin['url'];
+				}
+				if ( isset( $skin['version'] ) ) {
+					$ret['version'] = $skin['version'];
+				} elseif ( isset( $skin['svn-revision'] ) &&
+					preg_match( '/\$(?:Rev|LastChangedRevision|Revision): *(\d+)/',
+						$skin['svn-revision'], $m )
+				) {
+					$ret['version'] = 'r' . $m[1];
+				}
+				if ( isset( $skin['path'] ) ) {
+					$skinPath = dirname( $skin['path'] );
+					$gitInfo = new GitInfo( $skinPath );
+					$vcsVersion = $gitInfo->getHeadSHA1();
+					if ( $vcsVersion !== false ) {
+						$ret['vcs-system'] = 'git';
+						$ret['vcs-version'] = $vcsVersion;
+						$ret['vcs-url'] = $gitInfo->getHeadViewUrl();
+						$vcsDate = $gitInfo->getHeadCommitDate();
+						if ( $vcsDate !== false ) {
+							$ret['vcs-date'] = wfTimestamp( TS_ISO_8601, $vcsDate );
+						}
+					} else {
+						$svnInfo = SpecialVersion::getSvnInfo( $skinPath );
+						if ( $svnInfo !== false ) {
+							$ret['vcs-system'] = 'svn';
+							$ret['vcs-version'] = $svnInfo['checkout-rev'];
+							$ret['vcs-url'] = isset( $svnInfo['viewvc-url'] ) ? $svnInfo['viewvc-url'] : '';
+						}
+					}
+
+					if ( SpecialVersion::getExtLicenseFileName( $skinPath ) ) {
+						$ret['license-name'] = isset( $skin['license-name'] ) ? $skin['license-name'] : '';
+						$ret['license'] = SpecialPage::getTitleFor(
+							'Version',
+							"License/{$ext['name']}"
+						)->getLinkURL();
+					}
+
+					if ( SpecialVersion::getExtAuthorsFileName( $skinPath ) ) {
+						$ret['credits'] = SpecialPage::getTitleFor(
+							'Version',
+							"Credits/{$ext['name']}"
+						)->getLinkURL();
+					}
+				}
+				if ( !isset( $allowed[$name] ) ) {
+					$skin['unusable'] = '';
+				}
+				if ( $type === $default ) {
+					$ret['default'] = '';
+				}
+					$data[] = $ret;
+				}
+			}
+
+		/*
+		 * This is here for backward compatibility.
+		 * This is deprecated since MediaWiki 1.25
+		 */
+
 		foreach ( Skin::getSkinNames() as $name => $displayName ) {
+
 			$msg = $this->msg( "skinname-{$name}" );
 			$code = $this->getParameter( 'inlanguagecode' );
 			if ( $code && Language::isValidCode( $code ) ) {
@@ -715,6 +805,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			}
 			$data[] = $skin;
 		}
+
 		$this->getResult()->setIndexedTagName( $data, 'skin' );
 
 		return $this->getResult()->addValue( 'query', $property, $data );

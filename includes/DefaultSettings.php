@@ -6361,6 +6361,60 @@ $wgAutoloadAttemptLowercase = true;
 $wgExtensionCredits = array();
 
 /**
+ * An array of information about installed skins keyed by their type.
+ *
+ * All but 'name', 'path' and 'author' can be omitted.
+ *
+ * @code
+ * $wgSkinCredits[$type][] = array(
+ *     'path' => __FILE__,
+ *     'name' => 'Example skin',
+ *     'namemsg' => 'exampleskin-name',
+ *     'author' => array(
+ *         'Foo Barstein',
+ *     ),
+ *     'version' => '1.9.0',
+ *     'url' => 'http://example.org/example-skin/',
+ *     'descriptionmsg' => 'exampleskin-desc',
+ *     'license-name' => 'GPL-2.0',
+ * );
+ * @endcode
+ *
+ * The skins are listed on Special:Version. This page also looks for a file
+ * named COPYING or LICENSE (optional .txt extension) and provides a link to
+ * view said file. When the 'license-name' key is specified, this file is
+ * interpreted as wikitext.
+ *
+ * - $type: One of 'skin',
+ *    or any additional types as specified through the
+ *    ExtensionTypes hook as used in SpecialVersion::getExtensionTypes().
+ *
+ * - name: Name of skin as an inline string instead of localizable message.
+ *    Do not omit this even if 'namemsg' is provided, as it is used to override
+ *    the path Special:Version uses to find skin's license info, and is
+ *    required for backwards-compatibility with MediaWiki 1.23 and older.
+ *
+ * - namemsg (since MW 1.24): A message key for a message containing the
+ *    skin's name, if the name is localizable. (For example, skin names
+ *    usually are.)
+ *
+ * - author: A string or an array of strings. Authors can be linked using
+ *    the regular wikitext link syntax. To have an internationalized version of
+ *    "and others" show, add an element "...". This element can also be linked,
+ *    for instance "[http://example ...]".
+ *
+ * - descriptionmsg: A message key or an an array with message key and parameters:
+ *    `'descriptionmsg' => 'exampleskin-desc',`
+ *
+ * - description: Description of extension as an inline string instead of
+ *    localizable message (omit in favour of 'descriptionmsg').
+ *
+ * - license-name: Short name of the license (used as label for the link), such
+ *   as "GPL-2.0" or "MIT" (https://spdx.org/licenses/ for a list of identifiers).
+ */
+$wgSkinCredits = array();
+
+/**
  * Authentication plugin.
  * @var $wgAuth AuthPlugin
  */
