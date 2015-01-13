@@ -1940,23 +1940,38 @@ class ImportStreamSource implements ImportSource {
 		if ( $page == '' ) {
 			return Status::newFatal( 'import-noarticle' );
 		}
-		$link = Title::newFromText( "$interwiki:Special:Export/$page" );
-		if ( is_null( $link ) || !$link->isExternal() ) {
+
+		# Look up the first interwiki prefix, and let the foreign site handle
+		# subsequent interwiki prefixes
+		$firstIwPrefix = strtok( $interwiki, ':' );
+		$firstIw = Interwiki::fetch( $firstIwPrefix );
+		if ( !$firstIw ) {
 			return Status::newFatal( 'importbadinterwiki' );
-		} else {
-			$params = array();
-			if ( $history ) {
-				$params['history'] = 1;
-			}
-			if ( $templates ) {
-				$params['templates'] = 1;
-			}
-			if ( $pageLinkDepth ) {
-				$params['pagelink-depth'] = $pageLinkDepth;
-			}
-			$url = $link->getFullURL( $params );
-			# For interwikis, use POST to avoid redirects.
-			return ImportStreamSource::newFromURL( $url, "POST" );
 		}
+
+		$additionalIwPrefixes = strtok( '' );
+		if ( $additionalIwPrefixes ) {
+			$additionalIwPrefixes .= ':';
+		}
+		# Have to do a DB-key replacement ourselves; otherwise spaces get
+		# URL-encoded to +, which is wrong in this case. Similar to logic in
+		# Title::getLocalURL
+		$link = $firstIw->getURL( str_replace( ' ', '_',
+			"${additionalIwPrefixes}Special:Export/$page" ) );
+
+		$params = array();
+		if ( $history ) {
+			$params['history'] = 1;
+		}
+		if ( $templates ) {
+			$params['templates'] = 1;
+		}
+		if ( $pageLinkDepth ) {
+			$params['pagelink-depth'] = $pageLinkDepth;
+		}
+
+		$url = wfAppendQuery( $link, $params );
+		# For interwikis, use POST to avoid redirects.
+		return ImportStreamSource::newFromURL( $url, "POST" );
 	}
 }
