@@ -247,7 +247,8 @@ class UsercreateTemplate extends BaseTemplate {
 				<?php
 				}
 			}
-
+			// A separate placeholder for captcha, for use by ConfirmEdit extension 
+			$this->html( 'captcha' );
 			// JS attempts to move the image CAPTCHA below this part of the form,
 			// so skip one index.
 			$tabIndex++;

@@ -138,6 +138,11 @@ class UserloginTemplate extends BaseTemplate {
 				<?php } ?>
 			</div>
 
+			<?php 
+			// A separate placeholder for captcha, for use by ConfirmEdit extension 
+			$this->html( 'captcha' ); 
+			?>
+
 			<div class="mw-ui-vform-field">
 				<?php
 				$attrs = array(
