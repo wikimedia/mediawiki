@@ -172,6 +172,8 @@ class SpecialAllPages extends IncludableSpecialPage {
 	function showChunk( $namespace = NS_MAIN, $from = false, $to = false, $hideredirects = false ) {
 		$output = $this->getOutput();
 
+		$collection = new PageCollection();
+
 		$fromList = $this->getNamespaceKeyAndText( $namespace, $from );
 		$toList = $this->getNamespaceKeyAndText( $namespace, $to );
 		$namespaces = $this->getContext()->getLanguage()->getNamespaces();
@@ -184,50 +186,21 @@ class SpecialAllPages extends IncludableSpecialPage {
 			$out = $this->msg( 'allpages-bad-ns', $namespace )->parse();
 			$namespace = NS_MAIN;
 		} else {
+			$collection->setNamespaceId( $namespace );
 			list( $namespace, $fromKey, $from ) = $fromList;
 			list( , $toKey, $to ) = $toList;
-
-			$dbr = wfGetDB( DB_SLAVE );
-			$conds = array(
-				'page_namespace' => $namespace,
-				'page_title >= ' . $dbr->addQuotes( $fromKey )
-			);
-
-			if ( $hideredirects ) {
-				$conds['page_is_redirect'] = 0;
-			}
-
-			if ( $toKey !== "" ) {
-				$conds[] = 'page_title <= ' . $dbr->addQuotes( $toKey );
-			}
-
-			$res = $dbr->select( 'page',
-				array( 'page_namespace', 'page_title', 'page_is_redirect', 'page_id' ),
-				$conds,
-				__METHOD__,
-				array(
-					'ORDER BY' => 'page_title',
-					'LIMIT' => $this->maxPerPage + 1,
-					'USE INDEX' => 'name_title',
-				)
-			);
-
-			if ( $res->numRows() > 0 ) {
-				$out = Xml::openElement( 'ul', array( 'class' => 'mw-allpages-chunk' ) );
-				while ( ( $n < $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
-					$t = Title::newFromRow( $s );
-					if ( $t ) {
-						$out .= '<li' .
-							( $s->page_is_redirect ? ' class="allpagesredirect"' : '' ) .
-							'>' .
-							Linker::link( $t ) .
-							"</li>\n";
-					} else {
-						$out .= '<li>[[' . htmlspecialchars( $s->page_title ) . "]]</li>\n";
-					}
-					$n++;
+			$collection->setDatabaseRange( $fromKey, $toKey );
+			$collection->loadFromDatabase();
+			if ( count( $collection ) > 0 ) {
+				$out = Html::openElement( 'ul', array( 'class' => 'mw-allpages-chunk' ) );
+				foreach ( $collection as $item ) {
+					$title = $item->getTitle();
+					$attrs = array(
+						'class' => $title->isRedirect() ? 'allpagesredirect' : ''
+					);
+					$out .= Html::openElement( 'li', $attrs ) . Linker::link( $title ) . Html::closeElement( 'li' );
 				}
-				$out .= Xml::closeElement( 'ul' );
+				$out .= Html::closeElement( 'ul' );
 			} else {
 				$out = '';
 			}
@@ -238,44 +211,6 @@ class SpecialAllPages extends IncludableSpecialPage {
 			return;
 		}
 
-		if ( $from == '' ) {
-			// First chunk; no previous link.
-			$prevTitle = null;
-		} else {
-			# Get the last title from previous chunk
-			$dbr = wfGetDB( DB_SLAVE );
-			$res_prev = $dbr->select(
-				'page',
-				'page_title',
-				array( 'page_namespace' => $namespace, 'page_title < ' . $dbr->addQuotes( $from ) ),
-				__METHOD__,
-				array( 'ORDER BY' => 'page_title DESC',
-					'LIMIT' => $this->maxPerPage, 'OFFSET' => ( $this->maxPerPage - 1 )
-				)
-			);
-
-			# Get first title of previous complete chunk
-			if ( $dbr->numrows( $res_prev ) >= $this->maxPerPage ) {
-				$pt = $dbr->fetchObject( $res_prev );
-				$prevTitle = Title::makeTitle( $namespace, $pt->page_title );
-			} else {
-				# The previous chunk is not complete, need to link to the very first title
-				# available in the database
-				$options = array( 'LIMIT' => 1 );
-				if ( !$dbr->implicitOrderby() ) {
-					$options['ORDER BY'] = 'page_title';
-				}
-				$reallyFirstPage_title = $dbr->selectField( 'page', 'page_title',
-					array( 'page_namespace' => $namespace ), __METHOD__, $options );
-				# Show the previous link if it s not the current requested chunk
-				if ( $from != $reallyFirstPage_title ) {
-					$prevTitle = Title::makeTitle( $namespace, $reallyFirstPage_title );
-				} else {
-					$prevTitle = null;
-				}
-			}
-		}
-
 		$self = $this->getPageTitle();
 
 		$topLinks = array(
@@ -284,8 +219,12 @@ class SpecialAllPages extends IncludableSpecialPage {
 		$bottomLinks = array();
 
 		# Do we put a previous link ?
-		if ( $prevTitle && $pt = $prevTitle->getText() ) {
-			$query = array( 'from' => $prevTitle->getText() );
+		$prevItem = $collection->getPreviousItem();
+		if ( $prevItem ) {
+			$titleText = $prevItem->getTitle()->getText();
+			$query = array(
+				'from' => $titleText,
+			);
 
 			if ( $namespace ) {
 				$query['namespace'] = $namespace;
@@ -297,7 +236,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 
 			$prevLink = Linker::linkKnown(
 				$self,
-				$this->msg( 'prevpage', $pt )->escaped(),
+				$this->msg( 'prevpage', $titleText )->escaped(),
 				array(),
 				$query
 			);
@@ -305,9 +244,9 @@ class SpecialAllPages extends IncludableSpecialPage {
 			$bottomLinks[] = $prevLink;
 		}
 
-		if ( $n == $this->maxPerPage && $s = $res->fetchObject() ) {
-			# $s is the first link of the next chunk
-			$t = Title::makeTitle( $namespace, $s->page_title );
+		$nextItem = $collection->getNextItem();
+		if ( $nextItem ) {
+			$t = $nextItem->getTitle();
 			$query = array( 'from' => $t->getText() );
 
 			if ( $namespace ) {
