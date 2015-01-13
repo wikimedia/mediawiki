@@ -14,6 +14,8 @@
 		config: {
 			wgArticlePath: '/wiki/$1',
 
+			wgSiteName: 'Wiki',
+
 			// For formatnum tests
 			wgUserLanguage: 'en'
 		},
@@ -199,9 +201,9 @@
 		assert.equal( hello.format, 'escaped', 'Message.escaped correctly updated the "format" property' );
 
 		assert.ok( mw.messages.set( 'multiple-curly-brace', '"{{SITENAME}}" is the home of {{int:other-message}}' ), 'mw.messages.set: Register' );
-		assertMultipleFormats( ['multiple-curly-brace'], ['text', 'parse'], '"' + mw.config.get( 'wgSiteName') + '" is the home of Other Message', 'Curly brace format works correctly' );
+		assertMultipleFormats( ['multiple-curly-brace'], ['text', 'parse'], '"Wiki" is the home of Other Message', 'Curly brace format works correctly' );
 		assert.equal( mw.message( 'multiple-curly-brace' ).plain(), mw.messages.get( 'multiple-curly-brace' ), 'Plain format works correctly for curly brace message' );
-		assert.equal( mw.message( 'multiple-curly-brace' ).escaped(), mw.html.escape( '"' + mw.config.get( 'wgSiteName') + '" is the home of Other Message' ), 'Escaped format works correctly for curly brace message' );
+		assert.equal( mw.message( 'multiple-curly-brace' ).escaped(), mw.html.escape( '"Wiki" is the home of Other Message' ), 'Escaped format works correctly for curly brace message' );
 
 		assert.ok( mw.messages.set( 'multiple-square-brackets-and-ampersand', 'Visit the [[Project:Community portal|community portal]] & [[Project:Help desk|help desk]]' ), 'mw.messages.set: Register' );
 		assertMultipleFormats( ['multiple-square-brackets-and-ampersand'], ['plain', 'text'], mw.messages.get( 'multiple-square-brackets-and-ampersand' ), 'Square bracket message is not processed' );
@@ -264,8 +266,8 @@
 		assert.equal( mw.message( 'gender-plural-msg', 'male', 1 ).plain(), '{{GENDER:male|he|she|they}} {{PLURAL:1|is|are}} awesome', 'Parameters are substituted, but gender and plural are not resolved in plain mode' );
 
 		assert.equal( mw.message( 'grammar-msg' ).plain(), mw.messages.get( 'grammar-msg' ), 'Grammar is not resolved in plain mode' );
-		assertMultipleFormats( ['grammar-msg'], ['text', 'parse'], 'Przeszukaj ' + mw.config.get( 'wgSiteName' ), 'Grammar is resolved' );
-		assert.equal( mw.message( 'grammar-msg' ).escaped(), 'Przeszukaj ' + mw.html.escape( mw.config.get( 'wgSiteName' ) ), 'Grammar is resolved in escaped mode' );
+		assertMultipleFormats( ['grammar-msg'], ['text', 'parse'], 'Przeszukaj Wiki', 'Grammar is resolved' );
+		assert.equal( mw.message( 'grammar-msg' ).escaped(), 'Przeszukaj Wiki', 'Grammar is resolved in escaped mode' );
 
 		assertMultipleFormats( ['formatnum-msg', '987654321.654321'], ['text', 'parse', 'escaped'], '987,654,321.654', 'formatnum is resolved' );
 		assert.equal( mw.message( 'formatnum-msg' ).plain(), mw.messages.get( 'formatnum-msg' ), 'formatnum is not resolved in plain mode' );
@@ -325,7 +327,7 @@
 		assert.equal( mw.msg( 'gender-plural-msg', 'female', '1' ), 'she is awesome', 'Gender test for female, plural count 1' );
 		assert.equal( mw.msg( 'gender-plural-msg', 'unknown', 10 ), 'they are awesome', 'Gender test for neutral, plural count 10' );
 
-		assert.equal( mw.msg( 'grammar-msg' ), 'Przeszukaj ' + mw.config.get( 'wgSiteName' ), 'Grammar is resolved' );
+		assert.equal( mw.msg( 'grammar-msg' ), 'Przeszukaj Wiki', 'Grammar is resolved' );
 
 		assert.equal( mw.msg( 'formatnum-msg', '987654321.654321' ), '987,654,321.654', 'formatnum is resolved' );
 
