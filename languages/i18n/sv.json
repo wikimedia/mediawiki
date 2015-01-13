@@ -78,7 +78,7 @@
 	"tog-watchdefault": "Lägg till sidor och filer jag redigerar i min bevakningslista",
 	"tog-watchmoves": "Lägg till sidor och filer jag flyttar i min bevakningslista",
 	"tog-watchdeletion": "Lägg till sidor och filer jag raderar i min bevakningslista",
-	"tog-watchrollback": "Lägg till sidor där jag har utfört en tillbakarullning till min övervakningslista",
+	"tog-watchrollback": "Lägg till sidor där jag har utfört en tillbakarullning till min bevakningslista",
 	"tog-minordefault": "Markera automatiskt ändringar som mindre",
 	"tog-previewontop": "Visa förhandsgranskningen ovanför redigeringsrutan",
 	"tog-previewonfirst": "Visa förhandsgranskning vid första redigeringen",

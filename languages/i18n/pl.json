@@ -289,6 +289,7 @@
 	"pool-queuefull": "Kolejka zadań jest pełna",
 	"pool-errorunknown": "Błąd nieznany",
 	"pool-servererror": "Usługa licznika nie jest dostępna ($1).",
+	"poolcounter-usage-error": "Błąd użycia: $1",
 	"aboutsite": "O {{GRAMMAR:MS.lp|{{SITENAME}}}}",
 	"aboutpage": "Project:O {{GRAMMAR:MS.lp|{{SITENAME}}}}",
 	"copyright": "Treść udostępniana na licencji $1, jeśli nie podano inaczej.",

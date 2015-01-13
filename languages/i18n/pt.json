@@ -1924,6 +1924,7 @@
 	"namespace": "Domínio:",
 	"invert": "Inverter seleção",
 	"tooltip-invert": "Marque esta caixa para esconder as alterações a páginas no domínio selecionado (e no domínio associado, se escolheu fazê-lo)",
+	"tooltip-whatlinkshere-invert": "Marque esta caixa de seleção para ocultar ligações de páginas dentro do domínio selecionado.",
 	"namespace_association": "Domínio associado",
 	"tooltip-namespace_association": "Marque esta caixa para incluir também o domínio de conteúdo ou de discussão associado à sua seleção",
 	"blanknamespace": "(Principal)",

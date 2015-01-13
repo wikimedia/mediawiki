@@ -21,7 +21,8 @@
 			"Kc kennylau",
 			"Mywood",
 			"Impersonator 1",
-			"Cedric tsan cantonais"
+			"Cedric tsan cantonais",
+			"Liuxinyu970226"
 		]
 	},
 	"tog-underline": "連結加底線：",
@@ -663,7 +664,7 @@
 	"content-model-text": "純文字",
 	"content-model-javascript": "JavaScript程式語言",
 	"content-model-css": "層疊樣式表",
-	"duplicate-args-category": "爾版用徂幾個重複加類嘅模。",
+	"duplicate-args-category": "爾版用徂幾個重複加類嘅模",
 	"expensive-parserfunction-warning": "警告: 呢一版有太多耗費嘅語法功能呼叫。\n\n佢應該少過$2次呼叫，佢而家係$1次呼叫。",
 	"expensive-parserfunction-category": "響版度有太多嘅耗費嘅語法功能呼叫",
 	"post-expand-template-inclusion-warning": "警告: 包含模大細太大。\n有啲模將唔會包含。",

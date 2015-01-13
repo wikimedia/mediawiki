@@ -1941,6 +1941,7 @@
 	"namespace": "Namespace:",
 	"invert": "Inverti selezione",
 	"tooltip-invert": "Seleziona questa casella per nascondere le modifiche alle pagine all'interno del namespace selezionato (ed il namespace associato, se selezionato)",
+	"tooltip-whatlinkshere-invert": "Seleziona questa casella per nascondere i collegamenti dalle pagine all'interno del namespace selezionato",
 	"namespace_association": "Namespace associato",
 	"tooltip-namespace_association": "Seleziona questa casella per includere anche la pagina di discussione o l'oggetto del namespace associato con il namespace selezionato",
 	"blanknamespace": "(Principale)",
