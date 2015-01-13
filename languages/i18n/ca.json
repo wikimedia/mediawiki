@@ -3155,7 +3155,7 @@
 	"api-error-stashfilestorage": "S'ha produït un error en emmagatzemar el fitxer en l'espai temporal.",
 	"api-error-stashzerolength": "El servidor no ha pogut desar el fitxer a l'espai temporal perquè tenia longitud zero.",
 	"api-error-stashnotloggedin": "Cal haver iniciat una sessió per desar fitxers en l'espai temporal de càrrega.",
-	"api-error-stashwrongowner": "El fitxer que provàveu d'accedir en l'espai de temporal no us pertany.",
+	"api-error-stashwrongowner": "El fitxer que provàveu d'accedir en l'espai temporal no us pertany.",
 	"api-error-stashnosuchfilekey": "La clau de fitxer que provàveu d'accedir en l'espai temporal no existeix.",
 	"api-error-timeout": "El servidor no ha respost en el temps esperat.",
 	"api-error-unclassified": "S'ha produït un error desconegut",
