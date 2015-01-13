@@ -450,7 +450,7 @@ class RecentChange {
 		}
 		// Users without the 'autopatrol' right can't patrol their
 		// own revisions
-		if ( $user->getName() == $this->getAttribute( 'rc_user_text' )
+		if ( $user->getName() === $this->getAttribute( 'rc_user_text' )
 			&& !$user->isAllowed( 'autopatrol' )
 		) {
 			$errors[] = array( 'markedaspatrollederror-noautopatrol' );
