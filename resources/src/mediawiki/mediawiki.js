@@ -10,8 +10,6 @@
 ( function ( $ ) {
 	'use strict';
 
-	/* Private Members */
-
 	var mw,
 		hasOwn = Object.prototype.hasOwnProperty,
 		slice = Array.prototype.slice,
@@ -19,70 +17,69 @@
 		trackQueue = [];
 
 	/**
-	 * Log a message to window.console, if possible. Useful to force logging of some
-	 * errors that are otherwise hard to detect (I.e., this logs also in production mode).
-	 * Gets console references in each invocation, so that delayed debugging tools work
-	 * fine. No need for optimization here, which would only result in losing logs.
+	 * Log a message to window.console, if possible.
+	 *
+	 * Useful to force logging of some  errors that are otherwise hard to detect (i.e., this logs
+	 * also in production mode). Gets console references in each invocation instead of caching the
+	 * reference, so that debugging tools loaded later are supported (e.g. Firebug Lite in IE).
 	 *
 	 * @private
 	 * @method log_
-	 * @param {string} msg text for the log entry.
+	 * @param {string} msg Text for the log entry.
 	 * @param {Error} [e]
 	 */
 	function log( msg, e ) {
 		var console = window.console;
 		if ( console && console.log ) {
 			console.log( msg );
-			// If we have an exception object, log it through .error() to trigger
-			// proper stacktraces in browsers that support it. There are no (known)
-			// browsers that don't support .error(), that do support .log() and
-			// have useful exception handling through .log().
+			// If we have an exception object, log it to the error channel to trigger a
+			// proper stacktraces in browsers that support it. No fallback as we have no browsers
+			// that don't support error(), but do support log().
 			if ( e && console.error ) {
 				console.error( String( e ), e );
 			}
 		}
 	}
 
-	/* Object constructors */
-
 	/**
-	 * Creates an object that can be read from or written to from prototype functions
-	 * that allow both single and multiple variables at once.
+	 * Create an object that can be read from or written to from methods that allow
+	 * interaction both with single and multiple properties at once.
 	 *
 	 *     @example
 	 *
-	 *     var addies, wanted, results;
+	 *     var collection, query, results;
 	 *
 	 *     // Create your address book
-	 *     addies = new mw.Map();
+	 *     collection = new mw.Map();
 	 *
 	 *     // This data could be coming from an external source (eg. API/AJAX)
-	 *     addies.set( {
-	 *         'John Doe' : '10 Wall Street, New York, USA',
-	 *         'Jane Jackson' : '21 Oxford St, London, UK',
-	 *         'Dominique van Halen' : 'Kalverstraat 7, Amsterdam, NL'
+	 *     collection.set( {
+	 *         'John Doe': 'john@example.org',
+	 *         'Jane Doe': 'jane@example.org',
+	 *         'George van Halen': 'gvanhalen@example.org'
 	 *     } );
 	 *
-	 *     wanted = ['Dominique van Halen', 'George Johnson', 'Jane Jackson'];
+	 *     wanted = ['Jane Doe', 'Jane Doe', 'Daniel Jackson'];
 	 *
 	 *     // You can detect missing keys first
-	 *     if ( !addies.exists( wanted ) ) {
-	 *         // One or more are missing (in this case: "George Johnson")
+	 *     if ( !collection.exists( wanted ) ) {
+	 *         // One or more are missing (in this case: "Daniel Jackson")
 	 *         mw.log( 'One or more names were not found in your address book' );
 	 *     }
 	 *
-	 *     // Or just let it give you what it can
-	 *     results = addies.get( wanted, 'Middle of Nowhere, Alaska, US' );
-	 *     mw.log( results['Jane Jackson'] ); // "21 Oxford St, London, UK"
-	 *     mw.log( results['George Johnson'] ); // "Middle of Nowhere, Alaska, US"
+	 *     // Or just let it give you what it can. Optionally fill in from a default.
+	 *     results = collection.get( wanted, 'nobody@example.com' );
+	 *     mw.log( results['Jane Doe'] ); // "jane@example.org"
+	 *     mw.log( results['Daniel Jackson'] ); // "nobody@example.com"
 	 *
 	 * @class mw.Map
 	 *
 	 * @constructor
-	 * @param {Object|boolean} [values] Value-bearing object to map, defaults to an empty object.
+	 * @param {Object|boolean} [values] The value-baring object to be mapped. Defaults to an
+	 *  empty object.
 	 *  For backwards-compatibility with mw.config, this can also be `true` in which case values
-	 *  will be copied to the Window object as global variables (T72470). Values are copied in one
-	 *  direction only. Changes to globals are not reflected in the map.
+	 *  are copied to the Window object as global variables (T72470). Values are copied in
+	 *  one direction only. Changes to globals are not reflected in the map.
 	 */
 	function Map( values ) {
 		if ( values === true ) {
@@ -133,17 +130,16 @@
 
 	Map.prototype = {
 		/**
-		 * Get the value of one or multiple keys.
+		 * Get the value of one or more keys.
 		 *
-		 * If called with no arguments, all values will be returned.
+		 * If called with no arguments, all values are returned.
 		 *
-		 * @param {string|Array} selection String key or array of keys to get values for.
-		 * @param {Mixed} [fallback] Value to use in case key(s) do not exist.
-		 * @return mixed If selection was a string returns the value or null,
-		 *  If selection was an array, returns an object of key/values (value is null if not found),
-		 *  If selection was not passed or invalid, will return the 'values' object member (be careful as
-		 *  objects are always passed by reference in JavaScript!).
-		 * @return {string|Object|null} Values as a string or object, null if invalid/inexistent.
+		 * @param {string|Array} [selection] Key or array of keys to retrieve values for.
+		 * @param {Mixed} [fallback=null] Value for keys that don't exist.
+		 * @return {Mixed|Object| null} If selection was a string, returns the value,
+		 *  If selection was an array, returns an object of key/values.
+		 *  If no selection is passed, the 'values' container is returned. (Beware that,
+		 *  as is the default in JavaScript, the object is returned by reference.)
 		 */
 		get: function ( selection, fallback ) {
 			var results, i;
@@ -171,16 +167,16 @@
 				return this.values;
 			}
 
-			// invalid selection key
+			// Invalid selection key
 			return null;
 		},
 
 		/**
-		 * Sets one or multiple key/value pairs.
+		 * Set one or more key/value pairs.
 		 *
-		 * @param {string|Object} selection String key to set value for, or object mapping keys to values.
+		 * @param {string|Object} selection Key to set value for, or object mapping keys to values
 		 * @param {Mixed} [value] Value to set (optional, only in use when key is a string)
-		 * @return {boolean} This returns true on success, false on failure.
+		 * @return {boolean} True on success, false on failure
 		 */
 		set: function ( selection, value ) {
 			var s;
@@ -199,10 +195,10 @@
 		},
 
 		/**
-		 * Checks if one or multiple keys exist.
+		 * Check if one or more keys exist.
 		 *
-		 * @param {Mixed} selection String key or array of keys to check
-		 * @return {boolean} Existence of key(s)
+		 * @param {Mixed} selection Key or array of keys to check
+		 * @return {boolean} True if the key(s) exist
 		 */
 		exists: function ( selection ) {
 			var s;
@@ -274,7 +270,7 @@
 	 * @class mw.Message
 	 *
 	 * @constructor
-	 * @param {mw.Map} map Message storage
+	 * @param {mw.Map} map Message store
 	 * @param {string} key
 	 * @param {Array} [parameters]
 	 */
@@ -288,20 +284,22 @@
 
 	Message.prototype = {
 		/**
-		 * Simple message parser, does $N replacement and nothing else.
+		 * Get parsed contents of the message.
 		 *
+		 * The default parser does simple $N replacements and nothing else.
 		 * This may be overridden to provide a more complex message parser.
-		 *
-		 * The primary override is in mediawiki.jqueryMsg.
+		 * The primary override is in the mediawiki.jqueryMsg module.
 		 *
 		 * This function will not be called for nonexistent messages.
+		 *
+		 * @return {string} Parsed message
 		 */
 		parser: function () {
 			return mw.format.apply( null, [ this.map.get( this.key ) ].concat( this.parameters ) );
 		},
 
 		/**
-		 * Appends (does not replace) parameters for replacement to the .parameters property.
+		 * Add (does not replace) parameters for `N$` placeholder values.
 		 *
 		 * @param {Array} parameters
 		 * @chainable
@@ -315,9 +313,10 @@
 		},
 
 		/**
-		 * Converts message object to its string form based on the state of format.
+		 * Convert message object to its string form based on current format.
 		 *
-		 * @return {string} Message as a string in the current form or `<key>` if key does not exist.
+		 * @return {string} Message as a string in the current form, or `<key>` if key
+		 *  does not exist.
 		 */
 		toString: function () {
 			var text;
@@ -344,7 +343,7 @@
 		},
 
 		/**
-		 * Changes format to 'parse' and converts message to string
+		 * Change format to 'parse' and convert message to string
 		 *
 		 * If jqueryMsg is loaded, this parses the message text from wikitext
 		 * (where supported) to HTML
@@ -359,7 +358,7 @@
 		},
 
 		/**
-		 * Changes format to 'plain' and converts message to string
+		 * Change format to 'plain' and convert message to string
 		 *
 		 * This substitutes parameters, but otherwise does not change the
 		 * message text.
@@ -372,12 +371,14 @@
 		},
 
 		/**
-		 * Changes format to 'text' and converts message to string
+		 * Change format to 'text' and convert message to string
 		 *
 		 * If jqueryMsg is loaded, {{-transformation is done where supported
 		 * (such as {{plural:}}, {{gender:}}, {{int:}}).
 		 *
-		 * Otherwise, it is equivalent to plain.
+		 * Otherwise, it is equivalent to plain
+		 *
+		 * @return {string} String form of text message
 		 */
 		text: function () {
 			this.format = 'text';
@@ -385,9 +386,9 @@
 		},
 
 		/**
-		 * Changes the format to 'escaped' and converts message to string
+		 * Change the format to 'escaped' and convert message to string
 		 *
-		 * This is equivalent to using the 'text' format (see text method), then
+		 * This is equivalent to using the 'text' format (see #text), then
 		 * HTML-escaping the output.
 		 *
 		 * @return {string} String form of html escaped message
@@ -398,7 +399,7 @@
 		},
 
 		/**
-		 * Checks if message exists
+		 * Check if a message exists
 		 *
 		 * @see mw.Map#exists
 		 * @return {boolean}
@@ -412,7 +413,6 @@
 	 * @class mw
 	 */
 	mw = {
-		/* Public Members */
 
 		/**
 		 * Get the current time, measured in milliseconds since January 1, 1970 (UTC).
@@ -438,7 +438,7 @@
 		 *
 		 * @since 1.25
 		 * @param {string} fmt Format string
-		 * @param {Mixed...} parameters Substitutions for $N placeholders.
+		 * @param {Mixed...} parameters Values for $N replacements
 		 * @return {string} Formatted string
 		 */
 		format: function ( formatString ) {
@@ -471,7 +471,7 @@
 		},
 
 		/**
-		 * Register a handler for subset of analytic events, specified by topic
+		 * Register a handler for subset of analytic events, specified by topic.
 		 *
 		 * Handlers will be called once for each tracked event, including any events that fired before the
 		 * handler was registered; 'this' is set to a plain object with a 'timeStamp' property indicating
@@ -481,6 +481,8 @@
 		 *
 		 * @param {string} topic Handle events whose name starts with this string prefix
 		 * @param {Function} callback Handler to call for each matching tracked event
+		 * @param {string} callback.topic
+		 * @param {Object} [callback.data]
 		 */
 		trackSubscribe: function ( topic, callback ) {
 			var seen = 0;
@@ -496,14 +498,14 @@
 			} );
 		},
 
-		// Make the Map constructor publicly available.
+		// Expose Map constructor
 		Map: Map,
 
-		// Make the Message constructor publicly available.
+		// Expose Message constructor
 		Message: Message,
 
 		/**
-		 * Map of configuration values
+		 * Map of configuration values.
 		 *
 		 * Check out [the complete list of configuration values](https://www.mediawiki.org/wiki/Manual:Interface/JavaScript#mw.config)
 		 * on mediawiki.org.
@@ -513,11 +515,12 @@
 		 *
 		 * @property {mw.Map} config
 		 */
-		// Dummy placeholder. Re-assigned in ResourceLoaderStartUpModule to an instance of `mw.Map`.
+		// Dummy placeholder later assigned in ResourceLoaderStartUpModule
 		config: null,
 
 		/**
 		 * Empty object that plugins can be installed in.
+		 *
 		 * @property
 		 */
 		libs: {},
@@ -536,18 +539,18 @@
 		legacy: {},
 
 		/**
-		 * Localization system
+		 * Store for messages.
+		 *
 		 * @property {mw.Map}
 		 */
 		messages: new Map(),
 
 		/**
-		 * Templates associated with a module
+		 * Store for templates associated with a module.
+		 *
 		 * @property {mw.Map}
 		 */
 		templates: new Map(),
-
-		/* Public Methods */
 
 		/**
 		 * Get a message object.
@@ -556,11 +559,10 @@
 		 *
 		 * @see mw.Message
 		 * @param {string} key Key of message to get
-		 * @param {Mixed...} parameters Parameters for the $N replacements in messages.
+		 * @param {Mixed...} parameters Values for $N replacements
 		 * @return {mw.Message}
 		 */
 		message: function ( key ) {
-			// Variadic arguments
 			var parameters = slice.call( arguments, 1 );
 			return new Message( mw.messages, key, parameters );
 		},
@@ -572,7 +574,7 @@
 		 *
 		 * @see mw.Message
 		 * @param {string} key Key of message to get
-		 * @param {Mixed...} parameters Parameters for the $N replacements in messages.
+		 * @param {Mixed...} parameters Values for $N replacements
 		 * @return {string}
 		 */
 		msg: function () {
@@ -596,7 +598,7 @@
 			/**
 			 * Write a message the console's warning channel.
 			 * Also logs a stacktrace for easier debugging.
-			 * Each action is silently ignored if the browser doesn't support it.
+			 * Actions not supported by the browser console are silently ignored.
 			 *
 			 * @param {string...} msg Messages to output to console
 			 */
@@ -617,7 +619,7 @@
 			 * @param {Object} obj Host object of deprecated property
 			 * @param {string} key Name of property to create in `obj`
 			 * @param {Mixed} val The value this property should return when accessed
-			 * @param {string} [msg] Optional text to include in the deprecation message.
+			 * @param {string} [msg] Optional text to include in the deprecation message
 			 */
 			log.deprecate = !Object.defineProperty ? function ( obj, key, val ) {
 				obj[key] = val;
@@ -639,7 +641,7 @@
 						}
 					} );
 				} catch ( err ) {
-					// IE8 can throw on Object.defineProperty
+					// Support IE 8: Can throw on Object.defineProperty.
 					// Create a copy of the value to the object.
 					obj[key] = val;
 				}
@@ -649,42 +651,42 @@
 		}() ),
 
 		/**
-		 * Client-side module loader which integrates with the MediaWiki ResourceLoader
+		 * Client for ResourceLoader server end point.
+		 *
+		 * This client is in charge of maintaining the module registry and state
+		 * machine, initiating network (batch) requests for loading modules, as
+		 * well as dependency resolution and execution of source code.
+		 *
+		 * For more information, refer to
+		 * <https://www.mediawiki.org/wiki/ResourceLoader/Features>
+		 *
 		 * @class mw.loader
 		 * @singleton
 		 */
 		loader: ( function () {
 
-			/* Private Members */
-
 			/**
-			 * Mapping of registered modules
+			 * Mapping of registered modules.
 			 *
-			 * The jquery module is pre-registered, because it must have already
-			 * been provided for this object to have been built, and in debug mode
-			 * jquery would have been provided through a unique loader request,
-			 * making it impossible to hold back registration of jquery until after
-			 * mediawiki.
-			 *
-			 * For exact details on support for script, style and messages, look at
-			 * mw.loader.implement.
+			 * See #implement, for exact details on support for script, style and messages.
 			 *
 			 * Format:
+			 *
 			 *     {
 			 *         'moduleName': {
-			 *             // At registry
-			 *             'version': ############## (unix timestamp),
+			 *             // From startup mdoule
+			 *             'version': ############## (unix timestamp)
 			 *             'dependencies': ['required.foo', 'bar.also', ...], (or) function () {}
-			 *             'group': 'somegroup', (or) null,
-			 *             'source': 'local', 'someforeignwiki', (or) null
-			 *             'state': 'registered', 'loaded', 'loading', 'ready', 'error' or 'missing'
+			 *             'group': 'somegroup', (or) null
+			 *             'source': 'local', (or) 'anotherwiki'
 			 *             'skip': 'return !!window.Example', (or) null
+			 *             'state': 'registered', 'loaded', 'loading', 'ready', 'error', or 'missing'
 			 *
 			 *             // Added during implementation
-			 *             'skipped': true,
-			 *             'script': ...,
-			 *             'style': ...,
-			 *             'messages': { 'key': 'value' },
+			 *             'skipped': true
+			 *             'script': ...
+			 *             'style': ...
+			 *             'messages': { 'key': 'value' }
 			 *         }
 			 *     }
 			 *
@@ -692,32 +694,37 @@
 			 * @private
 			 */
 			var registry = {},
-				//
 				// Mapping of sources, keyed by source-id, values are strings.
+				//
 				// Format:
-				//	{
-				//		'sourceId': 'http://foo.bar/w/load.php'
-				//	}
+				//
+				//     {
+				//         'sourceId': 'http://example.org/w/load.php'
+				//     }
 				//
 				sources = {},
+
 				// List of modules which will be loaded as when ready
 				batch = [],
+
 				// List of modules to be loaded
 				queue = [],
+
 				// List of callback functions waiting for modules to be ready to be called
 				jobs = [],
+
 				// Selector cache for the marker element. Use getMarker() to get/use the marker!
 				$marker = null,
-				// Buffer for addEmbeddedCSS.
+
+				// Buffer for #addEmbeddedCSS
 				cssBuffer = '',
-				// Callbacks for addEmbeddedCSS.
+
+				// Callbacks for #addEmbeddedCSS
 				cssCallbacks = $.Callbacks();
 
-			/* Private methods */
-
 			function getMarker() {
-				// Cached
 				if ( !$marker ) {
+					// Cache
 					$marker = $( 'meta[name="ResourceLoaderDynamicStyles"]' );
 					if ( !$marker.length ) {
 						mw.log( 'No <meta name="ResourceLoaderDynamicStyles"> found, inserting dynamically' );
@@ -728,24 +735,24 @@
 			}
 
 			/**
-			 * Create a new style tag and add it to the DOM.
+			 * Create a new style element and add it to the DOM.
 			 *
 			 * @private
 			 * @param {string} text CSS text
 			 * @param {HTMLElement|jQuery} [nextnode=document.head] The element where the style tag
-			 *  should be inserted before. Otherwise it will be appended to `<head>`.
-			 * @return {HTMLElement} Reference to the created `<style>` element.
+			 *  should be inserted before
+			 * @return {HTMLElement} Reference to the created style element
 			 */
 			function newStyleTag( text, nextnode ) {
 				var s = document.createElement( 'style' );
-				// Insert into document before setting cssText (bug 33305)
+				// Suport IE: Insert into document before setting cssText (bug 33305)
 				if ( nextnode ) {
 					$( nextnode ).before( s );
 				} else {
 					document.getElementsByTagName( 'head' )[0].appendChild( s );
 				}
 				if ( s.styleSheet ) {
-					// IE
+					// Support IE
 					s.styleSheet.cssText = text;
 				} else {
 					// Other browsers.
@@ -757,7 +764,7 @@
 			}
 
 			/**
-			 * Checks whether it is safe to add this css to a stylesheet.
+			 * Check whether given styles are safe to to a stylesheet.
 			 *
 			 * @private
 			 * @param {string} cssText
@@ -790,7 +797,7 @@
 				// Yield once before inserting the <style> tag. There are likely
 				// more calls coming up which we can combine this way.
 				// Appending a stylesheet and waiting for the browser to repaint
-				// is fairly expensive, this reduces it (bug 45810)
+				// is fairly expensive, this reduces that (bug 45810)
 				if ( cssText ) {
 					// Be careful not to extend the buffer with css that needs a new stylesheet
 					if ( !cssBuffer || canExpandStylesheetWith( cssText ) ) {
@@ -799,7 +806,7 @@
 						cssBuffer += '\n' + cssText;
 						// TODO: Use requestAnimationFrame in the future which will
 						// perform even better by not injecting styles while the browser
-						// is paiting.
+						// is painting.
 						setTimeout( function () {
 							// Can't pass addEmbeddedCSS to setTimeout directly because Firefox
 							// (below version 13) has the non-standard behaviour of passing a
@@ -814,8 +821,9 @@
 				} else if ( cssBuffer ) {
 					cssText = cssBuffer;
 					cssBuffer = '';
+
 				} else {
-					// This is a delayed call, but buffer is already cleared by
+					// This is a delayed call, but buffer was already cleared by
 					// another delayed call.
 					return;
 				}
@@ -828,7 +836,7 @@
 				if ( 'documentMode' in document && document.documentMode <= 9 ) {
 
 					$style = getMarker().prev();
-					// Verify that the element before Marker actually is a
+					// Verify that the element before the marker actually is a
 					// <style> tag and one that came from ResourceLoader
 					// (not some other style tag or even a `<meta>` or `<script>`).
 					if ( $style.data( 'ResourceLoaderDynamicStyleTag' ) === true ) {
@@ -837,7 +845,8 @@
 						styleEl = $style.get( 0 );
 						if ( styleEl.styleSheet ) {
 							try {
-								styleEl.styleSheet.cssText += cssText; // IE
+								// Support IE
+								styleEl.styleSheet.cssText += cssText;
 							} catch ( e ) {
 								log( 'Stylesheet error', e );
 							}
@@ -855,34 +864,51 @@
 			}
 
 			/**
-			 * Convert UNIX timestamp to ISO8601 format
-			 * @param {number} timestamp UNIX timestamp
+			 * Zero-pad three numbers.
+			 *
 			 * @private
+			 * @param {number} a
+			 * @param {number} b
+			 * @param {number} c
+			 * @return {string}
 			 */
-			function formatVersionNumber( timestamp ) {
-				var	d = new Date();
-				function pad( a, b, c ) {
-					return [a < 10 ? '0' + a : a, b < 10 ? '0' + b : b, c < 10 ? '0' + c : c].join( '' );
-				}
-				d.setTime( timestamp * 1000 );
+			function pad( a, b, c ) {
 				return [
-					pad( d.getUTCFullYear(), d.getUTCMonth() + 1, d.getUTCDate() ), 'T',
-					pad( d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds() ), 'Z'
+					a < 10 ? '0' + a : a,
+					b < 10 ? '0' + b : b,
+					c < 10 ? '0' + c : c
 				].join( '' );
 			}
 
 			/**
-			 * Resolves dependencies and detects circular references.
+			 * Convert UNIX timestamp to ISO8601 format.
+			 *
+			 * @private
+			 * @param {number} timestamp UNIX timestamp
+			 */
+			function formatVersionNumber( timestamp ) {
+				var	d = new Date();
+				d.setTime( timestamp * 1000 );
+				return [
+					pad( d.getUTCFullYear(), d.getUTCMonth() + 1, d.getUTCDate() ),
+					'T',
+					pad( d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds() ),
+					'Z'
+				].join( '' );
+			}
+
+			/**
+			 * Resolve dependencies and detect circular references.
 			 *
 			 * @private
 			 * @param {string} module Name of the top-level module whose dependencies shall be
-			 *   resolved and sorted.
+			 *  resolved and sorted.
 			 * @param {Array} resolved Returns a topological sort of the given module and its
-			 *   dependencies, such that later modules depend on earlier modules. The array
-			 *   contains the module names. If the array contains already some module names,
-			 *   this function appends its result to the pre-existing array.
+			 *  dependencies, such that later modules depend on earlier modules. The array
+			 *  contains the module names. If the array contains already some module names,
+			 *  this function appends its result to the pre-existing array.
 			 * @param {Object} [unresolved] Hash used to track the current dependency
-			 *   chain; used to report loops in the dependency graph.
+			 *  chain; used to report loops in the dependency graph.
 			 * @throws {Error} If any unregistered module or a dependency loop is encountered
 			 */
 			function sortDependencies( module, resolved, unresolved ) {
@@ -914,10 +940,10 @@
 					}
 				}
 				if ( $.inArray( module, resolved ) !== -1 ) {
-					// Module already resolved; nothing to do.
+					// Module already resolved; nothing to do
 					return;
 				}
-				// unresolved is optional, supply it if not passed in
+				// Create unresolved if not passed in
 				if ( !unresolved ) {
 					unresolved = {};
 				}
@@ -943,12 +969,12 @@
 			}
 
 			/**
-			 * Gets a list of module names that a module depends on in their proper dependency
+			 * Get a list of module names that a module depends on in their proper dependency
 			 * order.
 			 *
 			 * @private
 			 * @param {string} module Module name or array of string module names
-			 * @return {Array} list of dependencies, including 'module'.
+			 * @return {Array} List of dependencies, including 'module'.
 			 * @throws {Error} If circular reference is detected
 			 */
 			function resolve( module ) {
@@ -973,15 +999,16 @@
 			}
 
 			/**
-			 * Narrows a list of module names down to those matching a specific
-			 * state (see comment on top of this scope for a list of valid states).
+			 * Narrow down a list of module names to those matching a specific
+			 * state (see #registry for a list of valid states).
+			 *
 			 * One can also filter for 'unregistered', which will return the
 			 * modules names that don't have a registry entry.
 			 *
 			 * @private
 			 * @param {string|string[]} states Module states to filter by
-			 * @param {Array} [modules] List of module names to filter (optional, by default the entire
-			 * registry is used)
+			 * @param {Array} [modules] List of module names to filter (optional, by default the
+			 * entire registry is used)
 			 * @return {Array} List of filtered module names
 			 */
 			function filter( states, modules ) {
@@ -1033,10 +1060,12 @@
 			}
 
 			/**
-			 * A module has entered state 'ready', 'error', or 'missing'. Automatically update pending jobs
-			 * and modules that depend upon this module. if the given module failed, propagate the 'error'
-			 * state up the dependency tree; otherwise, execute all jobs/modules that now have all their
-			 * dependencies satisfied. On jobs depending on a failed module, run the error callback, if any.
+			 * A module has entered state 'ready', 'error', or 'missing'. Automatically update
+			 * pending jobs and modules that depend upon this module. If the given module failed,
+			 * propagate the 'error' state up the dependency tree. Otherwise, go ahead an execute
+			 * all jobs/modules now having their dependencies satisfied.
+			 *
+			 * Jobs that depend on a failed module, will have their error callback ran (if any).
 			 *
 			 * @private
 			 * @param {string} module Name of module that entered one of the states 'ready', 'error', or 'missing'.
@@ -1044,7 +1073,6 @@
 			function handlePending( module ) {
 				var j, job, hasErrors, m, stateChange;
 
-				// Modules.
 				if ( $.inArray( registry[module].state, ['error', 'missing'] ) !== -1 ) {
 					// If the current module failed, mark all dependent modules also as failed.
 					// Iterate until steady-state to propagate the error state upwards in the
@@ -1053,7 +1081,7 @@
 						stateChange = false;
 						for ( m in registry ) {
 							if ( $.inArray( registry[m].state, ['error', 'missing'] ) === -1 ) {
-								if ( filter( ['error', 'missing'], registry[m].dependencies ).length > 0 ) {
+								if ( filter( ['error', 'missing'], registry[m].dependencies ).length ) {
 									registry[m].state = 'error';
 									stateChange = true;
 								}
@@ -1163,7 +1191,7 @@
 				 */
 				function addLink( media, url ) {
 					var el = document.createElement( 'link' );
-					// For IE: Insert in document *before* setting href
+					// Support IE: Insert in document *before* setting href
 					getMarker().before( el );
 					el.rel = 'stylesheet';
 					if ( media && media !== 'all' ) {
@@ -1678,7 +1706,7 @@
 				 * the modules are registered.
 				 *
 				 * @param {string|Array} module Module name or array of arrays, each containing
-				 *   a list of arguments compatible with this method
+				 *  a list of arguments compatible with this method
 				 * @param {number} version Module version number as a timestamp (falls backs to 0)
 				 * @param {string|Array|Function} dependencies One string or array of strings of module
 				 *  names on which this module depends, or a function that returns that array.
@@ -1876,9 +1904,9 @@
 								async = true;
 							}
 							if ( type === 'text/css' ) {
-								// IE7-8 throws security warnings when inserting a <link> tag
-								// with a protocol-relative URL set though attributes (instead of
-								// properties) - when on HTTPS. See also bug 41331.
+								// Support IE 7-8: Use properties instead of attributes as IE throws
+								// security warnings when inserting a <link> tag with a protocol-
+								// relative URL set though attributes - when on HTTPS. See bug 41331.
 								l = document.createElement( 'link' );
 								l.rel = 'stylesheet';
 								l.href = modules;
@@ -2046,7 +2074,7 @@
 					},
 
 					/**
-					 * Get a string key on which to vary the module cache.
+					 * Get a key on which to vary the module cache.
 					 * @return {string} String of concatenated vary conditions.
 					 */
 					getVary: function () {
@@ -2058,7 +2086,7 @@
 					},
 
 					/**
-					 * Get a string key for a specific module. The key format is '[name]@[version]'.
+					 * Get a key for a specific module. The key format is '[name]@[version]'.
 					 *
 					 * @param {string} module Module name
 					 * @return {string|null} Module key or null if module does not exist
@@ -2334,8 +2362,8 @@
 				 *  - null or undefined: The short closing form is used, e.g. `<br/>`.
 				 *  - this.Raw: The value attribute is included without escaping.
 				 *  - this.Cdata: The value attribute is included, and an exception is
-				 *   thrown if it contains an illegal ETAGO delimiter.
-				 *   See <http://www.w3.org/TR/1999/REC-html401-19991224/appendix/notes.html#h-B.3.2>.
+				 *    thrown if it contains an illegal ETAGO delimiter.
+				 *    See <http://www.w3.org/TR/1999/REC-html401-19991224/appendix/notes.html#h-B.3.2>.
 				 * @return {string} HTML
 				 */
 				element: function ( name, attrs, contents ) {
