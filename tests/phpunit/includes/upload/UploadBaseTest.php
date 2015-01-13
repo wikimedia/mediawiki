@@ -168,6 +168,12 @@ class UploadBaseTest extends MediaWikiTestCase {
 				'SVG with javascript xlink (http://html5sec.org/#87)'
 			),
 			array(
+				'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="data:application/xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KPGRlZnM+CjxjaXJjbGUgaWQ9InRlc3QiIHI9IjUwIiBjeD0iMTAwIiBjeT0iMTAwIiBzdHlsZT0iZmlsbDogI0YwMCI+CjxzZXQgYXR0cmlidXRlTmFtZT0iZmlsbCIgYXR0cmlidXRlVHlwZT0iQ1NTIiBvbmJlZ2luPSdhbGVydChkb2N1bWVudC5jb29raWUpJwpvbmVuZD0nYWxlcnQoIm9uZW5kIiknIHRvPSIjMDBGIiBiZWdpbj0iMXMiIGR1cj0iNXMiIC8+CjwvY2lyY2xlPgo8L2RlZnM+Cjx1c2UgeGxpbms6aHJlZj0iI3Rlc3QiLz4KPC9zdmc+#test"/> </svg>',
+				true,
+				true,
+				'SVG with Opera image xlink (http://html5sec.org/#88 - c)'
+			),
+			array(
 				'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">  <animation xlink:href="javascript:alert(1)"/> </svg>',
 				true,
 				true,
@@ -341,6 +347,13 @@ class UploadBaseTest extends MediaWikiTestCase {
 				true,
 				true,
 				'SVG with remote background image using image() (bug 69008)'
+			),
+			array(
+				// As reported by Cure53
+				'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <a xlink:href="data:text/html;charset=utf-8;base64, PHNjcmlwdD5hbGVydChkb2N1bWVudC5kb21haW4pPC9zY3JpcHQ%2BDQo%3D"> <circle r="400" fill="red"></circle> </a> </svg>',
+				true,
+				true,
+				'SVG with data:text/html link target (firefox only)'
 			),
 
 			// Test good, but strange files that we want to allow
