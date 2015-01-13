@@ -55,7 +55,7 @@
 		this.restoreWarnings();
 	} );
 
-	QUnit.test( 'mw.Map', 34, function ( assert ) {
+	QUnit.test( 'mw.Map', 35, function ( assert ) {
 		var arry, conf, funky, globalConf, nummy, someValues;
 
 		conf = new mw.Map();
@@ -86,8 +86,10 @@
 		assert.strictEqual( conf.set( 'constructor', 42 ), true, 'Map.set for key "constructor"' );
 		assert.strictEqual( conf.get( 'constructor' ), 42, 'Map.get for key "constructor"' );
 
-		assert.strictEqual( conf.set( 'ImUndefined', undefined ), true, 'Map.set allows setting value to `undefined`' );
-		assert.equal( conf.get( 'ImUndefined', 'fallback' ), undefined, 'Map.get supports retreiving value of `undefined`' );
+		assert.strictEqual( conf.set( 'undef' ), false, 'Map.set requires explicit value (no undefined default)' );
+
+		assert.strictEqual( conf.set( 'undef', undefined ), true, 'Map.set allows setting value to `undefined`' );
+		assert.equal( conf.get( 'undef', 'fallback' ), undefined, 'Map.get supports retreiving value of `undefined`' );
 
 		assert.strictEqual( conf.set( funky, 'Funky' ), false, 'Map.set returns boolean false if key was invalid (Function)' );
 		assert.strictEqual( conf.set( arry, 'Arry' ), false, 'Map.set returns boolean false if key was invalid (Array)' );
@@ -99,7 +101,7 @@
 		conf.set( String( nummy ), 'I used to be a number' );
 
 		assert.strictEqual( conf.exists( 'doesNotExist' ), false, 'Map.exists where property does not exist' );
-		assert.strictEqual( conf.exists( 'ImUndefined' ), true, 'Map.exists where value is `undefined`' );
+		assert.strictEqual( conf.exists( 'undef' ), true, 'Map.exists where value is `undefined`' );
 		assert.strictEqual( conf.exists( nummy ), false, 'Map.exists where key is invalid but looks like an existing key' );
 
 		// Multiple values at once
