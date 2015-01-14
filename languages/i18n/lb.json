@@ -1190,7 +1190,7 @@
 	"uploaderror": "Feeler bäim Eroplueden",
 	"upload-recreate-warning": "'''Opgepasst: E Fichier mat deem Numm gouf scho geläscht oder geréckelt.'''\n\nHei fannt Dir en Extrait aus dem Läsch- a Réckel-Logbuch fir dëse Fichier.",
 	"uploadtext": "Benotzt dëse Formulaire, fir nei Fichieren eropzelueden.\nGitt op d'[[Special:FileList|Lëscht vun den eropgeluedene Fichieren]], fir no Fichieren ze sichen déi virdrun eropgeluede goufen, Eropluedunge fannt dir an der [[Special:Log/upload|Lëscht vun den eropgeluedene Fichieren]], geläscht Fichiere stinn am [[Special:Log/delete|Läschlog]].\n\nFir e '''Bild''' op enger Säit ze benotzen, schreift amplaz vum Bild eng vun dëse Formelen:\n* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichier.jpg]]</nowiki></code>''' fir déi ganz Versioun vum Fichier ze benotzen\n* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichier.png|200px|thumb|left|alt text]]</nowiki></code>''' fir eng 200 Pixel breet Versioun an enger Këscht am lénke Rand mat 'alt text' als Beschreiwung\n* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fichier.ogg]]</nowiki></code>''' fir e Fichier direkt ze verlinken ouni de Fichier ze weisen",
-	"upload-permitted": "Erlaabt Formater vun de Fichieren: $1.",
+	"upload-permitted": "{{PLURAL:$2|Erlaabten Typ|Erlaabt Type}} vu Fichieren: $1.",
 	"upload-preferred": "Fichierszorten déi am beschte funktionéieren: $1.",
 	"upload-prohibited": "Verbuede Fichiers Formater: $1.",
 	"uploadlogpage": "Logbuch vum Eroplueden",

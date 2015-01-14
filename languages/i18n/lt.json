@@ -28,7 +28,8 @@
 			"Xabier Armendaritz",
 			"לערי ריינהארט",
 			"Vogone",
-			"아라"
+			"아라",
+			"Aswanas"
 		]
 	},
 	"tog-underline": "Pabraukti nuorodas:",
@@ -1199,9 +1200,9 @@
 	"uploaderror": "Įkėlimo klaida",
 	"upload-recreate-warning": "'''Dėmėsio: Failas šiuo pavadinimu buvo ištrintas arba pervadintas.'''\n\nJūsų patogumui pateiktas įrašas apie šio puslapio trynimą ar pervadinimą:",
 	"uploadtext": "Kad įkeltumėte failą, naudokitės žemiau pateikta forma.\nNorėdami peržiūrėti ar ieškoti anksčiau įkeltų paveikslėlių, eikite į [[Special:FileList|įkeltų failų sąrašą]], įkėlimai yra registruojami [[Special:Log/upload|įkėlimų sąraše]], trynimai — [[Special:Log/delete|trynimų sąraše]].\n\nNorėdami panaudoti įkeltą failą puslapyje, naudokite tokias nuorodas:\n* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Failas.jpg]]</nowiki></code>''' norėdami naudoti pilną failo versiją\n* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Failas.png|200px|thumb|left|alternatyvusis tekstas]]</nowiki></code>''' norėdami naudoti 200 pikselių pločio paveikslėlį rėmelyje puslapio kairėje; „alternatyvus tekstas“ bus naudojamas paveikslėlio aprašymui.\n* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Failas.ogg]]</nowiki></code>''' tiesioginei nuorodai į failą.",
-	"upload-permitted": "Leidžiami rinkmenų tipai: $1.",
-	"upload-preferred": "Pageidautini failų tipai: $1.",
-	"upload-prohibited": "Uždrausti failų tipai: $1.",
+	"upload-permitted": "{{PLURAL:$2|Leidžiamas rinkmenos tipas|Leidžiami rinkmenų tipai}}: $1.",
+	"upload-preferred": "Pageidautini failai {{PLURAL:$2|type|types}}: $1.",
+	"upload-prohibited": "Uždrausti failai {{PLURAL:$2|type|types}}: $1.",
 	"uploadlogpage": "Įkėlimų sąrašas",
 	"uploadlogpagetext": "Žemiau pateikiamas paskutinių failų įkėlimų sąrašas.\nTaip pat galite peržvelgti [[Special:NewFiles|naujausių failų galeriją]].",
 	"filename": "Failo vardas",
