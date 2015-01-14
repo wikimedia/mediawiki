@@ -126,19 +126,25 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			$this->reportConnectionError( "Error setting character set" );
 		}
 
+		// Abstract over any insane MySQL defaults
+		$set = array( 'group_concat_max_len = 524288' );
 		// Set SQL mode, default is turning them all off, can be overridden or skipped with null
 		if ( is_string( $wgSQLMode ) ) {
-			$mode = $this->addQuotes( $wgSQLMode );
+			$set[] = 'sql_mode = ' . $this->addQuotes( $wgSQLMode );
+		}
+
+		if ( $set ) {
 			// Use doQuery() to avoid opening implicit transactions (DBO_TRX)
-			$success = $this->doQuery( "SET sql_mode = $mode", __METHOD__ );
+			$success = $this->doQuery( 'SET ' . implode( ', ', $set ), __METHOD__ );
 			if ( !$success ) {
 				wfLogDBError(
-					"Error setting sql_mode to $mode on server {db_server}",
+					'Error setting MySQL variables on server {db_server} (check $wgSQLMode)',
 					$this->getLogContext( array(
 						'method' => __METHOD__,
 					) )
 				);
-				$this->reportConnectionError( "Error setting sql_mode to $mode" );
+				$this->reportConnectionError(
+					'Error setting MySQL variables on server {db_server} (check $wgSQLMode)' );
 			}
 		}
 
