@@ -315,6 +315,10 @@ class ApiPageSet extends ApiBase {
 			$pageFlds['page_is_redirect'] = null;
 		}
 
+		if ( $this->getConfig()->get( 'ContentHandlerUseDB' ) ) {
+			$pageFlds['page_content_model'] = null;
+		}
+
 		// only store non-default fields
 		$this->mRequestedPageFields = array_diff_key( $this->mRequestedPageFields, $pageFlds );
 
