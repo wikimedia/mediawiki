@@ -727,7 +727,7 @@ abstract class Installer {
 		}
 		$databases = array_flip( $databases );
 		if ( !$databases ) {
-			$this->showError( 'config-no-db', $wgLang->commaList( $allNames ) );
+			$this->showError( 'config-no-db', $wgLang->commaList( $allNames ), count( $allNames ) );
 
 			// @todo FIXME: This only works for the web installer!
 			return false;
