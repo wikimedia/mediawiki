@@ -372,6 +372,17 @@ $editPage : the EditPage object
 $text : the new text of the article (has yet to be saved)
 &$resultArr : data in this array will be added to the API result
 
+`ApiFeedContributions::feedItem`: Called to convert the result of ContribsPager
+into a FeedItem instance that ApiFeedContributions can consume. Implementors of
+this hook may cancel the hook to signal that the item is not viewable in the
+provided context.
+$row: A row of data from ContribsPager.  The set of data returned by ContribsPager
+ can be adjusted by handling the ContribsPager::reallyDoQuery hook.
+$ctx: An IContextSource implementation.
+&$feedItem: Set this to a FeedItem instance if the hook can handle the provided
+ row. This is provided to the hook as a null, if it is non null then another hook
+ has already handled the hook.
+
 'ApiFormatHighlight': Use to syntax-highlight API pretty-printed output. When
 highlighting, add output to $context->getOutput() and return false.
 $context: An IContextSource.

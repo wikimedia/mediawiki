@@ -95,7 +95,10 @@ class ApiFeedContributions extends ApiBase {
 				if ( ++$count > $limit ) {
 					break;
 				}
-				$feedItems[] = $this->feedItem( $row );
+				$item = $this->feedItem( $row );
+				if ( $item !== null ) {
+					$feedItems[] = $item;
+				}
 			}
 		}
 
@@ -103,6 +106,20 @@ class ApiFeedContributions extends ApiBase {
 	}
 
 	protected function feedItem( $row ) {
+		// This hook is the api contributions equivalent to the
+		// ContributionsLineEnding hook. Hook implementers may cancel
+		// the hook to signal the user is not allowed to read this item.
+		$feedItem = null;
+		if ( !Hooks::run(
+			'ApiFeedContributions::feedItem',
+			array( $row, $this->getContext(), &$feedItem )
+		) ) {
+			return null;
+		}
+		if ( $feedItem instanceof FeedItem ) {
+			return $feedItem;
+		}
+
 		$title = Title::makeTitle( intval( $row->page_namespace ), $row->page_title );
 		if ( $title && $title->userCan( 'read', $this->getUser() ) ) {
 			$date = $row->rev_timestamp;
