@@ -103,6 +103,13 @@ class ApiFeedContributions extends ApiBase {
 	}
 
 	protected function feedItem( $row ) {
+		// This is the api contributions equivalent to the 
+		// ContributionsLineEnding hook.
+		wfRunHooks( 'ApiFeedContributions::feedItem', $row, &$feedItem );
+		if ( $feedItem instanceof FeedItem ) {
+			return $feedItem;
+		}
+
 		$title = Title::makeTitle( intval( $row->page_namespace ), $row->page_title );
 		if ( $title && $title->userCan( 'read', $this->getUser() ) ) {
 			$date = $row->rev_timestamp;

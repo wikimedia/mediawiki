@@ -372,6 +372,11 @@ $editPage : the EditPage object
 $text : the new text of the article (has yet to be saved)
 &$resultArr : data in this array will be added to the API result
 
+`ApiFeedContributions::feedItem`: Called to convert the result of ContribsPager
+into a FeedItem instance that ApiFeedContributions can consume.
+$row: A row of data from ContribsPager
+&$feedItem: Set this to a FeedItem instance if the hook can handle the provided row
+
 'ApiFormatHighlight': Use to syntax-highlight API pretty-printed output. When
 highlighting, add output to $context->getOutput() and return false.
 $context: An IContextSource.
