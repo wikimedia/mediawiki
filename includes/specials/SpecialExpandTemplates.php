@@ -154,7 +154,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			'contexttitle',
 			60,
 			$title,
-			array( 'autofocus' => true, 'class' => 'mw-ui-input-inline' )
+			array( 'autofocus' => '', 'class' => 'mw-ui-input-inline' )
 		) . '</p>';
 		$form .= '<p>' . Xml::label(
 			$this->msg( 'expand_templates_input' )->text(),
