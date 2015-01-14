@@ -850,6 +850,7 @@
 								styleEl.styleSheet.cssText += cssText;
 							} catch ( e ) {
 								log( 'Stylesheet error', e );
+								mw.track( 'errorLogging.exception', { exception: e, source: 'stylesheet' } );
 							}
 						} else {
 							styleEl.appendChild( document.createTextNode( cssText ) );
@@ -1113,6 +1114,8 @@
 							// A user-defined callback raised an exception.
 							// Swallow it to protect our state machine!
 							log( 'Exception thrown by user callback', e );
+							mw.track( 'errorLogging.exception',
+								{ exception: e, module: module, source: 'load-callback' } );
 						}
 					}
 				}
@@ -1240,6 +1243,7 @@
 						// and not in debug mode, such as when a symbol that should be global isn't exported
 						log( 'Exception thrown by ' + module, e );
 						registry[module].state = 'error';
+						mw.track( 'errorLogging.exception', { exception: e, module: module, source: 'module-execute' } );
 						handlePending( module );
 					}
 				}
