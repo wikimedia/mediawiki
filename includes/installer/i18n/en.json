@@ -151,7 +151,7 @@
 	"config-db-sys-user-exists-oracle": "User account \"$1\" already exists. SYSDBA can only be used for creating of a new account!",
 	"config-postgres-old": "PostgreSQL $1 or later is required. You have $2.",
 	"config-mssql-old": "Microsoft SQL Server $1 or later is required. You have $2.",
-	"config-sqlite-name-help": "Choose a name that identifies your wiki.\nDo not use spaces or hyphens.\nThis will be used for the SQLite data file name.",
+	"config-sqlite-name-help": "Choose a name that identifies your wiki.\nDo not use spaces or hyphens.\nThis will be used for the SQLite data filename.",
 	"config-sqlite-parent-unwritable-group": "Cannot create the data directory <code><nowiki>$1</nowiki></code>, because the parent directory <code><nowiki>$2</nowiki></code> is not writable by the webserver.\n\nThe installer has determined the user your webserver is running as.\nMake the <code><nowiki>$3</nowiki></code> directory writable by it to continue.\nOn a Unix/Linux system do:\n\n<pre>cd $2\nmkdir $3\nchgrp $4 $3\nchmod g+w $3</pre>",
 	"config-sqlite-parent-unwritable-nogroup": "Cannot create the data directory <code><nowiki>$1</nowiki></code>, because the parent directory <code><nowiki>$2</nowiki></code> is not writable by the webserver.\n\nThe installer could not determine the user your webserver is running as.\nMake the <code><nowiki>$3</nowiki></code> directory globally writable by it (and others!) to continue.\nOn a Unix/Linux system do:\n\n<pre>cd $2\nmkdir $3\nchmod a+w $3</pre>",
 	"config-sqlite-mkdir-error": "Error creating the data directory \"$1\".\nCheck the location and try again.",
