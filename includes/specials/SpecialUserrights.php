@@ -436,7 +436,7 @@ class UserrightsPage extends SpecialPage {
 				30,
 				str_replace( '_', ' ', $this->mTarget ),
 				array(
-					'autofocus' => true,
+					'autofocus' => '',
 					'class' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
 				)
 			) . ' ' .
