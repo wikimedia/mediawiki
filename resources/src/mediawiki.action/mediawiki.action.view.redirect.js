@@ -11,9 +11,6 @@
 		fragment = null,
 		shouldChangeFragment, index;
 
-	// Clear internal mw.config entries, so that no one tries to depend on them
-	mw.config.set( 'wgInternalRedirectTargetUrl', null );
-
 	index = canonical.indexOf( '#' );
 	if ( index !== -1 ) {
 		fragment = canonical.slice( index );
