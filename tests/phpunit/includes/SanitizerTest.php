@@ -340,4 +340,25 @@ class SanitizerTest extends MediaWikiTestCase {
 			$message
 		);
 	}
+
+	/**
+	 * @dataProvider provideEscapeHtmlAllowEntities
+	 * @covers Sanitizer::escapeHtmlAllowEntities
+	 */
+	public function testEscapeHtmlAllowEntities( $expected, $html ) {
+		$this->assertEquals(
+			$expected,
+			Sanitizer::escapeHtmlAllowEntities( $html )
+		);
+	}
+
+	public static function provideEscapeHtmlAllowEntities() {
+		return array(
+			array( 'foo', 'foo' ),
+			array( 'a¡b', 'a&#161;b' ),
+			array( 'foo&#039;bar', "foo'bar" ),
+			array( '&lt;script&gt;foo&lt;/script&gt;', '<script>foo</script>' ),
+		);
+	}
+
 }

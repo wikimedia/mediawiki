@@ -198,7 +198,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 	 * @covers Linker::formatLinksInComment
 	 * @dataProvider provideCasesForFormatLinksInComment
 	 */
-	public function testFormatLinksInComment( $expected, $input, $wiki ) {
+	public function testFormatLinksInComment( $expected, $input, $wiki = null ) {
 
 		$conf = new SiteConfiguration();
 		$conf->settings = array(
@@ -229,7 +229,11 @@ class LinkerTest extends MediaWikiLangTestCase {
 			array(
 				'foo bar <a href="/wiki/Special:BlankPage" title="Special:BlankPage">Special:BlankPage</a>',
 				'foo bar [[Special:BlankPage]]',
-				null,
+			),
+			array(
+				'foo bar <a href="/wiki/Special:BlankPage" title="Special:BlankPage">Special:BlankPage</a>',
+				"[[Special:BlankPage/foo'bar]]",
+				'enwiki'
 			),
 			array(
 				'foo bar <a class="external" rel="nofollow" href="//en.example.org/w/Special:BlankPage">Special:BlankPage</a>',
