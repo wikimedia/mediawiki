@@ -309,6 +309,13 @@ changes to languages because of Bugzilla reports.
 * The 'mediawiki.action.edit' ResourceLoader module no longer generates the edit
   toolbar, which has been moved to a separate 'mediawiki.toolbar' module. If you
   relied on this behavior, update your scripts' dependencies.
+* HTMLForm's 'vform' display style has been separated to a subclass. Therefore:
+  * HTMLForm::isVForm() is now deprecated.
+  * You can no longer do this:
+      $form = new HTMLForm( … );
+      $form->setDisplayFormat( 'vform' ); // throws exception
+    Instead, do this:
+      $form = HTMLForm::factory( 'vform', … );
 
 == Compatibility ==
 
