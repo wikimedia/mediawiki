@@ -355,7 +355,6 @@ class Sanitizer {
 	/**
 	 * Cleans up HTML, removes dangerous tags and attributes, and
 	 * removes HTML comments
-	 * @private
 	 * @param string $text
 	 * @param callable $processCallback Callback to do any variable or parameter
 	 *   replacements in HTML attribute values
