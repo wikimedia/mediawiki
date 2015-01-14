@@ -88,8 +88,8 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 					if ( !isset( $req['body']['html'] ) ) {
 						throw new Exception( "You must set an 'html' body key for this request" );
 					}
-					if ( isset( $parts[6] ) ) {
-						$req['body']['oldid'] = $parts[6];
+					if ( isset( $parts[7] ) ) {
+						$req['body']['oldid'] = $parts[7];
 					}
 				} elseif ( $parts[3] == 'wikitext' && $parts[5] == 'html' ) {
 					if ( !isset( $req['body']['wikitext'] ) ) {
