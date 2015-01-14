@@ -1464,9 +1464,9 @@ class Linker {
 
 						if ( $wikiId !== null ) {
 							$thelink = Linker::makeExternalLink(
-								WikiMap::getForeignURL( $wikiId, $target->getPrefixedURL() ),
+								WikiMap::getForeignURL( $wikiId, $target->getFullText() ),
 								$linkText . $inside,
-								true
+								/* escape = */ false // Already escaped
 							) . $trail;
 						} else {
 							$thelink = Linker::link(
