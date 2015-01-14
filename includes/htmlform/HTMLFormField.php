@@ -13,6 +13,7 @@ abstract class HTMLFormField {
 	protected $mLabel; # String label.  Set on construction
 	protected $mID;
 	protected $mClass = '';
+	protected $mVFormClass = '';
 	protected $mHelpClass = false;
 	protected $mDefault;
 	protected $mOptions = false;
@@ -512,7 +513,7 @@ abstract class HTMLFormField {
 			array( 'class' => $outerDivClass ) + $cellAttributes,
 			$inputHtml . "\n$errors"
 		);
-		$divCssClasses = array( "mw-htmlform-field-$fieldType", $this->mClass, $errorClass );
+		$divCssClasses = array( "mw-htmlform-field-$fieldType", $this->mClass, $this->mVFormClass, $errorClass );
 
 		$wrapperAttributes = array(
 			'class' => $divCssClasses,
@@ -561,7 +562,7 @@ abstract class HTMLFormField {
 	 */
 	public function getVForm( $value ) {
 		// Ewwww
-		$this->mClass .= ' mw-ui-vform-field';
+		$this->mVFormClass = ' mw-ui-vform-field';
 		return $this->getDiv( $value );
 	}
 
