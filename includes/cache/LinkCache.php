@@ -152,6 +152,10 @@ class LinkCache {
 	 *  page_latest and page_content_model
 	 */
 	public function addGoodLinkObjFromRow( $title, $row ) {
+		global $wgContentHandlerUseDB;
+		if ( $wgContentHandlerUseDB && !property_exists( $row, 'page_content_model' ) ) {
+			wfDebugLog( __CLASS__, __FUNCTION__ . ": Content model expected but not provided.  Content model of $title may be misreported" );
+		}
 		$dbkey = $title->getPrefixedDBkey();
 		$this->mGoodLinks[$dbkey] = intval( $row->page_id );
 		$this->mGoodLinkFields[$dbkey] = array(
