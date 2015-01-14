@@ -35,8 +35,11 @@
 
 @radioSize: 2em;
 
-// We use the not selector to cancel out styling on IE 8 and below
-.mw-ui-radio:not(#noop) {
+// We use the not selector to cancel out styling on IE 8 and below.
+// We also disable this styling on javascript disabled devices. This fixes the issue with
+// Opera Mini where checking/unchecking doesn't apply styling but potentially leaves other
+// more capable browsers with unstyled radio buttons.
+.client-js .mw-ui-radio:not(#noop) {
 	// Position relatively so we can make use of absolute pseudo elements
 	position: relative;
 	line-height: @radioSize;
