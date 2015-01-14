@@ -303,6 +303,8 @@ class ApiPageSet extends ApiBase {
 	 * @return array Array of field names
 	 */
 	public function getPageTableFields() {
+		global $wgContentHandlerUseDB;
+
 		// Ensure we get minimum required fields
 		// DON'T change this order
 		$pageFlds = array(
@@ -313,6 +315,10 @@ class ApiPageSet extends ApiBase {
 
 		if ( $this->mResolveRedirects ) {
 			$pageFlds['page_is_redirect'] = null;
+		}
+
+		if ( $wgContentHandlerUseDB ) {
+			$pageFlds['page_content_model'] = null;
 		}
 
 		// only store non-default fields
