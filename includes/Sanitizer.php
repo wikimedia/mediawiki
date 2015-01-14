@@ -355,7 +355,6 @@ class Sanitizer {
 	/**
 	 * Cleans up HTML, removes dangerous tags and attributes, and
 	 * removes HTML comments
-	 * @private
 	 * @param string $text
 	 * @param callable $processCallback Callback to do any variable or parameter
 	 *   replacements in HTML attribute values
@@ -364,7 +363,7 @@ class Sanitizer {
 	 * @param array $removetags For any tags (default or extra) to exclude
 	 * @return string
 	 */
-	static function removeHTMLtags( $text, $processCallback = null,
+	public static function removeHTMLtags( $text, $processCallback = null,
 		$args = array(), $extratags = array(), $removetags = array()
 	) {
 		global $wgUseTidy, $wgAllowMicrodataAttributes, $wgAllowImageTag;
@@ -607,11 +606,10 @@ class Sanitizer {
 	 * and followed by a newline (ignoring spaces), trim leading and
 	 * trailing spaces and one of the newlines.
 	 *
-	 * @private
 	 * @param string $text
 	 * @return string
 	 */
-	static function removeHTMLcomments( $text ) {
+	public static function removeHTMLcomments( $text ) {
 		while ( ( $start = strpos( $text, '<!--' ) ) !== false ) {
 			$end = strpos( $text, '-->', $start + 4 );
 			if ( $end === false ) {
