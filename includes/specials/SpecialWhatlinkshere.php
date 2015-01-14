@@ -73,7 +73,9 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 		$this->target = Title::newFromURL( $opts->getValue( 'target' ) );
 		if ( !$this->target ) {
-			$out->addHTML( $this->whatlinkshereForm() );
+			if ( !$this->including() ) {
+				$out->addHTML( $this->whatlinkshereForm() );
+			}
 
 			return;
 		}
