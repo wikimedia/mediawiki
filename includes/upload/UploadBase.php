@@ -1327,11 +1327,10 @@ abstract class UploadBase {
 				}
 			}
 
-			# Change href with animate from (http://html5sec.org/#137). This doesn't seem
-			# possible without embedding the svg, but filter here in case.
-			if ( $stripped == 'from'
+			# Change href with animate from (http://html5sec.org/#137).
+			if ( $stripped === 'attributename'
 				&& $strippedElement === 'animate'
-				&& !preg_match( '!^https?://!im', $value )
+				&& $this->stripXmlNamespace( $value ) == 'href'
 			) {
 				wfDebug( __METHOD__ . ": Found animate that might be changing href using from "
 					. "\"<$strippedElement '$attrib'='$value'...\" in uploaded file.\n" );

@@ -284,6 +284,18 @@ class UploadBaseTest extends MediaWikiTestCase {
 				true,
 				'SVG with animate from (http://html5sec.org/#137)'
 			),
+			array(
+				'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <a><text y="1em">Click me</text> <animate attributeName="xlink:href" values="javascript:alert(\'Bang!\')" begin="0s" dur="0.1s" fill="freeze" /> </a></svg>',
+				true,
+				true,
+				'SVG with animate xlink:href (http://html5sec.org/#137)'
+			),
+			array(
+				'<svg xmlns="http://www.w3.org/2000/svg" xmlns:y="http://www.w3.org/1999/xlink"> <a y:href="#"> <text y="1em">Click me</text> <animate attributeName="y:href" values="javascript:alert(\'Bang!\')" begin="0s" dur="0.1s" fill="freeze" /> </a> </svg>',
+				true,
+				true,
+				'SVG with animate y:href (http://html5sec.org/#137)'
+			),
 
 			// Other hostile SVG's
 			array(
