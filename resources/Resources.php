@@ -1021,6 +1021,7 @@ return array(
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.edit.css',
 		'dependencies' => array(
 			'mediawiki.action.edit.styles',
+			'mediawiki.toolbar',
 			'jquery.textSelection',
 			'jquery.byteLimit',
 		),
