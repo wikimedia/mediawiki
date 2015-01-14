@@ -667,6 +667,23 @@
 		loader: ( function () {
 
 			/**
+			 * Fired on various resource loading errors.
+			 *
+			 * @event resourceloader_exception
+			 * @param {Error|Mixed} e The error that was thrown. Almost always an Error
+			 *   object, but in theory module code could manually throw something else, and that
+			 *   might also end up here.
+			 * @param {string} [module] Name of the module which caused the error. Omitted if the
+			 *   error is not module-related or the module cannot be easily identified due to
+			 *   batched handling.
+			 * @param {string} source Source of the error. Possible values:
+			 *   - style: stylesheet error (only affects old IE where a special style loading method
+			 *     is used)
+			 *   - load-callback: exception thrown by user callback
+			 *   - module-execute: exception thrown by module code
+			 */
+
+			/**
 			 * Mapping of registered modules.
 			 *
 			 * See #implement for exact details on support for script, style and messages.
@@ -850,6 +867,7 @@
 								styleEl.styleSheet.cssText += cssText;
 							} catch ( e ) {
 								log( 'Stylesheet error', e );
+								mw.track( 'resourceloader.exception', { exception: e, source: 'stylesheet' } );
 							}
 						} else {
 							styleEl.appendChild( document.createTextNode( cssText ) );
@@ -1113,6 +1131,8 @@
 							// A user-defined callback raised an exception.
 							// Swallow it to protect our state machine!
 							log( 'Exception thrown by user callback', e );
+							mw.track( 'resourceloader.exception',
+								{ exception: e, module: module, source: 'load-callback' } );
 						}
 					}
 				}
@@ -1240,6 +1260,7 @@
 						// and not in debug mode, such as when a symbol that should be global isn't exported
 						log( 'Exception thrown by ' + module, e );
 						registry[module].state = 'error';
+						mw.track( 'resourceloader.exception', { exception: e, module: module, source: 'module-execute' } );
 						handlePending( module );
 					}
 				}
