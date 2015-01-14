@@ -135,7 +135,7 @@ class SpecialBookSources extends SpecialPage {
 			'isbn',
 			20,
 			$this->isbn,
-			array( 'autofocus' => true, 'class' => 'mw-ui-input-inline' )
+			array( 'autofocus' => '', 'class' => 'mw-ui-input-inline' )
 		);
 
 		$form .= '&#160;' . Html::submitButton(
