@@ -58,6 +58,12 @@
 	"apihelp-createaccount-example-pass": "Create user \"testuser\" with password \"test123\"",
 	"apihelp-createaccount-example-mail": "Create user \"testmailuser\" and email a randomly-generated password",
 
+	"apihelp-createtag-description": "Create a new change tag for manual use.",
+	"apihelp-createtag-param-tag": "Tag to create.",
+	"apihelp-createtag-param-reason": "An optional reason for creating the tag.",
+	"apihelp-createtag-param-ignorewarnings": "Whether to ignore any warnings that are issued during the creation process.",
+	"apihelp-createtag-example-simple": "Create a tag named <kbd>spam</kbd> with the reason <kbd>For use in edit patrolling</kbd>",
+
 	"apihelp-delete-description": "Delete a page.",
 	"apihelp-delete-param-title": "Title of the page you want to delete. Cannot be used together with $1pageid.",
 	"apihelp-delete-param-pageid": "Page ID of the page you want to delete. Cannot be used together with $1title.",
@@ -884,7 +890,7 @@
 
 	"apihelp-query+tags-description": "List change tags.",
 	"apihelp-query+tags-param-limit": "The maximum number of tags to list.",
-	"apihelp-query+tags-param-prop": "Which properties to get:\n;name:Adds name of tag.\n;displayname:Adds system message for the tag.\n;description:Adds description of the tag.\n;hitcount:Adds the amount of revisions that have this tag.\n;defined:Indicate whether the tag is defined.",
+	"apihelp-query+tags-param-prop": "Which properties to get:\n;name:Adds name of tag.\n;displayname:Adds system message for the tag.\n;description:Adds description of the tag.\n;hitcount:Adds the number of revisions and/or log entries that have this tag.\n;defined:Indicate whether the tag is defined.\n;source:Gets the source of the tag: \"extension\" for tags applied by an extension, \"manual\" for tags applied manually by users, \"extension-or-manual\" for tags that can be applied both ways, or \"none\" for tags that are no longer applied.\n;active:Whether the tag is still being applied.",
 	"apihelp-query+tags-example-simple": "List available tags",
 
 	"apihelp-query+templates-description": "Returns all pages transcluded on the given pages.",

@@ -892,6 +892,13 @@ $name: name of the special page, e.g. 'Watchlist'
 &$join_conds: join conditions for the tables
 $opts: FormOptions for this request
 
+'ChangeTagCanCreate': Tell whether a change tag should be able to be created
+from the UI (Special:Tags) or via the API. You could use this hook if you want
+to reserve a specific "namespace" of tags, or something similar.
+$tag: name of the tag
+&$status: Status object. Add your errors, which will be relayed to the user.
+  If you set an error, the user will be unable to create the tag.
+
 'ChangeTagAfterDelete': Called after a change tag has been deleted (that is,
 removed from all revisions and log entries to which it was applied). This gives
 extensions a chance to take it off their books.
@@ -908,6 +915,10 @@ the hook function. Ensure you consume the 'ChangeTagAfterDelete' hook to carry
 out custom deletion actions.
 $tag: name of the tag
 &$status: Status object. See above.
+
+'ChangeTagsListActive': Allows you to nominate which of the tags your extension
+uses are in active use.
+&$tags: list of all active tags. Append to this array.
 
 'LoginUserMigrated': Called during login to allow extensions the opportunity to
 inform a user that their username doesn't exist for a specific reason, instead
