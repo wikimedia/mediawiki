@@ -2310,10 +2310,13 @@ class Title {
 			$errors[] = array( 'confirmedittext' );
 		}
 
-		if ( ( $action == 'edit' || $action == 'create' ) && !$user->isBlockedFrom( $this ) ) {
+		$useSlave = !$doExpensiveQueries;
+		if ( ( $action == 'edit' || $action == 'create' )
+			&& !$user->isBlockedFrom( $this, $useSlave )
+		) {
 			// Don't block the user from editing their own talk page unless they've been
 			// explicitly blocked from that too.
-		} elseif ( $user->isBlocked() && $user->mBlock->prevents( $action ) !== false ) {
+		} elseif ( $user->isBlocked() && $user->getBlock()->prevents( $action ) !== false ) {
 			// @todo FIXME: Pass the relevant context into this function.
 			$errors[] = $user->getBlock()->getPermissionsError( RequestContext::getMain() );
 		}
