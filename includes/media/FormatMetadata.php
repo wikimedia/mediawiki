@@ -1601,12 +1601,7 @@ class FormatMetadata extends ContextSource {
 			return array();
 		}
 
-		$cacheKey = wfMemcKey(
-			'getExtendedMetadata',
-			$this->getLanguage()->getCode(),
-			(int)$this->singleLang,
-			$file->getSha1()
-		);
+		$cacheKey = $this->getExtendedMetadataCacheKey( $file );
 
 		$cachedValue = $wgMemc->get( $cacheKey );
 		if (
@@ -1632,6 +1627,30 @@ class FormatMetadata extends ContextSource {
 		}
 
 		return $extendedMetadata;
+	}
+
+	protected function getExtendedMetadataCacheKey( File $file ) {
+		if (
+			$file instanceof ForeignDBFile
+			&& ( $repo = $file->getRepo() )
+		) {
+			$cacheKey = $repo->getSharedCacheKey(
+				'getExtendedMetadata',
+				$this->getLanguage()->getCode(),
+				(int)$this->singleLang,
+				$file->getSha1()
+			);
+			if ( $cacheKey ) {
+				return $cacheKey;
+			}
+		}
+
+		return wfMemcKey(
+			'getExtendedMetadata',
+			$this->getLanguage()->getCode(),
+			(int)$this->singleLang,
+			$file->getSha1()
+		);
 	}
 
 	/**
