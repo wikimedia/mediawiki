@@ -103,7 +103,7 @@ class ParserOutputTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers ParserOutput::getSecondaryDataUpdate
+	 * @covers ParserOutput::getSecondaryDataUpdates
 	 * @covers ParserOutput::addSecondaryDataUpdate
 	 */
 	public function testGetSecondaryDataUpdates() {
@@ -127,7 +127,7 @@ class ParserOutputTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers ParserOutput::getSecondaryDataUpdate
+	 * @covers ParserOutput::getSecondaryDataUpdates
 	 * @covers ParserOutput::__sleep
 	 */
 	public function testGetSecondaryDataUpdates_serialization() {
