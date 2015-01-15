@@ -114,7 +114,8 @@
 			"Automatik",
 			"Elodark",
 			"Macofe",
-			"Sam"
+			"Sam",
+			"JackPotte"
 		]
 	},
 	"tog-underline": "Souligner les liens :",
@@ -318,7 +319,7 @@
 	"redirectedfrom": "(Redirigé depuis $1)",
 	"redirectpagesub": "Page de redirection",
 	"redirectto": "Rediriger vers :",
-	"lastmodifiedat": "Dernière modification de cette page le $1 à $2.<br />",
+	"lastmodifiedat": "Dernière modification de cette page le $1 à $2.",
 	"viewcount": "Cette page a été consultée {{PLURAL:$1|une fois|$1 fois}}.",
 	"protectedpage": "Page protégée",
 	"jumpto": "Aller à :",

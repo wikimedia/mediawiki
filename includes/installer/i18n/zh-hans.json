@@ -72,7 +72,7 @@
 	"config-unicode-using-intl": "使用[http://pecl.php.net/intl intl PECL扩展程序]标准化Unicode。",
 	"config-unicode-pure-php-warning": "<strong>警告：</strong>因为尚未安装 [http://pecl.php.net/intl intl PECL 扩展]以处理 Unicode 正常化，故只能退而采用运行较慢的纯 PHP 实现的方法。\n如果您运行着一个高流量的网站，请参阅 [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations Unicode标准化]一文。",
 	"config-unicode-update-warning": "'''警告'''：Unicode正常化封装器的已安装版本使用了旧版本的[http://site.icu-project.org/ ICU项目]库。如果您需要使用Unicode，请将其[//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations 升级]。",
-	"config-no-db": "找不到合适的数据库驱动！您需要为PHP安装数据库驱动。目前支持以下数据库：$1。如果您是自己编译的PHP，请重新配置他与数据库客户端将其启用，诸如，使用<code>./configure --with-mysqli</code>。如果您从Debian或Ubuntu包安装了PHP，之后您仍需要安装诸如<code>php5-mysql</code>包。",
+	"config-no-db": "无法找到合适的数据库驱动！您需要为PHP安装数据库驱动。目前支持以下数据库{{PLURAL:$2|类型}}：$1。\n\n如果您自己编译了PHP，请通过启用数据库客户端重新配置它，例如使用 <code>./configure --with-mysqli</code>。如果您从 Debian 或 Ubuntu 安装包安装了PHP，那么您也需要安装，例如 <code>php5-mysql</code> 安装包。",
 	"config-outdated-sqlite": "'''警告'''：您已安装SQLite $1，但是它的版本低于最低要求版本$2。因此您无法选择SQLite。",
 	"config-no-fts3": "'''警告'''：已编译的SQLite不包含[//sqlite.org/fts3.html FTS3模块]，后台搜索功能将不可用。",
 	"config-register-globals-error": "<strong>错误：PHP<code>[http://php.net/register_globals register_globals]</code>选项被启用。必须禁用它才能继续安装。</strong>关于如何禁用，参见[https://www.mediawiki.org/wiki/register_globals mediawiki.org此页]。",

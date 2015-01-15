@@ -1946,7 +1946,7 @@
 	"reblock-logentry": "qey [[$1]]i tarixê qediyayişi $2 $3 pa ninan a eyarê ver-grewtışan vurna.",
 	"blocklogtext": "No kuliyatê kılitkerdış u rakerdışê fealiyetê karberano.\nAdresê IP'ya ke otomatikmen kılit biyê lista de çıniya.\nSeba lista karberanê ke heta nıka kılit biyê [[Special:BlockList|lista kılitkerdışê IPy]] bıvinê.",
 	"unblocklogentry": "$1 ake",
-	"block-log-flags-anononly": "karberê anomini tenya",
+	"block-log-flags-anononly": "tenya karberê anonimi",
 	"block-log-flags-nocreate": "akerdışê hesabi racneyayo",
 	"block-log-flags-noautoblock": "Oto-wedariye terkneyayo",
 	"block-log-flags-noemail": "e-posta biya bloqe",
