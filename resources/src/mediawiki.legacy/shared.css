@@ -548,6 +548,15 @@ table.wikitable > caption {
 	color: #009000;
 }
 
+.successbox-container {
+    margin: 0 auto;
+    position: fixed;
+    top: 0;
+    height: 0;
+    left: 50%;
+    z-index: 1000;
+}
+
 .errorbox,
 .warningbox,
 .successbox {
@@ -558,6 +567,11 @@ table.wikitable > caption {
 	display: inline-block;
 	zoom: 1;
 	*display: inline;
+	position: relative;
+	top: 0.6em;
+	left: -50%;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px 0 #ccc;
 }
 
 .errorbox h2,
