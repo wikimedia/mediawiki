@@ -103,6 +103,16 @@
 	// </form>
 	//
 	// Styleguide 5.2.
+
+	.successbox-container {
+		margin: 0 auto;
+		position: fixed;
+		top: 0;
+		height: 0;
+		left: 50%;
+		z-index: 1000;
+	}
+
 	.error,
 	.errorbox,
 	.warningbox,
@@ -112,6 +122,11 @@
 		margin: 0 0 1em 0;
 		padding: 0.5em;
 		word-wrap: break-word;
+		position: relative;
+		top: 0.6em;
+		left: -50%;
+		border-radius: 5px;
+		box-shadow: 0 2px 5px 0 #ccc;
 	}
 
 	// Colours taken from those for .errorbox in shared.css
