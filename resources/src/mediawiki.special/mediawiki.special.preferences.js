@@ -1,3 +1,4 @@
+
 /*!
  * JavaScript for Special:Preferences
  */
@@ -78,6 +79,9 @@ jQuery( function ( $ ) {
 
 			$preferences.children( 'fieldset' ).hide().attr( 'aria-hidden', 'true' );
 			$( document.getElementById( 'mw-prefsection-' + name ) ).show().attr( 'aria-hidden', 'false' );
+			$( document.getElementById( 'mw-prefsection-' + name ) ).change( function() {
+				$( '.successbox' ).fadeOut( 250 );
+			} );
 		}
 	}
 
@@ -102,7 +106,10 @@ jQuery( function ( $ ) {
 				'aria-selected': i === 0 ? 'true' : 'false',
 				'aria-controls': ident
 			} )
-			.text( $legend.text() );
+			.text( $legend.text() )
+			.click( function() {
+				$('.successbox-container').fadeOut( 250 );
+			} );
 		$li.append( $a );
 		$preftoc.append( $li );
 	} );
@@ -122,6 +129,7 @@ jQuery( function ( $ ) {
 		}
 		if ( $el.length > 0 ) {
 			switchPrefTab( $el.attr( 'href' ).replace( '#mw-prefsection-', '' ) );
+			$('.successbox-container').fadeOut( 250 );
 		}
 	} );
 
@@ -142,6 +150,7 @@ jQuery( function ( $ ) {
 		( document.documentMode === undefined || document.documentMode >= 8 )
 	) {
 		$( window ).on( 'hashchange', function () {
+			$( '.successbox-container' ).fadeOut( 250 );
 			var hash = location.hash;
 			if ( hash.match( /^#mw-prefsection-[\w\-]+/ ) ) {
 				switchPrefTab( hash.replace( '#mw-prefsection-', '' ) );
@@ -152,10 +161,11 @@ jQuery( function ( $ ) {
 	// In older browsers we'll bind a click handler as fallback.
 	// We must not have onhashchange *and* the click handlers, other wise
 	// the click handler calls switchPrefTab() which sets the hash value,
-	// which triggers onhashcange and calls switchPrefTab() again.
+	// which triggers onhashchange and calls switchPrefTab() again.
 	} else {
 		$preftoc.on( 'click', 'li a', function ( e ) {
 			switchPrefTab( $( this ).attr( 'href' ).replace( '#mw-prefsection-', '' ) );
+			$( '.successbox-container' ).fadeOut( 250 );
 			e.preventDefault();
 		} );
 	}
