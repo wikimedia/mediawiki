@@ -942,9 +942,9 @@ class Title {
 	 * @return string Content model id
 	 */
 	public function getContentModel( $flags = 0 ) {
-		# Calling getArticleID() loads the field from cache as needed
 		if ( !$this->mContentModel && $this->getArticleID( $flags ) ) {
 			$linkCache = LinkCache::singleton();
+			$linkCache->addLinkObj( $this ); # in case we already had an article ID
 			$this->mContentModel = $linkCache->getGoodLinkFieldObj( $this, 'model' );
 		}
 
@@ -3192,13 +3192,13 @@ class Title {
 		if ( !is_null( $this->mRedirect ) ) {
 			return $this->mRedirect;
 		}
-		# Calling getArticleID() loads the field from cache as needed
 		if ( !$this->getArticleID( $flags ) ) {
 			$this->mRedirect = false;
 			return $this->mRedirect;
 		}
 
 		$linkCache = LinkCache::singleton();
+		$linkCache->addLinkObj( $this ); # in case we already had an article ID
 		$cached = $linkCache->getGoodLinkFieldObj( $this, 'redirect' );
 		if ( $cached === null ) {
 			# Trust LinkCache's state over our own
@@ -3227,12 +3227,12 @@ class Title {
 		if ( $this->mLength != -1 ) {
 			return $this->mLength;
 		}
-		# Calling getArticleID() loads the field from cache as needed
 		if ( !$this->getArticleID( $flags ) ) {
 			$this->mLength = 0;
 			return $this->mLength;
 		}
 		$linkCache = LinkCache::singleton();
+		$linkCache->addLinkObj( $this ); # in case we already had an article ID
 		$cached = $linkCache->getGoodLinkFieldObj( $this, 'length' );
 		if ( $cached === null ) {
 			# Trust LinkCache's state over our own, as for isRedirect()
@@ -3255,13 +3255,12 @@ class Title {
 		if ( !( $flags & Title::GAID_FOR_UPDATE ) && $this->mLatestID !== false ) {
 			return intval( $this->mLatestID );
 		}
-		# Calling getArticleID() loads the field from cache as needed
 		if ( !$this->getArticleID( $flags ) ) {
 			$this->mLatestID = 0;
 			return $this->mLatestID;
 		}
 		$linkCache = LinkCache::singleton();
-		$linkCache->addLinkObj( $this );
+		$linkCache->addLinkObj( $this ); # in case we already had an article ID
 		$cached = $linkCache->getGoodLinkFieldObj( $this, 'revision' );
 		if ( $cached === null ) {
 			# Trust LinkCache's state over our own, as for isRedirect()

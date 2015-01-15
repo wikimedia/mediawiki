@@ -124,6 +124,11 @@ production.
   on action=info about a file page does not list file links anymore.
 * (T78637) Search bar is not autofocused unless it is empty so that proper scrolling using arrow keys is possible.
 * (T50853) Database::makeList() modified to handle 'NULL' separately when building IN clause
+* (T85192) Captcha position modified in Usercreate template. As a result:
+** extrafields parameter added to Usercreate.php to insert additional data
+** 'extend' method added to QuickTemplate to append additional values to any field of data array
+* (T86974) Several Title methods now load from the database when necessary
+  (instead of returning incorrect results) even when the page ID is known.
 
 === Action API changes in 1.25 ===
 * (T67403) XML tag highlighting is now only performed for formats
