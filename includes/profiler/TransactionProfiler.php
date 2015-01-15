@@ -42,6 +42,78 @@ class TransactionProfiler {
 	/** @var array transaction ID => list of (query name, start time, end time) */
 	protected $dbTrxMethodTimes = array();
 
+	/** @var array */
+	protected $hits = array(
+		'writes'      => 0,
+		'queries'     => 0,
+		'conns'       => 0,
+		'masterConns' => 0
+	);
+	/** @var array */
+	protected $expect = array(
+		'writes'      => INF,
+		'queries'     => INF,
+		'conns'       => INF,
+		'masterConns' => INF
+	);
+	/** @var array */
+	protected $expectBy = array();
+
+	/**
+	 * Set performance expectations
+	 *
+	 * With conflicting expect, the most specific ones will be used
+	 *
+	 * @param string $event (writes,queries,conns,mConns)
+	 * @param integer $value Maximum count of the event
+	 * @param string $fname Caller
+	 * @since 1.25
+	 */
+	public function setExpectation( $event, $value, $fname ) {
+		$this->expect[$event] = isset( $this->expect[$event] )
+			? min( $this->expect[$event], $value )
+			: $value;
+		if ( $this->expect[$event] == $value ) {
+			$this->expectBy[$event] = $fname;
+		}
+	}
+
+	/**
+	 * Reset performance expectations and hit counters
+	 *
+	 * @since 1.25
+	 */
+	public function resetExpectations() {
+		foreach ( $this->hits as &$val ) {
+			$val = 0;
+		}
+		unset( $val );
+		foreach ( $this->expect as &$val ) {
+			$val = INF;
+		}
+		unset( $val );
+		$this->expectBy = array();
+	}
+
+	/**
+	 * Mark a DB as having been connected to with a new handle
+	 *
+	 * Note that there can be multiple connections to a single DB.
+	 *
+	 * @param string $server DB server
+	 * @param string $db DB name
+	 * @param bool $isMaster
+	 */
+	public function recordConnection( $server, $db, $isMaster ) {
+		// Report when too many connections happen...
+		if ( $this->hits['conns']++ == $this->expect['conns'] ) {
+			$this->reportExpectationViolated( 'conns', "[connect to $server ($db)]" );
+		}
+		if ( $isMaster && $this->hits['masterConns']++ == $this->expect['masterConns'] ) {
+			$this->reportExpectationViolated( 'masterConns', "[connect to $server ($db)]" );
+		}
+	}
+
 	/**
 	 * Mark a DB as in a transaction with one or more writes pending
 	 *
@@ -85,6 +157,14 @@ class TransactionProfiler {
 		if ( $isWrite && $n > $this->affectedThreshold && PHP_SAPI !== 'cli' ) {
 			wfDebugLog( 'DBPerformance',
 				"Query affected $n rows:\n" . $query . "\n" . wfBacktrace( true ) );
+		}
+
+		// Report when too many writes/queries happen...
+		if ( $this->hits['queries']++ == $this->expect['queries'] ) {
+			$this->reportExpectationViolated( 'queries', $query );
+		}
+		if ( $isWrite && $this->hits['writes']++ == $this->expect['writes'] ) {
+			$this->reportExpectationViolated( 'writes', $query );
 		}
 
 		if ( !$this->dbTrxHoldingLocks ) {
@@ -162,5 +242,16 @@ class TransactionProfiler {
 		}
 		unset( $this->dbTrxHoldingLocks[$name] );
 		unset( $this->dbTrxMethodTimes[$name] );
+	}
+
+	/**
+	 * @param string $expect
+	 * @param string $query
+	 */
+	protected function reportExpectationViolated( $expect, $query ) {
+		$n = $this->expect[$expect];
+		$by = $this->expectBy[$expect];
+		wfDebugLog( 'DBPerformance',
+			"Expectation ($expect <= $n) by $by not met:\n$query\n" . wfBacktrace( true ) );
 	}
 }

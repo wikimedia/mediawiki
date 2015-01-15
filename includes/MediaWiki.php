@@ -485,6 +485,16 @@ class MediaWiki {
 		$action = $this->getAction();
 		$wgTitle = $title;
 
+		// Aside from rollback, master queries should not happen on GET requests.
+		// Periodic or "in passing" updates on GET should use the job queue.
+		if ( !$request->wasPosted()
+			&& in_array( $action, array( 'view', 'edit', 'history' ) )
+		) {
+			$trxProfiler = Profiler::instance()->getTransactionProfiler();
+			$trxProfiler->setExpectation( 'masterConns', 0, __METHOD__ );
+			$trxProfiler->setExpectation( 'writes', 0, __METHOD__ );
+		}
+
 		// If the user has forceHTTPS set to true, or if the user
 		// is in a group requiring HTTPS, or if they have the HTTPS
 		// preference set, redirect them to HTTPS.
@@ -571,6 +581,10 @@ class MediaWiki {
 	 * Ends this task peacefully
 	 */
 	public function restInPeace() {
+		// Ignore things like master queries/connections on GET requests
+		// as long as they are in deferred updates (which catch errors).
+		Profiler::instance()->getTransactionProfiler()->resetExpectations();
+
 		// Do any deferred jobs
 		DeferredUpdates::doUpdates( 'commit' );
 
