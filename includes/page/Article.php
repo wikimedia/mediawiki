@@ -410,10 +410,18 @@ class Article implements Page {
 		// @todo FIXME: Horrible, horrible! This content-loading interface just plain sucks.
 		// We should instead work with the Revision object when we need it...
 		// Loads if user is allowed
-		$this->mContentObject = $this->mRevision->getContent(
+		$content = $this->mRevision->getContent(
 			Revision::FOR_THIS_USER,
 			$this->getContext()->getUser()
 		);
+
+		if ( !$content ) {
+			wfDebug( __METHOD__ . " failed to retrieve content of revision " .
+				$this->mRevision->getId() . "\n" );
+			return false;
+		}
+
+		$this->mContentObject = $content;
 		$this->mRevIdFetched = $this->mRevision->getId();
 
 		Hooks::run( 'ArticleAfterFetchContentObject', array( &$this, &$this->mContentObject ) );
