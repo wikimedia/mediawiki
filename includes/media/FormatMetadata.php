@@ -1597,18 +1597,17 @@ class FormatMetadata extends ContextSource {
 
 		// If revision deleted, exit immediately
 		if ( $file->isDeleted( File::DELETED_FILE ) ) {
-
 			return array();
 		}
 
-		$cacheKey = wfMemcKey(
-			'getExtendedMetadata',
-			$this->getLanguage()->getCode(),
-			(int)$this->singleLang,
-			$file->getSha1()
-		);
-
+		$cacheKey = $this->getExtendedMetadataCacheKey( $file );
 		$cachedValue = $wgMemc->get( $cacheKey );
+
+		// temporary hack to avoid cache stampede due to key format change
+		if ( !$cachedValue ) {
+			$cachedValue = $wgMemc->get( $this->getExtendedMetadataCacheKey( $file, true ) );
+		}
+
 		if (
 			$cachedValue
 			&& Hooks::run( 'ValidateExtendedMetadataCache', array( $cachedValue['timestamp'], $file ) )
@@ -1632,6 +1631,34 @@ class FormatMetadata extends ContextSource {
 		}
 
 		return $extendedMetadata;
+	}
+
+	/**
+	 * Generates a cache key for storing the results of fetchExtendedMetadata().
+	 * Tries to assign the same key to the same file, even if it is queried on different wikis.
+	 * @param File $file
+	 * @param bool $bc if true, use backwards-compatible logic
+	 * @return string
+	 */
+	protected function getExtendedMetadataCacheKey( File $file, $bc = false ) {
+		if ( !$bc && $file->getRepo() ) {
+			$cacheKey = $file->getRepo()->getSharedCacheKey(
+				'getExtendedMetadata',
+				$this->getLanguage()->getCode(),
+				(int)$this->singleLang,
+				$file->getSha1()
+			);
+			if ( $cacheKey ) {
+				return $cacheKey;
+			}
+		}
+
+		return wfMemcKey(
+			'getExtendedMetadata',
+			$this->getLanguage()->getCode(),
+			(int)$this->singleLang,
+			$file->getSha1()
+		);
 	}
 
 	/**
