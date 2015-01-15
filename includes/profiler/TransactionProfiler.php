@@ -34,6 +34,8 @@ class TransactionProfiler {
 	protected $dbLockThreshold = 3.0;
 	/** @var float Seconds */
 	protected $eventThreshold = .25;
+	/** @var integer */
+	protected $affectedThreshold = 500;
 
 	/** @var array transaction ID => (write start time, list of DBs involved) */
 	protected $dbTrxHoldingLocks = array();
@@ -71,13 +73,19 @@ class TransactionProfiler {
 	 *
 	 * This assumes that all queries are synchronous (non-overlapping)
 	 *
-	 * @param string $query Function name
+	 * @param string $query Function name or generalized SQL
 	 * @param float $sTime Starting UNIX wall time
 	 * @param bool $isWrite Whether this is a write query
+	 * @param integer $n Number of affected rows
 	 */
-	public function recordQueryCompletion( $query, $sTime, $isWrite = false ) {
+	public function recordQueryCompletion( $query, $sTime, $isWrite = false, $n = 0 ) {
 		$eTime = microtime( true );
 		$elapsed = ( $eTime - $sTime );
+
+		if ( $isWrite && $n > $this->affectedThreshold && PHP_SAPI !== 'cli' ) {
+			wfDebugLog( 'DBPerformance',
+				"Query affected $n rows:\n" . $query . "\n" . wfBacktrace( true ) );
+		}
 
 		if ( !$this->dbTrxHoldingLocks ) {
 			// Short-circuit

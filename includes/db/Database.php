@@ -46,9 +46,6 @@ abstract class DatabaseBase implements IDatabase {
 	/** Maximum time to wait before retry */
 	const DEADLOCK_DELAY_MAX = 1500000;
 
-	/** How many row changes in a write query trigger a log entry */
-	const LOG_WRITE_THRESHOLD = 300;
-
 	protected $mLastQuery = '';
 	protected $mDoneWrites = false;
 	protected $mPHPError = false;
@@ -1160,11 +1157,13 @@ abstract class DatabaseBase implements IDatabase {
 
 		# Log the query time and feed it into the DB trx profiler
 		if ( $queryProf != '' ) {
+			$that = $this;
 			$queryStartTime = microtime( true );
 			$queryProfile = new ScopedCallback(
-				function () use ( $queryStartTime, $queryProf, $isMaster ) {
-					$trxProfiler = Profiler::instance()->getTransactionProfiler();
-					$trxProfiler->recordQueryCompletion( $queryProf, $queryStartTime, $isMaster );
+				function () use ( $that, $queryStartTime, $queryProf, $isMaster ) {
+					$n = $that->affectedRows();
+					$trxProf = Profiler::instance()->getTransactionProfiler();
+					$trxProf->recordQueryCompletion( $queryProf, $queryStartTime, $isMaster, $n );
 				}
 			);
 		}
@@ -1206,13 +1205,6 @@ abstract class DatabaseBase implements IDatabase {
 
 		if ( false === $ret ) {
 			$this->reportQueryError( $this->lastError(), $this->lastErrno(), $sql, $fname, $tempIgnore );
-		} else {
-			$n = $this->affectedRows();
-			if ( $isWriteQuery && $n > self::LOG_WRITE_THRESHOLD && PHP_SAPI !== 'cli' ) {
-				wfDebugLog( 'DBPerformance',
-					"Query affected $n rows:\n" .
-					DatabaseBase::generalizeSQL( $sql ) . "\n" . wfBacktrace( true ) );
-			}
 		}
 
 		$res = $this->resultObject( $ret );
