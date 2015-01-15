@@ -326,6 +326,10 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->setUserPerm( null );
 			$this->assertEquals( $check[$action][0],
 				$this->title->getUserPermissionsErrors( $action, $this->user, true ) );
+			$this->assertEquals( $check[$action][0],
+				$this->title->getUserPermissionsErrors( $action, $this->user, 'full' ) );
+			$this->assertEquals( $check[$action][0],
+				$this->title->getUserPermissionsErrors( $action, $this->user, 'secure' ) );
 
 			global $wgGroupPermissions;
 			$old = $wgGroupPermissions;
@@ -333,11 +337,19 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 			$this->assertEquals( $check[$action][1],
 				$this->title->getUserPermissionsErrors( $action, $this->user, true ) );
+			$this->assertEquals( $check[$action][1],
+				$this->title->getUserPermissionsErrors( $action, $this->user, 'full' ) );
+			$this->assertEquals( $check[$action][1],
+				$this->title->getUserPermissionsErrors( $action, $this->user, 'secure' ) );
 			$wgGroupPermissions = $old;
 
 			$this->setUserPerm( $action );
 			$this->assertEquals( $check[$action][2],
 				$this->title->getUserPermissionsErrors( $action, $this->user, true ) );
+			$this->assertEquals( $check[$action][2],
+				$this->title->getUserPermissionsErrors( $action, $this->user, 'full' ) );
+			$this->assertEquals( $check[$action][2],
+				$this->title->getUserPermissionsErrors( $action, $this->user, 'secure' ) );
 
 			$this->setUserPerm( $action );
 			$this->assertEquals( $check[$action][3],

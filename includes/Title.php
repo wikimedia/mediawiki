@@ -1888,18 +1888,16 @@ class Title {
 	 * @param string $action Action that permission needs to be checked for
 	 * @param User $user User to check (since 1.19); $wgUser will be used if not
 	 *   provided.
-	 * @param bool $doExpensiveQueries Set this to false to avoid doing
-	 *   unnecessary queries.
+	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
 	 * @return bool
 	 */
-	public function userCan( $action, $user = null, $doExpensiveQueries = true ) {
+	public function userCan( $action, $user = null, $rigor = 'secure' ) {
 		if ( !$user instanceof User ) {
 			global $wgUser;
 			$user = $wgUser;
 		}
 
-		return !count( $this->getUserPermissionsErrorsInternal(
-			$action, $user, $doExpensiveQueries, true ) );
+		return !count( $this->getUserPermissionsErrorsInternal( $action, $user, $rigor, true ) );
 	}
 
 	/**
@@ -1909,16 +1907,19 @@ class Title {
 	 *
 	 * @param string $action Action that permission needs to be checked for
 	 * @param User $user User to check
-	 * @param bool $doExpensiveQueries Set this to false to avoid doing unnecessary
-	 *   queries by skipping checks for cascading protections and user blocks.
+	 * @param string $rigor One of (quick,full,secure)
+	 *   - quick  : does cheap permission checks from slaves (usable for GUI creation)
+	 *   - full   : does cheap and expensive checks possibly from a slave
+	 *   - secure : does cheap and expensive checks, using the master as needed
+	 * @param bool $short Set this to true to stop after the first permission error.
 	 * @param array $ignoreErrors Array of Strings Set this to a list of message keys
 	 *   whose corresponding errors may be ignored.
 	 * @return array Array of arguments to wfMessage to explain permissions problems.
 	 */
-	public function getUserPermissionsErrors( $action, $user, $doExpensiveQueries = true,
-		$ignoreErrors = array()
+	public function getUserPermissionsErrors(
+		$action, $user, $rigor = 'secure', $ignoreErrors = array()
 	) {
-		$errors = $this->getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries );
+		$errors = $this->getUserPermissionsErrorsInternal( $action, $user, $rigor );
 
 		// Remove the errors being ignored.
 		foreach ( $errors as $index => $error ) {
@@ -1938,16 +1939,14 @@ class Title {
 	 * @param string $action The action to check
 	 * @param User $user User to check
 	 * @param array $errors List of current errors
-	 * @param bool $doExpensiveQueries Whether or not to perform expensive queries
+	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
 	 * @param bool $short Short circuit on first error
 	 *
 	 * @return array List of errors
 	 */
-	private function checkQuickPermissions( $action, $user, $errors,
-		$doExpensiveQueries, $short
-	) {
+	private function checkQuickPermissions( $action, $user, $errors, $rigor, $short ) {
 		if ( !Hooks::run( 'TitleQuickPermissions',
-			array( $this, $user, $action, &$errors, $doExpensiveQueries, $short ) )
+			array( $this, $user, $action, &$errors, ( $rigor !== 'quick' ), $short ) )
 		) {
 			return $errors;
 		}
@@ -2038,12 +2037,12 @@ class Title {
 	 * @param string $action The action to check
 	 * @param User $user User to check
 	 * @param array $errors List of current errors
-	 * @param bool $doExpensiveQueries Whether or not to perform expensive queries
+	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
 	 * @param bool $short Short circuit on first error
 	 *
 	 * @return array List of errors
 	 */
-	private function checkPermissionHooks( $action, $user, $errors, $doExpensiveQueries, $short ) {
+	private function checkPermissionHooks( $action, $user, $errors, $rigor, $short ) {
 		// Use getUserPermissionsErrors instead
 		$result = '';
 		if ( !Hooks::run( 'userCan', array( &$this, &$user, $action, &$result ) ) ) {
@@ -2055,7 +2054,7 @@ class Title {
 		}
 		// Check getUserPermissionsErrorsExpensive hook
 		if (
-			$doExpensiveQueries
+			$rigor !== 'quick'
 			&& !( $short && count( $errors ) > 0 )
 			&& !Hooks::run( 'getUserPermissionsErrorsExpensive', array( &$this, &$user, $action, &$result ) )
 		) {
@@ -2071,14 +2070,12 @@ class Title {
 	 * @param string $action The action to check
 	 * @param User $user User to check
 	 * @param array $errors List of current errors
-	 * @param bool $doExpensiveQueries Whether or not to perform expensive queries
+	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
 	 * @param bool $short Short circuit on first error
 	 *
 	 * @return array List of errors
 	 */
-	private function checkSpecialsAndNSPermissions( $action, $user, $errors,
-		$doExpensiveQueries, $short
-	) {
+	private function checkSpecialsAndNSPermissions( $action, $user, $errors, $rigor, $short ) {
 		# Only 'createaccount' can be performed on special pages,
 		# which don't actually exist in the DB.
 		if ( NS_SPECIAL == $this->mNamespace && $action !== 'createaccount' ) {
@@ -2102,12 +2099,12 @@ class Title {
 	 * @param string $action The action to check
 	 * @param User $user User to check
 	 * @param array $errors List of current errors
-	 * @param bool $doExpensiveQueries Whether or not to perform expensive queries
+	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
 	 * @param bool $short Short circuit on first error
 	 *
 	 * @return array List of errors
 	 */
-	private function checkCSSandJSPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
+	private function checkCSSandJSPermissions( $action, $user, $errors, $rigor, $short ) {
 		# Protect css/js subpages of user pages
 		# XXX: this might be better using restrictions
 		# XXX: right 'editusercssjs' is deprecated, for backward compatibility only
@@ -2138,12 +2135,12 @@ class Title {
 	 * @param string $action The action to check
 	 * @param User $user User to check
 	 * @param array $errors List of current errors
-	 * @param bool $doExpensiveQueries Whether or not to perform expensive queries
+	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
 	 * @param bool $short Short circuit on first error
 	 *
 	 * @return array List of errors
 	 */
-	private function checkPageRestrictions( $action, $user, $errors, $doExpensiveQueries, $short ) {
+	private function checkPageRestrictions( $action, $user, $errors, $rigor, $short ) {
 		foreach ( $this->getRestrictions( $action ) as $right ) {
 			// Backwards compatibility, rewrite sysop -> editprotected
 			if ( $right == 'sysop' ) {
@@ -2172,15 +2169,13 @@ class Title {
 	 * @param string $action The action to check
 	 * @param User $user User to check
 	 * @param array $errors List of current errors
-	 * @param bool $doExpensiveQueries Whether or not to perform expensive queries
+	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
 	 * @param bool $short Short circuit on first error
 	 *
 	 * @return array List of errors
 	 */
-	private function checkCascadingSourcesRestrictions( $action, $user, $errors,
-		$doExpensiveQueries, $short
-	) {
-		if ( $doExpensiveQueries && !$this->isCssJsSubpage() ) {
+	private function checkCascadingSourcesRestrictions( $action, $user, $errors, $rigor, $short ) {
+		if ( $rigor !== 'quick' && !$this->isCssJsSubpage() ) {
 			# We /could/ use the protection level on the source page, but it's
 			# fairly ugly as we have to establish a precedence hierarchy for pages
 			# included by multiple cascade-protected pages. So just restrict
@@ -2221,20 +2216,16 @@ class Title {
 	 * @param string $action The action to check
 	 * @param User $user User to check
 	 * @param array $errors List of current errors
-	 * @param bool $doExpensiveQueries Whether or not to perform expensive queries
+	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
 	 * @param bool $short Short circuit on first error
 	 *
 	 * @return array List of errors
 	 */
-	private function checkActionPermissions( $action, $user, $errors,
-		$doExpensiveQueries, $short
-	) {
+	private function checkActionPermissions( $action, $user, $errors, $rigor, $short ) {
 		global $wgDeleteRevisionsLimit, $wgLang;
 
 		if ( $action == 'protect' ) {
-			if ( count( $this->getUserPermissionsErrorsInternal( 'edit',
-				$user, $doExpensiveQueries, true ) )
-			) {
+			if ( count( $this->getUserPermissionsErrorsInternal( 'edit', $user, $rigor, true ) ) ) {
 				// If they can't edit, they shouldn't protect.
 				$errors[] = array( 'protect-cantedit' );
 			}
@@ -2267,17 +2258,16 @@ class Title {
 				$errors[] = array( 'immobile-target-page' );
 			}
 		} elseif ( $action == 'delete' ) {
-			$tempErrors = $this->checkPageRestrictions( 'edit',
-				$user, array(), $doExpensiveQueries, true );
+			$tempErrors = $this->checkPageRestrictions( 'edit', $user, array(), $rigor, true );
 			if ( !$tempErrors ) {
 				$tempErrors = $this->checkCascadingSourcesRestrictions( 'edit',
-					$user, $tempErrors, $doExpensiveQueries, true );
+					$user, $tempErrors, $rigor, true );
 			}
 			if ( $tempErrors ) {
 				// If protection keeps them from editing, they shouldn't be able to delete.
 				$errors[] = array( 'deleteprotected' );
 			}
-			if ( $doExpensiveQueries && $wgDeleteRevisionsLimit
+			if ( $rigor !== 'quick' && $wgDeleteRevisionsLimit
 				&& !$this->userCan( 'bigdelete', $user ) && $this->isBigDeletion()
 			) {
 				$errors[] = array( 'delete-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) );
@@ -2292,15 +2282,15 @@ class Title {
 	 * @param string $action The action to check
 	 * @param User $user User to check
 	 * @param array $errors List of current errors
-	 * @param bool $doExpensiveQueries Whether or not to perform expensive queries
+	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
 	 * @param bool $short Short circuit on first error
 	 *
 	 * @return array List of errors
 	 */
-	private function checkUserBlock( $action, $user, $errors, $doExpensiveQueries, $short ) {
+	private function checkUserBlock( $action, $user, $errors, $rigor, $short ) {
 		// Account creation blocks handled at userlogin.
 		// Unblocking handled in SpecialUnblock
-		if ( !$doExpensiveQueries || in_array( $action, array( 'createaccount', 'unblock' ) ) ) {
+		if ( $rigor === 'quick' || in_array( $action, array( 'createaccount', 'unblock' ) ) ) {
 			return $errors;
 		}
 
@@ -2310,10 +2300,13 @@ class Title {
 			$errors[] = array( 'confirmedittext' );
 		}
 
-		if ( ( $action == 'edit' || $action == 'create' ) && !$user->isBlockedFrom( $this ) ) {
+		$useSlave = ( $rigor !== 'secure' );
+		if ( ( $action == 'edit' || $action == 'create' )
+			&& !$user->isBlockedFrom( $this, $useSlave )
+		) {
 			// Don't block the user from editing their own talk page unless they've been
 			// explicitly blocked from that too.
-		} elseif ( $user->isBlocked() && $user->mBlock->prevents( $action ) !== false ) {
+		} elseif ( $user->isBlocked() && $user->getBlock()->prevents( $action ) !== false ) {
 			// @todo FIXME: Pass the relevant context into this function.
 			$errors[] = $user->getBlock()->getPermissionsError( RequestContext::getMain() );
 		}
@@ -2327,12 +2320,12 @@ class Title {
 	 * @param string $action The action to check
 	 * @param User $user User to check
 	 * @param array $errors List of current errors
-	 * @param bool $doExpensiveQueries Whether or not to perform expensive queries
+	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
 	 * @param bool $short Short circuit on first error
 	 *
 	 * @return array List of errors
 	 */
-	private function checkReadPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
+	private function checkReadPermissions( $action, $user, $errors, $rigor, $short ) {
 		global $wgWhitelistRead, $wgWhitelistReadRegexp;
 
 		$whitelisted = false;
@@ -2435,13 +2428,23 @@ class Title {
 	 *
 	 * @param string $action Action that permission needs to be checked for
 	 * @param User $user User to check
-	 * @param bool $doExpensiveQueries Set this to false to avoid doing unnecessary queries.
+	 * @param string $rigor One of (quick,full,secure)
+	 *   - quick  : does cheap permission checks from slaves (usable for GUI creation)
+	 *   - full   : does cheap and expensive checks possibly from a slave
+	 *   - secure : does cheap and expensive checks, using the master as needed
 	 * @param bool $short Set this to true to stop after the first permission error.
 	 * @return array Array of arrays of the arguments to wfMessage to explain permissions problems.
 	 */
-	protected function getUserPermissionsErrorsInternal( $action, $user,
-		$doExpensiveQueries = true, $short = false
+	protected function getUserPermissionsErrorsInternal(
+		$action, $user, $rigor = 'secure', $short = false
 	) {
+		if ( $rigor === true ) {
+			$rigor = 'secure'; // b/c
+		} elseif ( $rigor === false ) {
+			$rigor = 'quick'; // b/c
+		} elseif ( !in_array( $rigor, array( 'quick', 'full', 'secure' ) ) ) {
+			throw new Exception( "Invalid rigor parameter '$rigor'." );
+		}
 
 		# Read has special handling
 		if ( $action == 'read' ) {
@@ -2479,7 +2482,7 @@ class Title {
 		while ( count( $checks ) > 0 &&
 				!( $short && count( $errors ) > 0 ) ) {
 			$method = array_shift( $checks );
-			$errors = $this->$method( $action, $user, $errors, $doExpensiveQueries, $short );
+			$errors = $this->$method( $action, $user, $errors, $rigor, $short );
 		}
 
 		return $errors;

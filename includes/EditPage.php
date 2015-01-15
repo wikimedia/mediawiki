@@ -504,7 +504,7 @@ class EditPage {
 			}
 		}
 
-		$permErrors = $this->getEditPermissionErrors();
+		$permErrors = $this->getEditPermissionErrors( $this->save ? 'secure' : 'full' );
 		if ( $permErrors ) {
 			wfDebug( __METHOD__ . ": User can't edit\n" );
 			// Auto-block user's IP if the account was "hard" blocked
@@ -559,15 +559,22 @@ class EditPage {
 	}
 
 	/**
+	 * @param string $rigor Same format as Title::getUserPermissionErrors()
 	 * @return array
 	 */
-	protected function getEditPermissionErrors() {
+	protected function getEditPermissionErrors( $rigor = 'secure' ) {
 		global $wgUser;
-		$permErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $wgUser );
+
+		$permErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $wgUser, $rigor );
 		# Can this title be created?
 		if ( !$this->mTitle->exists() ) {
-			$permErrors = array_merge( $permErrors,
-				wfArrayDiff2( $this->mTitle->getUserPermissionsErrors( 'create', $wgUser ), $permErrors ) );
+			$permErrors = array_merge(
+				$permErrors,
+				wfArrayDiff2(
+					$this->mTitle->getUserPermissionsErrors( 'create', $wgUser, $rigor ),
+					$permErrors
+				)
+			);
 		}
 		# Ignore some permissions errors when a user is just previewing/viewing diffs
 		$remove = array();
@@ -579,6 +586,7 @@ class EditPage {
 			}
 		}
 		$permErrors = wfArrayDiff2( $permErrors, $remove );
+
 		return $permErrors;
 	}
 
