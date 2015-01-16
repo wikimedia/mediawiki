@@ -14,7 +14,8 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {string|null} includeAllValue Value for "all namespaces" option, if any
+	 * @cfg {string|null} [includeAllValue] Value for "all namespaces" option, if any
+	 * @cfg {number[]} [exclude] List of namespace numbers to exclude from the selector
 	 */
 	mw.widgets.NamespaceInputWidget = function MwWidgetsNamespaceInputWidget( config ) {
 		// Configuration initialization
@@ -38,10 +39,11 @@
 	 */
 	mw.widgets.NamespaceInputWidget.prototype.getNamespaceDropdownOptions = function ( config ) {
 		var options,
+			exclude = config.exclude || [],
 			NS_MAIN = 0;
 
 		options = $.map( mw.config.get( 'wgFormattedNamespaces' ), function ( name, ns ) {
-			if ( ns < NS_MAIN ) {
+			if ( ns < NS_MAIN || exclude.indexOf( Number( ns ) ) !== -1 ) {
 				return null; // skip
 			}
 			ns = String( ns );

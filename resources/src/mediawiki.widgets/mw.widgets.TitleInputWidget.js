@@ -80,6 +80,26 @@
 	/* Methods */
 
 	/**
+	 * Get the namespace to prepend to titles in suggestions, if any.
+	 *
+	 * @return {number|null} Namespace number
+	 */
+	mw.widgets.TitleInputWidget.prototype.getNamespace = function () {
+		return this.namespace;
+	};
+
+	/**
+	 * Set the namespace to prepend to titles in suggestions, if any.
+	 *
+	 * @param {number|null} namespace Namespace number
+	 */
+	mw.widgets.TitleInputWidget.prototype.setNamespace = function ( namespace ) {
+		this.namespace = namespace;
+		this.lookupCache = {};
+		this.closeLookupMenu();
+	};
+
+	/**
 	 * @inheritdoc
 	 */
 	mw.widgets.TitleInputWidget.prototype.onLookupMenuItemChoose = function ( item ) {
