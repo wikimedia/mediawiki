@@ -200,7 +200,9 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			}
 
 			if ( is_null( $resultPageSet ) ) {
-				$vals = array();
+				$vals = array(
+					ApiResult::META_TYPE => 'assoc',
+				);
 				if ( $fld_ids ) {
 					$vals['fromid'] = intval( $row->pl_from );
 				}
