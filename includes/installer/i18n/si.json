@@ -3,7 +3,8 @@
 		"authors": [
 			"Singhalawap",
 			"පසිඳු කාවින්ද",
-			"Sahan.ssw"
+			"Sahan.ssw",
+			"Thirsty"
 		]
 	},
 	"config-desc": "මාධ්‍යවිකි සඳහා වූ ස්ථාපකය",
@@ -60,6 +61,7 @@
 	"config-missing-db-name": "\"දත්ත සංචිත නාමය\" සඳහා ඔබ විසින් අගයක් දිය යුතු වේ",
 	"config-missing-db-host": "\"දත්ත සංචිත ධාරකය\" සඳහා ඔබ විසින් අගයක් දිය යුතු වේ",
 	"config-missing-db-server-oracle": "\"දත්ත සංචිත TNS\" සඳහා ඔබ විසින් අගයක් දිය යුතු වේ",
+	"config-sqlite-name-help": "ඔබගේ විකිය හදුන්වාදෙන නමක් තෝරාගන්න. \nහිස්තැන් හෝ විරාම ලක්ෂණ ‍නොයොදන්න.\nමෙය SQLite දත්ත ගොනුනාමය සදහා යොදා ගනු ඇත.",
 	"config-regenerate": "නැවත ජනිත කරන්න LocalSettings.php →",
 	"config-db-web-account": "ජාල ප්‍රවේශනය සඳහා දත්ත සංචිත ගිණුම",
 	"config-mysql-engine": "ආචයන එන්ජිම:",

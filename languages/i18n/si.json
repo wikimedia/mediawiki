@@ -26,7 +26,8 @@
 			"හරිත",
 			"Indunil Chamara",
 			"Susith Chandira Gts",
-			"Thanushka"
+			"Thanushka",
+			"Thirsty"
 		]
 	},
 	"tog-underline": "සබැඳි යටීර කිරීම:",
@@ -1146,9 +1147,9 @@
 	"uploaderror": "උඩුගත කිරීම් දෝෂයක්",
 	"upload-recreate-warning": "'''අවවාදයයි: මෙම නම තිබූ ගොනුවක් මකාදැමීමට හෝ ගෙනයෑමට හෝ ලක්ව ඇත.'''\n\nඔබගේ පහසුව තකා මෙම පිටුවවෙහි මකාදැමුමෙහි හා ගෙනයෑමෙහි ලඝු සටහන මෙහි දැක්වේ:",
 	"uploadtext": "ගොනු උඩුගත කිරීම සඳහා පහත ආකෘති පත්‍රය භාවිතා කරන්න.\nපෙරදී උඩුගතකෙරුණු ගොනු නැරඹුම හෝ ගවේෂණය සඳහා  [[Special:FileList|උඩුගතකෙරුණු ගොනු ලැයිස්තුව]] වෙත යන්න, (යළි)උඩුගතකෙරුම්ද  [[Special:Log/upload|උඩුගතකෙරුම් ලඝු-සටහන]] තුල සටහන් කර ඇති අතර, මකාදැමුම්  [[Special:Log/delete|මකාදැමුම් ලඝු-සටහන]] හි ඇත.\n\nගොනුවක් පිටුවක බහාලීම සඳහා, පහත ආකාරයේ සබැඳියක් භාවිතා කරන්න:\n* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' ගොනුවෙහි පරිපූර්ණ අනුවාදය භාවිතා කිරීමට\n* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></code>''' 'විකල්ප පෙළ' යන්න විස්තරය ලෙසින් තැබෙමින් වම් මායිමෙහි කොටුවක පික්සල 200 පළල ප්‍රවාචිතයක් භාවිතා කිරීමට\n* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' ගොනුව ප්‍රදර්ශනය නොකෙරෙමින්  ගොනුවට සෘජු ලෙස සබැඳීමට",
-	"upload-permitted": "අවසරලත් ගොනු වර්ගයන්: $1.",
-	"upload-preferred": "අභිරුචි ගොනු වර්ගයන්: $1.",
-	"upload-prohibited": "තහනම් ගොනු වර්ගයන්: $1.",
+	"upload-permitted": "අවසරලත් ගොනුව {{PLURAL:$2|type|types}}: $1.",
+	"upload-preferred": "අභිරුචි ගොනුව {{PLURAL:$2|type|types}}: $1",
+	"upload-prohibited": "තහනම් ගොනුව {{PLURAL:$2|type|types}}: $1.",
 	"uploadlogpage": "උඩුගත කිරීම් සටහන",
 	"uploadlogpagetext": "ඉතා මෑතදී සිදුකල ගොනු උඩුගතකිරීම් ලැයිස්තුවක් පහත දැක්වේ.\nවැඩිමනත් දෘශ්‍ය සමාලෝචනය සඳහා [[Special:NewFiles|නව ගොනු ගැලරිය]] බලන්න.",
 	"filename": "ගොනු නාමය",
@@ -2758,6 +2759,7 @@
 	"version-libraries": "ස්ථාපිත පුස්තකාල",
 	"version-libraries-library": "පුස්තකාලය",
 	"version-libraries-version": "අනුවාදය",
+	"redirect-file": "ගොනුනාමය",
 	"fileduplicatesearch": "අනුපිටපත් ගොනු සඳහා ගවේෂණය කරන්න",
 	"fileduplicatesearch-summary": "එහි පූරක අගය පාදක කර ගෙන අනුපිටපත් ගොනු සඳහා ගවේෂණය කරන්න.",
 	"fileduplicatesearch-legend": "අනුපිටපතක් සඳහා ගවේෂණය කරන්න",
