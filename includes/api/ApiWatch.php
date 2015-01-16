@@ -106,15 +106,15 @@ class ApiWatch extends ApiBase {
 
 		if ( $params['unwatch'] ) {
 			$status = UnwatchAction::doUnwatch( $title, $user );
+			$res['unwatched'] = $status->isOK();
 			if ( $status->isOK() ) {
-				$res['unwatched'] = '';
 				$res['message'] = $this->msg( 'removedwatchtext', $title->getPrefixedText() )
 					->title( $title )->parseAsBlock();
 			}
 		} else {
 			$status = WatchAction::doWatch( $title, $user );
+			$res['watched'] = $status->isOK();
 			if ( $status->isOK() ) {
-				$res['watched'] = '';
 				$res['message'] = $this->msg( 'addedwatchtext', $title->getPrefixedText() )
 					->title( $title )->parseAsBlock();
 			}

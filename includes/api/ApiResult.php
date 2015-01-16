@@ -163,7 +163,9 @@ class ApiResult {
 	 * Clear the current result data.
 	 */
 	public function reset() {
-		$this->mData = array();
+		$this->mData = array(
+			self::META_TYPE => 'assoc', // Usually what's desired
+		);
 		$this->mSize = 0;
 	}
 
@@ -1022,9 +1024,7 @@ class ApiResult {
 					'||' . join( '|', $finishedModules );
 			}
 
-			if ( $batchcomplete ) {
-				$this->addValue( null, 'batchcomplete', '', ApiResult::ADD_ON_TOP | ApiResult::NO_SIZE_CHECK );
-			}
+			$this->addValue( null, 'batchcomplete', $batchcomplete, ApiResult::ADD_ON_TOP | ApiResult::NO_SIZE_CHECK );
 		}
 		if ( $data ) {
 			$this->addValue( null, $key, $data, ApiResult::ADD_ON_TOP | ApiResult::NO_SIZE_CHECK );

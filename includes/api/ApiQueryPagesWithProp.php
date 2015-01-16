@@ -99,7 +99,9 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 			}
 
 			if ( $resultPageSet === null ) {
-				$vals = array();
+				$vals = array(
+					ApiResult::META_TYPE => 'assoc',
+				);
 				if ( $fld_ids ) {
 					$vals['pageid'] = (int)$row->page_id;
 				}

@@ -181,6 +181,9 @@ production.
 * (T85417) When outputting the list of redirect titles, a 'tointerwiki'
   property (like the existing 'tofragment' property) will be set.
 * Added formatversion to format=json, still experimental.
+* The root node and various other nodes will now always be an object in formats
+  such as json that distinguish between arrays and objects.
+  * Except for action=opensearch where the spec requires an array.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.
@@ -219,6 +222,10 @@ production.
 * ApiResult/ApiFormatBase "raw mode" is deprecated.
 * ApiFormatXml now assumes defaults and so on instead of throwing errors when
   metadata isn't set.
+* Many modules have changed result data formats. While this shouldn't affect
+  clients not using the experimental formatversion=2015, code using
+  ApiResult::getResultData() and not using ApiResult::transformForBC() may need
+  updating.
 * The following methods have been deprecated and may be removed in a future
   release:
   * ApiBase::getDescription
