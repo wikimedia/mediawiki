@@ -99,8 +99,8 @@ class ApiQueryTags extends ApiQueryBase {
 				$tag['hitcount'] = $hitcount;
 			}
 
-			if ( $fld_defined && isset( $definedTags[$tagName] ) ) {
-				$tag['defined'] = '';
+			if ( $fld_defined ) {
+				$tag['defined'] = isset( $definedTags[$tagName] );
 			}
 
 			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $tag );

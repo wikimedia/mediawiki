@@ -42,7 +42,7 @@ class ApiImageRotate extends ApiBase {
 				$v = $val;
 			}
 			if ( $flag !== null ) {
-				$v[$flag] = '';
+				$v[$flag] = true;
 			}
 			$result[] = $v;
 		}
@@ -70,7 +70,7 @@ class ApiImageRotate extends ApiBase {
 			$r['id'] = $title->getArticleID();
 			ApiQueryBase::addTitleInfo( $r, $title );
 			if ( !$title->exists() ) {
-				$r['missing'] = '';
+				$r['missing'] = true;
 			}
 
 			$file = wfFindFile( $title );

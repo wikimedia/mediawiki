@@ -211,11 +211,11 @@ class ApiParse extends ApiBase {
 			if ( $params['onlypst'] ) {
 				// Build a result and bail out
 				$result_array = array();
-				$result_array['text'] = array();
-				ApiResult::setContentValue( $result_array['text'], 'text', $this->pstContent->serialize( $format ) );
+				$result_array['text'] = $this->pstContent->serialize( $format );
+				$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'text';
 				if ( isset( $prop['wikitext'] ) ) {
-					$result_array['wikitext'] = array();
-					ApiResult::setContentValue( $result_array['wikitext'], 'wikitext', $this->content->serialize( $format ) );
+					$result_array['wikitext'] = $this->content->serialize( $format );
+					$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'wikitext';
 				}
 				$result->addValue( null, $this->getModuleName(), $result_array );
 
@@ -247,17 +247,13 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( isset( $prop['text'] ) ) {
-			$result_array['text'] = array();
-			ApiResult::setContentValue( $result_array['text'], 'text', $p_result->getText() );
+			$result_array['text'] = $p_result->getText();
+			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'text';
 		}
 
 		if ( !is_null( $params['summary'] ) ) {
-			$result_array['parsedsummary'] = array();
-			ApiResult::setContentValue(
-				$result_array['parsedsummary'],
-				'parsedsummary',
-				Linker::formatComment( $params['summary'], $titleObj )
-			);
+			$result_array['parsedsummary'] = Linker::formatComment( $params['summary'], $titleObj );
+			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'parsedsummary';
 		}
 
 		if ( isset( $prop['langlinks'] ) ) {
@@ -280,9 +276,8 @@ class ApiParse extends ApiBase {
 			$result_array['categories'] = $this->formatCategoryLinks( $p_result->getCategories() );
 		}
 		if ( isset( $prop['categorieshtml'] ) ) {
-			$categoriesHtml = $this->categoriesHtml( $p_result->getCategories() );
-			$result_array['categorieshtml'] = array();
-			ApiResult::setContentValue( $result_array['categorieshtml'], 'categorieshtml', $categoriesHtml );
+			$result_array['categorieshtml'] = $this->categoriesHtml( $p_result->getCategories() );
+			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'categorieshtml';
 		}
 		if ( isset( $prop['links'] ) ) {
 			$result_array['links'] = $this->formatLinks( $p_result->getLinks() );
@@ -322,12 +317,8 @@ class ApiParse extends ApiBase {
 			}
 
 			if ( isset( $prop['headhtml'] ) ) {
-				$result_array['headhtml'] = array();
-				ApiResult::setContentValue(
-					$result_array['headhtml'],
-					'headhtml',
-					$context->getOutput()->headElement( $context->getSkin() )
-				);
+				$result_array['headhtml'] = $context->getOutput()->headElement( $context->getSkin() );
+				$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'headhtml';
 			}
 		}
 
@@ -339,11 +330,8 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( isset( $prop['indicators'] ) ) {
-			foreach ( $p_result->getIndicators() as $name => $content ) {
-				$indicator = array( 'name' => $name );
-				ApiResult::setContentValue( $indicator, 'content', $content );
-				$result_array['indicators'][] = $indicator;
-			}
+			$result_array['indicators'] = (array)$p_result->getIndicators();
+			ApiResult::setArrayType( $result_array['indicators'], 'BCkvp', 'name' );
 		}
 
 		if ( isset( $prop['iwlinks'] ) ) {
@@ -351,15 +339,16 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( isset( $prop['wikitext'] ) ) {
-			$result_array['wikitext'] = array();
-			ApiResult::setContentValue( $result_array['wikitext'], 'wikitext', $this->content->serialize( $format ) );
+			$result_array['wikitext'] = $this->content->serialize( $format );
+			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'wikitext';
 			if ( !is_null( $this->pstContent ) ) {
-				$result_array['psttext'] = array();
-				ApiResult::setContentValue( $result_array['psttext'], 'psttext', $this->pstContent->serialize( $format ) );
+				$result_array['psttext'] = $this->pstContent->serialize( $format );
+				$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'psttext';
 			}
 		}
 		if ( isset( $prop['properties'] ) ) {
-			$result_array['properties'] = $this->formatProperties( $p_result->getProperties() );
+			$result_array['properties'] = (array)$p_result->getProperties();
+			ApiResult::setArrayType( $result_array['properties'], 'BCkvp', 'name' );
 		}
 
 		if ( isset( $prop['limitreportdata'] ) ) {
@@ -367,9 +356,8 @@ class ApiParse extends ApiBase {
 				$this->formatLimitReportData( $p_result->getLimitReportData() );
 		}
 		if ( isset( $prop['limitreporthtml'] ) ) {
-			$limitreportHtml = EditPage::getPreviewLimitReport( $p_result );
-			$result_array['limitreporthtml'] = array();
-			ApiResult::setContentValue( $result_array['limitreporthtml'], 'limitreporthtml', $limitreportHtml );
+			$result_array['limitreporthtml'] = EditPage::getPreviewLimitReport( $p_result );
+			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'limitreporthtml';
 		}
 
 		if ( $params['generatexml'] ) {
@@ -384,8 +372,8 @@ class ApiParse extends ApiBase {
 			} else {
 				$xml = $dom->__toString();
 			}
-			$result_array['parsetree'] = array();
-			ApiResult::setContentValue( $result_array['parsetree'], 'parsetree', $xml );
+			$result_array['parsetree'] = $xml;
+			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'parsetree';
 		}
 
 		$result_mapping = array(
@@ -539,9 +527,9 @@ class ApiParse extends ApiBase {
 			$entry['sortkey'] = $sortkey;
 			ApiResult::setContentValue( $entry, 'category', $link );
 			if ( !isset( $hiddencats[$link] ) ) {
-				$entry['missing'] = '';
+				$entry['missing'] = true;
 			} elseif ( $hiddencats[$link] ) {
-				$entry['hidden'] = '';
+				$entry['hidden'] = true;
 			}
 			$result[] = $entry;
 		}
@@ -563,9 +551,7 @@ class ApiParse extends ApiBase {
 				$entry = array();
 				$entry['ns'] = $ns;
 				ApiResult::setContentValue( $entry, 'title', Title::makeTitle( $ns, $title )->getFullText() );
-				if ( $id != 0 ) {
-					$entry['exists'] = '';
-				}
+				$entry['exists'] = $id != 0;
 				$result[] = $entry;
 			}
 		}
@@ -599,18 +585,6 @@ class ApiParse extends ApiBase {
 			$entry = array();
 			$entry['tag'] = $tag;
 			ApiResult::setContentValue( $entry, 'content', $content );
-			$result[] = $entry;
-		}
-
-		return $result;
-	}
-
-	private function formatProperties( $properties ) {
-		$result = array();
-		foreach ( $properties as $name => $value ) {
-			$entry = array();
-			$entry['name'] = $name;
-			ApiResult::setContentValue( $entry, 'value', $value );
 			$result[] = $entry;
 		}
 

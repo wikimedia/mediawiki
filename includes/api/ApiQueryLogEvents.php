@@ -230,9 +230,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			}
 
 			$vals = $this->extractRowInfo( $row );
-			if ( !$vals ) {
-				continue;
-			}
 			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $vals );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'continue', "$row->log_timestamp|$row->log_id" );
@@ -359,7 +356,9 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 	private function extractRowInfo( $row ) {
 		$logEntry = DatabaseLogEntry::newFromRow( $row );
-		$vals = array();
+		$vals = array(
+			ApiResult::META_TYPE => 'assoc',
+		);
 		$anyHidden = false;
 		$user = $this->getUser();
 
@@ -373,7 +372,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		if ( $this->fld_title || $this->fld_ids || $this->fld_details && $row->log_params !== '' ) {
 			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_ACTION ) ) {
-				$vals['actionhidden'] = '';
+				$vals['actionhidden'] = true;
 				$anyHidden = true;
 			}
 			if ( LogEventsList::userCan( $row, LogPage::DELETED_ACTION, $user ) ) {
@@ -405,7 +404,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		if ( $this->fld_user || $this->fld_userid ) {
 			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_USER ) ) {
-				$vals['userhidden'] = '';
+				$vals['userhidden'] = true;
 				$anyHidden = true;
 			}
 			if ( LogEventsList::userCan( $row, LogPage::DELETED_USER, $user ) ) {
@@ -417,7 +416,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				}
 
 				if ( !$row->log_user ) {
-					$vals['anon'] = '';
+					$vals['anon'] = true;
 				}
 			}
 		}
@@ -427,7 +426,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		if ( ( $this->fld_comment || $this->fld_parsedcomment ) && isset( $row->log_comment ) ) {
 			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_COMMENT ) ) {
-				$vals['commenthidden'] = '';
+				$vals['commenthidden'] = true;
 				$anyHidden = true;
 			}
 			if ( LogEventsList::userCan( $row, LogPage::DELETED_COMMENT, $user ) ) {
@@ -452,7 +451,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		}
 
 		if ( $anyHidden && LogEventsList::isDeleted( $row, LogPage::DELETED_RESTRICTED ) ) {
-			$vals['suppressed'] = '';
+			$vals['suppressed'] = true;
 		}
 
 		return $vals;

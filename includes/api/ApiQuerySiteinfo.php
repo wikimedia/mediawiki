@@ -147,9 +147,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$allowFrom = array( '' );
 		$allowException = true;
 		if ( !$config->get( 'AllowExternalImages' ) ) {
-			if ( $config->get( 'EnableImageWhitelist' ) ) {
-				$data['imagewhitelistenabled'] = '';
-			}
+			$data['imagewhitelistenabled'] = (bool)$config->get( 'EnableImageWhitelist' );
 			$allowFrom = $config->get( 'AllowExternalImagesFrom' );
 			$allowException = !empty( $allowFrom );
 		}
@@ -158,13 +156,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			ApiResult::setIndexedTagName( $data['externalimages'], 'prefix' );
 		}
 
-		if ( !$config->get( 'DisableLangConversion' ) ) {
-			$data['langconversion'] = '';
-		}
-
-		if ( !$config->get( 'DisableTitleConversion' ) ) {
-			$data['titleconversion'] = '';
-		}
+		$data['langconversion'] = !$config->get( 'DisableLangConversion' );
+		$data['titleconversion'] = !$config->get( 'DisableTitleConversion' );
 
 		if ( $wgContLang->linkPrefixExtension() ) {
 			$linkPrefixCharset = $wgContLang->linkPrefixCharset();
@@ -177,11 +170,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		$linktrail = $wgContLang->linkTrail();
-		if ( $linktrail ) {
-			$data['linktrail'] = $linktrail;
-		} else {
-			$data['linktrail'] = '';
-		}
+		$data['linktrail'] = $linktrail ?: '';
 
 		$data['legaltitlechars'] = Title::legalChars();
 
@@ -221,18 +210,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			ApiResult::setIndexedTagName( $data['variants'], 'lang' );
 		}
 
-		if ( $wgContLang->isRTL() ) {
-			$data['rtl'] = '';
-		}
+		$data['rtl'] = $wgContLang->isRTL();
 		$data['fallback8bitEncoding'] = $wgContLang->fallback8bitEncoding();
 
-		if ( wfReadOnly() ) {
-			$data['readonly'] = '';
+		$data['readonly'] = wfReadOnly();
+		if ( $data['readonly'] ) {
 			$data['readonlyreason'] = wfReadOnlyReason();
 		}
-		if ( $config->get( 'EnableWriteAPI' ) ) {
-			$data['writeapi'] = '';
-		}
+		$data['writeapi'] = (bool)$config->get( 'EnableWriteAPI' );
 
 		$tz = $config->get( 'Localtimezone' );
 		$offset = $config->get( 'LocalTZoffset' );
@@ -248,20 +233,21 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['scriptpath'] = $config->get( 'ScriptPath' );
 		$data['script'] = $config->get( 'Script' );
 		$data['variantarticlepath'] = $config->get( 'VariantArticlePath' );
+		$data[ApiResult::META_BC_BOOLS][] = 'variantarticlepath';
 		$data['server'] = $config->get( 'Server' );
 		$data['servername'] = $config->get( 'ServerName' );
 		$data['wikiid'] = wfWikiID();
 		$data['time'] = wfTimestamp( TS_ISO_8601, time() );
 
-		if ( $config->get( 'MiserMode' ) ) {
-			$data['misermode'] = '';
-		}
+		$data['misermode'] = (bool)$config->get( 'MiserMode' );
 
 		$data['maxuploadsize'] = UploadBase::getMaxUploadSize();
 
 		$data['thumblimits'] = $config->get( 'ThumbLimits' );
+		ApiResult::setArrayType( $data['thumblimits'], 'BCassoc' );
 		ApiResult::setIndexedTagName( $data['thumblimits'], 'limit' );
 		$data['imagelimits'] = array();
+		ApiResult::setArrayType( $data['imagelimits'], 'BCassoc' );
 		ApiResult::setIndexedTagName( $data['imagelimits'], 'limit' );
 		foreach ( $config->get( 'ImageLimits' ) as $k => $limit ) {
 			$data['imagelimits'][$k] = array( 'width' => $limit[0], 'height' => $limit[1] );
@@ -281,7 +267,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	protected function appendNamespaces( $property ) {
 		global $wgContLang;
-		$data = array();
+		$data = array(
+			ApiResult::META_TYPE => 'assoc',
+		);
 		foreach ( $wgContLang->getFormattedNamespaces() as $ns => $title ) {
 			$data[$ns] = array(
 				'id' => intval( $ns ),
@@ -290,21 +278,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			ApiResult::setContentValue( $data[$ns], 'name', $title );
 			$canonical = MWNamespace::getCanonicalName( $ns );
 
-			if ( MWNamespace::hasSubpages( $ns ) ) {
-				$data[$ns]['subpages'] = '';
-			}
+			$data[$ns]['subpages'] = MWNamespace::hasSubpages( $ns );
 
 			if ( $canonical ) {
 				$data[$ns]['canonical'] = strtr( $canonical, '_', ' ' );
 			}
 
-			if ( MWNamespace::isContent( $ns ) ) {
-				$data[$ns]['content'] = '';
-			}
-
-			if ( MWNamespace::isNonincludable( $ns ) ) {
-				$data[$ns]['nonincludable'] = '';
-			}
+			$data[$ns]['content'] = MWNamespace::isContent( $ns );
+			$data[$ns]['nonincludable'] = MWNamespace::isNonincludable( $ns );
 
 			$contentmodel = MWNamespace::getNamespaceContentModel( $ns );
 			if ( $contentmodel ) {
@@ -364,9 +345,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		foreach ( $wgContLang->getMagicWords() as $magicword => $aliases ) {
 			$caseSensitive = array_shift( $aliases );
 			$arr = array( 'name' => $magicword, 'aliases' => $aliases );
-			if ( $caseSensitive ) {
-				$arr['case-sensitive'] = '';
-			}
+			$arr['case-sensitive'] = (bool)$caseSensitive;
 			ApiResult::setIndexedTagName( $arr['aliases'], 'alias' );
 			$data[] = $arr;
 		}
@@ -399,20 +378,20 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$val = array();
 			$val['prefix'] = $prefix;
 			if ( isset( $row['iw_local'] ) && $row['iw_local'] == '1' ) {
-				$val['local'] = '';
+				$val['local'] = true;
 			}
 			if ( isset( $row['iw_trans'] ) && $row['iw_trans'] == '1' ) {
-				$val['trans'] = '';
+				$val['trans'] = true;
 			}
 
 			if ( isset( $langNames[$prefix] ) ) {
 				$val['language'] = $langNames[$prefix];
 			}
 			if ( in_array( $prefix, $localInterwikis ) ) {
-				$val['localinterwiki'] = '';
+				$val['localinterwiki'] = true;
 			}
 			if ( in_array( $prefix, $extraLangPrefixes ) ) {
-				$val['extralanglink'] = '';
+				$val['extralanglink'] = true;
 
 				$linktext = wfMessage( "interlanguage-link-$prefix" );
 				if ( !$linktext->isDisabled() ) {
@@ -426,9 +405,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			}
 
 			$val['url'] = wfExpandUrl( $row['iw_url'], PROTO_CURRENT );
-			if ( substr( $row['iw_url'], 0, 2 ) == '//' ) {
-				$val['protorel'] = '';
-			}
+			$val['protorel'] = substr( $row['iw_url'], 0, 2 ) == '//';
 			if ( isset( $row['iw_wikiid'] ) ) {
 				$val['wikiid'] = $row['iw_wikiid'];
 			}
@@ -708,10 +685,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$skin = array( 'code' => $name );
 			ApiResult::setContentValue( $skin, 'name', $displayName );
 			if ( !isset( $allowed[$name] ) ) {
-				$skin['unusable'] = '';
+				$skin['unusable'] = true;
 			}
 			if ( $name === $default ) {
-				$skin['default'] = '';
+				$skin['default'] = true;
 			}
 			$data[] = $skin;
 		}
@@ -754,7 +731,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	public function appendDefaultOptions( $property ) {
-		return $this->getResult()->addValue( 'query', $property, User::getDefaultOptions() );
+		$options = User::getDefaultOptions();
+		$options[ApiResult::META_BC_BOOLS] = array_keys( $options );
+		return $this->getResult()->addValue( 'query', $property, $options );
 	}
 
 	private function formatParserTags( $item ) {
