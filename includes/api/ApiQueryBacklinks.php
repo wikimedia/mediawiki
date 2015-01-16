@@ -194,7 +194,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				$a = array( 'pageid' => intval( $row->page_id ) );
 				ApiQueryBase::addTitleInfo( $a, $t );
 				if ( $row->page_is_redirect ) {
-					$a['redirect'] = '';
+					$a['redirect'] = true;
 				}
 				// Put all the results in an array first
 				$this->resultArr[$a['pageid']] = $a;
@@ -313,7 +313,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				$a['pageid'] = intval( $row->page_id );
 				ApiQueryBase::addTitleInfo( $a, Title::makeTitle( $row->page_namespace, $row->page_title ) );
 				if ( $row->page_is_redirect ) {
-					$a['redirect'] = '';
+					$a['redirect'] = true;
 				}
 				$parentID = $this->pageMap[$ns][$row->{$this->bl_title}];
 				// Put all the results in an array first

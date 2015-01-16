@@ -150,8 +150,8 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 				if ( isset( $prop['timestamp'] ) ) {
 					$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $row->cl_timestamp );
 				}
-				if ( isset( $prop['hidden'] ) && !is_null( $row->pp_propname ) ) {
-					$vals['hidden'] = '';
+				if ( isset( $prop['hidden'] ) ) {
+					$vals['hidden'] = !is_null( $row->pp_propname );
 				}
 
 				$fit = $this->addPageSubItem( $row->cl_from, $vals );

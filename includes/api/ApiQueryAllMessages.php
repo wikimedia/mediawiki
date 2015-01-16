@@ -146,7 +146,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 					$messageIsCustomised = isset( $customisedMessages['pages'][$langObj->ucfirst( $message )] );
 					if ( $customised === $messageIsCustomised ) {
 						if ( $customised ) {
-							$a['customised'] = '';
+							$a['customised'] = true;
 						}
 					} else {
 						continue;
@@ -156,7 +156,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 				$msg = wfMessage( $message, $args )->inLanguage( $langObj );
 
 				if ( !$msg->exists() ) {
-					$a['missing'] = '';
+					$a['missing'] = true;
 				} else {
 					// Check if the parser is enabled:
 					if ( $params['enableparser'] ) {
@@ -170,7 +170,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 					if ( isset( $prop['default'] ) ) {
 						$default = wfMessage( $message )->inLanguage( $langObj )->useDatabase( false );
 						if ( !$default->exists() ) {
-							$a['defaultmissing'] = '';
+							$a['defaultmissing'] = true;
 						} elseif ( $default->plain() != $msgString ) {
 							$a['default'] = $default->plain();
 						}

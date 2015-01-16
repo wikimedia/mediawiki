@@ -166,6 +166,7 @@ class ApiResultTest extends MediaWikiTestCase {
 		$result->addContentValue( null, 'setContentValue', '3' );
 
 		$this->assertSame( array(
+			ApiResult::META_TYPE => 'assoc',
 			'setValue' => '1',
 			'unnamed 1',
 			'unnamed 2',
@@ -205,7 +206,9 @@ class ApiResultTest extends MediaWikiTestCase {
 			$result->getResultData( array( ApiResult::META_CONTENT ) ) );
 
 		$result->reset();
-		$this->assertSame( array(), $result->getResultData() );
+		$this->assertSame( array(
+			ApiResult::META_TYPE => 'assoc',
+		), $result->getResultData() );
 		$this->assertSame( 0, $result->getSize() );
 
 		$result->addValue( null, 'foo', 1 );
@@ -215,7 +218,7 @@ class ApiResultTest extends MediaWikiTestCase {
 		$result->addValue( null, 'bottom', '2' );
 		$result->addValue( null, 'foo', '2', ApiResult::OVERRIDE );
 		$result->addValue( null, 'bar', '2', ApiResult::OVERRIDE | ApiResult::ADD_ON_TOP );
-		$this->assertSame( array( 0, 'top', 'foo', 'bar', 'bottom' ),
+		$this->assertSame( array( 0, 'top', ApiResult::META_TYPE, 'foo', 'bar', 'bottom' ),
 			array_keys( $result->getResultData() ) );
 
 		$result->reset();
@@ -228,8 +231,10 @@ class ApiResultTest extends MediaWikiTestCase {
 		$result->reset();
 		$result->addValue( null, 'sub', array( 'foo' => 1 ) );
 		$result->addValue( null, 'sub', array( 'bar' => 1 ) );
-		$this->assertSame( array( 'sub' => array( 'foo' => 1, 'bar' => 1 ) ),
-			$result->getResultData() );
+		$this->assertSame( array(
+			ApiResult::META_TYPE => 'assoc',
+			'sub' => array( 'foo' => 1, 'bar' => 1
+		) ), $result->getResultData() );
 
 		try {
 			$result->addValue( null, 'sub', array( 'foo' => 2, 'baz' => 2 ) );
@@ -250,6 +255,7 @@ class ApiResultTest extends MediaWikiTestCase {
 		$result->addValue( null, 'title', $title );
 		$result->addValue( null, 'obj', $obj );
 		$this->assertSame( array(
+			ApiResult::META_TYPE => 'assoc',
 			'title' => (string)$title,
 			'obj' => array( 'foo' => 1, 'bar' => 2, ApiResult::META_TYPE => 'assoc' ),
 		), $result->getResultData() );
@@ -301,9 +307,15 @@ class ApiResultTest extends MediaWikiTestCase {
 
 		$result->reset();
 		$result->addParsedLimit( 'foo', 12 );
-		$this->assertSame( array( 'limits' => array( 'foo' => 12 ) ), $result->getResultData() );
+		$this->assertSame( array(
+			ApiResult::META_TYPE => 'assoc',
+			'limits' => array( 'foo' => 12 )
+		), $result->getResultData() );
 		$result->addParsedLimit( 'foo', 13 );
-		$this->assertSame( array( 'limits' => array( 'foo' => 13 ) ), $result->getResultData() );
+		$this->assertSame( array(
+			ApiResult::META_TYPE => 'assoc',
+			'limits' => array( 'foo' => 13 )
+		), $result->getResultData() );
 		$this->assertSame( null, $result->getResultData( array( 'foo', 'bar', 'baz' ) ) );
 		$this->assertSame( 13, $result->getResultData( array( 'limits', 'foo' ) ) );
 		try {
@@ -339,6 +351,11 @@ class ApiResultTest extends MediaWikiTestCase {
 	) {
 		$result = new ApiResult( new DerivativeContext( RequestContext::getMain() ),
 			$errorFormat, $errorLang, $errorUseDb );
+
+		// Add default type to expectations
+		$expect1 += array( ApiResult::META_TYPE => 'assoc' );
+		$expect2 += array( ApiResult::META_TYPE => 'assoc' );
+		$expect3 += array( ApiResult::META_TYPE => 'assoc' );
 
 		$result->addWarning( 'string', 'mainpage' );
 		$result->addError( 'err', 'mainpage' );
@@ -622,7 +639,9 @@ class ApiResultTest extends MediaWikiTestCase {
 		$result->undefinePreserveKeys( null, 'baz' );
 		$result->defineArrayTypeRecursive( null, 'default' );
 		$result->defineArrayType( null, 'array' );
-		$this->assertSame( $expect, $result->getResultData() );
+		// Move '_type' to the top
+		$expect2 = array( ApiResult::META_TYPE => 'array' ) + $expect;
+		$this->assertSame( $expect2, $result->getResultData() );
 
 		$arr = array( 'foo' => array( 'bar' => array() ) );
 		$expect = array(
@@ -702,7 +721,7 @@ class ApiResultTest extends MediaWikiTestCase {
 			'gcontinue' => 3,
 			'continue' => 'gcontinue||',
 		), $result->getResultData( 'continue' ) );
-		$this->assertSame( '', $result->getResultData( 'batchcomplete' ) );
+		$this->assertSame( true, $result->getResultData( 'batchcomplete' ) );
 		$this->assertSame( array(
 			'mocklist' => array( 'mlcontinue' => 2 ),
 			'generator' => array( 'gcontinue' => 3 ),
@@ -718,7 +737,7 @@ class ApiResultTest extends MediaWikiTestCase {
 			'gcontinue' => 3,
 			'continue' => 'gcontinue||mocklist',
 		), $result->getResultData( 'continue' ) );
-		$this->assertSame( '', $result->getResultData( 'batchcomplete' ) );
+		$this->assertSame( true, $result->getResultData( 'batchcomplete' ) );
 		$this->assertSame( array(
 			'generator' => array( 'gcontinue' => 3 ),
 		), $result->getResultData( 'query-continue' ) );
@@ -766,7 +785,7 @@ class ApiResultTest extends MediaWikiTestCase {
 			'mlcontinue' => 2,
 			'continue' => '-||mock1|mock2',
 		), $result->getResultData( 'continue' ) );
-		$this->assertSame( '', $result->getResultData( 'batchcomplete' ) );
+		$this->assertSame( true, $result->getResultData( 'batchcomplete' ) );
 		$this->assertSame( array(
 			'mocklist' => array( 'mlcontinue' => 2 ),
 		), $result->getResultData( 'query-continue' ) );
@@ -777,7 +796,7 @@ class ApiResultTest extends MediaWikiTestCase {
 		$result->endContinuation( 'raw' );
 		$result->endContinuation( 'standard' );
 		$this->assertSame( null, $result->getResultData( 'continue' ) );
-		$this->assertSame( '', $result->getResultData( 'batchcomplete' ) );
+		$this->assertSame( true, $result->getResultData( 'batchcomplete' ) );
 		$this->assertSame( null, $result->getResultData( 'query-continue' ) );
 
 		$result = $this->getApiResult();
@@ -841,6 +860,7 @@ class ApiResultTest extends MediaWikiTestCase {
 		$result->addValue( null, 'baz', 74 );
 		$result->cleanUpUTF8();
 		$this->assertSame( array(
+			ApiResult::META_TYPE => 'assoc',
 			'foo' => "foo\xef\xbf\xbdbar",
 			'bar' => "\xc3\xa1",
 			'baz' => 74,
@@ -1173,6 +1193,7 @@ class ApiResultTest extends MediaWikiTestCase {
 		), $result->getData() );
 		$result->setRawMode();
 		$this->assertSame( array(
+			ApiResult::META_TYPE => 'assoc',
 			ApiResult::META_CONTENT => 'test',
 			'test' => 'content',
 			'foo' => array(

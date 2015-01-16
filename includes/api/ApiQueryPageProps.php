@@ -110,6 +110,7 @@ class ApiQueryPageProps extends ApiQueryBase {
 	 * @return bool True if it fits in the result
 	 */
 	private function addPageProps( $result, $page, $props ) {
+		ApiResult::setArrayType( $props, 'assoc' );
 		$fit = $result->addValue( array( 'query', 'pages', $page ), 'pageprops', $props );
 
 		if ( !$fit ) {

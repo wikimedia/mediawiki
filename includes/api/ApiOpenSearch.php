@@ -212,6 +212,7 @@ class ApiOpenSearch extends ApiBase {
 		switch ( $this->getFormat() ) {
 			case 'json':
 				// http://www.opensearch.org/Specifications/OpenSearch/Extensions/Suggestions/1.1
+				$result->defineArrayType( null, 'array' );
 				$result->addValue( null, 0, strval( $search ) );
 				$terms = array();
 				$descriptions = array();

@@ -37,7 +37,9 @@ class ApiTokens extends ApiBase {
 		$this->logFeatureUsage( "action=tokens" );
 
 		$params = $this->extractRequestParams();
-		$res = array();
+		$res = array(
+			ApiResult::META_TYPE => 'assoc',
+		);
 
 		$types = $this->getTokenTypes();
 		foreach ( $params['type'] as $type ) {

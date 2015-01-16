@@ -135,8 +135,8 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 					$item['files'] = intval( $row->cat_files );
 					$item['subcats'] = intval( $row->cat_subcats );
 				}
-				if ( isset( $prop['hidden'] ) && $row->cat_hidden ) {
-					$item['hidden'] = '';
+				if ( isset( $prop['hidden'] ) ) {
+					$item['hidden'] = (bool)$row->cat_hidden;
 				}
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $item );
 				if ( !$fit ) {

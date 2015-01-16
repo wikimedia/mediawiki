@@ -52,7 +52,7 @@ class ApiPurge extends ApiBase {
 			ApiQueryBase::addTitleInfo( $r, $title );
 			$page = WikiPage::factory( $title );
 			$page->doPurge(); // Directly purge and skip the UI part of purge().
-			$r['purged'] = '';
+			$r['purged'] = true;
 
 			if ( $forceLinkUpdate || $forceRecursiveLinkUpdate ) {
 				if ( !$this->getUser()->pingLimiter( 'linkpurge' ) ) {
@@ -73,7 +73,7 @@ class ApiPurge extends ApiBase {
 						$title, null, $forceRecursiveLinkUpdate, $p_result );
 					DataUpdate::runUpdates( $updates );
 
-					$r['linkupdate'] = '';
+					$r['linkupdate'] = true;
 
 					if ( $enableParserCache ) {
 						$pcache = ParserCache::singleton();
