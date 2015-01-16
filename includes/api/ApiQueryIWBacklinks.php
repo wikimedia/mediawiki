@@ -132,7 +132,7 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 				ApiQueryBase::addTitleInfo( $entry, $title );
 
 				if ( $row->page_is_redirect ) {
-					$entry['redirect'] = '';
+					$entry['redirect'] = true;
 				}
 
 				if ( $iwprefix ) {

@@ -65,7 +65,7 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 					'title' => $title->getPrefixedText(),
 				);
 				if ( $title->isSpecialPage() ) {
-					$vals['special'] = '';
+					$vals['special'] = true;
 				} else {
 					$vals['pageid'] = intval( $title->getArticleId() );
 				}

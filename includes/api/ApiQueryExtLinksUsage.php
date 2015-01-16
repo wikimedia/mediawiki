@@ -112,7 +112,9 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 			}
 
 			if ( is_null( $resultPageSet ) ) {
-				$vals = array();
+				$vals = array(
+					ApiResult::META_TYPE => 'assoc',
+				);
 				if ( $fld_ids ) {
 					$vals['pageid'] = intval( $row->page_id );
 				}
