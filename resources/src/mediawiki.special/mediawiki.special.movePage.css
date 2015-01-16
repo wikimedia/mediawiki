@@ -1,0 +1,22 @@
+/*!
+ * Styles for Special:MovePage
+ */
+
+.movepage-wrapper {
+	width: 50em;
+	margin: 1em 0;
+}
+
+#wpNewTitleNs,
+#wpNewTitleMain {
+	display: inline-block;
+}
+
+#wpNewTitleNs {
+	/* The margin between this and #wpNewTitleMain is 0.5em */
+	max-width: 19.5em;
+}
+
+#wpNewTitleMain {
+	max-width: 30em;
+}
