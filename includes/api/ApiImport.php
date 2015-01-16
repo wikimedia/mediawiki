@@ -155,7 +155,7 @@ class ApiImportReporter extends ImportReporter {
 		if ( $title === null ) {
 			# Invalid or non-importable title
 			$r['title'] = $pageInfo['title'];
-			$r['invalid'] = '';
+			$r['invalid'] = true;
 		} else {
 			ApiQueryBase::addTitleInfo( $r, $title );
 			$r['revisions'] = intval( $successCount );

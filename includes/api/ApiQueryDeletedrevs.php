@@ -320,7 +320,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			}
 			if ( $fld_user || $fld_userid ) {
 				if ( $row->ar_deleted & Revision::DELETED_USER ) {
-					$rev['userhidden'] = '';
+					$rev['userhidden'] = true;
 					$anyHidden = true;
 				}
 				if ( Revision::userCanBitfield( $row->ar_deleted, Revision::DELETED_USER, $user ) ) {
@@ -335,7 +335,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 			if ( $fld_comment || $fld_parsedcomment ) {
 				if ( $row->ar_deleted & Revision::DELETED_COMMENT ) {
-					$rev['commenthidden'] = '';
+					$rev['commenthidden'] = true;
 					$anyHidden = true;
 				}
 				if ( Revision::userCanBitfield( $row->ar_deleted, Revision::DELETED_COMMENT, $user ) ) {
@@ -349,15 +349,15 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				}
 			}
 
-			if ( $fld_minor && $row->ar_minor_edit == 1 ) {
-				$rev['minor'] = '';
+			if ( $fld_minor ) {
+				$rev['minor'] = $row->ar_minor_edit == 1;
 			}
 			if ( $fld_len ) {
 				$rev['len'] = $row->ar_len;
 			}
 			if ( $fld_sha1 ) {
 				if ( $row->ar_deleted & Revision::DELETED_TEXT ) {
-					$rev['sha1hidden'] = '';
+					$rev['sha1hidden'] = true;
 					$anyHidden = true;
 				}
 				if ( Revision::userCanBitfield( $row->ar_deleted, Revision::DELETED_TEXT, $user ) ) {
@@ -370,7 +370,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			}
 			if ( $fld_content ) {
 				if ( $row->ar_deleted & Revision::DELETED_TEXT ) {
-					$rev['texthidden'] = '';
+					$rev['texthidden'] = true;
 					$anyHidden = true;
 				}
 				if ( Revision::userCanBitfield( $row->ar_deleted, Revision::DELETED_TEXT, $user ) ) {
@@ -394,7 +394,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			}
 
 			if ( $anyHidden && ( $row->ar_deleted & Revision::DELETED_RESTRICTED ) ) {
-				$rev['suppressed'] = '';
+				$rev['suppressed'] = true;
 			}
 
 			if ( !isset( $pageMap[$row->ar_namespace][$row->ar_title] ) ) {
