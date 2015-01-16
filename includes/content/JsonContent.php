@@ -2,8 +2,6 @@
 /**
  * JSON Content Model
  *
- * This class requires the root structure to be an object (not primitives or arrays).
- *
  * @file
  *
  * @author Ori Livneh <ori@wikimedia.org>
@@ -41,7 +39,10 @@ class JsonContent extends TextContent {
 	}
 
 	/**
-	 * Decodes the JSON string into a PHP object.
+	 * Decodes the JSON string.
+	 *
+	 * Note that this parses it without casting objects to associative arrays.
+	 * Objects and arrays are kept as distinguishable types in the PHP values.
 	 *
 	 * @return Status
 	 */
@@ -56,7 +57,7 @@ class JsonContent extends TextContent {
 	 * @return bool Whether content is valid.
 	 */
 	public function isValid() {
-		return $this->getData()->isGood() && is_object( $this->getData()->getValue() );
+		return $this->getData()->isGood();
 	}
 
 	/**
@@ -103,7 +104,7 @@ class JsonContent extends TextContent {
 		// FIXME: WikiPage::doEditContent generates parser output before validation.
 		// As such, native data may be invalid (though output is discarded later in that case).
 		if ( $generateHtml && $this->isValid() ) {
-			$output->setText( $this->objectTable( $this->getData()->getValue() ) );
+			$output->setText( $this->rootValueTable( $this->getData()->getValue() ) );
 			$output->addModuleStyles( 'mediawiki.content.json' );
 		} else {
 			$output->setText( '' );
@@ -111,9 +112,35 @@ class JsonContent extends TextContent {
 	}
 
 	/**
-	 * Construct an HTML representation of a JSON object.
+	 * Construct HTML table representation of any JSON value.
 	 *
-	 * Called recursively via valueCell().
+	 * See also valueCell, which is similar.
+	 *
+	 * @param mixed $val
+	 * @return string HTML.
+	 */
+	protected function rootValueTable( $val ) {
+		if ( is_object( $val ) ) {
+			return self::objectTable( $val );
+		}
+
+		if ( is_array( $val ) ) {
+			// Wrap arrays in another array so that they're visually boxed in a container.
+			// Otherwise they are visually indistinguishable from a single value.
+			return self::arrayTable( array( $val ) );
+		}
+
+		return Html::rawElement( 'table', array( 'class' => 'mw-json mw-json-single-value' ),
+			Html::rawElement( 'tbody', array(),
+				Html::rawElement( 'tr', array(),
+					Html::element( 'td', array(), self::primitiveValue( $val ) )
+				)
+			)
+		);
+	}
+
+	/**
+	 * Create HTML table representing a JSON object.
 	 *
 	 * @param stdClass $mapping
 	 * @return string HTML
@@ -134,26 +161,25 @@ class JsonContent extends TextContent {
 			);
 		}
 		return Html::rawElement( 'table', array( 'class' => 'mw-json' ),
-			Html::rawElement( 'tbody', array(), join( "\n", $rows ) )
+			Html::rawElement( 'tbody', array(), join( '', $rows ) )
 		);
 	}
 
 	/**
-	 * Construct HTML representation of a single key-value pair.
+	 * Create HTML table row representing one object property.
+	 *
 	 * @param string $key
 	 * @param mixed $val
 	 * @return string HTML.
 	 */
 	protected function objectRow( $key, $val ) {
-		$th = Xml::elementClean( 'th', array(), $key );
+		$th = Html::element( 'th', array(), $key );
 		$td = self::valueCell( $val );
 		return Html::rawElement( 'tr', array(), $th . $td );
 	}
 
 	/**
-	 * Constructs an HTML representation of a JSON array.
-	 *
-	 * Called recursively via valueCell().
+	 * Create HTML table representing a JSON array.
 	 *
 	 * @param array $mapping
 	 * @return string HTML
@@ -179,7 +205,8 @@ class JsonContent extends TextContent {
 	}
 
 	/**
-	 * Construct HTML representation of a single array value.
+	 * Create HTML table row representing the value in an array.
+	 *
 	 * @param mixed $val
 	 * @return string HTML.
 	 */
@@ -189,7 +216,8 @@ class JsonContent extends TextContent {
 	}
 
 	/**
-	 * Construct HTML representation of a single value.
+	 * Construct HTML table cell representing any JSON value.
+	 *
 	 * @param mixed $val
 	 * @return string HTML.
 	 */
@@ -197,15 +225,26 @@ class JsonContent extends TextContent {
 		if ( is_object( $val ) ) {
 			return Html::rawElement( 'td', array(), self::objectTable( $val ) );
 		}
+
 		if ( is_array( $val ) ) {
 			return Html::rawElement( 'td', array(), self::arrayTable( $val ) );
 		}
-		if ( is_string( $val ) ) {
-			$val = '"' . $val . '"';
-		} else {
-			$val = FormatJson::encode( $val );
-		}
 
-		return Xml::elementClean( 'td', array( 'class' => 'value' ), $val );
+		return Html::element( 'td', array( 'class' => 'value' ), self::primitiveValue( $val ) );
+	}
+
+	/**
+	 * Construct text representing a JSON primitive value.
+	 *
+	 * @param mixed $val
+	 * @return string Text.
+	 */
+	protected function primitiveValue( $val ) {
+		if ( is_string( $val ) ) {
+			// Don't FormatJson::encode for strings since we want quotes
+			// and new lines to render visually instead of escaped.
+			return '"' . $val . '"';
+		}
+		return FormatJson::encode( $val );
 	}
 }

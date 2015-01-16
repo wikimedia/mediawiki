@@ -15,7 +15,12 @@ class JsonContentTest extends MediaWikiLangTestCase {
 	public static function provideValidConstruction() {
 		return array(
 			array( 'foo', false, null ),
+			array( '[]', true, array() ),
 			array( '{}', true, (object)array() ),
+			array( '""', true, '' ),
+			array( '"0"', true, '0' ),
+			array( '"bar"', true, 'bar' ),
+			array( '0', true, '0' ),
 			array( '{ "0": "bar" }', true, (object)array( 'bar' ) ),
 		);
 	}
@@ -102,37 +107,40 @@ class JsonContentTest extends MediaWikiLangTestCase {
 	public static function provideDataAndParserText() {
 		return array(
 			array(
+				array(),
+				'<table class="mw-json"><tbody><tr><td>' .
+				'<table class="mw-json"><tbody><tr><td class="mw-json-empty">Empty array</td></tr>'
+				. '</tbody></table></td></tr></tbody></table>'
+			),
+			array(
 				(object)array(),
 				'<table class="mw-json"><tbody><tr><td class="mw-json-empty">Empty object</td></tr>' .
 				'</tbody></table>'
 			),
 			array(
 				(object)array( 'foo' ),
-				'<table class="mw-json"><tbody><tr><th>0</th><td class="value">&quot;foo&quot;</td></tr>' .
+				'<table class="mw-json"><tbody><tr><th>0</th><td class="value">"foo"</td></tr>' .
 				'</tbody></table>'
 			),
 			array(
 				(object)array( 'foo', 'bar' ),
-				'<table class="mw-json"><tbody><tr><th>0</th><td class="value">&quot;foo&quot;</td></tr>' .
-				"\n" .
-				'<tr><th>1</th><td class="value">&quot;bar&quot;</td></tr></tbody></table>'
+				'<table class="mw-json"><tbody><tr><th>0</th><td class="value">"foo"</td></tr>' .
+				'<tr><th>1</th><td class="value">"bar"</td></tr></tbody></table>'
 			),
 			array(
 				(object)array( 'baz' => 'foo', 'bar' ),
-				'<table class="mw-json"><tbody><tr><th>baz</th><td class="value">&quot;foo&quot;</td></tr>' .
-				"\n" .
-				'<tr><th>0</th><td class="value">&quot;bar&quot;</td></tr></tbody></table>'
+				'<table class="mw-json"><tbody><tr><th>baz</th><td class="value">"foo"</td></tr>' .
+				'<tr><th>0</th><td class="value">"bar"</td></tr></tbody></table>'
 			),
 			array(
 				(object)array( 'baz' => 1000, 'bar' ),
 				'<table class="mw-json"><tbody><tr><th>baz</th><td class="value">1000</td></tr>' .
-				"\n" .
-				'<tr><th>0</th><td class="value">&quot;bar&quot;</td></tr></tbody></table>'
+				'<tr><th>0</th><td class="value">"bar"</td></tr></tbody></table>'
 			),
 			array(
 				(object)array( '<script>alert("evil!")</script>'),
-				'<table class="mw-json"><tbody><tr><th>0</th><td class="value">&quot;' .
-				'&lt;script&gt;alert(&quot;evil!&quot;)&lt;/script&gt;&quot;' .
+				'<table class="mw-json"><tbody><tr><th>0</th><td class="value">"' .
+				'&lt;script>alert("evil!")&lt;/script>"' .
 				'</td></tr></tbody></table>',
 			),
 		);
