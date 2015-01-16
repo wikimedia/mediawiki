@@ -135,7 +135,15 @@ abstract class Job implements IJobSpecification {
 	}
 
 	/**
-	 * @return bool Whether only one of each identical set of jobs should be run
+	 * Whether the queue should reject insertion of this job if a duplicate exists
+	 *
+	 * This can be used to avoid duplicated effort or combined with delayed jobs to
+	 * colloasce updates into larger batches. Claimed jobs are never treated as
+	 * duplicates of new jobs, and some queues may allow a few duplicates due to
+	 * network partitions and fail-over. Thus, additional locking is needed to
+	 * enforce mutual exclusion if this is really needed.
+	 *
+	 * @return bool
 	 */
 	public function ignoreDuplicates() {
 		return $this->removeDuplicates;
