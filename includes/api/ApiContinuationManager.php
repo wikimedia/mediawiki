@@ -231,7 +231,7 @@ class ApiContinuationManager {
 				ApiResult::ADD_ON_TOP | ApiResult::NO_SIZE_CHECK );
 		}
 		if ( $batchcomplete ) {
-			$result->addValue( null, 'batchcomplete', '',
+			$result->addValue( null, 'batchcomplete', true,
 				ApiResult::ADD_ON_TOP | ApiResult::NO_SIZE_CHECK );
 		}
 	}

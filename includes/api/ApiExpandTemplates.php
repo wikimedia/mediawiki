@@ -96,9 +96,8 @@ class ApiExpandTemplates extends ApiBase {
 				$retval['parsetree'] = $xml;
 			} else {
 				// the old way
-				$xml_result = array();
-				ApiResult::setContentValue( $xml_result, 'xml', $xml );
-				$result->addValue( null, 'parsetree', $xml_result );
+				$result->addValue( null, 'parsetree', $xml );
+				$result->addValue( null, ApiResult::META_BC_SUBELEMENTS, array( 'parsetree' ) );
 			}
 		}
 
@@ -129,19 +128,13 @@ class ApiExpandTemplates extends ApiBase {
 				if ( isset( $prop['properties'] ) ) {
 					$properties = $wgParser->getOutput()->getProperties();
 					if ( $properties ) {
-						$properties_result = array();
-						foreach ( $properties as $name => $value ) {
-							$entry = array();
-							$entry['name'] = $name;
-							ApiResult::setContentValue( $entry, 'value', $value );
-							$properties_result[] = $entry;
-						}
-						ApiResult::setIndexedTagName( $properties_result, 'property' );
-						$retval['properties'] = $properties_result;
+						ApiResult::setArrayType( $properties, 'BCkvp', 'name' );
+						ApiResult::setIndexedTagName( $properties, 'property' );
+						$retval['properties'] = $properties;
 					}
 				}
-				if ( isset( $prop['volatile'] ) && $frame->isVolatile() ) {
-					$retval['volatile'] = '';
+				if ( isset( $prop['volatile'] ) ) {
+					$retval['volatile'] = $frame->isVolatile();
 				}
 				if ( isset( $prop['ttl'] ) && $frame->getTTL() !== null ) {
 					$retval['ttl'] = $frame->getTTL();

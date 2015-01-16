@@ -96,7 +96,7 @@ class ApiPageSet extends ApiBase {
 				$v = $val;
 			}
 			if ( $flag !== null ) {
-				$v[$flag] = '';
+				$v[$flag] = true;
 			}
 			$result[] = $v;
 		}

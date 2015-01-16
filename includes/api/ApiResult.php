@@ -166,7 +166,9 @@ class ApiResult implements ApiSerializable {
 	 * Clear the current result data.
 	 */
 	public function reset() {
-		$this->data = array();
+		$this->data = array(
+			self::META_TYPE => 'assoc', // Usually what's desired
+		);
 		$this->size = 0;
 	}
 
@@ -1225,7 +1227,7 @@ class ApiResult implements ApiSerializable {
 	}
 
 	/**
-	 * Alias for self::defineIndexedTagName()
+	 * Alias for self::addIndexedTagName()
 	 * @deprecated since 1.25, use $this->addIndexedTagName() instead
 	 * @param array $path Path to the array, like addValue()'s $path
 	 * @param string $tag

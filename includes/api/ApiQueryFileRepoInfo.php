@@ -56,6 +56,8 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 
 		$result = $this->getResult();
 		ApiResult::setIndexedTagName( $repos, 'repo' );
+		ApiResult::setArrayTypeRecursive( $repos, 'assoc' );
+		ApiResult::setArrayType( $repos, 'array' );
 		$result->addValue( array( 'query' ), 'repos', $repos );
 	}
 
