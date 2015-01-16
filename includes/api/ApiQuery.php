@@ -394,18 +394,18 @@ class ApiQuery extends ApiBase {
 		foreach ( $pageSet->getMissingTitles() as $fakeId => $title ) {
 			$vals = array();
 			ApiQueryBase::addTitleInfo( $vals, $title );
-			$vals['missing'] = '';
+			$vals['missing'] = true;
 			$pages[$fakeId] = $vals;
 		}
 		// Report any invalid titles
 		foreach ( $pageSet->getInvalidTitles() as $fakeId => $title ) {
-			$pages[$fakeId] = array( 'title' => $title, 'invalid' => '' );
+			$pages[$fakeId] = array( 'title' => $title, 'invalid' => true );
 		}
 		// Report any missing page ids
 		foreach ( $pageSet->getMissingPageIDs() as $pageid ) {
 			$pages[$pageid] = array(
 				'pageid' => $pageid,
-				'missing' => ''
+				'missing' => true
 			);
 		}
 		// Report special pages
@@ -413,15 +413,15 @@ class ApiQuery extends ApiBase {
 		foreach ( $pageSet->getSpecialTitles() as $fakeId => $title ) {
 			$vals = array();
 			ApiQueryBase::addTitleInfo( $vals, $title );
-			$vals['special'] = '';
+			$vals['special'] = true;
 			if ( $title->isSpecialPage() &&
 				!SpecialPageFactory::exists( $title->getDBkey() )
 			) {
-				$vals['missing'] = '';
+				$vals['missing'] = true;
 			} elseif ( $title->getNamespace() == NS_MEDIA &&
 				!wfFindFile( $title )
 			) {
-				$vals['missing'] = '';
+				$vals['missing'] = true;
 			}
 			$pages[$fakeId] = $vals;
 		}
@@ -436,6 +436,7 @@ class ApiQuery extends ApiBase {
 
 		if ( count( $pages ) ) {
 			$pageSet->populateGeneratorData( $pages );
+			ApiResult::setArrayType( $pages, 'BCarray' );
 
 			if ( $this->mParams['indexpageids'] ) {
 				$pageIDs = array_keys( $pages );
@@ -516,9 +517,8 @@ class ApiQuery extends ApiBase {
 			$result->addValue( null, 'text', $exportxml, ApiResult::NO_SIZE_CHECK );
 			$result->addValue( null, 'mime', 'text/xml', ApiResult::NO_SIZE_CHECK );
 		} else {
-			$r = array();
-			ApiResult::setContentValue( $r, 'xml', $exportxml );
-			$result->addValue( 'query', 'export', $r, ApiResult::NO_SIZE_CHECK );
+			$result->addValue( 'query', 'export', $exportxml, ApiResult::NO_SIZE_CHECK );
+			$result->addValue( 'query', ApiResult::META_BC_SUBELEMENTS, array( 'export' ) );
 		}
 	}
 

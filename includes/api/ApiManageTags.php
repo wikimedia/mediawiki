@@ -49,8 +49,8 @@ class ApiManageTags extends ApiBase {
 		if ( !$status->isGood() ) {
 			$ret['warnings'] = ApiResult::convertStatusToArray( $status, 'warning' );
 		}
-		if ( $status->value !== null ) {
-			$ret['success'] = '';
+		$ret['success'] = $status->value !== null;
+		if ( $ret['success'] ) {
 			$ret['logid'] = $status->value;
 		}
 		$result->addValue( null, $this->getModuleName(), $ret );

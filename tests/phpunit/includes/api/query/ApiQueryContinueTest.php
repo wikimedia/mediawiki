@@ -67,7 +67,7 @@ class ApiQueryContinueTest extends ApiQueryContinueTestBase {
 			);
 		};
 		$data = $this->query( $mk( 99 ), 1, '1L', false ) +
-			array( 'batchcomplete' => '' );
+			array( 'batchcomplete' => true );
 
 		// 1 list
 		$this->checkC( $data, $mk( 1 ), 5, '1L-1' );
@@ -95,7 +95,7 @@ class ApiQueryContinueTest extends ApiQueryContinueTestBase {
 		};
 		// 2 lists
 		$data = $this->query( $mk( 99, 99 ), 1, '2L', false ) +
-			array( 'batchcomplete' => '' );
+			array( 'batchcomplete' => true );
 		$this->checkC( $data, $mk( 1, 1 ), 5, '2L-11' );
 		$this->checkC( $data, $mk( 2, 2 ), 3, '2L-22' );
 		$this->checkC( $data, $mk( 3, 3 ), 2, '2L-33' );
@@ -120,7 +120,7 @@ class ApiQueryContinueTest extends ApiQueryContinueTestBase {
 		};
 		// generator + 1 prop
 		$data = $this->query( $mk( 99, 99 ), 1, 'G1P', false ) +
-			array( 'batchcomplete' => '' );
+			array( 'batchcomplete' => true );
 		$this->checkC( $data, $mk( 1, 1 ), 11, 'G1P-11' );
 		$this->checkC( $data, $mk( 2, 2 ), 6, 'G1P-22' );
 		$this->checkC( $data, $mk( 3, 3 ), 4, 'G1P-33' );
@@ -146,7 +146,7 @@ class ApiQueryContinueTest extends ApiQueryContinueTestBase {
 		};
 		// generator + 2 props
 		$data = $this->query( $mk( 99, 99, 99 ), 1, 'G2P', false ) +
-			array( 'batchcomplete' => '' );
+			array( 'batchcomplete' => true );
 		$this->checkC( $data, $mk( 1, 1, 1 ), 16, 'G2P-111' );
 		$this->checkC( $data, $mk( 2, 2, 2 ), 9, 'G2P-222' );
 		$this->checkC( $data, $mk( 3, 3, 3 ), 6, 'G2P-333' );
@@ -180,7 +180,7 @@ class ApiQueryContinueTest extends ApiQueryContinueTestBase {
 		};
 		// generator + 1 prop + 1 list
 		$data = $this->query( $mk( 99, 99, 99 ), 1, 'G1P1L', false ) +
-			array( 'batchcomplete' => '' );
+			array( 'batchcomplete' => true );
 		$this->checkC( $data, $mk( 1, 1, 1 ), 11, 'G1P1L-111' );
 		$this->checkC( $data, $mk( 2, 2, 2 ), 6, 'G1P1L-222' );
 		$this->checkC( $data, $mk( 3, 3, 3 ), 4, 'G1P1L-333' );
@@ -218,7 +218,7 @@ class ApiQueryContinueTest extends ApiQueryContinueTestBase {
 		};
 		// generator + 1 prop + 1 list
 		$data = $this->query( $mk( 99, 99, 99, 99, 99 ), 1, 'G2P2L1M', false ) +
-			array( 'batchcomplete' => '' );
+			array( 'batchcomplete' => true );
 		$this->checkC( $data, $mk( 1, 1, 1, 1, 1 ), 16, 'G2P2L1M-11111' );
 		$this->checkC( $data, $mk( 2, 2, 2, 2, 2 ), 9, 'G2P2L1M-22222' );
 		$this->checkC( $data, $mk( 3, 3, 3, 3, 3 ), 6, 'G2P2L1M-33333' );
@@ -249,7 +249,7 @@ class ApiQueryContinueTest extends ApiQueryContinueTestBase {
 		};
 		// generator + 1 prop
 		$data = $this->query( $mk( 99, true, 99, true ), 1, 'G=P', false ) +
-			array( 'batchcomplete' => '' );
+			array( 'batchcomplete' => true );
 
 		$this->checkC( $data, $mk( 1, true, 1, true ), 4, 'G=P-1t1t' );
 		$this->checkC( $data, $mk( 2, true, 2, true ), 2, 'G=P-2t2t' );
@@ -296,7 +296,7 @@ class ApiQueryContinueTest extends ApiQueryContinueTestBase {
 		};
 		// generator + 1 list
 		$data = $this->query( $mk( 99, true, 99, true ), 1, 'G=L', false ) +
-			array( 'batchcomplete' => '' );
+			array( 'batchcomplete' => true );
 
 		$this->checkC( $data, $mk( 1, true, 1, true ), 5, 'G=L-1t1t' );
 		$this->checkC( $data, $mk( 2, true, 2, true ), 3, 'G=L-2t2t' );

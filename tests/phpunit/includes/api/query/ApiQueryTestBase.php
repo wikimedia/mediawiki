@@ -116,9 +116,13 @@ STR;
 			if ( is_array( $message ) ) {
 				$message = http_build_query( $message );
 			}
+			$class = 'PHPUnit_Framework_ComparisonFailure';
+			if ( !class_exists( $class ) ) {
+				$class = 'SebastianBergmann\Comparator\ComparisonFailure';
+			}
 			throw new PHPUnit_Framework_ExpectationFailedException(
 				$e->getMessage() . "\nRequest: $message",
-				new PHPUnit_Framework_ComparisonFailure(
+				new $class(
 					$exp,
 					$result,
 					print_r( $exp, true ),
