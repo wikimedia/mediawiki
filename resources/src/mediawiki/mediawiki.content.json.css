@@ -18,10 +18,15 @@
 	padding: 0.5em 1em;
 }
 
-.mw-json .value {
+.mw-json .value,
+.mw-json-single-value {
 	background-color: #dcfae3;
 	font-family: monospace, monospace;
 	white-space: pre-wrap;
+}
+
+.mw-json-single-value {
+	background-color: #eee;
 }
 
 .mw-json-empty {
