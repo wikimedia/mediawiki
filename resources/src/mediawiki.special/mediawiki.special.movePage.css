@@ -1,0 +1,16 @@
+/*!
+ * Styles for Special:MovePage
+ */
+
+#wpNewTitleNs,
+#wpNewTitleMain {
+	display: inline-block;
+}
+
+#wpNewTitleNs {
+	max-width: 20em;
+}
+
+#wpNewTitleMain {
+	max-width: 40em;
+}
