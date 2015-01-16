@@ -47,6 +47,12 @@
 	list-style-image: e('/* @embed */') url(@url);
 }
 
+.list-style-image-svg(@svg, @fallback) {
+	list-style-image: e('/* @embed */') url(@svg);
+	/* Fallback to PNG bullet for IE 8 and below using CSS hack */
+	list-style-image: e('/* @embed */') url(@fallback)\9;
+}
+
 .transition(@value) {
 	-webkit-transition: @value; // Safari 3.1-6.0, iOS 3.2-6.1, Android 2.1-4.3
 	-moz-transition: @value; // Firefox 4-15
