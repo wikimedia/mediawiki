@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.6.2
+ * OOjs UI v0.6.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-01-10T01:25:31Z
+ * Date: 2015-01-16T00:05:16Z
  */
 .oo-ui-progressBarWidget-slide-frames from {
 	margin-left: -40%;
@@ -381,6 +381,10 @@
 	display: block;
 	background: rgba(0, 0, 0, 0.4);
 }
+.oo-ui-lookupElement > .oo-ui-menuSelectWidget {
+	z-index: 1;
+	width: 100%;
+}
 .oo-ui-bookletLayout-stackLayout.oo-ui-stackLayout-continuous > .oo-ui-panelLayout-scrollable {
 	overflow-y: hidden;
 }
@@ -489,6 +493,22 @@
 }
 .oo-ui-fieldLayout-disabled .oo-ui-labelElement-label {
 	color: #cccccc;
+}
+.oo-ui-actionFieldLayout-field {
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+}
+.oo-ui-actionFieldLayout-input,
+.oo-ui-actionFieldLayout-button {
+	display: table-cell;
+	vertical-align: middle;
+}
+.oo-ui-actionFieldLayout-input {
+	padding-right: 1em;
+}
+.oo-ui-actionFieldLayout-button {
+	width: 1%;
 }
 .oo-ui-fieldsetLayout {
 	position: relative;
@@ -780,7 +800,8 @@
 .oo-ui-listToolGroup .oo-ui-toolGroup-tools {
 	padding: 0.25em 0 0.25em 0;
 	border: 1px solid #aaaaaa;
-	box-shadow: inset 0 -0.2em 0 0 rgba(0, 0, 0, 0.2), 0 0.1em 0 0 rgba(0, 0, 0, 0.2);
+	border-radius: 0.2em;
+	box-shadow: inset 0 -0.2em 0 0 rgba(0, 0, 0, 0.2), 0 0.1em 0 0 rgba(0, 0, 0, 0.1);
 }
 .oo-ui-menuToolGroup {
 	border: solid 1px #cccccc;
@@ -802,7 +823,8 @@
 	margin-left: -1px;
 	padding: 0.25em 0 0.25em 0;
 	border: 1px solid #aaaaaa;
-	box-shadow: inset 0 -0.2em 0 0 rgba(0, 0, 0, 0.2), 0 0.1em 0 0 rgba(0, 0, 0, 0.2);
+	border-radius: 0.2em;
+	box-shadow: inset 0 -0.2em 0 0 rgba(0, 0, 0, 0.2), 0 0.1em 0 0 rgba(0, 0, 0, 0.1);
 }
 .oo-ui-menuToolGroup.oo-ui-widget-enabled:hover {
 	border-color: #aaaaaa;
@@ -1574,8 +1596,8 @@
 	color: #888888;
 }
 .oo-ui-dropdownWidget {
-	position: relative;
 	display: inline-block;
+	position: relative;
 	margin: 0.25em 0;
 	width: 100%;
 	max-width: 50em;
@@ -1599,7 +1621,7 @@
 	background-position: center center;
 	background-repeat: no-repeat;
 }
-.oo-ui-dropdownWidget .oo-ui-menuSelectWidget {
+.oo-ui-dropdownWidget > .oo-ui-menuSelectWidget {
 	z-index: 1;
 	width: 100%;
 }
@@ -1745,9 +1767,9 @@
 	width: 100%;
 	max-width: 50em;
 }
-.oo-ui-comboBoxWidget > .oo-ui-selectWidget {
-	width: 100%;
+.oo-ui-comboBoxWidget > .oo-ui-menuSelectWidget {
 	z-index: 1;
+	width: 100%;
 }
 .oo-ui-comboBoxWidget .oo-ui-textInputWidget input,
 .oo-ui-comboBoxWidget .oo-ui-textInputWidget textarea {
@@ -1869,7 +1891,7 @@
 	z-index: 3;
 }
 .oo-ui-dialog-content > .oo-ui-window-body {
-	box-shadow: 0 0 1px 0 #aaaaaa;
+	outline: 1px solid #aaaaaa;
 }
 .oo-ui-messageDialog-actions-horizontal {
 	display: table;
@@ -2015,7 +2037,7 @@
 }
 .oo-ui-processDialog-content .oo-ui-window-body {
 	top: 3.4em;
-	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+	outline: 1px solid rgba(0, 0, 0, 0.2);
 }
 .oo-ui-processDialog-navigation {
 	position: relative;

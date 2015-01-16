@@ -6,5 +6,14 @@
 	},
 	"ooui-outline-control-move-down": "Spuèste 'a vôsce sotte",
 	"ooui-outline-control-move-up": "Spuèste 'a vôsce sus",
-	"ooui-toolbar-more": "De cchiù"
+	"ooui-outline-control-remove": "Live 'a vôsce",
+	"ooui-toolbar-more": "De cchiù",
+	"ooui-toolgroup-expand": "De cchiù",
+	"ooui-toolgroup-collapse": "De mene",
+	"ooui-dialog-message-accept": "OK",
+	"ooui-dialog-message-reject": "Annulle",
+	"ooui-dialog-process-error": "Quacche cose ha sciute stuèrte",
+	"ooui-dialog-process-dismiss": "Scitte",
+	"ooui-dialog-process-retry": "Pruève arrete",
+	"ooui-dialog-process-continue": "Condinue"
 }
