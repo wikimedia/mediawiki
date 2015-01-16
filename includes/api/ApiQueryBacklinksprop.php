@@ -287,8 +287,8 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 				if ( $fld_fragment && $row->rd_fragment !== null && $row->rd_fragment !== '' ) {
 					$vals['fragment'] = $row->rd_fragment;
 				}
-				if ( $fld_redirect && $row->page_is_redirect ) {
-					$vals['redirect'] = '';
+				if ( $fld_redirect ) {
+					$vals['redirect'] = (bool)$row->page_is_redirect;
 				}
 				$fit = $this->addPageSubItem( $id, $vals );
 				if ( !$fit ) {

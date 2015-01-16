@@ -68,9 +68,9 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 		$r = array( 'name' => $params['page'] );
 		if ( $qp->isCached() ) {
 			if ( !$qp->isCacheable() ) {
-				$r['disabled'] = '';
+				$r['disabled'] = true;
 			} else {
-				$r['cached'] = '';
+				$r['cached'] = true;
 				$ts = $qp->getCachedTimestamp();
 				if ( $ts ) {
 					$r['cachedtimestamp'] = wfTimestamp( TS_ISO_8601, $ts );
