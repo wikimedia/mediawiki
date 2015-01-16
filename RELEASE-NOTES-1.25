@@ -268,6 +268,9 @@ production.
     as comma-separated lists.
   * merge events use new-style formatting.
   * delete/event and delete/revision events use new-style formatting.
+* The root node and various other nodes will now always be an object in formats
+  such as json that distinguish between arrays and objects.
+  * Except for action=opensearch where the spec requires an array.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.
@@ -316,6 +319,10 @@ production.
   metadata isn't set.
 * (T35235) LogFormatter subclasses are now responsible for formatting log event
   parameters for the API.
+* Many modules have changed result data formats. While this shouldn't affect
+  clients not using the experimental formatversion=2015, code using
+  ApiResult::getResultData() and not using ApiResult::transformForBC() may need
+  updating.
 * The following methods have been deprecated and may be removed in a future
   release:
   * ApiBase::getDescription

@@ -15,6 +15,11 @@ class ApiErrorFormatterTest extends MediaWikiTestCase {
 		$result = new ApiResult( 8388608 );
 		$formatter = new ApiErrorFormatter( $result, Language::factory( $lang ), $format, $useDB );
 
+		// Add default type
+		$expect1[ApiResult::META_TYPE] = 'assoc';
+		$expect2[ApiResult::META_TYPE] = 'assoc';
+		$expect3[ApiResult::META_TYPE] = 'assoc';
+
 		$formatter->addWarning( 'string', 'mainpage' );
 		$formatter->addError( 'err', 'mainpage' );
 		$this->assertSame( $expect1, $result->getResultData(), 'Simple test' );
@@ -262,6 +267,7 @@ class ApiErrorFormatterTest extends MediaWikiTestCase {
 					ApiResult::META_CONTENT => 'warnings',
 				),
 			),
+			ApiResult::META_TYPE => 'assoc',
 		), $result->getResultData(), 'Simple test' );
 
 		$result->reset();
@@ -293,6 +299,7 @@ class ApiErrorFormatterTest extends MediaWikiTestCase {
 					ApiResult::META_CONTENT => 'warnings',
 				),
 			),
+			ApiResult::META_TYPE => 'assoc',
 		), $result->getResultData(), 'Complex test' );
 
 		$result->reset();
@@ -315,6 +322,7 @@ class ApiErrorFormatterTest extends MediaWikiTestCase {
 					ApiResult::META_CONTENT => 'warnings',
 				),
 			),
+			ApiResult::META_TYPE => 'assoc',
 		), $result->getResultData(), 'Status test' );
 
 		$I = ApiResult::META_INDEXED_TAG_NAME;
