@@ -36,6 +36,7 @@ class SpecialPreferences extends SpecialPage {
 		$this->outputHeader();
 		$out = $this->getOutput();
 		$out->disallowUserJs(); # Prevent hijacked user scripts from sniffing passwords etc.
+		$out->addModuleStyles( 'mediawiki.action.view.postEdit' );
 
 		$this->requireLogin( 'prefsnologintext2' );
 		$this->checkReadOnly();
@@ -46,14 +47,14 @@ class SpecialPreferences extends SpecialPage {
 			return;
 		}
 
-		$out->addModules( 'mediawiki.special.preferences' );
-
 		if ( $this->getRequest()->getCheck( 'success' ) ) {
-			$out->wrapWikiMsg(
-				"<div class=\"successbox\">\n$1\n</div>",
-				'savedprefs'
-			);
+			$out->addHTML( "<div class=\"postedit-container\"><div class=\"postedit\">" );
+			$out->addHTML( "<div class=\"postedit-icon postedit-icon-checkmark postedit-content\">" );
+			$out->addHTML( wfMessage( 'savedprefs' )->escaped() );
+			$out->addHTML( "</div><a class=\"postedit-close\">&times;</a></div></div>" );
 		}
+
+		$out->addModules( 'mediawiki.special.preferences' );
 
 		$htmlForm = Preferences::getFormObject( $this->getUser(), $this->getContext() );
 		$htmlForm->setSubmitCallback( array( 'Preferences', 'tryUISubmit' ) );
