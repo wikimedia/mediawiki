@@ -216,7 +216,7 @@ class ApiParamInfo extends ApiBase {
 		$this->formatHelpMessages( $ret, 'description', $module->getFinalDescription() );
 
 		foreach ( $module->getHelpFlags() as $flag ) {
-			$ret[$flag] = '';
+			$ret[$flag] = true;
 		}
 
 		$ret['helpurls'] = (array)$module->getHelpUrls();
@@ -265,12 +265,10 @@ class ApiParamInfo extends ApiBase {
 				$this->formatHelpMessages( $item, 'description', $paramDesc[$name], true );
 			}
 
-			if ( !empty( $settings[ApiBase::PARAM_REQUIRED] ) ) {
-				$item['required'] = '';
-			}
+			$item['required'] = !empty( $settings[ApiBase::PARAM_REQUIRED] );
 
 			if ( !empty( $settings[ApiBase::PARAM_DEPRECATED] ) ) {
-				$item['deprecated'] = '';
+				$item['deprecated'] = true;
 			}
 
 			if ( $name === 'token' && $module->needsToken() ) {
@@ -307,8 +305,8 @@ class ApiParamInfo extends ApiBase {
 				}
 			}
 
-			if ( !empty( $settings[ApiBase::PARAM_ISMULTI] ) ) {
-				$item['multi'] = '';
+			$item['multi'] = !empty( $settings[ApiBase::PARAM_ISMULTI] );
+			if ( $item['multi'] ) {
 				$item['limit'] = $this->getMain()->canApiHighLimits() ?
 					ApiBase::LIMIT_SML2 :
 					ApiBase::LIMIT_SML1;
@@ -317,14 +315,14 @@ class ApiParamInfo extends ApiBase {
 			}
 
 			if ( !empty( $settings[ApiBase::PARAM_ALLOW_DUPLICATES] ) ) {
-				$item['allowsduplicates'] = '';
+				$item['allowsduplicates'] = true;
 			}
 
 			if ( isset( $settings[ApiBase::PARAM_TYPE] ) ) {
 				if ( $settings[ApiBase::PARAM_TYPE] === 'submodule' ) {
 					$item['type'] = $module->getModuleManager()->getNames( $name );
 					sort( $item['type'] );
-					$item['submodules'] = '';
+					$item['submodules'] = true;
 				} else {
 					$item['type'] = $settings[ApiBase::PARAM_TYPE];
 				}

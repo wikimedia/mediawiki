@@ -253,7 +253,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				$data['blockexpiry'] = $row->ipb_expiry;
 			}
 			if ( $row->ipb_deleted ) {
-				$data['hidden'] = '';
+				$data['hidden'] = true;
 			}
 			if ( $fld_editcount ) {
 				$data['editcount'] = intval( $row->user_editcount );

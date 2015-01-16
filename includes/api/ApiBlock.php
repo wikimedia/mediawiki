@@ -113,27 +113,13 @@ class ApiBlock extends ApiBase {
 		}
 
 		$res['reason'] = $params['reason'];
-		if ( $params['anononly'] ) {
-			$res['anononly'] = '';
-		}
-		if ( $params['nocreate'] ) {
-			$res['nocreate'] = '';
-		}
-		if ( $params['autoblock'] ) {
-			$res['autoblock'] = '';
-		}
-		if ( $params['noemail'] ) {
-			$res['noemail'] = '';
-		}
-		if ( $params['hidename'] ) {
-			$res['hidename'] = '';
-		}
-		if ( $params['allowusertalk'] ) {
-			$res['allowusertalk'] = '';
-		}
-		if ( $params['watchuser'] ) {
-			$res['watchuser'] = '';
-		}
+		$res['anononly'] = $params['anononly'];
+		$res['nocreate'] = $params['nocreate'];
+		$res['autoblock'] = $params['autoblock'];
+		$res['noemail'] = $params['noemail'];
+		$res['hidename'] = $params['hidename'];
+		$res['allowusertalk'] = $params['allowusertalk'];
+		$res['watchuser'] = $params['watchuser'];
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );
 	}

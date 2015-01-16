@@ -84,7 +84,7 @@ class ApiContinuationManagerTest extends MediaWikiTestCase {
 			'gcontinue' => 3,
 			'continue' => 'gcontinue||',
 		), $result->getResultData( 'continue' ) );
-		$this->assertSame( '', $result->getResultData( 'batchcomplete' ) );
+		$this->assertSame( true, $result->getResultData( 'batchcomplete' ) );
 
 		$manager = self::getManager( '', $allModules, array( 'mock1', 'mock2' ) );
 		$this->assertSame( false, $manager->isGeneratorDone() );
