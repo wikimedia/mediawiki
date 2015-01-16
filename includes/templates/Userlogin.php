@@ -143,7 +143,7 @@ class UserloginTemplate extends BaseTemplate {
 					'tabindex' => '6',
 				);
 				$modifiers = array(
-					'mw-ui-big', 'mw-ui-constructive',
+					'mw-ui-constructive',
 				);
 				echo Html::submitButton( $this->getMsg( 'pt-login-button' )->text(), $attrs, $modifiers );
 				?>
