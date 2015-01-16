@@ -1,0 +1,17 @@
+/*!
+ * MediaWiki Widgets - base ComplexTitleInputWidget styles.
+ *
+ * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
+ * @license The MIT License (MIT); see LICENSE.txt
+ */
+
+.mw-widget-complexTitleInputWidget .mw-widget-namespaceInputWidget,
+.mw-widget-complexTitleInputWidget .mw-widget-titleInputWidget {
+	display: inline-block;
+}
+
+.mw-widget-complexTitleInputWidget .mw-widget-titleInputWidget {
+	/* We have a total of 50em of space, minus NamespaceInputWidget's width of 20em */
+	margin-left: 0.5em;
+	width: 29.5em;
+}

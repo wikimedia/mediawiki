@@ -1481,7 +1481,14 @@ return array(
 	),
 	'mediawiki.special.movePage' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.movePage.js',
-		'dependencies' => 'jquery.byteLimit',
+		'dependencies' => array(
+			'jquery.byteLimit',
+			'mediawiki.widgets',
+		),
+	),
+	'mediawiki.special.movePage.styles' => array(
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.movePage.css',
+		'position' => 'top',
 	),
 	'mediawiki.special.pageLanguage' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.pageLanguage.js',
@@ -1755,6 +1762,7 @@ return array(
 	'mediawiki.widgets' => array(
 		'scripts' => array(
 			'resources/src/mediawiki.widgets/mw.widgets.js',
+			'resources/src/mediawiki.widgets/mw.widgets.ComplexTitleInputWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.NamespaceInputWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.TitleOptionWidget.js',
@@ -1782,6 +1790,7 @@ return array(
 		'skinStyles' => array(
 			'default' => array(
 				'resources/src/mediawiki.widgets/mw.widgets.NamespaceInputWidget.base.css',
+				'resources/src/mediawiki.widgets/mw.widgets.ComplexTitleInputWidget.base.css',
 			),
 		),
 		'position' => 'top',
