@@ -131,6 +131,10 @@ class UpdateMediaWiki extends Maintenance {
 			wfCountdown( 5 );
 		}
 
+		// Check external dependencies are up to date
+		$composerLockUpToDate = $this->runChild( 'CheckComposerLockUpToDate' );
+		$composerLockUpToDate->execute();
+
 		# Attempt to connect to the database as a privileged user
 		# This will vomit up an error if there are permissions problems
 		$db = wfGetDB( DB_MASTER );
