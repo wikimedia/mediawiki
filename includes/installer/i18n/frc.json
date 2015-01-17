@@ -1,5 +1,24 @@
 {
-	"@metadata": [],
+	"@metadata": {
+		"authors": [
+			"Hangmanwa7id"
+		]
+	},
+	"config-your-language": "Ton langue:",
+	"config-page-name": "Nom",
+	"config-page-options": "Options",
+	"config-page-install": "Installer",
+	"config-page-complete": "Terminé!",
+	"config-sqlite-name-help": "Choisir un nom qui identifie ton wiki.\nFait user pas ni d'espaces ni des traits d'union\nIl va user pour fichier de données SQLite.",
+	"config-mysql-innodb": "InnoDB",
+	"config-mysql-myisam": "MyISAM",
+	"config-mysql-binary": "Binaire",
+	"config-mysql-utf8": "UTF-8",
+	"config-ns-generic": "Projet",
+	"config-ns-other-default": "MonWiki",
+	"config-admin-name": "Ton nom d'useur:",
+	"config-admin-password": "Mot de passe:",
+	"config-admin-email": "Adresse d'email:",
 	"mainpagetext": "'''Vous avez bien installé MediaWiki.'''",
 	"mainpagedocfooter": "Lisez la [//meta.wikimedia.org/wiki/Help:Contents Guide des Useurs] pour apprendre à user le wiki software.\n\n== Pour Commencer ==\n\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Réglage]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki: Questions Souvent Posées]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki Liste à Malle]"
 }

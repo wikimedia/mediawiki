@@ -60,6 +60,8 @@
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] đã được cài đặt",
 	"config-apc": "[http://www.php.net/apc APC] đã được cài đặt",
 	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] đã được cài đặt",
+	"config-no-cache": "<strong>Cảnh báo:</strong> Không tìm thấy [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] hoặc [http://www.iis.net/download/WinCacheForPhp WinCache].\nTheo dõi đối tượng không được kích hoạt.",
+	"config-mod-security": "<strong>Cảnd báo:</strong> Máy chủ trang web của bạn đã được kích hoạt  [http://modsecurity.org/ mod_security]/mod_security2. Nhiều cấu hình cung của nó sẽ gây ra các vấn đề cho MediaWiki và phần mềm khác cho phép người dùng đăng các nội dung tùy tiện.\nNếu có thể, bạn nên vô hiệu nó. Còn không, xem phần [http://modsecurity.org/documentation/ tài liệu mod_security] hoặc liên hệ với nhà cung cấp máy chủ nếu bạn gặp một lỗi ngẫu nhiên nào đó.",
 	"config-diff3-bad": "Không tìm thấy GNU diff3.",
 	"config-git": "Đã tìm thấy phần mềm điều khiển phiên bản Git: <code>$1</code>.",
 	"config-git-bad": "Không tìm thấy phần mềm điều khiển phiên bản Git.",
