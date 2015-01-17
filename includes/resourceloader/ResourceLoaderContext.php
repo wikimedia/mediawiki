@@ -311,13 +311,6 @@ class ResourceLoaderContext {
 	}
 
 	/**
-	 * @return bool
-	 */
-	public function shouldIncludeMessages() {
-		return is_null( $this->getOnly() ) || $this->getOnly() === 'messages';
-	}
-
-	/**
 	 * @return string
 	 */
 	public function getHash() {

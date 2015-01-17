@@ -184,6 +184,8 @@ production.
   interwiki redirects to the list of interwiki titles.
 * (T85417) When outputting the list of redirect titles, a 'tointerwiki'
   property (like the existing 'tofragment' property) will be set.
+* action=parse no longer handles the 'modulemessages' property, returning empty
+  value and a warning when it is requested. It's due to be removed in 1.26.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.
@@ -320,6 +322,8 @@ changes to languages because of Bugzilla reports.
     Instead, do this:
       $form = HTMLForm::factory( 'vform', … );
 * Deprecated Revision methods getRawUser(), getRawUserText() and getRawComment().
+* Remove OutputPage::addModuleMessages() and OutputPage::getModuleMessages()
+  methods, which are not needed and were never effectively in use.
 
 == Compatibility ==
 
