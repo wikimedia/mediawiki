@@ -76,6 +76,12 @@ class JobRunner {
 			$this->runJobsLog( "Executed $count periodic queue task(s)." );
 		}
 
+		// Bail out if in read-only mode
+		if ( wfReadOnly() ) {
+			$response['reached'] = 'read-only';
+			return $response;
+		}
+
 		// Bail out if there is too much DB lag
 		list( , $maxLag ) = wfGetLBFactory()->getMainLB( wfWikiID() )->getMaxLag();
 		if ( $maxLag >= 5 ) {
