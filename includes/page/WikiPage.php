@@ -2167,11 +2167,8 @@ class WikiPage implements Page, IDBAccessObject {
 		Hooks::run( 'ArticleEditUpdates', array( &$this, &$editInfo, $options['changed'] ) );
 
 		if ( Hooks::run( 'ArticleEditUpdatesDeleteFromRecentchanges', array( &$this ) ) ) {
-			if ( 0 == mt_rand( 0, 99 ) ) {
-				// Flush old entries from the `recentchanges` table; we do this on
-				// random requests so as to avoid an increase in writes for no good reason
-				RecentChange::purgeExpiredChanges();
-			}
+			// Flush old entries from the `recentchanges` table
+			JobQueueGroup::singleton()->push( RecentChangesUpdateJob::newPurgeJob() );
 		}
 
 		if ( !$this->exists() ) {

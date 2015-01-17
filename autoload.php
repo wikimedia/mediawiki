@@ -938,6 +938,7 @@ $wgAutoloadLocalClasses = array(
 	'RebuildSitesCache' => __DIR__ . '/maintenance/rebuildSitesCache.php',
 	'RebuildTextIndex' => __DIR__ . '/maintenance/rebuildtextindex.php',
 	'RecentChange' => __DIR__ . '/includes/changes/RecentChange.php',
+	'RecentChangesUpdateJob' => __DIR__ . '/includes/jobqueue/jobs/RecentChangesUpdateJob.php',
 	'RecompressTracked' => __DIR__ . '/maintenance/storage/recompressTracked.php',
 	'RedirectSpecialArticle' => __DIR__ . '/includes/specialpage/RedirectSpecialPage.php',
 	'RedirectSpecialPage' => __DIR__ . '/includes/specialpage/RedirectSpecialPage.php',
