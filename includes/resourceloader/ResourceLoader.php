@@ -1006,16 +1006,6 @@ MESSAGE;
 						// Module returns either an empty array or a numerical array with css strings.
 						$out .= isset( $styles['css'] ) ? implode( '', $styles['css'] ) : '';
 						break;
-					case 'messages':
-						$out .= self::makeMessageSetScript( new XmlJsCode( $messagesBlob ) );
-						break;
-					case 'templates':
-						$out .= Xml::encodeJsCall(
-							'mw.templates.set',
-							array( $name, (object)$module->getTemplates() ),
-							ResourceLoader::inDebugMode()
-						);
-						break;
 					default:
 						$out .= self::makeLoaderImplementScript(
 							$name,
