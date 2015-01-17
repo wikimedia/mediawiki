@@ -334,7 +334,9 @@ class ApiParse extends ApiBase {
 			$result_array['modules'] = array_values( array_unique( $p_result->getModules() ) );
 			$result_array['modulescripts'] = array_values( array_unique( $p_result->getModuleScripts() ) );
 			$result_array['modulestyles'] = array_values( array_unique( $p_result->getModuleStyles() ) );
-			$result_array['modulemessages'] = array_values( array_unique( $p_result->getModuleMessages() ) );
+			// To be removed in 1.26
+			$result_array['modulemessages'] = array();
+			$this->setWarning( 'modulemessages is deprecated since 1.25' );
 		}
 
 		if ( isset( $prop['indicators'] ) ) {

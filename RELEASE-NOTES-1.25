@@ -320,6 +320,10 @@ changes to languages because of Bugzilla reports.
     Instead, do this:
       $form = HTMLForm::factory( 'vform', … );
 * Deprecated Revision methods getRawUser(), getRawUserText() and getRawComment().
+* Remove OutputPage::addModuleMessages and OutputPage::getModuleMessages
+  methods which are not needed or effectively in use
+* Deprecate 'modulemessages' API, return empty result and warn, to be removed
+  in 1.26
 
 == Compatibility ==
 
