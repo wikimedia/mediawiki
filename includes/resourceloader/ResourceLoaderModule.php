@@ -29,7 +29,6 @@ abstract class ResourceLoaderModule {
 	# Type of resource
 	const TYPE_SCRIPTS = 'scripts';
 	const TYPE_STYLES = 'styles';
-	const TYPE_MESSAGES = 'messages';
 	const TYPE_COMBINED = 'combined';
 
 	# sitewide core module like a skin file or jQuery component
