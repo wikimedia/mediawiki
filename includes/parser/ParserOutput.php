@@ -41,7 +41,6 @@ class ParserOutput extends CacheTime {
 		$mModules = array(),          # Modules to be loaded by the resource loader
 		$mModuleScripts = array(),    # Modules of which only the JS will be loaded by the resource loader
 		$mModuleStyles = array(),     # Modules of which only the CSSS will be loaded by the resource loader
-		$mModuleMessages = array(),   # Modules of which only the messages will be loaded by the resource loader
 		$mJsConfigVars = array(),     # JavaScript config variable for mw.config combined with this page
 		$mOutputHooks = array(),      # Hook tags as per $wgParserOutputHooks
 		$mWarnings = array(),         # Warning text to be returned to the user. Wikitext formatted, in the key only
@@ -191,10 +190,6 @@ class ParserOutput extends CacheTime {
 
 	public function getModuleStyles() {
 		return $this->mModuleStyles;
-	}
-
-	public function getModuleMessages() {
-		return $this->mModuleMessages;
 	}
 
 	/** @since 1.23 */
@@ -447,10 +442,6 @@ class ParserOutput extends CacheTime {
 		$this->mModuleStyles = array_merge( $this->mModuleStyles, (array)$modules );
 	}
 
-	public function addModuleMessages( $modules ) {
-		$this->mModuleMessages = array_merge( $this->mModuleMessages, (array)$modules );
-	}
-
 	/**
 	 * Add one or more variables to be set in mw.config in JavaScript.
 	 *
@@ -478,7 +469,6 @@ class ParserOutput extends CacheTime {
 		$this->addModules( $out->getModules() );
 		$this->addModuleScripts( $out->getModuleScripts() );
 		$this->addModuleStyles( $out->getModuleStyles() );
-		$this->addModuleMessages( $out->getModuleMessages() );
 		$this->addJsConfigVars( $out->getJsConfigVars() );
 
 		$this->mHeadItems = array_merge( $this->mHeadItems, $out->getHeadItemsArray() );
