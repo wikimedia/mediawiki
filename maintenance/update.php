@@ -139,7 +139,11 @@ class UpdateMediaWiki extends Maintenance {
 		if ( $db->getType() === 'sqlite' ) {
 			$this->output( "Using SQLite file: '{$db->mDatabaseFile}'\n" );
 		}
-		$this->output( "Depending on the size of your database this may take a while!\n" );
+		$this->output(
+			"Depending on the size of your database this may take a while!\n" .
+			'You should check that your external libraries are up to date with the ' .
+			"checkComposerLockUpToDate.php script.\n"
+		);
 
 		if ( !$this->hasOption( 'quick' ) ) {
 			$this->output( "Abort with control-c in the next five seconds "
