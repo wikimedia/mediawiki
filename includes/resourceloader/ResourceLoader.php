@@ -867,19 +867,15 @@ class ResourceLoader {
 		}
 
 		// Pre-fetch blobs
-		if ( $context->shouldIncludeMessages() ) {
-			try {
-				$blobs = MessageBlobStore::getInstance()->get( $this, $modules, $context->getLanguage() );
-			} catch ( Exception $e ) {
-				MWExceptionHandler::logException( $e );
-				wfDebugLog(
-					'resourceloader',
-					__METHOD__ . ": pre-fetching blobs from MessageBlobStore failed: $e"
-				);
-				$this->errors[] = self::formatExceptionNoComment( $e );
-			}
-		} else {
-			$blobs = array();
+		try {
+			$blobs = MessageBlobStore::getInstance()->get( $this, $modules, $context->getLanguage() );
+		} catch ( Exception $e ) {
+			MWExceptionHandler::logException( $e );
+			wfDebugLog(
+				'resourceloader',
+				__METHOD__ . ": pre-fetching blobs from MessageBlobStore failed: $e"
+			);
+			$this->errors[] = self::formatExceptionNoComment( $e );
 		}
 
 		foreach ( $missing as $name ) {
@@ -975,16 +971,6 @@ class ResourceLoader {
 						// custom media type groups into @media .. {} sections as part of the css string.
 						// Module returns either an empty array or a numerical array with css strings.
 						$out .= isset( $styles['css'] ) ? implode( '', $styles['css'] ) : '';
-						break;
-					case 'messages':
-						$out .= self::makeMessageSetScript( new XmlJsCode( $messagesBlob ) );
-						break;
-					case 'templates':
-						$out .= Xml::encodeJsCall(
-							'mw.templates.set',
-							array( $name, (object)$module->getTemplates() ),
-							ResourceLoader::inDebugMode()
-						);
 						break;
 					default:
 						$out .= self::makeLoaderImplementScript(
