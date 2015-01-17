@@ -338,7 +338,8 @@ class RevisionItem extends RevisionItemBase {
 	 * @return string
 	 */
 	protected function getRevisionLink() {
-		$date = $this->list->getLanguage()->timeanddate( $this->revision->getTimestamp(), true );
+		$date = htmlspecialchars( $this->list->getLanguage()->userTimeAndDate(
+			$this->revision->getTimestamp(), $this->list->getUser() ) );
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
 			return $date;
 		}
