@@ -162,9 +162,6 @@ class OutputPage extends ContextSource {
 	/** @var array */
 	protected $mModuleStyles = array();
 
-	/** @var array */
-	protected $mModuleMessages = array();
-
 	/** @var ResourceLoader */
 	protected $mResourceLoader;
 
@@ -614,29 +611,6 @@ class OutputPage extends ContextSource {
 	 */
 	public function addModuleStyles( $modules ) {
 		$this->mModuleStyles = array_merge( $this->mModuleStyles, (array)$modules );
-	}
-
-	/**
-	 * Get the list of module messages to include on this page
-	 *
-	 * @param bool $filter
-	 * @param string|null $position
-	 *
-	 * @return array Array of module names
-	 */
-	public function getModuleMessages( $filter = false, $position = null ) {
-		return $this->getModules( $filter, $position, 'mModuleMessages' );
-	}
-
-	/**
-	 * Add only messages of one or more modules recognized by the resource loader.
-	 * Module messages added through this function will be loaded by the resource
-	 * loader when the page loads.
-	 *
-	 * @param string|array $modules Module name (string) or array of module names
-	 */
-	public function addModuleMessages( $modules ) {
-		$this->mModuleMessages = array_merge( $this->mModuleMessages, (array)$modules );
 	}
 
 	/**
@@ -1734,7 +1708,6 @@ class OutputPage extends ContextSource {
 		$this->addModules( $parserOutput->getModules() );
 		$this->addModuleScripts( $parserOutput->getModuleScripts() );
 		$this->addModuleStyles( $parserOutput->getModuleStyles() );
-		$this->addModuleMessages( $parserOutput->getModuleMessages() );
 		$this->addJsConfigVars( $parserOutput->getJsConfigVars() );
 		$this->mPreventClickjacking = $this->mPreventClickjacking
 			|| $parserOutput->preventClickjacking();
@@ -1781,7 +1754,6 @@ class OutputPage extends ContextSource {
 		$this->addModules( $parserOutput->getModules() );
 		$this->addModuleScripts( $parserOutput->getModuleScripts() );
 		$this->addModuleStyles( $parserOutput->getModuleStyles() );
-		$this->addModuleMessages( $parserOutput->getModuleMessages() );
 
 		$this->addJsConfigVars( $parserOutput->getJsConfigVars() );
 	}
@@ -2966,11 +2938,6 @@ class OutputPage extends ContextSource {
 		$links[] = $this->makeResourceLoaderLink( $embedScripts, ResourceLoaderModule::TYPE_COMBINED );
 
 		// Scripts and messages "only" requests marked for top inclusion
-		// Messages should go first
-		$links[] = $this->makeResourceLoaderLink(
-			$this->getModuleMessages( true, 'top' ),
-			ResourceLoaderModule::TYPE_MESSAGES
-		);
 		$links[] = $this->makeResourceLoaderLink(
 			$this->getModuleScripts( true, 'top' ),
 			ResourceLoaderModule::TYPE_SCRIPTS
@@ -3006,14 +2973,9 @@ class OutputPage extends ContextSource {
 	 * @return string
 	 */
 	function getScriptsForBottomQueue( $inHead ) {
-		// Scripts and messages "only" requests marked for bottom inclusion
+		// Scripts "only" requests marked for bottom inclusion
 		// If we're in the <head>, use load() calls rather than <script src="..."> tags
-		// Messages should go first
 		$links = array();
-		$links[] = $this->makeResourceLoaderLink( $this->getModuleMessages( true, 'bottom' ),
-			ResourceLoaderModule::TYPE_MESSAGES, /* $useESI = */ false, /* $extraQuery = */ array(),
-			/* $loadCall = */ $inHead
-		);
 		$links[] = $this->makeResourceLoaderLink( $this->getModuleScripts( true, 'bottom' ),
 			ResourceLoaderModule::TYPE_SCRIPTS, /* $useESI = */ false, /* $extraQuery = */ array(),
 			/* $loadCall = */ $inHead
