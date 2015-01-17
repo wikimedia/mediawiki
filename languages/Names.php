@@ -74,6 +74,7 @@
 	'be-tarask' => "беларуская (тарашкевіца)\xE2\x80\x8E",	# Belarusian in Taraskievica orthography
 	'be-x-old' => "беларуская (тарашкевіца)\xE2\x80\x8E",	# (be-tarask compat)
 	'bg' => 'български',	# Bulgarian
+	'bgn' => 'بلوچی رخشانی', # Western Balochi
 	'bh' => 'भोजपुरी',	# Bihari macro language. Falls back to Bhojpuri (bho)
 	'bho' => 'भोजपुरी',	# Bhojpuri
 	'bi' => 'Bislama',		# Bislama
