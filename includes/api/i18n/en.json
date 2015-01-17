@@ -18,6 +18,12 @@
 	"apihelp-main-param-origin": "When accessing the API using a cross-domain AJAX request (CORS), set this to the originating domain. This must be included in any pre-flight request, and therefore must be part of the request URI (not the POST body). This must match one of the origins in the Origin: header exactly, so it has to be set to something like http://en.wikipedia.org or https://meta.wikimedia.org. If this parameter does not match the Origin: header, a 403 response will be returned. If this parameter matches the Origin: header and the origin is whitelisted, an Access-Control-Allow-Origin header will be set.",
 	"apihelp-main-param-uselang": "Language to use for message translations. A list of codes may be fetched from [[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]] with siprop=languages, or specify \"user\" to use the current user's language preference, or specify \"content\" to use this wiki's content language.",
 
+	"apihelp-activatetag-description": "Activate a change tag, allowing users to apply it manually.",
+	"apihelp-activatetag-param-tag": "Tag to activate. The tag must exist, and must not be in use by an extension",
+	"apihelp-activatetag-param-reason": "An optional reason for activating the tag.",
+	"apihelp-activatetag-param-ignorewarnings": "Whether to ignore any warnings that are issued during the activation process.",
+	"apihelp-activatetag-example-simple": "Activate a tag named <kbd>spam</kbd> with the reason <kbd>For use in edit patrolling</kbd>",
+
 	"apihelp-block-description": "Block a user.",
 	"apihelp-block-param-user": "Username, IP address or IP range you want to block.",
 	"apihelp-block-param-expiry": "Expiry time. May be relative (e.g. \"5 months\" or \"2 weeks\") or absolute (e.g. \"2014-09-18T12:34:56Z\"). If set to \"infinite\", \"indefinite\" or \"never\", the block will never expire.",
@@ -58,6 +64,18 @@
 	"apihelp-createaccount-example-pass": "Create user \"testuser\" with password \"test123\"",
 	"apihelp-createaccount-example-mail": "Create user \"testmailuser\" and email a randomly-generated password",
 
+	"apihelp-createtag-description": "Create a new change tag for manual use.",
+	"apihelp-createtag-param-tag": "Tag to create.",
+	"apihelp-createtag-param-reason": "An optional reason for creating the tag.",
+	"apihelp-createtag-param-ignorewarnings": "Whether to ignore any warnings that are issued during the creation process.",
+	"apihelp-createtag-example-simple": "Create a tag named <kbd>spam</kbd> with the reason <kbd>For use in edit patrolling</kbd>",
+
+	"apihelp-deactivatetag-description": "Deativate a change tag, preventing users from applying it manually.",
+	"apihelp-deactivatetag-param-tag": "Tag to deactivate. The tag must be currently active and manually defined.",
+	"apihelp-deactivatetag-param-reason": "An optional reason for deactivating the tag.",
+	"apihelp-deactivatetag-param-ignorewarnings": "Whether to ignore any warnings that are issued during the deactivation process.",
+	"apihelp-deactivatetag-example-simple": "Deactivate a tag named <kbd>spam</kbd> with the reason <kbd>No longer required</kbd>",
+
 	"apihelp-delete-description": "Delete a page.",
 	"apihelp-delete-param-title": "Title of the page you want to delete. Cannot be used together with $1pageid.",
 	"apihelp-delete-param-pageid": "Page ID of the page you want to delete. Cannot be used together with $1title.",
@@ -68,6 +86,12 @@
 	"apihelp-delete-param-oldimage": "The name of the old image to delete as provided by [[Special:ApiHelp/query+imageinfo|action=query&prop=imageinfo&iiprop=archivename]].",
 	"apihelp-delete-example-simple": "Delete the Main Page",
 	"apihelp-delete-example-reason": "Delete the Main Page with the reason \"Preparing for move\"",
+
+	"apihelp-deletetag-description": "Remove a change tag from all revisions, recent change entries and log entries on which it is used.",
+	"apihelp-deletetag-param-tag": "Tag to remove.",
+	"apihelp-deletetag-param-reason": "An optional reason for removing the tag.",
+	"apihelp-deletetag-param-ignorewarnings": "Whether to ignore any warnings that are issued during the deletion process.",
+	"apihelp-deletetag-example-simple": "Delete the <kbd>vandlaism</kbd> tag with the reason <kbd>Misspelt</kbd>",
 
 	"apihelp-disabled-description": "This module has been disabled.",
 
@@ -878,7 +902,7 @@
 
 	"apihelp-query+tags-description": "List change tags.",
 	"apihelp-query+tags-param-limit": "The maximum number of tags to list.",
-	"apihelp-query+tags-param-prop": "Which properties to get:\n;name:Adds name of tag.\n;displayname:Adds system message for the tag.\n;description:Adds description of the tag.\n;hitcount:Adds the amount of revisions that have this tag.\n;defined:Indicate whether the tag is defined.",
+	"apihelp-query+tags-param-prop": "Which properties to get:\n;name:Adds name of tag.\n;displayname:Adds system message for the tag.\n;description:Adds description of the tag.\n;hitcount:Adds the number of revisions and/or log entries that have this tag.\n;defined:Indicate whether the tag is defined.\n;source:Gets the source of the tag: an array, either empty, or consisting of \"extension\" for tags applied by an extension, and/or \"manual\" for tags applied manually by users.\n;active:Whether the tag is still being applied.",
 	"apihelp-query+tags-example-simple": "List available tags",
 
 	"apihelp-query+templates-description": "Returns all pages transcluded on the given pages.",
