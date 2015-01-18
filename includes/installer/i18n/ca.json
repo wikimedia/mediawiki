@@ -7,7 +7,8 @@
 			"Toniher",
 			"Fitoschido",
 			"Jmarchn",
-			"Alvaro Vidal-Abarca"
+			"Alvaro Vidal-Abarca",
+			"ESM"
 		]
 	},
 	"config-desc": "L'instal·lador del MediaWiki",
@@ -76,7 +77,11 @@
 	"config-db-install-account": "Compte d'usuari per a la instal·lació",
 	"config-db-username": "Nom d'usuari de la base de dades:",
 	"config-db-password": "Contrasenya de la base de dades:",
+	"config-db-password-empty": "Si us plau, introduïu una contrasenya pel nou usuari de la base de dades $1. Tot i que es poden crear usuaris sense contrasenyes, no és segur.",
 	"config-db-username-empty": "Heu d'introduir un valor per a «{{int:config-db-username}}»",
+	"config-db-install-username": "Introduïu el nom d'usuari que s'utilitzarà per connectar a la base de dades durant el procés d'instal·lació. Aquest no és el nom d'usuari de MediaWiki, és el nom d'usuari de la vostra base de dades.",
+	"config-db-install-password": "Introduïu la contrasenya que s'utilitzarà per connectar a la base de dades durant el procés d'instal·lació. Aquesta no és la contrasenya del vostre compte a MediaWiki, és la contrasenya de la vostra base de dades.",
+	"config-db-install-help": "Introduïu el nom d'usuari i la contrasenya que s'empraran per connectar a la base de dades durant el procés d'instal·lació.",
 	"config-db-account-lock": "Utilitzeu el mateix nom d'usuari i contrasenya durant una operació normal",
 	"config-db-wiki-account": "Compte d'usuari per al funcionament normal",
 	"config-db-wiki-help": "Introduïu el nom d'usuari i la contrasenya que s'utilitzarà per connectar-se a la base de dades durant l'operació normal del wiki.\nSi el compte no existeix, i el compte d'instal·lació té prou privilegis, es crearà aquest compte d'usuari amb els privilegis mínims necessaris per operar el wiki.",
@@ -96,6 +101,7 @@
 	"config-oracle-temp-ts": "Espai de taules temporal:",
 	"config-type-mysql": "MySQL (o compatible)",
 	"config-type-mssql": "Microsoft SQL Server",
+	"config-support-info": "MediaWiki és compatible amb els següents sistemes de bases de dades:\n$1\nSi el sistema de bases de dades que intenteu utilitzar no apareix a la llista, seguiu les instruccions enllaçades més amunt per habilitar el suport.",
 	"config-header-mysql": "Paràmetres de MySQL",
 	"config-header-postgres": "Paràmetres del PostgreSQL",
 	"config-header-sqlite": "Paràmetres de l'SQLite",

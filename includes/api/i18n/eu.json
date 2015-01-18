@@ -10,6 +10,7 @@
 	"apihelp-imagerotate-description": "Irudi bat edo gehiago biratu.",
 	"apihelp-login-param-password": "Pasahitza.",
 	"apihelp-login-param-domain": "Domeinua (hautazkoa).",
+	"apihelp-login-example-login": "Saioa hasi",
 	"apihelp-move-description": "Orrialde bat mugitu",
 	"apihelp-protect-example-protect": "Orrialde bat babestu",
 	"api-help-main-header": "Modulu nagusia",

@@ -463,6 +463,7 @@
 	"loginlanguagelabel": "Hizkuntza: $1",
 	"suspicious-userlogout": "Saioa amaitzeko egin duzun eskaria ukatu da. Izan ere, ematen du eskari hori gaizki dabilen nabigatzaile edo cache proxy batek bidali duela.",
 	"createacct-another-realname-tip": "Benetako izena hautazkoa da.\nEmatea erabakitzen baduzu hori erabiliko da lanaren atribuzioa egiterako garaian.",
+	"pt-login": "Saioa hasi",
 	"pt-createaccount": "Sortu kontua",
 	"pt-userlogout": "Saioa itxi",
 	"php-mail-error-unknown": "PHPren mail() funtzioan arazo ezezagun bat egon da.",
