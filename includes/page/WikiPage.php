@@ -2983,8 +2983,8 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Get the last edit not by this guy...
 		// Note: these may not be public values
-		$user = intval( $current->getRawUser() );
-		$user_text = $dbw->addQuotes( $current->getRawUserText() );
+		$user = intval( $current->getUser( Revision::RAW ) );
+		$user_text = $dbw->addQuotes( $current->getUserText( Revision::RAW ) );
 		$s = $dbw->selectRow( 'revision',
 			array( 'rev_id', 'rev_timestamp', 'rev_deleted' ),
 			array( 'rev_page' => $current->getPage(),

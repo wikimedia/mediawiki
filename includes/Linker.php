@@ -1605,7 +1605,7 @@ class Linker {
 	 * @return string HTML fragment
 	 */
 	public static function revComment( Revision $rev, $local = false, $isPublic = false ) {
-		if ( $rev->getRawComment() == "" ) {
+		if ( $rev->getComment( Revision::RAW ) == "" ) {
 			return "";
 		}
 		if ( $rev->isDeleted( Revision::DELETED_COMMENT ) && $isPublic ) {
@@ -1870,7 +1870,7 @@ class Linker {
 		$editCount = 0;
 		$moreRevs = false;
 		foreach ( $res as $row ) {
-			if ( $rev->getRawUserText() != $row->rev_user_text ) {
+			if ( $rev->getUserText( Revision::RAW ) != $row->rev_user_text ) {
 				if ( $verify &&
 					( $row->rev_deleted & Revision::DELETED_TEXT
 						|| $row->rev_deleted & Revision::DELETED_USER
