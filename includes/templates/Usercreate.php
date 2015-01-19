@@ -262,7 +262,6 @@ class UsercreateTemplate extends BaseTemplate {
 						'tabindex' => $tabIndex++
 					),
 					array(
-						'mw-ui-big',
 						'mw-ui-block',
 						'mw-ui-constructive',
 					)
