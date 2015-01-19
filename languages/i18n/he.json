@@ -1615,7 +1615,7 @@
 	"allarticles": "כל הדפים",
 	"allinnamespace": "כל הדפים (מרחב שם $1)",
 	"allpagessubmit": "הצגה",
-	"allpagesprefix": "הדפים ששמם מתחיל ב:",
+	"allpagesprefix": "הדפים ששמם מתחיל ב־:",
 	"allpagesbadtitle": "כותרת הדף שניתנה הייתה בלתי־תקינה או שהייתה בה קידומת של קישור לשפה אחרת או לוויקי אחר.\nייתכן שהיא מכילה תו אחד או יותר האסורים לשימוש בכותרות.",
 	"allpages-bad-ns": "מרחב השם \"$1\" לא קיים ב{{grammar:תחילית|{{SITENAME}}}}.",
 	"allpages-hide-redirects": "הסתרת הפניות",
