@@ -62,7 +62,8 @@
 			"Mfuji",
 			"Takot",
 			"SkyDaisy9",
-			"Los688"
+			"Los688",
+			"朝彦"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -2200,6 +2201,7 @@
 	"thumbnail-temp-create": "一時的なサムネイルファイルを作成できません",
 	"thumbnail-dest-create": "サムネイルを保存先に保存できません",
 	"thumbnail_invalid_params": "サムネイル引数が無効です",
+	"thumbnail_toobigimagearea": "$1よりも大きな寸法のファイル",
 	"thumbnail_dest_directory": "出力ディレクトリを作成できません",
 	"thumbnail_image-type": "対応していない画像形式です",
 	"thumbnail_gd-library": "GDライブラリの構成が不完全です: 関数$1が不足",
@@ -3023,6 +3025,7 @@
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|トーク]])",
 	"duplicate-defaultsort": "<strong>警告:</strong> 既定のソートキー「$2」が、その前に書かれている既定のソートキー「$1」を上書きしています。",
 	"duplicate-displaytitle": "<strong>警告:</strong> DISPLAYTITLE「$2」が、その前に書かれているDISPLAYTITLE「$1」を上書きしています。",
+	"invalid-indicator-name": "<strong>エラー：</strong> ページ・ステータス・インディケーターの <code>name</code> 属性は空であってはいけません。",
 	"version": "バージョン情報",
 	"version-extensions": "インストール済み拡張機能",
 	"version-skins": "インストール済み外装",

@@ -7,7 +7,8 @@
 			"Papapasan",
 			"LNDDYL",
 			"Shizhao",
-			"Yfdyh000"
+			"Yfdyh000",
+			"JuneAugsut"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [https://www.mediawiki.org/wiki/API:Main_page/zh 文档]\n* [https://www.mediawiki.org/wiki/API:FAQ/zh 常见问题]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 邮件列表]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 程序错误与功能请求]\n</div>\n<strong>状态信息：</strong> 本页所展示的所有特性都应正常工作，但是API仍在开发当中，将会随时变化。请订阅[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 邮件列表]以便获得更新通知。\n\n<strong>错误请求：</strong> 当API收到错误请求时，HTTP header将会返回一个包含\"MediaWiki-API-Error\"的值，随后header的值与error code将会送回并设置为相同的值。详细信息请参阅 https://www.mediawiki.org/wiki/API:Errors_and_warnings 。",
@@ -153,6 +154,7 @@
 	"apihelp-filerevert-description": "回退一个文件至某一旧版本。",
 	"apihelp-filerevert-param-filename": "目标文件名，不包含前缀“File:”。",
 	"apihelp-filerevert-param-comment": "上传评论。",
+	"apihelp-filerevert-param-archivename": "恢复到修订版存档名称。",
 	"apihelp-filerevert-example-revert": "回退Wiki.png至2011-03-05T15:27:40Z的版本",
 	"apihelp-help-description": "显示指定模块的帮助。",
 	"apihelp-help-param-submodules": "包括给定名称模块的子模块的帮助。",
