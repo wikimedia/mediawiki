@@ -20,7 +20,7 @@
 		if ( !$submit.length ) {
 			return;
 		}
-		tabIndex = $submit.prop( 'tabindex' ) - 1;
+		tabIndex = $submit.prop( 'tabIndex' ) - 1;
 		$captchaStuff = $content.find( '.captcha' );
 
 		if ( $captchaStuff.length ) {
