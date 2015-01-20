@@ -919,6 +919,30 @@ class Preferences {
 		$watchlistdaysMax = ceil( $config->get( 'RCMaxAge' ) / ( 3600 * 24 ) );
 
 		## Watchlist #####################################
+		if ( $user->isAllowed( 'editmywatchlist' ) ) {
+			$editWatchlistLinks = array();
+			$editWatchlistModes = array(
+				'edit' => array( 'EditWatchlist', false ),
+				'raw' => array( 'EditWatchlist', 'raw' ),
+				'clear' => array( 'EditWatchlist', 'clear' ),
+			);
+			foreach ( $editWatchlistModes as $editWatchlistMode => $mode ) {
+				// Messages: prefs-editwatchlist-edit, prefs-editwatchlist-raw, prefs-editwatchlist-clear
+				$editWatchlistLinks[] = Linker::linkKnown(
+					SpecialPage::getTitleFor( $mode[0], $mode[1] ),
+					wfMessage( "prefs-editwatchlist-{$editWatchlistMode}" )->parse()
+				);
+			}
+
+			$defaultPreferences['editwatchlist'] = array(
+				'type' => 'info',
+				'raw' => true,
+				'default' => $context->getLanguage()->pipeList( $editWatchlistLinks ),
+				'label-message' => 'prefs-editwatchlist-label',
+				'section' => 'watchlist/editwatchlist',
+			);
+		}
+
 		$defaultPreferences['watchlistdays'] = array(
 			'type' => 'float',
 			'min' => 0,
