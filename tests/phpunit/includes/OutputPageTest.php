@@ -172,7 +172,7 @@ mw.test.baz({token:123});mw.loader.state({"test.quux":"ready"});
 			array(
 				array( 'test.quux', ResourceLoaderModule::TYPE_COMBINED ),
 				'<script>if(window.mw){
-mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"css":[".mw-icon{transition:none}\n"]});
+mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"css":[".mw-icon{transition:none}\n"]},{},{});
 
 }</script>
 '
