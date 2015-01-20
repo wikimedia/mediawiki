@@ -252,7 +252,7 @@ class ApiEditPage extends ApiBase {
 			'format' => $contentFormat,
 			'model' => $contentHandler->getModelID(),
 			'wpEditToken' => $params['token'],
-			'wpIgnoreBlankSummary' => '',
+			'wpIgnoreBlankSummary' => true,
 			'wpIgnoreBlankArticle' => true,
 			'wpIgnoreSelfRedirect' => true,
 		);
@@ -462,7 +462,6 @@ class ApiEditPage extends ApiBase {
 			case EditPage::AS_CONFLICT_DETECTED:
 				$this->dieUsageMsg( 'editconflict' );
 
-			// case EditPage::AS_SUMMARY_NEEDED: Can't happen since we set wpIgnoreBlankSummary
 			case EditPage::AS_TEXTBOX_EMPTY:
 				$this->dieUsageMsg( 'emptynewsection' );
 
@@ -487,6 +486,7 @@ class ApiEditPage extends ApiBase {
 				break;
 
 			case EditPage::AS_SUMMARY_NEEDED:
+				// Shouldn't happen since we set wpIgnoreBlankSummary, but just in case
 				$this->dieUsageMsg( 'summaryrequired' );
 
 			case EditPage::AS_END:
