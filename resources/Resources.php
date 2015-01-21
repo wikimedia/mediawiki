@@ -1466,15 +1466,6 @@ return array(
 		),
 		'position' => 'top',
 	),
-	'mediawiki.special.userlogin.common.js' => array(
-		'scripts' => array(
-			'resources/src/mediawiki.special/mediawiki.special.userlogin.common.js',
-		),
-		'messages' => array(
-			'createacct-captcha',
-			'createacct-imgcaptcha-ph',
-		),
-	),
 	'mediawiki.special.userlogin.signup.js' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.userlogin.signup.js',
 		'messages' => array(

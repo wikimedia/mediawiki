@@ -1323,9 +1323,6 @@ class LoginForm extends SpecialPage {
 			'mediawiki.ui.input',
 			'mediawiki.special.userlogin.common.styles'
 		) );
-		$out->addModules( array(
-			'mediawiki.special.userlogin.common.js'
-		) );
 
 		if ( $this->mType == 'signup' ) {
 			// XXX hack pending RL or JS parse() support for complex content messages
