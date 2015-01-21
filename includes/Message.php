@@ -156,7 +156,7 @@
  *
  * @since 1.17
  */
-class Message {
+class Message implements MessageSpecifier {
 
 	/**
 	 * In which language to get this message. True, which is the default,
@@ -276,7 +276,7 @@ class Message {
 	 * Returns the message key.
 	 *
 	 * If a list of multiple possible keys was supplied to the constructor, this method may
-	 * return any of these keys. After the message ahs been fetched, this method will return
+	 * return any of these keys. After the message has been fetched, this method will return
 	 * the key that was actually used to fetch the message.
 	 *
 	 * @since 1.21

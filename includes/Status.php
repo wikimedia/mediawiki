@@ -38,28 +38,44 @@
  * so that a lack of error-handling will be explicit.
  */
 class Status {
-	/** @var bool */
-	public $ok = true;
+	/** @var StatusValue */
+	protected $sv;
 
-	/** @var mixed */
-	public $value;
-
-	/** Counters for batch operations */
-	/** @var int */
-	public $successCount = 0;
-
-	/** @var int */
-	public $failCount = 0;
-
-	/** Array to indicate which items of the batch operations were successful */
-	/** @var array */
+	/** @var array Map of (key => bool) to indicate success of each part of batch operations */
 	public $success = array();
-
-	/** @var array */
-	public $errors = array();
+	/** @var int Counter for batch operations */
+	public $successCount = 0;
+	/** @var int Counter for batch operations */
+	public $failCount = 0;
 
 	/** @var callable */
 	public $cleanCallback = false;
+
+	/**
+	 * @param StatusValue $sv [optional]
+	 */
+	public function __construct( StatusValue $sv = null ) {
+		$this->sv = ( $sv === null ) ? new StatusValue() : $sv;
+		// B/C field aliases
+		$this->successCount =& $this->sv->successCount;
+		$this->failCount =& $this->sv->failCount;
+		$this->success =& $this->sv->success;
+	}
+
+	/**
+	 * Succinct helper method to wrap a StatusValue
+	 *
+	 * This is is useful when formatting StatusValue objects:
+	 * <code>
+	 *     $this->getOutput()->addHtml( Status::wrap( $sv )->getHTML() );
+	 * </code>
+	 *
+	 * @param StatusValue|Status $sv
+	 * @return Status
+	 */
+	public static function wrap( $sv ) {
+		return $sv instanceof Status ? $sv : new self( $sv );
+	}
 
 	/**
 	 * Factory function for fatal errors
@@ -67,12 +83,10 @@ class Status {
 	 * @param string|Message $message Message name or object
 	 * @return Status
 	 */
-	static function newFatal( $message /*, parameters...*/ ) {
-		$params = func_get_args();
-		$result = new self;
-		call_user_func_array( array( &$result, 'error' ), $params );
-		$result->ok = false;
-		return $result;
+	public static function newFatal( $message /*, parameters...*/ ) {
+		return new self( call_user_func_array(
+			array( 'StatusValue', 'newFatal' ), func_get_args()
+		) );
 	}
 
 	/**
@@ -81,10 +95,11 @@ class Status {
 	 * @param mixed $value
 	 * @return Status
 	 */
-	static function newGood( $value = null ) {
-		$result = new self;
-		$result->value = $value;
-		return $result;
+	public static function newGood( $value = null ) {
+		$sv = new StatusValue();
+		$sv->setValue( $value );
+
+		return new self( $sv );
 	}
 
 	/**
@@ -94,8 +109,7 @@ class Status {
 	 * @param mixed $value
 	 */
 	public function setResult( $ok, $value = null ) {
-		$this->ok = $ok;
-		$this->value = $value;
+		$this->sv->setResult( $ok, $value );
 	}
 
 	/**
@@ -105,7 +119,7 @@ class Status {
 	 * @return bool
 	 */
 	public function isGood() {
-		return $this->ok && !$this->errors;
+		return $this->sv->isGood();
 	}
 
 	/**
@@ -114,7 +128,7 @@ class Status {
 	 * @return bool
 	 */
 	public function isOK() {
-		return $this->ok;
+		return $this->sv->isOK();
 	}
 
 	/**
@@ -123,11 +137,7 @@ class Status {
 	 * @param string|Message $message Message name or object
 	 */
 	public function warning( $message /*, parameters... */ ) {
-		$params = array_slice( func_get_args(), 1 );
-		$this->errors[] = array(
-			'type' => 'warning',
-			'message' => $message,
-			'params' => $params );
+		call_user_func_array( array( $this->sv, 'warning' ), func_get_args() );
 	}
 
 	/**
@@ -137,11 +147,7 @@ class Status {
 	 * @param string|Message $message Message name or object
 	 */
 	public function error( $message /*, parameters... */ ) {
-		$params = array_slice( func_get_args(), 1 );
-		$this->errors[] = array(
-			'type' => 'error',
-			'message' => $message,
-			'params' => $params );
+		call_user_func_array( array( $this->sv, 'error' ), func_get_args() );
 	}
 
 	/**
@@ -151,35 +157,14 @@ class Status {
 	 * @param string|Message $message Message name or object
 	 */
 	public function fatal( $message /*, parameters... */ ) {
-		$params = array_slice( func_get_args(), 1 );
-		$this->errors[] = array(
-			'type' => 'error',
-			'message' => $message,
-			'params' => $params );
-		$this->ok = false;
-	}
-
-	/**
-	 * Don't save the callback when serializing, because Closures can't be
-	 * serialized and we're going to clear it in __wakeup anyway.
-	 */
-	public function __sleep() {
-		$keys = array_keys( get_object_vars( $this ) );
-		return array_diff( $keys, array( 'cleanCallback' ) );
-	}
-
-	/**
-	 * Sanitize the callback parameter on wakeup, to avoid arbitrary execution.
-	 */
-	public function __wakeup() {
-		$this->cleanCallback = false;
+		call_user_func_array( array( $this->sv, 'fatal' ), func_get_args() );
 	}
 
 	/**
 	 * @param array $params
 	 * @return array
 	 */
-	protected function cleanParams( $params ) {
+	protected function cleanParams( array $params ) {
 		if ( !$this->cleanCallback ) {
 			return $params;
 		}
@@ -199,24 +184,26 @@ class Status {
 	 * @return string
 	 */
 	public function getWikiText( $shortContext = false, $longContext = false ) {
-		if ( count( $this->errors ) == 0 ) {
-			if ( $this->ok ) {
-				$this->fatal( 'internalerror_info',
+		$rawErrors = $this->sv->getErrors();
+		if ( count( $rawErrors ) == 0 ) {
+			if ( $this->sv->isOK() ) {
+				$this->sv->fatal( 'internalerror_info',
 					__METHOD__ . " called for a good result, this is incorrect\n" );
 			} else {
-				$this->fatal( 'internalerror_info',
+				$this->sv->fatal( 'internalerror_info',
 					__METHOD__ . ": Invalid result object: no error text but not OK\n" );
 			}
+			$rawErrors = $this->sv->getErrors(); // just added a fatal
 		}
-		if ( count( $this->errors ) == 1 ) {
-			$s = $this->getErrorMessage( $this->errors[0] )->plain();
+		if ( count( $rawErrors ) == 1 ) {
+			$s = $this->getErrorMessage( $rawErrors[0] )->plain();
 			if ( $shortContext ) {
 				$s = wfMessage( $shortContext, $s )->plain();
 			} elseif ( $longContext ) {
 				$s = wfMessage( $longContext, "* $s\n" )->plain();
 			}
 		} else {
-			$errors = $this->getErrorMessageArray( $this->errors );
+			$errors = $this->getErrorMessageArray( $rawErrors );
 			foreach ( $errors as &$error ) {
 				$error = $error->plain();
 			}
@@ -241,17 +228,19 @@ class Status {
 	 * @return Message
 	 */
 	public function getMessage( $shortContext = false, $longContext = false ) {
-		if ( count( $this->errors ) == 0 ) {
-			if ( $this->ok ) {
-				$this->fatal( 'internalerror_info',
+		$rawErrors = $this->sv->getErrors();
+		if ( count( $rawErrors ) == 0 ) {
+			if ( $this->sv->isOK() ) {
+				$this->sv->fatal( 'internalerror_info',
 					__METHOD__ . " called for a good result, this is incorrect\n" );
 			} else {
-				$this->fatal( 'internalerror_info',
+				$this->sv->fatal( 'internalerror_info',
 					__METHOD__ . ": Invalid result object: no error text but not OK\n" );
 			}
+			$rawErrors = $this->sv->getErrors(); // just added a fatal
 		}
-		if ( count( $this->errors ) == 1 ) {
-			$s = $this->getErrorMessage( $this->errors[0] );
+		if ( count( $rawErrors ) == 1 ) {
+			$s = $this->getErrorMessage( $rawErrors[0] );
 			if ( $shortContext ) {
 				$s = wfMessage( $shortContext, $s );
 			} elseif ( $longContext ) {
@@ -260,7 +249,7 @@ class Status {
 				$s = wfMessage( $longContext, $wrapper );
 			}
 		} else {
-			$msgs = $this->getErrorMessageArray( $this->errors );
+			$msgs = $this->getErrorMessageArray( $rawErrors );
 			$msgCount = count( $msgs );
 
 			if ( $shortContext ) {
@@ -339,13 +328,7 @@ class Status {
 	 * @param bool $overwriteValue Whether to override the "value" member
 	 */
 	public function merge( $other, $overwriteValue = false ) {
-		$this->errors = array_merge( $this->errors, $other->errors );
-		$this->ok = $this->ok && $other->ok;
-		if ( $overwriteValue ) {
-			$this->value = $other->value;
-		}
-		$this->successCount += $other->successCount;
-		$this->failCount += $other->failCount;
+		$this->sv->merge( $other->sv, $overwriteValue );
 	}
 
 	/**
@@ -353,9 +336,10 @@ class Status {
 	 *
 	 * @return array A list in which each entry is an array with a message key as its first element.
 	 *         The remaining array elements are the message parameters.
+	 * @deprecated 1.25
 	 */
 	public function getErrorsArray() {
-		return $this->getStatusArray( "error" );
+		return $this->getStatusArray( 'error' );
 	}
 
 	/**
@@ -363,21 +347,26 @@ class Status {
 	 *
 	 * @return array A list in which each entry is an array with a message key as its first element.
 	 *         The remaining array elements are the message parameters.
+	 * @deprecated 1.25
 	 */
 	public function getWarningsArray() {
-		return $this->getStatusArray( "warning" );
+		return $this->getStatusArray( 'warning' );
 	}
 
 	/**
 	 * Returns a list of status messages of the given type (or all if false)
+	 *
+	 * @note: this handles RawMessage poorly
+	 *
 	 * @param string $type
 	 * @return array
 	 */
 	protected function getStatusArray( $type = false ) {
 		$result = array();
-		foreach ( $this->errors as $error ) {
+
+		foreach ( $this->sv->getErrors() as $error ) {
 			if ( $type === false || $error['type'] === $type ) {
-				if ( $error['message'] instanceof Message ) {
+				if ( $error['message'] instanceof MessageSpecifier ) {
 					$result[] = array_merge(
 						array( $error['message']->getKey() ),
 						$error['message']->getParams()
@@ -402,13 +391,7 @@ class Status {
 	 * @return array
 	 */
 	public function getErrorsByType( $type ) {
-		$result = array();
-		foreach ( $this->errors as $error ) {
-			if ( $error['type'] === $type ) {
-				$result[] = $error;
-			}
-		}
-		return $result;
+		return $this->sv->getErrorsByType( $type );
 	}
 
 	/**
@@ -419,19 +402,7 @@ class Status {
 	 * @return bool
 	 */
 	public function hasMessage( $message ) {
-		if ( $message instanceof Message ) {
-			$message = $message->getKey();
-		}
-		foreach ( $this->errors as $error ) {
-			if ( $error['message'] instanceof Message
-				&& $error['message']->getKey() === $message
-			) {
-				return true;
-			} elseif ( $error['message'] === $message ) {
-				return true;
-			}
-		}
-		return false;
+		return $this->sv->hasMessage( $message );
 	}
 
 	/**
@@ -446,61 +417,73 @@ class Status {
 	 * @return bool Return true if the replacement was done, false otherwise.
 	 */
 	public function replaceMessage( $source, $dest ) {
-		$replaced = false;
-		foreach ( $this->errors as $index => $error ) {
-			if ( $error['message'] === $source ) {
-				$this->errors[$index]['message'] = $dest;
-				$replaced = true;
-			}
-		}
-		return $replaced;
+		return $this->sv->replaceMessage( $source, $dest );
 	}
 
 	/**
 	 * @return mixed
 	 */
 	public function getValue() {
-		return $this->value;
+		return $this->sv->getValue();
+	}
+
+	/**
+	 * Backwards compatibility logic
+	 *
+	 * @param string $name
+	 */
+	function __get( $name ) {
+		switch ( $name ) {
+			case 'ok':
+				return $this->sv->getOK();
+			case 'value':
+				return $this->sv->getValue();
+			case 'errors':
+				return $this->sv->getErrors();
+
+		}
+		throw new Exception( "Cannot get '$name' property." );
+	}
+
+	/**
+	 * Backwards compatibility logic
+	 *
+	 * @param string $name
+	 * @param mixed $value
+	 */
+	function __set( $name, $value ) {
+		switch ( $name ) {
+			case 'ok':
+				$this->sv->setOK( $value );
+				return;
+			case 'value':
+				$this->sv->setValue( $value );
+				return;
+		}
+		throw new Exception( "Cannot set '$name' property." );
+
 	}
 
 	/**
 	 * @return string
 	 */
 	public function __toString() {
-		$status = $this->isOK() ? "OK" : "Error";
-		if ( count( $this->errors ) ) {
-			$errorcount = "collected " . ( count( $this->errors ) ) . " error(s) on the way";
-		} else {
-			$errorcount = "no errors detected";
-		}
-		if ( isset( $this->value ) ) {
-			$valstr = gettype( $this->value ) . " value set";
-			if ( is_object( $this->value ) ) {
-				$valstr .= "\"" . get_class( $this->value ) . "\" instance";
-			}
-		} else {
-			$valstr = "no value set";
-		}
-		$out = sprintf( "<%s, %s, %s>",
-			$status,
-			$errorcount,
-			$valstr
-		);
-		if ( count( $this->errors ) > 0 ) {
-			$hdr = sprintf( "+-%'-4s-+-%'-25s-+-%'-40s-+\n", "", "", "" );
-			$i = 1;
-			$out .= "\n";
-			$out .= $hdr;
-			foreach ( $this->getStatusArray() as $stat ) {
-				$out .= sprintf( "| %4d | %-25.25s | %-40.40s |\n",
-					$i,
-					$stat[0],
-					implode( " ", array_slice( $stat, 1 ) )
-				);
-				$i += 1;
-			}
-			$out .= $hdr;
-		};
-		return $out;
+		return $this->sv->__toString();
+	}
+
+	/**
+	 * Don't save the callback when serializing, because Closures can't be
+	 * serialized and we're going to clear it in __wakeup anyway.
+	 */
+	function __sleep() {
+		$keys = array_keys( get_object_vars( $this ) );
+		return array_diff( $keys, array( 'cleanCallback' ) );
+	}
+
+	/**
+	 * Sanitize the callback parameter on wakeup, to avoid arbitrary execution.
+	 */
+	function __wakeup() {
+		$this->cleanCallback = false;
 	}
 }
