@@ -1793,7 +1793,7 @@
 					if ( typeof module !== 'string' ) {
 						throw new Error( 'module must be of type string, not ' + typeof module );
 					}
-					if ( !$.isFunction( script ) && !$.isArray( script ) ) {
+					if ( script && !$.isFunction( script ) && !$.isArray( script ) ) {
 						throw new Error( 'script must be of type function or array, not ' + typeof script );
 					}
 					if ( style && !$.isPlainObject( style ) ) {
@@ -1814,10 +1814,9 @@
 						throw new Error( 'module already implemented: ' + module );
 					}
 					// Attach components
-					registry[module].script = script;
+					registry[module].script = script || [];
 					registry[module].style = style || {};
 					registry[module].messages = msgs || {};
-					// Templates are optional (for back-compat)
 					registry[module].templates = templates || {};
 					// The module may already have been marked as erroneous
 					if ( $.inArray( registry[module].state, ['error', 'missing'] ) === -1 ) {
