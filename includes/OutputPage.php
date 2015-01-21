@@ -3284,6 +3284,13 @@ class OutputPage extends ContextSource {
 			'content' => "MediaWiki $wgVersion",
 		) );
 
+		if ( $config->get( 'ReferrerPolicy' ) !== false ) {
+			$tags['meta-referrer'] = Html::element( 'meta', array(
+				'name' => 'referrer',
+				'content' => $config->get( 'ReferrerPolicy' )
+			) );
+		}
+
 		$p = "{$this->mIndexPolicy},{$this->mFollowPolicy}";
 		if ( $p !== 'index,follow' ) {
 			// http://www.robotstxt.org/wc/meta-user.html

@@ -271,6 +271,16 @@ $wgFavicon = '/favicon.ico';
 $wgAppleTouchIcon = false;
 
 /**
+ * Value for the referrer policy meta tag.
+ * One of 'never', 'default', 'origin', 'always'. Setting it to false just
+ * prevents the meta tag from being output.
+ * See http://www.w3.org/TR/referrer-policy/ for details.
+ *
+ * @since 1.25
+ */
+$wgReferrerPolicy = false;
+
+/**
  * The local filesystem path to a temporary directory. This is not required to
  * be web accessible.
  *
