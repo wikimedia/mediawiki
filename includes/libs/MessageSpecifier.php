@@ -1,7 +1,5 @@
 <?php
 /**
- * Generic operation result for FileRepo-related operations.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,12 +16,24 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup FileRepo
  */
 
-/**
- * Generic operation result class for FileRepo-related operations
- * @ingroup FileRepo
- * @deprecated 1.25
- */
-class FileRepoStatus extends Status {}
+interface MessageSpecifier {
+	/**
+	 * Returns the message key
+	 *
+	 * If a list of multiple possible keys was supplied to the constructor, this method may
+	 * return any of these keys. After the message has been fetched, this method will return
+	 * the key that was actually used to fetch the message.
+	 *
+	 * @return string
+	 */
+	public function getKey();
+
+	/**
+	 * Returns the message parameters
+	 *
+	 * @return array
+	 */
+	public function getParams();
+}
