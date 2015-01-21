@@ -3045,6 +3045,7 @@
 	"revdelete-uname-unhid": "utilizador desocultado",
 	"revdelete-restricted": "restrições a administradores aplicadas",
 	"revdelete-unrestricted": "restrições a administradores removidas",
+	"logentry-merge-merge": "$1 {{GENDER:$2|fundiu}} $3 com $4 (edições até $5)",
 	"logentry-move-move": "$1 moveu a página $3 para $4",
 	"logentry-move-move-noredirect": "$1 moveu a página $3 para $4 sem deixar um redirecionamento",
 	"logentry-move-move_redir": "$1 {{GENDER:$2|moveu}} a página $3 para $4 sobre um redirecionamento",
@@ -3193,9 +3194,12 @@
 	"mediastatistics-header-text": "Textuais",
 	"mediastatistics-header-executable": "Executáveis",
 	"mediastatistics-header-archive": "Formatos compactados",
+	"json-warn-trailing-comma": "$1 {{PLURAL:$1|vírgula desnecessária foi removida|vírgulas desnecessárias foram removidas}} do código JSON",
 	"json-error-unknown": "Houve um problema com o JSON. Erro: $1",
 	"json-error-depth": "A profundidade máxima da pilha foi excedida",
 	"json-error-state-mismatch": "Código JSON inválido ou mal formatado",
+	"json-error-ctrl-char": "Erro de carácter de controlo, possivelmente codificado incorretamente",
 	"json-error-syntax": "Erro de sintaxe",
+	"json-error-utf8": "Caracteres UTF-8 mal formatados, possivelmente codificado incorretamente",
 	"json-error-unsupported-type": "Foi dado um valor de um tipo que não pode ser codificado"
 }
