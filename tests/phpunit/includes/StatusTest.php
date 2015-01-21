@@ -109,7 +109,9 @@ class StatusTest extends MediaWikiLangTestCase {
 	public function testIsGood( $ok, $errors, $expected ) {
 		$status = new Status();
 		$status->ok = $ok;
-		$status->errors = $errors;
+		foreach ( $errors as $error ) {
+			$status->warning( $error );
+		}
 		$this->assertEquals( $expected, $status->isGood() );
 	}
 
