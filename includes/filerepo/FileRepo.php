@@ -1681,23 +1681,26 @@ class FileRepo {
 	 * Create a new fatal error
 	 *
 	 * @param string $message
-	 * @return FileRepoStatus
+	 * @return Status
 	 */
 	public function newFatal( $message /*, parameters...*/ ) {
-		$params = func_get_args();
-		array_unshift( $params, $this );
+		$status = call_user_func_array( array( 'Status', 'newFatal' ), func_get_args() );
+		$status->cleanCallback = $this->getErrorCleanupFunction();
 
-		return call_user_func_array( array( 'FileRepoStatus', 'newFatal' ), $params );
+		return $status;
 	}
 
 	/**
 	 * Create a new good result
 	 *
 	 * @param null|string $value
-	 * @return FileRepoStatus
+	 * @return Status
 	 */
 	public function newGood( $value = null ) {
-		return FileRepoStatus::newGood( $this, $value );
+		$status = Status::newGood( $this, $value );
+		$status->cleanCallback = $this->getErrorCleanupFunction();
+
+		return $status;
 	}
 
 	/**

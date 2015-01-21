@@ -156,7 +156,7 @@
  *
  * @since 1.17
  */
-class Message {
+class Message implements IStatusMessage {
 
 	/**
 	 * In which language to get this message. True, which is the default,
