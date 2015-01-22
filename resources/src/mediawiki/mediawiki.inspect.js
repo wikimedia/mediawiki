@@ -7,6 +7,9 @@
 /*jshint devel:true */
 ( function ( mw, $ ) {
 
+	var inspect,
+		hasOwn = Object.prototype.hasOwnProperty;
+
 	function sortByProperty( array, prop, descending ) {
 		var order = descending ? -1 : 1;
 		return array.sort( function ( a, b ) {
@@ -25,7 +28,7 @@
 	 * @class mw.inspect
 	 * @singleton
 	 */
-	var inspect = {
+	inspect = {
 
 		/**
 		 * Return a map of all dependency relationships between loaded modules.
@@ -39,11 +42,15 @@
 			$.each( modules, function ( moduleIndex, moduleName ) {
 				var dependencies = mw.loader.moduleRegistry[moduleName].dependencies || [];
 
-				graph[moduleName] = graph[moduleName] || { requiredBy: [] };
+				if ( !hasOwn.call( graph, moduleName ) ) {
+					graph[moduleName] = { requiredBy: [] };
+				}
 				graph[moduleName].requires = dependencies;
 
 				$.each( dependencies, function ( depIndex, depName ) {
-					graph[depName] = graph[depName] || { requiredBy: [] };
+					if ( !hasOwn.call( graph, depName ) ) {
+						graph[depName] = { requiredBy: [] };
+					}
 					graph[depName].requiredBy.push( moduleName );
 				} );
 			} );
