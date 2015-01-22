@@ -1814,7 +1814,7 @@ abstract class DatabaseBase implements IDatabase {
 
 		if ( $res ) {
 			$row = $this->fetchRow( $res );
-			$rows = ( isset( $row['rowcount'] ) ) ? $row['rowcount'] : 0;
+			$rows = ( isset( $row['rowcount'] ) ) ? (int)$row['rowcount'] : 0;
 		}
 
 		return $rows;
@@ -1844,7 +1844,7 @@ abstract class DatabaseBase implements IDatabase {
 
 		if ( $res ) {
 			$row = $this->fetchRow( $res );
-			$rows = ( isset( $row['rowcount'] ) ) ? $row['rowcount'] : 0;
+			$rows = ( isset( $row['rowcount'] ) ) ? (int)$row['rowcount'] : 0;
 		}
 
 		return $rows;

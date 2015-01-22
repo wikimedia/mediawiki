@@ -181,7 +181,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			if ( $count >= self::WL_UNREAD_LIMIT ) {
 				$vals['unreadcount'] = self::WL_UNREAD_LIMIT . '+';
 			} else {
-				$vals['unreadcount'] = (int)$count;
+				$vals['unreadcount'] = $count;
 			}
 		}
 

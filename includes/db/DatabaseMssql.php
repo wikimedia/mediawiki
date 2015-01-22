@@ -518,7 +518,7 @@ class DatabaseMssql extends DatabaseBase {
 			$row = $this->fetchRow( $res );
 
 			if ( isset( $row['EstimateRows'] ) ) {
-				$rows = $row['EstimateRows'];
+				$rows = (int)$row['EstimateRows'];
 			}
 		}
 
