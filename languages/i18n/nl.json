@@ -64,7 +64,8 @@
 			"Macofe",
 			"Mirolith",
 			"Akoopal",
-			"Sikjes"
+			"Sikjes",
+			"Robin0van0der0vliet"
 		]
 	},
 	"tog-underline": "Koppelingen onderstrepen:",
@@ -418,7 +419,7 @@
 	"virus-unknownscanner": "onbekend antivirusprogramma:",
 	"logouttext": "'''U bent nu afgemeld.'''\n\nSommige pagina's kunnen blijven weergegeven alsof u nog aangemeld bent, totdat u uw browsercache leegt.",
 	"welcomeuser": "Welkom, $1!",
-	"welcomecreation-msg": "Uw gebruiker is aangemaakt.\nIndien gewenst kunt u uw [[Special:Preferences|voorkeuren]] voor {{SITENAME}} aanpassen.",
+	"welcomecreation-msg": "Uw account is aangemaakt.\nIndien gewenst kunt u uw [[Special:Preferences|voorkeuren]] voor {{SITENAME}} aanpassen.",
 	"yourname": "Gebruikersnaam:",
 	"userlogin-yourname": "Gebruikersnaam",
 	"userlogin-yourname-ph": "Geef uw gebruikersnaam op",
@@ -443,9 +444,9 @@
 	"logout": "Afmelden",
 	"userlogout": "Afmelden",
 	"notloggedin": "Niet aangemeld",
-	"userlogin-noaccount": "Hebt u geen gebruiker?",
+	"userlogin-noaccount": "Hebt u geen account?",
 	"userlogin-joinproject": "Word lid van {{SITENAME}}",
-	"nologin": "Hebt u geen gebruiker? $1.",
+	"nologin": "Hebt u geen account? $1.",
 	"nologinlink": "Registreren",
 	"createaccount": "Registreren",
 	"gotaccount": "Hebt u al een gebruiker? $1.",
