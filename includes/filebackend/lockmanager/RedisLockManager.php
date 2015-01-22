@@ -62,7 +62,7 @@ class RedisLockManager extends QuorumLockManager {
 	 *   - srvsByBucket : Array of 1-16 consecutive integer keys, starting from 0,
 	 *                    each having an odd-numbered list of server names (peers) as values.
 	 *   - redisConfig  : Configuration for RedisConnectionPool::__construct().
-	 * @throws MWException
+	 * @throws Exception
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );

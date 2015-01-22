@@ -61,7 +61,7 @@ class MemcLockManager extends QuorumLockManager {
 	 *                    each having an odd-numbered list of server names (peers) as values.
 	 *   - memcConfig   : Configuration array for ObjectCache::newFromParams. [optional]
 	 *                    If set, this must use one of the memcached classes.
-	 * @throws MWException
+	 * @throws Exception
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
@@ -80,7 +80,7 @@ class MemcLockManager extends QuorumLockManager {
 			if ( $cache instanceof MemcachedBagOStuff ) {
 				$this->bagOStuffs[$name] = $cache;
 			} else {
-				throw new MWException(
+				throw new Exception(
 					'Only MemcachedBagOStuff classes are supported by MemcLockManager.' );
 			}
 		}

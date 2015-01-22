@@ -78,17 +78,17 @@ class LockManagerGroup {
 	 * Register an array of file lock manager configurations
 	 *
 	 * @param array $configs
-	 * @throws MWException
+	 * @throws Exception
 	 */
 	protected function register( array $configs ) {
 		foreach ( $configs as $config ) {
 			$config['domain'] = $this->domain;
 			if ( !isset( $config['name'] ) ) {
-				throw new MWException( "Cannot register a lock manager with no name." );
+				throw new Exception( "Cannot register a lock manager with no name." );
 			}
 			$name = $config['name'];
 			if ( !isset( $config['class'] ) ) {
-				throw new MWException( "Cannot register lock manager `{$name}` with no class." );
+				throw new Exception( "Cannot register lock manager `{$name}` with no class." );
 			}
 			$class = $config['class'];
 			unset( $config['class'] ); // lock manager won't need this
@@ -105,11 +105,11 @@ class LockManagerGroup {
 	 *
 	 * @param string $name
 	 * @return LockManager
-	 * @throws MWException
+	 * @throws Exception
 	 */
 	public function get( $name ) {
 		if ( !isset( $this->managers[$name] ) ) {
-			throw new MWException( "No lock manager defined with the name `$name`." );
+			throw new Exception( "No lock manager defined with the name `$name`." );
 		}
 		// Lazy-load the actual lock manager instance
 		if ( !isset( $this->managers[$name]['instance'] ) ) {
@@ -126,11 +126,11 @@ class LockManagerGroup {
 	 *
 	 * @param string $name
 	 * @return array
-	 * @throws MWException
+	 * @throws Exception
 	 */
 	public function config( $name ) {
 		if ( !isset( $this->managers[$name] ) ) {
-			throw new MWException( "No lock manager defined with the name `$name`." );
+			throw new Exception( "No lock manager defined with the name `$name`." );
 		}
 		$class = $this->managers[$name]['class'];
 
@@ -155,7 +155,7 @@ class LockManagerGroup {
 	 * Throws an exception if no lock manager could be found.
 	 *
 	 * @return LockManager
-	 * @throws MWException
+	 * @throws Exception
 	 */
 	public function getAny() {
 		return isset( $this->managers['default'] )

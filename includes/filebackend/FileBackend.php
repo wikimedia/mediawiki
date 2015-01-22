@@ -1491,7 +1491,7 @@ abstract class FileBackend {
  * @ingroup FileBackend
  * @since 1.23
  */
-class FileBackendException extends MWException {
+class FileBackendException extends Exception {
 }
 
 /**

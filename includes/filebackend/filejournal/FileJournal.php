@@ -57,14 +57,14 @@ abstract class FileJournal {
 	 *
 	 * @param array $config
 	 * @param string $backend A registered file backend name
-	 * @throws MWException
+	 * @throws Exception
 	 * @return FileJournal
 	 */
 	final public static function factory( array $config, $backend ) {
 		$class = $config['class'];
 		$jrn = new $class( $config );
 		if ( !$jrn instanceof self ) {
-			throw new MWException( "Class given is not an instance of FileJournal." );
+			throw new Exception( "Class given is not an instance of FileJournal." );
 		}
 		$jrn->backend = $backend;
 
