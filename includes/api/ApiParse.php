@@ -338,6 +338,17 @@ class ApiParse extends ApiBase {
 			$result_array['modulemessages'] = array_values( array_unique( $p_result->getModuleMessages() ) );
 		}
 
+		if ( isset( $prop['jsconfigvars'] ) ) {
+			$result_array['jsconfigvars'] = $this->formatJsConfigVars( $p_result->getJsConfigVars() );
+		}
+
+		if ( isset( $prop['encodedjsconfigvars'] ) ) {
+			$result_array['encodedjsconfigvars'] = FormatJson::encode(
+				$p_result->getJsConfigVars(), false, FormatJson::ALL_OK
+			);
+			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'encodedjsconfigvars';
+		}
+
 		if ( isset( $prop['indicators'] ) ) {
 			foreach ( $p_result->getIndicators() as $name => $content ) {
 				$indicator = array( 'name' => $name );
@@ -648,6 +659,53 @@ class ApiParse extends ApiBase {
 		return $result;
 	}
 
+	private function formatJsConfigVars( $vars, $forceHash = true ) {
+		// Process subarrays and determine if this is a JS [] or {}
+		$hash = $forceHash;
+		$maxKey = -1;
+		$bools = array();
+		foreach ( $vars as $k => $v ) {
+			if ( is_array( $v ) || is_object( $v ) ) {
+				$vars[$k] = $this->formatJsConfigVars( (array)$v, false );
+			} elseif ( is_bool( $v ) ) {
+				// Better here to use real bools even in BC formats
+				$bools[] = $k;
+			}
+			if ( is_string( $k ) ) {
+				$hash = true;
+			} elseif ( $k > $maxKey ) {
+				$maxKey = $k;
+			}
+		}
+		if ( !$hash && $maxKey !== count( $vars ) - 1 ) {
+			$hash = true;
+		}
+
+		// Get the list of keys we actually care about. Unfortunately, we can't support
+		// certain keys that conflict with ApiResult metadata.
+		$keys = array_diff( array_keys( $vars ), array(
+			ApiResult::META_TYPE, ApiResult::META_PRESERVE_KEYS, ApiResult::META_KVP_KEY_NAME,
+			ApiResult::META_INDEXED_TAG_NAME, ApiResult::META_BC_BOOLS
+		) );
+
+		// Set metadata appropriately
+		if ( $hash ) {
+			return array(
+				ApiResult::META_TYPE => 'kvp',
+				ApiResult::META_KVP_KEY_NAME => 'key',
+				ApiResult::META_PRESERVE_KEYS => $keys,
+				ApiResult::META_BC_BOOLS => $bools,
+				ApiResult::META_INDEXED_TAG_NAME => 'var',
+			) + $vars;
+		} else {
+			return array(
+				ApiResult::META_TYPE => 'array',
+				ApiResult::META_BC_BOOLS => $bools,
+				ApiResult::META_INDEXED_TAG_NAME => 'value',
+			) + $vars;
+		}
+	}
+
 	private function setIndexedTagNames( &$array, $mapping ) {
 		foreach ( $mapping as $key => $name ) {
 			if ( isset( $array[$key] ) ) {
@@ -688,13 +746,16 @@ class ApiParse extends ApiBase {
 					'headitems',
 					'headhtml',
 					'modules',
+					'jsconfigvars',
+					'encodedjsconfigvars',
 					'indicators',
 					'iwlinks',
 					'wikitext',
 					'properties',
 					'limitreportdata',
 					'limitreporthtml',
-				)
+				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'pst' => false,
 			'onlypst' => false,
