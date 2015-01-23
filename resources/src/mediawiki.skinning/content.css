@@ -238,3 +238,36 @@ div.tright {
 div.tleft {
 	margin: .5em 1.4em 1.3em 0;
 }
+
+.mw-heading {
+	overflow: visible;
+}
+
+/* Anchors for section headings */
+.mw-headline-anchor,
+.mw-headline-anchor:visited {
+	color: #AAA;
+	font-weight: 400;
+	margin-left: -15px;
+	opacity: 0;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	padding-right: 6px;
+}
+
+.mw-headline-anchor:hover,
+.mw-headline-anchor:focus {
+	color: #666;
+	text-decoration: none;
+}
+
+.mw-headline-anchor:active {
+	color: #000;
+}
+
+.mw-heading:hover a.mw-headline-anchor,
+.mw-heading:focus a.mw-headline-anchor {
+	opacity: 1;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+}

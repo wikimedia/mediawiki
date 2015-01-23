@@ -1750,7 +1750,14 @@ class Linker {
 	public static function makeHeadline( $level, $attribs, $anchor, $html,
 		$link, $legacyAnchor = false
 	) {
+		if (preg_match("/class\s*=\s*\"/", $attribs) === 1) {
+			$attribs = preg_replace("/(class\s*=\s*\")/", "$1mw-heading ", $attribs);
+		}
+		else {
+			$attribs = " class=\"mw-heading\"" . $attribs;
+		}
 		$ret = "<h$level$attribs"
+			. "<a class=\"mw-headline-anchor\" href=\"#$anchor\" title=\"Link to this section\">&sect;</a>"
 			. "<span class=\"mw-headline\" id=\"$anchor\">$html</span>"
 			. $link
 			. "</h$level>";
