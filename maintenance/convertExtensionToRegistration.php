@@ -14,6 +14,22 @@ class ConvertExtensionToRegistration extends Maintenance {
 		'ExtensionFunctions' => 'handleExtensionFunctions',
 	);
 
+	/**
+	 * Keys that should be put at the top of the generated JSON file (T86608)
+	 *
+	 * @var array
+	 */
+	protected $promote = array(
+		'name',
+		'version',
+		'author',
+		'url',
+		'description',
+		'descriptionmsg',
+		'license-name',
+		'type',
+	);
+
 	private $json, $dir;
 
 	public function __construct() {
@@ -59,8 +75,18 @@ class ConvertExtensionToRegistration extends Maintenance {
 			}
 		}
 
+		// Move some keys to the top
+		$out = array();
+		foreach ( $this->promote as $key ) {
+			if ( isset( $this->json[$key] ) ) {
+				$out[$key] = $this->json[$key];
+				unset( $this->json[$key] );
+			}
+		}
+		$out += $this->json;
+
 		$fname = "{$this->dir}/extension.json";
-		$prettyJSON = FormatJson::encode( $this->json, "\t", FormatJson::ALL_OK );
+		$prettyJSON = FormatJson::encode( $out, "\t", FormatJson::ALL_OK );
 		file_put_contents( $fname, $prettyJSON . "\n" );
 		$this->output( "Wrote output to $fname.\n" );
 	}
