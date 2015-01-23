@@ -1,12 +1,12 @@
 /*!
- * OOjs v1.1.3 optimised for jQuery
+ * OOjs v1.1.4 optimised for jQuery
  * https://www.mediawiki.org/wiki/OOjs
  *
- * Copyright 2011-2014 OOjs Team and other contributors.
+ * Copyright 2011-2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2014-11-17T19:17:29Z
+ * Date: 2015-01-23T20:11:25Z
  */
 ( function ( global ) {
 
@@ -170,7 +170,7 @@ oo.mixinClass = function ( targetFn, originFn ) {
  *
  * @param {Object} obj
  * @param {Mixed...} [keys]
- * @returns obj[arguments[1]][arguments[2]].... or undefined
+ * @return obj[arguments[1]][arguments[2]].... or undefined
  */
 oo.getProp = function ( obj ) {
 	var i,
@@ -687,12 +687,15 @@ oo.isPlainObject = $.isPlainObject;
 	 * @return {boolean} If event was handled by at least one listener
 	 */
 	oo.EventEmitter.prototype.emit = function ( event ) {
-		var i, len, binding, bindings, args, method;
+		var args = [],
+			i, len, binding, bindings, method;
 
 		if ( hasOwn.call( this.bindings, event ) ) {
 			// Slicing ensures that we don't get tripped up by event handlers that add/remove bindings
 			bindings = this.bindings[event].slice();
-			args = Array.prototype.slice.call( arguments, 1 );
+			for ( i = 1, len = arguments.length; i < len; i++ ) {
+				args.push( arguments[i] );
+			}
 			for ( i = 0, len = bindings.length; i < len; i++ ) {
 				binding = bindings[i];
 				if ( typeof binding.method === 'string' ) {
@@ -906,7 +909,8 @@ oo.Factory.prototype.register = function ( constructor ) {
  * @throws {Error} Unknown object name
  */
 oo.Factory.prototype.create = function ( name ) {
-	var args, obj,
+	var obj, i,
+		args = [],
 		constructor = this.lookup( name );
 
 	if ( !constructor ) {
@@ -914,7 +918,9 @@ oo.Factory.prototype.create = function ( name ) {
 	}
 
 	// Convert arguments to array and shift the first argument (name) off
-	args = Array.prototype.slice.call( arguments, 1 );
+	for ( i = 1; i < arguments.length; i++ ) {
+		args.push( arguments[i] );
+	}
 
 	// We can't use the "new" operator with .apply directly because apply needs a
 	// context. So instead just do what "new" does: create an object that inherits from
