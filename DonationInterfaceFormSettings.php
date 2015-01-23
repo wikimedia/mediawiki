@@ -88,7 +88,7 @@ $forms_whitelist['ew-alipay'] = array(
 	'gateway' => 'globalcollect',
 	'payment_methods' => array('ew' => 'ew_alipay'),
 	'countries' => array( '+' => array( 'CN', 'HK', ), ),
-	'currencies' => array( '+' => array( 'CNY', ), ),
+	'currencies' => array( '+' => array( 'CNY', 'HKD', ), ),
 );
 
 
