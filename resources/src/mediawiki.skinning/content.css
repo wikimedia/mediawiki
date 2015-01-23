@@ -238,3 +238,21 @@ div.tright {
 div.tleft {
 	margin: .5em 1.4em 1.3em 0;
 }
+
+/* Anchors for section headings */
+a.section-heading,
+a.section-heading:visited {
+	color: #AAA;
+	font-weight: 400;
+	margin-right: 0.2em;
+}
+
+a.section-heading:hover,
+a.section-heading:focus {
+	color: #666;
+	text-decoration: none;
+}
+
+a.section-heading:active {
+	color: #000;
+}
