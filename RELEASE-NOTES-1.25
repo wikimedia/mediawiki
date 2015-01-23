@@ -36,6 +36,9 @@ production.
 * ProfilerStandard and ProfilerSimpleTrace were removed. Make sure that any
   StartProfiler.php config is updated to reflect this. Xhprof is available
   for zend/hhvm. Also, for hhvm, one can consider using its xenon profiler.
+* The 'daemonized' flag must be set to true in $wgJobTypeConf for any redis
+  job queues. This means that mediawiki/services/jobrunner service has to
+  be installed and running for any such queues to work.
 
 === New features in 1.25 ===
 * (T64861) Updated plural rules to CLDR 26. Includes incompatible changes
