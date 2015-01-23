@@ -30,8 +30,7 @@
 		 * @param {Date|null} [options.expires=wgCookieExpiration] The expiry date of the cookie.
 		 *
 		 *   Default cookie expiration is based on `wgCookieExpiration`.  If `wgCookieExpiration` is
-		 *   0, a session cookie is set (expires when the browser is closed). For non-zero values of
-		 *   `wgCookieExpiration`, the cookie expires `wgCookieExpiration` seconds from now.
+		 *   0, a session cookie is set (expires when the browser is closed).
 		 *
 		 *   If options.expires is null, then a session cookie is set.
 		 * @param {string} [options.prefix=wgCookiePrefix] The prefix of the key
