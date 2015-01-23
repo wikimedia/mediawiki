@@ -7,10 +7,6 @@
 			"type": "string",
 			"description": "The extension's canonical name."
 		},
-		"info-files": {
-			"type": "array",
-			"description": "A list of filenames that should be loaded, in addition to this one"
-		},
 		"type": {
 			"type": "string",
 			"description": "The extension's type, as an index to $wgExtensionCredits.",
@@ -38,9 +34,6 @@
 				"type": "string"
 			},
 			"additionalItems": false
-		},
-		"path": {
-			"type": "string"
 		},
 		"version": {
 			"type": "string",
