@@ -3855,20 +3855,12 @@ $wgNamespacesWithSubpages = array(
  * A message with the suffix '-desc' should be added as a description message
  * to have extra information on Special:TrackingCategories.
  *
+ * @deprecated since 1.25 Extensions should now register tracking categories using
+ *                        the new extension registration system.
+ *
  * @since 1.23
  */
-$wgTrackingCategories = array(
-	'index-category',
-	'noindex-category',
-	'duplicate-args-category',
-	'expensive-parserfunction-category',
-	'post-expand-template-argument-category',
-	'post-expand-template-inclusion-category',
-	'hidden-category-category',
-	'broken-file-category',
-	'node-count-exceeded-category',
-	'expansion-depth-exceeded-category',
-);
+$wgTrackingCategories = array();
 
 /**
  * Array of namespaces which can be deemed to contain valid "content", as far
