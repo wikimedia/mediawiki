@@ -4,7 +4,7 @@ mediawiki.ui
 mediawiki.ui.anchor
 mediawiki.ui.button
 mediawiki.ui.checkbox
-mediawiki.ui.radio
 mediawiki.ui.icon
 mediawiki.ui.input
+mediawiki.ui.radio
 mediawiki.ui.text
