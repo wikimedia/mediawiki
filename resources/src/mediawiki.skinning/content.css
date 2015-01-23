@@ -238,3 +238,76 @@ div.tright {
 div.tleft {
 	margin: .5em 1.4em 1.3em 0;
 }
+
+/* Anchors for section headings */
+.mw-headline-anchor {
+	font-weight: 400;
+	margin-left: -12px;
+	opacity: 0;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	padding-right: 4px;
+	position: absolute;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+.mw-headline-anchor,
+.mw-headline-anchor:visited {
+	color: #888;
+}
+
+h1 .mw-headline-anchor {
+	margin-left: -14px;
+	padding-right: 1px;
+}
+
+h2 .mw-headline-anchor {
+	margin-left: -13px;
+	padding-right: 2px;
+}
+
+.mw-headline-anchor:hover,
+.mw-headline-anchor:focus {
+	color: #555;
+	text-decoration: none;
+}
+
+.mw-headline-anchor:active {
+	color: #000;
+}
+
+.mw-body h1:hover .mw-headline-anchor,
+.mw-body h2:hover .mw-headline-anchor,
+.mw-body h3:hover .mw-headline-anchor,
+.mw-body h4:hover .mw-headline-anchor,
+.mw-body h5:hover .mw-headline-anchor,
+.mw-body h6:hover .mw-headline-anchor,
+.mw-body h1:focus .mw-headline-anchor,
+.mw-body h2:focus .mw-headline-anchor,
+.mw-body h3:focus .mw-headline-anchor,
+.mw-body h4:focus .mw-headline-anchor,
+.mw-body h5:focus .mw-headline-anchor,
+.mw-body h6:focus .mw-headline-anchor {
+	opacity: 1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+}
+
+@media screen and (min-width: 982px) {
+	.mw-headline-anchor {
+		margin-left: -13px;
+		padding-right: 5px;
+	}
+
+	h1 .mw-headline-anchor {
+		margin-left: -17px;
+		padding-right: 4px;
+	}
+
+	h2 .mw-headline-anchor {
+		margin-left: -15px;
+		padding-right: 4px;
+	}
+}
