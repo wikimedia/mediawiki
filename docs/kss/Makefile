@@ -4,7 +4,7 @@ kss: kssnodecheck
 # Generates CSS of mediawiki.ui and mediawiki.ui.button using ResourceLoader, then applies it to the
 # KSS style guide
 	$(eval KSS_RL_TMP := $(shell mktemp /tmp/tmp.XXXXXXXXXX))
-	$(eval MODULE_STR := $(shell paste -sd "|"  < styleGuideModules.txt))
+	$(eval MODULE_STR := $(shell paste -sd "|" styleGuideModules.txt))
 # See OutputPage::makeResourceLoaderLink.
 	@curl -sG "${MEDIAWIKI_LOAD_URL}?modules=${MODULE_STR}&only=styles" > $(KSS_RL_TMP)
 	@node_modules/.bin/kss-node ../../resources/src/mediawiki.ui static/ --css $(KSS_RL_TMP) -t styleguide-template
