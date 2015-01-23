@@ -169,4 +169,4 @@
 		assert.strictEqual( key, 'barfoo' );
 	} );
 
-} ( mediaWiki, jQuery ) );
+}( mediaWiki, jQuery ) );
