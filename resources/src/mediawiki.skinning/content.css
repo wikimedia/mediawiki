@@ -238,3 +238,42 @@ div.tright {
 div.tleft {
 	margin: .5em 1.4em 1.3em 0;
 }
+
+/* Anchors for section headings */
+.mw-headline-anchor,
+.mw-headline-anchor:visited {
+	color: #AAA;
+	font-weight: 400;
+	margin-left: -15px;
+	opacity: 0;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	padding-right: 6px;
+}
+
+.mw-headline-anchor:hover,
+.mw-headline-anchor:focus {
+	color: #666;
+	text-decoration: none;
+}
+
+.mw-headline-anchor:active {
+	color: #000;
+}
+
+.mw-body h1:hover a.mw-headline-anchor,
+.mw-body h2:hover a.mw-headline-anchor,
+.mw-body h3:hover a.mw-headline-anchor,
+.mw-body h4:hover a.mw-headline-anchor,
+.mw-body h5:hover a.mw-headline-anchor,
+.mw-body h6:hover a.mw-headline-anchor,
+.mw-body h1:focus a.mw-headline-anchor,
+.mw-body h2:focus a.mw-headline-anchor,
+.mw-body h3:focus a.mw-headline-anchor,
+.mw-body h4:focus a.mw-headline-anchor,
+.mw-body h5:focus a.mw-headline-anchor,
+.mw-body h6:focus a.mw-headline-anchor {
+	opacity: 1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+}
