@@ -1854,7 +1854,7 @@
 	"booksources-summary": "{{doc-specialpagesummary|booksources}}",
 	"booksources-search-legend": "Box heading on [[Special:BookSources|book sources]] special page. The box is for searching for places where a particular book can be bought or viewed.",
 	"booksources-isbn": "{{optional}}\nThis is a label that appears before a text input field on the Special:BookSources page.\n{{Identical|ISBN}}",
-	"booksources-search": "Search button in [[Special:BookSources]]\n\n{{Identical|Go}}",
+	"booksources-search": "Search button in [[Special:BookSources]]\n\n{{Identical|Search}}",
 	"booksources-text": "Used in [[Special:BookSources/1]].\n\nThis message is followed by a list of links to other sites.\n\nSee also:\n* {{msg-mw|Booksources|title}}\n* {{msg-mw|Booksources-text|text}}",
 	"booksources-invalid-isbn": "This message is displayed after an invalid ISBN is entered on [[Special:Booksources]].",
 	"rfcurl": "{{notranslate}}\nParameters:\n* $1 - RFC number\nSee also:\n* {{msg-mw|Pubmedurl}}",
