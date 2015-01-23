@@ -1751,6 +1751,7 @@ class Linker {
 		$link, $legacyAnchor = false
 	) {
 		$ret = "<h$level$attribs"
+			. "<a class=\"mw-headline-anchor\" href=\"#$anchor\" title=\"Link to this section\">&sect;</a>"
 			. "<span class=\"mw-headline\" id=\"$anchor\">$html</span>"
 			. $link
 			. "</h$level>";
