@@ -129,7 +129,8 @@ class ExtensionProcessor implements Processor {
 		foreach ( $info as $key => $val ) {
 			if ( in_array( $key, self::$globalSettings ) ) {
 				$this->storeToArray( "wg$key", $val, $this->globals );
-			} elseif ( !in_array( $key, $this->processed ) ) {
+			// Ignore anything that starts with a @
+			} elseif ( $key[0] !== '@' && !in_array( $key, $this->processed ) ) {
 				$this->storeToArray( $key, $val, $this->attributes );
 			}
 		}
