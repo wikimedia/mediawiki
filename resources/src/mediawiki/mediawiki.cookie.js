@@ -27,12 +27,14 @@
 		 * @param {string|null} value Value of cookie. If `value` is `null` then this method will
 		 *   instead remove a cookie by name of `key`.
 		 * @param {Object|Date} [options] Options object, or expiry date
-		 * @param {Date|null} [options.expires=wgCookieExpiration] The expiry date of the cookie.
+		 * @param {Date|null} [options.expires] The expiry date of the cookie.
 		 *
-		 *   Default cookie expiration is based on `wgCookieExpiration`.  If `wgCookieExpiration` is
-		 *   0, a session cookie is set (expires when the browser is closed).
+		 *   If `options.expires` is null, then a session cookie is set.
 		 *
-		 *   If options.expires is null, then a session cookie is set.
+		 *   By default cookie expiration is based on `wgCookieExpiration`. Similar to `WebResponse`
+		 *   in PHP, we set a session cookie if `wgCookieExpiration` is 0. And for non-zero values
+		 *   it is interpreted as lifetime in seconds.
+		 *
 		 * @param {string} [options.prefix=wgCookiePrefix] The prefix of the key
 		 * @param {string} [options.domain=wgCookieDomain] The domain attribute of the cookie
 		 * @param {string} [options.path=wgCookiePath] The path attribute of the cookie
