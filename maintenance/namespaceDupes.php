@@ -172,14 +172,23 @@ class NamespaceConflictChecker extends Maintenance {
 			return true;
 		}
 
+		$resolveableCount = 0;
+
 		$ok = true;
 		foreach ( $conflicts as $row ) {
 			$resolvable = $this->reportConflict( $row, $suffix );
 			$ok = $ok && $resolvable;
+
+			if ( $resolvable ) {
+				$resolveableCount++;
+			}
+
 			if ( $fix && ( $resolvable || $suffix != '' ) ) {
 				$ok = $this->resolveConflict( $row, $resolvable, $suffix ) && $ok;
 			}
 		}
+
+		$this->output( "{count( $conflicts )} conflicts. {$resolveableCount} are resolveable." );
 
 		return $ok;
 	}
@@ -260,7 +269,8 @@ class NamespaceConflictChecker extends Maintenance {
 			$row->oldtitle,
 			$newTitle->getNamespace(),
 			$newTitle->getDBkey(),
-			$newTitle->getPrefixedText() ) );
+			$newTitle->getPrefixedText() )
+		);
 
 		$id = $newTitle->getArticleID();
 		if ( $id ) {
