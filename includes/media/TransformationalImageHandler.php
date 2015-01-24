@@ -167,7 +167,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			return $this->getClientScalingThumbnailImage( $image, $scalerParams );
 		}
 
-		if ( !$this->isImageAreaOkForThumbnaling( $image, $params ) ) {
+		if ( $image->isLocalTransform() && !$this->isImageAreaOkForThumbnaling( $image, $params ) ) {
 			global $wgMaxImageArea;
 			return new TransformTooBigImageAreaError( $params, $wgMaxImageArea );
 		}

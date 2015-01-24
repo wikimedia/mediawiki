@@ -365,4 +365,13 @@ class ForeignAPIFile extends File {
 		# Clear out the thumbnail directory if empty
 		$this->repo->quickCleanDir( $dir );
 	}
+
+	/**
+	 * The thumbnail is created on the foreign server and fetched over internet
+	 * @since 1.25
+	 * @return bool
+	 */
+	public function isLocalTransform() {
+		return false;
+	}
 }

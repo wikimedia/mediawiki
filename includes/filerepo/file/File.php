@@ -2230,4 +2230,13 @@ abstract class File implements IDBAccessObject {
 		$handler = $this->getHandler();
 		return $handler ? $handler->isExpensiveToThumbnail( $this ) : false;
 	}
+
+	/**
+	 * Whether the thumbnails created on the same server as this code is running.
+	 * @since 1.25
+	 * @return bool
+	 */
+	public function isLocalTransform() {
+		return true;
+	}
 }
