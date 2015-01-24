@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gloria sah"
+		]
+	},
+	"config-information": "Infurmasiòun",
+	"config-your-language": "La tó lengva:",
+	"config-page-language": "Lengva",
+	"config-charset-mysql5-binary": "binàri MySQL 4.1/5.0",
+	"config-charset-mysql5": "MySQL 4.1/5.0 UTF-8",
+	"config-admin-password-mismatch": "El dó paró li cêv 't ê pruvê i n'vàn mia bèin.",
+	"config-admin-email": "Indirìs e-mail:",
+	"config-optional-continue": "Edmànd-em de piò.",
+	"config-license-cc-by": "Atribusiòun Creative Commons"
+}

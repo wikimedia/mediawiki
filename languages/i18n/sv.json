@@ -3079,7 +3079,7 @@
 	"logentry-upload-revert": "$1 {{GENDER:$2|laddade upp}} $3",
 	"rightsnone": "(inga)",
 	"revdelete-summary": "sammanfattning",
-	"feedback-bugornote": "Om du har möjlighet att ge en detaljerad teknisk beskrivning av felet kan du göra en [$1 buggrapport]. \nAnvänd annars formuläret nedan. Din kommentar kommer att läggas till på sidan \"[$3 $2]\", tillsammans med ditt användarnamn.",
+	"feedback-bugornote": "Om du har möjlighet att ge en detaljerad teknisk beskrivning av felet kan du lämna en [$1 buggrapport]. \nAnvänd annars formuläret nedan. Din kommentar kommer att läggas till på sidan \"[$3 $2]\", tillsammans med ditt användarnamn.",
 	"feedback-subject": "Ämne:",
 	"feedback-message": "Meddelande:",
 	"feedback-cancel": "Avbryt",
