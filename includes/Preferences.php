@@ -92,7 +92,6 @@ class Preferences {
 		self::renderingPreferences( $user, $context, $defaultPreferences );
 		self::editingPreferences( $user, $context, $defaultPreferences );
 		self::rcPreferences( $user, $context, $defaultPreferences );
-		self::watchlistPreferences( $user, $context, $defaultPreferences );
 		self::searchPreferences( $user, $context, $defaultPreferences );
 		self::miscPreferences( $user, $context, $defaultPreferences );
 
@@ -860,7 +859,8 @@ class Preferences {
 	static function rcPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		$config = $context->getConfig();
 		$rcMaxAge = $config->get( 'RCMaxAge' );
-		## RecentChanges #####################################
+		$watchlistdaysMax = ceil( $config->get( 'RCMaxAge' ) / ( 3600 * 24 ) );
+		## RecentChanges And Watchlist#####################################
 		$defaultPreferences['rcdays'] = array(
 			'type' => 'float',
 			'label-message' => 'recentchangesdays',
@@ -870,63 +870,20 @@ class Preferences {
 			'help' => $context->msg( 'recentchangesdays-max' )->numParams(
 				ceil( $rcMaxAge / ( 3600 * 24 ) ) )->escaped()
 		);
+		$defaultPreferences['watchlistdays'] = array(
+			'type' => 'float',
+			'min' => 0,
+			'max' => $watchlistdaysMax,
+			'section' => 'rc/displaywatchlist',
+			'help' => $context->msg( 'prefs-watchlist-days-max' )->numParams(
+				$watchlistdaysMax )->escaped(),
+			'label-message' => 'prefs-watchlist-days',
+		);
 		$defaultPreferences['rclimit'] = array(
 			'type' => 'int',
 			'label-message' => 'recentchangescount',
 			'help-message' => 'prefs-help-recentchangescount',
 			'section' => 'rc/displayrc',
-		);
-		$defaultPreferences['usenewrc'] = array(
-			'type' => 'toggle',
-			'label-message' => 'tog-usenewrc',
-			'section' => 'rc/advancedrc',
-		);
-		$defaultPreferences['hideminor'] = array(
-			'type' => 'toggle',
-			'label-message' => 'tog-hideminor',
-			'section' => 'rc/advancedrc',
-		);
-
-		if ( $user->useRCPatrol() ) {
-			$defaultPreferences['hidepatrolled'] = array(
-				'type' => 'toggle',
-				'section' => 'rc/advancedrc',
-				'label-message' => 'tog-hidepatrolled',
-			);
-			$defaultPreferences['newpageshidepatrolled'] = array(
-				'type' => 'toggle',
-				'section' => 'rc/advancedrc',
-				'label-message' => 'tog-newpageshidepatrolled',
-			);
-		}
-
-		if ( $config->get( 'RCShowWatchingUsers' ) ) {
-			$defaultPreferences['shownumberswatching'] = array(
-				'type' => 'toggle',
-				'section' => 'rc/advancedrc',
-				'label-message' => 'tog-shownumberswatching',
-			);
-		}
-	}
-
-	/**
-	 * @param User $user
-	 * @param IContextSource $context
-	 * @param array $defaultPreferences
-	 */
-	static function watchlistPreferences( $user, IContextSource $context, &$defaultPreferences ) {
-		$config = $context->getConfig();
-		$watchlistdaysMax = ceil( $config->get( 'RCMaxAge' ) / ( 3600 * 24 ) );
-
-		## Watchlist #####################################
-		$defaultPreferences['watchlistdays'] = array(
-			'type' => 'float',
-			'min' => 0,
-			'max' => $watchlistdaysMax,
-			'section' => 'watchlist/displaywatchlist',
-			'help' => $context->msg( 'prefs-watchlist-days-max' )->numParams(
-				$watchlistdaysMax )->escaped(),
-			'label-message' => 'prefs-watchlist-days',
 		);
 		$defaultPreferences['wllimit'] = array(
 			'type' => 'int',
@@ -934,44 +891,24 @@ class Preferences {
 			'max' => 1000,
 			'label-message' => 'prefs-watchlist-edits',
 			'help' => $context->msg( 'prefs-watchlist-edits-max' )->escaped(),
-			'section' => 'watchlist/displaywatchlist',
+			'section' => 'rc/displaywatchlist',
+		);
+		$defaultPreferences['usenewrc'] = array(
+			'type' => 'toggle',
+			'label-message' => 'tog-usenewrc',
+			'section' => 'rc/advancedrc',
 		);
 		$defaultPreferences['extendwatchlist'] = array(
 			'type' => 'toggle',
-			'section' => 'watchlist/advancedwatchlist',
+			'section' => 'rc/advancedrc',
 			'label-message' => 'tog-extendwatchlist',
 		);
-		$defaultPreferences['watchlisthideminor'] = array(
-			'type' => 'toggle',
-			'section' => 'watchlist/advancedwatchlist',
-			'label-message' => 'tog-watchlisthideminor',
-		);
-		$defaultPreferences['watchlisthidebots'] = array(
-			'type' => 'toggle',
-			'section' => 'watchlist/advancedwatchlist',
-			'label-message' => 'tog-watchlisthidebots',
-		);
-		$defaultPreferences['watchlisthideown'] = array(
-			'type' => 'toggle',
-			'section' => 'watchlist/advancedwatchlist',
-			'label-message' => 'tog-watchlisthideown',
-		);
-		$defaultPreferences['watchlisthideanons'] = array(
-			'type' => 'toggle',
-			'section' => 'watchlist/advancedwatchlist',
-			'label-message' => 'tog-watchlisthideanons',
-		);
-		$defaultPreferences['watchlisthideliu'] = array(
-			'type' => 'toggle',
-			'section' => 'watchlist/advancedwatchlist',
-			'label-message' => 'tog-watchlisthideliu',
-		);
 
-		if ( $context->getConfig()->get( 'UseRCPatrol' ) ) {
-			$defaultPreferences['watchlisthidepatrolled'] = array(
+		if ( $config->get( 'RCShowWatchingUsers' ) ) {
+			$defaultPreferences['shownumberswatching'] = array(
 				'type' => 'toggle',
-				'section' => 'watchlist/advancedwatchlist',
-				'label-message' => 'tog-watchlisthidepatrolled',
+				'section' => 'rc/advancedrc',
+				'label-message' => 'tog-shownumberswatching',
 			);
 		}
 
@@ -997,10 +934,32 @@ class Preferences {
 				// tog-watchrollback
 				$defaultPreferences[$pref] = array(
 					'type' => 'toggle',
-					'section' => 'watchlist/advancedwatchlist',
+					'section' => 'rc/advancedrc',
 					'label-message' => "tog-$pref",
 				);
 			}
+		}
+
+		$defaultPreferences['hideopts'] = array( 
+			'type' => 'checkmatrix',
+			'section' => 'rc/showhiderc',
+			'columns' => array(
+				'Recent Changes' => 'rc',
+				'Watchlist' => 'watchlist'
+			),
+			'rows' => array(
+				'Hide minor edits'=>'hideminor',
+				'Hide bot edits'=>'hidebots',
+				'Hide own edits' => 'hideown',
+				'Hide anonymous edits' => 'hideanons',
+				'Hide edits by logged in users' => 'hideliu',
+			)
+		);
+
+		if ( $user->useRCPatrol() ) {
+			$defaultPreferences['hideopts']['rows']['Hide patrolled edits'] = 'hidepatrolled';
+			$defaultPreferences['hideopts']['rows']['Hide patrolled pages from new page list'] = 
+			'newpageshidepatrolled';
 		}
 
 		if ( $config->get( 'EnableAPI' ) ) {
@@ -1009,7 +968,7 @@ class Preferences {
 			);
 			$defaultPreferences['watchlisttoken-info'] = array(
 				'type' => 'info',
-				'section' => 'watchlist/tokenwatchlist',
+				'section' => 'rc/tokenwatchlist',
 				'label-message' => 'prefs-watchlist-token',
 				'default' => $user->getTokenFromOption( 'watchlisttoken' ),
 				'help-message' => 'prefs-help-watchlist-token2',

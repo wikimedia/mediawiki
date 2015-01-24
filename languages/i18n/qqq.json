@@ -1096,6 +1096,7 @@
 	"prefs-personal": "Title of a tab in [[Special:Preferences]].\n{{Identical|User profile}}",
 	"prefs-rc": "Used in user preferences.\n\n{{Identical|Recent changes}}",
 	"prefs-watchlist": "Used in user preferences.\n{{Identical|Watchlist}}",
+	"prefs-showhiderc": "Used in watchlist and recent changes",
 	"prefs-watchlist-days": "Used in [[Special:Preferences]], tab \"Watchlist\".",
 	"prefs-watchlist-days-max": "Shown as hint in [[Special:Preferences]], tab \"Watchlist\". Parameters:\n* $1 - number of days\nSee also:\n* {{msg-mw|Recentchangesdays-max}}",
 	"prefs-watchlist-edits": "Used in [[Special:Preferences]], tab \"Watchlist\".",
