@@ -275,7 +275,7 @@ class NamespaceConflictChecker extends Maintenance {
 	/**
 	 * Resolve any conflicts
 	 *
-	 * @param stClass $row Row from the page table to fix
+	 * @param stdClass $row Row from the page table to fix
 	 * @param bool $resolvable
 	 * @param string $suffix Suffix to append to the fixed page
 	 * @return bool
