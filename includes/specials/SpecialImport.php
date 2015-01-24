@@ -34,6 +34,7 @@ class SpecialImport extends SpecialPage {
 	private $interwiki = false;
 	private $subproject;
 	private $fullInterwikiPrefix;
+	private $mapping = 'default';
 	private $namespace;
 	private $rootpage = '';
 	private $frompage = '';
@@ -101,14 +102,21 @@ class SpecialImport extends SpecialPage {
 	private function doImport() {
 		$isUpload = false;
 		$request = $this->getRequest();
-		$this->namespace = $request->getIntOrNull( 'namespace' );
 		$this->sourceName = $request->getVal( "source" );
 
 		$this->logcomment = $request->getText( 'log-comment' );
 		$this->pageLinkDepth = $this->getConfig()->get( 'ExportMaxLinkDepth' ) == 0
 			? 0
 			: $request->getIntOrNull( 'pagelink-depth' );
-		$this->rootpage = $request->getText( 'rootpage' );
+
+		$this->mapping = $request->getVal( 'mapping' );
+		if ( $this->mapping == 'namespace' ) {
+			$this->namespace = $request->getIntOrNull( 'namespace' );
+		} elseif ( $this->mapping == 'subpage' ) {
+			$this->rootpage = $request->getText( 'rootpage' );
+		} else {
+			$this->mapping = 'default';
+		}
 
 		$user = $this->getUser();
 		if ( !$user->matchEditToken( $request->getVal( 'editToken' ) ) ) {
@@ -163,8 +171,7 @@ class SpecialImport extends SpecialPage {
 			$importer = new WikiImporter( $source->value, $this->getConfig() );
 			if ( !is_null( $this->namespace ) ) {
 				$importer->setTargetNamespace( $this->namespace );
-			}
-			if ( !is_null( $this->rootpage ) ) {
+			} elseif ( !is_null( $this->rootpage ) ) {
 				$statusRootPage = $importer->setTargetRootPage( $this->rootpage );
 				if ( !$statusRootPage->isGood() ) {
 					$out->wrapWikiMsg(
@@ -219,6 +226,68 @@ class SpecialImport extends SpecialPage {
 		}
 	}
 
+	private function getMappingFormPart( $sourceName ) {
+		$isSameSourceAsBefore = ( $this->sourceName == $sourceName );
+		$defaultNamespace = $this->getConfig()->get( 'ImportTargetNamespace' );
+		return "<tr>
+					<td>
+					</td>
+					<td class='mw-input'>" .
+					Xml::radioLabel(
+						$this->msg( 'import-mapping-default' )->text(),
+						"mapping",
+						'default',
+						"mw-import-mapping-$sourceName-default",
+						( $isSameSourceAsBefore ?
+							( $this->mapping == 'default' ) :
+							is_null( $defaultNamespace ) )
+					) .
+					"</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td class='mw-input'>" .
+					Xml::radioLabel(
+						$this->msg( 'import-mapping-namespace' )->text(),
+						"mapping",
+						'namespace',
+						"mw-import-mapping-$sourceName-namespace",
+						( $isSameSourceAsBefore ?
+							( $this->mapping == 'namespace' ) :
+							!is_null( $defaultNamespace ) )
+					) . ' ' .
+					Html::namespaceSelector(
+						array(
+							'selected' => ( $isSameSourceAsBefore ?
+								$this->namespace :
+								( $this->getConfig()->get( 'ImportTargetNamespace' ) || '' ) ),
+						), array(
+							'name' => "namespace",
+							'id' => "mw-import-namespace-$sourceName",
+							'class' => 'namespaceselector',
+						)
+					) .
+					"</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td class='mw-input'>" .
+					Xml::radioLabel(
+						$this->msg( 'import-mapping-subpage' )->text(),
+						"mapping",
+						'subpage',
+						"mw-import-mapping-$sourceName-subpage",
+						( $isSameSourceAsBefore ? ( $this->mapping == 'subpage' ) : '' )
+					) . ' ' .
+					Xml::input( 'rootpage', 50,
+						( $isSameSourceAsBefore ? $this->rootpage : '' ),
+						array( 'id' => "mw-interwiki-rootpage-$sourceName", 'type' => 'text' ) ) . ' ' .
+					"</td>
+				</tr>";
+	}
+
 	private function showForm() {
 		$action = $this->getPageTitle()->getLocalURL( array( 'action' => 'submit' ) );
 		$user = $this->getUser();
@@ -226,6 +295,7 @@ class SpecialImport extends SpecialPage {
 		$importSources = $this->getConfig()->get( 'ImportSources' );
 
 		if ( $user->isAllowed( 'importupload' ) ) {
+			$mappingSelection = $this->getMappingFormPart( 'upload' );
 			$out->addHTML(
 				Xml::fieldset( $this->msg( 'import-upload' )->text() ) .
 					Xml::openElement(
@@ -259,18 +329,7 @@ class SpecialImport extends SpecialPage {
 						array( 'id' => 'mw-import-comment', 'type' => 'text' ) ) . ' ' .
 					"</td>
 				</tr>
-				<tr>
-					<td class='mw-label'>" .
-					Xml::label(
-						$this->msg( 'import-interwiki-rootpage' )->text(),
-						'mw-interwiki-rootpage-upload'
-					) .
-					"</td>
-					<td class='mw-input'>" .
-					Xml::input( 'rootpage', 50, $this->rootpage,
-						array( 'id' => 'mw-interwiki-rootpage-upload', 'type' => 'text' ) ) . ' ' .
-					"</td>
-				</tr>
+				$mappingSelection
 				<tr>
 					<td></td>
 					<td class='mw-submit'>" .
@@ -301,6 +360,7 @@ class SpecialImport extends SpecialPage {
 					"</td>
 				</tr>";
 			}
+			$mappingSelection = $this->getMappingFormPart( 'interwiki' );
 
 			$out->addHTML(
 				Xml::fieldset( $this->msg( 'importinterwiki' )->text() ) .
@@ -415,23 +475,6 @@ class SpecialImport extends SpecialPage {
 				$importDepth
 				<tr>
 					<td class='mw-label'>" .
-					Xml::label( $this->msg( 'import-interwiki-namespace' )->text(), 'namespace' ) .
-					"</td>
-					<td class='mw-input'>" .
-					Html::namespaceSelector(
-						array(
-							'selected' => $this->namespace,
-							'all' => '',
-						), array(
-							'name' => 'namespace',
-							'id' => 'namespace',
-							'class' => 'namespaceselector',
-						)
-					) .
-					"</td>
-				</tr>
-				<tr>
-					<td class='mw-label'>" .
 					Xml::label( $this->msg( 'import-comment' )->text(), 'mw-interwiki-comment' ) .
 					"</td>
 					<td class='mw-input'>" .
@@ -440,18 +483,7 @@ class SpecialImport extends SpecialPage {
 						array( 'id' => 'mw-interwiki-comment', 'type' => 'text' ) ) . ' ' .
 					"</td>
 				</tr>
-				<tr>
-					<td class='mw-label'>" .
-					Xml::label(
-						$this->msg( 'import-interwiki-rootpage' )->text(),
-						'mw-interwiki-rootpage-interwiki'
-					) .
-					"</td>
-					<td class='mw-input'>" .
-					Xml::input( 'rootpage', 50, $this->rootpage,
-						array( 'id' => 'mw-interwiki-rootpage-interwiki', 'type' => 'text' ) ) . ' ' .
-					"</td>
-				</tr>
+				$mappingSelection
 				<tr>
 					<td>
 					</td>
