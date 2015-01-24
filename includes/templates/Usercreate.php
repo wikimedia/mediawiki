@@ -217,8 +217,10 @@ class UsercreateTemplate extends BaseTemplate {
 									<?php if ( !empty( $inputItem['value'] ) ) {
 										echo 'checked="checked"';
 									} ?>
-								><label for="<?php echo htmlspecialchars( $inputItem['name'] ); ?>"></label>
-							</div><?php $this->msgHtml( $inputItem['msg'] ); ?>
+								><label for="<?php echo htmlspecialchars( $inputItem['name'] ); ?>">
+									<?php $this->msgHtml( $inputItem['msg'] ); ?>
+								</label>
+							</div>
 						<?php
 						} else {
 							// Not a checkbox.
