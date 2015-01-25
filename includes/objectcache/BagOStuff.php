@@ -381,7 +381,7 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	/**
 	 * @param string $text
 	 */
-	public function debug( $text ) {
+	protected function debug( $text ) {
 		if ( $this->debugMode ) {
 			$this->logger->debug( "{class} debug: $text", array(
 				'class' => get_class( $this ),
