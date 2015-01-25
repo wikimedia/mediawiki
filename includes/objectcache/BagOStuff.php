@@ -356,7 +356,7 @@ abstract class BagOStuff {
 	/**
 	 * @param string $text
 	 */
-	public function debug( $text ) {
+	protected function debug( $text ) {
 		if ( $this->debugMode ) {
 			$class = get_class( $this );
 			wfDebug( "$class debug: $text\n" );
