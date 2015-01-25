@@ -779,9 +779,3 @@ class SqlBagOStuff extends BagOStuff {
 		}
 	}
 }
-
-/**
- * Backwards compatibility alias
- */
-class MediaWikiBagOStuff extends SqlBagOStuff {
-}
