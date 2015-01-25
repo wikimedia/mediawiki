@@ -627,7 +627,7 @@ abstract class FileBackendStore extends FileBackend {
 		}
 		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		$latest = !empty( $params['latest'] ); // use latest data?
-		if ( !$this->cheapCache->has( $path, 'stat', self::CACHE_TTL ) ) {
+		if ( !$latest && !$this->cheapCache->has( $path, 'stat', self::CACHE_TTL ) ) {
 			$this->primeFileCache( array( $path ) ); // check persistent cache
 		}
 		if ( $this->cheapCache->has( $path, 'stat', self::CACHE_TTL ) ) {
@@ -1745,17 +1745,18 @@ abstract class FileBackendStore extends FileBackend {
 		// Get all cache entries for these container cache keys...
 		$values = $this->memCache->getMulti( array_keys( $pathNames ) );
 		foreach ( $values as $cacheKey => $val ) {
+			$path = $pathNames[$cacheKey];
 			if ( is_array( $val ) ) {
-				$path = $pathNames[$cacheKey];
+				$val['latest'] = false; // never completely trust cache
 				$this->cheapCache->set( $path, 'stat', $val );
 				if ( isset( $val['sha1'] ) ) { // some backends store SHA-1 as metadata
 					$this->cheapCache->set( $path, 'sha1',
-						array( 'hash' => $val['sha1'], 'latest' => $val['latest'] ) );
+						array( 'hash' => $val['sha1'], 'latest' => false ) );
 				}
 				if ( isset( $val['xattr'] ) ) { // some backends store headers/metadata
 					$val['xattr'] = self::normalizeXAttributes( $val['xattr'] );
 					$this->cheapCache->set( $path, 'xattr',
-						array( 'map' => $val['xattr'], 'latest' => $val['latest'] ) );
+						array( 'map' => $val['xattr'], 'latest' => false ) );
 				}
 			}
 		}
