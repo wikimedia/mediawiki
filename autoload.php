@@ -726,7 +726,6 @@ $wgAutoloadLocalClasses = array(
 	'MediaTransformError' => __DIR__ . '/includes/media/MediaTransformOutput.php',
 	'MediaTransformOutput' => __DIR__ . '/includes/media/MediaTransformOutput.php',
 	'MediaWiki' => __DIR__ . '/includes/MediaWiki.php',
-	'MediaWikiBagOStuff' => __DIR__ . '/includes/objectcache/SqlBagOStuff.php',
 	'MediaWikiI18N' => __DIR__ . '/includes/skins/MediaWikiI18N.php',
 	'MediaWikiPageLinkRenderer' => __DIR__ . '/includes/title/MediaWikiPageLinkRenderer.php',
 	'MediaWikiSite' => __DIR__ . '/includes/site/MediaWikiSite.php',
