@@ -50,5 +50,6 @@
 	"apihelp-createaccount-param-mailpassword": "Калі ўсталяванае любое значэньне, выпадковы пароль будзе дасланы карыстальніку на электронную пошту.",
 	"apihelp-createaccount-param-reason": "Неабавязковая прычына стварэньня рахунку, якая будзе запісаная ў журнал.",
 	"apihelp-createaccount-param-language": "Моўны код, які будзе выстаўлены ўдзельніку па змоўчаньні (неабавязкова, па змоўчаньні мова зьместу).",
-	"apihelp-createaccount-example-pass": "Стварэньне ўдзельніка «testuser» з паролем «test123»"
+	"apihelp-createaccount-example-pass": "Стварэньне ўдзельніка «testuser» з паролем «test123»",
+	"apihelp-createaccount-example-mail": "Стварэньне ўдзельніка «testmailuser» і адпраўка выпадковага паролю электроннай поштай"
 }

@@ -528,6 +528,7 @@
 	"apihelp-rollback-example-summary": "回退由IP用户192.0.2.5对[[首页]]做出的最近编辑，带编辑摘要“回退破坏”，并将这些编辑和回退标记为“机器人”",
 	"apihelp-rsd-description": "导出一个RSD（Really Simple Discovery）架构",
 	"apihelp-rsd-example-simple": "导出RSD架构",
+	"apihelp-setnotificationtimestamp-example-pagetimestamp": "设置“首页”的通知时间戳，这样所有从2012年1月1日起的编辑都会是未复核的",
 	"apihelp-tokens-param-type": "要请求的令牌类型。",
 	"apihelp-unblock-description": "解封一位用户。",
 	"apihelp-unblock-param-id": "解封时需要的封禁ID（通过list=blocks获得）。不能与$1user一起使用。",
