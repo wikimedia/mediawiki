@@ -26,6 +26,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 		'url',
 		'description',
 		'descriptionmsg',
+		'namemsg',
 		'license-name',
 		'type',
 	);
