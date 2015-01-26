@@ -3894,11 +3894,6 @@ class Parser {
 		if ( isset( $stuff['deps'] ) ) {
 			foreach ( $stuff['deps'] as $dep ) {
 				$this->mOutput->addTemplate( $dep['title'], $dep['page_id'], $dep['rev_id'] );
-				if ( $dep['title']->equals( $this->getTitle() ) ) {
-					// If we transclude ourselves, the final result
-					// will change based on the new version of the page
-					$this->mOutput->setFlag( 'vary-revision' );
-				}
 			}
 		}
 		return array( $text, $finalTitle );

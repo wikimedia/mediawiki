@@ -2124,6 +2124,8 @@ class WikiPage implements Page, IDBAccessObject {
 						}
 					}
 				);
+			} else {
+				$edit->popts->setupFakeRevision( $this->mTitle, $edit->pstContent, $user );
 			}
 			$edit->output = $edit->pstContent
 				? $edit->pstContent->getParserOutput( $this->mTitle, $revid, $edit->popts )
