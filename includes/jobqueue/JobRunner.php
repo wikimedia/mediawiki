@@ -21,13 +21,16 @@
  * @ingroup JobQueue
  */
 
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
+
 /**
  * Job queue runner utility methods
  *
  * @ingroup JobQueue
  * @since 1.24
  */
-class JobRunner {
+class JobRunner implements LoggerAwareInterface {
 	/** @var callable|null Debug output handler */
 	protected $debug;
 
@@ -36,6 +39,28 @@ class JobRunner {
 	 */
 	public function setDebugHandler( $debug ) {
 		$this->debug = $debug;
+	}
+
+	/**
+	 * @var LoggerInterface $logger
+	 */
+	protected $logger;
+
+	/**
+	 * @param LoggerInterface $logger
+	 */
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
+	}
+
+	/**
+	 * @param LoggerInterface $logger
+	 */
+	public function __construct( LoggerInterface $logger = null ) {
+		if ( $logger === null ) {
+			$logger = MWLoggerFactory::getInstance( 'runJobs' );
+		}
+		$this->setLogger( $logger );
 	}
 
 	/**
@@ -73,7 +98,9 @@ class JobRunner {
 		// Handle any required periodic queue maintenance
 		$count = $group->executeReadyPeriodicTasks();
 		if ( $count > 0 ) {
-			$this->runJobsLog( "Executed $count periodic queue task(s)." );
+			$msg = "Executed $count periodic queue task(s).";
+			$this->logger->debug( $msg );
+			$this->debugCallback( $msg );
 		}
 
 		// Bail out if in read-only mode
@@ -132,7 +159,9 @@ class JobRunner {
 					$backoffs = $this->syncBackoffDeltas( $backoffs, $backoffDeltas, $wait );
 				}
 
-				$this->runJobsLog( $job->toString() . " STARTING" );
+				$msg = $job->toString() . " STARTING";
+				$this->logger->info( $msg );
+				$this->debugCallback( $msg );
 
 				// Run the job...
 				$jobStartTime = microtime( true );
@@ -164,9 +193,13 @@ class JobRunner {
 				}
 
 				if ( $status === false ) {
-					$this->runJobsLog( $job->toString() . " t=$timeMs error={$error}" );
+					$msg = $job->toString() . " t=$timeMs error={$error}";
+					$this->logger->error( $msg );
+					$this->debugCallback( $msg );
 				} else {
-					$this->runJobsLog( $job->toString() . " t=$timeMs good" );
+					$msg = $job->toString() . " t=$timeMs good";
+					$this->logger->info( $msg );
+					$this->debugCallback( $msg );
 				}
 
 				$response['jobs'][] = array(
@@ -357,10 +390,9 @@ class JobRunner {
 	 * Log the job message
 	 * @param string $msg The message to log
 	 */
-	private function runJobsLog( $msg ) {
+	private function debugCallback( $msg ) {
 		if ( $this->debug ) {
 			call_user_func_array( $this->debug, array( wfTimestamp( TS_DB ) . " $msg\n" ) );
 		}
-		wfDebugLog( 'runJobs', $msg );
 	}
 }
