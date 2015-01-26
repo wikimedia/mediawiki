@@ -36,6 +36,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = 'Converts extension entry points to the new JSON registration format';
+		$this->addArg( 'path', 'Location to the PHP entry point you wish to convert', /* $required = */ true );
 	}
 
 	protected function getAllGlobals() {
