@@ -129,7 +129,7 @@ class Xml {
 	 * @return string
 	 */
 	public static function tags( $element, $attribs = null, $contents ) {
-		return self::openElement( $element, $attribs ) . $contents . "</$element>";
+		return self::openElement( $element, $attribs ) . $contents . self::closeElement( $element );
 	}
 
 	/**
