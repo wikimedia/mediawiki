@@ -339,7 +339,7 @@ class ApiParse extends ApiBase {
 
 		if ( isset( $prop['indicators'] ) ) {
 			foreach ( $p_result->getIndicators() as $name => $content ) {
-				$indicator = array( 'name' => $name );
+				$indicator = array( 'name' => Sanitizer::escapeId( "mw-indicator-$name" ) );
 				ApiResult::setContent( $indicator, $content );
 				$result_array['indicators'][] = $indicator;
 			}
