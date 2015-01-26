@@ -359,7 +359,7 @@ class CSSMin {
 	 * @return bool
 	 */
 	public static function isLocalUrl( $maybeUrl ) {
-		if ( !self::isRemoteUrl( $maybeUrl ) && $maybeUrl !== '' && $maybeUrl[0] === '/' ) {
+		if ( $maybeUrl !== '' && $maybeUrl[0] === '/' && !self::isRemoteUrl( $maybeUrl ) ) {
 			return true;
 		}
 		return false;
