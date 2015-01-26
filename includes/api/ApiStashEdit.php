@@ -261,9 +261,12 @@ class ApiStashEdit extends ApiBase {
 		$dWhr = array(); // conditions to find deletions
 		foreach ( $editInfo->output->getTemplateIds() as $ns => $stuff ) {
 			foreach ( $stuff as $dbkey => $revId ) {
-				$cWhr[] = array( 'page_namespace' => $ns, 'page_title' => $dbkey,
-					'page_latest != ' . intval( $revId ) );
-				$dWhr[] = array( 'page_namespace' => $ns, 'page_title' => $dbkey );
+				// don't count ourself, since we inject a fake revision for ourself
+				if ( $ns !== $title->getNamespace() || $dbkey !== $title->getDbKey() ) {
+					$cWhr[] = array( 'page_namespace' => $ns, 'page_title' => $dbkey,
+						'page_latest != ' . intval( $revId ) );
+					$dWhr[] = array( 'page_namespace' => $ns, 'page_title' => $dbkey );
+				}
 			}
 		}
 		$change = $dbr->selectField( 'page', '1', $dbr->makeList( $cWhr, LIST_OR ), __METHOD__ );

@@ -2108,7 +2108,7 @@ class WikiPage implements Page, IDBAccessObject {
 		} else {
 			if ( $revision ) {
 				// We get here if vary-revision is set. This means that this page references
-				// itself (such as via self-transclusion). In this case, we need to make sure
+				// itself (such as with {{REVISIONID}}). In this case, we need to make sure
 				// that any such self-references refer to the newly-saved revision, and not
 				// to the previous one, which could otherwise happen due to slave lag.
 				$oldCallback = $edit->popts->setCurrentRevisionCallback(
@@ -2124,6 +2124,8 @@ class WikiPage implements Page, IDBAccessObject {
 						}
 					}
 				);
+			} else {
+				$edit->popts->setupFakeRevision( $this->mTitle, $edit->pstContent, $user );
 			}
 			$edit->output = $edit->pstContent
 				? $edit->pstContent->getParserOutput( $this->mTitle, $revid, $edit->popts )
