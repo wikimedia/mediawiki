@@ -333,12 +333,12 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$hist = Html::rawElement( 'span', array( 'class' => 'mw-newpages-history' ),
 			$this->msg( 'parentheses' )->rawParams( $histLink )->escaped() );
 
-		$length = Html::element(
+		$length = Html::rawElement(
 			'span',
 			array( 'class' => 'mw-newpages-length' ),
-			$this->msg( 'brackets' )->params( $this->msg( 'nbytes' )
-				->numParams( $result->length )->text()
-			)
+			$this->msg( 'brackets' )->rawParams(
+				$this->msg( 'nbytes' )->numParams( $result->length )->escaped()
+			)->escaped()
 		);
 
 		$ulink = Linker::revUserTools( $rev );
