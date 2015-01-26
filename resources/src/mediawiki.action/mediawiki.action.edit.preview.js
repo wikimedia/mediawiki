@@ -28,6 +28,7 @@
 
 		copySelectors = [
 			// Main
+			'.mw-indicators',
 			'#firstHeading',
 			'#wikiPreview',
 			'#wikiDiff',
@@ -101,19 +102,31 @@
 			$.extend( postData, {
 				pst: '',
 				preview: '',
-				prop: 'text|displaytitle|modules|categorieshtml|templates|langlinks|limitreporthtml'
+				prop: 'text|indicators|displaytitle|modules|categorieshtml|templates|langlinks|limitreporthtml'
 			} );
 			if ( section !== '' ) {
 				postData.sectionpreview = '';
 			}
 			request = api.post( postData );
 			request.done( function ( response ) {
-				var li, newList, $next, $parent, $list;
+				var li, newList, $next, $parent, $list, $indicators;
 				if ( response.parse.modules ) {
 					mw.loader.load( response.parse.modules.concat(
 						response.parse.modulescripts,
 						response.parse.modulestyles,
 						response.parse.modulemessages ) );
+				}
+				$indicators = $( '.mw-indicators' ).empty();
+				if ( response.parse.indicators ) {
+					$.each( response.parse.indicators, function ( i, indicator ) {
+						$indicators
+						.append( $( '<div>' )
+							.addClass( 'mw-indicator' )
+							.attr( 'id', indicator.id )
+							.html( indicator['*'] ),
+							' '
+						);
+					} );
 				}
 				if ( response.parse.displaytitle ) {
 					$( '#firstHeading' ).html( '<span dir="auto">' + response.parse.displaytitle + '</span>' );
