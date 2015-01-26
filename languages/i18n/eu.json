@@ -842,6 +842,8 @@
 	"prefs-personal": "Erabiltzaile profila",
 	"prefs-rc": "Azken aldaketak",
 	"prefs-watchlist": "Jarraipen zerrenda",
+	"prefs-editwatchlist": "Aldatu jarraipen-zerrenda",
+	"prefs-editwatchlist-clear": "Garbitu zure jarraipen-zerrenda",
 	"prefs-watchlist-days": "Jarraipen zerrendan erakutsi beharreko egun kopurua:",
 	"prefs-watchlist-days-max": "Gehienez $1 {{PLURAL:$1|egun|egun}}",
 	"prefs-watchlist-edits": "Jarraipen zerrendan erakutsi beharreko aldaketa kopurua:",
