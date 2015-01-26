@@ -141,6 +141,45 @@ class CSSMinTest extends MediaWikiTestCase {
 		);
 	}
 
+	public static function provideIsRemoteUrl() {
+		return array(
+			array( true, 'http://localhost/w/red.gif?123' ),
+			array( true, 'https://example.org/x.png' ),
+			array( true, '//example.org/x.y.z/image.png' ),
+			array( true, '//localhost/styles.css?query=yes' ),
+			array( true, 'data:image/gif;base64,R0lGODlhAQABAIAAAP8AADAAACwAAAAAAQABAAACAkQBADs=' ),
+			array( false, 'x.gif' ),
+			array( false, '/x.gif' ),
+			array( false, './x.gif' ),
+			array( false, '../x.gif' ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideIsRemoteUrl
+	 * @cover CSSMin::isRemoteUrl
+	 */
+	public function testIsRemoteUrl( $expect, $url ) {
+		$this->assertEquals( CSSMin::isRemoteUrl( $url ), $expect );
+	}
+
+	public static function provideIsLocalUrls() {
+		return array(
+			array( false, 'x.gif' ),
+			array( true, '/x.gif' ),
+			array( false, './x.gif' ),
+			array( false, '../x.gif' ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideIsLocalUrls
+	 * @cover CSSMin::isLocalUrl
+	 */
+	public function testIsLocalUrl( $expect, $url ) {
+		$this->assertEquals( CSSMin::isLocalUrl( $url ), $expect );
+	}
+
 	public static function provideRemapRemappingCases() {
 		// red.gif and green.gif are one-pixel 35-byte GIFs.
 		// large.png is a 35K PNG that should be non-embeddable.
