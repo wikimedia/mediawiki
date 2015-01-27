@@ -446,10 +446,9 @@ class SqlBagOStuff extends BagOStuff {
 
 	/**
 	 * @param string $key
-	 * @param int $time
 	 * @return bool
 	 */
-	public function delete( $key, $time = 0 ) {
+	public function delete( $key ) {
 		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
 		try {
 			$db = $this->getDB( $serverIndex );

@@ -98,10 +98,9 @@ class HashBagOStuff extends BagOStuff {
 
 	/**
 	 * @param string $key
-	 * @param int $time
 	 * @return bool
 	 */
-	function delete( $key, $time = 0 ) {
+	function delete( $key ) {
 		if ( !isset( $this->bag[$key] ) ) {
 			return false;
 		}

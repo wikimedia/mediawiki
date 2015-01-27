@@ -58,9 +58,6 @@ abstract class BagOStuff {
 		$this->debugMode = $bool;
 	}
 
-	/* *** THE GUTS OF THE OPERATION *** */
-	/* Override these with functional things in subclasses */
-
 	/**
 	 * Get an item with the given key. Returns false if it does not exist.
 	 * @param string $key
@@ -91,10 +88,9 @@ abstract class BagOStuff {
 	/**
 	 * Delete an item.
 	 * @param string $key
-	 * @param int $time Amount of time to delay the operation (mostly memcached-specific)
 	 * @return bool True if the item was deleted or not found, false on failure
 	 */
-	abstract public function delete( $key, $time = 0 );
+	abstract public function delete( $key );
 
 	/**
 	 * Merge changes into the existing cache value (possibly creating a new one).

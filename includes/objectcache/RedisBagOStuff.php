@@ -147,7 +147,7 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	public function delete( $key, $time = 0 ) {
+	public function delete( $key ) {
 
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {

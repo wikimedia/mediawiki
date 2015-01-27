@@ -85,10 +85,9 @@ class XCacheBagOStuff extends BagOStuff {
 	 * Remove a value from the XCache object cache
 	 *
 	 * @param string $key Cache key
-	 * @param int $time Not used in this implementation
 	 * @return bool
 	 */
-	public function delete( $key, $time = 0 ) {
+	public function delete( $key ) {
 		xcache_unset( $key );
 		return true;
 	}
