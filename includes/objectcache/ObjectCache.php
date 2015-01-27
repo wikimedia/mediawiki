@@ -27,7 +27,10 @@
  * @ingroup Cache
  */
 class ObjectCache {
+	/** @var Array Map of (id => BagOStuff) */
 	public static $instances = array();
+	/** @var Array Map of (id => WANObjectCache) */
+	public static $wanInstances = array();
 
 	/**
 	 * Get a cached instance of the specified type of cache object.
@@ -47,10 +50,28 @@ class ObjectCache {
 	}
 
 	/**
+	 * Get a cached instance of the specified type of cache object.
+	 *
+	 * @param string $id
+	 *
+	 * @return WANObjectCache
+	 */
+	static function getWANInstance( $id ) {
+		if ( isset( self::$wanInstances[$id] ) ) {
+			return self::$wanInstances[$id];
+		}
+
+		$object = self::newWANCacheFromId( $id );
+		self::$wanInstances[$id] = $object;
+		return $object;
+	}
+
+	/**
 	 * Clear all the cached instances.
 	 */
 	static function clear() {
 		self::$instances = array();
+		self::$wanInstances = array();
 	}
 
 	/**
@@ -157,5 +178,29 @@ class ObjectCache {
 	 */
 	static function newMemcached( $params ) {
 		return new MemcachedPhpBagOStuff( $params );
+	}
+
+	/**
+	 * Create a new cache object of the specified type
+	 *
+	 * @param string $id
+	 *
+	 * @throws MWException
+	 * @return WANObjectCache
+	 */
+	static function newWANCacheFromId( $id ) {
+		global $wgWANObjectCaches;
+
+		if ( !isset( $wgWANObjectCaches[$id] ) ) {
+			throw new MWException( "Invalid object cache type \"$id\" requested. " .
+				"It is not present in \$wgWANObjectCaches." );
+		}
+
+		$params = $wgWANObjectCaches[$id];
+		$class = $params['relayerConfig']['class'];
+		$params['relayer'] = new $class( $params['relayerConfig'] );
+		$params['cache'] = self::newFromId( $params['cacheId'] );
+
+		return new WANObjectCache( $params );
 	}
 }
