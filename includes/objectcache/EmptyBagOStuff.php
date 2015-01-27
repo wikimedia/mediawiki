@@ -33,7 +33,7 @@ class EmptyBagOStuff extends BagOStuff {
 	 * @param mixed $casToken [optional]
 	 * @return bool
 	 */
-	function get( $key, &$casToken = null ) {
+	public function get( $key, &$casToken = null ) {
 		return false;
 	}
 
@@ -43,7 +43,7 @@ class EmptyBagOStuff extends BagOStuff {
 	 * @param int $exp
 	 * @return bool
 	 */
-	function set( $key, $value, $exp = 0 ) {
+	public function set( $key, $value, $exp = 0 ) {
 		return true;
 	}
 
@@ -54,7 +54,7 @@ class EmptyBagOStuff extends BagOStuff {
 	 * @param int $exp
 	 * @return bool
 	 */
-	function cas( $casToken, $key, $value, $exp = 0 ) {
+	protected function cas( $casToken, $key, $value, $exp = 0 ) {
 		return true;
 	}
 
@@ -63,7 +63,7 @@ class EmptyBagOStuff extends BagOStuff {
 	 * @param int $time
 	 * @return bool
 	 */
-	function delete( $key, $time = 0 ) {
+	public function delete( $key, $time = 0 ) {
 		return true;
 	}
 

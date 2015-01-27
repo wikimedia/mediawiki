@@ -84,7 +84,7 @@ class MemcachedBagOStuff extends BagOStuff {
 	 * @param int $exptime
 	 * @return bool
 	 */
-	public function cas( $casToken, $key, $value, $exptime = 0 ) {
+	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
 		return $this->client->cas( $casToken, $this->encodeKey( $key ),
 			$value, $this->fixExpiry( $exptime ) );
 	}

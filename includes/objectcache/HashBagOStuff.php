@@ -56,7 +56,7 @@ class HashBagOStuff extends BagOStuff {
 	 * @param mixed $casToken [optional]
 	 * @return bool|mixed
 	 */
-	function get( $key, &$casToken = null ) {
+	public function get( $key, &$casToken = null ) {
 		if ( !isset( $this->bag[$key] ) ) {
 			return false;
 		}
@@ -76,7 +76,7 @@ class HashBagOStuff extends BagOStuff {
 	 * @param int $exptime
 	 * @return bool
 	 */
-	function set( $key, $value, $exptime = 0 ) {
+	public function set( $key, $value, $exptime = 0 ) {
 		$this->bag[$key] = array( $value, $this->convertExpiry( $exptime ) );
 		return true;
 	}
@@ -88,7 +88,7 @@ class HashBagOStuff extends BagOStuff {
 	 * @param int $exptime
 	 * @return bool
 	 */
-	function cas( $casToken, $key, $value, $exptime = 0 ) {
+	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
 		if ( $this->get( $key ) === $casToken ) {
 			return $this->set( $key, $value, $exptime );
 		}

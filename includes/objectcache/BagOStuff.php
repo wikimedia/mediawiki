@@ -79,16 +79,6 @@ abstract class BagOStuff {
 	abstract public function set( $key, $value, $exptime = 0 );
 
 	/**
-	 * Check and set an item.
-	 * @param mixed $casToken
-	 * @param string $key
-	 * @param mixed $value
-	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
-	 * @return bool Success
-	 */
-	abstract public function cas( $casToken, $key, $value, $exptime = 0 );
-
-	/**
 	 * Delete an item.
 	 * @param string $key
 	 * @param int $time Amount of time to delay the operation (mostly memcached-specific)
@@ -139,6 +129,16 @@ abstract class BagOStuff {
 
 		return $success;
 	}
+
+	/**
+	 * Check and set an item.
+	 * @param mixed $casToken
+	 * @param string $key
+	 * @param mixed $value
+	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
+	 * @return bool Success
+	 */
+	abstract protected function cas( $casToken, $key, $value, $exptime = 0 );
 
 	/**
 	 * @see BagOStuff::merge()
