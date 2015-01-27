@@ -43,6 +43,7 @@
 abstract class BagOStuff {
 	private $debugMode = false;
 
+	/** @var integer */
 	protected $lastError = self::ERR_NONE;
 
 	/** Possible values for getLastError() */
@@ -304,7 +305,7 @@ abstract class BagOStuff {
 	 * Decrease stored value of $key by $value while preserving its TTL
 	 * @param string $key
 	 * @param int $value
-	 * @return int
+	 * @return int|bool
 	 */
 	public function decr( $key, $value = 1 ) {
 		return $this->incr( $key, - $value );
