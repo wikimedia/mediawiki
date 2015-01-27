@@ -45,8 +45,6 @@ class SearchHighlighter {
 	public function highlightText( $text, $terms, $contextlines, $contextchars ) {
 		global $wgContLang, $wgSearchHighlightBoundaries;
 
-		$fname = __METHOD__;
-
 		if ( $text == '' ) {
 			return '';
 		}
@@ -444,8 +442,6 @@ class SearchHighlighter {
 	 * @return mixed
 	 */
 	function removeWiki( $text ) {
-		$fname = __METHOD__;
-
 		// $text = preg_replace( "/'{2,5}/", "", $text );
 		// $text = preg_replace( "/\[[a-z]+:\/\/[^ ]+ ([^]]+)\]/", "\\2", $text );
 		// $text = preg_replace( "/\[\[([^]|]+)\]\]/", "\\1", $text );
@@ -503,7 +499,6 @@ class SearchHighlighter {
 	 */
 	public function highlightSimple( $text, $terms, $contextlines, $contextchars ) {
 		global $wgContLang;
-		$fname = __METHOD__;
 
 		$lines = explode( "\n", $text );
 
