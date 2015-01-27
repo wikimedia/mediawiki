@@ -47,6 +47,7 @@ use Psr\Log\NullLogger;
 abstract class BagOStuff implements LoggerAwareInterface {
 	private $debugMode = false;
 
+	/** @var integer */
 	protected $lastError = self::ERR_NONE;
 
 	/**
@@ -123,8 +124,9 @@ abstract class BagOStuff implements LoggerAwareInterface {
 
 	/**
 	 * Merge changes into the existing cache value (possibly creating a new one).
-	 * The callback function returns the new value given the current value (possibly false),
-	 * and takes the arguments: (this BagOStuff object, cache key, current value).
+	 * The callback function returns the new value given the current value
+	 * (which will be false if not present), and takes the arguments:
+	 * (this BagOStuff, cache key, current value).
 	 *
 	 * @param string $key
 	 * @param Closure $callback Callback method to be executed
@@ -329,7 +331,7 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	 * Decrease stored value of $key by $value while preserving its TTL
 	 * @param string $key
 	 * @param int $value
-	 * @return int
+	 * @return int|bool
 	 */
 	public function decr( $key, $value = 1 ) {
 		return $this->incr( $key, - $value );
