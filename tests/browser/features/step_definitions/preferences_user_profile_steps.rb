@@ -15,29 +15,29 @@ end
 
 Then(/^I can change my gender$/) do
   on(PreferencesUserProfilePage) do |page|
-    page.gender_undefined_radio_element.should exist
-    page.gender_male_radio_element.should exist
-    page.gender_female_radio_element.should exist
+    expect(page.gender_undefined_radio_element).to exist
+    expect(page.gender_male_radio_element).to exist
+    expect(page.gender_female_radio_element).to exist
   end
 end
 
 Then(/^I can change my language$/) do
-  on(PreferencesUserProfilePage).lang_select_element.should exist
+  expect(on(PreferencesUserProfilePage).lang_select_element).to exist
 end
 
 Then(/^I can change my signature$/) do
-  on(PreferencesUserProfilePage).signature_field_element.should exist
+  expect(on(PreferencesUserProfilePage).signature_field_element).to exist
 end
 
 Then(/^I can see my Basic informations$/) do
-  on(PreferencesUserProfilePage).basic_info_table_element.should exist
+  expect(on(PreferencesUserProfilePage).basic_info_table_element).to exist
 end
 
 Then(/^I can see my email$/) do
-  on(PreferencesUserProfilePage).email_table_element.should exist
+  expect(on(PreferencesUserProfilePage).email_table_element).to exist
 end
 
 Then(/^I can see my signature$/) do
-  on(PreferencesUserProfilePage).signature_table_element.should exist
+  expect(on(PreferencesUserProfilePage).signature_table_element).to exist
 end
 
