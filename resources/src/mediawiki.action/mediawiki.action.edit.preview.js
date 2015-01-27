@@ -28,6 +28,7 @@
 
 		copySelectors = [
 			// Main
+			'.mw-indicators',
 			'#firstHeading',
 			'#wikiPreview',
 			'#wikiDiff',
@@ -101,7 +102,7 @@
 			$.extend( postData, {
 				pst: '',
 				preview: '',
-				prop: 'text|displaytitle|modules|categorieshtml|templates|langlinks|limitreporthtml'
+				prop: 'text|indicators|displaytitle|modules|categorieshtml|templates|langlinks|limitreporthtml'
 			} );
 			if ( section !== '' ) {
 				postData.sectionpreview = '';
@@ -115,6 +116,18 @@
 						response.parse.modulestyles,
 						response.parse.modulemessages ) );
 				}
+
+				newList = [];
+				$.each( response.parse.indicators || [], function ( i, indicator ) {
+					newList.push( '<div id="' +
+						mw.util.escapeId( 'mw-indicator-' + indicator.name ) +
+						'" class="mw-indicator">' +
+						indicator['*'] +
+						'</div>'
+					);
+				} );
+				$( '.mw-indicators' ).html( newList.join( ' ' ) );
+
 				if ( response.parse.displaytitle ) {
 					$( '#firstHeading' ).html( '<span dir="auto">' + response.parse.displaytitle + '</span>' );
 				}

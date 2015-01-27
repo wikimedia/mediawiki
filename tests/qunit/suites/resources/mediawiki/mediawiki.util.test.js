@@ -17,6 +17,28 @@
 		assert.equal( mw.util.rawurlencode( 'Test:A & B/Here' ), 'Test%3AA%20%26%20B%2FHere' );
 	} );
 
+	QUnit.test( 'escapeId', 15, function ( assert ) {
+		assert.equal( mw.util.escapeId( 'Test:A & B/Here' ), 'Test:A_.26_B.2FHere' );
+		$.each( {
+			'+': '.2B',
+			'&': '.26',
+			'=': '.3D',
+			':': ':',
+			';': '.3B',
+			'@': '.40',
+			'$': '.24',
+			'-_.': '-_.',
+			'!': '.21',
+			'*': '.2A',
+			'/': '.2F',
+			'[]': '.5B.5D',
+			'<>': '.3C.3E',
+			'\'': '.27'
+		}, function ( input, output ) {
+			assert.equal( mw.util.escapeId( input ), output );
+		} );
+	} );
+
 	QUnit.test( 'wikiUrlencode', 10, function ( assert ) {
 		assert.equal( mw.util.wikiUrlencode( 'Test:A & B/Here' ), 'Test:A_%26_B/Here' );
 		// See also wfUrlencodeTest.php#provideURLS
