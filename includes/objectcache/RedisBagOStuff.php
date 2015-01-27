@@ -115,7 +115,7 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	public function cas( $casToken, $key, $value, $expiry = 0 ) {
+	protected function cas( $casToken, $key, $value, $expiry = 0 ) {
 
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {

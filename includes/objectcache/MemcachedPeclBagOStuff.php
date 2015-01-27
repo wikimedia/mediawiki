@@ -145,7 +145,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 * @param int $exptime
 	 * @return bool
 	 */
-	public function cas( $casToken, $key, $value, $exptime = 0 ) {
+	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
 		$this->debugLog( "cas($key)" );
 		return $this->checkResult( $key, parent::cas( $casToken, $key, $value, $exptime ) );
 	}

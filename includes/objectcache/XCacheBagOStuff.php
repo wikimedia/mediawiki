@@ -76,7 +76,7 @@ class XCacheBagOStuff extends BagOStuff {
 	 * @return bool
 	 * @throws MWException
 	 */
-	public function cas( $casToken, $key, $value, $exptime = 0 ) {
+	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
 		// Can't find any documentation on xcache cas
 		throw new MWException( "CAS is not implemented in " . __CLASS__ );
 	}

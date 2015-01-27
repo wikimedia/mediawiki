@@ -73,7 +73,7 @@ class WinCacheBagOStuff extends BagOStuff {
 	 * @param int $exptime Expiration time
 	 * @return bool
 	 */
-	public function cas( $casToken, $key, $value, $exptime = 0 ) {
+	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
 		return wincache_ucache_cas( $key, $casToken, serialize( $value ) );
 	}
 

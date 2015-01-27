@@ -101,16 +101,6 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	abstract public function set( $key, $value, $exptime = 0 );
 
 	/**
-	 * Check and set an item.
-	 * @param mixed $casToken
-	 * @param string $key
-	 * @param mixed $value
-	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
-	 * @return bool Success
-	 */
-	abstract public function cas( $casToken, $key, $value, $exptime = 0 );
-
-	/**
 	 * Delete an item.
 	 * @param string $key
 	 * @return bool True if the item was deleted or not found, false on failure
@@ -160,6 +150,16 @@ abstract class BagOStuff implements LoggerAwareInterface {
 
 		return $success;
 	}
+
+	/**
+	 * Check and set an item.
+	 * @param mixed $casToken
+	 * @param string $key
+	 * @param mixed $value
+	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
+	 * @return bool Success
+	 */
+	abstract protected function cas( $casToken, $key, $value, $exptime = 0 );
 
 	/**
 	 * @see BagOStuff::merge()
