@@ -4384,7 +4384,7 @@ class Parser {
 		# links - this is for later, but we need the number of headlines right now
 		$matches = array();
 		$numMatches = preg_match_all(
-			'/<H(?P<level>[1-6])(?P<attrib>.*?' . '>)\s*(?P<header>[\s\S]*?)\s*<\/H[1-6] *>/i',
+			'/<H(?P<level>[1-6])(?P<attrib>.*?>)\s*(?P<header>[\s\S]*?)\s*<\/H[1-6] *>/i',
 			$text,
 			$matches
 		);
