@@ -2126,6 +2126,42 @@ $wgObjectCaches = array(
 );
 
 /**
+ * Main cache Wide-Area-Network cache type. This should be a cache with fast access,
+ * but it may have limited space. By default, it is disabled, since the database is not
+ * fast enough to make it worthwhile.
+ *
+ * Such caches always do cluster local reads/writes but include an asynchronous purge()
+ * method; this method broadcasts purge events to caches in all data centers in the pool.
+ *
+ * The options are:
+ *   - CACHE_NONE:       Do not cache
+ *   - (other):          A string may be used which identifies a cache
+ *                       configuration in $wgWANObjectCaches.
+ */
+$wgMainWANCache = CACHE_NONE;
+
+/**
+ * Advanced WAN object cache configuration.
+ *
+ * Each WAN cache wraps a registered object cache (for the local cluster)
+ * and is must also be configured to point to a PubSub instance. Subscribers
+ * must be configured to relay purges to the actual cache servers.
+ *
+ * The format is an associative array where the key is a cache identifier, and
+ * the value is an associative array of parameters. The "cacheId" parameter is
+ * a cache identifier from $wgObjectCaches. The "pubSubConfig" parameter is an
+ * array used to construct a PubSubPublisher object. The "pool" parameter is a
+ * string that is used as a PubSub channel prefix.
+ */
+$wgWANObjectCaches = array(
+	CACHE_NONE => array(
+		'pool'          => 'mediawiki-main-none', // e.g. "mediawiki-main-memcached"
+		'cacheId'       => CACHE_NONE, // e.g. "CACHE_MEMCACHED"
+		'pubSubConfig'  => array( 'class' => 'NullPubSubPublisher' )
+	)
+);
+
+/**
  * Map of bloom filter store names to configuration arrays.
  *
  * Example:
