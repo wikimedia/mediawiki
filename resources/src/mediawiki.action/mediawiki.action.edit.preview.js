@@ -41,6 +41,7 @@
 
 		copySelectors = [
 			// Main
+			'.mw-indicators',
 			'#firstHeading',
 			'#wikiPreview',
 			'#wikiDiff',
@@ -117,7 +118,7 @@
 			$wikiDiff.hide();
 
 			$.extend( postData, {
-				prop: 'text|displaytitle|modules|jsconfigvars|categorieshtml|templates|langlinks|limitreporthtml',
+				prop: 'text|indicators|displaytitle|modules|jsconfigvars|categorieshtml|templates|langlinks|limitreporthtml',
 				text: $textbox.textSelection( 'getContents' ),
 				pst: true,
 				preview: true,
@@ -142,6 +143,18 @@
 						response.parse.modulestyles
 					) );
 				}
+
+				newList = [];
+				$.each( response.parse.indicators || [], function ( i, indicator ) {
+					newList.push( '<div id="' +
+						mw.util.escapeId( 'mw-indicator-' + indicator.name ) +
+						'" class="mw-indicator">' +
+						indicator['*'] +
+						'</div>'
+					);
+				} );
+				$( '.mw-indicators' ).html( newList.join( ' ' ) );
+
 				if ( response.parse.displaytitle ) {
 					$displaytitle = $( $.parseHTML( response.parse.displaytitle ) );
 					$( '#firstHeading' ).msg(
