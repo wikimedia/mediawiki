@@ -87,12 +87,14 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 			'config' => array(
 				'Bar' => 'somevalue',
 				'Foo' => 10,
+				'@IGNORED' => 'yes',
 			),
 		) + self::$default;
 		$processor->extractInfo( $this->dir, $info );
 		$extracted = $processor->getExtractedInfo();
 		$this->assertEquals( 'somevalue', $extracted['globals']['wgBar'] );
 		$this->assertEquals( 10, $extracted['globals']['wgFoo'] );
+		$this->assertArrayNotHasKey( 'wg@IGNORED', $extracted['globals'] );
 	}
 
 	public static function provideSetToGlobal() {
