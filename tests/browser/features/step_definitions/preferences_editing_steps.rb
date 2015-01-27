@@ -14,41 +14,41 @@ When(/^I click Editing$/) do
 end
 
 Then(/^I can select edit area font style$/) do
-  on(PreferencesEditingPage).edit_area_font_style_select_element.when_present.should exist
+  expect(on(PreferencesEditingPage).edit_area_font_style_select_element.when_present).to exist
 end
 
 Then(/^I can select live preview$/) do
-  on(PreferencesEditingPage).live_preview_check_element.when_present.should exist
+  expect(on(PreferencesEditingPage).live_preview_check_element.when_present).to exist
 end
 
 Then(/^I can select section editing by double clicking$/) do
-  on(PreferencesEditingPage).edit_section_double_click_check_element.when_present.should exist
+  expect(on(PreferencesEditingPage).edit_section_double_click_check_element.when_present).to exist
 end
 
 Then(/^I can select section editing by right clicking$/) do
-  on(PreferencesEditingPage).edit_section_right_click_check_element.when_present.should exist
+  expect(on(PreferencesEditingPage).edit_section_right_click_check_element.when_present).to exist
 end
 
 Then(/^I can select section editing via edit links$/) do
-  on(PreferencesEditingPage).edit_section_edit_link_element.when_present.should exist
+  expect(on(PreferencesEditingPage).edit_section_edit_link_element.when_present).to exist
 end
 
 Then(/^I can select show edit toolbar$/) do
-  on(PreferencesEditingPage).show_edit_toolbar_check_element.when_present.should exist
+  expect(on(PreferencesEditingPage).show_edit_toolbar_check_element.when_present).to exist
 end
 
 Then(/^I can select show preview before edit box$/) do
-  on(PreferencesEditingPage).preview_on_top_check_element.when_present.should exist
+  expect(on(PreferencesEditingPage).preview_on_top_check_element.when_present).to exist
 end
 
 Then(/^I can select show preview on first edit$/) do
-  on(PreferencesEditingPage).preview_on_first_check_element.when_present.should exist
+  expect(on(PreferencesEditingPage).preview_on_first_check_element.when_present).to exist
 end
 
 Then(/^I can select to prompt me when entering a blank edit summary$/) do
-  on(PreferencesEditingPage).forced_edit_summary_check_element.when_present.should exist
+  expect(on(PreferencesEditingPage).forced_edit_summary_check_element.when_present).to exist
 end
 
 Then(/^I can select to warn me when I leave an edit page with unsaved changes$/) do
-  on(PreferencesEditingPage).unsaved_changes_check_element.when_present.should exist
+  expect(on(PreferencesEditingPage).unsaved_changes_check_element.when_present).to exist
 end
