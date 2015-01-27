@@ -6,6 +6,5 @@ Feature: View History
     When I click Edit
       And I edit the page with "Edited and a random string"
       And I save the edit
-      And the edited page content should contain "Edited and a random string"
       And I click View History
     Then I should see a link to a previous version of the page
