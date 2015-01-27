@@ -331,6 +331,14 @@ class RedisBagOStuff extends BagOStuff {
 		return $this->mergeViaCas( $key, $callback, $exptime, $attempts );
 	}
 
+	public function modifySimpleRelayEvent( array $event ) {
+		if ( array_key_exists( 'val', $event ) ) {
+			$event['val'] = serialize( $event['val'] ); // this class uses PHP serialization
+		}
+
+		return $event;
+	}
+
 	/**
 	 * @param mixed $data
 	 * @return string
