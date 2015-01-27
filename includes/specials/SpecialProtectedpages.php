@@ -353,7 +353,7 @@ class ProtectedPagesPager extends TablePager {
 	/**
 	 * @param string $field
 	 * @param string $value
-	 * @return string
+	 * @return string HTML
 	 * @throws MWException
 	 */
 	function formatValue( $field, $value ) {
@@ -372,7 +372,8 @@ class ProtectedPagesPager extends TablePager {
 						$this->msg( 'protectedpages-unknown-timestamp' )->escaped()
 					);
 				} else {
-					$formatted = $this->getLanguage()->userTimeAndDate( $value, $this->getUser() );
+					$formatted = htmlspecialchars( $this->getLanguage()->userTimeAndDate(
+						$value, $this->getUser() ) );
 				}
 				break;
 
@@ -402,7 +403,8 @@ class ProtectedPagesPager extends TablePager {
 				break;
 
 			case 'pr_expiry':
-				$formatted = $this->getLanguage()->formatExpiry( $value, /* User preference timezone */true );
+				$formatted = htmlspecialchars( $this->getLanguage()->formatExpiry(
+					$value, /* User preference timezone */true ) );
 				$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
 				if ( $this->getUser()->isAllowed( 'protect' ) && $title ) {
 					$changeProtection = Linker::linkKnown(
@@ -454,7 +456,7 @@ class ProtectedPagesPager extends TablePager {
 				// Messages: restriction-level-sysop, restriction-level-autoconfirmed
 				$params[] = $this->msg( 'restriction-level-' . $row->pr_level )->escaped();
 				if ( $row->pr_cascade ) {
-					$params[] = $this->msg( 'protect-summary-cascade' )->text();
+					$params[] = $this->msg( 'protect-summary-cascade' )->escaped();
 				}
 				$formatted = $this->getLanguage()->commaList( $params );
 				break;
