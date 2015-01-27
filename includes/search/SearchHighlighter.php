@@ -442,12 +442,6 @@ class SearchHighlighter {
 	 * @return mixed
 	 */
 	function removeWiki( $text ) {
-		// $text = preg_replace( "/'{2,5}/", "", $text );
-		// $text = preg_replace( "/\[[a-z]+:\/\/[^ ]+ ([^]]+)\]/", "\\2", $text );
-		// $text = preg_replace( "/\[\[([^]|]+)\]\]/", "\\1", $text );
-		// $text = preg_replace( "/\[\[([^]]+\|)?([^|]]+)\]\]/", "\\2", $text );
-		// $text = preg_replace( "/\\{\\|(.*?)\\|\\}/", "", $text );
-		// $text = preg_replace( "/\\[\\[[A-Za-z_-]+:([^|]+?)\\]\\]/", "", $text );
 		$text = preg_replace( "/\\{\\{([^|]+?)\\}\\}/", "", $text );
 		$text = preg_replace( "/\\{\\{([^|]+\\|)(.*?)\\}\\}/", "\\2", $text );
 		$text = preg_replace( "/\\[\\[([^|]+?)\\]\\]/", "\\1", $text );
@@ -456,7 +450,6 @@ class SearchHighlighter {
 			array( $this, 'linkReplace' ),
 			$text
 		);
-		// $text = preg_replace("/\\[\\[([^|]+\\|)(.*?)\\]\\]/", "\\2", $text);
 		$text = preg_replace( "/<\/?[^>]+>/", "", $text );
 		$text = preg_replace( "/'''''/", "", $text );
 		$text = preg_replace( "/('''|<\/?[iIuUbB]>)/", "", $text );
