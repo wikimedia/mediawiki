@@ -636,7 +636,7 @@ class MWMemcached {
 	 *
 	 * @return bool True on success
 	 */
-	public function cas( $casToken, $key, $value, $exp = 0 ) {
+	protected function cas( $casToken, $key, $value, $exp = 0 ) {
 		return $this->_set( 'cas', $key, $value, $exp, $casToken );
 	}
 
