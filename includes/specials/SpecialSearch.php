@@ -381,13 +381,13 @@ class SpecialSearch extends SpecialPage {
 				$out->wrapWikiMsg( "==$1==\n", 'textmatches' );
 			}
 
-			// show interwiki results if any
-			if ( $textMatches->hasInterwikiResults() ) {
-				$out->addHTML( $this->showInterwiki( $textMatches->getInterwikiResults(), $term ) );
-			}
 			// show results
 			if ( $numTextMatches > 0 ) {
 				$out->addHTML( $this->showMatches( $textMatches ) );
+			}
+			// show interwiki results if any
+			if ( $textMatches->hasInterwikiResults() ) {
+				$out->addHTML( $this->showInterwiki( $textMatches->getInterwikiResults(), $term ) );
 			}
 
 			$textMatches->free();
