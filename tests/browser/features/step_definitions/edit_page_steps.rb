@@ -19,5 +19,5 @@ When(/^I save the edit$/) do
 end
 
 Then(/^the edited page content should contain "(.*?)"$/) do |content|
-  on(MainPage).page_content.should match(content + @random_string)
+  expect(on(MainPage).page_content).to match(content + @random_string)
 end

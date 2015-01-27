@@ -14,5 +14,5 @@ Given(/^I am at file that does not exist$/) do
 end
 
 Then(/^page should show that no such file exists$/) do
-  on(FileDoesNotExistPage).file_does_not_exist_message_element.should be_visible
+  expect(on(FileDoesNotExistPage).file_does_not_exist_message_element).to be_visible
 end

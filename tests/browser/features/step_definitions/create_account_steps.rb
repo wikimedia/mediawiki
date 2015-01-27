@@ -14,5 +14,5 @@ Given(/^I go to Create account page at (.+)$/) do |path|
 end
 
 Then(/^form has Create account button$/) do
-  on(CreateAccountPage).create_account_element.should exist
+  expect(on(CreateAccountPage).create_account_element).to exist
 end
