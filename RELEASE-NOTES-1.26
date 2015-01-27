@@ -21,6 +21,8 @@ production.
 === Action API changes in 1.26 ===
 * API action=query&list=tags: The displayname can now be boolean false if the
   tag is meant to be hidden from user interfaces.
+* action=import no longer allows both the namespace= and rootpage= parameters
+  to be set. If they are both set, the value of rootpage= will be ignored.
 
 === Action API internal changes in 1.26 ===
 
