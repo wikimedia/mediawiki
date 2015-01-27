@@ -650,7 +650,7 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @return string
+	 * @return string HTML
 	 */
 	function getUndeleteLink() {
 		$action = $this->getRequest()->getVal( 'action', 'view' );
@@ -670,7 +670,7 @@ abstract class Skin extends ContextSource {
 					Linker::linkKnown(
 						SpecialPage::getTitleFor( 'Undelete', $this->getTitle()->getPrefixedDBkey() ),
 						$this->msg( 'restorelink' )->numParams( $n )->escaped() )
-					)->text();
+					)->escaped();
 			}
 		}
 
