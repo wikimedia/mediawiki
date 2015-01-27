@@ -2066,8 +2066,8 @@ $wgCacheDirectory = false;
 
 /**
  * Main cache type. This should be a cache with fast access, but it may have
- * limited space. By default, it is disabled, since the database is not fast
- * enough to make it worthwhile.
+ * limited space. By default, it is disabled, since the stock database cache
+ * is not fast enough to make it worthwhile.
  *
  * The options are:
  *
@@ -2143,6 +2143,48 @@ $wgObjectCaches = array(
 	'memcached-php' => array( 'class' => 'MemcachedPhpBagOStuff', 'loggroup' => 'memcached' ),
 	'memcached-pecl' => array( 'class' => 'MemcachedPeclBagOStuff', 'loggroup' => 'memcached' ),
 	'hash' => array( 'class' => 'HashBagOStuff' ),
+);
+
+/**
+ * Main cache Wide-Area-Network cache type. This should be a cache with fast access,
+ * but it may have limited space. By default, it is disabled, since the basic stock
+ * cache is not fast enough to make it worthwhile. For single data-center setups, this can
+ * simply be pointed to a cache in $wgWANObjectCaches that uses a local $wgObjectCaches
+ * cache with a relayer of type EventRelayerNull.
+ *
+ * The options are:
+ *   - CACHE_NONE:       Do not cache
+ *   - (other):          A string may be used which identifies a cache
+ *                       configuration in $wgWANObjectCaches.
+ */
+$wgMainWANCache = CACHE_NONE;
+
+/**
+ * Advanced WAN object cache configuration.
+ *
+ * Each WAN cache wraps a registered object cache (for the local cluster)
+ * and is must also be configured to point to a PubSub instance. Subscribers
+ * must be configured to relay purges to the actual cache servers.
+ *
+ * The format is an associative array where the key is a cache identifier, and
+ * the value is an associative array of parameters. The "cacheId" parameter is
+ * a cache identifier from $wgObjectCaches. The "relayerConfig" parameter is an
+ * array used to construct an EventRelayer object. The "pool" parameter is a
+ * string that is used as a PubSub channel prefix.
+ */
+$wgWANObjectCaches = array(
+	CACHE_NONE => array(
+		'pool'          => 'mediawiki-main-none',
+		'cacheId'       => CACHE_NONE,
+		'relayerConfig' => array( 'class' => 'EventRelayerNull' )
+	)
+	/* Example of a simple single data-center cache:
+	'memcached-php' => array(
+		'pool'          => 'mediawiki-main-memcached',
+		'cacheId'       => 'memcached-php'
+		'relayerConfig' => array( 'class' => 'EventRelayerNull' )
+	)
+	*/
 );
 
 /**
