@@ -18,9 +18,9 @@ When(/^I click the Link Target link$/) do
 end
 
 Then(/^I should be on the Link Target Test Page$/) do
-  browser.url.should match(/Link_Target_Test_Page/)
+  expect(@browser.url).to match /Link_Target_Test_Page/
 end
 
 Then(/^the page content should contain "(.*?)"$/) do |content|
-  on(ZtargetPage).page_content.should match content
+  expect(on(ZtargetPage).page_content).to match content
 end
