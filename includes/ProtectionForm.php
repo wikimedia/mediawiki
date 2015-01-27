@@ -412,11 +412,9 @@ class ProtectionForm {
 				} else {
 					list( $show, $value ) = explode( ":", $option );
 				}
-				$show = htmlspecialchars( $show );
-				$value = htmlspecialchars( $value );
 				$expiryFormOptions .= Xml::option(
 					$show,
-					$value,
+					htmlspecialchars( $value ),
 					$this->mExpirySelection[$action] === $value
 				) . "\n";
 			}
