@@ -7,7 +7,8 @@
 			"Victorsa",
 			"Albinomamba",
 			"Peki01",
-			"Stens51"
+			"Stens51",
+			"Boom"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [https://www.mediawiki.org/wiki/API:Main_page Dokumentation]\n* [https://www.mediawiki.org/wiki/API:FAQ FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api E-postlist]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-aviseringar]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Buggar & förslag]\n</div>\n<strong>Status:</strong> Alla funktioner som visas på denna sida borde fungera. API:et är dock fortfarande under aktiv utveckling och kan ändras när som helst. Prenumerera på [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce e-postlistan] för att få aviseringar om uppdateringar.\n\n<strong>Felaktiga förfrågningar:</strong> När felaktiga förfrågningar skickas till API:et skickas en HTTP-header med nyckeln \"MediaWiki-API-Error\" och sedan sätts både värdet på headern och den felkoden som returneras till samma värde. För mer information läs https://www.mediawiki.org/wiki/API:Errors_and_warnings.",
@@ -147,6 +148,7 @@
 	"apihelp-logout-description": "Logga ut och rensa sessionsdata.",
 	"apihelp-logout-example-logout": "Logga ut den aktuella användaren",
 	"apihelp-move-description": "Flytta en sida.",
+	"apihelp-move-param-from": "Titeln på sidan du vill flytta. Kan inte användas tillsammans med $1fromid.",
 	"apihelp-move-param-reason": "Orsak till flyttningen.",
 	"apihelp-move-param-movetalk": "Flytta diskussionssidan om den finns.",
 	"apihelp-move-param-noredirect": "Skapa inte en omdirigering.",
@@ -160,6 +162,8 @@
 	"apihelp-opensearch-param-format": "Formatet för utdata.",
 	"apihelp-opensearch-example-te": "Hitta sidor som börjar med \"Te\"",
 	"apihelp-options-example-reset": "Återställ alla inställningar",
+	"apihelp-options-example-complex": "Återställ alla inställningar, ställ sedan in \"skin\" och \"nickname\"",
+	"apihelp-paraminfo-description": "Få information om API moduler.",
 	"apihelp-paraminfo-param-helpformat": "Format för hjälpsträngar.",
 	"apihelp-patrol-example-revid": "Patrullera en sidversion",
 	"apihelp-protect-description": "Ändra skyddsnivån för en sida.",

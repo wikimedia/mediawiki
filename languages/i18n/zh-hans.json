@@ -737,7 +737,7 @@
 	"duplicate-args-category": "调用重复模板参数的页面",
 	"duplicate-args-category-desc": "页面包含调用了重复参数的模板，例如<code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code>或<code><nowiki>{{foo|bar|1=baz}}</nowiki></code>。",
 	"expensive-parserfunction-warning": "<strong>警告：</strong>这个页面有太多高昂的语法功能调用。\n\n它应该少过$2次呼叫，现在有$1次呼叫。",
-	"expensive-parserfunction-category": "有过多高开销解析器函数调用的页面",
+	"expensive-parserfunction-category": "页面中有太多耗费的语法功能呼叫",
 	"post-expand-template-inclusion-warning": "'''警告：'''包含模板大小过大。\n一些模板将不会包含。",
 	"post-expand-template-inclusion-category": "模板包含上限已经超过的页面",
 	"post-expand-template-argument-warning": "<strong>警告：</strong>本页面包含至少一个模板参数有过大扩展大小。这些参数会被略过。",

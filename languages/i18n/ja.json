@@ -63,7 +63,8 @@
 			"Takot",
 			"SkyDaisy9",
 			"Los688",
-			"朝彦"
+			"朝彦",
+			"Otokoume"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -936,6 +937,7 @@
 	"prefs-personal": "利用者情報",
 	"prefs-rc": "最近の更新",
 	"prefs-watchlist": "ウォッチリスト",
+	"prefs-editwatchlist": "ウォッチリストの編集",
 	"prefs-watchlist-days": "ウォッチリストの表示日数:",
 	"prefs-watchlist-days-max": "最大 $1 {{PLURAL:$1|日間}}",
 	"prefs-watchlist-edits": "ウォッチリストの展開時の最大表示件数:",
@@ -1188,6 +1190,7 @@
 	"action-viewmywatchlist": "自身のウォッチリストの閲覧",
 	"action-viewmyprivateinfo": "自分の非公開情報の閲覧",
 	"action-editmyprivateinfo": "自分の非公開情報の編集",
+	"action-editcontentmodel": "ページのコンテンツモデルを編集",
 	"nchanges": "$1 {{PLURAL:$1|回の変更}}",
 	"enhancedrc-since-last-visit": "最終閲覧以降 $1 {{PLURAL:$1|件}}",
 	"enhancedrc-history": "履歴",

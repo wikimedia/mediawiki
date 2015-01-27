@@ -61,7 +61,8 @@
 			"Abbedabb",
 			"Platinawolf",
 			"Albinomamba",
-			"Stens51"
+			"Stens51",
+			"Boom"
 		]
 	},
 	"tog-underline": "Stryk under länkar:",
@@ -932,6 +933,11 @@
 	"prefs-personal": "Mitt konto",
 	"prefs-rc": "Senaste ändringar",
 	"prefs-watchlist": "Bevakningslista",
+	"prefs-editwatchlist": "Redigera bevakningslistan",
+	"prefs-editwatchlist-label": "Redigera poster på din bevakningslista:",
+	"prefs-editwatchlist-edit": "Visa och ta bort titlar på din bevakningslista",
+	"prefs-editwatchlist-raw": "Redigera bevakningslistan i råformat",
+	"prefs-editwatchlist-clear": "Rensa din bevakningslista",
 	"prefs-watchlist-days": "Antal dygn som skall visas i bevakningslistan:",
 	"prefs-watchlist-days-max": "Maximalt $1 {{PLURAL:$1|dag|dygn}}",
 	"prefs-watchlist-edits": "Maximalt antal redigeringar som visas i utökad bevakningslista:",
@@ -1448,7 +1454,7 @@
 	"filehist-comment": "Kommentar",
 	"imagelinks": "Filanvändning",
 	"linkstoimage": "Följande {{PLURAL:$1|sida|$1 sidor}} länkar till den här filen:",
-	"linkstoimage-more": "Mer änr {{PLURAL:$1|en sida|$1 sidor}} länkar till den här filen.\nFöljande lista visar bara {{PLURAL:$1|den första sidan|de $1 första sidorna}} som länkar till filen.\nDet finns en [[Special:WhatLinksHere/$2|fullständig lista]].",
+	"linkstoimage-more": "Mer än {{PLURAL:$1|en sida|$1 sidor}} länkar till den här filen.\nFöljande lista visar bara {{PLURAL:$1|den första sidan|de $1 första sidorna}} som länkar till filen.\nDet finns en [[Special:WhatLinksHere/$2|fullständig lista]].",
 	"nolinkstoimage": "Inga sidor länkar till den här filen.",
 	"morelinkstoimage": "Visa [[Special:WhatLinksHere/$1|fler länkar]] till den här filen.",
 	"linkstoimage-redirect": "$1 (filomdirigering) $2",

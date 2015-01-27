@@ -42,7 +42,8 @@
 			"Syreeni",
 			"MrTapsa",
 			"SMAUG",
-			"SuperPete"
+			"SuperPete",
+			"McSalama"
 		]
 	},
 	"tog-underline": "Linkkien alleviivaus:",
@@ -913,6 +914,11 @@
 	"prefs-personal": "Käyttäjätiedot",
 	"prefs-rc": "Tuoreet muutokset",
 	"prefs-watchlist": "Tarkkailulista",
+	"prefs-editwatchlist": "Muokkaa tarkkailulistaa",
+	"prefs-editwatchlist-label": "Muokkaa tarkkailulistasi merkintöjä:",
+	"prefs-editwatchlist-edit": "Näytä ja poista kohteita tarkkailulistallasi",
+	"prefs-editwatchlist-raw": "Muokkaa tarkkailulistan raakaversiota",
+	"prefs-editwatchlist-clear": "Tyhjennä tarkkailulistasi",
 	"prefs-watchlist-days": "Näytettävien päivien määrä tarkkailulistalla",
 	"prefs-watchlist-days-max": "Enintään $1 {{PLURAL:$1|päivä|päivää}}",
 	"prefs-watchlist-edits": "Tarkkailulistalla näytettävien muokkausten määrä",

@@ -3206,5 +3206,7 @@
 	"json-error-ctrl-char": "Erro de carácter de controlo, possivelmente codificado incorretamente",
 	"json-error-syntax": "Erro de sintaxe",
 	"json-error-utf8": "Caracteres UTF-8 mal formatados, possivelmente codificado incorretamente",
+	"json-error-recursion": "Uma ou mais referências recursivas no valor a ser codificado",
+	"json-error-inf-or-nan": "Um ou mais valores NaN ou INF no valor a ser codificado",
 	"json-error-unsupported-type": "Foi dado um valor de um tipo que não pode ser codificado"
 }

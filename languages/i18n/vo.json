@@ -8,7 +8,8 @@
 			"Reedy",
 			"Smeira",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Rachmat.Wahidi"
 		]
 	},
 	"tog-underline": "Dislienükön yümis:",
@@ -1271,7 +1272,6 @@
 	"delete-toobig": "Pad at labon redakamajenotemi lunik ({{PLURAL:$1|revid|revids}} plu $1).\nMoükam padas somik pemiedükon ad vitön däropami pö {{SITENAME}}.",
 	"delete-warning-toobig": "Pad at labon jenotemi lunik: {{PLURAL:$1|revid|revids}} plu $1.\nPrudö! Moükam onik ba osäkädükon jäfidi nünodema: {{SITENAME}}.",
 	"rollback": "Sädunön redakamis",
-	"rollback_short": "Sädunön vali",
 	"rollbacklink": "sädunön vali",
 	"rollbackfailed": "Sädunam no eplöpon",
 	"cantrollback": "Redakam no kanon pasädunön; keblünan lätik binon lautan teik pada at.",
@@ -1285,7 +1285,7 @@
 	"protectedarticle": "ejelon padi: „[[$1]]“",
 	"modifiedarticleprotection": "evotükon jelanivodi pada: „[[$1]]“",
 	"unprotectedarticle": "esäjelon padi: \"[[$1]]\"",
-	"movedarticleprotection": "moved protection settings from „[[$2]]“ to „[[$1]]“",
+	"movedarticleprotection": "mengubah pengaturan perlindungan dari „[[$2]]“ ke „[[$1]]“",
 	"protect-title": "lonon jelanivodi pada: „$1“",
 	"prot_1movedto2": "[[$1]] petopätükon lü [[$2]]",
 	"protect-legend": "Fümedolös jeli",
