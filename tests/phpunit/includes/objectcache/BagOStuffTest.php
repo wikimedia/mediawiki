@@ -12,7 +12,7 @@ class BagOStuffTest extends MediaWikiTestCase {
 		if ( $this->getCliArg( 'use-bagostuff' ) ) {
 			$name = $this->getCliArg( 'use-bagostuff' );
 
-			$this->cache = ObjectCache::newFromId( $name );
+			$this->cache = ObjectCache::newWANCacheFromId( $name );
 		} else {
 			// no type defined - use simple hash
 			$this->cache = new HashBagOStuff;
