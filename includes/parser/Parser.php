@@ -4384,7 +4384,7 @@ class Parser {
 		# links - this is for later, but we need the number of headlines right now
 		$matches = array();
 		$numMatches = preg_match_all(
-			'/<H(?P<level>[1-6])(?P<attrib>.*?' . '>)\s*(?P<header>[\s\S]*?)\s*<\/H[1-6] *>/i',
+			'/<H(?P<level>[1-6])(?P<attrib>.*?>)\s*(?P<header>[\s\S]*?)\s*<\/H[1-6] *>/i',
 			$text,
 			$matches
 		);
@@ -4538,8 +4538,8 @@ class Parser {
 			# to allow setting directionality in toc items.
 			$tocline = preg_replace(
 				array(
-					'#<(?!/?(span|sup|sub|bdi|i|b)(?: [^>]*)?>).*?' . '>#',
-					'#<(/?(?:span(?: dir="(?:rtl|ltr)")?|sup|sub|bdi|i|b))(?: .*?)?' . '>#'
+					'#<(?!/?(span|sup|sub|bdi|i|b)(?: [^>]*)?>).*?>#',
+					'#<(/?(?:span(?: dir="(?:rtl|ltr)")?|sup|sub|bdi|i|b))(?: .*?)?>#'
 				),
 				array( '', '<$1>' ),
 				$safeHeadline
@@ -4547,7 +4547,7 @@ class Parser {
 			$tocline = trim( $tocline );
 
 			# For the anchor, strip out HTML-y stuff period
-			$safeHeadline = preg_replace( '/<.*?' . '>/', '', $safeHeadline );
+			$safeHeadline = preg_replace( '/<.*?>/', '', $safeHeadline );
 			$safeHeadline = Sanitizer::normalizeSectionNameWhitespace( $safeHeadline );
 
 			# Save headline for section edit hint before it's escaped
@@ -4715,7 +4715,7 @@ class Parser {
 		}
 
 		# split up and insert constructed headlines
-		$blocks = preg_split( '/<H[1-6].*?' . '>[\s\S]*?<\/H[1-6]>/i', $text );
+		$blocks = preg_split( '/<H[1-6].*?>[\s\S]*?<\/H[1-6]>/i', $text );
 		$i = 0;
 
 		// build an array of document sections
