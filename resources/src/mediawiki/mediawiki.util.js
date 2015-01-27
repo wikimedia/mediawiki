@@ -59,6 +59,18 @@
 		},
 
 		/**
+		 * Encode the string like Sanitizer::escapeId in PHP
+		 *
+		 * @param {string} str String to be encoded.
+		 */
+		escapeId: function ( str ) {
+			str = String( str );
+			return util.rawurlencode( str.replace( / /g, '_' ) )
+				.replace( /%3A/g, ':' )
+				.replace( /%/g, '.' );
+		},
+
+		/**
 		 * Encode page titles for use in a URL
 		 *
 		 * We want / and : to be included as literal characters in our title URLs
