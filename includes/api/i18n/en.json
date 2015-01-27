@@ -188,8 +188,8 @@
 	"apihelp-import-param-interwikipage": "For interwiki imports: page to import.",
 	"apihelp-import-param-fullhistory": "For interwiki imports: import the full history, not just the current version.",
 	"apihelp-import-param-templates": "For interwiki imports: import all included templates as well.",
-	"apihelp-import-param-namespace": "For interwiki imports: import to this namespace.",
-	"apihelp-import-param-rootpage": "Import as subpage of this page.",
+	"apihelp-import-param-namespace": "Import to this namespace. Overrides the <kbd>$1rootpage</kbd> parameter.",
+	"apihelp-import-param-rootpage": "Import as subpage of this page. Ignored if the <kbd>$1namespace</kbd> parameter is provided.",
 	"apihelp-import-example-import": "Import [[meta:Help:Parserfunctions]] to namespace 100 with full history.",
 
 	"apihelp-login-description": "Log in and get authentication cookies.\n\nIn the event of a successful log-in, the needed cookies will be included in the HTTP response headers. In the event of a failed log-in, further attempts may be throttled to limit automated password guessing attacks.",
