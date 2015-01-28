@@ -197,7 +197,16 @@ class SpecialChangePassword extends FormSpecialPage {
 				throw new ErrorPageError( 'changepassword', 'resetpass_forbidden' );
 			}
 
-			$this->attemptReset( $data['Password'], $data['NewPassword'], $data['Retype'] );
+			$user = User::newFromName( $this->mUserName );
+			if ( !$user || $user->isAnon() ) {
+				throw new PasswordError( $this->msg( 'nosuchusershort', $this->mUserName )->text() );
+			}
+
+			$manager = new UserManager( $user, $this->getContext() );
+			$status = $manager->changePassword( $data['Password'], $data['NewPassword'], $data['Retype'] );
+			if ( !$status->isGood() ) {
+				return $status->getWikiText();
+			}
 
 			return true;
 		} catch ( PasswordError $e ) {
@@ -227,81 +236,6 @@ class SpecialChangePassword extends FormSpecialPage {
 			$login->setContext( $this->getContext() );
 			$login->execute( null );
 		}
-	}
-
-	/**
-	 * @param string $oldpass
-	 * @param string $newpass
-	 * @param string $retype
-	 * @throws PasswordError When cannot set the new password because requirements not met.
-	 */
-	protected function attemptReset( $oldpass, $newpass, $retype ) {
-		$isSelf = ( $this->mUserName === $this->getUser()->getName() );
-		if ( $isSelf ) {
-			$user = $this->getUser();
-		} else {
-			$user = User::newFromName( $this->mUserName );
-		}
-
-		if ( !$user || $user->isAnon() ) {
-			throw new PasswordError( $this->msg( 'nosuchusershort', $this->mUserName )->text() );
-		}
-
-		if ( $newpass !== $retype ) {
-			Hooks::run( 'PrefsPasswordAudit', array( $user, $newpass, 'badretype' ) );
-			throw new PasswordError( $this->msg( 'badretype' )->text() );
-		}
-
-		$throttleCount = LoginForm::incLoginThrottle( $this->mUserName );
-		if ( $throttleCount === true ) {
-			$lang = $this->getLanguage();
-			$throttleInfo = $this->getConfig()->get( 'PasswordAttemptThrottle' );
-			throw new PasswordError( $this->msg( 'changepassword-throttled' )
-				->params( $lang->formatDuration( $throttleInfo['seconds'] ) )
-				->text()
-			);
-		}
-
-		// @todo Make these separate messages, since the message is written for both cases
-		if ( !$user->checkTemporaryPassword( $oldpass ) && !$user->checkPassword( $oldpass ) ) {
-			Hooks::run( 'PrefsPasswordAudit', array( $user, $newpass, 'wrongpassword' ) );
-			throw new PasswordError( $this->msg( 'resetpass-wrong-oldpass' )->text() );
-		}
-
-		// User is resetting their password to their old password
-		if ( $oldpass === $newpass ) {
-			throw new PasswordError( $this->msg( 'resetpass-recycled' )->text() );
-		}
-
-		// Do AbortChangePassword after checking mOldpass, so we don't leak information
-		// by possibly aborting a new password before verifying the old password.
-		$abortMsg = 'resetpass-abort-generic';
-		if ( !Hooks::run( 'AbortChangePassword', array( $user, $oldpass, $newpass, &$abortMsg ) ) ) {
-			Hooks::run( 'PrefsPasswordAudit', array( $user, $newpass, 'abortreset' ) );
-			throw new PasswordError( $this->msg( $abortMsg )->text() );
-		}
-
-		// Please reset throttle for successful logins, thanks!
-		if ( $throttleCount ) {
-			LoginForm::clearLoginThrottle( $this->mUserName );
-		}
-
-		try {
-			$user->setPassword( $newpass );
-			Hooks::run( 'PrefsPasswordAudit', array( $user, $newpass, 'success' ) );
-		} catch ( PasswordError $e ) {
-			Hooks::run( 'PrefsPasswordAudit', array( $user, $newpass, 'error' ) );
-			throw new PasswordError( $e->getMessage() );
-		}
-
-		if ( $isSelf ) {
-			// This is needed to keep the user connected since
-			// changing the password also modifies the user's token.
-			$remember = $this->getRequest()->getCookie( 'Token' ) !== null;
-			$user->setCookies( null, null, $remember );
-		}
-		$user->resetPasswordExpiration();
-		$user->saveSettings();
 	}
 
 	public function requiresUnblock() {

@@ -119,7 +119,9 @@ class SpecialChangeEmail extends FormSpecialPage {
 
 	public function onSubmit( array $data ) {
 		$password = isset( $data['Password'] ) ? $data['Password'] : null;
-		$status = $this->attemptChange( $this->getUser(), $password, $data['NewEmail'] );
+
+		$manager = new UserManager( $this->getUser(), $this->getContext() );
+		$status = $manager->changeEmail( $password, $data['NewEmail'] );
 
 		$this->status = $status;
 
@@ -143,55 +145,6 @@ class SpecialChangeEmail extends FormSpecialPage {
 				'eauthentsent', $this->getUser()->getName() );
 			$this->getOutput()->addReturnTo( $titleObj, wfCgiToArray( $query ) ); // just show the link to go back
 		}
-	}
-
-	/**
-	 * @param User $user
-	 * @param string $pass
-	 * @param string $newaddr
-	 * @return Status
-	 */
-	private function attemptChange( User $user, $pass, $newaddr ) {
-		global $wgAuth;
-
-		if ( $newaddr != '' && !Sanitizer::validateEmail( $newaddr ) ) {
-			return Status::newFatal( 'invalidemailaddress' );
-		}
-
-		$throttleCount = LoginForm::incLoginThrottle( $user->getName() );
-		if ( $throttleCount === true ) {
-			$lang = $this->getLanguage();
-			$throttleInfo = $this->getConfig()->get( 'PasswordAttemptThrottle' );
-			return Status::newFatal(
-				'changeemail-throttled',
-				$lang->formatDuration( $throttleInfo['seconds'] )
-			);
-		}
-
-		if ( $this->getConfig()->get( 'RequirePasswordforEmailChange' )
-			&& !$user->checkTemporaryPassword( $pass )
-			&& !$user->checkPassword( $pass )
-		) {
-			return Status::newFatal( 'wrongpassword' );
-		}
-
-		if ( $throttleCount ) {
-			LoginForm::clearLoginThrottle( $user->getName() );
-		}
-
-		$oldaddr = $user->getEmail();
-		$status = $user->setEmailWithConfirmation( $newaddr );
-		if ( !$status->isGood() ) {
-			return $status;
-		}
-
-		Hooks::run( 'PrefsEmailAudit', array( $user, $oldaddr, $newaddr ) );
-
-		$user->saveSettings();
-
-		$wgAuth->updateExternalDB( $user );
-
-		return $status;
 	}
 
 	public function requiresUnblock() {

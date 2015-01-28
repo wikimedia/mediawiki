@@ -34,6 +34,21 @@
 	"apihelp-block-example-ip-simple": "Block IP address <kbd>192.0.2.5</kbd> for three days with reason <kbd>First strike</kbd>.",
 	"apihelp-block-example-user-complex": "Block user <kbd>Vandal</kbd> indefinitely with reason <kbd>Vandalism</kbd>, and prevent new account creation and email sending.",
 
+	"apihelp-changeemail-description": "Change a user's email address.",
+	"apihelp-changeemail-param-user": "User whose email address is to be changed, rather than the current user.",
+	"apihelp-changeemail-param-password": "User's current password.",
+	"apihelp-changeemail-param-email": "New email address to set.",
+	"apihelp-changeemail-example-simple": "Change the current user's email address to <kbd>user@example.com</kbd>.",
+
+	"apihelp-changepassword-description": "Change a user's password.\n\nThe first request should be made without the <var>$1oldpassword</var>, <var>$1newpassword</var>, <var>$1retypepassword</var>, or <var>$1token</var> parameters to receive a <samp>needtoken</samp> result with the needed token. The second token should then supply these parameters to actually change the password.",
+	"apihelp-changepassword-param-user": "User whose password is to be changed, rather than the current user.",
+	"apihelp-changepassword-param-token": "Token obtained in first request.",
+	"apihelp-changepassword-param-oldpassword": "Current password.",
+	"apihelp-changepassword-param-newpassword": "New password.",
+	"apihelp-changepassword-param-retypepassword": "New password entered a second time for verification. May be omitted if this verification is not needed.",
+	"apihelp-changepassword-example-token": "Fetch the token.",
+	"apihelp-changepassword-example-simple": "Change the current user's password.",
+
 	"apihelp-clearhasmsg-description": "Clears the <code>hasmsg</code> flag for the current user.",
 	"apihelp-clearhasmsg-example-1": "Clear the <code>hasmsg</code> flag for the current user.",
 
@@ -957,6 +972,15 @@
 	"apihelp-query+watchlistraw-param-token": "A security token (available in the user's [[Special:Preferences#mw-prefsection-watchlist|preferences]]) to allow access to another user's watchlist.",
 	"apihelp-query+watchlistraw-example-simple": "List pages on the current user's watchlist.",
 	"apihelp-query+watchlistraw-example-generator": "Fetch page info for pages on the current user's watchlist.",
+
+	"apihelp-resetpassword-description": "Send a password reset email.",
+	"apihelp-resetpassword-param-username": "User whose password is to be reset.",
+	"apihelp-resetpassword-param-email": "Send a password reset email to this address.",
+	"apihelp-resetpassword-param-domain": "Authentication domain used when resetting the password.",
+	"apihelp-resetpassword-param-capture": "Return the text of the email send. Requires the <code>passwordreset</code> right.",
+	"apihelp-resetpassword-example-user": "Send a password reset email to user <kbd>Example</kbd>.",
+	"apihelp-resetpassword-example-email": "Send a password reset email to <kbd>user@example.com</kbd>, if that address is confirmed for any accounts.",
+	"apihelp-resetpassword-example-user-capture": "Send a password reset email to user <kbd>Example</kbd>, and return the text of the email.",
 
 	"apihelp-revisiondelete-description": "Delete and undelete revisions.",
 	"apihelp-revisiondelete-param-type": "Type of revision deletion being performed.",
