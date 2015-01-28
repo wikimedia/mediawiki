@@ -555,7 +555,7 @@ class SpecialVersion extends SpecialPage {
 		if ( count( $tags ) ) {
 			$out = Html::rawElement(
 				'h2',
-				array( 'class' => 'mw-headline' ),
+				array( 'class' => 'mw-headline plainlinks' ),
 				Linker::makeExternalLink(
 					'//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Tag_extensions',
 					$this->msg( 'version-parser-extensiontags' )->parse(),
@@ -593,7 +593,7 @@ class SpecialVersion extends SpecialPage {
 
 		$fhooks = $wgParser->getFunctionHooks();
 		if ( count( $fhooks ) ) {
-			$out = Html::rawElement( 'h2', array( 'class' => 'mw-headline' ), Linker::makeExternalLink(
+			$out = Html::rawElement( 'h2', array( 'class' => 'mw-headline plainlinks' ), Linker::makeExternalLink(
 				'//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Parser_functions',
 				$this->msg( 'version-parser-function-hooks' )->parse(),
 				false /* msg()->parse() already escapes */
