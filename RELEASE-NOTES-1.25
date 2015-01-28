@@ -186,6 +186,7 @@ production.
   interwiki redirects to the list of interwiki titles.
 * (T85417) When outputting the list of redirect titles, a 'tointerwiki'
   property (like the existing 'tofragment' property) will be set.
+* (T32788) Added action=resetpassword, action=changepassword, and action=changeemail.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.
