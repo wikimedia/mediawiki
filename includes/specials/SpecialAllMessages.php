@@ -224,14 +224,15 @@ class AllMessagesTablePager extends TablePager {
 
 	function getAllMessages( $descending ) {
 		$messageNames = Language::getLocalisationCache()->getSubitemList( 'en', 'messages' );
+
+		// Normalise message names so they look like page titles and sort correctly - T86139
+		$messageNames = array_map( array( $this->lang, 'ucfirst' ), $messageNames );
+
 		if ( $descending ) {
 			rsort( $messageNames );
 		} else {
 			asort( $messageNames );
 		}
-
-		// Normalise message names so they look like page titles
-		$messageNames = array_map( array( $this->lang, 'ucfirst' ), $messageNames );
 
 		return $messageNames;
 	}
