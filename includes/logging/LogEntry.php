@@ -385,13 +385,14 @@ class ManualLogEntry extends LogEntryBase {
 
 	/**
 	 * Set extra log parameters.
-	 * You can pass params to the log action message
-	 * by prefixing the keys with a number and colon.
-	 * The numbering should start with number 4, the
-	 * first three parameters are hardcoded for every
-	 * message. Example:
+	 *
+	 * You can pass params to the log action message by prefixing the keys with
+	 * a number and optional type, using colons to separate the fields. The
+	 * numbering should start with number 4, the first three parameters are
+	 * hardcoded for every message. Example:
 	 * $entry->setParameters(
-	 *   '4:color' => 'blue',
+	 *   '4::color' => 'blue',
+	 *   '5:number:count' => 3000,
 	 *   'animal' => 'dog'
 	 * );
 	 *
