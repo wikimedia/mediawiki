@@ -109,12 +109,7 @@ class SpecialVersion extends SpecialPage {
 					$file = $this->getExtLicenseFileName( dirname( $extNode['path'] ) );
 					if ( $file ) {
 						$wikiText = file_get_contents( $file );
-						if ( !isset( $extNode['license-name'] ) ) {
-							// If the developer did not explicitly set license-name they probably
-							// are unaware that we're now sucking this file in and thus it's probably
-							// not wikitext friendly.
-							$wikiText = "<pre>$wikiText</pre>";
-						}
+						$wikiText = "<pre>$wikiText</pre>";
 					}
 				}
 
