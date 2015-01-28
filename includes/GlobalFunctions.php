@@ -2482,7 +2482,7 @@ function wfTimestampNow() {
 function wfIsWindows() {
 	static $isWindows = null;
 	if ( $isWindows === null ) {
-		$isWindows = substr( php_uname(), 0, 7 ) == 'Windows';
+		$isWindows = strtoupper( substr( PHP_OS, 0, 3 ) ) === 'WIN';
 	}
 	return $isWindows;
 }
