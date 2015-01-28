@@ -3885,4 +3885,16 @@ class OutputPage extends ContextSource {
 	public function sectionEditLinksEnabled() {
 		return $this->mEnableSectionEditLinks;
 	}
+
+	/**
+	 * Add ResourceLoader module styles for OOUI and set up the PHP implementation of it for use with
+	 * MediaWiki and this OutputPage instance.
+	 *
+	 * @since 1.25
+	 */
+	public function enableOOUI() {
+		OOUI\Theme::setSingleton( new OOUI\MediaWikiTheme() );
+		OOUI\Element::setDefaultDir( $this->getLanguage()->getDir() );
+		$this->addModuleStyles( 'oojs-ui.styles' );
+	}
 }
