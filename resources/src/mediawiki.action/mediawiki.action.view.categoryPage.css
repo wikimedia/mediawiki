@@ -1,0 +1,14 @@
+.mw-category {
+	-webkit-columns: 3;
+	-moz-columns: 3;
+	-o-columns: 3;
+	columns: 3;
+}
+@media ( max-width: 320px ) {
+	.mw-category {
+		-webkit-columns: 1;
+		-moz-columns: 1;
+		-o-columns: 1;
+		columns: 1;
+	}
+}

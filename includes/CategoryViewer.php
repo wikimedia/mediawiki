@@ -105,6 +105,9 @@ class CategoryViewer extends ContextSource {
 	 */
 	public function getHTML() {
 
+		$this->getOutput()->addModuleStyles( array(
+			'mediawiki.action.view.categoryPage.styles'
+		) );
 		$this->showGallery = $this->getConfig()->get( 'CategoryMagicGallery' )
 			&& !$this->getOutput()->mNoGallery;
 
@@ -533,9 +536,6 @@ class CategoryViewer extends ContextSource {
 	 * TODO: Take the headers into account when creating columns, so they're
 	 * more visually equal.
 	 *
-	 * More distant TODO: Scrap this and use CSS columns, whenever IE finally
-	 * supports those.
-	 *
 	 * @param array $articles
 	 * @param string[] $articles_start_char
 	 * @return string
@@ -546,11 +546,11 @@ class CategoryViewer extends ContextSource {
 		# Split into three columns
 		$columns = array_chunk( $columns, ceil( count( $columns ) / 3 ), true /* preserve keys */ );
 
-		$ret = '<table style="width: 100%;"><tr style="vertical-align: top;">';
+		$ret = Html::openElement( 'div', array( 'class' => 'mw-category' ) );
 		$prevchar = null;
 
 		foreach ( $columns as $column ) {
-			$ret .= '<td style="width: 33.3%;">';
+			$ret .= '';
 			$colContents = array();
 
 			# Kind of like array_flip() here, but we keep duplicates in an
@@ -567,26 +567,26 @@ class CategoryViewer extends ContextSource {
 				# Change space to non-breaking space to keep headers aligned
 				$h3char = $char === ' ' ? '&#160;' : htmlspecialchars( $char );
 
-				$ret .= '<h3>' . $h3char;
+				$ret .= Html::openElement( 'h3' ) . $h3char;
 				if ( $first && $char === $prevchar ) {
 					# We're continuing a previous chunk at the top of a new
 					# column, so add " cont." after the letter.
 					$ret .= ' ' . wfMessage( 'listingcontinuesabbrev' )->escaped();
 				}
-				$ret .= "</h3>\n";
+				$ret .= Html::closeElement( 'h3' )."\n";
 
-				$ret .= '<ul><li>';
-				$ret .= implode( "</li>\n<li>", $articles );
-				$ret .= '</li></ul>';
+				$ret .= Html::openElement('ul').Html::openElement('li');
+				$ret .= implode( Html::element( 'li' ), $articles );
+				$ret .= Html::closeElement('ul').Html::closeElement('li');
 
 				$first = false;
 				$prevchar = $char;
 			}
 
-			$ret .= "</td>\n";
+			$ret .= "\n";
 		}
 
-		$ret .= '</tr></table>';
+		$ret .= Html::closeElement( 'div' );
 		return $ret;
 	}
 
