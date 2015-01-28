@@ -1670,7 +1670,7 @@ class WikiRevision {
 			wfDebug( __METHOD__ . ": Successful\n" );
 			return true;
 		} else {
-			wfDebug( __METHOD__ . ': failed: ' . $status->getXml() . "\n" );
+			wfDebug( __METHOD__ . ': failed: ' . $status->getHTML() . "\n" );
 			return false;
 		}
 	}
