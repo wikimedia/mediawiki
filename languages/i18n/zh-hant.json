@@ -593,6 +593,7 @@
 	"nowiki_tip": "忽略 Wiki 格式化語法",
 	"image_sample": "範例.jpg",
 	"image_tip": "附加檔案",
+	"media_sample": "範例.ogg",
 	"media_tip": "檔案連結",
 	"sig_tip": "您的簽名與日期時間",
 	"hr_tip": "水平線 (少用)",

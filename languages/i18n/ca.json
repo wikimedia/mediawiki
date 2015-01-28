@@ -924,6 +924,8 @@
 	"prefs-personal": "Perfil d'usuari",
 	"prefs-rc": "Canvis recents",
 	"prefs-watchlist": "Llista de seguiment",
+	"prefs-editwatchlist": "Edita la llista de seguiment",
+	"prefs-editwatchlist-label": "Editeu les entrades de la vostra llista de seguiment:",
 	"prefs-watchlist-days": "Nombre de dies per mostrar en la llista de seguiment:",
 	"prefs-watchlist-days-max": "Màxim $1 {{PLURAL:$1|dia|dies}}",
 	"prefs-watchlist-edits": "Nombre de modificacions a mostrar en una llista estesa de seguiment:",

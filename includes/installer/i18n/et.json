@@ -3,7 +3,8 @@
 		"authors": [
 			"Avjoska",
 			"Pikne",
-			"Boxmein"
+			"Boxmein",
+			"Cumbril"
 		]
 	},
 	"config-information": "Teave",
@@ -48,6 +49,7 @@
 	"config-admin-error-bademail": "Sisestasid vigase e-posti aadressi.",
 	"config-optional-continue": "Küsi minult veel küsimusi.",
 	"config-profile-private": "Eraviki",
+	"config-profile-help": "Vikid toimivad kõige paremini siis, kui lasete nii paljudel inimestel neid redigeerida kui võimalik. MediaWikis on lihtne viimaseid muudatusi üle vaadata ja pöörata tagasi oskamatute või pahatahtlike kasutajate poolt tehtud kahju.\n\nSellele vaatamata on inimesed leidnud MediaWikile mitmesuguseid erinevaid kasutusvõimalusi ja mõnikord pole lihtne kõiki veenda viki meetodi kasulikkuses. \nSeega on teil valik.\n\n<strong>{{int:config-profile-wiki}}</strong> mudel annab kõigile redigeerimisvõimaluse isegi sisse logimata.\n<strong>{{int:config-profile-no-anon}}</strong> mudeli viki tagab lisavastutuse, kuid võib juhuslikud kaastöölised eemale peletada.\n\n<strong>{{int:config-profile-fishbowl}}</strong> stsenaarium võimaldab redigeerimist heaks kiidetud kasutajatele, kuid avalikkus võib lehekülgi, sealhulgas nende ajalugu, vaadata.\n<strong>{{int:config-profile-private}}</strong> laseb vaid heakskiidetud kasutajatel lehekülgi vaadata ja samadel kasutajatel on õigus lehekülgi redigeerida.\n\nPärast paigaldamist on kasutajaõigusi võimalik täpsemalt konfigureerida, palun tutvuge [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:User_rights kasutusjuhendi vastava kohaga].",
 	"config-license": "Autoriõigus ja litsents:",
 	"config-license-none": "Litsentsijaluseta",
 	"config-license-cc-by-sa": "Creative Commonsi litsents \"Autorile viitamine + jagamine samadel tingimustel\"",

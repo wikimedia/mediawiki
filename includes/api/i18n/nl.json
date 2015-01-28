@@ -48,6 +48,8 @@
 	"apihelp-login-param-domain": "Domein (optioneel).",
 	"apihelp-login-example-login": "Aanmelden",
 	"apihelp-move-description": "Pagina hernoemen.",
+	"api-help-flag-readrights": "Voor deze module zijn leesrechten nodig.",
+	"api-help-flag-writerights": "Voor deze module zijn schrijfrechten nodig.",
 	"api-help-parameters": "{{PLURAL:$1|Parameter|Parameters}}:",
 	"api-help-param-deprecated": "Verouderd.",
 	"api-help-param-default": "Standaard: $1",
