@@ -959,9 +959,10 @@ class Article implements Page {
 	 */
 	public function showRedirectedFromHeader() {
 		global $wgRedirectSources;
-		$outputPage = $this->getContext()->getOutput();
 
-		$request = $this->getContext()->getRequest();
+		$context = $this->getContext();
+		$outputPage = $context->getOutput();
+		$request = $context->getRequest();
 		$rdfrom = $request->getVal( 'rdfrom' );
 
 		// Construct a URL for the current page view, but with the target title
@@ -986,7 +987,7 @@ class Article implements Page {
 				);
 
 				$outputPage->addSubtitle( "<span class=\"mw-redirectedfrom\">" .
-					wfMessage( 'redirectedfrom' )->rawParams( $redir )->parse()
+					$context->msg( 'redirectedfrom' )->rawParams( $redir )->parse()
 				. "</span>" );
 
 				// Add the script to update the displayed URL and
@@ -1010,7 +1011,7 @@ class Article implements Page {
 			if ( $wgRedirectSources && preg_match( $wgRedirectSources, $rdfrom ) ) {
 				$redir = Linker::makeExternalLink( $rdfrom, $rdfrom );
 				$outputPage->addSubtitle( "<span class=\"mw-redirectedfrom\">" .
-					wfMessage( 'redirectedfrom' )->rawParams( $redir )->parse()
+					$context->msg( 'redirectedfrom' )->rawParams( $redir )->parse()
 				. "</span>" );
 
 				// Add the script to update the displayed URL
