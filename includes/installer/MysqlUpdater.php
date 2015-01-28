@@ -37,7 +37,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField', 'ipblocks', 'ipb_expiry', 'patch-ipb_expiry.sql' ),
 			array( 'doInterwikiUpdate' ),
 			array( 'doIndexUpdate' ),
-			array( 'addTable', 'hitcounter', 'patch-hitcounter.sql' ),
 			array( 'addField', 'recentchanges', 'rc_type', 'patch-rc_type.sql' ),
 			array( 'addIndex', 'recentchanges', 'new_name_timestamp', 'patch-rc-newindex.sql' ),
 
