@@ -1,0 +1,8 @@
+Verified+2: jenkins-bot
+Code-Review+2: Siebrand <siebrand@kitano.nl>
+Code-Review+2: Anomie <bjorsch@wikimedia.org>
+Submitted-by: jenkins-bot
+Submitted-at: Wed, 28 Jan 2015 23:31:37 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/169534
+Project: mediawiki/core
+Branch: refs/heads/master
