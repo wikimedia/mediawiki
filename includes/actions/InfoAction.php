@@ -276,7 +276,9 @@ class InfoAction extends FormlessAction {
 		// Language in which the page content is (supposed to be) written
 		$pageLang = $title->getPageLanguage()->getCode();
 
-		if ( $config->get( 'PageLanguageUseDB' ) && $this->getTitle()->userCan( 'pagelang' ) ) {
+		if ( $config->get( 'PageLanguageUseDB' )
+			&& $this->getTitle()->userCan( 'pagelang', $this->getUser() )
+		) {
 			// Link to Special:PageLanguage with pre-filled page title if user has permissions
 			$titleObj = SpecialPage::getTitleFor( 'PageLanguage', $title->getPrefixedText() );
 			$langDisp = Linker::link(
