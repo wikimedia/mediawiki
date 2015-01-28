@@ -47,15 +47,13 @@ class SpecialPasswordReset extends FormSpecialPage {
 	}
 
 	public function userCanExecute( User $user ) {
-		return $this->canChangePassword( $user ) === true && parent::userCanExecute( $user );
+		return $this->canChangePassword( $user )->isGood() && parent::userCanExecute( $user );
 	}
 
 	public function checkExecutePermissions( User $user ) {
-		$error = $this->canChangePassword( $user );
-		if ( is_string( $error ) ) {
-			throw new ErrorPageError( 'internalerror', $error );
-		} elseif ( !$error ) {
-			throw new ErrorPageError( 'internalerror', 'resetpass_forbidden' );
+		$status = $this->canChangePassword( $user );
+		if ( !$status->isGood() ) {
+			throw new ErrorPageError( 'internalerror', $status->getMessage() );
 		}
 
 		return parent::checkExecutePermissions( $user );
@@ -133,167 +131,47 @@ class SpecialPasswordReset extends FormSpecialPage {
 	 * Process the form.  At this point we know that the user passes all the criteria in
 	 * userCanExecute(), and if the data array contains 'Username', etc, then Username
 	 * resets are allowed.
-	 * @param array $data
+	 * @param array $formData
 	 * @throws MWException
 	 * @throws ThrottledError|PermissionsError
 	 * @return bool|array
 	 */
-	public function onSubmit( array $data ) {
-		global $wgAuth;
-
-		if ( isset( $data['Domain'] ) ) {
-			if ( $wgAuth->validDomain( $data['Domain'] ) ) {
-				$wgAuth->setDomain( $data['Domain'] );
-			} else {
-				$wgAuth->setDomain( 'invaliddomain' );
+	public function onSubmit( array $formData ) {
+		$data = array();
+		foreach ( array(
+			'Domain' => 'domain',
+			'Username' => 'username',
+			'Email' => 'email',
+		) as $formKey => $dataKey ) {
+			if ( isset( $formData[$formKey] ) ) {
+				$data[$dataKey] = $formData[$formKey];
 			}
 		}
 
 		if ( isset( $data['Capture'] ) && !$this->getUser()->isAllowed( 'passwordreset' ) ) {
-			// The user knows they don't have the passwordreset permission,
-			// but they tried to spoof the form. That's naughty
 			throw new PermissionsError( 'passwordreset' );
 		}
+		$capture = !empty( $formData['Capture'] );
 
-		/**
-		 * @var $firstUser User
-		 * @var $users User[]
-		 */
+		$status = UserMangler::resetPassword( $this->getContext(), $data, $capture );
 
-		if ( isset( $data['Username'] ) && $data['Username'] !== '' ) {
-			$method = 'username';
-			$users = array( User::newFromName( $data['Username'] ) );
-		} elseif ( isset( $data['Email'] )
-			&& $data['Email'] !== ''
-			&& Sanitizer::validateEmail( $data['Email'] )
-		) {
-			$method = 'email';
-			$res = wfGetDB( DB_SLAVE )->select(
-				'user',
-				User::selectFields(),
-				array( 'user_email' => $data['Email'] ),
-				__METHOD__
-			);
-
-			if ( $res ) {
-				$users = array();
-
-				foreach ( $res as $row ) {
-					$users[] = User::newFromRow( $row );
-				}
-			} else {
-				// Some sort of database error, probably unreachable
-				throw new MWException( 'Unknown database error in ' . __METHOD__ );
+		if ( $status instanceof Status ) {
+			if ( !empty( $status->throttled ) ) {
+				throw new ThrottledError;
 			}
-		} else {
-			// The user didn't supply any data
-			return false;
-		}
 
-		// Check for hooks (captcha etc), and allow them to modify the users list
-		$error = array();
-		if ( !Hooks::run( 'SpecialPasswordResetOnSubmit', array( &$users, $data, &$error ) ) ) {
-			return array( $error );
-		}
+			$this->result = $status->value->mailresult ?: $status;
+			$this->firstUser = $status->value->users ? $status->value->users[0] : null;
+			$this->email = $status->value->email;
 
-		if ( count( $users ) == 0 ) {
-			if ( $method == 'email' ) {
-				// Don't reveal whether or not an email address is in use
-				return true;
-			} else {
-				return array( 'noname' );
+			// If we're capturing and the email got created, that's good enough
+			// to be considered "good" (onSuccess will display things correctly)
+			if ( $capture && $this->email ) {
+				$status = Status::newGood();
 			}
 		}
 
-		$firstUser = $users[0];
-
-		if ( !$firstUser instanceof User || !$firstUser->getID() ) {
-			// Don't parse username as wikitext (bug 65501)
-			return array( array( 'nosuchuser', wfEscapeWikiText( $data['Username'] ) ) );
-		}
-
-		// Check against the rate limiter
-		if ( $this->getUser()->pingLimiter( 'mailpassword' ) ) {
-			throw new ThrottledError;
-		}
-
-		// Check against password throttle
-		foreach ( $users as $user ) {
-			if ( $user->isPasswordReminderThrottled() ) {
-
-				# Round the time in hours to 3 d.p., in case someone is specifying
-				# minutes or seconds.
-				return array( array(
-					'throttled-mailpassword',
-					round( $this->getConfig()->get( 'PasswordReminderResendTime' ), 3 )
-				) );
-			}
-		}
-
-		// All the users will have the same email address
-		if ( $firstUser->getEmail() == '' ) {
-			// This won't be reachable from the email route, so safe to expose the username
-			return array( array( 'noemail', wfEscapeWikiText( $firstUser->getName() ) ) );
-		}
-
-		// We need to have a valid IP address for the hook, but per bug 18347, we should
-		// send the user's name if they're logged in.
-		$ip = $this->getRequest()->getIP();
-		if ( !$ip ) {
-			return array( 'badipaddress' );
-		}
-		$caller = $this->getUser();
-		Hooks::run( 'User::mailPasswordInternal', array( &$caller, &$ip, &$firstUser ) );
-		$username = $caller->getName();
-		$msg = IP::isValid( $username )
-			? 'passwordreset-emailtext-ip'
-			: 'passwordreset-emailtext-user';
-
-		// Send in the user's language; which should hopefully be the same
-		$userLanguage = $firstUser->getOption( 'language' );
-
-		$passwords = array();
-		foreach ( $users as $user ) {
-			$password = $user->randomPassword();
-			$user->setNewpassword( $password );
-			$user->saveSettings();
-			$passwords[] = $this->msg( 'passwordreset-emailelement', $user->getName(), $password )
-				->inLanguage( $userLanguage )->text(); // We'll escape the whole thing later
-		}
-		$passwordBlock = implode( "\n\n", $passwords );
-
-		$this->email = $this->msg( $msg )->inLanguage( $userLanguage );
-		$this->email->params(
-			$username,
-			$passwordBlock,
-			count( $passwords ),
-			'<' . Title::newMainPage()->getCanonicalURL() . '>',
-			round( $this->getConfig()->get( 'NewPasswordExpiry' ) / 86400 )
-		);
-
-		$title = $this->msg( 'passwordreset-emailtitle' );
-
-		$this->result = $firstUser->sendMail( $title->text(), $this->email->text() );
-
-		if ( isset( $data['Capture'] ) && $data['Capture'] ) {
-			// Save the user, will be used if an error occurs when sending the email
-			$this->firstUser = $firstUser;
-		} else {
-			// Blank the email if the user is not supposed to see it
-			$this->email = null;
-		}
-
-		if ( $this->result->isGood() ) {
-			return true;
-		} elseif ( isset( $data['Capture'] ) && $data['Capture'] ) {
-			// The email didn't send, but maybe they knew that and that's why they captured it
-			return true;
-		} else {
-			// @todo FIXME: The email wasn't sent, but we have already set
-			// the password throttle timestamp, so they won't be able to try
-			// again until it expires...  :(
-			return array( array( 'mailerror', $this->result->getMessage() ) );
-		}
+		return $status;
 	}
 
 	public function onSuccess() {
@@ -315,33 +193,9 @@ class SpecialPasswordReset extends FormSpecialPage {
 	}
 
 	protected function canChangePassword( User $user ) {
-		global $wgAuth;
-		$resetRoutes = $this->getConfig()->get( 'PasswordResetRoutes' );
-
-		// Maybe password resets are disabled, or there are no allowable routes
-		if ( !is_array( $resetRoutes ) ||
-			!in_array( true, array_values( $resetRoutes ) )
-		) {
-			return 'passwordreset-disabled';
-		}
-
-		// Maybe the external auth plugin won't allow local password changes
-		if ( !$wgAuth->allowPasswordChange() ) {
-			return 'resetpass_forbidden';
-		}
-
-		// Maybe email features have been disabled
-		if ( !$this->getConfig()->get( 'EnableEmail' ) ) {
-			return 'passwordreset-emaildisabled';
-		}
-
-		// Maybe the user is blocked (check this here rather than relying on the parent
-		// method as we have a more specific error message to use here
-		if ( $user->isBlocked() ) {
-			return 'blocked-mailpassword';
-		}
-
-		return true;
+		$context = new DerivativeContext( $this->getContext() );
+		$context->setUser( $user );
+		return UserMangler::canResetPassword( $context );
 	}
 
 	/**
@@ -349,7 +203,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 	 * @return bool
 	 */
 	function isListed() {
-		if ( $this->canChangePassword( $this->getUser() ) === true ) {
+		if ( $this->canChangePassword( $this->getUser() )->isGood() ) {
 			return parent::isListed();
 		}
 
