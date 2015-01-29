@@ -196,7 +196,7 @@ class FileDuplicateSearchPage extends QueryPage {
 	 *
 	 * @param Skin $skin
 	 * @param File $result
-	 * @return string
+	 * @return string HTML
 	 */
 	function formatResult( $skin, $result ) {
 		global $wgContLang;
@@ -204,8 +204,8 @@ class FileDuplicateSearchPage extends QueryPage {
 		$nt = $result->getTitle();
 		$text = $wgContLang->convert( $nt->getText() );
 		$plink = Linker::link(
-			Title::newFromText( $nt->getPrefixedText() ),
-			$text
+			$nt,
+			htmlspecialchars( $text )
 		);
 
 		$userText = $result->getUser( 'text' );
@@ -220,7 +220,8 @@ class FileDuplicateSearchPage extends QueryPage {
 			$user = htmlspecialchars( $userText );
 		}
 
-		$time = $this->getLanguage()->userTimeAndDate( $result->getTimestamp(), $this->getUser() );
+		$time = htmlspecialchars( $this->getLanguage()->userTimeAndDate(
+			$result->getTimestamp(), $this->getUser() ) );
 
 		return "$plink . . $user . . $time";
 	}
