@@ -852,6 +852,10 @@ return array(
 		// must be loaded on the bottom
 		'position' => 'bottom',
 	),
+	'mediawiki.errorLogging' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.errorLogging.js',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 	'mediawiki.feedback' => array(
 		'templates' => array(
 			'dialog.html' => 'resources/src/mediawiki/templates/dialog.html',
