@@ -186,6 +186,9 @@ production.
   interwiki redirects to the list of interwiki titles.
 * (T85417) When outputting the list of redirect titles, a 'tointerwiki'
   property (like the existing 'tofragment' property) will be set.
+* (T88010) Added action=checktoken, to test a CSRF token's validity.
+* (T88010) Added intestactions to prop=info, to allow querying of
+  Title::userCan() via the API.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.

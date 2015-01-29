@@ -48,6 +48,8 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	private $tokenFunctions;
 
+	private $countTestedActions = 0;
+
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'in' );
 	}
@@ -357,7 +359,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		/** @var $title Title */
 		foreach ( $this->everything as $pageid => $title ) {
 			$pageInfo = $this->extractPageInfo( $pageid, $title );
-			$fit = $result->addValue( array(
+			$fit = $pageInfo !== null && $result->addValue( array(
 				'query',
 				'pages'
 			), $pageid, $pageInfo );
@@ -374,7 +376,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * Get a result array with information about a title
 	 * @param int $pageid Page ID (negative for missing titles)
 	 * @param Title $title
-	 * @return array
+	 * @return array|null
 	 */
 	private function extractPageInfo( $pageid, $title ) {
 		$pageInfo = array();
@@ -481,6 +483,22 @@ class ApiQueryInfo extends ApiQueryBase {
 				$pageInfo['displaytitle'] = $this->displaytitles[$pageid];
 			} else {
 				$pageInfo['displaytitle'] = $title->getPrefixedText();
+			}
+		}
+
+		if ( $this->params['testactions'] ) {
+			$limit = $this->getMain()->canApiHighLimits() ? self::LIMIT_SML1 : self::LIMIT_SML2;
+			if ( $this->countTestedActions >= $limit ) {
+				return null; // force a continuation
+			}
+
+			$user = $this->getUser();
+			$pageInfo['actions'] = array();
+			foreach ( $this->params['testactions'] as $action ) {
+				$this->countTestedActions++;
+				if ( $title->userCan( $action, $user ) ) {
+					$pageInfo['actions'][$action] = '';
+				}
 			}
 		}
 
@@ -824,6 +842,10 @@ class ApiQueryInfo extends ApiQueryBase {
 					// need to be added to getCacheMode()
 				),
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
+			),
+			'testactions' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_ISMULTI => true,
 			),
 			'token' => array(
 				ApiBase::PARAM_DEPRECATED => true,
