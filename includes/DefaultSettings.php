@@ -3616,6 +3616,20 @@ $wgResourceLoaderStorageVersion = 1;
  */
 $wgAllowSiteCSSOnRestrictedPages = false;
 
+/**
+ * Whether to register Javascript error logging code. When enabled, will report
+ * all exceptions via `mw.track( 'errorLogging.exception' )`. Works by replacing
+ * some jQuery and native functions, so it might conflict with some libraries or
+ * cause performance issues.
+ *
+ * The value of this variable should be either true/false or a positive integer
+ * in which case errors will be sampled (e.g. 1000 means an 1:1000 chance for any
+ * given error to be reported).
+ *
+ * @since 1.25
+ */
+$wgRegisterJavascriptErrorLogging = false;
+
 /** @} */ # End of resource loader settings }
 
 /*************************************************************************//**
