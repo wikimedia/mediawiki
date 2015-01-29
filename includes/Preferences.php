@@ -657,8 +657,8 @@ class Preferences {
 		$now = wfTimestampNow();
 		$lang = $context->getLanguage();
 		$nowlocal = Xml::element( 'span', array( 'id' => 'wpLocalTime' ),
-			$lang->time( $now, true ) );
-		$nowserver = $lang->time( $now, false ) .
+			$lang->userTime( $now, $user ) );
+		$nowserver = $lang->userTime( $now, $user, array( 'format' => false, 'timecorrection' => false ) ) .
 			Html::hidden( 'wpServerTime', (int)substr( $now, 8, 2 ) * 60 + (int)substr( $now, 10, 2 ) );
 
 		$defaultPreferences['nowserver'] = array(
