@@ -115,7 +115,6 @@ $magicWords = array(
 	'numberofusers'             => array( '1', 'NIVERAIMPLIJERIEN', 'NUMBEROFUSERS' ),
 	'numberofactiveusers'       => array( '1', 'NIVERAIMPLIJERIENOBERIANT', 'NUMBEROFACTIVEUSERS' ),
 	'numberofedits'             => array( '1', 'NIVERAZEGASEDENNOU', 'NUMBEROFEDITS' ),
-	'numberofviews'             => array( '1', 'NIVERALENNADENNOU', 'NUMBEROFVIEWS' ),
 	'pagename'                  => array( '1', 'ANVPAJENN', 'PAGENAME' ),
 	'pagenamee'                 => array( '1', 'ANVPAJENNSK', 'PAGENAMEE' ),
 	'namespace'                 => array( '1', 'ESAOUENNANV', 'NAMESPACE' ),

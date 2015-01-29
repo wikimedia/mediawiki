@@ -129,7 +129,7 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
-	'redirect'                  => array( '0', '#PREUSMJERI', '#REDIRECT' ),
+	'redirect'                  => array( '0', '#Preusmjeri', '#PREUSMJERI', '#REDIRECT' ),
 	'notoc'                     => array( '0', '__BEZSADRŽAJA__', '__NOTOC__' ),
 	'nogallery'                 => array( '0', '__BEZGALERIJE__', '__NOGALLERY__' ),
 	'forcetoc'                  => array( '0', '__UKLJUČISADRŽAJ__', '__FORCETOC__' ),
@@ -163,7 +163,6 @@ $magicWords = array(
 	'numberofusers'             => array( '1', 'BROJSURADNIKA', 'NUMBEROFUSERS' ),
 	'numberofactiveusers'       => array( '1', 'BROJAKTIVNIHSURADNIKA', 'NUMBEROFACTIVEUSERS' ),
 	'numberofedits'             => array( '1', 'BROJUREĐIVANJA', 'NUMBEROFEDITS' ),
-	'numberofviews'             => array( '1', 'BROJPREGLEDA', 'NUMBEROFVIEWS' ),
 	'pagename'                  => array( '1', 'IMESTRANICE', 'PAGENAME' ),
 	'pagenamee'                 => array( '1', 'IMESTRANICEE', 'PAGENAMEE' ),
 	'namespace'                 => array( '1', 'IMENSKIPROSTOR', 'NAMESPACE' ),
@@ -191,6 +190,7 @@ $magicWords = array(
 	'img_center'                => array( '1', 'središte', 'center', 'centre' ),
 	'img_framed'                => array( '1', 'okvir', 'framed', 'enframed', 'frame' ),
 	'img_frameless'             => array( '1', 'bezokvira', 'frameless' ),
+	'img_lang'                  => array( '1', 'jezik=$1', 'lang=$1' ),
 	'img_page'                  => array( '1', 'stranica=$1', 'stranica $1', 'page=$1', 'page $1' ),
 	'img_upright'               => array( '1', 'uspravno=$1', 'uspravno $1', 'upright', 'upright=$1', 'upright $1' ),
 	'img_border'                => array( '1', 'obrub', 'border' ),
@@ -202,6 +202,7 @@ $magicWords = array(
 	'img_middle'                => array( '1', 'pola', 'middle' ),
 	'img_bottom'                => array( '1', 'dno', 'bottom' ),
 	'img_text_bottom'           => array( '1', 'tekst-dno', 'text-bottom' ),
+	'img_link'                  => array( '1', 'poveznica=$1', 'link=$1' ),
 	'sitename'                  => array( '1', 'IMEPROJEKTA', 'SITENAME' ),
 	'ns'                        => array( '0', 'IMP:', 'NS:' ),
 	'localurl'                  => array( '0', 'MJESNIURL:', 'LOCALURL:' ),

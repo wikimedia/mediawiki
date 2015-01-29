@@ -269,7 +269,6 @@ $magicWords = array(
 	'numberofusers'             => array( '1', 'КОЛИЧЕСТВО_УЧАСТНИКОВ', 'NUMBEROFUSERS' ),
 	'numberofactiveusers'       => array( '1', 'КОЛИЧЕСТВО_АКТИВНЫХ_УЧАСТНИКОВ', 'NUMBEROFACTIVEUSERS' ),
 	'numberofedits'             => array( '1', 'КОЛИЧЕСТВО_ПРАВОК', 'NUMBEROFEDITS' ),
-	'numberofviews'             => array( '1', 'КОЛИЧЕСТВО_ПРОСМОТРОВ', 'NUMBEROFVIEWS' ),
 	'pagename'                  => array( '1', 'НАЗВАНИЕ_СТРАНИЦЫ', 'PAGENAME' ),
 	'pagenamee'                 => array( '1', 'НАЗВАНИЕ_СТРАНИЦЫ_2', 'PAGENAMEE' ),
 	'namespace'                 => array( '1', 'ПРОСТРАНСТВО_ИМЁН', 'NAMESPACE' ),

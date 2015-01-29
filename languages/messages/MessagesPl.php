@@ -293,8 +293,8 @@ $magicWords = array(
 	'localdow'                  => array( '1', 'DZIEŃTYGODNIANR', 'LOCALDOW' ),
 	'plural'                    => array( '0', 'MNOGA:', 'PLURAL:' ),
 	'fullurl'                   => array( '0', 'PEŁNYURL', 'FULLURL:' ),
-	'lcfirst'                   => array( '0', 'ZMAŁEJ:', 'LCFIRST:' ),
-	'ucfirst'                   => array( '0', 'ZWIELKIEJ:', 'ZDUŻEJ:', 'UCFIRST:' ),
+	'lcfirst'                   => array( '0', 'ZMAŁEJ:', 'ODMAŁEJ:', 'LCFIRST:' ),
+	'ucfirst'                   => array( '0', 'ZWIELKIEJ:', 'ZDUŻEJ:', 'ODWIELKIEJ:', 'ODDUŻEJ:', 'UCFIRST:' ),
 	'lc'                        => array( '0', 'MAŁE:', 'LC:' ),
 	'uc'                        => array( '0', 'WIELKIE:', 'DUŻE:', 'UC:' ),
 	'displaytitle'              => array( '1', 'WYŚWIETLANYTYTUŁ', 'DISPLAYTITLE' ),
@@ -315,5 +315,7 @@ $magicWords = array(
 	'protectionlevel'           => array( '1', '__POZIOMZABEZPIECZEŃ__', 'PROTECTIONLEVEL' ),
 	'url_path'                  => array( '0', 'ŚCIEŻKA', 'PATH' ),
 	'url_query'                 => array( '0', 'ZAPYTANIE', 'QUERY' ),
+	'pagesincategory_pages'     => array( '0', 'strony', 'pages' ),
+	'pagesincategory_files'     => array( '0', 'pliki', 'files' ),
 );
 

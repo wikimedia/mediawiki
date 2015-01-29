@@ -88,7 +88,6 @@ $magicWords = array(
 	'numberofusers'             => array( '1', 'FOYDALANUVCHISONI', 'NUMBEROFUSERS' ),
 	'numberofactiveusers'       => array( '1', 'FAOLFOYDALANUVCHISONI', 'NUMBEROFACTIVEUSERS' ),
 	'numberofedits'             => array( '1', 'OZGARISHSONI', 'NUMBEROFEDITS' ),
-	'numberofviews'             => array( '1', 'KORISHSONI', 'NUMBEROFVIEWS' ),
 	'pagename'                  => array( '1', 'SAHIFANOMI', 'PAGENAME' ),
 	'namespace'                 => array( '1', 'NOMFAZO', 'NAMESPACE' ),
 	'gender'                    => array( '0', 'JINS', 'GENDER:' ),

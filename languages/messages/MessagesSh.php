@@ -148,7 +148,6 @@ $magicWords = array(
 	'numberofusers'             => array( '1', 'BROJKORISNIKA', 'NUMBEROFUSERS' ),
 	'numberofactiveusers'       => array( '1', 'BROJAKTIVNIHKORISNIKA', 'NUMBEROFACTIVEUSERS' ),
 	'numberofedits'             => array( '1', 'BROJIZMJENA', 'BROJIZMENA', 'BROJUREĐIVANJA', 'NUMBEROFEDITS' ),
-	'numberofviews'             => array( '1', 'BROJPREGLEDA', 'NUMBEROFVIEWS' ),
 	'pagename'                  => array( '1', 'STRANICA', 'IMESTRANICE', 'PAGENAME' ),
 	'pagenamee'                 => array( '1', 'STRANICE', 'IMESTRANICEE', 'PAGENAMEE' ),
 	'namespace'                 => array( '1', 'IMENSKIPROSTOR', 'NAMESPACE' ),

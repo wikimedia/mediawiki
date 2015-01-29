@@ -180,6 +180,7 @@ $magicWords = array(
 	'img_page'                  => array( '1', 'Säit=$1', 'Säit_$1', 'seite=$1', 'seite $1', 'page=$1', 'page $1' ),
 	'img_border'                => array( '1', 'bord', 'rand', 'border' ),
 	'img_top'                   => array( '1', 'uewen', 'oben', 'top' ),
+	'img_middle'                => array( '1', 'mëtt', 'mitte', 'middle' ),
 	'img_bottom'                => array( '1', 'ënnen', 'unten', 'bottom' ),
 	'grammar'                   => array( '0', 'GRAMMAIRE', 'GRAMMATIK:', 'GRAMMAR:' ),
 	'plural'                    => array( '0', 'PLURAL', 'PLURAL:' ),

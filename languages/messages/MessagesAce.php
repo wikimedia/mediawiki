@@ -61,6 +61,10 @@ $namespaceAliases = array(
 	'Gambar_Pembicaraan'    => NS_FILE_TALK,
 );
 
+$magicWords = array(
+	'redirect'                  => array( '0', '#PUPINAH', '#ALIH', '#REDIRECT' ),
+);
+
 $specialPageAliases = array(
 	'Activeusers'               => array( 'UreuëngNguiUdép' ),
 	'Allmessages'               => array( 'BanDumPeusan' ),

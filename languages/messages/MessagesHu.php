@@ -188,7 +188,6 @@ $magicWords = array(
 	'numberofusers'             => array( '1', 'SZERKESZTŐKSZÁMA', 'NUMBEROFUSERS' ),
 	'numberofactiveusers'       => array( '1', 'AKTÍVSZERKESZTŐKSZÁMA', 'NUMBEROFACTIVEUSERS' ),
 	'numberofedits'             => array( '1', 'SZERKESZTÉSEKSZÁMA', 'NUMBEROFEDITS' ),
-	'numberofviews'             => array( '1', 'MEGTEKINTÉSEKSZÁMA', 'NUMBEROFVIEWS' ),
 	'pagename'                  => array( '1', 'OLDALNEVE', 'PAGENAME' ),
 	'pagenamee'                 => array( '1', 'OLDALNEVEE', 'PAGENAMEE' ),
 	'namespace'                 => array( '1', 'NÉVTERE', 'NAMESPACE' ),

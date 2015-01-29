@@ -230,7 +230,6 @@ $magicWords = array(
 	'numberofusers'             => array( '1', 'KULLANICISAYISI', 'NUMBEROFUSERS' ),
 	'numberofactiveusers'       => array( '1', 'AKTİFKULLANICISAYISI', 'ETKİNKULLANICISAYISI', 'NUMBEROFACTIVEUSERS' ),
 	'numberofedits'             => array( '1', 'DEĞİŞİKLİKSAYISI', 'NUMBEROFEDITS' ),
-	'numberofviews'             => array( '1', 'GÖRÜNTÜLEMESAYISI', 'NUMBEROFVIEWS' ),
 	'pagename'                  => array( '1', 'SAYFAADI', 'PAGENAME' ),
 	'pagenamee'                 => array( '1', 'SAYFAADIU', 'PAGENAMEE' ),
 	'namespace'                 => array( '1', 'ADALANI', 'İSİMALANI', 'NAMESPACE' ),

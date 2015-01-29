@@ -194,7 +194,6 @@ $magicWords = array(
 	'numberofusers'             => array( '1', 'ΑΡΙΘΜΟΣΧΡΗΣΤΩΝ', 'NUMBEROFUSERS' ),
 	'numberofactiveusers'       => array( '1', 'ΕΝΕΡΓΟΙΧΡΗΣΤΕΣ', 'ΑΡΙΘΜΟΣΕΝΕΡΓΩΝΧΡΗΣΤΩΝ', 'NUMBEROFACTIVEUSERS' ),
 	'numberofedits'             => array( '1', 'ΑΡΙΘΜΟΣΕΠΕΞΕΡΓΑΣΙΩΝ', 'NUMBEROFEDITS' ),
-	'numberofviews'             => array( '1', 'ΑΡΙΘΜΟΣΕΜΦΑΝΙΣΕΩΝ', 'NUMBEROFVIEWS' ),
 	'pagename'                  => array( '1', 'ΟΝΟΜΑΣΕΛΙΔΑΣ', 'PAGENAME' ),
 	'pagenamee'                 => array( '1', 'ΟΝΟΜΑΣΕΛΙΔΑΣΚ', 'PAGENAMEE' ),
 	'namespace'                 => array( '1', 'ΠΕΡΙΟΧΗ', 'NAMESPACE' ),

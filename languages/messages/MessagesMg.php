@@ -49,7 +49,6 @@ $magicWords = array(
 	'numberofusers'             => array( '1', 'ISAMPIKAMBANA', 'NOMBREUTILISATEURS', 'NUMBEROFUSERS' ),
 	'numberofactiveusers'       => array( '1', 'ISAMPIKAMBANAMANOVA', 'NOMBREUTILISATEURSACTIFS', 'NUMBEROFACTIVEUSERS' ),
 	'numberofedits'             => array( '1', 'ISAFANOVANA', 'NOMBREMODIFS', 'NUMBEROFEDITS' ),
-	'numberofviews'             => array( '1', 'ISATOPIMASO', 'NOMBREVUES', 'NUMBEROFVIEWS' ),
 	'pagename'                  => array( '1', 'ANARAMPEJY', 'ANARANAPEJY', 'NOMPAGE', 'PAGENAME' ),
 	'pagenamee'                 => array( '1', 'ANARAMPEJYX', 'ANARANAPEJYX', 'NOMPAGEX', 'PAGENAMEE' ),
 	'namespace'                 => array( '1', 'ANARANTSEHATRA', 'ANARANASEHATRA', 'ESPACENOMMAGE', 'NAMESPACE' ),

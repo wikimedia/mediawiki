@@ -101,7 +101,7 @@ $bookstoreList = array(
 );
 
 $magicWords = array(
-	'redirect'                  => array( '0', '#omdiriger', '#REDIRECT' ),
+	'redirect'                  => array( '0', '#OMDIRIGER', '#omdiriger', '#REDIRECT' ),
 	'notoc'                     => array( '0', '__INGAINNHALDSLISTE__', '__INGENINNHOLDSLISTE__', '__NOTOC__' ),
 	'nogallery'                 => array( '0', '__INKJEGALLERI__', '__NOGALLERY__' ),
 	'forcetoc'                  => array( '0', '__ALLTIDINNHALDSLISTE__', '__ALLTIDINNHOLDSLISTE__', '__FORCETOC__' ),
@@ -122,7 +122,6 @@ $magicWords = array(
 	'numberofusers'             => array( '1', 'BRUKARTAL', 'NUMBEROFUSERS' ),
 	'numberofactiveusers'       => array( '1', 'AKTIVEBRUKARAR', 'NUMBEROFACTIVEUSERS' ),
 	'numberofedits'             => array( '1', 'ENDRINGSTAL', 'NUMBEROFEDITS' ),
-	'numberofviews'             => array( '1', 'VISINGSTAL', 'TALPÅVISINGAR', 'NUMBEROFVIEWS' ),
 	'pagename'                  => array( '1', 'SIDENAMN', 'SIDENAVN', 'PAGENAME' ),
 	'pagenamee'                 => array( '1', 'SIDENAMNE', 'SIDENAVNE', 'PAGENAMEE' ),
 	'namespace'                 => array( '1', 'NAMNEROM', 'NAVNEROM', 'NAMESPACE' ),
@@ -143,6 +142,7 @@ $magicWords = array(
 	'img_center'                => array( '1', 'sentrum', 'center', 'centre' ),
 	'img_framed'                => array( '1', 'ramme', 'ramma', 'framed', 'enframed', 'frame' ),
 	'img_frameless'             => array( '1', 'rammelaus', 'frameless' ),
+	'img_lang'                  => array( '1', 'språk=$1', 'lang=$1' ),
 	'img_page'                  => array( '1', 'side=$1', 'side_$1', 'page=$1', 'page $1' ),
 	'img_link'                  => array( '1', 'lenkje=$1', 'lenke=$1', 'link=$1' ),
 	'sitename'                  => array( '1', 'NETTSTADNAMN', 'SITENAME' ),

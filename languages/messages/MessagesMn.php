@@ -42,5 +42,9 @@ $namespaceAliases = array(
 	'Зургийн_хэлэлцүүлэг' => NS_FILE_TALK,
 );
 
+$magicWords = array(
+	'redirect'                  => array( '0', '#ЧИГЛҮҮЛЭГ', '#REDIRECT' ),
+);
+
 $linkTrail = '/^([a-zабвгдеёжзийклмнопрстуфхцчшщъыьэюя“»]+)(.*)$/sDu';
 

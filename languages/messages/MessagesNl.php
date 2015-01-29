@@ -146,7 +146,6 @@ $magicWords = array(
 	'numberofusers'             => array( '1', 'AANTALGEBRUIKERS', 'NUMBEROFUSERS' ),
 	'numberofactiveusers'       => array( '1', 'AANTALACTIEVEGEBRUIKERS', 'ACTIEVEGEBRUIKERS', 'NUMBEROFACTIVEUSERS' ),
 	'numberofedits'             => array( '1', 'AANTALBEWERKINGEN', 'NUMBEROFEDITS' ),
-	'numberofviews'             => array( '1', 'AANTALKERENBEKEKEN', 'NUMBEROFVIEWS' ),
 	'pagename'                  => array( '1', 'PAGINANAAM', 'PAGENAME' ),
 	'pagenamee'                 => array( '1', 'PAGINANAAME', 'PAGENAMEE' ),
 	'namespace'                 => array( '1', 'NAAMRUIMTE', 'NAMESPACE' ),
