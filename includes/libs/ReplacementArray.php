@@ -31,18 +31,18 @@ class ReplacementArray {
 	 * The array should have the same form as the replacement array for strtr()
 	 * @param array $data
 	 */
-	function __construct( $data = array() ) {
+	public function __construct( $data = array() ) {
 		$this->data = $data;
 	}
 
 	/**
 	 * @return array
 	 */
-	function __sleep() {
+	public function __sleep() {
 		return array( 'data' );
 	}
 
-	function __wakeup() {
+	public function __wakeup() {
 		$this->fss = false;
 	}
 
@@ -50,7 +50,7 @@ class ReplacementArray {
 	 * Set the whole replacement array at once
 	 * @param array $data
 	 */
-	function setArray( $data ) {
+	public function setArray( $data ) {
 		$this->data = $data;
 		$this->fss = false;
 	}
@@ -58,7 +58,7 @@ class ReplacementArray {
 	/**
 	 * @return array|bool
 	 */
-	function getArray() {
+	public function getArray() {
 		return $this->data;
 	}
 
@@ -67,7 +67,7 @@ class ReplacementArray {
 	 * @param string $from
 	 * @param string $to
 	 */
-	function setPair( $from, $to ) {
+	public function setPair( $from, $to ) {
 		$this->data[$from] = $to;
 		$this->fss = false;
 	}
@@ -75,7 +75,7 @@ class ReplacementArray {
 	/**
 	 * @param array $data
 	 */
-	function mergeArray( $data ) {
+	public function mergeArray( $data ) {
 		$this->data = array_merge( $this->data, $data );
 		$this->fss = false;
 	}
@@ -83,7 +83,7 @@ class ReplacementArray {
 	/**
 	 * @param ReplacementArray $other
 	 */
-	function merge( $other ) {
+	public function merge( ReplacementArray $other ) {
 		$this->data = array_merge( $this->data, $other->data );
 		$this->fss = false;
 	}
@@ -91,7 +91,7 @@ class ReplacementArray {
 	/**
 	 * @param string $from
 	 */
-	function removePair( $from ) {
+	public function removePair( $from ) {
 		unset( $this->data[$from] );
 		$this->fss = false;
 	}
@@ -99,7 +99,7 @@ class ReplacementArray {
 	/**
 	 * @param array $data
 	 */
-	function removeArray( $data ) {
+	public function removeArray( $data ) {
 		foreach ( $data as $from => $to ) {
 			$this->removePair( $from );
 		}
@@ -110,7 +110,7 @@ class ReplacementArray {
 	 * @param string $subject
 	 * @return string
 	 */
-	function replace( $subject ) {
+	public function replace( $subject ) {
 		if ( function_exists( 'fss_prep_replace' ) ) {
 			if ( $this->fss === false ) {
 				$this->fss = fss_prep_replace( $this->data );
