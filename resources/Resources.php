@@ -775,6 +775,7 @@ return array(
 		// Keep maintenance/jsduck/eg-iframe.html in sync
 		'scripts' => array(
 			'resources/src/mediawiki/mediawiki.js',
+			'resources/src/mediawiki/mediawiki.errorLog.js',
 			'resources/src/mediawiki/mediawiki.startUp.js',
 		),
 		'debugScripts' => 'resources/src/mediawiki/mediawiki.log.js',
