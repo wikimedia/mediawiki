@@ -237,8 +237,9 @@ class SpecialLog extends SpecialPage {
 	 */
 	protected function addHeader( $type ) {
 		$page = new LogPage( $type );
-		$this->getOutput()->setPageTitle( $page->getName()->text() );
-		$this->getOutput()->addHTML( $page->getDescription()->parseAsBlock() );
+		$this->getOutput()->setPageTitle( $page->getName() );
+		$this->getOutput()->addHTML( $page->getDescription()
+			->setContext( $this->getContext() )->parseAsBlock() );
 	}
 
 	protected function getGroupName() {
