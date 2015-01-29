@@ -15,6 +15,15 @@ class ConvertExtensionToRegistration extends Maintenance {
 	);
 
 	/**
+	 * Things that were formerly globals and should still be converted
+	 *
+	 * @var array
+	 */
+	protected $formerGlobals = array(
+		'TrackingCategories',
+	);
+
+	/**
 	 * Keys that should be put at the top of the generated JSON file (T86608)
 	 *
 	 * @var array
@@ -44,7 +53,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 		$processor = new ReflectionClass( 'ExtensionProcessor' );
 		$settings = $processor->getProperty( 'globalSettings' );
 		$settings->setAccessible( true );
-		return $settings->getValue();
+		return $settings->getValue() + $this->formerGlobals;
 	}
 
 	public function execute() {
