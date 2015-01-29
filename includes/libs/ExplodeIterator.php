@@ -48,7 +48,7 @@ class ExplodeIterator implements Iterator {
 	 * @param string $delim
 	 * @param string $subject
 	 */
-	function __construct( $delim, $subject ) {
+	public function __construct( $delim, $subject ) {
 		$this->subject = $subject;
 		$this->delim = $delim;
 
@@ -59,13 +59,13 @@ class ExplodeIterator implements Iterator {
 		$this->rewind();
 	}
 
-	function rewind() {
+	public function rewind() {
 		$this->curPos = 0;
 		$this->endPos = strpos( $this->subject, $this->delim );
 		$this->refreshCurrent();
 	}
 
-	function refreshCurrent() {
+	public function refreshCurrent() {
 		if ( $this->curPos === false ) {
 			$this->current = false;
 		} elseif ( $this->curPos >= $this->subjectLength ) {
@@ -77,21 +77,21 @@ class ExplodeIterator implements Iterator {
 		}
 	}
 
-	function current() {
+	public function current() {
 		return $this->current;
 	}
 
 	/**
 	 * @return int|bool Current position or boolean false if invalid
 	 */
-	function key() {
+	public function key() {
 		return $this->curPos;
 	}
 
 	/**
 	 * @return string
 	 */
-	function next() {
+	public function next() {
 		if ( $this->endPos === false ) {
 			$this->curPos = false;
 		} else {
@@ -110,7 +110,7 @@ class ExplodeIterator implements Iterator {
 	/**
 	 * @return bool
 	 */
-	function valid() {
+	public function valid() {
 		return $this->curPos !== false;
 	}
 }
