@@ -62,6 +62,7 @@ return array(
 			'tests/qunit/suites/resources/jquery/jquery.tablesorter.parsers.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.textSelection.test.js',
 			'tests/qunit/data/mediawiki.jqueryMsg.data.js',
+			'tests/qunit/suites/resources/mediawiki/mediawiki.errorLogging.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.jqueryMsg.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.jscompat.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.test.js',
