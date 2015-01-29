@@ -2513,6 +2513,23 @@
 		}
 	}
 
+	/**
+	 * Fired when a JavaScript error bubbles up to the global window.onerror handler.
+	 *
+	 * @event global_error
+	 * @param {string} errorMessage Error errorMessage.
+	 * @param {string} url URL where error was raised.
+	 * @param {number} lineNumber Line number where error was raised.
+	 */
+
+	window.onerror = ( function () {
+		var handler = window.onerror || function () { return false; };
+		return function ( errorMessage, url, lineNumber ) {
+			mw.track( 'global.error', { errorMessage: errorMessage, url: url, lineNumber: lineNumber } );
+			return handler.apply( window, arguments );
+		};
+	}() );
+
 	// subscribe to error streams
 	mw.trackSubscribe( 'resourceloader.exception', log );
 	mw.trackSubscribe( 'resourceloader.assert', log );
