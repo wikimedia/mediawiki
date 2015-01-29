@@ -1326,7 +1326,8 @@ class Article implements Page {
 			return;
 		}
 
-		$unhide = $this->getContext()->getRequest()->getInt( 'unhide' ) == 1;
+		$context = $this->getContext();
+		$unhide = $context->getRequest()->getInt( 'unhide' ) == 1;
 
 		# Cascade unhide param in links for easy deletion browsing
 		$extraParams = array();
@@ -1343,8 +1344,8 @@ class Article implements Page {
 		$timestamp = $revision->getTimestamp();
 
 		$current = ( $oldid == $this->mPage->getLatest() );
-		$language = $this->getContext()->getLanguage();
-		$user = $this->getContext()->getUser();
+		$language = $context->getLanguage();
+		$user = $context->getUser();
 
 		$td = $language->userTimeAndDate( $timestamp, $user );
 		$tddate = $language->userDate( $timestamp, $user );
@@ -1353,13 +1354,13 @@ class Article implements Page {
 		# Show user links if allowed to see them. If hidden, then show them only if requested...
 		$userlinks = Linker::revUserTools( $revision, !$unhide );
 
-		$infomsg = $current && !wfMessage( 'revision-info-current' )->isDisabled()
+		$infomsg = $current && !$context->msg( 'revision-info-current' )->isDisabled()
 			? 'revision-info-current'
 			: 'revision-info';
 
-		$outputPage = $this->getContext()->getOutput();
+		$outputPage = $context->getOutput();
 		$outputPage->addSubtitle( "<div id=\"mw-{$infomsg}\">" .
-			wfMessage( $infomsg, $td )
+			$context->msg( $infomsg, $td )
 				->rawParams( $userlinks )
 				->params( $revision->getID(), $tddate, $tdtime, $revision->getUserText() )
 				->rawParams( Linker::revComment( $revision, true, true ) )
@@ -1368,18 +1369,18 @@ class Article implements Page {
 		);
 
 		$lnk = $current
-			? wfMessage( 'currentrevisionlink' )->escaped()
+			? $context->msg( 'currentrevisionlink' )->escaped()
 			: Linker::linkKnown(
 				$this->getTitle(),
-				wfMessage( 'currentrevisionlink' )->escaped(),
+				$context->msg( 'currentrevisionlink' )->escaped(),
 				array(),
 				$extraParams
 			);
 		$curdiff = $current
-			? wfMessage( 'diff' )->escaped()
+			? $context->msg( 'diff' )->escaped()
 			: Linker::linkKnown(
 				$this->getTitle(),
-				wfMessage( 'diff' )->escaped(),
+				$context->msg( 'diff' )->escaped(),
 				array(),
 				array(
 					'diff' => 'cur',
@@ -1390,30 +1391,30 @@ class Article implements Page {
 		$prevlink = $prev
 			? Linker::linkKnown(
 				$this->getTitle(),
-				wfMessage( 'previousrevision' )->escaped(),
+				$context->msg( 'previousrevision' )->escaped(),
 				array(),
 				array(
 					'direction' => 'prev',
 					'oldid' => $oldid
 				) + $extraParams
 			)
-			: wfMessage( 'previousrevision' )->escaped();
+			: $context->msg( 'previousrevision' )->escaped();
 		$prevdiff = $prev
 			? Linker::linkKnown(
 				$this->getTitle(),
-				wfMessage( 'diff' )->escaped(),
+				$context->msg( 'diff' )->escaped(),
 				array(),
 				array(
 					'diff' => 'prev',
 					'oldid' => $oldid
 				) + $extraParams
 			)
-			: wfMessage( 'diff' )->escaped();
+			: $context->msg( 'diff' )->escaped();
 		$nextlink = $current
-			? wfMessage( 'nextrevision' )->escaped()
+			? $context->msg( 'nextrevision' )->escaped()
 			: Linker::linkKnown(
 				$this->getTitle(),
-				wfMessage( 'nextrevision' )->escaped(),
+				$context->msg( 'nextrevision' )->escaped(),
 				array(),
 				array(
 					'direction' => 'next',
@@ -1421,10 +1422,10 @@ class Article implements Page {
 				) + $extraParams
 			);
 		$nextdiff = $current
-			? wfMessage( 'diff' )->escaped()
+			? $context->msg( 'diff' )->escaped()
 			: Linker::linkKnown(
 				$this->getTitle(),
-				wfMessage( 'diff' )->escaped(),
+				$context->msg( 'diff' )->escaped(),
 				array(),
 				array(
 					'diff' => 'next',
@@ -1438,7 +1439,7 @@ class Article implements Page {
 		}
 
 		$outputPage->addSubtitle( "<div id=\"mw-revision-nav\">" . $cdel .
-			wfMessage( 'revision-nav' )->rawParams(
+			$context->msg( 'revision-nav' )->rawParams(
 				$prevdiff, $prevlink, $lnk, $curdiff, $nextlink, $nextdiff
 			)->escaped() . "</div>" );
 	}
