@@ -22,11 +22,17 @@
  * Base class for "replacers", objects used in preg_replace_callback() and
  * StringUtils::delimiterReplaceCallback()
  */
-class Replacer {
+abstract class Replacer {
 	/**
 	 * @return array
 	 */
 	public function cb() {
 		return array( &$this, 'replace' );
 	}
+
+	/**
+	 * @param array $matches
+	 * @return string
+	 */
+	abstract public function replace( array $matches );
 }

@@ -37,7 +37,7 @@ class HashtableReplacer extends Replacer {
 	 * @param array $matches
 	 * @return mixed
 	 */
-	public function replace( $matches ) {
+	public function replace( array $matches ) {
 		return $this->table[$matches[$this->index]];
 	}
 }

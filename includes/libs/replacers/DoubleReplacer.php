@@ -37,7 +37,7 @@ class DoubleReplacer extends Replacer {
 	 * @param array $matches
 	 * @return mixed
 	 */
-	public function replace( $matches ) {
+	public function replace( array $matches ) {
 		return str_replace( $this->from, $this->to, $matches[$this->index] );
 	}
 }
