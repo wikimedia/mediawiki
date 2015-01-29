@@ -99,6 +99,7 @@ class Utf8Test extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider provideLines
+	 * @covers UtfNormal::quickisNFCVerify
 	 */
 	function testLine( $test, $line, $columns, $exceptions ) {
 		$stripped = $line;
