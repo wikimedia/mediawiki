@@ -3222,6 +3222,8 @@ class OutputPage extends ContextSource {
 			'wgMonthNamesShort' => $lang->getMonthAbbreviationsArray(),
 			'wgRelevantPageName' => $relevantTitle->getPrefixedDBkey(),
 			'wgRelevantArticleId' => $relevantTitle->getArticleId(),
+			'wgJavascriptErrorLoggingSamplingRate' =>
+				$this->getConfig()->get( 'JavascriptErrorLoggingSamplingRate' ),
 		);
 
 		if ( $user->isLoggedIn() ) {
