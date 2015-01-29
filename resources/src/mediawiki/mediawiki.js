@@ -2536,4 +2536,5 @@
 
 	// Attach to window and globally alias
 	window.mw = window.mediaWiki = mw;
+
 }( jQuery ) );
