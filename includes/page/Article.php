@@ -687,9 +687,8 @@ class Article implements Page {
 					$this->mParserOutput = $poolArticleView->getParserOutput();
 					$outputPage->addParserOutput( $this->mParserOutput );
 					if ( $content->getRedirectTarget() ) {
-						$outputPage->addSubtitle(
-							"<span id=\"redirectsub\">" . wfMessage( 'redirectpagesub' )->parse() . "</span>"
-						);
+						$outputPage->addSubtitle( "<span id=\"redirectsub\">" .
+							$this->getContext()->msg( 'redirectpagesub' )->parse() . "</span>" );
 					}
 
 					# Don't cache a dirty ParserOutput object
@@ -1458,7 +1457,7 @@ class Article implements Page {
 		$lang = $this->getTitle()->getPageLanguage();
 		$out = $this->getContext()->getOutput();
 		if ( $appendSubtitle ) {
-			$out->addSubtitle( wfMessage( 'redirectpagesub' )->parse() );
+			$out->addSubtitle( wfMessage( 'redirectpagesub' ) );
 		}
 		$out->addModuleStyles( 'mediawiki.action.view.redirectPage' );
 		return static::getRedirectHeaderHtml( $lang, $target, $forceKnown );
