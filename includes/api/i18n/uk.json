@@ -8,7 +8,7 @@
 	"apihelp-main-param-action": "Яку дію виконати.",
 	"apihelp-main-param-format": "Формат виводу.",
 	"apihelp-createaccount-param-name": "Ім'я користувача.",
-	"apihelp-createaccount-param-password": "Пароль (ігнорується, якщо встановлено $1mailpassword).",
+	"apihelp-createaccount-param-password": "Пароль (ігнорується, якщо встановлено <var>$1mailpassword</var>).",
 	"apihelp-createaccount-param-domain": "Домен для зовнішньої аутентифікації (опціонально).",
 	"apihelp-edit-example-edit": "Редагувати сторінку",
 	"apihelp-edit-example-prepend": "Додати зміст на початок сторінки",

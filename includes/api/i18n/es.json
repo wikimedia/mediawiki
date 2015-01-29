@@ -37,7 +37,7 @@
 	"apihelp-edit-param-watch": "Añadir la página a tu lista de seguimiento.",
 	"apihelp-edit-param-unwatch": "Quitar la página de tu lista de seguimiento.",
 	"apihelp-edit-example-edit": "Editar una página",
-	"apihelp-edit-example-prepend": "Anteponer _&#95;NOTOC_&#95; a una página",
+	"apihelp-edit-example-prepend": "Anteponer <kbd>_&#95;NOTOC_&#95;</kbd> a una página",
 	"apihelp-edit-example-undo": "Deshacer intervalo de revisiones 13579-13585 con resumen automático",
 	"apihelp-emailuser-description": "Enviar un mensaje de correo electrónico a un usuario.",
 	"apihelp-emailuser-param-target": "Cuenta de usuario destinatario.",

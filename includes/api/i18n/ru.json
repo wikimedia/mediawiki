@@ -2,13 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Mahairod",
-			"Okras"
+			"Okras",
+			"Eakarpov"
 		]
 	},
 	"apihelp-main-param-action": "Действие, которое следует выполнить.",
 	"apihelp-main-param-format": "Формат вывода.",
-	"apihelp-main-param-smaxage": "Устанавливает заголовок s-maxage в заданное число секунд. Ошибки никогда не кэшируются.",
-	"apihelp-main-param-maxage": "Устанавливает заголовок max-age в заданное число секунд. Ошибки никогда не кэшируются.",
+	"apihelp-main-param-smaxage": "Устанавливает заголовок <code>s-maxage</code> в заданное число секунд. Ошибки никогда не кэшируются.",
+	"apihelp-main-param-maxage": "Устанавливает заголовок <code>max-age</code> в заданное число секунд. Ошибки никогда не кэшируются.",
 	"apihelp-main-param-assert": "Удостовериться, что пользователь авторизован, если задано \"user\", или что имеет права бота, если задано \"bot\".",
 	"apihelp-main-param-requestid": "Любое значение, заданное здесь, будет включено в ответ. Может быть использовано для различения запросов.",
 	"apihelp-main-param-servedby": "Включить в результаты имя хоста, обработавшего запрос.",
@@ -24,6 +25,7 @@
 	"apihelp-disabled-description": "Этот модуль был отключен.",
 	"apihelp-edit-param-sectiontitle": "Заголовок для нового раздела.",
 	"apihelp-edit-param-text": "Содержание страницы.",
+	"apihelp-edit-param-watch": "Добавить страницу к текущему списку наблюдения пользователя.",
 	"apihelp-edit-example-edit": "Редактировать страницу",
 	"apihelp-expandtemplates-param-title": "Заголовок страницы.",
 	"apihelp-import-param-xml": "Загруженный XML-файл.",
@@ -32,6 +34,10 @@
 	"apihelp-login-param-domain": "Домен (необязательно).",
 	"apihelp-login-example-login": "Войти",
 	"apihelp-logout-description": "Выйти и очистить данные сессии.",
+	"apihelp-query+alllinks-example-unique-generator": "Получить все названия-ссылки, выделяя пропущенные.",
+	"apihelp-query+duplicatefiles-example-generated": "Поиск дубликатов всех файлов.",
+	"apihelp-query+recentchanges-example-simple": "Список последних изменений.",
+	"apihelp-upload-example-url": "Загрузить через URL",
 	"api-help-main-header": "Главный модуль",
 	"api-help-parameters": "Параметр{{PLURAL:$1||ы}}:",
 	"api-help-param-deprecated": "Устаревший.",

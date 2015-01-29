@@ -5,7 +5,8 @@
 			"Robby",
 			"Shirayuki",
 			"Umherirrender",
-			"McDutchie"
+			"McDutchie",
+			"Raymond"
 		]
 	},
 	"apihelp-main-description": "{{doc-apihelp-description|main}}",
@@ -34,8 +35,8 @@
 	"apihelp-block-param-watchuser": "{{doc-apihelp-param|block|watchuser}}",
 	"apihelp-block-example-ip-simple": "{{doc-apihelp-example|block}}",
 	"apihelp-block-example-user-complex": "{{doc-apihelp-example|block}}",
-	"apihelp-clearhasmsg-description": "{{doc-apihelp-description|clearhasmsg}}",
-	"apihelp-clearhasmsg-example-1": "{{doc-apihelp-example|clearhasmsg}}",
+	"apihelp-clearhasmsg-description": "{{doc-apihelp-description|clear<code>hasmsg</code>}}",
+	"apihelp-clearhasmsg-example-1": "{{doc-apihelp-example|clear<code>hasmsg</code>}}",
 	"apihelp-compare-description": "{{doc-apihelp-description|compare}}",
 	"apihelp-compare-param-fromtitle": "{{doc-apihelp-param|compare|fromtitle}}",
 	"apihelp-compare-param-fromid": "{{doc-apihelp-param|compare|fromid}}",

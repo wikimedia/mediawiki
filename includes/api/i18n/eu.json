@@ -36,6 +36,8 @@
 	"apihelp-query+imageusage-example-simple": "Erakutsi [[:File:Albert Einstein Head.jpg]] darabilten orriak",
 	"apihelp-query+prefixsearch-param-search": "Bilatu katea.",
 	"apihelp-query+protectedtitles-example-simple": "Zerrendatu babestutako izenburuak",
+	"apihelp-query+recentchanges-example-simple": "Zerrendatu aldaketa berriak.",
+	"apihelp-upload-example-url": "Igo URL batetik.",
 	"apihelp-userrights-param-reason": "Aldaketarako arrazoia.",
 	"api-help-main-header": "Modulu nagusia",
 	"api-help-flag-deprecated": "Modulu hau zaharkitua dago.",

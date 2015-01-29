@@ -26,7 +26,7 @@
 	"apihelp-compare-example-1": "Fengk de Ongerscheide zwesche dä Väsjohne 1 un 2",
 	"apihelp-createaccount-description": "Ene neue Zohjang för ene Metmaacher aanlähje.",
 	"apihelp-createaccount-param-name": "Der Nahme för dä Metmaacher.",
-	"apihelp-createaccount-param-password": "Et Paßwoot (Weed ävver it jebruc un övverjange, wann <code lang=\"en\" xml:lang=\"en\">$1mailpassword</code> jesaz es)",
+	"apihelp-createaccount-param-password": "Et Paßwoot (Weed ävver it jebruc un övverjange, wann <code lang=\"en\" xml:lang=\"en\"><var>$1mailpassword</var></code> jesaz es)",
 	"apihelp-createaccount-param-realname": "Dämm Medmaacher singe reschtejje Nahme - kann fott blihve.",
 	"apihelp-delete-description": "Schmieß en Sigg fott.",
 	"apihelp-delete-param-watch": "Donn die Sigg en Ding Oppassliss opnemme.",

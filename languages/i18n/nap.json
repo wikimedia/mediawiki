@@ -1568,7 +1568,7 @@
 	"notargettext": "Nun avete specificato na paggena o n'utente 'e destinazione pe' putè fa sta operazione.",
 	"nopagetitle": "Nisciuna paggena 'e destinazione",
 	"nopagetext": "'A paggena 'e destinazione c'avite specificato nun esiste.",
-	"pager-newer-n": "{{PLURAL:$1|1 cchiù viecchio|$1 cchiù viecchie}}",
+	"pager-newer-n": "{{PLURAL:$1|1 cchiù nova|$1 cchiù nnove}}",
 	"pager-older-n": "{{PLURAL:$1|1 cchiù viecchio|$1 cchiù viecchie}}",
 	"suppress": "Supervisione",
 	"querypage-disabled": "Sta paggena speciale è stutata pe' mutive 'e prestaziune.",

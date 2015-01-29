@@ -8,7 +8,7 @@
 	"apihelp-block-description": "Bloca un usuari.",
 	"apihelp-block-param-nocreate": "Evita la creació de comptes.",
 	"apihelp-createaccount-param-name": "Nom d'usuari.",
-	"apihelp-createaccount-param-password": "Contrasenya (ignorada si es defineix $1mailpassword)",
+	"apihelp-createaccount-param-password": "Contrasenya (ignorada si es defineix <var>$1mailpassword</var>)",
 	"apihelp-delete-description": "Suprimeix una pàgina.",
 	"apihelp-edit-description": "Crea i edita pàgines.",
 	"apihelp-edit-param-text": "Contingut de la pàgina."
