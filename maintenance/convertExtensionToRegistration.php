@@ -37,6 +37,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 		parent::__construct();
 		$this->mDescription = 'Converts extension entry points to the new JSON registration format';
 		$this->addArg( 'path', 'Location to the PHP entry point you wish to convert', /* $required = */ true );
+		$this->addOption( 'skin', 'Whether to write to skin.json', false, false );
 	}
 
 	protected function getAllGlobals() {
@@ -87,7 +88,8 @@ class ConvertExtensionToRegistration extends Maintenance {
 		}
 		$out += $this->json;
 
-		$fname = "{$this->dir}/extension.json";
+		$type = $this->hasOption( 'skin' ) ? 'skin' : 'extension';
+		$fname = "{$this->dir}/$type.json";
 		$prettyJSON = FormatJson::encode( $out, "\t", FormatJson::ALL_OK );
 		file_put_contents( $fname, $prettyJSON . "\n" );
 		$this->output( "Wrote output to $fname.\n" );
