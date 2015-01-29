@@ -767,6 +767,7 @@ return array(
 	'mediawiki' => array(
 		'scripts' => array(
 			'resources/src/mediawiki/mediawiki.js',
+			'resources/src/mediawiki/mediawiki.errorLogging.js',
 			'resources/src/mediawiki/mediawiki.startUp.js',
 		),
 		'debugScripts' => 'resources/src/mediawiki/mediawiki.log.js',
