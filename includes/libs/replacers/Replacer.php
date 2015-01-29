@@ -26,7 +26,7 @@ class Replacer {
 	/**
 	 * @return array
 	 */
-	function cb() {
+	public function cb() {
 		return array( &$this, 'replace' );
 	}
 }

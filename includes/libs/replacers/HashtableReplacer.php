@@ -28,7 +28,7 @@ class HashtableReplacer extends Replacer {
 	 * @param array $table
 	 * @param int $index
 	 */
-	function __construct( $table, $index = 0 ) {
+	public function __construct( $table, $index = 0 ) {
 		$this->table = $table;
 		$this->index = $index;
 	}
@@ -37,7 +37,7 @@ class HashtableReplacer extends Replacer {
 	 * @param array $matches
 	 * @return mixed
 	 */
-	function replace( $matches ) {
+	public function replace( $matches ) {
 		return $this->table[$matches[$this->index]];
 	}
 }

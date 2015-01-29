@@ -27,7 +27,7 @@ class DoubleReplacer extends Replacer {
 	 * @param mixed $to
 	 * @param int $index
 	 */
-	function __construct( $from, $to, $index = 0 ) {
+	public function __construct( $from, $to, $index = 0 ) {
 		$this->from = $from;
 		$this->to = $to;
 		$this->index = $index;
@@ -37,7 +37,7 @@ class DoubleReplacer extends Replacer {
 	 * @param array $matches
 	 * @return mixed
 	 */
-	function replace( $matches ) {
+	public function replace( $matches ) {
 		return str_replace( $this->from, $this->to, $matches[$this->index] );
 	}
 }

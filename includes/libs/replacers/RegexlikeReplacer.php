@@ -27,7 +27,7 @@ class RegexlikeReplacer extends Replacer {
 	/**
 	 * @param string $r
 	 */
-	function __construct( $r ) {
+	public function __construct( $r ) {
 		$this->r = $r;
 	}
 
@@ -35,7 +35,7 @@ class RegexlikeReplacer extends Replacer {
 	 * @param array $matches
 	 * @return string
 	 */
-	function replace( $matches ) {
+	public function replace( $matches ) {
 		$pairs = array();
 		foreach ( $matches as $i => $match ) {
 			$pairs["\$$i"] = $match;
