@@ -3,11 +3,17 @@
  * Also Dynamically resize images to justify them.
  */
 ( function ( mw, $ ) {
-	// Is there a better way to detect a touchscreen? Current check taken from stack overflow.
-	var isTouchScreen = !!( window.ontouchstart !== undefined || window.DocumentTouch !== undefined && document instanceof window.DocumentTouch ),
-		$galleries = $();
+	var $galleries,
+		// Is there a better way to detect a touchscreen? Current check taken from stack overflow.
+		isTouchScreen = !!( window.ontouchstart !== undefined ||
+			window.DocumentTouch !== undefined && document instanceof window.DocumentTouch
+		);
 
-	// Now on to justification.
+	/**
+	 * Perform the layout justification.
+	 * @ignore
+	 * @context {HTMLElement} A `ul.mw-gallery-*` element
+	 */
 	function justify() {
 		var lastTop,
 			$img,
@@ -220,7 +226,11 @@
 	} );
 
 	$( function () {
+		// At start of resize
 		$( window ).resize( $.debounce( 300, true, function () {
+			if ( !$galleries ) {
+				return;
+			}
 			$galleries.children( 'li' ).each( function () {
 				var imgWidth = $( this ).data( 'imgWidth' ),
 					imgHeight = $( this ).data( 'imgHeight' ),
@@ -246,6 +256,8 @@
 				}
 			} );
 		} ) );
+
+		// At end of resize
 		$( window ).resize( $.debounce( 300, function () {
 			$galleries.each( justify );
 		} ) );
