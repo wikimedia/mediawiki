@@ -199,10 +199,16 @@ class SpecialStatistics extends SpecialPage {
 				$grouppageLocalized = $msg->text();
 			}
 			$linkTarget = Title::newFromText( $grouppageLocalized );
-			$grouppage = Linker::link(
-				$linkTarget,
-				htmlspecialchars( $groupnameLocalized )
-			);
+
+			if ( $linkTarget ) {
+				$grouppage = Linker::link(
+					$linkTarget,
+					htmlspecialchars( $groupnameLocalized )
+				);
+			} else {
+				$grouppage = htmlspecialchars( $groupnameLocalized );
+			}
+
 			$grouplink = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Listusers' ),
 				$this->msg( 'listgrouprights-members' )->escaped(),
