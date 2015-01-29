@@ -2965,6 +2965,14 @@ class OutputPage extends ContextSource {
 		$embedScripts = array( 'user.options', 'user.tokens' );
 		$links[] = $this->makeResourceLoaderLink( $embedScripts, ResourceLoaderModule::TYPE_COMBINED );
 
+		// Register error handler (this cannot be done in the startup module as it relies on
+		// dynamic JS variables)
+		$links[] = Html::inlineScript(
+			ResourceLoader::makeLoaderConditionalScript(
+				Xml::encodeJsCall( 'mw.errorLogging.register', array( new XmlJsCode( 'window' ) ) )
+			)
+		);
+
 		// Scripts and messages "only" requests marked for top inclusion
 		// Messages should go first
 		$links[] = $this->makeResourceLoaderLink(
@@ -3198,6 +3206,7 @@ class OutputPage extends ContextSource {
 			'wgMonthNamesShort' => $lang->getMonthAbbreviationsArray(),
 			'wgRelevantPageName' => $relevantTitle->getPrefixedDBkey(),
 			'wgRelevantArticleId' => $relevantTitle->getArticleId(),
+			'wgJavascriptErrorLoggingSamplingRate' => $this->getConfig()->get( 'JavascriptErrorLoggingSamplingRate' ),
 		);
 
 		if ( $user->isLoggedIn() ) {

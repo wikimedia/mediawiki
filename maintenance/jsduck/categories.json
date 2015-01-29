@@ -14,7 +14,8 @@
 					"mw.html.Cdata",
 					"mw.html.Raw",
 					"mw.hook",
-					"mw.template"
+					"mw.template",
+					"mw.errorLogging"
 				]
 			},
 			{

@@ -3616,6 +3616,17 @@ $wgResourceLoaderStorageVersion = 1;
  */
 $wgAllowSiteCSSOnRestrictedPages = false;
 
+/**
+ * Sampling rate for Javascript errors. 0 means never report, 1 means always,
+ * a positive integer N means report one in N errors by random sampling.
+ * Errors are reported via `mw.track` with a topic of
+ * `errorLogging.windowOnerror`.
+ *
+ * @since 1.25
+ * @var int
+ */
+$wgJavascriptErrorLoggingSamplingRate = 0;
+
 /** @} */ # End of resource loader settings }
 
 /*************************************************************************//**
