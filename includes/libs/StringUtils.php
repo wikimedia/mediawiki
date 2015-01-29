@@ -162,7 +162,7 @@ class StringUtils {
 	 * @param callable $callback Function to call on each match
 	 * @param string $subject
 	 * @param string $flags Regular expression flags
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 * @return string
 	 */
 	static function delimiterReplaceCallback( $startDelim, $endDelim, $callback,
@@ -197,7 +197,7 @@ class StringUtils {
 				$tokenType = 'end';
 				$tokenLength = strlen( $m[0][0] );
 			} else {
-				throw new MWException( 'Invalid delimiter given to ' . __METHOD__ );
+				throw new InvalidArgumentException( 'Invalid delimiter given to ' . __METHOD__ );
 			}
 
 			if ( $tokenType == 'start' ) {
@@ -230,7 +230,7 @@ class StringUtils {
 				}
 				$inputPos = $outputPos = $tokenOffset + $tokenLength;
 			} else {
-				throw new MWException( 'Invalid delimiter given to ' . __METHOD__ );
+				throw new InvalidArgumentException( 'Invalid delimiter given to ' . __METHOD__ );
 			}
 		}
 		if ( $outputPos < strlen( $subject ) ) {
