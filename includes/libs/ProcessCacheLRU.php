@@ -28,13 +28,14 @@
 class ProcessCacheLRU {
 	/** @var Array */
 	protected $cache = array(); // (key => prop => value)
+
 	/** @var Array */
 	protected $cacheTimes = array(); // (key => prop => UNIX timestamp)
 
 	protected $maxCacheKeys; // integer; max entries
 
 	/**
-	 * @param $maxKeys integer Maximum number of entries allowed (min 1).
+	 * @param int $maxKeys Maximum number of entries allowed (min 1).
 	 * @throws UnexpectedValueException When $maxCacheKeys is not an int or =< 0.
 	 */
 	public function __construct( $maxKeys ) {
@@ -46,9 +47,9 @@ class ProcessCacheLRU {
 	 * This will prune the cache if it gets too large based on LRU.
 	 * If the item is already set, it will be pushed to the top of the cache.
 	 *
-	 * @param $key string
-	 * @param $prop string
-	 * @param $value mixed
+	 * @param string $key
+	 * @param string $prop
+	 * @param mixed $value
 	 * @return void
 	 */
 	public function set( $key, $prop, $value ) {
@@ -67,15 +68,16 @@ class ProcessCacheLRU {
 	/**
 	 * Check if a property field exists for a cache entry.
 	 *
-	 * @param $key string
-	 * @param $prop string
-	 * @param $maxAge float Ignore items older than this many seconds (since 1.21)
+	 * @param string $key
+	 * @param string $prop
+	 * @param float $maxAge Ignore items older than this many seconds (since 1.21)
 	 * @return bool
 	 */
 	public function has( $key, $prop, $maxAge = 0.0 ) {
 		if ( isset( $this->cache[$key][$prop] ) ) {
 			return ( $maxAge <= 0 ||
-				( microtime( true ) - $this->cacheTimes[$key][$prop] ) <= $maxAge );
+				( microtime( true ) - $this->cacheTimes[$key][$prop] ) <= $maxAge
+			);
 		}
 
 		return false;
@@ -86,13 +88,14 @@ class ProcessCacheLRU {
 	 * This returns null if the property is not set.
 	 * If the item is already set, it will be pushed to the top of the cache.
 	 *
-	 * @param $key string
-	 * @param $prop string
+	 * @param string $key
+	 * @param string $prop
 	 * @return mixed
 	 */
 	public function get( $key, $prop ) {
 		if ( isset( $this->cache[$key][$prop] ) ) {
-			$this->ping( $key ); // push to top
+			// push to top
+			$this->ping( $key );
 			return $this->cache[$key][$prop];
 		} else {
 			return null;
@@ -100,9 +103,9 @@ class ProcessCacheLRU {
 	}
 
 	/**
-	 * Clear one or several cache entries, or all cache entries
+	 * Clear one or several cache entries, or all cache entries.
 	 *
-	 * @param $keys string|Array
+	 * @param string|array $keys
 	 * @return void
 	 */
 	public function clear( $keys = null ) {
@@ -120,7 +123,7 @@ class ProcessCacheLRU {
 	/**
 	 * Resize the maximum number of cache entries, removing older entries as needed
 	 *
-	 * @param $maxKeys integer
+	 * @param int $maxKeys
 	 * @return void
 	 * @throws UnexpectedValueException
 	 */
@@ -140,7 +143,7 @@ class ProcessCacheLRU {
 	/**
 	 * Push an entry to the top of the cache
 	 *
-	 * @param $key string
+	 * @param string $key
 	 */
 	protected function ping( $key ) {
 		$item = $this->cache[$key];

@@ -15,14 +15,14 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 	 * Helper to verify emptiness of a cache object.
 	 * Compare against an array so we get the cache content difference.
 	 */
-	function assertCacheEmpty( $cache, $msg = 'Cache should be empty' ) {
+	protected function assertCacheEmpty( $cache, $msg = 'Cache should be empty' ) {
 		$this->assertAttributeEquals( array(), 'cache', $cache, $msg );
 	}
 
 	/**
 	 * Helper to fill a cache object passed by reference
 	 */
-	function fillCache( &$cache, $numEntries ) {
+	protected function fillCache( &$cache, $numEntries ) {
 		// Fill cache with three values
 		for ( $i = 1; $i <= $numEntries; $i++ ) {
 			$cache->set( "cache-key-$i", "prop-$i", "value-$i" );
@@ -33,17 +33,17 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 	 * Generates an array of what would be expected in cache for a given cache
 	 * size and a number of entries filled in sequentially
 	 */
-	function getExpectedCache( $cacheMaxEntries, $entryToFill ) {
+	protected function getExpectedCache( $cacheMaxEntries, $entryToFill ) {
 		$expected = array();
 
 		if ( $entryToFill === 0 ) {
-			# The cache is empty!
+			// The cache is empty!
 			return array();
 		} elseif ( $entryToFill <= $cacheMaxEntries ) {
-			# Cache is not fully filled
+			// Cache is not fully filled
 			$firstKey = 1;
 		} else {
-			# Cache overflowed
+			// Cache overflowed
 			$firstKey = 1 + $entryToFill - $cacheMaxEntries;
 		}
 
@@ -62,13 +62,16 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 	public function testPhpUnitArrayEquality() {
 		$one = array( 'A' => 1, 'B' => 2 );
 		$two = array( 'B' => 2, 'A' => 1 );
-		$this->assertEquals( $one, $two ); // ==
-		$this->assertNotSame( $one, $two ); // ===
+		// ==
+		$this->assertEquals( $one, $two );
+		// ===
+		$this->assertNotSame( $one, $two );
 	}
 
 	/**
 	 * @dataProvider provideInvalidConstructorArg
 	 * @expectedException UnexpectedValueException
+	 * @covers ProcessCacheLRU::__construct
 	 */
 	public function testConstructorGivenInvalidValue( $maxSize ) {
 		new ProcessCacheLRUTestable( $maxSize );
@@ -88,6 +91,11 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
+	/**
+	 * @covers ProcessCacheLRU::get
+	 * @covers ProcessCacheLRU::set
+	 * @covers ProcessCacheLRU::het
+	 */
 	public function testAddAndGetAKey() {
 		$oneCache = new ProcessCacheLRUTestable( 1 );
 		$this->assertCacheEmpty( $oneCache );
@@ -99,6 +107,10 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( 'value1', $oneCache->get( 'cache-key', 'prop1' ) );
 	}
 
+	/**
+	 * @covers ProcessCacheLRU::set
+	 * @covers ProcessCacheLRU::get
+	 */
 	public function testDeleteOldKey() {
 		$oneCache = new ProcessCacheLRUTestable( 1 );
 		$this->assertCacheEmpty( $oneCache );
@@ -113,6 +125,7 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 	 * a sequence of always different cache-keys. Meant to verify we correclty
 	 * delete the older key.
 	 *
+	 * @covers ProcessCacheLRU::set
 	 * @dataProvider provideCacheFilling
 	 * @param int $cacheMaxEntries Maximum entry the created cache will hold
 	 * @param int $entryToFill Number of entries to insert in the created cache.
@@ -136,14 +149,18 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 		return array(
 			array( 1, 0 ),
 			array( 1, 1 ),
-			array( 1, 2 ), # overflow
-			array( 5, 33 ), # overflow
+			// overflow
+			array( 1, 2 ),
+			// overflow
+			array( 5, 33 ),
 		);
 	}
 
 	/**
 	 * Create a cache with only one remaining entry then update
 	 * the first inserted entry. Should bump it to the top.
+	 *
+	 * @covers ProcessCacheLRU::set
 	 */
 	public function testReplaceExistingKeyShouldBumpEntryToTop() {
 		$maxEntries = 3;
@@ -164,6 +181,11 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
+	/**
+	 * @covers ProcessCacheLRU::get
+	 * @covers ProcessCacheLRU::set
+	 * @covers ProcessCacheLRU::het
+	 */
 	public function testRecentlyAccessedKeyStickIn() {
 		$cache = new ProcessCacheLRUTestable( 2 );
 		$cache->set( 'first', 'prop1', 'value1' );
@@ -182,6 +204,9 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 	 * filled entry.
 	 * Given a cache having 1,2,3 as key, updating 2 should bump 2 to
 	 * the top of the queue with the new value: 1,3,2* (* = updated).
+	 *
+	 * @covers ProcessCacheLRU::set
+	 * @covers ProcessCacheLRU::get
 	 */
 	public function testReplaceExistingKeyInAFullCacheShouldBumpToTop() {
 		$maxEntries = 3;
@@ -204,6 +229,9 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
+	/**
+	 * @covers ProcessCacheLRU::set
+	 */
 	public function testBumpExistingKeyToTop() {
 		$cache = new ProcessCacheLRUTestable( 3 );
 		$this->fillCache( $cache, 3 );
