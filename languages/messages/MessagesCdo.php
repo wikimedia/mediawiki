@@ -46,7 +46,7 @@ $specialPageAliases = array(
 	'Confirmemail'              => array( '確認電子郵件' ),
 	'Contributions'             => array( '貢獻' ),
 	'CreateAccount'             => array( '開賬戶' ),
-	'DeletedContributions'      => array( '刪掉其貢獻' ),
+	'DeletedContributions'      => array( '刪唻其貢獻' ),
 	'DoubleRedirects'           => array( '雙重重定向' ),
 	'EditWatchlist'             => array( '修改監視單' ),
 	'Emailuser'                 => array( '共用戶發送電子郵件' ),
@@ -125,7 +125,7 @@ $specialPageAliases = array(
 	'Wantedpages'               => array( '卜挃其頁面' ),
 	'Wantedtemplates'           => array( '卜挃其模板' ),
 	'Watchlist'                 => array( '監視單' ),
-	'Whatlinkshere'             => array( '什乇鏈遘嚽塊' ),
+	'Whatlinkshere'             => array( '甚乇鏈遘嚽塊' ),
 	'Withoutinterwiki'          => array( '無跨維基' ),
 );
 

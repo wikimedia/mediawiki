@@ -49,6 +49,7 @@ $namespaceAliases = array(
 $specialPageAliases = array(
 	'Block'                     => array( 'Bloquiar', 'BloquiarIP', 'BloquiarUsuariu' ),
 	'Log'                       => array( 'Rexistru', 'Rexistros' ),
+	'Recentchanges'             => array( 'CambeosRecientes' ),
 	'Search'                    => array( 'Gueta' ),
 	'Statistics'                => array( 'Estadístiques' ),
 );

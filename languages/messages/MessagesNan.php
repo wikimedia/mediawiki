@@ -51,14 +51,22 @@ $namespaceAliases = array(
 	'分類討論' => NS_CATEGORY_TALK,
 );
 
+$specialPageAliases = array(
+	'Recentchangeslinked'       => array( 'Siong-koan_ê_kái-piàn' ),
+	'Specialpages'              => array( 'Te̍k-sû_ia̍h' ),
+	'Upload'                    => array( 'Kā_tóng-àn_chiūⁿ-bāng' ),
+	'Whatlinkshere'             => array( 'Tó-ūi_liân_kàu_chia' ),
+);
+
 $datePreferences = array(
 	'default',
 	'ISO 8601',
 );
+
 $defaultDateFormat = 'nan';
+
 $dateFormats = array(
 	'nan time' => 'H:i',
 	'nan date' => 'Y-"nî" n-"goe̍h" j-"ji̍t" (l)',
 	'nan both' => 'Y-"nî" n-"goe̍h" j-"ji̍t" (D) H:i',
 );
-

@@ -49,6 +49,20 @@ $namespaceAliases = array(
 );
 
 $specialPageAliases = array(
+	'Activeusers'               => array( 'Идекпейжилер' ),
+	'Allmessages'               => array( 'Шупту_медеглелдер' ),
+	'AllMyUploads'              => array( 'Шупту_файлдарым' ),
+	'Allpages'                  => array( 'Шупту_арыннар' ),
+	'Badtitle'                  => array( 'Хоржок_ат-сып' ),
+	'Blankpage'                 => array( 'Куруг_арын' ),
+	'Block'                     => array( 'Дуглаар' ),
+	'Booksources'               => array( 'Ном_үндезини' ),
+	'BrokenRedirects'           => array( 'Үзүлген_көжүрүглер' ),
+	'Categories'                => array( 'Аңгылалдар' ),
+	'ChangeEmail'               => array( 'Э-шуудаң_солуур' ),
+	'ChangePassword'            => array( 'Уруң_солуур' ),
+	'ComparePages'              => array( 'Арыннар_деңнээр' ),
+	'Confirmemail'              => array( 'Э-шуудаң_бадыткаар' ),
 	'MyLanguage'                => array( 'Дылым' ),
 );
 

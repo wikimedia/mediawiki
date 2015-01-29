@@ -140,6 +140,7 @@ $specialPageAliases = array(
 	'CreateAccount'             => array( 'Criar_conta' ),
 	'Deadendpages'              => array( 'Páginas_sem_saída', 'Artigos_sem_saída' ),
 	'DeletedContributions'      => array( 'Contribuições_eliminadas', 'Edições_eliminadas' ),
+	'Diff'                      => array( 'Mudanças_entre_edições', 'Diferenças_entre_edições' ),
 	'DoubleRedirects'           => array( 'Redirecionamentos_duplos' ),
 	'EditWatchlist'             => array( 'Editar_lista_de_páginas_vigiadas' ),
 	'Emailuser'                 => array( 'Contatar_usuário', 'Contactar_usuário', 'Contactar_utilizador' ),

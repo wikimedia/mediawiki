@@ -27,6 +27,30 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'श्रेणी_वार्ता',
 );
 
+$specialPageAliases = array(
+	'Activeusers'               => array( 'सक्रिय_सदस्य' ),
+	'Allmessages'               => array( 'सारा_संदेस' ),
+	'Allpages'                  => array( 'सारा_पन्ना' ),
+	'Ancientpages'              => array( 'पुरान_पन्ना' ),
+	'Badtitle'                  => array( 'खराब_टाइटिल' ),
+	'Blankpage'                 => array( 'खाली_पन्ना' ),
+	'Categories'                => array( 'श्रेणी_सब' ),
+	'Contributions'             => array( 'योगदान' ),
+	'Export'                    => array( 'निर्यात' ),
+	'Import'                    => array( 'आयात' ),
+	'Log'                       => array( 'लॉग' ),
+	'Lonelypages'               => array( 'असंयुक्त' ),
+	'Longpages'                 => array( 'लम्बा_पन्ना' ),
+	'Mypage'                    => array( 'हमार_पन्ना' ),
+	'Mytalk'                    => array( 'हमार_बात' ),
+	'Newpages'                  => array( 'नया_पन्ना' ),
+	'Recentchangeslinked'       => array( 'तुरंत_भइल_परिवर्तन' ),
+	'Shortpages'                => array( 'छोटा_पन्ना' ),
+	'Specialpages'              => array( 'ख़ाश_पन्ना' ),
+	'TrackingCategories'        => array( 'बिनावर्गीकृत_श्रेणी' ),
+	'Uncategorizedpages'        => array( 'बिनावर्गीकृत' ),
+);
+
 $digitTransformTable = array(
 	'0' => '०', # &#x0966;
 	'1' => '१', # &#x0967;
@@ -39,4 +63,3 @@ $digitTransformTable = array(
 	'8' => '८', # &#x096e;
 	'9' => '९', # &#x096f;
 );
-

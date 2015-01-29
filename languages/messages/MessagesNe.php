@@ -40,6 +40,11 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'श्रेणी_वार्ता',
 );
 
+$specialPageAliases = array(
+	'Activeusers'               => array( 'सक्रिय_प्रयोगकर्ताहरु' ),
+	'Listgrouprights'           => array( 'प्रयोगकर्ता_समूह_अधिकार' ),
+);
+
 $digitTransformTable = array(
 	'0' => '०', # &#x0966;
 	'1' => '१', # &#x0967;
