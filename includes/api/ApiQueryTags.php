@@ -44,11 +44,17 @@ class ApiQueryTags extends ApiQueryBase {
 		$fld_description = isset( $prop['description'] );
 		$fld_hitcount = isset( $prop['hitcount'] );
 		$fld_defined = isset( $prop['defined'] );
+		$fld_source = isset( $prop['source'] );
+		$fld_active = isset( $prop['active'] );
 
 		$limit = $params['limit'];
 		$result = $this->getResult();
 
-		$definedTags = array_fill_keys( ChangeTags::listDefinedTags(), 0 );
+		$extensionDefinedTags = array_fill_keys( ChangeTags::listExtensionDefinedTags(), 0 );
+		$explicitlyDefinedTags = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), 0 );
+		$extensionActivatedTags = array_fill_keys( ChangeTags::listExtensionActivatedTags(), 0 );
+
+		$definedTags = array_merge( $extensionDefinedTags, $explicitlyDefinedTags );
 
 		# Fetch defined tags that aren't past the continuation
 		if ( $params['continue'] !== null ) {
@@ -99,8 +105,27 @@ class ApiQueryTags extends ApiQueryBase {
 				$tag['hitcount'] = $hitcount;
 			}
 
-			if ( $fld_defined && isset( $definedTags[$tagName] ) ) {
+			$isExtension = isset( $extensionDefinedTags[$tagName] );
+			$isExplicit = isset( $explicitlyDefinedTags[$tagName] );
+
+			if ( $fld_defined && ( $isExtension || $isExplicit ) ) {
 				$tag['defined'] = '';
+			}
+
+			if ( $fld_source ) {
+				$tag['source'] = array();
+				if ( $isExtension ) {
+					$tag['source'][] = 'extension';
+				}
+				if ( $isExplicit ) {
+					$tag['source'][] = 'manual';
+				}
+			}
+
+			if ( $fld_active &&
+				( $isExplicit || isset( $extensionActivatedTags[$tagName] ) )
+			) {
+				$tag['active'] = '';
 			}
 
 			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $tag );
@@ -137,6 +162,8 @@ class ApiQueryTags extends ApiQueryBase {
 					'description',
 					'hitcount',
 					'defined',
+					'source',
+					'active',
 				),
 				ApiBase::PARAM_ISMULTI => true
 			)
