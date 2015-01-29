@@ -295,7 +295,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	public static function getStartupModules() {
-		return array( 'jquery', 'mediawiki', 'mediawiki.startUp' );
+		return array( 'jquery', 'mediawiki', 'mediawiki.errorLogging', 'mediawiki.startUp' );
 	}
 
 	/**
