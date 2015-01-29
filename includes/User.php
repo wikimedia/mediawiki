@@ -3937,6 +3937,20 @@ class User implements IDBAccessObject {
 	}
 
 	/**
+	 * Get the embedded timestamp from a token.
+	 * @param string $val Input token
+	 * @return int|null
+	 */
+	public static function getEditTokenTimestamp( $val ) {
+		$suffixLen = strlen( self::EDIT_TOKEN_SUFFIX );
+		if ( strlen( $val ) <= 32 + $suffixLen ) {
+			return null;
+		}
+
+		return hexdec( substr( $val, 32, -$suffixLen ) );
+	}
+
+	/**
 	 * Check given value against the token value stored in the session.
 	 * A match should confirm that the form was submitted from the
 	 * user's own login session, not a form submission from a third-party
@@ -3953,12 +3967,10 @@ class User implements IDBAccessObject {
 			return $val === self::EDIT_TOKEN_SUFFIX;
 		}
 
-		$suffixLen = strlen( self::EDIT_TOKEN_SUFFIX );
-		if ( strlen( $val ) <= 32 + $suffixLen ) {
+		$timestamp = self::getEditTokenTimestamp( $val );
+		if ( $timestamp === null ) {
 			return false;
 		}
-
-		$timestamp = hexdec( substr( $val, 32, -$suffixLen ) );
 		if ( $maxage !== null && $timestamp < wfTimestamp() - $maxage ) {
 			// Expired token
 			return false;

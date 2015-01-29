@@ -64,6 +64,7 @@ class ApiMain extends ApiBase {
 		'rsd' => 'ApiRsd',
 		'compare' => 'ApiComparePages',
 		'tokens' => 'ApiTokens',
+		'checktoken' => 'ApiCheckToken',
 
 		// Write modules
 		'purge' => 'ApiPurge',

@@ -18,6 +18,7 @@ $wgAutoloadLocalClasses = array(
 	'AnsiTermColorer' => __DIR__ . '/maintenance/term/MWTerm.php',
 	'ApiBase' => __DIR__ . '/includes/api/ApiBase.php',
 	'ApiBlock' => __DIR__ . '/includes/api/ApiBlock.php',
+	'ApiCheckToken' => __DIR__ . '/includes/api/ApiCheckToken.php',
 	'ApiClearHasMsg' => __DIR__ . '/includes/api/ApiClearHasMsg.php',
 	'ApiComparePages' => __DIR__ . '/includes/api/ApiComparePages.php',
 	'ApiCreateAccount' => __DIR__ . '/includes/api/ApiCreateAccount.php',
