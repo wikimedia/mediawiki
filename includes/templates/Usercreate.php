@@ -218,7 +218,7 @@ class UsercreateTemplate extends BaseTemplate {
 										echo 'checked="checked"';
 									} ?>
 								><label for="<?php echo htmlspecialchars( $inputItem['name'] ); ?>">
-									<?php $this->msgHtml( $inputItem['msg'] ); ?>
+									<?php $this->msg( $inputItem['msg'] ); ?>
 								</label>
 							</div>
 						<?php
