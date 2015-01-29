@@ -172,7 +172,6 @@ $magicWords = array(
 	'numberoffiles'             => array( '1', 'TIEDOSTOMÄÄRÄ', 'NUMBEROFFILES' ),
 	'numberofusers'             => array( '1', 'KÄYTTÄJÄMÄÄRÄ', 'NUMBEROFUSERS' ),
 	'numberofedits'             => array( '1', 'MUOKKAUSMÄÄRÄ', 'NUMBEROFEDITS' ),
-	'numberofviews'             => array( '1', 'SIVUHAKUMÄÄRÄ', 'NUMBEROFVIEWS' ),
 	'pagename'                  => array( '1', 'SIVUNIMI', 'PAGENAME' ),
 	'pagenamee'                 => array( '1', 'SIVUNIMIE', 'PAGENAMEE' ),
 	'namespace'                 => array( '1', 'NIMIAVARUUS', 'NAMESPACE' ),

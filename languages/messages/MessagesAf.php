@@ -55,7 +55,6 @@ $magicWords = array(
 	'numberofusers'             => array( '1', 'AANTALGEBRUIKERS', 'NUMBEROFUSERS' ),
 	'numberofactiveusers'       => array( '1', 'AANTALAKTIEWEGEBRUIKERS', 'NUMBEROFACTIVEUSERS' ),
 	'numberofedits'             => array( '1', 'AANTALWYSIGINGS', 'NUMBEROFEDITS' ),
-	'numberofviews'             => array( '1', 'AANTALKEERGESIEN', 'NUMBEROFVIEWS' ),
 	'pagename'                  => array( '1', 'BLADSYNAAM', 'PAGENAME' ),
 	'namespace'                 => array( '1', 'NAAMSPASIE', 'NAMESPACE' ),
 	'talkspace'                 => array( '1', 'BESPREKINGSBLADSY', 'TALKSPACE' ),

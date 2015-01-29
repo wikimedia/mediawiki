@@ -84,7 +84,6 @@ $magicWords = array(
 	'numberofusers'             => array( '1', 'JUMLAHPENGGUNA', 'JUMPENG', 'NUMBEROFUSERS' ),
 	'numberofactiveusers'       => array( '1', 'JUMLAHPENGGUNAAKTIF', 'JUMPENGTIF', 'NUMBEROFACTIVEUSERS' ),
 	'numberofedits'             => array( '1', 'JUMLAHSUNTINGAN', 'JUMTING', 'NUMBEROFEDITS' ),
-	'numberofviews'             => array( '1', 'JUMLAHTAMPILAN', 'JUMTAM', 'NUMBEROFVIEWS' ),
 	'pagename'                  => array( '1', 'NAMAHALAMAN', 'NAMMAN', 'PAGENAME' ),
 	'pagenamee'                 => array( '1', 'NAMAHALAMANE', 'NAMMANE', 'PAGENAMEE' ),
 	'namespace'                 => array( '1', 'RUANGNAMA', 'RUNAM', 'NAMESPACE' ),

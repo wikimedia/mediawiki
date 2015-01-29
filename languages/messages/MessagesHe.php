@@ -190,7 +190,6 @@ $magicWords = array(
 	'numberofusers'             => array( '1', 'מספר משתמשים', 'NUMBEROFUSERS' ),
 	'numberofactiveusers'       => array( '1', 'מספר משתמשים פעילים', 'NUMBEROFACTIVEUSERS' ),
 	'numberofedits'             => array( '1', 'מספר עריכות', 'NUMBEROFEDITS' ),
-	'numberofviews'             => array( '1', 'מספר צפיות', 'NUMBEROFVIEWS' ),
 	'pagename'                  => array( '1', 'שם הדף', 'PAGENAME' ),
 	'pagenamee'                 => array( '1', 'שם הדף מקודד', 'PAGENAMEE' ),
 	'namespace'                 => array( '1', 'מרחב השם', 'NAMESPACE' ),

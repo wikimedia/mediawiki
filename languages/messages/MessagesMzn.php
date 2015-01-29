@@ -107,7 +107,6 @@ $magicWords = array(
 	'numberofusers'             => array( '1', 'تعدادکارورون', 'تعدادکاربران', 'NUMBEROFUSERS' ),
 	'numberofactiveusers'       => array( '1', 'کارورون_فعال', 'کاربران_فعال', 'کاربران‌فعال', 'NUMBEROFACTIVEUSERS' ),
 	'numberofedits'             => array( '1', 'تعداددچی‌یه‌ئون', 'تعدادویرایش‌ها', 'NUMBEROFEDITS' ),
-	'numberofviews'             => array( '1', 'تعدادبازدید', 'NUMBEROFVIEWS' ),
 	'pagename'                  => array( '1', 'نام‌صفحه', 'نام_صفحه', 'PAGENAME' ),
 	'pagenamee'                 => array( '1', 'نام‌صفحه‌کد', 'نام_صفحه_کد', 'PAGENAMEE' ),
 	'namespace'                 => array( '1', 'فضای‌نام', 'فضای_نام', 'NAMESPACE' ),

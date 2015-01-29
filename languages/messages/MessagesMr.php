@@ -202,7 +202,6 @@ $magicWords = array(
 	'numberofusers'             => array( '1', 'सदस्यसंख्या', 'NUMBEROFUSERS' ),
 	'numberofactiveusers'       => array( '1', 'सक्रीयसदस्यसंख्या', 'NUMBEROFACTIVEUSERS' ),
 	'numberofedits'             => array( '1', 'संपादनसंख्या', 'NUMBEROFEDITS' ),
-	'numberofviews'             => array( '1', 'धडकसंख्या', 'प्रेक्षासंख्या', 'NUMBEROFVIEWS' ),
 	'pagename'                  => array( '1', 'लेखनाव', 'PAGENAME' ),
 	'pagenamee'                 => array( '1', 'लेखानावव', 'PAGENAMEE' ),
 	'namespace'                 => array( '1', 'नामविश्व', 'NAMESPACE' ),

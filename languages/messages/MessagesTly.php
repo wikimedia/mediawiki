@@ -97,7 +97,6 @@ $magicWords = array(
 	'numberofusers'             => array( '1', 'ИШТИРОКӘКОН_ҒӘДӘР', 'NUMBEROFUSERS' ),
 	'numberofactiveusers'       => array( '1', 'ТИЛИКӘ_ИШТИРОКӘКОН_ҒӘДӘР', 'NUMBEROFACTIVEUSERS' ),
 	'numberofedits'             => array( '1', 'ДӘГИШОН_ҒӘДӘР', 'NUMBEROFEDITS' ),
-	'numberofviews'             => array( '1', 'ДИЈӘ_КАРДЕ_ҒӘДӘР', 'NUMBEROFVIEWS' ),
 	'pagename'                  => array( '1', 'СӘҺИФӘ_НОМ', 'PAGENAME' ),
 	'pagenamee'                 => array( '1', 'СӘҺИФӘ_НОМ_2', 'PAGENAMEE' ),
 	'namespace'                 => array( '1', 'НОМОН_МӘКОН', 'NAMESPACE' ),

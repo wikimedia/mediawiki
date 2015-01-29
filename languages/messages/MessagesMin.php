@@ -156,8 +156,8 @@ $specialPageAliases = array(
 
 $magicWords = array(
 	'redirect'                  => array( '0', '#ALIAH', '#ALIH', '#REDIRECT' ),
-	'pagesincategory_all'       => array( '0', 'sado', 'all' ),
-	'pagesincategory_pages'     => array( '0', 'laman', 'pages' ),
+	'pagesincategory_all'       => array( '0', 'sado', 'semua', 'all' ),
+	'pagesincategory_pages'     => array( '0', 'laman', 'halaman', 'pages' ),
 	'pagesincategory_files'     => array( '0', 'berkas', 'files' ),
 );
 
