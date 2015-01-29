@@ -1496,7 +1496,7 @@ class Article implements Page {
 		}
 		$html .= '</ul>';
 
-		$redirectToText = wfMessage( 'redirectto' )->inLanguage( $lang )->text();
+		$redirectToText = wfMessage( 'redirectto' )->inLanguage( $lang )->escaped();
 
 		return '<div class="redirectMsg">' .
 			'<p>' . $redirectToText . '</p>' .
