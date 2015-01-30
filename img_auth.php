@@ -58,13 +58,6 @@ function wfImageAuthMain() {
 	$request = RequestContext::getMain()->getRequest();
 	$publicWiki = in_array( 'read', User::getGroupPermissions( array( '*' ) ), true );
 
-        // Bail if PHP is too low
-        if ( !function_exists( 'version_compare' ) || version_compare( PHP_VERSION, '5.3.3' ) < 0 ) {
-	// We need to use dirname( __FILE__ ) here cause __DIR__ is PHP5.3+
-	require dirname( __FILE__ ) . '/includes/PHPVersionError.php';
-	wfPHPVersionError( 'img_auth.php' );
-        }
-
 	// Get the requested file path (source file or thumbnail)
 	$matches = WebRequest::getPathInfo();
 	if ( !isset( $matches['title'] ) ) {
