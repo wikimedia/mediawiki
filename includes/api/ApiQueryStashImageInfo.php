@@ -52,7 +52,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 		}
 
 		try {
-			$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash();
+			$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash( $this->getUser() );
 
 			foreach ( $params['filekey'] as $filekey ) {
 				$file = $stash->getFile( $filekey );
