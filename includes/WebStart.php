@@ -98,7 +98,40 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# the wiki installer needs to be launched or the generated file uploaded to
 	# the root wiki directory. Give a hint, if it is not readable by the server.
 	if ( !is_readable( MW_CONFIG_FILE ) ) {
-		require_once "$IP/includes/templates/NoLocalSettings.php";
+		# bug 30219 : can not use pathinfo() on URLs since slashes do not match
+		$matches = array();
+		$ext = 'php';
+		$path = '/';
+		foreach ( array_filter( explode( '/', $_SERVER['PHP_SELF'] ) ) as $part ) {
+			if ( !preg_match( '/\.(php5?)$/', $part, $matches ) ) {
+				$path .= "$part/";
+			} else {
+				$ext = $matches[1] == 'php5' ? 'php5' : 'php';
+			}
+		}
+
+		# Check to see if the installer is running
+		if ( !function_exists( 'session_name' ) ) {
+			$installerStarted = false;
+		} else {
+			session_name( 'mw_installer_session' );
+			$oldReporting = error_reporting( E_ALL & ~E_NOTICE );
+			$success = session_start();
+			error_reporting( $oldReporting );
+			$installerStarted = ( $success && isset( $_SESSION['installData'] ) );
+		}
+
+		# Render error page if no LocalSettings file can be found
+		$template = include( 'templates/compiled/NoLocalSettings.php' );
+		echo $template(
+			array(
+				'wgVersion' => ( isset( $wgVersion ) ? $wgVersion : 'VERSION' ),
+				'path' => $path,
+				'ext' => $ext,
+				'localSettingsExists' => file_exists( MW_CONFIG_FILE ),
+				'installerStarted' => $installerStarted
+			)
+		);
 		die();
 	}
 
