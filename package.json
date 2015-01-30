@@ -12,7 +12,7 @@
     "grunt-jscs": "0.8.1",
     "grunt-jsonlint": "1.0.4",
     "grunt-karma": "0.9.0",
-    "karma": "0.12.28",
+    "karma": "0.12.31",
     "karma-chrome-launcher": "0.1.7",
     "karma-firefox-launcher": "0.1.3",
     "karma-qunit": "0.1.4",
