@@ -1494,6 +1494,7 @@ class Article implements Page {
 				( $forceKnown ? array( 'known', 'noclasses' ) : array() )
 			) . '</li>';
 		}
+		$html .= '</ul>';
 
 		$redirectToText = wfMessage( 'redirectto' )->inLanguage( $lang )->text();
 
