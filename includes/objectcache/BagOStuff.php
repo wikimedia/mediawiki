@@ -192,7 +192,7 @@ abstract class BagOStuff {
 		$locked = false; // lock acquired
 		$attempts = 0; // failed attempts
 		do {
-			if ( ++$attempts >= 3 && $sleep <= 1e6 ) {
+			if ( ++$attempts >= 3 && $sleep <= 5e5 ) {
 				// Exponentially back off after failed attempts to avoid network spam.
 				// About 2*$uRTT*(2^n-1) us of "sleep" happen for the next n attempts.
 				$sleep *= 2;
