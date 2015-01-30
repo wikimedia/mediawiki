@@ -1,0 +1,4 @@
+This directory contains mustache source files for use as HTML templates.
+
+To compile these templates into PHP code for use by MediaWiki, go to /includes/templates
+and either run 'make templates' or 'php ./compileTemplates.php'.

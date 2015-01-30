@@ -1,7 +1,6 @@
 <?php
-// @codingStandardsIgnoreFile
 /**
- * Template used when there is no LocalSettings.php file.
+ * Display an error page when there is no LocalSettings.php file.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,16 +18,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Templates
  */
-
-if ( !defined( 'MEDIAWIKI' ) ) {
-	die( "NoLocalSettings.php is not a valid MediaWiki entry point\n" );
-}
-
-if ( !isset( $wgVersion ) ) {
-	$wgVersion = 'VERSION';
-}
 
 # bug 30219 : can not use pathinfo() on URLs since slashes do not match
 $matches = array();
@@ -52,46 +42,15 @@ if ( !function_exists( 'session_name' ) ) {
 	error_reporting( $oldReporting );
 	$installerStarted = ( $success && isset( $_SESSION['installData'] ) );
 }
-?>
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-	<head>
-		<meta charset="UTF-8" />
-		<title>MediaWiki <?php echo htmlspecialchars( $wgVersion ) ?></title>
-		<style media='screen'>
-			html, body {
-				color: #000;
-				background-color: #fff;
-				font-family: sans-serif;
-				text-align: center;
-			}
 
-			h1 {
-				font-size: 150%;
-			}
-		</style>
-	</head>
-	<body>
-		<img src="<?php echo htmlspecialchars( $path ) ?>resources/assets/mediawiki.png" alt='The MediaWiki logo' />
-
-		<h1>MediaWiki <?php echo htmlspecialchars( $wgVersion ) ?></h1>
-		<div class='error'>
-		<?php if ( !file_exists( MW_CONFIG_FILE ) ) { ?>
-			<p>LocalSettings.php not found.</p>
-			<p>
-			<?php
-			if ( $installerStarted ) {
-				echo "Please <a href=\"" . htmlspecialchars( $path ) . "mw-config/index." . htmlspecialchars( $ext ) . "\">complete the installation</a> and download LocalSettings.php.";
-			} else {
-				echo "Please <a href=\"" . htmlspecialchars( $path ) . "mw-config/index." . htmlspecialchars( $ext ) . "\">set up the wiki</a> first.";
-			}
-			?>
-			</p>
-		<?php } else { ?>
-			<p>LocalSettings.php not readable.</p>
-			<p>Please correct file permissions and try again.</p>
-		<?php } ?>
-
-		</div>
-	</body>
-</html>
+# Render error page if no LocalSettings file can be found
+$template = include( 'templates/compiled/NoLocalSettings.php' );
+echo $template(
+	array(
+		'wgVersion' => ( isset( $wgVersion ) ? $wgVersion : 'VERSION' ),
+		'path' => $path,
+		'ext' => $ext,
+		'localSettingsExists' => file_exists( MW_CONFIG_FILE ),
+		'installerStarted' => $installerStarted
+	)
+);
