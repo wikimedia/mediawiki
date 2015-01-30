@@ -60,6 +60,7 @@ return array(
 			'tests/qunit/suites/resources/jquery/jquery.placeholder.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.tabIndex.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.tablesorter.test.js',
+			'tests/qunit/suites/resources/jquery/jquery.tablesorter.parsers.test.js',
 			'tests/qunit/suites/resources/jquery/jquery.textSelection.test.js',
 			'tests/qunit/data/mediawiki.jqueryMsg.data.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.jqueryMsg.test.js',
