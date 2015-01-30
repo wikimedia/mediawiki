@@ -97,6 +97,8 @@ production.
   tags.
 * Added 'ChangeTagsListActive' hook, to separate the concepts of "defined" and
   "active" formerly conflated by the 'ListDefinedTags' hook.
+* Added TemplateParser class that provides a server-side interface to cachable
+  dynamically-compiled Mustache templates (currently uses lightncandy library).
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
