@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="UTF-8" />
+		<title>MediaWiki {{wgVersion}}</title>
+		<style media="screen">
+			html, body {
+				color: #000;
+				background-color: #fff;
+				font-family: sans-serif;
+				text-align: center;
+			}
+
+			h1 {
+				font-size: 150%;
+			}
+		</style>
+	</head>
+	<body>
+		<img src="{{path}}resources/assets/mediawiki.png" alt="The MediaWiki logo" />
+
+		<h1>MediaWiki {{wgVersion}}</h1>
+		<div class="error">
+		{{#localSettingsExists}}
+			<p>LocalSettings.php not readable.</p>
+			<p>Please correct file permissions and try again.</p>
+		{{/localSettingsExists}}
+		{{^localSettingsExists}}
+			<p>LocalSettings.php not found.</p>
+			{{#installerStarted}}
+				<p>Please <a href="{{path}}mw-config/index{{ext}}">complete the installation</a> and download LocalSettings.php.</p>
+			{{/installerStarted}}
+			{{^installerStarted}}
+				<p>Please <a href="{{path}}mw-config/index{{ext}}">set up the wiki</a> first.</p>
+			{{/installerStarted}}
+		{{/localSettingsExists}}
+		</div>
+	</body>
+</html>
