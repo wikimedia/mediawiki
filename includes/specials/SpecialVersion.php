@@ -964,10 +964,10 @@ class SpecialVersion extends SpecialPage {
 				if ( $this->getExtAuthorsFileName( $extDir ) ) {
 					$text = Linker::link(
 						$this->getPageTitle( "Credits/$extName" ),
-						$this->msg( 'version-poweredby-others' )->text()
+						$this->msg( 'version-poweredby-others' )->escaped()
 					);
 				} else {
-					$text = $this->msg( 'version-poweredby-others' )->text();
+					$text = $this->msg( 'version-poweredby-others' )->escaped();
 				}
 				$list[] = $text;
 			} elseif ( substr( $item, -5 ) == ' ...]' ) {
@@ -983,7 +983,7 @@ class SpecialVersion extends SpecialPage {
 		if ( !$hasOthers && $this->getExtAuthorsFileName( $extDir ) ) {
 			$list[] = $text = Linker::link(
 				$this->getPageTitle( "Credits/$extName" ),
-				$this->msg( 'version-poweredby-others' )->text()
+				$this->msg( 'version-poweredby-others' )->escaped()
 			);
 		}
 
