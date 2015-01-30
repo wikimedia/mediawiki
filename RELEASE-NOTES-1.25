@@ -252,7 +252,7 @@ changes to languages because of Bugzilla reports.
 * The skin autodiscovery mechanism, deprecated in MediaWiki 1.23, has been
   removed. See https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery for
   migration guide for creators and users of custom skins that relied on it.
-* Javascript variable 'wgFileCanRotate' and 'wgFileExtensions' now only
+* Javascript variables 'wgFileCanRotate' and 'wgFileExtensions' now only
   available on Special:Upload.
 * (T58257) Set site logo from mediawiki.skinning.interface module instead of
   inline styles in the HTML.
