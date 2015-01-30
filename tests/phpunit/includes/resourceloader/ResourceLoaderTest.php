@@ -241,4 +241,14 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 			$this->assertTrue( true );
 		}
 	}
+
+	/**
+	 * @covers ResourceLoader::isModuleRegistered
+	 */
+	public function testIsModuleRegistered() {
+		$rl = new ResourceLoader();
+		$rl->register( 'test.module', new ResourceLoaderTestModule() );
+		$this->assertTrue( $rl->isModuleRegistered( 'test.module' ) );
+		$this->assertFalse( $rl->isModuleRegistered( 'test.modulenotregistered' ) );
+	}
 }
