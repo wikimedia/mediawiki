@@ -423,6 +423,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'dropTable', 'hitcounter' ),
 			array( 'dropField', 'site_stats', 'ss_total_views', 'patch-drop-ss_total_views.sql' ),
 			array( 'dropField', 'page', 'page_counter', 'patch-drop-page_counter.sql' ),
+			array( 'dropFkey', 'recentchanges', 'rc_cur_id' )
 		);
 	}
 
@@ -772,6 +773,24 @@ END;
 				$this->applyPatch( $type, true, "Creating index '$index' on table '$table'" );
 			}
 		}
+	}
+
+	protected function dropFkey( $table, $field ) {
+		$fi = $this->db->fieldInfo( $table, $field );
+		if ( is_null( $fi ) ) {
+			$this->output( "WARNING! Column '$table.$field' does not exist but it should! " .
+				"Please report this.\n" );
+			return;
+		}
+		$conname = $fi->conname();
+		if ( $fi->conname() ) {
+			$this->output( "Dropping foreign key constraint on '$table.$field'\n" );
+			$conclause = "CONSTRAINT \"$conname\"";
+			$command = "ALTER TABLE $table DROP CONSTRAINT $conname";
+			$this->db->query( $command );
+		} else {
+			$this->output( "Foreign key constraint on '$table.$field' already does not exist\n" );
+		};
 	}
 
 	protected function changeFkeyDeferrable( $table, $field, $clause ) {

@@ -415,7 +415,7 @@ CREATE TABLE recentchanges (
   rc_minor           SMALLINT     NOT NULL  DEFAULT 0,
   rc_bot             SMALLINT     NOT NULL  DEFAULT 0,
   rc_new             SMALLINT     NOT NULL  DEFAULT 0,
-  rc_cur_id          INTEGER          NULL  REFERENCES page(page_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
+  rc_cur_id          INTEGER          NULL,
   rc_this_oldid      INTEGER      NOT NULL,
   rc_last_oldid      INTEGER      NOT NULL,
   rc_type            SMALLINT     NOT NULL  DEFAULT 0,
