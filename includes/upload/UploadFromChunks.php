@@ -77,7 +77,7 @@ class UploadFromChunks extends UploadFromFile {
 
 		$this->verifyChunk();
 		// Create a local stash target
-		$this->mLocalFile = parent::stashFile();
+		$this->mLocalFile = parent::stashFile( $user );
 		// Update the initial file offset (based on file size)
 		$this->mOffset = $this->mLocalFile->getSize();
 		$this->mFileKey = $this->mLocalFile->getFileKey();
