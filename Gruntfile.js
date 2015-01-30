@@ -8,7 +8,10 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-karma' );
 
 	var wgServer = process.env.MW_SERVER,
-		wgScriptPath = process.env.MW_SCRIPT_PATH;
+		wgScriptPath = process.env.MW_SCRIPT_PATH,
+		karmaProxy = {};
+
+	karmaProxy[wgScriptPath] = wgServer + wgScriptPath;
 
 	grunt.initConfig( {
 		pkg: grunt.file.readJSON( 'package.json' ),
@@ -62,27 +65,7 @@ module.exports = function ( grunt ) {
 		},
 		karma: {
 			options: {
-				proxies: ( function () {
-					var obj = {};
-					// Set up a proxy for requests to relative urls inside wgScriptPath. Uses a
-					// property accessor instead of plain obj[wgScriptPath] assignment as throw if
-					// unset. Running grunt normally (e.g. npm test), should not fail over this.
-					// This ensures 'npm test' works out of the box, statically, on a git clone
-					// without MediaWiki fully installed or some environment variables set.
-					Object.defineProperty( obj, wgScriptPath, {
-						enumerable: true,
-						get: function () {
-							if ( !wgServer ) {
-								grunt.fail.fatal( 'MW_SERVER is not set' );
-							}
-							if ( !wgScriptPath ) {
-								grunt.fail.fatal( 'MW_SCRIPT_PATH is not set' );
-							}
-							return wgServer + wgScriptPath;
-						}
-					} );
-					return obj;
-				}() ),
+				proxies: karmaProxy,
 				files: [ {
 					pattern: wgServer + wgScriptPath + '/index.php?title=Special:JavaScriptTest/qunit/export',
 					watched: false,
