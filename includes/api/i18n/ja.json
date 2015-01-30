@@ -79,7 +79,7 @@
 	"apihelp-move-param-to": "移動後のページ名。",
 	"apihelp-move-param-reason": "移動の理由。",
 	"apihelp-move-param-movetalk": "存在する場合、トークページも移動します。",
-	"apihelp-move-param-movesubpages": "可能であれば、サブページも移動します。",
+	"apihelp-move-param-movesubpages": "可能であれば、下位ページも名前を変更します。",
 	"apihelp-move-param-noredirect": "転送ページを作成しません。",
 	"apihelp-move-param-watch": "そのページと転送ページをウォッチリストに追加します。",
 	"apihelp-move-param-unwatch": "そのページと転送ページをウォッチリストから除去します。",

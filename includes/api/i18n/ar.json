@@ -3,7 +3,8 @@
 		"authors": [
 			"Meno25",
 			"أحمد المحمودي",
-			"Khaled"
+			"Khaled",
+			"Fatz"
 		]
 	},
 	"apihelp-main-param-format": "صيغة الخرج.",
@@ -20,6 +21,8 @@
 	"apihelp-delete-description": "حذف صفحة.",
 	"apihelp-delete-param-unwatch": "أزل الصفحة من قائمة مراقبتك.",
 	"apihelp-edit-description": "إنشاء وتعديل الصفحات.",
+	"apihelp-edit-param-watch": "أضف الصفحة إلى لائحة مراقبة المستعمل الحالي",
 	"apihelp-emailuser-description": "مراسلة المستخدم",
+	"apihelp-patrol-example-rcid": "ابحث عن تغيير جديد",
 	"apihelp-query+prefixsearch-param-offset": "عدد النتائج المراد تخطيها."
 }
