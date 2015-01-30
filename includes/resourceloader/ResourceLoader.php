@@ -459,6 +459,17 @@ class ResourceLoader {
 	}
 
 	/**
+	 * Check whether a ResourceLoader module is registered
+	 *
+	 * @since 1.25
+	 * @param string $name
+	 * @return bool
+	 */
+	public function isModuleRegistered( $name ) {
+		return isset( $this->moduleInfos[$name] );
+	}
+
+	/**
 	 * Get the ResourceLoaderModule object for a given module name.
 	 *
 	 * If an array of module parameters exists but a ResourceLoaderModule object has not
