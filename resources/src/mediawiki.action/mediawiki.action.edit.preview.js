@@ -4,6 +4,20 @@
 ( function ( mw, $ ) {
 
 	/**
+	 * Remove all HTML tags.
+	 *
+	 * PHP: Sanitizer::stripAllTags
+	 *
+	 * @param string text HTML fragment
+	 * @return string
+	 */
+	function stripAllTags( text ) {
+		return text
+			.replace( /<[^>]*>/g, '' )
+			.replace( /&amp;/g, '&' );
+	}
+
+	/**
 	 * @ignore
 	 * @param {jQuery.Event} e
 	 */
@@ -117,6 +131,14 @@
 				}
 				if ( response.parse.displaytitle ) {
 					$( '#firstHeading' ).html( '<span dir="auto">' + response.parse.displaytitle + '</span>' );
+					$( 'title' ).text(
+						mw.msg( 'pagetitle',
+							mw.msg(
+								mw.config.get( 'wgEditMessage', 'editing' ),
+								stripAllTags( response.parse.displaytitle )
+							)
+						)
+					);
 				}
 				if ( response.parse.categorieshtml ) {
 					$( '#catlinks' ).replaceWith( response.parse.categorieshtml['*'] );

@@ -2086,6 +2086,8 @@ class EditPage {
 			$displayTitle = $contextTitle->getPrefixedText();
 		}
 		$wgOut->setPageTitle( wfMessage( $msg, $displayTitle ) );
+		# Transmit the name of the message to JavaScript for live preview
+		$wgOut->addJsConfigVars( 'wgEditMessage', $msg );
 	}
 
 	/**
