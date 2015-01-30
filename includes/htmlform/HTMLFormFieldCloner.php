@@ -227,6 +227,10 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			return $this->msg( 'htmlform-cloner-required' )->parseAsBlock();
 		}
 
+		if( !is_array( $values ) ) {
+			return false;
+		}
+
 		if ( isset( $values['nonjs'] ) ) {
 			// The submission was a non-JS create/delete click, so fail
 			// validation in case cancelSubmit() somehow didn't already handle
