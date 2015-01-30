@@ -1052,6 +1052,8 @@ return array(
 			'mediawiki.jqueryMsg',
 		),
 		'messages' => array(
+			'editing',
+			'pagetitle',
 			'otherlanguages',
 			'tooltip-p-lang',
 			'summary-preview',
