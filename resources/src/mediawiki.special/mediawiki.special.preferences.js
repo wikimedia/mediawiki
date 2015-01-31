@@ -5,7 +5,8 @@ jQuery( function ( $ ) {
 	var $preftoc, $preferences, $fieldsets, $legends,
 		hash, labelFunc,
 		$tzSelect, $tzTextbox, $localtimeHolder, servertime,
-		$checkBoxes, savedWindowOnBeforeUnload;
+		$checkBoxes, savedWindowOnBeforeUnload,
+		notif;
 
 	labelFunc = function () {
 		return this.id.replace( /^mw-prefsection/g, 'preftab' );
@@ -42,6 +43,33 @@ jQuery( function ( $ ) {
 				$( this ).css( 'height', 'auto' );
 			}
 	} ).insertBefore( $preftoc );
+
+	// If there is a .successbox and javascript is enabled, remove the old box and add a slick
+	// mw.notify box!
+	if ( $( '.successbox' ).length ) {
+		$( '.successbox' ).remove();
+		mediaWiki.loader.using( 'mediawiki.notification', function () {
+			notif = mediaWiki.notification.notify( mediaWiki.message( 'savedprefs' ), { autoHide: false } );
+			notif.$notification.unbind( 'click' );
+			notif.$notification.click( hideSuccessMessage );
+			$( '.prefsection' ).change( hideSuccessMessage );
+		} );
+	}
+
+	/**
+	 * Fade out and remove the preferences saved notify box.
+	 *
+	 * Runs close() on notification, causing it to fade out.
+	 */
+	function hideSuccessMessage() {
+		if ( notif ) {
+			notif.close();
+			// Remove now-unnecessary success=1 querystring
+			if ( history.pushState ) {
+				history.pushState( {}, document.title, document.URL.replace( /success=1&?/, '' ) );
+			}
+		}
+	}
 
 	/**
 	 * It uses document.getElementById for security reasons (HTML injections in $()).
@@ -122,6 +150,7 @@ jQuery( function ( $ ) {
 		}
 		if ( $el.length > 0 ) {
 			switchPrefTab( $el.attr( 'href' ).replace( '#mw-prefsection-', '' ) );
+			hideSuccessMessage();
 		}
 	} );
 
@@ -142,21 +171,24 @@ jQuery( function ( $ ) {
 		( document.documentMode === undefined || document.documentMode >= 8 )
 	) {
 		$( window ).on( 'hashchange', function () {
+			hideSuccessMessage();
 			var hash = location.hash;
 			if ( hash.match( /^#mw-prefsection-[\w\-]+/ ) ) {
 				switchPrefTab( hash.replace( '#mw-prefsection-', '' ) );
 			} else if ( hash === '' ) {
 				switchPrefTab( 'personal', 'noHash' );
 			}
+			hideSuccessMessage();
 		} );
 	// In older browsers we'll bind a click handler as fallback.
 	// We must not have onhashchange *and* the click handlers, other wise
 	// the click handler calls switchPrefTab() which sets the hash value,
-	// which triggers onhashcange and calls switchPrefTab() again.
+	// which triggers onhashchange and calls switchPrefTab() again.
 	} else {
 		$preftoc.on( 'click', 'li a', function ( e ) {
 			switchPrefTab( $( this ).attr( 'href' ).replace( '#mw-prefsection-', '' ) );
 			e.preventDefault();
+			hideSuccessMessage();
 		} );
 	}
 
