@@ -1,11 +1,12 @@
 /*!
  * JavaScript for Special:Preferences
  */
-jQuery( function ( $ ) {
+( function ( mw, $ ) {
 	var $preftoc, $preferences, $fieldsets, $legends,
 		hash, labelFunc,
 		$tzSelect, $tzTextbox, $localtimeHolder, servertime,
-		$checkBoxes, savedWindowOnBeforeUnload;
+		$checkBoxes, savedWindowOnBeforeUnload,
+		notif;
 
 	labelFunc = function () {
 		return this.id.replace( /^mw-prefsection/g, 'preftab' );
@@ -33,7 +34,7 @@ jQuery( function ( $ ) {
 	// but hide it per default to reduce interface clutter. Also make sure it becomes visible
 	// when selected. Similar to jquery.mw-jump
 	$( '<div>' ).addClass( 'mw-navigation-hint' )
-		.text( mediaWiki.msg( 'prefs-tabs-navigation-hint' ) )
+		.text( mw.message( 'prefs-tabs-navigation-hint' ) )
 		.attr( 'tabIndex', 0 )
 		.on( 'focus blur', function ( e ) {
 			if ( e.type === 'blur' || e.type === 'focusout' ) {
@@ -42,6 +43,32 @@ jQuery( function ( $ ) {
 				$( this ).css( 'height', 'auto' );
 			}
 	} ).insertBefore( $preftoc );
+
+	/**
+	 * Fade out and remove the preferences saved notify box.
+	 *
+	 * Sets autoHide on the savedprefs notification to True, causing it to fade out.
+	 */
+	function hideSuccessMessage() {
+		if ( notif ) {
+			notif.close();
+			// Remove now-unnecessary success=1 querystring
+			if ( history.pushState ) {
+				history.pushState( {}, document.title, document.URL.replace( /success=1&?/, '' ) );
+			}
+		}
+	}
+
+	if ( $( '.successbox').length ) {
+		$( '.successbox' ).remove();
+		mw.loader.using( 'mediawiki.notification', function () {
+			notif = mw.notification.notify( mw.message( 'savedprefs' ), { autoHide: false } );
+			notif.$notification.unbind( 'click' );
+			notif.$notification.click( hideSuccessMessage );
+			$( '.postedit' ).click( hideSuccessMessage );
+			$( '.prefsection' ).change( hideSuccessMessage );
+		} );
+	}
 
 	/**
 	 * It uses document.getElementById for security reasons (HTML injections in $()).
@@ -122,6 +149,7 @@ jQuery( function ( $ ) {
 		}
 		if ( $el.length > 0 ) {
 			switchPrefTab( $el.attr( 'href' ).replace( '#mw-prefsection-', '' ) );
+			hideSuccessMessage();
 		}
 	} );
 
@@ -142,6 +170,7 @@ jQuery( function ( $ ) {
 		( document.documentMode === undefined || document.documentMode >= 8 )
 	) {
 		$( window ).on( 'hashchange', function () {
+			hideSuccessMessage();
 			var hash = location.hash;
 			if ( hash.match( /^#mw-prefsection-[\w\-]+/ ) ) {
 				switchPrefTab( hash.replace( '#mw-prefsection-', '' ) );
@@ -152,10 +181,11 @@ jQuery( function ( $ ) {
 	// In older browsers we'll bind a click handler as fallback.
 	// We must not have onhashchange *and* the click handlers, other wise
 	// the click handler calls switchPrefTab() which sets the hash value,
-	// which triggers onhashcange and calls switchPrefTab() again.
+	// which triggers onhashchange and calls switchPrefTab() again.
 	} else {
 		$preftoc.on( 'click', 'li a', function ( e ) {
 			switchPrefTab( $( this ).attr( 'href' ).replace( '#mw-prefsection-', '' ) );
+			hideSuccessMessage();
 			e.preventDefault();
 		} );
 	}
@@ -229,7 +259,7 @@ jQuery( function ( $ ) {
 		while ( localTime >= 1440 ) {
 			localTime -= 1440;
 		}
-		$localtimeHolder.text( mediaWiki.language.convertNumber( minutesToHours( localTime ) ) );
+		$localtimeHolder.text( mw.language.convertNumber( minutesToHours( localTime ) ) );
 	}
 
 	if ( $tzSelect.length && $tzTextbox.length ) {
@@ -274,7 +304,7 @@ jQuery( function ( $ ) {
 			// Check if anything changed
 			if ( $( '#mw-prefs-form' ).serialize() !== $( '#mw-prefs-form' ).data( 'origdata' ) ) {
 				// Return our message
-				retval = mediaWiki.msg( 'prefswarning-warning', mediaWiki.msg( 'saveprefs' ) );
+				retval = mw.message( 'prefswarning-warning', mw.message( 'saveprefs' ) );
 			}
 
 			// Unset the onbeforeunload handler so we don't break page caching in Firefox
@@ -302,4 +332,4 @@ jQuery( function ( $ ) {
 		// Unbind our beforeunload handler
 		$( window ).off( '.prefswarning' );
 	} );
-} );
+}( mediaWiki, jQuery ) );
