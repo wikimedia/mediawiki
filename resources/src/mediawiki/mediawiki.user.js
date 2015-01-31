@@ -48,24 +48,47 @@
 		options: options,
 		tokens: tokens,
 
-		/**
-		 * Generate a random user session ID (32 alpha-numeric characters)
-		 *
-		 * This information would potentially be stored in a cookie to identify a user during a
-		 * session or series of sessions. Its uniqueness should not be depended on.
-		 *
-		 * @return {string} Random set of 32 alpha-numeric characters
-		 */
-		generateRandomSessionId: function () {
-			var i, r,
-				id = '',
-				seed = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-			for ( i = 0; i < 32; i++ ) {
-				r = Math.floor( Math.random() * seed.length );
-				id += seed.charAt( r );
+	/**
+	 * Generate a random user session ID (32 alpha-numeric characters)
+	 *
+	 * This information would potentially be stored in a cookie to identify a user during a
+	 * session or series of sessions. Its uniqueness should
+	 * not be depended on unless the browser
+	 * supports the crypto API.
+	 *
+	 * Known problems with Math.random()
+	 * Using the Math.random function we have seen sets
+	 * with 1% of non uniques among 200.000 values with Safari providing most of these.
+	 * Given the prevalence of Safari in mobile the percentage of duplicates in
+	 * mobile usages of this code is probably higher.
+	 *
+	 * Rationale:
+	 * We need about 64 bits to make sure that probability of collision
+	 * on 500 million (5*10^8) is <= 1%
+	 * See: https://en.wikipedia.org/wiki/Birthday_problem#Probability_table
+	 *
+	 * @return {string} Random set of 32 alpha-numeric characters or if crypto is supported
+	 * a 64 bit integer that will be used as a string.
+	 */
+	generateRandomSessionId: function () {
+		var i, r,
+			id = '',
+			seed = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+		var cryptoObj = window.crypto || window.msCrypto; // for IE 11
+
+		if ( cryptoObj ) {
+			// can only be seeded with ad maximum 32 bit array
+			var _int32Array = new Int32Array(2);
+			window.cryptoObj.getRandomValues( _int32Array );
+			id = _int32Array[0] + '' + _int32Array[1];
+		} else {
+			for (i = 0; i < 32; i++) {
+				r = Math.floor(Math.random() * seed.length);
+				id += seed.charAt(r);
 			}
-			return id;
-		},
+		}
+		return id;
+	},
 
 		/**
 		 * Get the current user's database id
