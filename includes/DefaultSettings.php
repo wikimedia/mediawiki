@@ -6321,7 +6321,7 @@ $wgAutoloadAttemptLowercase = true;
  *     'version' => '1.9.0',
  *     'url' => 'http://example.org/example-extension/',
  *     'descriptionmsg' => 'exampleextension-desc',
- *     'license-name' => 'GPL-2.0',
+ *     'license-name' => 'GPL-2.0+',
  * );
  * @endcode
  *
@@ -6355,7 +6355,7 @@ $wgAutoloadAttemptLowercase = true;
  *    localizable message (omit in favour of 'descriptionmsg').
  *
  * - license-name: Short name of the license (used as label for the link), such
- *   as "GPL-2.0" or "MIT" (https://spdx.org/licenses/ for a list of identifiers).
+ *   as "GPL-2.0+" or "MIT" (https://spdx.org/licenses/ for a list of identifiers).
  */
 $wgExtensionCredits = array();
 
