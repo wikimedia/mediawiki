@@ -3,10 +3,18 @@
 		"authors": [
 			"An13sa",
 			"Unai Fdz. de Betoño",
-			"Xabier Armendaritz"
+			"Xabier Armendaritz",
+			"Subi"
 		]
 	},
 	"ooui-outline-control-move-down": "Mugitu itema beherantz",
 	"ooui-outline-control-move-up": "Mugitu itema gorantz",
-	"ooui-toolbar-more": "Gehiago"
+	"ooui-toolbar-more": "Gehiago",
+	"ooui-toolgroup-expand": "Gehiago",
+	"ooui-toolgroup-collapse": "Gutxiago",
+	"ooui-dialog-message-accept": "Ados",
+	"ooui-dialog-message-reject": "Utzi",
+	"ooui-dialog-process-error": "Zerbaitek huts egin du",
+	"ooui-dialog-process-retry": "Saiatu berriro",
+	"ooui-dialog-process-continue": "Jarraitu"
 }

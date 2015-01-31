@@ -6,13 +6,20 @@
 			"Jayantanth",
 			"Nasir8891",
 			"Runab",
-			"Sayak Sarkar"
+			"Sayak Sarkar",
+			"Aftabuzzaman",
+			"RYasmeen (WMF)"
 		]
 	},
 	"ooui-outline-control-move-down": "আইটেম নিচে স্থানান্তর",
 	"ooui-outline-control-move-up": "আইটেম উপরে স্থানান্তর",
 	"ooui-outline-control-remove": "আইটেম সরান",
 	"ooui-toolbar-more": "আরও",
+	"ooui-toolgroup-expand": "আরও",
+	"ooui-toolgroup-collapse": "কম দেখাও",
 	"ooui-dialog-message-accept": "ঠিক আছে",
-	"ooui-dialog-message-reject": "বাতিল"
+	"ooui-dialog-message-reject": "বাতিল",
+	"ooui-dialog-process-dismiss": "বাতিল করুন",
+	"ooui-dialog-process-retry": "আবার চেষ্টা করুন",
+	"ooui-dialog-process-continue": "অগ্রসর হোন"
 }

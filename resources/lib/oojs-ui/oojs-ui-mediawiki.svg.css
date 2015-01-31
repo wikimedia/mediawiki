@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.6.3
+ * OOjs UI v0.6.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-01-16T00:05:16Z
+ * Date: 2015-01-31T01:16:05Z
  */
 .oo-ui-progressBarWidget-slide-frames from {
 	margin-left: -40%;
@@ -134,10 +134,6 @@
 .oo-ui-buttonElement.oo-ui-widget-disabled > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator {
 	opacity: 0.2;
 }
-.oo-ui-buttonElement.oo-ui-widget-disabled > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
-	color: #ffffff;
-	background: #eeeeee;
-}
 .oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button:hover,
 .oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button:focus {
 	outline: none;
@@ -191,6 +187,9 @@
 	color: #a7170f;
 	box-shadow: none;
 }
+.oo-ui-buttonElement-frameless.oo-ui-widget-disabled > .oo-ui-buttonElement-button {
+	color: #eeeeee;
+}
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button {
 	margin: 0.1em 0;
 	padding: 0.2em 0.8em;
@@ -220,7 +219,7 @@
 .oo-ui-buttonElement-framed.oo-ui-widget-disabled > .oo-ui-buttonElement-button {
 	color: #ffffff;
 	background: #eeeeee;
-	border: #eeeeee;
+	border: 1px solid #eeeeee;
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button {
 	color: #757575;
@@ -488,6 +487,12 @@
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-top.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
 	padding: 0.5em 0;
 }
+.oo-ui-fieldLayout > .oo-ui-popupButtonWidget {
+	margin-right: 0;
+}
+.oo-ui-fieldLayout > .oo-ui-popupButtonWidget:last-child {
+	margin-right: 0;
+}
 .oo-ui-fieldLayout > .oo-ui-popupButtonWidget > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
 	margin-top: 0.25em;
 }
@@ -509,6 +514,7 @@
 }
 .oo-ui-actionFieldLayout-button {
 	width: 1%;
+	white-space: nowrap;
 }
 .oo-ui-fieldsetLayout {
 	position: relative;
@@ -524,6 +530,16 @@
 }
 .oo-ui-fieldsetLayout.oo-ui-labelElement > .oo-ui-labelElement-label {
 	display: inline-block;
+}
+.oo-ui-fieldsetLayout > .oo-ui-fieldsetLayout-help {
+	float: right;
+}
+.oo-ui-fieldsetLayout > .oo-ui-fieldsetLayout-help > .oo-ui-popupWidget > .oo-ui-popupWidget-popup {
+	z-index: 1;
+}
+.oo-ui-fieldsetLayout > .oo-ui-fieldsetLayout-help .oo-ui-fieldsetLayout-help-content {
+	padding: 0.5em 0.75em;
+	line-height: 1.5em;
 }
 .oo-ui-fieldsetLayout + .oo-ui-fieldsetLayout {
 	margin-top: 2em;
@@ -550,6 +566,48 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
+}
+.oo-ui-menuLayout {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+.oo-ui-menuLayout-menu,
+.oo-ui-menuLayout-content {
+	position: absolute;
+	-webkit-transition: all ease-in-out 200ms;
+	   -moz-transition: all ease-in-out 200ms;
+	    -ms-transition: all ease-in-out 200ms;
+	     -o-transition: all ease-in-out 200ms;
+	        transition: all ease-in-out 200ms;
+}
+.oo-ui-menuLayout-content {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+.oo-ui-menuLayout-top .oo-ui-menuLayout-menu {
+	left: 0;
+	top: 0;
+	right: 0;
+}
+.oo-ui-menuLayout-after .oo-ui-menuLayout-menu {
+	top: 0;
+	right: 0;
+	bottom: 0;
+}
+.oo-ui-menuLayout-bottom .oo-ui-menuLayout-menu {
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+.oo-ui-menuLayout-before .oo-ui-menuLayout-menu {
+	bottom: 0;
+	left: 0;
+	top: 0;
 }
 .oo-ui-panelLayout {
 	position: relative;
@@ -824,6 +882,7 @@
 	padding: 0.25em 0 0.25em 0;
 	border: 1px solid #aaaaaa;
 	border-radius: 0.2em;
+	border-top-left-radius: 0;
 	box-shadow: inset 0 -0.2em 0 0 rgba(0, 0, 0, 0.2), 0 0.1em 0 0 rgba(0, 0, 0, 0.1);
 }
 .oo-ui-menuToolGroup.oo-ui-widget-enabled:hover {
@@ -943,7 +1002,9 @@
 	line-height: 1.5em;
 }
 .oo-ui-selectWidget-depressed .oo-ui-optionWidget-selected,
-.oo-ui-selectWidget-pressed .oo-ui-optionWidget-pressed {
+.oo-ui-selectWidget-pressed .oo-ui-optionWidget-pressed,
+.oo-ui-selectWidget-pressed .oo-ui-optionWidget-pressed.oo-ui-optionWidget-highlighted,
+.oo-ui-selectWidget-pressed .oo-ui-optionWidget-pressed.oo-ui-optionWidget-highlighted.oo-ui-optionWidget-selected {
 	background-color: #d0d0d0;
 }
 .oo-ui-optionWidget.oo-ui-widget-disabled {
@@ -975,6 +1036,14 @@
 	display: inline-block;
 	white-space: nowrap;
 	border-radius: 2px;
+	margin-right: 0.5em;
+}
+.oo-ui-buttonSelectWidget:last-child {
+	margin-right: 0;
+}
+.oo-ui-buttonSelectWidget .oo-ui-buttonOptionWidget.oo-ui-buttonElement-active .oo-ui-buttonElement-button {
+	background: #999999;
+	color: #ffffff;
 }
 .oo-ui-buttonSelectWidget .oo-ui-buttonOptionWidget .oo-ui-buttonElement-button {
 	border-radius: 0;
@@ -988,9 +1057,6 @@
 .oo-ui-buttonSelectWidget .oo-ui-buttonOptionWidget:last-child .oo-ui-buttonElement-button {
 	border-bottom-right-radius: 2px;
 	border-top-right-radius: 2px;
-}
-.oo-ui-radioSelectWidget {
-	padding: 0.75em 0 0.5em 0;
 }
 .oo-ui-buttonOptionWidget {
 	display: inline-block;
@@ -1021,7 +1087,7 @@
 }
 .oo-ui-radioOptionWidget {
 	cursor: default;
-	padding: 0;
+	padding: 0.25em 0;
 	background-color: transparent;
 }
 .oo-ui-radioOptionWidget .oo-ui-radioInputWidget,
@@ -1033,9 +1099,6 @@
 .oo-ui-radioOptionWidget.oo-ui-optionWidget-pressed,
 .oo-ui-radioOptionWidget.oo-ui-optionWidget-highlighted {
 	background-color: transparent;
-}
-.oo-ui-radioOptionWidget > .oo-ui-labelElement-label {
-	padding: 0 0.5em;
 }
 .oo-ui-labelWidget {
 	display: inline-block;
@@ -1067,11 +1130,29 @@
 .oo-ui-buttonWidget {
 	display: inline-block;
 	vertical-align: middle;
+	margin-right: 0.5em;
+}
+.oo-ui-buttonWidget:last-child {
+	margin-right: 0;
 }
 .oo-ui-buttonGroupWidget {
 	display: inline-block;
 	white-space: nowrap;
 	border-radius: 2px;
+	margin-right: 0.5em;
+}
+.oo-ui-buttonGroupWidget:last-child {
+	margin-right: 0;
+}
+.oo-ui-buttonGroupWidget .oo-ui-buttonWidget {
+	margin-right: 0;
+}
+.oo-ui-buttonGroupWidget .oo-ui-buttonWidget:last-child {
+	margin-right: 0;
+}
+.oo-ui-buttonGroupWidget .oo-ui-buttonElement-framed.oo-ui-buttonElement-active .oo-ui-buttonElement-button {
+	background: #999999;
+	color: #ffffff;
 }
 .oo-ui-buttonGroupWidget .oo-ui-buttonElement-framed .oo-ui-buttonElement-button {
 	border-radius: 0;
@@ -1104,6 +1185,7 @@
 	width: 4em;
 	border-radius: 1em;
 	border: 1px #dddddd solid;
+	margin-right: 0.5em;
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-disabled {
 	cursor: default;
@@ -1129,6 +1211,9 @@
 }
 .oo-ui-toggleWidget-off .oo-ui-toggleSwitchWidget-glow {
 	display: none;
+}
+.oo-ui-toggleSwitchWidget:last-child {
+	margin-right: 0;
 }
 .oo-ui-toggleSwitchWidget-grip {
 	top: 0.25em;
@@ -1315,9 +1400,15 @@
 .oo-ui-popupButtonWidget.oo-ui-buttonElement-framed > .oo-ui-popupWidget {
 	left: 1.75em;
 }
+.oo-ui-inputWidget {
+	margin-right: 0.5em;
+}
+.oo-ui-inputWidget:last-child {
+	margin-right: 0;
+}
 .oo-ui-checkboxInputWidget {
 	position: relative;
-	line-height: 2em;
+	line-height: 1.6em;
 	white-space: nowrap;
 }
 .oo-ui-checkboxInputWidget * {
@@ -1327,13 +1418,13 @@
 .oo-ui-checkboxInputWidget input[type="checkbox"] {
 	opacity: 0;
 	margin: 0;
-	width: 2em;
-	height: 2em;
+	width: 1.6em;
+	height: 1.6em;
 	max-width: none;
 }
 .oo-ui-checkboxInputWidget input[type="checkbox"] + span {
 	cursor: pointer;
-	margin: 0 0.4em;
+	margin: 0 0.2em;
 }
 .oo-ui-checkboxInputWidget input[type="checkbox"] + span::before {
 	-webkit-transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -1348,12 +1439,11 @@
 	position: absolute;
 	left: 0;
 	border-radius: 2px;
-	width: 2em;
-	height: 2em;
+	width: 1.6em;
+	height: 1.6em;
 	background-color: white;
 	border: 1px solid #777777;
 	background-image: /* @embed */ url(themes/mediawiki/images/icons/check-constructive.svg);
-	background-size: 2em, 2em;
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-origin: border-box;
@@ -1381,9 +1471,46 @@
 .oo-ui-checkboxInputWidget input[type="checkbox"]:disabled:checked + span::before {
 	background-image: /* @embed */ url(themes/mediawiki/images/icons/check-invert.svg);
 }
+.oo-ui-dropdownInputWidget {
+	position: relative;
+	vertical-align: middle;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+	width: 100%;
+	max-width: 50em;
+}
+.oo-ui-dropdownInputWidget select {
+	display: inline-block;
+	width: 100%;
+	resize: none;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.oo-ui-dropdownInputWidget select {
+	height: 2.5em;
+	padding: 0.5em;
+	font-size: 1em;
+	font-family: sans-serif;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+	border: solid 1px #cccccc;
+}
+.oo-ui-dropdownInputWidget.oo-ui-widget-enabled select:hover,
+.oo-ui-dropdownInputWidget.oo-ui-widget-enabled select:focus {
+	border-color: #aaaaaa;
+	outline: none;
+}
+.oo-ui-dropdownInputWidget.oo-ui-widget-disabled select {
+	color: #cccccc;
+	border-color: #dddddd;
+	background-color: #f3f3f3;
+}
 .oo-ui-radioInputWidget {
 	position: relative;
-	line-height: 2em;
+	line-height: 1.6em;
 	white-space: nowrap;
 }
 .oo-ui-radioInputWidget * {
@@ -1393,13 +1520,13 @@
 .oo-ui-radioInputWidget input[type="radio"] {
 	opacity: 0;
 	margin: 0;
-	width: 2em;
-	height: 2em;
+	width: 1.6em;
+	height: 1.6em;
 	max-width: none;
 }
 .oo-ui-radioInputWidget input[type="radio"] + span {
 	cursor: pointer;
-	margin: 0 0.4em;
+	margin: 0 0.2em;
 }
 .oo-ui-radioInputWidget input[type="radio"] + span::before {
 	-webkit-transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -1414,8 +1541,8 @@
 	position: absolute;
 	left: 0;
 	border-radius: 100%;
-	width: 2em;
-	height: 2em;
+	width: 1.6em;
+	height: 1.6em;
 	background: white;
 	border: 1px solid #777777;
 	background-image: /* @embed */ url(themes/mediawiki/images/icons/circle-constructive.svg);
@@ -1483,6 +1610,16 @@
 .oo-ui-textInputWidget > .oo-ui-indicatorElement-indicator {
 	right: 0;
 }
+.oo-ui-textInputWidget > .oo-ui-labelElement-label {
+	position: absolute;
+	top: 0;
+}
+.oo-ui-textInputWidget-labelPosition-after > .oo-ui-labelElement-label {
+	right: 0;
+}
+.oo-ui-textInputWidget-labelPosition-before > .oo-ui-labelElement-label {
+	left: 0;
+}
 .oo-ui-textInputWidget input,
 .oo-ui-textInputWidget textarea {
 	padding: 0.5em 0.5em 0.5em 0.9em;
@@ -1539,7 +1676,7 @@
 }
 .oo-ui-textInputWidget.oo-ui-iconElement input,
 .oo-ui-textInputWidget.oo-ui-iconElement textarea {
-	padding-left: 2.4em;
+	padding-left: 2.75em;
 }
 .oo-ui-textInputWidget.oo-ui-iconElement .oo-ui-iconElement-icon {
 	left: 0.4em;
@@ -1556,12 +1693,23 @@
 	height: 100%;
 	background-position: left center;
 }
+.oo-ui-textInputWidget > .oo-ui-labelElement-label {
+	padding: 0.4em;
+	line-height: 1.5em;
+	color: #888888;
+}
+.oo-ui-textInputWidget-labelPosition-after.oo-ui-indicatorElement > .oo-ui-labelElement-label {
+	padding-right: 2.4em;
+}
+.oo-ui-textInputWidget-labelPosition-before.oo-ui-iconElement > .oo-ui-labelElement-label {
+	padding-left: 2.9em;
+}
 .oo-ui-menuSelectWidget {
 	position: absolute;
 	background: #ffffff;
 	margin-top: -1px;
 	border: solid 1px #aaaaaa;
-	border-radius: 0 0 0.1em 0.1em;
+	border-radius: 0 0 0.2em 0.2em;
 	padding-bottom: 0.25em;
 	box-shadow: inset 0 -0.2em 0 0 rgba(0, 0, 0, 0.2), 0 0.1em 0 0 rgba(0, 0, 0, 0.2);
 }
@@ -1574,6 +1722,7 @@
 }
 .oo-ui-menuOptionWidget {
 	position: relative;
+	padding: 0.5em 1em;
 }
 .oo-ui-menuOptionWidget .oo-ui-iconElement-icon {
 	display: none;
@@ -1585,10 +1734,15 @@
 	display: block;
 }
 .oo-ui-menuOptionWidget.oo-ui-optionWidget-selected {
-	background-color: transparent;
+	background-color: #999999;
+	color: #ffffff;
+}
+.oo-ui-menuOptionWidget.oo-ui-optionWidget-selected .oo-ui-iconElement-icon {
+	display: none;
 }
 .oo-ui-menuOptionWidget.oo-ui-optionWidget-highlighted {
 	background-color: #eeeeee;
+	color: black;
 }
 .oo-ui-menuSectionOptionWidget {
 	cursor: default;
@@ -1601,6 +1755,7 @@
 	margin: 0.25em 0;
 	width: 100%;
 	max-width: 50em;
+	margin-right: 0.5em;
 }
 .oo-ui-dropdownWidget-handle {
 	width: 100%;
@@ -1627,6 +1782,9 @@
 }
 .oo-ui-dropdownWidget.oo-ui-widget-disabled .oo-ui-dropdownWidget-handle {
 	cursor: default;
+}
+.oo-ui-dropdownWidget:last-child {
+	margin-right: 0;
 }
 .oo-ui-dropdownWidget-handle {
 	height: 2.5em;
@@ -1766,10 +1924,14 @@
 	position: relative;
 	width: 100%;
 	max-width: 50em;
+	margin-right: 0.5em;
 }
 .oo-ui-comboBoxWidget > .oo-ui-menuSelectWidget {
 	z-index: 1;
 	width: 100%;
+}
+.oo-ui-comboBoxWidget:last-child {
+	margin-right: 0;
 }
 .oo-ui-comboBoxWidget .oo-ui-textInputWidget input,
 .oo-ui-comboBoxWidget .oo-ui-textInputWidget textarea {
@@ -1786,9 +1948,6 @@
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
-}
-.oo-ui-searchWidget {
-	border: solid 1px #cccccc;
 }
 .oo-ui-searchWidget-query {
 	position: absolute;
@@ -2215,7 +2374,7 @@
 .oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-load {
 	opacity: 1;
 }
-.oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-setup > .oo-ui-window-frame {
+.oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-ready > .oo-ui-window-frame {
 	-webkit-transform: scale(1);
 	   -moz-transform: scale(1);
 	    -ms-transform: scale(1);

@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.6.3
+ * OOjs UI v0.6.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-01-16T00:05:04Z
+ * Date: 2015-01-31T01:15:57Z
  */
 /**
  * @class
@@ -51,7 +51,7 @@ OO.ui.MediaWikiTheme.prototype.getElementClasses = function ( element ) {
 	}
 
 	for ( variant in variants ) {
-		classes[variants[variant] ? 'on' : 'off'].push( 'oo-ui-image-' + variant );
+		classes[ variants[ variant ] ? 'on' : 'off' ].push( 'oo-ui-image-' + variant );
 	}
 
 	return classes;
