@@ -51,4 +51,16 @@
 
 		this.server.respond();
 	} );
+
+	QUnit.test( 'session numbers', 4, function ( assert ) {
+		var sessionId =  mw.user.generateRandomSessionId();
+		assert.ok( typeof sessionId === "string", 'generateRandomSessionId should return a string' );
+		assert.ok( sessionId.trim() !== "", 'generateRandomSessionId should not be empty' );
+		// pretend crypto API is not there and do same test, make sure code runs
+		// through  Math.random loop
+		window.crypto = undefined;
+		sessionId =  mw.user.generateRandomSessionId();
+		assert.ok( typeof sessionId === "string", 'generateRandomSessionId should return a string' );
+		assert.ok( sessionId.trim() !== "", 'generateRandomSessionId should not be empty' );
+	} );
 }( mediaWiki ) );

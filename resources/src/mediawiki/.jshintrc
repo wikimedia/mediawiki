@@ -1,0 +1,28 @@
+    {
+        // Enforcing
+        "bitwise": false,
+        "eqeqeq": true,
+        "es3": true,
+        "freeze": true,
+        "latedef": true,
+        "noarg": true,
+        "nonew": true,
+        "undef": true,
+        "unused": true,
+        "strict": false,
+
+        // Relaxing
+        "laxbreak": true,
+        "multistr": true,
+
+        // Environment
+        "browser": true,
+
+        "globals": {
+                "mediaWiki": true,
+                "jQuery": false,
+                "QUnit": false
+        }
+}
+
+
