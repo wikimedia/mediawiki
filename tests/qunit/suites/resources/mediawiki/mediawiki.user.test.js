@@ -51,4 +51,13 @@
 
 		this.server.respond();
 	} );
+
+	QUnit.test( 'session numbers', 2, function ( assert ) {
+		var sessionId =  mw.user.generateRandomSessionId();
+
+		assert.ok( typeof sessionId === "string", 'generateRandomSessionId should return a string' );
+		sessionId = sessionId*(1);
+		assert.ok( typeof sessionId  === "number", 'generateRandomSessionId should return a string that can cast to number' );
+
+	} );
 }( mediaWiki ) );
