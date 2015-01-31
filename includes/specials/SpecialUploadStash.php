@@ -49,7 +49,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	public function __construct() {
 		parent::__construct( 'UploadStash', 'upload' );
 		try {
-			$this->stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash();
+			$this->stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash( $this->getUser() );
 		} catch ( UploadStashNotAvailableException $e ) {
 		}
 	}
@@ -331,11 +331,12 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * This works, because there really is only one stash per logged-in user, despite appearances.
 	 *
 	 * @param array $formData
+	 * @param HTMLForm $form
 	 * @return Status
 	 */
-	public static function tryClearStashedUploads( $formData ) {
+	public static function tryClearStashedUploads( $formData, $form ) {
 		if ( isset( $formData['Clear'] ) ) {
-			$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash();
+			$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash( $form->getUser() );
 			wfDebug( 'stash has: ' . print_r( $stash->listFiles(), true ) . "\n" );
 
 			if ( !$stash->clear() ) {

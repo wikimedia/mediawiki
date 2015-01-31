@@ -277,7 +277,7 @@ class ApiUpload extends ApiBase {
 	 */
 	private function performStash() {
 		try {
-			$stashFile = $this->mUpload->stashFile();
+			$stashFile = $this->mUpload->stashFile( $this->getUser() );
 
 			if ( !$stashFile ) {
 				throw new MWException( 'Invalid stashed file' );

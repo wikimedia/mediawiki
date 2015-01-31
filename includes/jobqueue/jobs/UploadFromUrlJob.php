@@ -81,7 +81,7 @@ class UploadFromUrlJob extends Job {
 			if ( $warnings ) {
 
 				# Stash the upload
-				$key = $this->upload->stashFile();
+				$key = $this->upload->stashFile( $this->user );
 
 				// @todo FIXME: This has been broken for a while.
 				// User::leaveUserMessage() does not exist.
