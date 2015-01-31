@@ -27,10 +27,10 @@
 
 /**
  * Return UTF-8 sequence for a given Unicode code point.
- * May die if fed out of range data.
  *
  * @param $codepoint Integer:
  * @return String
+ * @throws InvalidArgumentException if fed out of range data.
  * @public
  */
 function codepointToUtf8( $codepoint ) {
@@ -56,8 +56,7 @@ function codepointToUtf8( $codepoint ) {
 			chr( $codepoint & 0x3f | 0x80 );
 	}
 
-	echo "Asked for code outside of range ($codepoint)\n";
-	die( -1 );
+	throw new InvalidArgumentException( "Asked for code outside of range ($codepoint)" );
 }
 
 /**
@@ -67,6 +66,7 @@ function codepointToUtf8( $codepoint ) {
  *
  * @param $sequence String
  * @return String
+ * @throws InvalidArgumentException if fed out of range data.
  * @private
  */
 function hexSequenceToUtf8( $sequence ) {
