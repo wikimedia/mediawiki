@@ -46,14 +46,8 @@ class SpecialPreferences extends SpecialPage {
 			return;
 		}
 
+		$out->addModuleStyles( 'mediawiki.action.view.postEdit' );
 		$out->addModules( 'mediawiki.special.preferences' );
-
-		if ( $this->getRequest()->getCheck( 'success' ) ) {
-			$out->wrapWikiMsg(
-				"<div class=\"successbox\">\n$1\n</div>",
-				'savedprefs'
-			);
-		}
 
 		$htmlForm = Preferences::getFormObject( $this->getUser(), $this->getContext() );
 		$htmlForm->setSubmitCallback( array( 'Preferences', 'tryUISubmit' ) );
