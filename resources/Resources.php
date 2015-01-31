@@ -1094,10 +1094,6 @@ return array(
 			'metadata-collapse',
 		),
 	),
-	'mediawiki.action.view.categoryPage.styles' => array(
-		'styles' => 'resources/src/mediawiki.action/mediawiki.action.view.categoryPage.less',
-		'targets' => array( 'desktop', 'mobile' )
-	),
 	'mediawiki.action.view.postEdit' => array(
 		'templates' => array(
 			'postEdit.html' => 'resources/src/mediawiki.action/templates/postEdit.html',
