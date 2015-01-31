@@ -86,10 +86,11 @@ h4,
 h5,
 h6 {
 	color: black;
+	display: -webkit-flex;
+	display: flex;
 	background: none;
 	font-weight: normal;
 	margin: 0;
-	overflow: hidden;
 	padding-top: .5em;
 	padding-bottom: .17em;
 	border-bottom: 1px solid #aaa;
