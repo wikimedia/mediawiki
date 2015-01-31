@@ -344,7 +344,8 @@ changes to languages because of Bugzilla reports.
     Instead, do this:
       $form = HTMLForm::factory( 'vform', … );
 * Deprecated Revision methods getRawUser(), getRawUserText() and getRawComment().
-
+* BREAKING CHANGE: mediawiki.user.generateRandomSessionId:
+  The alphabet of the prior string returned was A-Za-z0-9 and now it is 0-9A-F
 == Compatibility ==
 
 MediaWiki 1.25 requires PHP 5.3.3 or later. There is experimental support for
