@@ -1352,9 +1352,11 @@ return array(
 			'prefs-tabs-navigation-hint',
 			'prefswarning-warning',
 			'saveprefs',
+			'savedprefs',
 		),
 		'dependencies' => array(
 			'mediawiki.language',
+			'mediawiki.notification',
 		),
 	),
 	'mediawiki.special.recentchanges' => array(
