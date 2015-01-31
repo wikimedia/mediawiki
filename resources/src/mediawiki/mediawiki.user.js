@@ -48,24 +48,54 @@
 		options: options,
 		tokens: tokens,
 
-		/**
-		 * Generate a random user session ID (32 alpha-numeric characters)
-		 *
-		 * This information would potentially be stored in a cookie to identify a user during a
-		 * session or series of sessions. Its uniqueness should not be depended on.
-		 *
-		 * @return {string} Random set of 32 alpha-numeric characters
-		 */
-		generateRandomSessionId: function () {
-			var i, r,
-				id = '',
-				seed = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-			for ( i = 0; i < 32; i++ ) {
-				r = Math.floor( Math.random() * seed.length );
-				id += seed.charAt( r );
+	/**
+	 * Generate a random user session ID (32 alpha-numeric characters)
+	 *
+	 * This information would potentially be stored in a cookie to identify a user during a
+	 * session or series of sessions. Its uniqueness should
+	 * not be depended on unless the browser supports the crypto API.
+	 *
+	 * Known problems with Math.random():
+	 * Using the Math.random function we have seen sets
+	 * with 1% of non uniques among 200.000 values with Safari providing most of these.
+	 * Given the prevalence of Safari in mobile the percentage of duplicates in
+	 * mobile usages of this code is probably higher.
+	 *
+	 * Rationale:
+	 * We need about 64 bits to make sure that probability of collision
+	 * on 500 million (5*10^8) is <= 1%
+	 * See: https://en.wikipedia.org/wiki/Birthday_problem#Probability_table
+	 *
+	 * @return {string} 64 bit integer in decimal representation returned
+	 * as a string.
+	 * BREAKING CHANGE:
+	 * The alphabet of the prior string returned was A-Za-z0-9 and now it is 0-9
+	 */
+	generateRandomSessionId: function () {
+		var id = '';
+		var cryptoObj = window.crypto || window.msCrypto; // for IE 11
+
+		if ( cryptoObj ) {
+			// We fill an array with 2 random values, each of which is 32 bits.
+			var int32Array = new Int32Array(2);
+			cryptoObj.getRandomValues( int32Array );
+			id = int32Array[0] + '' + int32Array[1];
+			// make sure we are dealing with positive integers
+			if ( (id*(1)) <0 ){
+				id = id *(-1)
 			}
-			return id;
-		},
+		} else {
+			// Note that all the positive and negative integers whose magnitude 
+			// is no greater than 2^53 (9007199254740992) are
+			// representable in the number type
+			// http://ecma262-5.com/ELS5_HTML.htm#Section_8.5
+			var max = 9007199254740992;
+			id = Math.floor( Math.random() *  max );
+		}
+		// stringy-fy again
+		id = id + '';
+		return id;
+	},
 
 		/**
 		 * Get the current user's database id
