@@ -35,6 +35,9 @@ class ResourceLoader {
 	/** @var bool */
 	protected static $debugMode = null;
 
+	/** @var array */
+	private static $lessVars = null;
+
 	/**
 	 * Module name/ResourceLoaderModule object pairs
 	 * @var array
@@ -1557,9 +1560,13 @@ class ResourceLoader {
 	 * @return array Map of variable names to string CSS values.
 	 */
 	public static function getLessVars( Config $config ) {
-		$lessVars = $config->get( 'ResourceLoaderLESSVars' );
-		// Sort by key to ensure consistent hashing for cache lookups.
-		ksort( $lessVars );
-		return $lessVars;
+		if ( !self::$lessVars ) {
+			$lessVars = $config->get( 'ResourceLoaderLESSVars' );
+			Hooks::run( 'ResourceLoaderGetLessVars', array( &$lessVars ) );
+			// Sort by key to ensure consistent hashing for cache lookups.
+			ksort( $lessVars );
+			self::$lessVars = $lessVars;
+		}
+		return self::$lessVars;
 	}
 }
