@@ -70,3 +70,18 @@
 	-webkit-box-shadow: @value; // Safari 3.1-5.0, iOS 3.2-4.3, Android 2.1-3.0
 	box-shadow: @value; // Chrome 10+, Firefox 4+, IE 9+, Safari 5.1+, Opera 11+, iOS 5+, Android 4+
 }
+
+.column-count(@value) {
+	-webkit-column-count: @value;
+	-moz-column-count: @value;
+	-o-column-count: @value;
+	column-count: @value;
+}
+
+.column-break-inside(@vaule) {
+	-webkit-column-break-inside: @vaule;
+	-moz-column-break-inside: @vaule;
+	-o-column-break-inside: @vaule;
+	-ms-column-break-inside: @vaule;
+	column-break-inside: @vaule;
+}
