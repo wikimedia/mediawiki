@@ -89,6 +89,9 @@ class CategoryViewer extends ContextSource {
 	) {
 		$this->title = $title;
 		$this->setContext( $context );
+		$this->getOutput()->addModuleStyles( array(
+			'mediawiki.action.categoryPage.styles'
+		) );
 		$this->from = $from;
 		$this->until = $until;
 		$this->limit = $context->getConfig()->get( 'CategoryPagingLimit' );
@@ -533,9 +536,6 @@ class CategoryViewer extends ContextSource {
 	 * TODO: Take the headers into account when creating columns, so they're
 	 * more visually equal.
 	 *
-	 * More distant TODO: Scrap this and use CSS columns, whenever IE finally
-	 * supports those.
-	 *
 	 * @param array $articles
 	 * @param string[] $articles_start_char
 	 * @return string
@@ -546,11 +546,10 @@ class CategoryViewer extends ContextSource {
 		# Split into three columns
 		$columns = array_chunk( $columns, ceil( count( $columns ) / 3 ), true /* preserve keys */ );
 
-		$ret = '<table style="width: 100%;"><tr style="vertical-align: top;">';
+		$ret = Html::openElement( 'div', array( 'class' => 'mw-category' ) );
 		$prevchar = null;
 
 		foreach ( $columns as $column ) {
-			$ret .= '<td style="width: 33.3%;">';
 			$colContents = array();
 
 			# Kind of like array_flip() here, but we keep duplicates in an
@@ -583,10 +582,10 @@ class CategoryViewer extends ContextSource {
 				$prevchar = $char;
 			}
 
-			$ret .= "</td>\n";
+			$ret .= "\n";
 		}
 
-		$ret .= '</tr></table>';
+		$ret .= Html::closeElement( 'div' );
 		return $ret;
 	}
 
