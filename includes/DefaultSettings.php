@@ -3541,6 +3541,9 @@ $wgResourceLoaderExperimentalAsyncLoading = false;
  *
  * Changes to LESS variables do not trigger cache invalidation.
  *
+ * If the LESS variables need to be dynamic, you can use the
+ * ResourceLoaderGetLessVars hook (since 1.25).
+ *
  * @par Example:
  * @code
  *   $wgResourceLoaderLESSVars = array(

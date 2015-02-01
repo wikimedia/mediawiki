@@ -2277,6 +2277,10 @@ configuration variables to JavaScript. Things that depend on the current page
 or request state must be added through MakeGlobalVariablesScript instead.
 &$vars: array( variable name => value )
 
+'ResourceLoaderGetLessVars': Called in ResourceLoader::getLessVars after variables
+from $wgResourceLoaderLESSVars are added. Can be used to add context-based variables.
+&$lessVars: array of variables already added
+
 'ResourceLoaderRegisterModules': Right before modules information is required,
 such as when responding to a resource
 loader request or generating HTML output.
