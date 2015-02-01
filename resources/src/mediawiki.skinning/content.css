@@ -55,10 +55,15 @@ table.toc td {
 #toc h2,
 .toc h2 {
 	display: inline;
-	border: none;
 	padding: 0;
 	font-size: 100%;
 	font-weight: bold;
+}
+
+/* Remove border under the header */
+#toc h2:after,
+.toc h2:after {
+	display: none;
 }
 
 #toc #toctitle,
