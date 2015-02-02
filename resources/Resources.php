@@ -953,6 +953,10 @@ return array(
 			'mediawiki.api',
 		),
 	),
+	'mediawiki.startUp' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.startUp.js',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 	'mediawiki.Title' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.Title.js',
 		'dependencies' => array(
