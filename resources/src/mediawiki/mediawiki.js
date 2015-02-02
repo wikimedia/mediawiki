@@ -2532,11 +2532,4 @@
 
 	// Attach to window and globally alias
 	window.mw = window.mediaWiki = mw;
-
-	// Auto-register from pre-loaded startup scripts
-	if ( $.isFunction( window.startUp ) ) {
-		window.startUp();
-		window.startUp = undefined;
-	}
-
 }( jQuery ) );
