@@ -1046,6 +1046,7 @@ $wgAutoloadLocalClasses = array(
 	'Site' => __DIR__ . '/includes/site/Site.php',
 	'SiteArray' => __DIR__ . '/includes/site/SiteList.php',
 	'SiteConfiguration' => __DIR__ . '/includes/SiteConfiguration.php',
+	'SiteExporter' => __DIR__ . '/includes/site/SiteExporter.php',
 	'SiteImporter' => __DIR__ . '/includes/site/SiteImporter.php',
 	'SiteList' => __DIR__ . '/includes/site/SiteList.php',
 	'SiteListFileCache' => __DIR__ . '/includes/site/SiteListFileCache.php',

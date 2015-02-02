@@ -1,0 +1,47 @@
+<?php
+
+$basePath = getenv( 'MW_INSTALL_PATH' ) !== false ? getenv( 'MW_INSTALL_PATH' ) : __DIR__ . '/..';
+
+require_once $basePath . '/maintenance/Maintenance.php';
+
+/**
+ * Maintenance script for exporting site definitions from XML into the sites table.
+ *
+ * @since 1.25
+ *
+ * @licence GNU GPL v2+
+ * @author Daniel Kinzler
+ */
+class ExportSites extends Maintenance {
+
+	public function __construct() {
+		$this->mDescription = 'Exports site definitions the sites table to XML file';
+
+		$this->addArg( 'file', 'A file to write the XML to (see docs/sitelist.txt). Omit or use "-" for standard output.', false );
+
+		parent::__construct();
+	}
+
+	/**
+	 * Do the actual work. All child classes will need to implement this
+	 */
+	public function execute() {
+		$file = $this->getArg( 0, '-' );
+
+		if ( $file === '-' ) {
+			$file = 'php://output';
+			$this->mQuiet = true;
+		}
+
+		$exporter = SiteExporter::newfromFileName( $file );
+
+		$sites = SiteSQLStore::newInstance()->getSites( 'recache' );
+		$exporter->exportSites( $sites );
+
+		$this->output( "Exported sites to $file.\n" );
+	}
+
+}
+
+$maintClass = 'ExportSites';
+require_once( RUN_MAINTENANCE_IF_MAIN );
