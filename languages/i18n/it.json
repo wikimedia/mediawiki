@@ -948,6 +948,7 @@
 	"prefs-personal": "Profilo utente",
 	"prefs-rc": "Ultime modifiche",
 	"prefs-watchlist": "Osservati speciali",
+	"prefs-editwatchlist": "Modifica osservati speciali",
 	"prefs-watchlist-days": "Numero di giorni da mostrare negli osservati speciali:",
 	"prefs-watchlist-days-max": "Massimo $1 {{PLURAL:$1|giorno|giorni}}",
 	"prefs-watchlist-edits": "Numero di modifiche da mostrare con le funzioni avanzate:",

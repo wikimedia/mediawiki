@@ -928,6 +928,8 @@
 	"prefs-personal": "使用者基本資料",
 	"prefs-rc": "近期變更",
 	"prefs-watchlist": "監視清單",
+	"prefs-editwatchlist": "編輯監視清單",
+	"prefs-editwatchlist-clear": "清除您的監視清單",
 	"prefs-watchlist-days": "監視清單中顯示的天數：",
 	"prefs-watchlist-days-max": "最多 $1 {{PLURAL:$1|天}}",
 	"prefs-watchlist-edits": "展開監視清單中顯示的變更數量上限：",

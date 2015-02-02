@@ -63,7 +63,7 @@
 	"config-unicode-using-intl": "使用 [http://pecl.php.net/intl intl PECL 擴充套件] 做 Unicode 正規化。",
 	"config-unicode-pure-php-warning": "<strong>警告：</strong> 無法使用 [http://pecl.php.net/intl intl PECL 擴充套件] 處理 Unicode 正規化，故回退使用純 PHP 實作的正規化程式，此方式處理速度較緩慢。\n\n如果您的網站瀏覽人次很高，您應先閱讀 [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations/zh Unicode 正規化]。",
 	"config-unicode-update-warning": "<strong>警告</strong>：目前安裝的 Unicode 正規化包裝程式使用了舊版 [http://site.icu-project.org/ ICU 計劃] 的程式庫。\n若您需要使用 Unicode，您應先進行 [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations 升級]。",
-	"config-no-db": "找不到合適的資料庫驅動程式！您需要安裝 PHP 資料庫驅動程式。\n目前支援以下類型的資料庫： $1 。\n\n如果您是自行編譯 PHP，您必須重新設定並開啟資料庫客戶端，例：使用 <code>./configure --with-mysqli</code> 指令參數。\n如果您是使用 Debian 或 Ubuntu 的套件安裝，您則需要額外安裝，例：<code>php5-mysql</code> 套件。",
+	"config-no-db": "找不到合適的資料庫驅動程式！您需要安裝 PHP 資料庫驅動程式。\n目前支援以下{{PLURAL:$2|type is|類型}}的資料庫： $1 。\n\n如果您是自行編譯 PHP，您必須重新設定並開啟資料庫用戶端，例：使用 <code>./configure --with-mysqli</code> 指令參數。\n如果您是使用 Debian 或 Ubuntu 的套件安裝 PHP ，您則需要額外安裝，例：<code>php5-mysql</code> 套件。",
 	"config-outdated-sqlite": "<strong>警告：</strong>您已安裝 SQLite $1，但是它的版本低於最低需求版本 $2。 因此您無法使用 SQLite。",
 	"config-no-fts3": "<strong>警告：</strong> SQLite 編譯時未包含 [//sqlite.org/fts3.html FTS3 模組]，後台搜尋功能將無法使用。",
 	"config-register-globals-error": "<strong>錯誤：PHP 的 <code>[http://php.net/register_globals register_globals]</code> 選項已開啟。\n要繼續安裝程序必須關閉該選項。</strong>\n請參考 [https://www.mediawiki.org/wiki/register_globals https://www.mediawiki.org/wiki/register_globals] 以取得操作說明。",

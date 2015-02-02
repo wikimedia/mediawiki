@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Beta16"
+			"Beta16",
+			"Nivit"
 		]
 	},
+	"apihelp-query+recentchanges-example-simple": "Elenco modifiche recenti.",
+	"apihelp-upload-example-url": "Carica da un URL.",
 	"api-help-parameters": "{{PLURAL:$1|Parametro|Parametri}}:",
 	"api-help-param-deprecated": "Deprecato.",
 	"api-help-param-required": "Questo parametro è obbligatorio.",

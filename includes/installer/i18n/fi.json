@@ -15,7 +15,8 @@
 			"Syreeni",
 			"Stryn",
 			"SMAUG",
-			"SuperPete"
+			"SuperPete",
+			"McSalama"
 		]
 	},
 	"config-desc": "MediaWiki-asennin",
@@ -115,10 +116,13 @@
 	"config-pg-test-error": "Tietokantaan <strong>$1 ei voida muodostaa yhteyttä</strong>: $2",
 	"config-sqlite-dir": "SQLiten datahakemisto:",
 	"config-sqlite-dir-help": "SQLite tallentaa kaiken sisällön yhteen tiedostoon.\n\nPalvelimen pitää pystyä kirjoittamaan tietoa hakemistoon asennuksen aikana.\n\nHakemiston <strong>ei</strong> tulisi olla nähtävissä www-selaimella. Siksi hakemisto on eri kuin missä PHP-tiedostot sijaitsevat.\n\nAsennusohjelma luo <code>.htaccess</code>-tiedoston, mutta jos sen luomisessa ilmenee ongelmia joku voi päästä käsiksi tietokantaasi. \nTietokannassa on kaikki sähköpostiosoitteet, salasanat, poistetut versiot ja kaikki muu tieto, joka ei näy wikissä.\n\nSuosittelemme tallentamaan tietokannan eri hakemistoon, esimerkiksi <code>/var/lib/mediawiki/yourwiki</code>.",
+	"config-oracle-def-ts": "Oletus taulukkotila:",
+	"config-oracle-temp-ts": "Väliaikainen taulukkotila:",
 	"config-type-mysql": "MySQL (tai yhteensopiva)",
 	"config-type-postgres": "PostgreSQL",
 	"config-type-sqlite": "SQLite",
 	"config-type-oracle": "Oracle",
+	"config-type-mssql": "Microsoft SQL Server",
 	"config-header-mysql": "MySQL-asetukset",
 	"config-header-postgres": "PostgreSQL-asetukset",
 	"config-header-sqlite": "SQLite-asetukset",

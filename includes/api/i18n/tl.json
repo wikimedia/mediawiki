@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Leeheonjin"
+		]
+	},
+	"apihelp-help-example-main": "Tulong para sa pangunahing modulo.",
+	"apihelp-move-example-move": "I-urong ang <kbd>Badtitle</kbd> sa <kbd>Goodtitle</kbd> nang hindi nag-iiwan ng redirekta.",
+	"apihelp-patrol-example-rcid": "Bantayan ang kasalukuyang pagbabago.",
+	"apihelp-query+allpages-example-B": "Ipakita ang talaan ng mga pahinang nagsisimula sa titik <kbd>B</kbd>.",
+	"apihelp-query+alltransclusions-example-generator": "Kinukuha ang mga pahinang naglalaman ng mga transklusyon.",
+	"apihelp-query+categoryinfo-example-simple": "Kumuha ng impormasyon tungkol sa <kbd>Kategorya:Foo</kbd> at <kbd>Kategorya:Bar</kbd>.",
+	"apihelp-query+images-example-simple": "Kumuha ng talaan ng mga talakasang ginagamit sa [[Unang Pahina]].",
+	"apihelp-query+imageusage-example-simple": "Ipakita ang mga pahina gamit ang [[:File:Albert Einstein Head.jpg]].",
+	"apihelp-query+iwbacklinks-example-simple": "Kumuha ng mga pahinang nakarugtong sa [[wikibooks:Test]].",
+	"apihelp-query+recentchanges-example-simple": "Talaan ng mga kamakailang pagbabago.",
+	"apihelp-query+search-example-text": "Hanapin ang mga teksto para sa <kbd>kahulugan</kbd>.",
+	"apihelp-query+watchlist-example-simple": "Itala ang mga punong pagbabago ng mga kasalukuyang binagong pahina sa kasalukuyang listahan ng binabantayan ng tagagamit.",
+	"apihelp-revisiondelete-example-revision": "Itago ang nilalaman para sa pagbabago ng <kbd>12345</kbd> sa pahinang <kbd>Unang Pahina</kbd>.",
+	"apihelp-upload-example-url": "Mag-karga mula sa URL."
+}

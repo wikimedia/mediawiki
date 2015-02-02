@@ -42,7 +42,8 @@
 			"Bluemersen",
 			"Revi",
 			"Namoroka",
-			"양념파닭"
+			"양념파닭",
+			"콩가루"
 		]
 	},
 	"tog-underline": "링크에 밑줄:",
@@ -909,6 +910,7 @@
 	"prefs-personal": "사용자 정보",
 	"prefs-rc": "최근 바뀜",
 	"prefs-watchlist": "주시문서 목록",
+	"prefs-editwatchlist": "주시목록 편집",
 	"prefs-watchlist-days": "주시문서 목록에서 볼 날짜 수:",
 	"prefs-watchlist-days-max": "최대 $1{{PLURAL:$1|일}}",
 	"prefs-watchlist-edits": "주시문서 목록에서 볼 편집 수:",
@@ -2931,6 +2933,9 @@
 	"version-entrypoints-header-url": "URL",
 	"version-entrypoints-articlepath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticlePath 문서 경로]",
 	"version-entrypoints-scriptpath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgScriptPath 스크립트 경로]",
+	"version-libraries": "설치된 라이브러리",
+	"version-libraries-library": "라이브러리",
+	"version-libraries-version": "버전",
 	"redirect": "파일, 사용자, 문서나 판 ID로 넘겨주기",
 	"redirect-legend": "파일이나 문서로 넘겨주기",
 	"redirect-summary": "이 특수 문서는 파일(파일 이름이 주어짐), 문서(판 ID나 문서 ID가 주어짐)나 사용자 문서(숫자로 표시된 사용자 ID가 주어짐)로 넘겨줍니다. 사용법: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], 또는 [[{{#Special:Redirect}}/user/101]].",
