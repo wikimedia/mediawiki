@@ -238,6 +238,8 @@ production.
 * The following classes have been deprecated and may be removed in a future
   release:
   * ApiQueryDeletedrevs
+* Default type param for ApiQueryWatchlist and ApiQueryRecentChanges has
+  been set to 'edit|new|log'.
 
 === Languages updated in 1.25 ===
 
