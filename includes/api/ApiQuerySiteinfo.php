@@ -429,10 +429,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			if ( substr( $row['iw_url'], 0, 2 ) == '//' ) {
 				$val['protorel'] = '';
 			}
-			if ( isset( $row['iw_wikiid'] ) ) {
+			if ( isset( $row['iw_wikiid'] ) && $row['iw_wikiid'] !== '' ) {
 				$val['wikiid'] = $row['iw_wikiid'];
 			}
-			if ( isset( $row['iw_api'] ) ) {
+			if ( isset( $row['iw_api'] ) && $row['iw_api'] !== '' ) {
 				$val['api'] = $row['iw_api'];
 			}
 
