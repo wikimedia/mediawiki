@@ -177,17 +177,28 @@ class CategoryViewer extends ContextSource {
 		// Subcategory; strip the 'Category' namespace from the link text.
 		$title = $cat->getTitle();
 
-		$link = Linker::link( $title, htmlspecialchars( $title->getText() ) );
-		if ( $title->isRedirect() ) {
-			// This didn't used to add redirect-in-category, but might
-			// as well be consistent with the rest of the sections
-			// on a category page.
-			$link = '<span class="redirect-in-category">' . $link . '</span>';
-		}
-		$this->children[] = $link;
+		$this->children[] = $this->generateLink(
+			'subcat',
+			$title,
+			$title->isRedirect(),
+			htmlspecialchars( $title->getText() )
+		);
 
 		$this->children_start_char[] =
 			$this->getSubcategorySortChar( $cat->getTitle(), $sortkey );
+	}
+
+	function generateLink( $type, Title $title, $isRedirect, $html = null ) {
+		$link = null;
+		Hooks::run( 'CategoryViewer::generateLink', array( $type, $title, $html, &$link ) );
+		if ( $link === null ) {
+			$link = Linker::link( $title, $html );
+		}
+		if ( $isRedirect ) {
+			$link = '<span class="redirect-in-category">' . $link . '</span>';
+		}
+
+		return $link;
 	}
 
 	/**
@@ -232,13 +243,7 @@ class CategoryViewer extends ContextSource {
 				$this->gallery->add( $title );
 			}
 		} else {
-			$link = Linker::link( $title );
-			if ( $isRedirect ) {
-				// This seems kind of pointless given 'mw-redirect' class,
-				// but keeping for back-compatibility with user css.
-				$link = '<span class="redirect-in-category">' . $link . '</span>';
-			}
-			$this->imgsNoGallery[] = $link;
+			$this->imgsNoGallery[] = $this->generateLink( 'image', $title, $isRedirect );
 
 			$this->imgsNoGallery_start_char[] = $wgContLang->convert(
 				$this->collation->getFirstLetter( $sortkey ) );
@@ -255,13 +260,7 @@ class CategoryViewer extends ContextSource {
 	function addPage( $title, $sortkey, $pageLength, $isRedirect = false ) {
 		global $wgContLang;
 
-		$link = Linker::link( $title );
-		if ( $isRedirect ) {
-			// This seems kind of pointless given 'mw-redirect' class,
-			// but keeping for back-compatibility with user css.
-			$link = '<span class="redirect-in-category">' . $link . '</span>';
-		}
-		$this->articles[] = $link;
+		$this->articles[] = $this->generateLink( 'page', $title, $isRedirect );
 
 		$this->articles_start_char[] = $wgContLang->convert(
 			$this->collation->getFirstLetter( $sortkey ) );
@@ -333,6 +332,8 @@ class CategoryViewer extends ContextSource {
 					))
 				)
 			);
+
+			Hooks::run( 'CategoryViewer::doCategoryQuery', array( $type, $res ) );
 
 			$count = 0;
 			foreach ( $res as $row ) {
