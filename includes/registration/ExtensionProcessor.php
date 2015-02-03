@@ -204,9 +204,11 @@ class ExtensionProcessor implements Processor {
 	protected function extractMessageSettings( $dir, array $info ) {
 		foreach ( array( 'ExtensionMessagesFiles', 'MessagesDirs' ) as $key ) {
 			if ( isset( $info[$key] ) ) {
-				$this->globals["wg$key"] += array_map( function( $file ) use ( $dir ) {
-					return "$dir/$file";
-				}, $info[$key] );
+				foreach ( $info[$key] as $name => $files ) {
+					foreach ( (array)$files as $file ) {
+						$this->globals["wg$key"][$name][] = "$dir/$file";
+					}
+				}
 				$this->processed[] = $key;
 			}
 		}

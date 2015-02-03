@@ -97,6 +97,33 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 		$this->assertArrayNotHasKey( 'wg@IGNORED', $extracted['globals'] );
 	}
 
+	public static function provideExtractMessageSettings() {
+		$dir = __DIR__ . '/FooBar/';
+		return array(
+			array(
+				array( 'MessagesDirs' => array( 'VisualEditor' => 'i18n' ) ),
+				array( 'wgMessagesDirs' => array( 'VisualEditor' => array( $dir . 'i18n' ) ) )
+			),
+			array(
+				array( 'MessagesDirs' => array( 'VisualEditor' => array( 'i18n', 'foobar' ) ) ),
+				array( 'wgMessagesDirs' => array( 'VisualEditor' => array( $dir . 'i18n', $dir . 'foobar' ) ) )
+			),
+		);
+	}
+
+	/**
+	 * @covers ExtensionProcessor::extractMessageSettings
+	 * @dataProvider provideExtractMessageSettings
+	 */
+	public function testExtractMessageSettings( $input, $expected ) {
+		$processor = new ExtensionProcessor();
+		$processor->extractInfo( $this->dir, $input + self::$default );
+		$out = $processor->getExtractedInfo();
+		foreach ( $expected as $key => $value ) {
+			$this->assertEquals( $value, $out['globals'][$key] );
+		}
+	}
+
 	public static function provideSetToGlobal() {
 		return array(
 			array(
