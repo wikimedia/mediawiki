@@ -98,23 +98,18 @@ $maintenance->finalSetup();
 require_once "$IP/includes/Setup.php";
 
 // Do the work
-try {
-	$maintenance->execute();
+$maintenance->execute();
 
-	// Potentially debug globals
-	$maintenance->globals();
+// Potentially debug globals
+$maintenance->globals();
 
-	// Perform deferred updates.
-	DeferredUpdates::doUpdates( 'commit' );
+// Perform deferred updates.
+DeferredUpdates::doUpdates( 'commit' );
 
-	// log profiling info
-	wfLogProfilingData();
+// log profiling info
+wfLogProfilingData();
 
-	// Commit and close up!
-	$factory = wfGetLBFactory();
-	$factory->commitMasterChanges();
-	$factory->shutdown();
-} catch ( Exception $mwe ) {
-	echo $mwe->getText();
-	exit( 1 );
-}
+// Commit and close up!
+$factory = wfGetLBFactory();
+$factory->commitMasterChanges();
+$factory->shutdown();
