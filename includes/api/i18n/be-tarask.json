@@ -24,7 +24,7 @@
 	"apihelp-block-param-nocreate": "Забарона стварэньня рахункаў.",
 	"apihelp-block-param-autoblock": "Аўтаматычна блякаваць апошні ўжыты IP-адрас, а таксама ўсе наступныя IP-адрасы, зь якіх будуць спробы ўваходу.",
 	"apihelp-block-param-noemail": "Забараняе ўдзельніку дасылаць лісты электроннай пошты празь вікі (трэба мець права <code>blockemail</code>).",
-	"apihelp-block-param-hidename": "Схаваць імя ўдзельніка з журналу блякаваньняў (патрабуе права «hideuser»).",
+	"apihelp-block-param-hidename": "Схаваць імя ўдзельніка з журналу блякаваньняў (патрабуе права <code>hideuser</code>).",
 	"apihelp-block-param-allowusertalk": "Дазволіць удзельніку рэдагаваць уласную старонку гутарак (залежыць ад <var>[[mw:Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
 	"apihelp-block-param-reblock": "Калі ўдзельнік ужо заблякаваны, перапісаць дзейнае блякаваньне.",
 	"apihelp-block-param-watchuser": "Назіраць за старонкай удзельніка або старонкай IP-адрасу, а таксама старонкай гутарак.",

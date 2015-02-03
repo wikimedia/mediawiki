@@ -16,7 +16,8 @@
 			"לערי ריינהארט",
 			"Fitoschido",
 			"McDutchie",
-			"Josep Maria 15."
+			"Josep Maria 15.",
+			"Fisterraeomar"
 		]
 	},
 	"tog-underline": "Subliñar as ligazóns:",
@@ -27,7 +28,7 @@
 	"tog-usenewrc": "Agrupar as modificacións por páxina nos cambios recentes e na lista de vixilancia",
 	"tog-numberheadings": "Numerar automaticamente as cabeceiras",
 	"tog-showtoolbar": "Mostrar a barra de ferramentas de edición",
-	"tog-editondblclick": "Editar as páxinas logo de facer dobre clic",
+	"tog-editondblclick": "Facer dobre clic para editar as páxinas",
 	"tog-editsectiononrightclick": "Permitir a edición de seccións premendo co botón dereito nos títulos das seccións",
 	"tog-watchcreations": "Engadir as páxinas que cree e os ficheiros que cargue á miña lista de vixilancia",
 	"tog-watchdefault": "Engadir as páxinas e os ficheiros que edite á miña lista de vixilancia",
@@ -37,8 +38,8 @@
 	"tog-minordefault": "Marcar todas as edicións como pequenas por defecto",
 	"tog-previewontop": "Mostrar a vista previa antes da caixa de edición",
 	"tog-previewonfirst": "Mostrar a vista previa na primeira edición",
-	"tog-enotifwatchlistpages": "Enviádeme unha mensaxe de correo electrónico cando unha páxina ou un ficheiro da miña lista de vixilancia sufra un cambio",
-	"tog-enotifusertalkpages": "Enviádeme unha mensaxe de correo electrónico cando a miña páxina de conversa cambie",
+	"tog-enotifwatchlistpages": "Desexo recibir un aviso por correo electrónico cando unha páxina ou un ficheiro da miña lista de vixilancia sufra algún cambio",
+	"tog-enotifusertalkpages": "Desexo recibir un aviso por correo electrónico cando a miña páxina de conversa cambie",
 	"tog-enotifminoredits": "Enviádeme tamén unha mensaxe de correo electrónico cando se produzan edicións pequenas nas páxinas ou nos ficheiros",
 	"tog-enotifrevealaddr": "Revelar o meu enderezo de correo electrónico nos correos de notificación",
 	"tog-shownumberswatching": "Mostrar o número de usuarios que están a vixiar",

@@ -138,7 +138,7 @@
 	"api-help-param-required": "此參數為必填。",
 	"api-help-param-limit": "不允許超過 $1。",
 	"api-help-param-limit2": "不允許超過 $1 (機器人為 $2)。",
-	"api-help-param-multi-separate": "使用 \"|\" 分隔數值。",
+	"api-help-param-multi-separate": "使用 <kbd>|</kbd> 分隔數值。",
 	"api-help-param-default": "預設值：$1",
 	"api-help-param-default-empty": "預設值：<span class=\"apihelp-empty\">(空)</span>",
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(無描述)</span>",

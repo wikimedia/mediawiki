@@ -1,13 +1,18 @@
 {
 	"@metadata": {
 		"authors": [
-			"Elisardojm"
+			"Elisardojm",
+			"Agremon",
+			"Chairego apc",
+			"VaiPolaSombra"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentación]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de discusión]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anuncios da API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Erros e solicitudes]\n</div>\n<strong>Estado:</strong> Tódalas funcionalidades mostradas nesta páxina deberían estar funcionanado, pero a API aínda está desenrolo, e pode ser modificada en calquera momento. Apúntese na [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ lista de discusión mediawiki-api-announce] para estar informado acerca das actualizacións.\n\n<strong>Solicitudes incorrectas:</strong> Cando se envían solicitudes incorrectas á API, envíase unha cabeceira HTTP coa chave \"MediaWiki-API-Error\" e, a seguir, tanto o valor da cabeceira como o código de erro retornado serán definidos co mesmo valor. Para máis información, consulte [[mw:API:Errors_and_warnings|API: Erros e avisos]].",
 	"apihelp-main-param-action": "Que acción se realizará.",
 	"apihelp-main-param-format": "O formato de saída.",
+	"apihelp-main-param-maxlag": "O retardo máximo pode usarse cando MediaWiki está instalada nun cluster de base de datos replicadas. Para gardar accións que causen calquera retardo máis de replicación do sitio, este parámetro pode facer que o cliente espere ata que o retardo de replicación sexa menor que o valor especificado. No caso de retardo excesivo, é devolto o código de erro <samp>maxlag</samp> cunha mensaxe como <samp>esperando por $host: $lag segundos de retardo</samp>.<br />Para máis información, ver [[mw:Manual:Maxlag_parameter|Manual: Maxlag parameter]].",
 	"apihelp-main-param-requestid": "Calquera valor dado aquí será incluído na resposta. Pode usarse para distingir peticións.",
+	"apihelp-main-param-servedby": "Inclúa o nome do servidor que servía a solicitude nos resultados.",
 	"apihelp-main-param-curtimestamp": "Incluir a marca de tempo actual no resultado.",
 	"apihelp-block-description": "Bloquear un usuario.",
 	"apihelp-block-param-user": "Nome de usuario, dirección ou rango de IPs que quere bloquear.",
@@ -65,6 +70,7 @@
 	"apihelp-feedcontributions-description": "Devolve a lista de contribucións dun usuario.",
 	"apihelp-feedcontributions-param-year": "Desde o ano (e anteriores).",
 	"apihelp-feedcontributions-param-month": "Desde o mes de (e anteriores).",
+	"apihelp-feedcontributions-param-tagfilter": "Filtrar as contribucións que teñan estas etiquetas.",
 	"apihelp-feedcontributions-param-deletedonly": "Mostrar só as contribuciones eliminadas.",
 	"apihelp-feedcontributions-param-toponly": "Mostrar só as edicións que que son as ultimas revisións.",
 	"apihelp-feedcontributions-param-newonly": "Mostrar só as edicións que crearon páxinas.",
@@ -176,6 +182,7 @@
 	"apihelp-query+allpages-param-prefix": "Buscar tódolos títulos de páxinas que comezan con este valor.",
 	"apihelp-query+allpages-param-namespace": "Espazo de nomes a enumerar.",
 	"apihelp-query+allpages-param-filterredir": "Que páxinas listar.",
+	"apihelp-query+allpages-param-prtype": "Limitar a só protección de páxinas.",
 	"apihelp-query+allpages-param-limit": "Número total de páxinas a devolver.",
 	"apihelp-query+allpages-param-dir": "Dirección na cal listar.",
 	"apihelp-query+allpages-example-B": "Mostrar unha lista de páxinas que comezan pola letra <kbd>B</kbd>.",
@@ -188,6 +195,9 @@
 	"apihelp-query+allredirects-param-dir": "Dirección na cal listar.",
 	"apihelp-query+alltransclusions-param-from": "Título da transclusión na que comezar a enumerar.",
 	"apihelp-query+alltransclusions-param-to": "Título da transclusión na que rematar de enumerar.",
+	"apihelp-query+allusers-description": "Enumerar tódolos usuarios rexistrados.",
+	"apihelp-query+allusers-param-excludegroup": "Excluír usuarios nos grupos dados.",
+	"apihelp-query+contributors-param-excludegroup": "Excluír usuarios nos grupos dados. Non se inclúen grupos implícitos nin autopromocionados como *, usuario ou autoconfirmado.",
 	"apihelp-query+deletedrevs-param-prefix": "Buscar tódolos títulos de páxina que comezan con este valor.",
 	"apihelp-query+deletedrevs-param-unique": "Só listar unha revisión por cada páxina.",
 	"apihelp-query+deletedrevs-param-tag": "Só listar revisións marcadas con esta etiqueta.",
