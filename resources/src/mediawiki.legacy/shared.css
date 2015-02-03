@@ -516,7 +516,7 @@ table.wikitable > tr > td,
 table.wikitable > * > tr > th,
 table.wikitable > * > tr > td {
 	border: 1px solid #aaa;
-	padding: 0.2em;
+	padding: 0.4em;
 }
 
 table.wikitable > tr > th,
