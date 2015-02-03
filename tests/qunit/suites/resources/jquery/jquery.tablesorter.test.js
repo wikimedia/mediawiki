@@ -162,7 +162,7 @@
 			wgDefaultDateFormat: 'dmy',
 			wgSeparatorTransformTable: ['', ''],
 			wgDigitTransformTable: ['', ''],
-			wgContentLanguage: 'en'
+			wgPageContentLanguage: 'en'
 		}
 	} ) );
 
@@ -572,7 +572,7 @@
 		],
 		function ( $table ) {
 			mw.config.set( 'wgDefaultDateFormat', 'dmy' );
-			mw.config.set( 'wgContentLanguage', 'de' );
+			mw.config.set( 'wgPageContentLanguage', 'de' );
 
 			$table.tablesorter();
 			$table.find( '.headerSort:eq(0)' ).click();
