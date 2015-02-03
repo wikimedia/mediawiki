@@ -1541,6 +1541,41 @@ class EditPage {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-checks' );
 
+		// Hack for T87645
+		if ( Title::newFromText( 'User:Foo' )->getNamespace() == 0 ) {
+			wfDebugLog( 'T87645', 'Parsing of canonical namespace failed' );
+			throw new MWException( __METHOD__.': Parsing of canonical namespace failed' );
+		}
+		// Another hack for T87645
+		if ( $this->mTitle->getNamespace() == 0 ) {
+			$dbk = $this->mTitle->getDBkey();
+			$colonPos = strpos( $dbk, ':' );
+			if ( $colonPos !== false ) {
+				$pseudoNs = substr( $dbk, 0, $colonPos );
+				if ( in_array( $pseudoNs, array(
+					'Talk',
+					'User',
+					'User_talk',
+					'Project',
+					'Project_talk',
+					'File',
+					'File_talk',
+					'MediaWiki',
+					'MediaWiki_talk',
+					'Template',
+					'Template_talk',
+					'Help',
+					'Help_talk',
+					'Category',
+					'Category_talk' ) )
+				) {
+					wfDebugLog( 'T87645', 'Attempting to save title in invalid pseudo-namespace' );
+					throw new MWException( __METHOD__.': Attempting to save title in invalid pseudo-namespace' );
+				}
+			}
+		}
+		// End hack	
+
 		if ( !Hooks::run( 'EditPage::attemptSave', array( $this ) ) ) {
 			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving\n" );
 			$status->fatal( 'hookaborted' );
