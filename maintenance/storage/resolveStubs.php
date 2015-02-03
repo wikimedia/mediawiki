@@ -22,8 +22,6 @@
  * @ingroup Maintenance ExternalStorage
  */
 
-define( 'REPORTING_INTERVAL', 100 );
-
 if ( !defined( 'MEDIAWIKI' ) ) {
 	$optionsWithArgs = array( 'm' );
 
