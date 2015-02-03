@@ -32,7 +32,7 @@
 			mw.language.months = this.liveMonths;
 		},
 		config: {
-			wgContentLanguage: 'en',
+			wgPageContentLanguage: 'en',
 			/* default date format of the content language */
 			wgDefaultDateFormat: 'dmy',
 			/* These two are important for numeric interpretations */
@@ -117,7 +117,7 @@
 	parserTest( 'MDY Dates using dmy content language', 'date', simpleMDYDatesInDMY, function () {
 		mw.config.set( {
 			'wgDefaultDateFormat': 'dmy',
-			'wgContentLanguage': 'de'
+			'wgPageContentLanguage': 'de'
 		} );
 	} );
 
