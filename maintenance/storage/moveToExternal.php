@@ -25,7 +25,6 @@ define( 'REPORTING_INTERVAL', 1 );
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	require_once __DIR__ . '/../commandLine.inc';
-	require_once __DIR__ . '/../../includes/externalstore/ExternalStoreDB.php';
 	require_once 'resolveStubs.php';
 
 	$fname = 'moveToExternal';
