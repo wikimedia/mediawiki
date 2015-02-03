@@ -17,31 +17,6 @@
 		trackQueue = [];
 
 	/**
-	 * Log a message to window.console, if possible.
-	 *
-	 * Useful to force logging of some  errors that are otherwise hard to detect (i.e., this logs
-	 * also in production mode). Gets console references in each invocation instead of caching the
-	 * reference, so that debugging tools loaded later are supported (e.g. Firebug Lite in IE).
-	 *
-	 * @private
-	 * @method log_
-	 * @param {string} msg Text for the log entry.
-	 * @param {Error} [e]
-	 */
-	function log( msg, e ) {
-		var console = window.console;
-		if ( console && console.log ) {
-			console.log( msg );
-			// If we have an exception object, log it to the error channel to trigger a
-			// proper stacktraces in browsers that support it. No fallback as we have no browsers
-			// that don't support error(), but do support log().
-			if ( e && console.error ) {
-				console.error( String( e ), e );
-			}
-		}
-	}
-
-	/**
 	 * Create an object that can be read from or written to from methods that allow
 	 * interaction both with single and multiple properties at once.
 	 *
@@ -849,8 +824,8 @@
 							try {
 								styleEl.styleSheet.cssText += cssText;
 							} catch ( e ) {
-								log( 'Stylesheet error', e );
-								mw.track( 'resourceloader.exception', { exception: e, source: 'stylesheet' } );
+								mw.track( 'resourceloader.exception', { exception: e,
+									source: 'stylesheet', logPrefix: 'Stylesheet error' } );
 							}
 						} else {
 							styleEl.appendChild( document.createTextNode( cssText ) );
@@ -1113,9 +1088,8 @@
 						} catch ( e ) {
 							// A user-defined callback raised an exception.
 							// Swallow it to protect our state machine!
-							log( 'Exception thrown by user callback', e );
-							mw.track( 'resourceloader.exception',
-								{ exception: e, module: module, source: 'load-callback' } );
+							mw.track( 'resourceloader.exception', { exception: e, module: module,
+								source: 'load-callback', logPrefix: 'Exception thrown by user callback' } );
 						}
 					}
 				}
@@ -1241,9 +1215,9 @@
 					} catch ( e ) {
 						// This needs to NOT use mw.log because these errors are common in production mode
 						// and not in debug mode, such as when a symbol that should be global isn't exported
-						log( 'Exception thrown by ' + module, e );
 						registry[module].state = 'error';
-						mw.track( 'resourceloader.exception', { exception: e, module: module, source: 'module-execute' } );
+						mw.track( 'resourceloader.exception', { exception: e, module: module,
+							source: 'module-execute', logPrefix: 'Exception thrown by ' + module } );
 						handlePending( module );
 					}
 				}
@@ -1557,7 +1531,8 @@
 							// repopulate these modules to the cache.
 							// This means that at most one module will be useless (the one that had
 							// the error) instead of all of them.
-							log( 'Error while evaluating data from mw.loader.store', err );
+							mw.track( 'resourceloader.exception', { exception: err, source: 'store-eval',
+								logPrefix: 'Error while evaluating data from mw.loader.store' } );
 							origBatch = $.grep( origBatch, function ( module ) {
 								return registry[module].state === 'loading';
 							} );
@@ -2146,7 +2121,8 @@
 								return;
 							}
 						} catch ( e ) {
-							log( 'Storage error', e );
+							mw.track( 'resourceloader.exception', { exception: e,
+								source: 'store-localstorage-init', logPrefix: 'Storage error' } );
 						}
 
 						if ( raw === undefined ) {
@@ -2219,14 +2195,16 @@
 								JSON.stringify( descriptor.messages ),
 								JSON.stringify( descriptor.templates )
 							];
-							// Attempted workaround for a possible Opera bug (bug 57567).
+							// Attempted workaround for a possible Opera bug (bug T59567).
 							// This regex should never match under sane conditions.
 							if ( /^\s*\(/.test( args[1] ) ) {
 								args[1] = 'function' + args[1];
-								log( 'Detected malformed function stringification (bug 57567)' );
+								mw.track( 'resourceloader.assert', { source: 'bug-T59567',
+									logPrefix: 'Detected malformed function stringification (bug T59567)' } );
 							}
 						} catch ( e ) {
-							log( 'Storage error', e );
+							mw.track( 'resourceloader.exception', { exception: e,
+								source: 'store-localstorage-json', logPrefix: 'Storage error' } );
 							return;
 						}
 
@@ -2298,7 +2276,8 @@
 								data = JSON.stringify( mw.loader.store );
 								localStorage.setItem( key, data );
 							} catch ( e ) {
-								log( 'Storage error', e );
+								mw.track( 'resourceloader.exception', { exception: e,
+									source: 'store-localstorage-update', logPrefix: 'Storage error' } );
 							}
 						}
 
@@ -2533,6 +2512,39 @@
 	// Alias $j to jQuery for backwards compatibility
 	// @deprecated since 1.23 Use $ or jQuery instead
 	mw.log.deprecate( window, '$j', $, 'Use $ or jQuery instead.' );
+
+	/**
+	 * Log a message to window.console, if possible.
+	 *
+	 * Useful to force logging of some  errors that are otherwise hard to detect (i.e., this logs
+	 * also in production mode). Gets console references in each invocation instead of caching the
+	 * reference, so that debugging tools loaded later are supported (e.g. Firebug Lite in IE).
+	 *
+	 * @private
+	 * @method log_
+	 * @param {string} topic Stream name passed by mw.track
+	 * @param {Object} data Data passed by mw.track
+	 * @param {Error} [data.exception]
+	 * @param {string} data.logPrefix Log message
+	 */
+	function log( topic, data ) {
+		var e = data.exception,
+			msg = data.logPrefix,
+			console = window.console;
+		if ( console && console.log ) {
+			console.log( msg );
+			// If we have an exception object, log it to the error channel to trigger a
+			// proper stacktraces in browsers that support it. No fallback as we have no browsers
+			// that don't support error(), but do support log().
+			if ( e && console.error ) {
+				console.error( String( e ), e );
+			}
+		}
+	}
+
+	// subscribe to error streams
+	mw.trackSubscribe( 'resourceloader.exception', log );
+	mw.trackSubscribe( 'resourceloader.assert', log );
 
 	// Attach to window and globally alias
 	window.mw = window.mediaWiki = mw;
