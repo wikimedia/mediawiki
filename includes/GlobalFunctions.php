@@ -4214,7 +4214,14 @@ function wfIsConfiguredProxy( $ip ) {
  * @since 1.24 Moved from thumb.php to GlobalFunctions in 1.25
  */
 function wfThumbIsStandard( File $file, array $params ) {
-	global $wgThumbLimits, $wgImageLimits;
+	global $wgThumbLimits, $wgImageLimits, $wgResponsiveImages;
+
+	$multipliers = array( 1 );
+	if ( $wgResponsiveImages ) {
+		// These available sizes are hardcoded currently elsewhere in MediaWiki.
+		$multipliers[] = 1.5;
+		$multipliers[] = 2;
+	}
 
 	$handler = $file->getHandler();
 	if ( !$handler || !isset( $params['width'] ) ) {
@@ -4226,34 +4233,40 @@ function wfThumbIsStandard( File $file, array $params ) {
 		$basicParams['page'] = $params['page'];
 	}
 
-	// Check if the width matches one of $wgThumbLimits
-	if ( in_array( $params['width'], $wgThumbLimits ) ) {
-		$normalParams = $basicParams + array( 'width' => $params['width'] );
-		// Append any default values to the map (e.g. "lossy", "lossless", ...)
-		$handler->normaliseParams( $file, $normalParams );
-	} else {
-		// If not, then check if the width matchs one of $wgImageLimits
-		$match = false;
-		foreach ( $wgImageLimits as $pair ) {
-			$normalParams = $basicParams + array( 'width' => $pair[0], 'height' => $pair[1] );
-			// Decide whether the thumbnail should be scaled on width or height.
-			// Also append any default values to the map (e.g. "lossy", "lossless", ...)
+	foreach ( $multipliers as $multiplier ) {
+		$limits = array_map( function ( $width ) use ( $multiplier ) {
+			return round( $width * $multiplier );
+		}, $wgThumbLimits );
+
+		// Check if the width matches one of $wgThumbLimits
+		if ( in_array( $params['width'], $limits ) ) {
+			$normalParams = $basicParams + array( 'width' => $params['width'] );
+			// Append any default values to the map (e.g. "lossy", "lossless", ...)
 			$handler->normaliseParams( $file, $normalParams );
-			// Check if this standard thumbnail size maps to the given width
-			if ( $normalParams['width'] == $params['width'] ) {
-				$match = true;
-				break;
+		} else {
+			// If not, then check if the width matchs one of $wgImageLimits
+			$match = false;
+			foreach ( $wgImageLimits as $pair ) {
+				$normalParams = $basicParams + array( 'width' => round( $pair[0] * $multiplier ), 'height' => round( $pair[1] * $multiplier ) );
+				// Decide whether the thumbnail should be scaled on width or height.
+				// Also append any default values to the map (e.g. "lossy", "lossless", ...)
+				$handler->normaliseParams( $file, $normalParams );
+				// Check if this standard thumbnail size maps to the given width
+				if ( $normalParams['width'] == $params['width'] ) {
+					$match = true;
+					break;
+				}
+			}
+			if ( !$match ) {
+				return false; // not standard for description pages
 			}
 		}
-		if ( !$match ) {
-			return false; // not standard for description pages
-		}
-	}
 
-	// Check that the given values for non-page, non-width, params are just defaults
-	foreach ( $params as $key => $value ) {
-		if ( !isset( $normalParams[$key] ) || $normalParams[$key] != $value ) {
-			return false;
+		// Check that the given values for non-page, non-width, params are just defaults
+		foreach ( $params as $key => $value ) {
+			if ( !isset( $normalParams[$key] ) || $normalParams[$key] != $value ) {
+				return false;
+			}
 		}
 	}
 
