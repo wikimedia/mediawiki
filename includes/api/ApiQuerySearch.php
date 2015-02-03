@@ -174,7 +174,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				}
 				if ( !is_null( $result->getRedirectTitle() ) ) {
 					if ( isset( $prop['redirecttitle'] ) ) {
-						$vals['redirecttitle'] = $result->getRedirectTitle();
+						$vals['redirecttitle'] = $result->getRedirectTitle()->getPrefixedText();
 					}
 					if ( isset( $prop['redirectsnippet'] ) ) {
 						$vals['redirectsnippet'] = $result->getRedirectSnippet();
