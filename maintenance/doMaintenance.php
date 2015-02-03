@@ -114,7 +114,10 @@ try {
 	$factory = wfGetLBFactory();
 	$factory->commitMasterChanges();
 	$factory->shutdown();
+} catch ( MWException $mwe ) {
+	echo $e->getText();
+	exit( 1 );
 } catch ( Exception $mwe ) {
-	echo $mwe->getText();
+	echo $e;
 	exit( 1 );
 }
