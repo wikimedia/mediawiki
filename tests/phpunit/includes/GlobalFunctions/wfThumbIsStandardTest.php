@@ -12,7 +12,7 @@ class WfThumbIsStandardTest extends MediaWikiTestCase {
 		$this->setMwGlobals( array(
 			'wgThumbLimits' => array(
 				100,
-				400
+				401
 			),
 			'wgImageLimits' => array(
 				array( 300, 225 ),
@@ -35,7 +35,24 @@ class WfThumbIsStandardTest extends MediaWikiTestCase {
 			array(
 				'Standard thumb width',
 				true,
-				array( 'width' => 400 ),
+				array( 'width' => 401 ),
+			),
+			// wfThumbIsStandard should match Linker::processResponsiveImages
+			// in its rounding behaviour.
+			array(
+				'Standard thumb width (HiDPI 1.5x) - incorrect rounding',
+				false,
+				array( 'width' => 601 ),
+			),
+			array(
+				'Standard thumb width (HiDPI 1.5x)',
+				true,
+				array( 'width' => 602 ),
+			),
+			array(
+				'Standard thumb width (HiDPI 2x)',
+				true,
+				array( 'width' => 802 ),
 			),
 			array(
 				'Non-standard thumb width',
