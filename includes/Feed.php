@@ -184,7 +184,8 @@ class FeedItem {
 }
 
 /**
- * @todo document (needs one-sentence top-level class description).
+ * Class to support the outputting of syndication feeds in Atom and RSS format.
+ *
  * @ingroup Feed
  */
 abstract class ChannelFeed extends FeedItem {
@@ -338,13 +339,14 @@ class RSSFeed extends ChannelFeed {
  */
 class AtomFeed extends ChannelFeed {
 	/**
-	 * @todo document
-	 * @param string|int $ts
+	 * Format a date given time stamp.
+	 *
+	 * @param string|int $time_Stamp
 	 * @return string
 	 */
-	function formatTime( $ts ) {
+	function formatTime( $time_Stamp ) {
 		// need to use RFC 822 time format at least for rss2.0
-		return gmdate( 'Y-m-d\TH:i:s', wfTimestamp( TS_UNIX, $ts ) );
+		return gmdate( 'Y-m-d\TH:i:s', wfTimestamp( TS_UNIX, $time_Stamp ) );
 	}
 
 	/**
