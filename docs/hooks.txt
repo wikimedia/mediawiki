@@ -870,6 +870,20 @@ $wikiPage: WikiPage that was removed
 'CategoryPageView': Before viewing a categorypage in CategoryPage::view.
 $catpage: CategoryPage instance
 
+'CategoryViewer::doCategoryQuery': After querying for pages to be displayed
+in a Category page. Gives extensions the opportunity to batch load any
+related data about the pages.
+$type: The category type. Either 'page', 'img' or 'subcat'
+$res: Query result from DatabaseBase::select()
+
+'CategoryViewer::generateLink': Before generating an output link allow
+extensions opportunity to generate a more specific or relevant link.
+$type: The category type. Either 'page', 'img' or 'subcat'
+$title: Title object for the categorized page
+$html: Requested html content of anchor
+&$link: Returned value. When set to a non-null value by a hook subscriber
+this value will be used as the anchor instead of Linker::link
+
 'ChangePasswordForm': For extensions that need to add a field to the
 ChangePassword form via the Preferences form.
 &$extraFields: An array of arrays that hold fields like would be passed to the
