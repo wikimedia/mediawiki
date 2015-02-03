@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * Basic support for outputting syndication feeds in RSS, other formats.
  *
@@ -184,7 +184,8 @@ class FeedItem {
 }
 
 /**
- * @todo document (needs one-sentence top-level class description).
+ *An Abstract class to support the outputting of syndication feeds in Atom and Rss format.  
+ *
  * @ingroup Feed
  */
 abstract class ChannelFeed extends FeedItem {
@@ -338,9 +339,10 @@ class RSSFeed extends ChannelFeed {
  */
 class AtomFeed extends ChannelFeed {
 	/**
-	 * @todo document
+	 * Format a date given time stamp.
+	 *
 	 * @param string|int $ts
-	 * @return string
+	 * @return string 
 	 */
 	function formatTime( $ts ) {
 		// need to use RFC 822 time format at least for rss2.0
