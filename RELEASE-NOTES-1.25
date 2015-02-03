@@ -103,6 +103,8 @@ production.
   dynamically-compiled Mustache templates (currently uses lightncandy library).
 * Clickable anchors for each section heading in the content are now generated
   and appear in the gutter on hovering over the heading.
+* Added 'CategoryViewer::doCategoryQuery' and 'CategoryViewer::generateLink' hooks
+  to allow extensions to override how links to pages are rendered within NS_CATEGORY
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
