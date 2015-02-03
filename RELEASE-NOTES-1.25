@@ -99,6 +99,8 @@ production.
   tags.
 * Added 'ChangeTagsListActive' hook, to separate the concepts of "defined" and
   "active" formerly conflated by the 'ListDefinedTags' hook.
+* Added 'CategoryViewer::doCategoryQuery' and 'CategoryViewer::generateLink' hooks
+  to allow extensions to override how links to pages are rendered within NS_CATEGORY
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
