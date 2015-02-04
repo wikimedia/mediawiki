@@ -4622,6 +4622,7 @@ $wgGroupPermissions['sysop']['suppressredirect'] = true;
 #$wgGroupPermissions['sysop']['pagelang'] = true;
 #$wgGroupPermissions['sysop']['upload_by_url'] = true;
 $wgGroupPermissions['sysop']['mergehistory'] = true;
+$wgGroupPermissions['sysop']['managechangetags'] = true;
 
 // Permission to change users' group assignments
 $wgGroupPermissions['bureaucrat']['userrights'] = true;
@@ -6565,6 +6566,7 @@ $wgLogTypes = array(
 	'patrol',
 	'merge',
 	'suppress',
+	'managetags',
 );
 
 /**
@@ -6693,6 +6695,10 @@ $wgLogActionsHandlers = array(
 	'upload/overwrite' => 'LogFormatter',
 	'upload/revert' => 'LogFormatter',
 	'merge/merge' => 'MergeLogFormatter',
+	'managetags/create' => 'LogFormatter',
+	'managetags/delete' => 'LogFormatter',
+	'managetags/activate' => 'LogFormatter',
+	'managetags/deactivate' => 'LogFormatter',
 );
 
 /**
