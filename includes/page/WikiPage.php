@@ -1672,6 +1672,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param User $user The user doing the edit
 	 * @param string $serialFormat Format for storing the content in the
 	 *   database.
+	 * @param string $changeTags Array of change tags to apply to the edit.
+	 *   Extensions can modify this array via the PageContentSave hook.
 	 *
 	 * @throws MWException
 	 * @return Status Possible errors:
@@ -1691,7 +1693,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @since 1.21
 	 */
 	public function doEditContent( Content $content, $summary, $flags = 0, $baseRevId = false,
-		User $user = null, $serialFormat = null
+		User $user = null, $serialFormat = null, $changeTags = array()
 	) {
 		global $wgUser, $wgUseAutomaticEditSummaries, $wgUseRCPatrol, $wgUseNPPatrol;
 
@@ -1718,7 +1720,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// handle hook
 		$hook_args = array( &$this, &$user, &$content, &$summary,
-							$flags & EDIT_MINOR, null, null, &$flags, &$status );
+			$flags & EDIT_MINOR, null, null, &$flags, &$status, &$changeTags );
 
 		if ( !Hooks::run( 'PageContentSave', $hook_args )
 			|| !ContentHandler::runLegacyHooks( 'ArticleSave', $hook_args ) ) {
@@ -1843,6 +1845,13 @@ class WikiPage implements Page, IDBAccessObject {
 							PatrolLog::record( $rc, true, $user );
 						}
 					}
+
+					// Add change tags
+					ChangeTags::addTags( $changeTags,
+						isset( $rc ) ? $rc->mAttribs['rc_id'] : null,
+						$revisionId,
+						0 );
+
 					$user->incEditCount();
 				} catch ( Exception $e ) {
 					$dbw->rollback( __METHOD__ );
@@ -1945,6 +1954,13 @@ class WikiPage implements Page, IDBAccessObject {
 						PatrolLog::record( $rc, true, $user );
 					}
 				}
+
+				// Add change tags
+				ChangeTags::addTags( $changeTags,
+					isset( $rc ) ? $rc->mAttribs['rc_id'] : null,
+					$revisionId,
+					0 );
+
 				$user->incEditCount();
 
 			} catch ( Exception $e ) {

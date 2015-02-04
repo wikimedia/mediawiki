@@ -1791,6 +1791,10 @@ abstract class ApiBase extends ContextSource {
 			'code' => 'contentnotallowedhere',
 			'info' => 'Content model "$1" is not allowed at title "$2"'
 		),
+		'cannotapplytags' => array(
+			'code' => 'cannotapplytags',
+			'info' => "You don't have permission to apply custom tags"
+		),
 
 		// Messages from WikiPage::doEit()
 		'edit-hook-aborted' => array(

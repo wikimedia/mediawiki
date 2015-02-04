@@ -244,6 +244,15 @@ class ApiEditPage extends ApiBase {
 		if ( !is_null( $params['md5'] ) && md5( $toMD5 ) !== $params['md5'] ) {
 			$this->dieUsageMsg( 'hashcheckfailed' );
 		}
+		
+		// Apply change tags
+		$changeTags = array();
+		if ( $user->isAllowed( 'applychangetags' ) ) {
+			$changeTags = $params['tags'];
+		} else {
+			// User isn't allowed to apply arbitrary tags. Just continue anyway
+			$this->setWarning( 'You don\'t have permission to set change tags. The "tags" parameter will be ignored' );
+		}
 
 		// EditPage wants to parse its stuff from a WebRequest
 		// That interface kind of sucks, but it's workable
@@ -347,6 +356,7 @@ class ApiEditPage extends ApiBase {
 		$ep->allowNonTextContent = true;
 
 		$ep->setContextTitle( $titleObj );
+		$ep->setChangeTags( $changeTags );
 		$ep->importFormData( $req );
 		$content = $ep->textbox1;
 
@@ -521,6 +531,10 @@ class ApiEditPage extends ApiBase {
 			),
 			'text' => null,
 			'summary' => null,
+			'tags' => array(
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => 'string',
+			),
 			'minor' => false,
 			'notminor' => false,
 			'bot' => false,

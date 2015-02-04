@@ -351,6 +351,9 @@ class EditPage {
 	/** @var null|string */
 	public $contentFormat = null;
 
+	/** @var array */
+	protected $changeTags = array();
+
 	# Placeholders for text injection by hooks (must be HTML)
 	# extensions should take care to _append_ to the present value
 
@@ -447,6 +450,25 @@ class EditPage {
 
 	function submit() {
 		$this->edit();
+	}
+
+	/**
+	 * Gets the list of change tags to be applied to the revision.
+	 *
+	 * @return array
+	 */
+
+	public function getChangeTags() {
+		return $this->changeTags;
+	}
+
+	/**
+	 * Sets the change tags to be applied to the revision.
+	 *
+	 * @param array $changeTags
+	 */
+	public function setChangeTags( $changeTags ) {
+		$this->changeTags = $changeTags;
 	}
 
 	/**
@@ -1889,7 +1911,8 @@ class EditPage {
 			$flags,
 			false,
 			null,
-			$content->getDefaultFormat()
+			$content->getDefaultFormat(),
+			$this->changeTags
 		);
 
 		if ( !$doEditStatus->isOK() ) {
