@@ -218,7 +218,7 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Save user groups changes in the database.
 	 *
-	 * @param User $user
+	 * @param User|UserRightsProxy $user
 	 * @param array $add Array of groups to add
 	 * @param array $remove Array of groups to remove
 	 * @param string $reason Reason for group change
@@ -228,7 +228,7 @@ class UserrightsPage extends SpecialPage {
 		global $wgAuth;
 
 		// Validate input set...
-		$isself = $user->equals( $this->getUser() );
+		$isself = $user->getName() == $this->getUser()->getName();
 		$groups = $user->getGroups();
 		$changeable = $this->changeableGroups();
 		$addable = array_merge( $changeable['add'], $isself ? $changeable['add-self'] : array() );
