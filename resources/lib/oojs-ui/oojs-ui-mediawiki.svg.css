@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.6.5
+ * OOjs UI v0.6.6
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-02-02T03:29:03Z
+ * Date: 2015-02-04T16:52:04Z
  */
 .oo-ui-progressBarWidget-slide-frames from {
 	margin-left: -40%;
@@ -61,6 +61,9 @@
 /* @noflip */
 .oo-ui-ltr {
 	direction: ltr;
+}
+.oo-ui-element-hidden {
+	display: none !important;
 }
 .oo-ui-buttonElement > .oo-ui-buttonElement-button {
 	cursor: pointer;
@@ -609,6 +612,26 @@
 	left: 0;
 	top: 0;
 }
+.oo-ui-menuLayout-top .oo-ui-menuLayout-content {
+	right: 0 !important;
+	bottom: 0 !important;
+	left: 0 !important;
+}
+.oo-ui-menuLayout-after .oo-ui-menuLayout-content {
+	bottom: 0 !important;
+	left: 0 !important;
+	top: 0 !important;
+}
+.oo-ui-menuLayout-bottom .oo-ui-menuLayout-content {
+	left: 0 !important;
+	top: 0 !important;
+	right: 0 !important;
+}
+.oo-ui-menuLayout-before .oo-ui-menuLayout-content {
+	top: 0 !important;
+	right: 0 !important;
+	bottom: 0 !important;
+}
 .oo-ui-panelLayout {
 	position: relative;
 }
@@ -624,9 +647,6 @@
 }
 .oo-ui-panelLayout-padded {
 	padding: 1.25em;
-}
-.oo-ui-stackLayout > .oo-ui-panelLayout {
-	display: none;
 }
 .oo-ui-stackLayout-continuous > .oo-ui-panelLayout {
 	display: block;
@@ -1268,13 +1288,13 @@
 }
 .oo-ui-progressBarWidget {
 	max-width: 50em;
-	border: solid 1px #0274ff;
+	border: solid 1px #cccccc;
 	border-radius: 0.1em;
 	overflow: hidden;
 }
 .oo-ui-progressBarWidget-bar {
 	height: 1em;
-	background: #0274ff;
+	background: #dddddd;
 	-webkit-transition: width 200ms, margin-left 200ms;
 	   -moz-transition: width 200ms, margin-left 200ms;
 	    -ms-transition: width 200ms, margin-left 200ms;
@@ -1292,7 +1312,7 @@
 	border-left-width: 1px;
 }
 .oo-ui-progressBarWidget.oo-ui-widget-disabled {
-	opacity: 0.2;
+	opacity: 0.6;
 }
 .oo-ui-actionWidget.oo-ui-pendingElement-pending {
 	background-image: /* @embed */ url(themes/mediawiki/images/textures/pending.gif);

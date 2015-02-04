@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.6.5
+ * OOjs UI v0.6.6
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-02-02T03:28:54Z
+ * Date: 2015-02-04T16:51:55Z
  */
 ( function ( OO ) {
 
@@ -1445,7 +1445,7 @@ OO.ui.Widget.prototype.toggle = function ( show ) {
 
 	if ( show !== this.isVisible() ) {
 		this.visible = show;
-		this.$element.toggle( show );
+		this.$element.toggleClass( 'oo-ui-element-hidden', !this.visible );
 		this.emit( 'toggle', show );
 	}
 
@@ -1929,9 +1929,12 @@ OO.ui.Window.prototype.toggle = function ( show ) {
 		if ( this.isolated && !this.isLoaded() ) {
 			// Hide the window using visibility instead of display until loading is complete
 			// Can't use display: none; because that prevents the iframe from loading in Firefox
-			this.$element.css( 'visibility', show ? 'visible' : 'hidden' );
+			this.$element
+				.css( 'visibility', show ? 'visible' : 'hidden' );
 		} else {
-			this.$element.toggle( show ).css( 'visibility', '' );
+			this.$element
+				.toggleClass( 'oo-ui-element-hidden', !this.visible )
+				.css( 'visibility', '' );
 		}
 		this.emit( 'toggle', show );
 	}
@@ -2120,8 +2123,7 @@ OO.ui.Window.prototype.setup = function ( data ) {
 	var win = this,
 		deferred = $.Deferred();
 
-	this.$element.show();
-	this.visible = true;
+	this.toggle( true );
 	this.getSetupProcess( data ).execute().done( function () {
 		// Force redraw by asking the browser to measure the elements' widths
 		win.$element.addClass( 'oo-ui-window-setup' ).width();
@@ -2204,7 +2206,7 @@ OO.ui.Window.prototype.teardown = function ( data ) {
 		// Force redraw by asking the browser to measure the elements' widths
 		win.$element.removeClass( 'oo-ui-window-load oo-ui-window-setup' ).width();
 		win.$content.removeClass( 'oo-ui-window-content-setup' ).width();
-		win.$element.hide();
+		win.$element.addClass( 'oo-ui-element-hidden' );
 		win.visible = false;
 		deferred.resolve();
 	} );
@@ -3742,6 +3744,9 @@ OO.ui.TabIndexedElement = function OoUiTabIndexedElement( config ) {
 	this.$tabIndexed = null;
 	this.tabIndex = null;
 
+	// Events
+	this.connect( this, { disable: 'onDisable' } );
+
 	// Initialization
 	this.setTabIndex( config.tabIndex || 0 );
 	this.setTabIndexedElement( config.$tabIndexed || this.$element );
@@ -3762,12 +3767,17 @@ OO.initClass( OO.ui.TabIndexedElement );
  */
 OO.ui.TabIndexedElement.prototype.setTabIndexedElement = function ( $tabIndexed ) {
 	if ( this.$tabIndexed ) {
-		this.$tabIndexed.removeAttr( 'tabindex' );
+		this.$tabIndexed.removeAttr( 'tabindex aria-disabled' );
 	}
 
 	this.$tabIndexed = $tabIndexed;
 	if ( this.tabIndex !== null ) {
-		this.$tabIndexed.attr( 'tabindex', this.tabIndex );
+		this.$tabIndexed.attr( {
+			// Do not index over disabled elements
+			tabindex: this.isDisabled() ? -1 : this.tabIndex,
+			// ChromeVox and NVDA do not seem to inherit this from parent elements
+			'aria-disabled': this.isDisabled().toString()
+		} );
 	}
 };
 
@@ -3783,15 +3793,36 @@ OO.ui.TabIndexedElement.prototype.setTabIndex = function ( tabIndex ) {
 	if ( this.tabIndex !== tabIndex ) {
 		if ( this.$tabIndexed ) {
 			if ( tabIndex !== null ) {
-				this.$tabIndexed.attr( 'tabindex', tabIndex );
+				this.$tabIndexed.attr( {
+					// Do not index over disabled elements
+					tabindex: this.isDisabled() ? -1 : tabIndex,
+					// ChromeVox and NVDA do not seem to inherit this from parent elements
+					'aria-disabled': this.isDisabled().toString()
+				} );
 			} else {
-				this.$tabIndexed.removeAttr( 'tabindex' );
+				this.$tabIndexed.removeAttr( 'tabindex aria-disabled' );
 			}
 		}
 		this.tabIndex = tabIndex;
 	}
 
 	return this;
+};
+
+/**
+ * Handle disable events.
+ *
+ * @param {boolean} disabled Element is disabled
+ */
+OO.ui.TabIndexedElement.prototype.onDisable = function ( disabled ) {
+	if ( this.$tabIndexed && this.tabIndex !== null ) {
+		this.$tabIndexed.attr( {
+			// Do not index over disabled elements
+			tabindex: disabled ? -1 : this.tabIndex,
+			// ChromeVox and NVDA do not seem to inherit this from parent elements
+			'aria-disabled': disabled.toString()
+		} );
+	}
 };
 
 /**
@@ -4492,7 +4523,7 @@ OO.ui.DraggableGroupElement.prototype.onDragLeave = function () {
 	// This means the item was dragged outside the widget
 	this.$placeholder
 		.css( 'left', 0 )
-		.hide();
+		.addClass( 'oo-ui-element-hidden' );
 };
 
 /**
@@ -4556,20 +4587,20 @@ OO.ui.DraggableGroupElement.prototype.onDragOver = function ( e ) {
 		if ( this.sideInsertion ) {
 			this.$placeholder
 				.css( cssOutput )
-				.show();
+				.removeClass( 'oo-ui-element-hidden' );
 		} else {
 			this.$placeholder
 				.css( {
 					left: 0,
 					top: 0
 				} )
-				.hide();
+				.addClass( 'oo-ui-element-hidden' );
 		}
 	} else {
 		// This means the item was dragged outside the widget
 		this.$placeholder
 			.css( 'left', 0 )
-			.hide();
+			.addClass( 'oo-ui-element-hidden' );
 	}
 	// Prevent default
 	e.preventDefault();
@@ -4589,7 +4620,7 @@ OO.ui.DraggableGroupElement.prototype.setDragItem = function ( item ) {
 OO.ui.DraggableGroupElement.prototype.unsetDragItem = function () {
 	this.dragItem = null;
 	this.itemDragOver = null;
-	this.$placeholder.hide();
+	this.$placeholder.addClass( 'oo-ui-element-hidden' );
 	this.sideInsertion = '';
 };
 
@@ -7189,14 +7220,14 @@ OO.ui.ProcessDialog.prototype.showErrors = function ( errors ) {
 	}
 	this.retryButton.toggle( recoverable );
 	this.$errorsTitle.after( this.$errorItems );
-	this.$errors.show().scrollTop( 0 );
+	this.$errors.removeClass( 'oo-ui-widget-hidden' ).scrollTop( 0 );
 };
 
 /**
  * Hide errors.
  */
 OO.ui.ProcessDialog.prototype.hideErrors = function () {
-	this.$errors.hide();
+	this.$errors.addClass( 'oo-ui-widget-hidden' );
 	this.$errorItems.remove();
 	this.$errorItems = null;
 };
@@ -7714,11 +7745,9 @@ OO.ui.MenuLayout = function OoUiMenuLayout( config ) {
 	 */
 	this.$content = this.$( '<div>' );
 
-	// Events
-	this.$element.on( 'DOMNodeInsertedIntoDocument', this.onElementAttach.bind( this ) );
-
 	// Initialization
 	this.toggleMenu( this.showMenu );
+	this.updateSizes();
 	this.$menu
 		.addClass( 'oo-ui-menuLayout-menu' )
 		.css( this.menuPosition.sizeProperty, this.menuSize );
@@ -7737,39 +7766,23 @@ OO.inheritClass( OO.ui.MenuLayout, OO.ui.Layout );
 OO.ui.MenuLayout.static.menuPositions = {
 	top: {
 		sizeProperty: 'height',
-		positionProperty: 'top',
 		className: 'oo-ui-menuLayout-top'
 	},
 	after: {
 		sizeProperty: 'width',
-		positionProperty: 'right',
-		rtlPositionProperty: 'left',
 		className: 'oo-ui-menuLayout-after'
 	},
 	bottom: {
 		sizeProperty: 'height',
-		positionProperty: 'bottom',
 		className: 'oo-ui-menuLayout-bottom'
 	},
 	before: {
 		sizeProperty: 'width',
-		positionProperty: 'left',
-		rtlPositionProperty: 'right',
 		className: 'oo-ui-menuLayout-before'
 	}
 };
 
 /* Methods */
-
-/**
- * Handle DOM attachment events
- */
-OO.ui.MenuLayout.prototype.onElementAttach = function () {
-	// getPositionProperty won't know about directionality until the layout is attached
-	if ( this.showMenu ) {
-		this.$content.css( this.getPositionProperty(), this.menuSize );
-	}
-};
 
 /**
  * Toggle menu.
@@ -7812,18 +7825,32 @@ OO.ui.MenuLayout.prototype.setMenuSize = function ( size ) {
 
 /**
  * Update menu and content CSS based on current menu size and visibility
+ *
+ * This method is called internally when size or position is changed.
  */
 OO.ui.MenuLayout.prototype.updateSizes = function () {
 	if ( this.showMenu ) {
 		this.$menu
 			.css( this.menuPosition.sizeProperty, this.menuSize )
 			.css( 'overflow', '' );
-		this.$content.css( this.getPositionProperty(), this.menuSize );
+		// Set offsets on all sides. CSS resets all but one with
+		// 'important' rules so directionality flips are supported
+		this.$content.css( {
+			top: this.menuSize,
+			right: this.menuSize,
+			bottom: this.menuSize,
+			left: this.menuSize
+		} );
 	} else {
 		this.$menu
 			.css( this.menuPosition.sizeProperty, 0 )
 			.css( 'overflow', 'hidden' );
-		this.$content.css( this.getPositionProperty(), 0 );
+		this.$content.css( {
+			top: 0,
+			right: 0,
+			bottom: 0,
+			left: 0
+		} );
 	}
 };
 
@@ -7844,15 +7871,13 @@ OO.ui.MenuLayout.prototype.getMenuSize = function () {
  * @chainable
  */
 OO.ui.MenuLayout.prototype.setMenuPosition = function ( position ) {
-	var positionProperty, positions = this.constructor.static.menuPositions;
+	var positions = this.constructor.static.menuPositions;
 
 	if ( !positions[ position ] ) {
 		throw new Error( 'Cannot set position; unsupported position value: ' + position );
 	}
 
-	positionProperty = this.getPositionProperty();
 	this.$menu.css( this.menuPosition.sizeProperty, '' );
-	this.$content.css( positionProperty, '' );
 	this.$element.removeClass( this.menuPosition.className );
 
 	this.menuPosition = positions[ position ];
@@ -7870,19 +7895,6 @@ OO.ui.MenuLayout.prototype.setMenuPosition = function ( position ) {
  */
 OO.ui.MenuLayout.prototype.getMenuPosition = function () {
 	return this.menuPosition;
-};
-
-/**
- * Get the menu position property.
- *
- * @return {string} Menu position CSS property
- */
-OO.ui.MenuLayout.prototype.getPositionProperty = function () {
-	if ( this.menuPosition.rtlPositionProperty && this.$element.css( 'direction' ) === 'rtl' ) {
-		return this.menuPosition.rtlPositionProperty;
-	} else {
-		return this.menuPosition.positionProperty;
-	}
 };
 
 /**
@@ -8085,7 +8097,7 @@ OO.ui.BookletLayout.prototype.toggleOutline = function ( show ) {
 	if ( this.outlined ) {
 		show = show === undefined ? !this.outlineVisible : !!show;
 		this.outlineVisible = show;
-		this.gridLayout.layout( show ? [ 1, 2 ] : [ 0, 1 ], [ 1 ] );
+		this.toggleMenu( show );
 	}
 
 	return this;
@@ -8574,6 +8586,9 @@ OO.ui.StackLayout.prototype.unsetCurrentItem = function () {
  * @chainable
  */
 OO.ui.StackLayout.prototype.addItems = function ( items, index ) {
+	// Update the visibility
+	this.updateHiddenState( items, this.currentItem );
+
 	// Mixin method
 	OO.ui.GroupElement.prototype.addItems.call( this, items, index );
 
@@ -8636,18 +8651,10 @@ OO.ui.StackLayout.prototype.clearItems = function () {
  * @fires set
  */
 OO.ui.StackLayout.prototype.setItem = function ( item ) {
-	var i, len;
-
 	if ( item !== this.currentItem ) {
-		if ( !this.continuous ) {
-			for ( i = 0, len = this.items.length; i < len; i++ ) {
-				this.items[ i ].$element.css( 'display', '' );
-			}
-		}
+		this.updateHiddenState( this.items, item );
+
 		if ( $.inArray( item, this.items ) !== -1 ) {
-			if ( !this.continuous ) {
-				item.$element.css( 'display', 'block' );
-			}
 			this.currentItem = item;
 			this.emit( 'set', item );
 		} else {
@@ -8656,6 +8663,30 @@ OO.ui.StackLayout.prototype.setItem = function ( item ) {
 	}
 
 	return this;
+};
+
+/**
+ * Update the visibility of all items in case of non-continuous view.
+ *
+ * Ensure all items are hidden except for the selected one.
+ * This method does nothing when the stack is continuous.
+ *
+ * @param {OO.ui.Layout[]} items Item list iterate over
+ * @param {OO.ui.Layout} [selectedItem] Selected item to show
+ */
+OO.ui.StackLayout.prototype.updateHiddenState = function ( items, selectedItem ) {
+	var i, len;
+
+	if ( !this.continuous ) {
+		for ( i = 0, len = items.length; i < len; i++ ) {
+			if ( !selectedItem || selectedItem !== items[ i ] ) {
+				items[ i ].$element.addClass( 'oo-ui-element-hidden' );
+			}
+		}
+		if ( selectedItem ) {
+			selectedItem.$element.removeClass( 'oo-ui-element-hidden' );
+		}
+	}
 };
 
 /**
@@ -9815,8 +9846,11 @@ OO.ui.ButtonWidget.prototype.onClick = function () {
  * @inheritdoc
  */
 OO.ui.ButtonWidget.prototype.onMouseDown = function ( e ) {
-	// Remove the tab-index while the button is down to prevent the button from stealing focus
-	this.$button.removeAttr( 'tabindex' );
+	if ( !this.isDisabled() ) {
+		// Remove the tab-index while the button is down to prevent the button from stealing focus
+		this.$button.removeAttr( 'tabindex' );
+	}
+
 	return OO.ui.ButtonElement.prototype.onMouseDown.call( this, e );
 };
 
@@ -9824,8 +9858,11 @@ OO.ui.ButtonWidget.prototype.onMouseDown = function ( e ) {
  * @inheritdoc
  */
 OO.ui.ButtonWidget.prototype.onMouseUp = function ( e ) {
-	// Restore the tab-index after the button is up to restore the button's accessibility
-	this.$button.attr( 'tabindex', this.tabIndex );
+	if ( !this.isDisabled() ) {
+		// Restore the tab-index after the button is up to restore the button's accessibility
+		this.$button.attr( 'tabindex', this.tabIndex );
+	}
+
 	return OO.ui.ButtonElement.prototype.onMouseUp.call( this, e );
 };
 
@@ -11011,14 +11048,13 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	this.autosize = !!config.autosize;
 	this.maxRows = config.maxRows;
 	this.validate = null;
-	this.attached = false;
 
 	// Clone for resizing
 	if ( this.autosize ) {
 		this.$clone = this.$input
 			.clone()
 			.insertAfter( this.$input )
-			.hide();
+			.addClass( 'oo-ui-element-hidden' );
 	}
 
 	this.setValidation( config.validate );
@@ -11030,7 +11066,6 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 		blur: this.setValidityFlag.bind( this )
 	} );
 	this.$element.on( 'DOMNodeInsertedIntoDocument', this.onElementAttach.bind( this ) );
-	this.$element.on( 'DOMNodeRemovedFromDocument', this.onElementDetach.bind( this ) );
 	this.$icon.on( 'mousedown', this.onIconMouseDown.bind( this ) );
 	this.$indicator.on( 'mousedown', this.onIndicatorMouseDown.bind( this ) );
 	this.on( 'labelChange', this.updatePosition.bind( this ) );
@@ -11136,20 +11171,10 @@ OO.ui.TextInputWidget.prototype.onKeyPress = function ( e ) {
  * @param {jQuery.Event} e Element attach event
  */
 OO.ui.TextInputWidget.prototype.onElementAttach = function () {
-	this.attached = true;
-	// If we reattached elsewhere, the valCache is now invalid
+	// Any previously calculated size is now probably invalid if we reattached elsewhere
 	this.valCache = null;
 	this.adjustSize();
 	this.positionLabel();
-};
-
-/**
- * Handle element detach events.
- *
- * @param {jQuery.Event} e Element detach event
- */
-OO.ui.TextInputWidget.prototype.onElementDetach = function () {
-	this.attached = false;
 };
 
 /**
@@ -11207,7 +11232,7 @@ OO.ui.TextInputWidget.prototype.setReadOnly = function ( state ) {
 OO.ui.TextInputWidget.prototype.adjustSize = function () {
 	var scrollHeight, innerHeight, outerHeight, maxInnerHeight, measurementError, idealHeight;
 
-	if ( this.multiline && this.autosize && this.attached && this.$input.val() !== this.valCache ) {
+	if ( this.multiline && this.autosize && this.$input.val() !== this.valCache ) {
 		this.$clone
 			.val( this.$input.val() )
 			.attr( 'rows', '' )
@@ -12103,14 +12128,13 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 		.addClass( 'oo-ui-popupWidget-head' )
 		.append( this.$label, this.closeButton.$element );
 	if ( !config.head ) {
-		this.$head.hide();
+		this.$head.addClass( 'oo-ui-element-hidden' );
 	}
 	this.$popup
 		.addClass( 'oo-ui-popupWidget-popup' )
 		.append( this.$head, this.$body );
 	this.$element
-		.hide()
-		.addClass( 'oo-ui-popupWidget' )
+		.addClass( 'oo-ui-popupWidget oo-ui-element-hidden' )
 		.append( this.$popup, this.$anchor );
 	// Move content, which was added to #$element by OO.ui.Widget, to the body
 	if ( config.$content instanceof jQuery ) {
@@ -13116,9 +13140,8 @@ OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
 
 	// Initialization
 	this.$element
-		.hide()
-		.attr( 'role', 'menu' )
-		.addClass( 'oo-ui-menuSelectWidget' );
+		.addClass( 'oo-ui-menuSelectWidget oo-ui-element-hidden' )
+		.attr( 'role', 'menu' );
 };
 
 /* Setup */
