@@ -51,6 +51,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiLogin' => __DIR__ . '/includes/api/ApiLogin.php',
 	'ApiLogout' => __DIR__ . '/includes/api/ApiLogout.php',
 	'ApiMain' => __DIR__ . '/includes/api/ApiMain.php',
+	'ApiManageTags' => __DIR__ . '/includes/api/ApiManageTags.php',
 	'ApiModuleManager' => __DIR__ . '/includes/api/ApiModuleManager.php',
 	'ApiMove' => __DIR__ . '/includes/api/ApiMove.php',
 	'ApiOpenSearch' => __DIR__ . '/includes/api/ApiOpenSearch.php',
