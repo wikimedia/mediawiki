@@ -80,6 +80,14 @@ production.
   they will add the proper credits to the skins or extensions section.
 * Update QUnit from v1.14.0 to v1.16.0.
 * Update Moment.js from v2.8.3 to v2.8.4.
+* Special:Tags now allows for manipulating the list of user-modifiable change
+  tags. Actually modifying the tagging of a revision or log entry is not
+  implemented yet.
+* Added 'managetags' user right and 'ChangeTagCanCreate', 'ChangeTagCanDelete',
+  and 'ChangeTagCanCreate' hooks to allow for managing user-modifiable change
+  tags.
+* Added 'ChangeTagsListActive' hook, to separate the concepts of "defined" and
+  "active" formerly conflated by the 'ListDefinedTags' hook.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
@@ -186,6 +194,11 @@ production.
   interwiki redirects to the list of interwiki titles.
 * (T85417) When outputting the list of redirect titles, a 'tointerwiki'
   property (like the existing 'tofragment' property) will be set.
+* Added action=managetags to allow for managing the list of
+  user-modifiable change tags. Actually modifying the tagging of a revision or
+  log entry is not implemented yet.
+* list=tags has additional properties to indicate 'active' status and tag
+  sources.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.
