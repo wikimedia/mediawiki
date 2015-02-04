@@ -117,23 +117,15 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$this->checkDbIsSupported();
 
 			if ( !self::$dbSetup ) {
-				wfProfileIn( $logName . ' (clone-db)' );
-
 				// switch to a temporary clone of the database
 				self::setupTestDB( $this->db, $this->dbPrefix() );
 
 				if ( ( $this->db->getType() == 'oracle' || !self::$useTemporaryTables ) && self::$reuseDB ) {
 					$this->resetDB();
 				}
-
-				wfProfileOut( $logName . ' (clone-db)' );
 			}
-
-			wfProfileIn( $logName . ' (prepare-db)' );
 			$this->addCoreDBData();
 			$this->addDBData();
-			wfProfileOut( $logName . ' (prepare-db)' );
-
 			$needsResetDB = true;
 		}
 
