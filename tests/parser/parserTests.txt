@@ -6334,7 +6334,7 @@ parsoid=wt2html,html2html
 <td data-parsoid='{"startTagSrc":"| ","attrSepSrc":"|","autoInsertedEnd":true}'><a rel="mw:ExtLink" href="ftp://|x||"></a>" onmouseover="alert(document.cookie)">test</td></tr></tbody></table>
 !! end
 
-# FIXME: The output seems broken. Filed as T110268.
+# FIXME: Parsoid output is broken. Filed as T110268.
 !! test
 ! and || in td attributes should not be parsed as <th>/<td>
 !! options
@@ -6346,8 +6346,7 @@ parsoid=wt2html
 !! html/php
 <table>
 <tr>
-<td> style="color: red !important;" data-contrived="put this here </td>
-<td> foo
+<td style="color: red !important;" data-contrived="put this here &#124;&#124;"> foo
 </td></tr></table>
 
 !! html/parsoid
