@@ -24,7 +24,7 @@
  * Cut-down copy of User interface for local-interwiki-database
  * user rights manipulation.
  */
-class UserRightsProxy {
+class UserRightsProxy implements UserModifiableGroups {
 
 	/**
 	 * Constructor.

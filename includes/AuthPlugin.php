@@ -215,7 +215,7 @@ class AuthPlugin {
 	 * Update user groups in the external authentication database.
 	 * Return true if successful.
 	 *
-	 * @param User $user
+	 * @param UserModifiableGroups $user
 	 * @param array $addgroups Groups to add.
 	 * @param array $delgroups Groups to remove.
 	 * @return bool

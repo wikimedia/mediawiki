@@ -36,7 +36,7 @@ define( 'EDIT_TOKEN_SUFFIX', '+\\' );
  * for rendering normal pages are set in the cookie to minimize use
  * of the database.
  */
-class User implements IDBAccessObject {
+class User implements IDBAccessObject, UserModifiableGroups {
 	/**
 	 * @const int Number of characters in user_token field.
 	 */

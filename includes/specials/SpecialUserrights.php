@@ -154,6 +154,7 @@ class UserrightsPage extends SpecialPage {
 				return;
 			}
 
+			/** @var UserModifiableGroups $targetUser */
 			$targetUser = $status->value;
 			if ( $targetUser instanceof User ) { // UserRightsProxy doesn't have this method (bug 61252)
 				$targetUser->clearInstanceCache(); // bug 38989
@@ -192,10 +193,10 @@ class UserrightsPage extends SpecialPage {
 	 *
 	 * @param string $username Username to apply changes to.
 	 * @param string $reason Reason for group change
-	 * @param User|UserRightsProxy $user Target user object.
+	 * @param UserModifiableGroups $user Target user object.
 	 * @return null
 	 */
-	function saveUserGroups( $username, $reason, $user ) {
+	function saveUserGroups( $username, $reason, UserModifiableGroups $user ) {
 		$allgroups = $this->getAllGroups();
 		$addgroup = array();
 		$removegroup = array();
@@ -218,13 +219,13 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Save user groups changes in the database.
 	 *
-	 * @param User|UserRightsProxy $user
+	 * @param UserModifiableGroups $user
 	 * @param array $add Array of groups to add
 	 * @param array $remove Array of groups to remove
 	 * @param string $reason Reason for group change
 	 * @return array Tuple of added, then removed groups
 	 */
-	function doSaveUserGroups( $user, $add, $remove, $reason = '' ) {
+	function doSaveUserGroups( UserModifiableGroups $user, $add, $remove, $reason = '' ) {
 		global $wgAuth;
 
 		// Validate input set...
@@ -282,12 +283,12 @@ class UserrightsPage extends SpecialPage {
 
 	/**
 	 * Add a rights log entry for an action.
-	 * @param User $user
+	 * @param UserModifiableGroups $user
 	 * @param array $oldGroups
 	 * @param array $newGroups
 	 * @param array $reason
 	 */
-	function addLogEntry( $user, $oldGroups, $newGroups, $reason ) {
+	function addLogEntry( UserModifiableGroups $user, $oldGroups, $newGroups, $reason ) {
 		$logEntry = new ManualLogEntry( 'rights', 'rights' );
 		$logEntry->setPerformer( $this->getUser() );
 		$logEntry->setTarget( $user->getUserPage() );
