@@ -1,14 +1,22 @@
 <?php
 /**
- * Wrapper for ChgangeTags::buildTagFilterSelector to use in HTMLForm
+ * Wrapper for ChangeTags::buildTagFilterSelector to use in HTMLForm
  */
 class HTMLTagFilter extends HTMLFormField {
+	protected $tagFilter;
+
+	function getTableRow( $value ) {
+		$this->tagFilter = ChangeTags::buildTagFilterSelector( $value );
+		if ( $this->tagFilter ) {
+			return parent::getTableRow( $value );
+		}
+		return '';
+	}
+
 	function getInputHTML( $value ) {
-		$tagFilter = ChangeTags::buildTagFilterSelector( $value );
-		if ( $tagFilter ) {
-			list( $tagFilterLabel, $tagFilterSelector ) = $tagFilter;
+		if ( $this->tagFilter ) {
 			// we only need the select field, HTMLForm should handle the label
-			return $tagFilterSelector;
+			return $this->tagFilter[1];
 		}
 		return '';
 	}
