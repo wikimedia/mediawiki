@@ -232,6 +232,11 @@ class LinkerTest extends MediaWikiLangTestCase {
 				null,
 			),
 			array(
+				'<a class="external" rel="nofollow" href="//en.example.org/w/Foo%27bar">Foo\'bar</a>',
+				"[[Foo'bar]]",
+				'enwiki',
+			),
+			array(
 				'foo bar <a class="external" rel="nofollow" href="//en.example.org/w/Special:BlankPage">Special:BlankPage</a>',
 				'foo bar [[Special:BlankPage]]',
 				'enwiki',
