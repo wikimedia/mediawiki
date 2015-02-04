@@ -204,6 +204,16 @@
 	"apihelp-logout-description": "Log out and clear session data.",
 	"apihelp-logout-example-logout": "Log the current user out.",
 
+	"apihelp-managetags-description": "Perform management tasks relating to change tags.",
+	"apihelp-managetags-param-operation": "Which operation to perform:\n;create:Create a new change tag for manual use.\n;delete:Remove a change tag from the database, including removing the tag from all revisions, recent change entries and log entries on which it is used.\n;activate:Activate a change tag, allowing users to apply it manually.\n;deactivate:Deactivate a change tag, preventing users from applying it manually.",
+	"apihelp-managetags-param-tag": "Tag to create, delete, activate or deactivate. For tag creation, the tag must not exist. For tag deletion, the tag must exist. For tag activation, the tag must exist and not be in use by an extension. For tag deactivation, the tag must be currently active and manually defined.",
+	"apihelp-managetags-param-reason": "An optional reason for creating, deleting, activating or deactivating the tag.",
+	"apihelp-managetags-param-ignorewarnings": "Whether to ignore any warnings that are issued during the operation.",
+	"apihelp-managetags-example-create": "Create a tag named <kbd>spam</kbd> with the reason <kbd>For use in edit patrolling</kbd>",
+	"apihelp-managetags-example-delete": "Delete the <kbd>vandlaism</kbd> tag with the reason <kbd>Misspelt</kbd>",
+	"apihelp-managetags-example-activate": "Activate a tag named <kbd>spam</kbd> with the reason <kbd>For use in edit patrolling</kbd>",
+	"apihelp-managetags-example-deactivate": "Deactivate a tag named <kbd>spam</kbd> with the reason <kbd>No longer required</kbd>",
+
 	"apihelp-move-description": "Move a page.",
 	"apihelp-move-param-from": "Title of the page to rename. Cannot be used together with <var>$1fromid</var>.",
 	"apihelp-move-param-fromid": "Page ID of the page to rename. Cannot be used together with <var>$1from</var>.",
@@ -878,7 +888,7 @@
 
 	"apihelp-query+tags-description": "List change tags.",
 	"apihelp-query+tags-param-limit": "The maximum number of tags to list.",
-	"apihelp-query+tags-param-prop": "Which properties to get:\n;name:Adds name of tag.\n;displayname:Adds system message for the tag.\n;description:Adds description of the tag.\n;hitcount:Adds the amount of revisions that have this tag.\n;defined:Indicate whether the tag is defined.",
+	"apihelp-query+tags-param-prop": "Which properties to get:\n;name:Adds name of tag.\n;displayname:Adds system message for the tag.\n;description:Adds description of the tag.\n;hitcount:Adds the number of revisions and log entries that have this tag.\n;defined:Indicate whether the tag is defined.\n;source:Gets the sources of the tag, which may include <samp>extension</samp> for extension-defined tags and <samp>manual</samp> for tags that may be applied manually by users.\n;active:Whether the tag is still being applied.",
 	"apihelp-query+tags-example-simple": "List available tags.",
 
 	"apihelp-query+templates-description": "Returns all pages transcluded on the given pages.",
