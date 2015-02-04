@@ -42,6 +42,9 @@ foreach ( array_filter( explode( '/', $_SERVER['PHP_SELF'] ) ) as $part ) {
 	}
 }
 
+# the above method adds the page to the path, so we have to get the path of what is returned
+$path = dirname($path) . "/";
+
 # Check to see if the installer is running
 if ( !function_exists( 'session_name' ) ) {
 	$installerStarted = false;
