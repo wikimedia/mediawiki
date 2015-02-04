@@ -137,7 +137,7 @@ class RevDelRevisionList extends RevDelList {
 	public function doPostCommitUpdates() {
 		$this->title->purgeSquid();
 		// Extensions that require referencing previous revisions may need this
-		Hooks::run( 'ArticleRevisionVisibilitySet', array( &$this->title ) );
+		Hooks::run( 'ArticleRevisionVisibilitySet', array( $this->title, $this->ids ) );
 		return Status::newGood();
 	}
 }
