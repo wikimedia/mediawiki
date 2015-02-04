@@ -3172,9 +3172,7 @@ class Language {
 			return;
 		}
 		$this->mMagicHookDone = true;
-		wfProfileIn( 'LanguageGetMagic' );
 		Hooks::run( 'LanguageGetMagic', array( &$this->mMagicExtensions, $this->getCode() ) );
-		wfProfileOut( 'LanguageGetMagic' );
 	}
 
 	/**
