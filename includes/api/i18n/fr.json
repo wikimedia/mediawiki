@@ -4,7 +4,8 @@
 			"Gomoko",
 			"Windes",
 			"Orlodrim",
-			"McDutchie"
+			"McDutchie",
+			"Element303"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [https://www.mediawiki.org/wiki/API:Main_page Documentation]\n* [https://www.mediawiki.org/wiki/API:FAQ FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Liste de diffusion]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annonces de l’API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bogues et demandes]\n</div>\n<strong>État :</strong> Toutes les fonctionnalités affichées sur cette page devraient fonctionner, mais l’API est encore en cours de développement et peut changer à tout moment. Inscrivez-vous à [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la liste de diffusion mediawiki-api-announce] pour être informé des mises à jour.\n\n<strong>Requêtes erronées :</strong> Si des requêtes erronées sont envoyées à l’API, un en-tête HTTP sera renvoyé avec la clé « MediaWiki-API-Error ». La valeur de cet en-tête et le code d’erreur renvoyé prendront la même valeur. Pour plus d’information, voyez https://www.mediawiki.org/wiki/API:Errors_and_warnings.",
@@ -512,7 +513,7 @@
 	"apihelp-query+deletedrevs-example-mode1": "Lister les dernières révisions supprimées de Main Page et Talk:Main Page, avec le contenu (mode 1)",
 	"apihelp-query+deletedrevs-example-mode2": "Lister les 50 dernières contributions de Bob supprimées (mode 2)",
 	"apihelp-query+deletedrevs-example-mode3-main": "Lister les 50 premières révisions supprimées dans l’espace de noms principal (mode 3)",
-	"apihelp-query+deletedrevs-example-mode3-talk": "Lister les 50 premières pages supprimées dans l’espace de noms Talk (mode 3) :",
+	"apihelp-query+deletedrevs-example-mode3-talk": "Lister les 50 premières pages supprimées dans l’espace de noms {{ns:talk}} (mode 3).",
 	"apihelp-query+disabled-description": "Ce module de requête a été désactivé.",
 	"apihelp-query+duplicatefiles-description": "Lister tous les fichiers qui sont des doublons des fichiers donnés d’après leurs valeurs de hachage.",
 	"apihelp-query+duplicatefiles-param-limit": "Combien de fichiers dupliqués à renvoyer.",
@@ -955,7 +956,7 @@
 	"apihelp-watch-param-title": "La page à (ne plus) suivre. Utiliser plutôt $1titles.",
 	"apihelp-watch-param-unwatch": "Si défini, la page ne sera plus suivie plutôt que suivie.",
 	"apihelp-watch-example-watch": "Suivre la page « Page principale »",
-	"apihelp-watch-example-unwatch": "Ne plus suivre la page « Page principale »",
+	"apihelp-watch-example-unwatch": "Ne plus suivre la page <kbd>Page principale</kbd>.",
 	"apihelp-watch-example-generator": "Suivre les quelques premières pages de l’espace de nom principal",
 	"apihelp-format-example-generic": "Mettre en forme le résultat de la requête dans le format $1",
 	"apihelp-dbg-description": "Extraire les données au format de var_export() de PHP.",

@@ -935,6 +935,7 @@
 	"prefs-personal": "Gebruikersprofiel",
 	"prefs-rc": "Recente wijzigingen",
 	"prefs-watchlist": "Volglijst",
+	"prefs-editwatchlist": "Volglijst bewerken",
 	"prefs-watchlist-days": "Dagen weer te geven in de volglijst:",
 	"prefs-watchlist-days-max": "Maximaal $1 {{PLURAL:$1|dag|dagen}}",
 	"prefs-watchlist-edits": "Maximaal aantal bewerkingen in de uitgebreide volglijst:",

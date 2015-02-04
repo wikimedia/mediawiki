@@ -2182,7 +2182,7 @@
 	"javascripttest": "Јаваскрипт тест",
 	"javascripttest-pagetext-noframework": "Ова страница је резервисана за извршавање јаваскрипт тестова.",
 	"javascripttest-pagetext-unknownframework": "Непознати радни оквир „$1“.",
-	"javascripttest-pagetext-unknownaction": "непозната акција \"$1\".",
+	"javascripttest-pagetext-unknownaction": "Непозната радња „$1“.",
 	"javascripttest-pagetext-frameworks": "Изаберите један од следећих радних оквира: $1",
 	"javascripttest-pagetext-skins": "Изаберите с којом темом желите да покренете пробу:",
 	"javascripttest-qunit-intro": "Погледајте [$1 документацију за тестирање] на mediawiki.org.",

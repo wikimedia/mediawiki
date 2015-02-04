@@ -2084,7 +2084,7 @@
 	"movepage-moved-noredirect": "Přesměrování nebylo vytvořeno.",
 	"articleexists": "Takto nazvaná stránka již existuje, nebo Vámi zvolený název je neplatný. Zvolte jiný název.",
 	"cantmove-titleprotected": "Stránku nelze přesunout na zadané místo, protože název je uzamčen proti vytváření",
-	"movetalk": "Přesunout příslušnou diskusní stránku",
+	"movetalk": "Přesunout související diskusní stránku",
 	"move-subpages": "Přesunout i podstránky (maximálně $1)",
 	"move-talk-subpages": "Přesunout i podstránky diskusní stránky (maximálně $1)",
 	"movepage-page-exists": "Stránka $1 již existuje a nemůže být automaticky přepsána.",

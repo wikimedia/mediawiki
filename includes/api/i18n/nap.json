@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chelin"
+		]
+	},
+	"apihelp-block-description": "Blocca n'utente.",
+	"apihelp-createaccount-param-name": "Nomme utente.",
+	"apihelp-delete-description": "Scancella 'na paggena."
+}

@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"C.R."
+			"C.R.",
+			"Chelin"
 		]
 	},
 	"config-desc": "'O prugramma d'istallazione 'e MediaWiki",
@@ -138,6 +139,7 @@
 	"config-missing-db-name": "Avita miette nu valore p' 'o \"{{int:config-db-name}}\"",
 	"config-missing-db-host": "Avita miette nu valore p' 'o \"{{int:config-db-host}}\"",
 	"config-missing-db-server-oracle": "Avita miette nu valore p' 'o \"{{int:config-db-host-oracle}}\"",
+	"config-invalid-db-server-oracle": "'O database 'e TNS \"$1\" nun è buono.\nAusate 'o \"TNS Name\" o na catena d' \"Easy Connect\"([http://docs.oracle.com/cd/E11882_01/network.112/e10836/naming.htm Metude 'e Nommena Oracle]).",
 	"config-connection-error": "$1.\n\nCuntrullate 'o host, nomme utente e password e tentate n'ata vota.",
 	"config-invalid-schema": "Schema MediaWiki \"$1\" nun è buono.\nAusate surtanto 'e lettere ASCII (a-z, A-Z), nummere (0-9) e carattere 'e sottolineatura (_).",
 	"config-db-sys-create-oracle": "'O prugramma 'e installazione supporta surtanto l'uso 'e nu cunto SYSDBA pe' putè crià nu cunto nuovo.",
@@ -197,5 +199,10 @@
 	"config-profile-no-anon": "Cunto utente obbligatorio",
 	"config-profile-fishbowl": "Surtanto ll'editure premmesse",
 	"config-profile-private": "Wiki privato",
-	"config-install-updates": "Mpiccià ll'agghiurnamiente ca nun fossero necessarie"
+	"config-license-pd": "Pubbreco duminio",
+	"config-logo": "URL d\"o logo:",
+	"config-cc-again": "Selezziona 'e novo...",
+	"config-install-step-done": "fatto",
+	"config-install-updates": "Mpiccià ll'agghiurnamiente ca nun fossero necessarie",
+	"config-help": "ajùto"
 }
