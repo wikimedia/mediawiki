@@ -265,9 +265,10 @@ class StringUtils {
 	 * Ignores any instances of the separator inside <...>
 	 * @param string $separator
 	 * @param string $text
+	 * @param int $limit
 	 * @return array
 	 */
-	static function explodeMarkup( $separator, $text ) {
+	static function explodeMarkup( $separator, $text, $limit = null ) {
 		$placeholder = "\x00";
 
 		// Remove placeholder instances
@@ -276,9 +277,15 @@ class StringUtils {
 		// Replace instances of the separator inside HTML-like tags with the placeholder
 		$replacer = new DoubleReplacer( $separator, $placeholder );
 		$cleaned = StringUtils::delimiterReplaceCallback( '<', '>', $replacer->cb(), $text );
+		$cleaned = StringUtils::delimiterReplaceCallback( '"', '"', $replacer->cb(), $cleaned );
+		$cleaned = StringUtils::delimiterReplaceCallback( "'", "'", $replacer->cb(), $cleaned );
 
 		// Explode, then put the replaced separators back in
-		$items = explode( $separator, $cleaned );
+		if ( is_null( $limit ) ) {
+			$items = explode( $separator, $cleaned );
+		} else {
+			$items = explode( $separator, $cleaned, $limit );
+		}
 		foreach ( $items as $i => $str ) {
 			$items[$i] = str_replace( $placeholder, $separator, $str );
 		}
