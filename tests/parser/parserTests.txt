@@ -5770,7 +5770,6 @@ parsoid=wt2html,html2html
 <td><a rel="mw:ExtLink" href="ftp://|x||"></a>" onmouseover="alert(document.cookie)">test</td></tr></tbody></table>
 !! end
 
-# FIXME: The php output is broken.
 !! test
 ! and || in td attributes should not be parsed as <th>/<td>
 !! wikitext
@@ -5780,8 +5779,7 @@ parsoid=wt2html,html2html
 !! html/php
 <table>
 <tr>
-<td> style="color: red !important;" data-contrived="put this here </td>
-<td> foo
+<td style="color: red !important;" data-contrived="put this here &#124;&#124;"> foo
 </td></tr></table>
 
 !! html/parsoid

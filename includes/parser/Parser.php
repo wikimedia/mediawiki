@@ -1145,7 +1145,7 @@ class Parser {
 					array_push( $last_tag_history, $last_tag );
 
 					# A cell could contain both parameters and data
-					$cell_data = explode( '|', $cell, 2 );
+					$cell_data = StringUtils::explodeMarkup( '|', $cell, 2 );
 
 					# Bug 553: Note that a '|' inside an invalid link should not
 					# be mistaken as delimiting cell parameters
