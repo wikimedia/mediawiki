@@ -425,66 +425,6 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath 
 }
 
 /**
- * Returns true if this thumbnail is one that MediaWiki generates
- * links to on file description pages and possibly parser output.
- *
- * $params is considered non-standard if they involve a non-standard
- * width or any non-default parameters aside from width and page number.
- * The number of possible files with standard parameters is far less than
- * that of all combinations; rate-limiting for them can thus be more generious.
- *
- * @param File $file
- * @param array $params
- * @return bool
- */
-function wfThumbIsStandard( File $file, array $params ) {
-	global $wgThumbLimits, $wgImageLimits;
-
-	$handler = $file->getHandler();
-	if ( !$handler || !isset( $params['width'] ) ) {
-		return false;
-	}
-
-	$basicParams = array();
-	if ( isset( $params['page'] ) ) {
-		$basicParams['page'] = $params['page'];
-	}
-
-	// Check if the width matches one of $wgThumbLimits
-	if ( in_array( $params['width'], $wgThumbLimits ) ) {
-		$normalParams = $basicParams + array( 'width' => $params['width'] );
-		// Append any default values to the map (e.g. "lossy", "lossless", ...)
-		$handler->normaliseParams( $file, $normalParams );
-	} else {
-		// If not, then check if the width matchs one of $wgImageLimits
-		$match = false;
-		foreach ( $wgImageLimits as $pair ) {
-			$normalParams = $basicParams + array( 'width' => $pair[0], 'height' => $pair[1] );
-			// Decide whether the thumbnail should be scaled on width or height.
-			// Also append any default values to the map (e.g. "lossy", "lossless", ...)
-			$handler->normaliseParams( $file, $normalParams );
-			// Check if this standard thumbnail size maps to the given width
-			if ( $normalParams['width'] == $params['width'] ) {
-				$match = true;
-				break;
-			}
-		}
-		if ( !$match ) {
-			return false; // not standard for description pages
-		}
-	}
-
-	// Check that the given values for non-page, non-width, params are just defaults
-	foreach ( $params as $key => $value ) {
-		if ( !isset( $normalParams[$key] ) || $normalParams[$key] != $value ) {
-			return false;
-		}
-	}
-
-	return true;
-}
-
-/**
  * Convert pathinfo type parameter, into normal request parameters
  *
  * So for example, if the request was redirected from
