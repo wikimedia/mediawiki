@@ -1260,6 +1260,7 @@ $wgAutoloadLocalClasses = array(
 	'UserBlockedError' => __DIR__ . '/includes/exception/UserBlockedError.php',
 	'UserCache' => __DIR__ . '/includes/cache/UserCache.php',
 	'UserDupes' => __DIR__ . '/maintenance/userDupes.inc',
+	'UserGroupManager' => __DIR__ . '/includes/UserGroupManager.php',
 	'UserMailer' => __DIR__ . '/includes/mail/UserMailer.php',
 	'UserNotLoggedIn' => __DIR__ . '/includes/exception/UserNotLoggedIn.php',
 	'UserOptions' => __DIR__ . '/maintenance/userOptions.inc',
