@@ -960,6 +960,7 @@ $wgAutoloadLocalClasses = array(
 	'RenderAction' => __DIR__ . '/includes/actions/RenderAction.php',
 	'ReplacementArray' => __DIR__ . '/includes/libs/ReplacementArray.php',
 	'Replacer' => __DIR__ . '/includes/libs/replacers/Replacer.php',
+	'ReplicatedBagOStuff' => __DIR__ . '/includes/objectcache/ReplicatedBagOStuff.php',
 	'RepoGroup' => __DIR__ . '/includes/filerepo/RepoGroup.php',
 	'RequestContext' => __DIR__ . '/includes/context/RequestContext.php',
 	'ResetUserTokens' => __DIR__ . '/maintenance/resetUserTokens.php',
