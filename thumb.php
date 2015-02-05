@@ -252,10 +252,12 @@ function wfStreamThumb( array $params ) {
 	try {
 		$thumbName = $img->thumbName( $params );
 		if ( !strlen( $thumbName ) ) { // invalid params?
-			wfThumbError( 400, 'The specified thumbnail parameters are not valid.' );
-			return;
+			throw new MediaTransformInvalidParametersException( 'Empty return from File::thumbName' );
 		}
 		$thumbName2 = $img->thumbName( $params, File::THUMB_FULL_NAME ); // b/c; "long" style
+	} catch ( MediaTransformInvalidParametersException $e ) {
+		wfThumbError( 400, 'The specified thumbnail parameters are not valid.' );
+		return;
 	} catch ( MWException $e ) {
 		wfThumbError( 500, $e->getHTML() );
 		return;
