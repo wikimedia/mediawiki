@@ -3932,7 +3932,7 @@ Definition Lists: Weird Ones: Test 1
 <dl>
 <dt>
 <dl>
-<dt> foo<span typeof="mw:Placeholder" data-parsoid='{"src":" "}'>&nbsp;</span></dt>
+<dt> foo<span typeof="mw:Placeholder">&nbsp;</span></dt>
 <dd data-parsoid='{"stx":"row"}'> bar (who uses this?)</dd>
 </dl></dt>
 </dl></dd>
@@ -5569,7 +5569,6 @@ Invalid attributes in table cell (bug 1830)
 
 !! end
 
-
 # The "|}" to close the table is missing from the input, so parsoid's
 # *2wt modes will fail.
 !! test
@@ -5594,6 +5593,25 @@ parsoid=wt2html,html2html
 <td><a rel="mw:ExtLink" href="ftp://|x||"></a>" onmouseover="alert(document.cookie)">test</td></tr></tbody></table>
 !! end
 
+# FIXME: The php output is broken.
+!! test
+! and || in td attributes should not be parsed as <th>/<td>
+!! wikitext
+{|
+| style="color: red !important;" data-contrived="put this here ||" | foo
+|}
+!! html/php
+<table>
+<tr>
+<td> style="color: red !important;" data-contrived="put this here </td>
+<td> foo
+</td></tr></table>
+
+!! html/parsoid
+<table>
+<tbody><tr><td style="color: red !important;" data-contrived="put this here ||" data-parsoid='{"autoInsertedEnd":true}'> foo</td></tr>
+</tbody></table>
+!! end
 
 !! test
 Indented table markup mixed with indented pre content (proposed in bug 6200)
@@ -8808,6 +8826,17 @@ Aoeu
 </p>
 !! end
 
+# From plwiki:PLOS_ONE
+!! test
+Parsoid: Page property magic word with magic word contents
+!! options
+parsoid
+!! wikitext
+{{DISPLAYTITLE:''{{PAGENAME}}''}}
+!! html
+<meta property="mw:PageProp/displaytitle" content="Main Page" about="#mwt2" typeof="mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"content"},{"html":"&lt;i data-parsoid=\"{&amp;quot;dsr&amp;quot;:[15,31,2,2]}\">&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=\"{&amp;quot;pi&amp;quot;:[[]],&amp;quot;dsr&amp;quot;:[17,29,null,null]}\" data-mw=\"{&amp;quot;parts&amp;quot;:[{&amp;quot;template&amp;quot;:{&amp;quot;target&amp;quot;:{&amp;quot;wt&amp;quot;:&amp;quot;PAGENAME&amp;quot;,&amp;quot;function&amp;quot;:&amp;quot;pagename&amp;quot;},&amp;quot;params&amp;quot;:{},&amp;quot;i&amp;quot;:0}}]}\">Main Page&lt;/span>&lt;/i>"}]]}'/>
+!! end
+
 !! test
 Namespace 1 {{ns:1}}
 !! wikitext
@@ -8939,7 +8968,7 @@ Magic Word: prioritize type info over data-parsoid
 !! options
 parsoid=html2wt
 !! html
-<meta property="mw:PageProp/forcetoc" data-parsoid='{"src":"__NOTOC__","magicSrc":"__NOTOC__"}'/>
+<meta property="mw:PageProp/forcetoc" data-parsoid='{"magicSrc":"__NOTOC__"}'/>
 !! wikitext
 __FORCETOC__
 !! end
@@ -8964,7 +8993,7 @@ language=de
 !! wikitext
 __NOEDITSECTION__
 !! html
-<meta property="mw:PageProp/noeditsection" data-parsoid='{"src":"__NOEDITSECTION__","magicSrc":"__NOEDITSECTION__"}'/>
+<meta property="mw:PageProp/noeditsection" data-parsoid='{"magicSrc":"__NOEDITSECTION__"}'/>
 !! end
 
 ###
@@ -9919,7 +9948,7 @@ parsoid=wt2html,wt2wt
 |c
 |}
 !!html/parsoid
-<meta typeof="mw:Includes/IncludeOnly" data-parsoid='{"src":"&lt;includeonly>a&lt;/includeonly>"'/><meta typeof="mw:Includes/IncludeOnly/End" data-parsoid='{"src":""}'/><table about="#mwt2" typeof="mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"{{{b}}}","html":"&lt;span about=\"#mwt1\" typeof=\"mw:Param\" data-parsoid=\"{&amp;quot;dsr&amp;quot;:[31,38,null,null],&amp;quot;src&amp;quot;:&amp;quot;{{{b}}}&amp;quot;}\">{{{b}}}&lt;/span>"},{"html":""}]]}' data-parsoid='{"a":{"{{{b}}}":null},"sa":{"{{{b}}}":""}}'>
+<meta typeof="mw:Includes/IncludeOnly"/><meta typeof="mw:Includes/IncludeOnly/End"/><table about="#mwt2" typeof="mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"{{{b}}}","html":"&lt;span about=\"#mwt1\" typeof=\"mw:Param\" data-parsoid=\"{&amp;quot;dsr&amp;quot;:[31,38,null,null],&amp;quot;src&amp;quot;:&amp;quot;{{{b}}}&amp;quot;}\">{{{b}}}&lt;/span>"},{"html":""}]]}' data-parsoid='{"a":{"{{{b}}}":null},"sa":{"{{{b}}}":""}}'>
 <tbody><tr><td>c</td></tr>
 </tbody></table>
 
@@ -14994,7 +15023,6 @@ Punctuation: CSS ! important (bug 11874; with space after)
 
 !!end
 
-
 !! test
 HTML bullet list, closed tags (bug 5497)
 !! wikitext
@@ -18818,10 +18846,10 @@ Play a bit with r67090 and bug 3158
 <div style="border&#160;: solid;">&#160;</div>
 
 !! html/parsoid
-<div style="width:50% !important" data-parsoid='{"stx":"html"}'><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span></div>
-<div style="width:50% !important" data-parsoid='{"stx":"html","a":{"style":"width:50% !important"},"sa":{"style":"width:50%&amp;nbsp;!important"}}'><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span></div>
-<div style="width:50% !important" data-parsoid='{"stx":"html","a":{"style":"width:50% !important"},"sa":{"style":"width:50%&amp;#160;!important"}}'><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span></div>
-<div style="border : solid;" data-parsoid='{"stx":"html"}'><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span></div>
+<div style="width:50% !important" data-parsoid='{"stx":"html"}'><span typeof="mw:Entity" data-parsoid='{"srcContent":" "}'> </span></div>
+<div style="width:50% !important" data-parsoid='{"stx":"html","a":{"style":"width:50% !important"},"sa":{"style":"width:50%&amp;nbsp;!important"}}'><span typeof="mw:Entity" data-parsoid='{"srcContent":" "}'> </span></div>
+<div style="width:50% !important" data-parsoid='{"stx":"html","a":{"style":"width:50% !important"},"sa":{"style":"width:50%&amp;#160;!important"}}'><span typeof="mw:Entity" data-parsoid='{"srcContent":" "}'> </span></div>
+<div style="border : solid;" data-parsoid='{"stx":"html"}'><span typeof="mw:Entity" data-parsoid='{"srcContent":" "}'> </span></div>
 
 !! end
 
@@ -20052,7 +20080,7 @@ parsoid
 !! wikitext
 <ref name="test &amp; me">hi</ref>
 !! html
-<p><span about="#mwt2" class="reference" id="cite_ref-test_.26_me_1-0" rel="dc:references" typeof="mw:Extension/ref" data-parsoid='{"src":"&lt;ref name=\"test &amp;amp; me\">hi&lt;/ref>"}' data-mw='{"name":"ref","body":{"html":"hi"},"attrs":{"name":"test &amp;amp; me"}}'><a href="#cite_note-test_.26_me-1">[1]</a></span></p>
+<p><span about="#mwt2" class="reference" id="cite_ref-test_.26_me_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"html":"hi"},"attrs":{"name":"test &amp;amp; me"}}'><a href="#cite_note-test_.26_me-1">[1]</a></span></p>
 !! end
 
 # This test is wt2html only because we're permitting the serializer to produce
@@ -22296,7 +22324,7 @@ Properly encapsulate empty-content transclusions in fosterable positions
 }}
 </table>
 !! html/parsoid
-<table about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":["&lt;table>\n",{"template":{"target":{"wt":"#if:","function":"#if"},"params":{"1":{"wt":"\n&lt;td>foo&lt;/td>\n"}},"i":0}},"\n&lt;/table>"]}' data-parsoid='{"stx":"html","pi":[[{"k":"1","spc":["","","",""]}]],"src":"&lt;table>\n{{#if:|\n&lt;td>foo&lt;/td>\n}}\n&lt;/table>"}'>
+<table about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":["&lt;table>\n",{"template":{"target":{"wt":"#if:","function":"#if"},"params":{"1":{"wt":"\n&lt;td>foo&lt;/td>\n"}},"i":0}},"\n&lt;/table>"]}' data-parsoid='{"stx":"html","pi":[[{"k":"1","spc":["","","",""]}]]}'>
 
 </table>
 !! end
@@ -22770,6 +22798,21 @@ parsoid=html2wt
 !! end
 
 !! test
+Headings: Force metas to serialize before/after
+!! options
+parsoid=html2wt
+!! html
+<h2>hello there<link href="Category:A1" rel="mw:PageProp/Category" /></h2>
+<h2><link href="Category:A2" rel="mw:PageProp/Category" />hi pal</h2>
+!! wikitext
+== hello there ==
+[[Category:A1]]
+
+[[Category:A2]]
+== hi pal ==
+!! end
+
+!! test
 Parsoid: Serialize positional parameters with = in them as named parameter
 !! options
 parsoid=html2wt
@@ -23106,7 +23149,7 @@ Edited Redirect link should emit a non-piped wikitext link
 !! options
 parsoid=html2wt
 !! html
-<link rel="mw:PageProp/redirect" href="Bar" data-parsoid='{"src":"#REDIRECT ","a":{"href":"./Foo"},"sa":{"href":"Foo"}}'>
+<link rel="mw:PageProp/redirect" href="Bar" data-parsoid='{"a":{"href":"./Foo"},"sa":{"href":"Foo"}}'>
 !! wikitext
 #REDIRECT [[Bar]]
 !! end
