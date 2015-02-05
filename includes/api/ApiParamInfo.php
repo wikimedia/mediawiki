@@ -156,7 +156,7 @@ class ApiParamInfo extends ApiBase {
 				if ( $joinLists ) {
 					$ret = preg_replace( '!\s*</([oud]l)>\s*<\1>\s*!', "\n", $ret );
 				}
-				$res[$key] = $ret;
+				$res[$key] = Parser::stripOuterParagraph( $ret );
 				break;
 
 			case 'raw':
