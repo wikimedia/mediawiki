@@ -11,10 +11,12 @@
 		}
 	} ) );
 
-	QUnit.test( 'mw.language getData and setData', 2, function ( assert ) {
+	QUnit.test( 'mw.language getData and setData', 3, function ( assert ) {
 		mw.language.setData( 'en', 'testkey', 'testvalue' );
 		assert.equal( mw.language.getData( 'en', 'testkey' ), 'testvalue', 'Getter setter test for mw.language' );
 		assert.equal( mw.language.getData( 'en', 'invalidkey' ), undefined, 'Getter setter test for mw.language with invalid key' );
+		mw.language.setData( 'en-us', 'testkey', 'testvalue' );
+		assert.equal( mw.language.getData( 'en-US', 'testkey' ), 'testvalue', 'Case insensitive test for mw.language' );
 	} );
 
 	QUnit.test( 'mw.language.commafy test', 9, function ( assert ) {
