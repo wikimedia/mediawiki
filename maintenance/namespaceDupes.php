@@ -39,28 +39,46 @@ class NamespaceConflictChecker extends Maintenance {
 	 */
 	protected $db;
 
+	private $resolvableCount = 0;
+	private $totalPages = 0;
+
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "";
 		$this->addOption( 'fix', 'Attempt to automatically fix errors' );
-		$this->addOption( 'suffix', "Dupes will be renamed with correct namespace with " .
+		$this->addOption( 'merge', "Instead of renaming conflicts, do a history merge with " .
+			"the correct title" );
+		$this->addOption( 'add-suffix', "Dupes will be renamed with correct namespace with " .
 			"<text> appended after the article name", false, true );
-		$this->addOption( 'prefix', "Do an explicit check for the given title prefix " .
-			"appended after the article name", false, true );
+		$this->addOption( 'add-prefix', "Dupes will be renamed with correct namespace with " .
+			"<text> preprended before the article name", false, true );
+		$this->addOption( 'source-pseudo-namespace', "Move all pages with the given source " .
+			"prefix (with an implied colon following it). If --dest-namespace is not specified, " .
+			"the colon will be replaced with a hyphen.",
+			false, true );
+		$this->addOption( 'dest-namespace', "In combination with --source-pseudo-namespace, " .
+			"specify the namespace ID of the destination", false, true );
+		$this->addOption( 'move-talk', "If this is specified, pages in the Talk namespace that " .
+			"begin with a conflicting prefix will be renamed, for example " .
+			"Talk:File:Foo -> File_Talk:Foo" );
 	}
 
 	public function execute() {
 		$this->db = wfGetDB( DB_MASTER );
 
-		$fix = $this->hasOption( 'fix' );
-		$suffix = $this->getOption( 'suffix', '' );
-		$prefix = $this->getOption( 'prefix', '' );
-		$key = intval( $this->getOption( 'key', 0 ) );
+		$options = array(
+			'fix' => $this->hasOption( 'fix' ),
+			'merge' => $this->hasOption( 'merge' ),
+			'add-suffix' => $this->getOption( 'add-suffix', '' ),
+			'add-prefix' => $this->getOption( 'add-prefix', '' ),
+			'move-talk' => $this->hasOption( 'move-talk' ),
+			'source-pseudo-namespace' => $this->getOption( 'source-pseudo-namespace', '' ),
+			'dest-namespace' => intval( $this->getOption( 'dest-namespace', 0 ) ) );
 
-		if ( $prefix ) {
-			$retval = $this->checkPrefix( $key, $prefix, $fix, $suffix );
+		if ( $options['source-pseudo-namespace'] !== '' ) {
+			$retval = $this->checkPrefix( $options );
 		} else {
-			$retval = $this->checkAll( $fix, $suffix );
+			$retval = $this->checkAll( $options );
 		}
 
 		if ( $retval ) {
@@ -71,13 +89,13 @@ class NamespaceConflictChecker extends Maintenance {
 	}
 
 	/**
-	 * @todo Document
-	 * @param bool $fix Whether or not to fix broken entries
-	 * @param string $suffix Suffix to append to renamed articles
+	 * Check all namespaces
+	 *
+	 * @param array $options Associative array of validated command-line options
 	 *
 	 * @return bool
 	 */
-	private function checkAll( $fix, $suffix = '' ) {
+	private function checkAll( $options ) {
 		global $wgContLang, $wgNamespaceAliases, $wgCapitalLinks;
 
 		$spaces = array();
@@ -131,13 +149,30 @@ class NamespaceConflictChecker extends Maintenance {
 			}
 		}
 
-		ksort( $spaces );
-		asort( $spaces );
+		// Sort by namespace index, and if there are two with the same index,
+		// break the tie by sorting by name
+		$origSpaces = $spaces;
+		uksort( $spaces, function ( $a, $b ) use ( $origSpaces ) {
+			if ( $origSpaces[$a] < $origSpaces[$b] ) {
+				return -1;
+			} elseif ( $origSpaces[$a] > $origSpaces[$b] ) {
+				return 1;
+			} elseif ( $a < $b ) {
+				return -1;
+			} elseif ( $a > $b ) {
+				return 1;
+			} else {
+				return 0;
+			}
+		} );
 
 		$ok = true;
 		foreach ( $spaces as $name => $ns ) {
-			$ok = $this->checkNamespace( $ns, $name, $fix, $suffix ) && $ok;
+			$ok = $this->checkNamespace( $ns, $name, $options ) && $ok;
 		}
+
+		$this->output( "{$this->totalPages} pages to fix, " .
+			"{$this->resolvableCount} were resolvable.\n" );
 
 		return $ok;
 	}
@@ -158,124 +193,230 @@ class NamespaceConflictChecker extends Maintenance {
 	}
 
 	/**
-	 * @todo Document
-	 * @param int $ns A namespace id
+	 * Check a given prefix and try to move it into the given destination namespace
+	 *
+	 * @param int $ns Destination namespace id
 	 * @param string $name
-	 * @param bool $fix Whether to fix broken entries
-	 * @param string $suffix Suffix to append to renamed articles
+	 * @param array $options Associative array of validated command-line options
 	 * @return bool
 	 */
-	private function checkNamespace( $ns, $name, $fix, $suffix = '' ) {
-		$conflicts = $this->getConflicts( $ns, $name );
-		$count = count( $conflicts );
+	private function checkNamespace( $ns, $name, $options ) {
+		$targets = $this->getTargetList( $ns, $name, $options );
+		$count = $targets->numRows();
+		$this->totalPages += $count;
 		if ( $count == 0 ) {
 			return true;
 		}
 
-		$resolveableCount = 0;
+		$dryRunNote = $options['fix'] ? '' : ' DRY RUN ONLY';
 
 		$ok = true;
-		foreach ( $conflicts as $row ) {
-			$resolvable = $this->reportConflict( $row, $suffix );
-			$ok = $ok && $resolvable;
+		foreach ( $targets as $row ) {
 
-			if ( $resolvable ) {
-				$resolveableCount++;
+			// Find the new title and determine the action to take
+
+			$newTitle = $this->getDestinationTitle( $ns, $name, $row, $options );
+			$logStatus = false;
+			if ( !$newTitle ) {
+				$logStatus = 'invalid title';
+				$action = 'abort';
+			} elseif ( $newTitle->exists() ) {
+				if ( $options['merge'] ) {
+					if ( $this->canMerge( $row->page_id, $newTitle, $logStatus ) ) {
+						$action = 'merge';
+					} else {
+						$action = 'abort';
+					}
+				} elseif ( $options['add-prefix'] == '' && $options['add-suffix'] == '' ) {
+					$action = 'abort';
+					$logStatus = 'dest title exists and --add-prefix not specified';
+				} else {
+					$newTitle = $this->getAlternateTitle( $newTitle, $options );
+					if ( !$newTitle ) {
+						$action = 'abort';
+						$logStatus = 'alternate title is invalid';
+					} elseif ( $newTitle->exists() ) {
+						$action = 'abort';
+						$logStatus = 'title conflict';
+					} else {
+						$action = 'move';
+						$logStatus = 'alternate';
+					}
+				}
+			} else {
+				$action = 'move';
+				$logStatus = 'no conflict';
 			}
 
-			if ( $fix && ( $resolvable || $suffix != '' ) ) {
-				$ok = $this->resolveConflict( $row, $resolvable, $suffix ) && $ok;
+			// Take the action or log a dry run message
+
+			$logTitle = "id={$row->page_id} ns={$row->page_namespace} dbk={$row->page_title}";
+			$pageOK = true;
+
+			switch ( $action ) {
+				case 'abort':
+					$this->output( "$logTitle *** $logStatus\n" );
+					$pageOK = false;
+					break;
+				case 'move':
+					$this->output( "$logTitle -> " .
+						$newTitle->getPrefixedDBkey() . " ($logStatus)$dryRunNote\n" );
+
+					if ( $options['fix'] ) {
+						$pageOK = $this->movePage( $row->page_id, $newTitle );
+					}
+					break;
+				case 'merge':
+					$this->output( "$logTitle => " .
+						$newTitle->getPrefixedDBkey() . " (merge)$dryRunNote\n" );
+
+					if ( $options['fix'] ) {
+						$pageOK = $this->mergePage( $row->page_id, $newTitle );
+					}
+					break;
+			}
+
+			if ( $pageOK ) {
+				$this->resolvableCount++;
+			} else {
+				$ok = false;
 			}
 		}
-
-		$this->output( "{$count} conflicts. {$resolveableCount} are resolveable." );
 
 		return $ok;
 	}
 
 	/**
-	 * @todo Do this for real
-	 * @param int $key
-	 * @param string $prefix
-	 * @param bool $fix
-	 * @param string $suffix
+	 * Move the given pseudo-namespace, either replacing the colon with a hyphen
+	 * (useful for pseudo-namespaces that conflict with interwiki links) or move
+	 * them to another namespace if specified.
+	 * @param array $options
 	 * @return bool
 	 */
-	private function checkPrefix( $key, $prefix, $fix, $suffix = '' ) {
-		$this->output( "Checking prefix \"$prefix\" vs namespace $key\n" );
+	private function checkPrefix( $options ) {
+		$prefix = $options['source-pseudo-namespace'];
+		$ns = $options['dest-namespace'];
+		$this->output( "Checking prefix \"$prefix\" vs namespace $ns\n" );
 
-		return $this->checkNamespace( $key, $prefix, $fix, $suffix );
+		return $this->checkNamespace( $ns, $prefix, $options );
 	}
 
 	/**
-	 * Find pages in mainspace that have a prefix of the new namespace
-	 * so we know titles that will need migrating
+	 * Find pages in main and talk namespaces that have a prefix of the new
+	 * namespace so we know titles that will need migrating
 	 *
-	 * @param int $ns Namespace id (id for new namespace?)
+	 * @param int $ns Destination namespace id
 	 * @param string $name Prefix that is being made a namespace
 	 *
-	 * @return array
+	 * @return ResultWrapper
 	 */
-	private function getConflicts( $ns, $name ) {
-		$titleSql = "TRIM(LEADING {$this->db->addQuotes( "$name:" )} FROM page_title)";
-		if ( $ns == 0 ) {
-			// An interwiki; try an alternate encoding with '-' for ':'
-			$titleSql = $this->db->buildConcat( array(
-				$this->db->addQuotes( "$name-" ),
-				$titleSql,
-			) );
-		}
+	private function getTargetList( $ns, $name, $options ) {
+		$checkNamespaces = $options['move-talk'] ? array( 0, 1 ) : 0;
 
-		return iterator_to_array( $this->db->select( 'page',
+		return $this->db->select( 'page',
 			array(
-				'id' => 'page_id',
-				'oldtitle' => 'page_title',
-				'namespace' => $this->db->addQuotes( $ns ) . ' + page_namespace',
-				'title' => $titleSql,
-				'oldnamespace' => 'page_namespace',
+				'page_id',
+				'page_title',
+				'page_namespace',
 			),
 			array(
-				'page_namespace' => array( 0, 1 ),
+				'page_namespace' => $checkNamespaces,
 				'page_title' . $this->db->buildLike( "$name:", $this->db->anyString() ),
 			),
 			__METHOD__
-		) );
+		);
 	}
 
 	/**
-	 * Report any conflicts we find
-	 *
+	 * Get the preferred destination title for a given target page row.
+	 * @param integer $ns The destination namespace ID
+	 * @param string $name The conflicting prefix
 	 * @param stdClass $row
-	 * @param string $suffix
-	 * @return bool
+	 * @param array $options
+	 * @return Title|false
 	 */
-	private function reportConflict( $row, $suffix ) {
-		$newTitle = Title::makeTitleSafe( $row->namespace, $row->title );
-		if ( is_null( $newTitle ) || !$newTitle->canExist() ) {
-			// Title is also an illegal title...
-			// For the moment we'll let these slide to cleanupTitles or whoever.
-			$this->output( sprintf( "... %d (%d,\"%s\")\n",
-				$row->id,
-				$row->oldnamespace,
-				$row->oldtitle ) );
-			$this->output( "...  *** cannot resolve automatically; illegal title ***\n" );
-
+	private function getDestinationTitle( $ns, $name, $row, $options ) {
+		$dbk = substr( $row->page_title, strlen( "$name:" ) );
+		if ( $ns == 0 ) {
+			// An interwiki; try an alternate encoding with '-' for ':'
+			$dbk = "$name-" . $dbk;
+		}
+		// page_namespace is 0 or 1, so adding it to the destination namespace
+		// gives us the relevant subject or talk namespace
+		$destNS = $ns + $row->page_namespace;
+		$newTitle = Title::makeTitleSafe( $destNS, $dbk );
+		if ( !$newTitle || !$newTitle->canExist() ) {
 			return false;
 		}
+		return $newTitle;
+	}
 
-		$this->output( sprintf( "... %d (%d,\"%s\") -> (%d,\"%s\") [[%s]]\n",
-			$row->id,
-			$row->oldnamespace,
-			$row->oldtitle,
-			$newTitle->getNamespace(),
-			$newTitle->getDBkey(),
-			$newTitle->getPrefixedText() )
-		);
+	/**
+	 * Get an alternative title to move a page to. This is used if the
+	 * preferred destination title already exists.
+	 *
+	 * @param Title $title
+	 * @param array $options
+	 * @return Title|bool
+	 */
+	private function getAlternateTitle( $title, $options ) {
+		$prefix = $options['add-prefix'];
+		$suffix = $options['add-suffix'];
+		if ( $prefix == '' && $suffix == '' ) {
+			return false;
+		}
+		while ( true ) {
+			$dbk = $prefix . $title->getDBkey() . $suffix;
+			$title = Title::makeTitleSafe( $title->getNamespace(), $dbk );
+			if ( !$title ) {
+				return false;
+			}
+			if ( !$title->exists() ) {
+				return $title;
+			}
+		}
+	}
 
-		$id = $newTitle->getArticleID();
-		if ( $id ) {
-			$this->output( "...  *** cannot resolve automatically; page exists with ID $id ***\n" );
+	/**
+	 * Move a page
+	 *
+	 * @fixme Update pl_from_namespace etc.
+	 *
+	 * @param integer $id The page_id
+	 * @param Title $newTitle The new title
+	 * @return bool
+	 */
+	private function movePage( $id, Title $newTitle ) {
+		$this->db->update( 'page',
+			array(
+				"page_namespace" => $newTitle->getNamespace(),
+				"page_title" => $newTitle->getDBkey(),
+			),
+			array(
+				"page_id" => $id,
+			),
+			__METHOD__ );
 
+		return true;
+	}
+
+	/**
+	 * Determine if we can merge a page.
+	 * We check if an inaccessible revision would become the latest and
+	 * deny the merge if so -- it's theoretically possible to update the
+	 * latest revision, but opens a can of worms -- search engine updates,
+	 * recentchanges review, etc.
+	 *
+	 * @param integer $id The page_id
+	 * @param Title $newTitle The new title
+	 * @param string $logStatus This is set to the log status message on failure
+	 * @return bool
+	 */
+	private function canMerge( $id, Title $newTitle, &$logStatus ) {
+		$latestDest = Revision::newFromTitle( $newTitle, 0, Revision::READ_LATEST );
+		$latestSource = Revision::newFromPageId( $id, 0, Revision::READ_LATEST );
+		if ( $latestSource->getTimestamp() > $latestDest->getTimestamp() ) {
+			$logStatus = 'cannot merge since source is later';
 			return false;
 		} else {
 			return true;
@@ -283,63 +424,27 @@ class NamespaceConflictChecker extends Maintenance {
 	}
 
 	/**
-	 * Resolve any conflicts
+	 * Merge page histories
 	 *
-	 * @param stdClass $row Row from the page table to fix
-	 * @param bool $resolvable
-	 * @param string $suffix Suffix to append to the fixed page
-	 * @return bool
+	 * @param integer $id The page_id
+	 * @param Title $newTitle The new title
 	 */
-	private function resolveConflict( $row, $resolvable, $suffix ) {
-		if ( !$resolvable ) {
-			$this->output( "...  *** old title {$row->title}\n" );
-			while ( true ) {
-				$row->title .= $suffix;
-				$this->output( "...  *** new title {$row->title}\n" );
-				$title = Title::makeTitleSafe( $row->namespace, $row->title );
-				if ( !$title ) {
-					$this->output( "... !!! invalid title\n" );
-
-					return false;
-				}
-				$id = $title->getArticleID();
-				if ( $id ) {
-					$this->output( "...  *** page exists with ID $id ***\n" );
-				} else {
-					break;
-				}
-			}
-			$this->output( "...  *** using suffixed form [[" . $title->getPrefixedText() . "]] ***\n" );
-		}
-		$this->resolveConflictOn( $row, 'page', 'page' );
-
-		return true;
-	}
-
-	/**
-	 * Resolve a given conflict
-	 *
-	 * @param stdClass $row Row from the old broken entry
-	 * @param string $table Table to update
-	 * @param string $prefix Prefix for column name, like page or ar
-	 * @return bool
-	 */
-	private function resolveConflictOn( $row, $table, $prefix ) {
-		$this->output( "... resolving on $table... " );
-		$newTitle = Title::makeTitleSafe( $row->namespace, $row->title );
-		$this->db->update( $table,
-			array(
-				"{$prefix}_namespace" => $newTitle->getNamespace(),
-				"{$prefix}_title" => $newTitle->getDBkey(),
-			),
-			array(
-				// "{$prefix}_namespace" => 0,
-				// "{$prefix}_title" => $row->oldtitle,
-				"{$prefix}_id" => $row->id,
-			),
+	private function mergePage( $id, Title $newTitle ) {
+		$destId = $newTitle->getArticleId();
+		$this->db->begin( __METHOD__ );
+		$this->db->update( 'revision',
+			// SET
+			array( 'rev_page' => $destId ),
+			// WHERE
+			array( 'rev_page' => $id ),
 			__METHOD__ );
-		$this->output( "ok.\n" );
 
+		$this->db->delete( 'page', array( 'page_id' => $id ), __METHOD__ );
+
+		// @fixme Need WikiPage::doDeleteUpdates() or similar to avoid orphan
+		// rows in the links tables.
+
+		$this->db->commit( __METHOD__ );
 		return true;
 	}
 }
