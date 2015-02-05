@@ -608,9 +608,11 @@ class MediaWiki {
 			$n = intval( $jobRunRate );
 		}
 
+		$runJobsLogger = MWLoggerFactory::getInstance( 'runJobs' );
+
 		if ( !$this->config->get( 'RunJobsAsync' ) ) {
 			// Fall back to running the job here while the user waits
-			$runner = new JobRunner();
+			$runner = new JobRunner( $runJobsLogger );
 			$runner->run( array( 'maxJobs'  => $n ) );
 			return;
 		}
@@ -643,9 +645,9 @@ class MediaWiki {
 		);
 		wfRestoreWarnings();
 		if ( !$sock ) {
-			wfDebugLog( 'runJobs', "Failed to start cron API (socket error $errno): $errstr\n" );
+			$runJobsLogger->error( "Failed to start cron API (socket error $errno): $errstr" );
 			// Fall back to running the job here while the user waits
-			$runner = new JobRunner();
+			$runner = new JobRunner( $runJobsLogger );
 			$runner->run( array( 'maxJobs'  => $n ) );
 			return;
 		}
@@ -653,19 +655,19 @@ class MediaWiki {
 		$url = wfAppendQuery( wfScript( 'index' ), $query );
 		$req = "POST $url HTTP/1.1\r\nHost: {$info['host']}\r\nConnection: Close\r\nContent-Length: 0\r\n\r\n";
 
-		wfDebugLog( 'runJobs', "Running $n job(s) via '$url'\n" );
+		$runJobsLogger->info( "Running $n job(s) via '$url'" );
 		// Send a cron API request to be performed in the background.
 		// Give up if this takes too long to send (which should be rare).
 		stream_set_timeout( $sock, 1 );
 		$bytes = fwrite( $sock, $req );
 		if ( $bytes !== strlen( $req ) ) {
-			wfDebugLog( 'runJobs', "Failed to start cron API (socket write error)\n" );
+			$runJobsLogger->error( "Failed to start cron API (socket write error)" );
 		} else {
 			// Do not wait for the response (the script should handle client aborts).
 			// Make sure that we don't close before that script reaches ignore_user_abort().
 			$status = fgets( $sock );
 			if ( !preg_match( '#^HTTP/\d\.\d 202 #', $status ) ) {
-				wfDebugLog( 'runJobs', "Failed to start cron API: received '$status'\n" );
+				$runJobsLogger->error( "Failed to start cron API: received '$status'" );
 			}
 		}
 		fclose( $sock );
