@@ -109,6 +109,9 @@ class LocalFile extends File {
 	/** @var string Description of current revision of the file */
 	private $description;
 
+	/** @var int Unix timestamp of the last change of the file description */
+	private $descriptionTimestamp;
+
 	/** @var bool Whether the row was upgraded on load */
 	private $upgraded;
 
@@ -1775,6 +1778,21 @@ class LocalFile extends File {
 		$this->load();
 
 		return $this->timestamp;
+	}
+
+	/**
+	 * @return int|bool
+	 */
+	public function getDescriptionTimestamp() {
+		// The DB lookup might return false, e.g. if the file was just deleted, or the shared DB repo
+		// itself gets it from elsewhere. To avoid repeating the DB lookups in such a case, we
+		// need to differentiate between null (uninitialized) and false (failed to load).
+		if ( $this->descriptionTimestamp === null ) {
+			$cond = array( 'page_namespace' => $this->title->getNamespace(), 'page_title' => $this->title->getDBkey() );
+			$this->descriptionTimestamp = $this->repo->getSlaveDB()->selectField( 'page', 'page_touched', $cond, __METHOD__ );
+		}
+
+		return $this->descriptionTimestamp;
 	}
 
 	/**

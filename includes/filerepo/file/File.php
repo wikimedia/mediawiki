@@ -2047,6 +2047,16 @@ abstract class File {
 	}
 
 	/**
+	 * Returns the UNIX timestamp of the last change of the description page.
+	 * Returns false if the file does not have a description page, or retrieving the timestamp
+	 * would be expensive.
+	 * @return int|bool
+	 */
+	public function getDescriptionTimestamp() {
+		return false;
+	}
+
+	/**
 	 * Get the SHA-1 base 36 hash of the file
 	 *
 	 * @return string
