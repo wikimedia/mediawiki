@@ -2047,6 +2047,17 @@ abstract class File {
 	}
 
 	/**
+	 * Returns the timestamp (in TS_MW format) of the last change of the description page.
+	 * Returns false if the file does not have a description page, or retrieving the timestamp
+	 * would be expensive.
+	 * @since 1.25
+	 * @return string|bool
+	 */
+	public function getDescriptionTouched() {
+		return false;
+	}
+
+	/**
 	 * Get the SHA-1 base 36 hash of the file
 	 *
 	 * @return string
