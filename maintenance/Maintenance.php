@@ -1207,7 +1207,13 @@ abstract class Maintenance {
 		}
 
 		if ( $isatty && function_exists( 'readline' ) ) {
-			return readline( $prompt );
+			$resp = readline( $prompt );
+			if ( $resp === null ) {
+				// Workaround for https://github.com/facebook/hhvm/issues/4776
+				return false;
+			} else {
+				return $resp;
+			}
 		} else {
 			if ( $isatty ) {
 				$st = self::readlineEmulation( $prompt );
