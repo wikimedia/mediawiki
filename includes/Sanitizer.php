@@ -40,6 +40,12 @@ class Sanitizer {
 		 |(&)/x';
 
 	/**
+	 * Acceptable tag name charset from HTML5 parsing spec
+	 * http://dev.w3.org/html5/spec-preview/tokenization.html#tag-open-state
+	 */
+	const ELEMENT_BITS_REGEX = '!^(/?)([A-Za-z][^\t\n\v />\0]*+)([^>]*?)(/?>)([^<]*)$!';
+
+	/**
 	 * Blacklist for evil uris like javascript:
 	 * WARNING: DO NOT use this in any place that actually requires blacklisting
 	 * for security reasons. There are NUMEROUS[1] ways to bypass blacklisting, the
@@ -444,7 +450,7 @@ class Sanitizer {
 				# $params: String between element name and >
 				# $brace: Ending '>' or '/>'
 				# $rest: Everything until the next element of $bits
-				if ( preg_match( '!^(/?)([^\\s/>]+)([^>]*?)(/{0,1}>)([^<]*)$!', $x, $regs ) ) {
+				if ( preg_match( self::ELEMENT_BITS_REGEX, $x, $regs ) ) {
 					list( /* $qbar */, $slash, $t, $params, $brace, $rest ) = $regs;
 				} else {
 					$slash = $t = $params = $brace = $rest = null;
@@ -567,11 +573,7 @@ class Sanitizer {
 		} else {
 			# this might be possible using tidy itself
 			foreach ( $bits as $x ) {
-				preg_match(
-					'/^(\\/?)(\\w+)([^>]*?)(\\/{0,1}>)([^<]*)$/',
-					$x,
-					$regs
-				);
+				preg_match( self::ELEMENT_BITS_REGEX, $x, $regs );
 
 				wfSuppressWarnings();
 				list( /* $qbar */, $slash, $t, $params, $brace, $rest ) = $regs;
