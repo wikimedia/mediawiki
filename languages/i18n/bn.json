@@ -23,7 +23,8 @@
 			"Zaheen",
 			"לערי ריינהארט",
 			"Aftabuzzaman",
-			"Wikisagnik"
+			"Wikisagnik",
+			"Aashaa"
 		]
 	},
 	"tog-underline": "সংযোগগুলির নিচে দাগ দেখানো হোক:",
@@ -2959,10 +2960,15 @@
 	"tags-description-header": "অর্থের পূর্ণ বণনা",
 	"tags-active-header": "সক্রিয়?",
 	"tags-hitcount-header": "ট্যাগকৃত পরিবর্সতনমূহ",
+	"tags-actions-header": "কার্যসমূহ",
 	"tags-active-yes": "হ্যাঁ",
 	"tags-active-no": "না",
 	"tags-edit": "সম্পাদনা",
+	"tags-delete": "অপসারণ",
 	"tags-hitcount": "$1টি {{PLURAL:$1|পরিবর্তন}}",
+	"tags-create-submit": "তৈরি করুন",
+	"tags-activate-submit": "চালু",
+	"tags-deactivate-submit": "নিষ্ক্রিয়",
 	"comparepages": "পাতার তুলনা",
 	"compare-page1": "পাতা ১",
 	"compare-page2": "পাতা ২",

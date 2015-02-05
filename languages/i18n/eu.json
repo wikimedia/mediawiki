@@ -2795,6 +2795,7 @@
 	"tags-active-no": "Ez",
 	"tags-edit": "aldatu",
 	"tags-hitcount": "$1 {{PLURAL:$1|aldaketa|aldaketa}}",
+	"tags-create-submit": "Sortu",
 	"comparepages": "Orrialdeak alderatu",
 	"compare-page1": "1. orrialdea",
 	"compare-page2": "2. orrialdea",
