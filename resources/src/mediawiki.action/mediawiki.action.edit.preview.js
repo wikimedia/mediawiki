@@ -116,7 +116,10 @@
 						response.parse.modulemessages ) );
 				}
 				if ( response.parse.displaytitle ) {
-					$( '#firstHeading' ).html( response.parse.displaytitle );
+					$( '#firstHeading' )
+					.msg( 'editing',
+						$( $.parseHTML( response.parse.displaytitle ) )
+					);
 				}
 				if ( response.parse.categorieshtml ) {
 					$( '#catlinks' ).replaceWith( response.parse.categorieshtml['*'] );
