@@ -36,6 +36,8 @@ production.
 * ProfilerStandard and ProfilerSimpleTrace were removed. Make sure that any
   StartProfiler.php config is updated to reflect this. Xhprof is available
   for zend/hhvm. Also, for hhvm, one can consider using its xenon profiler.
+* Default value of $wgSVGConverters['rsvg'] now uses the 'rsvg-convert' binary
+  rather than 'rsvg'.
 
 === New features in 1.25 ===
 * (T64861) Updated plural rules to CLDR 26. Includes incompatible changes
