@@ -3607,7 +3607,7 @@ class Title {
 	 *
 	 * @deprecated since 1.25, use MovePage's methods instead
 	 * @param Title $nt The new title
-	 * @param bool $auth Ignored
+	 * @param bool $auth Whether to check user permissions (uses $wgUser)
 	 * @param string $reason Is the log summary of the move, used for spam checking
 	 * @return array|bool True on success, getUserPermissionsErrors()-like array on failure
 	 */
@@ -3621,10 +3621,13 @@ class Title {
 		}
 
 		$mp = new MovePage( $this, $nt );
-		$errors = wfMergeErrorArrays(
-			$mp->isValidMove()->getErrorsArray(),
-			$mp->checkPermissions( $wgUser, $reason )->getErrorsArray()
-		);
+		$errors = $mp->isValidMove()->getErrorsArray();
+		if ( $auth ) {
+			$errors = wfMergeErrorArrays(
+				$errors,
+				$mp->checkPermissions( $wgUser, $reason )->getErrorsArray()
+			);
+		}
 
 		return $errors ? : true;
 	}
