@@ -38,6 +38,8 @@ production.
   for zend/hhvm. Also, for hhvm, one can consider using its xenon profiler.
 * Default value of $wgSVGConverters['rsvg'] now uses the 'rsvg-convert' binary
   rather than 'rsvg'.
+* Default value of $wgSVGConverters['ImageMagick'] now uses transparent
+  background with white fallback color, rather than just white background.
 
 === New features in 1.25 ===
 * (T64861) Updated plural rules to CLDR 26. Includes incompatible changes
