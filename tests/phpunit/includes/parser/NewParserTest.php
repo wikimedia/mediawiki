@@ -124,7 +124,7 @@ class NewParserTest extends MediaWikiTestCase {
 		$tmpGlobals['wgFileExtensions'][] = 'svg';
 		$tmpGlobals['wgSVGConverter'] = 'rsvg';
 		$tmpGlobals['wgSVGConverters']['rsvg'] =
-			'$path/rsvg-convert -w $width -h $height $input -o $output';
+			'$path/rsvg-convert -w $width -h $height -o $output $input';
 
 		if ( $GLOBALS['wgStyleDirectory'] === false ) {
 			$tmpGlobals['wgStyleDirectory'] = "$IP/skins";

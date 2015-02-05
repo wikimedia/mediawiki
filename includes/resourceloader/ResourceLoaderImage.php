@@ -308,7 +308,7 @@ class ResourceLoaderImage {
 		$svg = $this->massageSvgPathdata( $svg );
 
 		if ( $wgSVGConverter === 'rsvg' ) {
-			$command = 'rsvg-convert'; // Should be just 'rsvg'? T76476
+			$command = 'rsvg-convert';
 			if ( $wgSVGConverterPath ) {
 				$command = wfEscapeShellArg( "$wgSVGConverterPath/" ) . $command;
 			}
