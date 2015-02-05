@@ -100,11 +100,10 @@ class MultiWriteBagOStuff extends BagOStuff {
 
 	/**
 	 * @param string $key
-	 * @param int $time
 	 * @return bool
 	 */
-	public function delete( $key, $time = 0 ) {
-		return $this->doWrite( 'delete', $key, $time );
+	public function delete( $key ) {
+		return $this->doWrite( 'delete', $key );
 	}
 
 	/**

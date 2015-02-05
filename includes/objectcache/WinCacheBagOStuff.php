@@ -81,10 +81,9 @@ class WinCacheBagOStuff extends BagOStuff {
 	 * Remove a value from the WinCache object cache
 	 *
 	 * @param string $key Cache key
-	 * @param int $time Not used in this implementation
 	 * @return bool
 	 */
-	public function delete( $key, $time = 0 ) {
+	public function delete( $key ) {
 		wincache_ucache_delete( $key );
 
 		return true;

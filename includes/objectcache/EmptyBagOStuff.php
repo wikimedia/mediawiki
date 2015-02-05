@@ -60,10 +60,9 @@ class EmptyBagOStuff extends BagOStuff {
 
 	/**
 	 * @param string $key
-	 * @param int $time
 	 * @return bool
 	 */
-	function delete( $key, $time = 0 ) {
+	function delete( $key ) {
 		return true;
 	}
 

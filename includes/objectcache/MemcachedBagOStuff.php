@@ -91,11 +91,10 @@ class MemcachedBagOStuff extends BagOStuff {
 
 	/**
 	 * @param string $key
-	 * @param int $time
 	 * @return bool
 	 */
-	public function delete( $key, $time = 0 ) {
-		return $this->client->delete( $this->encodeKey( $key ), $time );
+	public function delete( $key ) {
+		return $this->client->delete( $this->encodeKey( $key ) );
 	}
 
 	/**

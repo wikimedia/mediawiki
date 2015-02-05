@@ -79,10 +79,9 @@ class APCBagOStuff extends BagOStuff {
 
 	/**
 	 * @param string $key
-	 * @param int $time
 	 * @return bool
 	 */
-	public function delete( $key, $time = 0 ) {
+	public function delete( $key ) {
 		apc_delete( $key );
 
 		return true;
