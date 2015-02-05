@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group Database
+ */
 class MovePageTest extends MediaWikiTestCase {
 
 	/**
@@ -34,6 +37,27 @@ class MovePageTest extends MediaWikiTestCase {
 			array( 'Page', 'File:Test.jpg', 'nonfile-cannot-move-to-file' ),
 			// for MovePage::isValidFileMove
 			array( 'File:Test.jpg', 'Page', 'imagenocrossnamespace' ),
+		);
+	}
+
+	/**
+	 * Integration test to catch regressions like T74870. Taken and modified
+	 * from SemanticMediaWiki
+	 */
+	public function testTitleMoveCompleteIntegrationTest() {
+		$oldTitle = Title::newFromText( 'Help:Some title' );
+		WikiPage::factory( $oldTitle )->doEditContent( new WikitextContent( 'foo' ), 'bar' );
+		$newTitle = Title::newFromText( 'Help:Some other title' );
+		$this->assertNull(
+			WikiPage::factory( $newTitle )->getRevision()
+		);
+
+		$this->assertTrue( $oldTitle->moveTo( $newTitle, false, 'test1', true ) );
+		$this->assertNotNull(
+			WikiPage::factory( $oldTitle )->getRevision()
+		);
+		$this->assertNotNull(
+			WikiPage::factory( $newTitle)->getRevision()
 		);
 	}
 }
