@@ -622,7 +622,11 @@ function wfThumbError( $status, $msg ) {
 		$debug = '';
 	}
 	echo <<<EOT
-<html><head><title>Error generating thumbnail</title></head>
+<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8" />
+<title>Error generating thumbnail</title>
+</head>
 <body>
 <h1>Error generating thumbnail</h1>
 <p>
