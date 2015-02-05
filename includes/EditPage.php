@@ -2085,6 +2085,13 @@ class EditPage {
 		if ( $displayTitle === false ) {
 			$displayTitle = $contextTitle->getPrefixedText();
 		}
+		$pageLang = $this->getTitle()->getPageLanguage();
+		$attribs = array(
+			'class' => 'mw-displaytitle',
+			'lang' => $pageLang->getHtmlCode(),
+			'dir' => $pageLang->getDir(),
+		);
+		$displayTitle = Html::rawElement( 'span', $attribs, $displayTitle );
 		$wgOut->setPageTitle( wfMessage( $msg, $displayTitle ) );
 	}
 

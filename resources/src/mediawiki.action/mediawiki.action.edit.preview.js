@@ -28,7 +28,7 @@
 
 		copySelectors = [
 			// Main
-			'#firstHeading',
+			'.mw-displaytitle',
 			'#wikiPreview',
 			'#wikiDiff',
 			'#catlinks',
@@ -116,7 +116,7 @@
 						response.parse.modulemessages ) );
 				}
 				if ( response.parse.displaytitle ) {
-					$( '#firstHeading' ).html( response.parse.displaytitle );
+					$( '.mw-displaytitle' ).html( response.parse.displaytitle );
 				}
 				if ( response.parse.categorieshtml ) {
 					$( '#catlinks' ).replaceWith( response.parse.categorieshtml['*'] );
