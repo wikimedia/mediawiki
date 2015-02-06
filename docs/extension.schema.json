@@ -273,6 +273,25 @@
 				"Unlicense"
 			]
 		},
+		"ResourceFileModulePaths": {
+			"type": "object",
+			"description": "Default paths to use for all ResourceLoader file modules",
+			"additionalProperties": false,
+			"properties": {
+				"localBasePath": {
+					"type": "string",
+					"description": "Base path to prepend to all local paths, relative to current directory"
+				},
+				"remoteExtPath": {
+					"type": "string",
+					"description": "Base path to prepend to all remote paths, relative to $wgExtensionAssetsPath"
+				},
+				"remoteSkinPath": {
+					"type": "string",
+					"description": "Base path to prepend to all remote paths, relative to $wgStylePath"
+				}
+			}
+		},
 		"ResourceLoaderModules": {
 			"type": "object",
 			"description": "ResourceLoader modules to register",
