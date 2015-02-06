@@ -30,6 +30,17 @@
  * @ingroup Database
  */
 interface IDatabase {
+
+	public function startAtomic( $fname = __METHOD__ );
+
+	public function endAtomic( $fname = __METHOD__ );
+
+	public function begin( $fname = __METHOD__ );
+
+	public function commit( $fname = __METHOD__, $flush = '' );
+
+	public function rollback( $fname = __METHOD__, $flush = '' );
+
 }
 
 /**
