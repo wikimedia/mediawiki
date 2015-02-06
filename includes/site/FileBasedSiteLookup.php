@@ -21,14 +21,16 @@
  */
 
 /**
- * Provides a file-based cache of a SiteStore, stored as a json file.
+ * Provides a file-based cache of a SiteStore. The sites are stored in
+ * a json file. (see docs/sitescache.txt regarding format)
+ *
  * The cache can be built with the rebuildSitesCache.php maintenance script,
  * and a MediaWiki instance can be setup to use this by setting the
  * 'wgSitesCacheFile' configuration to the cache file location.
  *
  * @since 1.25
  */
-class SiteListFileCache {
+class FileBasedSiteLookup implements SiteLookup {
 
 	/**
 	 * @var SiteList
@@ -91,7 +93,7 @@ class SiteListFileCache {
 
 	/**
 	 * @throws MWException
-	 * @return array
+	 * @return array see docs/sitescache.txt for format of the array.
 	 */
 	private function loadJsonFile() {
 		if ( !is_readable( $this->cacheFile ) ) {
@@ -101,7 +103,9 @@ class SiteListFileCache {
 		$contents = file_get_contents( $this->cacheFile );
 		$data = json_decode( $contents, true );
 
-		if ( !is_array( $data ) || !array_key_exists( 'sites', $data ) ) {
+		if ( !is_array( $data ) || !is_array( $data['sites'] )
+			|| !array_key_exists( 'sites', $data )
+		) {
 			throw new MWException( 'SiteStore json cache data is invalid.' );
 		}
 
@@ -118,7 +122,6 @@ class SiteListFileCache {
 		$site = Site::newForType( $siteType );
 
 		$site->setGlobalId( $data['globalid'] );
-		$site->setInternalId( $data['internalid'] );
 		$site->setForward( $data['forward'] );
 		$site->setGroup( $data['group'] );
 		$site->setLanguageCode( $data['language'] );
