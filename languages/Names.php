@@ -406,7 +406,9 @@
 	'ug-latn' => 'Uyghurche', # Uyghur (Latin script)
 	'uk' => 'українська',	# Ukrainian
 	'ur' => 'اردو',	# Urdu
-	'uz' => 'oʻzbekcha',	# Uzbek
+	'uz' => "oʻzbekcha/ўзбекча",	# Uzbek (multiple scripts - defaults to Latin)
+	'uz-cyrl' => "ўзбекча",	# Uzbek Cyrillic
+	'uz-latn' => "oʻzbekcha",	# Uzbek Latin (default)
 	've' => 'Tshivenda',		# Venda
 	'vec' => 'vèneto',	# Venetian
 	'vep' => 'vepsän kel’',	# Veps
