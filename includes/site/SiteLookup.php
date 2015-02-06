@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Interface for service objects providing a storage interface for Site objects.
+ * Interface for service objects providing a lookup of Site objects.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,41 +18,33 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.21
+ * @since 1.25
  *
  * @file
  * @ingroup Site
  *
  * @license GNU GPL v2+
- * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-interface SiteStore extends SiteLookup {
+interface SiteLookup {
 
 	/**
-	 * Saves the provided site.
+	 * Returns the site with provided global id, or null if there is no such site.
 	 *
-	 * @since 1.21
+	 * @since 1.25
 	 *
-	 * @param Site $site
+	 * @param string $globalId
 	 *
-	 * @return bool Success indicator
+	 * @return Site|null
 	 */
-	public function saveSite( Site $site );
+	public function getSite( $globalId );
 
 	/**
-	 * Saves the provided sites.
+	 * Returns a list of all sites.
 	 *
-	 * @since 1.21
+	 * @since 1.25
 	 *
-	 * @param Site[] $sites
-	 *
-	 * @return bool Success indicator
+	 * @return SiteList
 	 */
-	public function saveSites( array $sites );
+	public function getSites();
 
-	/**
-	 * Deletes all sites from the database. After calling clear(), getSites() will return an empty
-	 * list and getSite() will return null until saveSite() or saveSites() is called.
-	 */
-	public function clear();
 }
