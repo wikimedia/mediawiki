@@ -1202,7 +1202,7 @@
 	"fileexists-forbidden": "n Bestaand mit disse naam besteet al, en kan niet overschreven wörden.\nVoeg t bestaand toe onder n aandere naam.\n[[File:$1|thumb|center|$1]]",
 	"fileexists-shared-forbidden": "Der besteet al n bestaand mit disse naam in de gezamenlike bestaandslokasie.\nA'j t bestaand evengoed op willen sturen, gao dan weerumme en kies n aandere naam.\n[[File:$1|thumb|center|$1]]",
 	"file-exists-duplicate": "Dit bestaand is liek alleens as {{PLURAL:$1|t volgende bestaand|de volgende bestaanden}}:",
-	"file-deleted-duplicate": "n Bestaand dat liek alleens is an dit bestaand ([[:$1]]) is eerder al vortedaon.\nBekiek t vortdologboek veurda'j veurdan gaon.",
+	"file-deleted-duplicate": "n Bestaand dat liek alleens is an dit bestaand ([[:$1]]) is eerder al vortedaon.\nBekiek t vortdologboek veurda'j verdan gaon.",
 	"uploadwarning": "Waorschuwing",
 	"uploadwarning-text": "Pas de bestaandsbeschrieving hieronder an en probeer t opniej",
 	"savefile": "Bestaand opslaon",

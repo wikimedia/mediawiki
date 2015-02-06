@@ -50,6 +50,8 @@
 	"apihelp-login-param-domain": "Domínio (opcional).",
 	"apihelp-login-example-login": "Entrar",
 	"apihelp-logout-description": "Terminar e limpar dados de sessão.",
+	"apihelp-managetags-description": "Executar tarefas de gestão relacionadas com alteração de etiquetas.",
+	"apihelp-managetags-param-reason": "Um motivo, opcional, para a criação, eliminação, ativação ou desativação da etiqueta.",
 	"apihelp-move-description": "Mover uma página.",
 	"apihelp-move-param-noredirect": "Não criar um redirecionamento.",
 	"apihelp-move-param-ignorewarnings": "Ignorar quaisquer avisos.",

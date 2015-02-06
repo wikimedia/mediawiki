@@ -39,6 +39,7 @@
 	"apihelp-login-param-name": "Nazwa użytkownika.",
 	"apihelp-login-param-password": "Hasło.",
 	"apihelp-login-example-login": "Zaloguj się",
+	"apihelp-managetags-param-ignorewarnings": "Czy zignorować ostrzeżenia, które pojawiają się w trakcie operacji.",
 	"apihelp-move-description": "Przenieś stronę.",
 	"apihelp-move-param-ignorewarnings": "Ignoruj wszystkie ostrzeżenia.",
 	"apihelp-protect-example-protect": "Zabezpiecz stronę",

@@ -3543,7 +3543,7 @@
 	"tags-hitcount": "Shown in the \"{{msg-mw|Tags-hitcount-header}}\" column in [[Special:Tags]]. For more information on tags see [[mw:Manual:Tags|MediaWiki]].\n\nParameters:\n* $1 - the number of changes marked with the tag",
 	"tags-manage-no-permission": "Error message on [[Special:Tags]]",
 	"tags-create-heading": "The title of a fieldset, beneath which lies a form used to create a tag. For more information on tags see [[mw:Manual:Tags|MediaWiki]].",
-	"tags-create-explanation": "The first paragraph of an explanation to tell users what they are about to do.\n\nParameters:\n* $1 - the code name of the tag that is about to be deleted",
+	"tags-create-explanation": "The first paragraph of an explanation to tell users what they are about to do.",
 	"tags-create-tag-name": "Form field label for the name of the tag to be created.",
 	"tags-create-reason": "{{Identical|Reason}}",
 	"tags-create-submit": "The label of the form \"submit\" button when the user is about to create a tag.",

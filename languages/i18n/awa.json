@@ -856,6 +856,7 @@
 	"prefs-rc": "नँवा बदलाव",
 	"prefs-watchlist": "अवलोकन सुची",
 	"prefs-editwatchlist": "ध्यानसूची संपादन करा जाय",
+	"prefs-editwatchlist-label": "अपने धियान सुचीमा एन्ट्रि सम्पादन कीन जाय",
 	"prefs-editwatchlist-raw": "कच्चा निगरानी सूची सम्पादन करा जाय",
 	"prefs-editwatchlist-clear": "आपन ध्यानसूची साफ करा जाय",
 	"prefs-watchlist-days": "ध्यानसूची में दिखावै कय दिन:",
