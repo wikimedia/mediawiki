@@ -353,6 +353,9 @@ changes to languages because of Bugzilla reports.
   The alphabet of the prior string returned was A-Za-z0-9 and now it is 0-9A-F
 * (T87504) Avoid serving SVG background-images in CSS for Opera 12, which
   renders them incorrectly when combined with border-radius or background-size.
+* EditPage::attemptSave has been modified not to call handleStatus itself and
+  instead just returns the Status object. Extension calling it should be aware of
+  this.
 
 == Compatibility ==
 
