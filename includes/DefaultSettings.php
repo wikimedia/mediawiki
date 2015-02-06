@@ -3788,7 +3788,7 @@ $wgInterwikiFallbackSite = 'wiki';
  */
 
 /**
- * Specify the file location for the SiteStore json cache file.
+ * Specify the file location for the Sites json cache file.
  */
 $wgSitesCacheFile = false;
 
