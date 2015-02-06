@@ -534,7 +534,9 @@ class EditPage {
 		# in the back door with a hand-edited submission URL.
 
 		if ( 'save' == $this->formtype ) {
-			if ( !$this->attemptSave() ) {
+			$resultDetails = null;
+			$status = $this->attemptSave( $resultDetails );
+			if ( !$this->handleStatus( $status, $resultDetails ) ) {
 				return;
 			}
 		}
@@ -1276,18 +1278,20 @@ class EditPage {
 
 	/**
 	 * Attempt submission
+	 * @param array $resultDetails See docs for $result in internalAttemptSave
 	 * @throws UserBlockedError|ReadOnlyError|ThrottledError|PermissionsError
-	 * @return bool False if output is done, true if the rest of the form should be displayed
+	 * @return Status The resulting status object.
 	 */
-	public function attemptSave() {
+	public function attemptSave( &$resultDetails = false ) {
 		global $wgUser;
 
-		$resultDetails = false;
 		# Allow bots to exempt some edits from bot flagging
 		$bot = $wgUser->isAllowed( 'bot' ) && $this->bot;
 		$status = $this->internalAttemptSave( $resultDetails, $bot );
 
-		return $this->handleStatus( $status, $resultDetails );
+		Hooks::run( 'EditPage::attemptSave:after', array( $this, $status, $resultDetails ) );
+
+		return $status;
 	}
 
 	/**
