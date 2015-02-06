@@ -1144,6 +1144,11 @@ $editPage: EditPage	object
 saved, that is before WikiPage::doEditContent() is called
 $editpage_Obj: the current EditPage object
 
+'EditPage::attemptSave:after': Called after an article save attempt
+$editpage_Obj: the current EditPage object
+$status: the resulting Status object
+$resultDetails: Result details array
+
 'EditPage::importFormData': allow extensions to read additional data
 posted in the form
 $editpage: EditPage instance

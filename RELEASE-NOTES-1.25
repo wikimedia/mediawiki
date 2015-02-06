@@ -378,6 +378,9 @@ changes to languages because of Bugzilla reports.
   addSecondaryDataUpdate throwing an exception. These functions will be removed in 1.26,
   since they interfere with caching of ParserOutput objects.
 * Introduced new hook 'SecondaryDataUpdates' that allows extensions to inject custom updates.
+* EditPage::attemptSave has been modified not to call handleStatus itself and
+  instead just returns the Status object. Extension calling it should be aware of
+  this.
 
 == Compatibility ==
 
