@@ -3,11 +3,18 @@
  * Also Dynamically resize images to justify them.
  */
 ( function ( mw, $ ) {
-	// Is there a better way to detect a touchscreen? Current check taken from stack overflow.
-	var isTouchScreen = !!( window.ontouchstart !== undefined || window.DocumentTouch !== undefined && document instanceof window.DocumentTouch ),
-		$galleries = $();
+	var $galleries,
+		bound = false,
+		// Is there a better way to detect a touchscreen? Current check taken from stack overflow.
+		isTouchScreen = !!( window.ontouchstart !== undefined ||
+			window.DocumentTouch !== undefined && document instanceof window.DocumentTouch
+		);
 
-	// Now on to justification.
+	/**
+	 * Perform the layout justification.
+	 * @ignore
+	 * @context {HTMLElement} A `ul.mw-gallery-*` element
+	 */
 	function justify() {
 		var lastTop,
 			$img,
@@ -196,6 +203,37 @@
 		}() );
 	}
 
+	function handleResizeStart() {
+		$galleries.children( 'li' ).each( function () {
+			var imgWidth = $( this ).data( 'imgWidth' ),
+				imgHeight = $( this ).data( 'imgHeight' ),
+				width = $( this ).data( 'width' ),
+				captionWidth = $( this ).data( 'captionWidth' ),
+				$innerDiv = $( this ).children( 'div' ).first(),
+				$imageDiv = $innerDiv.children( 'div.thumb' ),
+				$imageElm, imageElm;
+
+			// Restore original sizes so we can arrange the elements as on freshly loaded page
+			$( this ).width( width );
+			$innerDiv.width( width );
+			$imageDiv.width( imgWidth );
+			$( this ).find( 'div.gallerytextwrapper' ).width( captionWidth );
+
+			$imageElm = $( this ).find( 'img' ).first();
+			imageElm = $imageElm.length ? $imageElm[0] : null;
+			if ( imageElm ) {
+				imageElm.width = imgWidth;
+				imageElm.height = imgHeight;
+			} else {
+				$imageDiv.height( imgHeight );
+			}
+		} );
+	}
+
+	function handleResizeEnd() {
+		$galleries.each( justify );
+	}
+
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
 		if ( isTouchScreen ) {
 			// Always show the caption for a touch screen.
@@ -216,38 +254,14 @@
 		// Call the justification asynchronous because live preview fires the hook with detached $content.
 		setTimeout( function () {
 			$galleries.each( justify );
+
+			// Bind here instead of in the top scope as the callbacks use $galleries.
+			if ( !bound ) {
+				bound = true;
+				$( window )
+					.resize( $.debounce( 300, true, handleResizeStart ) )
+					.resize( $.debounce( 300, handleResizeEnd ) );
+			}
 		} );
-	} );
-
-	$( function () {
-		$( window ).resize( $.debounce( 300, true, function () {
-			$galleries.children( 'li' ).each( function () {
-				var imgWidth = $( this ).data( 'imgWidth' ),
-					imgHeight = $( this ).data( 'imgHeight' ),
-					width = $( this ).data( 'width' ),
-					captionWidth = $( this ).data( 'captionWidth' ),
-					$innerDiv = $( this ).children( 'div' ).first(),
-					$imageDiv = $innerDiv.children( 'div.thumb' ),
-					$imageElm, imageElm;
-
-				// Restore original sizes so we can arrange the elements as on freshly loaded page
-				$( this ).width( width );
-				$innerDiv.width( width );
-				$imageDiv.width( imgWidth );
-				$( this ).find( 'div.gallerytextwrapper' ).width( captionWidth );
-
-				$imageElm = $( this ).find( 'img' ).first();
-				imageElm = $imageElm.length ? $imageElm[0] : null;
-				if ( imageElm ) {
-					imageElm.width = imgWidth;
-					imageElm.height = imgHeight;
-				} else {
-					$imageDiv.height( imgHeight );
-				}
-			} );
-		} ) );
-		$( window ).resize( $.debounce( 300, function () {
-			$galleries.each( justify );
-		} ) );
 	} );
 }( mediaWiki, jQuery ) );
