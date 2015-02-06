@@ -255,6 +255,7 @@ class ApiEditPage extends ApiBase {
 			'wpIgnoreBlankSummary' => true,
 			'wpIgnoreBlankArticle' => true,
 			'wpIgnoreSelfRedirect' => true,
+			'bot' => $params['bot'],
 		);
 
 		if ( !is_null( $params['summary'] ) ) {
@@ -401,7 +402,7 @@ class ApiEditPage extends ApiBase {
 		$oldRequest = $wgRequest;
 		$wgRequest = $req;
 
-		$status = $ep->internalAttemptSave( $result, $user->isAllowed( 'bot' ) && $params['bot'] );
+		$status = $ep->attemptSave( $result );
 		$wgRequest = $oldRequest;
 
 		switch ( $status->value ) {
