@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Tests for the SiteSQLStore class.
+ * Tests for the CachingSiteStore class.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,16 +30,16 @@
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class SiteSQLStoreTest extends MediaWikiTestCase {
+class CachingSiteStoreTest extends MediaWikiTestCase {
 
 	/**
-	 * @covers SiteSQLStore::getSites
+	 * @covers CachingSiteStore::getSites
 	 */
 	public function testGetSites() {
 		$expectedSites = TestSites::getSites();
 		TestSites::insertIntoDb();
 
-		$store = SiteSQLStore::newInstance();
+		$store = new CachingSiteStore( new SiteDBStore(), wfGetMainCache() );
 
 		$sites = $store->getSites();
 
@@ -60,10 +60,10 @@ class SiteSQLStoreTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers SiteSQLStore::saveSites
+	 * @covers CachingSiteStore::saveSites
 	 */
 	public function testSaveSites() {
-		$store = SiteSQLStore::newInstance();
+		$store = new CachingSiteStore( new SiteDBStore(), wfGetMainCache() );
 
 		$sites = array();
 
@@ -93,11 +93,11 @@ class SiteSQLStoreTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers SiteSQLStore::reset
+	 * @covers CachingSiteStore::reset
 	 */
 	public function testReset() {
-		$store1 = SiteSQLStore::newInstance();
-		$store2 = SiteSQLStore::newInstance();
+		$store1 = new CachingSiteStore( new SiteDBStore(), wfGetMainCache() );
+		$store2 = new CachingSiteStore( new SiteDBStore(), wfGetMainCache() );
 
 		// initialize internal cache
 		$this->assertGreaterThan( 0, $store1->getSites()->count() );
@@ -119,10 +119,10 @@ class SiteSQLStoreTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers SiteSQLStore::clear
+	 * @covers CachingSiteStore::clear
 	 */
 	public function testClear() {
-		$store = SiteSQLStore::newInstance();
+		$store = new CachingSiteStore( new SiteDBStore(), wfGetMainCache() );
 		$this->assertTrue( $store->clear() );
 
 		$site = $store->getSite( 'enwiki' );

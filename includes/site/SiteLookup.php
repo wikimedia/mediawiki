@@ -1,9 +1,7 @@
 <?php
 
 /**
- * Represents the site configuration of a wiki.
- * Holds a list of sites (ie SiteList) and takes care
- * of retrieving and caching site information when appropriate.
+ * Interface for service objects providing a lookup of Site objects.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,33 +18,33 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.21
+ * @since 1.25
  *
  * @file
  * @ingroup Site
  *
  * @license GNU GPL v2+
- * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class SiteSQLStore extends CachingSiteStore {
+interface SiteLookup {
 
 	/**
-	 * @since 1.21
-	 * @deprecated 1.25 Construct a SiteStore instance directly instead.
+	 * Returns the site with provided global id, or null if there is no such site.
 	 *
-	 * @param ORMTable|null $sitesTable
-	 * @param BagOStuff|null $cache
+	 * @since 1.25
 	 *
-	 * @return SiteStore
+	 * @param string $globalId
+	 *
+	 * @return Site|null
 	 */
-	public static function newInstance( ORMTable $sitesTable = null, BagOStuff $cache = null ) {
-		if ( $cache === null ) {
-			$cache = wfGetMainCache();
-		}
+	public function getSite( $globalId );
 
-		$siteStore = new SiteDBStore();
-
-		return new static( $siteStore, $cache );
-	}
+	/**
+	 * Returns a list of all sites.
+	 *
+	 * @since 1.25
+	 *
+	 * @return SiteList
+	 */
+	public function getSites();
 
 }

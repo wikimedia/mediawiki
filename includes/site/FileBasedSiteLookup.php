@@ -24,11 +24,11 @@
  * Provides a file-based cache of a SiteStore, stored as a json file.
  * The cache can be built with the rebuildSitesCache.php maintenance script,
  * and a MediaWiki instance can be setup to use this by setting the
- * 'wgSitesCacheFile' configuration to the cache file location.
+ * 'wgSitesFileCache' configuration to the cache file location.
  *
  * @since 1.25
  */
-class SiteListFileCache {
+class FileBasedSiteLookup implements SiteLookup {
 
 	/**
 	 * @var SiteList
