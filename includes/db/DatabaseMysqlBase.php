@@ -468,7 +468,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			$rows *= $plan->rows > 0 ? $plan->rows : 1; // avoid resetting to zero
 		}
 
-		return $rows;
+		return (int)$rows;
 	}
 
 	/**

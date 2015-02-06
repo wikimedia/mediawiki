@@ -712,7 +712,7 @@ class DatabasePostgres extends DatabaseBase {
 			$row = $this->fetchRow( $res );
 			$count = array();
 			if ( preg_match( '/rows=(\d+)/', $row[0], $count ) ) {
-				$rows = $count[1];
+				$rows = (int)$count[1];
 			}
 		}
 
