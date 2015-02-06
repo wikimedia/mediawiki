@@ -22,13 +22,13 @@
  * @ingroup Site
  * @ingroup Test
  *
- * @covers SiteListFileCacheBuilder
+ * @covers SitesCacheFileBuilder
  * @group Site
  *
  * @licence GNU GPL v2+
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
-class SiteListFileCacheBuilderTest extends PHPUnit_Framework_TestCase {
+class SitesCacheFileBuilderTest extends PHPUnit_Framework_TestCase {
 
 	protected function setUp() {
 		$this->cacheFile = $this->getCacheFile();
@@ -39,7 +39,7 @@ class SiteListFileCacheBuilderTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testBuild() {
-		$cacheBuilder = $this->newSiteListFileCacheBuilder( $this->getSites() );
+		$cacheBuilder = $this->newSitesCacheFileBuilder( $this->getSites() );
 		$cacheBuilder->build();
 
 		$contents = file_get_contents( $this->cacheFile );
@@ -91,23 +91,23 @@ class SiteListFileCacheBuilderTest extends PHPUnit_Framework_TestCase {
 		);
 	}
 
-	private function newSiteListFileCacheBuilder( SiteList $sites ) {
-		return new SiteListFileCacheBuilder(
-			$this->getSiteSQLStore( $sites ),
+	private function newSitesCacheFileBuilder( SiteList $sites ) {
+		return new SitesCacheFileBuilder(
+			$this->getSiteLookup( $sites ),
 			$this->cacheFile
 		);
 	}
 
-	private function getSiteSQLStore( SiteList $sites ) {
-		$siteSQLStore = $this->getMockBuilder( 'SiteSQLStore' )
+	private function getSiteLookup( SiteList $sites ) {
+		$siteLookup = $this->getMockBuilder( 'SiteLookup' )
 			->disableOriginalConstructor()
 			->getMock();
 
-		$siteSQLStore->expects( $this->any() )
+		$siteLookup->expects( $this->any() )
 			->method( 'getSites' )
 			->will( $this->returnValue( $sites ) );
 
-		return $siteSQLStore;
+		return $siteLookup;
 	}
 
 	private function getSites() {

@@ -54,6 +54,8 @@ class HashSiteStore implements SiteStore {
 	 */
 	public function saveSite( Site $site ) {
 		$this->sites[$site->getGlobalId()] = $site;
+
+		return true;
 	}
 
 	/**
@@ -69,6 +71,8 @@ class HashSiteStore implements SiteStore {
 		foreach ( $sites as $site ) {
 			$this->saveSite( $site );
 		}
+
+		return true;
 	}
 
 	/**
@@ -112,6 +116,8 @@ class HashSiteStore implements SiteStore {
 	 */
 	public function clear() {
 		$this->sites = array();
+
+		return true;
 	}
 
 }

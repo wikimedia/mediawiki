@@ -1,0 +1,42 @@
+MediaWiki's SiteStore can be cached and stored in a flat file,
+in a json format. If the SiteStore is frequently accessed, the
+file cache may provide a performance benefit over a database
+store, even with memcached in front of it.
+
+Configuration:
+
+File-based caching can be enabled by setting $wgSitesCacheFile
+to the file path of the cache file.
+
+The file can then be generated with the rebuildSitesCache.php
+maintenance script.
+
+Format:
+
+In the sites cache file, sites are listed in a key-value
+map, with the key being the site's global id (e.g. "enwiki")
+and a key-value map as the value. The site list is wrapped
+with in a "sites" key.
+
+Example:
+
+"sites": {
+	"aawiktionary": {
+		"globalid": "aawiktionary",
+		"type": "mediawiki",
+		"group": "wiktionary",
+		"source": "local",
+		"language": "aa",
+		"localids": [],
+		"config": [],
+		"data": {
+			"paths": {
+				"file_path": "http:\/\/aa.wiktionary.org\/w\/$1",
+				"page_path": "http:\/\/aa.wiktionary.org\/wiki\/$1"
+			}
+		},
+		"forward": false,
+		"internalid": 2666,
+		"identifiers": []
+	}
+}

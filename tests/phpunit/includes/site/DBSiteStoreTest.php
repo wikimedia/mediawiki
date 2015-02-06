@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Tests for the SiteSQLStore class.
+ * Tests for the DBSiteStore class.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,16 +30,16 @@
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class SiteSQLStoreTest extends MediaWikiTestCase {
+class DBSiteStoreTest extends MediaWikiTestCase {
 
 	/**
-	 * @covers SiteSQLStore::getSites
+	 * @covers DBSiteStore::getSites
 	 */
 	public function testGetSites() {
 		$expectedSites = TestSites::getSites();
 		TestSites::insertIntoDb();
 
-		$store = SiteSQLStore::newInstance();
+		$store = new DBSiteStore();
 
 		$sites = $store->getSites();
 
@@ -60,10 +60,10 @@ class SiteSQLStoreTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers SiteSQLStore::saveSites
+	 * @covers DBSiteStore::saveSites
 	 */
 	public function testSaveSites() {
-		$store = SiteSQLStore::newInstance();
+		$store = new DBSiteStore();
 
 		$sites = array();
 
@@ -93,11 +93,11 @@ class SiteSQLStoreTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers SiteSQLStore::reset
+	 * @covers DBSiteStore::reset
 	 */
 	public function testReset() {
-		$store1 = SiteSQLStore::newInstance();
-		$store2 = SiteSQLStore::newInstance();
+		$store1 = new DBSiteStore();
+		$store2 = new DBSiteStore();
 
 		// initialize internal cache
 		$this->assertGreaterThan( 0, $store1->getSites()->count() );
@@ -119,10 +119,10 @@ class SiteSQLStoreTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers SiteSQLStore::clear
+	 * @covers DBSiteStore::clear
 	 */
 	public function testClear() {
-		$store = SiteSQLStore::newInstance();
+		$store = new DBSiteStore();
 		$this->assertTrue( $store->clear() );
 
 		$site = $store->getSite( 'enwiki' );
