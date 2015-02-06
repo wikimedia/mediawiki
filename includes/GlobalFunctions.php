@@ -4214,7 +4214,15 @@ function wfIsConfiguredProxy( $ip ) {
  * @since 1.24 Moved from thumb.php to GlobalFunctions in 1.25
  */
 function wfThumbIsStandard( File $file, array $params ) {
-	global $wgThumbLimits, $wgImageLimits;
+	global $wgThumbLimits, $wgImageLimits, $wgResponsiveImages;
+
+	$multipliers = array( 1 );
+	if ( $wgResponsiveImages ) {
+		// These available sizes are hardcoded currently elsewhere in MediaWiki.
+		// @see Linker::processResponsiveImages
+		$multipliers[] = 1.5;
+		$multipliers[] = 2;
+	}
 
 	$handler = $file->getHandler();
 	if ( !$handler || !isset( $params['width'] ) ) {
@@ -4226,15 +4234,34 @@ function wfThumbIsStandard( File $file, array $params ) {
 		$basicParams['page'] = $params['page'];
 	}
 
+	$thumbLimits = array();
+	$imageLimits = array();
+	// Expand limits to account for multipliers
+	foreach ( $multipliers as $multiplier ) {
+		$thumbLimits = array_merge( $thumbLimits, array_map(
+			function ( $width ) use ( $multiplier ) {
+				return round( $width * $multiplier );
+			}, $wgThumbLimits )
+		);
+		$imageLimits = array_merge( $imageLimits, array_map(
+			function ( $pair ) use ( $multiplier ) {
+				return array(
+					round( $pair[0] * $multiplier ),
+					round( $pair[1] * $multiplier ),
+				);
+			}, $wgImageLimits )
+		);
+	}
+
 	// Check if the width matches one of $wgThumbLimits
-	if ( in_array( $params['width'], $wgThumbLimits ) ) {
+	if ( in_array( $params['width'], $thumbLimits ) ) {
 		$normalParams = $basicParams + array( 'width' => $params['width'] );
 		// Append any default values to the map (e.g. "lossy", "lossless", ...)
 		$handler->normaliseParams( $file, $normalParams );
 	} else {
 		// If not, then check if the width matchs one of $wgImageLimits
 		$match = false;
-		foreach ( $wgImageLimits as $pair ) {
+		foreach ( $imageLimits as $pair ) {
 			$normalParams = $basicParams + array( 'width' => $pair[0], 'height' => $pair[1] );
 			// Decide whether the thumbnail should be scaled on width or height.
 			// Also append any default values to the map (e.g. "lossy", "lossless", ...)
