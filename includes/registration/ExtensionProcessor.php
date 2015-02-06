@@ -184,10 +184,20 @@ class ExtensionProcessor implements Processor {
 	}
 
 	protected function extractResourceLoaderModules( $dir, array $info ) {
+		$defaultPaths = isset( $info['ResourceFileModulePaths'] )
+			? $info['ResourceFileModulePaths']
+			: false;
+		if ( isset( $defaultPaths['localBasePath'] ) ) {
+			$defaultPaths['localBasePath'] = "$dir/{$defaultPaths['localBasePath']}";
+		}
+
 		if ( isset( $info['ResourceModules'] ) ) {
 			foreach ( $info['ResourceModules'] as $name => $data ) {
 				if ( isset( $data['localBasePath'] ) ) {
 					$data['localBasePath'] = "$dir/{$data['localBasePath']}";
+				}
+				if ( $defaultPaths && !isset( $data['class'] ) ) {
+					$data += $defaultPaths;
 				}
 				$this->globals['wgResourceModules'][$name] = $data;
 			}

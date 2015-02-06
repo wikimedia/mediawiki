@@ -155,11 +155,35 @@ class ConvertExtensionToRegistration extends Maintenance {
 	}
 
 	protected function handleResourceModules( $realName, $value ) {
+		$defaults = array();
+		$remote = $this->hasOption( 'skin' ) ? 'remoteSkinPath' : 'remoteExtPath';
 		foreach ( $value as $name => $data ) {
 			if ( isset( $data['localBasePath'] ) ) {
 				$data['localBasePath'] = $this->stripPath( $data['localBasePath'], $this->dir );
+				if ( !$defaults ) {
+					$defaults['localBasePath'] = $data['localBasePath'];
+					unset( $data['localBasePath'] );
+					if ( isset( $data[$remote] ) ) {
+						$defaults[$remote] = $data[$remote];
+						unset( $data[$remote] );
+					}
+				} else {
+					if ( $data['localBasePath'] === $defaults['localBasePath'] ) {
+						unset( $data['localBasePath'] );
+					}
+					if ( isset( $data[$remote] ) && isset( $defaults[$remote] )
+						&& $data[$remote] === $defaults[$remote]
+					) {
+						unset( $data[$remote] );
+					}
+				}
 			}
+
+
 			$this->json[$realName][$name] = $data;
+		}
+		if ( $defaults ) {
+			$this->json['ResourceFileModulePaths'] = $defaults;
 		}
 	}
 }
