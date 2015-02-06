@@ -341,6 +341,9 @@ changes to languages because of Bugzilla reports.
     Instead, do this:
       $form = HTMLForm::factory( 'vform', … );
 * Deprecated Revision methods getRawUser(), getRawUserText() and getRawComment().
+* EditPage::attemptSave has been modified not to call handleStatus itself and
+  instead just returns the Status object. Extension calling it should be aware of
+  this.
 
 == Compatibility ==
 
