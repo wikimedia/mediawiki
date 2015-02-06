@@ -262,8 +262,8 @@ class Title {
 	 * @return Title|null Title or null on an error.
 	 */
 	public static function newFromText( $text, $defaultNamespace = NS_MAIN ) {
-		if ( is_object( $text ) ) {
-			throw new MWException( 'Title::newFromText given an object' );
+		if ( !is_string( $text ) ) {
+			throw new MWException( 'Title::newFromText not given a string' );
 		}
 
 		$cache = self::getTitleCache();
