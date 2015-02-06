@@ -97,7 +97,45 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 		$this->assertArrayNotHasKey( 'wg@IGNORED', $extracted['globals'] );
 	}
 
-	public static function provideExtractMessageSettings() {
+	public static function provideExtracttExtensionMessagesFiles() {
+		$dir = __DIR__ . '/FooBar/';
+		return array(
+			array(
+				array( 'ExtensionMessagesFiles' => array( 'FooBarAlias' => 'FooBar.alias.php' ) ),
+				array( 'wgExtensionMessagesFiles' => array( 'FooBarAlias' => $dir . 'FooBar.alias.php' ) )
+			),
+			array(
+				array(
+					'ExtensionMessagesFiles' => array(
+						'FooBarAlias' => 'FooBar.alias.php',
+						'FooBarMagic' => 'FooBar.magic.i18n.php',
+					),
+				),
+				array(
+					'wgExtensionMessagesFiles' => array(
+						'FooBarAlias' => $dir . 'FooBar.alias.php',
+						'FooBarMagic' => $dir . 'FooBar.magic.i18n.php',
+					),
+				),
+			),
+		);
+	}
+
+	/**
+	 * @covers ExtensionProcessor::extracttExtensionMessagesFiles
+	 * @dataProvider provideExtracttExtensionMessagesFiles
+	 */
+	public function testExtracttExtensionMessagesFiles( $input, $expected ) {
+		$processor = new ExtensionProcessor();
+		$processor->extractInfo( $this->dir, $input + self::$default );
+		$out = $processor->getExtractedInfo();
+		foreach ( $expected as $key => $value ) {
+			$this->assertEquals( $value, $out['globals'][$key] );
+		}
+	}
+
+
+	public static function provideExtractMessagesDirs() {
 		$dir = __DIR__ . '/FooBar/';
 		return array(
 			array(
@@ -112,10 +150,10 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers ExtensionProcessor::extractMessageSettings
-	 * @dataProvider provideExtractMessageSettings
+	 * @covers ExtensionProcessor::extractMessagesDirs
+	 * @dataProvider provideExtractMessagesDirs
 	 */
-	public function testExtractMessageSettings( $input, $expected ) {
+	public function testExtractMessagesDirs( $input, $expected ) {
 		$processor = new ExtensionProcessor();
 		$processor->extractInfo( $this->dir, $input + self::$default );
 		$out = $processor->getExtractedInfo();
