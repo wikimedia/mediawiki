@@ -23,26 +23,26 @@
 require_once __DIR__ . '/Maintenance.php';
 
 /**
- * Maintenance script to dump the SiteStore as a static json file.
+ * Maintenance script to dump a SiteStore as a static json file.
  *
  * @ingroup Maintenance
  */
-class RebuildSitesCache extends Maintenance {
+class RebuildSitesFileCache extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
 
-		$this->mDescription = "Dumps site store as json";
+		$this->mDescription = "Cache sites as json for file-based lookup.";
 		$this->addOption( 'file', 'File to output the json to', false, true );
 	}
 
 	public function execute() {
-		$siteListFileCacheBuilder = new SiteListFileCacheBuilder(
-			SiteSQLStore::newInstance(),
+		$sitesFileCacheBuilder = new SitesFileCacheBuilder(
+			new SiteDBStore(),
 			$this->getCacheFile()
 		);
 
-		$siteListFileCacheBuilder->build();
+		$sitesFileCacheBuilder->build();
 	}
 
 	/**
@@ -52,10 +52,10 @@ class RebuildSitesCache extends Maintenance {
 		if ( $this->hasOption( 'file' ) ) {
 			$jsonFile = $this->getOption( 'file' );
 		} else {
-			$jsonFile = $this->getConfig()->get( 'SitesCacheFile' );
+			$jsonFile = $this->getConfig()->get( 'SitesFileCache' );
 
 			if ( $jsonFile === false ) {
-				$this->error( 'Error: No sites cache file is set in configuration.', 1 );
+				$this->error( 'Error: No file set in configuration for SitesFileCache.', 1 );
 			}
 		}
 
@@ -64,5 +64,5 @@ class RebuildSitesCache extends Maintenance {
 
 }
 
-$maintClass = "RebuildSitesCache";
+$maintClass = "RebuildSitesFileCache";
 require_once RUN_MAINTENANCE_IF_MAIN;

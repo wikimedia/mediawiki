@@ -22,13 +22,13 @@
  * @ingroup Site
  * @ingroup Test
  *
- * @covers SiteListFileCacheBuilder
+ * @covers FileBasedSiteLookup
  * @group Site
  *
  * @licence GNU GPL v2+
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
-class SiteListFileCacheBuilderTest extends PHPUnit_Framework_TestCase {
+class FileBasedSiteLookupTest extends PHPUnit_Framework_TestCase {
 
 	protected function setUp() {
 		$this->cacheFile = $this->getCacheFile();
@@ -38,76 +38,42 @@ class SiteListFileCacheBuilderTest extends PHPUnit_Framework_TestCase {
 		unlink( $this->cacheFile );
 	}
 
-	public function testBuild() {
-		$cacheBuilder = $this->newSiteListFileCacheBuilder( $this->getSites() );
+	public function testGetSites() {
+		$sites = $this->getSites();
+		$cacheBuilder = $this->newSitesFileCacheBuilder( $sites );
 		$cacheBuilder->build();
 
-		$contents = file_get_contents( $this->cacheFile );
-		$this->assertEquals( json_encode( $this->getExpectedData() ), $contents );
+		$cache = new FileBasedSiteLookup( $this->cacheFile );
+		$this->assertEquals( $sites, $cache->getSites() );
 	}
 
-	private function getExpectedData() {
-		return array(
-			'sites' => array(
-				'foobar' => array(
-					'globalid' => 'foobar',
-					'type' => 'unknown',
-					'group' => 'none',
-					'source' => 'local',
-					'language' => null,
-					'localids' => array(),
-					'config' => array(),
-					'data' => array(),
-					'forward' => false,
-					'internalid' => null,
-					'identifiers' => array()
-				),
-				'enwiktionary' => array(
-					'globalid' => 'enwiktionary',
-					'type' => 'mediawiki',
-					'group' => 'wiktionary',
-					'source' => 'local',
-					'language' => 'en',
-					'localids' => array(
-						'equivalent' => array( 'enwiktionary' )
-					),
-					'config' => array(),
-					'data' => array(
-						'paths' => array(
-							'page_path' => 'https://en.wiktionary.org/wiki/$1',
-							'file_path' => 'https://en.wiktionary.org/w/$1'
-						)
-					),
-					'forward' => false,
-					'internalid' => null,
-					'identifiers' => array(
-						array(
-							'type' => 'equivalent',
-							'key' => 'enwiktionary'
-						)
-					)
-				)
-			)
-		);
+	public function testGetSite() {
+		$sites = $this->getSites();
+		$cacheBuilder = $this->newSitesFileCacheBuilder( $sites );
+		$cacheBuilder->build();
+
+		$cache = new FileBasedSiteLookup( $this->cacheFile );
+
+		$this->assertEquals( $sites->getSite( 'enwiktionary' ), $cache->getSite( 'enwiktionary' ) );
 	}
 
-	private function newSiteListFileCacheBuilder( SiteList $sites ) {
-		return new SiteListFileCacheBuilder(
-			$this->getSiteSQLStore( $sites ),
+	private function newSitesFileCacheBuilder( SiteList $sites ) {
+		return new SitesFileCacheBuilder(
+			$this->getSiteLookup( $sites ),
 			$this->cacheFile
 		);
 	}
 
-	private function getSiteSQLStore( SiteList $sites ) {
-		$siteSQLStore = $this->getMockBuilder( 'SiteSQLStore' )
+	private function getSiteLookup( SiteList $sites ) {
+		$siteLookup = $this->getMockBuilder( 'SiteLookup' )
 			->disableOriginalConstructor()
 			->getMock();
 
-		$siteSQLStore->expects( $this->any() )
+		$siteLookup->expects( $this->any() )
 			->method( 'getSites' )
 			->will( $this->returnValue( $sites ) );
 
-		return $siteSQLStore;
+		return $siteLookup;
 	}
 
 	private function getSites() {
