@@ -108,7 +108,7 @@ class TestSites {
 	 * @since 0.1
 	 */
 	public static function insertIntoDb() {
-		$sitesTable = SiteSQLStore::newInstance();
+		$sitesTable = new DBSiteStore();
 		$sitesTable->clear();
 		$sitesTable->saveSites( TestSites::getSites() );
 	}
