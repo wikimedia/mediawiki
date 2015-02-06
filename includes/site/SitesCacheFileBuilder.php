@@ -22,12 +22,12 @@
  *
  * @license GNU GPL v2+
  */
-class SiteListFileCacheBuilder {
+class SitesCacheFileBuilder {
 
 	/**
-	 * @var SiteStore
+	 * @var SiteLookup
 	 */
-	private $siteStore;
+	private $siteLookup;
 
 	/**
 	 * @var string
@@ -35,16 +35,16 @@ class SiteListFileCacheBuilder {
 	private $cacheFile;
 
 	/**
-	 * @param SiteStore $siteStore
+	 * @param SiteLookup $siteLookup
 	 * @param string $cacheFile
 	 */
-	public function __construct( SiteStore $siteStore, $cacheFile ) {
-		$this->siteStore = $siteStore;
+	public function __construct( SiteLookup $siteLookup, $cacheFile ) {
+		$this->siteLookup = $siteLookup;
 		$this->cacheFile = $cacheFile;
 	}
 
 	public function build() {
-		$this->sites = $this->siteStore->getSites( 'recache' );
+		$this->sites = $this->siteLookup->getSites();
 		$this->cacheSites( $this->sites->getArrayCopy() );
 	}
 
@@ -62,9 +62,12 @@ class SiteListFileCacheBuilder {
 			$sitesArray[$globalId] = $this->getSiteAsArray( $site );
 		}
 
-		$json = json_encode( array(
-			'sites' => $sitesArray
-		) );
+		$json = json_encode(
+			array(
+				'sites' => $sitesArray
+			),
+			JSON_PRETTY_PRINT
+		);
 
 		$result = file_put_contents( $this->cacheFile, $json );
 

@@ -22,13 +22,13 @@
  * @ingroup Site
  * @ingroup Test
  *
- * @covers SiteListFileCache
+ * @covers FileBasedSiteLookup
  * @group Site
  *
  * @licence GNU GPL v2+
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
-class SiteListFileCacheTest extends PHPUnit_Framework_TestCase {
+class FileBasedSiteLookupTest extends PHPUnit_Framework_TestCase {
 
 	protected function setUp() {
 		$this->cacheFile = $this->getCacheFile();
@@ -40,40 +40,40 @@ class SiteListFileCacheTest extends PHPUnit_Framework_TestCase {
 
 	public function testGetSites() {
 		$sites = $this->getSites();
-		$cacheBuilder = $this->newSiteListFileCacheBuilder( $sites );
+		$cacheBuilder = $this->newSitesCacheFileBuilder( $sites );
 		$cacheBuilder->build();
 
-		$cache = new SiteListFileCache( $this->cacheFile );
+		$cache = new FileBasedSiteLookup( $this->cacheFile );
 		$this->assertEquals( $sites, $cache->getSites() );
 	}
 
 	public function testGetSite() {
 		$sites = $this->getSites();
-		$cacheBuilder = $this->newSiteListFileCacheBuilder( $sites );
+		$cacheBuilder = $this->newSitesCacheFileBuilder( $sites );
 		$cacheBuilder->build();
 
-		$cache = new SiteListFileCache( $this->cacheFile );
+		$cache = new FileBasedSiteLookup( $this->cacheFile );
 
 		$this->assertEquals( $sites->getSite( 'enwiktionary' ), $cache->getSite( 'enwiktionary' ) );
 	}
 
-	private function newSiteListFileCacheBuilder( SiteList $sites ) {
-		return new SiteListFileCacheBuilder(
-			$this->getSiteSQLStore( $sites ),
+	private function newSitesCacheFileBuilder( SiteList $sites ) {
+		return new SitesCacheFileBuilder(
+			$this->getSiteLookup( $sites ),
 			$this->cacheFile
 		);
 	}
 
-	private function getSiteSQLStore( SiteList $sites ) {
-		$siteSQLStore = $this->getMockBuilder( 'SiteSQLStore' )
+	private function getSiteLookup( SiteList $sites ) {
+		$siteLookup = $this->getMockBuilder( 'SiteLookup' )
 			->disableOriginalConstructor()
 			->getMock();
 
-		$siteSQLStore->expects( $this->any() )
+		$siteLookup->expects( $this->any() )
 			->method( 'getSites' )
 			->will( $this->returnValue( $sites ) );
 
-		return $siteSQLStore;
+		return $siteLookup;
 	}
 
 	private function getSites() {
