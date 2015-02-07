@@ -883,6 +883,7 @@
 	"prefs-personal": "Korisnički podaci",
 	"prefs-rc": "Podešavanja nedavnih izmjena",
 	"prefs-watchlist": "Moji praćeni članci",
+	"prefs-editwatchlist": "Uredi spisak praćenja",
 	"prefs-watchlist-days": "Broj dana za prikaz u spisku praćenja:",
 	"prefs-watchlist-days-max": "Maximum $1 {{PLURAL:$1|dan|dana}}",
 	"prefs-watchlist-edits": "Najveći broj izmjena za prikaz u proširenom spisku praćenja:",
