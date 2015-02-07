@@ -4689,7 +4689,7 @@ class Title {
 	public function getEditNotices( $oldid = 0 ) {
 		$notices = array();
 
-		# Optional notices on a per-namespace and per-page basis
+		# Optional notices on a per-namespace basis
 		$editnotice_ns = 'editnotice-' . $this->getNamespace();
 		$editnotice_ns_message = wfMessage( $editnotice_ns );
 		if ( $editnotice_ns_message->exists() ) {
@@ -4697,6 +4697,7 @@ class Title {
 				Sanitizer::escapeClass( "mw-$editnotice_ns" ) . '">' .
 				$editnotice_ns_message->parseAsBlock() . '</div>';
 		}
+		# Optional notices on a per-page basis
 		if ( MWNamespace::hasSubpages( $this->getNamespace() ) ) {
 			$parts = explode( '/', $this->getDBkey() );
 			$editnotice_base = $editnotice_ns;
@@ -4711,15 +4712,24 @@ class Title {
 			}
 		} else {
 			# Even if there are no subpages in namespace, we still don't want / in MW ns.
-			$editnoticeText = $editnotice_ns . '-' . str_replace( '/', '-', $this->getDBkey() );
-			$editnoticeMsg = wfMessage( $editnoticeText );
-			if ( $editnoticeMsg->exists() ) {
-				$notices[$editnoticeText] = '<div class="mw-editnotice mw-editnotice-page ' .
-					Sanitizer::escapeClass( "mw-$editnoticeText" ) . '">' .
-					$editnoticeMsg->parseAsBlock() . '</div>';
+			$editnotice_page = $editnotice_ns . '-' . str_replace( '/', '-', $this->getDBkey() );
+			$editnotice_page_message = wfMessage( $editnotice_page );
+			if ( $editnotice_page_message->exists() ) {
+				$notices[$editnotice_page] = '<div class="mw-editnotice mw-editnotice-page ' .
+					Sanitizer::escapeClass( "mw-$editnotice_page" ) . '">' .
+					$editnotice_page->parseAsBlock() . '</div>';
 			}
 		}
-
+		# Optional notices on a per-category basis
+		foreach ($this->getParentCategories() as $cat) {
+			$editnotice_cat = 'editnotice-category-' . $cat;
+			$editnotice_cat_message = wfMessage ( $editnotice_cat );
+			if ( $editnotice_cat_message->exists() ) {
+				$notices[$editnotice_cat] = '<div class="mw-editnotice mw-editnotice-category ' .
+					Sanitizer::escapeClass( "mw-$editnotice_cat" ) . '">' .
+					$editnotice_cat_message->parseAsBlock() . '</div>';
+			}
+		}
 		Hooks::run( 'TitleGetEditNotices', array( $this, $oldid, &$notices ) );
 		return $notices;
 	}
