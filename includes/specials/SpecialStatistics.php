@@ -126,7 +126,7 @@ class SpecialStatistics extends SpecialPage {
 	 * @return string
 	 */
 	private function getPageStats() {
-		return Xml::openElement( 'tr' ) .
+		$pageStatsHtml = Xml::openElement( 'tr' ) .
 			Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( 'statistics-header-pages' )->parse() ) .
 			Xml::closeElement( 'tr' ) .
 				$this->formatRow( Linker::linkKnown( SpecialPage::getTitleFor( 'Allpages' ),
@@ -136,11 +136,17 @@ class SpecialStatistics extends SpecialPage {
 				$this->formatRow( $this->msg( 'statistics-pages' )->parse(),
 					$this->getLanguage()->formatNum( $this->total ),
 					array( 'class' => 'mw-statistics-pages' ),
-					'statistics-pages-desc' ) .
-				$this->formatRow( Linker::linkKnown( SpecialPage::getTitleFor( 'MediaStatistics' ),
-					$this->msg( 'statistics-files' )->parse() ),
-					$this->getLanguage()->formatNum( $this->images ),
-					array( 'class' => 'mw-statistics-files' ) );
+					'statistics-pages-desc' );
+
+		// Show the image row only, when there are files or upload is possible
+		if ( $this->images !== 0 || $this->getConfig()->get( 'EnableUploads' ) ) {
+			$pageStatsHtml .= $this->formatRow( Linker::linkKnown( SpecialPage::getTitleFor( 'MediaStatistics' ),
+				$this->msg( 'statistics-files' )->parse() ),
+				$this->getLanguage()->formatNum( $this->images ),
+				array( 'class' => 'mw-statistics-files' ) );
+		}
+
+		return $pageStatsHtml;
 	}
 
 	private function getEditStats() {
