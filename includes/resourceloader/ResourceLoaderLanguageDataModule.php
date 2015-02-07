@@ -55,7 +55,7 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 		return Xml::encodeJsCall(
 			'mw.language.setData',
 			array(
-				$context->getLanguage(),
+				wfBCP47( $context->getLanguage() ),
 				$this->getData( $context )
 			),
 			ResourceLoader::inDebugMode()

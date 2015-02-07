@@ -3189,7 +3189,7 @@ class OutputPage extends ContextSource {
 			'wgUserGroups' => $user->getEffectiveGroups(),
 			'wgCategories' => $this->getCategories(),
 			'wgBreakFrames' => $this->getFrameOptions() == 'DENY',
-			'wgPageContentLanguage' => $lang->getCode(),
+			'wgPageContentLanguage' => $lang->getHtmlCode(),
 			'wgPageContentModel' => $title->getContentModel(),
 			'wgSeparatorTransformTable' => $compactSeparatorTransTable,
 			'wgDigitTransformTable' => $compactDigitTransTable,

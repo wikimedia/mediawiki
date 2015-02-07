@@ -1481,7 +1481,7 @@ class ResourceLoader {
 	) {
 		$query = array(
 			'modules' => self::makePackedModulesString( $modules ),
-			'lang' => $lang,
+			'lang' => wfBCP47( $lang ),
 			'skin' => $skin,
 			'debug' => $debug ? 'true' : 'false',
 		);

@@ -52,7 +52,7 @@ class ResourceLoaderLanguageNamesModule extends ResourceLoaderModule {
 		return Xml::encodeJsCall(
 			'mw.language.setData',
 			array(
-				$context->getLanguage(),
+				wfBCP47( $context->getLanguage() ),
 				'languageNames',
 				$this->getData( $context )
 			),
