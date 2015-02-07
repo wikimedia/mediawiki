@@ -30,17 +30,15 @@ class UzConverter extends LanguageConverter {
 	public $toLatin = array(
 		'а' => 'a', 'А' => 'A',
 		'б' => 'b', 'Б' => 'B',
+		'в' => 'v', 'В' => 'V',
+		'г' => 'g', 'Г' => 'G',
 		'д' => 'd', 'Д' => 'D',
 		'е' => 'e', 'Е' => 'E',
-		'э' => 'e', 'Э' => 'E',
-		'в' => 'v', 'В' => 'V',
-		'х' => 'x', 'Х' => 'X',
-		'ғ' => 'gʻ', 'Ғ' => 'Gʻ',
-		'г' => 'g', 'Г' => 'G',
-		'ҳ' => 'h', 'Ҳ' => 'H',
+		'ё' => 'yo', 'Ё' => 'Yo',
 		'ж' => 'j', 'Ж' => 'J',
 		'з' => 'z', 'З' => 'Z',
 		'и' => 'i', 'И' => 'I',
+		'й' => 'y', 'Й' => 'Y',
 		'к' => 'k', 'К' => 'K',
 		'л' => 'l', 'Л' => 'L',
 		'м' => 'm', 'М' => 'M',
@@ -52,18 +50,20 @@ class UzConverter extends LanguageConverter {
 		'т' => 't', 'Т' => 'T',
 		'у' => 'u', 'У' => 'U',
 		'ф' => 'f', 'Ф' => 'F',
-		'ц' => 'c', 'Ц' => 'C',
-		'ў' => 'oʻ', 'Ў' => 'Oʻ',
+		'х' => 'x', 'Х' => 'X',
 		// note: at the beginning of a word and right after a consonant, only "s" is used
 		'ц' => 'ts', 'Ц' => 'Ts',
-		'қ' => 'q', 'Қ' => 'Q',
-		'ё' => 'yo', 'Ё' => 'Yo',
-		'ю' => 'yu', 'Ю' => 'Yu',
 		'ч' => 'ch', 'Ч' => 'Ch',
 		'ш' => 'sh', 'Ш' => 'Sh',
-		'й' => 'y', 'Й' => 'Y',
-		'я' => 'ya', 'Я' => 'Ya',
 		'ъ' => 'ʼ',
+		'ь' => '',
+		'э' => 'e', 'Э' => 'E',
+		'ю' => 'yu', 'Ю' => 'Yu',
+		'я' => 'ya', 'Я' => 'Ya',
+		'ў' => 'oʻ', 'Ў' => 'Oʻ',
+		'қ' => 'q', 'Қ' => 'Q',
+		'ғ' => 'gʻ', 'Ғ' => 'Gʻ',
+		'ҳ' => 'h', 'Ҳ' => 'H',
 	);
 
 	public $toCyrillic = array(
@@ -115,16 +115,48 @@ class UzConverter extends LanguageConverter {
 
 	function translate( $text, $toVariant ) {
 		if ( $toVariant == 'uz-cyrl' ) {
+			$exceptions = array(
+				// e = е at the beginning of a word or after consonants
+				// otherwise e = э (see above)
+				'e'=> 'е', 'E' => 'Е',
+				// s = ц at the beginning of a word and right after a consonant
+				// otherwise s = с ( see above)
+				's'=> 'ц', 'S' => 'Ц',
+			);
 			$text = str_replace( 'ye', 'е', $text );
 			$text = str_replace( 'Ye', 'Е', $text );
 			$text = str_replace( 'YE', 'Е', $text );
-			// "е" after consonants, otherwise "э" (see above)
-			$text = preg_replace( '/([BVGDJZYKLMNPRSTFXCWQʻ‘H])E/u', '$1Е', $text );
-			$text = preg_replace( '/([bvgdjzyklmnprstfxcwqʻ‘h])e/ui', '$1е', $text );
+			// After consonant rules - replace exceptions matching the case
+			$text = preg_replace_callback(
+				'/([bvgdjzyklmnprstfxcwqh‘])([es])/ui',
+				function( $matches ) {
+					global $exceptions;
+					if ( ctype_upper( $matches[2] ) ) {
+						$result = strtoupper( $matches[2] );
+					} else {
+						$result = $matches[2];
+					}
+					return $matches[1] . $exceptions[ $result ];
+				},
+				$text
+			);
+			// Beginning of word rules - replace exceptions matching the case
+			$text = preg_replace_callback(
+				'/\b([es])/ui',
+				function( $matches ) {
+					global $exceptions;
+					if ( ctype_upper( $matches[1] ) ) {
+						$result = strtoupper( $matches[1] );
+					} else {
+						$result = $matches[1];
+					}
+					return $exceptions[ $result ];
+				},
+				$text
+			);
 		}
 		return parent::translate( $text, $toVariant );
 	}
-
 }
 
 /**
