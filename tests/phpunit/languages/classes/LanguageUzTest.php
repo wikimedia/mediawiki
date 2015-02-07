@@ -24,7 +24,7 @@ class LanguageUzTest extends LanguageClassesTestCase {
 	 * @covers LanguageConverter::convertTo
 	 */
 	public function testConversionToCyrillic() {
-		// A convertion of Latin to Cyrillic
+		// A conversion of Latin to Cyrillic
 		$this->assertEquals( 'абвгғ',
 			$this->convertToCyrillic( 'abvggʻ' )
 		);
@@ -32,7 +32,7 @@ class LanguageUzTest extends LanguageClassesTestCase {
 		$this->assertEquals( 'ljабnjвгўоdb',
 			$this->convertToCyrillic( '-{lj}-ab-{nj}-vgoʻo-{db}-' )
 		);
-		// A simple convertion of Cyrillic to Cyrillic
+		// A simple conversion of Cyrillic to Cyrillic
 		$this->assertEquals( 'абвг',
 			$this->convertToCyrillic( 'абвг' )
 		);
@@ -40,17 +40,38 @@ class LanguageUzTest extends LanguageClassesTestCase {
 		$this->assertEquals( 'ljабnjвгdaž',
 			$this->convertToCyrillic( '-{lj}-аб-{nj}-вг-{da}-ž' )
 		);
+		// e = э at the beginning of a word or after a vowel
+		// otherwise e = е
+		$this->assertEquals( 'эшик Эшак ЭЧКИ поэма АЭРОПОРТ кенг',
+			$this->convertToCyrillic( 'eshik Eshak ECHKI poema AEROPORT keng' )
+		);
+		// s = ц right after a consonant, otherwise s = с
+		// In some words that start with an 's', this letter should be transliterated to 'ц',
+		// in others to 'с'.
+		$this->assertEquals( 'Цирк цент ЦЕНТНЕР пропорция ПОТЕНЦИАЛ Опцион судхўр кесмоқ',
+			$this->convertToCyrillic( 'Sirk sent SENTNER proporsiya POTENSIAL Opsion sudxo‘r kesmoq' )
+		);
+		// compound letters
+		$this->assertEquals( 'етмиш юз ўн ҒАЙРАТ Шаҳар ЙЎЛ ПИНЦЕТ Ёлғиз юрак оят',
+			$this->convertToCyrillic( 'yetmish yuz o‘n G‘AYRAT Shahar YO‘L PINSET Yolg‘iz yurak oyat' )
+		);
+		// тс, ц
+		$this->assertEquals( 'нажотсиз Ниҳоятсиз БУТСИ вақтсиз регистрация боцман Корреляция',
+			$this->convertToCyrillic( 'najotsiz Nihoyatsiz BUTSI vaqtsiz registrasiya bosman Korrelyasiya' )
+		);
+
+
 	}
 
 	/**
 	 * @covers LanguageConverter::convertTo
 	 */
 	public function testConversionToLatin() {
-		// A simple convertion of Latin to Latin
+		// A simple conversion of Latin to Latin
 		$this->assertEquals( 'abdef',
 			$this->convertToLatin( 'abdef' )
 		);
-		// A convertion of Cyrillic to Latin
+		// A conversion of Cyrillic to Latin
 		$this->assertEquals( 'gʻabtsdOʻQyo',
 			$this->convertToLatin( 'ғабцдЎҚё' )
 		);
@@ -86,7 +107,7 @@ class LanguageUzTest extends LanguageClassesTestCase {
 	}
 
 	/**
-	 * Verifiy the given Cyrillic text is not converted when using
+	 * Verify the given Cyrillic text is not converted when using
 	 * using the cyrillic variant and converted to Latin when using
 	 * the Latin variant.
 	 * @param string $text Text to convert
@@ -98,7 +119,7 @@ class LanguageUzTest extends LanguageClassesTestCase {
 	}
 
 	/**
-	 * Verifiy the given Latin text is not converted when using
+	 * Verify the given Latin text is not converted when using
 	 * using the Latin variant and converted to Cyrillic when using
 	 * the Cyrillic variant.
 	 * @param string $text Text to convert
@@ -109,15 +130,30 @@ class LanguageUzTest extends LanguageClassesTestCase {
 		$this->assertConverted( $text, 'uz-cyrl', $msg );
 	}
 
-	/** Wrapper for converter::convertTo() method*/
+	/**
+	 * Wrapper for converter::convertTo()
+	 * @param string $text Text to convert
+	 * @param string $variant Language variant
+	 * @return string Converted string
+	 */
 	protected function convertTo( $text, $variant ) {
 		return $this->getLang()->mConverter->convertTo( $text, $variant );
 	}
 
+	/**
+	 * Convert text to cyrillic
+	 * @param $text
+	 * @return string Converted string
+	 */
 	protected function convertToCyrillic( $text ) {
 		return $this->convertTo( $text, 'uz-cyrl' );
 	}
 
+	/**
+	 * Convert text to latin
+	 * @param $text
+	 * @return string Converted string
+	 */
 	protected function convertToLatin( $text ) {
 		return $this->convertTo( $text, 'uz-latn' );
 	}
