@@ -1073,7 +1073,9 @@ return array(
 	'mediawiki.action.history.diff' => array(
 		'styles' => array(
 			'resources/src/mediawiki.action/mediawiki.action.history.diff.css',
-			'resources/src/mediawiki.action/mediawiki.action.history.diff.print.css' => array( 'media' => 'print' ),
+			'resources/src/mediawiki.action/mediawiki.action.history.diff.print.css' => array(
+				'media' => 'print'
+			),
 		),
 		'group' => 'mediawiki.action.history',
 		'targets' => array( 'desktop', 'mobile' ),
