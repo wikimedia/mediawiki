@@ -67,8 +67,7 @@ class HistoryAction extends FormlessAction {
 	}
 
 	/**
-	 * Get the Article object we are working on.
-	 * @return Page
+	 * @return WikiPage|Article|ImagePage|CategoryPage|Page The Article object we are working on.
 	 */
 	public function getArticle() {
 		return $this->page;
@@ -896,4 +895,5 @@ class HistoryPager extends ReverseChronologicalPager {
 	function getPreventClickjacking() {
 		return $this->preventClickjacking;
 	}
+
 }
