@@ -1587,7 +1587,7 @@ abstract class Skin extends ContextSource {
 
 		$links = array(
 			'editsection' => array(
-				'text' => wfMessage( 'editsection' )->inLanguage( $lang )->text(),
+				'text' => wfMessage( 'editsection' )->inLanguage( $lang )->escaped(),
 				'targetTitle' => $nt,
 				'attribs' => $attribs,
 				'query' => array( 'action' => 'edit', 'section' => $section ),
