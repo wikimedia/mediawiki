@@ -1584,7 +1584,7 @@ abstract class Skin extends ContextSource {
 			$attribs['title'] = wfMessage( 'editsectionhint' )->rawParams( $tooltip )
 				->inLanguage( $lang )->text();
 		}
-		$link = Linker::link( $nt, wfMessage( 'editsection' )->inLanguage( $lang )->text(),
+		$link = Linker::link( $nt, wfMessage( 'editsection' )->inLanguage( $lang )->escaped(),
 			$attribs,
 			array( 'action' => 'edit', 'section' => $section ),
 			array( 'noclasses', 'known' )
