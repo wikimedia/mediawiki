@@ -1256,7 +1256,7 @@
 				}
 
 				// Initialise templates
-				if ( registry[module].templates ) {
+				if ( registry[module].templates && !$.isEmptyObject( registry[module].templates ) ) {
 					mw.templates.set( module, registry[module].templates );
 				}
 
