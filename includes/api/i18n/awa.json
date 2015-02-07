@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"1AnuraagPandey"
+		]
+	},
+	"apihelp-block-description": "सदस्य कय अवरोधित करा जाय।",
+	"apihelp-block-param-reason": "ब्लाक करेकै कारण",
+	"apihelp-block-param-nocreate": "खाते बनावेकै रोका जाय",
+	"apihelp-edit-param-minor": "छोट संपादन"
+}
