@@ -2440,6 +2440,13 @@ $wgSquidMaxage = 18000;
 $wgForcedRawSMaxage = 300;
 
 /**
+ * Explicit maximum age for raw accesses
+ */
+$wgExplicitRawSMaxageJS = null;
+$wgExplicitRawSMaxageCSS = null;
+$wgExplicitRawSMaxageContent = null;
+
+/**
  * List of proxy servers to purge on changes; default port is 80. Use IP addresses.
  *
  * When MediaWiki is running behind a proxy, it will trust X-Forwarded-For
