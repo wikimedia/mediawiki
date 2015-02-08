@@ -5,6 +5,7 @@
 	font-weight: bold;
 }
 
+.mw-version-ext-license,
 .mw-version-ext-vcs-timestamp {
 	white-space: nowrap;
 }
