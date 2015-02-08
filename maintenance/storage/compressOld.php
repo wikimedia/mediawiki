@@ -50,9 +50,15 @@ require_once __DIR__ . '/../Maintenance.php';
  */
 class CompressOld extends Maintenance {
 	/**
-	 * @todo document
+	 * Option to load each revision individually.
+	 *
 	 */
 	const LS_INDIVIDUAL = 0;
+
+	/**
+	 * Option to load revisions in chunks.
+	 *
+	 */
 	const LS_CHUNKED = 1;
 
 	public function __construct() {
@@ -137,7 +143,8 @@ class CompressOld extends Maintenance {
 	}
 
 	/**
-	 * @todo document
+	 * Fetch the text row-by-row to 'compressPage' function for compression.
+	 *
 	 * @param int $start
 	 * @param string $extdb
 	 */
@@ -172,7 +179,8 @@ class CompressOld extends Maintenance {
 	}
 
 	/**
-	 * @todo document
+	 * Compress the text in gzip format.
+	 *
 	 * @param stdClass $row
 	 * @param string $extdb
 	 * @return bool
@@ -214,6 +222,8 @@ class CompressOld extends Maintenance {
 	}
 
 	/**
+	 * Compress the text in chunks after concatenating the revisions.
+	 *
 	 * @param int $startId
 	 * @param int $maxChunkSize
 	 * @param string $beginDate
