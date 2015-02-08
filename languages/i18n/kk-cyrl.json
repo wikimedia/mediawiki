@@ -2619,7 +2619,7 @@
 	"fileduplicatesearch-result-n": "«$1» файлына тең $2 телнұсқасы бар.",
 	"fileduplicatesearch-noresults": "\"$1\" атауымен файл табылмады.",
 	"specialpages": "Арнайы беттер",
-	"specialpages-note": "* Қалыпты арнайы беттер. * <span class==\"mw-specialpagerestricted\">Шектелген арнайы беттер.</span>",
+	"specialpages-note": "* Қалыпты арнайы беттер. \n* <span class==\"mw-specialpagerestricted\">Шектелген арнайы беттер.</span>",
 	"specialpages-group-maintenance": "Техникалық талқылау есептері",
 	"specialpages-group-other": "Тағы басқа арнайы беттер",
 	"specialpages-group-login": "Кіру / тіркелу",
