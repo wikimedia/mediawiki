@@ -24,7 +24,7 @@
 /**
  * Class to handle job queues stored in Redis
  *
- * This is faster, less resource intensive, queue that JobQueueDB.
+ * This is a faster, less resource intensive, queue than JobQueueDB.
  * All data for a queue using this class is placed into one redis server.
  *
  * There are eight main redis keys used to track jobs:
@@ -49,7 +49,7 @@
  *
  * This class requires Redis 2.6 as it makes use Lua scripts for fast atomic operations.
  * Additionally, it should be noted that redis has different persistence modes, such
- * as rdb snapshots, journaling, and no persistent. Appropriate configuration should be
+ * as rdb snapshots, journaling, and no persistence. Appropriate configuration should be
  * made on the servers based on what queues are using it and what tolerance they have.
  *
  * @ingroup JobQueue
