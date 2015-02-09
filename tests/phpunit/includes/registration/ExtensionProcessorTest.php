@@ -162,6 +162,105 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 		}
 	}
 
+	/**
+	 * @covers ExtensionProcessor::extractResourceLoaderModules
+	 * @dataProvider provideExtractResourceLoaderModules
+	 */
+	public function testExtractResourceLoaderModules( $input, $expected ) {
+		$processor = new ExtensionProcessor();
+		$processor->extractInfo( $this->dir, $input + self::$default );
+		$out = $processor->getExtractedInfo();
+		foreach ( $expected as $key => $value ) {
+			$this->assertEquals( $value, $out['globals'][$key] );
+		}
+	}
+
+	public static function provideExtractResourceLoaderModules() {
+		$dir = __DIR__ . '/FooBar/';
+		return array(
+			// Generic module with localBasePath/remoteExtPath specified
+			array(
+				// Input
+				array(
+					'ResourceModules' => array(
+						'test.foo' => array(
+							'styles' => 'foobar.js',
+							'localBasePath' => '',
+							'remoteExtPath' => 'FooBar',
+						),
+					),
+				),
+				// Expected
+				array(
+					'wgResourceModules' => array(
+						'test.foo' => array(
+							'styles' => 'foobar.js',
+							'localBasePath' => $dir,
+							'remoteExtPath' => 'FooBar',
+						),
+					),
+				),
+			),
+			// ResourceFileModulePaths specified:
+			array(
+				// Input
+				array(
+					'ResourceFileModulePaths' => array(
+						'localBasePath' => '',
+						'remoteExtPath' => 'FooBar',
+					),
+					'ResourceModules' => array(
+						// No paths
+						'test.foo' => array(
+							'styles' => 'foo.js',
+						),
+						// Different paths set
+						'test.bar' => array(
+							'styles' => 'bar.js',
+							'localBasePath' => 'subdir',
+							'remoteExtPath' => 'FooBar/subdir',
+						),
+						// Custom class with no paths set
+						'test.class' => array(
+							'class' => 'FooBarModule',
+							'extra' => 'argument',
+						),
+						// Custom class with a localBasePath
+						'test.class.with.path' => array(
+							'class' => 'FooBarPathModule',
+							'extra' => 'argument',
+							'localBasePath' => '',
+						)
+					),
+				),
+				// Expected
+				array(
+					'wgResourceModules' => array(
+						'test.foo' => array(
+							'styles' => 'foo.js',
+							'localBasePath' => $dir,
+							'remoteExtPath' => 'FooBar',
+						),
+						'test.bar' => array(
+							'styles' => 'bar.js',
+							'localBasePath' => $dir . 'subdir',
+							'remoteExtPath' => 'FooBar/subdir',
+						),
+						'test.class' => array(
+							'class' => 'FooBarModule',
+							'extra' => 'argument',
+						),
+						'test.class.with.path' => array(
+							'class' => 'FooBarPathModule',
+							'extra' => 'argument',
+							'localBasePath' => $dir,
+						)
+					),
+				),
+			),
+		);
+	}
+
 	public static function provideSetToGlobal() {
 		return array(
 			array(
