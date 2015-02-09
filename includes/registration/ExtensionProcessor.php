@@ -116,7 +116,8 @@ class ExtensionProcessor implements Processor {
 		$this->extractConfig( $info );
 		$this->extractHooks( $info );
 		$dir = dirname( $path );
-		$this->extractMessageSettings( $dir, $info );
+		$this->extractExtensionMessagesFiles( $dir, $info );
+		$this->extractMessagesDirs( $dir, $info );
 		$this->extractNamespaces( $info );
 		$this->extractResourceLoaderModules( $dir, $info );
 		if ( isset( $info['callback'] ) ) {
@@ -194,6 +195,15 @@ class ExtensionProcessor implements Processor {
 		}
 	}
 
+	protected function extractExtensionMessagesFiles( $dir, array $info ) {
+		if ( isset( $info['ExtensionMessagesFiles'] ) ) {
+			$this->globals["wgExtensionMessagesFiles"] += array_map( function( $file ) use ( $dir ) {
+				return "$dir/$file";
+			}, $info['ExtensionMessagesFiles'] );
+			$this->processed[] = 'ExtensionMessagesFiles';
+		}
+	}
+
 	/**
 	 * Set message-related settings, which need to be expanded to use
 	 * absolute paths
@@ -201,16 +211,14 @@ class ExtensionProcessor implements Processor {
 	 * @param string $dir
 	 * @param array $info
 	 */
-	protected function extractMessageSettings( $dir, array $info ) {
-		foreach ( array( 'ExtensionMessagesFiles', 'MessagesDirs' ) as $key ) {
-			if ( isset( $info[$key] ) ) {
-				foreach ( $info[$key] as $name => $files ) {
-					foreach ( (array)$files as $file ) {
-						$this->globals["wg$key"][$name][] = "$dir/$file";
-					}
+	protected function extractMessagesDirs( $dir, array $info ) {
+		if ( isset( $info['MessagesDirs'] ) ) {
+			foreach ( $info['MessagesDirs'] as $name => $files ) {
+				foreach ( (array)$files as $file ) {
+					$this->globals["wgMessagesDirs"][$name][] = "$dir/$file";
 				}
-				$this->processed[] = $key;
 			}
+			$this->processed[] = 'MessagesDirs';
 		}
 	}
 
