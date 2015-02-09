@@ -42,6 +42,9 @@ production.
   background with white fallback color, rather than just white background.
  * MediaWikiBagOStuff class removed, make sure any object cache config
    uses SqlBagOStuff instead.
+* $wgExplicitRawSMaxageJS was added.
+* $wgExplicitRawSMaxageCSS was added.
+* $wgExplicitRawSMaxageContent was added.
 
 === New features in 1.25 ===
 * (T64861) Updated plural rules to CLDR 26. Includes incompatible changes
