@@ -90,6 +90,18 @@ class RawAction extends FormlessAction {
 			}
 		}
 
+		$explicitRawSMaxageCSS = $config->get( 'ExplicitRawSMaxageCSS' );
+		$explicitRawSMaxageJS = $config->get( 'ExplicitRawSMaxageJS' );
+		$explicitRawSMaxageContent = $config->get( 'ExplicitRawSMaxageContent' );
+
+		if ( $contentType == 'text/css' && !is_null( $explicitRawSMaxageCSS ) ) {
+			$smaxage = $explicitRawSMaxageCSS;
+		} elseif( $contentType == 'text/javascript' && !is_null( $explicitRawSMaxageJS ) ) {
+			$smaxage = $explicitRawSMaxageJS;
+		} elseif( $contentType == 'text/x-wiki' && !is_null( $explicitRawSMaxageContent ) ) {
+			$smaxage = $explicitRawSMaxageContent;
+		}
+
 		$maxage = $request->getInt( 'maxage', $config->get( 'SquidMaxage' ) );
 
 		$response = $request->response();
