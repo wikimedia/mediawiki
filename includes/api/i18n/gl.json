@@ -84,6 +84,7 @@
 	"apihelp-feedcontributions-param-toponly": "Mostrar só as edicións que que son as ultimas revisións.",
 	"apihelp-feedcontributions-param-newonly": "Mostrar só as edicións que crearon páxinas.",
 	"apihelp-feedcontributions-param-showsizediff": "Mostrar diferenza de tamaño entre edicións.",
+	"apihelp-feedcontributions-example-simple": "Mostrar as contribucións do usuario <kbd>Example</kbd>.",
 	"apihelp-feedrecentchanges-param-invert": "Tódolos nomes de espazos agás o seleccionado",
 	"apihelp-feedrecentchanges-param-days": "Días a limitar os resultados",
 	"apihelp-feedrecentchanges-param-limit": "Número máximo de resultados a visualizar.",
