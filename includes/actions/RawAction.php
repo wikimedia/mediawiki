@@ -94,7 +94,7 @@ class RawAction extends FormlessAction {
 		$explicitRawSMaxageJS = $config->get( 'ExplicitRawSMaxageJS' );
 		$explicitRawSMaxageContent = $config->get( 'ExplicitRawSMaxageContent' );
 
-		if( $contentType == 'text/css' && !is_null( $explicitRawSMaxageCSS ) ) {
+		if ( $contentType == 'text/css' && !is_null( $explicitRawSMaxageCSS ) ) {
 			$smaxage = $explicitRawSMaxageCSS;
 		} elseif( $contentType == 'text/javascript' && !is_null( $explicitRawSMaxageJS ) ) {
 			$smaxage = $explicitRawSMaxageJS;
