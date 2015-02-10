@@ -35,7 +35,7 @@
 		} );
 	} );
 
-	QUnit.test( 'getUrl', 4, function ( assert ) {
+	QUnit.test( 'getUrl', 5, function ( assert ) {
 		// Not part of startUp module
 		mw.config.set( 'wgArticlePath', '/wiki/$1' );
 		mw.config.set( 'wgPageName', 'Foobar' );
@@ -48,6 +48,9 @@
 
 		href = mw.util.getUrl();
 		assert.equal( href, '/wiki/Foobar', 'default title' );
+
+		href = mw.util.getUrl( null, { action: 'edit' } );
+		assert.equal( href, '/wiki/Foobar?action=edit', 'default title with query string' );
 
 		href = mw.util.getUrl( 'Sandbox', { action: 'edit' } );
 		assert.equal( href, '/wiki/Sandbox?action=edit', 'simple title with query string' );
