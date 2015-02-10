@@ -177,7 +177,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			);
 			return $dbr->select(
 				array( 'page', 'temp_backlink_range' => "($subQuery)" ),
-				array( 'page_id', 'page_namespace', 'page_title', 'rd_from' ),
+				array( 'page_id', 'page_namespace', 'page_title', 'rd_from', 'page_is_redirect' ),
 				array(),
 				__CLASS__ . '::showIndirectLinks',
 				array( 'ORDER BY' => 'page_id', 'LIMIT' => $queryLimit ),
@@ -321,7 +321,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$link = Linker::linkKnown(
 			$nt,
 			null,
-			array(),
+			$row->page_is_redirect ? array( 'class' => 'mw-redirect' ) : array(),
 			$query
 		);
 
