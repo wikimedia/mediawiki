@@ -6417,6 +6417,7 @@ $wgJobClasses = array(
 	'AssembleUploadChunks' => 'AssembleUploadChunksJob',
 	'PublishStashedFile' => 'PublishStashedFileJob',
 	'ThumbnailRender' => 'ThumbnailRenderJob',
+	'recentChangesUpdate' => 'RecentChangesUpdateJob',
 	'null' => 'NullJob'
 );
 
