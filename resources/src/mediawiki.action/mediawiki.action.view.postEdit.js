@@ -76,4 +76,4 @@
 		mw.cookie.set( cookieKey, null );
 	}
 
-} ( mediaWiki, jQuery ) );
+}( mediaWiki, jQuery ) );

@@ -13,7 +13,7 @@
  * @version 2.1.0
  * @license MIT
  */
-(function ($) {
+( function ($) {
 
 	var isInputSupported = 'placeholder' in document.createElement('input'),
 		isTextareaSupported = 'placeholder' in document.createElement('textarea'),
@@ -49,7 +49,7 @@
 
 			$this
 				.filter((isInputSupported ? 'textarea' : ':input') + '[placeholder]')
-				.filter(function () {
+				.filter( function () {
 					return !$(this).data('placeholder-enabled');
 				})
 				.bind({
@@ -114,12 +114,12 @@
 			propHooks.value = hooks;
 		}
 
-		$(function () {
+		$( function () {
 			// Look for forms
 			$(document).delegate('form', 'submit.placeholder', function () {
 				// Clear the placeholder values so they don't get submitted
 				var $inputs = $('.placeholder', this).each(clearPlaceholder);
-				setTimeout(function () {
+				setTimeout( function () {
 					$inputs.each(setPlaceholder);
 				}, 10);
 			});
@@ -127,7 +127,7 @@
 
 		// Clear placeholder values upon page reload
 		$(window).bind('beforeunload.placeholder', function () {
-			$('.placeholder').each(function () {
+			$('.placeholder').each( function () {
 				this.value = '';
 			});
 		});

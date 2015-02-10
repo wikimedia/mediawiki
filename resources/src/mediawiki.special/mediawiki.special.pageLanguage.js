@@ -6,4 +6,4 @@
 			$( '#mw-pl-options-2' ).prop( 'checked', true );
 		} );
 	} );
-} ( jQuery ) );
+}( jQuery ) );
