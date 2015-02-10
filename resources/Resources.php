@@ -765,7 +765,10 @@ return array(
 	/* MediaWiki */
 
 	'mediawiki' => array(
-		'scripts' => 'resources/src/mediawiki/mediawiki.js',
+		'scripts' => array(
+			'resources/src/mediawiki/mediawiki.js',
+			'resources/src/mediawiki/mediawiki.startUp.js',
+		),
 		'debugScripts' => 'resources/src/mediawiki/mediawiki.log.js',
 		'raw' => true,
 		'targets' => array( 'desktop', 'mobile' ),
