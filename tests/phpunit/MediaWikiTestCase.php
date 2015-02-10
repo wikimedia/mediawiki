@@ -129,14 +129,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$needsResetDB = true;
 		}
 
-		wfProfileIn( $logName );
 		parent::run( $result );
-		wfProfileOut( $logName );
 
 		if ( $needsResetDB ) {
-			wfProfileIn( $logName . ' (reset-db)' );
 			$this->resetDB();
-			wfProfileOut( $logName . ' (reset-db)' );
 		}
 	}
 
