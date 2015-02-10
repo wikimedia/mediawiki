@@ -41,18 +41,16 @@
 		mw.config.set( 'wgPageName', 'Foobar' );
 
 		var href = mw.util.getUrl( 'Sandbox' );
-		assert.equal( href, '/wiki/Sandbox', 'Simple title; Get link for "Sandbox"' );
+		assert.equal( href, '/wiki/Sandbox', 'simple title' );
 
-		href = mw.util.getUrl( 'Foo:Sandbox ? 5+5=10 ! (test)/subpage' );
-		assert.equal( href, '/wiki/Foo:Sandbox_%3F_5%2B5%3D10_!_(test)/subpage',
-			'Advanced title; Get link for "Foo:Sandbox ? 5+5=10 ! (test)/subpage"' );
+		href = mw.util.getUrl( 'Foo:Sandbox? 5+5=10! (test)/sub ' );
+		assert.equal( href, '/wiki/Foo:Sandbox%3F_5%2B5%3D10!_(test)/sub_', 'advanced title' );
 
 		href = mw.util.getUrl();
-		assert.equal( href, '/wiki/Foobar', 'Default title; Get link for current page ("Foobar")' );
+		assert.equal( href, '/wiki/Foobar', 'default title' );
 
 		href = mw.util.getUrl( 'Sandbox', { action: 'edit' } );
-		assert.equal( href, '/wiki/Sandbox?action=edit',
-			'Simple title with query string; Get link for "Sandbox" with action=edit' );
+		assert.equal( href, '/wiki/Sandbox?action=edit', 'simple title with query string' );
 	} );
 
 	QUnit.test( 'wikiScript', 4, function ( assert ) {
