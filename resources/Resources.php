@@ -266,8 +266,8 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.qunit' => array(
-		'scripts' => 'resources/lib/jquery/jquery.qunit.js',
-		'styles' => 'resources/lib/jquery/jquery.qunit.css',
+		'scripts' => 'resources/lib/qunitjs/qunit.js',
+		'styles' => 'resources/lib/qunitjs/qunit.css',
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
