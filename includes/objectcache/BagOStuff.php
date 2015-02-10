@@ -123,12 +123,16 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	 * and takes the arguments: (this BagOStuff object, cache key, current value).
 	 *
 	 * @param string $key
-	 * @param Closure $callback Callback method to be executed
+	 * @param callable $callback Callback method to be executed
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $attempts The amount of times to attempt a merge in case of failure
 	 * @return bool Success
 	 */
-	public function merge( $key, Closure $callback, $exptime = 0, $attempts = 10 ) {
+	public function merge( $key, $callback, $exptime = 0, $attempts = 10 ) {
+		if ( !is_callable( $callback ) ) {
+			throw new Exception( "Got invalid callback." );
+		}
+
 		return $this->mergeViaCas( $key, $callback, $exptime, $attempts );
 	}
 
@@ -136,16 +140,18 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	 * @see BagOStuff::merge()
 	 *
 	 * @param string $key
-	 * @param Closure $callback Callback method to be executed
+	 * @param callable $callback Callback method to be executed
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $attempts The amount of times to attempt a merge in case of failure
 	 * @return bool Success
 	 */
-	protected function mergeViaCas( $key, Closure $callback, $exptime = 0, $attempts = 10 ) {
+	protected function mergeViaCas( $key, $callback, $exptime = 0, $attempts = 10 ) {
 		do {
 			$casToken = null; // passed by reference
 			$currentValue = $this->get( $key, $casToken ); // get the old value
-			$value = $callback( $this, $key, $currentValue ); // derive the new value
+			$value = call_user_func_array( // derive the new value
+				$callback, array( $this, $key, $currentValue )
+			);
 
 			if ( $value === false ) {
 				$success = true; // do nothing
@@ -165,18 +171,20 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	 * @see BagOStuff::merge()
 	 *
 	 * @param string $key
-	 * @param Closure $callback Callback method to be executed
+	 * @param callable $callback Callback method to be executed
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $attempts The amount of times to attempt a merge in case of failure
 	 * @return bool Success
 	 */
-	protected function mergeViaLock( $key, Closure $callback, $exptime = 0, $attempts = 10 ) {
+	protected function mergeViaLock( $key, $callback, $exptime = 0, $attempts = 10 ) {
 		if ( !$this->lock( $key, 6 ) ) {
 			return false;
 		}
 
 		$currentValue = $this->get( $key ); // get the old value
-		$value = $callback( $this, $key, $currentValue ); // derive the new value
+		$value = call_user_func_array( // derive the new value
+			$callback, array( $this, $key, $currentValue )
+		);
 
 		if ( $value === false ) {
 			$success = true; // do nothing
