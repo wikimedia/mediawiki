@@ -88,7 +88,7 @@
 		/**
 		 * Get the link to a page name (relative to `wgServer`),
 		 *
-		 * @param {string} str Page name
+		 * @param {string|null} [str=wgPageName] Page name
 		 * @param {Object} [params] A mapping of query parameter names to values,
 		 *  e.g. `{ action: 'edit' }`
 		 * @return {string} Url of the page with name of `str`
