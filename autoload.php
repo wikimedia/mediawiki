@@ -535,6 +535,7 @@ $wgAutoloadLocalClasses = array(
 	'ImageQueryPage' => __DIR__ . '/includes/specialpage/ImageQueryPage.php',
 	'ImportReporter' => __DIR__ . '/includes/specials/SpecialImport.php',
 	'ImportSiteScripts' => __DIR__ . '/maintenance/importSiteScripts.php',
+	'ImportSource' => __DIR__ . '/includes/Import.php',
 	'ImportStreamSource' => __DIR__ . '/includes/Import.php',
 	'ImportStringSource' => __DIR__ . '/includes/Import.php',
 	'ImportTitleFactory' => __DIR__ . '/includes/title/ImportTitleFactory.php',

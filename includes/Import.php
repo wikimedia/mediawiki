@@ -45,10 +45,10 @@ class WikiImporter {
 
 	/**
 	 * Creates an ImportXMLReader drawing from the source provided
-	 * @param ImportStreamSource $source
+	 * @param ImportSource $source
 	 * @param Config $config
 	 */
-	function __construct( ImportStreamSource $source, Config $config = null ) {
+	function __construct( ImportSource $source, Config $config = null ) {
 		$this->reader = new XMLReader();
 		if ( !$config ) {
 			wfDeprecated( __METHOD__ . ' without a Config instance', '1.25' );
@@ -967,10 +967,10 @@ class UploadSourceAdapter {
 	private $mPosition;
 
 	/**
-	 * @param ImportStreamSource $source
+	 * @param ImportSource $source
 	 * @return string
 	 */
-	static function registerSource( ImportStreamSource $source ) {
+	static function registerSource( ImportSource $source ) {
 		$id = wfRandomString();
 
 		self::$sourceRegistrations[$id] = $source;
@@ -1709,13 +1709,37 @@ class WikiRevision {
 }
 
 /**
+ * Source interface for XML import.
+ */
+interface ImportSource {
+
+	/**
+	 * Indicates whether the end of the input has been reached.
+	 * Will return true after a finite number of calls to readChunk.
+	 *
+	 * @return bool true if there is no more input, false otherwise.
+	 */
+	function atEnd();
+
+	/**
+	 * Return a chunk of the input, as a (possibly empty) string.
+	 * When the end of input is reached, readChunk() returns false.
+	 * If atEnd() returns false, readChunk() will return a string.
+	 * If atEnd() returns true, readChunk() will return false.
+	 *
+	 * @return bool|string
+	 */
+	function readChunk();
+}
+
+/**
  * Used for importing XML dumps where the content of the dump is in a string.
  * This class is ineffecient, and should only be used for small dumps.
  * For larger dumps, ImportStreamSource should be used instead.
  *
  * @ingroup SpecialPage
  */
-class ImportStringSource {
+class ImportStringSource implements ImportSource {
 	function __construct( $string ) {
 		$this->mString = $string;
 		$this->mRead = false;
@@ -1744,7 +1768,7 @@ class ImportStringSource {
  * Imports a XML dump from a file (either from file upload, files on disk, or HTTP)
  * @ingroup SpecialPage
  */
-class ImportStreamSource {
+class ImportStreamSource implements ImportSource {
 	function __construct( $handle ) {
 		$this->mHandle = $handle;
 	}
