@@ -97,13 +97,13 @@
 			var registration = mw.config.get( 'wgUserRegistration' );
 			if ( user.isAnon() ) {
 				return false;
-			} else if ( registration === null ) {
+			}
+			if ( registration === null ) {
 				// Information may not be available if they signed up before
 				// MW began storing this.
 				return null;
-			} else {
-				return new Date( registration );
 			}
+			return new Date( registration );
 		},
 
 		/**
