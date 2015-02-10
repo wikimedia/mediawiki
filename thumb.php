@@ -321,6 +321,7 @@ function wfStreamThumb( array $params ) {
 
 	// Check for thumbnail generation errors...
 	$msg = wfMessage( 'thumbnail_error' );
+	$errorCode = 500;
 	if ( !$thumb ) {
 		$errorMsg = $errorMsg ?: $msg->rawParams( 'File::transform() returned false' )->escaped();
 	} elseif ( $thumb->isError() ) {
@@ -330,10 +331,11 @@ function wfStreamThumb( array $params ) {
 	} elseif ( $thumb->fileIsSource() ) {
 		$errorMsg = $msg->
 			rawParams( 'Image was not scaled, is the requested width bigger than the source?' )->escaped();
+		$errorCode = 400;
 	}
 
 	if ( $errorMsg !== false ) {
-		wfThumbError( 500, $errorMsg );
+		wfThumbError( $errorCode, $errorMsg );
 	} else {
 		// Stream the file if there were no errors
 		$thumb->streamFile( $headers );
@@ -545,7 +547,9 @@ function wfThumbError( $status, $msg ) {
 
 	header( 'Cache-Control: no-cache' );
 	header( 'Content-Type: text/html; charset=utf-8' );
-	if ( $status == 404 ) {
+	if ( $status == 400 ) {
+		header( 'HTTP/1.1 400 Bad request' );
+	} elseif ( $status == 404 ) {
 		header( 'HTTP/1.1 404 Not found' );
 	} elseif ( $status == 403 ) {
 		header( 'HTTP/1.1 403 Forbidden' );
