@@ -699,6 +699,7 @@ $wgAutoloadLocalClasses = array(
 	'MWLoggerMonologProcessor' => __DIR__ . '/includes/debug/logger/monolog/Processor.php',
 	'MWLoggerMonologSamplingHandler' => __DIR__ . '/includes/debug/logger/monolog/SamplingHandler.php',
 	'MWLoggerMonologSpi' => __DIR__ . '/includes/debug/logger/monolog/Spi.php',
+	'MWLoggerMonologSyslogHandler' => __DIR__ . '/includes/debug/logger/monolog/SyslogHandler.php',
 	'MWLoggerNullSpi' => __DIR__ . '/includes/debug/logger/NullSpi.php',
 	'MWLoggerSpi' => __DIR__ . '/includes/debug/logger/Spi.php',
 	'MWMemcached' => __DIR__ . '/includes/objectcache/MemcachedClient.php',
