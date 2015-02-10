@@ -2893,7 +2893,7 @@
 	"watchlistedit-clear-legend": "Isprazni spisak nadgledanja",
 	"watchlistedit-clear-explain": "Svi naslovi će biti uklonjeni iz vašeg spiska nadgledanja.",
 	"watchlistedit-clear-titles": "Naslovi:",
-	"watchlistedit-clear-submit": "Isprazni spisak nadgledanja (Ovo je trajno!)",
+	"watchlistedit-clear-submit": "Isprazni spisak nadgledanja (Ovo je nepovratno!)",
 	"watchlistedit-clear-done": "Vaš spisak nadgledanja je ispražnjen.",
 	"watchlistedit-clear-removed": "{{PLURAL:$1|1 naslov je uklonjen|$1 naslova su uklonjena|$1 naslova je uklonjeno}}:",
 	"watchlistedit-too-many": "Ima previše stranica za prikaz ovde.",

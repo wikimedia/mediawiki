@@ -13,7 +13,8 @@
 			"Fabsouza1",
 			"Rodrigo codignoli",
 			"Tuliouel",
-			"Marcos dias de oliveira"
+			"Marcos dias de oliveira",
+			"Fasouzafreitas"
 		]
 	},
 	"config-desc": "O instalador do MediaWiki",
@@ -241,6 +242,7 @@
 	"config-install-done": "<strong>Parabéns!</strong>\nVocê concluiu a instalação do MediaWiki.\n\nO instalador gerou um arquivo <code>LocalSettings.php</code>.\nEste arquivo contém todas as suas configurações.\n\nVocê precisa fazer o download desse arquivo e colocá-lo na raiz da sua instalação (o mesmo diretório onde está o arquivo <code>index.php</code>). Este download deve ter sido iniciado automaticamente.\n\nSe o download não foi iniciado, ou se ele foi cancelado, pode recomeçá-lo clicando no link abaixo:\n\n$3\n\n<strong>Nota</strong>: Se não fizer isto agora, o arquivo que foi gerado não estará disponível depois que você sair do processo de instalação sem baixá-lo.\n\nQuando isso tiver sido feito, pode <strong>[$2 entrar na sua wiki]</strong>.",
 	"config-download-localsettings": "Baixar <code>LocalSettings.php</code>",
 	"config-help": "ajuda",
+	"config-help-tooltip": "clique para expandir",
 	"config-nofile": "O arquivo \"$1\" não foi encontrado. Ele foi apagado?",
 	"config-extension-link": "Você sabia que sua wiki suporta [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensões]?\n\nVocê pode explorar as  [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensões por categoria] ou visitar a [//www.mediawiki.org/wiki/Extension_Matrix Matriz de Extensões] para ver a lista completa.",
 	"mainpagetext": "<strong>O MediaWiki foi instalado com sucesso.</strong>",

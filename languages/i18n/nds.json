@@ -11,7 +11,8 @@
 			"Zylbath",
 			"לערי ריינהארט",
 			"아라",
-			"Kolega2357"
+			"Kolega2357",
+			"Servien"
 		]
 	},
 	"tog-underline": "Verwies ünnerstrieken",
@@ -376,6 +377,7 @@
 	"login-abort-generic": "Dien Anmellen harr keen Spood. Dat is afbroken worrn.",
 	"loginlanguagelabel": "Spraak: $1",
 	"suspicious-userlogout": "Dien Anfraag, di aftomellen, worr aflehnt, wieldat se vermoodlich vun en Browser oder Cache-Proxy sennt worrn is, de nich mehr funkschoneert.",
+	"pt-userlogout": "Afmellen",
 	"php-mail-error-unknown": "Unbekennten Fehler in PHP sien mail()-Funkschoon",
 	"user-mail-no-addy": "Versöch en E-Mail ahn E-Mail-Adress to sennen.",
 	"changepassword": "Passwoort ännern",
@@ -1293,7 +1295,6 @@
 	"delete-toobig": "Disse Siet hett en temlich lange Versionsgeschicht vun mehr as {{PLURAL:$1|ene Version|$1 Versionen}}. Dat Wegsmieten kann de Datenbank vun {{SITENAME}} för längere Tied utlasten un den Bedriev vun dat Wiki stöörn.",
 	"delete-warning-toobig": "Disse Siet hett en temlich lange Versionsgeschicht vun mehr as {{PLURAL:$1|ene Version|$1 Versionen}}. Dat Wegsmieten kann de Datenbank vun {{SITENAME}} för längere Tied utlasten un den Bedriev vun dat Wiki stöörn.",
 	"rollback": "Trüchnahm vun de Ännern",
-	"rollback_short": "Trüchnehmen",
 	"rollbacklink": "Trüchnehmen",
 	"rollbackfailed": "Trüchnahm hett kenen Spood",
 	"cantrollback": "De Ännern kann nich trüchnahmen warrn; de letzte Autor is de eenzige.",
@@ -2081,7 +2082,6 @@
 	"watchlisttools-edit": "Oppasslist ankieken un ännern",
 	"watchlisttools-raw": "Oppasslist as Textlist ännern",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|Diskusschoon]])",
-	"unknown_extension_tag": "Unbekannt Extension-Tag „$1“",
 	"duplicate-defaultsort": "Wohrschau: De DEFAULTSORTKEY „$2“ överschrifft den vörher bruukten Slötel „$1“.",
 	"version": "Version",
 	"version-extensions": "Installeerte Extensions",
@@ -2125,6 +2125,7 @@
 	"specialpages-group-wiki": "Systemdaten un Warktüüch",
 	"specialpages-group-redirects": "Redirect-Spezialsieden",
 	"specialpages-group-spam": "Spam-Warktüüch",
+	"specialpages-group-developer": "Developer-Warktüüch",
 	"blankpage": "Leddige Sied",
 	"intentionallyblankpage": "Disse Sied is mit Afsicht leddig.",
 	"external_image_whitelist": "  #Disse Reeg nich ännern<pre>\n#Ünnen köönt Delen vun reguläre Utdrück (de Deel twischen de //) angeven warrn.\n#De warrt mit de URLs vun Biller ut externe Borns vergleken\n#En positiv Vergliek föhrt dorto, dat dat Bild wiest warrt, ans warrt dat Bild blot as Lenk wiest\n#Regen, de mit en # anfangt, warrt as Kommentar behannelt\n#De List maakt keen Ünnerscheed bi grote un lütte Bookstaven\n\n#Delen vun reguläre Utdrück na disse Reeg indragen. Disse Reeg nich ännern</pre>",

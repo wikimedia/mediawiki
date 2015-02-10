@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fasouzafreitas"
+		]
+	},
+	"apihelp-main-param-requestid": "Qualquer valor dado aqui será incluído na resposta. Pode ser usado para distinguir requisições.",
+	"apihelp-block-description": "Bloquear um usuário",
+	"apihelp-block-param-user": "Nome de usuário, endereço IP ou faixa de IP para bloquear.",
+	"apihelp-feedrecentchanges-param-hidemyself": "Ocultar alterações feitas pelo usuário atual.",
+	"apihelp-feedrecentchanges-example-30days": "Mostrar as alterações recentes por 30 dias.",
+	"apihelp-move-param-movetalk": "Renomear a página de discussão, se existir.",
+	"apihelp-options-example-reset": "Resetar todas as preferências"
+}
