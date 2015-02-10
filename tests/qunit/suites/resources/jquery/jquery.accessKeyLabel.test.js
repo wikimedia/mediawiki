@@ -46,7 +46,7 @@
 	} );
 
 	QUnit.test( 'updateTooltipAccessKeys - current browser', 2, function ( assert ) {
-		var title = $( makeInput ( 'Title', 'a' ) ).updateTooltipAccessKeys().prop( 'title' ),
+		var title = $( makeInput( 'Title', 'a' ) ).updateTooltipAccessKeys().prop( 'title' ),
 			//The new title should be something like "Title [alt-a]", but the exact label will depend on the browser.
 			//The "a" could be capitalized, and the prefix could be anything, e.g. a simple "^" for ctrl-
 			//(no browser is known using such a short prefix, though) or "Alt+Umschalt+" in German Firefox.

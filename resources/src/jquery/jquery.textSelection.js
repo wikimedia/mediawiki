@@ -211,9 +211,10 @@
 							endPos = this.selectionEnd;
 							scrollTop = this.scrollTop;
 							checkSelectedText();
-							if ( options.selectionStart !== undefined
-									&& endPos - startPos !== options.selectionEnd - options.selectionStart )
-							{
+							if (
+								options.selectionStart !== undefined &&
+								endPos - startPos !== options.selectionEnd - options.selectionStart
+							) {
 								// This means there is a difference in the selection range returned by browser and what we passed.
 								// This happens for Chrome in the case of composite characters. Ref bug #30130
 								// Set the startPos to the correct position.

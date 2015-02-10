@@ -124,4 +124,4 @@
 		}
 	};
 
-} ( mediaWiki, jQuery ) );
+}( mediaWiki, jQuery ) );

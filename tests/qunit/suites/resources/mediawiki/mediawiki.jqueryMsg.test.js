@@ -80,7 +80,7 @@
 				only: 'scripts'
 			},
 			dataType: 'script'
-		} ).done(function () {
+		} ).done( function () {
 				mwLanguageCache[langCode].fire( mw.language );
 			} ).fail( function () {
 				mwLanguageCache[langCode].fire( false );
