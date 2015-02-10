@@ -201,7 +201,12 @@ function wfForbidden( $msg1, $msg2 ) {
 	header( 'Cache-Control: no-cache' );
 	header( 'Content-Type: text/html; charset=utf-8' );
 	echo <<<ENDS
+<!DOCTYPE html>
 <html>
+<head>
+<meta charset="UTF-8" />
+<title>$msgHdr</title>
+</head>
 <body>
 <h1>$msgHdr</h1>
 <p>$detailMsg</p>

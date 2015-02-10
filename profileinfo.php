@@ -36,7 +36,7 @@ header( 'Content-Type: text/html; charset=utf-8' );
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
+	<meta charset="UTF-8" />
 	<title>Profiling data</title>
 	<style>
 		/* noc.wikimedia.org/base.css */
@@ -422,7 +422,7 @@ if ( isset( $_REQUEST['filter'] ) ) {
 	?>
 	</tbody>
 </table>
-<hr>
+<hr />
 <p>Total time: <code><?php printf( '%5.02f', profile_point::$totaltime ); ?></code></p>
 
 <p>Total memory: <code><?php printf( '%5.02f', profile_point::$totalmemory / 1024 ); ?></code></p>
