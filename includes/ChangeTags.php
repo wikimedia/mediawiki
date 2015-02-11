@@ -99,8 +99,8 @@ class ChangeTags {
 	 * @exception MWException When $rc_id, $rev_id and $log_id are all null
 	 */
 	public static function addTags( $tags, $rc_id = null, $rev_id = null,
-		$log_id = null, $params = null
-	) {
+		$log_id = null, $params = null ) {
+		global $wgUseRCPatrol, $wgUseTagBasedPatrol, $wgIgnoredTagsList;
 		if ( !is_array( $tags ) ) {
 			$tags = array( $tags );
 		}
@@ -191,6 +191,15 @@ class ChangeTags {
 		}
 
 		$dbw->insert( 'change_tag', $tagsRows, __METHOD__, array( 'IGNORE' ) );
+
+		// When using tag based RC patrolling, if a tag not in the ignore list
+		// is added to a patrolled recent change, it should make it unpatrolled
+		if ( $wgUseRCPatrol && $wgUseTagBasedPatrol && $rc_id ) {
+			$rc = RecentChange::newFromId( $rc_id );
+			if ( $rc->mAttribs['rc_patrolled'] && array_diff( $tags, $wgIgnoredTagsList ) ) {
+				$rc->setAttribs['rc_patrolled'] = 0;
+			}
+		}
 
 		self::purgeTagUsageCache();
 		return true;

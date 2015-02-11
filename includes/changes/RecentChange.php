@@ -435,26 +435,35 @@ class RecentChange {
 	 * @return array Array of permissions errors, see Title::getUserPermissionsErrors()
 	 */
 	public function doMarkPatrolled( User $user, $auto = false ) {
-		global $wgUseRCPatrol, $wgUseNPPatrol;
+		global $wgUseRCPatrol, $wgUseNPPatrol, $wgUseTagBasedPatrol, $wgIgnoredTagsList;
 		$errors = array();
-		// If recentchanges patrol is disabled, only new pages
-		// can be patrolled
+		// If recentchanges patrol is disabled, only new pages can be patrolled
 		if ( !$wgUseRCPatrol && ( !$wgUseNPPatrol || $this->getAttribute( 'rc_type' ) != RC_NEW ) ) {
+			$errors[] = array( 'rcpatroldisabled' );
+		}
+		// If RC patrol is enabled but limited to tagged changes, only new pages can be autopatrolled
+		if ( $wgUseRCPatrol && $wgUseTagBasedPatrol && $this->getAttribute( 'rc_type' ) != RC_NEW && $auto ) {
 			$errors[] = array( 'rcpatroldisabled' );
 		}
 		// Automatic patrol needs "autopatrol", ordinary patrol needs "patrol"
 		$right = $auto ? 'autopatrol' : 'patrol';
 		$errors = array_merge( $errors, $this->getTitle()->getUserPermissionsErrors( $right, $user ) );
+		// Users without the 'autopatrol' right can't patrol their
+		// own revisions
+		if ( $user->getName() === $this->getAttribute( 'rc_user_text' ) && !$user->isAllowed( 'autopatrol' ) ) {
+			$errors[] = array( 'markedaspatrollederror-noautopatrol' );
+		}
+		// If RC patrol is enabled but limited to tagged changes, a change
+		// not tagged for patrol cannot be patrolled
+		if ( $wgUseRCPatrol && $wgUseTagBasedPatrol && !$auto &&
+		!array_diff( $this->getAttribute( 'ts_tags' ), $wgIgnoredTagsList ) ) {
+			$errors[] = array( 'markedaspatrollederror-nottaggedforpatrol' );
+		}
+		// Hook check
 		if ( !Hooks::run( 'MarkPatrolled', array( $this->getAttribute( 'rc_id' ), &$user, false ) ) ) {
 			$errors[] = array( 'hookaborted' );
 		}
-		// Users without the 'autopatrol' right can't patrol their
-		// own revisions
-		if ( $user->getName() === $this->getAttribute( 'rc_user_text' )
-			&& !$user->isAllowed( 'autopatrol' )
-		) {
-			$errors[] = array( 'markedaspatrollederror-noautopatrol' );
-		}
+		// Returning errors if any
 		if ( $errors ) {
 			return $errors;
 		}

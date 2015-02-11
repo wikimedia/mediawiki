@@ -3173,9 +3173,10 @@ $wgFooterIcons = array(
 	),
 	"poweredby" => array(
 		"mediawiki" => array(
-			"src" => null, // Defaults to point at
-			               // "$wgResourceBasePath/resources/assets/poweredby_mediawiki_88x31.png"
-			               // plus srcset for 1.5x, 2x resolution variants.
+			"src" => null,
+							// Defaults to point at
+							// "$wgResourceBasePath/resources/assets/poweredby_mediawiki_88x31.png"
+							// plus srcset for 1.5x, 2x resolution variants.
 			"url" => "//www.mediawiki.org/",
 			"alt" => "Powered by MediaWiki",
 		)
@@ -5882,6 +5883,17 @@ $wgRCEngines = array(
  * Use RC Patrolling to check for vandalism
  */
 $wgUseRCPatrol = true;
+
+/**
+ * Limit RC patrol to tagged changes, $wgUseRCPatrol set to true is required,
+ * tags added to $wgIgnoredTagsList are ignored
+ */
+$wgUseTagBasedPatrol = false;
+
+/**
+ * List of tags ignored for tagging-based RC patrolling
+ */
+$wgIgnoredTagsList = array();
 
 /**
  * Use new page patrolling to check new pages on Special:Newpages
