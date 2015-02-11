@@ -188,7 +188,8 @@ class SpecialExport extends SpecialPage {
 			$this->msg( 'export-addcattext' )->text(),
 			'catname',
 			'catname',
-			40
+			40,
+			$catname = ''
 		) . '&#160;';
 		$form .= Xml::submitButton(
 			$this->msg( 'export-addcat' )->text(),
