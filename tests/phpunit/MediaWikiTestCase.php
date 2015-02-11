@@ -214,8 +214,11 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 	}
 
-	protected function tearDown() {
+	protected function addTmpFiles( $files ) {
+		$this->tmpFiles = array_merge( $this->tmpFiles, (array)$files );
+	}
 
+	protected function tearDown() {
 		$this->called['tearDown'] = true;
 		// Cleaning up temporary files
 		foreach ( $this->tmpFiles as $fileName ) {

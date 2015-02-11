@@ -103,7 +103,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		try {
 			$randomImageGenerator = new RandomImageGenerator();
-			$filePaths = $randomImageGenerator->writeImages( 1, $extension, wfTempDir() );
+			$filePaths = $randomImageGenerator->writeImages( 1, $extension, $this->getNewTempDirectory() );
 		} catch ( Exception $e ) {
 			$this->markTestIncomplete( $e->getMessage() );
 		}
@@ -143,7 +143,6 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		// clean up
 		$this->deleteFileByFilename( $fileName );
-		unlink( $filePath );
 	}
 
 	/**
@@ -152,7 +151,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 	public function testUploadZeroLength( $session ) {
 		$mimeType = 'image/png';
 
-		$filePath = tempnam( wfTempDir(), "" );
+		$filePath = $this->getNewTempFile();
 		$fileName = "apiTestUploadZeroLength.png";
 
 		$this->deleteFileByFileName( $fileName );
@@ -180,7 +179,6 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		// clean up
 		$this->deleteFileByFilename( $fileName );
-		unlink( $filePath );
 	}
 
 	/**
@@ -192,7 +190,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		try {
 			$randomImageGenerator = new RandomImageGenerator();
-			$filePaths = $randomImageGenerator->writeImages( 2, $extension, wfTempDir() );
+			$filePaths = $randomImageGenerator->writeImages( 2, $extension, $this->getNewTempDirectory() );
 		} catch ( Exception $e ) {
 			$this->markTestIncomplete( $e->getMessage() );
 		}
@@ -251,8 +249,6 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		// clean up
 		$this->deleteFileByFilename( $fileName );
-		unlink( $filePaths[0] );
-		unlink( $filePaths[1] );
 	}
 
 	/**
@@ -264,7 +260,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		try {
 			$randomImageGenerator = new RandomImageGenerator();
-			$filePaths = $randomImageGenerator->writeImages( 1, $extension, wfTempDir() );
+			$filePaths = $randomImageGenerator->writeImages( 1, $extension, $this->getNewTempDirectory() );
 		} catch ( Exception $e ) {
 			$this->markTestIncomplete( $e->getMessage() );
 		}
@@ -333,7 +329,6 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		// clean up
 		$this->deleteFileByFilename( $fileNames[0] );
 		$this->deleteFileByFilename( $fileNames[1] );
-		unlink( $filePaths[0] );
 	}
 
 	/**
@@ -349,7 +344,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		try {
 			$randomImageGenerator = new RandomImageGenerator();
-			$filePaths = $randomImageGenerator->writeImages( 1, $extension, wfTempDir() );
+			$filePaths = $randomImageGenerator->writeImages( 1, $extension, $this->getNewTempDirectory() );
 		} catch ( Exception $e ) {
 			$this->markTestIncomplete( $e->getMessage() );
 		}
@@ -417,7 +412,6 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		// clean up
 		$this->deleteFileByFilename( $fileName );
-		unlink( $filePath );
 	}
 
 	/**
@@ -431,16 +425,14 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		$chunkSize = 1048576;
 		// Download a large image file
-		// ( using RandomImageGenerator for large files is not stable )
+		// (using RandomImageGenerator for large files is not stable)
+		// @todo Don't download files from wikimedia.org
 		$mimeType = 'image/jpeg';
 		$url = 'http://upload.wikimedia.org/wikipedia/commons/'
 			. 'e/ed/Oberaargletscher_from_Oberaar%2C_2010_07.JPG';
-		$filePath = wfTempDir() . '/Oberaargletscher_from_Oberaar.jpg';
+		$filePath = $this->getNewTempDirectory() . '/Oberaargletscher_from_Oberaar.jpg';
 		try {
-			// Only download if the file is not avaliable in the temp location:
-			if ( !is_file( $filePath ) ) {
-				copy( $url, $filePath );
-			}
+			copy( $url, $filePath );
 		} catch ( Exception $e ) {
 			$this->markTestIncomplete( $e->getMessage() );
 		}
@@ -564,7 +556,5 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		// clean up
 		$this->deleteFileByFilename( $fileName );
-		// don't remove downloaded temporary file for fast subquent tests.
-		//unlink( $filePath );
 	}
 }
