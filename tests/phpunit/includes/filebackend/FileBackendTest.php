@@ -20,7 +20,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		global $wgFileBackends;
 		parent::setUp();
 		$uniqueId = time() . '-' . mt_rand();
-		$tmpPrefix = wfTempDir() . '/filebackend-unittest-' . $uniqueId;
+		$tmpDir = $this->getNewTempDirectory();
 		if ( $this->getCliArg( 'use-filebackend' ) ) {
 			if ( self::$backendToUse ) {
 				$this->singleBackend = self::$backendToUse;
@@ -51,8 +51,8 @@ class FileBackendTest extends MediaWikiTestCase {
 				'lockManager' => LockManagerGroup::singleton()->get( 'fsLockManager' ),
 				'wikiId' => wfWikiID(),
 				'containerPaths' => array(
-					'unittest-cont1' => "{$tmpPrefix}-localtesting-cont1",
-					'unittest-cont2' => "{$tmpPrefix}-localtesting-cont2" )
+					'unittest-cont1' => "{$tmpDir}/localtesting-cont1",
+					'unittest-cont2' => "{$tmpDir}/localtesting-cont2" )
 			) );
 		}
 		$this->multiBackend = new FileBackendMultiWrite( array(
@@ -65,16 +65,16 @@ class FileBackendTest extends MediaWikiTestCase {
 					'name' => 'localmultitesting1',
 					'class' => 'FSFileBackend',
 					'containerPaths' => array(
-						'unittest-cont1' => "{$tmpPrefix}-localtestingmulti1-cont1",
-						'unittest-cont2' => "{$tmpPrefix}-localtestingmulti1-cont2" ),
+						'unittest-cont1' => "{$tmpDir}/localtestingmulti1-cont1",
+						'unittest-cont2' => "{$tmpDir}/localtestingmulti1-cont2" ),
 					'isMultiMaster' => false
 				),
 				array(
 					'name' => 'localmultitesting2',
 					'class' => 'FSFileBackend',
 					'containerPaths' => array(
-						'unittest-cont1' => "{$tmpPrefix}-localtestingmulti2-cont1",
-						'unittest-cont2' => "{$tmpPrefix}-localtestingmulti2-cont2" ),
+						'unittest-cont1' => "{$tmpDir}/localtestingmulti2-cont1",
+						'unittest-cont2' => "{$tmpDir}/localtestingmulti2-cont2" ),
 					'isMultiMaster' => true
 				)
 			)
@@ -1030,7 +1030,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$cases = array();
 
 		$rand = mt_rand( 0, 2000000000 ) . time();
-		$dest = wfTempDir() . "/randomfile!$rand.txt";
+		$dest = $this->getNewTempDirectory() . "/randomfile!$rand.txt";
 		$srcs = array(
 			self::baseStorePath() . '/unittest-cont1/e/file1.txt',
 			self::baseStorePath() . '/unittest-cont1/e/file2.txt',

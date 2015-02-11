@@ -7,7 +7,7 @@ class GlobalTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$readOnlyFile = tempnam( wfTempDir(), "mwtest_readonly" );
+		$readOnlyFile = $this->getNewTempFile();
 		unlink( $readOnlyFile );
 
 		$this->setMwGlobals( array(
@@ -20,16 +20,6 @@ class GlobalTest extends MediaWikiTestCase {
 				'file://', # Non-default
 			),
 		) );
-	}
-
-	protected function tearDown() {
-		global $wgReadOnlyFile;
-
-		if ( file_exists( $wgReadOnlyFile ) ) {
-			unlink( $wgReadOnlyFile );
-		}
-
-		parent::tearDown();
 	}
 
 	/**
@@ -312,46 +302,42 @@ class GlobalTest extends MediaWikiTestCase {
 	 * @covers ::wfDebugMem
 	 */
 	public function testDebugFunctionTest() {
+		$debugLogFile = $this->getNewTempFile();
 
-		global $wgDebugLogFile, $wgDebugTimestamps;
-
-		$old_log_file = $wgDebugLogFile;
-		$wgDebugLogFile = tempnam( wfTempDir(), 'mw-' );
-		# @todo FIXME: $wgDebugTimestamps should be tested
-		$old_wgDebugTimestamps = $wgDebugTimestamps;
-		$wgDebugTimestamps = false;
+		$this->setMwGlobals( array(
+			'wgDebugLogFile' => $debugLogFile,
+			# @todo FIXME: $wgDebugTimestamps should be tested
+			'wgDebugTimestamps' => false
+		) );
 
 		wfDebug( "This is a normal string" );
-		$this->assertEquals( "This is a normal string\n", file_get_contents( $wgDebugLogFile ) );
-		unlink( $wgDebugLogFile );
+		$this->assertEquals( "This is a normal string\n", file_get_contents( $debugLogFile ) );
+		unlink( $debugLogFile );
 
 		wfDebug( "This is nöt an ASCII string" );
-		$this->assertEquals( "This is nöt an ASCII string\n", file_get_contents( $wgDebugLogFile ) );
-		unlink( $wgDebugLogFile );
+		$this->assertEquals( "This is nöt an ASCII string\n", file_get_contents( $debugLogFile ) );
+		unlink( $debugLogFile );
 
 		wfDebug( "\00305This has böth UTF and control chars\003" );
 		$this->assertEquals(
 			" 05This has böth UTF and control chars \n",
-			file_get_contents( $wgDebugLogFile )
+			file_get_contents( $debugLogFile )
 		);
-		unlink( $wgDebugLogFile );
+		unlink( $debugLogFile );
 
 		wfDebugMem();
 		$this->assertGreaterThan(
 			1000,
-			preg_replace( '/\D/', '', file_get_contents( $wgDebugLogFile ) )
+			preg_replace( '/\D/', '', file_get_contents( $debugLogFile ) )
 		);
-		unlink( $wgDebugLogFile );
+		unlink( $debugLogFile );
 
 		wfDebugMem( true );
 		$this->assertGreaterThan(
 			1000000,
-			preg_replace( '/\D/', '', file_get_contents( $wgDebugLogFile ) )
+			preg_replace( '/\D/', '', file_get_contents( $debugLogFile ) )
 		);
-		unlink( $wgDebugLogFile );
-
-		$wgDebugLogFile = $old_log_file;
-		$wgDebugTimestamps = $old_wgDebugTimestamps;
+		unlink( $debugLogFile );
 	}
 
 	/**
