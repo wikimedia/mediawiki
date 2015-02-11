@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.6.6
+ * OOjs UI v0.6.6-pre (22dbcd0a82)
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-02-04T16:51:55Z
+ * Date: 2015-02-11T18:59:50Z
  */
 ( function ( OO ) {
 
@@ -11239,7 +11239,7 @@ OO.ui.TextInputWidget.prototype.adjustSize = function () {
 			// Set inline height property to 0 to measure scroll height
 			.css( 'height', 0 );
 
-		this.$clone[ 0 ].style.display = 'block';
+		this.$clone.removeClass( 'oo-ui-element-hidden' );
 
 		this.valCache = this.$input.val();
 
@@ -11262,7 +11262,7 @@ OO.ui.TextInputWidget.prototype.adjustSize = function () {
 		measurementError = maxInnerHeight - this.$clone[ 0 ].scrollHeight;
 		idealHeight = Math.min( maxInnerHeight, scrollHeight + measurementError );
 
-		this.$clone[ 0 ].style.display = 'none';
+		this.$clone.addClass( 'oo-ui-element-hidden' );
 
 		// Only apply inline height when expansion beyond natural height is needed
 		if ( idealHeight > innerHeight ) {
