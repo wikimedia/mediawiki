@@ -58,9 +58,11 @@ class RecentChangesUpdateJob extends Job {
 	protected function purgeExpiredRows() {
 		global $wgRCMaxAge;
 
+		$lockKey = wfWikiID() . ':recentchanges-prune';
+
 		$dbw = wfGetDB( DB_MASTER );
-		if ( !$dbw->lock( 'recentchanges-prune', __METHOD__, 1 ) ) {
-			return true; // already in progress
+		if ( !$dbw->lock( $lockKey, __METHOD__, 1 ) ) {
+			return; // already in progress
 		}
 
 		$cutoff = $dbw->timestamp( time() - $wgRCMaxAge );
@@ -76,6 +78,6 @@ class RecentChangesUpdateJob extends Job {
 			}
 		} while ( $rcIds );
 
-		$dbw->unlock( 'recentchanges-prune', __METHOD__ );
+		$dbw->unlock( $lockKey, __METHOD__ );
 	}
 }
