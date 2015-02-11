@@ -1697,7 +1697,7 @@ class FileRepo {
 	 * @return Status
 	 */
 	public function newGood( $value = null ) {
-		$status = Status::newGood( $this, $value );
+		$status = Status::newGood( $value );
 		$status->cleanCallback = $this->getErrorCleanupFunction();
 
 		return $status;
