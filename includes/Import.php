@@ -497,36 +497,48 @@ class WikiImporter {
 
 		$keepReading = $this->reader->read();
 		$skip = false;
-		while ( $keepReading ) {
-			$tag = $this->reader->name;
-			$type = $this->reader->nodeType;
+		$rethrow = null;
+		try {
+			while ( $keepReading ) {
+				$tag = $this->reader->name;
+				$type = $this->reader->nodeType;
 
-			if ( !Hooks::run( 'ImportHandleToplevelXMLTag', array( $this ) ) ) {
-				// Do nothing
-			} elseif ( $tag == 'mediawiki' && $type == XMLReader::END_ELEMENT ) {
-				break;
-			} elseif ( $tag == 'siteinfo' ) {
-				$this->handleSiteInfo();
-			} elseif ( $tag == 'page' ) {
-				$this->handlePage();
-			} elseif ( $tag == 'logitem' ) {
-				$this->handleLogItem();
-			} elseif ( $tag != '#text' ) {
-				$this->warn( "Unhandled top-level XML tag $tag" );
+				if ( !Hooks::run( 'ImportHandleToplevelXMLTag', array( $this ) ) ) {
+					// Do nothing
+				} elseif ( $tag == 'mediawiki' && $type == XMLReader::END_ELEMENT ) {
+					break;
+				} elseif ( $tag == 'siteinfo' ) {
+					$this->handleSiteInfo();
+				} elseif ( $tag == 'page' ) {
+					$this->handlePage();
+				} elseif ( $tag == 'logitem' ) {
+					$this->handleLogItem();
+				} elseif ( $tag != '#text' ) {
+					$this->warn( "Unhandled top-level XML tag $tag" );
 
-				$skip = true;
+					$skip = true;
+				}
+
+				if ( $skip ) {
+					$keepReading = $this->reader->next();
+					$skip = false;
+					$this->debug( "Skip" );
+				} else {
+					$keepReading = $this->reader->read();
+				}
 			}
-
-			if ( $skip ) {
-				$keepReading = $this->reader->next();
-				$skip = false;
-				$this->debug( "Skip" );
-			} else {
-				$keepReading = $this->reader->read();
-			}
+		} catch ( Exception $ex ) {
+			$rethrow = $ex;
 		}
 
+		// finally
 		libxml_disable_entity_loader( $oldDisable );
+		$this->reader->close();
+
+		if ( $rethrow ) {
+			throw $rethrow;
+		}
+
 		return true;
 	}
 
