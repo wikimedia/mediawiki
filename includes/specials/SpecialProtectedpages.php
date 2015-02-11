@@ -39,11 +39,6 @@ class SpecialProtectedpages extends SpecialPage {
 		$this->outputHeader();
 		$this->getOutput()->addModuleStyles( 'mediawiki.special' );
 
-		// Purge expired entries on one in every 10 queries
-		if ( !mt_rand( 0, 10 ) ) {
-			Title::purgeExpiredRestrictions();
-		}
-
 		$request = $this->getRequest();
 		$type = $request->getVal( $this->IdType );
 		$level = $request->getVal( $this->IdLevel );
@@ -495,7 +490,7 @@ class ProtectedPagesPager extends TablePager {
 	function getQueryInfo() {
 		$conds = $this->mConds;
 		$conds[] = 'pr_expiry > ' . $this->mDb->addQuotes( $this->mDb->timestamp() ) .
-			'OR pr_expiry IS NULL';
+			' OR pr_expiry IS NULL';
 		$conds[] = 'page_id=pr_page';
 		$conds[] = 'pr_type=' . $this->mDb->addQuotes( $this->type );
 

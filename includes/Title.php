@@ -2749,7 +2749,6 @@ class Title {
 
 		$sources = $getPages ? array() : false;
 		$now = wfTimestampNow();
-		$purgeExpired = false;
 
 		foreach ( $res as $row ) {
 			$expiry = $wgContLang->formatExpiry( $row->pr_expiry, TS_MW );
@@ -2775,13 +2774,7 @@ class Title {
 				} else {
 					$sources = true;
 				}
-			} else {
-				// Trigger lazy purge of expired restrictions from the db
-				$purgeExpired = true;
 			}
-		}
-		if ( $purgeExpired ) {
-			Title::purgeExpiredRestrictions();
 		}
 
 		if ( $getPages ) {
@@ -2933,7 +2926,6 @@ class Title {
 		if ( count( $rows ) ) {
 			# Current system - load second to make them override.
 			$now = wfTimestampNow();
-			$purgeExpired = false;
 
 			# Cycle through all the restrictions.
 			foreach ( $rows as $row ) {
@@ -2953,14 +2945,7 @@ class Title {
 					$this->mRestrictions[$row->pr_type] = explode( ',', trim( $row->pr_level ) );
 
 					$this->mCascadeRestriction |= $row->pr_cascade;
-				} else {
-					// Trigger a lazy purge of expired restrictions
-					$purgeExpired = true;
 				}
-			}
-
-			if ( $purgeExpired ) {
-				Title::purgeExpiredRestrictions();
 			}
 		}
 
@@ -2999,7 +2984,6 @@ class Title {
 						$this->mRestrictionsExpiry['create'] = $expiry;
 						$this->mRestrictions['create'] = explode( ',', trim( $title_protection['permission'] ) );
 					} else { // Get rid of the old restrictions
-						Title::purgeExpiredRestrictions();
 						$this->mTitleProtection = false;
 					}
 				} else {
