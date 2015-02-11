@@ -14,7 +14,7 @@
 		 * @return {jQuery.Promise} See mw.Api#post
 		 */
 		login: function ( username, password ) {
-			var params, apiPromise,
+			var params, apiPromise, innerPromise,
 				api = this;
 
 			params = {
@@ -24,10 +24,11 @@
 			};
 
 			apiPromise = api.post( params );
+
 			return apiPromise
 				.then( function ( data ) {
 					params.lgtoken = data.login.token;
-					return api.post( params )
+					innerPromise = api.post( params )
 						.then( function ( data ) {
 							var code;
 							if ( data.login.result !== 'Success' ) {
@@ -37,8 +38,16 @@
 							}
 							return data;
 						} );
+					return innerPromise;
 				} )
-				.promise( { abort: apiPromise.abort } );
+				.promise( {
+					abort: function () {
+						apiPromise.abort();
+						if ( innerPromise ) {
+							innerPromise.abort();
+						}
+					}
+				} );
 		}
 	} );
 
