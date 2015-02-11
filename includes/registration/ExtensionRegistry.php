@@ -232,29 +232,4 @@ class ExtensionRegistry {
 			return array();
 		}
 	}
-
-	/**
-	 * @param string $filename absolute path to the JSON file
-	 * @param int $mtime modified time of the file
-	 * @return array
-	 */
-	protected function loadInfoFromFile( $filename, $mtime ) {
-		$key = wfMemcKey( 'registry', md5( $filename ) );
-		$cached = $this->cache->get( $key );
-		if ( isset( $cached['mtime'] ) && $cached['mtime'] === $mtime ) {
-			return $cached['info'];
-		}
-
-		$contents = file_get_contents( $filename );
-		$json = json_decode( $contents, /* $assoc = */ true );
-		if ( is_array( $json ) ) {
-			$this->cache->set( $key, array( 'mtime' => $mtime, 'info' => $json ) );
-		} else {
-			// Don't throw an error here, but don't cache it either.
-			// @todo log somewhere?
-			$json = array();
-		}
-
-		return $json;
-	}
 }
