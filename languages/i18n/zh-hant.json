@@ -58,7 +58,8 @@
 			"LNDDYL",
 			"Cathypilot0117",
 			"NigelSoft",
-			"EagerLin"
+			"EagerLin",
+			"Cbliu"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -197,14 +198,14 @@
 	"mytalk": "對話",
 	"anontalk": "此 IP 位址的對話頁面",
 	"navigation": "導覽",
-	"and": "&#32;及&#32;",
+	"and": "&#32;和",
 	"qbfind": "尋找",
 	"qbbrowse": "瀏覽",
 	"qbedit": "編輯",
 	"qbpageoptions": "此頁面",
 	"qbmyoptions": "我的頁面",
 	"faq": "常見問題",
-	"faqpage": "Project:FAQ",
+	"faqpage": "Project:常見問題",
 	"actions": "動作",
 	"namespaces": "命名空間",
 	"variants": "變體",

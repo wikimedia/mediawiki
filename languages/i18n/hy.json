@@ -18,7 +18,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Lilitik22",
-			"GrigorGB"
+			"GrigorGB",
+			"Աշոտ1997"
 		]
 	},
 	"tog-underline": "ընդգծել հղումները՝",
@@ -404,6 +405,7 @@
 	"createacct-captcha": "Անվտանգության ստուգում",
 	"createacct-imgcaptcha-ph": "Մուտքագրեք վերը բերված գրվածքը",
 	"createacct-submit": "Ստեղծել ձեր հաշիվը",
+	"createacct-another-submit": "Ստեղծել այլ հաշիվ",
 	"createacct-benefit-heading": "{{SITENAME}}՝ ստեղծվում է ձեր պես մարդկանց կողմից։",
 	"createacct-benefit-body1": "{{PLURAL:$1|խմբագրում}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|էջ}}",
@@ -731,6 +733,7 @@
 	"prefs-personal": "Անձնական",
 	"prefs-rc": "Վերջին փոփոխություններ",
 	"prefs-watchlist": "Հսկացանկ",
+	"prefs-editwatchlist": "Խմբագրել հսկացանկը",
 	"prefs-watchlist-days": "Հսկացանկում ցուցադրվող օրերի թիվը՝",
 	"prefs-watchlist-days-max": "Առավելագույնը $1 {{PLURAL:$1|օր}}",
 	"prefs-watchlist-edits": "Ընդարձակված հսկացանկում ցուցադրվող օրերի թիվը՝",
