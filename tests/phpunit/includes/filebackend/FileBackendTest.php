@@ -13,14 +13,13 @@ class FileBackendTest extends MediaWikiTestCase {
 	private $multiBackend;
 	/** @var FSFileBackend */
 	public $singleBackend;
-	private $filesToPrune = array();
 	private static $backendToUse;
 
 	protected function setUp() {
 		global $wgFileBackends;
 		parent::setUp();
 		$uniqueId = time() . '-' . mt_rand();
-		$tmpPrefix = wfTempDir() . '/filebackend-unittest-' . $uniqueId;
+		$tmpDir = $this->getNewTempDirectory();
 		if ( $this->getCliArg( 'use-filebackend' ) ) {
 			if ( self::$backendToUse ) {
 				$this->singleBackend = self::$backendToUse;
@@ -51,8 +50,8 @@ class FileBackendTest extends MediaWikiTestCase {
 				'lockManager' => LockManagerGroup::singleton()->get( 'fsLockManager' ),
 				'wikiId' => wfWikiID(),
 				'containerPaths' => array(
-					'unittest-cont1' => "{$tmpPrefix}-localtesting-cont1",
-					'unittest-cont2' => "{$tmpPrefix}-localtesting-cont2" )
+					'unittest-cont1' => "{$tmpDir}/localtesting-cont1",
+					'unittest-cont2' => "{$tmpDir}/localtesting-cont2" )
 			) );
 		}
 		$this->multiBackend = new FileBackendMultiWrite( array(
@@ -65,21 +64,20 @@ class FileBackendTest extends MediaWikiTestCase {
 					'name' => 'localmultitesting1',
 					'class' => 'FSFileBackend',
 					'containerPaths' => array(
-						'unittest-cont1' => "{$tmpPrefix}-localtestingmulti1-cont1",
-						'unittest-cont2' => "{$tmpPrefix}-localtestingmulti1-cont2" ),
+						'unittest-cont1' => "{$tmpDir}/localtestingmulti1-cont1",
+						'unittest-cont2' => "{$tmpDir}/localtestingmulti1-cont2" ),
 					'isMultiMaster' => false
 				),
 				array(
 					'name' => 'localmultitesting2',
 					'class' => 'FSFileBackend',
 					'containerPaths' => array(
-						'unittest-cont1' => "{$tmpPrefix}-localtestingmulti2-cont1",
-						'unittest-cont2' => "{$tmpPrefix}-localtestingmulti2-cont2" ),
+						'unittest-cont1' => "{$tmpDir}/localtestingmulti2-cont1",
+						'unittest-cont2' => "{$tmpDir}/localtestingmulti2-cont2" ),
 					'isMultiMaster' => true
 				)
 			)
 		) );
-		$this->filesToPrune = array();
 	}
 
 	private static function baseStorePath() {
@@ -214,7 +212,7 @@ class FileBackendTest extends MediaWikiTestCase {
 	 * @dataProvider provider_testStore
 	 */
 	public function testStore( $op ) {
-		$this->filesToPrune[] = $op['src'];
+		$this->addTmpFiles( $op['src'] );
 
 		$this->backend = $this->singleBackend;
 		$this->tearDownFiles();
@@ -224,7 +222,6 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->backend = $this->multiBackend;
 		$this->tearDownFiles();
 		$this->doTestStore( $op );
-		$this->filesToPrune[] = $op['src']; # avoid file leaking
 		$this->tearDownFiles();
 	}
 
@@ -275,27 +272,15 @@ class FileBackendTest extends MediaWikiTestCase {
 		$tmpName = TempFSFile::factory( "unittests_", 'txt' )->getPath();
 		$toPath = self::baseStorePath() . '/unittest-cont1/e/fun/obj1.txt';
 		$op = array( 'op' => 'store', 'src' => $tmpName, 'dst' => $toPath );
-		$cases[] = array(
-			$op, // operation
-			$tmpName, // source
-			$toPath, // dest
-		);
+		$cases[] = array( $op );
 
 		$op2 = $op;
 		$op2['overwrite'] = true;
-		$cases[] = array(
-			$op2, // operation
-			$tmpName, // source
-			$toPath, // dest
-		);
+		$cases[] = array( $op2 );
 
-		$op2 = $op;
-		$op2['overwriteSame'] = true;
-		$cases[] = array(
-			$op2, // operation
-			$tmpName, // source
-			$toPath, // dest
-		);
+		$op3 = $op;
+		$op3['overwriteSame'] = true;
+		$cases[] = array( $op3 );
 
 		return $cases;
 	}
@@ -948,18 +933,14 @@ class FileBackendTest extends MediaWikiTestCase {
 	 * @dataProvider provider_testConcatenate
 	 */
 	public function testConcatenate( $op, $srcs, $srcsContent, $alreadyExists, $okStatus ) {
-		$this->filesToPrune[] = $op['dst'];
-
 		$this->backend = $this->singleBackend;
 		$this->tearDownFiles();
 		$this->doTestConcatenate( $op, $srcs, $srcsContent, $alreadyExists, $okStatus );
-		$this->filesToPrune[] = $op['dst']; # avoid file leaking
 		$this->tearDownFiles();
 
 		$this->backend = $this->multiBackend;
 		$this->tearDownFiles();
 		$this->doTestConcatenate( $op, $srcs, $srcsContent, $alreadyExists, $okStatus );
-		$this->filesToPrune[] = $op['dst']; # avoid file leaking
 		$this->tearDownFiles();
 	}
 
@@ -983,7 +964,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->assertGoodStatus( $status,
 			"Creation of source files succeeded ($backendName)." );
 
-		$dest = $params['dst'];
+		$dest = $params['dst'] = $this->getNewTempFile();
 		if ( $alreadyExists ) {
 			$ok = file_put_contents( $dest, 'blah...blah...waahwaah' ) !== false;
 			$this->assertEquals( true, $ok,
@@ -1029,8 +1010,6 @@ class FileBackendTest extends MediaWikiTestCase {
 	public static function provider_testConcatenate() {
 		$cases = array();
 
-		$rand = mt_rand( 0, 2000000000 ) . time();
-		$dest = wfTempDir() . "/randomfile!$rand.txt";
 		$srcs = array(
 			self::baseStorePath() . '/unittest-cont1/e/file1.txt',
 			self::baseStorePath() . '/unittest-cont1/e/file2.txt',
@@ -1055,7 +1034,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			'lkaem;a',
 			'legma'
 		);
-		$params = array( 'srcs' => $srcs, 'dst' => $dest );
+		$params = array( 'srcs' => $srcs );
 
 		$cases[] = array(
 			$params, // operation
@@ -1761,15 +1740,12 @@ class FileBackendTest extends MediaWikiTestCase {
 		$fileCContents = 'eigna[ogmewt 3qt g3qg flew[ag';
 
 		$tmpNameA = TempFSFile::factory( "unittests_", 'txt' )->getPath();
-		file_put_contents( $tmpNameA, $fileAContents );
 		$tmpNameB = TempFSFile::factory( "unittests_", 'txt' )->getPath();
-		file_put_contents( $tmpNameB, $fileBContents );
 		$tmpNameC = TempFSFile::factory( "unittests_", 'txt' )->getPath();
+		$this->addTmpFiles( array( $tmpNameA, $tmpNameB, $tmpNameC ) );
+		file_put_contents( $tmpNameA, $fileAContents );
+		file_put_contents( $tmpNameB, $fileBContents );
 		file_put_contents( $tmpNameC, $fileCContents );
-
-		$this->filesToPrune[] = $tmpNameA; # avoid file leaking
-		$this->filesToPrune[] = $tmpNameB; # avoid file leaking
-		$this->filesToPrune[] = $tmpNameC; # avoid file leaking
 
 		$fileA = "$base/unittest-cont1/e/a/b/fileA.txt";
 		$fileB = "$base/unittest-cont1/e/a/b/fileB.txt";
@@ -2434,16 +2410,10 @@ class FileBackendTest extends MediaWikiTestCase {
 	}
 
 	function tearDownFiles() {
-		foreach ( $this->filesToPrune as $file ) {
-			if ( is_file( $file ) ) {
-				unlink( $file );
-			}
-		}
 		$containers = array( 'unittest-cont1', 'unittest-cont2', 'unittest-cont-bad' );
 		foreach ( $containers as $container ) {
 			$this->deleteFiles( $container );
 		}
-		$this->filesToPrune = array();
 	}
 
 	private function deleteFiles( $container ) {
