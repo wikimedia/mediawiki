@@ -1679,17 +1679,6 @@ class FormatMetadata extends ContextSource {
 			);
 		}
 
-		$common = $file->getCommonMetaArray();
-
-		if ( $common !== false ) {
-			foreach ( $common as $key => $value ) {
-				$fileMetadata[$key] = array(
-					'value' => $value,
-					'source' => 'file-metadata',
-				);
-			}
-		}
-
 		return $fileMetadata;
 	}
 
