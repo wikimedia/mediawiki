@@ -38,11 +38,6 @@ class SpecialProtectedtitles extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
-		// Purge expired entries on one in every 10 queries
-		if ( !mt_rand( 0, 10 ) ) {
-			Title::purgeExpiredRestrictions();
-		}
-
 		$request = $this->getRequest();
 		$type = $request->getVal( $this->IdType );
 		$level = $request->getVal( $this->IdLevel );
@@ -252,7 +247,8 @@ class ProtectedTitlesPager extends AlphabeticPager {
 	 */
 	function getQueryInfo() {
 		$conds = $this->mConds;
-		$conds[] = 'pt_expiry>' . $this->mDb->addQuotes( $this->mDb->timestamp() );
+		$conds[] = 'pt_expiry > ' . $this->mDb->addQuotes( $this->mDb->timestamp() ) .
+			' OR pt_expiry IS NULL';
 		if ( $this->level ) {
 			$conds['pt_create_perm'] = $this->level;
 		}
