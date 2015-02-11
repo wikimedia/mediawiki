@@ -211,6 +211,8 @@ class UserRightsProxy {
 	/**
 	 * Replaces User::addUserGroup()
 	 * @param string $group
+	 *
+	 * @return bool
 	 */
 	function addGroup( $group ) {
 		$this->db->insert( 'user_groups',
@@ -220,11 +222,15 @@ class UserRightsProxy {
 			),
 			__METHOD__,
 			array( 'IGNORE' ) );
+
+		return true;
 	}
 
 	/**
 	 * Replaces User::removeUserGroup()
 	 * @param string $group
+	 *
+	 * @return bool
 	 */
 	function removeGroup( $group ) {
 		$this->db->delete( 'user_groups',
@@ -233,6 +239,8 @@ class UserRightsProxy {
 				'ug_group' => $group,
 			),
 			__METHOD__ );
+
+		return true;
 	}
 
 	/**
