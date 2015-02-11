@@ -563,6 +563,10 @@ class ApiHelp extends ApiBase {
 
 			$examples = $module->getExamplesMessages();
 			if ( $examples ) {
+				global $wgApiHelpMakeSandboxLinks;
+				$doApiSandbox = $wgApiHelpMakeSandboxLinks and class_exists( 'SpecialApiSandbox' );
+				$apiSandbox = Title::makeTitle( NS_SPECIAL, 'ApiSandbox' );
+
 				$help['examples'] .= Html::openElement( 'div',
 					array( 'class' => 'apihelp-block apihelp-examples' ) );
 				$msg = $context->msg( 'api-help-examples' );
@@ -582,9 +586,19 @@ class ApiHelp extends ApiBase {
 
 					$link = wfAppendQuery( wfScript( 'api' ), $qs );
 					$help['examples'] .= Html::rawElement( 'dt', null, $msg->parse() );
-					$help['examples'] .= Html::rawElement( 'dd', null,
-						Html::element( 'a', array( 'href' => $link ), "api.php?$qs" )
-					);
+					$help['examples'] .= Html::openElement( 'dd' );
+					$help['examples'] .= Html::element( 'a', array( 'href' => $link ), "api.php?$qs" );
+					if ( $doApiSandbox ) {
+						$help['examples'] .= '<br>';
+						$help['examples'] .= Html::openElement( 'small' );
+						$help['examples'] .= Html::element( 'a',
+							// xxx Title::setFragment( '#' . $qs ) turns e.g. #action=query
+							// into #action.3Dquery, so instead append the query string as fragment.
+							array( 'href' => $apiSandbox->getLinkUrl() . '#' . $qs ),
+							"Load this example API request into Special:ApiSandbox" );
+						$help['examples'] .= Html::closeElement( 'small' );
+					}
+					$help['examples'] .= Html::closeElement( 'dd' );
 				}
 				$help['examples'] .= Html::closeElement( 'dl' );
 				$help['examples'] .= Html::closeElement( 'div' );

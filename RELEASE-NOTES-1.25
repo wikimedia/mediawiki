@@ -94,6 +94,8 @@ production.
   tags.
 * Added 'ChangeTagsListActive' hook, to separate the concepts of "defined" and
   "active" formerly conflated by the 'ListDefinedTags' hook.
+* (T89229) Api help examples will link to Special:ApiSandbox if
+  $wgApiHelpMakeSandboxLinks is true and the extension is loaded.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
