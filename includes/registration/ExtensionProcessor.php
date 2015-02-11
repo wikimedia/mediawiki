@@ -197,7 +197,7 @@ class ExtensionProcessor implements Processor {
 				if ( isset( $data['localBasePath'] ) ) {
 					$data['localBasePath'] = "$dir/{$data['localBasePath']}";
 				}
-				if ( $defaultPaths && !isset( $data['class'] ) ) {
+				if ( $defaultPaths ) {
 					$data += $defaultPaths;
 				}
 				$this->globals['wgResourceModules'][$name] = $data;

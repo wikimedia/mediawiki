@@ -249,11 +249,14 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 						'test.class' => array(
 							'class' => 'FooBarModule',
 							'extra' => 'argument',
+							'localBasePath' => $dir,
+							'remoteExtPath' => 'FooBar',
 						),
 						'test.class.with.path' => array(
 							'class' => 'FooBarPathModule',
 							'extra' => 'argument',
 							'localBasePath' => $dir,
+							'remoteExtPath' => 'FooBar',
 						)
 					),
 				),
