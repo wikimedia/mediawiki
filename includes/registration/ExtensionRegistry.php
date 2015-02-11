@@ -96,6 +96,9 @@ class ExtensionRegistry {
 			foreach ( $this->queued as $path => $mtime ) {
 				$json = file_get_contents( $path );
 				$info = json_decode( $json, /* $assoc = */ true );
+				if ( !is_array( $info ) ) {
+					throw new Exception( "$path is not a valid JSON file." );
+				}
 				$autoload = $this->processAutoLoader( dirname( $path ), $info );
 				// Set up the autoloader now so custom processors will work
 				$GLOBALS['wgAutoloadClasses'] += $autoload;
