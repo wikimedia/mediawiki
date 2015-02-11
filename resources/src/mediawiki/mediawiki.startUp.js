@@ -1,6 +1,5 @@
-/**
+/*!
  * Auto-register from pre-loaded startup scripts
- * @ignore (this line will make JSDuck happy)
  */
 ( function ( $ ) {
 	'use strict';
