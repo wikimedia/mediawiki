@@ -1,0 +1,43 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.6/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.6/ http://www.mediawiki.org/xml/export-0.6.xsd" version="0.6" xml:lang="en-gb">
+  <siteinfo>
+    <sitename>MW-19</sitename>
+    <base>http://localhost:8080/w/index.php/Main_Page</base>
+    <generator>MediaWiki 1.19.7</generator>
+    <case>first-letter</case>
+  </siteinfo>
+  <page>
+    <title>Lorem ipsum</title>
+    <ns>0</ns>
+    <id>493</id>
+      <sha1>94lztkh4kgb0mvjr87iyjfq4iv7ltlh</sha1>
+    <revision>
+      <id>1358</id>
+      <timestamp>2014-04-04T22:55:04Z</timestamp>
+      <contributor>
+        <username>Tester</username>
+        <id>1</id>
+      </contributor>
+      <text xml:space="preserve" bytes="979">[[Has text::Lorem ipsum dolor sit amet consectetuer Maecenas adipiscing Pellentesque id sem]]. [[Has page::Elit Aliquam urna interdum]] morbi faucibus id tellus ipsum semper wisi. [[Has page::Platea enim hendrerit]] pellentesque consectetuer scelerisque Sed est felis felis quis. Auctor Proin In dolor id et ipsum vel at vitae ut. Praesent elit convallis Praesent aliquet pellentesque vel dolor pellentesque lacinia vitae. At tortor lacus Sed In interdum pulvinar et.
+
+[[Has number::1001]] [[Has quantity::10.25 kmÂ²]] [[Has date::1 Jan 2014]] [[Has Url::http://loremipsum.org/]] [[Has annotation uri::http://loremipsum.org/foaf.rdf]] [[Has email::Lorem@ipsum.org]] [[Has temperature::100 Â°C]] [[Has boolean::true]]
+
+[[Category:Lorem ipsum]]</text>
+    </revision>
+  </page>
+  <page>
+    <title>Category:Lorem ipsum</title>
+    <ns>14</ns>
+    <id>496</id>
+      <sha1>sir97j6uzt9ev2uyhaz1aj4i3spogih</sha1>
+    <revision>
+      <id>1355</id>
+      <timestamp>2014-04-04T22:29:18Z</timestamp>
+      <contributor>
+        <username>Tester</username>
+        <id>1</id>
+      </contributor>
+      <text xml:space="preserve" bytes="17">[[Category:Main]]</text>
+    </revision>
+  </page>
+</mediawiki>
+
