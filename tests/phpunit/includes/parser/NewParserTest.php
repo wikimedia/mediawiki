@@ -480,16 +480,16 @@ class NewParserTest extends MediaWikiTestCase {
 	 */
 	protected function getUploadDir() {
 		if ( $this->keepUploads ) {
+			// Don't use getNewTempDirectory() as this is meant to persist
 			$dir = wfTempDir() . '/mwParser-images';
 
 			if ( is_dir( $dir ) ) {
 				return $dir;
 			}
 		} else {
-			$dir = wfTempDir() . "/mwParser-" . mt_rand() . "-images";
+			$dir = $this->getNewTempDirectory();
 		}
 
-		// wfDebug( "Creating upload directory $dir\n" );
 		if ( file_exists( $dir ) ) {
 			wfDebug( "Already exists!\n" );
 

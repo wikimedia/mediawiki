@@ -21,12 +21,6 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 		$this->clearFakeUploads();
 	}
 
-	protected function tearDown() {
-		$this->clearTempUpload();
-
-		parent::tearDown();
-	}
-
 	/**
 	 * Helper function -- remove files and associated articles by Title
 	 *
@@ -105,7 +99,7 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 	 * @return bool
 	 */
 	function fakeUploadFile( $fieldName, $fileName, $type, $filePath ) {
-		$tmpName = tempnam( wfTempDir(), "" );
+		$tmpName = $this->getNewTempFile();
 		if ( !file_exists( $filePath ) ) {
 			throw new Exception( "$filePath doesn't exist!" );
 		}
@@ -132,7 +126,7 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 	}
 
 	function fakeUploadChunk( $fieldName, $fileName, $type, & $chunkData ) {
-		$tmpName = tempnam( wfTempDir(), "" );
+		$tmpName = $this->getNewTempFile();
 		// copy the chunk data to temp location:
 		if ( !file_put_contents( $tmpName, $chunkData ) ) {
 			throw new Exception( "couldn't copy chunk data to $tmpName" );
@@ -151,15 +145,6 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 			'size' => $size,
 			'error' => null
 		);
-	}
-
-	function clearTempUpload() {
-		if ( isset( $_FILES['file']['tmp_name'] ) ) {
-			$tmp = $_FILES['file']['tmp_name'];
-			if ( file_exists( $tmp ) ) {
-				unlink( $tmp );
-			}
-		}
 	}
 
 	/**

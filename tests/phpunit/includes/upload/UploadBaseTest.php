@@ -93,7 +93,7 @@ class UploadBaseTest extends MediaWikiTestCase {
 
 	// Helper used to create an empty file of size $size.
 	private function createFileOfSize( $size ) {
-		$filename = tempnam( wfTempDir(), "mwuploadtest" );
+		$filename = $this->getNewTempFile();
 
 		$fh = fopen( $filename, 'w' );
 		ftruncate( $fh, $size );
@@ -118,7 +118,6 @@ class UploadBaseTest extends MediaWikiTestCase {
 		$filename = $this->createFileOfSize( 100 );
 		$this->upload->initializePathInfo( basename( $filename ) . '.txt', $filename, 100 );
 		$result = $this->upload->verifyUpload();
-		unlink( $filename );
 
 		$this->assertEquals(
 			array( 'status' => UploadBase::OK ),
