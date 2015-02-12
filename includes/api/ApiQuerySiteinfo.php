@@ -69,6 +69,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				case 'usergroups':
 					$fit = $this->appendUserGroups( $p, $params['numberingroup'] );
 					break;
+				case 'libraries':
+					$fit = $this->appendInstalledLibraries( $p );
+					break;
 				case 'extensions':
 					$fit = $this->appendExtensions( $p );
 					break;
@@ -554,6 +557,36 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
+	protected function appendInstalledLibraries( $property ) {
+		global $IP;
+		$path = "$IP/composer.lock";
+		if ( !file_exists( $path ) ) {
+			// Maybe they're using mediawiki/vendor?
+			$path = "$IP/vendor/composer.lock";
+			if ( !file_exists( $path ) ) {
+				return true;
+			}
+		}
+
+		$data = array();
+		$lock = new ComposerLock( $path );
+		foreach ( $lock->getInstalledDependencies() as $name => $info ) {
+			if ( strpos( $info['type'], 'mediawiki-' ) === 0 ) {
+				// Skip any extensions or skins since they'll be listed
+				// in their proper section
+				continue;
+			}
+			$data[] = array(
+				'name' => $name,
+				'version' => $info['version'],
+			);
+		}
+		$this->getResult()->setIndexedTagName( $data, 'library' );
+
+		return $this->getResult()->addValue( 'query', $property, $data );
+
+	}
+
 	protected function appendExtensions( $property ) {
 		$data = array();
 		foreach ( $this->getConfig()->get( 'ExtensionCredits' ) as $type => $extensions ) {
@@ -810,6 +843,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'dbrepllag',
 					'statistics',
 					'usergroups',
+					'libraries',
 					'extensions',
 					'fileextensions',
 					'rightsinfo',
