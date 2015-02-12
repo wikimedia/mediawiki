@@ -139,10 +139,17 @@ class MWException extends Exception {
 			nl2br( htmlspecialchars( MWExceptionHandler::getRedactedTraceAsString( $this ) ) ) .
 			"</p>\n";
 		} else {
+			$logId = MWExceptionHandler::getLogId( $this );
+			$type = get_class( $this );
 			return "<div class=\"errorbox\">" .
-			'[' . MWExceptionHandler::getLogId( $this ) . '] ' .
-			gmdate( 'Y-m-d H:i:s' ) .
-			": Fatal exception of type " . get_class( $this ) . "</div>\n" .
+			'[' . $logId . '] ' .
+			gmdate( 'Y-m-d H:i:s' ) . ": " .
+			$this->msg( "internalerror-fatal-exception",
+				"Fatal exception of type " . $type,
+				$type,
+				$logId,
+				MWExceptionHandler::getURL( $this )
+			) . "</div>\n" .
 			"<!-- Set \$wgShowExceptionDetails = true; " .
 			"at the bottom of LocalSettings.php to show detailed " .
 			"debugging information. -->";
