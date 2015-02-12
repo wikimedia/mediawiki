@@ -7,8 +7,32 @@
 		// Number of open notification boxes at any time
 		openNotificationCount = 0,
 		isPageReady = false,
-		preReadyNotifQueue = [];
-
+		preReadyNotifQueue = [],
+		isActive=true,
+		setinterval;
+	
+	function check() {
+		$(window).focus(function(){
+			if(!isActive){
+				notification.resume();
+				isActive=true;
+			}
+		});
+		$(window).blur(function(){
+			if(isActive){
+				notification.pause();
+				isActive=false;
+			}
+		});
+	}
+	
+	
+	function set () {
+		setinterval=setInterval(check(),200);
+	}
+	function removeInterval () {
+		clearInterval(setinterval);
+	}
 	/**
 	 * A Notification object for 1 message.
 	 *
@@ -221,6 +245,9 @@
 		autohideCount = $area.find( '.mw-notification-autohide' ).length;
 		if ( autohideCount <= notification.autoHideLimit ) {
 			this.resume();
+			if(!isActive){
+				notification.pause();
+			}
 		}
 	};
 
@@ -453,6 +480,7 @@
 			notif = new Notification( message, options );
 
 			if ( isPageReady ) {
+				set();
 				notif.start();
 			} else {
 				preReadyNotifQueue.push( notif );
