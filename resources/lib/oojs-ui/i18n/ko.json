@@ -8,13 +8,15 @@
 			"아라",
 			"고기랑",
 			"Ryuch",
-			"Revi"
+			"Revi",
+			"Infinity"
 		]
 	},
 	"ooui-outline-control-move-down": "항목을 아래로 옮기기",
 	"ooui-outline-control-move-up": "항목을 위로 옮기기",
 	"ooui-outline-control-remove": "항목 지우기",
 	"ooui-toolbar-more": "더 보기",
+	"ooui-toolgroup-expand": "더 보기",
 	"ooui-dialog-message-accept": "확인",
 	"ooui-dialog-message-reject": "취소",
 	"ooui-dialog-process-error": "무언가가 잘못되었습니다",
