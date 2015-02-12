@@ -158,10 +158,6 @@ class PoolWorkArticleView extends PoolCounterWork {
 			$wgUseFileCache = false;
 		}
 
-		if ( $isCurrent ) {
-			$this->page->doCascadeProtectionUpdates( $this->parserOutput );
-		}
-
 		return true;
 	}
 
