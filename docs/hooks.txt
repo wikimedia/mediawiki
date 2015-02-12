@@ -418,6 +418,10 @@ $module: ApiBase Module object
 &$help: Array of HTML strings to be joined for the output.
 $options: Array Options passed to ApiHelp::getHelp
 
+'ApiMain::moduleManager': Called when APiMain has finished initializing its
+module manager. Can be used to conditionally register API modules.
+$moduleManager: ApiModuleManager Module manager instance
+
 'ApiOpenSearchSuggest': Called when constructing the OpenSearch results. Hooks
 can alter or append to the array.
 &$results: array with integer keys to associative arrays. Keys in associative

@@ -97,6 +97,8 @@ production.
   tags.
 * Added 'ChangeTagsListActive' hook, to separate the concepts of "defined" and
   "active" formerly conflated by the 'ListDefinedTags' hook.
+* New hook "ApiMain::moduleManager", can be used for conditional registration of API
+  modules.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
