@@ -1,6 +1,7 @@
 ( function ( mw, $ ) {
-	var mwLanguageCache = {}, formatText, formatParse, formatnumTests, specialCharactersPageName,
-		expectedListUsers, expectedEntrypoints;
+	var formatText, formatParse, formatnumTests, specialCharactersPageName, expectedListUsers, expectedEntrypoints,
+		mwLanguageCache = {},
+		hasOwn = Object.hasOwnProperty;
 
 	// When the expected result is the same in both modes
 	function assertBothModes( assert, parserArguments, expectedResult, assertMessage ) {
@@ -60,31 +61,52 @@
 		}
 	} ) );
 
-	function getMwLanguage( langCode, cb ) {
-		if ( mwLanguageCache[langCode] !== undefined ) {
-			mwLanguageCache[langCode].add( cb );
-			return;
-		}
-		mwLanguageCache[langCode] = $.Callbacks( 'once memory' );
-		mwLanguageCache[langCode].add( cb );
-		$.ajax( {
-			url: mw.util.wikiScript( 'load' ),
-			data: {
-				skin: mw.config.get( 'skin' ),
-				lang: langCode,
-				debug: mw.config.get( 'debug' ),
-				modules: [
-					'mediawiki.language.data',
-					'mediawiki.language'
-				].join( '|' ),
-				only: 'scripts'
-			},
-			dataType: 'script'
-		} ).done( function () {
-				mwLanguageCache[langCode].fire( mw.language );
-			} ).fail( function () {
-				mwLanguageCache[langCode].fire( false );
+	/**
+	 * Be careful to no run this in parallel as it uses a global identifier (mw.language)
+	 * to transport the module back to the test. It musn't be overwritten concurrentely.
+	 *
+	 * This function caches the mw.language data to avoid having to request the same module
+	 * multiple times. There is more than one test case for any given language.
+	 */
+	function getMwLanguage( langCode ) {
+		if ( !hasOwn.call( mwLanguageCache, langCode ) ) {
+			mwLanguageCache[langCode] = $.ajax( {
+				url: mw.util.wikiScript( 'load' ),
+				data: {
+					skin: mw.config.get( 'skin' ),
+					lang: langCode,
+					debug: mw.config.get( 'debug' ),
+					modules: [
+						'mediawiki.language.data',
+						'mediawiki.language'
+					].join( '|' ),
+					only: 'scripts'
+				},
+				dataType: 'script',
+				cache: true
+			} ).then( function () {
+				return mw.language;
 			} );
+		}
+		return mwLanguageCache[langCode];
+	}
+
+	/**
+	 * @param {Function[]} tasks List of functions that perform tasks
+	 *  that may be asynchronous. Invoke the callback parameter when done.
+	 * @param {Function} done When all tasks are done.
+	 * @return
+	 */
+	function process( tasks, done ) {
+		function run() {
+			var task = tasks.shift();
+			if ( task ) {
+				task( run );
+			} else {
+				done();
+			}
+		}
+		run();
 	}
 
 	QUnit.test( 'Replace', 16, function ( assert ) {
@@ -283,23 +305,27 @@
 
 	QUnit.test( 'Match PHP parser', mw.libs.phpParserData.tests.length, function ( assert ) {
 		mw.messages.set( mw.libs.phpParserData.messages );
-		$.each( mw.libs.phpParserData.tests, function ( i, test ) {
-			QUnit.stop();
-			getMwLanguage( test.lang, function ( langClass ) {
-				QUnit.start();
-				if ( !langClass ) {
-					assert.ok( false, 'Language "' + test.lang + '" failed to load' );
-					return;
-				}
-				mw.config.set( 'wgUserLanguage', test.lang );
-				var parser = new mw.jqueryMsg.parser( { language: langClass } );
-				assert.equal(
-					parser.parse( test.key, test.args ).html(),
-					test.result,
-					test.name
-				);
-			} );
+		var tasks = $.map( mw.libs.phpParserData.tests, function ( test ) {
+			return function ( next ) {
+				getMwLanguage( test.lang )
+					.done( function ( langClass ) {
+						mw.config.set( 'wgUserLanguage', test.lang );
+						var parser = new mw.jqueryMsg.parser( { language: langClass } );
+						assert.equal(
+							parser.parse( test.key, test.args ).html(),
+							test.result,
+							test.name
+						);
+					} )
+					.fail( function () {
+						assert.ok( false, 'Language "' + test.lang + '" failed to load.' );
+					} )
+					.always( next );
+			};
 		} );
+
+		QUnit.stop();
+		process( tasks, QUnit.start );
 	} );
 
 	QUnit.test( 'Links', 6, function ( assert ) {
@@ -466,8 +492,8 @@
 		);
 	} );
 
-// Tests that getMessageFunction is used for non-plain messages with curly braces or
-// square brackets, but not otherwise.
+	// Tests that getMessageFunction is used for non-plain messages with curly braces or
+	// square brackets, but not otherwise.
 	QUnit.test( 'mw.Message.prototype.parser monkey-patch', 22, function ( assert ) {
 		var oldGMF, outerCalled, innerCalled;
 
@@ -618,25 +644,27 @@ formatnumTests = [
 QUnit.test( 'formatnum', formatnumTests.length, function ( assert ) {
 	mw.messages.set( 'formatnum-msg', '{{formatnum:$1}}' );
 	mw.messages.set( 'formatnum-msg-int', '{{formatnum:$1|R}}' );
-	$.each( formatnumTests, function ( i, test ) {
-		QUnit.stop();
-		getMwLanguage( test.lang, function ( langClass ) {
-			QUnit.start();
-			if ( !langClass ) {
-				assert.ok( false, 'Language "' + test.lang + '" failed to load' );
-				return;
-			}
-			mw.messages.set(test.message );
-			mw.config.set( 'wgUserLanguage', test.lang );
-			var parser = new mw.jqueryMsg.parser( { language: langClass } );
-			assert.equal(
-				parser.parse( test.integer ? 'formatnum-msg-int' : 'formatnum-msg',
-					[ test.number ] ).html(),
-				test.result,
-				test.description
-			);
-		} );
+	var queue = $.map( formatnumTests, function ( test ) {
+		return function ( next ) {
+			getMwLanguage( test.lang )
+				.done( function ( langClass ) {
+					mw.config.set( 'wgUserLanguage', test.lang );
+					var parser = new mw.jqueryMsg.parser( { language: langClass } );
+					assert.equal(
+						parser.parse( test.integer ? 'formatnum-msg-int' : 'formatnum-msg',
+							[ test.number ] ).html(),
+						test.result,
+						test.description
+					);
+				} )
+				.fail( function () {
+					assert.ok( false, 'Language "' + test.lang + '" failed to load' );
+				} )
+				.always( next );
+		};
 	} );
+	QUnit.stop();
+	process( queue, QUnit.start );
 } );
 
 // HTML in wikitext
