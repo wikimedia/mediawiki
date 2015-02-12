@@ -143,6 +143,8 @@ class ApiQuery extends ApiBase {
 		$this->mModuleMgr->addModules( self::$QueryMetaModules, 'meta' );
 		$this->mModuleMgr->addModules( $config->get( 'APIMetaModules' ), 'meta' );
 
+		Hooks::run( 'ApiQuery::moduleManager', array( $this->mModuleMgr ) );
+
 		// Create PageSet that will process titles/pageids/revids/generator
 		$this->mPageSet = new ApiPageSet( $this );
 	}

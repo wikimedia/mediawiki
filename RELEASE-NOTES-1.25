@@ -107,6 +107,8 @@ production.
   to allow extensions to override how links to pages are rendered within NS_CATEGORY
 * (T19665) Special:WantedPages only lists page which having at least one red link
   pointing to it.
+* New hooks 'ApiMain::moduleManager' and 'ApiQuery::moduleManager', can be
+  used for conditional registration of API modules.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
@@ -278,6 +280,8 @@ production.
   * ApiQueryDeletedrevs
 * Default type param for ApiQueryWatchlist and ApiQueryRecentChanges has
   been changed from all types (e.g. including 'external') to 'edit|new|log'.
+* New hooks 'ApiMain::moduleManager' and 'ApiQuery::moduleManager', can be
+  used for conditional registration of API modules.
 
 === Languages updated in 1.25 ===
 

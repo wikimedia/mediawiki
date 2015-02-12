@@ -215,6 +215,8 @@ class ApiMain extends ApiBase {
 		$this->mModuleMgr->addModules( self::$Formats, 'format' );
 		$this->mModuleMgr->addModules( $config->get( 'APIFormatModules' ), 'format' );
 
+		Hooks::run( 'ApiMain::moduleManager', array( $this->mModuleMgr ) );
+
 		$this->mResult = new ApiResult( $this );
 		$this->mEnableWrite = $enableWrite;
 
