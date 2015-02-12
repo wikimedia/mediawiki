@@ -16,7 +16,7 @@ class StoreBatchTest extends MediaWikiTestCase {
 		parent::setUp();
 
 		# Forge a FSRepo object to not have to rely on local wiki settings
-		$tmpPrefix = wfTempDir() . '/storebatch-test-' . time() . '-' . mt_rand();
+		$tmpPrefix = $this->getNewTempDirectory();
 		if ( $this->getCliArg( 'use-filebackend' ) ) {
 			$name = $this->getCliArg( 'use-filebackend' );
 			$useConfig = array();
@@ -35,10 +35,10 @@ class StoreBatchTest extends MediaWikiTestCase {
 				'name' => 'local-testing',
 				'wikiId' => wfWikiID(),
 				'containerPaths' => array(
-					'unittests-public' => "{$tmpPrefix}-public",
-					'unittests-thumb' => "{$tmpPrefix}-thumb",
-					'unittests-temp' => "{$tmpPrefix}-temp",
-					'unittests-deleted' => "{$tmpPrefix}-deleted",
+					'unittests-public' => "{$tmpPrefix}/public",
+					'unittests-thumb' => "{$tmpPrefix}/thumb",
+					'unittests-temp' => "{$tmpPrefix}/temp",
+					'unittests-deleted' => "{$tmpPrefix}/deleted",
 				)
 			) );
 		}
@@ -52,13 +52,8 @@ class StoreBatchTest extends MediaWikiTestCase {
 	}
 
 	protected function tearDown() {
-		$this->repo->cleanupBatch( $this->createdFiles ); // delete files
-		foreach ( $this->createdFiles as $tmp ) { // delete dirs
-			$tmp = $this->repo->resolveVirtualUrl( $tmp );
-			while ( $tmp = FileBackend::parentStoragePath( $tmp ) ) {
-				$this->repo->getBackend()->clean( array( 'dir' => $tmp ) );
-			}
-		}
+		// Delete files
+		$this->repo->cleanupBatch( $this->createdFiles );
 		parent::tearDown();
 	}
 
