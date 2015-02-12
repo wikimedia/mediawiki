@@ -303,10 +303,10 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	/**
-	 * Gets the current offset in fromt the stashedupload table
+	 * Get the offset at which the next uploaded chunk will be appended to
 	 * @return int Current byte offset of the chunk file set
 	 */
-	private function getOffset() {
+	public function getOffset() {
 		if ( $this->mOffset !== null ) {
 			return $this->mOffset;
 		}
