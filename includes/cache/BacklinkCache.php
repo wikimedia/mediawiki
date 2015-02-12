@@ -487,4 +487,51 @@ class BacklinkCache {
 
 		return array( 'numRows' => $numRows, 'batches' => $batches );
 	}
+
+	/**
+	 * Get a Title iterator for cascade-protected template/file use backlinks
+	 *
+	 * @return TitleArray
+	 * @since 1.25
+	 */
+	public function getCascadeProtectedLinks() {
+		// This method is used to make redudant jobs anyway, so its OK to use
+		// a slave. Also, the set of cascade protected pages tends to be stable.
+		$dbr = $this->getDB();
+
+		// http://dev.mysql.com/doc/refman/5.6/en/subquery-optimization.html
+		// The use if IN() should allow for various strategies, appropriate
+		// for both the cases of pages with many and few backlinks.
+		$queries = array();
+		$queries[] = $dbr->selectSQLText(
+			array( 'templatelinks', 'page' ),
+			array( 'page_namespace', 'page_title', 'page_id' ),
+			array(
+				'tl_namespace' => $this->title->getNamespace(),
+				'tl_title' => $this->title->getDBkey(),
+				'tl_from IN (' . $dbr->selectSQLText(
+					'page_restrictions',
+					'pr_page',
+					array( 'pr_cascade' => 1 ) ) . ')',
+				'page_id = tl_from'
+			)
+		);
+		$queries[] = $dbr->selectSQLText(
+			array( 'imagelinks', 'page' ),
+			array( 'page_namespace', 'page_title' ),
+			array(
+				'il_to' => $this->title->getDBkey(),
+				'il_from IN (' . $dbr->selectSQLText(
+					'page_restrictions',
+					'pr_page',
+					array( 'pr_cascade' => 1 ) ) . ')',
+				'page_id = il_from'
+			)
+		);
+
+		return TitleArray::newFromResult( $dbr->query(
+			$dbr->unionQueries( $queries, false ),
+			__METHOD__
+		) );
+	}
 }

@@ -6422,6 +6422,7 @@ $wgJobClasses = array(
 	'PublishStashedFile' => 'PublishStashedFileJob',
 	'ThumbnailRender' => 'ThumbnailRenderJob',
 	'recentChangesUpdate' => 'RecentChangesUpdateJob',
+	'refreshLinksPrioritized' => 'RefreshLinksJob', // for cascading protection
 	'null' => 'NullJob'
 );
 
