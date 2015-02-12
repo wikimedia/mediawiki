@@ -2,10 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Vitorvicentevalente",
-			"Fúlvio"
+			"Fúlvio",
+			"Macofe"
 		]
 	},
-	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [https://www.mediawiki.org/wiki/API:Main_page Documentação]\n* [https://www.mediawiki.org/wiki/API:FAQ FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de discussão]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anúncios da API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Erros e solicitações]\n</div>\n<strong>Estado:</strong> Todas as funcionalidades mostradas nesta página deveriam estar a funcionar, mas a API ainda está em activo desenvolvimento, e pode ser alterada a qualquer momento. Inscreva-se na [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ lista de discussão mediawiki-api-announce] para ser informado acerca das actualizações.\n\n<strong>Solicitações erradas:</strong> Quando solicitações erradas são enviadas à API, um cabeçalho em HTTP será enviado com a chave \"MediaWiki-API-Error\" e, em seguida, tanto o valor do cabeçalho quanto o código de erro retornado serão definidos com o mesmo valor. Para mais informação, consulte https://www.mediawiki.org/wiki/API:Errors_and_warnings.",
+	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentação]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de discussão]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anúncios da API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Erros e solicitações]\n</div>\n<strong>Estado:</strong> Todas as funcionalidades mostradas nesta página deveriam estar a funcionar, mas a API ainda está em activo desenvolvimento, e pode ser alterada a qualquer momento. Inscreva-se na [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ lista de discussão mediawiki-api-announce] para ser informado acerca das actualizações.\n\n<strong>Solicitações erradas:</strong> Quando solicitações erradas são enviadas à API, um cabeçalho em HTTP será enviado com a chave \"MediaWiki-API-Error\" e, em seguida, tanto o valor do cabeçalho quanto o código de erro retornado serão definidos com o mesmo valor. Para mais informação, consulte [[mw:API:Errors_and_warnings|API: Errors and warnings]].",
 	"apihelp-main-param-action": "Qual acção a executar.",
 	"apihelp-main-param-format": "O formato de saída.",
 	"apihelp-block-description": "Bloquear um utilizador.",
@@ -19,7 +20,7 @@
 	"apihelp-delete-description": "Eliminar uma página.",
 	"apihelp-delete-param-watch": "Adicionar esta página à lista de vigiadas.",
 	"apihelp-delete-param-unwatch": "Remover esta página da lista de vigiadas.",
-	"apihelp-delete-example-simple": "Eliminar Página Principal",
+	"apihelp-delete-example-simple": "Eliminar <kbd>Página Principal</kbd>.",
 	"apihelp-disabled-description": "O módulo foi desativado.",
 	"apihelp-edit-description": "Criar e editar páginas.",
 	"apihelp-edit-param-sectiontitle": "Título para uma nova seção.",
@@ -64,7 +65,7 @@
 	"apihelp-protect-example-protect": "Proteger uma página",
 	"apihelp-query+allcategories-description": "Enumerar todas as categorias.",
 	"apihelp-query+allpages-param-prefix": "Pesquisa para todos os títulos de páginas que comecem com este valor.",
-	"apihelp-query+allpages-example-generator": "Mostrar informação sobre 4 páginas que comecem com a letra \"T\"",
+	"apihelp-query+allpages-example-generator": "Mostrar informação sobre 4 páginas que comecem com a letra <kbd>T</kbd>.",
 	"apihelp-query+allusers-example-Y": "Lista de utilizadores que comecem com <kbd>Y</kbd>.",
 	"apihelp-query+blocks-param-limit": "O número máximo de bloqueios a listar.",
 	"apihelp-query+categorymembers-description": "Lista de todas as páginas numa categoria fornecida.",
@@ -83,7 +84,7 @@
 	"apihelp-userrights-param-userid": "ID de utilizador.",
 	"apihelp-userrights-param-add": "Adicionar o utilizador a estes grupos.",
 	"apihelp-userrights-param-remove": "Remover este utilizador destes grupos.",
-	"apihelp-watch-example-unwatch": "Deixar de vigiar a \"Página Principal\"",
+	"apihelp-watch-example-unwatch": "Deixar de vigiar a página <kbd>Página Principal</kbd>.",
 	"apihelp-json-description": "Dados de saída em formato JSON.",
 	"api-help-title": "Ajuda API da MediaWiki",
 	"api-help-main-header": "Módulo principal",

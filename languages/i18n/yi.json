@@ -1137,6 +1137,7 @@
 	"action-viewmywatchlist": "באקוקן אײַער אויפֿפאסונג ליסטע",
 	"action-viewmyprivateinfo": "באקוקן אײַער פריוואטע אינפארמאציע",
 	"action-editmyprivateinfo": "רעדאקטירן אײַער פריוואטע אינפארמאציע",
+	"action-managechangetags": "שאפן און אויסמעקן טאגן פון דער דאטנבאזע",
 	"nchanges": "{{PLURAL:$1|ענדערונג|$1 ענדערונגען}}",
 	"enhancedrc-since-last-visit": "$1 {{PLURAL:$1|זײַט לעצטן וויזיט}}",
 	"enhancedrc-history": "היסטאריע",

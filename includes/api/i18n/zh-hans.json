@@ -22,7 +22,7 @@
 	"apihelp-main-param-servedby": "包含保存结果请求的主机名。",
 	"apihelp-main-param-curtimestamp": "在结果中包括当前时间戳。",
 	"apihelp-main-param-origin": "当通过跨域名AJAX请求（CORS）访问API时，设置此作为起始域名。这必须包括在任何pre-flight请求中，并因此必须是请求的URI的一部分（而不是POST正文）。这必须匹配<code>Origin</code>中的一个起点：从头到底，因此它已经设置为像<kbd>https://zh.wikipedia.org</kbd>或<kbd>https://meta.wikimedia.org</kbd>的东西。如果此参数不匹配<code>Origin</code>页顶，就返回403错误响应。如果此参数匹配<code>Origin</code>页顶并且起点被白名单，将设置一个<code>Access-Control-Allow-Origin</code>开头。",
-	"apihelp-main-param-uselang": "用于消息翻译的语言。代码列表可从[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]通过siprop=languages获取，或指定“user”以使用当前用户的语言设置，或指定“content”以使用此wiki的内容语言。",
+	"apihelp-main-param-uselang": "用于消息翻译的语言。代码列表可从<kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd>通过<kbd>siprop=languages</kbd>获取，或指定<kbd>user</kbd>以使用当前用户的语言设置，或指定<kbd>content</kbd>以使用此wiki的内容语言。",
 	"apihelp-block-description": "封禁一位用户。",
 	"apihelp-block-param-user": "您要封禁的用户、IP地址或IP地址段。",
 	"apihelp-block-param-expiry": "到期时间。可以是相对时间（例如<kbd>5 months</kbd>或<kbd>2 weeks</kbd>）或绝对时间（例如<kbd>2014-09-18T12:34:56Z</kbd>）。如果设置为<kbd>infinite</kbd>、<kbd>indefinite</kbd>或<kbd>never</kbd>，封禁将无限期。",
