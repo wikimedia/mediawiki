@@ -487,4 +487,52 @@ class BacklinkCache {
 
 		return array( 'numRows' => $numRows, 'batches' => $batches );
 	}
+
+	/**
+	 * Get a Title iterator for cascade-protected template/file use backlinks
+	 *
+	 * @return TitleArray
+	 * @since 1.25
+	 */
+	public function getCascadeProtectedLinks() {
+		$dbr = $this->getDB();
+
+		// @todo: use UNION without breaking tests that use temp tables
+		$resSets = array();
+		$resSets[] = $dbr->select(
+			array( 'templatelinks', 'page_restrictions', 'page' ),
+			array( 'page_namespace', 'page_title', 'page_id' ),
+			array(
+				'tl_namespace' => $this->title->getNamespace(),
+				'tl_title' => $this->title->getDBkey(),
+				'tl_from = pr_page',
+				'pr_cascade' => 1,
+				'page_id = tl_from'
+			),
+			__METHOD__,
+			array( 'DISTINCT' )
+		);
+		$resSets[] = $dbr->select(
+			array( 'imagelinks', 'page_restrictions', 'page' ),
+			array( 'page_namespace', 'page_title', 'page_id' ),
+			array(
+				'il_to' => $this->title->getDBkey(),
+				'il_from = pr_page',
+				'pr_cascade' => 1,
+				'page_id = il_from'
+			),
+			__METHOD__,
+			array( 'DISTINCT' )
+		);
+
+		// Combine and de-duplicate the results
+		$mergedRes = array();
+		foreach ( $resSets as $res ) {
+			foreach ( $res as $row ) {
+				$mergedRes[$row->page_id] = $row;
+			}
+		}
+
+		return TitleArray::newFromResult( new FakeResultWrapper( $mergedRes ) );
+	}
 }
