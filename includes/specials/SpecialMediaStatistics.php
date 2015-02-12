@@ -322,9 +322,9 @@ class MediaStatisticsPage extends QueryPage {
 	public function preprocessResults( $dbr, $res ) {
 		$this->totalCount = $this->totalBytes = 0;
 		foreach ( $res as $row ) {
-			list( , , $count, $bytes ) = $this->splitFakeTitle( $row->title );
-			$this->totalCount += $count;
-			$this->totalBytes += $bytes;
+			$mediaStats = $this->splitFakeTitle( $row->title );
+			$this->totalCount += isset( $mediaStats[2] ) ? $mediaStats[2] : 0;
+			$this->totalBytes += isset( $mediaStats[3] ) ? $mediaStats[3] : 0;
 		}
 		$res->seek( 0 );
 	}
