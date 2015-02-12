@@ -39,6 +39,10 @@ class RefreshLinksJob extends Job {
 
 	function __construct( $title, $params = '' ) {
 		parent::__construct( 'refreshLinks', $title, $params );
+		// A separate type is used just for cascade-protected backlinks
+		if ( !empty( $this->params['prioritize'] ) ) {
+			$this->command .= 'Prioritized';
+		}
 		// Base backlink update jobs and per-title update jobs can be de-duplicated.
 		// If template A changes twice before any jobs run, a clean queue will have:
 		//		(A base, A base)
@@ -85,6 +89,16 @@ class RefreshLinksJob extends Job {
 				1, // job-per-title
 				array( 'params' => $extraParams )
 			);
+			// Get jobs for cascade-protected backlinks for a high priority queue.
+			// If meta-templates change to using a new template, the new template
+			// should be implicitly protected as soon as possible, if applicable.
+			// These jobs duplicate a subset of the above ones, but can run sooner.
+			// Which ever runs first generally no-ops the other one.
+			foreach ( $this->getCascadeProtectedBacklinks( $this->title ) as $title ) {
+				$jobs[] = new RefreshLinksJob( $title,
+					array( 'prioritize' => true ) + $extraParams );
+			}
+			// Enqueue all of the sub-jobs
 			JobQueueGroup::singleton()->push( $jobs );
 		// Job to update link tables for a set of titles
 		} elseif ( isset( $this->params['pages'] ) ) {
@@ -100,6 +114,54 @@ class RefreshLinksJob extends Job {
 		return true;
 	}
 
+	/**
+	 * @return TitleArray
+	 */
+	protected function getCascadeProtectedBacklinks( Title $title ) {
+		// This method is used to make redudant jobs anyway, so its OK to use
+		// a slave. Also, the set of cascade protected pages tends to be stable.
+		$dbr = wfGetDB( DB_SLAVE );
+
+		// http://dev.mysql.com/doc/refman/5.6/en/subquery-optimization.html
+		// The use if IN() should allow for various strategies, appropriate
+		// for both the cases of pages with many and few backlinks.
+		$queries = array();
+		$queries[] = $dbr->selectSQLText(
+			array( 'templatelinks', 'page' ),
+			array( 'page_namespace', 'page_title' ),
+			array(
+				'tl_namespace' => $title->getNamespace(),
+				'tl_title' => $title->getDBkey(),
+				'tl_from IN (' . $dbr->selectSQLText(
+					'page_restrictions',
+					'pr_page',
+					array( 'pr_cascade' => 1 ) ) . ')',
+				'page_id = tl_from'
+			)
+		);
+		$queries[] = $dbr->selectSQLText(
+			array( 'imagelinks', 'page' ),
+			array( 'page_namespace', 'page_title' ),
+			array(
+				'il_to' => $title->getDBkey(),
+				'il_from IN (' . $dbr->selectSQLText(
+					'page_restrictions',
+					'pr_page',
+					array( 'pr_cascade' => 1 ) ) . ')',
+				'page_id = il_from'
+			)
+		);
+
+		return TitleArray::newFromResult( $dbr->query(
+			$dbr->unionQueries( $queries, false ),
+			__METHOD__
+		) );
+	}
+
+	/**
+	 * @param Title $title
+	 * @return bool
+	 */
 	protected function runForTitle( Title $title = null ) {
 		$linkCache = LinkCache::singleton();
 		$linkCache->clear();
