@@ -32,8 +32,12 @@
 
 $optionsWithArgs = array( 'd' );
 
-/** */
-require_once __DIR__ . "/commandLine.inc";
+require_once __DIR__ . '/commandLine.inc';
+
+function wrapEval( $code ) {
+	extract( $GLOBALS );
+	return eval( $code );
+}
 
 if ( isset( $options['d'] ) ) {
 	$d = $options['d'];
@@ -51,23 +55,23 @@ if ( isset( $options['d'] ) ) {
 	}
 }
 
-$__useReadline = function_exists( 'readline_add_history' )
+$useReadline = function_exists( 'readline_add_history' )
 	&& Maintenance::posix_isatty( 0 /*STDIN*/ );
 
-if ( $__useReadline ) {
-	$__historyFile = isset( $_ENV['HOME'] ) ?
+if ( $useReadline ) {
+	$historyFile = isset( $_ENV['HOME'] ) ?
 		"{$_ENV['HOME']}/.mweval_history" : "$IP/maintenance/.mweval_history";
-	readline_read_history( $__historyFile );
+	readline_read_history( $historyFile );
 }
 
-$__phpPath = preg_match( '/Zend Engine|HipHop VM/', wfShellExecWithStderr( 'php --version' ) )
+$phpPath = preg_match( '/Zend Engine|HipHop VM/', wfShellExecWithStderr( 'php --version' ) )
 	? 'php' //standard system path name
 	: ''; // not accessible somehow
 
-$__multiLine = '';
-$__e = null; // PHP exception
-while ( ( $__line = Maintenance::readconsole() ) !== false ) {
-	if ( $__e && !preg_match( '/^(exit|die);?$/', $__line ) ) {
+$multiLine = '';
+$e = null; // PHP exception
+while ( ( $line = Maintenance::readconsole() ) !== false ) {
+	if ( $e && !preg_match( '/^(exit|die);?$/', $line ) ) {
 		// Internal state may be corrupted or fatals may occur later due
 		// to some object not being set. Don't drop out of eval in case
 		// lines were being pasted in (which would then get dumped to the shell).
@@ -75,33 +79,33 @@ while ( ( $__line = Maintenance::readconsole() ) !== false ) {
 		echo "Exception was thrown before; please restart eval.php\n";
 		continue;
 	}
-	if ( $__useReadline ) {
-		readline_add_history( $__line );
-		readline_write_history( $__historyFile );
+	if ( $useReadline ) {
+		readline_add_history( $line );
+		readline_write_history( $historyFile );
 	}
 	// Try to only run PHP once a valid chunk is formed (deals with newlines)
-	if ( $__phpPath ) {
+	if ( $phpPath ) {
 		$res = wfShellExecWithStderr(
-			"echo " . wfEscapeShellArg( "<?php\n{$__multiLine}{$__line}" ) . " | php -l" );
-		if ( strpos( $res, 'No syntax errors' ) !== 0 && substr( $__multiLine, -2 ) !== "\n\n" ) {
-			$__multiLine .= "$__line\n";
+			'echo ' . wfEscapeShellArg( "<?php\n{$multiLine}{$line}" ) . ' | php -l' );
+		if ( strpos( $res, 'No syntax errors' ) !== 0 && substr( $multiLine, -2 ) !== "\n\n" ) {
+			$multiLine .= "$line\n";
 			continue;
 		}
 	}
 	try {
-		$__val = eval( $__multiLine . $__line . ";" );
-		$__multiLine = '';
-	} catch ( Exception $__e ) {
-		echo "Caught exception " . get_class( $__e ) .
-			": {$__e->getMessage()}\n" . $__e->getTraceAsString() . "\n";
+		$val = wrapEval( $multiLine . $line . ';' );
+		$multiLine = '';
+	} catch ( Exception $e ) {
+		echo 'Caught exception ' . get_class( $e ) .
+			": {$e->getMessage()}\n" . $e->getTraceAsString() . "\n";
 		continue;
 	}
-	if ( wfIsHHVM() || is_null( $__val ) ) {
+	if ( wfIsHHVM() || is_null( $val ) ) {
 		echo "\n";
-	} elseif ( is_string( $__val ) || is_numeric( $__val ) ) {
-		echo "$__val\n";
+	} elseif ( is_string( $val ) || is_numeric( $val ) ) {
+		echo "$val\n";
 	} else {
-		var_dump( $__val );
+		var_dump( $val );
 	}
 }
 
