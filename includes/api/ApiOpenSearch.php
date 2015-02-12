@@ -80,12 +80,19 @@ class ApiOpenSearch extends ApiBase {
 		$namespaces = $params['namespace'];
 		$suggest = $params['suggest'];
 
-		if ( $params['redirects'] === null ) {
-			// Backwards compatibility, don't resolve for JSON.
-			$resolveRedir = $this->getFormat() !== 'json';
-		} else {
-			$resolveRedir = $params['redirects'] === 'resolve';
-		}
+		// Possible compatibility break in 1.25 -- we used to
+		// not resolve redirects for JSON returns, but had a
+		// lot of requests to resolve by default instead.
+		// XML responses were already resolving redirects
+		// in part because the original JSON implementation
+		// did not include snippets while the original XML
+		// one did.
+		//
+		// Now always enabling them unless disabled explicitly,
+		// since that's what everyone seems to want.
+		//
+		// https://phabricator.wikimedia.org/T19142
+		$resolveRedir = $params['redirects'] === 'resolve';
 
 		$results = array();
 
@@ -279,6 +286,7 @@ class ApiOpenSearch extends ApiBase {
 			),
 			'suggest' => false,
 			'redirects' => array(
+				ApiBase::PARAM_DFLT => 'resolve',
 				ApiBase::PARAM_TYPE => array( 'return', 'resolve' ),
 			),
 			'format' => array(
