@@ -48,10 +48,8 @@ abstract class Profiler {
 		'udp' => 'ProfilerOutputUdp',
 	);
 
-	// @codingStandardsIgnoreStart PSR2.Classes.PropertyDeclaration.Underscore
-	/** @var Profiler Do not call this outside Profiler and ProfileSection */
-	public static $__instance = null;
-	// @codingStandardsIgnoreEnd
+	/** @var Profiler */
+	private static $instance = null;
 
 	/**
 	 * @param array $params
@@ -69,7 +67,7 @@ abstract class Profiler {
 	 * @return Profiler
 	 */
 	final public static function instance() {
-		if ( self::$__instance === null ) {
+		if ( self::$instance === null ) {
 			global $wgProfiler;
 			if ( is_array( $wgProfiler ) ) {
 				$class = isset( $wgProfiler['class'] ) ? $wgProfiler['class'] : 'ProfilerStub';
@@ -77,12 +75,12 @@ abstract class Profiler {
 				if ( PHP_SAPI === 'cli' || mt_rand( 0, $factor - 1 ) != 0 ) {
 					$class = 'ProfilerStub';
 				}
-				self::$__instance = new $class( $wgProfiler );
+				self::$instance = new $class( $wgProfiler );
 			} else {
-				self::$__instance = new ProfilerStub( array() );
+				self::$instance = new ProfilerStub( array() );
 			}
 		}
-		return self::$__instance;
+		return self::$instance;
 	}
 
 	/**
@@ -93,10 +91,10 @@ abstract class Profiler {
 	 * @since 1.25
 	 */
 	final public static function replaceStubInstance( Profiler $profiler ) {
-		if ( self::$__instance && !( self::$__instance instanceof ProfilerStub ) ) {
+		if ( self::$instance && !( self::$instance instanceof ProfilerStub ) ) {
 			throw new MWException( 'Could not replace non-stub profiler instance.' );
 		} else {
-			self::$__instance = $profiler;
+			self::$instance = $profiler;
 		}
 	}
 
