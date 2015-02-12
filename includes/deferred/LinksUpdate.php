@@ -228,12 +228,23 @@ class LinksUpdate extends SqlDataUpdate {
 	 * Which means do LinksUpdate on all pages that include the current page,
 	 * using the job queue.
 	 */
-	function queueRecursiveJobs() {
+	protected function queueRecursiveJobs() {
 		self::queueRecursiveJobsForTable( $this->mTitle, 'templatelinks' );
 		if ( $this->mTitle->getNamespace() == NS_FILE ) {
 			// Process imagelinks in case the title is or was a redirect
 			self::queueRecursiveJobsForTable( $this->mTitle, 'imagelinks' );
 		}
+
+		// Get jobs for cascade-protected backlinks for a high priority queue.
+		// If meta-templates change to using a new template, the new template
+		// should be implicitly protected as soon as possible, if applicable.
+		// These jobs duplicate a subset of the above ones, but can run sooner.
+		// Which ever runs first generally no-ops the other one.
+		$jobs = array();
+		foreach ( self::getCascadeProtectedBacklinks( $this->mTitle ) as $title ) {
+			$jobs[] = new RefreshLinksJob( $title, array( 'prioritize' => true ) );
+		}
+		JobQueueGroup::singleton()->push( $jobs );
 	}
 
 	/**
@@ -253,9 +264,55 @@ class LinksUpdate extends SqlDataUpdate {
 					"refreshlinks:{$table}:{$title->getPrefixedText()}"
 				)
 			);
+
 			JobQueueGroup::singleton()->push( $job );
 			JobQueueGroup::singleton()->deduplicateRootJob( $job );
 		}
+	}
+
+	/**
+	 * @param Title $title
+	 * @return TitleArray
+	 */
+	protected static function getCascadeProtectedBacklinks( Title $title ) {
+		// This method is used to make redudant jobs anyway, so its OK to use
+		// a slave. Also, the set of cascade protected pages tends to be stable.
+		$dbr = wfGetDB( DB_SLAVE );
+
+		// http://dev.mysql.com/doc/refman/5.6/en/subquery-optimization.html
+		// The use if IN() should allow for various strategies, appropriate
+		// for both the cases of pages with many and few backlinks.
+		$queries = array();
+		$queries[] = $dbr->selectSQLText(
+			array( 'templatelinks', 'page' ),
+			array( 'page_namespace', 'page_title' ),
+			array(
+				'tl_namespace' => $title->getNamespace(),
+				'tl_title' => $title->getDBkey(),
+				'tl_from IN (' . $dbr->selectSQLText(
+					'page_restrictions',
+					'pr_page',
+					array( 'pr_cascade' => 1 ) ) . ')',
+				'page_id = tl_from'
+			)
+		);
+		$queries[] = $dbr->selectSQLText(
+			array( 'imagelinks', 'page' ),
+			array( 'page_namespace', 'page_title' ),
+			array(
+				'il_to' => $title->getDBkey(),
+				'il_from IN (' . $dbr->selectSQLText(
+					'page_restrictions',
+					'pr_page',
+					array( 'pr_cascade' => 1 ) ) . ')',
+				'page_id = il_from'
+			)
+		);
+
+		return TitleArray::newFromResult( $dbr->query(
+			$dbr->unionQueries( $queries, false ),
+			__METHOD__
+		) );
 	}
 
 	/**
