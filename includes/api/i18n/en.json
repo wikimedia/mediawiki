@@ -233,7 +233,7 @@
 	"apihelp-opensearch-param-limit": "Maximum number of results to return.",
 	"apihelp-opensearch-param-namespace": "Namespaces to search.",
 	"apihelp-opensearch-param-suggest": "Do nothing if <var>[[mw:Manual:$wgEnableOpenSearchSuggest|$wgEnableOpenSearchSuggest]]</var> is false.",
-	"apihelp-opensearch-param-redirects": "How to handle redirects:\n;return:Return the redirect itself.\n;resolve:Return the target page. May return fewer than $1limit results.\nFor historical reasons, the default is \"return\" for $1format=json and \"resolve\" for other formats.",
+	"apihelp-opensearch-param-redirects": "How to handle redirects:\n;return:Return the redirect itself.\n;resolve:Return the target page. May return fewer than $1limit results.",
 	"apihelp-opensearch-param-format": "The format of the output.",
 	"apihelp-opensearch-example-te": "Find pages beginning with <kbd>Te</kbd>.",
 

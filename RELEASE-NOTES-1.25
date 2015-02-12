@@ -208,6 +208,9 @@ production.
   log entry is not implemented yet.
 * list=tags has additional properties to indicate 'active' status and tag
   sources.
+* action=opensearch now resolves redirects by default for JSON requests as
+  well as for XML, for more consistent behavior. For the old behavior with JSON
+  OpenSearch requests, add 'redirects=return' param.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.

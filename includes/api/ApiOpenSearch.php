@@ -79,13 +79,7 @@ class ApiOpenSearch extends ApiBase {
 		$limit = $params['limit'];
 		$namespaces = $params['namespace'];
 		$suggest = $params['suggest'];
-
-		if ( $params['redirects'] === null ) {
-			// Backwards compatibility, don't resolve for JSON.
-			$resolveRedir = $this->getFormat() !== 'json';
-		} else {
-			$resolveRedir = $params['redirects'] === 'resolve';
-		}
+		$resolveRedir = $params['redirects'] === 'resolve';
 
 		$results = array();
 
@@ -279,6 +273,7 @@ class ApiOpenSearch extends ApiBase {
 			),
 			'suggest' => false,
 			'redirects' => array(
+				ApiBase::PARAM_DFLT => 'resolve',
 				ApiBase::PARAM_TYPE => array( 'return', 'resolve' ),
 			),
 			'format' => array(
