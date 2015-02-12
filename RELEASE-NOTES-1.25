@@ -86,7 +86,9 @@ production.
 * External libraries installed via composer will now be displayed
   on Special:Version in their own section. Extensions or skins that are
   installed via composer will not be shown in this section as it is assumed
-  they will add the proper credits to the skins or extensions section.
+  they will add the proper credits to the skins or extensions section. They
+  can also be accessed through the API via 
+  action=query&meta=siteinfo&siprop=libraries.
 * Update QUnit from v1.14.0 to v1.16.0.
 * Update Moment.js from v2.8.3 to v2.8.4.
 * Special:Tags now allows for manipulating the list of user-modifiable change
