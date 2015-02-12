@@ -7,8 +7,32 @@
 		// Number of open notification boxes at any time
 		openNotificationCount = 0,
 		isPageReady = false,
-		preReadyNotifQueue = [];
-
+		preReadyNotifQueue = [],
+		isActive=true,
+		setinterval;
+	
+	function check() {
+		$(window).focus(function(){
+			if(!isActive){
+				notification.resume();
+				isActive=true;
+			}
+		});
+		$(window).blur(function(){
+			if(isActive){
+				notification.pause();
+				isActive=false;
+			}
+		});
+	}
+	
+	
+	function set () {
+		setinterval=setInterval(check(),200);
+	}
+	function removeInterval () {
+		clearInterval(setinterval);
+	}
 	/**
 	 * A Notification object for 1 message.
 	 *
@@ -221,6 +245,9 @@
 		autohideCount = $area.find( '.mw-notification-autohide' ).length;
 		if ( autohideCount <= notification.autoHideLimit ) {
 			this.resume();
+			if(!isActive){
+				notification.pause();
+			}
 		}
 	};
 
@@ -290,7 +317,8 @@
 		// Now that a notification is being closed. Start auto-hide timers for any
 		// notification that has now become one of the first {autoHideLimit} notifications.
 		notification.resume();
-
+		isActive=true;
+		removeInterval();
 		this.$notification
 			.css( {
 				// Don't trigger any mouse events while fading out, just in case the cursor
@@ -453,6 +481,7 @@
 			notif = new Notification( message, options );
 
 			if ( isPageReady ) {
+				set();
 				notif.start();
 			} else {
 				preReadyNotifQueue.push( notif );
