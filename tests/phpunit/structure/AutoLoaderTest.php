@@ -44,7 +44,7 @@ class AutoLoaderTest extends MediaWikiTestCase {
 
 		$files = array_unique( $expected );
 
-		foreach ( $files as $file ) {
+		foreach ( $files as $class => $file ) {
 			// Only prefix $IP if it doesn't have it already.
 			// Generally local classes don't have it, and those from extensions and test suites do.
 			if ( substr( $file, 0, 1 ) != '/' && substr( $file, 1, 1 ) != ':' ) {
@@ -53,7 +53,19 @@ class AutoLoaderTest extends MediaWikiTestCase {
 				$filePath = $file;
 			}
 
+			if ( !file_exists( $filePath ) ) {
+				$actual[$class] = "[file '$filePath' does not exist]";
+				continue;
+			}
+
+			wfSuppressWarnings();
 			$contents = file_get_contents( $filePath );
+			wfRestoreWarnings();
+
+			if ( $contents === false ) {
+				$actual[$class] = "[couldn't read file '$filePath']";
+				continue;
+			}
 
 			// We could use token_get_all() here, but this is faster
 			$matches = array();
