@@ -1167,10 +1167,11 @@ abstract class DatabaseBase implements IDatabase {
 			$that = $this;
 			$queryStartTime = microtime( true );
 			$queryProfile = new ScopedCallback(
-				function () use ( $that, $queryStartTime, $queryProf, $isMaster ) {
+				function () use ( $that, $queryStartTime, $queryProf, $isWriteQuery ) {
 					$n = $that->affectedRows();
 					$trxProf = Profiler::instance()->getTransactionProfiler();
-					$trxProf->recordQueryCompletion( $queryProf, $queryStartTime, $isMaster, $n );
+					$trxProf->recordQueryCompletion(
+						$queryProf, $queryStartTime, $isWriteQuery, $n );
 				}
 			);
 		}
