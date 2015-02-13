@@ -142,8 +142,21 @@ class ExtensionRegistry {
 		foreach ( $info['globals'] as $key => $val ) {
 			if ( !isset( $GLOBALS[$key] ) || !$GLOBALS[$key] ) {
 				$GLOBALS[$key] = $val;
-			} elseif ( is_array( $GLOBALS[$key] ) && is_array( $val ) ) {
+			} elseif ( $key === 'wgHooks' ) {
+				// Special case $wgHooks, which requires a recursive merge.
+				// Ideally it would have been taken care of in the first if block though.
 				$GLOBALS[$key] = array_merge_recursive( $GLOBALS[$key], $val );
+			} elseif ( $key === 'wgGroupPermissions' ) {
+				// First merge individual groups
+				foreach ( $GLOBALS[$key] as $name => &$groupVal ) {
+					if ( isset( $val[$name] ) ) {
+						$groupVal += $val[$name];
+					}
+				}
+				// Now merge groups that didn't exist yet
+				$GLOBALS[$key] += $val;
+			} elseif ( is_array( $GLOBALS[$key] ) && is_array( $val ) ) {
+				$GLOBALS[$key] += $val;
 			} // else case is a config setting where it has already been overriden, so don't set it
 		}
 		foreach ( $info['defines'] as $name => $val ) {
