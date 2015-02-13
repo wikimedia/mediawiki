@@ -437,7 +437,7 @@ class Status {
 	 */
 	function __get( $name ) {
 		if ( $name === 'ok' ) {
-			return $this->sv->getOK();
+			return $this->sv->isOK();
 		} elseif ( $name === 'errors' ) {
 			return $this->sv->getErrors();
 		}
