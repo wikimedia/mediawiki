@@ -1071,6 +1071,12 @@ return array(
 			'mediawiki.jqueryMsg',
 		),
 		'messages' => array(
+			'creating',
+			'editconflict',
+			'editing',
+			'editingcomment',
+			'editingsection',
+			'pagetitle',
 			'otherlanguages',
 			'tooltip-p-lang',
 			'summary-preview',
