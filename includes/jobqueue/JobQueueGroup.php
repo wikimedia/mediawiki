@@ -152,6 +152,16 @@ class JobQueueGroup {
 
 		if ( is_string( $qtype ) ) { // specific job type
 			if ( !in_array( $qtype, $blacklist ) ) {
+				// Unrecognized jobs can be pushed to foreign wiki queues which
+				// cannot be run. Throw an error, but first clear the queue from
+				// the aggregator so this doesn't happen again soon. However, the
+				// runner daemon may repopulate the aggregrator periodically.
+				$typeMap = $this->getCachedConfigVar( 'wgJobClasses' );
+				if ( !isset( $typeMap[$qtype] ) ) {
+					JobQueueAggregator::singleton()->notifyQueueEmpty( $this->wiki, $qtype );
+					throw new MWException( "Unrecognized job type '{$qtype}'." );
+				}
+
 				$job = $this->get( $qtype )->pop();
 				if ( !$job ) {
 					JobQueueAggregator::singleton()->notifyQueueEmpty( $this->wiki, $qtype );
