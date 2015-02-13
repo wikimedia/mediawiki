@@ -212,7 +212,7 @@
 	"redirectedfrom": "($1dan yoʻnaltirildi)",
 	"redirectpagesub": "Yoʻnaltiruvchi sahifa",
 	"redirectto": "Qayta yoʻnaltirish:",
-	"lastmodifiedat": "Bu sahifa oxirgi marta $1 soat $2 da tahrirlangan.",
+	"lastmodifiedat": "Bu sahifa oxirgi marta $1, $2 da tahrirlangan.",
 	"viewcount": "Bu sahifaga {{PLURAL:$1|bir marta|$1 marta}} murojaat qilingan.",
 	"protectedpage": "Himoyalangan sahifa",
 	"jumpto": "Oʻtish:",

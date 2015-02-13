@@ -3,7 +3,8 @@
 		"authors": [
 			"Guycn2",
 			"Amire80",
-			"Inkbug"
+			"Inkbug",
+			"Danny-w"
 		]
 	},
 	"apihelp-main-param-action": "איזו פעולה לבצע.",
@@ -23,7 +24,7 @@
 	"apihelp-query+imageinfo-paramvalue-prop-comment": "תגובה על הגרסה.",
 	"apihelp-query+prefixsearch-param-offset": "מספר תוצאות לדילוג.",
 	"apihelp-query+tokens-example-types": "אחזור אסימון של רשימת המעקב ואסימון של ניטור",
-	"apihelp-xml-param-xslt": "אם צוין, מוסיף &lt;xslt&gt; כגליון סגנונות. זה צריך להיות דף ויקי במרחב השם מדיה ויקי ששמו מסתיים ב\".xsl\".",
+	"apihelp-xml-param-xslt": "אם צוין, יש להוסיף את שם הדף כגיליון עיצוב XSL. על הערך להיות כותרת ב {{ns:mediawiki}} במרחב שם המשתמש, המסתיים ב-  <code>.xsl</code>.",
 	"api-format-title": "תוצאה של API של מדיה־ויקי",
 	"api-format-prettyprint-header": "זהו ייצוג ב־HTML של תסדיר $1. תסדיר HTML טוב לתיקון שגיאות, אבל אינו מתאים ליישומים.\n\nיש לציין את הפרמטר format כדי לשנות את תסדיר הפלט. כדי לראות ייצוג של תסדיר $1 לא ב־HTML יש לרשום format=$2.\n\nר' את [https://www.mediawiki.org/wiki/API התיעוד המלא], או את [[Special:ApiHelp/main|העזרה של API]] למידע נוסף.",
 	"api-orm-param-props": "באילו שדות לעשות שאילתה.",
@@ -55,7 +56,7 @@
 	"api-help-param-integer-max": "ה{{PLURAL:$1|1=ערך לא יכול להיות גדול|2=ערכים לא יכולים להיות גדולים}} מ־$3.",
 	"api-help-param-integer-minmax": "ה{{PLURAL:$1|1=ערך חייב|2=ערכים חייבים}} להיות בין $2 ל־$3.",
 	"api-help-param-upload": "חייב להישלח (posted) בתור העלאת קובץ באמצעות multipart/form-data.",
-	"api-help-param-multi-separate": "הפרדה בין ערכים נעשית באמצעות \"|\".",
+	"api-help-param-multi-separate": "הפרדה בין ערכים נעשית באמצעות <kbd>|</kbd>",
 	"api-help-param-multi-max": "מספר הערכים המרבי הוא {{PLURAL:$1|$1}} (עבור בוטים – {{PLURAL:$2|$2}}).",
 	"api-help-param-default": "ברירת מחדל: $1",
 	"api-help-param-default-empty": "ברירת מחדל: <span class=\"apihelp-empty\">(ריק)</span>",

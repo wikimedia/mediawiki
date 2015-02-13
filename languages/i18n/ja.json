@@ -938,6 +938,8 @@
 	"prefs-rc": "最近の更新",
 	"prefs-watchlist": "ウォッチリスト",
 	"prefs-editwatchlist": "ウォッチリストの編集",
+	"prefs-editwatchlist-edit": "ウォッチリストの表示と除去",
+	"prefs-editwatchlist-clear": "ウォッチリストの全消去",
 	"prefs-watchlist-days": "ウォッチリストの表示日数:",
 	"prefs-watchlist-days-max": "最大 $1 {{PLURAL:$1|日間}}",
 	"prefs-watchlist-edits": "ウォッチリストの展開時の最大表示件数:",

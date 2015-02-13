@@ -49,6 +49,7 @@
 	"apihelp-query+info-paramvalue-prop-watchers": "Liczba obserwujących, jeśli jest to dozwolone.",
 	"apihelp-query+info-paramvalue-prop-readable": "Czy użytkownik może przeczytać tę stronę.",
 	"apihelp-query+prefixsearch-param-offset": "Liczba wyników do pominięcia.",
+	"apihelp-query+recentchanges-example-simple": "Lista ostatnich zmian.",
 	"apihelp-query+search-description": "Wykonaj wyszukiwanie pełnotekstowe.",
 	"apihelp-query+watchlist-param-excludeuser": "Nie wyświetlaj zmian wykonanych przez tego użytkownika.",
 	"apihelp-unblock-param-reason": "Powód odblokowania.",

@@ -27,7 +27,8 @@
 			"שומבלע",
 			"תומר ט",
 			"Matanya",
-			"GilCahana"
+			"GilCahana",
+			"Ldorfman"
 		]
 	},
 	"tog-underline": "סימון קישורים בקו תחתי:",
@@ -395,7 +396,7 @@
 	"yourpasswordagain": "חזרה על הסיסמה:",
 	"createacct-yourpasswordagain": "אימות הסיסמה",
 	"createacct-yourpasswordagain-ph": "יש להקליד את הסיסמה שנית",
-	"remembermypassword": "שמירת הכניסה שלי בדפדפן הזה (ל{{PLURAL:$1|יום אחד|יומיים|־$1 ימים}} לכל היותר)",
+	"remembermypassword": "שמירת הכניסה שלי בדפדפן הזה ({{PLURAL:$1|ליום אחד|ליומיים|ל־$1 ימים}} לכל היותר)",
 	"userlogin-remembermypassword": "לזכור שנכנסתי",
 	"userlogin-signwithsecure": "שימוש בחיבור מאובטח",
 	"yourdomainname": "המתחם שלך:",
@@ -623,7 +624,7 @@
 	"token_suffix_mismatch": "'''עריכתך נדחתה כיוון שהדפדפן שלך מחק את תווי הפיסוק באסימון העריכה.'''\nהעריכה נדחתה כדי למנוע בעיות כאלה בטקסט של הדף.\nלעתים התקלה מתרחשת עקב שימוש בשירות פרוקסי אנונימי פגום.",
 	"edit_form_incomplete": "'''כמה חלקים מטופס העריכה לא הגיעו לשרת; בדקו היטב שעריכותיכם לא נפגעו ונסו שוב.'''",
 	"editing": "עריכת $1",
-	"creating": "יצירת $1",
+	"creating": "יצירת הדף $1",
 	"editingsection": "עריכת $1 (פסקה)",
 	"editingcomment": "עריכת $1 (פסקה חדשה)",
 	"editconflict": "התנגשות עריכה: $1",

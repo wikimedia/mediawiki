@@ -278,6 +278,7 @@
 	"apihelp-query+images-example-simple": "Obter unha lista de arquivos empregados na [[Main Page]].",
 	"apihelp-query+imageusage-param-namespace": "Nome de espazos a numerar.",
 	"apihelp-query+pagepropnames-param-limit": "Máximo número de nomes a retornar.",
+	"apihelp-query+pageswithprop-description": "Mostrar a lista de páxinas que empregan unha propiedade determinada.",
 	"apihelp-query+prefixsearch-param-search": "Buscar texto.",
 	"apihelp-query+prefixsearch-param-namespace": "Espazo de nomes no que buscar.",
 	"apihelp-query+prefixsearch-param-limit": "Número máximo de resultados a visualizar.",

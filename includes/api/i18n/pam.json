@@ -4,8 +4,13 @@
 			"Leeheonjin"
 		]
 	},
+	"apihelp-delete-example-simple": "Buran ya ing <kbd>Pun Bulung</kbd>.",
+	"apihelp-edit-example-edit": "Alilan ya ing bulung.",
 	"apihelp-help-example-main": "Saup para king pun modyul.",
+	"apihelp-help-example-recursive": "Deng eganaganang saup king metung a bulung.",
+	"apihelp-login-example-login": "Magpatala (login)",
 	"apihelp-patrol-example-rcid": "Magbante king bayung mengayalili.",
+	"apihelp-patrol-example-revid": "Banten ing meyalili.",
 	"apihelp-query+alldeletedrevisions-paraminfo-nonuseronly": "E malyaring gamitan a yating <var>$3user</var>.",
 	"apihelp-query+allpages-example-B": "Ipakit ing talaan da reng bulung a mangumpisa king titik <kbd>B</kbd>.",
 	"apihelp-query+categoryinfo-example-simple": "Kumuwa ning impormasyun tungkul king <kbd>Kategorya:Foo</kbd> at <kbd>Kategorya:Bar</kbd>.",

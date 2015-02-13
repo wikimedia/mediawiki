@@ -3039,6 +3039,7 @@
 	"tags-delete-explanation-active": "<strong>Taggen\" $1 \" är fortfarande aktiv, och kommer att fortsätta att appliceras i framtiden.</strong> För att hindra detta, gå till den eller de platser där taggen är inställd att användas, och inaktivera den där.",
 	"tags-delete-reason": "Anledning:",
 	"tags-delete-submit": "Radera denna tagg oåterkalleligen",
+	"tags-delete-not-allowed": "Tagg definierade med ett tillägg kan inte raderas utan att tillägget specifikt tillåter det.",
 	"tags-delete-not-found": "Taggen \"$1\" finns inte.",
 	"tags-delete-too-many-uses": "Taggen \"$1\" appliceras på mer än $2 {{PLURAL:$2|version|versioner}}, vilket innebär att den inte kan raderas.",
 	"tags-delete-warnings-after-delete": "Taggen \"$1\" raderades, men följande {{PLURAL:$2|varning|varningar}} inträffade:",
