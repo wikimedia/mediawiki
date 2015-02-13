@@ -428,7 +428,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$filters[$key] = $params['msg'];
 		}
 		// Disable some if needed
-		if ( !$user->useNPPatrol() ) {
+		if ( !$user->useRCPatrol() ) {
 			unset( $filters['hidepatrolled'] );
 		}
 
