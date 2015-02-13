@@ -80,6 +80,9 @@ class LogFormatter {
 	/** @var int Constant for handling log_deleted */
 	protected $audience = self::FOR_PUBLIC;
 
+	/** @var IContextSource Context for logging */
+	public $context;
+
 	/** @var bool Whether to output user tool links */
 	protected $linkFlood = false;
 
