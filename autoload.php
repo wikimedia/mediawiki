@@ -206,6 +206,7 @@ $wgAutoloadLocalClasses = array(
 	'CheckComposerLockUpToDate' => __DIR__ . '/maintenance/checkComposerLockUpToDate.php',
 	'CheckExtensionsCLI' => __DIR__ . '/maintenance/language/checkLanguage.inc',
 	'CheckImages' => __DIR__ . '/maintenance/checkImages.php',
+	'CheckInvalidUsernames' => __DIR__ . '/maintenance/checkInvalidUsernames.php',
 	'CheckLanguageCLI' => __DIR__ . '/maintenance/language/checkLanguage.inc',
 	'CheckLess' => __DIR__ . '/maintenance/checkLess.php',
 	'CheckStorage' => __DIR__ . '/maintenance/storage/checkStorage.php',
