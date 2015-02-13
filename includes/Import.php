@@ -42,6 +42,8 @@ class WikiImporter {
 	private $config;
 	/** @var ImportTitleFactory */
 	private $importTitleFactory;
+	/** @var array */
+	private $countableCache = array();
 
 	/**
 	 * Creates an ImportXMLReader drawing from the source provided
@@ -67,6 +69,7 @@ class WikiImporter {
 		}
 
 		// Default callbacks
+		$this->setPageCallback( array( $this, 'beforeImportPage' ) );
 		$this->setRevisionCallback( array( $this, "importRevision" ) );
 		$this->setUploadCallback( array( $this, 'importUpload' ) );
 		$this->setLogItemCallback( array( $this, 'importLogItem' ) );
@@ -289,6 +292,19 @@ class WikiImporter {
 	}
 
 	/**
+	 * Default per-page callback. Sets up some things related to site statistics
+	 * @param array $titleAndForeignTitle Two-element array, with Title object at
+	 * index 0 and ForeignTitle object at index 1
+	 * @return bool
+	 */
+	public function beforeImportPage( $titleAndForeignTitle ) {
+		$title = $titleAndForeignTitle[0];
+		$page = WikiPage::factory( $title );
+		$this->countableCache['title_' . $title->getPrefixedText()] = $page->isCountable();
+		return true;
+	}
+
+	/**
 	 * Default per-revision callback, performs the import.
 	 * @param WikiRevision $revision
 	 * @return bool
@@ -349,6 +365,26 @@ class WikiImporter {
 	 */
 	public function finishImportPage( $title, $foreignTitle, $revCount,
 			$sRevCount, $pageInfo ) {
+
+		// Update article count statistics (T42009)
+		// The normal counting logic in WikiPage->doEditUpdates() is designed for
+		// one-revision-at-a-time editing, not bulk imports. In this situation it
+		// suffers from issues of slave lag. We let WikiPage handle the total page
+		// and revision count, and we implement our own custom logic for the
+		// article (content page) count.
+		$page = WikiPage::factory( $title );
+		$page->loadPageData( 'fromdbmaster' );
+		$content = $page->getContent();
+		$editInfo = $page->prepareContentForEdit( $content );
+
+		$countable = $page->isCountable( $editInfo );
+		$oldcountable = $this->countableCache['title_' . $title->getPrefixedText()];
+		if ( isset( $oldcountable ) && $countable != $oldcountable ) {
+			DeferredUpdates::addUpdate( SiteStatsUpdate::factory( array(
+				'articles' => ( (int)$countable - (int)$oldcountable )
+			) ) );
+		}
+
 		$args = func_get_args();
 		return Hooks::run( 'AfterImportPage', $args );
 	}
@@ -1544,7 +1580,6 @@ class WikiRevision {
 					$this->title->getPrefixedText() . "]], timestamp " . $this->timestamp . "\n" );
 				return false;
 			}
-			$oldcountable = $page->isCountable();
 		}
 
 		# @todo FIXME: Use original rev_id optionally (better for backups)
@@ -1567,10 +1602,11 @@ class WikiRevision {
 
 		if ( $changed !== false && !$this->mNoUpdates ) {
 			wfDebug( __METHOD__ . ": running updates\n" );
+			// countable/oldcountable stuff is handled in WikiImporter::finishImportPage
 			$page->doEditUpdates(
 				$revision,
 				$userObj,
-				array( 'created' => $created, 'oldcountable' => $oldcountable )
+				array( 'created' => $created, 'oldcountable' => 'no-change' )
 			);
 		}
 
