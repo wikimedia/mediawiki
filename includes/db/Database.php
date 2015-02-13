@@ -1083,8 +1083,11 @@ abstract class DatabaseBase implements IDatabase {
 
 		$isWriteQuery = $this->isWriteQuery( $sql );
 		if ( $isWriteQuery ) {
+			if ( !$this->mDoneWrites ) {
+				wfDebug( __METHOD__ . ': Writes done: ' .
+					DatabaseBase::generalizeSQL( $sql ) . "\n" );
+			}
 			# Set a flag indicating that writes have been done
-			wfDebug( __METHOD__ . ': Writes done: ' . DatabaseBase::generalizeSQL( $sql ) . "\n" );
 			$this->mDoneWrites = microtime( true );
 		}
 
