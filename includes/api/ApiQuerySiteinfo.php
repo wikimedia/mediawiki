@@ -592,7 +592,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		foreach ( $this->getConfig()->get( 'ExtensionCredits' ) as $type => $extensions ) {
 			foreach ( $extensions as $ext ) {
 				$ret = array();
-				$ret['type'] = $type;
+				if ( strpos( $ret['type'] = $type, 'skin' ) === 0 ) {
+					// Skin should be shown only on the skin api
+					continue;
+				}
 				if ( isset( $ext['name'] ) ) {
 					$ret['name'] = $ext['name'];
 				}
