@@ -53,7 +53,13 @@ class AutoLoaderTest extends MediaWikiTestCase {
 				$filePath = $file;
 			}
 
+			wfSuppressWarnings();
 			$contents = file_get_contents( $filePath );
+			wfRestoreWarnings();
+
+			if ( $contents === false ) {
+				throw new Exception( "Error reading file '$filePath'" );
+			}
 
 			// We could use token_get_all() here, but this is faster
 			$matches = array();
