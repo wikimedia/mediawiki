@@ -17,7 +17,7 @@ class HTMLFloatField extends HTMLTextField {
 
 		$value = trim( $value );
 
-		# http://dev.w3.org/html5/spec/common-microsyntaxes.html#real-numbers
+		# http://www.w3.org/TR/html5/infrastructure.html#floating-point-numbers
 		# with the addition that a leading '+' sign is ok.
 		if ( !preg_match( '/^((\+|\-)?\d+(\.\d+)?(E(\+|\-)?\d+)?)?$/i', $value ) ) {
 			return $this->msg( 'htmlform-float-invalid' )->parseAsBlock();
