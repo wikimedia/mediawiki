@@ -531,32 +531,39 @@
 
 	// Disable all upload source fields except the selected one
 	$( function () {
-		var i, $row,
-			$rows = $( '.mw-htmlform-field-UploadSourceField' );
+		var rowSelector = '.mw-htmlform-field-UploadSourceField',
+			$rows = $( rowSelector ),
+			$radios = $rows.find( 'input[type="radio"]' ),
+			onRadioChange;
 
-		/**
-		 * @param {jQuery} $currentRow
-		 * @return {Function} Handler
-		 * @return {jQuery.Event} return.e
-		 */
-		function createHandler( $currentRow ) {
-			return function () {
-				$( '.mw-upload-source-error' ).remove();
-				if ( this.checked ) {
-					// Disable all inputs
-					$rows.find( 'input[name!="wpSourceType"]' ).prop( 'disabled', true );
-					// Re-enable the current one
-					$currentRow.find( 'input' ).prop( 'disabled', false );
-				}
-			};
-		}
 
-		for ( i = $rows.length; i; i-- ) {
-			$row = $rows.eq( i - 1 );
-			$row
-				.find( 'input[name="wpSourceType"]' )
-				.change( createHandler( $row ) );
-		}
+		onRadioChange = function () {
+			var $currentRowInputs;
+
+			if ( !this.checked ) {
+				return;
+			}
+
+			$( '.mw-upload-source-error' ).remove();
+
+			// Enable selected upload method,
+			// disable source inputs of alternative
+			// upload methods
+			$currentRowInputs = $( this )
+				.closest( rowSelector )
+				.find( 'input' )
+				.prop( 'disabled', false );
+
+			$rows
+				.find( 'input' )
+				.not( $radios )
+				.not( $currentRowInputs )
+				.prop( 'disabled', true );
+		};
+
+		$radios.on( {
+			change: onRadioChange
+		} );
 	} );
 
 	$( function () {
