@@ -41,7 +41,7 @@ class Sanitizer {
 
 	/**
 	 * Acceptable tag name charset from HTML5 parsing spec
-	 * http://dev.w3.org/html5/spec-preview/tokenization.html#tag-open-state
+	 * http://www.w3.org/TR/html5/syntax.html#tag-open-state
 	 */
 	const ELEMENT_BITS_REGEX = '!^(/?)([A-Za-z][^\t\n\v />\0]*+)([^>]*?)(/?>)([^<]*)$!';
 
