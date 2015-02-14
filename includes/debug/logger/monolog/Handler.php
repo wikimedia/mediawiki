@@ -97,16 +97,6 @@ class MWLoggerMonologHandler extends \Monolog\Handler\AbstractProcessingHandler 
 		$this->useLegacyFilter = $useLegacyFilter;
 	}
 
-	public function isHandling( array $record ) {
-		$levelOk = parent::isHandling( $record );
-		if ( $levelOk && $this->useLegacyFilter ) {
-			return MWLoggerLegacyLogger::shouldEmit(
-				$record['channel'], $record['message'], $record['level'], $record
-			);
-		}
-		return $levelOk;
-	}
-
 	/**
 	 * Open the log sink described by our stream URI.
 	 */
@@ -183,6 +173,18 @@ class MWLoggerMonologHandler extends \Monolog\Handler\AbstractProcessingHandler 
 
 
 	protected function write( array $record ) {
+		if ( $this->useLegacyFilter &&
+			!MWLoggerLegacyLogger::shouldEmit(
+				$record['channel'], $record['message'],
+				$record['level'], $record
+		) ) {
+			// Do not write record if we are enforcing legacy rules and the do
+			// not pass this message. This used to be done in isHandling(),
+			// but Monolog 1.12.0 made a breaking change that removed access
+			// to the needed channel and context information.
+			return;
+		}
+
 		if ( $this->sink === null ) {
 			$this->openSink();
 		}
