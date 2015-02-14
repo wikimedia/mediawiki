@@ -731,7 +731,10 @@
 		set: function ( titles, state ) {
 			titles = $.isArray( titles ) ? titles : [titles];
 			state = state === undefined ? true : !!state;
-			var pages = this.pages, i, len = titles.length;
+			var i,
+				pages = this.pages,
+				len = titles.length;
+
 			for ( i = 0; i < len; i++ ) {
 				pages[ titles[i] ] = state;
 			}

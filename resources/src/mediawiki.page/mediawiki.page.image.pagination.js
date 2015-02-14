@@ -3,7 +3,8 @@
  */
 ( function ( mw, $ ) {
 	var jqXhr, $multipageimage, $spinner,
-		cache = {}, cacheOrder = [];
+		cache = {},
+		cacheOrder = [];
 
 	/* Fetch the next page, caching up to 10 last-loaded pages.
 	 * @param {string} url

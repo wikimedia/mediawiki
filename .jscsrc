@@ -1,12 +1,7 @@
 {
 	"preset": "wikimedia",
 
-	"disallowKeywordsOnNewLine": null,
 	"disallowQuotedKeysInObjects": null,
-	"disallowImplicitTypeConversion": null,
-	"requireLineBreakAfterVariableAssignment": null,
-	"requireSpaceAfterLineComment": null,
 	"requireSpacesInsideParentheses": null,
-	"requireSpacesInsideArrayBrackets": null,
-	"validateIndentation": null
+	"requireSpacesInsideArrayBrackets": null
 }

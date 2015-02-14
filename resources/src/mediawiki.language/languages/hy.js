@@ -24,6 +24,6 @@ mediaWiki.language.convertGrammar = function ( word, form ) {
 				word = word + 'ի';
 			}
 			break;
-		}
+	}
 	return word;
 };

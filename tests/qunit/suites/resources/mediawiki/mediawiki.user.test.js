@@ -65,7 +65,7 @@
 		sessionId =  mw.user.generateRandomSessionId();
 		assert.equal( typeof sessionId, 'string', 'generateRandomSessionId should return a string' );
 		assert.equal( sessionId.trim(), sessionId, 'generateRandomSessionId should not be empty' );
-		//restoring crypto object
+		// restoring crypto object
 		window.crypto = cryptoObj;
 
 	} );

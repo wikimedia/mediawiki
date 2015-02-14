@@ -542,274 +542,274 @@
 		mw.jqueryMsg.getMessageFunction = oldGMF;
 	} );
 
-formatnumTests = [
-	{
-		lang: 'en',
-		number: 987654321.654321,
-		result: '987,654,321.654',
-		description: 'formatnum test for English, decimal seperator'
-	},
-	{
-		lang: 'ar',
-		number: 987654321.654321,
-		result: '٩٨٧٬٦٥٤٬٣٢١٫٦٥٤',
-		description: 'formatnum test for Arabic, with decimal seperator'
-	},
-	{
-		lang: 'ar',
-		number: '٩٨٧٦٥٤٣٢١٫٦٥٤٣٢١',
-		result: 987654321,
-		integer: true,
-		description: 'formatnum test for Arabic, with decimal seperator, reverse'
-	},
-	{
-		lang: 'ar',
-		number: -12.89,
-		result: '-١٢٫٨٩',
-		description: 'formatnum test for Arabic, negative number'
-	},
-	{
-		lang: 'ar',
-		number: '-١٢٫٨٩',
-		result: -12,
-		integer: true,
-		description: 'formatnum test for Arabic, negative number, reverse'
-	},
-	{
-		lang: 'nl',
-		number: 987654321.654321,
-		result: '987.654.321,654',
-		description: 'formatnum test for Nederlands, decimal seperator'
-	},
-	{
-		lang: 'nl',
-		number: -12.89,
-		result: '-12,89',
-		description: 'formatnum test for Nederlands, negative number'
-	},
-	{
-		lang: 'nl',
-		number: '.89',
-		result: '0,89',
-		description: 'formatnum test for Nederlands'
-	},
-	{
-		lang: 'nl',
-		number: 'invalidnumber',
-		result: 'invalidnumber',
-		description: 'formatnum test for Nederlands, invalid number'
-	},
-	{
-		lang: 'ml',
-		number: '1000000000',
-		result: '1,00,00,00,000',
-		description: 'formatnum test for Malayalam'
-	},
-	{
-		lang: 'ml',
-		number: '-1000000000',
-		result: '-1,00,00,00,000',
-		description: 'formatnum test for Malayalam, negative number'
-	},
-	/*
-	 * This will fail because of wrong pattern for ml in MW(different from CLDR)
-	{
-		lang: 'ml',
-		number: '1000000000.000',
-		result: '1,00,00,00,000.000',
-		description: 'formatnum test for Malayalam with decimal place'
-	},
-	*/
-	{
-		lang: 'hi',
-		number: '123456789.123456789',
-		result: '१२,३४,५६,७८९',
-		description: 'formatnum test for Hindi'
-	},
-	{
-		lang: 'hi',
-		number: '१२,३४,५६,७८९',
-		result: '१२,३४,५६,७८९',
-		description: 'formatnum test for Hindi, Devanagari digits passed'
-	},
-	{
-		lang: 'hi',
-		number: '१२३४५६,७८९',
-		result: '123456',
-		integer: true,
-		description: 'formatnum test for Hindi, Devanagari digits passed to get integer value'
-	}
-];
+	formatnumTests = [
+		{
+			lang: 'en',
+			number: 987654321.654321,
+			result: '987,654,321.654',
+			description: 'formatnum test for English, decimal seperator'
+		},
+		{
+			lang: 'ar',
+			number: 987654321.654321,
+			result: '٩٨٧٬٦٥٤٬٣٢١٫٦٥٤',
+			description: 'formatnum test for Arabic, with decimal seperator'
+		},
+		{
+			lang: 'ar',
+			number: '٩٨٧٦٥٤٣٢١٫٦٥٤٣٢١',
+			result: 987654321,
+			integer: true,
+			description: 'formatnum test for Arabic, with decimal seperator, reverse'
+		},
+		{
+			lang: 'ar',
+			number: -12.89,
+			result: '-١٢٫٨٩',
+			description: 'formatnum test for Arabic, negative number'
+		},
+		{
+			lang: 'ar',
+			number: '-١٢٫٨٩',
+			result: -12,
+			integer: true,
+			description: 'formatnum test for Arabic, negative number, reverse'
+		},
+		{
+			lang: 'nl',
+			number: 987654321.654321,
+			result: '987.654.321,654',
+			description: 'formatnum test for Nederlands, decimal seperator'
+		},
+		{
+			lang: 'nl',
+			number: -12.89,
+			result: '-12,89',
+			description: 'formatnum test for Nederlands, negative number'
+		},
+		{
+			lang: 'nl',
+			number: '.89',
+			result: '0,89',
+			description: 'formatnum test for Nederlands'
+		},
+		{
+			lang: 'nl',
+			number: 'invalidnumber',
+			result: 'invalidnumber',
+			description: 'formatnum test for Nederlands, invalid number'
+		},
+		{
+			lang: 'ml',
+			number: '1000000000',
+			result: '1,00,00,00,000',
+			description: 'formatnum test for Malayalam'
+		},
+		{
+			lang: 'ml',
+			number: '-1000000000',
+			result: '-1,00,00,00,000',
+			description: 'formatnum test for Malayalam, negative number'
+		},
+		/*
+		 * This will fail because of wrong pattern for ml in MW(different from CLDR)
+		{
+			lang: 'ml',
+			number: '1000000000.000',
+			result: '1,00,00,00,000.000',
+			description: 'formatnum test for Malayalam with decimal place'
+		},
+		*/
+		{
+			lang: 'hi',
+			number: '123456789.123456789',
+			result: '१२,३४,५६,७८९',
+			description: 'formatnum test for Hindi'
+		},
+		{
+			lang: 'hi',
+			number: '१२,३४,५६,७८९',
+			result: '१२,३४,५६,७८९',
+			description: 'formatnum test for Hindi, Devanagari digits passed'
+		},
+		{
+			lang: 'hi',
+			number: '१२३४५६,७८९',
+			result: '123456',
+			integer: true,
+			description: 'formatnum test for Hindi, Devanagari digits passed to get integer value'
+		}
+	];
 
-QUnit.test( 'formatnum', formatnumTests.length, function ( assert ) {
-	mw.messages.set( 'formatnum-msg', '{{formatnum:$1}}' );
-	mw.messages.set( 'formatnum-msg-int', '{{formatnum:$1|R}}' );
-	var queue = $.map( formatnumTests, function ( test ) {
-		return function ( next ) {
-			getMwLanguage( test.lang )
-				.done( function ( langClass ) {
-					mw.config.set( 'wgUserLanguage', test.lang );
-					var parser = new mw.jqueryMsg.parser( { language: langClass } );
-					assert.equal(
-						parser.parse( test.integer ? 'formatnum-msg-int' : 'formatnum-msg',
-							[ test.number ] ).html(),
-						test.result,
-						test.description
-					);
-				} )
-				.fail( function () {
-					assert.ok( false, 'Language "' + test.lang + '" failed to load' );
-				} )
-				.always( next );
-		};
+	QUnit.test( 'formatnum', formatnumTests.length, function ( assert ) {
+		mw.messages.set( 'formatnum-msg', '{{formatnum:$1}}' );
+		mw.messages.set( 'formatnum-msg-int', '{{formatnum:$1|R}}' );
+		var queue = $.map( formatnumTests, function ( test ) {
+			return function ( next ) {
+				getMwLanguage( test.lang )
+					.done( function ( langClass ) {
+						mw.config.set( 'wgUserLanguage', test.lang );
+						var parser = new mw.jqueryMsg.parser( { language: langClass } );
+						assert.equal(
+							parser.parse( test.integer ? 'formatnum-msg-int' : 'formatnum-msg',
+								[ test.number ] ).html(),
+							test.result,
+							test.description
+						);
+					} )
+					.fail( function () {
+						assert.ok( false, 'Language "' + test.lang + '" failed to load' );
+					} )
+					.always( next );
+			};
+		} );
+		QUnit.stop();
+		process( queue, QUnit.start );
 	} );
-	QUnit.stop();
-	process( queue, QUnit.start );
-} );
 
-// HTML in wikitext
-QUnit.test( 'HTML', 26, function ( assert ) {
-	mw.messages.set( 'jquerymsg-italics-msg', '<i>Very</i> important' );
+	// HTML in wikitext
+	QUnit.test( 'HTML', 26, function ( assert ) {
+		mw.messages.set( 'jquerymsg-italics-msg', '<i>Very</i> important' );
 
-	assertBothModes( assert, ['jquerymsg-italics-msg'], mw.messages.get( 'jquerymsg-italics-msg' ), 'Simple italics unchanged' );
+		assertBothModes( assert, ['jquerymsg-italics-msg'], mw.messages.get( 'jquerymsg-italics-msg' ), 'Simple italics unchanged' );
 
-	mw.messages.set( 'jquerymsg-bold-msg', '<b>Strong</b> speaker' );
-	assertBothModes( assert, ['jquerymsg-bold-msg'], mw.messages.get( 'jquerymsg-bold-msg' ), 'Simple bold unchanged' );
+		mw.messages.set( 'jquerymsg-bold-msg', '<b>Strong</b> speaker' );
+		assertBothModes( assert, ['jquerymsg-bold-msg'], mw.messages.get( 'jquerymsg-bold-msg' ), 'Simple bold unchanged' );
 
-	mw.messages.set( 'jquerymsg-bold-italics-msg', 'It is <b><i>key</i></b>' );
-	assertBothModes( assert, ['jquerymsg-bold-italics-msg'], mw.messages.get( 'jquerymsg-bold-italics-msg' ), 'Bold and italics nesting order preserved' );
+		mw.messages.set( 'jquerymsg-bold-italics-msg', 'It is <b><i>key</i></b>' );
+		assertBothModes( assert, ['jquerymsg-bold-italics-msg'], mw.messages.get( 'jquerymsg-bold-italics-msg' ), 'Bold and italics nesting order preserved' );
 
-	mw.messages.set( 'jquerymsg-italics-bold-msg', 'It is <i><b>vital</b></i>' );
-	assertBothModes( assert, ['jquerymsg-italics-bold-msg'], mw.messages.get( 'jquerymsg-italics-bold-msg' ), 'Italics and bold nesting order preserved' );
+		mw.messages.set( 'jquerymsg-italics-bold-msg', 'It is <i><b>vital</b></i>' );
+		assertBothModes( assert, ['jquerymsg-italics-bold-msg'], mw.messages.get( 'jquerymsg-italics-bold-msg' ), 'Italics and bold nesting order preserved' );
 
-	mw.messages.set( 'jquerymsg-italics-with-link', 'An <i>italicized [[link|wiki-link]]</i>' );
+		mw.messages.set( 'jquerymsg-italics-with-link', 'An <i>italicized [[link|wiki-link]]</i>' );
 
-	assert.htmlEqual(
-		formatParse( 'jquerymsg-italics-with-link' ),
-		'An <i>italicized <a title="link" href="' + mw.html.escape( mw.util.getUrl( 'link' ) ) + '">wiki-link</i>',
-		'Italics with link inside in parse mode'
-	);
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-italics-with-link' ),
+			'An <i>italicized <a title="link" href="' + mw.html.escape( mw.util.getUrl( 'link' ) ) + '">wiki-link</i>',
+			'Italics with link inside in parse mode'
+		);
 
-	assert.equal(
-		formatText( 'jquerymsg-italics-with-link' ),
-		mw.messages.get( 'jquerymsg-italics-with-link' ),
-		'Italics with link unchanged in text mode'
-	);
+		assert.equal(
+			formatText( 'jquerymsg-italics-with-link' ),
+			mw.messages.get( 'jquerymsg-italics-with-link' ),
+			'Italics with link unchanged in text mode'
+		);
 
-	mw.messages.set( 'jquerymsg-italics-id-class', '<i id="foo" class="bar">Foo</i>' );
-	assert.htmlEqual(
-		formatParse( 'jquerymsg-italics-id-class' ),
-		mw.messages.get( 'jquerymsg-italics-id-class' ),
-		'ID and class are allowed'
-	);
+		mw.messages.set( 'jquerymsg-italics-id-class', '<i id="foo" class="bar">Foo</i>' );
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-italics-id-class' ),
+			mw.messages.get( 'jquerymsg-italics-id-class' ),
+			'ID and class are allowed'
+		);
 
-	mw.messages.set( 'jquerymsg-italics-onclick', '<i onclick="alert(\'foo\')">Foo</i>' );
-	assert.htmlEqual(
-		formatParse( 'jquerymsg-italics-onclick' ),
-		'&lt;i onclick=&quot;alert(\'foo\')&quot;&gt;Foo&lt;/i&gt;',
-		'element with onclick is escaped because it is not allowed'
-	);
+		mw.messages.set( 'jquerymsg-italics-onclick', '<i onclick="alert(\'foo\')">Foo</i>' );
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-italics-onclick' ),
+			'&lt;i onclick=&quot;alert(\'foo\')&quot;&gt;Foo&lt;/i&gt;',
+			'element with onclick is escaped because it is not allowed'
+		);
 
-	mw.messages.set( 'jquerymsg-script-msg', '<script  >alert( "Who put this tag here?" );</script>' );
-	assert.htmlEqual(
-		formatParse( 'jquerymsg-script-msg' ),
-		'&lt;script  &gt;alert( &quot;Who put this tag here?&quot; );&lt;/script&gt;',
-		'Tag outside whitelist escaped in parse mode'
-	);
+		mw.messages.set( 'jquerymsg-script-msg', '<script  >alert( "Who put this tag here?" );</script>' );
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-script-msg' ),
+			'&lt;script  &gt;alert( &quot;Who put this tag here?&quot; );&lt;/script&gt;',
+			'Tag outside whitelist escaped in parse mode'
+		);
 
-	assert.equal(
-		formatText( 'jquerymsg-script-msg' ),
-		mw.messages.get( 'jquerymsg-script-msg' ),
-		'Tag outside whitelist unchanged in text mode'
-	);
+		assert.equal(
+			formatText( 'jquerymsg-script-msg' ),
+			mw.messages.get( 'jquerymsg-script-msg' ),
+			'Tag outside whitelist unchanged in text mode'
+		);
 
-	mw.messages.set( 'jquerymsg-script-link-msg', '<script>[[Foo|bar]]</script>' );
-	assert.htmlEqual(
-		formatParse( 'jquerymsg-script-link-msg' ),
-		'&lt;script&gt;<a title="Foo" href="' + mw.html.escape( mw.util.getUrl( 'Foo' ) ) + '">bar</a>&lt;/script&gt;',
-		'Script tag text is escaped because that element is not allowed, but link inside is still HTML'
-	);
+		mw.messages.set( 'jquerymsg-script-link-msg', '<script>[[Foo|bar]]</script>' );
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-script-link-msg' ),
+			'&lt;script&gt;<a title="Foo" href="' + mw.html.escape( mw.util.getUrl( 'Foo' ) ) + '">bar</a>&lt;/script&gt;',
+			'Script tag text is escaped because that element is not allowed, but link inside is still HTML'
+		);
 
-	mw.messages.set( 'jquerymsg-mismatched-html', '<i class="important">test</b>' );
-	assert.htmlEqual(
-		formatParse( 'jquerymsg-mismatched-html' ),
-		'&lt;i class=&quot;important&quot;&gt;test&lt;/b&gt;',
-		'Mismatched HTML start and end tag treated as text'
-	);
+		mw.messages.set( 'jquerymsg-mismatched-html', '<i class="important">test</b>' );
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-mismatched-html' ),
+			'&lt;i class=&quot;important&quot;&gt;test&lt;/b&gt;',
+			'Mismatched HTML start and end tag treated as text'
+		);
 
-	// TODO (mattflaschen, 2013-03-18): It's not a security issue, but there's no real
-	// reason the htmlEmitter span needs to be here. It's an artifact of how emitting works.
-	mw.messages.set( 'jquerymsg-script-and-external-link', '<script>alert( "jquerymsg-script-and-external-link test" );</script> [http://example.com <i>Foo</i> bar]' );
-	assert.htmlEqual(
-		formatParse( 'jquerymsg-script-and-external-link' ),
-		'&lt;script&gt;alert( "jquerymsg-script-and-external-link test" );&lt;/script&gt; <a href="http://example.com"><span class="mediaWiki_htmlEmitter"><i>Foo</i> bar</span></a>',
-		'HTML tags in external links not interfering with escaping of other tags'
-	);
+		// TODO (mattflaschen, 2013-03-18): It's not a security issue, but there's no real
+		// reason the htmlEmitter span needs to be here. It's an artifact of how emitting works.
+		mw.messages.set( 'jquerymsg-script-and-external-link', '<script>alert( "jquerymsg-script-and-external-link test" );</script> [http://example.com <i>Foo</i> bar]' );
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-script-and-external-link' ),
+			'&lt;script&gt;alert( "jquerymsg-script-and-external-link test" );&lt;/script&gt; <a href="http://example.com"><span class="mediaWiki_htmlEmitter"><i>Foo</i> bar</span></a>',
+			'HTML tags in external links not interfering with escaping of other tags'
+		);
 
-	mw.messages.set( 'jquerymsg-link-script', '[http://example.com <script>alert( "jquerymsg-link-script test" );</script>]' );
-	assert.htmlEqual(
-		formatParse( 'jquerymsg-link-script' ),
-		'<a href="http://example.com"><span class="mediaWiki_htmlEmitter">&lt;script&gt;alert( "jquerymsg-link-script test" );&lt;/script&gt;</span></a>',
-		'Non-whitelisted HTML tag in external link anchor treated as text'
-	);
+		mw.messages.set( 'jquerymsg-link-script', '[http://example.com <script>alert( "jquerymsg-link-script test" );</script>]' );
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-link-script' ),
+			'<a href="http://example.com"><span class="mediaWiki_htmlEmitter">&lt;script&gt;alert( "jquerymsg-link-script test" );&lt;/script&gt;</span></a>',
+			'Non-whitelisted HTML tag in external link anchor treated as text'
+		);
 
-	// Intentionally not using htmlEqual for the quote tests
-	mw.messages.set( 'jquerymsg-double-quotes-preserved', '<i id="double">Double</i>' );
-	assert.equal(
-		formatParse( 'jquerymsg-double-quotes-preserved' ),
-		mw.messages.get( 'jquerymsg-double-quotes-preserved' ),
-		'Attributes with double quotes are preserved as such'
-	);
+		// Intentionally not using htmlEqual for the quote tests
+		mw.messages.set( 'jquerymsg-double-quotes-preserved', '<i id="double">Double</i>' );
+		assert.equal(
+			formatParse( 'jquerymsg-double-quotes-preserved' ),
+			mw.messages.get( 'jquerymsg-double-quotes-preserved' ),
+			'Attributes with double quotes are preserved as such'
+		);
 
-	mw.messages.set( 'jquerymsg-single-quotes-normalized-to-double', '<i id=\'single\'>Single</i>' );
-	assert.equal(
-		formatParse( 'jquerymsg-single-quotes-normalized-to-double' ),
-		'<i id="single">Single</i>',
-		'Attributes with single quotes are normalized to double'
-	);
+		mw.messages.set( 'jquerymsg-single-quotes-normalized-to-double', '<i id=\'single\'>Single</i>' );
+		assert.equal(
+			formatParse( 'jquerymsg-single-quotes-normalized-to-double' ),
+			'<i id="single">Single</i>',
+			'Attributes with single quotes are normalized to double'
+		);
 
-	mw.messages.set( 'jquerymsg-escaped-double-quotes-attribute', '<i style="font-family:&quot;Arial&quot;">Styled</i>' );
-	assert.htmlEqual(
-		formatParse( 'jquerymsg-escaped-double-quotes-attribute' ),
-		mw.messages.get( 'jquerymsg-escaped-double-quotes-attribute' ),
-		'Escaped attributes are parsed correctly'
-	);
+		mw.messages.set( 'jquerymsg-escaped-double-quotes-attribute', '<i style="font-family:&quot;Arial&quot;">Styled</i>' );
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-escaped-double-quotes-attribute' ),
+			mw.messages.get( 'jquerymsg-escaped-double-quotes-attribute' ),
+			'Escaped attributes are parsed correctly'
+		);
 
-	mw.messages.set( 'jquerymsg-escaped-single-quotes-attribute', '<i style=\'font-family:&#039;Arial&#039;\'>Styled</i>' );
-	assert.htmlEqual(
-		formatParse( 'jquerymsg-escaped-single-quotes-attribute' ),
-		mw.messages.get( 'jquerymsg-escaped-single-quotes-attribute' ),
-		'Escaped attributes are parsed correctly'
-	);
+		mw.messages.set( 'jquerymsg-escaped-single-quotes-attribute', '<i style=\'font-family:&#039;Arial&#039;\'>Styled</i>' );
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-escaped-single-quotes-attribute' ),
+			mw.messages.get( 'jquerymsg-escaped-single-quotes-attribute' ),
+			'Escaped attributes are parsed correctly'
+		);
 
-	mw.messages.set( 'jquerymsg-wikitext-contents-parsed', '<i>[http://example.com Example]</i>' );
-	assert.htmlEqual(
-		formatParse( 'jquerymsg-wikitext-contents-parsed' ),
-		'<i><a href="http://example.com">Example</a></i>',
-		'Contents of valid tag are treated as wikitext, so external link is parsed'
-	);
+		mw.messages.set( 'jquerymsg-wikitext-contents-parsed', '<i>[http://example.com Example]</i>' );
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-wikitext-contents-parsed' ),
+			'<i><a href="http://example.com">Example</a></i>',
+			'Contents of valid tag are treated as wikitext, so external link is parsed'
+		);
 
-	mw.messages.set( 'jquerymsg-wikitext-contents-script', '<i><script>Script inside</script></i>' );
-	assert.htmlEqual(
-		formatParse( 'jquerymsg-wikitext-contents-script' ),
-		'<i><span class="mediaWiki_htmlEmitter">&lt;script&gt;Script inside&lt;/script&gt;</span></i>',
-		'Contents of valid tag are treated as wikitext, so invalid HTML element is treated as text'
-	);
+		mw.messages.set( 'jquerymsg-wikitext-contents-script', '<i><script>Script inside</script></i>' );
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-wikitext-contents-script' ),
+			'<i><span class="mediaWiki_htmlEmitter">&lt;script&gt;Script inside&lt;/script&gt;</span></i>',
+			'Contents of valid tag are treated as wikitext, so invalid HTML element is treated as text'
+		);
 
-	mw.messages.set( 'jquerymsg-unclosed-tag', 'Foo<tag>bar' );
-	assert.htmlEqual(
-		formatParse( 'jquerymsg-unclosed-tag' ),
-		'Foo&lt;tag&gt;bar',
-		'Nonsupported unclosed tags are escaped'
-	);
+		mw.messages.set( 'jquerymsg-unclosed-tag', 'Foo<tag>bar' );
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-unclosed-tag' ),
+			'Foo&lt;tag&gt;bar',
+			'Nonsupported unclosed tags are escaped'
+		);
 
-	mw.messages.set( 'jquerymsg-self-closing-tag', 'Foo<tag/>bar' );
-	assert.htmlEqual(
-		formatParse( 'jquerymsg-self-closing-tag' ),
-		'Foo&lt;tag/&gt;bar',
-		'Self-closing tags don\'t cause a parse error'
-	);
-} );
+		mw.messages.set( 'jquerymsg-self-closing-tag', 'Foo<tag/>bar' );
+		assert.htmlEqual(
+			formatParse( 'jquerymsg-self-closing-tag' ),
+			'Foo&lt;tag/&gt;bar',
+			'Self-closing tags don\'t cause a parse error'
+		);
+	} );
 
 	QUnit.test( 'Behavior in case of invalid wikitext', 3, function ( assert ) {
 		mw.messages.set( 'invalid-wikitext', '<b>{{FAIL}}</b>' );

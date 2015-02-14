@@ -267,7 +267,8 @@
 		 * @return {string|Array} string of '[key]' if message missing, simple string if possible, array of arrays if needs parsing
 		 */
 		getAst: function ( key ) {
-			var cacheKey = [key, this.settings.onlyCurlyBraceTransform].join( ':' ), wikiText;
+			var wikiText,
+				cacheKey = [key, this.settings.onlyCurlyBraceTransform].join( ':' );
 
 			if ( this.astCache[ cacheKey ] === undefined ) {
 				wikiText = this.settings.messages.get( key );
@@ -290,7 +291,7 @@
 		 * @return {Mixed} abstract syntax tree
 		 */
 		wikiTextToAst: function ( input ) {
-			var pos, settings = this.settings, concat = Array.prototype.concat,
+			var pos,
 				regularLiteral, regularLiteralWithoutBar, regularLiteralWithoutSpace, regularLiteralWithSquareBrackets,
 				doubleQuote, singleQuote, backslash, anyCharacter, asciiAlphabetLiteral,
 				escapedOrLiteralWithoutSpace, escapedOrLiteralWithoutBar, escapedOrRegularLiteral,
@@ -298,7 +299,9 @@
 				htmlAttributeEquals, openHtmlStartTag, optionalForwardSlash, openHtmlEndTag, closeHtmlTag,
 				openExtlink, closeExtlink, wikilinkPage, wikilinkContents, openWikilink, closeWikilink, templateName, pipe, colon,
 				templateContents, openTemplate, closeTemplate,
-				nonWhitespaceExpression, paramExpression, expression, curlyBraceTransformExpression, result;
+				nonWhitespaceExpression, paramExpression, expression, curlyBraceTransformExpression, result,
+				settings = this.settings,
+				concat = Array.prototype.concat;
 
 			// Indicates current position in input as we parse through it.
 			// Shared among all parsing functions below.
@@ -686,10 +689,10 @@
 			// Subset of allowed HTML markup.
 			// Most elements and many attributes allowed on the server are not supported yet.
 			function html() {
-				var result = null, parsedOpenTagResult, parsedHtmlContents,
-					parsedCloseTagResult, wrappedAttributes, attributes,
-					startTagName, endTagName, startOpenTagPos, startCloseTagPos,
-					endOpenTagPos, endCloseTagPos;
+				var parsedOpenTagResult, parsedHtmlContents, parsedCloseTagResult,
+					wrappedAttributes, attributes, startTagName, endTagName, startOpenTagPos,
+					startCloseTagPos, endOpenTagPos, endCloseTagPos,
+					result = null;
 
 				// Break into three sequence calls.  That should allow accurate reconstruction of the original HTML, and requiring an exact tag name match.
 				// 1. open through closeHtmlTag
@@ -1015,16 +1018,11 @@
 			page = nodes[0];
 			url = mw.util.getUrl( page );
 
-			// [[Some Page]] or [[Namespace:Some Page]]
 			if ( nodes.length === 1 ) {
+				// [[Some Page]] or [[Namespace:Some Page]]
 				anchor = page;
-			}
-
-			/*
-			 * [[Some Page|anchor text]] or
-			 * [[Namespace:Some Page|anchor]
-			 */
-			else {
+			} else {
+				// [[Some Page|anchor text]] or [[Namespace:Some Page|anchor]]
 				anchor = nodes[1];
 			}
 
@@ -1129,8 +1127,8 @@
 		 * @return {string} selected pluralized form according to current language
 		 */
 		plural: function ( nodes ) {
-			var forms, firstChild, firstChildText,
-				explicitPluralForms = {}, explicitPluralFormNumber, formIndex, form, count;
+			var forms, firstChild, firstChildText, explicitPluralFormNumber, formIndex, form, count,
+				explicitPluralForms = {};
 
 			count = parseFloat( this.language.convertNumber( nodes[0], true ) );
 			forms = nodes.slice( 1 );
