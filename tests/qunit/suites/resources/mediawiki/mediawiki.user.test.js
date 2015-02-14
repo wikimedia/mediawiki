@@ -1,7 +1,11 @@
-( function ( mw ) {
+( function ( mw, $ ) {
 	QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment( {
 		setup: function () {
 			this.server = this.sandbox.useFakeServer();
+			this.crypto = window.crypto;
+		},
+		teardown: function () {
+			window.crypto = this.crypto;
 		}
 	} ) );
 
@@ -52,21 +56,32 @@
 		this.server.respond();
 	} );
 
-	QUnit.test( 'session numbers', 4, function ( assert ) {
-		/*global $:false */
-		var sessionId = mw.user.generateRandomSessionId(),
-		cryptoObj = window.crypto;
+	QUnit.test( 'generateRandomSessionId', 4, function ( assert ) {
+		var result, result2;
 
-		assert.equal( typeof sessionId, 'string', 'generateRandomSessionId should return a string' );
-		assert.equal( $.trim(sessionId), sessionId, 'generateRandomSessionId should not contain whitespace' );
-		// pretend crypto API is not there and do same test, make sure code runs
-		// through  Math.random loop
-		window.crypto = undefined;
-		sessionId =  mw.user.generateRandomSessionId();
-		assert.equal( typeof sessionId, 'string', 'generateRandomSessionId should return a string' );
-		assert.equal( sessionId.trim(), sessionId, 'generateRandomSessionId should not be empty' );
-		//restoring crypto object
-		window.crypto = cryptoObj;
+		result = mw.user.generateRandomSessionId();
+		assert.equal( typeof result, 'string', 'type' );
+		assert.equal( $.trim( result ), result, 'no whitespace at beginning or end' );
+		assert.equal( result.length, 16, 'size' );
+
+		result2 = mw.user.generateRandomSessionId();
+		assert.notEqual( result, result2, 'different when called multiple times' );
 
 	} );
-}( mediaWiki ) );
+
+	QUnit.test( 'generateRandomSessionId (fallback)', 4, function ( assert ) {
+		var result, result2;
+
+		// Pretend crypto API is not there to test the Math.random fallback
+		window.crypto = undefined;
+
+		result = mw.user.generateRandomSessionId();
+		assert.equal( typeof result, 'string', 'type' );
+		assert.equal( $.trim( result ), result, 'no whitespace at beginning or end' );
+		assert.equal( result.length, 16, 'size' );
+
+		result2 = mw.user.generateRandomSessionId();
+		assert.notEqual( result, result2, 'different when called multiple times' );
+
+	} );
+}( mediaWiki, jQuery ) );
