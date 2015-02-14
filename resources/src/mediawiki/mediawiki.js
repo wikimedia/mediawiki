@@ -1397,7 +1397,10 @@
 			}
 
 			function sortQuery( o ) {
-				var sorted = {}, key, a = [];
+				var key,
+					sorted = {},
+					a = [];
+
 				for ( key in o ) {
 					if ( hasOwn.call( o, key ) ) {
 						a.push( key );
@@ -1416,7 +1419,9 @@
 			 * @private
 			 */
 			function buildModulesString( moduleMap ) {
-				var arr = [], p, prefix;
+				var p, prefix,
+					arr = [];
+
 				for ( prefix in moduleMap ) {
 					p = prefix === '' ? '' : prefix + '.';
 					arr.push( p + moduleMap[prefix].join( ',' ) );

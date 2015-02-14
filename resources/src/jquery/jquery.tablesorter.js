@@ -1112,9 +1112,9 @@
 					return '99999999';
 				}
 			} else if ( ( match = s.match( ts.dateRegex[1] ) ) !== null ) {
-				s = [ match[3], '' + ts.monthNames[match[2]], match[1] ];
+				s = [ match[3], String( ts.monthNames[match[2]], match[1] ) ];
 			} else if ( ( match = s.match( ts.dateRegex[2] ) ) !== null ) {
-				s = [ match[3], '' + ts.monthNames[match[1]], match[2] ];
+				s = [ match[3], String( ts.monthNames[match[1]], match[2] ) ];
 			} else {
 				// Should never get here
 				return '99999999';

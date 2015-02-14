@@ -513,9 +513,9 @@
 
 		// Apply defaults
 		switch ( command ) {
-			//case 'getContents': // no params
-			//case 'setContents': // no params with defaults
-			//case 'getSelection': // no params
+			// case 'getContents': // no params
+			// case 'setContents': // no params with defaults
+			// case 'getSelection': // no params
 			case 'encapsulateSelection':
 				options = $.extend( {
 					pre: '', // Text to insert before the cursor/selection

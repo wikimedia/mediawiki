@@ -41,7 +41,7 @@ jQuery( function ( $ ) {
 			} else {
 				$( this ).css( 'height', 'auto' );
 			}
-	} ).insertBefore( $preftoc );
+		} ).insertBefore( $preftoc );
 
 	/**
 	 * It uses document.getElementById for security reasons (HTML injections in $()).

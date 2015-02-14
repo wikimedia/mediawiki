@@ -7,7 +7,7 @@
 	} ) );
 
 	var getAccessKeyPrefixTestData = [
-			//ua string, platform string, expected prefix
+			// ua string, platform string, expected prefix
 			// Internet Explorer
 			['Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)', 'Win32', 'alt-'],
 			['Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)', 'Win32', 'alt-'],
@@ -27,11 +27,11 @@
 			['Mozilla/5.0 (Macintosh; Intel Mac OS X 10_5_8) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.112 Safari/534.30', 'MacIntel', 'ctrl-option-'],
 			['Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.68 Safari/534.30', 'Linux i686', 'alt-shift-']
 		],
-		//strings appended to title to make sure updateTooltipAccessKeys handles them correctly
+		// strings appended to title to make sure updateTooltipAccessKeys handles them correctly
 		updateTooltipAccessKeysTestData = [ '', ' [a]', ' [test-a]', ' [alt-b]' ];
 
 	function makeInput( title, accessKey ) {
-		//The properties aren't escaped, so make sure you don't call this function with values that need to be escaped!
+		// The properties aren't escaped, so make sure you don't call this function with values that need to be escaped!
 		return '<input title="' + title + '" ' + ( accessKey ? 'accessKey="' + accessKey + '" ' : '' ) + ' />';
 	}
 
@@ -47,9 +47,9 @@
 
 	QUnit.test( 'updateTooltipAccessKeys - current browser', 2, function ( assert ) {
 		var title = $( makeInput( 'Title', 'a' ) ).updateTooltipAccessKeys().prop( 'title' ),
-			//The new title should be something like "Title [alt-a]", but the exact label will depend on the browser.
-			//The "a" could be capitalized, and the prefix could be anything, e.g. a simple "^" for ctrl-
-			//(no browser is known using such a short prefix, though) or "Alt+Umschalt+" in German Firefox.
+			// The new title should be something like "Title [alt-a]", but the exact label will depend on the browser.
+			// The "a" could be capitalized, and the prefix could be anything, e.g. a simple "^" for ctrl-
+			// (no browser is known using such a short prefix, though) or "Alt+Umschalt+" in German Firefox.
 			result = /^Title \[(.+)[aA]\]$/.exec( title );
 		assert.ok( result, 'title should match expected structure.' );
 		assert.notEqual( result[1], 'test-', 'Prefix used for testing shouldn\'t be used in production.' );

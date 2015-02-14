@@ -134,7 +134,9 @@ $.extend( mw.language, {
 	 * @return {string}
 	 */
 	listToText: function ( list ) {
-		var text = '', i = 0;
+		var text = '',
+			i = 0;
+
 		for ( ; i < list.length; i++ ) {
 			text += list[i];
 			if ( list.length - 2 === i ) {
