@@ -45,7 +45,8 @@
 	$.fn.badge = function ( text, inline, displayZero ) {
 		var $badge = this.find( '.mw-badge' ),
 			badgeStyleClass = 'mw-badge-' + ( inline ? 'inline' : 'overlay' ),
-			isImportant = true, displayBadge = true;
+			isImportant = true,
+			displayBadge = true;
 
 		// If we're displaying zero, ensure style to be non-important
 		if ( mw.language.convertNumber( text, true ) === 0 ) {

@@ -292,7 +292,7 @@
 						}
 					}
 					// compare will be -1, 0 or 1, depending on comparison result
-					if ( !( eval( '' + compare + op + '0' ) ) ) {
+					if ( !( eval( String( compare + op + '0' ) ) ) ) {
 						return false;
 					}
 				} else if ( typeof val === 'number' ) {

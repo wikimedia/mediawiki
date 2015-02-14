@@ -19,7 +19,9 @@
 
 	function humanSize( bytes ) {
 		if ( !$.isNumeric( bytes ) || bytes === 0 ) { return bytes; }
-		var i = 0, units = [ '', ' kB', ' MB', ' GB', ' TB', ' PB' ];
+		var i = 0,
+			units = [ '', ' kB', ' MB', ' GB', ' TB', ' PB' ];
+
 		for ( ; bytes >= 1024; bytes /= 1024 ) { i++; }
 		// Maintain one decimal for kB and above, but don't
 		// add ".0" for bytes.
@@ -39,7 +41,8 @@
 		 *  two properties, 'requires' and 'requiredBy'.
 		 */
 		getDependencyGraph: function () {
-			var modules = inspect.getLoadedModules(), graph = {};
+			var modules = inspect.getLoadedModules(),
+				graph = {};
 
 			$.each( modules, function ( moduleIndex, moduleName ) {
 				var dependencies = mw.loader.moduleRegistry[moduleName].dependencies || [];
