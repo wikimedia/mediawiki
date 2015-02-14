@@ -21,7 +21,7 @@ module.exports = function ( grunt ) {
 			},
 			all: [
 				'*.js',
-				'{includes,languages,resources,skins,tests}/**/*.js'
+				'{includes,languages,resources,tests}/**/*.js'
 			]
 		},
 		jscs: {
