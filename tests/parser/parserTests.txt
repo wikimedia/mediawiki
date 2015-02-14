@@ -4684,7 +4684,7 @@ http://www.example.com/?title=AT%26T
 <p><a rel="mw:ExtLink" href="http://www.example.com/?title=AT%26T">http://www.example.com/?title=AT%26T</a></p>
 !! end
 
-# According to http://dev.w3.org/html5/spec/Overview.html#parsing-urls a plain
+# According to http://www.w3.org/TR/2011/WD-html5-20110525/Overview.html#parsing-urls a plain
 # % is actually legal in HTML5. Any change in output would need testing though.
 !! test
 Bug 4781, 5267: %25 in URL
