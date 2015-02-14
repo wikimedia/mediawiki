@@ -11,12 +11,6 @@
 		options = mw.user.options || new mw.Map(),
 		tokens = mw.user.tokens || new mw.Map();
 
-	// Maps for number -> hex string conversion (with padding)
-	// idea from: https://github.com/broofa/node-uuid/blob/master/uuid.js
-	for ( i = 0; i < 256; i++ ) {
-		byteToHex[i] = (i + 0x100).toString(16).substr(1);
-	}
-
 	/**
 	 * Get the current user's groups or rights
 	 *
@@ -51,55 +45,64 @@
 		return deferreds[info].promise();
 	}
 
+	// Map from numbers 0-255 to a hex string (with padding)
+	for ( i = 0; i < 256; i++ ) {
+		// Padding: Add a full byte (0x100, 256) and strip the extra character
+		byteToHex[i] = ( i + 256 ).toString( 16 ).slice( 1 );
+	}
+
 	mw.user = user = {
 		options: options,
 		tokens: tokens,
 
 		/**
-		 * Generate a random user session ID
+		 * Generate a random user session ID.
+		 *
 		 * This information would potentially be stored in a cookie to identify a user during a
-		 * session or series of sessions. Its uniqueness should
-		 * not be depended on unless the browser supports the crypto API.
+		 * session or series of sessions. Its uniqueness should not be depended on unless the
+		 * browser supports the crypto API.
 		 *
 		 * Known problems with Math.random():
 		 * Using the Math.random function we have seen sets
-		 * with 1% of non uniques among 200.000 values with Safari providing most of these.
+		 * with 1% of non uniques among 200,000 values with Safari providing most of these.
 		 * Given the prevalence of Safari in mobile the percentage of duplicates in
 		 * mobile usages of this code is probably higher.
 		 *
 		 * Rationale:
 		 * We need about 64 bits to make sure that probability of collision
 		 * on 500 million (5*10^8) is <= 1%
-		 * See: https://en.wikipedia.org/wiki/Birthday_problem#Probability_table
+		 * See https://en.wikipedia.org/wiki/Birthday_problem#Probability_table
 		 *
 		 * @return {string} 64 bit integer in hex format, padded
 		 */
 		generateRandomSessionId: function () {
 			/*jshint bitwise:false */
-			var rnds, i, r, cryptoObj, hexRnds = new Array( 8 );
-			cryptoObj = window.crypto || window.msCrypto; // for IE 11
+			var rnds, i, r,
+				hexRnds = new Array( 8 ),
+				// Support: IE 11
+				crypto = window.crypto || window.msCrypto;
 
-			if ( cryptoObj ) {
-				// We fill an array with 8 random values, each of which is 8 bits.
-				// note that rnds is an array-like object not a true array
+			// Based on https://github.com/broofa/node-uuid/blob/bfd9f96127/uuid.js
+			if ( crypto ) {
+				// Fill an array with 8 random values, each of which is 8 bits.
+				// Note that Uint8Array is array-like but does not implement Array.
 				rnds = new Uint8Array( 8 );
-				cryptoObj.getRandomValues( rnds );
+				crypto.getRandomValues( rnds );
 			} else {
 				rnds = new Array( 8 );
-				// From: https://github.com/broofa/node-uuid/blob/master/uuid.js
-				for ( i = 0, r; i < 8; i++ ) {
-					if ( ( i & 0x03 ) === 0 ) {
+				for ( i = 0; i < 8; i++ ) {
+					if ( ( i & 3 ) === 0 ) {
 						r = Math.random() * 0x100000000;
 					}
-					rnds[i] = r >>> ( ( i & 0x03 ) << 3 ) & 0xff;
+					rnds[i] = r >>> ( ( i & 3 ) << 3 ) & 255;
 				}
 			}
-			// convert to hex using byteToHex that already contains padding
-			for ( i = 0; i < rnds.length; i++ ) {
+			// Convert from number to hex
+			for ( i = 0; i < 8; i++ ) {
 				hexRnds[i] = byteToHex[rnds[i]];
 			}
 
-			// concatenation of two random integers with entrophy n and m
+			// Concatenation of two random integers with entrophy n and m
 			// returns a string with entrophy n+m if those strings are independent
 			return hexRnds.join( '' );
 		},
