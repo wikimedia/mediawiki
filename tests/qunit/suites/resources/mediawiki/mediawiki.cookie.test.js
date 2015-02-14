@@ -53,7 +53,7 @@
 		assert.strictEqual( call[ 1 ], '0', '0 is value' );
 	} );
 
-	QUnit.test( 'set( key, value, expires )', 5, function ( assert ) {
+	QUnit.test( 'set( key, value, expires )', 6, function ( assert ) {
 		var date, options;
 
 		date = new Date();
@@ -61,15 +61,22 @@
 
 		mw.cookie.set( 'foo', 'bar' );
 		options = $.cookie.lastCall.args[ 2 ];
-		assert.deepEqual( options.expires, expiryDate, 'Default cookie expiration is used' );
+		assert.deepEqual( options.expires, expiryDate, 'default expiration' );
 
 		mw.cookie.set( 'foo', 'bar', date );
 		options = $.cookie.lastCall.args[ 2 ];
-		assert.strictEqual( options.expires, date, 'Custom expiration date' );
+		assert.strictEqual( options.expires, date, 'custom expiration as Date' );
+
+		date = new Date();
+		date.setDate( date.getDate() + 1 );
+
+		mw.cookie.set( 'foo', 'bar', 86400 );
+		options = $.cookie.lastCall.args[ 2 ];
+		assert.deepEqual( options.expires, date, 'custom expiration as lifetime in seconds' );
 
 		mw.cookie.set( 'foo', 'bar', null );
 		options = $.cookie.lastCall.args[ 2 ];
-		assert.strictEqual( options.expires, undefined, 'Expiry null forces session cookie' );
+		assert.strictEqual( options.expires, undefined, 'null forces session cookie' );
 
 		// Per DefaultSettings.php, when wgCookieExpiration is 0, the default should
 		// be session cookies
@@ -81,7 +88,7 @@
 
 		mw.cookie.set( 'foo', 'bar', date );
 		options = $.cookie.lastCall.args[ 2 ];
-		assert.strictEqual( options.expires, date, 'Custom expiration when default is session cookies' );
+		assert.strictEqual( options.expires, date, 'custom expiration (with wgCookieExpiration=0)' );
 	} );
 
 	QUnit.test( 'set( key, value, options )', 4, function ( assert ) {
