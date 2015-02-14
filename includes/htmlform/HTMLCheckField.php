@@ -58,23 +58,16 @@ class HTMLCheckField extends HTMLFormField {
 	 * @return string
 	 */
 	function loadDataFromRequest( $request ) {
-		$invert = false;
-		if ( isset( $this->mParams['invert'] ) && $this->mParams['invert'] ) {
-			$invert = true;
-		}
+		$invert = isset( $this->mParams['invert'] ) && $this->mParams['invert'];
 
 		// GetCheck won't work like we want for checks.
 		// Fetch the value in either one of the two following case:
 		// - we have a valid token (form got posted or GET forged by the user)
 		// - checkbox name has a value (false or true), ie is not null
 		if ( $request->getCheck( 'wpEditToken' ) || $request->getVal( $this->mName ) !== null ) {
-			// XOR has the following truth table, which is what we want
-			// INVERT VALUE | OUTPUT
-			// true   true  | false
-			// false  true  | true
-			// false  false | false
-			// true   false | true
-			return $request->getBool( $this->mName ) xor $invert;
+			return $invert
+				? !$request->getBool( $this->mName )
+				: $request->getBool( $this->mName );
 		} else {
 			return $this->getDefault();
 		}
