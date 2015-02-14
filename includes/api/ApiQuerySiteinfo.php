@@ -592,7 +592,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		foreach ( $this->getConfig()->get( 'ExtensionCredits' ) as $type => $extensions ) {
 			foreach ( $extensions as $ext ) {
 				$ret = array();
-				$ret['type'] = $type;
+				if ( strpos( $ret['type'] = $type, 'skin' ) === 0 ) {
+					continue;
+				}
 				if ( isset( $ext['name'] ) ) {
 					$ret['name'] = $ext['name'];
 				}
@@ -724,31 +726,97 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	public function appendSkins( $property ) {
+
 		$data = array();
 		$allowed = Skin::getAllowedSkins();
 		$default = Skin::normalizeKey( 'default' );
-		foreach ( Skin::getSkinNames() as $name => $displayName ) {
-			$msg = $this->msg( "skinname-{$name}" );
-			$code = $this->getParameter( 'inlanguagecode' );
-			if ( $code && Language::isValidCode( $code ) ) {
-				$msg->inLanguage( $code );
-			} else {
-				$msg->inContentLanguage();
+		foreach ( $this->getConfig()->get( 'ExtensionCredits' ) as $type => $extensions ) {
+			foreach ( $extensions as $ext ) {
+				$ret = array();
+				if ( strpos( $ret['type'] = $type, 'skin' ) === false ) {
+					continue;
+				}
+				if ( isset( $ext['name'] ) ) {
+					$ret['name'] = $ext['name'];
+				}
+				if ( isset( $ext['namemsg'] ) ) {
+					$ret['namemsg'] = $ext['namemsg'];
+				}
+				if ( isset( $ext['description'] ) ) {
+					$ret['description'] = $ext['description'];
+				}
+				if ( isset( $ext['descriptionmsg'] ) ) {
+					// Can be a string or array( key, param1, param2, ... )
+					if ( is_array( $ext['descriptionmsg'] ) ) {
+						$ret['descriptionmsg'] = $ext['descriptionmsg'][0];
+						$ret['descriptionmsgparams'] = array_slice( $ext['descriptionmsg'], 1 );
+						$this->getResult()->setIndexedTagName( $ret['descriptionmsgparams'], 'param' );
+					} else {
+						$ret['descriptionmsg'] = $ext['descriptionmsg'];
+					}
+				}
+				if ( isset( $ext['author'] ) ) {
+					$ret['author'] = is_array( $ext['author'] ) ?
+						implode( ', ', $ext['author'] ) : $ext['author'];
+				}
+				if ( isset( $ext['url'] ) ) {
+					$ret['url'] = $ext['url'];
+				}
+				if ( isset( $ext['version'] ) ) {
+					$ret['version'] = $ext['version'];
+				} elseif ( isset( $ext['svn-revision'] ) &&
+					preg_match( '/\$(?:Rev|LastChangedRevision|Revision): *(\d+)/',
+						$ext['svn-revision'], $m )
+				) {
+					$ret['version'] = 'r' . $m[1];
+				}
+				if ( isset( $ext['path'] ) ) {
+					$extensionPath = dirname( $ext['path'] );
+					$gitInfo = new GitInfo( $extensionPath );
+					$vcsVersion = $gitInfo->getHeadSHA1();
+					if ( $vcsVersion !== false ) {
+						$ret['vcs-system'] = 'git';
+						$ret['vcs-version'] = $vcsVersion;
+						$ret['vcs-url'] = $gitInfo->getHeadViewUrl();
+						$vcsDate = $gitInfo->getHeadCommitDate();
+						if ( $vcsDate !== false ) {
+							$ret['vcs-date'] = wfTimestamp( TS_ISO_8601, $vcsDate );
+						}
+					} else {
+						$svnInfo = SpecialVersion::getSvnInfo( $extensionPath );
+						if ( $svnInfo !== false ) {
+							$ret['vcs-system'] = 'svn';
+							$ret['vcs-version'] = $svnInfo['checkout-rev'];
+							$ret['vcs-url'] = isset( $svnInfo['viewvc-url'] ) ? $svnInfo['viewvc-url'] : '';
+						}
+					}
+
+					if ( SpecialVersion::getExtLicenseFileName( $extensionPath ) ) {
+						$ret['license-name'] = isset( $ext['license-name'] ) ? $ext['license-name'] : '';
+						$ret['license'] = SpecialPage::getTitleFor(
+							'Version',
+							"License/{$ext['name']}"
+						)->getLinkURL();
+					}
+
+					if ( SpecialVersion::getExtAuthorsFileName( $extensionPath ) ) {
+						$ret['credits'] = SpecialPage::getTitleFor(
+							'Version',
+							"Credits/{$ext['name']}"
+						)->getLinkURL();
+					}
+				}
+			if ( !isset( $allowed[$type] ) ) {
+				$ret['unusable'] = '';
 			}
-			if ( $msg->exists() ) {
-				$displayName = $msg->text();
+			if ( !isset( $type[$default] ) ) {
+				$ret['default'] = '';
 			}
-			$skin = array( 'code' => $name );
-			ApiResult::setContent( $skin, $displayName );
-			if ( !isset( $allowed[$name] ) ) {
-				$skin['unusable'] = '';
+				$data[] = $ret;
 			}
-			if ( $name === $default ) {
-				$skin['default'] = '';
-			}
-			$data[] = $skin;
 		}
-		$this->getResult()->setIndexedTagName( $data, 'skin' );
+
+		$this->getResult()->setIndexedTagName( $data, 'ext' );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
