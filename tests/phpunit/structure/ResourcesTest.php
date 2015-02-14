@@ -91,6 +91,10 @@ class ResourcesTest extends MediaWikiTestCase {
 		foreach ( $data['modules'] as $moduleName => $module ) {
 			$moduleTargets = $module->getTargets();
 			foreach ( $module->getDependencies() as $dep ) {
+				if ( !isset( $data['modules'][$dep] ) ) {
+					// Missing dependencies reported by testMissingDependencies
+					continue;
+				}
 				$targets = $data['modules'][$dep]->getTargets();
 				foreach ( $moduleTargets as $moduleTarget ) {
 					$this->assertContains(
