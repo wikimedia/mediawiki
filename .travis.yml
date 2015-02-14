@@ -9,10 +9,12 @@
 language: php
 
 php:
+  - hhvm-nightly
   - 5.3
 
 env:
   - dbtype=mysql
+  - dbtype=postgres
 
 # TODO: Travis CI's hhvm does not support PostgreSQL at the moment.
 matrix:
@@ -50,7 +52,6 @@ before_script:
       --dbuser travis
       --dbpass ""
       --scriptpath "/w"
-
 script:
   - php tests/phpunit/phpunit.php
 
