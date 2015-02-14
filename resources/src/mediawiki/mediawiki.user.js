@@ -3,19 +3,12 @@
  * @singleton
  */
 ( function ( mw, $ ) {
-	var user, i,
+	var user,
 		deferreds = {},
-		byteToHex = [],
 		// Extend the skeleton mw.user from mediawiki.js
 		// This is kind of ugly but we're stuck with this for b/c reasons
 		options = mw.user.options || new mw.Map(),
 		tokens = mw.user.tokens || new mw.Map();
-
-	// Maps for number -> hex string conversion (with padding)
-	// idea from: https://github.com/broofa/node-uuid/blob/master/uuid.js
-	for ( i = 0; i < 256; i++ ) {
-		byteToHex[i] = (i + 0x100).toString(16).substr(1);
-	}
 
 	/**
 	 * Get the current user's groups or rights
@@ -75,28 +68,23 @@
 		 * @return {string} 64 bit integer in hex format, padded
 		 */
 		generateRandomSessionId: function () {
-			/*jshint bitwise:false */
-			var rnds, i, r, cryptoObj, hexRnds = new Array( 8 );
+			var rnds, i, cryptoObj, hexRnds = new Array( 2 );
 			cryptoObj = window.crypto || window.msCrypto; // for IE 11
 
 			if ( cryptoObj ) {
-				// We fill an array with 8 random values, each of which is 8 bits.
+				// We fill an array with 2 random values, each of which is 32 bits.
 				// note that rnds is an array-like object not a true array
-				rnds = new Uint8Array( 8 );
+				rnds = new Uint32Array( 2 );
 				cryptoObj.getRandomValues( rnds );
 			} else {
-				rnds = new Array( 8 );
-				// From: https://github.com/broofa/node-uuid/blob/master/uuid.js
-				for ( i = 0, r; i < 8; i++ ) {
-					if ( ( i & 0x03 ) === 0 ) {
-						r = Math.random() * 0x100000000;
-					}
-					rnds[i] = r >>> ( ( i & 0x03 ) << 3 ) & 0xff;
+				rnds = new Array( 2 );
+				for ( i = 0; i < 2; i++ ) {
+					rnds[i] = Math.floor( Math.random() * 0x100000000 );
 				}
 			}
-			// convert to hex using byteToHex that already contains padding
+			// convert to hex
 			for ( i = 0; i < rnds.length; i++ ) {
-				hexRnds[i] = byteToHex[rnds[i]];
+				hexRnds[i] = ( rnds[i] + 0x100000000 ).toString( 16 ).substr( 1 );
 			}
 
 			// concatenation of two random integers with entrophy n and m
