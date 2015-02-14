@@ -137,11 +137,6 @@
 	};
 
 	$( function () {
-		// Disable URL box if the URL copy upload source type is not selected
-		if ( !$( '#wpSourceTypeurl' ).prop( 'checked' ) ) {
-			$( '#wpUploadFileURL' ).prop( 'disabled', true );
-		}
-
 		// AJAX wpDestFile warnings
 		if ( ajaxUploadDestCheck ) {
 			// Insert an event handler that fetches upload warnings when wpDestFile
@@ -532,31 +527,31 @@
 
 	// Disable all upload source fields except the selected one
 	$( function () {
-		var i, $row,
-			$rows = $( '.mw-htmlform-field-UploadSourceField' );
+		var $rows = $( '.mw-htmlform-field-UploadSourceField' );
 
-		/**
-		 * @param {jQuery} $currentRow
-		 * @return {Function} Handler
-		 * @return {jQuery.Event} return.e
-		 */
-		function createHandler( $currentRow ) {
-			return function () {
-				$( '.mw-upload-source-error' ).remove();
-				if ( this.checked ) {
-					// Disable all inputs
-					$rows.find( 'input[name!="wpSourceType"]' ).prop( 'disabled', true );
-					// Re-enable the current one
-					$currentRow.find( 'input' ).prop( 'disabled', false );
-				}
-			};
-		}
+		$rows.on( 'change', 'input[type="radio"]', function ( e ) {
+			var currentRow = e.delegateTarget;
 
-		for ( i = $rows.length; i; i-- ) {
-			$row = $rows.eq( i - 1 );
-			$row
-				.find( 'input[name="wpSourceType"]' )
-				.change( createHandler( $row ) );
+			if ( !this.checked ) {
+				return;
+			}
+
+			$( '.mw-upload-source-error' ).remove();
+
+			// Enable selected upload method
+			$( currentRow ).find( 'input' ).prop( 'disabled', false );
+
+			// Disable inputs of other upload methods
+			// (except for the radio button to re-enable it)
+			$rows
+				.not( currentRow )
+				.find( 'input[type!="radio"]' )
+				.prop( 'disabled', true );
+		} );
+
+		// Set initial state
+		if ( !$( '#wpSourceTypeurl' ).prop( 'checked' ) ) {
+			$( '#wpUploadFileURL' ).prop( 'disabled', true );
 		}
 	} );
 
