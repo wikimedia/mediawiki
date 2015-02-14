@@ -311,7 +311,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 					break;
 				}
 				$vals2 = array();
-				list( $vals2['duration'], $vals2['flags'] ) = $params;
+				$vals2['duration'] = $params[0];
+				$vals2['flags'] = isset( $params[1] ) ? $params[1] : '';
 
 				// Indefinite blocks have no expiry time
 				if ( SpecialBlock::parseExpiryInput( $params[0] ) !== wfGetDB( DB_SLAVE )->getInfinity() ) {
