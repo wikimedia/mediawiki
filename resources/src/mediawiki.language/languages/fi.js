@@ -17,7 +17,7 @@ mediaWiki.language.convertGrammar = function ( word, form ) {
 	if ( word.match( /wiki$/i ) ) {
 		aou = false;
 	}
-	//append i after final consonant
+	// append i after final consonant
 	if ( word.match( /[bcdfghjklmnpqrstvwxz]$/i ) ) {
 		word += 'i';
 	}

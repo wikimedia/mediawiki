@@ -46,8 +46,8 @@
 			// Note: The ones with # are commented out as those are interpreted as fragment and
 			// as such end up being valid.
 			'A &eacute; B',
-			//'A &#233; B',
-			//'A &#x00E9; B',
+			// 'A &#233; B',
+			// 'A &#x00E9; B',
 			// Subject of NS_TALK does not roundtrip to NS_MAIN
 			'Talk:File:Example.svg',
 			// Directory navigation
@@ -437,33 +437,34 @@
 	} );
 
 	QUnit.test( 'getRelativeText', 5, function ( assert ) {
-		var cases = [
-			{
-				text: 'asd',
-				relativeTo: 123,
-				expectedResult: ':Asd'
-			},
-			{
-				text: 'dfg',
-				relativeTo: 0,
-				expectedResult: 'Dfg'
-			},
-			{
-				text: 'Template:Ghj',
-				relativeTo: 0,
-				expectedResult: 'Template:Ghj'
-			},
-			{
-				text: 'Template:1',
-				relativeTo: 10,
-				expectedResult: '1'
-			},
-			{
-				text: 'User:Hi',
-				relativeTo: 10,
-				expectedResult: 'User:Hi'
-			}
-		], i, thisCase, title;
+		var i, thisCase, title,
+			cases = [
+				{
+					text: 'asd',
+					relativeTo: 123,
+					expectedResult: ':Asd'
+				},
+				{
+					text: 'dfg',
+					relativeTo: 0,
+					expectedResult: 'Dfg'
+				},
+				{
+					text: 'Template:Ghj',
+					relativeTo: 0,
+					expectedResult: 'Template:Ghj'
+				},
+				{
+					text: 'Template:1',
+					relativeTo: 10,
+					expectedResult: '1'
+				},
+				{
+					text: 'User:Hi',
+					relativeTo: 10,
+					expectedResult: 'User:Hi'
+				}
+			];
 
 		for ( i = 0; i < cases.length; i++ ) {
 			thisCase = cases[i];

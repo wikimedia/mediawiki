@@ -340,7 +340,7 @@
 
 			// HTML5 defines a string as valid e-mail address if it matches
 			// the ABNF:
-			//	1 * ( atext / "." ) "@" ldh-str 1*( "." ldh-str )
+			//     1 * ( atext / "." ) "@" ldh-str 1*( "." ldh-str )
 			// With:
 			// - atext   : defined in RFC 5322 section 3.2.3
 			// - ldh-str : defined in RFC 1034 section 3.5
@@ -361,12 +361,12 @@
 			rfc5322Atext = 'a-z0-9!#$%&\'*+\\-/=?^_`{|}~';
 
 			// Next define the RFC 1034 'ldh-str'
-			//	<domain> ::= <subdomain> | " "
-			//	<subdomain> ::= <label> | <subdomain> "." <label>
-			//	<label> ::= <letter> [ [ <ldh-str> ] <let-dig> ]
-			//	<ldh-str> ::= <let-dig-hyp> | <let-dig-hyp> <ldh-str>
-			//	<let-dig-hyp> ::= <let-dig> | "-"
-			//	<let-dig> ::= <letter> | <digit>
+			//     <domain> ::= <subdomain> | " "
+			//     <subdomain> ::= <label> | <subdomain> "." <label>
+			//     <label> ::= <letter> [ [ <ldh-str> ] <let-dig> ]
+			//     <ldh-str> ::= <let-dig-hyp> | <let-dig-hyp> <ldh-str>
+			//     <let-dig-hyp> ::= <let-dig> | "-"
+			//     <let-dig> ::= <letter> | <digit>
 			rfc1034LdhStr = 'a-z0-9\\-';
 
 			html5EmailRegexp = new RegExp(

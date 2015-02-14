@@ -1209,13 +1209,13 @@
 	// bug 53211 - exploding rowspans in more complex cases
 	QUnit.test(
 		'Rowspan exploding with row headers and colspans', 1, function ( assert ) {
-		var $table = $( '<table class="sortable">' +
-			'<thead><tr><th rowspan="2">n</th><th colspan="2">foo</th><th rowspan="2">baz</th></tr>' +
-			'<tr><th>foo</th><th>bar</th></tr></thead>' +
-			'<tbody>' +
-			'<tr><td>1</td><td>foo</td><td>bar</td><td>baz</td></tr>' +
-			'<tr><td>2</td><td>foo</td><td>bar</td><td>baz</td></tr>' +
-			'</tbody></table>' );
+			var $table = $( '<table class="sortable">' +
+				'<thead><tr><th rowspan="2">n</th><th colspan="2">foo</th><th rowspan="2">baz</th></tr>' +
+				'<tr><th>foo</th><th>bar</th></tr></thead>' +
+				'<tbody>' +
+				'<tr><td>1</td><td>foo</td><td>bar</td><td>baz</td></tr>' +
+				'<tr><td>2</td><td>foo</td><td>bar</td><td>baz</td></tr>' +
+				'</tbody></table>' );
 
 			$table.tablesorter();
 			assert.equal( $table.find( 'tr:eq(1) th:eq(1)').data('headerIndex'),

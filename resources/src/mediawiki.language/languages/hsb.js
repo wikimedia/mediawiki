@@ -14,6 +14,6 @@ mediaWiki.language.convertGrammar = function ( word, form ) {
 		case 'lokatiw': // lokatiw
 			word = 'wo ' + word;
 			break;
-		}
+	}
 	return word;
 };

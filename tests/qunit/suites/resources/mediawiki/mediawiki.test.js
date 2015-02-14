@@ -171,7 +171,9 @@
 
 		// Convenience method for asserting the same result for multiple formats
 		function assertMultipleFormats( messageArguments, formats, expectedResult, assertMessage ) {
-			var len = formats.length, format, i;
+			var format, i,
+				len = formats.length;
+
 			for ( i = 0; i < len; i++ ) {
 				format = formats[i];
 				assert.equal( mw.message.apply( null, messageArguments )[format](), expectedResult, assertMessage + ' when format is ' + format );

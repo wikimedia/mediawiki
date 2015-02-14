@@ -187,7 +187,7 @@
 					tmp[ transformTable[ i ] ] = i;
 				}
 				transformTable = tmp;
-				numberString = num + '';
+				numberString = String( num );
 			} else {
 				numberString = mw.language.commafy( num, pattern );
 			}

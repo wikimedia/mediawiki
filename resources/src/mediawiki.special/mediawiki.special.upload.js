@@ -6,8 +6,9 @@
  * @singleton
  */
 ( function ( mw, $ ) {
-	var ajaxUploadDestCheck = mw.config.get( 'wgAjaxUploadDestCheck' ),
-		$license = $( '#wpLicense' ), uploadWarning, uploadLicense;
+	var uploadWarning, uploadLicense,
+		ajaxUploadDestCheck = mw.config.get( 'wgAjaxUploadDestCheck' ),
+		$license = $( '#wpLicense' );
 
 	window.wgUploadWarningObj = uploadWarning = {
 		responseCache: { '': '&nbsp;' },

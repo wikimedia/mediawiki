@@ -6,7 +6,8 @@ var ProtectionForm = window.ProtectionForm = {
 	 * on the protection form
 	 */
 	init: function () {
-		var $cell = $( '<td>' ), $row = $( '<tr>' ).append( $cell );
+		var $cell = $( '<td>' ),
+			$row = $( '<tr>' ).append( $cell );
 
 		if ( !$( '#mwProtectSet' ).length ) {
 			return false;

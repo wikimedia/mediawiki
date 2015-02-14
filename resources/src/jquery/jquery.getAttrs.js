@@ -3,7 +3,9 @@
  */
 
 function serializeControls( controls ) {
-	var i, data = {}, len = controls.length;
+	var i,
+		data = {},
+		len = controls.length;
 
 	for ( i = 0; i < len; i++ ) {
 		data[ controls[i].name ] = controls[i].value;
