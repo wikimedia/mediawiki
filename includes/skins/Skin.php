@@ -1584,20 +1584,42 @@ abstract class Skin extends ContextSource {
 			$attribs['title'] = wfMessage( 'editsectionhint' )->rawParams( $tooltip )
 				->inLanguage( $lang )->text();
 		}
-		$link = Linker::link( $nt, wfMessage( 'editsection' )->inLanguage( $lang )->text(),
-			$attribs,
-			array( 'action' => 'edit', 'section' => $section ),
-			array( 'noclasses', 'known' )
+
+		$links = array(
+			'editsection' => array(
+				'text' => wfMessage( 'editsection' )->inLanguage( $lang )->text(),
+				'targetTitle' => $nt,
+				'attribs' => $attribs,
+				'query' => array( 'action' => 'edit', 'section' => $section ),
+				'options' => array( 'noclasses', 'known' )
+			)
 		);
 
-		# Add the brackets and the span and run the hook.
-		$result = '<span class="mw-editsection">'
-			. '<span class="mw-editsection-bracket">[</span>'
-			. $link
-			. '<span class="mw-editsection-bracket">]</span>'
-			. '</span>';
+		Hooks::run( 'SkinEditSectionLinks', array( $this, $nt, $section, $tooltip, &$links, $lang ) );
 
-		Hooks::run( 'DoEditSectionLink', array( $this, $nt, $section, $tooltip, &$result, $lang ) );
+		$result = '<span class="mw-editsection"><span class="mw-editsection-bracket">[</span>';
+
+		$linksHtml = array();
+		foreach ( $links as $k => $linkDetails ) {
+			$linksHtml[] = Linker::link(
+				$linkDetails['targetTitle'],
+				$linkDetails['text'],
+				$linkDetails['attribs'],
+				$linkDetails['query'],
+				$linkDetails['options']
+			);
+		}
+
+		$result .= implode(
+			'<span class="mw-editsection-divider">'
+				. wfMessage( 'pipe-separator' )->inLanguage( $lang )->text()
+				. '</span>',
+			$linksHtml
+		);
+
+		$result .= '<span class="mw-editsection-bracket">]</span></span>';
+
+		Hooks::run( 'DoEditSectionLink', array( $this, $nt, $section, $tooltip, &$result, $lang ), "1.25" );
 		return $result;
 	}
 
