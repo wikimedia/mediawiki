@@ -52,7 +52,6 @@ before_script:
       --dbuser travis
       --dbpass ""
       --scriptpath "/w"
-
 script:
   - php tests/phpunit/phpunit.php
 
