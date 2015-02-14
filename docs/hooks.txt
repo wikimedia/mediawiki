@@ -1060,6 +1060,7 @@ $article: article (object) being viewed
 $oldid: oldid (int) being viewed
 
 'DoEditSectionLink': Override the HTML generated for section edit links
+* Deprecated in favour of EditSectionLinks hook *
 $skin: Skin object rendering the UI
 $title: Title object for the title being linked to (may not be the same as
   the page title, if the section is included from a template)
@@ -1215,6 +1216,23 @@ of terms of service summary link that might exist separately from the copyright
 notice.
 $title: title of page being edited
 &$msg: localization message name, overridable. Default is 'editpage-tos-summary'
+
+'EditSectionLinks': Modify the section edit links
+$skin: Skin object rendering the UI
+$title: Title object for the title being linked to (may not be the same as
+  the page title, if the section is included from a template)
+$section: The designation of the section being pointed to, to be included in
+  the link, like "&section=$section"
+$tooltip: The default tooltip.  Escape before using.
+  By default, this is wrapped in the 'editsectionhint' message.
+&$result: Array containing all link detail arrays. Each link detail array should contain
+  the following keys:
+  * targetTitle - Target Title object
+  * text - String for the text
+  * attribs - Array of attributes
+  * query - Array of query parameters to add to the URL
+  * options - Array of options for Linker::link
+$lang: The language code to use for the link in the wfMessage function
 
 'EmailConfirmed': When checking that the user's email address is "confirmed".
 $user: User being checked
