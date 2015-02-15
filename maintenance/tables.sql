@@ -182,7 +182,7 @@ CREATE UNIQUE INDEX /*i*/ufg_user_group ON /*_*/user_former_groups (ufg_user,ufg
 --
 CREATE TABLE /*_*/user_newtalk (
   -- Key to user.user_id
-  user_id int NOT NULL default 0,
+  user_id int unsigned NOT NULL default 0,
   -- If the user is an anonymous user their IP address is stored here
   -- since the user_id of 0 is ambiguous
   user_ip varbinary(40) NOT NULL default '',

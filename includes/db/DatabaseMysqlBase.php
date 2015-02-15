@@ -1201,6 +1201,7 @@ class MySQLField implements Field {
 		$this->is_multiple = $info->multiple_key;
 		$this->is_key = ( $this->is_pk || $this->is_unique || $this->is_multiple );
 		$this->type = $info->type;
+		$this->flags = $info->flags;
 		$this->binary = isset( $info->binary ) ? $info->binary : false;
 	}
 
@@ -1248,6 +1249,13 @@ class MySQLField implements Field {
 	 */
 	function isMultipleKey() {
 		return $this->is_multiple;
+	}
+
+	/**
+	 * @return int
+	 */
+	function flags() {
+		return $this->flags;
 	}
 
 	function isBinary() {
