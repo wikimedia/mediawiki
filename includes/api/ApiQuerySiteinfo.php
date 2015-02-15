@@ -73,7 +73,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					$fit = $this->appendInstalledLibraries( $p );
 					break;
 				case 'extensions':
-					$fit = $this->appendExtensions( $p );
+					$filterExtensionTypes = isset( $params['filterextensiontypes'] )
+						? array_flip( $params['filterextensiontypes'] )
+						: null;
+					$fit = $this->appendExtensions( $p, $filterExtensionTypes );
 					break;
 				case 'fileextensions':
 					$fit = $this->appendFileExtensions( $p );
@@ -563,9 +566,12 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	}
 
-	protected function appendExtensions( $property ) {
+	protected function appendExtensions( $property, array $filterExtensionTypes = null ) {
 		$data = [];
 		foreach ( $this->getConfig()->get( 'ExtensionCredits' ) as $type => $extensions ) {
+			if ( $filterExtensionTypes !== null && !isset( $filterExtensionTypes[$type] ) ) {
+				continue;
+			}
 			foreach ( $extensions as $ext ) {
 				$ret = [];
 				$ret['type'] = $type;
@@ -847,6 +853,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'!local',
 				]
 			],
+			'filterextensiontypes' => [
+				ApiBase::PARAM_ISMULTI => true
+			],
 			'showalldb' => false,
 			'numberingroup' => false,
 			'inlanguagecode' => null,
@@ -859,6 +868,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				=> 'apihelp-query+siteinfo-example-simple',
 			'action=query&meta=siteinfo&siprop=interwikimap&sifilteriw=local'
 				=> 'apihelp-query+siteinfo-example-interwiki',
+			'action=query&meta=siteinfo&siprop=extensions&sifilterextensiontypes=parserhook'
+				=> 'apihelp-query+siteinfo-example-extensions',
 			'action=query&meta=siteinfo&siprop=dbrepllag&sishowalldb='
 				=> 'apihelp-query+siteinfo-example-replag',
 		];
