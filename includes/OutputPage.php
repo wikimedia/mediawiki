@@ -196,12 +196,6 @@ class OutputPage extends ContextSource {
 
 	// Parser related.
 
-	/**
-	 * @var int
-	 * @todo Unused?
-	 */
-	private $mContainsOldMagic = 0;
-
 	/** @var int */
 	protected $mContainsNewMagic = 0;
 

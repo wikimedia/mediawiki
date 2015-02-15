@@ -35,7 +35,6 @@ class CacheTime {
 	public $mVersion = Parser::VERSION,  # Compatibility check
 		$mCacheTime = '',             # Time when this object was generated, or -1 for uncacheable. Used in ParserCache.
 		$mCacheExpiry = null,         # Seconds after which the object should expire, use 0 for uncacheable. Used in ParserCache.
-		$mContainsOldMagic,           # Boolean variable indicating if the input contained variables like {{CURRENTDAY}}
 		$mCacheRevisionId = null;     # Revision ID that was parsed
 
 	/**
@@ -43,21 +42,6 @@ class CacheTime {
 	 */
 	public function getCacheTime() {
 		return wfTimestamp( TS_MW, $this->mCacheTime );
-	}
-
-	/**
-	 * @return bool
-	 */
-	public function containsOldMagic() {
-		return $this->mContainsOldMagic;
-	}
-
-	/**
-	 * @param bool $com
-	 * @return bool
-	 */
-	public function setContainsOldMagic( $com ) {
-		return wfSetVar( $this->mContainsOldMagic, $com );
 	}
 
 	/**
@@ -131,10 +115,6 @@ class CacheTime {
 			$expire = $wgParserCacheExpireTime;
 		} else {
 			$expire = min( $expire, $wgParserCacheExpireTime );
-		}
-
-		if ( $this->containsOldMagic() ) { //compatibility hack
-			$expire = min( $expire, 3600 ); # 1 hour
 		}
 
 		if ( $expire <= 0 ) {

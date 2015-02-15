@@ -64,12 +64,11 @@ class ParserOutput extends CacheTime {
 		'#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
 
 	public function __construct( $text = '', $languageLinks = array(), $categoryLinks = array(),
-		$containsOldMagic = false, $titletext = ''
+		$unused = false, $titletext = ''
 	) {
 		$this->mText = $text;
 		$this->mLanguageLinks = $languageLinks;
 		$this->mCategories = $categoryLinks;
-		$this->mContainsOldMagic = $containsOldMagic;
 		$this->mTitleText = $titletext;
 	}
 
