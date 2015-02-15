@@ -9,6 +9,8 @@
 		space: mw.message( 'word-separator' ).text(),
 		confirm: mw.message( 'confirmable-confirm', mw.user ).text(),
 		yes: mw.message( 'confirmable-yes' ).text(),
-		no: mw.message( 'confirmable-no' ).text()
+		no: mw.message( 'confirmable-no' ).text(),
+		yesTitle: null,
+		noTitle: null
 	};
 }( mediaWiki, jQuery ) );
