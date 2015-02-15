@@ -43,11 +43,11 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 	}
 
 	public function doUpdate() {
-
 		$job = new HTMLCacheUpdateJob(
 			$this->mTitle,
 			array(
 				'table' => $this->mTable,
+				'recursive' => true
 			) + Job::newRootJobParams( // "overall" refresh links job info
 				"htmlCacheUpdate:{$this->mTable}:{$this->mTitle->getPrefixedText()}"
 			)
@@ -63,6 +63,5 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 				$job->run(); // just do the purge query now
 			} );
 		}
-
 	}
 }
