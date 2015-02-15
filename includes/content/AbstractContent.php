@@ -204,13 +204,13 @@ abstract class AbstractContent implements Content {
 	 * Returns a list of DataUpdate objects for recording information about this
 	 * Content in some secondary data store.
 	 *
-	 * This default implementation calls
-	 * $this->getParserOutput( $content, $title, null, null, false ),
-	 * and then calls getSecondaryDataUpdates( $title, $recursive ) on the
-	 * resulting ParserOutput object.
+	 * This default implementation returns a LinksUpdate object and calls the
+	 * SecondaryDataUpdates hook.
 	 *
 	 * Subclasses may override this to determine the secondary data updates more
 	 * efficiently, preferably without the need to generate a parser output object.
+	 * They should however make sure to call SecondaryDataUpdates to give extensions
+	 * a chance to inject additional updates.
 	 *
 	 * @since 1.21
 	 *
@@ -224,12 +224,19 @@ abstract class AbstractContent implements Content {
 	 * @see Content::getSecondaryDataUpdates()
 	 */
 	public function getSecondaryDataUpdates( Title $title, Content $old = null,
-		$recursive = true, ParserOutput $parserOutput = null ) {
+		$recursive = true, ParserOutput $parserOutput = null
+	) {
 		if ( $parserOutput === null ) {
 			$parserOutput = $this->getParserOutput( $title, null, null, false );
 		}
 
-		return $parserOutput->getSecondaryDataUpdates( $title, $recursive );
+		$updates = array(
+			new LinksUpdate( $title, $parserOutput, $recursive )
+		);
+
+		Hooks::run( 'SecondaryDataUpdates', array( $title, $old, $recursive, $parserOutput, &$updates ) );
+
+		return $updates;
 	}
 
 	/**

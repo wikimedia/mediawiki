@@ -349,6 +349,11 @@ changes to languages because of Bugzilla reports.
 * Deprecated Revision methods getRawUser(), getRawUserText() and getRawComment().
 * BREAKING CHANGE: mediawiki.user.generateRandomSessionId:
   The alphabet of the prior string returned was A-Za-z0-9 and now it is 0-9A-F
+* Deprecated ParserOutput::addSecondaryDataUpdate and ParserOutput::getSecondaryDataUpdates.
+  This is a hard deprecation, with getSecondaryDataUpdates returning an empty array and
+  addSecondaryDataUpdate throwing an exception. These functions will be removed in 1.26,
+  since they interfere with caching of ParserOutput objects.
+* Introduced new hook 'SecondaryDataUpdates' that allows extensions to inject custom updates.
 
 == Compatibility ==
 
