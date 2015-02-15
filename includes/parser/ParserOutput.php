@@ -53,8 +53,6 @@ class ParserOutput extends CacheTime {
 		$mTOCEnabled = true;          # Whether TOC should be shown, can't override __NOTOC__
 	private $mIndexPolicy = '';       # 'index' or 'noindex'?  Any other value will result in no change.
 	private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
-	private $mSecondaryDataUpdates = array(); # List of DataUpdate, used to save info from the page somewhere else.
-	private $mCustomDataUpdateCount = 0; # Number of custom updaters in $mSecondaryDataUpdates.
 	private $mExtensionData = array(); # extra data used by extensions
 	private $mLimitReportData = array(); # Parser limit report data
 	private $mParseStartTime = array(); # Timestamps for getTimeSinceStart()
@@ -677,73 +675,57 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * Adds an update job to the output. Any update jobs added to the output will
-	 * eventually be executed in order to store any secondary information extracted
-	 * from the page's content. This is triggered by calling getSecondaryDataUpdates()
-	 * and is used for forward links updates on edit and backlink updates by jobs.
+	 * @deprecated since 1.25. Instead, store any relevant data using setExtensionData,
+	 *    and implement Content::getSecondaryDataUpdates() if possible, or use the
+	 *    'SecondaryDataUpdates' hook to construct the necessary update objects.
 	 *
-	 * @note: custom DataUpdates do not survive serialization of the ParserOutput!
-	 * This is especially relevant when using a cached ParserOutput for updating
-	 * the database, as WikiPage does if $wgAjaxStashEdit is enabled. For this
-	 * reason, ApiStashEdit will skip any ParserOutput that has custom DataUpdates.
+	 * @note Hard deprecation and removal without long deprecation period, since there are no
+	 *       known users, but known conceptual issues.
 	 *
-	 * @since 1.20
+	 * @todo remove in 1.26
 	 *
 	 * @param DataUpdate $update
+	 *
+	 * @throws MWException
 	 */
 	public function addSecondaryDataUpdate( DataUpdate $update ) {
-		$this->mSecondaryDataUpdates[] = $update;
-		$this->mCustomDataUpdateCount = count( $this->mSecondaryDataUpdates );
+		wfDeprecated( __METHOD__, '1.25' );
+		throw new MWException( 'ParserOutput::addSecondaryDataUpdate() is no longer supported. Override Content::getSecondaryDataUpdates() or use the SecondaryDataUpdates hook instead.' );
 	}
 
 	/**
-	 * Whether this ParserOutput contains custom DataUpdate objects that may not survive
-	 * serialization of the ParserOutput.
+	 * @deprecated since 1.25.
 	 *
-	 * @see __sleep()
+	 * @note Hard deprecation and removal without long deprecation period, since there are no
+	 *       known users, but known conceptual issues.
 	 *
-	 * @return bool
+	 * @todo remove in 1.26
+	 *
+	 * @return bool false (since 1.25)
 	 */
 	public function hasCustomDataUpdates() {
-		return ( $this->mCustomDataUpdateCount > 0 );
+		wfDeprecated( __METHOD__, '1.25' );
+		return false;
 	}
 
 	/**
-	 * Returns any DataUpdate jobs to be executed in order to store secondary information
-	 * extracted from the page's content, including a LinksUpdate object for all links stored in
-	 * this ParserOutput object.
+	 * @deprecated since 1.25. Instead, store any relevant data using setExtensionData,
+	 *    and implement Content::getSecondaryDataUpdates() if possible, or use the
+	 *    'SecondaryDataUpdates' hook to construct the necessary update objects.
 	 *
-	 * @note Avoid using this method directly, use ContentHandler::getSecondaryDataUpdates()
-	 *   instead! The content handler may provide additional update objects.
+	 * @note Hard deprecation and removal without long deprecation period, since there are no
+	 *       known users, but known conceptual issues.
 	 *
-	 * @since 1.20
+	 * @todo remove in 1.26
 	 *
-	 * @param Title $title The title of the page we're updating. If not given, a title object will
-	 *    be created based on $this->getTitleText()
-	 * @param bool $recursive Queue jobs for recursive updates?
-	 *
-	 * @throws MWException if called on a ParserOutput instance that was restored from serialization.
-	 *         DataUpdates are generally not serializable, so after serialization, they are undefined.
+	 * @param Title $title
+	 * @param bool $recursive
 	 *
 	 * @return array An array of instances of DataUpdate
 	 */
 	public function getSecondaryDataUpdates( Title $title = null, $recursive = true ) {
-		if ( is_null( $title ) ) {
-			$title = Title::newFromText( $this->getTitleText() );
-		}
-
-		if ( count( $this->mSecondaryDataUpdates ) !== $this->mCustomDataUpdateCount ) {
-			// NOTE: This happens when mSecondaryDataUpdates are lost during serialization
-			// (see __sleep below). After (un)serialization, getSecondaryDataUpdates()
-			// has no defined behavior in that case, and should throw an exception.
-			throw new MWException( 'getSecondaryDataUpdates() must not be called on ParserOutput restored from serialization.' );
-		}
-
-		// NOTE: ApiStashEdit knows about this "magic" update object. If this goes away,
-		// ApiStashEdit::buildStashValue needs to be adjusted.
-		$linksUpdate = new LinksUpdate( $title, $this, $recursive );
-
-		return array_merge( $this->mSecondaryDataUpdates, array( $linksUpdate ) );
+		wfDeprecated( __METHOD__, '1.25' );
+		return array();
 	}
 
 	/**
@@ -897,7 +879,7 @@ class ParserOutput extends CacheTime {
 	public function __sleep() {
 		return array_diff(
 			array_keys( get_object_vars( $this ) ),
-			array( 'mSecondaryDataUpdates', 'mParseStartTime' )
+			array( 'mParseStartTime' )
 		);
 	}
 }
