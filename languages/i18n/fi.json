@@ -2994,7 +2994,7 @@
 	"intentionallyblankpage": "Tämä sivu on tarkoituksellisesti tyhjä.",
 	"external_image_whitelist": " #Älä muuta tätä riviä lainkaan.<pre>\n#Laita säännöllisten lausekkeiden palaset (vain osa, joka menee //-merkkien väliin) alle\n#Niitä verrataan ulkoisten (suoralinkitettyjen) kuvien URLeihin\n#Ne jotka sopivat, näytetään kuvina, muutoin kuviin näytetään vain linkit\n#Rivit, jotka alkavat #-merkillä ovat kommentteja\n#Tämä on riippumaton kirjainkoosta\n\n#Laita kaikki säännöllisten lausekkeiden palaset tämän rivit yläpuolelle. Älä muuta tätä riviä lainkaan</pre>",
 	"tags": "Voimassa olevat muutosmerkinnät",
-	"tag-filter": "[[Special:Tags|Merkintä]]suodatin:",
+	"tag-filter": "[[Special:Tags|Merkkausten]] suodatin:",
 	"tag-filter-submit": "Suodata",
 	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|Merkkaus|Merkkaukset}}]]: $2)",
 	"tags-title": "Merkkaukset",

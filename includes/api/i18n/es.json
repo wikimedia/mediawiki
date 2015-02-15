@@ -141,6 +141,7 @@
 	"apihelp-query+userinfo-description": "Obtener información sobre el usuario actual.",
 	"apihelp-query+watchlist-param-excludeuser": "No listar cambios de este usuario.",
 	"apihelp-query+watchlistraw-param-show": "Sólo listar los elementos que cumplen estos criterios.",
+	"apihelp-query+watchlistraw-example-simple": "Listar las páginas de la lista de seguimiento del usuario actual.",
 	"apihelp-unblock-example-user": "Desbloquear al usuario <kbd>Bob</kbd> con el motivo <kbd>Lo siento, Bob</kbd>",
 	"apihelp-undelete-example-revisions": "Restaurar dos revisiones de la página <kbd>Portada</kbd>.",
 	"apihelp-upload-example-url": "Subir desde una URL.",

@@ -2970,6 +2970,8 @@
 	"tags-source-none": "Больш не выкарыстоўваецца",
 	"tags-edit": "рэдагаваць",
 	"tags-delete": "выдаліць",
+	"tags-activate": "актываваць",
+	"tags-deactivate": "адключыць",
 	"tags-hitcount": "$1 {{PLURAL:$1|зьмена|зьмены|зьменаў}}",
 	"comparepages": "Параўнаньне старонак",
 	"compare-page1": "Старонка 1",

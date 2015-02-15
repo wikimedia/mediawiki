@@ -2913,6 +2913,7 @@
 	"tags-deactivate": "desaktivéieren",
 	"tags-hitcount": "$1 {{PLURAL:$1|Ännerung|Ännerungen}}",
 	"tags-create-reason": "Grond:",
+	"tags-create-submit": "Uleeën",
 	"tags-create-already-exists": "D'Markéierung (tag) ''$1'' gëtt et schonn.",
 	"tags-delete-title": "Markéierung (tag) läSchen",
 	"tags-delete-reason": "Grond:",

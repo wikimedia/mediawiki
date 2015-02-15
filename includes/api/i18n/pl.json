@@ -43,6 +43,7 @@
 	"apihelp-move-description": "Przenieś stronę.",
 	"apihelp-move-param-ignorewarnings": "Ignoruj wszystkie ostrzeżenia.",
 	"apihelp-protect-example-protect": "Zabezpiecz stronę",
+	"apihelp-query+allpages-example-B": "Pokaż listę stron rozpoczynających się na literę <kbd>B</kbd>.",
 	"apihelp-query+imageinfo-paramvalue-prop-canonicaltitle": "Dodaje kanoniczny tytuł pliku.",
 	"apihelp-query+imageinfo-paramvalue-prop-dimensions": "Alias rozmiaru.",
 	"apihelp-query+imageinfo-paramvalue-prop-mime": "Dodaje typ MIME pliku.",
