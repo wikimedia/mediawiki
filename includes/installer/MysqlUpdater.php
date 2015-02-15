@@ -270,6 +270,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'dropTable', 'hitcounter' ),
 			array( 'dropField', 'site_stats', 'ss_total_views', 'patch-drop-ss_total_views.sql' ),
 			array( 'dropField', 'page', 'page_counter', 'patch-drop-page_counter.sql' ),
+			array( 'doUserNewTalkUseridUnsigned' ),
 		);
 	}
 
@@ -1060,6 +1061,28 @@ class MysqlUpdater extends DatabaseUpdater {
 			'patch-iwl_prefix_title_from-non-unique.sql',
 			false,
 			'Making iwl_prefix_title_from index non-UNIQUE'
+		);
+	}
+
+	protected function doUserNewTalkUseridUnsigned() {
+		if ( !$this->doTable( 'user_newtalk' ) ) {
+			return true;
+		}
+
+		$info = $this->db->fieldInfo( 'user_newtalk', 'user_id' );
+		if ( $info === false ) {
+			return true;
+		}
+		if ( ( $info->flags() & 32 /*MYSQLI_UNSIGNED_FLAG*/ ) ) {
+			$this->output( "...user_id is already unsigned int.\n" );
+
+			return true;
+		}
+
+		return $this->applyPatch(
+			'patch-user-newtalk-userid-unsigned.sql',
+			false,
+			'Making user_id unsigned int'
 		);
 	}
 }
