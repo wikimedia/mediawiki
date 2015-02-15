@@ -6,18 +6,38 @@
 	-ms-user-select: none;
 	user-select: none;
 }
+/* Align the toggle based on the direction of the content language */
+/* @noflip */
+.mw-content-ltr .mw-collapsible-toggle,
+.mw-content-rtl .mw-content-ltr .mw-collapsible-toggle {
+	float: right;
+}
+/* @noflip */
+.mw-content-rtl .mw-collapsible-toggle,
+.mw-content-ltr .mw-content-rtl .mw-collapsible-toggle {
+	float: left;
+}
+
 .mw-customtoggle,
 .mw-collapsible-toggle {
 	cursor: pointer;
 }
 
 /* collapse links in captions should be inline */
-caption .mw-collapsible-toggle {
+caption .mw-collapsible-toggle,
+.mw-content-ltr caption .mw-collapsible-toggle,
+.mw-content-rtl caption .mw-collapsible-toggle,
+.mw-content-rtl .mw-content-ltr caption .mw-collapsible-toggle,
+.mw-content-ltr .mw-content-rtl caption .mw-collapsible-toggle {
 	float: none;
 }
 
 /* list-items go as wide as their parent element, don't float them inside list items */
-li .mw-collapsible-toggle {
+li .mw-collapsible-toggle,
+.mw-content-ltr li .mw-collapsible-toggle,
+.mw-content-rtl li .mw-collapsible-toggle,
+.mw-content-rtl .mw-content-ltr li .mw-collapsible-toggle,
+.mw-content-ltr .mw-content-rtl li .mw-collapsible-toggle {
 	float: none;
 }
 
