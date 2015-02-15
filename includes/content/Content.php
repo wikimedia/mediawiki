@@ -292,6 +292,9 @@ interface Content {
 	 * Subclasses may implement this to determine the necessary updates more
 	 * efficiently, or make use of information about the old content.
 	 *
+	 * @note Implementations should call the SecondaryDataUpdates hook, like
+	 *   AbstractContent does.
+	 *
 	 * @param Title $title The context for determining the necessary updates
 	 * @param Content $old An optional Content object representing the
 	 *    previous content, i.e. the content being replaced by this Content

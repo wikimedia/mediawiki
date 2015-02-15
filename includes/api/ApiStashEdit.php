@@ -334,11 +334,7 @@ class ApiStashEdit extends ApiBase {
 		$since = time() - wfTimestamp( TS_UNIX, $parserOutput->getTimestamp() );
 		$ttl = min( $parserOutput->getCacheExpiry() - $since, 5 * 60 );
 
-		// Note: ParserOutput with that contains secondary data update callbacks can not be
-		// stashed, since the callbacks are not serializable (see ParserOutput::__sleep).
-		$hasCustomDataUpdates = $parserOutput->hasCustomDataUpdates();
-
-		if ( $ttl > 0 && !$parserOutput->getFlag( 'vary-revision' ) && !$hasCustomDataUpdates ) {
+		if ( $ttl > 0 && !$parserOutput->getFlag( 'vary-revision' ) ) {
 			// Only store what is actually needed
 			$stashInfo = (object)array(
 				'pstContent' => $pstContent,
