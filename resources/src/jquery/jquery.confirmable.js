@@ -83,7 +83,8 @@
 				interfaceWidth = $interface.data( 'jquery-confirmable-width' );
 				elementWidth = $element.data( 'jquery-confirmable-width' );
 			} else {
-				$elementClone = $element.clone( true );
+				// Clone the link element with the title text removed
+				$elementClone = $element.clone( true ).removeAttr( 'title' );
 				$element.addClass( 'jquery-confirmable-element' );
 
 				elementWidth = $element.width();
