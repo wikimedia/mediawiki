@@ -42,17 +42,8 @@ class HTMLCacheUpdateJob extends Job {
 	function run() {
 		global $wgUpdateRowsPerJob, $wgUpdateRowsPerQuery;
 
-		static $expected = array( 'recursive', 'pages' ); // new jobs have one of these
-
-		$oldRangeJob = false;
-		if ( !array_intersect( array_keys( $this->params ), $expected ) ) {
-			// B/C for older job params formats that lack these fields:
-			// a) base jobs with just ("table") and b) range jobs with ("table","start","end")
-			if ( isset( $this->params['start'] ) && isset( $this->params['end'] ) ) {
-				$oldRangeJob = true;
-			} else {
-				$this->params['recursive'] = true; // base job
-			}
+		if ( isset( $this->params['table'] ) && !isset( $this->params['pages'] ) ) {
+			$this->params['recursive'] = true; // b/c; base job
 		}
 
 		// Job to purge all (or a range of) backlink pages for a page
@@ -70,26 +61,12 @@ class HTMLCacheUpdateJob extends Job {
 		// Job to purge pages for a set of titles
 		} elseif ( isset( $this->params['pages'] ) ) {
 			$this->invalidateTitles( $this->params['pages'] );
-		// B/C for job to purge a range of backlink pages for a given page
-		} elseif ( $oldRangeJob ) {
-			$titleArray = $this->title->getBacklinkCache()->getLinks(
-				$this->params['table'], $this->params['start'], $this->params['end'] );
-
-			$pages = array(); // same format BacklinkJobUtils uses
-			foreach ( $titleArray as $tl ) {
-				$pages[$tl->getArticleId()] = array( $tl->getNamespace(), $tl->getDbKey() );
-			}
-
-			$jobs = array();
-			foreach ( array_chunk( $pages, $wgUpdateRowsPerJob ) as $pageChunk ) {
-				$jobs[] = new HTMLCacheUpdateJob( $this->title,
-					array(
-						'table' => $this->params['table'],
-						'pages' => $pageChunk
-					) + $this->getRootJobParams() // carry over information for de-duplication
-				);
-			}
-			JobQueueGroup::singleton()->push( $jobs );
+		// Job to update a single title
+		} else {
+			$t = $this->title;
+			$this->invalidateTitles( array(
+				$t->getArticleID() => array( $t->getNamespace(), $t->getDBkey() )
+			) );
 		}
 
 		return true;
