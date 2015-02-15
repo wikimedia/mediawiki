@@ -2370,6 +2370,18 @@ $title : Current Title object being displayed in search results.
 'SearchableNamespaces': An option to modify which namespaces are searchable.
 &$arr : Array of namespaces ($nsId => $name) which will be used.
 
+'SecondaryDataUpdates': Allows modification of the list of DataUpdates to
+perform when page content is modified. Currently called by
+AbstractContent::getSecondaryDataUpdates.
+$title: Title of the page that is being edited.
+$oldContent: Content object representing the page's content before the edit.
+$recursive: bool indicating whether DataUpdates should trigger recursive
+  updates (relevant mostly for LinksUpdate).
+$parserOutput: ParserOutput representing the rendered version of the page
+  after the edit.
+&$updates: a list of DataUpdate objects, to be modified or replaced by
+  the hook handler.
+
 'SelfLinkBegin': Called before a link to the current article is displayed to
 allow the display of the link to be customized.
 $nt: the Title object

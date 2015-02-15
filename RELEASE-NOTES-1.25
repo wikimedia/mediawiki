@@ -373,6 +373,11 @@ changes to languages because of Bugzilla reports.
 * Removed maintenance script dumpSisterSites.php.
 * DatabaseBase class constructors must be called using the array argument style.
   Ideally, DatabaseBase:factory() should be used instead in most cases.
+* Deprecated ParserOutput::addSecondaryDataUpdate and ParserOutput::getSecondaryDataUpdates.
+  This is a hard deprecation, with getSecondaryDataUpdates returning an empty array and
+  addSecondaryDataUpdate throwing an exception. These functions will be removed in 1.26,
+  since they interfere with caching of ParserOutput objects.
+* Introduced new hook 'SecondaryDataUpdates' that allows extensions to inject custom updates.
 
 == Compatibility ==
 
