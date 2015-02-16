@@ -415,7 +415,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$legend = Html::openElement( 'dl' ) . "\n";
 		# Iterates through them and gets the messages for both letter and tooltip
 		$legendItems = $context->getConfig()->get( 'RecentChangesFlags' );
-		if ( !( $user->useRCPatrol() || $user->useNPPatrol() ) ) {
+		if ( !( $user->useNPPatrol() || $user->useRCPatrol() || $user->useTagPatrol() ) ) {
 			unset( $legendItems['unpatrolled'] );
 		}
 		foreach ( $legendItems as $key => $item ) { # generate items of the legend

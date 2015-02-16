@@ -5884,6 +5884,14 @@ $wgRCEngines = array(
 $wgUseRCPatrol = true;
 
 /**
+ * If RC patrol is disabled, use this setting to enable patrolling of tagged recent changes
+ * Only tags that have been marked as "important" by admins or extensions are used for this
+ *
+ * @since 1.25
+ */
+$wgUseTagPatrol = false;
+
+/**
  * Use new page patrolling to check new pages on Special:Newpages
  */
 $wgUseNPPatrol = true;

@@ -589,6 +589,9 @@ class ChangesList extends ContextSource {
 			if ( $user->useNPPatrol() && $rcType == RC_NEW ) {
 				return true;
 			}
+			if ( $user->useTagPatrol() && array_intersect( $rc->mAttribs['ts_tags'], ChangeTags::listImportantTags ) ) {
+				return true;
+			}
 		}
 
 		return false;

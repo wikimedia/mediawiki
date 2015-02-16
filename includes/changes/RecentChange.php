@@ -435,16 +435,18 @@ class RecentChange {
 	 * @return array Array of permissions errors, see Title::getUserPermissionsErrors()
 	 */
 	public function doMarkPatrolled( User $user, $auto = false ) {
-		global $wgUseRCPatrol, $wgUseNPPatrol;
+		global $wgUseRCPatrol, $wgUseNPPatrol, $wgUseTagPatrol;
 		$errors = array();
-		// If recentchanges patrol is disabled, only new pages
-		// can be patrolled
-		if ( !$wgUseRCPatrol && ( !$wgUseNPPatrol || $this->getAttribute( 'rc_type' ) != RC_NEW ) ) {
+		// If recent changes patrol is disabled, only new pages can be patrolled,
+		// or tagged changes but not automatically
+		if ( !$wgUseRCPatrol && ( !$wgUseNPPatrol || $this->getAttribute( 'rc_type' ) != RC_NEW ) && ( $auto ||
+			!$wgUseTagPatrol || !array_intersect( $this->getAttribute( 'ts_tags' ), ChangeTags::listImportantTags ) ) ) {
 			$errors[] = array( 'rcpatroldisabled' );
 		}
 		// Automatic patrol needs "autopatrol", ordinary patrol needs "patrol"
 		$right = $auto ? 'autopatrol' : 'patrol';
 		$errors = array_merge( $errors, $this->getTitle()->getUserPermissionsErrors( $right, $user ) );
+		// Hook check
 		if ( !Hooks::run( 'MarkPatrolled', array( $this->getAttribute( 'rc_id' ), &$user, false ) ) ) {
 			$errors[] = array( 'hookaborted' );
 		}
@@ -455,6 +457,7 @@ class RecentChange {
 		) {
 			$errors[] = array( 'markedaspatrollederror-noautopatrol' );
 		}
+		// Returning errors if any
 		if ( $errors ) {
 			return $errors;
 		}

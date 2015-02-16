@@ -2988,7 +2988,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return array
 	 */
 	public function commitRollback( $fromP, $summary, $bot, &$resultDetails, User $guser ) {
-		global $wgUseRCPatrol, $wgContLang;
+		global $wgUseRCPatrol, $wgUseTagPatrol , $wgContLang;
 
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -3045,7 +3045,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$set['rc_bot'] = 1;
 		}
 
-		if ( $wgUseRCPatrol ) {
+		if ( $wgUseRCPatrol || $wgUseTagPatrol ) {
 			// Mark all reverted edits as patrolled
 			$set['rc_patrolled'] = 1;
 		}

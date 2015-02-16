@@ -713,7 +713,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$filters[$key] = $params['msg'];
 		}
 		// Disable some if needed
-		if ( !$user->useRCPatrol() ) {
+		if ( !$user->useRCPatrol() && ( !$user->useTagPatrol() || !$opts['tagfilter'] ) ) {
 			unset( $filters['hidepatrolled'] );
 		}
 

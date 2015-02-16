@@ -823,6 +823,78 @@ class ChangeTags {
 	}
 
 	/**
+	 * Lists tags marked as "important", whether explicitly-defined or extension-defined
+	 *
+	 * @return string[] Array of strings: tags
+	 */
+	public static function listImportantTags() {
+		$tags1 = self::listExplicitlyDefinedImportantTags();
+		$tags2 = self::listExtensionDefinedImportantTags();
+		return array_values( array_unique( array_merge( $tags1, $tags2 ) ) );
+	}
+
+	/**
+	 * Lists explicitly defined tags that have been marked
+	 * as important by admins at Special:Tags
+	 *
+	 * Tries memcached first.
+	 *
+	 * @return string[] Array of strings: tags
+	 * @since 1.25
+	 */
+	public static function listExplicitlyDefinedImportantTags() {
+		// Caching...
+		global $wgMemc;
+		$key = wfMemcKey( 'important-tags-db' );
+		$tags = $wgMemc->get( $key );
+		if ( $tags ) {
+			return $tags;
+		}
+
+		$emptyTags = array();
+
+		// Retrieving "important" status tags from DB
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( 'valid_tag', array( 'vt_tag', 'vt_important' ), array( 'vt_important' => true ), __METHOD__ );
+		foreach ( $res as $row ) {
+			$emptyTags[] = $row->vt_tag;
+		}
+
+		$emptyTags = array_filter( array_unique( $emptyTags ) );
+
+		// Short-term caching.
+		$wgMemc->set( $key, $emptyTags, 300 );
+		return $emptyTags;
+	}
+
+	/**
+	 * Lists tags defined by extensions that should be marked as "important".
+	 *
+	 * Tries memcached first.
+	 *
+	 * @return string[] Array of strings: tags
+	 * @since 1.25
+	 */
+	public static function listExtensionDefinedImportantTags() {
+		// Caching...
+		global $wgMemc;
+		$key = wfMemcKey( 'important-tags-hook' );
+		$tags = $wgMemc->get( $key );
+		if ( $tags ) {
+			return $tags;
+		}
+
+		$emptyTags = array();
+		Hooks::run( 'ChangeTagsListImportant', array( &$emptyTags ) );
+		$emptyTags = array_filter( array_unique( $emptyTags ) );
+
+		// Short-term caching.
+		$wgMemc->set( $key, $emptyTags, 300 );
+		return $emptyTags;
+	}
+
+
+	/**
 	 * Invalidates the short-term cache of defined tags used by the
 	 * list*DefinedTags functions, as well as the tag statistics cache.
 	 * @since 1.25
@@ -832,6 +904,8 @@ class ChangeTags {
 		$wgMemc->delete( wfMemcKey( 'active-tags' ) );
 		$wgMemc->delete( wfMemcKey( 'valid-tags-db' ) );
 		$wgMemc->delete( wfMemcKey( 'valid-tags-hook' ) );
+		$wgMemc->delete( wfMemcKey( 'important-tags-db' ) );
+		$wgMemc->delete( wfMemcKey( 'important-tags-hook' ) );
 		self::purgeTagUsageCache();
 	}
 

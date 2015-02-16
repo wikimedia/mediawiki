@@ -3143,8 +3143,8 @@ class User implements IDBAccessObject {
 		}
 		// Patrolling may not be enabled
 		if ( $action === 'patrol' || $action === 'autopatrol' ) {
-			global $wgUseRCPatrol, $wgUseNPPatrol;
-			if ( !$wgUseRCPatrol && !$wgUseNPPatrol ) {
+			global $wgUseRCPatrol, $wgUseNPPatrol, $wgTagNPPatrol;
+			if ( !$wgUseRCPatrol && !$wgUseNPPatrol && !$wgUseTagPatrol ) {
 				return false;
 			}
 		}
@@ -3170,6 +3170,18 @@ class User implements IDBAccessObject {
 		global $wgUseRCPatrol, $wgUseNPPatrol;
 		return (
 			( $wgUseRCPatrol || $wgUseNPPatrol )
+				&& ( $this->isAllowedAny( 'patrol', 'patrolmarks' ) )
+		);
+	}
+
+	/**
+	 * Check whether to enable tagged changes patrol features for this user
+	 * @return bool True or false
+	 */
+	public function useTagPatrol() {
+		global $wgUseRCPatrol, $wgUseTagPatrol;
+		return (
+			( !$wgUseRCPatrol && $wgUseTagPatrol )
 				&& ( $this->isAllowedAny( 'patrol', 'patrolmarks' ) )
 		);
 	}

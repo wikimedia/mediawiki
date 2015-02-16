@@ -462,14 +462,15 @@ class DifferenceEngine extends ContextSource {
 	 * @return string
 	 */
 	protected function markPatrolledLink() {
-		global $wgUseRCPatrol, $wgEnableAPI, $wgEnableWriteAPI;
+		global $wgUseRCPatrol, $wgUseTagPatrol, $wgEnableAPI, $wgEnableWriteAPI;
 		$user = $this->getUser();
 
 		if ( $this->mMarkPatrolledLink === null ) {
 			// Prepare a change patrol link, if applicable
 			if (
 				// Is patrolling enabled and the user allowed to?
-				$wgUseRCPatrol && $this->mNewPage->quickUserCan( 'patrol', $user ) &&
+				( $wgUseRCPatrol || ( $wgUseTagPatrol && array_intersect( $this->mNewTags, ChangeTags::listImportantTags ) ) &&
+				$this->mNewPage->quickUserCan( 'patrol', $user ) ) &&
 				// Only do this if the revision isn't more than 6 hours older
 				// than the Max RC age (6h because the RC might not be cleaned out regularly)
 				RecentChange::isInRCLifespan( $this->mNewRev->getTimestamp(), 21600 )

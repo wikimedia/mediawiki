@@ -935,6 +935,11 @@ $user: user initiating the action
 uses are in active use.
 &$tags: list of all active tags. Append to this array.
 
+'ChangeTagsListImportant': Allows you to nominate which of the tags your extension
+uses that should be considered "important" for recent changes patrolling, and need
+to be checked for possible syntax breaking changes, vandalism or other issues.
+&$tags: list of all "important" tags. Append to this array.
+
 'LoginUserMigrated': Called during login to allow extensions the opportunity to
 inform a user that their username doesn't exist for a specific reason, instead
 of letting the login form give the generic error message that the account does
