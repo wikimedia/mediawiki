@@ -967,7 +967,7 @@
 	"recentchangesdays-max": "(maksymalnie $1 {{PLURAL:$1|dzień|dni}})",
 	"recentchangescount": "Domyślna liczba wyświetlanych edycji:",
 	"prefs-help-recentchangescount": "Uwzględnia ostatnie zmiany, historię stron i rejestry.",
-	"prefs-help-watchlist-token2": "To jest tajny klucz umożliwiający dostęp do kanału internetowego zmian w obserwowanych przez ciebie stronach.\nKażdy, kto go zna, będzie mógł je zobaczyć, więc zachowaj go dla siebie.\n[[Special:ResetTokens|Kliknij tu, jeśli musisz go zresetować]].",
+	"prefs-help-watchlist-token2": "To jest tajny klucz umożliwiający dostęp do kanału internetowego zmian w obserwowanych przez Ciebie stronach.\nKażdy, kto go zna, będzie mógł je zobaczyć, więc zachowaj go dla siebie.\n[[Special:ResetTokens|Kliknij tu, jeśli musisz go zresetować]].",
 	"savedprefs": "Twoje preferencje zostały zapisane.",
 	"timezonelegend": "Strefa czasowa:",
 	"localtime": "Czas lokalny:",

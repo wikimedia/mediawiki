@@ -78,7 +78,8 @@
 			"Elitre",
 			"Laurentius",
 			"Macofe",
-			"Ricordisamoa"
+			"Ricordisamoa",
+			"Horcrux92"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -949,7 +950,7 @@
 	"prefs-rc": "Ultime modifiche",
 	"prefs-watchlist": "Osservati speciali",
 	"prefs-editwatchlist": "Modifica osservati speciali",
-	"prefs-editwatchlist-label": "Modifica le voci sulla tua watchlist:",
+	"prefs-editwatchlist-label": "Modifica le pagine della tua watchlist:",
 	"prefs-editwatchlist-edit": "Visualizza e rimuovi titoli sulla tua watchlist",
 	"prefs-editwatchlist-raw": "Modifica la lista in formato testo",
 	"prefs-editwatchlist-clear": "Cancella la tua watchlist",

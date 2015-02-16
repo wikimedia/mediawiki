@@ -1147,7 +1147,7 @@
 	"whatlinkshere": "Bu sahifaga bog'langan sahifalar",
 	"whatlinkshere-title": "\"$1\"ga bogʻlangan sahifalar",
 	"whatlinkshere-page": "Sahifa:",
-	"linkshere": "Quyidagi sahifalar '''[[:$1]]''' sahifasiga bog'langan:",
+	"linkshere": "Quyidagi sahifalar '''[[:$1]]''' sahifasiga bogʻlangan:",
 	"nolinkshere": "'''[[:$1]]''' sahifasiga hech qaysi sahifa bog‘lanmagan.",
 	"nolinkshere-ns": "Tanlangan nomfazoda '''[[:$1]]'''ga bog‘langan sahifalar mavjud emas.",
 	"isredirect": "yoʻnaltiruvchi sahifa",

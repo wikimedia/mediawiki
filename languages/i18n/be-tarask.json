@@ -2973,6 +2973,7 @@
 	"tags-activate": "актываваць",
 	"tags-deactivate": "адключыць",
 	"tags-hitcount": "$1 {{PLURAL:$1|зьмена|зьмены|зьменаў}}",
+	"tags-manage-no-permission": "Вы ня маеце правоў на зьмену метак.",
 	"comparepages": "Параўнаньне старонак",
 	"compare-page1": "Старонка 1",
 	"compare-page2": "Старонка 2",
