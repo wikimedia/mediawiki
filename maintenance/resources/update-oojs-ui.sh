@@ -39,10 +39,13 @@ fi
 # * the Apex theme files,
 # * the minimised distribution files, and
 # * the RTL sheets for non-CSSJanus environments
+# * the raster- and vector-only distribution sheets
 rsync --force --recursive --delete \
 	--exclude '*apex*' \
 	--exclude 'oojs-ui*.min.*' \
 	--exclude 'oojs-ui*.rtl.css' \
+	--exclude 'oojs-ui*.raster.css' \
+	--exclude 'oojs-ui*.vector.css' \
 	./node_modules/oojs-ui/dist/ "$REPO_DIR/$TARGET_DIR" || exit 1
 
 # Clean up temporary area
