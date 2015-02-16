@@ -393,7 +393,11 @@ class MediaWiki {
 		if ( $action instanceof Action ) {
 			# Let Squid cache things if we can purge them.
 			if ( $this->config->get( 'UseSquid' ) &&
-				in_array( $request->getFullRequestURL(), $requestTitle->getSquidURLs() )
+				in_array(
+					// Use PROTO_INTERNAL because that's what getSquidURLs() uses
+					wfExpandUrl( $request->getRequestURL(), PROTO_INTERNAL ),
+					$requestTitle->getSquidURLs()
+				)
 			) {
 				$output->setSquidMaxage( $this->config->get( 'SquidMaxage' ) );
 			}
