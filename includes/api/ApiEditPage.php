@@ -321,6 +321,15 @@ class ApiEditPage extends ApiBase {
 			$requestArray['wpWatchthis'] = '';
 		}
 
+		// Apply change tags
+		if ( count( $params['tags'] ) ) {
+			if ( $user->isAllowed( 'applychangetags' ) ) {
+				$requestArray['wpChangeTags'] = implode( ',', $params['tags'] );
+			} else {
+				$this->dieUsage( 'You don\'t have permission to set change tags.', 'taggingnotallowed' );
+			}
+		}
+
 		// Pass through anything else we might have been given, to support extensions
 		// This is kind of a hack but it's the best we can do to make extensions work
 		$requestArray += $this->getRequest()->getValues();
@@ -521,6 +530,10 @@ class ApiEditPage extends ApiBase {
 			),
 			'text' => null,
 			'summary' => null,
+			'tags' => array(
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => ChangeTags::listExplicitlyDefinedTags(),
+			),
 			'minor' => false,
 			'notminor' => false,
 			'bot' => false,

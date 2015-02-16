@@ -351,6 +351,9 @@ class EditPage {
 	/** @var null|string */
 	public $contentFormat = null;
 
+	/** @var null|string */
+	public $changeTags = null;
+
 	# Placeholders for text injection by hooks (must be HTML)
 	# extensions should take care to _append_ to the present value
 
@@ -843,6 +846,8 @@ class EditPage {
 
 			$this->allowBlankArticle = $request->getBool( 'wpIgnoreBlankArticle' );
 			$this->allowSelfRedirect = $request->getBool( 'wpIgnoreSelfRedirect' );
+
+			$this->changeTags = $request->getVal( 'wpChangeTags' );
 		} else {
 			# Not a posted form? Start with nothing.
 			wfDebug( __METHOD__ . ": Not a posted form.\n" );
@@ -1913,7 +1918,15 @@ class EditPage {
 			$wgUser->pingLimiter( 'linkpurge' );
 		}
 		$result['redirect'] = $content->isRedirect();
+
 		$this->updateWatchlist();
+
+		if ( $this->changeTags ) {
+			ChangeTags::addTagsAccompanyingChangeWithChecks( $this->changeTags,
+				isset( $status->value['rc'] ) ? $status->value['rc']->mAttribs['rc_id'] : null,
+				$status->value['revision']->getId(), null, null, $wgUser );
+		}
+
 		return $status;
 	}
 
