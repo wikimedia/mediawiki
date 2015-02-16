@@ -34,7 +34,7 @@ abstract class JobQueueAggregator {
 	/**
 	 * @param array $params
 	 */
-	protected function __construct( array $params ) {
+	public function __construct( array $params ) {
 	}
 
 	/**
