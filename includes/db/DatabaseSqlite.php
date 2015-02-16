@@ -144,10 +144,14 @@ class DatabaseSqlite extends DatabaseBase {
 		}
 
 		$this->mOpened = !!$this->mConn;
-		# set error codes only, don't raise exceptions
 		if ( $this->mOpened ) {
+			// Reduce chances of SQLITE_BUSY errors by waiting for a lock instead of immediately
+			// returning an error in case of concurrent requests using the same file.
+			// Note: Timeout is in seconds.
+			$this->mConn->setAttribute( PDO::ATTR_TIMEOUT, 3 );
+			// set error codes only, don't raise exceptions
 			$this->mConn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT );
-			# Enforce LIKE to be case sensitive, just like MySQL
+			// Enforce LIKE to be case sensitive, just like MySQL
 			$this->query( 'PRAGMA case_sensitive_like = 1' );
 
 			return $this->mConn;
