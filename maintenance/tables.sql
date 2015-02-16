@@ -490,7 +490,7 @@ CREATE TABLE /*_*/pagelinks (
 
 CREATE UNIQUE INDEX /*i*/pl_from ON /*_*/pagelinks (pl_from,pl_namespace,pl_title);
 CREATE INDEX /*i*/pl_namespace ON /*_*/pagelinks (pl_namespace,pl_title,pl_from);
-CREATE INDEX /*i*/pl_backlinks_namespace ON /*_*/pagelinks (pl_namespace,pl_title,pl_from_namespace,pl_from);
+CREATE INDEX /*i*/pl_backlinks_namespace ON /*_*/pagelinks (pl_from_namespace,pl_namespace,pl_title,pl_from);
 
 
 --
@@ -512,7 +512,7 @@ CREATE TABLE /*_*/templatelinks (
 
 CREATE UNIQUE INDEX /*i*/tl_from ON /*_*/templatelinks (tl_from,tl_namespace,tl_title);
 CREATE INDEX /*i*/tl_namespace ON /*_*/templatelinks (tl_namespace,tl_title,tl_from);
-CREATE INDEX /*i*/tl_backlinks_namespace ON /*_*/templatelinks (tl_namespace,tl_title,tl_from_namespace,tl_from);
+CREATE INDEX /*i*/tl_backlinks_namespace ON /*_*/templatelinks (tl_from_namespace,tl_namespace,tl_title,tl_from);
 
 
 --
@@ -534,7 +534,7 @@ CREATE TABLE /*_*/imagelinks (
 
 CREATE UNIQUE INDEX /*i*/il_from ON /*_*/imagelinks (il_from,il_to);
 CREATE INDEX /*i*/il_to ON /*_*/imagelinks (il_to,il_from);
-CREATE INDEX /*i*/il_backlinks_namespace ON /*_*/imagelinks (il_to,il_from_namespace,il_from);
+CREATE INDEX /*i*/il_backlinks_namespace ON /*_*/imagelinks (il_from_namespace,il_to,il_from);
 
 
 --
