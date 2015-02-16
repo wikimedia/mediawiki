@@ -537,7 +537,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			if ( $nt->getNamespace() == NS_FILE ) {
 				$file = wfLocalFile( $nt );
 				if ( $file->exists() ) {
-					$file->delete( $reason, false );
+					$file->delete( $reason, false, $user );
 				}
 			}
 
