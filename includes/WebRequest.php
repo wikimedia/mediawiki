@@ -704,6 +704,15 @@ class WebRequest {
 	}
 
 	/**
+	 * Like getFullRequestURL(), but uses the protocol from $wgInternalServer.
+	 * This produces a URL of the form that's used for Squid purging.
+	 * @return string
+	 */
+	public function getInternalRequestURL() {
+		return wfExpandUrl( $this->getRequestURL(), PROTO_INTERNAL );
+	}
+
+	/**
 	 * Take an arbitrary query and rewrite the present URL to include it
 	 * @deprecated Use appendQueryValue/appendQueryArray instead
 	 * @param string $query Query string fragment; do not include initial '?'
