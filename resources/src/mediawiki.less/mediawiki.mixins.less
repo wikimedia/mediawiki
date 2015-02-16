@@ -41,6 +41,8 @@
 	background-image: url(@fallback);
 	background-image: -webkit-linear-gradient(transparent, transparent), e('/* @embed */') url(@svg);
 	background-image: linear-gradient(transparent, transparent), e('/* @embed */') url(@svg);
+	// Do not serve SVG to Opera 12, bad rendering with border-radius or background-size (T87504)
+	background-image: -o-linear-gradient(transparent, transparent), url(@fallback);
 }
 
 .list-style-image(@url) {
