@@ -244,7 +244,25 @@ class TextPassDumperTest extends DumpTestCase {
 			$this->fail( "Could not open stream for stderr" );
 		}
 
-		$iterations = 32; // We'll start with that many iterations of revisions in stub
+		// To trigger a checkpoint file switch, the dump needs to consume more
+		// data than can fit into a single fread (volume condition), and the
+		// dump need to take longer than the given maxtime (time condition).
+		//
+		// The volume condition is independent of the used machine and only
+		// relies on backupTextPass.inc's bufferSize of the readDump method. We
+		// can meet that condition by initializing $iterations high enough.
+		//
+		// The time condition heavily depends on the used CPU, and we cannot
+		// assure it a priori, and need to adapt them to the used CPU. We
+		// perform a dump, keep it's timing ($lastDuration), and if it did not
+		// take long enough ($minDuration), we increase the data volume
+		// ($iterations) and dump again. Repeating the increasing until the dump
+		// took long enough (or we fail because $iterations got too high).
+
+		$iterations = 256; // Iterations of revisions in stub. This should
+		// generate sufficient data to exceed $bufferSize from the readDump
+		// method of backupTextPass.inc. (The 256 of 2015-02-16 produce a bit
+		// above the current 512KB $bufferSize)
 		$lastDuration = 0;
 		$minDuration = 2; // We want the dump to take at least this many seconds
 		$checkpointAfter = 0.5; // Generate checkpoint after this many seconds
@@ -415,10 +433,7 @@ class TextPassDumperTest extends DumpTestCase {
 	}
 
 	/**
-	 * Broken per T70653.
-	 *
 	 * @group large
-	 * @group Broken
 	 */
 	function testCheckpointPlain() {
 		$this->checkpointHelper();
@@ -434,10 +449,7 @@ class TextPassDumperTest extends DumpTestCase {
 	 * PHP extensions, we go for gzip instead, which triggers the same relevant code
 	 * paths while still being testable on more systems.
 	 *
-	 * Broken per T70653.
-	 *
 	 * @group large
-	 * @group Broken
 	 */
 	function testCheckpointGzip() {
 		$this->checkHasGzip();
