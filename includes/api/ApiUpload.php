@@ -218,7 +218,11 @@ class ApiUpload extends ApiBase {
 			$status = $this->mUpload->addChunk(
 				$chunkPath, $chunkSize, $this->mParams['offset'] );
 			if ( !$status->isGood() ) {
-				$this->dieUsage( $status->getWikiText(), 'stashfailed' );
+				$extradata = array(
+					'offset' => $this->mUpload->getOffset(),
+				);
+
+				$this->dieUsage( $status->getWikiText(), 'stashfailed', 0, $extradata );
 
 				return array();
 			}
