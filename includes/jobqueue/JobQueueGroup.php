@@ -94,6 +94,7 @@ class JobQueueGroup {
 		} else {
 			$conf = $conf + $wgJobTypeConf['default'];
 		}
+		$conf['aggregator'] = JobQueueAggregator::singleton();
 
 		return JobQueue::factory( $conf );
 	}
@@ -125,7 +126,6 @@ class JobQueueGroup {
 
 		foreach ( $jobsByType as $type => $jobs ) {
 			$this->get( $type )->push( $jobs );
-			JobQueueAggregator::singleton()->notifyQueueNonEmpty( $this->wiki, $type );
 		}
 
 		if ( $this->cache->has( 'queues-ready', 'list' ) ) {
@@ -153,9 +153,6 @@ class JobQueueGroup {
 		if ( is_string( $qtype ) ) { // specific job type
 			if ( !in_array( $qtype, $blacklist ) ) {
 				$job = $this->get( $qtype )->pop();
-				if ( !$job ) {
-					JobQueueAggregator::singleton()->notifyQueueEmpty( $this->wiki, $qtype );
-				}
 			}
 		} else { // any job in the "default" jobs types
 			if ( $flags & self::USE_CACHE ) {
@@ -179,7 +176,6 @@ class JobQueueGroup {
 				if ( $job ) { // found
 					break;
 				} else { // not found
-					JobQueueAggregator::singleton()->notifyQueueEmpty( $this->wiki, $type );
 					$this->cache->clear( 'queues-ready' );
 				}
 			}
@@ -380,10 +376,6 @@ class JobQueueGroup {
 						MWExceptionHandler::logException( $e );
 					}
 				}
-			}
-			// The tasks may have recycled jobs or release delayed jobs into the queue
-			if ( isset( $tasksRun[$type] ) && !$queue->isEmpty() ) {
-				JobQueueAggregator::singleton()->notifyQueueNonEmpty( $this->wiki, $type );
 			}
 		}
 
