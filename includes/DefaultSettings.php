@@ -5884,6 +5884,17 @@ $wgRCEngines = array(
 $wgUseRCPatrol = true;
 
 /**
+ * Use this setting when RC patrolling is disabled
+ * but tagged changes should still be patrolled
+ */
+$wgUseTagPatrol = false;	
+
+/**
+ * List of tags to ignore for patrolling limited to tagged changes
+ */
+$wgIgnoredTagsList = array();
+
+/**
  * Use new page patrolling to check new pages on Special:Newpages
  */
 $wgUseNPPatrol = true;

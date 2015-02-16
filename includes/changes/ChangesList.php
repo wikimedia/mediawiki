@@ -574,6 +574,8 @@ class ChangesList extends ContextSource {
 	 * @return bool
 	 */
 	public static function isUnpatrolled( $rc, User $user ) {
+		global $wgIgnoredTagsList;
+
 		if ( $rc instanceof RecentChange ) {
 			$isPatrolled = $rc->mAttribs['rc_patrolled'];
 			$rcType = $rc->mAttribs['rc_type'];
@@ -587,6 +589,9 @@ class ChangesList extends ContextSource {
 				return true;
 			}
 			if ( $user->useNPPatrol() && $rcType == RC_NEW ) {
+				return true;
+			}
+			if ( $user->useTagPatrol() && array_diff( $rc->mAttribs['ts_tags'], $wgIgnoredTagsList ) ) {
 				return true;
 			}
 		}
