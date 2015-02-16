@@ -686,7 +686,9 @@ class JobQueueDB extends JobQueue {
 					$affected = $dbw->affectedRows();
 					$count += $affected;
 					JobQueue::incrStats( 'job-recycle', $this->type, $affected, $this->wiki );
+					// The tasks recycled jobs or release delayed jobs into the queue
 					$this->cache->set( $this->getCacheKey( 'empty' ), 'false', self::CACHE_TTL_LONG );
+					$this->aggr->notifyQueueNonEmpty( $this->wiki, $this->type );
 				}
 			}
 
