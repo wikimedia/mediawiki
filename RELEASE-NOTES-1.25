@@ -99,6 +99,8 @@ production.
   tags.
 * Added 'ChangeTagsListActive' hook, to separate the concepts of "defined" and
   "active" formerly conflated by the 'ListDefinedTags' hook.
+* Clickable anchors for each section in the content are now generated and
+  appear in the gutter on hovering over a heading.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
