@@ -524,8 +524,8 @@ abstract class ResourceLoaderModule {
 			return $data;
 		}
 
-		wfDebugLog( 'resourceloader', __METHOD__ . ": New definition hash for module "
-			. "{$this->getName()} in context {$context->getHash()}: $hash." );
+		wfDebugLog( 'resourceloader', __METHOD__ . ": New definition for module "
+			. "{$this->getName()} in context \"{$context->getHash()}\"" );
 
 		$timestamp = time();
 		$cache->set( $key, $timestamp );
