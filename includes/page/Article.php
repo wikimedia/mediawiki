@@ -756,9 +756,8 @@ class Article implements Page {
 	 * Show a diff page according to current request variables. For use within
 	 * Article::view() only, other callers should use the DifferenceEngine class.
 	 *
-	 * @todo Make protected
 	 */
-	public function showDiffPage() {
+	protected function showDiffPage() {
 		$request = $this->getContext()->getRequest();
 		$user = $this->getContext()->getUser();
 		$diff = $request->getVal( 'diff' );
