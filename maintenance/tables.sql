@@ -207,7 +207,7 @@ CREATE INDEX /*i*/un_user_ip ON /*_*/user_newtalk (user_ip);
 --
 CREATE TABLE /*_*/user_properties (
   -- Foreign key to user.user_id
-  up_user int NOT NULL,
+  up_user int unsigned NOT NULL,
 
   -- Name of the option being saved. This is indexed for bulk lookup.
   up_property varbinary(255) NOT NULL,

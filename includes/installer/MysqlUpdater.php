@@ -271,6 +271,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'dropField', 'site_stats', 'ss_total_views', 'patch-drop-ss_total_views.sql' ),
 			array( 'dropField', 'page', 'page_counter', 'patch-drop-page_counter.sql' ),
 			array( 'doUserNewTalkUseridUnsigned' ),
+			array( 'doUserPropertiesUpuserUnsigned' ),
 		);
 	}
 
@@ -1083,6 +1084,28 @@ class MysqlUpdater extends DatabaseUpdater {
 			'patch-user-newtalk-userid-unsigned.sql',
 			false,
 			'Making user_id unsigned int'
+		);
+	}
+
+	protected function doUserPropertiesUpuserUnsigned() {
+		if ( !$this->doTable( 'user_properties' ) ) {
+			return true;
+		}
+
+		$info = $this->db->fieldInfo( 'user_properties', 'up_user' );
+		if ( $info === false ) {
+			return true;
+		}
+		if ( $info->isUnsigned() ) {
+			$this->output( "...up_user is already unsigned int.\n" );
+
+			return true;
+		}
+
+		return $this->applyPatch(
+			'patch-user-properties-upuser-unsigned.sql',
+			false,
+			'Making up_user unsigned int'
 		);
 	}
 }
