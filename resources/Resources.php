@@ -956,6 +956,14 @@ return array(
 			'mediawiki.api',
 		),
 	),
+	'mediawiki.sectionAnchor' => array(
+		'styles' => array(
+			'resources/src/mediawiki/mediawiki.sectionAnchor.css' =>
+				array( 'media' => 'screen'),
+			'resources/src/mediawiki/mediawiki.sectionAnchor.hide.css' =>
+				array( 'media' => 'print' ),
+		)
+	),
 	'mediawiki.Title' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.Title.js',
 		'dependencies' => array(
