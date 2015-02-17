@@ -1751,6 +1751,14 @@ class Linker {
 		$link, $legacyAnchor = false
 	) {
 		$ret = "<h$level$attribs"
+			. Html::element( 'a',
+				array(
+					'href' => '#' . $anchor,
+					'class' => 'mw-headline-anchor',
+					'title' => wfMessage( 'headline-anchor-title' )->text()
+				),
+				wfMessage( 'section-symbol' )->text()
+			)
 			. "<span class=\"mw-headline\" id=\"$anchor\">$html</span>"
 			. $link
 			. "</h$level>";
