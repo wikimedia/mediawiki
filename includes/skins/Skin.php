@@ -1166,7 +1166,7 @@ abstract class Skin extends ContextSource {
 
 		return array(
 			'href' => $title->getLocalURL( $urlaction ),
-			'exists' => $title->getArticleID() != 0,
+			'exists' => $title->isKnown(),
 		);
 	}
 
