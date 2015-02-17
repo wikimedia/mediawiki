@@ -270,9 +270,12 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'dropTable', 'hitcounter' ),
 			array( 'dropField', 'site_stats', 'ss_total_views', 'patch-drop-ss_total_views.sql' ),
 			array( 'dropField', 'page', 'page_counter', 'patch-drop-page_counter.sql' ),
-			array( 'doUserNewTalkUseridUnsigned' ),
+			array( 'modifyFieldToUnsignedInt', 'user_newtalk', 'user_id',
+				'patch-user-newtalk-userid-unsigned.sql' ),
 			// note this patch covers other _comment and _description fields too
 			array( 'modifyField', 'recentchanges', 'rc_comment', 'patch-editsummary-length.sql' ),
+			array( 'modifyFieldToUnsignedInt', 'user_properties', 'up_user',
+				'patch-user-properties-upuser-unsigned.sql' ),
 		);
 	}
 
@@ -1066,25 +1069,25 @@ class MysqlUpdater extends DatabaseUpdater {
 		);
 	}
 
-	protected function doUserNewTalkUseridUnsigned() {
-		if ( !$this->doTable( 'user_newtalk' ) ) {
+	protected function modifyFieldToUnsignedInt( $table, $field, $patch, $fullpath = false ) {
+		if ( !$this->doTable( $table ) ) {
 			return true;
 		}
 
-		$info = $this->db->fieldInfo( 'user_newtalk', 'user_id' );
+		$info = $this->db->fieldInfo( $table, $field );
 		if ( $info === false ) {
 			return true;
 		}
 		if ( $info->isUnsigned() ) {
-			$this->output( "...user_id is already unsigned int.\n" );
+			$this->output( '...' . $field . " is already unsigned int.\n" );
 
 			return true;
 		}
 
 		return $this->applyPatch(
-			'patch-user-newtalk-userid-unsigned.sql',
-			false,
-			'Making user_id unsigned int'
+			$patch,
+			$fullpath,
+			'Making ' . $field . ' unsigned int'
 		);
 	}
 }
