@@ -26,8 +26,11 @@ class BloomFilterTitleHasLogs {
 	public static function mergeAndCheck(
 		BloomCache $bcache, $domain, $virtualKey, array $status
 	) {
+		$ttr = 5; // try to refresh before this many seconds
 		$age = microtime( true ) - $status['asOfTime']; // seconds
-		$scopedLock = ( mt_rand( 1, (int)pow( 3, max( 0, 5 - $age ) ) ) == 1 )
+		$chance = min( 1, $age / $ttr );
+
+		$scopedLock = ( mt_rand( 1, 1e9 ) <= 1e9 * $chance )
 			? $bcache->getScopedLock( $virtualKey )
 			: false;
 
