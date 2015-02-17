@@ -1,0 +1,1 @@
+ALTER TABLE /*_*/user_properties MODIFY up_user int unsigned NOT NULL;
