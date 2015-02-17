@@ -991,6 +991,15 @@
 
 			clearTableBody: function ( table ) {
 				$( table.tBodies[0] ).empty();
+			},
+
+			getParser: function ( id ) {
+				buildTransformTable();
+				buildDateTable();
+				cacheRegexs();
+				buildCollationTable();
+
+				return getParserById( id );
 			}
 		};
 
