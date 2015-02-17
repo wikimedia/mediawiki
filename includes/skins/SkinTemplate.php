@@ -54,7 +54,8 @@ class SkinTemplate extends Skin {
 		$out->addModuleStyles( array(
 			'mediawiki.legacy.shared',
 			'mediawiki.legacy.commonPrint',
-			'mediawiki.ui.button'
+			'mediawiki.ui.button',
+			'mediawiki.sectionAnchor'
 		) );
 	}
 
