@@ -519,7 +519,9 @@
 		config: null,
 
 		/**
-		 * Empty object that plugins can be installed in.
+		 * Empty object for third-party libraries, for cases where you don't
+		 * want to add a new global, or the global is bad and needs containment
+		 * or wrapping.
 		 *
 		 * @property
 		 */
