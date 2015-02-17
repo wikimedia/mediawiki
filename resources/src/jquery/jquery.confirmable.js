@@ -40,6 +40,8 @@
 	 * @param {string} [options.i18n.confirm] Text to use for the confirmation question.
 	 * @param {string} [options.i18n.yes] Text to use for the 'Yes' button.
 	 * @param {string} [options.i18n.no] Text to use for the 'No' button.
+	 * @param {string} [options.i18n.yesTitle] Title text to use for the 'Yes' button.
+	 * @param {string} [options.i18n.noTitle] Title text to use for the 'No' button.
 	 *
 	 * @chainable
 	 */
@@ -108,6 +110,9 @@
 				if ( options.handler ) {
 					$buttonYes.on( options.events, options.handler );
 				}
+				if ( options.i18n.yesTitle ) {
+					$buttonYes.attr( 'title', options.i18n.yesTitle );
+				}
 				$buttonYes = options.buttonCallback( $buttonYes, 'yes' );
 
 				// Clone it without any events and prevent default action to represent the 'No' button.
@@ -120,6 +125,11 @@
 						$interface.css( 'width', 0 );
 						e.preventDefault();
 					} );
+				if ( options.i18n.noTitle ) {
+					$buttonNo.attr( 'title', options.i18n.noTitle );
+				} else {
+					$buttonNo.removeAttr( 'title' );
+				}
 				$buttonNo = options.buttonCallback( $buttonNo, 'no' );
 
 				// Prevent memory leaks
@@ -164,7 +174,9 @@
 			space: ' ',
 			confirm: 'Are you sure?',
 			yes: 'Yes',
-			no: 'No'
+			no: 'No',
+			yesTitle: undefined,
+			noTitle: undefined
 		}
 	};
 }( jQuery ) );
