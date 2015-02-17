@@ -893,6 +893,9 @@ class Preferences {
 				'section' => 'rc/advancedrc',
 				'label-message' => 'tog-hidepatrolled',
 			);
+		}
+
+		if ( $user->useNPPatrol() ) {
 			$defaultPreferences['newpageshidepatrolled'] = array(
 				'type' => 'toggle',
 				'section' => 'rc/advancedrc',
@@ -991,7 +994,7 @@ class Preferences {
 			'label-message' => 'tog-watchlisthideliu',
 		);
 
-		if ( $context->getConfig()->get( 'UseRCPatrol' ) ) {
+		if ( $user->useRCPatrol() ) {
 			$defaultPreferences['watchlisthidepatrolled'] = array(
 				'type' => 'toggle',
 				'section' => 'watchlist/advancedwatchlist',
