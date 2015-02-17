@@ -2791,6 +2791,7 @@
 	"watchlistedit-raw-done": "आपकी ध्यानसूची अपडेट कर दी गई हैं",
 	"watchlistedit-raw-added": "{{PLURAL:$1|1शीर्षक|$1 शीर्षक}} बढा दिये:",
 	"watchlistedit-raw-removed": "{{PLURAL:$1|1शीर्षक|$1 शीर्षक}} हटा दिये:",
+	"watchlisttools-clear": "ध्यानसूची खाली करें",
 	"watchlisttools-view": "आधारित बदलाव देखें",
 	"watchlisttools-edit": "ध्यानसूची देखें एवं संपादित करें",
 	"watchlisttools-raw": "रॉ ध्यानसूची देखें एवं संपादित करें",

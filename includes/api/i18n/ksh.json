@@ -12,7 +12,7 @@
 	"apihelp-block-description": "Ene Metmaacher schpärre.",
 	"apihelp-block-param-user": "Däm Nahme vun däm Metmaacher, de <i lang=\"en\" xml:lang=\"en\" title=\"Internet Protocol\">IP</i>-Addräß udder dä Berätt, dä De Schpärre wells.",
 	"apihelp-block-param-reason": "Der Schpärrjrond.",
-	"apihelp-block-param-anononly": "Bloß de nahmelohse Metmaaacher spärre, alsu donn et nahmelohse Beärbeide vun dä <i lang=\"en\" xml:lang=\"en\" title=\"Internet Protocol\">IP</i>-Addräß verhendere.",
+	"apihelp-block-param-anononly": "Bloß de nahmelohse Metmaaacher spärre, alsu donn et nahmelohse Beärbeide vun dä <i lang=\"en\" xml:lang=\"en\" title=\"Internet Protocol\">IP</i>-Addräß uß verhendere.",
 	"apihelp-block-param-nocreate": "Et Neu-Aanmelde verbeede",
 	"apihelp-block-param-autoblock": "Dun automattesch de läzde <i lang=\"en\" xml:lang=\"en\">IP</i>-Adräß schpärre, di dä Metmaacher jehatt hät, un och all di <i lang=\"en\" xml:lang=\"en\">IP</i>-Adräße, vun wo dä versöhk, jet ze ändere.",
 	"apihelp-block-param-watchuser": "Donn de Metmaachersigg un de Klaafsigg dohzoh op mig Oppaßleß säze.",

@@ -55,7 +55,8 @@
 			"Piramidion",
 			"Andygol",
 			"Ypryima",
-			"Purodha"
+			"Purodha",
+			"Green Zero"
 		]
 	},
 	"tog-underline": "Підкреслювання посилань:",
@@ -932,6 +933,8 @@
 	"prefs-personal": "Особисті дані",
 	"prefs-rc": "Сторінка нових редагувань",
 	"prefs-watchlist": "Список спостереження",
+	"prefs-editwatchlist-edit": "Перегляд і видалення назв з вашого списку спостереження",
+	"prefs-editwatchlist-clear": "Очистити список спостереження",
 	"prefs-watchlist-days": "Кількість днів, що відображаються у списку спостережень:",
 	"prefs-watchlist-days-max": "Максимум $1 {{PLURAL:$1|день|дні|днів}}",
 	"prefs-watchlist-edits": "Кількість редагувань для відображення у розширеному списку спостереження:",

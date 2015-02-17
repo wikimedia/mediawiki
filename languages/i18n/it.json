@@ -3098,7 +3098,7 @@
 	"dberr-usegoogle": "Puoi provare a cercare su Google nel frattempo.",
 	"dberr-outofdate": "Nota che la loro indicizzazione dei nostri contenuti potrebbe non essere aggiornata.",
 	"dberr-cachederror": "Quella che segue è una copia cache della pagina richiesta, e potrebbe non essere aggiornata.",
-	"htmlform-invalid-input": "Ci sono problemi con l'input inserito",
+	"htmlform-invalid-input": "Ci sono problemi con i dati inseriti",
 	"htmlform-select-badoption": "Il valore specificato non è un'opzione valida.",
 	"htmlform-int-invalid": "Il valore specificato non è un intero.",
 	"htmlform-float-invalid": "Il valore specificato non è un numero.",

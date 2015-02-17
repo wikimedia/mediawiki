@@ -2332,7 +2332,7 @@
 	"pageinfo-header-properties": "Својства на страницата",
 	"pageinfo-display-title": "Наслов за приказ",
 	"pageinfo-default-sort": "Основен подредбен клуч",
-	"pageinfo-length": "Должина на страницата (во бајти)",
+	"pageinfo-length": "Големина на страницата (во бајти)",
 	"pageinfo-article-id": "Назнака на страницата",
 	"pageinfo-language": "Јазик на содржината на страницата",
 	"pageinfo-content-model": "Модел на содржината на страницата",

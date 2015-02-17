@@ -3130,6 +3130,7 @@
 	"tags-edit": "編集",
 	"tags-delete": "削除",
 	"tags-hitcount": "$1 {{PLURAL:$1|回の変更}}",
+	"tags-create-heading": "新しいタグを作成",
 	"tags-create-reason": "理由:",
 	"tags-create-submit": "作成",
 	"tags-delete-title": "タグを削除",

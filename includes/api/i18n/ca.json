@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Toniher"
+			"Toniher",
+			"Macofe"
 		]
 	},
 	"apihelp-main-param-format": "El format de la sortida.",
@@ -11,5 +12,6 @@
 	"apihelp-createaccount-param-password": "Contrasenya (ignorada si es defineix <var>$1mailpassword</var>)",
 	"apihelp-delete-description": "Suprimeix una pàgina.",
 	"apihelp-edit-description": "Crea i edita pàgines.",
-	"apihelp-edit-param-text": "Contingut de la pàgina."
+	"apihelp-edit-param-text": "Contingut de la pàgina.",
+	"apihelp-login-example-login": "Inicia sessió."
 }

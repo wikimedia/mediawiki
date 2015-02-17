@@ -23,7 +23,8 @@
 			"Urhixidur",
 			"לערי ריינהארט",
 			"아라",
-			"XXN"
+			"XXN",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Sublinierea legăturilor:",
@@ -618,8 +619,8 @@
 	"session_fail_preview_html": "'''Ne pare rău! Modificările dvs. nu au putut fi procesate din cauza pierderii datelor sesiunii.'''\n\n''Deoarece {{SITENAME}} are activat HTML brut, previzualizarea este ascunsă ca măsură de precauție împotriva atacurilor JavaScript.''\n\n'''Dacă această încercare de modificare este legitimă, vă rugăm să încercați din nou. Dacă nu funcționează nici în acest fel, [[Special:UserLogout|închideți sesiunea]] și încearcați să vă autentificați din nou.'''",
 	"token_suffix_mismatch": "'''Modificarea ta a fost refuzată pentru că clientul tău a deformat caracterele de punctuatie în modificarea semnului.\nModificarea a fost respinsă pentru a preveni deformarea textului paginii.\nAcest fapt se poate întâmpla atunci când folosești un serviciu proxy anonim.'''",
 	"edit_form_incomplete": "'''Unele părți ale formularului de modificare nu au ajuns la server; verificați dacă modificările dumneavoastră sunt intacte și reîncercați.'''",
-	"editing": "modificare $1",
-	"creating": "Crearea paginii $1",
+	"editing": "Modificare „$1”",
+	"creating": "Crearea paginii „$1”",
 	"editingsection": "modificare $1 (secțiune)",
 	"editingcomment": "Modificare $1 (secțiune nouă)",
 	"editconflict": "Conflict de modificare: $1",
