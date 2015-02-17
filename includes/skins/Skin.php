@@ -656,7 +656,7 @@ abstract class Skin extends ContextSource {
 		$action = $this->getRequest()->getVal( 'action', 'view' );
 
 		if ( $this->getTitle()->userCan( 'deletedhistory', $this->getUser() ) &&
-			( $this->getTitle()->getArticleID() == 0 || $action == 'history' ) ) {
+			( !$this->getTitle()->exists() || $action == 'history' ) ) {
 			$n = $this->getTitle()->isDeleted();
 
 			if ( $n ) {
@@ -1166,7 +1166,7 @@ abstract class Skin extends ContextSource {
 
 		return array(
 			'href' => $title->getLocalURL( $urlaction ),
-			'exists' => $title->getArticleID() != 0,
+			'exists' => $title->isKnown(),
 		);
 	}
 

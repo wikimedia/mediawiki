@@ -743,17 +743,20 @@ class SkinTemplate extends Skin {
 		self::checkTitle( $title, $name );
 		return array(
 			'href' => $title->getLocalURL( $urlaction ),
-			'exists' => $title->getArticleID() != 0,
+			'exists' => $title->isKnown(),
 		);
 	}
 
+	/**
+	 * @todo is this even used?
+	 */
 	function makeArticleUrlDetails( $name, $urlaction = '' ) {
 		$title = Title::newFromText( $name );
 		$title = $title->getSubjectPage();
 		self::checkTitle( $title, $name );
 		return array(
 			'href' => $title->getLocalURL( $urlaction ),
-			'exists' => $title->getArticleID() != 0,
+			'exists' => $title->exists(),
 		);
 	}
 
@@ -1213,7 +1216,7 @@ class SkinTemplate extends Skin {
 				'href' => $this->getTitle()->getLocalURL( "action=info" )
 			);
 
-			if ( $this->getTitle()->getArticleID() ) {
+			if ( $this->getTitle()->exists() ) {
 				$nav_urls['recentchangeslinked'] = array(
 					'href' => SpecialPage::getTitleFor( 'Recentchangeslinked', $this->thispage )->getLocalURL()
 				);
