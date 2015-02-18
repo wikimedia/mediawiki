@@ -6,3 +6,6 @@ AllCops:
         - 'skins/**/*'
         - 'tests/frontend/node_modules/**/*'
         - 'vendor/**/*'
+
+Metrics/LineLength:
+  Max: 100

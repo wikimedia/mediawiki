@@ -10,11 +10,6 @@
 Lint/UnusedMethodArgument:
   Enabled: false
 
-# Offense count: 19
-# Configuration parameters: AllowURI, URISchemes.
-Metrics/LineLength:
-  Max: 94
-
 # Offense count: 10
 Style/Documentation:
   Enabled: false
