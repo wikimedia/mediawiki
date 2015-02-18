@@ -27,53 +27,19 @@
  * @ingroup Cache
  */
 class EmptyBagOStuff extends BagOStuff {
-
-	/**
-	 * @param string $key
-	 * @param mixed $casToken [optional]
-	 * @return bool
-	 */
 	public function get( $key, &$casToken = null ) {
 		return false;
 	}
 
-	/**
-	 * @param string $key
-	 * @param mixed $value
-	 * @param int $exp
-	 * @return bool
-	 */
 	public function set( $key, $value, $exp = 0 ) {
 		return true;
 	}
 
-	/**
-	 * @param mixed $casToken
-	 * @param string $key
-	 * @param mixed $value
-	 * @param int $exp
-	 * @return bool
-	 */
-	protected function cas( $casToken, $key, $value, $exp = 0 ) {
-		return true;
-	}
-
-	/**
-	 * @param string $key
-	 * @return bool
-	 */
 	public function delete( $key ) {
 		return true;
 	}
 
-	/**
-	 * @param string $key
-	 * @param callable $callback Callback method to be executed
-	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
-	 * @param int $attempts The amount of times to attempt a merge in case of failure
-	 * @return bool Success
-	 */
 	public function merge( $key, $callback, $exptime = 0, $attempts = 10 ) {
-		return true;
+		return true; // faster
 	}
 }
