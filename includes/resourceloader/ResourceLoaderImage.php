@@ -307,7 +307,7 @@ class ResourceLoaderImage {
 
 		$svg = $this->massageSvgPathdata( $svg );
 
-		if ( $wgSVGConverter === 'rsvg' ) {
+		if ( strpos( $wgSVGConverter, 'rsvg' ) === 0 ) {
 			$command = 'rsvg-convert';
 			if ( $wgSVGConverterPath ) {
 				$command = wfEscapeShellArg( "$wgSVGConverterPath/" ) . $command;
@@ -339,16 +339,19 @@ class ResourceLoaderImage {
 
 			$metadata = SVGMetadataExtractor::getMetadata( $tempFilenameSvg );
 			if ( !isset( $metadata['width'] ) || !isset( $metadata['height'] ) ) {
+				unlink( $tempFilenameSvg );
 				return false;
 			}
 
 			$handler = new SvgHandler;
-			$handler->rasterize( $tempFilenameSvg, $tempFilenamePng, $metadata['width'], $metadata['height'] );
-
-			$png = file_get_contents( $tempFilenamePng );
-
+			$res = $handler->rasterize( $tempFilenameSvg, $tempFilenamePng, $metadata['width'], $metadata['height'] );
 			unlink( $tempFilenameSvg );
-			unlink( $tempFilenamePng );
+
+			$png = null;
+			if ( $res === true ) {
+				$png = file_get_contents( $tempFilenamePng );
+				unlink( $tempFilenamePng );
+			}
 
 			return $png ?: false;
 		}
