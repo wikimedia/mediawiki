@@ -31,6 +31,8 @@ This is a security and maintenance release of the MediaWiki 1.23 branch.
 * (T85855) SECURITY: Don't execute another user's CSS or JS on preview.
 * (T85349, T85850, T86711) SECURITY: Multiple issues fixed in SVG filtering to
   prevent XSS and protect viewer's privacy.
+* (bug T68650) Fix indexing of moved pages with PostgreSQL. Requires running
+  update.php to fix.
 * (bug T70087) Fix Special:ActiveUsers page for installations using 
   PostgreSQL.
 
