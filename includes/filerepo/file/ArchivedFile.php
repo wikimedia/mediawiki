@@ -100,8 +100,9 @@ class ArchivedFile {
 	 * @param Title $title
 	 * @param int $id
 	 * @param string $key
+	 * @param string $sha1
 	 */
-	function __construct( $title, $id = 0, $key = '' ) {
+	function __construct( $title, $id = 0, $key = '', $sha1 = '' ) {
 		$this->id = -1;
 		$this->title = false;
 		$this->name = false;
@@ -136,7 +137,11 @@ class ArchivedFile {
 			$this->key = $key;
 		}
 
-		if ( !$id && !$key && !( $title instanceof Title ) ) {
+		if ( $sha1 ) {
+			$this->sha1 = $sha1;
+		}
+
+		if ( !$id && !$key && !( $title instanceof Title ) && !$sha1 ) {
 			throw new MWException( "No specifications provided to ArchivedFile constructor." );
 		}
 	}
@@ -161,6 +166,9 @@ class ArchivedFile {
 		}
 		if ( $this->title ) {
 			$conds['fa_name'] = $this->title->getDBkey();
+		}
+		if ( $this->sha1 ) {
+			$conds['fa_sha1'] = $this->sha1;
 		}
 
 		if ( !count( $conds ) ) {
