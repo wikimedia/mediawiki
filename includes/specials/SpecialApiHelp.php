@@ -39,13 +39,15 @@ class SpecialApiHelp extends UnlistedSpecialPage {
 
 		// These come from transclusions
 		$request = $this->getRequest();
-		$options = array(
+		// Initialize options to query string parameters.
+		$options = $request->getQueryValues();
+		$options = array_merge( $options, array(
 			'action' => 'help',
 			'nolead' => true,
 			'submodules' => $request->getCheck( 'submodules' ),
 			'recursivesubmodules' => $request->getCheck( 'recursivesubmodules' ),
 			'title' => $request->getVal( 'title', $this->getPageTitle( '$1' )->getPrefixedText() ),
-		);
+		) );
 
 		// These are for linking from wikitext, since url parameters are a pain
 		// to do.
@@ -62,9 +64,19 @@ class SpecialApiHelp extends UnlistedSpecialPage {
 				continue;
 			}
 
-			$moduleName = $par;
 			break;
 		}
+
+		// If the "subpage" contains a '?', parse what comes after as a query string.
+		$split = explode( '?', $par, 2 );
+		if ( count( $split ) > 1 ) {
+			$par = $split[0];
+			parse_str( $split[1], $qsOpts );
+			// Options from the "subpage" won't override those from setup and the actual query string.
+			$options = array_merge( $qsOpts, $options );
+		}
+
+		$moduleName = $par;
 
 		if ( !$this->including() ) {
 			unset( $options['nolead'], $options['title'] );
@@ -72,6 +84,14 @@ class SpecialApiHelp extends UnlistedSpecialPage {
 			$link = wfAppendQuery( wfExpandUrl( wfScript( 'api' ), PROTO_CURRENT ), $options );
 			$this->getOutput()->redirect( $link );
 			return;
+		}
+
+		// From here on the Api help is transcluded.
+
+		// Set some $options into the current context before getting help.
+		// FIXME for now focus on language.
+		if ( isset( $options['uselang'] ) ) {
+			$this->getContext()->setLanguage( $options['uselang'] );
 		}
 
 		$main = new ApiMain( $this->getContext(), false );
