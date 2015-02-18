@@ -40,4 +40,3 @@ end
 Then(/^I can see my signature$/) do
   on(PreferencesUserProfilePage).signature_table_element.should exist
 end
-

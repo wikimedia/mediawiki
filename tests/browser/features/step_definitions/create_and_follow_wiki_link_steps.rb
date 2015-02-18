@@ -24,4 +24,3 @@ end
 Then(/^the page content should contain "(.*?)"$/) do |content|
   on(ZtargetPage).page_content.should match content
 end
-
