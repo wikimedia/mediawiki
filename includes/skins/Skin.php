@@ -646,7 +646,7 @@ abstract class Skin extends ContextSource {
 
 		return $this->msg( 'retrievedfrom' )
 			->rawParams( '<a dir="ltr" href="' . $url. '">' . $url . '</a>' )
-			->escaped();
+			->parse();
 	}
 
 	/**
@@ -863,7 +863,7 @@ abstract class Skin extends ContextSource {
 		if ( $timestamp ) {
 			$d = $this->getLanguage()->userDate( $timestamp, $this->getUser() );
 			$t = $this->getLanguage()->userTime( $timestamp, $this->getUser() );
-			$s = ' ' . $this->msg( 'lastmodifiedat', $d, $t )->escaped();
+			$s = ' ' . $this->msg( 'lastmodifiedat', $d, $t )->parse();
 		} else {
 			$s = '';
 		}
