@@ -57,12 +57,11 @@ class ApiQueryBlocks extends ApiQueryBase {
 		$result = $this->getResult();
 
 		$this->addTables( 'ipblocks' );
-		$this->addFields( array( 'ipb_auto', 'ipb_id' ) );
+		$this->addFields( array( 'ipb_auto', 'ipb_id', 'ipb_timestamp' ) );
 
 		$this->addFieldsIf( array( 'ipb_address', 'ipb_user' ), $fld_user || $fld_userid );
 		$this->addFieldsIf( 'ipb_by_text', $fld_by );
 		$this->addFieldsIf( 'ipb_by', $fld_byid );
-		$this->addFieldsIf( 'ipb_timestamp', $fld_timestamp );
 		$this->addFieldsIf( 'ipb_expiry', $fld_expiry );
 		$this->addFieldsIf( 'ipb_reason', $fld_reason );
 		$this->addFieldsIf( array( 'ipb_range_start', 'ipb_range_end' ), $fld_range );
