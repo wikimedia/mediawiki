@@ -1,5 +1,5 @@
-#ruby=ruby-2.1.2
-#ruby-gemset=core
+# ruby=ruby-2.1.2
+# ruby-gemset=core
 
 source "https://rubygems.org"
 

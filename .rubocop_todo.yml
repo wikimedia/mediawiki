@@ -30,11 +30,6 @@ Style/FileName:
 Style/HashSyntax:
   Enabled: false
 
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/LeadingCommentSpace:
-  Enabled: false
-
 # Offense count: 4
 # Cop supports --auto-correct.
 Style/PerlBackrefs:
