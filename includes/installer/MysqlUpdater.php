@@ -1073,7 +1073,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		if ( $info === false ) {
 			return true;
 		}
-		if ( ( $info->flags() & 32 /*MYSQLI_UNSIGNED_FLAG*/ ) ) {
+		if ( $info->isUnsigned() ) {
 			$this->output( "...user_id is already unsigned int.\n" );
 
 			return true;
