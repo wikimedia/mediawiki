@@ -88,4 +88,12 @@ class WinCacheBagOStuff extends BagOStuff {
 
 		return true;
 	}
+
+	public function merge( $key, $callback, $exptime = 0, $attempts = 10 ) {
+		if ( !is_callable( $callback ) ) {
+			throw new Exception( "Got invalid callback." );
+		}
+
+		return $this->mergeViaCas( $key, $callback, $exptime, $attempts );
+	}
 }

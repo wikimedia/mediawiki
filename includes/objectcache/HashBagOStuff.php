@@ -36,10 +36,6 @@ class HashBagOStuff extends BagOStuff {
 		$this->bag = array();
 	}
 
-	/**
-	 * @param string $key
-	 * @return bool
-	 */
 	protected function expire( $key ) {
 		$et = $this->bag[$key][1];
 
@@ -52,11 +48,6 @@ class HashBagOStuff extends BagOStuff {
 		return true;
 	}
 
-	/**
-	 * @param string $key
-	 * @param mixed $casToken [optional]
-	 * @return bool|mixed
-	 */
 	public function get( $key, &$casToken = null ) {
 		if ( !isset( $this->bag[$key] ) ) {
 			return false;
@@ -71,36 +62,11 @@ class HashBagOStuff extends BagOStuff {
 		return $this->bag[$key][0];
 	}
 
-	/**
-	 * @param string $key
-	 * @param mixed $value
-	 * @param int $exptime
-	 * @return bool
-	 */
 	public function set( $key, $value, $exptime = 0 ) {
 		$this->bag[$key] = array( $value, $this->convertExpiry( $exptime ) );
 		return true;
 	}
 
-	/**
-	 * @param mixed $casToken
-	 * @param string $key
-	 * @param mixed $value
-	 * @param int $exptime
-	 * @return bool
-	 */
-	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
-		if ( $this->get( $key ) === $casToken ) {
-			return $this->set( $key, $value, $exptime );
-		}
-
-		return false;
-	}
-
-	/**
-	 * @param string $key
-	 * @return bool
-	 */
 	function delete( $key ) {
 		if ( !isset( $this->bag[$key] ) ) {
 			return false;
