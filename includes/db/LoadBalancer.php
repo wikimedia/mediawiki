@@ -328,7 +328,7 @@ class LoadBalancer {
 					$this->mServers[$i]['slave pos'] = $conn->getSlavePos();
 				}
 			}
-			if ( $this->mReadIndex <= 0 && $this->mLoads[$i] > 0 && $group !== false ) {
+			if ( $this->mReadIndex <= 0 && $this->mLoads[$i] > 0 && $group === false ) {
 				$this->mReadIndex = $i;
 			}
 		}
@@ -477,7 +477,7 @@ class LoadBalancer {
 				$groupIndex = $this->getReaderIndex( $group, $wiki );
 				if ( $groupIndex !== false ) {
 					$serverName = $this->getServerName( $groupIndex );
-					wfDebug( __METHOD__ . ": using server $serverName for group $group\n" );
+					wfDebug( __METHOD__ . ": using server $serverName for group '$group'\n" );
 					$i = $groupIndex;
 					break;
 				}
