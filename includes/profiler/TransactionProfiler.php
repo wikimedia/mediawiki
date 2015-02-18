@@ -34,8 +34,6 @@ class TransactionProfiler {
 	protected $dbLockThreshold = 3.0;
 	/** @var float Seconds */
 	protected $eventThreshold = .25;
-	/** @var integer */
-	protected $affectedThreshold = 500;
 
 	/** @var array transaction ID => (write start time, list of DBs involved) */
 	protected $dbTrxHoldingLocks = array();
@@ -54,7 +52,8 @@ class TransactionProfiler {
 		'writes'      => INF,
 		'queries'     => INF,
 		'conns'       => INF,
-		'masterConns' => INF
+		'masterConns' => INF,
+		'maxAffected' => INF
 	);
 	/** @var array */
 	protected $expectBy = array();
@@ -154,9 +153,9 @@ class TransactionProfiler {
 		$eTime = microtime( true );
 		$elapsed = ( $eTime - $sTime );
 
-		if ( $isWrite && $n > $this->affectedThreshold && PHP_SAPI !== 'cli' ) {
+		if ( $isWrite && $n > $this->expect['maxAffected'] ) {
 			wfDebugLog( 'DBPerformance',
-				"Query affected $n rows:\n" . $query . "\n" . wfBacktrace( true ) );
+				"Query affected $n row(s):\n" . $query . "\n" . wfBacktrace( true ) );
 		}
 
 		// Report when too many writes/queries happen...

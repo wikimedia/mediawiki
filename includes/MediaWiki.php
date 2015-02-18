@@ -497,6 +497,7 @@ class MediaWiki {
 			$trxProfiler = Profiler::instance()->getTransactionProfiler();
 			$trxProfiler->setExpectation( 'masterConns', 0, __METHOD__ );
 			$trxProfiler->setExpectation( 'writes', 0, __METHOD__ );
+			$trxProfiler->setExpectation( 'maxAffected', 500, __METHOD__ );
 		}
 
 		// If the user has forceHTTPS set to true, or if the user
