@@ -16,7 +16,8 @@
 	"apihelp-block-param-nocreate": "Et Neu-Aanmelde verbeede",
 	"apihelp-block-param-autoblock": "Dun automattesch de läzde <i lang=\"en\" xml:lang=\"en\">IP</i>-Adräß schpärre, di dä Metmaacher jehatt hät, un och all di <i lang=\"en\" xml:lang=\"en\">IP</i>-Adräße, vun wo dä versöhk, jet ze ändere.",
 	"apihelp-block-param-watchuser": "Donn de Metmaachersigg un de Klaafsigg dohzoh op mig Oppaßleß säze.",
-	"apihelp-compare-description": "Donn de Ongerscheide zwesche zwai Sigge beschtemme.\n\nDo moß derför jeweils en Väsjohn, ene Tettel, odder ener Sigg iehr Kännong aanjävve, för de beide Sigge.",
+	"apihelp-block-example-ip-simple": "Donn de <i lang=\"en\" xmL:lang=\"en\" title=\"Internet Protocol\">IP</i>-Addräß <kbd>192.0.2.5</kbd> för drei ääsch schpärre mem Jrond: <kbd>Eestschlaach</kbd>.",
+	"apihelp-compare-description": "Donn de Ongerscheide zwesche zwai Sigge beschtemme.\n\nDo moß derför jeweils en Väsjohn, en Övverschreff för di Sigg, odder ener Sigg iehr Kännong aanjävve, för de beide Sigge.",
 	"apihelp-compare-param-fromtitle": "Der Tettel vun dä eezte Sigg zom verjlihsche.",
 	"apihelp-compare-param-fromid": "De Kännong vun dä eezte Sigg zom verjlihsche.",
 	"apihelp-compare-param-fromrev": "De Väsjohn vun dä zwaite Sigg zom verjlihsche.",
@@ -29,7 +30,15 @@
 	"apihelp-createaccount-param-password": "Et Paßwoot (Weed ävver it jebruc un övverjange, wann <code lang=\"en\" xml:lang=\"en\"><var>$1mailpassword</var></code> jesaz es)",
 	"apihelp-createaccount-param-realname": "Dämm Medmaacher singe reschtejje Nahme - kann fott blihve.",
 	"apihelp-delete-description": "Schmieß en Sigg fott.",
-	"apihelp-delete-param-watch": "Donn die Sigg en Ding Oppassliss opnemme.",
-	"apihelp-delete-param-unwatch": "Schmiiß di Sigg us Dinge Oppassless erus.",
-	"apihelp-delete-example-simple": "Schmiiß de Houpsigg fott"
+	"apihelp-delete-param-watch": "Donn di Sigg en däm aktoälle Metmaacher sing Oppaßleß opnämme.",
+	"apihelp-delete-param-unwatch": "Schmihß di Sigg us däm aktoälle Metmaacher singe Oppaßless erus.",
+	"apihelp-delete-example-simple": "Schmiiß de Houpsigg fott",
+	"apihelp-edit-param-sectiontitle": "De Övverschreff för ene neue Affschnett.",
+	"apihelp-edit-param-minor": "En klein Änderong.",
+	"apihelp-edit-param-notminor": "Kein klein Änderong.",
+	"apihelp-edit-param-bot": "Makeer heh di Änderog als vun enem Bot jemaat.",
+	"apihelp-edit-example-edit": "Veränder en Sigg.",
+	"apihelp-emailuser-param-ccme": "scheck mer en Koppih vun heh dä <i lang=\"en\" xml:lang=\"en\">e-mail</i>.",
+	"apihelp-expandtemplates-description": "Deiht alle Schablohne en Wikkitäx ömsäze.",
+	"apihelp-expandtemplates-param-title": "De Övverschreff vun dä Sigg."
 }

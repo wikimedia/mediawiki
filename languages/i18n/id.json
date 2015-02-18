@@ -1485,7 +1485,7 @@
 	"download": "unduh",
 	"unwatchedpages": "Halaman yang tak dipantau",
 	"listredirects": "Daftar pengalihan",
-	"listduplicatedfiles": "Daftar berkas yang berduplikat",
+	"listduplicatedfiles": "Daftar berkas duplikat",
 	"listduplicatedfiles-summary": "Ini adalah daftar berkas di mana versi terbaru dari berkas tersebut merupakan duplikat dari versi terbaru dari beberapa berkas lain. Hanya berkas lokal yang dianggap.",
 	"listduplicatedfiles-entry": "[[:File:$1|$1]] memiliki [[$3|{{PLURAL:$2|sebuah duplikat|$2 duplikat}}]].",
 	"unusedtemplates": "Templat yang tak digunakan",

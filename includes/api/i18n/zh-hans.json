@@ -32,7 +32,7 @@
 	"apihelp-block-param-autoblock": "自动封禁最近使用的IP地址，以及以后他们尝试登陆使用的IP地址。",
 	"apihelp-block-param-noemail": "阻止用户通过wiki发送电子邮件。（需要<code>blockemail</code>权限）。",
 	"apihelp-block-param-hidename": "从封禁日志中隐藏用户名。（需要<code>hideuser</code>权限）。",
-	"apihelp-block-param-allowusertalk": "允许用户编辑自己的讨论页 （取决于 <var>[[mw:Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>）。",
+	"apihelp-block-param-allowusertalk": "允许用户编辑自己的讨论页（取决于<var>[[mw:Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>）。",
 	"apihelp-block-param-reblock": "如果该用户已被封禁，则覆盖已有的封禁。",
 	"apihelp-block-param-watchuser": "监视用户或该 IP 的用户页和讨论页。",
 	"apihelp-block-example-ip-simple": "封禁IP地址<kbd>192.0.2.5</kbd>三天，原因<kbd>First strike</kbd>。",
