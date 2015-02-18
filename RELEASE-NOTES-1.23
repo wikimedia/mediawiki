@@ -7,6 +7,8 @@ This is a (security and?) maintenance release of the MediaWiki 1.23 branch.
 
 == Changes since 1.23.8 ==
 
+* (bug T68650) Fix indexing of moved pages with PostgreSQL. Requires running
+  update.php to fix.
 * (bug T70087) Fix Special:ActiveUsers page for installations using 
   PostgreSQL.
 
