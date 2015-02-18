@@ -1641,6 +1641,7 @@
 	"tags-delete-title": "Buran ya ing tag",
 	"tags-delete-reason": "Sangkan:",
 	"tags-activate-title": "Iyaktiba ing tag",
+	"tags-activate-reason": "Sangkan:",
 	"tags-activate-not-found": "Ala yu ing tag \"$1\"",
 	"tags-activate-submit": "Iyaktiba",
 	"tags-deactivate-reason": "Sangkan:",

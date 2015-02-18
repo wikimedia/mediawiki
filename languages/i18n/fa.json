@@ -1125,6 +1125,7 @@
 	"right-override-export-depth": "برون‌بری صفحه‌ها شامل صفحه‌های پیوند شده تا عمق ۵",
 	"right-sendemail": "ارسال رایانامه به دیگر کاربران",
 	"right-passwordreset": "مشاهدهٔ نامه‌های تنظیم مجدد گذرواژه",
+	"right-managechangetags": "ایجاد و حذف [[Special:Tags|برچسب‌ها]] از پایگاه داده",
 	"newuserlogpage": "سیاههٔ ایجاد کاربر",
 	"newuserlogpagetext": "این سیاهه‌ای از نام‌های کاربری تازه‌ساخته‌شده است.",
 	"rightslog": "سیاههٔ اختیارات کاربر",
