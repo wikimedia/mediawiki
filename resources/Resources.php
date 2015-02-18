@@ -1360,6 +1360,7 @@ return array(
 		),
 		'dependencies' => array(
 			'mediawiki.language',
+			'mediawiki.confirmCloseWindow',
 		),
 	),
 	'mediawiki.special.recentchanges' => array(
