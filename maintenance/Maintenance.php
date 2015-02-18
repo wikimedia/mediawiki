@@ -696,6 +696,9 @@ abstract class Maintenance {
 					}
 					$options[$option] = $param;
 				}
+			} elseif ( $arg == '-' ) {
+				# Lonely "-", often used to indicate stdin or stdout.
+				$args[] = $arg;
 			} elseif ( substr( $arg, 0, 1 ) == '-' ) {
 				# Short options
 				$argLength = strlen( $arg );
