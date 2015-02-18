@@ -108,6 +108,14 @@ class MemcachedBagOStuff extends BagOStuff {
 			$this->fixExpiry( $exptime ) );
 	}
 
+	public function merge( $key, $callback, $exptime = 0, $attempts = 10 ) {
+		if ( !is_callable( $callback ) ) {
+			throw new Exception( "Got invalid callback." );
+		}
+
+		return $this->mergeViaCas( $key, $callback, $exptime, $attempts );
+	}
+
 	/**
 	 * Get the underlying client object. This is provided for debugging
 	 * purposes.

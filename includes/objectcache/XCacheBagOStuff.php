@@ -69,19 +69,6 @@ class XCacheBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * @param mixed $casToken
-	 * @param string $key
-	 * @param mixed $value
-	 * @param int $exptime
-	 * @return bool
-	 * @throws MWException
-	 */
-	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
-		// Can't find any documentation on xcache cas
-		throw new MWException( "CAS is not implemented in " . __CLASS__ );
-	}
-
-	/**
 	 * Remove a value from the XCache object cache
 	 *
 	 * @param string $key Cache key
@@ -90,21 +77,6 @@ class XCacheBagOStuff extends BagOStuff {
 	public function delete( $key ) {
 		xcache_unset( $key );
 		return true;
-	}
-
-	/**
-	 * Merge an item.
-	 * XCache does not seem to support any way of performing CAS - this however will
-	 * provide a way to perform CAS-like functionality.
-	 *
-	 * @param string $key
-	 * @param callable $callback Callback method to be executed
-	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
-	 * @param int $attempts The amount of times to attempt a merge in case of failure
-	 * @return bool Success
-	 */
-	public function merge( $key, $callback, $exptime = 0, $attempts = 10 ) {
-		return $this->mergeViaLock( $key, $callback, $exptime, $attempts );
 	}
 
 	public function incr( $key, $value = 1 ) {

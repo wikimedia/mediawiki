@@ -123,7 +123,7 @@ abstract class BagOStuff implements LoggerAwareInterface {
 			throw new Exception( "Got invalid callback." );
 		}
 
-		return $this->mergeViaCas( $key, $callback, $exptime, $attempts );
+		return $this->mergeViaLock( $key, $callback, $exptime, $attempts );
 	}
 
 	/**
@@ -157,14 +157,17 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Check and set an item.
+	 * Check and set an item
+	 *
 	 * @param mixed $casToken
 	 * @param string $key
 	 * @param mixed $value
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @return bool Success
 	 */
-	abstract protected function cas( $casToken, $key, $value, $exptime = 0 );
+	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
+		throw new MWException( "CAS is not implemented in " . __CLASS__ );
+	}
 
 	/**
 	 * @see BagOStuff::merge()
