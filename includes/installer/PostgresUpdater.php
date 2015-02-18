@@ -384,8 +384,6 @@ class PostgresUpdater extends DatabaseUpdater {
 				'page(page_id) ON DELETE CASCADE' ),
 			array( 'changeFkeyDeferrable', 'protected_titles', 'pt_user',
 				'mwuser(user_id) ON DELETE SET NULL' ),
-			array( 'changeFkeyDeferrable', 'recentchanges', 'rc_cur_id',
-				'page(page_id) ON DELETE SET NULL' ),
 			array( 'changeFkeyDeferrable', 'recentchanges', 'rc_user',
 				'mwuser(user_id) ON DELETE SET NULL' ),
 			array( 'changeFkeyDeferrable', 'redirect', 'rd_from', 'page(page_id) ON DELETE CASCADE' ),
@@ -789,7 +787,7 @@ END;
 			$command = "ALTER TABLE $table DROP CONSTRAINT $conname";
 			$this->db->query( $command );
 		} else {
-			$this->output( "Foreign key constraint on '$table.$field' already does not exist\n" );
+			$this->output( "...foreign key constraint on '$table.$field' already does not exist\n" );
 		};
 	}
 
