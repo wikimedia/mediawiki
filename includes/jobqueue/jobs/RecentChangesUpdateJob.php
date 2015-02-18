@@ -76,6 +76,8 @@ class RecentChangesUpdateJob extends Job {
 			if ( $rcIds ) {
 				$dbw->delete( 'recentchanges', array( 'rc_id' => $rcIds ), __METHOD__ );
 			}
+			// No need for this to be in a transaction.
+			$dbw->commit( __METHOD__, 'flush' );
 		} while ( $rcIds );
 
 		$dbw->unlock( $lockKey, __METHOD__ );
