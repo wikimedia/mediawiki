@@ -311,7 +311,10 @@ class SpecialActiveUsers extends SpecialPage {
 		if ( !wfReadOnly() ) {
 			if ( !$cTime || ( time() - wfTimestamp( TS_UNIX, $cTime ) ) > $period ) {
 				$dbw = wfGetDB( DB_MASTER );
-				if ( $dbw->estimateRowCount( 'recentchanges' ) <= 10000 ) {
+				$cond = $cTime
+					? array( 'rc_timestamp > ' . $dbw->addQuotes( $cTime ) )
+					: array();
+				if ( $dbw->estimateRowCount( 'recentchanges', '*', $cond ) <= 10000 ) {
 					$window = $days * 86400; // small wiki
 				} else {
 					$window = $period * 2;
