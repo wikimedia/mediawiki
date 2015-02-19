@@ -1021,6 +1021,10 @@ return array(
 		'position' => 'top', // For $wgPreloadJavaScriptMwUtil
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'mediawiki.baseConvert' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.baseConvert.js',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 	'mediawiki.cookie' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.cookie.js',
 		'dependencies' => 'jquery.cookie',
