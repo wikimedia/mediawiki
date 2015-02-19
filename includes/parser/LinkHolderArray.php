@@ -410,6 +410,21 @@ class LinkHolderArray {
 					}
 					$type = array( 'known', 'noclasses' );
 				}
+				switch ( $this->parent->getOptions()->getExpandURLs() ) {
+					case PROTO_HTTP:
+						$type[] = 'http';
+						break;
+					case PROTO_HTTPS:
+						$type[] = 'https';
+						break;
+					case PROTO_CANONICAL:
+						$type[] = 'canonical';
+						break;
+					case PROTO_RELATIVE:
+						$type[] = 'relative';
+						break;
+				}
+
 				$replacePairs[$searchkey] = Linker::link( $title, $displayText,
 						$attribs, $query, $type );
 			}

@@ -271,6 +271,7 @@
 	"apihelp-parse-param-section": "Only retrieve the content of this section number.",
 	"apihelp-parse-param-disablepp": "Disable the PP Report from the parser output.",
 	"apihelp-parse-param-disableeditsection": "Disable edit section links from the parser output.",
+	"apihelp-parse-param-fullyqualifyurls": "Fully qualify urls used for internal links.",
 	"apihelp-parse-param-generatexml": "Generate XML parse tree (requires content model <code>$1</code>).",
 	"apihelp-parse-param-preview": "Parse in preview mode.",
 	"apihelp-parse-param-sectionpreview": "Parse in section preview mode (enables preview mode too).",

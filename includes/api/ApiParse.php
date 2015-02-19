@@ -425,6 +425,14 @@ class ApiParse extends ApiBase {
 		$popts->setIsPreview( $params['preview'] || $params['sectionpreview'] );
 		$popts->setIsSectionPreview( $params['sectionpreview'] );
 		$popts->setEditSection( !$params['disableeditsection'] );
+		$expandMapping = array(
+			'http' => PROTO_HTTP,
+			'https' => PROTO_HTTPS,
+			'canonical' => PROTO_CANONICAL,
+			'relative' => PROTO_RELATIVE,
+			'none' => false,
+		);
+		$popts->setExpandURLs( $expandMapping[$params['expandurls']] );
 
 		return $popts;
 	}
@@ -700,6 +708,16 @@ class ApiParse extends ApiBase {
 			'section' => null,
 			'disablepp' => false,
 			'disableeditsection' => false,
+			'expandurls' => array(
+				ApiBase::PARAM_DFLT => 'none',
+				ApiBase::PARAM_TYPE => array(
+					'http',
+					'https',
+					'canonical',
+					'none',
+					'relative',
+				),
+			),
 			'generatexml' => array(
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_HELP_MSG => array(

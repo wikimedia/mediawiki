@@ -213,6 +213,11 @@ class ParserOptions {
 	public $mExtraKey = '';
 
 	/**
+	 * @var int|bool a PROTO_* constant or false
+	 */
+	protected $expandURLs = false;
+
+	/**
 	 * Function to be called when an option is accessed.
 	 */
 	protected $onAccessCallback = null;
@@ -402,6 +407,25 @@ class ParserOptions {
 	 */
 	public function getUserLang() {
 		return $this->getUserLangObj()->getCode();
+	}
+
+	/**
+	 * How and whether to expand URLs
+	 *
+	 * @since 1.25
+	 * @return int|bool a PROTO_* constant or false for no expansion
+	 */
+	public function getExpandURLs() {
+		return $this->expandURLs;
+	}
+
+	/**
+	 * @since 1.25
+	 * @param int|bool $x a PROTO_* constant or false
+	 * @return int|bool
+	 */
+	public function setExpandURLs( $x ) {
+		return wfSetVar( $this->expandURLs, $x );
 	}
 
 	public function setInterwikiMagic( $x ) {

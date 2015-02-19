@@ -1690,7 +1690,7 @@ class Title {
 	 * @return string String of the URL.
 	 */
 	public function getLocalURL( $query = '', $query2 = false ) {
-		global $wgArticlePath, $wgScript, $wgServer, $wgRequest;
+		global $wgArticlePath, $wgScript;
 
 		$query = self::fixUrlQueryArgs( $query, $query2 );
 
@@ -1754,12 +1754,6 @@ class Title {
 			}
 
 			Hooks::run( 'GetLocalURL::Internal', array( &$this, &$url, $query ) );
-
-			// @todo FIXME: This causes breakage in various places when we
-			// actually expected a local URL and end up with dupe prefixes.
-			if ( $wgRequest->getVal( 'action' ) == 'render' ) {
-				$url = $wgServer . $url;
-			}
 		}
 		Hooks::run( 'GetLocalURL', array( &$this, &$url, $query ) );
 		return $url;

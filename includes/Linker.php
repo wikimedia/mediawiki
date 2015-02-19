@@ -188,6 +188,8 @@ class Linker {
 	 *       Has compatibility issues on some setups, so avoid wherever possible.
 	 *     'http': Force a full URL with http:// as the scheme.
 	 *     'https': Force a full URL with https:// as the scheme.
+	 *     'relative': Use protocol-relative urls
+	 *     'canonical': Use the canonical protocol
 	 * @return string HTML <a> attribute
 	 */
 	public static function link(
@@ -295,11 +297,17 @@ class Linker {
 			$proto = PROTO_HTTP;
 		} elseif ( in_array( 'https', $options ) ) {
 			$proto = PROTO_HTTPS;
+		} elseif ( in_array( 'canonical', $options ) ) {
+			$proto = PROTO_CANONICAL;
 		} else {
 			$proto = PROTO_RELATIVE;
 		}
 
 		$ret = $target->getLinkURL( $query, false, $proto );
+		if ( in_array( 'relative', $options ) ) {
+			$ret = wfExpandUrl( $ret, PROTO_RELATIVE );
+		}
+
 		return $ret;
 	}
 

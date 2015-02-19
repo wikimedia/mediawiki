@@ -472,10 +472,23 @@ class Article implements Page {
 	/**
 	 * This is the default action of the index.php entry point: just view the
 	 * page of the given title.
+	 *
+	 * @param array $options
+	 *    - "expandURLs": a PROTO_* constant or false, @see ParserOptions::getExpandURLs
+	 *
+	 * $options is not actually defined to avoid strict standards warnings.
+	 *
+	 * @throws PermissionsError if User can't read the page
 	 */
-	public function view() {
+	public function view( /* array $options = array() */ ) {
 		global $wgUseFileCache, $wgUseETag, $wgDebugToolbar, $wgMaxRedirects;
 
+		$args = func_get_args();
+		if ( $args ) {
+			$options = $args[0];
+		} else {
+			$options = array();
+		}
 		# Get variables from query string
 		# As side effect this will load the revision and update the title
 		# in a revision ID is passed in the request, so this should remain
@@ -517,6 +530,9 @@ class Article implements Page {
 		$parserCache = ParserCache::singleton();
 
 		$parserOptions = $this->getParserOptions();
+		if ( isset( $options['expandURLs'] ) ) {
+			$parserOptions->setExpandURLs( $options['expandURLs'] );
+		}
 		# Render printable version, use printable version cache
 		if ( $outputPage->isPrintable() ) {
 			$parserOptions->setIsPrintable( true );
@@ -1510,7 +1526,7 @@ class Article implements Page {
 		$this->getContext()->getRequest()->response()->header( 'X-Robots-Tag: noindex' );
 		$this->getContext()->getOutput()->setArticleBodyOnly( true );
 		$this->getContext()->getOutput()->enableSectionEditLinks( false );
-		$this->view();
+		$this->view( array( 'expandURLs' => PROTO_RELATIVE ) );
 	}
 
 	/**
