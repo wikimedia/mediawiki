@@ -48,6 +48,8 @@ class TextPassDumper extends BackupDumper {
 	protected $maxConsecutiveFailedTextRetrievals = 200;
 	protected $failureTimeout = 5; // Seconds to sleep after db failure
 
+	protected $bufferSize = 512 * 1024; // In bytes. Maximum size to read from the stub in on go.
+
 	protected $php = "php";
 	protected $spawn = false;
 
@@ -186,6 +188,10 @@ class TextPassDumper extends BackupDumper {
 		$url = $this->processFileOpt( $val, $param );
 
 		switch ( $opt ) {
+			case 'buffersize':
+				// Lower bound for xml reading buffer size is 4 KB
+				$this->bufferSize = max( intval( $val ), 4 * 1024 );
+				break;
 			case 'prefetch':
 				require_once "$IP/maintenance/backupPrefetch.inc";
 				$this->prefetch = new BaseDump( $url );
@@ -368,12 +374,11 @@ class TextPassDumper extends BackupDumper {
 		xml_set_character_data_handler( $parser, array( &$this, 'characterData' ) );
 
 		$offset = 0; // for context extraction on error reporting
-		$bufferSize = 512 * 1024;
 		do {
 			if ( $this->checkIfTimeExceeded() ) {
 				$this->setTimeExceeded();
 			}
-			$chunk = fread( $input, $bufferSize );
+			$chunk = fread( $input, $this->bufferSize );
 			if ( !xml_parse( $parser, $chunk, feof( $input ) ) ) {
 				wfDebug( "TextDumpPass::readDump encountered XML parsing error\n" );
 
