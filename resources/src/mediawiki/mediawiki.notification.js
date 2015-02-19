@@ -390,7 +390,7 @@
 			.hide();
 
 		// Prepend the notification area to the content area and save it's object.
-		mw.util.$content.prepend( $area );
+		$area.appendTo( document.body );
 		offset = $area.offset();
 
 		function updateAreaMode() {
