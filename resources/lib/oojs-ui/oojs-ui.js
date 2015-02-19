@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.7.0
+ * OOjs UI v0.8.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-02-12T00:04:43Z
+ * Date: 2015-02-19T01:33:11Z
  */
 ( function ( OO ) {
 
@@ -305,7 +305,68 @@ OO.ui.PendingElement.prototype.popPending = function () {
 };
 
 /**
- * List of actions.
+ * ActionSets manage the behavior of the {@link OO.ui.ActionWidget Action widgets} that comprise them.
+ * Actions can be made available for specific contexts (modes) and circumstances
+ * (abilities). Please see the [OOjs UI documentation on MediaWiki][1] for more information.
+ *
+ *     @example
+ *     // Example: An action set used in a process dialog
+ *     function ProcessDialog( config ) {
+ *         ProcessDialog.super.call( this, config );
+ *     }
+ *     OO.inheritClass( ProcessDialog, OO.ui.ProcessDialog );
+ *     ProcessDialog.static.title = 'An action set in a process dialog';
+ *     // An action set that uses modes ('edit' and 'help' mode, in this example).
+ *     ProcessDialog.static.actions = [
+ *        { action: 'continue', modes: 'edit', label: 'Continue', flags: [ 'primary', 'constructive' ] },
+ *        { action: 'help', modes: 'edit', label: 'Help' },
+ *        { modes: 'edit', label: 'Cancel', flags: 'safe' },
+ *        { action: 'back', modes: 'help', label: 'Back', flags: 'safe' }
+ *     ];
+ *
+ *     ProcessDialog.prototype.initialize = function () {
+ *         ProcessDialog.super.prototype.initialize.apply( this, arguments );
+ *         this.panel1 = new OO.ui.PanelLayout( { $: this.$, padded: true, expanded: false } );
+ *         this.panel1.$element.append( '<p>This dialog uses an action set (continue, help, cancel, back) configured with modes. This is edit mode. Click \'help\' to see help mode. </p>' );
+ *         this.panel2 = new OO.ui.PanelLayout( { $: this.$, padded: true, expanded: false } );
+ *         this.panel2.$element.append( '<p>This is help mode. Only the \'back\' action widget is configured to be visible here. Click \'back\' to return to \'edit\' mode</p>' );
+ *         this.stackLayout= new OO.ui.StackLayout( {
+ *             items: [ this.panel1, this.panel2 ]
+ *         });
+ *         this.$body.append( this.stackLayout.$element );
+ *     };
+ *     ProcessDialog.prototype.getSetupProcess = function ( data ) {
+ *         return ProcessDialog.super.prototype.getSetupProcess.call( this, data )
+ *         .next( function () {
+ *         this.actions.setMode('edit');
+ *         }, this );
+ *     };
+ *     ProcessDialog.prototype.getActionProcess = function ( action ) {
+ *         if ( action === 'help' ) {
+ *             this.actions.setMode( 'help' );
+ *             this.stackLayout.setItem( this.panel2 );
+ *             } else if ( action === 'back' ) {
+ *             this.actions.setMode( 'edit' );
+ *             this.stackLayout.setItem( this.panel1 );
+ *             } else if ( action === 'continue' ) {
+ *             var dialog = this;
+ *             return new OO.ui.Process( function () {
+ *                 dialog.close();
+ *             } );
+ *         }
+ *         return ProcessDialog.super.prototype.getActionProcess.call( this, action );
+ *     };
+ *     ProcessDialog.prototype.getBodyHeight = function () {
+ *         return this.panel1.$element.outerHeight( true );
+ *     };
+ *     var windowManager = new OO.ui.WindowManager();
+ *     $( 'body' ).append( windowManager.$element );
+ *     var processDialog = new ProcessDialog({
+ *        size: 'medium'});
+ *     windowManager.addWindows( [ processDialog ] );
+ *     windowManager.openWindow( processDialog );
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Windows/Process_Dialogs#Action_sets
  *
  * @abstract
  * @class
@@ -343,7 +404,11 @@ OO.mixinClass( OO.ui.ActionSet, OO.EventEmitter );
 /* Static Properties */
 
 /**
- * Symbolic name of dialog.
+ * Symbolic name of the flags used to identify special actions. Special actions are displayed in the
+ *  header of a {@link OO.ui.ProcessDialog process dialog}.
+ *  See the [OOjs UI documentation on MediaWiki][2] for more information and examples.
+ *
+ *  [2]:https://www.mediawiki.org/wiki/OOjs_UI/Windows/Process_Dialogs
  *
  * @abstract
  * @static
@@ -383,6 +448,7 @@ OO.ui.ActionSet.static.specialFlags = [ 'safe', 'primary' ];
 /**
  * Handle action change events.
  *
+ * @private
  * @fires change
  */
 OO.ui.ActionSet.prototype.onActionChange = function () {
@@ -713,7 +779,9 @@ OO.ui.ActionSet.prototype.organize = function () {
 };
 
 /**
- * DOM element abstraction.
+ * Each Element represents a rendering in the DOM—a button or an icon, for example, or anything
+ * that is visible to a user. Unlike {@link OO.ui.Widget widgets}, plain elements usually do not have events
+ * connected to them and can't be interacted with.
  *
  * @abstract
  * @class
@@ -739,7 +807,7 @@ OO.ui.Element = function OoUiElement( config ) {
 	this.updateThemeClassesPending = false;
 
 	// Initialization
-	if ( $.isArray( config.classes ) ) {
+	if ( Array.isArray( config.classes ) ) {
 		this.$element.addClass( config.classes.join( ' ' ) );
 	}
 	if ( config.id ) {
@@ -1201,7 +1269,7 @@ OO.ui.Element.prototype.supports = function ( methods ) {
 	var i, len,
 		support = 0;
 
-	methods = $.isArray( methods ) ? methods : [ methods ];
+	methods = Array.isArray( methods ) ? methods : [ methods ];
 	for ( i = 0, len = methods.length; i < len; i++ ) {
 		if ( $.isFunction( this[ methods[ i ] ] ) ) {
 			support++;
@@ -1338,7 +1406,9 @@ OO.inheritClass( OO.ui.Layout, OO.ui.Element );
 OO.mixinClass( OO.ui.Layout, OO.EventEmitter );
 
 /**
- * User interface control.
+ * Widgets are compositions of one or more OOjs UI elements that users can both view
+ * and interact with. All widgets can be configured and modified via a standard API,
+ * and their state can change dynamically according to a model.
  *
  * @abstract
  * @class
@@ -1461,39 +1531,44 @@ OO.ui.Widget.prototype.updateDisabled = function () {
 };
 
 /**
- * Encapsulation of an user interface.
+ * A window is a container for elements that are in a child frame. They are used with
+ * a window manager (OO.ui.WindowManager), which is used to open and close the window and control
+ * its presentation. The size of a window is specified using a symbolic name (e.g., ‘small’, ‘medium’,
+ * ‘large’), which is interpreted by the window manager. If the requested size is not recognized,
+ * the window manager will choose a sensible fallback.
  *
- * Use together with OO.ui.WindowManager.
+ * The lifecycle of a window has three primary stages (opening, opened, and closing) in which
+ * different processes are executed:
+ *
+ * **opening**: The opening stage begins when the window manager's {@link OO.ui.WindowManager#openWindow
+ * openWindow} or the window's {@link #open open} methods are used, and the window manager begins to open
+ * the window.
+ *
+ * - {@link #getSetupProcess} method is called and its result executed
+ * - {@link #getReadyProcess} method is called and its result executed
+ *
+ * **opened**: The window is now open
+ *
+ * **closing**: The closing stage begins when the window manager's
+ * {@link OO.ui.WindowManager#closeWindow closeWindow}
+ * or the window's {@link #close} methods are used, and the window manager begins to close the window.
+ *
+ * - {@link #getHoldProcess} method is called and its result executed
+ * - {@link #getTeardownProcess} method is called and its result executed. The window is now closed
+ *
+ * Each of the window's processes (setup, ready, hold, and teardown) can be extended in subclasses
+ * by overriding the window's #getSetupProcess, #getReadyProcess, #getHoldProcess and #getTeardownProcess
+ * methods. Note that each {@link OO.ui.Process process} is executed in series, so asynchronous
+ * processing can complete. Always assume window processes are executed asynchronously.
+ *
+ * For more information, please see the [OOjs UI documentation on MediaWiki] [1].
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Windows
  *
  * @abstract
  * @class
  * @extends OO.ui.Element
  * @mixins OO.EventEmitter
- *
- * When a window is opened, the setup and ready processes are executed. Similarly, the hold and
- * teardown processes are executed when the window is closed.
- *
- * - {@link OO.ui.WindowManager#openWindow} or {@link #open} methods are used to start opening
- * - Window manager begins opening window
- * - {@link #getSetupProcess} method is called and its result executed
- * - {@link #getReadyProcess} method is called and its result executed
- * - Window is now open
- *
- * - {@link OO.ui.WindowManager#closeWindow} or {@link #close} methods are used to start closing
- * - Window manager begins closing window
- * - {@link #getHoldProcess} method is called and its result executed
- * - {@link #getTeardownProcess} method is called and its result executed
- * - Window is now closed
- *
- * Each process (setup, ready, hold and teardown) can be extended in subclasses by overriding
- * {@link #getSetupProcess}, {@link #getReadyProcess}, {@link #getHoldProcess} and
- * {@link #getTeardownProcess} respectively. Each process is executed in series, so asynchronous
- * processing can complete. Always assume window processes are executed asynchronously. See
- * OO.ui.Process for more details about how to work with processes. Some events, as well as the
- * #open and #close methods, provide promises which are resolved when the window enters a new state.
- *
- * Sizing of windows is specified using symbolic names which are interpreted by the window manager.
- * If the requested size is not recognized, the window manager will choose a sensible fallback.
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -2069,25 +2144,38 @@ OO.ui.Window.prototype.teardown = function ( data ) {
 };
 
 /**
- * Base class for all dialogs.
+ * The Dialog class serves as the base class for the other types of dialogs.
+ * Unless extended to include controls, the rendered dialog box is a simple window
+ * that users can close by hitting the ‘Esc’ key. Dialog windows are used with OO.ui.WindowManager,
+ * which opens, closes, and controls the presentation of the window. See the
+ * [OOjs UI documentation on MediaWiki] [1] for more information.
  *
- * Logic:
- * - Manage the window (open and close, etc.).
- * - Store the internal name and display title.
- * - A stack to track one or more pending actions.
- * - Manage a set of actions that can be performed.
- * - Configure and create action widgets.
+ *     @example
+ *     // A simple dialog window.
+ *     function MyDialog( config ) {
+ *         MyDialog.super.call( this, config );
+ *     }
+ *     OO.inheritClass( MyDialog, OO.ui.Dialog );
+ *     MyDialog.prototype.initialize = function () {
+ *         MyDialog.super.prototype.initialize.call( this );
+ *         this.content = new OO.ui.PanelLayout( { padded: true, expanded: false } );
+ *         this.content.$element.append( '<p>A simple dialog window. Press \'Esc\' to close.</p>' );
+ *         this.$body.append( this.content.$element );
+ *     };
+ *     MyDialog.prototype.getBodyHeight = function () {
+ *         return this.content.$element.outerHeight( true );
+ *     };
+ *     var myDialog = new MyDialog( {
+ *         size: 'medium'
+ *     } );
+ *     // Create and append a window manager, which opens and closes the window.
+ *     var windowManager = new OO.ui.WindowManager();
+ *     $( 'body' ).append( windowManager.$element );
+ *     windowManager.addWindows( [ myDialog ] );
+ *     // Open the window!
+ *     windowManager.openWindow( myDialog );
  *
- * User interface:
- * - Close the dialog with Escape key.
- * - Visually lock the dialog while an action is in
- *   progress (aka "pending").
- *
- * Subclass responsibilities:
- * - Display the title somewhere.
- * - Add content to the dialog.
- * - Provide a UI to close the dialog.
- * - Display the action widgets somewhere.
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Windows/Dialogs
  *
  * @abstract
  * @class
@@ -2347,42 +2435,53 @@ OO.ui.Dialog.prototype.executeAction = function ( action ) {
 };
 
 /**
- * Collection of windows.
+ * Window managers are used to open and close {@link OO.ui.Window windows} and control their presentation.
+ * Managed windows are mutually exclusive. If a new window is opened while a current window is opening
+ * or is opened, the current window will be closed and any ongoing {@link OO.ui.Process process} will be cancelled. Windows
+ * themselves are persistent and—rather than being torn down when closed—can be repopulated with the
+ * pertinent data and reused.
+ *
+ * Over the lifecycle of a window, the window manager makes available three promises: `opening`,
+ * `opened`, and `closing`, which represent the primary stages of the cycle:
+ *
+ * **Opening**: the opening stage begins when the window manager’s #openWindow or a window’s
+ * {@link OO.ui.Window#open open} method is used, and the window manager begins to open the window.
+ *
+ * - an `opening` event is emitted with an `opening` promise
+ * - the #getSetupDelay method is called and the returned value is used to time a pause in execution before
+ *   the window’s {@link OO.ui.Window#getSetupProcess getSetupProcess} method is called on the
+ *   window and its result executed
+ * - a `setup` progress notification is emitted from the `opening` promise
+ * - the #getReadyDelay method is called the returned value is used to time a pause in execution before
+ *   the window’s {@link OO.ui.Window#getReadyProcess getReadyProcess} method is called on the
+ *   window and its result executed
+ * - a `ready` progress notification is emitted from the `opening` promise
+ * - the `opening` promise is resolved with an `opened` promise
+ *
+ * **Opened**: the window is now open.
+ *
+ * **Closing**: the closing stage begins when the window manager's #closeWindow or the
+ * window's {@link OO.ui.Window#close close} methods is used, and the window manager begins
+ * to close the window.
+ *
+ * - the `opened` promise is resolved with `closing` promise and a `closing` event is emitted
+ * - the #getHoldDelay method is called and the returned value is used to time a pause in execution before
+ *   the window's {@link OO.ui.Window#getHoldProcess getHoldProces} method is called on the
+ *   window and its result executed
+ * - a `hold` progress notification is emitted from the `closing` promise
+ * - the #getTeardownDelay() method is called and the returned value is used to time a pause in execution before
+ *   the window's {@link OO.ui.Window#getTeardownProcess getTeardownProcess} method is called on the
+ *   window and its result executed
+ * - a `teardown` progress notification is emitted from the `closing` promise
+ * - the `closing` promise is resolved. The window is now closed
+ *
+ * See the [OOjs UI documentation on MediaWiki][1] for more information.
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Windows/Window_managers
  *
  * @class
  * @extends OO.ui.Element
  * @mixins OO.EventEmitter
- *
- * Managed windows are mutually exclusive. If a window is opened while there is a current window
- * already opening or opened, the current window will be closed without data. Empty closing data
- * should always result in the window being closed without causing constructive or destructive
- * action.
- *
- * As a window is opened and closed, it passes through several stages and the manager emits several
- * corresponding events.
- *
- * - {@link #openWindow} or {@link OO.ui.Window#open} methods are used to start opening
- * - {@link #event-opening} is emitted with `opening` promise
- * - {@link #getSetupDelay} is called the returned value is used to time a pause in execution
- * - {@link OO.ui.Window#getSetupProcess} method is called on the window and its result executed
- * - `setup` progress notification is emitted from opening promise
- * - {@link #getReadyDelay} is called the returned value is used to time a pause in execution
- * - {@link OO.ui.Window#getReadyProcess} method is called on the window and its result executed
- * - `ready` progress notification is emitted from opening promise
- * - `opening` promise is resolved with `opened` promise
- * - Window is now open
- *
- * - {@link #closeWindow} or {@link OO.ui.Window#close} methods are used to start closing
- * - `opened` promise is resolved with `closing` promise
- * - {@link #event-closing} is emitted with `closing` promise
- * - {@link #getHoldDelay} is called the returned value is used to time a pause in execution
- * - {@link OO.ui.Window#getHoldProcess} method is called on the window and its result executed
- * - `hold` progress notification is emitted from opening promise
- * - {@link #getTeardownDelay} is called the returned value is used to time a pause in execution
- * - {@link OO.ui.Window#getTeardownProcess} method is called on the window and its result executed
- * - `teardown` progress notification is emitted from opening promise
- * - Closing promise is resolved
- * - Window is now closed
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -2806,7 +2905,7 @@ OO.ui.WindowManager.prototype.closeWindow = function ( win, data ) {
 OO.ui.WindowManager.prototype.addWindows = function ( windows ) {
 	var i, len, win, name, list;
 
-	if ( $.isArray( windows ) ) {
+	if ( Array.isArray( windows ) ) {
 		// Convert to map of windows by looking up symbolic names from static configuration
 		list = {};
 		for ( i = 0, len = windows.length; i < len; i++ ) {
@@ -3105,7 +3204,7 @@ OO.ui.Process.prototype.execute = function () {
 				// Use rejected promise for error
 				return $.Deferred().reject( [ result ] ).promise();
 			}
-			if ( $.isArray( result ) && result.length && result[ 0 ] instanceof OO.ui.Error ) {
+			if ( Array.isArray( result ) && result.length && result[ 0 ] instanceof OO.ui.Error ) {
 				// Use rejected promise for list of errors
 				return $.Deferred().reject( result ).promise();
 			}
@@ -3275,7 +3374,7 @@ OO.ui.ToolFactory.prototype.extract = function ( collection, used ) {
 				}
 			}
 		}
-	} else if ( $.isArray( collection ) ) {
+	} else if ( Array.isArray( collection ) ) {
 		for ( i = 0, len = collection.length; i < len; i++ ) {
 			item = collection[ i ];
 			// Allow plain strings as shorthand for named tools
@@ -3410,12 +3509,12 @@ OO.ui.Theme.prototype.updateElementClasses = function ( element ) {
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {jQuery} [$tabIndexed] tabIndexed node, assigned to #$tabIndexed, omit to use #$element
- * @cfg {number|Function} [tabIndex=0] Tab index value. Use 0 to use default ordering, use -1 to
- *  prevent tab focusing. (default: 0)
+ * @cfg {number|null} [tabIndex=0] Tab index value. Use 0 to use default ordering, use -1 to
+ *  prevent tab focusing, use null to suppress the `tabindex` attribute.
  */
 OO.ui.TabIndexedElement = function OoUiTabIndexedElement( config ) {
 	// Configuration initialization
-	config = config || {};
+	config = $.extend( { tabIndex: 0 }, config );
 
 	// Properties
 	this.$tabIndexed = null;
@@ -3425,7 +3524,7 @@ OO.ui.TabIndexedElement = function OoUiTabIndexedElement( config ) {
 	this.connect( this, { disable: 'onDisable' } );
 
 	// Initialization
-	this.setTabIndex( config.tabIndex || 0 );
+	this.setTabIndex( config.tabIndex );
 	this.setTabIndexedElement( config.$tabIndexed || this.$element );
 };
 
@@ -3436,53 +3535,59 @@ OO.initClass( OO.ui.TabIndexedElement );
 /* Methods */
 
 /**
- * Set the element with 'tabindex' attribute.
+ * Set the element with `tabindex` attribute.
  *
  * If an element is already set, it will be cleaned up before setting up the new element.
  *
  * @param {jQuery} $tabIndexed Element to set tab index on
+ * @chainable
  */
 OO.ui.TabIndexedElement.prototype.setTabIndexedElement = function ( $tabIndexed ) {
-	if ( this.$tabIndexed ) {
-		this.$tabIndexed.removeAttr( 'tabindex aria-disabled' );
-	}
-
+	var tabIndex = this.tabIndex;
+	// Remove attributes from old $tabIndexed
+	this.setTabIndex( null );
+	// Force update of new $tabIndexed
 	this.$tabIndexed = $tabIndexed;
-	if ( this.tabIndex !== null ) {
-		this.$tabIndexed.attr( {
-			// Do not index over disabled elements
-			tabindex: this.isDisabled() ? -1 : this.tabIndex,
-			// ChromeVox and NVDA do not seem to inherit this from parent elements
-			'aria-disabled': this.isDisabled().toString()
-		} );
-	}
+	this.tabIndex = tabIndex;
+	return this.updateTabIndex();
 };
 
 /**
  * Set tab index value.
  *
- * @param {number|null} tabIndex Tab index value or null for no tabIndex
+ * @param {number|null} tabIndex Tab index value or null for no tab index
  * @chainable
  */
 OO.ui.TabIndexedElement.prototype.setTabIndex = function ( tabIndex ) {
 	tabIndex = typeof tabIndex === 'number' ? tabIndex : null;
 
 	if ( this.tabIndex !== tabIndex ) {
-		if ( this.$tabIndexed ) {
-			if ( tabIndex !== null ) {
-				this.$tabIndexed.attr( {
-					// Do not index over disabled elements
-					tabindex: this.isDisabled() ? -1 : tabIndex,
-					// ChromeVox and NVDA do not seem to inherit this from parent elements
-					'aria-disabled': this.isDisabled().toString()
-				} );
-			} else {
-				this.$tabIndexed.removeAttr( 'tabindex aria-disabled' );
-			}
-		}
 		this.tabIndex = tabIndex;
+		this.updateTabIndex();
 	}
 
+	return this;
+};
+
+/**
+ * Update the `tabindex` attribute, in case of changes to tab index or
+ * disabled state.
+ *
+ * @chainable
+ */
+OO.ui.TabIndexedElement.prototype.updateTabIndex = function () {
+	if ( this.$tabIndexed ) {
+		if ( this.tabIndex !== null ) {
+			// Do not index over disabled elements
+			this.$tabIndexed.attr( {
+				tabindex: this.isDisabled() ? -1 : this.tabIndex,
+				// ChromeVox and NVDA do not seem to inherit this from parent elements
+				'aria-disabled': this.isDisabled().toString()
+			} );
+		} else {
+			this.$tabIndexed.removeAttr( 'tabindex aria-disabled' );
+		}
+	}
 	return this;
 };
 
@@ -3491,32 +3596,25 @@ OO.ui.TabIndexedElement.prototype.setTabIndex = function ( tabIndex ) {
  *
  * @param {boolean} disabled Element is disabled
  */
-OO.ui.TabIndexedElement.prototype.onDisable = function ( disabled ) {
-	if ( this.$tabIndexed && this.tabIndex !== null ) {
-		this.$tabIndexed.attr( {
-			// Do not index over disabled elements
-			tabindex: disabled ? -1 : this.tabIndex,
-			// ChromeVox and NVDA do not seem to inherit this from parent elements
-			'aria-disabled': disabled.toString()
-		} );
-	}
+OO.ui.TabIndexedElement.prototype.onDisable = function () {
+	this.updateTabIndex();
 };
 
 /**
  * Get tab index value.
  *
- * @return {number} Tab index value
+ * @return {number|null} Tab index value
  */
 OO.ui.TabIndexedElement.prototype.getTabIndex = function () {
 	return this.tabIndex;
 };
 
 /**
- * Element with a button.
+ * ButtonElement is often mixed into other classes to generate a button, which is a clickable
+ * interface element that can be configured with access keys for accessibility.
+ * See the [OOjs UI documentation on MediaWiki] [1] for examples.
  *
- * Buttons are used for controls which can be clicked. They can be configured to use tab indexing
- * and access keys for accessibility purposes.
- *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Buttons_and_Switches#Buttons
  * @abstract
  * @class
  *
@@ -3606,6 +3704,7 @@ OO.ui.ButtonElement.prototype.setButtonElement = function ( $button ) {
 /**
  * Handles mouse down events.
  *
+ * @protected
  * @param {jQuery.Event} e Mouse down event
  */
 OO.ui.ButtonElement.prototype.onMouseDown = function ( e ) {
@@ -3625,6 +3724,7 @@ OO.ui.ButtonElement.prototype.onMouseDown = function ( e ) {
 /**
  * Handles mouse up events.
  *
+ * @protected
  * @param {jQuery.Event} e Mouse up event
  */
 OO.ui.ButtonElement.prototype.onMouseUp = function ( e ) {
@@ -3639,6 +3739,7 @@ OO.ui.ButtonElement.prototype.onMouseUp = function ( e ) {
 /**
  * Handles mouse click events.
  *
+ * @protected
  * @param {jQuery.Event} e Mouse click event
  * @fires click
  */
@@ -3652,6 +3753,7 @@ OO.ui.ButtonElement.prototype.onClick = function ( e ) {
 /**
  * Handles key down events.
  *
+ * @protected
  * @param {jQuery.Event} e Key down event
  */
 OO.ui.ButtonElement.prototype.onKeyDown = function ( e ) {
@@ -3667,6 +3769,7 @@ OO.ui.ButtonElement.prototype.onKeyDown = function ( e ) {
 /**
  * Handles key up events.
  *
+ * @protected
  * @param {jQuery.Event} e Key up event
  */
 OO.ui.ButtonElement.prototype.onKeyUp = function ( e ) {
@@ -3681,6 +3784,7 @@ OO.ui.ButtonElement.prototype.onKeyUp = function ( e ) {
 /**
  * Handles key press events.
  *
+ * @protected
  * @param {jQuery.Event} e Key press event
  * @fires click
  */
@@ -3754,7 +3858,12 @@ OO.ui.ButtonElement.prototype.setActive = function ( value ) {
 };
 
 /**
- * Element containing a sequence of child elements.
+ * Any OOjs UI widget that contains other widgets (such as {@link OO.ui.ButtonWidget buttons} or
+ * {@link OO.ui.OptionWidget options}) mixes in GroupElement. Adding, removing, and clearing
+ * items from the group is done through the interface the class provides.
+ * For more information, please see the [OOjs UI documentation on MediaWiki] [1].
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Elements/Groups
  *
  * @abstract
  * @class
@@ -4028,8 +4137,10 @@ OO.ui.GroupElement.prototype.clearItems = function () {
 };
 
 /**
- * A mixin for an element that can be dragged and dropped.
- * Use in conjunction with DragGroupWidget
+ * DraggableElement is a mixin class used to create elements that can be clicked
+ * and dragged by a mouse to a new position within a group. This class must be used
+ * in conjunction with OO.ui.DraggableGroupElement, which provides a container for
+ * the draggable elements.
  *
  * @abstract
  * @class
@@ -4151,8 +4262,9 @@ OO.ui.DraggableElement.prototype.getIndex = function () {
 };
 
 /**
- * Element containing a sequence of child elements that can be dragged
- * and dropped.
+ * DraggableGroupElement is a mixin class used to create a group element to
+ * contain draggable elements, which are items that can be clicked and dragged by a mouse.
+ * The class is used with OO.ui.DraggableElement.
  *
  * @abstract
  * @class
@@ -4193,7 +4305,7 @@ OO.ui.DraggableGroupElement = function OoUiDraggableGroupElement( config ) {
 	} );
 
 	// Initialize
-	if ( $.isArray( config.items ) ) {
+	if ( Array.isArray( config.items ) ) {
 		this.addItems( config.items );
 	}
 	this.$placeholder = $( '<div>' )
@@ -4394,12 +4506,13 @@ OO.ui.DraggableGroupElement.prototype.isDragging = function () {
 };
 
 /**
- * Element containing an icon.
+ * IconElement is often mixed into other classes to generate an icon.
+ * Icons are graphics, about the size of normal text. They are used to aid the user
+ * in locating a control or to convey information in a space-efficient way. See the
+ * [OOjs UI documentation on MediaWiki] [1] for a list of icons
+ * included in the library.
  *
- * Icons are graphics, about the size of normal text. They can be used to aid the user in locating
- * a control or convey information in a more space efficient way. Icons should rarely be used
- * without labels; such as in a toolbar where space is at a premium or within a context where the
- * meaning is very clear to the user.
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Icons,_Indicators,_and_Labels#Icons
  *
  * @abstract
  * @class
@@ -4434,31 +4547,31 @@ OO.initClass( OO.ui.IconElement );
 /* Static Properties */
 
 /**
- * Icon.
+ * The symbolic name of the icon (e.g., ‘remove’ or ‘menu’), or a map of symbolic names. A map is used
+ * for i18n purposes and contains a `default` icon name and additional names keyed by
+ * language code. The `default` name is used when no icon is keyed by the user's language.
  *
- * Value should be the unique portion of an icon CSS class name, such as 'up' for 'oo-ui-icon-up'.
+ * Example of an i18n map:
  *
- * For i18n purposes, this property can be an object containing a `default` icon name property and
- * additional icon names keyed by language code.
- *
- * Example of i18n icon definition:
  *     { default: 'bold-a', en: 'bold-b', de: 'bold-f' }
+ *
+ * Note: the static property will be overridden if the #icon configuration is used.
  *
  * @static
  * @inheritable
- * @property {Object|string} Symbolic icon name, or map of icon names keyed by language ID;
- *  use the 'default' key to specify the icon to be used when there is no icon in the user's
- *  language
+ * @property {Object|string}
  */
 OO.ui.IconElement.static.icon = null;
 
 /**
- * Icon title.
+ * The icon title, displayed when users move the mouse over the icon. The value can be text, a
+ * function that returns title text, or `null` for no title.
+ *
+ * The static property will be overridden if the #iconTitle configuration is used.
  *
  * @static
  * @inheritable
- * @property {string|Function|null} Icon title text, a function that returns text or null for no
- *  icon title
+ * @property {string|Function|null}
  */
 OO.ui.IconElement.static.iconTitle = null;
 
@@ -4561,12 +4674,18 @@ OO.ui.IconElement.prototype.getIconTitle = function () {
 };
 
 /**
- * Element containing an indicator.
+ * IndicatorElement is often mixed into other classes to generate an indicator.
+ * Indicators are small graphics that are generally used in two ways:
  *
- * Indicators are graphics, smaller than normal text. They can be used to describe unique status or
- * behavior. Indicators should only be used in exceptional cases; such as a button that opens a menu
- * instead of performing an action directly, or an item in a list which has errors that need to be
- * resolved.
+ * - To draw attention to the status of an item. For example, an indicator might be
+ *   used to show that an item in a list has errors that need to be resolved.
+ * - To clarify the function of a control that acts in an exceptional way (a button
+ *   that opens a menu instead of performing an action directly, for example).
+ *
+ * For a list of indicators included in the library, please see the
+ * [OOjs UI documentation on MediaWiki] [1].
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Icons,_Indicators,_and_Labels#Indicators
  *
  * @abstract
  * @class
@@ -4876,6 +4995,8 @@ OO.ui.LookupElement = function OoUiLookupElement( config ) {
 	// Properties
 	this.$overlay = config.$overlay || this.$element;
 	this.lookupMenu = new OO.ui.TextInputMenuSelectWidget( this, {
+		widget: this,
+		input: this,
 		$container: config.$container
 	} );
 	this.lookupCache = {};
@@ -5214,10 +5335,22 @@ OO.ui.PopupElement.prototype.getPopup = function () {
 };
 
 /**
- * Element with named flags that can be added, removed, listed and checked.
+ * The FlaggedElement class is an attribute mixin, meaning that it is used to add
+ * additional functionality to an element created by another class. The class provides
+ * a ‘flags’ property assigned the name (or an array of names) of styling flags,
+ * which are used to customize the look and feel of a widget to better describe its
+ * importance and functionality.
  *
- * A flag, when set, adds a CSS class on the `$element` by combining `oo-ui-flaggedElement-` with
- * the flag name. Flags are primarily useful for styling.
+ * The library currently contains the following styling flags for general use:
+ *
+ * - **progressive**:  Progressive styling is applied to convey that the widget will move the user forward in a process.
+ * - **destructive**: Destructive styling is applied to convey that the widget will remove something.
+ * - **constructive**: Constructive styling is applied to convey that the widget will create something.
+ *
+ * {@link OO.ui.ActionWidget ActionWidgets}, which are a special kind of button that execute an action, use these flags: **primary** and **safe**.
+ * Please see the [OOjs UI documentation on MediaWiki] [1] for more information.
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Elements/Flagged
  *
  * @abstract
  * @class
@@ -5340,7 +5473,7 @@ OO.ui.FlaggedElement.prototype.setFlags = function ( flags ) {
 			this.flags[ flags ] = true;
 			add.push( className );
 		}
-	} else if ( $.isArray( flags ) ) {
+	} else if ( Array.isArray( flags ) ) {
 		for ( i = 0, len = flags.length; i < len; i++ ) {
 			flag = flags[ i ];
 			className = classPrefix + flag;
@@ -6871,7 +7004,7 @@ OO.ui.ProcessDialog.prototype.initialize = function () {
 		.addClass( 'oo-ui-processDialog-errors-title' )
 		.text( OO.ui.msg( 'ooui-dialog-process-error' ) );
 	this.$errors
-		.addClass( 'oo-ui-processDialog-errors' )
+		.addClass( 'oo-ui-processDialog-errors oo-ui-element-hidden' )
 		.append( this.$errorsTitle, this.dismissButton.$element, this.retryButton.$element );
 	this.$content
 		.addClass( 'oo-ui-processDialog-content' )
@@ -6973,31 +7106,38 @@ OO.ui.ProcessDialog.prototype.showErrors = function ( errors ) {
 	}
 	this.retryButton.toggle( recoverable );
 	this.$errorsTitle.after( this.$errorItems );
-	this.$errors.removeClass( 'oo-ui-widget-hidden' ).scrollTop( 0 );
+	this.$errors.removeClass( 'oo-ui-element-hidden' ).scrollTop( 0 );
 };
 
 /**
  * Hide errors.
  */
 OO.ui.ProcessDialog.prototype.hideErrors = function () {
-	this.$errors.addClass( 'oo-ui-widget-hidden' );
+	this.$errors.addClass( 'oo-ui-element-hidden' );
 	this.$errorItems.remove();
 	this.$errorItems = null;
 };
 
 /**
- * Layout made of a field and optional label.
+ * FieldLayouts are used with OO.ui.FieldsetLayout. Each FieldLayout requires a field-widget,
+ * which is a widget that is specified by reference before any optional configuration settings.
  *
- * Available label alignment modes include:
- *  - left: Label is before the field and aligned away from it, best for when the user will be
- *    scanning for a specific label in a form with many fields
- *  - right: Label is before the field and aligned toward it, best for forms the user is very
- *    familiar with and will tab through field checking quickly to verify which field they are in
- *  - top: Label is before the field and above it, best for when the user will need to fill out all
- *    fields from top to bottom in a form with few fields
- *  - inline: Label is after the field and aligned toward it, best for small boolean fields like
- *    checkboxes or radio buttons
+ * Field layouts can be configured with help text and/or labels. Labels are aligned in one of four ways:
  *
+ * - **left**: The label is placed before the field-widget and aligned with the left margin.
+ *             A left-alignment is used for forms with many fields.
+ * - **right**: The label is placed before the field-widget and aligned to the right margin.
+ *              A right-alignment is used for long but familiar forms which users tab through,
+ *              verifying the current field with a quick glance at the label.
+ * - **top**: The label is placed above the field-widget. A top-alignment is used for brief forms
+ *            that users fill out from top to bottom.
+ * - **inline**: The label is placed after the field-widget and aligned to the left.
+                 An inline-alignment is best used with checkboxes or radio buttons.
+ *
+ * Help text is accessed via a help icon that appears in the upper right corner of the rendered field layout.
+ * Please see the [OOjs UI documentation on MediaWiki] [1] for examples and more information.
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Layouts/Fields_and_Fieldsets
  * @class
  * @extends OO.ui.Layout
  * @mixins OO.ui.LabelElement
@@ -7014,9 +7154,6 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	// Configuration initialization
 	config = $.extend( { align: 'left' }, config );
 
-	// Properties (must be set before parent constructor, which calls #getTagName)
-	this.fieldWidget = fieldWidget;
-
 	// Parent constructor
 	OO.ui.FieldLayout.super.call( this, config );
 
@@ -7024,6 +7161,7 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	OO.ui.LabelElement.call( this, config );
 
 	// Properties
+	this.fieldWidget = fieldWidget;
 	this.$field = $( '<div>' );
 	this.$body = $( '<' + ( hasInputWidget ? 'label' : 'div' ) + '>' );
 	this.align = null;
@@ -7149,10 +7287,6 @@ OO.ui.ActionFieldLayout = function OoUiActionFieldLayout( fieldWidget, buttonWid
 	// Configuration initialization
 	config = $.extend( { align: 'left' }, config );
 
-	// Properties (must be set before parent constructor, which calls #getTagName)
-	this.fieldWidget = fieldWidget;
-	this.buttonWidget = buttonWidget;
-
 	// Parent constructor
 	OO.ui.ActionFieldLayout.super.call( this, fieldWidget, config );
 
@@ -7160,14 +7294,14 @@ OO.ui.ActionFieldLayout = function OoUiActionFieldLayout( fieldWidget, buttonWid
 	OO.ui.LabelElement.call( this, config );
 
 	// Properties
+	this.fieldWidget = fieldWidget;
+	this.buttonWidget = buttonWidget;
 	this.$button = $( '<div>' )
 		.addClass( 'oo-ui-actionFieldLayout-button' )
 		.append( this.buttonWidget.$element );
-
 	this.$input = $( '<div>' )
 		.addClass( 'oo-ui-actionFieldLayout-input' )
 		.append( this.fieldWidget.$element );
-
 	this.$field
 		.addClass( 'oo-ui-actionFieldLayout' )
 		.append( this.$input, this.$button );
@@ -7225,7 +7359,7 @@ OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
 	this.$element
 		.addClass( 'oo-ui-fieldsetLayout' )
 		.prepend( this.$help, this.$icon, this.$label, this.$group );
-	if ( $.isArray( config.items ) ) {
+	if ( Array.isArray( config.items ) ) {
 		this.addItems( config.items );
 	}
 };
@@ -8283,7 +8417,7 @@ OO.ui.StackLayout = function OoUiStackLayout( config ) {
 	if ( this.continuous ) {
 		this.$element.addClass( 'oo-ui-stackLayout-continuous' );
 	}
-	if ( $.isArray( config.items ) ) {
+	if ( Array.isArray( config.items ) ) {
 		this.addItems( config.items );
 	}
 };
@@ -9459,9 +9593,28 @@ OO.ui.ToggleWidget.prototype.setValue = function ( value ) {
 };
 
 /**
- * Group widget for multiple related buttons.
+ * A ButtonGroupWidget groups related buttons and is used together with OO.ui.ButtonWidget and
+ * its subclasses. Each button in a group is addressed by a unique reference. Buttons can be added,
+ * removed, and cleared from the group.
  *
- * Use together with OO.ui.ButtonWidget.
+ *     @example
+ *     // Example: A ButtonGroupWidget with two buttons
+ *     var button1 = new OO.ui.PopupButtonWidget( {
+ *         label : 'Select a category',
+ *         icon : 'menu',
+ *         popup : {
+ *             $content: $( '<p>List of categories...</p>' ),
+ *             padded: true,
+ *             align: 'left'
+ *         }
+ *     } );
+ *     var button2 = new OO.ui.ButtonWidget( {
+ *         label : 'Add item'
+ *     });
+ *     var buttonGroup = new OO.ui.ButtonGroupWidget( {
+ *         items: [button1, button2]
+ *     } );
+ *     $('body').append(buttonGroup.$element);
  *
  * @class
  * @extends OO.ui.Widget
@@ -9483,7 +9636,7 @@ OO.ui.ButtonGroupWidget = function OoUiButtonGroupWidget( config ) {
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-buttonGroupWidget' );
-	if ( $.isArray( config.items ) ) {
+	if ( Array.isArray( config.items ) ) {
 		this.addItems( config.items );
 	}
 };
@@ -9496,8 +9649,19 @@ OO.mixinClass( OO.ui.ButtonGroupWidget, OO.ui.GroupElement );
 /**
  * ButtonWidget is a generic widget for buttons. A wide variety of looks,
  * feels, and functionality can be customized via the class’s configuration options
- * and methods. Please see the OOjs UI documentation on MediaWiki for more information
+ * and methods. Please see the [OOjs UI documentation on MediaWiki] [1] for more information
  * and examples.
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Buttons_and_Switches
+ *
+ *     @example
+ *     // A button widget
+ *     var button = new OO.ui.ButtonWidget( {
+ *         label : 'Button with Icon',
+ *         icon : 'remove',
+ *         iconTitle : 'Remove'
+ *     } );
+ *     $( 'body' ).append( button.$element );
  *
  * NOTE: HTML form buttons should use the OO.ui.ButtonInputWidget class.
  *
@@ -9513,13 +9677,14 @@ OO.mixinClass( OO.ui.ButtonGroupWidget, OO.ui.GroupElement );
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {string} [href] Hyperlink to visit when clicked
- * @cfg {string} [target] Target to open hyperlink in
- * @cfg {boolean} [nofollow] Search engine traversal hint (default: true)
+ * @cfg {string} [href] Hyperlink to visit when the button is clicked.
+ * @cfg {string} [target] The frame or window in which to open the hyperlink.
+ * @cfg {boolean} [noFollow] Search engine traversal hint (default: true)
  */
 OO.ui.ButtonWidget = function OoUiButtonWidget( config ) {
 	// Configuration initialization
-	config = config || {};
+	// FIXME: The `nofollow` alias is deprecated and will be removed (T89767)
+	config = $.extend( { noFollow: config && config.nofollow }, config );
 
 	// Parent constructor
 	OO.ui.ButtonWidget.super.call( this, config );
@@ -9536,7 +9701,7 @@ OO.ui.ButtonWidget = function OoUiButtonWidget( config ) {
 	// Properties
 	this.href = null;
 	this.target = null;
-	this.nofollow = false;
+	this.noFollow = false;
 	this.isHyperlink = false;
 
 	// Initialization
@@ -9546,7 +9711,7 @@ OO.ui.ButtonWidget = function OoUiButtonWidget( config ) {
 		.append( this.$button );
 	this.setHref( config.href );
 	this.setTarget( config.target );
-	this.setNoFollow( config.nofollow );
+	this.setNoFollow( config.noFollow );
 };
 
 /* Setup */
@@ -9632,7 +9797,7 @@ OO.ui.ButtonWidget.prototype.getTarget = function () {
  * @return {boolean} Whether search engines should avoid traversing this hyperlink
  */
 OO.ui.ButtonWidget.prototype.getNoFollow = function () {
-	return this.nofollow;
+	return this.noFollow;
 };
 
 /**
@@ -9680,14 +9845,14 @@ OO.ui.ButtonWidget.prototype.setTarget = function ( target ) {
 /**
  * Set search engine traversal hint.
  *
- * @param {boolean} nofollow True if search engines should avoid traversing this hyperlink
+ * @param {boolean} noFollow True if search engines should avoid traversing this hyperlink
  */
-OO.ui.ButtonWidget.prototype.setNoFollow = function ( nofollow ) {
-	nofollow = typeof nofollow === 'boolean' ? nofollow : true;
+OO.ui.ButtonWidget.prototype.setNoFollow = function ( noFollow ) {
+	noFollow = typeof noFollow === 'boolean' ? noFollow : true;
 
-	if ( nofollow !== this.nofollow ) {
-		this.nofollow = nofollow;
-		if ( nofollow ) {
+	if ( noFollow !== this.noFollow ) {
+		this.noFollow = noFollow;
+		if ( noFollow ) {
 			this.$button.attr( 'rel', 'nofollow' );
 		} else {
 			this.$button.removeAttr( 'rel' );
@@ -9698,7 +9863,12 @@ OO.ui.ButtonWidget.prototype.setNoFollow = function ( nofollow ) {
 };
 
 /**
- * Button widget that executes an action and is managed by an OO.ui.ActionSet.
+ * An ActionWidget is a {@link OO.ui.ButtonWidget button widget} that executes an action.
+ * Action widgets are used with OO.ui.ActionSet, which manages the behavior and availability
+ * of the actions. Please see the [OOjs UI documentation on MediaWiki] [1] for more information
+ * and examples.
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Windows/Process_Dialogs#Action_sets
  *
  * @class
  * @extends OO.ui.ButtonWidget
@@ -9951,12 +10121,37 @@ OO.ui.ToggleButtonWidget.prototype.setValue = function ( value ) {
 };
 
 /**
- * Dropdown menu of options.
+ * DropdownWidgets are not menus themselves, rather they contain a menu of options created with
+ * OO.ui.MenuOptionWidget. The DropdownWidget takes care of opening and displaying the menu so that
+ * users can interact with it.
  *
- * Dropdown menus provide a control for accessing a menu and compose a menu within the widget, which
- * can be accessed using the #getMenu method.
+ *     @example
+ *     // Example: A DropdownWidget with a menu that contains three options
+ *     var dropDown=new OO.ui.DropdownWidget( {
+ *         label: 'Dropdown menu: Select a menu option',
+ *         menu: {
+ *             items: [
+ *                 new OO.ui.MenuOptionWidget( {
+ *                     data: 'a',
+ *                     label: 'First'
+ *                 } ),
+ *                 new OO.ui.MenuOptionWidget( {
+ *                     data: 'b',
+ *                     label: 'Second'
+ *                 } ),
+ *                 new OO.ui.MenuOptionWidget( {
+ *                     data: 'c',
+ *                     label: 'Third'
+ *                 } )
+ *             ]
+ *         }
+ *     } );
  *
- * Use with OO.ui.MenuOptionWidget.
+ *     $('body').append(dropDown.$element);
+ *
+ * For more information, please see the [OOjs UI documentation on MediaWiki] [1].
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options#Menu_selects_and_options
  *
  * @class
  * @extends OO.ui.Widget
@@ -10029,6 +10224,7 @@ OO.ui.DropdownWidget.prototype.getMenu = function () {
 /**
  * Handles menu select events.
  *
+ * @private
  * @param {OO.ui.MenuOptionWidget} item Selected menu item
  */
 OO.ui.DropdownWidget.prototype.onMenuSelect = function ( item ) {
@@ -10051,15 +10247,12 @@ OO.ui.DropdownWidget.prototype.onMenuSelect = function ( item ) {
 /**
  * Handle mouse click events.
  *
+ * @private
  * @param {jQuery.Event} e Mouse click event
  */
 OO.ui.DropdownWidget.prototype.onClick = function ( e ) {
 	if ( !this.isDisabled() && e.which === 1 ) {
-		if ( this.menu.isVisible() ) {
-			this.menu.toggle( false );
-		} else {
-			this.menu.toggle( true );
-		}
+		this.menu.toggle();
 	}
 	return false;
 };
@@ -10067,23 +10260,34 @@ OO.ui.DropdownWidget.prototype.onClick = function ( e ) {
 /**
  * Handle key press events.
  *
+ * @private
  * @param {jQuery.Event} e Key press event
  */
 OO.ui.DropdownWidget.prototype.onKeyPress = function ( e ) {
 	if ( !this.isDisabled() && ( e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER ) ) {
-		if ( this.menu.isVisible() ) {
-			this.menu.toggle( false );
-		} else {
-			this.menu.toggle( true );
-		}
+		this.menu.toggle();
 	}
 	return false;
 };
 
 /**
- * Icon widget.
+ * IconWidget is a generic widget for {@link OO.ui.IconElement icons}. In general, IconWidgets should be used with OO.ui.LabelWidget,
+ * which creates a label that identifies the icon’s function. See the [OOjs UI documentation on MediaWiki] [1]
+ * for a list of icons included in the library.
  *
- * See OO.ui.IconElement for more information.
+ *     @example
+ *     // An icon widget with a label
+ *     var myIcon = new OO.ui.IconWidget({
+ *         icon: 'help',
+ *         iconTitle: 'Help'
+ *      });
+ *      // Create a label.
+ *      var iconLabel = new OO.ui.LabelWidget({
+ *          label: 'Help'
+ *      });
+ *      $('body').append(myIcon.$element, iconLabel.$element);
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Icons,_Indicators,_and_Labels#Icons
  *
  * @class
  * @extends OO.ui.Widget
@@ -10157,7 +10361,12 @@ OO.mixinClass( OO.ui.IndicatorWidget, OO.ui.TitledElement );
 OO.ui.IndicatorWidget.static.tagName = 'span';
 
 /**
- * Base class for input widgets.
+ * InputWidget is the base class for all input widgets, which
+ * include {@link OO.ui.TextInputWidget text inputs}, {@link OO.ui.CheckboxInputWidget checkbox inputs},
+ * {@link OO.ui.RadioInputWidget radio inputs}, and {@link OO.ui.ButtonInputWidget button inputs}.
+ * See the [OOjs UI documentation on MediaWiki] [1] for more information and examples.
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Inputs
  *
  * @abstract
  * @class
@@ -10351,7 +10560,22 @@ OO.ui.InputWidget.prototype.blur = function () {
 };
 
 /**
- * A button that is an input widget. Intended to be used within a OO.ui.FormLayout.
+ * ButtonInputWidget is used to submit HTML forms and is intended to be used within
+ * a OO.ui.FormLayout. If you do not need the button to work with HTML forms, you probably
+ * want to use OO.ui.ButtonWidget instead. Button input widgets can be rendered as either an
+ * HTML `<button/>` (the default) or an HTML `<input/>` tags. See the
+ * [OOjs UI documentation on MediaWiki] [1] for more information.
+ *
+ *     @example
+ *     // A ButtonInputWidget rendered as an HTML button, the default.
+ *     var button = new OO.ui.ButtonInputWidget( {
+ *         label: 'Input button',
+ *         icon: 'check',
+ *         value: 'check'
+ *     } );
+ *     $( 'body' ).append( button.$element );
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Inputs#Button_inputs
  *
  * @class
  * @extends OO.ui.InputWidget
@@ -10738,6 +10962,7 @@ OO.ui.RadioInputWidget.prototype.isSelected = function () {
  * @mixins OO.ui.IconElement
  * @mixins OO.ui.IndicatorElement
  * @mixins OO.ui.PendingElement
+ * @mixins OO.ui.LabelElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -10804,12 +11029,12 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	// Initialization
 	this.$element
 		.addClass( 'oo-ui-textInputWidget' )
-		.append( this.$icon, this.$indicator, this.$label );
+		.append( this.$icon, this.$indicator );
 	this.setReadOnly( !!config.readOnly );
 	if ( config.placeholder ) {
 		this.$input.attr( 'placeholder', config.placeholder );
 	}
-	if ( config.maxLength ) {
+	if ( config.maxLength !== undefined ) {
 		this.$input.attr( 'maxlength', config.maxLength );
 	}
 	if ( config.autofocus ) {
@@ -10848,12 +11073,16 @@ OO.ui.TextInputWidget.static.validationPatterns = {
 /**
  * User clicks the icon.
  *
+ * @deprecated Fundamentally not accessible. Make the icon focusable, associate a label or tooltip,
+ *  and handle click/keypress events on it manually.
  * @event icon
  */
 
 /**
  * User clicks the indicator.
  *
+ * @deprecated Fundamentally not accessible. Make the indicator focusable, associate a label or
+ *  tooltip, and handle click/keypress events on it manually.
  * @event indicator
  */
 
@@ -11099,8 +11328,8 @@ OO.ui.TextInputWidget.prototype.updatePosition = function () {
 	var after = this.labelPosition === 'after';
 
 	this.$element
-		.toggleClass( 'oo-ui-textInputWidget-labelPosition-after', this.label && after )
-		.toggleClass( 'oo-ui-textInputWidget-labelPosition-before', this.label && !after );
+		.toggleClass( 'oo-ui-textInputWidget-labelPosition-after', !!this.label && after )
+		.toggleClass( 'oo-ui-textInputWidget-labelPosition-before', !!this.label && !after );
 
 	if ( this.label ) {
 		this.positionLabel();
@@ -11123,7 +11352,10 @@ OO.ui.TextInputWidget.prototype.positionLabel = function () {
 			'padding-left': ''
 		} );
 
-	if ( !this.$label.text() ) {
+	if ( this.label ) {
+		this.$element.append( this.$label );
+	} else {
+		this.$label.detach();
 		return;
 	}
 
@@ -11131,7 +11363,7 @@ OO.ui.TextInputWidget.prototype.positionLabel = function () {
 		rtl = this.$element.css( 'direction' ) === 'rtl',
 		property = after === rtl ? 'padding-left' : 'padding-right';
 
-	this.$input.css( property, this.$label.outerWidth() );
+	this.$input.css( property, this.$label.outerWidth( true ) );
 
 	return this;
 };
@@ -11226,6 +11458,9 @@ OO.ui.ComboBoxWidget.prototype.onInputChange = function ( value ) {
 	var match = this.menu.getItemFromData( value );
 
 	this.menu.selectItem( match );
+	if ( this.menu.getHighlightedItem() ) {
+		this.menu.highlightItem( match );
+	}
 
 	if ( !this.isDisabled() ) {
 		this.menu.toggle( true );
@@ -11284,6 +11519,9 @@ OO.ui.ComboBoxWidget.prototype.onMenuChoose = function ( item ) {
 OO.ui.ComboBoxWidget.prototype.onMenuItemsChange = function () {
 	var match = this.menu.getItemFromData( this.input.getValue() );
 	this.menu.selectItem( match );
+	if ( this.menu.getHighlightedItem() ) {
+		this.menu.highlightItem( match );
+	}
 	this.$element.toggleClass( 'oo-ui-comboBoxWidget-empty', this.menu.isEmpty() );
 };
 
@@ -11567,6 +11805,9 @@ OO.mixinClass( OO.ui.OptionWidget, OO.ui.IndicatorElement );
  * @param {Object} [config] Configuration options
  */
 OO.ui.ButtonOptionWidget = function OoUiButtonOptionWidget( config ) {
+	// Configuration initialization
+	config = $.extend( { tabIndex: -1 }, config );
+
 	// Parent constructor
 	OO.ui.ButtonOptionWidget.super.call( this, config );
 
@@ -11590,6 +11831,8 @@ OO.mixinClass( OO.ui.ButtonOptionWidget, OO.ui.TabIndexedElement );
 
 // Allow button mouse down events to pass through so they can be handled by the parent select widget
 OO.ui.ButtonOptionWidget.static.cancelButtonMouseDownEvents = false;
+
+OO.ui.ButtonOptionWidget.static.highlightable = false;
 
 /* Methods */
 
@@ -11622,7 +11865,7 @@ OO.ui.RadioOptionWidget = function OoUiRadioOptionWidget( config ) {
 	OO.ui.RadioOptionWidget.super.call( this, config );
 
 	// Properties
-	this.radio = new OO.ui.RadioInputWidget( { value: config.data } );
+	this.radio = new OO.ui.RadioInputWidget( { value: config.data, tabIndex: -1 } );
 
 	// Initialization
 	this.$element
@@ -12356,12 +12599,16 @@ OO.ui.SearchWidget.prototype.getResults = function () {
 };
 
 /**
- * Generic selection of options.
+ * A SelectWidget is of a generic selection of options. The OOjs UI library contains several types of
+ * select widgets, including {@link OO.ui.ButtonSelectWidget button selects},
+ * {@link OO.ui.RadioSelectWidget radio selects}, and {@link OO.ui.MenuSelectWidget
+ * menu selects}.
  *
- * Items can contain any rendering. Any widget that provides options, from which the user must
- * choose one, should be built on this class.
+ * This class should be used together with OO.ui.OptionWidget.
  *
- * Use together with OO.ui.OptionWidget.
+ * For more information, please see the [OOjs UI documentation on MediaWiki][1].
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options
  *
  * @class
  * @extends OO.ui.Widget
@@ -12386,6 +12633,7 @@ OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 	this.selecting = null;
 	this.onMouseUpHandler = this.onMouseUp.bind( this );
 	this.onMouseMoveHandler = this.onMouseMove.bind( this );
+	this.onKeyDownHandler = this.onKeyDown.bind( this );
 
 	// Events
 	this.$element.on( {
@@ -12398,7 +12646,7 @@ OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 	this.$element
 		.addClass( 'oo-ui-selectWidget oo-ui-selectWidget-depressed' )
 		.attr( 'role', 'listbox' );
-	if ( $.isArray( config.items ) ) {
+	if ( Array.isArray( config.items ) ) {
 		this.addItems( config.items );
 	}
 };
@@ -12558,6 +12806,77 @@ OO.ui.SelectWidget.prototype.onMouseLeave = function () {
 		this.highlightItem( null );
 	}
 	return false;
+};
+
+/**
+ * Handle key down events.
+ *
+ * @param {jQuery.Event} e Key down event
+ */
+OO.ui.SelectWidget.prototype.onKeyDown = function ( e ) {
+	var nextItem,
+		handled = false,
+		currentItem = this.getHighlightedItem() || this.getSelectedItem();
+
+	if ( !this.isDisabled() && this.isVisible() ) {
+		switch ( e.keyCode ) {
+			case OO.ui.Keys.ENTER:
+				if ( currentItem && currentItem.constructor.static.highlightable ) {
+					// Was only highlighted, now let's select it. No-op if already selected.
+					this.chooseItem( currentItem );
+					handled = true;
+				}
+				break;
+			case OO.ui.Keys.UP:
+			case OO.ui.Keys.LEFT:
+				nextItem = this.getRelativeSelectableItem( currentItem, -1 );
+				handled = true;
+				break;
+			case OO.ui.Keys.DOWN:
+			case OO.ui.Keys.RIGHT:
+				nextItem = this.getRelativeSelectableItem( currentItem, 1 );
+				handled = true;
+				break;
+			case OO.ui.Keys.ESCAPE:
+			case OO.ui.Keys.TAB:
+				if ( currentItem && currentItem.constructor.static.highlightable ) {
+					currentItem.setHighlighted( false );
+				}
+				this.unbindKeyDownListener();
+				// Don't prevent tabbing away / defocusing
+				handled = false;
+				break;
+		}
+
+		if ( nextItem ) {
+			if ( nextItem.constructor.static.highlightable ) {
+				this.highlightItem( nextItem );
+			} else {
+				this.chooseItem( nextItem );
+			}
+			nextItem.scrollElementIntoView();
+		}
+
+		if ( handled ) {
+			// Can't just return false, because e is not always a jQuery event
+			e.preventDefault();
+			e.stopPropagation();
+		}
+	}
+};
+
+/**
+ * Bind key down listener.
+ */
+OO.ui.SelectWidget.prototype.bindKeyDownListener = function () {
+	this.getElementWindow().addEventListener( 'keydown', this.onKeyDownHandler, true );
+};
+
+/**
+ * Unbind key down listener.
+ */
+OO.ui.SelectWidget.prototype.unbindKeyDownListener = function () {
+	this.getElementWindow().removeEventListener( 'keydown', this.onKeyDownHandler, true );
 };
 
 /**
@@ -12842,6 +13161,7 @@ OO.ui.SelectWidget.prototype.clearItems = function () {
  *
  * @class
  * @extends OO.ui.SelectWidget
+ * @mixins OO.ui.TabIndexedElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -12850,6 +13170,15 @@ OO.ui.ButtonSelectWidget = function OoUiButtonSelectWidget( config ) {
 	// Parent constructor
 	OO.ui.ButtonSelectWidget.super.call( this, config );
 
+	// Mixin constructors
+	OO.ui.TabIndexedElement.call( this, config );
+
+	// Events
+	this.$element.on( {
+		focus: this.bindKeyDownListener.bind( this ),
+		blur: this.unbindKeyDownListener.bind( this )
+	} );
+
 	// Initialization
 	this.$element.addClass( 'oo-ui-buttonSelectWidget' );
 };
@@ -12857,6 +13186,7 @@ OO.ui.ButtonSelectWidget = function OoUiButtonSelectWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.ButtonSelectWidget, OO.ui.SelectWidget );
+OO.mixinClass( OO.ui.ButtonSelectWidget, OO.ui.TabIndexedElement );
 
 /**
  * Select widget containing radio button options.
@@ -12865,6 +13195,7 @@ OO.inheritClass( OO.ui.ButtonSelectWidget, OO.ui.SelectWidget );
  *
  * @class
  * @extends OO.ui.SelectWidget
+ * @mixins OO.ui.TabIndexedElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -12873,6 +13204,15 @@ OO.ui.RadioSelectWidget = function OoUiRadioSelectWidget( config ) {
 	// Parent constructor
 	OO.ui.RadioSelectWidget.super.call( this, config );
 
+	// Mixin constructors
+	OO.ui.TabIndexedElement.call( this, config );
+
+	// Events
+	this.$element.on( {
+		focus: this.bindKeyDownListener.bind( this ),
+		blur: this.unbindKeyDownListener.bind( this )
+	} );
+
 	// Initialization
 	this.$element.addClass( 'oo-ui-radioSelectWidget' );
 };
@@ -12880,6 +13220,7 @@ OO.ui.RadioSelectWidget = function OoUiRadioSelectWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.RadioSelectWidget, OO.ui.SelectWidget );
+OO.mixinClass( OO.ui.RadioSelectWidget, OO.ui.TabIndexedElement );
 
 /**
  * Overlaid menu of options.
@@ -12895,7 +13236,7 @@ OO.inheritClass( OO.ui.RadioSelectWidget, OO.ui.SelectWidget );
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {OO.ui.InputWidget} [input] Input to bind keyboard handlers to
+ * @cfg {OO.ui.TextInputWidget} [input] Input to bind keyboard handlers to
  * @cfg {OO.ui.Widget} [widget] Widget to bind mouse handlers to
  * @cfg {boolean} [autoHide=true] Hide the menu when the mouse is pressed outside the menu
  */
@@ -12914,7 +13255,6 @@ OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
 	this.autoHide = config.autoHide === undefined || !!config.autoHide;
 	this.$input = config.input ? config.input.$input : null;
 	this.$widget = config.widget ? config.widget.$element : null;
-	this.onKeyDownHandler = this.onKeyDown.bind( this );
 	this.onDocumentMouseDownHandler = this.onDocumentMouseDown.bind( this );
 
 	// Initialization
@@ -12951,76 +13291,58 @@ OO.ui.MenuSelectWidget.prototype.onDocumentMouseDown = function ( e ) {
 };
 
 /**
- * Handles key down events.
- *
- * @param {jQuery.Event} e Key down event
+ * @inheritdoc
  */
 OO.ui.MenuSelectWidget.prototype.onKeyDown = function ( e ) {
-	var nextItem,
-		handled = false,
-		highlightItem = this.getHighlightedItem();
+	var currentItem = this.getHighlightedItem() || this.getSelectedItem();
 
 	if ( !this.isDisabled() && this.isVisible() ) {
-		if ( !highlightItem ) {
-			highlightItem = this.getSelectedItem();
-		}
 		switch ( e.keyCode ) {
-			case OO.ui.Keys.ENTER:
-				this.chooseItem( highlightItem );
-				handled = true;
-				break;
-			case OO.ui.Keys.UP:
-				nextItem = this.getRelativeSelectableItem( highlightItem, -1 );
-				handled = true;
-				break;
-			case OO.ui.Keys.DOWN:
-				nextItem = this.getRelativeSelectableItem( highlightItem, 1 );
-				handled = true;
+			case OO.ui.Keys.LEFT:
+			case OO.ui.Keys.RIGHT:
+				// Do nothing if a text field is associated, arrow keys will be handled natively
+				if ( !this.$input ) {
+					OO.ui.MenuSelectWidget.super.prototype.onKeyDown.call( this, e );
+				}
 				break;
 			case OO.ui.Keys.ESCAPE:
 			case OO.ui.Keys.TAB:
-				if ( highlightItem ) {
-					highlightItem.setHighlighted( false );
+				if ( currentItem ) {
+					currentItem.setHighlighted( false );
 				}
 				this.toggle( false );
-				// Don't prevent tabbing away
-				handled = ( e.keyCode === OO.ui.Keys.ESCAPE );
+				// Don't prevent tabbing away, prevent defocusing
+				if ( e.keyCode === OO.ui.Keys.ESCAPE ) {
+					e.preventDefault();
+					e.stopPropagation();
+				}
 				break;
-		}
-
-		if ( nextItem ) {
-			this.highlightItem( nextItem );
-			nextItem.scrollElementIntoView();
-		}
-
-		if ( handled ) {
-			e.preventDefault();
-			e.stopPropagation();
-			return false;
+			default:
+				OO.ui.MenuSelectWidget.super.prototype.onKeyDown.call( this, e );
+				return;
 		}
 	}
 };
 
 /**
- * Bind key down listener.
+ * @inheritdoc
  */
 OO.ui.MenuSelectWidget.prototype.bindKeyDownListener = function () {
 	if ( this.$input ) {
 		this.$input.on( 'keydown', this.onKeyDownHandler );
 	} else {
-		// Capture menu navigation keys
-		this.getElementWindow().addEventListener( 'keydown', this.onKeyDownHandler, true );
+		OO.ui.MenuSelectWidget.super.prototype.bindKeyDownListener.call( this );
 	}
 };
 
 /**
- * Unbind key down listener.
+ * @inheritdoc
  */
 OO.ui.MenuSelectWidget.prototype.unbindKeyDownListener = function () {
 	if ( this.$input ) {
 		this.$input.off( 'keydown', this.onKeyDownHandler );
 	} else {
-		this.getElementWindow().removeEventListener( 'keydown', this.onKeyDownHandler, true );
+		OO.ui.MenuSelectWidget.super.prototype.unbindKeyDownListener.call( this );
 	}
 };
 
@@ -13239,16 +13561,23 @@ OO.ui.TextInputMenuSelectWidget.prototype.position = function () {
  *
  * @class
  * @extends OO.ui.SelectWidget
+ * @mixins OO.ui.TabIndexedElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
  */
 OO.ui.OutlineSelectWidget = function OoUiOutlineSelectWidget( config ) {
-	// Configuration initialization
-	config = config || {};
-
 	// Parent constructor
 	OO.ui.OutlineSelectWidget.super.call( this, config );
+
+	// Mixin constructors
+	OO.ui.TabIndexedElement.call( this, config );
+
+	// Events
+	this.$element.on( {
+		focus: this.bindKeyDownListener.bind( this ),
+		blur: this.unbindKeyDownListener.bind( this )
+	} );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-outlineSelectWidget' );
@@ -13257,6 +13586,7 @@ OO.ui.OutlineSelectWidget = function OoUiOutlineSelectWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.OutlineSelectWidget, OO.ui.SelectWidget );
+OO.mixinClass( OO.ui.OutlineSelectWidget, OO.ui.TabIndexedElement );
 
 /**
  * Switch that slides on and off.

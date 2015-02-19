@@ -1667,7 +1667,7 @@ return array(
 	'oojs-ui.styles' => array(
 		'position' => 'top',
 		'skinStyles' => array(
-			'default' => 'resources/lib/oojs-ui/oojs-ui-mediawiki.svg.css',
+			'default' => 'resources/lib/oojs-ui/oojs-ui-mediawiki.vector.css',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
