@@ -96,7 +96,7 @@ class ImagePage extends Article {
 	 */
 	public function render() {
 		$this->getContext()->getOutput()->setArticleBodyOnly( true );
-		parent::view();
+		parent::view( array( 'fullyqualified' ) );
 	}
 
 	public function view() {
