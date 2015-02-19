@@ -331,6 +331,8 @@ class LoadBalancer {
 			if ( $this->mReadIndex <= 0 && $this->mLoads[$i] > 0 && $group === false ) {
 				$this->mReadIndex = $i;
 			}
+			$serverName = $this->getServerName( $i );
+			wfDebug( __METHOD__ . ": using server $serverName for group '$group'\n" );
 		}
 
 		return $i;
@@ -476,8 +478,6 @@ class LoadBalancer {
 			foreach ( $groups as $group ) {
 				$groupIndex = $this->getReaderIndex( $group, $wiki );
 				if ( $groupIndex !== false ) {
-					$serverName = $this->getServerName( $groupIndex );
-					wfDebug( __METHOD__ . ": using server $serverName for group '$group'\n" );
 					$i = $groupIndex;
 					break;
 				}
