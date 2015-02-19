@@ -50,14 +50,21 @@ class CategoryPage extends Article {
 		# return $t == null ? null : new static( $t ); // PHP 5.3
 	}
 
-	function view() {
+	function view( /* array $options = array() */ ) {
+		$args = func_get_args();
+		if ( $args ) {
+			$options = $args[0];
+		} else {
+			$options = array();
+		}
+
 		$request = $this->getContext()->getRequest();
 		$diff = $request->getVal( 'diff' );
 		$diffOnly = $request->getBool( 'diffonly',
 			$this->getContext()->getUser()->getOption( 'diffonly' ) );
 
 		if ( $diff !== null && $diffOnly ) {
-			parent::view();
+			parent::view( $options );
 			return;
 		}
 
@@ -70,7 +77,7 @@ class CategoryPage extends Article {
 			$this->openShowCategory();
 		}
 
-		parent::view();
+		parent::view( $options );
 
 		if ( NS_CATEGORY == $title->getNamespace() ) {
 			$this->closeShowCategory();
