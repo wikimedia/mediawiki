@@ -101,7 +101,8 @@
 			$.extend( postData, {
 				pst: '',
 				preview: '',
-				prop: 'text|displaytitle|modules|categorieshtml|templates|langlinks|limitreporthtml'
+				prop: 'text|displaytitle|modules|categorieshtml|templates|langlinks|limitreporthtml',
+				disableeditsection: true
 			} );
 			if ( section !== '' ) {
 				postData.sectionpreview = '';
