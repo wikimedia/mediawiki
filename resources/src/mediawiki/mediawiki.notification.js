@@ -389,8 +389,8 @@
 			} )
 			.hide();
 
-		// Prepend the notification area to the content area and save it's object.
-		mw.util.$content.prepend( $area );
+		// Append the notification area to the document body and save it's object.
+		$area.appendTo( document.body );
 		offset = $area.offset();
 
 		function updateAreaMode() {
