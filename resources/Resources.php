@@ -928,9 +928,6 @@ return array(
 				=> array( 'media' => 'print' ),
 		),
 		'scripts' => 'resources/src/mediawiki/mediawiki.notification.js',
-		'dependencies' => array(
-			'mediawiki.page.startup',
-		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.notify' => array(
