@@ -715,7 +715,8 @@ class DatabaseSqlite extends DatabaseBase {
 		if ( $this->mTrxLevel == 1 ) {
 			$this->commit( __METHOD__ );
 		}
-		parent::doBegin( $fname );
+		$this->query( 'BEGIN IMMEDIATE', $fname );
+		$this->mTrxLevel = 1;
 	}
 
 	/**
