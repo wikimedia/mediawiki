@@ -1434,8 +1434,14 @@ class Parser {
 				'x' => 'X',
 			));
 			$titleObj = SpecialPage::getTitleFor( 'Booksources', $num );
+			$expandURLs = $this->getOptions()->getExpandURLs();
+			if ( $expandURLs ) {
+				$url = $titleObj->getFullURL( '', false, $expandURLs );
+			} else {
+				$url = $titleObj->getLocalURL();
+			}
 			return '<a href="' .
-				htmlspecialchars( $titleObj->getLocalURL() ) .
+				htmlspecialchars( $url ) .
 				"\" class=\"internal mw-magiclink-isbn\">ISBN $isbn</a>";
 		} else {
 			return $m[0];
@@ -5124,6 +5130,30 @@ class Parser {
 		$this->mTagHooks = array();
 		$this->mFunctionTagHooks = array();
 		$this->mStripList = $this->mDefaultStripList;
+	}
+
+	/**
+	 * Convert a PROTO_* constant to what Linker wants.
+	 *
+	 * @since 1.25
+	 * @return bool|string
+	 */
+	public function getExpandUrlOptionForLinker() {
+		switch ( $this->getOptions()->getExpandURLs() ) {
+			case PROTO_HTTP:
+				return 'http';
+				break;
+			case PROTO_HTTPS:
+				return 'https';
+				break;
+			case PROTO_CANONICAL:
+				return 'canonical';
+				break;
+			case PROTO_RELATIVE:
+				return 'relative';
+		}
+
+		return false;
 	}
 
 	/**

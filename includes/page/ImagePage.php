@@ -96,11 +96,18 @@ class ImagePage extends Article {
 	 */
 	public function render() {
 		$this->getContext()->getOutput()->setArticleBodyOnly( true );
-		parent::view();
+		parent::view( array( 'expandURLs' => PROTO_RELATIVE ) );
 	}
 
-	public function view() {
+	public function view( /* array $options = array */ ) {
 		global $wgShowEXIF;
+
+		$args = func_get_args();
+		if ( $args ) {
+			$options = $args[0];
+		} else {
+			$options = array();
+		}
 
 		$out = $this->getContext()->getOutput();
 		$request = $this->getContext()->getRequest();
@@ -111,7 +118,7 @@ class ImagePage extends Article {
 		);
 
 		if ( $this->getTitle()->getNamespace() != NS_FILE || ( $diff !== null && $diffOnly ) ) {
-			parent::view();
+			parent::view( $options );
 			return;
 		}
 
@@ -122,7 +129,7 @@ class ImagePage extends Article {
 				// mTitle is the same as the redirect target so ask Article
 				// to perform the redirect for us.
 				$request->setVal( 'diffonly', 'true' );
-				parent::view();
+				parent::view( $options );
 				return;
 			} else {
 				// mTitle is not the same as the redirect target so it is
@@ -163,7 +170,7 @@ class ImagePage extends Article {
 				'lang' => $pageLang->getHtmlCode(), 'dir' => $pageLang->getDir(),
 				'class' => 'mw-content-' . $pageLang->getDir() ) ) );
 
-			parent::view();
+			parent::view( $options );
 
 			$out->addHTML( Xml::closeElement( 'div' ) );
 		} else {
