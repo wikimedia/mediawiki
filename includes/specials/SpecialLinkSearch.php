@@ -27,6 +27,8 @@
  * @ingroup SpecialPage
  */
 class LinkSearchPage extends QueryPage {
+	/** @var array|bool */
+	private $mungedQuery = false;
 
 	/**
 	 * @var PageLinkRenderer
@@ -162,7 +164,7 @@ class LinkSearchPage extends QueryPage {
 				'namespace' => $namespace,
 				'protocol' => $protocol ) );
 			parent::execute( $par );
-			if ( $this->mMungedQuery === false ) {
+			if ( $this->mungedQuery === false ) {
 				$out->addWikiMsg( 'linksearch-error' );
 			}
 		}
@@ -221,13 +223,13 @@ class LinkSearchPage extends QueryPage {
 		$dbr = wfGetDB( DB_SLAVE );
 		// strip everything past first wildcard, so that
 		// index-based-only lookup would be done
-		list( $this->mMungedQuery, $clause ) = self::mungeQuery( $this->mQuery, $this->mProt );
-		if ( $this->mMungedQuery === false ) {
+		list( $this->mungedQuery, $clause ) = self::mungeQuery( $this->mQuery, $this->mProt );
+		if ( $this->mungedQuery === false ) {
 			// Invalid query; return no results
 			return array( 'tables' => 'page', 'fields' => 'page_id', 'conds' => '0=1' );
 		}
 
-		$stripped = LinkFilter::keepOneWildcard( $this->mMungedQuery );
+		$stripped = LinkFilter::keepOneWildcard( $this->mungedQuery );
 		$like = $dbr->buildLike( $stripped );
 		$retval = array(
 			'tables' => array( 'page', 'externallinks' ),
