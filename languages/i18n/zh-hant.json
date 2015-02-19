@@ -3008,7 +3008,7 @@
 	"tags": "有效變更標籤",
 	"tag-filter": "[[Special:Tags|標籤]]搜尋：",
 	"tag-filter-submit": "搜尋",
-	"tag-list-wrapper": "([[Special:Tags|標籤]]：$2)",
+	"tag-list-wrapper": "([[Special:Tags|$1 個標籤]]：$2)",
 	"tags-title": "標籤",
 	"tags-intro": "此頁面列出所有可用來標示編輯內容的標籤以及這些標籤所代表的意思。",
 	"tags-tag": "標籤名稱",

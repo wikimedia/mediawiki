@@ -1336,7 +1336,7 @@
 	"badfilename": "Se ha cambiado el nombre del archivo a «$1».",
 	"filetype-mime-mismatch": "La extensión de archivo «.$1» no coincide con el tipo MIME detectado en el archivo ($2).",
 	"filetype-badmime": "No se permite subir archivos de tipo MIME «$1».",
-	"filetype-bad-ie-mime": "No se puede subir este archivo porque Internet Explorer podría considerarlo como «$1», que es un tipo de archivo no admitido y potencialmente peligroso.",
+	"filetype-bad-ie-mime": "No se puede subir este archivo porque Internet Explorer podría considerarlo como «$1», que es un tipo de archivo no autorizado y potencialmente peligroso.",
 	"filetype-unwanted-type": "<strong>«.$1»</strong> no está entre los tipos de archivo aconsejados.\n{{PLURAL:$3|El único tipo aconsejado es|Los tipos aconsejados son}} $2.",
 	"filetype-banned-type": "{{PLURAL:$4|El tipo de archivo|Los tipos de archivo}} <strong>\".$1\"</strong> no {{PLURAL:$4|está permitido|están permitidos}}.\n{{PLURAL:$3|El único tipo de archivo permitido es|Los tipos de archivos permitidos son}} $2.",
 	"filetype-missing": "El archivo no tiene extensión (como «.jpg»).",
