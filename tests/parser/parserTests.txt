@@ -115,13 +115,27 @@ Template:echo_with_div
 Template:table_attribs
 !! text
 <noinclude>
-|</noinclude>style="color: red"| Foo
+|</noinclude>style="color:red;"|Foo
+!! endarticle
+
+!! article
+Template:table_attribs_2
+!! text
+<noinclude>
+|</noinclude>style="color:red;"|Foo
+|Bar||Baz
+!! endarticle
+
+!! article
+Template:table_header_cells
+!! text
+{{table_attribs}}!!style='color:red;'|''Bar''||style='color:brown;'|''Foo'' and Baz
 !! endarticle
 
 !! article
 Template:table_cells
 !! text
-{{table_attribs}} || Bar || Baz
+{{table_attribs}}||style='color:red;'|''Bar''||style='color:brown;'|''Foo'' and Baz
 !! endarticle
 
 !! article
@@ -5636,7 +5650,7 @@ Indented table markup mixed with indented pre content (proposed in bug 6200)
 !! end
 
 !! test
-Template-generated table cell attributes and cell content
+1. Template-generated table cell attributes and cell content
 !! wikitext
 {|
 |{{table_attribs}}
@@ -5648,33 +5662,67 @@ Template-generated table cell attributes and cell content
 !! html
 <table>
 <tr>
-<td style="color: red"> Foo
+<td style="color:red;">Foo
 </td>
-<td style="color: red"> Foo
+<td style="color:red;">Foo
 </td>
-<td style="color: red"> Foo
+<td style="color:red;">Foo
 </td>
-<td align="center" style="color: red"> Foo
+<td align="center" style="color:red;">Foo
 </td>
-<td align="center" style="color: red"> Foo
+<td align="center" style="color:red;">Foo
 </td></tr></table>
 
 !! end
 
 !! test
-Template-generated table cell attributes and cell content (2)
+2. Template-generated table cell attributes and cell content
 !! wikitext
 {|
-|align=center {{table_cells}}
+|{{table_attribs_2}}
 |}
-!! html
+!! html/php
 <table>
 <tr>
-<td align="center" style="color: red"> Foo </td>
-<td> Bar </td>
-<td> Baz
+<td style="color:red;">Foo
+</td>
+<td>Bar</td>
+<td>Baz
 </td></tr></table>
 
+!! html/parsoid
+<table>
+<tbody><tr><td about="#mwt1" typeof="mw:Transclusion" style="color:red;" data-mw='{"parts":["|",{"template":{"target":{"wt":"table_attribs_2","href":"./Template:Table_attribs_2"},"params":{},"i":0}}]}'>Foo</td>
+<td about="#mwt1">Bar</td><td about="#mwt1">Baz</td></tr>
+</tbody></table>
+!! end
+
+!! test
+3. Template-generated table cell attributes and cell content
+!! wikitext
+{|
+!align=center {{table_header_cells}}
+|-
+|align=center {{table_cells}}
+|}
+!! html/php
+<table>
+<tr>
+<th align="center" style="color:red;">Foo</th>
+<th style="color:red;"><i>Bar</i></th>
+<th style="color:brown;"><i>Foo</i> and Baz
+</th></tr>
+<tr>
+<td align="center" style="color:red;">Foo</td>
+<td style="color:red;"><i>Bar</i></td>
+<td style="color:brown;"><i>Foo</i> and Baz
+</td></tr></table>
+
+!! html/parsoid
+<table>
+<tbody><tr><th align="center" style="color:red;" typeof="mw:Transclusion" about="#mwt1" data-mw='{"parts":["!align=center ",{"template":{"target":{"wt":"table_header_cells","href":"./Template:Table_header_cells"},"params":{},"i":0}}]}'>Foo</th><th about="#mwt1" style="color:red;"><i about="#mwt1">Bar</i></th><th about="#mwt1" style="color:brown;"><i about="#mwt1">Foo</i> and Baz</th></tr><tr>
+<td align="center" style="color:red;" typeof="mw:Transclusion" about="#mwt1" data-mw='{"parts":["|align=center ",{"template":{"target":{"wt":"table_cells","href":"./Template:Table_cells"},"params":{},"i":0}}]}'>Foo</td><td about="#mwt1" style="color:red;"><i about="#mwt1">Bar</i></td><td about="#mwt1" style="color:brown;"><i about="#mwt1">Foo</i> and Baz</td></tr>
+</tbody></table>
 !! end
 
 !! test
@@ -8829,12 +8877,18 @@ Aoeu
 # From plwiki:PLOS_ONE
 !! test
 Parsoid: Page property magic word with magic word contents
-!! options
-parsoid
 !! wikitext
 {{DISPLAYTITLE:''{{PAGENAME}}''}}
-!! html
+!! html/parsoid
 <meta property="mw:PageProp/displaytitle" content="Main Page" about="#mwt2" typeof="mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"content"},{"html":"&lt;i data-parsoid=\"{&amp;quot;dsr&amp;quot;:[15,31,2,2]}\">&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=\"{&amp;quot;pi&amp;quot;:[[]],&amp;quot;dsr&amp;quot;:[17,29,null,null]}\" data-mw=\"{&amp;quot;parts&amp;quot;:[{&amp;quot;template&amp;quot;:{&amp;quot;target&amp;quot;:{&amp;quot;wt&amp;quot;:&amp;quot;PAGENAME&amp;quot;,&amp;quot;function&amp;quot;:&amp;quot;pagename&amp;quot;},&amp;quot;params&amp;quot;:{},&amp;quot;i&amp;quot;:0}}]}\">Main Page&lt;/span>&lt;/i>"}]]}'/>
+!! end
+
+!! test
+Parsoid: Template-generated DISPLAYTITLE
+!! wikitext
+{{{{echo|DISPLAYTITLE}}:Foo}}
+!! html/parsoid
+<meta property="mw:PageProp/displaytitle" content="Foo" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"dsr":[0,29,null,null],"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"{{echo|DISPLAYTITLE}}:Foo"},"params":{},"i":0}}]}'/>
 !! end
 
 !! test
@@ -13120,12 +13174,18 @@ parsoid=html2wt
 
 !! test
 Parsoid: Defaultsort
-!! options
-parsoid
 !! wikitext
 {{DEFAULTSORT:Foo}}
-!! html
+!! html/parsoid
 <meta property="mw:PageProp/categorydefaultsort" content="Foo"/>
+!! end
+
+!! test
+Parsoid: Defaultsort (template-generated)
+!! wikitext
+{{{{echo|DEFAULTSORT}}:Foo}}
+!! html/parsoid
+<meta property="mw:PageProp/categorydefaultsort" content="Foo" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"dsr":[0,28,null,null],"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"{{echo|DEFAULTSORT}}:Foo"},"params":{},"i":0}}]}'/>
 !! end
 
 ###
@@ -19658,10 +19718,16 @@ parsoid
 A <ref>foo</ref>
 B <ref name="x">foo</ref>
 C <ref name="y" />
+<references />
 !! html
 <p>A <span about="#mwt2" class="reference" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{}}'><a href="#cite_note-1">[1]</a></span>
 B <span about="#mwt4" class="reference" id="cite_ref-x_2-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{"name":"x"}}'><a href="#cite_note-x-2">[2]</a></span>
 C <span about="#mwt6" class="reference" id="cite_ref-y_3-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"y"}}'><a href="#cite_note-y-3">[3]</a></span></p>
+<ol class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'>
+<li id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1">↑</a></span> foo</li>
+<li id="cite_note-x-2"><span rel="mw:referencedBy"><a href="#cite_ref-x_2-0">↑</a></span> foo</li>
+<li id="cite_note-y-3"><span rel="mw:referencedBy"><a href="#cite_ref-y_3-0">↑</a></span></li>
+</ol>
 !!end
 
 !!test
@@ -19671,9 +19737,13 @@ parsoid
 !! wikitext
 A <ref name="x">foo</ref>
 B <ref name="x" />
+<references />
 !! html
 <p>A <span about="#mwt2" class="reference" id="cite_ref-x_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{"name":"x"}}'><a href="#cite_note-x-1">[1]</a></span>
 B <span about="#mwt4" class="reference" id="cite_ref-x_1-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"x"}}'><a href="#cite_note-x-1">[1]</a></span></p>
+<ol class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'>
+<li id="cite_note-x-1"><span rel="mw:referencedBy">↑ <a href="#cite_ref-x_1-0">1.0</a> <a href="#cite_ref-x_1-1">1.1</a></span> foo</li>
+</ol>
 !!end
 
 !!test
@@ -19684,10 +19754,14 @@ parsoid
 A <ref name="x">foo</ref>
 B <ref name=" x " />
 C <ref name= x  />
+<references />
 !! html
 <p>A <span about="#mwt2" class="reference" id="cite_ref-x_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{"name":"x"}}'><a href="#cite_note-x-1">[1]</a></span>
 B <span about="#mwt4" class="reference" id="cite_ref-x_1-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"x"}}'><a href="#cite_note-x-1">[1]</a></span>
 C <span about="#mwt6" class="reference" id="cite_ref-x_1-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{"name":"x"}}'><a href="#cite_note-x-1">[1]</a></span></p>
+<ol class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'>
+<li id="cite_note-x-1"><span rel="mw:referencedBy">↑ <a href="#cite_ref-x_1-0">1.0</a> <a href="#cite_ref-x_1-1">1.1</a> <a href="#cite_ref-x_1-2">1.2</a></span> foo</li>
+</ol>
 !!end
 
 # NOTE: constructor is a predefined property in JS and constructor as a ref-name can clash with it if not handled properly)
@@ -19697,8 +19771,12 @@ Ref: 4. 'constructor' should be accepted as a valid ref-name
 parsoid
 !! wikitext
 A <ref name="constructor">foo</ref>
+<references />
 !! html
 <p>A <span about="#mwt2" class="reference" id="cite_ref-constructor_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{"name":"constructor"}}'><a href="#cite_note-constructor-1">[1]</a></span></p>
+<ol class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'>
+<li id="cite_note-constructor-1"><span rel="mw:referencedBy"><a href="#cite_ref-constructor_1-0">↑</a></span> foo</li>
+</ol>
 !!end
 
 !!test
@@ -19833,9 +19911,14 @@ parsoid
 !! wikitext
 A <ref>foo</ref> B
 C <ref>bar</ref> D
+<references />
 !! html
 <p>A <span about="#mwt2" class="reference" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{}}'><a href="#cite_note-1">[1]</a></span> B
 C <span about="#mwt4" class="reference" id="cite_ref-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{}}'><a href="#cite_note-2">[2]</a></span> D</p>
+<ol class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'>
+<li id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1">↑</a></span> foo</li>
+<li id="cite_note-2"><span rel="mw:referencedBy"><a href="#cite_ref-2">↑</a></span> bar</li>
+</ol>
 !!end
 
 !!test
@@ -19849,6 +19932,7 @@ b<!--the newline at the end of this line stays inside the p-tag--> <ref />
 <ref />
 
 c
+<references />
 !! html
 <p><!--the newline at the end of this line moves out of the p-tag-->a</p>
 
@@ -19857,6 +19941,10 @@ c
 <span about="#mwt4" class="reference" id="cite_ref-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","attrs":{}}'><a href="#cite_note-2">[2]</a></span></p>
 
 <p>c</p>
+<ol class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'>
+<li id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1">↑</a></span></li>
+<li id="cite_note-2"><span rel="mw:referencedBy"><a href="#cite_ref-2">↑</a></span></li>
+</ol>
 !!end
 
 !!test
@@ -19867,9 +19955,14 @@ parsoid
 <ref>foo</ref> A
 <ref>bar
 </ref> B
+<references />
 !! html
 <p><span about="#mwt2" class="reference" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{}}'><a href="#cite_note-1">[1]</a></span> A
 <span about="#mwt4" class="reference" id="cite_ref-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"html":"bar\n"},"attrs":{}}'><a href="#cite_note-2">[2]</a></span> B</p>
+<ol class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'>
+<li id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1">↑</a></span> foo</li>
+<li id="cite_note-2"><span rel="mw:referencedBy"><a href="#cite_ref-2">↑</a></span> bar</li>
+</ol>
 !!end
 
 !!test
@@ -19985,13 +20078,22 @@ parsoid
 !! wikitext
 A <ref group="a">foo</ref>
 B <ref group="b">bar</ref>
+C <ref>baz</ref>
 
 <references group="a" />
+<references />
+<references group="b" />
 !! html
 <p>A <span about="#mwt2" class="reference" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{"group":"a"}}'><a href="#cite_note-1">[a 1]</a></span>
-B <span about="#mwt4" class="reference" id="cite_ref-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{"group":"b"}}'><a href="#cite_note-2">[b 1]</a></span></p>
+B <span about="#mwt4" class="reference" id="cite_ref-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{"group":"b"}}'><a href="#cite_note-2">[b 1]</a></span>
+C <span class="reference" id="cite_ref-3" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"html":"baz"},"attrs":{}}'><a href="#cite_note-3">[1]</a></span></p>
 
 <ol class="references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{"group":"a"}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1">↑</a></span> foo</li>
+</ol>
+<ol class="references" typeof="mw:Extension/references" about="#mwt6" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-3" id="cite_note-3"><span rel="mw:referencedBy"><a href="#cite_ref-3">↑</a></span> baz</li>
+</ol>
+<ol class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{"group":"b"}}'>
+<li id="cite_note-2"><span rel="mw:referencedBy"><a href="#cite_ref-2">↑</a></span> bar</li>
 </ol>
 !!end
 
@@ -20099,13 +20201,50 @@ B <span about="#mwt4" class="reference" id="cite_ref-b_2-0" rel="dc:references" 
 !! end
 
 !! test
+References: 8. T88019: Remove <meta>s from templates inside <ref> that's itself inside a template
+!! options
+parsoid
+!! wikitext
+X{{echo|<ref>foo {{echo|<b>bar</b>}} and {{echo|baz}} boo</ref>}}
+<references />
+!! html
+<p>X<span about="#mwt2" class="reference" id="cite_ref-1" rel="dc:references" typeof="mw:Transclusion  mw:Extension/ref" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&lt;ref>foo {{echo|&lt;b>bar&lt;/b>}} and {{echo|baz}} boo&lt;/ref>"}},"i":0}}]}'><a href="#cite_note-1">[1]</a></span></p>
+<ol class="references" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1">↑</a></span> foo <b data-parsoid='{"stx":"html"}'>bar</b> and baz boo</li></ol>
+!!end
+
+# This test only works in wt2html now as the <references /> are always generated
+# unless selser is active. Once T72722 is fixed, we should add a changes test
+# here to ensure that unrelated changes don't add the new <references /> in
+# wt2wt.
+!! test
+References: 9. Generate missing references list at the end
+!! options
+parsoid
+!! wikitext
+A <ref>foo</ref>
+B <ref group="inexistent">bar</ref>
+!! html
+<p>A <span class="reference" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"html":"foo"},"attrs":{}}'><a href="#cite_note-1">[1]</a></span> B <span class="reference" id="cite_ref-2" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"html":"bar"},"attrs":{"group":"inexistent"}}'><a href="#cite_note-2">[inexistent 1]</a></span></</p>
+<ol class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'>
+<li id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1">↑</a></span> foo</li>
+</ol>
+<ol class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{"group":"inexistent"}}'>
+<li id="cite_note-2"><span rel="mw:referencedBy"><a href="#cite_ref-2">↑</a></span> bar</li>
+</ol>
+!! end
+
+!! test
 Entities in ref name
 !! options
 parsoid
 !! wikitext
 <ref name="test &amp; me">hi</ref>
+<references />
 !! html
 <p><span about="#mwt2" class="reference" id="cite_ref-test_.26_me_1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"html":"hi"},"attrs":{"name":"test &amp;amp; me"}}'><a href="#cite_note-test_.26_me-1">[1]</a></span></p>
+<ol class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'>
+<li id="cite_note-test_.26_me-1"><span rel="mw:referencedBy"><a href="#cite_ref-test_.26_me_1-0">↑</a></span> hi</li>
+</ol>
 !! end
 
 # This test is wt2html only because we're permitting the serializer to produce
@@ -21386,6 +21525,7 @@ parsoid=html2wt,wt2wt
 '''foo'' <ref>test</ref>
 '''foo'' <div title="name">test</div>
 '''foo'' and <br> bar
+<references />
 !! html
 '<i>a</i> foo <i><a rel="mw:WikiLink" href="Bar" title="Bar">bar</a></i>
 <i>a'</i> foo <i><a rel="mw:WikiLink" href="Bar" title="Bar">bar</a></i>
@@ -21394,6 +21534,9 @@ parsoid=html2wt,wt2wt
 '<i>foo</i> <span class="reference" id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"html":"test"},"attrs":{}}'><a href="#cite_note-1">[1]</a></span>
 '<i>foo</i> <div title="name">test</div>
 '<i>foo</i> and <br data-parsoid='{"stx":"html","noClose":true}'/> bar
+<ol class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'>
+<li id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1">↑</a></span> test</li>
+</ol>
 !! end
 
 !! test
@@ -21507,8 +21650,12 @@ parsoid
 !! wikitext
 foo <ref>''a''
  b</ref>
+<references />
 !! html
 <p>foo <span about="#mwt2" class="reference" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"html":"&lt;i data-parsoid=&#39;{\"dsr\":[9,14,2,2]}&#39;>a&lt;/i>\n b"},"attrs":{}}'><a href="#cite_note-1">[1]</a></span></p>
+<ol class="references" typeof="mw:Extension/references" data-mw='{"name":"references","attrs":{}}'>
+<li id="cite_note-1"><span rel="mw:referencedBy"><a href="#cite_ref-1">↑</a></span> <i>a</i> b</li>
+</ol>
 !! end
 
 !! test
@@ -22438,6 +22585,21 @@ parsoid=html2wt
 !! end
 
 !! test
+New sol transparent links don't need indent-pre nowiki protection
+!! options
+parsoid=html2wt
+language=de
+!! html
+         <link rel="mw:PageProp/redirect" href="./Main_Page">
+<!-- this is good  -->    <link rel="mw:PageProp/Category" href="./Category:Good" />
+<!-- this is great -->    <link rel="mw:PageProp/Category" href="./Kategorie:Great" />
+!! wikitext
+         #WEITERLEITUNG [[Main Page]]
+<!-- this is good  -->    [[Category:Good]]
+<!-- this is great -->    [[Kategorie:Great]]
+!! end
+
+!! test
 New interlanguage links (href variations)
 !! options
 parsoid=html2wt
@@ -22829,12 +22991,17 @@ parsoid=html2wt
 !! html
 <h2>hello there<link href="Category:A1" rel="mw:PageProp/Category" /></h2>
 <h2><link href="Category:A2" rel="mw:PageProp/Category" />hi pal</h2>
+
+<h2><!--foo-->  <link href="Category:A3" rel="mw:PageProp/Category" />   how goes it</h2>
 !! wikitext
 == hello there ==
 [[Category:A1]]
 
 [[Category:A2]]
 == hi pal ==
+
+<!--foo-->  [[Category:A3]]
+== how goes it ==
 !! end
 
 !! test
