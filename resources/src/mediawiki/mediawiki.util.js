@@ -443,7 +443,7 @@
 
 			return address.search( new RegExp( '^' + RE_IPV6_ADD + block + '$' ) ) !== -1
 				&& address.search( /::/ ) !== -1 && address.search( /::.*::/ ) === -1;
-		}
+		},
 	};
 
 	/**
