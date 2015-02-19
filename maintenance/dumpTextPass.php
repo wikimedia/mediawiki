@@ -59,6 +59,8 @@ Options:
   --server=h  Force reading from MySQL server h
   --current	  Base ETA on number of pages in database instead of all revisions
   --spawn	  Spawn a subprocess for loading text records
+  --buffersize=<size> Buffer size in bytes to use for reading the stub.
+              (Default: 512KB, Minimum: 4KB)
   --help      Display this help message
 ENDS
 	);
