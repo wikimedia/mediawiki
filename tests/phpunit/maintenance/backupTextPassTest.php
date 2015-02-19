@@ -244,7 +244,9 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 			$this->fail( "Could not open stream for stderr" );
 		}
 
-		$iterations = 32; // We'll start with that many iterations of revisions in stub
+		$iterations = 32; // We'll start with that many iterations of revisions
+		// in stub. Make sure that the generated volume is above the buffer size
+		// set below. Otherwise, the checkpointing does not trigger.
 		$lastDuration = 0;
 		$minDuration = 2; // We want the dump to take at least this many seconds
 		$checkpointAfter = 0.5; // Generate checkpoint after this many seconds
@@ -262,6 +264,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 			$dumper = new TextPassDumper( array( "--stub=file:" . $nameStub,
 				"--output=" . $checkpointFormat . ":" . $nameOutputDir . "/full",
 				"--maxtime=1" /*This is in minutes. Fixup is below*/,
+				"--buffersize=32768", // The default of 32 iterations fill up 32KB about twice
 				"--checkpointfile=checkpoint-%s-%s.xml.gz" ) );
 			$dumper->setDb( $this->db );
 			$dumper->maxTimeAllowed = $checkpointAfter; // Patching maxTime from 1 minute
@@ -415,10 +418,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 	}
 
 	/**
-	 * Broken per T70653.
-	 *
 	 * @group large
-	 * @group Broken
 	 */
 	function testCheckpointPlain() {
 		$this->checkpointHelper();
@@ -434,10 +434,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 	 * PHP extensions, we go for gzip instead, which triggers the same relevant code
 	 * paths while still being testable on more systems.
 	 *
-	 * Broken per T70653.
-	 *
 	 * @group large
-	 * @group Broken
 	 */
 	function testCheckpointGzip() {
 		$this->checkHasGzip();
