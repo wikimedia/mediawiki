@@ -243,4 +243,38 @@ class LinkerTest extends MediaWikiLangTestCase {
 			),
 		);
 	}
+
+	/**
+	 * @todo Incomplete, only covers 'fullyqualify' option
+	 * @covers Linker::linkUrl
+	 * @dataProvider provideCasesForLinkUrl
+	 */
+	public function testLinkUrl( $target, $options, $expected ) {
+		$this->setMwGlobals( array(
+			'wgScript' => '/wiki/index.php',
+			'wgArticlePath' => '/wiki/$1',
+			'wgServer' => '//localhost',
+			'wgWellFormedXml' => true,
+			'wgCapitalLinks' => true,
+		) );
+
+		$title = Title::newFromText( $target );
+		$link = Linker::link( $title, null, array(), array(), $options );
+		$this->assertEquals( $expected, $link );
+	}
+
+	public static function provideCasesForLinkUrl() {
+		return array(
+			array(
+				'FooBar',
+				array(),
+				'<a href="/wiki/index.php?title=FooBar&amp;action=edit&amp;redlink=1" class="new" title="FooBar (page does not exist)">FooBar</a>',
+			),
+			array(
+				'FooBar',
+				array( 'fullyqualify' ),
+				'<a href="//localhost/wiki/index.php?title=FooBar&amp;action=edit&amp;redlink=1" class="new" title="FooBar (page does not exist)">FooBar</a>'
+			),
+		);
+	}
 }

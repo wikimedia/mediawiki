@@ -425,6 +425,7 @@ class ApiParse extends ApiBase {
 		$popts->setIsPreview( $params['preview'] || $params['sectionpreview'] );
 		$popts->setIsSectionPreview( $params['sectionpreview'] );
 		$popts->setEditSection( !$params['disableeditsection'] );
+		$popts->setFullyQualifiedURLs( $params['fullyqualifyurls'] );
 
 		return $popts;
 	}
@@ -700,6 +701,7 @@ class ApiParse extends ApiBase {
 			'section' => null,
 			'disablepp' => false,
 			'disableeditsection' => false,
+			'fullyqualifyurls' => false,
 			'generatexml' => array(
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_HELP_MSG => array(

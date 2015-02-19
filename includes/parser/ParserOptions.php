@@ -213,6 +213,11 @@ class ParserOptions {
 	public $mExtraKey = '';
 
 	/**
+	 * @var bool
+	 */
+	protected $mFullyQualifiedURLs = false;
+
+	/**
 	 * Function to be called when an option is accessed.
 	 */
 	protected $onAccessCallback = null;
@@ -402,6 +407,25 @@ class ParserOptions {
 	 */
 	public function getUserLang() {
 		return $this->getUserLangObj()->getCode();
+	}
+
+	/**
+	 * If true, URLs should be fully qualified and include the domain name in them
+	 *
+	 * @since 1.25
+	 * @return bool
+	 */
+	public function getFullyQualifiedURLs() {
+		return $this->mFullyQualifiedURLs;
+	}
+
+	/**
+	 * @since 1.25
+	 * @param bool $x
+	 * @return bool
+	 */
+	public function setFullyQualifiedURLs( $x ) {
+		return wfSetVar( $this->mFullyQualifiedURLs, $x );
 	}
 
 	public function setInterwikiMagic( $x ) {

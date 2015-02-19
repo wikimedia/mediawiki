@@ -410,6 +410,9 @@ class LinkHolderArray {
 					}
 					$type = array( 'known', 'noclasses' );
 				}
+				if ( $this->parent->getOptions()->getFullyQualifiedURLs() ) {
+					$type[] = 'fullyqualify';
+				}
 				$replacePairs[$searchkey] = Linker::link( $title, $displayText,
 						$attribs, $query, $type );
 			}

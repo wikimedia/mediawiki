@@ -472,8 +472,13 @@ class Article implements Page {
 	/**
 	 * This is the default action of the index.php entry point: just view the
 	 * page of the given title.
+	 *
+	 * @param array $options
+	 *    - "fullyqualify": @see ParserOptions::getFullyQualifiedURLs
+	 *
+	 * @throws PermissionsError if User can't read the page
 	 */
-	public function view() {
+	public function view( array $options = array() ) {
 		global $wgUseFileCache, $wgUseETag, $wgDebugToolbar, $wgMaxRedirects;
 
 		# Get variables from query string
@@ -517,6 +522,9 @@ class Article implements Page {
 		$parserCache = ParserCache::singleton();
 
 		$parserOptions = $this->getParserOptions();
+		if ( in_array( 'fullyqualify', $options ) ) {
+			$parserOptions->setFullyQualifiedURLs( true );
+		}
 		# Render printable version, use printable version cache
 		if ( $outputPage->isPrintable() ) {
 			$parserOptions->setIsPrintable( true );
@@ -1510,7 +1518,7 @@ class Article implements Page {
 		$this->getContext()->getRequest()->response()->header( 'X-Robots-Tag: noindex' );
 		$this->getContext()->getOutput()->setArticleBodyOnly( true );
 		$this->getContext()->getOutput()->enableSectionEditLinks( false );
-		$this->view();
+		$this->view( array( 'fullyqualify' ) );
 	}
 
 	/**

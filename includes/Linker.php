@@ -188,6 +188,7 @@ class Linker {
 	 *       Has compatibility issues on some setups, so avoid wherever possible.
 	 *     'http': Force a full URL with http:// as the scheme.
 	 *     'https': Force a full URL with https:// as the scheme.
+	 *     'fullyqualify': Force a full URL without preference to a specific protocol
 	 * @return string HTML <a> attribute
 	 */
 	public static function link(
@@ -300,6 +301,9 @@ class Linker {
 		}
 
 		$ret = $target->getLinkURL( $query, false, $proto );
+		if ( in_array( 'fullyqualify', $options ) ) {
+			$ret = wfExpandUrl( $ret, $proto );
+		}
 		return $ret;
 	}
 
