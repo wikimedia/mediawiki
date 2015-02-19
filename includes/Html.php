@@ -257,18 +257,10 @@ class Html {
 	 * @return string
 	 */
 	public static function openElement( $element, $attribs = array() ) {
-		global $wgWellFormedXml;
 		$attribs = (array)$attribs;
 		// This is not required in HTML5, but let's do it anyway, for
 		// consistency and better compression.
 		$element = strtolower( $element );
-
-		// In text/html, initial <html> and <head> tags can be omitted under
-		// pretty much any sane circumstances, if they have no attributes.  See:
-		// <http://www.whatwg.org/html/syntax.html#optional-tags>
-		if ( !$wgWellFormedXml && !$attribs && in_array( $element, array( 'html', 'head' ) ) ) {
-			return '';
-		}
 
 		// Remove invalid input types
 		if ( $element == 'input' ) {
