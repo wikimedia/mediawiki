@@ -144,8 +144,8 @@ class DatabaseSqlite extends DatabaseBase {
 		}
 
 		$this->mOpened = !!$this->mConn;
-		# set error codes only, don't raise exceptions
 		if ( $this->mOpened ) {
+			# Set error codes only, don't raise exceptions
 			$this->mConn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT );
 			# Enforce LIKE to be case sensitive, just like MySQL
 			$this->query( 'PRAGMA case_sensitive_like = 1' );
@@ -715,32 +715,7 @@ class DatabaseSqlite extends DatabaseBase {
 		if ( $this->mTrxLevel == 1 ) {
 			$this->commit( __METHOD__ );
 		}
-		try {
-			$this->mConn->beginTransaction();
-		} catch ( PDOException $e ) {
-			throw new DBUnexpectedError( $this, 'Error in BEGIN query: ' . $e->getMessage() );
-		}
-		$this->mTrxLevel = 1;
-	}
-
-	protected function doCommit( $fname = '' ) {
-		if ( $this->mTrxLevel == 0 ) {
-			return;
-		}
-		try {
-			$this->mConn->commit();
-		} catch ( PDOException $e ) {
-			throw new DBUnexpectedError( $this, 'Error in COMMIT query: ' . $e->getMessage() );
-		}
-		$this->mTrxLevel = 0;
-	}
-
-	protected function doRollback( $fname = '' ) {
-		if ( $this->mTrxLevel == 0 ) {
-			return;
-		}
-		$this->mConn->rollBack();
-		$this->mTrxLevel = 0;
+		parent::doBegin( $fname );
 	}
 
 	/**
