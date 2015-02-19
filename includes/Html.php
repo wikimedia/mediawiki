@@ -531,17 +531,20 @@ class Html {
 			} else {
 				// Apparently we need to entity-encode \n, \r, \t, although the
 				// spec doesn't mention that.  Since we're doing strtr() anyway,
-				// and we don't need <> escaped here, we may as well not call
-				// htmlspecialchars().
+				// we may as well not call htmlspecialchars().
 				// @todo FIXME: Verify that we actually need to
 				// escape \n\r\t here, and explain why, exactly.
 				#
 				// We could call Sanitizer::encodeAttribute() for this, but we
 				// don't because we're stubborn and like our marginal savings on
 				// byte size from not having to encode unnecessary quotes.
+				// The only difference between this transform and the one by
+				// Sanitizer::encodeAttribute() is '<' is only encoded here if
+				// $wgWellFormedXml is set, and ' is not encoded.
 				$map = array(
 					'&' => '&amp;',
 					'"' => '&quot;',
+					'>' => '&gt;',
 					"\n" => '&#10;',
 					"\r" => '&#13;',
 					"\t" => '&#9;'
