@@ -3538,13 +3538,13 @@ class Language {
 			if ( $length > 0 ) {
 				$length -= $eLength;
 				$string = substr( $string, 0, $length ); // xyz...
-				$string = $this->removeBadCharLast( $string );
+				$string = StringUtils::removeBadUnicodeCharLast( $string );
 				$string = rtrim( $string );
 				$string = $string . $ellipsis;
 			} else {
 				$length += $eLength;
 				$string = substr( $string, $length ); // ...xyz
-				$string = $this->removeBadCharFirst( $string );
+				$string = StringUtils::removeBadUnicodeCharFirst( $string );
 				$string = ltrim( $string );
 				$string = $ellipsis . $string;
 			}
@@ -3557,49 +3557,6 @@ class Language {
 		} else {
 			return $stringOriginal;
 		}
-	}
-
-	/**
-	 * Remove bytes that represent an incomplete Unicode character
-	 * at the end of string (e.g. bytes of the char are missing)
-	 *
-	 * @param string $string
-	 * @return string
-	 */
-	protected function removeBadCharLast( $string ) {
-		if ( $string != '' ) {
-			$char = ord( $string[strlen( $string ) - 1] );
-			$m = array();
-			if ( $char >= 0xc0 ) {
-				# We got the first byte only of a multibyte char; remove it.
-				$string = substr( $string, 0, -1 );
-			} elseif ( $char >= 0x80 &&
-				preg_match( '/^(.*)(?:[\xe0-\xef][\x80-\xbf]|' .
-					'[\xf0-\xf7][\x80-\xbf]{1,2})$/', $string, $m )
-			) {
-				# We chopped in the middle of a character; remove it
-				$string = $m[1];
-			}
-		}
-		return $string;
-	}
-
-	/**
-	 * Remove bytes that represent an incomplete Unicode character
-	 * at the start of string (e.g. bytes of the char are missing)
-	 *
-	 * @param string $string
-	 * @return string
-	 */
-	protected function removeBadCharFirst( $string ) {
-		if ( $string != '' ) {
-			$char = ord( $string[0] );
-			if ( $char >= 0x80 && $char < 0xc0 ) {
-				# We chopped in the middle of a character; remove the whole thing
-				$string = preg_replace( '/^[\x80-\xbf]+/', '', $string );
-			}
-		}
-		return $string;
 	}
 
 	/**
@@ -3655,7 +3612,7 @@ class Language {
 				} elseif ( $dispLen > $length && $dispLen > strlen( $ellipsis ) ) {
 					# String in fact does need truncation, the truncation point was OK.
 					list( $ret, $openTags ) = $maybeState; // reload state
-					$ret = $this->removeBadCharLast( $ret ); // multi-byte char fix
+					$ret = StringUtils::removeBadUnicodeCharLast( $ret ); // multi-byte char fix
 					$ret .= $ellipsis; // add ellipsis
 					break;
 				}

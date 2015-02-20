@@ -1282,6 +1282,9 @@ class Linker {
 
 		# Sanitize text a bit:
 		$comment = str_replace( "\n", " ", $comment );
+		# Database can contains comments with a half byte at end
+		# due to missing multi byte truncation
+		$comment = StringUtils::removeBadUnicodeCharLast( $comment );
 		# Allow HTML entities (for bug 13815)
 		$comment = Sanitizer::escapeHtmlAllowEntities( $comment );
 
