@@ -21,4 +21,3 @@ end
 Then(/^the edited page content should contain "(.*?)"$/) do |content|
   on(MainPage).page_content.should match(content + @random_string)
 end
-

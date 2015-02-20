@@ -38,4 +38,3 @@ class PreferencesAppearancePage
   radio_button(:vector, id: "mw-input-wpskin-vector")
   radio_button(:year_mo_day_radio, id: "mw-input-wpdate-ymd")
 end
-

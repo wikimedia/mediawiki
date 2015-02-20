@@ -81,5 +81,3 @@ Then(/^I have advanced options checkboxes$/) do
     page.auto_number_check_element.should exist
   end
 end
-
-
