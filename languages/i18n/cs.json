@@ -3288,5 +3288,6 @@
 	"json-error-utf8": "Poškozené znaky UTF-8, možná nesprávné kódování",
 	"json-error-recursion": "Jeden či více rekurzivních odkazů v kódované hodnotě",
 	"json-error-inf-or-nan": "Jedna či více hodnot NAN nebo INF v kódované hodnotě",
-	"json-error-unsupported-type": "Dodána hodnota nekódovatelného typu"
+	"json-error-unsupported-type": "Dodána hodnota nekódovatelného typu",
+	"headline-anchor-title": "Odkaz na tuto sekci"
 }

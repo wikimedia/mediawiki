@@ -2236,7 +2236,7 @@
 	"importstart": "Importiere Seite …",
 	"import-revision-count": "– {{PLURAL:$1|1 Version|$1 Versionen}}",
 	"importnopages": "Keine Seite zum Importieren vorhanden.",
-	"imported-log-entries": "$1 {{PLURAL:$1|lLogbucheintrag|Logbucheinträge}} importiert.",
+	"imported-log-entries": "$1 {{PLURAL:$1|Logbucheintrag|Logbucheinträge}} importiert.",
 	"importfailed": "Import fehlgeschlagen: $1",
 	"importunknownsource": "Unbekannte Importquelle",
 	"importcantopen": "Importdatei konnte nicht geöffnet werden",
@@ -3312,5 +3312,6 @@
 	"json-error-utf8": "Fehlerhafte UTF-8-Zeichen, vermutlich falsch kodiert",
 	"json-error-recursion": "Eine oder mehrere zu kodierende rekursive Referenzen im Wert",
 	"json-error-inf-or-nan": "Eine oder mehrere zu kodierende NAN- oder INF-Werte im Wert",
-	"json-error-unsupported-type": "Ein Wert eines Typs, der nicht kodiert werden kann, wurde angegeben"
+	"json-error-unsupported-type": "Ein Wert eines Typs, der nicht kodiert werden kann, wurde angegeben",
+	"headline-anchor-title": "Link zu diesem Abschnitt"
 }

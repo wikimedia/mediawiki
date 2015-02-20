@@ -406,7 +406,7 @@
 	"userlogin-helplink2": "Дапамога з уваходам у сыстэму",
 	"userlogin-loggedin": "Вы ўжо ўвайшлі як {{GENDER:$1|$1}}.\nДля ўваходу пад іншым удзельнікам скарыстайцеся формай унізе.",
 	"userlogin-createanother": "Стварыць іншы рахунак",
-	"createacct-emailrequired": "E-mail адрас",
+	"createacct-emailrequired": "Адрас электроннай пошты",
 	"createacct-emailoptional": "E-mail адрас (неабавязкова)",
 	"createacct-email-ph": "Увядзіце ваш e-mail адрас",
 	"createacct-another-email-ph": "Увядзіце адрас e-mail",

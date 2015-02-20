@@ -873,6 +873,7 @@
 	"searchrelated": "kapcsolódó",
 	"searchall": "mind",
 	"showingresults": "Lent '''{{PLURAL:$1|egy|$1}}''' találat látható, az eleje '''$2'''.",
+	"search-showingresults": "{{PLURAL:$4|<strong>$1.</strong> a(z) <strong>$3</strong> találatból|<strong>$1–$2.</strong> a(z) <strong>$3</strong> találatból}}",
 	"search-nonefound": "Nincs egyezés a megadott szöveggel.",
 	"powersearch-legend": "Részletes keresés",
 	"powersearch-ns": "Névterek:",
