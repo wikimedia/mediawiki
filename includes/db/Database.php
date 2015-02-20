@@ -1121,24 +1121,21 @@ abstract class DatabaseBase implements IDatabase {
 				$this->mServer, $this->mDBname, $this->mTrxShortId );
 		}
 
-		$queryProf = '';
-		$totalProf = '';
 		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
+		# generalizeSQL will probably cut down the query to reasonable
+		# logging size most of the time. The substr is really just a sanity check.
+		if ( $isMaster ) {
+			$queryProf = 'query-m: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
+			$totalProf = 'DatabaseBase::query-master';
+		} else {
+			$queryProf = 'query: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
+			$totalProf = 'DatabaseBase::query';
+		}
+		# Include query transaction state
+		$queryProf .= $this->mTrxShortId ? " [TRX#{$this->mTrxShortId}]" : "";
 
 		$profiler = Profiler::instance();
 		if ( !$profiler instanceof ProfilerStub ) {
-			# generalizeSQL will probably cut down the query to reasonable
-			# logging size most of the time. The substr is really just a sanity check.
-			if ( $isMaster ) {
-				$queryProf = 'query-m: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
-				$totalProf = 'DatabaseBase::query-master';
-			} else {
-				$queryProf = 'query: ' . substr( DatabaseBase::generalizeSQL( $sql ), 0, 255 );
-				$totalProf = 'DatabaseBase::query';
-			}
-			# Include query transaction state
-			$queryProf .= $this->mTrxShortId ? " [TRX#{$this->mTrxShortId}]" : "";
-
 			$totalProfSection = $profiler->scopedProfileIn( $totalProf );
 			$queryProfSection = $profiler->scopedProfileIn( $queryProf );
 		}
@@ -1162,22 +1159,12 @@ abstract class DatabaseBase implements IDatabase {
 			throw new DBUnexpectedError( $this, "DB connection was already closed." );
 		}
 
-		# Log the query time and feed it into the DB trx profiler
-		if ( $queryProf != '' ) {
-			$that = $this;
-			$queryStartTime = microtime( true );
-			$queryProfile = new ScopedCallback(
-				function () use ( $that, $queryStartTime, $queryProf, $isWriteQuery ) {
-					$n = $that->affectedRows();
-					$trxProf = Profiler::instance()->getTransactionProfiler();
-					$trxProf->recordQueryCompletion(
-						$queryProf, $queryStartTime, $isWriteQuery, $n );
-				}
-			);
-		}
-
 		# Do the query and handle errors
+		$startTime = microtime( true );
 		$ret = $this->doQuery( $commentedSql );
+		# Log the query time and feed it into the DB trx profiler
+		$profiler->getTransactionProfiler()->recordQueryCompletion(
+			$queryProf, $startTime, $isWriteQuery, $this->affectedRows() );
 
 		MWDebug::queryTime( $queryId );
 
@@ -1204,7 +1191,11 @@ abstract class DatabaseBase implements IDatabase {
 					$this->reportQueryError( $lastError, $lastErrno, $sql, $fname, $tempIgnore );
 				} else {
 					# Should be safe to silently retry (no trx and thus no callbacks)
+					$startTime = microtime( true );
 					$ret = $this->doQuery( $commentedSql );
+					# Log the query time and feed it into the DB trx profiler
+					$profiler->getTransactionProfiler()->recordQueryCompletion(
+						$queryProf, $startTime, $isWriteQuery, $this->affectedRows() );
 				}
 			} else {
 				wfDebug( "Failed\n" );
@@ -1212,7 +1203,8 @@ abstract class DatabaseBase implements IDatabase {
 		}
 
 		if ( false === $ret ) {
-			$this->reportQueryError( $this->lastError(), $this->lastErrno(), $sql, $fname, $tempIgnore );
+			$this->reportQueryError(
+				$this->lastError(), $this->lastErrno(), $sql, $fname, $tempIgnore );
 		}
 
 		$res = $this->resultObject( $ret );
