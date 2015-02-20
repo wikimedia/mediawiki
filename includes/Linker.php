@@ -1751,6 +1751,7 @@ class Linker {
 		$link, $legacyAnchor = false
 	) {
 		$ret = "<h$level$attribs"
+			. "<span class=\"mw-headline-wrapper\">"
 			. Html::element( 'a',
 				array(
 					'href' => '#' . $anchor,
@@ -1760,6 +1761,7 @@ class Linker {
 				wfMessage( 'section-symbol' )->text()
 			)
 			. "<span class=\"mw-headline\" id=\"$anchor\">$html</span>"
+			. "</span>"
 			. $link
 			. "</h$level>";
 		if ( $legacyAnchor !== false ) {
