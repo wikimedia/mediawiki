@@ -109,7 +109,7 @@
 			}
 			request = api.post( postData );
 			request.done( function ( response ) {
-				var li, newList, $next, $parent, $list;
+				var li, newList, $content, $parent, $list;
 				if ( response.parse.modules ) {
 					mw.loader.load( response.parse.modules.concat(
 						response.parse.modulescripts,
@@ -163,23 +163,16 @@
 				}
 
 				if ( response.parse.text['*'] ) {
-					$next = $wikiPreview.next();
-					// If there is no next node, use parent instead.
-					// Only query parent if needed, false otherwise.
-					$parent = !$next.length && $wikiPreview.parent();
-
-					$wikiPreview
+					$content = $wikiPreview.children().first();
+					$content
 						.detach()
 						.html( response.parse.text['*'] );
 
-					mw.hook( 'wikipage.content' ).fire( $wikiPreview );
+					mw.hook( 'wikipage.content' ).fire( $content );
 
 					// Reattach
-					if ( $parent ) {
-						$parent.append( $wikiPreview );
-					} else {
-						$next.before( $wikiPreview );
-					}
+					$wikiPreview.append( $content );
+
 					$wikiPreview.show();
 
 				}
