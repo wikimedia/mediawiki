@@ -13,7 +13,6 @@ Given(/^I create page "(.*?)" with content "(.*?)"$/) do |page_title, page_conte
   on(APIPage).create page_title, page_content
 end
 
-
 When(/^I click the Link Target link$/) do
   on(ZtargetPage).link_target_page_link
 end
