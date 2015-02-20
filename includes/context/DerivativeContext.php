@@ -98,6 +98,19 @@ class DerivativeContext extends ContextSource {
 	}
 
 	/**
+	 * Get the stats object
+	 *
+	 * @return BufferingStatsdDataFactory
+	 */
+	public function getStats() {
+		if ( !is_null( $this->stats ) ) {
+			return $this->stats;
+		} else {
+			return $this->getContext()->getStats();
+		}
+	}
+
+	/**
 	 * Set the WebRequest object
 	 *
 	 * @param WebRequest $r
