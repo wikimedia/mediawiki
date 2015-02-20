@@ -354,7 +354,6 @@ $wgAutoloadLocalClasses = array(
 	'DumpPipeOutput' => __DIR__ . '/includes/Export.php',
 	'DumpRenderer' => __DIR__ . '/maintenance/renderDump.php',
 	'DumpRev' => __DIR__ . '/maintenance/storage/dumpRev.php',
-	'DumpSisterSites' => __DIR__ . '/maintenance/dumpSisterSites.php',
 	'DuplicateJob' => __DIR__ . '/includes/jobqueue/jobs/DuplicateJob.php',
 	'EditAction' => __DIR__ . '/includes/actions/EditAction.php',
 	'EditCLI' => __DIR__ . '/maintenance/edit.php',
