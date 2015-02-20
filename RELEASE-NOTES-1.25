@@ -217,6 +217,9 @@ production.
 * list=tags has additional properties to indicate 'active' status and tag
   sources.
 * siprop=libraries was added to ApiQuerySiteInfo to list installed external libraries.
+* (T88010) Added action=checktoken, to test a CSRF token's validity.
+* (T88010) Added intestactions to prop=info, to allow querying of
+  Title::userCan() via the API.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.

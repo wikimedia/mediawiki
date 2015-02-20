@@ -34,6 +34,12 @@
 	"apihelp-block-example-ip-simple": "Block IP address <kbd>192.0.2.5</kbd> for three days with reason <kbd>First strike</kbd>.",
 	"apihelp-block-example-user-complex": "Block user <kbd>Vandal</kbd> indefinitely with reason <kbd>Vandalism</kbd>, and prevent new account creation and email sending.",
 
+	"apihelp-checktoken-description": "Check the validity of a token from <kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd>.",
+	"apihelp-checktoken-param-type": "Type of token being tested.",
+	"apihelp-checktoken-param-token": "Token to test.",
+	"apihelp-checktoken-param-maxtokenage": "Maximum allowed age of the token, in seconds.",
+	"apihelp-checktoken-example-simple": "Test the validity of a <kbd>csrf</kbd> token.",
+
 	"apihelp-clearhasmsg-description": "Clears the <code>hasmsg</code> flag for the current user.",
 	"apihelp-clearhasmsg-example-1": "Clear the <code>hasmsg</code> flag for the current user.",
 
@@ -691,6 +697,7 @@
 	"apihelp-query+info-paramvalue-prop-readable": "Whether the user can read this page.",
 	"apihelp-query+info-paramvalue-prop-preload": "Gives the text returned by EditFormPreloadText.",
 	"apihelp-query+info-paramvalue-prop-displaytitle": "Gives the way the page title is actually displayed.",
+	"apihelp-query+info-param-testactions": "Test whether the current user can perform certain actions on the page.",
 	"apihelp-query+info-param-token": "Use [[Special:ApiHelp/query+tokens|action=query&meta=tokens]] instead.",
 	"apihelp-query+info-example-simple": "Get information about the page <kbd>Main Page</kbd>.",
 	"apihelp-query+info-example-protection": "Get general and protection information about the page <kbd>Main Page</kbd>.",
