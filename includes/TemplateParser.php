@@ -166,6 +166,16 @@ class TemplateParser {
 
 	/**
 	 * Returns HTML for a given template by calling the template function with the given args
+	 *
+	 * @code
+	 *     echo $templateParser->processTemplate(
+	 *         'ExampleTemplate',
+	 *         array(
+	 *             'username' => $wgUser->getName(),
+	 *             'message' => 'Hello!'
+	 *         )
+	 *     );
+	 * @endcode
 	 * @param string $templateName The name of the template
 	 * @param mixed $args
 	 * @param array $scopes
