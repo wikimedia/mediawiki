@@ -212,7 +212,6 @@ class FileDuplicateSearchPage extends QueryPage {
 		if ( $result->isLocal() ) {
 			$userId = $result->getUser( 'id' );
 			$user = Linker::userLink( $userId, $userText );
-			$user .= $this->getContext()->msg( 'word-separator' )->escaped();
 			$user .= '<span style="white-space: nowrap;">';
 			$user .= Linker::userToolLinks( $userId, $userText );
 			$user .= '</span>';
