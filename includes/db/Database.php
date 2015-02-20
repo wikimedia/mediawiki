@@ -753,32 +753,19 @@ abstract class DatabaseBase implements IDatabase {
 	 *
 	 * @param array $params Parameters passed from DatabaseBase::factory()
 	 */
-	function __construct( $params = null ) {
+	function __construct( array $params ) {
 		global $wgDBprefix, $wgDBmwschema, $wgCommandLineMode, $wgDebugDBTransactions;
 
 		$this->mTrxAtomicLevels = new SplStack;
 
-		if ( is_array( $params ) ) { // MW 1.22
-			$server = $params['host'];
-			$user = $params['user'];
-			$password = $params['password'];
-			$dbName = $params['dbname'];
-			$flags = $params['flags'];
-			$tablePrefix = $params['tablePrefix'];
-			$schema = $params['schema'];
-			$foreign = $params['foreign'];
-		} else { // legacy calling pattern
-			wfDeprecated( __METHOD__ . " method called without parameter array.", "1.23" );
-			$args = func_get_args();
-			$server = isset( $args[0] ) ? $args[0] : false;
-			$user = isset( $args[1] ) ? $args[1] : false;
-			$password = isset( $args[2] ) ? $args[2] : false;
-			$dbName = isset( $args[3] ) ? $args[3] : false;
-			$flags = isset( $args[4] ) ? $args[4] : 0;
-			$tablePrefix = isset( $args[5] ) ? $args[5] : 'get from global';
-			$schema = 'get from global';
-			$foreign = isset( $args[6] ) ? $args[6] : false;
-		}
+		$server = $params['host'];
+		$user = $params['user'];
+		$password = $params['password'];
+		$dbName = $params['dbname'];
+		$flags = $params['flags'];
+		$tablePrefix = $params['tablePrefix'];
+		$schema = $params['schema'];
+		$foreign = $params['foreign'];
 
 		$this->mFlags = $flags;
 		if ( $this->mFlags & DBO_DEFAULT ) {
@@ -902,18 +889,17 @@ abstract class DatabaseBase implements IDatabase {
 
 		$class = 'Database' . ucfirst( $driver );
 		if ( class_exists( $class ) && is_subclass_of( $class, 'DatabaseBase' ) ) {
-			$params = array(
-				'host' => isset( $p['host'] ) ? $p['host'] : false,
-				'user' => isset( $p['user'] ) ? $p['user'] : false,
-				'password' => isset( $p['password'] ) ? $p['password'] : false,
-				'dbname' => isset( $p['dbname'] ) ? $p['dbname'] : false,
-				'flags' => isset( $p['flags'] ) ? $p['flags'] : 0,
-				'tablePrefix' => isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : 'get from global',
-				'schema' => isset( $p['schema'] ) ? $p['schema'] : $defaultSchemas[$dbType],
-				'foreign' => isset( $p['foreign'] ) ? $p['foreign'] : false
-			);
+			// Resolve some defaults for b/c
+			$p['host'] = isset( $p['host'] ) ? $p['host'] : false;
+			$p['user'] = isset( $p['user'] ) ? $p['user'] : false;
+			$p['password'] = isset( $p['password'] ) ? $p['password'] : false;
+			$p['dbname'] = isset( $p['dbname'] ) ? $p['dbname'] : false;
+			$p['flags'] = isset( $p['flags'] ) ? $p['flags'] : 0;
+			$p['tablePrefix'] = isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : 'get from global';
+			$p['schema'] = isset( $p['schema'] ) ? $p['schema'] : $defaultSchemas[$dbType];
+			$p['foreign'] = isset( $p['foreign'] ) ? $p['foreign'] : false;
 
-			return new $class( $params );
+			return new $class( $p );
 		} else {
 			return null;
 		}
