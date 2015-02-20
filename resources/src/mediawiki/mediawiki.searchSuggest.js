@@ -163,6 +163,12 @@
 			// each skin or adding more stylesheets, just copy it from the active element so auto-fit.
 			.each( function () {
 				var $this = $( this );
+				if( $searchInput[0] === $this[0] ){
+					$this
+						.data( 'suggestions-context' )
+						.data.$container
+							.addClass( 'search-suggestions' );
+				}
 				$this
 					.data( 'suggestions-context' )
 					.data.$container
