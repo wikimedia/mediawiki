@@ -271,6 +271,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'dropField', 'site_stats', 'ss_total_views', 'patch-drop-ss_total_views.sql' ),
 			array( 'dropField', 'page', 'page_counter', 'patch-drop-page_counter.sql' ),
 			array( 'doUserNewTalkUseridUnsigned' ),
+			// note this patch covers other _comment and _description fields too
+			array( 'modifyField', 'recentchanges', 'rc_comment', 'patch-editsummary-length.sql' ),
 		);
 	}
 
