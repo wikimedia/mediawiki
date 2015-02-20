@@ -18,6 +18,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
+ * @since 1.25
  */
 class TemplateParser {
 	/**
@@ -40,7 +41,7 @@ class TemplateParser {
 	 * @param boolean $forceRecompile
 	 */
 	public function __construct( $templateDir = null, $forceRecompile = false ) {
-		$this->templateDir = $templateDir ? $templateDir : __DIR__.'/templates';
+		$this->templateDir = $templateDir ? $templateDir : __DIR__ . '/templates';
 		$this->forceRecompile = $forceRecompile;
 	}
 
@@ -77,8 +78,6 @@ class TemplateParser {
 	 * @throws Exception
 	 */
 	public function getTemplate( $templateName ) {
-		global $wgSecretKey;
-
 		// If a renderer has already been defined for this template, reuse it
 		if ( isset( $this->renderers[$templateName] ) ) {
 			return $this->renderers[$templateName];
@@ -95,6 +94,10 @@ class TemplateParser {
 
 		// Generate a quick hash for cache invalidation
 		$fastHash = md5( $fileContents );
+
+		// Fetch a secret key for building a keyed hash of the PHP code
+		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+		$secretKey = $config->get( 'SecretKey' );
 
 		// See if the compiled PHP code is stored in cache.
 		// CACHE_ACCEL throws an exception if no suitable object cache is present, so fall
@@ -123,7 +126,7 @@ class TemplateParser {
 			$renderer = eval( $code );
 
 			// Prefix the code with a keyed hash (64 hex chars) as an integrity check
-			$code = hash_hmac( 'sha256', $code, $wgSecretKey ) . $code;
+			$code = hash_hmac( 'sha256', $code, $secretKey ) . $code;
 
 			// Cache the compiled PHP code
 			$cache->set( $key, $code );
@@ -131,7 +134,7 @@ class TemplateParser {
 			// Verify the integrity of the cached PHP code
 			$keyedHash = substr( $code, 0, 64 );
 			$code = substr( $code, 64 );
-			if ( $keyedHash === hash_hmac( 'sha256', $code, $wgSecretKey ) ) {
+			if ( $keyedHash === hash_hmac( 'sha256', $code, $secretKey ) ) {
 				$renderer = eval( $code );
 			} else {
 				throw new Exception( "Template failed integrity check: {$filename}" );
