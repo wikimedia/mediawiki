@@ -513,7 +513,8 @@ abstract class ApiQueryBase extends ApiBase {
 	 */
 	public function titlePartToKey( $titlePart, $namespace = NS_MAIN ) {
 		$t = Title::makeTitleSafe( $namespace, $titlePart . 'x' );
-		if ( !$t ) {
+		if ( !$t || $t->hasFragment() ) {
+			// Invalid title (e.g. bad chars) or contained a '#'.
 			$this->dieUsageMsg( array( 'invalidtitle', $titlePart ) );
 		}
 		if ( $namespace != $t->getNamespace() || $t->isExternal() ) {
