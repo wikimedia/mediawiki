@@ -3368,10 +3368,15 @@ class User implements IDBAccessObject {
 	 *  false: Force NOT setting the secure attribute when setting the cookie
 	 *  null (default): Use the default ($wgCookieSecure) to set the secure attribute
 	 * @param array $params Array of options sent passed to WebResponse::setcookie()
+	 * @param WebRequest|null $request WebRequest object to use; $wgRequest will be used if null
+	 *        is passed.
 	 */
-	protected function setCookie( $name, $value, $exp = 0, $secure = null, $params = array() ) {
+	protected function setCookie( $name, $value, $exp = 0, $secure = null, $params = array(), $request = null ) {
+		if ( $request === null ) {
+			$request = $this->getRequest();
+		}
 		$params['secure'] = $secure;
-		$this->getRequest()->response()->setcookie( $name, $value, $exp, $params );
+		$request->response()->setcookie( $name, $value, $exp, $params );
 	}
 
 	/**
@@ -3436,7 +3441,7 @@ class User implements IDBAccessObject {
 			if ( $value === false ) {
 				$this->clearCookie( $name );
 			} else {
-				$this->setCookie( $name, $value, 0, $secure );
+				$this->setCookie( $name, $value, 0, $secure, array(), $request );
 			}
 		}
 
