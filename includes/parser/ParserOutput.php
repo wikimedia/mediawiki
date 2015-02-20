@@ -684,7 +684,7 @@ class ParserOutput extends CacheTime {
 	 *
 	 * @note: custom DataUpdates do not survive serialization of the ParserOutput!
 	 * This is especially relevant when using a cached ParserOutput for updating
-	 * the database, as WikiPage does if $wgAjaxStashEdit is enabled. For this
+	 * the database, as WikiPage does if $wgAjaxEditStash is enabled. For this
 	 * reason, ApiStashEdit will skip any ParserOutput that has custom DataUpdates.
 	 *
 	 * @since 1.20
