@@ -3378,35 +3378,70 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Opportunistically enqueue link update jobs given fresh parser output if useful
+	 * Updates cascading protections
 	 *
-	 * @param ParserOutput $parserOutput Current version page output
-	 * @return bool Whether a job was pushed
-	 * @since 1.25
+	 * @param ParserOutput $parserOutput ParserOutput object for the current version
 	 */
-	public function triggerOpportunisticLinksUpdate( ParserOutput $parserOutput ) {
-		if ( wfReadOnly() ) {
-			return false;
+	public function doCascadeProtectionUpdates( ParserOutput $parserOutput ) {
+		if ( wfReadOnly() || !$this->mTitle->areRestrictionsCascading() ) {
+			return;
 		}
 
-		if ( $this->mTitle->areRestrictionsCascading() ) {
-			// If the page is cascade protecting, the links should really be up-to-date
-			$params = array( 'prioritize' => true );
-		} elseif ( $parserOutput->hasDynamicContent() ) {
-			// Assume the output contains time/random based magic words
-			$params = array();
-		} else {
-			// If the inclusions are deterministic, the edit-triggered link jobs are enough
-			return false;
+		// templatelinks or imagelinks tables may have become out of sync,
+		// especially if using variable-based transclusions.
+		// For paranoia, check if things have changed and if
+		// so apply updates to the database. This will ensure
+		// that cascaded protections apply as soon as the changes
+		// are visible.
+
+		// Get templates from templatelinks and images from imagelinks
+		$id = $this->getId();
+
+		$dbLinks = array();
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( array( 'templatelinks' ),
+			array( 'tl_namespace', 'tl_title' ),
+			array( 'tl_from' => $id ),
+			__METHOD__
+		);
+
+		foreach ( $res as $row ) {
+			$dbLinks["{$row->tl_namespace}:{$row->tl_title}"] = true;
 		}
 
-		// Check if the last link refresh was before page_touched
-		if ( $this->getLinksTimestamp() < $this->getTouched() ) {
-			JobQueueGroup::singleton()->push( new RefreshLinksJob( $this->mTitle, $params ) );
-			return true;
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( array( 'imagelinks' ),
+			array( 'il_to' ),
+			array( 'il_from' => $id ),
+			__METHOD__
+		);
+
+		foreach ( $res as $row ) {
+			$dbLinks[NS_FILE . ":{$row->il_to}"] = true;
 		}
 
-		return false;
+		// Get templates and images from parser output.
+		$poLinks = array();
+		foreach ( $parserOutput->getTemplates() as $ns => $templates ) {
+			foreach ( $templates as $dbk => $id ) {
+				$poLinks["$ns:$dbk"] = true;
+			}
+		}
+		foreach ( $parserOutput->getImages() as $dbk => $id ) {
+			$poLinks[NS_FILE . ":$dbk"] = true;
+		}
+
+		// Get the diff
+		$links_diff = array_diff_key( $poLinks, $dbLinks );
+
+		if ( count( $links_diff ) > 0 ) {
+			// Whee, link updates time.
+			// Note: we are only interested in links here. We don't need to get
+			// other DataUpdate items from the parser output.
+			$u = new LinksUpdate( $this->mTitle, $parserOutput, false );
+			$u->doUpdate();
+		}
 	}
 
 	/**

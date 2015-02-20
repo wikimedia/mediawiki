@@ -159,7 +159,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 		}
 
 		if ( $isCurrent ) {
-			$this->page->triggerOpportunisticLinksUpdate( $this->parserOutput );
+			$this->page->doCascadeProtectionUpdates( $this->parserOutput );
 		}
 
 		return true;

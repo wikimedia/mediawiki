@@ -43,6 +43,7 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 	}
 
 	public function doUpdate() {
+
 		$job = new HTMLCacheUpdateJob(
 			$this->mTitle,
 			array(
@@ -62,5 +63,6 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 				$job->run(); // just do the purge query now
 			} );
 		}
+
 	}
 }

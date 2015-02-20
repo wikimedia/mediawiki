@@ -228,24 +228,12 @@ class LinksUpdate extends SqlDataUpdate {
 	 * Which means do LinksUpdate on all pages that include the current page,
 	 * using the job queue.
 	 */
-	protected function queueRecursiveJobs() {
+	function queueRecursiveJobs() {
 		self::queueRecursiveJobsForTable( $this->mTitle, 'templatelinks' );
 		if ( $this->mTitle->getNamespace() == NS_FILE ) {
 			// Process imagelinks in case the title is or was a redirect
 			self::queueRecursiveJobsForTable( $this->mTitle, 'imagelinks' );
 		}
-
-		$bc = $this->mTitle->getBacklinkCache();
-		// Get jobs for cascade-protected backlinks for a high priority queue.
-		// If meta-templates change to using a new template, the new template
-		// should be implicitly protected as soon as possible, if applicable.
-		// These jobs duplicate a subset of the above ones, but can run sooner.
-		// Which ever runs first generally no-ops the other one.
-		$jobs = array();
-		foreach ( $bc->getCascadeProtectedLinks() as $title ) {
-			$jobs[] = new RefreshLinksJob( $title, array( 'prioritize' => true ) );
-		}
-		JobQueueGroup::singleton()->push( $jobs );
 	}
 
 	/**
@@ -265,7 +253,6 @@ class LinksUpdate extends SqlDataUpdate {
 					"refreshlinks:{$table}:{$title->getPrefixedText()}"
 				)
 			);
-
 			JobQueueGroup::singleton()->push( $job );
 			JobQueueGroup::singleton()->deduplicateRootJob( $job );
 		}

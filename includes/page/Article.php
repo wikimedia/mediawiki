@@ -707,7 +707,7 @@ class Article implements Page {
 		}
 
 		# Get the ParserOutput actually *displayed* here.
-		# Note that $this->mParserOutput is the *current*/oldid version output.
+		# Note that $this->mParserOutput is the *current* version output.
 		$pOutput = ( $outputDone instanceof ParserOutput )
 			? $outputDone // object fetched by hook
 			: $this->mParserOutput;
