@@ -111,6 +111,8 @@ production.
   used for conditional registration of API modules.
 * New hook 'EnhancedChangesList::getLogText' to alter, remove or add to the
   links of a group of changes in EnhancedChangesList.
+* A full interface for StatsD metric reporting has been added to the context
+  interface, reachable via IContextSource::getStats().
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
@@ -137,6 +139,8 @@ production.
    This library was formerly a part of MediaWiki core, and has been moved into a separate library.
    It provides CDB functions which are used in the Interwiki and Localization caches.
    More information about the library can be found at https://www.mediawiki.org/wiki/CDB.
+** liuggio/statsd-php-client
+   This library provides a StatsD client API for logging application metrics to a remote server.
 
 === Bug fixes in 1.25 ===
 * (T73003) No additional code will be generated to try to load CSS-embedded
