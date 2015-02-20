@@ -223,12 +223,8 @@ jQuery( function ( $ ) {
 		localTime = servertime + minuteDiff;
 
 		// Bring time within the [0,1440) range.
-		while ( localTime < 0 ) {
-			localTime += 1440;
-		}
-		while ( localTime >= 1440 ) {
-			localTime -= 1440;
-		}
+		localTime = ( ( localTime % 1440 ) + 1440 ) % 1440;
+
 		$localtimeHolder.text( mediaWiki.language.convertNumber( minutesToHours( localTime ) ) );
 	}
 
