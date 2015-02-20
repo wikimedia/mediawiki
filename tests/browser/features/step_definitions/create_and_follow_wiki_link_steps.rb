@@ -19,7 +19,7 @@ When(/^I click the Link Target link$/) do
 end
 
 Then(/^I should be on the Link Target Test Page$/) do
-  @browser.url.should match /Link_Target_Test_Page/
+  @browser.url.should match(/Link_Target_Test_Page/)
 end
 
 Then(/^the page content should contain "(.*?)"$/) do |content|
