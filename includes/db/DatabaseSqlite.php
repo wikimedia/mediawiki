@@ -806,7 +806,7 @@ class DatabaseSqlite extends DatabaseBase {
 			// CREATE TABLE hacks to allow schema file sharing with MySQL
 
 			// binary/varbinary column type -> blob
-			$s = preg_replace( '/\b(var)?binary(\(\d+\))/i', 'BLOB', $s );
+			$s = preg_replace( '/\b(var)?binary(\([^)]+\))/i', 'BLOB', $s );
 			// no such thing as unsigned
 			$s = preg_replace( '/\b(un)?signed\b/i', '', $s );
 			// INT -> INTEGER

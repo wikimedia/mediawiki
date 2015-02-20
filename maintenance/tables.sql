@@ -304,7 +304,7 @@ CREATE TABLE /*_*/revision (
   -- Text comment summarizing the change.
   -- This text is shown in the history and other changes lists,
   -- rendered in a subset of wiki markup by Linker::formatComment()
-  rev_comment tinyblob NOT NULL,
+  rev_comment varbinary(/*$wgEditSummaryLength*/) NOT NULL default '',
 
   -- Key to user.user_id of the user who made this edit.
   -- Stores 0 for anonymous edits and for some mass imports.
@@ -411,7 +411,7 @@ CREATE TABLE /*_*/archive (
   ar_text mediumblob NOT NULL,
 
   -- Basic revision stuff...
-  ar_comment tinyblob NOT NULL,
+  ar_comment varbinary(/*$wgEditSummaryLength*/) NOT NULL default '',
   ar_user int unsigned NOT NULL default 0,
   ar_user_text varchar(255) binary NOT NULL,
   ar_timestamp binary(14) NOT NULL default '',
@@ -846,7 +846,7 @@ CREATE TABLE /*_*/image (
 
   -- Description field as entered by the uploader.
   -- This is displayed in image upload history and logs.
-  img_description tinyblob NOT NULL,
+  img_description varbinary(/*$wgEditSummaryLength*/) NOT NULL default '',
 
   -- user_id and user_name of uploader.
   img_user int unsigned NOT NULL default 0,
@@ -888,7 +888,7 @@ CREATE TABLE /*_*/oldimage (
   oi_width int NOT NULL default 0,
   oi_height int NOT NULL default 0,
   oi_bits int NOT NULL default 0,
-  oi_description tinyblob NOT NULL,
+  oi_description varbinary(/*$wgEditSummaryLength*/) NOT NULL default '',
   oi_user int unsigned NOT NULL default 0,
   oi_user_text varchar(255) binary NOT NULL,
   oi_timestamp binary(14) NOT NULL default '',
@@ -947,7 +947,7 @@ CREATE TABLE /*_*/filearchive (
   fa_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE") default NULL,
   fa_major_mime ENUM("unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart", "chemical") default "unknown",
   fa_minor_mime varbinary(100) default "unknown",
-  fa_description tinyblob,
+  fa_description varbinary(/*$wgEditSummaryLength*/),
   fa_user int unsigned default 0,
   fa_user_text varchar(255) binary,
   fa_timestamp binary(14) default '',
@@ -1045,7 +1045,7 @@ CREATE TABLE /*_*/recentchanges (
   rc_title varchar(255) binary NOT NULL default '',
 
   -- as in revision...
-  rc_comment varchar(255) binary NOT NULL default '',
+  rc_comment varbinary(/*$wgEditSummaryLength*/) NOT NULL default '',
   rc_minor tinyint unsigned NOT NULL default 0,
 
   -- Edits by user accounts with the 'bot' rights key are
@@ -1253,7 +1253,7 @@ CREATE TABLE /*_*/logging (
   log_page int unsigned NULL,
 
   -- Freeform text. Interpreted as edit history comments.
-  log_comment varchar(255) NOT NULL default '',
+  log_comment varbinary(/*$wgEditSummaryLength*/) NOT NULL default '',
 
   -- miscellaneous parameters:
   -- LF separated list (old system) or serialized PHP array (new system)

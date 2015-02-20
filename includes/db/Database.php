@@ -46,6 +46,10 @@ abstract class DatabaseBase implements IDatabase {
 	/** Maximum time to wait before retry */
 	const DEADLOCK_DELAY_MAX = 1500000;
 
+	/** How long an edit summary */
+	const SHORT_EDIT_SUMMARY = 255;
+	const LONG_EDIT_SUMMARY = 767;
+
 	protected $mLastQuery = '';
 	protected $mDoneWrites = false;
 	protected $mPHPError = false;
@@ -4374,5 +4378,17 @@ abstract class DatabaseBase implements IDatabase {
 			$callers = implode( ', ', $callers );
 			trigger_error( "DB transaction callbacks still pending (from $callers)." );
 		}
+	}
+
+	/**
+	 * Get the max length of an edit summary
+	 *
+	 * Innodb supports larger length than some other engines
+	 * @note If changing this, also change MysqlInstaller::getSchemaVars
+	 * @since 1.25
+	 * @return integer (Either self::SHORT_EDIT_SUMMARY or self::LONG_EDIT_SUMMARY)
+	 */
+	public function getEditSummaryLength() {
+		return self::SHORT_EDIT_SUMMARY;
 	}
 }

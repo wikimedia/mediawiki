@@ -47,7 +47,7 @@ class MysqlInstaller extends DatabaseInstaller {
 
 	public $supportedEngines = array( 'InnoDB', 'MyISAM' );
 
-	public $minimumVersion = '5.0.2';
+	public $minimumVersion = '5.0.3';
 
 	public $webUserPrivs = array(
 		'DELETE',
@@ -651,11 +651,17 @@ class MysqlInstaller extends DatabaseInstaller {
 	 * @return array
 	 */
 	public function getSchemaVars() {
+		// Not calling $this->db->getEditSummaryLength(), because unclear if globals set.
+		$editSummary = DatabaseBase::SHORT_EDIT_SUMMARY;
+		if ( $this->getVar( '_MysqlEngine' ) === 'InnoDB' ) {
+			$editSummary = DatabaseBase::LONG_EDIT_SUMMARY;
+		}
 		return array(
 			'wgDBTableOptions' => $this->getTableOptions(),
 			'wgDBname' => $this->getVar( 'wgDBname' ),
 			'wgDBuser' => $this->getVar( 'wgDBuser' ),
 			'wgDBpassword' => $this->getVar( 'wgDBpassword' ),
+			'wgEditSummaryLength' => $editSummary
 		);
 	}
 

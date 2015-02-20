@@ -1103,6 +1103,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 */
 	protected function getDefaultSchemaVars() {
 		$vars = parent::getDefaultSchemaVars();
+		$vars['wgEditSummaryLength'] = $this->getEditSummaryLength();
 		$vars['wgDBTableOptions'] = str_replace( 'TYPE', 'ENGINE', $GLOBALS['wgDBTableOptions'] );
 		$vars['wgDBTableOptions'] = str_replace(
 			'CHARSET=mysql4',
@@ -1179,6 +1180,27 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	 */
 	public function isView( $name, $prefix = null ) {
 		return in_array( $name, $this->listViews( $prefix ) );
+	}
+
+	/**
+	 * Get the max length of an edit summary
+	 *
+	 * Innodb supports larger length than some other engines.
+	 * In particular, the MyISAM engine puts length limits on the total
+	 * size of an index which would interfere with covering indexes.
+	 * OTOH, there are no covering indexes on this field in the default
+	 * config, and people who a custom doing their indexes probably
+	 * aren't using MyISAM. So maybe no need to worry?
+	 *
+	 * @since 1.25
+	 * @return integer
+	 */
+	public function getEditSummaryLength() {
+		global $wgDBTableOptions;
+		if ( strstr( $wgDBTableOptions, 'InnoDB' ) !== false ) {
+			return self::LONG_EDIT_SUMMARY;
+		}
+		return self::SHORT_EDIT_SUMMARY;
 	}
 }
 
