@@ -207,23 +207,9 @@ class DatabaseOracle extends DatabaseBase {
 	/** @var array */
 	private $mFieldInfoCache = array();
 
-	function __construct( $p = null ) {
+	function __construct( array $p ) {
 		global $wgDBprefix;
 
-		if ( !is_array( $p ) ) { // legacy calling pattern
-			wfDeprecated( __METHOD__ . " method called without parameter array.", "1.22" );
-			$args = func_get_args();
-			$p = array(
-				'host' => isset( $args[0] ) ? $args[0] : false,
-				'user' => isset( $args[1] ) ? $args[1] : false,
-				'password' => isset( $args[2] ) ? $args[2] : false,
-				'dbname' => isset( $args[3] ) ? $args[3] : false,
-				'flags' => isset( $args[4] ) ? $args[4] : 0,
-				'tablePrefix' => isset( $args[5] ) ? $args[5] : 'get from global',
-				'schema' => 'get from global',
-				'foreign' => isset( $args[6] ) ? $args[6] : false
-			);
-		}
 		if ( $p['tablePrefix'] == 'get from global' ) {
 			$p['tablePrefix'] = $wgDBprefix;
 		}
