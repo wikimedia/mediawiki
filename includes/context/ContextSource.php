@@ -153,6 +153,17 @@ abstract class ContextSource implements IContextSource {
 	}
 
 	/**
+	 * Get the Stats object
+	 *
+	 * @since 1.25
+	 * @return StatsdDataFactory
+	 */
+	public function getStats() {
+		return $this->getContext()->getStats();
+	}
+
+
+	/**
 	 * Get a Message object with context set
 	 * Parameters are the same as wfMessage()
 	 *

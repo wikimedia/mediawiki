@@ -24,6 +24,9 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( "This file is part of MediaWiki, it is not a valid entry point" );
 }
 
+use Liuggio\StatsdClient\StatsdClient;
+use Liuggio\StatsdClient\Sender\SocketSender;
+
 // Hide compatibility functions from Doxygen
 /// @cond
 
@@ -1271,7 +1274,16 @@ function wfLogProfilingData() {
 	global $wgRequestTime, $wgDebugLogGroups, $wgDebugRawPage;
 	global $wgProfileLimit, $wgUser, $wgRequest;
 
-	StatCounter::singleton()->flush();
+	$context = RequestContext::getMain();
+	$config = $context->getConfig();
+	if ( $config->has( 'StatsdServer' ) ) {
+		$statsdServer = explode( ':', $config->get( 'StatsdServer' ) );
+		$statsdHost = $statsdServer[0];
+		$statsdPort = isset( $statsdServer[1] ) ? $statsdServer[1] : 8125;
+		$statsdSender = new SocketSender( $statsdHost, $statsdPort );
+		$statsdClient = new StatsdClient( $statsdSender );
+		$statsdClient->send( $context->getStats()->getBuffer() );
+	}
 
 	$profiler = Profiler::instance();
 
@@ -1346,7 +1358,8 @@ function wfLogProfilingData() {
  * @return void
  */
 function wfIncrStats( $key, $count = 1 ) {
-	StatCounter::singleton()->incr( $key, $count );
+	$stats = RequestContext::getMain()->getStats();
+	$stats->updateCount( $key, $count );
 }
 
 /**
