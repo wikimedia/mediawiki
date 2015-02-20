@@ -574,7 +574,7 @@ class Article implements Page {
 		$useParserCache = $this->mPage->isParserCacheUsed( $parserOptions, $oldid );
 		wfDebug( 'Article::view using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) . "\n" );
 		if ( $user->getStubThreshold() ) {
-			wfIncrStats( 'pcache_miss_stub' );
+			$this->getContext()->getStats()->increment( 'pcache_miss_stub' );
 		}
 
 		$this->showRedirectedFromHeader();

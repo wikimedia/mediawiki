@@ -62,6 +62,11 @@ class RequestContext implements IContextSource {
 	private $skin;
 
 	/**
+	 * @var BoundStatsdDataFactory
+	 */
+	private $stats;
+
+	/**
 	 * @var Config
 	 */
 	private $config;
@@ -116,6 +121,18 @@ class RequestContext implements IContextSource {
 		}
 
 		return $this->request;
+	}
+
+	/**
+	 * Get the Stats object
+	 *
+	 * @return BoundStatsdDataFactory
+	 */
+	public function getStats() {
+		if ( $this->stats === null ) {
+			$this->stats = new BoundStatsdDataFactory( $this );
+		}
+		return $this->stats;
 	}
 
 	/**
