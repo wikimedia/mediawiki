@@ -24,6 +24,8 @@
  * @file
  */
 
+use Liuggio\StatsdClient\Factory\StatsdDataFactory;
+
 /**
  * Group all the pieces relevant to the context of a request into one instance
  */
@@ -62,6 +64,11 @@ class RequestContext implements IContextSource {
 	 * @var Skin
 	 */
 	private $skin;
+
+	/**
+	 * @var BoundStatsdDataFactory
+	 */
+	private $stats;
 
 	/**
 	 * @var Config
@@ -118,6 +125,18 @@ class RequestContext implements IContextSource {
 		}
 
 		return $this->request;
+	}
+
+	/**
+	 * Get the Stats object
+	 *
+	 * @return BoundStatsdDataFactory
+	 */
+	public function getStats() {
+		if ( $this->stats === null ) {
+			$this->stats = new BoundStatsdDataFactory( $this );
+		}
+		return $this->stats;
 	}
 
 	/**
