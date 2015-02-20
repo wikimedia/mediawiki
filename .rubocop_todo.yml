@@ -35,11 +35,6 @@ Style/HashSyntax:
 Style/PerlBackrefs:
   Enabled: false
 
-# Offense count: 4
-# Cop supports --auto-correct.
-Style/SpaceAroundOperators:
-  Enabled: false
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles, EnforcedStyleForEmptyBraces, SpaceBeforeBlockParameters.
