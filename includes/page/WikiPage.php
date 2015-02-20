@@ -2592,6 +2592,9 @@ class WikiPage implements Page, IDBAccessObject {
 			)->inContentLanguage()->text();
 		}
 
+		// Truncate for whole multibyte characters
+		$editComment = $wgContLang->truncate( $editComment, 255 );
+
 		$nullRev = Revision::newNullRevision( $dbw, $this->getId(), $editComment, true, $user );
 		if ( $nullRev ) {
 			$nullRev->insertOn( $dbw );
