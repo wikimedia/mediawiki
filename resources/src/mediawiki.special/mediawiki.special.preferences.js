@@ -12,8 +12,11 @@ jQuery( function ( $ ) {
 	};
 
 	$( '#prefsubmit' ).attr( 'id', 'prefcontrol' );
-	$preftoc = $( '<ul id="preftoc"></ul>' )
-		.attr( 'role', 'tablist' );
+	$preftoc = $( '<ul>' )
+		.attr( {
+			id: 'preftoc',
+			role: 'tablist'
+		} );
 	$preferences = $( '#preferences' )
 		.addClass( 'jsprefs' )
 		.before( $preftoc );
