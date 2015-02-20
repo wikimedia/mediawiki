@@ -39,10 +39,6 @@ class RefreshLinksJob extends Job {
 
 	function __construct( $title, $params = '' ) {
 		parent::__construct( 'refreshLinks', $title, $params );
-		// A separate type is used just for cascade-protected backlinks
-		if ( !empty( $this->params['prioritize'] ) ) {
-			$this->command .= 'Prioritized';
-		}
 		// Base backlink update jobs and per-title update jobs can be de-duplicated.
 		// If template A changes twice before any jobs run, a clean queue will have:
 		//		(A base, A base)
@@ -104,10 +100,6 @@ class RefreshLinksJob extends Job {
 		return true;
 	}
 
-	/**
-	 * @param Title $title
-	 * @return bool
-	 */
 	protected function runForTitle( Title $title = null ) {
 		$linkCache = LinkCache::singleton();
 		$linkCache->clear();

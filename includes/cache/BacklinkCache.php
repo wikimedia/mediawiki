@@ -487,45 +487,4 @@ class BacklinkCache {
 
 		return array( 'numRows' => $numRows, 'batches' => $batches );
 	}
-
-	/**
-	 * Get a Title iterator for cascade-protected template/file use backlinks
-	 *
-	 * @return TitleArray
-	 * @since 1.25
-	 */
-	public function getCascadeProtectedLinks() {
-		// This method is used to make redudant jobs anyway, so its OK to use
-		// a slave. Also, the set of cascade protected pages tends to be stable.
-		$dbr = $this->getDB();
-
-		$queries = array();
-		// @note: UNION filters any duplicate pages
-		$queries[] = $dbr->selectSQLText(
-			array( 'templatelinks', 'page_restrictions', 'page' ),
-			array( 'page_namespace', 'page_title', 'page_id' ),
-			array(
-				'tl_namespace' => $this->title->getNamespace(),
-				'tl_title' => $this->title->getDBkey(),
-				'tl_from = pr_page',
-				'pr_cascade' => 1,
-				'page_id = tl_from'
-			)
-		);
-		$queries[] = $dbr->selectSQLText(
-			array( 'imagelinks', 'page_restrictions', 'page' ),
-			array( 'page_namespace', 'page_title', 'page_id' ),
-			array(
-				'il_to' => $this->title->getDBkey(),
-				'il_from = pr_page',
-				'pr_cascade' => 1,
-				'page_id = il_from'
-			)
-		);
-
-		return TitleArray::newFromResult( $dbr->query(
-			$dbr->unionQueries( $queries, false ),
-			__METHOD__
-		) );
-	}
 }

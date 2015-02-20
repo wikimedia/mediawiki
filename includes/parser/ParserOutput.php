@@ -880,22 +880,6 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * Check whether the cache TTL was lowered due to dynamic content
-	 *
-	 * When content is determined by more than hard state (e.g. page edits),
-	 * such as template/file transclusions based on the current timestamp or
-	 * extension tags that generate lists based on queries, this return true.
-	 *
-	 * @return bool
-	 * @since 1.25
-	 */
-	public function hasDynamicContent() {
-		global $wgParserCacheExpireTime;
-
-		return $this->getCacheExpiry() < $wgParserCacheExpireTime;
-	}
-
-	/**
 	 * Get or set the prevent-clickjacking flag
 	 *
 	 * @since 1.24
