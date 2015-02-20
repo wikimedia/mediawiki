@@ -100,6 +100,14 @@ interface IContextSource {
 	public function getConfig();
 
 	/**
+	 * Get the stats object
+	 *
+	 * @since 1.25
+	 * @return BufferingStatsdDataFactory
+	 */
+	public function getStats();
+
+	/**
 	 * Get a Message object with context set
 	 *
 	 * @return Message
