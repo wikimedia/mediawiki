@@ -587,7 +587,7 @@ class Language {
 		global $wgExtraGenderNamespaces;
 
 		$ns = $wgExtraGenderNamespaces +
-			self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
+			(array)self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
 
 		return isset( $ns[$index][$gender] ) ? $ns[$index][$gender] : $this->getNsText( $index );
 	}
