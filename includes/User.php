@@ -4416,7 +4416,7 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Get a list of all available permissions.
-	 * @return array Array of permission names
+	 * @return string[] Array of permission names
 	 */
 	public static function getAllRights() {
 		if ( self::$mAllRights === false ) {
