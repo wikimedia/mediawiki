@@ -5,11 +5,33 @@
 		}
 	} ) );
 
+	QUnit.test( 'getId', 5, function ( assert ) {
+		$.each( [null, {}, 1, 'foo', new Error()], function ( i, v ) {
+			assert.ok( mw.errorLogging.getId( v ), 'Sanity check #' + i );
+		} );
+	} );
+
+	QUnit.test( 'logError', 2, function () {
+		var error = new Error(),
+			context = {};
+
+		this.sandbox.stub( mw, 'track' );
+		mw.errorLogging.logError( error );
+		sinon.assert.calledWith( mw.track, 'errorLogging.exception',
+			sinon.match( { exception: error, id: sinon.match.defined } ) );
+
+		mw.track.reset();
+		mw.errorLogging.logError( error, context );
+		sinon.assert.calledWith( mw.track, 'errorLogging.exception',
+			sinon.match( { exception: error, id: sinon.match.defined, context: context } ) );
+
+	} );
+
 	QUnit.test( 'handleWindowOnerror', 1, function () {
 		this.sandbox.stub( mw, 'track' );
 		mw.errorLogging.handleWindowOnerror( 1, 2, 3 );
 		sinon.assert.calledWithExactly( mw.track, 'errorLogging.windowOnerror',
-			sinon.match( { args: [1, 2, 3] } ) );
+			sinon.match( { args: [1, 2, 3], id: sinon.match.defined } ) );
 	} );
 
 	QUnit.test( 'register', 4, function ( assert ) {
