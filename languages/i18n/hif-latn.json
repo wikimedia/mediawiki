@@ -11,7 +11,8 @@
 			"Thakurji",
 			"아라",
 			"Soul Train",
-			"Filipinayzd"
+			"Filipinayzd",
+			"SNN95"
 		]
 	},
 	"tog-underline": "Jorr ke niche line khicho:",
@@ -3015,8 +3016,8 @@
 	"logentry-merge-merge": "$1 {{GENDER:$2|merged}} $3 into $4 (revisions up to $5)",
 	"logentry-move-move": "$1 {{GENDER:$2|moved}} panna $3 se $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|moved}} panna $3 se $4 without leaving a redirect",
-	"logentry-move-move_redir": "$1 {{GENDER:$2|moved}} panna $3 se $4 over redirect",
-	"logentry-move-move_redir-noredirect": "$1 {{GENDER:$2|moved}} panna $3 se $4 over a redirect without leaving a redirect",
+	"logentry-move-move_redir": "$1 {{GENDER:$2|memindahkan}} laman $3 kepada $4 menggunakan lencongan",
+	"logentry-move-move_redir-noredirect": "$1 {{GENDER:$2|memindahkan}} laman $3 kepada $4 melalui lencongan tanpa meninggalkan perlencongan",
 	"logentry-patrol-patrol": "$1 {{GENDER:$2|marked}} revision $4 panna $3 ke patrol karaa gais hae",
 	"logentry-patrol-patrol-auto": "$1 automatically {{GENDER:$2|marked}} revision $4 panna $3 ke patrol karis hae",
 	"logentry-newusers-newusers": "Sadasya $1 ke account  {{GENDER:$2|created}} ke banawa gais hae",

@@ -3195,5 +3195,6 @@
 	"json-error-utf8": "'E carattere UTF-8 furmate malamente, probbabilmente nun se songhe ncodifecate bbuone",
 	"json-error-recursion": "Uno o cchiù riferimente recurzive dint' 'o valore a codefecare",
 	"json-error-inf-or-nan": "Uno o cchiù valure NAN o INF dint' 'o valore 'a codefecare",
-	"json-error-unsupported-type": "S'è dato nu valore pe' nu tipo ca nun se può ncodifecà"
+	"json-error-unsupported-type": "S'è dato nu valore pe' nu tipo ca nun se può ncodifecà",
+	"headline-anchor-title": "Cullega a sta sezziona"
 }

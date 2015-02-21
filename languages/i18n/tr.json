@@ -939,6 +939,7 @@
 	"prefs-personal": "Kullanıcı bilgileri",
 	"prefs-rc": "Son değişiklikler",
 	"prefs-watchlist": "İzleme listesi",
+	"prefs-editwatchlist": "İzleme listesini düzenle",
 	"prefs-watchlist-days": "İzleme listesinde görüntülenecek gün sayısı:",
 	"prefs-watchlist-days-max": "en fazla $1 {{PLURAL:$1|gün|gün}}",
 	"prefs-watchlist-edits": "Genişletilmiş izleme listesinde gösterilecek değişiklik sayısı:",

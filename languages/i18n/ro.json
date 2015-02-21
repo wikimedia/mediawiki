@@ -3221,5 +3221,6 @@
 	"json-error-utf8": "Caractere UTF-8 deformate, posibil incorect codificate",
 	"json-error-recursion": "Una sau mai multe referințe recursive în valoarea pentru codificat",
 	"json-error-inf-or-nan": "Una sau mai valori NAN sau INF în valoarea pentru codificat",
-	"json-error-unsupported-type": "A fost furnizată o valoare de un tip care nu poate fi codificat"
+	"json-error-unsupported-type": "A fost furnizată o valoare de un tip care nu poate fi codificat",
+	"headline-anchor-title": "Legătură către această secțiune"
 }

@@ -73,7 +73,8 @@
 			"Nanaki",
 			"Alan ffm",
 			"Macofe",
-			"Devwebtel"
+			"Devwebtel",
+			"VerMa"
 		]
 	},
 	"tog-underline": "Podkreślenie linków:",
@@ -2292,7 +2293,7 @@
 	"tooltip-n-portal": "O projekcie, co możesz zrobić, gdzie możesz znaleźć informacje",
 	"tooltip-n-currentevents": "Informacje o aktualnych wydarzeniach",
 	"tooltip-n-recentchanges": "Lista ostatnich zmian na {{GRAMMAR:MS.lp|{{SITENAME}}}}.",
-	"tooltip-n-randompage": "Pokaż stronę wybraną losowo",
+	"tooltip-n-randompage": "Załaduj losową stronę",
 	"tooltip-n-help": "Tutaj możesz się dowiedzieć wielu rzeczy.",
 	"tooltip-t-whatlinkshere": "Pokaż listę wszystkich stron linkujących do tej strony",
 	"tooltip-t-recentchangeslinked": "Ostatnie zmiany w stronach, do których ta strona linkuje",
@@ -2301,7 +2302,7 @@
 	"tooltip-t-contributions": "Pokaż listę edycji tego użytkownika",
 	"tooltip-t-emailuser": "Wyślij e‐mail do tego użytkownika",
 	"tooltip-t-info": "Więcej informacji na temat tej strony",
-	"tooltip-t-upload": "Prześlij plik",
+	"tooltip-t-upload": "Prześlij pliki",
 	"tooltip-t-specialpages": "Lista wszystkich specjalnych stron",
 	"tooltip-t-print": "Wersja do wydruku",
 	"tooltip-t-permalink": "Stały link do tej wersji strony",

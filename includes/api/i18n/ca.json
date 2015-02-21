@@ -13,5 +13,6 @@
 	"apihelp-delete-description": "Suprimeix una pàgina.",
 	"apihelp-edit-description": "Crea i edita pàgines.",
 	"apihelp-edit-param-text": "Contingut de la pàgina.",
+	"apihelp-expandtemplates-param-title": "Títol de la pàgina.",
 	"apihelp-login-example-login": "Inicia sessió."
 }

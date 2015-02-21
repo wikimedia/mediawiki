@@ -407,7 +407,7 @@
 	"userlogin-loggedin": "Вы ўжо ўвайшлі як {{GENDER:$1|$1}}.\nДля ўваходу пад іншым удзельнікам скарыстайцеся формай унізе.",
 	"userlogin-createanother": "Стварыць іншы рахунак",
 	"createacct-emailrequired": "Адрас электроннай пошты",
-	"createacct-emailoptional": "E-mail адрас (неабавязкова)",
+	"createacct-emailoptional": "Адрас электроннай пошты (неабавязкова)",
 	"createacct-email-ph": "Увядзіце ваш e-mail адрас",
 	"createacct-another-email-ph": "Увядзіце адрас e-mail",
 	"createaccountmail": "Стварыць часовы адвольны пароль і даслаць яго на e-mail адрас, пазначаны ніжэй",

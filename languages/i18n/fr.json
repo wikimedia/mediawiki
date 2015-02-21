@@ -116,7 +116,8 @@
 			"Macofe",
 			"Sam",
 			"JackPotte",
-			"Weft"
+			"Weft",
+			"Raulel"
 		]
 	},
 	"tog-underline": "Souligner les liens :",
@@ -3421,5 +3422,6 @@
 	"json-error-utf8": "Caractères UTF-8 mal formés, peut-être mal encodé",
 	"json-error-recursion": "Une ou plusieurs références récursives dans la valeur à encoder",
 	"json-error-inf-or-nan": "Une une plusieurs valeurs NaN ou INF dans la valeur à encoder",
-	"json-error-unsupported-type": "Une valeur a été donnée dans un type ne pouvant pas être encodé"
+	"json-error-unsupported-type": "Une valeur a été donnée dans un type ne pouvant pas être encodé",
+	"headline-anchor-title": "Lien vers cette section"
 }

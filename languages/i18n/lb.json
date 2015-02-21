@@ -3113,5 +3113,6 @@
 	"mediastatistics-header-text": "Textuell",
 	"mediastatistics-header-archive": "Kompriméiert Formater",
 	"json-error-unknown": "Et gouf e Problem mam JSON. Feeler: $1",
-	"json-error-syntax": "Syntaxfeeler"
+	"json-error-syntax": "Syntaxfeeler",
+	"headline-anchor-title": "Link op dësen Abschnitt"
 }
