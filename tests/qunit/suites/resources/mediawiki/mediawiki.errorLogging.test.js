@@ -1,6 +1,28 @@
 ( function ( $, mw ) {
 	QUnit.module( 'mediawiki.errorLogging', QUnit.newMwEnvironment() );
 
+	QUnit.test( 'getId', 5, function ( assert ) {
+		$.each( [null, {}, 1, 'foo', new Error()], function ( i, v ) {
+			assert.ok( mw.errorLogging.getId( v ), 'Sanity check #' + i );
+		} );
+	} );
+
+	QUnit.test( 'logError', 2, function ( assert ) {
+		var error = new Error(),
+			context = {};
+
+		this.sandbox.stub( mw, 'track' );
+		mw.errorLogging.logError( error );
+		sinon.assert.calledWith( mw.track, 'errorLogging.exception',
+			sinon.match( { exception: error, id: sinon.match.defined } ) );
+
+		mw.track.reset();
+		mw.errorLogging.logError( error, context );
+		sinon.assert.calledWith( mw.track, 'errorLogging.exception',
+			sinon.match( { exception: error, id: sinon.match.defined, context: context } ) );
+
+	} );
+
 	QUnit.test( 'wrap', 6, function ( assert ) {
 		var wrapper, stub,
 			exception = new Error(),
@@ -27,7 +49,7 @@
 		} catch ( e ) {
 			assert.strictEqual( e, exception, 'Exceptions are not swallowed and still appear on the console.' );
 		}
-		sinon.assert.calledWith( mw.track, 'errorLogging.exception', sinon.match( { exception: exception, source: 'name' } ) );
+		sinon.assert.calledWith( mw.track, 'errorLogging.exception', sinon.match( { exception: exception, source: 'name', id: sinon.match.defined } ) );
 
 	} );
 
