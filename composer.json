@@ -22,7 +22,7 @@
 		"php": ">=5.3.3",
 		"psr/log": "1.0.0",
 		"wikimedia/cdb": "1.0.1",
-		"wikimedia/composer-merge-plugin": "0.5.0",
+		"wikimedia/composer-merge-plugin": "1.0.0",
 		"zordius/lightncandy": "0.18"
 	},
 	"require-dev": {
