@@ -573,27 +573,25 @@ class Sanitizer {
 		} else {
 			# this might be possible using tidy itself
 			foreach ( $bits as $x ) {
-				preg_match( self::ELEMENT_BITS_REGEX, $x, $regs );
+				if ( preg_match( self::ELEMENT_BITS_REGEX, $x, $regs ) ) {
+					list( /* $qbar */, $slash, $t, $params, $brace, $rest ) = $regs;
 
-				wfSuppressWarnings();
-				list( /* $qbar */, $slash, $t, $params, $brace, $rest ) = $regs;
-				wfRestoreWarnings();
+					$badtag = false;
+					if ( isset( $htmlelements[$t = strtolower( $t )] ) ) {
+						if ( is_callable( $processCallback ) ) {
+							call_user_func_array( $processCallback, array( &$params, $args ) );
+						}
 
-				$badtag = false;
-				if ( isset( $htmlelements[$t = strtolower( $t )] ) ) {
-					if ( is_callable( $processCallback ) ) {
-						call_user_func_array( $processCallback, array( &$params, $args ) );
-					}
+						if ( !Sanitizer::validateTag( $params, $t ) ) {
+							$badtag = true;
+						}
 
-					if ( !Sanitizer::validateTag( $params, $t ) ) {
-						$badtag = true;
-					}
-
-					$newparams = Sanitizer::fixTagAttributes( $params, $t );
-					if ( !$badtag ) {
-						$rest = str_replace( '>', '&gt;', $rest );
-						$text .= "<$slash$t$newparams$brace$rest";
-						continue;
+						$newparams = Sanitizer::fixTagAttributes( $params, $t );
+						if ( !$badtag ) {
+							$rest = str_replace( '>', '&gt;', $rest );
+							$text .= "<$slash$t$newparams$brace$rest";
+							continue;
+						}
 					}
 				}
 				$text .= '&lt;' . str_replace( '>', '&gt;', $x );
