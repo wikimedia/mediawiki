@@ -9,13 +9,57 @@
 
 	mw.errorLogging = {
 		/**
-		 * Fired when an error is not handled by local code and is caught by global error logging.
+		 * Fired via mw.track when an error is not handled by local code and is caught by global
+		 * error logging.
 		 *
 		 * @event errorLogging_exception
 		 * @param {Error|Mixed} e The error that was thrown. Usually an Error object, but
 		 *   in Javascript any value can be used with 'throw' so no guarantees.
 		 * @param {string} source Name of the function which threw the error.
+		 * @param {string} id Error identifier.
 		 */
+
+		/**
+		 * Report an error and return an id with which it can be referenced.
+		 *
+		 * Note that error logging is an asynchronous operation on multiple levels, and because
+		 * of that returning an error id does not guarantee that the error was successfully logged.
+		 *
+		 * @param {Error|Mixed} error The error that needs to be logged. Typically an Error object
+		 *   that was thrown and caught, but could be a simple string or anything else.
+		 * @param {Object} [context] Additional information about the error.
+		 * @return {string} An error id.
+		 */
+		logError: function ( error, context ) {
+			var id = mw.errorLogging.getId( error ),
+				data = { exception: error, source: 'logError', id: id };
+
+			if ( context ) {
+				data.context = context;
+			}
+
+			mw.track( 'errorLogging.exception', data );
+
+			return id;
+		},
+
+		/**
+		 * Generate an error id that can be shown to the user / logged to the console and
+		 * used to correlate bug reports with error logs.
+		 * @param {Error|Mixed} error An error value, typically an Error object.
+		 * @return {string} The error id.
+		 */
+		getId: function ( error ) {
+			// We take the easy path and just generate a UUID, this way we don't have to deal
+			// with browser and language dependency of the error details. Algorithm is from
+			// http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript/2117523#2117523
+			// jshint unused:false, bitwise: false
+			return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace( /[xy]/g, function ( c ) {
+				var r = Math.random() * 16 | 0,
+					v = c === 'x' ? r : ( r & 0x3 | 0x8 );
+				return v.toString( 16 );
+			} );
+		},
 
 		/**
 		 * Wrap a function in a try-catch block and report any errors.
@@ -35,7 +79,8 @@
 				try {
 					return mw.errorLogging.safeApply( fn, this, arguments );
 				} catch ( e ) {
-					mw.track( 'errorLogging.exception', { exception: e, source: name } );
+					mw.track( 'errorLogging.exception', { exception: e, source: name,
+						id: mw.errorLogging.getId( e ) } );
 					throw e ;
 				}
 			};
