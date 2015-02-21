@@ -5,7 +5,7 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 	/**
 	 * @covers ExtensionRegistry::exportExtractedData
 	 * @dataProvider provideExportExtractedDataGlobals
-	 * @@backupGlobals enabled
+	 * @backupGlobals enabled
 	 */
 	public function testExportExtractedDataGlobals( $desc, $before, $globals, $expected ) {
 		if ( $before ) {
