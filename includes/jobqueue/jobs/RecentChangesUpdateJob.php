@@ -78,6 +78,15 @@ class RecentChangesUpdateJob extends Job {
 			}
 			// No need for this to be in a transaction.
 			$dbw->commit( __METHOD__, 'flush' );
+
+			if ( count( $rcIds ) === 100 ) {
+				// There might be more, so try waiting for slaves
+				$goOn = wfWaitForSlaves( null, false, false, /* $timeout = */ 3 );
+				if ( !$goOn ) {
+					// Another job will continue anyway
+					break;
+				}
+			}
 		} while ( $rcIds );
 
 		$dbw->unlock( $lockKey, __METHOD__ );
