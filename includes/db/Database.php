@@ -1638,9 +1638,10 @@ abstract class DatabaseBase implements IDatabase {
 	 *     - If the value of such an array element is a scalar (such as a
 	 *       string), it will be treated as data and thus quoted appropriately.
 	 *       If it is null, an IS NULL clause will be added.
-	 *     - If the value is an array, an IN(...) clause will be constructed,
-	 *       such that the field name may match any of the elements in the
-	 *       array. The elements of the array will be quoted.
+	 *     - If the value is an array, an IN (...) clause will be constructed
+	 *       from its non-null elements, and an IS NULL clause will be added
+	 *       if null is present, such that the field may match any of the
+	 *       elements in the array. The non-null elements will be quoted.
 	 *
 	 * Note that expressions are often DBMS-dependent in their syntax.
 	 * DBMS-independent wrappers are provided for constructing several types of
