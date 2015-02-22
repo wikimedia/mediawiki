@@ -179,7 +179,7 @@ return array(
 	),
 	'jquery.byteLimit' => array(
 		'scripts' => 'resources/src/jquery/jquery.byteLimit.js',
-		'dependencies' => 'jquery.byteLength',
+		'dependencies' => array( 'jquery.byteLength', 'jquery.codepointLength' ),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.checkboxShiftClick' => array(
@@ -192,6 +192,10 @@ return array(
 	),
 	'jquery.client' => array(
 		'scripts' => 'resources/lib/jquery.client/jquery.client.js',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
+	'jquery.codepointLength' => array(
+		'scripts' => 'resources/src/jquery/jquery.codepointLength.js',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.color' => array(
@@ -1762,7 +1766,7 @@ return array(
 	'mediawiki.legacy.protect' => array(
 		'scripts' => 'resources/src/mediawiki.legacy/protect.js',
 		'dependencies' => 'jquery.byteLimit',
-		'messages' => array( 'protect-unchain-permissions' )
+		'messages' => array( 'protect-unchain-permissions', 'colon-separator' )
 	),
 	// Used in the web installer. Test it after modifying this definition!
 	'mediawiki.legacy.shared' => array(
