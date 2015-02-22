@@ -2,5 +2,9 @@
  * JavaScript for Special:MovePage
  */
 jQuery( function ( $ ) {
-	$( '#wpReason, #wpNewTitleMain' ).byteLimit();
+	$( '#wpNewTitleMain' ).byteLimit();
+	$( '#wpReason' ).byteLimit( {
+		byte: 767,
+		codepoint: mw.config.get( 'wgMaxEditSummaryLength' )
+	} );
 } );

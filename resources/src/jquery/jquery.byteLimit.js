@@ -16,17 +16,20 @@
 	 * @param {string} newVal New value that may have to be trimmed down.
 	 * @param {number} byteLimit Number of bytes the value may be in size.
 	 * @param {Function} [fn] See jQuery.byteLimit.
+	 * @param {Function} countFn Count function if not using $.byteLength
 	 * @return {Object}
 	 * @return {string} return.newVal
 	 * @return {boolean} return.trimmed
 	 */
-	function trimValForByteLength( safeVal, newVal, byteLimit, fn ) {
+	function trimValForByteLength( safeVal, newVal, byteLimit, fn, countFn ) {
 		var startMatches, endMatches, matchesLen, inpParts,
 			oldVal = safeVal;
 
+		countFn = countFn ? countFn : $.byteLength;
+
 		// Run the hook if one was provided, but only on the length
 		// assessment. The value itself is not to be affected by the hook.
-		if ( $.byteLength( fn ? fn( newVal ) : newVal ) <= byteLimit ) {
+		if ( countFn( fn ? fn( newVal ) : newVal ) <= byteLimit ) {
 			// Limit was not reached, just remember the new value
 			// and let the user continue.
 			return {
@@ -77,11 +80,11 @@
 		// until the limit is statisfied.
 		if ( fn ) {
 			// stop, when there is nothing to slice - bug 41450
-			while ( $.byteLength( fn( inpParts.join( '' ) ) ) > byteLimit && inpParts[1].length > 0 ) {
+			while ( countFn( fn( inpParts.join( '' ) ) ) > byteLimit && inpParts[1].length > 0 ) {
 				inpParts[1] = inpParts[1].slice( 0, -1 );
 			}
 		} else {
-			while ( $.byteLength( inpParts.join( '' ) ) > byteLimit ) {
+			while ( countFn( inpParts.join( '' ) ) > byteLimit ) {
 				inpParts[1] = inpParts[1].slice( 0, -1 );
 			}
 		}
@@ -115,8 +118,9 @@
 	 * value), a filter function (in case the limit should apply to something other than the
 	 * exact input value), or both. Order of parameters is important!
 	 *
-	 * @param {number} [limit] Limit to enforce, fallsback to maxLength-attribute,
-	 *  called with fetched value as argument.
+	 * @param {number|object} [limit] Limit to enforce, fallsback to maxLength-attribute,
+	 *  called with fetched value as argument. If object, has two members, byte and codepoint
+	 *  in order to set the limit in bytes, and in unicode codepoints.
 	 * @param {Function} [fn] Function to call on the string before assessing the length.
 	 * @return {jQuery}
 	 * @chainable
@@ -131,6 +135,12 @@
 		// isFunction again after this.
 		} else if ( !fn || !$.isFunction( fn ) ) {
 			fn = undefined;
+		}
+
+		if ( typeof limit === 'number' ) {
+			limit = {
+				'byte': limit
+			};
 		}
 
 		// The following is specific to each element in the collection.
@@ -150,7 +160,7 @@
 			// Also cast to a (primitive) number (most commonly because the maxlength
 			// attribute contains a string, but theoretically the limit parameter
 			// could be something else as well).
-			elLimit = Number( limit === undefined ? $el.attr( 'maxlength' ) : limit );
+			elLimit = Number( limit === undefined ? $el.attr( 'maxlength' ) : limit.byte );
 
 			// If there is no (valid) limit passed or found in the property,
 			// skip this. The < 0 check is required for Firefox, which returns
@@ -206,18 +216,30 @@
 			// See http://www.w3.org/TR/DOM-Level-3-Events/#events-keyboard-event-order for
 			// the order and characteristics of the key events.
 			$el.on( eventKeys, function () {
-				var res = trimValForByteLength(
-					prevSafeVal,
-					this.value,
-					elLimit,
-					fn
-				);
+				var firstResultTrimmed,
+					res = trimValForByteLength(
+						prevSafeVal,
+						this.value,
+						elLimit,
+						fn
+					);
 
+				firstResultTrimmed = res.trimmed;
+
+				if ( limit.codepoint !== undefined ) {
+					res = trimValForByteLength(
+						prevSafeVal,
+						res.newVal,
+						limit.codepoint,
+						fn,
+						jQuery.codepointLength
+					);
+				}
 				// Only set value property if it was trimmed, because whenever the
 				// value property is set, the browser needs to re-initiate the text context,
 				// which moves the cursor at the end the input, moving it away from wherever it was.
 				// This is a side-effect of limiting after the fact.
-				if ( res.trimmed === true ) {
+				if ( res.trimmed === true || firstResultTrimmed === true ) {
 					this.value = res.newVal;
 				}
 				// Always adjust prevSafeVal to reflect the input value. Not doing this could cause
