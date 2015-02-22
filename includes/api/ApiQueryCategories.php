@@ -117,8 +117,6 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 			}
 		}
 
-		$this->addOption( 'USE INDEX', array( 'categorylinks' => 'cl_from' ) );
-
 		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
 		// Don't order by cl_from if it's constant in the WHERE clause
 		if ( count( $this->getPageSet()->getGoodTitles() ) == 1 ) {
