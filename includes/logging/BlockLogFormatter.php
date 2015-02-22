@@ -31,6 +31,15 @@ class BlockLogFormatter extends LogFormatter {
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
 
+		// Legacy log params returning the params in index 3 and 4
+		if ( isset( $params[3] ) ) {
+			if ( isset( $params[4] ) ) {
+				$params[5] = $params[4];
+			}
+			$params[4] = $params[3];
+			unset( $params[3] );
+		}
+
 		$title = $this->entry->getTarget();
 		if ( substr( $title->getText(), 0, 1 ) === '#' ) {
 			// autoblock - no user link possible

@@ -398,7 +398,12 @@ class LogFormatter {
 	 */
 	protected function getActionMessage() {
 		$message = $this->msg( $this->getMessageKey() );
-		$message->params( $this->getMessageParameters() );
+
+		$params = $this->getMessageParameters();
+		// Bad things happens if the numbers are not in correct order
+		ksort( $params );
+
+		$message->params( $params );
 
 		return $message;
 	}
@@ -485,9 +490,6 @@ class LogFormatter {
 		$params[0] = Message::rawParam( $this->getPerformerElement() );
 		$params[1] = $this->canView( LogPage::DELETED_USER ) ? $entry->getPerformer()->getName() : '';
 		$params[2] = Message::rawParam( $this->makePageLink( $entry->getTarget() ) );
-
-		// Bad things happens if the numbers are not in correct order
-		ksort( $params );
 
 		$this->parsedParameters = $params;
 		return $this->parsedParameters;
