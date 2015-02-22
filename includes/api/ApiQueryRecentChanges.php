@@ -534,7 +534,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				$vals['logid'] = intval( $row->rc_logid );
 				$vals['logtype'] = $row->rc_log_type;
 				$vals['logaction'] = $row->rc_log_action;
-				$logEntry = DatabaseLogEntry::newFromRow( (array)$row );
+				$logEntry = DatabaseLogEntry::newFromRow( $row );
 				ApiQueryLogEvents::addLogParams(
 					$this->getResult(),
 					$vals,
