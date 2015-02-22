@@ -7,7 +7,9 @@ var ProtectionForm = window.ProtectionForm = {
 	 */
 	init: function () {
 		var $cell = $( '<td>' ),
-			$row = $( '<tr>' ).append( $cell );
+			$row = $( '<tr>' ).append( $cell ),
+			$reason = $( '#wpProtectReasonSelection' ),
+			colonSeparator = mw.message( 'colon-separator' ).text();
 
 		if ( !$( '#mwProtectSet' ).length ) {
 			return false;
@@ -44,7 +46,21 @@ var ProtectionForm = window.ProtectionForm = {
 			this.toggleUnchainedInputs( !this.areAllTypesMatching() );
 		}
 
-		$( '#mwProtect-reason' ).byteLimit( 180 );
+		$( '#mwProtect-reason' ).byteLimit(
+			{
+				'byte': 767,
+				codepoint: mw.config.get( 'wgMaxEditSummaryLength' )
+			},
+			function ( input ) {
+				var reasonText = $reason.val();
+				if ( reasonText !== 'other' ) {
+					// XXX: colonSeparator is in userlanguage because
+					// that's what is done on server side.
+					input += reasonText + colonSeparator;
+				}
+				return input;
+			}
+		);
 
 		this.updateCascadeCheckbox();
 	},

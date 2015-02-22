@@ -432,7 +432,7 @@ class LogPage {
 		$comment = trim( $comment );
 
 		# Truncate for whole multibyte characters.
-		$comment = $wgContLang->truncate( $comment, 255 );
+		$comment = $wgContLang->truncateForEditSummary( $comment );
 
 		$this->action = $action;
 		$this->target = $target;

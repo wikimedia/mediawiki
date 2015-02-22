@@ -490,7 +490,7 @@ class ManualLogEntry extends LogEntryBase {
 		$comment = trim( $this->getComment() );
 
 		# Truncate for whole multibyte characters.
-		$comment = $wgContLang->truncate( $comment, 255 );
+		$comment = $wgContLang->truncateForEditSummary( $comment );
 
 		$data = array(
 			'log_id' => $id,

@@ -114,6 +114,22 @@
 	} );
 
 	byteLimitTest( {
+		description: 'Limit using codepoints (multibyte)',
+		$input: $( '<input type="text"/>' )
+			.byteLimit( { 'byte': 200, codepoint: 10 } ),
+		sample: '💥💥💥💥💥1234567',
+		expected: '💥💥💥💥💥12345'
+	} );
+
+	byteLimitTest( {
+		description: 'Limit using codepoints and bytes (multibyte)',
+		$input: $( '<input type="text"/>' )
+			.byteLimit( { byte: 8, codepoint: 10 } ),
+		sample: '💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥💥',
+		expected: '💥💥'
+	} );
+
+	byteLimitTest( {
 		description: 'Limit using a custom value (multibyte) overlapping a byte',
 		$input: $( '<input type="text"/>' )
 			.byteLimit( 12 ),

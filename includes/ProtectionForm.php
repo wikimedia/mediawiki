@@ -260,6 +260,7 @@ class ProtectionForm {
 	 * @return bool Success
 	 */
 	function save() {
+		global $wgContLang;
 		# Permission check!
 		if ( $this->disabled ) {
 			$this->show();
@@ -276,6 +277,7 @@ class ProtectionForm {
 		}
 
 		# Create reason string. Use list and/or custom string.
+		# doUpdateRestrictions handles truncation if necessary.
 		$reasonstr = $this->mReasonSelection;
 		if ( $reasonstr != 'other' && $this->mReason != '' ) {
 			// Entry from drop down menu + additional comment
@@ -508,10 +510,10 @@ class ProtectionForm {
 					</td>
 					<td class='mw-input'>" .
 						Xml::input( 'mwProtect-reason', 60, $this->mReason, array( 'type' => 'text',
-							'id' => 'mwProtect-reason', 'maxlength' => 180 ) ) .
-							// Limited maxlength as the database trims at 255 bytes and other texts
+							'id' => 'mwProtect-reason', 'maxlength' => 700 ) ) .
+							// Limited maxlength as the database trims at 767 bytes and other texts
 							// chosen by dropdown menus on this page are also included in this database field.
-							// The byte limit of 180 bytes is enforced in javascript
+							// The byte limit is enforced in javascript
 					"</td>
 				</tr>";
 			# Disallow watching is user is not logged in

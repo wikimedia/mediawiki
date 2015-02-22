@@ -691,7 +691,7 @@ class SpecialBlock extends FormSpecialPage {
 		$block->setTarget( $target );
 		$block->setBlocker( $performer );
 		# Truncate reason for whole multibyte characters
-		$block->mReason = $wgContLang->truncate( $data['Reason'][0], 255 );
+		$block->mReason = $wgContLang->truncateForEditSummary( $data['Reason'][0] );
 		$block->mExpiry = self::parseExpiryInput( $data['Expiry'] );
 		$block->prevents( 'createaccount', $data['CreateAccount'] );
 		$block->prevents( 'editownusertalk', ( !$wgBlockAllowsUTEdit || $data['DisableUTEdit'] ) );
