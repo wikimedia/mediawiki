@@ -662,6 +662,7 @@
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Eidelen Objet",
+	"content-json-empty-array": "Eidel Tabell",
 	"expensive-parserfunction-warning": "'''Opgepasst:'' Dës Säit huet ze vill Ufroe vu komplexe Parserfunktiounen.\n\nEt däerfen net méi wéi $2 {{PLURAL:$2|Ufro|Ufroe}} sinn, aktuell {{PLURAL:$2|ass et $1 Ufro|sinn et $1 Ufroe}}.",
 	"expensive-parserfunction-category": "Säiten, déi komplex Parserfunktiounen ze dacks opruffen",
 	"post-expand-template-inclusion-warning": "Opgepasst: D'Gréisst vun den agebonnene Schablounen ass ze grouss, e puer Schabloune kënnen net agebonne ginn.",
@@ -2912,6 +2913,7 @@
 	"tags-activate": "aktivéieren",
 	"tags-deactivate": "desaktivéieren",
 	"tags-hitcount": "$1 {{PLURAL:$1|Ännerung|Ännerungen}}",
+	"tags-create-tag-name": "Numm vun der Markéierung (Tag):",
 	"tags-create-reason": "Grond:",
 	"tags-create-submit": "Uleeën",
 	"tags-create-already-exists": "D'Markéierung (tag) ''$1'' gëtt et schonn.",
@@ -3113,6 +3115,7 @@
 	"mediastatistics-header-text": "Textuell",
 	"mediastatistics-header-archive": "Kompriméiert Formater",
 	"json-error-unknown": "Et gouf e Problem mam JSON. Feeler: $1",
+	"json-error-state-mismatch": "JSON den net valabel ass oder Feeler huet",
 	"json-error-syntax": "Syntaxfeeler",
 	"headline-anchor-title": "Link op dësen Abschnitt"
 }

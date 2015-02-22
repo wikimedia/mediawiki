@@ -117,7 +117,8 @@
 			"Sam",
 			"JackPotte",
 			"Weft",
-			"Raulel"
+			"Raulel",
+			"Nicolapps"
 		]
 	},
 	"tog-underline": "Souligner les liens :",
@@ -302,7 +303,7 @@
 	"unprotectthispage": "Changer la protection de cette page",
 	"newpage": "Nouvelle page",
 	"talkpage": "Discussion sur cette page",
-	"talkpagelinktext": "discuter",
+	"talkpagelinktext": "Discussion",
 	"specialpage": "Page spéciale",
 	"personaltools": "Outils personnels",
 	"articlepage": "Voir la page de contenu",

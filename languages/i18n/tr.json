@@ -66,7 +66,8 @@
 			"Violetanka",
 			"Trockya",
 			"Aşilleus",
-			"BatuhanBensoy"
+			"BatuhanBensoy",
+			"Mavrikant"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çiz:",
@@ -1005,10 +1006,10 @@
 	"prefs-help-signature": "Tartışma sayfalarındaki yorumlar \"<nowiki>~~~~</nowiki>\" ile imzalanmalıdır, bu imzanıza ve zaman damgasına dönüştürülür.",
 	"badsig": "Geçersiz ham imza; HTML etiketlerini kontrol edin.",
 	"badsiglength": "İmzanız çok uzun.\n$1 {{PLURAL:$1|karakterin|karakterin}} altında olmalı.",
-	"yourgender": "Nasıl açıklamayı tercih edersiniz?",
-	"gender-unknown": "Söylemek istemiyorsanız",
-	"gender-male": "Viki sayfalarını erkek olarak düzenliyorum",
-	"gender-female": "Viki sayfalarını kadın olarak düzenliyorum",
+	"yourgender": "Cinsel kimlik?",
+	"gender-unknown": "Açıklamak istemiyorum",
+	"gender-male": "Erkek",
+	"gender-female": "Kadın",
 	"prefs-help-gender": "Bu tercih ayarı isteğe bağlıdır.\nYazılımda söz değerlerinin başlarında bulunan cinsiyete uygun gramerler için kullanılır.\nBu bilgiler herkes tarafından görülebilir.",
 	"email": "E-posta",
 	"prefs-help-realname": "Gerçek ismi vermek isteğe bağlıdır.\nEğer verirseniz yaptığınız çalışmalara ithafen kullanılabilir.",
@@ -2240,7 +2241,7 @@
 	"javascripttest-pagetext-skins": "Testleri koşmak için bir tema seçin:",
 	"javascripttest-qunit-intro": "mediawiki.org üzerinden [$1 deneme belgelerine] bakınız.",
 	"tooltip-pt-userpage": "Kullanıcı sayfanız",
-	"tooltip-pt-anonuserpage": "The user page for the ip you",
+	"tooltip-pt-anonuserpage": "IP adresine ait bir kullanıcı sayfasını düzenliyorsunuz",
 	"tooltip-pt-mytalk": "Mesaj sayfanız",
 	"tooltip-pt-anontalk": "Bu IP adresinden yapılmış değişiklikleri tartış",
 	"tooltip-pt-preferences": "Tercihleriniz (ayarlarınız)",

@@ -1331,7 +1331,7 @@
 	"ignorewarning": "Ignorar aviso y guardar de todos modos",
 	"ignorewarnings": "Ignorar todos los avisos",
 	"minlength1": "Los nombres de archivo deben tener al menos una letra.",
-	"illegalfilename": "El nombre de archivo «$1» contiene caracteres que no están permitidos en títulos de página. Por favor, renombra el archivo e intenta subirlo de nuevo.",
+	"illegalfilename": "El nombre de archivo «$1» contiene caracteres que no están permitidos en títulos de página. Cambia el nombre del archivo e intenta subirlo de nuevo.",
 	"filename-toolong": "Los nombres de archivo no pueden tener más de 240 bytes.",
 	"badfilename": "Se ha cambiado el nombre del archivo a «$1».",
 	"filetype-mime-mismatch": "La extensión de archivo «.$1» no coincide con el tipo MIME detectado en el archivo ($2).",
