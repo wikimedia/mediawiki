@@ -338,6 +338,36 @@ class ApiQueryLogEvents extends ApiQueryBase {
 					unset( $params['5::mergepoint'] );
 				}
 				break;
+			case 'delete':
+				if ( $action === 'event' || $action === 'revision' ) {
+					// replace the named parameter with numbered for backward compatibility
+					if ( $action === 'event' ) {
+						$idsKey = '4::ids';
+						$ofieldKey = '5::ofield';
+						$nfieldKey = '6::nfield';
+					} else {
+						if ( isset( $params['4::type'] ) ) {
+							$params[] = $params['4::type'];
+							unset( $params['4::type'] );
+						}
+						$idsKey = '5::ids';
+						$ofieldKey = '6::ofield';
+						$nfieldKey = '7::nfield';
+					}
+					if ( isset( $params[$idsKey] ) ) {
+						$params[] = implode( ',', $params[$idsKey] );
+						unset( $params[$idsKey] );
+					}
+					if ( isset( $params[$ofieldKey] ) ) {
+						$params[] = $params[$ofieldKey];
+						unset( $params[$ofieldKey] );
+					}
+					if ( isset( $params[$nfieldKey] ) ) {
+						$params[] = $params[$nfieldKey];
+						unset( $params[$nfieldKey] );
+					}
+				}
+				break;
 		}
 		if ( !is_null( $params ) ) {
 			$logParams = array();

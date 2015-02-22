@@ -250,13 +250,19 @@ abstract class RevDelList extends RevisionListBase {
 		// Add params for affected page and ids
 		$logParams = $this->getLogParams( $params );
 		// Actually add the deletion log entry
-		$log = new LogPage( $logType );
-		$logid = $log->addEntry( $this->getLogAction(), $params['title'],
-			$params['comment'], $logParams, $this->getUser() );
+		$logEntry = new ManualLogEntry( $logType, $this->getLogAction() );
+		$logEntry->setTarget( $params['title'] );
+		$logEntry->setComment( $params['comment'] );
+		$logEntry->setParameters( $logParams );
+		$logEntry->setPerformer( $this->getUser() );
 		// Allow for easy searching of deletion log items for revision/log items
-		$log->addRelations( $field, $params['ids'], $logid );
-		$log->addRelations( 'target_author_id', $params['authorIds'], $logid );
-		$log->addRelations( 'target_author_ip', $params['authorIPs'], $logid );
+		$logEntry->setRelations( array(
+			$field => $params['ids'],
+			'target_author_id' => $params['authorIds'],
+			'target_author_ip' => $params['authorIPs'],
+		) );
+		$logId = $logEntry->insert();
+		$logEntry->publish( $logId );
 	}
 
 	/**
@@ -274,10 +280,10 @@ abstract class RevDelList extends RevisionListBase {
 	 */
 	public function getLogParams( $params ) {
 		return array(
-			$this->getType(),
-			implode( ',', $params['ids'] ),
-			"ofield={$params['oldBits']}",
-			"nfield={$params['newBits']}"
+			'4::type' => $this->getType(),
+			'5::ids' => $params['ids'],
+			'6::ofield' => $params['oldBits'],
+			'7::nfield' => $params['newBits'],
 		);
 	}
 
