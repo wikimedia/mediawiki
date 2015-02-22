@@ -261,6 +261,67 @@ class LanguageTest extends LanguageClassesTestCase {
 			$this->getLang()->truncate( "1234567890", 5, 'XXX', false ),
 			'truncate without adjustment'
 		);
+		$this->assertEquals(
+			"12XXX",
+			$this->getLang()->truncate( "1234567890", 5, 'XXX', true, 7 ),
+			'code point truncate, byte limited'
+		);
+		$this->assertEquals(
+			"ȀȁȂȃȕXXX",
+			$this->getLang()->truncate( "ȀȁȂȃȕȖȗ", 40, 'XXX', true, 5 ),
+			'code point truncate point limited'
+		);
+		$this->assertEquals(
+			"ȀȁXXX",
+			$this->getLang()->truncate( "ȀȁȂȃȕȖȗ", 12, 'XXX', true, 2 ),
+			'code point truncate point limited and byte limitted'
+		);
+		$this->assertEquals(
+			"ȀȁXXX",
+			$this->getLang()->truncate( "ȀȁȂȃȕȖȗ", 7, 'XXX', true, 4 ),
+			'code point truncate point limited and byte limitted 2'
+		);
+		$this->assertEquals(
+			"XXXȂȃȕȖȗ",
+			$this->getLang()->truncate( "ȀȁȂȃȕȖȗ", -40, 'XXX', true, -5 ),
+			'code point truncate point limited, left truncate'
+		);
+		$this->assertEquals(
+			"ȀȁXXX",
+			$this->getLang()->truncate( "ȀȁȂȃȕȖȗ", 8, 'XXX', true, 5 ),
+			'byte limited with adjust'
+		);
+		$this->assertEquals(
+			"💩💪💫🔀🐢XXX",
+			$this->getLang()->truncate( "💩💪💫🔀🐢📌👇", 40, 'XXX', true, 5 ),
+			'Astral characters'
+		);
+	}
+
+	/**
+	 * @dataProvider providerTruncateForEditSummary
+	 * @covers Language::truncateForEditSummary
+	 */
+	public function testTruncateForEditSummary( $expected, $summary ) {
+		$this->setMwGlobals( 'wgMaxEditSummaryLength', 255 );
+		$this->assertEquals( $expected, $this->getLang()->truncateForEditSummary( $summary ) );
+	}
+
+	public function providerTruncateForEditsummary() {
+		return array(
+			array(
+				'foo bar',
+				'foo bar'
+			),
+			array(
+				'💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩...',
+				'💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩',
+			),
+			array(
+				'012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234...',
+				'0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789',
+			),
+		);
 	}
 
 	/**
