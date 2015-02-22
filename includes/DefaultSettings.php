@@ -5715,6 +5715,12 @@ $wgUniversalEditButton = true;
  */
 $wgUseAutomaticEditSummaries = true;
 
+/**
+ * Max number of characters (individual NFC unicode code points, not bytes)
+ * allowed in edit summary. Note there is a hard limit of 767 UTF-8 bytes.
+ */
+$wgMaxEditSummaryLength = 255;
+
 /** @} */ # end edit UI }
 
 /************************************************************************//**

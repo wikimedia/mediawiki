@@ -65,14 +65,19 @@ class TextContent extends AbstractContent {
 		return $this; # NOTE: this is ok since TextContent are immutable.
 	}
 
-	public function getTextForSummary( $maxlength = 250 ) {
+	public function getTextForSummary( $maxlength = false ) {
 		global $wgContLang;
 
 		$text = $this->getNativeData();
 
-		$truncatedtext = $wgContLang->truncate(
-			preg_replace( "/[\n\r]/", ' ', $text ),
-			max( 0, $maxlength ) );
+		if ( $maxlength === false ) {
+			$truncatedtext = $wgContLang->truncateForEditSummary(
+				preg_replace( "/[\n\r]/", ' ', $text ) );
+		} else {
+			$truncatedtext = $wgContLang->truncate(
+				preg_replace( "/[\n\r]/", ' ', $text ),
+				max( 0, $maxlength ) );
+		}
 
 		return $truncatedtext;
 	}

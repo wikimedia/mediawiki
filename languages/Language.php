@@ -3482,19 +3482,46 @@ class Language {
 	 * @param string $ellipsis String to append to the truncated text
 	 * @param bool $adjustLength Subtract length of ellipsis from $length.
 	 *	$adjustLength was introduced in 1.18, before that behaved as if false.
+	 *	$adjustLength only enforces the byte $length, it does not enforce $codePointLength
+	 * @param int $codePointLength Max number of unicode code points or false for infinity.
+	 *	$codePointLength will count combining characters as a separate point from the character it modifies.
+	 *	MediaWiki mostly converts everything to NFC, so most common combining characters are eliminated.
+	 *	$codePointLength was introduced in 1.25
 	 * @return string
 	 */
-	function truncate( $string, $length, $ellipsis = '...', $adjustLength = true ) {
+	function truncate( $string, $length, $ellipsis = '...', $adjustLength = true, $codePointLength = false ) {
 		# Use the localized ellipsis character
 		if ( $ellipsis == '...' ) {
 			$ellipsis = wfMessage( 'ellipsis' )->inLanguage( $this )->escaped();
 		}
+		if ( $codePointLength !== false &&
+			( ( $codePointLength < 0 && $length > 0 ) || ( $codePointLength > 0 && $length < 0 ) )
+		) {
+			throw new Exception( "codePointLength and length must have same sign" );
+		}
 		# Check if there is no need to truncate
 		if ( $length == 0 ) {
 			return $ellipsis; // convention
-		} elseif ( strlen( $string ) <= abs( $length ) ) {
-			return $string; // no need to truncate
 		}
+
+		$needTruncateByte = true;
+		$needTruncateChars = !!$codePointLength;
+		if ( strlen( $string ) <= abs( $length ) ) {
+			$needTruncateByte = false;
+		}
+
+		if ( $codePointLength !== false && strlen( $string ) <= abs( $codePointLength ) ) {
+			// Optimization. Every code point takes at least 1 byte.
+			$needTruncateChars = false;
+		} elseif ( $codePointLength !== false && mb_strlen( $string ) <= abs( $codePointLength ) ) {
+			$needTruncateChars = false;
+		}
+
+		if ( !$needTruncateByte && !$needTruncateChars ) {
+			// No truncation needed.
+			return $string;
+		}
+
 		$stringOriginal = $string;
 		# If ellipsis length is >= $length then we can't apply $adjustLength
 		if ( $adjustLength && strlen( $ellipsis ) >= abs( $length ) ) {
@@ -3505,12 +3532,18 @@ class Language {
 			if ( $length > 0 ) {
 				$length -= $eLength;
 				$string = substr( $string, 0, $length ); // xyz...
+				if ( $needTruncateChars ) {
+					$string = mb_substr( $string, 0, $codePointLength );
+				}
 				$string = $this->removeBadCharLast( $string );
 				$string = rtrim( $string );
 				$string = $string . $ellipsis;
 			} else {
 				$length += $eLength;
 				$string = substr( $string, $length ); // ...xyz
+				if ( $needTruncateChars ) {
+					$string = mb_substr( $string, $codePointLength );
+				}
 				$string = $this->removeBadCharFirst( $string );
 				$string = ltrim( $string );
 				$string = $ellipsis . $string;
@@ -3524,6 +3557,19 @@ class Language {
 		} else {
 			return $stringOriginal;
 		}
+	}
+
+	/**
+	 * Convenience wrapper around truncate
+	 *
+	 * Truncates using $wgMaxEditSummaryLength unicode characters and EditPage::MAX_SUMMARY_BYTES bytes
+	 *
+	 * Note that the character limit does not include the ellipsis, while the byte limit does.
+	 * @param string $string what to truncate
+	 */
+	public function truncateForEditSummary( $string ) {
+		global $wgMaxEditSummaryLength;
+		return $this->truncate( $string, EditPage::MAX_SUMMARY_BYTES, '...', true, $wgMaxEditSummaryLength );
 	}
 
 	/**

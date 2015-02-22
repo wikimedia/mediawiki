@@ -291,7 +291,7 @@ class RecentChange {
 		$this->mAttribs['rc_comment'] = trim( $this->mAttribs['rc_comment'] );
 
 		# Make sure summary is truncated (whole multibyte characters)
-		$this->mAttribs['rc_comment'] = $wgContLang->truncate( $this->mAttribs['rc_comment'], 255 );
+		$this->mAttribs['rc_comment'] = $wgContLang->truncateForEditSummary( $this->mAttribs['rc_comment'] );
 
 		# Fixup database timestamps
 		$this->mAttribs['rc_timestamp'] = $dbw->timestamp( $this->mAttribs['rc_timestamp'] );

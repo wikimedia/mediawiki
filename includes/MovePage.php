@@ -435,7 +435,7 @@ class MovePage {
 			$comment .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $reason;
 		}
 		# Truncate for whole multibyte characters.
-		$comment = $wgContLang->truncate( $comment, 255 );
+		$comment = $wgContLang->truncateForEditSummary( $comment, 255 );
 
 		$dbw = wfGetDB( DB_MASTER );
 

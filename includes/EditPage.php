@@ -187,6 +187,13 @@ class EditPage {
 	 */
 	const POST_EDIT_COOKIE_DURATION = 1200;
 
+	/**
+	 * Max edit summary size (And also for edit summary like things)
+	 *
+	 * 767 is chosen as that's the largest that still allows covering index (on InnoDB)
+	 */
+	const MAX_SUMMARY_BYTES = 767;
+
 	/** @var Article */
 	public $mArticle;
 
@@ -753,7 +760,7 @@ class EditPage {
 			}
 
 			# Truncate for whole multibyte characters
-			$this->summary = $wgContLang->truncate( $request->getText( 'wpSummary' ), 255 );
+			$this->summary = $wgContLang->truncateForEditSummary( $request->getText( 'wpSummary' ) );
 
 			# If the summary consists of a heading, e.g. '==Foobar==', extract the title from the
 			# header syntax, e.g. 'Foobar'. This is mainly an issue when we are using wpSummary for
