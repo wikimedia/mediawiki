@@ -369,12 +369,17 @@ abstract class DatabaseInstaller {
 	}
 
 	/**
-	 * Get a name=>value map of MW configuration globals that overrides.
-	 * DefaultSettings.php
+	 * Get a name=>value map of MW configuration globals for the default values.
 	 * @return array
 	 */
 	public function getGlobalDefaults() {
-		return array();
+		$defaults = array();
+		foreach ( $this->getGlobalNames() as $var ) {
+			if ( isset( $GLOBALS[$var] ) ) {
+				$defaults[$var] = $GLOBALS[$var];
+			}
+		}
+		return $defaults;
 	}
 
 	/**
