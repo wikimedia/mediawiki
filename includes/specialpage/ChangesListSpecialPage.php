@@ -65,6 +65,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$batch->add( NS_USER, $row->rc_user_text );
 			$batch->add( NS_USER_TALK, $row->rc_user_text );
 			$batch->add( $row->rc_namespace, $row->rc_title );
+			if ( $row->rc_source === RecentChange::SRC_LOG ) {
+				$formatter = LogFormatter::newFromRow( $row );
+				foreach ( $formatter->getPreloadTitles() as $title ) {
+					$batch->addObj( $title );
+				}
+			}
 		}
 		$batch->execute();
 
