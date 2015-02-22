@@ -246,6 +246,9 @@ class ApiFeedWatchlist extends ApiBase {
 			}
 		}
 
+		// explicitly set default to exclude 'external' type.
+		$ret['wltype'][ApiBase::PARAM_DFLT] = 'edit|log|new';
+
 		return $ret;
 	}
 
