@@ -1622,7 +1622,7 @@ class Revision implements IDBAccessObject {
 			}
 
 			// Truncate for whole multibyte characters
-			$summary = $wgContLang->truncate( $summary, 255 );
+			$summary = $wgContLang->truncateForEditSummary( $summary );
 
 			$row = array(
 				'page'       => $pageId,

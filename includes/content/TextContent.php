@@ -70,9 +70,16 @@ class TextContent extends AbstractContent {
 
 		$text = $this->getNativeData();
 
+		// Truncate to amount specified. Even if we allow
+		// longer edit summaries, we probably don't want automatic
+		// edit summaries much longer than 250.
 		$truncatedtext = $wgContLang->truncate(
 			preg_replace( "/[\n\r]/", ' ', $text ),
 			max( 0, $maxlength ) );
+
+		// And truncate again in case the amount specified is more than
+		// the max an edit summary can be.
+		$truncatedtext = $wgContLang->truncateForEditSummary( $truncatedtext );
 
 		return $truncatedtext;
 	}
