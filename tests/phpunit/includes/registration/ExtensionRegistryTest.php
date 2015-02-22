@@ -5,14 +5,20 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 	/**
 	 * @covers ExtensionRegistry::exportExtractedData
 	 * @dataProvider provideExportExtractedDataGlobals
-	 * @backupGlobals enabled
 	 */
 	public function testExportExtractedDataGlobals( $desc, $before, $globals, $expected ) {
+		// Set globals for test
 		if ( $before ) {
 			foreach ( $before as $key => $value ) {
-				$GLOBALS[$key] = $value;
+				// mw prefixed globals does not exist normally
+				if ( substr( $key, 0, 2 ) == 'mw' ) {
+					$GLOBALS[$key] = $value;
+				} else {
+					$this->setMwGlobals( $key, $value );
+				}
 			}
 		}
+
 		$info = array(
 			'globals' => $globals,
 			'callbacks' => array(),
@@ -28,6 +34,15 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 		foreach ( $expected as $name => $value ) {
 			$this->assertArrayHasKey( $name, $GLOBALS, $desc );
 			$this->assertEquals( $value, $GLOBALS[$name], $desc );
+		}
+
+		// Remove mw prefixed globals
+		if ( $before ) {
+			foreach ( $before as $key => $value ) {
+				if ( substr( $key, 0, 2 ) == 'mw' ) {
+					unset( $GLOBALS[$key] );
+				}
+			}
 		}
 	}
 
