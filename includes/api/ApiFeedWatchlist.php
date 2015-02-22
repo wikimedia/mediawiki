@@ -92,6 +92,9 @@ class ApiFeedWatchlist extends ApiBase {
 			}
 			if ( $params['wltype'] !== null ) {
 				$fauxReqArr['wltype'] = $params['wltype'];
+			} else {
+				// set default to exclude 'external' type.
+				$fauxReqArr['wltype'] = 'edit|log|new';
 			}
 
 			// Support linking directly to sections when possible
