@@ -62,6 +62,19 @@ class BlockLogFormatter extends LogFormatter {
 		return $params;
 	}
 
+	protected function extractParameters() {
+		$params = parent::extractParameters();
+		// Legacy log params returning the params in index 3 and 4, moved to 4 and 5
+		if ( $this->entry->isLegacy() && isset( $params[3] ) ) {
+			if ( isset( $params[4] ) ) {
+				$params[5] = $params[4];
+			}
+			$params[4] = $params[3];
+			$params[3] = '';
+		}
+		return $params;
+	}
+
 	public function getPreloadTitles() {
 		$title = $this->entry->getTarget();
 		// Preload user page for non-autoblocks

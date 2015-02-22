@@ -456,7 +456,8 @@ class LogFormatter {
 		 */
 		if ( count( $params ) ) {
 			$max = max( array_keys( $params ) );
-			for ( $i = 4; $i < $max; $i++ ) {
+			// index 0 to 2 are added in getMessageParameters
+			for ( $i = 3; $i < $max; $i++ ) {
 				if ( !isset( $params[$i] ) ) {
 					$params[$i] = '';
 				}
