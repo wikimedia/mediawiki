@@ -2404,7 +2404,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// Truncate for whole multibyte characters
-		$reason = $wgContLang->truncate( $reason, 255 );
+		$reason = $wgContLang->truncateForEditSummary( $reason );
 
 		$logRelationsValues = array();
 		$logRelationsField = null;
@@ -3073,7 +3073,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$summary = trim( $summary );
 
 		// Truncate for whole multibyte characters.
-		$summary = $wgContLang->truncate( $summary, 255 );
+		$summary = $wgContLang->truncateForEditSummary( $summary );
 
 		// Save
 		$flags = EDIT_UPDATE;
