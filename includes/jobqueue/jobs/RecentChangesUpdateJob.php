@@ -64,6 +64,7 @@ class RecentChangesUpdateJob extends Job {
 		if ( !$dbw->lock( $lockKey, __METHOD__, 1 ) ) {
 			return; // already in progress
 		}
+		$batchSize = 100; // Avoid slave lag
 
 		$cutoff = $dbw->timestamp( time() - $wgRCMaxAge );
 		do {
@@ -71,13 +72,21 @@ class RecentChangesUpdateJob extends Job {
 				'rc_id',
 				array( 'rc_timestamp < ' . $dbw->addQuotes( $cutoff ) ),
 				__METHOD__,
-				array( 'LIMIT' => 100 ) // avoid slave lag
+				array( 'LIMIT' => $batchSize )
 			);
 			if ( $rcIds ) {
 				$dbw->delete( 'recentchanges', array( 'rc_id' => $rcIds ), __METHOD__ );
 			}
 			// No need for this to be in a transaction.
 			$dbw->commit( __METHOD__, 'flush' );
+
+			if ( count( $rcIds ) === $batchSize ) {
+				// There might be more, so try waiting for slaves
+				if ( !wfWaitForSlaves( null, false, false, /* $timeout = */ 3 ) ) {
+					// Another job will continue anyway
+					break;
+				}
+			}
 		} while ( $rcIds );
 
 		$dbw->unlock( $lockKey, __METHOD__ );
