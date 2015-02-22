@@ -331,6 +331,29 @@ class LogFormatter {
 					->rawParams( $target, $parameters['4::dest'], $parameters['5::mergepoint'] )
 					->inContentLanguage()->escaped();
 				break;
+
+			case 'block':
+				switch ( $entry->getSubtype() ) {
+					case 'block':
+						global $wgContLang;
+						$duration = $wgContLang->translateBlockExpiry( $parameters['5::duration'] );
+						$flags = BlockLogFormatter::formatBlockFlags( $parameters['6::flags'], $wgContLang );
+						$text = wfMessage( 'blocklogentry' )
+							->rawParams( $target, $duration, $flags )->inContentLanguage()->escaped();
+						break;
+					case 'unblock':
+						$text = wfMessage( 'unblocklogentry' )
+							->rawParams( $target )->inContentLanguage()->escaped();
+						break;
+					case 'reblock':
+						global $wgContLang;
+						$duration = $wgContLang->translateBlockExpiry( $parameters['5::duration'] );
+						$flags = BlockLogFormatter::formatBlockFlags( $parameters['6::flags'], $wgContLang );
+						$text = wfMessage( 'reblock-logentry' )
+							->rawParams( $target, $duration, $flags )->inContentLanguage()->escaped();
+						break;
+				}
+				break;
 			// case 'suppress' --private log -- aaron  (so we know who to blame in a few years :-D)
 			// default:
 		}
@@ -640,7 +663,7 @@ class LogFormatter {
 		return $this->context->msg( $key );
 	}
 
-	protected function makeUserLink( User $user ) {
+	protected function makeUserLink( User $user, $toolFlags = 0 ) {
 		if ( $this->plaintext ) {
 			$element = $user->getName();
 		} else {
@@ -650,9 +673,11 @@ class LogFormatter {
 			);
 
 			if ( $this->linkFlood ) {
-				$element .= Linker::userToolLinksRedContribs(
+				$element .= Linker::userToolLinks(
 					$user->getId(),
 					$user->getName(),
+					true, // redContribsWhenNoEdits
+					$toolFlags,
 					$user->getEditCount()
 				);
 			}
@@ -758,29 +783,7 @@ class LegacyLogFormatter extends LogFormatter {
 		$type = $this->entry->getType();
 		$subtype = $this->entry->getSubtype();
 
-		// Show unblock/change block link
-		if ( ( $type == 'block' || $type == 'suppress' )
-			&& ( $subtype == 'block' || $subtype == 'reblock' )
-		) {
-			if ( !$this->context->getUser()->isAllowed( 'block' ) ) {
-				return '';
-			}
-
-			$links = array(
-				Linker::linkKnown(
-					SpecialPage::getTitleFor( 'Unblock', $title->getDBkey() ),
-					$this->msg( 'unblocklink' )->escaped()
-				),
-				Linker::linkKnown(
-					SpecialPage::getTitleFor( 'Block', $title->getDBkey() ),
-					$this->msg( 'change-blocklink' )->escaped()
-				)
-			);
-
-			return $this->msg( 'parentheses' )->rawParams(
-				$this->context->getLanguage()->pipeList( $links ) )->escaped();
-		// Show change protection link
-		} elseif ( $type == 'protect'
+		if ( $type == 'protect'
 			&& ( $subtype == 'protect' || $subtype == 'modify' || $subtype == 'unprotect' )
 		) {
 			$links = array(

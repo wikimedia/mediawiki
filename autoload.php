@@ -169,6 +169,7 @@ $wgAutoloadLocalClasses = array(
 	'Blob' => __DIR__ . '/includes/db/DatabaseUtility.php',
 	'Block' => __DIR__ . '/includes/Block.php',
 	'BlockListPager' => __DIR__ . '/includes/specials/SpecialBlockList.php',
+	'BlockLogFormatter' => __DIR__ . '/includes/logging/BlockLogFormatter.php',
 	'BloomCache' => __DIR__ . '/includes/cache/bloom/BloomCache.php',
 	'BloomCacheRedis' => __DIR__ . '/includes/cache/bloom/BloomCacheRedis.php',
 	'BloomFilterTitleHasLogs' => __DIR__ . '/includes/cache/bloom/BloomFilters.php',

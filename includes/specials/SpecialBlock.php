@@ -784,22 +784,21 @@ class SpecialBlock extends FormSpecialPage {
 
 		# Prepare log parameters
 		$logParams = array();
-		$logParams[] = $data['Expiry'];
-		$logParams[] = self::blockLogFlags( $data, $type );
+		$logParams['5::duration'] = $data['Expiry'];
+		$logParams['6::flags'] = self::blockLogFlags( $data, $type );
 
 		# Make log entry, if the name is hidden, put it in the oversight log
 		$log_type = $data['HideUser'] ? 'suppress' : 'block';
-		$log = new LogPage( $log_type );
-		$log_id = $log->addEntry(
-			$logaction,
-			Title::makeTitle( NS_USER, $target ),
-			$data['Reason'][0],
-			$logParams,
-			$performer
-		);
+		$logEntry = new ManualLogEntry( $log_type, $logaction );
+		$logEntry->setTarget( Title::makeTitle( NS_USER, $target ) );
+		$logEntry->setComment( $data['Reason'][0] );
+		$logEntry->setPerformer( $performer );
+		$logEntry->setParameters( $logParams );
 		# Relate log ID to block IDs (bug 25763)
 		$blockIds = array_merge( array( $status['id'] ), $status['autoIds'] );
-		$log->addRelations( 'ipb_id', $blockIds, $log_id );
+		$logEntry->setRelations( array( 'ipb_id' => $blockIds ) );
+		$logId = $logEntry->insert();
+		$logEntry->publish( $logId );
 
 		# Report to the user
 		return true;
