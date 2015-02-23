@@ -96,13 +96,13 @@ class WantedFilesPage extends WantedQueryPage {
 	/**
 	 * Does the file exist?
 	 *
-	 * Use wfFindFile so we still think file namespace pages without
+	 * Check fallback repos so we still think file namespace pages without
 	 * files are missing, but valid file redirects and foreign files are ok.
 	 *
 	 * @return bool
 	 */
 	protected function existenceCheck( Title $title ) {
-		return (bool)wfFindFile( $title );
+		return (bool)RepoGroup::singleton()->findFile( $title );
 	}
 
 	function getQueryInfo() {

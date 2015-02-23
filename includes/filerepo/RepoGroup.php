@@ -103,7 +103,6 @@ class RepoGroup {
 
 	/**
 	 * Search repositories for an image.
-	 * You can also use wfFindFile() to do this.
 	 *
 	 * @param Title|string $title Title object or string
 	 * @param array $options Associative array of options:

@@ -57,9 +57,9 @@ class WikiFilePage extends WikiPage {
 		}
 		$this->mFileLoaded = true;
 
-		$this->mFile = wfFindFile( $this->mTitle );
+		$this->mFile = RepoGroup::singleton()->findFile( $this->mTitle );
 		if ( !$this->mFile ) {
-			$this->mFile = wfLocalFile( $this->mTitle ); // always a File
+			$this->mFile = RepoGroup::singleton()->getLocalRepo()->newFile( $this->mTitle ); // always a File
 		}
 		$this->mRepo = $this->mFile->getRepo();
 		return true;

@@ -897,7 +897,7 @@ class CoreParserFunctions {
 	// or {{filepath|300|nowiki}} or {{filepath|300px}}, {{filepath|200x300px}},
 	// {{filepath|nowiki|200x300px}}, {{filepath|200x300px|nowiki}}.
 	public static function filepath( $parser, $name = '', $argA = '', $argB = '' ) {
-		$file = wfFindFile( $name );
+		$file = RepoGroup::singleton()->findFile( $name );
 
 		if ( $argA == 'nowiki' ) {
 			// {{filepath: | option [| size] }}

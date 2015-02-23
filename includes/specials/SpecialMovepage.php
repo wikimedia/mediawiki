@@ -514,7 +514,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		if ( $nt->getNamespace() == NS_FILE
 			&& !( $this->moveOverShared && $user->isAllowed( 'reupload-shared' ) )
 			&& !RepoGroup::singleton()->getLocalRepo()->findFile( $nt )
-			&& wfFindFile( $nt )
+			&& RepoGroup::singleton()->findFile( $nt )
 		) {
 			$this->showForm( array( array( 'file-exists-sharedrepo' ) ) );
 
@@ -535,7 +535,7 @@ class MovePageForm extends UnlistedSpecialPage {
 
 			// Delete an associated image if there is
 			if ( $nt->getNamespace() == NS_FILE ) {
-				$file = wfLocalFile( $nt );
+				$file = RepoGroup::singleton()->getLocalRepo()->newFile( $nt );
 				if ( $file->exists() ) {
 					$file->delete( $reason, false, $user );
 				}

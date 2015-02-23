@@ -3630,8 +3630,10 @@ class Title {
 
 		$errors = array();
 
-		$destFile = wfLocalFile( $nt );
-		if ( !$wgUser->isAllowed( 'reupload-shared' ) && !$destFile->exists() && wfFindFile( $nt ) ) {
+		$destFile = RepoGroup::singleton()->getLocalRepo()->newFile( $nt );
+		if ( !$wgUser->isAllowed( 'reupload-shared' ) && !$destFile->exists()
+			&& RepoGroup::singleton()->findFile( $nt )
+		) {
 			$errors[] = array( 'file-exists-sharedrepo' );
 		}
 
@@ -3805,7 +3807,7 @@ class Title {
 	public function isValidMoveTarget( $nt ) {
 		# Is it an existing file?
 		if ( $nt->getNamespace() == NS_FILE ) {
-			$file = wfLocalFile( $nt );
+			$file = RepoGroup::singleton()->getLocalRepo()->newFile( $nt );
 			if ( $file->exists() ) {
 				wfDebug( __METHOD__ . ": file exists\n" );
 				return false;
@@ -4275,7 +4277,7 @@ class Title {
 			case NS_MEDIA:
 			case NS_FILE:
 				// file exists, possibly in a foreign repo
-				return (bool)wfFindFile( $this );
+				return (bool)RepoGroup::singleton()->findFile( $this );
 			case NS_SPECIAL:
 				// valid special page
 				return SpecialPageFactory::exists( $this->getDBkey() );

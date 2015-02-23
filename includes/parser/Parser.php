@@ -4054,7 +4054,7 @@ class Parser {
 		} elseif ( isset( $options['sha1'] ) ) { // get by (sha1,timestamp)
 			$file = RepoGroup::singleton()->findFileFromKey( $options['sha1'], $options );
 		} else { // get by (name,timestamp)
-			$file = wfFindFile( $title, $options );
+			$file = RepoGroup::singleton()->findFile( $title, $options );
 		}
 		return $file;
 	}

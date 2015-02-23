@@ -101,7 +101,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				if ( !isset( $images[$title] ) ) {
 					if ( isset( $prop['uploadwarning'] ) ) {
 						// Uploadwarning needs info about non-existing files
-						$images[$title] = wfLocalFile( $title );
+						$images[$title] = RepoGroup::singleton()->getLocalRepo()->newFile( $title );
 					} else {
 						$result->addValue(
 							array( 'query', 'pages', intval( $pageId ) ),

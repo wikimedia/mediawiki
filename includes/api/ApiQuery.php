@@ -423,7 +423,7 @@ class ApiQuery extends ApiBase {
 			) {
 				$vals['missing'] = '';
 			} elseif ( $title->getNamespace() == NS_MEDIA &&
-				!wfFindFile( $title )
+				!RepoGroup::singleton()->findFile( $title )
 			) {
 				$vals['missing'] = '';
 			}

@@ -158,7 +158,7 @@ class MovePage {
 	 */
 	protected function isValidFileMove() {
 		$status = new Status();
-		$file = wfLocalFile( $this->oldTitle );
+		$file = RepoGroup::singleton()->getLocalRepo()->newFile( $this->oldTitle );
 		if ( $file->exists() ) {
 			if ( $this->newTitle->getText() != wfStripIllegalFilenameChars( $this->newTitle->getText() ) ) {
 				$status->fatal( 'imageinvalidfilename' );
@@ -185,7 +185,7 @@ class MovePage {
 	protected function isValidMoveTarget() {
 		# Is it an existing file?
 		if ( $this->newTitle->inNamespace( NS_FILE ) ) {
-			$file = wfLocalFile( $this->newTitle );
+			$file = RepoGroup::singleton()->getLocalRepo()->newFile( $this->newTitle );
 			if ( $file->exists() ) {
 				wfDebug( __METHOD__ . ": file exists\n" );
 				return false;
@@ -237,7 +237,7 @@ class MovePage {
 		// It is done before all other moving stuff is done because it's hard to revert.
 		$dbw = wfGetDB( DB_MASTER );
 		if ( $this->oldTitle->getNamespace() == NS_FILE ) {
-			$file = wfLocalFile( $this->oldTitle );
+			$file = RepoGroup::singleton()->getLocalRepo()->newFile( $this->oldTitle );
 			if ( $file->exists() ) {
 				$status = $file->move( $this->newTitle );
 				if ( !$status->isOk() ) {

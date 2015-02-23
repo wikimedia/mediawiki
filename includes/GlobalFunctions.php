@@ -3673,6 +3673,7 @@ function wfGetLBFactory() {
  *     bypassCache:    If true, do not use the process-local cache of File objects
  *
  * @return File|bool File, or false if the file does not exist
+ * @deprecated 1.25
  */
 function wfFindFile( $title, $options = array() ) {
 	return RepoGroup::singleton()->findFile( $title, $options );
@@ -3684,6 +3685,7 @@ function wfFindFile( $title, $options = array() ) {
  *
  * @param Title|string $title
  * @return LocalFile|null A File, or null if passed an invalid Title
+ * @deprecated 1.25
  */
 function wfLocalFile( $title ) {
 	return RepoGroup::singleton()->getLocalRepo()->newFile( $title );

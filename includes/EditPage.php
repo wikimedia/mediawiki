@@ -2123,7 +2123,7 @@ class EditPage {
 			}
 		} elseif ( $namespace == NS_FILE ) {
 			# Show a hint to shared repo
-			$file = wfFindFile( $this->mTitle );
+			$file = RepoGroup::singleton()->findFile( $this->mTitle );
 			if ( $file && !$file->isLocal() ) {
 				$descUrl = $file->getDescriptionUrl();
 				# there must be a description url to show a hint to shared repo

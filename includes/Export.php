@@ -802,7 +802,7 @@ class XmlDumpWriter {
 	 */
 	function writeUploads( $row, $dumpContents = false ) {
 		if ( $row->page_namespace == NS_FILE ) {
-			$img = wfLocalFile( $row->page_title );
+			$img = RepoGroup::singleton()->getLocalRepo()->newFile( $row->page_title );
 			if ( $img && $img->exists() ) {
 				$out = '';
 				foreach ( array_reverse( $img->getHistory() ) as $ver ) {

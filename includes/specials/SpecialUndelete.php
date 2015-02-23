@@ -369,7 +369,7 @@ class PageArchive {
 		$restoreFiles = $restoreAll || !empty( $fileVersions );
 
 		if ( $restoreFiles && $this->title->getNamespace() == NS_FILE ) {
-			$img = wfLocalFile( $this->title );
+			$img = RepoGroup::singleton()->getLocalRepo()->newFile( $this->title );
 			$this->fileStatus = $img->restore( $fileVersions, $unsuppress );
 			if ( !$this->fileStatus->isOK() ) {
 				return false;
