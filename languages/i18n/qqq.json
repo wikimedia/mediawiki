@@ -486,6 +486,7 @@
 	"readonly_lag": "Error message displayed when the database is locked.",
 	"internalerror": "{{Identical|Internal error}}",
 	"internalerror_info": "Parameters:\n* $1 - error message",
+	"internalerror-fatal-exception": "Error message displayed by MediaWiki itself when the request failed, inside an error box which also contains a code, a timestamp and a colon before this message.\nParameters:\n* $1 - proper name of the kind of error\n* $2 - alphanumeric code identifying the error in the server logs\n* $3 - URL which resulted in the error\n$2 and $3 are not used by default and only available for wiki customisations, because they are useful for communication to the wiki system administrator.",
 	"filecopyerror": "Parameters:\n* $1 - source file name\n* $2 - destination file name",
 	"filerenameerror": "Parameters:\n* $1 - old file name\n* $2 - new file name",
 	"filedeleteerror": "Parameters:\n* $1 - file name",
