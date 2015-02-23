@@ -231,12 +231,18 @@ class UploadFromUrl extends UploadBase {
 	 * @return int Number of bytes handled
 	 */
 	public function saveTempFileChunk( $req, $buffer ) {
+		wfDebugLog( 'fileupload', 'Received chunk of ' . strlen( $buffer ) . ' bytes' );
 		$nbytes = fwrite( $this->mTmpHandle, $buffer );
 
 		if ( $nbytes == strlen( $buffer ) ) {
 			$this->mFileSize += $nbytes;
 		} else {
 			// Well... that's not good!
+			wfDebugLog(
+				'fileupload',
+				'Short write ' . $this->nbytes . '/' . strlen( $buffer ) .
+					' bytes, aborting with '  . $this->mFileSize . ' uploaded so far'
+			);
 			fclose( $this->mTmpHandle );
 			$this->mTmpHandle = false;
 		}
@@ -262,6 +268,7 @@ class UploadFromUrl extends UploadBase {
 		if ( !$this->mTmpHandle ) {
 			return Status::newFatal( 'tmp-create-error' );
 		}
+		wfDebugLog( 'fileupload', 'Temporary file created "' . $this->mTempPath . '"' );
 
 		$this->mRemoveTempFile = true;
 		$this->mFileSize = 0;
@@ -275,6 +282,11 @@ class UploadFromUrl extends UploadBase {
 		if ( $wgCopyUploadTimeout && !isset( $options['timeout'] ) ) {
 			$options['timeout'] = $wgCopyUploadTimeout;
 		}
+		wfDebugLog(
+			'fileupload',
+			'Starting download from "' . $this->mUrl . '" ' .
+				'<' . implode( ',', array_keys( array_filter( $options ) ) ) . '>'
+		);
 		$req = MWHttpRequest::factory( $this->mUrl, $options );
 		$req->setCallback( array( $this, 'saveTempFileChunk' ) );
 		$status = $req->execute();
@@ -288,8 +300,14 @@ class UploadFromUrl extends UploadBase {
 			return Status::newFatal( 'tmp-write-error' );
 		}
 
-		if ( !$status->isOk() ) {
-			return $status;
+		wfDebugLog( 'fileupload', $status );
+		if ( $status->isOk() ) {
+			wfDebugLog( 'fileupload', 'Download by URL completed successfuly.' );
+		} else {
+			wfDebugLog(
+				'fileupload',
+				'Download by URL completed with HTTP status ' . $req->getStatus()
+			);
 		}
 
 		return $status;
