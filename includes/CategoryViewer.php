@@ -89,6 +89,9 @@ class CategoryViewer extends ContextSource {
 	) {
 		$this->title = $title;
 		$this->setContext( $context );
+		$this->getOutput()->addModuleStyles( array(
+			'mediawiki.action.view.categoryPage.styles'
+		) );
 		$this->from = $from;
 		$this->until = $until;
 		$this->limit = $context->getConfig()->get( 'CategoryPagingLimit' );
@@ -528,8 +531,7 @@ class CategoryViewer extends ContextSource {
 	 * TODO: Take the headers into account when creating columns, so they're
 	 * more visually equal.
 	 *
-	 * More distant TODO: Scrap this and use CSS columns, whenever IE finally
-	 * supports those.
+	 * TODO: shortList and columnList are similar, need merging
 	 *
 	 * @param array $articles
 	 * @param string[] $articles_start_char
@@ -538,50 +540,34 @@ class CategoryViewer extends ContextSource {
 	 */
 	static function columnList( $articles, $articles_start_char ) {
 		$columns = array_combine( $articles, $articles_start_char );
-		# Split into three columns
-		$columns = array_chunk( $columns, ceil( count( $columns ) / 3 ), true /* preserve keys */ );
 
-		$ret = '<table style="width: 100%;"><tr style="vertical-align: top;">';
-		$prevchar = null;
+		$ret = Html::openElement( 'div', array( 'class' => 'mw-category' ) );
 
-		foreach ( $columns as $column ) {
-			$ret .= '<td style="width: 33.3%;">';
-			$colContents = array();
+		$colContents = array();
 
-			# Kind of like array_flip() here, but we keep duplicates in an
-			# array instead of dropping them.
-			foreach ( $column as $article => $char ) {
-				if ( !isset( $colContents[$char] ) ) {
-					$colContents[$char] = array();
-				}
-				$colContents[$char][] = $article;
+		# Kind of like array_flip() here, but we keep duplicates in an
+		# array instead of dropping them.
+		foreach ( $columns as $article => $char ) {
+			if ( !isset( $colContents[$char] ) ) {
+				$colContents[$char] = array();
 			}
-
-			$first = true;
-			foreach ( $colContents as $char => $articles ) {
-				# Change space to non-breaking space to keep headers aligned
-				$h3char = $char === ' ' ? '&#160;' : htmlspecialchars( $char );
-
-				$ret .= '<h3>' . $h3char;
-				if ( $first && $char === $prevchar ) {
-					# We're continuing a previous chunk at the top of a new
-					# column, so add " cont." after the letter.
-					$ret .= ' ' . wfMessage( 'listingcontinuesabbrev' )->escaped();
-				}
-				$ret .= "</h3>\n";
-
-				$ret .= '<ul><li>';
-				$ret .= implode( "</li>\n<li>", $articles );
-				$ret .= '</li></ul>';
-
-				$first = false;
-				$prevchar = $char;
-			}
-
-			$ret .= "</td>\n";
+			$colContents[$char][] = $article;
 		}
 
-		$ret .= '</tr></table>';
+		foreach ( $colContents as $char => $articles ) {
+			# Change space to non-breaking space to keep headers aligned
+			$h3char = $char === ' ' ? '&#160;' : htmlspecialchars( $char );
+
+			$ret .= '<div class="mw-category-group"><h3>' . $h3char;
+			$ret .= "</h3>\n";
+
+			$ret .= '<ul><li>';
+			$ret .= implode( "</li>\n<li>", $articles );
+			$ret .= '</li></ul></div>';
+
+		}
+
+		$ret .= Html::closeElement( 'div' );
 		return $ret;
 	}
 
