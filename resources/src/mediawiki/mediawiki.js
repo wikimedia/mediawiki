@@ -777,7 +777,7 @@
 				// Makes sure that cssText containing `@import`
 				// rules will end up in a new stylesheet (as those only work when
 				// placed at the start of a stylesheet; bug 35562).
-				return cssText.indexOf( '@import' ) === -1;
+				return cssText.slice( 0, '@import'.length ) !== '@import';
 			}
 
 			/**
