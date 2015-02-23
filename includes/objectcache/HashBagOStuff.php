@@ -77,7 +77,7 @@ class HashBagOStuff extends BagOStuff {
 		return true;
 	}
 
-	function lock( $key ) {
+	public function lock( $key, $timeout = 6, $expiry = 6 ) {
 		return true;
 	}
 
