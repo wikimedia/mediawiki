@@ -425,7 +425,7 @@ class ImageListPager extends TablePager {
 	function formatValue( $field, $value ) {
 		switch ( $field ) {
 			case 'thumb':
-				$opt = array( 'time' => $this->mCurrentRow->img_timestamp );
+				$opt = array( 'time' => wfTimestamp( TS_MW, $this->mCurrentRow->img_timestamp ) );
 				$file = RepoGroup::singleton()->getLocalRepo()->findFile( $value, $opt );
 				// If statement for paranoia
 				if ( $file ) {
