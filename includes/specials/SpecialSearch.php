@@ -688,7 +688,7 @@ class SpecialSearch extends SpecialPage {
 		// Include a thumbnail for media files...
 		if ( $title->getNamespace() == NS_FILE ) {
 			$img = $result->getFile();
-			$img = $img ?: wfFindFile( $title );
+			$img = $img ?: RepoGroup::singleton()->findFile( $title );
 			if ( $result->isFileMatch() ) {
 				$fileMatch = "<span class='searchalttitle'>" .
 					$this->msg( 'search-file-match' )->escaped() . "</span>";

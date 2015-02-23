@@ -105,7 +105,7 @@ class RevDelFileList extends RevDelList {
 	}
 
 	public function doPostCommitUpdates() {
-		$file = wfLocalFile( $this->title );
+		$file = RepoGroup::singleton()->getLocalRepo()->newFile( $this->title );
 		$file->purgeCache();
 		$file->purgeDescription();
 		$purgeUrls = array();

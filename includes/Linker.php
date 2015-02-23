@@ -791,7 +791,7 @@ class Linker {
 				# Use manually specified thumbnail
 				$manual_title = Title::makeTitleSafe( NS_FILE, $fp['manualthumb'] );
 				if ( $manual_title ) {
-					$manual_img = wfFindFile( $manual_title );
+					$manual_img = RepoGroup::singleton()->findFile( $manual_title );
 					if ( $manual_img ) {
 						$thumb = $manual_img->getUnscaledThumb( $hp );
 						$manualthumb = true;
@@ -926,7 +926,7 @@ class Linker {
 			$label = $title->getPrefixedText();
 		}
 		$encLabel = htmlspecialchars( $label );
-		$currentExists = $time ? ( wfFindFile( $title ) != false ) : false;
+		$currentExists = $time ? ( RepoGroup::singleton()->findFile( $title ) != false ) : false;
 
 		if ( ( $wgUploadMissingFileUrl || $wgUploadNavigationUrl || $wgEnableUploads )
 			&& !$currentExists
@@ -980,7 +980,7 @@ class Linker {
 	 * @return string HTML
 	 */
 	public static function makeMediaLinkObj( $title, $html = '', $time = false ) {
-		$img = wfFindFile( $title, array( 'time' => $time ) );
+		$img = RepoGroup::singleton()->findFile( $title, array( 'time' => $time ) );
 		return self::makeMediaLinkFile( $title, $img, $html );
 	}
 

@@ -73,7 +73,7 @@ class ApiImageRotate extends ApiBase {
 				$r['missing'] = '';
 			}
 
-			$file = wfFindFile( $title );
+			$file = RepoGroup::singleton()->findFile( $title );
 			if ( !$file ) {
 				$r['result'] = 'Failure';
 				$r['errormessage'] = 'File does not exist';

@@ -93,7 +93,7 @@ class SpecialRedirect extends FormSpecialPage {
 		if ( !$title instanceof Title ) {
 			return null;
 		}
-		$file = wfFindFile( $title );
+		$file = RepoGroup::singleton()->findFile( $title );
 
 		if ( !$file || !$file->exists() ) {
 			return null;

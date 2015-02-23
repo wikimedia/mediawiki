@@ -78,9 +78,9 @@ class ImagePage extends Article {
 		$this->displayImg = $img = false;
 		Hooks::run( 'ImagePageFindFile', array( $this, &$img, &$this->displayImg ) );
 		if ( !$img ) { // not set by hook?
-			$img = wfFindFile( $this->getTitle() );
+			$img = RepoGroup::singleton()->findFile( $this->getTitle() );
 			if ( !$img ) {
-				$img = wfLocalFile( $this->getTitle() );
+				$img = RepoGroup::singleton()->getLocalRepo()->newFile( $this->getTitle() );
 			}
 		}
 		$this->mPage->setFile( $img );

@@ -35,12 +35,9 @@ define( 'MW_FILE_VERSION', 9 );
  * Note that only the repo object knows what its file class is called. You should
  * never name a file class explictly outside of the repo class. Instead use the
  * repo's factory functions to generate file objects, for example:
- *
+ * <code>
  * RepoGroup::singleton()->getLocalRepo()->newFile( $title );
- *
- * The convenience functions wfLocalFile() and wfFindFile() should be sufficient
- * in most cases.
- *
+ * </code>
  * @ingroup FileAbstraction
  */
 class LocalFile extends File {
@@ -1558,8 +1555,8 @@ class LocalFile extends File {
 		wfDebugLog( 'imagemove', "Finished moving {$this->name}" );
 
 		// Purge the source and target files...
-		$oldTitleFile = wfLocalFile( $this->title );
-		$newTitleFile = wfLocalFile( $target );
+		$oldTitleFile = RepoGroup::singleton()->getLocalRepo()->newFile( $this->title );
+		$newTitleFile = RepoGroup::singleton()->getLocalRepo()->newFile( $target );
 		// Hack: the lock()/unlock() pair is nested in a transaction so the locking is not
 		// tied to BEGIN/COMMIT. To avoid slow purges in the transaction, move them outside.
 		$this->getRepo()->getMasterDB()->onTransactionIdle(
@@ -2821,7 +2818,7 @@ class LocalFileMoveBatch {
 			return $status;
 		}
 		$triplets = $checkStatus->value;
-		$destFile = wfLocalFile( $this->target );
+		$destFile = RepoGroup::singleton()->getLocalRepo()->newFile( $this->target );
 
 		$this->file->lock(); // begin
 		$destFile->lock(); // quickly fail if destination is not available

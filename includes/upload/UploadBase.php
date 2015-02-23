@@ -892,7 +892,7 @@ abstract class UploadBase {
 	public function getLocalFile() {
 		if ( is_null( $this->mLocalFile ) ) {
 			$nt = $this->getTitle();
-			$this->mLocalFile = is_null( $nt ) ? null : wfLocalFile( $nt );
+			$this->mLocalFile = is_null( $nt ) ? null : RepoGroup::singleton()->getLocalRepo()->newFile( $nt );
 		}
 
 		return $this->mLocalFile;
@@ -1710,7 +1710,7 @@ abstract class UploadBase {
 		/* Check shared conflicts: if the local file does not exist, but
 		 * wfFindFile finds a file, it exists in a shared repository.
 		 */
-		$file = wfFindFile( $this->getTitle() );
+		$file = RepoGroup::singleton()->findFile( $this->getTitle() );
 		if ( $file && !$user->isAllowed( 'reupload-shared' ) ) {
 			return array( 'fileexists-shared-forbidden', $file->getName() );
 		}
@@ -1733,7 +1733,7 @@ abstract class UploadBase {
 			return false;
 		}
 		if ( is_string( $img ) ) {
-			$img = wfLocalFile( $img );
+			$img = RepoGroup::singleton()->getLocalRepo()->newFile( $img );
 		}
 		if ( !( $img instanceof LocalFile ) ) {
 			return false;
@@ -1783,7 +1783,7 @@ abstract class UploadBase {
 			//
 			// Check for another file using the normalized form...
 			$nt_lc = Title::makeTitle( NS_FILE, "{$partname}.{$normalizedExtension}" );
-			$file_lc = wfLocalFile( $nt_lc );
+			$file_lc = RepoGroup::singleton()->getLocalRepo()->newFile( $nt_lc );
 
 			if ( $file_lc->exists() ) {
 				return array(
@@ -1811,7 +1811,7 @@ abstract class UploadBase {
 				substr( $partname, strpos( $partname, '-' ) + 1 ) . '.' . $extension,
 				NS_FILE
 			);
-			$file_thb = wfLocalFile( $nt_thb );
+			$file_thb = RepoGroup::singleton()->getLocalRepo()->newFile( $nt_thb );
 			if ( $file_thb->exists() ) {
 				return array(
 					'warning' => 'thumb',

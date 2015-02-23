@@ -36,7 +36,7 @@ class ThumbnailRenderJob extends Job {
 
 		$transformParams = $this->params['transformParams'];
 
-		$file = wfLocalFile( $this->title );
+		$file = RepoGroup::singleton()->getLocalRepo()->newFile( $this->title );
 
 		if ( $file && $file->exists() ) {
 			if ( $wgUploadThumbnailRenderMethod === 'jobqueue' ) {

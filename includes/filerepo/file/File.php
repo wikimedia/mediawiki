@@ -39,12 +39,9 @@
  * Note that only the repo object knows what its file class is called. You should
  * never name a file class explictly outside of the repo class. Instead use the
  * repo's factory functions to generate file objects, for example:
- *
+ * <code>
  * RepoGroup::singleton()->getLocalRepo()->newFile( $title );
- *
- * The convenience functions wfLocalFile() and wfFindFile() should be sufficient
- * in most cases.
- *
+ * </code>
  * @ingroup FileAbstraction
  */
 abstract class File {

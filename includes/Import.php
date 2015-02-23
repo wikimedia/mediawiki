@@ -1668,7 +1668,7 @@ class WikiRevision {
 			$file = OldLocalFile::newFromArchiveName( $this->getTitle(),
 				RepoGroup::singleton()->getLocalRepo(), $archiveName );
 		} else {
-			$file = wfLocalFile( $this->getTitle() );
+			$file = RepoGroup::singleton()->getLocalRepo()->newFile( $this->getTitle() );
 			wfDebug( __METHOD__ . 'Importing new file as ' . $file->getName() . "\n" );
 			if ( $file->exists() && $file->getTimestamp() > $this->getTimestamp() ) {
 				$archiveName = $file->getTimestamp() . '!' . $file->getName();
