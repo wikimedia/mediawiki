@@ -315,6 +315,15 @@ class RedisBagOStuff extends BagOStuff {
 		$this->logRequest( 'incr', $key, $server, $result );
 		return $result;
 	}
+
+	public function merge( $key, $callback, $exptime = 0, $attempts = 10 ) {
+		if ( !is_callable( $callback ) ) {
+			throw new Exception( "Got invalid callback." );
+		}
+
+		return $this->mergeViaCas( $key, $callback, $exptime, $attempts );
+	}
+
 	/**
 	 * @param mixed $data
 	 * @return string
