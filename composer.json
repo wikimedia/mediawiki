@@ -31,6 +31,7 @@
 	},
 	"suggest": {
 		"ext-fileinfo": "*",
+		"ext-intl": "*",
 		"ext-mbstring": "*",
 		"ext-wikidiff2": "*",
 		"ext-apc": "*",
