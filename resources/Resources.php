@@ -1372,6 +1372,7 @@ return array(
 			'prefs-tabs-navigation-hint',
 			'prefswarning-warning',
 			'saveprefs',
+			'savedprefs',
 		),
 		'dependencies' => array(
 			'mediawiki.language',
