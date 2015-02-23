@@ -226,6 +226,8 @@ production.
 * (T88010) Added action=checktoken, to test a CSRF token's validity.
 * (T88010) Added intestactions to prop=info, to allow querying of
   Title::userCan() via the API.
+* Default type param for query list=watchlist and list=recentchanges has
+  been changed from all types (e.g. including 'external') to 'edit|new|log'.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.
@@ -257,6 +259,8 @@ production.
   provided to access just the live or just the deleted revids.
 * Added ApiPageSet::setGeneratorData() and ApiPageSet::populateGeneratorData()
   to allow generators to include data in the action=query result.
+* New hooks 'ApiMain::moduleManager' and 'ApiQuery::moduleManager', can be
+  used for conditional registration of API modules.
 * The following methods have been deprecated and may be removed in a future
   release:
   * ApiBase::getDescription
@@ -278,10 +282,6 @@ production.
 * The following classes have been deprecated and may be removed in a future
   release:
   * ApiQueryDeletedrevs
-* Default type param for ApiQueryWatchlist and ApiQueryRecentChanges has
-  been changed from all types (e.g. including 'external') to 'edit|new|log'.
-* New hooks 'ApiMain::moduleManager' and 'ApiQuery::moduleManager', can be
-  used for conditional registration of API modules.
 
 === Languages updated in 1.25 ===
 
