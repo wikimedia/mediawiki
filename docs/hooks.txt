@@ -1057,6 +1057,15 @@ $title: the diff page title (nullable)
 $old: the ?old= param value from the url
 $new: the ?new= param value from the url
 
+'GetDifferenceEngine': Called when getting a new difference engine interface object
+Return false for valid object in $differenceEngine or true for the default difference engine
+$context: IContextSource context to be used for diff
+$old: Revision ID to show and diff with
+$new: Either a revision ID or one of the strings 'cur', 'prev' or 'next'
+$refreshCache: If set, refreshes the diff cache
+$unhide: If set, allow viewing deleted revs
+&$differenceEngine: output parameter, difference engine object to be used for diff
+
 'DiffRevisionTools': Override or extend the revision tools available from the
 diff view, i.e. undo, etc.
 $newRev: Revision object of the "new" revision
