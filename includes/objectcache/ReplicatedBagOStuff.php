@@ -119,8 +119,4 @@ class ReplicatedBagOStuff extends BagOStuff {
 		$this->mCache->clearLastError();
 		$this->sCache->clearLastError();
 	}
-
-	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
-		$this->mCache->cas( $casToken, $key, $value, $exptime );
-	}
 }
