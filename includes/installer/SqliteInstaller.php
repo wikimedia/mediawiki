@@ -226,6 +226,49 @@ class SqliteInstaller extends DatabaseInstaller {
 		}
 
 		$db = $this->getVar( 'wgDBname' );
+
+		# Make the main and cache stub DB files
+		$status = Status::newGood();
+		$status->merge( $this->makeStubDBFile( $dir, $db ) );
+		$status->merge( $this->makeStubDBFile( $dir, "wikicache" ) );
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+
+		# Nuke the unused settings for clarity
+		$this->setVar( 'wgDBserver', '' );
+		$this->setVar( 'wgDBuser', '' );
+		$this->setVar( 'wgDBpassword', '' );
+		$this->setupSchemaVars();
+
+		# Create the global cache DB
+		try {
+			global $wgSQLiteDataDir;
+			# @todo FIXME: setting globals kind of sucks
+			$wgSQLiteDataDir = $dir;
+			$conn = DatabaseBase::factory( 'sqlite', array( 'dbname' => "wikicache" ) );
+			# @todo: don't duplicate objectcache definition, though it's very simple
+			$sql =
+<<<EOT
+	CREATE TABLE IF NOT EXISTS objectcache (
+	  keyname BLOB NOT NULL default '' PRIMARY KEY,
+	  value BLOB,
+	  exptime TEXT
+	)
+EOT;
+			$conn->query( $sql );
+			$conn->query( "CREATE INDEX IF NOT EXISTS exptime ON objectcache (exptime)" );
+			$conn->query( "PRAGMA journal_mode=WAL" ); // this is permanent
+			$conn->close();
+		} catch ( DBConnectionError $e ) {
+			return Status::newFatal( 'config-sqlite-connection-error', $e->getMessage() );
+		}
+
+		# Open the main DB
+		return $this->getConnection();
+	}
+
+	protected function makeStubDBFile( $dir, $db ) {
 		$file = DatabaseSqlite::generateFileName( $dir, $db );
 		if ( file_exists( $file ) ) {
 			if ( !is_writable( $file ) ) {
@@ -236,13 +279,8 @@ class SqliteInstaller extends DatabaseInstaller {
 				return Status::newFatal( 'config-sqlite-cant-create-db', $file );
 			}
 		}
-		// nuke the unused settings for clarity
-		$this->setVar( 'wgDBserver', '' );
-		$this->setVar( 'wgDBuser', '' );
-		$this->setVar( 'wgDBpassword', '' );
-		$this->setupSchemaVars();
 
-		return $this->getConnection();
+		return Status::newGood();
 	}
 
 	/**
@@ -280,6 +318,17 @@ class SqliteInstaller extends DatabaseInstaller {
 		$dir = LocalSettingsGenerator::escapePhpString( $this->getVar( 'wgSQLiteDataDir' ) );
 
 		return "# SQLite-specific settings
-\$wgSQLiteDataDir = \"{$dir}\";";
+\$wgSQLiteDataDir = \"{$dir}\";
+\$wgObjectCaches[CACHE_DB] = array(
+	'class' => 'SqlBagOStuff',
+	'loggroup' => 'SQLBagOStuff',
+	'server' => array(
+		'type' => 'sqlite',
+		'dbname' => 'wikicache',
+		'tablePrefix' => '',
+		'user' => \$wgDBuser,
+		'password' => \$wgDBpassword
+	)
+);";
 	}
 }
