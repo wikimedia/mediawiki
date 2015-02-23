@@ -3296,5 +3296,6 @@
 	"json-error-utf8": "Caratteri UTF-8 non validi, possibile codifica errata",
 	"json-error-recursion": "Uno o più riferimenti ricorsivi nel valore da codificare",
 	"json-error-inf-or-nan": "Uno o più valori NAN o INF nel valore da codificare",
-	"json-error-unsupported-type": "È stato fornito un valore di un tipo che non può essere codificato"
+	"json-error-unsupported-type": "È stato fornito un valore di un tipo che non può essere codificato",
+	"headline-anchor-title": "Collegamento a questa sezione"
 }

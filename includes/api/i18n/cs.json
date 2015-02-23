@@ -122,7 +122,7 @@
 	"apihelp-opensearch-example-te": "Najít stránky začínající na „<kbd>Te</kbd>“.",
 	"apihelp-options-example-reset": "Vrátit všechna nastavení.",
 	"apihelp-parse-example-page": "Parsovat stránku.",
-	"apihelp-parse-example-text": "Parsování wikitextu.",
+	"apihelp-parse-example-text": "Parsovat wikitext.",
 	"apihelp-patrol-example-revid": "Prověřit revizi.",
 	"apihelp-protect-description": "Změnit úroveň zamčení stránky.",
 	"apihelp-protect-param-reason": "Důvod pro odemčení.",

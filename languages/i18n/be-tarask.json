@@ -409,7 +409,7 @@
 	"createacct-emailrequired": "Адрас электроннай пошты",
 	"createacct-emailoptional": "Адрас электроннай пошты (неабавязкова)",
 	"createacct-email-ph": "Увядзіце ваш адрас электроннай пошты",
-	"createacct-another-email-ph": "Увядзіце адрас e-mail",
+	"createacct-another-email-ph": "Увядзіце адрас электроннай пошты",
 	"createaccountmail": "Стварыць часовы адвольны пароль і даслаць яго на e-mail адрас, пазначаны ніжэй",
 	"createacct-realname": "Сапраўднае імя (неабавязкова)",
 	"createaccountreason": "Прычына:",

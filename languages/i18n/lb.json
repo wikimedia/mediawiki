@@ -1502,6 +1502,7 @@
 	"unusedimages": "Net benotzt Fichieren",
 	"wantedcategories": "Gewënscht Kategorien",
 	"wantedpages": "Gewënscht Säiten",
+	"wantedpages-summary": "Op dëser Spezialsäit stinn all Säiten, déi nach net existéieren, déi awer scho vu Säiten, déi et scho gëtt, verlinkt sinn.",
 	"wantedpages-badtitle": "Net valabelen Titel am Resultat: $1",
 	"wantedfiles": "Gewënscht Fichieren",
 	"wantedfiletext-cat": "Dës Fichiere gi benotzt awer et gëtt se net. Fichiere aus frieme Repositorie kënnen hei gewise ginn och wann et se gëtt. All sou falsch Positiver ginn <del>duerchgestrach</del>. Zousätzlech gi Säiten an deene Fichieren dra sinn déi et net gëtt op [[:$1]] gewisen.",

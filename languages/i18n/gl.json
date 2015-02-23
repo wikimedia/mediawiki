@@ -567,7 +567,7 @@
 	"showpreview": "Mostrar a vista previa",
 	"showdiff": "Mostrar os cambios",
 	"blankarticle": "<strong>Advertencia:</strong> A páxina que está a piques de crear está baleira.\nSe preme no botón \"{{int:savearticle}}\" outra vez, a páxina crearase sen contido.",
-	"anoneditwarning": "<strong>Aviso:</strong> Non accedeu ao sistema. O seu enderezo IP será rexistado no histórico de edicións desta páxina. Se <strong>[$1 accede ao sistema]</strong> ou <strong>[$2 crea unha conta]</strong>, as súas edicións serán rexistadas co seu nome de usuario, ademais doutros beneficios.",
+	"anoneditwarning": "<strong>Aviso:</strong> Non accedeu ao sistema. O seu enderezo IP será visible se fai algunha edición. Se <strong>[$1 accede ao sistema]</strong> ou <strong>[$2 crea unha conta]</strong>, as súas edicións serán atribuídas ao seu nome de usuario e obterá outros beneficios.",
 	"anonpreviewwarning": "''Non accedeu ao sistema. Se garda a páxina, o seu enderezo IP quedará rexistrado no historial de edicións.''",
 	"missingsummary": "'''Aviso:''' Esqueceu incluír o texto do campo resumo.\nSe preme en \"{{int:savearticle}}\" a súa edición gardarase sen ningunha descrición da edición.",
 	"selfredirect": "<strong>Atención:</strong> Está redirecionando esta páxina a ela mesma. Vostede pode ter especificado a páxina incorrecta para a redireción, ou pode que estea a editar a páxina incorrecta. Se preme \"{{int:savearticle}}\" de novo, crearase a redireción de tódolos xeitos.",

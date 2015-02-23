@@ -3110,6 +3110,11 @@
 	"revdelete-uname-unhid": "användarnamn synligt",
 	"revdelete-restricted": "satte begränsningar för administratörer",
 	"revdelete-unrestricted": "tog bort begränsningar för administratörer",
+	"logentry-block-block": "$1 {{GENDER:$2|blockerade}} {{GENDER:$4|$3}} med en varaktighet på $5 $6",
+	"logentry-block-unblock": "$1 {{GENDER:$2|upphävde blockeringen för}} {{GENDER:$4|$3}}",
+	"logentry-block-reblock": "$1 {{GENDER:$2|ändrade}} blockeringsinställningar för {{GENDER:$4|$3}} med en varaktighet på $5 $6",
+	"logentry-suppress-block": "$1 {{GENDER:$2|blockerade}} {{GENDER:$4|$3}} med en varaktighet på $5 $6",
+	"logentry-suppress-reblock": "$1 {{GENDER:$2|ändrade}} blockeringsinställningar för {{GENDER:$4|$3}} med en varaktighet på $5 $6",
 	"logentry-merge-merge": "$1 {{GENDER:$2|slog ihop}} $3 i $4 (versioner t.o.m. $5)",
 	"logentry-move-move": "$1 {{GENDER:$2|flyttade}} sidan $3 till $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|flyttade}} sidan $3 till $4 utan att lämna en omdirigering",
@@ -3277,5 +3282,6 @@
 	"json-error-utf8": "Felaktiga UTF-8-tecken, möjligen felkodade",
 	"json-error-recursion": "En eller flera rekursiva referenser i värde som ska kodas",
 	"json-error-inf-or-nan": "En eller flera NAN- eller INF-värden i värdet som ska kodas",
-	"json-error-unsupported-type": "Ett värde av en typ som inte kan kodas angavs"
+	"json-error-unsupported-type": "Ett värde av en typ som inte kan kodas angavs",
+	"headline-anchor-title": "Länka till detta avsnitt"
 }
