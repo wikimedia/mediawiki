@@ -44,23 +44,9 @@ class DatabaseSqlite extends DatabaseBase {
 	/** @var FSLockManager (hopefully on the same server as the DB) */
 	protected $lockMgr;
 
-	function __construct( $p = null ) {
+	function __construct( array $p ) {
 		global $wgSharedDB, $wgSQLiteDataDir;
 
-		if ( !is_array( $p ) ) { // legacy calling pattern
-			wfDeprecated( __METHOD__ . " method called without parameter array.", "1.22" );
-			$args = func_get_args();
-			$p = array(
-				'host' => isset( $args[0] ) ? $args[0] : false,
-				'user' => isset( $args[1] ) ? $args[1] : false,
-				'password' => isset( $args[2] ) ? $args[2] : false,
-				'dbname' => isset( $args[3] ) ? $args[3] : false,
-				'flags' => isset( $args[4] ) ? $args[4] : 0,
-				'tablePrefix' => isset( $args[5] ) ? $args[5] : 'get from global',
-				'schema' => 'get from global',
-				'foreign' => isset( $args[6] ) ? $args[6] : false
-			);
-		}
 		$this->mDBname = $p['dbname'];
 		parent::__construct( $p );
 		// parent doesn't open when $user is false, but we can work with $dbName
@@ -958,6 +944,11 @@ class DatabaseSqlite extends DatabaseBase {
  */
 class DatabaseSqliteStandalone extends DatabaseSqlite {
 	public function __construct( $fileName, $flags = 0 ) {
+		global $wgSQLiteDataDir;
+
+		$this->mTrxAtomicLevels = new SplStack;
+		$this->lockMgr = new FSLockManager( array( 'lockDirectory' => "$wgSQLiteDataDir/locks" ) );
+
 		$this->mFlags = $flags;
 		$this->tablePrefix( null );
 		$this->openFile( $fileName );

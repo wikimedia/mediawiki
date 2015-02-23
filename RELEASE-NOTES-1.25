@@ -371,6 +371,8 @@ changes to languages because of Bugzilla reports.
 * (T87504) Avoid serving SVG background-images in CSS for Opera 12, which
   renders them incorrectly when combined with border-radius or background-size.
 * Removed maintenance script dumpSisterSites.php.
+* DatabaseBase class constructors must be called using the array argument style.
+  Ideally, DatabaseBase:factory() should be used instead in most cases.
 
 == Compatibility ==
 
