@@ -7,3 +7,35 @@
 	width: 18px;
 	height: 18px;
 }
+
+.mwFeedbackDialog-welcome-message,
+.mwFeedbackDialog-feedback-terms {
+	line-height: 1.2em;
+}
+
+.mwFeedbackDialog-feedback-form {
+	margin-top: 1em;
+}
+
+.mwFeedbackDialog-doublecheck-fieldset {
+	margin-top: 2em;
+	text-align: center;
+}
+
+.mwFeedbackDialog-feedback-termsofuse {
+	margin-left: 2.5em;
+}
+.mwFeedbackDialog-feedback-reportbug-button .oo-ui-buttonElement-button {
+	font-weight: normal;
+}
+
+.mwFeedbackDialog-feedback-reportbug-button .oo-ui-labelElement-label {
+	margin: 0;
+}
+
+.mwFeedbackDialog-feedback-reportbug-button.oo-ui-buttonElement > .oo-ui-buttonElement-button,
+.mwFeedbackDialog-feedback-reportbug-button.oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label,
+.mwFeedbackDialog-feedback-reportbug-button {
+	vertical-align: top;
+}
+
