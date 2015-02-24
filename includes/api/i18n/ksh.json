@@ -53,5 +53,12 @@
 	"apihelp-emailuser-param-ccme": "scheck mer en Koppih vun heh dä <i lang=\"en\" xml:lang=\"en\">e-mail</i>.",
 	"apihelp-emailuser-example-email": "Donn en <i lang=\"en\" xml:lang=\"en\">e-mail</i> aan dä Metmaacher <kbd lang=\"en\" xml:lang=\"en\">WikiSysop</kbd> schecke mem Täx <kbd>Dä Enhalld</kbd> dren.",
 	"apihelp-expandtemplates-description": "Deiht alle Schablohne en Wikkitäx ömsäze.",
-	"apihelp-expandtemplates-param-title": "De Övverschreff vun dä Sigg."
+	"apihelp-expandtemplates-param-title": "De Övverschreff vun dä Sigg.",
+	"apihelp-query+allmessages-param-prop": "Wat för en Eijeschaffte holle.",
+	"apihelp-query+allmessages-param-filter": "Jiv blohß de Täxte un Nohreesche uß, woh heh dat Täxschtöck dren änthallde es.",
+	"apihelp-query+allmessages-param-customised": "Jiv bloß de Täxte un Nohreesche en heh däm Zohschtand uß.",
+	"apihelp-query+allmessages-param-lang": "Jiv de Täxte un Nohreesche en heh dä Schprohch uß.",
+	"apihelp-query+allmessages-param-from": "Jiv de Täxte un Nohreesche vun heh aan uß.",
+	"apihelp-query+allmessages-param-to": "Jiv de Täxte un Nohreesche bes heh uß.",
+	"apihelp-query+allmessages-param-prefix": "Jiv de Täxte un Nohreesche met heh däm Aanfang uß."
 }

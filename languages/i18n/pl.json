@@ -2214,7 +2214,7 @@
 	"thumbnail_image-missing": "Chyba brakuje pliku $1",
 	"thumbnail_image-failure-limit": "Ostatnio było zbyt wielu nieudanych prób ($1 lub więcej) utworzenia miniaturki. Spróbuj ponownie później.",
 	"import": "Import stron",
-	"importinterwiki": "Import transwiki",
+	"importinterwiki": "Import z innej wiki",
 	"import-interwiki-text": "Wybierz wiki i nazwę strony do importowania.\nDaty oraz nazwy autorów zostaną zachowane.\nWszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rejestrze importu]].",
 	"import-interwiki-sourcewiki": "Źródłowa wiki:",
 	"import-interwiki-sourcepage": "Strona źródłowa:",

@@ -4,7 +4,8 @@
 			"Mormegil",
 			"YjM",
 			"Juandev",
-			"Aktron"
+			"Aktron",
+			"Cvanca"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page Dokumentace]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/API:FAQ FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api E-mailová konference]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Oznámení k API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Chyby a požadavky]\n</div>\n<strong>Stav:</strong> Všechny funkce uvedené na této stránce by měly fungovat, ale API se stále aktivně vyvíjí a může se kdykoli změnit. Upozornění na změny získáte přihlášením se k [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ e-mailové konferenci mediawiki-api-announce].\n\n<strong>Chybné požadavky:</strong> Pokud jsou do API zaslány chybné požadavky, bude vrácena HTTP hlavička s klíčem „MediaWiki-API-Error“ a hodnota této hlavičky a chybový kód budou nastaveny na stejnou hodnotu. Více informací najdete na stránce https://www.mediawiki.org/wiki/API:Errors_and_warnings.",
@@ -29,8 +30,8 @@
 	"apihelp-block-param-allowusertalk": "Povolit uživateli editovat svou vlastní diskusní stránku (závisí na <var>[[mw:Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
 	"apihelp-block-param-reblock": "Pokud již uživatel blokován je, přepsat současný blok.",
 	"apihelp-block-param-watchuser": "Sledovat stránku uživatele nebo IP adresy a jejich diskuzní stránky.",
-	"apihelp-block-example-ip-simple": "Zablokovat IP 192.0.2.5 na tři dny s důvodem „First strike“",
-	"apihelp-block-example-user-complex": "Trvale zablokovat uživatele Vandal s odůvodněním „Vandalism“ a bránit vytváření nových účtů a e-mailování",
+	"apihelp-block-example-ip-simple": "Na tři dny zablokovat IP adresu <kbd>192.0.2.5</kbd> s odůvodněním <kbd>First strike</kbd>.",
+	"apihelp-block-example-user-complex": "Trvale zablokovat uživatele <kbd>Vandal</kbd> s odůvodněním <kbd>Vandalism</kbd> a zabránit vytváření nových účtů a odesílání e-mailů.",
 	"apihelp-compare-description": "Vrátí rozdíl dvou stránek.\n\nVe „from“ a „to“ musíte zadat číslo revize, název stránky nebo ID stránky.",
 	"apihelp-compare-param-fromtitle": "Název první stránky k porovnání.",
 	"apihelp-compare-param-fromid": "ID první stránky k porovnání.",
