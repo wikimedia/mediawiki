@@ -3,13 +3,9 @@
  * @singleton
  */
 ( function ( mw, $ ) {
-	var user, i,
+	var i,
 		deferreds = {},
-		byteToHex = [],
-		// Extend the skeleton mw.user from mediawiki.js
-		// This is kind of ugly but we're stuck with this for b/c reasons
-		options = mw.user.options || new mw.Map(),
-		tokens = mw.user.tokens || new mw.Map();
+		byteToHex = [];
 
 	/**
 	 * Get the current user's groups or rights
@@ -51,9 +47,8 @@
 		byteToHex[i] = ( i + 256 ).toString( 16 ).slice( 1 );
 	}
 
-	mw.user = user = {
-		options: options,
-		tokens: tokens,
+	// mw.user with the properties options and tokens gets defined in mediawiki.js.
+	$.extend( mw.user, {
 
 		/**
 		 * Generate a random user session ID.
@@ -135,7 +130,7 @@
 		 */
 		getRegistration: function () {
 			var registration = mw.config.get( 'wgUserRegistration' );
-			if ( user.isAnon() ) {
+			if ( mw.user.isAnon() ) {
 				return false;
 			}
 			if ( registration === null ) {
@@ -152,7 +147,7 @@
 		 * @return {boolean}
 		 */
 		isAnon: function () {
-			return user.getName() === null;
+			return mw.user.getName() === null;
 		},
 
 		/**
@@ -166,7 +161,7 @@
 		sessionId: function () {
 			var sessionId = $.cookie( 'mediaWiki.user.sessionId' );
 			if ( sessionId === undefined || sessionId === null ) {
-				sessionId = user.generateRandomSessionId();
+				sessionId = mw.user.generateRandomSessionId();
 				$.cookie( 'mediaWiki.user.sessionId', sessionId, { expires: null, path: '/' } );
 			}
 			return sessionId;
@@ -180,7 +175,7 @@
 		 * @return {string} User name or random session ID
 		 */
 		id: function () {
-			return user.getName() || user.sessionId();
+			return mw.user.getName() || mw.user.sessionId();
 		},
 
 		/**
@@ -279,6 +274,6 @@
 		getRights: function ( callback ) {
 			return getUserInfo( 'rights' ).done( callback );
 		}
-	};
+	} );
 
 }( mediaWiki, jQuery ) );
