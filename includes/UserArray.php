@@ -57,6 +57,27 @@ abstract class UserArray implements Iterator {
 	}
 
 	/**
+	 * @since 1.25
+	 * @param array $names
+	 * @return UserArrayFromResult
+	 */
+	static function newFromNames( $names ) {
+		$names = array_map( 'strval', (array)$names ); // paranoia
+		if ( !$names ) {
+			// Database::select() doesn't like empty arrays
+			return new ArrayIterator( array() );
+		}
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select(
+			'user',
+			User::selectFields(),
+			array( 'user_name' => array_unique( $names ) ),
+			__METHOD__
+		);
+		return self::newFromResult( $res );
+	}
+
+	/**
 	 * @param ResultWrapper $res
 	 * @return UserArrayFromResult
 	 */
