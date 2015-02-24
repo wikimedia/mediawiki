@@ -8,8 +8,8 @@
 		byteToHex = [],
 		// Extend the skeleton mw.user from mediawiki.js
 		// This is kind of ugly but we're stuck with this for b/c reasons
-		options = mw.user.options || new mw.Map(),
-		tokens = mw.user.tokens || new mw.Map();
+		options = mw.user.options,
+		tokens = mw.user.tokens;
 
 	/**
 	 * Get the current user's groups or rights
