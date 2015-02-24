@@ -66,9 +66,9 @@ class RefreshLinks extends Maintenance {
 	) {
 		global $wgParser, $wgUseTidy;
 
-		$reportingInterval = 100;
 		$dbr = wfGetDB( DB_SLAVE );
-		$start = intval( $start );
+		$start = (int)$start;
+		$end = (int)$end;
 
 		// Give extensions a chance to optimize settings
 		wfRunHooks( 'MaintenanceRefreshLinksInit', array( $this ) );
@@ -79,98 +79,54 @@ class RefreshLinks extends Maintenance {
 		# Don't use HTML tidy
 		$wgUseTidy = false;
 
-		$what = $redirectsOnly ? "redirects" : "links";
-
+		$newMsg = $newOnly ? ' (NEW PAGES ONLY)' : '';
 		if ( $oldRedirectsOnly ) {
-			# This entire code path is cut-and-pasted from below.  Hurrah.
-
-			$conds = array(
-				"page_is_redirect=1",
-				"rd_from IS NULL"
-			);
-
-			if ( $end == 0 ) {
-				$conds[] = "page_id >= $start";
-			} else {
-				$conds[] = "page_id BETWEEN $start AND $end";
-			}
-
-			$res = $dbr->select(
-				array( 'page', 'redirect' ),
-				'page_id',
-				$conds,
-				__METHOD__,
-				array(),
-				array( 'redirect' => array( "LEFT JOIN", "page_id=rd_from" ) )
-			);
-			$num = $res->numRows();
-			$this->output( "Refreshing $num old redirects from $start...\n" );
-
-			$i = 0;
-
-			foreach ( $res as $row ) {
-				if ( !( ++$i % $reportingInterval ) ) {
-					$this->output( "$i\n" );
-					wfWaitForSlaves();
-				}
-				$this->fixRedirect( $row->page_id );
-			}
-		} elseif ( $newOnly ) {
-			$this->output( "Refreshing $what from " );
-			$res = $dbr->select( 'page',
-				array( 'page_id' ),
-				array(
-					'page_is_new' => 1,
-					"page_id >= $start" ),
-				__METHOD__
-			);
-			$num = $res->numRows();
-			$this->output( "$num new articles...\n" );
-
-			$i = 0;
-			foreach ( $res as $row ) {
-				if ( !( ++$i % $reportingInterval ) ) {
-					$this->output( "$i\n" );
-					wfWaitForSlaves();
-				}
-				if ( $redirectsOnly ) {
-					$this->fixRedirect( $row->page_id );
-				} else {
-					self::fixLinksFromArticle( $row->page_id );
-				}
-			}
+			$this->output( "Refreshing old redirects{$newMsg}...\n" );
+		} elseif ( $redirectsOnly ) {
+			$this->output( "Refreshing redirects table{$newMsg}...\n" );
 		} else {
-			if ( !$end ) {
-				$maxPage = $dbr->selectField( 'page', 'max(page_id)', false );
-				$maxRD = $dbr->selectField( 'redirect', 'max(rd_from)', false );
-				$end = max( $maxPage, $maxRD );
-			}
-			$this->output( "Refreshing redirects table.\n" );
-			$this->output( "Starting from page_id $start of $end.\n" );
-
-			for ( $id = $start; $id <= $end; $id++ ) {
-
-				if ( !( $id % $reportingInterval ) ) {
-					$this->output( "$id\n" );
-					wfWaitForSlaves();
-				}
-				$this->fixRedirect( $id );
-			}
-
-			if ( !$redirectsOnly ) {
-				$this->output( "Refreshing links tables.\n" );
-				$this->output( "Starting from page_id $start of $end.\n" );
-
-				for ( $id = $start; $id <= $end; $id++ ) {
-
-					if ( !( $id % $reportingInterval ) ) {
-						$this->output( "$id\n" );
-						wfWaitForSlaves();
-					}
-					self::fixLinksFromArticle( $id );
-				}
-			}
+			$this->output( "Refreshing links tables{$newMsg}...\n" );
 		}
+
+		if ( !$end ) {
+			$end = (int)$dbr->selectField( 'page', 'MAX(page_id)', '', __METHOD__ );
+		}
+
+		$conds = array( 'page_id <= ' . $dbr->addQuotes( $end ) );
+		if ( $oldRedirectsOnly ) {
+			$conds['page_is_redirect'] = 1;
+			$conds[] = "page_id NOT IN ({$dbr->selectSQLText( 'redirect', 'rd_from' )})";
+		}
+		if ( $newOnly ) {
+			$conds['page_is_new'] = 1;
+		}
+
+		do {
+			$res = $dbr->select(
+				'page',
+				WikiPage::selectFields(),
+				array_merge( $conds, array( 'page_id >= ' . $dbr->addQuotes( $start ) ) ),
+				__METHOD__,
+				array( 'ORDER BY' => 'page_id', 'LIMIT' => $this->mBatchSize )
+			);
+
+			$row = null;
+			foreach ( $res as $row ) {
+				$page = WikiPage::newFromRow( $row );
+				$this->fixRedirect( $page );
+				if ( !$oldRedirectsOnly && !$redirectsOnly ) {
+					self::fixLinksFromArticle( $page );
+				}
+			}
+
+			if ( $row ) {
+				$this->output( "...refreshed page_id(s) from $start to {$row->page_id}.\n" );
+				$start = $row->page_id + 1;
+				wfWaitForSlaves();
+			}
+
+		} while ( $res->numRows() );
+
 	}
 
 	/**
@@ -183,20 +139,10 @@ class RefreshLinks extends Maintenance {
 	 * entry in the "redirect" table points to the correct page and not to an
 	 * invalid one.
 	 *
-	 * @param int $id The page ID to check
+	 * @param WikiPage $page The page to check
 	 */
-	private function fixRedirect( $id ) {
-		$page = WikiPage::newFromID( $id );
+	private function fixRedirect( WikiPage $page ) {
 		$dbw = wfGetDB( DB_MASTER );
-
-		if ( $page === null ) {
-			// This page doesn't exist (any more)
-			// Delete any redirect table entry for it
-			$dbw->delete( 'redirect', array( 'rd_from' => $id ),
-				__METHOD__ );
-
-			return;
-		}
 
 		$rt = null;
 		$content = $page->getContent( Revision::RAW );
@@ -207,7 +153,7 @@ class RefreshLinks extends Maintenance {
 		if ( $rt === null ) {
 			// The page is not a redirect
 			// Delete any redirect table entry for it
-			$dbw->delete( 'redirect', array( 'rd_from' => $id ), __METHOD__ );
+			$dbw->delete( 'redirect', array( 'rd_from' => $page->getId() ), __METHOD__ );
 			$fieldValue = 0;
 		} else {
 			$page->insertRedirectEntry( $rt );
@@ -216,15 +162,17 @@ class RefreshLinks extends Maintenance {
 
 		// Update the page table to be sure it is an a consistent state
 		$dbw->update( 'page', array( 'page_is_redirect' => $fieldValue ),
-			array( 'page_id' => $id ), __METHOD__ );
+			array( 'page_id' => $page->getId() ), __METHOD__ );
 	}
 
 	/**
-	 * Run LinksUpdate for all links on a given page_id
-	 * @param int $id The page_id
+	 * Run LinksUpdate for all links on a given page
+	 * @param WikiPage|int $page The page
 	 */
-	public static function fixLinksFromArticle( $id ) {
-		$page = WikiPage::newFromID( $id );
+	public static function fixLinksFromArticle( $page ) {
+		if ( is_numeric( $page ) ) {
+			$page = WikiPage::newFromID( $page ); // BC
+		}
 
 		LinkCache::singleton()->clear();
 
