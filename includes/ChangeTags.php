@@ -95,21 +95,48 @@ class ChangeTags {
 	 *
 	 * @throws MWException
 	 * @return bool False if no changes are made, otherwise true
-	 *
-	 * @exception MWException When $rc_id, $rev_id and $log_id are all null
 	 */
 	public static function addTags( $tags, $rc_id = null, $rev_id = null,
 		$log_id = null, $params = null
 	) {
-		if ( !is_array( $tags ) ) {
-			$tags = array( $tags );
-		}
+		$result = self::updateTags( $tags, null, $rc_id, $rev_id, $log_id, $params );
+		return (bool)$result[0];
+	}
 
-		$tags = array_filter( $tags ); // Make sure we're submitting all tags...
+	/**
+	 * Add and remove tags to/from a change given its rc_id, rev_id and/or log_id,
+	 * without verifying that the tags exist or are valid.
+	 *
+	 * This function should only be used by extensions to manipulate tags they
+	 * have registered using the ListDefinedTags hook. When dealing with user
+	 * input, call updateTagsWithChecks() instead.
+	 *
+	 * @param string|array|null $tagsToAdd Tags to add to the change
+	 * @param string|array|null $tagsToRemove Tags to remove from the change
+	 * @param int $rc_id The rc_id of the change to add the tags to. Specify null
+	 * if not relevant or unknown
+	 * @param int $rev_id The rev_id of the change to add the tags to. Specify null
+	 * if not relevant or unknown
+	 * @param int $log_id The log_id of the change to add the tags to. Specify null
+	 * if not relevant or unknown
+	 * @param string $params Params to put in the ct_params field of table
+	 * 'change_tag' when adding tags
+	 *
+	 * @throws MWException When $rc_id, $rev_id and $log_id are all null
+	 * @return array Index 0 is an array of tags actually added, index 1 is an
+	 * array of tags actually removed
+	 *
+	 * @since 1.25
+	 */
+	public static function updateTags( $tagsToAdd, $tagsToRemove, &$rc_id = null,
+		&$rev_id = null, &$log_id = null, $params = null ) {
+
+		$tagsToAdd = array_filter( (array)$tagsToAdd ); // Make sure we're submitting all tags...
+		$tagsToRemove = array_filter( (array)$tagsToRemove );
 
 		if ( !$rc_id && !$rev_id && !$log_id ) {
 			throw new MWException( 'At least one of: RCID, revision ID, and log ID MUST be ' .
-				'specified when adding a tag to a change!' );
+				'specified when adding or removing a tag from a change!' );
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -148,11 +175,79 @@ class ChangeTags {
 			);
 		}
 
+		// Can't both add and remove a tag at the same time...
+		$tagsToAdd = array_diff( $tagsToAdd, $tagsToRemove );
+
+		// update the tag_summary row
+		if ( !self::updateTagSummaryRow( $tagsToAdd, $tagsToRemove, $rc_id, $rev_id, $log_id ) ) {
+			// nothing to do
+			return array( array(), array() );
+		}
+
+		// insert a row into change_tag for each new tag
+		if ( count( $tagsToAdd ) ) {
+			$tagsRows = array();
+			foreach ( $tagsToAdd as $tag ) {
+				// Filter so we don't insert NULLs as zero accidentally.
+				// Keep in mind that $rc_id === null means "I don't care/know about the
+				// rc_id, just delete $tag on this revision/log entry". It doesn't
+				// mean "only delete tags on this revision/log WHERE rc_id IS NULL".
+				$tagsRows[] = array_filter(
+					array(
+						'ct_tag' => $tag,
+						'ct_rc_id' => $rc_id,
+						'ct_log_id' => $log_id,
+						'ct_rev_id' => $rev_id,
+						'ct_params' => $params
+					)
+				);
+			}
+
+			$dbw->insert( 'change_tag', $tagsRows, __METHOD__, array( 'IGNORE' ) );
+		}
+
+		// delete from change_tag
+		if ( count( $tagsToRemove ) ) {
+			foreach ( $tagsToRemove as $tag ) {
+				$conds = array_filter(
+					array(
+						'ct_tag' => $tag,
+						'ct_rc_id' => $rc_id,
+						'ct_log_id' => $log_id,
+						'ct_rev_id' => $rev_id
+					)
+				);
+				$dbw->delete( 'change_tag', $conds, __METHOD__ );
+			}
+		}
+
+		self::purgeTagUsageCache();
+		return array( $tagsToAdd, $tagsToRemove );
+	}
+
+	/**
+	 * Adds or removes a given set of tags to/from the relevant row of the
+	 * tag_summary table. Modifies the tagsToAdd and tagsToRemove arrays to
+	 * reflect the tags that were actually added and/or removed.
+	 *
+	 * @param array $tagsToAdd
+	 * @param array $tagsToRemove Must not contain entries in common with $tagsToAdd
+	 * @param int|null $rc_id Null if not known or not applicable
+	 * @param int|null $rev_id Null if not known or not applicable
+	 * @param int|null $log_id Null if not known or not applicable
+	 * @return bool True if any modifications were made, otherwise false
+	 * @since 1.25
+	 */
+	protected static function updateTagSummaryRow( &$tagsToAdd, &$tagsToRemove,
+		$rc_id, $rev_id, $log_id ) {
+
+		$dbw = wfGetDB( DB_MASTER );
+
 		$tsConds = array_filter( array(
 			'ts_rc_id' => $rc_id,
 			'ts_rev_id' => $rev_id,
-			'ts_log_id' => $log_id )
-		);
+			'ts_log_id' => $log_id
+		) );
 
 		// Update the summary row.
 		// $prevTags can be out of date on slaves, especially when addTags is called consecutively,
@@ -160,40 +255,248 @@ class ChangeTags {
 		$prevTags = $dbw->selectField( 'tag_summary', 'ts_tags', $tsConds, __METHOD__ );
 		$prevTags = $prevTags ? $prevTags : '';
 		$prevTags = array_filter( explode( ',', $prevTags ) );
-		$newTags = array_unique( array_merge( $prevTags, $tags ) );
+
+		// add tags
+		$tagsToAdd = array_values( array_diff( $tagsToAdd, $prevTags ) );
+		$newTags = array_unique( array_merge( $prevTags, $tagsToAdd ) );
+
+		// remove tags
+		$tagsToRemove = array_values( array_intersect( $tagsToRemove, $newTags ) );
+		$newTags = array_values( array_diff( $newTags, $tagsToRemove ) );
+
 		sort( $prevTags );
 		sort( $newTags );
-
 		if ( $prevTags == $newTags ) {
 			// No change.
 			return false;
 		}
 
-		$dbw->replace(
-			'tag_summary',
-			array( 'ts_rev_id', 'ts_rc_id', 'ts_log_id' ),
-			array_filter( array_merge( $tsConds, array( 'ts_tags' => implode( ',', $newTags ) ) ) ),
-			__METHOD__
-		);
-
-		// Insert the tags rows.
-		$tagsRows = array();
-		foreach ( $tags as $tag ) { // Filter so we don't insert NULLs as zero accidentally.
-			$tagsRows[] = array_filter(
-				array(
-					'ct_tag' => $tag,
-					'ct_rc_id' => $rc_id,
-					'ct_log_id' => $log_id,
-					'ct_rev_id' => $rev_id,
-					'ct_params' => $params
-				)
+		if ( !$newTags ) {
+			// no tags left, so delete the row altogether
+			$dbw->delete( 'tag_summary', $tsConds, __METHOD__ );
+		} else {
+			$dbw->replace( 'tag_summary',
+				array( 'ts_rev_id', 'ts_rc_id', 'ts_log_id' ),
+				array_filter( array_merge( $tsConds, array( 'ts_tags' => implode( ',', $newTags ) ) ) ),
+				__METHOD__
 			);
 		}
 
-		$dbw->insert( 'change_tag', $tagsRows, __METHOD__, array( 'IGNORE' ) );
-
-		self::purgeTagUsageCache();
 		return true;
+	}
+
+	/**
+	 * Is it OK to allow the user to apply all the specified tags at the same time
+	 * as they edit/make the change?
+	 *
+	 * @param array $tags Tags that you are interested in applying
+	 * @param User|null $user User whose permission you wish to check, or null if
+	 * you don't care (e.g. maintenance scripts)
+	 * @return Status
+	 * @since 1.25
+	 */
+	public static function canAddTagsAccompanyingChange( array $tags,
+		User $user = null ) {
+
+		if ( !is_null( $user ) && !$user->isAllowed( 'applychangetags' ) ) {
+			return Status::newFatal( 'tags-apply-no-permission' );
+		}
+
+		// to be applied, a tag has to be explicitly defined
+		// @todo Allow extensions to define tags that can be applied by users...
+		$allowedTags = self::getExplicitlyDefinedTags();
+		$disallowedTags = array_diff( $tags, $allowedTags );
+		if ( $disallowedTags ) {
+			return Status::newFatal( 'tags-apply-not-allowed', $disallowedTags[0] );
+		}
+
+		return Status::newGood();
+	}
+
+	/**
+	 * Adds tags to a given change, checking whether it is allowed first, but
+	 * without adding a log entry. Useful for cases where the tag is being added
+	 * along with the action that generated the change (e.g. tagging an edit as
+	 * it is being made).
+	 *
+	 * Extensions should not use this function, unless directly handling a user
+	 * request to add a particular tag. Normally, extensions should call
+	 * ChangeTags::updateTags() instead.
+	 *
+	 * @param array $tags Tags to apply
+	 * @param int|null $rc_id The rc_id of the change to add the tags to
+	 * @param int|null $rev_id The rev_id of the change to add the tags to
+	 * @param int|null $log_id The log_id of the change to add the tags to
+	 * @param string $params Params to put in the ct_params field of table
+	 * 'change_tag' when adding tags
+	 * @param User $user Who to give credit for the action
+	 * @return Status
+	 * @since 1.25
+	 */
+	public static function addTagsAccompanyingChangeWithChecks( array $tags,
+		$rc_id, $rev_id, $log_id, $params, User $user ) {
+
+		// are we allowed to do this?
+		$result = self::canAddTagsAccompanyingChange( $tags, $user );
+		if ( !$result->isOK() ) {
+			$result->value = null;
+			return $result;
+		}
+
+		// do it!
+		self::updateTags( $tagsToAdd, array(), $rc_id, $rev_id, $log_id, $params );
+
+		return Status::newGood( true );
+	}
+
+	/**
+	 * Is it OK to allow the user to adds and remove the given tags tags to/from a
+	 * change?
+	 *
+	 * @param array $tagsToAdd Tags that you are interested in adding
+	 * @param array $tagsToRemove Tags that you are interested in removing
+	 * @param User|null $user User whose permission you wish to check, or null if
+	 * you don't care (e.g. maintenance scripts)
+	 * @return Status
+	 * @since 1.25
+	 */
+	public static function canUpdateTags( array $tagsToAdd, array $tagsToRemove,
+		User $user = null ) {
+
+		if ( !is_null( $user ) && !$user->isAllowed( 'changetags' ) ) {
+			return Status::newFatal( 'tags-update-no-permission' );
+		}
+
+		// to be added, a tag has to be explicitly defined
+		// @todo Allow extensions to define tags that can be applied by users...
+		$explicitlyDefinedTags = self::listExplicitlyDefinedTags();
+		$diff = array_diff( $tagsToAdd, $explicitlyDefinedTags );
+		if ( $diff ) {
+			return Status::newFatal( 'tags-update-add-not-allowed', $diff[0] );
+		}
+
+		// to be removed, a tag has to be either explicitly defined or not defined
+		// at all
+		$definedTags = self::listDefinedTags();
+		$diff = array_diff( $tagsToRemove, $explicitlyDefinedTags );
+		if ( $diff ) {
+			$intersect = array_intersect( $diff, $definedTags );
+			if ( $intersect ) {
+				return Status::newFatal( 'tags-update-remove-not-allowed', $intersect[0] );
+			}
+		}
+
+		return Status::newGood();
+	}
+
+	/**
+	 * Adds and/or removes tags to/from a given change, checking whether it is
+	 * allowed first, and adding a log entry afterwards.
+	 *
+	 * Includes a call to ChangeTag::canUpdateTags(), so your code doesn't need
+	 * to do that. However, it doesn't check whether the *_id parameters are a
+	 * valid combination. That is up to you to enforce. See ApiTag::execute() for
+	 * an example.
+	 *
+	 * @param array|null $tagsToAdd If none, pass array() or null
+	 * @param array|null $tagsToRemove If none, pass array() or null
+	 * @param int|null $rc_id The rc_id of the change to add the tags to
+	 * @param int|null $rev_id The rev_id of the change to add the tags to
+	 * @param int|null $log_id The log_id of the change to add the tags to
+	 * @param string $params Params to put in the ct_params field of table
+	 * 'change_tag' when adding tags
+	 * @param string $reason Comment for the log
+	 * @param User $user Who to give credit for the action
+	 * @return Status If successful, the value of this Status object will be an
+	 * object (stdClass) with the following fields:
+	 *  - logId: the ID of the added log entry, or null if no log entry was added
+	 *    (i.e. no operation was performed)
+	 *  - addedTags: an array containing the tags that were actually added
+	 *  - removedTags: an array containing the tags that were actually removed
+	 * @since 1.25
+	 */
+	public static function updateTagsWithChecks( $tagsToAdd, $tagsToRemove,
+		$rc_id, $rev_id, $log_id, $params, $reason, User $user ) {
+
+		if ( is_null( $tagsToAdd ) ) {
+			$tagsToAdd = array();
+		}
+		if ( is_null( $tagsToRemove ) ) {
+			$tagsToRemove = array();
+		}
+		if ( !$tagsToAdd && !$tagsToRemove ) {
+			// no-op, don't bother
+			$statusValue = (object)array();
+			$statusValue->logId = null;
+			$statusValue->addedTags = $statusValue->removedTags = array();
+			return Status::newGood( $statusValue );
+		}
+
+		// are we allowed to do this?
+		$result = self::canUpdateTags( $tagsToAdd, $tagsToRemove, $user );
+		if ( !$result->isOK() ) {
+			$result->value = null;
+			return $result;
+		}
+
+		// do it!
+		list( $tagsAdded, $tagsRemoved ) = self::updateTags( $tagsToAdd, $tagsToRemove,
+			$rc_id, $rev_id, $log_id, $params );
+		if ( !$tagsAdded && !$tagsRemoved ) {
+			// no-op, don't log it
+			$statusValue = (object)array();
+			$statusValue->logId = null;
+			$statusValue->addedTags = $statusValue->removedTags = array();
+			return Status::newGood( $statusValue );
+		}
+
+		// log it
+		//$logAction = ( $tagsRemoved ? ( $tagsAdded ? 'update' : 'remove' ) : 'add' );
+		$logEntry = new ManualLogEntry( 'tag', 'update'/*$logAction*/ );
+		$logEntry->setPerformer( $user );
+		$logEntry->setComment( $reason );
+
+		// find the appropriate target page
+		if ( $rev_id ) {
+			$rev = Revision::newFromId( $rev_id );
+			if ( $rev ) {
+				$title = $rev->getTitle();
+				$logEntry->setTarget( $rev->getTitle() );
+			}
+		} elseif ( $log_id ) {
+			// This function is from revision deletion logic and has nothing to do with
+			// change tags, but it appears to be the only other place in core where we
+			// perform logged actions on log items.
+			$logEntry->setTarget( RevDelLogList::suggestTarget( 0, array( $log_id ) ) );
+		}
+
+		if ( !$logEntry->getTarget() ) {
+			// target is required, so we have to set something
+			$logEntry->setTarget( SpecialPage::getTitleFor( 'Tags' ) );
+		}
+
+		$logParams = array(
+			'4::revid' => $rev_id,
+			'5::logid' => $log_id,
+			'6:list:tagsAdded' => $tagsAdded,
+			'7:number:tagsAddedCount' => count( $tagsAdded ),
+			'8:list:tagsRemoved' => $tagsRemoved,
+			'9:number:tagsRemovedCount' => count( $tagsRemoved ),
+			// @todo 'initialTags' => ????
+		);
+		$logEntry->setParameters( $logParams );
+		$logEntry->setRelations( array( 'Tag' => array_merge( $tagsAdded, $tagsRemoved ) ) );
+
+		$dbw = wfGetDB( DB_MASTER );
+		$logId = $logEntry->insert( $dbw );
+		// Only send this to UDP, not RC, similar to patrol events
+		$logEntry->publish( $logId, 'udp' );
+
+		$statusValue = (object)array();
+		$statusValue->logId = $logId;
+		$statusValue->addedTags = $tagsAdded;
+		$statusValue->removedTags = $tagsRemoved;
+		return Status::newGood( $statusValue );
 	}
 
 	/**
@@ -348,8 +651,8 @@ class ChangeTags {
 	 * it was deleted.
 	 * @since 1.25
 	 */
-	protected static function logTagAction( $action, $tag, $reason, User $user,
-		$tagCount = null ) {
+	protected static function logTagManagementAction( $action, $tag, $reason,
+		User $user, $tagCount = null ) {
 
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -432,7 +735,7 @@ class ChangeTags {
 		self::defineTag( $tag );
 
 		// log it
-		$logId = self::logTagAction( 'activate', $tag, $reason, $user );
+		$logId = self::logTagManagementAction( 'activate', $tag, $reason, $user );
 		return Status::newGood( $logId );
 	}
 
@@ -487,7 +790,7 @@ class ChangeTags {
 		self::undefineTag( $tag );
 
 		// log it
-		$logId = self::logTagAction( 'deactivate', $tag, $reason, $user );
+		$logId = self::logTagManagementAction( 'deactivate', $tag, $reason, $user );
 		return Status::newGood( $logId );
 	}
 
@@ -562,7 +865,7 @@ class ChangeTags {
 		self::defineTag( $tag );
 
 		// log it
-		$logId = self::logTagAction( 'create', $tag, $reason, $user );
+		$logId = self::logTagManagementAction( 'create', $tag, $reason, $user );
 		return Status::newGood( $logId );
 	}
 
@@ -591,38 +894,11 @@ class ChangeTags {
 			array( 'ct_tag' => $tag ),
 			__METHOD__ );
 		foreach ( $result as $row ) {
-			if ( $row->ct_rev_id ) {
-				$field = 'ts_rev_id';
-				$fieldValue = $row->ct_rev_id;
-			} elseif ( $row->ct_log_id ) {
-				$field = 'ts_log_id';
-				$fieldValue = $row->ct_log_id;
-			} elseif ( $row->ct_rc_id ) {
-				$field = 'ts_rc_id';
-				$fieldValue = $row->ct_rc_id;
-			} else {
-				// don't know what's up; just skip it
-				continue;
-			}
-
 			// remove the tag from the relevant row of tag_summary
-			$tsResult = $dbw->selectField( 'tag_summary',
-				'ts_tags',
-				array( $field => $fieldValue ),
-				__METHOD__ );
-			$tsValues = explode( ',', $tsResult );
-			$tsValues = array_values( array_diff( $tsValues, array( $tag ) ) );
-			if ( !$tsValues ) {
-				// no tags left, so delete the row altogether
-				$dbw->delete( 'tag_summary',
-					array( $field => $fieldValue ),
-					__METHOD__ );
-			} else {
-				$dbw->update( 'tag_summary',
-					array( 'ts_tags' => implode( ',', $tsValues ) ),
-					array( $field => $fieldValue ),
-					__METHOD__ );
-			}
+			$tagsToAdd = array();
+			$tagsToRemove = array( $tag );
+			self::updateTagSummaryRow( $tagsToAdd, $tagsToRemove, $row->ct_rc_id,
+				$row->ct_rev_id, $row->ct_log_id );
 		}
 
 		// delete from change_tag
@@ -718,7 +994,7 @@ class ChangeTags {
 		}
 
 		// log it
-		$logId = self::logTagAction( 'delete', $tag, $reason, $user, $tagUsage[$tag] );
+		$logId = self::logTagManagementAction( 'delete', $tag, $reason, $user, $tagUsage[$tag] );
 		$deleteResult->value = $logId;
 		return $deleteResult;
 	}

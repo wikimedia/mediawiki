@@ -1002,6 +1002,16 @@
 	"apihelp-setnotificationtimestamp-example-pagetimestamp": "Set the notification timestamp for <kbd>Main page</kbd> so all edits since 1 January 2012 are unviewed.",
 	"apihelp-setnotificationtimestamp-example-allpages": "Reset the notification status for pages in the <kbd>{{ns:user}}</kbd> namespace.",
 
+	"apihelp-tag-description": "Add or remove a change tag from an individual revision or log entry.",
+	"apihelp-tag-param-rcid": "Recentchanges ID from which to add or remove the tag. Only one of <var>$1rcid</var>, <var>$1revid</var> and <var>$1logid</var> may be specified.",
+	"apihelp-tag-param-revid": "Revision ID from which to add or remove the tag. Only one of <var>$1rcid</var>, <var>$1revid</var> and <var>$1logid</var> may be specified.",
+	"apihelp-tag-param-logid": "Log entry ID from which to add or remove the tag. Only one of <var>$1rcid</var>, <var>$1revid</var> and <var>$1logid</var> may be specified.",
+	"apihelp-tag-param-add": "Tag(s) to add. Only manually defined tags can be added.",
+	"apihelp-tag-param-remove": "Tag(s) to remove. Only tags that are either manually defined or completely undefined can be removed.",
+	"apihelp-tag-param-reason": "Reason for the change.",
+	"apihelp-tag-example-rev": "Add the <kbd>vandalism</kbd> tag from revision ID 123 without specifying a reason",
+	"apihelp-tag-example-log": "Remove the <kbd>spam</kbd> tag from log entry ID 123 with the reason <kbd>Wrongly applied</kbd>",
+
 	"apihelp-tokens-description": "Get tokens for data-modifying actions.\n\nThis module is deprecated in favor of [[Special:ApiHelp/query+tokens|action=query&meta=tokens]].",
 	"apihelp-tokens-param-type": "Types of token to request.",
 	"apihelp-tokens-example-edit": "Retrieve an edit token (the default).",

@@ -4562,6 +4562,8 @@ $wgGroupPermissions['user']['reupload-shared'] = true;
 $wgGroupPermissions['user']['minoredit'] = true;
 $wgGroupPermissions['user']['purge'] = true; // can use ?action=purge without clicking "ok"
 $wgGroupPermissions['user']['sendemail'] = true;
+$wgGroupPermissions['user']['applychangetags'] = true;
+$wgGroupPermissions['user']['changetags'] = true;
 
 // Implicit group for accounts that pass $wgAutoConfirmAge
 $wgGroupPermissions['autoconfirmed']['autoconfirmed'] = true;
@@ -6566,6 +6568,7 @@ $wgLogTypes = array(
 	'patrol',
 	'merge',
 	'suppress',
+	'tag',
 	'managetags',
 );
 
@@ -6603,7 +6606,8 @@ $wgLogRestrictions = array(
  * for the link text.
  */
 $wgFilterLogTypes = array(
-	'patrol' => true
+	'patrol' => true,
+	'tag' => true,
 );
 
 /**
@@ -6695,6 +6699,7 @@ $wgLogActionsHandlers = array(
 	'upload/overwrite' => 'LogFormatter',
 	'upload/revert' => 'LogFormatter',
 	'merge/merge' => 'MergeLogFormatter',
+	'tag/update' => 'TagLogFormatter',
 	'managetags/create' => 'LogFormatter',
 	'managetags/delete' => 'LogFormatter',
 	'managetags/activate' => 'LogFormatter',
