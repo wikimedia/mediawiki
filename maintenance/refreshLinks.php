@@ -36,42 +36,39 @@ class RefreshLinks extends Maintenance {
 		$this->addOption( 'new-only', 'Only affect articles with just a single edit' );
 		$this->addOption( 'redirects-only', 'Only fix redirects, not all links' );
 		$this->addOption( 'old-redirects-only', 'Only fix redirects with no redirect table entry' );
-		$this->addOption( 'm', 'Maximum replication lag', false, true );
 		$this->addOption( 'e', 'Last page id to refresh', false, true );
 		$this->addArg( 'start', 'Page_id to start from, default 1', false );
 		$this->setBatchSize( 100 );
 	}
 
 	public function execute() {
-		$max = $this->getOption( 'm', 0 );
 		if ( !$this->hasOption( 'dfn-only' ) ) {
 			$start = $this->getArg( 0, 1 );
 			$new = $this->getOption( 'new-only', false );
 			$end = $this->getOption( 'e', 0 );
 			$redir = $this->getOption( 'redirects-only', false );
 			$oldRedir = $this->getOption( 'old-redirects-only', false );
-			$this->doRefreshLinks( $start, $new, $max, $end, $redir, $oldRedir );
+			$this->doRefreshLinks( $start, $new, $end, $redir, $oldRedir );
 		}
-		$this->deleteLinksFromNonexistent( $max, $this->mBatchSize );
+		$this->deleteLinksFromNonexistent( $this->mBatchSize );
 	}
 
 	/**
 	 * Do the actual link refreshing.
 	 * @param int $start Page_id to start from
 	 * @param bool $newOnly Only do pages with 1 edit
-	 * @param int $maxLag Max DB replication lag
 	 * @param int $end Page_id to stop at
 	 * @param bool $redirectsOnly Only fix redirects
 	 * @param bool $oldRedirectsOnly Only fix redirects without redirect entries
 	 */
-	private function doRefreshLinks( $start, $newOnly = false, $maxLag = false,
+	private function doRefreshLinks( $start, $newOnly = false,
 		$end = 0, $redirectsOnly = false, $oldRedirectsOnly = false
 	) {
 		global $wgParser, $wgUseTidy;
 
-		$reportingInterval = 100;
 		$dbr = wfGetDB( DB_SLAVE );
-		$start = intval( $start );
+		$start = (int)$start;
+		$end = (int)$end;
 
 		// Give extensions a chance to optimize settings
 		wfRunHooks( 'MaintenanceRefreshLinksInit', array( $this ) );
@@ -82,98 +79,54 @@ class RefreshLinks extends Maintenance {
 		# Don't use HTML tidy
 		$wgUseTidy = false;
 
-		$what = $redirectsOnly ? "redirects" : "links";
-
+		$newMsg = $newOnly ? ' (NEW PAGES ONLY)' : '';
 		if ( $oldRedirectsOnly ) {
-			# This entire code path is cut-and-pasted from below.  Hurrah.
-
-			$conds = array(
-				"page_is_redirect=1",
-				"rd_from IS NULL"
-			);
-
-			if ( $end == 0 ) {
-				$conds[] = "page_id >= $start";
-			} else {
-				$conds[] = "page_id BETWEEN $start AND $end";
-			}
-
-			$res = $dbr->select(
-				array( 'page', 'redirect' ),
-				'page_id',
-				$conds,
-				__METHOD__,
-				array(),
-				array( 'redirect' => array( "LEFT JOIN", "page_id=rd_from" ) )
-			);
-			$num = $res->numRows();
-			$this->output( "Refreshing $num old redirects from $start...\n" );
-
-			$i = 0;
-
-			foreach ( $res as $row ) {
-				if ( !( ++$i % $reportingInterval ) ) {
-					$this->output( "$i\n" );
-					wfWaitForSlaves();
-				}
-				$this->fixRedirect( $row->page_id );
-			}
-		} elseif ( $newOnly ) {
-			$this->output( "Refreshing $what from " );
-			$res = $dbr->select( 'page',
-				array( 'page_id' ),
-				array(
-					'page_is_new' => 1,
-					"page_id >= $start" ),
-				__METHOD__
-			);
-			$num = $res->numRows();
-			$this->output( "$num new articles...\n" );
-
-			$i = 0;
-			foreach ( $res as $row ) {
-				if ( !( ++$i % $reportingInterval ) ) {
-					$this->output( "$i\n" );
-					wfWaitForSlaves();
-				}
-				if ( $redirectsOnly ) {
-					$this->fixRedirect( $row->page_id );
-				} else {
-					self::fixLinksFromArticle( $row->page_id );
-				}
-			}
+			$this->output( "Refreshing old redirects{$newMsg}...\n" );
+		} elseif ( $redirectsOnly ) {
+			$this->output( "Refreshing redirects table{$newMsg}...\n" );
 		} else {
-			if ( !$end ) {
-				$maxPage = $dbr->selectField( 'page', 'max(page_id)', false );
-				$maxRD = $dbr->selectField( 'redirect', 'max(rd_from)', false );
-				$end = max( $maxPage, $maxRD );
-			}
-			$this->output( "Refreshing redirects table.\n" );
-			$this->output( "Starting from page_id $start of $end.\n" );
-
-			for ( $id = $start; $id <= $end; $id++ ) {
-
-				if ( !( $id % $reportingInterval ) ) {
-					$this->output( "$id\n" );
-					wfWaitForSlaves();
-				}
-				$this->fixRedirect( $id );
-			}
-
-			if ( !$redirectsOnly ) {
-				$this->output( "Refreshing links tables.\n" );
-				$this->output( "Starting from page_id $start of $end.\n" );
-
-				for ( $id = $start; $id <= $end; $id++ ) {
-
-					if ( !( $id % $reportingInterval ) ) {
-						$this->output( "$id\n" );
-						wfWaitForSlaves();
-					}
-					self::fixLinksFromArticle( $id );
-				}
-			}
+			$this->output( "Refreshing links tables{$newMsg}...\n" );
 		}
+
+		if ( !$end ) {
+			$end = (int)$dbr->selectField( 'page', 'MAX(page_id)', '', __METHOD__ );
+		}
+
+		$conds = array( 'page_id <= ' . $dbr->addQuotes( $end ) );
+		if ( $oldRedirectsOnly ) {
+			$conds['page_is_redirect'] = 1;
+			$conds[] = "page_id NOT IN ({$dbr->selectSQLText( 'redirect', 'rd_from' )})";
+		}
+		if ( $newOnly ) {
+			$conds['page_is_new'] = 1;
+		}
+
+		do {
+			$res = $dbr->select(
+				'page',
+				WikiPage::selectFields(),
+				array_merge( $conds, array( 'page_id >= ' . $dbr->addQuotes( $start ) ) ),
+				__METHOD__,
+				array( 'ORDER BY' => 'page_id', 'LIMIT' => $this->mBatchSize )
+			);
+
+			$row = null;
+			foreach ( $res as $row ) {
+				$page = WikiPage::newFromRow( $row );
+				$this->fixRedirect( $page );
+				if ( !$oldRedirectsOnly && !$redirectsOnly ) {
+					self::fixLinksFromArticle( $page );
+				}
+			}
+
+			if ( $row ) {
+				$this->output( "...refreshed page_id(s) from $start to {$row->page_id}.\n" );
+				$start = $row->page_id + 1;
+				wfWaitForSlaves();
+			}
+
+		} while ( $res->numRows() );
+
 	}
 
 	/**
@@ -186,20 +139,10 @@ class RefreshLinks extends Maintenance {
 	 * entry in the "redirect" table points to the correct page and not to an
 	 * invalid one.
 	 *
-	 * @param int $id The page ID to check
+	 * @param WikiPage $page The page to check
 	 */
-	private function fixRedirect( $id ) {
-		$page = WikiPage::newFromID( $id );
+	private function fixRedirect( WikiPage $page ) {
 		$dbw = wfGetDB( DB_MASTER );
-
-		if ( $page === null ) {
-			// This page doesn't exist (any more)
-			// Delete any redirect table entry for it
-			$dbw->delete( 'redirect', array( 'rd_from' => $id ),
-				__METHOD__ );
-
-			return;
-		}
 
 		$rt = null;
 		$content = $page->getContent( Revision::RAW );
@@ -210,7 +153,7 @@ class RefreshLinks extends Maintenance {
 		if ( $rt === null ) {
 			// The page is not a redirect
 			// Delete any redirect table entry for it
-			$dbw->delete( 'redirect', array( 'rd_from' => $id ), __METHOD__ );
+			$dbw->delete( 'redirect', array( 'rd_from' => $page->getId() ), __METHOD__ );
 			$fieldValue = 0;
 		} else {
 			$page->insertRedirectEntry( $rt );
@@ -219,15 +162,17 @@ class RefreshLinks extends Maintenance {
 
 		// Update the page table to be sure it is an a consistent state
 		$dbw->update( 'page', array( 'page_is_redirect' => $fieldValue ),
-			array( 'page_id' => $id ), __METHOD__ );
+			array( 'page_id' => $page->getId() ), __METHOD__ );
 	}
 
 	/**
-	 * Run LinksUpdate for all links on a given page_id
-	 * @param int $id The page_id
+	 * Run LinksUpdate for all links on a given page
+	 * @param WikiPage|int $page The page
 	 */
-	public static function fixLinksFromArticle( $id ) {
-		$page = WikiPage::newFromID( $id );
+	public static function fixLinksFromArticle( $page ) {
+		if ( is_numeric( $page ) ) {
+			$page = WikiPage::newFromID( $page ); // BC
+		}
 
 		LinkCache::singleton()->clear();
 
@@ -247,25 +192,22 @@ class RefreshLinks extends Maintenance {
 		DataUpdate::runUpdates( $updates );
 
 		$dbw->commit( __METHOD__ );
+
 	}
 
 	/**
 	 * Removes non-existing links from pages from pagelinks, imagelinks,
 	 * categorylinks, templatelinks, externallinks, interwikilinks, langlinks and redirect tables.
 	 *
-	 * @param int $maxLag
 	 * @param int $batchSize The size of deletion batches
 	 *
 	 * @author Merlijn van Deen <valhallasw@arctus.nl>
 	 */
-	private function deleteLinksFromNonexistent( $maxLag = 0, $batchSize = 100 ) {
+	private function deleteLinksFromNonexistent( $batchSize = 100 ) {
 		wfWaitForSlaves();
 
 		$dbw = wfGetDB( DB_MASTER );
-
-		$lb = wfGetLBFactory()->newMainLB();
-		$dbr = $lb->getConnection( DB_SLAVE );
-		$dbr->bufferResults( false );
+		$dbr = wfGetDB( DB_SLAVE );
 
 		$linksTables = array( // table name => page_id field
 			'pagelinks' => 'pl_from',
@@ -280,40 +222,38 @@ class RefreshLinks extends Maintenance {
 		);
 
 		foreach ( $linksTables as $table => $field ) {
-			$this->output( "Retrieving illegal entries from $table... " );
+			$this->output( "Retrieving illegal entries from $table...\n" );
 
-			// SELECT DISTINCT( $field ) FROM $table LEFT JOIN page ON $field=page_id WHERE page_id IS NULL;
-			$results = $dbr->select(
-				array( $table, 'page' ),
-				$field,
-				array( 'page_id' => null ),
-				__METHOD__,
-				'DISTINCT',
-				array( 'page' => array( 'LEFT JOIN', "$field=page_id" ) )
-			);
+			$start = 0;
+			do {
+				$ids = $dbr->selectFieldValues(
+					$table,
+					$field,
+					array(
+						"$field >= {$dbr->addQuotes( $start )}",
+						"$field NOT IN ({$dbr->selectSQLText( 'page', 'page_id' )})",
+					),
+					__METHOD__,
+					array( 'DISTINCT', 'ORDER BY' => $field, 'LIMIT' => $batchSize )
+				);
 
-			$counter = 0;
-			$list = array();
-			$this->output( "0.." );
-			foreach ( $results as $row ) {
-				$counter++;
-				$list[] = $row->$field;
-				if ( ( $counter % $batchSize ) == 0 ) {
+				if ( $ids ) {
+					$dbw->delete( $table, array( $field => $ids ), __METHOD__ );
+					$lastIdInBatch = $ids[count( $ids ) - 1];
+					$this->output( sprintf(
+						"...deleted %d row(s) for %d page_id(s) from %d to %d.\n",
+						$dbw->affectedRows(),
+						count( $ids ),
+						$ids[0],
+						$lastIdInBatch
+					) );
+
+					$start = $lastIdInBatch + 1;
 					wfWaitForSlaves();
-					$dbw->delete( $table, array( $field => $list ), __METHOD__ );
-
-					$this->output( $counter . ".." );
-					$list = array();
 				}
-			}
-			$this->output( $counter );
-			if ( count( $list ) > 0 ) {
-				$dbw->delete( $table, array( $field => $list ), __METHOD__ );
-			}
-			$this->output( "\n" );
-			wfWaitForSlaves();
+
+			} while ( $ids );
 		}
-		$lb->closeAll();
 	}
 }
 
