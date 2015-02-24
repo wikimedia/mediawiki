@@ -262,10 +262,7 @@ class RefreshLinks extends Maintenance {
 		wfWaitForSlaves();
 
 		$dbw = wfGetDB( DB_MASTER );
-
-		$lb = wfGetLBFactory()->newMainLB();
-		$dbr = $lb->getConnection( DB_SLAVE );
-		$dbr->bufferResults( false );
+		$dbr = wfGetDB( DB_SLAVE );
 
 		$linksTables = array( // table name => page_id field
 			'pagelinks' => 'pl_from',
@@ -282,38 +279,35 @@ class RefreshLinks extends Maintenance {
 		foreach ( $linksTables as $table => $field ) {
 			$this->output( "Retrieving illegal entries from $table... " );
 
-			// SELECT DISTINCT( $field ) FROM $table LEFT JOIN page ON $field=page_id WHERE page_id IS NULL;
-			$results = $dbr->select(
-				array( $table, 'page' ),
-				$field,
-				array( 'page_id' => null ),
-				__METHOD__,
-				'DISTINCT',
-				array( 'page' => array( 'LEFT JOIN', "$field=page_id" ) )
-			);
-
+			$start = 0;
 			$counter = 0;
-			$list = array();
 			$this->output( "0.." );
-			foreach ( $results as $row ) {
-				$counter++;
-				$list[] = $row->$field;
-				if ( ( $counter % $batchSize ) == 0 ) {
+
+			do {
+				$list = $dbr->selectFieldValues(
+					$table,
+					$field,
+					array(
+						"$field >= {$dbr->addQuotes( $start )}",
+						"$field NOT IN ({$dbr->selectSQLText( 'page', 'page_id' )})",
+					),
+					__METHOD__,
+					array( 'DISTINCT', 'ORDER BY' => $field, 'LIMIT' => $batchSize )
+				);
+
+				if ( $list ) {
+					$counter += count( $list );
 					wfWaitForSlaves();
 					$dbw->delete( $table, array( $field => $list ), __METHOD__ );
-
 					$this->output( $counter . ".." );
-					$list = array();
+					$start = $list[count( $list ) - 1] + 1;
 				}
-			}
-			$this->output( $counter );
-			if ( count( $list ) > 0 ) {
-				$dbw->delete( $table, array( $field => $list ), __METHOD__ );
-			}
+
+			} while ( $list );
+
 			$this->output( "\n" );
 			wfWaitForSlaves();
 		}
-		$lb->closeAll();
 	}
 }
 
