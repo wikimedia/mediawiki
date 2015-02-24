@@ -32,6 +32,9 @@ class DatabaseSqlite extends DatabaseBase {
 	/** @var string File name for SQLite database file */
 	public $mDatabaseFile;
 
+	/** @var string Transaction mode */
+	protected $trxMode;
+
 	/** @var int The number of rows affected as an integer */
 	protected $mAffectedRows;
 
@@ -44,6 +47,11 @@ class DatabaseSqlite extends DatabaseBase {
 	/** @var FSLockManager (hopefully on the same server as the DB) */
 	protected $lockMgr;
 
+	/**
+	 * Additional params include:
+	 *   - trxMode : one of (deferred, immediate, exclusive)
+	 * @param array $p
+	 */
 	function __construct( array $p ) {
 		global $wgSharedDB, $wgSQLiteDataDir;
 
@@ -56,6 +64,12 @@ class DatabaseSqlite extends DatabaseBase {
 					$this->attachDatabase( $wgSharedDB );
 				}
 			}
+		}
+
+		$this->trxMode = isset( $p['trxMode'] ) ? strtoupper( $p['trxMode'] ) : null;
+		if ( $this->trxMode && !in_array( $this->trxMode, array( 'IMMEDIATE', 'EXCLUSIVE' ) ) ) {
+			$this->trxMode = null;
+			wfWarn( "Invalid SQLite transaction mode provided." );
 		}
 
 		$this->lockMgr = new FSLockManager( array( 'lockDirectory' => "$wgSQLiteDataDir/locks" ) );
@@ -695,6 +709,15 @@ class DatabaseSqlite extends DatabaseBase {
 		}
 
 		return false;
+	}
+
+	protected function doBegin( $fname = '' ) {
+		if ( $this->trxMode ) {
+			$this->query( "BEGIN {$this->trxMode}", $fname );
+		} else {
+			$this->query( 'BEGIN', $fname );
+		}
+		$this->mTrxLevel = 1;
 	}
 
 	/**
