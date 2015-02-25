@@ -73,6 +73,10 @@ class MediaStatisticsPage extends QueryPage {
 				'namespace' => NS_MEDIA, /* needs to be something */
 				'value' => '1'
 			),
+			'conds' => array(
+				// WMF has a random null row in the db
+				'img_media_type IS NOT NULL'
+			),
 			'options' => array(
 				'GROUP BY' => array(
 					'img_media_type',
