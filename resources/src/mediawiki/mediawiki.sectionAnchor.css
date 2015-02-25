@@ -11,6 +11,10 @@
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	user-select: none;
+	/* Temporarily disable anchor links in section headings.
+	 * There are some minor concerns about the details of the behavior,
+	 * and it could use a quick announcement before it goes live. */
+	display: none;
 }
 
 /* @noflip */
