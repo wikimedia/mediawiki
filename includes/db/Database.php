@@ -2666,10 +2666,13 @@ abstract class DatabaseBase implements IDatabase {
 	/**
 	 * Adds quotes and backslashes.
 	 *
-	 * @param string $s
+	 * @param string|Blob $s
 	 * @return string
 	 */
 	public function addQuotes( $s ) {
+		if ( $s instanceof Blob ) {
+			$s = $s->fetch();
+		}
 		if ( $s === null ) {
 			return 'NULL';
 		} else {
@@ -3933,10 +3936,13 @@ abstract class DatabaseBase implements IDatabase {
 	 * in result objects. Pass the object through this function to return the
 	 * original string.
 	 *
-	 * @param string $b
+	 * @param string|Blob $b
 	 * @return string
 	 */
 	public function decodeBlob( $b ) {
+		if ( $b instanceof Blob ) {
+			$b = $b->fetch();
+		}
 		return $b;
 	}
 

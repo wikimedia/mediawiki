@@ -888,6 +888,7 @@ $wgAutoloadLocalClasses = array(
 	'PopulateRevisionLength' => __DIR__ . '/maintenance/populateRevisionLength.php',
 	'PopulateRevisionSha1' => __DIR__ . '/maintenance/populateRevisionSha1.php',
 	'PostgreSqlLockManager' => __DIR__ . '/includes/filebackend/lockmanager/DBLockManager.php',
+	'PostgresBlob' => __DIR__ . '/includes/db/DatabasePostgres.php',
 	'PostgresField' => __DIR__ . '/includes/db/DatabasePostgres.php',
 	'PostgresInstaller' => __DIR__ . '/includes/installer/PostgresInstaller.php',
 	'PostgresTransactionState' => __DIR__ . '/includes/db/DatabasePostgres.php',
