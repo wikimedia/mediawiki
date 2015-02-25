@@ -731,9 +731,11 @@ class SqlBagOStuff extends BagOStuff {
 			$this->markServerDown( $exception, $serverIndex );
 		}
 		if ( $exception->db && $exception->db->wasReadOnlyError() ) {
-			try {
-				$exception->db->rollback( __METHOD__ );
-			} catch ( DBError $e ) {
+			if ( $exception->db->trxLevel() ) {
+				try {
+					$exception->db->rollback( __METHOD__ );
+				} catch ( DBError $e ) {
+				}
 			}
 		}
 
