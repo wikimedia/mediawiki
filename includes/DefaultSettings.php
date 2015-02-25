@@ -5991,6 +5991,31 @@ $wgAllowCategorizedRecentChanges = false;
 $wgUseTagFilter = true;
 
 /**
+ * Define tags applied in core that admins can activate at Special:Tags (inactive by default).
+ * This is an array of arrays of arrays of strings. This architecture is expected by functions.
+ * The final string is the message giving the name of the tag.
+ * Extensions can append to this array using the extension name as root instead of 'core' and
+ * a prefix appropriate to the general nature of the tagging (such as 'redirect' or 'move').
+ * Refer to the function isActivatedOptionalTag of the ChangeTags class.
+ */
+$wgOptionalTags = array();
+$wgOptionalTags['core'] = array();
+$wgOptionalTags['core']['move'] = array(
+	'crossnamespace' => 'tags-optional-core-move-crossnamespace',
+	'rename' => 'tags-optional-core-move-rename'
+	);
+$wgOptionalTags['core']['redirect'] = array (
+	'new' => 'tags-optional-core-redirect-new',
+	'changed' => 'tags-optional-core-redirect-changed',
+	'removed' => 'tags-optional-core-redirect-removed',
+	'self' => 'tags-optional-core-redirect-self',
+	'nonexistent' => 'tags-optional-core-redirect-nonexistent'
+	);
+$wgOptionalTags['core']['edit'] = array(
+	'blank' => 'tags-optional-core-redirect-blank'
+	);
+
+/**
  * If set to an integer, pages that are watched by this many users or more
  * will not require the unwatchedpages permission to view the number of
  * watchers.
