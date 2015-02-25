@@ -9,13 +9,23 @@
 
 	mw.errorLogging = {
 		/**
-		 * Fired via mw.track when an error is not handled by local code and is caught by global
-		 * error logging.
+		 * Fired via mw.track when an error is not handled by local code and is caught by an
+		 * automatically added try..catch block.
 		 *
 		 * @event errorLogging_exception
 		 * @param {Error|Mixed} e The error that was thrown. Usually an Error object, but
 		 *   in Javascript any value can be used with 'throw' so no guarantees.
 		 * @param {string} source Name of the function which threw the error.
+		 */
+
+		/**
+		 * Fired via mw.track when an error is not handled by local code and is caught by the
+		 * window.onerror handler.
+		 *
+		 * @event errorLogging_windowOnerror
+		 * @param {Array} args The arguments with which window.onerror was called. These are brower-
+		 *   dependent; https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror
+		 *   has some documentation.
 		 */
 
 		/**
@@ -139,9 +149,22 @@
 					}
 				} );
 			} );
+		},
+
+		/**
+		 * Dumb window.onerror handler which forwards the errors via mw.track.
+		 * @param {Mixed...} args Arguments passed to window.onerror. The number of the arguments
+		 *   varies from browser to browser; dealing with that is left to subscribers of this event.
+		 * @fires errorLogging_windowOnerror
+		 */
+		handleWindowOnerror: function ( args ) {
+			args = [].slice.call( arguments );
+			mw.track( 'errorLogging.windowOnerror', { args: args } );
+			// Do not return false so the default error handler is invoked and logs to console
 		}
 	};
 
 	mw.errorLogging.register( window, $ );
+	window.onerror = mw.errorLogging.handleWindowOnerror;
 
 }( mediaWiki, jQuery ) );
