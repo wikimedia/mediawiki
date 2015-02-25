@@ -127,8 +127,14 @@ class SpecialTags extends SpecialPage {
 		);
 
 		// Used in #doTagRow()
-		$this->explicitlyDefinedTags = array_fill_keys(
-			ChangeTags::listExplicitlyDefinedTags(), true );
+		$coreTags = ChangeTags::getCoreTags;
+		$validTags = ChangeTags::getValidTags;
+		// in those, tags are keys so we can use more efficient key-based intersect / diff
+		$this->userDefinedTags = array_diff_key( $validTags, $coreTags );
+		$this->activatedCoreTags = array_intersect_key( $validTags, $coreTags );
+		$this->inactiveCoreTags = array_diff_key( $coreTags, $validTags );
+		// no way to make these two more efficient without a hook using tags as keys
+		// (which would also allow to use a single hook)
 		$this->extensionDefinedTags = array_fill_keys(
 			ChangeTags::listExtensionDefinedTags(), true );
 		$this->extensionActivatedTags = array_fill_keys(
@@ -174,20 +180,25 @@ class SpecialTags extends SpecialPage {
 		$newRow .= Xml::tags( 'td', null, $desc );
 
 		$sourceMsgs = array();
+		$isUserDefined = isset( $this->userDefinedTags[$tag] );
+		$isActivatedCore = isset( $this->activatedCoreTags[$tag] );
+		$isInactiveCore = isset( $this->inactiveCoreTags[$tag] );
 		$isExtension = isset( $this->extensionDefinedTags[$tag] );
-		$isExplicit = isset( $this->explicitlyDefinedTags[$tag] );
+		if ( $isUserDefined ) {
+			$sourceMsgs[] = $this->msg( 'tags-source-manual' )->escaped();
+		}
+		if ( $isActivatedCore || $isInactiveCore ) {
+			$sourceMsgs[] = $this->msg( 'tags-source-core' )->escaped();
+		}
 		if ( $isExtension ) {
 			$sourceMsgs[] = $this->msg( 'tags-source-extension' )->escaped();
-		}
-		if ( $isExplicit ) {
-			$sourceMsgs[] = $this->msg( 'tags-source-manual' )->escaped();
 		}
 		if ( !$sourceMsgs ) {
 			$sourceMsgs[] = $this->msg( 'tags-source-none' )->escaped();
 		}
 		$newRow .= Xml::tags( 'td', null, implode( Xml::element( 'br' ), $sourceMsgs ) );
 
-		$isActive = $isExplicit || isset( $this->extensionActivatedTags[$tag] );
+		$isActive = isset( $this->extensionActivatedTags[$tag] ) || $isActivatedCore || $isUserDefined ;
 		$activeMsg = ( $isActive ? 'tags-active-yes' : 'tags-active-no' );
 		$newRow .= Xml::tags( 'td', null, $this->msg( $activeMsg )->escaped() );
 

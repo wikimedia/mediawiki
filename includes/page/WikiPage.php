@@ -1827,13 +1827,15 @@ class WikiPage implements Page, IDBAccessObject {
 					}
 
 					Hooks::run( 'NewRevisionFromEditComplete', array( $this, $revision, $baseRevId, $user ) );
+
 					// Update recentchanges
+					$pageTitle = $this->mTitle;
+					$autopatrolled = !count( $pageTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
 					if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
 						// Mark as patrolled if the user can do so
-						$patrolled = $wgUseRCPatrol && !count(
-						$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
+						$patrolled = ( $wgUseRCPatrol && $autopatrolled );
 						// Add RC row to the DB
-						$rc = RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $user, $summary,
+						$rc = RecentChange::notifyEdit( $now, $pageTitle, $isminor, $user, $summary,
 							$oldid, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
 							$revisionId, $patrolled
 						);
@@ -1843,7 +1845,22 @@ class WikiPage implements Page, IDBAccessObject {
 							PatrolLog::record( $rc, true, $user );
 						}
 					}
+
+					// Add automatic tags
+					$autoTags = $handler->getAutotags( $old_content, $content, $flags, $pageTitle );
+						if ( $autoTags ) {
+							if ( $rc && !$autopatrolled ) {
+								// If recentchanges was updated and user is not autopatrolled, tag rc item and revision
+								addTags( $autoTags, $rc->mAttribs['rc_id'], $revision->mAttribs['rev_id'] );
+							} else {
+								// If recentchanges was not updated or the user is autopatrolled, tag only the revision
+								addTags( $autoTags, null, $revision->mAttribs['rev_id'] );
+							}
+						}
+
+					// Increment edit count for the user
 					$user->incEditCount();
+
 				} catch ( Exception $e ) {
 					$dbw->rollback( __METHOD__ );
 					// Question: Would it perhaps be better if this method turned all
