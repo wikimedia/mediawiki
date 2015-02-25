@@ -5991,6 +5991,13 @@ $wgAllowCategorizedRecentChanges = false;
 $wgUseTagFilter = true;
 
 /**
+ * Optionally defined tags added in core, that admins can then activate at Special:Tags.
+ * Extensions can append to this array. When adding optional tags, the param $optional
+ * must be set to true in ChangeTags::AddTags.
+ */
+$wgOptionalTags = array( 'Core : cross-namespace-move' );
+
+/**
  * If set to an integer, pages that are watched by this many users or more
  * will not require the unwatchedpages permission to view the number of
  * watchers.
