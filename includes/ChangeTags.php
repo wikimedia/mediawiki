@@ -92,6 +92,8 @@ class ChangeTags {
 	 * @param int|null $rev_id The rev_id of the change to add the tags to
 	 * @param int|null $log_id The log_id of the change to add the tags to
 	 * @param string $params Params to put in the ct_params field of table 'change_tag'
+	 * @param bool $optional Whether the added tags should be treated as optional, this
+	 * should be set to true when applying optional tags
 	 *
 	 * @throws MWException
 	 * @return bool False if no changes are made, otherwise true
@@ -99,8 +101,9 @@ class ChangeTags {
 	 * @exception MWException When $rc_id, $rev_id and $log_id are all null
 	 */
 	public static function addTags( $tags, $rc_id = null, $rev_id = null,
-		$log_id = null, $params = null
+		$log_id = null, $params = null, $optional = false
 	) {
+		global $wgOptionalTags;
 		if ( !is_array( $tags ) ) {
 			$tags = array( $tags );
 		}
@@ -110,6 +113,22 @@ class ChangeTags {
 		if ( !$rc_id && !$rev_id && !$log_id ) {
 			throw new MWException( 'At least one of: RCID, revision ID, and log ID MUST be ' .
 				'specified when adding a tag to a change!' );
+		}
+
+		if ( $optional ) {
+			// Making sure these are defined as optional in config
+			$tags = array_intersect( $tags, $wgOptionalTags );
+			// Abort if no tag remains
+			if ( !$tags ) {
+				return false;
+			}
+
+			// Keeping only manually activated tags
+			$tags = array_intersect( $tags, $self::listExplicitlyDefinedTags ) ;
+			// Abort if no tag remains
+			if ( !$tags ) {
+				return false;
+			}
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -501,6 +520,8 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function canCreateTag( $tag, User $user = null ) {
+		global $wgOptionalTags;
+
 		if ( !is_null( $user ) && !$user->isAllowed( 'managechangetags' ) ) {
 			return Status::newFatal( 'tags-manage-no-permission' );
 		}
@@ -512,7 +533,7 @@ class ChangeTags {
 
 		// tags cannot contain commas (used as a delimiter in tag_summary table) or
 		// slashes (would break tag description messages in MediaWiki namespace)
-		if ( strpos( $tag, ',' ) !== false || strpos( $tag, '/' ) !== false ) {
+		if ( strpos( $tag, ',' ) !== false || strpos( $tag, '/' ) !== false || strpos( $tag, 'core-' ) !== false ) {
 			return Status::newFatal( 'tags-create-invalid-chars' );
 		}
 
@@ -755,9 +776,10 @@ class ChangeTags {
 	 * @return string[] Array of strings: tags
 	 */
 	public static function listDefinedTags() {
+		global $wgOptionalTags;
 		$tags1 = self::listExplicitlyDefinedTags();
 		$tags2 = self::listExtensionDefinedTags();
-		return array_values( array_unique( array_merge( $tags1, $tags2 ) ) );
+		return array_values( array_unique( array_merge( $tags1, $tags2, $wgOptionalTags ) ) );
 	}
 
 	/**

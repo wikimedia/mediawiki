@@ -64,6 +64,7 @@ class SpecialTags extends SpecialPage {
 	}
 
 	function showTagList() {
+		global $wgOptionalTags;
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'tags-title' ) );
 		$out->wrapWikiMsg( "<div class='mw-tags-intro'>\n$1\n</div>", 'tags-intro' );
@@ -127,8 +128,13 @@ class SpecialTags extends SpecialPage {
 		);
 
 		// Used in #doTagRow()
-		$this->explicitlyDefinedTags = array_fill_keys(
-			ChangeTags::listExplicitlyDefinedTags(), true );
+		$explicitTags = ChangeTags::listExplicitlyDefinedTags;
+		$this->manuallyDefinedTags = array_fill_keys(
+			array_diff( $explicitTags, $wgOptionalTags ), true );
+		$this->activatedOptionalTags = array_fill_keys(
+			array_intersect( $explicitTags, $wgOptionalTags ), true );
+		$this->inactiveOptionalTags = array_fill_keys(
+			array_diff( $wgOptionalTags, $explicitTags ), true );
 		$this->extensionDefinedTags = array_fill_keys(
 			ChangeTags::listExtensionDefinedTags(), true );
 		$this->extensionActivatedTags = array_fill_keys(
@@ -174,20 +180,25 @@ class SpecialTags extends SpecialPage {
 		$newRow .= Xml::tags( 'td', null, $desc );
 
 		$sourceMsgs = array();
+		$isManual = isset( $this->manuallyDefinedTags[$tag] );
+		$isActivatedOptional = isset( $this->activatedOptionalTags[$tag] );
+		$isOptional = ( $isOptionalActivated || isset( $this->inactiveOptionalTags[$tag] ) );
 		$isExtension = isset( $this->extensionDefinedTags[$tag] );
-		$isExplicit = isset( $this->explicitlyDefinedTags[$tag] );
+		if ( $isManual ) {
+			$sourceMsgs[] = $this->msg( 'tags-source-manual' )->escaped();
+		}
+		if ( $isOptional ) {
+			$sourceMsgs[] = $this->msg( 'tags-source-optional' )->escaped();
+		}
 		if ( $isExtension ) {
 			$sourceMsgs[] = $this->msg( 'tags-source-extension' )->escaped();
-		}
-		if ( $isExplicit ) {
-			$sourceMsgs[] = $this->msg( 'tags-source-manual' )->escaped();
 		}
 		if ( !$sourceMsgs ) {
 			$sourceMsgs[] = $this->msg( 'tags-source-none' )->escaped();
 		}
 		$newRow .= Xml::tags( 'td', null, implode( Xml::element( 'br' ), $sourceMsgs ) );
 
-		$isActive = $isExplicit || isset( $this->extensionActivatedTags[$tag] );
+		$isActive = $isManual || $isActivatedOptional || isset( $this->extensionActivatedTags[$tag] );
 		$activeMsg = ( $isActive ? 'tags-active-yes' : 'tags-active-no' );
 		$newRow .= Xml::tags( 'td', null, $this->msg( $activeMsg )->escaped() );
 

@@ -5991,6 +5991,15 @@ $wgAllowCategorizedRecentChanges = false;
 $wgUseTagFilter = true;
 
 /**
+ * Define tags applied in core that admins can activate at Special:Tags (inactive by default).
+ * Extensions can append to this array. When adding these tags, with ChangeTags::AddTags,
+ * the param $optional must be set to true.
+ * By convention, use 'core' for tags defined in mediawiki core, or the extension name as
+ * prefix. Their default appearance and description should also be defined.
+ */
+$wgOptionalTags = array( 'core-cross-namespace-move' );
+
+/**
  * If set to an integer, pages that are watched by this many users or more
  * will not require the unwatchedpages permission to view the number of
  * watchers.

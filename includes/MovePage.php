@@ -389,6 +389,9 @@ class MovePage {
 	private function moveToInternal( User $user, &$nt, $reason = '', $createRedirect = true ) {
 		global $wgContLang;
 
+		$oldNamespace = $this->oldTitle->getNamespace();
+		$newNamespace = $nt->getNamespace();
+
 		if ( $nt->exists() ) {
 			$moveOverRedirect = true;
 			$logType = 'move_redir';
@@ -398,7 +401,7 @@ class MovePage {
 		}
 
 		if ( $createRedirect ) {
-			if ( $this->oldTitle->getNamespace() == NS_CATEGORY
+			if ( $oldNamespace == NS_CATEGORY
 				&& !wfMessage( 'category-move-redirect-override' )->inContentLanguage()->isDisabled()
 			) {
 				$redirectContent = new WikitextContent(
@@ -468,7 +471,7 @@ class MovePage {
 		# Change the name of the target page:
 		$dbw->update( 'page',
 			/* SET */ array(
-				'page_namespace' => $nt->getNamespace(),
+				'page_namespace' => $newNamespace,
 				'page_title' => $nt->getDBkey(),
 			),
 			/* WHERE */ array( 'page_id' => $oldid ),
@@ -523,5 +526,17 @@ class MovePage {
 		# Log the move
 		$logid = $logEntry->insert();
 		$logEntry->publish( $logid );
+
+		# Optionally tag the recent change for the null revision in case of cross namespace move
+		if ( $oldNamespace != $newNamespace ) {
+			ChangeTags::addTags(
+				'core-cross-namespace-move',
+				$nullRevision->getRecentChange->mAttribs['rc_id'],
+				null,
+				null,
+				null,
+				true // this option marks the tagging as optional
+			);
+		}
 	}
 }
