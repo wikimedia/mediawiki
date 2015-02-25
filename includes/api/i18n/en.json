@@ -1360,7 +1360,7 @@
 	"apihelp-php-description": "Output data in serialized PHP format.",
 	"apihelp-php-param-formatversion": "Output formatting:\n;1:Backwards-compatible format (XML-style booleans, <samp>*</samp> keys for content nodes, etc.).\n;2:Experimental modern format. Details may change!\n;latest:Use the latest format (currently <kbd>2</kbd>), may change without warning.",
 	"apihelp-phpfm-description": "Output data in serialized PHP format (pretty-print in HTML).",
-	"apihelp-rawfm-description": "Output data with the debugging elements in JSON format (pretty-print in HTML).",
+	"apihelp-rawfm-description": "Output data, including debugging elements, in JSON format (pretty-print in HTML).",
 	"apihelp-txt-description": "Output data in PHP's <code>print_r()</code> format.",
 	"apihelp-txtfm-description": "Output data in PHP's <code>print_r()</code> format (pretty-print in HTML).",
 	"apihelp-xml-description": "Output data in XML format.",
