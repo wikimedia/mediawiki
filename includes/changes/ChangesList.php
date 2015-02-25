@@ -207,7 +207,8 @@ class ChangesList extends ContextSource {
 			$fastCharDiff[$code] = $config->get( 'MiserMode' ) || $context->msg( 'rc-change-size' )->plain() === '$1';
 		}
 
-		$formattedSize = $lang->formatNum( $szdiff );
+		$formattedSize = $lang->formatSize( $szdiff );
+		$tooltipSize = $lang->formatNum( $szdiff );
 
 		if ( !$fastCharDiff[$code] ) {
 			$formattedSize = $context->msg( 'rc-change-size', $formattedSize )->text();
@@ -228,7 +229,7 @@ class ChangesList extends ContextSource {
 			$formattedSizeClass = 'mw-plusminus-neg';
 		}
 
-		$formattedTotalSize = $context->msg( 'rc-change-size-new' )->numParams( $new )->text();
+		$formattedTotalSize = $context->msg( 'rc-change-size-new' )->numParams( $tooltipSize )->text();
 
 		return Html::element( $tag,
 			array( 'dir' => 'ltr', 'class' => $formattedSizeClass, 'title' => $formattedTotalSize ),
