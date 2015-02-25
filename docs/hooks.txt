@@ -1751,7 +1751,7 @@ including delete and insert, has completed for all link tables
 'LinksUpdateConstructed': At the end of LinksUpdate() is construction.
 &$linksUpdate: the LinksUpdate object
 
-'ListDefinedTags': When trying to find all defined tags.
+'ListDefinedTags': When trying to find all extension defined tags.
 &$tags: The list of tags.
 
 'LoadExtensionSchemaUpdates': Called during database installation and updates.

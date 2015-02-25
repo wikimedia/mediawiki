@@ -839,6 +839,53 @@ abstract class ContentHandler {
 	}
 
 	/**
+	 * Return applicable automatic tags for the given edit, if any.
+	 *
+	 * @since 1.25
+	 *
+	 * @param Content $oldContent The previous text of the page.
+	 * @param Content $newContent The submitted text of the page.
+	 * @param int $flags Bit mask: a bit mask of flags submitted for the edit.
+	 * @param Title $pageTitle The title of the page whose content is being edited.
+	 *
+	 * @return array An array of tags, or an empty array.
+	 */
+	public function getAutotags( Content $oldContent = null, Content $newContent = null,
+		$flags, $pageTitle ) {
+		$availableTags = ChangeTags::getValidTags();
+		$tags = array();
+
+		// All redirect-related tags
+		$oldTarget = !is_null( $oldContent ) ? $oldContent->getRedirectTarget() : null;
+		$newTarget = !is_null( $newContent ) ? $newContent->getRedirectTarget() : null;
+		if ( is_object( $newTarget ) ) {
+			if ( $newTarget == $pageTitle && isset( $availableTags['core-redirect-self'] )  {
+				$tags[] = 'core-redirect-self';
+			} elseif ( !$newTarget->exists() && isset( $availableTags['core-redirect-nonexistent'] ) ) {
+				$tags[] = 'core-redirect-nonexistent';
+			}
+			if ( !is_object( $oldTarget ) && isset( $availableTags['core-redirect-new'] ) ) {
+				$tags[] = 'core-redirect-new';
+			} elseif ( ( !$newTarget->equals( $oldTarget ) || $oldTarget->getFragment()
+				!= $newTarget->getFragment() ) && isset( $availableTags['redirect-changed'] ) ) {
+				$tags[] = 'redirect-changed';
+			}
+		} elseif ( is_object( $oldTarget ) ) {
+			if ( isset( $availableTags['core-redirect-removed'] ) ) {
+				$tags[] = 'core-redirect-removed';
+			}
+		}
+
+		// Other edit tags
+		if ( !empty( $oldContent ) && $oldContent->getSize() > 0 && $newContent->getSize() == 0 &&
+			isset( $availableTags['core-edit-blank'] ) ) {
+			$tags[] = 'core-edit-blank';
+		}
+
+		return $tags;
+	}
+
+	/**
 	 * Auto-generates a deletion reason
 	 *
 	 * @since 1.21

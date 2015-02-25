@@ -392,6 +392,9 @@ class MovePage {
 	private function moveToInternal( User $user, &$nt, $reason = '', $createRedirect = true ) {
 		global $wgContLang;
 
+		$oldNamespace = $this->oldTitle->getNamespace();
+		$newNamespace = $nt->getNamespace();
+
 		if ( $nt->exists() ) {
 			$moveOverRedirect = true;
 			$logType = 'move_redir';
@@ -401,7 +404,7 @@ class MovePage {
 		}
 
 		if ( $createRedirect ) {
-			if ( $this->oldTitle->getNamespace() == NS_CATEGORY
+			if ( $oldNamespace == NS_CATEGORY
 				&& !wfMessage( 'category-move-redirect-override' )->inContentLanguage()->isDisabled()
 			) {
 				$redirectContent = new WikitextContent(
@@ -471,7 +474,7 @@ class MovePage {
 		# Change the name of the target page:
 		$dbw->update( 'page',
 			/* SET */ array(
-				'page_namespace' => $nt->getNamespace(),
+				'page_namespace' => $newNamespace,
 				'page_title' => $nt->getDBkey(),
 			),
 			/* WHERE */ array( 'page_id' => $oldid ),
@@ -526,5 +529,36 @@ class MovePage {
 		# Log the move
 		$logid = $logEntry->insert();
 		$logEntry->publish( $logid );
+
+		# Core tags for moves
+		$availableTags = ChangeTags::getValidTags();
+		if ( $oldNamespace != $newNamespace && isset( $availableTags['core-move-crossnamespace'] ) ) {
+			# cross namespace move !
+			$tag = 'core-move-crossnamespace';
+			if ( !$user->isAllowed('autopatrol') ) {
+				# if user is not autopatrolled, tag both recent change for the null revision
+				# and move log entry
+				ChangeTags::addTags( $tag, $nullRevision->getRecentChange->mAttribs['rc_id'],
+					null, $logid );
+			} else {
+				#if user is autopatrolled, only tag move log entry
+				ChangeTags::addTags( $tag, null, null, $logid );
+			}
+		} elseif ( $oldNamespace == NS_USER && $newNamespace == NS_USER &&
+			$this->oldTitle->getDBkey() == $user->getTitleKey() &&
+			strpos( $this->newTitle->getDBkey(), '/' ) == false &&
+				isset( $availableTags['core-move-rename'] ) ) {
+			# user trying to rename !
+			$tag = 'core-move-rename';
+			if ( !$user->isAllowed('autopatrol') ) {
+				# if user is not autopatrolled, tag both recent change
+				# for the null revision and move log entry
+				ChangeTags::addTags( $tag, $nullRevision->getRecentChange->mAttribs['rc_id'],
+					null, $logid );
+			} else {
+				#if user is autopatrolled, only tag move log entry
+				ChangeTags::addTags( $tag, null, null, $logid );
+			}
+		}
 	}
 }
