@@ -231,6 +231,16 @@
 
 				// Replace spaces by underscores
 				fname = fname.replace( / /g, '_' );
+
+				// Remove trailing spaces (T67811)
+				if ( fname.lastIndexOf( '.' ) !== -1 ) {
+					var ext = fname.substr( fname.lastIndexOf( '.' ) );
+					fname = fname.substr( 0, fname.lastIndexOf( '.' ) );
+					fname = fname.replace( /_+$/, '' ) + ext;
+				} else {
+					fname = fname.replace( /_+$/, '' );
+				}
+
 				// Capitalise first letter if needed
 				if ( mw.config.get( 'wgCapitalizeUploads' ) ) {
 					fname = fname.charAt( 0 ).toUpperCase().concat( fname.slice( 1 ) );
