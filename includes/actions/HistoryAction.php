@@ -654,7 +654,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				? $this->parentLens[$row->rev_parent_id]
 				: 0;
 			$sDiff = ChangesList::showCharacterDifference( $prevSize, $rev->getSize() );
-			$fSize = Linker::formatRevisionSize( $rev->getSize() );
+			$fSize = Linker::formatSize( $rev->getSize() );
 			$s .= ' <span class="mw-changeslist-separator">. .</span> ' . "$fSize $sDiff";
 		}
 
