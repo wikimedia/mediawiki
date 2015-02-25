@@ -1628,13 +1628,13 @@ class Linker {
 	 * @return string
 	 */
 	public static function formatRevisionSize( $size ) {
+		$tooltiptxt = wfMessage( 'nbytes' )->numParams( $size )->escaped();
 		if ( $size == 0 ) {
 			$stxt = wfMessage( 'historyempty' )->escaped();
 		} else {
-			$stxt = wfMessage( 'nbytes' )->numParams( $size )->escaped();
-			$stxt = wfMessage( 'parentheses' )->rawParams( $stxt )->escaped();
+			$stxt = wfMessage( 'parentheses' )->sizeParams( $size )->escaped();
 		}
-		return "<span class=\"history-size\">$stxt</span>";
+		return "<span class=\"history-size\" title=\"$tooltiptxt\">$stxt</span>";
 	}
 
 	/**
