@@ -40,12 +40,12 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 *               the documentation of $wgObjectCaches for more detail.
 	 *
 	 * @param array $params
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 */
 	public function __construct( $params ) {
 		parent::__construct( $params );
 		if ( !isset( $params['caches'] ) ) {
-			throw new MWException( __METHOD__ . ': the caches parameter is required' );
+			throw new InvalidArgumentException( __METHOD__ . ': the caches parameter is required' );
 		}
 
 		$this->caches = array();

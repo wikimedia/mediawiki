@@ -166,7 +166,7 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	 * @return bool Success
 	 */
 	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
-		throw new MWException( "CAS is not implemented in " . __CLASS__ );
+		throw new Exception( "CAS is not implemented in " . __CLASS__ );
 	}
 
 	/**
