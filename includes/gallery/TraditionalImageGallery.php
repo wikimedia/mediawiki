@@ -133,6 +133,8 @@ class TraditionalImageGallery extends ImageGalleryBase {
 
 				$this->adjustImageParameters( $thumb, $imageParameters );
 
+				Linker::processResponsiveImages( $img, $thumb, $transformOptions );
+
 				# Set both fixed width and min-height.
 				$thumbhtml = "\n\t\t\t"
 					. '<div class="thumb" style="width: '
