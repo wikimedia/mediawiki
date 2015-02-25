@@ -310,14 +310,21 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				if ( $action == 'unblock' ) {
 					break;
 				}
+				if ( $legacy ) {
+					$durationKey = 0;
+					$flagsKey = 1;
+				} else {
+					$durationKey = '5::duration';
+					$flagsKey = '6::flags';
+				}
 				$vals2 = array();
-				$vals2['duration'] = $params[0];
-				$vals2['flags'] = isset( $params[1] ) ? $params[1] : '';
+				$vals2['duration'] = $params[$durationKey];
+				$vals2['flags'] = isset( $params[$flagsKey] ) ? $params[$flagsKey] : '';
 
 				// Indefinite blocks have no expiry time
-				if ( SpecialBlock::parseExpiryInput( $params[0] ) !== wfGetDB( DB_SLAVE )->getInfinity() ) {
+				if ( SpecialBlock::parseExpiryInput( $params[$durationKey] ) !== wfGetDB( DB_SLAVE )->getInfinity() ) {
 					$vals2['expiry'] = wfTimestamp( TS_ISO_8601,
-						strtotime( $params[0], wfTimestamp( TS_UNIX, $ts ) ) );
+						strtotime( $params[$durationKey], wfTimestamp( TS_UNIX, $ts ) ) );
 				}
 				$vals[$type] = $vals2;
 				$params = null;
