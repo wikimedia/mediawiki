@@ -395,8 +395,10 @@ class ChangeTags {
 		// defined tags cannot be activated (a defined tag is either extension-
 		// defined, in which case the extension chooses whether or not to active it;
 		// or user-defined, in which case it is considered active)
-		$definedTags = self::listDefinedTags();
-		if ( in_array( $tag, $definedTags ) ) {
+		$validTags = self::getValidTags();
+		$extensionDefinedTags = self::listExtensionDefinedTags();
+		if ( isset( $validTags[$tag] ) || in_array( $tag, $extensionDefinedTags ) ) {
+			// this in_array should go once we have a hook using tags as keys
 			return Status::newFatal( 'tags-activate-not-allowed', $tag );
 		}
 
@@ -450,9 +452,9 @@ class ChangeTags {
 			return Status::newFatal( 'tags-manage-no-permission' );
 		}
 
-		// only explicitly-defined tags can be deactivated
-		$explicitlyDefinedTags = self::listExplicitlyDefinedTags();
-		if ( !in_array( $tag, $explicitlyDefinedTags ) ) {
+		// only tags stored in the valid_tag table can be deactivated
+		$validTags = self::getValidTags();
+		if ( !isset( $validTags[$tag] ) ) {
 			return Status::newFatal( 'tags-deactivate-not-allowed', $tag );
 		}
 		return Status::newGood();
@@ -512,7 +514,9 @@ class ChangeTags {
 
 		// tags cannot contain commas (used as a delimiter in tag_summary table) or
 		// slashes (would break tag description messages in MediaWiki namespace)
-		if ( strpos( $tag, ',' ) !== false || strpos( $tag, '/' ) !== false ) {
+		if ( strpos( $tag, ',' ) !== false || strpos( $tag, '/' ) !== false ||
+			// adding a reserved core- namespace for use by tags defined in core
+			strpos( $tag, 'core-' ) !== false  ) {
 			return Status::newFatal( 'tags-create-invalid-chars' );
 		}
 
@@ -670,7 +674,7 @@ class ChangeTags {
 		}
 
 		$extensionDefined = self::listExtensionDefinedTags();
-		if ( in_array( $tag, $extensionDefined ) ) {
+		if ( in_array( $tag, $extensionDefined ) ) { // this in_array should go
 			// extension-defined tags can't be deleted unless the extension
 			// specifically allows it
 			$status = Status::newFatal( 'tags-delete-not-allowed' );
@@ -732,7 +736,7 @@ class ChangeTags {
 	public static function listExtensionActivatedTags() {
 		// Caching...
 		global $wgMemc;
-		$key = wfMemcKey( 'active-tags' );
+		$key = wfMemcKey( 'extension-activated-tags' );
 		$tags = $wgMemc->get( $key );
 		if ( $tags ) {
 			return $tags;
@@ -749,50 +753,96 @@ class ChangeTags {
 
 	/**
 	 * Basically lists defined tags which count even if they aren't applied to anything.
-	 * It returns a union of the results of listExplicitlyDefinedTags() and
-	 * listExtensionDefinedTags().
+	 * It returns a union of the keys of getValidTags() and getCoreTags() and the values
+	 * of listExtensionDefinedTags().
 	 *
 	 * @return string[] Array of strings: tags
 	 */
 	public static function listDefinedTags() {
-		$tags1 = self::listExplicitlyDefinedTags();
-		$tags2 = self::listExtensionDefinedTags();
-		return array_values( array_unique( array_merge( $tags1, $tags2 ) ) );
+		$tags1 = array_keys( self::getValidTags() );
+		$tags2 = array_keys( self::getCoreTags() );
+		$tags3 = self::listExtensionDefinedTags();
+		// hook with keys needed, to get rid of array_unique overhead, array_values could go too
+		return array_values( array_unique( array_merge( $tags1, $tags2, $tags3 ) ) );
 	}
 
 	/**
-	 * Lists tags explicitly defined in the `valid_tag` table of the database.
+	 * Gets tags explicitly defined in the `valid_tag` table of the database.
 	 * Tags in table 'change_tag' which are not in table 'valid_tag' are not
 	 * included.
+	 * The keys are the tag names and the values are empty arrays for now. In
+	 * the future, if we add params to the valid_tag table, the values will also
+	 * contain those params. We may add others for compatibility with the single
+	 * hook defining extensions of T91535, such as 'active'. This way, we can
+	 * merge the arrays and the sub-key check for 'active' will still be available.
 	 *
 	 * Tries memcached first.
 	 *
 	 * @return string[] Array of strings: tags
 	 * @since 1.25
 	 */
-	public static function listExplicitlyDefinedTags() {
+	public static function getValidTags() {
 		// Caching...
 		global $wgMemc;
-		$key = wfMemcKey( 'valid-tags-db' );
+		$key = wfMemcKey( 'valid-tags' );
 		$tags = $wgMemc->get( $key );
 		if ( $tags ) {
 			return $tags;
 		}
 
-		$emptyTags = array();
+		$validTags = array();
 
 		// Some DB stuff
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'valid_tag', 'vt_tag', array(), __METHOD__ );
 		foreach ( $res as $row ) {
-			$emptyTags[] = $row->vt_tag;
+			$validTags[$row->vt_tag] = array();
 		}
 
-		$emptyTags = array_filter( array_unique( $emptyTags ) );
-
 		// Short-term caching.
-		$wgMemc->set( $key, $emptyTags, 300 );
-		return $emptyTags;
+		$wgMemc->set( $key, $validTags, 300 );
+		// returning as is, using keys means we don't even have to worry
+		// about duplicates or null entries
+		return $validTags;
+	}
+
+	/**
+	 * Lists tags from the valid_tag table as values.
+	 * Provided for backward compatibility.
+	 * This shouldn't be used for checking if a tag is valid, use directly
+	 * isset applied to getValidTags.
+	 *
+	 * @return string[] Array of strings: tags
+	 * @since 1.25
+	 * @should be deprecated
+	 */
+	public static function listExplicitlyDefinedTags() {
+		return array_keys( self::getValidTags() );
+	}
+
+	/**
+	 * Gets all core tags as keys.
+	 * Values are null.
+	 * Enables efficient isset check.
+	 *
+	 * @return array
+	 * @since 1.25
+	 */
+	public static function getCoreTags() {
+		// Defining core tags keys
+		$coreTagsKeys = array(
+			'core-move-crossnamespace',
+			'core-move-rename',
+			'core-redirect-new',
+			'core-redirect-changed',
+			'core-redirect-removed',
+			'core-redirect-self',
+			'core-redirect-nonexistent',
+			'core-edit-blank'
+		);
+
+		// Returning
+		return array_fill_keys( $coreTagsKeys, null );
 	}
 
 	/**
@@ -807,19 +857,22 @@ class ChangeTags {
 	public static function listExtensionDefinedTags() {
 		// Caching...
 		global $wgMemc;
-		$key = wfMemcKey( 'valid-tags-hook' );
+		$key = wfMemcKey( 'extension-defined-tags' );
 		$tags = $wgMemc->get( $key );
 		if ( $tags ) {
 			return $tags;
 		}
 
-		$emptyTags = array();
-		Hooks::run( 'ListDefinedTags', array( &$emptyTags ) );
-		$emptyTags = array_filter( array_unique( $emptyTags ) );
+		$extensionTags = array();
+		Hooks::run( 'ListDefinedTags', array( &$extensionTags ) );
+		// we badly need a single hook for tags that uses tag names as keys and params as values
+		// both for performance reasons and passing params (active, etc) in one go - T91535
+		$extensionTags = array_filter( array_unique( $extensionTags ) );
+		// and so we can get rid of array_filter and array_unique
 
 		// Short-term caching.
-		$wgMemc->set( $key, $emptyTags, 300 );
-		return $emptyTags;
+		$wgMemc->set( $key, $extensionTags, 300 );
+		return $extensionTags;
 	}
 
 	/**
@@ -829,9 +882,9 @@ class ChangeTags {
 	 */
 	public static function purgeTagCacheAll() {
 		global $wgMemc;
-		$wgMemc->delete( wfMemcKey( 'active-tags' ) );
-		$wgMemc->delete( wfMemcKey( 'valid-tags-db' ) );
-		$wgMemc->delete( wfMemcKey( 'valid-tags-hook' ) );
+		$wgMemc->delete( wfMemcKey( 'valid-tags' ) );
+		$wgMemc->delete( wfMemcKey( 'extension-defined-tags' ) );
+		$wgMemc->delete( wfMemcKey( 'extension-activated-tags' ) );
 		self::purgeTagUsageCache();
 	}
 
