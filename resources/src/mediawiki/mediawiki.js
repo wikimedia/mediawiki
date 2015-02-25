@@ -142,29 +142,29 @@
 		 *  as is the default in JavaScript, the object is returned by reference.)
 		 */
 		get: function ( selection, fallback ) {
-			var results, i;
+			var that = this,
+				results = {},
+				type = $.type( selection );
+
 			// If we only do this in the `return` block, it'll fail for the
 			// call to get() from the mutli-selection block.
 			fallback = arguments.length > 1 ? fallback : null;
 
-			if ( $.isArray( selection ) ) {
-				selection = slice.call( selection );
-				results = {};
-				for ( i = 0; i < selection.length; i++ ) {
-					results[selection[i]] = this.get( selection[i], fallback );
-				}
-				return results;
-			}
+			switch ( type ) {
+			case 'string':
+				return hasOwn.call( this.values, selection ) ?
+					this.values[selection] : fallback;
 
-			if ( typeof selection === 'string' ) {
-				if ( !hasOwn.call( this.values, selection ) ) {
-					return fallback;
-				}
-				return this.values[selection];
-			}
-
-			if ( selection === undefined ) {
+			case 'undefined':
 				return this.values;
+
+			case 'array':
+			case 'object':
+				$.each( selection, function ( index, key ) {
+					index = typeof index === 'number' ? key : index;
+					results[index] = that.get( key, fallback );
+				} );
+				return results;
 			}
 
 			// Invalid selection key
