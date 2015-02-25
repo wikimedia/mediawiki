@@ -1629,7 +1629,7 @@ class Linker {
 		if ( $size == 0 ) {
 			$stxt = wfMessage( 'historyempty' )->escaped();
 		} else {
-			$stxt = wfMessage( 'nbytes' )->numParams( $size )->escaped();
+			$stxt = self::formatSize( $size );
 			$stxt = wfMessage( 'parentheses' )->rawParams( $stxt )->escaped();
 		}
 		return "<span class=\"history-size\">$stxt</span>";
