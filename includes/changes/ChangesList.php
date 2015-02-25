@@ -251,10 +251,10 @@ class ChangesList extends ContextSource {
 				|| $context->msg( 'rc-change-size' )->plain() === '$1';
 		}
 
-		$formattedSize = $lang->formatNum( $szdiff );
+		$formattedSize = $lang->formatSize( $szdiff );
 
 		if ( !$fastCharDiff[$code] ) {
-			$formattedSize = $context->msg( 'rc-change-size', $formattedSize )->text();
+			$formattedSize = $context->msg( '', $formattedSize )->text();
 		}
 
 		if ( abs( $szdiff ) > abs( $config->get( 'RCChangedSizeThreshold' ) ) ) {
@@ -272,7 +272,7 @@ class ChangesList extends ContextSource {
 			$formattedSizeClass = 'mw-plusminus-neg';
 		}
 
-		$formattedTotalSize = $context->msg( 'rc-change-size-new' )->numParams( $new )->text();
+		$formattedTotalSize = $context->msg( 'rc-change-size-new' )->numParams( $szdiff )->text();
 
 		return Html::element( $tag,
 			[ 'dir' => 'ltr', 'class' => $formattedSizeClass, 'title' => $formattedTotalSize ],
