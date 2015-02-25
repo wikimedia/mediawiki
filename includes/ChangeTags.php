@@ -86,6 +86,8 @@ class ChangeTags {
 
 	/**
 	 * Add tags to a change given its rc_id, rev_id and/or log_id
+	 * This does not check for optional tagging, if you want to make
+	 * the check, use the function isActivatedOptionalTag beforehand
 	 *
 	 * @param string|array $tags Tags to add to the change
 	 * @param int|null $rc_id The rc_id of the change to add the tags to
@@ -194,6 +196,28 @@ class ChangeTags {
 
 		self::purgeTagUsageCache();
 		return true;
+	}
+
+	/**
+	 * Provides checks for optional tagging
+	 *
+	 * @param string $root Root for the optional tag ('core' or extension name)
+	 * @param string $prefix Prefix for the optional tag (e.g. 'edit', 'redirect', 'move')
+	 * @param string $lastname Last name of the tag (e.g. 'crossnamespace', 'blank')
+	 * @return bool True if tag is defined as optional in config and has been activated by an admin,
+	 * false otherwise
+	 */
+	public static function isActivatedOptionalTag( $root, $prefix, $lastname ) {
+		global $wgOptionalTags;
+		// making sure that the tag is defined as optional in config
+		if ( !isset( $wgOptionalTags[$root][$prefix][$lastname] ) ) {
+			return false;
+		} else {
+			// checking if the tag has been activated
+			$dbr = wfGetDB( DB_SLAVE );
+			$tag = wfMessage( $wgOptionalTags[$root][$prefix][$lastname] )->inContentLanguage->plain();
+			return (bool)$dbr->select( 'valid_tag', 'vt_tag', array( 'vt_tag' => $tag ), __METHOD__ );
+		}
 	}
 
 	/**
@@ -757,7 +781,8 @@ class ChangeTags {
 	public static function listDefinedTags() {
 		$tags1 = self::listExplicitlyDefinedTags();
 		$tags2 = self::listExtensionDefinedTags();
-		return array_values( array_unique( array_merge( $tags1, $tags2 ) ) );
+		$tags3 = self::listOptionalDefinedTags();
+		return array_values( array_unique( array_merge( $tags1, $tags2, $tags3 ) ) );
 	}
 
 	/**
@@ -823,6 +848,37 @@ class ChangeTags {
 	}
 
 	/**
+	 * Lists all optional tags defined in config with their local name.
+	 *
+	 * @return array
+	 * @since 1.25
+	 */
+	public static function listOptionalDefinedTags() {
+		// Caching...
+		global $wgMemc, $wgOptionalTags;
+		$key = wfMemcKey( 'optional-tags' );
+		$tags = $wgMemc->get( $key );
+		if ( $tags ) {
+			return $tags;
+		}
+
+		// Getting optional tags, as defined in config
+		$optionalTags = array();
+		foreach ( array_keys( $wgOptionalTags ) as $root )  {
+			foreach ( array_keys( $root ) as $prefix ) {
+				foreach ( array_keys( $prefix ) as $lastname ) {
+					// Getting the local name for each of these
+					$optionalTags[] = wfMessage( $wgOptionalTags[$root][$prefix][$lastname] )->inContentLanguage->plain();
+				}
+			}
+		}
+
+		// Short-term caching.
+		$wgMemc->set( $key, $optionalTags, 300 );
+		return $optionalTags;
+	}
+
+	/**
 	 * Invalidates the short-term cache of defined tags used by the
 	 * list*DefinedTags functions, as well as the tag statistics cache.
 	 * @since 1.25
@@ -832,6 +888,7 @@ class ChangeTags {
 		$wgMemc->delete( wfMemcKey( 'active-tags' ) );
 		$wgMemc->delete( wfMemcKey( 'valid-tags-db' ) );
 		$wgMemc->delete( wfMemcKey( 'valid-tags-hook' ) );
+		$wgMemc->delete( wfMemcKey( 'optional-tags' ) );
 		self::purgeTagUsageCache();
 	}
 
