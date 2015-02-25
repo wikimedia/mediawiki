@@ -84,4 +84,11 @@
 		assert.ok( jq.ajax( 'foo://', { success: $.noop } ).success.__inner__, 'setTimeout has been wrapped' );
 		// jscs:enable disallowDanglingUnderscores
 	} );
+
+	QUnit.test( 'handleWindowOnerror', 1, function () {
+		this.sandbox.stub( mw, 'track' );
+		mw.errorLogging.handleWindowOnerror( 1, 2, 3 );
+		sinon.assert.calledWithExactly( mw.track, 'errorLogging.windowOnerror',
+			sinon.match( { args: [1, 2, 3] } ) );
+	} );
 }( jQuery, mediaWiki ) );
