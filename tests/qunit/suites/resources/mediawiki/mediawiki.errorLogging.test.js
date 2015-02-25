@@ -75,12 +75,11 @@
 		sinon.assert.calledWithExactly( stub, 'foo', 'baz' );
 	} );
 
-	QUnit.test( 'register', 4, function ( assert ) {
+	QUnit.test( 'registerAsync', 4, function ( assert ) {
 		var w = getWindowMock( this.sandbox ),
 			jq = getJqueryMock( this.sandbox );
 
-		this.sandbox.stub( mw.config, 'get' ).withArgs( 'wgRegisterJavascriptErrorLogging' ).returns( true );
-		mw.errorLogging.register( w, jq );
+		mw.errorLogging.registerAsync( w, jq );
 
 		// jscs:disable disallowDanglingUnderscores
 		assert.ok( w.setTimeout( $.noop, 0 ).__inner__, 'setTimeout callback has been wrapped' );
@@ -90,25 +89,87 @@
 		// jscs:enable disallowDanglingUnderscores
 	} );
 
-	QUnit.test( 'wgRegisterJavascriptErrorLogging', 3, function ( assert ) {
+	QUnit.test( 'handleWindowOnerror', 1, function () {
+		this.sandbox.stub( mw, 'track' );
+		mw.errorLogging.handleWindowOnerror( 1, 2, 3 );
+		sinon.assert.calledWithExactly( mw.track, 'errorLogging.windowOnerror',
+			sinon.match( { args: [1, 2, 3] } ) );
+	} );
+
+	QUnit.test( 'registerOnerror', 10, function ( assert ) {
+		var w = getWindowMock( this.sandbox),
+			oldOnerror = this.sandbox.stub(),
+			processedError = { mwErrorLoggingProcessed: true };
+
+		this.sandbox.stub( mw, 'track' );
+		this.sandbox.spy( mw.errorLogging, 'handleWindowOnerror' );
+		mw.errorLogging.registerOnerror( w );
+
+		w.onerror( 0, 1, 2 );
+		assert.ok( mw.errorLogging.handleWindowOnerror.calledWithExactly( 0, 1, 2 ),
+			'Arguments are passed to handler' );
+
+		mw.errorLogging.unregisterOnerror( w );
+		w.onerror = oldOnerror;
+		mw.errorLogging.registerOnerror( w );
+
+		mw.errorLogging.handleWindowOnerror.reset();
+		w.onerror( 0, 1, 2 );
+		assert.ok( mw.errorLogging.handleWindowOnerror.calledWithExactly( 0, 1, 2 ),
+			'Arguments are passed to handler' );
+		assert.ok( mw.track.called, 'Arguments passed to mw.track' );
+		assert.ok( oldOnerror.calledWithExactly( 0, 1, 2 ), 'Arguments are passed to previous handler' );
+
+		mw.errorLogging.handleWindowOnerror.reset();
+		oldOnerror.reset();
+		w.onerror( 0, 1, 2, 3, 4 );
+		assert.ok( mw.errorLogging.handleWindowOnerror.calledWithExactly( 0, 1, 2, 3, 4 ),
+			'Arguments are passed to handler' );
+		assert.ok( oldOnerror.calledWithExactly( 0, 1, 2, 3, 4 ), 'Arguments are passed to previous handler' );
+
+		mw.errorLogging.handleWindowOnerror.reset();
+		mw.track.reset();
+		oldOnerror.reset();
+		w.onerror( 0, 1, 2, 3, processedError );
+		assert.ok( !mw.track.called, 'mw.track not called when error already processed' );
+		assert.ok( oldOnerror.calledWithExactly( 0, 1, 2, 3, processedError ),
+			'Arguments are passed to previous handler' );
+
+		mw.errorLogging.unregisterOnerror( w );
+
+		mw.errorLogging.handleWindowOnerror.reset();
+		oldOnerror.reset();
+		w.onerror( 0, 1, 2 );
+		assert.ok( !mw.errorLogging.handleWindowOnerror.called, 'Unregistering works' );
+		assert.ok( oldOnerror.calledWithExactly( 0, 1, 2 ), 'Unregistering restores old handler' );
+	} );
+
+	QUnit.test( 'register', 4, function ( assert ) {
 		var w = getWindowMock( this.sandbox ),
 			jq = getJqueryMock( this.sandbox );
 
 		this.sandbox.stub( Math, 'random').returns( 0.25 );
+		this.sandbox.stub( mw.errorLogging, 'registerAsync' );
+		this.sandbox.stub( mw.errorLogging, 'registerOnerror' );
 
-		// jscs:disable disallowDanglingUnderscores
 		this.sandbox.stub( mw.config, 'get' ).withArgs( 'wgRegisterJavascriptErrorLogging' ).returns( false );
 		mw.errorLogging.register( w, jq );
-		assert.ok( !w.setTimeout( $.noop, 0 ).__inner__, 'No wrapping when disabled' );
+		assert.ok( !mw.errorLogging.registerAsync.called, 'No registering when disabled' );
 
+		mw.errorLogging.registerAsync.reset();
+		mw.config.get.withArgs( 'wgRegisterJavascriptErrorLogging' ).returns( true );
+		mw.errorLogging.register( w, jq );
+		assert.ok( mw.errorLogging.registerAsync.called, 'Registering when enabled' );
+
+		mw.errorLogging.registerAsync.reset();
 		mw.config.get.withArgs( 'wgRegisterJavascriptErrorLogging' ).returns( 5 );
 		mw.errorLogging.register( w, jq );
-		assert.ok( !w.setTimeout( $.noop, 0 ).__inner__, 'Sampling test 1' );
+		assert.ok( !mw.errorLogging.registerAsync.called, 'This should not be in sample' );
 
+		mw.errorLogging.registerAsync.reset();
 		mw.config.get.withArgs( 'wgRegisterJavascriptErrorLogging' ).returns( 2 );
 		mw.errorLogging.register( w, jq );
-		assert.ok( w.setTimeout( $.noop, 0 ).__inner__, 'Sampling test 2' );
-		// jscs:enable disallowDanglingUnderscores
+		assert.ok( mw.errorLogging.registerAsync.called, 'This should be in sample' );
 	} );
 
 }( jQuery, mediaWiki ) );
