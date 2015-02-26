@@ -1,6 +1,6 @@
 <?php
 /**
- * Request-dependant objects containers.
+ * Container for qequest-dependant objects and site configuration
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
