@@ -145,6 +145,8 @@ class SqlBagOStuff extends BagOStuff {
 				$type = isset( $info['type'] ) ? $info['type'] : 'mysql';
 				$host = isset( $info['host'] ) ? $info['host'] : '[unknown]';
 				$this->logger->debug( __CLASS__ . ": connecting to $host" );
+				// Use a blank trx profiler to ignore expections as this is a cache
+				$info['trxProfiler'] = new TransactionProfiler();
 				$db = DatabaseBase::factory( $type, $info );
 				$db->clearFlag( DBO_TRX );
 			} else {
