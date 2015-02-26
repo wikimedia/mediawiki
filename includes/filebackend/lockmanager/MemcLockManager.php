@@ -74,9 +74,10 @@ class MemcLockManager extends QuorumLockManager {
 			? $config['memcConfig']
 			: array( 'class' => 'MemcachedPhpBagOStuff' );
 
+		$objectCacheFactory = new ObjectCacheFactory();
 		foreach ( $config['lockServers'] as $name => $address ) {
 			$params = array( 'servers' => array( $address ) ) + $memcConfig;
-			$cache = ObjectCache::newFromParams( $params );
+			$cache = $objectCacheFactory->newFromDefinition( $params );
 			if ( $cache instanceof MemcachedBagOStuff ) {
 				$this->bagOStuffs[$name] = $cache;
 			} else {
