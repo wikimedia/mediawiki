@@ -365,7 +365,11 @@ if ( $wgMetaNamespace === false ) {
 // Default value is either the suhosin limit or -1 for unlimited
 if ( $wgResourceLoaderMaxQueryLength === false ) {
 	$maxValueLength = ini_get( 'suhosin.get.max_value_length' );
-	$wgResourceLoaderMaxQueryLength = $maxValueLength > 0 ? $maxValueLength : -1;
+	if ( $maxValueLength > 0 && $maxValueLength < 2000 ) {
+		$wgResourceLoaderMaxQueryLength = $maxValueLength;
+	} else {
+		$wgResourceLoaderMaxQueryLength = 2000;
+	}
 }
 
 /**
