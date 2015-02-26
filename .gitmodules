@@ -469,3 +469,6 @@
 [submodule "vendor"]
 	path = vendor
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/vendor.git
+[submodule "extensions/RestBaseUpdateJobs"]
+	path = extensions/RestBaseUpdateJobs
+	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/RestBaseUpdateJobs
