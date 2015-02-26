@@ -8,7 +8,8 @@
 			"Nemo bis",
 			"Reedy",
 			"Tkalyn",
-			"아라"
+			"아라",
+			"Dicto23456"
 		]
 	},
 	"tog-underline": "Підкреслёвати одказы:",
@@ -207,6 +208,7 @@
 	"otherlanguages": "Іншыма языками",
 	"redirectedfrom": "(Напрямленый з $1)",
 	"redirectpagesub": "Сторінка-напрямлїня",
+	"redirectto": "Напрямлїня на:",
 	"lastmodifiedat": "Послїдня зміна той сторінкы: $2, $1.",
 	"viewcount": "Сторінка была зображена  {{PLURAL:$1|раз|$1разы|$1раз}}.",
 	"protectedpage": "Замкнута сторінка",
