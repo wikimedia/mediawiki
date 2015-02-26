@@ -1,12 +1,12 @@
 /*!
- * OOjs v1.1.4 optimised for jQuery
+ * OOjs v1.1.5 optimised for jQuery
  * https://www.mediawiki.org/wiki/OOjs
  *
  * Copyright 2011-2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-01-23T20:11:25Z
+ * Date: 2015-02-26T01:51:06Z
  */
 ( function ( global ) {
 
@@ -301,8 +301,12 @@ oo.compare = function ( a, b, asymmetrical ) {
 	a = a || {};
 	b = b || {};
 
+	if ( typeof a.nodeType === 'number' && typeof a.isEqualNode === 'function' ) {
+		return a.isEqualNode( b );
+	}
+
 	for ( k in a ) {
-		if ( !hasOwn.call( a, k ) || a[k] === undefined ) {
+		if ( !hasOwn.call( a, k ) || a[k] === undefined || a[k] === b[k] ) {
 			// Support es3-shim: Without the hasOwn filter, comparing [] to {} will be false in ES3
 			// because the shimmed "forEach" is enumerable and shows up in Array but not Object.
 			// Also ignore undefined values, because there is no conceptual difference between
@@ -319,7 +323,7 @@ oo.compare = function ( a, b, asymmetrical ) {
 				( aType === 'string' || aType === 'number' || aType === 'boolean' ) &&
 				aValue !== bValue
 			) ||
-			( aValue === Object( aValue ) && !oo.compare( aValue, bValue, asymmetrical ) ) ) {
+			( aValue === Object( aValue ) && !oo.compare( aValue, bValue, true ) ) ) {
 			return false;
 		}
 	}
@@ -622,11 +626,11 @@ oo.isPlainObject = $.isPlainObject;
 	 */
 	oo.EventEmitter.prototype.once = function ( event, listener ) {
 		var eventEmitter = this,
-			listenerWrapper = function () {
-				eventEmitter.off( event, listenerWrapper );
-				listener.apply( eventEmitter, Array.prototype.slice.call( arguments, 0 ) );
+			wrapper = function () {
+				eventEmitter.off( event, wrapper );
+				return listener.apply( this, arguments );
 			};
-		return this.on( event, listenerWrapper );
+		return this.on( event, wrapper );
 	};
 
 	/**
