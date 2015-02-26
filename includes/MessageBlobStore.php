@@ -93,6 +93,7 @@ class MessageBlobStore {
 
 		try {
 			$dbw = wfGetDB( DB_MASTER );
+			$dbw->startAtomic( __METHOD__ );
 			$success = $dbw->insert( 'msg_resource', array(
 					'mr_lang' => $lang,
 					'mr_resource' => $name,
@@ -127,6 +128,7 @@ class MessageBlobStore {
 					);
 				}
 			}
+			$dbw->endAtomic( __METHOD__ );
 		} catch ( Exception $e ) {
 			wfDebug( __METHOD__ . " failed to update DB: $e\n" );
 		}
