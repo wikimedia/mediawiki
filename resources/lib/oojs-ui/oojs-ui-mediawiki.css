@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.8.0
+ * OOjs UI v0.8.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-02-19T01:33:21Z
+ * Date: 2015-02-26T02:10:42Z
  */
 .oo-ui-progressBarWidget-slide-frames from {
 	margin-left: -40%;
@@ -505,6 +505,7 @@
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
 	padding: 0.5em;
+	padding-left: 1em;
 }
 .oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-field {
 	padding: 0.5em 0;
@@ -564,7 +565,8 @@
 	padding: 0.5em 0.75em;
 	line-height: 1.5em;
 }
-.oo-ui-fieldsetLayout + .oo-ui-fieldsetLayout {
+.oo-ui-fieldsetLayout + .oo-ui-fieldsetLayout,
+.oo-ui-fieldsetLayout + .oo-ui-formLayout {
 	margin-top: 2em;
 }
 .oo-ui-fieldsetLayout > .oo-ui-labelElement-label {
@@ -588,6 +590,10 @@
 }
 .oo-ui-fieldsetLayout > .oo-ui-popupButtonWidget:last-child {
 	margin-right: 0;
+}
+.oo-ui-formLayout + .oo-ui-fieldsetLayout,
+.oo-ui-formLayout + .oo-ui-formLayout {
+	margin-top: 2em;
 }
 .oo-ui-gridLayout {
 	position: absolute;
@@ -1132,7 +1138,7 @@
 }
 .oo-ui-radioOptionWidget {
 	cursor: default;
-	padding: 0.25em 0;
+	padding: 0;
 	background-color: transparent;
 }
 .oo-ui-radioOptionWidget .oo-ui-radioInputWidget,
@@ -1144,6 +1150,13 @@
 .oo-ui-radioOptionWidget.oo-ui-optionWidget-pressed,
 .oo-ui-radioOptionWidget.oo-ui-optionWidget-highlighted {
 	background-color: transparent;
+}
+.oo-ui-radioOptionWidget.oo-ui-labelElement .oo-ui-labelElement-label {
+	padding: 0.25em;
+	padding-left: 1em;
+}
+.oo-ui-radioOptionWidget .oo-ui-radioInputWidget {
+	margin-right: 0;
 }
 .oo-ui-labelWidget {
 	display: inline-block;
@@ -1462,8 +1475,8 @@
 }
 .oo-ui-checkboxInputWidget input[type="checkbox"] {
 	opacity: 0;
-	position: relative;
 	z-index: 1;
+	position: relative;
 	margin: 0;
 	width: 1.6em;
 	height: 1.6em;
@@ -1471,15 +1484,11 @@
 }
 .oo-ui-checkboxInputWidget input[type="checkbox"] + span {
 	cursor: pointer;
-	margin: 0 0.2em;
-}
-.oo-ui-checkboxInputWidget input[type="checkbox"] + span::before {
 	-webkit-transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	   -moz-transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	    -ms-transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	     -o-transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	        transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	content: "";
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
@@ -1499,26 +1508,26 @@
 	background-origin: border-box;
 	background-size: 0 0;
 }
-.oo-ui-checkboxInputWidget input[type="checkbox"]:checked + span::before {
+.oo-ui-checkboxInputWidget input[type="checkbox"]:checked + span {
 	background-size: 100% 100%;
 }
-.oo-ui-checkboxInputWidget input[type="checkbox"]:active + span::before {
+.oo-ui-checkboxInputWidget input[type="checkbox"]:active + span {
 	background-color: #dddddd;
 	border-color: #dddddd;
 }
-.oo-ui-checkboxInputWidget input[type="checkbox"]:focus + span::before {
+.oo-ui-checkboxInputWidget input[type="checkbox"]:focus + span {
 	border-width: 2px;
 }
-.oo-ui-checkboxInputWidget input[type="checkbox"]:focus:hover + span::before,
-.oo-ui-checkboxInputWidget input[type="checkbox"]:hover + span::before {
+.oo-ui-checkboxInputWidget input[type="checkbox"]:focus:hover + span,
+.oo-ui-checkboxInputWidget input[type="checkbox"]:hover + span {
 	border-bottom-width: 3px;
 }
-.oo-ui-checkboxInputWidget input[type="checkbox"]:disabled + span::before {
+.oo-ui-checkboxInputWidget input[type="checkbox"]:disabled + span {
 	cursor: default;
 	background-color: #eeeeee;
 	border-color: #eeeeee;
 }
-.oo-ui-checkboxInputWidget input[type="checkbox"]:disabled:checked + span::before {
+.oo-ui-checkboxInputWidget input[type="checkbox"]:disabled:checked + span {
 	background-image: url("themes/mediawiki/images/icons/check-invert.png");
 	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/check-invert.svg");
 	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/check-invert.svg");
@@ -1572,8 +1581,8 @@
 }
 .oo-ui-radioInputWidget input[type="radio"] {
 	opacity: 0;
-	position: relative;
 	z-index: 1;
+	position: relative;
 	margin: 0;
 	width: 1.6em;
 	height: 1.6em;
@@ -1581,15 +1590,11 @@
 }
 .oo-ui-radioInputWidget input[type="radio"] + span {
 	cursor: pointer;
-	margin: 0 0.2em;
-}
-.oo-ui-radioInputWidget input[type="radio"] + span::before {
 	-webkit-transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	   -moz-transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	    -ms-transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	     -o-transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	        transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	content: "";
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
@@ -1609,26 +1614,26 @@
 	background-origin: border-box;
 	background-size: 0 0;
 }
-.oo-ui-radioInputWidget input[type="radio"]:checked + span::before {
+.oo-ui-radioInputWidget input[type="radio"]:checked + span {
 	background-size: 100% 100%;
 }
-.oo-ui-radioInputWidget input[type="radio"]:active + span::before {
+.oo-ui-radioInputWidget input[type="radio"]:active + span {
 	background-color: #dddddd;
 	border-color: #dddddd;
 }
-.oo-ui-radioInputWidget input[type="radio"]:focus + span::before {
+.oo-ui-radioInputWidget input[type="radio"]:focus + span {
 	border-width: 2px;
 }
-.oo-ui-radioInputWidget input[type="radio"]:focus:hover + span::before,
-.oo-ui-radioInputWidget input[type="radio"]:hover + span::before {
+.oo-ui-radioInputWidget input[type="radio"]:focus:hover + span,
+.oo-ui-radioInputWidget input[type="radio"]:hover + span {
 	border-bottom-width: 3px;
 }
-.oo-ui-radioInputWidget input[type="radio"]:disabled + span::before {
+.oo-ui-radioInputWidget input[type="radio"]:disabled + span {
 	cursor: default;
 	background-color: #eeeeee;
 	border-color: #eeeeee;
 }
-.oo-ui-radioInputWidget input[type="radio"]:disabled:checked + span::before {
+.oo-ui-radioInputWidget input[type="radio"]:disabled:checked + span {
 	background-image: url("themes/mediawiki/images/icons/circle-invert.png");
 	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/circle-invert.svg");
 	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/circle-invert.svg");
@@ -1664,12 +1669,15 @@
 	top: 0;
 	height: 100%;
 	background-repeat: no-repeat;
-	cursor: pointer;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	   -moz-user-select: none;
 	    -ms-user-select: none;
 	        user-select: none;
+}
+.oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-iconElement-icon,
+.oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-indicatorElement-indicator {
+	cursor: pointer;
 }
 .oo-ui-textInputWidget.oo-ui-labelElement > .oo-ui-labelElement-label {
 	display: block;
@@ -1738,6 +1746,14 @@
 	text-shadow: 0 1px 1px #ffffff;
 	border-color: #dddddd;
 	background-color: #f3f3f3;
+}
+.oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-iconElement-icon,
+.oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-indicatorElement-indicator {
+	opacity: 0.2;
+}
+.oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-labelElement-label {
+	color: #dddddd;
+	text-shadow: 0 1px 1px #ffffff;
 }
 .oo-ui-textInputWidget.oo-ui-pendingElement-pending input,
 .oo-ui-textInputWidget.oo-ui-pendingElement-pending textarea {
