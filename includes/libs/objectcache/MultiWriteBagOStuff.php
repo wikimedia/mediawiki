@@ -73,6 +73,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 		}
 
 		$this->caches = array();
+		$factory = new ObjectCacheFactory();
 		foreach ( $params['caches'] as $cacheInfo ) {
 			if ( $cacheInfo instanceof BagOStuff ) {
 				$this->caches[] = $cacheInfo;
@@ -84,7 +85,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 					// (likely harmless) params (factory/class/calls) ending up in "args".
 					$cacheInfo['args'] = array( $cacheInfo );
 				}
-				$this->caches[] = ObjectFactory::getObjectFromSpec( $cacheInfo );
+				$this->caches[] = $factory->newFromDefinition( $cacheInfo );
 			}
 		}
 
