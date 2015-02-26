@@ -59,12 +59,14 @@ class ReplicatedBagOStuff extends BagOStuff {
 				__METHOD__ . ': the "readFactory" parameter is required' );
 		}
 
+		$factory = new ObjectCacheFactory();
+
 		$this->writeStore = ( $params['writeFactory'] instanceof BagOStuff )
 			? $params['writeFactory']
-			: ObjectFactory::getObjectFromSpec( $params['writeFactory'] );
+			: $factory->newFromDefinition( $params['masterCache'] );
 		$this->readStore = ( $params['readFactory'] instanceof BagOStuff )
 			? $params['readFactory']
-			: ObjectFactory::getObjectFromSpec( $params['readFactory'] );
+			: $factory->newFromDefinition( $params['slaveCache'] );
 	}
 
 	public function setDebug( $debug ) {
