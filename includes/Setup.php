@@ -362,10 +362,11 @@ if ( $wgMetaNamespace === false ) {
 	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
 }
 
-// Default value is either the suhosin limit or -1 for unlimited
+// Default value is 2000 or the suhosin limit if it is between 1 and 2000
 if ( $wgResourceLoaderMaxQueryLength === false ) {
-	$maxValueLength = ini_get( 'suhosin.get.max_value_length' );
-	$wgResourceLoaderMaxQueryLength = $maxValueLength > 0 ? $maxValueLength : -1;
+	$suhosinMaxValueLength = (int) ini_get( 'suhosin.get.max_value_length' );
+	$wgResourceLoaderMaxQueryLength = min( max( $suhosinMaxValueLength, 1 ), 2000 );
+	unset($suhosinMaxValueLength);
 }
 
 /**
