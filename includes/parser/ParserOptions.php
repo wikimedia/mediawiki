@@ -792,6 +792,10 @@ class ParserOptions {
 
 		$confstr .= $wgRenderHashAppend;
 
+		// @note: as of Feb 2015, core never sets the editsection flag, since it uses
+		// <mw:editsection> tags to inject editsections on the fly. However, extensions
+		// may be using it by calling ParserOption::optionUsed resp. ParserOutput::registerOption
+		// directly. At least Wikibase does at this point in time.
 		if ( !in_array( 'editsection', $forOptions ) ) {
 			$confstr .= '!*';
 		} elseif ( !$this->mEditSection ) {
