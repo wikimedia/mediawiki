@@ -56,12 +56,13 @@ class ReplicatedBagOStuff extends BagOStuff {
 			throw new MWException( __METHOD__ . ': the "slaveCache" parameter is required' );
 		}
 
+		$factory = new ObjectCacheFactory();
 		$this->mCache = ( $params['masterCache'] instanceof BagOStuff )
 			? $params['masterCache']
-			: ObjectCache::newFromParams( $params['masterCache'] );
+			: $factory->newFromDefinition( $params['masterCache'] );
 		$this->sCache = ( $params['slaveCache'] instanceof BagOStuff )
 			? $params['slaveCache']
-			: ObjectCache::newFromParams( $params['slaveCache'] );
+			: $factory->newFromDefinition( $params['slaveCache'] );
 	}
 
 	public function setDebug( $debug ) {

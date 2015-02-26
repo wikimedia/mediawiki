@@ -49,8 +49,9 @@ class MultiWriteBagOStuff extends BagOStuff {
 		}
 
 		$this->caches = array();
+		$factory = new ObjectCacheFactory();
 		foreach ( $params['caches'] as $cacheInfo ) {
-			$this->caches[] = ObjectCache::newFromParams( $cacheInfo );
+			$this->caches[] = $factory->newFromDefinition( $cacheInfo );
 		}
 	}
 

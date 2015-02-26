@@ -371,14 +371,22 @@ abstract class Installer {
 		// Disable object cache (otherwise CACHE_ANYTHING will try CACHE_DB and
 		// SqlBagOStuff will then throw since we just disabled wfGetDB)
 		$GLOBALS['wgMemc'] = new EmptyBagOStuff;
-		ObjectCache::clear();
 		$emptyCache = array( 'class' => 'EmptyBagOStuff' );
+		// @todo is this still needed with ObjectCacheFactory?
 		$GLOBALS['wgObjectCaches'] = array(
 			CACHE_NONE => $emptyCache,
 			CACHE_DB => $emptyCache,
 			CACHE_ANYTHING => $emptyCache,
 			CACHE_MEMCACHED => $emptyCache,
 		);
+		// Reset ObjectCacheFactory
+		ObjectCacheFactory::destroySingleton();
+		ObjectCacheFactory::singleton()->register( array(
+			CACHE_NONE => $emptyCache,
+			CACHE_DB => $emptyCache,
+			CACHE_ANYTHING => $emptyCache,
+			CACHE_MEMCACHED => $emptyCache,
+		) );
 
 		// Load the installer's i18n.
 		$wgMessagesDirs['MediawikiInstaller'] = __DIR__ . '/i18n';

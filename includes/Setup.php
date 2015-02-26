@@ -569,11 +569,13 @@ if ( $wgCommandLineMode ) {
 
 Profiler::instance()->scopedProfileOut( $ps_misc );
 $ps_memcached = Profiler::instance()->scopedProfileIn( $fname . '-memcached' );
-
-$wgMemc = wfGetMainCache();
-$messageMemc = wfGetMessageCacheStorage();
-$parserMemc = wfGetParserCacheStorage();
-$wgLangConvMemc = wfGetLangConverterCacheStorage();
+$objectCacheFactory = ObjectCacheFactory::singleton();
+$objectCacheFactory->register( $wgObjectCaches );
+$wgMemc = $objectCacheFactory->getInstance( $wgMainCacheType );
+$messageMemc = $objectCacheFactory->getInstance( $wgMessageCacheType );
+$parserMemc = $objectCacheFactory->getInstance( $wgParserCacheType );
+$wgLangConvMemc = $objectCacheFactory->getInstance( $wgLanguageConverterCacheType );
+unset( $objectCacheFactory );
 
 wfDebugLog( 'caches', 'main: ' . get_class( $wgMemc ) .
 	', message: ' . get_class( $messageMemc ) .

@@ -35,22 +35,18 @@ class ObjectCache {
 	 * @param string $id
 	 *
 	 * @return BagOStuff
+	 * @deprecated since 1.25, use ObjectCacheFactory
 	 */
 	static function getInstance( $id ) {
-		if ( isset( self::$instances[$id] ) ) {
-			return self::$instances[$id];
-		}
-
-		$object = self::newFromId( $id );
-		self::$instances[$id] = $object;
-		return $object;
+		return ObjectCacheFactory::singleton()->getInstance( $id );
 	}
 
 	/**
 	 * Clear all the cached instances.
+	 * @deprecated since 1.25, use ObjectCacheFactory
 	 */
 	static function clear() {
-		self::$instances = array();
+		ObjectCacheFactory::destroySingleton();
 	}
 
 	/**
@@ -60,16 +56,17 @@ class ObjectCache {
 	 *
 	 * @throws MWException
 	 * @return BagOStuff
+	 * @deprecated since 1.25, use ObjectCacheFactory
 	 */
 	static function newFromId( $id ) {
-		global $wgObjectCaches;
+		$factory = ObjectCacheFactory::singleton();
 
-		if ( !isset( $wgObjectCaches[$id] ) ) {
+		if ( !$factory->isRegistered( $id ) ) {
 			throw new MWException( "Invalid object cache type \"$id\" requested. " .
 				"It is not present in \$wgObjectCaches." );
 		}
 
-		return self::newFromParams( $wgObjectCaches[$id] );
+		return $factory->getInstance( $id );
 	}
 
 	/**
@@ -77,6 +74,7 @@ class ObjectCache {
 	 *
 	 * @param array $params
 	 *
+	 * @deprecated since 1.25, use ObjectCacheFactory instead
 	 * @throws MWException
 	 * @return BagOStuff
 	 */
