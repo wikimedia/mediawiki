@@ -181,14 +181,12 @@ class EnhancedChangesList extends ChangesList {
 		$isnew = false;
 		$allBots = true;
 		$allMinors = true;
-		$curId = $currentRevision = 0;
+		$curId = 0;
 		# Some catalyst variables...
 		$namehidden = true;
 		$allLogs = true;
-		$oldid = '';
 		$RCShowChangedSize = $this->getConfig()->get( 'RCShowChangedSize' );
 		foreach ( $block as $rcObj ) {
-			$oldid = $rcObj->mAttribs['rc_last_oldid'];
 			if ( $rcObj->mAttribs['rc_type'] == RC_NEW ) {
 				$isnew = true;
 			}
@@ -211,9 +209,6 @@ class EnhancedChangesList extends ChangesList {
 			# since logs may not have these.
 			if ( !$curId && $rcObj->mAttribs['rc_cur_id'] ) {
 				$curId = $rcObj->mAttribs['rc_cur_id'];
-			}
-			if ( !$currentRevision && $rcObj->mAttribs['rc_this_oldid'] ) {
-				$currentRevision = $rcObj->mAttribs['rc_this_oldid'];
 			}
 
 			if ( !$rcObj->mAttribs['rc_bot'] ) {
@@ -275,87 +270,7 @@ class EnhancedChangesList extends ChangesList {
 
 		$queryParams['curid'] = $curId;
 
-		# Changes message
-		static $nchanges = array();
-		static $sinceLastVisitMsg = array();
-
-		$n = count( $block );
-		if ( !isset( $nchanges[$n] ) ) {
-			$nchanges[$n] = $this->msg( 'nchanges' )->numParams( $n )->escaped();
-		}
-
-		$sinceLast = 0;
-		$unvisitedOldid = null;
-		/** @var $rcObj RCCacheEntry */
-		foreach ( $block as $rcObj ) {
-			// Same logic as below inside main foreach
-			if ( $rcObj->watched && $rcObj->mAttribs['rc_timestamp'] >= $rcObj->watched ) {
-				$sinceLast++;
-				$unvisitedOldid = $rcObj->mAttribs['rc_last_oldid'];
-			}
-		}
-		if ( !isset( $sinceLastVisitMsg[$sinceLast] ) ) {
-			$sinceLastVisitMsg[$sinceLast] =
-				$this->msg( 'enhancedrc-since-last-visit' )->numParams( $sinceLast )->escaped();
-		}
-
-		# Total change link
-		$r .= ' ';
-		$logtext = '';
-		/** @var $block0 RecentChange */
-		$block0 = $block[0];
-		if ( !$allLogs ) {
-			if ( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $this->getUser() ) ) {
-				$logtext .= $nchanges[$n];
-			} elseif ( $isnew ) {
-				$logtext .= $nchanges[$n];
-			} else {
-				$logtext .= Linker::link(
-					$block0->getTitle(),
-					$nchanges[$n],
-					array(),
-					$queryParams + array(
-						'diff' => $currentRevision,
-						'oldid' => $oldid,
-					),
-					array( 'known', 'noclasses' )
-				);
-				if ( $sinceLast > 0 && $sinceLast < $n ) {
-					$logtext .= $this->message['pipe-separator'] . Linker::link(
-						$block0->getTitle(),
-						$sinceLastVisitMsg[$sinceLast],
-						array(),
-						$queryParams + array(
-							'diff' => $currentRevision,
-							'oldid' => $unvisitedOldid,
-						),
-						array( 'known', 'noclasses' )
-					);
-				}
-			}
-		}
-
-		# History
-		if ( $allLogs ) {
-			// don't show history link for logs
-		} elseif ( $namehidden || !$block0->getTitle()->exists() ) {
-			$logtext .= $this->message['pipe-separator'] . $this->message['enhancedrc-history'];
-		} else {
-			$params = $queryParams;
-			$params['action'] = 'history';
-
-			$logtext .= $this->message['pipe-separator'] .
-				Linker::linkKnown(
-					$block0->getTitle(),
-					$this->message['enhancedrc-history'],
-					array(),
-					$params
-				);
-		}
-
-		if ( $logtext !== '' ) {
-			$r .= $this->msg( 'parentheses' )->rawParams( $logtext )->escaped();
-		}
+		$r .= $this->getLogText( $block, $queryParams, $allLogs, $isnew, $namehidden );
 
 		$r .= ' <span class="mw-changeslist-separator">. .</span> ';
 
@@ -381,7 +296,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		$r .= $users;
-		$r .= $this->numberofWatchingusers( $block0->numberofWatchingusers );
+		$r .= $this->numberofWatchingusers( $block[0]->numberofWatchingusers );
 		$r .= '</td></tr>';
 
 		# Sub-entries
@@ -466,6 +381,114 @@ class EnhancedChangesList extends ChangesList {
 		$this->rcCacheIndex++;
 
 		return $r;
+	}
+
+	/**
+	 * Generates amount of changes (linking to diff ) & link to history.
+	 *
+	 * @param array $block
+	 * @param array $queryParams
+	 * @param bool $allLogs
+	 * @param bool $isnew
+	 * @param bool $namehidden
+	 * @return string
+	 */
+	protected function getLogText( $block, $queryParams, $allLogs, $isnew, $namehidden ) {
+		# Changes message
+		static $nchanges = array();
+		static $sinceLastVisitMsg = array();
+
+		$n = count( $block );
+		if ( !isset( $nchanges[$n] ) ) {
+			$nchanges[$n] = $this->msg( 'nchanges' )->numParams( $n )->escaped();
+		}
+
+		$sinceLast = 0;
+		$unvisitedOldid = null;
+		/** @var $rcObj RCCacheEntry */
+		foreach ( $block as $rcObj ) {
+			// Same logic as below inside main foreach
+			if ( $rcObj->watched && $rcObj->mAttribs['rc_timestamp'] >= $rcObj->watched ) {
+				$sinceLast++;
+				$unvisitedOldid = $rcObj->mAttribs['rc_last_oldid'];
+			}
+		}
+		if ( !isset( $sinceLastVisitMsg[$sinceLast] ) ) {
+			$sinceLastVisitMsg[$sinceLast] =
+				$this->msg( 'enhancedrc-since-last-visit' )->numParams( $sinceLast )->escaped();
+		}
+
+		$currentRevision = 0;
+		foreach ( $block as $rcObj ) {
+			if ( !$currentRevision ) {
+				$currentRevision = $rcObj->mAttribs['rc_this_oldid'];
+			}
+		}
+
+		# Total change link
+		$links = array();
+		/** @var $block0 RecentChange */
+		$block0 = $block[0];
+		$last = $block[count( $block ) - 1];
+		if ( !$allLogs ) {
+			if ( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $this->getUser() ) ) {
+				$links['total-changes'] = $nchanges[$n];
+			} elseif ( $isnew ) {
+				$links['total-changes'] = $nchanges[$n];
+			} else {
+				$links['total-changes'] = Linker::link(
+					$block0->getTitle(),
+					$nchanges[$n],
+					array(),
+					$queryParams + array(
+						'diff' => $currentRevision,
+						'oldid' => $last->mAttribs['rc_last_oldid'],
+					),
+					array( 'known', 'noclasses' )
+				);
+				if ( $sinceLast > 0 && $sinceLast < $n ) {
+					$links['total-changes-since-last'] = Linker::link(
+							$block0->getTitle(),
+							$sinceLastVisitMsg[$sinceLast],
+							array(),
+							$queryParams + array(
+								'diff' => $currentRevision,
+								'oldid' => $unvisitedOldid,
+							),
+							array( 'known', 'noclasses' )
+						);
+				}
+			}
+		}
+
+		# History
+		if ( $allLogs ) {
+			// don't show history link for logs
+		} elseif ( $namehidden || !$block0->getTitle()->exists() ) {
+			$links['history'] = $this->message['enhancedrc-history'];
+		} else {
+			$params = $queryParams;
+			$params['action'] = 'history';
+
+			$links['history'] = Linker::linkKnown(
+					$block0->getTitle(),
+					$this->message['enhancedrc-history'],
+					array(),
+					$params
+				);
+		}
+
+		# Allow others to alter, remove or add to these links
+		Hooks::run( 'EnhancedChangesList::getLogText',
+			array( $this, &$links, $block ) );
+
+		if ( !$links ) {
+			return '';
+		}
+
+		$logtext = implode( $this->message['pipe-separator'], $links );
+		$logtext = $this->msg( 'parentheses' )->rawParams( $logtext )->escaped();
+		return ' ' . $logtext;
 	}
 
 	/**
