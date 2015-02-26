@@ -255,8 +255,8 @@ class FeedUtils {
 		);
 
 		foreach ( $styles as $class => $style ) {
-			$text = preg_replace( "/(<[^>]+)class=(['\"])$class\\2([^>]*>)/",
-				"\\1style=\"$style\"\\3", $text );
+			$text = preg_replace( "/(<[^>]+)class=(['\"])(.*?)$class(| .*?)\2([^>]*>)/",
+				"\\1style=\"$style\"\\5", $text );
 		}
 
 		return $text;
