@@ -127,7 +127,7 @@ class MessageBlobStore {
 					);
 				}
 			}
-		} catch ( Exception $e ) {
+		} catch ( DBError $e ) {
 			wfDebug( __METHOD__ . " failed to update DB: $e\n" );
 		}
 		return $blob;
