@@ -498,6 +498,7 @@ $wgAutoloadLocalClasses = array(
 	'HashBagOStuff' => __DIR__ . '/includes/libs/objectcache/HashBagOStuff.php',
 	'HashConfig' => __DIR__ . '/includes/config/HashConfig.php',
 	'HashRing' => __DIR__ . '/includes/libs/HashRing.php',
+	'HashSiteStore' => __DIR__ . '/includes/site/HashSiteStore.php',
 	'HashtableReplacer' => __DIR__ . '/includes/libs/replacers/HashtableReplacer.php',
 	'HistoryAction' => __DIR__ . '/includes/actions/HistoryAction.php',
 	'HistoryBlob' => __DIR__ . '/includes/HistoryBlob.php',
