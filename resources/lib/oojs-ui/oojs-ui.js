@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.8.0
+ * OOjs UI v0.8.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-02-19T01:33:11Z
+ * Date: 2015-02-26T02:10:32Z
  */
 ( function ( OO ) {
 
@@ -326,9 +326,9 @@ OO.ui.PendingElement.prototype.popPending = function () {
  *
  *     ProcessDialog.prototype.initialize = function () {
  *         ProcessDialog.super.prototype.initialize.apply( this, arguments );
- *         this.panel1 = new OO.ui.PanelLayout( { $: this.$, padded: true, expanded: false } );
+ *         this.panel1 = new OO.ui.PanelLayout( { padded: true, expanded: false } );
  *         this.panel1.$element.append( '<p>This dialog uses an action set (continue, help, cancel, back) configured with modes. This is edit mode. Click \'help\' to see help mode. </p>' );
- *         this.panel2 = new OO.ui.PanelLayout( { $: this.$, padded: true, expanded: false } );
+ *         this.panel2 = new OO.ui.PanelLayout( { padded: true, expanded: false } );
  *         this.panel2.$element.append( '<p>This is help mode. Only the \'back\' action widget is configured to be visible here. Click \'back\' to return to \'edit\' mode</p>' );
  *         this.stackLayout= new OO.ui.StackLayout( {
  *             items: [ this.panel1, this.panel2 ]
@@ -788,11 +788,18 @@ OO.ui.ActionSet.prototype.organize = function () {
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {string[]} [classes] CSS class names to add
- * @cfg {string} [id] HTML id attribute
+ * @cfg {string[]} [classes] The names of the CSS classes to apply to the element. CSS styles are added
+ *  to the top level (e.g., the outermost div) of the element. See the [OOjs UI documentation on MediaWiki][2]
+ *  for an example.
+ *  [2]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Buttons_and_Switches#cssExample
+ * @cfg {string} [id] The HTML id attribute used in the rendered tag.
  * @cfg {string} [text] Text to insert
- * @cfg {jQuery} [$content] Content elements to append (after text)
- * @cfg {Mixed} [data] Element data
+ * @cfg {Array} [content] An array of content elements to append (after #text).
+ *  Strings will be html-escaped; use an OO.ui.HtmlSnippet to append raw HTML.
+ *  Instances of OO.ui.Element will have their $element appended.
+ * @cfg {jQuery} [$content] Content elements to append (after #text)
+ * @cfg {Mixed} [data] Custom data of any type or combination of types (e.g., string, number, array, object).
+ *  Data can also be specified with the #setData method.
  */
 OO.ui.Element = function OoUiElement( config ) {
 	// Configuration initialization
@@ -800,8 +807,10 @@ OO.ui.Element = function OoUiElement( config ) {
 
 	// Properties
 	this.$ = $;
+	this.visible = true;
 	this.data = config.data;
-	this.$element = $( document.createElement( this.getTagName() ) );
+	this.$element = config.$element ||
+		$( document.createElement( this.getTagName() ) );
 	this.elementGroup = null;
 	this.debouncedUpdateThemeClassesHandler = this.debouncedUpdateThemeClasses.bind( this );
 	this.updateThemeClassesPending = false;
@@ -816,7 +825,25 @@ OO.ui.Element = function OoUiElement( config ) {
 	if ( config.text ) {
 		this.$element.text( config.text );
 	}
+	if ( config.content ) {
+		// The `content` property treats plain strings as text; use an
+		// HtmlSnippet to append HTML content.  `OO.ui.Element`s get their
+		// appropriate $element appended.
+		this.$element.append( config.content.map( function ( v ) {
+			if ( typeof v === 'string' ) {
+				// Escape string so it is properly represented in HTML.
+				return document.createTextNode( v );
+			} else if ( v instanceof OO.ui.HtmlSnippet ) {
+				// Bypass escaping.
+				return v.toString();
+			} else if ( v instanceof OO.ui.Element ) {
+				return v.$element;
+			}
+			return v;
+		} ) );
+	}
 	if ( config.$content ) {
+		// The `$content` property treats plain strings as HTML.
 		this.$element.append( config.$content );
 	}
 };
@@ -828,9 +855,9 @@ OO.initClass( OO.ui.Element );
 /* Static Properties */
 
 /**
- * HTML tag name.
+ * The name of the HTML tag used by the element.
  *
- * This may be ignored if #getTagName is overridden.
+ * The static value may be ignored if the #getTagName method is overridden.
  *
  * @static
  * @inheritable
@@ -1240,6 +1267,34 @@ OO.ui.Element.static.reconsiderScrollbars = function ( el ) {
 /* Methods */
 
 /**
+ * Toggle visibility of an element.
+ *
+ * @param {boolean} [show] Make element visible, omit to toggle visibility
+ * @fires visible
+ * @chainable
+ */
+OO.ui.Element.prototype.toggle = function ( show ) {
+	show = show === undefined ? !this.visible : !!show;
+
+	if ( show !== this.isVisible() ) {
+		this.visible = show;
+		this.$element.toggleClass( 'oo-ui-element-hidden', !this.visible );
+		this.emit( 'toggle', show );
+	}
+
+	return this;
+};
+
+/**
+ * Check if element is visible.
+ *
+ * @return {boolean} element is visible
+ */
+OO.ui.Element.prototype.isVisible = function () {
+	return this.visible;
+};
+
+/**
  * Get element data.
  *
  * @return {Mixed} Element data
@@ -1430,7 +1485,6 @@ OO.ui.Widget = function OoUiWidget( config ) {
 	OO.EventEmitter.call( this );
 
 	// Properties
-	this.visible = true;
 	this.disabled = null;
 	this.wasDisabled = null;
 
@@ -1468,15 +1522,6 @@ OO.ui.Widget.prototype.isDisabled = function () {
 };
 
 /**
- * Check if widget is visible.
- *
- * @return {boolean} Widget is visible
- */
-OO.ui.Widget.prototype.isVisible = function () {
-	return this.visible;
-};
-
-/**
  * Set the disabled state of the widget.
  *
  * This should probably change the widgets' appearance and prevent it from being used.
@@ -1497,25 +1542,6 @@ OO.ui.Widget.prototype.setDisabled = function ( disabled ) {
 		this.updateThemeClasses();
 	}
 	this.wasDisabled = isDisabled;
-
-	return this;
-};
-
-/**
- * Toggle visibility of widget.
- *
- * @param {boolean} [show] Make widget visible, omit to toggle visibility
- * @fires visible
- * @chainable
- */
-OO.ui.Widget.prototype.toggle = function ( show ) {
-	show = show === undefined ? !this.visible : !!show;
-
-	if ( show !== this.isVisible() ) {
-		this.visible = show;
-		this.$element.toggleClass( 'oo-ui-element-hidden', !this.visible );
-		this.emit( 'toggle', show );
-	}
 
 	return this;
 };
@@ -1857,25 +1883,6 @@ OO.ui.Window.prototype.getHoldProcess = function () {
  */
 OO.ui.Window.prototype.getTeardownProcess = function () {
 	return new OO.ui.Process();
-};
-
-/**
- * Toggle visibility of window.
- *
- * @param {boolean} [show] Make window visible, omit to toggle visibility
- * @fires toggle
- * @chainable
- */
-OO.ui.Window.prototype.toggle = function ( show ) {
-	show = show === undefined ? !this.visible : !!show;
-
-	if ( show !== this.isVisible() ) {
-		this.visible = show;
-		this.$element.toggleClass( 'oo-ui-element-hidden', !this.visible );
-		this.emit( 'toggle', show );
-	}
-
-	return this;
 };
 
 /**
@@ -2915,7 +2922,7 @@ OO.ui.WindowManager.prototype.addWindows = function ( windows ) {
 			}
 			list[ name ] = windows[ i ];
 		}
-	} else if ( $.isPlainObject( windows ) ) {
+	} else if ( OO.isPlainObject( windows ) ) {
 		list = windows;
 	}
 
@@ -3078,7 +3085,13 @@ OO.ui.WindowManager.prototype.destroy = function () {
  * @cfg {boolean} [recoverable=true] Error is recoverable
  * @cfg {boolean} [warning=false] Whether this error is a warning or not.
  */
-OO.ui.Error = function OoUiElement( message, config ) {
+OO.ui.Error = function OoUiError( message, config ) {
+	// Allow passing positional parameters inside the config object
+	if ( OO.isPlainObject( message ) && config === undefined ) {
+		config = message;
+		message = config.message;
+	}
+
 	// Configuration initialization
 	config = config || {};
 
@@ -3130,6 +3143,114 @@ OO.ui.Error.prototype.getMessage = function () {
  */
 OO.ui.Error.prototype.getMessageText = function () {
 	return this.message instanceof jQuery ? this.message.text() : this.message;
+};
+
+/**
+ * Wraps an HTML snippet for use with configuration values which default
+ * to strings.  This bypasses the default html-escaping done to string
+ * values.
+ *
+ * @class
+ *
+ * @constructor
+ * @param {string} [content] HTML content
+ */
+OO.ui.HtmlSnippet = function OoUiHtmlSnippet( content ) {
+	// Properties
+	this.content = content;
+};
+
+/* Setup */
+
+OO.initClass( OO.ui.HtmlSnippet );
+
+/* Methods */
+
+/**
+ * Render into HTML.
+ *
+ * @return {string} Unchanged HTML snippet.
+ */
+OO.ui.HtmlSnippet.prototype.toString = function () {
+	return this.content;
+};
+
+/**
+ * Reconstitute a JavaScript object corresponding to a widget created
+ * by the PHP implementation.
+ *
+ * @member OO.ui
+ * @param {string|HTMLElement|jQuery} idOrNode
+ *   A DOM id (if a string) or node for the widget to infuse.
+ * @return {OO.ui.Element}
+ *   The `OO.ui.Element` corresponding to this (infusable) document node.
+ *   For `Tag` objects emitted on the HTML side (used occasionally for content)
+ *   the value returned is a newly-created Element wrapping around the existing
+ *   DOM node.
+ */
+OO.ui.infuse = function ( idOrNode, dontReplace ) {
+	// look for a cached result of a previous infusion.
+	var id, $elem, data, cls, obj;
+	if ( typeof idOrNode === 'string' ) {
+		id = idOrNode;
+		$elem = $( document.getElementById( id ) );
+	} else {
+		$elem = $( idOrNode );
+		id = $elem.attr( 'id' );
+	}
+	data = $elem.data( 'ooui-infused' );
+	if ( data ) {
+		// cached!
+		if ( data === true ) {
+			throw new Error( 'Circular dependency! ' + id );
+		}
+		return data;
+	}
+	if ( !$elem.length ) {
+		throw new Error( 'Widget not found: ' + id );
+	}
+	data = $elem.attr( 'data-ooui' );
+	if ( !data ) {
+		throw new Error( 'No infusion data found: ' + id );
+	}
+	try {
+		data = $.parseJSON( data );
+	} catch ( _ ) {
+		data = null;
+	}
+	if ( !( data && data._ ) ) {
+		throw new Error( 'No valid infusion data found: ' + id );
+	}
+	if ( data._ === 'Tag' ) {
+		// Special case: this is a raw Tag; wrap existing node, don't rebuild.
+		return new OO.ui.Element( { $element: $elem } );
+	}
+	cls = OO.ui[data._];
+	if ( !cls ) {
+		throw new Error( 'Unknown widget type: ' + id );
+	}
+	$elem.data( 'ooui-infused', true ); // prevent loops
+	data.id = id; // implicit
+	data = OO.copy( data, null, function deserialize( value ) {
+		if ( OO.isPlainObject( value ) ) {
+			if ( value.tag ) {
+				return OO.ui.infuse( value.tag, 'rebuilding' );
+			}
+			if ( value.html ) {
+				return new OO.ui.HtmlSnippet( value.html );
+			}
+		}
+	} );
+	// jscs:disable requireCapitalizedConstructors
+	obj = new cls( data ); // rebuild widget
+	// now replace old DOM with this new DOM.
+	if ( !dontReplace ) {
+		$elem.replaceWith( obj.$element );
+	}
+	obj.$element.data( 'ooui-infused', obj );
+	// set the 'data-ooui' attribute so we can identify infused widgets
+	obj.$element.attr( 'data-ooui', '' );
+	return obj;
 };
 
 /**
@@ -3501,7 +3622,30 @@ OO.ui.Theme.prototype.updateElementClasses = function ( element ) {
 };
 
 /**
- * Element supporting "sequential focus navigation" using the 'tabindex' attribute.
+ * The TabIndexedElement class is an attribute mixin used to add additional functionality to an
+ * element created by another class. The mixin provides a ‘tabIndex’ property, which specifies the
+ * order in which users will navigate through the focusable elements via the "tab" key.
+ *
+ *     @example
+ *     // TabIndexedElement is mixed into the ButtonWidget class
+ *     // to provide a tabIndex property.
+ *     var button1 = new OO.ui.ButtonWidget( {
+ *         label : 'fourth',
+ *         tabIndex : 4
+ *     } );
+ *     var button2 = new OO.ui.ButtonWidget( {
+ *         label : 'second',
+ *         tabIndex : 2
+ *     } );
+ *     var button3 = new OO.ui.ButtonWidget( {
+ *         label : 'third',
+ *         tabIndex : 3
+ *     } );
+ *     var button4 = new OO.ui.ButtonWidget( {
+ *         label : 'first',
+ *         tabIndex : 1
+ *     } );
+ *     $( 'body' ).append( button1.$element, button2.$element, button3.$element, button4.$element );
  *
  * @abstract
  * @class
@@ -3594,6 +3738,7 @@ OO.ui.TabIndexedElement.prototype.updateTabIndex = function () {
 /**
  * Handle disable events.
  *
+ * @private
  * @param {boolean} disabled Element is disabled
  */
 OO.ui.TabIndexedElement.prototype.onDisable = function () {
@@ -4169,15 +4314,21 @@ OO.initClass( OO.ui.DraggableElement );
 
 /**
  * @event dragstart
- * @param {OO.ui.DraggableElement} item Dragging item
+ *
+ * A dragstart event is emitted when the user clicks and begins dragging an item.
+ * @param {OO.ui.DraggableElement} item The item the user has clicked and is dragging with the mouse.
  */
 
 /**
  * @event dragend
+ * A dragend event is emitted when the user drags an item and releases the mouse,
+ * thus terminating the drag operation.
  */
 
 /**
  * @event drop
+ * A drop event is emitted when the user drags an item and then releases the mouse button
+ * over a valid target.
  */
 
 /* Static Properties */
@@ -4191,6 +4342,8 @@ OO.ui.DraggableElement.static.cancelButtonMouseDownEvents = false;
 
 /**
  * Respond to dragstart event.
+ *
+ * @private
  * @param {jQuery.Event} event jQuery event
  * @fires dragstart
  */
@@ -4216,6 +4369,8 @@ OO.ui.DraggableElement.prototype.onDragStart = function ( e ) {
 
 /**
  * Respond to dragend event.
+ *
+ * @private
  * @fires dragend
  */
 OO.ui.DraggableElement.prototype.onDragEnd = function () {
@@ -4225,6 +4380,8 @@ OO.ui.DraggableElement.prototype.onDragEnd = function () {
 
 /**
  * Handle drop event.
+ *
+ * @private
  * @param {jQuery.Event} event jQuery event
  * @fires drop
  */
@@ -4236,6 +4393,8 @@ OO.ui.DraggableElement.prototype.onDrop = function ( e ) {
 /**
  * In order for drag/drop to work, the dragover event must
  * return false and stop propogation.
+ *
+ * @private
  */
 OO.ui.DraggableElement.prototype.onDragOver = function ( e ) {
 	e.preventDefault();
@@ -4244,6 +4403,8 @@ OO.ui.DraggableElement.prototype.onDragOver = function ( e ) {
 /**
  * Set item index.
  * Store it in the DOM so we can access from the widget drag event
+ *
+ * @private
  * @param {number} Item index
  */
 OO.ui.DraggableElement.prototype.setIndex = function ( index ) {
@@ -4255,6 +4416,8 @@ OO.ui.DraggableElement.prototype.setIndex = function ( index ) {
 
 /**
  * Get item index
+ *
+ * @private
  * @return {number} Item index
  */
 OO.ui.DraggableElement.prototype.getIndex = function () {
@@ -4519,11 +4682,29 @@ OO.ui.DraggableGroupElement.prototype.isDragging = function () {
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {jQuery} [$icon] Icon node, assigned to #$icon, omit to use a generated `<span>`
- * @cfg {Object|string} [icon=''] Symbolic icon name, or map of icon names keyed by language ID;
- *  use the 'default' key to specify the icon to be used when there is no icon in the user's
- *  language
- * @cfg {string} [iconTitle] Icon title text or a function that returns text
+ * @cfg {jQuery} [$icon] The icon element created by the class. If this configuration is omitted,
+ *  the icon element will use a generated `<span>`. To use a different HTML tag, or to specify that
+ *  the icon element be set to an existing icon instead of the one generated by this class, set a
+ *  value using a jQuery selection. For example:
+ *
+ *      // Use a <div> tag instead of a <span>
+ *     $icon: $("<div>")
+ *     // Use an existing icon element instead of the one generated by the class
+ *     $icon: this.$element
+ *     // Use an icon element from a child widget
+ *     $icon: this.childwidget.$element
+ * @cfg {Object|string} [icon=''] The symbolic name of the icon (e.g., ‘remove’ or ‘menu’), or a map of
+ *  symbolic names.  A map is used for i18n purposes and contains a `default` icon
+ *  name and additional names keyed by language code. The `default` name is used when no icon is keyed
+ *  by the user's language.
+ *
+ *  Example of an i18n map:
+ *
+ *     { default: 'bold-a', en: 'bold-b', de: 'bold-f' }
+ *  See the [OOjs UI documentation on MediaWiki] [2] for a list of icons included in the library.
+ * [2]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Icons,_Indicators,_and_Labels#Icons
+ * @cfg {string|Function} [iconTitle] A text string used as the icon title, or a function that returns title
+ *  text. The icon title is displayed when users move the mouse over the icon.
  */
 OO.ui.IconElement = function OoUiIconElement( config ) {
 	// Configuration initialization
@@ -4578,9 +4759,10 @@ OO.ui.IconElement.static.iconTitle = null;
 /* Methods */
 
 /**
- * Set the icon element.
- *
- * If an element is already set, it will be cleaned up before setting up the new element.
+ * Set the icon element. This method is used to retarget an icon mixin so that its functionality
+ * applies to the specified icon element instead of the one created by the class. If an icon
+ * element is already set, the mixin’s effect on that element is removed. Generated CSS classes
+ * and mixin methods will no longer affect the element.
  *
  * @param {jQuery} $icon Element to use as icon
  */
@@ -4600,11 +4782,12 @@ OO.ui.IconElement.prototype.setIconElement = function ( $icon ) {
 };
 
 /**
- * Set icon name.
+ * Set icon by symbolic name (e.g., ‘remove’ or ‘menu’). Use `null` to remove an icon.
+ * The icon parameter can also be set to a map of icon names. See the #icon config setting
+ * for an example.
  *
- * @param {Object|string|null} icon Symbolic icon name, or map of icon names keyed by language ID;
- *  use the 'default' key to specify the icon to be used when there is no icon in the user's
- *  language, use null to remove icon
+ * @param {Object|string|null} icon A symbolic icon name, a {@link #icon map of icon names} keyed
+ *  by language code, or `null` to remove the icon.
  * @chainable
  */
 OO.ui.IconElement.prototype.setIcon = function ( icon ) {
@@ -4630,10 +4813,10 @@ OO.ui.IconElement.prototype.setIcon = function ( icon ) {
 };
 
 /**
- * Set icon title.
+ * Set the icon title. Use `null` to remove the title.
  *
- * @param {string|Function|null} icon Icon title text, a function that returns text or null
- *  for no icon title
+ * @param {string|Function|null} iconTitle A text string used as the icon title,
+ *  a function that returns title text, or `null` for no title.
  * @chainable
  */
 OO.ui.IconElement.prototype.setIconTitle = function ( iconTitle ) {
@@ -4656,7 +4839,7 @@ OO.ui.IconElement.prototype.setIconTitle = function ( iconTitle ) {
 };
 
 /**
- * Get icon name.
+ * Get the symbolic name of the icon.
  *
  * @return {string} Icon name
  */
@@ -4665,7 +4848,7 @@ OO.ui.IconElement.prototype.getIcon = function () {
 };
 
 /**
- * Get icon title.
+ * Get the icon title. The title text is displayed when a user moves the mouse over the icon.
  *
  * @return {string} Icon title text
  */
@@ -4692,10 +4875,15 @@ OO.ui.IconElement.prototype.getIconTitle = function () {
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {jQuery} [$indicator] Indicator node, assigned to #$indicator, omit to use a generated
- *   `<span>`
- * @cfg {string} [indicator] Symbolic indicator name
- * @cfg {string} [indicatorTitle] Indicator title text or a function that returns text
+ * @cfg {jQuery} [$indicator] The indicator element created by the class. If this
+ *  configuration is omitted, the indicator element will use a generated `<span>`.
+ * @cfg {string} [indicator] Symbolic name of the indicator (e.g., ‘alert’ or  ‘down’).
+ *  See the [OOjs UI documentation on MediaWiki][2] for a list of indicators included
+ *  in the library.
+ * [2]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Icons,_Indicators,_and_Labels#Indicators
+ * @cfg {string|Function} [indicatorTitle] A text string used as the indicator title,
+ *  or a function that returns title text. The indicator title is displayed when users move
+ *  the mouse over the indicator.
  */
 OO.ui.IndicatorElement = function OoUiIndicatorElement( config ) {
 	// Configuration initialization
@@ -4719,21 +4907,22 @@ OO.initClass( OO.ui.IndicatorElement );
 /* Static Properties */
 
 /**
- * indicator.
+ * Symbolic name of the indicator (e.g., ‘alert’ or  ‘down’).
+ * The static property will be overridden if the #indicator configuration is used.
  *
  * @static
  * @inheritable
- * @property {string|null} Symbolic indicator name
+ * @property {string|null}
  */
 OO.ui.IndicatorElement.static.indicator = null;
 
 /**
- * Indicator title.
+ * A text string used as the indicator title, a function that returns title text, or `null`
+ * for no title. The static property will be overridden if the #indicatorTitle configuration is used.
  *
  * @static
  * @inheritable
- * @property {string|Function|null} Indicator title text, a function that returns text or null for no
- *  indicator title
+ * @property {string|Function|null}
  */
 OO.ui.IndicatorElement.static.indicatorTitle = null;
 
@@ -4833,16 +5022,25 @@ OO.ui.IndicatorElement.prototype.getIndicatorTitle = function () {
 };
 
 /**
- * Element containing a label.
+ * LabelElement is often mixed into other classes to generate a label, which
+ * helps identify the function of an interface element.
+ * See the [OOjs UI documentation on MediaWiki] [1] for more information.
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Icons,_Indicators,_and_Labels#Labels
  *
  * @abstract
  * @class
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {jQuery} [$label] Label node, assigned to #$label, omit to use a generated `<span>`
- * @cfg {jQuery|string|Function} [label] Label nodes, text or a function that returns nodes or text
- * @cfg {boolean} [autoFitLabel=true] Whether to fit the label or not.
+ * @cfg {jQuery} [$label] The label element created by the class. If this
+ *  configuration is omitted, the label element will use a generated `<span>`.
+ * @cfg {jQuery|string|Function} [label] The label text. The label can be specified as a plaintext string,
+ *  a jQuery selection of elements, or a function that will produce a string in the future. See the
+ *  [OOjs UI documentation on MediaWiki] [2] for examples.
+ *  [2]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Icons,_Indicators,_and_Labels#Labels
+ * @cfg {boolean} [autoFitLabel=true] Fit the label to the width of the parent element.
+ *  The label will be truncated to fit if necessary.
  */
 OO.ui.LabelElement = function OoUiLabelElement( config ) {
 	// Configuration initialization
@@ -4872,12 +5070,13 @@ OO.initClass( OO.ui.LabelElement );
 /* Static Properties */
 
 /**
- * Label.
+ * The label text. The label can be specified as a plaintext string, a function that will
+ * produce a string in the future, or `null` for no label. The static value will
+ * be overridden if a label is specified with the #label config option.
  *
  * @static
  * @inheritable
- * @property {string|Function|null} Label text; a function that returns nodes or text; or null for
- *  no label
+ * @property {string|Function|null}
  */
 OO.ui.LabelElement.static.label = null;
 
@@ -4905,13 +5104,13 @@ OO.ui.LabelElement.prototype.setLabelElement = function ( $label ) {
  * An empty string will result in the label being hidden. A string containing only whitespace will
  * be converted to a single `&nbsp;`.
  *
- * @param {jQuery|string|Function|null} label Label nodes; text; a function that returns nodes or
+ * @param {jQuery|string|OO.ui.HtmlSnippet|Function|null} label Label nodes; text; a function that returns nodes or
  *  text; or null for no label
  * @chainable
  */
 OO.ui.LabelElement.prototype.setLabel = function ( label ) {
 	label = typeof label === 'function' ? OO.ui.resolveMsg( label ) : label;
-	label = ( typeof label === 'string' && label.length ) || label instanceof jQuery ? label : null;
+	label = ( ( typeof label === 'string' && label.length ) || label instanceof jQuery || label instanceof OO.ui.HtmlSnippet ) ? label : null;
 
 	this.$element.toggleClass( 'oo-ui-labelElement', !!label );
 
@@ -4966,6 +5165,8 @@ OO.ui.LabelElement.prototype.setLabelContent = function ( label ) {
 		} else {
 			this.$label.text( label );
 		}
+	} else if ( label instanceof OO.ui.HtmlSnippet ) {
+		this.$label.html( label.toString() );
 	} else if ( label instanceof jQuery ) {
 		this.$label.empty().append( label );
 	} else {
@@ -5357,9 +5558,10 @@ OO.ui.PopupElement.prototype.getPopup = function () {
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {string|string[]} [flags] Flags describing importance and functionality, e.g. 'primary',
- *   'safe', 'progressive', 'destructive' or 'constructive'
- * @cfg {jQuery} [$flagged] Flagged node, assigned to #$flagged, omit to use #$element
+ * @cfg {string|string[]} [flags] The name or names of the flags (e.g., 'constructive' or 'primary') to apply.
+ *  Please see the [OOjs UI documentation on MediaWiki] [2] for more information about available flags.
+ *  [2]: https://www.mediawiki.org/wiki/OOjs_UI/Elements/Flagged
+ * @cfg {jQuery} [$flagged] Flagged node, assigned to $flagged, omit to use $element
  */
 OO.ui.FlaggedElement = function OoUiFlaggedElement( config ) {
 	// Configuration initialization
@@ -5378,8 +5580,12 @@ OO.ui.FlaggedElement = function OoUiFlaggedElement( config ) {
 
 /**
  * @event flag
- * @param {Object.<string,boolean>} changes Object keyed by flag name containing boolean
- *   added/removed properties
+ * A flag event is emitted when the #clearFlags or #setFlags methods are used. The `changes`
+ * parameter contains the name of each modified flag and indicates whether it was
+ * added or removed.
+ *
+ * @param {Object.<string,boolean>} changes Object keyed by flag name. A Boolean `true` indicates
+ * that the flag was added, `false` that the flag was removed.
  */
 
 /* Methods */
@@ -5518,19 +5724,29 @@ OO.ui.FlaggedElement.prototype.setFlags = function ( flags ) {
 };
 
 /**
- * Element with a title.
+ * TitledElement is mixed into other classes to provide a `title` attribute.
+ * Titles are rendered by the browser and are made visible when the user moves
+ * the mouse over the element. Titles are not visible on touch devices.
  *
- * Titles are rendered by the browser and are made visible when hovering the element. Titles are
- * not visible on touch devices.
+ *     @example
+ *     // TitledElement provides a 'title' attribute to the
+ *     // ButtonWidget class
+ *     var button = new OO.ui.ButtonWidget( {
+ *         label : 'Button with Title',
+ *         title : 'I am a button'
+ *     } );
+ *     $( 'body' ).append( button.$element );
  *
  * @abstract
  * @class
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {jQuery} [$titled] Titled node, assigned to #$titled, omit to use #$element
- * @cfg {string|Function} [title] Title text or a function that returns text. If not provided, the
- *    static property 'title' is used.
+ * @cfg {jQuery} [$titled] The element to which the `title` attribute is applied.
+ *  If this config is omitted, the title functionality is applied to $element, the
+ *  element created by the class.
+ * @cfg {string|Function} [title] The title text or a function that returns text. If
+ *  this config is omitted, the value of the static `title` property is used.
  */
 OO.ui.TitledElement = function OoUiTitledElement( config ) {
 	// Configuration initialization
@@ -5552,11 +5768,12 @@ OO.initClass( OO.ui.TitledElement );
 /* Static Properties */
 
 /**
- * Title.
+ * The title text, a function that returns text, or `null` for no title. The value of the static property
+ * is overridden if the #title config option is used.
  *
  * @static
  * @inheritable
- * @property {string|Function} Title text or a function that returns text
+ * @property {string|Function|null}
  */
 OO.ui.TitledElement.static.title = null;
 
@@ -5833,6 +6050,12 @@ OO.ui.ClippableElement.prototype.clip = function () {
  * @cfg {string|Function} [title] Title text or a function that returns text
  */
 OO.ui.Tool = function OoUiTool( toolGroup, config ) {
+	// Allow passing positional parameters inside the config object
+	if ( OO.isPlainObject( toolGroup ) && config === undefined ) {
+		config = toolGroup;
+		toolGroup = config.toolGroup;
+	}
+
 	// Configuration initialization
 	config = config || {};
 
@@ -6095,6 +6318,13 @@ OO.ui.Tool.prototype.destroy = function () {
  * @cfg {boolean} [shadow] Add a shadow below the toolbar
  */
 OO.ui.Toolbar = function OoUiToolbar( toolFactory, toolGroupFactory, config ) {
+	// Allow passing positional parameters inside the config object
+	if ( OO.isPlainObject( toolFactory ) && config === undefined ) {
+		config = toolFactory;
+		toolFactory = config.toolFactory;
+		toolGroupFactory = config.toolGroupFactory;
+	}
+
 	// Configuration initialization
 	config = config || {};
 
@@ -6311,6 +6541,12 @@ OO.ui.Toolbar.prototype.getToolAccelerator = function () {
  * @cfg {Array|string} [demote=[]] List of tools to demote to the end
  */
 OO.ui.ToolGroup = function OoUiToolGroup( toolbar, config ) {
+	// Allow passing positional parameters inside the config object
+	if ( OO.isPlainObject( toolbar ) && config === undefined ) {
+		config = toolbar;
+		toolbar = config.toolbar;
+	}
+
 	// Configuration initialization
 	config = config || {};
 
@@ -7031,12 +7267,10 @@ OO.ui.ProcessDialog.prototype.attachActions = function () {
 		this.$primaryActions.append( special.primary.$element );
 		special.primary.toggleFramed( true );
 	}
-	if ( others.length ) {
-		for ( i = 0, len = others.length; i < len; i++ ) {
-			other = others[ i ];
-			this.$otherActions.append( other.$element );
-			other.toggleFramed( true );
-		}
+	for ( i = 0, len = others.length; i < len; i++ ) {
+		other = others[ i ];
+		this.$otherActions.append( other.$element );
+		other.toggleFramed( true );
 	}
 	if ( special.safe ) {
 		this.$safeActions.append( special.safe.$element );
@@ -7149,6 +7383,12 @@ OO.ui.ProcessDialog.prototype.hideErrors = function () {
  * @cfg {string} [help] Explanatory text shown as a '?' icon.
  */
 OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
+	// Allow passing positional parameters inside the config object
+	if ( OO.isPlainObject( fieldWidget ) && config === undefined ) {
+		config = fieldWidget;
+		fieldWidget = config.fieldWidget;
+	}
+
 	var hasInputWidget = fieldWidget instanceof OO.ui.InputWidget;
 
 	// Configuration initialization
@@ -7284,6 +7524,13 @@ OO.ui.FieldLayout.prototype.setAlignment = function ( value ) {
  * @cfg {string} [help] Explanatory text shown as a '?' icon.
  */
 OO.ui.ActionFieldLayout = function OoUiActionFieldLayout( fieldWidget, buttonWidget, config ) {
+	// Allow passing positional parameters inside the config object
+	if ( OO.isPlainObject( fieldWidget ) && config === undefined ) {
+		config = fieldWidget;
+		fieldWidget = config.fieldWidget;
+		buttonWidget = config.buttonWidget;
+	}
+
 	// Configuration initialization
 	config = $.extend( { align: 'left' }, config );
 
@@ -7376,12 +7623,14 @@ OO.mixinClass( OO.ui.FieldsetLayout, OO.ui.GroupElement );
  *
  * @class
  * @extends OO.ui.Layout
+ * @mixins OO.ui.GroupElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {string} [method] HTML form `method` attribute
  * @cfg {string} [action] HTML form `action` attribute
  * @cfg {string} [enctype] HTML form `enctype` attribute
+ * @cfg {OO.ui.FieldsetLayout[]} [items] Items to add
  */
 OO.ui.FormLayout = function OoUiFormLayout( config ) {
 	// Configuration initialization
@@ -7389,6 +7638,9 @@ OO.ui.FormLayout = function OoUiFormLayout( config ) {
 
 	// Parent constructor
 	OO.ui.FormLayout.super.call( this, config );
+
+	// Mixin constructors
+	OO.ui.GroupElement.call( this, $.extend( {}, config, { $group: this.$element } ) );
 
 	// Events
 	this.$element.on( 'submit', this.onFormSubmit.bind( this ) );
@@ -7401,16 +7653,24 @@ OO.ui.FormLayout = function OoUiFormLayout( config ) {
 			action: config.action,
 			enctype: config.enctype
 		} );
+	if ( Array.isArray( config.items ) ) {
+		this.addItems( config.items );
+	}
 };
 
 /* Setup */
 
 OO.inheritClass( OO.ui.FormLayout, OO.ui.Layout );
+OO.mixinClass( OO.ui.FormLayout, OO.ui.GroupElement );
 
 /* Events */
 
 /**
+ * The HTML form was submitted. If the submission is handled, call `e.preventDefault()` to prevent
+ * HTML form submission.
+ *
  * @event submit
+ * @param {jQuery.Event} e Submit event
  */
 
 /* Static Properties */
@@ -7425,9 +7685,8 @@ OO.ui.FormLayout.static.tagName = 'form';
  * @param {jQuery.Event} e Submit event
  * @fires submit
  */
-OO.ui.FormLayout.prototype.onFormSubmit = function () {
-	this.emit( 'submit' );
-	return false;
+OO.ui.FormLayout.prototype.onFormSubmit = function ( e ) {
+	this.emit( 'submit', e );
 };
 
 /**
@@ -7444,6 +7703,12 @@ OO.ui.FormLayout.prototype.onFormSubmit = function () {
  * @cfg {number[]} [heights] Heights of rows as ratios
  */
 OO.ui.GridLayout = function OoUiGridLayout( panels, config ) {
+	// Allow passing positional parameters inside the config object
+	if ( OO.isPlainObject( panels ) && config === undefined ) {
+		config = panels;
+		panels = config.panels;
+	}
+
 	var i, len, widths;
 
 	// Configuration initialization
@@ -8284,6 +8549,12 @@ OO.inheritClass( OO.ui.PanelLayout, OO.ui.Layout );
  * @param {Object} [config] Configuration options
  */
 OO.ui.PageLayout = function OoUiPageLayout( name, config ) {
+	// Allow passing positional parameters inside the config object
+	if ( OO.isPlainObject( name ) && config === undefined ) {
+		config = name;
+		name = config.name;
+	}
+
 	// Configuration initialization
 	config = $.extend( { scrollable: true }, config );
 
@@ -8586,6 +8857,12 @@ OO.ui.StackLayout.prototype.updateHiddenState = function ( items, selectedItem )
  * @param {Object} [config] Configuration options
  */
 OO.ui.BarToolGroup = function OoUiBarToolGroup( toolbar, config ) {
+	// Allow passing positional parameters inside the config object
+	if ( OO.isPlainObject( toolbar ) && config === undefined ) {
+		config = toolbar;
+		toolbar = config.toolbar;
+	}
+
 	// Parent constructor
 	OO.ui.BarToolGroup.super.call( this, toolbar, config );
 
@@ -8623,6 +8900,12 @@ OO.ui.BarToolGroup.static.name = 'bar';
  * @cfg {string} [header] Text to display at the top of the pop-up
  */
 OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
+	// Allow passing positional parameters inside the config object
+	if ( OO.isPlainObject( toolbar ) && config === undefined ) {
+		config = toolbar;
+		toolbar = config.toolbar;
+	}
+
 	// Configuration initialization
 	config = config || {};
 
@@ -8794,6 +9077,12 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
  * @cfg {boolean} [expanded=false] Whether the collapsible tools are expanded by default
  */
 OO.ui.ListToolGroup = function OoUiListToolGroup( toolbar, config ) {
+	// Allow passing positional parameters inside the config object
+	if ( OO.isPlainObject( toolbar ) && config === undefined ) {
+		config = toolbar;
+		toolbar = config.toolbar;
+	}
+
 	// Configuration initialization
 	config = config || {};
 
@@ -8913,6 +9202,12 @@ OO.ui.ListToolGroup.prototype.updateCollapsibleState = function () {
  * @param {Object} [config] Configuration options
  */
 OO.ui.MenuToolGroup = function OoUiMenuToolGroup( toolbar, config ) {
+	// Allow passing positional parameters inside the config object
+	if ( OO.isPlainObject( toolbar ) && config === undefined ) {
+		config = toolbar;
+		toolbar = config.toolbar;
+	}
+
 	// Configuration initialization
 	config = config || {};
 
@@ -8970,6 +9265,12 @@ OO.ui.MenuToolGroup.prototype.onUpdateState = function () {
  * @param {Object} [config] Configuration options
  */
 OO.ui.PopupTool = function OoUiPopupTool( toolbar, config ) {
+	// Allow passing positional parameters inside the config object
+	if ( OO.isPlainObject( toolbar ) && config === undefined ) {
+		config = toolbar;
+		toolbar = config.toolbar;
+	}
+
 	// Parent constructor
 	OO.ui.PopupTool.super.call( this, toolbar, config );
 
@@ -9127,6 +9428,12 @@ OO.ui.ItemWidget.prototype.setElementGroup = function ( group ) {
  * @cfg {jQuery} [$container=input.$element] Element to render menu under
  */
 OO.ui.LookupInputWidget = function OoUiLookupInputWidget( input, config ) {
+	// Allow passing positional parameters inside the config object
+	if ( OO.isPlainObject( input ) && config === undefined ) {
+		config = input;
+		input = config.input;
+	}
+
 	// Configuration initialization
 	config = config || {};
 
@@ -9434,6 +9741,12 @@ OO.ui.LookupInputWidget.prototype.getLookupCacheItemFromData = function () {
  * @param {Object} [config] Configuration options
  */
 OO.ui.OutlineControlsWidget = function OoUiOutlineControlsWidget( outline, config ) {
+	// Allow passing positional parameters inside the config object
+	if ( OO.isPlainObject( outline ) && config === undefined ) {
+		config = outline;
+		outline = config.outline;
+	}
+
 	// Configuration initialization
 	config = $.extend( { icon: 'add' }, config );
 
@@ -10022,7 +10335,22 @@ OO.ui.ActionWidget.prototype.toggle = function () {
 };
 
 /**
- * Button that shows and hides a popup.
+ * PopupButtonWidgets toggle the visibility of a contained {@link OO.ui.PopupWidget PopupWidget},
+ * which is used to display additional information or options.
+ *
+ *     @example
+ *     // Example of a popup button.
+ *     var popupButton = new OO.ui.PopupButtonWidget( {
+ *         label: 'Popup button with options',
+ *         icon: 'menu',
+ *         popup: {
+ *             $content: $( '<p>Additional options here.</p>' ),
+ *             padded: true,
+ *             align: 'left'
+ *         }
+ *     } );
+ *     // Append the button to the DOM.
+ *     $( 'body' ).append( popupButton.$element );
  *
  * @class
  * @extends OO.ui.ButtonWidget
@@ -10057,6 +10385,8 @@ OO.mixinClass( OO.ui.PopupButtonWidget, OO.ui.PopupElement );
 
 /**
  * Handle the button action being triggered.
+ *
+ * @private
  */
 OO.ui.PopupButtonWidget.prototype.onAction = function () {
 	this.popup.toggle();
@@ -10600,6 +10930,7 @@ OO.ui.ButtonInputWidget = function OoUiButtonInputWidget( config ) {
 
 	// Properties (must be set before parent constructor, which calls #setValue)
 	this.useInputTag = config.useInputTag;
+	this.type = config.type;
 
 	// Parent constructor
 	OO.ui.ButtonInputWidget.super.call( this, config );
@@ -10681,6 +11012,18 @@ OO.ui.ButtonInputWidget.prototype.setValue = function ( value ) {
 		OO.ui.ButtonInputWidget.super.prototype.setValue.call( this, value );
 	}
 	return this;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.ButtonInputWidget.prototype.onClick = function ( e ) {
+	var ret = OO.ui.ButtonElement.prototype.onClick.call( this, e );
+	if ( this.type === 'submit' ) {
+		// Never prevent default action (form submission)
+		return true;
+	}
+	return ret;
 };
 
 /**
@@ -11014,7 +11357,7 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	}
 
 	this.setValidation( config.validate );
-	this.setPosition( config.labelPosition );
+	this.setLabelPosition( config.labelPosition );
 
 	// Events
 	this.$input.on( {
@@ -11313,11 +11656,19 @@ OO.ui.TextInputWidget.prototype.isValid = function () {
  * @param {string} labelPosition Label position, 'before' or 'after'
  * @chainable
  */
-OO.ui.TextInputWidget.prototype.setPosition = function ( labelPosition ) {
+OO.ui.TextInputWidget.prototype.setLabelPosition = function ( labelPosition ) {
 	this.labelPosition = labelPosition;
 	this.updatePosition();
 	return this;
 };
+
+/**
+ * Deprecated alias of #setLabelPosition
+ *
+ * @deprecated Use setLabelPosition instead.
+ */
+OO.ui.TextInputWidget.prototype.setPosition =
+	OO.ui.TextInputWidget.prototype.setLabelPosition;
 
 /**
  * Update the position of the inline label.
@@ -11404,6 +11755,10 @@ OO.ui.ComboBoxWidget = function OoUiComboBoxWidget( config ) {
 		},
 		config.input
 	) );
+	this.input.$input.eq( 0 ).attr( {
+		role: 'combobox',
+		'aria-autocomplete': 'list'
+	} );
 	this.menu = new OO.ui.TextInputMenuSelectWidget( this.input, $.extend(
 		{
 			widget: this,
@@ -11599,7 +11954,12 @@ OO.ui.LabelWidget.prototype.onClick = function () {
 };
 
 /**
- * Generic option widget for use with OO.ui.SelectWidget.
+ * OptionWidgets are special elements that can be selected and configured with data. The
+ * data is often unique for each option, but it does not have to be. OptionWidgets are used
+ * with OO.ui.SelectWidget to create a selection of mutually exclusive options. For more information
+ * and examples, please see the [OOjs UI documentation on MediaWiki][1].
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options
  *
  * @class
  * @extends OO.ui.Widget
@@ -11654,7 +12014,7 @@ OO.ui.OptionWidget.static.scrollIntoViewOnSelect = false;
 /* Methods */
 
 /**
- * Check if option can be selected.
+ * Check if the option can be selected.
  *
  * @return {boolean} Item is selectable
  */
@@ -11663,7 +12023,9 @@ OO.ui.OptionWidget.prototype.isSelectable = function () {
 };
 
 /**
- * Check if option can be highlighted.
+ * Check if the option can be highlighted. A highlight indicates that the option
+ * may be selected when a user presses enter or clicks. Disabled items cannot
+ * be highlighted.
  *
  * @return {boolean} Item is highlightable
  */
@@ -11672,7 +12034,8 @@ OO.ui.OptionWidget.prototype.isHighlightable = function () {
 };
 
 /**
- * Check if option can be pressed.
+ * Check if the option can be pressed. The pressed state occurs when a user mouses
+ * down on an item, but has not yet let go of the mouse.
  *
  * @return {boolean} Item is pressable
  */
@@ -11681,7 +12044,7 @@ OO.ui.OptionWidget.prototype.isPressable = function () {
 };
 
 /**
- * Check if option is selected.
+ * Check if the option is selected.
  *
  * @return {boolean} Item is selected
  */
@@ -11690,7 +12053,8 @@ OO.ui.OptionWidget.prototype.isSelected = function () {
 };
 
 /**
- * Check if option is highlighted.
+ * Check if the option is highlighted. A highlight indicates that the
+ * item may be selected when a user presses enter or clicks.
  *
  * @return {boolean} Item is highlighted
  */
@@ -11699,7 +12063,9 @@ OO.ui.OptionWidget.prototype.isHighlighted = function () {
 };
 
 /**
- * Check if option is pressed.
+ * Check if the option is pressed. The pressed state occurs when a user mouses
+ * down on an item, but has not yet let go of the mouse. The item may appear
+ * selected, but it will not be selected until the user releases the mouse.
  *
  * @return {boolean} Item is pressed
  */
@@ -11708,7 +12074,9 @@ OO.ui.OptionWidget.prototype.isPressed = function () {
 };
 
 /**
- * Set selected state.
+ * Set the option’s selected state. In general, all modifications to the selection
+ * should be handled by the SelectWidget’s {@link OO.ui.SelectWidget#selectItem selectItem( [item] )}
+ * method instead of this method.
  *
  * @param {boolean} [state=false] Select option
  * @chainable
@@ -11728,7 +12096,10 @@ OO.ui.OptionWidget.prototype.setSelected = function ( state ) {
 };
 
 /**
- * Set highlighted state.
+ * Set the option’s highlighted state. In general, all programmatic
+ * modifications to the highlight should be handled by the
+ * SelectWidget’s {@link OO.ui.SelectWidget#highlightItem highlightItem( [item] )}
+ * method instead of this method.
  *
  * @param {boolean} [state=false] Highlight option
  * @chainable
@@ -11743,7 +12114,10 @@ OO.ui.OptionWidget.prototype.setHighlighted = function ( state ) {
 };
 
 /**
- * Set pressed state.
+ * Set the option’s pressed state. In general, all
+ * programmatic modifications to the pressed state should be handled by the
+ * SelectWidget’s {@link OO.ui.SelectWidget#pressItem pressItem( [item] )}
+ * method instead of this method.
  *
  * @param {boolean} [state=false] Press option
  * @chainable
@@ -11792,9 +12166,12 @@ OO.mixinClass( OO.ui.OptionWidget, OO.ui.IconElement );
 OO.mixinClass( OO.ui.OptionWidget, OO.ui.IndicatorElement );
 
 /**
- * Option widget that looks like a button.
+ * ButtonOptionWidget is a special type of {@link OO.ui.ButtonElement button element} that
+ * can be selected and configured with data. The class is
+ * used with OO.ui.ButtonSelectWidget to create a selection of button options. Please see the
+ * [OOjs UI documentation on MediaWiki] [1] for more information.
  *
- * Use together with OO.ui.ButtonSelectWidget.
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options#Button_selects_and_options
  *
  * @class
  * @extends OO.ui.DecoratedOptionWidget
@@ -11850,9 +12227,11 @@ OO.ui.ButtonOptionWidget.prototype.setSelected = function ( state ) {
 };
 
 /**
- * Option widget that looks like a radio button.
+ * RadioOptionWidget is an option widget that looks like a radio button.
+ * The class is used with OO.ui.RadioSelectWidget to create a selection of radio options.
+ * Please see the [OOjs UI documentation on MediaWiki] [1] for more information.
  *
- * Use together with OO.ui.RadioSelectWidget.
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options#Button_selects_and_option
  *
  * @class
  * @extends OO.ui.OptionWidget
@@ -11861,11 +12240,14 @@ OO.ui.ButtonOptionWidget.prototype.setSelected = function ( state ) {
  * @param {Object} [config] Configuration options
  */
 OO.ui.RadioOptionWidget = function OoUiRadioOptionWidget( config ) {
+	// Configuration initialization
+	config = config || {};
+
+	// Properties (must be done before parent constructor which calls #setDisabled)
+	this.radio = new OO.ui.RadioInputWidget( { value: config.data, tabIndex: -1 } );
+
 	// Parent constructor
 	OO.ui.RadioOptionWidget.super.call( this, config );
-
-	// Properties
-	this.radio = new OO.ui.RadioInputWidget( { value: config.data, tabIndex: -1 } );
 
 	// Initialization
 	this.$element
@@ -11901,7 +12283,22 @@ OO.ui.RadioOptionWidget.prototype.setSelected = function ( state ) {
 };
 
 /**
- * Item of an OO.ui.MenuSelectWidget.
+ * @inheritdoc
+ */
+OO.ui.RadioOptionWidget.prototype.setDisabled = function ( disabled ) {
+	OO.ui.RadioOptionWidget.super.prototype.setDisabled.call( this, disabled );
+
+	this.radio.setDisabled( this.isDisabled() );
+
+	return this;
+};
+
+/**
+ * MenuOptionWidget is an option widget that looks like a menu item. The class is used with
+ * OO.ui.MenuSelectWidget to create a menu of mutually exclusive options. Please see
+ * the [OOjs UI documentation on MediaWiki] [1] for more information.
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options#Menu_selects_and_options
  *
  * @class
  * @extends OO.ui.DecoratedOptionWidget
@@ -12616,7 +13013,10 @@ OO.ui.SearchWidget.prototype.getResults = function () {
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {OO.ui.OptionWidget[]} [items] Options to add
+ * @cfg {OO.ui.OptionWidget[]} [items] An array of options to add to the select.
+ *  Options are created with {@link OO.ui.OptionWidget OptionWidget} classes. See
+ *  the [OOjs UI documentation on MediaWiki] [2] for examples.
+ *  [2]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options
  */
 OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 	// Configuration initialization
@@ -12663,16 +13063,26 @@ OO.mixinClass( OO.ui.SelectWidget, OO.ui.GroupWidget );
 
 /**
  * @event highlight
+ *
+ * A `highlight` event is emitted when the highlight is changed with the #highlightItem method.
+ *
  * @param {OO.ui.OptionWidget|null} item Highlighted item
  */
 
 /**
  * @event press
+ *
+ * A `press` event is emitted when the #pressItem method is used to programmatically modify the
+ * pressed state of an option.
+ *
  * @param {OO.ui.OptionWidget|null} item Pressed item
  */
 
 /**
  * @event select
+ *
+ * A `select` event is emitted when the selection is modified programmatically with the #selectItem method.
+ *
  * @param {OO.ui.OptionWidget|null} item Selected item
  */
 
@@ -12683,12 +13093,19 @@ OO.mixinClass( OO.ui.SelectWidget, OO.ui.GroupWidget );
 
 /**
  * @event add
+ *
+ * An `add` event is emitted when options are added to the select with the #addItems method.
+ *
  * @param {OO.ui.OptionWidget[]} items Added items
- * @param {number} index Index items were added at
+ * @param {number} index Index of insertion point
  */
 
 /**
  * @event remove
+ *
+ * A `remove` event is emitted when options are removed from the select with the #clearItems
+ * or #removeItems methods.
+ *
  * @param {OO.ui.OptionWidget[]} items Removed items
  */
 
@@ -12811,6 +13228,7 @@ OO.ui.SelectWidget.prototype.onMouseLeave = function () {
 /**
  * Handle key down events.
  *
+ * @protected
  * @param {jQuery.Event} e Key down event
  */
 OO.ui.SelectWidget.prototype.onKeyDown = function ( e ) {
@@ -12944,11 +13362,10 @@ OO.ui.SelectWidget.prototype.togglePressed = function ( pressed ) {
 };
 
 /**
- * Highlight an item.
+ * Highlight an option. If the `item` param is omitted, no options will be highlighted
+ * and any existing highlight will be removed. The highlight is mutually exclusive.
  *
- * Highlighting is mutually exclusive.
- *
- * @param {OO.ui.OptionWidget} [item] Item to highlight, omit to deselect all
+ * @param {OO.ui.OptionWidget} [item] Item to highlight, omit for no highlight
  * @fires highlight
  * @chainable
  */
@@ -12971,7 +13388,8 @@ OO.ui.SelectWidget.prototype.highlightItem = function ( item ) {
 };
 
 /**
- * Select an item.
+ * Programmatically select an option by its reference. If the `item` parameter is omitted,
+ * all options will be deselected.
  *
  * @param {OO.ui.OptionWidget} [item] Item to select, omit to deselect all
  * @fires select
@@ -13038,11 +13456,14 @@ OO.ui.SelectWidget.prototype.chooseItem = function ( item ) {
 };
 
 /**
- * Get an item relative to another one.
+ * Get an option by its position relative to the specified item (or to the start of the option array,
+ * if item is `null`). The direction in which to search through the option array is specified with a
+ * number: -1 for reverse (the default) or 1 for forward. The method will return an option, or
+ * `null` if there are no options in the array.
  *
- * @param {OO.ui.OptionWidget|null} item Item to start at, null to get relative to list start
- * @param {number} direction Direction to move in, -1 to move backward, 1 to move forward
- * @return {OO.ui.OptionWidget|null} Item at position, `null` if there are no items in the menu
+ * @param {OO.ui.OptionWidget|null} item Item to describe the start position, or `null` to start at the beginning of the array.
+ * @param {number} direction Direction to move in: -1 to move backward, 1 to move forward
+ * @return {OO.ui.OptionWidget|null} Item at position, `null` if there are no items in the select
  */
 OO.ui.SelectWidget.prototype.getRelativeSelectableItem = function ( item, direction ) {
 	var currentIndex, nextIndex, i,
@@ -13069,7 +13490,8 @@ OO.ui.SelectWidget.prototype.getRelativeSelectableItem = function ( item, direct
 };
 
 /**
- * Get the next selectable item.
+ * Get the next selectable item or `null` if there are no selectable items.
+ * Disabled options and menu-section markers and breaks are not selectable.
  *
  * @return {OO.ui.OptionWidget|null} Item, `null` if there aren't any selectable items
  */
@@ -13087,7 +13509,8 @@ OO.ui.SelectWidget.prototype.getFirstSelectableItem = function () {
 };
 
 /**
- * Add items.
+ * Add an array of options to the select. Optionally, an index number can be used to
+ * specify an insertion point.
  *
  * @param {OO.ui.OptionWidget[]} items Items to add
  * @param {number} [index] Index to insert items after
@@ -13105,9 +13528,9 @@ OO.ui.SelectWidget.prototype.addItems = function ( items, index ) {
 };
 
 /**
- * Remove items.
- *
- * Items will be detached, not removed, so they can be used later.
+ * Remove the specified array of options from the select. Options will be detached
+ * from the DOM, not removed, so they can be reused later. To remove all options from
+ * the select, you may wish to use the #clearItems method instead.
  *
  * @param {OO.ui.OptionWidget[]} items Items to remove
  * @fires remove
@@ -13133,9 +13556,9 @@ OO.ui.SelectWidget.prototype.removeItems = function ( items ) {
 };
 
 /**
- * Clear all items.
- *
- * Items will be detached, not removed, so they can be used later.
+ * Clear all options from the select. Options will be detached from the DOM, not removed,
+ * so that they can be reused later. To remove a subset of options from the select, use
+ * the #removeItems method.
  *
  * @fires remove
  * @chainable
@@ -13155,9 +13578,38 @@ OO.ui.SelectWidget.prototype.clearItems = function () {
 };
 
 /**
- * Select widget containing button options.
+ * ButtonSelectWidget is a {@link OO.ui.SelectWidget select widget} that contains
+ * button options and is used together with
+ * OO.ui.ButtonOptionWidget. The ButtonSelectWidget provides an interface for
+ * highlighting, choosing, and selecting mutually exclusive options. Please see
+ * the [OOjs UI documentation on MediaWiki] [1] for more information.
  *
- * Use together with OO.ui.ButtonOptionWidget.
+ *     @example
+ *     // Example: A ButtonSelectWidget that contains three ButtonOptionWidgets
+ *     var option1 = new OO.ui.ButtonOptionWidget( {
+ *         data: 1,
+ *         label: 'Option 1',
+ *         title:'Button option 1'
+ *     } );
+ *
+ *     var option2 = new OO.ui.ButtonOptionWidget( {
+ *         data: 2,
+ *         label: 'Option 2',
+ *         title:'Button option 2'
+ *     } );
+ *
+ *     var option3 = new OO.ui.ButtonOptionWidget( {
+ *         data: 3,
+ *         label: 'Option 3',
+ *         title:'Button option 3'
+ *     } );
+ *
+ *     var buttonSelect=new OO.ui.ButtonSelectWidget( {
+ *         items: [option1, option2, option3]
+ *     } );
+ *     $('body').append(buttonSelect.$element);
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options
  *
  * @class
  * @extends OO.ui.SelectWidget
@@ -13189,9 +13641,34 @@ OO.inheritClass( OO.ui.ButtonSelectWidget, OO.ui.SelectWidget );
 OO.mixinClass( OO.ui.ButtonSelectWidget, OO.ui.TabIndexedElement );
 
 /**
- * Select widget containing radio button options.
+ * RadioSelectWidget is a {@link OO.ui.SelectWidget select widget} that contains radio
+ * options and is used together with OO.ui.RadioOptionWidget. The RadioSelectWidget provides
+ * an interface for adding, removing and selecting options.
+ * Please see the [OOjs UI documentation on MediaWiki][1] for more information.
  *
- * Use together with OO.ui.RadioOptionWidget.
+ *     @example
+ *     // A RadioSelectWidget with RadioOptions.
+ *     var option1 = new OO.ui.RadioOptionWidget( {
+ *         data: 'a',
+ *         label: 'Selected radio option'
+ *     } );
+ *
+ *     var option2 = new OO.ui.RadioOptionWidget( {
+ *         data: 'b',
+ *         label: 'Unselected radio option'
+ *     } );
+ *
+ *     var radioSelect=new OO.ui.RadioSelectWidget( {
+ *         items: [option1, option2]
+ *      } );
+ *
+ *     // Select 'option 1' using the RadioSelectWidget's selectItem() method.
+ *     radioSelect.selectItem( option1 );
+ *
+ *     $('body').append(radioSelect.$element);
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options
+
  *
  * @class
  * @extends OO.ui.SelectWidget
@@ -13223,12 +13700,24 @@ OO.inheritClass( OO.ui.RadioSelectWidget, OO.ui.SelectWidget );
 OO.mixinClass( OO.ui.RadioSelectWidget, OO.ui.TabIndexedElement );
 
 /**
- * Overlaid menu of options.
+ * MenuSelectWidget is a {@link OO.ui.SelectWidget select widget} that contains options and
+ * is used together with OO.ui.MenuOptionWidget. See {@link OO.ui.DropdownWidget DropdownWidget} and
+ * {@link OO.ui.ComboBoxWidget ComboBoxWidget} for examples of interfaces that contain menus.
+ * MenuSelectWidgets themselves are not designed to be instantiated directly, rather subclassed
+ * and customized to be opened, closed, and displayed as needed.
  *
- * Menus are clipped to the visible viewport. They do not provide a control for opening or closing
- * the menu.
+ * By default, menus are clipped to the visible viewport and are not visible when a user presses the
+ * mouse outside the menu.
  *
- * Use together with OO.ui.MenuOptionWidget.
+ * Menus also have support for keyboard interaction:
+ *
+ * - Enter/Return key: choose and select a menu option
+ * - Up-arrow key: highlight the previous menu option
+ * - Down-arrow key: highlight the next menu option
+ * - Esc key: hide the menu
+ *
+ * Please see the [OOjs UI documentation on MediaWiki][1] for more information.
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options
  *
  * @class
  * @extends OO.ui.SelectWidget
@@ -13279,6 +13768,7 @@ OO.mixinClass( OO.ui.MenuSelectWidget, OO.ui.ClippableElement );
 /**
  * Handles document mouse down events.
  *
+ * @protected
  * @param {jQuery.Event} e Key down event
  */
 OO.ui.MenuSelectWidget.prototype.onDocumentMouseDown = function ( e ) {
@@ -13468,11 +13958,17 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
  * @extends OO.ui.MenuSelectWidget
  *
  * @constructor
- * @param {OO.ui.TextInputWidget} input Text input widget to provide menu for
+ * @param {OO.ui.TextInputWidget} inputWidget Text input widget to provide menu for
  * @param {Object} [config] Configuration options
  * @cfg {jQuery} [$container=input.$element] Element to render menu under
  */
-OO.ui.TextInputMenuSelectWidget = function OoUiTextInputMenuSelectWidget( input, config ) {
+OO.ui.TextInputMenuSelectWidget = function OoUiTextInputMenuSelectWidget( inputWidget, config ) {
+	// Allow passing positional parameters inside the config object
+	if ( OO.isPlainObject( inputWidget ) && config === undefined ) {
+		config = inputWidget;
+		inputWidget = config.inputWidget;
+	}
+
 	// Configuration initialization
 	config = config || {};
 
@@ -13480,8 +13976,8 @@ OO.ui.TextInputMenuSelectWidget = function OoUiTextInputMenuSelectWidget( input,
 	OO.ui.TextInputMenuSelectWidget.super.call( this, config );
 
 	// Properties
-	this.input = input;
-	this.$container = config.$container || this.input.$element;
+	this.inputWidget = inputWidget;
+	this.$container = config.$container || this.inputWidget.$element;
 	this.onWindowResizeHandler = this.onWindowResize.bind( this );
 
 	// Initialization
