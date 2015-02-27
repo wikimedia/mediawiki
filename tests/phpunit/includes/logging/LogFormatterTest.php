@@ -256,6 +256,31 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, $formatter->formatParametersForApi() );
 	}
 
+	public function testCallableHandlerFactory() {
+		$testCalled = 0;
+		$paramCalled = 0;
+		$gen = function( &$counter ) {
+			return function( LogEntry $entry ) use ( &$counter ) {
+				++$counter;
+			};
+		};
+		$this->setMwGlobals( 'wgLogActionsHandlers',  array(
+			'phpunit/test' => $gen( $testCalled ),
+			'phpunit/param' => $gen( $paramCalled ),
+		) );
+
+		$entry = $this->newLogEntry( 'param', array() );
+		LogFormatter::newFromEntry( $entry );
+		$this->assertEquals( 0, $testCalled );
+		$this->assertEquals( 1, $paramCalled );
+
+		$paramCalled = 0;
+		$entry = $this->newLogEntry( 'test', array() );
+		LogFormatter::newFromEntry( $entry );
+		$this->assertEquals( 1, $testCalled );
+		$this->assertEquals( 0, $paramCalled );
+	}
+
 	public static function provideApiParamFormatting() {
 		return array(
 			array( 0, 'value', array( 'value' ) ),

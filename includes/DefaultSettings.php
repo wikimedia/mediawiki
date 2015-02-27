@@ -6911,8 +6911,11 @@ $wgLogActions = array(
 );
 
 /**
- * The same as above, but here values are names of classes,
- * not messages.
+ * The same as above, but here values are names of classes
+ * that extend LogFormatter, or callables that return a
+ * LogFormatter instance when called with a single LogEntry
+ * argument.
+ *
  * @see LogPage::actionText
  * @see LogFormatter
  */

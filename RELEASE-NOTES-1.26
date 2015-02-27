@@ -120,6 +120,8 @@ changes to languages because of Phabricator reports.
 * $wgSpecialPageGroups was removed (deprecated in 1.21).
 * SpecialPageFactory::setGroup was removed (deprecated in 1.21).
 * SpecialPageFactory::getGroup was removed (deprecated in 1.21).
+* The values in $wgLogActionsHandlers can now also be a callables, in addition
+  to the existing support for class names.
 
 == Compatibility ==
 
