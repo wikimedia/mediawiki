@@ -84,12 +84,14 @@ class Http {
 	 * @see Http::request()
 	 *
 	 * @param string $url
-	 * @param string $timeout
 	 * @param array $options
 	 * @return string
 	 */
-	public static function get( $url, $timeout = 'default', $options = array() ) {
-		$options['timeout'] = $timeout;
+	public static function get( $url, $options = array() ) {
+		// Second parameter used to be the timeout
+		if ( !is_array( $options ) ) {
+			$options['timeout'] = $options;
+		}
 		return Http::request( 'GET', $url, $options );
 	}
 
