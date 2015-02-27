@@ -498,6 +498,7 @@ class MediaWiki {
 			$trxProfiler->setExpectation( 'masterConns', 0, __METHOD__ );
 			$trxProfiler->setExpectation( 'writes', 0, __METHOD__ );
 		} else {
+			$trxProfiler = Profiler::instance()->getTransactionProfiler();
 			$trxProfiler->setExpectation( 'maxAffected', 500, __METHOD__ );
 		}
 
