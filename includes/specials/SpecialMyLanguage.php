@@ -80,6 +80,11 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 			return null;
 		}
 
+		if ( $base->isRedirect() ) {
+			$page = new WikiPage( $base );
+			$base = $page->getRedirectTarget();
+		}
+
 		$uiCode = $this->getLanguage()->getCode();
 		$proposed = $base->getSubpage( $uiCode );
 		if ( $uiCode !== $this->getConfig()->get( 'LanguageCode' ) && $proposed && $proposed->exists() ) {
