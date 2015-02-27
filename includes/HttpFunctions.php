@@ -84,12 +84,17 @@ class Http {
 	 * @see Http::request()
 	 *
 	 * @param string $url
-	 * @param string $timeout
 	 * @param array $options
 	 * @return string
 	 */
-	public static function get( $url, $timeout = 'default', $options = array() ) {
-		$options['timeout'] = $timeout;
+	public static function get( $url, $options = array() ) {
+		$args = func_get_args();
+		if ( isset( $args[2] ) && is_array( $args[2] ) ) {
+			// Third parameter used to be $options
+			$options = $args[2];
+			// So second was the timeout
+			$options['timeout'] = $args[1];
+		}
 		return Http::request( 'GET', $url, $options );
 	}
 
