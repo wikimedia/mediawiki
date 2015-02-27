@@ -37,8 +37,8 @@ class ApiQueryTokens extends ApiQueryBase {
 		$params = $this->extractRequestParams();
 		$res = array();
 
-		if ( $this->getMain()->getRequest()->getVal( 'callback' ) !== null ) {
-			$this->setWarning( 'Tokens may not be obtained when using a callback' );
+		if ( $this->lacksSameOriginSecurity() ) {
+			$this->setWarning( 'Tokens may not be obtained when the same-origin policy is not applied' );
 			return;
 		}
 

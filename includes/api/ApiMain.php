@@ -181,10 +181,10 @@ class ApiMain extends ApiBase {
 			// Remove all modules other than login
 			global $wgUser;
 
-			if ( $this->getVal( 'callback' ) !== null ) {
-				// JSON callback allows cross-site reads.
-				// For safety, strip user credentials.
-				wfDebug( "API: stripping user credentials for JSON callback\n" );
+			if ( $this->lacksSameOriginSecurity() ) {
+				// If we're in a mode that breaks the same-origin policy, strip
+				// user credentials for security.
+				wfDebug( "API: stripping user credentials when the same-origin policy is not applied\n" );
 				$wgUser = new User();
 				$this->getContext()->setUser( $wgUser );
 			}
