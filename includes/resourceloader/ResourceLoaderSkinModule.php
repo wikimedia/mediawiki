@@ -31,10 +31,20 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
 		$logo = $this->getConfig()->get( 'Logo' );
+		$logoPNG = $this->getConfig()->get( 'LogoPNG' );
 		$styles = parent::getStyles( $context );
-		$styles['all'][] = '.mw-wiki-logo { background-image: ' .
+		$styles['all'][] = '.mw-wiki-logo { background-image: /* @embed */ ' .
 			CSSMin::buildUrlValue( $logo ) .
 			'; }';
+		$styles['all'][] = '.mw-wiki-logo {  background-image: /* @embed */ -webkit-linear-gradient(transparent, transparent), ' .
+			CSSMin::buildUrlValue( $logo ) .
+			'; }';
+		$styles['all'][] = '.mw-wiki-logo {  background-image: /* @embed */ linear-gradient(transparent, transparent), transparent), ' .
+			CSSMin::buildUrlValue( $logo ) .
+			'; }';
+		$styles['all'][] = '.mw-wiki-logo {  background-image:' .
+			CSSMin::buildUrlValue( $logoPNG ) .
+			'\9; }';
 
 		return $styles;
 	}
