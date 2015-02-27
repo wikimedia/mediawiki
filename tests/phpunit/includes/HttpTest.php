@@ -486,7 +486,7 @@ class HttpTest extends MediaWikiTestCase {
 class MWHttpRequestTester extends MWHttpRequest {
 	// function derived from the MWHttpRequest factory function but
 	// returns appropriate tester class here
-	public static function factory( $url, $options = null ) {
+	public static function factory( $url, $options = null, $caller = __METHOD__ ) {
 		if ( !Http::$httpEngine ) {
 			Http::$httpEngine = function_exists( 'curl_init' ) ? 'curl' : 'php';
 		} elseif ( Http::$httpEngine == 'curl' && !function_exists( 'curl_init' ) ) {
@@ -496,7 +496,7 @@ class MWHttpRequestTester extends MWHttpRequest {
 
 		switch ( Http::$httpEngine ) {
 			case 'curl':
-				return new CurlHttpRequestTester( $url, $options );
+				return new CurlHttpRequestTester( $url, $options, $caller );
 			case 'php':
 				if ( !wfIniGetBool( 'allow_url_fopen' ) ) {
 					throw new MWException( __METHOD__ .
@@ -504,7 +504,7 @@ class MWHttpRequestTester extends MWHttpRequest {
 							. 'If possible, curl should be used instead. See http://php.net/curl.' );
 				}
 
-				return new PhpHttpRequestTester( $url, $options );
+				return new PhpHttpRequestTester( $url, $options, $caller );
 			default:
 		}
 	}
