@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Nemo bis",
-			"Rberchie"
+			"Rberchie",
+			"MF-Warburg"
 		]
 	},
 	"sun": "Kwasiada",
@@ -37,7 +38,7 @@
 	"searchprofile-everything": "Biribiara",
 	"searchprofile-articles-tooltip": "Hwehwe wo dola baako mu",
 	"searchall": "Biribiara",
-	"diff": "NSONSOE",
+	"diff": "nsonsoe",
 	"hide": "Fa sie",
 	"watch": "Hwe",
 	"undeleteviewlink": "Hwe",

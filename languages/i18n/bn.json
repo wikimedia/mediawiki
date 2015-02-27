@@ -2137,7 +2137,7 @@
 	"thumbnail_gd-library": "অসম্পূর্ণ জিডি লাইব্রেরী কনফিগারেশন: $1 ফাংশন নেই",
 	"thumbnail_image-missing": "ফাইলটি খুজে পাওয়া যাচ্ছে না: $1",
 	"import": "পাতা আমদানি",
-	"importinterwiki": "আন্তঃউইকি আমদানি",
+	"importinterwiki": "অন্য উইকি থেকে আমদানী",
 	"import-interwiki-text": "আমদানির জন্য একটি উইকি ও পাতার শিরোনাম নির্বাচন করুন।\nসংশোধনের তারিখগুলি এবং সম্পাদকদের নামগুলি সংরক্ষণ করা হবে।\nসমস্ত আন্তঃউইকি আমদানিগুলি [[Special:Log/import|আমদানি লগে]] লিপিবদ্ধ আছে।",
 	"import-interwiki-sourcewiki": "উত্স উইকি:",
 	"import-interwiki-sourcepage": "উৎস পাতা:",

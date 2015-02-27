@@ -743,7 +743,7 @@
 	"rev-suppressed-unhide-diff": "Једна од измена ове разлике је '''сакривена'''.\nДетаљи се налазе у [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} историји сакривања].\nИпак можете да [$1 видите ову разлику] ако желите да наставите.",
 	"rev-deleted-diff-view": "Једна од измена ове разлике је '''обрисана'''.\nИпак можете да видите ову разлику; више детаља можете наћи у [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} историји брисања].",
 	"rev-suppressed-diff-view": "Једна од измена ове разлике је '''сакривена'''.\nИпак можете да видите ову разлику; више детаља можете наћи у [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} историји сакривања].",
-	"rev-delundel": "прикажи/сакриј",
+	"rev-delundel": "промени видљивост",
 	"rev-showdeleted": "прикажи",
 	"revisiondelete": "Обриши/врати измене",
 	"revdelete-nooldid-title": "Нема тражене измене",

@@ -7,7 +7,8 @@
 			"Reedy",
 			"Urhixidur",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Sıltamalarnıñ astına sızu:",
@@ -129,7 +130,7 @@
 	"mytalk": "Bäxäsem",
 	"anontalk": "Bu IP adresı öçen bäxäs bite",
 	"navigation": "Küçü",
-	"and": " häm",
+	"and": "&#32;häm",
 	"qbfind": "Ezläw",
 	"qbbrowse": "Qaraw",
 	"qbedit": "Üzgärtü",
@@ -1042,7 +1043,6 @@
 	"deletereasonotherlist": "Başqa säbäp",
 	"deletereason-dropdown": "* Beterüneñ säbäpläre\n** vandallıq\n** avtor sorawı buyınça\n** avtor xoquqların bozu",
 	"delete-edit-reasonlist": "Säbäplär isemlegen üzgärtü",
-	"rollback_short": "Kire qaytaru",
 	"rollbacklink": "kire qaytaru",
 	"editcomment": "Üzgärtü öçen taswir: \"''$1''\".",
 	"revertpage": "[[Special:Contributions/$2|$2]] üzgärtüläre ([[User talk:$2|bäxäs]])  [[User:$1|$1]] yuramasına kire qaytarıldı",
