@@ -109,6 +109,8 @@ production.
   pointing to it.
 * New hooks 'ApiMain::moduleManager' and 'ApiQuery::moduleManager', can be
   used for conditional registration of API modules.
+* The values in $wgLogActionsHandlers can now also be a callable, in addition
+  to the existing support for class names.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
