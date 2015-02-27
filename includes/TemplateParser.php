@@ -97,7 +97,7 @@ class TemplateParser {
 
 		// Fetch a secret key for building a keyed hash of the PHP code
 		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
-		$secretKey = $config->get( 'SecretKey' );
+		$secretKey = $config->get( 'SecretKey' ) ? $config->get( 'SecretKey' ) : 'key';
 
 		// See if the compiled PHP code is stored in cache.
 		// CACHE_ACCEL throws an exception if no suitable object cache is present, so fall
