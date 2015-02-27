@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.8.1
+ * OOjs UI v0.8.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-02-26T02:10:32Z
+ * Date: 2015-02-27T18:02:31Z
  */
 ( function ( OO ) {
 
@@ -2740,7 +2740,7 @@ OO.ui.WindowManager.prototype.getWindow = function ( name ) {
 					'Cannot auto-instantiate window: symbolic name is unrecognized by the factory'
 				) );
 			} else {
-				win = this.factory.create( name, this );
+				win = this.factory.create( name );
 				this.addWindows( [ win ] );
 				deferred.resolve( win );
 			}
