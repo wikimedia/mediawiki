@@ -96,8 +96,8 @@ changes to languages because of Bugzilla reports.
 * The Block class constructor now takes an associative array of parameters
   instead of many optional positional arguments. Calling the constructor the old
   way will issue a deprecation warning.
-
-
+* The values in $wgLogActionsHandlers can now also be a callables, in addition
+  to the existing support for class names.
 == Compatibility ==
 
 MediaWiki 1.26 requires PHP 5.3.3 or later. There is experimental support for

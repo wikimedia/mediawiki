@@ -57,8 +57,12 @@ class LogFormatter {
 			$handler = $wgLogActionsHandlers[$wildcard];
 		}
 
-		if ( $handler !== '' && is_string( $handler ) && class_exists( $handler ) ) {
-			return new $handler( $entry );
+		if ( $handler !== ''  ) {
+			if ( is_callable( $handler ) ) {
+				return call_user_func( $handler, $entry );
+			} elseif ( is_string( $handler ) && class_exists( $handler ) ) {
+				return new $handler( $entry );
+			}
 		}
 
 		return new LegacyLogFormatter( $entry );
