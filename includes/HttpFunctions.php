@@ -82,14 +82,22 @@ class Http {
 	/**
 	 * Simple wrapper for Http::request( 'GET' )
 	 * @see Http::request()
+	 * @since 1.25 Second parameter $timeout removed. Second parameter
+	 * is now $options which can be given a 'timeout'
 	 *
 	 * @param string $url
-	 * @param string $timeout
 	 * @param array $options
 	 * @return string
 	 */
-	public static function get( $url, $timeout = 'default', $options = array() ) {
-		$options['timeout'] = $timeout;
+	public static function get( $url, $options = array() ) {
+		$args = func_get_args();
+		if ( is_string( $args[1] ) || is_numeric( $args[1] ) ) {
+			// Second was used to be the timeout
+			// And third parameter used to be $options
+			wfWarn( "Second parameter should not be a timeout." );
+			$options = isset( $args[2] ) ? $args[2] : array();
+			$options['timeout'] = $args[1];
+		}
 		return Http::request( 'GET', $url, $options );
 	}
 
