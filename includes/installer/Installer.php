@@ -1376,7 +1376,7 @@ abstract class Installer {
 				}
 
 				try {
-					$text = Http::get( $url . $file, array( 'timeout' => 3 ) );
+					$text = Http::get( $url . $file, array( 'timeout' => 3 ), __METHOD__ );
 				} catch ( Exception $e ) {
 					// Http::get throws with allow_url_fopen = false and no curl extension.
 					$text = null;
@@ -1724,7 +1724,7 @@ abstract class Installer {
 
 		if ( MWHttpRequest::canMakeRequests() ) {
 			$res = MWHttpRequest::factory( $this->mediaWikiAnnounceUrl,
-				array( 'method' => 'POST', 'postData' => $params ) )->execute();
+				array( 'method' => 'POST', 'postData' => $params ), __METHOD__ )->execute();
 			if ( !$res->isOK() ) {
 				$s->warning( 'config-install-subscribe-fail', $res->getMessage() );
 			}
