@@ -92,9 +92,10 @@ class ThumbnailRenderJob extends Job {
 
 		wfDebug( __METHOD__ . ": hitting url {$thumbUrl}\n" );
 
-		$request = MWHttpRequest::factory( $thumbUrl, array(
-			'method' => 'HEAD',
-			'followRedirects' => true ) );
+		$request = MWHttpRequest::factory( $thumbUrl, 
+			array( 'method' => 'HEAD', 'followRedirects' => true ),
+			__METHOD__
+		);
 
 		if ( $wgUploadThumbnailRenderHttpCustomHost ) {
 			$request->setHeader( 'Host', $wgUploadThumbnailRenderHttpCustomHost );

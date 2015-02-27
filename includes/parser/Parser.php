@@ -4096,7 +4096,7 @@ class Parser {
 			return $obj->tc_contents;
 		}
 
-		$req = MWHttpRequest::factory( $url );
+		$req = MWHttpRequest::factory( $url, array(), __METHOD__ );
 		$status = $req->execute(); // Status object
 		if ( $status->isOK() ) {
 			$text = $req->getContent();
