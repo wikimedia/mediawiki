@@ -258,6 +258,12 @@ $wgFileCacheDirectory = false;
 $wgLogo = false;
 
 /**
+ * Support for svg logo with png fallback
+ * @since 1.25
+ */
+$wgLogoSVG = false;
+
+/**
  * The URL path of the shortcut icon.
  * @since 1.6
  */
