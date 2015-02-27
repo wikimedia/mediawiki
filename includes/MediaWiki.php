@@ -489,12 +489,13 @@ class MediaWiki {
 		$action = $this->getAction();
 		$wgTitle = $title;
 
+		$trxProfiler = Profiler::instance()->getTransactionProfiler();
+
 		// Aside from rollback, master queries should not happen on GET requests.
 		// Periodic or "in passing" updates on GET should use the job queue.
 		if ( !$request->wasPosted()
 			&& in_array( $action, array( 'view', 'edit', 'history' ) )
 		) {
-			$trxProfiler = Profiler::instance()->getTransactionProfiler();
 			$trxProfiler->setExpectation( 'masterConns', 0, __METHOD__ );
 			$trxProfiler->setExpectation( 'writes', 0, __METHOD__ );
 		} else {
