@@ -257,6 +257,9 @@ $wgFileCacheDirectory = false;
  */
 $wgLogo = false;
 
+/* PNG fallback */
+$wgLogoPNG = false;
+
 /**
  * The URL path of the shortcut icon.
  * @since 1.6
