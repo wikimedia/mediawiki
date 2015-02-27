@@ -117,7 +117,7 @@ function findAuxFile( $file, $auxExtension, $maxStrip = 1 ) {
 function getFileCommentFromSourceWiki( $wiki_host, $file ) {
 	$url = $wiki_host . '/api.php?action=query&format=xml&titles=File:'
 		. rawurlencode( $file ) . '&prop=imageinfo&&iiprop=comment';
-	$body = Http::get( $url );
+	$body = Http::get( $url, array(), __METHOD__ );
 	if ( preg_match( '#<ii comment="([^"]*)" />#', $body, $matches ) == 0 ) {
 		return false;
 	}
@@ -128,7 +128,7 @@ function getFileCommentFromSourceWiki( $wiki_host, $file ) {
 function getFileUserFromSourceWiki( $wiki_host, $file ) {
 	$url = $wiki_host . '/api.php?action=query&format=xml&titles=File:'
 		. rawurlencode( $file ) . '&prop=imageinfo&&iiprop=user';
-	$body = Http::get( $url );
+	$body = Http::get( $url, array(), __METHOD__ );
 	if ( preg_match( '#<ii user="([^"]*)" />#', $body, $matches ) == 0 ) {
 		return false;
 	}

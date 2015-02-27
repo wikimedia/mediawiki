@@ -46,7 +46,7 @@ class BenchHttpHttps extends Benchmarker {
 	}
 
 	static function doRequest( $proto ) {
-		Http::get( "$proto://localhost/" );
+		Http::get( "$proto://localhost/", array(), __METHOD__ );
 	}
 
 	// bench function 1
