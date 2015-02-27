@@ -332,8 +332,8 @@ class UserTest extends MediaWikiTestCase {
 	public function testGetCanonicalName( $name, $expectedArray, $msg ) {
 		foreach ( $expectedArray as $validate => $expected ) {
 			$this->assertEquals(
-				User::getCanonicalName( $name, $validate === 'false' ? false : $validate ),
 				$expected,
+				User::getCanonicalName( $name, $validate === 'false' ? false : $validate ),
 				$msg . ' (' . $validate . ')'
 			);
 		}
