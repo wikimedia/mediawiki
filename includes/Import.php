@@ -1740,7 +1740,7 @@ class WikiRevision {
 
 		// @todo FIXME!
 		$src = $this->getSrc();
-		$data = Http::get( $src );
+		$data = Http::get( $src, array(), __METHOD__ );
 		if ( !$data ) {
 			wfDebug( "IMPORT: couldn't fetch source $src\n" );
 			fclose( $f );
@@ -1897,7 +1897,7 @@ class ImportStreamSource implements ImportSource {
 		# quicker and sorts out user-agent problems which might
 		# otherwise prevent importing from large sites, such
 		# as the Wikimedia cluster, etc.
-		$data = Http::request( $method, $url, array( 'followRedirects' => true ) );
+		$data = Http::request( $method, $url, array( 'followRedirects' => true ), __METHOD__ );
 		if ( $data !== false ) {
 			$file = tmpfile();
 			fwrite( $file, $data );

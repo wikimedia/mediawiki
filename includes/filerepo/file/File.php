@@ -2008,7 +2008,7 @@ abstract class File {
 				wfDebug( "miss\n" );
 			}
 			wfDebug( "Fetching shared description from $renderUrl\n" );
-			$res = Http::get( $renderUrl );
+			$res = Http::get( $renderUrl, array(), __METHOD__ );
 			if ( $res && $this->repo->descriptionCacheExpiry > 0 ) {
 				$wgMemc->set( $key, $res, $this->repo->descriptionCacheExpiry );
 			}

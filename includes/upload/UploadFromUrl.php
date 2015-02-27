@@ -287,7 +287,7 @@ class UploadFromUrl extends UploadBase {
 			'Starting download from "' . $this->mUrl . '" ' .
 				'<' . implode( ',', array_keys( array_filter( $options ) ) ) . '>'
 		);
-		$req = MWHttpRequest::factory( $this->mUrl, $options );
+		$req = MWHttpRequest::factory( $this->mUrl, $options, __METHOD__ );
 		$req->setCallback( array( $this, 'saveTempFileChunk' ) );
 		$status = $req->execute();
 
