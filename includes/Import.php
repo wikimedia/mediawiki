@@ -376,12 +376,12 @@ class WikiImporter {
 		$page->loadPageData( 'fromdbmaster' );
 		$content = $page->getContent();
 		$editInfo = $page->prepareContentForEdit( $content );
-
+		$countKey = 'title_' . $title->getPrefixedText();
 		$countable = $page->isCountable( $editInfo );
-		$oldcountable = $this->countableCache['title_' . $title->getPrefixedText()];
-		if ( isset( $oldcountable ) && $countable != $oldcountable ) {
+		if ( array_key_exists( $countKey, $this->countableCache ) &&
+			$countable != $this->countableCache[ $countKey ] ) {
 			DeferredUpdates::addUpdate( SiteStatsUpdate::factory( array(
-				'articles' => ( (int)$countable - (int)$oldcountable )
+				'articles' => ( (int)$countable - (int)$this->countableCache[ $countKey ] )
 			) ) );
 		}
 
@@ -477,7 +477,8 @@ class WikiImporter {
 	/**
 	 * Retrieves the contents of the named attribute of the current element.
 	 * @param string $attr The name of the attribute
-	 * @return string The value of the attribute or an empty string if it is not set in the current element.
+	 * @return string The value of the attribute or an empty string if it is not set in the current
+	 * element.
 	 */
 	public function nodeAttribute( $attr ) {
 		return $this->reader->getAttribute( $attr );
