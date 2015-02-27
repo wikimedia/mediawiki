@@ -332,8 +332,8 @@ class UserTest extends MediaWikiTestCase {
 	public function testGetCanonicalName( $name, $expectedArray, $msg ) {
 		foreach ( $expectedArray as $validate => $expected ) {
 			$this->assertEquals(
-				User::getCanonicalName( $name, $validate === 'false' ? false : $validate ),
 				$expected,
+				User::getCanonicalName( $name, $validate === 'false' ? false : $validate ),
 				$msg . ' (' . $validate . ')'
 			);
 		}
@@ -341,7 +341,7 @@ class UserTest extends MediaWikiTestCase {
 
 	public static function provideGetCanonicalName() {
 		return array(
-			array( ' trailing space ', array( 'creatable' => 'Trailing space' ), 'Trailing spaces' ),
+			array( ' Trailing space ', array( 'creatable' => 'Trailing space' ), 'Trailing spaces' ),
 			// @todo FIXME: Maybe the creatable name should be 'Talk:Username' or false to reject?
 			array( 'Talk:Username', array( 'creatable' => 'Username', 'usable' => 'Username',
 				'valid' => 'Username', 'false' => 'Talk:Username' ), 'Namespace prefix' ),
