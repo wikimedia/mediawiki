@@ -31,11 +31,21 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
 		$logo = $this->getConfig()->get( 'Logo' );
+		$logoSVG = $this->getConfig()->get( 'LogoSVG' );
 		$styles = parent::getStyles( $context );
-		$styles['all'][] = '.mw-wiki-logo { background-image: ' .
-			CSSMin::buildUrlValue( $logo ) .
-			'; }';
-
+		if ( $logoSVG ) {
+			$styles['all'][] = '.mw-wiki-logo { ' .
+				'background-image: ' .
+					CSSMin::buildUrlValue( $logo ) . '; ' .
+				'background-image: -webkit-linear-gradient(transparent, transparent), ' .
+					CSSMin::buildUrlValue( $logoSVG ) . '; ' .
+				'background-image: linear-gradient( transparent, transparent), ' .
+					CSSMin::buildUrlValue( $logoSVG ) . '; }';
+		} else {
+			$styles['all'][] = '.mw-wiki-logo { ' .
+				'background-image: ' .
+					CSSMin::buildUrlValue( $logo ) . '; }';
+		}
 		return $styles;
 	}
 
@@ -64,6 +74,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 */
 	public function getModifiedHash( ResourceLoaderContext $context ) {
 		$logo = $this->getConfig()->get( 'Logo' );
-		return md5( parent::getModifiedHash( $context ) . $logo );
+		$logoSVG = $this->getConfig()->get( 'LogoSVG' );
+		return md5( parent::getModifiedHash( $context ) . $logo . json_encode( $logoSVG ) );
 	}
 }
