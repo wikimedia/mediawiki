@@ -1478,7 +1478,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$url = $this->backend->getFileHttpUrl( array( 'src' => $source ) );
 
 		if ( $url !== null ) { // supported
-			$data = Http::request( "GET", $url );
+			$data = Http::request( "GET", $url, array(), __METHOD__ );
 			$this->assertEquals( $content, $data,
 				"HTTP GET of URL has right contents ($backendName)." );
 		}

@@ -185,7 +185,7 @@ class FindHooks extends Maintenance {
 
 		$retval = array();
 		while ( true ) {
-			$json = Http::get( wfAppendQuery( 'http://www.mediawiki.org/w/api.php', $params ) );
+			$json = Http::get( wfAppendQuery( 'http://www.mediawiki.org/w/api.php', $params ), array(), __METHOD__ );
 			$data = FormatJson::decode( $json, true );
 			foreach ( $data['query']['categorymembers'] as $page ) {
 				if ( preg_match( '/Manual\:Hooks\/([a-zA-Z0-9- :]+)/', $page['title'], $m ) ) {

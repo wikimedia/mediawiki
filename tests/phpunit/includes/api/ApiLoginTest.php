@@ -123,7 +123,8 @@ class ApiLoginTest extends ApiTestCase {
 					"lgname" => $user->username,
 					"lgpassword" => $user->password
 				)
-			)
+			),
+			__METHOD__
 		);
 		$req->execute();
 
