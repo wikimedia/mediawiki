@@ -25,5 +25,5 @@
  *
  * @since 1.23
  */
-class ConfigException extends MWException {
+class ConfigException extends Exception {
 }
