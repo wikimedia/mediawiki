@@ -47,6 +47,9 @@ $wgAutoloadClasses += array(
 	'TestUser' => "$testDir/phpunit/includes/TestUser.php",
 	'LessFileCompilationTest' => "$testDir/phpunit/LessFileCompilationTest.php",
 
+	# tests/phpunit/includes
+	'TestingAccessWrapper' => "$testDir/phpunit/includes/TestingAccessWrapper.php",
+
 	# tests/phpunit/includes/api
 	'ApiFormatTestBase' => "$testDir/phpunit/includes/api/format/ApiFormatTestBase.php",
 	'ApiQueryTestBase' => "$testDir/phpunit/includes/api/query/ApiQueryTestBase.php",
