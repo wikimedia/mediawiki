@@ -40,14 +40,16 @@ class ZhConverter extends LanguageConverter {
 								$variants = array(),
 								$variantfallbacks = array(),
 								$flags = array(),
-								$manualLevel = array() ) {
+								$manualLevel = array(),
+								$variantaliases = array() ) {
 		$this->mDescCodeSep = '：';
 		$this->mDescVarSep = '；';
 		parent::__construct( $langobj, $maincode,
 									$variants,
 									$variantfallbacks,
 									$flags,
-									$manualLevel );
+									$manualLevel,
+									$variantaliases );
 		$names = array(
 			'zh' => '原文',
 			'zh-hans' => '简体',
@@ -148,10 +150,20 @@ class LanguageZh extends LanguageZh_hans {
 			'zh-hant' => 'unidirectional',
 		);
 
+		$variantaliases = array(
+			'zh-hans-cn' => 'zh-cn',
+			'zh-hans-sg' => 'zh-sg',
+			'zh-hans-my' => 'zh-my',
+			'zh-hant-hk' => 'zh-hk',
+			'zh-hant-mo' => 'zh-mo',
+			'zh-hant-tw' => 'zh-tw',
+		);
+
 		$this->mConverter = new ZhConverter( $this, 'zh',
 								$variants, $variantfallbacks,
 								array(),
-								$ml );
+								$ml,
+								$variantaliases );
 
 		$wgHooks['PageContentSaveComplete'][] = $this->mConverter;
 	}
