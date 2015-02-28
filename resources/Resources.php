@@ -1063,6 +1063,7 @@ return array(
 			'mediawiki.api',
 			'mediawiki.action.history.diff',
 			'mediawiki.util',
+			'mediawiki.notify',
 			'mediawiki.jqueryMsg',
 		),
 		'messages' => array(
@@ -1070,6 +1071,7 @@ return array(
 			'tooltip-p-lang',
 			'summary-preview',
 			'parentheses',
+			'previewerrortext',
 		),
 	),
 	'mediawiki.action.edit.stash' => array(

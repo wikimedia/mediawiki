@@ -206,6 +206,14 @@
 			$copyElements.animate( {
 				opacity: 1
 			}, 'fast' );
+		} ).fail( function ( code, result ) {
+			if ( code === 'http' ) {
+				mw.log.warn( 'Preview or Diff failed due to an HTTP error: ' +  result.textStatus );
+			} else {
+				mw.log.warn( 'Preview or Diff failed with API error: ' +  code );
+			}
+			// Report to user about the error
+			mw.notify( mw.msg( 'previewerrortext' ), { tag: 'js-preview-error' } );
 		} );
 	}
 
