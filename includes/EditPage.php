@@ -2996,6 +2996,12 @@ HTML
 
 		if ( $this->formtype == 'preview' ) {
 			$this->showPreview( $previewOutput );
+		} else {
+			// Empty content container for LivePreview
+			$pageViewLang = $this->mTitle->getPageViewLanguage();
+			$attribs = array( 'lang' => $pageViewLang->getHtmlCode(), 'dir' => $pageViewLang->getDir(),
+				'class' => 'mw-content-' . $pageViewLang->getDir() );
+			$wgOut->addHTML( Html::rawElement( 'div', $attribs ) );
 		}
 
 		$wgOut->addHTML( '</div>' );
