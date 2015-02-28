@@ -63,7 +63,7 @@ class LocalSettingsGenerator {
 				'wgRightsText', 'wgMainCacheType', 'wgEnableUploads',
 				'wgMainCacheType', '_MemCachedServers', 'wgDBserver', 'wgDBuser',
 				'wgDBpassword', 'wgUseInstantCommons', 'wgUpgradeKey', 'wgDefaultSkin',
-				'wgMetaNamespace', 'wgResourceLoaderMaxQueryLength', 'wgLogo',
+				'wgMetaNamespace', 'wgLogo',
 			),
 			$db->getGlobalNames()
 		);
