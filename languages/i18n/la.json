@@ -21,7 +21,8 @@
 			"UV",
 			"Žekřil71pl",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Lesgles"
 		]
 	},
 	"tog-underline": "Versores linea denotandi:",
@@ -628,7 +629,7 @@
 	"prefs-user-pages": "Paginae usoris",
 	"prefs-personal": "Minutiae rationis",
 	"prefs-rc": "Nuper mutata",
-	"prefs-watchlist": "Paginae custoditae",
+	"prefs-watchlist": "Paginae observatae",
 	"prefs-watchlist-days": "Numerus dierum displicandus in paginis tuis custoditis:",
 	"prefs-watchlist-days-max": "Numerus maximus: $1 {{PLURAL:$1|dies|dies}}",
 	"prefs-watchlist-edits": "Numerus recensionum displicandus in paginis tuis custoditis extensis:",
@@ -847,7 +848,7 @@
 	"recentchangeslinked-feed": "Nuper mutata annexorum",
 	"recentchangeslinked-toolbox": "Nuper mutata annexorum",
 	"recentchangeslinked-title": "Nuper mutata in paginis quibus pagina \"$1\" nectit",
-	"recentchangeslinked-summary": "Ecce mutationes recentissimas commentationum quae aut paginae cuidam adnectuntur, aut in categoria quadam includuntur. Paginae a [[Special:Watchlist|te custoditae]] '''litteris pinguibus''' monstrantur.",
+	"recentchangeslinked-summary": "Ecce mutationes recentissimas commentationum quae aut paginae cuidam adnectuntur, aut in categoria quadam includuntur. Paginae a [[Special:Watchlist|te observatae]] '''litteris pinguibus''' monstrantur.",
 	"recentchangeslinked-page": "Titulus paginae:",
 	"recentchangeslinked-to": "Mutationes commentationum quae huic paginae adnectuntur monstrare",
 	"upload": "Fasciculum imponere",
@@ -1107,8 +1108,8 @@
 	"emailsenttext": "Nuntium tuum missum est.",
 	"emailuserfooter": "Has litteras electronicas $1 ad $2 misit per \"Litteras electronicas usori mittere\" in {{grammar:ablative|{{SITENAME}}}}.",
 	"usermessage-editor": "Nuntius systematis",
-	"watchlist": "Paginae custoditae",
-	"mywatchlist": "Paginae custoditae",
+	"watchlist": "Paginae observatae",
+	"mywatchlist": "Paginae observatae",
 	"watchlistfor2": "Pro $1 $2",
 	"nowatchlist": "Nullas paginas custodis.",
 	"watchlistanontext": "Necesse est $1 ad indicem paginarum custoditarum inspiciendum vel recensendum.",

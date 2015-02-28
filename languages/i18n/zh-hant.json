@@ -1692,7 +1692,7 @@
 	"listgrouprights-rights": "權限",
 	"listgrouprights-helppage": "Help:Group rights",
 	"listgrouprights-members": "(成員清單)",
-	"listgrouprights-addgroup": "加入{{PLURAL:$2|群組|群組}}：$1",
+	"listgrouprights-addgroup": "加入{{PLURAL:$2|群組}}：$1",
 	"listgrouprights-removegroup": "移除{{PLURAL:$2|群組|群組}}：$1",
 	"listgrouprights-addgroup-all": "加入所有群組",
 	"listgrouprights-removegroup-all": "移除所有群組",

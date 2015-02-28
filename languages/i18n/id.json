@@ -1733,7 +1733,7 @@
 	"emailccsubject": "Salinan pesan Anda untuk $1: $2",
 	"emailsent": "Surel terkirim",
 	"emailsenttext": "Surel Anda telah dikirimkan.",
-	"emailuserfooter": "Surel ini dikirimkan oleh $1 kepada $2 menggunakan fungsi \"Suratepengguna\" di {{SITENAME}}.",
+	"emailuserfooter": "Surel ini dikirimkan oleh $1 kepada $2 menggunakan fungsi \"Surel Pengguna\" di {{SITENAME}}.",
 	"usermessage-summary": "Tinggalkan pesan sistem.",
 	"usermessage-editor": "Penyampai pesan sistem",
 	"usermessage-template": "MediaWiki:UserMessage",

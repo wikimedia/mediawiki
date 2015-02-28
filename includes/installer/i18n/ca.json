@@ -8,7 +8,8 @@
 			"Fitoschido",
 			"Jmarchn",
 			"Alvaro Vidal-Abarca",
-			"ESM"
+			"ESM",
+			"Xavier Dengra"
 		]
 	},
 	"config-desc": "L'instal·lador del MediaWiki",
@@ -195,6 +196,7 @@
 	"config-cache-options": "Configuració per a la memòria cau dels objectes:",
 	"config-cache-help": "L'encauament d'objectes s'utilitza per a millorar la rapidesa del MediaWiki afegint a la memòria cau les dades que s'utilitzen de forma freqüent. És recomanable que els llocs web mitjans o grans ho habilitin. També els llocs web petits en veuran els beneficis.",
 	"config-cache-none": "Sense encauament (no se suprimeix cap funcionalitat, però la velocitat pot veure's afectada en els llocs wiki més grans)",
+	"config-cache-memcached": "Utilitza Memcached (requereix una instal·lació i configuració addicionals)",
 	"config-memcached-servers": "Servidors de Memcache:",
 	"config-memcache-badip": "Heu introduït una adreça IP no vàlida per al Memcached: $1.",
 	"config-memcache-noport": "No heu especificat un port per utilitzar el servidor Memcached: $1.\nSi no coneixeu el port, per defecte és 11211.",
@@ -212,6 +214,7 @@
 	"config-install-pg-schema-not-exist": "No existeix un esquema PostgreSQL.",
 	"config-install-pg-schema-failed": "La creació de les taules ha fallat.\nAssegureu-vos que l'usuari «$1» pot escriure a l'esquema «$2».",
 	"config-install-pg-commit": "S'estan trametent els canvis",
+	"config-pg-no-plpgsql": "Necessiteu instal·lar l'idioma PL/pgSQL a la base de dades $1",
 	"config-pg-no-create-privs": "El compte que heu especificat per a la instal·lació no té suficients permisos per crear un compte.",
 	"config-install-user": "S'està creant l'usuari de la base de dades",
 	"config-install-user-alreadyexists": "L'usuari «$1» ja existeix",
