@@ -134,7 +134,13 @@ class LanguageZh extends LanguageZh_hans {
 		$variantfallbacks = array(
 			'zh' => array( 'zh-hans', 'zh-hant', 'zh-cn', 'zh-tw', 'zh-hk', 'zh-sg', 'zh-mo', 'zh-my' ),
 			'zh-hans' => array( 'zh-cn', 'zh-sg', 'zh-my' ),
+			'zh-hans-cn' => array( 'zh-cn', 'zh-hans', 'zh-sg', 'zh-my'),
+			'zh-hans-sg' => array( 'zh-sg', 'zh-hans', 'zh-cn', 'zh-my'),
+			'zh-hans-my' => array( 'zh-my', 'zh-hans', 'zh-sg', 'zh-cn'),
 			'zh-hant' => array( 'zh-tw', 'zh-hk', 'zh-mo' ),
+			'zh-hant-hk' => array( 'zh-hk', 'zh-hant', 'zh-mo', 'zh-tw' ),
+			'zh-hant-mo' => array( 'zh-mo', 'zh-hant', 'zh-hk', 'zh-tw' ),
+			'zh-hant-tw' => array( 'zh-tw', 'zh-hant', 'zh-hk', 'zh-mo' ),
 			'zh-cn' => array( 'zh-hans', 'zh-sg', 'zh-my' ),
 			'zh-sg' => array( 'zh-hans', 'zh-cn', 'zh-my' ),
 			'zh-my' => array( 'zh-hans', 'zh-sg', 'zh-cn' ),
