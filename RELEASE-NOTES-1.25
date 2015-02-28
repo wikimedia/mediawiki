@@ -416,6 +416,10 @@ changes to languages because of Bugzilla reports.
 * The -m (maximum replication lag) option of refreshLinks.php was removed.
   It had no effect since MediaWiki 1.18 and should be removed from any cron
   jobs or similar scripts you may have set up.
+* (T85864) The following messages no longer support raw html: redirectto,
+  thisisdeleted, viewdeleted, editlink, retrievedfrom, version-poweredby-others,
+  retrievedfrom, thisisdeleted, viewsourcelink, lastmodifiedat, laggedslavemode,
+  protect-summary-cascade
 
 == Compatibility ==
 
