@@ -1070,6 +1070,7 @@ return array(
 			'tooltip-p-lang',
 			'summary-preview',
 			'parentheses',
+			'previewerrortext',
 		),
 	),
 	'mediawiki.action.edit.stash' => array(

@@ -207,6 +207,23 @@
 				opacity: 1
 			}, 'fast' );
 		} );
+		request.fail( function ( code, result ) {
+			var errorMsg = 'API error: ' +  code;
+			if ( code === 'http' ) {
+				errorMsg = 'HTTP error: ';
+				if ( result.exception ) {
+					errorMsg += result.exception;
+				} else {
+					errorMsg += result.textStatus;
+				}
+			}
+			$wikiPreview.empty()
+				.append( $( '<div>' )
+					.addClass('errorbox')
+					.html( '<strong>' + mw.message( 'previewerrortext' ).escaped() + '</strong><br>' )
+					.append( document.createTextNode( errorMsg ) ) )
+				.show();
+		} );
 	}
 
 	$( function () {
