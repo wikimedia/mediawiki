@@ -284,7 +284,7 @@ class RefreshLinks extends Maintenance {
 			$this->output( "0.." );
 
 			do {
-				$list = $dbr->selectFieldValues(
+				$ids = $dbr->selectFieldValues(
 					$table,
 					$field,
 					array(
@@ -295,15 +295,16 @@ class RefreshLinks extends Maintenance {
 					array( 'DISTINCT', 'ORDER BY' => $field, 'LIMIT' => $batchSize )
 				);
 
-				if ( $list ) {
-					$counter += count( $list );
+				$numIds = count( $ids );
+				if ( $numIds ) {
+					$counter += $numIds;
 					wfWaitForSlaves();
-					$dbw->delete( $table, array( $field => $list ), __METHOD__ );
+					$dbw->delete( $table, array( $field => $ids ), __METHOD__ );
 					$this->output( $counter . ".." );
-					$start = $list[count( $list ) - 1] + 1;
+					$start = $ids[$numIds - 1] + 1;
 				}
 
-			} while ( $list );
+			} while ( $numIds >= $batchSize );
 
 			$this->output( "\n" );
 			wfWaitForSlaves();
