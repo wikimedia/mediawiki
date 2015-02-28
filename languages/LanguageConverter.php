@@ -294,14 +294,15 @@ class LanguageConverter {
 
 		$fallbackLanguages = array();
 		foreach ( $languages as $language ) {
-			$this->mHeaderVariant = $this->validateVariant( $language );
-			if ( $this->mHeaderVariant ) {
-				break;
+			// We consider valid variants as fallbacks.
+			// We always process them later.
+			$validVariant = $this->validateVariant( $language );
+			if ( $validVariant ) {
+				$fallbackLanguages[] = $validVariant;
+				continue;
 			}
 
 			// To see if there are fallbacks of current language.
-			// We record these fallback variants, and process
-			// them later.
 			$fallbacks = $this->getVariantFallbacks( $language );
 			if ( is_string( $fallbacks ) && $fallbacks !== $this->mMainLanguageCode ) {
 				$fallbackLanguages[] = $fallbacks;
@@ -311,16 +312,14 @@ class LanguageConverter {
 			}
 		}
 
-		if ( !$this->mHeaderVariant ) {
-			// process fallback languages now
-			$fallback_languages = array_unique( $fallbackLanguages );
-			foreach ( $fallback_languages as $language ) {
-				$this->mHeaderVariant = $this->validateVariant( $language );
-				if ( $this->mHeaderVariant ) {
-					break;
-				}
+		// process fallback languages now
+		$fallback_languages = array_unique( $fallbackLanguages );
+		foreach ( $fallback_languages as $language ) {
+			$this->mHeaderVariant = $this->validateVariant( $language );
+			if ( $this->mHeaderVariant ) {
+				break;
 			}
-		}
+		}		
 
 		return $this->mHeaderVariant;
 	}
