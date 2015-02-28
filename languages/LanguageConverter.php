@@ -47,7 +47,7 @@ class LanguageConverter {
 	);
 
 	public $mMainLanguageCode;
-	public $mVariants, $mVariantFallbacks, $mVariantNames;
+	public $mVariants, $mVariantFallbacks, $mVariantNames, $mVariantAliases;
 	public $mTablesLoaded = false;
 	public $mTables;
 	// 'bidirectional' 'unidirectional' 'disable' for each variant
@@ -80,16 +80,18 @@ class LanguageConverter {
 	 * @param array $variantfallbacks The fallback language of each variant
 	 * @param array $flags Defining the custom strings that maps to the flags
 	 * @param array $manualLevel Limit for supported variants
+	 * @param array $variantaliases Aliases of non-standard language codes
 	 */
 	public function __construct( $langobj, $maincode, $variants = array(),
 								$variantfallbacks = array(), $flags = array(),
-								$manualLevel = array() ) {
+								$manualLevel = array(), $variantaliases = array() ) {
 		global $wgDisabledVariants;
 		$this->mLangObj = $langobj;
 		$this->mMainLanguageCode = $maincode;
 		$this->mVariants = array_diff( $variants, $wgDisabledVariants );
 		$this->mVariantFallbacks = $variantfallbacks;
 		$this->mVariantNames = Language::fetchLanguageNames();
+		$this->mVariantAliases = $variantaliases;
 		$this->mCacheKey = wfMemcKey( 'conversiontables', $maincode );
 		$defaultflags = array(
 			// 'S' show converted text
@@ -143,6 +145,24 @@ class LanguageConverter {
 		return $this->mMainLanguageCode;
 	}
 
+	/**
+	 * In case many language codes correspond to the same variant,
+	 * we need to convert those non-standard language codes to the
+	 * ones defined in $mVariants. For instance, zh-hans-cn is an
+	 * alias of zh-cn. Currently, only Chinese language has variant
+	 * aliases, and this function is only called by
+	 * LanguageConverter::getHeaderVariant().
+	 *
+	 * @param string The language code of the variant
+	 * @return mixed The alias of the input language code if it
+	 *   exists (string), null otherwise.
+	 */
+	public function getVariantAliases( $langcode ) {
+		if ( issest( $this->mVariantAliases[$langcode] ) ) {
+			return $this->mVariantAliases[$langcode];
+		}
+		return null;
+	}
 	/**
 	 * Get the title produced by the conversion rule.
 	 * @return string The converted title text
@@ -295,6 +315,13 @@ class LanguageConverter {
 		$fallbackLanguages = array();
 		foreach ( $languages as $language ) {
 			$this->mHeaderVariant = $this->validateVariant( $language );
+			if ( $this->mHeaderVariant ) {
+				break;
+			}
+
+			// Check if this language is an alias of a supported variant.
+			$alias = $this->getVariantAliases( $language );
+			$this->mHeaderVariant = $this->validateVariant( $alias );
 			if ( $this->mHeaderVariant ) {
 				break;
 			}
