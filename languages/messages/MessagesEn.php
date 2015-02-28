@@ -212,6 +212,7 @@ $magicWords = array(
 	'toc'                     => array( 0, '__TOC__' ),
 	'noeditsection'           => array( 0, '__NOEDITSECTION__' ),
 	'!'                       => array( 1, '!' ),
+	'='                       => array( 1, '=', 'Eq' ),
 	'currentmonth'            => array( 1, 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonth1'           => array( 1, 'CURRENTMONTH1' ),
 	'currentmonthname'        => array( 1, 'CURRENTMONTHNAME' ),
