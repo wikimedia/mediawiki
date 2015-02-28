@@ -384,6 +384,10 @@ changes to languages because of Bugzilla reports.
 * EditPage::attemptSave has been modified not to call handleStatus itself and
   instead just returns the Status object. Extension calling it should be aware of
   this.
+* (T85864) The following messages no longer support raw html: redirectto,
+  thisisdeleted, viewdeleted, editlink, retrievedfrom, version-poweredby-others,
+  retrievedfrom, thisisdeleted, viewsourcelink, lastmodifiedat, laggedslavemode,
+  protect-summary-cascade
 
 == Compatibility ==
 
