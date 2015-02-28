@@ -2926,6 +2926,9 @@ class Parser {
 			case '!':
 				$value = '|';
 				break;
+			case '=':
+				$value = '=';
+				break;
 			case 'currentmonth':
 				$value = $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'm' ) );
 				break;
