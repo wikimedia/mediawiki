@@ -45,9 +45,9 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 		if ( $this->getConfig()->get( 'UseSiteCss' ) ) {
 			$pages['MediaWiki:Common.css'] = array( 'type' => 'style' );
 			$pages['MediaWiki:' . ucfirst( $context->getSkin() ) . '.css'] = array( 'type' => 'style' );
+			$pages['MediaWiki:Print.css'] = array( 'type' => 'style', 'media' => 'print' );
 
 		}
-		$pages['MediaWiki:Print.css'] = array( 'type' => 'style', 'media' => 'print' );
 		return $pages;
 	}
 
