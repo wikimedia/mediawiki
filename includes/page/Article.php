@@ -1634,7 +1634,7 @@ class Article implements Page {
 				$context->msg( 'historywarning' )->numParams( $revisions )->parse() .
 				$context->msg( 'word-separator' )->escaped() . Linker::linkKnown( $title,
 					$context->msg( 'history' )->escaped(),
-					array( 'rel' => 'archives' ),
+					array(),
 					array( 'action' => 'history' ) ) .
 				'</strong>'
 			);
