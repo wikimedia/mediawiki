@@ -377,9 +377,6 @@ class EditPage {
 	/** @var bool */
 	protected $edit;
 
-	/** @var bool */
-	public $live;
-
 	/**
 	 * @param Article $article
 	 */
@@ -477,11 +474,6 @@ class EditPage {
 
 		$this->importFormData( $wgRequest );
 		$this->firsttime = false;
-
-		if ( $this->live ) {
-			$this->livePreview();
-			return;
-		}
 
 		if ( wfReadOnly() && $this->save ) {
 			// Force preview
@@ -801,8 +793,7 @@ class EditPage {
 				wfDebug( "POST DATA: " . var_export( $_POST, true ) . "\n" );
 				$this->preview = true;
 			} else {
-				/* Fallback for live preview */
-				$this->preview = $request->getCheck( 'wpPreview' ) || $request->getCheck( 'wpLivePreview' );
+				$this->preview = $request->getCheck( 'wpPreview' );
 				$this->diff = $request->getCheck( 'wpDiff' );
 
 				// Remember whether a save was requested, so we can indicate
@@ -915,7 +906,6 @@ class EditPage {
 		 *   allowed.
 		 */
 
-		$this->live = $request->getCheck( 'live' );
 		$this->editintro = $request->getText( 'editintro',
 			// Custom edit intro for new sections
 			$this->section === 'new' ? 'MediaWiki:addsection-editintro' : '' );
@@ -3807,36 +3797,6 @@ HTML
 
 		Hooks::run( 'EditPageBeforeEditButtons', array( &$this, &$buttons, &$tabindex ) );
 		return $buttons;
-	}
-
-	/**
-	 * Output preview text only. This can be sucked into the edit page
-	 * via JavaScript, and saves the server time rendering the skin as
-	 * well as theoretically being more robust on the client (doesn't
-	 * disturb the edit box's undo history, won't eat your text on
-	 * failure, etc).
-	 *
-	 * @todo This doesn't include category or interlanguage links.
-	 *       Would need to enhance it a bit, "<s>maybe wrap them in XML
-	 *       or something...</s>" that might also require more skin
-	 *       initialization, so check whether that's a problem.
-	 */
-	function livePreview() {
-		global $wgOut;
-		$wgOut->disable();
-		header( 'Content-type: text/xml; charset=utf-8' );
-		header( 'Cache-control: no-cache' );
-
-		$previewText = $this->getPreviewText();
-		#$categories = $skin->getCategoryLinks();
-
-		$s =
-			'<?xml version="1.0" encoding="UTF-8" ?>' . "\n" .
-			Xml::tags( 'livepreview', null,
-				Xml::element( 'preview', null, $previewText )
-				#.	Xml::element( 'category', null, $categories )
-			);
-		echo $s;
 	}
 
 	/**
