@@ -109,6 +109,13 @@ production.
   pointing to it.
 * New hooks 'ApiMain::moduleManager' and 'ApiQuery::moduleManager', can be
   used for conditional registration of API modules.
+* (T65806) Introduced a new configuration variable $wgAllowExternalSVG.
+  External images with SVG extension can now be included from whitelisted
+  sites provided $wgAllowExternalSVG is set to true.
+  DISCLAIMER: While enabling $wgAllowExternalSVG in LocalSettings.php
+  it should be noted that SVGs can exploit the website since it can include
+  JavaScript which can be used to steal cookies. Also it makes the site
+  susceptible to cross site scripting attacks.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past

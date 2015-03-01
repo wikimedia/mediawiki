@@ -996,6 +996,17 @@ $wgSVGMetadataCutoff = 262144;
 $wgAllowTitlesInSVG = false;
 
 /**
+ * Disallow external SVGs to be included from whitelisted sites.
+ *
+ * This should be kept false. Allowing SVG can be harmful since it can
+ * include JavaScript which can be used to steal cookies.
+ *
+ * When set to true in LocalSettings.php, this will allow external images
+ * with svg extension to be included.
+ */
+$wgAllowExternalSVG = false;
+
+/**
  * The maximum number of pixels a source image can have if it is to be scaled
  * down by a scaler that requires the full source image to be decompressed
  * and stored in decompressed form, before the thumbnail is generated.
