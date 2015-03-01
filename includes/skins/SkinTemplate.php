@@ -948,7 +948,6 @@ class SkinTemplate extends Skin {
 						'text' => wfMessageFallback( "$skname-view-history", 'history_short' )
 							->setContext( $this->getContext() )->text(),
 						'href' => $title->getLocalURL( 'action=history' ),
-						'rel' => 'archives',
 					);
 
 					if ( $title->quickUserCan( 'delete', $user ) ) {
