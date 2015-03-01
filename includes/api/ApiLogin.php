@@ -161,6 +161,11 @@ class ApiLogin extends ApiBase {
 				$result['reason'] = $loginForm->mAbortLoginErrorMsg;
 				break;
 
+			case LoginForm::NO_LOGIN_RIGHT:
+				$result['result'] = 'NoLoginRight';
+				$result['reason'] = $loginForm->mAbortLoginErrorMsg;
+				break;
+
 			default:
 				ApiBase::dieDebug( __METHOD__, "Unhandled case value: {$authRes}" );
 		}

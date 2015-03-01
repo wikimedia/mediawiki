@@ -4551,6 +4551,7 @@ $wgGroupPermissions['*']['editmyoptions'] = true;
 #$wgGroupPermissions['*']['patrolmarks'] = false; // let anons see what was patrolled
 
 // Implicit group for all logged-in accounts
+$wgGroupPermissions['user']['login'] = true;
 $wgGroupPermissions['user']['move'] = true;
 $wgGroupPermissions['user']['move-subpages'] = true;
 $wgGroupPermissions['user']['move-rootuserpages'] = true; // can move root userpages

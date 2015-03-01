@@ -134,6 +134,7 @@ class User implements IDBAccessObject {
 		'import',
 		'importupload',
 		'ipblock-exempt',
+		'login',
 		'managechangetags',
 		'markbotedits',
 		'mergehistory',
