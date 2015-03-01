@@ -2922,7 +2922,7 @@
 	"version-parser-function-hooks": "Parserfunksjoner",
 	"version-hook-name": "Navn",
 	"version-hook-subscribedby": "Brukes av",
-	"version-version": "(versjon $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[uten navn]",
 	"version-license": "Lisens",
 	"version-ext-license": "Lisens",

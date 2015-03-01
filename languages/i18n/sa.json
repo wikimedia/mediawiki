@@ -2700,7 +2700,7 @@
 	"version-parser-function-hooks": "विन्यासकलापस्य आलम्बाः ।",
 	"version-hook-name": "आलम्बस्य नाम ।",
 	"version-hook-subscribedby": "सदस्यत्वम् अनेन प्राप्तम् ।",
-	"version-version": "(आवृत्तिः$1)",
+	"version-version": "($1)",
 	"version-license": "अनुज्ञापत्रम्",
 	"version-poweredby-credits": "इयं विकिः अनेन सञ्चालिता '''[https://www.mediawiki.org/ MediaWiki]''', स्वामित्वम् © 2001 - $1  $2 ।",
 	"version-poweredby-others": "अन्य",

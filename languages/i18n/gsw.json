@@ -18,7 +18,8 @@
 			"The Evil IP address",
 			"Urhixidur",
 			"לערי ריינהארט",
-			"80686"
+			"80686",
+			"아라"
 		]
 	},
 	"tog-underline": "Links unterstryche",
@@ -2702,7 +2703,7 @@
 	"version-parser-function-hooks": "Parser-Funktione",
 	"version-hook-name": "Schnittstellename",
 	"version-hook-subscribedby": "Ufruef vu",
-	"version-version": "(Version $1)",
+	"version-version": "($1)",
 	"version-license": "Lizänz",
 	"version-ext-license": "Lizänz",
 	"version-ext-colheader-name": "Erwyterig",

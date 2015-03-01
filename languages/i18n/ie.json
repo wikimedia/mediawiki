@@ -951,7 +951,7 @@
 	"version-parser-function-hooks": "Croces de functiones analisatores",
 	"version-hook-name": "Nómine de croc",
 	"version-hook-subscribedby": "Subscrit per",
-	"version-version": "(Version $1)",
+	"version-version": "($1)",
 	"version-svn-revision": "(r$2)",
 	"version-license": "Licentie",
 	"version-software": "Software installat",

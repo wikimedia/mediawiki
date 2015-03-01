@@ -993,7 +993,7 @@
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|keskows]])",
 	"version": "Versyon",
 	"version-other": "Aral",
-	"version-version": "(Versyon $1)",
+	"version-version": "($1)",
 	"fileduplicatesearch-filename": "Hanow an restren:",
 	"fileduplicatesearch-submit": "Hwilas",
 	"specialpages": "Folennow arbennek",

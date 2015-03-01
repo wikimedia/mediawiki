@@ -3015,7 +3015,7 @@
 	"version-parser-function-hooks": "Куки на расчленувачки функции",
 	"version-hook-name": "Име на кука",
 	"version-hook-subscribedby": "Претплатено од",
-	"version-version": "(Верзија $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[нема име]",
 	"version-svn-revision": "прер. $1",
 	"version-license": "Лиценца на МедијаВики",

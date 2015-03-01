@@ -2263,7 +2263,7 @@
 	"version-hooks": "Çəngəllər",
 	"version-hook-name": "Çəngəlin adı",
 	"version-hook-subscribedby": "Abunə olan",
-	"version-version": "(Versiya $1)",
+	"version-version": "($1)",
 	"version-license": "MediaViki lisenziyası",
 	"version-ext-license": "Lisenziya",
 	"version-ext-colheader-version": "Versiya",

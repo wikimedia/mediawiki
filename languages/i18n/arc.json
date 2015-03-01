@@ -1320,7 +1320,7 @@
 	"version": "ܨܚܚܐ",
 	"version-specialpages": "ܦܐܬܬ̈ܐ ܕ̈ܝܠܢܝܬܐ",
 	"version-other": "ܐܚܪܢܐ",
-	"version-version": "(ܨܚܚܐ $1)",
+	"version-version": "($1)",
 	"version-poweredby-others": "ܐܚܪ̈ܢܐ",
 	"version-software-version": "ܨܚܚܐ",
 	"fileduplicatesearch": "ܒܨܝ ܥܠ ܠܦܦ̈ܐ ܥܦܝܦ̈ܐ",

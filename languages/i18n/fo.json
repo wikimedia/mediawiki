@@ -2305,7 +2305,7 @@
 	"version-other": "Annað",
 	"version-hooks": "Krókur",
 	"version-hook-name": "Krókurnavn",
-	"version-version": "(Versjón $1)",
+	"version-version": "($1)",
 	"version-license": "MediaWiki Lisensur",
 	"version-poweredby-credits": "Henda wiki verður rikin av '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 	"version-poweredby-others": "onnur",

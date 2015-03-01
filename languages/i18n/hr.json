@@ -2786,7 +2786,7 @@
 	"version-parser-function-hooks": "Kuke funkcija parsera",
 	"version-hook-name": "Ime kuke",
 	"version-hook-subscribedby": "Pretplaćeno od",
-	"version-version": "(Inačica $1)",
+	"version-version": "($1)",
 	"version-license": "Licenca",
 	"version-ext-license": "Licenca",
 	"version-ext-colheader-version": "Verzija",

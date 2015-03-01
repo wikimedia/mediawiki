@@ -8,7 +8,8 @@
 			"Shirayuki",
 			"Urhixidur",
 			"לערי ריינהארט",
-			"Davent"
+			"Davent",
+			"아라"
 		]
 	},
 	"tog-underline": "Suttastritgar colliaziuns:",
@@ -2588,7 +2589,7 @@
 	"version-parser-function-hooks": "Hooks per funcziuns dal parser",
 	"version-hook-name": "Num dal hook",
 	"version-hook-subscribedby": "Abonnà da",
-	"version-version": "(Versiun $1)",
+	"version-version": "($1)",
 	"version-license": "Licenza",
 	"version-poweredby-credits": "Questa wiki utilisescha '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 	"version-poweredby-others": "auters",

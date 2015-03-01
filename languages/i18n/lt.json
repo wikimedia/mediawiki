@@ -2828,7 +2828,7 @@
 	"version-parser-function-hooks": "Analizatoriaus funkciniai gaudliai",
 	"version-hook-name": "Gaudlio pavadinimas",
 	"version-hook-subscribedby": "Užsakyta",
-	"version-version": "(Versija $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[be pavadinimo]",
 	"version-license": "MediaWiki licencija",
 	"version-ext-license": "Licencija",

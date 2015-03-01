@@ -1142,7 +1142,7 @@
 	"version": "Фæлтæр",
 	"version-skins": "Цъар",
 	"version-other": "Æндæр",
-	"version-version": "(Фæлтæр $1)",
+	"version-version": "($1)",
 	"version-license": "Лицензи",
 	"version-poweredby-credits": "Ацы викийæн тых радта '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 	"version-poweredby-others": "æндæртæ",

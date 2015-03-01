@@ -2470,7 +2470,7 @@
 	"version-parser-function-hooks": "Cинтаксисан къасторан функци схьалоцурш",
 	"version-hook-name": "Схьалуьцачун цӀе",
 	"version-hook-subscribedby": "ДӀабазбелла тӀе",
-	"version-version": "(Верси $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[цӀе йоцуш]",
 	"version-license": "MediaWiki Лицензи",
 	"version-ext-license": "Лицензи",

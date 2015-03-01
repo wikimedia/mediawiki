@@ -2862,7 +2862,7 @@
 	"version-parser-function-hooks": "Hook pi funzioni dû parser",
 	"version-hook-name": "Nomu di l'hook",
 	"version-hook-subscribedby": "Suttascrizzioni",
-	"version-version": "(Virsioni $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[nuddu nomu]",
 	"version-license": "Licenza di MediaWiki",
 	"version-ext-license": "Licenza",

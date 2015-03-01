@@ -1612,7 +1612,7 @@
 	"version": "Bersion",
 	"version-specialpages": "Bulung a makabukud",
 	"version-other": "Aliwa",
-	"version-version": "(Bersion $1)",
+	"version-version": "($1)",
 	"version-license": "Lisensia",
 	"version-software-product": "Produktu",
 	"version-software-version": "Bersion",

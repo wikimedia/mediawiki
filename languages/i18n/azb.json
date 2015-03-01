@@ -2736,7 +2736,7 @@
 	"version-parser-function-hooks": "آیریشدیران فونکسیا چنگل‌لری",
 	"version-hook-name": "چنگه‌لین آدی",
 	"version-hook-subscribedby": "طرفیندن گیریش‌‌میش",
-	"version-version": "(نسخه $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[آد سیز]",
 	"version-license": "مِدیاویکی لیسانسی",
 	"version-ext-license": "لیسانس",

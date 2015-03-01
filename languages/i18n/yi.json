@@ -2779,7 +2779,7 @@
 	"version-hooks": "Hook סטרוקטורן",
 	"version-parser-extensiontags": "פארזער פארברייטערן טאַגן",
 	"version-hook-name": "נאמען פון hook",
-	"version-version": "(ווערסיע $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[קיין נאמען]",
 	"version-license": "מעדיעוויקי ליצענץ",
 	"version-ext-license": "ליצענץ",

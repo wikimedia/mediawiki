@@ -3078,7 +3078,7 @@
 	"version-parser-function-hooks": "Fonctions étendues de l'analyseur syntaxique",
 	"version-hook-name": "Nom du greffon",
 	"version-hook-subscribedby": "Abonnés :",
-	"version-version": "(version $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[pas de nom]",
 	"version-license": "Licence MediaWiki",
 	"version-ext-license": "Licence",

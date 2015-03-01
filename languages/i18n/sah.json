@@ -2842,7 +2842,7 @@
 	"version-parser-function-hooks": "Синтаксииһы анаалыстыыр тэрил функциятын перехватчиктара",
 	"version-hook-name": "Перехватчик аата",
 	"version-hook-subscribedby": "Суруттарыыта:",
-	"version-version": "(Торум $1)",
+	"version-version": "($1)",
 	"version-license": "MediaWiki лиссиэнсийэтэ",
 	"version-ext-license": "Лиссиэнсийэ",
 	"version-ext-colheader-name": "Кэтирэтии",

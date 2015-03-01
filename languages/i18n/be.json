@@ -2837,7 +2837,7 @@
 	"version-parser-function-hooks": "Хукі функцый парсера",
 	"version-hook-name": "Назва хука",
 	"version-hook-subscribedby": "Сюды падпісаныя",
-	"version-version": "(Версія $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[без назвы]",
 	"version-license": "Ліцэнзія MediaWiki",
 	"version-ext-license": "Ліцэнзія",

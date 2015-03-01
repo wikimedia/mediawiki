@@ -2955,7 +2955,7 @@
 	"version-parser-function-hooks": "Lligams funcionals de l'analitzador",
 	"version-hook-name": "Nom del lligam",
 	"version-hook-subscribedby": "Subscrit per",
-	"version-version": "(Versió $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[sense nom]",
 	"version-license": "Llicència del MediaWiki",
 	"version-ext-license": "Llicència",

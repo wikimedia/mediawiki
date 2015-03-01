@@ -3000,7 +3000,7 @@
 	"version-parser-function-hooks": "Kait fungsi parser",
 	"version-hook-name": "Nama kait",
 	"version-hook-subscribedby": "Dilanggani oleh",
-	"version-version": "(Versi $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[tanpa nama]",
 	"version-svn-revision": "(r$2)",
 	"version-license": "Lisensi MediaWiki",

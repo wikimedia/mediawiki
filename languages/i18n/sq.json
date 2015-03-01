@@ -2569,7 +2569,7 @@
 	"version-parser-function-hooks": "Parser goditjet e funksionit",
 	"version-hook-name": "Emri i goditjes",
 	"version-hook-subscribedby": "Abonuar nga",
-	"version-version": "(Versioni $1)",
+	"version-version": "($1)",
 	"version-license": "Licensa",
 	"version-poweredby-credits": "Ky wiki është mundësuar nga '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 	"version-poweredby-others": "të tjerë",

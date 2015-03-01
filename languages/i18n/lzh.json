@@ -2066,7 +2066,7 @@
 	"version-parser-function-hooks": "語函鈎",
 	"version-hook-name": "鈎名",
 	"version-hook-subscribedby": "用於",
-	"version-version": "（版 $1）",
+	"version-version": "($1)",
 	"version-license": "牌",
 	"version-poweredby-credits": "此 Wiki 以 '''[https://www.mediawiki.org/ MediaWiki]''' 之驅，權 © 2001-$1 $2。",
 	"version-poweredby-others": "其他",

@@ -9,7 +9,8 @@
 			"GaiJin",
 			"Kaztrans",
 			"Balnur.s",
-			"Нұрлан Рахымжанов"
+			"Нұрлан Рахымжанов",
+			"아라"
 		]
 	},
 	"tog-underline": "Сілтеменің астын сызу:",
@@ -2582,7 +2583,7 @@
 	"version-parser-function-hooks": "Құрылымдық талдатқыш жетелерінің тұзақтары",
 	"version-hook-name": "Тұзақ атауы",
 	"version-hook-subscribedby": "Тұзақ тартқыштары",
-	"version-version": "(Нұсқасы: $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[аты жоқ]",
 	"version-license": "MediaWiki Лицензиясы",
 	"version-ext-license": "Лицензия",

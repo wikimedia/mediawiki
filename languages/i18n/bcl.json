@@ -2732,7 +2732,7 @@
 	"version-parser-function-hooks": "Mga panpunksyong pangawil kan Parser",
 	"version-hook-name": "Ngaran kan pangawil",
 	"version-hook-subscribedby": "Pinaghaguhot ni",
-	"version-version": "(Bersyon na $1)",
+	"version-version": "($1)",
 	"version-license": "Lisensiya kan MediaWiki",
 	"version-ext-license": "Lisensiya",
 	"version-ext-colheader-name": "Ekstensyon",

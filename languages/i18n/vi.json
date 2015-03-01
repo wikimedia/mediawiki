@@ -2975,7 +2975,7 @@
 	"version-parser-function-hooks": "Hook cho hàm cú pháp trong bộ xử lý",
 	"version-hook-name": "Tên hook",
 	"version-hook-subscribedby": "Được theo dõi bởi",
-	"version-version": "(Phiên bản $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[không tên]",
 	"version-license": "Giấy phép MediaWiki",
 	"version-ext-license": "Giấy phép",

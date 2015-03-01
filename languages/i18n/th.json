@@ -2732,7 +2732,7 @@
 	"version-parser-function-hooks": "ฮุกที่มีฟังก์ชันตัวแจงส่วน",
 	"version-hook-name": "ชื่อฮุก",
 	"version-hook-subscribedby": "สนับสนุนโดย",
-	"version-version": "(รุ่น $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[ไม่มีชื่อ]",
 	"version-license": "สัญญาอนุญาตมีเดียวิกิ",
 	"version-poweredby-credits": "วิกินี้จัดทำโดย '''[https://www.mediawiki.org/ MediaWiki]''', สงวนลิขสิทธิ์ © 2001-$1 โดย $2",

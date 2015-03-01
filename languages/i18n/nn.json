@@ -2756,7 +2756,7 @@
 	"version-parser-function-hooks": "Parserfunksjonstillegg",
 	"version-hook-name": "Namn på tillegg",
 	"version-hook-subscribedby": "Brukt av",
-	"version-version": "(versjon $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[utan namn]",
 	"version-license": "MediaWiki-lisens",
 	"version-ext-license": "Lisens",

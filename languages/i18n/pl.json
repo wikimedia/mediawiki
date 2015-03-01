@@ -2975,7 +2975,7 @@
 	"version-parser-function-hooks": "Funkcje haków analizatora składni (ang. parser function hooks)",
 	"version-hook-name": "Nazwa haka (ang. hook name)",
 	"version-hook-subscribedby": "Zapotrzebowany przez",
-	"version-version": "(Wersja $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[bez nazwy]",
 	"version-license": "Licencja MediaWiki",
 	"version-ext-license": "Licencja",

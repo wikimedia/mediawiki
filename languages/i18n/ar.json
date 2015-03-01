@@ -3014,7 +3014,7 @@
 	"version-parser-function-hooks": "خطاطيف دالة المحلل",
 	"version-hook-name": "اسم الخطاف",
 	"version-hook-subscribedby": "يستخدم بواسطة",
-	"version-version": "(نسخة $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[لا اسم]",
 	"version-svn-revision": "ن$1",
 	"version-license": "ترخيص ميدياويكي",

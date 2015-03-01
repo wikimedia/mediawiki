@@ -2421,7 +2421,7 @@
 	"version-parser-function-hooks": "پاسر فنکشن ہکز",
 	"version-hook-name": "ہک ناں",
 	"version-hook-subscribedby": "جینے لئی",
-	"version-version": "(ورین $1)",
+	"version-version": "($1)",
 	"version-license": "لائیسنس",
 	"version-poweredby-credits": "ایس وکی نوں '''[https://www.mediawiki.org/ میڈیاوکی]''', copyright © 2001-$1 $2. چلاندا اے۔",
 	"version-poweredby-others": "دوجے",

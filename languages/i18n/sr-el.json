@@ -2971,7 +2971,7 @@
 	"version-parser-function-hooks": "Kuke",
 	"version-hook-name": "Naziv kuke",
 	"version-hook-subscribedby": "Prijavljeno od",
-	"version-version": "(izdanje $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[nema imena]",
 	"version-svn-revision": "(izm. $2)",
 	"version-license": "Medijaviki licenca",

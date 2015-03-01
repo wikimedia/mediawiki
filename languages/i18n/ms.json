@@ -2901,7 +2901,7 @@
 	"version-parser-function-hooks": "Penyangkuk fungsi penghurai",
 	"version-hook-name": "Nama penyangkuk",
 	"version-hook-subscribedby": "Dilanggan oleh",
-	"version-version": "(Versi $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[tiada nama]",
 	"version-license": "Lesen MediaWiki",
 	"version-ext-license": "Lesen",

@@ -3017,7 +3017,7 @@
 	"version-parser-function-hooks": "Перехватчики функций синтаксического анализатора",
 	"version-hook-name": "Имя перехватчика",
 	"version-hook-subscribedby": "Подписан на",
-	"version-version": "(Версия $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[без названия]",
 	"version-license": "Лицензия MediaWiki",
 	"version-ext-license": "Лицензия",

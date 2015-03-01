@@ -2848,7 +2848,7 @@
 	"version-parser-function-hooks": "Άγκιστρα συναρτήσεων του συντακτικού αναλυτή",
 	"version-hook-name": "Όνομα άγκιστρου",
 	"version-hook-subscribedby": "Υπογεγραμμένο από",
-	"version-version": "(Έκδοση $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[χωρίς όνομα]",
 	"version-license": "Άδεια MediaWiki",
 	"version-ext-license": "Άδεια χρήσης",

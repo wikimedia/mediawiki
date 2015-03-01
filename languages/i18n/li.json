@@ -2471,7 +2471,7 @@
 	"version-parser-function-hooks": "Parserfunctieheuk",
 	"version-hook-name": "Hooknaam",
 	"version-hook-subscribedby": "Geabonneerd door",
-	"version-version": "(Versie $1)",
+	"version-version": "($1)",
 	"version-license": "Licentie",
 	"version-poweredby-credits": "Deze wiki weurt aangedreve door '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 	"version-poweredby-others": "anger",

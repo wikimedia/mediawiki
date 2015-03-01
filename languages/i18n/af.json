@@ -2759,7 +2759,7 @@
 	"version-parser-function-hooks": "Ontleder-funksiehoeke",
 	"version-hook-name": "Hoek naam",
 	"version-hook-subscribedby": "Gebruik deur",
-	"version-version": "(Weergawe $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[geen naam]",
 	"version-license": "MediaWiki se lisensie",
 	"version-ext-license": "Lisensie",

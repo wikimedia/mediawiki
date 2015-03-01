@@ -2359,7 +2359,7 @@
 	"version-parser-function-hooks": "語法函數鈎",
 	"version-hook-name": "鈎名",
 	"version-hook-subscribedby": "利用於",
-	"version-version": "(版本 $1)",
+	"version-version": "($1)",
 	"version-license": "牌照",
 	"version-poweredby-credits": "呢個 Wiki 係由 '''[https://www.mediawiki.org/ MediaWiki]''' 驅動，版權所有 © 2001-$1 $2。",
 	"version-poweredby-others": "其他",

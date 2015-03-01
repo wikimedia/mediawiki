@@ -1729,7 +1729,7 @@
 	"watchlisttools-raw": "Toimõndaq lätteteedüstüt",
 	"duplicate-defaultsort": "'''Hoiatus:''' Sortmisvõti \"$2\" tühistäs ärq innembädse sortmisvõtmõ \"$1\".",
 	"version": "Kujo",
-	"version-version": "(Kujo $1)",
+	"version-version": "($1)",
 	"version-software-version": "Kujo",
 	"fileduplicatesearch-filename": "Teedüstünimi:",
 	"fileduplicatesearch-submit": "Otsiq",

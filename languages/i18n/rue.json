@@ -2709,7 +2709,7 @@
 	"version-parser-function-hooks": "Функціа парсера",
 	"version-hook-name": "Назва припойного пункту",
 	"version-hook-subscribedby": "Підписаный на",
-	"version-version": "(Верзія $1)",
+	"version-version": "($1)",
 	"version-license": "Ліценція",
 	"version-ext-license": "Ліценція",
 	"version-ext-colheader-name": "Росшырїня",

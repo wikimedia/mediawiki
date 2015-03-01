@@ -38,7 +38,7 @@
 	"apihelp-createaccount-param-reason": "建立帳號時選填的原因，會被記錄到日誌當中。",
 	"apihelp-createaccount-param-language": "要設定的使用者預設語言代碼 (選填，預設依據內容語言)。",
 	"apihelp-createaccount-example-pass": "建立使用者 \"testuser\" 使用密碼 \"test123\"",
-	"apihelp-createaccount-example-mail": "建立使用者 \"testmailuser\" 並且電子郵件通知隨機產生的密碼",
+	"apihelp-createaccount-example-mail": "建立使用者 <kbd>testmailuser</kbd> 並且電子郵件通知隨機產生的密碼。",
 	"apihelp-delete-description": "刪除頁面。",
 	"apihelp-delete-param-title": "您欲刪除的頁面標題。 無法與 $1pageid 同時使用。",
 	"apihelp-delete-param-pageid": "您欲刪除頁面的頁面 ID。 無法與 $1title 同時使用。",

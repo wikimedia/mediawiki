@@ -2967,7 +2967,7 @@
 	"version-parser-function-hooks": "قلاب‌های عملگر تجزیه‌گر",
 	"version-hook-name": "نام قلاب",
 	"version-hook-subscribedby": "وارد شده توسط",
-	"version-version": "(نسخه  $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[بدون نام]",
 	"version-svn-revision": "(&رلم;r$2)",
 	"version-license": "اجازه‌نامهٔ مدیاویکی",

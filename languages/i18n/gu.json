@@ -2685,7 +2685,7 @@
 	"version-parser-function-hooks": "પદચ્છેદ કાર્ય ખૂંટા",
 	"version-hook-name": "ખૂંટાનું નામ્",
 	"version-hook-subscribedby": "દ્વ્રારા લાભાન્વીત",
-	"version-version": "(આવૃત્તિ $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[નામ નથી]",
 	"version-license": "મીડિઆવિકિ લાયસન્સ",
 	"version-ext-license": "લાયસન્સ",

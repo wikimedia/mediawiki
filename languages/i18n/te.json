@@ -20,7 +20,8 @@
 			"לערי ריינהארט",
 			"రహ్మానుద్దీన్",
 			"రాకేశ్వర",
-			"వైజాసత్య"
+			"వైజాసత్య",
+			"아라"
 		]
 	},
 	"tog-underline": "లంకె క్రీగీత:",
@@ -2792,7 +2793,7 @@
 	"version-parser-function-hooks": "పార్సరుకు కొక్కాలు",
 	"version-hook-name": "కొక్కెం పేరు",
 	"version-hook-subscribedby": "ఉపయోగిస్తున్నవి",
-	"version-version": "(కూర్పు $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[పేరు లేదు]",
 	"version-license": "MediaWiki లైసెన్సు",
 	"version-ext-license": "లైసెన్సు",

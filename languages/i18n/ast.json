@@ -2877,7 +2877,7 @@
 	"version-parser-function-hooks": "Hooks de les funciones d'análisis sintáuticu",
 	"version-hook-name": "Nome del hook",
 	"version-hook-subscribedby": "Suscritu por",
-	"version-version": "(Versión $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[ensin nome]",
 	"version-license": "Llicencia de MediaWiki",
 	"version-ext-license": "Llicencia",

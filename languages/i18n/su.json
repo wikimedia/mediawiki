@@ -2266,7 +2266,7 @@
 	"version-parser-extensiontags": "Tag éksténsi parser",
 	"version-hook-name": "Ngaran kait",
 	"version-hook-subscribedby": "Didaptarkeun ku",
-	"version-version": "(Vérsi $1)",
+	"version-version": "($1)",
 	"version-license": "Lisénsi MediaWiki",
 	"version-poweredby-translators": "darmamurcaya translatewiki.net",
 	"version-software": "Sopwér nu geus diinstal",

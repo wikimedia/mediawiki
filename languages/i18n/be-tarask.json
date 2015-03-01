@@ -2880,7 +2880,7 @@
 	"version-parser-function-hooks": "Перахопнікі функцыяў парсэра",
 	"version-hook-name": "Назва працэдуры-перахопніка",
 	"version-hook-subscribedby": "Падпісаны на",
-	"version-version": "(Вэрсія $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[бяз назвы]",
 	"version-svn-revision": "(r$2)",
 	"version-license": "Ліцэнзія MediaWiki",

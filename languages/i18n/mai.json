@@ -2768,7 +2768,7 @@
 	"version-parser-function-hooks": "विभाजक प्रकार्य खुट्टी",
 	"version-hook-name": "खुट्टीक नाम",
 	"version-hook-subscribedby": "ई सदस्यता लेलनि",
-	"version-version": "(संस्करण $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[कोनो नाम नै]",
 	"version-license": "अधिकार",
 	"version-ext-license": "अधिकार",

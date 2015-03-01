@@ -2841,7 +2841,7 @@
 	"version-parser-function-hooks": "Bachau ffwythiant dosrannu",
 	"version-hook-name": "Enw'r bachyn",
 	"version-hook-subscribedby": "Tanysgrifwyd gan",
-	"version-version": "(Fersiwn $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[dim enw]",
 	"version-license": "Trwydded MediaWiki",
 	"version-ext-license": "Trwydded",

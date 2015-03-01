@@ -3,7 +3,8 @@
 		"authors": [
 			"MF-Warburg",
 			"Nemo bis",
-			"Reedy"
+			"Reedy",
+			"아라"
 		]
 	},
 	"tog-underline": "Subliña ligasaun sira:",
@@ -677,7 +678,7 @@
 	"version": "Versaun",
 	"version-specialpages": "Pájina espesiál",
 	"version-other": "Seluk",
-	"version-version": "(Versaun $1)",
+	"version-version": "($1)",
 	"version-license": "Lisensa",
 	"version-poweredby-others": "ema seluk",
 	"version-software-product": "Produtu",

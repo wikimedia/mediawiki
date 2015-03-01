@@ -2807,7 +2807,7 @@
 	"version-parser-function-hooks": "Mga pangkawit ng/sa tungkuling pambanghay (''parser'')",
 	"version-hook-name": "Pangalan ng pangkawit",
 	"version-hook-subscribedby": "Sinuskribi ng/ni/nina",
-	"version-version": "(Bersyon $1)",
+	"version-version": "($1)",
 	"version-svn-revision": "(r$2)",
 	"version-license": "Lisensiya",
 	"version-poweredby-credits": "Ang wiking ito ay pinapatakbo ng '''[https://www.mediawiki.org/ MediaWiki]''', karapatang-ari © 2001-$1 $2.",

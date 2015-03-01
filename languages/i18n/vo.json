@@ -2030,7 +2030,7 @@
 	"version-hooks": "Huköms",
 	"version-hook-name": "Hukömanem",
 	"version-hook-subscribedby": "Pagebon fa",
-	"version-version": "(Fomam $1)",
+	"version-version": "($1)",
 	"version-license": "Dälazöt",
 	"version-poweredby-others": "votikans",
 	"version-software": "Programs pestitöl",

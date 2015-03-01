@@ -2545,7 +2545,7 @@
 	"version-parser-function-hooks": "पार्सर फङ्सन हुक",
 	"version-hook-name": "हुक नाम",
 	"version-hook-subscribedby": "ग्राह्यता गर्ने",
-	"version-version": "(संस्करण $1)",
+	"version-version": "($1)",
 	"version-svn-revision": "(r$2)",
 	"version-license": "इजाजतपत्र",
 	"version-poweredby-credits": "यो विकी '''[https://www.mediawiki.org/ मिडियाविकि]''' द्वारा सशक्तिकरण गरिएको छ, copyright © सन् २००१-$1 $2.",

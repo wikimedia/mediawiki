@@ -2922,7 +2922,7 @@
 	"version-parser-function-hooks": "Derleyici fonksiyon çengelleri",
 	"version-hook-name": "Çengel adı",
 	"version-hook-subscribedby": "Abone olan",
-	"version-version": "($1 sürümü)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[isim yok]",
 	"version-license": "MediaWiki Lisansı",
 	"version-ext-license": "Lisans",

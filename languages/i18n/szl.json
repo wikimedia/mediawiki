@@ -2116,7 +2116,7 @@
 	"version-parser-function-hooks": "Fůnkcyje hokůw analizatora skuadńi (ang. parser function hooks)",
 	"version-hook-name": "Mjano haka (ang. hook name)",
 	"version-hook-subscribedby": "Zapotřebowany bez",
-	"version-version": "(Wersjo $1)",
+	"version-version": "($1)",
 	"version-license": "Licencjo",
 	"version-software": "Zainstalowane uoprůgramowańy",
 	"version-software-product": "Mjano",

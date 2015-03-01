@@ -2423,7 +2423,7 @@
 	"version-parser-function-hooks": "Parser function hooks",
 	"version-hook-name": "ناوی قولاپ",
 	"version-hook-subscribedby": "بەشداربوو لە لایەن",
-	"version-version": "(وەشانی $1)",
+	"version-version": "($1)",
 	"version-license": "مۆڵەتنامە",
 	"version-ext-colheader-version": "وەشان",
 	"version-ext-colheader-description": "وەسف",

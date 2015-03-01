@@ -2842,7 +2842,7 @@
 	"version-parser-function-hooks": "სინტაქსური ანალიზატორის ჰუკი",
 	"version-hook-name": "ჰუკის სახელი",
 	"version-hook-subscribedby": "ჩაწერილია",
-	"version-version": "(ვერსია $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[სახელის გარეშე]",
 	"version-svn-revision": "(r$2)",
 	"version-license": "მედიავიკის ლიცენზია",

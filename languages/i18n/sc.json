@@ -1525,7 +1525,7 @@
 	"version": "Versione",
 	"version-specialpages": "Pàginas ispetziales",
 	"version-other": "Àteru",
-	"version-version": "(Versione $1)",
+	"version-version": "($1)",
 	"version-license": "Licèntzia MediaWiki",
 	"version-ext-license": "Licèntzia",
 	"version-ext-colheader-version": "Versione",

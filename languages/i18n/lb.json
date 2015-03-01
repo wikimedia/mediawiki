@@ -2827,7 +2827,7 @@
 	"version-parser-function-hooks": "Parser-Funktiounen",
 	"version-hook-name": "Numm vun der Klamer",
 	"version-hook-subscribedby": "Opruff vum",
-	"version-version": "(Versioun $1)",
+	"version-version": "($1)",
 	"version-no-ext-name": "[keen Numm]",
 	"version-license": "MediaWiki-Lizenz",
 	"version-ext-license": "Lizenz",

@@ -1147,7 +1147,7 @@
 	"version-specialpages": "বিশেষ পাতাহানি",
 	"version-other": "হের",
 	"version-hooks": "কসিগি",
-	"version-version": "(সংস্করণ $1)",
+	"version-version": "($1)",
 	"version-license": "লাইসেন্স",
 	"version-software": "ইনস্টলঅসে সফটওয়্যার",
 	"version-software-product": "পণ্য",

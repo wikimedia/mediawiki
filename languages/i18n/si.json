@@ -2745,7 +2745,7 @@
 	"version-parser-function-hooks": "වයාකරණ විග්‍රහක ශ්‍රිත හසුරු",
 	"version-hook-name": "හසුරු නම",
 	"version-hook-subscribedby": "දායකවී ඇත්තේ",
-	"version-version": "(අනුවාදය $1)",
+	"version-version": "($1)",
 	"version-license": "වරපත",
 	"version-poweredby-credits": "මෙම විකිය '''[https://www.mediawiki.org/ MediaWiki]''' මගින් බලගන්වා ඇත, copyright © 2001-$1 $2.",
 	"version-poweredby-others": "අනෙකුත්",

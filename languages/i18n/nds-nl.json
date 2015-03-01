@@ -2730,7 +2730,7 @@
 	"version-parser-function-hooks": "Parserfunksiehoeken",
 	"version-hook-name": "Hooknaam",
 	"version-hook-subscribedby": "In-eschreven deur",
-	"version-version": "(Versie $1)",
+	"version-version": "($1)",
 	"version-license": "MediaWiki-lisensie",
 	"version-ext-colheader-version": "Versie",
 	"version-ext-colheader-license": "Lisensie",
