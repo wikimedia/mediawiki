@@ -164,6 +164,8 @@ production.
   (instead of returning incorrect results) even when the page ID is known.
 * (T74070) Duplicate search for archived files on file upload now omits the extension.
   This requires the fa_sha1 field being populated.
+* Removed rel="archives" from the "View history" link, as it did not pass
+  HTML validation.
 
 === Action API changes in 1.25 ===
 * (T67403) XML tag highlighting is now only performed for formats
