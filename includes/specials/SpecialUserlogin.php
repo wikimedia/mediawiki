@@ -42,6 +42,7 @@ class LoginForm extends SpecialPage {
 	const NEED_TOKEN = 12;
 	const WRONG_TOKEN = 13;
 	const USER_MIGRATED = 14;
+	const NO_LOGIN_RIGHT = 15;
 
 	/**
 	 * Valid error and warning messages
@@ -714,6 +715,12 @@ class LoginForm extends SpecialPage {
 
 		$u = User::newFromName( $this->mUsername );
 
+		// Check if the user has the 'login' right,
+		// and abort if the user doesn't.
+		if ( !in_array( "login", $u->getRights() ) ) {
+			return self::NO_LOGIN_RIGHT;
+		}
+
 		// Give extensions a way to indicate the username has been updated,
 		// rather than telling the user the account doesn't exist.
 		if ( !Hooks::run( 'LoginUserMigrated', array( $u, &$msg ) ) ) {
@@ -1028,6 +1035,10 @@ class LoginForm extends SpecialPage {
 					$params = $this->mAbortLoginErrorMsg;
 				}
 				$this->mainLoginForm( $this->msg( $error, $params )->text() );
+				break;
+			case self::NO_LOGIN_RIGHT:
+				$error = $this->mAbortLoginErrorMsg ?: 'login-nologinright';
+				$this->mainLoginForm( $this->msg( $error, $this->mUsername )->escaped() );
 				break;
 			default:
 				throw new MWException( 'Unhandled case value' );
