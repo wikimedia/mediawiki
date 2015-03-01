@@ -38,36 +38,33 @@ class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 	 * @return array
 	 */
 	protected function getPages( ResourceLoaderContext $context ) {
-		$username = $context->getUser();
-
-		if ( $username === null ) {
-			return array();
-		}
-
 		$allowUserJs = $this->getConfig()->get( 'AllowUserJs' );
 		$allowUserCss = $this->getConfig()->get( 'AllowUserCss' );
-
 		if ( !$allowUserJs && !$allowUserCss ) {
 			return array();
 		}
 
-		// Get the normalized title of the user's user page
-		$userpageTitle = Title::makeTitleSafe( NS_USER, $username );
-
-		if ( !$userpageTitle instanceof Title ) {
+		$user = $context->getUserObj();
+		if ( !$user || $user->isAnon() ) {
 			return array();
 		}
 
-		$userpage = $userpageTitle->getPrefixedDBkey(); // Needed so $excludepages works
+		$userPage = $user->getUserPage();
+		if ( !$userPage ) {
+			return array();
+		}
+
+		// Needed so $excludepages works
+		$userPageName = $userPage->getPrefixedDBkey();
 
 		$pages = array();
 		if ( $allowUserJs ) {
-			$pages["$userpage/common.js"] = array( 'type' => 'script' );
-			$pages["$userpage/" . $context->getSkin() . '.js'] = array( 'type' => 'script' );
+			$pages["$userPageName/common.js"] = array( 'type' => 'script' );
+			$pages["$userPageName/" . $context->getSkin() . '.js'] = array( 'type' => 'script' );
 		}
 		if ( $allowUserCss ) {
-			$pages["$userpage/common.css"] = array( 'type' => 'style' );
-			$pages["$userpage/" . $context->getSkin() . '.css'] = array( 'type' => 'style' );
+			$pages["$userPageName/common.css"] = array( 'type' => 'style' );
+			$pages["$userPageName/" . $context->getSkin() . '.css'] = array( 'type' => 'style' );
 		}
 
 		// Hack for bug 26283: if we're on a preview page for a CSS/JS page,
