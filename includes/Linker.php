@@ -1754,6 +1754,9 @@ class Linker {
 				array(
 					'href' => '#' . $anchor,
 					'class' => 'mw-headline-anchor',
+					// Hide from screen readers, as it is inside a heading (the programs use headings to
+					// navigate, so the symbol is being read during navigation). Pending T13555 being fixed.
+					'aria-hidden' => 'true',
 					'title' => wfMessage( 'headline-anchor-title' )->text()
 				),
 				wfMessage( 'section-symbol' )->text()
