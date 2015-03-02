@@ -1003,7 +1003,7 @@
 	"group-sysop": "Administratooren",
 	"group-bureaucrat": "Bürokraaten",
 	"group-suppress": "Oversighter",
-	"group-all": "(Aaltumaal)",
+	"group-all": "(Aal a)",
 	"group-user-member": "{{GENDER:$1|Brüker}}",
 	"group-autoconfirmed-member": "{{GENDER:$1|Registriaret brüker}}",
 	"group-bot-member": "{{GENDER:$1|Bot}}",

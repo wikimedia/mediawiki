@@ -1943,7 +1943,7 @@
 	"svg-long-desc": "Koropak SVG, nominalna $1 × $2 piksel, ukuranana $3",
 	"show-big-image": "Berkas asli",
 	"show-big-image-preview": "Ukuran ieu pramidang: $1.",
-	"show-big-image-other": "Résolusi lianna: $1.",
+	"show-big-image-other": "{{PLURAL:$2|Resolusi}} lianna: $1.",
 	"show-big-image-size": "$1 × $2 pixel",
 	"newimages": "Galeri gambar anyar",
 	"imagelisttext": "Di handap ieu daptar '''$1''' {{PLURAL:$1|gambar|gambar}} nu disusun $2.",
