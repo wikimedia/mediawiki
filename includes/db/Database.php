@@ -153,6 +153,9 @@ abstract class DatabaseBase implements IDatabase {
 	 */
 	protected $allViews = null;
 
+	/** @var TransactionProfiler */
+	protected $trxProfiler;
+
 	/**
 	 * A string describing the current software version, and possibly
 	 * other details in a user-friendly way. Will be listed on Special:Version, etc.
@@ -343,6 +346,15 @@ abstract class DatabaseBase implements IDatabase {
 	 * @param bool $enabled
 	 */
 	public function setFakeMaster( $enabled = true ) {
+	}
+
+	/**
+	 * @return TransactionProfiler
+	 */
+	protected function getTransactionProfiler() {
+		return $this->trxProfiler
+			? $this->trxProfiler
+			: Profiler::instance()->getTransactionProfiler();
 	}
 
 	/**
@@ -798,12 +810,16 @@ abstract class DatabaseBase implements IDatabase {
 
 		$this->mForeign = $foreign;
 
+		if ( isset( $params['trxProfiler'] ) ) {
+			$this->trxProfiler = $params['trxProfiler']; // override
+		}
+
 		if ( $user ) {
 			$this->open( $server, $user, $password, $dbName );
 		}
 
 		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
-		$trxProf = Profiler::instance()->getTransactionProfiler();
+		$trxProf = $this->getTransactionProfiler();
 		$trxProf->recordConnection( $this->mServer, $this->mDBname, $isMaster );
 	}
 
@@ -1103,7 +1119,7 @@ abstract class DatabaseBase implements IDatabase {
 		# Keep track of whether the transaction has write queries pending
 		if ( $this->mTrxLevel && !$this->mTrxDoneWrites && $isWriteQuery ) {
 			$this->mTrxDoneWrites = true;
-			Profiler::instance()->getTransactionProfiler()->transactionWritingIn(
+			$this->getTransactionProfiler()->transactionWritingIn(
 				$this->mServer, $this->mDBname, $this->mTrxShortId );
 		}
 
@@ -1149,7 +1165,7 @@ abstract class DatabaseBase implements IDatabase {
 		$startTime = microtime( true );
 		$ret = $this->doQuery( $commentedSql );
 		# Log the query time and feed it into the DB trx profiler
-		$profiler->getTransactionProfiler()->recordQueryCompletion(
+		$this->getTransactionProfiler()->recordQueryCompletion(
 			$queryProf, $startTime, $isWriteQuery, $this->affectedRows() );
 
 		MWDebug::queryTime( $queryId );
@@ -1180,7 +1196,7 @@ abstract class DatabaseBase implements IDatabase {
 					$startTime = microtime( true );
 					$ret = $this->doQuery( $commentedSql );
 					# Log the query time and feed it into the DB trx profiler
-					$profiler->getTransactionProfiler()->recordQueryCompletion(
+					$this->getTransactionProfiler()->recordQueryCompletion(
 						$queryProf, $startTime, $isWriteQuery, $this->affectedRows() );
 				}
 			} else {
@@ -3599,7 +3615,7 @@ abstract class DatabaseBase implements IDatabase {
 			$this->runOnTransactionPreCommitCallbacks();
 			$this->doCommit( $fname );
 			if ( $this->mTrxDoneWrites ) {
-				Profiler::instance()->getTransactionProfiler()->transactionWritingOut(
+				$this->getTransactionProfiler()->transactionWritingOut(
 					$this->mServer, $this->mDBname, $this->mTrxShortId );
 			}
 			$this->runOnTransactionIdleCallbacks();
@@ -3679,7 +3695,7 @@ abstract class DatabaseBase implements IDatabase {
 		$this->runOnTransactionPreCommitCallbacks();
 		$this->doCommit( $fname );
 		if ( $this->mTrxDoneWrites ) {
-			Profiler::instance()->getTransactionProfiler()->transactionWritingOut(
+			$this->getTransactionProfiler()->transactionWritingOut(
 				$this->mServer, $this->mDBname, $this->mTrxShortId );
 		}
 		$this->runOnTransactionIdleCallbacks();
@@ -3738,7 +3754,7 @@ abstract class DatabaseBase implements IDatabase {
 		$this->mTrxPreCommitCallbacks = array(); // cancel
 		$this->mTrxAtomicLevels = new SplStack;
 		if ( $this->mTrxDoneWrites ) {
-			Profiler::instance()->getTransactionProfiler()->transactionWritingOut(
+			$this->getTransactionProfiler()->transactionWritingOut(
 				$this->mServer, $this->mDBname, $this->mTrxShortId );
 		}
 	}
