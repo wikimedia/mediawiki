@@ -41,10 +41,29 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 	 *   - HTTPProxy      : Parsoid HTTP proxy (optional)
 	 */
 	public function __construct( array $params ) {
+		global $wgParsoidVRSUseRestbase, $wgRestbaseServer, $wgServer;
 		parent::__construct( $params );
+		// if the config says we should use Restbase, create
+		// a new RestbaseVirtualRESTService object
+		$this->params['use_restbase'] = isset( $wgParsoidVRSUseRestbase )
+				? $wgParsoidVRSUseRestbase : false;
+		if ( $this->params['use_restbase'] ) {
+			$rbParams = array(
+				'url' => $wgRestbaseServer,
+				'domain' => preg_replace( '/^(https?:\/\/)?([^\/:]+?)(\/|:\d+\/?)?$/', '$2', $wgServer ),
+				'timeout' => $this->params['timeout'],
+				'forwardCookies' => $this->params['forwardCookies'],
+				'HTTPProxy' => $this->params['HTTPProxy']
+			);
+			$this->restbaseVRS = new RestbaseVirtualRESTService( $rbParams );
+		}
 	}
 
 	public function onRequests( array $reqs, Closure $idGeneratorFunc ) {
+		// just forward the request to Restbase if it's used
+		if ( $this->params['use_restbase'] ) {
+			return $this->restbaseVRS->onParsoidRequests( $reqs, $idGeneratorFunc );
+		}
 		$result = array();
 		foreach ( $reqs as $key => $req ) {
 			$parts = explode( '/', $req['url'] );
