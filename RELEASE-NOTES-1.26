@@ -16,6 +16,9 @@ production.
   new style is encouraged as it's harder to implement incorrectly.
 
 === New features in 1.26 ===
+* (T51506) Now action=info gives estimates of actual watchers for a page.
+  See $wgRCMaxAge, $wgWatchersMaxAge and $wgUnwatchedPageSecret
+  to learn how to configure if needed.
 * Change tags can now be hidden in the interface by disabling the associated
   "tag-<id>" interface message.
 * ':' (colon) is now invalid in usernames for new accounts. Existing accounts
