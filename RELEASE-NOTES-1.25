@@ -292,6 +292,9 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
+* BREAKING CHANGE (T91240): Language code "bh" is not valid in ISO 639 and
+  was removed, so it will no longer alias to "bho". If you used "bh" as your
+  wiki's $wgLanguageCode, you must update your configuration.
 * (T66440) Kazakh (kk) wikis should no longer forcefully reset the user's
   interface language to kk where unexpected.
 
