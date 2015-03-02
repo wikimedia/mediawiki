@@ -34,13 +34,18 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 	 *   * body: array( 'wikitext' => ... ) or array( 'wikitext' => ..., 'body' => true/false )
 	 *   * $title is optional
 	 * @param array $params Key/value map
-	 *   - URL            : Parsoid server URL
+	 *   - url            : Parsoid server URL
 	 *   - prefix         : Parsoid prefix for this wiki
 	 *   - timeout        : Parsoid timeout (optional)
 	 *   - forwardCookies : Cookies to forward to Parsoid, or false. (optional)
 	 *   - HTTPProxy      : Parsoid HTTP proxy (optional)
 	 */
 	public function __construct( array $params ) {
+		// for backwards compatibility:
+		if ( isset( $params['URL'] ) ) {
+			$params['url'] = $params['URL'];
+			unset( $params['URL'] );
+		}
 		parent::__construct( $params );
 	}
 
@@ -63,7 +68,7 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 				throw new Exception( "Request type must be either 'page' or 'transform'" );
 			}
 
-			$req['url'] = $this->params['URL'] . '/' . urlencode( $this->params['prefix'] ) . '/';
+			$req['url'] = $this->params['url'] . '/' . urlencode( $this->params['prefix'] ) . '/';
 
 			if ( $reqType === 'page' ) {
 				$title = $parts[3];
