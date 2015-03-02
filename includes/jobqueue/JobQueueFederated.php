@@ -160,7 +160,7 @@ class JobQueueFederated extends JobQueue {
 				$empty = $empty && $queue->doIsEmpty();
 			} catch ( JobQueueError $e ) {
 				++$failed;
-				MWExceptionHandler::logException( $e );
+				$this->logException( $e );
 			}
 		}
 		$this->throwErrorIfAllPartitionsDown( $failed );
@@ -204,7 +204,7 @@ class JobQueueFederated extends JobQueue {
 				$count += $queue->$method();
 			} catch ( JobQueueError $e ) {
 				++$failed;
-				MWExceptionHandler::logException( $e );
+				$this->logException( $e );
 			}
 		}
 		$this->throwErrorIfAllPartitionsDown( $failed );
@@ -277,7 +277,7 @@ class JobQueueFederated extends JobQueue {
 				$queue->doBatchPush( $jobBatch, $flags | self::QOS_ATOMIC );
 			} catch ( JobQueueError $e ) {
 				$ok = false;
-				MWExceptionHandler::logException( $e );
+				$this->logException( $e );
 			}
 			if ( $ok ) {
 				$key = $this->getCacheKey( 'empty' );
@@ -299,7 +299,7 @@ class JobQueueFederated extends JobQueue {
 				$queue->doBatchPush( $jobBatch, $flags | self::QOS_ATOMIC );
 			} catch ( JobQueueError $e ) {
 				$ok = false;
-				MWExceptionHandler::logException( $e );
+				$this->logException( $e );
 			}
 			if ( $ok ) {
 				$key = $this->getCacheKey( 'empty' );
@@ -331,7 +331,7 @@ class JobQueueFederated extends JobQueue {
 				$job = $queue->pop();
 			} catch ( JobQueueError $e ) {
 				++$failed;
-				MWExceptionHandler::logException( $e );
+				$this->logException( $e );
 				$job = false;
 			}
 			if ( $job ) {
@@ -398,7 +398,7 @@ class JobQueueFederated extends JobQueue {
 				$queue->doDelete();
 			} catch ( JobQueueError $e ) {
 				++$failed;
-				MWExceptionHandler::logException( $e );
+				$this->logException( $e );
 			}
 		}
 		$this->throwErrorIfAllPartitionsDown( $failed );
@@ -413,7 +413,7 @@ class JobQueueFederated extends JobQueue {
 				$queue->waitForBackups();
 			} catch ( JobQueueError $e ) {
 				++$failed;
-				MWExceptionHandler::logException( $e );
+				$this->logException( $e );
 			}
 		}
 		$this->throwErrorIfAllPartitionsDown( $failed );
@@ -495,7 +495,7 @@ class JobQueueFederated extends JobQueue {
 				}
 			} catch ( JobQueueError $e ) {
 				++$failed;
-				MWExceptionHandler::logException( $e );
+				$this->logException( $e );
 			}
 		}
 		$this->throwErrorIfAllPartitionsDown( $failed );
@@ -519,12 +519,16 @@ class JobQueueFederated extends JobQueue {
 				}
 			} catch ( JobQueueError $e ) {
 				++$failed;
-				MWExceptionHandler::logException( $e );
+				$this->logException( $e );
 			}
 		}
 		$this->throwErrorIfAllPartitionsDown( $failed );
 
 		return $result;
+	}
+
+	protected function logException( Exception $e ) {
+		wfDebugLog( 'JobQueueFederated', $e->getMessage() . "\n" . $e->getTraceAsString() );
 	}
 
 	/**
