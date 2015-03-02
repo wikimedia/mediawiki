@@ -7420,6 +7420,23 @@ $wgPageLanguageUseDB = false;
 $wgUseLinkNamespaceDBFields = true;
 
 /**
+ * Global configuration variable for Virtual REST Services.
+ * Parameters for different services are to be declared inside $wgVRS['modules'], which
+ * is to be treated as an associative array. Global parameters will be merged with
+ * service-specific ones.
+ * @var array
+ * @since 1.25
+ */
+$wgVRS = array(
+	'modules' => array(),
+	'global' => array(
+		'timeout' => 1000,
+		'forwardCookies' => false,
+		'HTTPProxy' => null
+	)
+);
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}

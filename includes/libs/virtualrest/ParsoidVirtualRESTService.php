@@ -59,7 +59,7 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 				throw new Exception( "Only 'local' target wiki is currently supported" );
 			} elseif ( $version !== 'v1' ) {
 				throw new Exception( "Only version 1 exists" );
-			} else if ( $reqType !== 'page' && $reqType !== 'transform' ) {
+			} elseif ( $reqType !== 'page' && $reqType !== 'transform' ) {
 				throw new Exception( "Request type must be either 'page' or 'transform'" );
 			}
 
