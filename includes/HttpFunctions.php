@@ -91,7 +91,7 @@ class Http {
 	 */
 	public static function get( $url, $options = array() ) {
 		$args = func_get_args();
-		if ( is_string( $args[1] ) || is_numeric( $args[1] ) ) {
+		if ( isset( $args[1] ) && ( is_string( $args[1] ) || is_numeric( $args[1] ) ) ) {
 			// Second was used to be the timeout
 			// And third parameter used to be $options
 			wfWarn( "Second parameter should not be a timeout." );
