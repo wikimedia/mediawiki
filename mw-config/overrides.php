@@ -38,7 +38,7 @@ Then add the following to the bottom of this file:
 class MyLocalSettingsGenerator extends LocalSettingsGenerator {
 	function getText() {
 		// Modify an existing setting
-		$this->values['wgResourceLoaderMaxQueryLength'] = 512;
+		$this->values['wgDefaultSkin'] = 'vector';
 		// add a new setting
 		$ls = parent::getText();
 		return $ls . "\n\$wgUseTex = true;\n";
