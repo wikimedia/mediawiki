@@ -5901,6 +5901,21 @@ $wgGitRepositoryViewers = array(
 $wgRCMaxAge = 90 * 24 * 3600;
 
 /**
+ * Page watchers inactive for more than this many seconds are considered inactive.
+ * Used mainly by action=info. Default: 180 days = about six months.
+ * @since 1.26
+ */
+$wgWatchersMaxAge = 180 * 24 * 3600;
+
+/**
+ * If active watchers (per above) are this number or less, do not disclose it.
+ * Left to 1, prevents unprivileged users from knowing for sure that there are 0.
+ * Set to -1 if you want to always complement watchers count with this info.
+ * @since 1.26
+ */
+$wgUnwatchedPageSecret = 1;
+
+/**
  * Filter $wgRCLinkDays by $wgRCMaxAge to avoid showing links for numbers
  * higher than what will be stored. Note that this is disabled by default
  * because we sometimes do have RC data which is beyond the limit for some
