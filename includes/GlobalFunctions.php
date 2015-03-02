@@ -2558,7 +2558,7 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 		wfDebug( "$caller: called wfMkdirParents($dir)\n" );
 	}
 
-	if ( strval( $dir ) === '' || ( file_exists( $dir ) && is_dir( $dir ) ) ) {
+	if ( strval( $dir ) === '' || is_dir( $dir ) ) {
 		return true;
 	}
 
