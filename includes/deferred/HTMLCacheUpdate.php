@@ -47,6 +47,7 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 			$this->mTitle,
 			array(
 				'table' => $this->mTable,
+				'recursive' => true
 			) + Job::newRootJobParams( // "overall" refresh links job info
 				"htmlCacheUpdate:{$this->mTable}:{$this->mTitle->getPrefixedText()}"
 			)
