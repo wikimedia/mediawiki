@@ -326,6 +326,11 @@ class InfoAction extends FormlessAction {
 			$pageInfo['header-basic'][] = array(
 				$this->msg( 'pageinfo-watchers' ), $lang->formatNum( $pageCounts['watchers'] )
 			);
+			if ( $this->getConfig()->get( 'ShowUpdatedMarker' ) ) {
+				$pageInfo['header-basic'][] = array(
+					$this->msg( 'pageinfo-visiting-watchers' ), $lang->formatNum( $pageCounts['visitingWatchers'] )
+				);
+			}
 		} elseif ( $unwatchedPageThreshold !== false ) {
 			$pageInfo['header-basic'][] = array(
 				$this->msg( 'pageinfo-watchers' ),
@@ -653,6 +658,25 @@ class InfoAction extends FormlessAction {
 			__METHOD__
 		);
 		$result['watchers'] = $watchers;
+
+		if ( $this->getConfig()->get( 'ShowUpdatedMarker' ) ) {
+			// Threshold: last visited about 26 weeks before latest edit
+			$updated = wfTimestamp( TS_UNIX, $this->page->getTimestamp() );
+			$age = 2 * $this->getConfig()->get( 'RCMaxAge' );
+			$threshold = wfTimestamp( TS_MW, $updated - $age );
+			// Number of page watchers who also visit
+			$visitingWatchers = (int)$dbr->selectField(
+				'watchlist',
+				'COUNT(*)',
+				array(
+					'wl_namespace' => $title->getNamespace(),
+					'wl_title' => $title->getDBkey(),
+					'wl_notificationtimestamp <= ' + $dbr->addQuotes( $threshold ),
+				),
+				__METHOD__
+			);
+			$result['visitingWatchers'] = $visitingWatchers;
+		}
 
 		// Total number of edits
 		$edits = (int)$dbr->selectField(
