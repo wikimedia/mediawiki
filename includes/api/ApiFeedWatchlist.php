@@ -117,7 +117,10 @@ class ApiFeedWatchlist extends ApiBase {
 
 			$feedItems = array();
 			foreach ( (array)$data['query']['watchlist'] as $info ) {
-				$feedItems[] = $this->createFeedItem( $info );
+				$feedItem = $this->createFeedItem( $info );
+				if ( $feedItem ) {
+					$feedItems[] = $feedItem;
+				}
 			}
 
 			$msg = wfMessage( 'watchlist' )->inContentLanguage()->text();
@@ -166,10 +169,22 @@ class ApiFeedWatchlist extends ApiBase {
 	private function createFeedItem( $info ) {
 		$titleStr = $info['title'];
 		$title = Title::newFromText( $titleStr );
+		$curidParam = array();
+		if ( !$title || $title->isExternal() ) {
+			// Probably a formerly-valid title that's now conflicting with an
+			// interwiki prefix or the like.
+			if ( isset( $info['pageid'] ) ) {
+				$title = Title::newFromId( $info['pageid'] );
+				$curidParam = array( 'curid' => $info['pageid'] );
+			}
+			if ( !$title || $title->isExternal() ) {
+				return null;
+			}
+		}
 		if ( isset( $info['revid'] ) ) {
 			$titleUrl = $title->getFullURL( array( 'diff' => $info['revid'] ) );
 		} else {
-			$titleUrl = $title->getFullURL();
+			$titleUrl = $title->getFullURL( $curidParam );
 		}
 		$comment = isset( $info['comment'] ) ? $info['comment'] : null;
 
