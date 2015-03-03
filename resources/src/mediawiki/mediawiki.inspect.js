@@ -20,7 +20,7 @@
 	function humanSize( bytes ) {
 		if ( !$.isNumeric( bytes ) || bytes === 0 ) { return bytes; }
 		var i = 0,
-			units = [ '', ' kB', ' MB', ' GB', ' TB', ' PB' ];
+			units = [ '', ' KiB', ' MiB', ' GiB', ' TiB', ' PiB' ];
 
 		for ( ; bytes >= 1024; bytes /= 1024 ) { i++; }
 		// Maintain one decimal for kB and above, but don't
