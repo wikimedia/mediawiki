@@ -183,4 +183,13 @@ class ProfilerXhprof extends Profiler {
 		}
 		return implode( "\n", $out );
 	}
+
+	/**
+	 * Retrieve raw data from xhprof
+	 * @return array
+	 */
+	public function getRawData()
+	{
+		return $this->xhprof->getRawData();
+	}
 }
