@@ -1254,7 +1254,9 @@ class Language {
 					break;
 				case 'D':
 					$usedDay = true;
-					$s .= $this->getWeekdayAbbreviation( Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'w' ) + 1 );
+					$s .= $this->getWeekdayAbbreviation(
+						Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'w' ) + 1
+					);
 					break;
 				case 'j':
 					$usedDay = true;
@@ -1283,7 +1285,9 @@ class Language {
 					break;
 				case 'l':
 					$usedDay = true;
-					$s .= $this->getWeekdayName( Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'w' ) + 1 );
+					$s .= $this->getWeekdayName(
+						Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'w' ) + 1
+					);
 					break;
 				case 'F':
 					$usedMonth = true;
@@ -1530,43 +1534,72 @@ class Language {
 		} elseif ( $usedHour ) {
 			$ttl = 3600 - substr( $ts, 10, 2 ) * 60 - substr( $ts, 12, 2 );
 		} elseif ( $usedAMPM ) {
-			$ttl = 43200 - ( substr( $ts, 8, 2 ) % 12 ) * 3600 - substr( $ts, 10, 2 ) * 60 - substr( $ts, 12, 2 );
-		} elseif ( $usedDay || $usedHebrewMonth || $usedIranianMonth || $usedHijriMonth || $usedHebrewYear || $usedIranianYear || $usedHijriYear || $usedTennoYear ) {
-			// @todo Someone who understands the non-Gregorian calendars should write proper logic for them
-			// so that they don't need purged every day.
-			$ttl = 86400 - substr( $ts, 8, 2 ) * 3600 - substr( $ts, 10, 2 ) * 60 - substr( $ts, 12, 2 );
+			$ttl = 43200 - ( substr( $ts, 8, 2 ) % 12 ) * 3600 -
+				substr( $ts, 10, 2 ) * 60 - substr( $ts, 12, 2 );
+		} elseif (
+			$usedDay ||
+			$usedHebrewMonth ||
+			$usedIranianMonth ||
+			$usedHijriMonth ||
+			$usedHebrewYear ||
+			$usedIranianYear ||
+			$usedHijriYear ||
+			$usedTennoYear
+		) {
+			// @todo Someone who understands the non-Gregorian calendars
+			// should write proper logic for them so that they don't need purged every day.
+			$ttl = 86400 - substr( $ts, 8, 2 ) * 3600 -
+				substr( $ts, 10, 2 ) * 60 - substr( $ts, 12, 2 );
 		} else {
 			$possibleTtls = array();
-			$timeRemainingInDay = 86400 - substr( $ts, 8, 2 ) * 3600 - substr( $ts, 10, 2 ) * 60 - substr( $ts, 12, 2 );
+			$timeRemainingInDay = 86400 - substr( $ts, 8, 2 ) * 3600 -
+				substr( $ts, 10, 2 ) * 60 - substr( $ts, 12, 2 );
 			if ( $usedWeek ) {
-				$possibleTtls[] = ( 7 - Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'N' ) ) * 86400 + $timeRemainingInDay;
+				$possibleTtls[] =
+					( 7 - Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'N' ) ) * 86400 +
+					$timeRemainingInDay;
 			} elseif ( $usedISOYear ) {
 				// December 28th falls on the last ISO week of the year, every year.
 				// The last ISO week of a year can be 52 or 53.
-				$lastWeekOfISOYear = DateTime::createFromFormat( 'Ymd', substr( $ts, 0, 4 ) . '1228', $zone ?: new DateTimeZone( 'UTC' ) )->format( 'W' );
+				$lastWeekOfISOYear = DateTime::createFromFormat(
+					'Ymd',
+					substr( $ts, 0, 4 ) . '1228',
+					$zone ?: new DateTimeZone( 'UTC' )
+				)->format( 'W' );
 				$currentISOWeek = Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'W' );
 				$weeksRemaining = $lastWeekOfISOYear - $currentISOWeek;
-				$timeRemainingInWeek = ( 7 - Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'N' ) ) * 86400 + $timeRemainingInDay;
+				$timeRemainingInWeek =
+					( 7 - Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'N' ) ) * 86400
+					+ $timeRemainingInDay;
 				$possibleTtls[] = $weeksRemaining * 604800 + $timeRemainingInWeek;
 			}
 
 			if ( $usedMonth ) {
-				$possibleTtls[] = ( Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 't' ) - substr( $ts, 6, 2 ) ) * 86400 + $timeRemainingInDay;
+				$possibleTtls[] =
+					( Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 't' ) -
+						substr( $ts, 6, 2 ) ) * 86400
+					+ $timeRemainingInDay;
 			} elseif ( $usedYear ) {
-				$possibleTtls[] = ( Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'L' ) + 364 - Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'z' ) ) * 86400
+				$possibleTtls[] =
+					( Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'L' ) + 364 -
+						Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'z' ) ) * 86400
 					+ $timeRemainingInDay;
 			} elseif ( $usedIsLeapYear ) {
 				$year = substr( $ts, 0, 4 );
-				$timeRemainingInYear = ( Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'L' ) + 364 - Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'z' ) ) * 86400
+				$timeRemainingInYear =
+					( Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'L' ) + 364 -
+						Language::dateTimeObjFormat( $dateTimeObj, $ts, $zone, 'z' ) ) * 86400
 					+ $timeRemainingInDay;
 				$mod = $year % 4;
 				if ( $mod || ( !( $year % 100 ) && $year % 400 ) ) {
 					// this isn't a leap year. see when the next one starts
 					$nextCandidate = $year - $mod + 4;
 					if ( $nextCandidate % 100 || !( $nextCandidate % 400 ) ) {
-						$possibleTtls[] = ( $nextCandidate - $year - 1 ) * 365 * 86400 + $timeRemainingInYear;
+						$possibleTtls[] = ( $nextCandidate - $year - 1 ) * 365 * 86400 +
+							$timeRemainingInYear;
 					} else {
-						$possibleTtls[] = ( $nextCandidate - $year + 3 ) * 365 * 86400 + $timeRemainingInYear;
+						$possibleTtls[] = ( $nextCandidate - $year + 3 ) * 365 * 86400 +
+							$timeRemainingInYear;
 					}
 				} else {
 					// this is a leap year, so the next year isn't
