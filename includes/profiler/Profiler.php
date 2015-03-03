@@ -46,6 +46,7 @@ abstract class Profiler {
 		'db' => 'ProfilerOutputDb',
 		'text' => 'ProfilerOutputText',
 		'udp' => 'ProfilerOutputUdp',
+		'dump' => 'ProfilerOutputDump',
 	);
 
 	/** @var Profiler */
@@ -167,7 +168,7 @@ abstract class Profiler {
 		if ( !is_array( $output ) ) {
 			$output = array( $output );
 		}
-
+		$stats = null;
 		foreach ( $output as $outType ) {
 			if ( !isset( self::$outputTypes[$outType] ) ) {
 				throw new MWException( "'$outType' is an invalid output type" );
@@ -177,7 +178,10 @@ abstract class Profiler {
 			/** @var ProfilerOutput $profileOut */
 			$profileOut = new $class( $this, $this->params );
 			if ( $profileOut->canUse() ) {
-				$profileOut->log( $this->getFunctionStats() );
+				if ( is_null( $stats ) ) {
+					$stats = $this->getFunctionStats();
+				}
+				$profileOut->log( $stats );
 			}
 		}
 	}
