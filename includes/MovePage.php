@@ -370,7 +370,10 @@ class MovePage {
 
 		$dbw->commit( __METHOD__ );
 
-		Hooks::run( 'TitleMoveComplete', array( &$this->oldTitle, &$this->newTitle, &$user, $pageid, $redirid, $reason ) );
+		Hooks::run(
+			'TitleMoveComplete',
+			array( &$this->oldTitle, &$this->newTitle, &$user, $pageid, $redirid, $reason )
+		);
 		return Status::newGood();
 	}
 
