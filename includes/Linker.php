@@ -1388,7 +1388,9 @@ class Linker {
 	 *
 	 * @return string
 	 */
-	public static function formatLinksInComment( $comment, $title = null, $local = false, $wikiId = null ) {
+	public static function formatLinksInComment(
+		$comment, $title = null, $local = false, $wikiId = null
+	) {
 		return preg_replace_callback(
 			'/
 				\[\[
