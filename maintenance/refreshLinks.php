@@ -36,35 +36,32 @@ class RefreshLinks extends Maintenance {
 		$this->addOption( 'new-only', 'Only affect articles with just a single edit' );
 		$this->addOption( 'redirects-only', 'Only fix redirects, not all links' );
 		$this->addOption( 'old-redirects-only', 'Only fix redirects with no redirect table entry' );
-		$this->addOption( 'm', 'Maximum replication lag', false, true );
 		$this->addOption( 'e', 'Last page id to refresh', false, true );
 		$this->addArg( 'start', 'Page_id to start from, default 1', false );
 		$this->setBatchSize( 100 );
 	}
 
 	public function execute() {
-		$max = $this->getOption( 'm', 0 );
 		if ( !$this->hasOption( 'dfn-only' ) ) {
 			$start = $this->getArg( 0, 1 );
 			$new = $this->getOption( 'new-only', false );
 			$end = $this->getOption( 'e', 0 );
 			$redir = $this->getOption( 'redirects-only', false );
 			$oldRedir = $this->getOption( 'old-redirects-only', false );
-			$this->doRefreshLinks( $start, $new, $max, $end, $redir, $oldRedir );
+			$this->doRefreshLinks( $start, $new, $end, $redir, $oldRedir );
 		}
-		$this->deleteLinksFromNonexistent( $max, $this->mBatchSize );
+		$this->deleteLinksFromNonexistent( $this->mBatchSize );
 	}
 
 	/**
 	 * Do the actual link refreshing.
 	 * @param int $start Page_id to start from
 	 * @param bool $newOnly Only do pages with 1 edit
-	 * @param int $maxLag Max DB replication lag
 	 * @param int $end Page_id to stop at
 	 * @param bool $redirectsOnly Only fix redirects
 	 * @param bool $oldRedirectsOnly Only fix redirects without redirect entries
 	 */
-	private function doRefreshLinks( $start, $newOnly = false, $maxLag = false,
+	private function doRefreshLinks( $start, $newOnly = false,
 		$end = 0, $redirectsOnly = false, $oldRedirectsOnly = false
 	) {
 		global $wgParser, $wgUseTidy;
@@ -253,12 +250,11 @@ class RefreshLinks extends Maintenance {
 	 * Removes non-existing links from pages from pagelinks, imagelinks,
 	 * categorylinks, templatelinks, externallinks, interwikilinks, langlinks and redirect tables.
 	 *
-	 * @param int $maxLag
 	 * @param int $batchSize The size of deletion batches
 	 *
 	 * @author Merlijn van Deen <valhallasw@arctus.nl>
 	 */
-	private function deleteLinksFromNonexistent( $maxLag = 0, $batchSize = 100 ) {
+	private function deleteLinksFromNonexistent( $batchSize = 100 ) {
 		wfWaitForSlaves();
 
 		$dbw = wfGetDB( DB_MASTER );
