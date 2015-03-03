@@ -5,7 +5,8 @@
 	"properties": {
 		"name": {
 			"type": "string",
-			"description": "The extension's canonical name."
+			"description": "The extension's canonical name.",
+			"required": true
 		},
 		"type": {
 			"type": "string",
