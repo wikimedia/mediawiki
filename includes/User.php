@@ -1240,6 +1240,10 @@ class User implements IDBAccessObject {
 			$all = false;
 		}
 
+		if ( isset( $row->user_id ) && isset( $row->user_name ) ) {
+			self::$idCacheByName[$row->user_name] = $row->user_id;
+		}
+
 		if ( isset( $row->user_editcount ) ) {
 			$this->mEditCount = $row->user_editcount;
 		} else {
