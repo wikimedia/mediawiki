@@ -29,17 +29,37 @@
  * because of its dependence on the functionality of
  * Title::isCssJsSubpage.
  */
-abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
+class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
-	/* Protected Members */
-
-	# Origin is user-supplied code
+	// Origin defaults to users with sitewide authority
 	protected $origin = self::ORIGIN_USER_SITEWIDE;
 
 	// In-object cache for title info
 	protected $titleInfo = array();
 
-	/* Abstract Protected Methods */
+	// List of page names that contain CSS
+	protected $styles = array();
+
+	// List of page names that contain JavaScript
+	protected $scripts = array();
+
+	// Group of module
+	protected $group;
+
+	/**
+	 * @param array $options For back-compat, this can be omitted in favour of overwriting getPages.
+	 */
+	public function __construct( array $options = null ) {
+		if ( isset( $options['styles'] ) ) {
+			$this->styles = $options['styles'];
+		}
+		if ( isset( $options['scripts'] ) ) {
+			$this->scripts = $options['scripts'];
+		}
+		if ( isset( $options['group'] ) ) {
+			$this->group = $options['group'];
+		}
+	}
 
 	/**
 	 * Subclasses should return an associative array of resources in the module.
@@ -57,9 +77,34 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
-	abstract protected function getPages( ResourceLoaderContext $context );
+	protected function getPages( ResourceLoaderContext $context ) {
+		$config = $this->getConfig();
+		$pages = array();
 
-	/* Protected Methods */
+		// Filter out pages from origins not allowed by the current wiki configuration.
+		if ( $config->get( 'UseSiteJs' ) ) {
+			foreach ( $this->scripts as $script ) {
+				$pages[$script] = array( 'type' => 'script' );
+			}
+		}
+
+		if ( $config->get( 'UseSiteCss' ) ) {
+			foreach ( $this->styles as $style ) {
+				$pages[$style] = array( 'type' => 'style' );
+			}
+		}
+
+		return $pages;
+	}
+
+	/**
+	 * Get group name
+	 *
+	 * @return string
+	 */
+	public function getGroup() {
+		return $this->group;
+	}
 
 	/**
 	 * Get the Database object used in getTitleMTimes(). Defaults to the local slave DB
@@ -104,8 +149,6 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 		return $content->serialize( $format );
 	}
-
-	/* Methods */
 
 	/**
 	 * @param ResourceLoaderContext $context

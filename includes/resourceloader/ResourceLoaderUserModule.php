@@ -27,15 +27,13 @@
  */
 class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 
-	/* Protected Members */
-
 	protected $origin = self::ORIGIN_USER_INDIVIDUAL;
 
-	/* Protected Methods */
-
 	/**
+	 * Get list of pages used by this module
+	 *
 	 * @param ResourceLoaderContext $context
-	 * @return array
+	 * @return array List of pages
 	 */
 	protected function getPages( ResourceLoaderContext $context ) {
 		$allowUserJs = $this->getConfig()->get( 'AllowUserJs' );
@@ -74,9 +72,9 @@ class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 		return $pages;
 	}
 
-	/* Methods */
-
 	/**
+	 * Get group name
+	 *
 	 * @return string
 	 */
 	public function getGroup() {

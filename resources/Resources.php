@@ -29,12 +29,19 @@ return array(
 	/**
 	 * Special modules who have their own classes
 	 */
+	'startup' => array( 'class' => 'ResourceLoaderStartUpModule' ),
 
 	// Scripts managed by the local wiki (stored in the MediaWiki namespace)
 	'site' => array( 'class' => 'ResourceLoaderSiteModule' ),
-	'noscript' => array( 'class' => 'ResourceLoaderNoscriptModule' ),
-	'startup' => array( 'class' => 'ResourceLoaderStartUpModule' ),
-	'filepage' => array( 'class' => 'ResourceLoaderFilePageModule' ),
+	'noscript' => array(
+		'class' => 'ResourceLoaderWikiModule',
+		'styles' => array( 'MediaWiki:Noscript.css' ),
+		'group' => 'noscript',
+	),
+	'filepage' => array(
+		'class' => 'ResourceLoaderWikiModule',
+		'styles' => array( 'MediaWiki:Filepage.css' ),
+	),
 	'user.groups' => array( 'class' => 'ResourceLoaderUserGroupsModule' ),
 
 	// Scripts managed by the current user (stored in their user space)
