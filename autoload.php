@@ -907,6 +907,7 @@ $wgAutoloadLocalClasses = array(
 	'Profiler' => __DIR__ . '/includes/profiler/Profiler.php',
 	'ProfilerOutput' => __DIR__ . '/includes/profiler/output/ProfilerOutput.php',
 	'ProfilerOutputDb' => __DIR__ . '/includes/profiler/output/ProfilerOutputDb.php',
+	'ProfilerOutputDump' => __DIR__ . '/includes/profiler/output/ProfilerOutputDump.php',
 	'ProfilerOutputText' => __DIR__ . '/includes/profiler/output/ProfilerOutputText.php',
 	'ProfilerOutputUdp' => __DIR__ . '/includes/profiler/output/ProfilerOutputUdp.php',
 	'ProfilerSectionOnly' => __DIR__ . '/includes/profiler/ProfilerSectionOnly.php',
