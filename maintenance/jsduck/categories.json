@@ -55,7 +55,8 @@
 			{
 				"name": "Interfaces",
 				"classes": [
-					"mw.Feedback"
+					"mw.Feedback",
+					"mw.Feedback.Dialog"
 				]
 			},
 			{
