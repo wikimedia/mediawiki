@@ -114,7 +114,8 @@ class UserRightsProxy {
 	 */
 	private static function newFromLookup( $database, $field, $value, $ignoreInvalidDB = false ) {
 		global $wgSharedDB, $wgSharedTables;
-		// If the user table is shared, perform the user query on it, but don't pass it to the UserRightsProxy,
+		// If the user table is shared, perform the user query on it,
+		// but don't pass it to the UserRightsProxy,
 		// as user rights are normally not shared.
 		if ( $wgSharedDB && in_array( 'user', $wgSharedTables ) ) {
 			$userdb = self::getDB( $wgSharedDB, $ignoreInvalidDB );
