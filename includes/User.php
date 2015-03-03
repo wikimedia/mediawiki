@@ -3375,7 +3375,9 @@ class User implements IDBAccessObject {
 	 * @param WebRequest|null $request WebRequest object to use; $wgRequest will be used if null
 	 *        is passed.
 	 */
-	protected function setCookie( $name, $value, $exp = 0, $secure = null, $params = array(), $request = null ) {
+	protected function setCookie(
+		$name, $value, $exp = 0, $secure = null, $params = array(), $request = null
+	) {
 		if ( $request === null ) {
 			$request = $this->getRequest();
 		}
