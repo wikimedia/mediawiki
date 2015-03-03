@@ -260,6 +260,7 @@
 			multiline: false
 		} );
 		this.feedbackMessageInput = new OO.ui.TextInputWidget( {
+			autosize: true,
 			multiline: true
 		} );
 		feedbackSubjectFieldLayout = new OO.ui.FieldLayout( this.feedbackSubjectInput, {
@@ -289,6 +290,7 @@
 		// Events
 		this.feedbackSubjectInput.connect( this, { change: 'validateFeedbackForm' } );
 		this.feedbackMessageInput.connect( this, { change: 'validateFeedbackForm' } );
+		this.feedbackMessageInput.connect( this, { change: 'updateSize' } );
 		this.useragentCheckbox.connect( this, { change: 'validateFeedbackForm' } );
 
 		this.$body.append( this.feedbackPanel.$element );
