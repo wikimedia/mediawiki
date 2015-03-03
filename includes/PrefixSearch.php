@@ -155,7 +155,10 @@ abstract class PrefixSearch {
 			}
 		}
 		$srchres = array();
-		if ( Hooks::run( 'PrefixSearchBackend', array( $namespaces, $search, $limit, &$srchres, $offset ) ) ) {
+		if ( Hooks::run(
+			'PrefixSearchBackend',
+			array( $namespaces, $search, $limit, &$srchres, $offset ) )
+		) {
 			return $this->titles( $this->defaultSearchBackend( $namespaces, $search, $limit, $offset ) );
 		}
 		return $this->strings( $this->handleResultFromHook( $srchres, $namespaces, $search, $limit ) );
