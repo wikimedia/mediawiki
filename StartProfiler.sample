@@ -6,7 +6,7 @@
  *
  * For output, add:
  *  $wgProfiler['output'] = array( 'text' );
- *    'text' can be one (or more) of 'text' 'udp' or 'db'
+ *    'text' can be one (or more) of 'text' 'udp' 'db' or 'dump'
  *    'db' requires creating the profiling table, see patch-profiling.sql
  *
  * The 'text' output will be added to the output page in a comment approriate
@@ -17,6 +17,9 @@
  *
  * The 'db' output expects a database table that can be created by applying
  * maintenance/archives/patch-profiling.sql to your database.
+ *
+ * The 'dump' output expects a $wgProfiler['outputDir'] telling it where to
+ * write dump files. The files produced are compatible with the XHProf gui.
  *
  * For a rudimentary sampling profiler:
  *   $wgProfiler['class'] = 'ProfilerXhprof';
