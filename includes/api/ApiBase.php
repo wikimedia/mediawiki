@@ -160,6 +160,9 @@ abstract class ApiBase extends ContextSource {
 	 * If the module may only be used with a certain format module,
 	 * it should override this method to return an instance of that formatter.
 	 * A value of null means the default format will be used.
+	 * @note Do not use this just because you don't want to support non-json
+	 * formats. This should be used only when there is a fundamental
+	 * requirement for a specific format.
 	 * @return mixed Instance of a derived class of ApiFormatBase, or null
 	 */
 	public function getCustomPrinter() {
