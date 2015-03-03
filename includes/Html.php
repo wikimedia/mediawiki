@@ -159,7 +159,8 @@ class Html {
 	}
 
 	/**
-	 * Returns an HTML link element in a string styled as a button (when $wgUseMediaWikiUIEverywhere is enabled).
+	 * Returns an HTML link element in a string styled as a button
+	 * (when $wgUseMediaWikiUIEverywhere is enabled).
 	 *
 	 * @param string $contents The raw HTML contents of the element: *not*
 	 *   escaped!
@@ -178,7 +179,8 @@ class Html {
 	}
 
 	/**
-	 * Returns an HTML link element in a string styled as a button (when $wgUseMediaWikiUIEverywhere is enabled).
+	 * Returns an HTML link element in a string styled as a button
+	 * (when $wgUseMediaWikiUIEverywhere is enabled).
 	 *
 	 * @param string $contents The raw HTML contents of the element: *not*
 	 *   escaped!
