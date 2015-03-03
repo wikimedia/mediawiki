@@ -6465,7 +6465,7 @@ $wgJobTypeConf = array(
  * These settings should be global to all wikis.
  */
 $wgJobQueueAggregator = array(
-	'class' => 'JobQueueAggregatorMemc'
+	'class' => 'JobQueueAggregatorNull'
 );
 
 /**
