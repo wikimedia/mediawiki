@@ -108,9 +108,7 @@
 
 	&:hover,
 	&:focus {
-		// lessphp doesn't implement tint, see above
-		// color: tint(@textColor, 20%);
-		color: mix(#fff, @textColor, 20%);
+		color: @textColor;
 	}
 
 	&:active,
