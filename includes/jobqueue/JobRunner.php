@@ -87,12 +87,19 @@ class JobRunner implements LoggerAwareInterface {
 	 * @return array Summary response that can easily be JSON serialized
 	 */
 	public function run( array $options ) {
+		global $wgJobClasses;
+
 		$response = array( 'jobs' => array(), 'reached' => 'none-ready' );
 
 		$type = isset( $options['type'] ) ? $options['type'] : false;
 		$maxJobs = isset( $options['maxJobs'] ) ? $options['maxJobs'] : false;
 		$maxTime = isset( $options['maxTime'] ) ? $options['maxTime'] : false;
 		$noThrottle = isset( $options['throttle'] ) && !$options['throttle'];
+
+		if ( $type !== false && !isset( $wgJobClasses[$type] ) ) {
+			$response['reached'] = 'none-possible';
+			return $response;
+		}
 
 		$group = JobQueueGroup::singleton();
 		// Handle any required periodic queue maintenance
