@@ -78,7 +78,7 @@
 				crypto = window.crypto || window.msCrypto;
 
 			// Based on https://github.com/broofa/node-uuid/blob/bfd9f96127/uuid.js
-			if ( crypto ) {
+			if ( crypto && crypto.getRandomValues ) {
 				// Fill an array with 8 random values, each of which is 8 bits.
 				// Note that Uint8Array is array-like but does not implement Array.
 				rnds = new Uint8Array( 8 );
