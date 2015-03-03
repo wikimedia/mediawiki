@@ -658,8 +658,19 @@ class ApiMain extends ApiBase {
 			$out->addVaryHeader( 'X-Forwarded-Proto' );
 		}
 
+		$maxage = $this->getParameter( 'maxage' );
+		if ( !$this->mModule ) {
+			$this->setupModule();
+		}
+
+		if ( $this->mModule->isWriteMode() || !$maxage) {
+			$privateCache = 'private, must-revalidate, max-age=0';
+		} else {
+			$privateCache = 'private, must-revalidate, max-age=' . $maxage;
+		}
+
 		if ( $this->mCacheMode == 'private' ) {
-			$response->header( 'Cache-Control: private' );
+			$response->header( "Cache-Control: $privateCache" );
 			return;
 		}
 
@@ -671,14 +682,14 @@ class ApiMain extends ApiBase {
 				$response->header( $out->getXVO() );
 				if ( $out->haveCacheVaryCookies() ) {
 					// Logged in, mark this request private
-					$response->header( 'Cache-Control: private' );
+					$response->header( "Cache-Control: $privateCache" );
 					return;
 				}
 				// Logged out, send normal public headers below
 			} elseif ( session_id() != '' ) {
 				// Logged in or otherwise has session (e.g. anonymous users who have edited)
 				// Mark request private
-				$response->header( 'Cache-Control: private' );
+				$response->header( "Cache-Control: $privateCache" );
 
 				return;
 			} // else no XVO and anonymous, send public headers below
@@ -702,7 +713,7 @@ class ApiMain extends ApiBase {
 			// Public cache not requested
 			// Sending a Vary header in this case is harmless, and protects us
 			// against conditional calls of setCacheMaxAge().
-			$response->header( 'Cache-Control: private' );
+			$response->header( "Cache-Control: $privateCache" );
 
 			return;
 		}
