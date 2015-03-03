@@ -109,6 +109,8 @@ production.
   pointing to it.
 * New hooks 'ApiMain::moduleManager' and 'ApiQuery::moduleManager', can be
   used for conditional registration of API modules.
+* New hook 'EnhancedChangesList::getLogText' to alter, remove or add to the
+  links of a group of changes in EnhancedChangesList.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
