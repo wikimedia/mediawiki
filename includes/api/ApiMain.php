@@ -659,7 +659,7 @@ class ApiMain extends ApiBase {
 		}
 
 		if ( $this->mCacheMode == 'private' ) {
-			$response->header( 'Cache-Control: private' );
+			$response->header( 'Cache-Control: private, must-revalidate, max-age=0' );
 			return;
 		}
 
@@ -671,14 +671,14 @@ class ApiMain extends ApiBase {
 				$response->header( $out->getXVO() );
 				if ( $out->haveCacheVaryCookies() ) {
 					// Logged in, mark this request private
-					$response->header( 'Cache-Control: private' );
+					$response->header( 'Cache-Control: private, must-revalidate, max-age=0' );
 					return;
 				}
 				// Logged out, send normal public headers below
 			} elseif ( session_id() != '' ) {
 				// Logged in or otherwise has session (e.g. anonymous users who have edited)
 				// Mark request private
-				$response->header( 'Cache-Control: private' );
+				$response->header( 'Cache-Control: private, must-revalidate, max-age=0' );
 
 				return;
 			} // else no XVO and anonymous, send public headers below
