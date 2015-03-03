@@ -37,7 +37,6 @@ class TableCleanup extends Maintenance {
 	);
 
 	protected $dryrun = false;
-	protected $maxLag = 10; # if slaves are lagged more than 10 secs, wait
 	public $batchSize = 100;
 	public $reportInterval = 100;
 
