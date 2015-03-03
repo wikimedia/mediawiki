@@ -951,7 +951,8 @@ $wgExiv2Command = '/usr/bin/exiv2';
  * are passed as parameters after $srcPath, $dstPath, $width, $height
  */
 $wgSVGConverters = array(
-	'ImageMagick' => '$path/convert -background "#ffffff00" -thumbnail $widthx$height\! $input PNG:$output',
+	'ImageMagick' =>
+		'$path/convert -background "#ffffff00" -thumbnail $widthx$height\! $input PNG:$output',
 	'sodipodi' => '$path/sodipodi -z -w $width -f $input -e $output',
 	'inkscape' => '$path/inkscape -z -w $width -f $input -e $output',
 	'batik' => 'java -Djava.awt.headless=true -jar $path/batik-rasterizer.jar -w $width -d '
@@ -3173,9 +3174,10 @@ $wgFooterIcons = array(
 	),
 	"poweredby" => array(
 		"mediawiki" => array(
-			"src" => null, // Defaults to point at
-			               // "$wgResourceBasePath/resources/assets/poweredby_mediawiki_88x31.png"
-			               // plus srcset for 1.5x, 2x resolution variants.
+			// Defaults to point at
+			// "$wgResourceBasePath/resources/assets/poweredby_mediawiki_88x31.png"
+			// plus srcset for 1.5x, 2x resolution variants.
+			"src" => null,
 			"url" => "//www.mediawiki.org/",
 			"alt" => "Powered by MediaWiki",
 		)
