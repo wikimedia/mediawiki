@@ -3676,6 +3676,5 @@
 	"json-error-recursion": "One or more recursive references in the value to be encoded",
 	"json-error-inf-or-nan": "One or more NAN or INF values in the value to be encoded",
 	"json-error-unsupported-type": "A value of a type that cannot be encoded was given",
-	"headline-anchor-title": "Link to this section",
-	"section-symbol": "§"
+	"headline-anchor-title": "Link to this section"
 }

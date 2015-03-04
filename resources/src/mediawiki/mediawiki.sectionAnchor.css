@@ -13,6 +13,10 @@
 	user-select: none;
 }
 
+.mw-headline-anchor:after {
+	content: "§";
+}
+
 /* @noflip */
 .mw-content-ltr .mw-headline-anchor,
 .mw-content-rtl .mw-content-ltr .mw-headline-anchor {
