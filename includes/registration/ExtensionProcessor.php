@@ -44,6 +44,7 @@ class ExtensionProcessor implements Processor {
 		'APIMetaModules',
 		'APIPropModules',
 		'APIListModules',
+		'ValidSkinNames',
 	);
 
 	/**

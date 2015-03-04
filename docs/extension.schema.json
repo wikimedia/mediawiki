@@ -611,6 +611,9 @@
 		"APIListModules": {
 			"type": "object"
 		},
+		"ValidSkinNames": {
+			"type": "object"
+		},
 		"callback": {
 			"type": [
 				"array",
