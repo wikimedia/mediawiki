@@ -573,7 +573,6 @@ $ps_memcached = Profiler::instance()->scopedProfileIn( $fname . '-memcached' );
 $wgMemc = wfGetMainCache();
 $messageMemc = wfGetMessageCacheStorage();
 $parserMemc = wfGetParserCacheStorage();
-$wgLangConvMemc = wfGetLangConverterCacheStorage();
 
 wfDebugLog( 'caches', 'main: ' . get_class( $wgMemc ) .
 	', message: ' . get_class( $messageMemc ) .
