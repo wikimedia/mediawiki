@@ -19,12 +19,14 @@
  *
  * @file
  * @ingroup Upload
+ * @ingroup JobQueue
  */
 
 /**
  * Upload a file from the upload stash into the local file repo.
  *
  * @ingroup Upload
+ * @ingroup JobQueue
  */
 class PublishStashedFileJob extends Job {
 	public function __construct( $title, $params ) {

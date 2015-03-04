@@ -370,6 +370,7 @@ $wgAutoloadLocalClasses = array(
 	'EncryptedPassword' => __DIR__ . '/includes/password/EncryptedPassword.php',
 	'EnhancedChangesList' => __DIR__ . '/includes/changes/EnhancedChangesList.php',
 	'EnotifNotifyJob' => __DIR__ . '/includes/jobqueue/jobs/EnotifNotifyJob.php',
+	'EnqueueJob' => __DIR__ . '/includes/jobqueue/jobs/EnqueueJob.php',
 	'EraseArchivedFile' => __DIR__ . '/maintenance/eraseArchivedFile.php',
 	'ErrorPageError' => __DIR__ . '/includes/exception/ErrorPageError.php',
 	'Exif' => __DIR__ . '/includes/media/Exif.php',

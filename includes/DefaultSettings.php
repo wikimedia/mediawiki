@@ -6425,6 +6425,7 @@ $wgJobClasses = array(
 	'ThumbnailRender' => 'ThumbnailRenderJob',
 	'recentChangesUpdate' => 'RecentChangesUpdateJob',
 	'refreshLinksPrioritized' => 'RefreshLinksJob', // for cascading protection
+	'enqueue' => 'EnqueueJob',
 	'null' => 'NullJob'
 );
 
