@@ -1760,8 +1760,7 @@ class Linker {
 					// navigate, so the symbol is being read during navigation). Pending T13555 being fixed.
 					'aria-hidden' => 'true',
 					'title' => wfMessage( 'headline-anchor-title' )->text()
-				),
-				wfMessage( 'section-symbol' )->text()
+				)
 			)
 			. "<span class=\"mw-headline\" id=\"$anchor\">$html</span>"
 			. $link
