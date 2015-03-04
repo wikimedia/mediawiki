@@ -55,9 +55,10 @@ class Http {
 	 *		                    to avoid attacks on intranet services accessible by HTTP.
 	 *    - userAgent           A user agent, if you want to override the default
 	 *                          MediaWiki/$wgVersion
+	 * @param string $caller The method making this request, for profiling
 	 * @return string|bool (bool)false on failure or a string on success
 	 */
-	public static function request( $method, $url, $options = array() ) {
+	public static function request( $method, $url, $options = array(), $caller = __METHOD__ ) {
 		wfDebug( "HTTP: $method: $url\n" );
 
 		$options['method'] = strtoupper( $method );
@@ -69,7 +70,7 @@ class Http {
 			$options['connectTimeout'] = 'default';
 		}
 
-		$req = MWHttpRequest::factory( $url, $options );
+		$req = MWHttpRequest::factory( $url, $options, $caller );
 		$status = $req->execute();
 
 		$content = false;
@@ -87,18 +88,21 @@ class Http {
 	 *
 	 * @param string $url
 	 * @param array $options
+	 * @param string $caller The method making this request, for profiling
 	 * @return string
 	 */
-	public static function get( $url, $options = array() ) {
+	public static function get( $url, $options = array(), $caller = __METHOD__ ) {
 		$args = func_get_args();
 		if ( isset( $args[1] ) && ( is_string( $args[1] ) || is_numeric( $args[1] ) ) ) {
 			// Second was used to be the timeout
 			// And third parameter used to be $options
 			wfWarn( "Second parameter should not be a timeout." );
-			$options = isset( $args[2] ) ? $args[2] : array();
+			$options = isset( $args[2] ) && is_array( $args[2] ) ?
+				$args[2] : array();
 			$options['timeout'] = $args[1];
+			$caller = __METHOD__;
 		}
-		return Http::request( 'GET', $url, $options );
+		return Http::request( 'GET', $url, $options, $caller );
 	}
 
 	/**
@@ -107,10 +111,11 @@ class Http {
 	 *
 	 * @param string $url
 	 * @param array $options
+	 * @param string $caller The method making this request, for profiling
 	 * @return string
 	 */
-	public static function post( $url, $options = array() ) {
-		return Http::request( 'POST', $url, $options );
+	public static function post( $url, $options = array(), $caller = __METHOD__ ) {
+		return Http::request( 'POST', $url, $options, $caller );
 	}
 
 	/**
@@ -225,10 +230,22 @@ class MWHttpRequest {
 	public $status;
 
 	/**
+	 * @var Profiler
+	 */
+	protected $profiler;
+
+	/**
+	 * @var string
+	 */
+	protected $profileName;
+
+	/**
 	 * @param string $url Url to use. If protocol-relative, will be expanded to an http:// URL
 	 * @param array $options (optional) extra params to pass (see Http::request())
+	 * @param string $caller The method making this request, for profiling
+	 * @param Profiler $profiler An instance of the profiler for profiling, or null
 	 */
-	protected function __construct( $url, $options = array() ) {
+	protected function __construct( $url, $options = array(), $caller = __METHOD__, $profiler = null ) {
 		global $wgHTTPTimeout, $wgHTTPConnectTimeout;
 
 		$this->url = wfExpandUrl( $url, PROTO_HTTP );
@@ -271,6 +288,10 @@ class MWHttpRequest {
 		if ( $this->noProxy ) {
 			$this->proxy = ''; // noProxy takes precedence
 		}
+
+		// Profile based on what's calling us
+		$this->profiler = $profiler;
+		$this->profileName = $caller;
 	}
 
 	/**
@@ -286,11 +307,12 @@ class MWHttpRequest {
 	 * Generate a new request object
 	 * @param string $url Url to use
 	 * @param array $options (optional) extra params to pass (see Http::request())
+	 * @param string $caller The method making this request, for profiling
 	 * @throws MWException
 	 * @return CurlHttpRequest|PhpHttpRequest
 	 * @see MWHttpRequest::__construct
 	 */
-	public static function factory( $url, $options = null ) {
+	public static function factory( $url, $options = null, $caller = __METHOD__ ) {
 		if ( !Http::$httpEngine ) {
 			Http::$httpEngine = function_exists( 'curl_init' ) ? 'curl' : 'php';
 		} elseif ( Http::$httpEngine == 'curl' && !function_exists( 'curl_init' ) ) {
@@ -300,7 +322,7 @@ class MWHttpRequest {
 
 		switch ( Http::$httpEngine ) {
 			case 'curl':
-				return new CurlHttpRequest( $url, $options );
+				return new CurlHttpRequest( $url, $options, $caller, Profiler::instance() );
 			case 'php':
 				if ( !wfIniGetBool( 'allow_url_fopen' ) ) {
 					throw new MWException( __METHOD__ . ': allow_url_fopen ' .
@@ -309,7 +331,7 @@ class MWHttpRequest {
 						'http://php.net/curl.'
 					);
 				}
-				return new PhpHttpRequest( $url, $options );
+				return new PhpHttpRequest( $url, $options, $caller, Profiler::instance() );
 			default:
 				throw new MWException( __METHOD__ . ': The setting of Http::$httpEngine is not valid.' );
 		}
@@ -780,6 +802,12 @@ class CurlHttpRequest extends MWHttpRequest {
 			wfRestoreWarnings();
 		}
 
+		if ( $this->profiler ) {
+			$profileSection = $this->profiler->scopedProfileIn(
+				__METHOD__ . '-' . $this->profileName
+			);
+		}
+
 		$curlRes = curl_exec( $curlHandle );
 		if ( curl_errno( $curlHandle ) == CURLE_OPERATION_TIMEOUTED ) {
 			$this->status->fatal( 'http-timed-out', $this->url );
@@ -790,6 +818,10 @@ class CurlHttpRequest extends MWHttpRequest {
 		}
 
 		curl_close( $curlHandle );
+
+		if ( $this->profiler ) {
+			$this->profiler->scopedProfileOut( $profileSection );
+		}
 
 		$this->parseHeader();
 		$this->setStatus();
@@ -899,6 +931,11 @@ class PhpHttpRequest extends MWHttpRequest {
 
 		$result = array();
 
+		if ( $this->profiler ) {
+			$profileSection = $this->profiler->scopedProfileIn(
+				__METHOD__ . '-' . $this->profileName
+			);
+		}
 		do {
 			$reqCount++;
 			wfSuppressWarnings();
@@ -929,6 +966,9 @@ class PhpHttpRequest extends MWHttpRequest {
 				break;
 			}
 		} while ( true );
+		if ( $this->profiler ) {
+			$this->profiler->scopedProfileOut( $profileSection );
+		}
 
 		$this->setStatus();
 
