@@ -57,6 +57,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			return;
 		}
 
+		$this->getOutput->addHelpLink(
+			'//meta.wikimedia.org/wiki/Special:MyLanguage/Help:Recent changes',
+			true
+		);
 		parent::execute( $subpage );
 	}
 
