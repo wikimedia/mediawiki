@@ -44,7 +44,7 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 	 *                    If a hostname is specified but no port, the standard port number
 	 *                    6379 will be used. Required.
 	 */
-	protected function __construct( array $params ) {
+	public function __construct( array $params ) {
 		parent::__construct( $params );
 		$this->servers = isset( $params['redisServers'] )
 			? $params['redisServers']
