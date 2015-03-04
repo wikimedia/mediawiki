@@ -484,6 +484,7 @@
 	"apihelp-query+info-paramvalue-prop-watched": "列出每个页面的被监视状态。",
 	"apihelp-query+info-paramvalue-prop-watchers": "监视人员数，如果允许。",
 	"apihelp-query+info-paramvalue-prop-readable": "用户是否可以阅读此页面。",
+	"apihelp-query+info-param-testactions": "测试当前用户是否可以在页面上执行某种操作。",
 	"apihelp-query+info-param-token": "请改用[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]。",
 	"apihelp-query+info-example-simple": "获得有关页面<kbd>Main Page</kbd>的信息。",
 	"apihelp-query+info-example-protection": "获取<kbd>首页</kbd>相关的常规和保护信息。",
