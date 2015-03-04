@@ -377,7 +377,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$this->getOutput()->wrapWikiMsg( "<strong>$1</strong>", array( $this->typeLabels['selected'],
 			$this->getLanguage()->formatNum( count( $this->ids ) ), $this->targetObj->getPrefixedText() ) );
 
-		$this->getOutput()->addHTML( "<ul>" );
+		$out = $this->getOutput();
+		$out->addHelpLink( "Help:RevisionDelete" );
+		$out->addHTML( "<ul>" );
 
 		$numRevisions = 0;
 		// Live revisions...

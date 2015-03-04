@@ -76,6 +76,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 			)
 		);
 
+		$this->getOutput->addHelpLink( "Help:RandomInCategory" );
 		return $form;
 	}
 
