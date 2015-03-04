@@ -157,6 +157,7 @@ class LinkSearchPage extends QueryPage {
 			Html::closeElement( 'fieldset' ) . "\n" .
 			Html::closeElement( 'form' ) . "\n";
 		$out->addHTML( $s );
+		$out->addHelpLink( '//meta.wikimedia.org/wiki/Help:Linksearch', true );
 
 		if ( $target != '' ) {
 			$this->setParams( array(

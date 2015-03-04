@@ -295,6 +295,7 @@ class SpecialExport extends SpecialPage {
 		$form .= Xml::closeElement( 'form' );
 
 		$out->addHTML( $form );
+		$out->addHelpLink( '//meta.wikimedia.org/wiki/Help:Export', true );
 	}
 
 	/**
