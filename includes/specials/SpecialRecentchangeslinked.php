@@ -244,6 +244,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			Xml::check( 'showlinkedto', $opts['showlinkedto'], array( 'id' => 'showlinkedto' ) ) . ' ' .
 			Xml::label( $this->msg( 'recentchangeslinked-to' )->text(), 'showlinkedto' ) );
 
+		$this->getOutput->addHelpLink( 'Help:Related_changes' );
 		return $extraOpts;
 	}
 

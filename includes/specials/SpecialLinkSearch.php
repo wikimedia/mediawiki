@@ -157,6 +157,7 @@ class LinkSearchPage extends QueryPage {
 			Html::closeElement( 'fieldset' ) . "\n" .
 			Html::closeElement( 'form' ) . "\n";
 		$out->addHTML( $s );
+		$out->addHelpLink( 'Help:Linksearch' );
 
 		if ( $target != '' ) {
 			$this->setParams( array(
