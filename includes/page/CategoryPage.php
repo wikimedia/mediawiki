@@ -113,6 +113,8 @@ class CategoryPage extends Article {
 			$until,
 			$reqArray
 		);
-		$this->getContext()->getOutput()->addHTML( $viewer->getHTML() );
+		$out = $this->getContext()->getOutput();
+		$out->addHTML( $viewer->getHTML() );
+		$out->addHelpLink( 'Help:Categories' );
 	}
 }
