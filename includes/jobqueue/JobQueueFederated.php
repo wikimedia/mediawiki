@@ -54,14 +54,8 @@ class JobQueueFederated extends JobQueue {
 	/** @var array (partition name => JobQueue) reverse sorted by weight */
 	protected $partitionQueues = array();
 
-	/** @var BagOStuff */
-	protected $cache;
-
 	/** @var int Maximum number of partitions to try */
 	protected $maxPartitionsTry;
-
-	const CACHE_TTL_SHORT = 30; // integer; seconds to cache info without re-validating
-	const CACHE_TTL_LONG = 300; // integer; seconds to cache info that is kept up to date
 
 	/**
 	 * @param array $params Possible keys:
@@ -126,8 +120,6 @@ class JobQueueFederated extends JobQueue {
 		} else {
 			$this->partitionPushRing = new HashRing( $partitionPushMap );
 		}
-		// Aggregate cache some per-queue values if there are multiple partition queues
-		$this->cache = count( $partitionMap ) > 1 ? wfGetMainCache() : new EmptyBagOStuff();
 	}
 
 	protected function supportedOrders() {
@@ -144,15 +136,6 @@ class JobQueueFederated extends JobQueue {
 	}
 
 	protected function doIsEmpty() {
-		$key = $this->getCacheKey( 'empty' );
-
-		$isEmpty = $this->cache->get( $key );
-		if ( $isEmpty === 'true' ) {
-			return true;
-		} elseif ( $isEmpty === 'false' ) {
-			return false;
-		}
-
 		$empty = true;
 		$failed = 0;
 		foreach ( $this->partitionQueues as $queue ) {
@@ -165,7 +148,6 @@ class JobQueueFederated extends JobQueue {
 		}
 		$this->throwErrorIfAllPartitionsDown( $failed );
 
-		$this->cache->add( $key, $empty ? 'true' : 'false', self::CACHE_TTL_LONG );
 		return $empty;
 	}
 
@@ -191,13 +173,7 @@ class JobQueueFederated extends JobQueue {
 	 * @return int
 	 */
 	protected function getCrossPartitionSum( $type, $method ) {
-		$key = $this->getCacheKey( $type );
-
-		$count = $this->cache->get( $key );
-		if ( $count !== false ) {
-			return $count;
-		}
-
+		$count = 0;
 		$failed = 0;
 		foreach ( $this->partitionQueues as $queue ) {
 			try {
@@ -208,8 +184,6 @@ class JobQueueFederated extends JobQueue {
 			}
 		}
 		$this->throwErrorIfAllPartitionsDown( $failed );
-
-		$this->cache->set( $key, $count, self::CACHE_TTL_SHORT );
 
 		return $count;
 	}
@@ -279,10 +253,7 @@ class JobQueueFederated extends JobQueue {
 				$ok = false;
 				$this->logException( $e );
 			}
-			if ( $ok ) {
-				$key = $this->getCacheKey( 'empty' );
-				$this->cache->set( $key, 'false', self::CACHE_TTL_LONG );
-			} else {
+			if ( !$ok ) {
 				if ( !$partitionRing->ejectFromLiveRing( $partition, 5 ) ) { // blacklist
 					throw new JobQueueError( "Could not insert job(s), no partitions available." );
 				}
@@ -301,10 +272,7 @@ class JobQueueFederated extends JobQueue {
 				$ok = false;
 				$this->logException( $e );
 			}
-			if ( $ok ) {
-				$key = $this->getCacheKey( 'empty' );
-				$this->cache->set( $key, 'false', self::CACHE_TTL_LONG );
-			} else {
+			if ( !$ok ) {
 				if ( !$partitionRing->ejectFromLiveRing( $partition, 5 ) ) { // blacklist
 					throw new JobQueueError( "Could not insert job(s), no partitions available." );
 				}
@@ -343,9 +311,6 @@ class JobQueueFederated extends JobQueue {
 			}
 		}
 		$this->throwErrorIfAllPartitionsDown( $failed );
-
-		$key = $this->getCacheKey( 'empty' );
-		$this->cache->set( $key, 'true', self::CACHE_TTL_LONG );
 
 		return false;
 	}
@@ -439,10 +404,6 @@ class JobQueueFederated extends JobQueue {
 			'delayedcount',
 			'abandonedcount'
 		);
-
-		foreach ( $types as $type ) {
-			$this->cache->delete( $this->getCacheKey( $type ) );
-		}
 
 		/** @var JobQueue $queue */
 		foreach ( $this->partitionQueues as $queue ) {
@@ -549,15 +510,5 @@ class JobQueueFederated extends JobQueue {
 		foreach ( $this->partitionQueues as $queue ) {
 			$queue->setTestingPrefix( $key );
 		}
-	}
-
-	/**
-	 * @param string $property
-	 * @return string
-	 */
-	private function getCacheKey( $property ) {
-		list( $db, $prefix ) = wfSplitWikiID( $this->wiki );
-
-		return wfForeignMemcKey( $db, $prefix, 'jobqueue', $this->type, $property );
 	}
 }
