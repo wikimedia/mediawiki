@@ -43,6 +43,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		$output = $this->getOutput();
 		$request = $this->getRequest();
+		$output->addHelpLink( 'Help:Watching_pages' );
 
 		$mode = SpecialEditWatchlist::getMode( $request, $subpage );
 		if ( $mode !== false ) {
