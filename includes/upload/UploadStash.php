@@ -157,8 +157,9 @@ class UploadStash {
 
 		if ( !$noAuth ) {
 			if ( $this->fileMetadata[$key]['us_user'] != $this->userId ) {
-				throw new UploadStashWrongOwnerException( "This file ($key) doesn't "
-					. "belong to the current user." );
+				throw new UploadStashWrongOwnerException( "This file ($key) "
+					. "with recorded user ({$this->fileMetadata[$key]['us_user']}) "
+					. "doesn't belong to the current user ({$this->userId})." );
 			}
 		}
 
