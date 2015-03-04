@@ -138,7 +138,7 @@ class HttpTest extends MediaWikiTestCase {
 	 * HTTP redirects).
 	 */
 	public function testRelativeRedirections() {
-		$h = MWHttpRequestTester::factory( 'http://oldsite/file.ext' );
+		$h = MWHttpRequestTester::factory( 'http://oldsite/file.ext', array(), __METHOD__ );
 
 		# Forge a Location header
 		$h->setRespHeaders( 'location', array(
