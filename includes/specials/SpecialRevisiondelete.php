@@ -374,10 +374,12 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$userAllowed = true;
 
 		// Messages: revdelete-selected-text, revdelete-selected-file, logdelete-selected
-		$this->getOutput()->wrapWikiMsg( "<strong>$1</strong>", array( $this->typeLabels['selected'],
+		$out = $this->getOutput();
+		$out->wrapWikiMsg( "<strong>$1</strong>", array( $this->typeLabels['selected'],
 			$this->getLanguage()->formatNum( count( $this->ids ) ), $this->targetObj->getPrefixedText() ) );
 
-		$this->getOutput()->addHTML( "<ul>" );
+		$out->addHelpLink( 'Help:RevisionDelete' );
+		$out->addHTML( "<ul>" );
 
 		$numRevisions = 0;
 		// Live revisions...
