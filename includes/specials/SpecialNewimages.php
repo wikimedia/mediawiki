@@ -30,6 +30,9 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
+		$out = $this->getOutput();
+		$out->addHelpLink( 'Help:New images' );
+
 		$pager = new NewFilesPager( $this->getContext(), $par );
 
 		if ( !$this->including() ) {
@@ -39,9 +42,9 @@ class SpecialNewFiles extends IncludableSpecialPage {
 			$form->displayForm( '' );
 		}
 
-		$this->getOutput()->addHTML( $pager->getBody() );
+		$out->addHTML( $pager->getBody() );
 		if ( !$this->including() ) {
-			$this->getOutput()->addHTML( $pager->getNavigationBar() );
+			$out->addHTML( $pager->getNavigationBar() );
 		}
 	}
 

@@ -398,6 +398,7 @@
 	"edithelp": "This is the text that appears on the editing help link that is near the bottom of the editing page",
 	"edithelppage": "The help page displayed when a user clicks on editing help link which is present on the right of Show changes button.\n{{doc-important|Do not change the \"<tt>Help:</tt>\" part.}}",
 	"helppage": "{{ignored}}\nThe link destination used by default in the sidebar, and in {{msg-mw|Noarticletext}}.",
+	"helppage-top-gethelp": "Link to some MediaWiki.org help page or tutorial.\n{{Identical|Help}}",
 	"mainpage": "Defines the link and display name of the main page of the wiki. Shown as the top link in the navigation part of the interface. Please do not change it too often, that could break things!\n\nSee also:\n* {{msg-mw|Mainpage}}\n* {{msg-mw|Accesskey-n-mainpage}}\n* {{msg-mw|Tooltip-n-mainpage}}\n{{Identical|Main page}}",
 	"mainpage-description": "The same as {{msg-mw|mainpage}}, used as link text on [[MediaWiki:Sidebar]].\n\nThis makes it possible to the change the link destination (the message \"mainpage\") without changing the link text or without disabling translations.\n\nSee also:\n* {{msg-mw|Mainpage-description}}\n* {{msg-mw|Accesskey-n-mainpage-description}}\n* {{msg-mw|Tooltip-n-mainpage-description}}\n{{Identical|Main page}}",
 	"policy-url": "{{doc-important|Do not change the <code>Project:</code> part.}}\nThe URL of the project page describing the policies of the wiki.\n\nThis is shown below every page (the left link).",

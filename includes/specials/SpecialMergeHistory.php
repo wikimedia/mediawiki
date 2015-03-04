@@ -152,16 +152,17 @@ class SpecialMergeHistory extends SpecialPage {
 
 		if ( count( $errors ) ) {
 			$this->showMergeForm();
-			$this->getOutput()->addHTML( implode( "\n", $errors ) );
+			$out->addHTML( implode( "\n", $errors ) );
 		} else {
 			$this->showHistory();
 		}
 	}
 
 	function showMergeForm() {
-		$this->getOutput()->addWikiMsg( 'mergehistory-header' );
+		$out = $this->getOutput();
+		$out->addWikiMsg( 'mergehistory-header' );
 
-		$this->getOutput()->addHTML(
+		$out->addHTML(
 			Xml::openElement( 'form', array(
 				'method' => 'get',
 				'action' => wfScript() ) ) .
@@ -185,6 +186,8 @@ class SpecialMergeHistory extends SpecialPage {
 				'</fieldset>' .
 				'</form>'
 		);
+
+		$out->addHelpLink( 'Help:Merge history' );
 	}
 
 	private function showHistory() {
