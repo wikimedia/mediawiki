@@ -374,10 +374,12 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$userAllowed = true;
 
 		// Messages: revdelete-selected-text, revdelete-selected-file, logdelete-selected
-		$this->getOutput()->wrapWikiMsg( "<strong>$1</strong>", array( $this->typeLabels['selected'],
+		$out = $this->getOutput();
+		$out->wrapWikiMsg( "<strong>$1</strong>", array( $this->typeLabels['selected'],
 			$this->getLanguage()->formatNum( count( $this->ids ) ), $this->targetObj->getPrefixedText() ) );
 
-		$this->getOutput()->addHTML( "<ul>" );
+		$out->addHelpLink( 'Help:RevisionDelete' );
+		$out->addHTML( "<ul>" );
 
 		$numRevisions = 0;
 		// Live revisions...
@@ -395,14 +397,14 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			}
 
 			$numRevisions++;
-			$this->getOutput()->addHTML( $item->getHTML() );
+			$out->addHTML( $item->getHTML() );
 		}
 
 		if ( !$numRevisions ) {
 			throw new ErrorPageError( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
 		}
 
-		$this->getOutput()->addHTML( "</ul>" );
+		$out->addHTML( "</ul>" );
 		// Explanation text
 		$this->addUsageText();
 
@@ -413,7 +415,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 		// Show form if the user can submit
 		if ( $this->mIsAllowed ) {
-			$out = Xml::openElement( 'form', array( 'method' => 'post',
+			$form = Xml::openElement( 'form', array( 'method' => 'post',
 					'action' => $this->getPageTitle()->getLocalURL( array( 'action' => 'submit' ) ),
 					'id' => 'mw-revdel-form-revisions' ) ) .
 				Xml::fieldset( $this->msg( 'revdelete-legend' )->text() ) .
@@ -465,12 +467,12 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 					array(),
 					array( 'action' => 'edit' )
 				);
-				$out .= Xml::tags( 'p', array( 'class' => 'mw-revdel-editreasons' ), $link ) . "\n";
+				$form .= Xml::tags( 'p', array( 'class' => 'mw-revdel-editreasons' ), $link ) . "\n";
 			}
 		} else {
-			$out = '';
+			$form = '';
 		}
-		$this->getOutput()->addHTML( $out );
+		$out->addHTML( $form );
 	}
 
 	/**

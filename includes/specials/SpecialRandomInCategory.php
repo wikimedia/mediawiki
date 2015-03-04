@@ -68,6 +68,8 @@ class SpecialRandomInCategory extends FormSpecialPage {
 	}
 
 	protected function getFormFields() {
+		$this->getOutput()->addHelpLink( 'Help:RandomInCategory' );
+
 		$form = array(
 			'category' => array(
 				'type' => 'text',
