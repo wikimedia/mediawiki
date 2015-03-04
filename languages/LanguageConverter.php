@@ -842,7 +842,7 @@ class LanguageConverter {
 	 * @param bool $fromCache Load from memcached? Defaults to true.
 	 */
 	function loadTables( $fromCache = true ) {
-		global $wgLangConvMemc;
+		global $wgLanguageConverterCacheType;
 
 		if ( $this->mTablesLoaded ) {
 			return;
@@ -850,9 +850,10 @@ class LanguageConverter {
 
 		$this->mTablesLoaded = true;
 		$this->mTables = false;
+		$cache = ObjectCache::getInstance( $wgLanguageConverterCacheType );
 		if ( $fromCache ) {
 			wfProfileIn( __METHOD__ . '-cache' );
-			$this->mTables = $wgLangConvMemc->get( $this->mCacheKey );
+			$this->mTables = $cache->get( $this->mCacheKey );
 			wfProfileOut( __METHOD__ . '-cache' );
 		}
 		if ( !$this->mTables || !array_key_exists( self::CACHE_VERSION_KEY, $this->mTables ) ) {
@@ -869,7 +870,7 @@ class LanguageConverter {
 			$this->postLoadTables();
 			$this->mTables[self::CACHE_VERSION_KEY] = true;
 
-			$wgLangConvMemc->set( $this->mCacheKey, $this->mTables, 43200 );
+			$cache->set( $this->mCacheKey, $this->mTables, 43200 );
 			wfProfileOut( __METHOD__ . '-recache' );
 		}
 	}
