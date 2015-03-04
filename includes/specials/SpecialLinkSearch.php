@@ -154,6 +154,7 @@ class LinkSearchPage extends QueryPage {
 		$htmlForm->setAction( wfScript() );
 		$htmlForm->setMethod( 'get' );
 		$htmlForm->prepareForm()->displayForm( false );
+		$this->addHelpLink( 'Help:Linksearch' );
 
 		if ( $target != '' ) {
 			$this->setParams( array(
