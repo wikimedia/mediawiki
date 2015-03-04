@@ -817,10 +817,6 @@ abstract class DatabaseBase implements IDatabase {
 		if ( $user ) {
 			$this->open( $server, $user, $password, $dbName );
 		}
-
-		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
-		$trxProf = $this->getTransactionProfiler();
-		$trxProf->recordConnection( $this->mServer, $this->mDBname, $isMaster );
 	}
 
 	/**

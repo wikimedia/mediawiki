@@ -756,6 +756,10 @@ class LoadBalancer {
 			$db = $e->db;
 		}
 
+		$isMaster = !empty( $server['master'] );
+		$trxProf = Profiler::instance()->getTransactionProfiler();
+		$trxProf->recordConnection( $server['host'], $server['dbname'], $isMaster );
+
 		$db->setLBInfo( $server );
 		if ( isset( $server['fakeSlaveLag'] ) ) {
 			$db->setFakeSlaveLag( $server['fakeSlaveLag'] );
