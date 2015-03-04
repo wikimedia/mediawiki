@@ -154,7 +154,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 		// Make sure file cache is not used on uncacheable content.
 		// Output that has magic words in it can still use the parser cache
 		// (if enabled), though it will generally expire sooner.
-		if ( !$this->parserOutput->isCacheable() || $this->parserOutput->containsOldMagic() ) {
+		if ( !$this->parserOutput->isCacheable() ) {
 			$wgUseFileCache = false;
 		}
 

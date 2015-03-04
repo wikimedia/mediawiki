@@ -257,8 +257,6 @@ class ParserCache {
 			$optionsKey->setCacheRevisionId( $revId );
 			$parserOutput->setCacheRevisionId( $revId );
 
-			$optionsKey->setContainsOldMagic( $parserOutput->containsOldMagic() );
-
 			$parserOutputKey = $this->getParserOutputKey( $page,
 				$popts->optionsHash( $optionsKey->mUsedOptions, $page->getTitle() ) );
 
