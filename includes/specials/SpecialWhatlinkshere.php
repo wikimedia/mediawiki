@@ -46,6 +46,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 		$this->setHeaders();
 		$this->outputHeader();
+		$this->addHelpLink( 'Help:What links here' );
 
 		$opts = new FormOptions();
 
