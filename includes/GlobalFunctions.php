@@ -2848,10 +2848,12 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 		$desc[3] = array( 'pipe', 'w' );
 	}
 	$pipes = null;
+	$scoped = Profiler::instance()->scopedProfileIn( __FUNCTION__ . '-' . wfGetCaller() );
 	$proc = proc_open( $cmd, $desc, $pipes );
 	if ( !$proc ) {
 		wfDebugLog( 'exec', "proc_open() failed: $cmd" );
 		$retval = -1;
+		Profiler::instance()->scopedProfileOut( $scoped );
 		return '';
 	}
 	$outBuffer = $logBuffer = '';
@@ -2978,6 +2980,8 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 	if ( $logMsg !== false ) {
 		wfDebugLog( 'exec', "$logMsg: $cmd" );
 	}
+
+	Profiler::instance()->scopedProfileOut( $scoped );
 
 	return $outBuffer;
 }
