@@ -3020,15 +3020,6 @@ function wfInitShellLocale() {
 }
 
 /**
- * Alias to wfShellWikiCmd()
- *
- * @see wfShellWikiCmd()
- */
-function wfShellMaintenanceCmd( $script, array $parameters = array(), array $options = array() ) {
-	return wfShellWikiCmd( $script, $parameters, $options );
-}
-
-/**
  * Generate a shell-escaped command line string to run a MediaWiki cli script.
  * Note that $parameters should be a flat array and an option with an argument
  * should consist of two consecutive items in the array (do not use "--option value").

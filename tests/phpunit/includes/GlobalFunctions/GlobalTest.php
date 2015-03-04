@@ -691,21 +691,21 @@ class GlobalTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider provideWfShellMaintenanceCmdList
-	 * @covers ::wfShellMaintenanceCmd
+	 * @dataProvider provideWfShellWikiCmdList
+	 * @covers ::wfShellWikiCmd
 	 */
-	public function testWfShellMaintenanceCmd( $script, $parameters, $options,
+	public function testWfShellWikiCmd( $script, $parameters, $options,
 		$expected, $description
 	) {
 		if ( wfIsWindows() ) {
 			// Approximation that's good enough for our purposes just now
 			$expected = str_replace( "'", '"', $expected );
 		}
-		$actual = wfShellMaintenanceCmd( $script, $parameters, $options );
+		$actual = wfShellWikiCmd( $script, $parameters, $options );
 		$this->assertEquals( $expected, $actual, $description );
 	}
 
-	public static function provideWfShellMaintenanceCmdList() {
+	public static function provideWfShellWikiCmdList() {
 		global $wgPhpCli;
 
 		return array(
