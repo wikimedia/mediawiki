@@ -46,6 +46,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 		$this->setHeaders();
 		$this->outputHeader();
+		$out->addHelpLink( '//meta.wikimedia.org/wiki/Help:What links here', true );
 
 		$opts = new FormOptions();
 
