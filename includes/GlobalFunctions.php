@@ -2757,6 +2757,8 @@ function wfShellExecDisabled() {
  * @param array $options Array of options:
  *   - duplicateStderr: Set this to true to duplicate stderr to stdout,
  *     including errors from limit.sh
+ *   - profileMethod: By default this function will profile based on the calling
+ *     method. Set this to a string for an alternative method to profile from
  *
  * @return string Collected stdout as a string
  */
@@ -2775,6 +2777,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 	}
 
 	$includeStderr = isset( $options['duplicateStderr'] ) && $options['duplicateStderr'];
+	$profileMethod = isset( $options['profileMethod'] ) ? $options['profileMethod'] : wfGetCaller();
 
 	wfInitShellLocale();
 
@@ -2848,10 +2851,12 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 		$desc[3] = array( 'pipe', 'w' );
 	}
 	$pipes = null;
+	$scoped = Profiler::instance()->scopedProfileIn( __FUNCTION__ . '-' . $profileMethod );
 	$proc = proc_open( $cmd, $desc, $pipes );
 	if ( !$proc ) {
 		wfDebugLog( 'exec', "proc_open() failed: $cmd" );
 		$retval = -1;
+		Profiler::instance()->scopedProfileOut( $scoped );
 		return '';
 	}
 	$outBuffer = $logBuffer = '';
@@ -2979,6 +2984,8 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 		wfDebugLog( 'exec', "$logMsg: $cmd" );
 	}
 
+	Profiler::instance()->scopedProfileOut( $scoped );
+
 	return $outBuffer;
 }
 
@@ -2999,7 +3006,8 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
  * @return string Collected stdout and stderr as a string
  */
 function wfShellExecWithStderr( $cmd, &$retval = null, $environ = array(), $limits = array() ) {
-	return wfShellExec( $cmd, $retval, $environ, $limits, array( 'duplicateStderr' => true ) );
+	return wfShellExec( $cmd, $retval, $environ, $limits,
+		array( 'duplicateStderr' => true, 'profileMethod' => wfGetCaller() ) );
 }
 
 /**
