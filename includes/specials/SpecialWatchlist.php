@@ -43,6 +43,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		$output = $this->getOutput();
 		$request = $this->getRequest();
+		$output->addHelpLink( '//meta.wikimedia.org/wiki/Help:Watching pages', true );
 
 		$mode = SpecialEditWatchlist::getMode( $request, $subpage );
 		if ( $mode !== false ) {
