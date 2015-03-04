@@ -48,6 +48,10 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 		$searcher = new TitlePrefixSearch;
 		$titles = $searcher->searchWithVariants( $search, $limit + 1, $namespaces, $offset );
 		if ( $resultPageSet ) {
+			if ( count( $titles ) > $limit ) {
+				$this->setContinueEnumParameter( 'offset', $offset + $params['limit'] );
+				array_pop( $titles );
+			}
 			$resultPageSet->populateFromTitles( $titles );
 			foreach ( $titles as $index => $title ) {
 				$resultPageSet->setGeneratorData( $title, array( 'index' => $index + $offset + 1 ) );
