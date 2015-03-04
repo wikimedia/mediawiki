@@ -223,6 +223,7 @@ class SpecialImport extends SpecialPage {
 		$action = $this->getPageTitle()->getLocalURL( array( 'action' => 'submit' ) );
 		$user = $this->getUser();
 		$out = $this->getOutput();
+		$out->addHelpLink( '//meta.wikimedia.org/wiki/Help:Import', true );
 		$importSources = $this->getConfig()->get( 'ImportSources' );
 
 		if ( $user->isAllowed( 'importupload' ) ) {
