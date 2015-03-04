@@ -550,7 +550,7 @@ class DifferenceEngine extends ContextSource {
 		$out = $this->getOutput();
 		$revHeader = $this->getRevisionHeader( $this->mNewRev );
 		# Add "current version as of X" title
-		$out->addHTML( "<hr class='diff-hr' />
+		$out->addHTML( "<hr class='diff-hr' id='mw-oldid' />
 		<h2 class='diff-currentversion-title'>{$revHeader}</h2>\n" );
 		# Page content may be handled by a hooked call instead...
 		# @codingStandardsIgnoreStart Ignoring long lines.
