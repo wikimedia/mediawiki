@@ -85,3 +85,20 @@
 	page-break-inside: @value; // Firefox 1.5+
 	break-inside: @value; // IE 10+
 }
+
+// Copied from MultimediaViewer.
+.rotate(@degrees) {
+	-webkit-transform: rotate(@degrees);
+	-moz-transform: rotate(@degrees);
+	-ms-transform: rotate(@degrees);
+	-o-transform: rotate(@degrees);
+	transform: rotate(@degrees);
+
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=(@degrees / 90.0));
+	-ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=(@degrees / 90.0))";
+
+	// The filter rules (which are for IE < 9) cause a bug in IE 9 where the rotated
+	// element will have a black background. So we have to disable them in IE9
+	filter: none \0/IE9;
+	-ms-filter: none \0/IE9;
+}
