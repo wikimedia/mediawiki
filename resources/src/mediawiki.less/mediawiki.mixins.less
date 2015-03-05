@@ -76,7 +76,6 @@
 .column-count(@value) {
 	-webkit-column-count: @value;
 	-moz-column-count: @value;
-	-o-column-count: @value;
 	column-count: @value;
 }
 
@@ -84,4 +83,9 @@
 	-webkit-column-break-inside: @value; // Chrome Any, Safari 3+, Opera 11.1+
 	page-break-inside: @value; // Firefox 1.5+
 	break-inside: @value; // IE 10+
+}
+.column-width(@value) {
+	-webkit-column-width: @value;// Chrome Any, Safari 3+, Opera 11.1+
+	-moz-column-width: @value;// Firefox 1.5+
+	column-width: @value;// IE 10+
 }

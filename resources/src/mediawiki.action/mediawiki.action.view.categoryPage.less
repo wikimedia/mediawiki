@@ -1,14 +1,11 @@
 @import "mediawiki.mixins";
 
 .mw-category {
-	.column-count(1);
-
+	.column-count(3);
+	.column-width(300px);
 	.mw-category-group {
-		.column-break-inside(avoid);
-	}
-}
-@media screen and ( min-width: 768px ) {
-	.mw-category {
-		.column-count(3);
+		li {
+			.column-break-inside(avoid);
+		}
 	}
 }
