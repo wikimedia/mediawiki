@@ -701,6 +701,7 @@ abstract class UploadBase {
 	 * @return Status Indicating the whether the upload succeeded.
 	 */
 	public function performUpload( $comment, $pageText, $watch, $user ) {
+		$this->getLocalFile()->load( File::READ_LATEST );
 
 		$status = $this->getLocalFile()->upload(
 			$this->mTempPath,
@@ -1710,7 +1711,7 @@ abstract class UploadBase {
 		/* Check shared conflicts: if the local file does not exist, but
 		 * wfFindFile finds a file, it exists in a shared repository.
 		 */
-		$file = wfFindFile( $this->getTitle() );
+		$file = wfFindFile( $this->getTitle(), array( 'latest' => true ) );
 		if ( $file && !$user->isAllowed( 'reupload-shared' ) ) {
 			return array( 'fileexists-shared-forbidden', $file->getName() );
 		}
@@ -1738,6 +1739,8 @@ abstract class UploadBase {
 		if ( !( $img instanceof LocalFile ) ) {
 			return false;
 		}
+
+		$img->load( File::READ_LATEST );
 
 		return $user->getId() == $img->getUser( 'id' );
 	}
