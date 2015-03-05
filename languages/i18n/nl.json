@@ -65,7 +65,9 @@
 			"Mirolith",
 			"Akoopal",
 			"Sikjes",
-			"Robin0van0der0vliet"
+			"Robin0van0der0vliet",
+			"Kthoelen",
+			"Mbch331"
 		]
 	},
 	"tog-underline": "Koppelingen onderstrepen:",
@@ -291,6 +293,7 @@
 	"disclaimers": "Voorbehoud",
 	"disclaimerpage": "Project:Algemeen voorbehoud",
 	"edithelp": "Hulp bij bewerken",
+	"helppage-top-gethelp": "Help",
 	"mainpage": "Hoofdpagina",
 	"mainpage-description": "Hoofdpagina",
 	"policy-url": "Project:Beleid",
@@ -3104,6 +3107,11 @@
 	"revdelete-uname-unhid": "gebruikersnaam zichtbaar gemaakt",
 	"revdelete-restricted": "heeft beperkingen aan beheerders opgelegd",
 	"revdelete-unrestricted": "heeft beperkingen voor beheerders opgeheven",
+	"logentry-block-block": "$1 {{GENDER:$2|heeft}} {{GENDER:$4|$3}} geblokkeerd voor de duur van $5 $6",
+	"logentry-block-unblock": "$1 {{GENDER:$2|heeft}} {{GENDER:$4|$3}} gedeblokkeerd",
+	"logentry-block-reblock": "$1 {{GENDER:$2|heeft}} de blokkade voor {{GENDER:$4|$3}} aangepast. Deze vervalt nu op $5 $6",
+	"logentry-suppress-block": "$1 {{GENDER:$2|heeft}} {{GENDER:$4|$3}} geblokkeerd voor de duur van $5 $6",
+	"logentry-suppress-reblock": "$1 {{GENDER:$2|heeft}} de blokkade voor {{GENDER:$4|$3}} aangepast. Deze vervalt nu op $5 $6",
 	"logentry-merge-merge": "$1 {{GENDER:$2|heeft}} $3 samengevoegd naar $4 (versies tot en met $5)",
 	"logentry-move-move": "$1 {{GENDER:$2|heeft}} pagina $3 hernoemd naar $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|heeft}} de pagina $3 hernoemd naar $4 zonder een doorverwijzing achter te laten",
@@ -3126,6 +3134,7 @@
 	"rightsnone": "(geen)",
 	"revdelete-summary": "bewerkingssamenvatting",
 	"feedback-adding": "Uw terugkoppeling wordt aan de pagina toegevoegd...",
+	"feedback-back": "Terug",
 	"feedback-bugcheck": "Geweldig! Controleer even of het niet al één van de [$1 bekende problemen] is.",
 	"feedback-bugnew": "Heb ik gecontroleerd; nieuw probleem melden",
 	"feedback-bugornote": "Als u zover bent om een technisch probleem in detail te beschrijven, [$1 rapporteer dan een bug].\nAnders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt dan toegevoegd aan de pagina \"[$3 $2]\", samen met uw gebruikersnaam en de browser die u gebruikt.",
@@ -3265,5 +3274,6 @@
 	"json-error-utf8": "Ongeldige UTF-8-tekens, mogelijk verkeerd gecodeerd",
 	"json-error-recursion": "Een of meer recursieve verwijzingen in de waarde die moet worden gecodeerd",
 	"json-error-inf-or-nan": "Een of meer NAN- of INF-waarden in de waarde die moet worden gecodeerd",
-	"json-error-unsupported-type": "Er is een waarde opgegeven van een type dat niet kan worden gecodeerd"
+	"json-error-unsupported-type": "Er is een waarde opgegeven van een type dat niet kan worden gecodeerd",
+	"headline-anchor-title": "Koppeling naar deze sectie maken"
 }

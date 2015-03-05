@@ -231,6 +231,7 @@
 	"disclaimers": "Avertèinsi",
 	"disclaimerpage": "Project:Avertèinsi generêli",
 	"edithelp": "Léber dal spiegasiòun",
+	"helppage-top-gethelp": "Ajót",
 	"mainpage": "Préma pàgina",
 	"mainpage-description": "Pàgina principêla",
 	"policy-url": "Project:Léni 'd cundòta",
@@ -1497,7 +1498,7 @@
 	"htmlform-reset": "Scanşèla 'l mudéfichi",
 	"htmlform-selectorother-other": "Êter",
 	"rightsnone": "(nisûn)",
-	"feedback-subject": "Argomèint:",
+	"feedback-cancel": "Scanşela",
 	"feedback-message": "Mesâg",
-	"feedback-cancel": "Scanşela"
+	"feedback-subject": "Argomèint:"
 }

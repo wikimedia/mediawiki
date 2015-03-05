@@ -3704,7 +3704,7 @@
 	"feedback-terms": "Label for a checkbox asking for permissions to submit browser information.",
 	"feedback-termsofuse": "Label with an agreement about the terms of use.",
 	"feedback-thanks": "Thanks message, appears if feedback was successful. Parameters:\n* $1 - \"Feedback\"\n* $2 - Feedback page URL",
-	"feedback-thanks-title": "The title of the thank you dialog at the end of the submission process.",
+	"feedback-thanks-title": "The title of the thank you dialog at the end of the submission process.\n{{Identical|Thank you}}",
 	"feedback-useragent": "A label denoting the user agent in the feedback that is posted to the feedback page.",
 	"searchsuggest-search": "Greyed out default text in the simple search box in the Vector skin. (It disappears and lets the user enter the requested search terms when the search box receives focus.)\n\n{{Identical|Search}}",
 	"searchsuggest-containing": "Label used in the special item of the search suggestions list which gives the user an option to perform a full text search for the term.",

@@ -3202,5 +3202,6 @@
 	"json-error-utf8": "Hatalı biçimlendirilmiş UTF-8 karakterleri bulundu, muhtemelen yanlış kodlanmış",
 	"json-error-recursion": "Kodlanacak değeri bir veya daha fazla tekrarlı başvurular",
 	"json-error-inf-or-nan": "Değerde kodlanacak bir veya daha fazla NAN veya INF değerleri",
-	"json-error-unsupported-type": "Kodlanamaz bir değer çeşidi girildi"
+	"json-error-unsupported-type": "Kodlanamaz bir değer çeşidi girildi",
+	"headline-anchor-title": "Bu bölüme bağlantı"
 }

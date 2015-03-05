@@ -2415,7 +2415,7 @@
 	"pageinfo-hidden-categories": "Versteckte {{PLURAL:$1|Kategorie|Kategorien}} ($1)",
 	"pageinfo-templates": "Eingebundene {{PLURAL:$1|Vorlage|Vorlagen}} ($1)",
 	"pageinfo-transclusions": "Eingebunden in {{PLURAL:$1|1 Seite|$1 Seiten}}",
-	"pageinfo-toolboxlink": "Informationen zur Seite",
+	"pageinfo-toolboxlink": "Seiten­informationen",
 	"pageinfo-redirectsto": "Weiterleitungen nach",
 	"pageinfo-redirectsto-info": "Information",
 	"pageinfo-contentpage": "Gezählt als eine Inhaltsseite",

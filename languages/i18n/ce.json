@@ -899,8 +899,8 @@
 	"yournick": "Керла куьгтаӀор:",
 	"prefs-help-signature": "Дийцаре агӀонаш чохь къуьгтаӀо деза символшца «<nowiki>~~~~</nowiki>», цара гойтур ду хьан къуьгтаӀор а хан а.",
 	"badsiglength": "ТӀех деха куьг.\nКуьйган $1 {{PLURAL:$1|символ}} дукха хила цамега.",
-	"yourgender": "Ву/Йу:",
-	"gender-unknown": "хlоттийна яц",
+	"yourgender": "Стен-боьршалла",
+	"gender-unknown": "хӀоттийна яц",
 	"gender-male": "борша",
 	"gender-female": "сте",
 	"prefs-help-gender": "ТӀехь доцург: и хаам лелош бу цхьайолу хаамаш чохь декъашхочун пол гучуйоккхуш.\nИ хаам массарна гуш хир бу.",
@@ -2738,5 +2738,6 @@
 	"mediastatistics-header-executable": "Кхочушдийриш",
 	"mediastatistics-header-archive": "Архиваш",
 	"json-error-unknown": "JSON бала бу. ГӀалат: $1",
-	"json-error-syntax": "Синтаксин гӀалат"
+	"json-error-syntax": "Синтаксин гӀалат",
+	"headline-anchor-title": "ХӀокху дакъан тӀе хьажорг"
 }

@@ -3106,5 +3106,6 @@
 	"log-name-pagelang": "ენის ცვლილებების ჟურნალი",
 	"log-description-pagelang": "ეს არის გვერდის ენის ცვლილებების ჟურნალი",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (ჩართულია)",
-	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''გამორთულია''')"
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''გამორთულია''')",
+	"headline-anchor-title": "ბმული ამ სექციაზე"
 }

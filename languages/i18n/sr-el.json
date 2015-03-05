@@ -719,7 +719,7 @@
 	"history-feed-item-nocomment": "$1 u $2",
 	"history-feed-empty": "Tražena stranica ne postoji.\nMoguće da je obrisana s vikija ili je preimenovana.\nPokušajte da [[Special:Search|pretražite viki]] za slične stranice.",
 	"rev-deleted-comment": "(opis izmene uklonjen)",
-	"rev-deleted-user": "(korisničko ime je uklonjeno)",
+	"rev-deleted-user": "(korisničko ime uklonjeno)",
 	"rev-deleted-event": "(istorija je uklonjena)",
 	"rev-deleted-user-contribs": "[korisničko ime ili IP adresa je uklonjena – izmena je sakrivena sa spiska doprinosa]",
 	"rev-deleted-text-permission": "Izmena ove stranice je '''obrisana'''.\nDetalje možete videti u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} istoriji brisanja].",
