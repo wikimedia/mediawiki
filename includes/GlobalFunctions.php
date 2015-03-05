@@ -3655,19 +3655,7 @@ function wfGetLBFactory() {
  * Shortcut for RepoGroup::singleton()->findFile()
  *
  * @param string $title String or Title object
- * @param array $options Associative array of options:
- *     time:           requested time for an archived image, or false for the
- *                     current version. An image object will be returned which was
- *                     created at the specified time.
- *
- *     ignoreRedirect: If true, do not follow file redirects
- *
- *     private:        If true, return restricted (deleted) files if the current
- *                     user is allowed to view them. Otherwise, such files will not
- *                     be found.
- *
- *     bypassCache:    If true, do not use the process-local cache of File objects
- *
+ * @param array $options Associative array of options (see RepoGroup::findFile)
  * @return File|bool File, or false if the file does not exist
  */
 function wfFindFile( $title, $options = array() ) {

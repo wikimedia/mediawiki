@@ -406,6 +406,7 @@ class FileRepo {
 	 *   private:        If true, return restricted (deleted) files if the current
 	 *                   user is allowed to view them. Otherwise, such files will not
 	 *                   be found. If a User object, use that user instead of the current.
+	 *   bypassCache:    If true, do not use the process/persistent cache of File objects
 	 * @return File|bool False on failure
 	 */
 	public function findFile( $title, $options = array() ) {
@@ -414,17 +415,20 @@ class FileRepo {
 			return false;
 		}
 		$time = isset( $options['time'] ) ? $options['time'] : false;
+		$flags = !empty( $options['bypassCache'] ) ? File::READ_LATEST : 0;
 		# First try the current version of the file to see if it precedes the timestamp
 		$img = $this->newFile( $title );
 		if ( !$img ) {
 			return false;
 		}
+		$img->load( $flags );
 		if ( $img->exists() && ( !$time || $img->getTimestamp() == $time ) ) {
 			return $img;
 		}
 		# Now try an old version of the file
 		if ( $time !== false ) {
 			$img = $this->newFile( $title, $time );
+			$img->load( $flags );
 			if ( $img && $img->exists() ) {
 				if ( !$img->isDeleted( File::DELETED_FILE ) ) {
 					return $img; // always OK
@@ -445,6 +449,7 @@ class FileRepo {
 		$redir = $this->checkRedirect( $title );
 		if ( $redir && $title->getNamespace() == NS_FILE ) {
 			$img = $this->newFile( $redir );
+			$img->load( $flags );
 			if ( !$img ) {
 				return false;
 			}

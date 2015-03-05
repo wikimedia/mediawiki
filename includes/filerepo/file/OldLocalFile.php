@@ -175,10 +175,12 @@ class OldLocalFile extends LocalFile {
 	}
 
 	function loadFromDB( $flags = 0 ) {
-
 		$this->dataLoaded = true;
 
-		$dbr = $this->repo->getSlaveDB();
+		$dbr = ( $flags & self::READ_LATEST )
+			? $this->repo->getMasterDB()
+			: $this->repo->getSlaveDB();
+
 		$conds = array( 'oi_name' => $this->getName() );
 		if ( is_null( $this->requestedTime ) ) {
 			$conds['oi_archive_name'] = $this->archive_name;

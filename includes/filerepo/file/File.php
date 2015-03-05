@@ -47,7 +47,7 @@
  *
  * @ingroup FileAbstraction
  */
-abstract class File {
+abstract class File implements IDBAccessObject {
 	// Bitfield values akin to the Revision deletion constants
 	const DELETED_FILE = 1;
 	const DELETED_COMMENT = 2;
@@ -834,6 +834,18 @@ abstract class File {
 		#this could be implemented to check a flag in the database,
 		#look for signatures, etc
 		return false;
+	}
+
+	/**
+	 * Load any lazy-loaded file object fields from source
+	 *
+	 * This is only useful when setting $flags
+	 *
+	 * Overridden by LocalFile to actually query the DB
+	 *
+	 * @param integer $flags Bitfield of File::READ_* constants
+	 */
+	public function load( $flags = 0 ) {
 	}
 
 	/**
