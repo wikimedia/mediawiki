@@ -245,11 +245,11 @@ abstract class ImageHandler extends MediaHandler {
 		if ( $pages === false || $pages <= 1 ) {
 			$msg = wfMessage( 'file-info-size' )->numParams( $file->getWidth(),
 				$file->getHeight() )->params( $size,
-					$file->getMimeType() )->parse();
+					'<span class="mime-type">' . $file->getMimeType() . '</span>' )->parse();
 		} else {
 			$msg = wfMessage( 'file-info-size-pages' )->numParams( $file->getWidth(),
 				$file->getHeight() )->params( $size,
-					$file->getMimeType() )->numParams( $pages )->parse();
+					'<span class="mime-type">' . $file->getMimeType() . '</span>' )->numParams( $pages )->parse();
 		}
 
 		return $msg;
