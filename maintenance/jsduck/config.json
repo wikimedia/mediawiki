@@ -6,7 +6,7 @@
 	"--warnings": ["-nodoc(class,public)"],
 	"--builtin-classes": true,
 	"--warnings-exit-nonzero": true,
-	"--external": "HTMLElement,HTMLDocument,Window,File",
+	"--external": "HTMLElement,HTMLDocument,Window,File,MouseEvent,KeyboardEvent",
 	"--footer": "Documentation for MediaWiki core. Generated on {DATE} by {JSDUCK} {VERSION}.",
 	"--output": "../../docs/js",
 	"--": [
