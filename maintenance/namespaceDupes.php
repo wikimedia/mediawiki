@@ -89,20 +89,18 @@ class NamespaceConflictChecker extends Maintenance {
 	}
 
 	/**
-	 * Check all namespaces
+	 * Get all namespaces we know about
 	 *
-	 * @param array $options Associative array of validated command-line options
-	 *
-	 * @return bool
+	 * @return array
 	 */
-	private function checkAll( $options ) {
+	private static function getAllNamespaceLikeThings() {
 		global $wgContLang, $wgNamespaceAliases, $wgCapitalLinks;
 
 		$spaces = array();
 
 		// List interwikis first, so they'll be overridden
 		// by any conflicting local namespaces.
-		foreach ( $this->getInterwikiList() as $prefix ) {
+		foreach ( self::getInterwikiList() as $prefix ) {
 			$name = $wgContLang->ucfirst( $prefix );
 			$spaces[$name] = 0;
 		}
@@ -166,8 +164,19 @@ class NamespaceConflictChecker extends Maintenance {
 			}
 		} );
 
+		return $spaces;
+	}
+
+	/**
+	 * Check all namespaces
+	 *
+	 * @param array $options Associative array of validated command-line options
+	 *
+	 * @return bool
+	 */
+	private function checkAll( $options ) {
 		$ok = true;
-		foreach ( $spaces as $name => $ns ) {
+		foreach ( self::getAllNamespaceLikeThings() as $name => $ns ) {
 			$ok = $this->checkNamespace( $ns, $name, $options ) && $ok;
 		}
 
@@ -182,7 +191,7 @@ class NamespaceConflictChecker extends Maintenance {
 	 *
 	 * @return array
 	 */
-	private function getInterwikiList() {
+	private static function getInterwikiList() {
 		$result = Interwiki::getAllPrefixes();
 		$prefixes = array();
 		foreach ( $result as $row ) {
@@ -310,6 +319,8 @@ class NamespaceConflictChecker extends Maintenance {
 	 * Find pages in main and talk namespaces that have a prefix of the new
 	 * namespace so we know titles that will need migrating
 	 *
+	 * Or find pages that are in an orphaned namespace
+	 *
 	 * @param int $ns Destination namespace id
 	 * @param string $name Prefix that is being made a namespace
 	 * @param array $options Associative array of validated command-line options
@@ -317,10 +328,19 @@ class NamespaceConflictChecker extends Maintenance {
 	 * @return ResultWrapper
 	 */
 	private function getTargetList( $ns, $name, $options ) {
-		if ( $options['move-talk'] && MWNamespace::isSubject( $ns ) ) {
-			$checkNamespaces = array( NS_MAIN, NS_TALK );
+		$where = array();
+
+		if ( !is_numeric( $name ) || in_array( $name, self::getAllNamespaceLikeThings() ) ) {
+			$where[] = 'page_title' .
+				$this->db->buildLike( "$name:", $this->db->anyString() );
+			$where['page_namespace'] = array( NS_MAIN );
+
+			// If we move talk, also search NS_TALK
+			if ( $options['move-talk'] && MWNamespace::isSubject( $ns ) ) {
+				$where['page_namespace'][] = NS_TALK;
+			}
 		} else {
-			$checkNamespaces = NS_MAIN;
+			$where['page_namespace'] = $name;
 		}
 
 		return $this->db->select( 'page',
@@ -329,10 +349,7 @@ class NamespaceConflictChecker extends Maintenance {
 				'page_title',
 				'page_namespace',
 			),
-			array(
-				'page_namespace' => $checkNamespaces,
-				'page_title' . $this->db->buildLike( "$name:", $this->db->anyString() ),
-			),
+			$where,
 			__METHOD__
 		);
 	}
