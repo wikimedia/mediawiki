@@ -1027,7 +1027,9 @@ class MWMemcached {
 
 		$flags = 0;
 
-		if ( !is_scalar( $val ) ) {
+		// All non-strings are serialized, non-scalars are obvious, but even numbers must
+		// be serialized otherwise they will come out as strings, losing their type information
+		if ( !is_string( $val ) ) {
 			$val = serialize( $val );
 			$flags |= self::SERIALIZED;
 			if ( $this->_debug ) {
