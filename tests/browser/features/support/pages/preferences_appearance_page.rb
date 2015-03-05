@@ -12,8 +12,7 @@
 class PreferencesAppearancePage
   include PageObject
 
-  include URL
-  page_url URL.url("Special:Preferences#mw-prefsection-rendering")
+  page_url "Special:Preferences#mw-prefsection-rendering"
 
   checkbox(:auto_number_check, id: "mw-input-wpnumberheadings")
   radio_button(:cologne_blue, id: "mw-input-wpskin-cologneblue")

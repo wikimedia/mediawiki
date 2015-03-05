@@ -12,8 +12,7 @@
 class PreferencesEditingPage
   include PageObject
 
-  include URL
-  page_url URL.url("Special:Preferences#mw-prefsection-rendering")
+  page_url "Special:Preferences#mw-prefsection-rendering"
 
   select_list(:edit_area_font_style_select, id: "mw-input-wpeditfont")
   checkbox(:edit_section_double_click_check, id: "mw-input-wpeditondblclick")

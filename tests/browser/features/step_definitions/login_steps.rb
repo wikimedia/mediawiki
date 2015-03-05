@@ -14,11 +14,11 @@ Given(/^I am at Log in page$/) do
 end
 
 When(/^I log in with incorrect password$/) do
-  on(LoginPage).login_with(ENV["MEDIAWIKI_USER"], "incorrect password", false)
+  on(LoginPage).login_with(user, "incorrect password", false)
 end
 
 When(/^I log in with incorrect username$/) do
-  on(LoginPage).login_with("incorrect username", ENV["MEDIAWIKI_PASSWORD"], false)
+  on(LoginPage).login_with("incorrect username", password, false)
 end
 
 When(/^I log in without entering credentials$/) do
@@ -26,7 +26,7 @@ When(/^I log in without entering credentials$/) do
 end
 
 When(/^I log in without entering password$/) do
-  on(LoginPage).login_with(ENV["MEDIAWIKI_USER"], "", false)
+  on(LoginPage).login_with(user, "", false)
 end
 
 Then(/^error box should be visible$/) do
@@ -49,7 +49,7 @@ Then(/^Log in element should be there$/) do
 end
 
 Then(/^main page should open$/) do
-  @browser.url.should == on(MainPage).class.url
+  browser.url.should == on(MainPage).class.url
 end
 
 Then(/^Password element should be there$/) do

@@ -12,8 +12,7 @@
 class PreferencesUserProfilePage
   include PageObject
 
-  include URL
-  page_url URL.url("Special:Preferences#mw-prefsection-personal")
+  page_url "Special:Preferences#mw-prefsection-personal"
 
   table(:basic_info_table, id: "mw-htmlform-info")
   link(:change_password_link, text: "Change password")
