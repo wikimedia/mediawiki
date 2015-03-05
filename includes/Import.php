@@ -1670,6 +1670,7 @@ class WikiRevision {
 				RepoGroup::singleton()->getLocalRepo(), $archiveName );
 		} else {
 			$file = wfLocalFile( $this->getTitle() );
+			$file->load( File::READ_LATEST );
 			wfDebug( __METHOD__ . 'Importing new file as ' . $file->getName() . "\n" );
 			if ( $file->exists() && $file->getTimestamp() > $this->getTimestamp() ) {
 				$archiveName = $file->getTimestamp() . '!' . $file->getName();

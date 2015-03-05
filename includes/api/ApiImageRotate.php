@@ -73,7 +73,7 @@ class ApiImageRotate extends ApiBase {
 				$r['missing'] = '';
 			}
 
-			$file = wfFindFile( $title );
+			$file = wfFindFile( $title, array( 'latest' => true ) );
 			if ( !$file ) {
 				$r['result'] = 'Failure';
 				$r['errormessage'] = 'File does not exist';
