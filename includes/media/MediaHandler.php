@@ -637,7 +637,7 @@ abstract class MediaHandler {
 	 */
 	static function getGeneralLongDesc( $file ) {
 		return wfMessage( 'file-info' )->sizeParams( $file->getSize() )
-			->params( $file->getMimeType() )->parse();
+			->params( '<span class="mime-type">' . $file->getMimeType() . '</span>' )->parse();
 	}
 
 	/**
@@ -858,5 +858,27 @@ abstract class MediaHandler {
 	 */
 	public function sanitizeParamsForBucketing( $params ) {
 		return $params;
+	}
+
+	/**
+	 * Gets configuration for the file warning message. Return value of
+	 * the following structure:
+	 *   array(
+	 *     'module' => 'example.filewarning.messages', // Required, module with messages loaded for the client
+	 *     'messages' => array( // Required, array of names of messages
+	 *       'main' => 'example-filewarning-main', // Required, main warning message
+	 *       'header' => 'example-filewarning-header', // Optional, header for warning dialog
+	 *       'footer' => 'example-filewarning-footer', // Optional, footer for warning dialog
+	 *       'info' => 'example-filewarning-info', // Optional, text for more-information link (see below)
+	 *     ),
+	 *     'link' => 'http://example.com', // Optional, link for more information
+	 *   )
+	 *
+	 * Returns null if no warning is necessary.
+	 * @param File $file
+	 * @return array|null
+	 */
+	public function getWarningConfig( $file ) {
+		return null;
 	}
 }
