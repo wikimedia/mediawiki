@@ -127,8 +127,8 @@ class LocalFile extends File {
 	/** @var int UNIX timestamp of last markVolatile() call */
 	private $lastMarkedVolatile = 0;
 
-	const LOAD_ALL = 1; // integer; load all the lazy fields too (like metadata)
-	const LOAD_VIA_SLAVE = 2; // integer; use a slave to load the data
+	// @note: higher than IDBAccessObject constants
+	const LOAD_ALL = 16; // integer; load all the lazy fields too (like metadata)
 
 	const VOLATILE_TTL = 300; // integer; seconds
 
@@ -387,9 +387,9 @@ class LocalFile extends File {
 		$this->dataLoaded = true;
 		$this->extraDataLoaded = true;
 
-		$dbr = ( $flags & self::LOAD_VIA_SLAVE )
-			? $this->repo->getSlaveDB()
-			: $this->repo->getMasterDB();
+		$dbr = ( $flags & self::READ_LATEST )
+			? $this->repo->getMasterDB()
+			: $this->repo->getSlaveDB();
 
 		$row = $dbr->selectRow( 'image', $this->getCacheFields( 'img_' ),
 			array( 'img_name' => $this->getName() ), $fname );
@@ -530,13 +530,18 @@ class LocalFile extends File {
 	 */
 	function load( $flags = 0 ) {
 		if ( !$this->dataLoaded ) {
-			if ( !$this->loadFromCache() ) {
-				$this->loadFromDB( $this->isVolatile() ? 0 : self::LOAD_VIA_SLAVE );
+			if ( ( $flags & self::READ_LATEST ) || !$this->loadFromCache() ) {
+				// b/c for now for data consistency
+				if ( $this->isVolatile() ) {
+					$flags |= self::READ_LATEST;
+				}
+				$this->loadFromDB( $flags );
 				$this->saveToCache();
 			}
 			$this->dataLoaded = true;
 		}
 		if ( ( $flags & self::LOAD_ALL ) && !$this->extraDataLoaded ) {
+			// @note: loads on name/timestamp to reduce race condition problems
 			$this->loadExtraFromDB();
 		}
 	}

@@ -114,7 +114,7 @@ class RepoGroup {
 	 *   private:        If true, return restricted (deleted) files if the current
 	 *                   user is allowed to view them. Otherwise, such files will not
 	 *                   be found.
-	 *   bypassCache:    If true, do not use the process-local cache of File objects
+	 *   bypassCache:    If true, do not use the process/persistent cache of File objects
 	 * @return File|bool False if title is not found
 	 */
 	function findFile( $title, $options = array() ) {
