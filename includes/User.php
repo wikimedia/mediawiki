@@ -4213,7 +4213,7 @@ class User implements IDBAccessObject {
 	 * @return bool
 	 */
 	public function isEmailConfirmed() {
-		global $wgEmailAuthentication;
+		global $wgEmailAuthentication, $wgBlockDisablesLogin;
 		$this->load();
 		$confirmed = true;
 		if ( Hooks::run( 'EmailConfirmed', array( &$this, &$confirmed ) ) ) {
@@ -4224,6 +4224,9 @@ class User implements IDBAccessObject {
 				return false;
 			}
 			if ( $wgEmailAuthentication && !$this->getEmailAuthenticationTimestamp() ) {
+				return false;
+			}
+			if ( $wgBlockDisablesLogin && $this->isBlocked() ) {
 				return false;
 			}
 			return true;
