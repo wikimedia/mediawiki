@@ -3631,7 +3631,10 @@ class Title {
 		$errors = array();
 
 		$destFile = wfLocalFile( $nt );
-		if ( !$wgUser->isAllowed( 'reupload-shared' ) && !$destFile->exists() && wfFindFile( $nt ) ) {
+		$destFile->load( File::READ_LATEST );
+		if ( !$wgUser->isAllowed( 'reupload-shared' )
+			&& !$destFile->exists() && wfFindFile( $nt )
+		) {
 			$errors[] = array( 'file-exists-sharedrepo' );
 		}
 
@@ -3806,6 +3809,7 @@ class Title {
 		# Is it an existing file?
 		if ( $nt->getNamespace() == NS_FILE ) {
 			$file = wfLocalFile( $nt );
+			$file->load( File::READ_LATEST );
 			if ( $file->exists() ) {
 				wfDebug( __METHOD__ . ": file exists\n" );
 				return false;

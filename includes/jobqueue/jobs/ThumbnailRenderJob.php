@@ -37,6 +37,7 @@ class ThumbnailRenderJob extends Job {
 		$transformParams = $this->params['transformParams'];
 
 		$file = wfLocalFile( $this->title );
+		$file->load( File::READ_LATEST );
 
 		if ( $file && $file->exists() ) {
 			if ( $wgUploadThumbnailRenderMethod === 'jobqueue' ) {
@@ -92,7 +93,7 @@ class ThumbnailRenderJob extends Job {
 
 		wfDebug( __METHOD__ . ": hitting url {$thumbUrl}\n" );
 
-		$request = MWHttpRequest::factory( $thumbUrl, 
+		$request = MWHttpRequest::factory( $thumbUrl,
 			array( 'method' => 'HEAD', 'followRedirects' => true ),
 			__METHOD__
 		);

@@ -370,6 +370,7 @@ class PageArchive {
 
 		if ( $restoreFiles && $this->title->getNamespace() == NS_FILE ) {
 			$img = wfLocalFile( $this->title );
+			$img->load( File::READ_LATEST );
 			$this->fileStatus = $img->restore( $fileVersions, $unsuppress );
 			if ( !$this->fileStatus->isOK() ) {
 				return false;
