@@ -637,7 +637,7 @@ abstract class MediaHandler {
 	 */
 	static function getGeneralLongDesc( $file ) {
 		return wfMessage( 'file-info' )->sizeParams( $file->getSize() )
-			->params( $file->getMimeType() )->parse();
+			->params( '<span class="mime-type">' . $file->getMimeType() . '</span>' )->parse();
 	}
 
 	/**
@@ -858,5 +858,28 @@ abstract class MediaHandler {
 	 */
 	public function sanitizeParamsForBucketing( $params ) {
 		return $params;
+	}
+
+	/**
+	 * Whether this filetype needs a warning attached to it - e.g. PDFs,
+	 * which may have viruses attached.
+	 * @return bool
+	 */
+	public function needsWarning() {
+		return false;
+	}
+
+	/**
+	 * Gets configuration for the file warning message. Should be an array
+	 * with keys 'module', which is the name of a module with all messages
+	 * in it; 'messages', which is an array of message names in the keys
+	 * 'main', 'header', 'info', and 'footer'; and 'link', which is a URL that
+	 * should be linked to on the 'info' message.
+	 *
+	 * Returns null if no warning is necessary.
+	 * @return string|null
+	 */
+	public function getWarningConfig() {
+		return null;
 	}
 }

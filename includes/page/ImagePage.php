@@ -505,6 +505,23 @@ class ImagePage extends Article {
 
 			$longDesc = $this->getContext()->msg( 'parentheses', $this->displayImg->getLongDesc() )->text();
 
+			$handler = $this->displayImg->getHandler();
+
+			// If this is a filetype with potential issues, warn the user.
+			if ( $handler && $handler->needsWarning() ) {
+				// The warning will be displayed via CSS and JavaScript.
+				// We just need to tell the client side what message to use.
+				$output = $this->getContext()->getOutput();
+				$messageConfig = $handler->getWarningConfig();
+				$output->addJsConfigVars( array(
+					'fileWarningMessages' => $messageConfig['messages'],
+					'fileWarningLink' => $messageConfig['link'],
+				) );
+
+				$output->addModules( $messageConfig['module'] );
+				$output->addModules( 'mediawiki.filewarning' );
+			}
+
 			$medialink = "[[Media:$filename|$linktext]]";
 
 			if ( !$this->displayImg->isSafeFile() ) {
