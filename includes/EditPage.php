@@ -861,7 +861,7 @@ class EditPage {
 			$this->allowBlankArticle = $request->getBool( 'wpIgnoreBlankArticle' );
 			$this->allowSelfRedirect = $request->getBool( 'wpIgnoreSelfRedirect' );
 
-			$changeTags = $request->getVal( 'wpChangeTags' );
+			$changeTags = $request->getVal( 'wpChangeTags' );var_dump($changeTags);die;
 			if ( is_null( $changeTags ) || $changeTags === '' ) {
 				$this->changeTags = array();
 			} else {
