@@ -1266,7 +1266,7 @@ abstract class UploadBase {
 				return array( 'uploadscriptednamespace', $this->mSVGNSError );
 			}
 
-			return array( 'uploadscripted' );
+			return $check->filterMatchType;
 		}
 
 		return false;
@@ -1281,7 +1281,7 @@ abstract class UploadBase {
 	public static function checkSvgPICallback( $target, $data ) {
 		// Don't allow external stylesheets (bug 57550)
 		if ( preg_match( '/xml-stylesheet/i', $target ) ) {
-			return true;
+			return array( 'upload-scripted-pi-callback' );
 		}
 
 		return false;
@@ -1353,7 +1353,7 @@ abstract class UploadBase {
 		if ( $strippedElement == 'script' ) {
 			wfDebug( __METHOD__ . ": Found script element '$element' in uploaded file.\n" );
 
-			return true;
+			return array( 'uploaded-script-svg', $strippedElement );
 		}
 
 		# e.g., <svg xmlns="http://www.w3.org/2000/svg">
@@ -1361,21 +1361,21 @@ abstract class UploadBase {
 		if ( $strippedElement == 'handler' ) {
 			wfDebug( __METHOD__ . ": Found scriptable element '$element' in uploaded file.\n" );
 
-			return true;
+			return array( 'uploaded-script-svg', $strippedElement );
 		}
 
 		# SVG reported in Feb '12 that used xml:stylesheet to generate javascript block
 		if ( $strippedElement == 'stylesheet' ) {
 			wfDebug( __METHOD__ . ": Found scriptable element '$element' in uploaded file.\n" );
 
-			return true;
+			return array( 'uploaded-script-svg', $strippedElement );
 		}
 
 		# Block iframes, in case they pass the namespace check
 		if ( $strippedElement == 'iframe' ) {
 			wfDebug( __METHOD__ . ": iframe in uploaded file.\n" );
 
-			return true;
+			return array( 'uploaded-script-svg', $strippedElement );
 		}
 
 		# Check <style> css
@@ -1383,7 +1383,7 @@ abstract class UploadBase {
 			&& self::checkCssFragment( Sanitizer::normalizeCss( $data ) )
 		) {
 			wfDebug( __METHOD__ . ": hostile css in style element.\n" );
-			return true;
+			return array( 'uploaded-hostile-svg' );
 		}
 
 		foreach ( $attribs as $attrib => $value ) {
@@ -1394,7 +1394,7 @@ abstract class UploadBase {
 				wfDebug( __METHOD__
 					. ": Found event-handler attribute '$attrib'='$value' in uploaded file.\n" );
 
-				return true;
+				return array( 'uploaded-event-handler-on-svg', $attrib, $value );
 			}
 
 			# href with non-local target (don't allow http://, javascript:, etc)
@@ -1408,7 +1408,7 @@ abstract class UploadBase {
 					wfDebug( __METHOD__ . ": Found href attribute <$strippedElement "
 						. "'$attrib'='$value' in uploaded file.\n" );
 
-					return true;
+					return array( 'uploaded-href-attribute-svg', $strippedElement, $attrib, $value );
 				}
 			}
 
@@ -1420,7 +1420,7 @@ abstract class UploadBase {
 				if ( !preg_match( "!^data:\s*image/(gif|jpeg|jpg|png)$parameters,!i", $value ) ) {
 					wfDebug( __METHOD__ . ": Found href to unwhitelisted data: uri "
 						. "\"<$strippedElement '$attrib'='$value'...\" in uploaded file.\n" );
-					return true;
+					return array( 'uploaded-href-unsafe-target-svg', $strippedElement, $attrib, $value );
 				}
 			}
 
@@ -1432,7 +1432,7 @@ abstract class UploadBase {
 				wfDebug( __METHOD__ . ": Found animate that might be changing href using from "
 					. "\"<$strippedElement '$attrib'='$value'...\" in uploaded file.\n" );
 
-				return true;
+				return array( 'uploaded-animate-svg', $strippedElement, $attrib, $value );
 			}
 
 			# use set/animate to add event-handler attribute to parent
@@ -1443,7 +1443,7 @@ abstract class UploadBase {
 				wfDebug( __METHOD__ . ": Found svg setting event-handler attribute with "
 					. "\"<$strippedElement $stripped='$value'...\" in uploaded file.\n" );
 
-				return true;
+				return array( 'uploaded-setting-event-handler-svg', $strippedElement, $stripped, $value );
 			}
 
 			# use set to add href attribute to parent element
@@ -1453,7 +1453,7 @@ abstract class UploadBase {
 			) {
 				wfDebug( __METHOD__ . ": Found svg setting href attribute '$value' in uploaded file.\n" );
 
-				return true;
+				return array( 'uploaded-setting-href-svg' );
 			}
 
 			# use set to add a remote / data / script target to an element
@@ -1463,7 +1463,7 @@ abstract class UploadBase {
 			) {
 				wfDebug( __METHOD__ . ": Found svg setting attribute to '$value' in uploaded file.\n" );
 
-				return true;
+				return array( 'uploaded-wrong-setting-svg', $value );
 			}
 
 			# use handler attribute with remote / data / script
@@ -1471,7 +1471,7 @@ abstract class UploadBase {
 				wfDebug( __METHOD__ . ": Found svg setting handler with remote/data/script "
 					. "'$attrib'='$value' in uploaded file.\n" );
 
-				return true;
+				return array( 'uploaded-setting-handler-svg', $attrib, $value );
 			}
 
 			# use CSS styles to bring in remote code
@@ -1480,7 +1480,7 @@ abstract class UploadBase {
 			) {
 				wfDebug( __METHOD__ . ": Found svg setting a style with "
 					. "remote url '$attrib'='$value' in uploaded file.\n" );
-				return true;
+				return array( 'uploaded-remote-url-svg', $attrib, $value );
 			}
 
 			# Several attributes can include css, css character escaping isn't allowed
@@ -1491,7 +1491,7 @@ abstract class UploadBase {
 			) {
 				wfDebug( __METHOD__ . ": Found svg setting a style with "
 					. "remote url '$attrib'='$value' in uploaded file.\n" );
-				return true;
+				return array( 'uploaded-remote-url-svg', $attrib, $value );
 			}
 
 			# image filters can pull in url, which could be svg that executes scripts
@@ -1502,7 +1502,7 @@ abstract class UploadBase {
 				wfDebug( __METHOD__ . ": Found image filter with url: "
 					. "\"<$strippedElement $stripped='$value'...\" in uploaded file.\n" );
 
-				return true;
+				return array( 'uploaded-image-filter-svg', $strippedElement, $stripped, $value );
 			}
 		}
 
