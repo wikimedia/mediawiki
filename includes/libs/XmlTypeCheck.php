@@ -34,6 +34,12 @@ class XmlTypeCheck {
 	public $filterMatch = false;
 
 	/**
+	 * Will contain the type of filter hit if the optional element filter returned
+	 * a match at some point.
+	 */
+	public $filterMatchType = false;
+
+	/**
 	 * Name of the document's root element, including any namespace
 	 * as an expanded URL.
 	 */
@@ -228,15 +234,16 @@ class XmlTypeCheck {
 		list( $name, $attribs ) = array_pop( $this->elementDataContext );
 		$data = array_pop( $this->elementData );
 		$this->stackDepth--;
-
-		if ( call_user_func(
+		$callbackRet = call_user_func(
 			$this->filterCallback,
 			$name,
 			$attribs,
 			$data
-		) ) {
+		);
+		if ( $callbackRet ) {
 			// Filter hit!
 			$this->filterMatch = true;
+			$this->filterMatchType = $callbackRet;
 		}
 	}
 
@@ -259,6 +266,7 @@ class XmlTypeCheck {
 		if ( call_user_func( $this->parserOptions['processing_instruction_handler'], $target, $data ) ) {
 			// Filter hit!
 			$this->filterMatch = true;
+			$this->filterMatchType = "processingInstructionHandler";
 		}
 	}
 }
