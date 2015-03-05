@@ -2,16 +2,20 @@
 	"@metadata": {
 		"authors": [
 			"Vikassy",
-			"Nayvik"
+			"Nayvik",
+			"Omshivaprakash"
 		]
 	},
-	"ooui-outline-control-move-down": "ವಸ್ತು ಕೆಲ್ಗೆ ಸ್ಥಲಾನ್ಥರಿಸು",
-	"ooui-outline-control-move-up": "ವಸ್ತು ಮೆಲೆ ಸ್ಥಲಾನ್ಥರಿಸು",
-	"ooui-outline-control-remove": "ವಸ್ತು ತೆಗೆ",
-	"ooui-toolbar-more": "ಹೆಚ್ಚು",
+	"ooui-outline-control-move-down": "ವಸ್ತುವನ್ನು ಕೆಳಗೆ ಸರಿಸು",
+	"ooui-outline-control-move-up": "ವಸ್ತುವನ್ನು ಮೇಲೆ ಸರಿಸು",
+	"ooui-outline-control-remove": "ವಸ್ತುವನ್ನು ತೆಗೆ",
+	"ooui-toolbar-more": "ಇನ್ನಷ್ಟು",
+	"ooui-toolgroup-expand": "ಇನ್ನಷ್ಟು",
+	"ooui-toolgroup-collapse": "ಕೆಲವೇ ಕೆಲವು",
 	"ooui-dialog-message-accept": "ಸರಿ",
-	"ooui-dialog-message-reject": "ರದ್ದು",
+	"ooui-dialog-message-reject": "ರದ್ದುಮಾಡು",
 	"ooui-dialog-process-error": "ಎನೋ ಎಡವಟ್ಟಾಗಿದೆ....",
 	"ooui-dialog-process-dismiss": "ತೆಗೆದುಹಾಕು",
-	"ooui-dialog-process-retry": "ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ"
+	"ooui-dialog-process-retry": "ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ",
+	"ooui-dialog-process-continue": "ಮುಂದುವರೆಸು"
 }
