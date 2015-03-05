@@ -124,13 +124,8 @@ class LocalFile extends File {
 	/** @var bool True if file is not present in file system. Not to be cached in memcached */
 	private $missing;
 
-	/** @var int UNIX timestamp of last markVolatile() call */
-	private $lastMarkedVolatile = 0;
-
 	// @note: higher than IDBAccessObject constants
 	const LOAD_ALL = 16; // integer; load all the lazy fields too (like metadata)
-
-	const VOLATILE_TTL = 300; // integer; seconds
 
 	/**
 	 * Create a LocalFile from a title
@@ -531,10 +526,6 @@ class LocalFile extends File {
 	function load( $flags = 0 ) {
 		if ( !$this->dataLoaded ) {
 			if ( ( $flags & self::READ_LATEST ) || !$this->loadFromCache() ) {
-				// b/c for now for data consistency
-				if ( $this->isVolatile() ) {
-					$flags |= self::READ_LATEST;
-				}
 				$this->loadFromDB( $flags );
 				$this->saveToCache();
 			}
@@ -1866,8 +1857,6 @@ class LocalFile extends File {
 			} );
 		}
 
-		$this->markVolatile(); // file may change soon
-
 		return $this->lockedOwnTrx;
 	}
 
@@ -1884,48 +1873,6 @@ class LocalFile extends File {
 				$this->lockedOwnTrx = false;
 			}
 		}
-	}
-
-	/**
-	 * Mark a file as about to be changed
-	 *
-	 * This sets a cache key that alters master/slave DB loading behavior
-	 *
-	 * @return bool Success
-	 */
-	protected function markVolatile() {
-		global $wgMemc;
-
-		$key = $this->repo->getSharedCacheKey( 'file-volatile', md5( $this->getName() ) );
-		if ( $key ) {
-			$this->lastMarkedVolatile = time();
-			return $wgMemc->set( $key, $this->lastMarkedVolatile, self::VOLATILE_TTL );
-		}
-
-		return true;
-	}
-
-	/**
-	 * Check if a file is about to be changed or has been changed recently
-	 *
-	 * @see LocalFile::isVolatile()
-	 * @return bool Whether the file is volatile
-	 */
-	protected function isVolatile() {
-		global $wgMemc;
-
-		$key = $this->repo->getSharedCacheKey( 'file-volatile', md5( $this->getName() ) );
-		if ( !$key ) {
-			// repo unavailable; bail.
-			return false;
-		}
-
-		if ( $this->lastMarkedVolatile === 0 ) {
-			$this->lastMarkedVolatile = $wgMemc->get( $key ) ?: 0;
-		}
-
-		$volatileDuration = time() - $this->lastMarkedVolatile;
-		return $volatileDuration <= self::VOLATILE_TTL;
 	}
 
 	/**
