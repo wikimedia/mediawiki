@@ -1,8 +1,7 @@
 class MainPage
   include PageObject
 
-  include URL
-  page_url URL.url("")
+  page_url ""
 
   a(:edit_link, href: /action=edit/)
   li(:help_link, id: "n-help")

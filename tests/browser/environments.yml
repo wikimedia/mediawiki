@@ -1,0 +1,35 @@
+# Customize this configuration as necessary to provide defaults for various
+# test environments.
+#
+# The set of defaults to use is determined by the MEDIAWIKI_ENVIRONMENT
+# environment variable.
+#
+#   export MEDIAWIKI_ENVIRONMENT=mw-vagrant-host
+#   bundle exec cucumber
+#
+# Additional variables set by the environment will override the corresponding
+# defaults defined here.
+#
+#   export MEDIAWIKI_ENVIRONMENT=mw-vagrant-host
+#   export MEDIAWIKI_USER=Selenium_user2
+#   bundle exec cucumber
+#
+mw-vagrant-host:
+  mediawiki_url: http://127.0.0.1:8080/wiki/
+  mediawiki_user: Selenium_user
+  mediawiki_password: vagrant
+
+mw-vagrant-guest:
+  mediawiki_url: http://127.0.0.1/wiki/
+  mediawiki_user: Selenium_user
+  mediawiki_password: vagrant
+
+beta:
+  mediawiki_url: http://en.wikipedia.beta.wmflabs.org/wiki/
+  mediawiki_user: Selenium_user
+  # mediawiki_password: SET THIS IN THE ENVIRONMENT!
+
+test2:
+  mediawiki_url: http://test2.wikipedia.org/wiki/
+  mediawiki_user: Selenium_user
+  # mediawiki_password: SET THIS IN THE ENVIRONMENT!

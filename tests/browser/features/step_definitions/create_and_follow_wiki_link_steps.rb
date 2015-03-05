@@ -1,6 +1,6 @@
 Given(/^I go to the "(.+)" page with content "(.+)"$/) do |page_title, page_content|
   @wikitext = page_content
-  on(APIPage).create page_title, page_content
+  api.create_page page_title, page_content
   step "I am on the #{page_title} page"
 end
 
@@ -10,7 +10,7 @@ Given(/^I am on the (.+) page$/) do |article|
 end
 
 Given(/^I create page "(.*?)" with content "(.*?)"$/) do |page_title, page_content|
-  on(APIPage).create page_title, page_content
+  api.create_page page_title, page_content
 end
 
 When(/^I click the Link Target link$/) do
@@ -18,7 +18,7 @@ When(/^I click the Link Target link$/) do
 end
 
 Then(/^I should be on the Link Target Test Page$/) do
-  @browser.url.should match(/Link_Target_Test_Page/)
+  browser.url.should match(/Link_Target_Test_Page/)
 end
 
 Then(/^the page content should contain "(.*?)"$/) do |content|
