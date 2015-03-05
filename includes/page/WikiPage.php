@@ -1765,6 +1765,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$dbw = wfGetDB( DB_MASTER );
 		$now = wfTimestampNow();
 		$this->mTimestamp = $now;
+		$rc = null;
 
 		if ( $flags & EDIT_UPDATE ) {
 			// Update article, but only if changed.
@@ -1867,7 +1868,10 @@ class WikiPage implements Page, IDBAccessObject {
 				)
 			);
 
-			if ( !$changed ) {
+			if ( $changed ) {
+				// Add change tags
+				CoreChangeTags::addToRevision( $revision, $rc, $old_content, $content );
+			} else {
 				$status->warning( 'edit-no-change' );
 				$revision = null;
 				// Update page_touched, this is usually implicit in the page update
@@ -1955,6 +1959,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 			// Update links, etc.
 			$this->doEditUpdates( $revision, $user, array( 'created' => true ) );
+
+			// Add change tags
+			CoreChangeTags::addToRevision( $revision, $rc, null, $content ); );
 
 			$hook_args = array( &$this, &$user, $content, $summary,
 								$flags & EDIT_MINOR, null, null, &$flags, $revision );

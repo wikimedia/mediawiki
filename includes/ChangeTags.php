@@ -1101,15 +1101,17 @@ class ChangeTags {
 	}
 
 	/**
-	 * Lists tags defined by extensions using the ListDefinedTags hook.
-	 * Extensions need only define those tags they deem to be in active use.
+	 * Lists tags defined by MediaWiki core and by extensions using the
+	 * ListDefinedTags hook.
+	 * Extensions should define all tags that could be used again in the
+	 * future, even if the tag is not currently active.
 	 *
 	 * Tries memcached first.
 	 *
 	 * @return string[] Array of strings: tags
 	 * @since 1.25
 	 */
-	public static function listExtensionDefinedTags() {
+	public static function listAutomaticTags() {
 		// Caching...
 		global $wgMemc;
 		$key = wfMemcKey( 'valid-tags-hook' );
@@ -1118,7 +1120,7 @@ class ChangeTags {
 			return $tags;
 		}
 
-		$emptyTags = array();
+		$emptyTags = CoreChangeTags::listTags();
 		Hooks::run( 'ListDefinedTags', array( &$emptyTags ) );
 		$emptyTags = array_filter( array_unique( $emptyTags ) );
 
