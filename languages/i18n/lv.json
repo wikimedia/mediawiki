@@ -2433,6 +2433,7 @@
 	"revdelete-uname-unhid": "lietotājvārda slēpšana atcelta",
 	"revdelete-restricted": "piemērot administratoriem ierobežojumus",
 	"revdelete-unrestricted": "noņemt administratoriem ierobežojumus",
+	"logentry-block-block": "$1 {{GENDER:$2|nobloķēja}} {{GENDER:$4|$3}} ar beigu termiņu $5 $6",
 	"logentry-move-move": "$1 {{GENDER:$2|pārvietoja}} lapu $3 uz $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|pārvietoja}} lapu $3 uz $4, neatstājot pāradresāciju",
 	"logentry-move-move_redir": "$1 {{GENDER:$2|pārvietoja}} lapu $3 uz $4, atstājot pāradresāciju",

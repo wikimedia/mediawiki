@@ -193,6 +193,7 @@
 	"disclaimers": "Pamananggi",
 	"disclaimerpage": "Project:Pangkabilugan a pamananggi",
 	"edithelp": "Saup pamanalili",
+	"helppage-top-gethelp": "Saup",
 	"mainpage": "Pun Bulung",
 	"mainpage-description": "Pun Bulung",
 	"policy-url": "Project:Tuntunan",
@@ -1253,7 +1254,7 @@
 	"thumbnail_invalid_params": "E la matatanggap deng sukad a thumbnail (thumbnail parameters)",
 	"thumbnail_dest_directory": "E makapaglalang piyakitan da reng puntalan (destination directory)",
 	"import": "Maglub bulung",
-	"importinterwiki": "Pamaglub a transwiki (transwiki import)",
+	"importinterwiki": "Maglub (mag-import) ibat aliwang wiki",
 	"import-interwiki-text": "Mamili kang wiki ampong bansag bulung a ilub.\nManatili la reng petsa ring pamagbayu ampo reng lagyu ring editor.\nMaka-login la reng eganaganang pamaglub a transwiki (transwiki import actions) ketang [[Special:Log/import|import log]].",
 	"import-interwiki-history": "Kopian la reng eganaganang bersion ning amlat para king bulung a ini.",
 	"import-interwiki-submit": "Maglub (import)",
@@ -1648,5 +1649,10 @@
 	"revdelete-restricted": "ipairal la reng limitasiun kareng sysop",
 	"revdelete-unrestricted": "ilako la reng makabawal kareng sysops",
 	"rightsnone": "(ala)",
-	"revdelete-summary": "sampulung da reng mibayu (edit summary)"
+	"revdelete-summary": "sampulung da reng mibayu (edit summary)",
+	"feedback-back": "Mibalik",
+	"feedback-error-title": "Mali",
+	"feedback-submit": "I-sumiti",
+	"feedback-thanks-title": "Salamat pu!",
+	"headline-anchor-title": "Ing suglung king seksyun a ini"
 }

@@ -3186,7 +3186,7 @@
 	"logentry-newusers-create": "Se ha {{GENDER:$2|creado}} la cuenta de usuario $1",
 	"logentry-newusers-create2": "La cuenta de usuario $3 ha sido creada por $1",
 	"logentry-newusers-byemail": "la cuenta de usuario $3 ha sido creada por $1 y la contraseña ha sido enviada por correo",
-	"logentry-newusers-autocreate": "La cuenta $1 fue {{GENDER:$2|creada}} automáticamente",
+	"logentry-newusers-autocreate": "La cuenta $1 se {{GENDER:$2|creó}} automáticamente",
 	"logentry-rights-rights": "$1 modificó los grupos a los que pertenece $3: de $4 a $5",
 	"logentry-rights-rights-legacy": "$1 modificó los grupos a los que pertenece $3",
 	"logentry-rights-autopromote": "$1 ha sido {{GENDER:$2|promocionado|promocionada}} automáticamente de $4 a $5",
