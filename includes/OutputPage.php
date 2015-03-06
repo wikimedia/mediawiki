@@ -2902,7 +2902,7 @@ class OutputPage extends ContextSource {
 						);
 					} else {
 						$link = Html::linkedScript( $url );
-						if ( $context->getOnly() === 'scripts' && !$context->getRaw() && !$isRaw ) {
+						if ( !$context->getRaw() && !$isRaw ) {
 							// Wrap only=script requests in a conditional as browsers not supported
 							// by the startup module would unconditionally execute this module.
 							// Otherwise users will get "ReferenceError: mw is undefined" or

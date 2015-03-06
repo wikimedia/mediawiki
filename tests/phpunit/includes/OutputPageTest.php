@@ -203,9 +203,13 @@ mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"
 			// Load two modules in separate groups
 			array(
 				array( array( 'test.group.foo', 'test.group.bar' ), ResourceLoaderModule::TYPE_COMBINED ),
-				'<script src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.group.bar&amp;skin=fallback&amp;*"></script>
-<script src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.group.foo&amp;skin=fallback&amp;*"></script>
-',
+				'<script>if(window.mw){
+document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=test.group.bar\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");
+}</script>
+<script>if(window.mw){
+document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=test.group.foo\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");
+}</script>
+'
 			),
 		);
 	}
