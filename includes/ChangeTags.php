@@ -71,6 +71,9 @@ class ChangeTags {
 			// is the tag in active use by the extension ?
 			$ctObj->isActive = isset( $registeredTags[$tag]['active'] ) &&
 				$registeredTags[$tag]['active'];
+			// is the tag meant to indicate a potential problem ? (for T91425, T89553)
+			$ctObj->isProblem = isset( $registeredTags[$tag]['problem'] ) &&
+				$registeredTags[$tag]['problem'];
 
 			// user-friendly name of the extension
 			$ctObj->extensionName = isset( $tagParams['name'] ) ?
@@ -93,6 +96,8 @@ class ChangeTags {
 		} elseif ( $ctObj->coreDefined ) {
 			// is automatic tagging enabled for this core tag ?
 			$ctObj->isActive = $coreTags[$tag]['active'];
+			// is the tag meant to indicate a potential problem ? (for T91425, T89553)
+			$ctObj->isProblem = $coreTags[$tag]['problem'];
 
 			$ctObj->canActivate = false;
 			// in case they were previously user defined
@@ -103,6 +108,8 @@ class ChangeTags {
 			// is the tag allowed to be applied by users and bots ?
 			// yes, as we assume these tags are active
 			$ctObj->isActive = true;
+			// is the tag meant to indicate a potential problem ? (for T91425, T89553)
+			$ctObj->isProblem = $storedTags[$tag]['problem'];
 
 			$ctObj->canActivate = false;
 			// no need to deactivate never applied user defined tags,
@@ -113,6 +120,7 @@ class ChangeTags {
 		} else {
 			// for undefined tags
 			$ctObj->isActive = false;
+			$ctObj->isProblem = false;
 
 			$ctObj->canActivate = true;
 			$ctObj->canDeactivate = false;
@@ -918,6 +926,10 @@ class ChangeTags {
 					// previously used by extensions cannot be activated if not
 					// deleted beforehand, and modify actions accordingly
 					'active' => true,
+					// and they are not assumed to indicate a problem
+					// @todo: store this setting in a new field in the valid_tag
+					// table, and provide an action for sysops to change it
+					'problem' => false
 				);
 			}
 
@@ -1101,25 +1113,27 @@ class ChangeTags {
 	 *
 	 * @param string $tag: tag
 	 * @param bool $activeOnly: whether to return only active tags
-	 * @param array $definedTags: list of defined tags on the wiki
-	 * @since 1.25
+	 * @param bool $problemOnly: whether to return only problem tags
+	 * @param array $definedTags: tags defined on the wiki, with their params
+	 * @return array list of tags, mapped to their cached hitcounts
+	 * @since 1.26
 	 */
-	public static function getAppliedTags( $activeOnly = false,
+	public static function getAppliedTags( $activeOnly = false, $problemOnly = false,
 		$definedTags = null ) {
 		$appliedTags = self::buildTagUsageStatistics( false );
 
 		// shortcut
-		if ( !$activeOnly ) {
+		if ( !$activeOnly && !$problemOnly ) {
 			return array_keys( $appliedTags );
 		}
 
-		// fetching the list of defined tags
 		if ( $definedTags == null ) {
 			$definedTags = self::getDefinedTags();
 		}
 		// filtering out tags when requested
 		foreach ( $definedTags as $tag => &$tagParams ) {
-			if ( $activeOnly && !$tagParams['active'] ) {
+			if ( ( $activeOnly && !$tagParams['active'] ) ||
+				( $problemOnly && !$tagParams['problem'] ) ) {
 				unset( $appliedTags[$tag] );
 			}
 		}
