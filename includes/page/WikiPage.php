@@ -3402,7 +3402,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Check if the last link refresh was before page_touched
 		if ( $this->getLinksTimestamp() < $this->getTouched() ) {
-			JobQueueGroup::singleton()->push( new RefreshLinksJob( $this->mTitle, $params ) );
+			JobQueueGroup::singleton()->push( EnqueueJob::newFromLocalJobs(
+				new JobSpecification( 'refreshLinks', $params, array(), $this->mTitle )
+			) );
 			return true;
 		}
 
