@@ -17,6 +17,7 @@
  *
  * @file
  * @author Aaron Schulz
+ * @ingroup JobQueue
  */
 
 /**

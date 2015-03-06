@@ -91,8 +91,8 @@ class JobSpecification implements IJobSpecification {
 	/** @var Title */
 	protected $title;
 
-	/** @var bool Expensive jobs may set this to true */
-	protected $ignoreDuplicates;
+	/** @var array */
+	protected $opts;
 
 	/**
 	 * @param string $type
@@ -104,11 +104,12 @@ class JobSpecification implements IJobSpecification {
 		$type, array $params, array $opts = array(), Title $title = null
 	) {
 		$this->validateParams( $params );
+		$this->validateParams( $opts );
 
 		$this->type = $type;
 		$this->params = $params;
 		$this->title = $title ?: Title::newMainPage();
-		$this->ignoreDuplicates = !empty( $opts['removeDuplicates'] );
+		$this->opts = $opts;
 	}
 
 	/**
@@ -158,7 +159,7 @@ class JobSpecification implements IJobSpecification {
 	 * @return bool Whether only one of each identical set of jobs should be run
 	 */
 	public function ignoreDuplicates() {
-		return $this->ignoreDuplicates;
+		return !empty( $this->opts['removeDuplicates'] );
 	}
 
 	/**
@@ -185,5 +186,32 @@ class JobSpecification implements IJobSpecification {
 		}
 
 		return $info;
+	}
+
+	/**
+	 * @return array Field/value map that can immediately be serialized
+	 * @since 1.25
+	 */
+	public function toSerializableArray() {
+		return array(
+			'type'   => $this->type,
+			'params' => $this->params,
+			'opts'   => $this->opts,
+			'title'  => array(
+				'ns'  => $this->title->getNamespace(),
+				'key' => $this->title->getDbKey()
+			)
+		);
+	}
+
+	/**
+	 * @param array $map Field/value map
+	 * @return JobSpecification
+	 * @since 1.25
+	 */
+	public static function newFromArray( array $map ) {
+		$title = Title::makeTitle( $map['title']['ns'], $map['title']['key'] );
+
+		return new self( $map['type'], $map['params'], $map['opts'], $title );
 	}
 }
