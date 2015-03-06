@@ -29,6 +29,133 @@ class ChangeTags {
 	const MAX_DELETE_USES = 5000;
 
 	/**
+	 * Function making a change tag object from a tag name based on some context
+	 * Make sure you provide all the relevant data for the checks you need
+	 *
+	 * @param string $tag tag's name
+	 * @param array $tagStats tag usage statistics mapping each tag to its hitcount
+	 * @param array $storedTags tags stored in the change_tag table of the database
+	 * @param array $coreTags tags defined in core
+	 * @param array $registeredTags tags defined by extensions
+	 * in the last three lists, each tag is mapped to an array of params
+	 * @return change tag object
+	 */
+	public static function getChangeTagObject( $tag, $tagStats, $storedTags,
+		$coreTags, $registeredTags ) {
+
+		$ctObj = (object) array( 'name' => $tag );
+
+		$ctObj->isApplied = isset( $tagStats[$tag] );
+		$ctObj->isStored = isset( $storedTags[$tag] );
+		$ctObj->coreDefined = isset( $coreTags[$tag] );
+		$ctObj->extensionDefined = isset( $registeredTags[$tag] );
+
+		$ctObj->exists = $ctObj->isApplied || $ctObj->extensionDefined ||
+			$ctObj->isStored || $ctObj->coreDefined;
+
+		// shortcut
+		if ( !$ctObj->exists ) {
+			return $ctObj;
+		}
+
+		// a change tag is user defined if it is stored in the valid_tag table and
+		// neither defined in core nor by an extension
+		$ctObj->userDefined = $ctObj->isStored && !$ctObj->extensionDefined &&
+			!$ctObj->coreDefined;
+
+		// some info based on tag stats
+		$ctObj->hitcount = $ctObj->isApplied ? $tagStats[$tag] : 0;
+		$ctObj->isBig = ( $ctObj->hitcount > self::MAX_DELETE_USES );
+
+		// active status and problem status
+		if ( $ctObj->extensionDefined ) {
+			// is the tag in active use by the extension ?
+			$ctObj->isActive = isset( $registeredTags[$tag]['active'] ) &&
+				$registeredTags[$tag]['active'];
+			// is the tag meant to indicate a potential problem ? (for T91425, T89553)
+			$ctObj->isProblem = isset( $registeredTags[$tag]['problem'] ) &&
+				$registeredTags[$tag]['problem'];
+
+		} elseif ( $ctObj->coreDefined ) {
+			// is automatic tagging enabled for this core tag ?
+			$ctObj->isActive = $coreTags[$tag]['active'];
+			// is the tag meant to indicate a potential problem ? (for T91425, T89553)
+			$ctObj->isProblem = $coreTags[$tag]['problem'];
+
+		} elseif ( $ctObj->userDefined ) {
+			// is the tag allowed to be applied by users and bots ?
+			$ctObj->isActive = $storedTags[$tag]['active'];
+			// is the tag meant to indicate a potential problem ? (for T91425, T89553)
+			$ctObj->isProblem = $storedTags[$tag]['problem'];
+
+		} else {
+			// for undefined tags
+			$ctObj->isActive = false;
+			$ctObj->isProblem = false;
+		}
+
+		// an inactive tag can be activated provided it is not extension or core defined
+		$ctObj->canActivate = !$ctObj->isActive && !$ctObj->extensionDefined &&
+			!$ctObj->coreDefined;
+		# no permission check, make it separately
+		# no existence check, make it first if not from SpecialTags
+
+		// an active tag can be deactivated provided it is stored in valid_tag
+		// and it has been applied previously when user defined
+		$ctObj->canDeactivate = $ctObj->isActive && $ctObj->isStored &&
+			( !$ctObj->userDefined || $ctObj->isApplied );
+		# no permission or existence check
+
+		// a tag can be deleted if it has not too many uses, is not core defined, and
+		// it is not extension defined or it is explicitly allowed
+		$ctObj->canDelete = !$ctObj->isBig && !ctObj->coreDefined &&
+			( !$ctObj->extensionDefined || $ctObj->extensionDeletable );
+		# no permission or existence check
+
+		if ( !$ctObj->extensionDefined ) {
+		return $ctObj;
+		}
+
+		// extra params for extension defined tags
+		// which extension, or more specific project, defines the tag ?
+		$ctObj->extensionSource = isset( $tagParams['source'] ) ?
+			(string) $tagParams['source'] : '';
+		// params to pass in the source-specific message
+		$ctObj->extensionMsgParams = isset( $tagParams['msgParams'] ) ?
+			(array) $tagParams['msgParams'] : array();
+		// should admins be allowed to delete applied instances of the tag ?
+		// this does not undefine the tag, unless the extension does it by means of
+		// the ChangeTagAfterDelete hook
+		$ctObj->extensionCanDelete = isset( $registeredTags[$tag]['canDelete'] ) &&
+			$registeredTags[$tag]['canDelete'];
+
+		return $ctObj;
+	}
+
+	/**
+	 * Shortcut for a change tag object where context is completely rebuilt
+	 * and provided in full
+	 *
+	 * @param string $tag tag's name
+	 * @return change tag object
+	 */
+	public static function rebuildChangeTagObject ( $tag ) {
+
+		// some of the caches might be outdated due to extensions not purging them
+		self::purgeTagUsageCache();
+		self::purgeStoredTagsCache();
+		self::purgeRegisteredTagsCache();
+
+		return getChangeTagObject(
+			$tag,
+			self::getTagUsageStatistics(),
+			self::getStoredTags(),
+			self::getCoreTags(),
+			self::getRegisteredTags()
+		);
+	}
+
+	/**
 	 * Creates HTML for the given tags
 	 *
 	 * @param string $tags Comma-separated list of tags
@@ -99,8 +226,8 @@ class ChangeTags {
 	 * @exception MWException When $rc_id, $rev_id and $log_id are all null
 	 */
 	public static function addTags( $tags, $rc_id = null, $rev_id = null,
-		$log_id = null, $params = null
-	) {
+		$log_id = null, $params = null ) {
+		global $wgMemc;
 		if ( !is_array( $tags ) ) {
 			$tags = array( $tags );
 		}
@@ -188,11 +315,12 @@ class ChangeTags {
 					'ct_params' => $params
 				)
 			);
+			// Increment cache
+			$wgMemc->incr( wfMemcKey( 'ChangeTags', 'tag-hitcount', "$tag" ) );
 		}
 
 		$dbw->insert( 'change_tag', $tagsRows, __METHOD__, array( 'IGNORE' ) );
 
-		self::purgeTagUsageCache();
 		return true;
 	}
 
@@ -211,7 +339,7 @@ class ChangeTags {
 	 * @throws MWException When unable to determine appropriate JOIN condition for tagging
 	 */
 	public static function modifyDisplayQuery( &$tables, &$fields, &$conds,
-										&$join_conds, &$options, $filter_tag = false ) {
+		&$join_conds, &$options, $filter_tag = false ) {
 		global $wgRequest, $wgUseTagFilter;
 
 		if ( $filter_tag === false ) {
@@ -254,16 +382,22 @@ class ChangeTags {
 	 *        - if true, it returns an entire form around the selector.
 	 * @param Title $title Title object to send the form to.
 	 *        Used when, and only when $fullForm is true.
+	 * @param bool $activeOnly specify whether only tags marked
+	 * as active should be considered (e.g. for Special:ProblemChanges)
+	 * @param bool $problemOnly specify whether only tags indicating
+	 * a problem should be considered (e.g. for Special:ProblemChanges)
 	 * @return string|array
 	 *        - if $fullForm is false: Array with
 	 *        - if $fullForm is true: String, html fragment
 	 */
 	public static function buildTagFilterSelector( $selected = '',
-		$fullForm = false, Title $title = null
-	) {
+		$fullForm = false, Title $title = null,
+		$activeOnly = false, $problemOnly = false ) {
 		global $wgUseTagFilter;
 
-		if ( !$wgUseTagFilter || !count( self::listDefinedTags() ) ) {
+		// check config and if tags of the type requested have been applied at least once
+		// @todo use the list of tags to build a dropdown menu, an autocomplete form or some hybrid
+		if ( !$wgUseTagFilter || !count( self::getAppliedTags( $activeOnly, $problemOnly ) ) ) {
 			return $fullForm ? '' : array();
 		}
 
@@ -304,7 +438,7 @@ class ChangeTags {
 	/**
 	 * Defines a tag in the valid_tag table, without checking that the tag name
 	 * is valid.
-	 * Extensions should NOT use this function; they can use the ListDefinedTags
+	 * Extensions should NOT use this function; they can use the ChangeTagsRegister
 	 * hook instead.
 	 *
 	 * @param string $tag Tag to create
@@ -316,25 +450,23 @@ class ChangeTags {
 			array( 'vt_tag' ),
 			array( 'vt_tag' => $tag ),
 			__METHOD__ );
-
-		// clear the memcache of defined tags
-		self::purgeTagCacheAll();
+		self::purgeStoredTagsCache();
 	}
 
 	/**
 	 * Removes a tag from the valid_tag table. The tag may remain in use by
 	 * extensions, and may still show up as 'defined' if an extension is setting
-	 * it from the ListDefinedTags hook.
+	 * it from the ChangeTagsRegister hook.
 	 *
 	 * @param string $tag Tag to remove
 	 * @since 1.25
 	 */
 	public static function undefineTag( $tag ) {
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'valid_tag', array( 'vt_tag' => $tag ), __METHOD__ );
-
-		// clear the memcache of defined tags
-		self::purgeTagCacheAll();
+		$dbw->delete( 'valid_tag',
+			array( 'vt_tag' => $tag ),
+			__METHOD__ );
+		self::purgeStoredTagsCache();
 	}
 
 	/**
@@ -375,29 +507,31 @@ class ChangeTags {
 	/**
 	 * Is it OK to allow the user to activate this tag?
 	 *
-	 * @param string $tag Tag that you are interested in activating
+	 * @param string|changeTag object $tag Tag name or tag object for the tag
+	 * that you are interested in activating
 	 * @param User|null $user User whose permission you wish to check, or null if
 	 * you don't care (e.g. maintenance scripts)
 	 * @return Status
 	 * @since 1.25
 	 */
 	public static function canActivateTag( $tag, User $user = null ) {
+
+		// permission check
 		if ( !is_null( $user ) && !$user->isAllowed( 'managechangetags' ) ) {
 			return Status::newFatal( 'tags-manage-no-permission' );
 		}
-
-		// non-existing tags cannot be activated
-		$tagUsage = self::tagUsageStatistics();
-		if ( !isset( $tagUsage[$tag] ) ) {
-			return Status::newFatal( 'tags-activate-not-found', $tag );
+		// rebuild change tag object if not already provided
+		if ( !is_object( $tag ) ) {
+			$tag = self::rebuildChangeTagObject( $tag );
+		}
+		// non-existing tags cannot be managed
+		if ( !$tag->exists ) {
+			return Status::newFatal( 'tags-manage-not-found', $tag->name );
 		}
 
-		// defined tags cannot be activated (a defined tag is either extension-
-		// defined, in which case the extension chooses whether or not to active it;
-		// or user-defined, in which case it is considered active)
-		$definedTags = self::listDefinedTags();
-		if ( in_array( $tag, $definedTags ) ) {
-			return Status::newFatal( 'tags-activate-not-allowed', $tag );
+		// check specific to activate action
+		if ( !$tag->canActivate ) {
+			return Status::newFatal( 'tags-activate-not-allowed', $tag->name );
 		}
 
 		return Status::newGood();
@@ -439,21 +573,31 @@ class ChangeTags {
 	/**
 	 * Is it OK to allow the user to deactivate this tag?
 	 *
-	 * @param string $tag Tag that you are interested in deactivating
+	 * @param string|changeTag object $changeTag Tag name or tag object for the tag
+	 * that you are interested in deactivating
 	 * @param User|null $user User whose permission you wish to check, or null if
 	 * you don't care (e.g. maintenance scripts)
 	 * @return Status
 	 * @since 1.25
 	 */
 	public static function canDeactivateTag( $tag, User $user = null ) {
+
+		// permission check
 		if ( !is_null( $user ) && !$user->isAllowed( 'managechangetags' ) ) {
 			return Status::newFatal( 'tags-manage-no-permission' );
 		}
+		// rebuild change tag object if not already provided
+		if ( !is_object( $tag ) ) {
+			$tag = self::rebuildChangeTagObject( $tag );
+		}
+		// non-existing tags cannot be managed
+		if ( !$tag->exists ) {
+			return Status::newFatal( 'tags-manage-not-found', $tag->name );
+		}
 
-		// only explicitly-defined tags can be deactivated
-		$explicitlyDefinedTags = self::listExplicitlyDefinedTags();
-		if ( !in_array( $tag, $explicitlyDefinedTags ) ) {
-			return Status::newFatal( 'tags-deactivate-not-allowed', $tag );
+		// check specific to deactivate action
+		if ( !$tag->canDeactivate ) {				
+			return Status::newFatal( 'tags-deactivate-not-allowed', $tag->name );
 		}
 		return Status::newGood();
 	}
@@ -522,15 +666,17 @@ class ChangeTags {
 			return Status::newFatal( 'tags-create-invalid-title-chars' );
 		}
 
+		// rebuild change tag object
+		$tag = self::rebuildChangeTagObject( $tag );
+
 		// does the tag already exist?
-		$tagUsage = self::tagUsageStatistics();
-		if ( isset( $tagUsage[$tag] ) ) {
-			return Status::newFatal( 'tags-create-already-exists', $tag );
+		if ( $tag->exists ) {
+			return Status::newFatal( 'tags-create-already-exists', $tag->name );
 		}
 
 		// check with hooks
 		$canCreateResult = Status::newGood();
-		Hooks::run( 'ChangeTagCanCreate', array( $tag, $user, &$canCreateResult ) );
+		Hooks::run( 'ChangeTagCanCreate', array( $tag->name, $user, &$canCreateResult ) );
 		return $canCreateResult;
 	}
 
@@ -560,6 +706,7 @@ class ChangeTags {
 
 		// do it!
 		self::defineTag( $tag );
+		self::purgeTagUsageCache( $tag );
 
 		// log it
 		$logId = self::logTagAction( 'create', $tag, $reason, $user );
@@ -583,7 +730,11 @@ class ChangeTags {
 		$dbw->begin( __METHOD__ );
 
 		// delete from valid_tag
-		self::undefineTag( $tag );
+		// we don't call self::undefineTag since the purging of caches should occur
+		// at the same time after all operations have been performed
+		$dbw->delete( 'valid_tag',
+			array( 'vt_tag' => $tag ),
+			__METHOD__ );
 
 		// find out which revisions use this tag, so we can delete from tag_summary
 		$result = $dbw->select( 'change_tag',
@@ -639,8 +790,10 @@ class ChangeTags {
 			$status->ok = true;
 		}
 
-		// clear the memcache of defined tags
-		self::purgeTagCacheAll();
+		// Clearing tag caches
+		self::purgeTagUsageCache( $tag );
+		self::purgeStoredTagsCache();
+		self::purgeRegisteredTagsCache();
 
 		return $status;
 	}
@@ -648,39 +801,43 @@ class ChangeTags {
 	/**
 	 * Is it OK to allow the user to delete this tag?
 	 *
-	 * @param string $tag Tag that you are interested in deleting
+	 * @param string|changeTag object $tag Tag that you are interested in deleting
 	 * @param User|null $user User whose permission you wish to check, or null if
 	 * you don't care (e.g. maintenance scripts)
 	 * @return Status
 	 * @since 1.25
 	 */
 	public static function canDeleteTag( $tag, User $user = null ) {
-		$tagUsage = self::tagUsageStatistics();
 
+		// permission check
 		if ( !is_null( $user ) && !$user->isAllowed( 'managechangetags' ) ) {
 			return Status::newFatal( 'tags-manage-no-permission' );
 		}
-
-		if ( !isset( $tagUsage[$tag] ) ) {
-			return Status::newFatal( 'tags-delete-not-found', $tag );
+		// rebuild change tag object if not already provided
+		if ( !is_object( $tag ) ) {
+			$tag = self::rebuildChangeTagObject( $tag );
+		}
+		// non-existing tags cannot be managed
+		if ( !$tag->exists ) {
+			return Status::newFatal( 'tags-manage-not-found', $tag->name );
 		}
 
-		if ( $tagUsage[$tag] > self::MAX_DELETE_USES ) {
-			return Status::newFatal( 'tags-delete-too-many-uses', $tag, self::MAX_DELETE_USES );
+		// tags with too many uses cannot be deleted
+		if ( $tag->isBig ) {
+			return Status::newFatal( 'tags-delete-too-many-uses', $tag->name, self::MAX_DELETE_USES );
 		}
 
-		$extensionDefined = self::listExtensionDefinedTags();
-		if ( in_array( $tag, $extensionDefined ) ) {
+		if ( $tag->extensionDefined && !$tag->extensionDeletable ) {
 			// extension-defined tags can't be deleted unless the extension
 			// specifically allows it
-			$status = Status::newFatal( 'tags-delete-not-allowed' );
+			return Status::newFatal( 'tags-delete-not-allowed' );
+		} elseif ( $tag->coreDefined ) {
+			// core defined tags can't be deleted
+			return Status::newFatal( 'tags-delete-core' );
 		} else {
-			// user-defined tags are deletable unless otherwise specified
-			$status = Status::newGood();
+			// user-defined tags, extension defined tags when allowed, or undefined tags can be deleted
+			return Status::newGood();
 		}
-
-		Hooks::run( 'ChangeTagCanDelete', array( $tag, $user, &$status ) );
-		return $status;
 	}
 
 	/**
@@ -701,15 +858,15 @@ class ChangeTags {
 	public static function deleteTagWithChecks( $tag, $reason, User $user,
 		$ignoreWarnings = false ) {
 
+		// make a change tag object here since we'll need hitcount
+		$changeTag = self::rebuildChangeTagObject( $tag );
+
 		// are we allowed to do this?
-		$result = self::canDeleteTag( $tag, $user );
+		$result = self::canDeleteTag( $changeTag, $user );
 		if ( $ignoreWarnings ? !$result->isOK() : !$result->isGood() ) {
 			$result->value = null;
 			return $result;
 		}
-
-		// store the tag usage statistics
-		$tagUsage = self::tagUsageStatistics();
 
 		// do it!
 		$deleteResult = self::deleteTagEverywhere( $tag );
@@ -718,172 +875,370 @@ class ChangeTags {
 		}
 
 		// log it
-		$logId = self::logTagAction( 'delete', $tag, $reason, $user, $tagUsage[$tag] );
+		$logId = self::logTagAction( 'delete', $tag, $reason, $user, $changeTag->hitcount );
 		$deleteResult->value = $logId;
 		return $deleteResult;
 	}
 
 	/**
-	 * Lists those tags which extensions report as being "active".
-	 *
-	 * @return array
-	 * @since 1.25
-	 */
-	public static function listExtensionActivatedTags() {
-		// Caching...
-		global $wgMemc;
-		$key = wfMemcKey( 'active-tags' );
-		$tags = $wgMemc->get( $key );
-		if ( $tags ) {
-			return $tags;
-		}
-
-		// ask extensions which tags they consider active
-		$extensionActive = array();
-		Hooks::run( 'ChangeTagsListActive', array( &$extensionActive ) );
-
-		// Short-term caching.
-		$wgMemc->set( $key, $extensionActive, 300 );
-		return $extensionActive;
-	}
-
-	/**
-	 * Basically lists defined tags which count even if they aren't applied to anything.
-	 * It returns a union of the results of listExplicitlyDefinedTags() and
-	 * listExtensionDefinedTags().
-	 *
-	 * @return string[] Array of strings: tags
-	 */
-	public static function listDefinedTags() {
-		$tags1 = self::listExplicitlyDefinedTags();
-		$tags2 = self::listExtensionDefinedTags();
-		return array_values( array_unique( array_merge( $tags1, $tags2 ) ) );
-	}
-
-	/**
-	 * Lists tags explicitly defined in the `valid_tag` table of the database.
+	 * Gets tags stored in the `valid_tag` table of the database.
 	 * Tags in table 'change_tag' which are not in table 'valid_tag' are not
 	 * included.
+	 * The keys are the tag names and the values are arrays of params (none for now).
 	 *
 	 * Tries memcached first.
+	 *
+	 * @return Array of strings: tags => array of params
+	 * @since 1.25
+	 */
+	public static function getStoredTags() {
+		global $wgMemc;
+		// Attempting to retrieve from cache...
+		$key = wfMemcKey( 'ChangeTags', 'valid-tags-db' );
+		$storedTags = $wgMemc->get( $key );
+
+		// If not in cache, db query
+		if ( $storedTags == false ) {
+			$dbr = wfGetDB( DB_SLAVE );
+			$res = $dbr->select( 'valid_tag', array( 'vt_tag'),
+				array(), __METHOD__ );
+
+			// Filling array mapping tags to their params
+			$storedTags = array();
+			foreach ( $res as $row ) {
+				$storedTags[$row->vt_tag] = array(
+					// tags stored in the valid_tag table are assumed to be active
+					// @todo: store this in a new field of valid_tag so that tags
+					// previously used by extensions cannot be activated if not
+					// deleted beforehand, and modify actions accordingly
+					'active' => true,
+					// and they are not assumed to indicate a problem
+					// @todo: store this setting in a new field in the valid_tag
+					// table, and provide an action for sysops to change it
+					'problem' => false
+				);
+			}
+
+			// removing nulls inserted as keys
+			unset( $storedTags[''] );
+
+			// Caching for a long time (a week), since
+			// operations on valid_tag clear this cache
+			$wgMemc->set( $key, $storedTags, 60*60*24*7 );	
+		}
+
+		return $storedTags;
+	}
+
+	/**
+	 * Gets tags registered by extensions using the ChangeTagsRegister hook.
+	 * Extensions need only define those tags they deem to be in active use,
+	 * or that have been actively used in the past and are likely to be
+	 * actively used again in the future.
+	 * You need to pass the tag names as keys and an array of params as values.
+	 * All params are optional and include:
+	 * (bool) 'active' whether the tag is in active use (false by default)
+	 * (bool) 'problem' whether the tag is meant to indicate a problem (false by default)
+	 * (string) 'source' name of the extension or more specific project issuing the tag
+	 * (array) 'msgParams' array of params for the tag description specific to the source
+	 * (bool) 'canDelete' whether the tag can be deleted by admins (false by default)
+	 *
+	 * Tries memcached first.
+	 *
+	 * @return Array of strings: tags => arrays of params
+	 * @since 1.25
+	 */
+	public static function getRegisteredTags() {
+		global $wgMemc;
+		// Attempting to retrieve from cache...
+		$key = wfMemcKey( 'ChangeTags', 'valid-tags-hook' );
+		$registeredTags = $wgMemc->get( $key );
+
+		// If not in cache, ask extensions
+		if ( $registeredTags == false ) {
+			// hack for ListDefinedTags hook until deprecated
+			$extensionDefined = array();
+			Hooks::run( 'ListDefinedTags', array( &$extensionDefined ) );
+			// Filling with param 'active' set to false
+			$extensionDefined = array_fill_keys( $extensionDefined,
+				array() );
+
+			// hack for ChangeTagsListActive hook until deprecated
+			$extensionActive = array();
+			Hooks::run( 'ChangeTagsListActive', array( &$extensionActive ) );
+			// Filling with arrays with param 'active' set to true
+			$extensionActive = array_fill_keys( $extensionActive,
+				array( 'active' => true ) );
+
+			// Merging, with ChangeTagsListActive overriding ListDefinedTags
+			$registeredTags = array_merge( $extensionDefined, $extensionActive );
+			// Applying the new hook, tags as keys and array of params as values
+			Hooks::run( 'ChangeTagsRegister', array( &$registeredTags ) );
+
+			// removing nulls inserted as keys
+			unset( $registeredTags[''] );
+
+			// Caching for a very short time (5 minutes), since extensions may
+			// register or unregister tags without clearing the cache (which
+			// should be done with the purgeRegisteredTagsCache function).
+			// @todo AbuseFilter should do it (the current 5 minutes wait is
+			// clearly noticeable), maybe also a few other extensions that need to.
+			// When done, we'll be able to increase the cache duration if needed.
+			$wgMemc->set( $key, $registeredTags, 60*5 );
+		}
+		return $registeredTags;
+	}
+
+	/**
+	 * Nothing for now
+	 */
+	public static function getCoreTags() {
+		return array();
+	}
+
+	/**
+	 * Gets an array mapping tags applied at least once to their hitcount
+	 *
+	 * Tags defined somewhere but not applied are not included.
+	 *
+	 * @param bool $upToDateHitcounts whether to fetch the most up to date hitcounts
+	 * or only hitcounts of an older cache (delay of up to 24 hours)
+	 */
+	public static function buildTagUsageStatistics( $upToDateHitcounts = true ) {
+		global $wgMemc, $wgTagUsageCacheDuration;
+
+		// Try to retrieve cached array mapping tags to their hitcount
+		$commonKey = wfMemcKey( 'ChangeTags', 'tag-usage-stats' );
+		$changeTags = $wgMemc->get( $commonKey );
+
+		// If the common cache exists and we want up to date hitcounts, get them
+		if ( $changeTags != false && $upToDateHitcounts ) {
+			foreach ( $changeTags as $tag => $hitcount ) {
+				$hitcountKey = wfMemcKey( 'ChangeTags', 'tag-hitcount', "$tag" );
+				// getting most up to date hitcount from specific hitcount cache
+				$hitcount = $wgMemc->get( $hitcountKey );
+				if ( $hitcount != false ) {
+					// Mapping tags to their hitcount
+					$changeTags[$tag] = $hitcount;
+				} else {
+					// Cache attempt failed
+					// (normally, this should not happen)
+					// So do DB query
+					$changeTags = false;
+					break;
+				}
+			}
+		}
+
+		// Database query and cache rebuild
+		if ( $changeTags == false ) {
+			$dbr = wfGetDB( DB_SLAVE );
+			$res = $dbr->select(
+				'change_tag',
+				array( 'ct_tag', 'hitcount' => 'count(*)' ),
+				array(),
+				__METHOD__,
+				array( 'GROUP BY' => 'ct_tag', 'ORDER BY' => 'hitcount DESC' )
+			);
+
+			$changeTags = array();
+			foreach ( $res as $row ) {
+				$tag = $row->ct_tag;
+				$hitcount = $row->hitcount;
+				// Mapping tags to their hitcount
+				$changeTags[$tag] = $hitcount;
+				// Caching for a week (gets incremented when applied, decremented when unapplied)
+				$hitcountKey = wfMemcKey( 'ChangeTags', 'tag-hitcount', "$tag" );
+				$wgMemc->set( $hitcountKey, $hitcount, 60*60*24*7 );
+			}
+
+			// removing nulls inserted as keys
+			unset( $changeTags[''] );
+			// Caching for a moderate duration (24 hours by default)
+			$wgMemc->set( $commonKey, $changeTags, $wgTagUsageCacheDuration );
+		}
+
+		// returning list of tags, or map of tags to their hitcount
+		return $changeTags;
+	}
+
+	/**
+	 * Returns a map of any tags used on the wiki to number of edits
+	 * tagged with them, ordered descending by the hitcount as of the
+	 * latest caching. The ordering may on rare occasions be incorrect
+	 * since hitcounts are updated when tags are applied.
+	 * Does not include tags defined somewhere but not applied
+	 *
+	 * @since 1.25
+	 */
+	public static function tagUsageStatistics() {
+		return self::buildTagUsageStatistics( true );
+	}
+
+	/**
+	 * Lists all defined tags with their params.
+	 *
+	 * @return string[] Array of strings: tags
+	 * @since 1.25
+	 */
+	public static function getDefinedTags() {
+		return array_merge( self::getStoredTags(),
+			self::getCoreTags(), self::getRegisteredTags() );
+	}
+
+	/**
+	 * Returns an array of tags applied at least once,
+	 * mapped to their cached hitcount.
+	 * A delay of up to 24 hours (by default) may occur
+	 * before a newly applied tag gets listed.
+	 *
+	 * Faster than self::tagUsageStatistics() (which returns up to date hitcounts)
+	 *
+	 * @param string $tag: tag
+	 * @param bool $activeOnly: whether to return only active tags
+	 * @param bool $problemOnly: whether to return only problem tags
+	 * @since 1.25
+	 */
+	public static function getAppliedTags( $activeOnly, $problemOnly ) {
+		$appliedTags = self::buildTagUsageStatistics( false );
+
+		// shortcut
+		if ( !$activeOnly && !$problemOnly ) {
+			return array_keys( $appliedTags );
+		}
+
+		$definedTags = self::getDefinedTags();
+		// filtering out tags when requested
+		foreach ( $definedTags as $tag => &$tagParams ) {
+			if ( ( $problemOnly && !$tagParams['problem'] ) ||
+				( $activeOnly && !$tagParams['active'] ) ) {
+				unset( $appliedTags[$tag] );
+			}
+		}
+		return $appliedTags;
+	}
+
+	/**
+	 * Invalidates the cache of tags stored in the valid_tag table.
+	 * Use case 1) alone : updating tag params
+	 * Use case 2) in combination with purgeTagUsageCache :
+	 * defining (incl. creating) or undefining (incl. deleting) tags
+	 *
+	 * @since 1.25
+	 */
+	public static function purgeStoredTagsCache() {
+		global $wgMemc;
+		$wgMemc->delete( wfMemcKey( 'ChangeTags', 'valid-tags-db' ) );
+	}
+
+	/**
+	 * Invalidates the cache of tags registered by extensions.
+	 * Use case 1) alone : updating tag params
+	 * Use case 2) in combination with purgeTagUsageCache :
+	 * defining (incl. creating) or undefining (incl. deleting) tags
+	 *
+	 * @since 1.25
+	 */
+	public static function purgeRegisteredTagsCache() {
+		global $wgMemc;
+		$wgMemc->delete( wfMemcKey( 'ChangeTags', 'valid-tags-hook' ) );
+	}
+
+	/**
+	 * Invalidates caches related to tag usage stats
+	 * Use case : defining (incl. creating) or undefining (incl. deleting) a tag
+	 * This should not be used when applying the tag, the hitcount cache should
+	 * be incremented instead. (And when the tag gets removed, decremented.)
+	 *
+	 * @param string $tag: (optional) tag to clear the hitcount cache of
+	 * @since 1.25
+	 */
+	public static function purgeTagUsageCache( $tag = false ) {
+		global $wgMemc;
+		// delete tag usage cache
+		$wgMemc->delete( wfMemcKey( 'ChangeTags', 'tag-usage-stats' ) );
+		// delete cached list of never applied tags
+		$wgMemc->delete( wfMemcKey( 'ChangeTags', 'never-applied-tags' ) );
+		if ( $tag ) {
+			// delete hitcount cache
+			$wgMemc->delete( wfMemcKey( 'ChangeTags', 'tag-hitcount', "$tag" ) );
+		}
+	}
+
+	/**
+	 *
+	 *
+	 * Deprecated functions follow
+	 *
+	 *
+	 */
+
+	/**
+	 * Lists tags from the valid_tag table as values.
+	 * Provided for backward compatibility.
+	 * Should be deprecated, used anywhere ?
 	 *
 	 * @return string[] Array of strings: tags
 	 * @since 1.25
 	 */
 	public static function listExplicitlyDefinedTags() {
-		// Caching...
-		global $wgMemc;
-		$key = wfMemcKey( 'valid-tags-db' );
-		$tags = $wgMemc->get( $key );
-		if ( $tags ) {
-			return $tags;
-		}
-
-		$emptyTags = array();
-
-		// Some DB stuff
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'valid_tag', 'vt_tag', array(), __METHOD__ );
-		foreach ( $res as $row ) {
-			$emptyTags[] = $row->vt_tag;
-		}
-
-		$emptyTags = array_filter( array_unique( $emptyTags ) );
-
-		// Short-term caching.
-		$wgMemc->set( $key, $emptyTags, 300 );
-		return $emptyTags;
+		return array_keys( self::getStoredTags() );
 	}
-
+	
 	/**
-	 * Lists tags defined by extensions using the ListDefinedTags hook.
-	 * Extensions need only define those tags they deem to be in active use.
-	 *
-	 * Tries memcached first.
+	 * Lists tags defined by extensions as values.
+	 * Provided for backward compatibility.
+	 * Should be deprecated, used anywhere ?
 	 *
 	 * @return string[] Array of strings: tags
 	 * @since 1.25
 	 */
 	public static function listExtensionDefinedTags() {
-		// Caching...
-		global $wgMemc;
-		$key = wfMemcKey( 'valid-tags-hook' );
-		$tags = $wgMemc->get( $key );
-		if ( $tags ) {
-			return $tags;
-		}
-
-		$emptyTags = array();
-		Hooks::run( 'ListDefinedTags', array( &$emptyTags ) );
-		$emptyTags = array_filter( array_unique( $emptyTags ) );
-
-		// Short-term caching.
-		$wgMemc->set( $key, $emptyTags, 300 );
-		return $emptyTags;
+		return array_keys( self::getRegisteredTags() );
 	}
 
 	/**
-	 * Invalidates the short-term cache of defined tags used by the
-	 * list*DefinedTags functions, as well as the tag statistics cache.
+	 * Lists all defined tags as values.
+	 * Provided for backward compatibility.
+	 * Should be deprecated, used anywhere ?
+	 *
+	 * @return string[] Array of strings: tags
+	 * @since 1.25
+	 */
+	public static function listDefinedTags() {
+		return array_keys( self::getDefinedTags() );
+	}
+
+	/**
+	 * Lists all active tags as values.
+	 * Provided for backward compatibility.
+	 * Should be deprecated, used anywhere ?
+	 *
+	 * @return string[] Array of strings: tags
+	 * @since 1.25
+	 */
+	public static function listExtensionActivatedTags() {
+		$tags = self::getRegisteredTags();
+		// sorting out inactive tags
+		foreach ( $tags as $tag => &$tagParams ) {
+			if ( !$tagParams['active'] ) {
+				unset( $tags[$tag] );
+			}
+		}
+		return array_keys( $tags );
+	}
+
+	/**
+	 * Invalidates all tags-related caches.
+	 * Provided for backward compatibility.
+	 * Should be deprecated, used anywhere ?
+	 *
 	 * @since 1.25
 	 */
 	public static function purgeTagCacheAll() {
 		global $wgMemc;
-		$wgMemc->delete( wfMemcKey( 'active-tags' ) );
-		$wgMemc->delete( wfMemcKey( 'valid-tags-db' ) );
-		$wgMemc->delete( wfMemcKey( 'valid-tags-hook' ) );
+		self::purgeStoredTagsCache();
+		self::purgeRegisteredTagsCache();
 		self::purgeTagUsageCache();
-	}
-
-	/**
-	 * Invalidates the tag statistics cache only.
-	 * @since 1.25
-	 */
-	public static function purgeTagUsageCache() {
-		global $wgMemc;
-		$wgMemc->delete( wfMemcKey( 'change-tag-statistics' ) );
-	}
-
-	/**
-	 * Returns a map of any tags used on the wiki to number of edits
-	 * tagged with them, ordered descending by the hitcount.
-	 *
-	 * Keeps a short-term cache in memory, so calling this multiple times in the
-	 * same request should be fine.
-	 *
-	 * @return array Array of string => int
-	 */
-	public static function tagUsageStatistics() {
-		// Caching...
-		global $wgMemc;
-		$key = wfMemcKey( 'change-tag-statistics' );
-		$stats = $wgMemc->get( $key );
-		if ( $stats ) {
-			return $stats;
-		}
-
-		$out = array();
-
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select(
-			'change_tag',
-			array( 'ct_tag', 'hitcount' => 'count(*)' ),
-			array(),
-			__METHOD__,
-			array( 'GROUP BY' => 'ct_tag', 'ORDER BY' => 'hitcount DESC' )
-		);
-
-		foreach ( $res as $row ) {
-			$out[$row->ct_tag] = $row->hitcount;
-		}
-		foreach ( self::listDefinedTags() as $tag ) {
-			if ( !isset( $out[$tag] ) ) {
-				$out[$tag] = 0;
-			}
-		}
-
-		// Cache for a very short time
-		$wgMemc->set( $key, $out, 300 );
-		return $out;
 	}
 }
