@@ -255,7 +255,7 @@ $wgFileCacheDirectory = false;
  * The URL path of the wiki logo. The logo size should be 135x135 pixels.
  * Defaults to "$wgResourceBasePath/resources/assets/wiki.png".
  */
-$wgLogo = false;
+$wgLogo = "$wgScriptPath/resources/assets/atlogopurple.jpg";
 
 /**
  * The URL path of the shortcut icon.
@@ -338,7 +338,7 @@ $wgActionPaths = array();
 /**
  * Uploads have to be specially set up to be secure
  */
-$wgEnableUploads = false;
+$wgEnableUploads = true;
 
 /**
  * The maximum age of temporary (incomplete) uploaded files
@@ -750,7 +750,7 @@ $wgRepositoryBaseUrl = "http://commons.wikimedia.org/wiki/File:";
  * such as odt or doc, and untrusted users are allowed to upload files, then
  * your wiki will be vulnerable to cross-site request forgery (CSRF).
  */
-$wgFileExtensions = array( 'png', 'gif', 'jpg', 'jpeg' );
+$wgFileExtensions = array( 'png', 'gif', 'jpg', 'jpeg', 'zip', 'pdf', 'docx', 'pptx', 'doc', 'ppt' );
 
 /**
  * Files with these extensions will never be allowed as uploads.
