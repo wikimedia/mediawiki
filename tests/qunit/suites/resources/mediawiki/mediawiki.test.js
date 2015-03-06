@@ -692,7 +692,11 @@
 		} );
 	} );
 
-	QUnit.test( 'mw.loader erroneous indirect dependency', 3, function ( assert ) {
+	QUnit.test( 'mw.loader erroneous indirect dependency', 5, function ( assert ) {
+		// Keep "Error: expected" out of build log
+		var log = this.sandbox.stub( window.console || {}, 'log' ),
+			error = this.sandbox.stub( window.console || {}, 'error' );
+
 		mw.loader.register( [
 			['test.module1', '0'],
 			['test.module2', '0', ['test.module1']],
@@ -704,6 +708,9 @@
 		assert.strictEqual( mw.loader.getState( 'test.module1' ), 'error', 'Expected "error" state for test.module1' );
 		assert.strictEqual( mw.loader.getState( 'test.module2' ), 'error', 'Expected "error" state for test.module2' );
 		assert.strictEqual( mw.loader.getState( 'test.module3' ), 'error', 'Expected "error" state for test.module3' );
+
+		assert.strictEqual( log.callCount, 1 );
+		assert.strictEqual( error.callCount, 1 );
 	} );
 
 	QUnit.test( 'mw.loader out-of-order implementation', 9, function ( assert ) {
