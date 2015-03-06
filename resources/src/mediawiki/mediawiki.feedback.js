@@ -48,8 +48,7 @@
 	 * @cfg {boolean} [showUseragentCheckbox=false] Show a Useragent agreement checkbox as part of the form.
 	 * @cfg {boolean} [useragentCheckboxMandatory=false] Make the Useragent checkbox mandatory.
 	 * @cfg {string|jQuery} [useragentCheckboxMessage] Supply a custom message for the useragent checkbox.
-	 *  defaults to a combination of 'feedback-terms' and 'feedback-termsofuse' which includes a link to the
-	 *  wiki's Term of Use page.
+	 *  defaults to the message 'feedback-terms'.
 	 */
 	mw.Feedback = function MwFeedback( config ) {
 		config = config || {};
@@ -68,9 +67,7 @@
 		this.useragentCheckboxShow = !!config.showUseragentCheckbox;
 		this.useragentCheckboxMandatory = !!config.useragentCheckboxMandatory;
 		this.useragentCheckboxMessage = config.useragentCheckboxMessage ||
-			$( '<p>' )
-				.append( mw.msg( 'feedback-terms' ) )
-				.add( $( '<p>' ).append( mw.message( 'feedback-termsofuse' ).parse() ) );
+			$( '<p>' ).append( mw.msg( 'feedback-terms' ) );
 
 		// Message dialog
 		this.thankYouDialog = new OO.ui.MessageDialog();
@@ -238,7 +235,7 @@
 	 */
 	mw.Feedback.Dialog.prototype.initialize = function () {
 		var feedbackSubjectFieldLayout, feedbackMessageFieldLayout,
-			feedbackFieldsetLayout;
+			feedbackFieldsetLayout, termsOfUseLabel;
 
 		// Parent method
 		mw.Feedback.Dialog.super.prototype.initialize.call( this );
@@ -281,10 +278,16 @@
 			align: 'inline'
 		} );
 
+		termsOfUseLabel = new OO.ui.LabelWidget( {
+			classes: [ 'mw-feedbackDialog-feedback-termsofuse' ],
+			label: $( '<p>' ).append( mw.msg( 'feedback-termsofuse' ) )
+		} );
+
 		this.feedbackPanel.$element.append(
 			this.feedbackMessageLabel.$element,
 			feedbackFieldsetLayout.$element,
-			this.useragentFieldLayout.$element
+			this.useragentFieldLayout.$element,
+			termsOfUseLabel.$element
 		);
 
 		// Events
@@ -346,6 +349,7 @@
 				if ( settings.useragentCheckbox.show ) {
 					this.useragentFieldLayout.setLabel( settings.useragentCheckbox.message );
 				}
+
 				this.useragentMandatory = settings.useragentCheckbox.mandatory;
 				this.useragentFieldLayout.toggle( settings.useragentCheckbox.show );
 
