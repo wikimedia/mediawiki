@@ -2902,11 +2902,11 @@ class OutputPage extends ContextSource {
 						);
 					} else {
 						$link = Html::linkedScript( $url );
-						if ( $context->getOnly() === 'scripts' && !$context->getRaw() && !$isRaw ) {
-							// Wrap only=script requests in a conditional as browsers not supported
-							// by the startup module would unconditionally execute this module.
-							// Otherwise users will get "ReferenceError: mw is undefined" or
-							// "jQuery is undefined" from e.g. a "site" module.
+						if ( !$context->getRaw() && !$isRaw ) {
+							// Wrap only=script / only=combined requests in a conditional as
+							// browsers not supported by the startup module would unconditionally
+							// execute this module. Otherwise users will get "ReferenceError: mw is
+							// undefined" or "jQuery is undefined" from e.g. a "site" module.
 							$link = Html::inlineScript(
 								ResourceLoader::makeLoaderConditionalScript(
 									Xml::encodeJsCall( 'document.write', array( $link ) )
