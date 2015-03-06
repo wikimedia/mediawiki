@@ -163,7 +163,8 @@
 			"គីមស៊្រុន",
 			"아라",
 			"Jdforrester",
-			"Mar(c)"
+			"Mar(c)",
+			"Pikne"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -2754,7 +2755,7 @@
 	"patrol-log-header": "Text that appears above the log entries on the [[Special:log|patrol log]].",
 	"log-show-hide-patrol": "Used in [[Special:Log]]. Parameters:\n* $1 - link text; one of {{msg-mw|Show}} or {{msg-mw|Hide}}\n{{Related|Log-show-hide}}",
 	"deletedrevision": "Used as log comment. Parameters:\n* $1 - archive name of old image",
-	"filedeleteerror-short": "Used as error message. Parameters:\n* $1 - page title\nSee also:\n* {{msg-mw|Filedeleteerror-long}}",
+	"filedeleteerror-short": "Used as error message. Parameters:\n* $1 – There are two uses: 1) filename or 2) more specific error message like {{msg-mw|Backend-fail-internal}}.\nSee also:\n* {{msg-mw|Filedeleteerror-long}}",
 	"filedeleteerror-long": "Used as error message. Parameters:\n* $1 - ...\nSee also:\n* {{msg-mw|Filedeleteerror-short}}",
 	"filedelete-missing": "Used as error message. Parameters:\n* $1 - filename\nSee also:\n* {{msg-mw|Filedelete-old-unregistered}}\n* {{msg-mw|Filedelete-current-unregistered}}",
 	"filedelete-old-unregistered": "Used as error message. Parameters:\n* $1 - name\nSee also:\n* {{msg-mw|Filedelete-current-unregistered}}\n* {{msg-mw|Filedelete-missing}}",
