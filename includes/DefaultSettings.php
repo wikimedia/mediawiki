@@ -6001,9 +6001,16 @@ $wgAllowCategorizedRecentChanges = false;
 
 /**
  * Allow filtering by change tag in recentchanges, history, etc
- * Has no effect if no tags are defined in valid_tag.
+ * Has no effect if no tag is applied to edits
+ * Update can be delayed up to $wgTagUsageCacheDuration
  */
 $wgUseTagFilter = true;
+
+/**
+ * Expiry to use for caching of tag usage statistics
+ * 24 hours by default
+ */
+$wgTagUsageCacheDuration = 60*60*24;
 
 /**
  * If set to an integer, pages that are watched by this many users or more
