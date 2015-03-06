@@ -159,6 +159,7 @@ class MovePage {
 	protected function isValidFileMove() {
 		$status = new Status();
 		$file = wfLocalFile( $this->oldTitle );
+		$file->load( File::READ_LATEST );
 		if ( $file->exists() ) {
 			if ( $this->newTitle->getText() != wfStripIllegalFilenameChars( $this->newTitle->getText() ) ) {
 				$status->fatal( 'imageinvalidfilename' );
@@ -186,6 +187,7 @@ class MovePage {
 		# Is it an existing file?
 		if ( $this->newTitle->inNamespace( NS_FILE ) ) {
 			$file = wfLocalFile( $this->newTitle );
+			$file->load( File::READ_LATEST );
 			if ( $file->exists() ) {
 				wfDebug( __METHOD__ . ": file exists\n" );
 				return false;
@@ -238,6 +240,7 @@ class MovePage {
 		$dbw = wfGetDB( DB_MASTER );
 		if ( $this->oldTitle->getNamespace() == NS_FILE ) {
 			$file = wfLocalFile( $this->oldTitle );
+			$file->load( File::READ_LATEST );
 			if ( $file->exists() ) {
 				$status = $file->move( $this->newTitle );
 				if ( !$status->isOk() ) {

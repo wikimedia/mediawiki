@@ -171,20 +171,6 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	/**
-	 * Perform the upload, then remove the temp copy afterward
-	 * @param string $comment
-	 * @param string $pageText
-	 * @param bool $watch
-	 * @param User $user
-	 * @return Status
-	 */
-	public function performUpload( $comment, $pageText, $watch, $user ) {
-		$rv = parent::performUpload( $comment, $pageText, $watch, $user );
-
-		return $rv;
-	}
-
-	/**
 	 * Returns the virtual chunk location:
 	 * @param int $index
 	 * @return string

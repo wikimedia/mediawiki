@@ -406,7 +406,7 @@ class FileRepo {
 	 *   private:        If true, return restricted (deleted) files if the current
 	 *                   user is allowed to view them. Otherwise, such files will not
 	 *                   be found. If a User object, use that user instead of the current.
-	 *   bypassCache:    If true, do not use the process/persistent cache of File objects
+	 *   latest:         If true, load from the latest available data into File objects
 	 * @return File|bool False on failure
 	 */
 	public function findFile( $title, $options = array() ) {
@@ -414,8 +414,11 @@ class FileRepo {
 		if ( !$title ) {
 			return false;
 		}
+		if ( isset( $options['bypassCache'] ) ) {
+			$options['latest'] = $options['bypassCache']; // b/c
+		}
 		$time = isset( $options['time'] ) ? $options['time'] : false;
-		$flags = !empty( $options['bypassCache'] ) ? File::READ_LATEST : 0;
+		$flags = !empty( $options['latest'] ) ? File::READ_LATEST : 0;
 		# First try the current version of the file to see if it precedes the timestamp
 		$img = $this->newFile( $title );
 		if ( !$img ) {

@@ -537,6 +537,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			// Delete an associated image if there is
 			if ( $nt->getNamespace() == NS_FILE ) {
 				$file = wfLocalFile( $nt );
+				$file->load( File::READ_LATEST );
 				if ( $file->exists() ) {
 					$file->delete( $reason, false, $user );
 				}
