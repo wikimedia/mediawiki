@@ -131,6 +131,7 @@ class SpecialTags extends SpecialPage {
 			Xml::tags( 'th', null, $this->msg( 'tags-description-header' )->parse() ) .
 			Xml::tags( 'th', null, $this->msg( 'tags-source-header' )->parse() ) .
 			Xml::tags( 'th', null, $this->msg( 'tags-active-header' )->parse() ) .
+			Xml::tags( 'th', null, $this->msg( 'tags-problem-header' )->parse() ) .
 			Xml::tags( 'th', null, $this->msg( 'tags-hitcount-header' )->parse() ) .
 			( $showActions ?
 				Xml::tags( 'th', array( 'class' => 'unsortable' ),
@@ -214,6 +215,9 @@ class SpecialTags extends SpecialPage {
 
 		$activeMsg = $changeTag->isActive ? 'tags-active-yes' : 'tags-active-no';
 		$newRow .= Xml::tags( 'td', null, $this->msg( $activeMsg )->escaped() );
+
+		$problemMsg = $changeTag->isProblem ? 'tags-problem-yes' : 'tags-problem-no';
+		$newRow .= Xml::tags( 'td', null, $this->msg( $problemMsg )->escaped() );
 
 		$hitcountLabel = $this->msg( 'tags-hitcount' )->numParams( $changeTag->hitcount )->escaped();
 		$hitcountLink = Linker::link(

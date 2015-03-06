@@ -5999,20 +5999,20 @@ $wgTagUsageCacheDuration = 60*60*24;
 
 /**
  * Whether core tagging is enabled.
- * And list of core tags with their 'active' status status
+ * And list of core tags with their 'active' status and 'problem' status
  */
 $wgUseCoreTagging = true;
 $wgCoreTags = array(
-	'core-move-crossnamespace' => array( 'active' => true ),
-	'core-move-rename' => array( 'active' => true ),
-	'core-redirect-new' => array( 'active' => true ),
-	'core-redirect-changed' => array( 'active' => true ),
-	'core-redirect-self' => array( 'active' => true ),
-	'core-redirect-nonexistent' => array( 'active' => true ),
-	'core-redirect-removed' => array( 'active' => true ),
-	'core-edit-blank' => array( 'active' => true ),
-	'core-edit-replace' => array( 'active' => true ),
-	'core-newpage-blank' => array( 'active' => true )
+	'core-move-crossnamespace' => array( 'active' => true, 'problem' => true ),
+	'core-move-rename' => array( 'active' => true, 'problem' => true ),
+	'core-redirect-new' => array( 'active' => true, 'problem' => true ),
+	'core-redirect-changed' => array( 'active' => true, 'problem' => true ),
+	'core-redirect-self' => array( 'active' => true, 'problem' => true ),
+	'core-redirect-nonexistent' => array( 'active' => true, 'problem' => true ),
+	'core-redirect-removed' => array( 'active' => true, 'problem' => true ),
+	'core-edit-blank' => array( 'active' => true, 'problem' => true ),
+	'core-edit-replace' => array( 'active' => true, 'problem' => true ),
+	'core-newpage-blank' => array( 'active' => true, 'problem' => true )
 );
 
 /**

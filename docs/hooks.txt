@@ -955,6 +955,9 @@ name or more specific), whether it is deletable, params to use in the
 source-specific message, etc.
 Available params :
 'active' (bool): Whether the tag is in active use by the extension.
+'problem' (bool): Whether the tag is meant to indicate a potential problem with the
+change (e.g. vandalism, syntax error, etc) - these can be highlighted in the
+user interface or used for specific purposes by extensions.
 'name' (string): User friendly name of the extension.
 'descParams' (array): An array of params for use by the extension-specific description,
 itself a footer to the custom description message. You need to provide the message in
