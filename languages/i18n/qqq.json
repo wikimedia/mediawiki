@@ -3949,5 +3949,19 @@
 	"special-characters-group-khmer": "{{Identical|Khmer}}",
 	"special-characters-title-endash": "Title tooltip for the en dash character (–); See https://en.wikipedia.org/wiki/Dash",
 	"special-characters-title-emdash": "Title tooltip for the em dash character (—); See https://en.wikipedia.org/wiki/Dash",
-	"special-characters-title-minus": "Title tooltip for the minus sign character (−), not to be confused with a hyphen"
+	"special-characters-title-minus": "Title tooltip for the minus sign character (−), not to be confused with a hyphen",
+	"authmanager-session-tie": "Message displayed when multiple session authentication types (e.g. cookie-based session, OAuth session) are active with the same priority. Used as plaintext, no wikitext or HTML is parsed. Parameters:\n* $1 - List of session authentication types used.",
+	"authmanager-authn-not-in-progress": "Error message when AuthManager session data is lost during authentication, or the user hits the \"continue\" endpoint without an active authentication attempt.",
+	"authmanager-authn-no-primary": "Error message when no AuthenticationProvider handles the AuthenticationRequests for login. This might mean the user needs to fill out all the form fields.",
+	"authmanager-authn-no-local-user": "Error message when authentication somehow succeeds without a username being known. This probably should never happen.",
+	"authmanager-authn-no-local-user-link": "Error message when federated authentication (e.g. \"login with Google\") succeeds, but no account is associated.",
+	"authmanager-authn-autocreate-failed": "Error message when auto-creation fails during login. Parameters:\n* $1 - Error message from the account creation attempt, as wikitext.",
+	"authmanager-change-not-supported": "Error message when all PrimaryAuthenticationProviders ignore the change request.",
+	"authmanager-create-not-in-progress": "Error message when AuthManager session data is lost during account creation, or the user hits the \"continue\" endpoint without an active account creation attempt.",
+	"authmanager-create-no-primary": "Error message when no AuthenticationProvider handles the AuthenticationRequests for account creation. This might mean the user needs to fill out all the form fields.",
+	"authmanager-authplugin-setpass-failed-title": "Title of error page from AuthManager if AuthPlugin returns false from its setPassword() method.",
+	"authmanager-authplugin-setpass-failed-message": "Text of error page from AuthManager if AuthPlugin returns false from its setPassword() method.",
+	"authmanager-authplugin-create-fail": "Error message from AuthManager if the AuthPlugin returns false from its addUser() method.",
+	"authmanager-authplugin-setpass-fail": "Error message from AuthManager if the AuthPlugin returns false from its allowPasswordChange() method.",
+	"cookieauthnsession-description": "Description of the sessions provided by CookieAuthnSessionProvider"
 }
