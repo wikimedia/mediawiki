@@ -189,8 +189,9 @@ class SpecialChangeEmail extends FormSpecialPage {
 		Hooks::run( 'PrefsEmailAudit', array( $user, $oldaddr, $newaddr ) );
 
 		$user->saveSettings();
-
-		$wgAuth->updateExternalDB( $user );
+		if ( $wgAuth && !$wgAuth instanceof AuthManagerAuthPlugin ) {
+			$wgAuth->updateExternalDB( $user );
+		}
 
 		return $status;
 	}
