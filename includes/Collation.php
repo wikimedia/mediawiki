@@ -341,7 +341,7 @@ class IcuCollation extends Collation {
 
 		// Check for CJK
 		$firstChar = mb_substr( $string, 0, 1, 'UTF-8' );
-		if ( ord( $firstChar ) > 0x7f && self::isCjk( utf8ToCodepoint( $firstChar ) ) ) {
+		if ( ord( $firstChar ) > 0x7f && self::isCjk( UtfNormal\Utils::utf8ToCodepoint( $firstChar ) ) ) {
 			return $firstChar;
 		}
 

@@ -79,7 +79,7 @@ class SanitizerTest extends MediaWikiTestCase {
 	 */
 	public function testInvalidNumberedEntities() {
 		$this->assertEquals(
-			UTF8_REPLACEMENT,
+			UtfNormal\Constants::UTF8_REPLACEMENT,
 			Sanitizer::decodeCharReferences( "&#88888888888888;" ),
 			'Invalid numbered entity'
 		);

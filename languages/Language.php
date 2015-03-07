@@ -2945,7 +2945,7 @@ class Language {
 			}
 
 			// Break down Hangul syllables to grab the first jamo
-			$code = utf8ToCodepoint( $matches[1] );
+			$code = UtfNormal\Utils::utf8ToCodepoint( $matches[1] );
 			if ( $code < 0xac00 || 0xd7a4 <= $code ) {
 				return $matches[1];
 			} elseif ( $code < 0xb098 ) {

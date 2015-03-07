@@ -4009,7 +4009,7 @@ HTML
 				// breaks one of the entities whilst editing.
 				if ( ( substr( $invalue, $i, 1 ) == ";" ) && ( strlen( $hexstring ) <= 6 ) ) {
 					$codepoint = hexdec( $hexstring );
-					$result .= codepointToUtf8( $codepoint );
+					$result .= UtfNormal\Utils::codepointToUtf8( $codepoint );
 				} else {
 					$result .= "&#x" . $hexstring . substr( $invalue, $i, 1 );
 				}
