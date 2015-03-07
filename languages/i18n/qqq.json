@@ -3840,5 +3840,6 @@
 	"json-error-utf8": "User error message when there are malformed UTF-8 characters, possibly incorrectly encoded.\nSee http://php.net/manual/en/function.json-last-error.php\n{{Related|Json-error}}",
 	"json-error-recursion": "PHP JSON encoding/decoding error. See http://php.net/manual/en/function.json-last-error.php\n{{Related|Json-error}}",
 	"json-error-inf-or-nan": "PHP JSON encoding/decoding error. See http://php.net/manual/en/function.json-last-error.php\n{{Related|Json-error}}",
-	"json-error-unsupported-type": "PHP JSON encoding/decoding error. See http://php.net/manual/en/function.json-last-error.php\n{{Related|Json-error}}"
+	"json-error-unsupported-type": "PHP JSON encoding/decoding error. See http://php.net/manual/en/function.json-last-error.php\n{{Related|Json-error}}",
+	"editnotices-percategory": "Page where admins can list the categories that should be checked when displaying per-category editnotices."
 }

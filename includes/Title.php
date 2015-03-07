@@ -4680,7 +4680,7 @@ class Title {
 	public function getEditNotices( $oldid = 0 ) {
 		$notices = array();
 
-		# Optional notices on a per-namespace and per-page basis
+		# Optional notice on a per-namespace basis
 		$editnotice_ns = 'editnotice-' . $this->getNamespace();
 		$editnotice_ns_message = wfMessage( $editnotice_ns );
 		if ( $editnotice_ns_message->exists() ) {
@@ -4688,6 +4688,7 @@ class Title {
 				Sanitizer::escapeClass( "mw-$editnotice_ns" ) . '">' .
 				$editnotice_ns_message->parseAsBlock() . '</div>';
 		}
+		# Optional notice on a per-page basis
 		if ( MWNamespace::hasSubpages( $this->getNamespace() ) ) {
 			$parts = explode( '/', $this->getDBkey() );
 			$editnotice_base = $editnotice_ns;
@@ -4702,16 +4703,117 @@ class Title {
 			}
 		} else {
 			# Even if there are no subpages in namespace, we still don't want / in MW ns.
-			$editnoticeText = $editnotice_ns . '-' . str_replace( '/', '-', $this->getDBkey() );
-			$editnoticeMsg = wfMessage( $editnoticeText );
-			if ( $editnoticeMsg->exists() ) {
-				$notices[$editnoticeText] = '<div class="mw-editnotice mw-editnotice-page ' .
-					Sanitizer::escapeClass( "mw-$editnoticeText" ) . '">' .
-					$editnoticeMsg->parseAsBlock() . '</div>';
+			$editnotice_page = $editnotice_ns . '-' . str_replace( '/', '-', $this->getDBkey() );
+			$editnotice_page_message = wfMessage( $editnotice_page );
+			if ( $editnotice_page_message->exists() ) {
+				$notices[$editnotice_page] = '<div class="mw-editnotice mw-editnotice-page ' .
+					Sanitizer::escapeClass( "mw-$editnotice_page" ) . '">' .
+					$editnotice_page->parseAsBlock() . '</div>';
+			}
+		}
+		# Optional notices on a per-category basis
+		foreach ($this->getParentCategoryListForEditNotices() as $cat) {
+			$editnotice_cat = 'editnotice-category-' . $cat;
+			$editnotice_cat_message = wfMessage ( $editnotice_cat );
+			if ( $editnotice_cat_message->exists() ) {
+				$notices[$editnotice_cat] = '<div class="mw-editnotice mw-editnotice-category ' .
+					Sanitizer::escapeClass( "mw-$editnotice_cat" ) . '">' .
+					$editnotice_cat_message->parseAsBlock() . '</div>';
 			}
 		}
 
 		Hooks::run( 'TitleGetEditNotices', array( $this, $oldid, &$notices ) );
 		return $notices;
+	}
+
+	/**
+	 * Gets all parent categories also listed at editnotices-percategory
+	 *
+	 * @since 1.25
+	 * @return array
+	 */
+	public function getParentCategoryListForEditNotices() {
+		global $wgMemc;
+		// tries process cache
+		if ( $this->perCategoryEditNoticesList !== null ) {
+			return $this->perCategoryEditNoticesList;
+		}
+
+		// shortcut
+		$msg = wfMessage( 'editnotices-percategory' );
+		if ( !$msg->exists() ) {
+			return array();
+		}
+
+		// tries memcache
+		$key = wfMemcKey( 'editnotices-percategory-page', $this->getId() );
+		$list = $wgMemc->get( $key );
+		// fails if page or msg were touched after caching occurred
+		$timestamp = $list[-1];
+		if ( $list && $this->getTouched() < $timestamp && $msg->getTouched() < $timestamp ) {
+			unset( $list[-1] );
+			return $list;
+		}
+
+		// no luck, rebuilding from page categories
+		$list = self::makeCategoryListForEditNotices();
+		$pageCategories = $this->getParentCategories();
+		foreach ( $list as $num => $cat ) {
+			if ( !isset( $pageCategories[$cat] ) ) {
+				unset( $list[$num] );
+			}
+		}
+
+		// caching for half an hour to cover the duration of an editing session
+		$list[-1] = $wfTimestampNow;
+		$wgMemc->set( $key, $list, 60*30 );
+		unset( $list[-1] );
+		$this->perCategoryEditNoticeslist = $list;
+		return $list;
+	}
+
+	/**
+	 * Gets a list of category names from msg editnotices-percategory
+	 * Limited to no more than $wgPerCategoryEditNoticesLimit entries
+	 *
+	 * @since 1.25
+	 * @return array
+	 */
+	public static function makeCategoryListForEditNotices() {
+		global $wgPerCategoryEditNoticesLimit, $wgMemc;
+		// msg existence already checked in getParentCategoryListForEditNotices
+		$msg = wfMessage( 'editnotices-percategory' );
+
+		// tries memcache
+		$key = wfMemcKey( 'editnotices-percategory-site' );
+		$list = $wgMemc->get( $key );
+		// fails if msg edited after caching occurred
+		$timestamp =  $list[-1];
+		if ( $list && $msg->getTouched() < $timestamp ) {
+			unset( $timestamp );
+			return $list;
+		}
+
+		// builds list from msg
+		$text = $msg->plain();
+		$rows = explode( "\n", "$text" );
+		$list = array();
+		foreach( $rows as $rowtext ) {
+			// getting underscored trimed text before first //
+			$name = str_replace( " ", "_", trim( explode( "//", $rowtext)[0] ) );
+			if ( $name ) {
+				// saving in list with category prefix
+				$list[] = $wgContLang->getNsText( NS_CATEGORY ) . ':' . $name;
+				if ( count( $list ) == $wgPerCategoryEditNoticesLimit ) ) {
+					break; // enforcing limit
+				}
+			}
+		}
+
+		// caching for a week
+		$list[-1] = $wfTimestampNow();
+		$wgMemc->set( $key, $list, 60*60*24*7 );
+		unset ( $list[-1] );
+		return $list;
 	}
 }
