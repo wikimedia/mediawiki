@@ -3677,5 +3677,18 @@
 	"json-error-inf-or-nan": "One or more NAN or INF values in the value to be encoded",
 	"json-error-unsupported-type": "A value of a type that cannot be encoded was given",
 	"headline-anchor-title": "Link to this section",
-	"section-symbol": "§"
+	"section-symbol": "§",
+	"authmanager-session-tie": "Cannot combine multiple request authentication types: $1",
+	"authmanager-authn-not-in-progress": "Authentication is not in progress or session data has been lost. Please start again from the beginning.",
+	"authmanager-authn-no-primary": "The supplied credentials could not be authenticated.",
+	"authmanager-authn-no-local-user": "The supplied credentials are not associated with any user on this wiki.",
+	"authmanager-authn-no-local-user-link": "The supplied credentials are not associated with any user on this wiki.",
+	"authmanager-authn-autocreate-failed": "Auto-creation of a local account failed: $1",
+	"authmanager-change-not-supported": "The supplied credentials cannot be changed, as nothing would use them.",
+	"authmanager-create-not-in-progress": "Account creation is not in progress or session data has been lost. Please start again from the beginning.",
+	"authmanager-create-no-primary": "The supplied credentials could not be used for account creation.",
+	"authmanager-authplugin-setpass-failed-title": "Password change failed",
+	"authmanager-authplugin-setpass-failed-message": "The authentication plugin denied the password change.",
+	"authmanager-authplugin-create-fail": "The authentication plugin denied the account creation.",
+	"cookieauthnsession-description": "cookie-based sessions"
 }
