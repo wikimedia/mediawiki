@@ -4385,6 +4385,56 @@ $wgPasswordPolicy = array(
 	),
 );
 
+/**
+ * Configure AuthManager
+ *
+ * All providers are constructed using ObjectFactory, see that for the general
+ * structure.
+ *
+ * Elements are:
+ * - preauth: Array (keys ignored) of specifications for PreAuthenticationProviders
+ * - primaryauth: Array (keys ignored) of specifications for PrimaryAuthenticationProviders
+ * - secondaryauth: Array (keys ignored) of specifications for SecondaryAuthenticationProviders
+ *
+ * @since 1.27
+ */
+$wgAuthManagerConfig = array(
+	'preauth' => array(
+		'MediaWiki\\Auth\\LegacyHookPreAuthenticationProvider' => array(
+			'class' => 'MediaWiki\\Auth\\LegacyHookPreAuthenticationProvider',
+		),
+		'MediaWiki\\Auth\\AccountCreationThrottlePreAuthenticationProvider' => array(
+			'class' => 'MediaWiki\\Auth\\AccountCreationThrottlePreAuthenticationProvider',
+		),
+	),
+	'primaryauth' => array(
+		'MediaWiki\\Auth\\LocalPasswordPrimaryAuthenticationProvider' => array(
+			'class' => 'MediaWiki\\Auth\\LocalPasswordPrimaryAuthenticationProvider',
+			'args' => array( array(
+				// Fall through to TempPass
+				'authoritative' => false,
+			) ),
+		),
+		'MediaWiki\\Auth\\TemporaryPasswordPrimaryAuthenticationProvider' => array(
+			'class' => 'MediaWiki\\Auth\\TemporaryPasswordPrimaryAuthenticationProvider',
+			'args' => array( array(
+				// Last one should be authoritative, or else the user will get
+				// a less-than-helpful error message (something like "supplied
+				// authentication info not supported" rather than "wrong
+				// password") if it too fails.
+				'authoritative' => true,
+			) ),
+		),
+	),
+	'secondaryauth' => array(
+		'MediaWiki\\Auth\\CheckBlocksSecondaryAuthenticationProvider' => array(
+			'class' => 'MediaWiki\\Auth\\CheckBlocksSecondaryAuthenticationProvider',
+		),
+		'MediaWiki\\Auth\\ResetPasswordSecondaryAuthenticationProvider' => array(
+			'class' => 'MediaWiki\\Auth\\ResetPasswordSecondaryAuthenticationProvider',
+		),
+	),
+);
 
 /**
  * For compatibility with old installations set to false
