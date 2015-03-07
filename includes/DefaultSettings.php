@@ -2100,9 +2100,10 @@ $wgMessageCacheType = CACHE_ANYTHING;
 $wgParserCacheType = CACHE_ANYTHING;
 
 /**
- * The cache type for storing session data. Used if $wgSessionsInObjectCache is true.
+ * The cache type for storing session data.
  *
  * For available types see $wgMainCacheType.
+ * @deprecated since 1.25, see $wgAuthManagerConfig
  */
 $wgSessionCacheType = CACHE_ANYTHING;
 
@@ -2185,12 +2186,14 @@ $wgSessionsInMemcached = false;
  * can be useful to improve performance, or to avoid the locking behavior of
  * PHP's default session handler, which tends to prevent multiple requests for
  * the same user from acting concurrently.
+ * @deprecated since 1.25, effectively always enabled since AuthManager doesn't
+ * use PHP session storage
  */
 $wgSessionsInObjectCache = false;
 
 /**
- * The expiry time to use for session storage when $wgSessionsInObjectCache is
- * enabled, in seconds.
+ * The expiry time to use for session storage, in seconds.
+ * @deprecated since 1.25, see $wgAuthManagerConfig
  */
 $wgObjectCacheSessionExpiry = 3600;
 
@@ -2199,6 +2202,7 @@ $wgObjectCacheSessionExpiry = 3600;
  * almost never need to change this ever. Other options might be 'user' or
  * 'session_mysql.' Setting to null skips setting this entirely (which might be
  * useful if you're doing cross-application sessions, see bug 11381)
+ * @deprecated since 1.25, AuthManager doesn't use PHP session storage
  */
 $wgSessionHandler = null;
 
@@ -4213,6 +4217,66 @@ $wgActiveUserDays = 30;
  * @name   User accounts, authentication
  * @{
  */
+
+/**
+ * Configure AuthManager
+ *
+ * All providers are constructed using ObjectFactory, see that for the general
+ * structure.
+ *
+ * Elements are:
+ * - session: Array of specifications for AuthnSessionProviders
+ * - preauth: Array of specifications for PreAuthenticationProviders
+ * - primaryauth: Array of specifications for PrimaryAuthenticationProviders
+ * - secondaryauth: Array of specifications for SecondaryAuthenticationProviders
+ * - logger: Input to MWLoggerFactory::getInstance(), or null for no logging
+ * - sessionstore: Settings for the session storage BagOStuff
+ *   - type: See $wgMainCacheType. If unset, uses $wgSessionCacheType
+ *   - expiry: Session lifetime, in seconds. If unset, uses $wgObjectCacheSessionExpiry
+ *   - logger: Input to MWLoggerFactory::getInstance(), or null for no logging,
+ *     or unset to use the AuthManager logger
+ *
+ * @since 1.25
+ */
+$wgAuthManagerConfig = array(
+	'session' => array(
+		array(
+			'class' => 'CookieAuthnSessionProvider',
+			'args' => array( array(
+				'priority' => 10,
+				'callUserSetCookiesHook' => true,
+			) ),
+		),
+	),
+	'preauth' => array(
+		array(
+			'class' => 'LegacyHookPreAuthenticationProvider',
+		),
+		array(
+			'class' => 'AccountCreationThrottlePreAuthenticationProvider',
+		),
+	),
+	'primaryauth' => array(
+		array(
+			'class' => 'LocalPrimaryAuthenticationProvider',
+			'args' => array( array(
+				'authoritative' => false, // Fall through to TempPass
+			) ),
+		),
+		array(
+			'class' => 'TemporaryPasswordPrimaryAuthenticationProvider',
+			'args' => array( array(
+				'authoritative' => true, // Last one should be authoritative
+			) ),
+		),
+	),
+	'secondaryauth' => array(
+	),
+	'logger' => 'auth', /** @todo Is this sane? */
+	'sessionstore' => array(
+		'logger' => 'objectcache', /** @todo Is this sane? */
+	),
+);
 
 /**
  * For compatibility with old installations set to false

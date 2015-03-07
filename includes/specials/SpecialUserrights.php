@@ -268,7 +268,10 @@ class UserrightsPage extends SpecialPage {
 		$user->invalidateCache();
 
 		// update groups in external authentication database
-		$wgAuth->updateExternalDBGroups( $user, $add, $remove );
+		Hooks::run( 'UserGroupsChanged', array( $user, $add, $remove ) );
+		if ( $wgAuth && !$wgAuth instanceof AuthManagerAuthPlugin ) {
+			$wgAuth->updateExternalDBGroups( $user, $add, $remove );
+		}
 
 		wfDebug( 'oldGroups: ' . print_r( $oldGroups, true ) . "\n" );
 		wfDebug( 'newGroups: ' . print_r( $newGroups, true ) . "\n" );
