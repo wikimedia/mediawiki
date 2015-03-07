@@ -190,8 +190,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 		Hooks::run( 'PrefsEmailAudit', array( $user, $oldaddr, $newaddr ) );
 
 		$user->saveSettings();
-
-		$wgAuth->updateExternalDB( $user );
+		AuthManager::callLegacyAuthPlugin( 'updateExternalDB', array( $user ) );
 
 		return $status;
 	}

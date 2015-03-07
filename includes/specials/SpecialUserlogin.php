@@ -640,7 +640,14 @@ class LoginForm extends SpecialPage {
 		$u->setRealName( $this->mRealName );
 		$u->setToken();
 
-		$wgAuth->initUser( $u, $autocreate );
+		Hooks::run( 'LocalUserCreated', array( $u, $autocreate ) );
+		if ( $wgAuth && !$wgAuth instanceof AuthManagerAuthPlugin ) {
+			$oldUser = $u;
+			$wgAuth->initUser( $u, $autocreate );
+			if ( $oldUser !== $u ) {
+				wfWarn( get_class( $wgAuth ) . '::initUser() replaced the user object' );
+			}
+		}
 
 		$u->saveSettings();
 
@@ -781,12 +788,20 @@ class LoginForm extends SpecialPage {
 		} elseif ( $wgBlockDisablesLogin && $u->isBlocked() ) {
 			// If we've enabled it, make it so that a blocked user cannot login
 			$retval = self::USER_BLOCKED;
-		} elseif ( $u->getPasswordExpired() == 'hard' ) {
-			// Force reset now, without logging in
-			$retval = self::RESET_PASS;
-			$this->mAbortLoginErrorMsg = 'resetpass-expired';
+		/// @todo: This goes away in favor of AuthManager. Comment out for now.
+		//} elseif ( $u->getPasswordExpired() == 'hard' ) {
+		//	// Force reset now, without logging in
+		//	$retval = self::RESET_PASS;
+		//	$this->mAbortLoginErrorMsg = 'resetpass-expired';
 		} else {
-			$wgAuth->updateUser( $u );
+			Hooks::run( 'UserLoggedIn', array( $u ) );
+			if ( $wgAuth && !$wgAuth instanceof AuthManagerAuthPlugin ) {
+				$oldUser = $u;
+				$wgAuth->updateUser( $u );
+				if ( $oldUser !== $u ) {
+					wfWarn( get_class( $wgAuth ) . '::updateUser() replaced the user object' );
+				}
+			}
 			$wgUser = $u;
 			// This should set it for OutputPage and the Skin
 			// which is needed or the personal links will be
@@ -943,7 +958,8 @@ class LoginForm extends SpecialPage {
 					$this->getContext()->setLanguage( $userLang );
 					// Reset SessionID on Successful login (bug 40995)
 					$this->renewSessionId();
-					if ( $this->getUser()->getPasswordExpired() == 'soft' ) {
+					/// @todo: This goes away in favor of AuthManager. Comment out for now.
+					if ( false ) { // if ( $this->getUser()->getPasswordExpired() == 'soft' ) {
 						$this->resetLoginForm( $this->msg( 'resetpass-expired-soft' ) );
 					} elseif ( $wgInvalidPasswordReset
 						&& !$user->isValidPassword( $this->mPassword )
@@ -1077,6 +1093,7 @@ class LoginForm extends SpecialPage {
 		$currentUser = $this->getUser();
 		Hooks::run( 'User::mailPasswordInternal', array( &$currentUser, &$ip, &$u ) );
 
+		/// @todo: Update for AuthManager
 		$np = $u->randomPassword();
 		$u->setNewpassword( $np, $throttle );
 		$u->saveSettings();

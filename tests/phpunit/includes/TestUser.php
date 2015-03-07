@@ -63,8 +63,8 @@ class TestUser {
 		}
 
 		// Update the user to use the password and other details
-		$change = $this->setPassword( $this->password ) ||
-			$this->setEmail( $email ) ||
+		$this->setPassword( $this->password );
+		$change = $this->setEmail( $email ) ||
 			$this->setRealName( $realname );
 
 		// Adjust groups by adding any missing ones and removing any extras
@@ -108,7 +108,6 @@ class TestUser {
 
 	/**
 	 * @param string $password
-	 * @return bool
 	 */
 	private function setPassword( $password ) {
 		$passwordFactory = $this->user->getPasswordFactory();
@@ -116,18 +115,8 @@ class TestUser {
 
 		// A is unsalted MD5 (thus fast) ... we don't care about security here, this is test only
 		$passwordFactory->setDefaultType( 'A' );
-		$newPassword = $passwordFactory->newFromPlaintext( $password, $this->user->getPassword() );
-
-		$change = false;
-		if ( !$this->user->getPassword()->equals( $newPassword ) ) {
-			// Password changed
-			$this->user->setPassword( $password );
-			$change = true;
-		}
-
+		$this->user->setPassword( $password );
 		$passwordFactory->setDefaultType( $oldDefaultType );
-
-		return $change;
 	}
 
 	/**

@@ -28,7 +28,7 @@ define( 'EDIT_TOKEN_SUFFIX', '+\\' );
 
 /**
  * The User object encapsulates all of the user-specific settings (user_id,
- * name, rights, password, email address, options, last login time). Client
+ * name, rights, email address, options, last login time). Client
  * classes use the getXXX() functions to access these fields. These functions
  * do all the work of determining whether the user is logged in,
  * whether the requested option can be satisfied from cookies or
@@ -190,20 +190,19 @@ class User implements IDBAccessObject {
 	public $mName;
 	/** @var string */
 	public $mRealName;
+
 	/**
-	 * @todo Make this actually private
-	 * @private
-	 * @var Password
+	 * These fields were always marked "@private". Let's actually make it so,
+	 * since AuthManager is likely breaking everything using it anyway.
+	 * @deprecated These are mostly unused, but kept for now to raise errors on attempted access.
 	 */
-	public $mPassword;
-	/**
-	 * @todo Make this actually private
-	 * @private
-	 * @var Password
-	 */
-	public $mNewpassword;
-	/** @var string */
-	public $mNewpassTime;
+	//@{
+	private $mPassword = null;
+	private $mNewpassword;
+	private $mNewpassTime;
+	private $mPasswordExpires;
+	//@}
+
 	/** @var string */
 	public $mEmail;
 	/** @var string TS_MW timestamp from the DB */
@@ -226,8 +225,6 @@ class User implements IDBAccessObject {
 	public $mGroups;
 	/** @var array */
 	protected $mOptionOverrides;
-	/** @var string */
-	protected $mPasswordExpires;
 	//@}
 
 	/**
@@ -553,7 +550,7 @@ class User implements IDBAccessObject {
 	 * The row should have the following fields from the user table in it:
 	 * - either user_name or user_id to load further data if needed (or both)
 	 * - user_real_name
-	 * - all other fields (email, password, etc.)
+	 * - all other fields (email, etc.)
 	 * It is useless to provide the remaining fields if either user_id,
 	 * user_name and user_real_name are not provided because the whole row
 	 * will be loaded once more from the database when accessing them.
@@ -870,73 +867,6 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Expire a user's password
-	 * @since 1.23
-	 * @param int $ts Optional timestamp to convert, default 0 for the current time
-	 */
-	public function expirePassword( $ts = 0 ) {
-		$this->loadPasswords();
-		$timestamp = wfTimestamp( TS_MW, $ts );
-		$this->mPasswordExpires = $timestamp;
-		$this->saveSettings();
-	}
-
-	/**
-	 * Clear the password expiration for a user
-	 * @since 1.23
-	 * @param bool $load Ensure user object is loaded first
-	 */
-	public function resetPasswordExpiration( $load = true ) {
-		global $wgPasswordExpirationDays;
-		if ( $load ) {
-			$this->load();
-		}
-		$newExpire = null;
-		if ( $wgPasswordExpirationDays ) {
-			$newExpire = wfTimestamp(
-				TS_MW,
-				time() + ( $wgPasswordExpirationDays * 24 * 3600 )
-			);
-		}
-		// Give extensions a chance to force an expiration
-		Hooks::run( 'ResetPasswordExpiration', array( $this, &$newExpire ) );
-		$this->mPasswordExpires = $newExpire;
-	}
-
-	/**
-	 * Check if the user's password is expired.
-	 * TODO: Put this and password length into a PasswordPolicy object
-	 * @since 1.23
-	 * @return string|bool The expiration type, or false if not expired
-	 * 	hard: A password change is required to login
-	 *	soft: Allow login, but encourage password change
-	 *	false: Password is not expired
-	 */
-	public function getPasswordExpired() {
-		global $wgPasswordExpireGrace;
-		$expired = false;
-		$now = wfTimestamp();
-		$expiration = $this->getPasswordExpireDate();
-		$expUnix = wfTimestamp( TS_UNIX, $expiration );
-		if ( $expiration !== null && $expUnix < $now ) {
-			$expired = ( $expUnix + $wgPasswordExpireGrace < $now ) ? 'hard' : 'soft';
-		}
-		return $expired;
-	}
-
-	/**
-	 * Get this user's password expiration date. Since this may be using
-	 * the cached User object, we assume that whatever mechanism is setting
-	 * the expiration date is also expiring the User cache.
-	 * @since 1.23
-	 * @return string|bool The datestamp of the expiration, or null if not set
-	 */
-	public function getPasswordExpireDate() {
-		$this->load();
-		return $this->mPasswordExpires;
-	}
-
-	/**
 	 * Given unvalidated user input, return a canonical username, or false if
 	 * the username is invalid.
 	 * @param string $name User input
@@ -971,8 +901,9 @@ class User implements IDBAccessObject {
 		}
 
 		// Reject various classes of invalid names
-		global $wgAuth;
-		$name = $wgAuth->getCanonicalName( $t->getText() );
+		$name = AuthManager::callLegacyAuthPlugin(
+			'getCanonicalName', array( $t->getText() ), $t->getText()
+		);
 
 		switch ( $validate ) {
 			case false:
@@ -1016,6 +947,8 @@ class User implements IDBAccessObject {
 	/**
 	 * Return a random password.
 	 *
+	 * @deprecated since 1.26
+	 * @todo Figure out a better place for this to exist, if it's needed.
 	 * @return string New random password
 	 */
 	public static function randomPassword() {
@@ -1040,15 +973,9 @@ class User implements IDBAccessObject {
 	 * @param string|bool $name
 	 */
 	public function loadDefaults( $name = false ) {
-
-		$passwordFactory = self::getPasswordFactory();
-
 		$this->mId = 0;
 		$this->mName = $name;
 		$this->mRealName = '';
-		$this->mPassword = $passwordFactory->newFromCiphertext( null );
-		$this->mNewpassword = $passwordFactory->newFromCiphertext( null );
-		$this->mNewpassTime = null;
 		$this->mEmail = '';
 		$this->mOptionOverrides = null;
 		$this->mOptionsLoaded = false;
@@ -1064,8 +991,6 @@ class User implements IDBAccessObject {
 		$this->mEmailAuthenticated = null;
 		$this->mEmailToken = '';
 		$this->mEmailTokenExpires = null;
-		$this->mPasswordExpires = null;
-		$this->resetPasswordExpiration( false );
 		$this->mRegistration = wfTimestamp( TS_MW );
 		$this->mGroups = array();
 
@@ -1106,13 +1031,61 @@ class User implements IDBAccessObject {
 	 * @return bool True if the user is logged in, false otherwise.
 	 */
 	private function loadFromSession() {
+		$request = $this->getRequest();
+
+		// Only use AuthManager if we're loading from the global session
+		if ( $request->usingGlobalSession() ) {
+			// If the global session is mutable, call the hook for BC.
+			if ( AuthManager::singleton()->getSession()->canSetSessionUserInfo() ) {
+				$result = null;
+				Hooks::run( 'UserLoadFromSession', array( $this, &$result ) );
+				if ( $result !== null ) {
+					return $result;
+				}
+			}
+
+			// Otherwise, use the user from the global session
+			list( $id, $name ) = AuthManager::singleton()->getAuthenticatedUserInfo( true );
+			$proposedUser = User::newFromId( $id );
+			if ( !$proposedUser->isLoggedIn() || $proposedUser->getName() !== $name ) {
+				// Not a valid ID
+				return false;
+			}
+
+			// Sanity check data in the session itself, if any
+			$sId = $request->getSessionData( 'wsUserID' );
+			if ( $sId !== null && $sId != $id ) {
+				wfDebugLog( 'loginSessions', "Session user ID ($sId) and
+					session-provider user ID ($id) don't match!" );
+				return false;
+			}
+
+			$sName = $request->getSessionData( 'wsUserName' );
+			$sToken = $request->getSessionData( 'wsToken' );
+			if ( $sName !== null && $sName !== $name ||
+				$sToken !== null && $sToken !== $proposedUser->getToken( false )
+			) {
+				// Invalid credentials
+				wfDebug( "User: can't log in from AuthManager, invalid credentials in session\n" );
+				return false;
+			}
+
+			$this->loadFromUserObject( $proposedUser );
+			$request->setSessionData( 'wsUserID', $id );
+			$request->setSessionData( 'wsUserName', $name );
+			$request->setSessionData( 'wsToken', $this->mToken );
+			wfDebug( "User: logged in from AuthManager\n" );
+			return true;
+		}
+
+		// Otherwise, use the old method
+		wfDebugLog( 'auth', __METHOD__ . ": Loading from session in non-default request\n" );
+
 		$result = null;
 		Hooks::run( 'UserLoadFromSession', array( $this, &$result ) );
 		if ( $result !== null ) {
 			return $result;
 		}
-
-		$request = $this->getRequest();
 
 		$cookieId = $request->getCookie( 'UserID' );
 		$sessId = $request->getSessionData( 'wsUserID' );
@@ -1240,7 +1213,6 @@ class User implements IDBAccessObject {
 	 */
 	protected function loadFromRow( $row, $data = null ) {
 		$all = true;
-		$passwordFactory = self::getPasswordFactory();
 
 		$this->mGroups = null; // deferred
 
@@ -1275,31 +1247,6 @@ class User implements IDBAccessObject {
 			$this->mEditCount = $row->user_editcount;
 		} else {
 			$all = false;
-		}
-
-		if ( isset( $row->user_password ) ) {
-			// Check for *really* old password hashes that don't even have a type
-			// The old hash format was just an md5 hex hash, with no type information
-			if ( preg_match( '/^[0-9a-f]{32}$/', $row->user_password ) ) {
-				$row->user_password = ":A:{$this->mId}:{$row->user_password}";
-			}
-
-			try {
-				$this->mPassword = $passwordFactory->newFromCiphertext( $row->user_password );
-			} catch ( PasswordError $e ) {
-				wfDebug( 'Invalid password hash found in database.' );
-				$this->mPassword = $passwordFactory->newFromCiphertext( null );
-			}
-
-			try {
-				$this->mNewpassword = $passwordFactory->newFromCiphertext( $row->user_newpassword );
-			} catch ( PasswordError $e ) {
-				wfDebug( 'Invalid password hash found in database.' );
-				$this->mNewpassword = $passwordFactory->newFromCiphertext( null );
-			}
-
-			$this->mNewpassTime = wfTimestampOrNull( TS_MW, $row->user_newpass_time );
-			$this->mPasswordExpires = wfTimestampOrNull( TS_MW, $row->user_password_expires );
 		}
 
 		if ( isset( $row->user_email ) ) {
@@ -1365,33 +1312,6 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Load the user's password hashes from the database
-	 *
-	 * This is usually called in a scenario where the actual User object was
-	 * loaded from the cache, and then password comparison needs to be performed.
-	 * Password hashes are not stored in memcached.
-	 *
-	 * @since 1.24
-	 */
-	private function loadPasswords() {
-		if ( $this->getId() !== 0 &&
-			( $this->mPassword === null || $this->mNewpassword === null )
-		) {
-			$db = ( $this->queryFlagsUsed & self::READ_LATEST )
-				? wfGetDB( DB_MASTER )
-				: wfGetDB( DB_SLAVE );
-
-			$this->loadFromRow( $db->selectRow(
-				'user',
-				array( 'user_password', 'user_newpassword',
-					'user_newpass_time', 'user_password_expires' ),
-				array( 'user_id' => $this->getId() ),
-				__METHOD__
-			) );
-		}
-	}
-
-	/**
 	 * Add the user to the group if he/she meets given criteria.
 	 *
 	 * Contrary to autopromotion by \ref $wgAutopromote, the group will be
@@ -1425,9 +1345,9 @@ class User implements IDBAccessObject {
 		foreach ( $toPromote as $group ) {
 			$this->addGroup( $group );
 		}
-
 		// update groups in external authentication database
-		$wgAuth->updateExternalDBGroups( $this, $toPromote );
+		Hooks::run( 'UserGroupsChanged', array( $this, $toPromote, array() ) );
+		AuthManager::callLegacyAuthPlugin( 'updateExternalDBGroups', array( $this, $toPromote ) );
 
 		$newGroups = array_merge( $oldGroups, $toPromote ); // all groups
 
@@ -1985,9 +1905,9 @@ class User implements IDBAccessObject {
 		if ( $this->mLocked !== null ) {
 			return $this->mLocked;
 		}
-		global $wgAuth;
-		$authUser = $wgAuth->getUserInstance( $this );
-		$this->mLocked = (bool)$authUser->isLocked();
+		/// @todo: Provide a new way for CentralAuth to return this info
+		$authUser = AuthManager::callLegacyAuthPlugin( 'getUserInstance', array( $this ), null );
+		$this->mLocked = (bool)( $authUser && $authUser->isLocked() );
 		return $this->mLocked;
 	}
 
@@ -2002,9 +1922,9 @@ class User implements IDBAccessObject {
 		}
 		$this->getBlockedStatus();
 		if ( !$this->mHideName ) {
-			global $wgAuth;
-			$authUser = $wgAuth->getUserInstance( $this );
-			$this->mHideName = (bool)$authUser->isHidden();
+			/// @todo: Provide a new way for CentralAuth to return this info
+			$authUser = AuthManager::callLegacyAuthPlugin( 'getUserInstance', array( $this ), null );
+			$this->mHideName = (bool)( $authUser && $authUser->isHidden() );
 		}
 		return $this->mHideName;
 	}
@@ -2364,26 +2284,6 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * @return Password
-	 * @since 1.24
-	 */
-	public function getPassword() {
-		$this->loadPasswords();
-
-		return $this->mPassword;
-	}
-
-	/**
-	 * @return Password
-	 * @since 1.24
-	 */
-	public function getTemporaryPassword() {
-		$this->loadPasswords();
-
-		return $this->mNewpassword;
-	}
-
-	/**
 	 * Set the password and reset the random token.
 	 * Calls through to authentication plugin if necessary;
 	 * will have no effect if the auth plugin refuses to
@@ -2394,51 +2294,47 @@ class User implements IDBAccessObject {
 	 * wipes it, so the account cannot be logged in until
 	 * a new password is set, for instance via e-mail.
 	 *
+	 * @deprecated since 1.26, use AuthManager instead
 	 * @param string $str New password to set
 	 * @throws PasswordError On failure
 	 *
 	 * @return bool
 	 */
 	public function setPassword( $str ) {
-		global $wgAuth;
-
-		$this->loadPasswords();
-
-		if ( $str !== null ) {
-			if ( !$wgAuth->allowPasswordChange() ) {
-				throw new PasswordError( wfMessage( 'password-change-forbidden' )->text() );
-			}
-
-			$status = $this->checkPasswordValidity( $str );
-			if ( !$status->isGood() ) {
-				throw new PasswordError( $status->getMessage()->text() );
-			}
-		}
-
-		if ( !$wgAuth->setPassword( $this, $str ) ) {
-			throw new PasswordError( wfMessage( 'externaldberror' )->text() );
-		}
-
-		$this->setInternalPassword( $str );
-
-		return true;
+		wfDeprecated( __METHOD__, '1.26' );
+		$this->setPasswordInternal( $str );
 	}
 
 	/**
-	 * Set the password and reset the random token unconditionally.
-	 *
-	 * @param string|null $str New password to set or null to set an invalid
-	 *  password hash meaning that the user will not be able to log in
-	 *  through the web interface.
+	 * @see self::setPassword()
 	 */
-	public function setInternalPassword( $str ) {
-		$this->setToken();
+	private function setPasswordInternal( $str ) {
+		$manager = AuthManager::singleton();
 
-		$passwordFactory = self::getPasswordFactory();
-		$this->mPassword = $passwordFactory->newFromPlaintext( $str );
+		// If the user doesn't exist yet, save the password for when we add it.
+		if ( !$manager->userExists( $this->getName() ) ) {
+			$this->mPassword = $str;
+			return true;
+		}
 
-		$this->mNewpassword = $passwordFactory->newFromCiphertext( null );
-		$this->mNewpassTime = null;
+		$this->mPassword = null;
+		$data = array(
+			'username' => $this->getName(),
+			'password' => $str,
+		);
+		$types = $manager->getAuthenticationRequestTypes( 'change' );
+		$reqs = AuthenticationRequest::requestsFromSubmission( $types, $data, null );
+		foreach ( $reqs as $req ) {
+			$status = $manager->canChangeAuthenticationData( $req );
+			if ( !$status->isOk() ) {
+				wfDebugLog( 'auth', __METHOD__ . ": Password change rejected: " . $status->getWikiText() );
+				return false;
+			}
+		}
+		foreach ( $reqs as $req ) {
+			$manager->changeAuthenticationData( $req );
+		}
+		return true;
 	}
 
 	/**
@@ -2468,39 +2364,6 @@ class User implements IDBAccessObject {
 		} else {
 			$this->mToken = $token;
 		}
-	}
-
-	/**
-	 * Set the password for a password reminder or new account email
-	 *
-	 * @param string $str New password to set or null to set an invalid
-	 *  password hash meaning that the user will not be able to use it
-	 * @param bool $throttle If true, reset the throttle timestamp to the present
-	 */
-	public function setNewpassword( $str, $throttle = true ) {
-		$this->loadPasswords();
-
-		$this->mNewpassword = self::getPasswordFactory()->newFromPlaintext( $str );
-		if ( $str === null ) {
-			$this->mNewpassTime = null;
-		} elseif ( $throttle ) {
-			$this->mNewpassTime = wfTimestampNow();
-		}
-	}
-
-	/**
-	 * Has password reminder email been sent within the last
-	 * $wgPasswordReminderResendTime hours?
-	 * @return bool
-	 */
-	public function isPasswordReminderThrottled() {
-		global $wgPasswordReminderResendTime;
-		$this->load();
-		if ( !$this->mNewpassTime || !$wgPasswordReminderResendTime ) {
-			return false;
-		}
-		$expiry = wfTimestamp( TS_UNIX, $this->mNewpassTime ) + $wgPasswordReminderResendTime * 3600;
-		return time() < $expiry;
 	}
 
 	/**
@@ -3574,31 +3437,34 @@ class User implements IDBAccessObject {
 		foreach ( $session as $name => $value ) {
 			$request->setSessionData( $name, $value );
 		}
-		foreach ( $cookies as $name => $value ) {
-			if ( $value === false ) {
-				$this->clearCookie( $name );
-			} elseif ( $rememberMe && in_array( $name, $wgExtendedLoginCookies ) ) {
-				$this->setExtendedLoginCookie( $name, $value, $secure );
-			} else {
-				$this->setCookie( $name, $value, 0, $secure, array(), $request );
+		if ( !$request->usingGlobalSession() ) {
+			wfDebugLog( 'auth', __METHOD__ . ": Setting cookies on non-default request\n" );
+			foreach ( $cookies as $name => $value ) {
+				if ( $value === false ) {
+					$this->clearCookie( $name );
+				} elseif ( $rememberMe && in_array( $name, $wgExtendedLoginCookies ) ) {
+					$this->setExtendedLoginCookie( $name, $value, $secure );
+				} else {
+					$this->setCookie( $name, $value, 0, $secure, array(), $request );
+				}
 			}
-		}
 
-		/**
-		 * If wpStickHTTPS was selected, also set an insecure cookie that
-		 * will cause the site to redirect the user to HTTPS, if they access
-		 * it over HTTP. Bug 29898. Use an un-prefixed cookie, so it's the same
-		 * as the one set by centralauth (bug 53538). Also set it to session, or
-		 * standard time setting, based on if rememberme was set.
-		 */
-		if ( $request->getCheck( 'wpStickHTTPS' ) || $this->requiresHTTPS() ) {
-			$this->setCookie(
-				'forceHTTPS',
-				'true',
-				$rememberMe ? 0 : null,
-				false,
-				array( 'prefix' => '' ) // no prefix
-			);
+			/**
+			 * If wpStickHTTPS was selected, also set an insecure cookie that
+			 * will cause the site to redirect the user to HTTPS, if they access
+			 * it over HTTP. Bug 29898. Use an un-prefixed cookie, so it's the same
+			 * as the one set by centralauth (bug 53538). Also set it to session, or
+			 * standard time setting, based on if rememberme was set.
+			 */
+			if ( $request->getCheck( 'wpStickHTTPS' ) || $this->requiresHTTPS() ) {
+				$this->setCookie(
+					'forceHTTPS',
+					'true',
+					$rememberMe ? 0 : null,
+					false,
+					array( 'prefix' => '' ) // no prefix
+				);
+			}
 		}
 	}
 
@@ -3620,9 +3486,15 @@ class User implements IDBAccessObject {
 
 		$this->getRequest()->setSessionData( 'wsUserID', 0 );
 
-		$this->clearCookie( 'UserID' );
-		$this->clearCookie( 'Token' );
-		$this->clearCookie( 'forceHTTPS', false, array( 'prefix' => '' ) );
+		if ( $this->getRequest()->usingGlobalSession() ) {
+			AuthManager::singleton()->logout();
+		} else {
+			wfDebugLog( 'auth', __METHOD__ . ": Saving to non-default request\n" );
+
+			$this->clearCookie( 'UserID' );
+			$this->clearCookie( 'Token' );
+			$this->clearCookie( 'forceHTTPS', false, array( 'prefix' => '' ) );
+		}
 
 		// Remember when user logged out, to prevent seeing cached pages
 		$this->setCookie( 'LoggedOut', time(), time() + 86400 );
@@ -3646,7 +3518,6 @@ class User implements IDBAccessObject {
 		}
 
 		$this->load();
-		$this->loadPasswords();
 		if ( 0 == $this->mId ) {
 			return; // anon
 		}
@@ -3657,17 +3528,10 @@ class User implements IDBAccessObject {
 		$oldTouched = $this->mTouched;
 		$newTouched = $this->newTouchedTimestamp();
 
-		if ( !$wgAuth->allowSetLocalPassword() ) {
-			$this->mPassword = self::getPasswordFactory()->newFromCiphertext( null );
-		}
-
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update( 'user',
 			array( /* SET */
 				'user_name' => $this->mName,
-				'user_password' => $this->mPassword->toString(),
-				'user_newpassword' => $this->mNewpassword->toString(),
-				'user_newpass_time' => $dbw->timestampOrNull( $this->mNewpassTime ),
 				'user_real_name' => $this->mRealName,
 				'user_email' => $this->mEmail,
 				'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
@@ -3675,7 +3539,6 @@ class User implements IDBAccessObject {
 				'user_token' => strval( $this->mToken ),
 				'user_email_token' => $this->mEmailToken,
 				'user_email_token_expires' => $dbw->timestampOrNull( $this->mEmailTokenExpires ),
-				'user_password_expires' => $dbw->timestampOrNull( $this->mPasswordExpires ),
 			), array( /* WHERE */
 				'user_id' => $this->mId,
 				'user_touched' => $dbw->timestamp( $oldTouched ) // CAS check
@@ -3741,10 +3604,6 @@ class User implements IDBAccessObject {
 	 * @param string $name Username to add
 	 * @param array $params Array of Strings Non-default parameters to save to
 	 *   the database as user_* fields:
-	 *   - password: The user's password hash. Password logins will be disabled
-	 *     if this is omitted.
-	 *   - newpassword: Hash for a temporary password that has been mailed to
-	 *     the user.
 	 *   - email: The user's email address.
 	 *   - email_authenticated: The email authentication timestamp.
 	 *   - real_name: The user's real name.
@@ -3755,9 +3614,15 @@ class User implements IDBAccessObject {
 	 * @return User|null User object, or null if the username already exists.
 	 */
 	public static function createNew( $name, $params = array() ) {
+		foreach ( array( 'password', 'newpassword', 'newpass_time', 'password_expires' ) as $field ) {
+			if ( isset( $params[$field] ) ) {
+				wfDeprecated( __METHOD__ . " with param '$field'", '1.26' );
+				unset( $params[$field] );
+			}
+		}
+
 		$user = new User;
 		$user->load();
-		$user->loadPasswords();
 		$user->setToken(); // init token
 		if ( isset( $params['options'] ) ) {
 			$user->mOptions = $params['options'] + (array)$user->mOptions;
@@ -3766,12 +3631,14 @@ class User implements IDBAccessObject {
 		$dbw = wfGetDB( DB_MASTER );
 		$seqVal = $dbw->nextSequenceValue( 'user_user_id_seq' );
 
+		$passwordFactory = self::getPasswordFactory();
+		$noPass = $passwordFactory->newFromCiphertext( null )->toString();
+
 		$fields = array(
 			'user_id' => $seqVal,
 			'user_name' => $name,
-			'user_password' => $user->mPassword->toString(),
-			'user_newpassword' => $user->mNewpassword->toString(),
-			'user_newpass_time' => $dbw->timestampOrNull( $user->mNewpassTime ),
+			'user_password' => $noPass,
+			'user_newpassword' => $noPass,
 			'user_email' => $user->mEmail,
 			'user_email_authenticated' => $dbw->timestampOrNull( $user->mEmailAuthenticated ),
 			'user_real_name' => $user->mRealName,
@@ -3820,12 +3687,14 @@ class User implements IDBAccessObject {
 	 */
 	public function addToDatabase() {
 		$this->load();
-		$this->loadPasswords();
 		if ( !$this->mToken ) {
 			$this->setToken(); // init token
 		}
 
 		$this->mTouched = $this->newTouchedTimestamp();
+
+		$passwordFactory = self::getPasswordFactory();
+		$noPass = $passwordFactory->newFromCiphertext( null )->toString();
 
 		$dbw = wfGetDB( DB_MASTER );
 		$inWrite = $dbw->writesOrCallbacksPending();
@@ -3834,9 +3703,8 @@ class User implements IDBAccessObject {
 			array(
 				'user_id' => $seqVal,
 				'user_name' => $this->mName,
-				'user_password' => $this->mPassword->toString(),
-				'user_newpassword' => $this->mNewpassword->toString(),
-				'user_newpass_time' => $dbw->timestampOrNull( $this->mNewpassTime ),
+				'user_password' => $noPass,
+				'user_newpassword' => $noPass,
 				'user_email' => $this->mEmail,
 				'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
 				'user_real_name' => $this->mRealName,
@@ -3877,6 +3745,11 @@ class User implements IDBAccessObject {
 			return Status::newFatal( 'userexists' );
 		}
 		$this->mId = $dbw->insertId();
+
+		// Set the password now that it's in the DB, if applicable
+		if ( $this->mPassword !== null ) {
+			$this->setPasswordInternal( $this->mPassword );
+		}
 
 		// Clear instance cache other than user table data, which is already accurate
 		$this->clearInstanceCache();
@@ -3986,78 +3859,43 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Check to see if the given clear-text password is one of the accepted passwords
+	 * @deprecated since 1.26, use AuthManager instead
 	 * @param string $password User password
 	 * @return bool True if the given password is correct, otherwise False
 	 */
 	public function checkPassword( $password ) {
-		global $wgAuth, $wgLegacyEncoding;
+		wfDeprecated( __METHOD__, '1.26' );
 
-		$this->loadPasswords();
-
-		// Some passwords will give a fatal Status, which means there is
-		// some sort of technical or security reason for this password to
-		// be completely invalid and should never be checked (e.g., T64685)
-		if ( !$this->checkPasswordValidity( $password )->isOK() ) {
-			return false;
-		}
-
-		// Certain authentication plugins do NOT want to save
-		// domain passwords in a mysql database, so we should
-		// check this (in case $wgAuth->strict() is false).
-		if ( $wgAuth->authenticate( $this->getName(), $password ) ) {
-			return true;
-		} elseif ( $wgAuth->strict() ) {
-			// Auth plugin doesn't allow local authentication
-			return false;
-		} elseif ( $wgAuth->strictUserAuth( $this->getName() ) ) {
-			// Auth plugin doesn't allow local authentication for this user name
-			return false;
-		}
-
-		if ( !$this->mPassword->equals( $password ) ) {
-			if ( $wgLegacyEncoding ) {
-				// Some wikis were converted from ISO 8859-1 to UTF-8, the passwords can't be converted
-				// Check for this with iconv
-				$cp1252Password = iconv( 'UTF-8', 'WINDOWS-1252//TRANSLIT', $password );
-				if ( $cp1252Password === $password || !$this->mPassword->equals( $cp1252Password ) ) {
-					return false;
-				}
-			} else {
+		$req = new PasswordAuthenticationRequest();
+		$req->username = $this->getName();
+		$req->password = $password;
+		$res = AuthManager::singleton()->beginAuthentication( array( $req ) );
+		switch ( $res->status ) {
+			case AuthenticationResponse::PASS:
+				return true;
+			case AuthenticationResponse::FAIL:
+				// Hope it's not a PreAuthenticationProvider that failed...
+				wfDebugLog( 'auth', __METHOD__ . ": Authentication failed: " . $res->message->plain() );
 				return false;
-			}
+			default:
+				throw new BadMethodCallException(
+					'AuthManager returned a response unsupported by ' . __METHOD__
+				);
 		}
-
-		$passwordFactory = self::getPasswordFactory();
-		if ( $passwordFactory->needsUpdate( $this->mPassword ) && !wfReadOnly() ) {
-			$this->mPassword = $passwordFactory->newFromPlaintext( $password );
-			$this->saveSettings();
-		}
-
-		return true;
 	}
 
 	/**
 	 * Check if the given clear-text password matches the temporary password
 	 * sent by e-mail for password reset operations.
 	 *
+	 * @deprecated since 1.26, use AuthManager instead
 	 * @param string $plaintext
-	 *
 	 * @return bool True if matches, false otherwise
 	 */
 	public function checkTemporaryPassword( $plaintext ) {
-		global $wgNewPasswordExpiry;
-
-		$this->load();
-		$this->loadPasswords();
-		if ( $this->mNewpassword->equals( $plaintext ) ) {
-			if ( is_null( $this->mNewpassTime ) ) {
-				return true;
-			}
-			$expiry = wfTimestamp( TS_UNIX, $this->mNewpassTime ) + $wgNewPasswordExpiry;
-			return ( time() < $expiry );
-		} else {
-			return false;
-		}
+		wfDeprecated( __METHOD__, '1.26' );
+		// Can't check the temporary password individually.
+		return $this->checkPassword( $plaintext );
 	}
 
 	/**
@@ -5150,6 +4988,7 @@ class User implements IDBAccessObject {
 	/**
 	 * Lazily instantiate and return a factory object for making passwords
 	 *
+	 * @deprecated since 1.26
 	 * @return PasswordFactory
 	 */
 	public static function getPasswordFactory() {
@@ -5180,6 +5019,7 @@ class User implements IDBAccessObject {
 	 *
 	 * @todo FIXME: This does not belong here; put it in Html or Linker or somewhere
 	 *
+	 * @deprecated since 1.26
 	 * @return array Array of HTML attributes suitable for feeding to
 	 *   Html::element(), directly or indirectly.  (Don't feed to Xml::*()!
 	 *   That will get confused by the boolean attribute syntax used.)
