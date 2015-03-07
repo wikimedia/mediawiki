@@ -730,7 +730,8 @@ $output: reference to $wgOut
 in from an external authentication method.
 $user: User object created locally
 
-'AuthPluginSetup': Update or replace authentication plugin object ($wgAuth).
+'AuthPluginSetup': DEPRECATED! Extensions should be updated to use AuthManager.
+Update or replace authentication plugin object ($wgAuth).
 Gives a chance for an extension to set it programmatically to a variable class.
 &$auth: the $wgAuth object, probably a stub
 
@@ -1792,6 +1793,10 @@ localisation checks.
 optional localisation messages
 &$ignored Array of ignored message keys
 &$optional Array of optional message keys
+
+'LocalUserCreated': Called when a local user has been created
+$user: User object for the created user
+$autocreated: Boolean, whether this was an auto-creation
 
 'LogEventsListGetExtraInputs': When getting extra inputs to display on Special:Log
 for a specific log type
@@ -3031,6 +3036,11 @@ $context: IContextSource object
 $user: User to get rights for
 &$rights: Current rights
 
+'UserGroupsChanged': Called after user groups are changed.
+$user: User whose groups changed
+$added: Groups added
+$removed: Groups removed
+
 'UserIsBlockedFrom': Check if a user is blocked from a specific page (for
 specific block exemptions).
 $user: User in question
@@ -3048,6 +3058,9 @@ $ip: User's IP address
 false if a UserGetRights hook might remove the named right.
 $right: The user right being checked
 
+'UserLoggedIn': Called after a user is logged in
+$user: User object for the logged-in user
+
 'UserLoadAfterLoadFromSession': Called to authenticate users on external or
 environmental means; occurs after session is loaded.
 $user: user object being loaded
@@ -3060,8 +3073,9 @@ $name: user name
 $user: user object
 &$s: database query object
 
-'UserLoadFromSession': Called to authenticate users on external/environmental
-means; occurs before session is loaded.
+'UserLoadFromSession': DEPRECATED! Use an AuthnSessionProvider instead.
+Called to authenticate users on external/environmental means; occurs before
+session is loaded.
 $user: user object being loaded
 &$result: set this to a boolean value to abort the normal authentication
   process
