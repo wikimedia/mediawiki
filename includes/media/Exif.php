@@ -477,7 +477,7 @@ class Exif {
 			} else {
 				// if valid utf-8, assume that, otherwise assume windows-1252
 				$valCopy = $val;
-				UtfNormal::quickIsNFCVerify( $valCopy ); //validates $valCopy.
+				UtfNormal\Validator::quickIsNFCVerify( $valCopy ); //validates $valCopy.
 				if ( $valCopy !== $val ) {
 					wfSuppressWarnings();
 					$val = iconv( 'Windows-1252', 'UTF-8//IGNORE', $val );

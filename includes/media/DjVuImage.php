@@ -319,7 +319,7 @@ EOR;
 
 	function pageTextCallback( $matches ) {
 		# Get rid of invalid UTF-8, strip control characters
-		$val = htmlspecialchars( UtfNormal::cleanUp( stripcslashes( $matches[1] ) ) );
+		$val = htmlspecialchars( UtfNormal\Validator::cleanUp( stripcslashes( $matches[1] ) ) );
 		$val = str_replace( array( "\n", '�' ), array( '&#10;', '' ), $val );
 		return '<PAGE value="' . $val . '" />';
 	}

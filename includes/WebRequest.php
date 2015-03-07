@@ -289,7 +289,7 @@ class WebRequest {
 			}
 		} else {
 			global $wgContLang;
-			$data = isset( $wgContLang ) ? $wgContLang->normalize( $data ) : UtfNormal::cleanUp( $data );
+			$data = isset( $wgContLang ) ? $wgContLang->normalize( $data ) : UtfNormal\Validator::cleanUp( $data );
 		}
 		return $data;
 	}

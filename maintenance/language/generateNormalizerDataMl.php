@@ -54,8 +54,8 @@ class GenerateNormalizerDataMl extends Maintenance {
 
 		$pairs = array();
 		foreach ( $hexPairs as $hexSource => $hexDest ) {
-			$source = hexSequenceToUtf8( $hexSource );
-			$dest = hexSequenceToUtf8( $hexDest );
+			$source = UtfNormal\Utils::hexSequenceToUtf8( $hexSource );
+			$dest = UtfNormal\Utils::hexSequenceToUtf8( $hexDest );
 			$pairs[$source] = $dest;
 		}
 
