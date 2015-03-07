@@ -230,7 +230,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		);
 		$dbkey = trim( $dbkey, '_' );
 
-		if ( strpos( $dbkey, UTF8_REPLACEMENT ) !== false ) {
+		if ( strpos( $dbkey, UtfNormal\Constants::UTF8_REPLACEMENT ) !== false ) {
 			# Contained illegal UTF-8 sequences or forbidden Unicode chars.
 			throw new MalformedTitleException( 'Bad UTF-8 sequences found in title: ' . $text );
 		}

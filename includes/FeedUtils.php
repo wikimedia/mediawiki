@@ -164,7 +164,7 @@ class FeedUtils {
 				$diffText = "<p>Can't load revision $newid</p>";
 			} else {
 				// Diff output fine, clean up any illegal UTF-8
-				$diffText = UtfNormal::cleanUp( $diffText );
+				$diffText = UtfNormal\Validator::cleanUp( $diffText );
 				$diffText = self::applyDiffStyle( $diffText );
 			}
 		} else {
