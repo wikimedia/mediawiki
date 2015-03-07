@@ -1966,11 +1966,10 @@ class OutputPage extends ContextSource {
 		if ( $cookies === null ) {
 			$config = $this->getConfig();
 			$cookies = array_merge(
+				AuthManager::singleton()->getVaryCookies(),
 				array(
-					$config->get( 'CookiePrefix' ) . 'Token',
 					$config->get( 'CookiePrefix' ) . 'LoggedOut',
 					"forceHTTPS",
-					session_name()
 				),
 				$config->get( 'CacheVaryCookies' )
 			);
@@ -2006,16 +2005,18 @@ class OutputPage extends ContextSource {
 	 * Add an HTTP header that will influence on the cache
 	 *
 	 * @param string $header Header name
-	 * @param array|null $option
-	 * @todo FIXME: Document the $option parameter; it appears to be for
-	 *        X-Vary-Options but what format is acceptable?
+	 * @param string[]|null $option Options for X-Vary-Options. Possible options are:
+	 *  - "string-contains=$XXX" varies on whether the header value as a string
+	 *    contains $XXX as a substring.
+	 *  - "list-contains=$XXX" varies on whether the header value as a
+	 *    comma-separated list contains $XXX as one of the list items.
 	 */
 	public function addVaryHeader( $header, $option = null ) {
 		if ( !array_key_exists( $header, $this->mVaryHeader ) ) {
 			$this->mVaryHeader[$header] = (array)$option;
 		} elseif ( is_array( $option ) ) {
 			if ( is_array( $this->mVaryHeader[$header] ) ) {
-				$this->mVaryHeader[$header] = array_merge( $this->mVaryHeader[$header], $option );
+				$this->mVaryHeader[$header] = array_unique( array_merge( $this->mVaryHeader[$header], $option ) );
 			} else {
 				$this->mVaryHeader[$header] = $option;
 			}
@@ -2030,6 +2031,9 @@ class OutputPage extends ContextSource {
 	 * @return string
 	 */
 	public function getVaryHeader() {
+		foreach ( AuthManager::singleton()->getVaryHeaders() as $header => $options ) {
+			$this->addVaryHeader( $header, $options );
+		}
 		return 'Vary: ' . join( ', ', array_keys( $this->mVaryHeader ) );
 	}
 
@@ -2046,6 +2050,10 @@ class OutputPage extends ContextSource {
 			$cookiesOption[] = 'string-contains=' . $cookieName;
 		}
 		$this->addVaryHeader( 'Cookie', $cookiesOption );
+
+		foreach ( AuthManager::singleton()->getVaryHeaders() as $header => $options ) {
+			$this->addVaryHeader( $header, $options );
+		}
 
 		$headers = array();
 		foreach ( $this->mVaryHeader as $header => $option ) {

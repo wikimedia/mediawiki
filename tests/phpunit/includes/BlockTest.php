@@ -26,7 +26,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		$user = User::newFromName( 'UTBlockee' );
 		if ( $user->getID() == 0 ) {
 			$user->addToDatabase();
-			$user->setPassword( 'UTBlockeePassword' );
+			TestUser::setPasswordForUser( $user, 'UTBlockeePassword' );
 
 			$user->saveSettings();
 		}
@@ -136,9 +136,9 @@ class BlockTest extends MediaWikiLangTestCase {
 	public function testBlockedUserCanNotCreateAccount() {
 		$username = 'BlockedUserToCreateAccountWith';
 		$u = User::newFromName( $username );
-		$u->setPassword( 'NotRandomPass' );
 		$u->setId( 14146 );
 		$u->addToDatabase();
+		TestUser::setPasswordForUser( $u, 'NotRandomPass' );
 		unset( $u );
 
 		// Sanity check
@@ -374,8 +374,8 @@ class BlockTest extends MediaWikiLangTestCase {
 		# Set up the target
 		$u = User::newFromName( $username );
 		if ( $u->getID() == 0 ) {
-			$u->setPassword( 'TotallyObvious' );
 			$u->addToDatabase();
+			TestUser::setPasswordForUser( $u, 'TotallyObvious' );
 		}
 		unset( $u );
 

@@ -614,9 +614,12 @@ class MediaWiki {
 		if (
 			$request->getProtocol() == 'http' &&
 			(
+				// Check cookies first, because that's cheap
 				$request->getCookie( 'forceHTTPS', '' ) ||
-				// check for prefixed version for currently logged in users
+				// Check for prefixed version for currently logged in users
 				$request->getCookie( 'forceHTTPS' ) ||
+				// Ask the session, in case it doesn't use cookies
+				AuthManager::singleton()->getSession()->forceHTTPS() ||
 				// Avoid checking the user and groups unless it's enabled.
 				(
 					$this->context->getUser()->isLoggedIn()
