@@ -649,10 +649,11 @@ class WebRequest {
 	 * during the current request (in which case the cookie will
 	 * be sent back to the client at the end of the script run).
 	 *
+	 * @todo With AuthManager, this name isn't really correct
 	 * @return bool
 	 */
 	public function checkSessionCookie() {
-		return isset( $_COOKIE[session_name()] );
+		return AuthManager::singleton()->getSession()->getSessionKey() !== null;
 	}
 
 	/**
@@ -926,6 +927,14 @@ class WebRequest {
 			$value = array_map( 'trim', explode( ',', $value ) );
 		}
 		return $value;
+	}
+
+	/**
+	 * Whether this request is using $_SESSION
+	 * @return bool
+	 */
+	public function usingGlobalSession() {
+		return true;
 	}
 
 	/**
@@ -1449,6 +1458,13 @@ class FauxRequest extends WebRequest {
 	}
 
 	/**
+	 * @return bool
+	 */
+	public function usingGlobalSession() {
+		return false;
+	}
+
+	/**
 	 * @param string $key
 	 * @return array|null
 	 */
@@ -1550,6 +1566,10 @@ class DerivativeRequest extends FauxRequest {
 
 	public function getAllHeaders() {
 		return $this->base->getAllHeaders();
+	}
+
+	public function usingGlobalSession() {
+		return $this->base->usingGlobalSession();
 	}
 
 	public function getSessionData( $key ) {
