@@ -1948,11 +1948,10 @@ class OutputPage extends ContextSource {
 		if ( $cookies === null ) {
 			$config = $this->getConfig();
 			$cookies = array_merge(
+				AuthManager::singleton()->getVaryCookies(),
 				array(
-					$config->get( 'CookiePrefix' ) . 'Token',
 					$config->get( 'CookiePrefix' ) . 'LoggedOut',
 					"forceHTTPS",
-					session_name()
 				),
 				$config->get( 'CacheVaryCookies' )
 			);
@@ -2012,6 +2011,9 @@ class OutputPage extends ContextSource {
 	 * @return string
 	 */
 	public function getVaryHeader() {
+		foreach ( AuthManager::singleton()->getVaryHeaders() as $header => $options ) {
+			$this->addVaryHeader( $header, $options );
+		}
 		return 'Vary: ' . join( ', ', array_keys( $this->mVaryHeader ) );
 	}
 
@@ -2028,6 +2030,10 @@ class OutputPage extends ContextSource {
 			$cookiesOption[] = 'string-contains=' . $cookieName;
 		}
 		$this->addVaryHeader( 'Cookie', $cookiesOption );
+
+		foreach ( AuthManager::singleton()->getVaryHeaders() as $header => $options ) {
+			$this->addVaryHeader( $header, $options );
+		}
 
 		$headers = array();
 		foreach ( $this->mVaryHeader as $header => $option ) {

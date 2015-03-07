@@ -616,20 +616,6 @@ Profiler::instance()->scopedProfileOut( $ps_memcached );
 // Most of the config is out, some might want to run hooks here.
 Hooks::run( 'SetupAfterCache' );
 
-$ps_session = Profiler::instance()->scopedProfileIn( $fname . '-session' );
-
-if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
-	// If session.auto_start is there, we can't touch session name
-	if ( !wfIniGetBool( 'session.auto_start' ) ) {
-		session_name( $wgSessionName ? $wgSessionName : $wgCookiePrefix . '_session' );
-	}
-
-	if ( $wgRequest->checkSessionCookie() || isset( $_COOKIE[$wgCookiePrefix . 'Token'] ) ) {
-		wfSetupSession();
-	}
-}
-
-Profiler::instance()->scopedProfileOut( $ps_session );
 $ps_globals = Profiler::instance()->scopedProfileIn( $fname . '-globals' );
 
 /**
@@ -638,6 +624,15 @@ $ps_globals = Profiler::instance()->scopedProfileIn( $fname . '-globals' );
 $wgContLang = Language::factory( $wgLanguageCode );
 $wgContLang->initEncoding();
 $wgContLang->initContLang();
+
+// Set up the session
+if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
+	// Initialize the session. This is smart enough to not call session_start()
+	// when no persistent session exists yet.
+	$ps_session = Profiler::instance()->scopedProfileIn( $fname . '-session' );
+	AuthManager::singleton()->getSession();
+	Profiler::instance()->scopedProfileOut( $ps_session );
+}
 
 // Now that variant lists may be available...
 $wgRequest->interpolateTitle();
@@ -663,8 +658,15 @@ $wgOut = RequestContext::getMain()->getOutput(); // BackCompat
 $wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
 
 if ( !is_object( $wgAuth ) ) {
-	$wgAuth = new AuthPlugin;
+	$wgAuth = new AuthManagerAuthPlugin;
 	Hooks::run( 'AuthPluginSetup', array( &$wgAuth ) );
+}
+if ( $wgAuth && !$wgAuth instanceof AuthManagerAuthPlugin ) {
+	AuthManager::singleton()->forcePrimaryAuthenticationProviders( array(
+		new AuthPluginPrimaryAuthenticationProvider( $wgAuth ),
+		new LocalPrimaryAuthenticationProvider( array( 'authoritative' => false ) ),
+		new TemporaryPasswordPrimaryAuthenticationProvider( array( 'authoritative' => true ) ),
+	), '$wgAuth is ' . get_class( $wgAuth ) );
 }
 
 /**

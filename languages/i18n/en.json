@@ -3779,5 +3779,19 @@
 	"special-characters-group-khmer": "Khmer",
 	"special-characters-title-endash": "en dash",
 	"special-characters-title-emdash": "em dash",
-	"special-characters-title-minus": "minus sign"
+	"special-characters-title-minus": "minus sign",
+	"authmanager-session-tie": "Cannot combine multiple request authentication types: $1",
+	"authmanager-authn-not-in-progress": "Authentication is not in progress or session data has been lost. Please start again from the beginning.",
+	"authmanager-authn-no-primary": "The supplied credentials could not be authenticated.",
+	"authmanager-authn-no-local-user": "The supplied credentials are not associated with any user on this wiki.",
+	"authmanager-authn-no-local-user-link": "The supplied credentials are not associated with any user on this wiki.",
+	"authmanager-authn-autocreate-failed": "Auto-creation of a local account failed: $1",
+	"authmanager-change-not-supported": "The supplied credentials cannot be changed, as nothing would use them.",
+	"authmanager-create-not-in-progress": "Account creation is not in progress or session data has been lost. Please start again from the beginning.",
+	"authmanager-create-no-primary": "The supplied credentials could not be used for account creation.",
+	"authmanager-authplugin-setpass-failed-title": "Password change failed",
+	"authmanager-authplugin-setpass-failed-message": "The authentication plugin denied the password change.",
+	"authmanager-authplugin-create-fail": "The authentication plugin denied the account creation.",
+	"authmanager-authplugin-setpass-fail": "The authentication plugin denied the password change.",
+	"cookieauthnsession-description": "cookie-based sessions"
 }

@@ -237,9 +237,10 @@ MediaWiki 1.4rc1.
 This is a list of known events and parameters; please add to it if you're going
 to add events to the MediaWiki code.
 
-'AbortAutoAccount': Return false to cancel automated local account creation,
-where normally authentication against an external auth plugin would be creating
-a local account.
+'AbortAutoAccount': DEPRECATED! Create a PreAuthenticationProvider instead.
+Return false to cancel automated local account creation, where normally
+authentication against an external auth plugin would be creating a local
+account.
 $user: the User object about to be created (read-only, incomplete)
 &$abortMsg: out parameter: name of error message to be displayed to user
 
@@ -261,7 +262,8 @@ $editor: The User who made the change.
 $title: The Title of the page that was edited.
 $rc: The current RecentChange object.
 
-'AbortLogin': Return false to cancel account login.
+'AbortLogin': DEPRECATED! Create a PreAuthenticationProvider instead.
+Return false to cancel account login.
 $user: the User object being authenticated against
 $password: the password being submitted, not yet checked for validity
 &$retval: a LoginForm class constant to return from authenticateUserData();
@@ -270,7 +272,8 @@ $password: the password being submitted, not yet checked for validity
 &$msg: the message identifier for abort reason (new in 1.18, not available
   before 1.18)
 
-'AbortNewAccount': Return false to cancel explicit account creation.
+'AbortNewAccount': DEPRECATED! Create a PreAuthenticationProvider instead.
+Return false to cancel explicit account creation.
 $user: the User object about to be created (read-only, incomplete)
 &$msg: out parameter: HTML to display on abort
 &$status: out parameter: Status object to return, replaces the older $msg param
@@ -736,12 +739,14 @@ viewing.
 redirect was followed.
 $article: target article (object)
 
-'AuthPluginAutoCreate': Called when creating a local account for an user logged
-in from an external authentication method.
+'AuthPluginAutoCreate': DEPRECATED! Use the 'LocalUserCreated' hook instead.
+Called when creating a local account for an user logged in from an external
+authentication method.
 $user: User object created locally
 
-'AuthPluginSetup': Update or replace authentication plugin object ($wgAuth).
-Gives a chance for an extension to set it programmatically to a variable class.
+'AuthPluginSetup': DEPRECATED! Extensions should be updated to use AuthManager.
+Update or replace authentication plugin object ($wgAuth). Gives a chance for an
+extension to set it programmatically to a variable class.
 &$auth: the $wgAuth object, probably a stub
 
 'AutopromoteCondition': Check autopromote condition for user.
@@ -1826,6 +1831,10 @@ optional localisation messages
 &$ignored: Array of ignored message keys
 &$optional: Array of optional message keys
 
+'LocalUserCreated': Called when a local user has been created
+$user: User object for the created user
+$autocreated: Boolean, whether this was an auto-creation
+
 'LogEventsListGetExtraInputs': When getting extra inputs to display on
 Special:Log for a specific log type
 $type: String of log type being displayed
@@ -1880,10 +1889,11 @@ Special:ChangePassword.
 &$msg: Message object that will be shown to the user
 $username: Username of the user who's password was expired.
 
-'LoginUserMigrated': Called during login to allow extensions the opportunity to
-inform a user that their username doesn't exist for a specific reason, instead
-of letting the login form give the generic error message that the account does
-not exist. For example, when the account has been renamed or deleted.
+'LoginUserMigrated': DEPRECATED! Create a PreAuthenticationProvider instead.
+Called during login to allow extensions the opportunity to inform a user that
+their username doesn't exist for a specific reason, instead of letting the
+login form give the generic error message that the account does not exist. For
+example, when the account has been renamed or deleted.
 $user: the User object being authenticated against.
 &$msg: the message identifier for abort reason, or an array to pass a message
   key and parameters.
@@ -2412,10 +2422,6 @@ $context: (IContextSource) The RequestContext the skin is being created for.
 'ResetPasswordExpiration': Allow extensions to set a default password expiration
 $user: The user having their password expiration reset
 &$newExpire: The new expiration date
-
-'ResetSessionID': Called from wfResetSessionID
-$oldSessionID: old session id
-$newSessionID: new session id
 
 'ResourceLoaderGetConfigVars': Called at the end of
 ResourceLoaderStartUpModule::getConfigSettings(). Use this to export static
@@ -3157,6 +3163,11 @@ $context: IContextSource object
 $user: User to get rights for
 &$rights: Current rights
 
+'UserGroupsChanged': Called after user groups are changed.
+$user: User whose groups changed
+$added: Groups added
+$removed: Groups removed
+
 'UserIsBlockedFrom': Check if a user is blocked from a specific page (for
 specific block exemptions).
 $user: User in question
@@ -3186,8 +3197,9 @@ $name: user name
 $user: user object
 &$s: database query object
 
-'UserLoadFromSession': Called to authenticate users on external/environmental
-means; occurs before session is loaded.
+'UserLoadFromSession': DEPRECATED! Use an AuthnSessionProvider instead.
+Called to authenticate users on external/environmental means; occurs before
+session is loaded.
 $user: user object being loaded
 &$result: set this to a boolean value to abort the normal authentication
   process
@@ -3196,6 +3208,9 @@ $user: user object being loaded
 database.
 $user: User object
 &$options: Options, can be modified.
+
+'UserLoggedIn': Called after a user is logged in
+$user: User object for the logged-in user
 
 'UserLoginComplete': After a user has logged in.
 $user: the user object that was created on login
@@ -3254,7 +3269,9 @@ $user: User object
 'UserSaveSettings': Called when saving user settings.
 $user: User object
 
-'UserSetCookies': Called when setting user cookies.
+'UserSetCookies': DEPRECATED! You probably want your own version of
+CookieAuthnSession instead.
+Called when setting user cookies.
 $user: User object
 &$session: session array, will be added to $_SESSION
 &$cookies: cookies array mapping cookie name to its value

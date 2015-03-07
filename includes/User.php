@@ -972,8 +972,9 @@ class User implements IDBAccessObject {
 		}
 
 		// Reject various classes of invalid names
-		global $wgAuth;
-		$name = $wgAuth->getCanonicalName( $t->getText() );
+		$name = AuthManager::callLegacyAuthPlugin(
+			'getCanonicalName', array( $t->getText() ), $t->getText()
+		);
 
 		switch ( $validate ) {
 			case false:
@@ -1106,13 +1107,61 @@ class User implements IDBAccessObject {
 	 * @return bool True if the user is logged in, false otherwise.
 	 */
 	private function loadFromSession() {
+		$request = $this->getRequest();
+
+		// Only use AuthManager if we're loading from the global session
+		if ( $request->usingGlobalSession() ) {
+			// If the global session is mutable, call the hook for BC.
+			if ( AuthManager::singleton()->getSession()->canSetSessionUserInfo() ) {
+				$result = null;
+				Hooks::run( 'UserLoadFromSession', array( $this, &$result ) );
+				if ( $result !== null ) {
+					return $result;
+				}
+			}
+
+			// Otherwise, use the user from the global session
+			list( $id, $name ) = AuthManager::singleton()->getAuthenticatedUserInfo( true );
+			$proposedUser = User::newFromId( $id );
+			if ( !$proposedUser->isLoggedIn() || $proposedUser->getName() !== $name ) {
+				// Not a valid ID
+				return false;
+			}
+
+			// Sanity check data in the session itself, if any
+			$sId = $request->getSessionData( 'wsUserID' );
+			if ( $sId !== null && $sId != $id ) {
+				wfDebugLog( 'loginSessions', "Session user ID ($sId) and
+					session-provider user ID ($id) don't match!" );
+				return false;
+			}
+
+			$sName = $request->getSessionData( 'wsUserName' );
+			$sToken = $request->getSessionData( 'wsToken' );
+			if ( $sName !== null && $sName !== $name ||
+				$sToken !== null && $sToken !== $proposedUser->getToken( false )
+			) {
+				// Invalid credentials
+				wfDebug( "User: can't log in from AuthManager, invalid credentials in session\n" );
+				return false;
+			}
+
+			$this->loadFromUserObject( $proposedUser );
+			$request->setSessionData( 'wsUserID', $id );
+			$request->setSessionData( 'wsUserName', $name );
+			$request->setSessionData( 'wsToken', $this->mToken );
+			wfDebug( "User: logged in from AuthManager\n" );
+			return true;
+		}
+
+		// Otherwise, use the old method
+		wfDebugLog( 'auth', __METHOD__ . ": Loading from session in non-default request\n" );
+
 		$result = null;
 		Hooks::run( 'UserLoadFromSession', array( $this, &$result ) );
 		if ( $result !== null ) {
 			return $result;
 		}
-
-		$request = $this->getRequest();
 
 		$cookieId = $request->getCookie( 'UserID' );
 		$sessId = $request->getSessionData( 'wsUserID' );
@@ -1426,9 +1475,9 @@ class User implements IDBAccessObject {
 		foreach ( $toPromote as $group ) {
 			$this->addGroup( $group );
 		}
-
 		// update groups in external authentication database
-		$wgAuth->updateExternalDBGroups( $this, $toPromote );
+		Hooks::run( 'UserGroupsChanged', array( $this, $toPromote, array() ) );
+		AuthManager::callLegacyAuthPlugin( 'updateExternalDBGroups', array( $this, $toPromote ) );
 
 		$newGroups = array_merge( $oldGroups, $toPromote ); // all groups
 
@@ -3544,29 +3593,34 @@ class User implements IDBAccessObject {
 		foreach ( $session as $name => $value ) {
 			$request->setSessionData( $name, $value );
 		}
-		foreach ( $cookies as $name => $value ) {
-			if ( $value === false ) {
-				$this->clearCookie( $name );
-			} else {
-				$this->setCookie( $name, $value, 0, $secure, array(), $request );
-			}
-		}
 
-		/**
-		 * If wpStickHTTPS was selected, also set an insecure cookie that
-		 * will cause the site to redirect the user to HTTPS, if they access
-		 * it over HTTP. Bug 29898. Use an un-prefixed cookie, so it's the same
-		 * as the one set by centralauth (bug 53538). Also set it to session, or
-		 * standard time setting, based on if rememberme was set.
-		 */
-		if ( $request->getCheck( 'wpStickHTTPS' ) || $this->requiresHTTPS() ) {
-			$this->setCookie(
-				'forceHTTPS',
-				'true',
-				$rememberMe ? 0 : null,
-				false,
-				array( 'prefix' => '' ) // no prefix
-			);
+		if ( !$request->usingGlobalSession() ) {
+			wfDebugLog( 'auth', __METHOD__ . ": Setting cookies on non-default request\n" );
+
+			foreach ( $cookies as $name => $value ) {
+				if ( $value === false ) {
+					$this->clearCookie( $name );
+				} else {
+					$this->setCookie( $name, $value, 0, $secure, array(), $request );
+				}
+			}
+
+			/**
+			 * If wpStickHTTPS was selected, also set an insecure cookie that
+			 * will cause the site to redirect the user to HTTPS, if they access
+			 * it over HTTP. Bug 29898. Use an un-prefixed cookie, so it's the same
+			 * as the one set by centralauth (bug 53538). Also set it to session, or
+			 * standard time setting, based on if rememberme was set.
+			 */
+			if ( $request->getCheck( 'wpStickHTTPS' ) || $this->requiresHTTPS() ) {
+				$this->setCookie(
+					'forceHTTPS',
+					'true',
+					$rememberMe ? 0 : null,
+					false,
+					array( 'prefix' => '' ) // no prefix
+				);
+			}
 		}
 	}
 
@@ -3588,9 +3642,15 @@ class User implements IDBAccessObject {
 
 		$this->getRequest()->setSessionData( 'wsUserID', 0 );
 
-		$this->clearCookie( 'UserID' );
-		$this->clearCookie( 'Token' );
-		$this->clearCookie( 'forceHTTPS', false, array( 'prefix' => '' ) );
+		if ( $this->getRequest()->usingGlobalSession() ) {
+			AuthManager::singleton()->logout();
+		} else {
+			wfDebugLog( 'auth', __METHOD__ . ": Saving to non-default request\n" );
+
+			$this->clearCookie( 'UserID' );
+			$this->clearCookie( 'Token' );
+			$this->clearCookie( 'forceHTTPS', false, array( 'prefix' => '' ) );
+		}
 
 		// Remember when user logged out, to prevent seeing cached pages
 		$this->setCookie( 'LoggedOut', time(), time() + 86400 );
@@ -3631,7 +3691,7 @@ class User implements IDBAccessObject {
 		$oldTouched = $this->mTouched;
 		$newTouched = $this->newTouchedTimestamp();
 
-		if ( !$wgAuth->allowSetLocalPassword() ) {
+		if ( !AuthManager::callLegacyAuthPlugin( 'allowSetLocalPassword', array(), true ) ) {
 			$this->mPassword = self::getPasswordFactory()->newFromCiphertext( null );
 		}
 

@@ -3412,9 +3412,11 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1,
 /**
  * Check if there is sufficient entropy in php's built-in session generation
  *
+ * @deprecated since 1.26, PHP's session generation isn't used with AuthManager
  * @return bool True = there is sufficient entropy
  */
 function wfCheckEntropy() {
+	wfDeprecated( __FUNCTION__, '1.26' );
 	return (
 			( wfIsWindows() && version_compare( PHP_VERSION, '5.3.3', '>=' ) )
 			|| ini_get( 'session.entropy_file' )
@@ -3425,8 +3427,10 @@ function wfCheckEntropy() {
 /**
  * Override session_id before session startup if php's built-in
  * session generation code is not secure.
+ * @deprecated since 1.26
  */
 function wfFixSessionID() {
+	wfDeprecated( __FUNCTION__, '1.26' );
 	// If the cookie or session id is already set we already have a session and should abort
 	if ( isset( $_COOKIE[session_name()] ) || session_id() ) {
 		return;
@@ -3451,49 +3455,24 @@ function wfFixSessionID() {
  * Reset the session_id
  *
  * @since 1.22
+ * @deprecated since 1.26, use AuthManager::resetSessionId() instead
  */
 function wfResetSessionID() {
-	global $wgCookieSecure;
-	$oldSessionId = session_id();
-	$cookieParams = session_get_cookie_params();
-	if ( wfCheckEntropy() && $wgCookieSecure == $cookieParams['secure'] ) {
-		session_regenerate_id( false );
-	} else {
-		$tmp = $_SESSION;
-		session_destroy();
-		wfSetupSession( MWCryptRand::generateHex( 32 ) );
-		$_SESSION = $tmp;
-	}
-	$newSessionId = session_id();
-	Hooks::run( 'ResetSessionID', array( $oldSessionId, $newSessionId ) );
+	AuthManager::singleton()->resetSessionId();
 }
 
 /**
  * Initialise php session
  *
- * @param bool $sessionId
+ * @param string|bool $sessionId
+ * @deprecated since 1.26, use AuthManager::persistSession() instead
+ * @since 1.26, $sessonId is deprecated and ignored
  */
 function wfSetupSession( $sessionId = false ) {
-	global $wgSessionsInMemcached, $wgSessionsInObjectCache, $wgCookiePath, $wgCookieDomain,
-			$wgCookieSecure, $wgCookieHttpOnly, $wgSessionHandler;
-	if ( $wgSessionsInObjectCache || $wgSessionsInMemcached ) {
-		ObjectCacheSessionHandler::install();
-	} elseif ( $wgSessionHandler && $wgSessionHandler != ini_get( 'session.save_handler' ) ) {
-		# Only set this if $wgSessionHandler isn't null and session.save_handler
-		# hasn't already been set to the desired value (that causes errors)
-		ini_set( 'session.save_handler', $wgSessionHandler );
+	if ( $sessionId !== false ) {
+		wfDebug( __FUNCTION__ . ': $sessionId parameter is deprecated and ignored' );
 	}
-	session_set_cookie_params(
-		0, $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookieHttpOnly );
-	session_cache_limiter( 'private, must-revalidate' );
-	if ( $sessionId ) {
-		session_id( $sessionId );
-	} else {
-		wfFixSessionID();
-	}
-	wfSuppressWarnings();
-	session_start();
-	wfRestoreWarnings();
+	AuthManager::singleton()->persistSession();
 }
 
 /**
