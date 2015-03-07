@@ -1459,10 +1459,10 @@ class Preferences {
 			}
 
 			Hooks::run( 'PreferencesFormPreSave', array( $formData, $form, $user, &$result ) );
-			$user->saveSettings();
 		}
 
-		$wgAuth->updateExternalDB( $user );
+		$user->saveSettings();
+		AuthManager::callLegacyAuthPlugin( 'updateExternalDB', array( $user ) );
 
 		return $result;
 	}
