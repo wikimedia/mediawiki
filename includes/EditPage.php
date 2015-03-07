@@ -2997,6 +2997,10 @@ HTML
 		if ( $this->formtype == 'preview' ) {
 			$this->showPreview( $previewOutput );
 		} else {
+			$wgOut->addHTML( "<div class='previewnote'>\n" .
+			'<h2 id="mw-previewheader">' . wfMessage( 'preview' )->escaped() . "</h2>" .
+			wfMessage( 'previewnote' )->plain() .
+			'</div>' );
 			// Empty content container for LivePreview
 			$pageViewLang = $this->mTitle->getPageViewLanguage();
 			$attribs = array( 'lang' => $pageViewLang->getHtmlCode(), 'dir' => $pageViewLang->getDir(),
