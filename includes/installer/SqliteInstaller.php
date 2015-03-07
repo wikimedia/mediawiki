@@ -55,7 +55,7 @@ class SqliteInstaller extends DatabaseInstaller {
 	public function checkPrerequisites() {
 		$result = Status::newGood();
 		// Bail out if SQLite is too old
-		$db = new DatabaseSqliteStandalone( ':memory:' );
+		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		if ( version_compare( $db->getServerVersion(), self::MINIMUM_VERSION, '<' ) ) {
 			$result->fatal( 'config-outdated-sqlite', $db->getServerVersion(), self::MINIMUM_VERSION );
 		}

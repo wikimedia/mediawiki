@@ -81,7 +81,7 @@ class SqliteMaintenance extends Maintenance {
 	}
 
 	private function vacuum() {
-		$prevSize = filesize( $this->db->mDatabaseFile );
+		$prevSize = filesize( $this->db->getDbFilePath() );
 		if ( $prevSize == 0 ) {
 			$this->error( "Can't vacuum an empty database.\n", true );
 		}
@@ -89,7 +89,7 @@ class SqliteMaintenance extends Maintenance {
 		$this->output( 'VACUUM: ' );
 		if ( $this->db->query( 'VACUUM' ) ) {
 			clearstatcache();
-			$newSize = filesize( $this->db->mDatabaseFile );
+			$newSize = filesize( $this->db->getDbFilePath() );
 			$this->output( sprintf( "Database size was %d, now %d (%.1f%% reduction).\n",
 				$prevSize, $newSize, ( $prevSize - $newSize ) * 100.0 / $prevSize ) );
 		} else {
@@ -115,7 +115,7 @@ class SqliteMaintenance extends Maintenance {
 	private function backup( $fileName ) {
 		$this->output( "Backing up database:\n   Locking..." );
 		$this->db->query( 'BEGIN IMMEDIATE TRANSACTION', __METHOD__ );
-		$ourFile = $this->db->mDatabaseFile;
+		$ourFile = $this->db->getDbFilePath();
 		$this->output( "   Copying database file $ourFile to $fileName... " );
 		wfSuppressWarnings( false );
 		if ( !copy( $ourFile, $fileName ) ) {
