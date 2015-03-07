@@ -1458,10 +1458,12 @@ class Preferences {
 			}
 
 			Hooks::run( 'PreferencesFormPreSave', array( $formData, $form, $user, &$result ) );
-			$user->saveSettings();
 		}
 
-		$wgAuth->updateExternalDB( $user );
+		$user->saveSettings();
+		if ( $wgAuth && !$wgAuth instanceof AuthManagerAuthPlugin ) {
+			$wgAuth->updateExternalDB( $user );
+		}
 
 		return $result;
 	}

@@ -639,10 +639,11 @@ class WebRequest {
 	 * during the current request (in which case the cookie will
 	 * be sent back to the client at the end of the script run).
 	 *
+	 * @todo With AuthManager, this name isn't really correct
 	 * @return bool
 	 */
 	public function checkSessionCookie() {
-		return isset( $_COOKIE[session_name()] );
+		return AuthManager::singleton()->getSession()->getSessionKey() !== null;
 	}
 
 	/**
@@ -907,6 +908,14 @@ class WebRequest {
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * Whether this request is using $_SESSION
+	 * @return bool
+	 */
+	public function usingGlobalSession() {
+		return true;
 	}
 
 	/**
@@ -1278,6 +1287,7 @@ class FauxRequest extends WebRequest {
 	private $wasPosted = false;
 	private $session = array();
 	private $requestUrl;
+	protected $cookies = array();
 
 	/**
 	 * @param array $data Array of *non*-urlencoded key => value pairs, the
@@ -1352,7 +1362,36 @@ class FauxRequest extends WebRequest {
 	}
 
 	public function getCookie( $key, $prefix = null, $default = null ) {
-		return $default;
+		if ( $prefix === null ) {
+			global $wgCookiePrefix;
+			$prefix = $wgCookiePrefix;
+		}
+		$name = $prefix . $key;
+		return isset( $this->cookies[$name] ) ? $this->cookies[$name] : $default;
+	}
+
+	/**
+	 * @param string $name Unprefixed name of the cookie to set
+	 * @param string|null $value Value of the cookie to set
+	 * @param string|null $prefix Cookie prefix. Defaults to $wgCookiePrefix
+	 */
+	public function setCookie( $key, $value, $prefix = null ) {
+		$this->setCookies( array( $key => $value ), $prefix );
+	}
+
+	/**
+	 * @param array $cookies
+	 * @param string|null $prefix Cookie prefix. Defaults to $wgCookiePrefix
+	 */
+	public function setCookies( $cookies, $prefix = null ) {
+		if ( $prefix === null ) {
+			global $wgCookiePrefix;
+			$prefix = $wgCookiePrefix;
+		}
+		foreach ( $cookies as $key => $value ) {
+			$name = $prefix . $key;
+			$this->cookies[$name] = $value;
+		}
 	}
 
 	public function checkSessionCookie() {
@@ -1388,8 +1427,24 @@ class FauxRequest extends WebRequest {
 	 * @param string $val
 	 */
 	public function setHeader( $name, $val ) {
-		$name = strtoupper( $name );
-		$this->headers[$name] = $val;
+		$this->setHeaders( array( $name => $val ) );
+	}
+
+	/**
+	 * @param array $headers
+	 */
+	public function setHeaders( $headers ) {
+		foreach ( $headers as $name => $val ) {
+			$name = strtoupper( $name );
+			$this->headers[$name] = $val;
+		}
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function usingGlobalSession() {
+		return false;
 	}
 
 	/**
@@ -1494,6 +1549,10 @@ class DerivativeRequest extends FauxRequest {
 
 	public function getAllHeaders() {
 		return $this->base->getAllHeaders();
+	}
+
+	public function usingGlobalSession() {
+		return $this->base->usingGlobalSession();
 	}
 
 	public function getSessionData( $key ) {
