@@ -108,12 +108,12 @@ class GenerateUtf8Case extends Maintenance {
 				$data[$name] = $numberedData[$number];
 			}
 
-			$source = hexSequenceToUtf8( $data['Code'] );
+			$source = UtfNormal\Utils::hexSequenceToUtf8( $data['Code'] );
 			if ( $data['Simple_Uppercase_Mapping'] ) {
-				$upper[$source] = hexSequenceToUtf8( $data['Simple_Uppercase_Mapping'] );
+				$upper[$source] = UtfNormal\Utils::hexSequenceToUtf8( $data['Simple_Uppercase_Mapping'] );
 			}
 			if ( $data['Simple_Lowercase_Mapping'] ) {
-				$lower[$source] = hexSequenceToUtf8( $data['Simple_Lowercase_Mapping'] );
+				$lower[$source] = UtfNormal\Utils::hexSequenceToUtf8( $data['Simple_Lowercase_Mapping'] );
 			}
 		}
 
