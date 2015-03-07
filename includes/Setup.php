@@ -586,14 +586,9 @@ Hooks::run( 'SetupAfterCache' );
 $ps_session = Profiler::instance()->scopedProfileIn( $fname . '-session' );
 
 if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
-	// If session.auto_start is there, we can't touch session name
-	if ( !wfIniGetBool( 'session.auto_start' ) ) {
-		session_name( $wgSessionName ? $wgSessionName : $wgCookiePrefix . '_session' );
-	}
-
-	if ( $wgRequest->checkSessionCookie() || isset( $_COOKIE[$wgCookiePrefix . 'Token'] ) ) {
-		wfSetupSession();
-	}
+	// Initialize the session. This is smart enough to not call session_start()
+	// when no persistent session exists yet.
+	AuthManager::singleton()->getSession();
 }
 
 Profiler::instance()->scopedProfileOut( $ps_session );
@@ -629,8 +624,14 @@ $wgOut = RequestContext::getMain()->getOutput(); // BackCompat
  */
 $wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
 
+/**
+ * @todo The problem is that this here might change how AuthManager should
+ * determine the session, and therefore the user... We might just have to hope
+ * things manage to not break.
+ * (Note for reviewers: Don't +2 until this comment is gone)
+ */
 if ( !is_object( $wgAuth ) ) {
-	$wgAuth = new AuthPlugin;
+	$wgAuth = new AuthManagerAuthPlugin;
 	Hooks::run( 'AuthPluginSetup', array( &$wgAuth ) );
 }
 
