@@ -730,7 +730,8 @@ $output: reference to $wgOut
 in from an external authentication method.
 $user: User object created locally
 
-'AuthPluginSetup': Update or replace authentication plugin object ($wgAuth).
+'AuthPluginSetup': DEPRECATED! Extensions should be updated to use AuthManager.
+Update or replace authentication plugin object ($wgAuth).
 Gives a chance for an extension to set it programmatically to a variable class.
 &$auth: the $wgAuth object, probably a stub
 
