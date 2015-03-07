@@ -3840,5 +3840,11 @@
 	"json-error-utf8": "User error message when there are malformed UTF-8 characters, possibly incorrectly encoded.\nSee http://php.net/manual/en/function.json-last-error.php\n{{Related|Json-error}}",
 	"json-error-recursion": "PHP JSON encoding/decoding error. See http://php.net/manual/en/function.json-last-error.php\n{{Related|Json-error}}",
 	"json-error-inf-or-nan": "PHP JSON encoding/decoding error. See http://php.net/manual/en/function.json-last-error.php\n{{Related|Json-error}}",
-	"json-error-unsupported-type": "PHP JSON encoding/decoding error. See http://php.net/manual/en/function.json-last-error.php\n{{Related|Json-error}}"
+	"json-error-unsupported-type": "PHP JSON encoding/decoding error. See http://php.net/manual/en/function.json-last-error.php\n{{Related|Json-error}}",
+	"authmanager-session-tie": "Message displayed when multiple session authentication types (e.g. cookie-based session, OAuth session) are active with the same priority. Used as plaintext, no wikitext or HTML is parsed. Parameters:\n* $1 - List of session authentication types used.",
+	"authmanager-authplugin-authn-fail": "Error message from AuthManager if the AuthPlugin returns false from its authenticate() method.",
+	"authmanager-authplugin-setpass-failed-title": "Title of error page from AuthManager if AuthPlugin returns false from its setPassword() method.",
+	"authmanager-authplugin-setpass-failed-message": "Text of error page from AuthManager if AuthPlugin returns false from its setPassword() method.",
+	"authmanager-authplugin-create-fail": "Error message from AuthManager if the AuthPlugin returns false from its addUser() method.",
+	"cookieauthnsession-description": "Description of the sessions provided by CookieAuthnSessionProvider"
 }
