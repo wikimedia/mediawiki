@@ -179,7 +179,7 @@
 		// fillDestFile setup
 		$.each( mw.config.get( 'wgUploadSourceIds' ), function ( index, sourceId ) {
 			$( '#' + sourceId ).change( function () {
-				var path, slash, backslash, fname;
+				var path, slash, backslash, fname, title, $destFile;
 				if ( !mw.config.get( 'wgUploadAutoFill' ) ) {
 					return;
 				}
@@ -229,23 +229,23 @@
 					}
 				}
 
-				// Replace spaces by underscores
-				fname = fname.replace( / /g, '_' );
-				// Capitalise first letter if needed
-				if ( mw.config.get( 'wgCapitalizeUploads' ) ) {
-					fname = fname.charAt( 0 ).toUpperCase().concat( fname.slice( 1 ) );
-				}
-
-				// Output result
-				if ( $( '#wpDestFile' ).length ) {
+				$destFile = $( '#wpDestFile' );
+				if ( $destFile.length ) {
 					// Call decodeURIComponent function to remove possible URL-encoded characters
 					// from the file name (bug 30390). Especially likely with upload-form-url.
 					// decodeURIComponent can throw an exception if input is invalid utf-8
 					try {
-						$( '#wpDestFile' ).val( decodeURIComponent( fname ) );
-					} catch ( err ) {
-						$( '#wpDestFile' ).val( fname );
+						fname = decodeURIComponent( fname );
+					} catch ( ex ) {}
+
+					// Sanitize title, replace spaces by underscores,
+					// capitalise first letter if needed
+					title = mw.Title.newFromFileName( fname );
+					if ( title ) {
+						fname = title.getMain();
 					}
+
+					$destFile.val( fname );
 					uploadWarning.checkNow( fname );
 				}
 			} );
