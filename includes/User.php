@@ -1083,13 +1083,60 @@ class User implements IDBAccessObject {
 	 * @return bool True if the user is logged in, false otherwise.
 	 */
 	private function loadFromSession() {
+		$request = $this->getRequest();
+
+		// Only use AuthManager if we're loading from the global session
+		if ( $request->usingGlobalSession() ) {
+			// If the global session is mutable, call the hook for BC.
+			if ( AuthManager::singleton()->getSession()->canSetSessionUserInfo() ) {
+				$result = null;
+				Hooks::run( 'UserLoadFromSession', array( $this, &$result ) );
+				if ( $result !== null ) {
+					return $result;
+				}
+			}
+
+			// Otherwise, use the user from the global session
+			list( $id, $name ) = AuthManager::singleton()->getAuthenticatedUserInfo();
+			$proposedUser = User::newFromId( $id );
+			if ( !$proposedUser->isLoggedIn() || $proposedUser->getName() !== $name ) {
+				// Not a valid ID
+				return false;
+			}
+
+			// Sanity check data in the session itself, if any
+			$sId = $request->getSessionData( 'wsUserID' );
+			if ( $sId !== null && $sId != $id ) {
+				wfDebugLog( 'loginSessions', "Session user ID ($sessId) and
+					cookie user ID ($sId) don't match!" );
+				return false;
+			}
+
+			$sName = $request->getSessionData( 'wsUserName' );
+			$sToken = $request->getSessionData( 'wsToken' );
+			if ( $sName !== null && $sName !== $name ||
+				$sToken !== null && $sToken !== $proposedUser->getToken( false )
+			) {
+				// Invalid credentials
+				wfDebug( "User: can't log in from AuthManager, invalid credentials in session\n" );
+				return false;
+			}
+
+			$this->loadFromUserObject( $proposedUser );
+			$request->setSessionData( 'wsUserID', $id );
+			$request->setSessionData( 'wsUserName', $name );
+			$request->setSessionData( 'wsToken', $this->mToken );
+			wfDebug( "User: logged in from AuthManager\n" );
+			return true;
+		}
+
+		// Otherwise, use the old method
+
 		$result = null;
 		Hooks::run( 'UserLoadFromSession', array( $this, &$result ) );
 		if ( $result !== null ) {
 			return $result;
 		}
-
-		$request = $this->getRequest();
 
 		$cookieId = $request->getCookie( 'UserID' );
 		$sessId = $request->getSessionData( 'wsUserID' );
@@ -1382,7 +1429,10 @@ class User implements IDBAccessObject {
 					$this->addGroup( $group );
 				}
 				// update groups in external authentication database
-				$wgAuth->updateExternalDBGroups( $this, $toPromote );
+				Hooks::run( 'UserGroupsChanged', array( $this, $toPromote, array() ) );
+				if ( $wgAuth && !$wgAuth instanceof AuthManagerAuthPlugin ) {
+					$wgAuth->updateExternalDBGroups( $this, $toPromote );
+				}
 
 				$newGroups = array_merge( $oldGroups, $toPromote ); // all groups
 
