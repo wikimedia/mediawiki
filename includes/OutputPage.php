@@ -1406,8 +1406,8 @@ class OutputPage extends ContextSource {
 	 * @since 1.25
 	 */
 	public function addHelpLink( $to, $overrideBaseUrl = false ) {
-		$this->addModules( 'mediawiki.helplink' );
-		$text = wfMessage( 'helppage-top-gethelp' )->escaped();
+		$this->addModuleStyles( 'mediawiki.helplink' );
+		$text = $this->msg( 'helppage-top-gethelp' )->escaped();
 
 		if ( $overrideBaseUrl ) {
 			$helpUrl = $to;
