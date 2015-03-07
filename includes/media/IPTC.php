@@ -456,7 +456,7 @@ class IPTC {
 			//treat as utf-8 if is valid utf-8. otherwise pretend its windows-1252
 			// most of the time if there is no 1:90 tag, it is either ascii, latin1, or utf-8
 			$oldData = $data;
-			UtfNormal::quickIsNFCVerify( $data ); //make $data valid utf-8
+			UtfNormal\Validator::quickIsNFCVerify( $data ); //make $data valid utf-8
 			if ( $data === $oldData ) {
 				return $data; //if validation didn't change $data
 			} else {

@@ -327,7 +327,7 @@ class MWDebug {
 				}
 				$str = $prefix . $str;
 			}
-			self::$debug[] = rtrim( UtfNormal::cleanUp( $str ) );
+			self::$debug[] = rtrim( UtfNormal\Validator::cleanUp( $str ) );
 		}
 	}
 
