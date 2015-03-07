@@ -1140,9 +1140,6 @@ abstract class Installer {
 	 * Check the libicu version
 	 */
 	protected function envCheckLibicu() {
-		$utf8 = function_exists( 'utf8_normalize' );
-		$intl = function_exists( 'normalizer_normalize' );
-
 		/**
 		 * This needs to be updated something that the latest libicu
 		 * will properly normalize.  This normalization was found at
@@ -1156,18 +1153,7 @@ abstract class Installer {
 		$useNormalizer = 'php';
 		$needsUpdate = false;
 
-		/**
-		 * We're going to prefer the pecl extension here unless
-		 * utf8_normalize is more up to date.
-		 */
-		if ( $utf8 ) {
-			$useNormalizer = 'utf8';
-			$utf8 = utf8_normalize( $not_normal_c, UtfNormal::UNORM_NFC );
-			if ( $utf8 !== $normal_c ) {
-				$needsUpdate = true;
-			}
-		}
-		if ( $intl ) {
+		if ( function_exists( 'normalizer_normalize' ) ) {
 			$useNormalizer = 'intl';
 			$intl = normalizer_normalize( $not_normal_c, Normalizer::FORM_C );
 			if ( $intl !== $normal_c ) {
@@ -1175,8 +1161,7 @@ abstract class Installer {
 			}
 		}
 
-		// Uses messages 'config-unicode-using-php', 'config-unicode-using-utf8',
-		// 'config-unicode-using-intl'
+		// Uses messages 'config-unicode-using-php' and 'config-unicode-using-intl'
 		if ( $useNormalizer === 'php' ) {
 			$this->showMessage( 'config-unicode-pure-php-warning' );
 		} else {

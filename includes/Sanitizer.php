@@ -865,7 +865,7 @@ class Sanitizer {
 		$value = preg_replace_callback(
 			'/[！-［］-ｚ]/u', // U+FF01 to U+FF5A, excluding U+FF3C (bug 58088)
 			function ( $matches ) {
-				$cp = utf8ToCodepoint( $matches[0] );
+				$cp = UtfNormal\Utils::utf8ToCodepoint( $matches[0] );
 				if ( $cp === false ) {
 					return '';
 				}
@@ -971,7 +971,7 @@ class Sanitizer {
 			// Line continuation
 			return '';
 		} elseif ( $matches[2] !== '' ) {
-			$char = codepointToUtf8( hexdec( $matches[2] ) );
+			$char = UtfNormal\Utils::codepointToUtf8( hexdec( $matches[2] ) );
 		} elseif ( $matches[3] !== '' ) {
 			$char = $matches[3];
 		} else {
@@ -1452,9 +1452,9 @@ class Sanitizer {
 	 */
 	static function decodeChar( $codepoint ) {
 		if ( Sanitizer::validateCodepoint( $codepoint ) ) {
-			return codepointToUtf8( $codepoint );
+			return UtfNormal\Utils::codepointToUtf8( $codepoint );
 		} else {
-			return UTF8_REPLACEMENT;
+			return UtfNormal\Constants::UTF8_REPLACEMENT;
 		}
 	}
 
@@ -1471,7 +1471,7 @@ class Sanitizer {
 			$name = self::$htmlEntityAliases[$name];
 		}
 		if ( isset( self::$htmlEntities[$name] ) ) {
-			return codepointToUtf8( self::$htmlEntities[$name] );
+			return UtfNormal\Utils::codepointToUtf8( self::$htmlEntities[$name] );
 		} else {
 			return "&$name;";
 		}

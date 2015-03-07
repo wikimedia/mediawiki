@@ -314,7 +314,7 @@ class MWDebug {
 		global $wgDebugComments, $wgShowDebug;
 
 		if ( self::$enabled || $wgDebugComments || $wgShowDebug ) {
-			self::$debug[] = rtrim( UtfNormal::cleanUp( $str ) );
+			self::$debug[] = rtrim( UtfNormal\Validator::cleanUp( $str ) );
 		}
 	}
 
