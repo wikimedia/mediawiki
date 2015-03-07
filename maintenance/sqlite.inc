@@ -59,7 +59,7 @@ class Sqlite {
 			'blob', // NULL type is omitted intentionally
 		) );
 
-		$db = new DatabaseSqliteStandalone( ':memory:' );
+		$db = new DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		try {
 			foreach ( $files as $file ) {
 				$err = $db->sourceFile( $file );

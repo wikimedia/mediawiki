@@ -1,10 +1,12 @@
 <?php
 
-class MockDatabaseSqlite extends DatabaseSqliteStandalone {
+class MockDatabaseSqlite extends DatabaseSqlite {
 	private $lastQuery;
 
-	function __construct() {
-		parent::__construct( ':memory:' );
+	public static function newInstance( array $p = array() ) {
+		$p['dbFilePath'] = ':memory:';
+
+		return new self( $p );
 	}
 
 	function query( $sql, $fname = '', $tempIgnore = false ) {
@@ -36,7 +38,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		if ( !Sqlite::isPresent() ) {
 			$this->markTestSkipped( 'No SQLite support detected' );
 		}
-		$this->db = new MockDatabaseSqlite();
+		$this->db = MockDatabaseSqlite::newInstance();
 		if ( version_compare( $this->db->getServerVersion(), '3.6.0', '<' ) ) {
 			$this->markTestSkipped( "SQLite at least 3.6 required, {$this->db->getServerVersion()} found" );
 		}
@@ -89,7 +91,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 	 */
 	public function testAddQuotes( $value, $expected ) {
 		// check quoting
-		$db = new DatabaseSqliteStandalone( ':memory:' );
+		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$this->assertEquals( $expected, $db->addQuotes( $value ), 'string not quoted as expected' );
 
 		// ok, quoting works as expected, now try a round trip.
@@ -172,7 +174,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 	 */
 	public function testTableName() {
 		// @todo Moar!
-		$db = new DatabaseSqliteStandalone( ':memory:' );
+		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$this->assertEquals( 'foo', $db->tableName( 'foo' ) );
 		$this->assertEquals( 'sqlite_master', $db->tableName( 'sqlite_master' ) );
 		$db->tablePrefix( 'foo' );
@@ -184,7 +186,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 	 * @covers DatabaseSqlite::duplicateTableStructure
 	 */
 	public function testDuplicateTableStructure() {
-		$db = new DatabaseSqliteStandalone( ':memory:' );
+		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$db->query( 'CREATE TABLE foo(foo, barfoo)' );
 
 		$db->duplicateTableStructure( 'foo', 'bar' );
@@ -208,7 +210,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 	 * @covers DatabaseSqlite::duplicateTableStructure
 	 */
 	public function testDuplicateTableStructureVirtual() {
-		$db = new DatabaseSqliteStandalone( ':memory:' );
+		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		if ( $db->getFulltextSearchModule() != 'FTS3' ) {
 			$this->markTestSkipped( 'FTS3 not supported, cannot create virtual tables' );
 		}
@@ -231,7 +233,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 	 * @covers DatabaseSqlite::deleteJoin
 	 */
 	public function testDeleteJoin() {
-		$db = new DatabaseSqliteStandalone( ':memory:' );
+		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$db->query( 'CREATE TABLE a (a_1)', __METHOD__ );
 		$db->query( 'CREATE TABLE b (b_1, b_2)', __METHOD__ );
 		$db->insert( 'a', array(
@@ -289,7 +291,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 			'user_newtalk.user_last_timestamp', // r84185
 		);
 
-		$currentDB = new DatabaseSqliteStandalone( ':memory:' );
+		$currentDB = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$currentDB->sourceFile( "$IP/maintenance/tables.sql" );
 
 		$profileToDb = false;
@@ -357,7 +359,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 	 * @covers DatabaseSqlite::insertId
 	 */
 	public function testInsertIdType() {
-		$db = new DatabaseSqliteStandalone( ':memory:' );
+		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 
 		$databaseCreation = $db->query( 'CREATE TABLE a ( a_1 )', __METHOD__ );
 		$this->assertInstanceOf( 'ResultWrapper', $databaseCreation, "Database creation" );
@@ -377,7 +379,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		}
 
 		global $IP;
-		$db = new DatabaseSqliteStandalone( ':memory:' );
+		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$db->sourceFile( "$IP/tests/phpunit/data/db/sqlite/tables-$version.sql" );
 		$updater = DatabaseUpdater::newForDB( $db, false, $maint );
 		$updater->doUpdates( array( 'core' ) );
@@ -440,7 +442,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 
 	public function testCaseInsensitiveLike() {
 		// TODO: Test this for all databases
-		$db = new DatabaseSqliteStandalone( ':memory:' );
+		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$res = $db->query( 'SELECT "a" LIKE "A" AS a' );
 		$row = $res->fetchRow();
 		$this->assertFalse( (bool)$row['a'] );
@@ -450,7 +452,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 	 * @covers DatabaseSqlite::numFields
 	 */
 	public function testNumFields() {
-		$db = new DatabaseSqliteStandalone( ':memory:' );
+		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 
 		$databaseCreation = $db->query( 'CREATE TABLE a ( a_1 )', __METHOD__ );
 		$this->assertInstanceOf( 'ResultWrapper', $databaseCreation, "Failed to create table a" );

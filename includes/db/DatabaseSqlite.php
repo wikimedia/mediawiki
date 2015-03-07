@@ -29,8 +29,11 @@ class DatabaseSqlite extends DatabaseBase {
 	/** @var bool Whether full text is enabled */
 	private static $fulltextEnabled = null;
 
+	/** @var string Directory */
+	protected $dbDir;
+
 	/** @var string File name for SQLite database file */
-	public $mDatabaseFile;
+	protected $dbPath;
 
 	/** @var string Transaction mode */
 	protected $trxMode;
@@ -49,30 +52,61 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/**
 	 * Additional params include:
-	 *   - trxMode : one of (deferred, immediate, exclusive)
+	 *   - dbDirectory : directory containing the DB and the lock file directory
+	 *                   [defaults to $wgSQLiteDataDir]
+	 *   - dbFilePath  : use this to force the path of the DB file
+	 *   - trxMode     : one of (deferred, immediate, exclusive)
 	 * @param array $p
 	 */
 	function __construct( array $p ) {
 		global $wgSharedDB, $wgSQLiteDataDir;
 
-		$this->mDBname = $p['dbname'];
-		parent::__construct( $p );
-		// parent doesn't open when $user is false, but we can work with $dbName
-		if ( $p['dbname'] && !$this->isOpen() ) {
-			if ( $this->open( $p['host'], $p['user'], $p['password'], $p['dbname'] ) ) {
-				if ( $wgSharedDB ) {
-					$this->attachDatabase( $wgSharedDB );
+		$this->dbDir = isset( $p['dbDirectory'] ) ? $p['dbDirectory'] : $wgSQLiteDataDir;
+
+		if ( isset( $p['dbFilePath'] ) ) {
+			$this->mFlags = isset( $p['flags'] ) ? $p['flags'] : 0;
+			// Standalone .sqlite file mode
+			$this->openFile( $p['dbFilePath'] );
+			// @FIXME: clean up base constructor so this can call super instead
+			$this->mTrxAtomicLevels = new SplStack;
+		} else {
+			$this->mDBname = $p['dbname'];
+			// Stock wiki mode using standard file names per DB
+			parent::__construct( $p );
+			// parent doesn't open when $user is false, but we can work with $dbName
+			if ( $p['dbname'] && !$this->isOpen() ) {
+				if ( $this->open( $p['host'], $p['user'], $p['password'], $p['dbname'] ) ) {
+					if ( $wgSharedDB ) {
+						$this->attachDatabase( $wgSharedDB );
+					}
 				}
 			}
 		}
 
 		$this->trxMode = isset( $p['trxMode'] ) ? strtoupper( $p['trxMode'] ) : null;
-		if ( $this->trxMode && !in_array( $this->trxMode, array( 'IMMEDIATE', 'EXCLUSIVE' ) ) ) {
+		if ( $this->trxMode &&
+			!in_array( $this->trxMode, array( 'DEFERRED', 'IMMEDIATE', 'EXCLUSIVE' ) )
+		) {
 			$this->trxMode = null;
 			wfWarn( "Invalid SQLite transaction mode provided." );
 		}
 
-		$this->lockMgr = new FSLockManager( array( 'lockDirectory' => "$wgSQLiteDataDir/locks" ) );
+		$this->lockMgr = new FSLockManager( array( 'lockDirectory' => "{$this->dbDir}/locks" ) );
+	}
+
+	/**
+	 * @param string $filename
+	 * @param array $p Options map; supports:
+	 *   - flags       : (same as __construct counterpart)
+	 *   - trxMode     : (same as __construct counterpart)
+	 *   - dbDirectory : (same as __construct counterpart)
+	 * @return DatabaseSqlite
+	 * @since 1.25
+	 */
+	public static function newStandaloneInstance( $filename, array $p = array() ) {
+		$p['dbFilePath'] = $filename;
+
+		return new self( $p );
 	}
 
 	/**
@@ -103,10 +137,8 @@ class DatabaseSqlite extends DatabaseBase {
 	 * @return PDO
 	 */
 	function open( $server, $user, $pass, $dbName ) {
-		global $wgSQLiteDataDir;
-
 		$this->close();
-		$fileName = self::generateFileName( $wgSQLiteDataDir, $dbName );
+		$fileName = self::generateFileName( $this->dbDir, $dbName );
 		if ( !is_readable( $fileName ) ) {
 			$this->mConn = false;
 			throw new DBConnectionError( $this, "SQLite database not accessible" );
@@ -123,10 +155,10 @@ class DatabaseSqlite extends DatabaseBase {
 	 * @throws DBConnectionError
 	 * @return PDO|bool SQL connection or false if failed
 	 */
-	function openFile( $fileName ) {
+	protected function openFile( $fileName ) {
 		$err = false;
 
-		$this->mDatabaseFile = $fileName;
+		$this->dbPath = $fileName;
 		try {
 			if ( $this->mFlags & DBO_PERSISTENT ) {
 				$this->mConn = new PDO( "sqlite:$fileName", '', '',
@@ -154,6 +186,14 @@ class DatabaseSqlite extends DatabaseBase {
 		}
 
 		return false;
+	}
+
+	/**
+	 * @return string SQLite DB file path
+	 * @since 1.25
+	 */
+	public function getDbFilePath() {
+		return $this->dbPath;
 	}
 
 	/**
@@ -206,8 +246,7 @@ class DatabaseSqlite extends DatabaseBase {
 		$cachedResult = false;
 		$table = 'dummy_search_test';
 
-		$db = new DatabaseSqliteStandalone( ':memory:' );
-
+		$db = self::newStandaloneInstance( ':memory:' );
 		if ( $db->query( "CREATE VIRTUAL TABLE $table USING FTS3(dummy_field)", __METHOD__, true ) ) {
 			$cachedResult = 'FTS3';
 		}
@@ -223,14 +262,13 @@ class DatabaseSqlite extends DatabaseBase {
 	 * @param string $name Database name to be used in queries like
 	 *   SELECT foo FROM dbname.table
 	 * @param bool|string $file Database file name. If omitted, will be generated
-	 *   using $name and $wgSQLiteDataDir
+	 *   using $name and configured data directory
 	 * @param string $fname Calling function name
 	 * @return ResultWrapper
 	 */
 	function attachDatabase( $name, $file = false, $fname = __METHOD__ ) {
-		global $wgSQLiteDataDir;
 		if ( !$file ) {
-			$file = self::generateFileName( $wgSQLiteDataDir, $name );
+			$file = self::generateFileName( $this->dbDir, $name );
 		}
 		$file = $this->addQuotes( $file );
 
@@ -863,11 +901,9 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	public function lock( $lockName, $method, $timeout = 5 ) {
-		global $wgSQLiteDataDir;
-
-		if ( !is_dir( "$wgSQLiteDataDir/locks" ) ) { // create dir as needed
-			if ( !is_writable( $wgSQLiteDataDir ) || !mkdir( "$wgSQLiteDataDir/locks" ) ) {
-				throw new DBError( "Cannot create directory \"$wgSQLiteDataDir/locks\"." );
+		if ( !is_dir( "{$this->dbDir}/locks" ) ) { // create dir as needed
+			if ( !is_writable( $this->dbDir ) || !mkdir( "{$this->dbDir}/locks" ) ) {
+				throw new DBError( "Cannot create directory \"{$this->dbDir}/locks\"." );
 			}
 		}
 
@@ -960,23 +996,6 @@ class DatabaseSqlite extends DatabaseBase {
 		return $endArray;
 	}
 } // end DatabaseSqlite class
-
-/**
- * This class allows simple acccess to a SQLite database independently from main database settings
- * @ingroup Database
- */
-class DatabaseSqliteStandalone extends DatabaseSqlite {
-	public function __construct( $fileName, $flags = 0 ) {
-		global $wgSQLiteDataDir;
-
-		$this->mTrxAtomicLevels = new SplStack;
-		$this->lockMgr = new FSLockManager( array( 'lockDirectory' => "$wgSQLiteDataDir/locks" ) );
-
-		$this->mFlags = $flags;
-		$this->tablePrefix( null );
-		$this->openFile( $fileName );
-	}
-}
 
 /**
  * @ingroup Database
