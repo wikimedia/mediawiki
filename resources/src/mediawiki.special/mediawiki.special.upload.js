@@ -229,12 +229,9 @@
 					}
 				}
 
-				// Replace spaces by underscores
-				fname = fname.replace( / /g, '_' );
-				// Capitalise first letter if needed
-				if ( mw.config.get( 'wgCapitalizeUploads' ) ) {
-					fname = fname.charAt( 0 ).toUpperCase().concat( fname.slice( 1 ) );
-				}
+				// Sanitize title, replace spaces by underscores,
+				// capitalise first letter if needed
+				fname = mw.Title.newFromFileName( fname ).getMain();
 
 				// Output result
 				if ( $( '#wpDestFile' ).length ) {
