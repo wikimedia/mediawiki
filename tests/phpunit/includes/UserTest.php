@@ -277,26 +277,6 @@ class UserTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Test password expiration.
-	 * @covers User::getPasswordExpired()
-	 */
-	public function testPasswordExpire() {
-		$this->setMwGlobals( 'wgPasswordExpireGrace', 3600 * 24 * 7 ); // 7 days
-
-		$user = User::newFromName( 'UnitTestUser' );
-		$user->loadDefaults( 'UnitTestUser' );
-		$this->assertEquals( false, $user->getPasswordExpired() );
-
-		$ts = time() - ( 3600 * 24 * 1 ); // 1 day ago
-		$user->expirePassword( $ts );
-		$this->assertEquals( 'soft', $user->getPasswordExpired() );
-
-		$ts = time() - ( 3600 * 24 * 10 ); // 10 days ago
-		$user->expirePassword( $ts );
-		$this->assertEquals( 'hard', $user->getPasswordExpired() );
-	}
-
-	/**
 	 * Test password validity checks. There are 3 checks in core,
 	 *	- ensure the password meets the minimal length
 	 *	- ensure the password is not the same as the username

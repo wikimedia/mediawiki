@@ -227,8 +227,6 @@ class UserrightsPage extends SpecialPage {
 	 * @return array Tuple of added, then removed groups
 	 */
 	function doSaveUserGroups( $user, $add, $remove, $reason = '' ) {
-		global $wgAuth;
-
 		// Validate input set...
 		$isself = $user->getName() == $this->getUser()->getName();
 		$groups = $user->getGroups();
@@ -269,7 +267,8 @@ class UserrightsPage extends SpecialPage {
 		$user->invalidateCache();
 
 		// update groups in external authentication database
-		$wgAuth->updateExternalDBGroups( $user, $add, $remove );
+		Hooks::run( 'UserGroupsChanged', array( $user, $add, $remove ) );
+		AuthManager::callLegacyAuthPlugin( 'updateExternalDBGroups', array( $user, $add, $remove ) );
 
 		wfDebug( 'oldGroups: ' . print_r( $oldGroups, true ) . "\n" );
 		wfDebug( 'newGroups: ' . print_r( $newGroups, true ) . "\n" );
