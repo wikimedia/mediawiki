@@ -289,7 +289,6 @@ $wgAutoloadLocalClasses = array(
 	'DatabaseOracle' => __DIR__ . '/includes/db/DatabaseOracle.php',
 	'DatabasePostgres' => __DIR__ . '/includes/db/DatabasePostgres.php',
 	'DatabaseSqlite' => __DIR__ . '/includes/db/DatabaseSqlite.php',
-	'DatabaseSqliteStandalone' => __DIR__ . '/includes/db/DatabaseSqlite.php',
 	'DatabaseUpdater' => __DIR__ . '/includes/installer/DatabaseUpdater.php',
 	'DateFormats' => __DIR__ . '/maintenance/language/date-formats.php',
 	'DateFormatter' => __DIR__ . '/includes/parser/DateFormatter.php',
