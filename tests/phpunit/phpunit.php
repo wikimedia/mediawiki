@@ -59,6 +59,7 @@ class PHPUnitMaintClass extends Maintenance {
 		global $wgLanguageConverterCacheType, $wgUseDatabaseMessages;
 		global $wgLocaltimezone, $wgLocalisationCacheConf;
 		global $wgDevelopmentWarnings;
+		global $wgAuthManagerConfig, $wgAuth;
 
 		// Inject test autoloader
 		require_once __DIR__ . '/../TestsAutoLoader.php';
@@ -78,6 +79,41 @@ class PHPUnitMaintClass extends Maintenance {
 		$wgLocaltimezone = 'UTC';
 
 		$wgLocalisationCacheConf['storeClass'] = 'LCStoreNull';
+
+		// Generic AuthManager configuration for testing
+		$wgAuthManagerConfig = array(
+			'session' => array(
+				array(
+					'class' => 'CookieAuthnSessionProvider',
+					'args' => array( array(
+						'priority' => 10,
+						'callUserSetCookiesHook' => true,
+					) ),
+				),
+			),
+			'preauth' => array(),
+			'primaryauth' => array(
+				array(
+					'class' => 'LocalPasswordPrimaryAuthenticationProvider',
+					'args' => array( array(
+						// Fall through to TempPass
+						'authoritative' => false,
+					) ),
+				),
+				array(
+					'class' => 'TemporaryPasswordPrimaryAuthenticationProvider',
+					'args' => array( array(
+						'authoritative' => true,
+					) ),
+				),
+			),
+			'secondaryauth' => array(),
+			'logger' => 'auth',
+			'sessionstore' => array(
+				'logger' => 'objectcache',
+			),
+		);
+		$wgAuth = new AuthManagerAuthPlugin();
 
 		// Bug 44192 Do not attempt to send a real e-mail
 		Hooks::clear( 'AlternateUserMailer' );

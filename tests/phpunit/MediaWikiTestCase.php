@@ -479,12 +479,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		if ( $user->idForName() == 0 ) {
 			$user->addToDatabase();
-			$user->setPassword( 'UTSysopPassword' );
-
-			$user->addGroup( 'sysop' );
-			$user->addGroup( 'bureaucrat' );
-			$user->saveSettings();
+			TestUser::setPasswordForUser( $user, 'UTSysopPassword' );
 		}
+
+		// Always set groups, because $this->resetDB() wipes them out
+		$user->addGroup( 'sysop' );
+		$user->addGroup( 'bureaucrat' );
 
 		// Make 1 page with 1 revision
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );

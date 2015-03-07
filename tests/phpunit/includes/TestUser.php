@@ -63,8 +63,8 @@ class TestUser {
 		}
 
 		// Update the user to use the password and other details
-		$change = $this->setPassword( $this->password ) ||
-			$this->setEmail( $email ) ||
+		$this->setPassword( $this->password );
+		$change = $this->setEmail( $email ) ||
 			$this->setRealName( $realname );
 
 		// Adjust groups by adding any missing ones and removing any extras
@@ -108,26 +108,36 @@ class TestUser {
 
 	/**
 	 * @param string $password
-	 * @return bool
 	 */
 	private function setPassword( $password ) {
-		$passwordFactory = $this->user->getPasswordFactory();
-		$oldDefaultType = $passwordFactory->getDefaultType();
+		self::setPasswordForUser( $this->user, $password );
+	}
 
-		// A is unsalted MD5 (thus fast) ... we don't care about security here, this is test only
-		$passwordFactory->setDefaultType( 'A' );
-		$newPassword = $passwordFactory->newFromPlaintext( $password, $this->user->getPassword() );
-
-		$change = false;
-		if ( !$this->user->getPassword()->equals( $newPassword ) ) {
-			// Password changed
-			$this->user->setPassword( $password );
-			$change = true;
+	/**
+	 * Set the password on a testing user
+	 *
+	 * This assumes we're still using the generic AuthManager config from
+	 * PHPUnitMaintClass::finalSetup(), and just sets the password in the
+	 * database directly.
+	 * @param User $user
+	 * @param string $password
+	 */
+	public static function setPasswordForUser( User $user, $password ) {
+		if ( !$user->getId() ) {
+			throw new MWException( "Passed User has not been added to the database yet!" );
 		}
 
-		$passwordFactory->setDefaultType( $oldDefaultType );
-
-		return $change;
+		$passwordFactory = new PasswordFactory();
+		$passwordFactory->init( RequestContext::getMain()->getConfig() );
+		// A is unsalted MD5 (thus fast) ... we don't care about security here, this is test only
+		$passwordFactory->setDefaultType( 'A' );
+		$pwhash = $passwordFactory->newFromPlaintext( $password );
+		wfGetDB( DB_MASTER )->update(
+			'user',
+			array( 'user_password' => $pwhash->toString() ),
+			array( 'user_id' => $user->getId() ),
+			__METHOD__
+		);
 	}
 
 	/**
