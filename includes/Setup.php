@@ -585,6 +585,10 @@ Hooks::run( 'SetupAfterCache' );
 
 $ps_session = Profiler::instance()->scopedProfileIn( $fname . '-session' );
 
+/**
+ * @todo Kill this, or decide what to do about it.
+ * (Note for reviewers: Don't +2 until this comment is gone)
+ */
 if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	// If session.auto_start is there, we can't touch session name
 	if ( !wfIniGetBool( 'session.auto_start' ) ) {
@@ -610,6 +614,13 @@ $wgContLang->initContLang();
 $wgRequest->interpolateTitle();
 
 /**
+ * @todo Unless we change how User loads from the session, this is the point
+ * by which AuthManager is going to need to be able to pick a session thanks to
+ * the ->getUser() call just below.
+ * (Note for reviewers: Don't +2 until this comment is gone)
+ */
+
+/**
  * @var User $wgUser
  */
 $wgUser = RequestContext::getMain()->getUser(); // BackCompat
@@ -629,6 +640,12 @@ $wgOut = RequestContext::getMain()->getOutput(); // BackCompat
  */
 $wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
 
+/**
+ * @todo The problem is that this here might change how AuthManager should
+ * determine the session, and therefore the user... We might just have to hope
+ * things manage to not break.
+ * (Note for reviewers: Don't +2 until this comment is gone)
+ */
 if ( !is_object( $wgAuth ) ) {
 	$wgAuth = new AuthPlugin;
 	Hooks::run( 'AuthPluginSetup', array( &$wgAuth ) );
