@@ -48,9 +48,9 @@
 	/**
 	 * Basic log console for the example iframe in documentation pages.
 	 */
-	( function () {
+	var log = ( function () {
 		var pre;
-		mw.log = function () {
+		return function () {
 			var str, i, len, line;
 			if ( !pre ) {
 				pre = document.createElement( 'pre' );
@@ -70,6 +70,14 @@
 		};
 	}() );
 
+	if ( window.mw ) {
+		mw.log = log;
+	}
+
+	window.onerror = function ( error, filePath, linerNr ) {
+		log( filePath + ':' + linerNr  );
+	};
+
 	/**
 	 * Method called by jsduck to execute the example code.
 	 */
@@ -78,7 +86,7 @@
 			eval( code );
 			callback && callback( true );
 		} catch ( e ) {
-			mw.log( 'Uncaught ' + e );
+			log( 'Uncaught ' + e );
 			callback && callback( false, e );
 			throw e;
 		}
