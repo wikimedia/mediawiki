@@ -18,7 +18,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"PiRSquared17",
-			"Macofe"
+			"Macofe",
+			"Caliburn"
 		]
 	},
 	"tog-underline": "Unnerline airtins:",
@@ -243,6 +244,7 @@
 	"disclaimers": "Disclamation",
 	"disclaimerpage": "Project:General_disclamation",
 	"edithelp": "Eeditin help",
+	"helppage-top-gethelp": "Help",
 	"mainpage": "Main Page",
 	"mainpage-description": "Main Page",
 	"policy-url": "Project:Policie",

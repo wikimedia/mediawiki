@@ -557,7 +557,7 @@
 	"preview": "Pregled kako će stranica izgledati",
 	"showpreview": "Prikaži kako će izgledati",
 	"showdiff": "Prikaži promjene",
-	"anoneditwarning": "'''Upozorenje:''' Niste prijavljeni pod suradničkim imenom. Vaša IP adresa bit će zabilježena u popisu izmjena ove stranice.",
+	"anoneditwarning": "<strong>Upozorenje:</strong> niste prijavljeni. Ako napravite uređivanje, Vaša IP adresa će biti javno vidljiva. Ako se <strong>[$1 prijavite]</strong> ili <strong>[$2 stvorite račun]</strong>, Vaša uređivanja će biti pridružena suradničkom imenu, zajedno s ostalim pogodnostima.",
 	"anonpreviewwarning": "''Niste prijavljeni. Spremanjem će Vaše IP adrese ostati zabilježene u starim izmjenama ove stranice.''",
 	"missingsummary": "'''Podsjetnik:''' Niste unijeli sažetak promjena. Ako ponovno kliknete na \"Sačuvaj stranicu\", Vaše će promjene biti snimljene bez sažetka.",
 	"missingcommenttext": "Molim unesite sažetak.",
@@ -2995,5 +2995,6 @@
 	"expand_templates_generate_xml": "Prikaži XML stablo",
 	"expand_templates_preview": "Vidi kako će izgledati",
 	"mediastatistics": "Statistika datoteka",
-	"mediastatistics-summary": "Slijede statistike postavljenih datoteka koje pokazuju zadnju inačicu datoteke. Starije ili izbrisane inačice nisu prikazane."
+	"mediastatistics-summary": "Slijede statistike postavljenih datoteka koje pokazuju zadnju inačicu datoteke. Starije ili izbrisane inačice nisu prikazane.",
+	"headline-anchor-title": "Poveznica na ovaj odlomak"
 }

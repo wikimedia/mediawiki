@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Kwj2772",
-			"Twotwo2019"
+			"Twotwo2019",
+			"아라"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [https://www.mediawiki.org/wiki/API:Main_page 설명문서]\n* [https://www.mediawiki.org/wiki/API:FAQ FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 메일링 리스트]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API 공지 사항] * [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 버그 및 요청] </div>\n<strong>상태:</strong> 이 페이지에 표시된 모든 기능은 정상 작동할 것이지만, API는 여전히 활발하게 개발되고 있으며, 언제든지 바뀔 수 있습니다. 업데이트 정보를 받아보려면 [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce 메일링 리스트]를 구독하십시오.\n\n<strong>잘못된 요청:</strong> API에 잘못된 요청이 전송되면 HTTP 헤더에서 \"MediaWiki-API-Error\" 키를 보내고, 헤더 값과 오류 코드가 같게 설정됩니다. 자세한 정보에 대해서는 https://www.mediawiki.org/wiki/API:Errors_and_warnings 를 참고하십시오.",
@@ -22,6 +23,14 @@
 	"apihelp-block-param-watchuser": "해당 사용자 또는 IP 주소의 사용자 문서 및 토론 문서를 주시합니다.",
 	"apihelp-block-example-ip-simple": "IP <kbd>192.0.2.5</kbd>에 대해 <kbd>First strike</kbd>라는 이유로 3일간 차단하기",
 	"apihelp-block-example-user-complex": "사용자 <kbd>Vandal</kbd>을 <kbd>Vandalism</kbd>이라는 이유로 무기한 차단하며 계정 생성 및 이메일 발송을 막기",
+	"apihelp-delete-example-simple": "<kbd>Main Page</kbd>를 삭제합니다.",
+	"apihelp-edit-description": "문서를 만들고 편집합니다.",
+	"apihelp-edit-param-sectiontitle": "새 문단을 위한 제목.",
+	"apihelp-edit-param-text": "문서 내용.",
+	"apihelp-edit-param-summary": "편집 요약. 또한 $1section=new 및 $1sectiontitle이 설정되어 있지 않을 때 문단 제목.",
+	"apihelp-edit-param-minor": "사소한 편집.",
+	"apihelp-edit-param-notminor": "사소하지 않은 편집.",
+	"apihelp-edit-param-bot": "이 편집을 봇으로 표시.",
 	"api-help-param-list": "{{PLURAL:$1|1=하나의 값|2=값 (\"{{!}}\"로 구분)}}: $2",
 	"api-help-param-default": "기본값: $1"
 }

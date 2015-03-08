@@ -2160,7 +2160,7 @@
 	"tooltip-ca-nstab-template": "Vis mal",
 	"tooltip-ca-nstab-help": "Vis hjelpeside",
 	"tooltip-ca-nstab-category": "Vis kategoriside",
-	"tooltip-minoredit": "Merk dette som småplukk",
+	"tooltip-minoredit": "Merk endringa som småplukk",
 	"tooltip-save": "Lagra endringane dine",
 	"tooltip-preview": "Førehandsvis endringane dine. Helst brukar du denne funksjonen før du lagrar.",
 	"tooltip-diff": "Sjå kva endringar du gjorde i teksten",

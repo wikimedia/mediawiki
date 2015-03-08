@@ -2848,6 +2848,11 @@
 	"revdelete-uname-unhid": "ชื่อผู้ใช้ถูกแสดง",
 	"revdelete-restricted": "เพิ่มการจำกัดกับผู้ดูแลระบบ",
 	"revdelete-unrestricted": "ยกเลิกการจำกัดแก่ผู้ดูแลระบบ",
+	"logentry-block-block": "$1 บล็อก $3 โดยมีเวลาหมดอายุเมื่อ $5 $6",
+	"logentry-block-unblock": "$1 ปลดบล็อก $3",
+	"logentry-block-reblock": "$1 เปลี่ยนการตั้งค่าการบล็อกสำหรับ $3 โดยมีเวลาหมดอายุเมื่อ $5 $6",
+	"logentry-suppress-block": "$1 บล็อก $3 โดยมีเวลาหมดอายุเมื่อ $5 $6",
+	"logentry-suppress-reblock": "$1 เปลี่ยนการตั้งค่าการบล็อกสำหรับ $3 โดยมีเวลาหมดอายุเมื่อ $5 $6",
 	"logentry-merge-merge": "$1 {{GENDER:$2|รวม}} $3 เข้ากับ $4 (รุ่นถึง $5)",
 	"logentry-move-move": "$1 ย้ายหน้า $3 ไปยัง $4",
 	"logentry-move-move-noredirect": "$1 ย้ายหน้า $3 ไปยัง $4 โดยไม่สร้างหน้าเปลี่ยนทางตามมา",
@@ -2922,5 +2927,6 @@
 	"mediastatistics-header-unknown": "ไม่ทราบ",
 	"mediastatistics-header-drawing": "ภาพวาดเส้น (ภาพเวกเตอร์)",
 	"mediastatistics-header-audio": "เสียง",
-	"mediastatistics-header-video": "วิดีทัศน์"
+	"mediastatistics-header-video": "วิดีทัศน์",
+	"headline-anchor-title": "โยงมาส่วนนี้"
 }

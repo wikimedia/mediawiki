@@ -56,7 +56,7 @@
 	"config-unicode-using-intl": "유니코드 정규화에 [http://pecl.php.net/intl intl PECL 확장 기능]을 사용합니다.",
 	"config-unicode-pure-php-warning": "<strong>경고</strong>: 유니코드 정규화를 처리할 [http://pecl.php.net/intl intl PECL 확장 기능]을 사용할 수 없기 때문에 느린 pure-PHP 구현을 대신 사용합니다.\n트래픽이 높은 사이트에서 실행하시려면 [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations 유니코드 정규화]를 읽어보셔야 합니다.",
 	"config-unicode-update-warning": "<strong>경고</strong>: 유니코드 정규화 래퍼의 설치된 버전은 [http://site.icu-project.org/ ICU 프로젝트]의 라이브러리의 이전 버전을 사용합니다.\n만약 유니코드를 사용하는 것에 대해 우려가 된다면 [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations 업그레이드]해야합니다.",
-	"config-no-db": "적절한 데이터베이스 드라이버를 찾을 수 없습니다! PHP용 데이터베이스 드라이버를 설치해야 합니다.\n다음 데이터베이스 유형을 지원합니다: $1.\n\nPHP를 직접 컴파일했다면, 예를 들어 <code>./configure --with-mysql</code>을 사용하여, 데이터베이스 클라이언트를 활성화하도록 다시 설정하세요.\n데비안이나 우분투 패키지에서 PHP를 설치했다면 <code>php5-mysql</code> 모듈도 설치해야 합니다.",
+	"config-no-db": "적절한 데이터베이스 드라이버를 찾을 수 없습니다! PHP용 데이터베이스 드라이버를 설치해야 합니다.\n다음 데이터베이스 {{PLURAL:$2|유형을 지원합니다}}: $1.\n\nPHP를 직접 컴파일했다면, 예를 들어 <code>./configure --with-mysql</code>을 사용하여, 데이터베이스 클라이언트를 활성화하도록 다시 설정하세요.\n데비안이나 우분투 패키지에서 PHP를 설치했다면 <code>php5-mysql</code> 모듈도 설치해야 합니다.",
 	"config-outdated-sqlite": "<strong>경고</strong>: 최소인 $2 버전보다 낮은 SQLite $1(이)가 있습니다. SQLite를 사용할 수 없습니다.",
 	"config-no-fts3": "<strong>경고</strong>: SQLite를 [//sqlite.org/fts3.html FTS3 모듈] 없이 컴파일하며, 검색 기능은 백엔드에 사용할 수 없습니다.",
 	"config-register-globals-error": "<strong>오류: PHP의 <code>[http://php.net/register_globals register_globals]</code> 옵션이 활성화되어 있습니다.\n설치를 계속하려면 비활성화해야 합니다.</strong>\n어떻게 하는지에 대한 도움말에 대해서는 [https://www.mediawiki.org/wiki/register_globals https://www.mediawiki.org/wiki/register_globals]를 보세요.",
