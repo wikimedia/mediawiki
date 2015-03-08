@@ -111,6 +111,9 @@ production.
   used for conditional registration of API modules.
 * New hook 'EnhancedChangesList::getLogText' to alter, remove or add to the
   links of a group of changes in EnhancedChangesList.
+* (T65806) Introduced a new configuration variable $wgAllowExternalSVG.
+  External images with SVG extension can now be included from whitelisted
+  sites provided $wgAllowExternalSVG is set to true.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
