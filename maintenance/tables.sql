@@ -1388,7 +1388,7 @@ CREATE TABLE /*_*/page_restrictions (
   -- Field for an ID for this restrictions row (sort-key for Special:ProtectedPages)
   pr_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
   -- Page to apply restrictions to (Foreign Key to page).
-  pr_page int NOT NULL,
+  pr_page int unsigned NOT NULL,
   -- The protection type (edit, move, etc)
   pr_type varbinary(60) NOT NULL,
   -- The protection level (Sysop, autoconfirmed, etc)
