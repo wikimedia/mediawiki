@@ -53,7 +53,8 @@
 .mw-body h3:focus .mw-headline-anchor,
 .mw-body h4:focus .mw-headline-anchor,
 .mw-body h5:focus .mw-headline-anchor,
-.mw-body h6:focus .mw-headline-anchor {
+.mw-body h6:focus .mw-headline-anchor,
+.mw-headline-anchor:focus {
 	filter: alpha(opacity=100);
 	opacity: 1;
 }
