@@ -278,6 +278,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.26
 			array( 'modifyFieldToUnsignedInt', 'user_properties', 'up_user',
 				'patch-user-properties-upuser-unsigned.sql' ),
+			array( 'modifyFieldToUnsignedInt', 'page_props', 'pp_page',
+				'patch-page-props-pppage-unsigned.sql' ),
 		);
 	}
 
