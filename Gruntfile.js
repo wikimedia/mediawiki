@@ -1,5 +1,6 @@
 /*jshint node:true */
 module.exports = function ( grunt ) {
+	grunt.loadNpmTasks( 'grunt-contrib-copy' );
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-jscs-checker' );
@@ -35,7 +36,17 @@ module.exports = function ( grunt ) {
 				'.{jshintrc,jscs.json,jshintignore,csslintrc}',
 				'<%= jshint.all %>'
 			],
-			tasks: ['test']
+			tasks: 'test'
+		},
+		copy: {
+			jsduck: {
+				src: 'resources/**/*',
+				dest: 'docs/js/modules',
+				expand: true,
+				rename: function ( dest, src ) {
+					return require( 'path' ).join( dest, src.replace( 'resources/', '' ) );
+				}
+			}
 		}
 	} );
 
