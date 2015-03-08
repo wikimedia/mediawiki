@@ -1,5 +1,6 @@
 /*jshint node:true */
 module.exports = function ( grunt ) {
+	grunt.loadNpmTasks( 'grunt-contrib-copy' );
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-banana-checker' );
@@ -54,6 +55,16 @@ module.exports = function ( grunt ) {
 				'.jshintrc'
 			],
 			tasks: 'test'
+		},
+		copy: {
+			jsduck: {
+				src: 'resources/**/*',
+				dest: 'docs/js/modules',
+				expand: true,
+				rename: function ( dest, src ) {
+					return require( 'path' ).join( dest, src.replace( 'resources/', '' ) );
+				}
+			}
 		}
 	} );
 
