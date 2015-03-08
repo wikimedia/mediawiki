@@ -2,11 +2,14 @@
   "name": "mediawiki",
   "version": "0.0.0",
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "doc": "jsduck",
+    "postdoc": "grunt copy:jsduck"
   },
   "devDependencies": {
     "grunt": "0.4.5",
     "grunt-banana-checker": "0.2.0",
+    "grunt-contrib-copy": "0.8.0",
     "grunt-contrib-jshint": "0.11.0",
     "grunt-contrib-watch": "0.6.1",
     "grunt-jscs": "1.5.0",
