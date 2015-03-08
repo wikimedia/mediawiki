@@ -230,7 +230,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @param null|bool $ignoreErrors
 	 * @return bool The previous value of the flag.
 	 */
-	public function ignoreErrors( $ignoreErrors = null ) {
+	protected function ignoreErrors( $ignoreErrors = null ) {
 		return wfSetBit( $this->mFlags, DBO_IGNORE, $ignoreErrors );
 	}
 
