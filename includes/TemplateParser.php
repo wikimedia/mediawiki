@@ -97,57 +97,74 @@ class TemplateParser {
 
 		// Fetch a secret key for building a keyed hash of the PHP code
 		$config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
-		$secretKey = $config->get( 'SecretKey' ) ? : 'key';
+		$secretKey = $config->get( 'SecretKey' );
 
-		// See if the compiled PHP code is stored in cache.
-		// CACHE_ACCEL throws an exception if no suitable object cache is present, so fall
-		// back to CACHE_ANYTHING.
-		try {
-			$cache = wfGetCache( CACHE_ACCEL );
-		} catch ( Exception $e ) {
-			$cache = wfGetCache( CACHE_ANYTHING );
-		}
-		$key = wfMemcKey( 'template', $templateName, $fastHash );
-		$code = $this->forceRecompile ? null : $cache->get( $key );
-
-		if ( !$code ) {
-			// Compile the template into PHP code
-			$code = self::compile( $fileContents );
+		if ( $secretKey ) {
+			// See if the compiled PHP code is stored in cache.
+			// CACHE_ACCEL throws an exception if no suitable object cache is present, so fall
+			// back to CACHE_ANYTHING.
+			try {
+				$cache = wfGetCache( CACHE_ACCEL );
+			} catch ( Exception $e ) {
+				$cache = wfGetCache( CACHE_ANYTHING );
+			}
+			$key = wfMemcKey( 'template', $templateName, $fastHash );
+			$code = $this->forceRecompile ? null : $cache->get( $key );
 
 			if ( !$code ) {
-				throw new Exception( "Could not compile template: {$filename}" );
-			}
+				$code = $this->compileForEval( $fileContents, $filename );
 
-			// Strip the "<?php" added by lightncandy so that it can be eval()ed
-			if ( substr( $code, 0, 5 ) === '<?php' ) {
-				$code = substr( $code, 5 );
-			}
+				// Prefix the code with a keyed hash (64 hex chars) as an integrity check
+				$code = hash_hmac( 'sha256', $code, $secretKey ) . $code;
 
-			$renderer = eval( $code );
-
-			// Prefix the code with a keyed hash (64 hex chars) as an integrity check
-			$code = hash_hmac( 'sha256', $code, $secretKey ) . $code;
-
-			// Cache the compiled PHP code
-			$cache->set( $key, $code );
-		} else {
-			// Verify the integrity of the cached PHP code
-			$keyedHash = substr( $code, 0, 64 );
-			$code = substr( $code, 64 );
-			if ( $keyedHash === hash_hmac( 'sha256', $code, $secretKey ) ) {
-				$renderer = eval( $code );
+				// Cache the compiled PHP code
+				$cache->set( $key, $code );
 			} else {
-				throw new Exception( "Template failed integrity check: {$filename}" );
+				// Verify the integrity of the cached PHP code
+				$keyedHash = substr( $code, 0, 64 );
+				$code = substr( $code, 64 );
+				if ( $keyedHash !== hash_hmac( 'sha256', $code, $secretKey ) ) {
+					// Generate a notice if integrity check fails
+					trigger_error( "Template failed integrity check: {$filename}" );
+				}
 			}
+		// If there is no secret key available, don't use cache
+		} else {
+			$code = $this->compileForEval( $fileContents, $filename );
 		}
 
+		$renderer = eval( $code );
 		return $this->renderers[$templateName] = $renderer;
+	}
+
+	/**
+	 * Wrapper for compile() function that verifies successful compilation and strips
+	 * out the '<?php' part so that the code is ready for eval()
+	 * @param string $fileContents Mustache code
+	 * @param string $filename Name of the template
+	 * @return string PHP code (without '<?php')
+	 * @throws Exception
+	 */
+	public function compileForEval( $fileContents, $filename ) {
+		// Compile the template into PHP code
+		$code = self::compile( $fileContents );
+
+		if ( !$code ) {
+			throw new Exception( "Could not compile template: {$filename}" );
+		}
+
+		// Strip the "<?php" added by lightncandy so that it can be eval()ed
+		if ( substr( $code, 0, 5 ) === '<?php' ) {
+			$code = substr( $code, 5 );
+		}
+
+		return $code;
 	}
 
 	/**
 	 * Compile the Mustache code into PHP code using LightnCandy
 	 * @param string $code Mustache code
-	 * @return string PHP code
+	 * @return string PHP code (with '<?php')
 	 * @throws Exception
 	 */
 	public static function compile( $code ) {
