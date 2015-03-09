@@ -258,6 +258,13 @@ $wgFileCacheDirectory = false;
 $wgLogo = false;
 
 /**
+ * Array with URL paths to HD versions of the wiki logo. The scaled logo size
+ * should be 135x135 pixels.
+ * Defaults to none.
+ */
+$wgLogoHD = false;
+
+/**
  * The URL path of the shortcut icon.
  * @since 1.6
  */
