@@ -460,8 +460,16 @@ class SpecialUpload extends SpecialPage {
 			}
 		}
 
-		// Get the page text if this is not a reupload
-		if ( !$this->mForReUpload ) {
+		// Get the page text if the file description page does not exist
+		$title = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );
+		$descPageExists = $title instanceof Title && $title->exists();
+
+		// It might be possible that a file description has been deleted since
+		// we displayed the upload form; in this case some fields are likely
+		// empty but we still generate a file description skeleton which
+		// makes it easier to the user to complete it compared to creating
+		// a totally new file description page.
+		if ( !$descPageExists ) {
 			$pageText = self::getInitialPageText( $this->mComment, $this->mLicense,
 				$this->mCopyrightStatus, $this->mCopyrightSource, $this->getConfig() );
 		} else {
@@ -793,6 +801,7 @@ class UploadForm extends HTMLForm {
 		$this->mHideIgnoreWarning = !empty( $options['hideignorewarning'] );
 		$this->mDestWarningAck = !empty( $options['destwarningack'] );
 		$this->mDestFile = isset( $options['destfile'] ) ? $options['destfile'] : '';
+		$this->mDestDescPageTitle = Title::makeTitleSafe( NS_FILE, $this->mDestFile );
 
 		$this->mComment = isset( $options['description'] ) ?
 			$options['description'] : '';
@@ -1046,9 +1055,21 @@ class UploadForm extends HTMLForm {
 			)
 		);
 
+		# Indicates that overwriting an existing file is desired
 		if ( $this->mForReUpload ) {
 			$descriptor['DestFile']['readonly'] = true;
-		} else {
+		}
+
+		$descPageExists = $this->mDestDescPageTitle instanceof Title
+			&& $this->mDestDescPageTitle->exists();
+
+		# Show license input if the target can be amended by the user or
+		# if there is no file description page at the specified target
+		# because if there is a file description page, the selection will
+		# be silently discarded.
+		# For the first case: JavaScript will check if destination exists
+		# and hide non-applicable form elements on demand.
+		if ( !$this->mForReUpload || !$descPageExists ) {
 			$descriptor['License'] = array(
 				'type' => 'select',
 				'class' => 'Licenses',
@@ -1058,7 +1079,9 @@ class UploadForm extends HTMLForm {
 			);
 		}
 
-		if ( $config->get( 'UseCopyrightUpload' ) ) {
+		if ( $config->get( 'UseCopyrightUpload' )
+			&& ( !$this->mForReUpload || !$descPageExists )
+		) {
 			$descriptor['UploadCopyStatus'] = array(
 				'type' => 'text',
 				'section' => 'description',
