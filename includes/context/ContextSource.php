@@ -1,7 +1,5 @@
 <?php
 /**
- * Request-dependant objects containers.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -17,8 +15,6 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.18
- *
  * @author Happy-melon
  * @file
  */
@@ -26,6 +22,8 @@
 /**
  * The simplest way of implementing IContextSource is to hold a RequestContext as a
  * member variable and provide accessors to it.
+ *
+ * @since 1.18
  */
 abstract class ContextSource implements IContextSource {
 	/**
