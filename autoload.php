@@ -1054,6 +1054,7 @@ $wgAutoloadLocalClasses = array(
 	'ShowCacheStats' => __DIR__ . '/maintenance/showCacheStats.php',
 	'ShowJobs' => __DIR__ . '/maintenance/showJobs.php',
 	'ShowSiteStats' => __DIR__ . '/maintenance/showSiteStats.php',
+	'SimpleMessageSpecifier' => __DIR__ . '/includes/libs/MessageSpecifier.php',
 	'Site' => __DIR__ . '/includes/site/Site.php',
 	'SiteArray' => __DIR__ . '/includes/site/SiteList.php',
 	'SiteConfiguration' => __DIR__ . '/includes/SiteConfiguration.php',

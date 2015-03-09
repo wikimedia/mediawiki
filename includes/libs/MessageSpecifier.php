@@ -37,3 +37,31 @@ interface MessageSpecifier {
 	 */
 	public function getParams();
 }
+
+/**
+ * Simple implementation of the MessageSpecifier interface
+ *
+ * This exists so that code needing to return a MessageSpecifier needn't
+ * individually reimplement this when it doesn't want to be tied to any
+ * specific i18n implementation.
+ */
+class SimpleMessageSpecifier implements MessageSpecifier {
+	protected $key, $params;
+
+	/**
+	 * @param string $key
+	 * @param array $params
+	 */
+	public function __construct( $key, array $params = array() ) {
+		$this->key = $key;
+		$this->params = $params;
+	}
+
+	public function getKey() {
+		return $this->key;
+	}
+
+	public function getParams() {
+		return $this->params;
+	}
+}
