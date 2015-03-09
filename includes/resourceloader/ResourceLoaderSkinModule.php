@@ -31,11 +31,33 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
 		$logo = $this->getConfig()->get( 'Logo' );
+		$logoHD = $this->getConfig()->get( 'LogoHD' );
 		$styles = parent::getStyles( $context );
 		$styles['all'][] = '.mw-wiki-logo { background-image: ' .
 			CSSMin::buildUrlValue( $logo ) .
 			'; }';
-
+		if ( $logoHD ) {
+			if ( isset( $logoHD['1.5x'] ) ) {
+				$styles[
+					'(-webkit-min-device-pixel-ratio: 1.5), ' .
+					'(min--moz-device-pixel-ratio: 1.5), ' .
+					'(min-resolution: 1.5dppx), ' .
+					'(min-resolution: 144dpi)'
+				][] = '.mw-wiki-logo { background-image: ' .
+				CSSMin::buildUrlValue( $logoHD['1.5x'] ) .';' .
+				'background-size: 135px auto; }';
+			}
+			if ( isset( $logoHD['2x'] ) ) {
+				$styles[
+					'(-webkit-min-device-pixel-ratio: 2), ' .
+					'(min--moz-device-pixel-ratio: 2),'.
+					'(min-resolution: 2dppx), ' .
+					'(min-resolution: 192dpi)'
+				][] = '.mw-wiki-logo { background-image: ' .
+				CSSMin::buildUrlValue( $logoHD['2x'] ) . ';' .
+				'background-size: 135px auto; }';
+			}
+		}
 		return $styles;
 	}
 
@@ -64,6 +86,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 */
 	public function getModifiedHash( ResourceLoaderContext $context ) {
 		$logo = $this->getConfig()->get( 'Logo' );
-		return md5( parent::getModifiedHash( $context ) . $logo );
+		$logoHD = $this->getConfig()->get( 'LogoHD' );
+		return md5( parent::getModifiedHash( $context ) . $logo . json_encode( $logoHD ) );
 	}
 }
