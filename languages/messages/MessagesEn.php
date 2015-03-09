@@ -500,7 +500,7 @@ $specialPageAliases = array(
  * Regular expression matching the "link trail", e.g. "ed" in [[Toast]]ed, as
  * the first group, and the remainder of the string as the second group.
  */
-$linkTrail = '/^([a-z]+)(.*)$/sD';
+   $linkTrail =  '/^([a-z\x{E0}-\x{FF}]+)(.*)$/sDu';
 
 /**
  * Regular expression charset matching the "link prefix", e.g. "foo" in
