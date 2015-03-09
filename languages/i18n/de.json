@@ -3144,7 +3144,7 @@
 	"revdelete-uname-unhid": "Benutzername freigegeben",
 	"revdelete-restricted": "Einschränkungen gelten auch für Administratoren",
 	"revdelete-unrestricted": "Einschränkungen für Administratoren aufgehoben",
-	"logentry-block-block": "$1 {{GENDER:$2|sperrte}} {{GENDER:$4|$3}} mit einer Sperrdauer von $5 $6",
+	"logentry-block-block": "$1 {{GENDER:$2|sperrte}} {{GENDER:$4|$3}} für eine Dauer von $5 $6",
 	"logentry-block-unblock": "$1 {{GENDER:$2|hat}} die Sperre von {{GENDER:$4|$3}} aufgehoben",
 	"logentry-block-reblock": "$1 {{GENDER:$2|änderte}} die Sperreinstellungen für {{GENDER:$4|$3}} mit einer Sperrdauer von $5 $6",
 	"logentry-suppress-block": "$1 {{GENDER:$2|sperrte}} {{GENDER:$4|$3}} mit einer Sperrdauer von $5 $6",

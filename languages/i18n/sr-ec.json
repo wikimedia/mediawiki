@@ -3163,7 +3163,7 @@
 	"logentry-newusers-newusers": "$1 је {{GENDER:$2|отворио|отворила}} кориснички налог",
 	"logentry-newusers-create": "$1 је {{GENDER:$2|отворио|отворила}} кориснички налог",
 	"logentry-newusers-create2": "$1 је {{GENDER:$2|отворио|отворила}} кориснички налог $3",
-	"logentry-newusers-byemail": "$1 је {{GENDER:$2|направио|направила}} кориснички налог $3 и лозинка је послата на е-пошту",
+	"logentry-newusers-byemail": "$1 је {{GENDER:$2|отворио|отворила}} кориснички налог $3 и лозинка је послата на е-пошту",
 	"logentry-newusers-autocreate": "Кориснички налог $1 је аутоматски {{GENDER:$2|отворен}}",
 	"logentry-rights-rights": "$1 је {{GENDER:$2|променио|променила}} чланство групе за $3 из $4 у $5",
 	"logentry-rights-rights-legacy": "$1 је {{GENDER:$2|променио|променила}} чланство групе за $3",

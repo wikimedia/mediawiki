@@ -121,7 +121,8 @@
 			"Jonathan rrr",
 			"Paynekiller92",
 			"Kroji",
-			"JasterTDC"
+			"JasterTDC",
+			"Laurenslimb"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -1953,11 +1954,11 @@
 	"undeletepage": "Ver y restaurar páginas borradas",
 	"undeletepagetitle": "'''Las siguientes son las revisiones borradas de [[:$1|$1]]'''.",
 	"viewdeletedpage": "Ver páginas borradas",
-	"undeletepagetext": "{{PLURAL:$1|La siguiente página ha sido borrada pero aún está en el archivo y puede ser restaurada.|Las siguientes $1 páginas han sido borradas pero aún están en el archivo y pueden ser restauradas.}}\nPuede que el archivo se limpie periódicamente.",
+	"undeletepagetext": "{{PLURAL:$1|La siguiente página ha sido borrada, pero aún está en el archivo y puede ser restaurada.|Las siguientes $1 páginas han sido borradas, pero aún están en el archivo y pueden ser restauradas.}}\nPuede que el archivo se limpie periódicamente.",
 	"undelete-fieldset-title": "Restaurar revisiones",
 	"undeleteextrahelp": "Para restaurar todo el historial de la página, deja todas las casillas sin seleccionar y pulsa en <strong><em>{{int:undeletebtn}}</em></strong>. Para realizar una restauración selectiva, marca las revisiones que deban restaurarse y pulsa en <strong><em>{{int:undeletebtn}}</em></strong>.",
 	"undeleterevisions": "$1 {{PLURAL:$1|revisión|revisiones}} archivadas",
-	"undeletehistory": "Si restauras una página, todas sus revisiones serán restauradas al historial.\nSi una nueva página con el mismo nombre ha sido creada desde que se borró la original, las versiones restauradas aparecerán como historial anterior, y la revisión actual de la página actual no se reemplazará automáticamente.",
+	"undeletehistory": "Si restaura una página, todas sus revisiones serán restauradas en el historial.\nSi una nueva página con el mismo nombre ha sido creada desde que se borró la original, las versiones restauradas aparecerán en el historial previo.",
 	"undeleterevdel": "No se deshará el borrado si éste resulta en el borrado parcial de la última revisión de la página. En tal caso, desmarque o muestre las revisiones borradas más recientes. Las revisiones de archivos que no tiene permitido ver no se restaurarán.",
 	"undeletehistorynoadmin": "El artículo ha sido borrado. La razón de su eliminación se indica abajo en el resumen, así como los detalles de las ediciones realizadas antes del borrado. El texto completo del artículo está disponible sólo para usuarios con permisos de administrador.",
 	"undelete-revision": "Edición borrada de $1 (fechada $4, a $5) por $3:",

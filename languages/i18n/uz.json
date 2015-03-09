@@ -1327,6 +1327,8 @@
 	"pageinfo-toolboxlink": "Sahifa haqida maʼlumot",
 	"pageinfo-redirectsto": "Qayta yoʻnaltirish",
 	"markaspatrolledtext": "Bu sahifani tekshirilgan deb belgilash",
+	"markedaspatrolledtext": "[[:$1]] sahifasining ushbu versiyasi tekshirilgan deb belgilandi.",
+	"markedaspatrollednotify": "[[:$1]] sahifasidagi ushbu oʻzgarish tekshirilgan deb belgilandi.",
 	"patrol-log-page": "Patrullash qaydlari",
 	"previousdiff": "← Avvalgi tahrir",
 	"nextdiff": "Keyingi tahrir →",

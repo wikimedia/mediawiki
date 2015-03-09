@@ -1690,7 +1690,7 @@
 	"undeleteviewlink": "хьажа",
 	"undeleteinvert": "Къастае массо",
 	"undeletecomment": "Бахьна:",
-	"undeletedrevisions": "{{PLURAL:$1|меттахӀоттайина}} $1 {{PLURAL:$1|хийцам}}",
+	"undeletedrevisions": "{{PLURAL:$1|меттахӀоьттина}} $1 {{PLURAL:$1|хийцам}}",
 	"undeletedrevisions-files": "меттахӀоьттина $1 {{PLURAL:$1|верси}} а $2 {{PLURAL:$2|файл}} а",
 	"undeletedfiles": "$1 {{PLURAL:$1|файл меттахӀоттайина|файлаш меттахӀоттайина}}",
 	"cannotundelete": "ГӀалат меттахӀоттайина:\n$1",

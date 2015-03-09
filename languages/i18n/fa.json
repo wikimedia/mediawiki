@@ -1660,7 +1660,7 @@
 	"deletedcontributions-title": "مشارکت‌های حذف‌شده",
 	"sp-deletedcontributions-contribs": "مشارکت‌ها",
 	"linksearch": "جستجوی پیوندهای بیرونی",
-	"linksearch-pat": "جستجوی الگو:",
+	"linksearch-pat": "الگوی جستجو:",
 	"linksearch-ns": "فضای نام:",
 	"linksearch-ok": "جستجو",
 	"linksearch-text": "نشانه‌هایی مانند «‎*.wikipedia.org» را می‌توان استفاده کرد.\nحداقل یک دامنه سطح بالا ، به عنوان مثال \"*.org\" نیاز دارد.<br />\n{{PLURAL:$2|پروتکل|پروتکل‌های}} پشتیبانی‌شده: <code>$1</code> (پیش‌فرض برای http:// در صورت مشخص نشدن پروتکل تنظیم شده‌است).",

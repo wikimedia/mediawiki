@@ -83,7 +83,7 @@
 	"tog-enotifwatchlistpages": "當我的監視清單中的頁面或檔案有變更時，傳送電子郵件通知我",
 	"tog-enotifusertalkpages": "當我的對話頁面有變更時，傳送電子郵件通知我",
 	"tog-enotifminoredits": "當頁面與檔案有小修訂時，傳送電子郵件通知我",
-	"tog-enotifrevealaddr": "在通知郵件中顯示我的電子電子郵件地址",
+	"tog-enotifrevealaddr": "在通知郵件中顯示我的電子郵件地址",
 	"tog-shownumberswatching": "顯示正在監視的使用者數",
 	"tog-oldsig": "現有簽名：",
 	"tog-fancysig": "將簽名視為 Wikitext 語言 (不自動產生連結)",

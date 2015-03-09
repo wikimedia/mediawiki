@@ -8,7 +8,8 @@
 			"Umherirrender",
 			"Giftpflanze",
 			"Macofe",
-			"Se4598"
+			"Se4598",
+			"Purodha"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page/de|Dokumentation]]\n* [[mw:API:FAQ/de|Häufig gestellte Fragen]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailingliste]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-Ankündigungen]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Fehlerberichte und Anfragen]\n</div>\n<strong>Status:</strong> Alle auf dieser Seite gezeigten Funktionen sollten funktionieren, allerdings ist die API in aktiver Entwicklung und kann sich zu jeder Zeit ändern. Abonniere die [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ MediaWiki-API-Ankündigungs-Mailingliste], um über Aktualisierungen informiert zu werden.\n\n<strong>Fehlerhafte Anfragen:</strong> Wenn fehlerhafte Anfragen an die API gesendet werden, wird ein HTTP-Header mit dem Schlüssel „MediaWiki-API-Error“ gesendet. Der Wert des Headers und der Fehlercode werden auf den gleichen Wert gesetzt. Für weitere Informationen siehe [[mw:API:Errors_and_warnings|API: Fehler und Warnungen]].",
@@ -259,10 +260,10 @@
 	"apihelp-query+allimages-example-recent": "Zeigt eine Liste von kürzlich hochgeladenen Dateien ähnlich zu [[Special:NewFiles]].",
 	"apihelp-query+alllinks-example-unique": "Einheitlich verlinkte Titel auflisten",
 	"apihelp-query+allpages-param-filterredir": "Welche Seiten aufgelistet werden sollen.",
-	"apihelp-query+allredirects-example-unique": "Einheitliche Zielseiten auflisten",
+	"apihelp-query+allredirects-example-unique": "Einzigartige Zielseiten auflisten.",
 	"apihelp-query+allredirects-example-generator": "Seiten abrufen, die die Weiterleitungen enthalten",
 	"apihelp-query+alltransclusions-param-namespace": "Der aufzulistende Namensraum.",
-	"apihelp-query+alltransclusions-example-unique": "Einheitlich eingebundene Titel auflisten",
+	"apihelp-query+alltransclusions-example-unique": "Einzigartige eingebundene Titel auflisten.",
 	"apihelp-query+allusers-param-limit": "Wie viele Benutzernamen insgesamt zurückgegeben werden sollen.",
 	"apihelp-query+allusers-example-Y": "Benutzer ab <kbd>Y</kbd> auflisten.",
 	"apihelp-query+backlinks-description": "Alle Seiten finden, die auf die angegebene Seite verlinken.",
