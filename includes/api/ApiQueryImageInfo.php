@@ -339,7 +339,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		// in the actual normalised version, only if we can actually normalise them,
 		// so we use the functions scope to throw away the normalisations.
 		if ( !$h->normaliseParams( $image, $finalParams ) ) {
-			$this->dieUsage( "Could not normalise image parameters for " . $image->getName(), "urlparamnormal" );
+			$this->dieUsage(
+				"Could not normalise image parameters for " . $image->getName(),
+				"urlparamnormal"
+			);
 		}
 	}
 
@@ -465,7 +468,18 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$uploadwarning = isset( $prop['uploadwarning'] );
 
 		if ( $uploadwarning ) {
-			$vals['html'] = SpecialUpload::getExistsWarning( UploadBase::getExistsWarning( $file ) );
+			$existsWarning = UploadBase::getExistsWarning( $file );
+			$vals['uploadwarning'] = array(
+				'code' => $existsWarning['warning'],
+				'html' => SpecialUpload::getExistsWarning( $existsWarning ),
+			);
+			// Title::exists() allows hooks to alter its result;
+			// UploadBase::getExistsWarning returns one warning only and
+			// considers the existence of a file (not the description page)
+			// more important
+			if ( $file->getTitle()->getArticleID() ) {
+				$vals['uploadwarning']['page-exists'] = '';
+			}
 		}
 
 		if ( $file->isDeleted( File::DELETED_FILE ) ) {

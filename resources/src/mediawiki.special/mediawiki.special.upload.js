@@ -16,6 +16,7 @@
 		typing: false,
 		delay: 500, // ms
 		timeoutID: false,
+		initialPageDescriptorRows: null,
 
 		keypress: function () {
 			if ( !ajaxUploadDestCheck ) {
@@ -35,7 +36,7 @@
 			}
 			// Check response cache
 			if ( this.responseCache.hasOwnProperty( this.nameToCheck ) ) {
-				this.setWarning( this.responseCache[this.nameToCheck] );
+				this.processResult( this.responseCache[this.nameToCheck], this.nameToCheck );
 				return;
 			}
 
@@ -78,9 +79,52 @@
 			} );
 		},
 
+		/**
+		 * Returns all rows that are exclusively used
+		 * upon creation of a new file description page
+		 *
+		 * @return jQuery
+		 */
+		getInitialPageDescriptorRows: function () {
+			this.initialPageDescriptorRows =
+				this.initialPageDescriptorRows || $license
+					.add( '#wpUploadCopyStatus' )
+					.add( '#wpUploadSource' )
+					.closest( 'tr' );
+
+			return this.initialPageDescriptorRows;
+		},
+
+		/**
+		 * Idempotent method that processes the API result;
+		 * either originating API or the result cache
+		 *
+		 * @param {Object} result
+		 * @param {string} fileName
+		 */
 		processResult: function ( result, fileName ) {
-			this.setWarning( result.html );
-			this.responseCache[fileName] = result.html;
+			var uploadwarning = result.uploadwarning;
+
+			this.responseCache[fileName] = uploadwarning;
+			this.setWarning( uploadwarning.html );
+			this.toggleInitialPageDescriptorRows(
+				uploadwarning['page-exists'] !== undefined );
+		},
+
+		/**
+		 * Dependent on whether the destination file description page
+		 * exists toggles visibility of form controls whose values
+		 * are used for the creation of the initial file description
+		 * page
+		 *
+		 * @param {string} pageExists
+		 */
+		toggleInitialPageDescriptorRows: function ( pageExists ) {
+			if ( pageExists ) {
+				this.getInitialPageDescriptorRows().hide();
+			} else {
+				this.getInitialPageDescriptorRows().show();
+			}
 		},
 
 		setWarning: function ( warning ) {
@@ -111,7 +155,7 @@
 				return;
 			}
 
-			$spinnerLicense = $.createSpinner().insertAfter( '#wpLicense' );
+			$spinnerLicense = $.createSpinner().insertAfter( $license );
 
 			( new mw.Api() ).get( {
 				action: 'parse',
