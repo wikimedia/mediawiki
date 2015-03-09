@@ -21,6 +21,15 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $key, $message->getKey() );
 		$this->assertEquals( $params, $message->getParams() );
 		$this->assertEquals( $expectedLang, $message->getLanguage() );
+
+		$messageSpecifier = $this->getMockForAbstractClass( 'MessageSpecifier' );
+		$messageSpecifier->expects( $this->any() )->method( 'getKey' )->willReturn( $key );
+		$messageSpecifier->expects( $this->any() )->method( 'getParams' )->willReturn( $params );
+		$message = new Message( $messageSpecifier, array(), $language );
+
+		$this->assertEquals( $key, $message->getKey() );
+		$this->assertEquals( $params, $message->getParams() );
+		$this->assertEquals( $expectedLang, $message->getLanguage() );
 	}
 
 	public static function provideConstructor() {
