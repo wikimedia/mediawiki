@@ -136,7 +136,7 @@
 	 * Returns a function suitable for use as a global, to construct strings from the message key (and optional replacements).
 	 * e.g.
 	 *
-	 *       window.gM = mediaWiki.parser.getMessageFunction( options );
+	 *       window.gM = mediaWiki.jqueryMsg.getMessageFunction( options );
 	 *       $( 'p#headline' ).html( gM( 'hello-user', username ) );
 	 *
 	 * Like the old gM() function this returns only strings, so it destroys any bindings. If you want to preserve bindings use the
@@ -178,7 +178,7 @@
 	 * the current selector. Bindings to passed-in jquery elements are preserved. Functions become click handlers for [$1 linktext] links.
 	 * e.g.
 	 *
-	 *        $.fn.msg = mediaWiki.parser.getJqueryPlugin( options );
+	 *        $.fn.msg = mediaWiki.jqueryMsg.getPlugin( options );
 	 *        var userlink = $( '<a>' ).click( function () { alert( "hello!!" ) } );
 	 *        $( 'p#headline' ).msg( 'hello-user', userlink );
 	 *
