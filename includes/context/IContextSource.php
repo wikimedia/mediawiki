@@ -29,7 +29,8 @@
  * The contained objects include:
  *   a) Key objects that depend (for construction/loading) on the HTTP request
  *   b) Key objects used for response building and PHP session state control
- *   c) The site configuration object
+ *   c) Performance metric deltas accumulated from request execution
+ *   d) The site configuration object
  * All of the objects are useful for the vast majority of MediaWiki requests.
  * The site configuration object is included on grounds of extreme
  * utility, even though it should not actually depend on the web request.
@@ -40,7 +41,8 @@
  *   c) Primary MediaWiki output builder objects (OutputPage, user skin object)
  *   d) The language object for the user/request
  *   e) The title and wiki page objects requested via URL (if any)
- *   f) The site configuration object
+ *   f) Performance metric deltas accumulated from request execution
+ *   g) The site configuration object
  *
  * This class is not intended as a service-locator nor a service singleton.
  * Objects that only depend on site configuration do not belong here (aside
