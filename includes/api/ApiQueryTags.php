@@ -50,11 +50,17 @@ class ApiQueryTags extends ApiQueryBase {
 		$limit = $params['limit'];
 		$result = $this->getResult();
 
-		$extensionDefinedTags = array_fill_keys( ChangeTags::listExtensionDefinedTags(), 0 );
+		global $wgUseCoreChangeTags;
+		if ( $wgUseCoreChangeTags ) {
+			$coreTags = array_fill_keys( CoreChangeTags::listTags(), 0 );
+		} else {
+			$coreTags = array();
+		}
+		$automaticTags = array_fill_keys( ChangeTags::listAutomaticTags(), 0 );
 		$explicitlyDefinedTags = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), 0 );
 		$extensionActivatedTags = array_fill_keys( ChangeTags::listExtensionActivatedTags(), 0 );
 
-		$definedTags = array_merge( $extensionDefinedTags, $explicitlyDefinedTags );
+		$definedTags = array_merge( $automaticTags, $explicitlyDefinedTags );
 
 		# Fetch defined tags that aren't past the continuation
 		if ( $params['continue'] !== null ) {
@@ -105,7 +111,8 @@ class ApiQueryTags extends ApiQueryBase {
 				$tag['hitcount'] = $hitcount;
 			}
 
-			$isExtension = isset( $extensionDefinedTags[$tagName] );
+			$isCore = isset( $coreTags[$tagName] );
+			$isExtension = isset( $automaticTags[$tagName] ) && !$isCore;
 			$isExplicit = isset( $explicitlyDefinedTags[$tagName] );
 
 			if ( $fld_defined && ( $isExtension || $isExplicit ) ) {
@@ -114,6 +121,9 @@ class ApiQueryTags extends ApiQueryBase {
 
 			if ( $fld_source ) {
 				$tag['source'] = array();
+				if ( $isExtension ) {
+					$tag['source'][] = 'builtin';
+				}
 				if ( $isExtension ) {
 					$tag['source'][] = 'extension';
 				}

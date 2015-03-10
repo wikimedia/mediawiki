@@ -257,6 +257,7 @@ $wgAutoloadLocalClasses = array(
 	'CopyFileBackend' => __DIR__ . '/maintenance/copyFileBackend.php',
 	'CopyFileOp' => __DIR__ . '/includes/filebackend/FileOp.php',
 	'CopyJobQueue' => __DIR__ . '/maintenance/copyJobQueue.php',
+	'CoreChangeTags' => __DIR__ . '/includes/CoreChangeTags.php',
 	'CoreParserFunctions' => __DIR__ . '/includes/parser/CoreParserFunctions.php',
 	'CoreTagHooks' => __DIR__ . '/includes/parser/CoreTagHooks.php',
 	'CreateAndPromote' => __DIR__ . '/maintenance/createAndPromote.php',

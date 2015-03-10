@@ -6046,6 +6046,11 @@ $wgRecentChangesFlags = array(
 	),
 );
 
+/**
+ * bla
+ */
+$wgUseCoreChangeTags = false;
+
 /** @} */ # end RC/watchlist }
 
 /************************************************************************//**

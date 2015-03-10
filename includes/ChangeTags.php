@@ -974,8 +974,8 @@ class ChangeTags {
 			return Status::newFatal( 'tags-delete-too-many-uses', $tag, self::MAX_DELETE_USES );
 		}
 
-		$extensionDefined = self::listExtensionDefinedTags();
-		if ( in_array( $tag, $extensionDefined ) ) {
+		$automaticTags = self::listAutomaticTags();
+		if ( in_array( $tag, $automaticTags ) ) {
 			// extension-defined tags can't be deleted unless the extension
 			// specifically allows it
 			$status = Status::newFatal( 'tags-delete-not-allowed' );
@@ -1055,13 +1055,13 @@ class ChangeTags {
 	/**
 	 * Basically lists defined tags which count even if they aren't applied to anything.
 	 * It returns a union of the results of listExplicitlyDefinedTags() and
-	 * listExtensionDefinedTags().
+	 * listAutomaticTags().
 	 *
 	 * @return string[] Array of strings: tags
 	 */
 	public static function listDefinedTags() {
 		$tags1 = self::listExplicitlyDefinedTags();
-		$tags2 = self::listExtensionDefinedTags();
+		$tags2 = self::listAutomaticTags();
 		return array_values( array_unique( array_merge( $tags1, $tags2 ) ) );
 	}
 
@@ -1101,15 +1101,17 @@ class ChangeTags {
 	}
 
 	/**
-	 * Lists tags defined by extensions using the ListDefinedTags hook.
-	 * Extensions need only define those tags they deem to be in active use.
+	 * Lists tags defined by MediaWiki core and by extensions using the
+	 * ListDefinedTags hook.
+	 * Extensions should define all tags that could be used again in the
+	 * future, even if the tag is not currently active.
 	 *
 	 * Tries memcached first.
 	 *
 	 * @return string[] Array of strings: tags
 	 * @since 1.25
 	 */
-	public static function listExtensionDefinedTags() {
+	public static function listAutomaticTags() {
 		// Caching...
 		global $wgMemc;
 		$key = wfMemcKey( 'valid-tags-hook' );
@@ -1118,7 +1120,7 @@ class ChangeTags {
 			return $tags;
 		}
 
-		$emptyTags = array();
+		$emptyTags = CoreChangeTags::listTags();
 		Hooks::run( 'ListDefinedTags', array( &$emptyTags ) );
 		$emptyTags = array_filter( array_unique( $emptyTags ) );
 
