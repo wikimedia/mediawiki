@@ -62,6 +62,11 @@ class RequestContext implements IContextSource {
 	private $skin;
 
 	/**
+	 * @var StatsdDataFactory
+	 */
+	private $stats;
+
+	/**
 	 * @var Config
 	 */
 	private $config;
@@ -116,6 +121,22 @@ class RequestContext implements IContextSource {
 		}
 
 		return $this->request;
+	}
+
+	/**
+	 * Get the Stats object
+	 *
+	 * @return BufferingStatsdDataFactory
+	 */
+	public function getStats() {
+		if ( $this->stats === null ) {
+			$config = $this->getConfig();
+			$prefix = $config->has( 'StatsdMetricPrefix' )
+				? rtrim( $config->get( 'StatsdMetricPrefix' ), '.' )
+				: 'MediaWiki';
+			$this->stats = new BufferingStatsdDataFactory( $prefix );
+		}
+		return $this->stats;
 	}
 
 	/**
