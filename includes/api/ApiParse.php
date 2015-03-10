@@ -70,6 +70,9 @@ class ApiParse extends ApiBase {
 
 		if ( isset( $params['section'] ) ) {
 			$this->section = $params['section'];
+			if ( !preg_match( '/^((T-)?\d+|new)$/', $this->section ) ) {
+				$this->dieUsage( "The section parameter must be a valid section id or 'new'", "invalidsection" );
+			}
 		} else {
 			$this->section = false;
 		}
@@ -203,7 +206,14 @@ class ApiParse extends ApiBase {
 			}
 
 			if ( $this->section !== false ) {
-				$this->content = $this->getSectionContent( $this->content, $titleObj->getPrefixedText() );
+				if ( $this->section === 'new' ) {
+					// Insert the section title above the content.
+					if ( !is_null( $params['sectiontitle'] ) && $params['sectiontitle'] !== '' ) {
+						$this->content = $this->content->addSectionHeader( $params['sectiontitle'] );
+					}
+				} else {
+					$this->content = $this->getSectionContent( $this->content, $titleObj->getPrefixedText() );
+				}
 			}
 
 			if ( $params['pst'] || $params['onlypst'] ) {
@@ -698,6 +708,9 @@ class ApiParse extends ApiBase {
 			'onlypst' => false,
 			'effectivelanglinks' => false,
 			'section' => null,
+			'sectiontitle' => array(
+				ApiBase::PARAM_TYPE => 'string',
+			),
 			'disablepp' => false,
 			'disableeditsection' => false,
 			'generatexml' => array(
