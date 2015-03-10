@@ -36,6 +36,9 @@ class ApiParse extends ApiBase {
 	/** @var Content $pstContent */
 	private $pstContent = null;
 
+	/** @var string $summary */
+	private $summary = null;
+
 	public function execute() {
 		// The data is hot but user-dependent, like page views, so we set vary cookies
 		$this->getMain()->setCacheMode( 'anon-public-user-private' );
@@ -70,8 +73,17 @@ class ApiParse extends ApiBase {
 
 		if ( isset( $params['section'] ) ) {
 			$this->section = $params['section'];
+			if ( !preg_match( '/^((T-)?\d+|new)$/', $this->section ) ) {
+				$this->dieUsage( "The section parameter must be a valid section id or 'new'", "invalidsection" );
+			}
 		} else {
 			$this->section = false;
+		}
+
+		if ( isset( $params['summary'] ) ) {
+			$this->summary = $params['summary'];
+		} else {
+			$this->summary = false;
 		}
 
 		// The parser needs $wgTitle to be set, apparently the
@@ -468,8 +480,18 @@ class ApiParse extends ApiBase {
 	 * @return Content|bool
 	 */
 	private function getSectionContent( Content $content, $what ) {
-		// Not cached (save or load)
-		$section = $content->getSection( $this->section );
+		if ( $this->section == 'new' ) {
+			if ( $this->summary !== '' ) {
+				// Insert the section title above the content.
+				$section = $content->addSectionHeader( $this->summary );
+			} else {
+				$this->dieUsage( "A new section requires a summary" );
+				$section = false;
+			}
+		} else {
+			// Not cached (save or load)
+			$section = $content->getSection( $this->section );
+		}
 		if ( $section === false ) {
 			$this->dieUsage( "There is no section {$this->section} in " . $what, 'nosuchsection' );
 		}
