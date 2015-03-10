@@ -3,7 +3,7 @@
 	"description": "Node.js dependencies used for KSS generation",
 	"version": "0.0.1",
 	"dependencies": {
-		"kss": ">=0.3.7"
+		"kss": ">=0.3.7 <=1.2.0"
 	},
 	"repository" : {
 		"type" : "git",
