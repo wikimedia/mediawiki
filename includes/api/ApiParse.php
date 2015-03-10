@@ -36,6 +36,9 @@ class ApiParse extends ApiBase {
 	/** @var Content $pstContent */
 	private $pstContent = null;
 
+	/** @var string $summary */
+	private $summary = null;
+
 	public function execute() {
 		// The data is hot but user-dependent, like page views, so we set vary cookies
 		$this->getMain()->setCacheMode( 'anon-public-user-private' );
@@ -70,6 +73,9 @@ class ApiParse extends ApiBase {
 
 		if ( isset( $params['section'] ) ) {
 			$this->section = $params['section'];
+			if ( !preg_match( '/^((T-)?\d+|new)$/', $this->section ) ) {
+				$this->dieUsage( "The section parameter must be a valid section id or 'new'", "invalidsection" );
+			}
 		} else {
 			$this->section = false;
 		}
@@ -203,7 +209,12 @@ class ApiParse extends ApiBase {
 			}
 
 			if ( $this->section !== false ) {
-				$this->content = $this->getSectionContent( $this->content, $titleObj->getPrefixedText() );
+				if ( $this->section === 'new' ) {
+					// Insert the section title above the content.
+					$this->content = $this->content->addSectionHeader( $params['sectiontitle'] ?: '' );
+				} else {
+					$this->content = $this->getSectionContent( $this->content, $titleObj->getPrefixedText() );
+				}
 			}
 
 			if ( $params['pst'] || $params['onlypst'] ) {
@@ -698,6 +709,9 @@ class ApiParse extends ApiBase {
 			'onlypst' => false,
 			'effectivelanglinks' => false,
 			'section' => null,
+			'sectiontitle' => array(
+				ApiBase::PARAM_TYPE => 'string',
+			),
 			'disablepp' => false,
 			'disableeditsection' => false,
 			'generatexml' => array(
