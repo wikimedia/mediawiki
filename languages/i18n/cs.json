@@ -139,7 +139,7 @@
 	"october-date": "$1. října",
 	"november-date": "$1. listopadu",
 	"december-date": "$1. prosince",
-	"pagecategories": "{{PLURAL:$1|Kategorie|Kategorie|Kategorie}}",
+	"pagecategories": "{{PLURAL:$1|Kategorie}}",
 	"category_header": "Stránky v kategorii „$1“",
 	"subcategories": "Podkategorie",
 	"category-media-header": "Soubory v kategorii „$1“",
