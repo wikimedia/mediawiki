@@ -253,6 +253,7 @@
 	"apihelp-parse-param-onlypst": "{{doc-apihelp-param|parse|onlypst}}",
 	"apihelp-parse-param-effectivelanglinks": "{{doc-apihelp-param|parse|effectivelanglinks}}",
 	"apihelp-parse-param-section": "{{doc-apihelp-param|parse|section}}",
+	"apihelp-parse-param-sectiontitle": "{{doc-apihelp-param|parse|sectiontitle}}",
 	"apihelp-parse-param-disablepp": "{{doc-apihelp-param|parse|disablepp}}",
 	"apihelp-parse-param-disableeditsection": "{{doc-apihelp-param|parse|disableeditsection}}",
 	"apihelp-parse-param-generatexml": "{{doc-apihelp-param|parse|generatexml|params=* $1 - Value of the constant CONTENT_MODEL_WIKITEXT|paramstart=2}}",
