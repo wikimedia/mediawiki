@@ -7421,6 +7421,34 @@ $wgPageLanguageUseDB = false;
 $wgUseLinkNamespaceDBFields = true;
 
 /**
+ * Global configuration variable for Virtual REST Services.
+ * Parameters for different services are to be declared inside
+ * $wgVirtualRestConfig['modules'], which is to be treated as an associative
+ * array. Global parameters will be merged with service-specific ones. The
+ * result will then be passed to VirtualRESTService::__construct() in the
+ * module.
+ *
+ * Example config for Parsoid:
+ *
+ *   $wgVirtualRestConfig['modules']['parsoid'] = array(
+ *     'url' => 'http://localhost:8000',
+ *     'prefix' => 'enwiki',
+ *   );
+ *
+ * @var array
+ * @since 1.25
+ */
+$wgVirtualRestConfig = array(
+	'modules' => array(),
+	'global' => array(
+		# Timeout in seconds
+		'timeout' => 360,
+		'forwardCookies' => false,
+		'HTTPProxy' => null
+	)
+);
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
