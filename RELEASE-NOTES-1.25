@@ -272,6 +272,7 @@ production.
 * Added ApiBase::lacksSameOriginSecurity() to allow modules to easily check if
   the current request was sent with the 'callback' parameter (or any future
   method that breaks the same-origin policy).
+* Profiling methods in ApiBase are deprecated and no longer need to be called.
 * The following methods have been deprecated and may be removed in a future
   release:
   * ApiBase::getDescription
@@ -280,6 +281,14 @@ production.
   * ApiBase::makeHelpMsg
   * ApiBase::makeHelpArrayToString
   * ApiBase::makeHelpMsgParameters
+  * ApiBase::getModuleProfileName
+  * ApiBase::profileIn
+  * ApiBase::profileOut
+  * ApiBase::safeProfileOut
+  * ApiBase::getProfileTime
+  * ApiBase::profileDBIn
+  * ApiBase::profileDBOut
+  * ApiBase::getProfileDBTime
   * ApiFormatBase::setUnescapeAmps
   * ApiFormatBase::getWantsHelp
   * ApiFormatBase::setHelp

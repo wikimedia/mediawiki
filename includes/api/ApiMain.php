@@ -361,14 +361,11 @@ class ApiMain extends ApiBase {
 	 * Execute api request. Any errors will be handled if the API was called by the remote client.
 	 */
 	public function execute() {
-		$this->profileIn();
 		if ( $this->mInternalMode ) {
 			$this->executeAction();
 		} else {
 			$this->executeActionWithErrorHandling();
 		}
-
-		$this->profileOut();
 	}
 
 	/**
@@ -450,8 +447,6 @@ class ApiMain extends ApiBase {
 		// Reset and print just the error message
 		ob_clean();
 
-		// If the error occurred during printing, do a printer->profileOut()
-		$this->mPrinter->safeProfileOut();
 		$this->printResult( true );
 	}
 
@@ -771,7 +766,6 @@ class ApiMain extends ApiBase {
 		// Printer may not be able to handle errors. This is particularly
 		// likely if the module returns something for getCustomPrinter().
 		if ( !$this->mPrinter->canPrintErrors() ) {
-			$this->mPrinter->safeProfileOut();
 			$this->mPrinter = $this->createPrinterByName( self::API_DEFAULT_FORMAT );
 		}
 
@@ -1040,10 +1034,8 @@ class ApiMain extends ApiBase {
 		$this->checkAsserts( $params );
 
 		// Execute
-		$module->profileIn();
 		$module->execute();
 		Hooks::run( 'APIAfterExecute', array( &$module ) );
-		$module->profileOut();
 
 		$this->reportUnusedParams();
 
@@ -1194,13 +1186,10 @@ class ApiMain extends ApiBase {
 
 		$this->getResult()->cleanUpUTF8();
 		$printer = $this->mPrinter;
-		$printer->profileIn();
 
 		$printer->initPrinter( false );
-
 		$printer->execute();
 		$printer->closePrinter();
-		$printer->profileOut();
 	}
 
 	/**

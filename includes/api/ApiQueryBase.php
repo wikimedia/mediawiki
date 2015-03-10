@@ -372,12 +372,7 @@ abstract class ApiQueryBase extends ApiBase {
 			isset( $extraQuery['join_conds'] ) ? (array)$extraQuery['join_conds'] : array()
 		);
 
-		// getDB has its own profileDBIn/Out calls
-		$db = $this->getDB();
-
-		$this->profileDBIn();
-		$res = $db->select( $tables, $fields, $where, $method, $options, $join_conds );
-		$this->profileDBOut();
+		$res = $this->getDB()->select( $tables, $fields, $where, $method, $options, $join_conds );
 
 		return $res;
 	}
@@ -590,7 +585,6 @@ abstract class ApiQueryBase extends ApiBase {
 	protected function checkRowCount() {
 		wfDeprecated( __METHOD__, '1.24' );
 		$db = $this->getDB();
-		$this->profileDBIn();
 		$rowcount = $db->estimateRowCount(
 			$this->tables,
 			$this->fields,
@@ -598,7 +592,6 @@ abstract class ApiQueryBase extends ApiBase {
 			__METHOD__,
 			$this->options
 		);
-		$this->profileDBOut();
 
 		if ( $rowcount > $this->getConfig()->get( 'APIMaxDBRows' ) ) {
 			return false;

@@ -32,9 +32,6 @@
  * Module parameters: Derived classes can define getAllowedParams() to specify
  *    which parameters to expect, how to parse and validate them.
  *
- * Profiling: various methods to allow keeping tabs on various tasks and their
- *    time costs
- *
  * Self-documentation: code to allow the API to document its own state
  *
  * @ingroup API
@@ -483,9 +480,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	protected function getDB() {
 		if ( !isset( $this->mSlaveDB ) ) {
-			$this->profileDBIn();
 			$this->mSlaveDB = wfGetDB( DB_SLAVE, 'api' );
-			$this->profileDBOut();
 		}
 
 		return $this->mSlaveDB;
@@ -1297,7 +1292,6 @@ abstract class ApiBase extends ContextSource {
 	 * @throws UsageException
 	 */
 	public function dieUsage( $description, $errorCode, $httpRespCode = 0, $extradata = null ) {
-		Profiler::instance()->close();
 		throw new UsageException(
 			$description,
 			$this->encodeParamName( $errorCode ),
@@ -1954,6 +1948,21 @@ abstract class ApiBase extends ContextSource {
 		throw new MWException( "Internal error in $method: $message" );
 	}
 
+	/**
+	 * Write logging information for API features to a debug log, for usage
+	 * analysis.
+	 * @param string $feature Feature being used.
+	 */
+	protected function logFeatureUsage( $feature ) {
+		$request = $this->getRequest();
+		$s = '"' . addslashes( $feature ) . '"' .
+			' "' . wfUrlencode( str_replace( ' ', '_', $this->getUser()->getName() ) ) . '"' .
+			' "' . $request->getIP() . '"' .
+			' "' . addslashes( $request->getHeader( 'Referer' ) ) . '"' .
+			' "' . addslashes( $this->getMain()->getUserAgent() ) . '"';
+		wfDebugLog( 'api-feature-usage', $s, 'private' );
+	}
+
 	/**@}*/
 
 	/************************************************************************//**
@@ -2185,162 +2194,6 @@ abstract class ApiBase extends ContextSource {
 	 * @param array $options Options passed to ApiHelp::getHelp
 	 */
 	public function modifyHelp( array &$help, array $options ) {
-	}
-
-	/**@}*/
-
-	/************************************************************************//**
-	 * @name   Profiling
-	 * @{
-	 */
-
-	/**
-	 * Profiling: total module execution time
-	 */
-	private $mTimeIn = 0, $mModuleTime = 0;
-	/** @var ScopedCallback */
-	private $profile;
-	/** @var ScopedCallback */
-	private $dbProfile;
-
-	/**
-	 * Get the name of the module as shown in the profiler log
-	 *
-	 * @param DatabaseBase|bool $db
-	 *
-	 * @return string
-	 */
-	public function getModuleProfileName( $db = false ) {
-		if ( $db ) {
-			return 'API:' . $this->mModuleName . '-DB';
-		}
-
-		return 'API:' . $this->mModuleName;
-	}
-
-	/**
-	 * Start module profiling
-	 */
-	public function profileIn() {
-		if ( $this->mTimeIn !== 0 ) {
-			ApiBase::dieDebug( __METHOD__, 'Called twice without calling profileOut()' );
-		}
-		$this->mTimeIn = microtime( true );
-		$this->profile = Profiler::instance()->scopedProfileIn( $this->getModuleProfileName() );
-	}
-
-	/**
-	 * End module profiling
-	 */
-	public function profileOut() {
-		if ( $this->mTimeIn === 0 ) {
-			ApiBase::dieDebug( __METHOD__, 'Called without calling profileIn() first' );
-		}
-		if ( $this->mDBTimeIn !== 0 ) {
-			ApiBase::dieDebug(
-				__METHOD__,
-				'Must be called after database profiling is done with profileDBOut()'
-			);
-		}
-
-		$this->mModuleTime += microtime( true ) - $this->mTimeIn;
-		$this->mTimeIn = 0;
-		Profiler::instance()->scopedProfileOut( $this->profile );
-	}
-
-	/**
-	 * When modules crash, sometimes it is needed to do a profileOut() regardless
-	 * of the profiling state the module was in. This method does such cleanup.
-	 */
-	public function safeProfileOut() {
-		if ( $this->mTimeIn !== 0 ) {
-			if ( $this->mDBTimeIn !== 0 ) {
-				$this->profileDBOut();
-			}
-			$this->profileOut();
-		}
-	}
-
-	/**
-	 * Total time the module was executed
-	 * @return float
-	 */
-	public function getProfileTime() {
-		if ( $this->mTimeIn !== 0 ) {
-			ApiBase::dieDebug( __METHOD__, 'Called without calling profileOut() first' );
-		}
-
-		return $this->mModuleTime;
-	}
-
-	/**
-	 * Profiling: database execution time
-	 */
-	private $mDBTimeIn = 0, $mDBTime = 0;
-
-	/**
-	 * Start module profiling
-	 */
-	public function profileDBIn() {
-		if ( $this->mTimeIn === 0 ) {
-			ApiBase::dieDebug(
-				__METHOD__,
-				'Must be called while profiling the entire module with profileIn()'
-			);
-		}
-		if ( $this->mDBTimeIn !== 0 ) {
-			ApiBase::dieDebug( __METHOD__, 'Called twice without calling profileDBOut()' );
-		}
-		$this->mDBTimeIn = microtime( true );
-
-		$this->dbProfile = Profiler::instance()->scopedProfileIn( $this->getModuleProfileName( true ) );
-	}
-
-	/**
-	 * End database profiling
-	 */
-	public function profileDBOut() {
-		if ( $this->mTimeIn === 0 ) {
-			ApiBase::dieDebug( __METHOD__, 'Must be called while profiling ' .
-				'the entire module with profileIn()' );
-		}
-		if ( $this->mDBTimeIn === 0 ) {
-			ApiBase::dieDebug( __METHOD__, 'Called without calling profileDBIn() first' );
-		}
-
-		$time = microtime( true ) - $this->mDBTimeIn;
-		$this->mDBTimeIn = 0;
-
-		$this->mDBTime += $time;
-		$this->getMain()->mDBTime += $time;
-		Profiler::instance()->scopedProfileOut( $this->dbProfile );
-	}
-
-	/**
-	 * Total time the module used the database
-	 * @return float
-	 */
-	public function getProfileDBTime() {
-		if ( $this->mDBTimeIn !== 0 ) {
-			ApiBase::dieDebug( __METHOD__, 'Called without calling profileDBOut() first' );
-		}
-
-		return $this->mDBTime;
-	}
-
-	/**
-	 * Write logging information for API features to a debug log, for usage
-	 * analysis.
-	 * @param string $feature Feature being used.
-	 */
-	protected function logFeatureUsage( $feature ) {
-		$request = $this->getRequest();
-		$s = '"' . addslashes( $feature ) . '"' .
-			' "' . wfUrlencode( str_replace( ' ', '_', $this->getUser()->getName() ) ) . '"' .
-			' "' . $request->getIP() . '"' .
-			' "' . addslashes( $request->getHeader( 'Referer' ) ) . '"' .
-			' "' . addslashes( $this->getMain()->getUserAgent() ) . '"';
-		wfDebugLog( 'api-feature-usage', $s, 'private' );
 	}
 
 	/**@}*/
@@ -2793,6 +2646,71 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		return false;
+	}
+
+	/**
+	 * @deprecated since 1.25, always returns empty string
+	 * @param DatabaseBase|bool $db
+	 * @return string
+	 */
+	public function getModuleProfileName( $db = false ) {
+		wfDeprecated( __METHOD__, '1.25' );
+		return '';
+	}
+
+	/**
+	 * @deprecated since 1.25
+	 */
+	public function profileIn() {
+		// No wfDeprecated() yet because extensions call this and might need to
+		// keep doing so for BC.
+	}
+
+	/**
+	 * @deprecated since 1.25
+	 */
+	public function profileOut() {
+		// No wfDeprecated() yet because extensions call this and might need to
+		// keep doing so for BC.
+	}
+
+	/**
+	 * @deprecated since 1.25
+	 */
+	public function safeProfileOut() {
+		wfDeprecated( __METHOD__, '1.25' );
+	}
+
+	/**
+	 * @deprecated since 1.25, always returns 0
+	 * @return float
+	 */
+	public function getProfileTime() {
+		wfDeprecated( __METHOD__, '1.25' );
+		return 0;
+	}
+
+	/**
+	 * @deprecated since 1.25
+	 */
+	public function profileDBIn() {
+		wfDeprecated( __METHOD__, '1.25' );
+	}
+
+	/**
+	 * @deprecated since 1.25
+	 */
+	public function profileDBOut() {
+		wfDeprecated( __METHOD__, '1.25' );
+	}
+
+	/**
+	 * @deprecated since 1.25, always returns 0
+	 * @return float
+	 */
+	public function getProfileDBTime() {
+		wfDeprecated( __METHOD__, '1.25' );
+		return 0;
 	}
 
 	/**@}*/

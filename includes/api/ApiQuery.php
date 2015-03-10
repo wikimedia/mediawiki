@@ -169,9 +169,7 @@ class ApiQuery extends ApiBase {
 	 */
 	public function getNamedDB( $name, $db, $groups ) {
 		if ( !array_key_exists( $name, $this->mNamedDB ) ) {
-			$this->profileDBIn();
 			$this->mNamedDB[$name] = wfGetDB( $db, $groups );
-			$this->profileDBOut();
 		}
 
 		return $this->mNamedDB[$name];
@@ -295,10 +293,8 @@ class ApiQuery extends ApiBase {
 			$params = $module->extractRequestParams();
 			$cacheMode = $this->mergeCacheMode(
 				$cacheMode, $module->getCacheMode( $params ) );
-			$module->profileIn();
 			$module->execute();
 			Hooks::run( 'APIQueryAfterExecute', array( &$module ) );
-			$module->profileOut();
 		}
 
 		// Set the cache mode

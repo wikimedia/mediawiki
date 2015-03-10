@@ -115,11 +115,9 @@ class ApiPageSet extends ApiBase {
 		$this->mAllowGenerator = ( $flags & ApiPageSet::DISABLE_GENERATORS ) == 0;
 		$this->mDefaultNamespace = $defaultNamespace;
 
-		$this->profileIn();
 		$this->mParams = $this->extractRequestParams();
 		$this->mResolveRedirects = $this->mParams['redirects'];
 		$this->mConvertTitles = $this->mParams['converttitles'];
-		$this->profileOut();
 	}
 
 	/**
@@ -143,17 +141,12 @@ class ApiPageSet extends ApiBase {
 	 *    relevant parameters as used
 	 */
 	private function executeInternal( $isDryRun ) {
-		$this->profileIn();
-
 		$generatorName = $this->mAllowGenerator ? $this->mParams['generator'] : null;
 		if ( isset( $generatorName ) ) {
 			$dbSource = $this->mDbSource;
-			$isQuery = $dbSource instanceof ApiQuery;
-			if ( !$isQuery ) {
+			if ( !$dbSource instanceof ApiQuery ) {
 				// If the parent container of this pageset is not ApiQuery, we must create it to run generator
 				$dbSource = $this->getMain()->getModuleManager()->getModule( 'query' );
-				// Enable profiling for query module because it will be used for db sql profiling
-				$dbSource->profileIn();
 			}
 			$generator = $dbSource->getModuleManager()->getModule( $generatorName, null, true );
 			if ( $generator === null ) {
@@ -174,9 +167,6 @@ class ApiPageSet extends ApiBase {
 			$tmpPageSet->executeInternal( $isDryRun );
 
 			// populate this pageset with the generator output
-			$this->profileOut();
-			$generator->profileIn();
-
 			if ( !$isDryRun ) {
 				$generator->executeGenerator( $this );
 				Hooks::run( 'APIQueryGeneratorAfterExecute', array( &$generator, &$this ) );
@@ -187,16 +177,9 @@ class ApiPageSet extends ApiBase {
 					$main->getVal( $generator->encodeParamName( $paramName ) );
 				}
 			}
-			$generator->profileOut();
-			$this->profileIn();
 
 			if ( !$isDryRun ) {
 				$this->resolvePendingRedirects();
-			}
-
-			if ( !$isQuery ) {
-				// If this pageset is not part of the query, we called profileIn() above
-				$dbSource->profileOut();
 			}
 		} else {
 			// Only one of the titles/pageids/revids is allowed at the same time
@@ -241,7 +224,6 @@ class ApiPageSet extends ApiBase {
 				}
 			}
 		}
-		$this->profileOut();
 	}
 
 	/**
@@ -678,9 +660,7 @@ class ApiPageSet extends ApiBase {
 	 * @param array $titles Array of Title objects
 	 */
 	public function populateFromTitles( $titles ) {
-		$this->profileIn();
 		$this->initFromTitles( $titles );
-		$this->profileOut();
 	}
 
 	/**
@@ -688,9 +668,7 @@ class ApiPageSet extends ApiBase {
 	 * @param array $pageIDs Array of page IDs
 	 */
 	public function populateFromPageIDs( $pageIDs ) {
-		$this->profileIn();
 		$this->initFromPageIds( $pageIDs );
-		$this->profileOut();
 	}
 
 	/**
@@ -703,9 +681,7 @@ class ApiPageSet extends ApiBase {
 	 * @param ResultWrapper $queryResult Query result object
 	 */
 	public function populateFromQueryResult( $db, $queryResult ) {
-		$this->profileIn();
 		$this->initFromQueryResult( $queryResult );
-		$this->profileOut();
 	}
 
 	/**
@@ -713,9 +689,7 @@ class ApiPageSet extends ApiBase {
 	 * @param array $revIDs Array of revision IDs
 	 */
 	public function populateFromRevisionIDs( $revIDs ) {
-		$this->profileIn();
 		$this->initFromRevIDs( $revIDs );
-		$this->profileOut();
 	}
 
 	/**
@@ -778,10 +752,8 @@ class ApiPageSet extends ApiBase {
 		$set = $linkBatch->constructSet( 'page', $db );
 
 		// Get pageIDs data from the `page` table
-		$this->profileDBIn();
 		$res = $db->select( 'page', $this->getPageTableFields(), $set,
 			__METHOD__ );
-		$this->profileDBOut();
 
 		// Hack: get the ns:titles stored in array(ns => array(titles)) format
 		$this->initFromQueryResult( $res, $linkBatch->data, true ); // process Titles
@@ -812,10 +784,8 @@ class ApiPageSet extends ApiBase {
 			$db = $this->getDB();
 
 			// Get pageIDs data from the `page` table
-			$this->profileDBIn();
 			$res = $db->select( 'page', $this->getPageTableFields(), $set,
 				__METHOD__ );
-			$this->profileDBOut();
 		}
 
 		$this->initFromQueryResult( $res, $remaining, false ); // process PageIDs
@@ -921,7 +891,6 @@ class ApiPageSet extends ApiBase {
 			$where = array( 'rev_id' => $revids, 'rev_page = page_id' );
 
 			// Get pageIDs data from the `page` table
-			$this->profileDBIn();
 			$res = $db->select( $tables, $fields, $where, __METHOD__ );
 			foreach ( $res as $row ) {
 				$revid = intval( $row->rev_id );
@@ -931,7 +900,6 @@ class ApiPageSet extends ApiBase {
 				$pageids[$pageid] = '';
 				unset( $remaining[$revid] );
 			}
-			$this->profileDBOut();
 		}
 
 		$this->mMissingRevIDs = array_keys( $remaining );
@@ -948,7 +916,6 @@ class ApiPageSet extends ApiBase {
 			$fields = array( 'ar_rev_id', 'ar_namespace', 'ar_title' );
 			$where = array( 'ar_rev_id' => $this->mMissingRevIDs );
 
-			$this->profileDBIn();
 			$res = $db->select( $tables, $fields, $where, __METHOD__ );
 			$titles = array();
 			foreach ( $res as $row ) {
@@ -956,7 +923,6 @@ class ApiPageSet extends ApiBase {
 				$titles[$revid] = Title::makeTitle( $row->ar_namespace, $row->ar_title );
 				unset( $remaining[$revid] );
 			}
-			$this->profileDBOut();
 
 			$this->initFromTitles( $titles );
 
@@ -1012,9 +978,7 @@ class ApiPageSet extends ApiBase {
 				}
 
 				// Get pageIDs data from the `page` table
-				$this->profileDBIn();
 				$res = $db->select( 'page', $pageFlds, $set, __METHOD__ );
-				$this->profileDBOut();
 
 				// Hack: get the ns:titles stored in array(ns => array(titles)) format
 				$this->initFromQueryResult( $res, $linkBatch->data, true );
@@ -1033,7 +997,6 @@ class ApiPageSet extends ApiBase {
 		$lb = new LinkBatch();
 		$db = $this->getDB();
 
-		$this->profileDBIn();
 		$res = $db->select(
 			'redirect',
 			array(
@@ -1045,7 +1008,6 @@ class ApiPageSet extends ApiBase {
 			), array( 'rd_from' => array_keys( $this->mPendingRedirectIDs ) ),
 			__METHOD__
 		);
-		$this->profileDBOut();
 		foreach ( $res as $row ) {
 			$rdfrom = intval( $row->rd_from );
 			$from = $this->mPendingRedirectIDs[$rdfrom]->getPrefixedText();
