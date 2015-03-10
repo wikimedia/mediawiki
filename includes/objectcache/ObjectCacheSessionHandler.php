@@ -117,7 +117,7 @@ class ObjectCacheSessionHandler {
 	 * Callback when writing session data.
 	 *
 	 * @param string $id Session id
-	 * @param mixed $data Session data
+	 * @param string $data Session data
 	 * @return bool Success
 	 */
 	static function write( $id, $data ) {

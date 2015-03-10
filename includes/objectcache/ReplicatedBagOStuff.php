@@ -26,7 +26,7 @@
  * those that writes go to. This can easily be used with redis for example.
  *
  * In the WAN scenario (e.g. multi-datacenter case), this is useful when
- * writes are rare or usually takes place on the primary datacenter.
+ * writes are rare or they usually take place in the primary datacenter.
  *
  * @ingroup Cache
  * @since 1.25
