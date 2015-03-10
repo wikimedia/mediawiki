@@ -44,9 +44,6 @@ abstract class JobQueue {
 	/** @var int Maximum number of times to try a job */
 	protected $maxTries;
 
-	/** @var bool Allow delayed jobs */
-	protected $checkDelay;
-
 	/** @var BagOStuff */
 	protected $dupCache;
 	/** @var JobQueueAggregator */
@@ -72,10 +69,6 @@ abstract class JobQueue {
 		}
 		if ( !in_array( $this->order, $this->supportedOrders() ) ) {
 			throw new MWException( __CLASS__ . " does not support '{$this->order}' order." );
-		}
-		$this->checkDelay = !empty( $params['checkDelay'] );
-		if ( $this->checkDelay && !$this->supportsDelayedJobs() ) {
-			throw new MWException( __CLASS__ . " does not support delayed jobs." );
 		}
 		$this->dupCache = wfGetCache( CACHE_ANYTHING );
 		$this->aggr = isset( $params['aggregator'] )
@@ -103,10 +96,6 @@ abstract class JobQueue {
 	 *                  but not acknowledged as completed after this many seconds. Recycling
 	 *                  of jobs simple means re-inserting them into the queue. Jobs can be
 	 *                  attempted up to three times before being discarded.
-	 *   - checkDelay : If supported, respect Job::getReleaseTimestamp() in the push functions.
-	 *                  This lets delayed jobs wait in a staging area until a given timestamp is
-	 *                  reached, at which point they will enter the queue. If this is not enabled
-	 *                  or not supported, an exception will be thrown on delayed job insertion.
 	 *
 	 * Queue classes should throw an exception if they do not support the options given.
 	 *
@@ -146,14 +135,6 @@ abstract class JobQueue {
 	 */
 	final public function getOrder() {
 		return $this->order;
-	}
-
-	/**
-	 * @return bool Whether delayed jobs are enabled
-	 * @since 1.22
-	 */
-	final public function delayedJobsEnabled() {
-		return $this->checkDelay;
 	}
 
 	/**
@@ -326,7 +307,7 @@ abstract class JobQueue {
 			if ( $job->getType() !== $this->type ) {
 				throw new MWException(
 					"Got '{$job->getType()}' job; expected a '{$this->type}' job." );
-			} elseif ( $job->getReleaseTimestamp() && !$this->checkDelay ) {
+			} elseif ( $job->getReleaseTimestamp() && !$this->supportsDelayedJobs() ) {
 				throw new MWException(
 					"Got delayed '{$job->getType()}' job; delays are not supported." );
 			}
