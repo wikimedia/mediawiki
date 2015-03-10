@@ -784,20 +784,6 @@
 			}
 
 			/**
-			 * Check whether given styles are safe to to a stylesheet.
-			 *
-			 * @private
-			 * @param {string} cssText
-			 * @return {boolean} False if a new one must be created.
-			 */
-			function canExpandStylesheetWith( cssText ) {
-				// Makes sure that cssText containing `@import`
-				// rules will end up in a new stylesheet (as those only work when
-				// placed at the start of a stylesheet; bug 35562).
-				return cssText.slice( 0, '@import'.length ) !== '@import';
-			}
-
-			/**
 			 * Add a bit of CSS text to the current browser page.
 			 *
 			 * The CSS will be appended to an existing ResourceLoader-created `<style>` tag
@@ -819,8 +805,10 @@
 				// Appending a stylesheet and waiting for the browser to repaint
 				// is fairly expensive, this reduces that (bug 45810)
 				if ( cssText ) {
-					// Be careful not to extend the buffer with css that needs a new stylesheet
-					if ( !cssBuffer || canExpandStylesheetWith( cssText ) ) {
+					// Be careful not to extend the buffer with css that needs a new stylesheet.
+					// cssText containing `@import`	rules needs to go at the start of a buffer,
+					// since those only work when placed at the start of a stylesheet; bug 35562).
+					if ( !cssBuffer || cssText.slice( 0, '@import'.length ) !== '@import' ) {
 						// Linebreak for somewhat distinguishable sections
 						// (the rl-cachekey comment separating each)
 						cssBuffer += '\n' + cssText;
@@ -861,7 +849,7 @@
 					// (not some other style tag or even a `<meta>` or `<script>`).
 					if ( $style.data( 'ResourceLoaderDynamicStyleTag' ) === true ) {
 						// There's already a dynamic <style> tag present and
-						// canExpandStylesheetWith() gave a green light to append more to it.
+						// we are able to append more to it.
 						styleEl = $style.get( 0 );
 						// Support: IE6-10
 						if ( styleEl.styleSheet ) {
@@ -894,11 +882,11 @@
 			 * @return {string}
 			 */
 			function pad( a, b, c ) {
-				return [
-					a < 10 ? '0' + a : a,
-					b < 10 ? '0' + b : b,
-					c < 10 ? '0' + c : c
-				].join( '' );
+				return (
+					( a < 10 ? '0' : '' ) + a +
+					( b < 10 ? '0' : '' ) + b +
+					( c < 10 ? '0' : '' ) + c
+				);
 			}
 
 			/**
@@ -994,78 +982,15 @@
 			 * order.
 			 *
 			 * @private
-			 * @param {string} module Module name or array of string module names
+			 * @param {string[]} module Array of string module names
 			 * @return {Array} List of dependencies, including 'module'.
-			 * @throws {Error} If circular reference is detected
 			 */
-			function resolve( module ) {
-				var m, resolved;
-
-				// Allow calling with an array of module names
-				if ( $.isArray( module ) ) {
-					resolved = [];
-					for ( m = 0; m < module.length; m += 1 ) {
-						sortDependencies( module[m], resolved );
-					}
-					return resolved;
-				}
-
-				if ( typeof module === 'string' ) {
-					resolved = [];
+			function resolve( modules ) {
+				var resolved = [];
+				$.each( modules, function ( idx, module ) {
 					sortDependencies( module, resolved );
-					return resolved;
-				}
-
-				throw new Error( 'Invalid module argument: ' + module );
-			}
-
-			/**
-			 * Narrow down a list of module names to those matching a specific
-			 * state (see #registry for a list of valid states).
-			 *
-			 * One can also filter for 'unregistered', which will return the
-			 * modules names that don't have a registry entry.
-			 *
-			 * @private
-			 * @param {string|string[]} states Module states to filter by
-			 * @param {Array} [modules] List of module names to filter (optional, by default the
-			 * entire registry is used)
-			 * @return {Array} List of filtered module names
-			 */
-			function filter( states, modules ) {
-				var list, module, s, m;
-
-				// Allow states to be given as a string
-				if ( typeof states === 'string' ) {
-					states = [states];
-				}
-				// If called without a list of modules, build and use a list of all modules
-				list = [];
-				if ( modules === undefined ) {
-					modules = [];
-					for ( module in registry ) {
-						modules[modules.length] = module;
-					}
-				}
-				// Build a list of modules which are in one of the specified states
-				for ( s = 0; s < states.length; s += 1 ) {
-					for ( m = 0; m < modules.length; m += 1 ) {
-						if ( !hasOwn.call( registry, modules[m] ) ) {
-							// Module does not exist
-							if ( states[s] === 'unregistered' ) {
-								// OK, undefined
-								list[list.length] = modules[m];
-							}
-						} else {
-							// Module exists, check state
-							if ( registry[modules[m]].state === states[s] ) {
-								// OK, correct state
-								list[list.length] = modules[m];
-							}
-						}
-					}
-				}
-				return list;
+				} );
+				return resolved;
 			}
 
 			/**
@@ -1073,11 +998,36 @@
 			 * execute the module or job now.
 			 *
 			 * @private
-			 * @param {Array} dependencies Dependencies (module names) to be checked.
-			 * @return {boolean} True if all dependencies are in state 'ready', false otherwise
+			 * @param {Array} module Names of modules to be checked
+			 * @return {boolean} True if all modules are in state 'ready', false otherwise
 			 */
-			function allReady( dependencies ) {
-				return filter( 'ready', dependencies ).length === dependencies.length;
+			function allReady( modules ) {
+				var i;
+				for ( i = 0; i < modules.length; i++ ) {
+					if ( mw.loader.getState( modules[i] ) !== 'ready' ) {
+						return false;
+					}
+				}
+				return true;
+			}
+
+			/**
+			 * Determine whether all dependencies are in state 'ready', which means we may
+			 * execute the module or job now.
+			 *
+			 * @private
+			 * @param {Array} modules Names of modules to be checked
+			 * @return {boolean} True if no modules are in state 'error' or 'missing', false otherwise
+			 */
+			function anyFailed( modules ) {
+				var i, state;
+				for ( i = 0; i < modules.length; i++ ) {
+					state = mw.loader.getState( modules[i] );
+					if ( state === 'error' || state === 'missing' ) {
+						return true;
+					}
+				}
+				return false;
 			}
 
 			/**
@@ -1094,15 +1044,15 @@
 			function handlePending( module ) {
 				var j, job, hasErrors, m, stateChange;
 
-				if ( $.inArray( registry[module].state, ['error', 'missing'] ) !== -1 ) {
+				if ( registry[module].state === 'error' || registry[module].state === 'missing' ) {
 					// If the current module failed, mark all dependent modules also as failed.
 					// Iterate until steady-state to propagate the error state upwards in the
 					// dependency tree.
 					do {
 						stateChange = false;
 						for ( m in registry ) {
-							if ( $.inArray( registry[m].state, ['error', 'missing'] ) === -1 ) {
-								if ( filter( ['error', 'missing'], registry[m].dependencies ).length ) {
+							if ( registry[m].state !== 'error' && registry[m].state !== 'missing' ) {
+								if ( anyFailed( registry[m].dependencies ) ) {
 									registry[m].state = 'error';
 									stateChange = true;
 								}
@@ -1113,7 +1063,7 @@
 
 				// Execute all jobs whose dependencies are either all satisfied or contain at least one failed module.
 				for ( j = 0; j < jobs.length; j += 1 ) {
-					hasErrors = filter( ['error', 'missing'], jobs[j].dependencies ).length > 0;
+					hasErrors = anyFailed( jobs[j].dependencies );
 					if ( hasErrors || allReady( jobs[j].dependencies ) ) {
 						// All dependencies satisfied, or some have errors
 						job = jobs[j];
@@ -1384,8 +1334,6 @@
 			 *  Ignored (and defaulted to `true`) if the document-ready event has already occurred.
 			 */
 			function request( dependencies, ready, error, async ) {
-				var n;
-
 				// Allow calling by single module name
 				if ( typeof dependencies === 'string' ) {
 					dependencies = [dependencies];
@@ -1394,28 +1342,24 @@
 				// Add ready and error callbacks if they were given
 				if ( ready !== undefined || error !== undefined ) {
 					jobs[jobs.length] = {
-						'dependencies': filter(
-							['registered', 'loading', 'loaded'],
-							dependencies
-						),
-						'ready': ready,
-						'error': error
+						dependencies: $.grep( dependencies, function ( module ) {
+							var state = mw.loader.getState( module );
+							return state === 'registered' || state === 'loaded' || state === 'loading';
+						} ),
+						ready: ready,
+						error: error
 					};
 				}
 
-				// Queue up any dependencies that are registered
-				dependencies = filter( ['registered'], dependencies );
-				for ( n = 0; n < dependencies.length; n += 1 ) {
-					if ( $.inArray( dependencies[n], queue ) === -1 ) {
-						queue[queue.length] = dependencies[n];
+				$.each( dependencies, function ( idx, module ) {
+					if ( mw.loader.getState( module ) === 'registered' ) {
+						queue.push( module );
 						if ( async ) {
-							// Mark this module as async in the registry
-							registry[dependencies[n]].async = true;
+							registry[module].async = true;
 						}
 					}
-				}
+				} );
 
-				// Work the queue
 				mw.loader.work();
 			}
 
@@ -1486,20 +1430,13 @@
 			 * @param {Array} modules Modules array
 			 */
 			function resolveIndexedDependencies( modules ) {
-				var i, iLen, j, jLen, module, dependency;
-
-				// Expand indexed dependency names
-				for ( i = 0, iLen = modules.length; i < iLen; i++ ) {
-					module = modules[i];
+				$.each( modules, function ( idx, module ) {
 					if ( module[2] ) {
-						for ( j = 0, jLen = module[2].length; j < jLen; j++ ) {
-							dependency = module[2][j];
-							if ( typeof dependency === 'number' ) {
-								module[2][j] = modules[dependency][0];
-							}
-						}
+						module[2] = $.map( module[2], function ( dep ) {
+							return typeof dep === 'number' ? modules[dep][0] : dep;
+						} );
 					}
-				}
+				} );
 			}
 
 			/* Public Members */
@@ -1811,7 +1748,7 @@
 				 *     { <media>: [url, ..] }
 				 *
 				 * The reason css strings are not concatenated anymore is bug 31676. We now check
-				 * whether it's safe to extend the stylesheet (see #canExpandStylesheetWith).
+				 * whether it's safe to extend the stylesheet.
 				 *
 				 * @param {Object} [msgs] List of key/value pairs to be added to mw#messages.
 				 * @param {Object} [templates] List of key/value pairs to be added to mw#templates.
@@ -1894,7 +1831,7 @@
 					if ( allReady( dependencies ) ) {
 						// Run ready immediately
 						deferred.resolve();
-					} else if ( filter( ['error', 'missing'], dependencies ).length ) {
+					} else if ( anyFailed( dependencies ) ) {
 						// Execute error immediately if any dependencies have errors
 						deferred.reject(
 							new Error( 'One or more dependencies failed to load' ),
@@ -1921,7 +1858,7 @@
 				 *  Defaults to `true` if loading a URL, `false` otherwise.
 				 */
 				load: function ( modules, type, async ) {
-					var filtered, m, module, l;
+					var filtered, l;
 
 					// Validate input
 					if ( typeof modules !== 'object' && typeof modules !== 'string' ) {
@@ -1961,26 +1898,18 @@
 					// Undefined modules are acceptable here in load(), because load() takes
 					// an array of unrelated modules, whereas the modules passed to
 					// using() are related and must all be loaded.
-					for ( filtered = [], m = 0; m < modules.length; m += 1 ) {
-						if ( hasOwn.call( registry, modules[m] ) ) {
-							module = registry[modules[m]];
-							if ( $.inArray( module.state, ['error', 'missing'] ) === -1 ) {
-								filtered[filtered.length] = modules[m];
-							}
-						}
-					}
+					filtered = $.grep( modules, function ( module ) {
+						var state = mw.loader.getState( module );
+						return state !== null && state !== 'error' && state !== 'missing';
+					} );
 
 					if ( filtered.length === 0 ) {
 						return;
 					}
 					// Resolve entire dependency map
 					filtered = resolve( filtered );
-					// If all modules are ready, nothing to be done
-					if ( allReady( filtered ) ) {
-						return;
-					}
-					// If any modules have errors: also quit.
-					if ( filter( ['error', 'missing'], filtered ).length ) {
+					// If all modules are ready, or if any modules have errors, nothing to be done.
+					if ( allReady( filtered ) || anyFailed( filtered ) ) {
 						return;
 					}
 					// Since some modules are not yet ready, queue up a request.
