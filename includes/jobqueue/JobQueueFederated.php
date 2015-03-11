@@ -132,7 +132,13 @@ class JobQueueFederated extends JobQueue {
 	}
 
 	protected function supportsDelayedJobs() {
-		return true; // defer checks to the partitions
+		foreach ( $this->partitionQueues as $queue ) {
+			if ( !$queue->supportsDelayedJobs() ) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	protected function doIsEmpty() {
