@@ -92,7 +92,7 @@ class FeedItem {
 	 */
 	public function getUniqueId() {
 		if ( $this->uniqueId ) {
-			return $this->xmlEncode( $this->uniqueId );
+			return $this->xmlEncode( wfExpandUrl( $this->uniqueId, PROTO_CURRENT ) );
 		}
 	}
 
