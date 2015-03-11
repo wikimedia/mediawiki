@@ -121,8 +121,6 @@ class Revision implements IDBAccessObject {
 		if ( $id ) {
 			// Use the specified ID
 			$conds['rev_id'] = $id;
-			// This uses slave->master fallback with READ_NORMAL. Assuming revdelete,
-			// moves, and merges are rare, callers can use this to reduce master queries.
 			return self::newFromConds( $conds, $flags );
 		} else {
 			// Use a join to get the latest revision
@@ -150,8 +148,6 @@ class Revision implements IDBAccessObject {
 		$conds = array( 'page_id' => $pageId );
 		if ( $revId ) {
 			$conds['rev_id'] = $revId;
-			// This uses slave->master fallback with READ_NORMAL. Assuming revdelete
-			// and merges are rare, callers can use this to reduce master queries.
 			return self::newFromConds( $conds, $flags );
 		} else {
 			// Use a join to get the latest revision
@@ -310,12 +306,6 @@ class Revision implements IDBAccessObject {
 	private static function newFromConds( $conditions, $flags = 0 ) {
 		$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_SLAVE );
 		$rev = self::loadFromConds( $db, $conditions, $flags );
-		if ( $rev === null && wfGetLB()->getServerCount() > 1 ) {
-			if ( !( $flags & self::READ_LATEST ) ) {
-				$dbw = wfGetDB( DB_MASTER );
-				$rev = self::loadFromConds( $dbw, $conditions, $flags );
-			}
-		}
 		if ( $rev ) {
 			$rev->mQueryFlags = $flags;
 		}
