@@ -464,7 +464,7 @@ interface Content {
 	 *
 	 * @param WikiPage $page The page to be saved.
 	 * @param int $flags Bitfield for use with EDIT_XXX constants, see WikiPage::doEditContent()
-	 * @param int $baseRevId The ID of the current revision
+	 * @param int $parentRevId The ID of the current revision
 	 * @param User $user
 	 *
 	 * @return Status A status object indicating whether the content was
@@ -473,7 +473,7 @@ interface Content {
 	 *
 	 * @see WikiPage::doEditContent()
 	 */
-	public function prepareSave( WikiPage $page, $flags, $baseRevId, User $user );
+	public function prepareSave( WikiPage $page, $flags, $parentRevId, User $user );
 
 	/**
 	 * Returns a list of updates to perform when this content is deleted.
