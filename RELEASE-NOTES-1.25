@@ -113,6 +113,8 @@ production.
   links of a group of changes in EnhancedChangesList.
 * A full interface for StatsD metric reporting has been added to the context
   interface, reachable via IContextSource::getStats().
+* Move the jQuery Client library from being mastered in MediaWiki as v0.1.0 to a
+  proper, published library, which is now tagged as v1.0.0.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past

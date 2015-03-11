@@ -1,3 +1,12 @@
+/*!
+ * jQuery Client v1.0.0
+ * https://www.mediawiki.org/wiki/JQuery_Client
+ *
+ * Copyright 2010-2015 jquery-client maintainers and other contributors.
+ * Released under the MIT license
+ * http://jquery-client.mit-license.org
+ */
+
 /**
  * User-agent detection
  *
@@ -33,7 +42,7 @@
 		 *     }
 		 */
 		profile: function ( nav ) {
-			/*jshint boss: true */
+			/*jshint boss:true */
 
 			if ( nav === undefined ) {
 				nav = window.navigator;
@@ -243,7 +252,7 @@
 		 * @return {boolean} The current browser is in the support map
 		 */
 		test: function ( map, profile, exactMatchOnly ) {
-			/*jshint evil: true */
+			/*jshint evil:true */
 
 			var conditions, dir, i, op, val, j, pieceVersion, pieceVal, compare;
 			profile = $.isPlainObject( profile ) ? profile : $.client.profile();
