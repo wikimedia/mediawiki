@@ -54,6 +54,8 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 			'bot' => (bool)$rc->getAttribute( 'rc_bot' ),
 		);
 
+		$packet['tags'] = implode( ',', ChangeTags::getTags( $packet['id'] ) );
+
 		if ( isset( $feed['channel'] ) ) {
 			$packet['channel'] = $feed['channel'];
 		}
