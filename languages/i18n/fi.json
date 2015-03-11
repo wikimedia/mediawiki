@@ -3133,7 +3133,7 @@
 	"log-name-managetags": "Merkkausten hallinnan loki",
 	"log-description-managetags": "Tällä sivulla on luettelo tehtävistä, jotka koskevat [[Special:Tags|merkkauksia]]. Lokissa ovat vain ne toimenpiteet, jotka ylläpitäjä on suorittanut käsin. Merkkauksia voi syntyä ja poistua myös wikin ohjelmiston kautta eivätkä ne näy tässä lokissa.",
 	"logentry-managetags-create": "$1 {{GENDER:$2|on luonut}} merkkauksen \"$4\"",
-	"logentry-managetags-delete": "$1 {{GENDER:$2|tuhosi}} merkkauksen \"$4\" (poistettu $5 {{PLURAL:$5|sivun versiosta tai lokimerkinnästä|sivun versiosta tai lokimerkinnästä}})",
+	"logentry-managetags-delete": "$1 {{GENDER:$2|tuhosi}} merkkauksen \"$4\" (poistettu $5 {{PLURAL:$5|sivuversiosta tai lokimerkinnästä}})",
 	"logentry-managetags-activate": "$1 {{GENDER:$2|aktivoi}} merkkauksen \"$4\" käyttäjien ja bottien käytettäväksi",
 	"logentry-managetags-deactivate": "$1 {{GENDER:$2|otti pois käytöstä}} merkkauksen \"$4\" käyttäjiltä ja boteilta",
 	"rightsnone": "(ei oikeuksia)",

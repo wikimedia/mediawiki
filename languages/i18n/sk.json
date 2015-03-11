@@ -3056,5 +3056,6 @@
 	"mediastatistics-header-office": "Kancelárske súbory",
 	"mediastatistics-header-text": "Text",
 	"mediastatistics-header-executable": "Spustiteľné súbory",
-	"mediastatistics-header-archive": "Komprimované formáty"
+	"mediastatistics-header-archive": "Komprimované formáty",
+	"headline-anchor-title": "Odkaz na túto sekciu"
 }

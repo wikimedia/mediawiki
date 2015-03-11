@@ -10,7 +10,8 @@
 			"Stens51",
 			"Boom",
 			"Jenniesarina",
-			"Marfuas"
+			"Marfuas",
+			"VickyC"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Dokumentation]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api E-postlista]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-aviseringar]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R|Buggar & förslag]\n</div>\n<strong>Status:</strong> Alla funktioner som visas på denna sida borde fungera. API:et är dock fortfarande under aktiv utveckling och kan ändras när som helst. Prenumerera på [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/mediawiki-api-announce e-postlistan] för att få aviseringar om uppdateringar.\n\n<strong>Felaktiga förfrågningar:</strong> När felaktiga förfrågningar skickas till API:et skickas en HTTP-header med nyckeln \"MediaWiki-API-Error\" och sedan sätts både värdet på headern och den felkoden som returneras till samma värde. För mer information läs [[mw:API:Errors_and_warnings|API: Fel och varningar]].",
@@ -217,6 +218,7 @@
 	"apihelp-options-example-complex": "Återställ alla inställningar, ställ sedan in <kbd>skin</kbd> och <kbd>nickname</kbd>.",
 	"apihelp-paraminfo-description": "Få information om API moduler.",
 	"apihelp-paraminfo-param-helpformat": "Format för hjälpsträngar.",
+	"apihelp-paraminfo-param-mainmodule": "Få information om huvud-modulen (top-level) också. Använd <kbd>$1modules=main</kbd> istället.",
 	"apihelp-parse-param-summary": "Sammanfattning att tolka.",
 	"apihelp-parse-param-page": "Tolka innehållet av denna sida. Kan inte användas tillsammans med <var>$1text</var> och <var>$1title</var>.",
 	"apihelp-parse-param-pageid": "Tolka innehållet på denna sida. Åsidosätter <var>$1sidan</var>.",
