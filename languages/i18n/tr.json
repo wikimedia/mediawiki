@@ -67,7 +67,8 @@
 			"Trockya",
 			"Aşilleus",
 			"BatuhanBensoy",
-			"Mavrikant"
+			"Mavrikant",
+			"Ayrıntılı Bilgi"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çiz:",
@@ -294,6 +295,7 @@
 	"disclaimers": "Sorumluluk reddi",
 	"disclaimerpage": "Project:Genel sorumluluk reddi",
 	"edithelp": "Nasıl değiştirilir?",
+	"helppage-top-gethelp": "Yardım",
 	"mainpage": "Ana Sayfa",
 	"mainpage-description": "Ana sayfa",
 	"policy-url": "Project:İlkeler",
@@ -376,6 +378,7 @@
 	"readonly_lag": "Yedek sunucular ana sunucu ile güncellenmeye çalışılırken veritabanı otomatik olarak kilitlendi.",
 	"internalerror": "Yazılım hatası",
 	"internalerror_info": "İç hata: $1",
+	"internalerror-fatal-exception": "Tip \"$1\" hayati hata",
 	"filecopyerror": "\"$1\"  \"$2\" dosyasına kopyalanamıyor.",
 	"filerenameerror": "\"$1\" dosyasının ismi \"$2\" olarak değiştirilemedi.",
 	"filedeleteerror": "\"$1\" dosyası silinemedi.",
@@ -783,6 +786,7 @@
 	"rev-deleted-event": "(kayıt ayrıntıları silindi)",
 	"rev-deleted-user-contribs": "[kullanıcı adı veya IP adresi çıkarıldı - değişiklik katkılardan gizlendi]",
 	"rev-deleted-text-permission": "Bu sayfa revizyonu '''silinmiş'''.\n[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Silme kayıtlarında] ayrıntıları bulunabilir.",
+	"rev-suppressed-text-permission": "Sayfanın bu sürümü <strong>gizlenmiştir</strong>.\nAyrıntılar: [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].",
 	"rev-deleted-text-unhide": "Bu sayfa revizyonu '''silinmiş'''.\n[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Silme kayıtlarında] ayrıntıları bulunabilir.\nBir hizmetli olarak eğer devam ederseniz [$1 bu revizyonu hala görebilirsiniz].",
 	"rev-suppressed-text-unhide": "Bu sayfa revizyonu '''bastırılmış'''.\n[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Durdurma kayıtlarında] ayrıntıları bulunabilir.\nBir hizmetli olarak eğer devam ederseniz [$1 bu revizyonu hala görebilirsiniz].",
 	"rev-deleted-text-view": "Bu sayfa revizyonu '''silinmiş'''.\nBir hizmetli olarak sayfayı görebilirsiniz; [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} silme kayıtlarında] ayrıntılar bulunabilir.",

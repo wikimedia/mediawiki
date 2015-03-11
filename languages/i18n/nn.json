@@ -3009,5 +3009,6 @@
 	"mediastatistics-header-text": "Tekstformat",
 	"mediastatistics-header-executable": "Kan køyrast",
 	"mediastatistics-header-archive": "Komprimerte format",
-	"json-error-syntax": "Syntaksfeil"
+	"json-error-syntax": "Syntaksfeil",
+	"headline-anchor-title": "Lenk til denne bolken"
 }
