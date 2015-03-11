@@ -103,7 +103,7 @@ class JobQueueRedis extends JobQueue {
 		return 'fifo';
 	}
 
-	protected function supportsDelayedJobs() {
+	public function supportsDelayedJobs() {
 		return true;
 	}
 

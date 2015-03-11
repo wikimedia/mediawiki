@@ -156,7 +156,7 @@ abstract class JobQueue {
 	 *
 	 * @return bool Whether delayed jobs are supported
 	 */
-	protected function supportsDelayedJobs() {
+	public function supportsDelayedJobs() {
 		return false; // not implemented
 	}
 

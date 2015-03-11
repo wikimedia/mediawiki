@@ -131,7 +131,7 @@ class JobQueueFederated extends JobQueue {
 		return 'undefined'; // defer to the partitions
 	}
 
-	protected function supportsDelayedJobs() {
+	public function supportsDelayedJobs() {
 		return true; // defer checks to the partitions
 	}
 
