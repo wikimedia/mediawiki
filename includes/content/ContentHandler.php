@@ -1058,6 +1058,154 @@ abstract class ContentHandler {
 	}
 
 	/**
+	 * Returns indexers suitable for indexing content of the kind supported by
+	 * this ContentHandler.
+	 *
+	 * This implementation returns an array containing an instance of BasicContentIndexer
+	 * per default, but calls the ContentIndexers hook which may modify the list of indexers.
+	 *
+	 * Subclasses my override this method to supply additional indexers.
+	 * Care should be taken to call back to this method, so the ContentIndexers hook
+	 * is triggered.
+	 *
+	 * @since 1.26
+	 *
+	 * @return ContentIndexer[] An associative array of ContentIndexer objects.
+	 */
+	public function getContentIndexers() {
+		$indexers = array( new BasicContentIndexer() );
+		Hooks::run( 'ContentIndexers', array( $this->getModelID(), &$indexers ) );
+		return $indexers;
+	}
+
+	/**
+	 * Returns indexers suitable for indexing output for content of the kind supported by
+	 * this ContentHandler.
+	 *
+	 * This implementation returns an array containing an instance of BasicOutputIndexer
+	 * per default, but calls the OutputIndexers hook which may modify the list of indexers.
+	 *
+	 * Subclasses my override this method to supply additional indexers.
+	 * Care should be taken to call back to this method, so the OutputIndexers hook
+	 * is triggered.
+	 *
+	 * @since 1.26
+	 *
+	 * @return OutputIndexer[] A list of OutputIndexers objects.
+	 */
+	public function getOutputIndexers() {
+		$indexers = array( new BasicOutputIndexer() );
+		Hooks::run( 'OutputIndexers', array( $this->getModelID(), &$indexers ) );
+		return $indexers;
+	}
+
+	/**
+	 * @param IndexFieldDefinition[] $fields
+	 *
+	 * @return IndexFieldDefinition[] keyed by field name
+	 */
+	private function getFieldsByName( array $fields ) {
+		$byName = array();
+
+		foreach ( $fields as $field ) {
+			$key = $field->getName();
+			$byName[$key] = $field;
+		}
+
+		return $byName;
+	}
+
+	/**
+	 * Returns the combined IndexFieldDefinitions from all ContentIndexers returned
+	 * by getContentIndexers, keyed by name. If more than one indexer defines a field
+	 * with a given name, only one of them will be present in the result.
+	 *
+	 * @see ContentIndexer::getIndexFieldDefinitions
+	 *
+	 * @return IndexFieldDefinition[] index field definitions, keyed by name.
+	 */
+	public function getContentIndexFields() {
+		$fields = array();
+		foreach ( $this->getContentIndexers() as $indexer ) {
+			$definitions = $indexer->getIndexFieldDefinitions();
+			$fields = array_merge( $fields, $this->getFieldsByName( $definitions ) );
+		}
+
+		return $fields;
+	}
+
+	/**
+	 * Returns the combined IndexFieldDefinitions from all OutputIndexers returned
+	 * by getOutputIndexers, keyed by name. If more than one indexer defines a field
+	 * with a given name, only one of them will be present in the result.
+	 *
+	 * @see OutputIndexer::getIndexFieldDefinitions
+	 *
+	 * @return IndexFieldDefinition[] index field definitions, keyed by name.
+	 */
+	public function getOutputIndexFields() {
+		$fields = array();
+		foreach ( $this->getOutputIndexers() as $indexer ) {
+			$definitions = $indexer->getIndexFieldDefinitions();
+			$fields = array_merge( $fields, $this->getFieldsByName( $definitions ) );
+		}
+
+		return $fields;
+	}
+
+	/**
+	 * Returns the combined values for the given index field, from all ContentIndexers returned
+	 * by getContentIndexers.
+	 *
+	 * The type, format and interpretation of the array elements are defined
+	 * by the corresponding IndexFieldDefinition returned by
+	 * getOutputIndexFields(). Refer to the documentation of the
+	 * IndexFieldDefinition::XXX_INDEX constants for details.
+	 *
+	 * @see ContentIndexer::getIndexValues
+	 *
+	 * @param Content $content
+	 * @param string $field
+	 *
+	 * @return mixed[] a list of values to index.
+	 */
+	public function getContentIndexValues( Content $content, $field ) {
+		$values = array();
+		foreach ( $this->getContentIndexers() as $indexer ) {
+			$indexerValues = $indexer->getIndexValues( $content, $field );
+			$values = array_merge( $values, $indexerValues );
+		}
+
+		return $values;
+	}
+
+	/**
+	 * Returns the combined values for the given index field, from all OutputIndexers returned
+	 * by getOutputIndexers.
+	 *
+	 * The type, format and interpretation of the array elements are defined
+	 * by the corresponding IndexFieldDefinition returned by
+	 * getOutputIndexFields(). Refer to the documentation of the
+	 * IndexFieldDefinition::XXX_INDEX constants for details.
+	 *
+	 * @see OutputIndexer::getIndexValues
+	 *
+	 * @param ParserOutput $output
+	 * @param string $field
+	 *
+	 * @return mixed[] a list of values to index.
+	 */
+	public function getOutputIndexValues( ParserOutput $output, $field ) {
+		$values = array();
+		foreach ( $this->getOutputIndexers() as $indexer ) {
+			$indexerValues = $indexer->getIndexValues( $output, $field );
+			$values = array_merge( $values, $indexerValues );
+		}
+
+		return $values;
+	}
+
+	/**
 	 * Logs a deprecation warning, visible if $wgDevelopmentWarnings, but only if
 	 * self::$enableDeprecationWarnings is set to true.
 	 *

@@ -557,7 +557,13 @@ class SearchEngine {
 	 * @return string
 	 */
 	public function getTextFromContent( Title $t, Content $c = null ) {
-		return $c ? $c->getTextForSearchIndex() : '';
+		if ( !$c ) {
+			return '';
+		}
+
+		// all "default" and "typeahead" fields.
+		$values = $c->getContentHandler()->getContentIndexValues( $c, ContentIndexer::SOURCE_FIELD );
+		return join( "\n", $values );
 	}
 
 	/**
