@@ -161,6 +161,14 @@ abstract class JobQueue {
 	}
 
 	/**
+	 * @return bool Whether delayed jobs are enabled
+	 * @since 1.22
+	 */
+	final public function delayedJobsEnabled() {
+		return $this->supportsDelayedJobs();
+	}
+
+	/**
 	 * Quickly check if the queue has no available (unacquired, non-delayed) jobs.
 	 * Queue classes should use caching if they are any slower without memcached.
 	 *
