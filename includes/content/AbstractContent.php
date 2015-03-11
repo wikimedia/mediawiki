@@ -393,7 +393,7 @@ abstract class AbstractContent implements Content {
 	 *
 	 * @see Content::prepareSave
 	 */
-	public function prepareSave( WikiPage $page, $flags, $baseRevId, User $user ) {
+	public function prepareSave( WikiPage $page, $flags, $parentRevId, User $user ) {
 		if ( $this->isValid() ) {
 			return Status::newGood();
 		} else {

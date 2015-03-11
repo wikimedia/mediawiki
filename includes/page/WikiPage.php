@@ -1608,7 +1608,9 @@ class WikiPage implements Page, IDBAccessObject {
 	 * error will be returned. These two conditions are also possible with
 	 * auto-detection due to MediaWiki's performance-optimised locking strategy.
 	 *
-	 * @param bool|int $baseRevId The revision ID this edit was based off, if any
+	 * @param bool|int $baseRevId The revision ID this edit was based off, if any.
+	 *   This is not the parent revision ID, rather the revision ID for older
+	 *   content used as the source for a rollback, for example.
 	 * @param User $user The user doing the edit
 	 *
 	 * @throws MWException
@@ -1668,7 +1670,9 @@ class WikiPage implements Page, IDBAccessObject {
 	 * error will be returned. These two conditions are also possible with
 	 * auto-detection due to MediaWiki's performance-optimised locking strategy.
 	 *
-	 * @param bool|int $baseRevId The revision ID this edit was based off, if any
+	 * @param bool|int $baseRevId The revision ID this edit was based off, if any.
+	 *   This is not the parent revision ID, rather the revision ID for older
+	 *   content used as the source for a rollback, for example.
 	 * @param User $user The user doing the edit
 	 * @param string $serialFormat Format for storing the content in the
 	 *   database.
@@ -1802,7 +1806,7 @@ class WikiPage implements Page, IDBAccessObject {
 				$dbw->begin( __METHOD__ );
 				try {
 
-					$prepStatus = $content->prepareSave( $this, $flags, $baseRevId, $user );
+					$prepStatus = $content->prepareSave( $this, $flags, $oldid, $user );
 					$status->merge( $prepStatus );
 
 					if ( !$status->isOK() ) {
@@ -1881,7 +1885,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$dbw->begin( __METHOD__ );
 			try {
 
-				$prepStatus = $content->prepareSave( $this, $flags, $baseRevId, $user );
+				$prepStatus = $content->prepareSave( $this, $flags, $oldid, $user );
 				$status->merge( $prepStatus );
 
 				if ( !$status->isOK() ) {
