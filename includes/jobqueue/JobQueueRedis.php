@@ -93,6 +93,7 @@ class JobQueueRedis extends JobQueue {
 				"Non-daemonized mode is no longer supported. Please install the " .
 				"mediawiki/services/jobrunner service and update \$wgJobTypeConf as needed." );
 		}
+		$this->checkDelay = true; // always enabled
 	}
 
 	protected function supportedOrders() {
