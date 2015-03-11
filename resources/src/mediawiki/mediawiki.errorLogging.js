@@ -51,6 +51,25 @@
 		},
 
 		/**
+		 * Wrap a function or (possibly deep) array or hash of functions with mw.errorLogging.wrap.
+		 * Non-function properties are left unchanged.
+		 * @param {Function|Array|Object} obj
+		 * @param {string} name
+		 * @return {Mixed}
+		 */
+		recursiveWrap: function ( obj, name ) {
+			if ( typeof obj === 'function' ) {
+				return mw.errorLogging.wrap( obj, name );
+			} else if ( $.isArray( obj ) || $.isPlainObject( obj ) ) {
+				return $.map( obj, function ( item ) {
+					return mw.errorLogging.recursiveWrap( item, name );
+				} );
+			} else {
+				return obj;
+			}
+		},
+
+		/**
 		 * Decorates a function so that it executes a callback on its arguments before
 		 * executing the function itself.
 		 * @private
@@ -95,7 +114,8 @@
 		 */
 		register: function ( window, $ ) {
 			var registerFlag = mw.config.get( 'wgJavascriptErrorLoggingSamplingRate'),
-				samplingRate = parseInt( registerFlag, 10 );
+				samplingRate = parseInt( registerFlag, 10),
+				oldJqueryCallbacks = $.Callbacks;
 
 			// Only register if the feature flag is set to true or some integer N; in the latter
 			// case, only register for one in every N page load. The extra negation is there to
@@ -135,6 +155,18 @@
 				// emulate jQuery.proxy() behavior
 				wrappedHandler.guid = handler.guid = handler.guid || $.guid++;
 			} );
+
+			$.Callbacks = function () {
+				var cb = oldJqueryCallbacks.apply( this, arguments );
+
+				cb.add = mw.errorLogging.decorateWithArgsCallback( cb.add, function ( args ) {
+					$.each( args, function ( i, arg ) {
+						args[i] = mw.errorLogging.recursiveWrap( arg, '$.Callbacks.add' );
+					} );
+				} );
+
+				return cb;
+			};
 		}
 	};
 }( mediaWiki, jQuery ) );
