@@ -25,7 +25,6 @@
 		"resources/src/jquery/jquery.byteLength.js",
 		"resources/src/jquery/jquery.byteLimit.js",
 		"resources/src/jquery/jquery.checkboxShiftClick.js",
-		"resources/src/jquery/jquery.client.js",
 		"resources/src/jquery/jquery.colorUtil.js",
 		"resources/src/jquery/jquery.confirmable.js",
 		"resources/src/jquery/jquery.footHovzer.js",
@@ -35,6 +34,7 @@
 		"resources/src/jquery/jquery.makeCollapsible.js",
 		"resources/src/jquery/jquery.spinner.js",
 		"resources/src/jquery/jquery.tabIndex.js",
+		"resources/lib/jquery.client/jquery.client.js",
 		"resources/lib/oojs",
 		"resources/lib/oojs-ui"
 	]
