@@ -185,7 +185,7 @@ return array(
 		'styles' => 'resources/lib/jquery.chosen/chosen.css',
 	),
 	'jquery.client' => array(
-		'scripts' => 'resources/src/jquery/jquery.client.js',
+		'scripts' => 'resources/lib/jquery.client/jquery.client.js',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.color' => array(
