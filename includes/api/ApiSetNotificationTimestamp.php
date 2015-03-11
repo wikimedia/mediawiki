@@ -73,7 +73,8 @@ class ApiSetNotificationTimestamp extends ApiBase {
 			}
 			$title = reset( $pageSet->getGoodTitles() );
 			if ( $title ) {
-				$timestamp = Revision::getTimestampFromId( $title, $params['torevid'] );
+				$timestamp = Revision::getTimestampFromId(
+					$title, $params['torevid'], Revision::READ_LATEST );
 				if ( $timestamp ) {
 					$timestamp = $dbw->timestamp( $timestamp );
 				} else {
@@ -86,7 +87,8 @@ class ApiSetNotificationTimestamp extends ApiBase {
 			}
 			$title = reset( $pageSet->getGoodTitles() );
 			if ( $title ) {
-				$revid = $title->getNextRevisionID( $params['newerthanrevid'] );
+				$revid = $title->getNextRevisionID(
+					$params['newerthanrevid'], Title::GAID_FOR_UPDATE );
 				if ( $revid ) {
 					$timestamp = $dbw->timestamp( Revision::getTimestampFromId( $title, $revid ) );
 				} else {
