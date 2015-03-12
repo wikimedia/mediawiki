@@ -1697,9 +1697,17 @@ class Linker {
 	public static function tocList( $toc, $lang = false ) {
 		$lang = wfGetLangObj( $lang );
 		$title = wfMessage( 'toc' )->inLanguage( $lang )->escaped();
+		$showToc = wfMessage( 'showtoc' )->inLanguage( $lang )->escaped();
+		$hideToc = wfMessage( 'hidetoc' )->inLanguage( $lang )->escaped();
 
 		return '<div id="toc" class="toc">'
-			. '<div id="toctitle"><h2>' . $title . "</h2></div>\n"
+			. '<div id="toctitle">'
+			. '<h2>' . $title . '</h2>'
+			. '<span class="toctoggle">&nbsp;['
+				. '<a href="#" class="toc-show">' . $showToc . '</a>'
+				. '<a href="#" class="toc-hide">' . $hideToc . '</a>'
+			. ']&nbsp;</span>'
+			. "</div>\n"
 			. $toc
 			. "</ul>\n</div>\n";
 	}
