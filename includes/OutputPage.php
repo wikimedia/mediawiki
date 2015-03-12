@@ -1412,7 +1412,8 @@ class OutputPage extends ContextSource {
 		if ( $overrideBaseUrl ) {
 			$helpUrl = $to;
 		} else {
-			$helpUrl = "//www.mediawiki.org/wiki/Special:MyLanguage/$to";
+			$toUrlencoded = wfUrlencode( str_replace( ' ', '_', $to ) );
+			$helpUrl = "//www.mediawiki.org/wiki/Special:MyLanguage/$toUrlencoded";
 		}
 		$link = Html::rawElement(
 			'a',
