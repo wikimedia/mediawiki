@@ -1970,6 +1970,36 @@ $wgSlaveLagCritical = 30;
  */
 $wgDBWindowsAuthentication = false;
 
+/**
+ * Set to true to log warnings reported by the database, for successful
+ * queries only, to the "DBWarnings" log group.
+ *
+ * Currently only works for MySQL connections using the mysqli PHP extension.
+ */
+$wgLogDBWarnings = false;
+
+/**
+ * Use this setting to include or exclude certain MySQL warnings from the
+ * log entries generated when $wgLogDBWarnings is enabled.
+ *
+ * This is an associative array. Each key follows one of these formats, in
+ * order from most to least specific: "LEVEL CODE", "CODE", "LEVEL", or "*"
+ * (meaning all warnings of any level or code). "LEVEL" can be either "Note"
+ * or "Warning". "CODE" is the four-digit numeric error code. More specific
+ * keys take precedence over less specific keys.
+ *
+ * Each value is a boolean: true to log the specified kind of warning, false
+ * to not log it.
+ */
+$wgLoggableMysqlWarnings = array(
+	'*' => true,
+	'Note' => false,
+
+	// Do not log duplicate-key warnings from INSERT IGNORE, reported by
+	// MySQL 5.7.5+ and MariaDB 5.5.28+.
+	1062 => false, // ER_DUP_ENTRY
+);
+
 /**@}*/ # End of DB settings }
 
 /************************************************************************//**
