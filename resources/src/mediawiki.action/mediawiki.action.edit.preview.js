@@ -238,6 +238,7 @@
 		if ( !document.getElementById( 'wikiDiff' ) && document.getElementById( 'wikiPreview' ) ) {
 			$( '#wikiPreview' ).after(
 				$( '<div>' )
+					.hide()
 					.attr( 'id', 'wikiDiff' )
 					.html( '<table class="diff"><col class="diff-marker"/><col class="diff-content"/>' +
 						'<col class="diff-marker"/><col class="diff-content"/><tbody/></table>' )
