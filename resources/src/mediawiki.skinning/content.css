@@ -78,6 +78,17 @@ table.toc td {
 	text-align: left;
 }
 
+.client-nojs .toctoggle,
+.hide-toc #toc ul,
+.hide-toc .toc-hide,
+.toc-show {
+	display: none;
+}
+
+.hide-toc .toc-show {
+	display: inline;
+}
+
 #toc ul ul,
 .toc ul ul {
 	margin: 0 0 0 2em;
