@@ -39,6 +39,8 @@ class ApiBlock extends ApiBase {
 	 * of success. If it fails, the result will specify the nature of the error.
 	 */
 	public function execute() {
+		global $wgContLang;
+
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
@@ -100,11 +102,9 @@ class ApiBlock extends ApiBase {
 		$res['user'] = $params['user'];
 		$res['userID'] = $target instanceof User ? $target->getId() : 0;
 
-		$block = Block::newFromTarget( $target );
+		$block = Block::newFromTarget( $target, null, true );
 		if ( $block instanceof Block ) {
-			$res['expiry'] = $block->mExpiry == $this->getDB()->getInfinity()
-				? 'infinite'
-				: wfTimestamp( TS_ISO_8601, $block->mExpiry );
+			$res['expiry'] = $wgContLang->formatExpiry( $block->mExpiry, TS_ISO_8601, 'infinite' );
 			$res['id'] = $block->getId();
 		} else {
 			# should be unreachable
