@@ -1618,8 +1618,8 @@ abstract class Skin extends ContextSource {
 		);
 
 		$result .= '<span class="mw-editsection-bracket">]</span></span>';
-
-		Hooks::run( 'DoEditSectionLink', array( $this, $nt, $section, $tooltip, &$result, $lang ) );
+		// Deprecated, use SkinEditSectionLinks hook instead
+		Hooks::run( 'DoEditSectionLink', array( $this, $nt, $section, $tooltip, &$result, $lang ), '1.25' );
 		return $result;
 	}
 
