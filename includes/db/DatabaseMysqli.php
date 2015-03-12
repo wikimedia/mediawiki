@@ -30,14 +30,46 @@
  */
 class DatabaseMysqli extends DatabaseMysqlBase {
 	/**
+	 * @var int
+	 */
+	protected $affectedRows = 0;
+
+	/**
 	 * @param string $sql
 	 * @return resource
 	 */
 	protected function doQuery( $sql ) {
-		if ( $this->bufferResults() ) {
+		$bufferResults = $this->bufferResults();
+		if ( $bufferResults ) {
 			$ret = $this->mConn->query( $sql );
 		} else {
 			$ret = $this->mConn->query( $sql, MYSQLI_USE_RESULT );
+		}
+
+		// Get the number of affected rows now; if we end up performing
+		// a SHOW WARNINGS query, that number would otherwise be lost.
+		$this->affectedRows = $this->mConn->affected_rows;
+
+		global $wgDBLogWarnings, $wgDBIgnoredMysqlWarnings;
+		if ( $wgDBLogWarnings ) {
+			// If the query succeeded yet generated one or more warnings, log
+			// any that we are configured to log. We don't do this for unbuffered
+			// queries; there aren't many of them, and we would have to defer
+			// SHOW WARNINGS until the result set has been freed.
+			if ( $ret && $this->mConn->warning_count && ( $bufferResults || $ret === true ) ) {
+				$messagesToLog = array();
+				$warnRet = $this->mConn->query( 'SHOW WARNINGS' );
+				while ( $warnRet && ( $warning = $warnRet->fetch_row() ) ) {
+					list( $level, $code, $message ) = $warning;
+					if ( $level !== 'Note' && !in_array( $code, $wgDBIgnoredMysqlWarnings ) ) {
+						$messagesToLog[] = "$level (Code $code): $message";
+					}
+				}
+
+				if ( $messagesToLog ) {
+					wfDebugLog( 'DBWarnings', "$sql\n" . implode( "\n", $messagesToLog ) );
+				}
+			}
 		}
 
 		return $ret;
@@ -152,7 +184,11 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	 * @return int
 	 */
 	function affectedRows() {
-		return $this->mConn->affected_rows;
+		if ( !$this->mConn ) {
+			throw new DBUnexpectedError( $this, "DB connection was already closed." );
+		}
+
+		return $this->affectedRows; // saved in doQuery()
 	}
 
 	/**

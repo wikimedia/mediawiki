@@ -1931,6 +1931,22 @@ $wgSlaveLagCritical = 30;
  */
 $wgDBWindowsAuthentication = false;
 
+/**
+ * Set to true to log warnings reported by the database, for successful
+ * queries only, to the "DBWarnings" log group.
+ *
+ * Currently only works for MySQL connections using the mysqli PHP extension.
+ */
+$wgDBLogWarnings = false;
+
+/**
+ * List of MySQL error codes to ignore when logging warnings
+ * (see $wgDBLogWarnings).
+ */
+$wgDBIgnoredMysqlWarnings = array(
+	1062, // ER_DUP_ENTRY, see note in <https://mariadb.com/kb/en/mariadb/ignore/>
+);
+
 /**@}*/ # End of DB settings }
 
 /************************************************************************//**
