@@ -122,11 +122,7 @@ class Block {
 		$this->mAuto = $auto;
 		$this->isHardblock( !$anonOnly );
 		$this->prevents( 'createaccount', $createAccount );
-		if ( $expiry == 'infinity' || $expiry == wfGetDB( DB_SLAVE )->getInfinity() ) {
-			$this->mExpiry = 'infinity';
-		} else {
-			$this->mExpiry = wfTimestamp( TS_MW, $expiry );
-		}
+		$this->mExpiry = wfGetDB( DB_SLAVE )->decodeExpiry( $expiry );
 		$this->isAutoblocking( $enableAutoblock );
 		$this->mHideName = $hideName;
 		$this->prevents( 'sendemail', $blockEmail );
@@ -379,12 +375,7 @@ class Block {
 		$this->mParentBlockId = $row->ipb_parent_block_id;
 
 		// I wish I didn't have to do this
-		$db = wfGetDB( DB_SLAVE );
-		if ( $row->ipb_expiry == $db->getInfinity() ) {
-			$this->mExpiry = 'infinity';
-		} else {
-			$this->mExpiry = wfTimestamp( TS_MW, $row->ipb_expiry );
-		}
+		$this->mExpiry = wfGetDB( DB_SLAVE )->decodeExpiry( $row->ipb_expiry );
 
 		$this->isHardblock( !$row->ipb_anon_only );
 		$this->isAutoblocking( $row->ipb_enable_autoblock );

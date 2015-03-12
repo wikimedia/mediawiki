@@ -2369,8 +2369,8 @@ class WikiPage implements Page, IDBAccessObject {
 		$dbw = wfGetDB( DB_MASTER );
 
 		foreach ( $restrictionTypes as $action ) {
-			if ( !isset( $expiry[$action] ) ) {
-				$expiry[$action] = $dbw->getInfinity();
+			if ( !isset( $expiry[$action] ) || $expiry[$action] === $dbw->getInfinity() ) {
+				$expiry[$action] = 'infinity';
 			}
 			if ( !isset( $limit[$action] ) ) {
 				$limit[$action] = '';
@@ -2610,10 +2610,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	protected function formatExpiry( $expiry ) {
 		global $wgContLang;
-		$dbr = wfGetDB( DB_SLAVE );
 
-		$encodedExpiry = $dbr->encodeExpiry( $expiry );
-		if ( $encodedExpiry != 'infinity' ) {
+		if ( $expiry != 'infinity' ) {
 			return wfMessage(
 				'protect-expiring',
 				$wgContLang->timeanddate( $expiry, false, false ),
