@@ -1095,6 +1095,7 @@ return array(
 			'otherlanguages',
 			'tooltip-p-lang',
 			'summary-preview',
+			'subject-preview',
 			'parentheses',
 		),
 	),
