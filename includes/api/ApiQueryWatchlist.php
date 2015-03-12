@@ -419,7 +419,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					$logEntry->getParameters(),
 					$logEntry->getType(),
 					$logEntry->getSubtype(),
-					$logEntry->getTimestamp()
+					$logEntry->getTimestamp(),
+					$logEntry->isLegacy()
 				);
 			}
 		}
