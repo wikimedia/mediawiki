@@ -11,13 +11,17 @@
 		var isDiff, api, request, postData, copySelectors, section,
 			$wikiPreview, $wikiDiff, $editform, $copyElements, $spinner;
 
-		e.preventDefault();
-
 		isDiff = ( e.target.name === 'wpDiff' );
 		$wikiPreview = $( '#wikiPreview' );
 		$wikiDiff = $( '#wikiDiff' );
 		$editform = $( '#editform' );
 		section = $editform.find( '[name="wpSection"]' ).val();
+
+		// Show changes for a new section is not yet supported
+		if ( isDiff && section === 'new' ) {
+			return;
+		}
+		e.preventDefault();
 
 		// Show #wikiPreview if it's hidden to be able to scroll to it
 		// (if it is hidden, it's also empty, so nothing changes in the rendering)
@@ -65,6 +69,14 @@
 			summary: $editform.find( '#wpSummary' ).textSelection( 'getContents' )
 		};
 
+		if ( section !== '' ) {
+			postData.sectionpreview = '';
+			if ( section === 'new' ) {
+				postData.section = section;
+				postData.sectiontitle = postData.summary;
+			}
+		}
+
 		if ( isDiff ) {
 			$wikiPreview.hide();
 
@@ -104,9 +116,6 @@
 				prop: 'text|displaytitle|modules|categorieshtml|templates|langlinks|limitreporthtml',
 				disableeditsection: true
 			} );
-			if ( section !== '' ) {
-				postData.sectionpreview = '';
-			}
 			request = api.post( postData );
 			request.done( function ( response ) {
 				var li, newList, $content, $parent, $list;
@@ -179,12 +188,13 @@
 			} );
 		}
 		request.done( function ( response ) {
+			var isSubject = ( section === 'new' ),
+				summaryMsg = isSubject ? 'subject-preview' : 'summary-preview';
 			if ( response.parse.parsedsummary ) {
-				// TODO implement special behavior for section === 'new'
 				$editform.find( '.mw-summary-preview' )
 					.empty()
 					.append(
-						mw.message( 'summary-preview' ).parse(),
+						mw.message( summaryMsg ).parse(),
 						' ',
 						$( '<span>' ).addClass( 'comment' ).html(
 							// There is no equivalent to rawParams
@@ -230,7 +240,7 @@
 		}
 
 		if ( !$( '.mw-summary-preview' ).length ) {
-			$( '.editCheckboxes' ).before(
+			$( '#wpSummary' ).after(
 				$( '<div>' ).addClass( 'mw-summary-preview' )
 			);
 		}
