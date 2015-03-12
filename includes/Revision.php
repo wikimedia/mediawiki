@@ -1684,23 +1684,21 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @param Title $title
 	 * @param int $id
-	 * @return string
+	 * @return string|bool False if not found
 	 */
-	static function getTimestampFromId( $title, $id ) {
-		$dbr = wfGetDB( DB_SLAVE );
+	static function getTimestampFromId( $title, $id, $flags = 0 ) {
+		$db = ( $flags & self::READ_LATEST )
+			? wfGetDB( DB_MASTER )
+			: wfGetDB( DB_SLAVE );
 		// Casting fix for databases that can't take '' for rev_id
 		if ( $id == '' ) {
 			$id = 0;
 		}
 		$conds = array( 'rev_id' => $id );
 		$conds['rev_page'] = $title->getArticleID();
-		$timestamp = $dbr->selectField( 'revision', 'rev_timestamp', $conds, __METHOD__ );
-		if ( $timestamp === false && wfGetLB()->getServerCount() > 1 ) {
-			# Not in slave, try master
-			$dbw = wfGetDB( DB_MASTER );
-			$timestamp = $dbw->selectField( 'revision', 'rev_timestamp', $conds, __METHOD__ );
-		}
-		return wfTimestamp( TS_MW, $timestamp );
+		$timestamp = $db->selectField( 'revision', 'rev_timestamp', $conds, __METHOD__ );
+
+		return ( $timestamp !== false ) ? wfTimestamp( TS_MW, $timestamp ) : false;
 	}
 
 	/**
