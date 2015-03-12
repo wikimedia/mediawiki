@@ -233,6 +233,7 @@
 	"disclaimers": "Жауапкершіліктен бас тарту",
 	"disclaimerpage": "Project:Жауапкершіліктен бас тарту",
 	"edithelp": "Өндеу анықтамасы",
+	"helppage-top-gethelp": "Анықтама",
 	"mainpage": "Басты бет",
 	"mainpage-description": "Басты бет",
 	"policy-url": "Project:Ережелер",
@@ -2755,5 +2756,6 @@
 	"expand_templates_ok": "OK",
 	"expand_templates_remove_comments": "Мәндемелерін аластатып?",
 	"expand_templates_generate_xml": "XML өңдету бұтақтарын көрсет",
-	"expand_templates_preview": "Қарап шығу"
+	"expand_templates_preview": "Қарап шығу",
+	"headline-anchor-title": "Бұл бөлімнің уики сілтемесі"
 }

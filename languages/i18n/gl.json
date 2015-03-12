@@ -20,7 +20,8 @@
 			"Fisterraeomar",
 			"Breogan2008",
 			"VaiPolaSombra",
-			"Macofe"
+			"Macofe",
+			"Banjo"
 		]
 	},
 	"tog-underline": "Subliñar as ligazóns:",
@@ -252,7 +253,7 @@
 	"policy-url": "Project:Políticas e normas",
 	"portal": "Portal da comunidade",
 	"portal-url": "Project:Portal da comunidade",
-	"privacy": "Política de protección de datos",
+	"privacy": "Política de privacidade",
 	"privacypage": "Project:Política de protección de datos",
 	"badaccess": "Erro de permisos",
 	"badaccess-group0": "Non ten os permisos necesarios para executar a acción que solicitou.",
@@ -3115,6 +3116,7 @@
 	"feedback-message": "Mensaxe:",
 	"feedback-subject": "Asunto:",
 	"feedback-submit": "Enviar",
+	"feedback-terms": "Comprendo que a miña información inclúe datos exactos do meu navegador e versión de sistema operativo e poderá ser compartida públicamente xunto aos meus comentarios.",
 	"feedback-termsofuse": "Concordo en proporcionar as miñas opinións de acordo cos Termos de Uso.",
 	"feedback-thanks": "Grazas! Os seus comentarios publicáronse na páxina \"[$2 $1]\".",
 	"feedback-thanks-title": "Grazas!",
