@@ -102,6 +102,7 @@ class User implements IDBAccessObject {
 	 */
 	protected static $mCoreRights = array(
 		'apihighlimits',
+		'applychangetags',
 		'autoconfirmed',
 		'autopatrol',
 		'bigdelete',
@@ -109,6 +110,7 @@ class User implements IDBAccessObject {
 		'blockemail',
 		'bot',
 		'browsearchive',
+		'changetags',
 		'createaccount',
 		'createpage',
 		'createtalk',
