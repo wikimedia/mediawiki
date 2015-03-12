@@ -377,7 +377,7 @@
 				return;
 			}
 			// Otherwise, keep polling
-			setTimeout( styleTestLoop, 150 );
+			setTimeout( styleTestLoop );
 		}
 
 		// Start the loop
