@@ -2,11 +2,14 @@
 
 	mw.page = {};
 
+	var htmlClass = 'client-js';
+	if ( /(?:^|;)\s?mw_hidetoc=1/.test( document.cookie ) ) {
+		htmlClass += ' hide-toc';
+	}
+
 	// Client profile classes for <html>
 	// Allows for easy hiding/showing of JS or no-JS-specific UI elements
-	$( 'html' )
-		.addClass( 'client-js' )
-		.removeClass( 'client-nojs' );
+	$( 'html' ).attr( 'class', htmlClass );
 
 	$( function () {
 		mw.util.init();

@@ -3,58 +3,30 @@
 
 	// Table of contents toggle
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
-		var $toc, $tocTitle, $tocToggleLink, $tocList, hideToc;
-		$toc = $content.find( '#toc' );
-		$tocTitle = $content.find( '#toctitle' );
-		$tocToggleLink = $content.find( '#togglelink' );
-		$tocList = $toc.find( 'ul' ).eq( 0 );
+		var $tocTitle = $content.find( '#toctitle' ),
+			$toggles = $tocTitle.find( 'a' );
 
-		// Hide/show the table of contents element
-		function toggleToc() {
-			if ( $tocList.is( ':hidden' ) ) {
-				$tocList.slideDown( 'fast' );
-				$tocToggleLink.text( mw.msg( 'hidetoc' ) );
-				$toc.removeClass( 'tochidden' );
-				$.cookie( 'mw_hidetoc', null, {
-					expires: 30,
-					path: '/'
-				} );
-			} else {
-				$tocList.slideUp( 'fast' );
-				$tocToggleLink.text( mw.msg( 'showtoc' ) );
-				$toc.addClass( 'tochidden' );
-				$.cookie( 'mw_hidetoc', '1', {
-					expires: 30,
-					path: '/'
-				} );
-			}
+		if ( $tocTitle.length === 0 ) {
+			return;
 		}
 
-		// Only add it if there is a complete TOC and it doesn't
-		// have a toggle added already
-		if ( $toc.length && $tocTitle.length && $tocList.length && !$tocToggleLink.length ) {
-			hideToc = $.cookie( 'mw_hidetoc' ) === '1';
-
-			$tocToggleLink = $( '<a href="#" id="togglelink"></a>' )
-				.text( hideToc ? mw.msg( 'showtoc' ) : mw.msg( 'hidetoc' ) )
-				.click( function ( e ) {
-					e.preventDefault();
-					toggleToc();
-				} );
-
+		if ( $toggles.length === 0 ) {
+			// Temporary hack until the change to generate .toctoggle in PHP propagates.
 			$tocTitle.append(
-				$tocToggleLink
-					.wrap( '<span class="toctoggle"></span>' )
-					.parent()
-						.prepend( '&nbsp;[' )
-						.append( ']&nbsp;' )
+				'<span class="toctoggle">&nbsp;[' +
+					'<a href="#" class="toctoggle-show">' + mw.message( 'showtoc' ).text() + '</a>' +
+					'<a href="#" class="toctoggle-hide">' + mw.message( 'hidetoc' ).text() + '</a>' +
+				']&nbsp;</span>'
 			);
-
-			if ( hideToc ) {
-				$tocList.hide();
-				$toc.addClass( 'tochidden' );
-			}
+			$toggles = $tocTitle.find( 'a' );
 		}
+
+		$toggles.on( 'click', function ( e ) {
+			var cookieVal = $( 'html' ).hasClass( 'hide-toc' ) ? null : '1';
+			$( 'html' ).toggleClass( 'hide-toc', !!cookieVal );
+			$.cookie( 'mw_hidetoc', cookieVal, { expires: 30, path: '/' } );
+			e.preventDefault();
+		} );
 	} );
 
 }( mediaWiki, jQuery ) );
