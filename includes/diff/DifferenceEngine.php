@@ -1274,23 +1274,12 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		// Load tags information for both revisions
-		$dbr = wfGetDB( DB_SLAVE );
 		if ( $this->mOldid !== false ) {
-			$this->mOldTags = $dbr->selectField(
-				'tag_summary',
-				'ts_tags',
-				array( 'ts_rev_id' => $this->mOldid ),
-				__METHOD__
-			);
+			$this->mOldTags = ChangeTags::getTags( null, $this->mOldid, null );
 		} else {
 			$this->mOldTags = false;
 		}
-		$this->mNewTags = $dbr->selectField(
-			'tag_summary',
-			'ts_tags',
-			array( 'ts_rev_id' => $this->mNewid ),
-			__METHOD__
-		);
+		$this->mNewTags = ChangeTags::getTags( null, $this->mNewid, null );
 
 		return true;
 	}
