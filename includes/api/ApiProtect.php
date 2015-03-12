@@ -29,6 +29,8 @@
  */
 class ApiProtect extends ApiBase {
 	public function execute() {
+		global $wgContLang;
+
 		$params = $this->extractRequestParams();
 
 		$pageObj = $this->getTitleOrPageId( $params, 'fromdbmaster' );
@@ -78,7 +80,7 @@ class ApiProtect extends ApiBase {
 			}
 
 			if ( wfIsInfinity( $expiry[$i] ) ) {
-				$expiryarray[$p[0]] = $db->getInfinity();
+				$expiryarray[$p[0]] = 'infinity';
 			} else {
 				$exp = strtotime( $expiry[$i] );
 				if ( $exp < 0 || !$exp ) {
@@ -93,10 +95,7 @@ class ApiProtect extends ApiBase {
 			}
 			$resultProtections[] = array(
 				$p[0] => $protections[$p[0]],
-				'expiry' => ( $expiryarray[$p[0]] == $db->getInfinity()
-					? 'infinite'
-					: wfTimestamp( TS_ISO_8601, $expiryarray[$p[0]] )
-				)
+				'expiry' => $wgContLang->formatExpiry( $expiryarray[$p[0]], TS_ISO_8601, 'infinite' ),
 			);
 		}
 

@@ -848,16 +848,11 @@ class SpecialBlock extends FormSpecialPage {
 	 * Convert a submitted expiry time, which may be relative ("2 weeks", etc) or absolute
 	 * ("24 May 2034", etc), into an absolute timestamp we can put into the database.
 	 * @param string $expiry Whatever was typed into the form
-	 * @return string Timestamp or "infinity" string for the DB implementation
+	 * @return string Timestamp or 'infinity'
 	 */
 	public static function parseExpiryInput( $expiry ) {
-		static $infinity;
-		if ( $infinity == null ) {
-			$infinity = wfGetDB( DB_SLAVE )->getInfinity();
-		}
-
 		if ( wfIsInfinity( $expiry ) ) {
-			$expiry = $infinity;
+			$expiry = 'infinity';
 		} else {
 			$expiry = strtotime( $expiry );
 

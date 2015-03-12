@@ -4330,7 +4330,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @return string
 	 */
 	public function decodeExpiry( $expiry, $format = TS_MW ) {
-		return ( $expiry == '' || $expiry == $this->getInfinity() )
+		return ( $expiry == '' || $expiry == 'infinity' || $expiry == $this->getInfinity() )
 			? 'infinity'
 			: wfTimestamp( $format, $expiry );
 	}

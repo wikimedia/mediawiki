@@ -52,6 +52,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	}
 
 	protected function getCurrentUserInfo() {
+		global $wgContLang;
+
 		$user = $this->getUser();
 		$result = $this->getResult();
 		$vals = array();
@@ -70,9 +72,9 @@ class ApiQueryUserInfo extends ApiQueryBase {
 				$vals['blockedbyid'] = $block->getBy();
 				$vals['blockreason'] = $user->blockedFor();
 				$vals['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $block->mTimestamp );
-				$vals['blockexpiry'] = $block->getExpiry() === 'infinity'
-					? 'infinite'
-					: wfTimestamp( TS_ISO_8601, $block->getExpiry() );
+				$vals['blockexpiry'] = $wgContLang->formatExpiry(
+					$block->getExpiry(), TS_ISO_8601, 'infinite'
+				);
 			}
 		}
 
