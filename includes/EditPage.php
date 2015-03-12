@@ -2555,7 +2555,19 @@ class EditPage {
 		}
 
 		// Add edit notices
-		$wgOut->addHTML( implode( "\n", $this->mTitle->getEditNotices( $this->oldid ) ) );
+		$editNotices = $this->mTitle->getEditNotices( $this->oldid );
+		if ( count( $editNotices ) ) {
+			$wgOut->addHTML( implode( "\n", $editNotices ) );
+		} else {
+			$msg = wfMessage( 'editnotice-notext' );
+			if ( !$msg->isDisabled() ) {
+				$wgOut->addHTML(
+					'<div class="mw-editnotice-notext">'
+					. $msg->parseAsBlock()
+					. '</div>'
+				);
+			}
+		}
 
 		if ( $this->isConflict ) {
 			$wgOut->wrapWikiMsg( "<div class='mw-explainconflict'>\n$1\n</div>", 'explainconflict' );

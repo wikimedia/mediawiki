@@ -115,6 +115,8 @@ production.
   interface, reachable via IContextSource::getStats().
 * Move the jQuery Client library from being mastered in MediaWiki as v0.1.0 to a
   proper, published library, which is now tagged as v1.0.0.
+* A new message (defaulting to blank), 'editnotice-notext', can be shown to users
+  when they are editing if no edit notices apply to the page being edited.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
