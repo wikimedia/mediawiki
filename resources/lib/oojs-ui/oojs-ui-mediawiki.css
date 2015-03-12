@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.9.1
+ * OOjs UI v0.9.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-03-12T19:09:07Z
+ * Date: 2015-03-12T23:44:05Z
  */
 .oo-ui-progressBarWidget-slide-frames from {
 	margin-left: -40%;
@@ -1054,6 +1054,9 @@
 	white-space: nowrap;
 }
 .oo-ui-toolbar-narrow .oo-ui-toolbar-tools {
+	white-space: normal;
+}
+.oo-ui-toolbar-tools .oo-ui-tool {
 	white-space: normal;
 }
 .oo-ui-toolbar-tools,
@@ -2511,10 +2514,10 @@
 	     -o-transform: scale(1);
 	        transform: scale(1);
 }
-.oo-ui-windowManager-fullscreen.oo-ui-windowManager-modal > .oo-ui-dialog > .oo-ui-window-frame {
-	border: 0;
-	border-radius: 0;
-	box-shadow: none;
+.oo-ui-windowManager-modal.oo-ui-windowManager-floating > .oo-ui-dialog > .oo-ui-window-frame {
+	border: 1px solid #aaaaaa;
+	border-radius: 0.2em;
+	box-shadow: inset 0 -0.2em 0 0 rgba(0, 0, 0, 0.2);
 }
 
 .oo-ui-icon-add {
