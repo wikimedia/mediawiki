@@ -4685,15 +4685,18 @@ class Title {
 		$msg = wfMessage( $editnotice_ns );
 		if ( $msg->exists() ) {
 			$html = $msg->parseAsBlock();
-			$notices[$editnotice_ns] = Html::rawElement(
-				'div',
-				array( 'class' => array(
-					'mw-editnotice',
-					'mw-editnotice-namespace',
-					Sanitizer::escapeClass( "mw-$editnotice_ns" )
-				) ),
-				$html
-			);
+			// Edit notices may have complex logic, but output nothing (T91715)
+			if ( trim( $html ) !== '' ) {
+				$notices[$editnotice_ns] = Html::rawElement(
+					'div',
+					array( 'class' => array(
+						'mw-editnotice',
+						'mw-editnotice-namespace',
+						Sanitizer::escapeClass( "mw-$editnotice_ns" )
+					) ),
+					$html
+				);
+			}
 		}
 
 		if ( MWNamespace::hasSubpages( $this->getNamespace() ) ) {
@@ -4705,15 +4708,17 @@ class Title {
 				$msg = wfMessage( $editnotice_base );
 				if ( $msg->exists() ) {
 					$html = $msg->parseAsBlock();
-					$notices[$editnotice_base] = Html::rawElement(
-						'div',
-						array( 'class' => array(
-							'mw-editnotice',
-							'mw-editnotice-base',
-							Sanitizer::escapeClass( "mw-$editnotice_base" )
-						) ),
-						$html
-					);
+					if ( trim( $html ) !== '' ) {
+						$notices[$editnotice_base] = Html::rawElement(
+							'div',
+							array( 'class' => array(
+								'mw-editnotice',
+								'mw-editnotice-base',
+								Sanitizer::escapeClass( "mw-$editnotice_base" )
+							) ),
+							$html
+						);
+					}
 				}
 			}
 		} else {
@@ -4722,15 +4727,17 @@ class Title {
 			$msg = wfMessage( $editnoticeText );
 			if ( $msg->exists() ) {
 				$html = $msg->parseAsBlock();
-				$notices[$editnoticeText] = Html::rawElement(
-					'div',
-					array( 'class' => array(
-						'mw-editnotice',
-						'mw-editnotice-page',
-						Sanitizer::escapeClass( "mw-$editnoticeText" )
-					) ),
-					$html
-				);
+				if ( trim( $html ) !== '' ) {
+					$notices[$editnoticeText] = Html::rawElement(
+						'div',
+						array( 'class' => array(
+							'mw-editnotice',
+							'mw-editnotice-page',
+							Sanitizer::escapeClass( "mw-$editnoticeText" )
+						) ),
+						$html
+					);
+				}
 			}
 		}
 
