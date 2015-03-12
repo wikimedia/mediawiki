@@ -2,11 +2,22 @@
   "name": "mediawiki",
   "version": "0.0.0",
   "scripts": {
+<<<<<<< HEAD   (a6c451 update DonationInterface submodule)
     "test": "grunt test"
   },
   "devDependencies": {
     "grunt": "0.4.2",
     "grunt-contrib-jshint": "0.9.2",
+=======
+    "test": "grunt test",
+    "doc": "jsduck",
+    "postdoc": "grunt copy:jsduck"
+  },
+  "devDependencies": {
+    "grunt": "0.4.2",
+    "grunt-contrib-jshint": "0.9.2",
+    "grunt-contrib-copy": "0.8.0",
+>>>>>>> BRANCH (8e7b77 Rename JSDuck config to standard 'jsduck')
     "grunt-contrib-watch": "0.6.1",
     "grunt-jscs-checker": "0.4.1"
   }
