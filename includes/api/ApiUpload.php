@@ -138,6 +138,12 @@ class ApiUpload extends ApiBase {
 			return $this->getStashResult( $warnings );
 		}
 
+		// Check throttle after we've handled warnings
+		if ( UploadBase::isThrottled( $this->getUser() )
+		) {
+			$this->dieUsageMsg( 'actionthrottledtext' );
+		}
+
 		// This is the most common case -- a normal upload with no warnings
 		// performUpload will return a formatted properly for the API with status
 		return $this->performUpload( $warnings );
