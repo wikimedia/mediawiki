@@ -65,6 +65,14 @@
 			summary: $editform.find( '#wpSummary' ).textSelection( 'getContents' )
 		};
 
+		if ( section !== '' ) {
+			postData.sectionpreview = '';
+			postData.section = section;
+			if ( section === 'new' ) {
+				postData.sectiontitle = postData.summary;
+			}
+		}
+
 		if ( isDiff ) {
 			$wikiPreview.hide();
 
@@ -104,9 +112,6 @@
 				prop: 'text|displaytitle|modules|categorieshtml|templates|langlinks|limitreporthtml',
 				disableeditsection: true
 			} );
-			if ( section !== '' ) {
-				postData.sectionpreview = '';
-			}
 			request = api.post( postData );
 			request.done( function ( response ) {
 				var li, newList, $content, $parent, $list;
@@ -179,8 +184,7 @@
 			} );
 		}
 		request.done( function ( response ) {
-			if ( response.parse.parsedsummary ) {
-				// TODO implement special behavior for section === 'new'
+			if ( response.parse.parsedsummary && section !== 'new' ) {
 				$editform.find( '.mw-summary-preview' )
 					.empty()
 					.append(
@@ -243,6 +247,11 @@
 					.html( '<table class="diff"><col class="diff-marker"/><col class="diff-content"/>' +
 						'<col class="diff-marker"/><col class="diff-content"/><tbody/></table>' )
 			);
+		}
+
+		// Show changes for a new section is not yet supported
+		if( $( '#editform [name="wpSection"]' ).val() === 'new' ) {
+			$( '#wpDiff' ).prop( 'disabled', true );
 		}
 
 		// This should be moved down to '#editform', but is kept on the body for now
