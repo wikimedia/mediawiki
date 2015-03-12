@@ -1699,7 +1699,13 @@ class Linker {
 		$title = wfMessage( 'toc' )->inLanguage( $lang )->escaped();
 
 		return '<div id="toc" class="toc">'
-			. '<div id="toctitle"><h2>' . $title . "</h2></div>\n"
+			. '<div id="toctitle">'
+			. '<h2>' . $title . '</h2>'
+			. '<span class="toctoggle">&nbsp;['
+				. '<a href="#" class="toctoggle-show">' . wfMessage( 'showtoc' )->text() . '</a>'
+				. '<a href="#" class="toctoggle-hide">' . wfMessage( 'hidetoc' )->text() . '</a>'
+			. ']&nbsp;</span>'
+			. "</div>\n"
 			. $toc
 			. "</ul>\n</div>\n";
 	}

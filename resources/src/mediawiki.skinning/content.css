@@ -78,6 +78,18 @@ table.toc td {
 	text-align: left;
 }
 
+.hide-toc * #toc ul,
+.hide-toc * .toctoggle-hide,
+.toctoggle-show,
+.toctoggle {
+	display: none;
+}
+
+.client-js * .toctoggle,
+.hide-toc * .toctoggle-show {
+	display: inline;
+}
+
 #toc ul ul,
 .toc ul ul {
 	margin: 0 0 0 2em;
