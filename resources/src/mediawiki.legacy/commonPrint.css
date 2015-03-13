@@ -131,6 +131,20 @@ pre, .mw-code {
 	*display: inline;
 }
 
+/* Separate columns for tocnumber and toctext */
+/* Ignored by IE7 and lower */
+.tocnumber,
+.toctext {
+	display: table-cell;
+}
+
+/* Space between the columns for tocnumber and toctext */
+/* Ignored by IE7 and lower */
+.tocnumber:after {
+	content: "";
+	padding-right: 0.5em;
+}
+
 #footer {
 	background: white;
 	color: black;

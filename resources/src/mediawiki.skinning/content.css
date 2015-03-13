@@ -88,6 +88,20 @@ table.toc td {
 	font-size: 94%;
 }
 
+/* Separate columns for tocnumber and toctext */
+/* Ignored by IE7 and lower */
+.tocnumber,
+.toctext {
+	display: table-cell;
+}
+
+/* Space between the columns for tocnumber and toctext */
+/* Ignored by IE7 and lower */
+.tocnumber:after {
+	content: "";
+	padding-right: 0.5em;
+}
+
 /* Warning */
 .mw-warning {
 	margin-left: 50px;
