@@ -146,6 +146,10 @@ $.extend( mw.language, {
 			}
 		}
 		return text;
+	},
+
+	setSpecialCharacters: function ( data ) {
+		this.specialCharacters = data;
 	}
 } );
 
