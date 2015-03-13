@@ -4,9 +4,8 @@
 
 	// Client profile classes for <html>
 	// Allows for easy hiding/showing of JS or no-JS-specific UI elements
-	$( 'html' )
-		.addClass( 'client-js' )
-		.removeClass( 'client-nojs' );
+	$( document.documentElement )
+		.toggleClass( 'client-nojs client-js' );
 
 	$( function () {
 		mw.util.init();
