@@ -64,7 +64,7 @@ var ProtectionForm = window.ProtectionForm = {
 	},
 
 	/**
-	 * Checks if a cerain protection level is cascadeable.
+	 * Checks if a certain protection level is cascadeable.
 	 *
 	 * @param {string} level
 	 * @return {boolean}
