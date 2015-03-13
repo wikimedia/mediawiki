@@ -471,6 +471,9 @@ class LoadBalancer {
 			? array( false ) // check one "group": the generic pool
 			: (array)$groups;
 
+		$masterOnly = ( $i == DB_MASTER || $i == $this->getWriterIndex() );
+		$oldConnsOpened = $this->connsOpened; // connections open now
+
 		if ( $i == DB_MASTER ) {
 			$i = $this->getWriterIndex();
 		} else {
@@ -504,6 +507,14 @@ class LoadBalancer {
 		if ( !$conn ) {
 
 			return $this->reportConnectionError();
+		}
+
+		# Profile any new connections that happen
+		if ( $this->connsOpened > $oldConnsOpened ) {
+			$host = $conn->getServer();
+			$dbname = $conn->getDBname();
+			$trxProf = Profiler::instance()->getTransactionProfiler();
+			$trxProf->recordConnection( $host, $dbname, $masterOnly );
 		}
 
 		return $conn;
@@ -755,10 +766,6 @@ class LoadBalancer {
 			// PHP. I'm half-expecting it to segfault, just out of disgust. -- TS
 			$db = $e->db;
 		}
-
-		$isMaster = !empty( $server['master'] );
-		$trxProf = Profiler::instance()->getTransactionProfiler();
-		$trxProf->recordConnection( $server['host'], $server['dbname'], $isMaster );
 
 		$db->setLBInfo( $server );
 		if ( isset( $server['fakeSlaveLag'] ) ) {
