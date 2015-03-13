@@ -337,6 +337,13 @@ ${serverSetting}
 
 ## The URL path to the logo.  Make sure you change this from the default,
 ## or else you'll overwrite your logo when you upgrade!
+##
+## To support svg with png fallback please do the following
+##
+## \$wgLogo = [
+##    'png' => \"path/to/png\",
+##    'svg' => \"path/to/svg\",
+## ];
 \$wgLogo = \"{$this->values['wgLogo']}\";
 
 ## UPO means: this is also a user preference option
