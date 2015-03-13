@@ -62,7 +62,7 @@ class TableDiffFormatter extends DiffFormatter {
 	protected function blockHeader( $xbeg, $xlen, $ybeg, $ylen ) {
 		// '<!--LINE \d+ -->' get replaced by a localised line number
 		// in DifferenceEngine::localiseLineNumbers
-		$r = '<tr><td colspan="2" class="diff-lineno"><!--LINE ' . $xbeg . "--></td>\n" .
+		$r = '<tr><td colspan="2" class="diff-lineno" id="L' . $xbeg . '" ><!--LINE ' . $xbeg . "--></td>\n" .
 			'<td colspan="2" class="diff-lineno"><!--LINE ' . $ybeg . "--></td></tr>\n";
 
 		return $r;
