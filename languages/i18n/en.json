@@ -3470,6 +3470,7 @@
 	"logentry-block-block": "$1 {{GENDER:$2|blocked}} {{GENDER:$4|$3}} with an expiry time of $5 $6",
 	"logentry-block-unblock": "$1 {{GENDER:$2|unblocked}} {{GENDER:$4|$3}}",
 	"logentry-block-reblock": "$1 {{GENDER:$2|changed}} block settings for {{GENDER:$4|$3}} with an expiry time of $5 $6",
+	"logentry-block-block-no-duration": "$1 {{GENDER:$2|blocked}} {{GENDER:$4|$3}}",
 	"logentry-suppress-block": "$1 {{GENDER:$2|blocked}} {{GENDER:$4|$3}} with an expiry time of $5 $6",
 	"logentry-suppress-reblock": "$1 {{GENDER:$2|changed}} block settings for {{GENDER:$4|$3}} with an expiry time of $5 $6",
 	"logentry-merge-merge": "$1 {{GENDER:$2|merged}} $3 into $4 (revisions up to $5)",
