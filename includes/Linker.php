@@ -835,7 +835,7 @@ class Linker {
 		}
 
 		$s = "<div class=\"thumb t{$fp['align']}\">"
-			. "<div class=\"thumbinner\" style=\"width:{$outerWidth}px;\">";
+			. "<figure class=\"thumbinner\" style=\"width:{$outerWidth}px;\">";
 
 		if ( !$exists ) {
 			$s .= self::makeBrokenImageLinkObj( $title, $fp['title'], '', '', '', $time == true );
@@ -867,7 +867,7 @@ class Linker {
 						"" ) );
 			}
 		}
-		$s .= '  <div class="thumbcaption">' . $zoomIcon . $fp['caption'] . "</div></div></div>";
+		$s .= '  <figcaption class="thumbcaption">' . $zoomIcon . $fp['caption'] . "</figcaption></figure></div>";
 		return str_replace( "\n", ' ', $s );
 	}
 
