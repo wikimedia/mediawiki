@@ -64,12 +64,13 @@ class LocalSettingsGenerator {
 				'wgRightsText', '_MainCacheType', 'wgEnableUploads',
 				'_MemCachedServers', 'wgDBserver', 'wgDBuser',
 				'wgDBpassword', 'wgUseInstantCommons', 'wgUpgradeKey', 'wgDefaultSkin',
-				'wgMetaNamespace', 'wgLogo', 'wgAuthenticationTokenVersion', 'wgPingback',
+				'wgMetaNamespace', 'wgLogo', 'wgLogoSVG', 'wgAuthenticationTokenVersion',
+				'wgPingback',
 			],
 			$db->getGlobalNames()
 		);
 
-		$unescaped = [ 'wgRightsIcon', 'wgLogo' ];
+		$unescaped = [ 'wgRightsIcon', 'wgLogo', 'wgLogoSVG' ];
 		$boolItems = [
 			'wgEnableEmail', 'wgEnableUserEmail', 'wgEnotifUserTalk',
 			'wgEnotifWatchlist', 'wgEmailAuthentication', 'wgEnableUploads', 'wgUseInstantCommons',
@@ -337,7 +338,19 @@ ${serverSetting}
 
 ## The URL path to the logo.  Make sure you change this from the default,
 ## or else you'll overwrite your logo when you upgrade!
+##
+## Please use wgLogoSVG if you want to use both svg and png images
+## this will allow the logo to show on un supported browsers
+## that only support png.
 \$wgLogo = \"{$this->values['wgLogo']}\";
+
+## The URL path to the logo.  Make sure you change this from the default,
+## or else you'll overwrite your logo when you upgrade!
+##
+## This is used with wgLogo to allow you to use a svg and png logo
+## for compatibility, you can also use just an svg image by using
+## wgLogo
+\$wgLogoSVG = \"{$this->values['wgLogoSVG']}\";
 
 ## UPO means: this is also a user preference option
 
