@@ -34,15 +34,15 @@ title before displaying the article; the other converts the title to all
 uppercase letters. Currently, in MediaWiki code, we would handle this as follows
 (note: not real code, here):
 
-	function showAnArticle($article) {
+	function showAnArticle( $article ) {
 		global $wgReverseTitle, $wgCapitalizeTitle;
 
-		if ($wgReverseTitle) {
-			wfReverseTitle($article);
+		if ( $wgReverseTitle ) {
+			wfReverseTitle( $article );
 		}
 
-		if ($wgCapitalizeTitle) {
-			wfCapitalizeTitle($article);
+		if ( $wgCapitalizeTitle ) {
+			wfCapitalizeTitle( $article );
 		}
 
 		# code to actually show the article goes here
@@ -52,34 +52,34 @@ An extension writer, or a local admin, will often add custom code to the
 function -- with or without a global variable. For example, someone wanting
 email notification when an article is shown may add:
 
-    function showAnArticle($article) {
+    function showAnArticle( $article ) {
         global $wgReverseTitle, $wgCapitalizeTitle, $wgNotifyArticle;
 
-		if ($wgReverseTitle) {
-			wfReverseTitle($article);
+		if ( $wgReverseTitle ) {
+			wfReverseTitle( $article );
 		}
 
-		if ($wgCapitalizeTitle) {
-			wfCapitalizeTitle($article);
+		if ( $wgCapitalizeTitle ) {
+			wfCapitalizeTitle( $article );
 		}
 
 		# code to actually show the article goes here
 
-		if ($wgNotifyArticle) {
-			wfNotifyArticleShow($article);
+		if ( $wgNotifyArticle ) {
+			wfNotifyArticleShow( $article );
 		}
 	}
 
 Using a hook-running strategy, we can avoid having all this option-specific
 stuff in our mainline code. Using hooks, the function becomes:
 
-	function showAnArticle($article) {
+	function showAnArticle( $article ) {
 
-		if (wfRunHooks('ArticleShow', array(&$article))) {
+		if ( Hooks::run( 'ArticleShow', array( &$article ) ) ) {
 
 			# code to actually show the article goes here
 
-			wfRunHooks('ArticleShowComplete', array(&$article));
+			Hooks::run( 'ArticleShowComplete', array( &$article ) );
 		}
 	}
 
@@ -93,11 +93,11 @@ title-reversing if-blocks spread all over the codebase in showAnArticle,
 deleteAnArticle, exportArticle, etc., we can concentrate it all in an extension
 file:
 
-	function reverseArticleTitle($article) {
+	function reverseArticleTitle( $article ) {
 		# ...
 	}
 
-	function reverseForExport($article) {
+	function reverseForExport( $article ) {
 		# ...
 	}
 
@@ -139,29 +139,29 @@ Hooks are registered by adding them to the global $wgHooks array for a given
 event. All the following are valid ways to define hooks:
 
 	$wgHooks['EventName'][] = 'someFunction'; # function, no data
-	$wgHooks['EventName'][] = array('someFunction', $someData);
-	$wgHooks['EventName'][] = array('someFunction'); # weird, but OK
+	$wgHooks['EventName'][] = array( 'someFunction', $someData );
+	$wgHooks['EventName'][] = array( 'someFunction' ); # weird, but OK
 
 	$wgHooks['EventName'][] = $object; # object only
-	$wgHooks['EventName'][] = array($object, 'someMethod');
-	$wgHooks['EventName'][] = array($object, 'someMethod', $someData);
-	$wgHooks['EventName'][] = array($object); # weird but OK
+	$wgHooks['EventName'][] = array( $object, 'someMethod' );
+	$wgHooks['EventName'][] = array( $object, 'someMethod', $someData );
+	$wgHooks['EventName'][] = array( $object ); # weird but OK
 
 When an event occurs, the function (or object method) will be called with the
 optional data provided as well as event-specific parameters. The above examples
 would result in the following code being executed when 'EventName' happened:
 
 	# function, no data
-	someFunction($param1, $param2)
+	someFunction( $param1, $param2 )
 	# function with data
-	someFunction($someData, $param1, $param2)
+	someFunction( $someData, $param1, $param2 )
 
 	# object only
-	$object->onEventName($param1, $param2)
+	$object->onEventName( $param1, $param2 )
 	# object with method
-	$object->someMethod($param1, $param2)
+	$object->someMethod( $param1, $param2 )
 	# object with method and data
-	$object->someMethod($someData, $param1, $param2)
+	$object->someMethod( $someData, $param1, $param2 )
 
 Note that when an object is the hook, and there's no specified method, the
 default method called is 'onEventName'. For different events this would be
@@ -170,8 +170,8 @@ different: 'onArticleSave', 'onUserLogin', etc.
 The extra data is useful if we want to use the same function or object for
 different purposes. For example:
 
-	$wgHooks['ArticleSaveComplete'][] = array('ircNotify', 'TimStarling');
-	$wgHooks['ArticleSaveComplete'][] = array('ircNotify', 'brion');
+	$wgHooks['ArticleSaveComplete'][] = array( 'ircNotify', 'TimStarling' );
+	$wgHooks['ArticleSaveComplete'][] = array( 'ircNotify', 'brion' );
 
 This code would result in ircNotify being run twice when an article is saved:
 once for 'TimStarling', and once for 'brion'.
@@ -188,9 +188,9 @@ The last result would be for cases where the hook function replaces the main
 functionality. For example, if you wanted to authenticate users to a custom
 system (LDAP, another PHP program, whatever), you could do:
 
-	$wgHooks['UserLogin'][] = array('ldapLogin', $ldapServer);
+	$wgHooks['UserLogin'][] = array( 'ldapLogin', $ldapServer );
 
-	function ldapLogin($username, $password) {
+	function ldapLogin( $username, $password ) {
 		# log user into LDAP
 		return false;
 	}
@@ -204,24 +204,27 @@ Special:Version), and should be avoided when at all possible.
 
 ==Using hooks==
 
-A calling function or method uses the wfRunHooks() function to run the hooks
+A calling function or method uses the Hooks::run() function to run the hooks
 related to a particular event, like so:
 
 	class Article {
 		# ...
 		function protect() {
 			global $wgUser;
-			if (wfRunHooks('ArticleProtect', array(&$this, &$wgUser))) {
+			if ( Hooks::run( 'ArticleProtect', array( &$this, &$wgUser ) ) ) {
 				# protect the article
-				wfRunHooks('ArticleProtectComplete', array(&$this, &$wgUser));
+				Hooks::run( 'ArticleProtectComplete', array( &$this, &$wgUser ) );
 			}
 		}
 	}
 
-wfRunHooks() returns true if the calling function should continue processing
+Hooks::run() returns true if the calling function should continue processing
 (the hooks ran OK, or there are no hooks to run), or false if it shouldn't (an
 error occurred, or one of the hooks handled the action already). Checking the
 return value matters more for "before" hooks than for "complete" hooks.
+
+Hooks::run() was added in MediaWiki 1.18, before that the global function
+wfRunHooks must be used, which was deprecated in MediaWiki 1.25.
 
 Note that hook parameters are passed in an array; this is a necessary
 inconvenience to make it possible to pass reference values (that can be changed)
