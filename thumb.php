@@ -305,7 +305,10 @@ function wfStreamThumb( array $params ) {
 	// Stream the file if it exists already...
 	$thumbPath = $img->getThumbPath( $thumbName );
 	if ( $img->getRepo()->fileExists( $thumbPath ) ) {
-		$img->getRepo()->streamFile( $thumbPath, $headers );
+		$success = $img->getRepo()->streamFile( $thumbPath, $headers );
+		if ( !$success ) {
+			wfThumbError( 500, 'Could not stream the file' );
+		}
 		return;
 	}
 
@@ -320,6 +323,7 @@ function wfStreamThumb( array $params ) {
 
 	// Actually generate a new thumbnail
 	list( $thumb, $errorMsg ) = wfGenerateThumbnail( $img, $params, $thumbName, $thumbPath );
+	/** @var MediaTransformOutput|bool $thumb */
 
 	// Check for thumbnail generation errors...
 	$msg = wfMessage( 'thumbnail_error' );
@@ -340,7 +344,10 @@ function wfStreamThumb( array $params ) {
 		wfThumbError( $errorCode, $errorMsg );
 	} else {
 		// Stream the file if there were no errors
-		$thumb->streamFile( $headers );
+		$success = $thumb->streamFile( $headers );
+		if ( !$success ) {
+			wfThumbError( 500, 'Could not stream the file' );
+		}
 	}
 }
 
