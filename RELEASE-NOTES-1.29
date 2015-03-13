@@ -39,6 +39,7 @@ production.
   fallback chain when trying to work out where to write the cache.
 * The user right 'editusercssjs' (deprecated in 1.16) was removed. Use
   'editusercss' and 'edituserjs' in $wgGroupPermissions and elsewhere instead.
+* Updated $wgLogo to support svg images with fallback to png.
 
 === New features in 1.29 ===
 * (T5233) A cookie can now be set when a user is autoblocked, to track that user
