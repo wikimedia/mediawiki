@@ -39,7 +39,7 @@
 	font-family: inherit;
 	font-size: inherit;
 	line-height: inherit;
-	.transition(~"border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 0.2s cubic-bezier(0.39, 0.575, 0.565, 1)");
+	.transition(~"border linear .2s, box-shadow linear .2s");
 
 	// Placeholder text styling must be set individually for each browser @winter
 	&::-webkit-input-placeholder { // webkit
@@ -64,9 +64,8 @@
 	}
 
 	&:focus {
-		box-shadow: inset 0 0 0 2px @colorProgressive;
-		// Color being used to match inset shadow, not semantic reasons
-		border-color: @colorProgressive;
+		box-shadow: inset .45em 0 0 @colorProgressive;
+		border-color: @colorGrayDark;
 		// Remove focus glow on input[type="search"]
 		outline: 0;
 	}
