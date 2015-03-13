@@ -64,6 +64,7 @@ production.
 * Added new hooks, 'ApiQueryBaseBeforeQuery', 'ApiQueryBaseAfterQuery', and
   'ApiQueryBaseProcessRow', to make it easier for extensions to add 'prop' and
   'show' parameters to existing API query modules.
+* Updated $wgLogo yo support svg images with fallback to png.
 
 === External library changes in 1.28 ===
 
