@@ -443,7 +443,13 @@ abstract class Skin extends ContextSource {
 	 */
 	function getLogo() {
 		global $wgLogo;
-		return $wgLogo;
+		if ( isset( $wgLogo['svg'] ) ) {
+			return $wgLogo['svg'];
+		} elseif ( isset( $wgLogo['png'] ) ) {
+			return $wgLogo['png'];
+		} else {
+			return $wgLogo;
+		}
 	}
 
 	/**
