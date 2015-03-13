@@ -175,6 +175,14 @@ class Message implements MessageSpecifier {
 	protected $language = null;
 
 	/**
+	 * On which OutputPage this message will be shown.
+	 * Used to add parsed metadata.
+	 *
+	 * @var OutputPage
+	 */
+	protected $outputPage = null;
+
+	/**
 	 * @var string The message key. If $keysToTry has more than one element,
 	 * this may change to one of the keys to try when fetching the message text.
 	 */
@@ -577,6 +585,7 @@ class Message implements MessageSpecifier {
 		$this->inLanguage( $context->getLanguage() );
 		$this->title( $context->getTitle() );
 		$this->interface = true;
+		$this->outputPage = $context->getOutput();
 
 		return $this;
 	}
@@ -1038,7 +1047,13 @@ class Message implements MessageSpecifier {
 			$this->language
 		);
 
-		return $out instanceof ParserOutput ? $out->getText() : $out;
+		if ( $out instanceof ParserOutput ) {
+			if ( $this->outputPage !== null ) {
+				$this->outputPage->addParserOutputMetadata( $out );
+			}
+			return $out->getText();
+		}
+		return $out;
 	}
 
 	/**
