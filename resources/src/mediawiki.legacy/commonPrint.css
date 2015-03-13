@@ -243,7 +243,7 @@ div.thumb {
 	margin-bottom: 0.8em;
 }
 
-div.thumbinner {
+.thumbinner {
 	background-color: #fff;
 	border: 1pt solid #ccc;
 	padding: 3px !important;
