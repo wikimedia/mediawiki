@@ -32,12 +32,23 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		$styles = parent::getStyles( $context );
 
 		$default = !is_array( $logo ) ? $logo : $logo['1x'];
-		$styles['all'][] = '.mw-wiki-logo { background-image: ' .
-				CSSMin::buildUrlValue( $default ) .
-				'; }';
 
 		if ( is_array( $logo ) ) {
-			if ( isset( $logo['1.5x'] ) ) {
+			if ( isset( $logo['png'] ) ) {
+				$styles['all'][] = '.mw-wiki-logo { background-image: ' .
+					CSSMin::buildUrlValue( $logo['png'] ) . ';' .
+					'background-size: 135px auto; }';
+			}
+			if ( isset( $logo['svg'] ) ) {
+				$styles['all'][] = '.mw-wiki-logo { ' .
+					'background-image: -webkit-linear-gradient(transparent, transparent), ' .
+						CSSMin::buildUrlValue( $logo['svg'] ) . '; ' .
+					'background-image: linear-gradient(transparent, transparent), ' .
+						CSSMin::buildUrlValue( $logo['svg'] ) . ';' .
+					'background-size: 135px auto; }';
+
+			}
+			if ( isset( $logo['1.5x'] && !isset( $logo['svg'] ) ) {
 				$styles[
 					'(-webkit-min-device-pixel-ratio: 1.5), ' .
 					'(min--moz-device-pixel-ratio: 1.5), ' .
@@ -47,7 +58,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 				CSSMin::buildUrlValue( $logo['1.5x'] ) . ';' .
 				'background-size: 135px auto; }';
 			}
-			if ( isset( $logo['2x'] ) ) {
+			if ( isset( $logo['2x'] && !isset( $logo['svg'] ) ) {
 				$styles[
 					'(-webkit-min-device-pixel-ratio: 2), ' .
 					'(min--moz-device-pixel-ratio: 2),' .
@@ -57,7 +68,14 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 				CSSMin::buildUrlValue( $logo['2x'] ) . ';' .
 				'background-size: 135px auto; }';
 			}
+		} else {
+			$logo1 = OutputPage::transformResourcePath( $conf, $logo );
+
+			$styles['all'][] = '.mw-wiki-logo { background-image: ' .
+				CSSMin::buildUrlValue( $default ) .
+				'; }';
 		}
+
 
 		return $styles;
 	}
