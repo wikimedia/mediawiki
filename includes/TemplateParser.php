@@ -49,7 +49,7 @@ class TemplateParser {
 	 * Constructs the location of the the source Mustache template
 	 * @param string $templateName The name of the template
 	 * @return string
-	 * @throws Exception Disallows upwards directory traversal via $templateName
+	 * @throws UnexpectedValueException Disallows upwards directory traversal via $templateName
 	 */
 	public function getTemplateFilename( $templateName ) {
 		// Prevent upwards directory traversal using same methods as Title::secureAndSplit
@@ -65,7 +65,7 @@ class TemplateParser {
 				substr( $templateName, -3 ) === '/..'
 			)
 		) {
-			throw new Exception( "Malformed \$templateName: $templateName" );
+			throw new UnexpectedValueException( "Malformed \$templateName: $templateName" );
 		}
 
 		return "{$this->templateDir}/{$templateName}.mustache";
@@ -75,7 +75,7 @@ class TemplateParser {
 	 * Returns a given template function if found, otherwise throws an exception.
 	 * @param string $templateName The name of the template (without file suffix)
 	 * @return Function
-	 * @throws Exception
+	 * @throws RuntimeException
 	 */
 	public function getTemplate( $templateName ) {
 		// If a renderer has already been defined for this template, reuse it
@@ -86,7 +86,7 @@ class TemplateParser {
 		$filename = $this->getTemplateFilename( $templateName );
 
 		if ( !file_exists( $filename ) ) {
-			throw new Exception( "Could not locate template: {$filename}" );
+			throw new RuntimeException( "Could not locate template: {$filename}" );
 		}
 
 		// Read the template file
@@ -143,14 +143,14 @@ class TemplateParser {
 	 * @param string $fileContents Mustache code
 	 * @param string $filename Name of the template
 	 * @return string PHP code (without '<?php')
-	 * @throws Exception
+	 * @throws RuntimeException
 	 */
 	public function compileForEval( $fileContents, $filename ) {
 		// Compile the template into PHP code
 		$code = self::compile( $fileContents );
 
 		if ( !$code ) {
-			throw new Exception( "Could not compile template: {$filename}" );
+			throw new RuntimeException( "Could not compile template: {$filename}" );
 		}
 
 		// Strip the "<?php" added by lightncandy so that it can be eval()ed
@@ -165,11 +165,11 @@ class TemplateParser {
 	 * Compile the Mustache code into PHP code using LightnCandy
 	 * @param string $code Mustache code
 	 * @return string PHP code (with '<?php')
-	 * @throws Exception
+	 * @throws RuntimeException
 	 */
 	public static function compile( $code ) {
 		if ( !class_exists( 'LightnCandy' ) ) {
-			throw new Exception( 'LightnCandy class not defined' );
+			throw new RuntimeException( 'LightnCandy class not defined' );
 		}
 		return LightnCandy::compile(
 			$code,
