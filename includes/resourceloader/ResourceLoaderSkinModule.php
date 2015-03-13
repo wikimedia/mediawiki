@@ -34,16 +34,37 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		$logo = $conf->get( 'Logo' );
 		$logoHD = $conf->get( 'LogoHD' );
 
-		$logo1 = OutputPage::transformResourcePath( $conf, $logo );
-		$logo15 = OutputPage::transformResourcePath( $conf, $logoHD['1.5x'] );
-		$logo2 = OutputPage::transformResourcePath( $conf, $logoHD['2x'] );
-
 		$styles = parent::getStyles( $context );
-		$styles['all'][] = '.mw-wiki-logo { background-image: ' .
-			CSSMin::buildUrlValue( $logo1 ) .
-			'; }';
-		if ( $logoHD ) {
+		if ( is_array( $logo ) ) {
+			if ( isset( $logo['png'] ) ) {
+				$logopng = OutputPage::transformResourcePath( $conf, $logo['png'] );
+
+				$styles['all'][] = '.mw-wiki-logo { background-image: ' .
+					CSSMin::buildUrlValue( $logopng ) . ';' .
+					'background-size: 135px auto; }';
+			}
+			if ( isset( $logo['svg'] ) ) {
+				$logosvg = OutputPage::transformResourcePath( $conf, $logo['svg'] );
+
+				$styles['all'][] = '.mw-wiki-logo { ' .
+					'background-image: -webkit-linear-gradient(transparent, transparent), ' .
+						CSSMin::buildUrlValue( $logosvg ) . '; ' .
+					'background-image: linear-gradient( transparent, transparent), ' .
+						CSSMin::buildUrlValue( $logosvg ) . ';' .
+					'background-size: 135px auto; }';
+
+			}
+		} else {
+			$logo1 = OutputPage::transformResourcePath( $conf, $logo );
+
+			$styles['all'][] = '.mw-wiki-logo { background-image: ' .
+				CSSMin::buildUrlValue( $logo1 ) .
+				'; }';
+		}
+
+		if ( $logoHD && !( is_array( $logo ) && isset( $logo['svg'] ) ) ) {
 			if ( isset( $logoHD['1.5x'] ) ) {
+				$logo15 = OutputPage::transformResourcePath( $conf, $logoHD['1.5x'] );
 				$styles[
 					'(-webkit-min-device-pixel-ratio: 1.5), ' .
 					'(min--moz-device-pixel-ratio: 1.5), ' .
@@ -54,6 +75,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 				'background-size: 135px auto; }';
 			}
 			if ( isset( $logoHD['2x'] ) ) {
+				$logo2 = OutputPage::transformResourcePath( $conf, $logoHD['2x'] );
 				$styles[
 					'(-webkit-min-device-pixel-ratio: 2), ' .
 					'(min--moz-device-pixel-ratio: 2),' .
@@ -84,6 +106,6 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	public function getModifiedHash( ResourceLoaderContext $context ) {
 		$logo = $this->getConfig()->get( 'Logo' );
 		$logoHD = $this->getConfig()->get( 'LogoHD' );
-		return md5( parent::getModifiedHash( $context ) . $logo . json_encode( $logoHD ) );
+		return md5( parent::getModifiedHash( $context ) . json_encode( $logo ) . json_encode( $logoHD ) );
 	}
 }
