@@ -28,6 +28,20 @@
  * @since 1.25
  */
 class BlockLogFormatter extends LogFormatter {
+	protected function getMessageKey() {
+		$key = parent::getMessageKey();
+		if ( $this->entry->getSubtype() === 'block' ) {
+			// Very old log entry without a duration
+			$params = $this->extractParameters();
+			if ( !isset( $params[4] ) ) {
+				// Message: logentry-block-block-no-duration
+				$key .= '-no-duration';
+			}
+		}
+
+		return $key;
+	}
+
 	protected function getMessageParameters() {
 		$params = parent::getMessageParameters();
 
@@ -47,7 +61,7 @@ class BlockLogFormatter extends LogFormatter {
 		}
 
 		$subtype = $this->entry->getSubtype();
-		if ( $subtype === 'block' || $subtype === 'reblock' ) {
+		if ( ( $subtype === 'block' || $subtype === 'reblock' ) && isset( $params[4] ) ) {
 			// Localize the duration, and add a tooltip
 			// in English to help visitors from other wikis.
 			// The lrm is needed to make sure that the number
