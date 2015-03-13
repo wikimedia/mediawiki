@@ -35,6 +35,7 @@ production.
 * (T156983) $wgRateLimitsExcludedIPs now accepts CIDR ranges as well as single IPs.
 * $wgDummyLanguageCodes is deprecated. Additional language code mappings may be
   added to $wgExtraLanguageCodes instead.
+* Updated $wgLogo to support svg images with fallback to png.
 
 === New features in 1.29 ===
 * (T137376) New language support: Atikamekw (atj)
