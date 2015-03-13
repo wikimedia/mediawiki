@@ -27,6 +27,7 @@ production.
 * File storage backends that supports headers (eg. Swift) now store an
   X-Content-Dimensions header for originals that contain the media's dimensions
   as page ranges keyed by dimensions.
+* Updated $wgLogo to support svg images with fallback to png.
 
 === External library changes in 1.30 ===
 
