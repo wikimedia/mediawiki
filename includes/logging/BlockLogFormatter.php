@@ -48,6 +48,10 @@ class BlockLogFormatter extends LogFormatter {
 
 		$subtype = $this->entry->getSubtype();
 		if ( $subtype === 'block' || $subtype === 'reblock' ) {
+			if ( !isset( $params[4] ) ) {
+				// Very old log entry without duration: means infinite
+				$params[4] = 'infinite';
+			}
 			// Localize the duration, and add a tooltip
 			// in English to help visitors from other wikis.
 			// The lrm is needed to make sure that the number
