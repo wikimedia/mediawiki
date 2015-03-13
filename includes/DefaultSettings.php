@@ -274,6 +274,21 @@ $wgFileCacheDirectory = false;
 /**
  * The URL path of the wiki logo. The logo size should be 135x135 pixels.
  * Defaults to "$wgResourceBasePath/resources/assets/wiki.png".
+ *
+ * @par Example:
+ * @code
+ * $wgLogo = "path/to/png";
+ * @endcode
+ *
+ * To use a svg as a logo, with png fallback:
+ *
+ * @par Example:
+ * @code
+ * $wgLogo = [
+ *      'png' => "path/to/png",
+ *      'svg' => "path/to/svg",
+ * ];
+ * @endcode
  */
 $wgLogo = false;
 
@@ -289,6 +304,8 @@ $wgLogo = false;
  *	"2x" => "path/to/2x_version.png"
  * ];
  * @endcode
+ *
+ * This will not be used if you set $wgLogo['svg']
  *
  * @since 1.25
  */
