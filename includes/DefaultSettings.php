@@ -274,6 +274,27 @@ $wgFileCacheDirectory = false;
 /**
  * The URL path of the wiki logo. The logo size should be 135x135 pixels.
  * Defaults to "$wgResourceBasePath/resources/assets/wiki.png".
+ *
+ * This is an example of backword compatibility
+ *
+ * @par Example:
+ * @code
+ * $wgLogo = "path/to/version.png";
+ * @endcode
+ *
+ * This is an example with support svg logos with fallback to png
+ * logos on browsers that doint yet support svg.
+
+ * This also supports either using wgLogo['svg'] or wgLogo['png']
+ * on there own.
+ *
+ * @par Example:
+ * @code
+ * $wgLogo = [
+ *	"png" => "path/to/version.png",
+ *	"svg" => "path/to/version.svg"
+ * ];
+ * @endcode
  */
 $wgLogo = false;
 
@@ -289,6 +310,8 @@ $wgLogo = false;
  *	"2x" => "path/to/2x_version.png"
  * ];
  * @endcode
+ *
+ * This will not work if $wgLogo['svg'] is set.
  *
  * @since 1.25
  */
