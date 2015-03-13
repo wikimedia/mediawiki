@@ -4680,34 +4680,57 @@ class Title {
 	public function getEditNotices( $oldid = 0 ) {
 		$notices = array();
 
-		# Optional notices on a per-namespace and per-page basis
+		// Optional notice for the entire namespace
 		$editnotice_ns = 'editnotice-' . $this->getNamespace();
-		$editnotice_ns_message = wfMessage( $editnotice_ns );
-		if ( $editnotice_ns_message->exists() ) {
-			$notices[$editnotice_ns] = '<div class="mw-editnotice mw-editnotice-namespace ' .
-				Sanitizer::escapeClass( "mw-$editnotice_ns" ) . '">' .
-				$editnotice_ns_message->parseAsBlock() . '</div>';
+		$msg = wfMessage( $editnotice_ns );
+		if ( $msg->exists() ) {
+			$html = $msg->parseAsBlock();
+			$notices[$editnotice_ns] = Html::rawElement(
+				'div',
+				array( 'class' => array(
+					'mw-editnotice',
+					'mw-editnotice-namespace',
+					Sanitizer::escapeClass( "mw-$editnotice_ns" )
+				) ),
+				$html
+			);
 		}
+
 		if ( MWNamespace::hasSubpages( $this->getNamespace() ) ) {
+			// Optional notice for page itself and any parent page
 			$parts = explode( '/', $this->getDBkey() );
 			$editnotice_base = $editnotice_ns;
 			while ( count( $parts ) > 0 ) {
 				$editnotice_base .= '-' . array_shift( $parts );
-				$editnotice_base_msg = wfMessage( $editnotice_base );
-				if ( $editnotice_base_msg->exists() ) {
-					$notices[$editnotice_base] = '<div class="mw-editnotice mw-editnotice-base ' .
-						Sanitizer::escapeClass( "mw-$editnotice_base" ) . '">' .
-						$editnotice_base_msg->parseAsBlock() . '</div>';
+				$msg = wfMessage( $editnotice_base );
+				if ( $msg->exists() ) {
+					$html = $msg->parseAsBlock();
+					$notices[$editnotice_base] = Html::rawElement(
+						'div',
+						array( 'class' => array(
+							'mw-editnotice',
+							'mw-editnotice-base',
+							Sanitizer::escapeClass( "mw-$editnotice_base" )
+						) ),
+						$html
+					);
 				}
 			}
 		} else {
-			# Even if there are no subpages in namespace, we still don't want / in MW ns.
+			// Even if there are no subpages in namespace, we still don't want "/" in MediaWiki message keys
 			$editnoticeText = $editnotice_ns . '-' . str_replace( '/', '-', $this->getDBkey() );
-			$editnoticeMsg = wfMessage( $editnoticeText );
-			if ( $editnoticeMsg->exists() ) {
-				$notices[$editnoticeText] = '<div class="mw-editnotice mw-editnotice-page ' .
-					Sanitizer::escapeClass( "mw-$editnoticeText" ) . '">' .
-					$editnoticeMsg->parseAsBlock() . '</div>';
+			$msg = wfMessage( $editnoticeText );
+			if ( $msg->exists() ) {
+				$html = $msg->parseAsBlock();
+				$notices[$editnoticeText] = Html::rawElement(
+					'div',
+					array( 'class' => array(
+						'mw-editnotice',
+						'mw-editnotice-page',
+						Sanitizer::escapeClass( "mw-$editnoticeText" )
+					) ),
+					$html
+				);
 			}
 		}
 
