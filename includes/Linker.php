@@ -352,13 +352,11 @@ class Linker {
 			$frameParams['class'] = '';
 		}
 
-		$prefix = $postfix = '';
-
-		if ( 'center' == $frameParams['align'] ) {
-			$prefix = '<div class="center">';
-			$postfix = '</div>';
-			$frameParams['align'] = 'none';
+		$classes = '';
+		if ( !isset( $handlerParams['width'] ) ) {
+			$classes .= 'mw-default-size ';
 		}
+
 		if ( $file && !isset( $handlerParams['width'] ) ) {
 			if ( isset( $handlerParams['height'] ) && $file->isVectorized() ) {
 				// If its a vector image, and user only specifies height
@@ -405,17 +403,7 @@ class Linker {
 		if ( isset( $frameParams['thumbnail'] ) || isset( $frameParams['manualthumb'] )
 			|| isset( $frameParams['framed'] )
 		) {
-			# Create a thumbnail. Alignment depends on the writing direction of
-			# the page content language (right-aligned for LTR languages,
-			# left-aligned for RTL languages)
-			# If a thumbnail width has not been provided, it is set
-			# to the default user option as specified in Language*.php
-			if ( $frameParams['align'] == '' ) {
-				$frameParams['align'] = $parser->getTargetLanguage()->alignEnd();
-			}
-			return $prefix .
-				self::makeThumbLink2( $title, $file, $frameParams, $handlerParams, $time, $query ) .
-				$postfix;
+			return self::makeThumbLink2( $title, $file, $frameParams, $handlerParams, $time, $query, $classes );
 		}
 
 		if ( $file && isset( $frameParams['frameless'] ) ) {
@@ -436,6 +424,7 @@ class Linker {
 		}
 
 		if ( !$thumb ) {
+			// FIXME: Add "mw:Error"?
 			$s = self::makeBrokenImageLinkObj( $title, $frameParams['title'], '', '', '', $time == true );
 		} else {
 			self::processResponsiveImages( $file, $thumb, $handlerParams );
@@ -451,10 +440,21 @@ class Linker {
 
 			$s = $thumb->toHtml( $params );
 		}
+
+		$classes .= "mw-halign-{$frameParams['align']} ";
+		$classes = rtrim( $classes );
+
 		if ( $frameParams['align'] != '' ) {
-			$s = "<div class=\"float{$frameParams['align']}\">{$s}</div>";
+			$s = "<figure class=\"{$classes}\" typeof=\"mw:Image\">{$s}";
+			if ( strlen( $frameParams['caption'] ) ) {
+				$s .= '<figcaption>'
+					. $frameParams['caption']
+					. '</figcaption>';
+			}
+			$s .= "</figure>";
 		}
-		return str_replace( "\n", ' ', $prefix . $s . $postfix );
+
+		return str_replace( "\n", ' ', $s );
 	}
 
 	/**
@@ -505,7 +505,7 @@ class Linker {
 	 * @return string
 	 */
 	public static function makeThumbLinkObj( Title $title, $file, $label = '', $alt,
-		$align = 'right', $params = [], $framed = false, $manualthumb = ""
+		$align = '', $params = [], $framed = false, $manualthumb = ""
 	) {
 		$frameParams = [
 			'alt' => $alt,
@@ -528,16 +528,17 @@ class Linker {
 	 * @param array $handlerParams
 	 * @param bool $time
 	 * @param string $query
+	 * @param string $classes
 	 * @return string
 	 */
 	public static function makeThumbLink2( Title $title, $file, $frameParams = [],
-		$handlerParams = [], $time = false, $query = ""
+		$handlerParams = [], $time = false, $query = "", $classes = ""
 	) {
 		$exists = $file && $file->exists();
 
 		$page = isset( $handlerParams['page'] ) ? $handlerParams['page'] : false;
 		if ( !isset( $frameParams['align'] ) ) {
-			$frameParams['align'] = 'right';
+			$frameParams['align'] = '';
 		}
 		if ( !isset( $frameParams['alt'] ) ) {
 			$frameParams['alt'] = '';
@@ -553,9 +554,11 @@ class Linker {
 			// Reduce width for upright images when parameter 'upright' is used
 			$handlerParams['width'] = isset( $frameParams['upright'] ) ? 130 : 180;
 		}
+
 		$thumb = false;
 		$noscale = false;
 		$manualthumb = false;
+		$rdfaType = '/Thumb';
 
 		if ( !$exists ) {
 			$outerWidth = $handlerParams['width'] + 2;
@@ -576,6 +579,7 @@ class Linker {
 				// Use image dimensions, don't scale
 				$thumb = $file->getUnscaledThumb( $handlerParams );
 				$noscale = true;
+				$rdfaType = '/Frame';
 			} else {
 				# Do not present an image bigger than the source, for bitmap-style images
 				# This is a hack to maintain compatibility with arbitrary pre-1.10 behavior
@@ -593,6 +597,7 @@ class Linker {
 			}
 		}
 
+		# FIXME: This still relevant?
 		# ThumbnailImage::toHtml() already adds page= onto the end of DjVu URLs
 		# So we don't need to pass it here in $query. However, the URL for the
 		# zoom icon still needs it, so we make a unique query for it. See T16771
@@ -607,15 +612,24 @@ class Linker {
 			$frameParams['link-url'] = $url;
 		}
 
-		$s = "<div class=\"thumb t{$frameParams['align']}\">"
-			. "<div class=\"thumbinner\" style=\"width:{$outerWidth}px;\">";
+		if ( $frameParams['align'] != '' ) {
+			$classes .= "mw-halign-{$frameParams['align']} ";
+		}
+
+		$classes .= $frameParams['class'];
+		$classes = rtrim( $classes );
+
+		if ( strlen( $classes ) ) {
+			$classes = "class=\"{$classes}\" ";
+		}
+
+		$s = "<figure {$classes}typeof=\"mw:Image{$rdfaType}\">";
 
 		if ( !$exists ) {
+			// FIXME: Add "mw:Error"?
 			$s .= self::makeBrokenImageLinkObj( $title, $frameParams['title'], '', '', '', $time == true );
-			$zoomIcon = '';
 		} elseif ( !$thumb ) {
 			$s .= wfMessage( 'thumbnail_error', '' )->escaped();
-			$zoomIcon = '';
 		} else {
 			if ( !$noscale && !$manualthumb ) {
 				self::processResponsiveImages( $file, $thumb, $handlerParams );
@@ -623,24 +637,18 @@ class Linker {
 			$params = [
 				'alt' => $frameParams['alt'],
 				'title' => $frameParams['title'],
-				'img-class' => ( isset( $frameParams['class'] ) && $frameParams['class'] !== ''
-					? $frameParams['class'] . ' '
-					: '' ) . 'thumbimage'
 			];
 			$params = self::getImageLinkMTOParams( $frameParams, $query ) + $params;
 			$s .= $thumb->toHtml( $params );
-			if ( isset( $frameParams['framed'] ) ) {
-				$zoomIcon = "";
-			} else {
-				$zoomIcon = Html::rawElement( 'div', [ 'class' => 'magnify' ],
-					Html::rawElement( 'a', [
-						'href' => $url,
-						'class' => 'internal',
-						'title' => wfMessage( 'thumbnail-more' )->text() ],
-						"" ) );
-			}
 		}
-		$s .= '  <div class="thumbcaption">' . $zoomIcon . $frameParams['caption'] . "</div></div></div>";
+
+		if ( strlen( $frameParams['caption'] ) ) {
+			$s .= '<figcaption>'
+				. $frameParams['caption']
+				. '</figcaption>';
+		}
+
+		$s .= '</figure>';
 		return str_replace( "\n", ' ', $s );
 	}
 
