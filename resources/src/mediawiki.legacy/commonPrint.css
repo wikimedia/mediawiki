@@ -265,7 +265,7 @@ div.thumb a {
 	border-bottom: 0;
 }
 
-div.thumbinner {
+.thumbinner {
 	background-color: #fff;
 	border: 0;
 	border-radius: 2px;

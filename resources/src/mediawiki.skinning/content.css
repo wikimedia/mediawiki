@@ -148,7 +148,7 @@ div.thumb {
 	background-color: transparent;
 }
 
-div.thumbinner {
+.thumbinner {
 	border: 1px solid #c8ccd1;
 	padding: 3px;
 	background-color: #f8f9fa;
