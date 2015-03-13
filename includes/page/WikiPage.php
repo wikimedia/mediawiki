@@ -3065,7 +3065,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// Generate the edit summary if necessary
-		$target = Revision::newFromId( $s->rev_id );
+		$target = Revision::newFromId( $s->rev_id, Revision::READ_LATEST );
 		if ( empty( $summary ) ) {
 			if ( $from == '' ) { // no public user name
 				$summary = wfMessage( 'revertpage-nouser' );
