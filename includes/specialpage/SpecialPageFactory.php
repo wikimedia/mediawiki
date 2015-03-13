@@ -249,8 +249,8 @@ class SpecialPageFactory {
 			// Add extension special pages
 			self::$list = array_merge( self::$list, $wgSpecialPages );
 
-			// Run hooks
-			// This hook can be used to remove undesired built-in special pages
+			// This hook can be used to disable unwanted core special pages
+			// or conditionally register special pages.
 			Hooks::run( 'SpecialPage_initList', array( &self::$list ) );
 
 		}

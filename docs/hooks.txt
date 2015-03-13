@@ -2639,7 +2639,7 @@ $special: the special page object
   (message key) and a 'default' value.
 
 'SpecialPage_initList': Called when setting up SpecialPageFactory::$list, use this
-hook to remove a core special page.
+hook to remove a core special page or conditionally register special pages.
 $list: list (array) of core special pages
 
 'SpecialPageAfterExecute': Called after SpecialPage::execute.
