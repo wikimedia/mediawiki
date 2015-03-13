@@ -30,14 +30,32 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	public function getStyles( ResourceLoaderContext $context ) {
 		$logo = $this->getLogo( $this->getConfig() );
 		$styles = parent::getStyles( $context );
+		if ( is_array( $logo ) ) {
+			if ( isset( $logo['png'] ) ) {
+				$default = $logo['png'];
+			} elseif ( isset( $logo['1x'] ) ) {
+				$default = $logo['1x'];
+			} else {
+				$default = '';
+			}
+		} else {
+			$default = !is_array( $logo ) ? $logo : '';
+		}
 
-		$default = !is_array( $logo ) ? $logo : $logo['1x'];
 		$styles['all'][] = '.mw-wiki-logo { background-image: ' .
-				CSSMin::buildUrlValue( $default ) .
-				'; }';
+			CSSMin::buildUrlValue( $default ) .
+			'; }';
 
 		if ( is_array( $logo ) ) {
-			if ( isset( $logo['1.5x'] ) ) {
+			if ( isset( $logo['svg'] ) ) {
+				$styles['all'][] = '.mw-wiki-logo { ' .
+					'background-image: -webkit-linear-gradient(transparent, transparent), ' .
+						CSSMin::buildUrlValue( $logo['svg'] ) . '; ' .
+					'background-image: linear-gradient(transparent, transparent), ' .
+						CSSMin::buildUrlValue( $logo['svg'] ) . ';' .
+					'background-size: 135px auto; }';
+			}
+			if ( isset( $logo['1.5x'] ) && !isset( $logo['svg'] ) ) {
 				$styles[
 					'(-webkit-min-device-pixel-ratio: 1.5), ' .
 					'(min--moz-device-pixel-ratio: 1.5), ' .
@@ -47,7 +65,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 				CSSMin::buildUrlValue( $logo['1.5x'] ) . ';' .
 				'background-size: 135px auto; }';
 			}
-			if ( isset( $logo['2x'] ) ) {
+			if ( isset( $logo['2x'] ) && !isset( $logo['svg'] ) ) {
 				$styles[
 					'(-webkit-min-device-pixel-ratio: 2), ' .
 					'(min--moz-device-pixel-ratio: 2),' .
@@ -72,9 +90,27 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		$logo = $conf->get( 'Logo' );
 		$logoHD = $conf->get( 'LogoHD' );
 
-		$logo1Url = OutputPage::transformResourcePath( $conf, $logo );
+		$logoUrls = [];
 
-		if ( !$logoHD ) {
+		if ( is_array( $logo ) ) {
+			if ( isset( $logo['png'] ) ) {
+				$logoUrls['png'] = OutputPage::transformResourcePath(
+					$conf,
+					$logo['png']
+				);
+			}
+			if ( isset( $logo['svg'] ) ) {
+				$logoUrls['svg'] = OutputPage::transformResourcePath(
+					$conf,
+					$logo['svg']
+				);
+			}
+			return $logoUrls;
+		} else {
+			$logo1Url = OutputPage::transformResourcePath( $conf, $logo );
+		}
+
+		if ( !$logoHD && isset( $logo1Url ) ) {
 			return $logo1Url;
 		}
 

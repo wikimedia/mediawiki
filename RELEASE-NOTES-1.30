@@ -20,6 +20,7 @@ production.
 * $wgResourceModules may now specify callback functions as an alternative
   to plain class names, using the 'factory' key in the module description
   array. This allows dependency injection to be used for ResourceLoader modules.
+* Updated $wgLogo to support svg images with fallback to png.
 
 === New features in 1.30 ===
 * (T37247) Output from Parser::parse() will now be wrapped in a div with
