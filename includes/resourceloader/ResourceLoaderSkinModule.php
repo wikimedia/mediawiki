@@ -32,17 +32,41 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	public function getStyles( ResourceLoaderContext $context ) {
 		$conf = $this->getConfig();
 		$logo = $conf->get( 'Logo' );
+		$logoSVG = $conf->get( 'LogoSVG' );
 		$logoHD = $conf->get( 'LogoHD' );
 
 		$logo1 = OutputPage::transformResourcePath( $conf, $logo );
+		if ( isset( $logoSVG['svg'] ) ) {
+			$logosvg = OutputPage::transformResourcePath( $conf, $logoSVG['svg'] );
+		}
+		if ( isset( $logoSVG['png'] ) ) {
+			$logopng = OutputPage::transformResourcePath( $conf, $logoSVG['png'] );
+		}
 		$logo15 = OutputPage::transformResourcePath( $conf, $logoHD['1.5x'] );
 		$logo2 = OutputPage::transformResourcePath( $conf, $logoHD['2x'] );
 
 		$styles = parent::getStyles( $context );
-		$styles['all'][] = '.mw-wiki-logo { background-image: ' .
-			CSSMin::buildUrlValue( $logo1 ) .
-			'; }';
-		if ( $logoHD ) {
+		if ( $logoSVG ) {
+			if ( isset( $logoSVG['svg'] ) || isset( $logoSVG['svg'] ) && isset( $logoSVG['png'] ) ) {
+				$styles['all'][] = '.mw-wiki-logo { ' .
+					'background-image: ' .
+						CSSMin::buildUrlValue( $logopng ) . '; ' .
+					'background-image: -webkit-linear-gradient(transparent, transparent), ' .
+						CSSMin::buildUrlValue( $logosvg ) . '; ' .
+					'background-image: linear-gradient( transparent, transparent), ' .
+						CSSMin::buildUrlValue( $logosvg ) . '; }';
+			} elseif ( isset( $logoSVG['png'] ) && !isset( $logoSVG['svg'] ) ) {
+				$styles['all'][] = '.mw-wiki-logo { ' .
+					'background-image: ' .
+						CSSMin::buildUrlValue( $logopng ) . '; }';
+			}
+		} else {
+			$styles['all'][] = '.mw-wiki-logo { ' .
+				'background-image: ' .
+					CSSMin::buildUrlValue( $logo1 ) . '; }';
+		}
+
+		if ( $logoHD && !$logoSVG['svg'] ) {
 			if ( isset( $logoHD['1.5x'] ) ) {
 				$styles[
 					'(-webkit-min-device-pixel-ratio: 1.5), ' .
@@ -83,7 +107,9 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 */
 	public function getModifiedHash( ResourceLoaderContext $context ) {
 		$logo = $this->getConfig()->get( 'Logo' );
+		$logoSVG = $this->getConfig()->get( 'LogoSVG' );
 		$logoHD = $this->getConfig()->get( 'LogoHD' );
-		return md5( parent::getModifiedHash( $context ) . $logo . json_encode( $logoHD ) );
+		return md5( parent::getModifiedHash( $context ) . $logo . json_encode( $logoSVG )
+			. json_encode( $logoHD ) );
 	}
 }
