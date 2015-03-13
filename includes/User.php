@@ -2011,17 +2011,7 @@ class User implements IDBAccessObject {
 					// Anon newtalk disabled by configuration.
 					$this->mNewtalk = false;
 				} else {
-					global $wgMemc;
-					$key = wfMemcKey( 'newtalk', 'ip', $this->getName() );
-					$newtalk = $wgMemc->get( $key );
-					if ( strval( $newtalk ) !== '' ) {
-						$this->mNewtalk = (bool)$newtalk;
-					} else {
-						// Since we are caching this, make sure it is up to date by getting it
-						// from the master
-						$this->mNewtalk = $this->checkNewtalk( 'user_ip', $this->getName(), true );
-						$wgMemc->set( $key, (int)$this->mNewtalk, 1800 );
-					}
+					$this->mNewtalk = $this->checkNewtalk( 'user_ip', $this->getName() );
 				}
 			} else {
 				$this->mNewtalk = $this->checkNewtalk( 'user_id', $this->mId );
