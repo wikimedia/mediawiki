@@ -337,6 +337,12 @@ ${serverSetting}
 
 ## The URL path to the logo.  Make sure you change this from the default,
 ## or else you'll overwrite your logo when you upgrade!
+##
+## Please use wgLogoSVG if you want to use both svg and png images
+## this will allow the logo to show on unsupported browser
+## that only supports png.
+##
+## Please see https://www.mediawiki.org/wiki/Manual:$wgLogoSVG
 \$wgLogo = \"{$this->values['wgLogo']}\";
 
 ## UPO means: this is also a user preference option

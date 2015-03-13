@@ -34,15 +34,29 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		$logo = $conf->get( 'Logo' );
 		$logoHD = $conf->get( 'LogoHD' );
 
-		$logo1 = OutputPage::transformResourcePath( $conf, $logo );
-		$logo15 = OutputPage::transformResourcePath( $conf, $logoHD['1.5x'] );
-		$logo2 = OutputPage::transformResourcePath( $conf, $logoHD['2x'] );
-
 		$styles = parent::getStyles( $context );
-		$styles['all'][] = '.mw-wiki-logo { background-image: ' .
-			CSSMin::buildUrlValue( $logo1 ) .
-			'; }';
-		if ( $logoHD ) {
+		if ( isset( $logo['svg'] ) && isset( $logo['png'] ) ) {
+			$logosvg = OutputPage::transformResourcePath( $conf, $logo['svg'] );
+			$logopng = OutputPage::transformResourcePath( $conf, $logo['png'] );
+
+			$styles['all'][] = '.mw-wiki-logo { ' .
+				'background-image: ' .
+					CSSMin::buildUrlValue( $logopng ) . '; ' .
+				'background-image: -webkit-linear-gradient(transparent, transparent), ' .
+					CSSMin::buildUrlValue( $logosvg ) . '; ' .
+				'background-image: linear-gradient( transparent, transparent), ' .
+					CSSMin::buildUrlValue( $logosvg ) . '; }';
+		} else {
+			$logo1 = OutputPage::transformResourcePath( $conf, $logo );
+
+			$styles['all'][] = '.mw-wiki-logo { background-image: ' .
+				CSSMin::buildUrlValue( $logo1 ) .
+				'; }';
+		}
+
+		if ( $logoHD && !isset( $logo['svg'] ) ) {
+			$logo15 = OutputPage::transformResourcePath( $conf, $logoHD['1.5x'] );
+			$logo2 = OutputPage::transformResourcePath( $conf, $logoHD['2x'] );
 			if ( isset( $logoHD['1.5x'] ) ) {
 				$styles[
 					'(-webkit-min-device-pixel-ratio: 1.5), ' .
