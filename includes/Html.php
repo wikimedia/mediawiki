@@ -141,16 +141,17 @@ class Html {
 		if ( !$attrs ) {
 			$attrs = array();
 		}
-		if ( isset( $attrs['class'] ) ) {
-			if ( is_array( $attrs['class'] ) ) {
-				$attrs['class'][] = 'mw-ui-input';
-			} else {
-				$attrs['class'] .= ' mw-ui-input';
-			}
-		} else {
-			$attrs['class'] = 'mw-ui-input';
-		}
 		if ( $wgUseMediaWikiUIEverywhere ) {
+			if ( isset( $attrs['class'] ) ) {
+				if ( is_array( $attrs['class'] ) ) {
+					$attrs['class'][] = 'mw-ui-input';
+				} else {
+					$attrs['class'] .= ' mw-ui-input';
+				}
+			} else {
+				$attrs['class'] = 'mw-ui-input';
+			}
+
 			// Note that size can effect the desired width rendering of mw-ui-input elements
 			// so it is removed. Left intact when mediawiki ui not enabled.
 			unset( $attrs['size'] );

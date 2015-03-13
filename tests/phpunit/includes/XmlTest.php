@@ -81,7 +81,7 @@ class XmlTest extends MediaWikiTestCase {
 	 */
 	public function testElementInputCanHaveAValueOfZero() {
 		$this->assertEquals(
-			'<input name="name" value="0" class="mw-ui-input" />',
+			'<input name="name" value="0" />',
 			Xml::input( 'name', false, 0 ),
 			'Input with a value of 0 (bug 23797)'
 		);
@@ -152,7 +152,7 @@ class XmlTest extends MediaWikiTestCase {
 
 		$this->assertEquals(
 			'<label for="year">From year (and earlier):</label> ' .
-				'<input id="year" maxlength="4" size="7" type="number" value="2011" name="year" class="mw-ui-input" /> ' .
+				'<input id="year" maxlength="4" size="7" type="number" value="2011" name="year" /> ' .
 				'<label for="month">From month (and earlier):</label> ' .
 				'<select id="month" name="month" class="mw-month-selector">' .
 				'<option value="-1">all</option>' . "\n" .
@@ -173,7 +173,7 @@ class XmlTest extends MediaWikiTestCase {
 		);
 		$this->assertEquals(
 			'<label for="year">From year (and earlier):</label> ' .
-				'<input id="year" maxlength="4" size="7" type="number" value="2011" name="year" class="mw-ui-input" /> ' .
+				'<input id="year" maxlength="4" size="7" type="number" value="2011" name="year" /> ' .
 				'<label for="month">From month (and earlier):</label> ' .
 				'<select id="month" name="month" class="mw-month-selector">' .
 				'<option value="-1">all</option>' . "\n" .
@@ -207,7 +207,7 @@ class XmlTest extends MediaWikiTestCase {
 
 		$this->assertEquals(
 			'<label for="year">From year (and earlier):</label> ' .
-				'<input id="year" maxlength="4" size="7" type="number" name="year" class="mw-ui-input" /> ' .
+				'<input id="year" maxlength="4" size="7" type="number" name="year" /> ' .
 				'<label for="month">From month (and earlier):</label> ' .
 				'<select id="month" name="month" class="mw-month-selector">' .
 				'<option value="-1">all</option>' . "\n" .
@@ -233,7 +233,7 @@ class XmlTest extends MediaWikiTestCase {
 	 */
 	public function testTextareaNoContent() {
 		$this->assertEquals(
-			'<textarea name="name" id="name" cols="40" rows="5" class="mw-ui-input"></textarea>',
+			'<textarea name="name" id="name" cols="40" rows="5"></textarea>',
 			Xml::textarea( 'name', '' ),
 			'textarea() with not content'
 		);
@@ -244,7 +244,7 @@ class XmlTest extends MediaWikiTestCase {
 	 */
 	public function testTextareaAttribs() {
 		$this->assertEquals(
-			'<textarea name="name" id="name" cols="20" rows="10" class="mw-ui-input">&lt;txt&gt;</textarea>',
+			'<textarea name="name" id="name" cols="20" rows="10">&lt;txt&gt;</textarea>',
 			Xml::textarea( 'name', '<txt>', 20, 10 ),
 			'textarea() with custom attribs'
 		);
