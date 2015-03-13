@@ -3312,5 +3312,6 @@
 	"json-error-utf8": "خطأ في تشكيل محارف UTF-8، ربما نتيجة سوء ترميزها.",
 	"json-error-recursion": "يوجد قيد الترميز إشارة مرجعية حلقية أو أكثر",
 	"json-error-inf-or-nan": "قيد الترميز قيمة أو أكثر من نمط NAN أو INF",
-	"json-error-unsupported-type": "نمط قيمة لا يمكن تشفيره قد أعطي"
+	"json-error-unsupported-type": "نمط قيمة لا يمكن تشفيره قد أعطي",
+	"headline-anchor-title": "وصلة لهذا القسم"
 }

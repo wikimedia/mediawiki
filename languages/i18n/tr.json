@@ -482,7 +482,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} sizin gibi insanlar tarafından oluşturulur.",
 	"createacct-benefit-body1": "{{PLURAL:$1|düzenleme|düzenleme}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|sayfa|sayfa}}",
-	"createacct-benefit-body3": "en son {{PLURAL:$1|katkıda bulunan|katkıda bulunan}}",
+	"createacct-benefit-body3": "en son {{PLURAL:$1|katkıda bulunan|katkıda bulunan}} kişi sayısı",
 	"badretype": "Girdiğiniz şifreler birbirleriyle uyuşmuyor.",
 	"userexists": "Girdiğiniz kullanıcı adı zaten kullanımda.\nLütfen farklı bir kullanıcı adı seçiniz.",
 	"loginerror": "Oturum açma hatası.",

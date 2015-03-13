@@ -3059,5 +3059,6 @@
 	"action-pagelang": "keisti puslapio kalbą",
 	"log-name-pagelang": "Keisti kalbos žurnalą",
 	"mediastatistics-table-mimetype": "MIME tipas",
-	"json-error-syntax": "Sintaksės klaida"
+	"json-error-syntax": "Sintaksės klaida",
+	"headline-anchor-title": "Nuoroda į šią pastraipą"
 }
