@@ -507,9 +507,10 @@ abstract class MediaHandler {
 	 * to some standard. That makes it possible to do things like visual
 	 * indication of grouped and chained streams in ogg container files.
 	 * @param File $image
+	 * @param bool|IContextSource $context Context to use (optional)
 	 * @return array|bool
 	 */
-	function formatMetadata( $image ) {
+	function formatMetadata( $image, $context = false ) {
 		return false;
 	}
 
@@ -520,15 +521,16 @@ abstract class MediaHandler {
 	 * This is used by the media handlers that use the FormatMetadata class
 	 *
 	 * @param array $metadataArray Metadata array
+	 * @param bool|IContextSource $context Context to use (optional)
 	 * @return array Array for use displaying metadata.
 	 */
-	function formatMetadataHelper( $metadataArray ) {
+	function formatMetadataHelper( $metadataArray, $context = false ) {
 		$result = array(
 			'visible' => array(),
 			'collapsed' => array()
 		);
 
-		$formatted = FormatMetadata::getFormattedData( $metadataArray );
+		$formatted = FormatMetadata::getFormattedData( $metadataArray, $context );
 		// Sort fields into visible and collapsed
 		$visibleFields = $this->visibleMetadataFields();
 		foreach ( $formatted as $name => $value ) {

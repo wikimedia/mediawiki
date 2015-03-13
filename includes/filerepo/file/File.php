@@ -1777,14 +1777,15 @@ abstract class File implements IDBAccessObject {
 	}
 
 	/**
+	 * @param bool|IContextSource $context Context to use (optional)
 	 * @return bool
 	 */
-	function formatMetadata() {
+	function formatMetadata( $context = false ) {
 		if ( !$this->getHandler() ) {
 			return false;
 		}
 
-		return $this->getHandler()->formatMetadata( $this, $this->getMetadata() );
+		return $this->getHandler()->formatMetadata( $this, $context );
 	}
 
 	/**

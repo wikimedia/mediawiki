@@ -140,7 +140,7 @@ class ImagePage extends Article {
 
 		if ( $wgShowEXIF && $this->displayImg->exists() ) {
 			// @todo FIXME: Bad interface, see note on MediaHandler::formatMetadata().
-			$formattedMetadata = $this->displayImg->formatMetadata();
+			$formattedMetadata = $this->displayImg->formatMetadata( $this->getContext() );
 			$showmeta = $formattedMetadata !== false;
 		} else {
 			$showmeta = false;
