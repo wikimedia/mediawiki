@@ -1121,12 +1121,7 @@ class SpecialUndelete extends SpecialPage {
 
 		$minor = $rev->isMinor() ? ChangesList::flag( 'minor' ) : '';
 
-		$tags = wfGetDB( DB_SLAVE )->selectField(
-			'tag_summary',
-			'ts_tags',
-			array( 'ts_rev_id' => $rev->getId() ),
-			__METHOD__
-		);
+		$tags = ChangeTags::getTags( null, $rev->getId(), null );
 		$tagSummary = ChangeTags::formatSummaryRow( $tags, 'deleteddiff' );
 
 		// FIXME This is reimplementing DifferenceEngine#getRevisionHeader
