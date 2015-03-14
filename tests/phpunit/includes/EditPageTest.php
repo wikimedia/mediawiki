@@ -217,7 +217,8 @@ class EditPageTest extends MediaWikiLangTestCase {
 				EditPage::AS_SUCCESS_NEW_ARTICLE,
 				''
 			),
-			array( 'expected registered MediaWiki: page whose default content is empty not being created if empty',
+			array( 'expected registered MediaWiki: page whose default content is empty'
+					. 'not being created if empty',
 				'MediaWiki:Ipb-default-expiry',
 				'UTSysop',
 				'',
@@ -246,7 +247,9 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideCreatePages
 	 * @covers EditPage
 	 */
-	public function testCreatePage( $desc, $pageTitle, $user, $editText, $expectedCode, $expectedText, $ignoreBlank = false ) {
+	public function testCreatePage(
+		$desc, $pageTitle, $user, $editText, $expectedCode, $expectedText, $ignoreBlank = false
+	) {
 		$edit = array( 'wpTextbox1' => $editText );
 		if ( $ignoreBlank ) {
 			$edit['wpIgnoreBlankArticle'] = 1;
