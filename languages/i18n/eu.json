@@ -20,7 +20,8 @@
 			"පසිඳු කාවින්ද",
 			"아라",
 			"Joxemai",
-			"Arkaitz Barnetik"
+			"Arkaitz Barnetik",
+			"Sator"
 		]
 	},
 	"tog-underline": "Azpimarratu loturak:",
@@ -219,6 +220,7 @@
 	"otherlanguages": "Erdaretan",
 	"redirectedfrom": "($1(e)tik birzuzenduta)",
 	"redirectpagesub": "Birbideratze orria",
+	"redirectto": "Hona birzuzentzen du:",
 	"lastmodifiedat": "Orrialdearen azken aldaketa: $2, $1.",
 	"viewcount": "Orrialde hau {{PLURAL:$1|behin|$1 aldiz}} bisitatu da.",
 	"protectedpage": "Babestutako orrialdea",
@@ -239,6 +241,7 @@
 	"disclaimers": "Mugaketak",
 	"disclaimerpage": "Project:Erantzukizunen mugaketa orokorra",
 	"edithelp": "Aldaketak egiteko laguntza",
+	"helppage-top-gethelp": "Laguntza",
 	"mainpage": "Azala",
 	"mainpage-description": "Azala",
 	"policy-url": "Project:Politikak",
@@ -467,6 +470,7 @@
 	"suspicious-userlogout": "Saioa amaitzeko egin duzun eskaria ukatu da. Izan ere, ematen du eskari hori gaizki dabilen nabigatzaile edo cache proxy batek bidali duela.",
 	"createacct-another-realname-tip": "Benetako izena hautazkoa da.\nEmatea erabakitzen baduzu hori erabiliko da lanaren atribuzioa egiterako garaian.",
 	"pt-login": "Saioa hasi",
+	"pt-login-button": "Saioa hasi",
 	"pt-createaccount": "Sortu kontua",
 	"pt-userlogout": "Saioa itxi",
 	"php-mail-error-unknown": "PHPren mail() funtzioan arazo ezezagun bat egon da.",

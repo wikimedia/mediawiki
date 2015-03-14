@@ -21,7 +21,7 @@
 	"apihelp-block-param-nocreate": "Запретить создание учётных записей.",
 	"apihelp-createaccount-param-name": "Имя участника.",
 	"apihelp-delete-description": "Удалить страницу.",
-	"apihelp-delete-param-watch": "Добавить эту страницу в список наблюдения.",
+	"apihelp-delete-param-watch": "Добавить страницу к текущему списку наблюдения пользователя.",
 	"apihelp-disabled-description": "Этот модуль был отключен.",
 	"apihelp-edit-param-sectiontitle": "Заголовок для нового раздела.",
 	"apihelp-edit-param-text": "Содержание страницы.",

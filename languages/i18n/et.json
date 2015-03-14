@@ -22,7 +22,8 @@
 			"Võrok",
 			"WikedKentaur",
 			"לערי ריינהארט",
-			"Boxmein"
+			"Boxmein",
+			"Roland"
 		]
 	},
 	"tog-underline": "Linkide allakriipsutus:",
@@ -207,7 +208,7 @@
 	"unprotectthispage": "Muuda selle lehekülje kaitset",
 	"newpage": "Uus lehekülg",
 	"talkpage": "Selle lehekülje arutelu",
-	"talkpagelinktext": "arutelu",
+	"talkpagelinktext": "Arutelu",
 	"specialpage": "Erilehekülg",
 	"personaltools": "Personaalsed tööriistad",
 	"articlepage": "Artiklilehekülg",
@@ -246,7 +247,7 @@
 	"currentevents": "Sündmused",
 	"currentevents-url": "Project:Sündmused",
 	"disclaimers": "Hoiatused",
-	"disclaimerpage": "Project:Hoiatused",
+	"disclaimerpage": "Project:Üldine lahtiütlus",
 	"edithelp": "Redigeerimisjuhend",
 	"helppage-top-gethelp": "Abi",
 	"mainpage": "Esileht",
@@ -255,7 +256,7 @@
 	"portal": "Kogukonnavärav",
 	"portal-url": "Project:Kogukonnavärav",
 	"privacy": "Privaatsus",
-	"privacypage": "Project:Privaatsus",
+	"privacypage": "Project:Privaatsuspoliis",
 	"badaccess": "Õigus puudub",
 	"badaccess-group0": "Sul pole õigust sooritada toimingut, mida üritasid.",
 	"badaccess-groups": "Tegevus, mida üritasid, on piiratud kasutajatele {{PLURAL:$2|rühmas|ühes neist rühmadest}}: $1.",
