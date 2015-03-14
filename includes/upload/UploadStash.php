@@ -727,9 +727,6 @@ class UploadStashFile extends UnregisteredLocalFile {
 class UploadStashException extends MWException {
 }
 
-class UploadStashNotAvailableException extends UploadStashException {
-}
-
 class UploadStashFileNotFoundException extends UploadStashException {
 }
 

@@ -1264,7 +1264,6 @@ $wgAutoloadLocalClasses = array(
 	'UploadStashFileException' => __DIR__ . '/includes/upload/UploadStash.php',
 	'UploadStashFileNotFoundException' => __DIR__ . '/includes/upload/UploadStash.php',
 	'UploadStashNoSuchKeyException' => __DIR__ . '/includes/upload/UploadStash.php',
-	'UploadStashNotAvailableException' => __DIR__ . '/includes/upload/UploadStash.php',
 	'UploadStashNotLoggedInException' => __DIR__ . '/includes/upload/UploadStash.php',
 	'UploadStashWrongOwnerException' => __DIR__ . '/includes/upload/UploadStash.php',
 	'UploadStashZeroLengthFileException' => __DIR__ . '/includes/upload/UploadStash.php',
