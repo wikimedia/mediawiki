@@ -61,6 +61,10 @@ if ( !$wgEnableAPI ) {
 // In a perfect world this wouldn't be necessary
 $wgTitle = Title::makeTitle( NS_MAIN, 'API' );
 
+// RequestContext will read from $wgTitle, but it will also whine about it.
+// In a perfect world this wouldn't be necessary either.
+RequestContext::getMain()->setTitle( $wgTitle );
+
 try {
 	/* Construct an ApiMain with the arguments passed via the URL. What we get back
 	 * is some form of an ApiMain, possibly even one that produces an error message,
