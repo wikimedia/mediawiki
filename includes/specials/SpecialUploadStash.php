@@ -34,7 +34,7 @@
  */
 class SpecialUploadStash extends UnlistedSpecialPage {
 	// UploadStash
-	private $stash;
+	private $stash = null;
 
 	// Since we are directly writing the file to STDOUT,
 	// we should not be reading in really big files and serving them out.
@@ -48,10 +48,16 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 
 	public function __construct() {
 		parent::__construct( 'UploadStash', 'upload' );
-		try {
-			$this->stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash( $this->getUser() );
-		} catch ( UploadStashNotAvailableException $e ) {
+	}
+
+	private function getStash() {
+		if ( $this->stash === null ) {
+			try {
+				$this->stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash( $this->getUser() );
+			} catch ( UploadStashNotAvailableException $e ) {
+			}
 		}
+		return $this->stash;
 	}
 
 	/**
@@ -128,7 +134,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		}
 		$fileName = strtok( '/' );
 		$thumbPart = strtok( '/' );
-		$file = $this->stash->getFile( $fileName );
+		$file = $this->getStash()->getFile( $fileName );
 		if ( $type === 'thumb' ) {
 			$srcNamePos = strrpos( $thumbPart, $fileName );
 			if ( $srcNamePos === false || $srcNamePos < 1 ) {
@@ -200,7 +206,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		// now we should construct a File, so we can get MIME and other such info in a standard way
 		// n.b. MIME type may be different from original (ogx original -> jpeg thumb)
 		$thumbFile = new UnregisteredLocalFile( false,
-			$this->stash->repo, $thumbnailImage->getStoragePath(), false );
+			$this->getStash()->repo, $thumbnailImage->getStoragePath(), false );
 		if ( !$thumbFile ) {
 			throw new UploadStashFileNotFoundException( "couldn't create local file object for thumbnail" );
 		}
@@ -379,7 +385,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		$refreshHtml = Html::element( 'a',
 			array( 'href' => $this->getPageTitle()->getLocalURL() ),
 			$this->msg( 'uploadstash-refresh' )->text() );
-		$files = $this->stash->listFiles();
+		$files = $this->getStash()->listFiles();
 		if ( $files && count( $files ) ) {
 			sort( $files );
 			$fileListItemsHtml = '';
