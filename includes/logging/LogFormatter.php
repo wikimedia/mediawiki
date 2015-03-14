@@ -336,8 +336,17 @@ class LogFormatter {
 				switch ( $entry->getSubtype() ) {
 					case 'block':
 						global $wgContLang;
-						$duration = $wgContLang->translateBlockExpiry( $parameters['5::duration'] );
-						$flags = BlockLogFormatter::formatBlockFlags( $parameters['6::flags'], $wgContLang );
+						// Restore compatibility with extensions by checking for
+						// new key (5::duration/6::flags) and old key (0/optional 1)
+						$rawDuration = isset( $parameters['5::duration'] ) ? $parameters['5::duration'] : $parameters[0];
+						$rawFlags = '';
+						if ( isset( $parameters['6::flags'] ) ) {
+							$rawFlags = $parameters['6::flags'];
+						} elseif ( isset( $parameters[1] ) ) {
+							$rawFlags = $parameters[1];
+						}
+						$duration = $wgContLang->translateBlockExpiry( $rawDuration );
+						$flags = BlockLogFormatter::formatBlockFlags( $rawFlags, $wgContLang );
 						$text = wfMessage( 'blocklogentry' )
 							->rawParams( $target, $duration, $flags )->inContentLanguage()->escaped();
 						break;
