@@ -62,8 +62,6 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 				$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), $modulePrefix );
 			}
 		// @todo Update exception handling here to understand current getFile exceptions
-		} catch ( UploadStashNotAvailableException $e ) {
-			$this->dieUsage( "Session not available: " . $e->getMessage(), "nosession" );
 		} catch ( UploadStashFileNotFoundException $e ) {
 			$this->dieUsage( "File not found: " . $e->getMessage(), "invalidsessiondata" );
 		} catch ( UploadStashBadPathException $e ) {

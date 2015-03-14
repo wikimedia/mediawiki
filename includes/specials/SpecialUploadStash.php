@@ -48,10 +48,6 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 
 	public function __construct() {
 		parent::__construct( 'UploadStash', 'upload' );
-		try {
-			$this->stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash( $this->getUser() );
-		} catch ( UploadStashNotAvailableException $e ) {
-		}
 	}
 
 	/**
@@ -62,6 +58,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * @return bool Success
 	 */
 	public function execute( $subPage ) {
+		$this->stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash( $this->getUser() );
 		$this->checkPermissions();
 
 		if ( $subPage === null || $subPage === '' ) {
