@@ -137,8 +137,9 @@ class FormatJson {
 	}
 
 	/**
-	 * Decodes a JSON string. It is recommended to use FormatJson::parse(), which returns more comprehensive
-	 * result in case of an error, and has more parsing options.
+	 * Decodes a JSON string. It is recommended to use FormatJson::parse(),
+	 * which returns more comprehensive result in case of an error, and has
+	 * more parsing options.
 	 *
 	 * @param string $value The JSON string being decoded
 	 * @param bool $assoc When true, returned objects will be converted into associative arrays.
@@ -154,7 +155,8 @@ class FormatJson {
 
 	/**
 	 * Decodes a JSON string.
-	 * Unlike FormatJson::decode(), if $value represents null value, it will be properly decoded as valid.
+	 * Unlike FormatJson::decode(), if $value represents null value, it will be
+	 * properly decoded as valid.
 	 *
 	 * @param string $value The JSON string being decoded
 	 * @param int $options A bit field that allows FORCE_ASSOC, TRY_FIXING,
