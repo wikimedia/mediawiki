@@ -89,11 +89,9 @@ abstract class FormSpecialPage extends SpecialPage {
 	 * @return HTMLForm|null
 	 */
 	protected function getForm() {
-		$this->fields = $this->getFormFields();
-
 		$form = HTMLForm::factory(
 			$this->getDisplayFormat(),
-			$this->fields,
+			$this->getFormFields(),
 			$this->getContext(),
 			$this->getMessagePrefix()
 		);
