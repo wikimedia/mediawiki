@@ -91,7 +91,12 @@ abstract class FormSpecialPage extends SpecialPage {
 	protected function getForm() {
 		$this->fields = $this->getFormFields();
 
-		$form = HTMLForm::factory( $this->getDisplayFormat(), $this->fields, $this->getContext(), $this->getMessagePrefix() );
+		$form = HTMLForm::factory(
+			$this->getDisplayFormat(),
+			$this->fields,
+			$this->getContext(),
+			$this->getMessagePrefix()
+		);
 		$form->setSubmitCallback( array( $this, 'onSubmit' ) );
 		$form->setWrapperLegendMsg( $this->getMessagePrefix() . '-legend' );
 
