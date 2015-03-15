@@ -36,6 +36,12 @@ abstract class FormSpecialPage extends SpecialPage {
 	protected $par = null;
 
 	/**
+	 * Form fields
+	 * @var array
+	 */
+	public $fields;
+
+	/**
 	 * Get an HTMLForm descriptor array
 	 * @return array
 	 */
