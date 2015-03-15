@@ -252,7 +252,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		return $rows;
 	}
 
-	protected function runMainQueryHook( &$tables, &$fields, &$conds, &$query_options, &$join_conds, $opts ) {
+	protected function runMainQueryHook( &$tables, &$fields, &$conds,
+		&$query_options, &$join_conds, $opts
+	) {
 		return parent::runMainQueryHook( $tables, $fields, $conds, $query_options, $join_conds, $opts )
 			&& Hooks::run(
 				'SpecialRecentChangesQuery',
@@ -311,7 +313,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$rc = RecentChange::newFromRow( $obj );
 			$rc->counter = $counter++;
 			# Check if the page has been updated since the last visit
-			if ( $this->getConfig()->get( 'ShowUpdatedMarker' ) && !empty( $obj->wl_notificationtimestamp ) ) {
+			if ( $this->getConfig()->get( 'ShowUpdatedMarker' )
+				&& !empty( $obj->wl_notificationtimestamp )
+			) {
 				$rc->notificationtimestamp = ( $obj->rc_timestamp >= $obj->wl_notificationtimestamp );
 			} else {
 				$rc->notificationtimestamp = false; // Default
@@ -732,7 +736,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 			$link = $this->makeOptionsLink( $linkMessage->text(),
 				array( $key => 1 - $options[$key] ), $nondefaults );
-			$links[] = "<span class=\"$msg rcshowhideoption\">" . $this->msg( $msg )->rawParams( $link )->escaped() . '</span>';
+			$links[] = "<span class=\"$msg rcshowhideoption\">"
+				. $this->msg( $msg )->rawParams( $link )->escaped() . '</span>';
 		}
 
 		// show from this onward link

@@ -152,7 +152,9 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			$conds['pagelinks'][] = 'rd_from is NOT NULL';
 		}
 
-		$queryFunc = function ( $dbr, $table, $fromCol ) use ( $conds, $target, $limit, $useLinkNamespaceDBFields ) {
+		$queryFunc = function ( $dbr, $table, $fromCol ) use (
+			$conds, $target, $limit, $useLinkNamespaceDBFields
+		) {
 			// Read an extra row as an at-end check
 			$queryLimit = $limit + 1;
 			$on = array(
@@ -278,7 +280,11 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 			if ( $row->rd_from && $level < 2 ) {
 				$out->addHTML( $this->listItem( $row, $nt, $target, true ) );
-				$this->showIndirectLinks( $level + 1, $nt, $this->getConfig()->get( 'MaxRedirectLinksRetrieved' ) );
+				$this->showIndirectLinks(
+					$level + 1,
+					$nt,
+					$this->getConfig()->get( 'MaxRedirectLinksRetrieved' )
+				);
 				$out->addHTML( Xml::closeElement( 'li' ) );
 			} else {
 				$out->addHTML( $this->listItem( $row, $nt, $target ) );
