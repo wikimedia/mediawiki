@@ -26,4 +26,5 @@
  * @ingroup FileRepo
  * @deprecated 1.25
  */
-class FileRepoStatus extends Status {}
+class FileRepoStatus extends Status {
+}
