@@ -634,7 +634,8 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * debug stuff. This should be called right before outputting the closing
 	 * body and html tags.
 	 */
-	function printTrail() { ?>
+	function printTrail() {
+?>
 <?php echo MWDebug::getDebugHTML( $this->getSkin()->getContext() ); ?>
 <?php $this->html( 'bottomscripts' ); /* JS call to runBodyOnloadHook */ ?>
 <?php $this->html( 'reporttime' ) ?>
