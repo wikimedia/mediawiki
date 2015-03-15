@@ -47,7 +47,7 @@
 	zoom: 1;
 
 	// Container styling
-	.button-colors(#FFF);
+	.button-colors(#FFF, #CCC);
 	border-radius: @borderRadius;
 	min-width: 4em;
 
@@ -135,10 +135,10 @@
 	// Styleguide 2.1.1.
 	&.mw-ui-progressive,
 	&.mw-ui-primary {
-		.button-colors(@colorProgressive);
+		.button-colors(@colorProgressive, @colorProgressiveHighlight);
 
 		&.mw-ui-quiet {
-			.button-colors-quiet(@colorProgressive);
+			.button-colors-quiet(@colorProgressive, @colorProgressiveHighlight);
 		}
 	}
 
@@ -158,10 +158,10 @@
 	//
 	// Styleguide 2.1.2.
 	&.mw-ui-constructive {
-		.button-colors(@colorConstructive);
+		.button-colors(@colorConstructive, @colorConstructiveHighlight);
 
 		&.mw-ui-quiet {
-			.button-colors-quiet(@colorConstructive);
+			.button-colors-quiet(@colorConstructive, @colorConstructiveHighlight);
 		}
 	}
 
@@ -180,10 +180,10 @@
 	//
 	// Styleguide 2.1.3.
 	&.mw-ui-destructive {
-		.button-colors(@colorDestructive);
+		.button-colors(@colorDestructive, @colorDestructiveHighlight);
 
 		&.mw-ui-quiet {
-			.button-colors-quiet(@colorDestructive);
+			.button-colors-quiet(@colorDestructive, @colorDestructiveHighlight);
 		}
 	}
 
@@ -220,7 +220,7 @@
 		background: transparent;
 		border: none;
 		text-shadow: none;
-		.button-colors-quiet(@colorButtonText);
+		.button-colors-quiet(@colorButtonText, @colorButtonTextHighlight);
 
 		&:hover,
 		&:focus {
