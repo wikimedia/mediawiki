@@ -854,9 +854,11 @@ class ResourceLoader {
 		$states = array();
 
 		if ( !count( $modules ) && !count( $missing ) ) {
-			return "/* This file is the Web entry point for MediaWiki's ResourceLoader:
+			return <<<MESSAGE
+/* This file is the Web entry point for MediaWiki's ResourceLoader:
    <https://www.mediawiki.org/wiki/ResourceLoader>. In this request,
-   no modules were requested. Max made me put this here. */";
+   no modules were requested. Max made me put this here. */
+MESSAGE;
 		}
 
 		$image = $context->getImageObj();

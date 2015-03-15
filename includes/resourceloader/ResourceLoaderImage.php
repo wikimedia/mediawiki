@@ -349,7 +349,12 @@ class ResourceLoaderImage {
 			}
 
 			$handler = new SvgHandler;
-			$res = $handler->rasterize( $tempFilenameSvg, $tempFilenamePng, $metadata['width'], $metadata['height'] );
+			$res = $handler->rasterize(
+				$tempFilenameSvg,
+				$tempFilenamePng,
+				$metadata['width'],
+				$metadata['height']
+			);
 			unlink( $tempFilenameSvg );
 
 			$png = null;

@@ -59,11 +59,13 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 *         'prefix' => [CSS class prefix],
 	 *         // List of variants that may be used for the image files
 	 *         'variants' => array(
-	 *             // ([image type] is a string, used in generated CSS class names and to match variants to images)
+	 *             // ([image type] is a string, used in generated CSS class
+	 *             //  names and to match variants to images)
 	 *             [image type] => array(
 	 *                 [variant name] => array(
 	 *                     'color' => [color string, e.g. '#ffff00'],
-	 *                     'global' => [boolean, if true, this variant is available for all images of this type],
+	 *                     'global' => [boolean, if true, this variant is available
+	 *                                  for all images of this type],
 	 *                 ),
 	 *             )
 	 *         ),
@@ -73,7 +75,8 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 *                 [file path string],
 	 *                 [file path string] => array(
 	 *                     'name' => [image name string, defaults to file name],
-	 *                     'variants' => [array of variant name strings, variants available for this image],
+	 *                     'variants' => [array of variant name strings, variants
+	 *                                    available for this image],
 	 *                 ),
 	 *             )
 	 *         ),
@@ -167,7 +170,13 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 						$variantConfig = array();
 					}
 
-					$image = new ResourceLoaderImage( $name, $this->getName(), $imageDesc, $this->localBasePath, $variantConfig );
+					$image = new ResourceLoaderImage(
+						$name,
+						$this->getName(),
+						$imageDesc,
+						$this->localBasePath,
+						$variantConfig
+					);
 					$this->imageObjects[ $image->getName() ] = $image;
 				}
 			}
