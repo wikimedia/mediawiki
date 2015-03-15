@@ -315,7 +315,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		);
 	}
 
-	protected function runMainQueryHook( &$tables, &$fields, &$conds, &$query_options, &$join_conds, $opts ) {
+	protected function runMainQueryHook( &$tables, &$fields, &$conds,
+		&$query_options, &$join_conds, $opts
+	) {
 		return Hooks::run(
 			'ChangesListSpecialPageQuery',
 			array( $this->getName(), &$tables, &$fields, &$conds, &$query_options, &$join_conds, $opts )
