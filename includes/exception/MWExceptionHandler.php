@@ -246,6 +246,7 @@ class MWExceptionHandler {
 			if ( preg_match( "/Class (undefined: \w+|'\w+' not found)/",
 				$lastError['message']
 			) ) {
+				// @codingStandardsIgnoreStart Generic.Files.LineLength.TooLong
 				$msg = <<<TXT
 {$msg}
 
@@ -253,6 +254,7 @@ MediaWiki or an installed extension requires this class but it is not embedded d
 
 Please see <a href="https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries">mediawiki.org</a> for help on installing the required components.
 TXT;
+				// @codingStandardsIgnoreEnd
 			}
 			$e = new ErrorException( $msg, 0, $lastError['type'] );
 			self::logError( $e );
