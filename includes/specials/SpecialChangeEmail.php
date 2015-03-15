@@ -141,7 +141,8 @@ class SpecialChangeEmail extends FormSpecialPage {
 			# Notify user that a confirmation email has been sent...
 			$this->getOutput()->wrapWikiMsg( "<div class='error' style='clear: both;'>\n$1\n</div>",
 				'eauthentsent', $this->getUser()->getName() );
-			$this->getOutput()->addReturnTo( $titleObj, wfCgiToArray( $query ) ); // just show the link to go back
+			// just show the link to go back
+			$this->getOutput()->addReturnTo( $titleObj, wfCgiToArray( $query ) );
 		}
 	}
 
