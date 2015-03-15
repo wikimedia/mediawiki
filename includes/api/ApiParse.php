@@ -250,6 +250,11 @@ class ApiParse extends ApiBase {
 		if ( isset( $prop['text'] ) ) {
 			$result_array['text'] = array();
 			ApiResult::setContent( $result_array['text'], $p_result->getText() );
+			$result_array['parsewarnings'] = array();
+			if ( count( $p_result->getWarnings() ) ) {
+				ApiResult::setContent( $result_array['parsewarnings'],  $p_result->getWarnings());
+			}
+
 		}
 
 		if ( !is_null( $params['summary'] ) ) {
@@ -668,11 +673,12 @@ class ApiParse extends ApiBase {
 				ApiBase::PARAM_TYPE => 'integer',
 			),
 			'prop' => array(
-				ApiBase::PARAM_DFLT => 'text|langlinks|categories|links|templates|' .
+				ApiBase::PARAM_DFLT => 'text|parsewarnings|langlinks|categories|links|templates|' .
 					'images|externallinks|sections|revid|displaytitle|iwlinks|properties',
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => array(
 					'text',
+					'parsewarnings',
 					'langlinks',
 					'categories',
 					'categorieshtml',
