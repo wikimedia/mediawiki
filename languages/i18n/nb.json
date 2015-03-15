@@ -1535,7 +1535,7 @@
 	"withoutinterwiki-legend": "Prefiks",
 	"withoutinterwiki-submit": "Vis",
 	"fewestrevisions": "Artikler med færrest revisjoner",
-	"nbytes": "$1 {{PLURAL:$1|byte|bytes}}",
+	"nbytes": "$1 {{PLURAL:$1|byte}}",
 	"ncategories": "$1 {{PLURAL:$1|kategori|kategorier}}",
 	"ninterwikis": "$1 {{PLURAL:$1|interwiki|interwikier}}",
 	"nlinks": "$1 {{PLURAL:$1|lenke|lenker}}",

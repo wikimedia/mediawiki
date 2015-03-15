@@ -834,6 +834,7 @@
 	"searchrelated": "მიბმული",
 	"searchall": "ყველა",
 	"showingresults": "ქვემოთ იხილეთ <b>$1</b>-მდე შედეგი დაწყებული #<b>$2</b>-იდან.",
+	"search-showingresults": "{{PLURAL:$4|შედეგი <strong>$1</strong> დან <strong>$3</strong>|შედეგი <strong>$1 - $2</strong> დან <strong>$3</strong>}}",
 	"search-nonefound": "მსგავსი მოთხოვნით გვერდი ვერ მოიძებნა.",
 	"powersearch-legend": "გაფართოებული ძიება",
 	"powersearch-ns": "ძიება სახელთა სივრცეებში:",

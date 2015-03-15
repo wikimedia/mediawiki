@@ -334,6 +334,7 @@
 	"accountcreated": "ಖಾತೆ ಸೃಷ್ಟಿಯಾತ್‘ಂಡ್.",
 	"login-abort-generic": "ಇರೆನ ಲಾಗ್ ಇನ್ ವಿಫಲ ವಾತ್‘ಂಡ್",
 	"loginlanguagelabel": "ಭಾಷೆ: $1",
+	"pt-login": "ಲಾಗಿನ್",
 	"changepassword": "ಪ್ರವೇಶಪದೊನ್ ಬದಲಾವಣೆ ಮಲ್ಪುಲೆ",
 	"resetpass_header": "ಈ ಖಾತೆದ ಪ್ರವೇಶಪದ ಬದಲಾವಣೆ ಮಲ್ಪುಲೆ",
 	"oldpassword": "ಪರ ಪ್ರವೇಶಪದ",
@@ -738,5 +739,6 @@
 	"monthsall": "ಪೂರಾ",
 	"watchlisttools-view": "ಪ್ರಸ್ತುತ ಬದಲಾವಣೆಲ್ ತೋಜಾಲೆ",
 	"watchlisttools-edit": "ವೀಕ್ಷಣಾಪಟ್ಟಿನ್ ತೂಲೆ ಬೊಕ್ಕ ಎಡಿಟ್ ಮಲ್ಪುಲೆ",
-	"specialpages": "ವಿಷೇಶ ಪುಟೊಲು"
+	"specialpages": "ವಿಷೇಶ ಪುಟೊಲು",
+	"searchsuggest-search": "ನಾಡ್‍ಲೆ"
 }

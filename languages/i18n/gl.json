@@ -1090,7 +1090,7 @@
 	"right-markbotedits": "Marcar as edicións desfeitas como edicións dun bot",
 	"right-noratelimit": "Non ser afectado polos límites de frecuencia",
 	"right-import": "Importar páxinas doutros wikis",
-	"right-importupload": "Importar páxinas desde un ficheiro cargado",
+	"right-importupload": "Importar páxinas desde un ficheiro subido",
 	"right-patrol": "Marcar edicións como patrulladas",
 	"right-autopatrol": "Ter as edicións marcadas automaticamente como patrulladas",
 	"right-patrolmarks": "Ver os cambios que están marcados coma patrullados",

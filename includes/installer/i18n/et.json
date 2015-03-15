@@ -9,7 +9,7 @@
 		]
 	},
 	"config-information": "Teave",
-	"config-upgrade-key-missing": "On tuvastatud eksisteeriv MediaWiki install.\nSelle installi uuendamiseks palun lisage järgnev rida oma <code>LocalSettings.php</code> faili lõppu:\n\n$1",
+	"config-upgrade-key-missing": "Tuvastati olemasolev MediaWiki install.\nSelle installi täiendamiseks lisa palun järgmine rida faili <code>LocalSettings.php</code> lõppu:\n\n$1",
 	"config-session-error": "Tõrge seansi alustamisel: $1",
 	"config-your-language": "Oma keel:",
 	"config-wiki-language": "Viki keel:",
@@ -26,7 +26,7 @@
 	"config-page-complete": "Valmis!",
 	"config-page-restart": "Alusta installimist uuesti",
 	"config-page-readme": "Loe mind",
-	"config-page-releasenotes": "Väljalaske märkmed",
+	"config-page-releasenotes": "Redaktsioonimärkmed",
 	"config-page-copying": "Kopeerimine",
 	"config-page-upgradedoc": "Uuendamine",
 	"config-page-existingwiki": "Olemasolev viki",

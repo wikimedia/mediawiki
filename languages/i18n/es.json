@@ -3348,5 +3348,5 @@
 	"json-error-recursion": "Una o más referencias recursivas en el valor por codificar",
 	"json-error-inf-or-nan": "Hay uno o más valores «NAN» o «INF» en el valor que se codificará",
 	"json-error-unsupported-type": "Se proporcionó un valor en un tipo que no se puede codificar",
-	"headline-anchor-title": "Enlazar a esta sección"
+	"headline-anchor-title": "Enlace a esta sección"
 }

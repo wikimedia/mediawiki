@@ -2200,6 +2200,7 @@
 	"tooltip-pt-mycontris": "Liste over dine bidrag",
 	"tooltip-pt-login": "Du opfordres til at logge på, men det er ikke obligatorisk.",
 	"tooltip-pt-logout": "Log af",
+	"tooltip-pt-createaccount": "Du opfordres til at oprette en konto og logge på, men det er ikke obligatorisk",
 	"tooltip-ca-talk": "Diskussion om indholdet på siden",
 	"tooltip-ca-edit": "Du kan redigere denne side. Brug venligst forhåndsvisning før du gemmer.",
 	"tooltip-ca-addsection": "Start et nyt afsnit",
