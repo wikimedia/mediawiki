@@ -97,6 +97,9 @@ class SpecialJavaScriptTest extends SpecialPage {
 			return;
 		}
 
+		// Set RL to JS test mode, so that it calls the
+		// SetupJavaScriptTestMWEnvironment hook
+		ResourceLoader::setJSTestMode();
 		$out->addModules( 'mediawiki.special.javaScriptTest' );
 
 		$method = 'view' . ucfirst( $framework );

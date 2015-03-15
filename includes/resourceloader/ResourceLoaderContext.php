@@ -46,6 +46,7 @@ class ResourceLoaderContext {
 	protected $format;
 	protected $userObj;
 	protected $imageObj;
+	protected $jsTestMode;
 
 	/* Methods */
 
@@ -70,6 +71,7 @@ class ResourceLoaderContext {
 		$this->only = $request->getVal( 'only' );
 		$this->version = $request->getVal( 'version' );
 		$this->raw = $request->getFuzzyBool( 'raw' );
+		$this->jsTestMode = $request->getFuzzyBool( 'jsTestMode' );
 		// Image requests
 		$this->image = $request->getVal( 'image' );
 		$this->variant = $request->getVal( 'variant' );
@@ -294,6 +296,13 @@ class ResourceLoaderContext {
 		}
 
 		return $this->imageObj;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function getJsTestMode() {
+		return $this->jsTestMode;
 	}
 
 	/**

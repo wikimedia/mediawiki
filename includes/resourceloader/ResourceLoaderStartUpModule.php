@@ -339,6 +339,10 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	public function getScript( ResourceLoaderContext $context ) {
 		global $IP;
 
+		if ( $context->getJsTestMode() ) {
+			wfRunHooks( 'SetupJavaScriptTestMWEnvironment' );
+		}
+
 		$out = file_get_contents( "$IP/resources/src/startup.js" );
 		if ( $context->getOnly() === 'scripts' ) {
 

@@ -1398,6 +1398,11 @@
 					{ modules: buildModulesString( moduleMap ) },
 					currReqBase
 				);
+
+				if ( mw.loader.jsTestMode ) {
+					request['jsTestMode'] = 1;
+				}
+
 				request = sortQuery( request );
 				// Support: IE6
 				// Append &* to satisfy load.php's WebRequest::checkUrlExtension test. This script
@@ -1443,6 +1448,11 @@
 				 * @method
 				 */
 				addStyleTag: newStyleTag,
+
+				/**
+				 * If true, send a jsTestMode param with requests
+				 */
+				jsTestMode: false,
 
 				/**
 				 * Batch-request queued dependencies from the server.

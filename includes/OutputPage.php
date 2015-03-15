@@ -2819,6 +2819,7 @@ class OutputPage extends ContextSource {
 					$only === ResourceLoaderModule::TYPE_COMBINED ? null : $only,
 					$this->isPrintable(),
 					$this->getRequest()->getBool( 'handheld' ),
+					ResourceLoader::inJsTestMode(),
 					$extraQuery
 				);
 				$context = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
@@ -3004,10 +3005,11 @@ class OutputPage extends ContextSource {
 		// Only load modules that have marked themselves for loading at the top
 		$modules = $this->getModules( true, 'top' );
 		if ( $modules ) {
+			$code = ResourceLoader::inJsTestMode() ? "mw.loader.jsTestMode = true;\n" : "";
+			$code .= Xml::encodeJsCall( 'mw.loader.load', array( $modules ) );
+
 			$links[] = Html::inlineScript(
-				ResourceLoader::makeLoaderConditionalScript(
-					Xml::encodeJsCall( 'mw.loader.load', array( $modules ) )
-				)
+				ResourceLoader::makeLoaderConditionalScript( $code )
 			);
 		}
 

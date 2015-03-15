@@ -35,6 +35,9 @@ class ResourceLoader {
 	/** @var bool */
 	protected static $debugMode = null;
 
+	/** @var bool */
+	protected static $jsTestMode = null;
+
 	/** @var array */
 	private static $lessVars = null;
 
@@ -549,6 +552,11 @@ class ResourceLoader {
 	 * @param ResourceLoaderContext $context Context in which a response should be formed
 	 */
 	public function respond( ResourceLoaderContext $context ) {
+
+		if ( $context->getJsTestMode() ) {
+			wfRunHooks( 'SetupJavaScriptTestMWEnvironment' );
+		}
+
 		// Use file cache if enabled and available...
 		if ( $this->config->get( 'UseFileCache' ) ) {
 			$fileCache = ResourceFileCache::newFromContext( $context );
@@ -1419,17 +1427,18 @@ class ResourceLoader {
 	 * @param string|null $only &only= parameter
 	 * @param bool $printable Printable mode
 	 * @param bool $handheld Handheld mode
+	 * @param bool $jsTestMode
 	 * @param array $extraQuery Extra query parameters to add
 	 * @return string URL to load.php. May be protocol-relative (if $wgLoadScript is procol-relative)
 	 */
 	public static function makeLoaderURL( $modules, $lang, $skin, $user = null,
 		$version = null, $debug = false, $only = null, $printable = false,
-		$handheld = false, $extraQuery = array()
+		$handheld = false, $jsTestMode = false, $extraQuery = array()
 	) {
 		global $wgLoadScript;
 
 		$query = self::makeLoaderQuery( $modules, $lang, $skin, $user, $version, $debug,
-			$only, $printable, $handheld, $extraQuery
+			$only, $printable, $handheld, $jsTestMode, $extraQuery
 		);
 
 		// Prevent the IE6 extension check from being triggered (bug 28840)
@@ -1457,6 +1466,7 @@ class ResourceLoader {
 			$context->getOnly(),
 			$context->getRequest()->getBool( 'printable' ),
 			$context->getRequest()->getBool( 'handheld' ),
+			$context->getJsTestMode(),
 			$extraQuery
 		);
 	}
@@ -1474,13 +1484,14 @@ class ResourceLoader {
 	 * @param string $only
 	 * @param bool $printable
 	 * @param bool $handheld
+	 * @param bool $jsTestMode
 	 * @param array $extraQuery
 	 *
 	 * @return array
 	 */
 	public static function makeLoaderQuery( $modules, $lang, $skin, $user = null,
 		$version = null, $debug = false, $only = null, $printable = false,
-		$handheld = false, $extraQuery = array()
+		$handheld = false, $jsTestMode = false, $extraQuery = array()
 	) {
 		$query = array(
 			'modules' => self::makePackedModulesString( $modules ),
@@ -1502,6 +1513,9 @@ class ResourceLoader {
 		}
 		if ( $handheld ) {
 			$query['handheld'] = 1;
+		}
+		if ( $jsTestMode ) {
+			$query['jsTestMode'] = 1;
 		}
 		$query += $extraQuery;
 
@@ -1568,5 +1582,27 @@ class ResourceLoader {
 			self::$lessVars = $lessVars;
 		}
 		return self::$lessVars;
+	}
+
+	/**
+	 * Determine whether JS test mode was requested, based on a self::$jsTestMode
+	 * or a request param.
+	 * @return bool
+	 */
+	public static function inJsTestMode() {
+		if ( is_null( self::$jsTestMode === null ) ) {
+			global $wgRequest;
+			self::$jsTestMode = $wgRequest->getFuzzyBool( 'jsTestMode' );
+		}
+		return self::$jsTestMode;
+	}
+
+	/**
+	 * Set ResourceLoader to run in test mode. (This means
+	 * the SetupJavaScriptTestMWEnvironment will be called and the jsTestMode
+	 * parameter will be included in calls to load.php.)
+	 */
+	public static function setJSTestMode() {
+		self::$jsTestMode = true;
 	}
 }
