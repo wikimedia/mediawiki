@@ -90,7 +90,9 @@ class SiteImporter {
 
 			foreach ( $errors as $error ) {
 				/** @var LibXMLError $error */
-				throw new InvalidArgumentException( 'Malformed XML: ' . $error->message . ' in line ' . $error->line );
+				throw new InvalidArgumentException(
+					'Malformed XML: ' . $error->message . ' in line ' . $error->line
+				);
 			}
 
 			throw new InvalidArgumentException( 'Malformed XML!' );
@@ -202,7 +204,9 @@ class SiteImporter {
 			if ( $default !== false ) {
 				return $default;
 			} else {
-				throw new MWException( 'Required ' . $name . ' attribute not found in <' . $element->tagName . '> tag' );
+				throw new MWException(
+					'Required ' . $name . ' attribute not found in <' . $element->tagName . '> tag'
+				);
 			}
 		}
 
@@ -224,7 +228,9 @@ class SiteImporter {
 			if ( $default !== false ) {
 				return $default;
 			} else {
-				throw new MWException( 'Required <' . $name . '> tag not found inside <' . $element->tagName . '> tag' );
+				throw new MWException(
+					'Required <' . $name . '> tag not found inside <' . $element->tagName . '> tag'
+				);
 			}
 		}
 
