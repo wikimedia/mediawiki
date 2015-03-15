@@ -1784,7 +1784,10 @@ class LocalFile extends File {
 		// itself gets it from elsewhere. To avoid repeating the DB lookups in such a case, we
 		// need to differentiate between null (uninitialized) and false (failed to load).
 		if ( $this->descriptionTouched === null ) {
-			$cond = array( 'page_namespace' => $this->title->getNamespace(), 'page_title' => $this->title->getDBkey() );
+			$cond = array(
+				'page_namespace' => $this->title->getNamespace(),
+				'page_title' => $this->title->getDBkey()
+			);
 			$touched = $this->repo->getSlaveDB()->selectField( 'page', 'page_touched', $cond, __METHOD__ );
 			$this->descriptionTouched = $touched ? wfTimestamp( TS_MW, $touched ) : false;
 		}
