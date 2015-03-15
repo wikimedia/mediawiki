@@ -515,7 +515,10 @@ class SpecialVersion extends SpecialPage {
 			array( 'id' => 'mw-version-libraries' ),
 			$this->msg( 'version-libraries' )->text()
 		);
-		$out .= Html::openElement( 'table', array( 'class' => 'wikitable plainlinks', 'id' => 'sv-libraries' ) );
+		$out .= Html::openElement(
+			'table',
+			array( 'class' => 'wikitable plainlinks', 'id' => 'sv-libraries' )
+		);
 		$out .= Html::openElement( 'tr' )
 			. Html::element( 'th', array(), $this->msg( 'version-libraries-library' )->text() )
 			. Html::element( 'th', array(), $this->msg( 'version-libraries-version' )->text() )
@@ -528,7 +531,11 @@ class SpecialVersion extends SpecialPage {
 				continue;
 			}
 			$out .= Html::openElement( 'tr' )
-				. Html::rawElement( 'td', array(), Linker::makeExternalLink( "https://packagist.org/packages/$name", $name ) )
+				. Html::rawElement(
+					'td',
+					array(),
+					Linker::makeExternalLink( "https://packagist.org/packages/$name", $name )
+				)
 				. Html::element( 'td', array(), $info['version'] )
 				. Html::closeElement( 'tr' );
 		}
@@ -588,11 +595,15 @@ class SpecialVersion extends SpecialPage {
 
 		$fhooks = $wgParser->getFunctionHooks();
 		if ( count( $fhooks ) ) {
-			$out = Html::rawElement( 'h2', array( 'class' => 'mw-headline plainlinks' ), Linker::makeExternalLink(
-				'//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Parser_functions',
-				$this->msg( 'version-parser-function-hooks' )->parse(),
-				false /* msg()->parse() already escapes */
-			) );
+			$out = Html::rawElement(
+				'h2',
+				array( 'class' => 'mw-headline plainlinks' ),
+				Linker::makeExternalLink(
+					'//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Parser_functions',
+					$this->msg( 'version-parser-function-hooks' )->parse(),
+					false /* msg()->parse() already escapes */
+				)
+			);
 
 			$out .= $this->listToText( $fhooks );
 		} else {
