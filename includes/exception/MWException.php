@@ -119,7 +119,8 @@ class MWException extends Exception {
 		if ( $this->useMessageCache() ) {
 			try {
 				return wfMessage( $key, $args )->text();
-			} catch ( Exception $e ) {}
+			} catch ( Exception $e ) {
+			}
 		}
 		return wfMsgReplaceArgs( $fallback, $args );
 	}
