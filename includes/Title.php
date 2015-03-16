@@ -1247,8 +1247,8 @@ class Title {
 	 */
 	public function isCssJsSubpage() {
 		return ( NS_USER == $this->mNamespace && $this->isSubpage()
-				&& ( $this->hasContentModel( CONTENT_MODEL_CSS )
-					|| $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) ) );
+				&& ( $this->isCssSubpage()
+					|| $this->isJsSubpage() ) );
 	}
 
 	/**
@@ -1268,22 +1268,26 @@ class Title {
 
 	/**
 	 * Is this a .css subpage of a user page?
+	 * This does not check if the page content is actually CSS,
+	 * just that the title ends with ".css"
 	 *
 	 * @return bool
 	 */
 	public function isCssSubpage() {
 		return ( NS_USER == $this->mNamespace && $this->isSubpage()
-			&& $this->hasContentModel( CONTENT_MODEL_CSS ) );
+			&& preg_match( "/\\/.*\\.css$/", $this->getText() ) );
 	}
 
 	/**
 	 * Is this a .js subpage of a user page?
+	 * This does not check if the page content is actually JavaScript,
+	 * just that the title ends with ".js"
 	 *
 	 * @return bool
 	 */
 	public function isJsSubpage() {
 		return ( NS_USER == $this->mNamespace && $this->isSubpage()
-			&& $this->hasContentModel( CONTENT_MODEL_JAVASCRIPT ) );
+			&& preg_match( "/\\/.*\\.js$/", $this->getText() ) );
 	}
 
 	/**
