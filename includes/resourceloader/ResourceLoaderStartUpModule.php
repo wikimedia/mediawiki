@@ -357,11 +357,20 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				ResourceLoader::inDebugMode()
 			);
 
+			// Process the deferred inline script queue, and ensure that any
+			// functions enqueued after this point are executed immediately.
+			$mwqJs = (
+				'window._mwq = window._mwq || [];' .
+				'while ( _mwq.length ) _mwq.shift()( mw, $, $ );' .
+				'_mwq.push = function ( f ) { f( mw, $, $ ); };'
+			);
+
 			$out .= "var startUp = function () {\n" .
 				"\tmw.config = new " .
 				$mwMapJsCall . "\n" .
 				"\t$registrations\n" .
-				"\t" . $mwConfigSetJsCall .
+				"\t" . $mwConfigSetJsCall . "\n" .
+				"\t" . $mwqJs . "\n" .
 				"};\n";
 
 			// Conditional script injection

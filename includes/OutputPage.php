@@ -2674,10 +2674,12 @@ class OutputPage extends ContextSource {
 			$ret .= $item . "\n";
 		}
 
+		$ret .= $this->getInlineHeadScript();
+
 		// No newline after buildCssLinks since makeResourceLoaderLink did that already
 		$ret .= $this->buildCssLinks();
 
-		$ret .= $this->getHeadScripts() . "\n";
+		$ret .= $this->getHeadScripts();
 
 		foreach ( $this->mHeadItems as $item ) {
 			$ret .= $item . "\n";
@@ -2966,6 +2968,37 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Get <script> tags for <head> whose source is inline.
+	 *
+	 * @since 1.25
+	 * @return string HTML fragment
+	 */
+	public function getInlineHeadScript() {
+		// Load config before anything else
+		$js = ResourceLoader::makeConfigSetScript( $this->getJSVars() );
+
+		// Construct mw.loader.load() call for top-loaded modules.
+		// Client-side code will request these modules and their dependencies.
+		$topModules = $this->getModules( true, 'top' );
+		if ( $topModules ) {
+			$js .= Xml::encodeJsCall( 'mw.loader.load', array( $topModules ) );
+		}
+
+		$html = Html::inlineScript(
+			ResourceLoader::makeLoaderConditionalScript( $js ) );
+
+		// Load embeddable private modules before any loader links
+		// This needs to be TYPE_COMBINED so these modules are properly wrapped
+		// in mw.loader.implement() calls and deferred until mw.user is available
+		$inlineModules = array( 'user.options', 'user.tokens' );
+		$inlineModulesLink = $this->makeResourceLoaderLink(
+			$inlineModules, ResourceLoaderModule::TYPE_COMBINED );
+		$html .= "\n" . self::getHtmlFromLoaderLinks( array( $inlineModulesLink ) );
+
+		return $html;
+	}
+
+	/**
 	 * JS stuff to put in the "<head>". This is the startup module, config
 	 * vars and modules marked with position 'top'
 	 *
@@ -2975,19 +3008,6 @@ class OutputPage extends ContextSource {
 		// Startup - this will immediately load jquery and mediawiki modules
 		$links = array();
 		$links[] = $this->makeResourceLoaderLink( 'startup', ResourceLoaderModule::TYPE_SCRIPTS, true );
-
-		// Load config before anything else
-		$links[] = Html::inlineScript(
-			ResourceLoader::makeLoaderConditionalScript(
-				ResourceLoader::makeConfigSetScript( $this->getJSVars() )
-			)
-		);
-
-		// Load embeddable private modules before any loader links
-		// This needs to be TYPE_COMBINED so these modules are properly wrapped
-		// in mw.loader.implement() calls and deferred until mw.user is available
-		$embedScripts = array( 'user.options', 'user.tokens' );
-		$links[] = $this->makeResourceLoaderLink( $embedScripts, ResourceLoaderModule::TYPE_COMBINED );
 
 		// Scripts and messages "only" requests marked for top inclusion
 		// Messages should go first
@@ -2999,17 +3019,6 @@ class OutputPage extends ContextSource {
 			$this->getModuleScripts( true, 'top' ),
 			ResourceLoaderModule::TYPE_SCRIPTS
 		);
-
-		// Modules requests - let the client calculate dependencies and batch requests as it likes
-		// Only load modules that have marked themselves for loading at the top
-		$modules = $this->getModules( true, 'top' );
-		if ( $modules ) {
-			$links[] = Html::inlineScript(
-				ResourceLoader::makeLoaderConditionalScript(
-					Xml::encodeJsCall( 'mw.loader.load', array( $modules ) )
-				)
-			);
-		}
 
 		if ( $this->getConfig()->get( 'ResourceLoaderExperimentalAsyncLoading' ) ) {
 			$links[] = $this->getScriptsForBottomQueue( true );
