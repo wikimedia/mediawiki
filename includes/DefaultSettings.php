@@ -4616,6 +4616,7 @@ $wgGroupPermissions['sysop']['undelete'] = true;
 $wgGroupPermissions['sysop']['editinterface'] = true;
 $wgGroupPermissions['sysop']['editusercss'] = true;
 $wgGroupPermissions['sysop']['edituserjs'] = true;
+$wgGroupPermissions['sysop']['editcontentmodel'] = true;
 $wgGroupPermissions['sysop']['import'] = true;
 $wgGroupPermissions['sysop']['importupload'] = true;
 $wgGroupPermissions['sysop']['move'] = true;
