@@ -510,6 +510,7 @@ $wgAutoloadLocalClasses = array(
 	'Hooks' => __DIR__ . '/includes/Hooks.php',
 	'Html' => __DIR__ . '/includes/Html.php',
 	'HtmlFormatter' => __DIR__ . '/includes/HtmlFormatter.php',
+	'HtmlWrap' => __DIR__ . '/includes/libs/HtmlWrap.php',
 	'Http' => __DIR__ . '/includes/HttpFunctions.php',
 	'HttpError' => __DIR__ . '/includes/exception/HttpError.php',
 	'HttpStatus' => __DIR__ . '/includes/libs/HttpStatus.php',
