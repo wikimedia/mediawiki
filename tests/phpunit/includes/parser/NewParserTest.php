@@ -160,9 +160,6 @@ class NewParserTest extends MediaWikiTestCase {
 		$this->djVuSupport = new DjVuSupport();
 		// Tidy support
 		$this->tidySupport = new TidySupport();
-		// We always set 'wgUseTidy' to false when parsing, but certain
-		// test-running modes still use tidy if available, so ensure
-		// that the tidy-related options are all set to their defaults.
 		$tmpGlobals['wgUseTidy'] = false;
 		$tmpGlobals['wgAlwaysUseTidy'] = false;
 		$tmpGlobals['wgDebugTidy'] = false;
@@ -419,6 +416,7 @@ class NewParserTest extends MediaWikiTestCase {
 			'wgMathDirectory' => $uploadDir . '/math',
 			'wgDefaultLanguageVariant' => $variant,
 			'wgLinkHolderBatchSize' => $linkHolderBatchSize,
+			'wgUseTidy' => isset( $opts['tidy'] ),
 		);
 
 		if ( $config ) {
@@ -727,9 +725,18 @@ class NewParserTest extends MediaWikiTestCase {
 					. "Current configuration is:\n\$wgTexvc = '$wgTexvc'" );
 			}
 		}
+
 		if ( isset( $opts['djvu'] ) ) {
 			if ( !$this->djVuSupport->isEnabled() ) {
 				$this->markTestSkipped( "SKIPPED: djvu binaries do not exist or are not executable.\n" );
+			}
+		}
+
+		if ( isset( $opts['tidy'] ) ) {
+			if ( !$this->tidySupport->isEnabled() ) {
+				$this->markTestSkipped( "SKIPPED: tidy extension is not installed.\n" );
+			} else {
+				$options->setTidy( true );
 			}
 		}
 
@@ -753,12 +760,7 @@ class NewParserTest extends MediaWikiTestCase {
 			$output->setTOCEnabled( !isset( $opts['notoc'] ) );
 			$out = $output->getText();
 			if ( isset( $opts['tidy'] ) ) {
-				if ( !$this->tidySupport->isEnabled() ) {
-					$this->markTestSkipped( "SKIPPED: tidy extension is not installed.\n" );
-				} else {
-					$out = MWTidy::tidy( $out );
-					$out = preg_replace( '/\s+$/', '', $out );
-				}
+				$out = preg_replace( '/\s+$/', '', $out );
 			}
 
 			if ( isset( $opts['showtitle'] ) ) {
