@@ -114,6 +114,11 @@ class SpecialTags extends SpecialPage {
 		$showActions = $user->isAllowed( 'managechangetags' );
 
 		// Write the headers
+		$tagUsageStatistics = ChangeTags::tagUsageStatistics();
+
+		//Show header only if there exists atleast one tag
+		if ( !$tagUsageStatistics )
+			return;
 		$html = Xml::tags( 'tr', null, Xml::tags( 'th', null, $this->msg( 'tags-tag' )->parse() ) .
 			Xml::tags( 'th', null, $this->msg( 'tags-display-header' )->parse() ) .
 			Xml::tags( 'th', null, $this->msg( 'tags-description-header' )->parse() ) .
@@ -134,7 +139,7 @@ class SpecialTags extends SpecialPage {
 		$this->extensionActivatedTags = array_fill_keys(
 			ChangeTags::listExtensionActivatedTags(), true );
 
-		foreach ( ChangeTags::tagUsageStatistics() as $tag => $hitcount ) {
+		foreach ( $tagUsageStatistics as $tag => $hitcount ) {
 			$html .= $this->doTagRow( $tag, $hitcount, $showActions );
 		}
 
@@ -143,6 +148,7 @@ class SpecialTags extends SpecialPage {
 			array( 'class' => 'mw-datatable sortable mw-tags-table' ),
 			$html
 		) );
+
 	}
 
 	function doTagRow( $tag, $hitcount, $showActions ) {
@@ -151,6 +157,7 @@ class SpecialTags extends SpecialPage {
 		$newRow .= Xml::tags( 'td', null, Xml::element( 'code', null, $tag ) );
 
 		$disp = ChangeTags::tagDescription( $tag );
+
 		if ( $user->isAllowed( 'editinterface' ) ) {
 			$disp .= ' ';
 			$editLink = Linker::link(
