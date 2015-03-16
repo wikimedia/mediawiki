@@ -357,11 +357,14 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				ResourceLoader::inDebugMode()
 			);
 
+			$mwqJs = 'if ( window._mwq ) while ( _mwq.length ) _mwq.shift()( mw, $, $ );';
+
 			$out .= "var startUp = function () {\n" .
 				"\tmw.config = new " .
 				$mwMapJsCall . "\n" .
 				"\t$registrations\n" .
-				"\t" . $mwConfigSetJsCall .
+				"\t" . $mwConfigSetJsCall . "\n" .
+				"\t" . $mwqJs . "\n" .
 				"};\n";
 
 			// Conditional script injection

@@ -1330,7 +1330,8 @@ MESSAGE;
 	 * @return string
 	 */
 	public static function makeLoaderConditionalScript( $script ) {
-		return "if(window.mw){\n" . trim( $script ) . "\n}";
+		$closure = 'function ( mw, $, jQuery ) { ' .  trim( $script ) . ' }';
+		return '( window._mwq = window._mwq || [] ).push( ' . $closure . ' );';
 	}
 
 	/**
