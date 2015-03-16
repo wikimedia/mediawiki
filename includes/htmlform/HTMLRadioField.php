@@ -56,7 +56,7 @@ class HTMLRadioField extends HTMLFormField {
 
 				$html .= ' ' . Html::rawElement(
 					'div',
-					array( 'class' => 'mw-htmlform-flatlist-item' ),
+					array( 'class' => 'mw-htmlform-flatlist-item mw-ui-radio' ),
 					$radio
 				);
 			}

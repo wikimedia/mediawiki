@@ -356,6 +356,7 @@ class SpecialPage {
 		if ( $this->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
 			$out->addModuleStyles( array(
 				'mediawiki.ui.input',
+				'mediawiki.ui.radio',
 				'mediawiki.ui.checkbox',
 			) );
 		}
