@@ -68,7 +68,8 @@
 			"Aşilleus",
 			"BatuhanBensoy",
 			"Mavrikant",
-			"Ayrıntılı Bilgi"
+			"Ayrıntılı Bilgi",
+			"Gokalpselamet"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çiz:",
@@ -3080,6 +3081,7 @@
 	"rightsnone": "(hiçbiri)",
 	"revdelete-summary": "değişiklik özeti",
 	"feedback-adding": "Sayfaya geribildirim ekleniyor...",
+	"feedback-back": "Geri",
 	"feedback-bugcheck": "Harika! Sadece [bilinen $1 hatalarından] olmadığını kontrol et.",
 	"feedback-bugnew": "Kontrol ettim. Yeni hata bildir",
 	"feedback-bugornote": "Eğer teknik bir problemi detaylarıyla açıklamaya hazırsanız lütfen [$1 bir hata raporlayın]. Diğer taraftan, aşağıdaki kolay formu kullanabilirsiniz. Yorumunuz, kullanıcı adınızla beraber \"[$3 $2]\" sayfasına eklenecektir.",

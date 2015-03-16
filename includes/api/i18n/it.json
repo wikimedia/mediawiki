@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Beta16",
-			"Nivit"
+			"Nivit",
+			"Toadino2"
 		]
 	},
+	"apihelp-block-description": "Blocca  un utente.",
 	"apihelp-query+recentchanges-example-simple": "Elenco modifiche recenti.",
 	"apihelp-upload-example-url": "Carica da un URL.",
 	"api-help-parameters": "{{PLURAL:$1|Parametro|Parametri}}:",

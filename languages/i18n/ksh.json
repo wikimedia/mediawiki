@@ -1181,7 +1181,7 @@
 	"rcshowhidemine-show": "aanzeije",
 	"rcshowhidemine-hide": "verschteihsche",
 	"rclinks": "Zeisch de läzde {{int:pipe-separator}}$1{{int:pipe-separator}} Änderonge us de läzde {{int:pipe-separator}}$2{{int:pipe-separator}} Däch, un dun {{int:pipe-separator}} $3.",
-	"diff": "Ungerscheid",
+	"diff": "Ongerscheid",
 	"hist": "Versione",
 	"hide": "Ußblände!",
 	"show": "Zeije:",

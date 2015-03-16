@@ -7,7 +7,8 @@
 			"Mar(c)",
 			"Valhallasw",
 			"Sikjes",
-			"Macofe"
+			"Macofe",
+			"SPQRobin"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentatie]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api E-maillijst]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-aankondigingen]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bugs & verzoeken]\n</div>\n<strong>Status:</strong> Alle functies die op deze pagina worden weergegeven horen te werken. Aan de API wordt actief gewerkt, en deze kan gewijzigd worden. Abonneer u op  de [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ e-maillijst mediawiki-api-announce] voor meldingen over aanpassingen.\n\n<strong>Foutieve verzoeken:</strong> als de API foutieve verzoeken ontvangt, wordt er geantwoord met een HTTP-header met de sleutel \"MediaWiki-API-Error\" en daarna worden de waarde van de header en de foutcode op dezelfde waarde ingesteld. Zie [[mw:API:Errors_and_warnings|API: Errors and warnings]] voor meer informatie.",
@@ -24,6 +25,7 @@
 	"apihelp-block-param-reason": "Reden voor blokkade.",
 	"apihelp-block-param-autoblock": "Blokkeer automatisch het laatst gebruikte IP-adres en ieder volgend IP-adres van waaruit ze proberen in te loggen.",
 	"apihelp-block-param-reblock": "De huidige blokkade aanpassen als de gebruiker al geblokkeerd is.",
+	"apihelp-createaccount-param-name": "Gebruikersnaam.",
 	"apihelp-delete-description": "Verwijder een pagina.",
 	"apihelp-delete-example-simple": "Verwijder <kbd>Hoofdpagina</kbd>.",
 	"apihelp-delete-example-reason": "Verwijder <kbd>Hoofdpagina</kbd> met als reden <kbd>Voorbereiding voor verplaatsing</kbd>.",
