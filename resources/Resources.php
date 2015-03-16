@@ -986,8 +986,17 @@ return array(
 	),
 	'mediawiki.toc' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.toc.js',
+		'skinStyles' => array(
+			'default' => array(
+				'resources/src/mediawiki/mediawiki.toc.css' =>
+					array( 'media' => 'screen'),
+				'resources/src/mediawiki/mediawiki.toc.print.css' =>
+					array( 'media' => 'print' ),
+			),
+		),
 		'dependencies' => 'jquery.cookie',
 		'messages' => array( 'showtoc', 'hidetoc' ),
+		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.Uri' => array(
@@ -1068,6 +1077,7 @@ return array(
 			'mediawiki.api',
 			'mediawiki.action.history.diff',
 			'mediawiki.util',
+			'mediawiki.toc', // preload to avoid flickering
 			'mediawiki.jqueryMsg',
 		),
 		'messages' => array(
