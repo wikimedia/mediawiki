@@ -472,3 +472,6 @@
 [submodule "vendor"]
 	path = vendor
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/vendor.git
+[submodule "extensions/Citoid"]
+	path = extensions/Citoid
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Citoid.git
