@@ -250,7 +250,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		// make a curl call to the scaler to create a thumbnail
 		$httpOptions = array(
 			'method' => 'GET',
-			'timeout' => 'default'
+			'timeout' => 5 // T90599 attempt to time out cleanly
 		);
 		$req = MWHttpRequest::factory( $scalerThumbUrl, $httpOptions, __METHOD__ );
 		$status = $req->execute();
