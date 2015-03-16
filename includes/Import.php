@@ -378,10 +378,13 @@ class WikiImporter {
 		$editInfo = $page->prepareContentForEdit( $content );
 
 		$countable = $page->isCountable( $editInfo );
-		$oldcountable = $this->countableCache['title_' . $title->getPrefixedText()];
-		if ( isset( $oldcountable ) && $countable != $oldcountable ) {
+		$countableIndex = 'title_' . $title->getPrefixedText();
+		if (
+			isset( $this->countableCache[$countableIndex] )
+			&& $countable != $this->countableCache[$countableIndex]
+		) {
 			DeferredUpdates::addUpdate( SiteStatsUpdate::factory( array(
-				'articles' => ( (int)$countable - (int)$oldcountable )
+				'articles' => ( (int)$countable - (int)$this->countableCache[$countableIndex] )
 			) ) );
 		}
 
