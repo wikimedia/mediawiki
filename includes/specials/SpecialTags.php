@@ -114,35 +114,40 @@ class SpecialTags extends SpecialPage {
 		$showActions = $user->isAllowed( 'managechangetags' );
 
 		// Write the headers
-		$html = Xml::tags( 'tr', null, Xml::tags( 'th', null, $this->msg( 'tags-tag' )->parse() ) .
-			Xml::tags( 'th', null, $this->msg( 'tags-display-header' )->parse() ) .
-			Xml::tags( 'th', null, $this->msg( 'tags-description-header' )->parse() ) .
-			Xml::tags( 'th', null, $this->msg( 'tags-source-header' )->parse() ) .
-			Xml::tags( 'th', null, $this->msg( 'tags-active-header' )->parse() ) .
-			Xml::tags( 'th', null, $this->msg( 'tags-hitcount-header' )->parse() ) .
-			( $showActions ?
-				Xml::tags( 'th', array( 'class' => 'unsortable' ),
-					$this->msg( 'tags-actions-header' )->parse() ) :
-				'' )
-		);
+		$tagCount = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), true );
 
-		// Used in #doTagRow()
-		$this->explicitlyDefinedTags = array_fill_keys(
-			ChangeTags::listExplicitlyDefinedTags(), true );
-		$this->extensionDefinedTags = array_fill_keys(
-			ChangeTags::listExtensionDefinedTags(), true );
-		$this->extensionActivatedTags = array_fill_keys(
-			ChangeTags::listExtensionActivatedTags(), true );
+		//Show header only if there exists atleast one tag
+		if ( $tagCount ) {
+			$html = Xml::tags( 'tr', null, Xml::tags( 'th', null, $this->msg( 'tags-tag' )->parse() ) .
+				Xml::tags( 'th', null, $this->msg( 'tags-display-header' )->parse() ) .
+				Xml::tags( 'th', null, $this->msg( 'tags-description-header' )->parse() ) .
+				Xml::tags( 'th', null, $this->msg( 'tags-source-header' )->parse() ) .
+				Xml::tags( 'th', null, $this->msg( 'tags-active-header' )->parse() ) .
+				Xml::tags( 'th', null, $this->msg( 'tags-hitcount-header' )->parse() ) .
+				( $showActions ?
+					Xml::tags( 'th', array( 'class' => 'unsortable' ),
+						$this->msg( 'tags-actions-header' )->parse() ) :
+					'' )
+			);
 
-		foreach ( ChangeTags::tagUsageStatistics() as $tag => $hitcount ) {
-			$html .= $this->doTagRow( $tag, $hitcount, $showActions );
+			// Used in #doTagRow()
+			$this->explicitlyDefinedTags = array_fill_keys(
+				ChangeTags::listExplicitlyDefinedTags(), true );
+			$this->extensionDefinedTags = array_fill_keys(
+				ChangeTags::listExtensionDefinedTags(), true );
+			$this->extensionActivatedTags = array_fill_keys(
+				ChangeTags::listExtensionActivatedTags(), true );
+
+			foreach ( ChangeTags::tagUsageStatistics() as $tag => $hitcount ) {
+				$html .= $this->doTagRow( $tag, $hitcount, $showActions );
+			}
+
+			$out->addHTML( Xml::tags(
+				'table',
+				array( 'class' => 'mw-datatable sortable mw-tags-table' ),
+				$html
+			) );
 		}
-
-		$out->addHTML( Xml::tags(
-			'table',
-			array( 'class' => 'mw-datatable sortable mw-tags-table' ),
-			$html
-		) );
 	}
 
 	function doTagRow( $tag, $hitcount, $showActions ) {
