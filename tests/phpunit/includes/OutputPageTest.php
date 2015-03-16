@@ -141,52 +141,56 @@ class OutputPageTest extends MediaWikiTestCase {
 			// Load module script only
 			array(
 				array( 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS ),
-				'<script>if(window.mw){
-document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=test.foo\u0026amp;only=scripts\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");
-}</script>
+				'<script>( window._mwq = window._mwq || [] ).push( function ( mw, $, jQuery ) {' .
+				' document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=' .
+				'false\u0026amp;lang=en\u0026amp;modules=test.foo\u0026amp;only=scripts\u0026' .
+				'amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E"); } );</script>
 '
 			),
 			array(
 				// Don't condition wrap raw modules (like the startup module)
 				array( 'test.raw', ResourceLoaderModule::TYPE_SCRIPTS ),
-				'<script src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.raw&amp;only=scripts&amp;skin=fallback&amp;*"></script>
+				'<script src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;' .
+				'modules=test.raw&amp;only=scripts&amp;skin=fallback&amp;*"></script>
 '
 			),
 			// Load module styles only
 			// This also tests the order the modules are put into the url
 			array(
 				array( array( 'test.baz', 'test.foo', 'test.bar' ), ResourceLoaderModule::TYPE_STYLES ),
-				'<link rel=stylesheet href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.bar%2Cbaz%2Cfoo&amp;only=styles&amp;skin=fallback&amp;*">
+				'<link rel=stylesheet href="http://127.0.0.1:8080/w/load.php?debug=false&amp;' .
+				'lang=en&amp;modules=test.bar%2Cbaz%2Cfoo&amp;only=styles&amp;skin=fallback&amp;*">
 '
 			),
 			// Load private module (only=scripts)
 			array(
 				array( 'test.quux', ResourceLoaderModule::TYPE_SCRIPTS ),
-				'<script>if(window.mw){
-mw.test.baz({token:123});mw.loader.state({"test.quux":"ready"});
-
-}</script>
+				'<script>( window._mwq = window._mwq || [] ).push( function ( mw, $, jQuery ) {' .
+				' mw.test.baz({token:123});mw.loader.state({"test.quux":"ready"});
+' . ' } );</script>
 '
 			),
 			// Load private module (combined)
 			array(
 				array( 'test.quux', ResourceLoaderModule::TYPE_COMBINED ),
-				'<script>if(window.mw){
-mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"css":[".mw-icon{transition:none}\n"]},{},{});
-
-}</script>
+				'<script>( window._mwq = window._mwq || [] ).push( function ( mw, $, jQuery ) {' .
+				' mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});}' .
+				',{"css":[".mw-icon{transition:none}\n"]},{},{});
+' . ' } );</script>
 '
 			),
 			// Load module script with ESI
 			array(
 				array( 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS, true ),
-				'<script><esi:include src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.foo&amp;only=scripts&amp;skin=fallback&amp;*" /></script>
+				'<script><esi:include src="http://127.0.0.1:8080/w/load.php?debug=false&amp;' .
+				'lang=en&amp;modules=test.foo&amp;only=scripts&amp;skin=fallback&amp;*" /></script>
 '
 			),
 			// Load module styles with ESI
 			array(
 				array( 'test.foo', ResourceLoaderModule::TYPE_STYLES, true ),
-				'<style><esi:include src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.foo&amp;only=styles&amp;skin=fallback&amp;*" /></style>
+				'<style><esi:include src="http://127.0.0.1:8080/w/load.php?debug=false&amp;' .
+				'lang=en&amp;modules=test.foo&amp;only=styles&amp;skin=fallback&amp;*" /></style>
 ',
 			),
 			// Load no modules
@@ -197,18 +201,22 @@ mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"
 			// noscript group
 			array(
 				array( 'test.noscript', ResourceLoaderModule::TYPE_STYLES ),
-				'<noscript><link rel=stylesheet href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.noscript&amp;only=styles&amp;skin=fallback&amp;*"></noscript>
+				'<noscript><link rel=stylesheet href="http://127.0.0.1:8080/w/load.php?debug=' .
+				'false&amp;lang=en&amp;modules=test.noscript&amp;only=styles&amp;skin=fallback' .
+				'&amp;*"></noscript>
 '
 			),
 			// Load two modules in separate groups
 			array(
 				array( array( 'test.group.foo', 'test.group.bar' ), ResourceLoaderModule::TYPE_COMBINED ),
-				'<script>if(window.mw){
-document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=test.group.bar\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");
-}</script>
-<script>if(window.mw){
-document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=test.group.foo\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");
-}</script>
+				'<script>( window._mwq = window._mwq || [] ).push( function ( mw, $, jQuery ) { ' .
+				'document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false' .
+				'\u0026amp;lang=en\u0026amp;modules=test.group.bar\u0026amp;skin=fallback\u0026' .
+				'amp;*\"\u003E\u003C/script\u003E"); } );</script>
+<script>( window._mwq = window._mwq || [] ).push( function ( mw, $, jQuery ) { document.write(' .
+				'"\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\u0026amp;' .
+				'lang=en\u0026amp;modules=test.group.foo\u0026amp;skin=fallback\u0026amp;*\\' .
+				'"\u003E\u003C/script\u003E"); } );</script>
 '
 			),
 		);
