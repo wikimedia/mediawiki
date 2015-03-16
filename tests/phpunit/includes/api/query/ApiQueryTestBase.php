@@ -116,9 +116,16 @@ STR;
 			if ( is_array( $message ) ) {
 				$message = http_build_query( $message );
 			}
+
+			// FIXME: once we migrate to phpunit 4.5+, hardcode ComparisonFailure exception use
+			$compEx = 'SebastianBergmann\Comparator\ComparisonFailure';
+			if ( !class_exists( $compEx ) ) {
+				$compEx = 'PHPUnit_Framework_ComparisonFailure';
+			}
+
 			throw new PHPUnit_Framework_ExpectationFailedException(
 				$e->getMessage() . "\nRequest: $message",
-				new PHPUnit_Framework_ComparisonFailure(
+				new $compEx(
 					$exp,
 					$result,
 					print_r( $exp, true ),
