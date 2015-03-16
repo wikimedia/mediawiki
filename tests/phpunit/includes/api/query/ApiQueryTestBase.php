@@ -22,6 +22,8 @@
  * @file
  */
 
+use SebastianBergmann\Comparator\ComparisonFailure;
+
 /** This class has some common functionality for testing query module
  */
 abstract class ApiQueryTestBase extends ApiTestCase {
@@ -118,7 +120,7 @@ STR;
 			}
 			throw new PHPUnit_Framework_ExpectationFailedException(
 				$e->getMessage() . "\nRequest: $message",
-				new PHPUnit_Framework_ComparisonFailure(
+				new ComparisonFailure(
 					$exp,
 					$result,
 					print_r( $exp, true ),
