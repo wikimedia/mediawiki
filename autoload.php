@@ -1170,6 +1170,7 @@ $wgAutoloadLocalClasses = array(
 	'StreamFile' => __DIR__ . '/includes/StreamFile.php',
 	'StringPrefixSearch' => __DIR__ . '/includes/PrefixSearch.php',
 	'StringUtils' => __DIR__ . '/includes/libs/StringUtils.php',
+	'StringWrap' => __DIR__ . '/includes/libs/StringWrap.php',
 	'StripState' => __DIR__ . '/includes/parser/StripState.php',
 	'StubObject' => __DIR__ . '/includes/StubObject.php',
 	'StubUserLang' => __DIR__ . '/includes/StubObject.php',
