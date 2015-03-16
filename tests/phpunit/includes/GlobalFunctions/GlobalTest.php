@@ -375,24 +375,6 @@ class GlobalTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers ::swap
-	 */
-	public function testSwapVarsTest() {
-		$this->hideDeprecated( 'swap' );
-
-		$var1 = 1;
-		$var2 = 2;
-
-		$this->assertEquals( $var1, 1, 'var1 is set originally' );
-		$this->assertEquals( $var2, 2, 'var1 is set originally' );
-
-		swap( $var1, $var2 );
-
-		$this->assertEquals( $var1, 2, 'var1 is swapped' );
-		$this->assertEquals( $var2, 1, 'var2 is swapped' );
-	}
-
-	/**
 	 * @covers ::wfPercent
 	 */
 	public function testWfPercentTest() {

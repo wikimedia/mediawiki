@@ -2510,20 +2510,6 @@ function wfIsHHVM() {
 }
 
 /**
- * Swap two variables
- *
- * @deprecated since 1.24
- * @param mixed $x
- * @param mixed $y
- */
-function swap( &$x, &$y ) {
-	wfDeprecated( __FUNCTION__, '1.24' );
-	$z = $x;
-	$x = $y;
-	$y = $z;
-}
-
-/**
  * Tries to get the system directory for temporary files. First
  * $wgTmpDirectory is checked, and then the TMPDIR, TMP, and TEMP
  * environment variables are then checked in sequence, and if none are
