@@ -492,19 +492,13 @@ class ChangeTags {
 	}
 
 	/**
-	 * Is it OK to allow the user to create this tag?
+	 * Is the tag name valid?
 	 *
 	 * @param string $tag Tag that you are interested in creating
-	 * @param User|null $user User whose permission you wish to check, or null if
-	 * you don't care (e.g. maintenance scripts)
 	 * @return Status
 	 * @since 1.25
 	 */
-	public static function canCreateTag( $tag, User $user = null ) {
-		if ( !is_null( $user ) && !$user->isAllowed( 'managechangetags' ) ) {
-			return Status::newFatal( 'tags-manage-no-permission' );
-		}
-
+	public static function isTagNameValid( $tag ) {
 		// no empty tags
 		if ( $tag === '' ) {
 			return Status::newFatal( 'tags-create-no-name' );
@@ -520,6 +514,28 @@ class ChangeTags {
 		$title = Title::makeTitleSafe( NS_MEDIAWIKI, "Tag-$tag-description" );
 		if ( is_null( $title ) ) {
 			return Status::newFatal( 'tags-create-invalid-title-chars' );
+		}
+
+		return Status::newGood();
+	}
+
+	/**
+	 * Is it OK to allow the user to create this tag?
+	 *
+	 * @param string $tag Tag that you are interested in creating
+	 * @param User|null $user User whose permission you wish to check, or null if
+	 * you don't care (e.g. maintenance scripts)
+	 * @return Status
+	 * @since 1.25
+	 */
+	public static function canCreateTag( $tag, User $user = null ) {
+		if ( !is_null( $user ) && !$user->isAllowed( 'managechangetags' ) ) {
+			return Status::newFatal( 'tags-manage-no-permission' );
+		}
+
+		$status = self::isTagNameValid( $tag );
+		if ( !$status->isGood() ) {
+			return $status;
 		}
 
 		// does the tag already exist?
