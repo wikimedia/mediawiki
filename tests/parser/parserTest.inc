@@ -593,6 +593,14 @@ class ParserTest {
 			}
 		}
 
+		if ( isset( $opts['tidy'] ) ) {
+			if ( !$this->tidySupport->isEnabled() ) {
+				return $this->showSkipped();
+			} else {
+				$options->setTidy( true );
+			}
+		}
+
 		if ( isset( $opts['title'] ) ) {
 			$titleText = $opts['title'];
 		} else {
@@ -624,10 +632,6 @@ class ParserTest {
 			$output->setTOCEnabled( !isset( $opts['notoc'] ) );
 			$out = $output->getText();
 			if ( isset( $opts['tidy'] ) ) {
-				if ( !$this->tidySupport->isEnabled() ) {
-					return $this->showSkipped();
-				}
-				$out = MWTidy::tidy( $out );
 				$out = preg_replace( '/\s+$/', '', $out );
 			}
 
@@ -877,10 +881,7 @@ class ParserTest {
 			'wgDisableLangConversion' => false,
 			'wgDisableTitleConversion' => false,
 			// Tidy options.
-			// We always set 'wgUseTidy' to false when parsing, but certain
-			// test-running modes still use tidy if available, so ensure
-			// that the tidy-related options are all set to their defaults.
-			'wgUseTidy' => false,
+			'wgUseTidy' => isset( $opts['tidy'] ),
 			'wgAlwaysUseTidy' => false,
 			'wgDebugTidy' => false,
 			'wgTidyConf' => $IP . '/includes/tidy.conf',

@@ -1209,6 +1209,8 @@ Ruby markup (W3C-style)
 !! test
 Non-word characters don't terminate tag names (bug 17663, 40670, 52022)
 !! wikitext
+<blockquote|>a</blockquote>
+
 <b→> doesn't terminate </b→>
 
 <bä> doesn't terminate </bä>
@@ -1219,7 +1221,8 @@ Non-word characters don't terminate tag names (bug 17663, 40670, 52022)
 
 <sub-ID#1>
 !! html
-<p>&lt;b→&gt; doesn't terminate &lt;/b→&gt;
+<p>&lt;blockquote|&gt;a&lt;/blockquote&gt;
+</p><p>&lt;b→&gt; doesn't terminate &lt;/b→&gt;
 </p><p>&lt;bä&gt; doesn't terminate &lt;/bä&gt;
 </p><p>&lt;boo&gt; doesn't terminate &lt;/boo&gt;
 </p><p>&lt;s.foo&gt; doesn't terminate &lt;/s.foo&gt;
@@ -1228,9 +1231,13 @@ Non-word characters don't terminate tag names (bug 17663, 40670, 52022)
 !! end
 
 # There is a tidy bug here: http://sourceforge.net/p/tidy/bugs/946/
+# If the non-word-character tag made it through the sanitizer, tidy
+# would munge it up.
 !! test
 Non-word characters don't terminate tag names + tidy
 !! wikitext
+<blockquote|>a</blockquote>
+
 <b→> doesn't terminate </b→>
 
 <bä> doesn't terminate </bä>
@@ -1241,11 +1248,31 @@ Non-word characters don't terminate tag names + tidy
 
 <sub-ID#1>
 !! html+tidy
+<p>&lt;blockquote|&gt;a</p>
 <p>&lt;b→&gt; doesn't terminate &lt;/b→&gt;</p>
 <p>&lt;bä&gt; doesn't terminate &lt;/bä&gt;</p>
 <p>&lt;boo&gt; doesn't terminate &lt;/boo&gt;</p>
 <p>&lt;s.foo&gt; doesn't terminate &lt;/s.foo&gt;</p>
 <p>&lt;sub-ID#1&gt;</p>
+!! end
+
+###
+### See tests/parser/parserTestsParserHook.php for the <tåg> extension)
+### This checks that HTML5 tags (with non-word characters in the tag
+### name) make it safely through the parser -- the Sanitizer will
+### munge them later, as it should.
+###
+!! test
+Non-word characters are valid in extension tags (T19663)
+!! wikitext
+<tåg>tåg</tåg>
+!! html
+<pre>
+'tåg'
+array (
+)
+</pre>
+
 !! end
 
 !! test
@@ -1254,10 +1281,8 @@ Isolated close tags should be treated as literal text (bug 52760)
 </b>
 
 <s.foo>s</s>
-!! html
-<p>&lt;/b&gt;
-</p><p>&lt;s.foo&gt;s&lt;/s&gt;
-</p>
+!! html+tidy
+<p>&lt;s.foo&gt;s</p>
 !! end
 
 ###
@@ -1745,7 +1770,6 @@ b
 !! end
 
 ## PHP parser emits output which is broken
-## XXX The parsoid output doesn't match the tidy output.
 !! test
 Unclosed HTML p-tags should be handled properly
 !! wikitext
@@ -1755,9 +1779,10 @@ a
 b
 !! html/php+tidy
 <div>
-<p>foo&lt;/div&gt;</p>
+<p>foo</p>
+</div>
 <p>a</p>
-b</div>
+<p>b</p>
 !! html/parsoid
 <div data-parsoid='{"stx":"html"}'><p data-parsoid='{"stx":"html", "autoInsertedEnd":true}'>foo</p></div>
 <p>a</p>
@@ -7690,9 +7715,6 @@ Broken br tag sanitization
 !! end
 
 # TODO: Fix html2html mode (bug 51055)!
-# This </br> handling was added as part of bug 50831; but it
-# differs from how PHP+tidy handles this.  We should investigate
-# this.
 !! test
 Parsoid: Broken br tag recognition
 !! options
@@ -7701,12 +7723,9 @@ parsoid=wt2html
 </br>
 
 <br/ >
-!! html/php+tidy
-<p>&lt;/br&gt;</p>
+!! html+tidy
 <p><br /></p>
-!! html/parsoid
-<p><br></p>
-<p><br/></p>
+<p><br /></p>
 !! end
 
 !! test
@@ -8303,10 +8322,6 @@ List embedded in a non-block tag
 </small>
 !!end
 
-# This is a bug in the PHP parser + tidy combination.
-# (The </tr> tag gets parsed as text and html-escaped by PHP,
-# and then fostered out of the table by tidy.)
-# We believe the Parsoid output to be correct.
 !! test
 Table with missing opening <tr> tag
 !! options
@@ -8316,14 +8331,7 @@ parsoid=wt2html,wt2wt
 <td>foo</td>
 </tr>
 </table>
-!! html/php+tidy
-<p>&lt;/tr&gt;</p>
-<table>
-<tr>
-<td>foo</td>
-</tr>
-</table>
-!! html/parsoid
+!! html+tidy
 <table>
 <tr>
 <td>foo</td>
@@ -13413,7 +13421,7 @@ Handling of sections up to level 6 and beyond
 !! end
 
 !! test
-TOC regression (bug 9764)
+TOC regression (T11764)
 !! wikitext
 == title 1 ==
 === title 1.1 ===
@@ -13585,7 +13593,7 @@ Link inside a section heading
 !! end
 
 !! test
-TOC regression (bug 12077)
+TOC regression (T14077)
 !! wikitext
 __TOC__
 == title 1 ==
@@ -14210,16 +14218,17 @@ Media link with text
 !! end
 
 # FIXME: this is still bad HTML tag nesting
+# FIXME: doBlockLevels won't wrap this in a paragraph because it contains a div
 !! test
 Media link with nasty text
-fixme: doBlockLevels won't wrap this in a paragraph because it contains a div
 !! wikitext
 [[Media:Foobar.jpg|Safe Link<div style=display:none>" onmouseover="alert(document.cookie)" onfoo="</div>]]
 !! html
 <a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg">Safe Link&lt;div style="display:none"&gt;" onmouseover="alert(document.cookie)" onfoo="&lt;/div&gt;</a>
 
 !! html+tidy
-<p><a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg">Safe Link&lt;div style="display:none"&gt;" onmouseover="alert(document.cookie)" onfoo="&lt;/div&gt;</a></p>
+<p><a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg">Safe Link</a></p>
+<div style="display:none">" onmouseover="alert(document.cookie)" onfoo="</div>
 !! end
 
 !! test
@@ -15433,6 +15442,7 @@ http://<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 <li class="toclevel-1 tocsection-1"><a href="#onmouseover.3D"><span class="tocnumber">1</span> <span class="toctext">onmouseover=</span></a></li>
 </ul>
 </div>
+<p></p>
 !! end
 
 !! test
@@ -19205,6 +19215,7 @@ __TOC__
 <h2><a href="#Quote" class="mw-headline-anchor" aria-hidden="true" title="Link to this section">§</a><span class="mw-headline" id="Quote"><blockquote>Quote</blockquote></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Quote">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
 !! html+tidy
+<p></p>
 <div id="toc" class="toc">
 <div id="toctitle">
 <h2>Contents</h2>
@@ -19213,6 +19224,7 @@ __TOC__
 <li class="toclevel-1 tocsection-1"><a href="#Quote"><span class="tocnumber">1</span> <span class="toctext">Quote</span></a></li>
 </ul>
 </div>
+<p></p>
 <h2><a href="#Quote" class="mw-headline-anchor" aria-hidden="true" title="Link to this section">§</a><span class="mw-headline" id="Quote"></span></h2>
 <blockquote>
 <p><span class="mw-headline" id="Quote">Quote</span></p>
@@ -19261,6 +19273,7 @@ __TOC__
 <h2><a href="#Foo_Bar_2" class="mw-headline-anchor" aria-hidden="true" title="Link to this section">§</a><span class="mw-headline" id="Foo_Bar_2"><i>Foo</i> <blockquote>Bar</blockquote></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Foo Bar">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
 !! html+tidy
+<p></p>
 <div id="toc" class="toc">
 <div id="toctitle">
 <h2>Contents</h2>
@@ -19270,6 +19283,7 @@ __TOC__
 <li class="toclevel-1 tocsection-2"><a href="#Foo_Bar_2"><span class="tocnumber">2</span> <span class="toctext"><i>Foo</i> Bar</span></a></li>
 </ul>
 </div>
+<p></p>
 <h2><a href="#Foo_Bar" class="mw-headline-anchor" aria-hidden="true" title="Link to this section">§</a><span class="mw-headline" id="Foo_Bar"><i>Foo</i> <b>Bar</b></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Foo Bar">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><a href="#Foo_Bar_2" class="mw-headline-anchor" aria-hidden="true" title="Link to this section">§</a><span class="mw-headline" id="Foo_Bar_2"><i>Foo</i></span></h2>
 <blockquote>
@@ -19344,6 +19358,37 @@ __TOC__
 
 <h2><a href="#test" class="mw-headline-anchor" aria-hidden="true" title="Link to this section">§</a><span class="mw-headline" id="test"><bdi>test</bdi></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: test">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
+!! end
+
+# Note that the html output does not have the <p></p>, but the
+# html+tidy output *does*.  This is because the empty <p></p> is
+# removed by the sanitizer, but only when tidy is *not* enabled (!).
+!! test
+Empty <p> tag in TOC, removed by Sanitizer (T92892)
+!! wikitext
+__TOC__
+== x ==
+!! html
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#x"><span class="tocnumber">1</span> <span class="toctext">x</span></a></li>
+</ul>
+</div>
+
+<h2><a href="#x" class="mw-headline-anchor" aria-hidden="true" title="Link to this section">§</a><span class="mw-headline" id="x">x</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: x">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+
+!! html+tidy
+<p></p>
+<div id="toc" class="toc">
+<div id="toctitle">
+<h2>Contents</h2>
+</div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#x"><span class="tocnumber">1</span> <span class="toctext">x</span></a></li>
+</ul>
+</div>
+<p></p>
+<h2><a href="#x" class="mw-headline-anchor" aria-hidden="true" title="Link to this section">§</a><span class="mw-headline" id="x">x</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: x">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 !! end
 
 !! article
@@ -21889,18 +21934,6 @@ a>b
 </p><p>x&lt;y
 </p><p>a&gt;b
 </p><p>1&lt;d e&gt;f
-</p>
-!! end
-
-
-# This was a bug in the PHP parser (see bug 17663 and its dups,
-# https://bugzilla.wikimedia.org/show_bug.cgi?id=17663)
-!! test
-Tag names followed by punctuation should not be recognized as tags
-!! wikitext
-<s.ome> text
-!! html
-<p>&lt;s.ome&gt; text
 </p>
 !! end
 
