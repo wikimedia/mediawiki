@@ -69,6 +69,12 @@ Template:pipe
 |
 !! endarticle
 
+!! article
+Template:=
+!! text
+<nowiki>=</nowiki>
+!! endarticle
+
 !!article
 MediaWiki:bad image list
 !!text
@@ -127,6 +133,19 @@ Template:table_attribs_2
 !! endarticle
 
 !! article
+Template:table_attribs_3
+!! text
+<noinclude>
+|</noinclude>style{{=}}"background:&#35;f9f9f9;"|Foo
+!! endarticle
+
+!! article
+Template:table_attribs_4
+!! text
+| style="background-color:#DC241f;" width="10px" |
+!! endarticle
+
+!! article
 Template:table_header_cells
 !! text
 {{table_attribs}}!!style='color:red;'|''Bar''||style='color:brown;'|''Foo'' and Baz
@@ -152,6 +171,13 @@ Template:mixed_attr_content_template
 style="color:red;" title="T48811"
 |-
 |foo
+!! endarticle
+
+!! article
+Template:definition_list
+!! text
+one
+::two
 !! endarticle
 
 !! article
@@ -1389,6 +1415,64 @@ parsoid=html2wt
 <p>* &lt;/nowiki&gt; tag</p>
 !! wikitext
 <nowiki>* &lt;/nowiki&gt;</nowiki> tag
+!! end
+
+!! test
+T71950: 1. Put nowiki as close to cause as possible, even with non-quote escapable chars
+!! options
+parsoid=html2wt
+!! html
+<p>This text: L'<a rel="mw:WikiLink" href="./Foo">Foo</a>
+This text: L''<a rel="mw:WikiLink" href="./Foo">Foo</a>
+This text: L'''<a rel="mw:WikiLink" href="./Foo">Foo</a>''</p>
+!! wikitext
+This text: L'[[Foo]]
+This text: L<nowiki>''</nowiki>[[Foo]]
+This text: L<nowiki>'''</nowiki>[[Foo]]<nowiki>''</nowiki>
+!! end
+
+# This test fails because wikitext whitespace is not normalized before comparing.
+!! test
+T71950: 2. Put nowiki as close to cause as possible, after ' :'
+!! options
+parsoid=html2wt
+!! html
+<p>This text : L''<a rel="mw:WikiLink" href="./Foo">Foo</a>
+</p>
+!! wikitext
+This text : L<nowiki>''</nowiki>[[Foo]]
+!! end
+
+# This test and the next one are html2wt only as they test that incorrect wikitext
+# passed in template arguments gets escaped or wrapped in nowikis where required.
+!! test
+T71482: Use {{!}} instead of nowiki for single pipe in template argument
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p><span typeof="mw:Transclusion" data-mw="{&quot;parts&quot;:[{&quot;template&quot;:{&quot;target&quot;:{&quot;wt&quot;:&quot;echo&quot;,&quot;href&quot;:&quot;./Template:Echo&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;foo|bar&quot;}},&quot;i&quot;:0}}]}" about="#mwt1"></span>
+<span typeof="mw:Transclusion" data-mw="{&quot;parts&quot;:[{&quot;template&quot;:{&quot;target&quot;:{&quot;wt&quot;:&quot;echo&quot;,&quot;href&quot;:&quot;./Template:Echo&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;foo|bar |[[&quot;}},&quot;i&quot;:0}}]}" about="#mwt2"></p>
+!! wikitext
+{{echo|foo{{!}}bar}}
+{{echo|<nowiki>foo|bar |[[</nowiki>}}
+!! end
+
+!! test
+T53961: Output correct nowikis in template arguments
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p><span typeof="mw:Transclusion" data-mw="{&quot;parts&quot;:[{&quot;template&quot;:{&quot;target&quot;:{&quot;wt&quot;:&quot;echo&quot;,&quot;href&quot;:&quot;./Template:Echo&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;a [ b&quot;}},&quot;i&quot;:0}}]}" about="#mwt1"></span>
+<span typeof="mw:Transclusion" data-mw="{&quot;parts&quot;:[{&quot;template&quot;:{&quot;target&quot;:{&quot;wt&quot;:&quot;echo&quot;,&quot;href&quot;:&quot;./Template:Echo&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;a }} b&quot;}},&quot;i&quot;:0}}]}" about="#mwt2"></span>
+<span typeof="mw:Transclusion" data-mw="{&quot;parts&quot;:[{&quot;template&quot;:{&quot;target&quot;:{&quot;wt&quot;:&quot;echo&quot;,&quot;href&quot;:&quot;./Template:Echo&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;a [[ b&quot;}},&quot;i&quot;:0}}]}" about="#mwt3"></span>
+<span typeof="mw:Transclusion" data-mw="{&quot;parts&quot;:[{&quot;template&quot;:{&quot;target&quot;:{&quot;wt&quot;:&quot;echo&quot;,&quot;href&quot;:&quot;./Template:Echo&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;a | {{ ]]&quot;}},&quot;i&quot;:0}}]}" about="#mwt4"></span>
+<span typeof="mw:Transclusion" data-mw="{&quot;parts&quot;:[{&quot;template&quot;:{&quot;target&quot;:{&quot;wt&quot;:&quot;echo&quot;,&quot;href&quot;:&quot;./Template:Echo&quot;},&quot;params&quot;:{&quot;1&quot;:{&quot;wt&quot;:&quot;a }&quot;}},&quot;i&quot;:0}}]}" about="#mwt5"></span></p>
+!! wikitext
+{{echo|a [ b}}
+{{echo|a <nowiki>}}</nowiki> b}}
+{{echo|<nowiki>a [[ b</nowiki>}}
+{{echo|a {{!}} <nowiki>{{ ]]</nowiki>}}
+{{echo|a <nowiki>}</nowiki>}}
 !! end
 
 ###
@@ -4064,6 +4148,28 @@ Definition Lists: colons and tables 2
 </td></tr></table></dd></dl>
 !! end
 
+!! test
+Definition Lists: template interaction
+!! wikitext
+::{{definition_list}}
+
+:one
+::{{definition_list}}
+:::two
+:::three
+::four
+!! html/parsoid
+<dl><dd><dl data-parsoid='{}'><dd about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[]]}' data-mw='{"parts":[":",{"template":{"target":{"wt":"definition_list","href":"./Template:Definition_list"},"params":{},"i":0}}]}'>one</dd><span about="#mwt1">
+</span><dd about="#mwt1">two</dd></dl></dd></dl>
+
+<dl><dd data-parsoid='{}'>one
+<dl><dd about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"pi":[[]]}' data-mw='{"parts":["::",{"template":{"target":{"wt":"definition_list","href":"./Template:Definition_list"},"params":{},"i":0}},"\n:::two\n:::three"]}'>one</dd><span about="#mwt2">
+</span><dd about="#mwt2">two
+<dl><dd>two</dd>
+<dd>three</dd></dl></dd>
+<dd data-parsoid='{}'>four</dd></dl></dd></dl>
+!! end
+
 
 ###
 ### External links
@@ -6103,6 +6209,28 @@ parsoid=wt2html,html2html
 !! end
 
 !! test
+Table cells not properly parsed in an implicit-td context
+!! wikitext
+{|
+|-
+{{table_attribs_4}} || a || b
+|}
+!! html/php+tidy
+<table>
+<tr>
+<td style="background-color:#DC241f;" width="10px"></td>
+<td>a</td>
+<td>b</td>
+</tr>
+</table>
+!! html/parsoid
+<table>
+<tbody><tr data-parsoid='{"startTagSrc":"|-","autoInsertedEnd":true}'>
+<td style="background-color:#DC241f;" width="10px" about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"autoInsertedEnd":true,"pi":[[]]}' data-mw='{"parts":["",{"template":{"target":{"wt":"table_attribs_4","href":"./Template:Table_attribs_4"},"params":{},"i":0}}," "]}'> </td><td data-parsoid='{"stx_v":"row","autoInsertedEnd":true}'> a </td><td data-parsoid='{"stx_v":"row","autoInsertedEnd":true}'> b</td></tr>
+</tbody></table>
+!! end
+
+!! test
 Parsoid: Round-trip tables directly followed by content (bug 51219)
 !! options
 parsoid=wt2html,wt2wt
@@ -8030,6 +8158,16 @@ Nested lists 8 (multiple nesting transitions)
 !! end
 
 !! test
+Nested lists 9 (extension interaction)
+!! options
+parsoid
+!! wikitext
+*<references />
+!! html/parsoid
+<ul><li data-parsoid='{}'><ol class="references" typeof="mw:Extension/references" about="#mwt2" data-parsoid='{}' data-mw='{"name":"references","attrs":{}}'></ol></li></ul>
+!! end
+
+!! test
 1. Lists with start-of-line-transparent tokens before bullets: Comments
 !! wikitext
 *foo
@@ -8301,11 +8439,9 @@ parsoid=wt2html,wt2wt,html2html
 <li><s> b </s></li></ol>
 !! end
 
-# Parsoid fails this test, but it might be tricky to support properly.
 # See bug 68395.
 !!test
-List embedded in a non-block tag
-(Ugly Parsoid output -- worth fixing; PHP parser relies on Tidy)
+1. List embedded in a formatting tag
 !! wikitext
 <small>
 * foo
@@ -8322,6 +8458,53 @@ List embedded in a non-block tag
 </small>
 !!end
 
+## Ugly Parsoid output here
+## Not sure what the right output is.
+!!test
+2. List embedded in a formatting tag
+!! wikitext
+<small>
+*a
+*b</small>
+!! html/php+tidy
+<ul>
+<li><small>a</small></li>
+<li><small>b</small></li>
+</ul>
+!! html/parsoid
+<small></small>
+<ul><small>
+<li>a</li>
+</small>
+<li><small>b</small></li>
+</ul>
+!!end
+
+# Ugly Parsoid and PHP parser output here
+# Not sure if we want to make this a test!
+#
+## !!test
+## 3. Unclosed formatting tags in list elements
+## !! wikitext
+## *<small>a
+## *<small>b
+## !! html/php+tidy
+## <ul>
+## <li><small>a</small></li>
+## <li><small><small>b</small></small></li>
+## </ul>
+## !! html/parsoid
+## <ul>
+## <li><small>a</small></li>
+## <small>
+## <li><small>b</small></li>
+## </small></ul>
+## !!end
+
+# This is a bug in the PHP parser + tidy combination.
+# (The </tr> tag gets parsed as text and html-escaped by PHP,
+# and then fostered out of the table by tidy.)
+# We believe the Parsoid output to be correct.
 !! test
 Table with missing opening <tr> tag
 !! options
@@ -10396,6 +10579,35 @@ Templates: Support for templates generating attributes and content
 </tbody></table>
 !!end
 
+!! test
+1. Entities and nowikis inside templated attributes should be handled correctly
+!! wikitext
+<div {{echo|style{{=}}"background:&#35;f9f9f9;"}}>foo</div>
+!! html/php
+<div style="background:#f9f9f9;">foo</div>
+
+!! html/parsoid
+<div style="background:#f9f9f9;" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"stx":"html"}' data-mw='{"attribs":[[{"txt":"style","html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=\"{&amp;quot;pi&amp;quot;:[[{&amp;quot;k&amp;quot;:&amp;quot;1&amp;quot;,&amp;quot;spc&amp;quot;:[&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;&amp;quot;]}]],&amp;quot;dsr&amp;quot;:[5,49,null,null]}\" data-mw=\"{&amp;quot;parts&amp;quot;:[{&amp;quot;template&amp;quot;:{&amp;quot;target&amp;quot;:{&amp;quot;wt&amp;quot;:&amp;quot;echo&amp;quot;,&amp;quot;href&amp;quot;:&amp;quot;./Template:Echo&amp;quot;},&amp;quot;params&amp;quot;:{&amp;quot;1&amp;quot;:{&amp;quot;wt&amp;quot;:&amp;quot;style{{=}}\\&amp;quot;background:&amp;amp;#35;f9f9f9;\\&amp;quot;&amp;quot;}},&amp;quot;i&amp;quot;:0}}]}\">style&lt;/span>&lt;span typeof=\"mw:Nowiki\" about=\"#mwt1\" data-parsoid=\"{}\">=&lt;/span>&lt;span about=\"#mwt1\" data-parsoid=\"{}\">\"background:&lt;/span>&lt;span typeof=\"mw:Entity\" about=\"#mwt1\" data-parsoid=\"{&amp;quot;src&amp;quot;:&amp;quot;&amp;amp;#35;&amp;quot;,&amp;quot;srcContent&amp;quot;:&amp;quot;#&amp;quot;}\">#&lt;/span>&lt;span about=\"#mwt1\" data-parsoid=\"{}\">f9f9f9;\"&lt;/span>"},{"html":""}]]}'>foo</div>
+!! end
+
+!! test
+2. Entities and nowikis inside templated attributes should be handled correctly
+!! wikitext
+{|
+|{{table_attribs_3}}
+|}
+!! html/php
+<table>
+<tr>
+<td style="background:#f9f9f9;">Foo
+</td></tr></table>
+
+!! html/parsoid
+<table>
+<tbody><tr data-parsoid='{"autoInsertedEnd":true,"autoInsertedStart":true}'><td style="background:#f9f9f9;" typeof="mw:Transclusion" about="#mwt1" data-parsoid='{"autoInsertedEnd":true,"pi":[[]]}' data-mw='{"parts":["|",{"template":{"target":{"wt":"table_attribs_3","href":"./Template:Table_attribs_3"},"params":{},"i":0}}]}'>Foo</td></tr>
+</tbody></table>
+!! end
+
 !!test
 Templates: HTML Tables: 1. Generating start of a HTML table
 !! wikitext
@@ -12027,6 +12239,17 @@ parsoid=wt2html,wt2wt,html2html
 !! html/parsoid
 <p><span class="mw-default-size" typeof="mw:Image" data-mw="{&quot;caption&quot;:&quot;testing '''bold''' in alt&quot;}"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"/></a></span></p>
 <p><span class="mw-default-size" typeof="mw:Image"><a href="File:Foobar.jpg"><img alt="testing bold in alt" resource="./File:Foobar.jpg" src="//example.com/images/3/3a/Foobar.jpg" height="220" width="1941"/></a></span></p>
+!! end
+
+!! test
+Alt image option should handle most kinds of wikitext without barfing
+!! wikitext
+[[Image:Foobar.jpg|thumb|This is the image caption|alt=This is a [[link]] and a {{echo|''bold template''}}.]]
+!! html/php
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="This is a link and a bold template." src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>This is the image caption</div></div></div>
+
+!! html/parsoid
+<figure class="mw-default-size" typeof="mw:Image/Thumb mw:ExpandedAttrs" about="#mwt2" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"caption","ak":"This is the image caption"},{"ck":"alt","ak":"alt=This is a [[link]] and a {{echo|&#39;&#39;bold template&#39;&#39;}}."}]}' data-mw='{"attribs":[["thumbnail",{"html":"thumb"}],["alt",{"html":"alt=This is a &lt;a rel=\"mw:WikiLink\" href=\"./Link\" title=\"Link\" data-parsoid=\"{&amp;quot;stx&amp;quot;:&amp;quot;simple&amp;quot;,&amp;quot;a&amp;quot;:{&amp;quot;href&amp;quot;:&amp;quot;./Link&amp;quot;},&amp;quot;sa&amp;quot;:{&amp;quot;href&amp;quot;:&amp;quot;link&amp;quot;},&amp;quot;dsr&amp;quot;:[65,73,2,2]}\">link&lt;/a> and a &lt;i about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=\"{&amp;quot;dsr&amp;quot;:[80,106,null,null],&amp;quot;pi&amp;quot;:[[{&amp;quot;k&amp;quot;:&amp;quot;1&amp;quot;,&amp;quot;spc&amp;quot;:[&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;&amp;quot;,&amp;quot;&amp;quot;]}]]}\" data-mw=\"{&amp;quot;parts&amp;quot;:[{&amp;quot;template&amp;quot;:{&amp;quot;target&amp;quot;:{&amp;quot;wt&amp;quot;:&amp;quot;echo&amp;quot;,&amp;quot;href&amp;quot;:&amp;quot;./Template:Echo&amp;quot;},&amp;quot;params&amp;quot;:{&amp;quot;1&amp;quot;:{&amp;quot;wt&amp;quot;:&amp;quot;&#39;&#39;bold template&#39;&#39;&amp;quot;}},&amp;quot;i&amp;quot;:0}}]}\">bold template&lt;/i>."}]]}'><a href="./File:Foobar.jpg" data-parsoid='{"a":{"href":"./File:Foobar.jpg"},"sa":{}}'><img alt="This is a link and a bold template." resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" height="25" width="220" data-parsoid='{"a":{"alt":"This is a link and a bold template.","resource":"./File:Foobar.jpg","height":"25","width":"220"},"sa":{"alt":"alt=This is a [[link]] and a {{echo|&#39;&#39;bold template&#39;&#39;}}.","resource":"Image:Foobar.jpg"}}'/></a><figcaption>This is the image caption</figcaption></figure>
 !! end
 
 ###################
@@ -20383,6 +20606,22 @@ foo
 foo<ol class="references" typeof="mw:Extension/references" about="#mwt2" data-mw='{"name":"references","attrs":{}}'></ol>
 !! end
 
+#### ----------------------------------------------------------------
+#### Parsoid-only testing of Parsoid's impl of LST
+#### Not implemented yet, see
+#### https://www.mediawiki.org/wiki/Parsoid/HTML_based_LST
+#### ----------------------------------------------------------------
+
+!!test
+LST Sections: 1. Simple section start and end
+!! wikitext
+<section begin="2011-05-16" />
+<section end="2014-04-10 (MW 1.23wmf22)" />
+!! html/parsoid
+<p><meta typeof="mw:Extension/LabeledSectionTransclusion/begin" content="2011-05-16"/>
+<meta typeof="mw:Extension/LabeledSectionTransclusion/end" content="2014-04-10 (MW 1.23wmf22)"/></p>
+!! end
+
 #--------- Test stripping of empty nodes in template content ----------
 !!test
 Empty LI and TR nodes should be stripped from template content
@@ -23171,6 +23410,22 @@ parsoid=html2wt
 [[Foo''bar''baz]]
 !! end
 
+!! test
+Enforce single-line context in the serializer
+!! options
+parsoid=html2wt
+!! html
+<h2>testing
+123</h2>
+
+<ul><li>asd
+sdf</li></ul>
+!! wikitext
+== testing 123 ==
+
+* asd sdf
+!! end
+
 #-----------------------------
 # I/B quote minimization tests
 #-----------------------------
@@ -23452,6 +23707,56 @@ parsoid=html2wt
 <div typeOf="mw:Extension/foo"></div>
 !! wikitext
 <foo />
+!! end
+
+# Note that the <p> wrapping isn't present in PHP parser output
+# The important thing for this test is that P-wrapping doesn't
+# interfere with the <nowiki> protection for leading - in <td>
+# (which isn't necessary for <th>).
+!! test
+T88318: p-wrapped dash in table.
+!! options
+parsoid=html2wt,wt2wt
+!! html/parsoid
+<table><tbody>
+<tr><th><p>-</p></th><th><p>- </p></th></tr>
+<tr><td><p>-</p></td><td><p>- </p></td></tr>
+<tr><td><small>-</small></td><td><br/><p>-</p></td><td><br/>-</td></tr>
+</tbody></table>
+!! wikitext
+{|
+!-
+!- 
+|-
+|<nowiki>-</nowiki>
+|<nowiki>- </nowiki>
+|-
+|<small>-</small>
+|<br>
+-
+|<br>
+-
+|}
+!! html/php+tidy
+<table>
+<tr>
+<th>-</th>
+<th>-</th>
+</tr>
+<tr>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><small>-</small></td>
+<td><br />
+<p>-</p>
+</td>
+<td><br />
+<p>-</p>
+</td>
+</tr>
+</table>
 !! end
 
 # -----------------------------------------------------------------
