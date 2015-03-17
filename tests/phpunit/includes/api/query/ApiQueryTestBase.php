@@ -88,9 +88,13 @@ STR;
 	/**
 	 * Checks that the request's result matches the expected results.
 	 * @param array $values Array is a two element array( request, expected_results )
-	 * @throws Exception
+	 * @param array $session
+	 * @param bool $appendModule
+	 * @param User $user
 	 */
-	protected function check( $values ) {
+	protected function check( $values, array $session = null,
+		$appendModule = false, User $user = null
+	) {
 		list( $req, $exp ) = $this->validateRequestExpectedPair( $values );
 		if ( !array_key_exists( 'action', $req ) ) {
 			$req['action'] = 'query';
@@ -103,7 +107,7 @@ STR;
 				$val = implode( '|', array_unique( $val ) );
 			}
 		}
-		$result = $this->doApiRequest( $req );
+		$result = $this->doApiRequest( $req, $session, $appendModule, $user );
 		$this->assertResult( array( 'query' => $exp ), $result[0], $req );
 	}
 
