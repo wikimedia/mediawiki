@@ -965,14 +965,8 @@ return array(
 		),
 	),
 	'mediawiki.sectionAnchor' => array(
-		'skinStyles' => array(
-			'default' => array(
-				'resources/src/mediawiki/mediawiki.sectionAnchor.css' =>
-					array( 'media' => 'screen'),
-				'resources/src/mediawiki/mediawiki.sectionAnchor.hide.css' =>
-					array( 'media' => 'print' ),
-			),
-		),
+		// Back-compat to hide it on cached pages (T18691; Ie9e334e973; 2015-03-17)
+		'styles' => 'resources/src/mediawiki/mediawiki.sectionAnchor.css',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.Title' => array(
