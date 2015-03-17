@@ -1752,17 +1752,6 @@ class Linker {
 		$link, $legacyAnchor = false
 	) {
 		$ret = "<h$level$attribs"
-			. Html::element( 'a',
-				array(
-					'href' => '#' . $anchor,
-					'class' => 'mw-headline-anchor',
-					// Hide from screen readers, as it is inside a heading (the programs use headings to
-					// navigate, so the symbol is being read during navigation). Pending T13555 being fixed.
-					'aria-hidden' => 'true',
-					'title' => wfMessage( 'headline-anchor-title' )->text()
-				),
-				wfMessage( 'section-symbol' )->text()
-			)
 			. "<span class=\"mw-headline\" id=\"$anchor\">$html</span>"
 			. $link
 			. "</h$level>";
