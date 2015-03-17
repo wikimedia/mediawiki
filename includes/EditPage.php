@@ -2098,6 +2098,9 @@ class EditPage {
 			$displayTitle = $contextTitle->getPrefixedText();
 		}
 		$wgOut->setPageTitle( wfMessage( $msg, $displayTitle ) );
+		# Transmit the name of the message to JavaScript for live preview
+		# Keep Resources.php/mediawiki.action.edit.preview in sync with the possible keys
+		$wgOut->addJsConfigVars( 'wgEditMessage', $msg );
 	}
 
 	/**
