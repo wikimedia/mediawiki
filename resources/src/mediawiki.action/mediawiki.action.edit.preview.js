@@ -118,6 +118,13 @@
 				}
 				if ( response.parse.displaytitle ) {
 					$( '#firstHeading' ).html( response.parse.displaytitle );
+					document.title = mw.msg(
+						'pagetitle',
+						mw.msg(
+							mw.config.get( 'wgEditMessage', 'editing' ),
+							$( '#firstHeading' ).text()
+						)
+					);
 				}
 				if ( response.parse.categorieshtml ) {
 					$( '#catlinks' ).replaceWith( response.parse.categorieshtml['*'] );

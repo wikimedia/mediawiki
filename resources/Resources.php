@@ -1085,6 +1085,13 @@ return array(
 			'mediawiki.jqueryMsg',
 		),
 		'messages' => array(
+			// Keep the uses message keys in sync with EditPage#setHeaders
+			'creating',
+			'editconflict',
+			'editing',
+			'editingcomment',
+			'editingsection',
+			'pagetitle',
 			'otherlanguages',
 			'tooltip-p-lang',
 			'summary-preview',
