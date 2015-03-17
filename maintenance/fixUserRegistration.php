@@ -66,7 +66,7 @@ class FixUserRegistration extends Maintenance {
 					__METHOD__
 				);
 				// Update
-				if ( $timestamp !== false ) {
+				if ( $timestamp !== null ) {
 					$dbw->update(
 						'user',
 						array( 'user_registration' => $timestamp ),
@@ -83,7 +83,7 @@ class FixUserRegistration extends Maintenance {
 			$this->output( "Waiting for slaves..." );
 			wfWaitForSlaves();
 			$this->output( " done.\n" );
-		} while ( $res->numRows() );
+		} while ( $res->numRows() >= $this->mBatchSize );
 	}
 }
 
