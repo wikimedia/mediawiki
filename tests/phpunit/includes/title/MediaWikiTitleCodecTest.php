@@ -370,13 +370,6 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideGetNamespaceName
-	 *
-	 * @param int $namespace
-	 * @param string $text
-	 * @param string $lang
-	 * @param string $expected
-	 *
-	 * @internal param \TitleValue $title
 	 */
 	public function testGetNamespaceName( $namespace, $text, $lang, $expected ) {
 		$codec = $this->makeCodec( $lang );
