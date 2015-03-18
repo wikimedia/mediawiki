@@ -7,7 +7,8 @@
 			"Urhixidur",
 			"Xuacu",
 			"아라",
-			"Babanwalia"
+			"Babanwalia",
+			"Henares"
 		]
 	},
 	"tog-underline": "Surrayal atihus:",
@@ -1320,9 +1321,7 @@
 	"import-upload": "Empuntal datus XML",
 	"importlogpage": "Emporteal rustrihu",
 	"importlogpagetext": "Emporteacionis alministrativas de páhinas con estorial d'edicionis d'otras güiquis.",
-	"import-logentry-upload": "á emporteau [[$1]] pol empuntu d'archivu",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|revisión|revisionis}}",
-	"import-logentry-interwiki": "trasgüiquipeau $1",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|revisión|revisionis}} dendi $2",
 	"tooltip-pt-userpage": "La mi páhina d'usuáriu",
 	"tooltip-pt-anonuserpage": "La páhina d'usuáriu la IP dendi la qu'eita",
@@ -1717,5 +1716,6 @@
 	"revdelete-unrestricted": "las restricionis a los çahorilis án siu esborrás",
 	"rightsnone": "(dengunu)",
 	"revdelete-summary": "eital sumáriu",
+	"searchsuggest-search": "Buscal",
 	"expand_templates_preview": "Previsoreal"
 }

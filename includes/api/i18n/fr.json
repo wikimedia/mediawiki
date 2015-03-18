@@ -197,6 +197,8 @@
 	"apihelp-logout-description": "Se déconnecter et effacer les données de session.",
 	"apihelp-logout-example-logout": "Déconnecter l’utilisateur actuel.",
 	"apihelp-managetags-description": "Effectuer des tâches de gestion relatives à la modification des balises.",
+	"apihelp-managetags-param-operation": "Quelle opération effectuer :\n;create:Créer une nouvelle balise de modification pour un usage manuel.\n;delete:Supprimer une balise de modification de la base de données, y compris la suppression de la marque de toutes les révisions, entrées de modification récente et entrées de journal dans lesquelles elle serait utilisée.\n;activate:Activer une balise de modification, permettant aux utilisateurs de l’appliquer manuellement.\n;deactivate:Désactiver une balise de modification, empêchant les utilisateurs de l’appliquer manuellement.",
+	"apihelp-managetags-param-tag": "Balise à créer, supprimer, activer ou désactiver. Pour la création de balise, elle ne doit pas exister. Pour la suppression de balise, elle doit exister. Pour l’activation de balise, elle doit exister et ne pas être utilisée par une extension. Pour la désactivation de balise, elle doit être actuellement active et définie manuellement.",
 	"apihelp-move-description": "Déplacer une page.",
 	"apihelp-move-param-from": "Titre de la page que vous voulez déplacer. Impossible de l’utiliser avec $1fromid.",
 	"apihelp-move-param-fromid": "ID de la page que vous voulez déplacer. Impossible à utiliser avec $1from.",

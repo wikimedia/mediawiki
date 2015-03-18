@@ -2,10 +2,16 @@
 	"@metadata": {
 		"authors": [
 			"Smtchahal",
-			"Vivek Rai"
+			"Vivek Rai",
+			"Phoenix303"
 		]
 	},
+	"config-desc": "साँचा लिए इंस्टॉलर",
+	"config-title": "मीडियाविकी इंस्टॉलर",
 	"config-information": "जानकारी",
+	"config-localsettings-upgrade": "<code>LocalSettings.php</code> फ़ाइल पाया गया है ।\nइस स्थापना को अपग्रेड करने के लिए, नीचे दिए गए बॉक्स में <code>$wgUpgradeKey</code>  का मान दर्ज करें।\nआपको <code>LocalSettings.php</code> में मिल जाएगा।",
+	"config-localsettings-cli-upgrade": "<code>LocalSettings.php</code> फ़ाइल पाया गया है ।\nइस स्थापना को अपग्रेड करने के लिए, बदले में कृपया करके ये चलाए <code>update.php</code>",
+	"config-localsettings-key": "नवीनीकरण कुंजी",
 	"config-localsettings-badkey": "आपकी दी गई कुंजी ग़लत है।",
 	"config-your-language": "आपकी भाषा:",
 	"config-wiki-language": "विकी भाषा:",
@@ -14,12 +20,16 @@
 	"config-page-language": "भाषा",
 	"config-page-welcome": "मीडियाविकी पर आपका स्वागत है!",
 	"config-page-dbconnect": "डेटाबेस से जुड़ें",
+	"config-page-upgrade": "मौजूदा स्थापना का नवीनीकरण",
 	"config-page-name": "नाम",
 	"config-page-options": "विकल्प",
 	"config-page-install": "स्थापित करें",
 	"config-page-complete": "पूर्ण!",
 	"config-page-restart": "स्थापना को पुनरारंभ करें",
 	"config-page-readme": "मुझे पढ़ें",
+	"config-page-releasenotes": "रिलीज नोट्स",
+	"config-page-copying": "अनुकरण",
+	"config-page-upgradedoc": "उन्नयन",
 	"config-page-existingwiki": "मौजूदा विकि",
 	"config-restart": "हाँ, इसे पुनः आरंभ करें",
 	"config-env-php": "PHP $1 स्थापित किया गया है।",

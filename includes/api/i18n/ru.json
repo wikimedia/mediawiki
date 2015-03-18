@@ -3,15 +3,17 @@
 		"authors": [
 			"Mahairod",
 			"Okras",
-			"Eakarpov"
+			"Eakarpov",
+			"Kaganer"
 		]
 	},
+	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Документация]]\n* [[mw:API:FAQ|ЧаВО]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Почтовая рассылка]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> Все отображаемые на этой странице функции должны работать, однако API находится в статусе активной разработки, и может измениться в любой момент. Подпишитесь на  [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом \"MediaWiki-API-Error\", после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:API:Errors_and_warnings|API: Ошибки и предупреждения]].",
 	"apihelp-main-param-action": "Действие, которое следует выполнить.",
 	"apihelp-main-param-format": "Формат вывода.",
 	"apihelp-main-param-smaxage": "Устанавливает заголовок <code>s-maxage</code> в заданное число секунд. Ошибки никогда не кэшируются.",
 	"apihelp-main-param-maxage": "Устанавливает заголовок <code>max-age</code> в заданное число секунд. Ошибки никогда не кэшируются.",
-	"apihelp-main-param-assert": "Удостовериться, что пользователь авторизован, если задано \"user\", или что имеет права бота, если задано \"bot\".",
-	"apihelp-main-param-requestid": "Любое значение, заданное здесь, будет включено в ответ. Может быть использовано для различения запросов.",
+	"apihelp-main-param-assert": "Удостовериться, что пользователь авторизован, если задано <kbd>user</kbd>, или что имеет права бота, если задано <kbd>bot</kbd>.",
+	"apihelp-main-param-requestid": "Любое заданное здесь значение будет включено в ответ. Может быть использовано для различения запросов.",
 	"apihelp-main-param-servedby": "Включить в результаты имя хоста, обработавшего запрос.",
 	"apihelp-main-param-curtimestamp": "Включить в результаты временную метку.",
 	"apihelp-main-param-origin": "При обращении к API, используя кросс-доменный AJAX-запрос (CORS), задайте параметру значение исходного домена. Он должен быть включён в любой предварительный запрос и таким образом должен быть частью URI-запроса (не тела POST). Он должен точно соответствовать одному из источников в заголовке <code>Origin<code>, так что он должен быть задан наподобие <kbd>https://ru.wikipedia.org</kbd> или <kbd>https://meta.wikimedia.org</kbd>. Если параметр не соответствует заголовку <code>Origin<code>, будет возвращён ответ с кодом ошибки 403. Если параметр соответствует заголовку <code>Origin</code>, и источник находится в белом списке, будет установлен заголовок <code>Access-Control-Allow-Origin</code>.",
@@ -25,6 +27,9 @@
 	"apihelp-disabled-description": "Этот модуль был отключен.",
 	"apihelp-edit-param-sectiontitle": "Заголовок для нового раздела.",
 	"apihelp-edit-param-text": "Содержание страницы.",
+	"apihelp-edit-param-minor": "Незначительное изменение (малая правка).",
+	"apihelp-edit-param-notminor": "Значительное изменение (обычная, не «малая», правка).",
+	"apihelp-edit-param-bot": "Пометить правку как сделанную ботом.",
 	"apihelp-edit-param-watch": "Добавить страницу к текущему списку наблюдения пользователя.",
 	"apihelp-edit-example-edit": "Редактировать страницу",
 	"apihelp-expandtemplates-param-title": "Заголовок страницы.",
