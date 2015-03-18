@@ -22,8 +22,6 @@
 
 /**
  * The MediaWiki class is the helper class for the index.php entry point.
- *
- * @internal documentation reviewed 15 Mar 2010
  */
 class MediaWiki {
 	/**

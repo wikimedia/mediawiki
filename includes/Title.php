@@ -29,8 +29,6 @@
  *       however, it does so inefficiently.
  * @note Consider using a TitleValue object instead. TitleValue is more lightweight
  *       and does not rely on global state or the database.
- *
- * @internal documentation reviewed 15 Mar 2010
  */
 class Title {
 	/** @var MapCacheLRU */
