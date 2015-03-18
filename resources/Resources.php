@@ -892,6 +892,15 @@ return array(
 			'feedback-useragent'
 		),
 	),
+
+	'mediawiki.filewarning' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.filewarning.js',
+		'styles' => 'resources/src/mediawiki/mediawiki.filewarning.less',
+		'dependencies' => array(
+			'oojs-ui',
+		),
+	),
+
 	'mediawiki.helplink' => array(
 		'styles' => array(
 			'resources/src/mediawiki/mediawiki.helplink.css',

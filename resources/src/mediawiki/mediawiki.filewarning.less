@@ -1,0 +1,29 @@
+@import "mediawiki.ui/variables"
+
+.mediawiki-filewarning {
+	display: none;
+
+	.mediawiki-filewarning-header {
+		padding: 0;
+		font-weight: 600;
+	}
+
+	.mediawiki-filewarning-footer {
+		color: #888888;
+	}
+
+	.empty {
+		display: none;
+	}
+
+	.mediawiki-filewarning-anchor:hover & {
+		display: block;
+	}
+}
+
+.mime-type {
+	&.has-warning {
+		font-weight: bold;
+		color: @colorMediumSevere;
+	}
+}
