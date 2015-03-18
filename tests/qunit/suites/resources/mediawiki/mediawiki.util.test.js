@@ -1,4 +1,6 @@
 ( function ( mw, $ ) {
+	var IP_PREFIX = 'isIPAddress: ';
+
 	QUnit.module( 'mediawiki.util', QUnit.newMwEnvironment( {
 		setup: function () {
 			$.fn.updateTooltipAccessKeys.setTestMode( true );
@@ -242,14 +244,18 @@
 		assert.strictEqual( mw.util.validateEmail( 'userfoo@ex-ample.org' ), true, 'Emails may contain a hyphen' );
 	} );
 
-	QUnit.test( 'isIPv6Address', 40, function ( assert ) {
+	QUnit.test( 'IPv6 addresses', 80, function ( assert ) {
+		var IPv6_PREFIX = 'isIPv6Address: ';
+
 		// Shortcuts
 		function assertFalseIPv6( addy, summary ) {
-			return assert.strictEqual( mw.util.isIPv6Address( addy ), false, summary );
+			assert.strictEqual( mw.util.isIPv6Address( addy ), false, IPv6_PREFIX + summary );
+			assert.strictEqual( mw.util.isIPAddress( addy ), false, IP_PREFIX + summary );
 		}
 
 		function assertTrueIPv6( addy, summary ) {
-			return assert.strictEqual( mw.util.isIPv6Address( addy ), true, summary );
+			assert.strictEqual( mw.util.isIPv6Address( addy ), true, 'isIPv6Address: ' + summary );
+			assert.strictEqual( mw.util.isIPAddress( addy ), true, IP_PREFIX + summary );
 		}
 
 		// Based on IPTest.php > testisIPv6
@@ -310,14 +316,18 @@
 		assertFalseIPv6( 'fc::100:a:d:1:e:ac:0:1', 'IPv6 with 9 words' );
 	} );
 
-	QUnit.test( 'isIPv4Address', 11, function ( assert ) {
+	QUnit.test( 'IPv4 addresses', 22, function ( assert ) {
+		var IPv4_PREFIX = 'isIPv4Address: ';
+
 		// Shortcuts
 		function assertFalseIPv4( addy, summary ) {
-			assert.strictEqual( mw.util.isIPv4Address( addy ), false, summary );
+			assert.strictEqual( mw.util.isIPv4Address( addy ), false, IPv4_PREFIX + summary );
+			assert.strictEqual( mw.util.isIPv4Address( addy ), false, IP_PREFIX + summary );
 		}
 
 		function assertTrueIPv4( addy, summary ) {
-			assert.strictEqual( mw.util.isIPv4Address( addy ), true, summary );
+			assert.strictEqual( mw.util.isIPv4Address( addy ), true, IPv4_PREFIX + summary );
+			assert.strictEqual( mw.util.isIPv4Address( addy ), true, IP_PREFIX + summary );
 		}
 
 		// Based on IPTest.php > testisIPv4
@@ -332,6 +342,6 @@
 
 		assertTrueIPv4( '124.24.52.13', '124.24.52.134 is a valid IP' );
 		assertTrueIPv4( '1.24.52.13', '1.24.52.13 is a valid IP' );
-		assertFalseIPv4( '74.24.52.13/20', 'IPv4 ranges are not recogzized as valid IPs' );
+		assertFalseIPv4( '74.24.52.13/20', 'IPv4 ranges are not recognized as valid IPs' );
 	} );
 }( mediaWiki, jQuery ) );
