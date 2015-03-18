@@ -443,6 +443,19 @@
 
 			return address.search( new RegExp( '^' + RE_IPV6_ADD + block + '$' ) ) !== -1
 				&& address.search( /::/ ) !== -1 && address.search( /::.*::/ ) === -1;
+		},
+
+		/**
+		 * Check whether a string is an IP address
+		 *
+		 * @since 1.25
+		 * @param {string} address String to check
+		 * @param {boolean} allowBlock True if a block of IPs should be allowed
+		 * @return {boolean}
+		 */
+		isIPAddress: function ( address, allowBlock ) {
+			return util.isIPv4Address( address, allowBlock ) ||
+				util.isIPv6Address( address, allowBlock );
 		}
 	};
 
