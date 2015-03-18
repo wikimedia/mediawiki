@@ -34,7 +34,7 @@ end
 class SourceTag < CommonTag
   def initialize
     @tagname = :source
-    @pattern = "source"
+    @pattern = 'source'
     super
   end
 
@@ -51,7 +51,7 @@ end
 class SeeTag < CommonTag
   def initialize
     @tagname = :see
-    @pattern = "see"
+    @pattern = 'see'
     super
   end
 

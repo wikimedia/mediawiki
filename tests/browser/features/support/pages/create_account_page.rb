@@ -12,7 +12,7 @@
 class CreateAccountPage
   include PageObject
 
-  page_url "<%=params[:page_title]%>"
+  page_url '<%=params[:page_title]%>'
 
-  button(:create_account, id: "wpCreateaccount")
+  button(:create_account, id: 'wpCreateaccount')
 end
