@@ -1994,6 +1994,17 @@ return false to omit the line from RecentChanges and Watchlist special pages.
 can alter or append to the array of URLs for search & suggestion formats.
 &$urls: array of associative arrays with Url element attributes
 
+'OpportunisticLinksUpdate': Called by WikiPage::triggerOpportunisticLinksUpdate
+when a page view triggers a re-rendering of the page. This may happen
+particularly if the parser cache is split by user language, and no cached
+rendering of the page exists in the user's language. The hook is called
+before checking whether page_links_updated indicates that the links are up
+to date. Returning false will cause triggerOpportunisticLinksUpdate() to abort
+without triggering any updates.
+$page: the Page that was rendered.
+$title: the Title of the rendered page.
+$parserOutput: ParserOutput resulting from rendering the page.
+
 'OtherBlockLogLink': Get links to the block log from extensions which blocks
 users and/or IP addresses too.
 $otherBlockLink: An array with links to other block logs
