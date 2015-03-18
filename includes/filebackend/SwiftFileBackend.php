@@ -1165,6 +1165,11 @@ class SwiftFileBackend extends FileBackendStore {
 		return $hdrs;
 	}
 
+	/**
+	 * @param FileBackendStoreOpHandle[] $fileOpHandles
+	 *
+	 * @return Status[]
+	 */
 	protected function doExecuteOpHandlesInternal( array $fileOpHandles ) {
 		$statuses = array();
 

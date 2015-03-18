@@ -681,6 +681,11 @@ class FSFileBackend extends FileBackendStore {
 		return false;
 	}
 
+	/**
+	 * @param FileBackendStoreOpHandle[] $fileOpHandles
+	 *
+	 * @return Status[]
+	 */
 	protected function doExecuteOpHandlesInternal( array $fileOpHandles ) {
 		$statuses = array();
 

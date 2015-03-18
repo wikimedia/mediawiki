@@ -1198,9 +1198,9 @@ abstract class FileBackendStore extends FileBackend {
 	 * The resulting Status object fields will correspond
 	 * to the order in which the handles where given.
 	 *
-	 * @param array $fileOpHandles
+	 * @param FileBackendStoreOpHandle[] $fileOpHandles
+	 *
 	 * @throws FileBackendError
-	 * @internal param array $handles List of FileBackendStoreOpHandle objects
 	 * @return array Map of Status objects
 	 */
 	final public function executeOpHandlesInternal( array $fileOpHandles ) {
@@ -1223,9 +1223,11 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::executeOpHandlesInternal()
-	 * @param array $fileOpHandles
+	 *
+	 * @param FileBackendStoreOpHandle[] $fileOpHandles
+	 *
 	 * @throws FileBackendError
-	 * @return array List of corresponding Status objects
+	 * @return Status[] List of corresponding Status objects
 	 */
 	protected function doExecuteOpHandlesInternal( array $fileOpHandles ) {
 		if ( count( $fileOpHandles ) ) {
