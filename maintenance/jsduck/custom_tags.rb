@@ -73,8 +73,8 @@ class SeeTag < CommonTag
 
   def render_long_see(tag, formatter, position)
     if tag =~ /\A([^\s]+)( .*)?\Z/m
-      name = $1
-      doc = $2 ? ': ' + $2 : ''
+      name = Regexp.last_match(1)
+      doc = Regexp.last_match(2) ? ': ' + Regexp.last_match(2) : ''
       return formatter.format("{@link #{name}} #{doc}")
     else
       JsDuck::Logger.warn(nil, 'Unexpected @see argument: "' + tag + '"', position)
@@ -106,7 +106,7 @@ class ContextTag < CommonTag
 
   def render_long_context(tag, formatter, position)
     if tag =~ /\A([^\s]+)/m
-      name = $1
+      name = Regexp.last_match(1)
       return formatter.format("`context` : {@link #{name}}")
     else
       JsDuck::Logger.warn(nil, 'Unexpected @context argument: "' + tag + '"', position)
