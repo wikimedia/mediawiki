@@ -171,7 +171,7 @@ HTML;
 		$out->addHtml( Html::inlineScript(
 			ResourceLoader::makeLoaderConditionalScript(
 				Xml::encodeJsCall( 'mw.loader.using', array(
-					array( 'jquery.qunit', 'jquery.qunit.completenessTest' ),
+					array( 'jquery.qunit' ),
 					new XmlJsCode(
 						'function () {' . Xml::encodeJsCall( 'mw.loader.load', array( $modules ) ) . '}'
 					)

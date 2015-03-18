@@ -1,10 +1,9 @@
-/*global CompletenessTest, sinon */
+/*global sinon */
 /*jshint evil: true */
 ( function ( $, mw, QUnit ) {
 	'use strict';
 
-	var mwTestIgnore, mwTester,
-		addons,
+	var addons,
 		ELEMENT_NODE = 1,
 		TEXT_NODE = 3;
 
@@ -38,17 +37,6 @@
 		label: 'Enable ResourceLoaderDebug',
 		tooltip: 'Enable debug mode in ResourceLoader',
 		value: 'true'
-	} );
-
-	/**
-	 * CompletenessTest
-	 *
-	 * Adds toggle checkbox to header
-	 */
-	QUnit.config.urlConfig.push( {
-		id: 'completenesstest',
-		label: 'Run CompletenessTest',
-		tooltip: 'Run the completeness test'
 	} );
 
 	/**
@@ -127,42 +115,6 @@
 			} );
 		};
 	}() );
-
-	// Initiate when enabled
-	if ( QUnit.urlParams.completenesstest ) {
-
-		// Return true to ignore
-		mwTestIgnore = function ( val, tester ) {
-
-			// Don't record methods of the properties of constructors,
-			// to avoid getting into a loop (prototype.constructor.prototype..).
-			// Since we're therefor skipping any injection for
-			// "new mw.Foo()", manually set it to true here.
-			if ( val instanceof mw.Map ) {
-				tester.methodCallTracker.Map = true;
-				return true;
-			}
-			if ( val instanceof mw.Title ) {
-				tester.methodCallTracker.Title = true;
-				return true;
-			}
-
-			// Don't record methods of the properties of a jQuery object
-			if ( val instanceof $ ) {
-				return true;
-			}
-
-			// Don't iterate over the module registry (the 'script' references would
-			// be listed as untested methods otherwise)
-			if ( val === mw.loader.moduleRegistry ) {
-				return true;
-			}
-
-			return false;
-		};
-
-		mwTester = new CompletenessTest( mw, mwTestIgnore );
-	}
 
 	/**
 	 * Test environment recommended for all QUnit test modules

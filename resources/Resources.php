@@ -278,11 +278,6 @@ return array(
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
-	'jquery.qunit.completenessTest' => array(
-		'scripts' => 'resources/src/jquery/jquery.qunit.completenessTest.js',
-		'dependencies' => 'jquery.qunit',
-		'targets' => array( 'desktop', 'mobile' ),
-	),
 	'jquery.spinner' => array(
 		'scripts' => 'resources/src/jquery/jquery.spinner.js',
 		'styles' => 'resources/src/jquery/jquery.spinner.css',
