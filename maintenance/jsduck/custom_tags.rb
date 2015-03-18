@@ -11,7 +11,7 @@ class CommonTag < JsDuck::Tag::Tag
     @repeatable = true
   end
 
-  def parse_doc(scanner, position)
+  def parse_doc(scanner, _position)
     if @multiline
       return { :tagname => @tagname, :doc => :multiline }
     else
@@ -20,7 +20,7 @@ class CommonTag < JsDuck::Tag::Tag
     end
   end
 
-  def process_doc(context, tags, position)
+  def process_doc(context, tags, _position)
     context[@tagname] = tags
   end
 
