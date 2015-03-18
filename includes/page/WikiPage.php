@@ -31,8 +31,6 @@ interface Page {
  *
  * Some fields are public only for backwards-compatibility. Use accessors.
  * In the past, this class was part of Article.php and everything was public.
- *
- * @internal documentation reviewed 15 Mar 2010
  */
 class WikiPage implements Page, IDBAccessObject {
 	// Constants for $mDataLoadedFrom and related

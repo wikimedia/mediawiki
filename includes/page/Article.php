@@ -30,8 +30,6 @@
  * See design.txt for an overview.
  * Note: edit user interface and cache support functions have been
  * moved to separate EditPage and HTMLFileCache classes.
- *
- * @internal documentation reviewed 15 Mar 2010
  */
 class Article implements Page {
 	/** @var IContextSource The context this Article is executed in */

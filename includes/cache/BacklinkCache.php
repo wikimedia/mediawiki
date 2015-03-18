@@ -38,8 +38,6 @@
  * of memory.
  *
  * Introduced by r47317
- *
- * @internal documentation reviewed on 18 Mar 2011 by hashar
  */
 class BacklinkCache {
 	/** @var ProcessCacheLRU */
