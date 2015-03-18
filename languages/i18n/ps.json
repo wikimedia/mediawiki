@@ -668,7 +668,7 @@
 	"searchprofile-advanced-tooltip": "د خپل خوښې په نوم-تشيالونو کې پلټل",
 	"search-result-size": "$1 ({{PLURAL:$2|1 ويی|$2 وييونه}})",
 	"search-result-category-size": "{{PLURAL:$1|1 غړی|$1 غړي}} ({{PLURAL:$2|1 څېرمه وېشنيزه|$2 څېرمه وېشنيزې}}، {{PLURAL:$3|1 دوتنه|$3 دوتنې}})",
-	"search-redirect": "(د $1 مخ ګرځونه)",
+	"search-redirect": "(د $1 مخ گرځېدنه)",
 	"search-section": "(برخه $1)",
 	"search-category": "(وېشنيزه $1)",
 	"search-file-match": "(د دوتنو مېنځپانگې سره ورته دي)",

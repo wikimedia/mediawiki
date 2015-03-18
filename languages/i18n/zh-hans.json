@@ -2275,9 +2275,7 @@
 	"import-rootpage-nosubpage": "名字空间为“$1”的根页面不允许子页面。",
 	"importlogpage": "导入日志",
 	"importlogpagetext": "管理性导入在其他wiki上有编辑历史的页面。",
-	"import-logentry-upload": "通过文件上传导入[[$1]]",
 	"import-logentry-upload-detail": "导入$1个{{PLURAL:$1|版本}}",
-	"import-logentry-interwiki": "跨wiki导入页面$1",
 	"import-logentry-interwiki-detail": "来自$2的$1个{{PLURAL:$1|版本}}已导入",
 	"javascripttest": "JavaScript测试",
 	"javascripttest-pagetext-noframework": "本页面被保留进行JavaScript测试。",
@@ -3339,5 +3337,5 @@
 	"json-error-recursion": "要编码的数值中一个或更多递归引用",
 	"json-error-inf-or-nan": "要编码的数值中一个或更多NAN或INF值",
 	"json-error-unsupported-type": "给出了不能编码的类型的值",
-	"headline-anchor-title": "链接到此段落"
+	"headline-anchor-title": "该段落的链接"
 }
