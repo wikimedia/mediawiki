@@ -245,11 +245,6 @@ define( 'SFH_NO_HASH', 1 );
 define( 'SFH_OBJECT_ARGS', 2 );
 /**@}*/
 
-/**
- * Flags for Parser::replaceLinkHolders
- */
-define( 'RLH_FOR_UPDATE', 1 );
-
 /**@{
  * Autopromote conditions (must be here and not in Autopromote.php, so that
  * they're loaded for DefaultSettings.php before AutoLoader.php)
