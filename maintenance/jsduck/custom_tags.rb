@@ -13,10 +13,10 @@ class CommonTag < JsDuck::Tag::Tag
 
   def parse_doc(scanner, _position)
     if @multiline
-      return { :tagname => @tagname, :doc => :multiline }
+      return { tagname: @tagname, doc: :multiline }
     else
       text = scanner.match(/.*$/)
-      return { :tagname => @tagname, :doc => text }
+      return { tagname: @tagname, doc: text }
     end
   end
 
