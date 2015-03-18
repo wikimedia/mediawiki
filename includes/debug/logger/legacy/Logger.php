@@ -84,6 +84,8 @@ class MWLoggerLegacyLogger extends AbstractLogger {
 			$destination = self::destination( $this->channel, $message, $context );
 			self::emit( $text, $destination );
 		}
+		// Add to debug toolbar
+		MWDebug::debugMsg( $message, array( 'channel' => $this->channel ) + $context );
 	}
 
 
