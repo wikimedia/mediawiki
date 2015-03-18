@@ -842,7 +842,7 @@ class LocalFile extends File {
 	 * Refresh metadata in memcached, but don't touch thumbnails or squid
 	 */
 	function purgeMetadataCache() {
-		$this->loadFromDB();
+		$this->loadFromDB( File::READ_LATEST );
 		$this->saveToCache();
 		$this->purgeHistory();
 	}
