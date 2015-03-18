@@ -3381,12 +3381,15 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Opportunistically enqueue link update jobs given fresh parser output if useful
 	 *
 	 * @param ParserOutput $parserOutput Current version page output
-	 * @return bool Whether a job was pushed
 	 * @since 1.25
 	 */
 	public function triggerOpportunisticLinksUpdate( ParserOutput $parserOutput ) {
 		if ( wfReadOnly() ) {
-			return false;
+			return;
+		}
+
+		if ( !Hooks::run( 'OpportunisticLinksUpdate', array( $this, $this->mTitle, $parserOutput ) ) ) {
+			return;
 		}
 
 		if ( $this->mTitle->areRestrictionsCascading() ) {
@@ -3397,7 +3400,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$params = array();
 		} else {
 			// If the inclusions are deterministic, the edit-triggered link jobs are enough
-			return false;
+			return;
 		}
 
 		// Check if the last link refresh was before page_touched
@@ -3405,10 +3408,10 @@ class WikiPage implements Page, IDBAccessObject {
 			JobQueueGroup::singleton()->push( EnqueueJob::newFromLocalJobs(
 				new JobSpecification( 'refreshLinks', $params, array(), $this->mTitle )
 			) );
-			return true;
+			return;
 		}
 
-		return false;
+		return;
 	}
 
 	/**
