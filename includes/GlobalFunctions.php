@@ -1030,12 +1030,7 @@ function wfMatchesDomainList( $url, $domains ) {
  * @since 1.25 support for additional context data
  *
  * @param string $text
- * @param string|bool $dest Destination of the message:
- *     - 'all': both to the log and HTML (debug toolbar or HTML comments)
- *     - 'log': only to the log and not in HTML
- *   For backward compatibility, it can also take a boolean:
- *     - true: same as 'all'
- *     - false: same as 'log'
+ * @param string|bool $dest Unused
  * @param array $context Additional logging context data
  */
 function wfDebug( $text, $dest = 'all', array $context = array() ) {
@@ -1044,13 +1039,6 @@ function wfDebug( $text, $dest = 'all', array $context = array() ) {
 
 	if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
 		return;
-	}
-
-	// Turn $dest into a string if it's a boolean (for b/c)
-	if ( $dest === true ) {
-		$dest = 'all';
-	} elseif ( $dest === false ) {
-		$dest = 'log';
 	}
 
 	$text = trim( $text );
@@ -1065,16 +1053,6 @@ function wfDebug( $text, $dest = 'all', array $context = array() ) {
 			'%5.1fM',
 			( memory_get_usage( true ) / ( 1024 * 1024 ) )
 		);
-	}
-
-	if ( $dest === 'all' ) {
-		$prefix = '';
-		if ( $wgDebugTimestamps ) {
-			// Prepend elapsed request time and real memory usage with two
-			// trailing spaces.
-			$prefix = "{$context['seconds_elapsed']} {$context['memory_used']}  ";
-		}
-		MWDebug::debugMsg( "{$prefix}{$text}" );
 	}
 
 	if ( $wgDebugLogPrefix !== '' ) {
@@ -1180,10 +1158,6 @@ function wfDebugLog(
 	}
 
 	$text = trim( $text );
-
-	if ( $dest === 'all' ) {
-		MWDebug::debugMsg( "[{$logGroup}] {$text}\n" );
-	}
 
 	$logger = MWLoggerFactory::getInstance( $logGroup );
 	$context['private'] = ( $dest === 'private' );

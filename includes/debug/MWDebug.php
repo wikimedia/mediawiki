@@ -309,11 +309,24 @@ class MWDebug {
 	 *
 	 * @since 1.19
 	 * @param string $str
+	 * @param array $context
 	 */
-	public static function debugMsg( $str ) {
+	public static function debugMsg( $str, $context = array() ) {
 		global $wgDebugComments, $wgShowDebug;
 
 		if ( self::$enabled || $wgDebugComments || $wgShowDebug ) {
+			if ( $context ) {
+				$prefix = '';
+				if ( isset( $context['prefix'] ) ) {
+					$prefix = $context['prefix'];
+				} elseif ( isset( $context['channel'] ) && $context['channel'] !== 'wfDebug' ) {
+					$prefix = $context['channel'];
+				}
+				if ( isset( $context['seconds_elapsed'] ) && isset( $context['memory_used'] ) ) {
+					$prefix .= " {$context['seconds_elapsed']} {$context['memory_used']}  ";
+				}
+				$str = $prefix . $str;
+			}
 			self::$debug[] = rtrim( UtfNormal::cleanUp( $str ) );
 		}
 	}
