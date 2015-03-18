@@ -14,19 +14,19 @@ Given(/^I am at Log in page$/) do
 end
 
 When(/^I log in with incorrect password$/) do
-  on(LoginPage).login_with(user, "incorrect password", false)
+  on(LoginPage).login_with(user, 'incorrect password', false)
 end
 
 When(/^I log in with incorrect username$/) do
-  on(LoginPage).login_with("incorrect username", password, false)
+  on(LoginPage).login_with('incorrect username', password, false)
 end
 
 When(/^I log in without entering credentials$/) do
-  on(LoginPage).login_with("", "", false)
+  on(LoginPage).login_with('', '', false)
 end
 
 When(/^I log in without entering password$/) do
-  on(LoginPage).login_with(user, "", false)
+  on(LoginPage).login_with(user, '', false)
 end
 
 Then(/^error box should be visible$/) do
