@@ -5320,6 +5320,11 @@ $wgDebugLogGroups = array();
  * inject an MWLoggerSpi instance into MWLoggerFactory and bypass the use of
  * this configuration variable entirely.
  *
+ * @par To completely disable logging:
+ * @code
+ * $wgMWLoggerDefaultSpi = array( 'class' => 'MWLoggerNullSpi' );
+ * @endcode
+ *
  * @since 1.25
  * @var array $wgMWLoggerDefaultSpi
  * @see MwLogger
