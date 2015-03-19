@@ -1,12 +1,12 @@
 /*!
- * OOjs v1.1.5 optimised for jQuery
+ * OOjs v1.1.6 optimised for jQuery
  * https://www.mediawiki.org/wiki/OOjs
  *
  * Copyright 2011-2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-02-26T01:51:06Z
+ * Date: 2015-03-19T00:42:55Z
  */
 ( function ( global ) {
 
@@ -433,6 +433,21 @@ oo.getHash.keySortReplacer = function ( key, val ) {
 	} else {
 		return val;
 	}
+};
+
+/**
+ * Get the unique values of an array, removing duplicates
+ *
+ * @param {Array} arr Array
+ * @return {Array} Unique values in array
+ */
+oo.unique = function ( arr ) {
+	return arr.reduce( function ( result, current ) {
+		if ( result.indexOf( current ) === -1 ) {
+			result.push( current );
+		}
+		return result;
+	}, [] );
 };
 
 /**
