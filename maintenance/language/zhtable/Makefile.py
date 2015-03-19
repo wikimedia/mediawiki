@@ -203,7 +203,7 @@ def customRules( path ):
     fp = open( path, 'r', encoding = 'U8' )
     ret = dict()
     for line in fp:
-        elems = line.split( '#' )[0].split()
+        elems = [e.strip() for e in line.split( '#' )[0].split( '\t' )]
         if len( elems ) > 1:
             ret[elems[0]] = elems[1]
     return ret
