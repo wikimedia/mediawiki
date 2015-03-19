@@ -1226,13 +1226,10 @@ abstract class DatabaseBase implements IDatabase {
 	 * @throws DBQueryError
 	 */
 	public function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
-		# Ignore errors during error handling to avoid infinite recursion
-		$ignore = $this->ignoreErrors( true );
 		++$this->mErrorCount;
 
-		if ( $ignore || $tempIgnore ) {
+		if ( $this->ignoreErrors() || $tempIgnore ) {
 			wfDebug( "SQL ERROR (ignored): $error\n" );
-			$this->ignoreErrors( $ignore );
 		} else {
 			$sql1line = mb_substr( str_replace( "\n", "\\n", $sql ), 0, 5 * 1024 );
 			wfLogDBError(
@@ -3324,41 +3321,40 @@ abstract class DatabaseBase implements IDatabase {
 	 * @return bool
 	 */
 	public function deadlockLoop() {
-		$this->begin( __METHOD__ );
 		$args = func_get_args();
 		$function = array_shift( $args );
-		$oldIgnore = $this->ignoreErrors( true );
 		$tries = self::DEADLOCK_TRIES;
-
 		if ( is_array( $function ) ) {
 			$fname = $function[0];
 		} else {
 			$fname = $function;
 		}
 
-		do {
-			$retVal = call_user_func_array( $function, $args );
-			$error = $this->lastError();
-			$errno = $this->lastErrno();
-			$sql = $this->lastQuery();
+		$this->begin( __METHOD__ );
 
-			if ( $errno ) {
+		$e = null;
+		do {
+			try {
+				$retVal = call_user_func_array( $function, $args );
+				break;
+			} catch ( DBQueryError $e ) {
+				$error = $this->lastError();
+				$errno = $this->lastErrno();
+				$sql = $this->lastQuery();
 				if ( $this->wasDeadlock() ) {
-					# Retry
+					// Retry after a randomized delay
 					usleep( mt_rand( self::DEADLOCK_DELAY_MIN, self::DEADLOCK_DELAY_MAX ) );
 				} else {
-					$this->reportQueryError( $error, $errno, $sql, $fname );
+					// Throw the error back up
+					throw $e;
 				}
 			}
-		} while ( $this->wasDeadlock() && --$tries > 0 );
-
-		$this->ignoreErrors( $oldIgnore );
+		} while ( --$tries > 0 );
 
 		if ( $tries <= 0 ) {
+			// Too many deadlocks; give up
 			$this->rollback( __METHOD__ );
-			$this->reportQueryError( $error, $errno, $sql, $fname );
-
-			return false;
+			throw $e;
 		} else {
 			$this->commit( __METHOD__ );
 
