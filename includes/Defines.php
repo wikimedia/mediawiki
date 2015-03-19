@@ -208,7 +208,6 @@ require_once __DIR__ . '/libs/normal/UtfNormalDefines.php';
 /**@{
  * Hook support constants
  */
-define( 'MW_SUPPORTS_EDITFILTERMERGED', 1 );
 define( 'MW_SUPPORTS_PARSERFIRSTCALLINIT', 1 );
 define( 'MW_SUPPORTS_LOCALISATIONCACHE', 1 );
 define( 'MW_SUPPORTS_CONTENTHANDLER', 1 );
