@@ -230,10 +230,7 @@ class ApiParse extends ApiBase {
 				}
 				if ( !is_null( $params['summary'] ) ) {
 					$result_array['parsedsummary'] = array();
-					ApiResult::setContent(
-						$result_array['parsedsummary'],
-						Linker::formatComment( $params['summary'], $titleObj )
-					);
+					ApiResult::setContent( $result_array['parsedsummary'], $this->formatSummary( $params['summary'], $titleObj ) );
 				}
 
 				$result->addValue( null, $this->getModuleName(), $result_array );
@@ -272,10 +269,7 @@ class ApiParse extends ApiBase {
 
 		if ( !is_null( $params['summary'] ) ) {
 			$result_array['parsedsummary'] = array();
-			ApiResult::setContent(
-				$result_array['parsedsummary'],
-				Linker::formatComment( $params['summary'], $titleObj )
-			);
+			ApiResult::setContent( $result_array['parsedsummary'], $this->formatSummary( $params['summary'], $titleObj ) );
 		}
 
 		if ( isset( $prop['langlinks'] ) ) {
@@ -497,6 +491,20 @@ class ApiParse extends ApiBase {
 		}
 
 		return $section;
+	}
+
+	/**
+	 * @param String $summary to parse
+	 * @param Title $title of the page being parsed
+	 * @return Content|bool
+	 */
+	private function formatSummary( $summary, $title ) {
+		global $wgParser;
+		if ( $this->section === 'new' ) {
+			$summary = wfMessage( 'newsectionsummary' )->rawParams( $wgParser->stripSectionName( $summary ) )
+				->inContentLanguage()->text();
+		}
+		return Linker::formatComment( $summary, $titleObj, $this->section === 'new' );
 	}
 
 	private function formatLangLinks( $links ) {
