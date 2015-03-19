@@ -3147,6 +3147,8 @@
 	"logentry-block-reblock": "$1 {{GENDER:$2|änderte}} die Sperreinstellungen für {{GENDER:$4|$3}} mit einer Sperrdauer von $5 $6",
 	"logentry-suppress-block": "$1 {{GENDER:$2|sperrte}} {{GENDER:$4|$3}} mit einer Sperrdauer von $5 $6",
 	"logentry-suppress-reblock": "$1 {{GENDER:$2|änderte}} die Sperreinstellungen für {{GENDER:$4|$3}} mit einer Sperrdauer von $5 $6",
+	"logentry-import-upload": "$1 {{GENDER:$2|importierte}} $3 durch das Hochladen einer Datei",
+	"logentry-import-interwiki": "$1 {{GENDER:$2|importierte}} $3 aus einem anderen Wiki",
 	"logentry-merge-merge": "$1 {{GENDER:$2|vereinigte}} $3 in die Seite „$4“ (Versionen bis zum $5)",
 	"logentry-move-move": "$1 {{GENDER:$2|verschob}} die Seite $3 nach $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|verschob}} die Seite $3 nach $4, ohne dabei eine Weiterleitung anzulegen",

@@ -7,7 +7,7 @@
 		]
 	},
 	"config-desc": "साँचा लिए इंस्टॉलर",
-	"config-title": "मीडियाविकी इंस्टॉलर",
+	"config-title": "मीडियाविकी  $1 इंस्टॉलेशन",
 	"config-information": "जानकारी",
 	"config-localsettings-upgrade": "<code>LocalSettings.php</code> फ़ाइल पाया गया है ।\nइस स्थापना को अपग्रेड करने के लिए, नीचे दिए गए बॉक्स में <code>$wgUpgradeKey</code>  का मान दर्ज करें।\nआपको <code>LocalSettings.php</code> में मिल जाएगा।",
 	"config-localsettings-cli-upgrade": "<code>LocalSettings.php</code> फ़ाइल पाया गया है ।\nइस स्थापना को अपग्रेड करने के लिए, बदले में कृपया करके ये चलाए <code>update.php</code>",
@@ -21,6 +21,7 @@
 	"config-page-welcome": "मीडियाविकी पर आपका स्वागत है!",
 	"config-page-dbconnect": "डेटाबेस से जुड़ें",
 	"config-page-upgrade": "मौजूदा स्थापना का नवीनीकरण",
+	"config-page-dbsettings": "डेटाबेस सेटिंग्स",
 	"config-page-name": "नाम",
 	"config-page-options": "विकल्प",
 	"config-page-install": "स्थापित करें",

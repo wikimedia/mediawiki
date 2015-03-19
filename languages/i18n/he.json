@@ -3146,6 +3146,8 @@
 	"logentry-block-reblock": "$1 {{GENDER:$2|שינה|שינתה}} את הגדרות החסימה של {{GENDER:$4|$3}} עם זמן פקיעה של $5 $6",
 	"logentry-suppress-block": "$1 {{GENDER:$2|חסם|חסמה}} את {{GENDER:$4|$3}} עם זמן פקיעה של $5 $6",
 	"logentry-suppress-reblock": "$1 {{GENDER:$2|שינה|שינתה}} את הגדרות החסימה של {{GENDER:$4|$3}} עם זמן פקיעה של $5 $6",
+	"logentry-import-upload": "$1 {{GENDER:$2|ייבא|ייבאה}} את $3 באמצעות העלאת קובץ",
+	"logentry-import-interwiki": "$1 {{GENDER:$2|ייבא|ייבאה}} את $3 מאתר ויקי אחר",
 	"logentry-merge-merge": "$1 {{GENDER:$2|מיזג|מיזגה}} את $3 לתוך $4 (גרסאות עד $5)",
 	"logentry-move-move": "$1 {{GENDER:$2|העביר|העבירה}} את הדף $3 ל{{GRAMMAR:תחילית|$4}}",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|העביר|העבירה}} את הדף $3 ל{{GRAMMAR:תחילית|$4}} בלי להשאיר הפניה",

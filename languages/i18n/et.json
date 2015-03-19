@@ -3063,6 +3063,8 @@
 	"logentry-block-reblock": "$1 {{GENDER:$2|muutis}} kasutaja {{GENDER:$4|$3}} blokeeringut; aegumistähtaeg $5 $6",
 	"logentry-suppress-block": "$1 {{GENDER:$2|blokeeris}} kasutaja {{GENDER:$4|$3}}; aegumistähtaeg $5 $6",
 	"logentry-suppress-reblock": "$1 {{GENDER:$2|muutis}} kasutaja {{GENDER:$4|$3}} blokeeringut; aegumistähtaeg $5 $6",
+	"logentry-import-upload": "$1 {{GENDER:$2|importis}} lehekülje $3 faili üleslaadimise teel",
+	"logentry-import-interwiki": "$1 {{GENDER:$2|importis}} lehekülje $3 teisest vikist",
 	"logentry-merge-merge": "$1 {{GENDER:$2|liitis}} lehekülje $3 leheküljega $4 (kuni redaktsioonini $5)",
 	"logentry-move-move": "$1 {{GENDER:$2|teisaldas}} lehekülje $3 pealkirja $4 alla",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|teisaldas}} lehekülje $3 pealkirja $4 alla ümbersuunamist maha jätmata",

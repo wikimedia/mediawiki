@@ -3160,6 +3160,8 @@
 	"logentry-block-reblock": "$1将{{GENDER:$4|$3}}的封禁设置{{GENDER:$2|更改为}}持续时间$5 $6",
 	"logentry-suppress-block": "$1{{GENDER:$2|封禁了}}{{GENDER:$4|$3}}，持续时间$5 $6",
 	"logentry-suppress-reblock": "$1将{{GENDER:$4|$3}}的封禁设置{{GENDER:$2|更改为}}持续时间$5 $6",
+	"logentry-import-upload": "$1通过上传{{GENDER:$2|导入}}了$3",
+	"logentry-import-interwiki": "$1从其他wiki{{GENDER:$2|导入}}了$3",
 	"logentry-merge-merge": "$1将$3{{GENDER:$2|合并}}至$4（修订版本至$5）",
 	"logentry-move-move": "$1{{GENDER:$2|移动}}页面$3至$4",
 	"logentry-move-move-noredirect": "$1{{GENDER:$2|移动}}页面$3至$4，不留重定向",

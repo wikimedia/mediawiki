@@ -251,6 +251,7 @@
 	"apihelp-parse-param-redirects": "如果<var>$1page</var>或<var>$1pageid</var>被设置为一个重定向，则解析它。",
 	"apihelp-parse-param-oldid": "解析该修订版本的内容。覆盖<var>$1page</var>和<var>$1pageid</var>。",
 	"apihelp-parse-param-effectivelanglinks": "包含由扩展提供的语言链接（用于与<kbd>$1prop=langlinks</kbd>一起使用）。",
+	"apihelp-parse-param-sectiontitle": "当<var>section</var>为<kbd>new</kbd>时新段落标题。\n\n不像页面编辑，当省略或为空时将不会备选为<var>summary</var>。",
 	"apihelp-parse-param-disablepp": "从解析器输出中禁用PP报告。",
 	"apihelp-parse-param-disableeditsection": "从解析器输出中禁用编辑段落链接。",
 	"apihelp-parse-param-generatexml": "生成XML解析树（需要内容模型<code>$1</code>）。",

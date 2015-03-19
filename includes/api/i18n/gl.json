@@ -113,6 +113,7 @@
 	"apihelp-expandtemplates-param-title": "Título da páxina.",
 	"apihelp-expandtemplates-param-text": "Sintaxis wiki a converter.",
 	"apihelp-expandtemplates-param-revid": "ID de revisión, para <nowiki>{{REVISIONID}}</nowiki> e variables similares.",
+	"apihelp-expandtemplates-param-prop": "Pezas de información a retornar:\n;wikitext:O texto wiki expandido.\n;categories:Calquer categoría presente na entrada que non estea representada na saída do texto wiki\n;properties:Propiedades da páxina definidas por palabras máxicas expandidas no texto wiki\n;volatile:Definir se a saída é volátil e se non debe usarse noutra parte da páxina.\n;ttl:Tempo máximo a partir do cal os cachés do resultado deben invalidarse.\n;parsetree:O análise sintáctico en árbore do XML de entrada.\nTeña en conta que se non se selecciona ningún valor o resultado conterá o texto wiki, pero a saída estará nun formato desprezado.",
 	"apihelp-expandtemplates-param-includecomments": "Cando queria incluír comentarios HTML na saída.",
 	"apihelp-expandtemplates-param-generatexml": "Xenerar árbore de análise XML (reemprazado por $1prop=parsetree).",
 	"apihelp-expandtemplates-example-simple": "Expandir o wikitexto <kbd><nowiki>{{Project:Sandbox}}</nowiki></kbd>.",
