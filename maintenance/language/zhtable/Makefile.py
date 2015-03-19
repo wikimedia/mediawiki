@@ -203,13 +203,16 @@ def customRules( path ):
     fp = open( path, 'r', encoding = 'U8' )
     ret = dict()
     for line in fp:
-        elems = line.split( '#' )[0].split()
+        line = line.rstrip( '\r\n' )
+        if '#' in line:
+            line = line.split( '#' )[0].rstrip()
+        elems = line.split( '\t' )
         if len( elems ) > 1:
             ret[elems[0]] = elems[1]
     return ret
 
 def dictToSortedList( src_table, pos ):
-    return sorted( src_table.items(), key = lambda m: m[pos] )
+    return sorted( src_table.items(), key = lambda m: ( m[pos], m[1 - pos] ) )
 
 def translate( text, conv_table ):
     i = 0
@@ -229,7 +232,7 @@ def manualWordsTable( path, conv_table, reconv_table ):
     reconv_table = {}
     wordlist = [line.split( '#' )[0].strip() for line in fp]
     wordlist = list( set( wordlist ) )
-    wordlist.sort( key = len, reverse = True )
+    wordlist.sort( key = lambda w: ( len(w), w ), reverse = True )
     while wordlist:
         word = wordlist.pop()
         new_word = translate( word, conv_table )
@@ -241,7 +244,7 @@ def manualWordsTable( path, conv_table, reconv_table ):
 
 def defaultWordsTable( src_wordlist, src_tomany, char_conv_table, char_reconv_table ):
     wordlist = list( src_wordlist )
-    wordlist.sort( key = len, reverse = True )
+    wordlist.sort( key = lambda w: ( len(w), w ), reverse = True )
     word_conv_table = {}
     word_reconv_table = {}
     conv_table = char_conv_table.copy()
@@ -276,7 +279,7 @@ def PHPArray( table ):
 def main():
     #Get Unihan.zip:
     url = 'http://www.unicode.org/Public/%s/ucd/Unihan.zip' % UNIHAN_VER
-    han_dest = 'Unihan.zip'
+    han_dest = 'Unihan-%s.zip' % UNIHAN_VER
     download( url, han_dest )
     
     # Get scim-tables-$(SCIM_TABLES_VER).tar.gz:
