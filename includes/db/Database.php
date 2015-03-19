@@ -1226,13 +1226,10 @@ abstract class DatabaseBase implements IDatabase {
 	 * @throws DBQueryError
 	 */
 	public function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
-		# Ignore errors during error handling to avoid infinite recursion
-		$ignore = $this->ignoreErrors( true );
 		++$this->mErrorCount;
 
-		if ( $ignore || $tempIgnore ) {
+		if ( $this->ignoreErrors() || $tempIgnore ) {
 			wfDebug( "SQL ERROR (ignored): $error\n" );
-			$this->ignoreErrors( $ignore );
 		} else {
 			$sql1line = mb_substr( str_replace( "\n", "\\n", $sql ), 0, 5 * 1024 );
 			wfLogDBError(
@@ -3327,7 +3324,6 @@ abstract class DatabaseBase implements IDatabase {
 		$this->begin( __METHOD__ );
 		$args = func_get_args();
 		$function = array_shift( $args );
-		$oldIgnore = $this->ignoreErrors( true );
 		$tries = self::DEADLOCK_TRIES;
 
 		if ( is_array( $function ) ) {
@@ -3351,8 +3347,6 @@ abstract class DatabaseBase implements IDatabase {
 				}
 			}
 		} while ( $this->wasDeadlock() && --$tries > 0 );
-
-		$this->ignoreErrors( $oldIgnore );
 
 		if ( $tries <= 0 ) {
 			$this->rollback( __METHOD__ );
