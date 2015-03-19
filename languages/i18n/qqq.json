@@ -1613,6 +1613,7 @@
 	"listfiles-delete": "Text of the delete links next to the entries on [[Special:ListFiles]], surrounded by parentheses.\n{{Identical|Delete}}",
 	"listfiles-summary": "This message is displayed at the top of [[Special:ImageList]] to explain how to use that special page.",
 	"listfiles_search_for": "Input label for the form displayed on [[Special:ListFiles]].",
+	"listfiles-userdoesnotexist": "This message is displayed on [[Special:ListFiles]] when a invalid username is entered.",
 	"imgfile": "{{Identical|File}}",
 	"listfiles": "Page title and grouping label for the form displayed on [[Special:ListFiles]].\n{{Identical|File list}}",
 	"listfiles_thumb": "{{Identical|Thumbnail}}",
