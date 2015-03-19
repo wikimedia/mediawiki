@@ -823,6 +823,7 @@ return array(
 	'mediawiki.api.options' => array(
 		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.options.js',
 		'dependencies' => 'mediawiki.api',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.api.parse' => array(
 		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.parse.js',
