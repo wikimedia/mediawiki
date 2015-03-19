@@ -58,7 +58,6 @@ $specialPageAliases = array(
 	'CreateAccount'             => array( 'Benutzerkonto_anlegen' ),
 	'Deadendpages'              => array( 'Sackgassenseiten' ),
 	'DeletedContributions'      => array( 'Gelöschte_Beiträge' ),
-	'Diff'                      => array( 'Unterschied' ),
 	'DoubleRedirects'           => array( 'Doppelte_Weiterleitungen' ),
 	'EditWatchlist'             => array( 'Beobachtungsliste_bearbeiten' ),
 	'Emailuser'                 => array( 'E-Mail_senden', 'Mailen', 'E-Mail' ),
