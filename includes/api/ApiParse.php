@@ -228,12 +228,11 @@ class ApiParse extends ApiBase {
 					$result_array['wikitext'] = array();
 					ApiResult::setContent( $result_array['wikitext'], $this->content->serialize( $format ) );
 				}
-				if ( !is_null( $params['summary'] ) ) {
+				if ( !is_null( $params['summary'] ) ||
+					( !is_null( $params['sectiontitle'] ) && $this->section === 'new' )
+				) {
 					$result_array['parsedsummary'] = array();
-					ApiResult::setContent(
-						$result_array['parsedsummary'],
-						Linker::formatComment( $params['summary'], $titleObj )
-					);
+					ApiResult::setContent( $result_array['parsedsummary'], $this->formatSummary( $titleObj, $params ) );
 				}
 
 				$result->addValue( null, $this->getModuleName(), $result_array );
@@ -270,12 +269,11 @@ class ApiParse extends ApiBase {
 			ApiResult::setContent( $result_array['text'], $p_result->getText() );
 		}
 
-		if ( !is_null( $params['summary'] ) ) {
+		if ( !is_null( $params['summary'] ) ||
+			( !is_null( $params['sectiontitle'] ) && $this->section === 'new' )
+		) {
 			$result_array['parsedsummary'] = array();
-			ApiResult::setContent(
-				$result_array['parsedsummary'],
-				Linker::formatComment( $params['summary'], $titleObj )
-			);
+			ApiResult::setContent( $result_array['parsedsummary'], $this->formatSummary( $titleObj, $params ) );
 		}
 
 		if ( isset( $prop['langlinks'] ) ) {
@@ -497,6 +495,30 @@ class ApiParse extends ApiBase {
 		}
 
 		return $section;
+	}
+
+	/**
+	 * This mimicks the behavior of EditPage in formatting a summary
+	 *
+	 * @param Title $title of the page being parsed
+	 * @param Array $params the API parameters of the request
+	 * @return Content|bool
+	 */
+	private function formatSummary( $title, $params ) {
+		global $wgParser;
+		$summary = !is_null( $params['summary'] ) ? $params['summary'] : '';
+		$sectionTitle = !is_null( $params['sectiontitle'] ) ? $params['sectiontitle'] : '';
+
+		if ( $this->section === 'new' && ( $sectionTitle === '' || $summary === '' ) ) {
+			if( $sectionTitle !== '' ) {
+				$summary = $params['sectiontitle'];
+			}
+			if ( $summary !== '' ) {
+				$summary = wfMessage( 'newsectionsummary' )->rawParams( $wgParser->stripSectionName( $summary ) )
+					->inContentLanguage()->text();
+			}
+		}
+		return Linker::formatComment( $summary, $title, $this->section === 'new' );
 	}
 
 	private function formatLangLinks( $links ) {
