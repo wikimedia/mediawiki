@@ -135,6 +135,67 @@
 				// emulate jQuery.proxy() behavior
 				wrappedHandler.guid = handler.guid = handler.guid || $.guid++;
 			} );
+
+			// There is no easy way to access user callbacks in $.ajax as it uses a promise
+			// mechanism; instead we replace the XHR object with a proxy and use that to wrap the
+			// internal jQuery callback that handles the onreadystatechange event. This will miss
+			// some things such as JSONP requests, but still get most things.
+			$.ajax = mw.errorLogging.decorateWithArgsCallback( $.ajax, function ( args ) {
+				var options, finalOptions;
+
+				if ( typeof args[0] === 'object' ) {
+					options = args[0] || ( args[0] = {} );
+				} else {
+					options = args[1] || ( args[1] = {} );
+				}
+				finalOptions = $.ajaxSetup( {}, options );
+
+				options.xhr = function mediaWikiErrorLoggingDecoratedXhrFactory() {
+					var proxyXhr = {},
+						realXhr = finalOptions.xhr.call( this ),
+						xhrProperties = ['readyState', 'status', 'responseText', 'statusText'].concat( finalOptions.xhrFields || [] ),
+						xhrMethods = ['open', 'overrideMimeType', 'setRequestHeader', 'getAllResponseHeaders', 'send', 'abort'];
+
+					try { // IE 8 throws if defineProperty is used on non-DOM objects
+						$.each( xhrProperties, function ( _, prop ) {
+							Object.defineProperty( proxyXhr, prop, {
+								enumerable: true,
+								configurable: true,
+								get: function () {
+									return realXhr[prop];
+								},
+								set: function ( val ) {
+									realXhr[prop] = val;
+								}
+							} );
+						} );
+
+						$.each( xhrMethods, function ( _, method ) {
+							if ( realXhr[method] ) {
+								proxyXhr[method] = function () {
+									var context = this === proxyXhr ? realXhr : this;
+									return mw.errorLogging.safeApply( realXhr[method], context, arguments );
+								};
+							}
+						} );
+
+						Object.defineProperty( proxyXhr, 'onreadystatechange', {
+							enumerable: true,
+							configurable: true,
+							get: function () {
+								return realXhr.onreadystatechange;
+							},
+							set: function ( val ) {
+								realXhr.onreadystatechange = mw.errorLogging.wrap( val, 'xhr.onreadystatechange' );
+							}
+						} );
+
+						return proxyXhr;
+					} catch ( e ) {
+						return realXhr;
+					}
+				};
+			} );
 		}
 	};
 }( mediaWiki, jQuery ) );
