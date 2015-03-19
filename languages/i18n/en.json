@@ -1447,6 +1447,7 @@
 	"listfiles-delete": "delete",
 	"listfiles-summary": "This special page shows all uploaded files.",
 	"listfiles_search_for": "Search for media name:",
+	"listfiles-userdoesnotexist": "User account \"$1\" is not registered.",
 	"imgfile": "file",
 	"listfiles": "File list",
 	"listfiles_thumb": "Thumbnail",

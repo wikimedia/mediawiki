@@ -92,6 +92,15 @@ class ImageListPager extends TablePager {
 			if ( !is_null( $nt ) ) {
 				$this->mUserName = $nt->getText();
 			}
+			if ( !User::isValidUserName( $userName ) ) {
+				$this->getOutput()->wrapWikiMsg(
+					"<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
+						array(
+							'listfiles-userdoesnotexist',
+							wfEscapeWikiText( $userName ),
+						)
+				);
+			}
 		}
 
 		if ( $search !== '' && !$this->getConfig()->get( 'MiserMode' ) ) {
