@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 /**
  * Display an error page when there is no LocalSettings.php file.
  *
@@ -55,7 +57,6 @@ try {
 			'path' => $path,
 			'ext' => $ext,
 			'localSettingsExists' => file_exists( MW_CONFIG_FILE ),
-			'installerStarted' => $installerStarted
 		)
 	);
 } catch ( Exception $e ) {
