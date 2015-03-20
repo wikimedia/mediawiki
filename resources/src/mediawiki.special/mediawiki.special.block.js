@@ -12,7 +12,7 @@
 		function updateBlockOptions( instant ) {
 			var blocktarget = $.trim( $blockTarget.val() ),
 				isEmpty = blocktarget === '',
-				isIp = mw.util.isIPv4Address( blocktarget, true ) || mw.util.isIPv6Address( blocktarget, true ),
+				isIp = mw.util.isIPAddress( blocktarget, true ),
 				isIpRange = isIp && blocktarget.match( /\/\d+$/ );
 
 			if ( isIp && !isEmpty ) {
