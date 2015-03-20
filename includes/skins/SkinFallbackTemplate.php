@@ -63,7 +63,9 @@ class SkinFallbackTemplate extends BaseTemplate {
 			return $this->getMsg( 'default-skin-not-found' )->params(
 				$defaultSkin,
 				implode( "\n", $skinsInstalledText ),
-				implode( "\n", $skinsInstalledSnippet )
+				implode( "\n", $skinsInstalledSnippet ),
+				count( $skinsInstalledText ),
+				count( $skinsInstalledSnippet )
 			)->parseAsBlock();
 		} else {
 			return $this->getMsg( 'default-skin-not-found-no-skins' )->params(
