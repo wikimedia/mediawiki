@@ -76,7 +76,9 @@ module.exports = function ( grunt ) {
 				frameworks: [ 'qunit' ],
 				reporters: [ 'dots' ],
 				singleRun: true,
-				autoWatch: false
+				autoWatch: false,
+				// Some tests in extensions don't yield for more than the default 10s (T89075)
+				browserNoActivityTimeout: 60 * 1000
 			},
 			main: {
 				browsers: [ 'Chrome' ]
