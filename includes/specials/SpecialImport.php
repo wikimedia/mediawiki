@@ -91,6 +91,18 @@ class SpecialImport extends SpecialPage {
 		$request = $this->getRequest();
 		if ( $request->wasPosted() && $request->getVal( 'action' ) == 'submit' ) {
 			$this->doImport();
+		} elseif ( !is_null( $par ) ) {
+			// Per T45426 request, we allow /page or /wiki:page as par.
+			$source = explode( ':', $par, 2 );
+			if ( count( $source ) == 1 ) {
+				$this->frompage = $source[0];
+			} else {
+				$this->interwiki = $source[0];
+				$this->frompage = $source[1];
+			}
+		} else {
+			$this->interwiki = $request->getVal( 'wiki' );
+			$this->frompage = $request->getVal( 'page' );
 		}
 		$this->showForm();
 	}
