@@ -97,8 +97,21 @@ module.exports = function ( grunt ) {
 		}
 	} );
 
+	grunt.registerTask( 'assert-mw-env', function () {
+		if ( !process.env.MW_SERVER ) {
+			grunt.log.error( 'Environment variable MW_SERVER must be set.\n' +
+				'Set this like $wgServer, e.g. "http://localhost"'
+			);
+		}
+		if ( !process.env.MW_SCRIPT_PATH ) {
+			grunt.log.error( 'Environment variable MW_SCRIPT_PATH must be set.\n' +
+				'Set this like $wgScriptPath, e.g. "/w"');
+		}
+		return !!( process.env.MW_SERVER && process.env.MW_SCRIPT_PATH );
+	} );
+
 	grunt.registerTask( 'lint', ['jshint', 'jscs', 'jsonlint', 'banana'] );
-	grunt.registerTask( 'qunit', 'karma:main' );
+	grunt.registerTask( 'qunit', [ 'assert-mw-env', 'karma:main' ] );
 
 	grunt.registerTask( 'test', ['lint'] );
 	grunt.registerTask( 'default', 'test' );
