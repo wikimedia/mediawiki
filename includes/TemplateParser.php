@@ -79,7 +79,7 @@ class TemplateParser {
 	 */
 	public function getTemplate( $templateName ) {
 		// If a renderer has already been defined for this template, reuse it
-		if ( isset( $this->renderers[$templateName] ) ) {
+		if ( isset( $this->renderers[$templateName] ) && is_callable( $this->renderers[$templateName] ) ) {
 			return $this->renderers[$templateName];
 		}
 
@@ -134,6 +134,9 @@ class TemplateParser {
 		}
 
 		$renderer = eval( $code );
+		if ( !is_callable( $renderer ) ) {
+			throw new RuntimeException( "Requested template, {$templateName}, is not callable" );
+		}
 		return $this->renderers[$templateName] = $renderer;
 	}
 
