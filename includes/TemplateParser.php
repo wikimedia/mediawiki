@@ -198,7 +198,7 @@ class TemplateParser {
 	 * @param array $scopes
 	 * @return string
 	 */
-	public function processTemplate( $templateName, $args, array $scopes = array() ) {
+	public function processTemplate( $templateName, $args = array(), array $scopes = array() ) {
 		$template = $this->getTemplate( $templateName );
 		return call_user_func( $template, $args, $scopes );
 	}
