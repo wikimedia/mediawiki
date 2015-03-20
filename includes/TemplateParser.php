@@ -197,9 +197,13 @@ class TemplateParser {
 	 * @param mixed $args
 	 * @param array $scopes
 	 * @return string
+	 * @throws RuntimeException
 	 */
 	public function processTemplate( $templateName, $args, array $scopes = array() ) {
 		$template = $this->getTemplate( $templateName );
+		if ( !is_callable( $template ) ) {
+			throw new RuntimeException( "Requested template, {$templateName}, is not callable" );
+		}
 		return call_user_func( $template, $args, $scopes );
 	}
 }
