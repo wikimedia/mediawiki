@@ -47,7 +47,8 @@
 			"Tjernobyl",
 			"Urhixidur",
 			"아라",
-			"Thomsen"
+			"Thomsen",
+			"Knud Winckelmann"
 		]
 	},
 	"tog-underline": "Understreg henvisninger:",
@@ -774,7 +775,7 @@
 	"revdelete-hide-image": "Skjul filindhold",
 	"revdelete-hide-name": "Skjul handling og mål",
 	"revdelete-hide-comment": "Redigeringssammendrag",
-	"revdelete-hide-user": "Brugerens brugernavn/IP-adrsse",
+	"revdelete-hide-user": "Brugerens brugernavn/IP-adresse",
 	"revdelete-hide-restricted": "Skjul også informationen for administratorer",
 	"revdelete-radio-same": "(ingen ændring)",
 	"revdelete-radio-set": "Skjult",

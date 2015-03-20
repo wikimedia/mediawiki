@@ -14,7 +14,8 @@
 			"Reedy",
 			"ne.wikipedia.org sysops",
 			"सरोज कुमार ढकाल",
-			"아라"
+			"아라",
+			"Steinsplitter"
 		]
 	},
 	"tog-underline": "सम्बन्ध निम्न रेखाङ्कन:",
@@ -237,8 +238,8 @@
 	"disclaimers": "अस्विकारोक्तिहरु",
 	"disclaimerpage": "Project:सामान्य अस्वीकारोक्ति",
 	"edithelp": "सम्पादन सहायता",
-	"mainpage": "मुख्य पृष्ठ",
-	"mainpage-description": "मुख्य पृष्ठ",
+	"mainpage": "'गृह पृष्ठ",
+	"mainpage-description": "'गृह पृष्ठ",
 	"policy-url": "Project:निति",
 	"portal": "सामाजिक पोर्टल",
 	"portal-url": "Project:सामाजिक पोर्टल",
@@ -1880,7 +1881,6 @@
 	"import-invalid-interwiki": "खुलाइएको विकिबाट आयात गर्न सकिएन",
 	"importlogpage": "आयात सूची",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|संशोधन|संशोधनहरु}}",
-	"import-logentry-interwiki": " $1लाई अन्तरविकिकरण गरियो",
 	"import-logentry-interwiki-detail": "$2 देखि $1 {{PLURAL:$1|पुनरावलोकन|पुनरावलोकनहरु}}",
 	"tooltip-pt-userpage": "तपाईको प्रयोगकर्ता पृष्ठ",
 	"tooltip-pt-anonuserpage": "तपाईले जुन IP ठेगानाको रुपमा सम्पादन गर्दै हुनुहुन्छ , त्यसको प्रयोगकर्ता पृष्ठ निम्न छ :",

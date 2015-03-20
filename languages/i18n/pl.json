@@ -1588,6 +1588,7 @@
 	"unusedimages": "Nieużywane pliki",
 	"wantedcategories": "Brakujące kategorie",
 	"wantedpages": "Najpotrzebniejsze strony",
+	"wantedpages-summary": "Najczęściej linkowane nieistniejące strony, z wyłączeniem stron, do których linkują wyłącznie przekierowania. Lista nieistniejących stron, do których linkują przekierowania, znajduje się na [[{{#special:BrokenRedirects}}]].",
 	"wantedpages-badtitle": "Nieprawidłowy tytuł wśród wyników – $1",
 	"wantedfiles": "Potrzebne pliki",
 	"wantedfiletext-cat": "Następujące pliki są używane, ale nie istnieją. Pliki z obcych repozytoriów mogą być wymienione pomimo istnienia. Takie fałszywe wyniki zostaną <del>przekreślone</del>. Ponadto strony, które osadzają pliki, które nie istnieją, są wymienione w [[:$1]].",

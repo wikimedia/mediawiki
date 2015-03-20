@@ -33,7 +33,7 @@
 	"apihelp-createaccount-param-password": "密碼 (若有設定 <var>$1mailpassword</var> 則可略過)。",
 	"apihelp-createaccount-param-domain": "外部認証使用的網域 (選填)。",
 	"apihelp-createaccount-param-token": "已取得帳號建立密鑰於第一次請求。",
-	"apihelp-createaccount-param-email": "使用者的電子郵件位址 (選填)。",
+	"apihelp-createaccount-param-email": "使用者的電子郵件地址 (選填) 。",
 	"apihelp-createaccount-param-realname": "使用者的真實姓名 (選填)。",
 	"apihelp-createaccount-param-mailpassword": "若設為其他值，將會以電子郵件寄送隨機密碼給使用者。",
 	"apihelp-createaccount-param-reason": "建立帳號時選填的原因，會被記錄到日誌當中。",

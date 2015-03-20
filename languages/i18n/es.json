@@ -3174,6 +3174,8 @@
 	"logentry-block-reblock": "$1 {{GENDER:$2|cambió}} la configuración del bloqueo de {{GENDER:$4|$3}} durante un plazo de $5 $6",
 	"logentry-suppress-block": "$1 {{GENDER:$2|bloqueó}} {{GENDER:$4|$3}} durante un plazo de $5 $6",
 	"logentry-suppress-reblock": "$1 {{GENDER:$2|cambió}} la configuración del bloqueo de {{GENDER:$4|$3}} durante un plazo de $5 $6",
+	"logentry-import-upload": "$1 {{GENDER:$2|importó}} $3 subiendo un archivo",
+	"logentry-import-interwiki": "$1 {{GENDER:$2|importó}} $3 desde otro wiki",
 	"logentry-merge-merge": "$1 {{GENDER:$2|combinó}} $3 en $4 (revisiones hasta el $5)",
 	"logentry-move-move": "$1 {{GENDER:$2|trasladó}} la página $3 a $4",
 	"logentry-move-move-noredirect": "$1 movió la página $3 a $4 sin dejar una redirección",

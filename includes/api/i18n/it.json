@@ -7,6 +7,11 @@
 		]
 	},
 	"apihelp-block-description": "Blocca  un utente.",
+	"apihelp-emailuser-description": "Manda un'e-mail ad un utente.",
+	"apihelp-emailuser-param-ccme": "Mandami una copia di questa mail.",
+	"apihelp-expandtemplates-description": "Espandi tutti i template nel wikitesto.",
+	"apihelp-expandtemplates-param-title": "Titolo della pagina.",
+	"apihelp-expandtemplates-param-text": "Wikitesto da convertire.",
 	"apihelp-query+recentchanges-example-simple": "Elenco modifiche recenti.",
 	"apihelp-upload-example-url": "Carica da un URL.",
 	"api-help-parameters": "{{PLURAL:$1|Parametro|Parametri}}:",

@@ -2975,6 +2975,7 @@
 	"tags-hitcount": "$1 {{PLURAL:$1|зьмена|зьмены|зьменаў}}",
 	"tags-manage-no-permission": "Вы ня маеце правоў на зьмену метак.",
 	"tags-create-heading": "Стварэньне новай меткі",
+	"tags-create-tag-name": "Назва меткі:",
 	"comparepages": "Параўнаньне старонак",
 	"compare-page1": "Старонка 1",
 	"compare-page2": "Старонка 2",

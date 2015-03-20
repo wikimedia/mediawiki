@@ -527,6 +527,7 @@
 	"resettokens-legend": "ტოკენების ჩამოყრა",
 	"resettokens-tokens": "ჟეტონები:",
 	"resettokens-token-label": "$1 (მიმდინარე მნიშვნელობა: $2)",
+	"resettokens-resetbutton": "არჩეული ტოკენების ჩამოყრა",
 	"bold_sample": "მუქი ტექსტი",
 	"bold_tip": "მუქი ტექსტი",
 	"italic_sample": "კურსივი",
