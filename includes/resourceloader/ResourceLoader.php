@@ -1326,26 +1326,11 @@ MESSAGE;
 	 * Returns JS code which runs given JS code if the client-side framework is
 	 * present.
 	 *
-	 * @deprecated since 1.25; use makeInlineScript instead
 	 * @param string $script JavaScript code
 	 * @return string
 	 */
 	public static function makeLoaderConditionalScript( $script ) {
 		return "if(window.mw){\n" . trim( $script ) . "\n}";
-	}
-
-	/**
-	 * Construct an inline script tag with given JS code.
-	 *
-	 * The code will be wrapped in a closure, and it will be executed by ResourceLoader
-	 * only if the client has adequate support for MediaWiki JavaScript code.
-	 *
-	 * @param string $script JavaScript code
-	 * @return string HTML
-	 */
-	public static function makeInlineScript( $script ) {
-		$js = 'var _mwq = _mwq || []; _mwq.push( function ( mw ) { ' . $script . ' } );';
-		return Html::inlineScript( $js );
 	}
 
 	/**

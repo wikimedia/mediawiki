@@ -3693,7 +3693,7 @@ HTML
 		}
 
 		$script .= '});';
-		$wgOut->addScript( ResourceLoader::makeInlineScript( $script ) );
+		$wgOut->addScript( Html::inlineScript( ResourceLoader::makeLoaderConditionalScript( $script ) ) );
 
 		$toolbar = '<div id="toolbar"></div>';
 

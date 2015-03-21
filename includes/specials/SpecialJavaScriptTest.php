@@ -168,13 +168,15 @@ HTML;
 		// The testrunner configures QUnit and essentially depends on it. However, test suites
 		// are reusable in environments that preload QUnit (or a compatibility interface to
 		// another framework). Therefore we have to load it ourselves.
-		$out->addHtml( ResourceLoader::makeInlineScript(
-			Xml::encodeJsCall( 'mw.loader.using', array(
-				array( 'jquery.qunit', 'jquery.qunit.completenessTest' ),
-				new XmlJsCode(
-					'function () {' . Xml::encodeJsCall( 'mw.loader.load', array( $modules ) ) . '}'
-				)
-			) )
+		$out->addHtml( Html::inlineScript(
+			ResourceLoader::makeLoaderConditionalScript(
+				Xml::encodeJsCall( 'mw.loader.using', array(
+					array( 'jquery.qunit', 'jquery.qunit.completenessTest' ),
+					new XmlJsCode(
+						'function () {' . Xml::encodeJsCall( 'mw.loader.load', array( $modules ) ) . '}'
+					)
+				) )
+			)
 		) );
 	}
 
