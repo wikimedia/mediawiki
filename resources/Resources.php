@@ -908,7 +908,7 @@ return array(
 
 	'mediawiki.helplink' => array(
 		'styles' => array(
-			'resources/src/mediawiki/mediawiki.helplink.css',
+			'resources/src/mediawiki/mediawiki.helplink.less',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
