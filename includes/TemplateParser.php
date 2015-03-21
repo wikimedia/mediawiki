@@ -160,7 +160,10 @@ class TemplateParser {
 		if ( substr( $code, 0, 5 ) === '<?php' ) {
 			$code = substr( $code, 5 );
 		}
-
+		// Strip the "?>" added by lightncandy so that it can be eval()ed
+		if ( substr( $code, -2 ) === '?>' ) {
+			$code = substr( $code, 0, -2 );
+		}
 		return $code;
 	}
 
