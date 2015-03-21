@@ -91,6 +91,18 @@ abbr[title],
 	color: #aaa; /* gray */
 }
 
+/*
+ * Bidi-isolate these numbers.
+ * See https://phabricator.wikimedia.org/T93484
+ */
+.mw-plusminus-pos,
+.mw-plusminus-neg,
+.mw-plusminus-null {
+	unicode-bidi: -moz-isolate;
+	unicode-bidi: -webkit-isolate;
+	unicode-bidi: isolate;
+}
+
 /**
  * Links to redirects appear italicized on [[Special:AllPages]], [[Special:PrefixIndex]],
  * [[Special:Watchlist/edit]] and in category listings.
