@@ -74,7 +74,7 @@ class TemplateParser {
 	/**
 	 * Returns a given template function if found, otherwise throws an exception.
 	 * @param string $templateName The name of the template (without file suffix)
-	 * @return Function
+	 * @return callable
 	 * @throws RuntimeException
 	 */
 	public function getTemplate( $templateName ) {
@@ -114,11 +114,8 @@ class TemplateParser {
 			if ( !$code ) {
 				$code = $this->compileForEval( $fileContents, $filename );
 
-				// Prefix the code with a keyed hash (64 hex chars) as an integrity check
-				$code = hash_hmac( 'sha256', $code, $secretKey ) . $code;
-
-				// Cache the compiled PHP code
-				$cache->set( $key, $code );
+				// Prefix the cached code with a keyed hash (64 hex chars) as an integrity check
+				$cache->set( $key, hash_hmac( 'sha256', $code, $secretKey ) . $code );
 			} else {
 				// Verify the integrity of the cached PHP code
 				$keyedHash = substr( $code, 0, 64 );
