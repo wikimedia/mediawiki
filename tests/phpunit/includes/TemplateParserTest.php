@@ -4,6 +4,13 @@
  * @group Templates
  */
 class TemplateParserTest extends MediaWikiTestCase {
+	protected function setUp() {
+		parent::setUp();
+
+		$this->setMwGlobals( array(
+			'wgSecretKey' => 'foo',
+		) );
+
 	/**
 	 * @covers TemplateParser::compile
 	 */
