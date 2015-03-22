@@ -290,6 +290,7 @@ class MWLoggerLegacyLogger extends AbstractLogger {
 	 *
 	 * @param string $message
 	 * @param array $context
+	 * @return string Interpolated message
 	 */
 	public static function interpolate( $message, array $context ) {
 		if ( strpos( $message, '{' ) !== false ) {
