@@ -113,7 +113,7 @@
 	"config-db-install-account": "Benutzerkonto für die Installation",
 	"config-db-username": "Name des Datenbankbenutzers:",
 	"config-db-password": "Passwort des Datenbankbenutzers:",
-	"config-db-password-empty": "Bitte ein Passwort für den neuen Datenbankbenutzer angeben: $1\nObwohl es möglich ist, Datenbankbenutzer ohne Passwort anzulegen, so ist dies nicht sicher.",
+	"config-db-password-empty": "Bitte ein Passwort für den neuen Datenbankbenutzer angeben: $1.\nObwohl es möglich ist, Datenbankbenutzer ohne Passwort anzulegen, so ist dies nicht sicher.",
 	"config-db-username-empty": "Du musst einen Wert für „{{int:config-db-username}}“ eingeben",
 	"config-db-install-username": "Den Benutzernamen angeben, der für die Verbindung mit der Datenbank während des Installationsvorgangs genutzt werden soll. Es handelt sich dabei nicht um den Benutzernamen für das MediaWiki-Konto, sondern um den Benutzernamen der vorgesehenen Datenbank.",
 	"config-db-install-password": "Das Passwort angeben, das für die Verbindung mit der Datenbank während des Installationsvorgangs genutzt werden soll. Es handelt sich dabei nicht um das Passwort für das MediaWiki-Konto, sondern um das Passwort der vorgesehenen Datenbank.",

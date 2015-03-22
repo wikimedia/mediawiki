@@ -3150,6 +3150,7 @@
 	"logentry-block-reblock": "$1 {{GENDER:$2|zmienił|zmieniła}} ustawienia blokady dla {{GENDER:$4|$3}}, czas blokady: $5 $6",
 	"logentry-suppress-block": "$1 {{GENDER:$2|zablokował|zablokowała}} {{GENDER:$4|$3}}, czas blokady: $5 $6",
 	"logentry-suppress-reblock": "$1 {{GENDER:$2|zmienił|zmieniła}} ustawienia blokady dla {{GENDER:$4|$3}}, czas blokady: $5 $6",
+	"logentry-import-interwiki": "$1 {{GENDER:$2|zaimportował|zaimportowała}} $3 z innej wiki",
 	"logentry-merge-merge": "$1 {{GENDER:$2|scalił|scaliła}} stronę $3 do $4 (wersje do $5)",
 	"logentry-move-move": "$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 do $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4, bez pozostawienia przekierowania pod starym tytułem",

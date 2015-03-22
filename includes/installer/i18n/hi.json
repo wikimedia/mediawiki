@@ -3,7 +3,8 @@
 		"authors": [
 			"Smtchahal",
 			"Vivek Rai",
-			"Phoenix303"
+			"Phoenix303",
+			"संजीव कुमार"
 		]
 	},
 	"config-desc": "साँचा लिए इंस्टॉलर",
@@ -21,7 +22,7 @@
 	"config-page-welcome": "मीडियाविकी पर आपका स्वागत है!",
 	"config-page-dbconnect": "डेटाबेस से जुड़ें",
 	"config-page-upgrade": "मौजूदा स्थापना का नवीनीकरण",
-	"config-page-dbsettings": "डेटाबेस सेटिंग्स",
+	"config-page-dbsettings": "डेटाबेस वरियतायें",
 	"config-page-name": "नाम",
 	"config-page-options": "विकल्प",
 	"config-page-install": "स्थापित करें",

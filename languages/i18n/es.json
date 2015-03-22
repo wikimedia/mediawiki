@@ -1687,7 +1687,7 @@
 	"unusedimagestext": "Los siguientes archivos existen pero no están insertados en ninguna página.\nPor favor note que otros sitios web pueden vincular a un archivo con un URL directo, y por tanto pueden ser listados aquí a pesar de estar en uso activo.",
 	"unusedcategoriestext": "Las siguientes categorías han sido creadas, pero ningún artículo o categoría las utiliza.",
 	"notargettitle": "No hay página objetivo",
-	"notargettext": "Especifique sobre qué página desea llevar a cabo esta acción.",
+	"notargettext": "No has especificado sobre qué página deseas llevar a cabo esta acción.",
 	"nopagetitle": "No existe la página destino",
 	"nopagetext": "La página destino que ha especificado no existe.",
 	"pager-newer-n": "{{PLURAL:$1|1 siguiente|$1 siguientes}}",
