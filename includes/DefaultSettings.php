@@ -3546,13 +3546,6 @@ $wgResourceLoaderValidateJS = true;
 $wgResourceLoaderValidateStaticJS = false;
 
 /**
- * If set to true, asynchronous loading of bottom-queue scripts in the "<head>"
- * will be enabled. This is an experimental feature that's supposed to make
- * JavaScript load faster.
- */
-$wgResourceLoaderExperimentalAsyncLoading = false;
-
-/**
  * Global LESS variables. An associative array binding variable names to
  * LESS code snippets representing their values.
  *

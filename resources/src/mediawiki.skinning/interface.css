@@ -6,6 +6,10 @@
  * they are outputted by the actual MonoBook/Vector code by convention.
  */
 
+html.hidden {
+	visibility: hidden;
+}
+
 /* Categories */
 .catlinks {
 	border: 1px solid #aaa;
