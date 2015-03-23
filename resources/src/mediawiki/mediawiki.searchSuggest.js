@@ -3,7 +3,7 @@
  */
 ( function ( mw, $ ) {
 	$( function () {
-		var api, map, resultRenderCache, searchboxesSelectors,
+		var api, map, resultRenderCache, searchboxesSelectors, isSampled,
 			// Region where the suggestions box will appear directly below
 			// (using the same width). Can be a container element or the input
 			// itself, depending on what suits best in the environment.
@@ -12,7 +12,9 @@
 			// element (not the search form, as that would leave the buttons
 			// vertically between the input and the suggestions).
 			$searchRegion = $( '#simpleSearch, #searchInput' ).first(),
-			$searchInput = $( '#searchInput' );
+			$searchInput = $( '#searchInput' ),
+			updateCallbacks = {},
+			isLoggingEnabled = mw.config.get( 'wgCirrusSearchEnableSearchLogging' );
 
 		// Compatibility map
 		map = {
@@ -50,6 +52,48 @@
 			};
 		}
 
+		/**
+		 * Track an event
+		 * @param {Object} data
+		 * @ignore
+		 */
+		function trackEvent( data ) {
+			if ( isLoggingEnabled ) {
+				mw.track( 'mediawiki.searchSuggest',  data );
+			}
+		}
+
+		/**
+		 * Callback that's run when the user changes the search input text
+		 * 'this' is the search input box
+		 * @ignore
+		 */
+		function onBeforeUpdate() {
+			// track only if the search box is not empty
+			if ( $( this ).val() ) {
+				trackEvent( {
+					action: 'session-start'
+				} );
+			}
+		}
+
+		/**
+		 * Callback that's run when suggestions have been updated either from the cache or the API
+		 * 'this' is the search input box
+		 * @ignore
+		 */
+		function onAfterUpdate() {
+			var context = this.data( 'suggestionsContext' );
+
+			trackEvent( {
+				action: 'impression-results',
+				numberOfResults: context.config.suggestions.length,
+				// FIXME: when other types of search become available change this value accordingly
+				// See the API call below (opensearch = prefix)
+				resultSetType: 'prefix'
+			} );
+		}
+
 		// The function used to render the suggestions.
 		function renderFunction( text, context ) {
 			if ( !resultRenderCache ) {
@@ -67,6 +111,27 @@
 						.attr( 'title', text )
 						.addClass( 'mw-searchSuggest-link' )
 				);
+		}
+
+		// The function used when the user makes a selection
+		function selectFunction( $input ) {
+			var context,
+				text;
+
+			if ( isLoggingEnabled ) {
+				context = $input.data( 'suggestionsContext' );
+				text = $input.val();
+
+				trackEvent( {
+					action: 'click-result',
+					numberOfResults: context.config.suggestions.length,
+					clickIndex: context.config.suggestions.indexOf( text ) + 1
+				} );
+			}
+
+			// allow the form to be submitted
+			return true;
+
 		}
 
 		function specialRenderFunction( query, context ) {
@@ -106,6 +171,34 @@
 			}
 		}
 
+		// Sample users for event logging.
+		// 1 in a 1000 users is given a golden opportunity to have their searches logged.
+		if ( isLoggingEnabled ) {
+			isSampled = $.cookie( 'isSearchLoggingEnabledForUser' );
+			if ( isSampled === null ) {
+				// 1 in a 1000 using a session cookie
+				isSampled = Math.round( Math.random() * 1000 ) === 42;
+				if ( !isSampled ) {
+					isLoggingEnabled = false;
+				}
+				$.cookie( 'isSearchLoggingEnabledForUser', isSampled );
+			} else if ( isSampled === 'false' ) {
+				isLoggingEnabled = false;
+			}
+		}
+
+		// Load the logging code if the user is in the sample
+		// Also listen to some events
+		if ( isLoggingEnabled ) {
+			mw.loader.using( 'ext.cirrusSearch.loggingSchema', function () {}, function () {
+				isLoggingEnabled = false;
+			} );
+			updateCallbacks = {
+				before: onBeforeUpdate,
+				after: onAfterUpdate
+			};
+		}
+
 		// Generic suggestions functionality for all search boxes
 		searchboxesSelectors = [
 			// Primary searchbox on every page in standard skins
@@ -119,6 +212,7 @@
 		];
 		$( searchboxesSelectors.join( ', ' ) )
 			.suggestions( {
+				update: updateCallbacks,
 				fetch: function ( query, response, maxRows ) {
 					var node = this[0];
 
@@ -145,10 +239,7 @@
 				},
 				result: {
 					render: renderFunction,
-					select: function () {
-						// allow the form to be submitted
-						return true;
-					}
+					select: selectFunction
 				},
 				cache: true,
 				highlightInput: true

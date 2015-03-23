@@ -48,6 +48,10 @@
  *		Type: Boolean, Default: true
  * highlightInput: Whether to hightlight matched portions of the input or not
  *		Type: Boolean, Default: false
+ * update: Set of callbacks for before and after update
+ *		Type: Object of Functions 'before' and 'after'
+ *      'before': Callback run in response to the user's input
+ *      'after': Callback run when results are updated either from the cache or the API
  */
 ( function ( $ ) {
 
@@ -100,6 +104,10 @@ $.suggestions = {
 				cache = context.data.cache,
 				cacheHit;
 
+			if ( typeof context.config.update.before === 'function' ) {
+				context.config.update.before.call( context.data.$textbox );
+			}
+
 			// Only fetch if the value in the textbox changed and is not empty, or if the results were hidden
 			// if the textbox is empty then clear the result div, but leave other settings intouched
 			if ( val.length === 0 ) {
@@ -114,6 +122,9 @@ $.suggestions = {
 				if ( context.config.cache && hasOwn.call( cache, val ) ) {
 					if ( +new Date() - cache[ val ].timestamp < context.config.cacheMaxAge ) {
 						context.data.$textbox.suggestions( 'suggestions', cache[ val ].suggestions );
+						if ( typeof context.config.update.after === 'function' ) {
+							context.config.update.after.call( context.data.$textbox );
+						}
 						cacheHit = true;
 					} else {
 						// Cache expired
@@ -127,6 +138,9 @@ $.suggestions = {
 						function ( suggestions ) {
 							suggestions = suggestions.slice( 0, context.config.maxRows );
 							context.data.$textbox.suggestions( 'suggestions', suggestions );
+							if ( typeof context.config.update.after === 'function' ) {
+								context.config.update.after.call( context.data.$textbox );
+							}
 							if ( context.config.cache ) {
 								cache[ val ] = {
 									suggestions: suggestions,
@@ -183,6 +197,7 @@ $.suggestions = {
 			case 'cancel':
 			case 'special':
 			case 'result':
+			case 'update':
 			case '$region':
 			case 'expandFrom':
 				context.config[property] = value;
