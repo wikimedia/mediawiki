@@ -5313,16 +5313,16 @@ $wgDebugLogGroups = array();
  *
  * The value should be an array suitable for use with
  * ObjectFactory::getObjectFromSpec(). The created object is expected to
- * implement the MWLoggerSpi interface. See ObjectFactory for additional
+ * implement the MediaWiki\Logger\Spi interface. See ObjectFactory for additional
  * details.
  *
- * Alternately the MWLoggerFactory::registerProvider method can be called to
- * inject an MWLoggerSpi instance into MWLoggerFactory and bypass the use of
- * this configuration variable entirely.
+ * Alternately the MediaWiki\Logger\LoggerFactory::registerProvider method can
+ * be called to inject an MediaWiki\Logger\Spi instance into the LoggerFactory
+ * and bypass the use of this configuration variable entirely.
  *
  * @par To completely disable logging:
  * @code
- * $wgMWLoggerDefaultSpi = array( 'class' => 'MWLoggerNullSpi' );
+ * $wgMWLoggerDefaultSpi = array( 'class' => '\\MediaWiki\\Logger\\NullSpi' );
  * @endcode
  *
  * @since 1.25
@@ -5330,7 +5330,7 @@ $wgDebugLogGroups = array();
  * @see MwLogger
  */
 $wgMWLoggerDefaultSpi = array(
-	'class' => 'MWLoggerLegacySpi',
+	'class' => '\\MediaWiki\\Logger\\LegacySpi',
 );
 
 /**

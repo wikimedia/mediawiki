@@ -18,23 +18,24 @@
  * @file
  */
 
+namespace MediaWiki\Logger;
+
 /**
- * MWLoggerFactory service provider that creates MWLoggerLegacyLogger
- * instances.
+ * LoggerFactory service provider that creates LegacyLogger instances.
  *
  * Usage:
  * @code
  * $wgMWLoggerDefaultSpi = array(
- *   'class' => 'MWLoggerLegacySpi',
+ *   'class' => '\\MediaWiki\\Logger\\LegacySpi',
  * );
  * @endcode
  *
- * @see MWLoggerFactory
+ * @see LoggerFactory
  * @since 1.25
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2014 Bryan Davis and Wikimedia Foundation.
  */
-class MWLoggerLegacySpi implements MWLoggerSpi {
+class LegacySpi implements Spi {
 
 	/**
 	 * @var array $singletons
@@ -50,7 +51,7 @@ class MWLoggerLegacySpi implements MWLoggerSpi {
 	 */
 	public function getLogger( $channel ) {
 		if ( !isset( $this->singletons[$channel] ) ) {
-			$this->singletons[$channel] = new MWLoggerLegacyLogger( $channel );
+			$this->singletons[$channel] = new LegacyLogger( $channel );
 		}
 		return $this->singletons[$channel];
 	}

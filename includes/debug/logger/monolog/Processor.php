@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Logger\Monolog;
+
 /**
  * Injects `wfHostname()` and `wfWikiID()` in all records.
  *
@@ -25,7 +27,7 @@
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2013 Bryan Davis and Wikimedia Foundation.
  */
-class MWLoggerMonologProcessor {
+class Processor {
 
 	/**
 	 * @param array $record

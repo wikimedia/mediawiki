@@ -1059,7 +1059,7 @@ function wfDebug( $text, $dest = 'all', array $context = array() ) {
 		$context['prefix'] = $wgDebugLogPrefix;
 	}
 
-	$logger = MWLoggerFactory::getInstance( 'wfDebug' );
+	$logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'wfDebug' );
 	$logger->debug( $text, $context );
 }
 
@@ -1159,7 +1159,7 @@ function wfDebugLog(
 
 	$text = trim( $text );
 
-	$logger = MWLoggerFactory::getInstance( $logGroup );
+	$logger = \MediaWiki\Logger\LoggerFactory::getInstance( $logGroup );
 	$context['private'] = ( $dest === 'private' );
 	$logger->info( $text, $context );
 }
@@ -1173,7 +1173,7 @@ function wfDebugLog(
  * @param array $context Additional logging context data
  */
 function wfLogDBError( $text, array $context = array() ) {
-	$logger = MWLoggerFactory::getInstance( 'wfLogDBError' );
+	$logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'wfLogDBError' );
 	$logger->error( trim( $text ), $context );
 }
 
@@ -1232,11 +1232,11 @@ function wfLogWarning( $msg, $callerOffset = 1, $level = E_USER_WARNING ) {
  * @param string $file Filename
  * @param array $context Additional logging context data
  * @throws MWException
- * @deprecated since 1.25 Use MWLoggerLegacyLogger::emit or UDPTransport
+ * @deprecated since 1.25 Use MediaWiki\Logger\LegacyLogger::emit or UDPTransport
  */
 function wfErrorLog( $text, $file, array $context = array() ) {
 	wfDeprecated( __METHOD__, '1.25' );
-	$logger = MWLoggerFactory::getInstance( 'wfErrorLog' );
+	$logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'wfErrorLog' );
 	$context['destination'] = $file;
 	$logger->info( trim( $text ), $context );
 }
@@ -1320,7 +1320,7 @@ function wfLogProfilingData() {
 
 	$ctx['output'] = $profiler->getOutput();
 
-	$log = MWLoggerFactory::getInstance( 'profileoutput' );
+	$log = \MediaWiki\Logger\LoggerFactory::getInstance( 'profileoutput' );
 	$log->info( "Elapsed: {elapsed}; URL: <{url}>\n{output}", $ctx );
 }
 

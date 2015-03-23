@@ -18,8 +18,13 @@
  * @file
  */
 
+namespace MediaWiki\Logger;
+
+use Monolog\Logger;
+use ObjectFactory;
+
 /**
- * MWLoggerFactory service provider that creates loggers implemented by
+ * LoggerFactory service provider that creates loggers implemented by
  * Monolog.
  *
  * Configured using an array of configuration data with the keys 'loggers',
@@ -30,11 +35,11 @@
  * section.
  *
  * Configuration will most typically be provided in the $wgMWLoggerDefaultSpi
- * global configuration variable used by MWLoggerFactory to construct its
+ * global configuration variable used by LoggerFactory to construct its
  * default SPI provider:
  * @code
  * $wgMWLoggerDefaultSpi = array(
- *   'class' => 'MWLoggerMonologSpi',
+ *   'class' => '\\MediaWiki\\Logger\\MonologSpi',
  *   'args' => array( array(
  *       'loggers' => array(
  *           '@default' => array(
@@ -48,7 +53,7 @@
  *       ),
  *       'processors' => array(
  *           'wiki' => array(
- *               'class' => 'MWLoggerMonologProcessor',
+ *               'class' => '\\MediaWiki\\Logger\\Monolog\\Processor',
  *           ),
  *           'psr' => array(
  *               'class' => '\\Monolog\\Processor\\PsrLogMessageProcessor',
@@ -81,7 +86,7 @@
  *               'formatter' => 'logstash',
  *           ),
  *           'udp2log' => array(
- *               'class' => 'MWLoggerMonologHandler',
+ *               'class' => '\\MediaWiki\\Logger\\Monolog\\Handler',
  *               'args' => array(
  *                   'udp://127.0.0.1:8420/mediawiki
  *               ),
@@ -106,7 +111,7 @@
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2014 Bryan Davis and Wikimedia Foundation.
  */
-class MWLoggerMonologSpi implements MWLoggerSpi {
+class MonologSpi implements Spi {
 
 	/**
 	 * @var array $singletons
@@ -178,7 +183,7 @@ class MWLoggerMonologSpi implements MWLoggerSpi {
 	 * @return \Monolog\Logger
 	 */
 	protected function createLogger( $channel, $spec ) {
-		$obj = new \Monolog\Logger( $channel );
+		$obj = new Logger( $channel );
 
 		if ( isset( $spec['processors'] ) ) {
 			foreach ( $spec['processors'] as $processor ) {

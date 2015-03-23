@@ -18,6 +18,13 @@
  * @file
  */
 
+namespace MediaWiki\Logger\Monolog;
+
+use LogicException;
+use MediaWiki\Logger\LegacyLogger;
+use Monolog\Handler\AbstractProcessingHandler;
+use Monolog\Logger;
+use UnexpectedValueException;
 
 /**
  * Log handler that replicates the behavior of MediaWiki's wfErrorLog()
@@ -40,7 +47,7 @@
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2013 Bryan Davis and Wikimedia Foundation.
  */
-class MWLoggerMonologHandler extends \Monolog\Handler\AbstractProcessingHandler {
+class Handler extends AbstractProcessingHandler {
 
 	/**
 	 * Log sink descriptor
@@ -90,7 +97,7 @@ class MWLoggerMonologHandler extends \Monolog\Handler\AbstractProcessingHandler 
 	public function __construct(
 		$stream,
 		$useLegacyFilter = false,
-		$level = \Monolog\Logger::DEBUG,
+		$level = Logger::DEBUG,
 		$bubble = true
 	) {
 		parent::__construct( $level, $bubble );
@@ -175,7 +182,7 @@ class MWLoggerMonologHandler extends \Monolog\Handler\AbstractProcessingHandler 
 
 	protected function write( array $record ) {
 		if ( $this->useLegacyFilter &&
-			!MWLoggerLegacyLogger::shouldEmit(
+			!LegacyLogger::shouldEmit(
 				$record['channel'], $record['message'],
 				$record['level'], $record
 		) ) {
@@ -232,5 +239,4 @@ class MWLoggerMonologHandler extends \Monolog\Handler\AbstractProcessingHandler 
 		}
 		$this->sink = null;
 	}
-
 }
