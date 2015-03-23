@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * Show an error that looks like an HTTP server error.
  * Replacement for wfHttpError().
@@ -81,7 +83,7 @@ class HttpError extends MWException {
 	}
 
 	private function doLog() {
-		$logger = MWLoggerFactory::getInstance( 'HttpError' );
+		$logger = LoggerFactory::getInstance( 'HttpError' );
 		$content = $this->content;
 
 		if ( $content instanceof Message ) {
