@@ -264,18 +264,23 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * SVG support using a transparent gradient to guarantee cross-browser
+	 * compatibility (browsers able to understand gradient syntax support also SVG).
+	 * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique
+	 *
+	 * Keep synchronized with the .background-image-svg LESS mixin in
+	 * /resources/src/mediawiki.less/mediawiki.mixins.less.
+	 *
 	 * @param string $primary Primary URI
 	 * @param string $fallback Fallback URI
 	 * @return string[] CSS declarations to use given URIs as background-image
 	 */
 	protected function getCssDeclarations( $primary, $fallback ) {
-		// SVG support using a transparent gradient to guarantee cross-browser
-		// compatibility (browsers able to understand gradient syntax support also SVG).
-		// http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique
 		return array(
 			"background-image: url($fallback);",
 			"background-image: -webkit-linear-gradient(transparent, transparent), url($primary);",
 			"background-image: linear-gradient(transparent, transparent), url($primary);",
+			"background-image: -o-linear-gradient(transparent, transparent), url($fallback);",
 		);
 	}
 
