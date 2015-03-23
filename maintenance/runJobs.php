@@ -23,6 +23,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * Maintenance script that runs pending jobs.
  *
@@ -68,7 +70,7 @@ class RunJobs extends Maintenance {
 
 		$json = ( $this->getOption( 'result' ) === 'json' );
 
-		$runner = new JobRunner( MWLoggerFactory::getInstance( 'runJobs' ) );
+		$runner = new JobRunner( LoggerFactory::getInstance( 'runJobs' ) );
 		if ( !$json ) {
 			$runner->setDebugHandler( array( $this, 'debugInternal' ) );
 		}

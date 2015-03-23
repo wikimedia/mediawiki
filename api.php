@@ -30,6 +30,8 @@
  * @file
  */
 
+use MediaWiki\Logger\LegacyLogger;
+
 // So extensions (and other code) can check whether they're running in API mode
 define( 'MW_API', true );
 
@@ -124,7 +126,7 @@ if ( $wgAPIRequestLog ) {
 	} else {
 		$items[] = "failed in ApiBeforeMain";
 	}
-	MWLoggerLegacyLogger::emit( implode( ',', $items ) . "\n", $wgAPIRequestLog );
+	LegacyLogger::emit( implode( ',', $items ) . "\n", $wgAPIRequestLog );
 	wfDebug( "Logged API request to $wgAPIRequestLog\n" );
 }
 
