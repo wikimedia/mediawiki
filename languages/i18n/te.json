@@ -21,7 +21,8 @@
 			"రహ్మానుద్దీన్",
 			"రాకేశ్వర",
 			"వైజాసత్య",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "లంకె క్రీగీత:",
@@ -2951,7 +2952,7 @@
 	"feedback-error3": "లోపం: API నుండి ప్రతిస్పందన లేదు",
 	"feedback-message": "సందేశం:",
 	"feedback-subject": "విషయం:",
-	"feedback-submit": "ప్రతిస్పందనను దాఖలుచేయి",
+	"feedback-submit": "దాఖలుచెయ్యి",
 	"feedback-thanks": "కృతజ్ఞతలు! మీ ప్రతిస్పందనను “[$2 $1]” పేజీలో చేర్చాం.",
 	"searchsuggest-search": "వెతుకు",
 	"searchsuggest-containing": "కలిగియున్న...",

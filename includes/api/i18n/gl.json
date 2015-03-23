@@ -919,6 +919,7 @@
 	"apihelp-undelete-param-reason": "Razón para restaurar.",
 	"apihelp-undelete-param-timestamps": "Selos de tempo das modificacións a restaurar. Se <var>$1timestamps</var> e <var>$1fileids</var> están baleiras, restaurarase todo.",
 	"apihelp-undelete-param-fileids": "IDs das modificacións de ficheiro a restaurar. Se <var>$1timestamps</var> e <var>$1fileids</var> están baleiras, serán restauradas todas.",
+	"apihelp-undelete-param-watchlist": "Engadir ou eliminar a páxina da lista de vixiancia do usuario actual sen condicións, use as preferencias ou non cambie a vixiancia.",
 	"apihelp-undelete-example-page": "Restaurar a <kbd>Páxina Principal</kbd>.",
 	"apihelp-undelete-example-revisions": "Restaurar dúas revisións de <kbd>[[Main Page]]</kbd>.",
 	"apihelp-upload-param-filename": "Nome de ficheiro obxectivo.",
@@ -1023,5 +1024,6 @@
 	"api-help-examples": "{{PLURAL:$1|Exemplo|Exemplos}}:",
 	"api-help-permissions": "{{PLURAL:$1|Permiso|Permisos}}:",
 	"api-help-permissions-granted-to": "{{PLURAL:$1|Concedida a|Concedidas a}}: $2",
+	"api-help-right-apihighlimits": "Usar os valores superiores das consultas da API (consultas lentas: $1; consultas rápidas: $2). Os límites para as consultas lentas tamén se aplican ós parámetros multivaluados.",
 	"api-credits-header": "Créditos"
 }

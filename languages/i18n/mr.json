@@ -45,7 +45,9 @@
 			"아라",
 			"BPositive",
 			"Darshan kandolkar",
-			"Steinsplitter"
+			"Steinsplitter",
+			"Macofe",
+			"Nemo bis"
 		]
 	},
 	"tog-underline": "दुव्यांचे अधोरेखन:",
@@ -265,7 +267,7 @@
 	"disclaimers": "उत्तरदायित्वास नकार",
 	"disclaimerpage": "Project: सर्वसाधारण उत्तरदायकत्वास नकार",
 	"edithelp": "संपादन साहाय्य",
-	"mainpage": "'मुखपृष्ठ",
+	"mainpage": "मुखपृष्ठ",
 	"mainpage-description": "मुखपृष्ठ",
 	"policy-url": "Project:नीती",
 	"portal": "समाज मुखपृष्ठ",
@@ -2921,7 +2923,7 @@
 	"feedback-error3": "त्रुटी:एपीआय तर्फे काहीच प्रत्युत्तर नाही",
 	"feedback-message": "संदेश:",
 	"feedback-subject": "विषय:",
-	"feedback-submit": "प्रतिक्रिया द्या",
+	"feedback-submit": "सादर करा",
 	"feedback-thanks": " \"[$2 $1]\" या पानात आपला पश्चप्रदाय (फिडबॅक) टाकत आहोत.",
 	"searchsuggest-search": "शोधा",
 	"searchsuggest-containing": ".......हे असलेले",

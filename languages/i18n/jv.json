@@ -14,7 +14,8 @@
 			"Rex",
 			"StefanusRA",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Garisen ngisoré pranala:",
@@ -2055,9 +2056,7 @@
 	"import-rootpage-nosubpage": "Ruang nama \"$1\" di halaman turunan tidak mengizinkan subhalaman.",
 	"importlogpage": "Log impor",
 	"importlogpagetext": "Impor administratif kaca-kaca mawa sajarah panyuntingan saka wiki liya.",
-	"import-logentry-upload": "ngimpor [[$1]] mawa pangunggahan berkas",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|révisi|révisi}}",
-	"import-logentry-interwiki": "wis nge-transwiki $1",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|révisi}} saka $2",
 	"javascripttest": "Panjajalan JavaScript",
 	"javascripttest-pagetext-noframework": "Kaca iki disadhiyakaké kanggo nglakokaké panjajalan JavaScript.",
@@ -2856,7 +2855,7 @@
 	"feedback-error3": "Kasalahan: Ora ana tanggepan saka API",
 	"feedback-message": "Layang:",
 	"feedback-subject": "Jejer:",
-	"feedback-submit": "Kirim Lebon Saran",
+	"feedback-submit": "Kirim",
 	"feedback-thanks": "Nuwun! Lebon saran Sampéyan wis dipasang nèng kacané \"[$2 $1]\".",
 	"searchsuggest-search": "Golèk",
 	"searchsuggest-containing": "ngisi...",

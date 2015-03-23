@@ -14,7 +14,8 @@
 			"គីមស៊្រុន",
 			"តឹក ប៊ុនលី",
 			"វ័ណថារិទ្ធ",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "គូសបន្ទាត់ក្រោម​តំណភ្ជាប់៖",
@@ -1967,9 +1968,7 @@
 	"import-upload": "ផ្ទុកឡើងទិន្នន័យ XML",
 	"import-invalid-interwiki": "មិន​អាច​នាំ​ចូល​ពី​វិគី​ដែល​បាន​បញ្ជាក់​។",
 	"importlogpage": "កំណត់ហេតុនៃការនាំចូល",
-	"import-logentry-upload": "បាននាំចូល [[$1]] ដោយការផ្ទុកឡើង ឯកសារ",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|កំណែ}}",
-	"import-logentry-interwiki": "បាននាំចូល$1ពីវិគីផ្សេងទៀត",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|កំណែ}} ពី $2",
 	"tooltip-pt-userpage": "ទំព័រអ្នកប្រើប្រាស់​របស់អ្នក​",
 	"tooltip-pt-mytalk": "ទំព័រពិភាក្សា​របស់អ្នក​",
@@ -2593,7 +2592,7 @@
 	"feedback-error3": "បញ្ហា៖ គ្មានចម្លើយតបពី API",
 	"feedback-message": "សារ​៖",
 	"feedback-subject": "កម្មវត្ថុ ៖",
-	"feedback-submit": "ដាក់ស្នើមតិយោបល់",
+	"feedback-submit": "ដាក់ស្នើ",
 	"feedback-thanks": "សូមអរគុណ! មតិយោបល់របស់អ្នកត្រូវបានដាក់ផ្សាយនៅលើទំព័រ \"[$2 $1]\"។",
 	"searchsuggest-search": "ស្វែងរក​",
 	"searchsuggest-containing": "ដែលមានពាក្យ...",

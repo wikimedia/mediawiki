@@ -9,7 +9,8 @@
 			"Urhixidur",
 			"아라",
 			"CharlieTheCabbie",
-			"Leli Forte"
+			"Leli Forte",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Ħoloq sottolinjati:",
@@ -1974,9 +1975,7 @@
 	"import-error-invalid": "Il-paġna \"$1\" ma ġietx impurtata minħabba li isimha hi invalida.",
 	"importlogpage": "Importazzjoni",
 	"importlogpagetext": "Importi amministrativi ta' paġni b'kronoloġiji ta' modifiki minn wikis oħrajn.",
-	"import-logentry-upload": "importajt [[$1]] bl-użu ta' upload.",
 	"import-logentry-upload-detail": "{{PLURAL:$1|reviżjoni|$1 reviżjonijiet}}",
-	"import-logentry-interwiki": "Trasferixxejt minn wiki ieħor il-paġna $1",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|reviżjoni|$1 reviżjonijiet}} minn $2",
 	"javascripttest": "Testjar tal-JavaScript",
 	"javascripttest-pagetext-noframework": "Din il-paġna hi riservata għall-eżekuzzjoni tat-testijiet tal-JavaScript.",
@@ -2708,7 +2707,7 @@
 	"feedback-error3": "Żball: L-ebda risposta mill-API",
 	"feedback-message": "Messaġġ:",
 	"feedback-subject": "Suġġett:",
-	"feedback-submit": "Ibgħat il-messaġġ",
+	"feedback-submit": "Ibgħat",
 	"feedback-thanks": "Grazzi! Ir-rispons tiegħek ġie ippubblikat fuq il-paġna \"[$2 $1]\".",
 	"searchsuggest-search": "Fittex",
 	"searchsuggest-containing": "li tinkludi...",

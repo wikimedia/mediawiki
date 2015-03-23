@@ -6,7 +6,8 @@
 			"J Subhi",
 			"Kaganer",
 			"Riemogerz",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Garisi di bawah tautan",
@@ -1884,9 +1885,7 @@
 	"import-error-create": "Tungkaran \"$1\" kada diumpur karana Pian kada bulih maulah ngini.",
 	"importlogpage": "Log impur",
 	"importlogpagetext": "Impur administratip matan tutungkaran awan babakan halam matan wiwiki lain.",
-	"import-logentry-upload": "[[$1]] diimpur lung hunggah barakas",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|ralatan|raralatan}}",
-	"import-logentry-interwiki": "ditranswiki $1",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|ralatan|raralatan}} matan $2",
 	"javascripttest": "Mantis JavaScript",
 	"javascripttest-pagetext-skins": "Pilih kulit nang cagar Pian cubai:",
@@ -2617,7 +2616,7 @@
 	"feedback-error3": "Kasalahan: Kadada tanggapan matan API",
 	"feedback-message": "Pasan:",
 	"feedback-subject": "Parihal:",
-	"feedback-submit": "Kirimi Kitihanbalik",
+	"feedback-submit": "Kirim",
 	"feedback-thanks": "Tarimakasih! jitihanbalik Pian sudah dipusakan ka si tungkaran \"[$2 $1]\".",
 	"searchsuggest-search": "Gagai",
 	"searchsuggest-containing": "isian ...",

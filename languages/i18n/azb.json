@@ -13,7 +13,8 @@
 			"Microchip08",
 			"아라",
 			"Koroğlu",
-			"Baloch Afghanistan"
+			"Baloch Afghanistan",
+			"Macofe"
 		]
 	},
 	"tog-underline": "باغلانتیلارین آلتینی خطله:",
@@ -2092,9 +2093,7 @@
 	"import-rootpage-nosubpage": "آد فضا سی  \"$1\" آنا باسئ ٔآلت صحیفه اوچون اجازه وئرمیر.",
 	"importlogpage": "چیخاریلما گونده‌لیگی",
 	"importlogpagetext": "باشقا ویکیلردن، دَییشیکلیک گئچمیشلریله بیرلیک‌ده گتیریلمیش صحیفه‌لر.",
-	"import-logentry-upload": "[[$1]]-ی فایل یوکله‌مکله گتیردی",
 	"import-logentry-upload-detail": "{{PLURAL:$1|بیر|$1}} نوسخه",
-	"import-logentry-interwiki": "$1-ی ویکی‌آراسی ائتدی",
 	"import-logentry-interwiki-detail": "$2-دن {{PLURAL:$1|بیر|$1}} نوسخه",
 	"javascripttest": "جاوااسکریپت تِستی",
 	"javascripttest-pagetext-noframework": "بو صحیفه، جاوااسکریپت تِستلرینی ایشلدمگه ساخلانیلیب‌دیر.",
@@ -2883,7 +2882,7 @@
 	"feedback-error3": "خطا: API-دان جاواب گلمه‌دی",
 	"feedback-message": "مئساژ:",
 	"feedback-subject": "قونو:",
-	"feedback-submit": "گئری-بیلدیریمی یول‌لا",
+	"feedback-submit": "گؤندر",
 	"feedback-thanks": "تشکورلر! سیزین گئری-بیلدیریمینیز «[$2 $1]» صحیفه‌سینه گؤندریلدی.",
 	"searchsuggest-search": "آختار",
 	"searchsuggest-containing": "ساخلانیلیر...",

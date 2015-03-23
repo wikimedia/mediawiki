@@ -13,7 +13,8 @@
 			"Urhixidur",
 			"לערי ריינהארט",
 			"아라",
-			"Pippinu"
+			"Pippinu",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Suttalinia li culligamenti:",
@@ -3026,7 +3027,7 @@
 	"feedback-error3": "Erruri: Nudda risposta di l'API",
 	"feedback-message": "Missaggiu:",
 	"feedback-subject": "Oggettu:",
-	"feedback-submit": "Manna u cummentu",
+	"feedback-submit": "Manna",
 	"feedback-thanks": "Grazzî! U to cummentu fu' affissu ntâ pàggina \"[$2 $1]\".",
 	"searchsuggest-search": "Risciduta",
 	"searchsuggest-containing": "chi' cunteni...",

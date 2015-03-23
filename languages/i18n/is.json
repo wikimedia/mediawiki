@@ -17,7 +17,8 @@
 			"Urhixidur",
 			"Ævar Arnfjörð Bjarmason",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Undirstrika tengla:",
@@ -2825,7 +2826,7 @@
 	"feedback-error3": "Villa: Ekkert svar frá API",
 	"feedback-message": "Skilaboð:",
 	"feedback-subject": "Fyrirsögn:",
-	"feedback-submit": "Senda svörun",
+	"feedback-submit": "Senda",
 	"feedback-thanks": "Takk! Ábendingu þinni hefur verið bætt við á síðuna \"[$2 $1]\".",
 	"searchsuggest-search": "Leita",
 	"searchsuggest-containing": "sem innihalda ...",

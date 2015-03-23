@@ -19,7 +19,8 @@
 			"Spacebirdy",
 			"Xethron",
 			"පසිඳු කාවින්ද",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Onderstreep skakels.",
@@ -2102,9 +2103,7 @@
 	"import-rootpage-nosubpage": "Die naamruimte \"$1\" van die basisblad laat nie subblaaie toe nie.",
 	"importlogpage": "Invoer logboek",
 	"importlogpagetext": "Administratiewe invoere van bladsye met geskiedenis van ander wiki's.",
-	"import-logentry-upload": "[[$1]] ingevoer deur 'n lêer op te laai",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|weergawe|weergawes}}",
-	"import-logentry-interwiki": "importeer $1 via transwiki",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|weergawe|weergawes}} vanaf $2",
 	"javascripttest": "JavaScript toetsing",
 	"javascripttest-pagetext-noframework": "Hierdie bladsy is gereserveer vir die uitvoer van JavaScript-toetse.",
@@ -2921,7 +2920,7 @@
 	"feedback-error3": "Fout: Geen reaksie van API",
 	"feedback-message": "Boodskap:",
 	"feedback-subject": "Onderwerp:",
-	"feedback-submit": "Stuur terugvoer",
+	"feedback-submit": "Dien in",
 	"feedback-thanks": "Dankie! U terugvoer is op die bladsy \"[$2 $1]\" geplaas.",
 	"searchsuggest-search": "Soek",
 	"searchsuggest-containing": "bevat...",

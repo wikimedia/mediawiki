@@ -26,7 +26,8 @@
 			"Bjankuloski06",
 			"Vodnokon4e",
 			"ShadeOfGrey",
-			"PetaRZ"
+			"PetaRZ",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Подчертаване на препратките:",
@@ -2837,7 +2838,7 @@
 	"feedback-error3": "Грешка: Няма отговор от API",
 	"feedback-message": "Съобщение:",
 	"feedback-subject": "Тема:",
-	"feedback-submit": "Оставяне на коментар",
+	"feedback-submit": "Изпращане",
 	"feedback-thanks": "Благодарности! Вашата обратна информация е публикувана на страницата „[$2  $1]“.",
 	"searchsuggest-search": "Търсене",
 	"api-error-badaccess-groups": "Нямате необходимите права, за да качвате файлове в това уики.",

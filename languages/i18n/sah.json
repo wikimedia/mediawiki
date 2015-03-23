@@ -11,7 +11,8 @@
 			"Urhixidur",
 			"아라",
 			"Purodha",
-			"Krivoshapkina"
+			"Krivoshapkina",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Сигэлэри аннынан тардыы:",
@@ -2176,9 +2177,7 @@
 	"import-rootpage-nosubpage": "\"$1\" тирэх сирэй аатын далыгар сирэй үөдүҥнэрэ (подстраницалар) көҥүллэммэттэр",
 	"importlogpage": "Импорт сурунаала",
 	"importlogpagetext": "Сирэйдэри историяларын кытта холбуу атын биикилэртэн импортааһын.",
-	"import-logentry-upload": "[[$1]] - билэттэн импортааһын",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|барыл|барыл баар}}",
-	"import-logentry-interwiki": "биикилэр ыккардыларынааҕы $1",
 	"import-logentry-interwiki-detail": "барыта $2 барылтан $1 барыл",
 	"javascripttest": "JavaScript тургутуу",
 	"javascripttest-pagetext-noframework": "Бу сирэй JavaScript тургутууларга анаммыт.",
@@ -3000,7 +2999,7 @@
 	"feedback-error3": "Алҕас: API хоруйдаабата",
 	"feedback-message": "Сурук:",
 	"feedback-subject": "Тиэмэ:",
-	"feedback-submit": "Санаа этиитэ",
+	"feedback-submit": "Ыыт",
 	"feedback-thanks": "Махтал! Эн санааҥ бу сирэйгэ \"[$2 $1]\" сурулунна.",
 	"searchsuggest-search": "Көрдөөһүн",
 	"searchsuggest-containing": "тыл баар ыстатыйалара...",

@@ -26,7 +26,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Gertakapllani",
-			"OrvenBregu"
+			"OrvenBregu",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Nënvizo lidhjet:",
@@ -1986,9 +1987,7 @@
 	"import-error-invalid": "Faqja \"$1\" nuk është importuar sepse emri i saj është i palejueshëm.",
 	"importlogpage": "Regjistri i importeve",
 	"importlogpagetext": "Importimet administrative të faqeve me historik redaktimi nga wiki-t e tjera.",
-	"import-logentry-upload": "importoi [[$1]] nëpërmjet ngarkimit të skedave",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|version|versione}}",
-	"import-logentry-interwiki": "transwikoji $1",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$!1|version|versione}} nga $2",
 	"javascripttest": "Duke testuar JavaScript",
 	"javascripttest-pagetext-noframework": "Kjo faqe është rezervuar për kryerjen e testimeve JavaScript.",
@@ -2684,7 +2683,7 @@
 	"feedback-error3": "Gabim: Nuk ka përgjigje nga API",
 	"feedback-message": "Mesazhi:",
 	"feedback-subject": "Subjekti:",
-	"feedback-submit": "Paraqit përshtypjet",
+	"feedback-submit": "Dërgo",
 	"feedback-thanks": "Faleminderit! Përshtypja juaj është postuar në faqen \"[$2 $1]\".",
 	"searchsuggest-search": "Kërko",
 	"searchsuggest-containing": "përmban ...",

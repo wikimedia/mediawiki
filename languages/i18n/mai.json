@@ -21,7 +21,8 @@
 			"बिप्लब आनन्द",
 			"सरोज कुमार ढकाल",
 			"Bijay chaurasia",
-			"Tulsi Bhagat"
+			"Tulsi Bhagat",
+			"Macofe"
 		]
 	},
 	"tog-underline": "लिंककेँ रेखांकित करू:",
@@ -2106,9 +2107,7 @@
 	"import-error-create": "\"$1\" पन्ना आयातित नै कएल गेल अछि कारण अहाँकेँ एकरा निर्माण करबाक अधिकार नै अछि।",
 	"importlogpage": "लॉगक आयात",
 	"importlogpagetext": "पन्ना सभक प्रशासनिक आयात दोसर विकीक सम्पादन इतिहासक संग।",
-	"import-logentry-upload": "[[$1]] आयात केलौं संचिका उपारोपण द्वारा",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|सुधार|सुधार सभ}}",
-	"import-logentry-interwiki": "विकीअन्तरण क देलौ $1",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|सुधार|सुधार सभ}} $2 सँ",
 	"javascripttest": "जावास्क्रिप्ट परिक्षण",
 	"javascripttest-pagetext-noframework": "इ पृष्ठ जावास्क्रिप्ट परीक्षण चलावए के लेल अछि।",
@@ -2909,7 +2908,7 @@
 	"feedback-error2": "त्रुटि: संपादन विफल भेल",
 	"feedback-message": "संदेश:",
 	"feedback-subject": "विषय:",
-	"feedback-submit": "प्रतिक्रिया भेजु",
+	"feedback-submit": "दिअ",
 	"searchsuggest-search": "ताकू",
 	"searchsuggest-containing": "...सऽ युक्त",
 	"api-error-badaccess-groups": "अहि विकी सें अहां कोनो प्रारूप लोड नहि क सकब.",

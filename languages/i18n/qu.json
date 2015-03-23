@@ -9,7 +9,8 @@
 			"The Evil IP address",
 			"לערי ריינהארט",
 			"아라",
-			"Fitoschido"
+			"Fitoschido",
+			"Macofe"
 		]
 	},
 	"tog-underline": "T'inkikunata uranpi sikwiy",
@@ -2096,9 +2097,7 @@
 	"import-rootpage-nosubpage": "Saphi p'anqap \"$1\" sutisuyunpiqa urin p'anqakuna manam kanqachu.",
 	"importlogpage": "Hawamanta chaskiy hallch'a",
 	"importlogpagetext": "Huk wikikunamanta wiñay kawsayniyuq p'anqakunata kamachina chaskiykuna.",
-	"import-logentry-upload": "hawamanta chaskisqa [[$1]] willañiqita churkuspa",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|hukchasqa|hukchasqakuna}}",
-	"import-logentry-interwiki": "huk wikimanta chaskisqa $1",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|hukchasqa|hukchasqakuna}} $2-manta",
 	"javascripttest": "JavaScript llanchiy",
 	"javascripttest-pagetext-noframework": "Kay p'anqaqa JavaScript llanchina purichinallapaqmi kachun.",
@@ -2904,7 +2903,7 @@
 	"feedback-error3": "Pantasqa: API nisqaqa manam kutipanchu",
 	"feedback-message": "Willay:",
 	"feedback-subject": "Yuyancha:",
-	"feedback-submit": "Willapuyniykita kachay",
+	"feedback-submit": "Kachay",
 	"feedback-thanks": "Añaychayki! Willapuyniykiqa \"[$2 $1]\" sutiyuq p'anqaman yapasqañam.",
 	"searchsuggest-search": "Maskay",
 	"searchsuggest-containing": "kaykunayuq: ...",

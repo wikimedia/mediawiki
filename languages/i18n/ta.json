@@ -35,7 +35,8 @@
 			"Thamiziniyan",
 			"아라",
 			"Kalyanasundar",
-			"தமிழ்த்தம்பி"
+			"தமிழ்த்தம்பி",
+			"Macofe"
 		]
 	},
 	"tog-underline": "இணைப்புகளுக்கு அடிக்கோடிடு",
@@ -1979,9 +1980,7 @@
 	"import-rootpage-invalid": "கொடுக்கப்பட்ட மூலப்பக்கம் செல்லாத தலைப்பாகும்.",
 	"importlogpage": "இறக்குமதி பதிகை",
 	"importlogpagetext": "வேறு விக்கிகளிலில் தொகுப்பு வரலாற்றைக் கொண்டப் பக்கங்களின் மேலாண்மை இறக்குமதிகள்.",
-	"import-logentry-upload": "கோப்பு பதிவேற்றத்தின் மூலம் [[$1]] இறக்கப்பட்டது",
 	"import-logentry-upload-detail": "{{PLURAL:$1|ஒரு திருத்தம்|$1 திருத்தங்கள்}}",
-	"import-logentry-interwiki": "transwikied$1",
 	"import-logentry-interwiki-detail": "$2 இலிருந்து {{PLURAL:$1|ஒரு திருத்தம்|$1 திருத்தங்கள்}}",
 	"javascripttest": "சாவாநிரல் சோதனை நடக்கின்றது",
 	"javascripttest-pagetext-noframework": "இந்த பக்கம் JavaScript பரிசோதனை ஓட்டத்திற்காக ஒதுக்கப்பட்டுள்ளது",
@@ -2724,7 +2723,7 @@
 	"feedback-error3": "பிழை: API லிருந்து பதிற்குறிப்பு எதுவும் இல்லை.",
 	"feedback-message": "தகவல்:",
 	"feedback-subject": "பொருள்:",
-	"feedback-submit": "கருத்தைச் சமர்ப்பிக்கவும்",
+	"feedback-submit": "சமர்ப்பி",
 	"feedback-thanks": "நன்றி! உங்கள் கருத்துகள் \"[$2 $1]\" பக்கத்தில்பதிவு செய்யப்பட்டுள்ளது .",
 	"searchsuggest-search": "தேடு",
 	"searchsuggest-containing": "கொண்டுள்ளது...",

@@ -28,7 +28,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Matthew Greg",
-			"Ата"
+			"Ата",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Podčiarkovať odkazy:",
@@ -2956,7 +2957,7 @@
 	"feedback-error3": "Chyba: Žiadna odpoveď z API",
 	"feedback-message": "Správa:",
 	"feedback-subject": "Predmet:",
-	"feedback-submit": "Odoslať komentár",
+	"feedback-submit": "Odoslať",
 	"feedback-thanks": "Ďakujeme. Váš komentár bol odoslaný na stránku „[$2 $1]“.",
 	"searchsuggest-search": "Hľadať",
 	"searchsuggest-containing": "obsahuje...",

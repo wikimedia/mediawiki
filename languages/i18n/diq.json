@@ -20,7 +20,8 @@
 			"Geitost",
 			"Microchip08",
 			"아라",
-			"Calak"
+			"Calak",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Bınê gırey de xete bance:",
@@ -2131,9 +2132,7 @@
 	"import-rootpage-nosubpage": "Qan de bınnaman reçe de \"$1\" re mısade nedano.",
 	"importlogpage": "Defterê seyırio idxal",
 	"importlogpagetext": "wiki yo ke nişane biyo tera kırıştışê zerredayişi nêbeno.",
-	"import-logentry-upload": "dosyayê bar kerdişî ra [[$1]] împort biyo",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|çımraviyarnayış|çımraviyarnayışi}}",
-	"import-logentry-interwiki": "$1 transwiki biyo",
 	"import-logentry-interwiki-detail": "$2 ra $1 {{PLURAL:$1|çımraviyarnayış|çımraviyarnayışi}}",
 	"javascripttest": "Cerebnayışê JavaScripti",
 	"javascripttest-pagetext-noframework": "Na pela testanê JavaScripta gurweynayışi re abıryaya.",
@@ -3092,7 +3091,7 @@
 	"feedback-error3": "Xeta: API ra cewab çıno",
 	"feedback-message": "Mesac:",
 	"feedback-subject": "Mewzu:",
-	"feedback-submit": "Peyxeberdar Bırşe",
+	"feedback-submit": "Bırışe",
 	"feedback-thanks": "Teşekkur kemê! Vatışê şıma pela da \"[$2 $1]\" esta.",
 	"searchsuggest-search": "Cı geyre",
 	"searchsuggest-containing": "Estên...",

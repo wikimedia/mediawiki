@@ -18,7 +18,8 @@
 			"Smooth O",
 			"לערי ריינהארט",
 			"아라",
-			"Milicevic01"
+			"Milicevic01",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Podvuci veze:",
@@ -2125,9 +2126,7 @@
 	"import-rootpage-nosubpage": "Imenski prostor \"$1\" osnovne stranice ne dozvoljava podstranice.",
 	"importlogpage": "Zapisnik uvoza",
 	"importlogpagetext": "Administrativni uvozi stranica sa historijom izmjena sa drugih wikija.",
-	"import-logentry-upload": "uvezena stranica [[$1]] putem postavljanja datoteke",
 	"import-logentry-upload-detail": "{{PLURAL:$1|Uvezena jedna revizija|Uvezene $1 revizije|Uvezeno $1 revizija}}",
-	"import-logentry-interwiki": "uveženo (''transwikied'') $1",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|Uvezena $1 revizija|Uvezene $1 revizije|Uvezeno $1 revizija}} od $2",
 	"javascripttest": "Testiranje JavaScript-e",
 	"javascripttest-pagetext-noframework": "Ova stranica je određena za pokretanje JavaScript testova.",
@@ -2994,7 +2993,7 @@
 	"feedback-error3": "Greška: Nema odgovora od API",
 	"feedback-message": "Poruka:",
 	"feedback-subject": "Tema:",
-	"feedback-submit": "Pošalji povratnu informaciju",
+	"feedback-submit": "Pošalji",
 	"feedback-thanks": "Hvala! Vaša povratna informacija je postavljena na stranicu „[$2 $1]“.",
 	"searchsuggest-search": "Traži",
 	"searchsuggest-containing": "sadrži...",

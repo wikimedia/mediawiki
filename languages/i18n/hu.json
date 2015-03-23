@@ -37,7 +37,8 @@
 			"Csega",
 			"ViDam",
 			"Adam78",
-			"Grin"
+			"Grin",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Hivatkozások aláhúzása:",
@@ -2986,7 +2987,7 @@
 	"feedback-error3": "Hiba: nem érkezett válasz az API-tól",
 	"feedback-message": "Üzenet:",
 	"feedback-subject": "Tárgy:",
-	"feedback-submit": "Visszajelzés elküldése",
+	"feedback-submit": "Elküldés",
 	"feedback-thanks": "Köszönjük. A visszajelzésed elküldve a „[$2 $1]” laphoz.",
 	"searchsuggest-search": "Keresés",
 	"searchsuggest-containing": "tartalmazza…",

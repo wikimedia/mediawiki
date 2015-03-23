@@ -7,7 +7,8 @@
 			"OC Ripper",
 			"לערי ריינהארט",
 			"아라",
-			"Milicevic01"
+			"Milicevic01",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Podvuci linkove:",
@@ -2097,9 +2098,7 @@
 	"import-rootpage-nosubpage": "Imenski prostor „$1“ osnovne stranice ne dozvoljava podstranice.",
 	"importlogpage": "Evidencija uvoza stranica",
 	"importlogpagetext": "Administrativni uvozi stranica s historijom izmjena sa drugih wikija.",
-	"import-logentry-upload": "uvezen/a [[$1]] postavljanjem datoteke",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|revizija|revizije|revizija}}",
-	"import-logentry-interwiki": "uveženo (\"transwikied\") $1",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|revizija|revizije|revizija}} sa $2",
 	"javascripttest": "Javaskript test",
 	"javascripttest-pagetext-noframework": "Ova stranica je rezervisana za izvršavanje javaskript testova.",
@@ -2882,7 +2881,7 @@
 	"feedback-error3": "Greška: nema odgovora od API-ja",
 	"feedback-message": "Poruka:",
 	"feedback-subject": "Tema:",
-	"feedback-submit": "Pošalji povratnu informaciju",
+	"feedback-submit": "Unesi",
 	"feedback-thanks": "Hvala! Vaša povratna informacija je postavljena na stranicu „[$2 $1]“.",
 	"searchsuggest-search": "Traži",
 	"searchsuggest-containing": "sadrži...",

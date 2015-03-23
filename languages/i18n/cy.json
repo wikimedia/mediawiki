@@ -12,7 +12,8 @@
 			"Urhixidur",
 			"Xxglennxx",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Tanlinellu cysylltiadau:",
@@ -2174,9 +2175,7 @@
 	"import-rootpage-nosubpage": "Nid yw'r parth \"$1\", sef parth y brif dudalen y mewnforir iddi, yn caniatau is-dudalennau.",
 	"importlogpage": "Lòg mewnforio",
 	"importlogpagetext": "Cofnodion mewnforio tudalennau ynghyd â'u hanes golygu oddi ar wicïau eraill, gan weinyddwyr.",
-	"import-logentry-upload": "wedi mewnforio [[$1]] trwy uwchlwytho ffeil",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}} wedi'i fewnforio",
-	"import-logentry-interwiki": "wedi symud $1 (traws-wici)",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}} wedi'i fewnforio o $2",
 	"javascripttest": "Profi JavaScript",
 	"javascripttest-pagetext-noframework": "Neilltuwyd y dudalen hon at gynnal profion JavaScript.",
@@ -3007,7 +3006,7 @@
 	"feedback-error3": "Gwall: Dim ymateb gan yr API",
 	"feedback-message": "Neges:",
 	"feedback-subject": "Gwrthrych:",
-	"feedback-submit": "Cyflwyner yr Adborth",
+	"feedback-submit": "Cyflwyner",
 	"feedback-thanks": "Diolch! Gosodwyd eich adborth ar y dudalen \"[$2 $1]\".",
 	"searchsuggest-search": "Chwilio",
 	"searchsuggest-containing": "yn cynnwys...",

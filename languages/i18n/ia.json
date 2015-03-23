@@ -12,7 +12,8 @@
 			"Yfdyh000",
 			"לערי ריינהארט",
 			"아라",
-			"Carlosedepaula"
+			"Carlosedepaula",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Sublinear ligamines:",
@@ -3031,7 +3032,7 @@
 	"feedback-error3": "Error: Nulle responsa del API",
 	"feedback-message": "Message:",
 	"feedback-subject": "Subjecto:",
-	"feedback-submit": "Submitter opinion",
+	"feedback-submit": "Submitter",
 	"feedback-thanks": "Gratias! Tu evalutation ha essite publicate in le pagina \"[$2 $1]\".",
 	"searchsuggest-search": "Cercar",
 	"searchsuggest-containing": "continente...",

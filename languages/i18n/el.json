@@ -40,7 +40,8 @@
 			"Calak",
 			"Auslaender",
 			"Milicevic01",
-			"Ah3kal"
+			"Ah3kal",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Υπογράμμιση συνδέσμων:",
@@ -2184,9 +2185,7 @@
 	"import-rootpage-invalid": "Η δεδομένη ριζική σελίδα είναι μη έγκυρος τίτλος",
 	"importlogpage": "Αρχείο καταγραφής εισαγωγών",
 	"importlogpagetext": "Διαχειριστικές εισαγωγές σελίδων με ιστορικό επεξεργασίας από άλλα wiki.",
-	"import-logentry-upload": "εισάχθηκε η σελίδα [[$1]] με επιφόρτωση αρχείου",
 	"import-logentry-upload-detail": "{{PLURAL:$1|Εισήχθη $1 αναθεώρηση|Εισήχθησαν $1 αναθεωρήσεις}}",
-	"import-logentry-interwiki": "η σελίδα $1 εισάχθηκε μεταξύ wiki",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|Εισήχθη $1 αναθεώρηση|Εισήχθησαν $1 αναθεωρήσεις}} από $2",
 	"javascripttest": "Δοκιμή JavaScript",
 	"javascripttest-pagetext-noframework": "Αυτή η σελίδα είναι δεσμευμένη για την εκτέλεση δοκιμών σε JavaScript.",
@@ -3009,7 +3008,7 @@
 	"feedback-error3": "Σφάλμα: Καμία απάντηση από το API",
 	"feedback-message": "Μήνυμα:",
 	"feedback-subject": "Θέμα:",
-	"feedback-submit": "Υποβολή σχολίων",
+	"feedback-submit": "Υποβολή",
 	"feedback-thanks": "Ευχαριστούμε! Τα σχόλιά σας έχουν καταχωρηθεί στη σελίδα \"[$2 $1]\".",
 	"searchsuggest-search": "Αναζήτηση",
 	"searchsuggest-containing": "περιέχει...",

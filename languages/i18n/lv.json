@@ -20,7 +20,8 @@
 			"Xil",
 			"Yyy",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Pasvītrot saites:",
@@ -1834,9 +1835,7 @@
 	"import-invalid-interwiki": "Nevar importēt no norādītās viki.",
 	"importlogpage": "Importēšanas reģistrs",
 	"importlogpagetext": "Administratīvās lapu importēšanas no citām Vikipēdijām ar lapas hronoloģiju.",
-	"import-logentry-upload": "importēts [[$1]], izmantojot failu augšupielādi",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|versijas|versija|versijas}}",
-	"import-logentry-interwiki": "starpvikizēts $1",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|versijas|versija|versijas}} no $2",
 	"javascripttest": "JavaScript testēšana",
 	"tooltip-pt-userpage": "Tava lietotāja lapa",
@@ -2454,7 +2453,7 @@
 	"feedback-error3": "Kļūda: Nav atbildes no API",
 	"feedback-message": "Ziņojums:",
 	"feedback-subject": "Temats:",
-	"feedback-submit": "Iesniegt atsauksmes",
+	"feedback-submit": "Iesniegt",
 	"feedback-thanks": "Paldies! Jūsu atsauksmes ir ievietotas lapā \"[$2  $1]\".",
 	"searchsuggest-search": "Meklēt",
 	"searchsuggest-containing": "Meklējamā frāze:",

@@ -58,7 +58,8 @@
 			"संजीव कुमार",
 			"बिप्लब आनन्द",
 			"Phoenix303",
-			"Steinsplitter"
+			"Steinsplitter",
+			"Macofe"
 		]
 	},
 	"tog-underline": "कड़ियाँ अधोरेखन:",
@@ -3074,7 +3075,7 @@
 	"feedback-error3": "त्रुटि: एपीआई से कोई प्रतिक्रिया नहीं",
 	"feedback-message": "संदेश:",
 	"feedback-subject": "विषय:",
-	"feedback-submit": "प्रतिक्रिया भेजें",
+	"feedback-submit": "जमा करें",
 	"feedback-thanks": "धन्यवाद! आपकी प्रतिक्रिया पृष्ठ में नियुक्त किया गया है \"[ $2  $1 ]\"।",
 	"searchsuggest-search": "खोज",
 	"searchsuggest-containing": "...से युक्त",

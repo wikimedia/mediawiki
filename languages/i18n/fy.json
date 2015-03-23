@@ -12,7 +12,8 @@
 			"Urhixidur",
 			"לערי ריינהארט",
 			"아라",
-			"Robin0van0der0vliet"
+			"Robin0van0der0vliet",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Keppelings ûnderstreekje:",
@@ -1820,11 +1821,11 @@
 	"revdelete-unrestricted": "hat beheinings foar behearders goedmakke",
 	"rightsnone": "(gjin)",
 	"revdelete-summary": "gearfetting bewurkje",
-	"feedback-subject": "Ûnderwerp:",
-	"feedback-message": "Berjocht:",
 	"feedback-cancel": "Annulearje",
-	"feedback-submit": "Feedback ferstjoere",
 	"feedback-close": "Dien",
+	"feedback-message": "Berjocht:",
+	"feedback-subject": "Ûnderwerp:",
+	"feedback-submit": "Ferstjoere",
 	"searchsuggest-search": "Sykje",
 	"api-error-unknown-code": "Unbekende flater: \"$1\".",
 	"api-error-unknownerror": "Unbekende flater: \"$1\".",

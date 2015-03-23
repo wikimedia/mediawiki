@@ -69,7 +69,8 @@
 			"BatuhanBensoy",
 			"Mavrikant",
 			"Ayrıntılı Bilgi",
-			"Gokalpselamet"
+			"Gokalpselamet",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çiz:",
@@ -3090,7 +3091,7 @@
 	"feedback-error3": "Hata: API'den yanıt yok",
 	"feedback-message": "Mesaj:",
 	"feedback-subject": "Konu:",
-	"feedback-submit": "Geribildirimi Gönder",
+	"feedback-submit": "Gönder",
 	"feedback-thanks": "Teşekkürler! Görüşleriniz \"[$2 $1]\" sayfasında paylaşılmıştır.",
 	"searchsuggest-search": "Ara",
 	"searchsuggest-containing": "içeren...",

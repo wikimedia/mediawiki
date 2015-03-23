@@ -21,7 +21,8 @@
 			"아라",
 			"Joxemai",
 			"Arkaitz Barnetik",
-			"Sator"
+			"Sator",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Azpimarratu loturak:",
@@ -2864,7 +2865,7 @@
 	"feedback-error3": "Akatsa: APIaren erantzunik gabe",
 	"feedback-message": "Mezua:",
 	"feedback-subject": "Gaia:",
-	"feedback-submit": "Feedbacka bidali",
+	"feedback-submit": "Bidali",
 	"searchsuggest-search": "Bilatu",
 	"searchsuggest-containing": "edukian...",
 	"api-error-badaccess-groups": "Ez duzu baimendik fitxategi hauek wiki honetara igotzeko.",

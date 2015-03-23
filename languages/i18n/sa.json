@@ -20,7 +20,8 @@
 			"Shubha",
 			"Vibhijain",
 			"రాకేశ్వర",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "परिसन्धेः अधो रेखाङ्कनम्:",
@@ -2830,7 +2831,7 @@
 	"feedback-error3": "दोषः : ए पि ऐ तः प्रतिस्पन्दः न प्राप्तः",
 	"feedback-message": "संदेश:",
 	"feedback-subject": "विषय:",
-	"feedback-submit": "प्रतिस्पन्दः प्रेष्यताम्",
+	"feedback-submit": "उपस्थाप्यताम्",
 	"feedback-thanks": "धन्यवादः ! भवतः प्रतिस्पन्दः \"[ $2  $1 ]\" पृष्ठाय प्रेषितः अस्ति ।",
 	"searchsuggest-search": "अन्वेषणम्",
 	"searchsuggest-containing": "विद्यन्ते......",

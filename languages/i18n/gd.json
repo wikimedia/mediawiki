@@ -8,7 +8,8 @@
 			"Steafan31",
 			"לערי ריינהארט",
 			"아라",
-			"GunChleoc"
+			"GunChleoc",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Fo-loidhneadh nan ceanglaichean:",
@@ -3106,7 +3107,7 @@
 	"feedback-error3": "Mearachd: Cha d' fhuair sinn freagairt on API",
 	"feedback-message": "Teachdaireachd:",
 	"feedback-subject": "Cuspair:",
-	"feedback-submit": "Cuir do bheachd a-null",
+	"feedback-submit": "Cuir a-null",
 	"feedback-thanks": "Mòran taing! Chaidh do bheachd a phostadh air an duilleag \"[$2 $1]\".",
 	"searchsuggest-search": "Lorg",
 	"searchsuggest-containing": "anns a bheil...",

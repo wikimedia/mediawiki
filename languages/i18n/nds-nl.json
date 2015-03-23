@@ -15,7 +15,8 @@
 			"Ævar Arnfjörð Bjarmason <avarab@gmail.com>",
 			"לערי ריינהארט",
 			"아라",
-			"Kolega2357"
+			"Kolega2357",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Verwiezingen onderstrepen",
@@ -2876,7 +2877,7 @@
 	"feedback-error3": "Fout: gien reaksie van de API",
 	"feedback-message": "Bericht:",
 	"feedback-subject": "Onderwarp:",
-	"feedback-submit": "Kommentaar geven",
+	"feedback-submit": "Opslaon",
 	"feedback-thanks": "Bedankt! Joew kommentaar is op de zied \"[$2 $1]\" ezet.",
 	"searchsuggest-search": "Zeuken / zuken / zuiken",
 	"searchsuggest-containing": "bevat...",

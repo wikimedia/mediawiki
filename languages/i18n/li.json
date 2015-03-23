@@ -15,7 +15,8 @@
 			"Tibor",
 			"לערי ריינהארט",
 			"아라",
-			"Robin0van0der0vliet"
+			"Robin0van0der0vliet",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Links óngersjtriepe",
@@ -1889,9 +1890,7 @@
 	"import-error-invalid": "De pagina\" \"$1\" is neet geïmporteerd omdet de naam óngeljig is.",
 	"importlogpage": "Importlogbook",
 	"importlogpagetext": "Administratieve import van pazjena's mit gesjiedenis van anger wiki's.",
-	"import-logentry-upload": "[[$1]] geïmporteerd via 'ne bestandjsupload",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|versie|versies}}",
-	"import-logentry-interwiki": "transwiki veur $1 geslaag",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|versie|versies}} van $2",
 	"javascripttest": "Tes JavaScript",
 	"javascripttest-pagetext-noframework": "Dees pagina is gerizzerveerd veur 't oetveure van JavaScriptteste.",
@@ -2589,7 +2588,7 @@
 	"feedback-error3": "Fout: gein reactie vanne API",
 	"feedback-message": "Berich:",
 	"feedback-subject": "Óngerwerp:",
-	"feedback-submit": "Slaon feedback óp",
+	"feedback-submit": "Slaon óp",
 	"feedback-thanks": "Danke! Diene feedback is oppe pagina \"[$2 $1]\" geplaats.",
 	"searchsuggest-search": "Zeuke",
 	"searchsuggest-containing": "bevat...",

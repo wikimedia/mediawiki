@@ -20,7 +20,8 @@
 			"Xqt",
 			"Ævar Arnfjörð Bjarmason",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "ਲਿੰਕ ਹੇਠ-ਲਾਈਨ:",
@@ -2276,7 +2277,7 @@
 	"feedback-error3": "ਦੋਸ਼:API ਵੱਲੋਂ ਕੋਈ ਜੁਆਬ ਨਹੀਂ",
 	"feedback-message": "ਸੁਨੇਹਾ:",
 	"feedback-subject": "ਵਿਸ਼ਾ:",
-	"feedback-submit": "ਵਿਚਾਰ ਦਿਓ",
+	"feedback-submit": "ਹਵਾਲੇ ਕਰੋ",
 	"searchsuggest-search": "ਖੋਜ",
 	"api-error-badaccess-groups": "ਤੁਹਾਨੂੰ ਇਸ ਵਿਕੀ ਉੱਤੇ ਫ਼ਾਈਲਾਂ ਅੱਪਲੋਡ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ ਹੈ।",
 	"api-error-badtoken": "ਅੰਦਰੂਨੀ ਦੋਸ਼: ਗ਼ਲਤ ਟੋਕਨ",

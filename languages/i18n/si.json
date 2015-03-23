@@ -27,7 +27,8 @@
 			"Indunil Chamara",
 			"Susith Chandira Gts",
 			"Thanushka",
-			"Thirsty"
+			"Thirsty",
+			"Macofe"
 		]
 	},
 	"tog-underline": "සබැඳි යටීර කිරීම:",
@@ -2033,9 +2034,7 @@
 	"import-rootpage-invalid": "ලබා දුන් මූල පිටුව වැරදි ශීර්ෂයක් වේ.",
 	"importlogpage": "ලඝු-සටහන් ආයාත කරන්න",
 	"importlogpagetext": "අනෙකුත් විකියන්ගෙන් සංස්කරණ ඉතිහාසයන් ඇති පිටු වල පරිපාලනමය ආයාත කිරීම්.",
-	"import-logentry-upload": "ගොනු උඩුගත කිරීමක් මගින් [[$1]] ආයාත කෙරිණි",
 	"import-logentry-upload-detail": " {{PLURAL:$1|සංශෝධනය|සංශෝධන $1 ක්}}",
-	"import-logentry-interwiki": "$1 අන්තර්විකීකරණය කරන ලදි",
 	"import-logentry-interwiki-detail": "$2 වෙතින් {{PLURAL:$1|එක් සංශෝධනයක්|සංශෝධන $1 ක්}}",
 	"javascripttest": "ජාවාස්ක්‍රිප්ට් පරික්ෂාකරමින්",
 	"javascripttest-pagetext-noframework": "මෙම පිටුව ජාවාස්ක්‍රිප්ට් පරික්ෂණ සිදුකිරීම සඳහා වෙන්කර ඇත.",
@@ -2861,7 +2860,7 @@
 	"feedback-error3": "දෝෂය: API ගෙන් ප්‍රතිචාරයක් නොමැත",
 	"feedback-message": "පණිවුඩය:",
 	"feedback-subject": "විෂයය:",
-	"feedback-submit": "ප්‍රතිචාරය යවන්න",
+	"feedback-submit": "යොමන්න",
 	"feedback-thanks": "ස්තුතියි! ඔබේ ප්‍රතිචාරය \"[$2 $1]\" පිටුවට එක් කරන ලදී.",
 	"searchsuggest-search": "ගවේශණය කරන්න",
 	"searchsuggest-containing": "ඇතුළත් වෙමින් පවතී...",

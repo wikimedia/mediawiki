@@ -6,7 +6,8 @@
 			"Kolonahe",
 			"Node ue",
 			"Singularity",
-			"Xqt"
+			"Xqt",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Kahalalo i nā loulou:",
@@ -1246,12 +1247,12 @@
 	"htmlform-yes": "ʻAe",
 	"htmlform-chosen-placeholder": "Koho i kekahi koho",
 	"rightsnone": "(ʻaʻohe)",
-	"feedback-subject": "Kumunui:",
-	"feedback-message": "Pūlono:",
-	"feedback-cancel": "Hoʻōki",
-	"feedback-submit": "Hoʻouna i nā Manaʻo",
 	"feedback-adding": "Ke hoʻohui nei i ka manaʻo i ka ʻaoʻao...",
+	"feedback-cancel": "Hoʻōki",
 	"feedback-close": "Ua pau",
+	"feedback-message": "Pūlono:",
+	"feedback-subject": "Kumunui:",
+	"feedback-submit": "Waiho",
 	"searchsuggest-search": "Huli",
 	"api-error-unknown-code": "Hewa ʻikeʻole: \"$1\".",
 	"api-error-unknown-warning": "Akahele ʻikeʻole: \"$1\".",

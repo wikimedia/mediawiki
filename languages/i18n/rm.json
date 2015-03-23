@@ -9,7 +9,8 @@
 			"Urhixidur",
 			"לערי ריינהארט",
 			"Davent",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Suttastritgar colliaziuns:",
@@ -1967,9 +1968,7 @@
 	"import-rootpage-nosubpage": "Il tip da pagina \"$1\" da la pagina principala na lubescha naginas sutpaginas.",
 	"importlogpage": "Protocol dals imports",
 	"importlogpagetext": "Import administrativ da paginas cun cronologia da modificaziuns dad autras wikis.",
-	"import-logentry-upload": "ha importà [[$1]] cun chargiar si ina datoteca",
 	"import-logentry-upload-detail": "{{PLURAL:$1|Ina versiun|$1 versiuns}}",
-	"import-logentry-interwiki": "ha importà $1 (transwiki)",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|Ina versiun|$1 versiuns}} da $2",
 	"javascripttest": "Test da JavaScript",
 	"javascripttest-pagetext-noframework": "Questa pagina è reservada per exequir tests da JavaScript.",
@@ -2711,7 +2710,7 @@
 	"feedback-error3": "Errur: Nagina resposta dal API",
 	"feedback-message": "Messadi:",
 	"feedback-subject": "Object:",
-	"feedback-submit": "Trametter il resun",
+	"feedback-submit": "Trametter",
 	"feedback-thanks": "Grazia! Tes resun è vegnì publitgà sin la pagina \"[$2 $1]\".",
 	"searchsuggest-search": "Tschertgar",
 	"searchsuggest-containing": "cuntegna…",

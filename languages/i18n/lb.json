@@ -3016,6 +3016,7 @@
 	"feedback-bugornote": "Wann Dir bereet sidd fir en technesche Problem am Detail ze beschreiwen da [$1 mellt w.e.g. e Feeler (Bug)].\nSoss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gëtt op d'Säit \"[$3 $2]\" derbäigesat, zesumme mat Ärem Benotzernumm an dem Numm vum Browser deen Dir benotzt.",
 	"feedback-cancel": "Ofbriechen",
 	"feedback-close": "Fäerdeg",
+	"feedback-external-bug-report-button": "Eng technesch Aufgab notifizéieren",
 	"feedback-dialog-title": "Feedback schécken",
 	"feedback-error-title": "Feeler",
 	"feedback-error1": "Feeler: Resultat vum API gouf net erkannt",

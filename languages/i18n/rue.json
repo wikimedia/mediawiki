@@ -9,7 +9,8 @@
 			"Reedy",
 			"Tkalyn",
 			"아라",
-			"Dicto23456"
+			"Dicto23456",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Підкреслёвати одказы:",
@@ -2067,9 +2068,7 @@
 	"import-rootpage-nosubpage": "В просторї назв вказаной корїнёвой сторінкы «$1» не дозволены підсторінкы",
 	"importlogpage": "Книга імпортів",
 	"importlogpagetext": "На тій сторінцї ся зображують адміністраторскы імпорты сторінок враховано едітовань з іншых вікі.",
-	"import-logentry-upload": "імпортовав [[$1]] наладованём файлу",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|ревізія|ревізії|ревізій}}",
-	"import-logentry-interwiki": "міджівікі імпорт $1",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|ревізія|ревізії|ревізій}} з $2",
 	"javascripttest": "Тестованя JavaScript",
 	"javascripttest-pagetext-noframework": "Тота сторінка є резервована про тестованя JavaScript.",
@@ -2859,7 +2858,7 @@
 	"feedback-error3": "Хыба: API не вернуло жадну одповідь",
 	"feedback-message": "Повідомлїня:",
 	"feedback-subject": "Предмет:",
-	"feedback-submit": "Одослати одозву",
+	"feedback-submit": "Одослати",
 	"feedback-thanks": "Дякуєме! Ваш коментарь быв приданый на сторінку „[$2 $1]“.",
 	"searchsuggest-search": "Глядати",
 	"searchsuggest-containing": "обсягуючій...",

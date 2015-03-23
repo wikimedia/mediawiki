@@ -21,7 +21,8 @@
 			"Рашат Якупов",
 			"Умар",
 			"아라",
-			"Derslek"
+			"Derslek",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Сылтамаларның астына сызу:",
@@ -1741,7 +1742,7 @@
 	"feedback-error3": "Хата: APIдан җавап юк.",
 	"feedback-message": "Хәбәр:",
 	"feedback-subject": "Тема:",
-	"feedback-submit": "Фикер җибәрү",
+	"feedback-submit": "Җибәрү",
 	"feedback-thanks": "Рәхмәт! Сезнең фикер \"[$2 $1]\" сәхифәсенә куелды.",
 	"searchsuggest-search": "Эзләү",
 	"searchsuggest-containing": "эчтәлек...",

@@ -10,7 +10,8 @@
 			"Urhixidur",
 			"Willtron",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Subrayar os vinclos:",
@@ -1858,9 +1859,7 @@
 	"import-error-invalid": "A pachina \"$1\" no s'ha importau porque o suyo nombre ye invalido.",
 	"importlogpage": "Rechistro d'importacions",
 	"importlogpagetext": "Importacions almenistrativas de pachinas con historial dende atros wikis.",
-	"import-logentry-upload": "importata [[$1]] cargando un fichero",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|versión|versions}}",
-	"import-logentry-interwiki": "Importata $1 entre wikis",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|versión|versions}} dende $2",
 	"javascripttest": "Prebatinas de JavaScript",
 	"javascripttest-pagetext-noframework": "Ista pachina ye reservada ta fer as prebas de JavaScrip.",
@@ -2566,7 +2565,7 @@
 	"feedback-error3": "Error: No i hai respuesta de l'API",
 	"feedback-message": "Mensache:",
 	"feedback-subject": "Afer:",
-	"feedback-submit": "Ninviar comentarios",
+	"feedback-submit": "Ninviar",
 	"feedback-thanks": "Gracias! O suyo comentario s'ha publicau en a pachina [$2  $1].",
 	"searchsuggest-search": "Mirar",
 	"searchsuggest-containing": "que contién...",

@@ -9,7 +9,8 @@
 			"Shizhao",
 			"Yfdyh000",
 			"JuneAugsut",
-			"EagerLin"
+			"EagerLin",
+			"Simon xianyu"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|文档]]\n* [[mw:API:FAQ|常见问题]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 邮件列表]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 程序错误与功能请求]\n</div>\n<strong>状态信息：</strong>本页所展示的所有特性都应正常工作，但是API仍在开发当中，将会随时变化。请订阅[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 邮件列表]以便获得更新通知。\n\n<strong>错误请求：</strong>当API收到错误请求时，HTTP header将会返回一个包含\"MediaWiki-API-Error\"的值，随后header的值与error code将会送回并设置为相同的值。详细信息请参阅[[mw:API:Errors_and_warnings|API: 错误与警告]]。",
@@ -231,6 +232,7 @@
 	"apihelp-options-param-resetkinds": "当<var>$1reset</var>选项被设置时，要重置的选项类型列表。",
 	"apihelp-options-param-change": "更改列表，以name=value格式化（例如skin=vector）。值不能包含管道字符。如果没提供值（甚至没有等号），例如optionname|otheroption|...，选项将重置为默认值。",
 	"apihelp-options-param-optionname": "应设置为由<var>$1optionvalue</var>提供值的选项名称。",
+	"apihelp-options-param-optionvalue": "使用<var>$1选项名</var>指定的选项值中，可以包含管道字符",
 	"apihelp-options-example-reset": "重置所有用户设置",
 	"apihelp-options-example-change": "更改<kbd>skin</kbd>和<kbd>hideminor</kbd>设置。",
 	"apihelp-options-example-complex": "重置所有设置，然后设置<kbd>皮肤</kbd>和<kbd>昵称</kbd>。",
@@ -250,6 +252,7 @@
 	"apihelp-parse-param-pageid": "解析此页的内容。覆盖<var>$1page</var>。",
 	"apihelp-parse-param-redirects": "如果<var>$1page</var>或<var>$1pageid</var>被设置为一个重定向，则解析它。",
 	"apihelp-parse-param-oldid": "解析该修订版本的内容。覆盖<var>$1page</var>和<var>$1pageid</var>。",
+	"apihelp-parse-param-pst": "在解析输入前，对输入做一次保存前变换处理。仅当使用文本时有效。",
 	"apihelp-parse-param-effectivelanglinks": "包含由扩展提供的语言链接（用于与<kbd>$1prop=langlinks</kbd>一起使用）。",
 	"apihelp-parse-param-sectiontitle": "当<var>section</var>为<kbd>new</kbd>时新段落标题。\n\n不像页面编辑，当省略或为空时将不会备选为<var>summary</var>。",
 	"apihelp-parse-param-disablepp": "从解析器输出中禁用PP报告。",
@@ -312,6 +315,7 @@
 	"apihelp-query+alldeletedrevisions-example-user": "列出由<kbd>Example<kbd>作出的最近50次已删除贡献。",
 	"apihelp-query+alldeletedrevisions-example-ns-main": "列出前50次已删除的主名字空间修订。",
 	"apihelp-query+allfileusages-description": "列出所有文件用途，包括不存在的。",
+	"apihelp-query+allfileusages-param-from": "文件的标题开始枚举于.",
 	"apihelp-query+allfileusages-param-prefix": "搜索此值开头的所有文件标题。",
 	"apihelp-query+allfileusages-param-limit": "要返回的总计项目。",
 	"apihelp-query+allfileusages-param-dir": "罗列所采用的方向。",

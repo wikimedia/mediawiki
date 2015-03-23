@@ -10,7 +10,8 @@
 			"Kaztrans",
 			"Balnur.s",
 			"Нұрлан Рахымжанов",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Сілтеменің астын сызу:",
@@ -2702,7 +2703,7 @@
 	"feedback-error2": "Қате: Өңдеме сәтсіздікке ұшырады",
 	"feedback-message": "Хабарлама:",
 	"feedback-subject": "Тақырып:",
-	"feedback-submit": "Кері байланысты жіберу",
+	"feedback-submit": "Жіберу",
 	"feedback-thanks": "Рахмет! Сіздің кері байланысыңыз \"[$2 $1]\" бетіне қойылды.",
 	"searchsuggest-search": "Іздеу",
 	"searchsuggest-containing": "қамтылуда...",

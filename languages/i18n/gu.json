@@ -22,7 +22,8 @@
 			"Sushant savla",
 			"לערי ריינהארט",
 			"아라",
-			"Vyom"
+			"Vyom",
+			"Macofe"
 		]
 	},
 	"tog-underline": "કડીઓની નીચે લીટી (અંડરલાઇન):",
@@ -2052,9 +2053,7 @@
 	"import-error-invalid": "પાનું \"$1\" આયાત થયું નથી કારણ કે તેનું નામ આ વિકિ માટે અયોગ્ય છે.",
 	"importlogpage": "આયાત માહિતિ પત્રક",
 	"importlogpagetext": "અન્ય  વિકિમાંથી ઈતિહાસ સહિત પાનાની પ્રબંધકીય આયાત",
-	"import-logentry-upload": "ફાઇલ ચઢાવનાર દ્વારા [[$1]] આયાત કરાઇ",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|પુનરાવર્તન|પુનરાવર્તનો}} આયાત કરેલ છે",
-	"import-logentry-interwiki": "આંતરવિકિ  $1",
 	"import-logentry-interwiki-detail": "$2 માંથી આયાત કરેલ $1 {{PLURAL:$1|પુનરાવર્તન|પુનરાવર્તનો}}",
 	"javascripttest": "જાવા સ્ક્રીપ્ટ પરીક્ષણ",
 	"javascripttest-pagetext-noframework": "આ પાનું જાવા સ્ક્રીપ્ટ ચલાવવા આરક્ષિત છે.",
@@ -2829,7 +2828,7 @@
 	"feedback-error3": "ત્રુટી: API તરફથી કોઈ પ્રત્યુત્તર નથી",
 	"feedback-message": "સંદેશ",
 	"feedback-subject": "વિષય:",
-	"feedback-submit": "પ્રતિભાવ આપો",
+	"feedback-submit": "જમા કરો",
 	"feedback-thanks": "આભર! તમારા પ્રતિભાવને \"[$2 $1]\" પાના પર મુકાયા છે.",
 	"searchsuggest-search": "શોધો",
 	"searchsuggest-containing": "ધરાવતી...",

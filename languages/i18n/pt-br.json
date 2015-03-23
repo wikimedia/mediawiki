@@ -78,7 +78,8 @@
 			"PauloEduardo",
 			"Webysther",
 			"Fasouzafreitas",
-			"RosaMafalda17"
+			"RosaMafalda17",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -3115,7 +3116,7 @@
 	"feedback-error3": "Erro: A API não responde",
 	"feedback-message": "Mensagem:",
 	"feedback-subject": "Assunto:",
-	"feedback-submit": "Enviar Comentários",
+	"feedback-submit": "Enviar",
 	"feedback-thanks": "Obrigado! O seu comentário foi adicionado à página \"[$2 $1]\".",
 	"searchsuggest-search": "Pesquisa",
 	"searchsuggest-containing": "contendo...",

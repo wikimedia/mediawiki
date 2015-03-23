@@ -12,7 +12,8 @@
 			"Tlustulimu",
 			"לערי ריינהארט",
 			"아라",
-			"Mikławš"
+			"Mikławš",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Wotkazy podšmórnić:",
@@ -2161,9 +2162,7 @@
 	"import-rootpage-nosubpage": "Mjenowy rum \"$1\" korjenjoweje strony njedowola podstrony.",
 	"importlogpage": "Protokol importow",
 	"importlogpagetext": "To je lisćina importowanych stronow ze stawiznami z druhich wikijow.",
-	"import-logentry-upload": "strona [[$1]] bu přez nahraće importowana",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|wersija|wersiji|wersije|wersijow}}",
-	"import-logentry-interwiki": "je stronu $1 z druheho wikija přenjesł",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|wersija|wersiji|wersije|wersijow}} z $2 {{PLURAL:$1|importowana|importowanej|importowane|importowane}}",
 	"javascripttest": "JavaScriptowy test",
 	"javascripttest-pagetext-noframework": "Tuta strona je za přewjedźenje javascriptowych testow přewostajena.",
@@ -2988,7 +2987,7 @@
 	"feedback-error3": "Zmylk: Žana wotmołwa wot API",
 	"feedback-message": "Powěsć:",
 	"feedback-subject": "Tema:",
-	"feedback-submit": "Komentar wotpósłać",
+	"feedback-submit": "Wotpósłać",
 	"feedback-thanks": "Dźakujemy so! Twój komentar je so k stronje \"[$2 $1]\" pósłał.",
 	"searchsuggest-search": "Pytać",
 	"searchsuggest-containing": "wobsahuje...",

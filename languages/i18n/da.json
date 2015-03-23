@@ -48,7 +48,8 @@
 			"Urhixidur",
 			"아라",
 			"Thomsen",
-			"Knud Winckelmann"
+			"Knud Winckelmann",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Understreg henvisninger:",
@@ -3012,7 +3013,7 @@
 	"feedback-error3": "Fejl: Intet svar fra API",
 	"feedback-message": "Besked:",
 	"feedback-subject": "Emne:",
-	"feedback-submit": "Send kommentar",
+	"feedback-submit": "Send",
 	"feedback-thanks": "Tak! Dine tilbagemeldinger er blevet noteret på siden \"[$2 $1]\".",
 	"searchsuggest-search": "Søg",
 	"searchsuggest-containing": "indeholder...",

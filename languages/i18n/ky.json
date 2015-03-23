@@ -13,7 +13,8 @@
 			"Ztimur",
 			"Викиней",
 			"아라",
-			"Askar Nazyrov"
+			"Askar Nazyrov",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Шилтемелердин алдын сызуу:",
@@ -1105,7 +1106,6 @@
 	"import-invalid-interwiki": "Көрсөтүлгөн уикиден импорттоого мүмкүн эмес.",
 	"importlogpage": "Импорт журналы",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|версия}}",
-	"import-logentry-interwiki": "«$1» — уики аралык импорту",
 	"javascripttest": "JavaScript'ти текшерүү",
 	"tooltip-pt-userpage": "Колдонуучу барагыңыз",
 	"tooltip-pt-mytalk": "Баарлашуу барагыңыз",
@@ -1390,7 +1390,7 @@
 	"feedback-error3": "Ката: API'ден жооп жок",
 	"feedback-message": "Билдирүү:",
 	"feedback-subject": "Тема:",
-	"feedback-submit": "Пикир жөнөтүү",
+	"feedback-submit": "Жөнөтүү",
 	"searchsuggest-search": "Издөө",
 	"searchsuggest-containing": "кармагандар...",
 	"api-error-badtoken": "Ички ката: анык эмес токен.",

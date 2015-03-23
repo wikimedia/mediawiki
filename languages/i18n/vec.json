@@ -17,7 +17,8 @@
 			"Urhixidur",
 			"Vajotwo",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Sotołinea i cołegamenti:",
@@ -2004,9 +2005,7 @@
 	"import-rootpage-nosubpage": "El namespace \"$1\" de ła pàjina prinsipałe nó 'l permete de 'ver sotopajine.",
 	"importlogpage": "Inportassion",
 	"importlogpagetext": "Registro de łe inportazion d'ufiçio de pàxene provenienti da altre wiki, conplete de cronołogia.",
-	"import-logentry-upload": "gà inportà $1 tramite caricamento de file",
 	"import-logentry-upload-detail": "{{PLURAL:$1|una revixion importà|$1 revixion importae}}",
-	"import-logentry-interwiki": "gà trasferìo da altra wiki ła pàxena $1",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|una revixion importà|$1 revixion importae}} da $2",
 	"javascripttest": "Sperimentasion JavaScript",
 	"javascripttest-pagetext-noframework": "Sta pàjina ła xe riservà a l'execusion de test de JavaScript.",
@@ -2798,7 +2797,7 @@
 	"feedback-error3": "Errore: Nisuna risposta da ła API",
 	"feedback-message": "Messajo:",
 	"feedback-subject": "Ogeto:",
-	"feedback-submit": "Invia feedback",
+	"feedback-submit": "Manda",
 	"feedback-thanks": "Grasie! El to feedback el xe sta publicà a ła pàjina \"[$2 $1]\".",
 	"searchsuggest-search": "Serca",
 	"searchsuggest-containing": "che contien...",

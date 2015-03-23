@@ -10,7 +10,8 @@
 			"Soroush",
 			"Urhixidur",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Пайвандҳо хаткашида:",
@@ -1607,9 +1608,7 @@
 	"import-invalid-interwiki": "Аз викии мушаххасшуда наметавон воридот кард.",
 	"importlogpage": "Вориди гузоришҳо",
 	"importlogpagetext": "Ворид кардани саҳифаҳо бо ҳамроҳи таърихчаи вироиши онҳо аз викиҳои дигар.",
-	"import-logentry-upload": "[[$1]] аз тариқи боргузории парванда, ворид шуд",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|нусха|нусха}}",
-	"import-logentry-interwiki": "$1 трансвикишуда",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|нусха|нусха}} аз $2",
 	"tooltip-pt-userpage": "Саҳифаи корбарии шумо",
 	"tooltip-pt-anonuserpage": "Саҳифаи корбари IP, ки бо он шумо вироиш мекунед",
@@ -2101,7 +2100,7 @@
 	"feedback-close": "Анҷом шуд.",
 	"feedback-message": "Пайём:",
 	"feedback-subject": "Мавзӯъ:",
-	"feedback-submit": "Ирсоли Пешниҳод",
+	"feedback-submit": "Ирсол",
 	"expandtemplates": "Бастдодани шаблонҳо",
 	"expand_templates_intro": "Ин саҳифаи вижа матнеро дарёфт карда ва тамоми шаблонҳои ба кор рафта дар онро ба таври бозгаште баст медиҳад. Ҳамчунин тобеҳои таҷзеҳ\n<nowiki>{{</nowiki>#language:...}}, ва мутағйирҳое чун\n<nowiki>{{</nowiki>CURRENTDAY}}&mdash;ро ҳам баст медиҳад – дар воқеъ тақрибан ҳар чиро ки дохили ду акулот бошад.\nИн кор бо садо задани марҳилаи таҷзеҳи марбут дар худи МедиаВики сурат мегирад.",
 	"expand_templates_title": "Унвони мавзӯъ, барои {{FULLPAGENAME}} ва ғайра.:",

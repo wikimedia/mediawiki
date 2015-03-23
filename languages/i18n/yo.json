@@ -5,7 +5,8 @@
 			"Kaganer",
 			"Meno25",
 			"Urhixidur",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Ìfàlàsábẹ́ àwọn àjápọ̀:",
@@ -1996,9 +1997,7 @@
 	"import-rootpage-nosubpage": "Orúkọàyè \"$1\" fún ipasẹ̀ ojúewé kò gba ojúewé abẹ́ ní àyè.",
 	"importlogpage": "Ìgbéwọlé àkọọ́lẹ̀",
 	"importlogpagetext": "Ìkówọlé olùmójútó àwọn ojúewé pẹ̀lú ìtàn àtúnṣe láti àwọn wiki míràn.",
-	"import-logentry-upload": "ìkówọlé [[$1]] pẹ̀lú ìrùsókè fáìlì",
 	"import-logentry-upload-detail": "{{PLURAL:$1|Àtúnyẹ̀wò|Àwọn àtúnyẹ̀wò}} $1",
-	"import-logentry-interwiki": "mú $1 wá láti inú wiki míràn",
 	"import-logentry-interwiki-detail": "{{PLURAL:$1|Àtúnyẹ̀wò|Àwọn àtúnyẹ̀wò}} $1 láti $2",
 	"javascripttest": "Ìdánwò JavaScript",
 	"javascripttest-pagetext-noframework": "Ojúewé yìí jẹ́ dídásílẹ̀ fún ṣíṣe ìdánwò JavaScript.",
@@ -2604,7 +2603,7 @@
 	"feedback-error3": "Àsìṣe: Kò sí ìdáhùn látọ̀dọ̀ API",
 	"feedback-message": "Ìránṣẹ́:",
 	"feedback-subject": "Oríọ̀rọ̀:",
-	"feedback-submit": "Ìfisílẹ̀ ìdáhùn",
+	"feedback-submit": "Fúnsílẹ̀",
 	"feedback-thanks": "Adúpẹ́! Ìdáhùn yín ti jẹ́ fífikún sí ojúewé \"[$2 $1]\".",
 	"searchsuggest-search": "Ṣàwárí",
 	"searchsuggest-containing": "tó ní...",

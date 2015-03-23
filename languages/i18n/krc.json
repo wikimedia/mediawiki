@@ -7,7 +7,8 @@
 			"Kaganer",
 			"Reedy",
 			"Къарачайлы",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Джибериулени черт:",
@@ -1970,9 +1971,7 @@
 	"import-invalid-interwiki": "Белгиленнген викиден импорт этелирча тюлдю.",
 	"importlogpage": "Импортну журналы",
 	"importlogpagetext": "Башха викиледен бетлени тюрлендириу тарихин администраторланы импорт этиую.",
-	"import-logentry-upload": "[[$1]] файл джюклениую бла импорт этилди",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|версия}}",
-	"import-logentry-interwiki": "$1 трансвикиленди",
 	"import-logentry-interwiki-detail": "$2 бетден  $1 {{PLURAL:$1|версия}}",
 	"javascripttest": "JavaScript тинтилиую",
 	"tooltip-pt-userpage": "Къошулуучу бетигиз",
@@ -2754,7 +2753,7 @@
 	"feedback-error2": "Халат. Тюзетиу ётмеди",
 	"feedback-message": "Билдириу:",
 	"feedback-subject": "Тема:",
-	"feedback-submit": "Оюмунгу джибер",
+	"feedback-submit": "Джибер",
 	"searchsuggest-search": "Излеу",
 	"searchsuggest-containing": "ичиндегиси…",
 	"api-error-badtoken": "Ич халат: терс токен.",

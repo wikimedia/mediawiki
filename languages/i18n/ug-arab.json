@@ -9,7 +9,8 @@
 			"Sahran",
 			"Tel'et",
 			"بىلگە",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "ئۇلانما ئاستى سىزىقى:",
@@ -2044,9 +2045,7 @@
 	"import-rootpage-nosubpage": "\"$1\" ئات بوشلۇقىنىڭ غول بېتى تارماق بەتكە يول قويمايدۇ.",
 	"importlogpage": "ئەكىرىش خاتىرىسى",
 	"importlogpagetext": "باشقا wiki دىن تارىخ خاتىرىسىنى قوشۇپ باشقۇرغۇچى سۈپىتىدە ئەكىرىش.",
-	"import-logentry-upload": "ھۆججەت يۈكلەپ [[$1]] ئەكىرىلدى",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|تۈزىتىش|تۈزىتىش}}",
-	"import-logentry-interwiki": "wiki ھالقىغان $1",
 	"import-logentry-interwiki-detail": "$2 دىن كەلگەن $1 {{PLURAL:$1|تۈزىتىش|تۈزىتىش}}",
 	"javascripttest": "JavaScript سىناش",
 	"javascripttest-pagetext-noframework": "بۇ بەت JavaScript ئىجرا قىلىپ سىناشقا قالدۇرۇلغان.",
@@ -2853,7 +2852,7 @@
 	"feedback-error3": "خاتالىق: API دىن ئىنكاس يوق",
 	"feedback-message": "ئۇچۇر:",
 	"feedback-subject": "تېما:",
-	"feedback-submit": "قايتۇرما ئىنكاس يوللا",
+	"feedback-submit": "تاپشۇر",
 	"feedback-thanks": "كۆپ رەھمەت! قايتۇرما ئىنكاسىڭىز \"[$2 $1]\" بەتكە يوللاندى.",
 	"searchsuggest-search": "ئىزدەش",
 	"searchsuggest-containing": "ئىچىدە…",

@@ -6,7 +6,8 @@
 			"Reedy",
 			"לערי ריינהארט",
 			"아라",
-			"Soul Train"
+			"Soul Train",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Solegnér los lims :",
@@ -1980,9 +1981,7 @@
 	"import-options-wrong": "{{PLURAL:$2|Crouyo chouèx|Crouyos chouèx}} : <nowiki>$1</nowiki>",
 	"importlogpage": "Jornal de les importacions",
 	"importlogpagetext": "Importacions administratives de pâges avouéc lor historico de changements dês d’ôtros vouiquis.",
-	"import-logentry-upload": "at importâ [[$1]] per tèlèchargement de fichiér",
 	"import-logentry-upload-detail": "$1 vèrsion{{PLURAL:$1||s}}",
-	"import-logentry-interwiki": "at importâ $1 per entèrvouiqui",
 	"import-logentry-interwiki-detail": "$1 vèrsion{{PLURAL:$1||s}} dês $2",
 	"javascripttest": "Èprôva de JavaScript",
 	"javascripttest-qunit-intro": "Vêde la [$1 documentacion de les èprôves] dessus mediawiki.org.",
@@ -2786,7 +2785,7 @@
 	"feedback-error3": "Èrror : gins de rèponsa de l’API",
 	"feedback-message": "Mèssâjo :",
 	"feedback-subject": "Sujèt :",
-	"feedback-submit": "Mandar voutron avis",
+	"feedback-submit": "Sometre",
 	"feedback-thanks": "Grant-marci ! Voutron avis at étâ postâ sur la pâge « [$2 $1] ».",
 	"searchsuggest-search": "Rechèrchiér",
 	"searchsuggest-containing": "que contint...",

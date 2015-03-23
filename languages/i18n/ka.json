@@ -21,7 +21,8 @@
 			"ka.wikipedia.org sysops",
 			"לערי ריינהארט",
 			"გიორგიმელა",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "ბმულების ხაზგასმა:",
@@ -3030,7 +3031,7 @@
 	"feedback-error3": "შეცდომა. არ არის API-ს პასუხი .",
 	"feedback-message": "შეტყობინება:",
 	"feedback-subject": "თემა:",
-	"feedback-submit": "შეფასების გაგზავნა",
+	"feedback-submit": "მიღება",
 	"feedback-thanks": "გმადლობთ! თქვენი შეფასება განთავსებულია „[$2 $1]“ გვერდზე.",
 	"searchsuggest-search": "ძიება",
 	"searchsuggest-containing": "შეიცავს...",

@@ -8,7 +8,8 @@
 			"Shirayuki",
 			"Steven*fung",
 			"Urhixidur",
-			"아라"
+			"아라",
+			"Macofe"
 		]
 	},
 	"tog-underline": "Linyahan an kilyawan:",
@@ -2083,9 +2084,7 @@
 	"import-rootpage-nosubpage": "Espasyong-ngaran \"$1\" kan ugat na pahina dae minatugot nin pan-irarom na mga pahina.",
 	"importlogpage": "Usip nin pagpalaog",
 	"importlogpagetext": "Administratibong mga importadong pahina na igwang historiya nin pagliliwat gikan sa ibang wikis.",
-	"import-logentry-upload": "pigpadara an [[$1]] kan pagkarga nin ''file''",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|rebisyon|mga rebisyon}}",
-	"import-logentry-interwiki": "na-transwiki an $1",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|rebisyon|mga rebisyon}} gikan sa $2",
 	"javascripttest": "Testing sa JavaScript",
 	"javascripttest-pagetext-noframework": "An pahinang ini reserbado para sa pagpapadalagan kan mga pagtesting sa JavaScript.",
@@ -2883,7 +2882,7 @@
 	"feedback-error3": "Kasalaan: Mayong kasimbagan gikan sa API",
 	"feedback-message": "An Mensahe:",
 	"feedback-subject": "Subheto",
-	"feedback-submit": "Isumite an balik-simbag",
+	"feedback-submit": "Isumite",
 	"feedback-thanks": "Salamat! An saimong balik-simbag pinagposte sa pahina \"[$2 $1]\".",
 	"searchsuggest-search": "Hanapa baya",
 	"searchsuggest-containing": "may laog na...",

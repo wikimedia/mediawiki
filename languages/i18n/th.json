@@ -21,7 +21,8 @@
 			"จักรกฤช วงศ์สระหลวง (Jakkrit Vongsraluang) / PaePae",
 			"วรากร อึ้งวิเชียร (Varakorn Ungvichian)",
 			"아라",
-			"Pphongpan355"
+			"Pphongpan355",
+			"Macofe"
 		]
 	},
 	"tog-underline": "การขีดเส้นใต้ลิงก์:",
@@ -2142,9 +2143,7 @@
 	"import-rootpage-nosubpage": "เนมสเปซ \"$1\" ของหน้าต้นทางไม่อนุญาตหน้าย่อย",
 	"importlogpage": "ปูมการนำเข้า",
 	"importlogpagetext": "นำเข้าไฟล์จากวิกิอื่น โดยผ่านทางผู้ดูแลระบบ",
-	"import-logentry-upload": "นำเข้า [[$1]] ผ่านการอัปโหลดแล้ว",
 	"import-logentry-upload-detail": "นำเข้า $1 {{PLURAL:$1|รุ่นการแก้ไข|รุ่นการแก้ไข}}",
-	"import-logentry-interwiki": "นำเข้าข้ามวิกิ $1 แล้ว",
 	"import-logentry-interwiki-detail": "นำเข้า $1 {{PLURAL:$1|รุ่นการแก้ไข|รุ่นการแก้ไข}}จาก $2",
 	"javascripttest": "การทดสอบจาวาสคริปต์",
 	"javascripttest-pagetext-noframework": "หน้านี้สงวนไว้สำหรับดำเนินงานการทดสอบจาวาสคริปต์",
@@ -2881,7 +2880,7 @@
 	"feedback-close": "เสร็จสิ้น",
 	"feedback-message": "ข้อความ:",
 	"feedback-subject": "เรื่อง:",
-	"feedback-submit": "ส่งคำติชม",
+	"feedback-submit": "ตกลง",
 	"feedback-thanks": "ขอบคุณ! ผลป้อนกลับของคุณถูกโพสต์ไปยังหน้า \"[$2 $1]\" แล้ว",
 	"searchsuggest-search": "ค้นหา",
 	"searchsuggest-containing": "มี...",
