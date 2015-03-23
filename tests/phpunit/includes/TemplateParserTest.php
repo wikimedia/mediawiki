@@ -19,64 +19,37 @@ class TemplateParserTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider provideProcessTemplate
+	 * @covers TemplateParser::getTemplate
 	 * @covers TemplateParser::getTemplateFilename
-	 * @dataProvider provideGetTemplateFilename
 	 */
-	public function testGetTemplateFilename( $dir, $name, $result, $exception = false ) {
+	public function testProcessTemplate( $name, $args, $result, $exception = false ) {
 		if ( $exception ) {
 			$this->setExpectedException( $exception );
 		}
-
-		$tp = new TemplateParser( $dir );
-		$path = $tp->getTemplateFilename( $name );
-		$this->assertEquals( $result, $path );
+		$tp = new TemplateParser( $this->templateDir );
+		$this->assertEquals( $result, $tp->processTemplate( $name, $args ) );
 	}
 
-	public static function provideGetTemplateFilename() {
+	public static function provideProcessTemplate() {
 		return array(
 			array(
-				'dir/templates',
 				'foobar',
-				'dir/templates/foobar.mustache',
+				array(),
+				"hello world!\n"
 			),
 			array(
-				'dir/templates',
 				'../foobar',
-				'',
+				array(),
+				false,
 				'UnexpectedValueException'
 			),
-		);
-	}
-
-	/**
-	 * @covers TemplateParser::getTemplate
-	 */
-	public function testGetTemplate() {
-		$tp = new TemplateParser( $this->templateDir );
-		$this->assertTrue( is_callable( $tp->getTemplate( 'foobar' ) ) );
-	}
-
-	/**
-	 * @covers TemplateParser::compile
-	 */
-	public function testTemplateCompilation() {
-		$this->assertRegExp(
-			'/^<\?php return function/',
-			TemplateParser::compile( "test" ),
-			'compile a simple mustache template'
-		);
-	}
-
-	/**
-	 * @covers TemplateParser::compile
-	 */
-	public function testTemplateCompilationWithVariable() {
-		$this->assertRegExp(
-			'/return \'\'\.htmlentities\(\(string\)\(\(isset\(\$in\[\'value\'\]\) && '
-				. 'is_array\(\$in\)\) \? \$in\[\'value\'\] : null\), ENT_QUOTES, '
-				. '\'UTF-8\'\)\.\'\';/',
-			TemplateParser::compile( "{{value}}" ),
-			'compile a mustache template with an escaped variable'
+			array(
+				'nonexistenttemplate',
+				array(),
+				false,
+				'RuntimeException',
+			)
 		);
 	}
 }

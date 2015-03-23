@@ -51,7 +51,7 @@ class TemplateParser {
 	 * @return string
 	 * @throws UnexpectedValueException Disallows upwards directory traversal via $templateName
 	 */
-	public function getTemplateFilename( $templateName ) {
+	protected function getTemplateFilename( $templateName ) {
 		// Prevent upwards directory traversal using same methods as Title::secureAndSplit
 		if (
 			strpos( $templateName, '.' ) !== false &&
@@ -77,7 +77,7 @@ class TemplateParser {
 	 * @return callable
 	 * @throws RuntimeException
 	 */
-	public function getTemplate( $templateName ) {
+	protected function getTemplate( $templateName ) {
 		// If a renderer has already been defined for this template, reuse it
 		if ( isset( $this->renderers[$templateName] ) && is_callable( $this->renderers[$templateName] ) ) {
 			return $this->renderers[$templateName];
@@ -145,9 +145,9 @@ class TemplateParser {
 	 * @return string PHP code (without '<?php')
 	 * @throws RuntimeException
 	 */
-	public function compileForEval( $fileContents, $filename ) {
+	protected function compileForEval( $fileContents, $filename ) {
 		// Compile the template into PHP code
-		$code = self::compile( $fileContents );
+		$code = $this->compile( $fileContents );
 
 		if ( !$code ) {
 			throw new RuntimeException( "Could not compile template: {$filename}" );
@@ -167,7 +167,7 @@ class TemplateParser {
 	 * @return string PHP code (with '<?php')
 	 * @throws RuntimeException
 	 */
-	public static function compile( $code ) {
+	protected function compile( $code ) {
 		if ( !class_exists( 'LightnCandy' ) ) {
 			throw new RuntimeException( 'LightnCandy class not defined' );
 		}
