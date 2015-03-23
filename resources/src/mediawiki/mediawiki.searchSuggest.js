@@ -52,6 +52,8 @@
 
 		// The function used to render the suggestions.
 		function renderFunction( text, context ) {
+			var self = this;
+
 			if ( !resultRenderCache ) {
 				resultRenderCache = computeResultRenderCache( context );
 			}
@@ -66,7 +68,23 @@
 						.attr( 'href', resultRenderCache.baseHref + $.param( resultRenderCache.linkParams ) )
 						.attr( 'title', text )
 						.addClass( 'mw-searchSuggest-link' )
+						.on( 'click', function () {
+							mw.track( 'mediawiki.searchSuggest', {
+								action: 'click-result',
+								numberOfResults: context.config.suggestions.length,
+								clickIndex: parseInt( $( self ).attr( 'rel' ), 10 ) + 1
+							} );
+						} )
 				);
+
+			if ( text === context.config.suggestions[ context.config.suggestions.length - 1 ] ) {
+				// run only when the last element is shown
+				// fixme: there's gotta be a better way of doing this
+				mw.track( 'mediawiki.searchSuggest', {
+					action: 'impression-results',
+					numberOfResults: context.config.suggestions.length
+				} );
+			}
 		}
 
 		function specialRenderFunction( query, context ) {
@@ -162,11 +180,25 @@
 			// (they use 2 elements to get a sane font-height). So, instead of making exceptions for
 			// each skin or adding more stylesheets, just copy it from the active element so auto-fit.
 			.each( function () {
-				var $this = $( this );
+				var $this = $( this ),
+					previousValue = $this.val();
+
 				$this
 					.data( 'suggestions-context' )
 					.data.$container
 						.css( 'fontSize', $this.css( 'fontSize' ) );
+
+				// TODO:
+				// Opera does not fire an input event after dropping text in an input field.
+				// IE 9 does not fire an input event when the user removes characters from input filled by keyboard, cut, or drag operations.
+				// Detect user input
+				$this.on( 'input', function () {
+					if ( $this.val() !== '' && $this.val() !== previousValue ) {
+						mw.track( 'mediawiki.searchSuggest', {
+							action: 'session-start'
+						} );
+					}
+				} );
 			} );
 
 		// Ensure that the thing is actually present!
