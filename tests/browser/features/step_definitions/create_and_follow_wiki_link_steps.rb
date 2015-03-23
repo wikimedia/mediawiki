@@ -6,7 +6,7 @@ end
 
 Given(/^I am on the (.+) page$/) do |article|
   article = article.gsub(/ /, '_')
-  visit(ZtargetPage, :using_params => { :article_name => article })
+  visit(ZtargetPage, using_params: { article_name: article })
 end
 
 Given(/^I create page "(.*?)" with content "(.*?)"$/) do |page_title, page_content|
