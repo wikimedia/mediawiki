@@ -587,9 +587,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	public function getDefinitionSummary( ResourceLoaderContext $context ) {
-		$summary = array(
-			'class' => get_class( $this ),
-		);
+		$summary = parent::getDefinitionSummary( $context );
 		foreach ( array(
 			'scripts',
 			'debugScripts',
