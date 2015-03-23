@@ -115,6 +115,50 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 	...
 }',
 			),
+			array(
+				array(
+					'class' => 'ResourceLoaderImageModule',
+					'selectorWithoutVariant' => '.mw-ui-icon-{name}:after, .mw-ui-icon-{name}:before',
+					'selectorWithVariant' => '.mw-ui-icon-{name}-{variant}:after, .mw-ui-icon-{name}-{variant}:before',
+					'variants' => $commonVariants,
+					'images' => array(
+						'icon' => $commonImageData,
+					),
+				),
+				'.mw-ui-icon-advanced:after, .mw-ui-icon-advanced:before {
+	...
+}
+.mw-ui-icon-advanced-invert:after, .mw-ui-icon-advanced-invert:before {
+	...
+}
+.mw-ui-icon-remove:after, .mw-ui-icon-remove:before {
+	...
+}
+.mw-ui-icon-remove-invert:after, .mw-ui-icon-remove-invert:before {
+	...
+}
+.mw-ui-icon-remove-destructive:after, .mw-ui-icon-remove-destructive:before {
+	...
+}
+.mw-ui-icon-next:after, .mw-ui-icon-next:before {
+	...
+}
+.mw-ui-icon-next-invert:after, .mw-ui-icon-next-invert:before {
+	...
+}
+.mw-ui-icon-help:after, .mw-ui-icon-help:before {
+	...
+}
+.mw-ui-icon-help-invert:after, .mw-ui-icon-help-invert:before {
+	...
+}
+.mw-ui-icon-bold:after, .mw-ui-icon-bold:before {
+	...
+}
+.mw-ui-icon-bold-invert:after, .mw-ui-icon-bold-invert:before {
+	...
+}',
+			),
 		);
 	}
 
