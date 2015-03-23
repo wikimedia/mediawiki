@@ -3,7 +3,8 @@
  */
 ( function ( mw, $ ) {
 	$( function () {
-		var api, map, resultRenderCache, searchboxesSelectors,
+		var api, map, resultRenderCache, searchboxesSelectors, previousSearchInputValue,
+			inputTimeoutID, isSampled,
 			// Region where the suggestions box will appear directly below
 			// (using the same width). Can be a container element or the input
 			// itself, depending on what suits best in the environment.
@@ -12,7 +13,9 @@
 			// element (not the search form, as that would leave the buttons
 			// vertically between the input and the suggestions).
 			$searchRegion = $( '#simpleSearch, #searchInput' ).first(),
-			$searchInput = $( '#searchInput' );
+			$searchInput = $( '#searchInput' ),
+			suggestionsDelay = 120,  // plugin default
+			isLoggingEnabled = mw.config.get( 'wgCirrusSearchEnableSearchLogging' );
 
 		// Compatibility map
 		map = {
@@ -29,6 +32,23 @@
 
 		if ( !$.client.test( map ) ) {
 			return;
+		}
+
+		/**
+		 * Sample users for event logging.
+		 */
+		if ( isLoggingEnabled ) {
+			isSampled = $.cookie( 'isSearchLoggingEnabledForUser' );
+			if ( isSampled === null ) {
+				// 1 in a 1000 using a session cookie
+				isSampled = Math.round( Math.random() * 1000 ) === 42;
+				if ( !isSampled ) {
+					isLoggingEnabled = false;
+				}
+				$.cookie( 'isSearchLoggingEnabledForUser', isSampled );
+			} else if ( isSampled === 'false' ) {
+				isLoggingEnabled = false;
+			}
 		}
 
 		// Compute form data for search suggestions functionality.
@@ -48,6 +68,45 @@
 				linkParams: linkParams,
 				baseHref: baseHref
 			};
+		}
+
+		/**
+		 * Track an event
+		 * @param {Object} data
+		 */
+		function trackEvent( data ) {
+			if ( isLoggingEnabled ) {
+				mw.track( 'mediawiki.searchSuggest',  data );
+			}
+		}
+
+		/**
+		 * Callback that's run when suggestions have been updated either from the cache or the API
+		 * @param {Object} context
+		 */
+		function onUpdate( context ) {
+			trackEvent( {
+				action: 'impression-results',
+				numberOfResults: context.config.suggestions.length,
+				// FIXME: when other types of search become available change this value accordingly
+				// See the API call below (opensearch = prefix)
+				resultSetType: 'prefix'
+			} );
+		}
+
+		/**
+		 * Callback that's run when a suggestion is selected
+		 * @param {jQuery.Object} $input Search input
+		 */
+		function onSelect( $input ) {
+			var context = $input.data( 'suggestionsContext' ),
+				text = $input.val();
+
+			trackEvent( {
+				action: 'click-result',
+				numberOfResults: context.config.suggestions.length,
+				clickIndex: context.config.suggestions.indexOf( text ) + 1
+			} );
 		}
 
 		// The function used to render the suggestions.
@@ -119,6 +178,8 @@
 		];
 		$( searchboxesSelectors.join( ', ' ) )
 			.suggestions( {
+				delay: suggestionsDelay,
+				updateCallback: ( isLoggingEnabled ) ? onUpdate : null,
 				fetch: function ( query, response, maxRows ) {
 					var node = this[0];
 
@@ -145,7 +206,10 @@
 				},
 				result: {
 					render: renderFunction,
-					select: function () {
+					select: function ( $input ) {
+						if ( isLoggingEnabled ) {
+							onSelect( $input );
+						}
 						// allow the form to be submitted
 						return true;
 					}
@@ -168,6 +232,50 @@
 					.data.$container
 						.css( 'fontSize', $this.css( 'fontSize' ) );
 			} );
+
+		/**
+		 * Track the input event of the primary search box if event logging is enabled
+		 */
+		if ( isLoggingEnabled ) {
+			previousSearchInputValue = $searchInput.val();
+			/**
+			 * Primary search box on every page in standard skins
+			 * Wait the same amount of time as the plugin property 'delay' before tracking the event.
+			 */
+			$searchInput.on( 'input', function () {
+				var $this = $( this );
+
+				clearTimeout( inputTimeoutID );
+
+				inputTimeoutID = setTimeout( function () {
+					// Detect user input
+					if ( $this.val() !== '' && $this.val() !== previousSearchInputValue ) {
+						trackEvent( {
+							action: 'session-start'
+						} );
+					}
+					previousSearchInputValue = $this.val();
+				}, suggestionsDelay );
+			} );
+
+			/**
+			 * Fire the 'input' event when the browser doesn't
+			 * https://developer.mozilla.org/en-US/docs/Web/Events/input
+			 */
+			// Opera does not fire an input event after dropping text in an input field.
+			if ( $.client.test( { opera: false } ) ) {
+				$searchInput.on( 'drop', function () {
+					$( this ).trigger( 'input' );
+				} );
+			} else if ( $.client.test( { ie: [['<=', 9]] } ) ) {
+				// IE 9 does not fire an input event when the user removes characters from input filled
+				// by keyboard, cut, or drag operations.
+				// FIXME: listen to the remove event by keyboard
+				$searchInput.on( 'cut drag', function () {
+					$( this ).trigger( 'input' );
+				} );
+			}
+		}
 
 		// Ensure that the thing is actually present!
 		if ( $searchRegion.length === 0 ) {

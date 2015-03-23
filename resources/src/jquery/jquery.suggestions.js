@@ -48,6 +48,7 @@
  *		Type: Boolean, Default: true
  * highlightInput: Whether to hightlight matched portions of the input or not
  *		Type: Boolean, Default: false
+ * updateCallback: Callback run when results are updated either from the cache or the API
  */
 ( function ( $ ) {
 
@@ -114,6 +115,12 @@ $.suggestions = {
 				if ( context.config.cache && hasOwn.call( cache, val ) ) {
 					if ( +new Date() - cache[ val ].timestamp < context.config.cacheMaxAge ) {
 						context.data.$textbox.suggestions( 'suggestions', cache[ val ].suggestions );
+						if ( typeof context.config.updateCallback === 'function' ) {
+							// Wait until the 'input' event on $textbox fires
+							setTimeout( function () {
+								context.config.updateCallback.call( context.data.$textbox, context );
+							}, 1 );
+						}
 						cacheHit = true;
 					} else {
 						// Cache expired
@@ -127,6 +134,12 @@ $.suggestions = {
 						function ( suggestions ) {
 							suggestions = suggestions.slice( 0, context.config.maxRows );
 							context.data.$textbox.suggestions( 'suggestions', suggestions );
+							if ( typeof context.config.updateCallback === 'function' ) {
+								// Wait until the 'input' event on $textbox fires
+								setTimeout( function () {
+									context.config.updateCallback.call( context.data.$textbox, context );
+								}, 1 );
+							}
 							if ( context.config.cache ) {
 								cache[ val ] = {
 									suggestions: suggestions,
@@ -179,6 +192,7 @@ $.suggestions = {
 
 		// Validate creation using fallback values
 		switch ( property ) {
+			case 'updateCallback':
 			case 'fetch':
 			case 'cancel':
 			case 'special':
