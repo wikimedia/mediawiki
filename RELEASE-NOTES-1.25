@@ -410,6 +410,7 @@ changes to languages because of Bugzilla reports.
   instead just returns the Status object. Extension calling it should be aware of
   this.
 * Removed class DBObject. (unused since 1.10)
+* wfDiff() is deprecated.
 
 == Compatibility ==
 

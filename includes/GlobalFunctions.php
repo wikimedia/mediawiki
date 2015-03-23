@@ -3115,7 +3115,9 @@ function wfMerge( $old, $mine, $yours, &$result ) {
 
 /**
  * Returns unified plain-text diff of two texts.
- * Useful for machine processing of diffs.
+ * "Useful" for machine processing of diffs.
+ *
+ * @deprecated since 1.25, use DiffEngine/UnifiedDiffFormatter directly
  *
  * @param string $before The text before the changes.
  * @param string $after The text after the changes.
@@ -3155,6 +3157,11 @@ function wfDiff( $before, $after, $params = '-u' ) {
 	$cmd = "$wgDiff " . $params . ' ' . wfEscapeShellArg( $oldtextName, $newtextName );
 
 	$h = popen( $cmd, 'r' );
+	if ( !$h ) {
+		unlink( $oldtextName );
+		unlink( $newtextName );
+		throw new Exception( __METHOD__ . '(): popen() failed' );
+	}
 
 	$diff = '';
 
