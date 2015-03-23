@@ -5,8 +5,6 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		// $wgResourceLoaderLESSFunctions, $wgResourceLoaderLESSImportPaths; $wgResourceLoaderLESSVars;
-
 		$this->setMwGlobals( array(
 			'wgResourceLoaderLESSFunctions' => array(
 				'test-sum' => function ( $frame, $less ) {
@@ -28,14 +26,11 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		) );
 	}
 
-	/* Provider Methods */
 	public static function provideValidModules() {
 		return array(
 			array( 'TEST.validModule1', new ResourceLoaderTestModule() ),
 		);
 	}
-
-	/* Test Methods */
 
 	/**
 	 * Ensures that the ResourceLoaderRegisterModules hook is called when a new
@@ -95,40 +90,8 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	 * @param string $css
 	 * @return string
 	 */
-	private function stripNoflip( $css ) {
+	private static function stripNoflip( $css ) {
 		return str_replace( '/*@noflip*/ ', '', $css );
-	}
-
-	/**
-	 * What happens when you mix @embed and @noflip?
-	 * This really is an integration test, but oh well.
-	 */
-	public function testMixedCssAnnotations(  ) {
-		$basePath = __DIR__ . '/../../data/css';
-		$testModule = new ResourceLoaderFileModule( array(
-			'localBasePath' => $basePath,
-			'styles' => array( 'test.css' ),
-		) );
-		$expectedModule = new ResourceLoaderFileModule( array(
-			'localBasePath' => $basePath,
-			'styles' => array( 'expected.css' ),
-		) );
-
-		$contextLtr = $this->getResourceLoaderContext( 'en', 'ltr' );
-		$contextRtl = $this->getResourceLoaderContext( 'he', 'rtl' );
-
-		// Since we want to compare the effect of @noflip+@embed against the effect of just @embed, and
-		// the @noflip annotations are always preserved, we need to strip them first.
-		$this->assertEquals(
-			$expectedModule->getStyles( $contextLtr ),
-			$this->stripNoflip( $testModule->getStyles( $contextLtr ) ),
-			"/*@noflip*/ with /*@embed*/ gives correct results in LTR mode"
-		);
-		$this->assertEquals(
-			$expectedModule->getStyles( $contextLtr ),
-			$this->stripNoflip( $testModule->getStyles( $contextRtl ) ),
-			"/*@noflip*/ with /*@embed*/ gives correct results in RTL mode"
-		);
 	}
 
 	/**
@@ -192,6 +155,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	/**
 	 * @dataProvider provideAddSource
 	 * @covers ResourceLoader::addSource
+	 * @covers ResourceLoader::getSources
 	 */
 	public function testAddSource( $name, $info, $expected ) {
 		$rl = new ResourceLoader;
