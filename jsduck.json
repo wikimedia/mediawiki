@@ -2,7 +2,7 @@
 	"--title": "MediaWiki core - Documentation",
 	"--categories": "maintenance/jsduck/categories.json",
 	"--eg-iframe": "maintenance/jsduck/eg-iframe.html",
-	"--tags": "maintenance/jsduck/CustomTags.rb",
+	"--tags": "maintenance/jsduck/custom_tags.rb",
 	"--warnings": ["-nodoc(class,public)"],
 	"--builtin-classes": true,
 	"--processes": "0",
