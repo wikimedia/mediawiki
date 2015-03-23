@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * The MediaWiki class is the helper class for the index.php entry point.
  */
@@ -478,7 +480,7 @@ class MediaWiki {
 		$wgTitle = $title;
 
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
-		$trxProfiler->setLogger( MWLoggerFactory::getInstance( 'DBPerformance' ) );
+		$trxProfiler->setLogger( LoggerFactory::getInstance( 'DBPerformance' ) );
 
 		// Aside from rollback, master queries should not happen on GET requests.
 		// Periodic or "in passing" updates on GET should use the job queue.
@@ -618,7 +620,7 @@ class MediaWiki {
 			$n = intval( $jobRunRate );
 		}
 
-		$runJobsLogger = MWLoggerFactory::getInstance( 'runJobs' );
+		$runJobsLogger = LoggerFactory::getInstance( 'runJobs' );
 
 		if ( !$this->config->get( 'RunJobsAsync' ) ) {
 			// Fall back to running the job here while the user waits
