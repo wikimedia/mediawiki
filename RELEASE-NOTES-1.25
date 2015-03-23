@@ -409,6 +409,7 @@ changes to languages because of Bugzilla reports.
 * EditPage::attemptSave has been modified not to call handleStatus itself and
   instead just returns the Status object. Extension calling it should be aware of
   this.
+* Removed class DBObject. (unused since 1.10)
 
 == Compatibility ==
 
