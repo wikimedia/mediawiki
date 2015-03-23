@@ -103,11 +103,7 @@ class TemplateParser {
 			// See if the compiled PHP code is stored in cache.
 			// CACHE_ACCEL throws an exception if no suitable object cache is present, so fall
 			// back to CACHE_ANYTHING.
-			try {
-				$cache = wfGetCache( CACHE_ACCEL );
-			} catch ( Exception $e ) {
-				$cache = wfGetCache( CACHE_ANYTHING );
-			}
+			$cache = ObjectCache::newAccelerator( array(), CACHE_ANYTHING );
 			$key = wfMemcKey( 'template', $templateName, $fastHash );
 			$code = $this->forceRecompile ? null : $cache->get( $key );
 
