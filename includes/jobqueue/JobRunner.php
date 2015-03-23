@@ -21,6 +21,7 @@
  * @ingroup JobQueue
  */
 
+use MediaWiki\Logger\LoggerFactory;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 
@@ -58,7 +59,7 @@ class JobRunner implements LoggerAwareInterface {
 	 */
 	public function __construct( LoggerInterface $logger = null ) {
 		if ( $logger === null ) {
-			$logger = MWLoggerFactory::getInstance( 'runJobs' );
+			$logger = LoggerFactory::getInstance( 'runJobs' );
 		}
 		$this->setLogger( $logger );
 	}

@@ -18,33 +18,36 @@
  * @file
  */
 
+namespace MediaWiki\Logger;
+
+use ObjectFactory;
 
 /**
  * PSR-3 logger instance factory.
  *
  * Creation of \Psr\Log\LoggerInterface instances is managed via the
- * MWLoggerFactory::getInstance() static method which in turn delegates to the
+ * LoggerFactory::getInstance() static method which in turn delegates to the
  * currently registered service provider.
  *
- * A service provider is any class implementing the MWLoggerSpi interface.
+ * A service provider is any class implementing the Spi interface.
  * There are two possible methods of registering a service provider. The
- * MWLoggerFactory::registerProvider() static method can be called at any time
- * to change the service provider. If MWLoggerFactory::getInstance() is called
+ * LoggerFactory::registerProvider() static method can be called at any time
+ * to change the service provider. If LoggerFactory::getInstance() is called
  * before any service provider has been registered, it will attempt to use the
- * $wgMWLoggerDefaultSpi global to bootstrap MWLoggerSpi registration.
+ * $wgMWLoggerDefaultSpi global to bootstrap Spi registration.
  * $wgMWLoggerDefaultSpi is expected to be an array usable by
  * ObjectFactory::getObjectFromSpec() to create a class.
  *
- * @see MWLoggerSpi
+ * @see Spi
  * @since 1.25
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2014 Bryan Davis and Wikimedia Foundation.
  */
-class MWLoggerFactory {
+class LoggerFactory {
 
 	/**
 	 * Service provider.
-	 * @var MWLoggerSpi $spi
+	 * @var Spi $spi
 	 */
 	private static $spi;
 
@@ -53,9 +56,9 @@ class MWLoggerFactory {
 	 * Register a service provider to create new \Psr\Log\LoggerInterface
 	 * instances.
 	 *
-	 * @param MWLoggerSpi $provider Provider to register
+	 * @param Spi $provider Provider to register
 	 */
-	public static function registerProvider( MWLoggerSpi $provider ) {
+	public static function registerProvider( Spi $provider ) {
 		self::$spi = $provider;
 	}
 
@@ -65,10 +68,10 @@ class MWLoggerFactory {
 	 *
 	 * If called before any service provider has been registered, it will
 	 * attempt to use the $wgMWLoggerDefaultSpi global to bootstrap
-	 * MWLoggerSpi registration. $wgMWLoggerDefaultSpi is expected to be an
+	 * Spi registration. $wgMWLoggerDefaultSpi is expected to be an
 	 * array usable by ObjectFactory::getObjectFromSpec() to create a class.
 	 *
-	 * @return MWLoggerSpi
+	 * @return Spi
 	 * @see registerProvider()
 	 * @see ObjectFactory::getObjectFromSpec()
 	 */

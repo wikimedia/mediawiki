@@ -17,17 +17,21 @@
  *
  * @file
  */
+
+namespace MediaWiki\Logger;
+
+use MediaWikiTestCase;
 use Psr\Log\LogLevel;
 
-class MWLoggerLegacyLoggerTest extends MediaWikiTestCase {
+class LegacyLoggerTest extends MediaWikiTestCase {
 
 	/**
-	 * @covers MWLoggerLegacyLogger::interpolate
+	 * @covers LegacyLogger::interpolate
 	 * @dataProvider provideInterpolate
 	 */
 	public function testInterpolate( $message, $context, $expect ) {
 		$this->assertEquals(
-			$expect, MWLoggerLegacyLogger::interpolate( $message, $context ) );
+			$expect, LegacyLogger::interpolate( $message, $context ) );
 	}
 
 	public function provideInterpolate() {
@@ -68,14 +72,14 @@ class MWLoggerLegacyLoggerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @covers MWLoggerLegacyLogger::shouldEmit
+	 * @covers LegacyLogger::shouldEmit
 	 * @dataProvider provideShouldEmit
 	 */
 	public function testShouldEmit( $level, $config, $expected ) {
 		$this->setMwGlobals( 'wgDebugLogGroups', array( 'fakechannel' => $config ) );
 		$this->assertEquals(
 			$expected,
-			MWLoggerLegacyLogger::shouldEmit( 'fakechannel', 'some message', $level, array() )
+			LegacyLogger::shouldEmit( 'fakechannel', 'some message', $level, array() )
 		);
 	}
 
