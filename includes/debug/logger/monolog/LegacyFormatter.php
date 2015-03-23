@@ -18,17 +18,22 @@
  * @file
  */
 
+namespace MediaWiki\Logger\Monolog;
+
+use MediaWiki\Logger\LegacyLogger;
+use Monolog\Formatter\NormalizerFormatter;
+
 /**
  * Log message formatter that mimics the legacy log message formatting of
  * `wfDebug`, `wfDebugLog`, `wfLogDBError` and `wfErrorLog` global functions by
- * delegating the formatting to MWLoggerLegacyLogger.
+ * delegating the formatting to \MediaWiki\Logger\LegacyLogger.
  *
  * @since 1.25
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2013 Bryan Davis and Wikimedia Foundation.
- * @see MWLoggerLegacyLogger
+ * @see \MediaWiki\Logger\LegacyLogger
  */
-class MWLoggerMonologLegacyFormatter extends \Monolog\Formatter\NormalizerFormatter {
+class LegacyFormatter extends NormalizerFormatter {
 
 	public function __construct() {
 		parent::__construct( 'c' );
@@ -36,7 +41,7 @@ class MWLoggerMonologLegacyFormatter extends \Monolog\Formatter\NormalizerFormat
 
 	public function format( array $record ) {
 		$normalized = parent::format( $record );
-		return MWLoggerLegacyLogger::format(
+		return LegacyLogger::format(
 			$normalized['channel'], $normalized['message'], $normalized
 		);
 	}

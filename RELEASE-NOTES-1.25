@@ -130,7 +130,8 @@ production.
 * The following libraries are now required:
 ** psr/log
    This library provides the interfaces set by the PSR-3 standard (http://www.php-fig.org/psr/psr-3/)
-   which are used by MediaWiki internally via the MWLoggerFactory class.
+   which are used by MediaWiki internally via the
+   MediaWiki\Logger\LoggerFactory class.
    See the structured logging RfC (https://www.mediawiki.org/wiki/Requests_for_comment/Structured_logging)
    for more background information.
 ** cssjanus/cssjanus

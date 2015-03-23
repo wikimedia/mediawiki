@@ -81,7 +81,7 @@ class HttpError extends MWException {
 	}
 
 	private function doLog() {
-		$logger = MWLoggerFactory::getInstance( 'HttpError' );
+		$logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'HttpError' );
 		$content = $this->content;
 
 		if ( $content instanceof Message ) {

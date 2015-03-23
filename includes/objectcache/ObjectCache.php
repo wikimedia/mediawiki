@@ -82,11 +82,11 @@ class ObjectCache {
 	 */
 	static function newFromParams( $params ) {
 		if ( isset( $params['loggroup'] ) ) {
-			$params['logger'] = MWLoggerFactory::getInstance( $params['loggroup'] );
+			$params['logger'] = \MediaWiki\Logger\LoggerFactory::getInstance( $params['loggroup'] );
 		} else {
 			// For backwards-compatability with custom parameters, lets not
 			// have all logging suddenly disappear
-			$params['logger'] = MWLoggerFactory::getInstance( 'objectcache' );
+			$params['logger'] = \MediaWiki\Logger\LoggerFactory::getInstance( 'objectcache' );
 		}
 		if ( isset( $params['factory'] ) ) {
 			return call_user_func( $params['factory'], $params );

@@ -627,7 +627,7 @@ class MediaWiki {
 			$n = intval( $jobRunRate );
 		}
 
-		$runJobsLogger = MWLoggerFactory::getInstance( 'runJobs' );
+		$runJobsLogger = \MediaWiki\Logger\LoggerFactory::getInstance( 'runJobs' );
 
 		if ( !$this->config->get( 'RunJobsAsync' ) ) {
 			// Fall back to running the job here while the user waits
