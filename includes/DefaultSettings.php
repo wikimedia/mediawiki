@@ -3299,6 +3299,14 @@ $wgShowRollbackEditCount = 10;
 $wgEnableCanonicalServerLink = false;
 
 /**
+ * Output a <link rel="alternate" hreflang="x"> tags for each language
+ * (including current one) when multiple language versions are available
+ * for the page.
+ * @since 1.26
+ */
+$wgGenerateHreflang = false;
+
+/**
  * When OutputHandler is used, mangle any output that contains
  * <cross-domain-policy>. Without this, an attacker can send their own
  * cross-domain policy unless it is prevented by the crossdomain.xml file at
