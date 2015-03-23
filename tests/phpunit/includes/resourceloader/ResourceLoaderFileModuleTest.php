@@ -45,7 +45,54 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 					'templates/template_awesome.handlebars',
 				),
 			),
+
+			'aliasFooFromBar' => $base + array(
+				'templates' => array(
+					'foo.foo' => 'templates/template.bar',
+				),
+			),
 		);
+	}
+
+	public static function providerTemplateDependencies() {
+		$modules = self::getModules();
+
+		return array(
+			array(
+				$modules['noTemplateModule'],
+				array(),
+			),
+			array(
+				$modules['htmlTemplateModule'],
+				array(
+					'mediawiki.template',
+				),
+			),
+			array(
+				$modules['templateModuleHandlebars'],
+				array(
+					'mediawiki.template',
+					'mediawiki.template.handlebars',
+				),
+			),
+			array(
+				$modules['aliasFooFromBar'],
+				array(
+					'mediawiki.template',
+					'mediawiki.template.foo',
+				),
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider providerTemplateDependencies
+	 * @covers ResourceLoaderFileModule::__construct
+	 * @covers ResourceLoaderFileModule::getDependencies
+	 */
+	public function testTemplateDependencies( $module, $expected ) {
+		$rl = new ResourceLoaderFileModule( $module );
+		$this->assertEquals( $rl->getDependencies(), $expected );
 	}
 
 	/**
