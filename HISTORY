@@ -190,6 +190,10 @@ Change notes from older releases. For current info see RELEASE-NOTES-1.25.
   to multiple Config instances.
 * Update CSSJanus to v1.1.0.
 * Added FormatJson::parse() returning status with result or localized error message
+* Added DeletedContribsPager::reallyDoQuery hook allowing extensions to data to
+  Special:DeletedContributions
+* Added DeletedContributionsLineEnding hook allowing extensions to format
+  Special:DeletedContributions lines
 
 === Bug fixes in 1.24 ===
 * (bug 50572) MediaWiki:Blockip should support gender

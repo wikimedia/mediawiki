@@ -78,6 +78,53 @@ class DeletedContribsPager extends IndexPager {
 		);
 	}
 
+	/**
+	 * This method basically executes the exact same code as the parent class, though with
+	 * a hook added, to allow extensions to add additional queries.
+	 *
+	 * @param string $offset Index offset, inclusive
+	 * @param int $limit Exact query limit
+	 * @param bool $descending Query direction, false for ascending, true for descending
+	 * @return ResultWrapper
+	 */
+	function reallyDoQuery( $offset, $limit, $descending ) {
+		$pager = $this;
+
+		$data = array( parent::reallyDoQuery( $offset, $limit, $descending ) );
+
+		// This hook will allow extensions to add in additional queries, nearly
+		// identical to ContribsPager::reallyDoQuery.
+		Hooks::run(
+			'DeletedContribsPager::reallyDoQuery',
+			array( &$data, $pager, $offset, $limit, $descending )
+		);
+
+		$result = array();
+
+		// loop all results and collect them in an array
+		foreach ( $data as $query ) {
+			foreach ( $query as $i => $row ) {
+				// use index column as key, allowing us to easily sort in PHP
+				$result[$row->{$this->getIndexField()} . "-$i"] = $row;
+			}
+		}
+
+		// sort results
+		if ( $descending ) {
+			ksort( $result );
+		} else {
+			krsort( $result );
+		}
+
+		// enforce limit
+		$result = array_slice( $result, 0, $limit );
+
+		// get rid of array keys
+		$result = array_values( $result );
+
+		return new FakeResultWrapper( $result );
+	}
+
 	function getUserCond() {
 		$condition = array();
 
@@ -151,111 +198,93 @@ class DeletedContribsPager extends IndexPager {
 	 * @return string
 	 */
 	function formatRow( $row ) {
+		$ret = '';
+		$classes = array();
 
-		$page = Title::makeTitle( $row->ar_namespace, $row->ar_title );
+		/*
+		 * There may be more than just revision rows. To make sure that we'll only be processing
+		 * revisions here, let's _try_ to build a revision out of our row (without displaying
+		 * notices though) and then trying to grab data from the built object. If we succeed,
+		 * we're definitely dealing with revision data and we may proceed, if not, we'll leave it
+		 * to extensions to subscribe to the hook to parse the row.
+		 */
+		wfSuppressWarnings();
+		try {
+			$rev = Revision::newFromArchiveRow( $row );
+			$validRevision = (bool)$rev->getId();
+		} catch ( Exception $e ) {
+			$validRevision = false;
+		}
+		wfRestoreWarnings();
 
-		$rev = new Revision( array(
-			'title' => $page,
-			'id' => $row->ar_rev_id,
-			'comment' => $row->ar_comment,
-			'user' => $row->ar_user,
-			'user_text' => $row->ar_user_text,
-			'timestamp' => $row->ar_timestamp,
-			'minor_edit' => $row->ar_minor_edit,
-			'deleted' => $row->ar_deleted,
-		) );
+		if ( $validRevision ) {
+			$page = Title::makeTitle( $row->ar_namespace, $row->ar_title );
 
-		$undelete = SpecialPage::getTitleFor( 'Undelete' );
+			$rev = new Revision( array( 'title' => $page, 'id' => $row->ar_rev_id, 'comment' => $row->ar_comment, 'user' => $row->ar_user, 'user_text' => $row->ar_user_text, 'timestamp' => $row->ar_timestamp, 'minor_edit' => $row->ar_minor_edit, 'deleted' => $row->ar_deleted, ) );
 
-		$logs = SpecialPage::getTitleFor( 'Log' );
-		$dellog = Linker::linkKnown(
-			$logs,
-			$this->messages['deletionlog'],
-			array(),
-			array(
-				'type' => 'delete',
-				'page' => $page->getPrefixedText()
-			)
-		);
+			$undelete = SpecialPage::getTitleFor( 'Undelete' );
 
-		$reviewlink = Linker::linkKnown(
-			SpecialPage::getTitleFor( 'Undelete', $page->getPrefixedDBkey() ),
-			$this->messages['undeleteviewlink']
-		);
+			$logs = SpecialPage::getTitleFor( 'Log' );
+			$dellog = Linker::linkKnown( $logs, $this->messages['deletionlog'], array(), array( 'type' => 'delete', 'page' => $page->getPrefixedText() ) );
 
-		$user = $this->getUser();
+			$reviewlink = Linker::linkKnown( SpecialPage::getTitleFor( 'Undelete', $page->getPrefixedDBkey() ), $this->messages['undeleteviewlink'] );
 
-		if ( $user->isAllowed( 'deletedtext' ) ) {
-			$last = Linker::linkKnown(
-				$undelete,
-				$this->messages['diff'],
-				array(),
-				array(
-					'target' => $page->getPrefixedText(),
-					'timestamp' => $rev->getTimestamp(),
-					'diff' => 'prev'
-				)
-			);
+			$user = $this->getUser();
+
+			if ( $user->isAllowed( 'deletedtext' ) ) {
+				$last = Linker::linkKnown( $undelete, $this->messages['diff'], array(), array( 'target' => $page->getPrefixedText(), 'timestamp' => $rev->getTimestamp(), 'diff' => 'prev' ) );
+			} else {
+				$last = $this->messages['diff'];
+			}
+
+			$comment = Linker::revComment( $rev );
+			$date = $this->getLanguage()->userTimeAndDate( $rev->getTimestamp(), $user );
+			$date = htmlspecialchars( $date );
+
+			if ( !$user->isAllowed( 'undelete' ) || !$rev->userCan( Revision::DELETED_TEXT, $user ) ) {
+				$link = $date; // unusable link
+			} else {
+				$link = Linker::linkKnown( $undelete, $date, array( 'class' => 'mw-changeslist-date' ), array( 'target' => $page->getPrefixedText(), 'timestamp' => $rev->getTimestamp() ) );
+			}
+			// Style deleted items
+			if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
+				$link = '<span class="history-deleted">' . $link . '</span>';
+			}
+
+			$pagelink = Linker::link( $page, null, array( 'class' => 'mw-changeslist-title' ) );
+
+			if ( $rev->isMinor() ) {
+				$mflag = ChangesList::flag( 'minor' );
+			} else {
+				$mflag = '';
+			}
+
+			// Revision delete link
+			$del = Linker::getRevDeleteLink( $user, $rev, $page );
+			if ( $del ) {
+				$del .= ' ';
+			}
+
+			$tools = Html::rawElement( 'span', array( 'class' => 'mw-deletedcontribs-tools' ), $this->msg( 'parentheses' )->rawParams( $this->getLanguage()->pipeList( array( $last, $dellog, $reviewlink ) ) )->escaped() );
+
+			$separator = '<span class="mw-changeslist-separator">. .</span>';
+			$ret = "{$del}{$link} {$tools} {$separator} {$mflag} {$pagelink} {$comment}";
+
+			# Denote if username is redacted for this edit
+			if ( $rev->isDeleted( Revision::DELETED_USER ) ) {
+				$ret .= " <strong>" . $this->msg( 'rev-deleted-user-contribs' )->escaped() . "</strong>";
+			}
+		}
+
+		// Let extensions add data
+		Hooks::run( 'DeletedContributionsLineEnding', array( $this, &$ret, $row, &$classes ) );
+
+		if ( $classes === array() && $ret === '' ) {
+			wfDebug( "Dropping Special:DeletedContribution row that could not be formatted\n" );
+			$ret = "<!-- Could not format Special:DeletedContribution row. -->\n";
 		} else {
-			$last = $this->messages['diff'];
+			$ret = Html::rawElement( 'li', array( 'class' => $classes ), $ret ) . "\n";
 		}
-
-		$comment = Linker::revComment( $rev );
-		$date = $this->getLanguage()->userTimeAndDate( $rev->getTimestamp(), $user );
-		$date = htmlspecialchars( $date );
-
-		if ( !$user->isAllowed( 'undelete' ) || !$rev->userCan( Revision::DELETED_TEXT, $user ) ) {
-			$link = $date; // unusable link
-		} else {
-			$link = Linker::linkKnown(
-				$undelete,
-				$date,
-				array( 'class' => 'mw-changeslist-date' ),
-				array(
-					'target' => $page->getPrefixedText(),
-					'timestamp' => $rev->getTimestamp()
-				)
-			);
-		}
-		// Style deleted items
-		if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
-			$link = '<span class="history-deleted">' . $link . '</span>';
-		}
-
-		$pagelink = Linker::link(
-			$page,
-			null,
-			array( 'class' => 'mw-changeslist-title' )
-		);
-
-		if ( $rev->isMinor() ) {
-			$mflag = ChangesList::flag( 'minor' );
-		} else {
-			$mflag = '';
-		}
-
-		// Revision delete link
-		$del = Linker::getRevDeleteLink( $user, $rev, $page );
-		if ( $del ) {
-			$del .= ' ';
-		}
-
-		$tools = Html::rawElement(
-			'span',
-			array( 'class' => 'mw-deletedcontribs-tools' ),
-			$this->msg( 'parentheses' )->rawParams( $this->getLanguage()->pipeList(
-				array( $last, $dellog, $reviewlink ) ) )->escaped()
-		);
-
-		$separator = '<span class="mw-changeslist-separator">. .</span>';
-		$ret = "{$del}{$link} {$tools} {$separator} {$mflag} {$pagelink} {$comment}";
-
-		# Denote if username is redacted for this edit
-		if ( $rev->isDeleted( Revision::DELETED_USER ) ) {
-			$ret .= " <strong>" . $this->msg( 'rev-deleted-user-contribs' )->escaped() . "</strong>";
-		}
-
-		$ret = Html::rawElement( 'li', array(), $ret ) . "\n";
 
 		return $ret;
 	}
