@@ -18,6 +18,13 @@
  * @file
  */
 
+namespace MediaWiki\Logger;
+
+use MWDebug;
+use Psr\Log\AbstractLogger;
+use Psr\Log\LogLevel;
+use UDPTransport;
+
 /**
  * PSR-3 logger that mimics the historic implementation of MediaWiki's
  * wfErrorLog logging implementation.
@@ -31,15 +38,12 @@
  * See documentation in DefaultSettings.php for detailed explanations of each
  * variable.
  *
- * @see MWLoggerFactory
+ * @see Factory
  * @since 1.25
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2014 Bryan Davis and Wikimedia Foundation.
  */
-use Psr\Log\AbstractLogger;
-use Psr\Log\LogLevel;
-
-class MWLoggerLegacyLogger extends AbstractLogger {
+class LegacyLogger extends AbstractLogger {
 
 	/**
 	 * @var string $channel

@@ -68,7 +68,7 @@ class RunJobs extends Maintenance {
 
 		$json = ( $this->getOption( 'result' ) === 'json' );
 
-		$runner = new JobRunner( MWLoggerFactory::getInstance( 'runJobs' ) );
+		$runner = new JobRunner( \MediaWiki\Logger\LoggerFactory::getInstance( 'runJobs' ) );
 		if ( !$json ) {
 			$runner->setDebugHandler( array( $this, 'debugInternal' ) );
 		}

@@ -124,7 +124,9 @@ if ( $wgAPIRequestLog ) {
 	} else {
 		$items[] = "failed in ApiBeforeMain";
 	}
-	MWLoggerLegacyLogger::emit( implode( ',', $items ) . "\n", $wgAPIRequestLog );
+	\MediaWiki\Logger\LegacyLogger::emit(
+		implode( ',', $items ) . "\n", $wgAPIRequestLog
+	);
 	wfDebug( "Logged API request to $wgAPIRequestLog\n" );
 }
 

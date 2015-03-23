@@ -58,7 +58,7 @@ class JobRunner implements LoggerAwareInterface {
 	 */
 	public function __construct( LoggerInterface $logger = null ) {
 		if ( $logger === null ) {
-			$logger = MWLoggerFactory::getInstance( 'runJobs' );
+			$logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'runJobs' );
 		}
 		$this->setLogger( $logger );
 	}

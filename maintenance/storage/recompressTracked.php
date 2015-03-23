@@ -141,7 +141,9 @@ class RecompressTracked {
 			$header .= "({$this->slaveId})";
 		}
 		$header .= ' ' . wfWikiID();
-		MWLoggerLegacyLogger::emit( sprintf( "%-50s %s\n", $header, $msg ), $file );
+		\MediaWiki\Logger\LegacyLogger::emit(
+			sprintf( "%-50s %s\n", $header, $msg ), $file
+		);
 	}
 
 	/**

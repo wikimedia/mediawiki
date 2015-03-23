@@ -89,7 +89,7 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 
 		// Do all of the specified tasks...
 		if ( in_array( 'jobs', explode( '|', $params['tasks'] ) ) ) {
-			$runner = new JobRunner( MWLoggerFactory::getInstance( 'runJobs' ) );
+			$runner = new JobRunner( \MediaWiki\Logger\LoggerFactory::getInstance( 'runJobs' ) );
 			$response = $runner->run( array(
 				'type'     => $params['type'],
 				'maxJobs'  => $params['maxjobs'] ? $params['maxjobs'] : 1,

@@ -18,28 +18,42 @@
  * @file
  */
 
+namespace MediaWiki\Logger;
+
 /**
- * Injects `wfHostname()` and `wfWikiID()` in all records.
+ * LoggerFactory service provider that creates LegacyLogger instances.
  *
+ * Usage:
+ * @code
+ * $wgMWLoggerDefaultSpi = array(
+ *   'class' => '\\MediaWiki\\Logger\\LegacySpi',
+ * );
+ * @endcode
+ *
+ * @see LoggerFactory
  * @since 1.25
  * @author Bryan Davis <bd808@wikimedia.org>
- * @copyright © 2013 Bryan Davis and Wikimedia Foundation.
+ * @copyright © 2014 Bryan Davis and Wikimedia Foundation.
  */
-class MWLoggerMonologProcessor {
+class LegacySpi implements Spi {
 
 	/**
-	 * @param array $record
-	 * @return array
+	 * @var array $singletons
 	 */
-	public function __invoke( array $record ) {
-		$record['extra'] = array_merge(
-			$record['extra'],
-			array(
-				'host' => wfHostname(),
-				'wiki' => wfWikiID(),
-			)
-		);
-		return $record;
+	protected $singletons = array();
+
+
+	/**
+	 * Get a logger instance.
+	 *
+	 * @param string $channel Logging channel
+	 * @return \Psr\Log\LoggerInterface Logger instance
+	 */
+	public function getLogger( $channel ) {
+		if ( !isset( $this->singletons[$channel] ) ) {
+			$this->singletons[$channel] = new LegacyLogger( $channel );
+		}
+		return $this->singletons[$channel];
 	}
 
 }
