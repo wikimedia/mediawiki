@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * The MediaWiki class is the helper class for the index.php entry point.
  */
@@ -617,7 +619,7 @@ class MediaWiki {
 			$n = intval( $jobRunRate );
 		}
 
-		$runJobsLogger = MWLoggerFactory::getInstance( 'runJobs' );
+		$runJobsLogger = LoggerFactory::getInstance( 'runJobs' );
 
 		if ( !$this->config->get( 'RunJobsAsync' ) ) {
 			// Fall back to running the job here while the user waits

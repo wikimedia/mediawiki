@@ -22,6 +22,8 @@
  * @author Aaron Schulz
  */
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * Special page designed for running background tasks (internal use only)
  *
@@ -89,7 +91,7 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 
 		// Do all of the specified tasks...
 		if ( in_array( 'jobs', explode( '|', $params['tasks'] ) ) ) {
-			$runner = new JobRunner( MWLoggerFactory::getInstance( 'runJobs' ) );
+			$runner = new JobRunner( LoggerFactory::getInstance( 'runJobs' ) );
 			$response = $runner->run( array(
 				'type'     => $params['type'],
 				'maxJobs'  => $params['maxjobs'] ? $params['maxjobs'] : 1,

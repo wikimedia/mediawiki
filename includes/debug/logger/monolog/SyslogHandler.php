@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Logger\Monolog;
+
 use Monolog\Handler\SyslogUdpHandler;
 use Monolog\Logger;
 
@@ -44,7 +46,7 @@ use Monolog\Logger;
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2015 Bryan Davis and Wikimedia Foundation.
  */
-class MWLoggerMonologSyslogHandler extends SyslogUdpHandler {
+class SyslogHandler extends SyslogUdpHandler {
 
 	/**
 	 * @var string $appname
