@@ -225,6 +225,11 @@ class OutputPageTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideMakeResourceLoaderLink
 	 * @covers OutputPage::makeResourceLoaderLink
+	 * @covers ResourceLoader::makeLoaderImplementScript
+	 * @covers ResourceLoader::makeModuleResponse
+	 * @covers ResourceLoader::makeInlineScript
+	 * @covers ResourceLoader::makeLoaderStateScript
+	 * @covers ResourceLoader::createLoaderURL
 	 */
 	public function testMakeResourceLoaderLink( $args, $expectedHtml ) {
 		$this->setMwGlobals( array(

@@ -18,7 +18,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		);
 	}
 
-	public static function getModules() {
+	private static function getModules() {
 		$base = array(
 			'localBasePath' => realpath( dirname( __FILE__ ) ),
 		);
@@ -48,48 +48,10 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		);
 	}
 
-	public static function providerGetTemplates() {
-		$modules = self::getModules();
-
-		return array(
-			array(
-				$modules['noTemplateModule'],
-				array(),
-			),
-			array(
-				$modules['templateModuleHandlebars'],
-				array(
-					'templates/template_awesome.handlebars' => "wow\n",
-				),
-			),
-			array(
-				$modules['htmlTemplateModule'],
-				array(
-					'templates/template.html' => "<strong>hello</strong>\n",
-					'templates/template2.html' => "<div>goodbye</div>\n",
-				),
-			),
-			array(
-				$modules['aliasedHtmlTemplateModule'],
-				array(
-					'foo.html' => "<strong>hello</strong>\n",
-					'bar.html' => "<div>goodbye</div>\n",
-				),
-			),
-		);
-	}
-
-	public static function providerGetModifiedTime() {
-		$modules = self::getModules();
-
-		return array(
-			// Check the default value when no templates present in module is 1
-			array( $modules['noTemplateModule'], 1 ),
-		);
-	}
-
 	/**
+	 * @covers ResourceLoaderFileModule::getAllStyleFiles
 	 * @covers ResourceLoaderFileModule::getAllSkinStyleFiles
+	 * @covers ResourceLoaderFileModule::getSkinStyleFiles
 	 */
 	public function testGetAllSkinStyleFiles() {
 		$baseParams = array(
@@ -133,6 +95,81 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	}
 
 	/**
+	 * Strip @noflip annotations from CSS code.
+	 * @param string $css
+	 * @return string
+	 */
+	private static function stripNoflip( $css ) {
+		return str_replace( '/*@noflip*/ ', '', $css );
+	}
+
+	/**
+	 * What happens when you mix @embed and @noflip?
+	 * This really is an integration test, but oh well.
+	 *
+	 * @covers ResourceLoaderFileModule::getStyles
+	 * @covers ResourceLoaderFileModule::getStyleFiles
+	 */
+	public function testMixedCssAnnotations(  ) {
+		$basePath = __DIR__ . '/../../data/css';
+		$testModule = new ResourceLoaderFileModule( array(
+			'localBasePath' => $basePath,
+			'styles' => array( 'test.css' ),
+		) );
+		$expectedModule = new ResourceLoaderFileModule( array(
+			'localBasePath' => $basePath,
+			'styles' => array( 'expected.css' ),
+		) );
+
+		$contextLtr = $this->getResourceLoaderContext( 'en', 'ltr' );
+		$contextRtl = $this->getResourceLoaderContext( 'he', 'rtl' );
+
+		// Since we want to compare the effect of @noflip+@embed against the effect of just @embed, and
+		// the @noflip annotations are always preserved, we need to strip them first.
+		$this->assertEquals(
+			$expectedModule->getStyles( $contextLtr ),
+			self::stripNoflip( $testModule->getStyles( $contextLtr ) ),
+			"/*@noflip*/ with /*@embed*/ gives correct results in LTR mode"
+		);
+		$this->assertEquals(
+			$expectedModule->getStyles( $contextLtr ),
+			self::stripNoflip( $testModule->getStyles( $contextRtl ) ),
+			"/*@noflip*/ with /*@embed*/ gives correct results in RTL mode"
+		);
+	}
+
+	public static function providerGetTemplates() {
+		$modules = self::getModules();
+
+		return array(
+			array(
+				$modules['noTemplateModule'],
+				array(),
+			),
+			array(
+				$modules['templateModuleHandlebars'],
+				array(
+					'templates/template_awesome.handlebars' => "wow\n",
+				),
+			),
+			array(
+				$modules['htmlTemplateModule'],
+				array(
+					'templates/template.html' => "<strong>hello</strong>\n",
+					'templates/template2.html' => "<div>goodbye</div>\n",
+				),
+			),
+			array(
+				$modules['aliasedHtmlTemplateModule'],
+				array(
+					'foo.html' => "<strong>hello</strong>\n",
+					'bar.html' => "<div>goodbye</div>\n",
+				),
+			),
+		);
+	}
+
+	/**
 	 * @dataProvider providerGetTemplates
 	 * @covers ResourceLoaderFileModule::getTemplates
 	 */
@@ -140,6 +177,15 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		$rl = new ResourceLoaderFileModule( $module );
 
 		$this->assertEquals( $rl->getTemplates(), $expected );
+	}
+
+	public static function providerGetModifiedTime() {
+		$modules = self::getModules();
+
+		return array(
+			// Check the default value when no templates present in module is 1
+			array( $modules['noTemplateModule'], 1 ),
+		);
 	}
 
 	/**
