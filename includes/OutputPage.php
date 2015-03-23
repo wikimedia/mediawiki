@@ -3411,26 +3411,6 @@ class OutputPage extends ContextSource {
 			) );
 		}
 
-		# Language variants
-		if ( !$config->get( 'DisableLangConversion' ) ) {
-			$lang = $this->getTitle()->getPageLanguage();
-			if ( $lang->hasVariants() ) {
-				$variants = $lang->getVariants();
-				foreach ( $variants as $_v ) {
-					$tags["variant-$_v"] = Html::element( 'link', array(
-						'rel' => 'alternate',
-						'hreflang' => wfBCP47( $_v ),
-						'href' => $this->getTitle()->getLocalURL( array( 'variant' => $_v ) ) )
-					);
-				}
-			}
-			# x-default link per https://support.google.com/webmasters/answer/189077?hl=en
-			$tags["variant-x-default"] = Html::element( 'link', array(
-				'rel' => 'alternate',
-				'hreflang' => 'x-default',
-				'href' => $this->getTitle()->getLocalURL() ) );
-		}
-
 		# Copyright
 		$copyright = '';
 		if ( $config->get( 'RightsPage' ) ) {
@@ -3512,6 +3492,31 @@ class OutputPage extends ContextSource {
 				'rel' => 'canonical',
 				'href' => $canonicalUrl
 			) );
+		}
+
+		# Generate hreflang tags
+		$languageLinks = $this->getLanguageLinks();
+		foreach ( $languageLinks as $languageLinkText ) {
+			$languageLinkTitle = Title::newFromText( $languageLinkText );
+			$ilInterwikiCode = $languageLinkTitle->getInterwiki();
+			if ( !Language::isKnownLanguageTag( $ilInterwikiCode ) ) {
+				continue;
+			}
+			$tags[] = Html::element( 'link', array(
+				'rel' => 'alternate',
+				'hreflang' => wfBCP47( $ilInterwikiCode ),
+				'href' => $languageLinkTitle->getFullURL()
+			) );
+			$addedLink = true;
+		}
+		// only add current language link if we had any other links
+		if( $addedLink ) {
+			$tags[] = Html::element( 'link', array(
+					'rel' => 'alternate',
+					'hreflang' => $this->getLanguage()->getHtmlCode(),
+					'href' => $this->getTitle()->getFullURL()
+			) );
+
 		}
 
 		return $tags;
