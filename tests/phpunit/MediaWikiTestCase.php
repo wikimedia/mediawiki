@@ -430,7 +430,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	protected function insertPage( $pageName, $text = 'Sample page for unit test.' ) {
 		$title = Title::newFromText( $pageName, 0 );
 
-		$user = User::newFromName( 'WikiSysop' );
+		$user = User::newFromName( 'UTSysop' );
 		$comment = __METHOD__ . ': Sample page for unit test.';
 
 		// Avoid memory leak...?
@@ -501,7 +501,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				'UTPageSummary',
 				EDIT_NEW,
 				false,
-				User::newFromName( 'UTSysop' )
+				$user
 			);
 		}
 	}
