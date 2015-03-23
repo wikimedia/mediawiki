@@ -3529,7 +3529,11 @@ class User implements IDBAccessObject {
 		$this->saveOptions();
 
 		Hooks::run( 'UserSaveSettings', array( $this ) );
-		$this->clearSharedCache();
+
+		// Re-populate the cache instead of just clearing it (which was the previous
+		// behaviour and suspected to cause race conditions as cache could be
+		// populated by stale data loaded from a slave.
+		$this->saveToCache();
 		$this->getUserPage()->invalidateCache();
 	}
 
