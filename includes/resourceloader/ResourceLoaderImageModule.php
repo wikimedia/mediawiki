@@ -38,7 +38,9 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 
 	protected $images = array();
 	protected $variants = array();
-	protected $prefix = array();
+	protected $prefix = null;
+	protected $selectorWithoutVariant = '.{prefix}-{type}-{name}';
+	protected $selectorWithVariant = '.{prefix}-{type}-{name}-{variant}';
 	protected $targets = array( 'desktop', 'mobile' );
 
 	/**
@@ -57,6 +59,11 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 *         'localBasePath' => [base path],
 	 *         // CSS class prefix to use in all style rules
 	 *         'prefix' => [CSS class prefix],
+	 *         // Alternatively: Format of CSS selector to use in all style rules
+	 *         'selector' => [CSS selector template, variables: {prefix} {type} {name} {variant}],
+	 *         // Alternatively: When using variants
+	 *         'selectorWithoutVariant' => [CSS selector template, variables: {prefix} {type} {name}],
+	 *         'selectorWithVariant' => [CSS selector template, variables: {prefix} {type} {name} {variant}],
 	 *         // List of variants that may be used for the image files
 	 *         'variants' => array(
 	 *             // ([image type] is a string, used in generated CSS class
@@ -87,10 +94,29 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	public function __construct( $options = array(), $localBasePath = null ) {
 		$this->localBasePath = self::extractLocalBasePath( $options, $localBasePath );
 
-		if ( !isset( $options['prefix'] ) || !$options['prefix'] ) {
-			throw new MWException(
-				"Required 'prefix' option not given or empty."
-			);
+		// Accepted combinations:
+		// * prefix
+		// * selector
+		// * selectorWithoutVariant + selectorWithVariant
+		// * prefix + selector
+		// * prefix + selectorWithoutVariant + selectorWithVariant
+
+		$prefix = isset( $options['prefix'] ) && $options['prefix'];
+		$selector = isset( $options['selector'] ) && $options['selector'];
+		$selectorWithoutVariant = isset( $options['selectorWithoutVariant'] ) && $options['selectorWithoutVariant'];
+		$selectorWithVariant = isset( $options['selectorWithVariant'] ) && $options['selectorWithVariant'];
+
+		if ( $selectorWithoutVariant && !$selectorWithVariant ) {
+			throw new MWException( "Given 'selectorWithoutVariant' but no 'selectorWithVariant'." );
+		}
+		if ( $selectorWithVariant && !$selectorWithoutVariant ) {
+			throw new MWException( "Given 'selectorWithVariant' but no 'selectorWithoutVariant'." );
+		}
+		if ( $selector && $selectorWithVariant ) {
+			throw new MWException( "Incompatible 'selector' and 'selectorWithVariant'+'selectorWithoutVariant' given." );
+		}
+		if ( !$prefix && !$selector && !$selectorWithVariant ) {
+			throw new MWException( "None of 'prefix', 'selector' or 'selectorWithVariant'+'selectorWithoutVariant' given." );
 		}
 
 		foreach ( $options as $member => $option ) {
@@ -121,8 +147,13 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 					break;
 
 				case 'prefix':
+				case 'selectorWithoutVariant':
+				case 'selectorWithVariant':
 					$this->{$member} = (string)$option;
 					break;
+
+				case 'selector':
+					$this->selectorWithoutVariant = $this->selectorWithVariant = (string)$option;
 			}
 		}
 	}
@@ -133,6 +164,17 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 */
 	public function getPrefix() {
 		return $this->prefix;
+	}
+
+	/**
+	 * Get CSS selector templates used by this module.
+	 * @return string
+	 */
+	public function getSelectors() {
+		return array(
+			'selectorWithoutVariant' => $this->selectorWithoutVariant,
+			'selectorWithVariant' => $this->selectorWithVariant,
+		);
 	}
 
 	/**
@@ -233,7 +275,10 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 		// Build CSS rules
 		$rules = array();
 		$script = $context->getResourceLoader()->getLoadScript( $this->getSource() );
-		$prefix = $this->getPrefix();
+		$selectors = $this->getSelectors();
+
+		$needsTypeWithoutVariant = strpos( $selectors['selectorWithoutVariant'], '{type}' ) !== false;
+		$needsTypeWithVariant = strpos( $selectors['selectorWithVariant'], '{type}' ) !== false;
 
 		foreach ( $this->getImages() as $name => $image ) {
 			$type = $this->getImageType( $name );
@@ -243,7 +288,17 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 				$image->getUrl( $context, $script, null, 'rasterized' )
 			);
 			$declarations = implode( "\n\t", $declarations );
-			$rules[] = ".$prefix-$type-$name {\n\t$declarations\n}";
+			$selector = strtr(
+				$selectors['selectorWithoutVariant'],
+				array(
+					'{prefix}' => $this->getPrefix(),
+					'{name}' => $name,
+					'{variant}' => '',
+					// Somewhat expensive, don't compute if not needed
+					'{type}' => $needsTypeWithoutVariant ? $this->getImageType( $name ) : null,
+				)
+			);
+			$rules[] = "$selector {\n\t$declarations\n}";
 
 			// TODO: Get variant configurations from $context->getSkin()
 			foreach ( $image->getVariants() as $variant ) {
@@ -252,7 +307,17 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 					$image->getUrl( $context, $script, $variant, 'rasterized' )
 				);
 				$declarations = implode( "\n\t", $declarations );
-				$rules[] = ".$prefix-$type-$name-$variant {\n\t$declarations\n}";
+				$selector = strtr(
+					$selectors['selectorWithVariant'],
+					array(
+						'{prefix}' => $this->getPrefix(),
+						'{name}' => $name,
+						'{variant}' => $variant,
+						// Somewhat expensive, don't compute if not needed
+						'{type}' => $needsTypeWithVariant ? $this->getImageType( $name ) : null,
+					)
+				);
+				$rules[] = "$selector {\n\t$declarations\n}";
 			}
 		}
 
