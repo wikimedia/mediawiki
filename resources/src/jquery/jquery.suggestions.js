@@ -53,6 +53,12 @@
  * @param {Function} options.result.select Called in context of the suggestions-result-current element.
  * @param {jQuery} options.result.select.$textbox
  *
+ * @param {Object} [options.update] Set of callbacks for listening to a change in the text input.
+ *
+ * @param {Function} options.update.before Called right after the user changes the textbox text.
+ * @param {Function} options.update.after Called after results are updated either from the cache or
+ * the API as a result of the user input.
+ *
  * @param {jQuery} [options.$region=this] The element to place the suggestions below and match width of.
  *
  * @param {string[]} [options.suggestions] Array of suggestions to display.
@@ -83,7 +89,7 @@
  * @param {boolean} [options.positionFromLeft] Sets `expandFrom=left`, for backwards
  *  compatibility.
  *
- * @param {boolean} [options.highlightInput=false] Whether to hightlight matched portions of the
+ * @param {boolean} [options.highlightInput=false] Whether to highlight matched portions of the
  *  input or not.
  */
 ( function ( $ ) {
@@ -144,6 +150,10 @@ $.suggestions = {
 				cache = context.data.cache,
 				cacheHit;
 
+			if ( typeof context.config.update.before === 'function' ) {
+				context.config.update.before.call( context.data.$textbox );
+			}
+
 			// Only fetch if the value in the textbox changed and is not empty, or if the results were hidden
 			// if the textbox is empty then clear the result div, but leave other settings intouched
 			if ( val.length === 0 ) {
@@ -158,6 +168,9 @@ $.suggestions = {
 				if ( context.config.cache && hasOwn.call( cache, val ) ) {
 					if ( +new Date() - cache[ val ].timestamp < context.config.cacheMaxAge ) {
 						context.data.$textbox.suggestions( 'suggestions', cache[ val ].suggestions );
+						if ( typeof context.config.update.after === 'function' ) {
+							context.config.update.after.call( context.data.$textbox );
+						}
 						cacheHit = true;
 					} else {
 						// Cache expired
@@ -171,6 +184,9 @@ $.suggestions = {
 						function ( suggestions ) {
 							suggestions = suggestions.slice( 0, context.config.maxRows );
 							context.data.$textbox.suggestions( 'suggestions', suggestions );
+							if ( typeof context.config.update.after === 'function' ) {
+								context.config.update.after.call( context.data.$textbox );
+							}
 							if ( context.config.cache ) {
 								cache[ val ] = {
 									suggestions: suggestions,
@@ -227,6 +243,7 @@ $.suggestions = {
 			case 'cancel':
 			case 'special':
 			case 'result':
+			case 'update':
 			case '$region':
 			case 'expandFrom':
 				context.config[property] = value;
@@ -559,6 +576,7 @@ $.fn.suggestions = function () {
 					cancel: function () {},
 					special: {},
 					result: {},
+					update: {},
 					$region: $( this ),
 					suggestions: [],
 					maxRows: 10,
