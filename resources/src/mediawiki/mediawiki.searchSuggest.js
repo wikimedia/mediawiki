@@ -12,7 +12,8 @@
 			// element (not the search form, as that would leave the buttons
 			// vertically between the input and the suggestions).
 			$searchRegion = $( '#simpleSearch, #searchInput' ).first(),
-			$searchInput = $( '#searchInput' );
+			$searchInput = $( '#searchInput' ),
+			previousSearchText = $searchInput.val();
 
 		// Compatibility map
 		map = {
@@ -50,6 +51,39 @@
 			};
 		}
 
+		/**
+		 * Callback that's run when the user changes the search input text
+		 * 'this' is the search input box
+		 * @ignore
+		 */
+		function onBeforeUpdate() {
+			var $this = $( this );
+
+			if ( $this.val() && $this.val() !== previousSearchText ) {
+				mw.track( 'mediawiki.searchSuggest', {
+					action: 'session-start'
+				} );
+			}
+			previousSearchText = $searchInput.val();
+		}
+
+		/**
+		 * Callback that's run when suggestions have been updated either from the cache or the API
+		 * 'this' is the search input box
+		 * @ignore
+		 */
+		function onAfterUpdate() {
+			var context = this.data( 'suggestionsContext' );
+
+			mw.track( 'mediawiki.searchSuggest', {
+				action: 'impression-results',
+				numberOfResults: context.config.suggestions.length,
+				// FIXME: when other types of search become available change this value accordingly
+				// See the API call below (opensearch = prefix)
+				resultSetType: 'prefix'
+			} );
+		}
+
 		// The function used to render the suggestions.
 		function renderFunction( text, context ) {
 			if ( !resultRenderCache ) {
@@ -67,6 +101,21 @@
 						.attr( 'title', text )
 						.addClass( 'mw-searchSuggest-link' )
 				);
+		}
+
+		// The function used when the user makes a selection
+		function selectFunction( $input ) {
+			var context = $input.data( 'suggestionsContext' ),
+				text = $input.val();
+
+			mw.track( 'mediawiki.searchSuggest', {
+				action: 'click-result',
+				numberOfResults: context.config.suggestions.length,
+				clickIndex: context.config.suggestions.indexOf( text ) + 1
+			} );
+
+			// allow the form to be submitted
+			return true;
 		}
 
 		function specialRenderFunction( query, context ) {
@@ -177,8 +226,16 @@
 			return;
 		}
 
-		// Special suggestions functionality for skin-provided search box
+		// Special suggestions functionality and tracking for skin-provided search box
 		$searchInput.suggestions( {
+			update: {
+				before: onBeforeUpdate,
+				after: onAfterUpdate
+			},
+			result: {
+				render: renderFunction,
+				select: selectFunction
+			},
 			special: {
 				render: specialRenderFunction,
 				select: function ( $input ) {
