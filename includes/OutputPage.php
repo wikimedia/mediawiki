@@ -3515,6 +3515,17 @@ class OutputPage extends ContextSource {
 			) );
 		}
 
+		# Generate hreflang tags
+		$languageLinks = $this->getLanguageLinks();
+		foreach ( $languageLinks as $languageLinkText ) {
+			$languageLinkTitle = Title::newFromText( $languageLinkText );
+			$tags[] = Html::element( 'link', array(
+				'rel' => 'alternate',
+				'hreflang' => $languageLinkTitle->getInterwiki(),
+				'href' => $languageLinkTitle->getFullURL()
+			) );
+		}
+
 		return $tags;
 	}
 
