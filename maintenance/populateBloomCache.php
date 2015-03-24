@@ -41,36 +41,46 @@ class PopulateBloomFilter extends Maintenance {
 	public function execute() {
 		$type = $this->getOption( 'filter' );
 		$domain = $this->getOption( 'domain' );
-		$bcache = BloomCache::get( $this->getOption( 'cache' ) );
 		$delay = $this->getOption( 'delay', 1e5 );
+		$bcache = BloomCache::get( $this->getOption( 'cache' ) );
 
+		$virtualKey = "$domain:$type";
 		if ( !method_exists( "BloomFilter{$type}", 'merge' ) ) {
 			$this->error( "No \"BloomFilter{$type}::merge\" method found.", 1 );
 		}
 
-		$virtualKey = "$domain:$type";
-		$status = $bcache->getStatus( $virtualKey );
-		if ( $status == false ) {
-			$this->error( "Could not query virtual bloom filter '$virtualKey'.", 1 );
-		}
+		foreach ( $bcache->getServers() as $server ) {
+			$bconn = $bcache->getConnection( $server );
+			if ( !$bconn ) {
+				$this->error( "Could not connect to server '$server'." );
+				continue;
+			}
 
-		$startTime = microtime( true );
-		$this->output( "Current timestamp is '$startTime'.\n" );
-		$this->output( "Current filter timestamp is '{$status['asOfTime']}'.\n" );
+			$this->output( "Updating server '$server'.\n" );
 
-		do {
-			$status = call_user_func_array(
-				array( "BloomFilter{$type}", 'merge' ),
-				array( $bcache, $domain, $virtualKey, $status )
-			);
+			$status = $bconn->getStatus( $virtualKey );
 			if ( $status == false ) {
 				$this->error( "Could not query virtual bloom filter '$virtualKey'.", 1 );
 			}
-			$this->output( "Filter updated to timestamp '{$status['asOfTime']}'.\n" );
-			usleep( $delay );
-		} while ( $status['asOfTime'] && $status['asOfTime'] < $startTime );
 
-		$this->output( "Done, filter $type of domain $domain reached time '$startTime'.\n" );
+			$startTime = microtime( true );
+			$this->output( "Current timestamp is '$startTime'.\n" );
+			$this->output( "Current filter timestamp is '{$status['asOfTime']}'.\n" );
+
+			do {
+				$status = call_user_func_array(
+					array( "BloomFilter{$type}", 'merge' ),
+					array( $bconn, $domain, $virtualKey, $status )
+				);
+				if ( $status == false ) {
+					$this->error( "Could not query virtual bloom filter '$virtualKey'.", 1 );
+				}
+				$this->output( "Filter updated to timestamp '{$status['asOfTime']}'.\n" );
+				usleep( $delay );
+			} while ( $status['asOfTime'] && $status['asOfTime'] < $startTime );
+
+			$this->output( "Done, filter $type of domain $domain reached time '$startTime'.\n" );
+		}
 	}
 }
 
