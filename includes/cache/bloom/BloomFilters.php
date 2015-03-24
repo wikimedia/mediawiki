@@ -24,7 +24,7 @@
  */
 class BloomFilterTitleHasLogs {
 	public static function mergeAndCheck(
-		BloomCache $bcache, $domain, $virtualKey, array $status
+		BloomCacheServer $bcache, $domain, $virtualKey, array $status
 	) {
 		$ttr = 5; // try to refresh before this many seconds
 		$age = microtime( true ) - $status['asOfTime']; // seconds
@@ -45,7 +45,7 @@ class BloomFilterTitleHasLogs {
 	}
 
 	public static function merge(
-		BloomCache $bcache, $domain, $virtualKey, array $status
+		BloomCacheServer $bcache, $domain, $virtualKey, array $status
 	) {
 		$limit = 1000;
 		$dbr = wfGetDB( DB_SLAVE, array(), $domain );
