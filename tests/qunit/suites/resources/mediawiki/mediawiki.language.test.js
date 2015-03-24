@@ -8,6 +8,12 @@
 		},
 		teardown: function () {
 			mw.language.data.values = this.liveLangData;
+		},
+		messages: {
+			// mw.language.listToText test
+			'and': ' and',
+			'comma-separator': ', ',
+			'word-separator': ' '
 		}
 	} ) );
 
@@ -20,6 +26,11 @@
 	} );
 
 	QUnit.test( 'mw.language.commafy test', 9, function ( assert ) {
+		mw.language.setData( 'en', 'digitGroupingPattern', null );
+		mw.language.setData( 'en', 'digitTransformTable', null );
+		mw.language.setData( 'en', 'separatorTransformTable', null );
+
+		mw.config.set( 'wgUserLanguage', 'en' );
 		// Number grouping patterns are as per http://cldr.unicode.org/translation/number-patterns
 		assert.equal( mw.language.commafy( 1234.567, '###0.#####' ), '1234.567', 'Pattern with no digit grouping separator defined' );
 		assert.equal( mw.language.commafy( 123456789.567, '###0.#####' ), '123456789.567', 'Pattern with no digit grouping seperator defined, bigger decimal part' );
