@@ -2989,6 +2989,7 @@
 	"revdelete-uname-unhid": "Benotzernumm net verstoppt",
 	"revdelete-restricted": "Limitatioune fir Administrateuren ageschalt",
 	"revdelete-unrestricted": "Limitatioune fir Administrateuren opgehuewen",
+	"logentry-block-unblock": "$1 {{GENDER:$2|huet}} d'Spär vum {{GENDER:$4|$3}} opgehuewen",
 	"logentry-import-interwiki": "$1 huet $3 vun enger anerer Wiki {{GENDER:$2|importéiert}}",
 	"logentry-move-move": "$1 huet d'Säit $3 op $4 {{GENDER:$2|geréckelt}}",
 	"logentry-move-move-noredirect": "$1 huet d'Säit $3 op $4 {{GENDER:$2|geréckelt}} ouni eng Viruleedung unzeleeën",

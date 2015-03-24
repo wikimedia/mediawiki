@@ -105,6 +105,8 @@
 	"apihelp-opensearch-param-search": "Noh wat söhke?",
 	"apihelp-opensearch-param-limit": "De hühßte Aanzahl vun Äjeebnesse för zeröck ze jävve",
 	"apihelp-opensearch-param-namespace": "En wällschem Appachtemang söhke.",
+	"apihelp-parse-param-section": "Holl blohß dann der Ennhalld vun däm Affschnett met dä Nommer, udder wann „<kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">new</kbd>“ enjejovve es, maach ene neu Affschnett derbei.",
+	"apihelp-parse-param-sectiontitle": "De Övverschreff för dä neuje Afschnet, wann <var lang=\"en\" xml:lang=\"en\" dir=\"ltr\">section</var> = <kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">new</kbd> es.\n\nAnders wi beim Beärbeide vun dä Sigg weed dä Parramehter nit dorsch de <var lang=\"en\" xml:lang=\"en\" dir=\"ltr\">summary</var> ußjetuusch, wann hä fottjelohße udder läddesch es.",
 	"apihelp-protect-description": "Änder der Siggeschoz för en Sigg.",
 	"apihelp-query+allmessages-param-prop": "Wat för en Eijeschaffte holle.",
 	"apihelp-query+allmessages-param-filter": "Jiv blohß de Täxte un Nohreesche uß, woh heh dat Täxschtöck dren änthallde es.",
