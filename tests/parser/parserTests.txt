@@ -4506,7 +4506,7 @@ section 5
 <li class="toclevel-1 tocsection-5"><a href="#text_.22_text"><span class="tocnumber">5</span> <span class="toctext">text " text</span></a></li>
 </ul>
 </td></tr></table>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: text > text">edit</a>]</span> <span class="mw-headline" id="text_.3E_text"> text &gt; text </span></h2>
+<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: text &gt; text">edit</a>]</span> <span class="mw-headline" id="text_.3E_text"> text &gt; text </span></h2>
 <p>section 1
 </p>
 <h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: text &lt; text">edit</a>]</span> <span class="mw-headline" id="text_.3C_text"> text &lt; text </span></h2>
@@ -9165,7 +9165,7 @@ __TOC__
 </ul>
 </td></tr></table>
 <h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Hello">edit</a>]</span> <span class="mw-headline" id="Hello"> <sup class="in-h2">Hello</sup> </span></h2>
-<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: b&quot;>Evilbye">edit</a>]</span> <span class="mw-headline" id="b.22.3EEvilbye"> <sup> b"&gt;Evilbye</sup> </span></h2>
+<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: b&quot;&gt;Evilbye">edit</a>]</span> <span class="mw-headline" id="b.22.3EEvilbye"> <sup> b"&gt;Evilbye</sup> </span></h2>
 
 !! end
 
