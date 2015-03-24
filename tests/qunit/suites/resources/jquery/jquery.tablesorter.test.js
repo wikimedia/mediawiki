@@ -156,9 +156,29 @@
 		];
 
 	QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
+		setup: function () {
+			this.liveMonths = mw.language.months;
+			mw.language.months = {
+				'keys': {
+					'names': ['january', 'february', 'march', 'april', 'may_long', 'june',
+						'july', 'august', 'september', 'october', 'november', 'december'],
+					'genitive': ['january-gen', 'february-gen', 'march-gen', 'april-gen', 'may-gen', 'june-gen',
+						'july-gen', 'august-gen', 'september-gen', 'october-gen', 'november-gen', 'december-gen'],
+					'abbrev': ['jan', 'feb', 'mar', 'apr', 'may', 'jun',
+						'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
+				},
+				'names': ['January', 'February', 'March', 'April', 'May', 'June',
+						'July', 'August', 'September', 'October', 'November', 'December'],
+				'genitive': ['January', 'February', 'March', 'April', 'May', 'June',
+						'July', 'August', 'September', 'October', 'November', 'December'],
+				'abbrev': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+						'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+			};
+		},
+		teardown: function () {
+			mw.language.months = this.liveMonths;
+		},
 		config: {
-			wgMonthNames: ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-			wgMonthNamesShort: ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
 			wgDefaultDateFormat: 'dmy',
 			wgSeparatorTransformTable: ['', ''],
 			wgDigitTransformTable: ['', ''],
