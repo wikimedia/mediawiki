@@ -188,6 +188,8 @@ abstract class Job implements IJobSpecification {
 			unset( $info['params']['rootJobTimestamp'] );
 			// Likewise for jobs with different delay times
 			unset( $info['params']['jobReleaseTimestamp'] );
+			// Queues pack and hash this array, so normalize the order
+			ksort( $info['params'] );
 		}
 
 		return $info;
