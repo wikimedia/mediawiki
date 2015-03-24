@@ -422,7 +422,7 @@ Oracle and Microsoft SQL Server.
 
 The supported versions are:
 
-* MySQL 5.0.2 or later
+* MySQL 5.0.3 or later
 * PostgreSQL 8.3 or later
 * SQLite 3.3.7 or later
 * Oracle 9.0.1 or later
