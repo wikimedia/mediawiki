@@ -320,8 +320,10 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Load the user table data for this object from the source given by mFrom.
+	 *
+	 * @param integer $flags User::READ_* constant bitfield
 	 */
-	public function load() {
+	public function load( $flags = self::READ_LATEST ) {
 		if ( $this->mLoadedItems === true ) {
 			return;
 		}
@@ -334,19 +336,21 @@ class User implements IDBAccessObject {
 				$this->loadDefaults();
 				break;
 			case 'name':
+				// @TODO: this gets the ID from a slave, assuming renames
+				// are rare. This should be controllable and more consistent.
 				$this->mId = self::idFromName( $this->mName );
 				if ( !$this->mId ) {
 					// Nonexistent user placeholder object
 					$this->loadDefaults( $this->mName );
 				} else {
-					$this->loadFromId();
+					$this->loadFromId( $flags );
 				}
 				break;
 			case 'id':
-				$this->loadFromId();
+				$this->loadFromId( $flags );
 				break;
 			case 'session':
-				if ( !$this->loadFromSession() ) {
+				if ( !$this->loadFromSession( $flags ) ) {
 					// Loading from session failed. Load defaults.
 					$this->loadDefaults();
 				}
@@ -359,9 +363,10 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Load user table data, given mId has already been set.
+	 * @param integer $flags User::READ_* constant bitfield
 	 * @return bool False if the ID does not exist, true otherwise
 	 */
-	public function loadFromId() {
+	public function loadFromId( $flags = self::READ_LATEST ) {
 		if ( $this->mId == 0 ) {
 			$this->loadDefaults();
 			return false;
@@ -372,11 +377,16 @@ class User implements IDBAccessObject {
 		if ( !$cache ) {
 			wfDebug( "User: cache miss for user {$this->mId}\n" );
 			// Load from DB
-			if ( !$this->loadFromDatabase() ) {
+			if ( !$this->loadFromDatabase( $flags ) ) {
 				// Can't load from ID, user is anonymous
 				return false;
 			}
-			$this->saveToCache();
+			if ( $flags & self::READ_LATEST ) {
+				// Only save master data back to the cache to keep it consistent.
+				// @TODO: save it anyway and have callers specifiy $flags and have
+				// load() called as needed. That requires updating MANY callers...
+				$this->saveToCache();
+			}
 		}
 
 		$this->mLoadedItems = true;
@@ -1080,9 +1090,11 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Load user data from the session or login cookie.
+	 *
+	 * @param integer $flags User::READ_* constant bitfield
 	 * @return bool True if the user is logged in, false otherwise.
 	 */
-	private function loadFromSession() {
+	private function loadFromSession( $flags = self::READ_LATEST ) {
 		$result = null;
 		Hooks::run( 'UserLoadFromSession', array( $this, &$result ) );
 		if ( $result !== null ) {
@@ -1118,6 +1130,7 @@ class User implements IDBAccessObject {
 		}
 
 		$proposedUser = User::newFromId( $sId );
+		$proposedUser->load( $flags );
 		if ( !$proposedUser->isLoggedIn() ) {
 			// Not a valid ID
 			return false;
@@ -1162,10 +1175,10 @@ class User implements IDBAccessObject {
 	 * Load user and user_group data from the database.
 	 * $this->mId must be set, this is how the user is identified.
 	 *
-	 * @param int $flags Supports User::READ_LOCKING
+	 * @param integer $flags User::READ_* constant bitfield
 	 * @return bool True if the user exists, false if the user is anonymous
 	 */
-	public function loadFromDatabase( $flags = 0 ) {
+	public function loadFromDatabase( $flags = self::READ_LATEST ) {
 		// Paranoia
 		$this->mId = intval( $this->mId );
 
@@ -1175,8 +1188,11 @@ class User implements IDBAccessObject {
 			return false;
 		}
 
-		$dbr = wfGetDB( DB_MASTER );
-		$s = $dbr->selectRow(
+		$db = ( $flags & self::READ_LATEST )
+			? wfGetDB( DB_MASTER )
+			: wfGetDB( DB_SLAVE );
+
+		$s = $db->selectRow(
 			'user',
 			self::selectFields(),
 			array( 'user_id' => $this->mId ),
