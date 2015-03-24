@@ -65,7 +65,7 @@ abstract class BloomCache {
 	public function __construct( array $config ) {
 		$this->cacheID = $config['cacheId'];
 		if ( !preg_match( '!^[a-zA-Z0-9-_]{1,32}$!', $this->cacheID ) ) {
-			throw new MWException( "Cache ID '{$this->cacheID}' is invalid." );
+			throw new Exception( "Cache ID '{$this->cacheID}' is invalid." );
 		}
 	}
 
@@ -78,7 +78,7 @@ abstract class BloomCache {
 	 * This abstracts over isHit() to deal with filter updates and readiness.
 	 * A class must exist with the name BloomFilter<type> and a static public
 	 * mergeAndCheck() method. The later takes the following arguments:
-	 *		(BloomCache $bcache, $domain, $virtualKey, array $status)
+	 *		(BloomCacheServer $bcache, $domain, $virtualKey, array $status)
 	 * The method should return a bool indicating whether to use the filter.
 	 *
 	 * The 'shared' bloom key must be used for any updates and will be used
@@ -100,7 +100,12 @@ abstract class BloomCache {
 			try {
 				$virtualKey = "$domain:$type";
 
-				$status = $this->getStatus( $virtualKey );
+				$replica = $this->getConnection();
+				if ( !$replica ) {
+					return true;
+				}
+
+				$status = $replica->getStatus( $virtualKey );
 				if ( $status == false ) {
 					wfDebug( "Could not query virtual bloom filter '$virtualKey'." );
 					return true;
@@ -108,11 +113,11 @@ abstract class BloomCache {
 
 				$useFilter = call_user_func_array(
 					array( "BloomFilter{$type}", 'mergeAndCheck' ),
-					array( $this, $domain, $virtualKey, $status )
+					array( $replica, $domain, $virtualKey, $status )
 				);
 
 				if ( $useFilter ) {
-					return ( $this->isHit( 'shared', "$virtualKey:$member" ) !== false );
+					return ( $replica->isHit( 'shared', "$virtualKey:$member" ) !== false );
 				}
 			} catch ( Exception $e ) {
 				MWExceptionHandler::logException( $e );
@@ -124,36 +129,7 @@ abstract class BloomCache {
 	}
 
 	/**
-	 * Inform the bloom filter of a new member in order to keep it up to date
-	 *
-	 * @param string $domain
-	 * @param string $type
-	 * @param string|array $members
-	 * @return bool Success
-	 */
-	final public function insert( $domain, $type, $members ) {
-		$ps = Profiler::instance()->scopedProfileIn( get_class( $this ) . '::' . __FUNCTION__ );
-
-		if ( method_exists( "BloomFilter{$type}", 'mergeAndCheck' ) ) {
-			try {
-				$virtualKey = "$domain:$type";
-				$prefixedMembers = array();
-				foreach ( (array)$members as $member ) {
-					$prefixedMembers[] = "$virtualKey:$member";
-				}
-
-				return $this->add( 'shared', $prefixedMembers );
-			} catch ( Exception $e ) {
-				MWExceptionHandler::logException( $e );
-				return false;
-			}
-		}
-
-		return true;
-	}
-
-	/**
-	 * Create a new bloom filter at $key (if one does not exist yet)
+	 * Create a new bloom filter at $key if needed (on all replicas)
 	 *
 	 * @param string $key
 	 * @param integer $size Bit length [default: 1000000]
@@ -163,43 +139,21 @@ abstract class BloomCache {
 	final public function init( $key, $size = 1000000, $precision = .001 ) {
 		$ps = Profiler::instance()->scopedProfileIn( get_class( $this ) . '::' . __FUNCTION__ );
 
-		return $this->doInit( "{$this->cacheID}:$key", $size, min( .1, $precision ) );
+		$ok = true;
+		foreach ( $this->getServers() as $server ) {
+			$replica = $this->getConnection( $server );
+			if ( $replica ) {
+				$ok = $replica->init( $key, $size, min( .1, $precision ) ) && $ok;
+			} else {
+				$ok = false;
+			}
+		}
+
+		return $ok;
 	}
 
 	/**
-	 * Add a member to the bloom filter at $key
-	 *
-	 * @param string $key
-	 * @param string|array $members
-	 * @return bool Success
-	 */
-	final public function add( $key, $members ) {
-		$ps = Profiler::instance()->scopedProfileIn( get_class( $this ) . '::' . __FUNCTION__ );
-
-		return $this->doAdd( "{$this->cacheID}:$key", (array)$members );
-	}
-
-	/**
-	 * Check if a member is set in the bloom filter.
-	 *
-	 * A member being set means that it *might* have been added.
-	 * A member not being set means it *could not* have been added.
-	 *
-	 * If this returns true, then the caller usually should do the
-	 * expensive check (whatever that may be). It can be avoided otherwise.
-	 *
-	 * @param string $key
-	 * @param string $member
-	 * @return bool|null True if set, false if not, null on error
-	 */
-	final public function isHit( $key, $member ) {
-		$ps = Profiler::instance()->scopedProfileIn( get_class( $this ) . '::' . __FUNCTION__ );
-
-		return $this->doIsHit( "{$this->cacheID}:$key", $member );
-	}
-
-	/**
-	 * Destroy a bloom filter at $key
+	 * Destroy a bloom filter at $key (on all replicas)
 	 *
 	 * @param string $key
 	 * @return bool Success
@@ -207,118 +161,33 @@ abstract class BloomCache {
 	final public function delete( $key ) {
 		$ps = Profiler::instance()->scopedProfileIn( get_class( $this ) . '::' . __FUNCTION__ );
 
-		return $this->doDelete( "{$this->cacheID}:$key" );
+		$ok = true;
+		foreach ( $this->getServers() as $server ) {
+			$replica = $this->getConnection( $server );
+			if ( $replica ) {
+				$ok = $replica->delete( $key ) && $ok;
+			} else {
+				$ok = false;
+			}
+		}
+
+		return $ok;
 	}
 
 	/**
-	 * Set the status map of the virtual bloom filter at $key
+	 * Get all replica servers for this bloom cache
 	 *
-	 * @param string $virtualKey
-	 * @param array $values Map including some of (lastID, asOfTime, epoch)
-	 * @return bool Success
+	 * @return array Server names of all replicas
+	 * @since 1.25
 	 */
-	final public function setStatus( $virtualKey, array $values ) {
-		$ps = Profiler::instance()->scopedProfileIn( get_class( $this ) . '::' . __FUNCTION__ );
-
-		return $this->doSetStatus( "{$this->cacheID}:$virtualKey", $values );
-	}
+	abstract public function getServers();
 
 	/**
-	 * Get the status map of the virtual bloom filter at $key
+	 * Get a replica server connection for this bloom cache
 	 *
-	 * The map includes:
-	 *   - lastID    : the highest ID of the items merged in
-	 *   - asOfTime  : UNIX timestamp that the filter is up-to-date as of
-	 *   - epoch     : UNIX timestamp that filter started being populated
-	 * Unset fields will have a null value.
-	 *
-	 * @param string $virtualKey
-	 * @return array|bool False on failure
+	 * @param string $server Server name; random if not provided
+	 * @return BloomCacheServer|null Returns null on error
+	 * @since 1.25
 	 */
-	final public function getStatus( $virtualKey ) {
-		$ps = Profiler::instance()->scopedProfileIn( get_class( $this ) . '::' . __FUNCTION__ );
-
-		return $this->doGetStatus( "{$this->cacheID}:$virtualKey" );
-	}
-
-	/**
-	 * Get an exclusive lock on a filter for updates
-	 *
-	 * @param string $virtualKey
-	 * @return ScopedCallback|ScopedLock|null Returns null if acquisition failed
-	 */
-	public function getScopedLock( $virtualKey ) {
-		return null;
-	}
-
-	/**
-	 * @param string $key
-	 * @param integer $size Bit length
-	 * @param float $precision
-	 * @return bool Success
-	 */
-	abstract protected function doInit( $key, $size, $precision );
-
-	/**
-	 * @param string $key
-	 * @param array $members
-	 * @return bool Success
-	 */
-	abstract protected function doAdd( $key, array $members );
-
-	/**
-	 * @param string $key
-	 * @param string $member
-	 * @return bool|null
-	 */
-	abstract protected function doIsHit( $key, $member );
-
-	/**
-	 * @param string $key
-	 * @return bool Success
-	 */
-	abstract protected function doDelete( $key );
-
-	/**
-	 * @param string $virtualKey
-	 * @param array $values
-	 * @return bool Success
-	 */
-	abstract protected function doSetStatus( $virtualKey, array $values );
-
-	/**
-	 * @param string $key
-	 * @return array|bool
-	 */
-	abstract protected function doGetStatus( $key );
-}
-
-class EmptyBloomCache extends BloomCache {
-	public function __construct( array $config ) {
-		parent::__construct( array( 'cacheId' => 'none' ) );
-	}
-
-	protected function doInit( $key, $size, $precision ) {
-		return true;
-	}
-
-	protected function doAdd( $key, array $members ) {
-		return true;
-	}
-
-	protected function doIsHit( $key, $member ) {
-		return true;
-	}
-
-	protected function doDelete( $key ) {
-		return true;
-	}
-
-	protected function doSetStatus( $virtualKey, array $values ) {
-		return true;
-	}
-
-	protected function doGetStatus( $virtualKey ) {
-		return array( 'lastID' => null, 'asOfTime' => null, 'epoch' => null );
-	}
+	abstract public function getConnection( $server = null );
 }
