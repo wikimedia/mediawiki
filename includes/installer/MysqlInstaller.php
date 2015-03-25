@@ -40,12 +40,12 @@ class MysqlInstaller extends DatabaseInstaller {
 	);
 
 	protected $internalDefaults = array(
-		'_MysqlEngine' => 'InnoDB',
+		'_MysqlEngine' => 'MEMORY',
 		'_MysqlCharset' => 'binary',
 		'_InstallUser' => 'root',
 	);
 
-	public $supportedEngines = array( 'InnoDB', 'MyISAM' );
+	public $supportedEngines = array( 'InnoDB', 'MyISAM', 'MEMORY' );
 
 	public $minimumVersion = '5.0.2';
 
