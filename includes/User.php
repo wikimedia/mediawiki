@@ -295,6 +295,9 @@ class User implements IDBAccessObject {
 	/** @var array */
 	private $mWatchedItems = array();
 
+	/** @var integer User::READ_* constant bitfield used to load data */
+	protected $queryFlags = 0;
+
 	public static $idCacheByName = array();
 
 	/**
@@ -330,6 +333,7 @@ class User implements IDBAccessObject {
 
 		// Set it now to avoid infinite recursion in accessors
 		$this->mLoadedItems = true;
+		$this->queryFlags = $flags;
 
 		switch ( $this->mFrom ) {
 			case 'defaults':
@@ -390,6 +394,7 @@ class User implements IDBAccessObject {
 		}
 
 		$this->mLoadedItems = true;
+		$this->queryFlags = $flags;
 
 		return true;
 	}
@@ -400,7 +405,7 @@ class User implements IDBAccessObject {
 	 * @return bool false if the ID does not exist or data is invalid, true otherwise
 	 * @since 1.25
 	 */
-	public function loadFromCache() {
+	protected function loadFromCache() {
 		global $wgMemc;
 
 		if ( $this->mId == 0 ) {
@@ -427,22 +432,35 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Save user data to the shared cache
+	 *
+	 * This method should not be called outside the User class
 	 */
 	public function saveToCache() {
+		global $wgMemc;
+
 		$this->load();
 		$this->loadGroups();
 		$this->loadOptions();
+
 		if ( $this->isAnon() ) {
 			// Anonymous users are uncached
 			return;
 		}
+
+		// The cache needs good consistency due to its TTL so the user should
+		// have been loaded from the master to begin with to lag amplification.
+		if ( !( $this->queryFlags & self::READ_LATEST ) ) {
+			wfWarn( "Cannot save slave-loaded User object data to cache." );
+			return;
+		}
+
 		$data = array();
 		foreach ( self::$mCacheVars as $name ) {
 			$data[$name] = $this->$name;
 		}
 		$data['mVersion'] = self::VERSION;
 		$key = wfMemcKey( 'user', 'id', $this->mId );
-		global $wgMemc;
+
 		$wgMemc->set( $key, $data );
 	}
 
@@ -1057,7 +1075,6 @@ class User implements IDBAccessObject {
 		$this->mGroups = array();
 
 		Hooks::run( 'UserLoadDefaults', array( $this, $name ) );
-
 	}
 
 	/**
@@ -1338,7 +1355,9 @@ class User implements IDBAccessObject {
 	 */
 	private function loadGroups() {
 		if ( is_null( $this->mGroups ) ) {
-			$dbr = wfGetDB( DB_MASTER );
+			$dbr = ( $this->queryFlags & self::READ_LATEST )
+				? wfGetDB( DB_MASTER )
+				: wfGetDB( DB_SLAVE );
 			$res = $dbr->select( 'user_groups',
 				array( 'ug_group' ),
 				array( 'ug_user' => $this->mId ),
@@ -1362,11 +1381,11 @@ class User implements IDBAccessObject {
 	private function loadPasswords() {
 		if ( $this->getId() !== 0 && ( $this->mPassword === null || $this->mNewpassword === null ) ) {
 			$this->loadFromRow( wfGetDB( DB_MASTER )->selectRow(
-					'user',
-					array( 'user_password', 'user_newpassword', 'user_newpass_time', 'user_password_expires' ),
-					array( 'user_id' => $this->getId() ),
-					__METHOD__
-				) );
+				'user',
+				array( 'user_password', 'user_newpassword', 'user_newpass_time', 'user_password_expires' ),
+				array( 'user_id' => $this->getId() ),
+				__METHOD__
+			) );
 		}
 	}
 
@@ -3510,10 +3529,16 @@ class User implements IDBAccessObject {
 		$this->load();
 		$this->loadPasswords();
 		if ( wfReadOnly() ) {
-			return;
+			return; // @TODO: caller should deal with this instead!
 		}
 		if ( 0 == $this->mId ) {
 			return;
+		}
+
+		// This method is for updating existing users, so the user should
+		// have been loaded from the master to begin with to avoid problems.
+		if ( !( $this->queryFlags & self::READ_LATEST ) ) {
+			wfWarn( "Attempting to save slave-loaded User object data." );
 		}
 
 		$this->mTouched = self::newTouchedTimestamp();
@@ -3691,7 +3716,7 @@ class User implements IDBAccessObject {
 				// using CentralAuth. It's should be OK to commit and break the snapshot.
 				$dbw->commit( __METHOD__, 'flush' );
 				$options = array();
-				$flags = 0;
+				$flags = self::READ_LATEST;
 			}
 			$this->mId = $dbw->selectField( 'user', 'user_id',
 				array( 'user_name' => $this->mName ), __METHOD__, $options );
@@ -4862,7 +4887,9 @@ class User implements IDBAccessObject {
 			if ( !is_array( $data ) ) {
 				wfDebug( "User: loading options for user " . $this->getId() . " from database.\n" );
 				// Load from database
-				$dbr = wfGetDB( DB_SLAVE );
+				$dbr = ( $this->queryFlags & self::READ_LATEST )
+					? wfGetDB( DB_MASTER )
+					: wfGetDB( DB_SLAVE );
 
 				$res = $dbr->select(
 					'user_properties',
