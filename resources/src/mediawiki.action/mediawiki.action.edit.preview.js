@@ -9,12 +9,13 @@
 	 */
 	function doLivePreview( e ) {
 		var isDiff, api, request, postData, copySelectors, section,
-			$wikiPreview, $wikiDiff, $editform, $copyElements, $spinner;
+			$wikiPreview, $wikiDiff, $editform, $copyElements, $spinner, $errorBox;
 
 		isDiff = ( e.target.name === 'wpDiff' );
 		$wikiPreview = $( '#wikiPreview' );
 		$wikiDiff = $( '#wikiDiff' );
 		$editform = $( '#editform' );
+		$errorBox = $( '.errorbox' );
 		section = $editform.find( '[name="wpSection"]' ).val();
 
 		// Show changes for a new section is not yet supported
@@ -23,6 +24,8 @@
 		}
 		e.preventDefault();
 
+		// Remove any previously displayed errors
+		$errorBox.remove();
 		// Show #wikiPreview if it's hidden to be able to scroll to it
 		// (if it is hidden, it's also empty, so nothing changes in the rendering)
 		$wikiPreview.show();
@@ -227,13 +230,12 @@
 					errorMsg += result.textStatus;
 				}
 			}
-			$wikiPreview.children( '.mw-content-ltr,.mw-content-rtl' )
-				.empty()
-				.append( $( '<div>' )
-					.addClass( 'errorbox' )
-					.html( '<strong>' + mw.message( 'previewerrortext' ).escaped() + '</strong><br>' )
-					.append( document.createTextNode( errorMsg ) ) );
-			$wikiPreview.show();
+			$errorBox = $( '<div>' )
+				.addClass( 'errorbox' )
+				.html( '<strong>' + mw.message( 'previewerrortext' ).escaped() + '</strong><br>' )
+				.append( document.createTextNode( errorMsg ) );
+			$wikiDiff.hide();
+			$wikiPreview.hide().before( $errorBox );
 		} );
 	}
 
