@@ -1233,6 +1233,12 @@ class DifferenceEngine extends ContextSource {
 		// Load the new revision object
 		if ( $this->mNewid ) {
 			$this->mNewRev = Revision::newFromId( $this->mNewid );
+
+			if ( !$this->mNewRev && wfGetLB()->getServerCount() > 1 ) {
+				// Try harder… This is being hit after a rollback where we show the
+				// diff immediately after the edit happened. T93866
+				$this->mNewRev = Revision::newFromId( $this->mNewid, Revision::READ_LATEST );
+			}
 		} else {
 			$this->mNewRev = Revision::newFromTitle(
 				$this->getTitle(),
