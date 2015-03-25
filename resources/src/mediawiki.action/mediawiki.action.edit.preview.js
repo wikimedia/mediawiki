@@ -109,7 +109,7 @@
 			}
 			request = api.post( postData );
 			request.done( function ( response ) {
-				var li, newList, $content, $parent, $list;
+				var li, newList, $displaytitle, $content, $parent, $list;
 				if ( response.parse.modules ) {
 					mw.loader.load( response.parse.modules.concat(
 						response.parse.modulescripts,
@@ -117,12 +117,16 @@
 						response.parse.modulemessages ) );
 				}
 				if ( response.parse.displaytitle ) {
-					$( '#firstHeading' ).html( response.parse.displaytitle );
+					$displaytitle = $( $.parseHTML( response.parse.displaytitle ) );
+					$( '#firstHeading' ).msg(
+						mw.config.get( 'wgEditMessage', 'editing' ),
+						$displaytitle
+					);
 					document.title = mw.msg(
 						'pagetitle',
 						mw.msg(
 							mw.config.get( 'wgEditMessage', 'editing' ),
-							$( '#firstHeading' ).text()
+							$displaytitle.text()
 						)
 					);
 				}
