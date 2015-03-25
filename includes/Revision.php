@@ -84,10 +84,16 @@ class Revision implements IDBAccessObject {
 	const RAW = 3;
 
 	/**
+	 * Try reading from slave, but fallback to master if the revision couldn't be found
+	 */
+	const READ_WITH_FALLBACK = 8;
+
+	/**
 	 * Load a page revision from a given revision ID number.
 	 * Returns null if no such revision can be found.
 	 *
 	 * $flags include:
+	 *      Revision::READ_WITH_FALLBACK  : Try selecting data from slave, use master if it couldn't be found
 	 *      Revision::READ_LATEST  : Select the data from the master
 	 *      Revision::READ_LOCKING : Select & lock the data from the master
 	 *
@@ -105,6 +111,7 @@ class Revision implements IDBAccessObject {
 	 * to that title, will return null.
 	 *
 	 * $flags include:
+	 *      Revision::READ_WITH_FALLBACK  : Try selecting data from slave, use master if it couldn't be found
 	 *      Revision::READ_LATEST  : Select the data from the master
 	 *      Revision::READ_LOCKING : Select & lock the data from the master
 	 *
@@ -125,6 +132,7 @@ class Revision implements IDBAccessObject {
 		} else {
 			// Use a join to get the latest revision
 			$conds[] = 'rev_id=page_latest';
+			// XXX: This doesn't take Revision::READ_WITH_FALLBACK into account
 			$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_SLAVE );
 			return self::loadFromConds( $db, $conds, $flags );
 		}
@@ -136,6 +144,7 @@ class Revision implements IDBAccessObject {
 	 * Returns null if no such revision can be found.
 	 *
 	 * $flags include:
+	 *      Revision::READ_WITH_FALLBACK  : Try selecting data from slave, use master if it couldn't be found
 	 *      Revision::READ_LATEST  : Select the data from the master (since 1.20)
 	 *      Revision::READ_LOCKING : Select & lock the data from the master
 	 *
@@ -152,6 +161,7 @@ class Revision implements IDBAccessObject {
 		} else {
 			// Use a join to get the latest revision
 			$conds[] = 'rev_id = page_latest';
+			// XXX: This doesn't take Revision::READ_WITH_FALLBACK into account
 			$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_SLAVE );
 			return self::loadFromConds( $db, $conds, $flags );
 		}
@@ -306,6 +316,12 @@ class Revision implements IDBAccessObject {
 	private static function newFromConds( $conditions, $flags = 0 ) {
 		$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_SLAVE );
 		$rev = self::loadFromConds( $db, $conditions, $flags );
+
+		if ( $rev === null && wfGetLB()->getServerCount() > 1 && !( $flags & self::READ_WITH_FALLBACK ) ) {
+			$dbw = wfGetDB( DB_MASTER );
+			$rev = self::loadFromConds( $dbw, $conditions, $flags );
+		}
+
 		if ( $rev ) {
 			$rev->mQueryFlags = $flags;
 		}
