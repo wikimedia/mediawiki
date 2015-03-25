@@ -68,8 +68,8 @@ class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 				( $options['underline'] ? 'underline' : 'none' ) . "; }";
 		} else {
 			# The scripts of these languages are very hard to read with underlines
-			$rules[] = 'a:lang(ar), a:lang(kk-arab), a:lang(mzn), ' .
-			'a:lang(ps), a:lang(ur) { text-decoration: none; }';
+			$rules[] = 'a:lang(ar), a:lang(kk-arab), a:lang(ps), ' .
+			'a:lang(ur) { text-decoration: none; }';
 		}
 		if ( $options['editfont'] !== 'default' ) {
 			// Double-check that $options['editfont'] consists of safe characters only
