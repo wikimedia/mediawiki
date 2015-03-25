@@ -88,6 +88,9 @@ class ApiParse extends ApiBase {
 		$result = $this->getResult();
 
 		if ( !is_null( $oldid ) || !is_null( $pageid ) || !is_null( $page ) ) {
+			if ( $this->section === 'new' ) {
+					$this->dieUsage( 'section=new cannot be combined with oldid, pageid or page parameters. Please use text', 'params' );
+			}
 			if ( !is_null( $oldid ) ) {
 				// Don't use the parser cache
 				$rev = Revision::newFromId( $oldid );
