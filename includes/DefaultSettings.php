@@ -1670,7 +1670,7 @@ $wgDBprefix = '';
 /**
  * MySQL table options to use during installation or update
  */
-$wgDBTableOptions = 'ENGINE=InnoDB';
+$wgDBTableOptions = 'ENGINE=MEMORY';
 
 /**
  * SQL Mode - default is turning off all modes, including strict, if set.
