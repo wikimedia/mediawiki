@@ -12,7 +12,8 @@
 			"לערי ריינהארט",
 			"פוילישער",
 			"아라",
-			"Har-wradim"
+			"Har-wradim",
+			"Amire80"
 		]
 	},
 	"tog-underline": "שטרייכט אונטער לינקען",
@@ -377,7 +378,7 @@
 	"userlogin-yourname": "באַניצער נאָמען",
 	"userlogin-yourname-ph": "גיט אריין אייער באניצער נאמען",
 	"createacct-another-username-ph": "אריינגעבן באניצער נאמען",
-	"yourpassword": "פאסווארט",
+	"yourpassword": "פּאַסװאָרט",
 	"userlogin-yourpassword": "פאַסווארט",
 	"userlogin-yourpassword-ph": "אַרײַנגעבן אײַער פאַסווארט",
 	"createacct-yourpassword-ph": "אַרײַנגעבן א פאַסווארט",
@@ -947,7 +948,7 @@
 	"username": "{{GENDER:$1|באַניצער־נאָמען}}:",
 	"prefs-memberingroups": "{{GENDER:$2|מיטגליד}} אין {{PLURAL:$1|גרופע|גרופעס}}:",
 	"prefs-registration": "אײַנשרײַבן צײַט:",
-	"yourrealname": "עכטער נאמען *:",
+	"yourrealname": "עכטער נאָמען:",
 	"yourlanguage": "שפּראַך:",
 	"yourvariant": "אינהאַלט שפּראַך וואַריאַנט:",
 	"prefs-help-variant": "אײַער פרעפֿערירטער וואַריאַנט אדער ארטאגראַפֿיע צו צייגן די אינהאַלט בלעטער פֿון דער וויקי.",

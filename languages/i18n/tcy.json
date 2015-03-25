@@ -4,7 +4,8 @@
 			"NamwikiTL",
 			"VASANTH S.N.",
 			"VinodSBangera",
-			"아라"
+			"아라",
+			"Vishwanatha Badikana"
 		]
 	},
 	"tog-underline": "ಲಿಂಕ್’ಲೆದ ತಿರ್ತ್ ಗೆರೆ(ಅಂಡರ್ ಲೈನ್) ಪಾಡ್’ಲೆ",
@@ -450,6 +451,7 @@
 	"notextmatches": "ವಾ ಪುಟೊತ ಪಠ್ಯೊಡುಲಾ ಹೋಲಿಕೆ ಇಜ್ಜಿ",
 	"prevn": "ದುಂಬುದ {{PLURAL:$1|$1}}",
 	"nextn": "ಬೊಕ್ಕದ {{PLURAL:$1|$1}}",
+	"shown-title": "ಪ್ರತಿ ಪುಟೊಡುಲಾ $1 {{PLURAL:$1|result|results}} ತೋಜಿಪಾವು",
 	"viewprevnext": "ತೂಲೆ ($1 {{int:pipe-separator}} $2) ($3)",
 	"searchprofile-articles": "ಲೇಖನ ಪುಟೊ",
 	"searchprofile-images": "ಬಹುಮಾಧ್ಯಮ",
@@ -549,6 +551,7 @@
 	"newpageletter": "ಪೊ",
 	"boteditletter": "ಬಾ",
 	"rc_categories_any": "ಒವ್ವೇ",
+	"rc-change-size-new": "$1 {{ಬಹುವಚನೊ:$1|ಬೈಟ್|ಬೈಟ್‍ಲು}}ಬದಲಾವಣೆದ ಬುಕ್ಕೊ",
 	"newsectionsummary": "\n/* $1 */ಪೊಸ ವಿಭಾಗ",
 	"rc-enhanced-expand": "ವಿವರೊಲೆನ್ ತೊಜ್ಪಾವು (ಜಾವ ಸ್ಕ್ರಿಪ್ಟ್ ಬೋಡಾಪುಂಡು)",
 	"rc-enhanced-hide": "ವಿವರೊಲೆನ್ ದೆಂಗಾವು",
@@ -748,7 +751,7 @@
 	"metadata-help": "ಈ ಫೈಲ್’ಡ್ ಜಾಸ್ತಿ ಮಾಹಿತಿ ಉಂಡು. ಪ್ರಾಯಶಃ ಫೈಲ್’ನ್ ಉಂಡು ಮಲ್ಪೆರೆ ಉಪಯೋಗ ಮಲ್ತಿನ ಡಿಜಿಟಲ್ ಕ್ಯಾಮೆರರ್ದ್ ಅತ್ತ್’ನ್ಡ ಸ್ಕ್ಯಾನರ್ ರ್ದ್ ಈ ಮಾಹಿತಿ ಬೈದ್’ನ್ಡ್.\nಮೂಲಪ್ರತಿರ್ದ್ ಈ ಫೈಲ್ ಬದಲಾದಿತ್ತ್’ನ್ಡ, ಈ ಮಾಹಿತಿ ಬದಲಾತಿನ ಫೈಲ್’ದ ವಿವರೊಲೆಗ್ ಸರಿಯಾದ್ ಹೊಂದಂದೆ ಉಪ್ಪು.",
 	"metadata-expand": "ವಿಸ್ತಾರವಾಯಿನ ವಿವರೊಲೆನ್ ತೊಜ್ಪಾವು",
 	"metadata-collapse": "ವಿಸ್ತಾರವಾಯಿನ ವಿವರೊಲೆನ್ ದೆಂಗಾವು",
-	"metadata-fields": "ಈ ಸಂದೇಶೊಡು ಪಟ್ಟಿ ಮಲ್ತಿನಂಚಿನ EXIF ಮೆಟಡೇಟ ಮಾಹಿತಿನ್ ಚಿತ್ರ ಪುಟೊಕು ಸೇರ್ಪಾಯೆರೆ ಆವೊಂದುಂಡು. ಪುಟೊಟು ಮೆಟಡೇಟ ಮಾಹಿತಿದ ಪಟ್ಟಿನ್ ದೆಪ್ಪುನಗ ಉಂದು ತೋಜುಂಡು.\nಒರಿದನವು ಮೂಲಸ್ಥಿತಿಟ್ ಅಗೋಚರವಾದುಪ್ಪುಂಡು.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "ಈ ಸಂದೇಶೊಡು ಪಟ್ಟಿ ಮಲ್ತಿನಂಚಿನ EXIF ಮಿತ್ತ ದರ್ಜೆದ ಮಾಹಿತಿನ್ ಚಿತ್ರ ಪುಟೊಕು ಸೇರ್ಪಾಯೆರೆ ಆವೊಂದುಂಡು. ಪುಟೊಟು ಮಿತ್ತ ದರ್ಜೆ ಮಾಹಿತಿದ ಪಟ್ಟಿನ್ ದೆಪ್ಪುನಗ ಉಂದು ತೋಜುಂಡು.\nಒರಿದನವು ಮೂಲಸ್ಥಿತಿಟ್ ಅಗೋಚರವಾದುಪ್ಪುಂಡು.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude \n* gpsaltitude",
 	"exif-datetime": "ಕಡೊತೊನು ಬದಲಾವಣೆ ಮಲ್ತ್‍ನ ದಿನಾಂಕೊ ಬೊಕ್ಕ ಸಮಯೊ",
 	"exif-make": "ಕ್ಯಾಮೆರಾದ ತಯಾರೆಕೆರ್",
 	"exif-model": "ಕ್ಯಾಮೆರಾ ಮಾದರಿ",
@@ -762,6 +765,7 @@
 	"watchlisttools-view": "ಪ್ರಸ್ತುತ ಬದಲಾವಣೆಲ್ ತೋಜಾಲೆ",
 	"watchlisttools-edit": "ವೀಕ್ಷಣಾಪಟ್ಟಿನ್ ತೂಲೆ ಬೊಕ್ಕ ಎಡಿಟ್ ಮಲ್ಪುಲೆ",
 	"specialpages": "ವಿಷೇಶ ಪುಟೊಲು",
+	"tag-list-wrapper": "([[ವಿಸೇಸೊ:ಟ್ಯಾಗುಲು|{{ಬಹುವಚನೊ:$1|ಟ್ಯಾಗ್|ಟ್ಯಾಗುಲು}}]]:$2)",
 	"logentry-delete-delete": "$1 {{GENDER:$2|ಮಾಜಾದ್‍ಂಡ್}} ಪುಟ $3",
 	"searchsuggest-search": "ನಾಡ್‍ಲೆ"
 }
