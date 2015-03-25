@@ -365,8 +365,8 @@ abstract class Skin extends ContextSource {
 	 */
 	static function makeVariablesScript( $data ) {
 		if ( $data ) {
-			return Html::inlineScript(
-				ResourceLoader::makeLoaderConditionalScript( ResourceLoader::makeConfigSetScript( $data ) )
+			return ResourceLoader::makeInlineScript(
+				ResourceLoader::makeConfigSetScript( $data )
 			);
 		} else {
 			return '';
