@@ -4,7 +4,19 @@
 			"Amikeco",
 			"Babanwalia",
 			"Bouron",
-			"Nasir8891"
+			"Nasir8891",
+			"Satdeep gill"
 		]
-	}
+	},
+	"ooui-outline-control-move-down": "ਨੀਚੇ ਲੈਕੇ ਜਾਓ",
+	"ooui-outline-control-move-up": "ਉੱਤੇ ਲੈਕੇ ਜਾਓ",
+	"ooui-toolbar-more": "ਹੋਰ",
+	"ooui-toolgroup-expand": "ਹੋਰ",
+	"ooui-toolgroup-collapse": "ਥੋੜੇ",
+	"ooui-dialog-message-accept": "ਠੀਕ ਹੈ",
+	"ooui-dialog-message-reject": "ਰੱਦ ਕਰੋ",
+	"ooui-dialog-process-error": "ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ",
+	"ooui-dialog-process-dismiss": "ਰੱਦ ਕਰੋ",
+	"ooui-dialog-process-retry": "ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ",
+	"ooui-dialog-process-continue": "ਜਾਰੀ ਰੱਖੋ"
 }
