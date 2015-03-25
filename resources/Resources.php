@@ -1097,6 +1097,7 @@ return array(
 			'summary-preview',
 			'subject-preview',
 			'parentheses',
+			'previewerrortext',
 		),
 	),
 	'mediawiki.action.edit.stash' => array(
