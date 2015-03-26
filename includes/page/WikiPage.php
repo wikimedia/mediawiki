@@ -602,13 +602,23 @@ class WikiPage implements Page, IDBAccessObject {
 			return; // page doesn't exist or is missing page_latest info
 		}
 
-		// Bug 37225: if session S1 loads the page row FOR UPDATE, the result always includes the
-		// latest changes committed. This is true even within REPEATABLE-READ transactions, where
-		// S1 normally only sees changes committed before the first S1 SELECT. Thus we need S1 to
-		// also gets the revision row FOR UPDATE; otherwise, it may not find it since a page row
-		// UPDATE and revision row INSERT by S2 may have happened after the first S1 SELECT.
-		// http://dev.mysql.com/doc/refman/5.0/en/set-transaction.html#isolevel_repeatable-read.
-		$flags = ( $this->mDataLoadedFrom == self::READ_LOCKING ) ? Revision::READ_LOCKING : 0;
+		if ( $this->mDataLoadedFrom == self::READ_LOCKING ) {
+			// Bug 37225: if session S1 loads the page row FOR UPDATE, the result always
+			// includes the latest changes committed. This is true even within REPEATABLE-READ
+			// transactions, where S1 normally only sees changes committed before the first S1
+			// SELECT. Thus we need S1 to also gets the revision row FOR UPDATE; otherwise, it
+			// may not find it since a page row UPDATE and revision row INSERT by S2 may have
+			// happened after the first S1 SELECT.
+			// http://dev.mysql.com/doc/refman/5.0/en/set-transaction.html#isolevel_repeatable-read.
+			$flags = Revision::READ_LOCKING;
+		} elseif ( $this->mDataLoadedFrom == self::READ_LATEST ) {
+			// Bug T93976: if page_latest was loaded from the master, fetch the
+			// revision from there as well, as it may not exist yet on a slave DB.
+			// Also, this keeps the queries in the same REPEATABLE-READ snapshot.
+			$flags = Revision::READ_LATEST;
+		} else {
+			$flags = 0;
+		}
 		$revision = Revision::newFromPageId( $this->getId(), $latest, $flags );
 		if ( $revision ) { // sanity
 			$this->setLastEdit( $revision );
