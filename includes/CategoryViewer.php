@@ -603,7 +603,7 @@ class CategoryViewer extends ContextSource {
 	 * @return string HTML
 	 */
 	private function pagingLinks( $first, $last, $type = '' ) {
-		$prevLink = $this->msg( 'prevn' )->numParams( $this->limit )->escaped();
+		$prevLink = $this->msg( 'imgmultipageprev' )->text();
 
 		if ( $first != '' ) {
 			$prevQuery = $this->query;
@@ -617,7 +617,7 @@ class CategoryViewer extends ContextSource {
 			);
 		}
 
-		$nextLink = $this->msg( 'nextn' )->numParams( $this->limit )->escaped();
+		$nextLink = $this->msg( 'imgmultipagenext' )->text();
 
 		if ( $last != '' ) {
 			$lastQuery = $this->query;
