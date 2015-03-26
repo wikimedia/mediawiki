@@ -14,4 +14,8 @@ class WellProtectedClass {
 	public function getProperty() {
 		return $this->property;
 	}
+
+	protected function whatSecondArg( $a, $b = false ) {
+		return $b;
+	}
 }
