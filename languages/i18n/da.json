@@ -769,6 +769,8 @@
 	"revdelete-show-file-confirm": "Er du sikker på, at du vil vise en slettet version af filen \"<nowiki>$1</nowiki>\" fra den $2, klokken $3?",
 	"revdelete-show-file-submit": "Ja",
 	"logdelete-selected": "{{PLURAL:$1|Valgt logindførsel|Valgte logindførsler}}:",
+	"revdelete-text-text": "Slettede version vil stadigt fremgå af sidehistorikken, men dele af indholdet vil ikke være offentlig tilgængeligt.",
+	"revdelete-text-others": "Andre administratorer vil fortsat have adgang til det skjulte indhold og have mulighed for at genskabe det, med mindre andre begrænsninger er sat.",
 	"revdelete-confirm": "Vær venlig at bekræfte at du vil gøre dette, at du forstår konsekvenserne, og at du gør det i overensstemmelse med [[{{MediaWiki:Policy-url}}|retningslinjerne]].",
 	"revdelete-suppress-text": "Der bør '''kun''' skjules i de følgende tilfælde:\n* Potentielt injurierende oplysninger\n* Upassende personlige oplysninger\n*: ''hjemmeadresser og -telefonnumre, CPR-numre og lign.''",
 	"revdelete-legend": "Fastlægge begrænsninger for versionerne:",

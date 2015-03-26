@@ -53,6 +53,8 @@
 	"apihelp-edit-param-nocreate": "Gây lỗi nếu trang không tồn tại.",
 	"apihelp-edit-param-watch": "Thêm trang vào danh sách theo dõi của bạn.",
 	"apihelp-edit-param-unwatch": "Bỏ trang này khỏi danh sách theo dõi của bạn.",
+	"apihelp-edit-param-undo": "Hoàn tác sửa đổi này. Ghi đè $1text, $1prependtext và $ 1appendtext.",
+	"apihelp-edit-param-undoafter": "Hoàn tác tất cả các sửa đổi từ $1undo cho tới sửa đổi này. Nếu không được thiết lập, chỉ cần lùi lại một sửa đổi.",
 	"apihelp-edit-example-edit": "Sửa đổi trang",
 	"apihelp-edit-example-prepend": "Đưa <kbd>_&#95;NOTOC_&#95;</kbd> vào đầu trang",
 	"apihelp-edit-example-undo": "Lùi sửa các thay đổi 13579–13585 và tự động tóm lược",

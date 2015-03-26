@@ -16,7 +16,8 @@
 			"Urhixidur",
 			"아라",
 			"Aftabuzzaman",
-			"Macofe"
+			"Macofe",
+			"IKHazarika"
 		]
 	},
 	"tog-underline": "সংযোগসমূহ অধোৰেখিত কৰক:",
@@ -803,7 +804,7 @@
 	"showhideselectedversions": "নিৰ্বাচিত সংশোধনসমূহ দেখুৱাওক/আঁৰ কৰক",
 	"editundo": "পূৰ্ববত কৰক",
 	"diff-empty": "(কোনো পাৰ্থক্য নাই)",
-	"diff-multi-sameuser": "একেজন সদস্যই কৰা ({{PLURAL:$1|এটা মধ্যৱৰ্তী সংশোধন|$1টা মধ্যৱৰ্তী সংশোধন}} দেখুওৱা হোৱা নাই",
+	"diff-multi-sameuser": "একেজন সদস্যই কৰা ({{PLURAL:$1|এটা মধ্যৱৰ্তী সংশোধন|$1 মধ্যৱৰ্তী সংশোধন}} দেখুওৱা হোৱা নাই)",
 	"diff-multi-otherusers": "{{PLURAL:$2|আন এজন সদস্যই|$2জন সদস্যই}} কৰা ({{PLURAL:$1|এটা মধ্যৱৰ্তী সংশোধন|$1টা মধ্যৱৰ্তী সংশোধন}} দেখুওৱা হোৱা নাই।",
 	"diff-multi-manyusers": "({{PLURAL:$2|এজনতকৈ|$2-জনতকৈ}} অধিক সদস্যৰ দ্বাৰা {{PLURAL:$1|এটা মধ্যৱৰ্তী সংশোধন|$1-টা মধ্যৱৰ্তী সংশোধন}} দেখুওৱা হোৱা নাই)",
 	"difference-missing-revision": "{{PLURAL:$2|এটা সংস্কৰণ|$2 সংস্কৰণসমূহৰ}} সংশোধনৰ পাৰ্থক্য  ($1) {{PLURAL:$2| পোৱা নগ’ল}}।\n\n\nসাধাৰণতে বিলোপ কৰা এখন পৃষ্ঠাৰ পুৰণা ইতিহাস লিংক অনুসৰণ কৰিলে এনে হয়।\n[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} বিলোপন অভিলেখ] চালে অধিক তথ্য পাব।",
@@ -841,6 +842,7 @@
 	"searchrelated": "সম্পৰ্কিত",
 	"searchall": "সকলো",
 	"showingresults": "তলত #'''$2'''ৰ পৰা {{PLURAL:$1|'''1''' ফলাফল|'''$1''' ফলাফল}} দেখুওৱা হৈছে।",
+	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong>-ৰ <strong>$1</strong>টো ফলাফল|<strong>$3</strong>-ৰ <strong>$1 - $2</strong>টো ফলাফল}}",
 	"search-nonefound": "এই অনুসন্ধানৰ কোনো ফলাফল নাই ।",
 	"powersearch-legend": "শক্তিশালী সন্ধান",
 	"powersearch-ns": "নামস্থানবোৰত সন্ধান:",
@@ -2919,6 +2921,7 @@
 	"logentry-rights-rights": "$1ৰ গোট সদস্যপদ $3ৰ পৰা $4লৈ $5 লৈ সলনি কৰা হ'ল",
 	"logentry-rights-rights-legacy": "$1-ৰ গোট সদস্যপদ $3-লৈ সলনি কৰা হ'ল",
 	"logentry-rights-autopromote": "$1ক  $4ৰ পৰা $5লৈ স্বয়ংক্ৰিয়ভাৱে পদোন্নীত কৰা হ’ল",
+	"logentry-upload-upload": "$1 $3 {{GENDER:$2|আপল'ড কৰা হ'ল}}",
 	"rightsnone": "(নাই)",
 	"revdelete-summary": "সম্পাদনাৰ সাৰমৰ্ম",
 	"feedback-adding": "পৃষ্ঠাত প্ৰতিক্ৰিয়া যোগ কৰা হৈছে...",
