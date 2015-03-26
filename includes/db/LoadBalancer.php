@@ -1022,8 +1022,7 @@ class LoadBalancer {
 	}
 
 	/**
-	 * Determine if there are any pending changes that need to be rolled back
-	 * or committed.
+	 * Determine if there are pending changes in a transaction by this thread
 	 * @since 1.23
 	 * @return bool
 	 */
@@ -1042,6 +1041,42 @@ class LoadBalancer {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Get the timestamp of the latest write query done by this thread
+	 * @since 1.25
+	 * @return float|bool UNIX timestamp or false
+	 */
+	public function lastMasterChangeTimestamp() {
+		$lastTime = false;
+		// Always 0, but who knows.. :)
+		$masterIndex = $this->getWriterIndex();
+		foreach ( $this->mConns as $conns2 ) {
+			if ( empty( $conns2[$masterIndex] ) ) {
+				continue;
+			}
+			/** @var DatabaseBase $conn */
+			foreach ( $conns2[$masterIndex] as $conn ) {
+				$lastTime = max( $lastTime, $conn->lastDoneWrites() );
+			}
+		}
+		return $lastTime;
+	}
+
+	/**
+	 * Check if this load balancer object had any recent or still
+	 * pending writes issued against it by this PHP thread
+	 *
+	 * @param float $age How many seconds ago is "recent" [defaults to mWaitTimeout]
+	 * @return bool
+	 * @since 1.25
+	 */
+	public function hasOrMadeRecentMasterChanges( $age = null ) {
+		$age = ( $age === null ) ? $this->mWaitTimeout : $age;
+
+		return ( $this->hasMasterChanges()
+			|| $this->lastMasterChangeTimestamp() > microtime( true ) - $age );
 	}
 
 	/**
