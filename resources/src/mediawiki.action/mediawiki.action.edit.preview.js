@@ -159,7 +159,7 @@
 						newList.push( li );
 					} );
 
-					$editform.find( '.mw-editfooter-list' ).detach().empty().append( newList ).appendTo( '.templatesUsed' );
+					$editform.find( '.templatesUsed .mw-editfooter-list' ).detach().empty().append( newList ).appendTo( '.templatesUsed' );
 				}
 				if ( response.parse.limitreporthtml ) {
 					$( '.limitreport' ).html( response.parse.limitreporthtml['*'] );
