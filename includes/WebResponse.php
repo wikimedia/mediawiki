@@ -55,12 +55,12 @@ class WebResponse {
 
 	/**
 	 * Set the browser cookie
-	 * @param string $name Name of cookie
-	 * @param string $value Value to give cookie
+	 * @param string $name The name of the cookie.
+	 * @param string $value The value to be stored in the cookie.
 	 * @param int|null $expire Unix timestamp (in seconds) when the cookie should expire.
 	 *        0 (the default) causes it to expire $wgCookieExpiration seconds from now.
 	 *        null causes it to be a session cookie.
-	 * @param array $options Assoc of additional cookie options:
+	 * @param array|null $options Assoc of additional cookie options:
 	 *     prefix: string, name prefix ($wgCookiePrefix)
 	 *     domain: string, cookie domain ($wgCookieDomain)
 	 *     path: string, cookie path ($wgCookiePath)
@@ -164,7 +164,7 @@ class FauxResponse extends WebResponse {
 
 	/**
 	 * @param string $key The name of the header to get (case insensitive).
-	 * @return string
+	 * @return string|null The header value (if set); null otherwise.
 	 */
 	public function getHeader( $key ) {
 		$key = strtoupper( $key );
@@ -185,12 +185,10 @@ class FauxResponse extends WebResponse {
 	}
 
 	/**
-	 * @todo document. It just ignore optional parameters.
-	 *
-	 * @param string $name Name of cookie
-	 * @param string $value Value to give cookie
-	 * @param int $expire Number of seconds til cookie expires (Default: 0)
-	 * @param array $options Ignored
+	 * @param string $name The name of the cookie.
+	 * @param string $value The value to be stored in the cookie.
+	 * @param int|null $expire Ignored in this faux subclass.
+	 * @param array|null $options Ignored in this faux subclass.
 	 */
 	public function setcookie( $name, $value, $expire = 0, $options = null ) {
 		$this->cookies[$name] = $value;
@@ -198,7 +196,7 @@ class FauxResponse extends WebResponse {
 
 	/**
 	 * @param string $name
-	 * @return string
+	 * @return string|null
 	 */
 	public function getcookie( $name ) {
 		if ( isset( $this->cookies[$name] ) ) {
