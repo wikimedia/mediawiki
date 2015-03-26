@@ -1392,7 +1392,7 @@ class User implements IDBAccessObject {
 		global $wgAutopromoteOnceLogInRC, $wgAuth;
 
 		$toPromote = array();
-		if ( $this->getId() ) {
+		if ( !wfReadOnly() && $this->getId() ) {
 			$toPromote = Autopromote::getAutopromoteOnceGroups( $this, $event );
 			if ( count( $toPromote ) ) {
 				$oldGroups = $this->getGroups(); // previous groups
@@ -1418,6 +1418,7 @@ class User implements IDBAccessObject {
 				}
 			}
 		}
+
 		return $toPromote;
 	}
 
