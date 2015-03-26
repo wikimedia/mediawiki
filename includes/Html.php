@@ -104,7 +104,8 @@ class Html {
 	/**
 	 * Modifies a set of attributes meant for button elements
 	 * and apply a set of default attributes when $wgUseMediaWikiUIEverywhere enabled.
-	 * @param array $modifiers to add to the button
+	 * @param array $attrs
+	 * @param string[] $modifiers to add to the button
 	 * @see https://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
 	 * @return array $attrs A modified attribute array
 	 */
@@ -164,7 +165,7 @@ class Html {
 	 * @param array $attrs Associative array of attributes, e.g., array(
 	 *   'href' => 'http://www.mediawiki.org/' ). See expandAttributes() for
 	 *   further documentation.
-	 * @param array $modifiers to add to the button
+	 * @param string[] $modifiers to add to the button
 	 * @see http://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
 	 * @return string Raw HTML
 	 */
@@ -184,7 +185,7 @@ class Html {
 	 * @param array $attrs Associative array of attributes, e.g., array(
 	 *   'href' => 'http://www.mediawiki.org/' ). See expandAttributes() for
 	 *   further documentation.
-	 * @param array $modifiers to add to the button
+	 * @param string[] $modifiers to add to the button
 	 * @see http://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
 	 * @return string Raw HTML
 	 */
@@ -704,7 +705,7 @@ class Html {
 	 * new HTML5 input types and attributes.
 	 *
 	 * @param string $name Name attribute
-	 * @param array $value Value attribute
+	 * @param string $value Value attribute
 	 * @param string $type Type attribute
 	 * @param array $attribs Associative array of miscellaneous extra
 	 *   attributes, passed to Html::element()
@@ -726,7 +727,7 @@ class Html {
 	 * @param string $name Name attribute
 	 * @param bool $checked Whether the checkbox is checked or not
 	 * @param array $attribs Array of additional attributes
-	 * @return string
+	 * @return string Raw HTML
 	 */
 	public static function check( $name, $checked = false, array $attribs = array() ) {
 		if ( isset( $attribs['value'] ) ) {
@@ -749,7 +750,7 @@ class Html {
 	 * @param string $name Name attribute
 	 * @param bool $checked Whether the checkbox is checked or not
 	 * @param array $attribs Array of additional attributes
-	 * @return string
+	 * @return string Raw HTML
 	 */
 	public static function radio( $name, $checked = false, array $attribs = array() ) {
 		if ( isset( $attribs['value'] ) ) {
@@ -772,7 +773,7 @@ class Html {
 	 * @param string $label Contents of the label
 	 * @param string $id ID of the element being labeled
 	 * @param array $attribs Additional attributes
-	 * @return string
+	 * @return string Raw HTML
 	 */
 	public static function label( $label, $id, array $attribs = array() ) {
 		$attribs += array(
@@ -1025,7 +1026,7 @@ class Html {
 	 * to URLs. Note that srcset supports width and height values as well, which
 	 * are not used here.
 	 *
-	 * @param array $urls
+	 * @param string[] $urls
 	 * @return string
 	 */
 	static function srcSet( $urls ) {
