@@ -22,7 +22,7 @@
 	QUnit.test( 'mw.language.commafy test', 9, function ( assert ) {
 		// Number grouping patterns are as per http://cldr.unicode.org/translation/number-patterns
 		assert.equal( mw.language.commafy( 1234.567, '###0.#####' ), '1234.567', 'Pattern with no digit grouping separator defined' );
-		assert.equal( mw.language.commafy( 123456789.567, '###0.#####' ), '123456789.567', 'Pattern with no digit grouping seperator defined, bigger decimal part' );
+		assert.equal( mw.language.commafy( 123456789.567, '###0.#####' ), '123456789.567', 'Pattern with no digit grouping separator defined, bigger decimal part' );
 		assert.equal( mw.language.commafy( 0.567, '###0.#####' ), '0.567', 'Decimal part 0' );
 		assert.equal( mw.language.commafy( '.567', '###0.#####' ), '0.567', 'Decimal part missing. replace with zero' );
 		assert.equal( mw.language.commafy( 1234, '##,#0.#####' ), '12,34', 'Pattern with no fractional part' );
