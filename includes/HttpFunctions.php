@@ -96,7 +96,7 @@ class Http {
 		if ( isset( $args[1] ) && ( is_string( $args[1] ) || is_numeric( $args[1] ) ) ) {
 			// Second was used to be the timeout
 			// And third parameter used to be $options
-			wfWarn( "Second parameter should not be a timeout." );
+			wfWarn( "Second parameter should not be a timeout.", 2 );
 			$options = isset( $args[2] ) && is_array( $args[2] ) ?
 				$args[2] : array();
 			$options['timeout'] = $args[1];
