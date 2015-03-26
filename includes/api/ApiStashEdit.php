@@ -33,6 +33,11 @@
  * @since 1.25
  */
 class ApiStashEdit extends ApiBase {
+	const ERROR_NONE = 'stashed';
+	const ERROR_PARSE = 'error_parse';
+	const ERROR_CACHE = 'error_cache';
+	const ERROR_UNCACHEABLE = 'uncacheable';
+
 	public function execute() {
 		global $wgMemc;
 
@@ -105,41 +110,56 @@ class ApiStashEdit extends ApiBase {
 		$key = self::getStashKey( $title, $content, $user );
 		// De-duplicate requests on the same key
 		if ( $user->pingLimiter( 'stashedit' ) ) {
-			$editInfo = false;
 			$status = 'ratelimited';
 		} elseif ( $wgMemc->lock( $key, 0, 30 ) ) {
-			$format = $content->getDefaultFormat();
-			$editInfo = $page->prepareContentForEdit( $content, null, $user, $format, false );
-			$status = 'error'; // default
 			$unlocker = new ScopedCallback( function() use ( $key ) {
 				global $wgMemc;
 				$wgMemc->unlock( $key );
 			} );
+			$status = self::parseAndStash( $page, $content, $user );
 		} else {
-			$editInfo = false;
 			$status = 'busy';
 		}
 
+		$this->getResult()->addValue( null, $this->getModuleName(), array( 'status' => $status ) );
+	}
+
+	/**
+	 * @param WikiPage $page
+	 * @param Content $content
+	 * @param User $user
+	 * @return integer ApiStashEdit::ERROR_* constant
+	 * @since 1.25
+	 */
+	public static function parseAndStash( WikiPage $page, Content $content, User $user ) {
+		global $wgMemc;
+
+		$format = $content->getDefaultFormat();
+		$editInfo = $page->prepareContentForEdit( $content, null, $user, $format, false );
+
 		if ( $editInfo && $editInfo->output ) {
+			$key = self::getStashKey( $page->getTitle(), $content, $user );
+
 			list( $stashInfo, $ttl ) = self::buildStashValue(
 				$editInfo->pstContent, $editInfo->output, $editInfo->timestamp
 			);
+
 			if ( $stashInfo ) {
 				$ok = $wgMemc->set( $key, $stashInfo, $ttl );
 				if ( $ok ) {
-					$status = 'stashed';
 					wfDebugLog( 'StashEdit', "Cached parser output for key '$key'." );
+					return self::ERROR_NONE;
 				} else {
-					$status = 'error';
 					wfDebugLog( 'StashEdit', "Failed to cache parser output for key '$key'." );
+					return self::ERROR_CACHE;
 				}
 			} else {
-				$status = 'uncacheable';
 				wfDebugLog( 'StashEdit', "Uncacheable parser output for key '$key'." );
+				return self::ERROR_UNCACHEABLE;
 			}
 		}
 
-		$this->getResult()->addValue( null, $this->getModuleName(), array( 'status' => $status ) );
+		return self::ERROR_PARSE;
 	}
 
 	/**
