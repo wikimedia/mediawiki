@@ -199,8 +199,6 @@ class MediaWiki {
 			throw new PermissionsError( 'read', $permErrors );
 		}
 
-		$pageView = false; // was an article or special page viewed?
-
 		// Interwiki redirects
 		if ( $title->isExternal() ) {
 			$rdfrom = $request->getVal( 'rdfrom' );
@@ -263,7 +261,6 @@ class MediaWiki {
 			}
 		// Special pages
 		} elseif ( NS_SPECIAL == $title->getNamespace() ) {
-			$pageView = true;
 			// Actions that need to be made when we have a special pages
 			SpecialPageFactory::executePath( $title, $this->context );
 		} else {
@@ -271,7 +268,6 @@ class MediaWiki {
 			// may be a redirect to another article or URL.
 			$article = $this->initializeArticle();
 			if ( is_object( $article ) ) {
-				$pageView = true;
 				$this->performAction( $article, $requestTitle );
 			} elseif ( is_string( $article ) ) {
 				$output->redirect( $article );
@@ -280,12 +276,6 @@ class MediaWiki {
 					. " returned neither an object nor a URL" );
 			}
 		}
-
-		if ( $pageView ) {
-			// Promote user to any groups they meet the criteria for
-			$user->addAutopromoteOnceGroups( 'onView' );
-		}
-
 	}
 
 	/**

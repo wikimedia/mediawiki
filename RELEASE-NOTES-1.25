@@ -45,6 +45,8 @@ production.
 * The 'daemonized' flag must be set to true in $wgJobTypeConf for any redis
   job queues. This means that mediawiki/services/jobrunner service has to
   be installed and running for any such queues to work.
+* $wgAutopromoteOnce no longer supports the 'view' event. For keeping some
+  compatibility, any 'view' event triggers will still trigger on 'edit'.
 
 === New features in 1.25 ===
 * (T64861) Updated plural rules to CLDR 26. Includes incompatible changes
