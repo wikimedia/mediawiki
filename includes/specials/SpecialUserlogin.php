@@ -916,7 +916,7 @@ class LoginForm extends SpecialPage {
 			case self::SUCCESS:
 				# We've verified now, update the real record
 				$user = $this->getUser();
-				$user->invalidateCache();
+				$user->touch();
 
 				if ( $user->requiresHTTPS() ) {
 					$this->mStickHTTPS = true;
