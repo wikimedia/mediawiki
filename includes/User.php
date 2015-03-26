@@ -1226,7 +1226,7 @@ class User implements IDBAccessObject {
 	 *	user_groups		Array with groups out of the user_groups table
 	 *	user_properties		Array with properties out of the user_properties table
 	 */
-	public function loadFromRow( $row, $data = null ) {
+	protected function loadFromRow( $row, $data = null ) {
 		$all = true;
 		$passwordFactory = self::getPasswordFactory();
 
