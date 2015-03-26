@@ -58,6 +58,9 @@ class ShowJobs extends Maintenance {
 				foreach ( $queue->getAllDelayedJobs() as $job ) {
 					$this->output( $job->toString() . " status=delayed\n" );
 				}
+				foreach ( $queue->getAllAbandonedJobs() as $job ) {
+					$this->output( $job->toString() . " status=abandoned\n" );
+				}
 			}
 		} elseif ( $this->hasOption( 'group' ) ) {
 			foreach ( $group->getQueueTypes() as $type ) {
