@@ -997,7 +997,7 @@ class Html {
 	 *
 	 * @return string
 	 */
-	static function infoBox( $text, $icon, $alt, $class = false ) {
+	static function infoBox( $text, $icon, $alt, $class = '' ) {
 		$s = Html::openElement( 'div', array( 'class' => "mw-infobox $class" ) );
 
 		$s .= Html::openElement( 'div', array( 'class' => 'mw-infobox-left' ) ) .
