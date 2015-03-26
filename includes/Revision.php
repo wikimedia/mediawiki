@@ -297,7 +297,10 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * Given a set of conditions, fetch a revision.
+	 * Given a set of conditions, fetch a revision
+	 *
+	 * This method is used then a revision ID is qualified and
+	 * will incorporate some basic slave/master fallback logic
 	 *
 	 * @param array $conditions
 	 * @param int $flags (optional)
@@ -305,10 +308,24 @@ class Revision implements IDBAccessObject {
 	 */
 	private static function newFromConds( $conditions, $flags = 0 ) {
 		$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_SLAVE );
+
 		$rev = self::loadFromConds( $db, $conditions, $flags );
+		// Make sure new pending/committed revision are visibile later on
+		// within web requests to certain avoid bugs like T93866 and T94407.
+		if ( !$rev
+			&& !( $flags & self::READ_LATEST )
+			&& wfGetLB()->getServerCount() > 1
+			&& wfGetLB()->hasOrMadeRecentMasterChanges()
+		) {
+			$flags = self::READ_LATEST;
+			$db = wfGetDB( DB_MASTER );
+			$rev = self::loadFromConds( $db, $conditions, $flags );
+		}
+
 		if ( $rev ) {
 			$rev->mQueryFlags = $flags;
 		}
+
 		return $rev;
 	}
 
@@ -1481,9 +1498,9 @@ class Revision implements IDBAccessObject {
 	 * @return string|bool The revision's text, or false on failure
 	 */
 	protected function loadText() {
-
 		// Caching may be beneficial for massive use of external storage
 		global $wgRevisionCacheExpiry, $wgMemc;
+
 		$textId = $this->getTextId();
 		$key = wfMemcKey( 'revisiontext', 'textid', $textId );
 		if ( $wgRevisionCacheExpiry ) {
