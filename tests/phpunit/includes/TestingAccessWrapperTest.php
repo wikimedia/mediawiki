@@ -27,4 +27,8 @@ class TestingAccessWrapperTest extends MediaWikiTestCase {
 		$this->assertSame( 2, $this->wrapped->property );
 		$this->assertSame( 2, $this->raw->getProperty() );
 	}
+
+	function testCallMethodTwoArgs() {
+		$this->assertSame( 'two', $this->wrapped->whatSecondArg( 'one', 'two' ) );
+	}
 }
