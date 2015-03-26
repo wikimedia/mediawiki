@@ -879,6 +879,8 @@
 	"notextmatches": "No page text matches",
 	"prevn": "previous {{PLURAL:$1|$1}}",
 	"nextn": "next {{PLURAL:$1|$1}}",
+	"prev-page": "previous page",
+	"next-page": "next page",
 	"prevn-title": "Previous $1 {{PLURAL:$1|result|results}}",
 	"nextn-title": "Next $1 {{PLURAL:$1|result|results}}",
 	"shown-title": "Show $1 {{PLURAL:$1|result|results}} per page",
