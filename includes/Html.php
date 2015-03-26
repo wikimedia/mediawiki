@@ -170,7 +170,7 @@ class Html {
 	 * @return string Raw HTML
 	 */
 	public static function linkButton( $contents, $attrs, $modifiers = array() ) {
-		return Html::element( 'a',
+		return self::element( 'a',
 			self::buttonAttributes( $attrs, $modifiers ),
 			$contents
 		);
@@ -192,7 +192,7 @@ class Html {
 	public static function submitButton( $contents, $attrs, $modifiers = array() ) {
 		$attrs['type'] = 'submit';
 		$attrs['value'] = $contents;
-		return Html::element( 'input', self::buttonAttributes( $attrs, $modifiers ) );
+		return self::element( 'input', self::buttonAttributes( $attrs, $modifiers ) );
 	}
 
 	/**
@@ -716,7 +716,7 @@ class Html {
 		$attribs['value'] = $value;
 		$attribs['name'] = $name;
 		if ( in_array( $type, array( 'text', 'search', 'email', 'password', 'number' ) ) ) {
-			$attribs = Html::getTextInputAttributes( $attribs );
+			$attribs = self::getTextInputAttributes( $attribs );
 		}
 		return self::element( 'input', $attribs );
 	}
@@ -819,7 +819,7 @@ class Html {
 		} else {
 			$spacedValue = $value;
 		}
-		return self::element( 'textarea', Html::getTextInputAttributes( $attribs ), $spacedValue );
+		return self::element( 'textarea', self::getTextInputAttributes( $attribs ), $spacedValue );
 	}
 
 	/**
@@ -890,7 +890,7 @@ class Html {
 			} elseif ( is_int( $nsId ) ) {
 				$nsName = $wgContLang->convertNamespace( $nsId );
 			}
-			$optionsHtml[] = Html::element(
+			$optionsHtml[] = self::element(
 				'option', array(
 					'disabled' => in_array( $nsId, $params['disable'] ),
 					'value' => $nsId,
@@ -909,7 +909,7 @@ class Html {
 
 		$ret = '';
 		if ( isset( $params['label'] ) ) {
-			$ret .= Html::element(
+			$ret .= self::element(
 				'label', array(
 					'for' => isset( $selectAttribs['id'] ) ? $selectAttribs['id'] : null,
 				), $params['label']
@@ -917,11 +917,11 @@ class Html {
 		}
 
 		// Wrap options in a <select>
-		$ret .= Html::openElement( 'select', $selectAttribs )
+		$ret .= self::openElement( 'select', $selectAttribs )
 			. "\n"
 			. implode( "\n", $optionsHtml )
 			. "\n"
-			. Html::closeElement( 'select' );
+			. self::closeElement( 'select' );
 
 		return $ret;
 	}
@@ -962,7 +962,7 @@ class Html {
 			$attribs['version'] = $wgHtml5Version;
 		}
 
-		$html = Html::openElement( 'html', $attribs );
+		$html = self::openElement( 'html', $attribs );
 
 		if ( $html ) {
 			$html .= "\n";
@@ -998,25 +998,25 @@ class Html {
 	 * @return string
 	 */
 	static function infoBox( $text, $icon, $alt, $class = '' ) {
-		$s = Html::openElement( 'div', array( 'class' => "mw-infobox $class" ) );
+		$s = self::openElement( 'div', array( 'class' => "mw-infobox $class" ) );
 
-		$s .= Html::openElement( 'div', array( 'class' => 'mw-infobox-left' ) ) .
-				Html::element( 'img',
+		$s .= self::openElement( 'div', array( 'class' => 'mw-infobox-left' ) ) .
+				self::element( 'img',
 					array(
 						'src' => $icon,
 						'alt' => $alt,
 					)
 				) .
-				Html::closeElement( 'div' );
+				self::closeElement( 'div' );
 
-		$s .= Html::openElement( 'div', array( 'class' => 'mw-infobox-right' ) ) .
+		$s .= self::openElement( 'div', array( 'class' => 'mw-infobox-right' ) ) .
 				$text .
-				Html::closeElement( 'div' );
-		$s .= Html::element( 'div', array( 'style' => 'clear: left;' ), ' ' );
+				self::closeElement( 'div' );
+		$s .= self::element( 'div', array( 'style' => 'clear: left;' ), ' ' );
 
-		$s .= Html::closeElement( 'div' );
+		$s .= self::closeElement( 'div' );
 
-		$s .= Html::element( 'div', array( 'style' => 'clear: left;' ), ' ' );
+		$s .= self::element( 'div', array( 'style' => 'clear: left;' ), ' ' );
 
 		return $s;
 	}
