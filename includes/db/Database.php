@@ -3611,6 +3611,7 @@ abstract class DatabaseBase implements IDatabase {
 			$this->runOnTransactionPreCommitCallbacks();
 			$this->doCommit( $fname );
 			if ( $this->mTrxDoneWrites ) {
+				$this->mDoneWrites = microtime( true );
 				$this->getTransactionProfiler()->transactionWritingOut(
 					$this->mServer, $this->mDBname, $this->mTrxShortId );
 			}
@@ -3691,6 +3692,7 @@ abstract class DatabaseBase implements IDatabase {
 		$this->runOnTransactionPreCommitCallbacks();
 		$this->doCommit( $fname );
 		if ( $this->mTrxDoneWrites ) {
+			$this->mDoneWrites = microtime( true );
 			$this->getTransactionProfiler()->transactionWritingOut(
 				$this->mServer, $this->mDBname, $this->mTrxShortId );
 		}
