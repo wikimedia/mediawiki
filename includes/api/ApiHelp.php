@@ -164,17 +164,17 @@ class ApiHelp extends ApiBase {
 				$old = $href;
 				$href = rawurldecode( $href );
 			} while ( $old !== $href );
-			if ( preg_match( '!Special:ApiHelp/([^&/|]+)!', $href, $m ) ) {
+			if ( preg_match( '!Special:ApiHelp/([^&/|#]+)((?:#.*)?)!', $href, $m ) ) {
 				if ( isset( $localModules[$m[1]] ) ) {
-					$href = '#' . $m[1];
+					$href = $m[2] === '' ? '#' . $m[1] : $m[2];
 				} elseif ( $helptitle !== null ) {
-					$href = Title::newFromText( str_replace( '$1', $m[1], $helptitle ) )
+					$href = Title::newFromText( str_replace( '$1', $m[1], $helptitle ) . $m[2] )
 						->getFullUrl();
 				} else {
 					$href = wfAppendQuery( wfScript( 'api' ), array(
 						'action' => 'help',
 						'modules' => $m[1],
-					) );
+					) ) . $m[2];
 				}
 				$node->setAttribute( 'href', $href );
 				$node->removeAttribute( 'title' );
@@ -442,6 +442,8 @@ class ApiHelp extends ApiBase {
 										->params( $context->getLanguage()->commaList( $submodules ) )
 										->parse();
 									$hintPipeSeparated = false;
+									// No type message necessary, we have a list of values.
+									$type = null;
 									break;
 
 								case 'namespace':
@@ -452,6 +454,8 @@ class ApiHelp extends ApiBase {
 										->params( $context->getLanguage()->commaList( $namespaces ) )
 										->parse();
 									$hintPipeSeparated = false;
+									// No type message necessary, we have a list of values.
+									$type = null;
 									break;
 
 								case 'limit':
@@ -494,7 +498,24 @@ class ApiHelp extends ApiBase {
 								case 'upload':
 									$info[] = $context->msg( 'api-help-param-upload' )
 										->parse();
+									// No type message necessary, api-help-param-upload should handle it.
+									$type = null;
 									break;
+
+								case 'string':
+									// Displaying a type message here would be useless.
+									$type = null;
+									break;
+							}
+						}
+
+						// Add type. Messages for grep: api-help-param-type-limit
+						// api-help-param-type-integer api-help-param-type-boolean
+						// api-help-param-type-timestamp api-help-param-type-user
+						if ( is_string( $type ) ) {
+							$msg = $context->msg( "api-help-param-type-$type" );
+							if ( !$msg->isDisabled() ) {
+								$info[] = $msg->params( $multi ? 2 : 1 )->parse();
 							}
 						}
 

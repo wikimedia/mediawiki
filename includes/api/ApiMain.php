@@ -1259,6 +1259,7 @@ class ApiMain extends ApiBase {
 			}
 			$help[$k] = $v;
 		}
+		$help['datatypes'] = '';
 		$help['credits'] = '';
 
 		// Fill 'permissions'
@@ -1291,10 +1292,18 @@ class ApiMain extends ApiBase {
 		$help['permissions'] .= Html::closeElement( 'dl' );
 		$help['permissions'] .= Html::closeElement( 'div' );
 
-		// Fill 'credits', if applicable
+		// Fill 'datatypes' and 'credits', if applicable
 		if ( empty( $options['nolead'] ) ) {
-			$help['credits'] .= Html::element( 'h' . min( 6, $options['headerlevel'] + 1 ),
-				array( 'id' => '+credits', 'class' => 'apihelp-header' ),
+			$help['datatypes'] .= Html::rawelement( 'h' . min( 6, $options['headerlevel'] + 1 ),
+				array( 'id' => 'main/datatypes', 'class' => 'apihelp-header' ),
+				Html::element( 'span', array( 'id' => Sanitizer::escapeId( 'main/datatypes' ) ) ) .
+				$this->msg( 'api-help-datatypes-header' )->parse()
+			);
+			$help['datatypes'] .= $this->msg( 'api-help-datatypes' )->parseAsBlock();
+
+			$help['credits'] .= Html::rawelement( 'h' . min( 6, $options['headerlevel'] + 1 ),
+				array( 'id' => 'main/credits', 'class' => 'apihelp-header' ),
+				Html::element( 'span', array( 'id' => Sanitizer::escapeId( 'main/credits' ) ) ) .
 				$this->msg( 'api-credits-header' )->parse()
 			);
 			$help['credits'] .= $this->msg( 'api-credits' )->useDatabase( false )->parseAsBlock();
