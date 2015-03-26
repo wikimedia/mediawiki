@@ -31,7 +31,7 @@ class TestingAccessWrapper {
 		$classReflection = new ReflectionClass( $this->object );
 		$methodReflection = $classReflection->getMethod( $method );
 		$methodReflection->setAccessible( true );
-		return $methodReflection->invoke( $this->object, $args );
+		return $methodReflection->invokeArgs( $this->object, $args );
 	}
 
 	public function __set( $name, $value ) {
