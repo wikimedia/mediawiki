@@ -204,8 +204,10 @@ class User implements IDBAccessObject {
 	public $mNewpassTime;
 
 	public $mEmail;
-
+	/** @var string TS_MW timestamp from the DB */
 	public $mTouched;
+	/** @var string TS_MW timestamp from cache */
+	protected $mQuickTouched;
 
 	protected $mToken;
 
@@ -429,6 +431,8 @@ class User implements IDBAccessObject {
 	 * Save user data to the shared cache
 	 */
 	public function saveToCache() {
+		global $wgMemc;
+
 		$this->load();
 		$this->loadGroups();
 		$this->loadOptions();
@@ -442,7 +446,7 @@ class User implements IDBAccessObject {
 		}
 		$data['mVersion'] = self::VERSION;
 		$key = wfMemcKey( 'user', 'id', $this->mId );
-		global $wgMemc;
+
 		$wgMemc->set( $key, $data );
 	}
 
@@ -2214,9 +2218,10 @@ class User implements IDBAccessObject {
 	 * Called implicitly from invalidateCache() and saveSettings().
 	 */
 	public function clearSharedCache() {
+		global $wgMemc;
+
 		$this->load();
 		if ( $this->mId ) {
-			global $wgMemc;
 			$wgMemc->delete( wfMemcKey( 'user', 'id', $this->mId ) );
 		}
 	}
@@ -2256,6 +2261,31 @@ class User implements IDBAccessObject {
 	}
 
 	/**
+	 * Update the "touched" timestamp for the user
+	 *
+	 * This is useful on various login/logout events when making sure that
+	 * a browser or proxy that has multiple tenants does not suffer cache
+	 * pollution where the new user sees the old users content. The value
+	 * of getTouched() is checked when determining 304 vs 200 responses.
+	 * Unlike invalidateCache(), this preserves the User object cache and
+	 * avoids database writes.
+	 *
+	 * @since 1.25
+	 */
+	public function touch() {
+		global $wgMemc;
+
+		$this->load();
+
+		if ( $this->mId ) {
+			$key = wfMemcKey( 'user-quicktouched', 'id', $this->mId );
+			$timestamp = self::newTouchedTimestamp();
+			$wgMemc->set( $key, $timestamp );
+			$this->mQuickTouched = $timestamp;
+		}
+	}
+
+	/**
 	 * Validate the cache for this account.
 	 * @param string $timestamp A timestamp in TS_MW format
 	 * @return bool
@@ -2267,10 +2297,26 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Get the user touched timestamp
-	 * @return string Timestamp
+	 * @return string TS_MW Timestamp
 	 */
 	public function getTouched() {
+		global $wgMemc;
+
 		$this->load();
+
+		if ( $this->mId ) {
+			if ( $this->mQuickTouched === null ) {
+				$key = wfMemcKey( 'user-quicktouched', 'id', $this->mId );
+				$timestamp = $wgMemc->get( $key );
+				if ( !$timestamp ) {
+					# Set the timestamp to get HTTP 304 cache hits
+					$this->touch();
+				}
+			}
+
+			return max( $this->mTouched, $this->mQuickTouched );
+		}
+
 		return $this->mTouched;
 	}
 
