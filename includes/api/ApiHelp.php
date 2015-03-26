@@ -164,17 +164,17 @@ class ApiHelp extends ApiBase {
 				$old = $href;
 				$href = rawurldecode( $href );
 			} while ( $old !== $href );
-			if ( preg_match( '!Special:ApiHelp/([^&/|]+)!', $href, $m ) ) {
+			if ( preg_match( '!Special:ApiHelp/([^&/|#]+)((?:#.*)?)!', $href, $m ) ) {
 				if ( isset( $localModules[$m[1]] ) ) {
-					$href = '#' . $m[1];
+					$href = $m[2] === '' ? '#' . $m[1] : $m[2];
 				} elseif ( $helptitle !== null ) {
-					$href = Title::newFromText( str_replace( '$1', $m[1], $helptitle ) )
+					$href = Title::newFromText( str_replace( '$1', $m[1], $helptitle ) . $m[2] )
 						->getFullUrl();
 				} else {
 					$href = wfAppendQuery( wfScript( 'api' ), array(
 						'action' => 'help',
 						'modules' => $m[1],
-					) );
+					) ) . $m[2];
 				}
 				$node->setAttribute( 'href', $href );
 				$node->removeAttribute( 'title' );
@@ -496,6 +496,14 @@ class ApiHelp extends ApiBase {
 										->parse();
 									break;
 							}
+						}
+
+						// Add type. Messages for grep: api-help-param-type-limit
+						// api-help-param-type-integer api-help-param-type-boolean
+						// api-help-param-type-timestamp api-help-param-type-user
+						$msg = $context->msg( "api-help-param-type-$type" );
+						if ( !$msg->isDisabled() ) {
+							$info[] = $msg->params( $multi ? 2 : 1 )->parse();
 						}
 
 						if ( $multi ) {
