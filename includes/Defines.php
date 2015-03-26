@@ -48,8 +48,9 @@ define( 'DBO_COMPRESS', 512 );
  * Valid database indexes
  * Operation-based indexes
  */
-define( 'DB_SLAVE', -1 );     # Read from the slave (or only server)
-define( 'DB_MASTER', -2 );    # Write to master (or only server)
+define( 'DB_SLAVE', -1 ); # Read from the slave (or only server)
+define( 'DB_MASTER', -2 ); # Write to master (or only server)
+define( 'DB_READ_OWN', -3 ); # Read from master/slave (account for thread's recent/pending writes)
 /**@}*/
 
 # Obsolete aliases
