@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.9.3
+ * OOjs UI v0.9.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-03-19T23:18:59Z
+ * Date: 2015-03-25T22:24:05Z
  */
 ( function ( OO ) {
 
@@ -1574,7 +1574,11 @@ OO.ui.Element.prototype.scrollElementIntoView = function ( config ) {
 };
 
 /**
- * Container for elements.
+ * Layouts are containers for elements and are used to arrange other widgets of arbitrary type in a way
+ * that is centrally controlled and can be updated dynamically. Layouts can be, and usually are, combined.
+ * See {@link OO.ui.FieldsetLayout FieldsetLayout}, {@link OO.ui.FieldLayout FieldLayout}, {@link OO.ui.FormLayout FormLayout},
+ * {@link OO.ui.PanelLayout PanelLayout}, {@link OO.ui.StackLayout StackLayout}, {@link OO.ui.PageLayout PageLayout},
+ * and {@link OO.ui.BookletLayout BookletLayout} for more information and examples.
  *
  * @abstract
  * @class
@@ -3252,9 +3256,10 @@ OO.ui.WindowManager.prototype.updateWindowSize = function ( win ) {
 OO.ui.WindowManager.prototype.toggleGlobalEvents = function ( on ) {
 	on = on === undefined ? !!this.globalEvents : !!on;
 
-	var $body = $( this.getElementDocument().body ),
-		// We could have multiple window managers open to only modify
-		// the body class at the bottom of the stack
+	var scrollWidth, bodyMargin,
+		$body = $( this.getElementDocument().body ),
+		// We could have multiple window managers open so only modify
+		// the body css at the bottom of the stack
 		stackDepth = $body.data( 'windowManagerGlobalEvents' ) || 0 ;
 
 	if ( on ) {
@@ -3264,7 +3269,12 @@ OO.ui.WindowManager.prototype.toggleGlobalEvents = function ( on ) {
 				'orientationchange resize': this.onWindowResizeHandler
 			} );
 			if ( stackDepth === 0 ) {
-				$body.css( 'overflow', 'hidden' );
+				scrollWidth = window.innerWidth - document.documentElement.clientWidth;
+				bodyMargin = parseFloat( $body.css( 'margin-right' ) ) || 0;
+				$body.css( {
+					overflow: 'hidden',
+					'margin-right': bodyMargin + scrollWidth
+				} );
 			}
 			stackDepth++;
 			this.globalEvents = true;
@@ -3276,7 +3286,10 @@ OO.ui.WindowManager.prototype.toggleGlobalEvents = function ( on ) {
 		} );
 		stackDepth--;
 		if ( stackDepth === 0 ) {
-			$( this.getElementDocument().body ).css( 'overflow', '' );
+			$body.css( {
+				overflow: '',
+				'margin-right': ''
+			} );
 		}
 		this.globalEvents = false;
 	}
@@ -3894,6 +3907,7 @@ OO.ui.TabIndexedElement.prototype.setTabIndex = function ( tabIndex ) {
  * Update the `tabindex` attribute, in case of changes to tab index or
  * disabled state.
  *
+ * @private
  * @chainable
  */
 OO.ui.TabIndexedElement.prototype.updateTabIndex = function () {
@@ -3942,8 +3956,9 @@ OO.ui.TabIndexedElement.prototype.getTabIndex = function () {
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {jQuery} [$button] Button node, assigned to #$button, omit to use a generated `<a>`
- * @cfg {boolean} [framed=true] Render button with a frame
+ * @cfg {jQuery} [$button] The button element created by the class.
+ *  If this configuration is omitted, the button element will use a generated `<a>`.
+ * @cfg {boolean} [framed=true] Render the button with a frame
  * @cfg {string} [accessKey] Button's access key
  */
 OO.ui.ButtonElement = function OoUiButtonElement( config ) {
@@ -3978,6 +3993,11 @@ OO.initClass( OO.ui.ButtonElement );
 /**
  * Cancel mouse down events.
  *
+ * This property is usually set to `true` to prevent the focus from changing when the button is clicked.
+ * Classes such as {@link OO.ui.DraggableElement DraggableElement} and {@link OO.ui.ButtonOptionWidget ButtonOptionWidget}
+ * use a value of `false` so that dragging behavior is possible and mousedown events can be handled by a
+ * parent widget.
+ *
  * @static
  * @inheritable
  * @property {boolean}
@@ -3987,6 +4007,8 @@ OO.ui.ButtonElement.static.cancelButtonMouseDownEvents = true;
 /* Events */
 
 /**
+ * A 'click' event is emitted when the button element is clicked.
+ *
  * @event click
  */
 
@@ -3995,7 +4017,9 @@ OO.ui.ButtonElement.static.cancelButtonMouseDownEvents = true;
 /**
  * Set the button element.
  *
- * If an element is already set, it will be cleaned up before setting up the new element.
+ * This method is used to retarget a button mixin so that its functionality applies to
+ * the specified button element instead of the one created by the class. If a button element
+ * is already set, the method will remove the mixin’s effect on that element.
  *
  * @param {jQuery} $button Element to use as button
  */
@@ -4127,7 +4151,7 @@ OO.ui.ButtonElement.prototype.isFramed = function () {
 };
 
 /**
- * Toggle frame.
+ * Render the button with or without a frame. Omit the `framed` parameter to toggle the button frame on and off.
  *
  * @param {boolean} [framed] Make button framed, omit to toggle
  * @chainable
@@ -4146,7 +4170,7 @@ OO.ui.ButtonElement.prototype.toggleFramed = function ( framed ) {
 };
 
 /**
- * Set access key.
+ * Set the button's access key.
  *
  * @param {string} accessKey Button's access key, use empty string to remove
  * @chainable
@@ -4169,7 +4193,11 @@ OO.ui.ButtonElement.prototype.setAccessKey = function ( accessKey ) {
 };
 
 /**
- * Set active state.
+ * Set the button to its 'active' state.
+ *
+ * The active state occurs when a {@link OO.ui.ButtonOptionWidget ButtonOptionWidget} or
+ * a {@link OO.ui.ToggleButtonWidget ToggleButtonWidget} is pressed. This method does nothing
+ * for other button types.
  *
  * @param {boolean} [value] Make button active
  * @chainable
@@ -5386,21 +5414,28 @@ OO.ui.LabelElement.prototype.setLabelContent = function ( label ) {
 };
 
 /**
- * Mixin that adds a menu showing suggested values for a OO.ui.TextInputWidget.
+ * LookupElement is a mixin that creates a {@link OO.ui.TextInputMenuSelectWidget menu} of suggested values for
+ * a {@link OO.ui.TextInputWidget text input widget}. Suggested values are based on the characters the user types
+ * into the text input field and, in general, the menu is only displayed when the user types. If a suggested value is chosen
+ * from the lookup menu, that value becomes the value of the input field.
  *
- * Subclasses that set the value of #lookupInput from #onLookupMenuItemChoose should
- * be aware that this will cause new suggestions to be looked up for the new value. If this is
- * not desired, disable lookups with #setLookupsDisabled, then set the value, then re-enable lookups.
+ * Note that a new menu of suggested items is displayed when a value is chosen from the lookup menu. If this is
+ * not the desired behavior, disable lookup menus with the #setLookupsDisabled method, then set the value, then
+ * re-enable lookups.
+ *
+ * See the [OOjs UI demos][1] for an example.
+ *
+ * [1]: https://tools.wmflabs.org/oojs-ui/oojs-ui/demos/index.html#widgets-apex-vector-ltr
  *
  * @class
  * @abstract
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {jQuery} [$overlay] Overlay for dropdown; defaults to relative positioning
- * @cfg {jQuery} [$container=this.$element] Element to render menu under
- * @cfg {boolean} [allowSuggestionsWhenEmpty=false] Whether suggestions will be requested
- *   and shown when the user has not typed anything yet.
+ * @cfg {jQuery} [$overlay] Overlay for the lookup menu; defaults to relative positioning
+ * @cfg {jQuery} [$container=this.$element] The container element. The lookup menu is rendered beneath the specified element.
+ * @cfg {boolean} [allowSuggestionsWhenEmpty=false] Request and display a lookup menu when the text input is empty.
+ *  By default, the lookup menu is not generated and displayed until the user begins to type.
  */
 OO.ui.LookupElement = function OoUiLookupElement( config ) {
 	// Configuration initialization
@@ -5445,6 +5480,7 @@ OO.ui.LookupElement = function OoUiLookupElement( config ) {
 /**
  * Handle input focus event.
  *
+ * @protected
  * @param {jQuery.Event} e Input focus event
  */
 OO.ui.LookupElement.prototype.onLookupInputFocus = function () {
@@ -5455,6 +5491,7 @@ OO.ui.LookupElement.prototype.onLookupInputFocus = function () {
 /**
  * Handle input blur event.
  *
+ * @protected
  * @param {jQuery.Event} e Input blur event
  */
 OO.ui.LookupElement.prototype.onLookupInputBlur = function () {
@@ -5465,6 +5502,7 @@ OO.ui.LookupElement.prototype.onLookupInputBlur = function () {
 /**
  * Handle input mouse down event.
  *
+ * @protected
  * @param {jQuery.Event} e Input mouse down event
  */
 OO.ui.LookupElement.prototype.onLookupInputMouseDown = function () {
@@ -5480,6 +5518,7 @@ OO.ui.LookupElement.prototype.onLookupInputMouseDown = function () {
 /**
  * Handle input change event.
  *
+ * @protected
  * @param {string} value New input value
  */
 OO.ui.LookupElement.prototype.onLookupInputChange = function () {
@@ -5491,6 +5530,7 @@ OO.ui.LookupElement.prototype.onLookupInputChange = function () {
 /**
  * Handle the lookup menu being shown/hidden.
  *
+ * @protected
  * @param {boolean} visible Whether the lookup menu is now visible.
  */
 OO.ui.LookupElement.prototype.onLookupMenuToggle = function ( visible ) {
@@ -5506,6 +5546,7 @@ OO.ui.LookupElement.prototype.onLookupMenuToggle = function ( visible ) {
 /**
  * Handle menu item 'choose' event, updating the text input value to the value of the clicked item.
  *
+ * @protected
  * @param {OO.ui.MenuOptionWidget|null} item Selected item
  */
 OO.ui.LookupElement.prototype.onLookupMenuItemChoose = function ( item ) {
@@ -5517,6 +5558,7 @@ OO.ui.LookupElement.prototype.onLookupMenuItemChoose = function ( item ) {
 /**
  * Get lookup menu.
  *
+ * @private
  * @return {OO.ui.TextInputMenuSelectWidget}
  */
 OO.ui.LookupElement.prototype.getLookupMenu = function () {
@@ -5537,6 +5579,7 @@ OO.ui.LookupElement.prototype.setLookupsDisabled = function ( disabled ) {
 /**
  * Open the menu. If there are no entries in the menu, this does nothing.
  *
+ * @private
  * @chainable
  */
 OO.ui.LookupElement.prototype.openLookupMenu = function () {
@@ -5549,6 +5592,7 @@ OO.ui.LookupElement.prototype.openLookupMenu = function () {
 /**
  * Close the menu, empty it, and abort any pending request.
  *
+ * @private
  * @chainable
  */
 OO.ui.LookupElement.prototype.closeLookupMenu = function () {
@@ -5564,6 +5608,7 @@ OO.ui.LookupElement.prototype.closeLookupMenu = function () {
  *
  * If lookups have been disabled with #setLookupsDisabled, this function does nothing.
  *
+ * @private
  * @chainable
  */
 OO.ui.LookupElement.prototype.populateLookupMenu = function () {
@@ -5602,6 +5647,7 @@ OO.ui.LookupElement.prototype.populateLookupMenu = function () {
 /**
  * Select and highlight the first selectable item in the menu.
  *
+ * @private
  * @chainable
  */
 OO.ui.LookupElement.prototype.initializeLookupMenuSelection = function () {
@@ -5614,6 +5660,7 @@ OO.ui.LookupElement.prototype.initializeLookupMenuSelection = function () {
 /**
  * Get lookup menu items for the current query.
  *
+ * @private
  * @return {jQuery.Promise} Promise object which will be passed menu items as the first argument of
  *   the done event. If the request was aborted to make way for a subsequent request, this promise
  *   will not be rejected: it will remain pending forever.
@@ -5641,13 +5688,13 @@ OO.ui.LookupElement.prototype.getLookupMenuItems = function () {
 				// for that request.
 				widget.popPending();
 			} )
-			.done( function ( data ) {
+			.done( function ( response ) {
 				// If this is an old request (and aborting it somehow caused it to still succeed),
 				// ignore its success completely
 				if ( ourRequest === widget.lookupRequest ) {
 					widget.lookupQuery = null;
 					widget.lookupRequest = null;
-					widget.lookupCache[ value ] = widget.getLookupCacheDataFromResponse( data );
+					widget.lookupCache[ value ] = widget.getLookupCacheDataFromResponse( response );
 					deferred.resolve( widget.getLookupMenuOptionsFromData( widget.lookupCache[ value ] ) );
 				}
 			} )
@@ -5666,6 +5713,8 @@ OO.ui.LookupElement.prototype.getLookupMenuItems = function () {
 
 /**
  * Abort the currently pending lookup request, if any.
+ *
+ * @private
  */
 OO.ui.LookupElement.prototype.abortLookupRequest = function () {
 	var oldRequest = this.lookupRequest;
@@ -5681,6 +5730,7 @@ OO.ui.LookupElement.prototype.abortLookupRequest = function () {
 /**
  * Get a new request object of the current lookup query value.
  *
+ * @protected
  * @abstract
  * @return {jQuery.Promise} jQuery AJAX object, or promise object with an .abort() method
  */
@@ -5695,8 +5745,9 @@ OO.ui.LookupElement.prototype.getLookupRequest = function () {
  * The return value of this function will be cached, and any further queries for the given value
  * will use the cache rather than doing API requests.
  *
+ * @protected
  * @abstract
- * @param {Mixed} data Response from server
+ * @param {Mixed} response Response from server
  * @return {Mixed} Cached result data
  */
 OO.ui.LookupElement.prototype.getLookupCacheDataFromResponse = function () {
@@ -5708,6 +5759,7 @@ OO.ui.LookupElement.prototype.getLookupCacheDataFromResponse = function () {
  * Get a list of menu option widgets from the (possibly cached) data returned by
  * #getLookupCacheDataFromResponse.
  *
+ * @protected
  * @abstract
  * @param {Mixed} data Cached result data, usually an array
  * @return {OO.ui.MenuOptionWidget[]} Menu items
@@ -7631,7 +7683,7 @@ OO.ui.ProcessDialog.prototype.attachActions = function () {
  */
 OO.ui.ProcessDialog.prototype.executeAction = function ( action ) {
 	var process = this;
-	OO.ui.ProcessDialog.super.prototype.executeAction.call( this, action )
+	return OO.ui.ProcessDialog.super.prototype.executeAction.call( this, action )
 		.fail( function ( errors ) {
 			process.showErrors( errors || [] );
 		} );
@@ -7752,8 +7804,9 @@ OO.ui.ProcessDialog.prototype.getTeardownProcess = function ( data ) {
  * @constructor
  * @param {OO.ui.Widget} fieldWidget Field widget
  * @param {Object} [config] Configuration options
- * @cfg {string} [align='left'] Alignment mode, either 'left', 'right', 'top' or 'inline'
- * @cfg {string} [help] Explanatory text shown as a '?' icon.
+ * @cfg {string} [align='left'] Alignment of the label: 'left', 'right', 'top' or 'inline'
+ * @cfg {string} [help] Help text. When help text is specified, a help icon will appear
+ *  in the upper-right corner of the rendered field.
  */
 OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	// Allow passing positional parameters inside the config object
@@ -7824,6 +7877,7 @@ OO.mixinClass( OO.ui.FieldLayout, OO.ui.LabelElement );
 /**
  * Handle field disable events.
  *
+ * @private
  * @param {boolean} value Field is disabled
  */
 OO.ui.FieldLayout.prototype.onFieldDisable = function ( value ) {
@@ -7833,6 +7887,7 @@ OO.ui.FieldLayout.prototype.onFieldDisable = function ( value ) {
 /**
  * Handle label mouse click events.
  *
+ * @private
  * @param {jQuery.Event} e Mouse click event
  */
 OO.ui.FieldLayout.prototype.onLabelClick = function () {
@@ -7841,7 +7896,7 @@ OO.ui.FieldLayout.prototype.onLabelClick = function () {
 };
 
 /**
- * Get the field.
+ * Get the widget contained by the field.
  *
  * @return {OO.ui.Widget} Field widget
  */
@@ -7929,9 +7984,36 @@ OO.ui.ActionFieldLayout = function OoUiActionFieldLayout( fieldWidget, buttonWid
 OO.inheritClass( OO.ui.ActionFieldLayout, OO.ui.FieldLayout );
 
 /**
- * Layout made of a fieldset and optional legend.
+ * FieldsetLayouts are composed of one or more {@link OO.ui.FieldLayout FieldLayouts},
+ * which each contain an individual widget and, optionally, a label. Each Fieldset can be
+ * configured with a label as well. For more information and examples,
+ * please see the [OOjs UI documentation on MediaWiki][1].
  *
- * Just add OO.ui.FieldLayout items.
+ *     @example
+ *     // Example of a fieldset layout
+ *     var input1 = new OO.ui.TextInputWidget( {
+ *         placeholder: 'A text input field'
+ *     } );
+ *
+ *     var input2 = new OO.ui.TextInputWidget( {
+ *         placeholder: 'A text input field'
+ *     } );
+ *
+ *     var fieldset = new OO.ui.FieldsetLayout( {
+ *         label: 'Example of a fieldset layout'
+ *     } );
+ *
+ *     fieldset.addItems( [
+ *         new OO.ui.FieldLayout( input1, {
+ *             label: 'Field One'
+ *         } ),
+ *         new OO.ui.FieldLayout( input2, {
+ *             label: 'Field Two'
+ *         } )
+ *     ] );
+ *     $( 'body' ).append( fieldset.$element );
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Layouts/Fields_and_Fieldsets
  *
  * @class
  * @extends OO.ui.Layout
@@ -7941,7 +8023,7 @@ OO.inheritClass( OO.ui.ActionFieldLayout, OO.ui.FieldLayout );
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {OO.ui.FieldLayout[]} [items] Items to add
+ * @cfg {OO.ui.FieldLayout[]} [items] An array of fields to add to the fieldset. See OO.ui.FieldLayout for more information about fields.
  */
 OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
 	// Configuration initialization
@@ -7989,7 +8071,43 @@ OO.mixinClass( OO.ui.FieldsetLayout, OO.ui.LabelElement );
 OO.mixinClass( OO.ui.FieldsetLayout, OO.ui.GroupElement );
 
 /**
- * Layout with an HTML form.
+ * FormLayouts are used to wrap {@link OO.ui.FieldsetLayout FieldsetLayouts} when you intend to use browser-based
+ * form submission for the fields instead of handling them in JavaScript. Form layouts can be configured with an
+ * HTML form action, an encoding type, and a method using the #action, #enctype, and #method configs, respectively.
+ *
+ *     @example
+ *     // Example of a form layout that wraps a fieldset layout
+ *     var input1 = new OO.ui.TextInputWidget( {
+ *         placeholder: 'Username'
+ *     } );
+ *     var input2 = new OO.ui.TextInputWidget( {
+ *         placeholder: 'Password',
+ *         type: 'password'
+ *     } );
+ *     var submit = new OO.ui.ButtonInputWidget( {
+ *         label: 'Submit'
+ *     } );
+ *
+ *     var fieldset = new OO.ui.FieldsetLayout( {
+ *         label: 'A form layout'
+ *     } );
+ *     fieldset.addItems( [
+ *         new OO.ui.FieldLayout( input1, {
+ *             label: 'Username',
+ *             align: 'top'
+ *         } ),
+ *         new OO.ui.FieldLayout( input2, {
+ *             label: 'Password',
+ *             align: 'top'
+ *         } ),
+ *         new OO.ui.FieldLayout( submit )
+ *     ] );
+ *     var form = new OO.ui.FormLayout( {
+ *         items: [ fieldset ],
+ *         action: '/api/formhandler',
+ *         method: 'get'
+ *     } )
+ *     $( 'body' ).append( form.$element );
  *
  * @class
  * @extends OO.ui.Layout
@@ -8000,7 +8118,7 @@ OO.mixinClass( OO.ui.FieldsetLayout, OO.ui.GroupElement );
  * @cfg {string} [method] HTML form `method` attribute
  * @cfg {string} [action] HTML form `action` attribute
  * @cfg {string} [enctype] HTML form `enctype` attribute
- * @cfg {OO.ui.FieldsetLayout[]} [items] Items to add
+ * @cfg {OO.ui.FieldsetLayout[]} [items] Fieldset layouts to add to the form layout.
  */
 OO.ui.FormLayout = function OoUiFormLayout( config ) {
 	// Configuration initialization
@@ -8036,6 +8154,8 @@ OO.mixinClass( OO.ui.FormLayout, OO.ui.GroupElement );
 /* Events */
 
 /**
+ * A 'submit' event is emitted when the form is submitted.
+ *
  * @event submit
  */
 
@@ -8048,6 +8168,7 @@ OO.ui.FormLayout.static.tagName = 'form';
 /**
  * Handle form submit events.
  *
+ * @private
  * @param {jQuery.Event} e Submit event
  * @fires submit
  */
@@ -8702,7 +8823,18 @@ OO.ui.BookletLayout.prototype.selectFirstSelectablePage = function () {
 };
 
 /**
- * Layout that expands to cover the entire area of its parent, with optional scrolling and padding.
+ * PanelLayouts expand to cover the entire area of their parent. They can be configured with scrolling, padding,
+ * and a frame, and are often used together with {@link OO.ui.StackLayout StackLayouts}.
+ *
+ *     @example
+ *     // Example of a panel layout
+ *     var panel = new OO.ui.PanelLayout( {
+ *         expanded: false,
+ *         framed: true,
+ *         padded: true,
+ *         $content: $( '<p>A panel layout with padding and a frame.</p>' )
+ *     } );
+ *     $( 'body' ).append( panel.$element );
  *
  * @class
  * @extends OO.ui.Layout
@@ -8710,9 +8842,9 @@ OO.ui.BookletLayout.prototype.selectFirstSelectablePage = function () {
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {boolean} [scrollable=false] Allow vertical scrolling
- * @cfg {boolean} [padded=false] Pad the content from the edges
- * @cfg {boolean} [expanded=true] Expand size to fill the entire parent element
- * @cfg {boolean} [framed=false] Wrap in a frame to visually separate from outside content
+ * @cfg {boolean} [padded=false] Add padding between the content and the edges of the panel.
+ * @cfg {boolean} [expanded=true] Expand the panel to fill the entire parent element.
+ * @cfg {boolean} [framed=false] Render the panel with a frame to visually separate it from outside content.
  */
 OO.ui.PanelLayout = function OoUiPanelLayout( config ) {
 	// Configuration initialization
@@ -9712,6 +9844,9 @@ OO.ui.ItemWidget.prototype.setElementGroup = function ( group ) {
  * @constructor
  * @param {OO.ui.OutlineSelectWidget} outline Outline to control
  * @param {Object} [config] Configuration options
+ * @cfg {Object} [abilities] List of abilties
+ * @cfg {boolean} [abilities.move=true] Allow moving movable items
+ * @cfg {boolean} [abilities.remove=true] Allow removing removable items
  */
 OO.ui.OutlineControlsWidget = function OoUiOutlineControlsWidget( outline, config ) {
 	// Allow passing positional parameters inside the config object
@@ -9748,6 +9883,7 @@ OO.ui.OutlineControlsWidget = function OoUiOutlineControlsWidget( outline, confi
 		icon: 'remove',
 		title: OO.ui.msg( 'ooui-outline-control-remove' )
 	} );
+	this.abilities = { move: true, remove: true };
 
 	// Events
 	outline.connect( this, {
@@ -9766,6 +9902,7 @@ OO.ui.OutlineControlsWidget = function OoUiOutlineControlsWidget( outline, confi
 		.addClass( 'oo-ui-outlineControlsWidget-movers' )
 		.append( this.removeButton.$element, this.upButton.$element, this.downButton.$element );
 	this.$element.append( this.$icon, this.$group, this.$movers );
+	this.setAbilities( config.abilities || {} );
 };
 
 /* Setup */
@@ -9788,6 +9925,25 @@ OO.mixinClass( OO.ui.OutlineControlsWidget, OO.ui.IconElement );
 /* Methods */
 
 /**
+ * Set abilities.
+ *
+ * @param {Object} abilities List of abilties
+ * @param {boolean} [abilities.move] Allow moving movable items
+ * @param {boolean} [abilities.remove] Allow removing removable items
+ */
+OO.ui.OutlineControlsWidget.prototype.setAbilities = function ( abilities ) {
+	var ability;
+
+	for ( ability in this.abilities ) {
+		if ( abilities[ability] !== undefined ) {
+			this.abilities[ability] = !!abilities[ability];
+		}
+	}
+
+	this.onOutlineChange();
+};
+
+/**
  *
  * @private
  * Handle outline change events.
@@ -9796,8 +9952,8 @@ OO.ui.OutlineControlsWidget.prototype.onOutlineChange = function () {
 	var i, len, firstMovable, lastMovable,
 		items = this.outline.getItems(),
 		selectedItem = this.outline.getSelectedItem(),
-		movable = selectedItem && selectedItem.isMovable(),
-		removable = selectedItem && selectedItem.isRemovable();
+		movable = this.abilities.move && selectedItem && selectedItem.isMovable(),
+		removable = this.abilities.remove && selectedItem && selectedItem.isRemovable();
 
 	if ( movable ) {
 		i = -1;
@@ -12619,7 +12775,36 @@ OO.inheritClass( OO.ui.MenuOptionWidget, OO.ui.DecoratedOptionWidget );
 OO.ui.MenuOptionWidget.static.scrollIntoViewOnSelect = true;
 
 /**
- * Section to group one or more items in a OO.ui.MenuSelectWidget.
+ * MenuSectionOptionWidgets are used inside {@link OO.ui.MenuSelectWidget menu select widgets} to group one or more related
+ * {@link OO.ui.MenuOptionWidget menu options}. MenuSectionOptionWidgets cannot be highlighted or selected.
+ *
+ *     @example
+ *     var myDropdown = new OO.ui.DropdownWidget( {
+ *         menu: {
+ *             items: [
+ *                 new OO.ui.MenuSectionOptionWidget( {
+ *                     label: 'Dogs'
+ *                 } ),
+ *                 new OO.ui.MenuOptionWidget( {
+ *                     data: 'corgi',
+ *                     label: 'Welsh Corgi'
+ *                 } ),
+ *                 new OO.ui.MenuOptionWidget( {
+ *                     data: 'poodle',
+ *                     label: 'Standard Poodle'
+ *                 } ),
+ *                 new OO.ui.MenuSectionOptionWidget( {
+ *                     label: 'Cats'
+ *                 } ),
+ *                 new OO.ui.MenuOptionWidget( {
+ *                     data: 'lion',
+ *                     label: 'Lion'
+ *                 } )
+ *             ]
+ *         }
+ *     } );
+ *     $( 'body' ).append( myDropdown.$element );
+ *
  *
  * @class
  * @extends OO.ui.DecoratedOptionWidget
@@ -13228,10 +13413,16 @@ OO.ui.ProgressBarWidget.prototype.setProgress = function ( progress ) {
 };
 
 /**
- * Search widget.
+ * SearchWidgets combine a {@link OO.ui.TextInputWidget text input field}, where users can type a search query,
+ * and a {@link OO.ui.TextInputMenuSelectWidget menu} of search results, which is displayed beneath the query
+ * field. Unlike {@link OO.ui.LookupElement lookup menus}, search result menus are always visible to the user.
+ * Users can choose an item from the menu or type a query into the text field to search for a matching result item.
+ * In general, search widgets are used inside a separate {@link OO.ui.Dialog dialog} window.
  *
- * Search widgets combine a query input, placed above, and a results selection widget, placed below.
- * Results are cleared and populated each time the query is changed.
+ * Each time the query is changed, the search result menu is cleared and repopulated. Please see
+ * the [OOjs UI demos][1] for an example.
+ *
+ * [1]: https://tools.wmflabs.org/oojs-ui/oojs-ui/demos/#dialogs-mediawiki-vector-ltr
  *
  * @class
  * @extends OO.ui.Widget
@@ -13288,11 +13479,19 @@ OO.inheritClass( OO.ui.SearchWidget, OO.ui.Widget );
 /* Events */
 
 /**
+ * A 'highlight' event is emitted when an item is highlighted. The highlight indicates which
+ * item will be selected. When a user mouses over a menu item, it is highlighted. If a search
+ * string is typed into the query field instead, the first menu item that matches the query
+ * will be highlighted.
+
  * @event highlight
  * @param {Object|null} item Item data or null if no item is highlighted
  */
 
 /**
+ * A 'select' event is emitted when an item is selected. A menu item is selected when it is clicked,
+ * or when a user types a search query, a menu result is highlighted, and the user presses enter.
+ *
  * @event select
  * @param {Object|null} item Item data or null if no item is selected
  */
@@ -13302,6 +13501,7 @@ OO.inheritClass( OO.ui.SearchWidget, OO.ui.Widget );
 /**
  * Handle query key down events.
  *
+ * @private
  * @param {jQuery.Event} e Key down event
  */
 OO.ui.SearchWidget.prototype.onQueryKeydown = function ( e ) {
@@ -13324,6 +13524,7 @@ OO.ui.SearchWidget.prototype.onQueryKeydown = function ( e ) {
  *
  * Clears existing results. Subclasses should repopulate items according to new query.
  *
+ * @private
  * @param {string} value New value
  */
 OO.ui.SearchWidget.prototype.onQueryChange = function () {
@@ -13336,6 +13537,7 @@ OO.ui.SearchWidget.prototype.onQueryChange = function () {
  *
  * Selects highlighted item.
  *
+ * @private
  * @param {string} value New value
  */
 OO.ui.SearchWidget.prototype.onQueryEnter = function () {
@@ -13346,6 +13548,7 @@ OO.ui.SearchWidget.prototype.onQueryEnter = function () {
 /**
  * Handle select widget highlight events.
  *
+ * @private
  * @param {OO.ui.OptionWidget} item Highlighted item
  * @fires highlight
  */
@@ -13356,6 +13559,7 @@ OO.ui.SearchWidget.prototype.onResultsHighlight = function ( item ) {
 /**
  * Handle select widget select events.
  *
+ * @private
  * @param {OO.ui.OptionWidget} item Selected item
  * @fires select
  */
@@ -13373,9 +13577,9 @@ OO.ui.SearchWidget.prototype.getQuery = function () {
 };
 
 /**
- * Get the results list.
+ * Get the search results menu.
  *
- * @return {OO.ui.SelectWidget} Select list
+ * @return {OO.ui.SelectWidget} Menu of search results
  */
 OO.ui.SearchWidget.prototype.getResults = function () {
 	return this.results;

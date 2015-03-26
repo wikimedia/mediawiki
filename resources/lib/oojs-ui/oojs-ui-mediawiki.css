@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.9.3
+ * OOjs UI v0.9.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-03-19T23:19:18Z
+ * Date: 2015-03-25T22:24:23Z
  */
 .oo-ui-progressBarWidget-slide-frames from {
 	margin-left: -40%;
@@ -70,6 +70,7 @@
 	display: inline-block;
 	vertical-align: middle;
 	font: inherit;
+	white-space: nowrap;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
 	   -moz-user-select: none;
@@ -640,35 +641,35 @@
 	top: 0;
 	right: 0;
 }
-.oo-ui-menuLayout-after .oo-ui-menuLayout-menu {
-	top: 0;
-	right: 0;
-	bottom: 0;
-}
-.oo-ui-menuLayout-bottom .oo-ui-menuLayout-menu {
-	right: 0;
-	bottom: 0;
-	left: 0;
-}
-.oo-ui-menuLayout-before .oo-ui-menuLayout-menu {
-	bottom: 0;
-	left: 0;
-	top: 0;
-}
 .oo-ui-menuLayout-top .oo-ui-menuLayout-content {
 	right: 0 !important;
 	bottom: 0 !important;
 	left: 0 !important;
+}
+.oo-ui-menuLayout-after .oo-ui-menuLayout-menu {
+	top: 0;
+	right: 0;
+	bottom: 0;
 }
 .oo-ui-menuLayout-after .oo-ui-menuLayout-content {
 	bottom: 0 !important;
 	left: 0 !important;
 	top: 0 !important;
 }
+.oo-ui-menuLayout-bottom .oo-ui-menuLayout-menu {
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
 .oo-ui-menuLayout-bottom .oo-ui-menuLayout-content {
 	left: 0 !important;
 	top: 0 !important;
 	right: 0 !important;
+}
+.oo-ui-menuLayout-before .oo-ui-menuLayout-menu {
+	bottom: 0;
+	left: 0;
+	top: 0;
 }
 .oo-ui-menuLayout-before .oo-ui-menuLayout-content {
 	top: 0 !important;
@@ -1083,7 +1084,7 @@
 	pointer-events: none;
 }
 .oo-ui-toolbar-bar {
-	border-bottom: 4px solid rgba(0, 0, 0, 0.15);
+	border-bottom: 2px solid rgba(0, 0, 0, 0.15);
 	background: #ffffff;
 }
 .oo-ui-toolbar-bar .oo-ui-toolbar-bar {
@@ -1625,7 +1626,6 @@
 	height: 2.5em;
 	padding: 0.5em;
 	font-size: 1em;
-	font-family: sans-serif;
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
@@ -1774,7 +1774,6 @@
 	padding: 0.5em 0.5em 0.5em 0.9em;
 	margin: 0;
 	font-size: 1em;
-	font-family: sans-serif;
 	background-color: #ffffff;
 	color: black;
 	border: solid 1px #cccccc;
@@ -2143,7 +2142,6 @@
 .oo-ui-window {
 	line-height: 1em;
 	background: transparent;
-	font-family: sans-serif;
 	font-size: 0.8em;
 }
 .oo-ui-window-frame {
