@@ -205,8 +205,7 @@
 	$( function () {
 		// Do not enable on user .js/.css pages, as there's no sane way of "previewing"
 		// the scripts or styles without reloading the page.
-		// Do not enable for ProofreadPage Index page editors, which have no textbox
-		if ( $( '#mw-userjsyoucanpreview' ).length || $( '#mw-usercssyoucanpreview' ).length || $( '#wpTextbox1' ).length === 0 ) {
+		if ( $( '#mw-userjsyoucanpreview' ).length || $( '#mw-usercssyoucanpreview' ).length ) {
 			return;
 		}
 
