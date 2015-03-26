@@ -487,7 +487,7 @@ class SvgHandler extends ImageHandler {
 	function makeParamString( $params ) {
 		$lang = '';
 		if ( isset( $params['lang'] ) && $params['lang'] !== 'en' ) {
-			$params['lang'] = mb_strtolower( $params['lang'] );
+			$params['lang'] = strtolower( $params['lang'] );
 			$lang = "lang{$params['lang']}-";
 		}
 		if ( !isset( $params['width'] ) ) {
