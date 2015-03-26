@@ -474,6 +474,15 @@ class LoadBalancer {
 		$masterOnly = ( $i == DB_MASTER || $i == $this->getWriterIndex() );
 		$oldConnsOpened = $this->connsOpened; // connections open now
 
+		if ( $i === DB_SLAVE_IF_NOWRITE ) {
+			# Caller wants a connection for read queries that see
+			# any pending or recently committed data from this PHP thread
+			$recentTime = microtime( true ) - $this->mWaitTimeout;
+			$i = ( $this->hasMasterChanges() || $this->lastMasterChange() > $recentTime )
+				? DB_MASTER
+				: DB_SLAVE;
+		}
+
 		if ( $i == DB_MASTER ) {
 			$i = $this->getWriterIndex();
 		} else {
@@ -1042,6 +1051,27 @@ class LoadBalancer {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Get the timestamp of the latest write query done
+	 * @since 1.25
+	 * @return float|bool UNIX timestamp or false
+	 */
+	public function lastMasterChange() {
+		$lastTime = false;
+		// Always 0, but who knows.. :)
+		$masterIndex = $this->getWriterIndex();
+		foreach ( $this->mConns as $conns2 ) {
+			if ( empty( $conns2[$masterIndex] ) ) {
+				continue;
+			}
+			/** @var DatabaseBase $conn */
+			foreach ( $conns2[$masterIndex] as $conn ) {
+				$lastTime = max( $lastTime, $conn->lastDoneWrites() );
+			}
+		}
+		return $lastTime;
 	}
 
 	/**

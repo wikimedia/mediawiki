@@ -125,7 +125,7 @@ class Revision implements IDBAccessObject {
 		} else {
 			// Use a join to get the latest revision
 			$conds[] = 'rev_id=page_latest';
-			$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_SLAVE );
+			$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_SLAVE_IF_NOWRITE );
 			return self::loadFromConds( $db, $conds, $flags );
 		}
 	}
@@ -152,7 +152,7 @@ class Revision implements IDBAccessObject {
 		} else {
 			// Use a join to get the latest revision
 			$conds[] = 'rev_id = page_latest';
-			$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_SLAVE );
+			$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_SLAVE_IF_NOWRITE );
 			return self::loadFromConds( $db, $conds, $flags );
 		}
 	}
@@ -304,7 +304,7 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null
 	 */
 	private static function newFromConds( $conditions, $flags = 0 ) {
-		$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_SLAVE );
+		$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_SLAVE_IF_NOWRITE );
 		$rev = self::loadFromConds( $db, $conditions, $flags );
 		if ( $rev ) {
 			$rev->mQueryFlags = $flags;
@@ -344,7 +344,7 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function fetchRevision( $title ) {
 		return self::fetchFromConds(
-			wfGetDB( DB_SLAVE ),
+			wfGetDB( DB_SLAVE_IF_NOWRITE ),
 			array(
 				'rev_id=page_latest',
 				'page_namespace' => $title->getNamespace(),
@@ -758,7 +758,7 @@ class Revision implements IDBAccessObject {
 		}
 		//rev_id is defined as NOT NULL, but this revision may not yet have been inserted.
 		if ( $this->mId !== null ) {
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_SLAVE_IF_NOWRITE );
 			$row = $dbr->selectRow(
 				array( 'page', 'revision' ),
 				self::selectPageFields(),
@@ -935,7 +935,7 @@ class Revision implements IDBAccessObject {
 	 * @return RecentChange|null
 	 */
 	public function getRecentChange() {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE_IF_NOWRITE );
 		return RecentChange::newFromConds(
 			array(
 				'rc_user_text' => $this->getUserText( Revision::RAW ),
@@ -1481,9 +1481,9 @@ class Revision implements IDBAccessObject {
 	 * @return string|bool The revision's text, or false on failure
 	 */
 	protected function loadText() {
-
 		// Caching may be beneficial for massive use of external storage
 		global $wgRevisionCacheExpiry, $wgMemc;
+
 		$textId = $this->getTextId();
 		$key = wfMemcKey( 'revisiontext', 'textid', $textId );
 		if ( $wgRevisionCacheExpiry ) {
@@ -1504,7 +1504,7 @@ class Revision implements IDBAccessObject {
 
 		if ( !$row ) {
 			// Text data is immutable; check slaves first.
-			$dbr = wfGetDB( DB_SLAVE );
+			$dbr = wfGetDB( DB_SLAVE_IF_NOWRITE );
 			$row = $dbr->selectRow( 'text',
 				array( 'old_text', 'old_flags' ),
 				array( 'old_id' => $textId ),
@@ -1682,7 +1682,7 @@ class Revision implements IDBAccessObject {
 	static function getTimestampFromId( $title, $id, $flags = 0 ) {
 		$db = ( $flags & self::READ_LATEST )
 			? wfGetDB( DB_MASTER )
-			: wfGetDB( DB_SLAVE );
+			: wfGetDB( DB_SLAVE_IF_NOWRITE );
 		// Casting fix for databases that can't take '' for rev_id
 		if ( $id == '' ) {
 			$id = 0;

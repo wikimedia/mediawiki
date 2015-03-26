@@ -3594,7 +3594,12 @@ function wfSplitWikiID( $wiki ) {
  *
  * @param int $db Index of the connection to get. May be DB_MASTER for the
  *            master (for write queries), DB_SLAVE for potentially lagged read
- *            queries, or an integer >= 0 for a particular server.
+ *            queries, or an integer >= 0 for a particular server. Another option
+ *            is DB_SLAVE_IF_NOWRITE, which uses the master if this PHP thread
+ *            recently did a write or still has pending transaction writes for
+ *            the requested DB; otherwise a slave is used. This means that such
+ *            writes are visible, but at the expense of possibly using a different
+ *            REPEATABLE-READ snapshot in such cases (slave vs master snapshot).
  *
  * @param string|string[] $groups Query groups. An array of group names that this query
  *                belongs to. May contain a single string if the query is only
@@ -3604,7 +3609,10 @@ function wfSplitWikiID( $wiki ) {
  *
  * Note: multiple calls to wfGetDB(DB_SLAVE) during the course of one request
  * will always return the same object, unless the underlying connection or load
- * balancer is manually destroyed.
+ * balancer is manually destroyed. If REPEATABLE-READ is the transaction isolation
+ * level (the default in innoDB), then the callers will see a consistent snapshot
+ * of data (unless DBO_TRX was explicitly disabled). Different connections may be
+ * used when $wiki is provided.
  *
  * Note 2: use $this->getDB() in maintenance scripts that may be invoked by
  * updater to ensure that a proper database is being updated.
