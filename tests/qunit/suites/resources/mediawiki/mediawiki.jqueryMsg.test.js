@@ -547,20 +547,20 @@
 			lang: 'en',
 			number: 987654321.654321,
 			result: '987,654,321.654',
-			description: 'formatnum test for English, decimal seperator'
+			description: 'formatnum test for English, decimal separator'
 		},
 		{
 			lang: 'ar',
 			number: 987654321.654321,
 			result: '٩٨٧٬٦٥٤٬٣٢١٫٦٥٤',
-			description: 'formatnum test for Arabic, with decimal seperator'
+			description: 'formatnum test for Arabic, with decimal separator'
 		},
 		{
 			lang: 'ar',
 			number: '٩٨٧٦٥٤٣٢١٫٦٥٤٣٢١',
 			result: 987654321,
 			integer: true,
-			description: 'formatnum test for Arabic, with decimal seperator, reverse'
+			description: 'formatnum test for Arabic, with decimal separator, reverse'
 		},
 		{
 			lang: 'ar',
@@ -579,7 +579,7 @@
 			lang: 'nl',
 			number: 987654321.654321,
 			result: '987.654.321,654',
-			description: 'formatnum test for Nederlands, decimal seperator'
+			description: 'formatnum test for Nederlands, decimal separator'
 		},
 		{
 			lang: 'nl',
