@@ -422,6 +422,17 @@ class JobQueueFederated extends JobQueue {
 		return $iterator;
 	}
 
+	public function getAllAbandonedJobs() {
+		$iterator = new AppendIterator();
+
+		/** @var JobQueue $queue */
+		foreach ( $this->partitionQueues as $queue ) {
+			$iterator->append( $queue->getAllAbandonedJobs() );
+		}
+
+		return $iterator;
+	}
+
 	public function getCoalesceLocationInternal() {
 		return "JobQueueFederated:wiki:{$this->wiki}" .
 			sha1( serialize( array_keys( $this->partitionQueues ) ) );

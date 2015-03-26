@@ -516,6 +516,29 @@ LUA;
 		}
 	}
 
+	/**
+	 * @see JobQueue::getAllAbandonedJobs()
+	 * @return Iterator
+	 */
+	public function getAllAbandonedJobs() {
+		$conn = $this->getConnection();
+		try {
+			$that = $this;
+
+			return new MappedIterator( // delayed jobs
+				$conn->zRange( $this->getQueueKey( 'z-abandoned' ), 0, -1 ),
+				function ( $uid ) use ( $that, $conn ) {
+					return $that->getJobFromUidInternal( $uid, $conn );
+				},
+				array( 'accept' => function ( $job ) {
+					return is_object( $job );
+				} )
+			);
+		} catch ( RedisException $e ) {
+			$this->throwRedisException( $conn, $e );
+		}
+	}
+
 	public function getCoalesceLocationInternal() {
 		return "RedisServer:" . $this->server;
 	}

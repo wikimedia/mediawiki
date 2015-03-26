@@ -616,6 +616,17 @@ abstract class JobQueue {
 	}
 
 	/**
+	 * Get an iterator to traverse over all abandoned jobs in this queue
+	 *
+	 * @return Iterator
+	 * @throws JobQueueError
+	 * @since 1.25
+	 */
+	public function getAllAbandonedJobs() {
+		return new ArrayIterator( array() ); // not implemented
+	}
+
+	/**
 	 * Do not use this function outside of JobQueue/JobQueueGroup
 	 *
 	 * @return string
