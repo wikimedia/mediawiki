@@ -109,7 +109,7 @@ class Html {
 	 * @see https://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
 	 * @return array $attrs A modified attribute array
 	 */
-	public static function buttonAttributes( $attrs, $modifiers = array() ) {
+	public static function buttonAttributes( array $attrs, array $modifiers = array() ) {
 		global $wgUseMediaWikiUIEverywhere;
 		if ( $wgUseMediaWikiUIEverywhere ) {
 			if ( isset( $attrs['class'] ) ) {
@@ -137,11 +137,8 @@ class Html {
 	 * @param array $attrs An attribute array.
 	 * @return array $attrs A modified attribute array
 	 */
-	public static function getTextInputAttributes( $attrs ) {
+	public static function getTextInputAttributes( array $attrs ) {
 		global $wgUseMediaWikiUIEverywhere;
-		if ( !$attrs ) {
-			$attrs = array();
-		}
 		if ( $wgUseMediaWikiUIEverywhere ) {
 			if ( isset( $attrs['class'] ) ) {
 				if ( is_array( $attrs['class'] ) ) {
@@ -169,7 +166,7 @@ class Html {
 	 * @see http://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
 	 * @return string Raw HTML
 	 */
-	public static function linkButton( $contents, $attrs, $modifiers = array() ) {
+	public static function linkButton( $contents, array $attrs, array $modifiers = array() ) {
 		return Html::element( 'a',
 			self::buttonAttributes( $attrs, $modifiers ),
 			$contents
@@ -189,7 +186,7 @@ class Html {
 	 * @see http://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
 	 * @return string Raw HTML
 	 */
-	public static function submitButton( $contents, $attrs, $modifiers = array() ) {
+	public static function submitButton( $contents, array $attrs, array $modifiers = array() ) {
 		$attrs['type'] = 'submit';
 		$attrs['value'] = $contents;
 		return Html::element( 'input', self::buttonAttributes( $attrs, $modifiers ) );
@@ -337,8 +334,7 @@ class Html {
 	 *   further documentation.
 	 * @return array An array of attributes functionally identical to $attribs
 	 */
-	private static function dropDefaults( $element, $attribs ) {
-
+	private static function dropDefaults( $element, array $attribs ) {
 		// Whenever altering this array, please provide a covering test case
 		// in HtmlTest::provideElementsWithAttributesHavingDefaultValues
 		static $attribDefaults = array(
@@ -485,11 +481,10 @@ class Html {
 	 * @return string HTML fragment that goes between element name and '>'
 	 *   (starting with a space if at least one attribute is output)
 	 */
-	public static function expandAttributes( $attribs ) {
+	public static function expandAttributes( array $attribs ) {
 		global $wgWellFormedXml;
 
 		$ret = '';
-		$attribs = (array)$attribs;
 		foreach ( $attribs as $key => $value ) {
 			// Support intuitive array( 'checked' => true/false ) form
 			if ( $value === false || is_null( $value ) ) {
@@ -711,7 +706,7 @@ class Html {
 	 *   attributes, passed to Html::element()
 	 * @return string Raw HTML
 	 */
-	public static function input( $name, $value = '', $type = 'text', $attribs = array() ) {
+	public static function input( $name, $value = '', $type = 'text', array $attribs = array() ) {
 		$attribs['type'] = $type;
 		$attribs['value'] = $value;
 		$attribs['name'] = $name;
@@ -791,7 +786,7 @@ class Html {
 	 *   attributes, passed to Html::element()
 	 * @return string Raw HTML
 	 */
-	public static function hidden( $name, $value, $attribs = array() ) {
+	public static function hidden( $name, $value, array $attribs = array() ) {
 		return self::input( $name, $value, 'hidden', $attribs );
 	}
 
@@ -807,7 +802,7 @@ class Html {
 	 *   attributes, passed to Html::element()
 	 * @return string Raw HTML
 	 */
-	public static function textarea( $name, $value = '', $attribs = array() ) {
+	public static function textarea( $name, $value = '', array $attribs = array() ) {
 		$attribs['name'] = $name;
 
 		if ( substr( $value, 0, 1 ) == "\n" ) {
@@ -934,7 +929,7 @@ class Html {
 	 *   attributes, passed to Html::element() of html tag.
 	 * @return string Raw HTML
 	 */
-	public static function htmlHeader( $attribs = array() ) {
+	public static function htmlHeader( array $attribs = array() ) {
 		$ret = '';
 
 		global $wgHtml5Version, $wgMimeType, $wgXhtmlNamespaces;
@@ -1029,7 +1024,7 @@ class Html {
 	 * @param string[] $urls
 	 * @return string
 	 */
-	static function srcSet( $urls ) {
+	static function srcSet( array $urls ) {
 		$candidates = array();
 		foreach ( $urls as $density => $url ) {
 			// Image candidate syntax per current whatwg live spec, 2012-09-23:
