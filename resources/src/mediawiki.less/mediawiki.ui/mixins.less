@@ -33,7 +33,7 @@
 // Button styling
 // ----------------------------------------------------------------------------
 
-.button-colors(@bgColor, @highlightColor) {
+.button-colors(@bgColor, @highlightColor, @activeColor) {
 	background: @bgColor;
 
 	&:hover {
@@ -55,12 +55,12 @@
 
 	&:active,
 	&.mw-ui-checked {
-		background: @highlightColor;
+		background: @activeColor;
 		box-shadow: none;
 	}
 }
 
-.button-colors(@bgColor, @highlightColor) when (lightness(@bgColor) >= 70%) {
+.button-colors(@bgColor, @highlightColor, @activeColor) when (lightness(@bgColor) >= 70%) {
 	color: @colorButtonText;
 	border: 1px solid @colorGray12;
 
@@ -83,7 +83,7 @@
 	}
 }
 
-.button-colors(@bgColor, @highlightColor) when (lightness(@bgColor) < 70%) {
+.button-colors(@bgColor, @highlightColor, @activeColor) when (lightness(@bgColor) < 70%) {
 	color: #fff;
 	// border of the same color as background so that light background and
 	// dark background buttons are the same height and width
@@ -103,7 +103,7 @@
 	}
 }
 
-.button-colors-quiet(@textColor, @highlightColor) {
+.button-colors-quiet(@textColor, @highlightColor, @activeColor) {
 	// Quiet buttons all start gray, and reveal
 	// constructive/progressive/destructive color on hover and active.
 	color: @colorButtonText;
@@ -115,7 +115,7 @@
 
 	&:active,
 	&.mw-ui-checked {
-		color: @highlightColor;
+		color: @activeColor;
 	}
 
 	&:disabled {
