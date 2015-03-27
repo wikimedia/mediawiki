@@ -2309,7 +2309,9 @@ class User implements IDBAccessObject {
 			if ( $this->mQuickTouched === null ) {
 				$key = wfMemcKey( 'user-quicktouched', 'id', $this->mId );
 				$timestamp = $wgMemc->get( $key );
-				if ( !$timestamp ) {
+				if ( $timestamp ) {
+					$this->mQuickTouched = $timestamp;
+				} else {
 					# Set the timestamp to get HTTP 304 cache hits
 					$this->touch();
 				}
