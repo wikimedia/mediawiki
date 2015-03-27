@@ -9,20 +9,18 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 
 	public static function providerGetModules() {
 		$commonVariants = array(
-			'icon' => array(
-				'invert' => array(
-					'color' => '#FFFFFF',
-					'global' => true,
-				),
-				'primary' => array(
-					'color' => '#598AD1',
-				),
-				'constructive' => array(
-					'color' => '#00C697',
-				),
-				'destructive' => array(
-					'color' => '#E81915',
-				),
+			'invert' => array(
+				'color' => '#FFFFFF',
+				'global' => true,
+			),
+			'primary' => array(
+				'color' => '#598AD1',
+			),
+			'constructive' => array(
+				'color' => '#00C697',
+			),
+			'destructive' => array(
+				'color' => '#E81915',
 			),
 		);
 
@@ -62,11 +60,9 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 			array(
 				array(
 					'class' => 'ResourceLoaderImageModule',
-					'prefix' => 'oo-ui',
+					'prefix' => 'oo-ui-icon',
 					'variants' => $commonVariants,
-					'images' => array(
-						'icon' => $commonImageData,
-					),
+					'images' => $commonImageData,
 				),
 				'.oo-ui-icon-advanced {
 	...
@@ -108,9 +104,7 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 					'selectorWithoutVariant' => '.mw-ui-icon-{name}:after, .mw-ui-icon-{name}:before',
 					'selectorWithVariant' => '.mw-ui-icon-{name}-{variant}:after, .mw-ui-icon-{name}-{variant}:before',
 					'variants' => $commonVariants,
-					'images' => array(
-						'icon' => $commonImageData,
-					),
+					'images' => $commonImageData,
 				),
 				'.mw-ui-icon-advanced:after, .mw-ui-icon-advanced:before {
 	...
