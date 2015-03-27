@@ -60,7 +60,7 @@ class WebResponse {
 	 * @param int|null $expire Unix timestamp (in seconds) when the cookie should expire.
 	 *        0 (the default) causes it to expire $wgCookieExpiration seconds from now.
 	 *        null causes it to be a session cookie.
-	 * @param array|null $options Assoc of additional cookie options:
+	 * @param array $options Assoc of additional cookie options:
 	 *     prefix: string, name prefix ($wgCookiePrefix)
 	 *     domain: string, cookie domain ($wgCookieDomain)
 	 *     path: string, cookie path ($wgCookiePath)
@@ -72,7 +72,7 @@ class WebResponse {
 	 *   'prefix', 'domain', and 'secure'
 	 * @since 1.22 Replaced $prefix, $domain, and $forceSecure with $options
 	 */
-	public function setcookie( $name, $value, $expire = 0, $options = null ) {
+	public function setcookie( $name, $value, $expire = 0, $options = array() ) {
 		global $wgCookiePath, $wgCookiePrefix, $wgCookieDomain;
 		global $wgCookieSecure, $wgCookieExpiration, $wgCookieHttpOnly;
 
@@ -188,9 +188,9 @@ class FauxResponse extends WebResponse {
 	 * @param string $name The name of the cookie.
 	 * @param string $value The value to be stored in the cookie.
 	 * @param int|null $expire Ignored in this faux subclass.
-	 * @param array|null $options Ignored in this faux subclass.
+	 * @param array $options Ignored in this faux subclass.
 	 */
-	public function setcookie( $name, $value, $expire = 0, $options = null ) {
+	public function setcookie( $name, $value, $expire = 0, $options = array() ) {
 		$this->cookies[$name] = $value;
 	}
 
