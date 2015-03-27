@@ -4863,7 +4863,6 @@ $wgAutopromote = array(
  * @endcode
  * Where event is either:
  *    - 'onEdit' (when user edits)
- *    - 'onView' (when user views the wiki)
  *
  * Criteria has the same format as $wgAutopromote
  *
@@ -4872,7 +4871,6 @@ $wgAutopromote = array(
  */
 $wgAutopromoteOnce = array(
 	'onEdit' => array(),
-	'onView' => array()
 );
 
 /**
