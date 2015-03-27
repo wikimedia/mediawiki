@@ -259,7 +259,7 @@
 	"apihelp-paraminfo-param-querymodules": "List of query module names (value of <var>prop</var>, <var>meta</var> or <var>list</var> parameter). Use <kbd>$1modules=query+foo</kbd> instead of <kbd>$1querymodules=foo</kbd>.",
 	"apihelp-paraminfo-param-mainmodule": "Get information about the main (top-level) module as well. Use <kbd>$1modules=main</kbd> instead.",
 	"apihelp-paraminfo-param-pagesetmodule": "Get information about the pageset module (providing titles= and friends) as well.",
-	"apihelp-paraminfo-param-formatmodules": "List of format module names (value of <var>format</var> parameter). Use <var>$1modules</kbd> instead.",
+	"apihelp-paraminfo-param-formatmodules": "List of format module names (value of <var>format</var> parameter). Use <kbd>$1modules</kbd> instead.",
 	"apihelp-paraminfo-example-1": "Show info for <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd>, <kbd>[[Special:ApiHelp/jsonfm|format=jsonfm]]</kbd>, <kbd>[[Special:ApiHelp/query+allpages|action=query&list=allpages]]</kbd>, and <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd>.",
 
 	"apihelp-parse-description": "Parses content and returns parser output.\n\nSee the various prop-modules of <kbd>[[Special:ApiHelp/query|action=query]]</kbd> to get information from the current version of a page.\n\nThere are several ways to specify the text to parse:\n# Specify a page or revision, using <var>$1page</var>, <var>$1pageid</var>, or <var>$1oldid</var>.\n# Specify content explicitly, using <var>$1text</var>, <var>$1title</var>, and <var>$1contentmodel</var>.\n# Specify only a summary to parse. <var>$1prop</var> should be given an empty value.",
