@@ -277,25 +277,55 @@ class ApiHelp extends ApiBase {
 				);
 			}
 
-			$flags = $module->getHelpFlags();
-			if ( $flags ) {
-				$help['flags'] .= Html::openElement( 'div',
-					array( 'class' => 'apihelp-block apihelp-flags' ) );
-				$msg = $context->msg( 'api-help-flags' );
-				if ( !$msg->isDisabled() ) {
-					$help['flags'] .= self::wrap(
-						$msg->numParams( count( $flags ) ), 'apihelp-block-head', 'div'
-					);
-				}
-				$help['flags'] .= Html::openElement( 'ul' );
-				foreach ( $flags as $flag ) {
-					$help['flags'] .= Html::rawElement( 'li', null,
-						self::wrap( $context->msg( "api-help-flag-$flag" ), "apihelp-flag-$flag" )
-					);
-				}
-				$help['flags'] .= Html::closeElement( 'ul' );
-				$help['flags'] .= Html::closeElement( 'div' );
+			$help['flags'] .= Html::openElement( 'div',
+				array( 'class' => 'apihelp-block apihelp-flags' ) );
+			$msg = $context->msg( 'api-help-flags' );
+			if ( !$msg->isDisabled() ) {
+				$help['flags'] .= self::wrap(
+					$msg->numParams( count( $flags ) ), 'apihelp-block-head', 'div'
+				);
 			}
+			$help['flags'] .= Html::openElement( 'ul' );
+			foreach ( $module->getHelpFlags() as $flag ) {
+				$help['flags'] .= Html::rawElement( 'li', null,
+					self::wrap( $context->msg( "api-help-flag-$flag" ), "apihelp-flag-$flag" )
+				);
+			}
+			$sourceInfo = $module->getModuleSourceInfo();
+			if ( $sourceInfo ) {
+				if ( isset( $sourceInfo['namemsg'] ) ) {
+					$extname = $context->msg( $sourceInfo['namemsg'] )->text();
+				} else {
+					$extname = $sourceInfo['name'];
+				}
+				$help['flags'] .= Html::rawElement( 'li', null,
+					self::wrap(
+						$context->msg( 'api-help-source', $extname, $sourceInfo['name'] ),
+						'apihelp-source'
+					)
+				);
+
+				$link = SpecialPage::getTitleFor( 'Version', 'License/' . $sourceInfo['name'] );
+				if ( isset( $sourceInfo['license-name'] ) ) {
+					$msg = $context->msg( 'api-help-license', $link, $sourceInfo['license-name'] );
+				} elseif ( SpecialVersion::getExtLicenseFileName( dirname( $sourceInfo['path'] ) ) ) {
+					$msg = $context->msg( 'api-help-license-noname', $link );
+				} else {
+					$msg = $context->msg( 'api-help-license-unknown' );
+				}
+				$help['flags'] .= Html::rawElement( 'li', null,
+					self::wrap( $msg, 'apihelp-license' )
+				);
+			} else {
+				$help['flags'] .= Html::rawElement( 'li', null,
+					self::wrap( $context->msg( 'api-help-source-unknown' ), 'apihelp-source' )
+				);
+				$help['flags'] .= Html::rawElement( 'li', null,
+					self::wrap( $context->msg( 'api-help-license-unknown' ), 'apihelp-license' )
+				);
+			}
+			$help['flags'] .= Html::closeElement( 'ul' );
+			$help['flags'] .= Html::closeElement( 'div' );
 
 			foreach ( $module->getFinalDescription() as $msg ) {
 				$msg->setContext( $context );

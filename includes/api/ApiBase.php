@@ -98,12 +98,17 @@ abstract class ApiBase extends ContextSource {
 	 */
 	const GET_VALUES_FOR_HELP = 1;
 
+	/** @var array Maps extension paths to info arrays */
+	private static $extensionInfo = null;
+
 	/** @var ApiMain */
 	private $mMainModule;
 	/** @var string */
 	private $mModuleName, $mModulePrefix;
 	private $mSlaveDB = null;
 	private $mParamCache = array();
+	/** @var array|null|bool */
+	private $mModuleSource = false;
 
 	/**
 	 * @param ApiMain $mainModule
@@ -2182,6 +2187,93 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		return $flags;
+	}
+
+	/**
+	 * Returns information about the source of this module, if known
+	 *
+	 * Returned array is an array with the following keys:
+	 * - path: Install path
+	 * - name: Extension name, or "MediaWiki" for core
+	 * - namemsg: (optional) i18n message key for a display name
+	 * - license-name: (optional) Name of license
+	 *
+	 * @return array|null
+	 */
+	protected function getModuleSourceInfo() {
+		global $IP;
+
+		if ( $this->mModuleSource !== false ) {
+			return $this->mModuleSource;
+		}
+
+		// First, try to find where the module comes from...
+		$rClass = new ReflectionClass( $this );
+		$path = $rClass->getFileName();
+		if ( !$path ) {
+			// No path known?
+			$this->mModuleSource = null;
+			return null;
+		}
+		$path = realpath( $path ) ?: $path;
+
+		// Build map of extension directories to extension info
+		if ( self::$extensionInfo === null ) {
+			self::$extensionInfo = array(
+				realpath( __DIR__ ) ?: __DIR__ => array(
+					'path' => $IP,
+					'name' => 'MediaWiki',
+					'license-name' => 'GPL-2.0+',
+				),
+				realpath( "$IP/extensions" ) ?: "$IP/extensions" => null,
+			);
+			$keep = array(
+				'path' => null,
+				'name' => null,
+				'namemsg' => null,
+				'license-name' => null,
+			);
+			foreach ( $this->getConfig()->get( 'ExtensionCredits' ) as $group ) {
+				foreach ( $group as $ext ) {
+					if ( !isset( $ext['path'] ) || !isset( $ext['name'] ) ) {
+						// This shouldn't happen, but does anyway.
+						continue;
+					}
+
+					$extpath = $ext['path'];
+					if ( !is_dir( $extpath ) ) {
+						$extpath = dirname( $extpath );
+					}
+					self::$extensionInfo[realpath( $extpath ) ?: $extpath] =
+						array_intersect_key( $ext, $keep );
+				}
+			}
+			foreach ( ExtensionRegistry::getInstance()->getAllThings() as $ext ) {
+				$extpath = $ext['path'];
+				if ( !is_dir( $extpath ) ) {
+					$extpath = dirname( $extpath );
+				}
+				self::$extensionInfo[realpath( $extpath ) ?: $extpath] =
+					array_intersect_key( $ext, $keep );
+			}
+		}
+
+		// Now traverse parent directories until we find a match or run out of
+		// parents.
+		do {
+			if ( array_key_exists( $path, self::$extensionInfo ) ) {
+				// Found it!
+				$this->mModuleSource = self::$extensionInfo[$path];
+				return $this->mModuleSource;
+			}
+
+			$oldpath = $path;
+			$path = dirname( $path );
+		} while ( $path !== $oldpath );
+
+		// No idea what extension this might be.
+		$this->mModuleSource = null;
+		return null;
 	}
 
 	/**
