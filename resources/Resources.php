@@ -849,6 +849,7 @@ return array(
 		'scripts' => array(
 			'resources/src/mediawiki/mediawiki.confirmCloseWindow.js',
 		),
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.debug' => array(
 		'scripts' => array(
