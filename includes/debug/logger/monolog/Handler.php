@@ -30,7 +30,8 @@
  * - HOST: IPv4, IPv6 or hostname
  * - PORT: server port
  * - PREFIX: optional (but recommended) prefix telling udp2log how to route
- * the log event
+ * the log event. The special prefix "{channel}" will use the log event's
+ * channel as the prefix value.
  *
  * When not targeting a udp2log stream this class will act as a drop-in
  * replacement for Monolog's StreamHandler.
@@ -194,7 +195,9 @@ class MWLoggerMonologHandler extends \Monolog\Handler\AbstractProcessingHandler 
 
 			// Clean it up for the multiplexer
 			if ( $this->prefix !== '' ) {
-				$text = preg_replace( '/^/m', "{$this->prefix} ", $text );
+				$leader = ( $this->prefix === '{channel}' ) ?
+					$record['channel'] : $this->prefix;
+				$text = preg_replace( '/^/m', "{$leader} ", $text );
 
 				// Limit to 64KB
 				if ( strlen( $text ) > 65506 ) {
