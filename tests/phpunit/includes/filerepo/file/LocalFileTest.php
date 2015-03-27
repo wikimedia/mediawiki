@@ -2,7 +2,6 @@
 
 /**
  * These tests should work regardless of $wgCapitalLinks
- * @group Database
  * @todo Split tests into providers and test methods
  */
 
