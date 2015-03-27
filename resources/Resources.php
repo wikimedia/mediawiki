@@ -1259,6 +1259,10 @@ return array(
 
 	'mediawiki.language.names' => array( 'class' => 'ResourceLoaderLanguageNamesModule' ),
 
+	'mediawiki.language.specialCharacters' => array(
+		'class' => 'ResourceLoaderSpecialCharacterDataModule'
+	),
+
 	/* MediaWiki Libs */
 
 	'mediawiki.libs.jpegmeta' => array(
