@@ -261,7 +261,7 @@ class UsercreateTemplate extends BaseTemplate {
 				<?php
 				echo Html::submitButton(
 					$this->getMsg( $this->data['loggedin'] ? 'createacct-another-submit' : 'createacct-submit' ),
-					$attrs = array(
+					array(
 						'id' => 'wpCreateaccount',
 						'name' => 'wpCreateaccount',
 						'tabindex' => $tabIndex++
