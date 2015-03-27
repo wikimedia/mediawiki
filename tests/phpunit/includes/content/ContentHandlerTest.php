@@ -2,11 +2,6 @@
 
 /**
  * @group ContentHandler
- * @group Database
- *
- * @note Declare that we are using the database, because otherwise we'll fail in
- * the "databaseless" test run. This is because the LinkHolderArray used by the
- * parser needs database access.
  */
 class ContentHandlerTest extends MediaWikiTestCase {
 
@@ -36,6 +31,8 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		// Reset namespace cache
 		MWNamespace::getCanonicalNamespaces( true );
 		$wgContLang->resetNamespaces();
+		// And LinkCache
+		LinkCache::destroySingleton();
 	}
 
 	protected function tearDown() {
@@ -44,6 +41,8 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		// Reset namespace cache
 		MWNamespace::getCanonicalNamespaces( true );
 		$wgContLang->resetNamespaces();
+		// And LinkCache
+		LinkCache::destroySingleton();
 
 		parent::tearDown();
 	}
@@ -83,6 +82,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 	 */
 	public function testGetForTitle( $title, $expectedContentModel ) {
 		$title = Title::newFromText( $title );
+		LinkCache::singleton()->addBadLinkObj( $title );
 		$handler = ContentHandler::getForTitle( $title );
 		$this->assertEquals( $expectedContentModel, $handler->getModelID() );
 	}
@@ -139,6 +139,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 	public function testGetPageLanguage( $title, $expected ) {
 		if ( is_string( $title ) ) {
 			$title = Title::newFromText( $title );
+			LinkCache::singleton()->addBadLinkObj( $title );
 		}
 
 		$expected = wfGetLangObj( $expected );
@@ -292,7 +293,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$expectedModelId, $expectedNativeData, $shouldFail
 	) {
 		$title = Title::newFromText( $title );
-
+		LinkCache::singleton()->addBadLinkObj( $title );
 		try {
 			$content = ContentHandler::makeContent( $data, $title, $modelId, $format );
 
