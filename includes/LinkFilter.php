@@ -92,7 +92,7 @@ class LinkFilter {
 	 * @return array Array to be passed to DatabaseBase::buildLike() or false on error
 	 */
 	public static function makeLikeArray( $filterEntry, $protocol = 'http://' ) {
-		$db = wfGetDB( DB_MASTER );
+		$db = wfGetDB( DB_SLAVE );
 
 		$target = $protocol . $filterEntry;
 		$bits = wfParseUrl( $target );
