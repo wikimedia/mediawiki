@@ -72,7 +72,7 @@ class ResourceLoaderSpecialCharacterDataModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	public function getDependencies() {
-		return array( 'mediawiki.language.init' );
+		return array( 'mediawiki.language' );
 	}
 
 	/**
