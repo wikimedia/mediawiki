@@ -40,6 +40,12 @@ class XMPReader {
 
 	protected $items;
 
+	/** @var int Flag determining if the XMP is safe to parse **/
+	private $parsable = 0;
+
+	/** @var string Buffer of XML to parse **/
+	private $xmlParsableBuffer = '';
+
 	/**
 	* These are various mode constants.
 	* they are used to figure out what to do
@@ -68,6 +74,12 @@ class XMPReader {
 	const NS_RDF = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#';
 	const NS_XML = 'http://www.w3.org/XML/1998/namespace';
 
+
+	// States used while determining if XML is safe to parse
+	const PARSABLE_UNKNOWN = 0;
+	const PARSABLE_OK = 1;
+	const PARSABLE_BUFFERING = 2;
+	const PARSABLE_NO = 3;
 
 	/**
 	* Constructor.
@@ -106,6 +118,9 @@ class XMPReader {
 			array( $this, 'endElement' ) );
 
 		xml_set_character_data_handler( $this->xmlParser, array( $this, 'char' ) );
+
+		$this->parsable = self::PARSABLE_UNKNOWN;
+		$this->xmlParsableBuffer = '';
 	}
 
 	/** Destroy the xml parser
@@ -115,6 +130,13 @@ class XMPReader {
 	function __destruct() {
 		// not sure if this is needed.
 		xml_parser_free( $this->xmlParser );
+	}
+
+	/**
+	 * Check if this instance supports using this class
+	 */
+	public static function isSupported() {
+		return function_exists( 'xml_parser_create_ns' ) && class_exists( 'XMLReader' );
 	}
 
 	/** Get the result array. Do some post-processing before returning
@@ -263,6 +285,27 @@ class XMPReader {
 				wfRestoreWarnings();
 			}
 
+			// Ensure the XMP block does not have an xml doctype declaration, which
+			// could declare entities unsafe to parse with xml_parse (T85848/T71210).
+			if ( $this->parsable !== self::PARSABLE_OK ) {
+				if ( $this->parsable === self::PARSABLE_NO ) {
+					throw new MWException( 'Unsafe doctype declaration in XML.' );
+				}
+
+				$content = $this->xmlParsableBuffer . $content;
+				if ( !$this->checkParseSafety( $content ) ) {
+					if ( !$allOfIt && $this->parsable !== self::PARSABLE_NO ) {
+						// parse wasn't Unsuccessful yet, so return true
+						// in this case.
+						return true;
+					}
+					$msg = ( $this->parsable === self::PARSABLE_NO ) ?
+						'Unsafe doctype declaration in XML.' :
+						'No root element found in XML.';
+					throw new MWException( $msg );
+				}
+			}
+
 			$ok = xml_parse( $this->xmlParser, $content, $allOfIt );
 			if ( !$ok ) {
 				$error = xml_error_string( xml_get_error_code( $this->xmlParser ) );
@@ -383,6 +426,59 @@ class XMPReader {
 			$this->charContent .= $data;
 		}
 
+	}
+
+	/**
+	 * Check if a block of XML is safe to pass to xml_parse, i.e. doesn't
+	 * contain a doctype declaration which could contain a dos attack if we
+	 * parse it and expand internal entities (T85848).
+	 *
+	 * @param string $content xml string to check for parse safety
+	 * @return bool true if the xml is safe to parse, false otherwise
+	 */
+	private function checkParseSafety( $content ) {
+		$reader = new XMLReader();
+		$result = null;
+
+		// For XMLReader to parse incomplete/invalid XML, it has to be open()'ed
+		// instead of using XML().
+		$reader->open(
+			'data://text/plain,' . urlencode( $content ),
+			null,
+			LIBXML_NOERROR | LIBXML_NOWARNING | LIBXML_NONET
+		);
+
+		$oldDisable = libxml_disable_entity_loader( true );
+		$reader->setParserProperty( XMLReader::SUBST_ENTITIES, false );
+
+		// Even with LIBXML_NOWARNING set, XMLReader::read gives a warning
+		// when parsing truncated XML, which causes unit tests to fail.
+		wfSuppressWarnings();
+		while ( $reader->read() ) {
+			if ( $reader->nodeType === XMLReader::ELEMENT ) {
+				// Reached the first element without hitting a doctype declaration
+				$this->parsable = self::PARSABLE_OK;
+				$result = true;
+				break;
+			}
+			if ( $reader->nodeType === XMLReader::DOC_TYPE ) {
+				$this->parsable = self::PARSABLE_NO;
+				$result = false;
+				break;
+			}
+		}
+		wfRestoreWarnings();
+		libxml_disable_entity_loader( $oldDisable );
+
+		if ( !is_null( $result ) ) {
+			return $result;
+		}
+
+		// Reached the end of the parsable xml without finding an element
+		// or doctype. Buffer and try again.
+		$this->parsable = self::PARSABLE_BUFFERING;
+		$this->xmlParsableBuffer = $content;
+		return false;
 	}
 
 	/** When we hit a closing element in MODE_IGNORE

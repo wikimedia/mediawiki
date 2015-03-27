@@ -24,7 +24,7 @@ class JpegMetadataExtractor {
 	* @throws MWException if given invalid file.
 	*/
 	static function segmentSplitter ( $filename ) {
-		$showXMP = function_exists( 'xml_parser_create_ns' );
+		$showXMP = XMPReader::isSupported();
 
 		$segmentCount = 0;
 
