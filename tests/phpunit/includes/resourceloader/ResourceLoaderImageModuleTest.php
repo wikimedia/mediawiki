@@ -60,13 +60,9 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 			array(
 				array(
 					'class' => 'ResourceLoaderImageModule',
-					'prefix' => 'oo-ui',
-					'variants' => array(
-						'icon' => $commonVariants,
-					),
-					'images' => array(
-						'icon' => $commonImageData,
-					),
+					'prefix' => 'oo-ui-icon',
+					'variants' => $commonVariants,
+					'images' => $commonImageData,
 				),
 				'.oo-ui-icon-advanced {
 	...
@@ -107,12 +103,8 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 					'class' => 'ResourceLoaderImageModule',
 					'selectorWithoutVariant' => '.mw-ui-icon-{name}:after, .mw-ui-icon-{name}:before',
 					'selectorWithVariant' => '.mw-ui-icon-{name}-{variant}:after, .mw-ui-icon-{name}-{variant}:before',
-					'variants' => array(
-						'icon' => $commonVariants,
-					),
-					'images' => array(
-						'icon' => $commonImageData,
-					),
+					'variants' => $commonVariants,
+					'images' => $commonImageData,
 				),
 				'.mw-ui-icon-advanced:after, .mw-ui-icon-advanced:before {
 	...
