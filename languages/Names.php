@@ -343,6 +343,7 @@
 	'sco' => 'Scots',       # Scots
 	'sd' => 'سنڌي',	# Sindhi
 	'sdc' => 'Sassaresu',	# Sassarese
+	'sdh' => 'کوردی خوارگ',	# Southern Kurdish
 	'se' => 'sámegiella',	# Northern Sami
 	'sei' => 'Cmique Itom',	# Seri
 	'ses' => 'Koyraboro Senni',	# Koyraboro Senni
