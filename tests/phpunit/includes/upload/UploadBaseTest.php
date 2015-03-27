@@ -367,6 +367,18 @@ class UploadBaseTest extends MediaWikiTestCase {
 				true,
 				'SVG with data:text/html link target (firefox only)'
 			),
+			array(
+				'<?xml version="1.0" encoding="UTF-8" standalone="no"?> <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [ <!ENTITY lol "lol"> <!ENTITY lol2 "&#x3C;&#x73;&#x63;&#x72;&#x69;&#x70;&#x74;&#x3E;&#x61;&#x6C;&#x65;&#x72;&#x74;&#x28;&#x27;&#x58;&#x53;&#x53;&#x45;&#x44;&#x20;&#x3D;&#x3E;&#x20;&#x27;&#x2B;&#x64;&#x6F;&#x63;&#x75;&#x6D;&#x65;&#x6E;&#x74;&#x2E;&#x64;&#x6F;&#x6D;&#x61;&#x69;&#x6E;&#x29;&#x3B;&#x3C;&#x2F;&#x73;&#x63;&#x72;&#x69;&#x70;&#x74;&#x3E;"> ]> <svg xmlns="http://www.w3.org/2000/svg" width="68" height="68" viewBox="-34 -34 68 68" version="1.1"> <circle cx="0" cy="0" r="24" fill="#c8c8c8"/> <text x="0" y="0" fill="black">&lol2;</text> </svg>',
+				true,
+				true,
+				'SVG with encoded script tag in internal entity (reported by Beyond Security)'
+			),
+			array(
+				'<?xml version="1.0"?> <!DOCTYPE svg [ <!ENTITY foo SYSTEM "file:///etc/passwd"> ]> <svg xmlns="http://www.w3.org/2000/svg" version="1.1"> <desc>&foo;</desc> <rect width="300" height="100" style="fill:rgb(0,0,255);stroke-width:1;stroke:rgb(0,0,2)" /> </svg>',
+				false,
+				false,
+				'SVG with external entity'
+			),
 
 			// Test good, but strange files that we want to allow
 			array(
@@ -381,7 +393,6 @@ class UploadBaseTest extends MediaWikiTestCase {
 				false,
 				'SVG with local urls, including filter: in style'
 			),
-
 		);
 	}
 }
