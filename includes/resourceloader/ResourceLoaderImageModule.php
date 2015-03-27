@@ -39,8 +39,8 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	protected $images = array();
 	protected $variants = array();
 	protected $prefix = null;
-	protected $selectorWithoutVariant = '.{prefix}-{type}-{name}';
-	protected $selectorWithVariant = '.{prefix}-{type}-{name}-{variant}';
+	protected $selectorWithoutVariant = '.{prefix}-{name}';
+	protected $selectorWithVariant = '.{prefix}-{name}-{variant}';
 	protected $targets = array( 'desktop', 'mobile' );
 
 	/**
@@ -60,32 +60,28 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 *         // CSS class prefix to use in all style rules
 	 *         'prefix' => [CSS class prefix],
 	 *         // Alternatively: Format of CSS selector to use in all style rules
-	 *         'selector' => [CSS selector template, variables: {prefix} {type} {name} {variant}],
+	 *         'selector' => [CSS selector template, variables: {prefix} {name} {variant}],
 	 *         // Alternatively: When using variants
-	 *         'selectorWithoutVariant' => [CSS selector template, variables: {prefix} {type} {name}],
-	 *         'selectorWithVariant' => [CSS selector template, variables: {prefix} {type} {name} {variant}],
+	 *         'selectorWithoutVariant' => [CSS selector template, variables: {prefix} {name}],
+	 *         'selectorWithVariant' => [CSS selector template, variables: {prefix} {name} {variant}],
 	 *         // List of variants that may be used for the image files
 	 *         'variants' => array(
-	 *             // ([image type] is a string, used in generated CSS class
-	 *             //  names and to match variants to images)
-	 *             [image type] => array(
 	 *                 [variant name] => array(
 	 *                     'color' => [color string, e.g. '#ffff00'],
 	 *                     'global' => [boolean, if true, this variant is available
 	 *                                  for all images of this type],
 	 *                 ),
-	 *             )
+	 *             ...
 	 *         ),
 	 *         // List of image files and their options
 	 *         'images' => array(
-	 *             [image type] => array(
 	 *                 [file path string],
 	 *                 [file path string] => array(
 	 *                     'name' => [image name string, defaults to file name],
 	 *                     'variants' => [array of variant name strings, variants
 	 *                                    available for this image],
 	 *                 ),
-	 *             )
+	 *             ...
 	 *         ),
 	 *     )
 	 * @endcode
@@ -122,25 +118,10 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 		foreach ( $options as $member => $option ) {
 			switch ( $member ) {
 				case 'images':
-					if ( !is_array( $option ) ) {
-						throw new MWException(
-							"Invalid collated file path list error. '$option' given, array expected."
-						);
-					}
-					foreach ( $option as $key => $value ) {
-						if ( !is_string( $key ) ) {
-							throw new MWException(
-								"Invalid collated file path list key error. '$key' given, string expected."
-							);
-						}
-						$this->{$member}[$key] = (array)$value;
-					}
-					break;
-
 				case 'variants':
 					if ( !is_array( $option ) ) {
 						throw new MWException(
-							"Invalid variant list error. '$option' given, array expected."
+							"Invalid list error. '$option' given, array expected."
 						);
 					}
 					$this->{$member} = $option;
@@ -195,32 +176,30 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 		if ( !isset( $this->imageObjects ) ) {
 			$this->imageObjects = array();
 
-			foreach ( $this->images as $type => $list ) {
-				foreach ( $list as $name => $options ) {
-					$imageDesc = is_string( $options ) ? $options : $options['image'];
+			foreach ( $this->images as $name => $options ) {
+				$imageDesc = is_string( $options ) ? $options : $options['image'];
 
-					$allowedVariants = array_merge(
-						is_array( $options ) && isset( $options['variants'] ) ? $options['variants'] : array(),
-						$this->getGlobalVariants( $type )
+				$allowedVariants = array_merge(
+					is_array( $options ) && isset( $options['variants'] ) ? $options['variants'] : array(),
+					$this->getGlobalVariants()
+				);
+				if ( isset( $this->variants ) ) {
+					$variantConfig = array_intersect_key(
+						$this->variants,
+						array_fill_keys( $allowedVariants, true )
 					);
-					if ( isset( $this->variants[$type] ) ) {
-						$variantConfig = array_intersect_key(
-							$this->variants[$type],
-							array_fill_keys( $allowedVariants, true )
-						);
-					} else {
-						$variantConfig = array();
-					}
-
-					$image = new ResourceLoaderImage(
-						$name,
-						$this->getName(),
-						$imageDesc,
-						$this->localBasePath,
-						$variantConfig
-					);
-					$this->imageObjects[ $image->getName() ] = $image;
+				} else {
+					$variantConfig = array();
 				}
+
+				$image = new ResourceLoaderImage(
+					$name,
+					$this->getName(),
+					$imageDesc,
+					$this->localBasePath,
+					$variantConfig
+				);
+				$this->imageObjects[ $image->getName() ] = $image;
 			}
 		}
 
@@ -228,43 +207,24 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Get list of variants in this module that are 'global' for given type of images, i.e., available
-	 * for every image of given type regardless of image options.
-	 * @param string $type Image type
+	 * Get list of variants in this module that are 'global', i.e., available
+	 * for every image regardless of image options.
 	 * @return string[]
 	 */
-	public function getGlobalVariants( $type ) {
-		if ( !isset( $this->globalVariants[$type] ) ) {
-			$this->globalVariants[$type] = array();
+	public function getGlobalVariants() {
+		if ( !isset( $this->globalVariants ) ) {
+			$this->globalVariants = array();
 
-			if ( isset( $this->variants[$type] ) ) {
-				foreach ( $this->variants[$type] as $name => $config ) {
+			if ( isset( $this->variants ) ) {
+				foreach ( $this->variants as $name => $config ) {
 					if ( isset( $config['global'] ) && $config['global'] ) {
-						$this->globalVariants[$type][] = $name;
+						$this->globalVariants[] = $name;
 					}
 				}
 			}
 		}
 
-		return $this->globalVariants[$type];
-	}
-
-	/**
-	 * Get the type of given image.
-	 * @param string $imageName Image name
-	 * @return string
-	 */
-	public function getImageType( $imageName ) {
-		foreach ( $this->images as $type => $list ) {
-			foreach ( $list as $key => $value ) {
-				$file = is_int( $key ) ? $value : $key;
-				$options = is_array( $value ) ? $value : array();
-				$name = isset( $options['name'] ) ? $options['name'] : pathinfo( $file, PATHINFO_FILENAME );
-				if ( $name === $imageName ) {
-					return $type;
-				}
-			}
-		}
+		return $this->globalVariants;
 	}
 
 	/**
@@ -277,12 +237,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 		$script = $context->getResourceLoader()->getLoadScript( $this->getSource() );
 		$selectors = $this->getSelectors();
 
-		$needsTypeWithoutVariant = strpos( $selectors['selectorWithoutVariant'], '{type}' ) !== false;
-		$needsTypeWithVariant = strpos( $selectors['selectorWithVariant'], '{type}' ) !== false;
-
 		foreach ( $this->getImages() as $name => $image ) {
-			$type = $this->getImageType( $name );
-
 			$declarations = $this->getCssDeclarations(
 				$image->getDataUri( $context, null, 'original' ),
 				$image->getUrl( $context, $script, null, 'rasterized' )
@@ -294,8 +249,6 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 					'{prefix}' => $this->getPrefix(),
 					'{name}' => $name,
 					'{variant}' => '',
-					// Somewhat expensive, don't compute if not needed
-					'{type}' => $needsTypeWithoutVariant ? $this->getImageType( $name ) : null,
 				)
 			);
 			$rules[] = "$selector {\n\t$declarations\n}";
@@ -313,8 +266,6 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 						'{prefix}' => $this->getPrefix(),
 						'{name}' => $name,
 						'{variant}' => $variant,
-						// Somewhat expensive, don't compute if not needed
-						'{type}' => $needsTypeWithVariant ? $this->getImageType( $name ) : null,
 					)
 				);
 				$rules[] = "$selector {\n\t$declarations\n}";
