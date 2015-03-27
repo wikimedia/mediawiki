@@ -1461,7 +1461,7 @@
 					};
 					// Split module batch by source and by group.
 					splits = {};
-					maxQueryLength = mw.config.get( 'wgResourceLoaderMaxQueryLength', -1 );
+					maxQueryLength = mw.config.get( 'wgResourceLoaderMaxQueryLength', 2000 );
 
 					// Appends a list of modules from the queue to the batch
 					for ( q = 0; q < queue.length; q += 1 ) {
@@ -1598,6 +1598,7 @@
 									moduleMap = {};
 									async = true;
 									l = currReqBaseLength + 9;
+									mw.track( 'resourceloader.splitRequest', { maxQueryLength: maxQueryLength } );
 								}
 								if ( !hasOwn.call( moduleMap, prefix ) ) {
 									moduleMap[prefix] = [];
