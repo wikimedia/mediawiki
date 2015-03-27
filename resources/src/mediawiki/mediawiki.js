@@ -14,6 +14,7 @@
 		hasOwn = Object.prototype.hasOwnProperty,
 		slice = Array.prototype.slice,
 		trackCallbacks = $.Callbacks( 'memory' ),
+		trackHandlers = [],
 		trackQueue = [];
 
 	/**
@@ -461,8 +462,7 @@
 		 */
 		trackSubscribe: function ( topic, callback ) {
 			var seen = 0;
-
-			trackCallbacks.add( function ( trackQueue ) {
+			function handler( trackQueue ) {
 				var event;
 				for ( ; seen < trackQueue.length; seen++ ) {
 					event = trackQueue[ seen ];
@@ -470,6 +470,26 @@
 						callback.call( event, event.topic, event.data );
 					}
 				}
+			}
+
+			trackHandlers.push( [ handler, callback ] );
+
+			trackCallbacks.add( handler );
+		},
+
+		/**
+		 * Stop handling events for a particular handler
+		 *
+		 * @param {Function} callback
+		 */
+		trackUnsubscribe: function ( callback ) {
+			trackHandlers = $.grep( trackHandlers, function ( fns ) {
+				if ( fns[1] === callback ) {
+					trackCallbacks.remove( fns[0] );
+					// Ensure the tuple is removed to avoid holding on to closures
+					return false;
+				}
+				return true;
 			} );
 		},
 
