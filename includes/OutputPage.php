@@ -2975,6 +2975,10 @@ $templates
 		if ( !$this->getTitle()->isJsSubpage() && !$this->getTitle()->isCssSubpage() ) {
 			return false;
 		}
+		if ( !$this->getTitle()->isSubpageOf( $this->getUser()->getUserPage() ) ) {
+			// Don't execute another user's CSS or JS on preview (T85855)
+			return false;
+		}
 
 		return !count( $this->getTitle()->getUserPermissionsErrors( 'edit', $this->getUser() ) );
 	}
