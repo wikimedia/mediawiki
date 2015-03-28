@@ -208,6 +208,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 			// don't ignore DB errors
 			$this->db->ignoreErrors( false );
+		} else {
+			$trxProfiler = Profiler::instance()->getTransactionProfiler();
+			$trxProfiler->setExpectation( 'queries', 0, __METHOD__ );
 		}
 
 		DeferredUpdates::clearPendingUpdates();
@@ -237,6 +240,16 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 			// don't ignore DB errors
 			$this->db->ignoreErrors( false );
+		} else {
+			$trxProfiler = Profiler::instance()->getTransactionProfiler();
+			$hits = $trxProfiler->getHits( 'queries' );
+			$trxProfiler->resetExpectations();
+			if ( $hits > 0 ) {
+				$this->fail(
+					"Test caused $hits database queries, add the " .
+					"'@group Database' tag if it requires database access"
+				);
+			}
 		}
 
 		// Restore mw globals
