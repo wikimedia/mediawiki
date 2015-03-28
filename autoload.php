@@ -500,6 +500,7 @@ $wgAutoloadLocalClasses = array(
 	'HWLDFWordAccumulator' => __DIR__ . '/includes/diff/DairikiDiff.php',
 	'HashBagOStuff' => __DIR__ . '/includes/libs/objectcache/HashBagOStuff.php',
 	'HashConfig' => __DIR__ . '/includes/config/HashConfig.php',
+	'HashLogger' => __DIR__ . '/includes/libs/HashLogger.php',
 	'HashRing' => __DIR__ . '/includes/libs/HashRing.php',
 	'HashSiteStore' => __DIR__ . '/includes/site/HashSiteStore.php',
 	'HashtableReplacer' => __DIR__ . '/includes/libs/replacers/HashtableReplacer.php',
