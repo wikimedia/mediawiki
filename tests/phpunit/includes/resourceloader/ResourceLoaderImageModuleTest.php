@@ -25,17 +25,17 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 		$commonImageData = array(
 			'advanced' => 'advanced.svg',
 			'remove' => array(
-				'image' => 'remove.svg',
+				'file' => 'remove.svg',
 				'variants' => array( 'destructive' ),
 			),
 			'next' => array(
-				'image' => array(
+				'file' => array(
 					'ltr' => 'next.svg',
 					'rtl' => 'prev.svg'
 				),
 			),
 			'help' => array(
-				'image' => array(
+				'file' => array(
 					'ltr' => 'help-ltr.svg',
 					'rtl' => 'help-rtl.svg',
 					'lang' => array(
@@ -44,7 +44,7 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 				),
 			),
 			'bold' => array(
-				'image' => array(
+				'file' => array(
 					'default' => 'bold-a.svg',
 					'lang' => array(
 						'en' => 'bold-b.svg',
