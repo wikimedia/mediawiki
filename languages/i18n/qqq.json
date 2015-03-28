@@ -3846,7 +3846,6 @@
 	"json-error-inf-or-nan": "PHP JSON encoding/decoding error. See http://php.net/manual/en/function.json-last-error.php\n{{Related|Json-error}}",
 	"json-error-unsupported-type": "PHP JSON encoding/decoding error. See http://php.net/manual/en/function.json-last-error.php\n{{Related|Json-error}}",
 	"headline-anchor-title": "Title tooltip for the section anchor symbol",
-	"section-symbol": "Symbol for the section anchor\n\n{{optional}}",
 	"special-characters-group-latin": "This is the name of a script, or alphabet, not a language.",
 	"special-characters-group-latinextended": "The name of the Latin Extended character set.",
 	"special-characters-group-ipa": "IPA means a script: \"international phonetic alphabet\" here, and not \"international phonetic association\", the organization behind it.",
