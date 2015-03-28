@@ -112,6 +112,21 @@ class TransactionProfiler implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Get the current hit count for a event
+	 *
+	 * @since 1.26
+	 * @param string $event
+	 * @throws InvalidArgumentException
+	 * @return int
+	 */
+	public function getHits( $event ) {
+		if ( !isset( $this->hits[$event] ) ) {
+			throw new InvalidArgumentException( "'$event' is not a valid event" );
+		}
+		return $this->hits[$event];
+	}
+
+	/**
 	 * Reset performance expectations and hit counters
 	 *
 	 * @since 1.25

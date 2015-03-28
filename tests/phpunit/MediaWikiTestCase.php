@@ -65,6 +65,11 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	private $mwGlobals = array();
 
 	/**
+	 * @var HashLogger|null
+	 */
+	private $trxLogger;
+
+	/**
 	 * Table name prefixes. Oracle likes it shorter.
 	 */
 	const DB_PREFIX = 'unittest_';
@@ -204,6 +209,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			while ( $this->db->trxLevel() > 0 ) {
 				$this->db->rollback();
 			}
+		} else {
+			$trxProfiler = Profiler::instance()->getTransactionProfiler();
+			$trxProfiler->resetExpectations();
+			$this->trxLogger = new HashLogger();
+			$trxProfiler->setLogger( $this->trxLogger );
+			$trxProfiler->setExpectation( 'queries', 0, __METHOD__ );
 		}
 
 		DeferredUpdates::clearPendingUpdates();
@@ -229,6 +240,17 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			// Clean up open transactions
 			while ( $this->db->trxLevel() > 0 ) {
 				$this->db->rollback();
+			}
+		} else {
+			$trxProfiler = Profiler::instance()->getTransactionProfiler();
+			$hits = $trxProfiler->getHits( 'queries' );
+			$trxProfiler->resetExpectations();
+			if ( $hits > 0 ) {
+				$this->fail(
+					"Test caused $hits database queries, add the " .
+					"'@group Database' tag if it requires database access\n" .
+					implode( "\n", $this->trxLogger->getMessages() )
+				);
 			}
 		}
 
