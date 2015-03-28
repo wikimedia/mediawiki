@@ -325,36 +325,19 @@ class TitleTest extends MediaWikiTestCase {
 			$whitelistRegexp = array( $whitelistRegexp );
 		}
 
+		$this->setMwGlobals( array(
+			// So User::isEveryoneAllowed( 'read' ) === false
+			'wgGroupPermissions' => array( '*' => array( 'read' => false ) ),
+			'wgWhitelistRead' => array( 'some random non sense title' ),
+			'wgWhitelistReadRegexp' => $whitelistRegexp,
+		) );
+
 		$title = Title::newFromDBkey( $source );
 
-		global $wgGroupPermissions;
-		$oldPermissions = $wgGroupPermissions;
-		// Disallow all so we can ensure our regex works
-		$wgGroupPermissions = array();
-		$wgGroupPermissions['*']['read'] = false;
-
-		global $wgWhitelistRead;
-		$oldWhitelist = $wgWhitelistRead;
-		// Undo any LocalSettings explicite whitelists so they won't cause a
-		// failing test to succeed. Set it to some random non sense just
-		// to make sure we properly test Title::checkReadPermissions()
-		$wgWhitelistRead = array( 'some random non sense title' );
-
-		global $wgWhitelistReadRegexp;
-		$oldWhitelistRegexp = $wgWhitelistReadRegexp;
-		$wgWhitelistReadRegexp = $whitelistRegexp;
-
-		// Just use $wgUser which in test is a user object for '127.0.0.1'
-		global $wgUser;
-		// Invalidate user rights cache to take in account $wgGroupPermissions
-		// change above.
-		$wgUser->clearInstanceCache();
-		$errors = $title->userCan( $action, $wgUser );
-
-		// Restore globals
-		$wgGroupPermissions = $oldPermissions;
-		$wgWhitelistRead = $oldWhitelist;
-		$wgWhitelistReadRegexp = $oldWhitelistRegexp;
+		// New anonymous user with no rights
+		$user = new User;
+		$user->mRights = array();
+		$errors = $title->userCan( $action, $user );
 
 		if ( is_bool( $expected ) ) {
 			# Forge the assertion message depending on the assertion expectation
