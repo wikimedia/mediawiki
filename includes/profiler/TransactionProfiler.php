@@ -22,6 +22,9 @@
  * @author Aaron Schulz
  */
 
+use Psr\Log\LoggerInterface;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\NullLogger;
 /**
  * Helper class that detects high-contention DB queries via profiling calls
  *
@@ -29,7 +32,7 @@
  *
  * @since 1.24
  */
-class TransactionProfiler {
+class TransactionProfiler implements LoggerAwareInterface {
 	/** @var float Seconds */
 	protected $dbLockThreshold = 3.0;
 	/** @var float Seconds */
@@ -57,6 +60,19 @@ class TransactionProfiler {
 	);
 	/** @var array */
 	protected $expectBy = array();
+
+	/**
+	 * @var LoggerInterface
+	 */
+	private $logger;
+
+	public function __construct() {
+		$this->setLogger( new NullLogger() );
+	}
+
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
+	}
 
 	/**
 	 * Set performance expectations
@@ -125,7 +141,7 @@ class TransactionProfiler {
 	public function transactionWritingIn( $server, $db, $id ) {
 		$name = "{$server} ({$db}) (TRX#$id)";
 		if ( isset( $this->dbTrxHoldingLocks[$name] ) ) {
-			wfDebugLog( 'DBPerformance', "Nested transaction for '$name' - out of sync." );
+			$this->logger->info( "Nested transaction for '$name' - out of sync." );
 		}
 		$this->dbTrxHoldingLocks[$name] = array(
 			'start' => microtime( true ),
@@ -154,8 +170,7 @@ class TransactionProfiler {
 		$elapsed = ( $eTime - $sTime );
 
 		if ( $isWrite && $n > $this->expect['maxAffected'] ) {
-			wfDebugLog( 'DBPerformance',
-				"Query affected $n row(s):\n" . $query . "\n" . wfBacktrace( true ) );
+			$this->logger->info( "Query affected $n row(s):\n" . $query . "\n" . wfBacktrace( true ) );
 		}
 
 		// Report when too many writes/queries happen...
@@ -209,7 +224,7 @@ class TransactionProfiler {
 	public function transactionWritingOut( $server, $db, $id ) {
 		$name = "{$server} ({$db}) (TRX#$id)";
 		if ( !isset( $this->dbTrxMethodTimes[$name] ) ) {
-			wfDebugLog( 'DBPerformance', "Detected no transaction for '$name' - out of sync." );
+			$this->logger->info( "Detected no transaction for '$name' - out of sync." );
 			return;
 		}
 		// Fill in the last non-query period...
@@ -237,7 +252,7 @@ class TransactionProfiler {
 				list( $query, $sTime, $end ) = $info;
 				$msg .= sprintf( "%d\t%.6f\t%s\n", $i, ( $end - $sTime ), $query );
 			}
-			wfDebugLog( 'DBPerformance', $msg );
+			$this->logger->info( $msg );
 		}
 		unset( $this->dbTrxHoldingLocks[$name] );
 		unset( $this->dbTrxMethodTimes[$name] );
@@ -250,7 +265,8 @@ class TransactionProfiler {
 	protected function reportExpectationViolated( $expect, $query ) {
 		$n = $this->expect[$expect];
 		$by = $this->expectBy[$expect];
-		wfDebugLog( 'DBPerformance',
-			"Expectation ($expect <= $n) by $by not met:\n$query\n" . wfBacktrace( true ) );
+		$this->logger->info(
+			"Expectation ($expect <= $n) by $by not met:\n$query\n" . wfBacktrace( true )
+		);
 	}
 }
