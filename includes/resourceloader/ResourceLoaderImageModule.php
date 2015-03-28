@@ -177,7 +177,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 			$this->imageObjects = array();
 
 			foreach ( $this->images as $name => $options ) {
-				$imageDesc = is_string( $options ) ? $options : $options['image'];
+				$fileDescriptor = is_string( $options ) ? $options : $options['file'];
 
 				$allowedVariants = array_merge(
 					isset( $options['variants'] ) ? $options['variants'] : array(),
@@ -195,7 +195,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 				$image = new ResourceLoaderImage(
 					$name,
 					$this->getName(),
-					$imageDesc,
+					$fileDescriptor,
 					$this->localBasePath,
 					$variantConfig
 				);
