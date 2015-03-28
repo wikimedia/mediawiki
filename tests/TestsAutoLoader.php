@@ -82,6 +82,9 @@ $wgAutoloadClasses += array(
 	# tests/phpunit/includes/diff
 	'FakeDiffOp' => "$testDir/phpunit/includes/diff/FakeDiffOp.php",
 
+	# tests/phpunit/includes/logging
+	'LogFormatterTestCase' => "$testDir/phpunit/includes/logging/LogFormatterTestCase.php",
+
 	# tests/phpunit/includes/passwords
 	'PasswordTestCase' => "$testDir/phpunit/includes/password/PasswordTestCase.php",
 
