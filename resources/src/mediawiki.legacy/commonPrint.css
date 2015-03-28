@@ -47,7 +47,7 @@ span.mw-filepage-other-resolutions,
 	page-break-inside: avoid;
 }
 
-h2, h3, h4, h5, h6 {
+h2, h3, h4, h5, h6, .mw-header {
 	page-break-after: avoid;
 }
 

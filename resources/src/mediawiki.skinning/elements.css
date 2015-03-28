@@ -84,7 +84,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+.mw-header {
 	color: black;
 	background: none;
 	font-weight: normal;
@@ -95,48 +96,85 @@ h6 {
 	border-bottom: 1px solid #aaa;
 }
 
-h1 {
+/* Specific resets for the new layout */
+.mw-header h1,
+.mw-header h2,
+.mw-header h3,
+.mw-header h4,
+.mw-header h5,
+.mw-header h6 {
+	display: inline;
+	border-bottom: none;
+}
+
+h1,
+.mw-header.mw-h1 {
 	font-size: 188%;
 }
 
-h2 {
+h2,
+.mw-header.mw-h2 {
 	font-size: 150%;
 }
 
 h3,
 h4,
 h5,
-h6 {
+h6,
+.mw-header.mw-h3,
+.mw-header.mw-h4,
+.mw-header.mw-h5,
+.mw-header.mw-h6 {
 	border-bottom: none;
 	font-weight: bold;
 }
 
-h3 {
+h3,
+.mw-header.mw-h3 {
 	font-size: 128%;
 }
 
-h4 {
+h4,
+.mw-header.mw-h4 {
 	font-size: 116%;
 }
 
-h5 {
+h5,
+.mw-header.mw-h5 {
 	font-size: 108%;
 }
 
-h6 {
+h6,
+.mw-header.mw-h6 {
 	font-size: 100%;
 }
 
 /* Some space under the headers in the content area */
 h1,
-h2 {
+h2,
+.mw-header.mw-h1,
+.mw-header.mw-h2 {
 	margin-bottom: .6em;
 }
 
 h3,
 h4,
-h5 {
+h5,
+.mw-header.mw-h3,
+.mw-header.mw-h4,
+.mw-header.mw-h5 {
 	margin-bottom: .3em;
+}
+
+/* New layout font and margin resets for old layout */
+.mw-header h1,
+.mw-header h2,
+.mw-header h3,
+.mw-header h4,
+.mw-header h5,
+.mw-header h6 {
+	font-size: inherit;
+	margin-bottom: 0;
 }
 
 p {
