@@ -27,6 +27,8 @@ class DatabaseTestHelper extends DatabaseBase {
 
 	public function __construct( $testName ) {
 		$this->testName = $testName;
+		// This doesn't actually hit any databases, so don't log any queries
+		$this->trxProfiler = new TransactionProfiler();
 	}
 
 	/**
