@@ -82,8 +82,12 @@ $wgAutoloadClasses += array(
 	# tests/phpunit/includes/diff
 	'FakeDiffOp' => "$testDir/phpunit/includes/diff/FakeDiffOp.php",
 
-	# tests/phpunit/includes/passwords
+	# tests/phpunit/includes/password
 	'PasswordTestCase' => "$testDir/phpunit/includes/password/PasswordTestCase.php",
+
+	# tests/phpunit/includes/resourceloader
+	'ResourceLoaderImageModuleTest' => "$testDir/phpunit/includes/resourceloader/ResourceLoaderImageModuleTest.php",
+	'ResourceLoaderImageModuleTestable' => "$testDir/phpunit/includes/resourceloader/ResourceLoaderImageModuleTest.php",
 
 	# tests/phpunit/languages
 	'LanguageClassesTestCase' => "$testDir/phpunit/languages/LanguageClassesTestCase.php",
