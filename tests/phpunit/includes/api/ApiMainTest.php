@@ -2,7 +2,6 @@
 
 /**
  * @group API
- * @group Database
  * @group medium
  *
  * @covers ApiMain
@@ -23,20 +22,12 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	public static function provideAssert() {
-		$anon = new User();
-		$bot = new User();
-		$bot->setName( 'Bot' );
-		$bot->addToDatabase();
-		$bot->addGroup( 'bot' );
-		$user = new User();
-		$user->setName( 'User' );
-		$user->addToDatabase();
 		return array(
-			array( $anon, 'user', 'assertuserfailed' ),
-			array( $user, 'user', false ),
-			array( $user, 'bot', 'assertbotfailed' ),
-			array( $bot, 'user', false ),
-			array( $bot, 'bot', false ),
+			array( false, array(), 'user', 'assertuserfailed' ),
+			array( true, array(), 'user', false ),
+			array( true, array(), 'bot', 'assertbotfailed' ),
+			array( true, array( 'bot' ), 'user', false ),
+			array( true, array( 'bot' ), 'bot', false ),
 		);
 	}
 
@@ -45,11 +36,17 @@ class ApiMainTest extends ApiTestCase {
 	 *
 	 * @covers ApiMain::checkAsserts
 	 * @dataProvider provideAssert
-	 * @param User $user
+	 * @param bool $registered
+	 * @param array $rights
 	 * @param string $assert
 	 * @param string|bool $error False if no error expected
 	 */
-	public function testAssert( $user, $assert, $error ) {
+	public function testAssert( $registered, $rights, $assert, $error ) {
+		$user = new User();
+		if ( $registered ) {
+			$user->setId( 1 );
+		}
+		$user->mRights = $rights;
 		try {
 			$this->doApiRequest( array(
 				'action' => 'query',
