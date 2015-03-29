@@ -375,14 +375,19 @@ class WikiImporter {
 		$page = WikiPage::factory( $title );
 		$page->loadPageData( 'fromdbmaster' );
 		$content = $page->getContent();
-		$editInfo = $page->prepareContentForEdit( $content );
-		$countKey = 'title_' . $title->getPrefixedText();
-		$countable = $page->isCountable( $editInfo );
-		if ( array_key_exists( $countKey, $this->countableCache ) &&
-			$countable != $this->countableCache[ $countKey ] ) {
-			DeferredUpdates::addUpdate( SiteStatsUpdate::factory( array(
-				'articles' => ( (int)$countable - (int)$this->countableCache[ $countKey ] )
-			) ) );
+		if ( $content === null ) {
+			wfDebug( __METHOD__ . ': Skipping article count adjustment for ' . $title .
+				' because WikiPage::getContent() returned null' );
+		} else {
+			$editInfo = $page->prepareContentForEdit( $content );
+			$countKey = 'title_' . $title->getPrefixedText();
+			$countable = $page->isCountable( $editInfo );
+			if ( array_key_exists( $countKey, $this->countableCache ) &&
+				$countable != $this->countableCache[ $countKey ] ) {
+				DeferredUpdates::addUpdate( SiteStatsUpdate::factory( array(
+					'articles' => ( (int)$countable - (int)$this->countableCache[ $countKey ] )
+				) ) );
+			}
 		}
 
 		$args = func_get_args();
