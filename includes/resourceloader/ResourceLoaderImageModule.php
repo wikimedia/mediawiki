@@ -158,7 +158,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 					$imageDesc = is_string( $options ) ? $options : $options['image'];
 
 					$allowedVariants = array_merge(
-						isset( $options['variants'] ) ? $options['variants'] : array(),
+						is_array( $options ) && isset( $options['variants'] ) ? $options['variants'] : array(),
 						$this->getGlobalVariants( $type )
 					);
 					if ( isset( $this->variants[$type] ) ) {
