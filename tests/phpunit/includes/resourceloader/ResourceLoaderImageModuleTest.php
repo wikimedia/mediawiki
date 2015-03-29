@@ -5,67 +5,68 @@
  */
 class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 
+	public static $commonImageData = array(
+		'add' => 'add.gif',
+		'remove' => array(
+			'file' => 'remove.svg',
+			'variants' => array( 'destructive' ),
+		),
+		'next' => array(
+			'variants' => array( 'constructive' ),
+			'file' => array(
+				'ltr' => 'next.svg',
+				'rtl' => 'prev.svg'
+			),
+		),
+		'help' => array(
+			'file' => array(
+				'ltr' => 'help-ltr.svg',
+				'rtl' => 'help-rtl.svg',
+				'lang' => array(
+					'he' => 'help-ltr.svg',
+				)
+			),
+		),
+		'bold' => array(
+			'file' => array(
+				'default' => 'bold-a.svg',
+				'lang' => array(
+					'en' => 'bold-b.svg',
+					'de' => 'bold-f.svg',
+				)
+			),
+		)
+	);
+
+	public static $commonImageVariants = array(
+		'invert' => array(
+			'color' => '#FFFFFF',
+			'global' => true,
+		),
+		'primary' => array(
+			'color' => '#598AD1',
+		),
+		'constructive' => array(
+			'color' => '#00C697',
+		),
+		'destructive' => array(
+			'color' => '#E81915',
+		),
+	);
+
 	public static function providerGetModules() {
-		$commonVariants = array(
-			'invert' => array(
-				'color' => '#FFFFFF',
-				'global' => true,
-			),
-			'primary' => array(
-				'color' => '#598AD1',
-			),
-			'constructive' => array(
-				'color' => '#00C697',
-			),
-			'destructive' => array(
-				'color' => '#E81915',
-			),
-		);
-
-		$commonImageData = array(
-			'advanced' => 'advanced.svg',
-			'remove' => array(
-				'file' => 'remove.svg',
-				'variants' => array( 'destructive' ),
-			),
-			'next' => array(
-				'file' => array(
-					'ltr' => 'next.svg',
-					'rtl' => 'prev.svg'
-				),
-			),
-			'help' => array(
-				'file' => array(
-					'ltr' => 'help-ltr.svg',
-					'rtl' => 'help-rtl.svg',
-					'lang' => array(
-						'he' => 'help-ltr.svg',
-					)
-				),
-			),
-			'bold' => array(
-				'file' => array(
-					'default' => 'bold-a.svg',
-					'lang' => array(
-						'en' => 'bold-b.svg',
-						'de' => 'bold-f.svg',
-					)
-				),
-			)
-		);
-
 		return array(
 			array(
 				array(
 					'class' => 'ResourceLoaderImageModule',
 					'prefix' => 'oo-ui-icon',
-					'variants' => $commonVariants,
-					'images' => $commonImageData,
+					'variants' => self::$commonImageVariants,
+					'images' => self::$commonImageData,
 				),
-				'.oo-ui-icon-advanced {
+				'.oo-ui-icon-add {
 	...
 }
-.oo-ui-icon-advanced-invert {
+.oo-ui-icon-add-invert {
 	...
 }
 .oo-ui-icon-remove {
@@ -101,13 +102,13 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 					'class' => 'ResourceLoaderImageModule',
 					'selectorWithoutVariant' => '.mw-ui-icon-{name}:after, .mw-ui-icon-{name}:before',
 					'selectorWithVariant' => '.mw-ui-icon-{name}-{variant}:after, .mw-ui-icon-{name}-{variant}:before',
-					'variants' => $commonVariants,
-					'images' => $commonImageData,
+					'variants' => self::$commonImageVariants,
+					'images' => self::$commonImageData,
 				),
-				'.mw-ui-icon-advanced:after, .mw-ui-icon-advanced:before {
+				'.mw-ui-icon-add:after, .mw-ui-icon-add:before {
 	...
 }
-.mw-ui-icon-advanced-invert:after, .mw-ui-icon-advanced-invert:before {
+.mw-ui-icon-add-invert:after, .mw-ui-icon-add-invert:before {
 	...
 }
 .mw-ui-icon-remove:after, .mw-ui-icon-remove:before {
@@ -146,7 +147,7 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 	 * @covers ResourceLoaderImageModule::getStyles
 	 */
 	public function testGetStyles( $module, $expected ) {
-		$module = new ResourceLoaderImageModuleTestable( $module );
+		$module = new ResourceLoaderImageModuleTestable( $module + array( 'localBasePath' => __DIR__ . '/images' ) );
 		$styles = $module->getStyles( $this->getResourceLoaderContext() );
 		$this->assertEquals( $expected, $styles['all'] );
 	}
@@ -158,41 +159,5 @@ class ResourceLoaderImageModuleTestable extends ResourceLoaderImageModule {
 	 */
 	protected function getCssDeclarations( $primary, $fallback ) {
 		return array( '...' );
-	}
-
-	/**
-	 * Return mock ResourceLoaderImages that don't call file_get_contents and such.
-	 */
-	public function getImages() {
-		$images = parent::getImages();
-		foreach ( $images as $name => &$image ) {
-			$image = new ResourceLoaderImageWrapper( $image );
-		}
-		return $images;
-	}
-}
-
-/**
- * Wraps a ResourceLoaderImage not to call file_get_contents and such.
- */
-class ResourceLoaderImageWrapper extends ResourceLoaderImage {
-	public function __construct( ResourceLoaderImage $image ) {
-		$this->image = $image;
-	}
-
-	public function getUrl( ResourceLoaderContext $context, $script, $variant, $format ) {
-		return null;
-	}
-
-	public function getDataUri( ResourceLoaderContext $context, $variant, $format ) {
-		return null;
-	}
-
-	public function __call( $method, $arguments ) {
-		return call_user_func_array( array( $this->image, $method ), $arguments );
-	}
-
-	public function __get( $name ) {
-		return $this->image->$name;
 	}
 }
