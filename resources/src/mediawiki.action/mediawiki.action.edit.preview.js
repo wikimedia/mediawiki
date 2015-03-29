@@ -9,15 +9,20 @@
 	 */
 	function doLivePreview( e ) {
 		var isDiff, api, request, postData, copySelectors, section,
-			$wikiPreview, $wikiDiff, $editform, $copyElements, $spinner, $errorBox;
+			$wikiPreview, $wikiDiff, $editform, $textbox, $summary, $copyElements, $spinner, $errorBox;
 
 		isDiff = ( e.target.name === 'wpDiff' );
 		$wikiPreview = $( '#wikiPreview' );
 		$wikiDiff = $( '#wikiDiff' );
 		$editform = $( '#editform' );
+		$textbox = $editform.find( '#wpTextbox1' );
+		$summary = $editform.find( '#wpSummary' );
 		$errorBox = $( '.errorbox' );
 		section = $editform.find( '[name="wpSection"]' ).val();
 
+		if ( $textbox.length === 0 ) {
+			return;
+		}
 		// Show changes for a new section is not yet supported
 		if ( isDiff && section === 'new' ) {
 			return;
@@ -68,8 +73,8 @@
 			action: 'parse',
 			uselang: mw.config.get( 'wgUserLanguage' ),
 			title: mw.config.get( 'wgPageName' ),
-			text: $editform.find( '#wpTextbox1' ).textSelection( 'getContents' ),
-			summary: $editform.find( '#wpSummary' ).textSelection( 'getContents' )
+			text: $textbox.textSelection( 'getContents' ),
+			summary: $summary.textSelection( 'getContents' )
 		};
 
 		if ( section !== '' ) {
