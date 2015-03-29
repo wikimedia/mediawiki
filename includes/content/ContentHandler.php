@@ -355,16 +355,20 @@ abstract class ContentHandler {
 	 *
 	 * @param string $name The content model ID, as given by a CONTENT_MODEL_XXX
 	 *    constant or returned by Revision::getContentModel().
+	 * @param Language|null $lang The language to parse the message in (since 1.26)
 	 *
 	 * @throws MWException If the model ID isn't known.
 	 * @return string The content model's localized name.
 	 */
-	public static function getLocalizedName( $name ) {
+	public static function getLocalizedName( $name, Language $lang = null ) {
 		// Messages: content-model-wikitext, content-model-text,
 		// content-model-javascript, content-model-css
 		$key = "content-model-$name";
 
 		$msg = wfMessage( $key );
+		if ( $lang ) {
+			$msg->inLanguage( $lang );
+		}
 
 		return $msg->exists() ? $msg->plain() : $name;
 	}
