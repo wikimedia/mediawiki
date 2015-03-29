@@ -6779,6 +6779,7 @@ $wgLogTypes = array(
 	'suppress',
 	'tag',
 	'managetags',
+	'contentmodel',
 );
 
 /**
@@ -6913,6 +6914,7 @@ $wgLogActionsHandlers = array(
 	'suppress/reblock' => 'BlockLogFormatter',
 	'import/upload' => 'LogFormatter',
 	'import/interwiki' => 'LogFormatter',
+	'contentmodel/change' => 'ContentModelLogFormatter',
 );
 
 /**
