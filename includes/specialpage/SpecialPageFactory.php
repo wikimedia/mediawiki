@@ -218,7 +218,7 @@ class SpecialPageFactory {
 		global $wgSpecialPages;
 		global $wgDisableInternalSearch, $wgEmailAuthentication;
 		global $wgEnableEmail, $wgEnableJavaScriptTest;
-		global $wgPageLanguageUseDB;
+		global $wgPageLanguageUseDB, $wgContentHandlerUseDB;
 
 		if ( !is_array( self::$list ) ) {
 
@@ -243,6 +243,9 @@ class SpecialPageFactory {
 
 			if ( $wgPageLanguageUseDB ) {
 				self::$list['PageLanguage'] = 'SpecialPageLanguage';
+			}
+			if ( $wgContentHandlerUseDB ) {
+				self::$list['ChangeContentModel'] = 'SpecialChangeContentModel';
 			}
 
 			self::$list['Activeusers'] = 'SpecialActiveUsers';
