@@ -345,6 +345,7 @@ class User implements IDBAccessObject {
 				// @TODO: this gets the ID from a slave, assuming renames
 				// are rare. This should be controllable and more consistent.
 				$this->mId = self::idFromName( $this->mName );
+				$this->setItemLoaded( 'id' );
 				if ( !$this->mId ) {
 					// Nonexistent user placeholder object
 					$this->loadDefaults( $this->mName );
@@ -1206,9 +1207,18 @@ class User implements IDBAccessObject {
 			return false;
 		}
 
-		$db = ( $flags & self::READ_LATEST )
-			? wfGetDB( DB_MASTER )
-			: wfGetDB( DB_SLAVE );
+		if ( $flags & self::READ_LATEST ) {
+			if ( $flags & self::READ_LOCKING ) {
+				$db = wfGetDB( DB_MASTER );
+			} else {
+				// self::READ_LATEST is the default so it gets much use.
+				// See if we can cheat by using a slave if we know that
+				// the user row has not changed lately according to cache.
+				$db = wfGetDB( $this->getReadDBIndex() );
+			}
+		} else {
+			$db = wfGetDB( DB_SLAVE );
+		}
 
 		$s = $db->selectRow(
 			'user',
@@ -1382,10 +1392,14 @@ class User implements IDBAccessObject {
 	 * @since 1.24
 	 */
 	private function loadPasswords() {
-		if ( $this->getId() !== 0 && ( $this->mPassword === null || $this->mNewpassword === null ) ) {
-			$this->loadFromRow( wfGetDB( DB_MASTER )->selectRow(
+		if ( $this->getId() !== 0 &&
+			( $this->mPassword === null || $this->mNewpassword === null )
+		) {
+			$dbr = wfGetDB( $this->getReadDBIndex() );
+			$this->loadFromRow( $dbr->selectRow(
 				'user',
-				array( 'user_password', 'user_newpassword', 'user_newpass_time', 'user_password_expires' ),
+				array( 'user_password', 'user_newpassword',
+					'user_newpass_time', 'user_password_expires' ),
 				array( 'user_id' => $this->getId() ),
 				__METHOD__
 			) );
@@ -2272,6 +2286,7 @@ class User implements IDBAccessObject {
 				}
 			} );
 			$this->clearSharedCache();
+			$this->touch(); // update cache immediately for lag checks
 		}
 	}
 
@@ -2285,15 +2300,15 @@ class User implements IDBAccessObject {
 	 * Unlike invalidateCache(), this preserves the User object cache and
 	 * avoids database writes.
 	 *
+	 * This method does not call load() if the user ID is loaded.
+	 *
 	 * @since 1.25
 	 */
 	public function touch() {
 		global $wgMemc;
 
-		$this->load();
-
-		if ( $this->mId ) {
-			$key = wfMemcKey( 'user-quicktouched', 'id', $this->mId );
+		if ( $this->getId() ) {
+			$key = wfMemcKey( 'user-quicktouched', 'id', $this->getId() );
 			$timestamp = self::newTouchedTimestamp();
 			$wgMemc->set( $key, $timestamp );
 			$this->mQuickTouched = $timestamp;
@@ -2311,29 +2326,65 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Get the user touched timestamp
+	 *
 	 * @return string TS_MW Timestamp
 	 */
 	public function getTouched() {
-		global $wgMemc;
-
 		$this->load();
 
-		if ( $this->mId ) {
-			if ( $this->mQuickTouched === null ) {
-				$key = wfMemcKey( 'user-quicktouched', 'id', $this->mId );
-				$timestamp = $wgMemc->get( $key );
-				if ( $timestamp ) {
-					$this->mQuickTouched = $timestamp;
-				} else {
-					# Set the timestamp to get HTTP 304 cache hits
-					$this->touch();
-				}
-			}
+		return max( $this->mTouched, $this->getQuickTouched() );
+	}
 
-			return max( $this->mTouched, $this->mQuickTouched );
+	/**
+	 * Get the user "quick" touched timestamp from cache
+	 *
+	 * This method does not call load() if the user ID is loaded.
+	 *
+	 * @param bool $init Initialize and process cache the key if not found
+	 * @return string|null TS_MW or null for anons
+	 */
+	protected function getQuickTouched( $init = true ) {
+		global $wgMemc;
+
+		if ( $this->mQuickTouched === null && $this->getId() ) {
+			$key = wfMemcKey( 'user-quicktouched', 'id', $this->getId() );
+			$timestamp = $wgMemc->get( $key );
+			if ( $timestamp ) {
+				$this->mQuickTouched = $timestamp;
+			} elseif ( $init ) {
+				# Set the timestamp to get HTTP 304 cache hits
+				$this->touch();
+			}
 		}
 
-		return $this->mTouched;
+		return $this->mQuickTouched;
+	}
+
+	/**
+	 * Get a relatively lag-safe DB connection for reads
+	 *
+	 * This method should only be called when mId is set.
+	 * Note that any transaction snapshot lag will still apply.
+	 * This method does not call load() if the user ID is loaded.
+	 *
+	 * @return integer One of (DB_MASTER/DB_SLAVE)
+	 */
+	protected function getReadDbIndex() {
+		if ( !$this->mId ) {
+			return DB_SLAVE; // anon
+		}
+
+		$touched = $this->getQuickTouched( false );
+		if ( $touched ) {
+			// User may have change recently, so use DB_MASTER
+			$estMaxLag = 10;
+			$touchedAgo = microtime( true ) - wfTimestamp( TS_UNIX, $touched );
+			$index = ( $touchedAgo <= $estMaxLag ) ? DB_MASTER : DB_SLAVE;
+		} else {
+			$index = DB_SLAVE;
+		}
+
+		return $index;
 	}
 
 	/**
