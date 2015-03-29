@@ -46,13 +46,13 @@ class FixUserRegistration extends Maintenance {
 				'user',
 				'user_id',
 				array(
-					'user_id >' . $dbw->addQuotes( $lastId ),
+					'user_id > ' . $dbw->addQuotes( $lastId ),
 					'user_registration IS NULL'
 				),
 				__METHOD__,
 				array(
 					'LIMIT' => $this->mBatchSize,
-					'ORDER BY user_id ASC',
+					'ORDER BY' => 'user_id',
 				)
 			);
 			foreach ( $res as $row ) {
