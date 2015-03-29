@@ -90,10 +90,15 @@ class ApiEditPage extends ApiBase {
 			}
 		}
 
+		$changingContentModel = false;
+		$oldContentModel = $pageObj->getContentModel();
 		if ( !isset( $params['contentmodel'] ) || $params['contentmodel'] == '' ) {
 			$contentHandler = $pageObj->getContentHandler();
 		} else {
 			$contentHandler = ContentHandler::getForModelID( $params['contentmodel'] );
+			if ( $params['contentmodel'] !== $oldContentModel ) {
+				$changingContentModel = true;
+			}
 		}
 
 		if ( $contentHandler->supportsDirectApiEditing() === false ) {
@@ -507,6 +512,14 @@ class ApiEditPage extends ApiBase {
 					$r['newtimestamp'] = wfTimestamp( TS_ISO_8601,
 						$pageObj->getTimestamp() );
 				}
+				if ( $changingContentModel ) {
+					$this->addContentModelChangeLogEntry(
+						$titleObj,
+						$oldContentModel,
+						$r['contentmodel'],
+						$params['summary'] ? : ''
+					);
+				}
 				break;
 
 			case EditPage::AS_SUMMARY_NEEDED:
@@ -521,6 +534,25 @@ class ApiEditPage extends ApiBase {
 				break;
 		}
 		$apiResult->addValue( null, $this->getModuleName(), $r );
+	}
+
+	/**
+	 * @param Title $title
+	 * @param string $oldModel
+	 * @param string $newModel
+	 * @param string $reason
+	 */
+	private function addContentModelChangeLogEntry( Title $title, $oldModel, $newModel, $reason ) {
+		$log = new ManualLogEntry( 'contentmodel', 'change' );
+		$log->setPerformer( $this->getUser() );
+		$log->setTarget( $title );
+		$log->setComment( $reason );
+		$log->setParameters( array(
+			'4::oldmodel' => $oldModel,
+			'5::newmodel' => $newModel
+		) );
+		$logid = $log->insert();
+		$log->publish( $logid );
 	}
 
 	public function mustBePosted() {
