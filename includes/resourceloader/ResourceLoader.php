@@ -73,6 +73,11 @@ class ResourceLoader {
 	protected $errors = array();
 
 	/**
+	 * @var MessageBlobStore
+	 */
+	protected $blobStore;
+
+	/**
 	 * Load information stored in the database about modules.
 	 *
 	 * This method grabs modules dependencies from the database and updates modules
@@ -250,6 +255,7 @@ class ResourceLoader {
 			$this->registerTestModules();
 		}
 
+		$this->setMessageBlobStore( new MessageBlobStore() );
 	}
 
 	/**
@@ -257,6 +263,14 @@ class ResourceLoader {
 	 */
 	public function getConfig() {
 		return $this->config;
+	}
+
+	/**
+	 * @param MessageBlobStore $blobStore
+	 * @since 1.25
+	 */
+	public function setMessageBlobStore( MessageBlobStore $blobStore ) {
+		$this->blobStore = $blobStore;
 	}
 
 	/**
@@ -885,7 +899,7 @@ MESSAGE;
 		// Pre-fetch blobs
 		if ( $context->shouldIncludeMessages() ) {
 			try {
-				$blobs = MessageBlobStore::getInstance()->get( $this, $modules, $context->getLanguage() );
+				$blobs = $this->blobStore->get( $this, $modules, $context->getLanguage() );
 			} catch ( Exception $e ) {
 				MWExceptionHandler::logException( $e );
 				wfDebugLog(

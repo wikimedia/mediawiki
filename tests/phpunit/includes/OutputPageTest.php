@@ -239,6 +239,7 @@ document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\
 		$ctx->setLanguage( 'en' );
 		$out = new OutputPage( $ctx );
 		$rl = $out->getResourceLoader();
+		$rl->setMessageBlobStore( new NullMessageBlobStore() );
 		$rl->register( array(
 			'test.foo' => new ResourceLoaderTestModule( array(
 				'script' => 'mw.test.foo( { a: true } );',
@@ -280,3 +281,26 @@ document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\
 		$this->assertEquals( $expectedHtml, $actualHtml );
 	}
 }
+
+/**
+ * MessageBlobStore that doesn't do anything
+ */
+class NullMessageBlobStore extends MessageBlobStore {
+	public function get ( ResourceLoader $resourceLoader, $modules, $lang ) {
+		return array();
+	}
+
+	public function insertMessageBlob ( $name, ResourceLoaderModule $module, $lang ) {
+		return false;
+	}
+
+	public function updateModule ( $name, ResourceLoaderModule $module, $lang ) {
+		return;
+	}
+
+	public function updateMessage ( $key ) {
+	}
+	public function clear() {
+	}
+}
+
