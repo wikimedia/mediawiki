@@ -214,7 +214,7 @@ class MWExceptionHandler {
 		}
 
 		$e = new ErrorException( "PHP $levelName: $message", 0, $level, $file, $line );
-		self::logError( $e );
+		self::logError( $e, 'error' );
 
 		// This handler is for logging only. Return false will instruct PHP
 		// to continue regular handling.
@@ -257,7 +257,7 @@ TXT;
 				// @codingStandardsIgnoreEnd
 			}
 			$e = new ErrorException( $msg, 0, $lastError['type'] );
-			self::logError( $e );
+			self::logError( $e, 'fatal' );
 		}
 	}
 
@@ -489,8 +489,9 @@ TXT;
 	 *
 	 * @since 1.25
 	 * @param ErrorException $e
+	 * @param string $channel
 	*/
-	protected static function logError( ErrorException $e ) {
+	protected static function logError( ErrorException $e, $channel ) {
 		global $wgLogExceptionBacktrace;
 
 		// The set_error_handler callback is independent from error_reporting.
@@ -498,16 +499,16 @@ TXT;
 		if ( ( error_reporting() & $e->getSeverity() ) !== 0 ) {
 			$log = self::getLogMessage( $e );
 			if ( $wgLogExceptionBacktrace ) {
-				wfDebugLog( 'error', $log . "\n" . $e->getTraceAsString() );
+				wfDebugLog( $channel, $log . "\n" . $e->getTraceAsString() );
 			} else {
-				wfDebugLog( 'error', $log );
+				wfDebugLog( $channel, $log );
 			}
 		}
 
 		// Include all errors in the json log (surpressed errors will be flagged)
 		$json = self::jsonSerializeException( $e, false, FormatJson::ALL_OK );
 		if ( $json !== false ) {
-			wfDebugLog( 'error-json', $json, 'private' );
+			wfDebugLog( "$channel-json", $json, 'private' );
 		}
 	}
 }
