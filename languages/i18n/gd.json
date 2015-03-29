@@ -1739,7 +1739,7 @@
 	"wlheader-enotif": "Tha brathan-naidheachd air a' phost-d an comas.",
 	"wlheader-showupdated": "Tha clò <strong>trom</strong> air duilleagan a chaidh atharrachadh on turas mu dheireadh a thadhail thu orra.",
 	"wlnote": "Chì thu gu h-ìosal {{PLURAL:$1|a' $1 mhùthadh|an $1 mhùthadh|na $1 mùthaidhean|am $1 mùthadh}} mu dheireadh san {{PLURAL:$2|$2 uair a thìde|$2 uair a thìde|$2 uairean a thìde|$2 uair a thìde}} mu dheireadh, mar a bha e $3, $4.",
-	"wlshowlast": "Seall na $1 uairean a thìde mu dheireadh $2 làithean mu dheireadh $3",
+	"wlshowlast": "Seall na $1 uairean a thìde mu dheireadh $2 làithean mu dheireadh",
 	"watchlist-options": "Roghainnean mo chlàir-faire",
 	"watching": "'Ga chur air a' chlàr-fhaire...",
 	"unwatching": "A' toirt far a' chlàir-fhaire...",
@@ -3221,5 +3221,18 @@
 	"mediastatistics-header-office": "Oifis",
 	"mediastatistics-header-text": "Teacsa",
 	"mediastatistics-header-executable": "Faidhlichean so-ghnìomhaichte",
-	"mediastatistics-header-archive": "Fòrmatan dùmhlaichte"
+	"mediastatistics-header-archive": "Fòrmatan dùmhlaichte",
+	"special-characters-group-latin": "Laideann",
+	"special-characters-group-latinextended": "Laideann leudaichte",
+	"special-characters-group-ipa": "IPA",
+	"special-characters-group-symbols": "Siombalan",
+	"special-characters-group-greek": "Greugais",
+	"special-characters-group-cyrillic": "Cirilis",
+	"special-characters-group-arabic": "Arabais",
+	"special-characters-group-persian": "Farsaidh",
+	"special-characters-group-hebrew": "Eabhra",
+	"special-characters-group-bangla": "Bangla",
+	"special-characters-group-telugu": "Telugu",
+	"special-characters-group-sinhala": "Sinhala",
+	"special-characters-group-gujarati": "Gujarati"
 }

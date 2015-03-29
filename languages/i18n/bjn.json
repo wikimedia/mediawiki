@@ -2635,5 +2635,19 @@
 	"api-error-unknown-warning": "Paringatan kada dipinandui: \"$1\".",
 	"api-error-unknownerror": "Kasalahan kada dipinandui: \"$1\".",
 	"api-error-uploaddisabled": "Paunggahan dinunaktipakan di wiki naya.",
-	"api-error-verification-error": "Barakas naya kira-kira rusak atawa baisi ikstinsi nang salah."
+	"api-error-verification-error": "Barakas naya kira-kira rusak atawa baisi ikstinsi nang salah.",
+	"special-characters-group-latin": "Latin",
+	"special-characters-group-ipa": "IPA",
+	"special-characters-group-symbols": "Simbul",
+	"special-characters-group-greek": "Yunani",
+	"special-characters-group-cyrillic": "Sirilik",
+	"special-characters-group-arabic": "Arab",
+	"special-characters-group-persian": "Parsia",
+	"special-characters-group-hebrew": "Ibrani",
+	"special-characters-group-bangla": "Bangla",
+	"special-characters-group-telugu": "Telugu",
+	"special-characters-group-sinhala": "Sinhala",
+	"special-characters-group-gujarati": "Gujarati",
+	"special-characters-group-thai": "Thai",
+	"special-characters-group-lao": "Lao"
 }

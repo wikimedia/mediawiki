@@ -2650,5 +2650,22 @@
 	"expand_templates_remove_comments": "Wis opmerkinge",
 	"expand_templates_remove_nowiki": "Óngerdrök <nowiki>-tags in 't resultaat",
 	"expand_templates_generate_xml": "XML-parserboum bekieke",
-	"expand_templates_preview": "Veurvertoeaning"
+	"expand_templates_preview": "Veurvertoeaning",
+	"special-characters-group-latin": "Letien",
+	"special-characters-group-latinextended": "Oetgebreid letien",
+	"special-characters-group-ipa": "IPA",
+	"special-characters-group-symbols": "Symbole",
+	"special-characters-group-greek": "Grieks",
+	"special-characters-group-cyrillic": "Cyrillisch",
+	"special-characters-group-arabic": "Arabisch",
+	"special-characters-group-arabicextended": "Oetgebreid Arabisch",
+	"special-characters-group-persian": "Perzisch",
+	"special-characters-group-hebrew": "Hebreeuws",
+	"special-characters-group-bangla": "Bengaals",
+	"special-characters-group-tamil": "Tamil",
+	"special-characters-group-telugu": "Teloegoe",
+	"special-characters-group-gujarati": "Goedzjarati",
+	"special-characters-group-devanagari": "Devanagari",
+	"special-characters-group-thai": "Thai",
+	"special-characters-group-lao": "Lao"
 }

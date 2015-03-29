@@ -2897,5 +2897,22 @@
 	"pagelang-language": "ભાષા",
 	"pagelang-select-lang": "ભાષા પસંદ કરો",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (સક્રિય)",
-	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''નિષ્ક્રિય''')"
+	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''નિષ્ક્રિય''')",
+	"special-characters-group-latin": "લેટિન",
+	"special-characters-group-latinextended": "લેટિન વિસ્તૃત",
+	"special-characters-group-ipa": "IPA",
+	"special-characters-group-symbols": "સંજ્ઞાઓ",
+	"special-characters-group-greek": "ગ્રીક",
+	"special-characters-group-cyrillic": "સીરિલિક",
+	"special-characters-group-arabic": "અરેબિક",
+	"special-characters-group-arabicextended": "અરેબિક વિસ્તૃત",
+	"special-characters-group-persian": "પર્સિયન",
+	"special-characters-group-hebrew": "હિબ્રૂ",
+	"special-characters-group-bangla": "બાંગ્લા",
+	"special-characters-group-tamil": "તામિલ",
+	"special-characters-group-telugu": "તેલુગુ",
+	"special-characters-group-sinhala": "સિંહાલા",
+	"special-characters-group-gujarati": "ગુજરાતી",
+	"special-characters-group-devanagari": "દેવનાગરી",
+	"special-characters-group-lao": "લાઓ"
 }

@@ -2615,5 +2615,21 @@
 	"expand_templates_ok": "Confirmar",
 	"expand_templates_remove_comments": "Sacar comentarios",
 	"expand_templates_generate_xml": "Amostrar l'árbol de parseyo XML",
-	"expand_templates_preview": "Previsualización"
+	"expand_templates_preview": "Previsualización",
+	"special-characters-group-latin": "Latín",
+	"special-characters-group-latinextended": "Latín enamplau",
+	"special-characters-group-ipa": "AFI(IPA)",
+	"special-characters-group-symbols": "Símbols",
+	"special-characters-group-greek": "Griego",
+	"special-characters-group-cyrillic": "Cirilico",
+	"special-characters-group-arabic": "Arabico",
+	"special-characters-group-arabicextended": "Arabigo extendiu",
+	"special-characters-group-persian": "Persa",
+	"special-characters-group-hebrew": "Hebreu",
+	"special-characters-group-bangla": "Bengalí",
+	"special-characters-group-telugu": "Telugu",
+	"special-characters-group-sinhala": "Cingalés",
+	"special-characters-group-gujarati": "Gujaratí",
+	"special-characters-group-thai": "Thai",
+	"special-characters-group-lao": "Laosiano"
 }

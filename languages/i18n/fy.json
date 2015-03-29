@@ -1850,5 +1850,6 @@
 	"pagelang-language": "Taal",
 	"mediastatistics-nfiles": "$1 ($2%)",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 byte|$1 bytes}} ($2; $3%)",
-	"mediastatistics-header-unknown": "Unbekend"
+	"mediastatistics-header-unknown": "Unbekend",
+	"special-characters-group-latin": "Latyn"
 }

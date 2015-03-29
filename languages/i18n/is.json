@@ -2908,5 +2908,21 @@
 	"json-error-state-mismatch": "Ógild eða ranglega uppsett JSON",
 	"json-error-syntax": "málfræði villa",
 	"json-error-utf8": "Gallaðir UTF-8 stafir, líklega vitlaust kótaðir",
-	"json-error-unsupported-type": "Gildi af gerð sem ekki er hægt að kóta var gefin."
+	"json-error-unsupported-type": "Gildi af gerð sem ekki er hægt að kóta var gefin.",
+	"special-characters-group-latin": "Latneskt",
+	"special-characters-group-latinextended": "Aukið latneskt",
+	"special-characters-group-ipa": "IPA",
+	"special-characters-group-symbols": "Tákn",
+	"special-characters-group-greek": "Grískt",
+	"special-characters-group-cyrillic": "Kýrillískt",
+	"special-characters-group-arabic": "Arabískt",
+	"special-characters-group-arabicextended": "Aukið arabískt",
+	"special-characters-group-persian": "Persneskt",
+	"special-characters-group-hebrew": "Hebreskt",
+	"special-characters-group-bangla": "Bengalskt",
+	"special-characters-group-tamil": "Tamílska",
+	"special-characters-group-sinhala": "Sinhalskt",
+	"special-characters-group-devanagari": "Devanagari",
+	"special-characters-group-thai": "Taílenskt",
+	"special-characters-group-lao": "Laoskt"
 }

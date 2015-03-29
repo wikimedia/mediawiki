@@ -2918,5 +2918,21 @@
 	"expand_templates_remove_nowiki": "نەتىجىسىدە <nowiki> خەتكۈچ كۆرۈنمىسۇن",
 	"expand_templates_generate_xml": "XML گىرامماتىكىسىنى كۆرسەت",
 	"expand_templates_generate_rawhtml": "ئەسلى HTML نى كۆرسەت",
-	"expand_templates_preview": "ئالدىن كۆزەت"
+	"expand_templates_preview": "ئالدىن كۆزەت",
+	"special-characters-group-latin": "لاتىنچە",
+	"special-characters-group-ipa": "IPA",
+	"special-characters-group-symbols": "بەلگىلەر",
+	"special-characters-group-greek": "گىرېكچە",
+	"special-characters-group-cyrillic": "سلاۋيانچە",
+	"special-characters-group-arabic": "ئەرەبچە",
+	"special-characters-group-persian": "پارىسچە",
+	"special-characters-group-hebrew": "ئىبرانىچە",
+	"special-characters-group-tamil": "تامىلچە",
+	"special-characters-group-telugu": "تېلۇگۇچە",
+	"special-characters-group-sinhala": "سىنگالچە",
+	"special-characters-group-gujarati": "گۇجاراتچە",
+	"special-characters-group-devanagari": "سانسكرىتچە",
+	"special-characters-group-thai": "تايلاندچە",
+	"special-characters-group-lao": "لائوسچە",
+	"special-characters-group-khmer": "كېخمېرچە"
 }

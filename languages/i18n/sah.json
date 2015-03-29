@@ -3101,5 +3101,20 @@
 	"mediastatistics-header-text": "Тиэкис",
 	"mediastatistics-header-executable": "Толоруллар",
 	"mediastatistics-header-archive": "Ыгыллыбыт формааттар",
-	"json-warn-trailing-comma": "JSON иһиттэн $1 ордук соппутуой сотуллубут"
+	"json-warn-trailing-comma": "JSON иһиттэн $1 ордук соппутуой сотуллубут",
+	"special-characters-group-latin": "Латыынныы",
+	"special-characters-group-latinextended": "Латыынныы кэтирэтиллибиттэр",
+	"special-characters-group-ipa": "МФА (IPA)",
+	"special-characters-group-symbols": "Бэлиэлэр",
+	"special-characters-group-greek": "Гириэктии",
+	"special-characters-group-cyrillic": "Кириллица",
+	"special-characters-group-arabic": "Араабтыы",
+	"special-characters-group-persian": "Персия",
+	"special-characters-group-hebrew": "Иврит",
+	"special-characters-group-bangla": "Бенгаал",
+	"special-characters-group-telugu": "Телугу",
+	"special-characters-group-sinhala": "Сингаал",
+	"special-characters-group-gujarati": "Гудьараат",
+	"special-characters-group-thai": "Таай",
+	"special-characters-group-lao": "Лаос"
 }

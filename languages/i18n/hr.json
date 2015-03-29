@@ -3076,5 +3076,21 @@
 	"expand_templates_preview": "Vidi kako će izgledati",
 	"mediastatistics": "Statistika datoteka",
 	"mediastatistics-summary": "Slijede statistike postavljenih datoteka koje pokazuju zadnju inačicu datoteke. Starije ili izbrisane inačice nisu prikazane.",
-	"headline-anchor-title": "Poveznica na ovaj odlomak"
+	"headline-anchor-title": "Poveznica na ovaj odlomak",
+	"special-characters-group-latin": "latinica",
+	"special-characters-group-latinextended": "proširena latinica",
+	"special-characters-group-ipa": "IPA",
+	"special-characters-group-symbols": "simboli",
+	"special-characters-group-greek": "grčki",
+	"special-characters-group-cyrillic": "ćirilica",
+	"special-characters-group-arabic": "arapski",
+	"special-characters-group-persian": "Perzijski",
+	"special-characters-group-hebrew": "hebrejski",
+	"special-characters-group-bangla": "Bangla znakovi",
+	"special-characters-group-telugu": "telugu",
+	"special-characters-group-sinhala": "Sinhaleški znakovi",
+	"special-characters-group-gujarati": "Gudžaratski znakovi",
+	"special-characters-group-thai": "Tajlandski (tajski) znakovi",
+	"special-characters-group-lao": "Laoski znakovi",
+	"special-characters-group-khmer": "kmerski"
 }

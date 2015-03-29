@@ -2574,5 +2574,21 @@
 	"mediastatistics-header-bitmap": "وێنەی Bitmap",
 	"mediastatistics-header-audio": "دەنگ",
 	"mediastatistics-header-video": "ڤیدیۆکان",
-	"json-error-syntax": "ھەڵەی ئیملایی"
+	"json-error-syntax": "ھەڵەی ئیملایی",
+	"special-characters-group-latin": "لاتینی",
+	"special-characters-group-latinextended": "لاتینیی پەرەپێدراو",
+	"special-characters-group-ipa": "ئای پی ئەی",
+	"special-characters-group-symbols": "ھێماکان",
+	"special-characters-group-greek": "یۆنانی",
+	"special-characters-group-cyrillic": "کیریلی",
+	"special-characters-group-arabic": "عەرەبی",
+	"special-characters-group-arabicextended": "عەرەبیی پەرەپێدراو",
+	"special-characters-group-persian": "فارسی",
+	"special-characters-group-hebrew": "عیبری",
+	"special-characters-group-bangla": "بەنگالی",
+	"special-characters-group-telugu": "تێلوگو",
+	"special-characters-group-sinhala": "سینھالا",
+	"special-characters-group-gujarati": "گوجەراتی",
+	"special-characters-group-thai": "تایلەندی",
+	"special-characters-group-khmer": "خمێری"
 }

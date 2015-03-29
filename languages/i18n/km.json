@@ -2639,5 +2639,21 @@
 	"expand_templates_output": "លទ្ធផល",
 	"expand_templates_ok": "យល់ព្រម",
 	"expand_templates_remove_comments": "ដកចេញ វិចារនានា",
-	"expand_templates_preview": "បង្ហាញការមើលជាមុន"
+	"expand_templates_preview": "បង្ហាញការមើលជាមុន",
+	"special-characters-group-latin": "អក្សរឡាតាំង",
+	"special-characters-group-latinextended": "អក្សរឡាតាំងផ្សេងទៀត",
+	"special-characters-group-ipa": "អក្ខរក្រមសំលេងអន្តរជាតិ",
+	"special-characters-group-symbols": "សញ្ញា",
+	"special-characters-group-greek": "អក្សរក្រិច",
+	"special-characters-group-cyrillic": "អក្សរស៊ីរីល",
+	"special-characters-group-arabic": "អក្សរអារ៉ាប់",
+	"special-characters-group-arabicextended": "អក្សរអារ៉ាប់បន្ថែម",
+	"special-characters-group-persian": "អក្សរពែក្ស",
+	"special-characters-group-hebrew": "អក្សរហេប៊្រូ",
+	"special-characters-group-bangla": "អក្សរបេងក្លា",
+	"special-characters-group-telugu": "អក្សរតិលគ្គ",
+	"special-characters-group-sinhala": "អក្សរស៊ិនហាឡា",
+	"special-characters-group-gujarati": "អក្សរគុចរទី",
+	"special-characters-group-thai": "អក្សរថៃ",
+	"special-characters-group-lao": "អក្សរឡាវ"
 }

@@ -3023,5 +3023,19 @@
 	"mediastatistics-header-executable": "Kan køyrast",
 	"mediastatistics-header-archive": "Komprimerte format",
 	"json-error-syntax": "Syntaksfeil",
-	"headline-anchor-title": "Lenk til denne bolken"
+	"headline-anchor-title": "Lenk til denne bolken",
+	"special-characters-group-latin": "Latin",
+	"special-characters-group-latinextended": "Utvida latin",
+	"special-characters-group-ipa": "IPA",
+	"special-characters-group-symbols": "Symbol",
+	"special-characters-group-greek": "Gresk",
+	"special-characters-group-cyrillic": "Kyrillisk",
+	"special-characters-group-arabic": "Arabisk",
+	"special-characters-group-arabicextended": "Utvida arabisk",
+	"special-characters-group-persian": "Persisk",
+	"special-characters-group-hebrew": "Hebraisk",
+	"special-characters-group-bangla": "Bengali",
+	"special-characters-group-telugu": "Telugu",
+	"special-characters-group-sinhala": "Singalesisk",
+	"special-characters-group-gujarati": "Gujarati"
 }

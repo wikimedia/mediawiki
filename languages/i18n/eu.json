@@ -2944,5 +2944,21 @@
 	"mediastatistics-table-count": "Fitxategi kopurua",
 	"mediastatistics-header-unknown": "Ezezaguna",
 	"mediastatistics-header-video": "Bideoak",
-	"json-error-syntax": "Sintaxi-errorea"
+	"json-error-syntax": "Sintaxi-errorea",
+	"special-characters-group-latin": "Latina",
+	"special-characters-group-latinextended": "Latin hedatua",
+	"special-characters-group-ipa": "NAF",
+	"special-characters-group-symbols": "Ikurrak",
+	"special-characters-group-greek": "Greziera",
+	"special-characters-group-cyrillic": "Zirilikoa",
+	"special-characters-group-arabic": "Arabiera",
+	"special-characters-group-persian": "Persiera",
+	"special-characters-group-hebrew": "Hebreera",
+	"special-characters-group-bangla": "Bangla",
+	"special-characters-group-telugu": "Telugu",
+	"special-characters-group-sinhala": "Sinhala",
+	"special-characters-group-gujarati": "Guajarati",
+	"special-characters-group-thai": "Thaiera",
+	"special-characters-group-lao": "Laosera",
+	"special-characters-group-khmer": "Khmerrera"
 }

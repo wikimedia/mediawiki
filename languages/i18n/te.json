@@ -3031,5 +3031,22 @@
 	"expand_templates_preview": "మునుజూపు",
 	"pagelang-name": "పేజీ",
 	"pagelang-language": "భాష",
-	"pagelang-use-default": "అప్రమేయ భాషను వాడు"
+	"pagelang-use-default": "అప్రమేయ భాషను వాడు",
+	"special-characters-group-latin": "లాటిన్",
+	"special-characters-group-latinextended": "విస్తరిత లాటిన్",
+	"special-characters-group-ipa": "ఐపిఎ",
+	"special-characters-group-symbols": "గుర్తులు",
+	"special-characters-group-greek": "గ్రీకు",
+	"special-characters-group-cyrillic": "సిరిలిక్",
+	"special-characters-group-arabic": "అరబిక్",
+	"special-characters-group-persian": "పర్షియన్",
+	"special-characters-group-hebrew": "హిబ్రూ",
+	"special-characters-group-bangla": "బంగ్లా",
+	"special-characters-group-tamil": "తమిళం",
+	"special-characters-group-telugu": "తెలుగు",
+	"special-characters-group-sinhala": "సింహళ",
+	"special-characters-group-gujarati": "గుజరాతీ",
+	"special-characters-group-devanagari": "దేవనాగరి",
+	"special-characters-group-thai": "థాయి",
+	"special-characters-group-lao": "లావో"
 }

@@ -2741,5 +2741,20 @@
 	"expand_templates_input": "Teksti me stampa:",
 	"expand_templates_output": "Parapamja",
 	"expand_templates_ok": "Shko",
-	"expand_templates_remove_comments": "Hiq komentet"
+	"expand_templates_remove_comments": "Hiq komentet",
+	"special-characters-group-latin": "Latinisht",
+	"special-characters-group-latinextended": "Latanisht, zgjeruar",
+	"special-characters-group-ipa": "Alfabeti Fonetik Ndërkombëtar (IPA)",
+	"special-characters-group-symbols": "Simbolet",
+	"special-characters-group-greek": "Grezisht",
+	"special-characters-group-cyrillic": "Cirilik",
+	"special-characters-group-arabic": "Arabisht",
+	"special-characters-group-persian": "Persisht",
+	"special-characters-group-hebrew": "Hebraisht",
+	"special-characters-group-bangla": "Bengalisht",
+	"special-characters-group-telugu": "Telugu",
+	"special-characters-group-sinhala": "Singhalisht",
+	"special-characters-group-gujarati": "Guxharati",
+	"special-characters-group-thai": "Thai",
+	"special-characters-group-lao": "Lao"
 }

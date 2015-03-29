@@ -2476,5 +2476,18 @@
 	"limitreport-templateargumentsize-value": "$1/$2 {{PLURAL:$2|baiti|baits|baiti}}",
 	"expand_templates_output": "Rezultāts",
 	"expand_templates_ok": "Labi",
-	"expand_templates_preview": "Pirmskats"
+	"expand_templates_preview": "Pirmskats",
+	"special-characters-group-latin": "Latīņu",
+	"special-characters-group-latinextended": "Latīņu (papildus)",
+	"special-characters-group-ipa": "IPA",
+	"special-characters-group-symbols": "Simboli",
+	"special-characters-group-greek": "Grieķu",
+	"special-characters-group-cyrillic": "Kirilica",
+	"special-characters-group-arabic": "Arābu",
+	"special-characters-group-persian": "Persiešu",
+	"special-characters-group-hebrew": "Ebreju",
+	"special-characters-group-bangla": "Bengāļu",
+	"special-characters-group-telugu": "Telugu",
+	"special-characters-group-sinhala": "Singāļu",
+	"special-characters-group-gujarati": "Gudžarati"
 }

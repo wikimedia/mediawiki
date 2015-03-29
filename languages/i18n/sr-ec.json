@@ -3306,5 +3306,22 @@
 	"mediastatistics-header-executable": "Извршне",
 	"mediastatistics-header-archive": "Компресоване",
 	"json-error-syntax": "Грешка у синтакси",
-	"headline-anchor-title": "Веза до овог одељка"
+	"headline-anchor-title": "Веза до овог одељка",
+	"special-characters-group-latin": "латиница",
+	"special-characters-group-latinextended": "проширена латиница",
+	"special-characters-group-ipa": "ИПА",
+	"special-characters-group-symbols": "симболи",
+	"special-characters-group-greek": "грчки",
+	"special-characters-group-cyrillic": "ћирилица",
+	"special-characters-group-arabic": "арапски",
+	"special-characters-group-arabicextended": "проширени арапски",
+	"special-characters-group-persian": "персијски",
+	"special-characters-group-hebrew": "хебрејски",
+	"special-characters-group-bangla": "бенгалски",
+	"special-characters-group-tamil": "тамилски",
+	"special-characters-group-telugu": "телугу",
+	"special-characters-group-sinhala": "синхалски",
+	"special-characters-group-gujarati": "гуџарати",
+	"special-characters-group-thai": "тајландски",
+	"special-characters-group-lao": "лаоски"
 }

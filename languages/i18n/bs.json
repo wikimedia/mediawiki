@@ -3076,5 +3076,20 @@
 	"mediastatistics-header-text": "Tekstualno",
 	"mediastatistics-header-executable": "Izvršni",
 	"mediastatistics-header-archive": "Kompresovani formati",
-	"json-error-syntax": "Sintaksna greška"
+	"json-error-syntax": "Sintaksna greška",
+	"special-characters-group-latin": "Latinica",
+	"special-characters-group-latinextended": "Prošireni latinski",
+	"special-characters-group-ipa": "IPA",
+	"special-characters-group-symbols": "Simboli",
+	"special-characters-group-greek": "Grčki",
+	"special-characters-group-cyrillic": "Ćirilica",
+	"special-characters-group-arabic": "Arapski",
+	"special-characters-group-persian": "Perzijski",
+	"special-characters-group-hebrew": "Hebrejski",
+	"special-characters-group-bangla": "Bangladeški",
+	"special-characters-group-telugu": "Telugu",
+	"special-characters-group-sinhala": "Sinhala",
+	"special-characters-group-gujarati": "Gujarati",
+	"special-characters-group-thai": "Tajlandski",
+	"special-characters-group-lao": "Laoški"
 }

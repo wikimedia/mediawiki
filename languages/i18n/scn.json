@@ -3157,5 +3157,20 @@
 	"json-error-utf8": "Caràttiri UTF-8 nun vàlidi, forsi cudificati mali",
 	"json-error-recursion": "U valuri di cudificari havi unu o cchiu' ssai rifirimenti ricursivi",
 	"json-error-inf-or-nan": "U valuri di cudificari havi unu o cchiu' ssai valuri NAN o INF",
-	"json-error-unsupported-type": "Fu' passatu nu valuri dûn tipu chi' nun si po' cudificari"
+	"json-error-unsupported-type": "Fu' passatu nu valuri dûn tipu chi' nun si po' cudificari",
+	"special-characters-group-latin": "Latinu",
+	"special-characters-group-latinextended": "Latinu estinnutu",
+	"special-characters-group-ipa": "IPA",
+	"special-characters-group-symbols": "Sìmmuli",
+	"special-characters-group-greek": "Grecu",
+	"special-characters-group-cyrillic": "Cirillicu",
+	"special-characters-group-arabic": "Àrabbu",
+	"special-characters-group-persian": "Persianu",
+	"special-characters-group-hebrew": "Ebbreu",
+	"special-characters-group-bangla": "Bengalisi",
+	"special-characters-group-telugu": "Telugu",
+	"special-characters-group-sinhala": "Singalisi",
+	"special-characters-group-gujarati": "Gujarati",
+	"special-characters-group-thai": "Tailannisi",
+	"special-characters-group-lao": "Lao"
 }

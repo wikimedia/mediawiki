@@ -3056,5 +3056,21 @@
 	"mediastatistics-header-text": "Text",
 	"mediastatistics-header-executable": "Spustiteľné súbory",
 	"mediastatistics-header-archive": "Komprimované formáty",
-	"headline-anchor-title": "Odkaz na túto sekciu"
+	"headline-anchor-title": "Odkaz na túto sekciu",
+	"special-characters-group-latin": "Latinka",
+	"special-characters-group-latinextended": "Latina rozšírené",
+	"special-characters-group-ipa": "IPA",
+	"special-characters-group-symbols": "Symboly",
+	"special-characters-group-greek": "Grécke",
+	"special-characters-group-cyrillic": "Azbuka",
+	"special-characters-group-arabic": "Arabské",
+	"special-characters-group-arabicextended": "Arabské rozšírené",
+	"special-characters-group-persian": "Perzský",
+	"special-characters-group-hebrew": "Hebrejské",
+	"special-characters-group-bangla": "Bengálčina",
+	"special-characters-group-telugu": "Telugčina",
+	"special-characters-group-sinhala": "sinhalčina",
+	"special-characters-group-gujarati": "gudžarátčina",
+	"special-characters-group-thai": "Thajské",
+	"special-characters-group-lao": "Laoské"
 }

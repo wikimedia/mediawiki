@@ -2657,5 +2657,20 @@
 	"duration-centuries": "{{PLURAL:$1|ọ̀rúndún|ọ̀rúndún}} $1",
 	"duration-millennia": "{{PLURAL:$1|ẹ̀rúndún|ẹ̀rúndún}} $1",
 	"rotate-comment": "Àwòrán jẹ́ mímúyípo ní {{PLURAL:$1|degree|ìyí}} $1 bíi ọwọ́ ago",
-	"expand_templates_preview": "Àkọ́yẹ̀wò"
+	"expand_templates_preview": "Àkọ́yẹ̀wò",
+	"special-characters-group-latin": "Látìnì",
+	"special-characters-group-latinextended": "Látìnì títóbi",
+	"special-characters-group-ipa": "IPA",
+	"special-characters-group-symbols": "Àwọn àmì ìdámọ̀",
+	"special-characters-group-greek": "Gíríkì",
+	"special-characters-group-cyrillic": "Kíúrílíkì",
+	"special-characters-group-arabic": "Lárúbáwá",
+	"special-characters-group-persian": "Èdè Pẹrsíà",
+	"special-characters-group-hebrew": "Hébérù",
+	"special-characters-group-bangla": "Bánglà",
+	"special-characters-group-telugu": "Tèlúgù",
+	"special-characters-group-sinhala": "Sinhala",
+	"special-characters-group-gujarati": "Gujarati",
+	"special-characters-group-thai": "Thai",
+	"special-characters-group-lao": "Lao"
 }

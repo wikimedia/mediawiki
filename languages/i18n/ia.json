@@ -3162,5 +3162,22 @@
 	"json-error-utf8": "Characteres UTF-8 mal formate, possibilemente codificate incorrectemente",
 	"json-error-recursion": "Il ha un o plure referentias recursive in le valor a codificar",
 	"json-error-inf-or-nan": "Un o plure valores NAN o INF se trova in le valor a codificar",
-	"json-error-unsupported-type": "Un valor de un typo que non pote esser codificate ha essite date"
+	"json-error-unsupported-type": "Un valor de un typo que non pote esser codificate ha essite date",
+	"special-characters-group-latin": "Latin",
+	"special-characters-group-latinextended": "Latin extendite",
+	"special-characters-group-ipa": "IPA",
+	"special-characters-group-symbols": "Symbolos",
+	"special-characters-group-greek": "Greco",
+	"special-characters-group-cyrillic": "Cyrillic",
+	"special-characters-group-arabic": "Arabe",
+	"special-characters-group-arabicextended": "Arabe extendite",
+	"special-characters-group-persian": "Persiano",
+	"special-characters-group-hebrew": "Hebreo",
+	"special-characters-group-bangla": "Bengali",
+	"special-characters-group-tamil": "Tamil",
+	"special-characters-group-sinhala": "Sinhala",
+	"special-characters-group-gujarati": "Gujarati",
+	"special-characters-group-devanagari": "Devanāgarī",
+	"special-characters-group-thai": "Thailandese",
+	"special-characters-title-minus": "signo minus"
 }

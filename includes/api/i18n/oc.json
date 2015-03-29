@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Cedric31"
+		]
+	},
+	"apihelp-main-param-action": "Quina accion cal efectuar.",
+	"apihelp-main-param-format": "Lo format de sortida.",
+	"apihelp-block-description": "Blocar un utilizaire.",
+	"apihelp-block-param-reason": "Motiu del blocatge.",
+	"apihelp-block-param-nocreate": "Empachar la creacion de compte.",
+	"apihelp-checktoken-param-token": "Geton de testar.",
+	"apihelp-createaccount-param-name": "Nom d'utilizaire.",
+	"apihelp-delete-example-simple": "Suprimir la <kbd>Pagina principala</kbd>.",
+	"apihelp-edit-param-text": "Contengut de la pagina.",
+	"apihelp-edit-param-minor": "Modificacion menora."
+}

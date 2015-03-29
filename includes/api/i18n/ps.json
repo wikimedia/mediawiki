@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ahmed-Najib-Biabani-Ibrahimkhel"
+		]
+	},
+	"apihelp-block-description": "په يو کارن بنديز لگول.",
+	"apihelp-block-param-user": "کارن-نوم، IP پته، يا IP سيمې باندې بنديز لگول.",
+	"apihelp-block-param-reason": "د بنديز سبب.",
+	"apihelp-createaccount-param-name": "کارن-نوم.",
+	"apihelp-delete-description": "يو مخ ړنگول.",
+	"apihelp-edit-param-text": "مخ مېنځپانگه.",
+	"apihelp-edit-example-edit": "يو مخ سمول.",
+	"apihelp-emailuser-description": "کارن ته برېښليک لېږل.",
+	"apihelp-expandtemplates-param-title": "د مخ سرليک.",
+	"apihelp-login-param-name": "کارن نوم.",
+	"apihelp-login-param-password": "پټنوم.",
+	"apihelp-login-param-domain": "شپول (اختياري).",
+	"apihelp-login-example-login": "ننوتل.",
+	"apihelp-move-description": "يو مخ لېږدول.",
+	"apihelp-query+search-example-simple": "د <kbd>مانا</kbd> پلټل.",
+	"apihelp-query+search-example-text": "د <kbd>مانا</kbd> لپاره متنونه پلټل.",
+	"apihelp-userrights-param-user": "کارن نوم.",
+	"apihelp-userrights-param-userid": "کارن پېژند.",
+	"api-help-param-default": "تلواليز: $1",
+	"api-help-param-default-empty": "تلواليز: <span class=\"apihelp-empty\">(تش)</span>",
+	"api-help-examples": "{{PLURAL:$1|بېلگه|بېلگې}}:",
+	"api-help-permissions": "{{PLURAL:$1|پرېښه|پرېښې}}:"
+}

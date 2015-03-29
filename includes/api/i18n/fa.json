@@ -7,7 +7,8 @@
 			"Reza1615",
 			"KhabarNegar",
 			"Sahehco",
-			"Signal89"
+			"Signal89",
+			"Mjbmr"
 		]
 	},
 	"apihelp-main-param-action": "کدام عملیات را انجام دهد.",
@@ -19,7 +20,7 @@
 	"apihelp-block-param-anononly": "فقط بستن کاربران ناشناس (مانند غیرفعال‌کردن ویرایش‌های ناشناس این آی‌پی).",
 	"apihelp-block-param-nocreate": "جلوگیری از ایجاد حساب.",
 	"apihelp-block-param-autoblock": "به طور خودکار آخرین نشانی آی‌پی استفاده‌شده، و هر نشانی پس از آن که سعی می‌کند از آن داخل شود را ببند.",
-	"apihelp-block-param-noemail": "از کاربر در برابر ارسال پست الکترونیکی از طریق ویکی جلوگیری شود. (نیازمند دسترسی <code>blockemail</code> است).",
+	"apihelp-block-param-noemail": "از کاربر در برابر ارسال ایمیل از طریق ویکی جلوگیری شود. (نیازمند دسترسی <code>blockemail</code> است).",
 	"apihelp-block-param-hidename": "نام کاربری را از سیاههٔ بستن پنهان کن. (نیازمند دسترسی <code>hideuser</code> است).",
 	"apihelp-block-param-allowusertalk": "به کاربر برای ویرایش صفحه بحث‌شان اجازه دهید (بسته به <var>[[mw:Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
 	"apihelp-block-param-reblock": "اگر کاربر پیش از این مسدود شده‌است، مسدود موجود را بازنویسی کن.",
@@ -39,7 +40,7 @@
 	"apihelp-createaccount-param-name": "نام کاربری.",
 	"apihelp-createaccount-param-password": "رمز عبور (نادیده گرفته می‌شود اگر <var>$1mailpassword</var> تنظیم شده‌باشد).",
 	"apihelp-createaccount-param-domain": "دامنه برای احراز هویت خارجی (اختیاری).",
-	"apihelp-createaccount-param-email": "رایانامه کاربر (اختیاری)",
+	"apihelp-createaccount-param-email": "آدرس ایمیل کاربر (اختیاری)",
 	"apihelp-createaccount-param-realname": "نام واقعی کاربر (اختیاری).",
 	"apihelp-createaccount-param-mailpassword": "اگر به هر مقداری تنظیم شود، یک رمز عبور تصادفی به کاربر ایمیل خواهد شد.",
 	"apihelp-createaccount-param-reason": "دلیل اختیاری برای ایجاد حساب کاربری جهت قرارگرفتن در سیاهه‌ها.",
@@ -74,7 +75,7 @@
 	"apihelp-edit-param-redirect": "اصلاح خودکار تغییرمسیرها.",
 	"apihelp-edit-example-edit": "ویرایش صفحه",
 	"apihelp-emailuser-description": "ایمیل به کاربر",
-	"apihelp-emailuser-param-target": "کاربر برای ارسال رایانامه.",
+	"apihelp-emailuser-param-target": "کاربر برای ارسال ایمیل به وی.",
 	"apihelp-emailuser-param-subject": "موضوع هدر.",
 	"apihelp-emailuser-param-text": "متن رایانه.",
 	"apihelp-emailuser-param-ccme": "ارسال یک نسخه از رایانه به شما.",

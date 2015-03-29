@@ -2927,5 +2927,17 @@
 	"mediastatistics-header-drawing": "ภาพวาดเส้น (ภาพเวกเตอร์)",
 	"mediastatistics-header-audio": "เสียง",
 	"mediastatistics-header-video": "วิดีทัศน์",
-	"headline-anchor-title": "โยงมาส่วนนี้"
+	"headline-anchor-title": "โยงมาส่วนนี้",
+	"special-characters-group-latin": "ละติน",
+	"special-characters-group-latinextended": "ละตินส่วนขยาย",
+	"special-characters-group-ipa": "สัทอักษรสากล",
+	"special-characters-group-symbols": "สัญลักษณ์",
+	"special-characters-group-greek": "กรีก",
+	"special-characters-group-cyrillic": "ซีริลลิก",
+	"special-characters-group-arabic": "อาหรับ",
+	"special-characters-group-hebrew": "ฮีบรู",
+	"special-characters-group-bangla": "บังคลา",
+	"special-characters-group-telugu": "เตลูกู",
+	"special-characters-group-sinhala": "สิงหล",
+	"special-characters-group-gujarati": "คุชราต"
 }

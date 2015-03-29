@@ -2933,5 +2933,21 @@
 	"expand_templates_remove_comments": "Одстранити коментарї",
 	"expand_templates_remove_nowiki": "Іґноровати в резултатї значкы <nowiki>",
 	"expand_templates_generate_xml": "Указати сінтаксічный стром в XML",
-	"expand_templates_preview": "Нагляд"
+	"expand_templates_preview": "Нагляд",
+	"special-characters-group-latin": "Латиньскы",
+	"special-characters-group-latinextended": "Росшырена латинка",
+	"special-characters-group-ipa": "МФА (IPA)",
+	"special-characters-group-symbols": "Сімболы",
+	"special-characters-group-greek": "Ґрецькы",
+	"special-characters-group-cyrillic": "Кірíліця",
+	"special-characters-group-arabic": "Арабськы",
+	"special-characters-group-arabicextended": "Росшырїня Аравчіны",
+	"special-characters-group-persian": "Перськы",
+	"special-characters-group-hebrew": "Гебрейскы",
+	"special-characters-group-bangla": "Бенгалскы",
+	"special-characters-group-telugu": "Телуґу",
+	"special-characters-group-sinhala": "Сінгалскы",
+	"special-characters-group-gujarati": "Ґуджараті",
+	"special-characters-group-thai": "Тайськы",
+	"special-characters-group-lao": "Лаоськы"
 }
