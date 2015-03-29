@@ -144,6 +144,7 @@ class SpecialPageFactory {
 		'Mostrevisions' => 'MostrevisionsPage',
 
 		// Page tools
+		'ChangeContentModel' => 'SpecialChangeContentModel',
 		'ComparePages' => 'SpecialComparePages',
 		'Export' => 'SpecialExport',
 		'Import' => 'SpecialImport',
