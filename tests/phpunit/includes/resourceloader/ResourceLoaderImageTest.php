@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+<path d="M15 7c-2 0-3 2-3 2s-1-2-3-2c-2.5 0-4 2-4 4 0 4 5 5 7 8 2-3 7-4 7-8 0-2-1.5-4-4-4z"/>
+</svg>
+<?php
+
+/**
+ * @group ResourceLoader
+ */
+class ResourceLoaderImageTest extends ResourceLoaderTestCase {
+
+	protected static $imagesPath = __DIR__ . '/images';
+
+	protected function getTestImage( $name ) {
+		$options = ResourceLoaderImageModuleTest::$commonImageData[$name];
+		$fileDescriptor = is_string( $options ) ? $options : $options['file'];
+		$allowedVariants = is_array( $options ) && isset( $options['variants'] ) ? $options['variants'] : array();
+		$variants = array_fill_keys( $allowedVariants, array( 'color' => 'red' ) );
+		return new ResourceLoaderImageTestable( $name, 'test', $fileDescriptor, $this::$imagesPath, $variants );
+	}
+
+	public static function provideGetPath() {
+		return array(
+			array( 'add', 'en', 'add.gif' ),
+			array( 'add', 'he', 'add.gif' ),
+			array( 'remove', 'en', 'remove.svg' ),
+			array( 'remove', 'he', 'remove.svg' ),
+			array( 'next', 'en', 'next.svg' ),
+			array( 'next', 'he', 'prev.svg' ),
+			array( 'help', 'en', 'help-ltr.svg' ),
+			array( 'help', 'ar', 'help-rtl.svg' ),
+			array( 'help', 'he', 'help-ltr.svg' ),
+			array( 'bold', 'en', 'bold-b.svg' ),
+			array( 'bold', 'de', 'bold-f.svg' ),
+			array( 'bold', 'fr', 'bold-a.svg' ),
+			array( 'bold', 'he', 'bold-a.svg' ),
+		);
+	}
+
+	/**
+	 * @covers ResourceLoaderImage::getPath
+	 * @dataProvider provideGetPath
+	 */
+	public function testGetPath( $imageName, $languageCode, $path ) {
+		static $dirMap = array(
+			'en' => 'ltr',
+			'de' => 'ltr',
+			'he' => 'rtl',
+			'ar' => 'rtl',
+		);
+		static $contexts = array();
+
+		$image = $this->getTestImage( $imageName );
+		$context = $this->getResourceLoaderContext( $languageCode, $dirMap[$languageCode] );
+
+		$this->assertEquals( $image->getPath( $context ), $this::$imagesPath . '/' . $path );
+	}
+
+	/**
+	 * @covers ResourceLoaderImage::getExtension
+	 * @covers ResourceLoaderImage::getMimeType
+	 */
+	public function testGetExtension() {
+		$image = $this->getTestImage( 'remove' );
+		$this->assertEquals( $image->getExtension(), 'svg' );
+		$this->assertEquals( $image->getExtension( 'original' ), 'svg' );
+		$this->assertEquals( $image->getExtension( 'rasterized' ), 'png' );
+		$image = $this->getTestImage( 'add' );
+		$this->assertEquals( $image->getExtension(), 'gif' );
+		$this->assertEquals( $image->getExtension( 'original' ), 'gif' );
+		$this->assertEquals( $image->getExtension( 'rasterized' ), 'gif' );
+	}
+
+	/**
+	 * @covers ResourceLoaderImage::getImageData
+	 * @covers ResourceLoaderImage::variantize
+	 * @covers ResourceLoaderImage::massageSvgPathdata
+	 */
+	public function testGetImageData() {
+		$context = $this->getResourceLoaderContext( 'en', 'ltr' );
+
+		$image = $this->getTestImage( 'next' );
+		$data = file_get_contents( $this::$imagesPath . '/next.svg' );
+		$dataConstructive = file_get_contents( $this::$imagesPath . '/next_variantize.svg' );
+		$this->assertEquals( $image->getImageData( $context, null, 'original' ), $data );
+		$this->assertEquals( $image->getImageData( $context, 'constructive', 'original' ), $dataConstructive );
+		// Stub, since we don't know if we even have a SVG handler, much less what exactly it'll output
+		$this->assertEquals( $image->getImageData( $context, null, 'rasterized' ), 'RASTERIZESTUB' );
+
+		$image = $this->getTestImage( 'add' );
+		$data = file_get_contents( $this::$imagesPath . '/add.gif' );
+		$this->assertEquals( $image->getImageData( $context, null, 'original' ), $data );
+		$this->assertEquals( $image->getImageData( $context, null, 'rasterized' ), $data );
+	}
+
+	/**
+	 * @covers ResourceLoaderImage::massageSvgPathdata
+	 */
+	public function testMassageSvgPathdata() {
+		$image = $this->getTestImage( 'next' );
+		$data = file_get_contents( $this::$imagesPath . '/next.svg' );
+		$dataMassaged = file_get_contents( $this::$imagesPath . '/next_massage.svg' );
+		$this->assertEquals( $image->massageSvgPathdata( $data ), $dataMassaged );
+	}
+}
+
+class ResourceLoaderImageTestable extends ResourceLoaderImage {
+	// Make some protected methods public
+	public function getPath( ResourceLoaderContext $context ) {
+		return parent::getPath( $context );
+	}
+	public function massageSvgPathdata( $svg ) {
+		return parent::massageSvgPathdata( $svg );
+	}
+	// Stub, since we don't know if we even have a SVG handler, much less what exactly it'll output
+	public function rasterize( $svg ) {
+		return 'RASTERIZESTUB';
+	}
+}
