@@ -1114,6 +1114,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialBookSources' => __DIR__ . '/includes/specials/SpecialBooksources.php',
 	'SpecialCachedPage' => __DIR__ . '/includes/specials/SpecialCachedPage.php',
 	'SpecialCategories' => __DIR__ . '/includes/specials/SpecialCategories.php',
+	'SpecialChangeContentModel' => __DIR__ . '/includes/specials/SpecialChangeContentModel.php',
 	'SpecialChangeEmail' => __DIR__ . '/includes/specials/SpecialChangeEmail.php',
 	'SpecialChangePassword' => __DIR__ . '/includes/specials/SpecialChangePassword.php',
 	'SpecialComparePages' => __DIR__ . '/includes/specials/SpecialComparePages.php',
