@@ -1671,6 +1671,7 @@ class EditPage {
 			}
 		}
 
+		$changingContentModel = false;
 		if ( $this->contentModel !== $this->mTitle->getContentModel() ) {
 			if ( !$wgContentHandlerUseDB ) {
 				$status->fatal( 'editpage-no-non-default-content-model' );
@@ -1679,8 +1680,12 @@ class EditPage {
 			} elseif ( !$wgUser->isAllowed( 'editcontentmodel' ) ) {
 				$status->setResult( false, self::AS_NO_CHANGE_CONTENT_MODEL );
 				return $status;
+
 			}
+			$changingContentModel = true;
+			$oldContentModel = $this->mTitle->getContentModel();
 		}
+
 
 		if ( $this->changeTags ) {
 			$changeTagsStatus = ChangeTags::canAddTagsAccompanyingChange(
@@ -1978,8 +1983,33 @@ class EditPage {
 			} );
 		}
 
+		// If the content model changed, add a log entry
+		if ( $changingContentModel ) {
+			$this->addContentModelChangeLogEntry( $wgUser, $oldContentModel, $this->contentModel, $this->summary );
+		}
+
 		return $status;
 	}
+
+	/**
+	 * @param Title $title
+	 * @param string $oldModel
+	 * @param string $newModel
+	 * @param string $reason
+	 */
+	protected function addContentModelChangeLogEntry( User $user, $oldModel, $newModel, $reason ) {
+		$log = new ManualLogEntry( 'contentmodel', 'change' );
+		$log->setPerformer( $user );
+		$log->setTarget( $this->mTitle );
+		$log->setComment( $reason );
+		$log->setParameters( array(
+			'4::oldmodel' => $oldModel,
+			'5::newmodel' => $newModel
+		) );
+		$logid = $log->insert();
+		$log->publish( $logid );
+	}
+
 
 	/**
 	 * Register the change of watch status
