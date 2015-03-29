@@ -1365,7 +1365,12 @@ class User implements IDBAccessObject {
 	 */
 	private function loadPasswords() {
 		if ( $this->getId() !== 0 && ( $this->mPassword === null || $this->mNewpassword === null ) ) {
-			$this->loadFromRow( wfGetDB( DB_MASTER )->selectRow(
+			$timestampRecent = microtime( true ) - 10; // slave lag fudge
+			$db = ( $this->getTouched() >= $timestampRecent )
+				? wfGetDB( DB_MASTER )
+				: wfGetDB( DB_SLAVE );
+
+			$this->loadFromRow( $db->selectRow(
 					'user',
 					array( 'user_password', 'user_newpassword', 'user_newpass_time', 'user_password_expires' ),
 					array( 'user_id' => $this->getId() ),
@@ -2258,6 +2263,7 @@ class User implements IDBAccessObject {
 				}
 			} );
 			$this->clearSharedCache();
+			$this->touch(); // update cache immediately for lag checks
 		}
 	}
 
