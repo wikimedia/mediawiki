@@ -366,11 +366,11 @@ class ApiQueryLogEvents extends ApiQueryBase {
 						unset( $params[$idsKey] );
 					}
 					if ( isset( $params[$ofieldKey] ) ) {
-						$params[] = $params[$ofieldKey];
+						$params[] = 'ofield=' . $params[$ofieldKey];
 						unset( $params[$ofieldKey] );
 					}
 					if ( isset( $params[$nfieldKey] ) ) {
-						$params[] = $params[$nfieldKey];
+						$params[] = 'nfield=' . $params[$nfieldKey];
 						unset( $params[$nfieldKey] );
 					}
 				}
