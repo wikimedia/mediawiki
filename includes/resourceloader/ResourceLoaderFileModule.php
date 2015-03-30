@@ -174,7 +174,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *     to $wgResourceBasePath
 	 *
 	 * Below is a description for the $options array:
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 * @par Construction options:
 	 * @code
 	 *     array(
@@ -255,14 +255,14 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				case 'skinScripts':
 				case 'skinStyles':
 					if ( !is_array( $option ) ) {
-						throw new MWException(
+						throw new InvalidArgumentException(
 							"Invalid collated file path list error. " .
 							"'$option' given, array expected."
 						);
 					}
 					foreach ( $option as $key => $value ) {
 						if ( !is_string( $key ) ) {
-							throw new MWException(
+							throw new InvalidArgumentException(
 								"Invalid collated file path list key error. " .
 								"'$key' given, string expected."
 							);
