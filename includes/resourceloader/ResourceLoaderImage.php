@@ -61,11 +61,11 @@ class ResourceLoaderImage {
 		} );
 		$extensions = array_unique( $extensions );
 		if ( count( $extensions ) !== 1 ) {
-			throw new InvalidArgumentException( "File type for different image files of '$name' not the same." );
+			throw new InvalidArgumentException( "File type for different image files of '$name' not the same" );
 		}
 		$ext = $extensions[0];
 		if ( !isset( self::$fileTypes[$ext] ) ) {
-			throw new InvalidArgumentException( "Invalid file type for image files of '$name' (valid: svg, png, gif, jpg)." );
+			throw new InvalidArgumentException( "Invalid file type for image files of '$name' (valid: svg, png, gif, jpg)" );
 		}
 		$this->extension = $ext;
 	}
@@ -184,11 +184,11 @@ class ResourceLoaderImage {
 	 * Call getExtension() or getMimeType() with the same $format argument to learn what file type the
 	 * returned data uses.
 	 *
-	 * @param ResourceLoaderContext $context Image context, or any context of $variant and $format
+	 * @param ResourceLoaderContext $context Image context, or any context if $variant and $format
 	 *     given.
-	 * @param string|null $variant Variant to get the data for. Optional, if given, overrides the data
+	 * @param string|null $variant Variant to get the data for. Optional; if given, overrides the data
 	 *     from $context.
-	 * @param string $format Format to get the data for, 'original' or 'rasterized'. Optional, if
+	 * @param string $format Format to get the data for, 'original' or 'rasterized'. Optional; if
 	 *     given, overrides the data from $context.
 	 * @return string|false Possibly binary image data, or false on failure
 	 * @throws MWException If the image file doesn't exist
@@ -219,7 +219,7 @@ class ResourceLoaderImage {
 		if ( $format === 'rasterized' ) {
 			$data = $this->rasterize( $data );
 			if ( !$data ) {
-				wfDebugLog( 'ResourceLoaderImage', __METHOD__  . " failed to rasterize for $path" );
+				wfDebugLog( 'ResourceLoaderImage', __METHOD__ . " failed to rasterize for $path" );
 			}
 		}
 
@@ -265,7 +265,7 @@ class ResourceLoaderImage {
 	}
 
 	/**
-	 * Massage the SVG image data for converters which doesn't understand some path data syntax.
+	 * Massage the SVG image data for converters which don't understand some path data syntax.
 	 *
 	 * This is necessary for rsvg and ImageMagick when compiled with rsvg support.
 	 * Upstream bug is https://bugzilla.gnome.org/show_bug.cgi?id=620923, fixed 2014-11-10, so
@@ -300,11 +300,11 @@ class ResourceLoaderImage {
 		// class, with a separate set of configuration settings.
 		//
 		// This is a distinct use case from regular SVG rasterization:
-		// * we can skip many sanity and security checks (as the images come from a trusted source,
-		//   rather than from the user)
-		// * we need to provide extra options to some converters to achieve acceptable quality for very
-		//   small images, which might cause performance issues in the general case
-		// * we need to directly pass image data to the converter instead of a file path
+		// * We can skip many sanity and security checks (as the images come from a trusted source,
+		//   rather than from the user).
+		// * We need to provide extra options to some converters to achieve acceptable quality for very
+		//   small images, which might cause performance issues in the general case.
+		// * We want to directly pass image data to the converter, rather than a file path.
 		//
 		// See https://phabricator.wikimedia.org/T76473#801446 for examples of what happens with the
 		// default settings.
