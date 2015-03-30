@@ -2824,6 +2824,7 @@
 	"special-characters-group-cyrillic": "Кириллица",
 	"special-characters-group-arabic": "Арабча",
 	"special-characters-group-arabicextended": "Кенгерген арабча",
+	"special-characters-group-persian": "Къаджарча",
 	"special-characters-group-hebrew": "Иврит",
 	"special-characters-group-bangla": "Бенгалча",
 	"special-characters-group-tamil": "Тамил",
@@ -2832,6 +2833,7 @@
 	"special-characters-group-gujarati": "Гуджарати",
 	"special-characters-group-thai": "Тай",
 	"special-characters-group-lao": "Лаос",
+	"special-characters-group-khmer": "Кхмер",
 	"special-characters-title-endash": "орта тире",
 	"special-characters-title-emdash": "узун тире",
 	"special-characters-title-minus": "минус белги"

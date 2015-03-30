@@ -1219,7 +1219,7 @@
 	"recentchanges-label-minor": "Это незначительное изменение",
 	"recentchanges-label-bot": "Эта правка сделана ботом",
 	"recentchanges-label-unpatrolled": "Эта правка ещё никем не патрулировалась",
-	"recentchanges-label-plusminus": "Размер страницы изменился на данное количество байт",
+	"recentchanges-label-plusminus": "изменение размера в байтах",
 	"recentchanges-legend-heading": "'''Легенда:&nbsp;'''",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (см. также [[Special:NewPages|список новых страниц]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
@@ -3389,6 +3389,7 @@
 	"special-characters-group-devanagari": "Деванагари",
 	"special-characters-group-thai": "Тайские",
 	"special-characters-group-lao": "Лаосские",
+	"special-characters-group-khmer": "Кхмерские",
 	"special-characters-title-endash": "среднее тире",
 	"special-characters-title-emdash": "длинное тире",
 	"special-characters-title-minus": "знак минус"

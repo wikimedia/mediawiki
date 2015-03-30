@@ -6,7 +6,8 @@
 			"Shirayuki",
 			"Umherirrender",
 			"McDutchie",
-			"Raymond"
+			"Raymond",
+			"Anomie"
 		]
 	},
 	"apihelp-main-description": "{{doc-apihelp-description|main}}",
@@ -199,7 +200,7 @@
 	"apihelp-managetags-param-reason": "{{doc-apihelp-param|managetags|reason}}",
 	"apihelp-managetags-param-ignorewarnings": "{{doc-apihelp-param|managetags|ignorewarnings}}",
 	"apihelp-managetags-example-create": "{{doc-apihelp-example|managetags}}",
-	"apihelp-managetags-example-delete": "{{doc-apihelp-example|managetags}}",
+	"apihelp-managetags-example-delete": "{{doc-apihelp-example|managetags|info={{doc-important|The text \"vandlaism\" in this message is intentionally misspelled; the example being documented by this message is the deletion of a misspelled tag.}}}}",
 	"apihelp-managetags-example-activate": "{{doc-apihelp-example|managetags}}",
 	"apihelp-managetags-example-deactivate": "{{doc-apihelp-example|managetags}}",
 	"apihelp-move-description": "{{doc-apihelp-description|move}}",

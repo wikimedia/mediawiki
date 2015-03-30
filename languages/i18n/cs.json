@@ -3283,6 +3283,7 @@
 	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''zakázaný''')",
 	"mediastatistics": "Statistika souborů",
 	"mediastatistics-summary": "Statistika o typech načtených souborů. Zahrnuje vždy jen nejnovější verzi souboru. Staré nebo smazané verze se nezapočítávají.",
+	"mediastatistics-nfiles": "$1 ($2 %)",
 	"mediastatistics-nbytes": "{{PLURAL:$1|$1 bajt|$1 bajty|$1 bajtů}} ($2; $3 %)",
 	"mediastatistics-table-mimetype": "MIME typ",
 	"mediastatistics-table-extensions": "Možné přípony",
@@ -3327,6 +3328,7 @@
 	"special-characters-group-devanagari": "Dévanágarí",
 	"special-characters-group-thai": "Thajština",
 	"special-characters-group-lao": "Laoština",
+	"special-characters-group-khmer": "Khmerština",
 	"special-characters-title-endash": "krátká pomlčka",
 	"special-characters-title-emdash": "dlouhá pomlčka",
 	"special-characters-title-minus": "znaménko minus"

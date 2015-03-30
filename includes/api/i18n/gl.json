@@ -238,7 +238,7 @@
 	"apihelp-paraminfo-param-querymodules": "Lista dos nomes de módulos de consulta (valores dos parámetros <var>prop</var>, <var>meta</var> ou <var>list</var>). Use <kbd>$1modules=query+foo</kbd> no canto de <kbd>$1querymodules=foo</kbd>.",
 	"apihelp-paraminfo-param-mainmodule": "Obter información sobre o módulo principal (nivel superior). No canto use <kbd>$1modules=main</kbd>.",
 	"apihelp-paraminfo-param-pagesetmodule": "Obter información sobre o módulo pageset (proporcionando títulos= e amigos).",
-	"apihelp-paraminfo-param-formatmodules": "Lista dos nomes de módulo de formato (valores do parámetro <var>formato</var>). No canto use <var>$1modules</kbd>.",
+	"apihelp-paraminfo-param-formatmodules": "Lista dos nomes de módulo de formato (valores do parámetro <var>formato</var>). No canto use <var>$1modules</var>.",
 	"apihelp-paraminfo-example-1": "Amosar información para <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd>, <kbd>[[Special:ApiHelp/jsonfm|format=jsonfm]]</kbd>, <kbd>[[Special:ApiHelp/query+allpages|action=query&list=allpages]]</kbd>, e <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd>.",
 	"apihelp-parse-param-title": "Título da páxina á que pertence o texto. Se non se indica, debe especificarse <var>$1contentmodel</var>, e [[API]] usarase como o título.",
 	"apihelp-parse-param-text": "Texto a analizar. Use <var>$1title</var> ou <var>$1contentmodel</var> para controlar o modelo de contido.",

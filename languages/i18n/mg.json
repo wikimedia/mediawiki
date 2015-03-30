@@ -2725,6 +2725,7 @@
 	"special-characters-group-cyrillic": "sirilika",
 	"special-characters-group-arabic": "arabo",
 	"special-characters-group-arabicextended": "arabo nitarina",
+	"special-characters-group-persian": "persàna",
 	"special-characters-group-hebrew": "ebreo",
 	"special-characters-group-bangla": "bengali",
 	"special-characters-group-tamil": "tamily",
@@ -2734,6 +2735,7 @@
 	"special-characters-group-devanagari": "devanagari",
 	"special-characters-group-thai": "tailandey",
 	"special-characters-group-lao": "laôsianina",
+	"special-characters-group-khmer": "kimera",
 	"special-characters-title-endash": "tsipika anglisy",
 	"special-characters-title-emdash": "tsipika em",
 	"special-characters-title-minus": "marika mainosy"
