@@ -216,7 +216,7 @@
 	"apihelp-managetags-param-reason": "An optional reason for creating, deleting, activating or deactivating the tag.",
 	"apihelp-managetags-param-ignorewarnings": "Whether to ignore any warnings that are issued during the operation.",
 	"apihelp-managetags-example-create": "Create a tag named <kbd>spam</kbd> with the reason <kbd>For use in edit patrolling</kbd>",
-	"apihelp-managetags-example-delete": "Delete the <kbd>vandlaism</kbd> tag with the reason <kbd>Misspelt</kbd>",
+	"apihelp-managetags-example-delete": "Delete the <kbd>vandalism</kbd> tag with the reason <kbd>Misspelt</kbd>",
 	"apihelp-managetags-example-activate": "Activate a tag named <kbd>spam</kbd> with the reason <kbd>For use in edit patrolling</kbd>",
 	"apihelp-managetags-example-deactivate": "Deactivate a tag named <kbd>spam</kbd> with the reason <kbd>No longer required</kbd>",
 
