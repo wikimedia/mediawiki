@@ -65,8 +65,8 @@ class InfoAction extends FormlessAction {
 	 */
 	public static function invalidateCache( Title $title ) {
 		global $wgMemc;
-		// Clear page info.
-		$revision = WikiPage::factory( $title )->getRevision();
+
+		$revision = Revision::newFromTitle( $title, 0, Revision::READ_LATEST );
 		if ( $revision !== null ) {
 			$key = wfMemcKey( 'infoaction', sha1( $title->getPrefixedText() ), $revision->getId() );
 			$wgMemc->delete( $key );
