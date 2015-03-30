@@ -44,7 +44,7 @@ class ResourceLoaderImage {
 	 * @param string|array $descriptor Path to image file, or array structure containing paths
 	 * @param string $basePath Directory to which paths in descriptor refer
 	 * @param array $variants
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 */
 	public function __construct( $name, $module, $descriptor, $basePath, $variants ) {
 		$this->name = $name;
@@ -61,11 +61,11 @@ class ResourceLoaderImage {
 		} );
 		$extensions = array_unique( $extensions );
 		if ( count( $extensions ) !== 1 ) {
-			throw new MWException( "File type for different image files of '$name' not the same." );
+			throw new InvalidArgumentException( "File type for different image files of '$name' not the same." );
 		}
 		$ext = $extensions[0];
 		if ( !isset( self::$fileTypes[$ext] ) ) {
-			throw new MWException( "Invalid file type for image files of '$name' (valid: svg, png, gif, jpg)." );
+			throw new InvalidArgumentException( "Invalid file type for image files of '$name' (valid: svg, png, gif, jpg)." );
 		}
 		$this->extension = $ext;
 	}

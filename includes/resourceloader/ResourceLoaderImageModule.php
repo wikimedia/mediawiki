@@ -85,7 +85,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 *         ),
 	 *     )
 	 * @endcode
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 */
 	public function __construct( $options = array(), $localBasePath = null ) {
 		$this->localBasePath = self::extractLocalBasePath( $options, $localBasePath );
@@ -103,16 +103,16 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 		$selectorWithVariant = isset( $options['selectorWithVariant'] ) && $options['selectorWithVariant'];
 
 		if ( $selectorWithoutVariant && !$selectorWithVariant ) {
-			throw new MWException( "Given 'selectorWithoutVariant' but no 'selectorWithVariant'." );
+			throw new InvalidArgumentException( "Given 'selectorWithoutVariant' but no 'selectorWithVariant'." );
 		}
 		if ( $selectorWithVariant && !$selectorWithoutVariant ) {
-			throw new MWException( "Given 'selectorWithVariant' but no 'selectorWithoutVariant'." );
+			throw new InvalidArgumentException( "Given 'selectorWithVariant' but no 'selectorWithoutVariant'." );
 		}
 		if ( $selector && $selectorWithVariant ) {
-			throw new MWException( "Incompatible 'selector' and 'selectorWithVariant'+'selectorWithoutVariant' given." );
+			throw new InvalidArgumentException( "Incompatible 'selector' and 'selectorWithVariant'+'selectorWithoutVariant' given." );
 		}
 		if ( !$prefix && !$selector && !$selectorWithVariant ) {
-			throw new MWException( "None of 'prefix', 'selector' or 'selectorWithVariant'+'selectorWithoutVariant' given." );
+			throw new InvalidArgumentException( "None of 'prefix', 'selector' or 'selectorWithVariant'+'selectorWithoutVariant' given." );
 		}
 
 		foreach ( $options as $member => $option ) {
@@ -120,7 +120,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 				case 'images':
 				case 'variants':
 					if ( !is_array( $option ) ) {
-						throw new MWException(
+						throw new InvalidArgumentException(
 							"Invalid list error. '$option' given, array expected."
 						);
 					}
