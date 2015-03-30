@@ -452,7 +452,7 @@ class User implements IDBAccessObject {
 		// The cache needs good consistency due to its high TTL, so the user
 		// should have been loaded from the master to avoid lag amplification.
 		if ( !( $this->queryFlagsUsed & self::READ_LATEST ) ) {
-			wfWarn( "Cannot save slave-loaded User object data to cache." );
+			wfWarn( "Cannot cache slave-loaded User object with ID '{$this->mId}'." );
 			return;
 		}
 
@@ -3576,22 +3576,32 @@ class User implements IDBAccessObject {
 	public function saveSettings() {
 		global $wgAuth;
 
-		$this->load();
-		$this->loadPasswords();
 		if ( wfReadOnly() ) {
 			return; // @TODO: caller should deal with this instead!
 		}
+
+		$this->load();
+		$this->loadPasswords();
 		if ( 0 == $this->mId ) {
-			return;
+			return; // anon
 		}
 
 		// This method is for updating existing users, so the user should
 		// have been loaded from the master to begin with to avoid problems.
 		if ( !( $this->queryFlagsUsed & self::READ_LATEST ) ) {
-			wfWarn( "Attempting to save slave-loaded User object data." );
+			wfWarn( "Attempting to save slave-loaded User object with ID '{$this->mId}'." );
 		}
 
-		$this->mTouched = self::newTouchedTimestamp();
+		// Get a new user_touched that is higher than the old one.
+		// This will be used for a CAS check as a last-resort safety
+		// check against race conditions and slave lag.
+		$oldTouched = $this->mTouched;
+		$newTouched = self::newTouchedTimestamp();
+		if ( $newTouched === $oldTouched ) {
+			$newTouched = wfTimestamp( TS_MW, wfTimestamp( TS_UNIX, $newTouched ) + 1 );
+		}
+		$this->mTouched = $newTouched;
+
 		if ( !$wgAuth->allowSetLocalPassword() ) {
 			$this->mPassword = self::getPasswordFactory()->newFromCiphertext( null );
 		}
@@ -3612,9 +3622,21 @@ class User implements IDBAccessObject {
 				'user_email_token_expires' => $dbw->timestampOrNull( $this->mEmailTokenExpires ),
 				'user_password_expires' => $dbw->timestampOrNull( $this->mPasswordExpires ),
 			), array( /* WHERE */
-				'user_id' => $this->mId
+				'user_id' => $this->mId,
+				'user_touched' => $oldTouched // CAS-style check
 			), __METHOD__
 		);
+
+		if ( !$dbw->affectedRows() ) {
+			// User was changed in the meantime or loaded with stale data
+			MWExceptionHandler::logException( new Exception(
+				"CAS update failed on user_touched for user ID '{$this->mId}'."
+			) );
+			// Maybe the problem was a missed cache update; clear it to be safe
+			$this->clearSharedCache();
+
+			return;
+		}
 
 		$this->saveOptions();
 
