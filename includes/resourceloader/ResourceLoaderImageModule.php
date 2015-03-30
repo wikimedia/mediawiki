@@ -273,9 +273,6 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 		}
 
 		$style = implode( "\n", $rules );
-		if ( $this->getFlip( $context ) ) {
-			$style = CSSJanus::transform( $style, true, false );
-		}
 		return array( 'all' => $style );
 	}
 
