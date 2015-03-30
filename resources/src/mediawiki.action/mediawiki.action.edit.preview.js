@@ -222,6 +222,7 @@
 						)
 					);
 			}
+			mw.hook( 'wikipage.editform' ).fire( $editform );
 		} );
 		request.always( function () {
 			$spinner.remove();
