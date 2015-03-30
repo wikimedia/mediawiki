@@ -4121,7 +4121,7 @@ HTML
 
 	/**
 	 * Returns an array of html code of the following buttons:
-	 * save, diff, preview and live
+	 * save, diff and preview
 	 *
 	 * @param int $tabindex Current tabindex
 	 *
@@ -4155,7 +4155,6 @@ HTML
 		] + Linker::tooltipAndAccesskeyAttribs( 'preview' );
 		$buttons['preview'] = Html::submitButton( $this->context->msg( 'showpreview' )->text(),
 			$attribs );
-		$buttons['live'] = '';
 
 		$attribs = [
 			'id' => 'wpDiff',
