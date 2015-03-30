@@ -321,7 +321,8 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		// Add a standard footer and trim up trailing newlines
 		$text = rtrim( $text ) . "\n\n-- \n";
 		$text .= $context->msg( 'emailuserfooter',
-			$from->name, $to->name )->inContentLanguage()->text();
+			$from->name, $to->name,
+			$context->msg( 'emailuser' ) )->inContentLanguage()->text();
 
 		$error = '';
 		if ( !Hooks::run( 'EmailUser', array( &$to, &$from, &$subject, &$text, &$error ) ) ) {
