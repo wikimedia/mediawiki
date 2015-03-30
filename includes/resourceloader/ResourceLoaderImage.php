@@ -191,6 +191,7 @@ class ResourceLoaderImage {
 	 * @param string $format Format to get the data for, 'original' or 'rasterized'. Optional, if
 	 *     given, overrides the data from $context.
 	 * @return string|false Possibly binary image data, or false on failure
+	 * @throws MWException If the image file doesn't exist
 	 */
 	public function getImageData( ResourceLoaderContext $context, $variant = false, $format = false ) {
 		if ( $variant === false ) {
@@ -201,6 +202,10 @@ class ResourceLoaderImage {
 		}
 
 		$path = $this->getPath( $context );
+		if ( !file_exists( $path ) ) {
+			throw new MWException( "File '$path' does not exist" );
+		}
+
 		if ( $this->getExtension() !== 'svg' ) {
 			return file_get_contents( $path );
 		}
