@@ -29,17 +29,6 @@
  * @ingroup SpecialPage
  */
 class SpecialLog extends SpecialPage {
-	/**
-	 * List log type for which the target is a user
-	 * Thus if the given target is in NS_MAIN we can alter it to be an NS_USER
-	 * Title user instead.
-	 */
-	private $typeOnUser = array(
-		'block',
-		'newusers',
-		'rights',
-	);
-
 	public function __construct() {
 		parent::__construct( 'Log' );
 	}
@@ -106,8 +95,7 @@ class SpecialLog extends SpecialPage {
 		# Some log types are only for a 'User:' title but we might have been given
 		# only the username instead of the full title 'User:username'. This part try
 		# to lookup for a user by that name and eventually fix user input. See bug 1697.
-		Hooks::run( 'GetLogTypesOnUser', array( &$this->typeOnUser ) );
-		if ( in_array( $opts->getValue( 'type' ), $this->typeOnUser ) ) {
+		if ( in_array( $opts->getValue( 'type' ), self::getLogTypesOnUser() ) ) {
 			# ok we have a type of log which expect a user title.
 			$target = Title::newFromText( $opts->getValue( 'page' ) );
 			if ( $target && $target->getNamespace() === NS_MAIN ) {
@@ -119,6 +107,29 @@ class SpecialLog extends SpecialPage {
 		}
 
 		$this->show( $opts, $qc );
+	}
+
+	/**
+	 * List log type for which the target is a user
+	 * Thus if the given target is in NS_MAIN we can alter it to be an NS_USER
+	 * Title user instead.
+	 *
+	 * @since 1.25
+	 * @return array
+	 */
+	public static function getLogTypesOnUser() {
+		static $types = null;
+		if ( $types !== null ) {
+			return $types;
+		}
+		$types = array(
+			'block',
+			'newusers',
+			'rights',
+		);
+
+		Hooks::run( 'GetLogTypesOnUser', array( &$types ) );
+		return $types;
 	}
 
 	/**
