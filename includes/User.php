@@ -3038,8 +3038,12 @@ class User implements IDBAccessObject {
 	 * @return array Names of the groups the user has belonged to.
 	 */
 	public function getFormerGroups() {
+		$this->load();
+
 		if ( is_null( $this->mFormerGroups ) ) {
-			$dbr = wfGetDB( DB_MASTER );
+			$dbr = ( $this->queryFlagsUsed & self::READ_LATEST )
+				? wfGetDB( DB_MASTER )
+				: wfGetDB( DB_SLAVE );
 			$res = $dbr->select( 'user_former_groups',
 				array( 'ufg_group' ),
 				array( 'ufg_user' => $this->mId ),
@@ -3049,6 +3053,7 @@ class User implements IDBAccessObject {
 				$this->mFormerGroups[] = $row->ufg_group;
 			}
 		}
+
 		return $this->mFormerGroups;
 	}
 
