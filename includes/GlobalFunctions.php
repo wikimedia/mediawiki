@@ -166,12 +166,8 @@ if ( !function_exists( 'hash_equals' ) ) {
 /**
  * Load an extension
  *
- * This is the closest equivalent to:
- *   require_once "$IP/extensions/$name/$name.php";
- * as it will process and load the extension immediately.
- *
- * However, batch loading with wfLoadExtensions will
- * be more performant.
+ * This queues an extension to be loaded through
+ * the ExtensionRegistry system.
  *
  * @param string $name Name of the extension to load
  * @param string|null $path Absolute path of where to find the extension.json file
@@ -181,7 +177,7 @@ function wfLoadExtension( $name, $path = null ) {
 		global $IP;
 		$path = "$IP/extensions/$name/extension.json";
 	}
-	ExtensionRegistry::getInstance()->load( $path );
+	ExtensionRegistry::getInstance()->queue( $path );
 }
 
 /**
@@ -202,8 +198,6 @@ function wfLoadExtensions( array $exts ) {
 	foreach ( $exts as $ext ) {
 		$registry->queue( "$IP/extensions/$ext/extension.json" );
 	}
-
-	$registry->loadFromQueue();
 }
 
 /**
@@ -218,7 +212,7 @@ function wfLoadSkin( $name, $path = null ) {
 		global $IP;
 		$path = "$IP/skins/$name/skin.json";
 	}
-	ExtensionRegistry::getInstance()->load( $path );
+	ExtensionRegistry::getInstance()->queue( $path );
 }
 
 /**
@@ -233,8 +227,6 @@ function wfLoadSkins( array $skins ) {
 	foreach ( $skins as $skin ) {
 		$registry->queue( "$IP/skins/$skin/skin.json" );
 	}
-
-	$registry->loadFromQueue();
 }
 
 /**
