@@ -12,6 +12,7 @@ jQuery( function ( $ ) {
 	editBox = document.getElementById( 'wpTextbox1' );
 	scrollTop = document.getElementById( 'wpScrolltop' );
 	$editForm = $( '#editform' );
+	mw.hook( 'wikipage.editform' ).fire( $editForm );
 	if ( $editForm.length && editBox && scrollTop ) {
 		if ( scrollTop.value ) {
 			editBox.scrollTop = scrollTop.value;

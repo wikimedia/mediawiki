@@ -1,21 +1,21 @@
-jQuery( document ).ready( function ( $ ) {
+( function ( mw, $ ) {
 	var collapsibleLists, i, handleOne;
 
 	// Collapsible lists of categories and templates
 	collapsibleLists = [
 		{
-			$list: $( '.templatesUsed ul' ),
-			$toggler: $( '.mw-templatesUsedExplanation' ),
+			listSel: '.templatesUsed ul',
+			togglerSel: '.mw-templatesUsedExplanation',
 			cookieName: 'templates-used-list'
 		},
 		{
-			$list: $( '.hiddencats ul' ),
-			$toggler: $( '.mw-hiddenCategoriesExplanation' ),
+			listSel: '.hiddencats ul',
+			togglerSel: '.mw-hiddenCategoriesExplanation',
 			cookieName: 'hidden-categories-list'
 		},
 		{
-			$list: $( '.preview-limit-report-wrapper' ),
-			$toggler: $( '.mw-limitReportExplanation' ),
+			listSel: '.preview-limit-report-wrapper',
+			togglerSel: '.mw-limitReportExplanation',
 			cookieName: 'preview-limit-report'
 		}
 	];
@@ -47,8 +47,15 @@ jQuery( document ).ready( function ( $ ) {
 		} );
 	};
 
-	for ( i = 0; i < collapsibleLists.length; i++ ) {
-		// Pass to a function for iteration-local variables
-		handleOne( collapsibleLists[i].$list, collapsibleLists[i].$toggler, collapsibleLists[i].cookieName );
-	}
-} );
+	mw.hook( 'wikipage.editform' ).add( function( $editForm ) {
+		var i;
+		for ( i = 0; i < collapsibleLists.length; i++ ) {
+			// Pass to a function for iteration-local variables
+			handleOne(
+				$editForm.find( collapsibleLists[i].listSel ),
+				$editForm.find( collapsibleLists[i].togglerSel ),
+				collapsibleLists[i].cookieName
+			);
+		}
+	} );
+}( mediaWiki, jQuery ) ); 
