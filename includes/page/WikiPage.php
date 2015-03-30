@@ -367,15 +367,6 @@ class WikiPage implements Page, IDBAccessObject {
 			$data = $this->pageDataFromTitle( wfGetDB( DB_MASTER ), $this->mTitle );
 		} elseif ( $from === self::READ_NORMAL ) {
 			$data = $this->pageDataFromTitle( wfGetDB( DB_SLAVE ), $this->mTitle );
-			// Use a "last rev inserted" timestamp key to diminish the issue of slave lag.
-			// Note that DB also stores the master position in the session and checks it.
-			$touched = $this->getCachedLastEditTime();
-			if ( $touched ) { // key set
-				if ( !$data || $touched > wfTimestamp( TS_MW, $data->page_touched ) ) {
-					$from = self::READ_LATEST;
-					$data = $this->pageDataFromTitle( wfGetDB( DB_MASTER ), $this->mTitle );
-				}
-			}
 		} else {
 			// No idea from where the caller got this data, assume slave database.
 			$data = $from;
@@ -808,29 +799,6 @@ class WikiPage implements Page, IDBAccessObject {
 		} else {
 			return false;
 		}
-	}
-
-	/**
-	 * Get the cached timestamp for the last time the page changed.
-	 * This is only used to help handle slave lag by comparing to page_touched.
-	 * @return string MW timestamp
-	 */
-	protected function getCachedLastEditTime() {
-		global $wgMemc;
-		$key = wfMemcKey( 'page-lastedit', md5( $this->mTitle->getPrefixedDBkey() ) );
-		return $wgMemc->get( $key );
-	}
-
-	/**
-	 * Set the cached timestamp for the last time the page changed.
-	 * This is only used to help handle slave lag by comparing to page_touched.
-	 * @param string $timestamp
-	 * @return void
-	 */
-	public function setCachedLastEditTime( $timestamp ) {
-		global $wgMemc;
-		$key = wfMemcKey( 'page-lastedit', md5( $this->mTitle->getPrefixedDBkey() ) );
-		$wgMemc->set( $key, wfTimestamp( TS_MW, $timestamp ), 60 * 15 );
 	}
 
 	/**
@@ -1304,7 +1272,6 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $result ) {
 			$this->updateRedirectOn( $dbw, $rt, $lastRevIsRedirect );
 			$this->setLastEdit( $revision );
-			$this->setCachedLastEditTime( $now );
 			$this->mLatest = $revision->getId();
 			$this->mIsRedirect = (bool)$rt;
 			// Update the LinkCache.
