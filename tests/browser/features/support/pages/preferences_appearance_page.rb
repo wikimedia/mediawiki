@@ -27,7 +27,7 @@ class PreferencesAppearancePage
   radio_button(:monobook, id: 'mw-input-wpskin-monobook')
   radio_button(:no_preference_radio, id: 'mw-input-wpdate-default')
   text_field(:other_offset, id: 'mw-input-wptimecorrection-other')
-  a(:restore_default_link, href: /reset/)
+  a(:restore_default_link, id: 'mw-prefs-restoreprefs')
   select_list(:size_select, id: 'mw-input-wpimagesize')
   select_list(:threshold_select, id: 'mw-input-wpstubthreshold')
   select_list(:time_offset_select, id: 'mw-input-wptimecorrection')
