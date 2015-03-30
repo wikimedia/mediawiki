@@ -1061,6 +1061,21 @@ etc.
 'DatabaseOraclePostInit': Called after initialising an Oracle database
 &$db: the DatabaseOracle object
 
+'DeletedContribsPager::reallyDoQuery': Called before really executing the query for Special:DeletedContributions
+Similar to ContribsPager::reallyDoQuery
+&$data: an array of results of all contribs queries
+$pager: The DeletedContribsPager object hooked into
+$offset: Index offset, inclusive
+$limit: Exact query limit
+$descending: Query direction, false for ascending, true for descending
+
+'DeletedContributionsLineEnding': Called before a DeletedContributions HTML line is finished.
+Similar to ContributionsLineEnding
+$page: SpecialPage object for DeletedContributions
+&$ret: the HTML line
+$row: the DB row for this line
+&$classes: the classes to add to the surrounding <li>
+
 'NewDifferenceEngine': Called when a new DifferenceEngine object is made
 $title: the diff page title (nullable)
 &$oldId: the actual old Id to use in the diff
