@@ -2119,17 +2119,13 @@ class User implements IDBAccessObject {
 	 * @see getNewtalk()
 	 * @param string $field 'user_ip' for anonymous users, 'user_id' otherwise
 	 * @param string|int $id User's IP address for anonymous users, User ID otherwise
-	 * @param bool $fromMaster True to fetch from the master, false for a slave
 	 * @return bool True if the user has new messages
 	 */
-	protected function checkNewtalk( $field, $id, $fromMaster = false ) {
-		if ( $fromMaster ) {
-			$db = wfGetDB( DB_MASTER );
-		} else {
-			$db = wfGetDB( DB_SLAVE );
-		}
-		$ok = $db->selectField( 'user_newtalk', $field,
-			array( $field => $id ), __METHOD__ );
+	protected function checkNewtalk( $field, $id ) {
+		$dbr = wfGetDB( DB_SLAVE );
+
+		$ok = $dbr->selectField( 'user_newtalk', $field, array( $field => $id ), __METHOD__ );
+
 		return $ok !== false;
 	}
 
