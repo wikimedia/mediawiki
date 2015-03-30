@@ -2261,8 +2261,7 @@ class User implements IDBAccessObject {
 	 * @return bool
 	 */
 	public function validateCache( $timestamp ) {
-		$this->load();
-		return ( $timestamp >= $this->mTouched );
+		return ( $timestamp >= $this->getTouched() );
 	}
 
 	/**
