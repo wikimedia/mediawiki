@@ -765,7 +765,7 @@ class LoginForm extends SpecialPage {
 				// As a side-effect, we can authenticate the user's e-mail ad-
 				// dress if it's not already done, since the temporary password
 				// was sent via e-mail.
-				if ( !$u->isEmailConfirmed() ) {
+				if ( !$u->isEmailConfirmed() && !wfReadOnly() ) {
 					$u->confirmEmail();
 					$u->saveSettings();
 				}

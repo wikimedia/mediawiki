@@ -533,7 +533,7 @@ class SpecialSearch extends SpecialPage {
 				$request->getVal( 'nsRemember' ),
 				'searchnamespace',
 				$request
-			)
+			) && !wfReadOnly()
 		) {
 			// Reset namespace preferences: namespaces are not searched
 			// when they're not mentioned in the URL parameters.
