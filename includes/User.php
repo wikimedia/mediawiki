@@ -2706,7 +2706,9 @@ class User implements IDBAccessObject {
 		$token = $this->getOption( $oname );
 		if ( !$token ) {
 			$token = $this->resetTokenFromOption( $oname );
-			$this->saveSettings();
+			if ( !wfReadOnly() ) {
+				$this->saveSettings();
+			}
 		}
 		return $token;
 	}
@@ -3500,7 +3502,9 @@ class User implements IDBAccessObject {
 			// Simply by setting every cell in the user_token column to NULL and letting them be
 			// regenerated as users log back into the wiki.
 			$this->setToken();
-			$this->saveSettings();
+			if ( !wfReadOnly() ) {
+				$this->saveSettings();
+			}
 		}
 		$session = array(
 			'wsUserID' => $this->mId,
@@ -3581,11 +3585,12 @@ class User implements IDBAccessObject {
 	public function saveSettings() {
 		global $wgAuth;
 
-		$this->load();
-		$this->loadPasswords();
 		if ( wfReadOnly() ) {
 			return; // @TODO: caller should deal with this instead!
 		}
+
+		$this->load();
+		$this->loadPasswords();
 		if ( 0 == $this->mId ) {
 			return;
 		}
@@ -3939,7 +3944,7 @@ class User implements IDBAccessObject {
 		}
 
 		$passwordFactory = self::getPasswordFactory();
-		if ( $passwordFactory->needsUpdate( $this->mPassword ) ) {
+		if ( $passwordFactory->needsUpdate( $this->mPassword ) && !wfReadOnly() ) {
 			$this->mPassword = $passwordFactory->newFromPlaintext( $password );
 			$this->saveSettings();
 		}
