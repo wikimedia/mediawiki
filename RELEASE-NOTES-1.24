@@ -3,10 +3,21 @@ turn it off. MediaWiki will no longer work with it enabled.
 
 == MediaWiki 1.24.2 ==
 
-This is a not yet released maintenance release of the MediaWiki 1.24 branch.
+This is a security and maintenance release of the MediaWiki 1.24 branch.
 
 == Changes since 1.24.1 ==
 
+* (T85848, T71210) SECURITY: Don't parse XMP blocks that contain XML entities,
+  to prevent various DoS attacks.
+* (T85848) SECURITY: Don't allow directly calling Xml::isWellFormed, to reduce
+  likelihood of DoS.
+* (T88310) SECURITY: Always expand xml entities when checking SVG's.
+* (T73394) SECURITY: Escape > in Html::expandAttributes to prevent XSS.
+* (T85855) SECURITY: Don't execute another user's CSS or JS on preview.
+* (T64685) SECURITY: Allow setting maximal password length to prevent DoS when
+  using PBKDF2.
+* (T85349, T85850, T86711) SECURITY: Multiple issues fixed in SVG filtering to
+  prevent XSS and protect viewer's privacy.
 * Fix case of SpecialAllPages/SpecialAllMessages in SpecialPageFactory to fix
   loading these special pages when $wgAutoloadAttemptLowercase is false.
 * (bug T70087) Fix Special:ActiveUsers page for installations using
