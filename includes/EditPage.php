@@ -3881,7 +3881,7 @@ HTML
 
 	/**
 	 * Returns an array of html code of the following buttons:
-	 * save, diff, preview and live
+	 * save, diff and preview
 	 *
 	 * @param int $tabindex Current tabindex
 	 *
@@ -3898,7 +3898,7 @@ HTML
 		$buttons['save'] = Html::submitButton( wfMessage( 'savearticle' )->text(),
 			$attribs, array( 'mw-ui-constructive' ) );
 
-		++$tabindex; // use the same for preview and live preview
+		++$tabindex;
 		$attribs = array(
 			'id' => 'wpPreview',
 			'name' => 'wpPreview',
@@ -3906,7 +3906,6 @@ HTML
 		) + Linker::tooltipAndAccesskeyAttribs( 'preview' );
 		$buttons['preview'] = Html::submitButton( wfMessage( 'showpreview' )->text(),
 			$attribs );
-		$buttons['live'] = '';
 
 		$attribs = array(
 			'id' => 'wpDiff',
