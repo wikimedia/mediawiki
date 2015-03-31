@@ -1475,6 +1475,7 @@
 	"randomincategory-invalidcategory": "„$1“ није ваљано име категорије",
 	"randomincategory-nopages": "Нема страница у категорији [[:Category:$1|$1]].",
 	"randomincategory-category": "Категорија:",
+	"randomincategory-legend": "Случајна страница у категорији",
 	"randomredirect": "Случајно преусмерење",
 	"randomredirect-nopages": "Нема преусмерења у именском простору „$1“.",
 	"statistics": "Статистике",

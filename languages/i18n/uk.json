@@ -191,7 +191,7 @@
 	"article": "Стаття",
 	"newwindow": "(відкривається в новому вікні)",
 	"cancel": "Скасувати",
-	"moredotdotdot": "Детальніше…",
+	"moredotdotdot": "Більше…",
 	"morenotlisted": "Цей список неповний.",
 	"mypage": "Сторінка",
 	"mytalk": "Обговорення",
@@ -3451,6 +3451,7 @@
 	"special-characters-group-devanagari": "Деванагарі",
 	"special-characters-group-thai": "Тайські",
 	"special-characters-group-lao": "Лаоські",
+	"special-characters-group-khmer": "Кхмерські",
 	"special-characters-title-endash": "коротке тире",
 	"special-characters-title-emdash": "довге тире",
 	"special-characters-title-minus": "мінус"

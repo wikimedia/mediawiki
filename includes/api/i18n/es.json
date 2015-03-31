@@ -103,6 +103,7 @@
 	"apihelp-logout-description": "Salir y vaciar los datos de la sesión.",
 	"apihelp-logout-example-logout": "Cerrar la sesión del usuario actual",
 	"apihelp-managetags-param-reason": "Un motivo opcional para crear, eliminar, activar o desactivar la etiqueta.",
+	"apihelp-managetags-example-delete": "Eliminar la etiqueta <kbd>vandlaismo</kbd> con el motivo <kbd>mal deletreado</kbd>",
 	"apihelp-move-description": "Mover una página.",
 	"apihelp-move-param-reason": "Motivo del cambio de nombre.",
 	"apihelp-move-param-movetalk": "Renombrar la página de discusión si existe.",

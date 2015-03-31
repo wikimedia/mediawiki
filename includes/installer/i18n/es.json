@@ -25,7 +25,8 @@
 			"Miguel2706",
 			"Macofe",
 			"AVIADOR",
-			"FuzzyDice"
+			"FuzzyDice",
+			"Legoktm"
 		]
 	},
 	"config-desc": "El instalador de MediaWiki",
@@ -71,7 +72,6 @@
 	"config-env-bad": "El entorno ha sido comprobado.\nNo puedes instalar MediaWiki.",
 	"config-env-php": "PHP $1 está instalado.",
 	"config-env-hhvm": "HHVM $1 está instalado.",
-	"config-unicode-using-utf8": "Usando utf8_normalize.so de Brion Vibber para la normalización Unicode.",
 	"config-unicode-using-intl": "Usando la [http://pecl.php.net/intl extensión intl PECL] para la normalización Unicode.",
 	"config-unicode-pure-php-warning": "<strong>Advertencia:</strong> la [http://pecl.php.net/intl extensión intl] no está disponible para efectuar la normalización Unicode. Se utilizará la implementación más lenta en PHP puro.\nSi tu web tiene mucho tráfico, te recomendamos leer acerca de la [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations normalización Unicode].",
 	"config-unicode-update-warning": "<strong>Warning:</strong> la versión instalada del contenedor de normalización Unicode usa una versión antigua de la biblioteca del [http://site.icu-project.org/ proyecto ICU].\nDeberás [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations actualizar] si realmente deseas usar Unicode.",
@@ -347,6 +347,6 @@
 	"config-help-tooltip": "haz clic para ampliar",
 	"config-nofile": "El archivo \"$1\" no se pudo encontrar. ¿Se ha eliminado?",
 	"config-extension-link": "¿Sabías que tu wiki admite [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensiones]?\n\nPuedes navegar por las [//www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category categorías] o visitar el [//www.mediawiki.org/wiki/Extension_Matrix centro de extensiones] para ver una lista completa.",
-	"mainpagetext": "<strong>MediaWiki se ha instalado con éxito.<strong>",
+	"mainpagetext": "<strong>MediaWiki se ha instalado con éxito.</strong>",
 	"mainpagedocfooter": "Consulta la [//meta.wikimedia.org/wiki/Help:Contents/es guía del usuario] para obtener información sobre el uso del software wiki.\n\n== Primeros pasos ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Lista de ajustes de configuración]\n* [//www.mediawiki.org/wiki/Manual:FAQ/es Preguntas frecuentes sobre MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de correo de anuncios de publicación de MediaWiki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Traducir MediaWiki en tu idioma]"
 }
