@@ -771,7 +771,7 @@
 	"viewpagelogs": "查看该页面的日志",
 	"nohistory": "本页面没有编辑历史记录。",
 	"currentrev": "最后版本",
-	"currentrev-asof": "$1的最后版本",
+	"currentrev-asof": "$1的最新版本",
 	"revisionasof": "$1的版本",
 	"revision-info": "{{GENDER:$6|$2}}$1的版本$7",
 	"previousrevision": "←上一版本",

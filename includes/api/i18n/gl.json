@@ -566,6 +566,7 @@
 	"apihelp-query+filearchive-param-sha1base36": "Función hash SHA1 da imaxe en base 36 (usado en MediaWiki).",
 	"apihelp-query+filearchive-example-simple": "Mostrar unha lista de tódolos fichieiros eliminados.",
 	"apihelp-query+filerepoinfo-description": "Devolver a meta información sobre os repositorios de imaxes configurados na wiki.",
+	"apihelp-query+filerepoinfo-param-prop": "Que propiedades do repositorio mostrar (pode haber máis dispoñible nalgunhas wikis):\n;apiurl:URL ó API do repositorio - útil para obter información das imaxes no host.\n;name:A clave do repositorio - usada p. ex. nas variables de retorno de <var>[[mw:Manual:$wgForeignFileRepos|$wgForeignFileRepos]]</var> e [[Special:ApiHelp/query+imageinfo|imageinfo]]\n;displayname:O nome lexible do wiki repositorio.\n;rooturl:URL raíz dos camiños de imaxe.\n;local:Se o repositorio é o repositorio local ou non.",
 	"apihelp-query+filerepoinfo-example-simple": "Obter infomación sobre os repositorios de ficheiros",
 	"apihelp-query+fileusage-description": "Atopar tódalas páxinas que usan os ficheiros dados.",
 	"apihelp-query+fileusage-param-prop": "Que propiedades obter:\n;pageid:ID de cada páxina.\n;título:Título de cada páxina.\n;redirect:Marca de se a páxina é unha redirección.",

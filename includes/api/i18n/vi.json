@@ -114,6 +114,7 @@
 	"apihelp-query-param-list": "Các danh sách để lấy.",
 	"apihelp-query-param-meta": "Siêu dữ liệu để lấy.",
 	"apihelp-query+allcategories-param-dir": "Hướng xếp loại.",
+	"apihelp-rollback-description": "Hoàn tác chỉnh sửa cuối cùng của trang này.\n\nNếu người dùng cuối cùng đã cỉnh sửa trang này nhiều lần, tất cả chúng sẽ được hoàn tác lại như ban đầu.",
 	"apihelp-format-example-generic": "Định dạng kết quả truy vấn dưới dạng $1",
 	"apihelp-dbg-description": "Cho ra dữ liệu dưới dạng var_export() của PHP.",
 	"apihelp-dbgfm-description": "Cho ra dữ liệu dưới dạng var_export() của PHP (định dạng bằng HTML).",

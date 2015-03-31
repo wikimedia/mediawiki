@@ -2982,6 +2982,7 @@
 	"tags-create-reason": "Прычына:",
 	"tags-create-submit": "Стварыць",
 	"tags-create-no-name": "Вы мусіце пазначыць назву меткі.",
+	"tags-create-invalid-chars": "Назвы метак ня мусяць утрымліваць коскі (<code>,</code>) або сымбалі касых рысаў (<code>/</code>).",
 	"comparepages": "Параўнаньне старонак",
 	"compare-page1": "Старонка 1",
 	"compare-page2": "Старонка 2",
