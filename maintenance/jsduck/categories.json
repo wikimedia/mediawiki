@@ -22,6 +22,9 @@
 				"classes": [
 					"mw.Title",
 					"mw.Uri",
+					"mw.messagePoster.factory",
+					"mw.messagePoster.MessagePoster",
+					"mw.messagePoster.WikitextMessagePoster",
 					"mw.notification",
 					"mw.Notification_",
 					"mw.user",

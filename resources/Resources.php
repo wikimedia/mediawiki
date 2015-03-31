@@ -821,6 +821,7 @@ return array(
 			'mediawiki.Title',
 			'user.tokens',
 		),
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.api.login' => array(
 		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.login.js',
@@ -875,7 +876,7 @@ return array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.feedback.js',
 		'styles' => 'resources/src/mediawiki/mediawiki.feedback.css',
 		'dependencies' => array(
-			'mediawiki.api.edit',
+			'mediawiki.messagePoster',
 			'mediawiki.Title',
 			'oojs-ui',
 		),
@@ -894,6 +895,7 @@ return array(
 			'feedback-error1',
 			'feedback-error2',
 			'feedback-error3',
+			'feedback-error4',
 			'feedback-message',
 			'feedback-subject',
 			'feedback-submit',
@@ -950,6 +952,26 @@ return array(
 		'dependencies' => array(
 			'jquery.byteLength',
 			'json',
+		),
+		'targets' => array( 'desktop', 'mobile' ),
+	),
+	'mediawiki.messagePoster' => array(
+		'scripts' => array(
+			'resources/src/mediawiki.messagePoster/mediawiki.messagePoster.factory.js',
+			'resources/src/mediawiki.messagePoster/mediawiki.messagePoster.MessagePoster.js',
+		),
+		'dependencies' => array(
+			'oojs',
+			'mediawiki.api',
+		),
+		'targets' => array( 'desktop', 'mobile' ),
+	),
+	'mediawiki.messagePoster.wikitext' => array(
+		'scripts' => array(
+			'resources/src/mediawiki.messagePoster/mediawiki.messagePoster.WikitextMessagePoster.js',
+		),
+		'dependencies' => array(
+			'mediawiki.api.edit',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
