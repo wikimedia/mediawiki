@@ -181,12 +181,16 @@ class FileDependency extends CacheDependency {
 
 	function loadDependencyValues() {
 		if ( is_null( $this->timestamp ) ) {
-			if ( !file_exists( $this->filename ) ) {
+			wfSuppressWarnings();
+			$lastmod = filemtime( $this->filename );
+			wfRestoreWarnings();
+
+			if ( $lastmod === false ) {
 				# Dependency on a non-existent file
 				# This is a valid concept!
 				$this->timestamp = false;
 			} else {
-				$this->timestamp = filemtime( $this->filename );
+				$this->timestamp = $lastmod;
 			}
 		}
 	}
@@ -195,7 +199,10 @@ class FileDependency extends CacheDependency {
 	 * @return bool
 	 */
 	function isExpired() {
-		if ( !file_exists( $this->filename ) ) {
+		wfSuppressWarnings();
+		$lastmod = filemtime( $this->filename );
+		wfRestoreWarnings();
+		if ( $lastmod === false ) {
 			if ( $this->timestamp === false ) {
 				# Still nonexistent
 				return false;
@@ -206,7 +213,6 @@ class FileDependency extends CacheDependency {
 				return true;
 			}
 		} else {
-			$lastmod = filemtime( $this->filename );
 			if ( $lastmod > $this->timestamp ) {
 				# Modified or created
 				wfDebug( "Dependency triggered: {$this->filename} changed.\n" );
