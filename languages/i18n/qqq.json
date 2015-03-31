@@ -3703,6 +3703,7 @@
 	"feedback-error1": "Error message, appears when an unknown error occurs submitting feedback",
 	"feedback-error2": "Error message, appears when we could not add feedback",
 	"feedback-error3": "Error message, appears when we lose our connection to the wiki",
+	"feedback-error4": "Error message, appears when mediawiki.feedback or one of its dependencies is misconfigured or there is a problem fetching one of the modules",
 	"feedback-message": "Label for a textarea; signature refers to a Wikitext signature.\n{{Identical|Message}}",
 	"feedback-subject": "Label for a text input\n{{Identical|Subject}}",
 	"feedback-submit": "Button label\n{{Identical|Submit}}",
