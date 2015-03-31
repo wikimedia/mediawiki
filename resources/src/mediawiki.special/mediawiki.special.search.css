@@ -172,3 +172,10 @@ table#mw-search-powertable {
 form#powersearch {
 	clear: both;
 }
+/* HTMLForm adjustments */
+.mw-htmlform-nolabel {
+	float: left;
+}
+#searchText {
+	float: inherit;
+}

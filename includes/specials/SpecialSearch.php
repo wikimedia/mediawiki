@@ -1072,21 +1072,31 @@ class SpecialSearch extends SpecialPage {
 	 * @return string
 	 */
 	protected function shortDialog( $term, $resultsShown, $totalNum ) {
-		$out = Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
-		$out .= Html::hidden( 'profile', $this->profile ) . "\n";
-		// Term box
-		$out .= Html::input( 'search', $term, 'search', array(
-			'id' => $this->isPowerSearch() ? 'powerSearchText' : 'searchText',
-			'size' => '50',
-			'autofocus' => trim( $term ) === '',
-			'class' => 'mw-ui-input mw-ui-input-inline',
-		) ) . "\n";
-		$out .= Html::hidden( 'fulltext', 'Search' ) . "\n";
-		$out .= Html::submitButton(
-			$this->msg( 'searchbutton' )->text(),
-			array( 'class' => 'mw-ui-button mw-ui-progressive' ),
-			array( 'mw-ui-progressive' )
-		) . "\n";
+		$formFields = array(
+			'search' => array(
+				'type' => 'text',
+				'name' => 'search',
+				'value' => $term,
+				'hidelabel' => true,
+				'id' => $this->isPowerSearch() ? 'powerSearchText' : 'searchText',
+				'size' => '50',
+				'autofocus' => trim( $term ) === '',
+				'cssclass' => 'mw-ui-input mw-ui-input-inline',
+			),
+		);
+		$hiddenFields = array(
+			'title' => $this->getPageTitle()->getPrefixedText(),
+			'profile' => $this->profile,
+			'fulltext' => 'Search',
+		);
+
+		$form = HTMLForm::factory( 'inline', $formFields, $this->getContext() );
+		$form->addHiddeNFields( $hiddenFields );
+		$form->setAction( wfScript() );
+		$form->setMethod( 'get' );
+		$form->setSubmitProgressive();
+		$form->setSubmitTextMsg( $this->msg( 'searchbutton' ) );
+		$out = $form->prepareForm()->getHTML( false );
 
 		// Results-info
 		if ( $totalNum > 0 && $this->offset < $totalNum ) {
