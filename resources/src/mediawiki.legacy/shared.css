@@ -980,6 +980,25 @@ ol:lang(or) li {
 	list-style-type: oriya;
 }
 
+/* Language based default font-family */
+/* don't use !important here */
+:lang(bcc),
+:lang(bgn),
+:lang(bqi),
+:lang(fa),
+:lang(lki),
+:lang(lrc),
+:lang(mzn),
+:lang(sdh) {
+	font-family: tahoma;
+}
+
+/* Required for nested content */
+:lang(en) {
+	font-family: sans-serif;
+}
+/* End of language based default font-family */
+
 #toc ul, .toc ul {
 	margin: .3em 0;
 }
