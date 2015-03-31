@@ -150,21 +150,12 @@ class MWExceptionHandler {
 	 * @since 1.25
 	 * @param Exception $e
 	 */
-	public static function handleException( $e ) {
+	public static function handleException( Exception $e ) {
 		global $wgFullyInitialised;
 
 		self::rollbackMasterChangesAndLog( $e );
 		self::logException( $e );
 		self::report( $e );
-
-		// Final cleanup
-		if ( $wgFullyInitialised ) {
-			try {
-				// uses $wgRequest, hence the $wgFullyInitialised condition
-				wfLogProfilingData();
-			} catch ( Exception $e ) {
-			}
-		}
 
 		// Exit value should be nonzero for the benefit of shell jobs
 		exit( 1 );
