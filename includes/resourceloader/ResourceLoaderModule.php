@@ -636,9 +636,20 @@ abstract class ResourceLoaderModule {
 	 * @return int UNIX timestamp
 	 */
 	protected static function safeFilemtime( $filename ) {
-		if ( !file_exists( $filename ) ) {
-			return 1;
+		static $cache = array();
+		// T78733: HHVM stat cache uses ionotify, which does not work
+		// on shared/NFS paths in NFS. It's not enabled by default, so
+		// most sites will have it off even if it can be used.
+		if ( isset( $cache[$filename] ) ) {
+			return $cache[$filename];
 		}
-		return filemtime( $filename );
+		wfSuppressWarnings();
+		$mtime = filemtime( $filename ) ?: 1;
+		wfRestoreWarnings();
+		if ( PHP_SAPI !== 'cli' ) {
+			$cache[$filename] = $mtime;
+		}
+
+		return $mtime;
 	}
 }
