@@ -573,6 +573,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$files = array_map( array( $this, 'getLocalPath' ), $files );
 		// File deps need to be treated separately because they're already prefixed
 		$files = array_merge( $files, $this->getFileDependencies( $context->getSkin() ) );
+		// Filter out any duplicates from getFileDependencies() and others.
+		// Most commonly introduced by compileLessFile(), which always includes the
+		// entry point Less file we already know about.
+		$files = array_values( array_unique( $files ) );
 
 		// If a module is nothing but a list of dependencies, we need to avoid
 		// giving max() an empty array
