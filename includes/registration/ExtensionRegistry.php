@@ -156,7 +156,7 @@ class ExtensionRegistry {
 				// Now merge groups that didn't exist yet
 				$GLOBALS[$key] += $val;
 			} elseif ( is_array( $GLOBALS[$key] ) && is_array( $val ) ) {
-				$GLOBALS[$key] += $val;
+				$GLOBALS[$key] = array_merge( $val, $GLOBALS[$key] );
 			} // else case is a config setting where it has already been overriden, so don't set it
 		}
 		foreach ( $info['defines'] as $name => $val ) {
