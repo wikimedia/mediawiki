@@ -36,7 +36,6 @@
 	 * @class
 	 * @constructor
 	 * @param {Object} [config] Configuration object
-	 * @cfg {mw.Api} [api] if omitted, will just create a standard API
 	 * @cfg {mw.Title} [title="Feedback"] The title of the page where you collect
 	 *  feedback.
 	 * @cfg {string} [dialogTitleMessageKey="feedback-dialog-title"] Message key for the
@@ -53,11 +52,12 @@
 	mw.Feedback = function MwFeedback( config ) {
 		config = config || {};
 
-		this.api = config.api || new mw.Api();
 		this.dialogTitleMessageKey = config.dialogTitleMessageKey || 'feedback-dialog-title';
 
 		// Feedback page title
 		this.feedbackPageTitle = config.title || new mw.Title( 'Feedback' );
+
+		this.messagePosterPromise = mw.messagePoster.factory.create( this.feedbackPageTitle );
 
 		// Links
 		this.bugsTaskSubmissionLink = config.bugsLink || '//phabricator.wikimedia.org/maniphest/task/create/';
@@ -120,6 +120,7 @@
 			case 'error1':
 			case 'error2':
 			case 'error3':
+			case 'error4':
 				dialogConfig = {
 					title: mw.msg( 'feedback-error-title' ),
 					message: mw.msg( 'feedback-' + status ),
@@ -147,8 +148,8 @@
 	 * Modify the display form, and then open it, focusing interface on the subject.
 	 *
 	 * @param {Object} [contents] Prefilled contents for the feedback form.
-	 * @param {string} [contents.subject] The subject of the feedback
-	 * @param {string} [contents.message] The content of the feedback
+	 * @param {string} [contents.subject] The subject of the feedback, as plaintext
+	 * @param {string} [contents.message] The content of the feedback, as wikitext
 	 */
 	mw.Feedback.prototype.launch = function ( contents ) {
 		// Dialog
@@ -171,7 +172,7 @@
 			{
 				title: mw.msg( this.dialogTitleMessageKey ),
 				settings: {
-					api: this.api,
+					messagePosterPromise: this.messagePosterPromise,
 					title: this.feedbackPageTitle,
 					dialogTitleMessageKey: this.dialogTitleMessageKey,
 					bugsTaskSubmissionLink: this.bugsTaskSubmissionLink,
@@ -339,7 +340,7 @@
 				this.feedbackMessageInput.setValue( data.contents.message );
 
 				this.status = '';
-				this.api = settings.api;
+				this.messagePosterPromise = settings.messagePosterPromise;
 				this.setBugReportLink( settings.bugsTaskSubmissionLink );
 				this.feedbackPageTitle = settings.title;
 				this.feedbackPageName = settings.title.getNameText();
@@ -418,37 +419,13 @@
 					message = userAgentMessage + message;
 				}
 
-				// Add signature if needed
-				if ( message.indexOf( '~~~' ) === -1 ) {
-					message += '\n\n~~~~';
-				}
-
-				// Post the message, resolving redirects
+				// Post the message
 				this.pushPending();
-				this.api.newSection(
-					this.feedbackPageTitle,
-					subject,
-					message,
-					{ redirect: true }
-				)
-				.done( function ( result ) {
-					if ( result.edit.result === 'Success' ) {
-						fb.status = 'submitted';
-					} else {
-						fb.status = 'error1';
-					}
-					fb.popPending();
-					fb.close();
-				} )
-				.fail( function ( code, result ) {
-					if ( code === 'http' ) {
-						fb.status = 'error3';
-						// ajax request failed
-						mw.log.warn( 'Feedback report failed with HTTP error: ' +  result.textStatus );
-					} else {
-						fb.status = 'error2';
-						mw.log.warn( 'Feedback report failed with API error: ' +  code );
-					}
+				this.messagePosterPromise.done( function ( poster ) {
+					fb.postMessage( poster, subject, message );
+				} ).fail( function () {
+					fb.status = 'error4';
+					mw.log.warn( 'Feedback report failed because MessagePoster could not be fetched' );
 					fb.popPending();
 					fb.close();
 				} );
@@ -456,6 +433,42 @@
 		}
 		// Fallback to parent handler
 		return mw.Feedback.Dialog.super.prototype.getActionProcess.call( this, action );
+	};
+
+	/**
+	 * Posts the message, then pops the pending state
+	 *
+	 * @private
+	 *
+	 * @param {mw.messagePoster.MessagePoster} poster Poster implementation used to leave feedback
+	 * @param {string} subject Subject of message
+	 * @param {string} message Body of message
+	 */
+	mw.Feedback.Dialog.prototype.postMessage = function ( poster, subject, message ) {
+		var fb = this;
+
+		poster.post(
+			subject,
+			message
+		).done( function () {
+			fb.status = 'submitted';
+		} ).fail( function ( mainCode, secondaryCode, details ) {
+			if ( mainCode === 'api-fail' ) {
+				if ( secondaryCode === 'http' ) {
+					fb.status = 'error3';
+					// ajax request failed
+					mw.log.warn( 'Feedback report failed with HTTP error: ' +  details.textStatus );
+				} else {
+					fb.status = 'error2';
+					mw.log.warn( 'Feedback report failed with API error: ' +  secondaryCode );
+				}
+			} else {
+				fb.status = 'error1';
+			}
+		} ).always( function () {
+			fb.popPending();
+			fb.close();
+		} );
 	};
 
 	/**
