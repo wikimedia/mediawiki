@@ -119,6 +119,9 @@ production.
   proper, published library, which is now tagged as v1.0.0.
 * A new message (defaulting to blank), 'editnotice-notext', can be shown to users
   when they are editing if no edit notices apply to the page being edited.
+* (T94536) You can now disable the sitenotice for logged-out users by editing
+  MediaWiki:Anonnotice (or for all users by editing MediaWiki:Sitenotice),
+  replacing its content with "-".
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
