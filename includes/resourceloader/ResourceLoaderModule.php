@@ -458,21 +458,26 @@ abstract class ResourceLoaderModule {
 			return 1;
 		}
 
+		// Embed the hash itself in the cache key. This allows for a few nifty things:
+		// - During deployment, servers with old and new versions of the code communicating
+		//   with the same memcached will not override the same key repeatedly increasing
+		//   the timestamp.
+		// - In case of the definition changing and then changing back in a short period of time
+		//   (e.g. in case of a revert or a corrupt server) the old timestamp and client-side cache
+		//   url will be re-used.
+		// - If different context-combinations (e.g. same skin, same language or some combination
+		//   thereof) result in the same definition, they will use the same hash and timestamp.
 		$cache = wfGetCache( CACHE_ANYTHING );
-		$key = wfMemcKey( 'resourceloader', 'modulemodifiedhash', $this->getName(), $hash );
+		$key = wfMemcKey( 'resourceloader', 'hashmtime', $this->getName(), $hash );
 
 		$data = $cache->get( $key );
-		if ( is_array( $data ) && $data['hash'] === $hash ) {
-			// Hash is still the same, re-use the timestamp of when we first saw this hash.
-			return $data['timestamp'];
+		if ( is_int( $data ) && $data > 0 ) {
+			// We've seen this hash before, re-use the timestamp of when we first saw it.
+			return $data;
 		}
 
 		$timestamp = time();
-		$cache->set( $key, array(
-			'hash' => $hash,
-			'timestamp' => $timestamp,
-		) );
-
+		$cache->set( $key, $timestamp );
 		return $timestamp;
 	}
 
@@ -504,18 +509,7 @@ abstract class ResourceLoaderModule {
 		}
 
 		$hash = md5( json_encode( $summary ) );
-
 		$cache = wfGetCache( CACHE_ANYTHING );
-
-		// Embed the hash itself in the cache key. This allows for a few nifty things:
-		// - During deployment, servers with old and new versions of the code communicating
-		//   with the same memcached will not override the same key repeatedly increasing
-		//   the timestamp.
-		// - In case of the definition changing and then changing back in a short period of time
-		//   (e.g. in case of a revert or a corrupt server) the old timestamp and client-side cache
-		//   url will be re-used.
-		// - If different context-combinations (e.g. same skin, same language or some combination
-		//   thereof) result in the same definition, they will use the same hash and timestamp.
 		$key = wfMemcKey( 'resourceloader', 'moduledefinition', $this->getName(), $hash );
 
 		$data = $cache->get( $key );
@@ -529,7 +523,6 @@ abstract class ResourceLoaderModule {
 
 		$timestamp = time();
 		$cache->set( $key, $timestamp );
-
 		return $timestamp;
 	}
 
