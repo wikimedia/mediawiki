@@ -1477,7 +1477,8 @@ abstract class Skin extends ContextSource {
 	 * Get a cached notice
 	 *
 	 * @param string $name Message name, or 'default' for $wgSiteNotice
-	 * @return string HTML fragment
+	 * @return string|bool HTML fragment, or false to indicate that the caller
+	 *   should fall back to the next notice in its sequence
 	 */
 	private function getCachedNotice( $name ) {
 		global $wgRenderHashAppend, $parserMemc, $wgContLang;
@@ -1493,7 +1494,9 @@ abstract class Skin extends ContextSource {
 			}
 		} else {
 			$msg = $this->msg( $name )->inContentLanguage();
-			if ( $msg->isDisabled() ) {
+			if ( $msg->isBlank() ) {
+				return '';
+			} elseif ( $msg->isDisabled() ) {
 				return false;
 			}
 			$notice = $msg->plain();
@@ -1554,13 +1557,13 @@ abstract class Skin extends ContextSource {
 				$siteNotice = $this->getCachedNotice( 'sitenotice' );
 			} else {
 				$anonNotice = $this->getCachedNotice( 'anonnotice' );
-				if ( !$anonNotice ) {
+				if ( $anonNotice === false ) {
 					$siteNotice = $this->getCachedNotice( 'sitenotice' );
 				} else {
 					$siteNotice = $anonNotice;
 				}
 			}
-			if ( !$siteNotice ) {
+			if ( $siteNotice === false ) {
 				$siteNotice = $this->getCachedNotice( 'default' );
 			}
 		}
