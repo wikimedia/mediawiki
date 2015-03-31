@@ -3,6 +3,20 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
+== MediaWiki 1.19.24 ==
+
+This is a security and maintenance release of the MediaWiki 1.19 branch.
+
+== Changes since 1.19.23 ==
+
+* (T85848, T71210) SECURITY: Don't parse XMP blocks that contain XML entities,
+  to prevent various DoS attacks.
+* (T88310) SECURITY: Always expand xml entities when checking SVG's.
+* (T73394) SECURITY: Escape > in Html::expandAttributes to prevent XSS.
+* (T85855) SECURITY: Don't execute another user's CSS or JS on preview.
+* (T85349, T85850, T86711) SECURITY: Multiple issues fixed in SVG filtering to
+  prevent XSS and protect viewer's privacy.
+
 == MediaWiki 1.19.23 ==
 
 This is a security and maintenance release of the MediaWiki 1.19 branch.
