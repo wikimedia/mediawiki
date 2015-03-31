@@ -5983,7 +5983,19 @@ class Parser {
 			return null;
 		}
 
-		$this->mRevisionObject = Revision::newFromId( $this->mRevisionId );
+		$rev = call_user_func(
+			$this->mOptions->getCurrentRevisionCallback(), $this->getTitle(), $this
+		);
+
+		# If the parse is for a new revision, then the callback should have
+		# already been set to force the object and should match mRevisionId.
+		# If not, try to fetch by mRevisionId for sanity.
+		if ( !$rev || $rev->getId() != $this->mRevisionId ) {
+			$rev = Revision::newFromId( $this->mRevisionId );
+		}
+
+		$this->mRevisionObject = $rev;
+
 		return $this->mRevisionObject;
 	}
 
@@ -5994,7 +6006,6 @@ class Parser {
 	 */
 	public function getRevisionTimestamp() {
 		if ( is_null( $this->mRevisionTimestamp ) ) {
-
 			global $wgContLang;
 
 			$revObject = $this->getRevisionObject();
