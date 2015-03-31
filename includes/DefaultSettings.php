@@ -4005,7 +4005,7 @@ $wgUrlProtocols = array(
 );
 
 /**
- * If true, removes (substitutes) templates in "~~~~" signatures.
+ * If true, removes (substitutes) templates in `~~~~` signatures.
  */
 $wgCleanSignatures = true;
 
