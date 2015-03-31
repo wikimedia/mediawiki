@@ -26,7 +26,7 @@
  */
 
 
-use Utfnormal\Utils;
+use UtfNormal\Utils;
 /**
  * Return UTF-8 sequence for a given Unicode code point.
  *
