@@ -1411,6 +1411,14 @@ class Revision implements IDBAccessObject {
 
 		$this->mId = $rev_id !== null ? $rev_id : $dbw->insertId();
 
+		// Assertion to try to catch T92046
+		if ( (int)$this->mId === 0 ) {
+			throw new UnexpectedValueException(
+				'After insert, Revision mId is ' . var_export( $this->mId, 1 ) . ': ' .
+					var_export( $row, 1 )
+			);
+		}
+
 		Hooks::run( 'RevisionInsertComplete', array( &$this, $data, $flags ) );
 
 		return $this->mId;
