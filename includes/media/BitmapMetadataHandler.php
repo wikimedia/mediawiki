@@ -154,7 +154,7 @@ class BitmapMetadataHandler {
 	 * @throws MWException on invalid file.
 	 */
 	static function Jpeg( $filename ) {
-		$showXMP = function_exists( 'xml_parser_create_ns' );
+		$showXMP = XMPReader::isSupported();
 		$meta = new self();
 
 		$seg = JpegMetadataExtractor::segmentSplitter( $filename );
@@ -196,7 +196,7 @@ class BitmapMetadataHandler {
 	 * @return array Array for storage in img_metadata.
 	 */
 	public static function PNG( $filename ) {
-		$showXMP = function_exists( 'xml_parser_create_ns' );
+		$showXMP = XMPReader::isSupported();
 
 		$meta = new self();
 		$array = PNGMetadataExtractor::getMetadata( $filename );
@@ -236,7 +236,7 @@ class BitmapMetadataHandler {
 			$meta->addMetadata( array( 'GIFFileComment' => $baseArray['comment'] ), 'native' );
 		}
 
-		if ( $baseArray['xmp'] !== '' && function_exists( 'xml_parser_create_ns' ) ) {
+		if ( $baseArray['xmp'] !== '' && XMPReader::isSupported() ) {
 			$xmp = new XMPReader();
 			$xmp->parse( $baseArray['xmp'] );
 			$xmpRes = $xmp->getResults();

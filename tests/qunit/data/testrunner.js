@@ -112,6 +112,34 @@
 		};
 	}() );
 
+	// Extend QUnit.module to provide a fixture element.
+	( function () {
+		var orgModule = QUnit.module;
+
+		QUnit.module = function ( name, localEnv ) {
+			var fixture;
+			localEnv = localEnv || {};
+			orgModule( name, {
+				setup: function () {
+					fixture = document.createElement( 'div' );
+					fixture.id = 'qunit-fixture';
+					document.body.appendChild( fixture );
+
+					if ( localEnv.setup ) {
+						localEnv.setup.call( this );
+					}
+				},
+				teardown: function () {
+					if ( localEnv.teardown ) {
+						localEnv.teardown.call( this );
+					}
+
+					fixture.parentNode.removeChild( fixture );
+				}
+			} );
+		};
+	}() );
+
 	// Initiate when enabled
 	if ( QUnit.urlParams.completenesstest ) {
 
