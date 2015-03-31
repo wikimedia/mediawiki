@@ -69,9 +69,7 @@ class ProfilerOutputText extends ProfilerOutput {
 				} else {
 					print "<!--\n{$out}\n-->\n";
 				}
-			} elseif ( $contentType === 'text/javascript' ) {
-				print "\n/*\n{$out}*/\n";
-			} elseif ( $contentType === 'text/css' ) {
+			} elseif ( $contentType === 'text/javascript' || $contentType === 'text/css' ) {
 				print "\n/*\n{$out}*/\n";
 			}
 		}
