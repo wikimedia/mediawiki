@@ -981,6 +981,54 @@ ol:lang(or) li {
 	list-style-type: oriya;
 }
 
+/* Language based default font-family */
+/* CAUTION: don't use "!important" here */
+
+[lang=ar],
+[lang=azb],
+[lang=bcc],
+[lang=bgn],
+[lang=bqi],
+[lang=ckb],
+[lang=fa],
+[lang=glk],
+[lang=lki],
+[lang=lrc],
+[lang=luz],
+[lang=mzn],
+[lang=sdh] {
+	/* Best glyph support for all arabics -> MS Windows -> New Android -> Old Android -> Others */
+	font-family: tahoma, 'Noto Naskh Arabic', 'Droid Arabic Naskh', sans-serif, serif;
+}
+
+[lang=en],
+[lang=es],
+[lang=fr] {
+	font-family: 'Times New Roman', sans-serif, serif;
+}
+
+[lang=el],
+[lang=grc] {
+	font-family: 'Arial Unicode MS', Athena, Gentium, 'Palatino Linotype', 'Lucida Sans Unicode', 'Lucida Grande', Code2000, sans-serif, serif;
+}
+
+[lang=th] {
+	font-family: 'Segoe UI', tahoma, sans-serif, serif;
+}
+
+[lang=khw],
+[lang=ur] {
+	font-family: 'Urdu Naskh Asiatype', tahoma, 'Noto Naskh Arabic', 'Droid Arabic Naskh', sans-serif, serif;
+}
+
+[lang=ber],
+[lang=rif],
+[lang=shi] {
+	font-family: tahoma, sans-serif, serif;
+}
+
+/* End of language based default font-family */
+
 #toc ul, .toc ul {
 	margin: .3em 0;
 }
