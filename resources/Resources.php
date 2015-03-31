@@ -797,6 +797,7 @@ return array(
 			'resources/lib/mustache/mustache.js',
 			'resources/src/mediawiki/mediawiki.template.mustache.js',
 		),
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.apipretty' => array(
 		'styles' => 'resources/src/mediawiki/mediawiki.apipretty.css',
