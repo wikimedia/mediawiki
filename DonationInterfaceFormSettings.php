@@ -17,6 +17,9 @@ $form_dirs = array(
 if ( $wgDonationInterfaceEnableAdyen === true ) {
 	$form_dirs['adyen'] = $wgAdyenGatewayHtmlFormDir;
 }
+if ( $wgDonationInterfaceEnableAstropay === true ) {
+	$form_dirs['astropay'] = $wgAstropayGatewayHtmlFormDir;
+}
 if ( $wgDonationInterfaceEnableWorldPay === true ) {
 	$form_dirs['worldpay'] = $wgWorldPayGatewayHtmlFormDir;
 }
@@ -469,6 +472,32 @@ if ( $wgDonationInterfaceEnableAdyen === true ) {
 		'currencies' => array( '+' => 'USD',),
 		'payment_methods' => array('cc' => array( 'visa', 'mc', 'amex', 'discover' )),
 		'selection_weight' => 0
+	);
+}
+
+/************
+ * Astropay *
+ ************/
+if ( $wgDonationInterfaceEnableAstropay === true ) {
+	$forms_whitelist['astropay'] = array(
+		'file' => $form_dirs['astropay'] . '/astropay.html',
+		'gateway' => 'astropay',
+		'countries' => array( '+' => 'BR', ),
+		'currencies' => array( '+' => array(
+			'USD',
+			'BRL'
+		) ),
+		'payment_methods' => array( 'cc' => array(
+			'visa',
+			'mc',
+			'amex',
+			'visa_debit',
+			'mc_debit',
+			'elo',
+			'dc',
+			'hiper',
+			'argen',
+		) ),
 	);
 }
 
