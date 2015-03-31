@@ -15,6 +15,7 @@
 		"resources/src/mediawiki.action",
 		"resources/src/mediawiki.api",
 		"resources/src/mediawiki.language",
+		"resources/src/mediawiki.messagePoster",
 		"resources/src/mediawiki.page",
 		"resources/src/mediawiki.special",
 		"resources/src/mediawiki.toolbar",
