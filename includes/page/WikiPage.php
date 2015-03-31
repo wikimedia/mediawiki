@@ -1271,6 +1271,13 @@ class WikiPage implements Page, IDBAccessObject {
 	) {
 		global $wgContentHandlerUseDB;
 
+		// Assertion to try to catch T92046
+		if ( (int)$revision->getId() === 0 ) {
+			throw new InvalidArgumentException(
+				__METHOD__ . ': Revision has ID ' . var_export( $revision->getId(), 1 )
+			);
+		}
+
 		$content = $revision->getContent();
 		$len = $content ? $content->getSize() : 0;
 		$rt = $content ? $content->getUltimateRedirectTarget() : null;
