@@ -69,7 +69,7 @@ class LinkSearchPage extends QueryPage {
 	 */
 	private function initServices() {
 		if ( !$this->linkRenderer ) {
-			$lang = $this->getContext()->getLanguage();
+			$lang = Language::factory( 'en' );
 			$titleFormatter = new MediaWikiTitleCodec( $lang, GenderCache::singleton() );
 			$this->linkRenderer = new MediaWikiPageLinkRenderer( $titleFormatter );
 		}
