@@ -43,6 +43,7 @@ $configFactory = ConfigFactory::getDefaultInstance();
 $resourceLoader = new ResourceLoader( $configFactory->makeConfig( 'main' ) );
 $resourceLoader->respond( new ResourceLoaderContext( $resourceLoader, $wgRequest ) );
 
+Profiler::instance()->setTemplated( true );
 wfLogProfilingData();
 
 // Shut down the database.
