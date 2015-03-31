@@ -65,6 +65,7 @@ return array(
 			'tests/qunit/suites/resources/mediawiki/mediawiki.errorLogger.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.jqueryMsg.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.jscompat.test.js',
+			'tests/qunit/suites/resources/mediawiki/mediawiki.messagePoster.factory.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.template.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.Title.test.js',
