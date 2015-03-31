@@ -27,7 +27,6 @@
  *
  * @covers SiteExporter
  *
- * @licence GNU GPL v2+
  * @author Daniel Kinzler
  */
 class SiteExporterTest extends PHPUnit_Framework_TestCase {

@@ -12,7 +12,6 @@
  * @copyright © 2012, Santhosh Thottingal
  * @copyright © 2012, Timo Tijhof
  *
- * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 class ResourcesTest extends MediaWikiTestCase {
 

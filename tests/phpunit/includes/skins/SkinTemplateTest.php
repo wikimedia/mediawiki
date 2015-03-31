@@ -5,7 +5,6 @@
  *
  * @group Output
  *
- * @licence GNU GPL v2+
  * @author Bene* < benestar.wikimedia@gmail.com >
  */
 

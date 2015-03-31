@@ -4,7 +4,6 @@
  * Provides access to MediaWiki's version without requiring MediaWiki (or anything else)
  * being loaded first.
  *
- * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class MediaWikiVersionFetcher {

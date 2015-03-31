@@ -3,7 +3,6 @@
 /**
  * @covers Action
  *
- * @licence GNU GPL v2+
  * @author Thiemo Mättig
  *
  * @group Action

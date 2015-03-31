@@ -8,7 +8,6 @@
  * @group Database
  * @group Diff
  *
- * @licence GNU GPL v2+
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
 class DifferenceEngineTest extends MediaWikiTestCase {

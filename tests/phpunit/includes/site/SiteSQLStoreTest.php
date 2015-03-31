@@ -25,7 +25,6 @@
  * @group Site
  * @group Database
  *
- * @licence GNU GPL v2+
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
 class SiteSQLStoreTest extends MediaWikiTestCase {

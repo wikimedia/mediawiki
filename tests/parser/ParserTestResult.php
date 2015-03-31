@@ -1,10 +1,9 @@
 <?php
 /**
+ * @file
+ *
  * @copyright Copyright © 2013, Antoine Musso
  * @copyright Copyright © 2013, Wikimedia Foundation Inc.
- * @license GNU GPL v2
- *
- * @file
  */
 
 /**

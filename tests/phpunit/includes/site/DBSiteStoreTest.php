@@ -27,7 +27,6 @@
  * @group Site
  * @group Database
  *
- * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class DBSiteStoreTest extends MediaWikiTestCase {
