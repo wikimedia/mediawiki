@@ -636,9 +636,10 @@ abstract class ResourceLoaderModule {
 	 * @return int UNIX timestamp
 	 */
 	protected static function safeFilemtime( $filename ) {
-		if ( !file_exists( $filename ) ) {
-			return 1;
-		}
-		return filemtime( $filename );
+		wfSuppressWarnings();
+		$mtime = filemtime( $filename ) ?: 1;
+		wfRestoreWarnings();
+
+		return $mtime;
 	}
 }
