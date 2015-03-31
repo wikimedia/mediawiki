@@ -567,6 +567,27 @@ abstract class HTMLFormField {
 	}
 
 	/**
+	 * Get the complete field as an inline element.
+	 * @since 1.25
+	 * @param string $value The value to set the input to.
+	 * @return string Complete HTML inline element
+	 */
+	public function getInline( $value ) {
+		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
+		$inputHtml = $this->getInputHTML( $value );
+		$helptext = $this->getHelpTextHtmlDiv( $this->getHelpText() );
+		$cellAttributes = array();
+		$label = $this->getLabelHtml( $cellAttributes );
+
+		$html = "\n" . $errors .
+			$label . '&#160;' .
+			$inputHtml .
+			$helptext;
+
+		return $html;
+	}
+
+	/**
 	 * Generate help text HTML in table format
 	 * @since 1.20
 	 *
