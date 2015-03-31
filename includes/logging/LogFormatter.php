@@ -25,9 +25,12 @@
 
 /**
  * Implements the default log formatting.
- * Can be overridden by subclassing and setting
- * $wgLogActionsHandlers['type/subtype'] = 'class'; or
- * $wgLogActionsHandlers['type/*'] = 'class';
+ *
+ * Can be overridden by subclassing and setting:
+ *
+ *     $wgLogActionsHandlers['type/subtype'] = 'class'; or
+ *     $wgLogActionsHandlers['type/*'] = 'class';
+ *
  * @since 1.19
  */
 class LogFormatter {
