@@ -51,7 +51,7 @@ class LanguageJa extends Language {
 
 	/**
 	 * Italic is not appropriate for Japanese script
-	 * Unfortunately most browsers do not recognise this, and render <em> as italic
+	 * Unfortunately most browsers do not recognise this, and render `<em>` as italic
 	 *
 	 * @param string $text
 	 * @return string
