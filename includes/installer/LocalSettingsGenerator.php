@@ -143,8 +143,7 @@ class LocalSettingsGenerator {
 # The following skins were automatically enabled:\n";
 
 			foreach ( $this->skins as $skinName ) {
-				$encSkinName = self::escapePhpString( $skinName );
-				$localSettings .= "require_once \"\$IP/skins/$encSkinName/$encSkinName.php\";\n";
+				$localSettings .= $this->generateRequireOnceLine( 'skins', $skinName );
 			}
 
 			$localSettings .= "\n";
@@ -157,8 +156,7 @@ class LocalSettingsGenerator {
 # The following extensions were automatically enabled:\n";
 
 			foreach ( $this->extensions as $extName ) {
-				$encExtName = self::escapePhpString( $extName );
-				$localSettings .= "require_once \"\$IP/extensions/$encExtName/$encExtName.php\";\n";
+				$localSettings .= $this->generateRequireOnceLine( 'extensions', $extName );
 			}
 
 			$localSettings .= "\n";
@@ -169,6 +167,16 @@ class LocalSettingsGenerator {
 # Add more configuration options below.\n\n";
 
 		return $localSettings;
+	}
+
+	/**
+	 * @param string $dir Either "extensions" or "skins"
+	 * @param string $name Name of extension/skin
+	 * @return string
+	 */
+	private function generateRequireOnceLine( $dir, $name ) {
+		$encName = self::escapePhpString( $name );
+		return "require_once \"\$IP/$dir/$encName/$encName.php\";\n";
 	}
 
 	/**
