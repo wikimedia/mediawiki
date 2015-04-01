@@ -66,7 +66,12 @@ ALIASES                = "type{1}=<b> \1 </b>:" \
                          "copyright=\note" \
                          "license=\note" \
                          "codeCoverageIgnore=" \
-                         "codingStandardsIgnoreStart="
+                         "codingStandardsIgnoreStart=" \
+                         "group=" \
+                         "covers=" \
+                         "dataProvider=" \
+                         "expectedException=" \
+                         "expectedExceptionMessage="
 TCL_SUBST              =
 OPTIMIZE_OUTPUT_FOR_C  = NO
 OPTIMIZE_OUTPUT_JAVA   = NO
