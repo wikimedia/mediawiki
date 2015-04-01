@@ -34,12 +34,30 @@ if ( ini_get( 'register_globals' ) ) {
 		. 'for help on how to disable it.' );
 }
 
+if ( function_exists( 'get_magic_quotes_gpc' ) && get_magic_quotes_gpc() ) {
+	die( 'MediaWiki does not function when magic quotes are enabled. '
+		. 'Please see the <a href="https://php.net/manual/security.magicquotes.disabling.php">PHP Manual</a> '
+		. 'for help on how to disable magic quotes.' );
+}
+
+
 # bug 15461: Make IE8 turn off content sniffing. Everybody else should ignore this
 # We're adding it here so that it's *always* set, even for alternate entry
 # points and when $wgOut gets disabled or overridden.
 header( 'X-Content-Type-Options: nosniff' );
 
-$wgRequestTime = microtime( true );
+# Approximate $_SERVER['REQUEST_TIME_FLOAT'] for PHP<5.4
+if ( !isset( $_SERVER['REQUEST_TIME_FLOAT'] ) ) {
+	$_SERVER['REQUEST_TIME_FLOAT'] = microtime( true );
+}
+
+/**
+ * @var float Request start time as fractional seconds since epoch
+ * @deprecated since 1.25; use $_SERVER['REQUEST_TIME_FLOAT'] or
+ *   WebRequest::getElapsedTime() instead.
+ */
+$wgRequestTime = $_SERVER['REQUEST_TIME_FLOAT'];
+
 unset( $IP );
 
 # Valid web server entry point, enable includes.
