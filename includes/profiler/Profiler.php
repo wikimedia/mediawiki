@@ -35,6 +35,8 @@ abstract class Profiler {
 	protected $templated = false;
 	/** @var array All of the params passed from $wgProfiler */
 	protected $params = array();
+	/** @var IContextSource Current request context */
+	protected $context = null;
 
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
@@ -47,6 +49,7 @@ abstract class Profiler {
 		'text' => 'ProfilerOutputText',
 		'udp' => 'ProfilerOutputUdp',
 		'dump' => 'ProfilerOutputDump',
+		'stats' => 'ProfilerOutputStats',
 	);
 
 	/** @var Profiler */
@@ -69,17 +72,28 @@ abstract class Profiler {
 	 */
 	final public static function instance() {
 		if ( self::$instance === null ) {
-			global $wgProfiler;
+			global $wgProfiler, $wgProfileLimit;
+
+			$params = array(
+				'class'     => 'ProfilerStub',
+				'sampling'  => 1,
+				'threshold' => $wgProfileLimit,
+				'output'    => array(),
+			);
 			if ( is_array( $wgProfiler ) ) {
-				$class = isset( $wgProfiler['class'] ) ? $wgProfiler['class'] : 'ProfilerStub';
-				$factor = isset( $wgProfiler['sampling'] ) ? $wgProfiler['sampling'] : 1;
-				if ( PHP_SAPI === 'cli' || mt_rand( 0, $factor - 1 ) != 0 ) {
-					$class = 'ProfilerStub';
-				}
-				self::$instance = new $class( $wgProfiler );
-			} else {
-				self::$instance = new ProfilerStub( array() );
+				$params = array_merge( $params, $wgProfiler );
 			}
+
+			$inSample = mt_rand( 0, $params['sampling'] - 1 ) === 0;
+			if ( PHP_SAPI === 'cli' || !$inSample ) {
+				$params['class'] = 'ProfilerStub';
+			}
+
+			if ( !is_array( $params['output'] ) ) {
+				$params['output'] = array( $params['output'] );
+			}
+
+			self::$instance = new $params['class']( $params );
 		}
 		return self::$instance;
 	}
@@ -114,6 +128,32 @@ abstract class Profiler {
 			return wfWikiID();
 		} else {
 			return $this->profileID;
+		}
+	}
+
+	/**
+	 * Sets the context for this Profiler
+	 *
+	 * @param IContextSource $context
+	 * @since 1.25
+	 */
+	public function setContext( $context ) {
+		$this->context = $context;
+	}
+
+	/**
+	 * Gets the context for this Profiler
+	 *
+	 * @return IContextSource
+	 * @since 1.25
+	 */
+	public function getContext() {
+		if ( $this->context ) {
+			return $this->context;
+		} else {
+			wfDebug( __METHOD__ . " called and \$context is null. " .
+				"Return RequestContext::getMain(); for sanity\n" );
+			return RequestContext::getMain();
 		}
 	}
 
@@ -152,37 +192,49 @@ abstract class Profiler {
 	abstract public function close();
 
 	/**
-	 * Log the data to some store or even the page output
+	 * Get all usable outputs.
 	 *
 	 * @throws MWException
+	 * @return array Array of ProfilerOutput instances.
+	 * @since 1.25
+	 */
+	private function getOutputs() {
+		$outputs = array();
+		foreach ( $this->params['output'] as $outputType ) {
+			if ( !isset( self::$outputTypes[$outputType] ) ) {
+				throw new MWException( "'$outputType' is an invalid output type" );
+			}
+			$outputClass = self::$outputTypes[$outputType];
+			$outputInstance = new $outputClass( $this, $this->params );
+			if ( $outputInstance->canUse() ) {
+				$outputs[] = $outputInstance;
+			}
+		}
+		return $outputs;
+	}
+
+	/**
+	 * Log the data to some store or even the page output
+	 *
 	 * @since 1.25
 	 */
 	public function logData() {
-		$output = isset( $this->params['output'] ) ? $this->params['output'] : null;
+		$request = $this->getContext()->getRequest();
 
-		if ( !$output || $this instanceof ProfilerStub ) {
-			// return early when no output classes defined or we're a stub
+		$timeElapsed = $request->getElapsedTime();
+		$timeElapsedThreshold = $this->params['threshold'];
+		if ( $timeElapsed <= $timeElapsedThreshold ) {
 			return;
 		}
 
-		if ( !is_array( $output ) ) {
-			$output = array( $output );
+		$outputs = $this->getOutputs();
+		if ( !$outputs ) {
+			return;
 		}
-		$stats = null;
-		foreach ( $output as $outType ) {
-			if ( !isset( self::$outputTypes[$outType] ) ) {
-				throw new MWException( "'$outType' is an invalid output type" );
-			}
-			$class = self::$outputTypes[$outType];
 
-			/** @var ProfilerOutput $profileOut */
-			$profileOut = new $class( $this, $this->params );
-			if ( $profileOut->canUse() ) {
-				if ( is_null( $stats ) ) {
-					$stats = $this->getFunctionStats();
-				}
-				$profileOut->log( $stats );
-			}
+		$stats = $this->getFunctionStats();
+		foreach ( $outputs as $output ) {
+			$output->log( $stats );
 		}
 	}
 
