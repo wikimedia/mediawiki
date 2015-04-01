@@ -150,6 +150,7 @@ class MergeMessageFileList extends Maintenance {
 
 require_once RUN_MAINTENANCE_IF_MAIN;
 
+$queue = array();
 foreach ( $mmfl['setupFiles'] as $fileName ) {
 	if ( strval( $fileName ) === '' ) {
 		continue;
@@ -157,12 +158,26 @@ foreach ( $mmfl['setupFiles'] as $fileName ) {
 	if ( empty( $mmfl['quiet'] ) ) {
 		fwrite( STDERR, "Loading data from $fileName\n" );
 	}
-	// Include the extension to update $wgExtensionMessagesFiles
-	if ( !( include_once $fileName ) ) {
+	// Using extension.json or skin.json
+	if ( substr( $fileName, -strlen( '.json' ) ) === '.json' ) {
+		$queue[$fileName] = 1;
+	} elseif ( !( include_once $fileName ) ) {
+		// Include the extension to update $wgExtensionMessagesFiles
 		fwrite( STDERR, "Unable to read $fileName\n" );
 		exit( 1 );
 	}
 }
+
+if ( $queue ) {
+	$registry = new ExtensionRegistry();
+	$data = $registry->readFromQueue( $queue );
+	foreach ( array( 'wgExtensionMessagesFiles', 'wgMessagesDirs' ) as $var ) {
+		if ( isset( $data['globals'][$var] ) ) {
+			$GLOBALS[$var] = array_merge( $data['globals'][$var], $GLOBALS[$var] );
+		}
+	}
+}
+
 fwrite( STDERR, "\n" );
 $s =
 	"<" . "?php\n" .
