@@ -145,9 +145,7 @@ class ParserOptions {
 
 	/**
 	 * Clean up signature texts?
-	 *
-	 * 1) Strip ~~~, ~~~~ and ~~~~~ out of signatures
-	 * 2) Substitute all transclusions
+	 * @see Parser::cleanSig
 	 */
 	public $mCleanSignatures;
 

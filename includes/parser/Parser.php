@@ -4942,7 +4942,7 @@ class Parser {
 	/**
 	 * Clean up signature text
 	 *
-	 * 1) Strip ~~~, ~~~~ and ~~~~~ out of signatures @see cleanSigInSig
+	 * 1) Strip  3, 4 or 5 tildes out of signatures @see cleanSigInSig
 	 * 2) Substitute all transclusions
 	 *
 	 * @param string $text
@@ -4981,7 +4981,7 @@ class Parser {
 	}
 
 	/**
-	 * Strip ~~~, ~~~~ and ~~~~~ out of signatures
+	 * Strip 3, 4 or 5 tildes out of signatures.
 	 *
 	 * @param string $text
 	 * @return string Signature text with /~{3,5}/ removed
