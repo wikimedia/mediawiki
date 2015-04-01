@@ -253,7 +253,6 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 			);
 			$rules[] = "$selector {\n\t$declarations\n}";
 
-			// TODO: Get variant configurations from $context->getSkin()
 			foreach ( $image->getVariants() as $variant ) {
 				$declarations = $this->getCssDeclarations(
 					$image->getDataUri( $context, $variant, 'original' ),
