@@ -669,6 +669,7 @@ class ParserOptions {
 	 *
 	 * This ignores report limit settings that only affect HTML comments
 	 *
+	 * @param ParserOptions $other
 	 * @return bool
 	 * @since 1.25
 	 */

@@ -33,7 +33,7 @@ class DateFormatter {
 	public $regexes, $pDays, $pMonths, $pYears;
 	public $rules, $xMonths, $preferences;
 
-	protected $lang;
+	protected $lang, $mLinked;
 
 	const ALL = -1;
 	const NONE = 0;

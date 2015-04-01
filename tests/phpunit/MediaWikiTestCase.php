@@ -104,7 +104,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		ObjectCache::$instances[CACHE_DB] = new HashBagOStuff;
 
 		$needsResetDB = false;
-		$logName = get_class( $this ) . '::' . $this->getName( false );
 
 		if ( $this->needsDB() ) {
 			// set up a DB connection for this test to use
@@ -632,7 +631,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @param string $msg
 	 */
 	private function assertEmpty2( $value, $msg ) {
-		return $this->assertTrue( $value == '', $msg );
+		$this->assertTrue( $value == '', $msg );
 	}
 
 	private static function unprefixTable( $tableName ) {
@@ -648,7 +647,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	/**
 	 * @since 1.18
 	 *
-	 * @param DataBaseBase $db
+	 * @param DatabaseBase $db
 	 *
 	 * @return array
 	 */
