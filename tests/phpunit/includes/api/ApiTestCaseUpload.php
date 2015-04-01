@@ -1,9 +1,8 @@
 <?php
 
 /**
- *  * Abstract class to support upload tests
+ * Abstract class to support upload tests
  */
-
 abstract class ApiTestCaseUpload extends ApiTestCase {
 	/**
 	 * Fixture -- run before every test

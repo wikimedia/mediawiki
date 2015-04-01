@@ -34,7 +34,6 @@
  * that hold the first tests in a pending state awaiting access to the database.
  * @group medium
  *
- * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 abstract class ORMRowTest extends \MediaWikiTestCase {

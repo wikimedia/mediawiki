@@ -1,29 +1,24 @@
 <?php
 /**
+ * n.b. Ensure that you can write to the images/ directory as the
+ * user that will run tests.
+ *
+ * Note for reviewers: this intentionally duplicates functionality already in
+ * "ApiSetup" and so on. This framework works better IMO and has less
+ * strangeness (such as test cases inheriting from "ApiSetup"...) (and in the
+ * case of the other Upload tests, this flat out just actually works... )
+ *
+ * @todo Port the other Upload tests, and other API tests to this framework
+ *
+ * @todo Broken test, reports false errors from time to time.
+ * See https://bugzilla.wikimedia.org/26169
+ *
+ * @todo This is pretty sucky... needs to be prettified.
+ *
  * @group API
  * @group Database
  * @group medium
- */
-
-/**
- * n.b. Ensure that you can write to the images/ directory as the
- * user that will run tests.
- */
-
-// Note for reviewers: this intentionally duplicates functionality already in
-// "ApiSetup" and so on. This framework works better IMO and has less
-// strangeness (such as test cases inheriting from "ApiSetup"...) (and in the
-// case of the other Upload tests, this flat out just actually works... )
-
-// @todo Port the other Upload tests, and other API tests to this framework
-
-/**
- * @group Database
  * @group Broken
- * Broken test, reports false errors from time to time.
- * See https://bugzilla.wikimedia.org/26169
- *
- * This is pretty sucky... needs to be prettified.
  */
 class ApiUploadTest extends ApiTestCaseUpload {
 	/**

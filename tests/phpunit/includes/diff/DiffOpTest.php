@@ -1,6 +1,5 @@
 <?php
 /**
- * @licence GNU GPL v2+
  * @author Adam Shorland
  *
  * @group Diff

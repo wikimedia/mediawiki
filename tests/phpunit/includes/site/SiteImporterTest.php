@@ -27,7 +27,6 @@
  *
  * @covers SiteImporter
  *
- * @licence GNU GPL v2+
  * @author Daniel Kinzler
  */
 class SiteImporterTest extends PHPUnit_Framework_TestCase {
