@@ -57,6 +57,7 @@ class ParserOutput extends CacheTime {
 	private $mLimitReportData = array(); # Parser limit report data
 	private $mParseStartTime = array(); # Timestamps for getTimeSinceStart()
 	private $mPreventClickjacking = false; # Whether to emit X-Frame-Options: DENY
+	private $mFlags = array();        # Generic flags
 
 	const EDITSECTION_REGEX =
 		'#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';

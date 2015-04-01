@@ -893,9 +893,17 @@ class CoreParserFunctions {
 		}
 	}
 
-	// Usage {{filepath|300}}, {{filepath|nowiki}}, {{filepath|nowiki|300}}
-	// or {{filepath|300|nowiki}} or {{filepath|300px}}, {{filepath|200x300px}},
-	// {{filepath|nowiki|200x300px}}, {{filepath|200x300px|nowiki}}.
+	/**
+	 * Usage {{filepath|300}}, {{filepath|nowiki}}, {{filepath|nowiki|300}}
+	 * or {{filepath|300|nowiki}} or {{filepath|300px}}, {{filepath|200x300px}},
+	 * {{filepath|nowiki|200x300px}}, {{filepath|200x300px|nowiki}}.
+	 *
+	 * @param Parser $parser
+	 * @param string $name
+	 * @param string $argA
+	 * @param string $argB
+	 * @return array|string
+	 */
 	public static function filepath( $parser, $name = '', $argA = '', $argB = '' ) {
 		$file = wfFindFile( $name );
 
@@ -934,7 +942,7 @@ class CoreParserFunctions {
 	 * Parser function to extension tag adaptor
 	 * @param Parser $parser
 	 * @param PPFrame $frame
-	 * @param array $args
+	 * @param PPNode[] $args
 	 * @return string
 	 */
 	public static function tagObj( $parser, $frame, $args ) {

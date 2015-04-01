@@ -147,7 +147,11 @@ class Parser {
 	 */
 	public $mSubstWords;
 	# Initialised in constructor
-	public $mConf, $mPreprocessor, $mExtLinkBracketedRegex, $mUrlProtocols;
+	public $mConf, $mExtLinkBracketedRegex, $mUrlProtocols;
+
+	# Initialized in getPreprocessor()
+	/** @var Preprocessor */
+	public $mPreprocessor;
 
 	# Cleared with clearState():
 	/**
@@ -393,7 +397,6 @@ class Parser {
 		 */
 
 		global $wgShowHostnames;
-		$fname = __METHOD__ . '-' . wfGetCaller();
 
 		if ( $clearState ) {
 			$magicScopeVariable = $this->lock();
@@ -1199,7 +1202,7 @@ class Parser {
 	 *
 	 * @param string $text
 	 * @param bool $isMain
-	 * @param bool $frame
+	 * @param PPFrame|bool $frame
 	 *
 	 * @return string
 	 */
@@ -5427,7 +5430,7 @@ class Parser {
 	}
 
 	/**
-	 * @param string $handler
+	 * @param MediaHandler $handler
 	 * @return array
 	 */
 	public function getImageParams( $handler ) {
