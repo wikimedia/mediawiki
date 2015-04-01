@@ -1436,13 +1436,16 @@ abstract class Installer {
 			return array();
 		}
 
+		// extensions -> extension.json, skins -> skin.json
+		$jsonFile = substr( $directory, 0, strlen( $directory ) -1 ) . '.json';
+
 		$dh = opendir( $extDir );
 		$exts = array();
 		while ( ( $file = readdir( $dh ) ) !== false ) {
 			if ( !is_dir( "$extDir/$file" ) ) {
 				continue;
 			}
-			if ( file_exists( "$extDir/$file/$file.php" ) ) {
+			if ( file_exists( "$extDir/$file/$jsonFile" ) || file_exists( "$extDir/$file/$file.php" ) ) {
 				$exts[] = $file;
 			}
 		}
