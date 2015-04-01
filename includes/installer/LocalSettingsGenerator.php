@@ -34,6 +34,7 @@ class LocalSettingsGenerator {
 	protected $groupPermissions = array();
 	protected $dbSettings = '';
 	protected $safeMode = false;
+	protected $IP;
 
 	/**
 	 * @var Installer
@@ -50,6 +51,7 @@ class LocalSettingsGenerator {
 
 		$this->extensions = $installer->getVar( '_Extensions' );
 		$this->skins = $installer->getVar( '_Skins' );
+		$this->IP = $installer->getVar( 'IP' );
 
 		$db = $installer->getDBInstaller( $installer->getVar( 'wgDBtype' ) );
 
@@ -143,7 +145,7 @@ class LocalSettingsGenerator {
 # The following skins were automatically enabled:\n";
 
 			foreach ( $this->skins as $skinName ) {
-				$localSettings .= $this->generateRequireOnceLine( 'skins', $skinName );
+				$localSettings .= $this->generateExtEnableLine( 'skins', $skinName );
 			}
 
 			$localSettings .= "\n";
@@ -156,7 +158,7 @@ class LocalSettingsGenerator {
 # The following extensions were automatically enabled:\n";
 
 			foreach ( $this->extensions as $extName ) {
-				$localSettings .= $this->generateRequireOnceLine( 'extensions', $extName );
+				$localSettings .= $this->generateExtEnableLine( 'extensions', $extName );
 			}
 
 			$localSettings .= "\n";
@@ -170,13 +172,31 @@ class LocalSettingsGenerator {
 	}
 
 	/**
+	 * Generate the appropriate line to enable the given extension or skin
+	 *
 	 * @param string $dir Either "extensions" or "skins"
 	 * @param string $name Name of extension/skin
+	 * @throws InvalidArgumentException
 	 * @return string
 	 */
-	private function generateRequireOnceLine( $dir, $name ) {
+	private function generateExtEnableLine( $dir, $name ) {
+		if ( $dir === 'extensions' ) {
+			$jsonFile = 'extension.json';
+			$function = 'wfLoadExtension';
+		} elseif ( $dir === 'skins' ) {
+			$jsonFile = 'skin.json';
+			$function = 'wfLoadSkin';
+		} else {
+			throw new InvalidArgumentException( '$dir was not "extensions" or "skins' );
+		}
+
 		$encName = self::escapePhpString( $name );
-		return "require_once \"\$IP/$dir/$encName/$encName.php\";\n";
+
+		if ( file_exists( "{$this->IP}/$dir/$encName/$jsonFile" ) ) {
+			return "$function( '$encName' );\n";
+		} else {
+			return "require_once \"\$IP/$dir/$encName/$encName.php\";\n";
+		}
 	}
 
 	/**
