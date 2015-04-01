@@ -1237,10 +1237,15 @@ function wfErrorLog( $text, $file, array $context = array() ) {
  * @todo document
  */
 function wfLogProfilingData() {
-	global $wgRequestTime, $wgDebugLogGroups, $wgDebugRawPage;
-	global $wgProfileLimit, $wgUser, $wgRequest;
+	global $wgDebugLogGroups, $wgDebugRawPage;
 
 	$context = RequestContext::getMain();
+	$request = $context->getRequest();
+
+	$profiler = Profiler::instance();
+	$profiler->setContext( $context );
+	$profiler->logData();
+
 	$config = $context->getConfig();
 	if ( $config->has( 'StatsdServer' ) ) {
 		$statsdServer = explode( ':', $config->get( 'StatsdServer' ) );
@@ -1251,21 +1256,10 @@ function wfLogProfilingData() {
 		$statsdClient->send( $context->getStats()->getBuffer() );
 	}
 
-	$profiler = Profiler::instance();
-
 	# Profiling must actually be enabled...
 	if ( $profiler instanceof ProfilerStub ) {
 		return;
 	}
-
-	// Get total page request time and only show pages that longer than
-	// $wgProfileLimit time (default is 0)
-	$elapsed = microtime( true ) - $wgRequestTime;
-	if ( $elapsed <= $wgProfileLimit ) {
-		return;
-	}
-
-	$profiler->logData();
 
 	if ( isset( $wgDebugLogGroups['profileoutput'] )
 		&& $wgDebugLogGroups['profileoutput'] === false
@@ -1277,7 +1271,7 @@ function wfLogProfilingData() {
 		return;
 	}
 
-	$ctx = array( 'elapsed' => $elapsed );
+	$ctx = array( 'elapsed' => $request->getElapsedTime() );
 	if ( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
 		$ctx['forwarded_for'] = $_SERVER['HTTP_X_FORWARDED_FOR'];
 	}
@@ -1296,16 +1290,13 @@ function wfLogProfilingData() {
 	// Don't load $wgUser at this late stage just for statistics purposes
 	// @todo FIXME: We can detect some anons even if it is not loaded.
 	// See User::getId()
-	if ( $wgUser->isItemLoaded( 'id' ) && $wgUser->isAnon() ) {
-		$ctx['anon'] = true;
-	} else {
-		$ctx['anon'] = false;
-	}
+	$user = $context->getUser();
+	$ctx['anon'] = $user->isItemLoaded( 'id' ) && $user->isAnon();
 
 	// Command line script uses a FauxRequest object which does not have
 	// any knowledge about an URL and throw an exception instead.
 	try {
-		$ctx['url'] = urldecode( $wgRequest->getRequestURL() );
+		$ctx['url'] = urldecode( $request->getRequestURL() );
 	} catch ( Exception $ignored ) {
 		// no-op
 	}
