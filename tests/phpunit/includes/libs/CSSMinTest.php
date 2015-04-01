@@ -2,6 +2,8 @@
 /**
  * This file test the CSSMin library shipped with Mediawiki.
  *
+ * @group Database
+ *
  * @author Timo Tijhof
  */
 

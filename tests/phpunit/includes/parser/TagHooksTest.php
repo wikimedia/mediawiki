@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group Database
  * @group Parser
  */
 class TagHookTest extends MediaWikiTestCase {
