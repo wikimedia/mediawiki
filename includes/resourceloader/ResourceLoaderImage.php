@@ -103,7 +103,7 @@ class ResourceLoaderImage {
 	 * @param ResourceLoaderContext $context Any context
 	 * @return string
 	 */
-	protected function getPath( ResourceLoaderContext $context ) {
+	public function getPath( ResourceLoaderContext $context ) {
 		$desc = $this->descriptor;
 		if ( is_string( $desc ) ) {
 			return $this->basePath . '/' . $desc;

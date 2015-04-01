@@ -266,6 +266,9 @@ class ResourceLoaderImageModule extends ResourceLoaderFileModule {
 				);
 				$rules[] = "$selector {\n\t$declarations\n}";
 			}
+
+			// For cache invalidation when images change
+			$this->localFileRefs[] = $image->getPath( $context );
 		}
 
 		$styles['all'] = isset( $styles['all'] ) ? (array)$styles['all'] : array();
