@@ -1315,23 +1315,22 @@ abstract class UploadBase {
 				}
 			}
 
-			# href with embedded svg as target
-			if ( $stripped == 'href' && preg_match( '!data:[^,]*image/svg[^,]*,!sim', $value ) ) {
-				wfDebug( __METHOD__ . ": Found href to embedded svg \"<$strippedElement '$attrib'='$value'...\" in uploaded file.\n" );
-				return true;
+			# only allow data: targets that should be safe. This prevents vectors like,
+			# image/svg, text/xml, application/xml, and text/html, which can contain scripts
+			if ( $stripped == 'href' && strncasecmp( 'data:', $value, 5 ) === 0 ) {
+				// rfc2397 parameters. This is only slightly slower than (;[\w;]+)*.
+				$parameters = '(?>;[a-zA-Z0-9\!#$&\'*+.^_`{|}~-]+=(?>[a-zA-Z0-9\!#$&\'*+.^_`{|}~-]+|"(?>[\0-\x0c\x0e-\x21\x23-\x5b\x5d-\x7f]+|\\\\[\0-\x7f])*"))*(?:;base64)?';
+				if ( !preg_match( "!^data:\s*image/(gif|jpeg|jpg|png)$parameters,!i", $value ) ) {
+					wfDebug( __METHOD__ . ": Found href to unwhitelisted data: uri "
+						. "\"<$strippedElement '$attrib'='$value'...\" in uploaded file.\n" );
+					return true;
+				}
 			}
 
-			# href with embedded (text/xml) svg as target
-			if ( $stripped == 'href' && preg_match( '!data:[^,]*text/xml[^,]*,!sim', $value ) ) {
-				wfDebug( __METHOD__ . ": Found href to embedded svg \"<$strippedElement '$attrib'='$value'...\" in uploaded file.\n" );
-				return true;
-			}
-
-			# Change href with animate from (http://html5sec.org/#137). This doesn't seem
-			# possible without embedding the svg, but filter here in case.
-			if ( $stripped == 'from'
+			# Change href with animate from (http://html5sec.org/#137).
+			if ( $stripped === 'attributename'
 				&& $strippedElement === 'animate'
-				&& !preg_match( '!^https?://!im', $value )
+				&& $this->stripXmlNamespace( $value ) == 'href'
 			) {
 				wfDebug( __METHOD__ . ": Found animate that might be changing href using from "
 					. "\"<$strippedElement '$attrib'='$value'...\" in uploaded file.\n" );
@@ -1404,7 +1403,7 @@ abstract class UploadBase {
 	private static function checkCssFragment( $value ) {
 
 		# Forbid external stylesheets, for both reliability and to protect viewer's privacy
-		if ( strpos( $value, '@import' ) !== false ) {
+		if ( stripos( $value, '@import' ) !== false ) {
 			return true;
 		}
 

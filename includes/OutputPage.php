@@ -2632,7 +2632,7 @@ $templates
 	 * @param bool $loadCall If true, output an (asynchronous) mw.loader.load() call rather than a "<script src='...'>" tag
 	 * @return string The html "<script>", "<link>" and "<style>" tags
 	 */
-	protected function makeResourceLoaderLink( $modules, $only, $useESI = false, array $extraQuery = array(), $loadCall = false ) {
+	public function makeResourceLoaderLink( $modules, $only, $useESI = false, array $extraQuery = array(), $loadCall = false ) {
 		global $wgResourceLoaderUseESI;
 
 		$modules = (array)$modules;
@@ -3153,6 +3153,10 @@ $templates
 			return false;
 		}
 		if ( !$this->getTitle()->isJsSubpage() && !$this->getTitle()->isCssSubpage() ) {
+			return false;
+		}
+		if ( !$this->getTitle()->isSubpageOf( $this->getUser()->getUserPage() ) ) {
+			// Don't execute another user's CSS or JS on preview (T85855)
 			return false;
 		}
 
