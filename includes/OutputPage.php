@@ -3106,7 +3106,7 @@ class OutputPage extends ContextSource {
 		// This also enforces $.isReady to be true at </body> which fixes the
 		// mw.loader bug in Firefox with using document.write between </body>
 		// and the DOMContentReady event (bug 47457).
-		$html = Html::inlineScript( 'window.jQuery && jQuery.ready();' );
+		$html = Html::inlineScript( 'if(window.jQuery)jQuery.ready();' );
 
 		if ( !$this->getConfig()->get( 'ResourceLoaderExperimentalAsyncLoading' ) ) {
 			$html .= $this->getScriptsForBottomQueue( false );
