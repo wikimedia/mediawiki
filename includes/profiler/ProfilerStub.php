@@ -43,4 +43,7 @@ class ProfilerStub extends Profiler {
 	public function getCurrentSection() {
 		return '';
 	}
+
+	public function logData() {
+	}
 }
