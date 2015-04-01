@@ -26,32 +26,23 @@
  *
  * @since 1.25
  */
-class ResourceLoaderImageModule extends ResourceLoaderModule {
+class ResourceLoaderImageModule extends ResourceLoaderFileModule {
 
 	/**
-	 * Local base path, see __construct()
-	 * @var string
+	 * Change the default from `array( 'desktop' )`.
+	 * @var array
 	 */
-	protected $localBasePath = '';
-
-	protected $origin = self::ORIGIN_CORE_SITEWIDE;
+	protected $targets = array( 'desktop', 'mobile' );
 
 	protected $images = array();
 	protected $variants = array();
 	protected $prefix = null;
 	protected $selectorWithoutVariant = '.{prefix}-{name}';
 	protected $selectorWithVariant = '.{prefix}-{name}-{variant}';
-	protected $targets = array( 'desktop', 'mobile' );
 
 	/**
-	 * Constructs a new module from an options array.
-	 *
-	 * @param array $options List of options; if not given or empty, an empty module will be
-	 *     constructed
-	 * @param string $localBasePath Base path to prepend to all local paths in $options. Defaults
-	 *     to $IP
-	 *
-	 * Below is a description for the $options array:
+	 * Below is a description for the $options array, in addition to the options provided by
+	 * ResourceLoaderFileModule:
 	 * @par Construction options:
 	 * @code
 	 *     array(
@@ -87,8 +78,12 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @endcode
 	 * @throws InvalidArgumentException
 	 */
-	public function __construct( $options = array(), $localBasePath = null ) {
-		$this->localBasePath = self::extractLocalBasePath( $options, $localBasePath );
+	public function __construct(
+		$options = array(),
+		$localBasePath = null,
+		$remoteBasePath = null
+	) {
+		parent::__construct( $options, $localBasePath, $remoteBasePath );
 
 		// Accepted combinations:
 		// * prefix
@@ -232,6 +227,8 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
+		$styles = parent::getStyles( $context );
+
 		// Build CSS rules
 		$rules = array();
 		$script = $context->getResourceLoader()->getLoadScript( $this->getSource() );
@@ -271,8 +268,9 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 			}
 		}
 
-		$style = implode( "\n", $rules );
-		return array( 'all' => $style );
+		$styles['all'] = isset( $styles['all'] ) ? (array)$styles['all'] : array();
+		$styles['all'][] = implode( "\n", $rules );
+		return $styles;
 	}
 
 	/**
@@ -301,27 +299,5 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 */
 	public function supportsURLLoading() {
 		return false;
-	}
-
-	/**
-	 * Extract a local base path from module definition information.
-	 *
-	 * @param array $options Module definition
-	 * @param string $localBasePath Path to use if not provided in module definition. Defaults
-	 *     to $IP
-	 * @return string Local base path
-	 */
-	public static function extractLocalBasePath( $options, $localBasePath = null ) {
-		global $IP;
-
-		if ( $localBasePath === null ) {
-			$localBasePath = $IP;
-		}
-
-		if ( array_key_exists( 'localBasePath', $options ) ) {
-			$localBasePath = (string)$options['localBasePath'];
-		}
-
-		return $localBasePath;
 	}
 }

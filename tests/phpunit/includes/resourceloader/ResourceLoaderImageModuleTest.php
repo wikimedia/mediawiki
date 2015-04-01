@@ -62,7 +62,8 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 					'variants' => self::$commonImageVariants,
 					'images' => self::$commonImageData,
 				),
-				'.oo-ui-icon-add {
+				array(
+					'.oo-ui-icon-add {
 	...
 }
 .oo-ui-icon-add-invert {
@@ -94,7 +95,8 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 }
 .oo-ui-icon-bold-invert {
 	...
-}',
+}'
+				),
 			),
 			array(
 				array(
@@ -104,7 +106,8 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 					'variants' => self::$commonImageVariants,
 					'images' => self::$commonImageData,
 				),
-				'.mw-ui-icon-add:after, .mw-ui-icon-add:before {
+				array(
+					'.mw-ui-icon-add:after, .mw-ui-icon-add:before {
 	...
 }
 .mw-ui-icon-add-invert:after, .mw-ui-icon-add-invert:before {
@@ -136,7 +139,8 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 }
 .mw-ui-icon-bold-invert:after, .mw-ui-icon-bold-invert:before {
 	...
-}',
+}'
+				),
 			),
 		);
 	}
