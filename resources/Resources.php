@@ -1709,14 +1709,6 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 
-	'oojs-ui.styles' => array(
-		'position' => 'top',
-		'skinStyles' => array(
-			'default' => 'resources/lib/oojs-ui/oojs-ui-mediawiki.css',
-		),
-		'targets' => array( 'desktop', 'mobile' ),
-	),
-
 	// FIXME: This is a bit of a mess; T92551 requests fixing
 	'oojs-ui.styles.icons-alerts' => array(
 		'position' => 'top',
