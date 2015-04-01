@@ -154,6 +154,9 @@
 [submodule "extensions/Gadgets"]
 	path = extensions/Gadgets
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Gadgets.git
+[submodule "extensions/Gather"]
+        path = extensions/Gather
+        url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Gather.git
 [submodule "extensions/GeoCrumbs"]
 	path = extensions/GeoCrumbs
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/GeoCrumbs.git
