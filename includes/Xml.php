@@ -679,13 +679,15 @@ class Xml {
 	/**
 	 * Check if a string is well-formed XML.
 	 * Must include the surrounding tag.
+	 * This function is a DoS vector if an attacker can define
+	 * entities in $text.
 	 *
 	 * @param string $text string to test.
 	 * @return bool
 	 *
 	 * @todo Error position reporting return
 	 */
-	public static function isWellFormed( $text ) {
+	private static function isWellFormed( $text ) {
 		$parser = xml_parser_create( "UTF-8" );
 
 		# case folding violates XML standard, turn it off
