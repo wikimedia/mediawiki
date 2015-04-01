@@ -51,15 +51,20 @@ class WebRequest {
 	private $ip;
 
 	/**
+	 * The timestamp of the start of the request, with microsecond precision.
+	 * @var float
+	 */
+	private $requestTime;
+
+	/**
 	 * Cached URL protocol
 	 * @var string
 	 */
 	protected $protocol;
 
 	public function __construct() {
-		if ( function_exists( 'get_magic_quotes_gpc' ) && get_magic_quotes_gpc() ) {
-			throw new MWException( "MediaWiki does not function when magic quotes are enabled." );
-		}
+		$this->requestTime = isset( $_SERVER['REQUEST_TIME_FLOAT'] )
+			? $_SERVER['REQUEST_TIME_FLOAT'] : microtime( true );
 
 		// POST overrides GET data
 		// We don't use $_REQUEST here to avoid interference from cookies...
@@ -214,6 +219,17 @@ class WebRequest {
 		} else {
 			return 'http';
 		}
+	}
+
+	/**
+	 * Get the number of seconds to have elapsed since request start,
+	 * in fractional seconds, with microsecond resolution.
+	 *
+	 * @return float
+	 * @since 1.25
+	 */
+	public function getElapsedTime() {
+		return microtime( true ) - $this->requestTime;
 	}
 
 	/**
@@ -1274,6 +1290,8 @@ class FauxRequest extends WebRequest {
 	public function __construct( $data = array(), $wasPosted = false,
 		$session = null, $protocol = 'http'
 	) {
+		$this->requestTime = microtime( true );
+
 		if ( is_array( $data ) ) {
 			$this->data = $data;
 		} else {
@@ -1496,5 +1514,9 @@ class DerivativeRequest extends FauxRequest {
 
 	public function getProtocol() {
 		return $this->base->getProtocol();
+	}
+
+	public function getElapsedTime() {
+		return $this->base->getElapsedTime();
 	}
 }

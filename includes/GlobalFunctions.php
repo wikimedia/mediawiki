@@ -1237,10 +1237,10 @@ function wfErrorLog( $text, $file, array $context = array() ) {
  * @todo document
  */
 function wfLogProfilingData() {
-	global $wgRequestTime, $wgDebugLogGroups, $wgDebugRawPage;
-	global $wgProfileLimit, $wgUser, $wgRequest;
+	global $wgDebugLogGroups, $wgDebugRawPage, $wgProfileLimit;
 
 	$context = RequestContext::getMain();
+	$request = $context->getRequest();
 	$config = $context->getConfig();
 	if ( $config->has( 'StatsdServer' ) ) {
 		$statsdServer = explode( ':', $config->get( 'StatsdServer' ) );
@@ -1260,7 +1260,7 @@ function wfLogProfilingData() {
 
 	// Get total page request time and only show pages that longer than
 	// $wgProfileLimit time (default is 0)
-	$elapsed = microtime( true ) - $wgRequestTime;
+	$elapsed = $request->getElapsedTime();
 	if ( $elapsed <= $wgProfileLimit ) {
 		return;
 	}
@@ -1296,16 +1296,13 @@ function wfLogProfilingData() {
 	// Don't load $wgUser at this late stage just for statistics purposes
 	// @todo FIXME: We can detect some anons even if it is not loaded.
 	// See User::getId()
-	if ( $wgUser->isItemLoaded( 'id' ) && $wgUser->isAnon() ) {
-		$ctx['anon'] = true;
-	} else {
-		$ctx['anon'] = false;
-	}
+	$user = $context->getUser();
+	$ctx['anon'] = $user->isItemLoaded( 'id' ) && $user->isAnon();
 
 	// Command line script uses a FauxRequest object which does not have
 	// any knowledge about an URL and throw an exception instead.
 	try {
-		$ctx['url'] = urldecode( $wgRequest->getRequestURL() );
+		$ctx['url'] = urldecode( $request->getRequestURL() );
 	} catch ( Exception $ignored ) {
 		// no-op
 	}
