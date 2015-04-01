@@ -349,7 +349,7 @@ TXT;
 	 * returns the requested URL. Otherwise, returns false.
 	 *
 	 * @since 1.23
-	 * @return string|bool
+	 * @return string|false
 	 */
 	public static function getURL() {
 		global $wgRequest;
@@ -428,7 +428,7 @@ TXT;
 	 * @param Exception $e
 	 * @param bool $pretty Add non-significant whitespace to improve readability (default: false).
 	 * @param int $escaping Bitfield consisting of FormatJson::.*_OK class constants.
-	 * @return string|bool JSON string if successful; false upon failure
+	 * @return string|false JSON string if successful; false upon failure
 	 */
 	public static function jsonSerializeException( Exception $e, $pretty = false, $escaping = 0 ) {
 		global $wgLogExceptionBacktrace;

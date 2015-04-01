@@ -122,7 +122,7 @@ class FormatJson {
 	 *   readability, using that string for indentation. If true, use the default indent
 	 *   string (four spaces).
 	 * @param int $escaping Bitfield consisting of _OK class constants
-	 * @return string|bool: String if successful; false upon failure
+	 * @return string|false String if successful; false upon failure
 	 */
 	public static function encode( $value, $pretty = false, $escaping = 0 ) {
 		if ( !is_string( $pretty ) ) {
@@ -232,7 +232,7 @@ class FormatJson {
 	 * @param mixed $value
 	 * @param string|bool $pretty
 	 * @param int $escaping
-	 * @return string|bool
+	 * @return string|false
 	 */
 	private static function encode54( $value, $pretty, $escaping ) {
 		static $bug66021;
@@ -284,7 +284,7 @@ class FormatJson {
 	 * @param mixed $value
 	 * @param string|bool $pretty
 	 * @param int $escaping
-	 * @return string|bool
+	 * @return string|false
 	 */
 	private static function encode53( $value, $pretty, $escaping ) {
 		$options = ( $escaping & self::XMLMETA_OK ) ? 0 : ( JSON_HEX_TAG | JSON_HEX_AMP );
