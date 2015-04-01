@@ -109,9 +109,6 @@ class ResourceLoaderImageTest extends ResourceLoaderTestCase {
 
 class ResourceLoaderImageTestable extends ResourceLoaderImage {
 	// Make some protected methods public
-	public function getPath( ResourceLoaderContext $context ) {
-		return parent::getPath( $context );
-	}
 	public function massageSvgPathdata( $svg ) {
 		return parent::massageSvgPathdata( $svg );
 	}
