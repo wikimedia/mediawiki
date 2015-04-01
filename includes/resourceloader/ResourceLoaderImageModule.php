@@ -227,8 +227,6 @@ class ResourceLoaderImageModule extends ResourceLoaderFileModule {
 	 * @return array
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
-		$styles = parent::getStyles( $context );
-
 		// Build CSS rules
 		$rules = array();
 		$script = $context->getResourceLoader()->getLoadScript( $this->getSource() );
@@ -266,8 +264,12 @@ class ResourceLoaderImageModule extends ResourceLoaderFileModule {
 				);
 				$rules[] = "$selector {\n\t$declarations\n}";
 			}
+
+			// For cache invalidation when images change
+			$this->localFileRefs[] = $image->getPath( $context );
 		}
 
+		$styles = parent::getStyles( $context );
 		$styles['all'] = isset( $styles['all'] ) ? (array)$styles['all'] : array();
 		$styles['all'][] = implode( "\n", $rules );
 		return $styles;
