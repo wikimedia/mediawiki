@@ -16,7 +16,6 @@ $fallback8bitEncoding = 'windows-1255';
 $namespaceNames = array(
 	NS_MEDIA            => 'מדיה',
 	NS_SPECIAL          => 'מיוחד',
-	NS_MAIN             => '',
 	NS_TALK             => 'שיחה',
 	NS_USER             => 'משתמש',
 	NS_USER_TALK        => 'שיחת_משתמש',

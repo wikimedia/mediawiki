@@ -12,7 +12,6 @@ $fallback = 'ur';
 $rtl = true;
 
 $namespaceNames = array(
-	NS_MAIN             => '',
 	NS_MEDIA            => 'میڈیا',
 	NS_SPECIAL          => 'خاص',
 	NS_TALK             => 'مشقولگی',

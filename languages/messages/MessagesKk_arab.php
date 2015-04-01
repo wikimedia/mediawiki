@@ -50,7 +50,6 @@ $fallback8bitEncoding = 'windows-1256';
 $namespaceNames = array(
 	NS_MEDIA            => 'تاسپا',
 	NS_SPECIAL          => 'ارنايى',
-	NS_MAIN             => '',
 	NS_TALK             => 'تالقىلاۋ',
 	NS_USER             => 'قاتىسۋشى',
 	NS_USER_TALK        => 'قاتىسۋشى_تالقىلاۋى',

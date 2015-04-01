@@ -31,7 +31,6 @@ $rtl = true;
 $namespaceNames = array(
 	NS_MEDIA            => 'وسیط',
 	NS_SPECIAL          => 'خاص',
-	NS_MAIN             => '',
 	NS_TALK             => 'تبادلۂ_خیال',
 	NS_USER             => 'صارف',
 	NS_USER_TALK        => 'تبادلۂ_خیال_صارف',

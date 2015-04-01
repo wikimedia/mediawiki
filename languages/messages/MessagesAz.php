@@ -10,7 +10,6 @@
 
 $namespaceNames = array(
 	NS_SPECIAL          => 'Xüsusi',
-	NS_MAIN             => '',
 	NS_TALK             => 'Müzakirə',
 	NS_USER             => 'İstifadəçi',
 	NS_USER_TALK        => 'İstifadəçi_müzakirəsi',

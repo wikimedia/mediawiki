@@ -13,7 +13,6 @@ $rtl = true;
 $namespaceNames = array(
 	NS_MEDIA            => 'ܡܝܕܝܐ',
 	NS_SPECIAL          => 'ܕܝܠܢܝܐ',
-	NS_MAIN             => '',
 	NS_TALK             => 'ܡܡܠܠܐ',
 	NS_USER             => 'ܡܦܠܚܢܐ',
 	NS_USER_TALK        => 'ܡܡܠܠܐ_ܕܡܦܠܚܢܐ',
