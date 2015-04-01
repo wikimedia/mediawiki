@@ -253,6 +253,8 @@ abstract class UploadBase {
 	 * @return string
 	 */
 	public function getTempFileSha1Base36() {
+		// Debugging for T94562
+		wfDebugLog( 'upload', __METHOD__ .  ": mTempPath: {$this->mTempPath}" );
 		return FSFile::getSha1Base36FromPath( $this->mTempPath );
 	}
 
@@ -676,6 +678,9 @@ abstract class UploadBase {
 		if ( $dupes ) {
 			$warnings['duplicate'] = $dupes;
 		}
+
+		// Debugging for T94562
+		wfDebugLog( 'upload', __METHOD__ .  ": Hash: $hash " . gettype( $hash ) );
 
 		// Check dupes against archives
 		$archivedFile = new ArchivedFile( null, 0, '', $hash );
