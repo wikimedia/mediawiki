@@ -1237,10 +1237,15 @@ function wfErrorLog( $text, $file, array $context = array() ) {
  * @todo document
  */
 function wfLogProfilingData() {
-	global $wgDebugLogGroups, $wgDebugRawPage, $wgProfileLimit;
+	global $wgDebugLogGroups, $wgDebugRawPage;
 
 	$context = RequestContext::getMain();
 	$request = $context->getRequest();
+
+	$profiler = Profiler::instance();
+	$profiler->setContext( $context );
+	$profiler->logData();
+
 	$config = $context->getConfig();
 	if ( $config->has( 'StatsdServer' ) ) {
 		$statsdServer = explode( ':', $config->get( 'StatsdServer' ) );
@@ -1251,21 +1256,10 @@ function wfLogProfilingData() {
 		$statsdClient->send( $context->getStats()->getBuffer() );
 	}
 
-	$profiler = Profiler::instance();
-
 	# Profiling must actually be enabled...
 	if ( $profiler instanceof ProfilerStub ) {
 		return;
 	}
-
-	// Get total page request time and only show pages that longer than
-	// $wgProfileLimit time (default is 0)
-	$elapsed = $request->getElapsedTime();
-	if ( $elapsed <= $wgProfileLimit ) {
-		return;
-	}
-
-	$profiler->logData();
 
 	if ( isset( $wgDebugLogGroups['profileoutput'] )
 		&& $wgDebugLogGroups['profileoutput'] === false
@@ -1277,7 +1271,7 @@ function wfLogProfilingData() {
 		return;
 	}
 
-	$ctx = array( 'elapsed' => $elapsed );
+	$ctx = array( 'elapsed' => $request->getElapsedTime() );
 	if ( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
 		$ctx['forwarded_for'] = $_SERVER['HTTP_X_FORWARDED_FOR'];
 	}
