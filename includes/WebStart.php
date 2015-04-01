@@ -39,7 +39,18 @@ if ( ini_get( 'register_globals' ) ) {
 # points and when $wgOut gets disabled or overridden.
 header( 'X-Content-Type-Options: nosniff' );
 
-$wgRequestTime = microtime( true );
+# Approximate $_SERVER['REQUEST_TIME_FLOAT'] for PHP<5.4
+if ( !isset( $_SERVER['REQUEST_TIME_FLOAT'] ) ) {
+	$_SERVER['REQUEST_TIME_FLOAT'] = microtime( true );
+}
+
+/**
+ * @var float Request start time as fractional seconds since epoch
+ * @deprecated since 1.25; use $_SERVER['REQUEST_TIME_FLOAT'] or
+ *   WebRequest::getElapsedTime() instead.
+ */
+$wgRequestTime = $_SERVER['REQUEST_TIME_FLOAT'];
+
 unset( $IP );
 
 # Valid web server entry point, enable includes.

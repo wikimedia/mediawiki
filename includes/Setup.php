@@ -558,7 +558,7 @@ if ( $wgCommandLineMode ) {
 	wfDebug( "\n\nStart command line script $self\n" );
 } else {
 	// Can't stub this one, it sets up $_GET and $_REQUEST in its constructor
-	$wgRequest = new WebRequest;
+	$wgRequest = new WebRequest( $_SERVER['REQUEST_TIME_FLOAT'] );
 
 	$debug = "\n\nStart request {$wgRequest->getMethod()} {$wgRequest->getRequestURL()}\n";
 
