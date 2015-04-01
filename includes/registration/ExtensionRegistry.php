@@ -91,39 +91,53 @@ class ExtensionRegistry {
 		if ( $data ) {
 			$this->exportExtractedData( $data );
 		} else {
-			$data = array( 'globals' => array( 'wgAutoloadClasses' => array() ) );
-			$autoloadClasses = array();
-			foreach ( $this->queued as $path => $mtime ) {
-				$json = file_get_contents( $path );
-				$info = json_decode( $json, /* $assoc = */ true );
-				if ( !is_array( $info ) ) {
-					throw new Exception( "$path is not a valid JSON file." );
-				}
-				$autoload = $this->processAutoLoader( dirname( $path ), $info );
-				// Set up the autoloader now so custom processors will work
-				$GLOBALS['wgAutoloadClasses'] += $autoload;
-				$autoloadClasses += $autoload;
-				if ( isset( $info['processor'] ) ) {
-					$processor = $this->getProcessor( $info['processor'] );
-				} else {
-					$processor = $this->getProcessor( 'default' );
-				}
-				$processor->extractInfo( $path, $info );
-			}
-			foreach ( $this->processors as $processor ) {
-				$data = array_merge_recursive( $data, $processor->getExtractedInfo() );
-			}
-			foreach ( $data['credits'] as $credit ) {
-				$data['globals']['wgExtensionCredits'][$credit['type']][] = $credit;
-			}
-			$this->processors = array(); // Reset
+			$data = $this->readFromQueue( $this->queued );
 			$this->exportExtractedData( $data );
 			// Do this late since we don't want to extract it since we already
 			// did that, but it should be cached
-			$data['globals']['wgAutoloadClasses'] += $autoloadClasses;
+			$data['globals']['wgAutoloadClasses'] += $data['autoload'];
+			unset( $data['autoload'] );
 			$this->cache->set( $key, $data );
 		}
 		$this->queued = array();
+	}
+
+	/**
+	 * Process a queue of extensions and return their extracted data
+	 *
+	 * @param array $queue keys are filenames, values are ignored
+	 * @return array extracted info
+	 * @throws Exception
+	 */
+	public function readFromQueue( array $queue ) {
+		$data = array( 'globals' => array( 'wgAutoloadClasses' => array() ) );
+		$autoloadClasses = array();
+		foreach ( $queue as $path => $mtime ) {
+			$json = file_get_contents( $path );
+			$info = json_decode( $json, /* $assoc = */ true );
+			if ( !is_array( $info ) ) {
+				throw new Exception( "$path is not a valid JSON file." );
+			}
+			$autoload = $this->processAutoLoader( dirname( $path ), $info );
+			// Set up the autoloader now so custom processors will work
+			$GLOBALS['wgAutoloadClasses'] += $autoload;
+			$autoloadClasses += $autoload;
+			if ( isset( $info['processor'] ) ) {
+				$processor = $this->getProcessor( $info['processor'] );
+			} else {
+				$processor = $this->getProcessor( 'default' );
+			}
+			$processor->extractInfo( $path, $info );
+		}
+		foreach ( $this->processors as $processor ) {
+			$data = array_merge_recursive( $data, $processor->getExtractedInfo() );
+		}
+		foreach ( $data['credits'] as $credit ) {
+			$data['globals']['wgExtensionCredits'][$credit['type']][] = $credit;
+		}
+		$this->processors = array(); // Reset
+		$data['autoload'] = $autoloadClasses;
+		return $data;
 	}
 
 	protected function getProcessor( $type ) {
