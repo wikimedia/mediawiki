@@ -1,0 +1,30 @@
+{
+	"--title": "MediaWiki core - Documentation",
+	"--categories": "maintenance/jsduck/categories.json",
+	"--eg-iframe": "maintenance/jsduck/eg-iframe.html",
+	"--tags": "maintenance/jsduck/CustomTags.rb",
+	"--warnings": ["-nodoc(class,public)"],
+	"--builtin-classes": true,
+	"--processes": "0",
+	"--warnings-exit-nonzero": true,
+	"--external": "HTMLElement,HTMLDocument,Window",
+	"--output": "docs/js",
+	"--": [
+		"maintenance/jsduck/external.js",
+		"resources/src/mediawiki",
+		"resources/src/mediawiki.action/mediawiki.action.edit.js",
+		"resources/src/mediawiki.action/mediawiki.action.view.postEdit.js",
+		"resources/src/mediawiki.page/mediawiki.page.startup.js",
+		"resources/src/mediawiki.page/mediawiki.page.watch.ajax.js",
+		"resources/src/mediawiki.api",
+		"resources/src/mediawiki.language",
+		"resources/src/jquery/jquery.arrowSteps.js",
+		"resources/src/jquery/jquery.autoEllipsis.js",
+		"resources/src/jquery/jquery.badge.js",
+		"resources/src/jquery/jquery.byteLimit.js",
+		"resources/src/jquery/jquery.localize.js",
+		"resources/src/jquery/jquery.spinner.js",
+		"resources/lib/oojs",
+		"resources/lib/oojs-ui"
+	]
+}

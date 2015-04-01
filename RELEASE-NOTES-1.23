@@ -1,6 +1,24 @@
 Security reminder: MediaWiki does not require PHP's register_globals. If you
 have it on, turn it '''off''' if you can.
 
+== MediaWiki 1.23.9 ==
+
+This is a security and maintenance release of the MediaWiki 1.23 branch.
+
+== Changes since 1.23.8 ==
+
+* (T85848, T71210) SECURITY: Don't parse XMP blocks that contain XML entities,
+  to prevent various DoS attacks.
+* (T85848) SECURITY: Don't allow directly calling Xml::isWellFormed, to reduce
+  likelihood of DoS.
+* (T88310) SECURITY: Always expand xml entities when checking SVG's.
+* (T73394) SECURITY: Escape > in Html::expandAttributes to prevent XSS.
+* (T85855) SECURITY: Don't execute another user's CSS or JS on preview.
+* (T85349, T85850, T86711) SECURITY: Multiple issues fixed in SVG filtering to
+  prevent XSS and protect viewer's privacy.
+* (bug T70087) Fix Special:ActiveUsers page for installations using 
+  PostgreSQL.
+
 == MediaWiki 1.23.8 ==
 
 This is a security and maintenance release of the MediaWiki 1.23 branch.

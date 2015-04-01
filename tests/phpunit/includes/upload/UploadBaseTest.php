@@ -168,6 +168,12 @@ class UploadBaseTest extends MediaWikiTestCase {
 				'SVG with javascript xlink (http://html5sec.org/#87)'
 			),
 			array(
+				'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><use xlink:href="data:application/xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KPGRlZnM+CjxjaXJjbGUgaWQ9InRlc3QiIHI9IjUwIiBjeD0iMTAwIiBjeT0iMTAwIiBzdHlsZT0iZmlsbDogI0YwMCI+CjxzZXQgYXR0cmlidXRlTmFtZT0iZmlsbCIgYXR0cmlidXRlVHlwZT0iQ1NTIiBvbmJlZ2luPSdhbGVydChkb2N1bWVudC5jb29raWUpJwpvbmVuZD0nYWxlcnQoIm9uZW5kIiknIHRvPSIjMDBGIiBiZWdpbj0iMXMiIGR1cj0iNXMiIC8+CjwvY2lyY2xlPgo8L2RlZnM+Cjx1c2UgeGxpbms6aHJlZj0iI3Rlc3QiLz4KPC9zdmc+#test"/> </svg>',
+				true,
+				true,
+				'SVG with Opera image xlink (http://html5sec.org/#88 - c)'
+			),
+			array(
 				'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">  <animation xlink:href="javascript:alert(1)"/> </svg>',
 				true,
 				true,
@@ -278,6 +284,18 @@ class UploadBaseTest extends MediaWikiTestCase {
 				true,
 				'SVG with animate from (http://html5sec.org/#137)'
 			),
+			array(
+				'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <a><text y="1em">Click me</text> <animate attributeName="xlink:href" values="javascript:alert(\'Bang!\')" begin="0s" dur="0.1s" fill="freeze" /> </a></svg>',
+				true,
+				true,
+				'SVG with animate xlink:href (http://html5sec.org/#137)'
+			),
+			array(
+				'<svg xmlns="http://www.w3.org/2000/svg" xmlns:y="http://www.w3.org/1999/xlink"> <a y:href="#"> <text y="1em">Click me</text> <animate attributeName="y:href" values="javascript:alert(\'Bang!\')" begin="0s" dur="0.1s" fill="freeze" /> </a> </svg>',
+				true,
+				true,
+				'SVG with animate y:href (http://html5sec.org/#137)'
+			),
 
 			// Other hostile SVG's
 			array(
@@ -311,6 +329,12 @@ class UploadBaseTest extends MediaWikiTestCase {
 				'SVG with @import in style element and child element (bug 69008#c11)'
 			),
 			array(
+				'<svg xmlns="http://www.w3.org/2000/svg" viewBox="6 3 177 153" xmlns:xlink="http://www.w3.org/1999/xlink"> <style>@imporT "https://fonts.googleapis.com/css?family=Bitter:700&amp;text=WebPlatform.org";</style> <g transform="translate(-.5,-.5)"> <text fill="#474747" x="95" y="150" text-anchor="middle" font-family="Bitter" font-size="20" font-weight="bold">WebPlatform.org</text> </g> </svg>',
+				true,
+				true,
+				'SVG with case-insensitive @import in style element (bug T85349)'
+			),
+			array(
 				'<svg xmlns="http://www.w3.org/2000/svg"> <rect width="100" height="100" style="background-image:url(https://www.google.com/images/srpr/logo11w.png)"/> </svg>',
 				true,
 				true,
@@ -336,6 +360,25 @@ class UploadBaseTest extends MediaWikiTestCase {
 				true,
 				'SVG with remote background image using image() (bug 69008)'
 			),
+			array(
+				// As reported by Cure53
+				'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> <a xlink:href="data:text/html;charset=utf-8;base64, PHNjcmlwdD5hbGVydChkb2N1bWVudC5kb21haW4pPC9zY3JpcHQ%2BDQo%3D"> <circle r="400" fill="red"></circle> </a> </svg>',
+				true,
+				true,
+				'SVG with data:text/html link target (firefox only)'
+			),
+			array(
+				'<?xml version="1.0" encoding="UTF-8" standalone="no"?> <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [ <!ENTITY lol "lol"> <!ENTITY lol2 "&#x3C;&#x73;&#x63;&#x72;&#x69;&#x70;&#x74;&#x3E;&#x61;&#x6C;&#x65;&#x72;&#x74;&#x28;&#x27;&#x58;&#x53;&#x53;&#x45;&#x44;&#x20;&#x3D;&#x3E;&#x20;&#x27;&#x2B;&#x64;&#x6F;&#x63;&#x75;&#x6D;&#x65;&#x6E;&#x74;&#x2E;&#x64;&#x6F;&#x6D;&#x61;&#x69;&#x6E;&#x29;&#x3B;&#x3C;&#x2F;&#x73;&#x63;&#x72;&#x69;&#x70;&#x74;&#x3E;"> ]> <svg xmlns="http://www.w3.org/2000/svg" width="68" height="68" viewBox="-34 -34 68 68" version="1.1"> <circle cx="0" cy="0" r="24" fill="#c8c8c8"/> <text x="0" y="0" fill="black">&lol2;</text> </svg>',
+				true,
+				true,
+				'SVG with encoded script tag in internal entity (reported by Beyond Security)'
+			),
+			array(
+				'<?xml version="1.0"?> <!DOCTYPE svg [ <!ENTITY foo SYSTEM "file:///etc/passwd"> ]> <svg xmlns="http://www.w3.org/2000/svg" version="1.1"> <desc>&foo;</desc> <rect width="300" height="100" style="fill:rgb(0,0,255);stroke-width:1;stroke:rgb(0,0,2)" /> </svg>',
+				false,
+				false,
+				'SVG with external entity'
+			),
 
 			// Test good, but strange files that we want to allow
 			array(
@@ -350,7 +393,6 @@ class UploadBaseTest extends MediaWikiTestCase {
 				false,
 				'SVG with local urls, including filter: in style'
 			),
-
 		);
 	}
 }
