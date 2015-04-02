@@ -91,6 +91,7 @@ class MWDocGen extends Maintenance {
 		$this->template = $IP . '/maintenance/Doxyfile';
 		$this->excludes = array(
 			'vendor',
+			'node_modules',
 			'images',
 			'static',
 		);
