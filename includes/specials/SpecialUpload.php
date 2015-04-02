@@ -885,6 +885,17 @@ class UploadForm extends HTMLForm {
 			);
 		}
 
+		$help = $this->msg( 'upload-maxfilesize',
+				$this->getContext()->getLanguage()->formatSize( $this->mMaxUploadSize['file'] )
+			)->parse();
+
+		// If the user can also upload by URL, there are 2 different file size limits.
+		// This extra message helps stress which limit corresponds to what.
+		if ( $canUploadByUrl ) {
+			$help .= $this->msg( 'word-separator' )->escaped();
+			$help .= $this->msg( 'upload_source_file' )->parse();
+		}
+
 		$descriptor['UploadFile'] = array(
 			'class' => 'UploadSourceField',
 			'section' => 'source',
@@ -894,11 +905,7 @@ class UploadForm extends HTMLForm {
 			'label-message' => 'sourcefilename',
 			'upload-type' => 'File',
 			'radio' => &$radio,
-			'help' => $this->msg( 'upload-maxfilesize',
-				$this->getContext()->getLanguage()->formatSize( $this->mMaxUploadSize['file'] )
-			)->parse() .
-				$this->msg( 'word-separator' )->escaped() .
-				$this->msg( 'upload_source_file' )->escaped(),
+			'help' => $help,
 			'checked' => $selectedSourceType == 'file',
 		);
 
