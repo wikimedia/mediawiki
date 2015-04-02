@@ -998,6 +998,8 @@ class LoadBalancer {
 	 * @since 1.23
 	 */
 	public function rollbackMasterChanges() {
+		$exception = null;
+
 		// Always 0, but who knows.. :)
 		$masterIndex = $this->getWriterIndex();
 		foreach ( $this->mConns as $conns2 ) {
@@ -1007,9 +1009,17 @@ class LoadBalancer {
 			/** @var DatabaseBase $conn */
 			foreach ( $conns2[$masterIndex] as $conn ) {
 				if ( $conn->trxLevel() && $conn->writesOrCallbacksPending() ) {
-					$conn->rollback( __METHOD__, 'flush' );
+					try {
+						$conn->rollback( __METHOD__, 'flush' );
+					} catch ( DBError $exception ) {
+						// failed; try the others
+					}
 				}
 			}
+		}
+
+		if ( $exception ) {
+			throw $exception; // throw the last error
 		}
 	}
 
