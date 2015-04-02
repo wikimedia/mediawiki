@@ -473,6 +473,7 @@
 	"wrongpassword": "Syöttämäsi salasana ei ole oikein. Ole hyvä ja yritä uudelleen.",
 	"wrongpasswordempty": "Et voi antaa tyhjää salasanaa.",
 	"passwordtooshort": "Salasanan täytyy olla vähintään {{PLURAL:$1|yhden merkin pituinen|$1 merkkiä pitkä}}.",
+	"passwordtoolong": "Salasanat saavat olla enintään $1 {{PLURAL:$1|merkin}} pituisia.",
 	"password-name-match": "Salasanasi täytyy olla eri kuin käyttäjätunnuksesi.",
 	"password-login-forbidden": "Tämän käyttäjänimen ja salasanan käyttö on estetty.",
 	"mailmypassword": "Uudista salasana",

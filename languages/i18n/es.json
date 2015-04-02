@@ -550,6 +550,7 @@
 	"wrongpassword": "La contraseña indicada es incorrecta.\nInténtalo de nuevo.",
 	"wrongpasswordempty": "No has escrito una contraseña.\nInténtalo de nuevo.",
 	"passwordtooshort": "Las contraseñas deben tener al menos {{PLURAL:$1|1 carácter|$1 caracteres}}.",
+	"passwordtoolong": "Las contraseñas no deben tener más de {{PLURAL:$1|1 carácter|$1 caracteres}}.",
 	"password-name-match": "Tu contraseña debe ser diferente de tu nombre de usuario.",
 	"password-login-forbidden": "El uso de este nombre de usuario y contraseña han sido prohibidos.",
 	"mailmypassword": "Restablecer la contraseña",

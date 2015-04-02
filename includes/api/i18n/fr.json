@@ -10,7 +10,8 @@
 			"Linedwell",
 			"Nicolapps",
 			"Raulel",
-			"Arkanosis"
+			"Arkanosis",
+			"Ltrlg"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentation]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Liste de diffusion]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annonces de l’API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bogues et demandes]\n</div>\n<strong>État :</strong> Toutes les fonctionnalités affichées sur cette page devraient fonctionner, mais l’API est encore en cours de développement et peut changer à tout moment. Inscrivez-vous à [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la liste de diffusion mediawiki-api-announce] pour être informé des mises à jour.\n\n<strong>Requêtes erronées :</strong> Si des requêtes erronées sont envoyées à l’API, un en-tête HTTP sera renvoyé avec la clé « MediaWiki-API-Error ». La valeur de cet en-tête et le code d’erreur renvoyé prendront la même valeur. Pour plus d’information, voyez [[mw:API:Errors_and_warnings|API: Errors and warnings]].",
@@ -1003,7 +1004,7 @@
 	"apihelp-yaml-description": "Extraire les données au format YAML.",
 	"apihelp-yamlfm-description": "Extraire les données YAML (affiché proprement en HTML).",
 	"api-format-title": "Résultat de l’API de MédiaWiki",
-	"api-format-prettyprint-header": "Voici la représentation HTML du format $1. HTML est utile pour le débogage, mais inapproprié pour être utilisé dans une application.$2\n\nSpécifiez le paramètre <var>format</var> pour modifier le format de sortie. Pour voir la représentation non HTML du format $1, mettez <kbd>format=$2</kbd>.\n\nVoyez la [[mw:API|documentation complète]], ou l’ [[Special:ApiHelp/main|aide de l’API]] pour plus d’information.",
+	"api-format-prettyprint-header": "Voici la représentation HTML du format $1. HTML est utile pour le débogage, mais inapproprié pour être utilisé dans une application.\n\nSpécifiez le paramètre <var>format</var> pour modifier le format de sortie. Pour voir la représentation non HTML du format $1, mettez <kbd>format=$2</kbd>.\n\nVoyez la [[mw:API|documentation complète]], ou l’[[Special:ApiHelp/main|aide de l’API]] pour plus d’information.",
 	"api-orm-param-props": "Champs à rechercher.",
 	"api-orm-param-limit": "Nombre maximal de lignes à renvoyer.",
 	"api-pageset-param-titles": "Une liste des titres sur lesquels travailler.",

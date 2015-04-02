@@ -493,6 +493,7 @@
 	"wrongpassword": "Lösenordet du angav är felaktigt. Försök igen.",
 	"wrongpasswordempty": "Lösenordet som angavs var blankt. Var god försök igen.",
 	"passwordtooshort": "Lösenord måste innehålla minst {{PLURAL:$1|$1 tecken}}.",
+	"passwordtoolong": "Lösenord kan inte vara längre än {{PLURAL:$1|1 tecken|$1 tecken}}.",
 	"password-name-match": "Ditt lösenord måste vara olikt ditt användarnamn.",
 	"password-login-forbidden": "Användningen av dessa användarnamn och lösenord har förbjudits.",
 	"mailmypassword": "Återställ lösenord",
