@@ -417,6 +417,10 @@
 				}
 			}
 		},
+		"ResourceModuleSkinStyles": {
+			"type": "object",
+			"description": "ResourceLoader modules for custom skin styles"
+		},
 		"ResourceLoaderSources": {
 			"type": "object",
 			"description": "ResourceLoader sources to register"
