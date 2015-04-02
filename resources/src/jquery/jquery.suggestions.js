@@ -13,16 +13,38 @@
  *
  * Options:
  *
- * fetch(query): Callback that should fetch suggestions and set the suggestions property.
- *      Executed in the context of the textbox
+ * fetch: Callback that should fetch suggestions and set the suggestions property.
  *		Type: Function
+ *		Context: The textbox
+ *		Param: String query
+ *		Param: Function response(suggestions) Callback to receive the suggestions
+ *		Param: Number maxRows
  * cancel: Callback function to call when any pending asynchronous suggestions fetches
- *      should be canceled. Executed in the context of the textbox
+ *		should be canceled.
+ *		Context: The textbox
  *		Type: Function
  * special: Set of callbacks for rendering and selecting
  *		Type: Object of Functions 'render' and 'select'
+ * special.render
+ *		Type: Function
+ *		Context: The suggestions-special element
+ *		Param: String query
+ *		Param: Object context
+ * special.select
+ *		Type: Function
+ *      Context: The suggestions-result-current element
+ *      Param: jQuery The textbox
  * result: Set of callbacks for rendering and selecting
  *		Type: Object of Functions 'render' and 'select'
+ * result.render
+ *		Type: Function
+ *		Context: The suggestions-result element
+ *		Param: String suggestion
+ *		Param: Object context
+ * result.select
+ *		Context: The suggestions-result-current element
+ *		Param: String query
+ *		Param: Object context
  * $region: jQuery selection of element to place the suggestions below and match width of
  *		Type: jQuery Object, Default: $( this )
  * suggestions: Suggestions to display
