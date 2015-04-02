@@ -1976,11 +1976,21 @@ class User implements IDBAccessObject {
 	}
 
 	/**
+	 * Fast check whether the User has a name that isn't an IP address.
+	 *
+	 * @since 1.25
+	 * @return boolean
+	 */
+	protected function hasUserName() {
+		return $this->mId !== null || ( $this->mName !== null && !User::isIP( $this->mName ) );
+	}
+
+	/**
 	 * Get the user's ID.
 	 * @return int The user's ID; 0 if the user is anonymous or nonexistent
 	 */
 	public function getId() {
-		if ( $this->mId === null && $this->mName !== null && User::isIP( $this->mName ) ) {
+		if ( !$this->hasUserName() ) {
 			// Special case, we know the user is anonymous
 			return 0;
 		} elseif ( !$this->isItemLoaded( 'id' ) ) {
@@ -3173,15 +3183,33 @@ class User implements IDBAccessObject {
 	 * @return bool
 	 */
 	public function isLoggedIn() {
-		return $this->getID() != 0;
+		return $this->getId() != 0;
 	}
 
 	/**
 	 * Get whether the user is anonymous
+	 *
+	 * Use User::quickIsAnon if you're not concerned about the case
+	 * of User objects for names that don't exist.
+	 *
 	 * @return bool
 	 */
 	public function isAnon() {
 		return !$this->isLoggedIn();
+	}
+
+	/**
+	 * Get whether the user is anonymous (without loading the user object).
+	 *
+	 * This is the same as User::isAnon, except for the case of User objects
+	 * for names that don't (yet) exists. E.g. maintenance script user names,
+	 * imported revisions, etc.
+	 *
+	 * @since 1.25
+	 * @return bool
+	 */
+	public function quickIsAnon() {
+		return !$this->hasUserName();
 	}
 
 	/**
