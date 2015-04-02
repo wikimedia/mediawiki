@@ -37,21 +37,8 @@ abstract class Profiler {
 	protected $params = array();
 	/** @var IContextSource Current request context */
 	protected $context = null;
-
 	/** @var TransactionProfiler */
 	protected $trxProfiler;
-
-	/**
-	 * @var array Mapping of output type to class name
-	 */
-	private static $outputTypes = array(
-		'db' => 'ProfilerOutputDb',
-		'text' => 'ProfilerOutputText',
-		'udp' => 'ProfilerOutputUdp',
-		'dump' => 'ProfilerOutputDump',
-		'stats' => 'ProfilerOutputStats',
-	);
-
 	/** @var Profiler */
 	private static $instance = null;
 
@@ -201,10 +188,15 @@ abstract class Profiler {
 	private function getOutputs() {
 		$outputs = array();
 		foreach ( $this->params['output'] as $outputType ) {
-			if ( !isset( self::$outputTypes[$outputType] ) ) {
+			// The class may be specified as either the full class name (for
+			// example, 'ProfilerOutputUdp') or (for backward compatibility)
+			// the trailing portion of the class name (for example, 'udp').
+			$outputClass = strpos( $outputType, 'ProfilerOutput' ) === false
+				? 'ProfilerOutput' . ucfirst( $outputType )
+				: $outputType;
+			if ( !class_exists( $outputClass ) ) {
 				throw new MWException( "'$outputType' is an invalid output type" );
 			}
-			$outputClass = self::$outputTypes[$outputType];
 			$outputInstance = new $outputClass( $this, $this->params );
 			if ( $outputInstance->canUse() ) {
 				$outputs[] = $outputInstance;
