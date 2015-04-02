@@ -49,7 +49,7 @@ abstract class Profiler {
 		'text' => 'ProfilerOutputText',
 		'udp' => 'ProfilerOutputUdp',
 		'dump' => 'ProfilerOutputDump',
-		'context' => 'ProfilerOutputStats',
+		'stats' => 'ProfilerOutputStats',
 	);
 
 	/** @var Profiler */
