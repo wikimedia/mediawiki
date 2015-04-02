@@ -1976,11 +1976,38 @@ class User implements IDBAccessObject {
 	}
 
 	/**
+	 * Fast check whether the User has a name that isn't an IP address.
+	 *
+	 * @since 1.25
+	 * @return boolean
+	 */
+	protected function hasUserName() {
+		return $this->mId !== null || ( $this->mName !== null && !User::isIP( $this->mName ) );
+	}
+
+	/**
+	 * Get whether the user is logged in
+	 * @return bool
+	 */
+	public function isLoggedIn() {
+		// Don't load the user merely to check whether they're logged-in
+		return $this->hasUserName();
+	}
+
+	/**
+	 * Get whether the user is anonymous
+	 * @return bool
+	 */
+	public function isAnon() {
+		return !$this->isLoggedIn();
+	}
+
+	/**
 	 * Get the user's ID.
 	 * @return int The user's ID; 0 if the user is anonymous or nonexistent
 	 */
 	public function getId() {
-		if ( $this->mId === null && $this->mName !== null && User::isIP( $this->mName ) ) {
+		if ( !$this->hasUserName() ) {
 			// Special case, we know the user is anonymous
 			return 0;
 		} elseif ( !$this->isItemLoaded( 'id' ) ) {
@@ -3166,22 +3193,6 @@ class User implements IDBAccessObject {
 		$this->invalidateCache();
 
 		return true;
-	}
-
-	/**
-	 * Get whether the user is logged in
-	 * @return bool
-	 */
-	public function isLoggedIn() {
-		return $this->getID() != 0;
-	}
-
-	/**
-	 * Get whether the user is anonymous
-	 * @return bool
-	 */
-	public function isAnon() {
-		return !$this->isLoggedIn();
 	}
 
 	/**
