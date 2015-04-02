@@ -33,6 +33,7 @@
 		"resources/src/jquery/jquery.localize.js",
 		"resources/src/jquery/jquery.makeCollapsible.js",
 		"resources/src/jquery/jquery.spinner.js",
+		"resources/src/jquery/jquery.suggestions.js",
 		"resources/src/jquery/jquery.tabIndex.js",
 		"resources/lib/jquery.client/jquery.client.js",
 		"resources/lib/oojs",

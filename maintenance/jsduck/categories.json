@@ -85,6 +85,7 @@
 				"classes": [
 					"jQuery.client",
 					"jQuery.colorUtil",
+					"jQuery.suggestions",
 					"jQuery.plugin.*"
 				]
 			}
