@@ -1026,7 +1026,7 @@ function wfMatchesDomainList( $url, $domains ) {
  * @param array $context Additional logging context data
  */
 function wfDebug( $text, $dest = 'all', array $context = array() ) {
-	global $wgDebugRawPage, $wgDebugLogPrefix;
+	global $wgDebugRawPage, $wgDebugLogPrefix, $wgDebugLogPerRequestPrefix;
 	global $wgDebugTimestamps, $wgRequestTime;
 
 	if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
@@ -1047,8 +1047,21 @@ function wfDebug( $text, $dest = 'all', array $context = array() ) {
 		);
 	}
 
+	$context['prefix'] = '';
+
 	if ( $wgDebugLogPrefix !== '' ) {
 		$context['prefix'] = $wgDebugLogPrefix;
+	}
+
+	if ( $wgDebugLogPerRequestPrefix === true ) {
+		// Compute it on-demand, because it would be wasteful to generate it in the config
+		// when debugging is turned off. The global is repurposed to avoid having a second one
+		// just for storing the generated hash.
+		$wgDebugLogPerRequestPrefix = '[' . wfRandomString( 6 ) . '] ';
+	}
+
+	if ( $wgDebugLogPerRequestPrefix ) {
+		$context['prefix'] .= $wgDebugLogPerRequestPrefix;
 	}
 
 	$logger = MWLoggerFactory::getInstance( 'wfDebug' );

@@ -5227,6 +5227,19 @@ $wgDebugLogFile = '';
 $wgDebugLogPrefix = '';
 
 /**
+ * Adds a small hash to the beginning of each debug log entry. This hash is
+ * specific to the current request and is computed on-demand. This lets one
+ * differentiate overlapping requests in the logs.
+ *
+ * Note that when set to true, the global's value will be replaced by the request
+ * hash value on demand. This repurposing helps to avoid having a second global
+ * just to hold a hash value.
+ *
+ * @since 1.25
+ */
+$wgDebugLogPerRequestPrefix = false;
+
+/**
  * If true, instead of redirecting, show a page with a link to the redirect
  * destination. This allows for the inspection of PHP error messages, and easy
  * resubmission of form data. For developer use only.
