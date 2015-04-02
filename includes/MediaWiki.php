@@ -478,6 +478,7 @@ class MediaWiki {
 		$wgTitle = $title;
 
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
+		$trxProfiler->setLogger( MWLoggerFactory::getInstance( 'DBPerformance' ) );
 
 		// Aside from rollback, master queries should not happen on GET requests.
 		// Periodic or "in passing" updates on GET should use the job queue.
