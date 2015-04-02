@@ -52,6 +52,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 1 );
 }
 
+/** @endcond */
+
 /**
  * wgConf hold the site configuration.
  * Not used for much in a default install.
