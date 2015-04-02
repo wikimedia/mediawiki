@@ -2264,6 +2264,7 @@ class OutputPage extends ContextSource {
 			$coreModules = array(
 				// keep this list as small as possible
 				'mediawiki.page.startup',
+				'mediawiki.skinning.interface',
 				'mediawiki.user',
 			);
 

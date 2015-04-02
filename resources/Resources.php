@@ -102,6 +102,9 @@ return array(
 	),
 	'mediawiki.skinning.interface' => array(
 		'class' => 'ResourceLoaderSkinModule',
+		'scripts' => array(
+			'resources/src/mediawiki.skinning/mediawiki.skinning.js',
+		),
 		// Used in the web installer. Test it after modifying this definition!
 		'styles' => array(
 			'resources/src/mediawiki.skinning/elements.css' => array( 'media' => 'screen' ),
