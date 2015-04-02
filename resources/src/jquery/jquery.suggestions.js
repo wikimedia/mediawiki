@@ -1,80 +1,102 @@
 /**
  * This plugin provides a generic way to add suggestions to a text box.
  *
- * Usage:
- *
  * Set options:
+ *
  *		$( '#textbox' ).suggestions( { option1: value1, option2: value2 } );
  *		$( '#textbox' ).suggestions( option, value );
+ *
  * Get option:
+ *
  *		value = $( '#textbox' ).suggestions( option );
+ *
  * Initialize:
+ *
  *		$( '#textbox' ).suggestions();
  *
- * Options:
+ * Uses jQuery.suggestions singleteon internally.
  *
- * fetch: Callback that should fetch suggestions and set the suggestions property.
- *		Type: Function
- *		Context: The textbox
- *		Param: String query
- *		Param: Function response(suggestions) Callback to receive the suggestions
- *		Param: Number maxRows
- * cancel: Callback function to call when any pending asynchronous suggestions fetches
- *		should be canceled.
- *		Context: The textbox
- *		Type: Function
- * special: Set of callbacks for rendering and selecting
- *		Type: Object of Functions 'render' and 'select'
- * special.render
- *		Type: Function
- *		Context: The suggestions-special element
- *		Param: String query
- *		Param: Object context
- * special.select
- *		Type: Function
- *		Context: The suggestions-result-current element
- *		Param: jQuery The textbox
- * result: Set of callbacks for rendering and selecting
- *		Type: Object of Functions 'render' and 'select'
- * result.render
- *		Type: Function
- *		Context: The suggestions-result element
- *		Param: String suggestion
- *		Param: Object context
- * result.select
- *		Context: The suggestions-result-current element
- *		Param: String query
- *		Param: Object context
- * $region: jQuery selection of element to place the suggestions below and match width of
- *		Type: jQuery Object, Default: $( this )
- * suggestions: Suggestions to display
- *		Type: Array of strings
- * maxRows: Maximum number of suggestions to display at one time
- *		Type: Number, Range: 1 - 100, Default: 10
- * delay: Number of ms to wait for the user to stop typing
- *		Type: Number, Range: 0 - 1200, Default: 120
- * cache: Whether to cache results from a fetch
- *		Type: Boolean, Default: false
- * cacheMaxAge: Number of ms to cache results from a fetch
- *		Type: Number, Range: 1 - Infinity, Default: 60000 (1 minute)
- * submitOnClick: Whether to submit the form containing the textbox when a suggestion is clicked
- *		Type: Boolean, Default: false
- * maxExpandFactor: Maximum suggestions box width relative to the textbox width. If set
- *      to e.g. 2, the suggestions box will never be grown beyond 2 times the width of the textbox.
- *		Type: Number, Range: 1 - infinity, Default: 3
- * expandFrom: Which direction to offset the suggestion box from.
- *      Values 'start' and 'end' translate to left and right respectively depending on the
- *      directionality of the current document, according to $( 'html' ).css( 'direction' ).
- *      Type: String, default: 'auto', options: 'left', 'right', 'start', 'end', 'auto'.
- * positionFromLeft: Sets expandFrom=left, for backwards compatibility
- *		Type: Boolean, Default: true
- * highlightInput: Whether to hightlight matched portions of the input or not
- *		Type: Boolean, Default: false
+ * @class jQuery.plugin.suggestions
+ */
+/**
+ * @method suggestions
+ * @return {jQuery}
+ * @chainable
+ *
+ * @param {Object} options
+ *
+ * @param {Function} [options.fetch] Callback that should fetch suggestions and set the suggestions
+ *  property. Called in context of the text box.
+ * @param {string} options.fetch.query
+ * @param {Function} options.fetch.response Callback to receive the suggestions with
+ * @param {Array} options.fetch.response.suggestions
+ * @param {number} options.fetch.maxRows
+ *
+ * @param {Function} [options.cancel] Callback function to call when any pending asynchronous
+ *  suggestions fetches. Called in context of the text box.
+ *
+ * @param {Object} [options.special] Set of callbacks for rendering and selecting.
+ *
+ * @param {Function} options.special.render Called in context of the suggestions-special element.
+ * @param {string} options.special.render.query
+ * @param {Object} options.special.render.context
+ *
+ * @param {Function} options.special.select Called in context of the suggestions-result-current element.
+ * @param {jQuery} options.special.select.$textbox
+ *
+ * @param {Object} [options.result] Set of callbacks for rendering and selecting
+ *
+ * @param {Function} options.result.render Called in context of the suggestions-result element.
+ * @param {string} options.result.render.suggestion
+ * @param {Object} options.result.render.context
+ *
+ * @param {Function} options.result.select Called in context of the suggestions-result-current element.
+ * @param {jQuery} options.result.select.$textbox
+ *
+ * @param {jQuery} [options.$region=this] The element to place the suggestions below and match width of.
+ *
+ * @param {string[]} [options.suggestions] Array of suggestions to display.
+ *
+ * @param {number} [options.maxRows=10] Maximum number of suggestions to display at one time.
+ *  Must be between 1 and 100.
+ *
+ * @param {number} [options.delay=120] Number of milliseconds to wait for the user to stop typing.
+ *  Must be between 0 and 1200.
+ *
+ * @param {boolean} [options.cache=false] Whether to cache results from a fetch.
+ *
+ * @param {number} [options.cacheMaxAge=60000] Number of milliseconds to cache results from a fetch.
+ *  Must be higher than 1. Defaults to 1 minute.
+ *
+ * @param {boolean} [options.submitOnClick=false] Whether to submit the form containing the textbox
+ *  when a suggestion is clicked.
+ *
+ * @param {number} [options.maxExpandFactor=3] Maximum suggestions box width relative to the textbox
+ *  width. If set to e.g. 2, the suggestions box will never be grown beyond 2 times the width of
+ *  the textbox. Must be higher than 1.
+ *
+ * @param {string} [options.expandFrom=auto] Which direction to offset the suggestion box from.
+ *  Values 'start' and 'end' translate to left and right respectively depending on the directionality
+ *   of the current document, according to `$( 'html' ).css( 'direction' )`.
+ *   Valid values: "left", "right", "start", "end", and "auto".
+ *
+ * @param {boolean} [options.positionFromLeft] Sets `expandFrom=left`, for backwards
+ *  compatibility.
+ *
+ * @param {boolean} [options.highlightInput=false] Whether to hightlight matched portions of the
+ *  input or not.
  */
 ( function ( $ ) {
 
 var hasOwn = Object.hasOwnProperty;
 
+/**
+ * Used by jQuery.plugin.suggestions.
+ *
+ * @class jQuery.suggestions
+ * @singleton
+ * @private
+ */
 $.suggestions = {
 	/**
 	 * Cancel any delayed maybeFetch() call and callback the context so
@@ -114,7 +136,7 @@ $.suggestions = {
 	 * call to this function still pending will be canceled. If the value in the
 	 * textbox is empty or hasn't changed since the last time suggestions were fetched,
 	 * this function does nothing.
-	 * @param {Boolean} delayed Whether or not to delay this by the currently configured amount of time
+	 * @param {boolean} delayed Whether or not to delay this by the currently configured amount of time
 	 */
 	update: function ( context, delayed ) {
 		function maybeFetch() {
@@ -191,8 +213,8 @@ $.suggestions = {
 
 	/**
 	 * Sets the value of a property, and updates the widget accordingly
-	 * @param property String Name of property
-	 * @param value Mixed Value to set property with
+	 * @param {string} property Name of property
+	 * @param {Mixed} value Value to set property with
 	 */
 	configure: function ( context, property, value ) {
 		var newCSS,
@@ -376,8 +398,8 @@ $.suggestions = {
 
 	/**
 	 * Highlight a result in the results table
-	 * @param result <tr> to highlight: jQuery object, or 'prev' or 'next'
-	 * @param updateTextbox If true, put the suggestion in the textbox
+	 * @param {jQuery|string} result `<tr>` to highlight, or 'prev' or 'next'
+	 * @param {boolean} updateTextbox If true, put the suggestion in the textbox
 	 */
 	highlight: function ( context, result, updateTextbox ) {
 		var selected = context.data.$container.find( '.suggestions-result-current' );
@@ -445,7 +467,7 @@ $.suggestions = {
 
 	/**
 	 * Respond to keypress event
-	 * @param key Integer Code of key pressed
+	 * @param {number} key Code of key pressed
 	 */
 	keypress: function ( e, context, key ) {
 		var selected,
@@ -516,6 +538,8 @@ $.suggestions = {
 		}
 	}
 };
+
+// See file header for method documentation
 $.fn.suggestions = function () {
 
 	// Multi-context fields
@@ -525,7 +549,7 @@ $.fn.suggestions = function () {
 	$( this ).each( function () {
 		var context, key;
 
-		/* Construction / Loading */
+		/* Construction and Loading */
 
 		context = $( this ).data( 'suggestions-context' );
 		if ( context === undefined || context === null ) {
@@ -702,5 +726,10 @@ $.fn.suggestions = function () {
 	} );
 	return returnValue !== undefined ? returnValue : $( this );
 };
+
+/**
+ * @class jQuery
+ * @mixins jQuery.plugin.suggestions
+ */
 
 }( jQuery ) );
