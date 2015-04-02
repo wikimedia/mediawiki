@@ -33,6 +33,7 @@ class ResourceLoaderImageTest extends ResourceLoaderTestCase {
 			array( 'help', 'he', 'help-ltr.svg' ),
 			array( 'bold', 'en', 'bold-b.svg' ),
 			array( 'bold', 'de', 'bold-f.svg' ),
+			array( 'bold', 'ar', 'bold-f.svg' ),
 			array( 'bold', 'fr', 'bold-a.svg' ),
 			array( 'bold', 'he', 'bold-a.svg' ),
 		);
