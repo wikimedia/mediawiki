@@ -1287,11 +1287,8 @@ function wfLogProfilingData() {
 		$ctx['proxy'] = $_SERVER['REMOTE_ADDR'];
 	}
 
-	// Don't load $wgUser at this late stage just for statistics purposes
-	// @todo FIXME: We can detect some anons even if it is not loaded.
-	// See User::getId()
 	$user = $context->getUser();
-	$ctx['anon'] = $user->isItemLoaded( 'id' ) && $user->isAnon();
+	$ctx['anon'] = $user->quickIsAnon();
 
 	// Command line script uses a FauxRequest object which does not have
 	// any knowledge about an URL and throw an exception instead.
