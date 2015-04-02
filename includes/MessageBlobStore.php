@@ -36,15 +36,12 @@ class MessageBlobStore {
 	 * Get the singleton instance
 	 *
 	 * @since 1.24
+	 * @deprecated since 1.25
 	 * @return MessageBlobStore
 	 */
 	public static function getInstance() {
-		static $instance = null;
-		if ( $instance === null ) {
-			$instance = new self;
-		}
-
-		return $instance;
+		wfDeprecated( __METHOD__, '1.25' );
+		return new self;
 	}
 
 	/**
