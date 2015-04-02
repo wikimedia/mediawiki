@@ -410,6 +410,7 @@ class UserTest extends MediaWikiTestCase {
 	/**
 	 * @covers User::isLoggedIn
 	 * @covers User::isAnon
+	 * @covers User::hasUserName
 	 */
 	public function testLoggedIn() {
 		$user = User::newFromName( 'UTSysop' );
@@ -424,5 +425,21 @@ class UserTest extends MediaWikiTestCase {
 		$user = new User;
 		$this->assertFalse( $user->isLoggedIn() );
 		$this->assertTrue( $user->isAnon() );
+	}
+
+	/**
+	 * @covers User::quickIsAnon
+	 * @covers User::hasUserName
+	 */
+	public function testQuickIsAnon() {
+		$user = User::newFromName( 'UTSysop' );
+		$this->assertFalse( $user->quickIsAnon() );
+
+		// Non-existent users are NOT perceived as anonymous
+		$user = User::newFromName( 'UTNonexistent' );
+		$this->assertFalse( $user->quickIsAnon() );
+
+		$user = new User;
+		$this->assertTrue( $user->quickIsAnon() );
 	}
 }
