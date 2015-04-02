@@ -24,9 +24,11 @@ class SkinFallbackTemplate extends BaseTemplate {
 			return $maybeDir !== '.' && $maybeDir !== '..' && is_dir( "$styleDirectory/$maybeDir" );
 		} );
 
-		// Only keep the ones that contain a .php file with the same name inside
+		// Filter out skins that aren't installed
 		$possibleSkins = array_filter( $possibleSkins, function ( $skinDir ) use ( $styleDirectory ) {
-			return is_file( "$styleDirectory/$skinDir/$skinDir.php" );
+			return
+				is_file( "$styleDirectory/$skinDir/skin.json" )
+				|| is_file( "$styleDirectory/$skinDir/$skinDir.php" );
 		} );
 
 		return $possibleSkins;
@@ -56,7 +58,7 @@ class SkinFallbackTemplate extends BaseTemplate {
 				} else {
 					$skinsInstalledText[] = $this->getMsg( 'default-skin-not-found-row-disabled' )
 						->params( $normalizedKey, $skin )->plain();
-					$skinsInstalledSnippet[] = "require_once \"\$IP/skins/$skin/$skin.php\";";
+					$skinsInstalledSnippet[] = $this->getSnippetForSkin( $skin );
 				}
 			}
 
@@ -69,6 +71,21 @@ class SkinFallbackTemplate extends BaseTemplate {
 			return $this->getMsg( 'default-skin-not-found-no-skins' )->params(
 				$defaultSkin
 			)->parseAsBlock();
+		}
+	}
+
+	/**
+	 * Get the appropriate LocalSettings.php snippet to enable the given skin
+	 *
+	 * @param string $skin
+	 * @return string
+	 */
+	private function getSnippetForSkin( $skin ) {
+		global $IP;
+		if ( file_exists( "$IP/skins/$skin/skin.json" ) ) {
+			return "wfLoadSkin( '$skin' );";
+		} else {
+			return  "require_once \"\$IP/skins/$skin/$skin.php\";";
 		}
 	}
 
