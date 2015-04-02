@@ -1004,11 +1004,19 @@ class LoadBalancer {
 			if ( empty( $conns2[$masterIndex] ) ) {
 				continue;
 			}
+			$exception = null;
 			/** @var DatabaseBase $conn */
 			foreach ( $conns2[$masterIndex] as $conn ) {
 				if ( $conn->trxLevel() && $conn->writesOrCallbacksPending() ) {
-					$conn->rollback( __METHOD__, 'flush' );
+					try {
+						$conn->rollback( __METHOD__, 'flush' );
+					} catch ( DBError $exception ) {
+						// failed; try the others
+					}
 				}
+			}
+			if ( $exception ) {
+				throw $exception; // throw the last error
 			}
 		}
 	}
