@@ -249,7 +249,7 @@ class Message implements MessageSpecifier {
 		$this->key = reset( $this->keysToTry );
 
 		$this->parameters = array_values( $params );
-		$this->language = $language ? $language : $wgLang;
+		$this->language = $language ?: $wgLang;
 	}
 
 	/**
