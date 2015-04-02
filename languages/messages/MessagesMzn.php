@@ -26,7 +26,6 @@ $rtl = true;
 $namespaceNames = array(
 	NS_MEDIA            => 'مدیا',
 	NS_SPECIAL          => 'شا',
-	NS_MAIN             => '',
 	NS_TALK             => 'گپ',
 	NS_USER             => 'کارور',
 	NS_USER_TALK        => 'کارور_گپ',

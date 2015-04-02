@@ -96,7 +96,6 @@ $bookstoreList = array(
 $namespaceNames = array(
 	NS_MEDIA          => 'Media',
 	NS_SPECIAL        => 'Spezial',
-	NS_MAIN           => '',
 	NS_TALK           => 'Diskuschoon',
 	NS_USER           => 'Bruker',
 	NS_USER_TALK      => 'Bruker_Diskuschoon',
