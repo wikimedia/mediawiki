@@ -261,6 +261,57 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 					),
 				),
 			),
+			// ResourceModuleSkinStyles with file module paths
+			array(
+				// Input
+				array(
+					'ResourceFileModulePaths' => array(
+						'localBasePath' => '',
+						'remoteSkinPath' => 'FooBar',
+					),
+					'ResourceModuleSkinStyles' => array(
+						'foobar' => array(
+							'test.foo' => 'foo.css',
+						)
+					),
+				),
+				// Expected
+				array(
+					'wgResourceModuleSkinStyles' => array(
+						'foobar' => array(
+							'test.foo' => 'foo.css',
+							'localBasePath' => $dir,
+							'remoteSkinPath' => 'FooBar',
+						),
+					),
+				),
+			),
+			// ResourceModuleSkinStyles with file module paths and an override
+			array(
+				// Input
+				array(
+					'ResourceFileModulePaths' => array(
+						'localBasePath' => '',
+						'remoteSkinPath' => 'FooBar',
+					),
+					'ResourceModuleSkinStyles' => array(
+						'foobar' => array(
+							'test.foo' => 'foo.css',
+							'remoteSkinPath' => 'BarFoo'
+						),
+					),
+				),
+				// Expected
+				array(
+					'wgResourceModuleSkinStyles' => array(
+						'foobar' => array(
+							'test.foo' => 'foo.css',
+							'localBasePath' => $dir,
+							'remoteSkinPath' => 'BarFoo',
+						),
+					),
+				),
+			),
 		);
 	}
 

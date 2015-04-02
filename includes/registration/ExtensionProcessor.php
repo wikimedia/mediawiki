@@ -193,15 +193,17 @@ class ExtensionProcessor implements Processor {
 			$defaultPaths['localBasePath'] = "$dir/{$defaultPaths['localBasePath']}";
 		}
 
-		if ( isset( $info['ResourceModules'] ) ) {
-			foreach ( $info['ResourceModules'] as $name => $data ) {
-				if ( isset( $data['localBasePath'] ) ) {
-					$data['localBasePath'] = "$dir/{$data['localBasePath']}";
+		foreach ( array( 'ResourceModules', 'ResourceModuleSkinStyles' ) as $setting ) {
+			if ( isset( $info[$setting] ) ) {
+				foreach ( $info[$setting] as $name => $data ) {
+					if ( isset( $data['localBasePath'] ) ) {
+						$data['localBasePath'] = "$dir/{$data['localBasePath']}";
+					}
+					if ( $defaultPaths ) {
+						$data += $defaultPaths;
+					}
+					$this->globals["wg$setting"][$name] = $data;
 				}
-				if ( $defaultPaths ) {
-					$data += $defaultPaths;
-				}
-				$this->globals['wgResourceModules'][$name] = $data;
 			}
 		}
 	}
