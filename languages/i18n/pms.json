@@ -442,6 +442,7 @@
 	"wrongpassword": "La ciav batùa a l'é pa giusta.\nChe a preuva torna, për piasì.",
 	"wrongpasswordempty": "A l'ha butà na ciav veujda. Për piasì, che a preuva torna.",
 	"passwordtooshort": "Le ciav a devo avèj almanch {{PLURAL:$1|1 caràter|$1 caràter}}.",
+	"passwordtoolong": "Le ciav a peulo nen esse pi longhe che {{PLURAL:$1|1 caràter|$1 caràter}}.",
 	"password-name-match": "Soa ciav a dev esse diferenta da sò stranòm.",
 	"password-login-forbidden": "L'usagi ëd së stranòm d'utent e ëd sa ciav a son ëstàit proibì.",
 	"mailmypassword": "Riamposté la ciav",

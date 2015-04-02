@@ -488,6 +488,7 @@
 	"wrongpassword": "您輸入的密碼錯誤，請再試一次。",
 	"wrongpasswordempty": "輸入的密碼是空的。\n請再試一次。",
 	"passwordtooshort": "您的密碼至少需要 $1 個字元。",
+	"passwordtoolong": "密碼不能超過 {{PLURAL:$1|1 個字元|$1 個字元}}。",
 	"password-name-match": "您的密碼不可以跟使用者名稱相同。",
 	"password-login-forbidden": "此使用者名稱和密碼已被禁止使用。",
 	"mailmypassword": "重設密碼",

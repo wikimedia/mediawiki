@@ -456,6 +456,7 @@
 	"wrongpassword": "Bylo zadáno nesprávné heslo.\nZkuste to znovu.",
 	"wrongpasswordempty": "Bylo zadáno prázdné heslo. Zkuste to znovu.",
 	"passwordtooshort": "Heslo musí být dlouhé nejméně $1 {{PLURAL:$1|znak|znaky|znaků}}.",
+	"passwordtoolong": "Hesla nemohou být delší než {{PLURAL:$1|1 znak|$1 znaky|$1 znaků}}.",
 	"password-name-match": "Vaše heslo nesmí být stejné jako uživatelské jméno.",
 	"password-login-forbidden": "Použití tohoto uživatelského jména a hesla bylo zakázáno.",
 	"mailmypassword": "Poslat nové heslo",

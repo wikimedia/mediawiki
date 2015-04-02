@@ -438,6 +438,7 @@
 	"wrongpassword": "Vnesli ste napačno geslo. Prosimo, poskusite znova.",
 	"wrongpasswordempty": "Vpisali ste prazno geslo. Prosimo, poskusite znova.",
 	"passwordtooshort": "Geslo mora imeti najmanj $1 {{PLURAL:$1|znak|znaka|znake|znakov|znakov}}.",
+	"passwordtoolong": "Gesla ne morejo biti daljša od {{PLURAL:$1|1 znaka|$1 znakov}}.",
 	"password-name-match": "Vaše geslo se mora razlikovati od vašega uporabniškega imena.",
 	"password-login-forbidden": "Uporaba tega uporabniškega imena in gesla je prepovedana.",
 	"mailmypassword": "Ponastavitev gesla",
