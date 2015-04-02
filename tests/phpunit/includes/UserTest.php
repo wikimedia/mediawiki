@@ -397,4 +397,32 @@ class UserTest extends MediaWikiTestCase {
 		$sixth = User::newFromName( 'EqualUnitTestUser' );
 		$this->assertTrue( $fifth->equals( $sixth ) );
 	}
+
+	/**
+	 * @covers User::getId
+	 */
+	public function testGetId() {
+		$user = User::newFromName( 'UTSysop' );
+		$this->assertTrue( $user->getId() > 0 );
+
+	}
+
+	/**
+	 * @covers User::isLoggedIn
+	 * @covers User::isAnon
+	 */
+	public function testLoggedIn() {
+		$user = User::newFromName( 'UTSysop' );
+		$this->assertTrue( $user->isLoggedIn() );
+		$this->assertFalse( $user->isAnon() );
+
+		// Non-existent users are perceived as anonymous
+		$user = User::newFromName( 'UTNonexistent' );
+		$this->assertFalse( $user->isLoggedIn() );
+		$this->assertTrue( $user->isAnon() );
+
+		$user = new User;
+		$this->assertFalse( $user->isLoggedIn() );
+		$this->assertTrue( $user->isAnon() );
+	}
 }
