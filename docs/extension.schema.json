@@ -8,6 +8,10 @@
 			"description": "The extension's canonical name.",
 			"required": true
 		},
+		"namemsg": {
+			"type": "string",
+			"description": "i18n message key of the extension's name."
+		},
 		"type": {
 			"type": "string",
 			"description": "The extension's type, as an index to $wgExtensionCredits.",
