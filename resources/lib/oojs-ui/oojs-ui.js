@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.9.4
+ * OOjs UI v0.9.7
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-03-25T22:24:05Z
+ * Date: 2015-04-03T21:01:28Z
  */
 ( function ( OO ) {
 
@@ -3439,19 +3439,27 @@ OO.ui.HtmlSnippet.prototype.toString = function () {
 };
 
 /**
- * A list of functions, called in sequence.
+ * A Process is a list of steps that are called in sequence. The step can be a number, a jQuery promise,
+ * or a function:
  *
- * If a function added to a process returns boolean false the process will stop; if it returns an
- * object with a `promise` method the process will use the promise to either continue to the next
- * step when the promise is resolved or stop when the promise is rejected.
+ * - **number**: the process will wait for the specified number of milliseconds before proceeding.
+ * - **promise**: the process will continue to the next step when the promise is successfully resolved
+ *  or stop if the promise is rejected.
+ * - **function**: the process will execute the function. The process will stop if the function returns
+ *  either a boolean `false` or a promise that is rejected; if the function returns a number, the process
+ *  will wait for that number of milliseconds before proceeding.
+ *
+ * If the process fails, an {@link OO.ui.Error error} is generated. Depending on how the error is
+ * configured, users can dismiss the error and try the process again, or not. If a process is stopped,
+ * its remaining steps will not be performed.
  *
  * @class
  *
  * @constructor
- * @param {number|jQuery.Promise|Function} step Time to wait, promise to wait for or function to
- *   call, see #createStep for more information
- * @param {Object} [context=null] Context to call the step function in, ignored if step is a number
- *   or a promise
+ * @param {number|jQuery.Promise|Function} step Number of miliseconds to wait before proceeding, promise
+ *  that must be resolved before proceeding, or a function to execute. See #createStep for more information. see #createStep for more information
+ * @param {Object} [context=null] Execution context of the function. The context is ignored if the step is
+ *  a number or promise.
  * @return {Object} Step object, with `callback` and `context` properties
  */
 OO.ui.Process = function ( step, context ) {
@@ -3473,9 +3481,9 @@ OO.initClass( OO.ui.Process );
 /**
  * Start the process.
  *
- * @return {jQuery.Promise} Promise that is resolved when all steps have completed or rejected when
- *   any of the steps return boolean false or a promise which gets rejected; upon stopping the
- *   process, the remaining steps will not be taken
+ * @return {jQuery.Promise} Promise that is resolved when all steps have successfully completed.
+ *  If any of the steps return a promise that is rejected or a boolean false, this promise is rejected
+ *  and any remaining steps are not performed.
  */
 OO.ui.Process.prototype.execute = function () {
 	var i, len, promise;
@@ -3543,16 +3551,16 @@ OO.ui.Process.prototype.execute = function () {
  * @private
  * @param {number|jQuery.Promise|Function} step
  *
- * - Number of milliseconds to wait; or
- * - Promise to wait to be resolved; or
+ * - Number of milliseconds to wait before proceeding
+ * - Promise that must be resolved before proceeding
  * - Function to execute
- *   - If it returns boolean false the process will stop
- *   - If it returns an object with a `promise` method the process will use the promise to either
- *     continue to the next step when the promise is resolved or stop when the promise is rejected
- *   - If it returns a number, the process will wait for that number of milliseconds before
- *     proceeding
- * @param {Object} [context=null] Context to call the step function in, ignored if step is a number
- *   or a promise
+ *   - If the function returns a boolean false the process will stop
+ *   - If the function returns a promise, the process will continue to the next
+ *     step when the promise is resolved or stop if the promise is rejected
+ *   - If the function returns a number, the process will wait for that number of
+ *     milliseconds before proceeding
+ * @param {Object} [context=null] Execution context of the function. The context is
+ *  ignored if the step is a number or promise.
  * @return {Object} Step object, with `callback` and `context` properties
  */
 OO.ui.Process.prototype.createStep = function ( step, context ) {
@@ -5547,12 +5555,10 @@ OO.ui.LookupElement.prototype.onLookupMenuToggle = function ( visible ) {
  * Handle menu item 'choose' event, updating the text input value to the value of the clicked item.
  *
  * @protected
- * @param {OO.ui.MenuOptionWidget|null} item Selected item
+ * @param {OO.ui.MenuOptionWidget} item Selected item
  */
 OO.ui.LookupElement.prototype.onLookupMenuItemChoose = function ( item ) {
-	if ( item ) {
-		this.setValue( item.getData() );
-	}
+	this.setValue( item.getData() );
 };
 
 /**
@@ -7709,7 +7715,7 @@ OO.ui.ProcessDialog.prototype.fitLabel = function () {
  * Handle errors that occurred during accept or reject processes.
  *
  * @private
- * @param {OO.ui.Error[]} errors Errors to be handled
+ * @param {OO.ui.Error[]|OO.ui.Error} errors Errors to be handled
  */
 OO.ui.ProcessDialog.prototype.showErrors = function ( errors ) {
 	var i, len, $item, actions,
@@ -7717,6 +7723,10 @@ OO.ui.ProcessDialog.prototype.showErrors = function ( errors ) {
 		abilities = {},
 		recoverable = true,
 		warning = false;
+
+	if ( errors instanceof OO.ui.Error ) {
+		errors = [ errors ];
+	}
 
 	for ( i = 0, len = errors.length; i < len; i++ ) {
 		if ( !errors[ i ].isRecoverable() ) {
@@ -7939,7 +7949,43 @@ OO.ui.FieldLayout.prototype.setAlignment = function ( value ) {
 };
 
 /**
- * Layout made of a field, a button, and an optional label.
+ * ActionFieldLayouts are used with OO.ui.FieldsetLayout. The layout consists of a field-widget, a button,
+ * and an optional label and/or help text. The field-widget (e.g., a {@link OO.ui.TextInputWidget TextInputWidget}),
+ * is required and is specified before any optional configuration settings.
+ *
+ * Labels can be aligned in one of four ways:
+ *
+ * - **left**: The label is placed before the field-widget and aligned with the left margin.
+ *   A left-alignment is used for forms with many fields.
+ * - **right**: The label is placed before the field-widget and aligned to the right margin.
+ *   A right-alignment is used for long but familiar forms which users tab through,
+ *   verifying the current field with a quick glance at the label.
+ * - **top**: The label is placed above the field-widget. A top-alignment is used for brief forms
+ *   that users fill out from top to bottom.
+ * - **inline**: The label is placed after the field-widget and aligned to the left.
+ *   An inline-alignment is best used with checkboxes or radio buttons.
+ *
+ * Help text is accessed via a help icon that appears in the upper right corner of the rendered field layout when help
+ * text is specified.
+ *
+ *     @example
+ *     // Example of an ActionFieldLayout
+ *     var actionFieldLayout = new OO.ui.ActionFieldLayout(
+ *         new OO.ui.TextInputWidget( {
+ *             placeholder: 'Field widget'
+ *         } ),
+ *         new OO.ui.ButtonWidget( {
+ *             label: 'Button'
+ *         } ),
+ *         {
+ *             label: 'An ActionFieldLayout. This label is aligned top',
+ *             align: 'top',
+ *             help: 'This is help text'
+ *         }
+ *     );
+ *
+ *     $( 'body' ).append( actionFieldLayout.$element );
+ *
  *
  * @class
  * @extends OO.ui.FieldLayout
@@ -7948,8 +7994,9 @@ OO.ui.FieldLayout.prototype.setAlignment = function ( value ) {
  * @param {OO.ui.Widget} fieldWidget Field widget
  * @param {OO.ui.ButtonWidget} buttonWidget Button widget
  * @param {Object} [config] Configuration options
- * @cfg {string} [align='left'] Alignment mode, either 'left', 'right', 'top' or 'inline'
- * @cfg {string} [help] Explanatory text shown as a '?' icon.
+ * @cfg {string} [align='left'] Alignment of the label: 'left', 'right', 'top' or 'inline'
+ * @cfg {string} [help] Help text. When help text is specified, a help icon will appear in the
+ *  upper-right corner of the rendered field.
  */
 OO.ui.ActionFieldLayout = function OoUiActionFieldLayout( fieldWidget, buttonWidget, config ) {
 	// Allow passing positional parameters inside the config object
@@ -8190,8 +8237,7 @@ OO.ui.FormLayout.prototype.onFormSubmit = function () {
  * @param {Object} [config] Configuration options
  * @cfg {number|string} [menuSize='18em'] Size of menu in pixels or any CSS unit
  * @cfg {boolean} [showMenu=true] Show menu
- * @cfg {string} [position='before'] Position of menu, either `top`, `after`, `bottom` or `before`
- * @cfg {boolean} [collapse] Collapse the menu out of view
+ * @cfg {string} [menuPosition='before'] Position of menu: `top`, `after`, `bottom` or `before`
  */
 OO.ui.MenuLayout = function OoUiMenuLayout( config ) {
 	var positions = this.constructor.static.menuPositions;
@@ -8373,7 +8419,44 @@ OO.ui.MenuLayout.prototype.getMenuPosition = function () {
 };
 
 /**
- * Layout containing a series of pages.
+ * BookletLayouts contain {@link OO.ui.PageLayout page layouts} as well as
+ * an {@link OO.ui.OutlineSelectWidget outline} that allows users to easily navigate
+ * through the pages and select which one to display. By default, only one page is
+ * displayed at a time and the outline is hidden. When a user navigates to a new page,
+ * the booklet layout automatically focuses on the first focusable element, unless the
+ * default setting is changed. Optionally, booklets can be configured to show
+ * {@link OO.ui.OutlineControlsWidget controls} for adding, moving, and removing items.
+ *
+ *     @example
+ *     // Example of a BookletLayout that contains two PageLayouts.
+ *
+ *     function PageOneLayout( name, config ) {
+ *         PageOneLayout.super.call( this, name, config );
+ *         this.$element.append( '<p>First page</p><p>(This booklet has an outline, displayed on the left)</p>' );
+ *     }
+ *     OO.inheritClass( PageOneLayout, OO.ui.PageLayout );
+ *     PageOneLayout.prototype.setupOutlineItem = function () {
+ *         this.outlineItem.setLabel( 'Page One' );
+ *     };
+ *
+ *     function PageTwoLayout( name, config ) {
+ *         PageTwoLayout.super.call( this, name, config );
+ *         this.$element.append( '<p>Second page</p>' );
+ *     }
+ *     OO.inheritClass( PageTwoLayout, OO.ui.PageLayout );
+ *     PageTwoLayout.prototype.setupOutlineItem = function () {
+ *         this.outlineItem.setLabel( 'Page Two' );
+ *     };
+ *
+ *     var page1 = new PageOneLayout( 'one' ),
+ *         page2 = new PageTwoLayout( 'two' );
+ *
+ *     var booklet = new OO.ui.BookletLayout( {
+ *         outlined: true
+ *     } );
+ *
+ *     booklet.addPages ( [ page1, page2 ] );
+ *     $( 'body' ).append( booklet.$element );
  *
  * @class
  * @extends OO.ui.MenuLayout
@@ -8381,8 +8464,8 @@ OO.ui.MenuLayout.prototype.getMenuPosition = function () {
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {boolean} [continuous=false] Show all pages, one after another
- * @cfg {boolean} [autoFocus=true] Focus on the first focusable element when changing to a page
- * @cfg {boolean} [outlined=false] Show an outline
+ * @cfg {boolean} [autoFocus=true] Focus on the first focusable element when a new page is displayed.
+ * @cfg {boolean} [outlined=false] Show the outline. The outline is used to navigate through the pages of the booklet.
  * @cfg {boolean} [editable=false] Show controls for adding, removing and reordering pages
  */
 OO.ui.BookletLayout = function OoUiBookletLayout( config ) {
@@ -8448,17 +8531,23 @@ OO.inheritClass( OO.ui.BookletLayout, OO.ui.MenuLayout );
 /* Events */
 
 /**
+ * A 'set' event is emitted when a page is {@link #setPage set} to be displayed by the booklet layout.
  * @event set
  * @param {OO.ui.PageLayout} page Current page
  */
 
 /**
+ * An 'add' event is emitted when pages are {@link #addPages added} to the booklet layout.
+ *
  * @event add
  * @param {OO.ui.PageLayout[]} page Added pages
  * @param {number} index Index pages were added at
  */
 
 /**
+ * A 'remove' event is emitted when pages are {@link #clearPages cleared} or
+ * {@link #removePages removed} from the booklet.
+ *
  * @event remove
  * @param {OO.ui.PageLayout[]} pages Removed pages
  */
@@ -8468,6 +8557,7 @@ OO.inheritClass( OO.ui.BookletLayout, OO.ui.MenuLayout );
 /**
  * Handle stack layout focus.
  *
+ * @private
  * @param {jQuery.Event} e Focusin event
  */
 OO.ui.BookletLayout.prototype.onStackLayoutFocus = function ( e ) {
@@ -8487,6 +8577,7 @@ OO.ui.BookletLayout.prototype.onStackLayoutFocus = function ( e ) {
 /**
  * Handle stack layout set events.
  *
+ * @private
  * @param {OO.ui.PanelLayout|null} page The page panel that is now the current panel
  */
 OO.ui.BookletLayout.prototype.onStackLayoutSet = function ( page ) {
@@ -8527,6 +8618,7 @@ OO.ui.BookletLayout.prototype.focus = function () {
 /**
  * Handle outline widget select events.
  *
+ * @private
  * @param {OO.ui.OptionWidget|null} item Selected item
  */
 OO.ui.BookletLayout.prototype.onOutlineSelectWidgetSelect = function ( item ) {
@@ -8538,7 +8630,7 @@ OO.ui.BookletLayout.prototype.onOutlineSelectWidgetSelect = function ( item ) {
 /**
  * Check if booklet has an outline.
  *
- * @return {boolean}
+ * @return {boolean} Booklet has an outline
  */
 OO.ui.BookletLayout.prototype.isOutlined = function () {
 	return this.outlined;
@@ -8547,7 +8639,7 @@ OO.ui.BookletLayout.prototype.isOutlined = function () {
 /**
  * Check if booklet has editing controls.
  *
- * @return {boolean}
+ * @return {boolean} Booklet is editable
  */
 OO.ui.BookletLayout.prototype.isEditable = function () {
 	return this.editable;
@@ -8556,7 +8648,7 @@ OO.ui.BookletLayout.prototype.isEditable = function () {
 /**
  * Check if booklet has a visible outline.
  *
- * @return {boolean}
+ * @return {boolean} Outline is visible
  */
 OO.ui.BookletLayout.prototype.isOutlineVisible = function () {
 	return this.outlined && this.outlineVisible;
@@ -8579,10 +8671,10 @@ OO.ui.BookletLayout.prototype.toggleOutline = function ( show ) {
 };
 
 /**
- * Get the outline widget.
+ * Get the page closest to the specified page.
  *
- * @param {OO.ui.PageLayout} page Page to be selected
- * @return {OO.ui.PageLayout|null} Closest page to another
+ * @param {OO.ui.PageLayout} page Page to use as a reference point
+ * @return {OO.ui.PageLayout|null} Page closest to the specified page
  */
 OO.ui.BookletLayout.prototype.getClosestPage = function ( page ) {
 	var next, prev, level,
@@ -8615,14 +8707,18 @@ OO.ui.BookletLayout.prototype.getClosestPage = function ( page ) {
 /**
  * Get the outline widget.
  *
- * @return {OO.ui.OutlineSelectWidget|null} Outline widget, or null if booklet has no outline
+ * If the booklet is not outlined, the method will return `null`.
+ *
+ * @return {OO.ui.OutlineSelectWidget|null} Outline widget, or null if the booklet is not outlined
  */
 OO.ui.BookletLayout.prototype.getOutline = function () {
 	return this.outlineSelectWidget;
 };
 
 /**
- * Get the outline controls widget. If the outline is not editable, null is returned.
+ * Get the outline controls widget.
+ *
+ * If the outline is not editable, the method will return `null`.
  *
  * @return {OO.ui.OutlineControlsWidget|null} The outline controls widget.
  */
@@ -8631,7 +8727,7 @@ OO.ui.BookletLayout.prototype.getOutlineControls = function () {
 };
 
 /**
- * Get a page by name.
+ * Get a page by its symbolic name.
  *
  * @param {string} name Symbolic name of page
  * @return {OO.ui.PageLayout|undefined} Page, if found
@@ -8641,7 +8737,7 @@ OO.ui.BookletLayout.prototype.getPage = function ( name ) {
 };
 
 /**
- * Get the current page
+ * Get the current page.
  *
  * @return {OO.ui.PageLayout|undefined} Current page, if found
  */
@@ -8651,22 +8747,22 @@ OO.ui.BookletLayout.prototype.getCurrentPage = function () {
 };
 
 /**
- * Get the current page name.
+ * Get the symbolic name of the current page.
  *
- * @return {string|null} Current page name
+ * @return {string|null} Symbolic name of the current page
  */
 OO.ui.BookletLayout.prototype.getCurrentPageName = function () {
 	return this.currentPageName;
 };
 
 /**
- * Add a page to the layout.
+ * Add pages to the booklet layout
  *
  * When pages are added with the same names as existing pages, the existing pages will be
  * automatically removed before the new pages are added.
  *
  * @param {OO.ui.PageLayout[]} pages Pages to add
- * @param {number} index Index to insert pages after
+ * @param {number} index Index of the insertion point
  * @fires add
  * @chainable
  */
@@ -8717,8 +8813,11 @@ OO.ui.BookletLayout.prototype.addPages = function ( pages, index ) {
 };
 
 /**
- * Remove a page from the layout.
+ * Remove the specified pages from the booklet layout.
  *
+ * To remove all pages from the booklet, you may wish to use the #clearPages method instead.
+ *
+ * @param {OO.ui.PageLayout[]} pages An array of pages to remove
  * @fires remove
  * @chainable
  */
@@ -8746,7 +8845,9 @@ OO.ui.BookletLayout.prototype.removePages = function ( pages ) {
 };
 
 /**
- * Clear all pages from the layout.
+ * Clear all pages from the booklet layout.
+ *
+ * To remove only a subset of pages from the booklet, use the #removePages method.
  *
  * @fires remove
  * @chainable
@@ -8771,7 +8872,7 @@ OO.ui.BookletLayout.prototype.clearPages = function () {
 };
 
 /**
- * Set the current page by name.
+ * Set the current page by symbolic name.
  *
  * @fires set
  * @param {string} name Symbolic name of page
@@ -8879,7 +8980,13 @@ OO.ui.PanelLayout = function OoUiPanelLayout( config ) {
 OO.inheritClass( OO.ui.PanelLayout, OO.ui.Layout );
 
 /**
- * Page within an booklet layout.
+ * PageLayouts are used within {@link OO.ui.BookletLayout booklet layouts} to create pages that users can select and display
+ * from the booklet's optional {@link OO.ui.OutlineSelectWidget outline} navigation. Pages are usually not instantiated directly,
+ * rather extended to include the required content and functionality.
+ *
+ * Each page must have a unique symbolic name, which is passed to the constructor. In addition, the page's outline
+ * item is customized (with a label, outline level, etc.) using the #setupOutlineItem method. See
+ * {@link OO.ui.BookletLayout BookletLayout} for an example.
  *
  * @class
  * @extends OO.ui.PanelLayout
@@ -8917,6 +9024,9 @@ OO.inheritClass( OO.ui.PageLayout, OO.ui.PanelLayout );
 /* Events */
 
 /**
+ * An 'active' event is emitted when the page becomes active. Pages become active when they are
+ * shown in a booklet layout that is configured to display only one page at a time.
+ *
  * @event active
  * @param {boolean} active Page is active
  */
@@ -8924,7 +9034,7 @@ OO.inheritClass( OO.ui.PageLayout, OO.ui.PanelLayout );
 /* Methods */
 
 /**
- * Get page name.
+ * Get the symbolic name of the page.
  *
  * @return {string} Symbolic name of page
  */
@@ -8935,6 +9045,9 @@ OO.ui.PageLayout.prototype.getName = function () {
 /**
  * Check if page is active.
  *
+ * Pages become active when they are shown in a {@link OO.ui.BookletLayout booklet layout} that is configured to display
+ * only one page at a time. Additional CSS is applied to the page's outline item to reflect the active state.
+ *
  * @return {boolean} Page is active
  */
 OO.ui.PageLayout.prototype.isActive = function () {
@@ -8944,21 +9057,23 @@ OO.ui.PageLayout.prototype.isActive = function () {
 /**
  * Get outline item.
  *
- * @return {OO.ui.OutlineOptionWidget|null} Outline item widget
+ * The outline item allows users to access the page from the booklet's outline
+ * navigation. The outline item itself can be customized (with a label, level, etc.) using the #setupOutlineItem method.
+ *
+ * @return {OO.ui.OutlineOptionWidget|null} Outline option widget
  */
 OO.ui.PageLayout.prototype.getOutlineItem = function () {
 	return this.outlineItem;
 };
 
 /**
- * Set outline item.
+ * Set or unset the outline item.
  *
- * @localdoc Subclasses should override #setupOutlineItem instead of this method to adjust the
- *   outline item as desired; this method is called for setting (with an object) and unsetting
- *   (with null) and overriding methods would have to check the value of `outlineItem` to avoid
- *   operating on null instead of an OO.ui.OutlineOptionWidget object.
+ * Specify an {@link OO.ui.OutlineOptionWidget outline option} to set it,
+ * or `null` to clear the outline item. To customize the outline item itself (e.g., to set a label or outline
+ * level), use #setupOutlineItem instead of this method.
  *
- * @param {OO.ui.OutlineOptionWidget|null} outlineItem Outline item widget, null to clear
+ * @param {OO.ui.OutlineOptionWidget|null} outlineItem Outline option widget, null to clear
  * @chainable
  */
 OO.ui.PageLayout.prototype.setOutlineItem = function ( outlineItem ) {
@@ -8970,11 +9085,13 @@ OO.ui.PageLayout.prototype.setOutlineItem = function ( outlineItem ) {
 };
 
 /**
- * Setup outline item.
+ * Set up the outline item.
  *
- * @localdoc Subclasses should override this method to adjust the outline item as desired.
+ * Use this method to customize the outline item (e.g., to add a label or outline level). To set or unset
+ * the outline item itself (with an {@link OO.ui.OutlineOptionWidget outline option} or `null`), use
+ * the #setOutlineItem method instead.
  *
- * @param {OO.ui.OutlineOptionWidget} outlineItem Outline item widget to setup
+ * @param {OO.ui.OutlineOptionWidget} outlineItem Outline option widget to set up
  * @chainable
  */
 OO.ui.PageLayout.prototype.setupOutlineItem = function () {
@@ -8982,9 +9099,13 @@ OO.ui.PageLayout.prototype.setupOutlineItem = function () {
 };
 
 /**
- * Set page active state.
+ * Set the page to its 'active' state.
  *
- * @param {boolean} Page is active
+ * Pages become active when they are shown in a booklet layout that is configured to display only one page at a time. Additional
+ * CSS is applied to the outline item to reflect the page's active state. Outside of the booklet
+ * context, setting the active state on a page does nothing.
+ *
+ * @param {boolean} value Page is active
  * @fires active
  */
 OO.ui.PageLayout.prototype.setActive = function ( active ) {
@@ -8998,7 +9119,28 @@ OO.ui.PageLayout.prototype.setActive = function ( active ) {
 };
 
 /**
- * Layout containing a series of mutually exclusive pages.
+ * StackLayouts contain a series of {@link OO.ui.PanelLayout panel layouts}. By default, only one panel is displayed
+ * at a time, though the stack layout can also be configured to show all contained panels, one after another,
+ * by setting the #continuous option to 'true'.
+ *
+ *     @example
+ *     // A stack layout with two panels, configured to be displayed continously
+ *     var myStack = new OO.ui.StackLayout( {
+ *         items: [
+ *             new OO.ui.PanelLayout( {
+ *                 $content: $( '<p>Panel One</p>' ),
+ *                 padded: true,
+ *                 framed: true
+ *             } ),
+ *             new OO.ui.PanelLayout( {
+ *                 $content: $( '<p>Panel Two</p>' ),
+ *                 padded: true,
+ *                 framed: true
+ *             } )
+ *         ],
+ *         continuous: true
+ *     } );
+ *     $( 'body' ).append( myStack.$element );
  *
  * @class
  * @extends OO.ui.PanelLayout
@@ -9006,8 +9148,8 @@ OO.ui.PageLayout.prototype.setActive = function ( active ) {
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {boolean} [continuous=false] Show all pages, one after another
- * @cfg {OO.ui.Layout[]} [items] Layouts to add
+ * @cfg {boolean} [continuous=false] Show all panels, one after another. By default, only one panel is displayed at a time.
+ * @cfg {OO.ui.Layout[]} [items] Panel layouts to add to the stack layout.
  */
 OO.ui.StackLayout = function OoUiStackLayout( config ) {
 	// Configuration initialization
@@ -9041,14 +9183,17 @@ OO.mixinClass( OO.ui.StackLayout, OO.ui.GroupElement );
 /* Events */
 
 /**
+ * A 'set' event is emitted when panels are {@link #addItems added}, {@link #removeItems removed},
+ * {@link #clearItems cleared} or {@link #setItem displayed}.
+ *
  * @event set
- * @param {OO.ui.Layout|null} item Current item or null if there is no longer a layout shown
+ * @param {OO.ui.Layout|null} item Current panel or `null` if no panel is shown
  */
 
 /* Methods */
 
 /**
- * Get the current item.
+ * Get the current panel.
  *
  * @return {OO.ui.Layout|null}
  */
@@ -9074,12 +9219,14 @@ OO.ui.StackLayout.prototype.unsetCurrentItem = function () {
 };
 
 /**
- * Add items.
+ * Add panel layouts to the stack layout.
  *
- * Adding an existing item (by value) will move it.
+ * Panels will be added to the end of the stack layout array unless the optional index parameter specifies a different
+ * insertion point. Adding a panel that is already in the stack will move it to the end of the array or the point specified
+ * by the index.
  *
- * @param {OO.ui.Layout[]} items Items to add
- * @param {number} [index] Index to insert items after
+ * @param {OO.ui.Layout[]} items Panels to add
+ * @param {number} [index] Index of the insertion point
  * @chainable
  */
 OO.ui.StackLayout.prototype.addItems = function ( items, index ) {
@@ -9097,11 +9244,12 @@ OO.ui.StackLayout.prototype.addItems = function ( items, index ) {
 };
 
 /**
- * Remove items.
+ * Remove the specified panels from the stack layout.
  *
- * Items will be detached, not removed, so they can be used later.
+ * Removed panels are detached from the DOM, not removed, so that they may be reused. To remove all panels,
+ * you may wish to use the #clearItems method instead.
  *
- * @param {OO.ui.Layout[]} items Items to remove
+ * @param {OO.ui.Layout[]} items Panels to remove
  * @chainable
  * @fires set
  */
@@ -9121,9 +9269,10 @@ OO.ui.StackLayout.prototype.removeItems = function ( items ) {
 };
 
 /**
- * Clear all items.
+ * Clear all panels from the stack layout.
  *
- * Items will be detached, not removed, so they can be used later.
+ * Cleared panels are detached from the DOM, not removed, so that they may be reused. To remove only
+ * a subset of panels, use the #removeItems method.
  *
  * @chainable
  * @fires set
@@ -9136,14 +9285,11 @@ OO.ui.StackLayout.prototype.clearItems = function () {
 };
 
 /**
- * Show item.
+ * Show the specified panel.
  *
- * Any currently shown item will be hidden.
+ * If another panel is currently displayed, it will be hidden.
  *
- * FIXME: If the passed item to show has not been added in the items list, then
- * this method drops it and unsets the current item.
- *
- * @param {OO.ui.Layout} item Item to show
+ * @param {OO.ui.Layout} item Panel to show
  * @chainable
  * @fires set
  */
@@ -9168,6 +9314,7 @@ OO.ui.StackLayout.prototype.setItem = function ( item ) {
  * Ensure all items are hidden except for the selected one.
  * This method does nothing when the stack is continuous.
  *
+ * @private
  * @param {OO.ui.Layout[]} items Item list iterate over
  * @param {OO.ui.Layout} [selectedItem] Selected item to show
  */
@@ -10793,6 +10940,7 @@ OO.ui.DropdownWidget.prototype.onKeyPress = function ( e ) {
  * @extends OO.ui.Widget
  * @mixins OO.ui.IconElement
  * @mixins OO.ui.TitledElement
+ * @mixins OO.ui.FlaggedElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -10807,6 +10955,7 @@ OO.ui.IconWidget = function OoUiIconWidget( config ) {
 	// Mixin constructors
 	OO.ui.IconElement.call( this, $.extend( {}, config, { $icon: this.$element } ) );
 	OO.ui.TitledElement.call( this, $.extend( {}, config, { $titled: this.$element } ) );
+	OO.ui.FlaggedElement.call( this, $.extend( {}, config, { $flagged: this.$element } ) );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-iconWidget' );
@@ -10817,6 +10966,7 @@ OO.ui.IconWidget = function OoUiIconWidget( config ) {
 OO.inheritClass( OO.ui.IconWidget, OO.ui.Widget );
 OO.mixinClass( OO.ui.IconWidget, OO.ui.IconElement );
 OO.mixinClass( OO.ui.IconWidget, OO.ui.TitledElement );
+OO.mixinClass( OO.ui.IconWidget, OO.ui.FlaggedElement );
 
 /* Static Properties */
 
@@ -12257,9 +12407,7 @@ OO.ui.ComboBoxWidget.prototype.onInputEnter = function () {
  * @param {OO.ui.OptionWidget} item Chosen item
  */
 OO.ui.ComboBoxWidget.prototype.onMenuChoose = function ( item ) {
-	if ( item ) {
-		this.input.setValue( item.getData() );
-	}
+	this.input.setValue( item.getData() );
 };
 
 /**
@@ -12831,7 +12979,11 @@ OO.ui.MenuSectionOptionWidget.static.selectable = false;
 OO.ui.MenuSectionOptionWidget.static.highlightable = false;
 
 /**
- * Items for an OO.ui.OutlineSelectWidget.
+ * OutlineOptionWidget is an item in an {@link OO.ui.OutlineSelectWidget OutlineSelectWidget}.
+ *
+ * Currently, this class is only used by {@link OO.ui.BookletLayout booklet layouts}, which contain
+ * {@link OO.ui.PageLayout page layouts}. See {@link OO.ui.BookletLayout BookletLayout}
+ * for an example.
  *
  * @class
  * @extends OO.ui.DecoratedOptionWidget
@@ -12839,7 +12991,7 @@ OO.ui.MenuSectionOptionWidget.static.highlightable = false;
  * @constructor
  * @param {Object} [config] Configuration options
  * @cfg {number} [level] Indentation level
- * @cfg {boolean} [movable] Allow modification from outline controls
+ * @cfg {boolean} [movable] Allow modification from {@link OO.ui.OutlineControlsWidget outline controls}.
  */
 OO.ui.OutlineOptionWidget = function OoUiOutlineOptionWidget( config ) {
 	// Configuration initialization
@@ -12877,7 +13029,7 @@ OO.ui.OutlineOptionWidget.static.levels = 3;
 /**
  * Check if item is movable.
  *
- * Movability is used by outline controls.
+ * Movability is used by {@link OO.ui.OutlineControlsWidget outline controls}.
  *
  * @return {boolean} Item is movable
  */
@@ -12888,7 +13040,7 @@ OO.ui.OutlineOptionWidget.prototype.isMovable = function () {
 /**
  * Check if item is removable.
  *
- * Removability is used by outline controls.
+ * Removability is used by {@link OO.ui.OutlineControlsWidget outline controls}.
  *
  * @return {boolean} Item is removable
  */
@@ -12908,7 +13060,7 @@ OO.ui.OutlineOptionWidget.prototype.getLevel = function () {
 /**
  * Set movability.
  *
- * Movability is used by outline controls.
+ * Movability is used by {@link OO.ui.OutlineControlsWidget outline controls}.
  *
  * @param {boolean} movable Item is movable
  * @chainable
@@ -12922,7 +13074,7 @@ OO.ui.OutlineOptionWidget.prototype.setMovable = function ( movable ) {
 /**
  * Set removability.
  *
- * Removability is used by outline controls.
+ * Removability is used by {@link OO.ui.OutlineControlsWidget outline controls}.
  *
  * @param {boolean} movable Item is removable
  * @chainable
@@ -13485,6 +13637,7 @@ OO.inheritClass( OO.ui.SearchWidget, OO.ui.Widget );
  * will be highlighted.
 
  * @event highlight
+ * @deprecated Connect straight to getResults() events instead
  * @param {Object|null} item Item data or null if no item is highlighted
  */
 
@@ -13493,6 +13646,7 @@ OO.inheritClass( OO.ui.SearchWidget, OO.ui.Widget );
  * or when a user types a search query, a menu result is highlighted, and the user presses enter.
  *
  * @event select
+ * @deprecated Connect straight to getResults() events instead
  * @param {Object|null} item Item data or null if no item is selected
  */
 
@@ -13549,6 +13703,7 @@ OO.ui.SearchWidget.prototype.onQueryEnter = function () {
  * Handle select widget highlight events.
  *
  * @private
+ * @deprecated Connect straight to getResults() events instead
  * @param {OO.ui.OptionWidget} item Highlighted item
  * @fires highlight
  */
@@ -13560,6 +13715,7 @@ OO.ui.SearchWidget.prototype.onResultsHighlight = function ( item ) {
  * Handle select widget select events.
  *
  * @private
+ * @deprecated Connect straight to getResults() events instead
  * @param {OO.ui.OptionWidget} item Selected item
  * @fires select
  */
@@ -13698,7 +13854,7 @@ OO.mixinClass( OO.ui.SelectWidget, OO.ui.GroupWidget );
 /**
  * @event choose
  * A `choose` event is emitted when an item is chosen with the #chooseItem method.
- * @param {OO.ui.OptionWidget|null} item Chosen item
+ * @param {OO.ui.OptionWidget} item Chosen item
  */
 
 /**
