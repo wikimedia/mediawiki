@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.9.4
+ * OOjs UI v0.9.5
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-03-25T22:24:23Z
+ * Date: 2015-04-03T01:56:42Z
  */
 .oo-ui-progressBarWidget-slide-frames from {
 	margin-left: -40%;
@@ -116,12 +116,13 @@
 .oo-ui-buttonElement > .oo-ui-buttonElement-button {
 	font-weight: bold;
 }
-.oo-ui-buttonElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
+.oo-ui-buttonElement.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
 	margin-left: 0;
 }
-.oo-ui-buttonElement > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator {
+.oo-ui-buttonElement.oo-ui-indicatorElement > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator {
 	width: 0.9375em;
 	height: 0.9375em;
+	margin: 0.46875em;
 }
 .oo-ui-buttonElement.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-indicatorElement-indicator {
 	margin-left: 0.46875em;
@@ -192,7 +193,7 @@
 }
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button {
 	margin: 0.1em 0;
-	padding: 0.5em 1em;
+	padding: 0.2em 0.8em;
 	border-radius: 2px;
 	-webkit-transition: background 0.1s ease-in-out, color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
 	   -moz-transition: background 0.1s ease-in-out, color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
@@ -206,13 +207,11 @@
 }
 .oo-ui-buttonElement-framed > input.oo-ui-buttonElement-button,
 .oo-ui-buttonElement-framed.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
-	line-height: 1.2em;
+	line-height: 1.875em;
 }
 .oo-ui-buttonElement-framed.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
-	margin-left: -0.7em;
-	margin-top: -0.7em;
-	position: relative;
-	top: 0.3em;
+	margin-left: -0.5em;
+	margin-right: -0.5em;
 }
 .oo-ui-buttonElement-framed.oo-ui-iconElement.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
 	margin-right: 0.3em;
@@ -1019,10 +1018,10 @@
 	background-image: none;
 }
 .oo-ui-menuToolGroup .oo-ui-tool-active .oo-ui-tool-link .oo-ui-iconElement-icon {
-	background-image: url("themes/mediawiki/images/icons/check.png");
+	background-image: url("themes/mediawiki/images/icons/check.@{@oo-ui-default-image-ext}");
 	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/check.svg");
 	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/check.svg");
-	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/check.png");
+	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/check.@{@oo-ui-default-image-ext}");
 }
 .oo-ui-menuToolGroup .oo-ui-tool.oo-ui-widget-enabled:hover {
 	background-color: #eeeeee;
@@ -1130,7 +1129,7 @@
 	background-color: #eeeeee;
 }
 .oo-ui-optionWidget .oo-ui-labelElement-label {
-	line-height: 1.2em;
+	line-height: 1.5em;
 }
 .oo-ui-selectWidget-depressed .oo-ui-optionWidget-selected,
 .oo-ui-selectWidget-pressed .oo-ui-optionWidget-pressed,
@@ -1162,6 +1161,10 @@
 .oo-ui-decoratedOptionWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
 	width: 0.9375em;
 	right: 0.5em;
+}
+.oo-ui-decoratedOptionWidget.oo-ui-widget-disabled .oo-ui-iconElement-icon,
+.oo-ui-decoratedOptionWidget.oo-ui-widget-disabled .oo-ui-indicatorElement-indicator {
+	opacity: 0.2;
 }
 .oo-ui-buttonSelectWidget {
 	display: inline-block;
@@ -1199,6 +1202,9 @@
 	display: inline-block;
 	vertical-align: middle;
 }
+.oo-ui-buttonOptionWidget .oo-ui-buttonElement-button {
+	height: 1.875em;
+}
 .oo-ui-buttonOptionWidget.oo-ui-iconElement .oo-ui-iconElement-icon {
 	margin-top: 0;
 }
@@ -1207,9 +1213,13 @@
 .oo-ui-buttonOptionWidget.oo-ui-optionWidget-highlighted {
 	background-color: transparent;
 }
+.oo-ui-buttonOptionWidget.oo-ui-widget-disabled .oo-ui-iconElement-icon,
+.oo-ui-buttonOptionWidget.oo-ui-widget-disabled .oo-ui-indicatorElement-indicator {
+	opacity: 1;
+}
 .oo-ui-radioOptionWidget {
 	cursor: default;
-	padding: 0;
+	padding: 0.25em 0;
 	background-color: transparent;
 }
 .oo-ui-radioOptionWidget .oo-ui-radioInputWidget,
@@ -1521,9 +1531,11 @@
 	cursor: auto;
 }
 .oo-ui-popupButtonWidget.oo-ui-buttonElement-frameless > .oo-ui-popupWidget {
+	/* @noflip */
 	left: 1em;
 }
 .oo-ui-popupButtonWidget.oo-ui-buttonElement-framed > .oo-ui-popupWidget {
+	/* @noflip */
 	left: 1.75em;
 }
 .oo-ui-inputWidget {
@@ -1571,10 +1583,10 @@
 	height: 1.6em;
 	background-color: white;
 	border: 1px solid #777777;
-	background-image: url("themes/mediawiki/images/icons/check-constructive.png");
+	background-image: url("themes/mediawiki/images/icons/check-constructive.@{@oo-ui-default-image-ext}");
 	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/check-constructive.svg");
 	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/check-constructive.svg");
-	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/check-constructive.png");
+	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/check-constructive.@{@oo-ui-default-image-ext}");
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-origin: border-box;
@@ -1600,10 +1612,10 @@
 	border-color: #eeeeee;
 }
 .oo-ui-checkboxInputWidget input[type="checkbox"]:disabled:checked + span {
-	background-image: url("themes/mediawiki/images/icons/check-invert.png");
+	background-image: url("themes/mediawiki/images/icons/check-invert.@{@oo-ui-default-image-ext}");
 	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/check-invert.svg");
 	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/check-invert.svg");
-	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/check-invert.png");
+	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/check-invert.@{@oo-ui-default-image-ext}");
 }
 .oo-ui-dropdownInputWidget {
 	position: relative;
@@ -1625,7 +1637,8 @@
 .oo-ui-dropdownInputWidget select {
 	height: 2.5em;
 	padding: 0.5em;
-	font-size: 1em;
+	font-size: inherit;
+	font-family: inherit;
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
@@ -1676,10 +1689,10 @@
 	height: 1.6em;
 	background: white;
 	border: 1px solid #777777;
-	background-image: url("themes/mediawiki/images/icons/circle-constructive.png");
+	background-image: url("themes/mediawiki/images/icons/circle-constructive.@{@oo-ui-default-image-ext}");
 	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/circle-constructive.svg");
 	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/circle-constructive.svg");
-	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/circle-constructive.png");
+	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/circle-constructive.@{@oo-ui-default-image-ext}");
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-origin: border-box;
@@ -1705,10 +1718,10 @@
 	border-color: #eeeeee;
 }
 .oo-ui-radioInputWidget input[type="radio"]:disabled:checked + span {
-	background-image: url("themes/mediawiki/images/icons/circle-invert.png");
+	background-image: url("themes/mediawiki/images/icons/circle-invert.@{@oo-ui-default-image-ext}");
 	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/circle-invert.svg");
 	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/circle-invert.svg");
-	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/circle-invert.png");
+	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/circle-invert.@{@oo-ui-default-image-ext}");
 }
 .oo-ui-textInputWidget {
 	position: relative;
@@ -1771,9 +1784,10 @@
 }
 .oo-ui-textInputWidget input,
 .oo-ui-textInputWidget textarea {
-	padding: 0.5em 0.5em 0.5em 0.9em;
+	padding: 0.5em;
 	margin: 0;
-	font-size: 1em;
+	font-size: inherit;
+	font-family: inherit;
 	background-color: #ffffff;
 	color: black;
 	border: solid 1px #cccccc;
@@ -2140,7 +2154,6 @@
 	line-height: 0;
 }
 .oo-ui-window {
-	line-height: 1em;
 	background: transparent;
 	font-size: 0.8em;
 }
@@ -2362,6 +2375,7 @@
 .oo-ui-processDialog-actions-primary .oo-ui-actionWidget .oo-ui-buttonElement-button,
 .oo-ui-processDialog-actions-other .oo-ui-actionWidget .oo-ui-buttonElement-button {
 	min-width: 1.875em;
+	min-height: 1.875em;
 }
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget .oo-ui-labelElement-label,
 .oo-ui-processDialog-actions-primary .oo-ui-actionWidget .oo-ui-labelElement-label,
@@ -2381,6 +2395,7 @@
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-framed .oo-ui-buttonElement-button,
 .oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-framed .oo-ui-buttonElement-button,
 .oo-ui-processDialog-actions-other .oo-ui-actionWidget.oo-ui-buttonElement-framed .oo-ui-buttonElement-button {
+	padding: 0 1em;
 	vertical-align: middle;
 }
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget:hover,
@@ -2393,7 +2408,7 @@
 }
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-framed,
 .oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-framed {
-	margin: 0.6em;
+	margin: 0.75em;
 }
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-framed .oo-ui-buttonElement-button,
 .oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-framed .oo-ui-buttonElement-button {
@@ -2718,17 +2733,17 @@
 	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/expand-invert.png");
 }
 .oo-ui-icon-help {
-	background-image: url("themes/mediawiki/images/icons/help.png");
-	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/help.svg");
-	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/help.svg");
-	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/help.png");
+	background-image: url("themes/mediawiki/images/icons/help-ltr.png");
+	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/help-ltr.svg");
+	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/help-ltr.svg");
+	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/help-ltr.png");
 }
 .oo-ui-image-invert .oo-ui-icon-help,
 .oo-ui-image-invert.oo-ui-icon-help {
-	background-image: url("themes/mediawiki/images/icons/help-invert.png");
-	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/help-invert.svg");
-	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/help-invert.svg");
-	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/help-invert.png");
+	background-image: url("themes/mediawiki/images/icons/help-ltr-invert.png");
+	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/help-ltr-invert.svg");
+	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/help-ltr-invert.svg");
+	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/help-ltr-invert.png");
 }
 .oo-ui-icon-info {
 	background-image: url("themes/mediawiki/images/icons/info.png");
@@ -2893,6 +2908,7 @@
 	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/window-invert.svg");
 	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/window-invert.png");
 }
+
 .oo-ui-indicator-alert {
 	background-image: url("themes/mediawiki/images/indicators/alert.png");
 	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/indicators/alert.svg");
@@ -2971,10 +2987,11 @@
 	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/indicators/required-invert.svg");
 	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/indicators/required-invert.png");
 }
+
 .oo-ui-texture-pending {
 	background-image: url("themes/mediawiki/images/textures/pending.gif");
-	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/textures/pending.svg");
-	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/textures/pending.svg");
+	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/textures/pending.gif");
+	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/textures/pending.gif");
 	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/textures/pending.gif");
 }
 .oo-ui-texture-transparency {
