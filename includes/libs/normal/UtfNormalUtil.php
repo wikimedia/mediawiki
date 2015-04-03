@@ -37,7 +37,7 @@ use UtfNormal\Utils;
  * @deprecated since 1.25, use UtfNormal\Utils directly
  */
 function codepointToUtf8( $codepoint ) {
-	Utils::codepointToUtf8( $codepoint );
+	return Utils::codepointToUtf8( $codepoint );
 }
 
 /**
