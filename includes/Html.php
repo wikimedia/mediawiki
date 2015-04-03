@@ -1037,7 +1037,7 @@ class Html {
 		foreach ( $urls as $density => $url ) {
 			// Image candidate syntax per current whatwg live spec, 2012-09-23:
 			// http://www.whatwg.org/html/embedded-content-1.html#attr-img-srcset
-			$candidates[] = "{$url} {$density}x";
+			$candidates[] = $url . ' ' . (float)$density . 'x';
 		}
 		return implode( ", ", $candidates );
 	}
