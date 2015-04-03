@@ -422,6 +422,7 @@ changes to languages because of Bugzilla reports.
   thisisdeleted, viewdeleted, editlink, retrievedfrom, version-poweredby-others,
   retrievedfrom, thisisdeleted, viewsourcelink, lastmodifiedat, laggedslavemode,
   protect-summary-cascade
+* All BloomCache related code has been removed. This was largely experimental.
 
 == Compatibility ==
 
