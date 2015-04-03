@@ -1049,7 +1049,7 @@ class MessageCache {
 		if ( !$title ) {
 			# It's not uncommon having a null $wgTitle in scripts. See r80898
 			# Create a ghost title in such case
-			$title = Title::newFromText( 'Dwimmerlaik' );
+			$title = Title::newFromText( '(Title not set internally)' );
 		}
 
 		$this->mInParser = true;
