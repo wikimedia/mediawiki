@@ -764,6 +764,30 @@ class HtmlTest extends MediaWikiTestCase {
 			'Label wrapper'
 		);
 	}
+
+	public static function provideSrcSetImages() {
+		return array(
+			array( array(), '', 'when there are no images, return empty string' ),
+			array(
+				array( '1x' => '1x.png', '1.5x' => '1_5x.png', '2x' => '2x.png' ),
+				'1x.png 1x, 1_5x.png 1.5x, 2x.png 2x',
+				'pixel depth keys may include a trailing "x"'
+			),
+			array(
+				array( '1'  => '1x.png', '1.5' => '1_5x.png', '2'  => '2x.png' ),
+				'1x.png 1x, 1_5x.png 1.5x, 2x.png 2x',
+				'pixel depth keys may omit a trailing "x"'
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider provideSrcSetImages
+	 * @covers Html::srcSet
+	 */
+	public function testSrcSet( $images, $expected, $message ) {
+		$this->assertEquals( Html::srcSet( $images ), $expected, $message );
+	}
 }
 
 class HtmlTestValue {
