@@ -28,7 +28,7 @@
  * write dump files. The files produced are compatible with the XHProf gui.
  * For a rudimentary sampling profiler:
  *   $wgProfiler['class'] = 'ProfilerXhprof';
- *   $wgProfiler['output'] = array( 'ProfilingOutputDb' );
+ *   $wgProfiler['output'] = array( 'ProfilerOutputDb' );
  *   $wgProfiler['sampling'] = 50; // one every 50 requests
  * This will use ProfilerStub for non-sampled cases.
  *
