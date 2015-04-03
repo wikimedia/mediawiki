@@ -1049,7 +1049,7 @@ class MessageCache {
 		if ( !$title ) {
 			# It's not uncommon having a null $wgTitle in scripts. See r80898
 			# Create a ghost title in such case
-			$title = Title::newFromText( 'Dwimmerlaik' );
+			$title = Title::makeTitle( NS_SPECIAL, 'Badtitle/title not set in ' . __METHOD__ );
 		}
 
 		$this->mInParser = true;
