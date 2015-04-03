@@ -1025,9 +1025,24 @@ class Html {
 	}
 
 	/**
-	 * Generate a srcset attribute value from an array mapping pixel densities
-	 * to URLs. Note that srcset supports width and height values as well, which
-	 * are not used here.
+	 * Generate a srcset attribute value.
+	 *
+	 * Generates a srcset attribute value from an array mapping pixel densities
+	 * to URLs. A trailing 'x' in pixel density values is optional.
+	 *
+	 * @note srcset width and height values are not supported.
+	 *
+	 * @see http://www.whatwg.org/html/embedded-content-1.html#attr-img-srcset
+	 *
+	 * @par Example:
+	 * @code
+	 *     Html::srcSet( array(
+	 *         '1x'   => 'standard.jpeg',
+	 *         '1.5x' => 'large.jpeg',
+	 *         '3x'   => 'extra-large.jpeg',
+	 *     ) );
+	 *     // gives 'standard.jpeg 1x, large.jpeg 1.5x, extra-large.jpeg 2x'
+	 * @endcode
 	 *
 	 * @param string[] $urls
 	 * @return string
@@ -1035,9 +1050,8 @@ class Html {
 	static function srcSet( $urls ) {
 		$candidates = array();
 		foreach ( $urls as $density => $url ) {
-			// Image candidate syntax per current whatwg live spec, 2012-09-23:
-			// http://www.whatwg.org/html/embedded-content-1.html#attr-img-srcset
-			$candidates[] = "{$url} {$density}x";
+			// Cast density to float to strip 'x'.
+			$candidates[] = $url . ' ' . (float)$density . 'x';
 		}
 		return implode( ", ", $candidates );
 	}
