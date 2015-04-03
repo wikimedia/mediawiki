@@ -5413,6 +5413,7 @@ $wgDeprecationReleaseLimit = false;
 
 /**
  * Only record profiling info for pages that took longer than this
+ * @deprecated since 1.25: set $wgProfiler['threshold'] instead.
  */
 $wgProfileLimit = 0.0;
 
