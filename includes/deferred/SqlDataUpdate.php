@@ -111,39 +111,40 @@ abstract class SqlDataUpdate extends DataUpdate {
 			return;
 		}
 
-		/**
-		 * Determine which pages need to be updated
-		 * This is necessary to prevent the job queue from smashing the DB with
-		 * large numbers of concurrent invalidations of the same page
-		 */
-		$now = $this->mDb->timestamp();
-		$ids = array();
-		$res = $this->mDb->select( 'page', array( 'page_id' ),
-			array(
-				'page_namespace' => $namespace,
-				'page_title' => $dbkeys,
-				'page_touched < ' . $this->mDb->addQuotes( $now )
-			), __METHOD__
-		);
+		$dbw = $this->mDb;
+		$dbw->onTransactionPreCommitOrIdle( function() use ( $dbw, $namespace, $dbkeys ) {
+			/**
+			 * Determine which pages need to be updated
+			 * This is necessary to prevent the job queue from smashing the DB with
+			 * large numbers of concurrent invalidations of the same page
+			 */
+			$now = $dbw->timestamp();
+			$ids = $dbw->selectFieldValues( 'page',
+				'page_id',
+				array(
+					'page_namespace' => $namespace,
+					'page_title' => $dbkeys,
+					'page_touched < ' . $dbw->addQuotes( $now )
+				),
+				__METHOD__
+			);
 
-		foreach ( $res as $row ) {
-			$ids[] = $row->page_id;
-		}
+			if ( $ids === array() ) {
+				return;
+			}
 
-		if ( $ids === array() ) {
-			return;
-		}
-
-		/**
-		 * Do the update
-		 * We still need the page_touched condition, in case the row has changed since
-		 * the non-locking select above.
-		 */
-		$this->mDb->update( 'page', array( 'page_touched' => $now ),
-			array(
-				'page_id' => $ids,
-				'page_touched < ' . $this->mDb->addQuotes( $now )
-			), __METHOD__
-		);
+			/**
+			 * Do the update
+			 * We still need the page_touched condition, in case the row has changed since
+			 * the non-locking select above.
+			 */
+			$dbw->update( 'page',
+				array( 'page_touched' => $now ),
+				array(
+					'page_id' => $ids,
+					'page_touched < ' . $dbw->addQuotes( $now )
+				), __METHOD__
+			);
+		} );
 	}
 }
