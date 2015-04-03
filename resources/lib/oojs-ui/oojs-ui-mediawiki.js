@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.9.4
+ * OOjs UI v0.9.5
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-03-25T22:24:05Z
+ * Date: 2015-04-03T01:56:36Z
  */
 /**
  * @class
@@ -39,10 +39,12 @@ OO.ui.MediaWikiTheme.prototype.getElementClasses = function ( element ) {
 			destructive: false
 		},
 		// Parent method
-		classes = OO.ui.MediaWikiTheme.super.prototype.getElementClasses.call( this, element );
+		classes = OO.ui.MediaWikiTheme.super.prototype.getElementClasses.call( this, element ),
+		isFramed;
 
-	if ( element.supports( [ 'isFramed', 'isDisabled', 'hasFlag' ] ) ) {
-		if ( element.isFramed() && ( element.isDisabled() || element.hasFlag( 'primary' ) ) ) {
+	if ( element.supports( [ 'hasFlag' ] ) ) {
+		isFramed = element.supports( [ 'isFramed' ] ) && element.isFramed();
+		if ( isFramed && ( element.isDisabled() || element.hasFlag( 'primary' ) ) ) {
 			variants.invert = true;
 		} else {
 			variants.progressive = element.hasFlag( 'progressive' );
