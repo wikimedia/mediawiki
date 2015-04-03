@@ -978,7 +978,6 @@ class LoadBalancer {
 	 *  Issue COMMIT only on master, only if queries were done on connection
 	 */
 	public function commitMasterChanges() {
-		// Always 0, but who knows.. :)
 		$masterIndex = $this->getWriterIndex();
 		foreach ( $this->mConns as $conns2 ) {
 			if ( empty( $conns2[$masterIndex] ) ) {
@@ -998,7 +997,8 @@ class LoadBalancer {
 	 * @since 1.23
 	 */
 	public function rollbackMasterChanges() {
-		// Always 0, but who knows.. :)
+		$failedServers = array();
+
 		$masterIndex = $this->getWriterIndex();
 		foreach ( $this->mConns as $conns2 ) {
 			if ( empty( $conns2[$masterIndex] ) ) {
@@ -1007,9 +1007,19 @@ class LoadBalancer {
 			/** @var DatabaseBase $conn */
 			foreach ( $conns2[$masterIndex] as $conn ) {
 				if ( $conn->trxLevel() && $conn->writesOrCallbacksPending() ) {
-					$conn->rollback( __METHOD__, 'flush' );
+					try {
+						$conn->rollback( __METHOD__, 'flush' );
+					} catch ( DBError $e ) {
+						MWExceptionHandler::logException( $e );
+						$failedServers[] = $conn->getServer();
+					}
 				}
 			}
+		}
+
+		if ( $failedServers ) {
+			throw new DBExpectedError( null, "Rollback failed on server(s) " .
+				implode( ', ', array_unique( $failedServers ) ) );
 		}
 	}
 
@@ -1027,7 +1037,6 @@ class LoadBalancer {
 	 * @return bool
 	 */
 	public function hasMasterChanges() {
-		// Always 0, but who knows.. :)
 		$masterIndex = $this->getWriterIndex();
 		foreach ( $this->mConns as $conns2 ) {
 			if ( empty( $conns2[$masterIndex] ) ) {
@@ -1050,7 +1059,6 @@ class LoadBalancer {
 	 */
 	public function lastMasterChangeTimestamp() {
 		$lastTime = false;
-		// Always 0, but who knows.. :)
 		$masterIndex = $this->getWriterIndex();
 		foreach ( $this->mConns as $conns2 ) {
 			if ( empty( $conns2[$masterIndex] ) ) {
