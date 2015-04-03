@@ -906,6 +906,8 @@
 	"notextmatches": "没有页面内容匹配",
 	"prevn": "前$1个",
 	"nextn": "后$1个",
+	"prev-page": "上一页",
+	"next-page": "下一页",
 	"prevn-title": "前$1个结果",
 	"nextn-title": "后$1个结果",
 	"shown-title": "每页显示$1项结果",

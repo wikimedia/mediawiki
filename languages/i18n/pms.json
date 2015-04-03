@@ -836,6 +836,8 @@
 	"notextmatches": "La vos che a l'ha ciamà a l'é pa trovasse antrames aj test dj'artìcoj",
 	"prevn": "ij {{PLURAL:$1|$1}} prima",
 	"nextn": "ij {{PLURAL:$1|$1}} peuj",
+	"prev-page": "pàgina andré",
+	"next-page": "pàgina anans",
 	"prevn-title": "$1 {{PLURAL:$1|arzultà|arzultà}} prima",
 	"nextn-title": "$1 {{PLURAL:$1|arzultà|arzultà}} apress",
 	"shown-title": "Smon-e $1 {{PLURAL:$1|arzultà|arzultà}} për pàgina",

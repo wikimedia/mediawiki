@@ -864,6 +864,8 @@
 	"notextmatches": "해당하는 문서 없음",
 	"prevn": "이전 {{PLURAL:$1|$1개}}",
 	"nextn": "다음 {{PLURAL:$1|$1개}}",
+	"prev-page": "전 페이지",
+	"next-page": "다음 페이지",
 	"prevn-title": "이전 {{PLURAL:$1|결과}} $1개",
 	"nextn-title": "다음 {{PLURAL:$1|결과}} $1개",
 	"shown-title": "쪽마다 {{PLURAL:$1|결과}} $1개씩 보기",

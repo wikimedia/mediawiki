@@ -832,6 +832,8 @@
 	"notextmatches": "Iskanih besed ne vsebuje nobeno besedilo članka",
 	"prevn": "{{PLURAL:$1|prejšnja|prejšnji|prejšnje|prejšnjih|prejšnjih}} $1",
 	"nextn": "{{PLURAL:$1|naslednja|naslednji|naslednjih|naslednjih|naslednjih}} $1",
+	"prev-page": "prejšnja stran",
+	"next-page": "naslednja stran",
 	"prevn-title": "{{PLURAL:$1|Prejšnji rezultat|Prejšnja $1 rezultata|Prejšnji $1 rezultati|Prejšnjih $1 rezultatov}}",
 	"nextn-title": "{{PLURAL:$1|Naslednji rezultat|Naslednja $1 rezultata|Naslednji $1 rezultati|Naslednjih $1 rezultatov}}",
 	"shown-title": "Prikaži $1 {{PLURAL:$1|rezultat|rezultata|rezultate|rezultatov}} na stran",

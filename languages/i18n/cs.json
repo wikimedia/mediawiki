@@ -850,6 +850,8 @@
 	"notextmatches": "Žádná stránka s tímto textem nebyla nalezena",
 	"prevn": "$1 {{PLURAL:$1|předchozí|předchozí|předchozích}}",
 	"nextn": "$1 {{PLURAL:$1|následující|následující|následujících}}",
+	"prev-page": "předchozí stránka",
+	"next-page": "další stránka",
 	"prevn-title": "{{PLURAL:$1|Předchozí výsledek|Předchozí $1 výsledky|Předchozích $1 výsledků}}",
 	"nextn-title": "{{PLURAL:$1|Následující výsledek|Následující $1 výsledky|Následujících $1 výsledků}}",
 	"shown-title": "Zobrazit $1 {{PLURAL:$1|výsledek|výsledky|výsledků}} na stránku",

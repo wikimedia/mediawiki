@@ -888,6 +888,8 @@
 	"notextmatches": "Inga artikeltexter matchar sökningen",
 	"prevn": "föregående {{PLURAL:$1|$1}}",
 	"nextn": "nästa {{PLURAL:$1|$1}}",
+	"prev-page": "föregående sida",
+	"next-page": "nästa sida",
 	"prevn-title": "Föregående $1 {{PLURAL:$1|resultat|resultat}}",
 	"nextn-title": "Nästa $1 {{PLURAL:$1|resultat|resultat}}",
 	"shown-title": "Visa $1 {{PLURAL:$1|resultat|resultat}} per sida",

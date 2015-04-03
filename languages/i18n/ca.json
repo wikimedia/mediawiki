@@ -877,6 +877,8 @@
 	"notextmatches": "No hi ha cap coincidència de text de pàgina",
 	"prevn": "anteriors {{PLURAL:$1|$1}}",
 	"nextn": "següents {{PLURAL:$1|$1}}",
+	"prev-page": "pàgina anterior",
+	"next-page": "pàgina següent",
 	"prevn-title": "$1 {{PLURAL:$1|resultat|resultats}} anteriors",
 	"nextn-title": "$1 {{PLURAL:$1|resultat|resultats}} següents",
 	"shown-title": "Mostra $1 {{PLURAL:$1|resultat|resultats}} per pàgina",

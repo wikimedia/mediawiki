@@ -647,6 +647,8 @@
 	"notextmatches": "पन्ना के पाठ्य नईखे मिलत",
 	"prevn": "पिछला {{PLURAL:$1|$1}}",
 	"nextn": "अगला {{PLURAL:$1|$1}}",
+	"prev-page": "पिछलका पन्ना",
+	"next-page": "अगला पन्ना",
 	"prevn-title": "पिछला $1 {{PLURAL:$1|परिणाम}}",
 	"nextn-title": "अगला $1 {{PLURAL:$1|परिणाम}}",
 	"shown-title": "दिखाईं $1 {{PLURAL:$1|परिणाम}}",
