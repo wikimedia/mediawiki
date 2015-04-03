@@ -515,8 +515,8 @@ class LogFormatter {
 	 *     * title-link: The value is a page title,
 	 *                   returns link to this page
 	 *     * number: Format value as number
-	 * @param string $value The parameter value that should
-	 *                      be formated
+	 *     * list: Format value as a comma-separated list
+	 * @param mixed $value The parameter value that should be formatted
 	 * @return string|array Formated value
 	 * @since 1.21
 	 */
@@ -526,6 +526,9 @@ class LogFormatter {
 		switch ( strtolower( trim( $type ) ) ) {
 			case 'raw':
 				$value = Message::rawParam( $value );
+				break;
+			case 'list':
+				$value = $this->context->getLanguage()->commaList( $value );
 				break;
 			case 'msg':
 				$value = $this->msg( $value )->text();

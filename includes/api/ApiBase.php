@@ -1652,6 +1652,10 @@ abstract class ApiBase extends ContextSource {
 			'code' => 'nosuchrcid',
 			'info' => "There is no change with rcid \"\$1\""
 		),
+		'nosuchlogid' => array(
+			'code' => 'nosuchlogid',
+			'info' => "There is no log entry with ID \"\$1\""
+		),
 		'protect-invalidaction' => array(
 			'code' => 'protect-invalidaction',
 			'info' => "Invalid protection type \"\$1\""
