@@ -541,29 +541,9 @@ class LogEventsList extends ContextSource {
 		if ( $lim > 0 ) {
 			$pager->mLimit = $lim;
 		}
-
-		$knownEmptyResult = false;
-		// Check if we can avoid the DB query all together
-		if ( $page !== '' && !$param['useMaster'] ) {
-			$title = ( $page instanceof Title ) ? $page : Title::newFromText( $page );
-			if ( $title ) {
-				$member = $title->getNamespace() . ':' . $title->getDBkey();
-				if ( !BloomCache::get( 'main' )->check( wfWikiId(), 'TitleHasLogs', $member ) ) {
-					$knownEmptyResult = true;
-				}
-			} else {
-				$knownEmptyResult = true;
-			}
-		}
-
 		// Fetch the log rows and build the HTML if needed
-		if ( $knownEmptyResult ) {
-			$logBody = '';
-			$numRows = 0;
-		} else {
-			$logBody = $pager->getBody();
-			$numRows = $pager->getNumRows();
-		}
+		$logBody = $pager->getBody();
+		$numRows = $pager->getNumRows();
 
 		$s = '';
 

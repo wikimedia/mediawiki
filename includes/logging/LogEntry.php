@@ -547,10 +547,6 @@ class ManualLogEntry extends LogEntryBase {
 			$dbw->insert( 'log_search', $rows, __METHOD__, 'IGNORE' );
 		}
 
-		// Update any bloom filter cache
-		$member = $this->getTarget()->getNamespace() . ':' . $this->getTarget()->getDBkey();
-		BloomCache::get( 'main' )->insert( wfWikiId(), 'TitleHasLogs', $member );
-
 		return $this->id;
 	}
 
