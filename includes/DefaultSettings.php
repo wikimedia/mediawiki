@@ -2148,28 +2148,6 @@ $wgObjectCaches = array(
 );
 
 /**
- * Map of bloom filter store names to configuration arrays.
- *
- * Example:
- * $wgBloomFilterStores['main'] = array(
- *  'cacheId'      => 'main-v1',
- *  'class'        => 'BloomCacheRedis',
- *  'redisServers' => array( '127.0.0.1:6379' ),
- *  'redisConfig'  => array( 'connectTimeout' => 2 )
- * );
- *
- * A primary bloom filter must be created manually.
- * Example in eval.php:
- * <code>
- *     BloomCache::get( 'main' )->init( 'shared', 1000000000, .001 );
- * </code>
- * The size should be as large as practical given wiki size and resources.
- *
- * @since 1.24
- */
-$wgBloomFilterStores = array();
-
-/**
  * The expiry time for the parser cache, in seconds.
  * The default is 86400 (one day).
  */
