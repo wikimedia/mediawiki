@@ -717,7 +717,7 @@ class SkinTemplate extends Skin {
 			$text = $msg->text();
 		} else {
 			global $wgContLang;
-			$text = $wgContLang->getFormattedNsText(
+			$text = $wgContLang->getConverter()->convertNamespace(
 				MWNamespace::getSubject( $title->getNamespace() ) );
 		}
 
