@@ -108,7 +108,7 @@ class ChangeTags {
 
 		// a tag can be deleted if it has not too many uses, is not core defined, and
 		// it is not extension defined or it is explicitly allowed
-		$ctObj->canDelete = !$ctObj->isBig && !ctObj->coreDefined &&
+		$ctObj->canDelete = !$ctObj->isBig && !$ctObj->coreDefined &&
 			( !$ctObj->extensionDefined || $ctObj->extensionDeletable );
 		# no permission or existence check
 
@@ -596,7 +596,7 @@ class ChangeTags {
 		}
 
 		// check specific to deactivate action
-		if ( !$tag->canDeactivate ) {				
+		if ( !$tag->canDeactivate ) {
 			return Status::newFatal( 'tags-deactivate-not-allowed', $tag->name );
 		}
 		return Status::newGood();
@@ -924,7 +924,7 @@ class ChangeTags {
 
 			// Caching for a long time (a week), since
 			// operations on valid_tag clear this cache
-			$wgMemc->set( $key, $storedTags, 60*60*24*7 );	
+			$wgMemc->set( $key, $storedTags, 60*60*24*7 );
 		}
 
 		return $storedTags;
@@ -1184,7 +1184,7 @@ class ChangeTags {
 	public static function listExplicitlyDefinedTags() {
 		return array_keys( self::getStoredTags() );
 	}
-	
+
 	/**
 	 * Lists tags defined by extensions as values.
 	 * Provided for backward compatibility.
