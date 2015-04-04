@@ -256,12 +256,12 @@ class Title {
 	 *   by a prefix.  If you want to force a specific namespace even if
 	 *   $text might begin with a namespace prefix, use makeTitle() or
 	 *   makeTitleSafe().
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 * @return Title|null Title or null on an error.
 	 */
 	public static function newFromText( $text, $defaultNamespace = NS_MAIN ) {
-		if ( is_object( $text ) ) {
-			throw new MWException( 'Title::newFromText given an object' );
+		if ( !is_string( $text ) ) {
+			throw new InvalidArgumentException( 'Title::newFromText given something that isn\'t a string' );
 		}
 
 		$cache = self::getTitleCache();

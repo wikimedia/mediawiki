@@ -97,7 +97,7 @@ class TestSample extends MediaWikiLangTestCase {
 
 	// @codingStandardsIgnoreStart Ignore long line warning
 	/**
-	 * @expectedException MWException object
+	 * @expectedException InvalidArgumentException
 	 * See http://phpunit.de/manual/3.7/en/appendixes.annotations.html#appendixes.annotations.expectedException
 	 */
 	// @codingStandardsIgnoreEnd
