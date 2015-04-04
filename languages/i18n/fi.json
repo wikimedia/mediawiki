@@ -867,6 +867,8 @@
 	"notextmatches": "Hakusanaa ei löytynyt sivujen teksteistä",
 	"prevn": "← {{PLURAL:$1|edellinen|$1 edellistä}}",
 	"nextn": "{{PLURAL:$1|seuraava|$1 seuraavaa}} →",
+	"prev-page": "edellinen sivu",
+	"next-page": "seuraava sivu",
 	"prevn-title": "{{PLURAL:$1|Edellinen osuma|Edelliset $1 osumaa}}",
 	"nextn-title": "{{PLURAL:$1|Seuraava osuma|Seuraavat $1 osumaa}}",
 	"shown-title": "Näytä $1 {{PLURAL:$1|osuma|osumaa}} sivulla",

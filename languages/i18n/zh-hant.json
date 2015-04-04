@@ -882,6 +882,8 @@
 	"notextmatches": "沒有符合的頁面內容",
 	"prevn": "前 $1 筆",
 	"nextn": "後 {{PLURAL:$1|$1}} 筆",
+	"prev-page": "上一頁",
+	"next-page": "下一頁",
 	"prevn-title": "前 $1 筆結果",
 	"nextn-title": "後 $1 筆結果",
 	"shown-title": "每頁顯示 $1 筆結果",

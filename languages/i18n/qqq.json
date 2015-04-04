@@ -164,7 +164,8 @@
 			"아라",
 			"Jdforrester",
 			"Mar(c)",
-			"Pikne"
+			"Pikne",
+			"Tacsipacsi"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -461,7 +462,7 @@
 	"nstab-media": "The name for the tab of the media namespace. Example: [[Media:Example]]\n\nSee also:\n* {{msg-mw|Nstab-media}}\n* {{msg-mw|Accesskey-ca-nstab-media}}\n* {{msg-mw|Tooltip-ca-nstab-media}}",
 	"nstab-special": "The name for the tab of the special namespace. Example: [[Special:Version]]\n\nSee also:\n* {{msg-mw|Nstab-special}}\n* {{msg-mw|Tooltip-ca-nstab-special}}\n{{Identical|Special page}}",
 	"nstab-project": "The name for the tab of the project namespace. Example: [[Project:Example]]\n\nSee also:\n* {{msg-mw|Nstab-project}}\n* {{msg-mw|Accesskey-ca-nstab-project}}\n* {{msg-mw|Tooltip-ca-nstab-project}}",
-	"nstab-image": "The name for the tab of the File namespace. Example: [[Image:Example]]\n\nSee also:\n* {{msg-mw|Nstab-image}}\n* {{msg-mw|Accesskey-ca-nstab-image}}\n* {{msg-mw|Tooltip-ca-nstab-image}}\n{{Identical|File}}",
+	"nstab-image": "The name for the tab of the File namespace. Example: [[:File:Example]]\n\nSee also:\n* {{msg-mw|Nstab-image}}\n* {{msg-mw|Accesskey-ca-nstab-image}}\n* {{msg-mw|Tooltip-ca-nstab-image}}\n{{Identical|File}}",
 	"nstab-mediawiki": "The name for the tab of the MediaWiki namespace. Example: [[MediaWiki:Example]]\n\nSee also:\n* {{msg-mw|Nstab-mediawiki}}\n* {{msg-mw|Accesskey-ca-nstab-mediawiki}}\n* {{msg-mw|Tooltip-ca-nstab-mediawiki}}\n{{Identical|Message}}",
 	"nstab-template": "The name for the tab of the template namespace. Example: [[Template:Example]]\n\nSee also:\n* {{msg-mw|Nstab-template}}\n* {{msg-mw|Accesskey-ca-nstab-template}}\n* {{msg-mw|Tooltip-ca-nstab-template}}\n{{Identical|Template}}",
 	"nstab-help": "The name for the tab of the help namespace. Example: [[Help:Rollback]]\n\nSee also:\n* {{msg-mw|Nstab-help}}\n* {{msg-mw|Accesskey-ca-nstab-help}}\n* {{msg-mw|Tooltip-ca-nstab-help}}",
@@ -1045,8 +1046,8 @@
 	"notextmatches": "Error message when there are no results",
 	"prevn": "This is part of the navigation message on the top and bottom of Special pages (lists of things in alphabetical order, i.e. the '[[Special:Categories]]' page), where it is used as the first argument of {{msg-mw|Viewprevnext}}.\nIt is also used by Category pages (which do ''not'' use {{msg-mw|Viewprevnext}}).\n{{PLURAL:$1|$1}} is the number of items shown per page. It is not used when {{PLURAL:$1|$1}} is zero; not sure what happens when {{PLURAL:$1|$1}} is one.\n[[Special:WhatLinksHere|Whatlinkshere]] pages use {{msg-mw|Whatlinkshere-prev}} instead (still as an argument to {{msg-mw|Viewprevnext}}).\n\n{{Identical|Previous}}",
 	"nextn": "This is part of the navigation message on the top and bottom of Special pages (lists of things in alphabetical order, i.e. the '[[Special:Categories]]' page), where it is used as the second argument of {{msg-mw|Viewprevnext}}.\n\nIt is also used by Category pages (which do ''not'' use {{msg-mw|Viewprevnext}}).\n\nParameters:\n* $1 - the number of items shown per page. It is not used when $1 is zero; not sure what happens when $1 is one.\n[[Special:WhatLinksHere|Whatlinkshere]] pages use {{msg-mw|Whatlinkshere-next}} instead (still as an argument to {{msg-mw|Viewprevnext}}).\n\n{{Identical|Next}}",
-	"prev-page": "This is part of the navigation message on the top and bottom of Category pages which links to the previous page",
-	"next-page": "This is part of the navigation message on the top and bottom of Category pages which links to the next page",
+	"prev-page": "This is part of the navigation message on the top and bottom of Category pages which links to the previous page\n{{Identical|Previous page}}",
+	"next-page": "This is part of the navigation message on the top and bottom of Category pages which links to the next page\n{{Identical|Next page}}",
 	"prevn-title": "Parameters:\n* $1 - number of search results\nSee also:\n* {{msg-mw|Viewprevnext}}",
 	"nextn-title": "Parameters:\n* $1 - number of search results\nSee also:\n* {{msg-mw|Viewprevnext}}",
 	"shown-title": "Parameters:\n* $1 - number of search results",
