@@ -10,6 +10,7 @@
  * @author Mogoeilor
  */
 
+$fallback = 'fa';
 $rtl = true;
 
 $namespaceNames = array(
