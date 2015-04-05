@@ -219,6 +219,7 @@ class ChangeTags {
 	 * @param int|null $rev_id The rev_id of the change to add the tags to
 	 * @param int|null $log_id The log_id of the change to add the tags to
 	 * @param string $params Params to put in the ct_params field of table 'change_tag'
+	 * @param bool $isCore When the given tags are core tags
 	 *
 	 * @throws MWException
 	 * @return bool False if no changes are made, otherwise true
@@ -226,8 +227,8 @@ class ChangeTags {
 	 * @exception MWException When $rc_id, $rev_id and $log_id are all null
 	 */
 	public static function addTags( $tags, $rc_id = null, $rev_id = null,
-		$log_id = null, $params = null ) {
-		global $wgMemc;
+		$log_id = null, $params = null, $isCore = false ) {
+		global $wgMemc, $wgCoreTags;
 		if ( !is_array( $tags ) ) {
 			$tags = array( $tags );
 		}
@@ -237,6 +238,19 @@ class ChangeTags {
 		if ( !$rc_id && !$rev_id && !$log_id ) {
 			throw new MWException( 'At least one of: RCID, revision ID, and log ID MUST be ' .
 				'specified when adding a tag to a change!' );
+		}
+
+		if ( $isCore ) {
+			// Remove inactive core tags
+			foreach ( $tags as $key => $tag ) {
+				if ( !$wgCoreTags[$tag]['active'] ) {
+					unset( $tags[$key] );
+				}
+			}
+		}
+		// In case none remain
+		if ( !$tags ) {
+			return false;
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -656,7 +670,8 @@ class ChangeTags {
 
 		// tags cannot contain commas (used as a delimiter in tag_summary table) or
 		// slashes (would break tag description messages in MediaWiki namespace)
-		if ( strpos( $tag, ',' ) !== false || strpos( $tag, '/' ) !== false ) {
+		if ( strpos( $tag, ',' ) !== false || strpos( $tag, '/' ) !== false ||
+		strpos( $tag, 'core-' ) !== false ) { // 'namespace' for tags defined in core
 			return Status::newFatal( 'tags-create-invalid-chars' );
 		}
 
@@ -990,10 +1005,11 @@ class ChangeTags {
 	}
 
 	/**
-	 * Nothing for now
+	 * Returning core tags as defined in config
 	 */
 	public static function getCoreTags() {
-		return array();
+		$wgUseCoreTagging, $wgCoreTags;
+		return $wgUseCoreTagging ? $wgCoreTags : array();
 	}
 
 	/**

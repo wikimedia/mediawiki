@@ -1712,7 +1712,7 @@ class WikiPage implements Page, IDBAccessObject {
 	public function doEditContent( Content $content, $summary, $flags = 0, $baseRevId = false,
 		User $user = null, $serialFormat = null
 	) {
-		global $wgUser, $wgUseAutomaticEditSummaries, $wgUseRCPatrol, $wgUseNPPatrol;
+		global $wgUser, $wgUseAutomaticEditSummaries, $wgUseRCPatrol, $wgUseNPPatrol, $wgUseCoreTagging;
 
 		// Low-level sanity check
 		if ( $this->mTitle->getText() === '' ) {
@@ -1964,6 +1964,16 @@ class WikiPage implements Page, IDBAccessObject {
 						PatrolLog::record( $rc, true, $user );
 					}
 				}
+
+				// Get automatic tags
+				if ( $wgUseCoreTagging ) {
+					$autoTags = $handler->getAutotags( $old_content, $content, $flags, $this->mTitle );
+					if ( $autoTags ) {
+						ChangeTags::addTags( $autoTags, $rc->mAttribs['rc_id'], $revision->mAttribs['rev_id'],
+							null, null, true );	
+					}
+				}
+
 				$user->incEditCount();
 
 			} catch ( Exception $e ) {
