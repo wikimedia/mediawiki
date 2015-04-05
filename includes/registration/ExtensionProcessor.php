@@ -204,6 +204,17 @@ class ExtensionProcessor implements Processor {
 				$this->globals['wgResourceModules'][$name] = $data;
 			}
 		}
+		if ( isset( $info['ResourceModuleSkinStyles'] ) ) {
+			foreach ( $info['ResourceModuleSkinStyles'] as $name => $data ) {
+				if ( isset( $data['localBasePath'] ) ) {
+					$data['localBasePath'] = "$dir/{$data['localBasePath']}";
+				}
+				if ( $defaultPaths ) {
+					$data += $defaultPaths;
+				}
+				$this->globals['ResourceModuleSkinStyles'][$name] = $data;
+			}
+		}
 	}
 
 	protected function extractExtensionMessagesFiles( $dir, array $info ) {
