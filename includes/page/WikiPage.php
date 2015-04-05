@@ -1515,7 +1515,8 @@ class WikiPage implements Page, IDBAccessObject {
 	 * or 'new' for a new section.
 	 * @param Content $sectionContent New content of the section.
 	 * @param string $sectionTitle New section's subject, only if $section is "new".
-	 * @param int|null $baseRevId
+	 * @param int|null $parentRevId If the parent revision ID is unknown,
+	 *     unsafely assume there is no conflict.
 	 *
 	 * @throws MWException
 	 * @return Content New complete article content, or null if error.
@@ -1523,7 +1524,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @since 1.24
 	 */
 	public function replaceSectionAtRev( $sectionId, Content $sectionContent,
-		$sectionTitle = '', $baseRevId = null
+		$sectionTitle = '', $parentRevId = null
 	) {
 
 		if ( strval( $sectionId ) === '' ) {
@@ -1535,11 +1536,15 @@ class WikiPage implements Page, IDBAccessObject {
 					$this->getContentHandler()->getModelID() );
 			}
 
-			// Bug 30711: always use current version when adding a new section
-			if ( is_null( $baseRevId ) || $sectionId === 'new' ) {
+			if ( $parentRevId === null
+				// Use the in-memory content if it's the correct revision.
+				|| ( $this->getRevision() && $parentRevId === $this->getRevision()->getId() )
+				// Bug 30711: always use current version when adding a new section
+				|| $sectionId === 'new'
+			) {
 				$oldContent = $this->getContent();
 			} else {
-				$rev = Revision::newFromId( $baseRevId );
+				$rev = Revision::newFromId( $parentRevId );
 				if ( !$rev ) {
 					wfDebug( __METHOD__ . " asked for bogus section (page: " .
 						$this->getId() . "; section: $sectionId)\n" );
