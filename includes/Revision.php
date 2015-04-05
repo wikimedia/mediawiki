@@ -297,6 +297,28 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
+	 * Load the last revision for the given title at or before the given timestamp.
+	 *
+	 * @param DatabaseBase $db
+	 * @param Title $title
+	 * @param string $timestamp
+	 * @return Revision|null
+	 */
+	public static function loadFromTimestampOrEarlier( $db, $title, $timestamp ) {
+		return self::loadFromConds( $db,
+			array(
+				'rev_timestamp <= ' . $db->addQuotes( $db->timestamp( $timestamp ) ),
+				'page_namespace' => $title->getNamespace(),
+				'page_title' => $title->getDBkey()
+			),
+			0,
+			array(
+				'ORDER BY' => 'rev_timestamp DESC',
+			)
+		);
+	}
+
+	/**
 	 * Given a set of conditions, fetch a revision
 	 *
 	 * This method is used then a revision ID is qualified and
@@ -336,10 +358,11 @@ class Revision implements IDBAccessObject {
 	 * @param DatabaseBase $db
 	 * @param array $conditions
 	 * @param int $flags (optional)
+	 * @param int $options (optional)
 	 * @return Revision|null
 	 */
-	private static function loadFromConds( $db, $conditions, $flags = 0 ) {
-		$res = self::fetchFromConds( $db, $conditions, $flags );
+	private static function loadFromConds( $db, $conditions, $flags = 0, $options = array() ) {
+		$res = self::fetchFromConds( $db, $conditions, $flags, $options );
 		if ( $res ) {
 			$row = $res->fetchObject();
 			if ( $row ) {
@@ -378,15 +401,16 @@ class Revision implements IDBAccessObject {
 	 * @param DatabaseBase $db
 	 * @param array $conditions
 	 * @param int $flags (optional)
+	 * @param array $options (optional)
 	 * @return ResultWrapper
 	 */
-	private static function fetchFromConds( $db, $conditions, $flags = 0 ) {
+	private static function fetchFromConds( $db, $conditions, $flags = 0, $options = array() ) {
 		$fields = array_merge(
 			self::selectFields(),
 			self::selectPageFields(),
 			self::selectUserFields()
 		);
-		$options = array( 'LIMIT' => 1 );
+		$options = $options + array( 'LIMIT' => 1 );
 		if ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING ) {
 			$options[] = 'FOR UPDATE';
 		}

@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group Database
  * @group ContentHandler
  */
 class RevisionTest extends MediaWikiTestCase {
@@ -192,20 +193,48 @@ class RevisionTest extends MediaWikiTestCase {
 
 		$content = ContentHandler::makeContent( $text, $title, $model, $format );
 
-		$rev = new Revision(
-			array(
-				'id' => 42,
-				'page' => 23,
-				'title' => $title,
+		$row = array(
+			'id' => 42,
+			'page' => 23,
+			'title' => $title,
 
-				'content' => $content,
-				'length' => $content->getSize(),
-				'comment' => "testing",
-				'minor_edit' => false,
+			'content' => $content,
+			'length' => $content->getSize(),
+			'comment' => "testing",
+			'minor_edit' => false,
 
-				'content_format' => $format,
-			)
+			'content_format' => $format,
 		);
+		$rev = new Revision( $row );
+
+		return $rev;
+	}
+
+	/**
+	 * @param string $text
+	 * @param array $attrs (optional) Any extra fields to pass to the Revision contstructor.
+	 *
+	 * @return Revision
+	 */
+	protected function insertTestRevision( $text, $attrs = array() ) {
+		$title = Title::newFromText( 'RevisionTest' );
+		$page = new WikiPage( $title );
+		$dbw = wfGetDb( DB_MASTER );
+		$page->insertOn( $dbw );
+		$content = ContentHandler::makeContent( $text, $title, CONTENT_MODEL_WIKITEXT, null );
+
+		$row = $attrs + array(
+			'page' => $page->getId(),
+			'title' => $title,
+
+			'content' => $content,
+			'length' => $content->getSize(),
+			'comment' => 'testing',
+
+			'content_format' => null,
+		);
+		$rev = new Revision( $row );
+		$rev->insertOn( $dbw );
 
 		return $rev;
 	}
@@ -220,7 +249,6 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @group Database
 	 * @dataProvider dataGetContentModel
 	 * @covers Revision::getContentModel
 	 */
@@ -241,7 +269,6 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @group Database
 	 * @dataProvider dataGetContentFormat
 	 * @covers Revision::getContentFormat
 	 */
@@ -261,7 +288,6 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @group Database
 	 * @dataProvider dataGetContentHandler
 	 * @covers Revision::getContentHandler
 	 */
@@ -295,7 +321,6 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @group Database
 	 * @dataProvider dataGetContent
 	 * @covers Revision::getContent
 	 */
@@ -321,7 +346,6 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @group Database
 	 * @dataProvider dataGetText
 	 * @covers Revision::getText
 	 */
@@ -334,7 +358,6 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @group Database
 	 * @dataProvider dataGetText
 	 * @covers Revision::getRawText
 	 */
@@ -355,7 +378,6 @@ class RevisionTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers Revision::getSize
-	 * @group Database
 	 * @dataProvider dataGetSize
 	 */
 	public function testGetSize( $text, $model, $expected_size ) {
@@ -376,7 +398,6 @@ class RevisionTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers Revision::getSha1
-	 * @group Database
 	 * @dataProvider dataGetSha1
 	 */
 	public function testGetSha1( $text, $model, $expected_hash ) {
@@ -422,7 +443,6 @@ class RevisionTest extends MediaWikiTestCase {
 	/**
 	 * Tests whether $rev->getContent() returns a clone when needed.
 	 *
-	 * @group Database
 	 * @covers Revision::getContent
 	 */
 	public function testGetContentClone() {
@@ -457,7 +477,6 @@ class RevisionTest extends MediaWikiTestCase {
 	/**
 	 * Tests whether $rev->getContent() returns the same object repeatedly if appropriate.
 	 *
-	 * @group Database
 	 * @covers Revision::getContent
 	 */
 	public function testGetContentUncloned() {
@@ -467,6 +486,47 @@ class RevisionTest extends MediaWikiTestCase {
 
 		// for immutable content like wikitext, this should be the same object
 		$this->assertSame( $content, $content2 );
+	}
+
+	/**
+	 * @covers Revision::loadFromTimestamp
+	 */
+	public function testLoadFromTimestamp() {
+		$content = strval( mt_rand() );
+		$rev = $this->insertTestRevision( $content );
+
+		$dbw = wfGetDb( DB_MASTER );
+		$fetched = Revision::loadFromTimestamp( $dbw, $rev->getTitle(), $rev->getTimestamp() );
+		$this->assertNotNull( $fetched );
+		$this->assertEquals( $rev->getId(), $fetched->getId() );
+		$this->assertEquals( $content, $fetched->getContent()->getNativeData() );
+	}
+
+	/**
+	 * @covers Revision::loadFromTimestampOrEarlier
+	 */
+	public function testLoadFromTimestampOrEarlier() {
+		$content = strval( mt_rand() );
+		$rev = $this->insertTestRevision( $content );
+
+		// Create earlier and later revisions.
+		$this->insertTestRevision( "Too early",
+			array( 'timestamp' => $rev->getTimestamp() - 1 ) );
+		$this->insertTestRevision( "Too late",
+			array( 'timestamp' => $rev->getTimestamp() + 2 ) );
+
+		// Test loading by exact timestamp.
+		$dbw = wfGetDb( DB_MASTER );
+		$fetched = Revision::loadFromTimestampOrEarlier( $dbw, $rev->getTitle(), $rev->getTimestamp() );
+		$this->assertNotNull( $fetched );
+		$this->assertEquals( $rev->getId(), $fetched->getId() );
+		$this->assertEquals( $content, $fetched->getContent()->getNativeData() );
+
+		// Test loading with timestamp + 1.
+		$fetched = Revision::loadFromTimestampOrEarlier( $dbw, $rev->getTitle(), $rev->getTimestamp() + 1 );
+		$this->assertNotNull( $fetched );
+		$this->assertEquals( $rev->getId(), $fetched->getId() );
+		$this->assertEquals( $content, $fetched->getContent()->getNativeData() );
 	}
 }
 
