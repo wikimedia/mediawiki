@@ -653,6 +653,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 */
 	function optionsPanel( $defaults, $nondefaults, $numRows ) {
 		$options = $nondefaults + $defaults;
+		global $wgUseFullRCPatrolUI;
 
 		$note = '';
 		$msg = $this->msg( 'rclegend' );
@@ -716,9 +717,12 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		foreach ( $this->getCustomFilters() as $key => $params ) {
 			$filters[$key] = $params['msg'];
 		}
-		// Disable some if needed
-		if ( !$user->useRCPatrol() ) {
-			unset( $filters['hidepatrolled'] );
+
+		// The patrol filter is shown if RC patrol is used with full UI
+		// or if the UI is minimalist and we filter for a problem change
+		if ( !$user->useRCPatrol() || ( !$wgUseFullRCPatrolUI && ( !$options['tagfilter'] ||
+			!ChangeTags::getDefinedTags[$options['tagfilter']]['problem'] ) ) ) {
+			unset( $filters['hidepatrolled'] );	
 		}
 
 		$links = array();

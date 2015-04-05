@@ -5899,6 +5899,13 @@ $wgRCEngines = array(
 $wgUseRCPatrol = true;
 
 /**
+ * When using RC patrolling, set this to false
+ * if you want a minimalist RC patrol UI
+ * (no effect if RC patrolling is disabled)
+ */
+$wgUseFullRCPatrolUI = true;
+
+/**
  * Use new page patrolling to check new pages on Special:Newpages
  */
 $wgUseNPPatrol = true;
