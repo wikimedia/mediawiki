@@ -2045,7 +2045,7 @@
 	"whatlinkshere-hideredirs": "$1 les redirections",
 	"whatlinkshere-hidetrans": "$1 les inclusions",
 	"whatlinkshere-hidelinks": "$1 les liens",
-	"whatlinkshere-hideimages": "$1 les fichiers liés",
+	"whatlinkshere-hideimages": "$1 les liens vers le fichier",
 	"whatlinkshere-filters": "Filtres",
 	"autoblockid": "Blocage automatique #$1",
 	"block": "Bloquer l’utilisateur",

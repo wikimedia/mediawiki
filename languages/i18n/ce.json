@@ -1657,6 +1657,7 @@
 	"protect-othertime": "Кхин хан:",
 	"protect-othertime-op": "кхин хан",
 	"protect-existing-expiry": "Карара чекхйолу хан: $2, $3",
+	"protect-existing-expiry-infinity": "Карара чекхйолу хан: чаккхе йоцу",
 	"protect-otherreason": "Кхин бахьна/тӀетохар:",
 	"protect-otherreason-op": "Кхин бахьна",
 	"protect-dropdown": "* ГӀоралла дарна баьхьаш \n** сих-сиха зулам дар \n** дуккха спам хилар\n** нисдарийн тӀом \n** гӀараялл агӀо",

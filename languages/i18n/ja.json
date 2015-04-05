@@ -887,6 +887,8 @@
 	"notextmatches": "どのページ本文とも一致しませんでした",
 	"prevn": "前の$1件",
 	"nextn": "次の$1件",
+	"prev-page": "前のページ",
+	"next-page": "次のページ",
 	"prevn-title": "前の{{PLURAL:$1|$1件}}",
 	"nextn-title": "次の{{PLURAL:$1|$1件}}",
 	"shown-title": "ページあたり{{PLURAL:$1|$1件の結果}}を表示",
@@ -3412,6 +3414,7 @@
 	"special-characters-group-devanagari": "デーヴァナーガリー文字",
 	"special-characters-group-thai": "タイ文字",
 	"special-characters-group-lao": "ラオス文字",
+	"special-characters-group-khmer": "クメール文字",
 	"special-characters-title-endash": "en ダッシュ",
 	"special-characters-title-emdash": "em ダッシュ",
 	"special-characters-title-minus": "マイナス記号"

@@ -7,7 +7,8 @@
 			"Alan ffm",
 			"Devwebtel",
 			"Macofe",
-			"Pio387"
+			"Pio387",
+			"Peter Bowman"
 		]
 	},
 	"apihelp-main-param-action": "Wybierz akcję do wykonania.",
@@ -30,7 +31,7 @@
 	"apihelp-edit-param-text": "Zawartość strony.",
 	"apihelp-edit-param-minor": "Drobna zmiana.",
 	"apihelp-edit-param-notminor": "Nie drobna zmiana.",
-	"apihelp-edit-param-bot": "Oznacz tą edycję jako edycję bota.",
+	"apihelp-edit-param-bot": "Oznacz tę edycję jako edycję bota.",
 	"apihelp-edit-example-edit": "Edytuj stronę",
 	"apihelp-emailuser-description": "Wyślij e‐mail do użytkownika.",
 	"apihelp-feedrecentchanges-example-simple": "Pokaż ostatnie zmiany.",

@@ -10,7 +10,8 @@
 			"Yfdyh000",
 			"JuneAugsut",
 			"EagerLin",
-			"Simon xianyu"
+			"Simon xianyu",
+			"Kuailong"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|文档]]\n* [[mw:API:FAQ|常见问题]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 邮件列表]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 程序错误与功能请求]\n</div>\n<strong>状态信息：</strong>本页所展示的所有特性都应正常工作，但是API仍在开发当中，将会随时变化。请订阅[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 邮件列表]以便获得更新通知。\n\n<strong>错误请求：</strong>当API收到错误请求时，HTTP header将会返回一个包含\"MediaWiki-API-Error\"的值，随后header的值与error code将会送回并设置为相同的值。详细信息请参阅[[mw:API:Errors_and_warnings|API: 错误与警告]]。",
@@ -381,9 +382,11 @@
 	"apihelp-query+allusers-description": "列举所有注册用户。",
 	"apihelp-query+allusers-param-from": "枚举的起始用户名。",
 	"apihelp-query+allusers-param-to": "枚举的结束用户名。",
+	"apihelp-query+allusers-param-prefix": "搜索以此值开始的所有用户。",
 	"apihelp-query+allusers-param-dir": "排序方向。",
 	"apihelp-query+allusers-param-group": "只包含指定组中的用户。",
 	"apihelp-query+allusers-param-excludegroup": "排除指定组中的用户。",
+	"apihelp-query+allusers-param-rights": "仅列出有所选权限的用户。不包括隐性的或自动加入的用户组别（如*、用户或自动确认用户）所授予的权限。",
 	"apihelp-query+allusers-param-limit": "返回的总计用户数。",
 	"apihelp-query+allusers-param-witheditsonly": "只列出有编辑的用户。",
 	"apihelp-query+allusers-param-activeusers": "只列出最近$1天内活跃的用户。",
@@ -471,6 +474,8 @@
 	"apihelp-query+exturlusage-example-simple": "显示链接至<kbd>http://www.mediawiki.org</kbd>的页面。",
 	"apihelp-query+filearchive-param-from": "枚举的起始图片标题。",
 	"apihelp-query+filearchive-param-to": "枚举的结束图片标题。",
+	"apihelp-query+filearchive-param-prefix": "搜索所有以此值开头的图像标题。",
+	"apihelp-query+filearchive-param-limit": "返回图像的总数。",
 	"apihelp-query+filearchive-param-dir": "罗列所采用的方向。",
 	"apihelp-query+filearchive-param-sha1": "图片的SHA1哈希值。覆盖$1sha1base36。",
 	"apihelp-query+filearchive-param-sha1base36": "基于base 36的图片的SHA1哈希值（用于MediaWiki）。",
