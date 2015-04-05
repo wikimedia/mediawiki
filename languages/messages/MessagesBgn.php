@@ -1,11 +1,13 @@
 <?php
-/** Western Balochi
+/** Western Balochi (بلوچی رخشانی)
  *
  * To improve a translation please visit https://translatewiki.net
  *
  * @ingroup Language
  * @file
  *
+ * @author Ibrahim khashrowdi
+ * @author Mjbmr
  */
 
 $fallback = 'fa';
