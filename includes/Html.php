@@ -655,13 +655,16 @@ class Html {
 	 * Output a "<script>" tag linking to the given URL, e.g.,
 	 * "<script src=foo.js></script>".
 	 *
+	 * @since 1.25 Takes optional $attribs parameter.
+	 *
 	 * @param string $url
+	 * @param array $attribs Associative array of miscellaneous extra
+	 *   attributes, passed to Html::element()
 	 * @return string Raw HTML
 	 */
-	public static function linkedScript( $url ) {
-		$attrs = array( 'src' => $url );
-
-		return self::element( 'script', $attrs );
+	public static function linkedScript( $url, $attribs = array() ) {
+		$attribs['src'] = $url;
+		return self::element( 'script', $attribs );
 	}
 
 	/**
