@@ -382,22 +382,22 @@ class ChangeTags {
 	 *        - if true, it returns an entire form around the selector.
 	 * @param Title $title Title object to send the form to.
 	 *        Used when, and only when $fullForm is true.
-	 * @param bool $activeOnly specify whether only tags marked
-	 * as active should be considered (e.g. for Special:ProblemChanges)
-	 * @param bool $problemOnly specify whether only tags indicating
-	 * a problem should be considered (e.g. for Special:ProblemChanges)
+	 * @param array $tagList the list of tags to check
 	 * @return string|array
 	 *        - if $fullForm is false: Array with
 	 *        - if $fullForm is true: String, html fragment
 	 */
 	public static function buildTagFilterSelector( $selected = '',
-		$fullForm = false, Title $title = null,
-		$activeOnly = false, $problemOnly = false ) {
+		$fullForm = false, Title $title = null, $tagList = null ) {
 		global $wgUseTagFilter;
 
-		// check config and if tags of the type requested have been applied at least once
+		if ( $tagList == null ) {
+			// by default, we check the list of tags applied at least once
+			$tagList = self::getAppliedTags();
+		}
+		// check config and if the list of tags is not empty
 		// @todo use the list of tags to build a dropdown menu, an autocomplete form or some hybrid
-		if ( !$wgUseTagFilter || !count( self::getAppliedTags( $activeOnly, $problemOnly ) ) ) {
+		if ( !$wgUseTagFilter || !count( $tagList ) ) {
 			return $fullForm ? '' : array();
 		}
 
@@ -1097,9 +1097,11 @@ class ChangeTags {
 	 * @param string $tag: tag
 	 * @param bool $activeOnly: whether to return only active tags
 	 * @param bool $problemOnly: whether to return only problem tags
+	 * @param array $definedTags: list of defined tags on the wiki
 	 * @since 1.25
 	 */
-	public static function getAppliedTags( $activeOnly, $problemOnly ) {
+	public static function getAppliedTags( $activeOnly = false,
+		$problemOnly = false, $definedTags = null ) {
 		$appliedTags = self::buildTagUsageStatistics( false );
 
 		// shortcut
@@ -1107,7 +1109,9 @@ class ChangeTags {
 			return array_keys( $appliedTags );
 		}
 
-		$definedTags = self::getDefinedTags();
+		if ( $definedTags == null ) {
+			$definedTags = self::getDefinedTags();
+		}
 		// filtering out tags when requested
 		foreach ( $definedTags as $tag => &$tagParams ) {
 			if ( ( $problemOnly && !$tagParams['problem'] ) ||
