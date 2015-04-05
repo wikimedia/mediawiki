@@ -1137,6 +1137,20 @@ class EditPage {
 	}
 
 	/**
+	 * Get the edit's parent revision ID
+	 *
+	 * @since 1.25
+	 * @return int Revision ID
+	 */
+	public function getParentRevId() {
+		if ( $this->parentRevId ) {
+			return $this->parentRevId;
+		} else {
+			return $this->mArticle->getRevIdFetched();
+		}
+	}
+
+	/**
 	 * Get the current content of the page. This is basically similar to
 	 * WikiPage::getContent( Revision::RAW ) except that when the page doesn't exist an empty
 	 * content object is returned instead of null.
@@ -1812,6 +1826,7 @@ class EditPage {
 				if ( $this->mergeChangesIntoContent( $content ) ) {
 					// Successful merge! Maybe we should tell the user the good news?
 					$this->isConflict = false;
+					// TODO: Update $this->parentRevId to the rev we successfully merged.
 					wfDebug( __METHOD__ . ": Suppressing edit conflict, successful merge.\n" );
 				} else {
 					$this->section = '';
@@ -2472,8 +2487,7 @@ class EditPage {
 		$wgOut->addHTML( Html::hidden( 'wpAutoSummary', $autosumm ) );
 
 		$wgOut->addHTML( Html::hidden( 'oldid', $this->oldid ) );
-		$wgOut->addHTML( Html::hidden( 'parentRevId',
-			$this->parentRevId ?: $this->mArticle->getRevIdFetched() ) );
+		$wgOut->addHTML( Html::hidden( 'parentRevId', $this->getParentRevId() ) );
 
 		$wgOut->addHTML( Html::hidden( 'format', $this->contentFormat ) );
 		$wgOut->addHTML( Html::hidden( 'model', $this->contentModel ) );
