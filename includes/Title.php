@@ -4008,6 +4008,31 @@ class Title {
 	}
 
 	/**
+	 * Get revision at the given time
+	 *
+	 * @param string $timestmap MW timestamp
+	 * @return Revision|null If page doesn't exist
+	 */
+	public function getRevisionAtTime( $timestamp ) {
+		$pageId = $this->getArticleID();
+		if ( $pageId ) {
+			$dbr = wfGetDB( DB_SLAVE );
+			$row = $dbr->selectRow( 'revision', Revision::selectFields(),
+				array(
+					'rev_page' => $pageId,
+					'rev_timestamp <= ' . $dbr->addQuotes( $dbr->timestamp( $timestamp ) ),
+				),
+				__METHOD__,
+				array( 'ORDER BY' => 'rev_timestamp DESC', 'LIMIT' => 1 )
+			);
+			if ( $row ) {
+				return new Revision( $row );
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * Check if this is a new page
 	 *
 	 * @return bool
