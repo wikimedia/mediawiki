@@ -27,9 +27,11 @@
  * @ingroup SpecialPage
  */
 class SpecialRecentChanges extends ChangesListSpecialPage {
+	protected $getDefinedTags = null;
 	// @codingStandardsIgnoreStart Needed "useless" override to change parameters.
 	public function __construct( $name = 'Recentchanges', $restriction = '' ) {
 		parent::__construct( $name, $restriction );
+		$this->getDefinedTags = ChangeTags::getDefinedTags();
 	}
 	// @codingStandardsIgnoreEnd
 
@@ -304,6 +306,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$counter = 1;
 		$list = ChangesList::newFromContext( $this->getContext() );
 		$list->initChangesListRows( $rows );
+		$list->getDefinedTags = $this->getDefinedTags();
 
 		$rclistOutput = $list->beginRecentChangesList();
 		foreach ( $rows as $obj ) {
@@ -472,7 +475,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$extraOpts['category'] = $this->categoryFilterForm( $opts );
 		}
 
-		$tagFilter = ChangeTags::buildTagFilterSelector( $opts['tagfilter'] );
+		// we check the list of active applied tags
+		$tagList = ChangeTags::getAppliedTags( true, false, $this->getDefinedTags() );
+		$tagFilter = ChangeTags::buildTagFilterSelector( $opts['tagfilter'],
+			false, null, $tagList )
 		if ( count( $tagFilter ) ) {
 			$extraOpts['tagfilter'] = $tagFilter;
 		}
@@ -652,6 +658,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @return string
 	 */
 	function optionsPanel( $defaults, $nondefaults, $numRows ) {
+		global $wgUseFullRCPatrolUI;
 		$options = $nondefaults + $defaults;
 
 		$note = '';
@@ -716,9 +723,21 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		foreach ( $this->getCustomFilters() as $key => $params ) {
 			$filters[$key] = $params['msg'];
 		}
-		// Disable some if needed
+
 		if ( !$user->useRCPatrol() ) {
+			// Disable patrol filter if RC patrol is not used
 			unset( $filters['hidepatrolled'] );
+		} elseif ( !$wgUseFullRCPatrolUI ) {
+			// Case where RC patrol is used with minimalist UI
+			if ( !$options['tagfilter'] ) {
+				// Disable if not filtered by a tag
+				unset( $filters['hidepatrolled'] );
+			} else {
+				// If filtered by a tag, disable if not a problem tag
+				if ( !$this->getDefinedTags[$options['tagfilter']]['problem'] ) {
+					unset( $filters['hidepatrolled'] );
+				}
+			}
 		}
 
 		$links = array();
