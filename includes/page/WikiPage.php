@@ -1553,10 +1553,7 @@ class WikiPage implements Page, IDBAccessObject {
 			if ( is_null( $baseRevId ) || $sectionId === 'new' ) {
 				$oldContent = $this->getContent();
 			} else {
-				// TODO: try DB_SLAVE first
-				$dbw = wfGetDB( DB_MASTER );
-				$rev = Revision::loadFromId( $dbw, $baseRevId );
-
+				$rev = Revision::newFromId( $baseRevId );
 				if ( !$rev ) {
 					wfDebug( __METHOD__ . " asked for bogus section (page: " .
 						$this->getId() . "; section: $sectionId)\n" );
