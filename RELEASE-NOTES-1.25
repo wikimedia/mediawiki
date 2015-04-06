@@ -424,6 +424,8 @@ changes to languages because of Bugzilla reports.
   retrievedfrom, thisisdeleted, viewsourcelink, lastmodifiedat, laggedslavemode,
   protect-summary-cascade
 * All BloomCache related code has been removed. This was largely experimental.
+* $wgResourceModuleSkinStyles no longer supports per-module local or remote paths. They
+  can only be set for the entire skin.
 
 == Compatibility ==
 

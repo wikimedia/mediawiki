@@ -346,12 +346,9 @@ class ResourceLoader {
 					}
 
 					// Add new file paths, remapping them to refer to our directories and not use settings
-					// from the module we're modifying. These can come from the base definition or be defined
-					// for each module.
+					// from the module we're modifying, which come from the base definition.
 					list( $localBasePath, $remoteBasePath ) =
 						ResourceLoaderFileModule::extractBasePaths( $skinStyles );
-					list( $localBasePath, $remoteBasePath ) =
-						ResourceLoaderFileModule::extractBasePaths( $paths, $localBasePath, $remoteBasePath );
 
 					foreach ( $paths as $path ) {
 						$styleFiles[] = new ResourceLoaderFilePath( $path, $localBasePath, $remoteBasePath );
