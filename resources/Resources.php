@@ -974,6 +974,7 @@ return array(
 		),
 		'dependencies' => array(
 			'mediawiki.api.edit',
+			'mediawiki.messagePoster',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
