@@ -3586,7 +3586,13 @@ class User implements IDBAccessObject {
 		global $wgAuth;
 
 		if ( wfReadOnly() ) {
-			return; // @TODO: caller should deal with this instead!
+			// @TODO: caller should deal with this instead!
+			// This should really just be an exception.
+			MWExceptionHandler::logException( new DBExpectedError(
+				null,
+				"Could not update user with ID '{$this->mId}'; DB is read-only."
+			) );
+			return;
 		}
 
 		$this->load();
