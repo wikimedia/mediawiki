@@ -150,21 +150,23 @@ class MWExceptionHandler {
 	 * @since 1.25
 	 * @param Exception $e
 	 */
-	public static function handleException( $e ) {
-		global $wgFullyInitialised;
+	public static function handleException( Exception $e ) {
+		try {
+			// Rollback DBs to avoid transaction notices. This may fail
+			// to rollback some DB due to connection issues or exceptions.
+			// However, any sane DB driver will rollback implicitly anyway.
+			self::rollbackMasterChangesAndLog( $e );
+		} catch ( DBError $e2 ) {
+			// If the DB is unreacheable, rollback() will throw an error
+			// and the error report() method might need messages from the DB,
+			// which would result in an exception loop. PHP may escalate such
+			// errors to "Exception thrown without a stack frame" fatals, but
+			// it's better to be explicit here.
+			self::logException( $e2 );
+		}
 
-		self::rollbackMasterChangesAndLog( $e );
 		self::logException( $e );
 		self::report( $e );
-
-		// Final cleanup
-		if ( $wgFullyInitialised ) {
-			try {
-				// uses $wgRequest, hence the $wgFullyInitialised condition
-				wfLogProfilingData();
-			} catch ( Exception $e ) {
-			}
-		}
 
 		// Exit value should be nonzero for the benefit of shell jobs
 		exit( 1 );
