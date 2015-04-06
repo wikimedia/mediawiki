@@ -2233,9 +2233,15 @@ class User implements IDBAccessObject {
 	 * user_touched field when we update things.
 	 * @return string Timestamp in TS_MW format
 	 */
-	private static function newTouchedTimestamp() {
+	private function newTouchedTimestamp() {
 		global $wgClockSkewFudge;
-		return wfTimestamp( TS_MW, time() + $wgClockSkewFudge );
+
+		$time = wfTimestamp( TS_MW, time() + $wgClockSkewFudge );
+		if ( $this->mTouched && $time <= $this->mTouched ) {
+			$time = wfTimestamp( TS_MW, wfTimestamp( TS_UNIX, $this->mTouched ) + 1 );
+		}
+
+		return $time;
 	}
 
 	/**
@@ -2265,7 +2271,7 @@ class User implements IDBAccessObject {
 		}
 		$this->load();
 		if ( $this->mId ) {
-			$this->mTouched = self::newTouchedTimestamp();
+			$this->mTouched = $this->newTouchedTimestamp();
 
 			$dbw = wfGetDB( DB_MASTER );
 			$userid = $this->mId;
@@ -2307,7 +2313,7 @@ class User implements IDBAccessObject {
 
 		if ( $this->mId ) {
 			$key = wfMemcKey( 'user-quicktouched', 'id', $this->mId );
-			$timestamp = self::newTouchedTimestamp();
+			$timestamp = $this->newTouchedTimestamp();
 			$wgMemc->set( $key, $timestamp );
 			$this->mQuickTouched = $timestamp;
 		}
@@ -3601,7 +3607,7 @@ class User implements IDBAccessObject {
 			wfWarn( "Attempting to save slave-loaded User object data." );
 		}
 
-		$this->mTouched = self::newTouchedTimestamp();
+		$this->mTouched = $this->newTouchedTimestamp();
 		if ( !$wgAuth->allowSetLocalPassword() ) {
 			$this->mPassword = self::getPasswordFactory()->newFromCiphertext( null );
 		}
@@ -3694,7 +3700,7 @@ class User implements IDBAccessObject {
 			'user_token' => strval( $user->mToken ),
 			'user_registration' => $dbw->timestamp( $user->mRegistration ),
 			'user_editcount' => 0,
-			'user_touched' => $dbw->timestamp( self::newTouchedTimestamp() ),
+			'user_touched' => $dbw->timestamp( $user->newTouchedTimestamp() ),
 		);
 		foreach ( $params as $name => $value ) {
 			$fields["user_$name"] = $value;
@@ -3741,7 +3747,7 @@ class User implements IDBAccessObject {
 			$this->setToken(); // init token
 		}
 
-		$this->mTouched = self::newTouchedTimestamp();
+		$this->mTouched = $this->newTouchedTimestamp();
 
 		$dbw = wfGetDB( DB_MASTER );
 		$inWrite = $dbw->writesOrCallbacksPending();
