@@ -1383,14 +1383,10 @@ class OutputPage extends ContextSource {
 	 */
 	public function setIndicators( array $indicators ) {
 		$this->mIndicators = $indicators + $this->mIndicators;
-		// Keep ordered by key
-		ksort( $this->mIndicators );
 	}
 
 	/**
 	 * Get the indicators associated with this page.
-	 *
-	 * The array will be internally ordered by item keys.
 	 *
 	 * @return array Keys: identifiers, values: HTML contents
 	 * @since 1.25
