@@ -1,8 +1,6 @@
 <?php
 /**
- * This class will test BagOStuff.
- *
- * @author     Matthias Mullie <mmullie@wikimedia.org>
+ * @author Matthias Mullie <mmullie@wikimedia.org>
  */
 class BagOStuffTest extends MediaWikiTestCase {
 	private $cache;
@@ -23,6 +21,10 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$this->cache->delete( wfMemcKey( 'test' ) );
 	}
 
+	/**
+	 * @covers BagOStuff::merge
+	 * @covers BagOStuff::mergeViaLock
+	 */
 	public function testMerge() {
 		$key = wfMemcKey( 'test' );
 
@@ -100,6 +102,9 @@ class BagOStuffTest extends MediaWikiTestCase {
 		}
 	}
 
+	/**
+	 * @covers BagOStuff::add
+	 */
 	public function testAdd() {
 		$key = wfMemcKey( 'test' );
 		$this->assertTrue( $this->cache->add( $key, 'test' ) );
@@ -125,6 +130,9 @@ class BagOStuffTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedValue, $actualValue, 'Value should be 1 after incrementing' );
 	}
 
+	/**
+	 * @covers BagOStuff::getMulti
+	 */
 	public function testGetMulti() {
 		$value1 = array( 'this' => 'is', 'a' => 'test' );
 		$value2 = array( 'this' => 'is', 'another' => 'test' );
