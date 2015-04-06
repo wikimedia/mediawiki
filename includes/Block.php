@@ -442,19 +442,33 @@ class Block {
 			$dbw = wfGetDB( DB_MASTER );
 		}
 
-		# Don't collide with expired blocks
-		Block::purgeExpired();
+		# Periodic purge via commit hooks
+		if ( mt_rand( 0, 9 ) == 0 ) {
+			Block::purgeExpired();
+		}
 
 		$row = $this->getDatabaseArray();
 		$row['ipb_id'] = $dbw->nextSequenceValue( "ipblocks_ipb_id_seq" );
 
-		$dbw->insert(
-			'ipblocks',
-			$row,
-			__METHOD__,
-			array( 'IGNORE' )
-		);
+		$dbw->insert( 'ipblocks', $row, __METHOD__, array( 'IGNORE' ) );
 		$affected = $dbw->affectedRows();
+
+		# Don't collide with expired blocks.
+		# Do this after trying to insert to avoid pointless gap locks.
+		if ( !$affected ) {
+			$dbw->delete( 'ipblocks',
+				array(
+					'ipb_address' => $row['ipb_address'],
+					'ipb_user' => $row['ipb_user'],
+					'ipb_expiry < ' . $dbw->addQuotes( $dbw->timestamp() )
+				),
+				__METHOD__
+			);
+
+			$dbw->insert( 'ipblocks', $row, __METHOD__, array( 'IGNORE' ) );
+			$affected = $dbw->affectedRows();
+		}
+
 		$this->mId = $dbw->insertId();
 
 		if ( $affected ) {
