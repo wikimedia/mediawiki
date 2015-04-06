@@ -195,5 +195,12 @@
 	"api-help-param-list": "{{PLURAL:$1|1=Un valor|2=Valores (separados por <kbd>{{!}}</kbd>)}}: $2",
 	"api-help-param-list-can-be-empty": "{{PLURAL:$1|0=Debe estar vacío|Puede estar vacío, o $2}}",
 	"api-help-param-multi-separate": "Separar los valores con <kbd>|</kbd>.",
-	"api-help-examples": "{{PLURAL:$1|Ejemplo|Ejemplos}}:"
+	"api-help-param-default": "Predeterminado: $1",
+	"api-help-param-default-empty": "Predeterminado: <span class=\"apihelp-empty\">(vacío)</span>",
+	"api-help-param-no-description": "<span class=\"apihelp-empty\">(sin descripción)</span>",
+	"api-help-examples": "{{PLURAL:$1|Ejemplo|Ejemplos}}:",
+	"api-help-permissions": "{{PLURAL:$1|Permiso|Permisos}}:",
+	"api-help-permissions-granted-to": "{{PLURAL:$1|Concedido a|Concedidos a}}: $2",
+	"api-credits-header": "Créditos",
+	"api-credits": "Desarrolladores de la API:\n* Roan Kattouw (desarrollador principal sep 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (creador, desarrollador principal sep 2006–sep 2007)\n* Brad Jorsch (desarrollador principal 2013–actualidad)\n\nEnvía comentarios, sugerencias y preguntas a mediawiki-api@lists.wikimedia.org\no reporta un error en https://phabricator.wikimedia.org/."
 }

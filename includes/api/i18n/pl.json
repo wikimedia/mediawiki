@@ -8,7 +8,8 @@
 			"Devwebtel",
 			"Macofe",
 			"Pio387",
-			"Peter Bowman"
+			"Peter Bowman",
+			"Darellur"
 		]
 	},
 	"apihelp-main-param-action": "Wybierz akcję do wykonania.",
@@ -32,6 +33,8 @@
 	"apihelp-edit-param-minor": "Drobna zmiana.",
 	"apihelp-edit-param-notminor": "Nie drobna zmiana.",
 	"apihelp-edit-param-bot": "Oznacz tę edycję jako edycję bota.",
+	"apihelp-edit-param-watch": "Dodaj stronę do aktualnej listy obserwacji użytkownika.",
+	"apihelp-edit-param-unwatch": "Usuń stronę z aktualnej listy obserwacji użytkownika.",
 	"apihelp-edit-example-edit": "Edytuj stronę",
 	"apihelp-emailuser-description": "Wyślij e‐mail do użytkownika.",
 	"apihelp-feedrecentchanges-example-simple": "Pokaż ostatnie zmiany.",

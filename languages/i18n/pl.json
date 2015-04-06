@@ -3304,6 +3304,7 @@
 	"expand_templates_generate_xml": "Pokaż drzewo analizatora składni w formacie XML",
 	"expand_templates_generate_rawhtml": "Pokaż surowy HTML",
 	"expand_templates_preview": "Podgląd",
+	"expand_templates_preview_fail_html": "<em>Ponieważ {{SITENAME}} ma włączony surowy kod HTML i zaistniała strata danych z sesji, podgląd jest ukryty jako zabezpieczenie przed atakiem JavaScript.</em>\n\n<strong>Jeśli to jest próba słusznego podglądu, proszę spróbować ponownie.</strong>\nJeśli to nadal nie działa, spróbuj [[Special:UserLogout|wylogować się]] i zalogować się z powrotem.",
 	"pagelanguage": "Wybór języka strony",
 	"pagelang-name": "Strona",
 	"pagelang-language": "Język",

@@ -4,7 +4,8 @@
 			"Shirayuki",
 			"2nd-player",
 			"Los688",
-			"Whym"
+			"Whym",
+			"Mfuji"
 		]
 	},
 	"apihelp-main-param-action": "実行する操作です。",
@@ -112,7 +113,7 @@
 	"apihelp-move-param-from": "移動するページのページ名です。<var>$1fromid</var> とは同時に使用できません。",
 	"apihelp-move-param-fromid": "移動するページのページIDです。<var>$1from</var> とは同時に使用できません。",
 	"apihelp-move-param-to": "移動後のページ名。",
-	"apihelp-move-param-reason": "移動の理由。",
+	"apihelp-move-param-reason": "名称変更の理由。",
 	"apihelp-move-param-movetalk": "存在する場合、トークページも名前を変更します。",
 	"apihelp-move-param-movesubpages": "可能であれば、下位ページも名前を変更します。",
 	"apihelp-move-param-noredirect": "転送ページを作成しません。",
