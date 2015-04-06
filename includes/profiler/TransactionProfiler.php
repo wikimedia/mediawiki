@@ -263,10 +263,12 @@ class TransactionProfiler implements LoggerAwareInterface {
 	 * @param string $query
 	 */
 	protected function reportExpectationViolated( $expect, $query ) {
+		global $wgRequest;
+
 		$n = $this->expect[$expect];
 		$by = $this->expectBy[$expect];
 		$this->logger->info(
-			"Expectation ($expect <= $n) by $by not met:\n$query\n" . wfBacktrace( true )
+			"[{$wgRequest->getMethod()}] Expectation ($expect <= $n) by $by not met:\n$query\n" . wfBacktrace( true )
 		);
 	}
 }
