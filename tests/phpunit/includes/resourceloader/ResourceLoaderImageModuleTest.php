@@ -31,7 +31,7 @@ class ResourceLoaderImageModuleTest extends ResourceLoaderTestCase {
 				'default' => 'bold-a.svg',
 				'lang' => array(
 					'en' => 'bold-b.svg',
-					'de' => 'bold-f.svg',
+					'ar,de' => 'bold-f.svg',
 				)
 			),
 		)

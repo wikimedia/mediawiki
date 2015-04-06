@@ -53,6 +53,20 @@ class ResourceLoaderImage {
 		$this->basePath = $basePath;
 		$this->variants = $variants;
 
+		// Expand shorthands:
+		// array( "en,de,fr" => "foo.svg" ) → array( "en" => "foo.svg", "de" => "foo.svg", "fr" => "foo.svg" )
+		if ( is_array( $this->descriptor ) && isset( $this->descriptor['lang'] ) ) {
+			foreach ( array_keys( $this->descriptor['lang'] ) as $langList ) {
+				if ( strpos( $langList, ',' ) !== false ) {
+					$this->descriptor['lang'] += array_fill_keys(
+						explode( ',', $langList ),
+						$this->descriptor['lang'][ $langList ]
+					);
+					unset( $this->descriptor['lang'][ $langList ] );
+				}
+			}
+		}
+
 		// Ensure that all files have common extension.
 		$extensions = array();
 		$descriptor = (array)$descriptor;
