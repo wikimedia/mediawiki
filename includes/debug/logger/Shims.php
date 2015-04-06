@@ -104,56 +104,6 @@ class MWLoggerLegacySpi extends \MediaWiki\Logger\LegacySpi {
  * Backwards compatibility stub for usage from before the introduction of
  * the MediaWiki\Logger namespace.
  *
- * @deprecated since 1.25 Use \MediaWiki\Logger\Monolog\LegacyHandler
- * @todo This class should be removed before the 1.25 final release.
- */
-class MWLoggerMonologHandler extends \MediaWiki\Logger\Monolog\LegacyHandler {
-}
-
-/**
- * Backwards compatibility stub for usage from before the introduction of
- * the MediaWiki\Logger namespace.
- *
- * @deprecated since 1.25 Use \MediaWiki\Logger\Monolog\LegacyFormatter
- * @todo This class should be removed before the 1.25 final release.
- */
-class MWLoggerMonologLegacyFormatter extends \MediaWiki\Logger\Monolog\LegacyFormatter {
-}
-
-/**
- * Backwards compatibility stub for usage from before the introduction of
- * the MediaWiki\Logger namespace.
- *
- * @deprecated since 1.25 Use \MediaWiki\Logger\Monolog\WikiProcessor
- * @todo This class should be removed before the 1.25 final release.
- */
-class MWLoggerMonologProcessor extends \MediaWiki\Logger\Monolog\WikiProcessor {
-}
-
-/**
- * Backwards compatibility stub for usage from before the introduction of
- * the MediaWiki\Logger namespace.
- *
- * @deprecated since 1.25 Use \MediaWiki\Logger\MonologSpi
- * @todo This class should be removed before the 1.25 final release.
- */
-class MWLoggerMonologSpi extends \MediaWiki\Logger\MonologSpi {
-}
-
-/**
- * Backwards compatibility stub for usage from before the introduction of
- * the MediaWiki\Logger namespace.
- *
- * @deprecated since 1.25 Use \MediaWiki\Logger\Monolog\SyslogHandler
- * @todo This class should be removed before the 1.25 final release.
- */
-class MWLoggerMonologSyslogHandler extends \MediaWiki\Logger\Monolog\SyslogHandler {
-}
-
-/**
- * Backwards compatibility stub for usage from before the introduction of
- * the MediaWiki\Logger namespace.
- *
  * @deprecated since 1.25 Use \MediaWiki\Logger\NullSpi
  * @todo This class should be removed before the 1.25 final release.
  */
