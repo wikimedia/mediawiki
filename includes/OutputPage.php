@@ -1383,8 +1383,6 @@ class OutputPage extends ContextSource {
 	 */
 	public function setIndicators( array $indicators ) {
 		$this->mIndicators = $indicators + $this->mIndicators;
-		// Keep ordered by key
-		ksort( $this->mIndicators );
 	}
 
 	/**
