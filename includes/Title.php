@@ -260,6 +260,9 @@ class Title {
 	 * @return Title|null Title or null on an error.
 	 */
 	public static function newFromText( $text, $defaultNamespace = NS_MAIN ) {
+		if ( !is_string( $text ) ) {
+			wfDebugLog( 'AdHocDebug', json_encode( debug_backtrace() ) );
+		}
 		if ( is_object( $text ) ) {
 			throw new MWException( 'Title::newFromText given an object' );
 		}
