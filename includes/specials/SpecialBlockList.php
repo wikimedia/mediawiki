@@ -113,11 +113,6 @@ class SpecialBlockList extends SpecialPage {
 	}
 
 	function showList() {
-		# Purge expired entries on one in every 10 queries
-		if ( !mt_rand( 0, 10 ) ) {
-			Block::purgeExpired();
-		}
-
 		$conds = array();
 		# Is the user allowed to see hidden blocks?
 		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
@@ -397,6 +392,10 @@ class BlockListPager extends TablePager {
 			'conds' => $this->conds,
 			'join_conds' => array( 'user' => array( 'LEFT JOIN', 'user_id = ipb_by' ) )
 		);
+
+		# Filter out any expired blocks
+		$db = $this->getDatabase();
+		$info['conds'][] = 'ipb_expiry > ' . $db->addQuotes( $db->timestamp() );
 
 		# Is the user allowed to see hidden blocks?
 		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
