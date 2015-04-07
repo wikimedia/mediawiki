@@ -136,12 +136,12 @@ class ApiQueryPageProps extends ApiQueryBase {
 
 	protected function getExamplesMessages() {
 		return array(
-			'action=query&prop=pageprops&titles=Category:Foo'
+			'action=query&prop=pageprops&titles=Category:Main Page|MediaWiki'
 				=> 'apihelp-query+pageprops-example-simple',
 		);
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Properties#pageprops_.2F_pp';
+		return 'https://www.mediawiki.org/wiki/API:Pageprops';
 	}
 }
