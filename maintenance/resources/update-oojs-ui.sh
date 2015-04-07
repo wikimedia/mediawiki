@@ -35,18 +35,16 @@ then
 	exit 1
 fi
 
-# Copy files, excluding:
-# * the Apex theme files,
-# * the minimised distribution files, and
-# * the RTL sheets for non-CSSJanus environments
-# * the raster- and vector-only distribution sheets
-rsync --force --recursive --delete \
-	--exclude '*apex*' \
-	--exclude 'oojs-ui*.min.*' \
-	--exclude 'oojs-ui*.rtl.css' \
-	--exclude 'oojs-ui*.raster.css' \
-	--exclude 'oojs-ui*.vector.css' \
-	./node_modules/oojs-ui/dist/ "$REPO_DIR/$TARGET_DIR" || exit 1
+# Copy files, picking the necessary ones from source and distribution
+rm -r "$REPO_DIR/$TARGET_DIR" || exit 1
+mkdir -p "$REPO_DIR/$TARGET_DIR/i18n" || exit 1
+mkdir -p "$REPO_DIR/$TARGET_DIR/images" || exit 1
+mkdir -p "$REPO_DIR/$TARGET_DIR/themes/mediawiki/images" || exit 1
+cp ./node_modules/oojs-ui/dist/{oojs-ui-mediawiki-noimages.css,oojs-ui-mediawiki.js,oojs-ui.js} "$REPO_DIR/$TARGET_DIR" || exit 1
+cp -R ./node_modules/oojs-ui/dist/i18n "$REPO_DIR/$TARGET_DIR" || exit 1
+cp -R ./node_modules/oojs-ui/dist/images "$REPO_DIR/$TARGET_DIR" || exit 1
+cp -R ./node_modules/oojs-ui/dist/themes/mediawiki/images "$REPO_DIR/$TARGET_DIR/themes/mediawiki" || exit 1
+cp ./node_modules/oojs-ui/src/themes/mediawiki/*.json "$REPO_DIR/$TARGET_DIR/themes/mediawiki" || exit 1
 
 # Clean up temporary area
 rm -rf "$NPM_DIR"

@@ -48,6 +48,8 @@ class ResourceLoaderImageModule extends ResourceLoaderFileModule {
 	 *     array(
 	 *         // Base path to prepend to all local paths in $options. Defaults to $IP
 	 *         'localBasePath' => [base path],
+	 *         // Path to JSON file that contains any of the settings below
+	 *         'data' => [file path string]
 	 *         // CSS class prefix to use in all style rules
 	 *         'prefix' => [CSS class prefix],
 	 *         // Alternatively: Format of CSS selector to use in all style rules
@@ -84,6 +86,15 @@ class ResourceLoaderImageModule extends ResourceLoaderFileModule {
 		$remoteBasePath = null
 	) {
 		parent::__construct( $options, $localBasePath, $remoteBasePath );
+
+		if ( isset( $options['data'] ) ) {
+			$dataPath = $this->localBasePath . '/' . $options['data'];
+			$data = json_decode( file_get_contents( $dataPath ), true );
+			$options = array_merge( $data, $options );
+
+			// For cache invalidation
+			$this->localFileRefs[] = $dataPath;
+		}
 
 		// Accepted combinations:
 		// * prefix
