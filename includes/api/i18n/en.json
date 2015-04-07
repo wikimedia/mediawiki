@@ -515,7 +515,7 @@
 	"apihelp-query+categories-example-generator": "Get information about all categories used in the page <kbd>Albert Einstein</kbd>.",
 
 	"apihelp-query+categoryinfo-description": "Returns information about the given categories.",
-	"apihelp-query+categoryinfo-example-simple": "Get information about <kbd>Category:Foo</kbd> and <kbd>Category:Bar</kbd>.",
+	"apihelp-query+categoryinfo-example-simple": "Get information about <kbd>Category:Featured articles</kbd> and <kbd>Category:Foo</kbd>.",
 
 	"apihelp-query+categorymembers-description": "List all pages in a given category.",
 	"apihelp-query+categorymembers-param-title": "Which category to enumerate (required). Must include the <kbd>{{ns:category}}:</kbd> prefix. Cannot be used together with <var>$1pageid</var>.",
