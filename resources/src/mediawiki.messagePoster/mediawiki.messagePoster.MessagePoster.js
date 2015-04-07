@@ -21,14 +21,14 @@
 	 *   by MessagePosters that require one, unless the message already contains the string
 	 *   ~~~.
 	 * @return {jQuery.Promise} Promise completing when the post succeeds or fails.
-	 * @return {Function} return.done
-	 * @return {Function} return.fail
-	 * @return {string} return.fail.primaryError Primary error code.  For a mw.Api failure,
-	 *   this should be 'api-fail'.
-	 * @return {string} return.fail.secondaryError Secondary error code.  For a mw.Api failure,
-	 *   this, should be mw.Api's code, e.g. 'http', 'ok-but-empty', or the error passed through
-	 *   from the server.
-	 * @return {Mixed} return.fail.details Further details about the error
+	 *   For failure, will be rejected with three arguments:
+	 *
+	 *   - primaryError - Primary error code.  For a mw.Api failure,
+	 *       this should be 'api-fail'.
+	 *   - secondaryError - Secondary error code.  For a mw.Api failure,
+	 *       this, should be mw.Api's code, e.g. 'http', 'ok-but-empty', or the error passed through
+	 *       from the server.
+	 *   - details - Further details about the error
 	 *
 	 * @localdoc
 	 * The base class currently does nothing, but could be used for shared analytics or

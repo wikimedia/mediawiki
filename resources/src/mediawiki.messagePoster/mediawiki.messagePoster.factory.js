@@ -50,11 +50,12 @@
 	 * API and ResourceLoader requests in the background.
 	 *
 	 * @param {mw.Title} title Title that will be posted to
-	 * @return {jQuery.Promise} Promise for the MessagePoster
-	 * @return {Function} return.done Called if MessagePoster is retrieved
-	 * @return {mw.messagePoster.MessagePoster} return.done.poster MessagePoster
-	 * @return {Function} return.fail Called if MessagePoster could not be constructed
-	 * @return {string} return.fail.errorCode String error code
+	 * @return {jQuery.Promise} Promise resolving to a mw.messagePoster.MessagePoster.
+	 *   For failure, rejected with up to three arguments:
+	 *
+	 *   - errorCode Error code string
+	 *   - error Error explanation
+	 *   - details Further error details
 	 */
 	MwMessagePosterFactory.prototype.create = function ( title ) {
 		var pageId, page, contentModel, moduleName,
