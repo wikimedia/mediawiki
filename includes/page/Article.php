@@ -378,7 +378,7 @@ class Article implements Page {
 		# Pre-fill content with error message so that if something
 		# fails we'll have something telling us what we intended.
 		//XXX: this isn't page content but a UI message. horrible.
-		$this->mContentObject = new MessageContent( 'missing-revision', array( $oldid ), array() );
+		$this->mContentObject = new MessageContent( 'missing-revision', array( $oldid ) );
 
 		if ( $oldid ) {
 			# $this->mRevision might already be fetched by getOldIDFromRequest()
@@ -390,17 +390,20 @@ class Article implements Page {
 				}
 			}
 		} else {
-			if ( !$this->mPage->getLatest() ) {
+			$oldid = $this->mPage->getLatest();
+			if ( !$oldid ) {
 				wfDebug( __METHOD__ . " failed to find page data for title " .
 					$this->getTitle()->getPrefixedText() . "\n" );
 				return false;
 			}
 
+			# Update error message with correct oldid
+			$this->mContentObject = new MessageContent( 'missing-revision', array( $oldid ) );
+
 			$this->mRevision = $this->mPage->getRevision();
 
 			if ( !$this->mRevision ) {
-				wfDebug( __METHOD__ . " failed to retrieve current page, rev_id " .
-					$this->mPage->getLatest() . "\n" );
+				wfDebug( __METHOD__ . " failed to retrieve current page, rev_id $oldid\n" );
 				return false;
 			}
 		}
