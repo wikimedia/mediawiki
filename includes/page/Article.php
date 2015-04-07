@@ -394,6 +394,8 @@ class Article implements Page {
 			if ( !$oldid ) {
 				wfDebug( __METHOD__ . " failed to find page data for title " .
 					$this->getTitle()->getPrefixedText() . "\n" );
+				wfDebugLog( 'AdHocDebug', "T92046: failed to find page data for title " .
+					$this->getTitle()->getPrefixedText() . ": " . wfGetAllCallers( false ) );
 				return false;
 			}
 
@@ -404,6 +406,8 @@ class Article implements Page {
 
 			if ( !$this->mRevision ) {
 				wfDebug( __METHOD__ . " failed to retrieve current page, rev_id $oldid\n" );
+				wfDebugLog( 'AdHocDebug', "T92046: failed to fetch Revision for $oldid: " .
+					wfGetAllCallers( false ) );
 				return false;
 			}
 		}
@@ -419,6 +423,8 @@ class Article implements Page {
 		if ( !$content ) {
 			wfDebug( __METHOD__ . " failed to retrieve content of revision " .
 				$this->mRevision->getId() . "\n" );
+			wfDebugLog( 'AdHocDebug', "T92046: failed to fetch content of revision " .
+				$this->mRevision->getId() . ": " . wfGetAllCallers( false ) );
 			return false;
 		}
 
