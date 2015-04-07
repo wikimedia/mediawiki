@@ -276,7 +276,7 @@ class LoadBalancer {
 				}
 				if ( $i === false && count( $currentLoads ) != 0 ) {
 					# All slaves lagged. Switch to read-only mode
-					wfDebugLog( 'replication', "All slaves lagged. Switch to read-only mode" );
+					wfDebugLog( 'replication', "All slaves lagged. Switch to lagged-slave mode" );
 					$wgReadOnly = 'The database has been automatically locked ' .
 						'while the slave database servers catch up to the master';
 					$i = ArrayUtils::pickRandom( $currentLoads );
@@ -635,6 +635,10 @@ class LoadBalancer {
 				$this->mErrorConnection = $conn;
 				$conn = false;
 			}
+
+			if ( $i == $this->getWriterIndex() ) {
+				$this->setReadOnlyIfLagged();
+			}
 		}
 
 		return $conn;
@@ -704,6 +708,10 @@ class LoadBalancer {
 				$this->mConns['foreignUsed'][$i][$wiki] = $conn;
 				wfDebug( __METHOD__ . ": opened new connection for $i/$wiki\n" );
 			}
+
+			if ( $i == $this->getWriterIndex() ) {
+				$this->setReadOnlyIfLagged();
+			}
 		}
 
 		// Increment reference count
@@ -713,6 +721,47 @@ class LoadBalancer {
 		}
 
 		return $conn;
+	}
+
+	/**
+	 * Check if slaves are too lagged to allow updates and set $wgReadOnly if needed
+	 *
+	 * This is called when getting master connections
+	 */
+	private function setReadOnlyIfLagged() {
+		global $wgReadOnly;
+
+		if ( $wgReadOnly ) {
+			return; // already read-only
+		} elseif ( $this->getServerCount() == 1 ) {
+			return; // no actual slaves
+		}
+
+		$hasNonLagged = false;
+		foreach ( $this->getLagTimes() as $i => $lag ) {
+			if ( $i == $this->getWriterIndex() ) {
+				continue; // master
+			}
+
+			$maxLag = isset( $this->mServers[$i]['max lag'] )
+				? $this->mServers[$i]['max lag']
+				: $this->mWaitTimeout; // sanity default
+
+			if ( $lag === false ) {
+				wfDebugLog( 'replication', "Server #$i is not replicating" );
+			} elseif ( $lag > $maxLag ) {
+				wfDebugLog( 'replication', "Server #$i is excessively lagged ($lag seconds)" );
+			} else {
+				$hasNonLagged = true;
+			}
+		}
+
+		if ( !$hasNonLagged ) {
+			# All slaves lagged. Switch to read-only mode
+			wfDebugLog( 'replication', "All slaves lagged. Switch to read-only mode" );
+			$wgReadOnly = 'The database has been automatically locked ' .
+				'while the slave database servers catch up to the master';
+		}
 	}
 
 	/**
