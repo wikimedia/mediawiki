@@ -214,7 +214,7 @@ class LoadBalancer {
 	 * @return bool|int|string
 	 */
 	public function getReaderIndex( $group = false, $wiki = false ) {
-		global $wgReadOnly, $wgDBtype;
+		global $wgDBtype;
 
 		# @todo FIXME: For now, only go through all this for mysql databases
 		if ( $wgDBtype != 'mysql' ) {
@@ -258,7 +258,7 @@ class LoadBalancer {
 		# meets our criteria
 		$currentLoads = $nonErrorLoads;
 		while ( count( $currentLoads ) ) {
-			if ( $wgReadOnly || $this->mAllowLagged || $laggedSlaveMode ) {
+			if ( $this->mAllowLagged || $laggedSlaveMode ) {
 				$i = ArrayUtils::pickRandom( $currentLoads );
 			} else {
 				$i = false;
@@ -277,8 +277,6 @@ class LoadBalancer {
 				if ( $i === false && count( $currentLoads ) != 0 ) {
 					# All slaves lagged. Switch to read-only mode
 					wfDebugLog( 'replication', "All slaves lagged. Switch to read-only mode" );
-					$wgReadOnly = 'The database has been automatically locked ' .
-						'while the slave database servers catch up to the master';
 					$i = ArrayUtils::pickRandom( $currentLoads );
 					$laggedSlaveMode = true;
 				}
@@ -330,6 +328,10 @@ class LoadBalancer {
 			}
 			if ( $this->mReadIndex <= 0 && $this->mLoads[$i] > 0 && $group === false ) {
 				$this->mReadIndex = $i;
+				# Record if the generic reader index is in "lagged slave" mode
+				if ( $laggedSlaveMode ) {
+					$this->mLaggedSlaveMode = true;
+				}
 			}
 			$serverName = $this->getServerName( $i );
 			wfDebug( __METHOD__ . ": using server $serverName for group '$group'\n" );
@@ -1096,9 +1098,12 @@ class LoadBalancer {
 	}
 
 	/**
-	 * @return bool
+	 * @return bool Whether the generic connection for reads is highly "lagged"
 	 */
 	public function getLaggedSlaveMode() {
+		# Get a generic reader connection
+		$this->getConnection( DB_SLAVE );
+
 		return $this->mLaggedSlaveMode;
 	}
 
