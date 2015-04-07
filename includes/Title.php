@@ -260,8 +260,10 @@ class Title {
 	 * @return Title|null Title or null on an error.
 	 */
 	public static function newFromText( $text, $defaultNamespace = NS_MAIN ) {
-		if ( !is_string( $text ) ) {
-			throw new InvalidArgumentException( 'Title::newFromText given something that isn\'t a string' );
+		if ( is_object( $text ) ) {
+			throw new InvalidArgumentException( __METHOD__ . ': $text must be a string. This will throw an InvalidArgumentException in future.' );
+		} elseif ( !is_string( $text ) ) {
+			wfWarn( __METHOD__ . ': $text must be a string. This will throw an InvalidArgumentException in future.' );
 		}
 
 		$cache = self::getTitleCache();
