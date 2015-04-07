@@ -35,20 +35,23 @@ class ChangeTags {
 	 * @param string $tag tag's name
 	 * @param array $tagStats tag usage statistics mapping each tag to its hitcount
 	 * @param array $storedTags tags stored in the change_tag table of the database
+	 * @param array $coreTags tags defined in core
 	 * @param array $registeredTags tags defined by extensions
+	 * in the last three lists, each tag is mapped to an array of params
 	 * @return change tag object
 	 */
 	public static function getChangeTagObject( $tag, $tagStats, $storedTags,
-		$registeredTags ) {
+		$coreTags, $registeredTags ) {
 
 		$ctObj = (object) array( 'name' => $tag );
 
 		$ctObj->isApplied = isset( $tagStats[$tag] );
 		$ctObj->isStored = isset( $storedTags[$tag] );
+		$ctObj->coreDefined = isset( $coreTags[$tag] );
 		$ctObj->extensionDefined = isset( $registeredTags[$tag] );
 
 		$ctObj->exists = $ctObj->isApplied || $ctObj->extensionDefined ||
-			$ctObj->isStored;
+			$ctObj->isStored || $ctObj->coreDefined;
 
 		// shortcut
 		if ( !$ctObj->exists ) {
@@ -56,8 +59,9 @@ class ChangeTags {
 		}
 
 		// a change tag is user defined if it is stored in the valid_tag table and
-		// not defined by an extension
-		$ctObj->userDefined = $ctObj->isStored && !$ctObj->extensionDefined;
+		// neither defined in core nor by an extension
+		$ctObj->userDefined = $ctObj->isStored && !$ctObj->extensionDefined &&
+			!$ctObj->coreDefined;
 
 		// some info based on tag stats
 		$ctObj->hitcount = $ctObj->isApplied ? $tagStats[$tag] : 0;
@@ -83,7 +87,17 @@ class ChangeTags {
 			$ctObj->canActivate = false;
 			// in case they were previously user defined
 			$ctObj->canDeactivate = $ctObj->isStored;
-			$ctObj->canDelete = !$ctObj->isBig && $ctObj->extensionCanDelete;
+			$ctObj->canDelete = !$ctObj->isBig && $ctObj->extensionCanDelete &&
+				!$ctObj->coreDefined;
+
+		} elseif ( $ctObj->coreDefined ) {
+			// is automatic tagging enabled for this core tag ?
+			$ctObj->isActive = $coreTags[$tag]['active'];
+
+			$ctObj->canActivate = false;
+			// in case they were previously user defined
+			$ctObj->canDeactivate = $ctObj->isStored;
+			$ctObj->canDelete = false;
 
 		} elseif ( $ctObj->userDefined ) {
 			// is the tag allowed to be applied by users and bots ?
@@ -126,6 +140,7 @@ class ChangeTags {
 			$tag,
 			self::getTagUsageStatistics(),
 			self::getStoredTags(),
+			self::getCoreTags(),
 			self::getRegisteredTags()
 		);
 	}
@@ -194,6 +209,7 @@ class ChangeTags {
 	 * @param int|null $rev_id The rev_id of the change to add the tags to
 	 * @param int|null $log_id The log_id of the change to add the tags to
 	 * @param string $params Params to put in the ct_params field of table 'change_tag'
+	 * @param bool $isCore When the given tags are core tags
 	 *
 	 * @throws MWException
 	 * @return bool False if no changes are made, otherwise true
@@ -201,8 +217,8 @@ class ChangeTags {
 	 * @exception MWException When $rc_id, $rev_id and $log_id are all null
 	 */
 	public static function addTags( $tags, $rc_id = null, $rev_id = null,
-		$log_id = null, $params = null ) {
-		global $wgMemc;
+		$log_id = null, $params = null, $isCore = false ) {
+		global $wgMemc, $wgCoreTags;
 		if ( !is_array( $tags ) ) {
 			$tags = array( $tags );
 		}
@@ -212,6 +228,19 @@ class ChangeTags {
 		if ( !$rc_id && !$rev_id && !$log_id ) {
 			throw new MWException( 'At least one of: RCID, revision ID, and log ID MUST be ' .
 				'specified when adding a tag to a change!' );
+		}
+
+		if ( $isCore ) {
+			// Remove inactive core tags
+			foreach ( $tags as $key => $tag ) {
+				if ( !$wgCoreTags[$tag]['active'] ) {
+					unset( $tags[$key] );
+				}
+			}
+		}
+		// In case none remain
+		if ( !$tags ) {
+			return false;
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -632,7 +661,8 @@ class ChangeTags {
 
 		// tags cannot contain commas (used as a delimiter in tag_summary table) or
 		// slashes (would break tag description messages in MediaWiki namespace)
-		if ( strpos( $tag, ',' ) !== false || strpos( $tag, '/' ) !== false ) {
+		if ( strpos( $tag, ',' ) !== false || strpos( $tag, '/' ) !== false ||
+		strpos( $tag, 'core-' ) !== false ) { // 'namespace' for tags defined in core
 			return Status::newFatal( 'tags-create-invalid-chars' );
 		}
 
@@ -807,6 +837,9 @@ class ChangeTags {
 			// extension-defined tags can't be deleted unless the extension
 			// specifically allows it
 			return Status::newFatal( 'tags-delete-not-allowed' );
+		} elseif ( $tag->coreDefined ) {
+			// core defined tags can't be deleted
+			return Status::newFatal( 'tags-delete-core' );
 		} else {
 			// user-defined tags, extension defined tags when allowed, or undefined tags can be deleted
 			return Status::newGood();
@@ -952,6 +985,16 @@ class ChangeTags {
 	}
 
 	/**
+	 * Returning core tags as defined in config
+	 * @return array Array of tags mapped to their params
+	 * @since 1.26
+	 */
+	public static function getCoreTags() {
+		global $wgUseCoreTagging, $wgCoreTags;
+		return $wgUseCoreTagging ? $wgCoreTags : array();
+	}
+
+	/**
 	 * Gets an array mapping tags applied at least once to their hitcount
 	 *
 	 * Tags defined somewhere but not applied are not included.
@@ -1035,16 +1078,17 @@ class ChangeTags {
 
 	/**
 	 * Lists all defined tags with their params.
-	 * This includes tags defined in the valid_tag table or registered
-	 * by an extension with the ChangeTagsRegister hook.
-	 * The tags are keys and the values are params, such as active status.
+	 * This includes tags defined in the valid_tag table of the database,
+	 * or registered by an extension with the ChangeTagsRegister hook,
+	 * or defined in core.
+	 * The tags are keys and the values are params (such as 'active' status).
 	 *
 	 * @return string[] Array of strings: tags
 	 * @since 1.25
 	 */
 	public static function getDefinedTags() {
 		return array_merge( self::getStoredTags(),
-			self::getRegisteredTags() );
+			self::getCoreTags(), self::getRegisteredTags() );
 	}
 
 	/**
