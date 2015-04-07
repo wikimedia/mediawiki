@@ -1,0 +1,22 @@
+{
+	"prefix": "oo-ui-icon",
+	"intro": "@import '../../../../src/styles/common';",
+	"images": {
+		"indent": { "file": {
+			"ltr": "images/icons/indent-ltr.svg",
+			"rtl": "images/icons/indent-rtl.svg"
+		} },
+		"listBullet": { "file": {
+			"ltr": "images/icons/listBullet-ltr.svg",
+			"rtl": "images/icons/listBullet-rtl.svg"
+		} },
+		"listNumbered": { "file": {
+			"ltr": "images/icons/listNumbered-ltr.svg",
+			"rtl": "images/icons/listNumbered-rtl.svg"
+		} },
+		"outdent": { "file": {
+			"ltr": "images/icons/outdent-ltr.svg",
+			"rtl": "images/icons/outdent-rtl.svg"
+		} }
+	}
+}
