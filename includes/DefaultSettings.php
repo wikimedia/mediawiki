@@ -3338,8 +3338,6 @@ $wgResourceModules = array();
  *
  * As with $wgResourceModules, paths default to being relative to the MediaWiki root.
  * You should always provide a localBasePath and remoteBasePath (or remoteExtPath/remoteSkinPath).
- * Either for all skin styles at once (first example below) or for each module separately (second
- * example).
  *
  * @par Example:
  * @code
@@ -3348,19 +3346,6 @@ $wgResourceModules = array();
  *     'quux' => 'quux.css',
  *     'remoteSkinPath' => 'Foo',
  *     'localBasePath' => __DIR__,
- *   );
- *
- *   $wgResourceModuleSkinStyles['foo'] = array(
- *     'bar' => array(
- *       'bar.css',
- *       'remoteSkinPath' => 'Foo',
- *       'localBasePath' => __DIR__,
- *     ),
- *     'quux' => array(
- *       'quux.css',
- *       'remoteSkinPath' => 'Foo',
- *       'localBasePath' => __DIR__,
- *     ),
  *   );
  * @endcode
  */
