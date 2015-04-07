@@ -95,4 +95,8 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 				=> 'apihelp-query+filerepoinfo-example-simple',
 		);
 	}
+
+	public function getHelpUrls() {
+		return 'https://www.mediawiki.org/wiki/API:Filerepoinfo';
+	}
 }
