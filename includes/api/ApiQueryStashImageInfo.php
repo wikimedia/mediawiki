@@ -122,4 +122,8 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 				=> 'apihelp-query+stashimageinfo-example-params',
 		);
 	}
+
+	public function getHelpUrls() {
+		return 'https://www.mediawiki.org/wiki/API:Stashimageinfo';
+	}
 }

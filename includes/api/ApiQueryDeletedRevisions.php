@@ -299,6 +299,6 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Properties#deletedrevisions_.2F_drv';
+		return 'https://www.mediawiki.org/wiki/API:Deletedrevisions';
 	}
 }
