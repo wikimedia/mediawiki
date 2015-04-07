@@ -63,6 +63,7 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 	 * @return Title|null
 	 */
 	public function findTitle( $par ) {
+		$par = (string)$par;
 		// base = title without language code suffix
 		// provided = the title as it was given
 		$base = $provided = Title::newFromText( $par );
