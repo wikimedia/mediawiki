@@ -464,7 +464,9 @@ class MediaWiki {
 		// Send Ajax requests to the Ajax dispatcher.
 		if ( $this->config->get( 'UseAjax' ) && $request->getVal( 'action' ) === 'ajax' ) {
 			// Set a dummy title, because $wgTitle == null might break things
-			$title = Title::makeTitle( NS_MAIN, 'AJAX' );
+			$title = Title::makeTitle( NS_SPECIAL, 'Badtitle/performing an AJAX call in '
+				. __METHOD__
+			);
 			$this->context->setTitle( $title );
 			$wgTitle = $title;
 

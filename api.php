@@ -61,7 +61,7 @@ if ( !$wgEnableAPI ) {
 
 // Set a dummy $wgTitle, because $wgTitle == null breaks various things
 // In a perfect world this wouldn't be necessary
-$wgTitle = Title::makeTitle( NS_MAIN, 'API' );
+$wgTitle = Title::makeTitle( NS_SPECIAL, 'Badtitle/dummy title for API calls set in api.php' );
 
 // RequestContext will read from $wgTitle, but it will also whine about it.
 // In a perfect world this wouldn't be necessary either.
