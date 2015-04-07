@@ -393,7 +393,10 @@ class MovePage {
 	 * @throws MWException
 	 */
 	private function moveToInternal( User $user, &$nt, $reason = '', $createRedirect = true ) {
-		global $wgContLang;
+		global $wgContLang, $wgUseCoreTagging, $wgCoreTags;
+
+		$oldNamespace = $this->oldTitle->getNamespace();
+		$newNamespace = $nt->getNamespace();
 
 		if ( $nt->exists() ) {
 			$moveOverRedirect = true;
@@ -404,7 +407,7 @@ class MovePage {
 		}
 
 		if ( $createRedirect ) {
-			if ( $this->oldTitle->getNamespace() == NS_CATEGORY
+			if ( $oldNamespace == NS_CATEGORY
 				&& !wfMessage( 'category-move-redirect-override' )->inContentLanguage()->isDisabled()
 			) {
 				$redirectContent = new WikitextContent(
@@ -474,7 +477,7 @@ class MovePage {
 		# Change the name of the target page:
 		$dbw->update( 'page',
 			/* SET */ array(
-				'page_namespace' => $nt->getNamespace(),
+				'page_namespace' => $newNamespace,
 				'page_title' => $nt->getDBkey(),
 			),
 			/* WHERE */ array( 'page_id' => $oldid ),
@@ -529,5 +532,24 @@ class MovePage {
 		# Log the move
 		$logid = $logEntry->insert();
 		$logEntry->publish( $logid );
+
+		if ( $wgUseCoreTagging ) {
+			# Getting autotags for moves
+			$autoTags = array();
+			if ( $oldNamespace != $newNamespace ) {
+				# cross namespace move !
+				$autoTags[] = 'core-move-crossnamespace';
+			} elseif ( $oldNamespace == NS_USER && $newNamespace == NS_USER &&
+				$this->oldTitle->getDBkey() == $user->getTitleKey() &&
+				strpos( $this->newTitle->getDBkey(), '/' ) == false ) {
+				# user trying to rename !
+				$autoTags[] = 'core-move-rename';
+			}
+			# do the tagging
+			if ( $autoTags ) {
+				ChangeTags::addTags( $autoTags, $nullRevision->getRecentChange->mAttribs['rc_id'],
+					null, $logid, null, true );
+			}
+		}
 	}
 }
