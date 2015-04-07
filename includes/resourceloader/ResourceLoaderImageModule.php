@@ -28,6 +28,8 @@
  */
 class ResourceLoaderImageModule extends ResourceLoaderModule {
 
+	private $definition = null;
+
 	/**
 	 * Local base path, see __construct()
 	 * @var string
@@ -57,6 +59,8 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 *     array(
 	 *         // Base path to prepend to all local paths in $options. Defaults to $IP
 	 *         'localBasePath' => [base path],
+	 *         // Path to JSON file that contains any of the settings below
+	 *         'data' => [file path string]
 	 *         // CSS class prefix to use in all style rules
 	 *         'prefix' => [CSS class prefix],
 	 *         // Alternatively: Format of CSS selector to use in all style rules
@@ -89,6 +93,26 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 */
 	public function __construct( $options = array(), $localBasePath = null ) {
 		$this->localBasePath = self::extractLocalBasePath( $options, $localBasePath );
+
+		$this->definition = $options;
+	}
+
+	/**
+	 * Parse definition and external JSON data, if referenced.
+	 */
+	private function ensureStuffLoaded() {
+		if ( $this->definition === null ) {
+			return;
+		}
+
+		$options = $this->definition;
+		$this->definition = null;
+
+		if ( isset( $options['data'] ) ) {
+			$dataPath = $this->localBasePath . '/' . $options['data'];
+			$data = json_decode( file_get_contents( $dataPath ), true );
+			$options = array_merge( $data, $options );
+		}
 
 		// Accepted combinations:
 		// * prefix
@@ -144,6 +168,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @return string
 	 */
 	public function getPrefix() {
+		$this->ensureStuffLoaded();
 		return $this->prefix;
 	}
 
@@ -152,6 +177,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @return string
 	 */
 	public function getSelectors() {
+		$this->ensureStuffLoaded();
 		return array(
 			'selectorWithoutVariant' => $this->selectorWithoutVariant,
 			'selectorWithVariant' => $this->selectorWithVariant,
@@ -164,6 +190,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @return ResourceLoaderImage|null
 	 */
 	public function getImage( $name ) {
+		$this->ensureStuffLoaded();
 		$images = $this->getImages();
 		return isset( $images[$name] ) ? $images[$name] : null;
 	}
@@ -174,6 +201,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 */
 	public function getImages() {
 		if ( !isset( $this->imageObjects ) ) {
+			$this->ensureStuffLoaded();
 			$this->imageObjects = array();
 
 			foreach ( $this->images as $name => $options ) {
@@ -213,6 +241,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 */
 	public function getGlobalVariants() {
 		if ( !isset( $this->globalVariants ) ) {
+			$this->ensureStuffLoaded();
 			$this->globalVariants = array();
 
 			if ( isset( $this->variants ) ) {
@@ -232,6 +261,8 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
+		$this->ensureStuffLoaded();
+
 		// Build CSS rules
 		$rules = array();
 		$script = $context->getResourceLoader()->getLoadScript( $this->getSource() );
@@ -310,6 +341,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	public function getDefinitionSummary( ResourceLoaderContext $context ) {
+		$this->ensureStuffLoaded();
 		$summary = parent::getDefinitionSummary( $context );
 		foreach ( array(
 			'localBasePath',
@@ -332,6 +364,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @return int UNIX timestamp
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
+		$this->ensureStuffLoaded();
 		$files = array();
 		foreach ( $this->getImages() as $name => $image ) {
 			$files[] = $image->getPath( $context );
