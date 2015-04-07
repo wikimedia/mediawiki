@@ -1,6 +1,6 @@
 <?php
 
-class UIDGeneratorTest extends MediaWikiTestCase {
+class UIDGeneratorTest extends MediaWikiUnitTestCase {
 
 	protected function tearDown() {
 		// Bug: 44850
