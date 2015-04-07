@@ -1422,35 +1422,80 @@ class User implements IDBAccessObject {
 	public function addAutopromoteOnceGroups( $event ) {
 		global $wgAutopromoteOnceLogInRC, $wgAuth;
 
-		$toPromote = array();
-		if ( !wfReadOnly() && $this->getId() ) {
-			$toPromote = Autopromote::getAutopromoteOnceGroups( $this, $event );
-			if ( count( $toPromote ) ) {
-				$oldGroups = $this->getGroups(); // previous groups
+		if ( wfReadOnly() || !$this->getId() ) {
+			return array();
+		} elseif ( !$this->checkAndSetTouched() ) {
+			return array(); // raced out (bug T48834)
+		}
 
-				foreach ( $toPromote as $group ) {
-					$this->addGroup( $group );
-				}
-				// update groups in external authentication database
-				$wgAuth->updateExternalDBGroups( $this, $toPromote );
+		$toPromote = Autopromote::getAutopromoteOnceGroups( $this, $event );
+		if ( count( $toPromote ) ) {
+			$oldGroups = $this->getGroups(); // previous groups
 
-				$newGroups = array_merge( $oldGroups, $toPromote ); // all groups
+			foreach ( $toPromote as $group ) {
+				$this->addGroup( $group );
+			}
 
-				$logEntry = new ManualLogEntry( 'rights', 'autopromote' );
-				$logEntry->setPerformer( $this );
-				$logEntry->setTarget( $this->getUserPage() );
-				$logEntry->setParameters( array(
-					'4::oldgroups' => $oldGroups,
-					'5::newgroups' => $newGroups,
-				) );
-				$logid = $logEntry->insert();
-				if ( $wgAutopromoteOnceLogInRC ) {
-					$logEntry->publish( $logid );
-				}
+			// update groups in external authentication database
+			$wgAuth->updateExternalDBGroups( $this, $toPromote );
+
+			$newGroups = array_merge( $oldGroups, $toPromote ); // all groups
+
+			$logEntry = new ManualLogEntry( 'rights', 'autopromote' );
+			$logEntry->setPerformer( $this );
+			$logEntry->setTarget( $this->getUserPage() );
+			$logEntry->setParameters( array(
+				'4::oldgroups' => $oldGroups,
+				'5::newgroups' => $newGroups,
+			) );
+			$logid = $logEntry->insert();
+			if ( $wgAutopromoteOnceLogInRC ) {
+				$logEntry->publish( $logid );
 			}
 		}
 
 		return $toPromote;
+	}
+
+	/**
+	 * Bump user_touched if it didn't change since this object was loaded
+	 *
+	 * On success, the mTouched field is updated.
+	 * The user serialization cache is always cleared.
+	 *
+	 * @return bool Whether user_touched was actually updated
+	 * @since 1.26
+	 */
+	public function checkAndSetTouched() {
+		$this->load();
+
+		if ( !$this->mId ) {
+			return false; // anon
+		}
+
+		// Get a new user_touched that is higher than the old one
+		$oldTouched = $this->mTouched;
+		$newTouched = $this->newTouchedTimestamp();
+
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->update( 'user',
+			array( 'user_touched' => $dbw->timestamp( $newTouched ) ),
+			array(
+				'user_id' => $this->mId,
+				'user_touched' => $dbw->timestamp( $oldTouched ) // CAS check
+			),
+			__METHOD__
+		);
+		$success = ( $dbw->affectedRows() > 0 );
+
+		if ( $success ) {
+			$this->mTouched = $newTouched;
+		}
+
+		// Clears on failure too since that is desired if the cache is stale
+		$this->clearSharedCache();
+
+		return $success;
 	}
 
 	/**
@@ -2351,6 +2396,17 @@ class User implements IDBAccessObject {
 
 			return max( $this->mTouched, $this->mQuickTouched );
 		}
+
+		return $this->mTouched;
+	}
+
+	/**
+	 * Get the user_touched timestamp field (time of last DB updates)
+	 * @return string TS_MW Timestamp
+	 * @since 1.26
+	 */
+	public function getDBTouched() {
+		$this->load();
 
 		return $this->mTouched;
 	}
@@ -3617,7 +3673,7 @@ class User implements IDBAccessObject {
 		// This will be used for a CAS check as a last-resort safety
 		// check against race conditions and slave lag.
 		$oldTouched = $this->mTouched;
-		$this->mTouched = $this->newTouchedTimestamp();
+		$newTouched = $this->newTouchedTimestamp();
 
 		if ( !$wgAuth->allowSetLocalPassword() ) {
 			$this->mPassword = self::getPasswordFactory()->newFromCiphertext( null );
@@ -3633,7 +3689,7 @@ class User implements IDBAccessObject {
 				'user_real_name' => $this->mRealName,
 				'user_email' => $this->mEmail,
 				'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
-				'user_touched' => $dbw->timestamp( $this->mTouched ),
+				'user_touched' => $dbw->timestamp( $newTouched ),
 				'user_token' => strval( $this->mToken ),
 				'user_email_token' => $this->mEmailToken,
 				'user_email_token_expires' => $dbw->timestampOrNull( $this->mEmailTokenExpires ),
@@ -3655,6 +3711,7 @@ class User implements IDBAccessObject {
 			return;
 		}
 
+		$this->mTouched = $newTouched;
 		$this->saveOptions();
 
 		Hooks::run( 'UserSaveSettings', array( $this ) );
