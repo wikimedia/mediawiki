@@ -85,12 +85,24 @@ class MergeMessageFileList extends Maintenance {
 				if ( $extname == '.' || $extname == '..' || !is_dir( "$extdir/$extname" ) ) {
 					continue;
 				}
-				$extfile = "{$extdir}/{$extname}/{$extname}.php";
-				if ( file_exists( $extfile ) ) {
-					$mmfl['setupFiles'][] = $extfile;
-				} else {
+				$possibilities = array(
+					"$extdir/$extname/extension.json",
+					"$extdir/$extname/skin.json",
+					"$extdir/$extname/$extname.php"
+				);
+				$found = false;
+				foreach ( $possibilities as $extfile ) {
+					if ( file_exists( $extfile ) ) {
+						$mmfl['setupFiles'][] = $extfile;
+						$found = true;
+						break;
+					}
+				}
+
+				if ( !$found ) {
 					$this->hasError = true;
-					$this->error( "Extension {$extname} in {$extdir} lacks expected {$extname}.php" );
+					$this->error( "Extension {$extname} in {$extdir} lacks expected entry point: " .
+						"extension.json, skin.json, or {$extname}.php." );
 				}
 			}
 		}
@@ -150,6 +162,7 @@ class MergeMessageFileList extends Maintenance {
 
 require_once RUN_MAINTENANCE_IF_MAIN;
 
+$queue = array();
 foreach ( $mmfl['setupFiles'] as $fileName ) {
 	if ( strval( $fileName ) === '' ) {
 		continue;
@@ -157,12 +170,26 @@ foreach ( $mmfl['setupFiles'] as $fileName ) {
 	if ( empty( $mmfl['quiet'] ) ) {
 		fwrite( STDERR, "Loading data from $fileName\n" );
 	}
-	// Include the extension to update $wgExtensionMessagesFiles
-	if ( !( include_once $fileName ) ) {
+	// Using extension.json or skin.json
+	if ( substr( $fileName, -strlen( '.json' ) ) === '.json' ) {
+		$queue[$fileName] = 1;
+	} elseif ( !( include_once $fileName ) ) {
+		// Include the extension to update $wgExtensionMessagesFiles
 		fwrite( STDERR, "Unable to read $fileName\n" );
 		exit( 1 );
 	}
 }
+
+if ( $queue ) {
+	$registry = new ExtensionRegistry();
+	$data = $registry->readFromQueue( $queue );
+	foreach ( array( 'wgExtensionMessagesFiles', 'wgMessagesDirs' ) as $var ) {
+		if ( isset( $data['globals'][$var] ) ) {
+			$GLOBALS[$var] = array_merge( $data['globals'][$var], $GLOBALS[$var] );
+		}
+	}
+}
+
 fwrite( STDERR, "\n" );
 $s =
 	"<" . "?php\n" .
