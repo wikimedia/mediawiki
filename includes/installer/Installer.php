@@ -1492,16 +1492,31 @@ abstract class Installer {
 		 */
 		global $wgAutoloadClasses;
 		$wgAutoloadClasses = array();
+		$queue = array();
 
 		require "$IP/includes/DefaultSettings.php";
 
 		foreach ( $exts as $e ) {
-			require_once "$IP/extensions/$e/$e.php";
+			if ( file_exists( "$IP/extensions/$e/extension.json" ) ) {
+				$queue["$IP/extensions/$e/extension.json"] = 1;
+			} else {
+				require_once "$IP/extensions/$e/$e.php";
+			}
 		}
+
+		$registry = new ExtensionRegistry();
+		$data = $registry->readFromQueue( $queue );
+		$wgAutoloadClasses += $data['autoload'];
 
 		$hooksWeWant = isset( $wgHooks['LoadExtensionSchemaUpdates'] ) ?
 			$wgHooks['LoadExtensionSchemaUpdates'] : array();
 
+		if ( isset( $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
+			$hooksWeWant = array_merge_recursive(
+				$hooksWeWant,
+				$data['globals']['wgHooks']['LoadExtensionSchemaUpdates']
+			);
+		}
 		// Unset everyone else's hooks. Lord knows what someone might be doing
 		// in ParserFirstCallInit (see bug 27171)
 		$GLOBALS['wgHooks'] = array( 'LoadExtensionSchemaUpdates' => $hooksWeWant );
