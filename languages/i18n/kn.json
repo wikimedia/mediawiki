@@ -25,7 +25,7 @@
 			"아라"
 		]
 	},
-	"tog-underline": "ಲಿಂಕುಗಳ ಕೆಳಗೆ ಗೆರೆ ತೋರಿಸಿ",
+	"tog-underline": "ಕೊಂಡಿಗಳ ಕೆಳಗೆ ಗೆರೆ ತೋರಿಸಿ",
 	"tog-hideminor": "ಚಿಕ್ಕಪುಟ್ಟ ಬದಲಾವಣೆಗಳನ್ನು ಅಡಗಿಸಿ",
 	"tog-hidepatrolled": "ಪಹರೆಯಲ್ಲಿ ಆದ ಸಂಪಾದನೆಗಳನ್ನು ಇತ್ತೀಚೆಗಿನ ಬದಲಾವಣೆಗಳಲ್ಲಿ ಅಡಗಿಸು",
 	"tog-newpageshidepatrolled": "ಪಹರೆಯಲ್ಲಿ ಆದ ಪುಟಗಳನ್ನು ಹೊಸ ಪುಟಗಳ ಪಟ್ಟಿಯಲ್ಲಿ ಅಡಗಿಸು",
@@ -1489,7 +1489,6 @@
 	"import-noarticle": "ಆಮದು ಮಾಡಲು ಯಾವ ಪುಟವೂ ಇಲ್ಲ!",
 	"import-nonewrevisions": "ಎಲ್ಲಾ ಬದಲಾವಣೆಗಳನ್ನೂ ಮುಂಚೆಯೆ ಆಮದು ಮಾಡಲಾಗಿದೆ.",
 	"importlogpage": "ಆಮದುಗಳ ದಾಖಲೆ",
-	"import-logentry-upload": "ಫೈಲು ಅಪ್ಲೋಡ್ ಮೂಲಕ [[$1]] ಅನ್ನು ಆಮದು ಮಾಡಲಾಗಿದೆ",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|ಬದಲಾವಣೆ|ಬದಲಾವಣೆಗಳು}}",
 	"tooltip-pt-userpage": "ನಿಮ್ಮ ಸದಸ್ಯ ಪುಟ",
 	"tooltip-pt-anonuserpage": "ನೀವು ಸಂಪಾದನೆ ಮಾಡುತ್ತಿರುವ ipಯ ಬಳಕೆದಾರ ಪುಟ",
@@ -1780,5 +1779,19 @@
 	"duration-decades": "$1 {{PLURAL:$1|ದಶಕ|ದಶಕಗಳು}}",
 	"duration-centuries": "$1 {{PLURAL:$1|ಶತಮಾನ|ಶತಮಾನಗಳು}}",
 	"duration-millennia": "$1 {{PLURAL:$1|ಸಹಸ್ರಮಾನ|ಸಹಸ್ರಮಾನಗಳು}}",
-	"expand_templates_preview": "ಮುನ್ನೋಟ"
+	"expand_templates_preview": "ಮುನ್ನೋಟ",
+	"special-characters-group-latin": "ಲ್ಯಾಟಿನ",
+	"special-characters-group-greek": "ಗ್ರೀಕ್",
+	"special-characters-group-arabic": "ಅರೇಬಿಕ್",
+	"special-characters-group-persian": "ಪರ್ಶಿಯನ್",
+	"special-characters-group-hebrew": "ಹೀಬ್ರೂ",
+	"special-characters-group-bangla": "ಬಾಂಗ್ಲಾ",
+	"special-characters-group-tamil": "ತಮಿಳು",
+	"special-characters-group-telugu": "ತೆಲುಗು",
+	"special-characters-group-sinhala": "ಸಿಂಹಳ",
+	"special-characters-group-gujarati": "ಗುಜರಾತಿ",
+	"special-characters-group-devanagari": "ದೇವನಾಗರಿ",
+	"special-characters-group-thai": "ಥಾಯ್",
+	"special-characters-group-lao": "ಲಾವೋ",
+	"special-characters-group-khmer": "ಖ್ಮೇರ್"
 }

@@ -1720,7 +1720,7 @@
 	"emailccsubject": "Kopie Vaší zprávy pro uživatele $1: $2",
 	"emailsent": "E-mail odeslán",
 	"emailsenttext": "Váš e-mail byl odeslán.",
-	"emailuserfooter": "Tento e-mail byl odeslán z {{grammar:2sg|{{SITENAME}}}} pomocí funkce „Poslat e-mail“; odeslal ho uživatel $1 uživateli $2",
+	"emailuserfooter": "Tento e-mail byl odeslán z {{grammar:2sg|{{SITENAME}}}} pomocí funkce „{{int:emailpage}}“; {{GENDER:$1|odeslal ho uživatel|odeslala ho uživatelka}} $1 {{GENDER:$2|uživateli|uživatelce}} $2.",
 	"usermessage-summary": "Doručena zpráva od systému.",
 	"usermessage-editor": "Systémový poslíček",
 	"watchlist": "Sledované stránky",

@@ -1778,7 +1778,7 @@
 	"revertpage-nouser": "Visszaállítottam a lap korábbi változatát (szerkesztőnév eltávolítva) szerkesztéséről [[User:$1|$1]] szerkesztésére",
 	"rollback-success": "$1 szerkesztéseit visszaállítottam $2 utolsó változatára.",
 	"sessionfailure-title": "Munkamenethiba",
-	"sessionfailure": "Úgy látszik, hogy probléma van a bejelentkezési munkameneteddel;\nez a művelet a munkamenet eltérítése miatti óvatosságból megszakadt.\nKérjük, hogy nyomd meg a \"vissza\" gombot, és töltsd le újra az oldalt, ahonnan jöttél, majd próbáld újra.",
+	"sessionfailure": "Úgy látszik, hogy probléma van a bejelentkezési munkameneteddel;\nez a művelet a munkamenet eltérítése miatti óvatosságból megszakadt.\nKérjük, hogy nyomd meg a „vissza” gombot, és töltsd le újra az oldalt, ahonnan jöttél, majd próbáld újra.",
 	"protectlogpage": "Lapvédelmi napló",
 	"protectlogtext": "Alább látható a lapvédelemmel kapcsolatos változtatások listája.\nA [[Special:ProtectedPages|védett lapok listáján]] megtekintheted a jelenleg is érvényben lévő védelmeket.",
 	"protectedarticle": "levédte a(z) [[$1]] lapot",
