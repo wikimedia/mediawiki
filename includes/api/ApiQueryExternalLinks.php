@@ -134,6 +134,6 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Properties#extlinks_.2F_el';
+		return 'https://www.mediawiki.org/wiki/API:Extlinks';
 	}
 }

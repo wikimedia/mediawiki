@@ -405,8 +405,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		$name = $this->getModuleName();
-		$prefix = $this->getModulePrefix();
-		return "https://www.mediawiki.org/wiki/API:Properties#{$name}_.2F_{$prefix}";
+		$name = ucfirst( $this->getModuleName() );
+		return "https://www.mediawiki.org/wiki/API:{$name}";
 	}
 }
