@@ -54,6 +54,7 @@ class ExtensionProcessor implements Processor {
 	 */
 	protected static $creditsAttributes = array(
 		'name',
+		'namemsg',
 		'author',
 		'version',
 		'url',
