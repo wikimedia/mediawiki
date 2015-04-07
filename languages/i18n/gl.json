@@ -1710,7 +1710,7 @@
 	"emailccsubject": "Copia da súa mensaxe para $1: $2",
 	"emailsent": "Mensaxe enviada",
 	"emailsenttext": "A súa mensaxe de correo electrónico foi enviada.",
-	"emailuserfooter": "Este correo electrónico foi enviado por $1 a $2 mediante a función \"Enviar un correo electrónico a este usuario\" de {{SITENAME}}.",
+	"emailuserfooter": "Este correo electrónico foi enviado por $1 a $2 mediante a función \"{{int:emailpage}}\" en {{SITENAME}}.",
 	"usermessage-summary": "Mensaxe deixada polo sistema.",
 	"usermessage-editor": "Editor das mensaxes do sistema",
 	"watchlist": "Lista de vixilancia",

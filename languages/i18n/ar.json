@@ -50,7 +50,8 @@
 			"Bibas",
 			"Khaled",
 			"Emara",
-			"Macofe"
+			"Macofe",
+			"Yahya Sakhnini"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -869,6 +870,7 @@
 	"notextmatches": "لم يتم إيجاد أي نص مطابق",
 	"prevn": "{{PLURAL:$1|$1}} السابقة",
 	"nextn": "{{PLURAL:$1|$1}} التالية",
+	"next-page": "الصفحة التالية",
 	"prevn-title": "$1 {{PLURAL:$1|نتيجة|نتيجة}} سابقة",
 	"nextn-title": "$1 {{PLURAL:$1|نتيجة|نتيجة}} تالية",
 	"shown-title": "عرض $1 {{PLURAL:$1|نتيجة|نتيجة}} لكل صفحة",
