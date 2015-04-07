@@ -34,17 +34,13 @@ class ChangeTags {
 	public static function formatSummaryRow( $tags, $page ) {
 		global $wgLang;
 
-		$tags = explode( ',', $tags );
-
-		// XXX(Ori Livneh, 2014-11-08): remove once bug 73181 is resolved.
-		$tags = array_diff( $tags, array( 'HHVM', '' ) );
-
 		if ( !$tags ) {
 			return array( '', array() );
 		}
 
 		$classes = array();
 
+		$tags = explode( ',', $tags );
 		$displayTags = array();
 		foreach ( $tags as $tag ) {
 			$displayTags[] = Xml::tags(
