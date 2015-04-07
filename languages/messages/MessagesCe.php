@@ -311,3 +311,18 @@ $magicWords = array(
 	'url_wiki'                  => array( '0', 'ЧЕХКА', 'ВИКИ', 'WIKI' ),
 );
 
+$datePreferences = array(
+	'default',
+	'ydm',
+	'ISO 8601',
+);
+
+$dateFormats = array(
+	'ydm time' => 'H:i',
+	'ydm date' => 'Y, j F',
+	'ydm both' => 'Y, j F, H:i',
+
+	'ISO 8601 time' => 'xnH:xni:xns',
+	'ISO 8601 date' => 'xnY-xnm-xnd',
+	'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
+);
