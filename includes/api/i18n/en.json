@@ -777,7 +777,7 @@
 
 	"apihelp-query+pageprops-description": "Get various properties defined in the page content.",
 	"apihelp-query+pageprops-param-prop": "Only list these props. Useful for checking whether a certain page uses a certain page prop.",
-	"apihelp-query+pageprops-example-simple": "Get properties for <kbd>Category:Foo</kbd>.",
+	"apihelp-query+pageprops-example-simple": "Get properties for the pages <kbd>Main Page</kbd> and <kbd>MediaWiki</kbd>.",
 
 	"apihelp-query+pageswithprop-description": "List all pages using a given page property.",
 	"apihelp-query+pageswithprop-param-propname": "Page prop for which to enumerate pages.",
