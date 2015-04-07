@@ -536,7 +536,7 @@ class MediaWiki {
 					wfDebugLog( 'RedirectedPosts', "Redirected from HTTP to HTTPS: $oldUrl" );
 				}
 				// Setup dummy Title, otherwise OutputPage::redirect will fail
-				$title = Title::newFromText( NS_MAIN, 'REDIR' );
+				$title = Title::newFromText( 'REDIR', NS_MAIN );
 				$this->context->setTitle( $title );
 				$output = $this->context->getOutput();
 				// Since we only do this redir to change proto, always send a vary header
