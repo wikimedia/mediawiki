@@ -3923,6 +3923,11 @@ class OutputPage extends ContextSource {
 	public function enableOOUI() {
 		OOUI\Theme::setSingleton( new OOUI\MediaWikiTheme() );
 		OOUI\Element::setDefaultDir( $this->getLanguage()->getDir() );
-		$this->addModuleStyles( 'oojs-ui.styles' );
+		$this->addModuleStyles( array(
+			'oojs-ui.styles',
+			'oojs-ui.styles.icons',
+			'oojs-ui.styles.indicators',
+			'oojs-ui.styles.textures',
+		) );
 	}
 }
