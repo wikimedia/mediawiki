@@ -1371,10 +1371,10 @@ class User implements IDBAccessObject {
 	 */
 	private function loadGroups() {
 		if ( is_null( $this->mGroups ) ) {
-			$dbr = ( $this->queryFlagsUsed & self::READ_LATEST )
+			$db = ( $this->queryFlagsUsed & self::READ_LATEST )
 				? wfGetDB( DB_MASTER )
 				: wfGetDB( DB_SLAVE );
-			$res = $dbr->select( 'user_groups',
+			$res = $db->select( 'user_groups',
 				array( 'ug_group' ),
 				array( 'ug_user' => $this->mId ),
 				__METHOD__ );
@@ -1395,10 +1395,17 @@ class User implements IDBAccessObject {
 	 * @since 1.24
 	 */
 	private function loadPasswords() {
-		if ( $this->getId() !== 0 && ( $this->mPassword === null || $this->mNewpassword === null ) ) {
-			$this->loadFromRow( wfGetDB( DB_MASTER )->selectRow(
+		if ( $this->getId() !== 0 &&
+			( $this->mPassword === null || $this->mNewpassword === null )
+		) {
+			$db = ( $this->queryFlagsUsed & self::READ_LATEST )
+				? wfGetDB( DB_MASTER )
+				: wfGetDB( DB_SLAVE );
+
+			$this->loadFromRow( $db->selectRow(
 				'user',
-				array( 'user_password', 'user_newpassword', 'user_newpass_time', 'user_password_expires' ),
+				array( 'user_password', 'user_newpassword',
+					'user_newpass_time', 'user_password_expires' ),
 				array( 'user_id' => $this->getId() ),
 				__METHOD__
 			) );
@@ -3050,10 +3057,10 @@ class User implements IDBAccessObject {
 		$this->load();
 
 		if ( is_null( $this->mFormerGroups ) ) {
-			$dbr = ( $this->queryFlagsUsed & self::READ_LATEST )
+			$db = ( $this->queryFlagsUsed & self::READ_LATEST )
 				? wfGetDB( DB_MASTER )
 				: wfGetDB( DB_SLAVE );
-			$res = $dbr->select( 'user_former_groups',
+			$res = $db->select( 'user_former_groups',
 				array( 'ufg_group' ),
 				array( 'ufg_user' => $this->mId ),
 				__METHOD__ );
