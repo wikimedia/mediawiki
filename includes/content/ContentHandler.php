@@ -839,6 +839,66 @@ abstract class ContentHandler {
 	}
 
 	/**
+	 * Return applicable active autotags for the given edit, if any.
+	 *
+	 * @since 1.25
+	 *
+	 * @param Content $oldContent The previous text of the page.
+	 * @param Content $newContent The submitted text of the page.
+	 * @param int $flags Bit mask: a bit mask of flags submitted for the edit.
+	 * @param Title $pageTitle The title of the page whose content is being edited.
+	 *
+	 * @return array An array of tags, or an empty array.
+	 */
+	public function getAutotags( Content $oldContent = null, Content $newContent = null,
+		$flags, $pageTitle ) {
+		global $wgCoreTags;
+		$tags = array();
+
+		// Redirect-related tags
+		$oldTarget = !is_null( $oldContent ) ? $oldContent->getRedirectTarget() : null;
+		$newTarget = !is_null( $newContent ) ? $newContent->getRedirectTarget() : null;
+		if ( is_object( $newTarget ) ) {
+			if ( $newTarget == $pageTitle ) {
+				// page redirected to itself !
+				$tags[] = 'core-redirect-self';
+			} elseif ( !$newTarget->exists() ) {
+				// redirected to non-existent page !
+				$tags[] = 'core-redirect-nonexistent';
+			}
+			if ( !is_object( $oldTarget ) ) {
+				// non-redirect page gets redirected !
+				$tags[] = 'core-redirect-new';
+			} elseif ( ( !$newTarget->equals( $oldTarget ) || $oldTarget->getFragment()
+				!= $newTarget->getFragment() ) ) {
+				// target of a redirect gets changed !
+				$tags[] = 'core-redirect-changed';
+			}
+		} elseif ( is_object( $oldTarget ) ) { {
+				// redirect transformed in non-redirect page !
+				$tags[] = 'core-redirect-removed';
+			}
+		}
+
+		// Blank and replace tags
+		if ( !empty( $oldContent ) && $oldContent->getSize() > 0 &&
+			$newContent->getSize() == 0 ) {
+			// edit blanked a non-blank page !
+			$tags[] = 'core-edit-blank';
+		} elseif ( !empty( $oldContent )
+			&& $oldContent->getSize() > 10 * $newContent->getSize()
+			&& $newContent->getSize() < 500 ) {
+			// edit replaced the page content !
+			$tags[] = 'core-edit-replace';
+		} elseif ( $flags & EDIT_NEW && $newContent->isEmpty() ) {
+			// new page is blank !
+			$tags[] = 'core-newpage-blank';
+		}
+
+		return $tags;
+	}
+
+	/**
 	 * Auto-generates a deletion reason
 	 *
 	 * @since 1.21

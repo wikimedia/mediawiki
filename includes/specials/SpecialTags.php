@@ -30,6 +30,7 @@ class SpecialTags extends SpecialPage {
 
 	protected $tagStats = null;
 	protected $storedTags = null;
+	protected $coreTags = null;
 	protected $registeredTags = null;
 
 	function __construct() {
@@ -116,10 +117,11 @@ class SpecialTags extends SpecialPage {
 		// Used in #doTagRow()
 		$this->tagStats = ChangeTags::tagUsageStatistics();
 		$this->storedTags = ChangeTags::getStoredTags();
+		$this->coreTags = ChangeTags::getCoreTags();
 		$this->registeredTags = ChangeTags::getRegisteredTags();
 
 		// Show header only if there exists at least one tag
-		if ( !$this->tagStats && !$this->registeredTags && !$this->storedTags ) {
+		if ( !$this->tagStats && !$this->coreTags && !$this->registeredTags && !$this->storedTags ) {
 			return;
 		}
 
@@ -155,7 +157,7 @@ class SpecialTags extends SpecialPage {
 
 		// building change tag object
 		$changeTag = ChangeTags::getChangeTagObject( $tag, $this->tagStats,
-			$this->storedTags, $this->registeredTags );
+			$this->storedTags, $this->coreTags, $this->registeredTags );
 
 		$newRow = '';
 		$newRow .= Xml::tags( 'td', null, Xml::element( 'code', null, $tag ) );
@@ -197,6 +199,9 @@ class SpecialTags extends SpecialPage {
 		$sourceMsgs = array();
 		if ( $changeTag->userDefined ) {
 			$sourceMsgs[] = $this->msg( 'tags-source-manual' )->escaped();
+		}
+		if ( $changeTag->coreDefined ) {
+			$sourceMsgs[] = $this->msg( 'tags-source-core' )->escaped();
 		}
 		if ( $changeTag->extensionDefined ) {
 			$sourceMsgs[] = $this->msg( 'tags-source-extension' )->params(
