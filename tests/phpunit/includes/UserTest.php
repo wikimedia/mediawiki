@@ -425,4 +425,24 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertFalse( $user->isLoggedIn() );
 		$this->assertTrue( $user->isAnon() );
 	}
+
+	/**
+	 * @covers User::casOnTouched
+	 */
+	public function testCasOnTouched() {
+		$user = User::newFromName( 'UTSysop' );
+		$this->assertTrue( $user->isLoggedIn() );
+
+		$touched = $user->getDBTouched();
+		$this->assertTrue(
+			$user->casTouched(), "casOnTouched() succeded" );
+		$this->assertGreaterThan(
+			$touched, $user->getDBTouched(), "user_touched increased with casOnTouched()" );
+
+		$touched = $user->getDBTouched();
+		$this->assertTrue(
+			$user->casTouched(), "casOnTouched() succeded #2" );
+		$this->assertGreaterThan(
+			$touched, $user->getDBTouched(), "user_touched increased with casOnTouched() #2" );
+	}
 }
