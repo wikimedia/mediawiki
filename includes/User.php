@@ -2204,6 +2204,8 @@ class User implements IDBAccessObject {
 	 *   page. Ignored if null or !$val.
 	 */
 	public function setNewtalk( $val, $curRev = null ) {
+		global $wgMemc;
+
 		if ( wfReadOnly() ) {
 			return;
 		}
@@ -2218,7 +2220,6 @@ class User implements IDBAccessObject {
 			$field = 'user_id';
 			$id = $this->getId();
 		}
-		global $wgMemc;
 
 		if ( $val ) {
 			$changed = $this->updateNewtalk( $field, $id, $curRev );
@@ -2270,37 +2271,13 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Immediately touch the user data cache for this account.
-	 * Updates user_touched field, and removes account data from memcached
-	 * for reload on the next hit.
+	 * Immediately touch the user data cache for this account
+	 *
+	 * Calls touch() and removes account data from memcached
 	 */
 	public function invalidateCache() {
-		if ( wfReadOnly() ) {
-			return;
-		}
-		$this->load();
-		if ( $this->mId ) {
-			$this->mTouched = $this->newTouchedTimestamp();
-
-			$dbw = wfGetDB( DB_MASTER );
-			$userid = $this->mId;
-			$touched = $this->mTouched;
-			$method = __METHOD__;
-			$dbw->onTransactionIdle( function () use ( $dbw, $userid, $touched, $method ) {
-				// Prevent contention slams by checking user_touched first
-				$encTouched = $dbw->addQuotes( $dbw->timestamp( $touched ) );
-				$needsPurge = $dbw->selectField( 'user', '1',
-					array( 'user_id' => $userid, 'user_touched < ' . $encTouched ) );
-				if ( $needsPurge ) {
-					$dbw->update( 'user',
-						array( 'user_touched' => $dbw->timestamp( $touched ) ),
-						array( 'user_id' => $userid, 'user_touched < ' . $encTouched ),
-						$method
-					);
-				}
-			} );
-			$this->clearSharedCache();
-		}
+		$this->touch();
+		$this->clearSharedCache();
 	}
 
 	/**
