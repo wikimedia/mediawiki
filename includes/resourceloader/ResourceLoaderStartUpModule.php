@@ -233,7 +233,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			$registryData[$name] = array(
 				// Convert to numbers as wfTimestamp always returns a string, even for TS_UNIX
 				'version' => (int) $mtime,
-				'dependencies' => $module->getDependencies(),
+				'dependencies' => $module->getDependencies( $context ),
 				'group' => $module->getGroup(),
 				'source' => $module->getSource(),
 				'loader' => $module->getLoaderScript(),

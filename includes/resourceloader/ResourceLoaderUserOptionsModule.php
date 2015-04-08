@@ -38,9 +38,10 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	/* Methods */
 
 	/**
+	 * @param ResourceLoaderContext $context
 	 * @return array List of module names as strings
 	 */
-	public function getDependencies() {
+	public function getDependencies( ResourceLoaderContext $context = null ) {
 		return array( 'user.defaults' );
 	}
 

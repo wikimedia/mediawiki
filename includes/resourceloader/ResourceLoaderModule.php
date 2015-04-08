@@ -313,9 +313,11 @@ abstract class ResourceLoaderModule {
 	 *
 	 * To add dependencies dynamically on the client side, use a custom
 	 * loader script, see getLoaderScript()
+	 *
+	 * @param ResourceLoaderContext $context
 	 * @return array List of module names as strings
 	 */
-	public function getDependencies() {
+	public function getDependencies( ResourceLoaderContext $context = null ) {
 		// Stub, override expected
 		return array();
 	}
