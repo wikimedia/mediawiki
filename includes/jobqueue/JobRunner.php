@@ -117,6 +117,11 @@ class JobRunner implements LoggerAwareInterface {
 			return $response;
 		}
 
+		// Catch huge single updates that lead to slave lag
+		$trxProfiler = Profiler::instance()->getTransactionProfiler();
+		$trxProfiler->setLogger( LoggerFactory::getInstance( 'DBPerformance' ) );
+		$trxProfiler->setExpectation( 'maxAffected', 500, __METHOD__ );
+
 		// Bail out if there is too much DB lag
 		list( , $maxLag ) = wfGetLBFactory()->getMainLB( wfWikiID() )->getMaxLag();
 		if ( $maxLag >= 5 ) {
