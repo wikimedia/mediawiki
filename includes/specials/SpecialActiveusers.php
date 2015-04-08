@@ -302,7 +302,7 @@ class SpecialActiveUsers extends SpecialPage {
 	 * @return int How many seconds old the cache is
 	 */
 	public static function mergeActiveUsers( $period, $days ) {
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE, 'recentchanges' );
 		$cTime = $dbr->selectField( 'querycache_info',
 			'qci_timestamp',
 			array( 'qci_type' => 'activeusers' )
