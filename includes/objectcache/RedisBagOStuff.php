@@ -25,6 +25,8 @@ class RedisBagOStuff extends BagOStuff {
 	protected $redisPool;
 	/** @var array List of server names */
 	protected $servers;
+	/** @var array Map of (tag => server name) */
+	protected $serverTagMap;
 	/** @var bool */
 	protected $automaticFailover;
 
@@ -34,7 +36,8 @@ class RedisBagOStuff extends BagOStuff {
 	 *   - servers: An array of server names. A server name may be a hostname,
 	 *     a hostname/port combination or the absolute path of a UNIX socket.
 	 *     If a hostname is specified but no port, the standard port number
-	 *     6379 will be used. Required.
+	 *     6379 will be used. Arrays keys can be used to specify the tag to
+	 *     hash on in place of the host/port. Required.
 	 *
 	 *   - connectTimeout: The timeout for new connections, in seconds. Optional,
 	 *     default is 1 second.
@@ -66,6 +69,10 @@ class RedisBagOStuff extends BagOStuff {
 		$this->redisPool = RedisConnectionPool::singleton( $redisConf );
 
 		$this->servers = $params['servers'];
+		foreach ( $this->servers as $key => $server ) {
+			$this->serverTagMap[is_int( $key ) ? $server : $key] = $server;
+		}
+
 		if ( isset( $params['automaticFailover'] ) ) {
 			$this->automaticFailover = $params['automaticFailover'];
 		} else {
@@ -348,23 +355,25 @@ class RedisBagOStuff extends BagOStuff {
 	 * @return array (server, RedisConnRef) or (false, false)
 	 */
 	protected function getConnection( $key ) {
-		if ( count( $this->servers ) === 1 ) {
-			$candidates = $this->servers;
-		} else {
-			$candidates = $this->servers;
+		$candidates = array_keys( $this->serverTagMap );
+
+		if ( count( $this->servers ) > 1 ) {
 			ArrayUtils::consistentHashSort( $candidates, $key, '/' );
 			if ( !$this->automaticFailover ) {
 				$candidates = array_slice( $candidates, 0, 1 );
 			}
 		}
 
-		foreach ( $candidates as $server ) {
+		foreach ( $candidates as $tag ) {
+			$server = $this->serverTagMap[$tag];
 			$conn = $this->redisPool->getConnection( $server );
 			if ( $conn ) {
 				return array( $server, $conn );
 			}
 		}
+
 		$this->setLastError( BagOStuff::ERR_UNREACHABLE );
+
 		return array( false, false );
 	}
 
