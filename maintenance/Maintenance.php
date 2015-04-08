@@ -38,6 +38,8 @@ define( 'DO_MAINTENANCE', RUN_MAINTENANCE_IF_MAIN ); // original name, harmless
 
 $maintClass = false;
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * Abstract maintenance class for quickly writing and churning out
  * maintenance scripts with minimal effort. All that _must_ be defined
@@ -612,6 +614,11 @@ abstract class Maintenance {
 			$profiler->setTemplated( true );
 			Profiler::replaceStubInstance( $profiler );
 		}
+
+		$trxProfiler = Profiler::instance()->getTransactionProfiler();
+		$trxProfiler->setLogger( LoggerFactory::getInstance( 'DBPerformance' ) );
+		# Catch huge single updates that lead to slave lag
+		$trxProfiler->setExpectation( 'maxAffected', 1000, __METHOD__ );
 	}
 
 	/**
