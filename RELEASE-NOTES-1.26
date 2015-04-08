@@ -37,7 +37,6 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
-
 === Other changes in 1.26 ===
 * ChangeTags::tagDescription() will return false if the interface message
   for the tag is disabled.
@@ -52,6 +51,10 @@ for editing, such as action overrides or specific api modules.
 * mediaWiki.confirmCloseWindow now returns an object of functions, instead of
 one function. The callback can't be called directly any more. The callback function
 is replaced with confirmCloseWindow.release().
+* BREAKING CHANGE: Added an optional ResouceLoaderContext parameter to
+  ResourceLoaderModule::getDependencies(). Extension classes that override that
+  method should be updated. If they aren't updated, PHP Strict standards
+  warnings will appear when E_STRICT error reporting is enabled.
 * Removed maintenance script deleteImageMemcached.php.
 
 == Compatibility ==
