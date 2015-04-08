@@ -46,6 +46,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 	 * - protect/protect
 	 * - protect/modifyprotect
 	 * - protect/unprotect
+	 * - protect/move_prot
 	 * - upload/upload
 	 * - merge/merge
 	 * - import/upload
@@ -221,6 +222,15 @@ class RecentChangeTest extends MediaWikiTestCase {
 				->plain() . $sep . $this->user_comment,
 			'protect', 'modify',
 			$protectParams,
+			$this->user_comment
+		);
+
+		# protect/move_prot
+		$this->assertIRCComment(
+			$this->context->msg( 'movedarticleprotection', 'SomeTitle', 'OldTitle' )
+				->plain() . $sep . $this->user_comment,
+			'protect', 'move_prot',
+			array( 'OldTitle' ),
 			$this->user_comment
 		);
 	}
