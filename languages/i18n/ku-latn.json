@@ -598,6 +598,8 @@
 	"notextmatches": "Di nav sernivîsan de nehat dîtin.",
 	"prevn": "{{PLURAL:$1|$1}} paş",
 	"nextn": "{{PLURAL:$1|$1}} pêş",
+	"prev-page": "rûpela berî vê",
+	"next-page": "rûpela pêş",
 	"prevn-title": "{{PLURAL:$1|result|Encamên}} pêştir $1",
 	"nextn-title": "$1 {{PLURAL:$1|encama|encamên}} pêştir",
 	"shown-title": "Li her rûpelê $1 {{PLURAL:$1|encam|encaman}} nîşan bide",

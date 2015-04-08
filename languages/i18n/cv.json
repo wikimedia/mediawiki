@@ -412,7 +412,7 @@
 	"nohistory": "Ку страницăн улшăнусен журналĕ çук.",
 	"currentrev": "Хальхи верси",
 	"revisionasof": "$1 сăнташ",
-	"revision-info": "$1 версийĕ; $2",
+	"revision-info": "Версийĕ $1 {{GENDER:$6|$2}}$7",
 	"previousrevision": "← Малтанхи сăнташ",
 	"nextrevision": "Тепĕр сăнташ →",
 	"currentrevisionlink": "хальхи верси çине куç",

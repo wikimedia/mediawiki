@@ -3193,6 +3193,7 @@
 	"feedback-error1": "Errore: Dalla API è arrivato un risultato non riconosciuto",
 	"feedback-error2": "Errore: Non è stato possibile eseguire la modifica",
 	"feedback-error3": "Errore: Nessuna risposta dalla API",
+	"feedback-error4": "Errore: non sono in grado di postare il titolo del feedback desiderato.",
 	"feedback-message": "Messaggio:",
 	"feedback-subject": "Oggetto:",
 	"feedback-submit": "Invia",

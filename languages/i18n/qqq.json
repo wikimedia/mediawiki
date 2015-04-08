@@ -3015,7 +3015,7 @@
 	"exif-locationdestcode": "Code of location depicted. Typically this is an ISO country code, but the IPTC-iim standard also defines other codes like XSP for outer space. See appendix D (and tag 2:100) of http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf",
 	"exif-objectcycle": "Time of day that media is intended for. Either morning only, evening only, or all day. Typically only used for news related things that might only be broadcast at a specific time of day.\n\nSee also:\n* {{msg-mw|Exif-objectcycle-a}}\n* {{msg-mw|Exif-objectcycle-p}}\n* {{msg-mw|Exif-objectcycle-b}}",
 	"exif-contact": "Contact information of the person responsible for the image.",
-	"exif-writer": "The person who wrote the caption of the image. See Description Writer on page 18 of http://www.iptc.org/std/photometadata/specification/IPTC-PhotoMetadata-201007_1.pdf",
+	"exif-writer": "The person who wrote the caption of the image. See Description Writer on page 18 of http://www.iptc.org/std/photometadata/specification/IPTC-PhotoMetadata-201007_1.pdf\n{{Identical|Writer}}",
 	"exif-languagecode": "Language of image/media.\n\nThis is taken from IPTC-iim 2:135 and XMP's dc:language.\n{{Identical|Language}}",
 	"exif-iimversion": "IIM version number. Version of information interchange 2:xx records. 4 is current version. 2 is often seen as well. This is the value stored 2:00 field (Note, iptc-iim also stores a model version in 1:00. This version field displays the 2:00 record only)",
 	"exif-iimcategory": "Primary Category of image (or other media). Technically supposed to be limited to 3 characters, however that is not always followed. Some common 3 letter category abbreviations are expanded by mediawiki. Similar to {{msg-mw|exif-keywords}}.\n{{Identical|Category}}",

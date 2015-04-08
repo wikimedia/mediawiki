@@ -322,7 +322,7 @@
 	"missing-article": "Tekst stranice pod nazivom „$1“ ($2) nije pronađen.\n\nUzrok ove greške je obično zastarela izmena ili veza do obrisane stranice.\n\nAko se ne radi o tome, onda ste verovatno pronašli grešku u softveru.\nPrijavite je [[Special:ListUsers/sysop|administratoru]] uz odgovarajuću vezu.",
 	"missingarticle-rev": "(izmena#: $1)",
 	"missingarticle-diff": "(razlika: $1, $2)",
-	"readonly_lag": "Baza podataka je zaključana dok se sporedni bazni serveri ne usklade s glavnim.",
+	"readonly_lag": "Baza podataka je automatski zaključana da bi se sekundarni serveri baze podataka uskladili s glavnim.",
 	"internalerror": "Unutrašnja greška",
 	"internalerror_info": "Unutrašnja greška: $1",
 	"filecopyerror": "Ne mogu da umnožim datoteku „$1“ u „$2“.",

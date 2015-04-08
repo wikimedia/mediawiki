@@ -3175,6 +3175,7 @@
 	"feedback-error1": "Chyba: Nerozpoznaný výsledek z API",
 	"feedback-error2": "Chyba: Editace se nezdařila",
 	"feedback-error3": "Chyba: API nevrátilo žádnou odpověď",
+	"feedback-error4": "Chyba: Nelze napsat na uvedenou stránku pro zpětnou vazbu",
 	"feedback-message": "Zpráva:",
 	"feedback-subject": "Předmět:",
 	"feedback-submit": "Odeslat",
