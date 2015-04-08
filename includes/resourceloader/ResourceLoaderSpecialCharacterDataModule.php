@@ -62,9 +62,10 @@ class ResourceLoaderSpecialCharacterDataModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
-	public function getDependencies() {
+	public function getDependencies( ResourceLoaderContext $context = null ) {
 		return array( 'mediawiki.language' );
 	}
 
