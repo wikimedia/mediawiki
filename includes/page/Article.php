@@ -1254,22 +1254,22 @@ class Article implements Page {
 
 		# Show error message
 		$oldid = $this->getOldID();
-		if ( $oldid ) {
-			$text = wfMessage( 'missing-revision', $oldid )->plain();
-		} elseif ( $title->getNamespace() === NS_MEDIAWIKI ) {
-			// Use the default message text
-			$text = $title->getDefaultMessageText();
-		} elseif ( $title->quickUserCan( 'create', $this->getContext()->getUser() )
-			&& $title->quickUserCan( 'edit', $this->getContext()->getUser() )
-		) {
-			$message = $this->getContext()->getUser()->isLoggedIn() ? 'noarticletext' : 'noarticletextanon';
-			$text = wfMessage( $message )->plain();
+		if ( !$oldid && $title->getNamespace() === NS_MEDIAWIKI ) {
+			$outputPage->addParserOutput( $this->getContentObject()->getParserOutput( $title ) );
 		} else {
-			$text = wfMessage( 'noarticletext-nopermission' )->plain();
-		}
-		$text = "<div class='noarticletext'>\n$text\n</div>";
+			if ( $oldid ) {
+				$text = wfMessage( 'missing-revision', $oldid )->plain();
+			} elseif ( $title->quickUserCan( 'create', $this->getContext()->getUser() )
+				&& $title->quickUserCan( 'edit', $this->getContext()->getUser() )
+			) {
+				$message = $this->getContext()->getUser()->isLoggedIn() ? 'noarticletext' : 'noarticletextanon';
+				$text = wfMessage( $message )->plain();
+			} else {
+				$text = wfMessage( 'noarticletext-nopermission' )->plain();
+			}
 
-		$outputPage->addWikiText( $text );
+			$outputPage->addWikiText( "<div class='noarticletext'>\n$text\n</div>" );
+		}
 	}
 
 	/**
