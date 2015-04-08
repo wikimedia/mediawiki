@@ -226,7 +226,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 			$registryData[$name] = array(
 				'version' => $versionHash,
-				'dependencies' => $module->getDependencies(),
+				'dependencies' => $module->getDependencies( $context ),
 				'group' => $module->getGroup(),
 				'source' => $module->getSource(),
 				'loader' => $module->getLoaderScript(),

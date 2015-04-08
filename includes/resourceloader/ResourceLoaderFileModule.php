@@ -478,10 +478,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 	/**
 	 * Gets list of names of modules this module depends on.
-	 *
+	 * @param ResourceLoaderContext context
 	 * @return array List of module names
 	 */
-	public function getDependencies() {
+	public function getDependencies( ResourceLoaderContext $context = null ) {
 		return $this->dependencies;
 	}
 
