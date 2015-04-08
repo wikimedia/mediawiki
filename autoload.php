@@ -886,7 +886,6 @@ $wgAutoloadLocalClasses = array(
 	'PoolCounter_Stub' => __DIR__ . '/includes/poolcounter/PoolCounter.php',
 	'PoolWorkArticleView' => __DIR__ . '/includes/poolcounter/PoolWorkArticleView.php',
 	'PopulateBacklinkNamespace' => __DIR__ . '/maintenance/populateBacklinkNamespace.php',
-	'PopulateBloomFilter' => __DIR__ . '/maintenance/populateBloomCache.php',
 	'PopulateCategory' => __DIR__ . '/maintenance/populateCategory.php',
 	'PopulateFilearchiveSha1' => __DIR__ . '/maintenance/populateFilearchiveSha1.php',
 	'PopulateImageSha1' => __DIR__ . '/maintenance/populateImageSha1.php',
