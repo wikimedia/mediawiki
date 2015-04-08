@@ -371,21 +371,31 @@ class SiteStatsInit {
 	public static function doAllAndCommit( $database, array $options = array() ) {
 		$options += array( 'update' => false, 'activeUsers' => false );
 
-		// Grab the object and count everything
-		$counter = new SiteStatsInit( $database );
+		$work = new PoolCounterWorkViaCallback(
+			__METHOD__,
+			'',
+			array(
+				'doWork' => function() use ( $database, $options ) {
+					// Grab the object and count everything
+					$counter = new SiteStatsInit( $database );
 
-		$counter->edits();
-		$counter->articles();
-		$counter->pages();
-		$counter->users();
-		$counter->files();
+					$counter->edits();
+					$counter->articles();
+					$counter->pages();
+					$counter->users();
+					$counter->files();
 
-		$counter->refresh();
+					$counter->refresh();
 
-		// Count active users if need be
-		if ( $options['activeUsers'] ) {
-			SiteStatsUpdate::cacheUpdate( wfGetDB( DB_MASTER ) );
-		}
+					// Count active users if need be
+					if ( $options['activeUsers'] ) {
+						SiteStatsUpdate::cacheUpdate( wfGetDB( DB_MASTER ) );
+					}
+				}
+			)
+		);
+
+		$work->execute();
 	}
 
 	/**

@@ -15,6 +15,7 @@ production.
 ==== External libraries ====
 
 === Bug fixes in 1.26 ===
+* (T95426) Use PoolCounter for SiteStats updates.
 
 === Action API changes in 1.26 ===
 
