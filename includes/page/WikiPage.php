@@ -1150,28 +1150,24 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return bool
 	 */
 	public function doPurge() {
-		global $wgUseSquid;
-
 		if ( !Hooks::run( 'ArticlePurge', array( &$this ) ) ) {
 			return false;
 		}
 
-		// Invalidate the cache
-		$this->mTitle->invalidateCache();
-
-		if ( $wgUseSquid ) {
-			// Commit the transaction before the purge is sent
-			$dbw = wfGetDB( DB_MASTER );
-			$dbw->commit( __METHOD__ );
-
-			// Send purge
-			$update = SquidUpdate::newSimplePurge( $this->mTitle );
-			$update->doUpdate();
-		}
+		$title = $this->mTitle;
+		wfGetDB( DB_MASTER )->onTransactionIdle( function() use ( $title ) {
+			global $wgUseSquid;
+			// Invalidate the cache in auto-commit mode
+			$title->invalidateCache();
+			if ( $wgUseSquid ) {
+				// Send purge now that page_touched update was committed above
+				$update = SquidUpdate::newSimplePurge( $title );
+				$update->doUpdate();
+			}
+		} );
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 			// @todo move this logic to MessageCache
-
 			if ( $this->exists() ) {
 				// NOTE: use transclusion text for messages.
 				//       This is consistent with  MessageCache::getMsgFromNamespace()
@@ -1188,6 +1184,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 			MessageCache::singleton()->replace( $this->mTitle->getDBkey(), $text );
 		}
+
 		return true;
 	}
 
