@@ -1856,13 +1856,6 @@ $wgDBerrorLog = false;
 $wgDBerrorLogTZ = false;
 
 /**
- * Scale load balancer polling time so that under overload conditions, the
- * database server receives a SHOW STATUS query at an average interval of this
- * many microseconds
- */
-$wgDBAvgStatusPoll = 2000;
-
-/**
  * Set to true to engage MySQL 4.1/5.0 charset-related features;
  * for now will just cause sending of 'SET NAMES=utf8' on connect.
  *
