@@ -489,7 +489,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *
 	 * @return array List of module names
 	 */
-	public function getDependencies() {
+	public function getDependencies( $context=null ) {
 		return $this->dependencies;
 	}
 

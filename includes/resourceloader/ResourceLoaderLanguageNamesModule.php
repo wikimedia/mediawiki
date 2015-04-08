@@ -60,7 +60,7 @@ class ResourceLoaderLanguageNamesModule extends ResourceLoaderModule {
 		);
 	}
 
-	public function getDependencies() {
+	public function getDependencies( $context=null ) {
 		return array( 'mediawiki.language.init' );
 	}
 

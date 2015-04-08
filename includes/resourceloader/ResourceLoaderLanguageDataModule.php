@@ -81,7 +81,7 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 	/**
 	 * @return array
 	 */
-	public function getDependencies() {
+	public function getDependencies( $context=null ) {
 		return array( 'mediawiki.language.init' );
 	}
 }

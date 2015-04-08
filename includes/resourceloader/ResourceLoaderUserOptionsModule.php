@@ -40,7 +40,7 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	/**
 	 * @return array List of module names as strings
 	 */
-	public function getDependencies() {
+	public function getDependencies( $context=null ) {
 		return array( 'user.defaults' );
 	}
 
