@@ -83,7 +83,7 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 		return array( '' => $this->styles );
 	}
 
-	public function getDependencies() {
+	public function getDependencies( ResourceLoaderContext $context = null ) {
 		return $this->dependencies;
 	}
 
