@@ -261,8 +261,10 @@ class LoadBalancer {
 			if ( $wgReadOnly || $this->mAllowLagged || $laggedSlaveMode ) {
 				$i = ArrayUtils::pickRandom( $currentLoads );
 			} else {
-				$i = false;
-				if ( $this->mWaitForPos && $this->mWaitForPos->asOfTime() ) {
+				# a) Try to get a server with very low lag
+				$i = $this->getRandomNonLagged( $currentLoads, $wiki, 1 );
+				# b) If there is none, then get a server with reasonably low lag
+				if ( $i === false && $this->mWaitForPos && $this->mWaitForPos->asOfTime() ) {
 					# ChronologyProtecter causes mWaitForPos to be set via sessions.
 					# This triggers doWait() after connect, so it's especially good to
 					# avoid lagged servers so as to avoid just blocking in that method.
@@ -274,6 +276,7 @@ class LoadBalancer {
 					# Any server with less lag than it's 'max lag' param is preferable
 					$i = $this->getRandomNonLagged( $currentLoads, $wiki );
 				}
+				# c) If not possible, pick any server and go into 'lagged slave' mode
 				if ( $i === false && count( $currentLoads ) != 0 ) {
 					# All slaves lagged. Switch to read-only mode
 					wfDebugLog( 'replication', "All slaves lagged. Switch to read-only mode" );
