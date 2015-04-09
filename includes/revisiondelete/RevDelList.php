@@ -74,6 +74,25 @@ abstract class RevDelList extends RevisionListBase {
 	}
 
 	/**
+	 * Indicate whether any item in this list is suppressed
+	 * @since 1.25
+	 * @return bool
+	 */
+	public function areAnySuppressed() {
+		$bit = $this->getSuppressBit();
+
+		// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
+		for ( $this->reset(); $this->current(); $this->next() ) {
+			// @codingStandardsIgnoreEnd
+			$item = $this->current();
+			if ( $item->getBits() & $bit ) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Set the visibility for the revisions in this list. Logging and
 	 * transactions are done here.
 	 *
