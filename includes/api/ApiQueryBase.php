@@ -123,6 +123,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 */
 	public function selectNamedDB( $name, $db, $groups ) {
 		$this->mDb = $this->getQuery()->getNamedDB( $name, $db, $groups );
+		return $this->mDb;
 	}
 
 	/**
