@@ -84,6 +84,7 @@ class ImageListPager extends TablePager {
 	function __construct( IContextSource $context, $userName = null, $search = '',
 		$including = false, $showAll = false
 	) {
+		$this->setContext( $context );
 		$this->mIncluding = $including;
 		$this->mShowAll = $showAll;
 
@@ -107,7 +108,7 @@ class ImageListPager extends TablePager {
 		}
 
 		if ( !$including ) {
-			if ( $context->getRequest()->getText( 'sort', 'img_date' ) == 'img_date' ) {
+			if ( $this->getRequest()->getText( 'sort', 'img_date' ) == 'img_date' ) {
 				$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
 			} else {
 				$this->mDefaultDirection = IndexPager::DIR_ASCENDING;
