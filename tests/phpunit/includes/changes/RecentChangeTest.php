@@ -76,6 +76,19 @@ class RecentChangeTest extends MediaWikiTestCase {
 			),
 			$this->user_comment
 		);
+		# block/block - legacy
+		$this->assertIRCComment(
+			$this->context->msg( 'blocklogentry', 'SomeTitle', 'duration', '(flags)' )->plain()
+				. $sep . $this->user_comment,
+			'block', 'block',
+			array(
+				'duration',
+				'flags',
+			),
+			$this->user_comment,
+			'',
+			true
+		);
 		# block/unblock
 		$this->assertIRCComment(
 			$this->context->msg( 'unblocklogentry', 'SomeTitle' )->plain() . $sep . $this->user_comment,
@@ -332,7 +345,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 	 * @param string $msg (optional) A message for PHPUnit :-)
 	 */
 	protected function assertIRCComment( $expected, $type, $action, $params,
-		$comment = null, $msg = ''
+		$comment = null, $msg = '', $legacy = false
 	) {
 		$logEntry = new ManualLogEntry( $type, $action );
 		$logEntry->setPerformer( $this->user );
@@ -341,6 +354,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 			$logEntry->setComment( $comment );
 		}
 		$logEntry->setParameters( $params );
+		$logEntry->setLegacy( $legacy );
 
 		$formatter = LogFormatter::newFromEntry( $logEntry );
 		$formatter->setContext( $this->context );
