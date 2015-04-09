@@ -345,6 +345,20 @@ class ApiQueryLogEvents extends ApiQueryBase {
 					unset( $params['5::mergepoint'] );
 				}
 				break;
+			case 'suppress':
+				if ( $action === 'block' || $action === 'reblock' ) {
+					// replace the named parameter with numbered for backward compatibility
+					if ( isset( $params['5::duration'] ) ) {
+						$params[] = $params['5::duration'];
+						unset( $params['5::duration'] );
+					}
+					if ( isset( $params['6::flags'] ) ) {
+						$params[] = $params['6::flags'];
+						unset( $params['6::flags'] );
+					}
+					break;
+				}
+				// fall through
 			case 'delete':
 				if ( $action === 'event' || $action === 'revision' ) {
 					// replace the named parameter with numbered for backward compatibility
