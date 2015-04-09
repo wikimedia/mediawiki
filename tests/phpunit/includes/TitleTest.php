@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group Database
  * @group Title
  */
 class TitleTest extends MediaWikiTestCase {

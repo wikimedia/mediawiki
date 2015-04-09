@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group Database
  * @group ResourceLoader
  */
 class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {

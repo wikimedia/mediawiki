@@ -10,6 +10,8 @@
  * @copyright Copyright © 2011, Antoine Musso
  * @file
  * @todo covers tags
+ *
+ * @group Database
  */
 
 class MagicVariableTest extends MediaWikiTestCase {
