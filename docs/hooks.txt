@@ -3247,6 +3247,14 @@ $page: the WikiPage
 $content: the Content to generate updates for
 &$updates: the array of DataUpdate objects. Hook function may want to add to it.
 
+'WikiPageDoEditUpdatesBeforeCache': modify edit, such as its parser output, with
+knowledge of the revision id and details, before completing the save and storing
+in ParserCache (if enabled).
+$page: The WikiPage object.
+$revision: The Revision of the edit.
+&$editInfo Data holder that includes the parser output ($editInfo->output) for
+that page after the change.
+
 'wfShellWikiCmd': Called when generating a shell-escaped command line string to
 run a MediaWiki cli script.
 &$script: MediaWiki cli script path

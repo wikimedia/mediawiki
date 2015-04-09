@@ -2181,6 +2181,8 @@ class WikiPage implements Page, IDBAccessObject {
 			$editInfo = $this->mPreparedEdit;
 		}
 
+		Hooks::run( 'WikiPageDoEditUpdatesBeforeCache', array( $this, $revision, &$editInfo ) );
+
 		// Save it to the parser cache
 		if ( $wgEnableParserCache ) {
 			$parserCache = ParserCache::singleton();

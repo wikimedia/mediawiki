@@ -11,6 +11,9 @@ production.
 === Configuration changes in 1.26 ===
 
 === New features in 1.26 ===
+* Added new hook, 'WikiPageDoEditUpdatesBeforeCache', to provide access to
+information about an edit and modifying it, with knowledge of its revision id
+and other revision data, before a save is completed and cached.
 
 ==== External libraries ====
 
