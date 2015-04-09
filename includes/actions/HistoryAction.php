@@ -479,6 +479,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			'id' => 'mw-history-compare' ) ) . "\n";
 		$s .= Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) . "\n";
 		$s .= Html::hidden( 'action', 'historysubmit' ) . "\n";
+		$s .= Html::hidden( 'type', 'revision' ) . "\n";
 
 		// Button container stored in $this->buttons for re-use in getEndBody()
 		$this->buttons = '<div>';
@@ -489,8 +490,12 @@ class HistoryPager extends ReverseChronologicalPager {
 			$attrs
 		) . "\n";
 
-		if ( $this->getUser()->isAllowed( 'deleterevision' ) ) {
+		$user = $this->getUser();
+		if ( $user->isAllowed( 'deleterevision' ) ) {
 			$this->buttons .= $this->getRevisionButton( 'revisiondelete', 'showhideselectedversions' );
+		}
+		if ( $user->isAllowed( 'changetags' ) ) {
+			$this->buttons .= $this->getRevisionButton( 'editchangetags', 'history-edit-tags' );
 		}
 		$this->buttons .= '</div>';
 
@@ -606,11 +611,15 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		$del = '';
 		$user = $this->getUser();
-		// Show checkboxes for each revision
-		if ( $user->isAllowed( 'deleterevision' ) ) {
+		$canRevDelete = $user->isAllowed( 'deleterevision' );
+		$canModifyTags = $user->isAllowed( 'changetags' );
+		// Show checkboxes for each revision, to allow for revision deletion and
+		// change tags
+		if ( $canRevDelete || $canModifyTags ) {
 			$this->preventClickjacking();
-			// If revision was hidden from sysops, disable the checkbox
-			if ( !$rev->userCan( Revision::DELETED_RESTRICTED, $user ) ) {
+			// If revision was hidden from sysops and we don't need the checkbox
+			// for anything else, disable it
+			if ( !$canModifyTags && !$rev->userCan( Revision::DELETED_RESTRICTED, $user ) ) {
 				$del = Xml::check( 'deleterevisions', false, array( 'disabled' => 'disabled' ) );
 			// Otherwise, enable the checkbox...
 			} else {

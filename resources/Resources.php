@@ -1401,6 +1401,9 @@ return array(
 	'mediawiki.special.changeslist.enhanced' => array(
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.enhanced.css',
 	),
+	'mediawiki.special.edittags' => array(
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.edittags.css',
+	),
 	'mediawiki.special.import' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.import.js',
 	),
