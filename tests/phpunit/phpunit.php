@@ -228,12 +228,14 @@ foreach ( array(
 }
 
 if ( !$ok ) {
-	die( "Couldn't find a usable PHPUnit.\n" );
+	echo "Couldn't find a usable PHPUnit.\n";
+	exit( 1 );
 }
 
 $puVersion = PHPUnit_Runner_Version::id();
 if ( $puVersion !== '@package_version@' && version_compare( $puVersion, '3.7.0', '<' ) ) {
-	die( "PHPUnit 3.7.0 or later required; you have {$puVersion}.\n" );
+	echo "PHPUnit 3.7.0 or later required; you have {$puVersion}.\n";
+	exit( 1 );
 }
 
 PHPUnit_TextUI_Command::main();
