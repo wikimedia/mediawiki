@@ -92,7 +92,7 @@ abstract class RevDelList extends RevisionListBase {
 		$this->res = false;
 		$dbw = wfGetDB( DB_MASTER );
 		$this->doQuery( $dbw );
-		$dbw->begin( __METHOD__ );
+		$dbw->startAtomic( __METHOD__ );
 		$status = Status::newGood();
 		$missing = array_flip( $this->ids );
 		$this->clearFileOps();
@@ -207,7 +207,8 @@ abstract class RevDelList extends RevisionListBase {
 			'authorIds' => $authorIds,
 			'authorIPs' => $authorIPs
 		) );
-		$dbw->commit( __METHOD__ );
+
+		$dbw->endAtomic( __METHOD__ );
 
 		// Clear caches
 		$status->merge( $this->doPostCommitUpdates() );
