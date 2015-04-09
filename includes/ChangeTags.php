@@ -576,7 +576,7 @@ class ChangeTags {
 	 */
 	public static function deleteTagEverywhere( $tag ) {
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->begin( __METHOD__ );
+		$dbw->startAtomic( __METHOD__ );
 
 		// delete from valid_tag
 		self::undefineTag( $tag );
@@ -624,7 +624,7 @@ class ChangeTags {
 		// delete from change_tag
 		$dbw->delete( 'change_tag', array( 'ct_tag' => $tag ), __METHOD__ );
 
-		$dbw->commit( __METHOD__ );
+		$dbw->endAtomic( __METHOD__ );
 
 		// give extensions a chance
 		$status = Status::newGood();
