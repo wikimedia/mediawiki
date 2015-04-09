@@ -2987,6 +2987,7 @@
 	"tags-create-no-name": "Вы мусіце пазначыць назву меткі.",
 	"tags-create-invalid-chars": "Назвы метак ня мусяць утрымліваць коскі (<code>,</code>) або сымбалі касых рысаў (<code>/</code>).",
 	"tags-create-invalid-title-chars": "Назвы метак ня мусяць утрымліваць сымбалі, якія нельга ўжываць у назвах старонак.",
+	"tags-create-already-exists": "Метка «$1» ужо існуе.",
 	"comparepages": "Параўнаньне старонак",
 	"compare-page1": "Старонка 1",
 	"compare-page2": "Старонка 2",

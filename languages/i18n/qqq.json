@@ -1394,7 +1394,7 @@
 	"rcshowhideminor-show": "{{doc-actionlink}}\nOption text in [[Special:RecentChanges]] in conjunction with {{msg-mw|rcshowhideminor}}.\n\nSee also:\n* {{msg-mw|rcshowhideminor-hide}}\n{{Identical|Show}}",
 	"rcshowhideminor-hide": "{{doc-actionlink}}\nOption text in [[Special:RecentChanges]] in conjunction with {{msg-mw|rcshowhideminor}}.\n\nSee also:\n* {{msg-mw|rcshowhideminor-show}}\n{{Identical|Hide}}",
 	"rcshowhidebots": "Option text in [[Special:RecentChanges]]. Parameters:\n* $1 - the \"show/hide\" command, with the text taken from either {{msg-mw|rcshowhidebots-show}} or {{msg-mw|rcshowhidebots-hide}}\n{{Identical|$1 bots}}",
-	"rcshowhidebots-show": "{{doc-actionlink}}\nOption text in [[Special:RecentChanges]] in conjunction with {{msg-mw|rcshowhidebots}}.\n\nSee also:\n* {{msg-mw|rcshowhidebots-show}}\n{{Identical|Show}}",
+	"rcshowhidebots-show": "{{doc-actionlink}}\nOption text in [[Special:RecentChanges]] in conjunction with {{msg-mw|rcshowhidebots}}.\n\nSee also:\n* {{msg-mw|rcshowhidebots-hide}}\n{{Identical|Show}}",
 	"rcshowhidebots-hide": "{{doc-actionlink}}\nOption text in [[Special:RecentChanges]] in conjunction with {{msg-mw|rcshowhidebots}}.\n\nSee also:\n* {{msg-mw|rcshowhidebots-hide}}\n{{Identical|Hide}}",
 	"rcshowhideliu": "Option text in [[Special:RecentChanges]]. Parameters:\n* $1 - any one of the following messages:\n** {{msg-mw|rcshowhideliu-show}}\n** {{msg-mw|rcshowhideliu-hide}}\n{{Identical|Registered user}}",
 	"rcshowhideliu-show": "{{doc-actionlink}}\nOption text in [[Special:RecentChanges]] in conjunction with {{msg-mw|rcshowhideliu}}.\n\nSee also:\n* {{msg-mw|rcshowhideliu-hide}}\n{{Identical|Show}}",

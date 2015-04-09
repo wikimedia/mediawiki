@@ -105,7 +105,7 @@
 	"api-help-param-integer-max": "{{PLURAL:$1|1=Wartość musi|2=Wartości muszą}} być nie większa niż $3.",
 	"api-help-param-integer-minmax": "{{PLURAL:$1|1=Wartość musi|2=Wartości muszą}} być pomiędzy $2 a $3.",
 	"api-help-param-multi-separate": "Oddziel wartości za pomocą <kbd>|</kbd>.",
-	"api-help-param-multi-max": "Maksymalna ilość wartości to {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} dla botów).",
+	"api-help-param-multi-max": "Maksymalna liczba wartości to {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} dla botów).",
 	"api-help-param-default": "Domyślnie: $1",
 	"api-help-param-default-empty": "Domyślnie: <span class=\"apihelp-empty\">(puste)</span>",
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(bez opisu)</span>",
