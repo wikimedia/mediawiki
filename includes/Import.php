@@ -528,10 +528,10 @@ class WikiImporter {
 		$oldDisable = libxml_disable_entity_loader( true );
 		$this->reader->read();
 
-		if ( $this->reader->name != 'mediawiki' ) {
+		if ( $this->reader->localName != 'mediawiki' ) {
 			libxml_disable_entity_loader( $oldDisable );
 			throw new MWException( "Expected <mediawiki> tag, got " .
-				$this->reader->name );
+				$this->reader->localName );
 		}
 		$this->debug( "<mediawiki> tag is correct." );
 
@@ -542,7 +542,7 @@ class WikiImporter {
 		$rethrow = null;
 		try {
 			while ( $keepReading ) {
-				$tag = $this->reader->name;
+				$tag = $this->reader->localName;
 				$type = $this->reader->nodeType;
 
 				if ( !Hooks::run( 'ImportHandleToplevelXMLTag', array( $this ) ) ) {
@@ -593,11 +593,11 @@ class WikiImporter {
 
 		while ( $this->reader->read() ) {
 			if ( $this->reader->nodeType == XmlReader::END_ELEMENT &&
-					$this->reader->name == 'siteinfo' ) {
+					$this->reader->localName == 'siteinfo' ) {
 				break;
 			}
 
-			$tag = $this->reader->name;
+			$tag = $this->reader->localName;
 
 			if ( $tag == 'namespace' ) {
 				$this->foreignNamespaces[ $this->nodeAttribute( 'key' ) ] =
@@ -621,11 +621,11 @@ class WikiImporter {
 
 		while ( $this->reader->read() ) {
 			if ( $this->reader->nodeType == XMLReader::END_ELEMENT &&
-					$this->reader->name == 'logitem' ) {
+					$this->reader->localName == 'logitem' ) {
 				break;
 			}
 
-			$tag = $this->reader->name;
+			$tag = $this->reader->localName;
 
 			if ( !Hooks::run( 'ImportHandleLogItemXMLTag', array(
 				$this, $logInfo
@@ -685,13 +685,13 @@ class WikiImporter {
 
 		while ( $skip ? $this->reader->next() : $this->reader->read() ) {
 			if ( $this->reader->nodeType == XMLReader::END_ELEMENT &&
-					$this->reader->name == 'page' ) {
+					$this->reader->localName == 'page' ) {
 				break;
 			}
 
 			$skip = false;
 
-			$tag = $this->reader->name;
+			$tag = $this->reader->localName;
 
 			if ( $badTitle ) {
 				// The title is invalid, bail out of this page
@@ -758,11 +758,11 @@ class WikiImporter {
 
 		while ( $skip ? $this->reader->next() : $this->reader->read() ) {
 			if ( $this->reader->nodeType == XMLReader::END_ELEMENT &&
-					$this->reader->name == 'revision' ) {
+					$this->reader->localName == 'revision' ) {
 				break;
 			}
 
-			$tag = $this->reader->name;
+			$tag = $this->reader->localName;
 
 			if ( !Hooks::run( 'ImportHandleRevisionXMLTag', array(
 				$this, $pageInfo, $revisionInfo
@@ -850,11 +850,11 @@ class WikiImporter {
 
 		while ( $skip ? $this->reader->next() : $this->reader->read() ) {
 			if ( $this->reader->nodeType == XMLReader::END_ELEMENT &&
-					$this->reader->name == 'upload' ) {
+					$this->reader->localName == 'upload' ) {
 				break;
 			}
 
-			$tag = $this->reader->name;
+			$tag = $this->reader->localName;
 
 			if ( !Hooks::run( 'ImportHandleUploadXMLTag', array(
 				$this, $pageInfo
@@ -948,11 +948,11 @@ class WikiImporter {
 
 		while ( $this->reader->read() ) {
 			if ( $this->reader->nodeType == XMLReader::END_ELEMENT &&
-					$this->reader->name == 'contributor' ) {
+					$this->reader->localName == 'contributor' ) {
 				break;
 			}
 
-			$tag = $this->reader->name;
+			$tag = $this->reader->localName;
 
 			if ( in_array( $tag, $fields ) ) {
 				$info[$tag] = $this->nodeContents();
