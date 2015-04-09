@@ -3525,7 +3525,11 @@ abstract class DatabaseBase implements IDatabase {
 		if ( !$this->mTrxLevel ) {
 			$this->begin( $fname );
 			$this->mTrxAutomatic = true;
-			$this->mTrxAutomaticAtomic = true;
+			// If DBO_TRX is set, a series of startAtomic/endAtomic pairs will result
+			// in all changes being in one transaction to keep requests transactional.
+			if ( !$this->getFlag( DBO_TRX ) ) {
+				$this->mTrxAutomaticAtomic = true;
+			}
 		}
 
 		$this->mTrxAtomicLevels->push( $fname );
