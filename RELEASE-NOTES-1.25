@@ -484,6 +484,8 @@ changes to languages because of Bugzilla reports.
 * Removed global function swap(). (deprecated since 1.24)
 * The global importScript and importStylesheet functions, as well as the loadedScripts object,
   from wikibits.js (deprecated since 1.17) now emit warnings through mw.log.warn when accessed.
+* Deprecated the php5 file extension entry points. Refer to the ".php" files
+  instead. (Set up redirects if needed.)
 
 == Compatibility ==
 
