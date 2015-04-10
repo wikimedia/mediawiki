@@ -14,6 +14,7 @@ production.
 * New-style continuation is now the default for API action=continue. Clients may
   use the 'rawcontinue' parameter to receive raw query-continue data, but the
   new style is encouraged as it's harder to implement incorrectly.
+* Deprecated API formats dump and wddx have been completely removed.
 
 === New features in 1.26 ===
 * (T51506) Now action=info gives estimates of actual watchers for a page.
@@ -55,6 +56,7 @@ production.
 * New-style continuation is now the default for action=continue. Clients may
   use the 'rawcontinue' parameter to receive raw query-continue data, but the
   new style is encouraged as it's harder to implement incorrectly.
+* Deprecated API formats dump and wddx have been completely removed.
 * API action=query&list=tags: The displayname can now be boolean false if the
   tag is meant to be hidden from user interfaces.
 * action=import no longer allows both the namespace= and rootpage= parameters
