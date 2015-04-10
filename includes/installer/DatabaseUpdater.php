@@ -934,6 +934,7 @@ abstract class DatabaseUpdater {
 		}
 		$blobStore = new MessageBlobStore();
 		$blobStore->clear();
+		$this->db->delete( 'module_deps', '*', __METHOD__ );
 		$this->output( "done.\n" );
 	}
 
