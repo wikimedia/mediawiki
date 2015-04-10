@@ -1,9 +1,5 @@
 <?php
 /**
- * An action that just pass the request to Special:RevisionDelete
- *
- * Copyright © 2011 Alexandre Emsenhuber
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -20,24 +16,39 @@
  *
  * @file
  * @ingroup Actions
- * @author Alexandre Emsenhuber
  */
 
 /**
- * An action that just pass the request to Special:RevisionDelete
+ * An action that just passes the request to the relevant special page
  *
  * @ingroup Actions
- * @deprecated since 1.25 This class has been replaced by SpecialPageAction, but
- * you really shouldn't have been using it outside core in the first place
  */
-class RevisiondeleteAction extends FormlessAction {
-	public function __construct( Page $page, IContextSource $context = null ) {
-		wfDeprecated( 'RevisiondeleteAction class', '1.25' );
-		parent::__construct( $page, $context );
-	}
+class SpecialPageAction extends FormlessAction {
+
+	/**
+	 * @var array A mapping of action names to special page names.
+	 */
+	public static $actionToSpecialPageMapping = array(
+		'revisiondelete' => 'Revisiondelete',
+		'editchangetags' => 'EditTags',
+	);
 
 	public function getName() {
-		return 'revisiondelete';
+		$request = $this->getRequest();
+		$actionName = $request->getVal( 'action', 'view' );
+		// TODO: Shouldn't need to copy-paste this code from Action::getActionName!
+		if ( $actionName === 'historysubmit' ) {
+			if ( $request->getBool( 'revisiondelete' ) ) {
+				$actionName = 'revisiondelete';
+			} elseif ( $request->getBool( 'editchangetags' ) ) {
+				$actionName = 'editchangetags';
+			}
+		}
+
+		if ( isset( self::$actionToSpecialPageMapping[$actionName] ) ) {
+			return $actionName;
+		}
+		return 'nosuchaction';
 	}
 
 	public function requiresUnblock() {
@@ -53,7 +64,13 @@ class RevisiondeleteAction extends FormlessAction {
 	}
 
 	public function show() {
-		$special = SpecialPageFactory::getPage( 'Revisiondelete' );
+		$action = self::getName();
+		if ( $action === 'nosuchaction' ) {
+			throw new ErrorPageError( $this->msg( 'nosuchaction' ), $this->msg( 'nosuchactiontext' ) );
+		}
+
+		// map actions to (whitelisted) special pages
+		$special = SpecialPageFactory::getPage( self::$actionToSpecialPageMapping[$action] );
 		$special->setContext( $this->getContext() );
 		$special->getContext()->setTitle( $special->getPageTitle() );
 		$special->run( '' );
