@@ -8,6 +8,7 @@
  *
  * @author Bonevarluri
  * @author Mogoeilor
+ * @author Mjbmr
  */
 
 $rtl = true;
@@ -20,15 +21,15 @@ $namespaceNames = array(
 	NS_USER_TALK        => 'چک_چنه_کارور',
 	NS_PROJECT_TALK     => 'چک_چنه_$1',
 	NS_FILE             => 'جانیا',
-	NS_FILE_TALK        => 'جانیا_چک_چنه',
+	NS_FILE_TALK        => 'چک_چنه_جانیا',
 	NS_MEDIAWIKI        => 'ویکی_رسانه',
 	NS_MEDIAWIKI_TALK   => 'چک_چنه_ویکی_رسانه',
-	NS_TEMPLATE         => 'قالو',
-	NS_TEMPLATE_TALK    => 'قالو_چک_چنه',
+	NS_TEMPLATE         => 'چوئه',
+	NS_TEMPLATE_TALK    => 'چک_چنه_چوئه',
 	NS_HELP             => 'هومیاری',
 	NS_HELP_TALK        => 'چک_چنه_هومیاری',
 	NS_CATEGORY         => 'دسه',
-	NS_CATEGORY_TALK    => 'دسه_چک_چنه',
+	NS_CATEGORY_TALK    => 'چک_چنه_دسه',
 );
 
 $specialPageAliases = array(
