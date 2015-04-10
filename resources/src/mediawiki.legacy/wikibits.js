@@ -5,7 +5,8 @@
 	var msg,
 		win = window,
 		ua = navigator.userAgent.toLowerCase(),
-		onloadFuncts = [];
+		onloadFuncts = [],
+		loadedScripts = {};
 
 	/**
 	 * User-agent sniffing.
@@ -161,8 +162,12 @@
 	 * Wikipage import methods
 	 */
 
-	// included-scripts tracker
-	win.loadedScripts = {};
+	/**
+	 * included-scripts tracker
+	 *
+	 * @deprecated since 1.17, warnings since 1.26 Use mw.loader.getState() instead
+	 */
+	mw.log.deprecate( win, 'loadedScripts', loadedScripts, 'Use mw.loader.getState() instead.' );
 
 	win.importScript = function ( page ) {
 		var uri = mw.config.get( 'wgScript' ) + '?title=' +
@@ -172,10 +177,10 @@
 	};
 
 	win.importScriptURI = function ( url ) {
-		if ( win.loadedScripts[url] ) {
+		if ( loadedScripts[url] ) {
 			return null;
 		}
-		win.loadedScripts[url] = true;
+		loadedScripts[url] = true;
 		var s = document.createElement( 'script' );
 		s.setAttribute( 'src', url );
 		s.setAttribute( 'type', 'text/javascript' );
