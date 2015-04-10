@@ -43,7 +43,8 @@
 			"아라",
 			"Chameleon222",
 			"Helland",
-			"Macofe"
+			"Macofe",
+			"Kingu"
 		]
 	},
 	"tog-underline": "Strek under lenker:",
@@ -471,6 +472,7 @@
 	"wrongpassword": "Du har oppgitt et ugyldig passord. Prøv igjen.",
 	"wrongpasswordempty": "Du oppga ikke noe passord. Prøv igjen.",
 	"passwordtooshort": "Passord må ha minst {{PLURAL:$1|ett tegn|$1 tegn}}.",
+	"passwordtoolong": "Passord kan ikke overskride {{PLURAL:$1|1 character|$1 characters}}.",
 	"password-name-match": "Passord og brukernavn kan ikke være det samme.",
 	"password-login-forbidden": "Bruken av dette brukernavnet og passordet er forbudt.",
 	"mailmypassword": "Tilbakestill passord",

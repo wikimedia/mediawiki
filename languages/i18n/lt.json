@@ -2188,7 +2188,7 @@
 	"tooltip-ca-edit": "Jūs galite redaguoti šį puslapį. Nepamirškite paspausti peržiūros mygtuką prieš išsaugodami.",
 	"tooltip-ca-addsection": "Pradėti naują aptariamą temą",
 	"tooltip-ca-viewsource": "Puslapis yra užrakintas. Galite pažiūrėti turinį.",
-	"tooltip-ca-history": "Ankstesni patikslinimai šiame puslapyje",
+	"tooltip-ca-history": "Ankstesnės puslapio versijos",
 	"tooltip-ca-protect": "Užrakinti šį puslapį",
 	"tooltip-ca-unprotect": "Keisti šio puslapio apsaugą",
 	"tooltip-ca-delete": "Ištrinti šį puslapį",

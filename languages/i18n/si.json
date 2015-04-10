@@ -28,7 +28,8 @@
 			"Susith Chandira Gts",
 			"Thanushka",
 			"Thirsty",
-			"Macofe"
+			"Macofe",
+			"Roonyh"
 		]
 	},
 	"tog-underline": "සබැඳි යටීර කිරීම:",
@@ -2047,6 +2048,7 @@
 	"tooltip-pt-mycontris": "ඔබගේ දායකත්වයන් ලැයිස්තුව‍",
 	"tooltip-pt-login": "පිවිසීම කෙරෙහි ඔබ උද්‍යෝගිමත් කෙරෙයි. එහෙත්, එය අනිවාර්ය නැත",
 	"tooltip-pt-logout": "නික්මීම",
+	"tooltip-pt-createaccount": "ඔබ ගිණුමක් තනා පිවිසෙන්නේ නම් මැනවි; කෙසේ වුවත්, එය අනිවාර්ය නොවේ.",
 	"tooltip-ca-talk": "අන්තර්ගත පිටුව පිළිබඳ සාකච්ඡාව",
 	"tooltip-ca-edit": "ඔබ‍ට මෙම පිටුව සංස්කරණය කල හැක. සුරැකීමට පෙර කරුණාකර පෙරදසුන බොත්තම භාවිතා කරන්න",
 	"tooltip-ca-addsection": "නව ඡේදයක් අරඹන්න",

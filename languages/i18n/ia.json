@@ -13,7 +13,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Carlosedepaula",
-			"Macofe"
+			"Macofe",
+			"Karmwiki"
 		]
 	},
 	"tog-underline": "Sublinear ligamines:",
@@ -1529,7 +1530,7 @@
 	"unusedimages": "Imagines non usate",
 	"wantedcategories": "Categorias plus demandate",
 	"wantedpages": "Paginas plus demandate",
-	"wantedpages-summary": "Lista de paginas non existente con le major numero de ligamines verso illos, excludente le paginas que ha solmente redirectiones que liga verso illos. Pro un lista de paginas non existente que ha redirectiones que liga verso illos, vide [[{{#special:BrokenRedirects}}]].",
+	"wantedpages-summary": "Lista del paginas non existente con le major numero de ligamines verso illos, excludente le paginas que ha solmente redirectiones que liga verso illos. Pro un lista del paginas non existente que ha redirectiones que liga verso illos, vide [[{{#special:BrokenRedirects}}]].",
 	"wantedpages-badtitle": "Titulo invalide in le gruppo de resultatos: $1",
 	"wantedfiles": "Files desirate",
 	"wantedfiletext-cat": "Le sequente files es usate ma non existe. Le files ab repositorios externe pote esser listate malgrado que illos existe. Omne tal false positivos essera <del>cancellate</del>. In addition, paginas que incorpora files que non existe es listate in [[:$1]].",

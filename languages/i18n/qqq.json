@@ -165,7 +165,8 @@
 			"Jdforrester",
 			"Mar(c)",
 			"Pikne",
-			"Tacsipacsi"
+			"Tacsipacsi",
+			"Totosunarto"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -1785,7 +1786,7 @@
 	"wantedcategories": "{{doc-special|WantedCategories}}",
 	"wantedcategories-summary": "{{doc-specialpagesummary|wantedcategories}}",
 	"wantedpages": "{{doc-special|WantedPages}}\n{{Identical|Wanted page}}",
-	"wantedpages-summary": "{{doc-specialpagesummary|wantedpages}}",
+	"wantedpages-summary": "{{dok-kesimpulanhalamankhusus|halamandiinginkan}}",
 	"wantedpages-badtitle": "Error message shown when [[Special:WantedPages]] is listing a page with a title that shouldn't exist.\n\nParameters:\n* $1 - a page title",
 	"wantedfiles": "{{doc-special|WantedFiles}}",
 	"wantedfiles-summary": "{{doc-specialpagesummary|wantedfiles}}",
