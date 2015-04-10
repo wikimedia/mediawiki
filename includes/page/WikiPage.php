@@ -2534,7 +2534,6 @@ class WikiPage implements Page, IDBAccessObject {
 			}
 		}
 
-		$this->mTitle->flushRestrictions();
 		InfoAction::invalidateCache( $this->mTitle );
 
 		if ( $logAction == 'unprotect' ) {

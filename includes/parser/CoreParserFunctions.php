@@ -759,11 +759,11 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	public static function protectionlevel( $parser, $type = '', $title = '' ) {
-		$titleObject = Title::newFromText( $title );
-		if ( !( $titleObject instanceof Title ) ) {
-			$titleObject = $parser->mTitle;
-		}
-		if ( $titleObject->areRestrictionsLoaded() || $parser->incrementExpensiveFunctionCount() ) {
+		if ( $parser->incrementExpensiveFunctionCount() ) {
+			$titleObject = Title::newFromText( $title );
+			if ( !( $titleObject instanceof Title ) ) {
+				$titleObject = $parser->mTitle;
+			}
 			$restrictions = $titleObject->getRestrictions( strtolower( $type ) );
 			# Title::getRestrictions returns an array, its possible it may have
 			# multiple values in the future
@@ -1224,13 +1224,11 @@ class CoreParserFunctions {
 	 * @since 1.23
 	 */
 	public static function cascadingsources( $parser, $title = '' ) {
-		$titleObject = Title::newFromText( $title );
-		if ( !( $titleObject instanceof Title ) ) {
-			$titleObject = $parser->mTitle;
-		}
-		if ( $titleObject->areCascadeProtectionSourcesLoaded()
-			|| $parser->incrementExpensiveFunctionCount()
-		) {
+		if ( $parser->incrementExpensiveFunctionCount() ) {
+			$titleObject = Title::newFromText( $title );
+			if ( !( $titleObject instanceof Title ) ) {
+				$titleObject = $parser->mTitle;
+			}
 			$names = array();
 			$sources = $titleObject->getCascadeProtectionSources();
 			foreach ( $sources[0] as $sourceTitle ) {

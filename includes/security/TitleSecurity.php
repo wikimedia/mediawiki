@@ -3,38 +3,10 @@
 /**
  * Encapsulates Title-based security logic
  *
- * @since 1.25
- *
- * TODO: Lazy-loaded fields are dangerous now that the TitleSecurity object
- * might be reused for multiple titles.
+ * @since 1.26
  */
 class TitleSecurity {
-	/** @var array Array of groups allowed to edit this article */
-	protected $mRestrictions = array();
-
-	/** @var bool */
-	protected $mOldRestrictions = false;
-
-	/** @var bool Cascade restrictions on this page to included templates and images? */
-	protected $mCascadeRestriction;
-
-	/** Caching the results of getCascadeProtectionSources */
-	protected $mCascadingRestrictions;
-
-	/** @var array When do the restrictions on this page expire? */
-	protected $mRestrictionsExpiry = array();
-
-	/** @var bool Are cascading restrictions in effect on this page? */
-	protected $mHasCascadingRestrictions;
-
-	/** @var array Where are the cascading restrictions coming from on this page? */
-	protected $mCascadeSources;
-
-	/** @var bool Boolean for initialisation on demand */
-	protected $mRestrictionsLoaded = false;
-
-	/** @var mixed Cached value for getTitleProtection (create protection) */
-	protected $mTitleProtection = null;
+	protected static $instance;
 
 	protected function __construct() {
 	}
@@ -43,7 +15,10 @@ class TitleSecurity {
 	 * Singleton
 	 */
 	public static function instance() {
-		return new TitleSecurity();
+		if ( !self::$instance ) {
+			self::$instance = new TitleSecurity();
+		}
+		return self::$instance;
 	}
 
 	/**
@@ -340,7 +315,8 @@ class TitleSecurity {
 	 * @return array List of errors
 	 */
 	protected function checkPageRestrictions( Title $title, $action, $user, $errors, $rigor, $short ) {
-		foreach ( $this->getRestrictions( $title, $action ) as $right ) {
+		$restrictions = $this->loadRestrictions( $title );
+		foreach ( $restrictions->get( $action ) as $right ) {
 			// Backwards compatibility, rewrite sysop -> editprotected
 			if ( $right == 'sysop' ) {
 				$right = 'editprotected';
@@ -354,7 +330,7 @@ class TitleSecurity {
 			}
 			if ( !$user->isAllowed( $right ) ) {
 				$errors[] = array( 'protectedpagetext', $right, $action );
-			} elseif ( $this->mCascadeRestriction && !$user->isAllowed( 'protect' ) ) {
+			} elseif ( $restrictions->isCascading() && !$user->isAllowed( 'protect' ) ) {
 				$errors[] = array( 'protectedpagetext', 'protect', $action );
 			}
 		}
@@ -752,6 +728,7 @@ class TitleSecurity {
 	 *
 	 * @return array|bool An associative array representing any existent title
 	 *   protection, or false if there's none.
+	 * TODO: Should return an empty array rather than false.
 	 */
 	public function getTitleProtection( Title $title ) {
 		// Can't protect pages in special namespaces
@@ -764,33 +741,39 @@ class TitleSecurity {
 			return false;
 		}
 
-		if ( $this->mTitleProtection === null ) {
-			$dbr = wfGetDB( DB_SLAVE );
-			$res = $dbr->select(
-				'protected_titles',
-				array(
-					'user' => 'pt_user',
-					'reason' => 'pt_reason',
-					'expiry' => 'pt_expiry',
-					'permission' => 'pt_create_perm'
-				),
-				array( 'pt_namespace' => $title->getNamespace(), 'pt_title' => $title->getDBkey() ),
-				__METHOD__
-			);
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select(
+			'protected_titles',
+			array(
+				'user' => 'pt_user',
+				'reason' => 'pt_reason',
+				'expiry' => 'pt_expiry',
+				'permission' => 'pt_create_perm'
+			),
+			array( 'pt_namespace' => $title->getNamespace(), 'pt_title' => $title->getDBkey() ),
+			__METHOD__
+		);
 
-			// fetchRow returns false if there are no rows.
-			$row = $dbr->fetchRow( $res );
-			if ( $row ) {
-				if ( $row['permission'] == 'sysop' ) {
-					$row['permission'] = 'editprotected'; // B/C
-				}
-				if ( $row['permission'] == 'autoconfirmed' ) {
-					$row['permission'] = 'editsemiprotected'; // B/C
-				}
+		// fetchRow returns false if there are no rows.
+		$row = $dbr->fetchRow( $res );
+		if ( $row ) {
+			if ( $row['permission'] == 'sysop' ) {
+				$row['permission'] = 'editprotected'; // B/C
 			}
-			$this->mTitleProtection = $row;
+			if ( $row['permission'] == 'autoconfirmed' ) {
+				$row['permission'] = 'editsemiprotected'; // B/C
+			}
+			$row['expiry'] = $dbr->decodeExpiry( $row['expiry'] );
+
+			// No longer protected if the expiry has passed.
+			if ( $row['expiry'] !== 'infinity'
+				&& $row['expiry'] < wfTimestampNow()
+			) {
+				return false;
+			}
 		}
-		return $this->mTitleProtection;
+
+		return $row;
 	}
 
 	/**
@@ -804,7 +787,6 @@ class TitleSecurity {
 			array( 'pt_namespace' => $title->getNamespace(), 'pt_title' => $title->getDBkey() ),
 			__METHOD__
 		);
-		$this->mTitleProtection = false;
 	}
 
 	/**
@@ -896,47 +878,20 @@ class TitleSecurity {
 	 * @return bool If the page is subject to cascading restrictions.
 	 */
 	public function isCascadeProtected( Title $title ) {
-		list( $sources, /* $restrictions */ ) = $this->getCascadeProtectionSources( $title, false );
-		return ( $sources > 0 );
+		$restrictions = $this->getCascadeProtectionSources( $title, false );
+		return $restrictions->isCascading();
 	}
 
 	/**
-	 * Determines whether cascading protection sources have already been loaded from
-	 * the database.
+	 * Get the sources of any cascading restrictions on this page.
 	 *
 	 * @param Title $title
-	 * @param bool $getPages True to check if the pages are loaded, or false to check
-	 * if the status is loaded.
-	 * @return bool Whether or not the specified information has been loaded
-	 */
-	public function areCascadeProtectionSourcesLoaded( Title $title, $getPages = true ) {
-		return $getPages ? $this->mCascadeSources !== null : $this->mHasCascadingRestrictions !== null;
-	}
-
-	/**
-	 * Cascading protection: Get the source of any cascading restrictions on this page.
+	 * @param TitleRestrictions $restrictions Will be populated with
+	 * restrictions which have cascaded.
 	 *
-	 * @param Title $title
-	 * @param bool $getPages Whether or not to retrieve the actual pages
-	 *        that the restrictions have come from and the actual restrictions
-	 *        themselves.
-	 * @return array Two elements: First is an array of Title objects of the
-	 *        pages from which cascading restrictions have come, false for
-	 *        none, or true if such restrictions exist but $getPages was not
-	 *        set. Second is an array like that returned by
-	 *        TitleSecurity::getAllRestrictions(), or an empty array if $getPages is
-	 *        false.
+	 * @return array 
 	 */
-	public function getCascadeProtectionSources( Title $title, $getPages = true ) {
-		global $wgContLang;
-		$pagerestrictions = array();
-
-		if ( $this->mCascadeSources !== null && $getPages ) {
-			return array( $this->mCascadeSources, $this->mCascadingRestrictions );
-		} elseif ( $this->mHasCascadingRestrictions !== null && !$getPages ) {
-			return array( $this->mHasCascadingRestrictions, $pagerestrictions );
-		}
-
+	public function getCascadeProtection( Title $title, TitleRestrictions &$restrictions = null ) {
 		$dbr = wfGetDB( DB_SLAVE );
 
 		if ( $title->getNamespace() == NS_FILE ) {
@@ -967,54 +922,53 @@ class TitleSecurity {
 
 		$res = $dbr->select( $tables, $cols, $where_clauses, __METHOD__ );
 
-		$sources = $getPages ? array() : false;
 		$now = wfTimestampNow();
 
+		$sources = array();
+		if ( $restrictions === null ) {
+			$restrictions = new TitleRestrictions();
+		}
+
 		foreach ( $res as $row ) {
-			$expiry = $wgContLang->formatExpiry( $row->pr_expiry, TS_MW );
-			if ( $expiry > $now ) {
-				if ( $getPages ) {
-					$page_id = $row->pr_page;
-					$page_ns = $row->page_namespace;
-					$page_title = $row->page_title;
-					$sources[$page_id] = Title::makeTitle( $page_ns, $page_title );
-					# Add groups needed for each restriction type if its not already there
-					# Make sure this restriction type still exists
+			$expiry = $dbr->decodeExpiry( $row->pr_expiry );
+			if ( $expiry === 'infinity' || $expiry > $now ) {
+				$page_id = $row->pr_page;
+				$page_ns = $row->page_namespace;
+				$page_title = $row->page_title;
+				$sources[$page_id] = Title::makeTitle( $page_ns, $page_title );
 
-					if ( !isset( $pagerestrictions[$row->pr_type] ) ) {
-						$pagerestrictions[$row->pr_type] = array();
-					}
-
-					if (
-						isset( $pagerestrictions[$row->pr_type] )
-						&& !in_array( $row->pr_level, $pagerestrictions[$row->pr_type] )
-					) {
-						$pagerestrictions[$row->pr_type][] = $row->pr_level;
-					}
-				} else {
-					$sources = true;
-				}
+				$restrictions->add( $row->pr_type, array( $row->pr_level ) );
 			}
 		}
 
-		if ( $getPages ) {
-			$this->mCascadeSources = $sources;
-			$this->mCascadingRestrictions = $pagerestrictions;
-		} else {
-			$this->mHasCascadingRestrictions = $sources;
-		}
-
-		return array( $sources, $pagerestrictions );
+		return $sources;
 	}
 
 	/**
-	 * Accessor for mRestrictionsLoaded
+	 * Cascading protection: Get the source of any cascading restrictions on this page.
 	 *
-	 * @return bool Whether or not the page's restrictions have already been
-	 * loaded from the database
+	 * @deprecated 1.26
+	 *
+	 * @param Title $title
+	 * @param bool $getPages Whether or not to retrieve the actual pages
+	 *        that the restrictions have come from and the actual restrictions
+	 *        themselves.
+	 * @return array Two elements: First is an array of Title objects of the
+	 *        pages from which cascading restrictions have come, false for
+	 *        none, or true if such restrictions exist but $getPages was not
+	 *        set. Second is an array like that returned by
+	 *        TitleSecurity::getAllRestrictions(), or an empty array if $getPages is
+	 *        false.
 	 */
-	public function areRestrictionsLoaded( Title $title ) {
-		return $this->mRestrictionsLoaded;
+	public function getCascadeProtectionSources( Title $title, $getPages = true ) {
+		if ( $getPages ) {
+			$restrictions = null;
+			$sources = $this->getCascadeProtection( $title, $restrictions );
+			return array( $sources, $restrictions->getAll() );
+		} else {
+			$isCascading = $this->isCascading( $title );
+			return array( true, array() );
+		}
 	}
 
 	/**
@@ -1026,25 +980,19 @@ class TitleSecurity {
 	 *     are required.
 	 */
 	public function getRestrictions( Title $title, $action ) {
-		if ( !$this->mRestrictionsLoaded ) {
-			$this->loadRestrictions( $title );
-		}
-		return isset( $this->mRestrictions[$action] )
-				? $this->mRestrictions[$action]
-				: array();
+		$restrictions = $this->loadRestrictions( $title );
+		return $restrictions->get( $action );
 	}
 
 	/**
 	 * Accessor/initialisation for mRestrictions
+	 * @deprecated 1.26
 	 *
 	 * @return array Keys are actions, values are arrays as returned by
 	 *     TitleSecurity::getRestrictions()
 	 */
 	public function getAllRestrictions( Title $title ) {
-		if ( !$this->mRestrictionsLoaded ) {
-			$this->loadRestrictions( $title );
-		}
-		return $this->mRestrictions;
+		return $this->loadRestrictions( $title )->getAll();
 	}
 
 	/**
@@ -1056,23 +1004,20 @@ class TitleSecurity {
 	 *     or not protected at all, or false if the action is not recognised.
 	 */
 	public function getRestrictionExpiry( Title $title, $action ) {
-		if ( !$this->mRestrictionsLoaded ) {
-			$this->loadRestrictions( $title );
-		}
-		return isset( $this->mRestrictionsExpiry[$action] ) ? $this->mRestrictionsExpiry[$action] : false;
+		$restrictions = $this->loadRestrictions( $title );
+		return $restrictions->getExpiry( $action );
 	}
 
 	/**
 	 * Returns cascading restrictions for the current article
 	 *
+	 * @param Title $title
+	 * @param array|null $restrictions
 	 * @return bool
 	 */
 	public function areRestrictionsCascading( Title $title ) {
-		if ( !$this->mRestrictionsLoaded ) {
-			$this->loadRestrictions( $title );
-		}
-
-		return $this->mCascadeRestriction;
+		$restrictions = $this->loadRestrictions( $title );
+		return $restrictions->isCascading();
 	}
 
 	/**
@@ -1082,6 +1027,7 @@ class TitleSecurity {
 	 * @param ResultWrapper $res Resource restrictions as an SQL result.
 	 * @param string $oldFashionedRestrictions Comma-separated list of page
 	 *        restrictions from page table (pre 1.10)
+	 * @return TitleRestrictions
 	 */
 	protected function loadRestrictionsFromResultWrapper( Title $title, $res,
 		$oldFashionedRestrictions = null
@@ -1092,7 +1038,7 @@ class TitleSecurity {
 			$rows[] = $row;
 		}
 
-		$this->loadRestrictionsFromRows( $title, $rows, $oldFashionedRestrictions );
+		return $this->loadRestrictionsFromRows( $title, $rows, $oldFashionedRestrictions );
 	}
 
 	/**
@@ -1104,19 +1050,20 @@ class TitleSecurity {
 	 * @param array $rows Array of db result objects
 	 * @param string $oldFashionedRestrictions Comma-separated list of page
 	 *   restrictions from page table (pre 1.10)
+	 * @return TitleRestrictions
 	 */
 	public function loadRestrictionsFromRows( Title $title, $rows, $oldFashionedRestrictions = null ) {
-		global $wgContLang;
 		$dbr = wfGetDB( DB_SLAVE );
+
+		$restrictions = new TitleRestrictions();
 
 		$restrictionTypes = $this->getRestrictionTypes( $title );
 
 		foreach ( $restrictionTypes as $type ) {
-			$this->mRestrictions[$type] = array();
-			$this->mRestrictionsExpiry[$type] = $wgContLang->formatExpiry( '', TS_MW );
+			$restrictions->add( $type, array() );
 		}
 
-		$this->mCascadeRestriction = false;
+		$restrictions->setIsCascading( false );
 
 		# Backwards-compatibility: also load the restrictions from the page record (old format).
 
@@ -1125,24 +1072,22 @@ class TitleSecurity {
 				array( 'page_id' => $title->getArticleID() ), __METHOD__ );
 		}
 
-		if ( $oldFashionedRestrictions != '' ) {
+		if ( $oldFashionedRestrictions ) {
 
 			foreach ( explode( ':', trim( $oldFashionedRestrictions ) ) as $restrict ) {
 				$temp = explode( '=', trim( $restrict ) );
 				if ( count( $temp ) == 1 ) {
 					// old old format should be treated as edit/move restriction
-					$this->mRestrictions['edit'] = explode( ',', trim( $temp[0] ) );
-					$this->mRestrictions['move'] = explode( ',', trim( $temp[0] ) );
+					$values = explode( ',', trim( $temp[0] ) );
+					$restrictions->add( 'edit', $values );
+					$restrictions->add( 'move', $values );
 				} else {
 					$restriction = trim( $temp[1] );
-					if ( $restriction != '' ) { //some old entries are empty
-						$this->mRestrictions[$temp[0]] = explode( ',', $restriction );
+					if ( $restriction ) { //some old entries are empty
+						$restrictions->add( $temp[0], explode( ',', $restriction ) );
 					}
 				}
 			}
-
-			$this->mOldRestrictions = true;
-
 		}
 
 		if ( count( $rows ) ) {
@@ -1159,71 +1104,57 @@ class TitleSecurity {
 
 				// This code should be refactored, now that it's being used more generally,
 				// But I don't really see any harm in leaving it in Block for now -werdna
-				$expiry = $wgContLang->formatExpiry( $row->pr_expiry, TS_MW );
+				$expiry = $row->pr_expiry;
 
 				// Only apply the restrictions if they haven't expired!
 				if ( !$expiry || $expiry > $now ) {
-					$this->mRestrictionsExpiry[$row->pr_type] = $expiry;
-					$this->mRestrictions[$row->pr_type] = explode( ',', trim( $row->pr_level ) );
-
-					$this->mCascadeRestriction |= $row->pr_cascade;
+					$restrictions->add( $row->pr_type,
+						explode( ',', trim( $row->pr_level ) ), $expiry );
+					$restrictions->setIsCascading(
+						$restrictions->isCascading() || $row->pr_cascade );
 				}
 			}
 		}
 
-		$this->mRestrictionsLoaded = true;
+		return $restrictions;
 	}
 
 	/**
 	 * Load restrictions from the page_restrictions table
 	 *
 	 * @param Title $title
-	 * @param string $oldFashionedRestrictions Comma-separated list of page
+	 * @param string|null $oldFashionedRestrictions Comma-separated list of page
 	 *   restrictions from page table (pre 1.10)
+	 *
+	 * @return TitleRestrictions
 	 */
 	public function loadRestrictions( Title $title, $oldFashionedRestrictions = null ) {
-		global $wgContLang;
-		if ( !$this->mRestrictionsLoaded ) {
-			if ( $title->exists() ) {
-				$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE );
 
-				$res = $dbr->select(
-					'page_restrictions',
-					array( 'pr_type', 'pr_expiry', 'pr_level', 'pr_cascade' ),
-					array( 'pr_page' => $title->getArticleID() ),
-					__METHOD__
-				);
+		if ( $title->exists() ) {
+			$res = $dbr->select(
+				'page_restrictions',
+				array( 'pr_type', 'pr_expiry', 'pr_level', 'pr_cascade' ),
+				array( 'pr_page' => $title->getArticleID() ),
+				__METHOD__
+			);
 
-				$this->loadRestrictionsFromResultWrapper( $title, $res, $oldFashionedRestrictions );
+			$restrictions = $this->loadRestrictionsFromResultWrapper( $title, $res, $oldFashionedRestrictions );
+		} else {
+			$title_protection = $this->getTitleProtection( $title );
+
+			$restrictions = new TitleRestrictions();
+
+			if ( $title_protection ) {
+				// Apply the restrictions
+				$restrictions->add( 'create',
+					explode( ',', trim( $title_protection['permission'] ) ),
+					$title_protection['expiry'] );
 			} else {
-				$title_protection = $this->getTitleProtection( $title );
-
-				if ( $title_protection ) {
-					$now = wfTimestampNow();
-					$expiry = $wgContLang->formatExpiry( $title_protection['expiry'], TS_MW );
-
-					if ( !$expiry || $expiry > $now ) {
-						// Apply the restrictions
-						$this->mRestrictionsExpiry['create'] = $expiry;
-						$this->mRestrictions['create'] = explode( ',', trim( $title_protection['permission'] ) );
-					} else { // Get rid of the old restrictions
-						$this->mTitleProtection = false;
-					}
-				} else {
-					$this->mRestrictionsExpiry['create'] = $wgContLang->formatExpiry( '', TS_MW );
-				}
-				$this->mRestrictionsLoaded = true;
+				$restrictions->clear( 'create' );
 			}
 		}
-	}
-
-	/**
-	 * Flush the protection cache in this object and force reload from the database.
-	 * This is used when updating protection from WikiPage::doUpdateRestrictions().
-	 */
-	public function flushRestrictions( Title $title ) {
-		$this->mRestrictionsLoaded = false;
-		$this->mTitleProtection = null;
+		return $restrictions;
 	}
 
 	/**
