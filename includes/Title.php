@@ -263,7 +263,7 @@ class Title {
 		if ( is_object( $text ) ) {
 			throw new InvalidArgumentException( '$text must be a string.' );
 		} elseif ( !is_string( $text ) ) {
-			wfWarn( __METHOD__ . ': $text must be a string. This will throw an InvalidArgumentException in future.' );
+			wfWarn( __METHOD__ . ': $text must be a string. This will throw an InvalidArgumentException in future.', 2 );
 		}
 
 		$cache = self::getTitleCache();
