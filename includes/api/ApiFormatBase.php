@@ -219,7 +219,7 @@ abstract class ApiFormatBase extends ApiBase {
 	}
 
 	/**
-	 * To avoid code duplication with the deprecation of dbg, dump, txt, wddx,
+	 * To avoid code duplication with the deprecation of dbg, txt
 	 * and yaml, this method is added to do the necessary work. It should be
 	 * removed when those deprecated formats are removed.
 	 */
@@ -285,7 +285,7 @@ abstract class ApiFormatBase extends ApiBase {
 		// Escape everything first for full coverage
 		$text = htmlspecialchars( $text );
 
-		if ( $this->mFormat === 'XML' || $this->mFormat === 'WDDX' ) {
+		if ( $this->mFormat === 'XML' ) {
 			// encode all comments or tags as safe blue strings
 			$text = str_replace( '&lt;', '<span style="color:blue;">&lt;', $text );
 			$text = str_replace( '&gt;', '&gt;</span>', $text );
