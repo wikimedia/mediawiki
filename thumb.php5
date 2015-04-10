@@ -22,4 +22,6 @@
  * @ingroup Media
  */
 
+define( 'MW_ENTRY_PHP5', true );
+
 require './thumb.php';
