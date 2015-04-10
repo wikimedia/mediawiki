@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Logger;
 
+use DateTimeZone;
 use MWDebug;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
