@@ -261,7 +261,7 @@ class Title {
 	 */
 	public static function newFromText( $text, $defaultNamespace = NS_MAIN ) {
 		if ( !is_string( $text ) ) {
-			wfDebugLog( 'AdHocDebug', json_encode( debug_backtrace() ) );
+			wfDebugLog( 'AdHocDebug', 'Title::newFromText non-string at ' . wfGetAllCallers( 5 ) );
 		}
 		if ( is_object( $text ) ) {
 			throw new MWException( 'Title::newFromText given an object' );
