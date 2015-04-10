@@ -527,7 +527,7 @@ abstract class QueryPage extends SpecialPage {
 
 		$this->numRows = $res->numRows();
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = $this->getRecacheDB();
 		$this->preprocessResults( $dbr, $res );
 
 		$out->addHTML( Xml::openElement( 'div', array( 'class' => 'mw-spcontent' ) ) );
