@@ -2376,7 +2376,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$status = Status::newGood();
 		$sl = $this->backend->getScopedFileLocks( $paths, LockManager::LOCK_EX, $status );
-		$this->assertType( 'ScopedLock', $sl,
+		$this->assertInstanceOf( 'ScopedLock', $sl,
 			"Scoped locking of files succeeded ($backendName)." );
 		$this->assertEquals( array(), $status->errors,
 			"Scoped locking of files succeeded ($backendName)." );
