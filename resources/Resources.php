@@ -1401,6 +1401,17 @@ return array(
 	'mediawiki.special.changeslist.enhanced' => array(
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.enhanced.css',
 	),
+	'mediawiki.special.edittags' => array(
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.edittags.css',
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.edittags.js',
+		'dependencies' => array(
+			'jquery.chosen',
+		),
+		'messages' => array(
+			'tags-edit-chosen-placeholder',
+			'tags-edit-chosen-no-results',
+		),
+	),
 	'mediawiki.special.import' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.import.js',
 	),
