@@ -21,4 +21,6 @@
  * @file
  */
 
+define( 'MW_ENTRY_PHP5', true );
+
 require './index.php';
