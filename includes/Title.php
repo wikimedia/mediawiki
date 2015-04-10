@@ -264,6 +264,7 @@ class Title {
 			throw new InvalidArgumentException( '$text must be a string.' );
 		} elseif ( !is_string( $text ) ) {
 			wfWarn( __METHOD__ . ': $text must be a string. This will throw an InvalidArgumentException in future.' );
+			wfDebugLog( 'AdHocDebug', 'Title::newFromText non-string at ' . json_encode( debug_backtrace() ) );
 		}
 
 		$cache = self::getTitleCache();
