@@ -47,7 +47,7 @@ class LoggerFactory {
 
 	/**
 	 * Service provider.
-	 * @var Spi $spi
+	 * @var \MediaWiki\Logger\Spi $spi
 	 */
 	private static $spi;
 
@@ -56,7 +56,7 @@ class LoggerFactory {
 	 * Register a service provider to create new \Psr\Log\LoggerInterface
 	 * instances.
 	 *
-	 * @param Spi $provider Provider to register
+	 * @param \MediaWiki\Logger\Spi $provider Provider to register
 	 */
 	public static function registerProvider( Spi $provider ) {
 		self::$spi = $provider;
@@ -71,7 +71,7 @@ class LoggerFactory {
 	 * Spi registration. $wgMWLoggerDefaultSpi is expected to be an
 	 * array usable by ObjectFactory::getObjectFromSpec() to create a class.
 	 *
-	 * @return Spi
+	 * @return \MediaWiki\Logger\Spi
 	 * @see registerProvider()
 	 * @see ObjectFactory::getObjectFromSpec()
 	 */
