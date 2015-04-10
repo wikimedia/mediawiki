@@ -17,6 +17,7 @@ production.
 === Bug fixes in 1.26 ===
 
 === Action API changes in 1.26 ===
+* Deprecated API formats dump and wddx have been completely removed.
 
 === Action API internal changes in 1.26 ===
 
