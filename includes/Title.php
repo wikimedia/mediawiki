@@ -1986,11 +1986,12 @@ class Title {
 	 *
 	 * @param bool $getPages True to check if the pages are loaded, or false to check
 	 * if the status is loaded.
-	 * @return bool Whether or not the specified information has been loaded
+	 * @return bool Hardcoded false.
 	 * @since 1.23
+	 * @deprecated 1.26
 	 */
 	public function areCascadeProtectionSourcesLoaded( $getPages = true ) {
-		return TitleSecurity::instance()->areCascadeProtectionSourcesLoaded( $this, $getPages );
+		return false;
 	}
 
 	/**
@@ -2013,12 +2014,13 @@ class Title {
 	/**
 	 * Accessor for mRestrictionsLoaded
 	 *
-	 * @return bool Whether or not the page's restrictions have already been
+	 * @return bool Hardcoded false.
 	 * loaded from the database
 	 * @since 1.23
+	 * @deprecated 1.26
 	 */
 	public function areRestrictionsLoaded() {
-		return TitleSecurity::instance()->areRestrictionsLoaded( $this );
+		return false;
 	}
 
 	/**
@@ -2091,9 +2093,10 @@ class Title {
 	/**
 	 * Flush the protection cache in this object and force reload from the database.
 	 * This is used when updating protection from WikiPage::doUpdateRestrictions().
+	 * @deprecated 1.26
 	 */
 	public function flushRestrictions() {
-		TitleSecurity::instance()->flushRestrictions( $this );
+		// noop.
 	}
 
 	/**
