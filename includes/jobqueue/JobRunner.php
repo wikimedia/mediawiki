@@ -230,7 +230,7 @@ class JobRunner implements LoggerAwareInterface {
 				// This only waits for so long before exiting and letting
 				// other wikis in the farm (on different masters) get a chance.
 				$timePassed = microtime( true ) - $lastTime;
-				if ( $timePassed >= 5 || $timePassed < 0 ) {
+				if ( $timePassed >= 3 || $timePassed < 0 ) {
 					if ( !wfWaitForSlaves( $lastTime, false, '*', 5 ) ) {
 						$response['reached'] = 'slave-lag-limit';
 						break;
