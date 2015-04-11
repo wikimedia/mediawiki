@@ -1491,6 +1491,7 @@
 	"listfiles-delete": "borrar",
 	"listfiles-summary": "Esta página especial muestra todos los archivos subidos.\nCuando el usuario la filtra, solo se muestran los archivos cargados por el usuario en su versión más reciente.",
 	"listfiles_search_for": "Buscar por nombre de imagen:",
+	"listfiles-userdoesnotexist": "El usuario «$1» no está registrado.",
 	"imgfile": "archivo",
 	"listfiles": "Lista de archivos",
 	"listfiles_thumb": "Miniatura",

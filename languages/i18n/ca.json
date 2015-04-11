@@ -3065,6 +3065,7 @@
 	"tags-create-warnings-below": "Voleu continuar creant l'etiqueta?",
 	"tags-delete-title": "Elimina l'etiqueta",
 	"tags-delete-explanation-initial": "Esteu a punt d'eliminar l'etiqueta «$1» de la base de dades.",
+	"tags-delete-explanation-in-use": "Se suprimirà de {{PLURAL:$2|$2 revisió o entrada de registre|totes les $2 revisions i/o entrades de registre}} on s'aplica actualment.",
 	"tags-delete-explanation-warning": "Aquesta acció és <strong>irreversible</strong> i <strong>no es pot desfer</strong>, ni tan sols els administradors de la base de dades poden desfer-la. Assegureu-vos que aquesta és l'etiqueta que voleu suprimir.",
 	"tags-delete-explanation-active": "<strong>L'etiqueta \"$1\" encara està activa, i continuarà aplicant-se en el futur.</strong> Per evitar que això passi, dirigiu-vos al lloc (o llocs) d'activació de l'etiqueta i deshabiliteu-la allà.",
 	"tags-delete-reason": "Motiu:",

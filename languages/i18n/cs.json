@@ -1397,6 +1397,7 @@
 	"listfiles-delete": "smazat",
 	"listfiles-summary": "Tato speciální stránka zobrazuje všechny načtené soubory.",
 	"listfiles_search_for": "Hledat soubor podle názvu:",
+	"listfiles-userdoesnotexist": "Uživatelský účet „$1“ není zaregistrován.",
 	"imgfile": "soubor",
 	"listfiles": "Seznam souborů",
 	"listfiles_thumb": "Náhled",

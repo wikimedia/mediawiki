@@ -861,7 +861,7 @@
 	"revdelete-edit-reasonlist": "编辑删除原因",
 	"revdelete-offender": "版本作者：",
 	"suppressionlog": "监督日志",
-	"suppressionlogtext": "该列表列出了管理员隐藏的删除与封禁。另参见[[Special:BlockList|封禁列表]]查询当前的封禁列表。",
+	"suppressionlogtext": "该列表列出了管理人员隐藏的删除与封禁。另参见[[Special:BlockList|封禁列表]]查询当前的封禁列表。",
 	"mergehistory": "合并页面历史",
 	"mergehistory-header": "这一页可以让您将来源页面的版本合并到新页面中去。请确保此次更改能继续保持历史页面的连续性。",
 	"mergehistory-box": "合并两个页面的版本历史：",

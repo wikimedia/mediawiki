@@ -1449,6 +1449,7 @@
 	"listfiles-delete": "löschen",
 	"listfiles-summary": "Diese Spezialseite listet alle hochgeladenen Dateien auf.",
 	"listfiles_search_for": "Suche nach Datei:",
+	"listfiles-userdoesnotexist": "Das Benutzerkonto „$1“ ist nicht registriert.",
 	"imgfile": "Datei",
 	"listfiles": "Dateiliste",
 	"listfiles_thumb": "Vorschaubild",

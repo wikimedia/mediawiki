@@ -70,7 +70,8 @@
 			"Mavrikant",
 			"Ayrıntılı Bilgi",
 			"Gokalpselamet",
-			"Macofe"
+			"Macofe",
+			"Nighteagle2000"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çiz:",
@@ -895,6 +896,8 @@
 	"notextmatches": "Hiçbir sayfada bulunamadı",
 	"prevn": "önceki {{PLURAL:$1|$1}}",
 	"nextn": "sonraki {{PLURAL:$1|$1}}",
+	"prev-page": "önceki sayfa",
+	"next-page": "sonraki sayfa",
 	"prevn-title": "Önceki $1 {{PLURAL:$1|sonuç|sonuç}}",
 	"nextn-title": "Sonraki $1 {{PLURAL:$1|sonuç|sonuç}}",
 	"shown-title": "Sayfa başına $1 {{PLURAL:$1|sonuç|sonuç}} göster",
@@ -947,6 +950,7 @@
 	"prefs-rc": "Son değişiklikler",
 	"prefs-watchlist": "İzleme listesi",
 	"prefs-editwatchlist": "İzleme listesini düzenle",
+	"prefs-editwatchlist-label": "İzleme listesinizdeki girişleri düzenle",
 	"prefs-editwatchlist-edit": "İzleme listesini gör ve düzenle",
 	"prefs-editwatchlist-raw": "Ham izleme listesini düzenle",
 	"prefs-editwatchlist-clear": "İzleme listesini temizle",
