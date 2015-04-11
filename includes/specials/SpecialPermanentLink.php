@@ -27,12 +27,16 @@
  * @ingroup SpecialPage
  */
 class SpecialPermanentLink extends RedirectSpecialPage {
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'PermanentLink' );
 		$this->mAllowedRedirectParams = array();
 	}
 
-	function getRedirect( $subpage ) {
+	/**
+	 * @param string|null $subpage
+	 * @return Title|bool
+	 */
+	public function getRedirect( $subpage ) {
 		$subpage = intval( $subpage );
 		if ( $subpage === 0 ) {
 			# throw an error page when no subpage was given

@@ -30,16 +30,20 @@
  * @ingroup SpecialPage
  */
 class SpecialMypage extends RedirectSpecialArticle {
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'Mypage' );
 	}
 
-	function getRedirect( $subpage ) {
-		if ( strval( $subpage ) !== '' ) {
-			return Title::makeTitle( NS_USER, $this->getUser()->getName() . '/' . $subpage );
-		} else {
+	/**
+	 * @param string|null $subpage
+	 * @return Title
+	 */
+	public function getRedirect( $subpage ) {
+		if ( $subpage === null || $subpage === '' ) {
 			return Title::makeTitle( NS_USER, $this->getUser()->getName() );
 		}
+
+		return Title::makeTitle( NS_USER, $this->getUser()->getName() . '/' . $subpage );
 	}
 }
 
@@ -49,16 +53,20 @@ class SpecialMypage extends RedirectSpecialArticle {
  * @ingroup SpecialPage
  */
 class SpecialMytalk extends RedirectSpecialArticle {
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'Mytalk' );
 	}
 
-	function getRedirect( $subpage ) {
-		if ( strval( $subpage ) !== '' ) {
-			return Title::makeTitle( NS_USER_TALK, $this->getUser()->getName() . '/' . $subpage );
-		} else {
+	/**
+	 * @param string|null $subpage
+	 * @return Title
+	 */
+	public function getRedirect( $subpage ) {
+		if ( $subpage === null || $subpage === '' ) {
 			return Title::makeTitle( NS_USER_TALK, $this->getUser()->getName() );
 		}
+
+		return Title::makeTitle( NS_USER_TALK, $this->getUser()->getName() . '/' . $subpage );
 	}
 }
 
@@ -68,13 +76,17 @@ class SpecialMytalk extends RedirectSpecialArticle {
  * @ingroup SpecialPage
  */
 class SpecialMycontributions extends RedirectSpecialPage {
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'Mycontributions' );
 		$this->mAllowedRedirectParams = array( 'limit', 'namespace', 'tagfilter',
 			'offset', 'dir', 'year', 'month', 'feed' );
 	}
 
-	function getRedirect( $subpage ) {
+	/**
+	 * @param string|null $subpage
+	 * @return Title
+	 */
+	public function getRedirect( $subpage ) {
 		return SpecialPage::getTitleFor( 'Contributions', $this->getUser()->getName() );
 	}
 }
@@ -85,12 +97,16 @@ class SpecialMycontributions extends RedirectSpecialPage {
  * @ingroup SpecialPage
  */
 class SpecialMyuploads extends RedirectSpecialPage {
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'Myuploads' );
 		$this->mAllowedRedirectParams = array( 'limit', 'ilshowall', 'ilsearch' );
 	}
 
-	function getRedirect( $subpage ) {
+	/**
+	 * @param string|null $subpage
+	 * @return Title
+	 */
+	public function getRedirect( $subpage ) {
 		return SpecialPage::getTitleFor( 'Listfiles', $this->getUser()->getName() );
 	}
 }
@@ -101,12 +117,16 @@ class SpecialMyuploads extends RedirectSpecialPage {
  * @ingroup SpecialPage
  */
 class SpecialAllMyUploads extends RedirectSpecialPage {
-	function __construct() {
+	public function __construct() {
 		parent::__construct( 'AllMyUploads' );
 		$this->mAllowedRedirectParams = array( 'limit', 'ilsearch' );
 	}
 
-	function getRedirect( $subpage ) {
+	/**
+	 * @param string|null $subpage
+	 * @return Title
+	 */
+	public function getRedirect( $subpage ) {
 		$this->mAddedRedirectParams['ilshowall'] = 1;
 
 		return SpecialPage::getTitleFor( 'Listfiles', $this->getUser()->getName() );

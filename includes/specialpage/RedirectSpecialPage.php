@@ -33,8 +33,11 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	// Query parameters added by redirects
 	protected $mAddedRedirectParams = array();
 
-	public function execute( $par ) {
-		$redirect = $this->getRedirect( $par );
+	/**
+	 * @param string|null $subpage
+	 */
+	public function execute( $subpage ) {
+		$redirect = $this->getRedirect( $subpage );
 		$query = $this->getRedirectQuery();
 		// Redirect to a page title with possible query parameters
 		if ( $redirect instanceof Title ) {
@@ -58,10 +61,10 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	 * If the special page is a redirect, then get the Title object it redirects to.
 	 * False otherwise.
 	 *
-	 * @param string $par Subpage string
+	 * @param string|null $subpage
 	 * @return Title|bool
 	 */
-	abstract public function getRedirect( $par );
+	abstract public function getRedirect( $subpage );
 
 	/**
 	 * Return part of the request string for a special redirect page
@@ -112,12 +115,16 @@ abstract class SpecialRedirectToSpecial extends RedirectSpecialPage {
 		$this->mAddedRedirectParams = $addedRedirectParams;
 	}
 
+	/**
+	 * @param string|null $subpage
+	 * @return Title|bool
+	 */
 	public function getRedirect( $subpage ) {
 		if ( $this->redirSubpage === false ) {
 			return SpecialPage::getTitleFor( $this->redirName, $subpage );
-		} else {
-			return SpecialPage::getTitleFor( $this->redirName, $this->redirSubpage );
 		}
+
+		return SpecialPage::getTitleFor( $this->redirName, $this->redirSubpage );
 	}
 }
 
