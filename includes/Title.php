@@ -96,7 +96,7 @@ class Title {
 	/** @var array Array of groups allowed to edit this article */
 	public $mRestrictions = array();
 
-	/** @var bool */
+	/** @var string|bool */
 	protected $mOldRestrictions = false;
 
 	/** @var bool Cascade restrictions on this page to included templates and images? */
@@ -450,6 +450,9 @@ class Title {
 			}
 			if ( isset( $row->page_lang ) ) {
 				$this->mDbPageLanguage = (string)$row->page_lang;
+			}
+			if ( isset( $row->page_restrictions ) ) {
+				$this->mOldRestrictions = $row->page_restrictions;
 			}
 		} else { // page not found
 			$this->mArticleID = 0;
@@ -2900,15 +2903,17 @@ class Title {
 		$this->mCascadeRestriction = false;
 
 		# Backwards-compatibility: also load the restrictions from the page record (old format).
+		if ( $oldFashionedRestrictions !== null ) {
+			$this->mOldRestrictions = $oldFashionedRestrictions;
+		}
 
-		if ( $oldFashionedRestrictions === null ) {
-			$oldFashionedRestrictions = $dbr->selectField( 'page', 'page_restrictions',
+		if ( $this->mOldRestrictions === false ) {
+			$this->mOldRestrictions = $dbr->selectField( 'page', 'page_restrictions',
 				array( 'page_id' => $this->getArticleID() ), __METHOD__ );
 		}
 
-		if ( $oldFashionedRestrictions != '' ) {
-
-			foreach ( explode( ':', trim( $oldFashionedRestrictions ) ) as $restrict ) {
+		if ( $this->mOldRestrictions != '' ) {
+			foreach ( explode( ':', trim( $this->mOldRestrictions ) ) as $restrict ) {
 				$temp = explode( '=', trim( $restrict ) );
 				if ( count( $temp ) == 1 ) {
 					// old old format should be treated as edit/move restriction
@@ -2921,9 +2926,6 @@ class Title {
 					}
 				}
 			}
-
-			$this->mOldRestrictions = true;
-
 		}
 
 		if ( count( $rows ) ) {
@@ -3274,6 +3276,7 @@ class Title {
 		}
 		$this->mRestrictionsLoaded = false;
 		$this->mRestrictions = array();
+		$this->mOldRestrictions = false;
 		$this->mRedirect = null;
 		$this->mLength = -1;
 		$this->mLatestID = false;
@@ -3420,8 +3423,6 @@ class Title {
 	 * @return array Array of Title objects linking here
 	 */
 	public function getLinksFrom( $options = array(), $table = 'pagelinks', $prefix = 'pl' ) {
-		global $wgContentHandlerUseDB;
-
 		$id = $this->getArticleID();
 
 		# If the page doesn't exist; there can't be any link from this page
@@ -3435,49 +3436,36 @@ class Title {
 			$db = wfGetDB( DB_SLAVE );
 		}
 
-		$namespaceFiled = "{$prefix}_namespace";
-		$titleField = "{$prefix}_title";
-
-		$fields = array(
-			$namespaceFiled,
-			$titleField,
-			'page_id',
-			'page_len',
-			'page_is_redirect',
-			'page_latest'
-		);
-
-		if ( $wgContentHandlerUseDB ) {
-			$fields[] = 'page_content_model';
-		}
+		$blNamespace = "{$prefix}_namespace";
+		$blTitle = "{$prefix}_title";
 
 		$res = $db->select(
 			array( $table, 'page' ),
-			$fields,
+			array_merge(
+				array( $blNamespace, $blTitle ),
+				WikiPage::selectFields()
+			),
 			array( "{$prefix}_from" => $id ),
 			__METHOD__,
 			$options,
 			array( 'page' => array(
 				'LEFT JOIN',
-				array( "page_namespace=$namespaceFiled", "page_title=$titleField" )
+				array( "page_namespace=$blNamespace", "page_title=$blTitle" )
 			) )
 		);
 
 		$retVal = array();
-		if ( $res->numRows() ) {
-			$linkCache = LinkCache::singleton();
-			foreach ( $res as $row ) {
-				$titleObj = Title::makeTitle( $row->$namespaceFiled, $row->$titleField );
-				if ( $titleObj ) {
-					if ( $row->page_id ) {
-						$linkCache->addGoodLinkObjFromRow( $titleObj, $row );
-					} else {
-						$linkCache->addBadLinkObj( $titleObj );
-					}
-					$retVal[] = $titleObj;
-				}
+		$linkCache = LinkCache::singleton();
+		foreach ( $res as $row ) {
+			if ( $row->page_id ) {
+				$titleObj = Title::newFromRow( $row );
+			} else {
+				$titleObj = Title::makeTitle( $row->$blNamespace, $row->$blTitle );
+				$linkCache->addBadLinkObj( $titleObj );
 			}
+			$retVal[] = $titleObj;
 		}
+
 		return $retVal;
 	}
 
