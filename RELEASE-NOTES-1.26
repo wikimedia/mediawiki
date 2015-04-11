@@ -28,7 +28,9 @@ changes to languages because of Bugzilla reports.
 
 
 === Other changes in 1.26 ===
-
+* The global functions importScriptURI and importStylesheetURI as well as
+  the global loadedScripts from wikibits.js (deprecated since 1.17) now
+  emit warnings through mw.log.warn when accessed.
 
 == Compatibility ==
 
