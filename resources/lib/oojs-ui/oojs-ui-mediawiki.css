@@ -1,19 +1,13 @@
 /*!
- * OOjs UI v0.9.7
+ * OOjs UI v0.9.8
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-04-03T21:01:34Z
+ * Date: 2015-04-12T17:19:13Z
  */
-.oo-ui-progressBarWidget-slide-frames from {
-	margin-left: -40%;
-}
-.oo-ui-progressBarWidget-slide-frames to {
-	margin-left: 100%;
-}
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
 		margin-left: -40%;
@@ -2738,12 +2732,55 @@
 	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/help-ltr.svg");
 	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/help-ltr.png");
 }
+/* @noflip */
+.oo-ui-icon-help:lang(he) {
+	background-image: url("themes/mediawiki/images/icons/help-ltr.png");
+	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/help-ltr.svg");
+	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/help-ltr.svg");
+	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/help-ltr.png");
+}
+/* @noflip */
+.oo-ui-icon-help:lang(yi) {
+	background-image: url("themes/mediawiki/images/icons/help-ltr.png");
+	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/help-ltr.svg");
+	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/help-ltr.svg");
+	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/help-ltr.png");
+}
 .oo-ui-image-invert .oo-ui-icon-help,
 .oo-ui-image-invert.oo-ui-icon-help {
 	background-image: url("themes/mediawiki/images/icons/help-ltr-invert.png");
 	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/help-ltr-invert.svg");
 	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/help-ltr-invert.svg");
 	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/help-ltr-invert.png");
+}
+/* @noflip */
+.oo-ui-image-invert .oo-ui-icon-help:lang(he),
+.oo-ui-image-invert.oo-ui-icon-help:lang(he) {
+	background-image: url("themes/mediawiki/images/icons/help-ltr-invert.png");
+	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/help-ltr-invert.svg");
+	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/help-ltr-invert.svg");
+	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/help-ltr-invert.png");
+}
+/* @noflip */
+.oo-ui-image-invert .oo-ui-icon-help:lang(yi),
+.oo-ui-image-invert.oo-ui-icon-help:lang(yi) {
+	background-image: url("themes/mediawiki/images/icons/help-ltr-invert.png");
+	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/help-ltr-invert.svg");
+	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/help-ltr-invert.svg");
+	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/help-ltr-invert.png");
+}
+.oo-ui-icon-history {
+	background-image: url("themes/mediawiki/images/icons/history.png");
+	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/history.svg");
+	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/history.svg");
+	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/history.png");
+}
+.oo-ui-image-invert .oo-ui-icon-history,
+.oo-ui-image-invert.oo-ui-icon-history {
+	background-image: url("themes/mediawiki/images/icons/history-invert.png");
+	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/history-invert.svg");
+	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/history-invert.svg");
+	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/history-invert.png");
 }
 .oo-ui-icon-info {
 	background-image: url("themes/mediawiki/images/icons/info.png");
