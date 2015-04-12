@@ -33,6 +33,11 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'چک_چنه_دسه',
 );
 
+$namespaceAliases = array(
+	'عسگ' => NS_FILE,
+	'چک_چنه_عسگ' => NS_FILE_TALK,
+);
+
 $specialPageAliases = array(
 	'Activeusers'               => array( 'کاریاریا_کنشتکار' ),
 	'Allmessages'               => array( 'همه_پیغومیا' ),
