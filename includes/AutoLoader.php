@@ -480,6 +480,11 @@ $wgAutoloadLocalClasses = array(
 	# includes/debug
 	'MWDebug' => 'includes/debug/Debug.php',
 
+	# includes/debug/logger
+	'\\Psr\\Log\\LoggerInterface' => 'includes/debug/logger/LoggerFactory.php',
+	'\\MediaWiki\\Logger\\Logger' => 'includes/debug/logger/LoggerFactory.php',
+	'\\MediaWiki\\Logger\\LoggerFactory' => 'includes/debug/logger/LoggerFactory.php',
+
 	# includes/deferred
 	'DataUpdate' => 'includes/deferred/DataUpdate.php',
 	'DeferrableUpdate' => 'includes/deferred/DeferredUpdates.php',
