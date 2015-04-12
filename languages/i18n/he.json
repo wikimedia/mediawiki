@@ -1397,6 +1397,7 @@
 	"listfiles-delete": "מחיקה",
 	"listfiles-summary": "דף מיוחד זה מציג את כל הקבצים שהועלו.",
 	"listfiles_search_for": "חיפוש קובץ מדיה בשם:",
+	"listfiles-userdoesnotexist": "חשבון המשתמש \"$1\" אינו רשום.",
 	"imgfile": "קובץ",
 	"listfiles": "רשימת קבצים",
 	"listfiles_thumb": "תמונה ממוזערת",

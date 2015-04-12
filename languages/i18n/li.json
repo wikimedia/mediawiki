@@ -324,6 +324,7 @@
 	"virus-scanfailed": "scanne is mislukt (code $1)",
 	"virus-unknownscanner": "onbekeng antivirus:",
 	"logouttext": "'''De bis noe aafgemeld.'''\n\nDe kèns {{SITENAME}} noe anoniem (mit vermeljing van IP-adres) gebroeke, of <span class='plainlinks'>[$1 opnuuj aanmelde]</span> ónger dezelfde of 'ne angere naam.\nMäögelik waert nog 'n deil pagina's getuind esofs te nog aangemeld bis pès te de cache van diene browser laeg maaks.",
+	"welcomeuser": "Wilkóm, $1!",
 	"yourname": "Diene gebroekersnaam",
 	"userlogin-yourname": "Gebroekersnaam",
 	"yourpassword": "Die wachwaord",

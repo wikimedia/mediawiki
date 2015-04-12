@@ -1375,6 +1375,7 @@
 	"listfiles-delete": "scancèlla",
 	"listfiles-summary": "Sta paggena speciale fà vedé tuttequante file carrecate.",
 	"listfiles_search_for": "Ascìa 'e media pe' nomme:",
+	"listfiles-userdoesnotexist": "'O cunto utente \"$1\" nun è riggistrato.",
 	"imgfile": "file",
 	"listfiles": "Lista d' 'e file",
 	"listfiles_thumb": "Miniature",

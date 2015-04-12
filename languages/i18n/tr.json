@@ -1439,6 +1439,7 @@
 	"listfiles-delete": "sil",
 	"listfiles-summary": "Bu özel sayfa yüklenen tüm dosyaları gösterir.",
 	"listfiles_search_for": "Medya adı ara:",
+	"listfiles-userdoesnotexist": "\"$1\" kullanıcı hesabı kayıtlı değil.",
 	"imgfile": "dosya",
 	"listfiles": "Dosya listesi",
 	"listfiles_thumb": "Küçük resim",

@@ -82,7 +82,8 @@
 			"NigelSoft",
 			"Zhuyifei1999",
 			"Davidzdh",
-			"LNDDYL"
+			"LNDDYL",
+			"Jiang123aa"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -405,7 +406,7 @@
 	"delete-hook-aborted": "删除被扩展钩子取消。钩子并没有给出解释。",
 	"no-null-revision": "无法创建对\"$1\"页面新的空白版本",
 	"badtitle": "错误标题",
-	"badtitletext": "所请求页面的标题是无效的、不存在，跨语言或跨wiki链接的标题错误。它可能包含一个或更多的不能用于标题的字符。",
+	"badtitletext": "您请求了个无效、不存在或者跨语言或跨wiki 链接标题错误的页面。它可能包含一个或多个不能用于标题的字符。",
 	"perfcached": "以下是缓存的数据，可能不是最新的数据。缓存中最多有{{PLURAL:$1|$1条结果}}。",
 	"perfcachedts": "以下是缓存的数据，最后更新于$1。缓存中最多有{{PLURAL:$4|$4条结果}}。",
 	"querypage-no-updates": "该页面的更新目前停用。这里的数据不会马上刷新。",
@@ -1453,6 +1454,7 @@
 	"listfiles-delete": "删除",
 	"listfiles-summary": "本特殊页面展示所有上传的文件。",
 	"listfiles_search_for": "按媒体名称搜索：",
+	"listfiles-userdoesnotexist": "用户帐户“$1”未注册。",
 	"imgfile": "文件",
 	"listfiles": "文件列表",
 	"listfiles_thumb": "缩略图",

@@ -1487,6 +1487,7 @@
 	"statistics-users": "Regisztrált [[Speciális:Szerkesztők listája|szerkesztők]]",
 	"statistics-users-active": "Aktív szerkesztők",
 	"statistics-users-active-desc": "Szerkesztők, akik csináltak valamit az elmúlt {{PLURAL:$1|egy|$1}} napban",
+	"pageswithprop": "Laptulajdonsággal rendelkező lapok",
 	"pageswithprop-prop": "Tulajdonságnév:",
 	"pageswithprop-submit": "Ugrás",
 	"doubleredirects": "Dupla átirányítások",
