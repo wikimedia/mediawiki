@@ -19,9 +19,9 @@
 			"Great Brightstar"
 		]
 	},
-	"ooui-outline-control-move-down": "下移项",
-	"ooui-outline-control-move-up": "上移项",
-	"ooui-outline-control-remove": "删除项",
+	"ooui-outline-control-move-down": "项目下移",
+	"ooui-outline-control-move-up": "项目上移",
+	"ooui-outline-control-remove": "移除项目",
 	"ooui-toolbar-more": "更多",
 	"ooui-toolgroup-expand": "更多",
 	"ooui-toolgroup-collapse": "更少",
