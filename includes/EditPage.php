@@ -281,9 +281,6 @@ class EditPage {
 	public $hasPresetSummary = false;
 
 	/** @var bool */
-	public $mBaseRevision = false;
-
-	/** @var bool */
 	public $mShowSummaryField = true;
 
 	# Form values
@@ -1970,7 +1967,7 @@ class EditPage {
 		$db = wfGetDB( DB_MASTER );
 
 		// This is the revision the editor started from
-		$baseRevision = $this->getBaseRevision();
+		$baseRevision = Revision::newFromId( $this->getParentRevId() );
 		$baseContent = $baseRevision ? $baseRevision->getContent() : null;
 
 		if ( is_null( $baseContent ) ) {
@@ -1997,18 +1994,6 @@ class EditPage {
 		}
 
 		return false;
-	}
-
-	/**
-	 * @return Revision
-	 */
-	function getBaseRevision() {
-		if ( !$this->mBaseRevision ) {
-			$db = wfGetDB( DB_MASTER );
-			$this->mBaseRevision = Revision::loadFromTimestamp(
-				$db, $this->mTitle, $this->edittime );
-		}
-		return $this->mBaseRevision;
 	}
 
 	/**
