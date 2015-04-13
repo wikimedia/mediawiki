@@ -307,9 +307,9 @@ class SvgHandler extends ImageHandler {
 	 */
 	function getImageSize( $file, $path, $metadata = false ) {
 		if ( $metadata === false ) {
-			$metadata = $file->getMetaData();
+			$metadata = $file->getMetadata();
 		}
-		$metadata = $this->unpackMetaData( $metadata );
+		$metadata = $this->unpackMetadata( $metadata );
 
 		if ( isset( $metadata['width'] ) && isset( $metadata['height'] ) ) {
 			return array( $metadata['width'], $metadata['height'], 'SVG',
