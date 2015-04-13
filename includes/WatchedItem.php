@@ -240,11 +240,7 @@ class WatchedItem {
 			} else {
 				// Oldid given and isn't the latest; update the timestamp.
 				// This will result in no further notification emails being sent!
-				$dbr = wfGetDB( DB_SLAVE );
-				$notificationTimestamp = $dbr->selectField(
-					'revision', 'rev_timestamp',
-					array( 'rev_page' => $title->getArticleID(), 'rev_id' => $oldid )
-				);
+				$notificationTimestamp = Revision::getTimestampFromId( $title, $oldid );
 				// We need to go one second to the future because of various strict comparisons
 				// throughout the codebase
 				$ts = new MWTimestamp( $notificationTimestamp );
