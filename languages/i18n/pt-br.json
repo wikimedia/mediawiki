@@ -3118,6 +3118,7 @@
 	"rightsnone": "(nenhum)",
 	"revdelete-summary": "sumário de edição",
 	"feedback-adding": "Adicionando os comentários na página...",
+	"feedback-back": "Voltar",
 	"feedback-bugcheck": "Perfeito! Apenas verifique se não é um dos [$1 bugs já conhecidos].",
 	"feedback-bugnew": "Eu verifiquei. Relatar um bug novo",
 	"feedback-bugornote": "Se você está preparado para descrever detalhadamente um problema técnico, [$1 relate um bug].\nCaso contrário, você poderá usar o formulário simplificado a seguir. Seu comentário será adicionado à página \"[$3 $2]\", junto com o seu nome de usuário e o navegador que estiver usando neste momento.",

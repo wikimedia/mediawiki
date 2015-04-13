@@ -1448,6 +1448,7 @@
 	"listfiles-delete": "usuń",
 	"listfiles-summary": "Na tej stronie specjalnej prezentowane są wszystkie przesłane pliki.",
 	"listfiles_search_for": "Szukaj pliku o nazwie",
+	"listfiles-userdoesnotexist": "Konto użytkownika „$1” nie jest zarejestrowane.",
 	"imgfile": "plik",
 	"listfiles": "Lista plików",
 	"listfiles_thumb": "Miniatura",

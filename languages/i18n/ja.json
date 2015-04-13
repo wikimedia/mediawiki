@@ -1442,6 +1442,7 @@
 	"listfiles-delete": "削除",
 	"listfiles-summary": "この特別ページでは、アップロードされたファイルをすべて表示します。",
 	"listfiles_search_for": "検索するメディア名:",
+	"listfiles-userdoesnotexist": "利用者アカウント「$1」は登録されていません。",
 	"imgfile": "ファイル",
 	"listfiles": "ファイル一覧",
 	"listfiles_thumb": "サムネイル",

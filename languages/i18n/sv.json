@@ -1435,6 +1435,7 @@
 	"listfiles-delete": "radera",
 	"listfiles-summary": "Den här specialsidan visar alla filer som laddats upp.",
 	"listfiles_search_for": "Sök efter filnamn:",
+	"listfiles-userdoesnotexist": "Användarkontot \"$1\" är inte registrerat.",
 	"imgfile": "fil",
 	"listfiles": "Fillista",
 	"listfiles_thumb": "Miniatyrbild",

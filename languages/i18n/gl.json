@@ -1390,6 +1390,7 @@
 	"listfiles-delete": "borrar",
 	"listfiles-summary": "Esta páxina especial mostra todos os ficheiros cargados.",
 	"listfiles_search_for": "Buscar polo nome do ficheiro multimedia:",
+	"listfiles-userdoesnotexist": "A conta de usuario \"$1\" non está rexistrada.",
 	"imgfile": "ficheiro",
 	"listfiles": "Lista de ficheiros",
 	"listfiles_thumb": "Miniatura",
