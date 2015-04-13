@@ -4742,34 +4742,24 @@ class User implements IDBAccessObject {
 	 * Will have no effect for anonymous users.
 	 */
 	public function incEditCount() {
-		if ( !$this->isAnon() ) {
-			$dbw = wfGetDB( DB_MASTER );
+		if ( $this->isAnon() ) {
+			return;
+		}
+
+		$dbw = wfGetDB( DB_MASTER );
+
+		$that = $this;
+		$fname = __METHOD__;
+		$dbw->onTransactionPreCommitOrIdle( function() use ( $dbw, $that, $fname ) {
 			$dbw->update(
 				'user',
 				array( 'user_editcount=user_editcount+1' ),
-				array( 'user_id' => $this->getId() ),
-				__METHOD__
+				array( 'user_id' => $that->getId() ),
+				$fname
 			);
-
-			// Lazy initialization check...
-			if ( $dbw->affectedRows() == 0 ) {
-				// Now here's a goddamn hack...
-				$dbr = wfGetDB( DB_SLAVE );
-				if ( $dbr !== $dbw ) {
-					// If we actually have a slave server, the count is
-					// at least one behind because the current transaction
-					// has not been committed and replicated.
-					$this->initEditCount( 1 );
-				} else {
-					// But if DB_SLAVE is selecting the master, then the
-					// count we just read includes the revision that was
-					// just added in the working transaction.
-					$this->initEditCount();
-				}
-			}
-		}
-		// edit count in user cache too
-		$this->invalidateCache();
+			// edit count in user cache too
+			$that->invalidateCache();
+		} );
 	}
 
 	/**
