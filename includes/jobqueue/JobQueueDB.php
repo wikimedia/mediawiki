@@ -314,12 +314,7 @@ class JobQueueDB extends JobQueue {
 				}
 				JobQueue::incrStats( 'job-pop', $this->type, 1, $this->wiki );
 				// Get the job object from the row...
-				$title = Title::makeTitleSafe( $row->job_namespace, $row->job_title );
-				if ( !$title ) {
-					$dbw->delete( 'job', array( 'job_id' => $row->job_id ), __METHOD__ );
-					wfDebug( "Row has invalid title '{$row->job_title}'.\n" );
-					continue; // try again
-				}
+				$title = Title::makeTitle( $row->job_namespace, $row->job_title );
 				$job = Job::factory( $row->job_cmd, $title,
 					self::extractBlob( $row->job_params ), $row->job_id );
 				$job->metadata['id'] = $row->job_id;

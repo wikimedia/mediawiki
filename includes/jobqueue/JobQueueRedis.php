@@ -631,15 +631,11 @@ LUA;
 	 * @return Job|bool
 	 */
 	protected function getJobFromFields( array $fields ) {
-		$title = Title::makeTitleSafe( $fields['namespace'], $fields['title'] );
-		if ( $title ) {
-			$job = Job::factory( $fields['type'], $title, $fields['params'] );
-			$job->metadata['uuid'] = $fields['uuid'];
+		$title = Title::makeTitle( $fields['namespace'], $fields['title'] );
+		$job = Job::factory( $fields['type'], $title, $fields['params'] );
+		$job->metadata['uuid'] = $fields['uuid'];
 
-			return $job;
-		}
-
-		return false;
+		return $job;
 	}
 
 	/**
