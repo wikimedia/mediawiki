@@ -179,7 +179,8 @@ class SpecialChangePassword extends FormSpecialPage {
 		}
 
 		if ( $request->getCheck( 'wpCancel' ) ) {
-			$titleObj = Title::newFromText( $request->getVal( 'returnto' ) );
+			$returnto = $request->getVal( 'returnto' );
+			$titleObj = $returnto !== null ? Title::newFromText( $returnto ) : null;
 			if ( !$titleObj instanceof Title ) {
 				$titleObj = Title::newMainPage();
 			}
