@@ -108,7 +108,7 @@ class JobSpecification implements IJobSpecification {
 
 		$this->type = $type;
 		$this->params = $params;
-		$this->title = $title ?: Title::newMainPage();
+		$this->title = $title ?: Title::makeTitle( NS_SPECIAL, 'None:' . get_class( $this ) );
 		$this->opts = $opts;
 	}
 
