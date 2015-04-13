@@ -597,7 +597,7 @@ class Message implements MessageSpecifier {
 		if ( $lang instanceof Language || $lang instanceof StubUserLang ) {
 			$this->language = $lang;
 		} elseif ( is_string( $lang ) ) {
-			if ( $this->language->getCode() != $lang ) {
+			if ( !$this->language instanceof Language || $this->language->getCode() != $lang ) {
 				$this->language = Language::factory( $lang );
 			}
 		} else {
