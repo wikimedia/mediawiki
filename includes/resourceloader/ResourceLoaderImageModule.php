@@ -304,6 +304,49 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * Get the definition summary for this module.
+	 *
+	 * @param ResourceLoaderContext $context
+	 * @return array
+	 */
+	public function getDefinitionSummary( ResourceLoaderContext $context ) {
+		$summary = parent::getDefinitionSummary( $context );
+		foreach ( array(
+			'localBasePath',
+			'images',
+			'variants',
+			'prefix',
+			'selectorWithoutVariant',
+			'selectorWithVariant',
+		) as $member ) {
+			$summary[$member] = $this->{$member};
+		};
+		return $summary;
+	}
+
+	/**
+	 * Get the last modified timestamp of this module.
+	 *
+	 * @param ResourceLoaderContext $context Context in which to calculate
+	 *     the modified time
+	 * @return int UNIX timestamp
+	 */
+	public function getModifiedTime( ResourceLoaderContext $context ) {
+		$files = array();
+		foreach ( $this->getImages() as $name => $image ) {
+			$files[] = $image->getPath( $context );
+		}
+
+		$files = array_values( array_unique( $files ) );
+		$filesMtime = max( array_map( array( __CLASS__, 'safeFilemtime' ), $files ) );
+
+		return max(
+			$filesMtime,
+			$this->getDefinitionMtime( $context )
+		);
+	}
+
+	/**
 	 * Extract a local base path from module definition information.
 	 *
 	 * @param array $options Module definition
