@@ -83,7 +83,8 @@
 			"Zhuyifei1999",
 			"Davidzdh",
 			"LNDDYL",
-			"Jiang123aa"
+			"Jiang123aa",
+			"Cdz"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -95,7 +96,7 @@
 	"tog-numberheadings": "自动编号标题",
 	"tog-showtoolbar": "显示编辑工具栏",
 	"tog-editondblclick": "双击编辑页面",
-	"tog-editsectiononrightclick": "启用右击小节标题编辑段落",
+	"tog-editsectiononrightclick": "右击段落标题启用编辑段落",
 	"tog-watchcreations": "添加我创建的页面和我上传的文件至我的监视列表",
 	"tog-watchdefault": "添加我编辑的页面和文件至我的监视列表",
 	"tog-watchmoves": "添加我移动的页面和文件至我的监视列表",
@@ -401,8 +402,8 @@
 	"unexpected": "非正常值：“$1”=“$2”。",
 	"formerror": "错误：无法提交表单",
 	"badarticleerror": "无法在此页进行该操作。",
-	"cannotdelete": "无法删除页面或图像“$1”。\n它可能已被其他人删除了。",
-	"cannotdelete-title": "无法删除“$1”",
+	"cannotdelete": "无法删除页面或文件“$1”。\n它可能已被其他人删除了。",
+	"cannotdelete-title": "无法删除页面“$1”",
 	"delete-hook-aborted": "删除被扩展钩子取消。钩子并没有给出解释。",
 	"no-null-revision": "无法创建对\"$1\"页面新的空白版本",
 	"badtitle": "错误标题",
@@ -413,7 +414,7 @@
 	"viewsource": "查看源代码",
 	"viewsource-title": "查看“$1”的源代码",
 	"actionthrottled": "操作被限制",
-	"actionthrottledtext": "基于反垃圾的考量，您被限制在短时间内多次重复该操作，但您已超过此上限。请在数分钟后再尝试。",
+	"actionthrottledtext": "作为反破坏措施，您被限制在短时间段内执行太多次该操作，并且您已超越此限制。请在数分钟后再试。",
 	"protectedpagetext": "该页面已被保护以防止编辑和其他操作。",
 	"viewsourcetext": "您可以查看并复制此页面的源代码：",
 	"viewyourtext": "您可以查看并复制<strong>您对此页面作出编辑后</strong>的源代码：",

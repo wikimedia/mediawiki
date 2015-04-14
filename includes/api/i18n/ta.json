@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"AntanO"
+		]
+	},
+	"api-help-source": "மூலம்: $1",
+	"api-help-license": "அனுமதி: [[$1|$2]]",
+	"api-help-license-noname": "அனுமதி: [[$1|இணைப்பைப் பார்]]"
+}

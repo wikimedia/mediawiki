@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sveinn í Felli"
+		]
+	},
+	"api-help-license": "Notkunarleyfi: [[$1|$2]]",
+	"api-help-license-noname": "Notkunarleyfi: [[$1|Sjá tengil]]",
+	"api-help-license-unknown": "Notkunarleyfi: <span class=\"apihelp-unknown\">óþekkt</span>"
+}
