@@ -787,7 +787,10 @@ class UploadForm extends HTMLForm {
 	protected $mMaxUploadSize = array();
 
 	public function __construct( array $options = array(), IContextSource $context = null ) {
-		$this->setContext( $context );
+		if ( $context instanceof IContextSource ) {
+			$this->setContext( $context );
+		}
+
 		$this->mWatch = !empty( $options['watch'] );
 		$this->mForReUpload = !empty( $options['forreupload'] );
 		$this->mSessionKey = isset( $options['sessionkey'] ) ? $options['sessionkey'] : '';
