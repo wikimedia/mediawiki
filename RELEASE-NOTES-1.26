@@ -40,6 +40,9 @@ production.
   'webp'; to LocalSettings.php to enable uploading of WebP images.
 * Added a new hook 'EnhancedChangesListModifyLineData', to
   modify the data used to build lines in enhanced recentchanges and watchlist.
+* Added a new hook 'TrackEvent' and wfTrack() convenience function, to loosely
+  couple MediaWiki core or an extension with an analytics package such as the
+  EventLogging extension.
 
 ==== External libraries ====
 * Update es5-shim from v4.0.0 to v4.1.5.

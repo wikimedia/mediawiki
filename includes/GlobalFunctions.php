@@ -4240,3 +4240,17 @@ function wfThumbIsStandard( File $file, array $params ) {
 
 	return true;
 }
+
+/**
+ * Track an analytic event.
+ *
+ * Fires the 'TrackEvent' hook with the given topic and data as the event
+ * arguments.
+ *
+ * @since 1.26
+ * @param string $topic Topic name
+ * @param array $data Data describing the event
+ */
+function wfTrack( $topic, array $data = array() ) {
+	Hooks::run( 'TrackEvent', array( $topic, $data ) );
+}
