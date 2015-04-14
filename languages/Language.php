@@ -4483,21 +4483,20 @@ class Language {
 	/**
 	 * Decode an expiry (block, protection, etc) which has come from the DB
 	 *
-	 * @todo FIXME: why are we returnings DBMS-dependent strings???
-	 *
 	 * @param string $expiry Database expiry String
 	 * @param bool|int $format True to process using language functions, or TS_ constant
 	 *     to return the expiry in a given timestamp
+	 * @param string $inifinity If $format is not true, use this string for infinite expiry
 	 * @return string
 	 * @since 1.18
 	 */
-	public function formatExpiry( $expiry, $format = true ) {
-		static $infinity;
-		if ( $infinity === null ) {
-			$infinity = wfGetDB( DB_SLAVE )->getInfinity();
+	public function formatExpiry( $expiry, $format = true, $infinity = 'infinity' ) {
+		static $dbInfinity;
+		if ( $dbInfinity === null ) {
+			$dbInfinity = wfGetDB( DB_SLAVE )->getInfinity();
 		}
 
-		if ( $expiry == '' || $expiry == $infinity ) {
+		if ( $expiry == '' || $expiry === 'infinity' || $expiry == $dbInfinity ) {
 			return $format === true
 				? $this->getMessageFromDB( 'infiniteblock' )
 				: $infinity;

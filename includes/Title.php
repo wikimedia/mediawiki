@@ -2574,6 +2574,7 @@ class Title {
 				if ( $row['permission'] == 'autoconfirmed' ) {
 					$row['permission'] = 'editsemiprotected'; // B/C
 				}
+				$row['expiry'] = $dbr->decodeExpiry( $row['expiry'] );
 			}
 			$this->mTitleProtection = $row;
 		}
@@ -2711,7 +2712,6 @@ class Title {
 	 *        false.
 	 */
 	public function getCascadeProtectionSources( $getPages = true ) {
-		global $wgContLang;
 		$pagerestrictions = array();
 
 		if ( $this->mCascadeSources !== null && $getPages ) {
@@ -2754,7 +2754,7 @@ class Title {
 		$now = wfTimestampNow();
 
 		foreach ( $res as $row ) {
-			$expiry = $wgContLang->formatExpiry( $row->pr_expiry, TS_MW );
+			$expiry = $dbr->decodeExpiry( $row->pr_expiry );
 			if ( $expiry > $now ) {
 				if ( $getPages ) {
 					$page_id = $row->pr_page;
@@ -2887,14 +2887,13 @@ class Title {
 	 *   restrictions from page table (pre 1.10)
 	 */
 	public function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = null ) {
-		global $wgContLang;
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$restrictionTypes = $this->getRestrictionTypes();
 
 		foreach ( $restrictionTypes as $type ) {
 			$this->mRestrictions[$type] = array();
-			$this->mRestrictionsExpiry[$type] = $wgContLang->formatExpiry( '', TS_MW );
+			$this->mRestrictionsExpiry[$type] = 'infinity';
 		}
 
 		$this->mCascadeRestriction = false;
@@ -2940,7 +2939,7 @@ class Title {
 
 				// This code should be refactored, now that it's being used more generally,
 				// But I don't really see any harm in leaving it in Block for now -werdna
-				$expiry = $wgContLang->formatExpiry( $row->pr_expiry, TS_MW );
+				$expiry = $dbr->decodeExpiry( $row->pr_expiry );
 
 				// Only apply the restrictions if they haven't expired!
 				if ( !$expiry || $expiry > $now ) {
@@ -2962,11 +2961,9 @@ class Title {
 	 *   restrictions from page table (pre 1.10)
 	 */
 	public function loadRestrictions( $oldFashionedRestrictions = null ) {
-		global $wgContLang;
 		if ( !$this->mRestrictionsLoaded ) {
+			$dbr = wfGetDB( DB_SLAVE );
 			if ( $this->exists() ) {
-				$dbr = wfGetDB( DB_SLAVE );
-
 				$res = $dbr->select(
 					'page_restrictions',
 					array( 'pr_type', 'pr_expiry', 'pr_level', 'pr_cascade' ),
@@ -2980,7 +2977,7 @@ class Title {
 
 				if ( $title_protection ) {
 					$now = wfTimestampNow();
-					$expiry = $wgContLang->formatExpiry( $title_protection['expiry'], TS_MW );
+					$expiry = $dbr->decodeExpiry( $title_protection['expiry'] );
 
 					if ( !$expiry || $expiry > $now ) {
 						// Apply the restrictions
@@ -2990,7 +2987,7 @@ class Title {
 						$this->mTitleProtection = false;
 					}
 				} else {
-					$this->mRestrictionsExpiry['create'] = $wgContLang->formatExpiry( '', TS_MW );
+					$this->mRestrictionsExpiry['create'] = 'infinity';
 				}
 				$this->mRestrictionsLoaded = true;
 			}
