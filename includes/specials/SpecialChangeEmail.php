@@ -129,7 +129,8 @@ class SpecialChangeEmail extends FormSpecialPage {
 	public function onSuccess() {
 		$request = $this->getRequest();
 
-		$titleObj = Title::newFromText( $request->getVal( 'returnto' ) );
+		$returnto = $request->getVal( 'returnto' );
+		$titleObj = $returnto !== null ? Title::newFromText( $returnto ) : null;
 		if ( !$titleObj instanceof Title ) {
 			$titleObj = Title::newMainPage();
 		}
