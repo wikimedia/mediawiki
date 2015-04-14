@@ -2894,6 +2894,12 @@ $user: Current user object
 $title: Title object to purge
 &$urls: An array of URLs to purge from the caches, to be manipulated.
 
+'TrackEvent': Receive analytic event data. Used to loosely couple MediaWiki
+core or an extension with an analytics package such as the EventLogging
+extension.
+$topic: event topic
+$data: Array of topic specific data
+
 'UndeleteForm::showHistory': Called in UndeleteForm::showHistory, after a
 PageArchive object has been created but before any further processing is done.
 &$archive: PageArchive object
