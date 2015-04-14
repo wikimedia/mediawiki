@@ -434,6 +434,9 @@ class InfoAction extends FormlessAction {
 					$message = $message->escaped();
 				}
 			}
+			$expiry = $title->getRestrictionExpiry( $restrictionType );
+			$formattedexpiry = $this->msg( 'parentheses', $this->getLanguage()->formatExpiry( $expiry ) )->escaped();
+			$message .= $this->msg( 'word-separator' )->escaped() . $formattedexpiry;
 
 			// Messages: restriction-edit, restriction-move, restriction-create,
 			// restriction-upload
