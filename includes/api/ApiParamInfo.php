@@ -195,6 +195,24 @@ class ApiParamInfo extends ApiBase {
 		}
 		$ret['prefix'] = $module->getModulePrefix();
 
+		$sourceInfo = $module->getModuleSourceInfo();
+		if ( $sourceInfo ) {
+			$ret['source'] = $sourceInfo['name'];
+			if ( isset( $sourceInfo['namemsg'] ) ) {
+				$ret['sourcename'] = $this->context->msg( $sourceInfo['namemsg'] )->text();
+			} else {
+				$ret['sourcename'] = $ret['source'];
+			}
+
+			$link = SpecialPage::getTitleFor( 'Version', 'License/' . $sourceInfo['name'] )->getFullUrl();
+			if ( isset( $sourceInfo['license-name'] ) ) {
+				$ret['licensetag'] = $sourceInfo['license-name'];
+				$ret['licenselink'] = (string)$link;
+			} elseif ( SpecialVersion::getExtLicenseFileName( dirname( $sourceInfo['path'] ) ) ) {
+				$ret['licenselink'] = (string)$link;
+			}
+		}
+
 		$this->formatHelpMessages( $ret, 'description', $module->getFinalDescription() );
 
 		foreach ( $module->getHelpFlags() as $flag ) {

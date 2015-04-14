@@ -29,6 +29,10 @@ div.apihelp-linktrail {
 	color: red;
 }
 
+.apihelp-unknown {
+	color: #888;
+}
+
 .apihelp-empty {
 	color: #888;
 }
