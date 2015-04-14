@@ -196,6 +196,9 @@ class DeleteLogFormatter extends LogFormatter {
 				}
 				// This is a CSV of the IDs
 				$query = $params[3];
+				if ( is_array( $query ) ) {
+					$query = implode( ',', $query );
+				}
 				// Link to each hidden object ID, $params[1] is the url param
 				$revert = Linker::linkKnown(
 					SpecialPage::getTitleFor( 'Revisiondelete' ),
