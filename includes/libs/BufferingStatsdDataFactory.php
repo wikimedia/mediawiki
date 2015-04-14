@@ -39,7 +39,7 @@ class BufferingStatsdDataFactory extends StatsdDataFactory {
 	}
 
 	public function produceStatsdData( $key, $value = 1, $metric = self::STATSD_METRIC_COUNT ) {
-		$this->buffer[] = $entity = $this->produceStatsdDataEntity();
+		$entity = $this->produceStatsdDataEntity();
 		if ( $key !== null ) {
 			$prefixedKey = ltrim( $this->prefix . '.' . $key, '.' );
 			$entity->setKey( $prefixedKey );
@@ -49,6 +49,10 @@ class BufferingStatsdDataFactory extends StatsdDataFactory {
 		}
 		if ( $metric !== null ) {
 			$entity->setMetric( $metric );
+		}
+		// Don't bother buffering a counter update with a delta of zero.
+		if ( !( $metric === self::STATSD_METRIC_COUNT && $value === 0 ) ) {
+			$this->buffer[] = $entity;
 		}
 		return $entity;
 	}
