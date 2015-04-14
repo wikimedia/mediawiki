@@ -4241,3 +4241,25 @@ function wfThumbIsStandard( File $file, array $params ) {
 
 	return true;
 }
+
+/**
+ * Track an analytic event.
+ *
+ * @param string $topic Topic name
+ * @param array $data Data describing the event
+ * @since 1.26
+ */
+function wfTrack( $topic, array $data ) {
+	EventDispatcher::getNamedInstance( 'wfTrack' )->fire( $topic, $data );
+}
+
+/**
+ * Register a handler for subset of analytic events, specified by topic.
+ *
+ * @param string $topic Topic name
+ * @param callable $handler Callback to receive event
+ * @since 1.26
+ */
+function wfTrackSubscribe( $topic, $handler ) {
+	EventDispatcher::getNamedInstance( 'wfTrack' )->listen( $topic, $handler );
+}

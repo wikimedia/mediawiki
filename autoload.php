@@ -370,6 +370,7 @@ $wgAutoloadLocalClasses = array(
 	'EnqueueJob' => __DIR__ . '/includes/jobqueue/jobs/EnqueueJob.php',
 	'EraseArchivedFile' => __DIR__ . '/maintenance/eraseArchivedFile.php',
 	'ErrorPageError' => __DIR__ . '/includes/exception/ErrorPageError.php',
+	'EventDispatcher' => __DIR__ . '/includes/libs/EventDispatcher.php',
 	'Exif' => __DIR__ . '/includes/media/Exif.php',
 	'ExifBitmapHandler' => __DIR__ . '/includes/media/ExifBitmap.php',
 	'ExplodeIterator' => __DIR__ . '/includes/libs/ExplodeIterator.php',
