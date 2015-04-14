@@ -20,7 +20,9 @@
  * @file
  */
 
+use Liuggio\StatsdClient\Entity\StatsdDataInterface;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
+
 
 /**
  * A factory for application metric data.
@@ -38,8 +40,8 @@ class BufferingStatsdDataFactory extends StatsdDataFactory {
 		$this->prefix = $prefix;
 	}
 
-	public function produceStatsdData( $key, $value = 1, $metric = self::STATSD_METRIC_COUNT ) {
-		$this->buffer[] = $entity = $this->produceStatsdDataEntity();
+	public function produceStatsdData( $key, $value = 1, $metric = StatsdDataInterface::STATSD_METRIC_COUNT ) {
+		$entity = $this->produceStatsdDataEntity();
 		if ( $key !== null ) {
 			$prefixedKey = ltrim( $this->prefix . '.' . $key, '.' );
 			$entity->setKey( $prefixedKey );
@@ -49,6 +51,10 @@ class BufferingStatsdDataFactory extends StatsdDataFactory {
 		}
 		if ( $metric !== null ) {
 			$entity->setMetric( $metric );
+		}
+		// Don't bother buffering a counter update with a delta of zero.
+		if ( !( $metric === StatsdDataInterface::STATSD_METRIC_COUNT && !$value ) ) {
+			$this->buffer[] = $entity;
 		}
 		return $entity;
 	}
