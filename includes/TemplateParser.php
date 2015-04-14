@@ -108,7 +108,7 @@ class TemplateParser {
 			$code = $this->forceRecompile ? null : $cache->get( $key );
 
 			if ( !$code ) {
-				$code = $this->compileForEval( $fileContents, $filename );
+				$code = $this->compile( $fileContents, $filename );
 
 				// Prefix the cached code with a keyed hash (64 hex chars) as an integrity check
 				$cache->set( $key, hash_hmac( 'sha256', $code, $secretKey ) . $code );
@@ -134,47 +134,29 @@ class TemplateParser {
 	}
 
 	/**
-	 * Wrapper for compile() function that verifies successful compilation and strips
-	 * out the '<?php' part so that the code is ready for eval()
-	 * @param string $fileContents Mustache code
-	 * @param string $filename Name of the template
+	 * Compile the Mustache code into PHP code using LightnCandy
+	 * @param string $template Mustache code
+	 * @param string $filename Template path (informational)
 	 * @return string PHP code (without '<?php')
 	 * @throws RuntimeException
 	 */
-	protected function compileForEval( $fileContents, $filename ) {
-		// Compile the template into PHP code
-		$code = $this->compile( $fileContents );
-
-		if ( !$code ) {
-			throw new RuntimeException( "Could not compile template: {$filename}" );
-		}
-
-		// Strip the "<?php" added by lightncandy so that it can be eval()ed
-		if ( substr( $code, 0, 5 ) === '<?php' ) {
-			$code = substr( $code, 5 );
-		}
-
-		return $code;
-	}
-
-	/**
-	 * Compile the Mustache code into PHP code using LightnCandy
-	 * @param string $code Mustache code
-	 * @return string PHP code (with '<?php')
-	 * @throws RuntimeException
-	 */
-	protected function compile( $code ) {
+	protected function compile( $template, $filename ) {
 		if ( !class_exists( 'LightnCandy' ) ) {
 			throw new RuntimeException( 'LightnCandy class not defined' );
 		}
-		return LightnCandy::compile(
-			$code,
+		$out = LightnCandy::compile(
+			$template,
 			array(
 				// Do not add more flags here without discussion.
 				// If you do add more flags, be sure to update unit tests as well.
 				'flags' => LightnCandy::FLAG_ERROR_EXCEPTION
+					| LightnCandy::FLAG_BARE
 			)
 		);
+		if ( !$out ) {
+			throw new RuntimeException( "Could not compile template: {$filename}" );
+		}
+		return $out;
 	}
 
 	/**
