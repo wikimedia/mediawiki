@@ -18,6 +18,8 @@ THIS IS NOT YET A RELEASE!
   trigger warnings.
 * (T86156) Running updateSearchIndex.php will not throw an error as
   page_restrictions has been added to the locked table list.
+* Special:Version would throw notices if using SVN due to an incorrectly
+  named variable. Add an additional check that an index is defined.
 
 === Changes since 1.25 ===
 * (T100351) Fix syntax errors in extension.json of ConfirmEdit extension
@@ -527,7 +529,6 @@ changes to languages because of Bugzilla reports.
 * The global importScriptURI and importStylesheetURI functions, as well as the
   loadedScripts object, from wikibits.js (deprecated since 1.17) now emit
   warnings through mw.log.warn when accessed.
-
 
 == Compatibility ==
 
