@@ -1142,7 +1142,12 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// Update newtalk / watchlist notification status
-		$user->clearNotification( $this->mTitle, $oldid );
+		try {
+			$user->clearNotification( $this->mTitle, $oldid );
+		} catch ( DBError $e ) {
+			// Avoid outage if the master is not reachable
+			MWExceptionHandler::logException( $e );
+		}
 	}
 
 	/**
