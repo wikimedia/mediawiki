@@ -8,7 +8,7 @@
 	if ( profile.name === 'msie' && profile.versionNumber === 8 ) {
 		/* Add pseudo-selector class to last-child list items */
 		mw.hook( 'wikipage.content' ).add( function ( $content ) {
-			$content.find( '.hlist' ).find( 'dd:last-child, dt:last-child, li:last-child' )
+			$content.find( '.hlist' ).addBack( '.hlist' ).find( 'dd:last-child, dt:last-child, li:last-child' )
 				.addClass( 'hlist-last-child' );
 		} );
 	}

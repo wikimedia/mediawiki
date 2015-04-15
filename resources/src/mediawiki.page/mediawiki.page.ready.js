@@ -16,14 +16,14 @@
 
 		// Run jquery.placeholder polyfill if placeholder is not supported
 		if ( !supportsPlaceholder ) {
-			$content.find( 'input[placeholder]' ).placeholder();
+			$content.find( 'input[placeholder]' ).addBack( 'input[placeholder]' ).placeholder();
 		}
 
 		// Run jquery.makeCollapsible
-		$content.find( '.mw-collapsible' ).makeCollapsible();
+		$content.find( '.mw-collapsible' ).addBack( '.mw-collapsible' ).makeCollapsible();
 
 		// Lazy load jquery.tablesorter
-		$sortableTables = $content.find( 'table.sortable' );
+		$sortableTables = $content.find( 'table.sortable' ).addBack( 'table.sortable' );
 		if ( $sortableTables.length ) {
 			mw.loader.using( 'jquery.tablesorter', function () {
 				$sortableTables.tablesorter();
