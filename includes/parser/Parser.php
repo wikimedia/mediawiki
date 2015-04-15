@@ -4554,6 +4554,12 @@ class Parser {
 				array( '', '<$1>' ),
 				$safeHeadline
 			);
+
+			# Strip '<span></span>', which is the result from the above if
+			# <span id="foo"></span> is used to produce an additional anchor
+			# for a section.
+			$tocline = str_replace( '<span></span>', '', $tocline );
+
 			$tocline = trim( $tocline );
 
 			# For the anchor, strip out HTML-y stuff period
