@@ -4738,37 +4738,50 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Increment the user's edit-count field.
-	 * Will have no effect for anonymous users.
+	 * Deferred version of incEditCountImmediate()
 	 */
 	public function incEditCount() {
-		if ( !$this->isAnon() ) {
-			$dbw = wfGetDB( DB_MASTER );
-			$dbw->update(
-				'user',
-				array( 'user_editcount=user_editcount+1' ),
-				array( 'user_id' => $this->getId() ),
-				__METHOD__
-			);
+		$that = $this;
+		wfGetDB( DB_MASTER )->onTransactionPreCommitOrIdle( function() use ( $that ) {
+			$that->incEditCountImmediate();
+		} );
+	}
 
-			// Lazy initialization check...
-			if ( $dbw->affectedRows() == 0 ) {
-				// Now here's a goddamn hack...
-				$dbr = wfGetDB( DB_SLAVE );
-				if ( $dbr !== $dbw ) {
-					// If we actually have a slave server, the count is
-					// at least one behind because the current transaction
-					// has not been committed and replicated.
-					$this->initEditCount( 1 );
-				} else {
-					// But if DB_SLAVE is selecting the master, then the
-					// count we just read includes the revision that was
-					// just added in the working transaction.
-					$this->initEditCount();
-				}
+	/**
+	 * Increment the user's edit-count field.
+	 * Will have no effect for anonymous users.
+	 * @since 1.26
+	 */
+	public function incEditCountImmediate() {
+		if ( $this->isAnon() ) {
+			return;
+		}
+
+		$dbw = wfGetDB( DB_MASTER );
+		// No rows will be "affected" if user_editcount is NULL
+		$dbw->update(
+			'user',
+			array( 'user_editcount=user_editcount+1' ),
+			array( 'user_id' => $this->getId() ),
+			__METHOD__
+		);
+		// Lazy initialization check...
+		if ( $dbw->affectedRows() == 0 ) {
+			// Now here's a goddamn hack...
+			$dbr = wfGetDB( DB_SLAVE );
+			if ( $dbr !== $dbw ) {
+				// If we actually have a slave server, the count is
+				// at least one behind because the current transaction
+				// has not been committed and replicated.
+				$this->initEditCount( 1 );
+			} else {
+				// But if DB_SLAVE is selecting the master, then the
+				// count we just read includes the revision that was
+				// just added in the working transaction.
+				$this->initEditCount();
 			}
 		}
-		// edit count in user cache too
+		// Edit count in user cache too
 		$this->invalidateCache();
 	}
 
