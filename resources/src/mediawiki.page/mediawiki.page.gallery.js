@@ -3,7 +3,7 @@
  * Also Dynamically resize images to justify them.
  */
 ( function ( mw, $ ) {
-	var $galleries,
+	var $galleries = $( [] ),
 		bound = false,
 		// Is there a better way to detect a touchscreen? Current check taken from stack overflow.
 		isTouchScreen = !!( window.ontouchstart !== undefined ||
@@ -237,20 +237,32 @@
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
 		if ( isTouchScreen ) {
 			// Always show the caption for a touch screen.
-			$content.find( 'ul.mw-gallery-packed-hover' )
+			$content
+				.find( 'ul.mw-gallery-packed-hover' )
+				.addBack( 'ul.mw-gallery-packed-hover' )
 				.addClass( 'mw-gallery-packed-overlay' )
 				.removeClass( 'mw-gallery-packed-hover' );
 		} else {
 			// Note use of just "a", not a.image, since we want this to trigger if a link in
 			// the caption receives focus
-			$content.find( 'ul.mw-gallery-packed-hover li.gallerybox' ).on( 'focus blur', 'a', function ( e ) {
-				// Confusingly jQuery leaves e.type as focusout for delegated blur events
-				var gettingFocus = e.type !== 'blur' && e.type !== 'focusout';
-				$( this ).closest( 'li.gallerybox' ).toggleClass( 'mw-gallery-focused', gettingFocus );
-			} );
+			$content
+				.find( 'ul.mw-gallery-packed-hover li.gallerybox' )
+				.addBack( 'ul.mw-gallery-packed-hover li.gallerybox' )
+				.on( 'focus blur', 'a', function ( e ) {
+					// Confusingly jQuery leaves e.type as focusout for delegated blur events
+					var gettingFocus = e.type !== 'blur' && e.type !== 'focusout';
+					$( this ).closest( 'li.gallerybox' ).toggleClass( 'mw-gallery-focused', gettingFocus );
+				} );
 		}
 
-		$galleries = $content.find( 'ul.mw-gallery-packed-overlay, ul.mw-gallery-packed-hover, ul.mw-gallery-packed' );
+		$galleries = $galleries
+			// Remove any old detached elements
+			.filter( function ( i, node ) { return !!node.parentNode; } )
+			// Add new galleries from $content
+			.add( $content
+				.find( 'ul.mw-gallery-packed-overlay, ul.mw-gallery-packed-hover, ul.mw-gallery-packed' )
+				.addBack( 'ul.mw-gallery-packed-overlay, ul.mw-gallery-packed-hover, ul.mw-gallery-packed' )
+			);
 		// Call the justification asynchronous because live preview fires the hook with detached $content.
 		setTimeout( function () {
 			$galleries.each( justify );
