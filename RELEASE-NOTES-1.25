@@ -14,6 +14,8 @@ THIS IS NOT YET A RELEASE!
 * (T102522) Using an extension.json or skin.json file which has
   a "manifest_version" property for 1.26 compatability will no longer
   trigger warnings.
+* Special:Version would throw notices if using SVN due to an incorrectly
+  named variable. Add an additional check that an index is defined.
 
 === Changes since 1.25 ===
 * (T100351) Fix syntax errors in extension.json of ConfirmEdit extension
