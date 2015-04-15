@@ -266,7 +266,7 @@ class SpecialVersion extends SpecialPage {
 				wfMessage(
 					'version-svn-revision',
 					isset( $info['directory-rev'] ) ? $info['directory-rev'] : '',
-					$info['checkout-rev']
+					isset( $info['checkout-rev'] ) ? $info['checkout-rev'] : ''
 				)->text();
 		}
 
