@@ -96,33 +96,6 @@ class ApiEditPageTest extends ApiTestCase {
 		);
 	}
 
-	public function testNonTextEdit() {
-		$name = 'Dummy:ApiEditPageTest_testNonTextEdit';
-		$data = serialize( 'some bla bla text' );
-
-		// -- test new page --------------------------------------------
-		$apiResult = $this->doApiRequestWithToken( array(
-			'action' => 'edit',
-			'title' => $name,
-			'text' => $data, ) );
-		$apiResult = $apiResult[0];
-
-		// Validate API result data
-		$this->assertArrayHasKey( 'edit', $apiResult );
-		$this->assertArrayHasKey( 'result', $apiResult['edit'] );
-		$this->assertEquals( 'Success', $apiResult['edit']['result'] );
-
-		$this->assertArrayHasKey( 'new', $apiResult['edit'] );
-		$this->assertArrayNotHasKey( 'nochange', $apiResult['edit'] );
-
-		$this->assertArrayHasKey( 'pageid', $apiResult['edit'] );
-
-		// validate resulting revision
-		$page = WikiPage::factory( Title::newFromText( $name ) );
-		$this->assertEquals( "testing", $page->getContentModel() );
-		$this->assertEquals( $data, $page->getContent()->serialize() );
-	}
-
 	/**
 	 * @return array
 	 */
@@ -492,5 +465,18 @@ class ApiEditPageTest extends ApiTestCase {
 			array( 'rev_id' => $page->getLatest() ) );
 
 		$page->clear();
+	}
+
+	public function testCheckSupportsDirectEditing() {
+		$this->setExpectedException(
+			'UsageException',
+			'Direct editing is not supported for this content type.'
+		);
+
+		$this->doApiRequestWithToken( array(
+			'action' => 'edit',
+			'title' => 'Dummy:ApiEditPageTest_nonTextPageEdit',
+			'text' => '{"animals":["kittens!"]}'
+		) );
 	}
 }
