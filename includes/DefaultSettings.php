@@ -1588,6 +1588,15 @@ $wgEnotifMaxRecips = 500;
 $wgEnotifUseJobQ = false;
 
 /**
+ * Use the job queue for user activity updates like updating "last visited"
+ * fields for email notifications of page changes. This should only be enabled
+ * if the jobs have a dedicated runner to avoid update lag.
+ *
+ * @since 1.26
+ */
+$wgActivityUpdatesUseJobQueue = false;
+
+/**
  * Use real name instead of username in e-mail "from" field.
  */
 $wgEnotifUseRealName = false;
@@ -6467,6 +6476,7 @@ $wgJobClasses = array(
 	'ThumbnailRender' => 'ThumbnailRenderJob',
 	'recentChangesUpdate' => 'RecentChangesUpdateJob',
 	'refreshLinksPrioritized' => 'RefreshLinksJob', // for cascading protection
+	'activityUpdateJob' => 'ActivityUpdateJob',
 	'enqueue' => 'EnqueueJob', // local queue for multi-DC setups
 	'null' => 'NullJob'
 );
