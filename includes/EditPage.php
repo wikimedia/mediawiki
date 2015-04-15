@@ -380,9 +380,6 @@ class EditPage {
 
 	public $suppressIntro = false;
 
-	/** @var bool Set to true to allow editing of non-text content types. */
-	public $allowNonTextContent = false;
-
 	/** @var bool */
 	protected $edit;
 
@@ -447,8 +444,7 @@ class EditPage {
 	 * @throws MWException If $modelId has no known handler
 	 */
 	public function isSupportedContentModel( $modelId ) {
-		return $this->allowNonTextContent ||
-			ContentHandler::getForModelID( $modelId ) instanceof TextContentHandler;
+		return ContentHandler::getForModelID( $modelId )->supportsDirectEditing();
 	}
 
 	function submit() {
