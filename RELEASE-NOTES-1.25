@@ -94,8 +94,7 @@ production.
 * Update QUnit from v1.14.0 to v1.16.0.
 * Update Moment.js from v2.8.3 to v2.8.4.
 * Special:Tags now allows for manipulating the list of user-modifiable change
-  tags. Actually modifying the tagging of a revision or log entry is not
-  implemented yet.
+  tags.
 * Added 'managetags' user right and 'ChangeTagCanCreate', 'ChangeTagCanDelete',
   and 'ChangeTagCanCreate' hooks to allow for managing user-modifiable change
   tags.
@@ -122,6 +121,10 @@ production.
 * (T94536) You can now make the sitenotice appear to logged-in users only by
   editing MediaWiki:Anonnotice and replacing its content with "". Setting it to
   "-" (default) will continue disable it and fallback to MediaWiki:Sitenotice.
+* Modifying the tagging of a revision or log entry is now available via
+  Special:EditTags, generally accessed via the revision-deletion-like interface
+  on history pages and Special:Log is likely to be more useful.
+* Added 'applychangetags' and 'changetags' user rights.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
