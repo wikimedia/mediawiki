@@ -1390,6 +1390,7 @@
 	"listfiles-delete": "kustuta",
 	"listfiles-summary": "Sellel erileheküljel näidatakse kõiki üles laaditud faile.",
 	"listfiles_search_for": "Nimeotsing:",
+	"listfiles-userdoesnotexist": "Kasutajakonto \"$1\" pole registreeritud.",
 	"imgfile": "fail",
 	"listfiles": "Piltide loend",
 	"listfiles_thumb": "Pisipilt",

@@ -4,7 +4,8 @@
 			"Glavkos",
 			"Protnet",
 			"ZaDiak",
-			"Astralnet"
+			"Astralnet",
+			"Geraki"
 		]
 	},
 	"config-desc": "Το πρόγραμμα εγκατάστασης για το MediaWiki",
@@ -117,5 +118,5 @@
 	"config-install-interwiki-list": "Αδυναμία ανάγνωσης του αρχείου <code>interwiki.list</code>.",
 	"config-help": "βοήθεια",
 	"mainpagetext": "<strong>To MediaWiki εγκαταστάθηκε με επιτυχία.</strong>",
-	"mainpagedocfooter": "Περισσότερες πληροφορίες σχετικά με τη χρήση και με τη ρύθμιση παραμέτρων θα βρείτε στους συνδέσμους: [//meta.wikimedia.org/wiki/MediaWiki_localisation Οδηγίες για τροποποίηση του περιβάλλοντος εργασίας] και [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Εγχειρίδιο χρήστη]."
+	"mainpagedocfooter": "Συμβουλευτείτε το [//meta.wikimedia.org/wiki/Help:Contents Εγχειρίδιο χρήστη] για πληροφορίες σχετικά με τη χρήση του λογισμικού wiki.\n\n== Ξεκινώντας ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Κατάλογος ρυθμίσεων]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Λίστα ταχυδρομείου εκδόσεων MediaWiki]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Τοπικοποιήστε το MediaWiki για τη γλώσσα σας]"
 }
