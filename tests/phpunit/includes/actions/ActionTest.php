@@ -19,7 +19,7 @@ class ActionTest extends MediaWikiTestCase {
 			'disabled' => false,
 			'view' => true,
 			'edit' => true,
-			'revisiondelete' => true,
+			'revisiondelete' => 'SpecialPageAction',
 			'dummy' => true,
 			'string' => 'NamedDummyAction',
 			'declared' => 'NonExistingClassName',
