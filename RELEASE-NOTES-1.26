@@ -28,7 +28,14 @@ changes to languages because of Bugzilla reports.
 
 
 === Other changes in 1.26 ===
-
+* ContentHandler now has a supportsDirectEditing method, which is false by
+default and true for TextContent and it's derivatives (nearly everything in
+core, such as JsonContent, WikitextContent, CssContent ...). ApiEditPage and
+EditPage use this to check if direct editing of content is allowed. For Content
+that does not support direct editing, an alternative mechanism should be
+provided for editing, such as action overrides or specific api modules.
+ContentHandler::supportsDirectEditing replaces use of allowNonTextContent
+member variable in EditPage.
 
 == Compatibility ==
 
