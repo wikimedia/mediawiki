@@ -11,6 +11,10 @@ production.
 === Configuration changes in 1.26 ===
 
 === New features in 1.26 ===
+* Modifying the tagging of a revision or log entry is now available via
+  Special:EditTags, generally accessed via the revision-deletion-like interface
+  on history pages and Special:Log is likely to be more useful.
+* Added 'applychangetags' and 'changetags' user rights.
 
 ==== External libraries ====
 
