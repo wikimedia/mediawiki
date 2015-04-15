@@ -66,8 +66,10 @@ $wgAutoloadClasses += array(
 	'TestRecentChangesHelper' => "$testDir/phpunit/includes/changes/TestRecentChangesHelper.php",
 
 	# tests/phpunit/includes/content
-	'DummyContentHandlerForTesting' => "$testDir/phpunit/includes/content/ContentHandlerTest.php",
-	'DummyContentForTesting' => "$testDir/phpunit/includes/content/ContentHandlerTest.php",
+	'DummyContentHandlerForTesting' => "$testDir/phpunit/mocks/content/DummyContentHandlerForTesting.php",
+	'DummyContentForTesting' => "$testDir/phpunit/mocks/content/DummyContentForTesting.php",
+	'DummyNonTextContentHandler' => "$testDir/phpunit/mocks/content/DummyNonTextContentHandler.php",
+	'DummyNonTextContent' => "$testDir/phpunit/mocks/content/DummyNonTextContent.php",
 	'ContentHandlerTest' => "$testDir/phpunit/includes/content/ContentHandlerTest.php",
 	'JavaScriptContentTest' => "$testDir/phpunit/includes/content/JavaScriptContentTest.php",
 	'TextContentTest' => "$testDir/phpunit/includes/content/TextContentTest.php",

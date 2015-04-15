@@ -4,12 +4,34 @@
  * @group Editing
  *
  * @group Database
- *        ^--- tell jenkins this test needs the database
+ *		^--- tell jenkins this test needs the database
  *
  * @group medium
- *        ^--- tell phpunit that these test cases may take longer than 2 seconds.
+ *		^--- tell phpunit that these test cases may take longer than 2 seconds.
  */
 class EditPageTest extends MediaWikiLangTestCase {
+
+	protected function setUp() {
+		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
+
+		parent::setUp();
+
+		$this->setMwGlobals( array(
+			'wgExtraNamespaces' => $wgExtraNamespaces,
+			'wgNamespaceContentModels' => $wgNamespaceContentModels,
+			'wgContentHandlers' => $wgContentHandlers,
+			'wgContLang' => $wgContLang,
+		) );
+
+		$wgExtraNamespaces[12312] = 'Dummy';
+		$wgExtraNamespaces[12313] = 'Dummy_talk';
+
+		$wgNamespaceContentModels[12312] = "testing";
+		$wgContentHandlers["testing"] = 'DummyContentHandlerForTesting';
+
+		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+		$wgContLang->resetNamespaces(); # reset namespace cache
+	}
 
 	/**
 	 * @dataProvider provideExtractSectionTitle
@@ -74,20 +96,20 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 * @param string|null $baseText Some text to create the page with before attempting the edit.
 	 * @param User|string|null $user The user to perform the edit as.
 	 * @param array $edit An array of request parameters used to define the edit to perform.
-	 *              Some well known fields are:
-	 *              * wpTextbox1: the text to submit
-	 *              * wpSummary: the edit summary
-	 *              * wpEditToken: the edit token (will be inserted if not provided)
-	 *              * wpEdittime: timestamp of the edit's base revision (will be inserted
-	 *                if not provided)
-	 *              * wpStarttime: timestamp when the edit started (will be inserted if not provided)
-	 *              * wpSectionTitle: the section to edit
-	 *              * wpMinorEdit: mark as minor edit
-	 *              * wpWatchthis: whether to watch the page
+	 *			  Some well known fields are:
+	 *			  * wpTextbox1: the text to submit
+	 *			  * wpSummary: the edit summary
+	 *			  * wpEditToken: the edit token (will be inserted if not provided)
+	 *			  * wpEdittime: timestamp of the edit's base revision (will be inserted
+	 *				if not provided)
+	 *			  * wpStarttime: timestamp when the edit started (will be inserted if not provided)
+	 *			  * wpSectionTitle: the section to edit
+	 *			  * wpMinorEdit: mark as minor edit
+	 *			  * wpWatchthis: whether to watch the page
 	 * @param int|null $expectedCode The expected result code (EditPage::AS_XXX constants).
-	 *                  Set to null to skip the check.
+	 *				  Set to null to skip the check.
 	 * @param string|null $expectedText The text expected to be on the page after the edit.
-	 *                  Set to null to skip the check.
+	 *				  Set to null to skip the check.
 	 * @param string|null $message An optional message to show along with any error message.
 	 *
 	 * @return WikiPage The page that was just edited, useful for getting the edit's rev_id, etc.
@@ -131,19 +153,19 @@ class EditPageTest extends MediaWikiLangTestCase {
 			$this->setMwGlobals( 'wgUser', $user );
 		}
 
-		if ( !isset( $edit['wpEditToken'] ) ) {
-			$edit['wpEditToken'] = $user->getEditToken();
-		}
+        if ( !isset( $edit['wpEditToken'] ) ) {
+            $edit['wpEditToken'] = $user->getEditToken();
+        }
 
-		if ( !isset( $edit['wpEdittime'] ) ) {
-			$edit['wpEdittime'] = $page->exists() ? $page->getTimestamp() : '';
-		}
+        if ( !isset( $edit['wpEdittime'] ) ) {
+            $edit['wpEdittime'] = $page->exists() ? $page->getTimestamp() : '';
+        }
 
-		if ( !isset( $edit['wpStarttime'] ) ) {
-			$edit['wpStarttime'] = wfTimestampNow();
-		}
+        if ( !isset( $edit['wpStarttime'] ) ) {
+            $edit['wpStarttime'] = wfTimestampNow();
+        }
 
-		$req = new FauxRequest( $edit, true ); // session ??
+        $req = new FauxRequest( $edit, true ); // session ??
 
 		$article = new Article( $title );
 		$article->getContext()->setTitle( $title );
@@ -499,4 +521,37 @@ hello
 		$this->assertEdit( 'EditPageTest_testAutoMerge', null, 'Berta', $bertasEdit,
 			$expectedCode, $expectedText, $message );
 	}
+
+	/**
+	 * @depends testAutoMerge
+	 */
+	public function testCheckDirectEditingDisallowed_forNonTextContent() {
+		$title = Title::newFromText( 'Dummy:NonTextPageForEditPage' );
+		$page = WikiPage::factory( $title );
+
+		$article = new Article( $title );
+		$article->getContext()->setTitle( $title );
+		$ep = new EditPage( $article );
+		$ep->setContextTitle( $title );
+
+		$user = $GLOBALS['wgUser'];
+
+		$edit = array(
+			'wpTextbox1' => serialize( 'non-text content' ),
+			'wpEditToken' => $user->getEditToken(),
+			'wpEdittime' => '',
+			'wpStarttime' => wfTimestampNow()
+		);
+
+		$req = new FauxRequest( $edit, true );
+		$ep->importFormData( $req );
+
+		$this->setExpectedException(
+			'MWException',
+			'This content model is not supported: testing'
+		);
+
+		$ep->internalAttemptSave( $result, false );
+	}
+
 }
