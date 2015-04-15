@@ -4409,7 +4409,7 @@ class Title {
 	 * @return string|null
 	 */
 	public function getNotificationTimestamp( $user = null ) {
-		global $wgUser, $wgShowUpdatedMarker;
+		global $wgUser;
 
 		// Assume current user if none given
 		if ( !$user ) {
@@ -4417,7 +4417,7 @@ class Title {
 		}
 		// Check cache first
 		$uid = $user->getId();
-		if ( !$uid || !$wgShowUpdatedMarker ) {
+		if ( !$uid ) {
 			return false;
 		}
 		// avoid isset here, as it'll return false for null entries

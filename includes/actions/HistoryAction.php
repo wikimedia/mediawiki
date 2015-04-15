@@ -432,8 +432,13 @@ class HistoryPager extends ReverseChronologicalPager {
 			$latest = ( $this->counter == 1 && $this->mIsFirst );
 			$firstInList = $this->counter == 1;
 			$this->counter++;
-			$s = $this->historyLine( $this->lastRow, $row,
-				$this->getTitle()->getNotificationTimestamp( $this->getUser() ), $latest, $firstInList );
+
+			$notifTimestamp = $this->getConfig()->get( 'ShowUpdatedMarker' )
+				? $this->getTitle()->getNotificationTimestamp( $this->getUser() )
+				: false;
+
+			$s = $this->historyLine(
+				$this->lastRow, $row, $notifTimestamp, $latest, $firstInList );
 		} else {
 			$s = '';
 		}
@@ -532,8 +537,13 @@ class HistoryPager extends ReverseChronologicalPager {
 				$next = $this->mPastTheEndRow;
 			}
 			$this->counter++;
-			$s = $this->historyLine( $this->lastRow, $next,
-				$this->getTitle()->getNotificationTimestamp( $this->getUser() ), $latest, $firstInList );
+
+			$notifTimestamp = $this->getConfig()->get( 'ShowUpdatedMarker' )
+				? $this->getTitle()->getNotificationTimestamp( $this->getUser() )
+				: false;
+
+			$s = $this->historyLine(
+				$this->lastRow, $next, $notifTimestamp, $latest, $firstInList );
 		} else {
 			$s = '';
 		}
