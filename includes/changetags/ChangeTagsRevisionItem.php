@@ -21,7 +21,7 @@
 
 /**
  * Item class for a live revision table row with its associated change tags.
- * @since 1.26
+ * @since 1.25
  */
 class ChangeTagsRevisionItem extends RevisionItem {
 	/**
