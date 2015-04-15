@@ -1059,7 +1059,7 @@
 	"right-purge": "oldal gyorsítótárának ürítése megerősítés nélkül",
 	"right-autoconfirmed": "Nem érinti az IP-alapú szerkesztéskorlátozás",
 	"right-bot": "automatikus folyamatként való kezelés",
-	"right-nominornewtalk": "felhasználói lapok nem apró szerkesztésével megjelenik az új üzenet szöveg",
+	"right-nominornewtalk": "felhasználói lapok apró szerkesztésével nem jelenik meg az új üzenet értesítés",
 	"right-apihighlimits": "nagyobb mennyiségű lekérdezés az API-n keresztül",
 	"right-writeapi": "a szerkesztő-API használata",
 	"right-delete": "lapok törlése",

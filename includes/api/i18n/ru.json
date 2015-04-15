@@ -4,7 +4,8 @@
 			"Mahairod",
 			"Okras",
 			"Eakarpov",
-			"Kaganer"
+			"Kaganer",
+			"Mariya"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Документация]]\n* [[mw:API:FAQ|ЧаВО]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Почтовая рассылка]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> Все отображаемые на этой странице функции должны работать, однако API находится в статусе активной разработки, и может измениться в любой момент. Подпишитесь на  [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом \"MediaWiki-API-Error\", после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:API:Errors_and_warnings|API: Ошибки и предупреждения]].",
@@ -44,6 +45,9 @@
 	"apihelp-query+recentchanges-example-simple": "Список последних изменений.",
 	"apihelp-upload-example-url": "Загрузить через URL",
 	"api-help-main-header": "Главный модуль",
+	"api-help-source": "Источник: $1",
+	"api-help-source-unknown": "Источник: <span class=\"apihelp-unknown\">unknown</span>",
+	"api-help-license": "Лицензия: [[$1|$2]]",
 	"api-help-parameters": "Параметр{{PLURAL:$1||ы}}:",
 	"api-help-param-deprecated": "Устаревший.",
 	"api-help-param-required": "Этот параметр является обязательным.",
