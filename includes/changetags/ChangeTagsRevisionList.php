@@ -21,7 +21,7 @@
 
 /**
  * Stores a list of taggable revisions.
- * @since 1.26
+ * @since 1.25
  */
 class ChangeTagsRevisionList extends ChangeTagsList {
 	public function getType() {

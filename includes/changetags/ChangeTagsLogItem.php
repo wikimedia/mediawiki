@@ -23,7 +23,7 @@
  * Item class for a logging table row with its associated change tags.
  * @todo Abstract out a base class for this and RevDelLogItem, similar to the
  * RevisionItem class but specifically for log items.
- * @since 1.26
+ * @since 1.25
  */
 class ChangeTagsLogItem extends RevisionItemBase {
 	public function getIdField() {
