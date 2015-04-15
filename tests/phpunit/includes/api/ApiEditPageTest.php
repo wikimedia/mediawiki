@@ -27,9 +27,13 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$wgExtraNamespaces[12312] = 'Dummy';
 		$wgExtraNamespaces[12313] = 'Dummy_talk';
+		$wgExtraNamespaces[12314] = 'DummyJson';
+		$wgExtraNamespaces[12315] = 'DummyJson_talk';
 
 		$wgNamespaceContentModels[12312] = "testing";
+		$wgNamespaceContentModels[12314] = "testing-json";
 		$wgContentHandlers["testing"] = 'DummyContentHandlerForTesting';
+		$wgContentHandlers["testing-json"] = 'DummyJsonContentHandler';
 
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
 		$wgContLang->resetNamespaces(); # reset namespace cache
@@ -492,5 +496,18 @@ class ApiEditPageTest extends ApiTestCase {
 			array( 'rev_id' => $page->getLatest() ) );
 
 		$page->clear();
+	}
+
+	public function testCheckSupportsDirectEditing() {
+		$this->setExpectedException(
+			'UsageException',
+			'Direct editing is not supported for this content type.'
+		);
+
+		$this->doApiRequestWithToken( array(
+       	    'action' => 'edit',
+       	    'title' => 'DummyJson:ApiEditPageTest_jsonPageEdit',
+       	    'text' => '{"animals":["kittens!"]}'
+		) );
 	}
 }

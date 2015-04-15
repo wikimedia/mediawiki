@@ -433,6 +433,9 @@ class EditPage {
 	/**
 	 * Returns if the given content model is editable.
 	 *
+	 * @todo use ContentHandler::supportsDirectEditing instead of this and allowNonTextContent,
+	 * here and in ApiEditPage.
+	 *
 	 * @param string $modelId The ID of the content model to test. Use CONTENT_MODEL_XXX constants.
 	 * @return bool
 	 * @throws MWException If $modelId has no known handler

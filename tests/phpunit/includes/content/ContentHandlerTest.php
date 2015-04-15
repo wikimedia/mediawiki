@@ -338,6 +338,11 @@ class ContentHandlerTest extends MediaWikiTestCase {
 	}
 	*/
 
+	public function testSupportsDirectEditing() {
+		$handler = new DummyContentHandlerForTesting( CONTENT_MODEL_WIKITEXT );
+		$this->assertTrue( $handler->supportsDirectEditing(), 'direct editing is supported' );
+	}
+
 	/**
 	 * @covers ContentHandler::runLegacyHooks
 	 */

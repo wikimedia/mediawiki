@@ -1777,6 +1777,10 @@ abstract class ApiBase extends ContextSource {
 		),
 		'noedit-anon' => array( 'code' => 'noedit-anon', 'info' => "Anonymous users can't edit pages" ),
 		'noedit' => array( 'code' => 'noedit', 'info' => "You don't have permission to edit pages" ),
+		'no-direct-editing' => array(
+			'code' => 'no-direct-editing',
+			'info' => 'Direct editing is not supported for this content type.'
+		),
 		'wasdeleted' => array(
 			'code' => 'pagedeleted',
 			'info' => "The page has been deleted since you fetched its timestamp"

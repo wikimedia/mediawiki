@@ -68,6 +68,7 @@ $wgAutoloadClasses += array(
 	# tests/phpunit/includes/content
 	'DummyContentHandlerForTesting' => "$testDir/phpunit/includes/content/ContentHandlerTest.php",
 	'DummyContentForTesting' => "$testDir/phpunit/includes/content/ContentHandlerTest.php",
+	'DummyJsonContentHandler' => "$testDir/phpunit/mocks/content/DummyJsonContentHandler.php",
 	'ContentHandlerTest' => "$testDir/phpunit/includes/content/ContentHandlerTest.php",
 	'JavaScriptContentTest' => "$testDir/phpunit/includes/content/JavaScriptContentTest.php",
 	'TextContentTest' => "$testDir/phpunit/includes/content/TextContentTest.php",
