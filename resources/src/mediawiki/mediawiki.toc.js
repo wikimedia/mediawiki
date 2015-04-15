@@ -4,9 +4,9 @@
 	// Table of contents toggle
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
 		var $toc, $tocTitle, $tocToggleLink, $tocList, hideToc;
-		$toc = $content.find( '#toc' );
-		$tocTitle = $content.find( '#toctitle' );
-		$tocToggleLink = $content.find( '#togglelink' );
+		$toc = $content.find( '#toc' ).addBack( '#toc' );
+		$tocTitle = $toc.find( '#toctitle' );
+		$tocToggleLink = $toc.find( '#togglelink' );
 		$tocList = $toc.find( 'ul' ).eq( 0 );
 
 		// Hide/show the table of contents element
