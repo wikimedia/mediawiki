@@ -13745,6 +13745,22 @@ TOC regression (T11764)
 !! end
 
 !! test
+TOC for heading containing <span id="..."></span> (T96153)
+!! wikitext
+__FORCETOC__
+==<span id="old-anchor"></span>New title==
+!! html
+<div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#New_title"><span class="tocnumber">1</span> <span class="toctext">New title</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="New_title"><span id="old-anchor"></span>New title</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: New title">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+
+!! end
+
+!! test
 TOC with wgMaxTocLevel=3 (bug 6204)
 !! options
 wgMaxTocLevel=3
