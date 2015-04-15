@@ -380,11 +380,13 @@ class EditPage {
 
 	public $suppressIntro = false;
 
-	/** @var bool Set to true to allow editing of non-text content types. */
-	public $allowNonTextContent = false;
-
 	/** @var bool */
 	protected $edit;
+
+	/**
+	 * @var bool Set in ApiEditPage, based on ContentHandler::allowsDirectApiEditing
+	 */
+	private $enableApiEditOverride = false;
 
 	/**
 	 * @param Article $article
@@ -447,8 +449,18 @@ class EditPage {
 	 * @throws MWException If $modelId has no known handler
 	 */
 	public function isSupportedContentModel( $modelId ) {
-		return $this->allowNonTextContent ||
-			ContentHandler::getForModelID( $modelId ) instanceof TextContentHandler;
+		return $this->enableApiEditOverride === true ||
+			ContentHandler::getForModelID( $modelId )->supportsDirectEditing();
+	}
+
+	/**
+	 * Allow editing of content that supports API direct editing, but not general
+	 * direct editing. Set to false by default.
+	 *
+	 * @param bool $enableOverride
+	 */
+	public function setApiEditOverride( $enableOverride ) {
+		$this->enableApiEditOverride = $enableOverride;
 	}
 
 	function submit() {

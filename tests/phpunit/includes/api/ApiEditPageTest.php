@@ -27,9 +27,14 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$wgExtraNamespaces[12312] = 'Dummy';
 		$wgExtraNamespaces[12313] = 'Dummy_talk';
+		$wgExtraNamespaces[12314] = 'DummyNonText';
+		$wgExtraNamespaces[12315] = 'DummyNonText_talk';
 
 		$wgNamespaceContentModels[12312] = "testing";
+		$wgNamespaceContentModels[12314] = "testing-nontext";
+
 		$wgContentHandlers["testing"] = 'DummyContentHandlerForTesting';
+		$wgContentHandlers["testing-nontext"] = 'DummyNonTextContentHandler';
 
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
 		$wgContLang->resetNamespaces(); # reset namespace cache
@@ -94,33 +99,6 @@ class ApiEditPageTest extends ApiTestCase {
 			$data[0]['edit']['oldrevid'],
 			"revision id should change after edit"
 		);
-	}
-
-	public function testNonTextEdit() {
-		$name = 'Dummy:ApiEditPageTest_testNonTextEdit';
-		$data = serialize( 'some bla bla text' );
-
-		// -- test new page --------------------------------------------
-		$apiResult = $this->doApiRequestWithToken( array(
-			'action' => 'edit',
-			'title' => $name,
-			'text' => $data, ) );
-		$apiResult = $apiResult[0];
-
-		// Validate API result data
-		$this->assertArrayHasKey( 'edit', $apiResult );
-		$this->assertArrayHasKey( 'result', $apiResult['edit'] );
-		$this->assertEquals( 'Success', $apiResult['edit']['result'] );
-
-		$this->assertArrayHasKey( 'new', $apiResult['edit'] );
-		$this->assertArrayNotHasKey( 'nochange', $apiResult['edit'] );
-
-		$this->assertArrayHasKey( 'pageid', $apiResult['edit'] );
-
-		// validate resulting revision
-		$page = WikiPage::factory( Title::newFromText( $name ) );
-		$this->assertEquals( "testing", $page->getContentModel() );
-		$this->assertEquals( $data, $page->getContent()->serialize() );
 	}
 
 	/**
@@ -492,5 +470,46 @@ class ApiEditPageTest extends ApiTestCase {
 			array( 'rev_id' => $page->getLatest() ) );
 
 		$page->clear();
+	}
+
+	public function testCheckDirectApiEditingDisallowed_forNonTextContent() {
+		$this->setExpectedException(
+			'UsageException',
+			'Direct editing via API is not supported for this content type.'
+		);
+
+		$this->doApiRequestWithToken( array(
+			'action' => 'edit',
+			'title' => 'Dummy:ApiEditPageTest_nonTextPageEdit',
+			'text' => '{"animals":["kittens!"]}'
+		) );
+	}
+
+	public function testSupportsDirectApiEditing_withContentHandlerOverride() {
+		$name = 'DummyNonText:ApiEditPageTest_testNonTextEdit';
+		$data = serialize( 'some bla bla text' );
+
+		$result = $this->doApiRequestWithToken( array(
+			'action' => 'edit',
+			'title' => $name,
+			'text' => $data,
+		) );
+
+		$apiResult = $result[0];
+
+		// Validate API result data
+		$this->assertArrayHasKey( 'edit', $apiResult );
+		$this->assertArrayHasKey( 'result', $apiResult['edit'] );
+		$this->assertEquals( 'Success', $apiResult['edit']['result'] );
+
+		$this->assertArrayHasKey( 'new', $apiResult['edit'] );
+		$this->assertArrayNotHasKey( 'nochange', $apiResult['edit'] );
+
+		$this->assertArrayHasKey( 'pageid', $apiResult['edit'] );
+
+		// validate resulting revision
+		$page = WikiPage::factory( Title::newFromText( $name ) );
+		$this->assertEquals( "testing-nontext", $page->getContentModel() );
+		$this->assertEquals( $data, $page->getContent()->serialize() );
 	}
 }

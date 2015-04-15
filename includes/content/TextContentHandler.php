@@ -134,4 +134,13 @@ class TextContentHandler extends ContentHandler {
 		return new $class( '' );
 	}
 
+	/**
+	 * @see ContentHandler::supportsDirectEditing
+	 *
+	 * @return bool Default is true for TextContent and derivatives.
+	 */
+	public function supportsDirectEditing() {
+		return true;
+	}
+
 }

@@ -96,8 +96,12 @@ class ApiEditPage extends ApiBase {
 			$contentHandler = ContentHandler::getForModelID( $params['contentmodel'] );
 		}
 
-		// @todo Ask handler whether direct editing is supported at all! make
-		// allowFlatEdit() method or some such
+		if ( $contentHandler->supportsDirectApiEditing() === false ) {
+			$this->dieUsage(
+				'Direct editing via API is not supported for this content type.',
+				'no-direct-editing'
+			);
+		}
 
 		if ( !isset( $params['contentformat'] ) || $params['contentformat'] == '' ) {
 			$params['contentformat'] = $contentHandler->getDefaultFormat();
@@ -362,9 +366,7 @@ class ApiEditPage extends ApiBase {
 
 		$ep = new EditPage( $articleObject );
 
-		// allow editing of non-textual content.
-		$ep->allowNonTextContent = true;
-
+		$ep->setApiEditOverride( true );
 		$ep->setContextTitle( $titleObj );
 		$ep->importFormData( $req );
 		$content = $ep->textbox1;

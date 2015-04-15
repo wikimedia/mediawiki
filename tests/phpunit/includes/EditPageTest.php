@@ -11,6 +11,28 @@
  */
 class EditPageTest extends MediaWikiLangTestCase {
 
+	protected function setUp() {
+		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
+
+		parent::setUp();
+
+		$this->setMwGlobals( array(
+			'wgExtraNamespaces' => $wgExtraNamespaces,
+			'wgNamespaceContentModels' => $wgNamespaceContentModels,
+			'wgContentHandlers' => $wgContentHandlers,
+			'wgContLang' => $wgContLang,
+		) );
+
+		$wgExtraNamespaces[12312] = 'Dummy';
+		$wgExtraNamespaces[12313] = 'Dummy_talk';
+
+		$wgNamespaceContentModels[12312] = "testing";
+		$wgContentHandlers["testing"] = 'DummyContentHandlerForTesting';
+
+		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+		$wgContLang->resetNamespaces(); # reset namespace cache
+	}
+
 	/**
 	 * @dataProvider provideExtractSectionTitle
 	 * @covers EditPage::extractSectionTitle
@@ -499,4 +521,37 @@ hello
 		$this->assertEdit( 'EditPageTest_testAutoMerge', null, 'Berta', $bertasEdit,
 			$expectedCode, $expectedText, $message );
 	}
+
+	/**
+	 * @depends testAutoMerge
+	 */
+	public function testCheckDirectEditingDisallowed_forNonTextContent() {
+		$title = Title::newFromText( 'Dummy:NonTextPageForEditPage' );
+		$page = WikiPage::factory( $title );
+
+		$article = new Article( $title );
+		$article->getContext()->setTitle( $title );
+		$ep = new EditPage( $article );
+		$ep->setContextTitle( $title );
+
+		$user = $GLOBALS['wgUser'];
+
+		$edit = array(
+			'wpTextbox1' => serialize( 'non-text content' ),
+			'wpEditToken' => $user->getEditToken(),
+			'wpEdittime' => '',
+			'wpStarttime' => wfTimestampNow()
+		);
+
+		$req = new FauxRequest( $edit, true );
+		$ep->importFormData( $req );
+
+		$this->setExpectedException(
+			'MWException',
+			'This content model is not supported: testing'
+		);
+
+		$ep->internalAttemptSave( $result, false );
+	}
+
 }
