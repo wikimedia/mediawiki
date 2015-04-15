@@ -24,7 +24,7 @@
  * A lot of this is copied out of SpecialRevisiondelete.
  *
  * @ingroup SpecialPage
- * @since 1.26
+ * @since 1.25
  */
 class SpecialEditTags extends UnlistedSpecialPage {
 	/** @var bool Was the DB modified in this request */

@@ -21,7 +21,7 @@
 
 /**
  * Stores a list of taggable log entries.
- * @since 1.26
+ * @since 1.25
  */
 class ChangeTagsLogList extends ChangeTagsList {
 	public function getType() {

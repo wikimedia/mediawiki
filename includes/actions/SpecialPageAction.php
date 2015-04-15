@@ -22,7 +22,7 @@
  * An action that just passes the request to the relevant special page
  *
  * @ingroup Actions
- * @since 1.26
+ * @since 1.25
  */
 class SpecialPageAction extends FormlessAction {
 
