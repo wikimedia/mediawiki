@@ -4410,34 +4410,28 @@ class Title {
 	 */
 	public function getNotificationTimestamp( $user = null ) {
 		global $wgUser, $wgShowUpdatedMarker;
+
 		// Assume current user if none given
 		if ( !$user ) {
 			$user = $wgUser;
 		}
 		// Check cache first
 		$uid = $user->getId();
+		if ( !$uid || !$wgShowUpdatedMarker ) {
+			return false;
+		}
 		// avoid isset here, as it'll return false for null entries
 		if ( array_key_exists( $uid, $this->mNotificationTimestamp ) ) {
-			return $this->mNotificationTimestamp[$uid];
-		}
-		if ( !$uid || !$wgShowUpdatedMarker || !$user->isAllowed( 'viewmywatchlist' ) ) {
-			$this->mNotificationTimestamp[$uid] = false;
 			return $this->mNotificationTimestamp[$uid];
 		}
 		// Don't cache too much!
 		if ( count( $this->mNotificationTimestamp ) >= self::CACHE_MAX ) {
 			$this->mNotificationTimestamp = array();
 		}
-		$dbr = wfGetDB( DB_SLAVE );
-		$this->mNotificationTimestamp[$uid] = $dbr->selectField( 'watchlist',
-			'wl_notificationtimestamp',
-			array(
-				'wl_user' => $user->getId(),
-				'wl_namespace' => $this->getNamespace(),
-				'wl_title' => $this->getDBkey(),
-			),
-			__METHOD__
-		);
+
+		$watchedItem = WatchedItem::fromUserTitle( $user, $this );
+		$this->mNotificationTimestamp[$uid] = $watchedItem->getNotificationTimestamp();
+
 		return $this->mNotificationTimestamp[$uid];
 	}
 
