@@ -1058,6 +1058,24 @@ abstract class ContentHandler {
 	}
 
 	/**
+	 * Return true if this content model supports direct editing, such as via EditPage.
+	 *
+	 * @return bool Default is false, and true for TextContent and it's derivatives.
+	 */
+	public function supportsDirectEditing() {
+		return false;
+	}
+
+	/**
+	 * Whether or not this content model supports direct editing via ApiEditPage
+	 *
+	 * @return bool Default is false, and true for TextContent and derivatives.
+	 */
+	public function supportsDirectApiEditing() {
+		return $this->supportsDirectEditing();
+	}
+
+	/**
 	 * Logs a deprecation warning, visible if $wgDevelopmentWarnings, but only if
 	 * self::$enableDeprecationWarnings is set to true.
 	 *
