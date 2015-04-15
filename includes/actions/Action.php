@@ -132,6 +132,8 @@ abstract class Action {
 		if ( $actionName === 'historysubmit' ) {
 			if ( $request->getBool( 'revisiondelete' ) ) {
 				$actionName = 'revisiondelete';
+			} elseif ( $request->getBool( 'editchangetags' ) ) {
+				$actionName = 'editchangetags';
 			} else {
 				$actionName = 'view';
 			}
