@@ -1197,7 +1197,7 @@ class ChangeTags {
 
 		$out = array();
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_SLAVE, 'vslow' );
 		$res = $dbr->select(
 			'change_tag',
 			array( 'ct_tag', 'hitcount' => 'count(*)' ),
