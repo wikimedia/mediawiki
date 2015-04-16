@@ -551,6 +551,10 @@ if ( is_null( $wgLocalTZoffset ) ) {
 	$wgLocalTZoffset = date( 'Z' ) / 60;
 }
 
+if ( !$wgDBerrorLogTZ ) {
+	$wgDBerrorLogTZ = $wgLocaltimezonel
+}
+
 // Useful debug output
 if ( $wgCommandLineMode ) {
 	$wgRequest = new FauxRequest( array() );

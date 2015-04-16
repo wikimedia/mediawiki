@@ -253,7 +253,7 @@ class LegacyLogger extends AbstractLogger {
 		global $wgDBerrorLogTZ;
 		static $cachedTimezone = null;
 
-		if ( $wgDBerrorLogTZ && !$cachedTimezone ) {
+		if ( !$cachedTimezone ) {
 			$cachedTimezone = new DateTimeZone( $wgDBerrorLogTZ );
 		}
 
