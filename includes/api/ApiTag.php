@@ -40,26 +40,25 @@ class ApiTag extends ApiBase {
 
 		// validate and process each revid, rcid and logid
 		$this->requireAtLeastOneParameter( $params, 'revid', 'rcid', 'logid' );
-		$result = $this->getResult();
 		$ret = array();
 		if ( $params['revid'] ) {
 			foreach ( $params['revid'] as $id ) {
-				$ret[] = $this->processIndividual( 'revid', $params, $id, $result );
+				$ret[] = $this->processIndividual( 'revid', $params, $id );
 			}
 		}
 		if ( $params['rcid'] ) {
 			foreach ( $params['rcid'] as $id ) {
-				$ret[] = $this->processIndividual( 'rcid', $params, $id, $result );
+				$ret[] = $this->processIndividual( 'rcid', $params, $id );
 			}
 		}
 		if ( $params['logid'] ) {
 			foreach ( $params['logid'] as $id ) {
-				$ret[] = $this->processIndividual( 'logid', $params, $id, $result );
+				$ret[] = $this->processIndividual( 'logid', $params, $id );
 			}
 		}
 
-		$result->setIndexedTagName( $ret, 'result' );
-		$result->addValue( null, $this->getModuleName(), $ret );
+		ApiResult::setIndexedTagName( $ret, 'result' );
+		$this->getResult()->addValue( null, $this->getModuleName(), $ret );
 	}
 
 	protected static function validateLogId( $logid ) {
@@ -69,7 +68,7 @@ class ApiTag extends ApiBase {
 		return (bool)$result;
 	}
 
-	protected function processIndividual( $type, $params, $id, &$result ) {
+	protected function processIndividual( $type, $params, $id ) {
 		$idResult = array( $type => $id );
 
 		// validate the ID
@@ -102,11 +101,11 @@ class ApiTag extends ApiBase {
 			$this->getUser() );
 
 		if ( !$status->isOK() ) {
-			if ( $status->hasWarning( 'actionthrottledtext' ) ) {
+			if ( $status->hasMessage( 'actionthrottledtext' ) ) {
 				$idResult['status'] = 'skipped';
 			} else {
 				$idResult['status'] = 'failure';
-				$ret['errors'] = $result->convertStatusToArray( $status, 'error' );
+				$idResult['errors'] = $this->getErrorFormatter()->arrayFromStatus( $status, 'error' );
 			}
 		} else {
 			$idResult['status'] = 'success';
@@ -115,9 +114,9 @@ class ApiTag extends ApiBase {
 			} else {
 				$idResult['actionlogid'] = $status->value->logId;
 				$idResult['added'] = $status->value->addedTags;
-				$result->setIndexedTagName( $idResult['added'], 't' );
+				ApiResult::setIndexedTagName( $idResult['added'], 't' );
 				$idResult['removed'] = $status->value->removedTags;
-				$result->setIndexedTagName( $idResult['removed'], 't' );
+				ApiResult::setIndexedTagName( $idResult['removed'], 't' );
 			}
 		}
 		return $idResult;
