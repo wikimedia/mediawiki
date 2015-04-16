@@ -578,7 +578,7 @@
 		} );
 
 		$uploadForm.submit( function () {
-			allowCloseWindow();
+			allowCloseWindow.release();
 		} );
 	} );
 }( mediaWiki, jQuery ) );
