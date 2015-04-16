@@ -434,10 +434,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 	 * PHP extensions, we go for gzip instead, which triggers the same relevant code
 	 * paths while still being testable on more systems.
 	 *
-	 * Broken per T70653.
-	 *
 	 * @group large
-	 * @group Broken
 	 */
 	function testCheckpointGzip() {
 		$this->checkHasGzip();
