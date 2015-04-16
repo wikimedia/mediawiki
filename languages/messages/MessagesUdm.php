@@ -42,8 +42,7 @@ $namespaceAliases = array(
 // Remove Russian aliases
 $namespaceGenderAliases = array();
 
-$linkTrail = '/^([a-zа-яёӝӟӥӧӵ“»]+)(.*)$/sDu';
-$linkPrefixCharset = '„«';
+$linkTrail = '/^([a-zа-яёӝӟӥӧӵ]+)(.*)$/sDu';
 $fallback8bitEncoding = 'windows-1251';
 $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 
