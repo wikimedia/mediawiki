@@ -3456,7 +3456,7 @@
 	"tags-edit-success": "<strong>The changes were successfully applied.</strong>",
 	"tags-edit-failure": "<strong>The changes could not be applied:</strong>\n$1",
 	"tags-edit-nooldid-title": "Invalid target revision",
-	"tags-edit-nooldid-text": "You have either not specified a target revision(s) to perform this function, or the specified revision does not exist.",
+	"tags-edit-nooldid-text": "You have either not specified any target revision on which to perform this function, or the specified revision does not exist.",
 	"tags-edit-none-selected": "Please select at least one tag to add or remove.",
 	"comparepages": "Compare pages",
 	"comparepages-summary": "",
