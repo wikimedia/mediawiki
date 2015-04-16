@@ -1,5 +1,5 @@
 <?php
-/** Tunisian Arabic (تونسي/Tûnsi)
+/** Tunisian Arabic - Latin Script (Tûnsi)
  *
  * To improve a translation please visit https://translatewiki.net
  *
@@ -7,5 +7,3 @@
  * @file
  *
  */
-
-$fallback = 'aeb-arab';

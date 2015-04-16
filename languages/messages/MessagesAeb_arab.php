@@ -1,5 +1,5 @@
 <?php
-/** Tunisian Arabic (تونسي/Tûnsi)
+/** Tunisian Arabic - Arabic Script (تونسي)
  *
  * To improve a translation please visit https://translatewiki.net
  *
@@ -8,4 +8,6 @@
  *
  */
 
-$fallback = 'aeb-arab';
+$fallback = 'ar';
+
+$rtl = true;
