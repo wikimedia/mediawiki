@@ -5,7 +5,7 @@ jQuery( function ( $ ) {
 	var $preftoc, $preferences, $fieldsets, $legends,
 		hash, labelFunc,
 		$tzSelect, $tzTextbox, $localtimeHolder, servertime,
-		$checkBoxes, allowCloseWindowFn;
+		$checkBoxes, allowCloseWindow;
 
 	labelFunc = function () {
 		return this.id.replace( /^mw-prefsection/g, 'preftab' );
@@ -266,7 +266,7 @@ jQuery( function ( $ ) {
 	// Set up a message to notify users if they try to leave the page without
 	// saving.
 	$( '#mw-prefs-form' ).data( 'origdata', $( '#mw-prefs-form' ).serialize() );
-	allowCloseWindowFn = mediaWiki.confirmCloseWindow( {
+	allowCloseWindow = mediaWiki.confirmCloseWindow( {
 		test: function () {
 			return $( '#mw-prefs-form' ).serialize() !== $( '#mw-prefs-form' ).data( 'origdata' );
 		},
@@ -274,6 +274,6 @@ jQuery( function ( $ ) {
 		message: mediaWiki.msg( 'prefswarning-warning', mediaWiki.msg( 'saveprefs' ) ),
 		namespace: 'prefswarning'
 	} );
-	$( '#mw-prefs-form' ).submit( allowCloseWindowFn );
-	$( '#mw-prefs-restoreprefs' ).click( allowCloseWindowFn );
+	$( '#mw-prefs-form' ).submit( allowCloseWindow.release() );
+	$( '#mw-prefs-restoreprefs' ).click( allowCloseWindow.release() );
 } );
