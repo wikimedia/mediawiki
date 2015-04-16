@@ -78,7 +78,6 @@ if ( $IP === false ) {
 
 # Grab profiling functions
 require_once "$IP/includes/profiler/ProfilerFunctions.php";
-$wgRUstart = wfGetRusage() ?: array();
 
 # Start the autoloader, so that extensions can derive classes from core files
 require_once "$IP/includes/AutoLoader.php";
