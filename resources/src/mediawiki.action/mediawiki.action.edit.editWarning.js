@@ -35,7 +35,7 @@
 
 		// Add form submission handler
 		$( '#editform' ).submit( function () {
-			allowCloseWindow();
+			allowCloseWindow.release();
 		} );
 	} );
 
