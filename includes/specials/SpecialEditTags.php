@@ -408,8 +408,6 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			$tagsToRemove = array_diff( $existingTags, $tagList );
 		}
 
-		//var_dump( array( 'add' => $tagsToAdd, 'remove' => $tagsToRemove ) );
-
 		if ( !$tagsToAdd && !$tagsToRemove ) {
 			$status = Status::newFatal( 'tags-edit-none-selected' );
 		} else {
@@ -431,7 +429,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	 */
 	protected function success() {
 		$this->getOutput()->setPageTitle( $this->msg( 'actioncomplete' ) );
-		$this->getOutput()->wrapWikiMsg( "<span class=\"success\">\n$1\n</span>",
+		$this->getOutput()->wrapWikiMsg( "<div class=\"successbox\">\n$1\n</div>",
 			'tags-edit-success' );
 		$this->wasSaved = true;
 		$this->revList->reloadFromMaster();
@@ -445,7 +443,10 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	 */
 	protected function failure( $status ) {
 		$this->getOutput()->setPageTitle( $this->msg( 'actionfailed' ) );
-		$this->getOutput()->addWikiText( $status->getWikiText( 'tags-edit-failure' ) );
+		$this->getOutput()->addWikiText( '<div class="errorbox">' .
+			$status->getWikiText( 'tags-edit-failure' ) .
+			'</div>'
+		);
 		$this->showForm();
 	}
 
