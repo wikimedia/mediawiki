@@ -63,7 +63,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 		// fatal unless an array is already set. So set an empty value.
 		foreach ( array_merge( $this->getAllGlobals(), array_keys( $this->custom ) ) as $var ) {
 			$var = 'wg' . $var;
-			$$var = array();
+			$var = array();
 		}
 		unset( $var );
 		require $this->getArg( 0 );
