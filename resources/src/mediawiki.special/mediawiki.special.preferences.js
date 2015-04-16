@@ -274,6 +274,6 @@ jQuery( function ( $ ) {
 		message: mediaWiki.msg( 'prefswarning-warning', mediaWiki.msg( 'saveprefs' ) ),
 		namespace: 'prefswarning'
 	} );
-	$( '#mw-prefs-form' ).submit( allowCloseWindowFn );
-	$( '#mw-prefs-restoreprefs' ).click( allowCloseWindowFn );
+	$( '#mw-prefs-form' ).submit( allowCloseWindowFn.release() );
+	$( '#mw-prefs-restoreprefs' ).click( allowCloseWindowFn.release() );
 } );
