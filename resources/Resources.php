@@ -1268,6 +1268,7 @@ return array(
 		'dependencies' => array(
 			'mediawiki.util',
 			'mediawiki.language',
+			'dom-level2-shim',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
@@ -1692,6 +1693,14 @@ return array(
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 		'skipFunction' => 'resources/src/es5-skip.js',
+	),
+
+	/* dom-level2-shim */
+	// IE 8
+	'dom-level2-shim' => array(
+		'scripts' => 'resources/src/polyfill-nodeTypes.js',
+		'targets' => array( 'desktop', 'mobile' ),
+		'skipFunction' => 'resources/src/dom-level2-skip.js',
 	),
 
 	/* OOjs */
