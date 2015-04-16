@@ -1268,6 +1268,7 @@ return array(
 		'dependencies' => array(
 			'mediawiki.util',
 			'mediawiki.language',
+			'ie8-shim',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
@@ -1692,6 +1693,13 @@ return array(
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 		'skipFunction' => 'resources/src/es5-skip.js',
+	),
+
+	/* ie8-shim */
+	'ie8-shim' => array(
+		'scripts' => 'resources/src/polyfill-nodeTypes-ie8.js',
+		'targets' => array( 'desktop' ),
+		'skipFunction' => 'resources/src/ie8-skip.js',
 	),
 
 	/* OOjs */
