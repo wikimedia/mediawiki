@@ -405,6 +405,7 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'DeletedContributions' ),
 	'Diff'                      => array( 'Diff' ),
 	'DoubleRedirects'           => array( 'DoubleRedirects' ),
+	'EditTags'                  => array( 'EditTags' ),
 	'EditWatchlist'             => array( 'EditWatchlist' ),
 	'Emailuser'                 => array( 'EmailUser', 'Email' ),
 	'ExpandTemplates'           => array( 'ExpandTemplates' ),
