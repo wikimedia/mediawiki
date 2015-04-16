@@ -145,3 +145,5 @@ $specialPageAliases = array(
 	'Whatlinkshere'             => array( 'لینک_په_ای_دیما' ),
 	'Withoutinterwiki'          => array( 'بئ_شه_مانیجین_ویکی_ئا' ),
 );
+
+$linkTrail = "/^([اآأبپتثجچحخدڈذرڑزژسشصضطظعغفقکگلمنوۆؤھهئیێ‌]+)(.*)$/sDu";
