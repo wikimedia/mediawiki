@@ -2070,28 +2070,33 @@ class Title {
 	 * @param string $rigor Same format as Title::getUserPermissionsErrors()
 	 * @param bool $short Short circuit on first error
 	 *
-	 * @return array List of errors
+	 * @return boolean Whether to continue permission check processing
 	 */
-	private function checkPermissionHooks( $action, $user, $errors, $rigor, $short ) {
+	private function checkPermissionHooks( $action, $user, &$errors, $rigor, $short ) {
 		// Use getUserPermissionsErrors instead
 		$result = '';
 		if ( !Hooks::run( 'userCan', array( &$this, &$user, $action, &$result ) ) ) {
-			return $result ? array() : array( array( 'badaccess-group0' ) );
+			if ( !$result ) {
+				$errors[] = array( 'badaccess-group0' );
+			}
+			return true;
 		}
 		// Check getUserPermissionsErrors hook
-		if ( !Hooks::run( 'getUserPermissionsErrors', array( &$this, &$user, $action, &$result ) ) ) {
+		$result = true;
+		$allowAll = false;
+		if ( !Hooks::run( 'getUserPermissionsErrors', array( &$this, &$user, $action, &$result, &$allowAll ) ) ) {
 			$errors = $this->resultToError( $errors, $result );
 		}
 		// Check getUserPermissionsErrorsExpensive hook
 		if (
 			$rigor !== 'quick'
 			&& !( $short && count( $errors ) > 0 )
-			&& !Hooks::run( 'getUserPermissionsErrorsExpensive', array( &$this, &$user, $action, &$result ) )
+			&& !Hooks::run( 'getUserPermissionsErrorsExpensive', array( &$this, &$user, $action, &$result, &$allowAll ) )
 		) {
 			$errors = $this->resultToError( $errors, $result );
+			return !$allowAll;
 		}
-
-		return $errors;
+		return true;
 	}
 
 	/**
@@ -2479,7 +2484,6 @@ class Title {
 		# Read has special handling
 		if ( $action == 'read' ) {
 			$checks = array(
-				'checkPermissionHooks',
 				'checkReadPermissions',
 			);
 		# Don't call checkSpecialsAndNSPermissions or checkCSSandJSPermissions
@@ -2489,7 +2493,6 @@ class Title {
 		} elseif ( $action == 'create' ) {
 			$checks = array(
 				'checkQuickPermissions',
-				'checkPermissionHooks',
 				'checkPageRestrictions',
 				'checkCascadingSourcesRestrictions',
 				'checkActionPermissions',
@@ -2506,6 +2509,11 @@ class Title {
 				'checkActionPermissions',
 				'checkUserBlock'
 			);
+		}
+
+		if ( !$this->checkPermissionHooks( $action, $user, $errors, $doExpensiveQueries, $short ) ) {
+			// Give extensions a chance to override anything
+			return $errors;
 		}
 
 		$errors = array();

@@ -3161,11 +3161,14 @@ $res: database result used to create the object
 
 'userCan': To interrupt/advise the "user can do X to Y article" check. If you
 want to display an error message, try getUserPermissionsErrors.
+Also, if your extension wants to allow the action even when built-in MediaWiki 
+permission checks deny it, set $allowAll to true and return false.
 $title: Title object being checked against
 $user: Current user object
 $action: Action being checked
-$result: Pointer to result returned if hook returns false. If null is returned,
+&$result: Pointer to result returned if hook returns false. If null is returned,
   userCan checks are continued by internal code.
+&$allowAll: true allows the action even when built-in MW permission checks deny it.
 
 'UserCanSendEmail': To override User::canSendEmail() permission check.
 $user: User (object) whose permission is being checked

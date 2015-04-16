@@ -63,6 +63,9 @@ production.
   setting in the relevant section of $wgLBFactoryConf.
 * User::newSystemUser() may be used to simplify the creation of passwordless
   "system" users for logged actions from scripts and extensions.
+* Added &$allowAll argument to getUserPermissionsErrors and
+  getUserPermissionsErrorsExpensive hooks - it allows extensions to allow
+  some action even when normal MW permission checks deny it.
 
 ==== External libraries ====
 
