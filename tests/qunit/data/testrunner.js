@@ -179,7 +179,8 @@
 	 * </code>
 	 */
 	QUnit.newMwEnvironment = ( function () {
-		var warn, log, liveConfig, liveMessages;
+		var warn, log, liveConfig, liveMessages,
+			ajaxRequests = [];
 
 		liveConfig = mw.config.values;
 		liveMessages = mw.messages.values;
@@ -217,6 +218,15 @@
 			return $.extend( /*deep=*/true, {}, liveMessages, custom );
 		}
 
+		/**
+		 * @param {jQuery.Event} event
+		 * @param {jqXHR} jqXHR
+		 * @param {Object} ajaxOptions
+		 */
+		function trackAjax( event, jqXHR, ajaxOptions ) {
+			ajaxRequests.push( { xhr: jqXHR, options: ajaxOptions } );
+		}
+
 		log = QUnit.urlParams.mwlogenv ? mw.log : function () {};
 
 		return function ( localEnv ) {
@@ -240,15 +250,21 @@
 					this.suppressWarnings = suppressWarnings;
 					this.restoreWarnings = restoreWarnings;
 
+					// Start tracking ajax requests
+					$( document ).on( 'ajaxSend', trackAjax );
+
 					localEnv.setup.call( this );
 				},
 
 				teardown: function () {
-					var timers;
+					var timers, active;
 					log( 'MwEnvironment> TEARDOWN for "' + QUnit.config.current.module
 						+ ': ' + QUnit.config.current.testName + '"' );
 
 					localEnv.teardown.call( this );
+
+					// Stop tracking ajax requests
+					$( document ).off( 'ajaxSend', trackAjax );
 
 					// Farewell, mock environment!
 					mw.config.values = liveConfig;
@@ -258,11 +274,10 @@
 					// still suppressed by the end of the test.
 					restoreWarnings();
 
-					// Check for incomplete animations/requests/etc and throw
-					// error if there are any.
+					// Tests should use fake timers or wait for animations to complete
+					// Check for incomplete animations/requests/etc and throw if there are any.
 					if ( $.timers && $.timers.length !== 0 ) {
 						timers = $.timers.length;
-						// Tests shoulld use fake timers or wait for animations to complete
 						$.each( $.timers, function ( i, timer ) {
 							var node = timer.elem;
 							mw.log.warn( 'Unfinished animation #' + i + ' in ' + timer.queue + ' queue on ' +
@@ -274,10 +289,23 @@
 
 						throw new Error( 'Unfinished animations: ' + timers );
 					}
+
+					// Test should use fake XHR, wait for requests, or call abort()
 					if ( $.active !== undefined && $.active !== 0 ) {
-						// Test may need to use fake XHR, wait for requests or
-						// call abort().
-						throw new Error( 'Unfinished AJAX requests: ' + $.active );
+						active = $.grep( ajaxRequests, function ( ajax ) {
+							return ajax.xhr.state() === 'pending';
+						} );
+						if ( active.length !== $.active ) {
+							mw.log.warn( 'Pending requests does not match jQuery.active count' );
+						}
+						// Force requests to stop to give the next test a clean start
+						$.each( active, function ( i, ajax ) {
+							mw.log.warn( 'Unfinished AJAX request #' + i, ajax.options );
+							ajax.xhr.abort();
+						} );
+						ajaxRequests = [];
+
+						throw new Error( 'Unfinished AJAX requests: ' + active.length );
 					}
 				}
 			};
