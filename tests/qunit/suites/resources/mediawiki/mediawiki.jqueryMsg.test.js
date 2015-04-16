@@ -94,19 +94,31 @@
 	/**
 	 * @param {Function[]} tasks List of functions that perform tasks
 	 *  that may be asynchronous. Invoke the callback parameter when done.
-	 * @param {Function} done When all tasks are done.
+	 * @param {Function} complete Called when all tasks are done, or when the sequence is aborted.
 	 * @return
 	 */
-	function process( tasks, done ) {
-		function run() {
+	function process( tasks, complete ) {
+		function abort() {
+			tasks.splice( 0, tasks.length );
+			next();
+		}
+		function next() {
+			if ( !tasks ) {
+				// This happens if after the process is completed, one of our callbacks is
+				// invoked. This can happen if a test timed out but the process was still
+				// running. In that case, ignore it. Don't invoke complete() a second time.
+				return;
+			}
 			var task = tasks.shift();
 			if ( task ) {
-				task( run );
+				task( next, abort );
 			} else {
-				done();
+				// Remove tasks list to indicate the process is final.
+				tasks = null;
+				complete();
 			}
 		}
-		run();
+		next();
 	}
 
 	QUnit.test( 'Replace', 16, function ( assert ) {
@@ -306,9 +318,9 @@
 	QUnit.test( 'Match PHP parser', mw.libs.phpParserData.tests.length, function ( assert ) {
 		mw.messages.set( mw.libs.phpParserData.messages );
 		var tasks = $.map( mw.libs.phpParserData.tests, function ( test ) {
-			return function ( next ) {
+			return function ( next, abort ) {
 				getMwLanguage( test.lang )
-					.done( function ( langClass ) {
+					.then( function ( langClass ) {
 						mw.config.set( 'wgUserLanguage', test.lang );
 						var parser = new mw.jqueryMsg.parser( { language: langClass } );
 						assert.equal(
@@ -316,11 +328,10 @@
 							test.result,
 							test.name
 						);
-					} )
-					.fail( function () {
+					}, function () {
 						assert.ok( false, 'Language "' + test.lang + '" failed to load.' );
 					} )
-					.always( next );
+					.then( next, abort );
 			};
 		} );
 
@@ -645,9 +656,9 @@
 		mw.messages.set( 'formatnum-msg', '{{formatnum:$1}}' );
 		mw.messages.set( 'formatnum-msg-int', '{{formatnum:$1|R}}' );
 		var queue = $.map( formatnumTests, function ( test ) {
-			return function ( next ) {
+			return function ( next, abort ) {
 				getMwLanguage( test.lang )
-					.done( function ( langClass ) {
+					.then( function ( langClass ) {
 						mw.config.set( 'wgUserLanguage', test.lang );
 						var parser = new mw.jqueryMsg.parser( { language: langClass } );
 						assert.equal(
@@ -656,11 +667,10 @@
 							test.result,
 							test.description
 						);
-					} )
-					.fail( function () {
+					}, function () {
 						assert.ok( false, 'Language "' + test.lang + '" failed to load' );
 					} )
-					.always( next );
+					.then( next, abort );
 			};
 		} );
 		QUnit.stop();
