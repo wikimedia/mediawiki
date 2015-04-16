@@ -3603,7 +3603,7 @@ class User implements IDBAccessObject {
 		// This will be used for a CAS check as a last-resort safety
 		// check against race conditions and slave lag.
 		$oldTouched = $this->mTouched;
-		$this->mTouched = $this->newTouchedTimestamp();
+		$newTouched = $this->newTouchedTimestamp();
 
 		if ( !$wgAuth->allowSetLocalPassword() ) {
 			$this->mPassword = self::getPasswordFactory()->newFromCiphertext( null );
@@ -3619,7 +3619,7 @@ class User implements IDBAccessObject {
 				'user_real_name' => $this->mRealName,
 				'user_email' => $this->mEmail,
 				'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
-				'user_touched' => $dbw->timestamp( $this->mTouched ),
+				'user_touched' => $dbw->timestamp( $newTouched ),
 				'user_token' => strval( $this->mToken ),
 				'user_email_token' => $this->mEmailToken,
 				'user_email_token_expires' => $dbw->timestampOrNull( $this->mEmailTokenExpires ),
@@ -3631,17 +3631,18 @@ class User implements IDBAccessObject {
 		);
 
 		if ( !$dbw->affectedRows() ) {
+			// Maybe the problem was a missed cache update; clear it to be safe
+			$this->clearSharedCache();
 			// User was changed in the meantime or loaded with stale data
 			MWExceptionHandler::logException( new MWException(
 				"CAS update failed on user_touched for user ID '{$this->mId}';" .
 				"the version of the user to be saved is older than the current version."
 			) );
-			// Maybe the problem was a missed cache update; clear it to be safe
-			$this->clearSharedCache();
 
 			return;
 		}
 
+		$this->mTouched = $newTouched;
 		$this->saveOptions();
 
 		Hooks::run( 'UserSaveSettings', array( $this ) );
