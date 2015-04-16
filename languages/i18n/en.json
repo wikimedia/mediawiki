@@ -2583,6 +2583,7 @@
 	"pageinfo-protect-cascading-yes": "Yes",
 	"pageinfo-protect-cascading-from": "Protections are cascading from",
 	"pageinfo-category-info": "Category information",
+	"pageinfo-category-total": "Total number of members",
 	"pageinfo-category-pages": "Number of pages",
 	"pageinfo-category-subcats": "Number of subcategories",
 	"pageinfo-category-files": "Number of files",
