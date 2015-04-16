@@ -237,6 +237,14 @@ class LegacyLogger extends AbstractLogger {
 		if ( isset( $context['prefix'] ) ) {
 			$text = "{$context['prefix']}{$text}";
 		}
+
+		global $wgDebugTimestamps, $wgDBerrorLogTZ;
+		if ( $wgDebugTimestamps ) {
+			$d = date_create( 'now', new DateTimeZone( $wgDBerrorLogTZ ) );
+			$date = $d->format( 'D M j G:i:s T Y' );
+			return "{$date}\t{$text}\n";
+		}
+
 		return "{$text}\n";
 	}
 
