@@ -403,7 +403,7 @@
 	"apihelp-dumpfm-description": "Daten im PHP-<code>var_dump()</code>-Format ausgeben (schöngedruckt in HTML).",
 	"apihelp-json-description": "Daten im JSON-Format ausgeben.",
 	"apihelp-json-param-callback": "Falls angegeben, wird die Ausgabe in einen angegebenen Funktionsaufruf eingeschlossen. Aus Sicherheitsgründen sind benutzerspezifische Daten beschränkt.",
-	"apihelp-json-param-utf8": "Falls angegeben, kodiert die meisten (aber nicht alle) Nicht-ASCII-Zeichen als UTF-8 anstatt sie mit hexadezimalen Escape-Sequenzen zu ersetzen.",
+	"apihelp-json-param-utf8": "Falls angegeben, kodiert die meisten (aber nicht alle) Nicht-ASCII-Zeichen als UTF-8 anstatt sie mit hexadezimalen Escape-Sequenzen zu ersetzen. Standard, wenn <var>formatversion</var> nicht <kbd>1</kbd> ist.",
 	"apihelp-jsonfm-description": "Daten im JSON-Format ausgeben (schöngedruckt in HTML).",
 	"apihelp-none-description": "Nichts ausgeben.",
 	"apihelp-php-description": "Daten im serialisierten PHP-Format ausgeben.",
