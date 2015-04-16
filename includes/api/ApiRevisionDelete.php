@@ -111,7 +111,7 @@ class ApiRevisionDelete extends ApiBase {
 		// @codingStandardsIgnoreEnd
 
 		$data['items'] = array_values( $data['items'] );
-		$result->setIndexedTagName( $data['items'], 'i' );
+		ApiResult::setIndexedTagName( $data['items'], 'i' );
 		$result->addValue( null, $this->getModuleName(), $data );
 	}
 
@@ -121,12 +121,12 @@ class ApiRevisionDelete extends ApiBase {
 		);
 		$errors = $this->formatStatusMessages( $status->getErrorsByType( 'error' ) );
 		if ( $errors ) {
-			$this->getResult()->setIndexedTagName( $errors, 'e' );
+			ApiResult::setIndexedTagName( $errors, 'e' );
 			$ret['errors'] = $errors;
 		}
 		$warnings = $this->formatStatusMessages( $status->getErrorsByType( 'warning' ) );
 		if ( $warnings ) {
-			$this->getResult()->setIndexedTagName( $warnings, 'w' );
+			ApiResult::setIndexedTagName( $warnings, 'w' );
 			$ret['warnings'] = $warnings;
 		}
 
@@ -146,14 +146,14 @@ class ApiRevisionDelete extends ApiBase {
 				$message = array( 'message' => $msg->getKey() );
 				if ( $msg->getParams() ) {
 					$message['params'] = $msg->getParams();
-					$result->setIndexedTagName( $message['params'], 'p' );
+					ApiResult::setIndexedTagName( $message['params'], 'p' );
 				}
 			} else {
 				$message = array( 'message' => $m['message'] );
 				$msg = wfMessage( $m['message'] );
 				if ( isset( $m['params'] ) ) {
 					$message['params'] = $m['params'];
-					$result->setIndexedTagName( $message['params'], 'p' );
+					ApiResult::setIndexedTagName( $message['params'], 'p' );
 					$msg->params( $m['params'] );
 				}
 			}

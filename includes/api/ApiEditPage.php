@@ -82,7 +82,7 @@ class ApiEditPage extends ApiBase {
 					$titleObj = $newTitle;
 				}
 
-				$apiResult->setIndexedTagName( $redirValues, 'r' );
+				ApiResult::setIndexedTagName( $redirValues, 'r' );
 				$apiResult->addValue( null, 'redirects', $redirValues );
 
 				// Since the page changed, update $pageObj

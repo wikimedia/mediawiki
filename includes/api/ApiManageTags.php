@@ -47,7 +47,7 @@ class ApiManageTags extends ApiBase {
 			'tag' => $params['tag'],
 		);
 		if ( !$status->isGood() ) {
-			$ret['warnings'] = $result->convertStatusToArray( $status, 'warning' );
+			$ret['warnings'] = $this->getErrorFormatter()->arrayFromStatus( $status, 'warning' );
 		}
 		if ( $status->value !== null ) {
 			$ret['success'] = '';

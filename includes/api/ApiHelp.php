@@ -60,7 +60,7 @@ class ApiHelp extends ApiBase {
 				'mime' => 'text/html',
 				'help' => $html,
 			);
-			$result->setSubelements( $data, 'help' );
+			ApiResult::setSubelementsList( $data, 'help' );
 			$result->addValue( null, $this->getModuleName(), $data );
 		} else {
 			$result->reset();
