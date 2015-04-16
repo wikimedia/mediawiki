@@ -448,6 +448,10 @@ class HistoryPager extends ReverseChronologicalPager {
 	}
 
 	function doBatchLookups() {
+		if ( !Hooks::run( 'PageHistoryPager::doBatchLookups', array( $this, $this->mResult ) ) ) {
+			return;
+		}
+
 		# Do a link batch query
 		$this->mResult->seek( 0 );
 		$batch = new LinkBatch();

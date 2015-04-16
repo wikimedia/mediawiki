@@ -2112,6 +2112,13 @@ constructed.
 $pager: the pager
 $queryInfo: the query parameters
 
+'PageHistoryPager::doBatchLookups': Called after the pager query was run, before
+any output is generated, to allow batch lookups for prefetching information
+needed for display. If the hook handler returns false, the regular behavior of
+doBatchLookups() is skipped.
+$pager: the PageHistoryPager
+$result: a ResultWrapper representing the query result
+
 'PageRenderingHash': Alter the parser cache option hash key. A parser extension
 which depends on user options should install this hook and append its values to
 the key.

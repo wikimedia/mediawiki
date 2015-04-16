@@ -34,6 +34,7 @@ changes to languages because of Bugzilla reports.
 === Other changes in 1.26 ===
 * ChangeTags::tagDescription() will return false if the interface message
   for the tag is disabled.
+* Added PageHistoryPager::doBatchLookups hook.
 
 == Compatibility ==
 
