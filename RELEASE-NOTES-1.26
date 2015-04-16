@@ -13,6 +13,9 @@ production.
 === New features in 1.26 ===
 * Change tags can now be hidden in the interface by disabling the associated
   "tag-<id>" interface message.
+* Added &$allowAll argument to getUserPermissionsErrors and
+  getUserPermissionsErrorsExpensive hooks - it allows extensions to allow
+  some action even when normal MW permission checks deny it.
 
 ==== External libraries ====
 
