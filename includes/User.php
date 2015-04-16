@@ -3633,7 +3633,8 @@ class User implements IDBAccessObject {
 		if ( !$dbw->affectedRows() ) {
 			// User was changed in the meantime or loaded with stale data
 			MWExceptionHandler::logException( new MWException(
-				"CAS update failed on user_touched for user ID '{$this->mId}'."
+				"CAS update failed on user_touched for user ID '{$this->mId}';" .
+				"the version of the user to be saved is older than the current version."
 			) );
 			// Maybe the problem was a missed cache update; clear it to be safe
 			$this->clearSharedCache();
