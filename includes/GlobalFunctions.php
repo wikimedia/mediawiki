@@ -3774,20 +3774,14 @@ function wfWaitForSlaves(
 	// time needed to wait on the next clusters.
 	$masterPositions = array_fill( 0, count( $lbs ), false );
 	foreach ( $lbs as $i => $lb ) {
-		// bug 27975 - Don't try to wait for slaves if there are none
-		// Prevents permission error when getting master position
-		if ( $lb->getServerCount() > 1 ) {
-			if ( $ifWritesSince && !$lb->hasMasterConnection() ) {
-				continue; // assume no writes done
-			}
-			// Use the empty string to not trigger selectDB() since the connection
-			// may have been to a server that does not have a DB for the current wiki.
-			$dbw = $lb->getConnection( DB_MASTER, array(), '' );
-			if ( $ifWritesSince && $dbw->lastDoneWrites() < $ifWritesSince ) {
-				continue; // no writes since the last wait
-			}
-			$masterPositions[$i] = $dbw->getMasterPos();
+		if ( $lb->getServerCount() <= 1 ) {
+			// Bug 27975 - Don't try to wait for slaves if there are none
+			// Prevents permission error when getting master position
+			continue;
+		} elseif ( $ifWritesSince && $lb->lastMasterChangeTimestamp() < $ifWritesSince ) {
+			continue; // no writes since the last wait
 		}
+		$masterPositions[$i] = $lb->getMasterPos();
 	}
 
 	$ok = true;
