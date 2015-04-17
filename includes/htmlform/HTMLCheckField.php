@@ -75,7 +75,7 @@ class HTMLCheckField extends HTMLFormField {
 		if ( $this->mParent instanceof OOUIHTMLForm ) {
 			return $this->mLabel;
 		} else {
-			return '&#160;';
+			return '';
 		}
 	}
 
