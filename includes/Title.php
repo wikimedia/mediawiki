@@ -30,7 +30,7 @@
  * @note Consider using a TitleValue object instead. TitleValue is more lightweight
  *       and does not rely on global state or the database.
  */
-class Title {
+class Title implements ApiSerializable {
 	/** @var MapCacheLRU */
 	static private $titleCache = null;
 
@@ -4722,5 +4722,14 @@ class Title {
 
 		Hooks::run( 'TitleGetEditNotices', array( $this, $oldid, &$notices ) );
 		return $notices;
+	}
+
+	/**
+	 * Return the default api representation of this Title
+	 *
+	 * @return string
+	 */
+	public function serializeForApiResult() {
+		return $this->getPrefixedText();
 	}
 }
