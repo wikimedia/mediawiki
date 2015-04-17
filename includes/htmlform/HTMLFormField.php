@@ -508,11 +508,18 @@ abstract class HTMLFormField {
 			'mw-htmlform-nolabel' => ( $label === '' )
 		);
 
-		$field = Html::rawElement(
-			'div',
-			array( 'class' => $outerDivClass ) + $cellAttributes,
-			$inputHtml . "\n$errors"
-		);
+		$horizontalLabel = isset( $this->mParams['horizontal-label'] )
+			? $this->mParams['horizontal-label'] : false;
+
+		if ( $horizontalLabel ) {
+			$field = '&#160;' . $inputHtml . "\n$errors";
+		} else {
+			$field = Html::rawElement(
+				'div',
+				array( 'class' => $outerDivClass ) + $cellAttributes,
+				$inputHtml . "\n$errors"
+			);
+		}
 		$divCssClasses = array( "mw-htmlform-field-$fieldType", $this->mClass, $this->mVFormClass, $errorClass );
 
 		$wrapperAttributes = array(
@@ -729,6 +736,8 @@ abstract class HTMLFormField {
 
 		$displayFormat = $this->mParent->getDisplayFormat();
 		$html = '';
+		$horizontalLabel = isset( $this->mParams['horizontal-label'] )
+			? $this->mParams['horizontal-label'] : false;
 
 		if ( $displayFormat === 'table' ) {
 			$html =
@@ -736,7 +745,7 @@ abstract class HTMLFormField {
 					array( 'class' => 'mw-label' ) + $cellAttributes,
 					Html::rawElement( 'label', $for, $labelValue ) );
 		} elseif ( $hasLabel || $this->mShowEmptyLabels ) {
-			if ( $displayFormat === 'div' ) {
+			if ( $displayFormat === 'div' && !$horizontalLabel ) {
 				$html =
 					Html::rawElement( 'div',
 						array( 'class' => 'mw-label' ) + $cellAttributes,

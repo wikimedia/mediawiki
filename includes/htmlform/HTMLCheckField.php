@@ -41,7 +41,7 @@ class HTMLCheckField extends HTMLFormField {
 	 * @return string
 	 */
 	function getLabel() {
-		return '&#160;';
+		#return '&#160;';
 	}
 
 	/**

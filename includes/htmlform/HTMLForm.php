@@ -129,6 +129,7 @@ class HTMLForm extends ContextSource {
 		'email' => 'HTMLTextField',
 		'password' => 'HTMLTextField',
 		'url' => 'HTMLTextField',
+		'inlineseparator' => 'HTMLInlineSeparator',
 	);
 
 	public $mFieldData;
