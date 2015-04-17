@@ -2751,6 +2751,7 @@
 	"pageinfo-protect-cascading-yes": "Yes, protections are cascading from here\n*{{msg-mw|Pageinfo-protect-cascading}}\n*{{msg-mw|Pageinfo-protect-cascading-yes}}\n{{Identical|Yes}}",
 	"pageinfo-protect-cascading-from": "Key for a list of pages where protections are cascading from",
 	"pageinfo-category-info": "Showed on the page displaying information about the current page (add \"?action=info\" to the URL)",
+	"pageinfo-category-total": "See also:\n* {{msg-mw|Pageinfo-category-pages}}\n* {{msg-mw|Pageinfo-category-subcats}}\n* {{msg-mw|Pageinfo-category-files}}",
 	"pageinfo-category-pages": "See also:\n* {{msg-mw|Pageinfo-category-subcats}}\n* {{msg-mw|Pageinfo-category-files}}\n{{Identical|Number of pages}}",
 	"pageinfo-category-subcats": "See also:\n* {{msg-mw|Pageinfo-category-pages}}\n* {{msg-mw|Pageinfo-category-files}}",
 	"pageinfo-category-files": "See also:\n* {{msg-mw|Pageinfo-category-pages}}\n* {{msg-mw|Pageinfo-category-subcats}}",
