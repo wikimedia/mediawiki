@@ -91,7 +91,7 @@ class ApiFormatJson extends ApiFormatBase {
 					break;
 
 				default:
-					self::dieUsage( __METHOD__ . ': Unknown value for \'formatversion\'' );
+					$this->dieUsage( __METHOD__ . ': Unknown value for \'formatversion\'', 'unknownformatversion' );
 			}
 		}
 		$data = $this->getResult()->getResultData( null, $transform );
