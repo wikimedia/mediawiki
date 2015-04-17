@@ -104,6 +104,7 @@ class HTMLForm extends ContextSource {
 	public static $typeMappings = array(
 		'api' => 'HTMLApiField',
 		'text' => 'HTMLTextField',
+		'textwithbutton' => 'HTMLTextFieldWithButton',
 		'textarea' => 'HTMLTextAreaField',
 		'select' => 'HTMLSelectField',
 		'radio' => 'HTMLRadioField',
@@ -117,6 +118,7 @@ class HTMLForm extends ContextSource {
 		'selectorother' => 'HTMLSelectOrOtherField',
 		'selectandother' => 'HTMLSelectAndOtherField',
 		'namespaceselect' => 'HTMLSelectNamespace',
+		'namespaceselectwithbutton' => 'HTMLSelectNamespaceWithButton',
 		'tagfilter' => 'HTMLTagFilter',
 		'submit' => 'HTMLSubmitField',
 		'hidden' => 'HTMLHiddenField',
@@ -267,7 +269,10 @@ class HTMLForm extends ContextSource {
 		}
 
 		// Evil hack for mobile :(
-		if ( !$this->getConfig()->get( 'HTMLFormAllowTableFormat' ) && $this->displayFormat === 'table' ) {
+		if (
+			!$this->getConfig()->get( 'HTMLFormAllowTableFormat' )
+			&& $this->displayFormat === 'table'
+		) {
 			$this->displayFormat = 'div';
 		}
 
@@ -406,7 +411,9 @@ class HTMLForm extends ContextSource {
 	 * @throws MWException
 	 * @return HTMLFormField Instance of a subclass of HTMLFormField
 	 */
-	public static function loadInputFromParameters( $fieldname, $descriptor, HTMLForm $parent = null ) {
+	public static function loadInputFromParameters( $fieldname, $descriptor,
+		HTMLForm $parent = null
+	) {
 		$class = static::getClassFromDescriptor( $fieldname, $descriptor );
 
 		$descriptor['fieldname'] = $fieldname;
