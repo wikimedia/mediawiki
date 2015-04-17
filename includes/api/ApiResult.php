@@ -1450,7 +1450,7 @@ class ApiResult implements ApiSerializable {
 	 * @todo: Remove after updating callers to use self::stripMetadataNonRecursive
 	 */
 	public static function removeMetadataNonRecursive( $data, &$metadata = null ) {
-		self::stripMetadataNonRecursive( $data, $metadata );
+		return self::stripMetadataNonRecursive( $data, $metadata );
 	}
 
 	/**
