@@ -74,6 +74,11 @@ class HTMLCheckField extends HTMLFormField {
 	function getLabel() {
 		if ( $this->mParent instanceof OOUIHTMLForm ) {
 			return $this->mLabel;
+		} elseif (
+			$this->mParent instanceof HTMLForm &&
+			$this->mParent->getDisplayFormat() === 'div'
+		) {
+			return '';
 		} else {
 			return '&#160;';
 		}
