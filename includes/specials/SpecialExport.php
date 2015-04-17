@@ -188,113 +188,128 @@ class SpecialExport extends SpecialPage {
 			$categoryName = '';
 		}
 
-		$form = Xml::openElement( 'form', array( 'method' => 'post',
-			'action' => $this->getPageTitle()->getLocalURL( 'action=submit' ) ) );
-		$form .= Xml::inputLabel(
-			$this->msg( 'export-addcattext' )->text(),
-			'catname',
-			'catname',
-			40,
-			$categoryName
-		) . '&#160;';
-		$form .= Xml::submitButton(
-			$this->msg( 'export-addcat' )->text(),
-			array( 'name' => 'addcat' )
-		) . '<br />';
-
+		$formDescriptor = array(
+			'catname' => array(
+				'type' => 'textwithbutton',
+				'name' => 'catname',
+				'horizontal-label' => true,
+				'label-message' => 'export-addcattext',
+				'default' => $categoryName,
+				'size' => 40,
+				'buttontype' => 'submit',
+				'buttonname' => 'addcat',
+				'buttondefault' => $this->msg( 'export-addcat' )->text(),
+			),
+		);
 		if ( $config->get( 'ExportFromNamespaces' ) ) {
-			$form .= Html::namespaceSelector(
-				array(
-					'selected' => $nsindex,
-					'label' => $this->msg( 'export-addnstext' )->text()
-				), array(
+			$formDescriptor += array(
+				'nsindex' => array(
+					'type' => 'namespaceselectwithbutton',
+					'default' => $nsindex,
+					'label-message' => 'export-addnstext',
+					'horizontal-label' => true,
 					'name' => 'nsindex',
 					'id' => 'namespace',
-					'class' => 'namespaceselector',
-				)
-			) . '&#160;';
-			$form .= Xml::submitButton(
-				$this->msg( 'export-addns' )->text(),
-				array( 'name' => 'addns' )
-			) . '<br />';
+					'cssclass' => 'namespaceselector',
+					'buttontype' => 'submit',
+					'buttonname' => 'addns',
+					'buttondefault' => $this->msg( 'export-addns' )->text(),
+				),
+			);
 		}
 
 		if ( $config->get( 'ExportAllowAll' ) ) {
-			$form .= Xml::checkLabel(
-				$this->msg( 'exportall' )->text(),
-				'exportall',
-				'exportall',
-				$request->wasPosted() ? $request->getCheck( 'exportall' ) : false
-			) . '<br />';
+			$formDescriptor += array(
+				'exportall' => array(
+					'type' => 'check',
+					'label-message' => 'exportall',
+					'name' => 'exportall',
+					'id' => 'exportall',
+					'default' => $request->wasPosted() ? $request->getCheck( 'exportall' ) : false,
+				),
+			);
 		}
 
-		$form .= Xml::element(
-			'textarea',
-			array( 'name' => 'pages', 'cols' => 40, 'rows' => 10 ),
-			$page,
-			false
+		$formDescriptor += array(
+			'textarea' => array(
+				'class' => 'HTMLTextAreaField',
+				'name' => 'pages',
+				'nodata' => true,
+				'cols' => 40,
+				'rows' => 10,
+				'default' => $page,
+			),
 		);
-		$form .= '<br />';
 
 		if ( $config->get( 'ExportAllowHistory' ) ) {
-			$form .= Xml::checkLabel(
-				$this->msg( 'exportcuronly' )->text(),
-				'curonly',
-				'curonly',
-				$request->wasPosted() ? $request->getCheck( 'curonly' ) : true
-			) . '<br />';
+			$formDescriptor += array(
+				'curonly' => array(
+					'type' => 'check',
+					'label-message' => 'exportcuronly',
+					'name' => 'curonly',
+					'id' => 'curonly',
+					'default' => $request->wasPosted() ? $request->getCheck( 'curonly' ) : true,
+				),
+			);
 		} else {
 			$out->addWikiMsg( 'exportnohistory' );
 		}
 
-		$form .= Xml::checkLabel(
-			$this->msg( 'export-templates' )->text(),
-			'templates',
-			'wpExportTemplates',
-			$request->wasPosted() ? $request->getCheck( 'templates' ) : false
-		) . '<br />';
+		$formDescriptor += array(
+			'templates' => array(
+				'type' => 'check',
+				'label-message' => 'export-templates',
+				'name' => 'templates',
+				'id' => 'wpExportTemplates',
+				'default' => $request->wasPosted() ? $request->getCheck( 'templates' ) : false,
+			),
+		);
 
 		if ( $config->get( 'ExportMaxLinkDepth' ) || $this->userCanOverrideExportDepth() ) {
-			$form .= Xml::inputLabel(
-				$this->msg( 'export-pagelinks' )->text(),
-				'pagelink-depth',
-				'pagelink-depth',
-				20,
-				0
-			) . '<br />';
+			$formDescriptor += array(
+				'pagelink-depth' => array(
+					'type' => 'text',
+					'name' => 'pagelink-depth',
+					'id' => 'pagelink-depth',
+					'label-message' => 'export-pagelinks',
+					'default' => '0',
+					'size' => 20,
+				),
+			);
 		}
 
-		/* Enable this when we can do something useful exporting/importing image information.
-		$form .= Xml::checkLabel(
-				$this->msg( 'export-images' )->text(),
-				'images',
-				'wpExportImages',
-				false
-			) . '<br />';
-		*/
-		$form .= Xml::checkLabel(
-			$this->msg( 'export-download' )->text(),
-			'wpDownload',
-			'wpDownload',
-			$request->wasPosted() ? $request->getCheck( 'wpDownload' ) : true
-		) . '<br />';
+		$formDescriptor += array(
+			/* Enable this when we can do something useful exporting/importing image information.
+			'images' => array(
+				'type' => 'check',
+				'name' => 'images',
+				'id' => 'wpExportImages',
+				'default' => false,
+			),*/
+			'wpDownload' => array(
+				'type' => 'check',
+				'name' =>'wpDownload',
+				'id' => 'wpDownload',
+				'default' => $request->wasPosted() ? $request->getCheck( 'wpDownload' ) : true,
+				'label-message' => 'export-download',
+			),
+		);
 
 		if ( $config->get( 'ExportAllowListContributors' ) ) {
-			$form .= Xml::checkLabel(
-				$this->msg( 'exportlistauthors' )->text(),
-				'listauthors',
-				'listauthors',
-				$request->wasPosted() ? $request->getCheck( 'listauthors' ) : false
-			) . '<br />';
+			$formDescriptor += array(
+				'listauthors' => array(
+					'type' => 'check',
+					'label-message' => 'exportlistauthors',
+					'default' => $request->wasPosted() ? $request->getCheck( 'listauthors' ) : false,
+					'name' => 'listauthors',
+					'id' => 'listauthors',
+				),
+			);
 		}
 
-		$form .= Xml::submitButton(
-			$this->msg( 'export-submit' )->text(),
-			Linker::tooltipAndAccesskeyAttribs( 'export' )
-		);
-		$form .= Xml::closeElement( 'form' );
-
-		$out->addHTML( $form );
+		$htmlForm = HTMLForm::factory( 'div', $formDescriptor, $this->getContext() );
+		$htmlForm->setSubmitTextMsg( 'export-submit' );
+		$htmlForm->prepareForm()->displayForm( false );
 		$this->addHelpLink( 'Help:Export' );
 	}
 
