@@ -382,7 +382,7 @@
 	"laggedslavemode": "Aviso: a página poderá não conter atualizações recentes.",
 	"readonly": "Banco de dados disponível no modo \"somente leitura\"",
 	"enterlockreason": "Entre com um motivo para trancá-lo, incluindo uma estimativa de quando poderá novamente ser destrancado",
-	"readonlytext": "O banco de dados da {{SITENAME}} está atualmente bloqueado para novas entradas e outras modificações, provavelmente por uma manutenção rotineira; mais tarde voltará ao normal.\n\nQuem fez o bloqueio oferece a seguinte explicação: $1",
+	"readonlytext": "O banco de dados está atualmente bloqueado para novas entradas e outras modificações, provavelmente por uma manutenção rotineira; mais tarde voltará ao normal.\n\nO administrador que fez o bloqueio ofereceu a seguinte explicação: $1",
 	"missing-article": "O banco de dados não encontrou o texto de uma página que deveria ter encontrado, com o nome \"$1\" $2.\n\nIsso normalmente é causado ao acessar um link de diferença (dif) desatualizado ou para o histórico de uma página que foi apagada.\n\nSe este não for o caso, você pode ter encontrado um defeito (bug) no software.\nAnote a URL e reporte o ocorrido a um [[Special:ListUsers/sysop|administrador]].",
 	"missingarticle-rev": "(revisão#: $1)",
 	"missingarticle-diff": "(Dif.: $1, $2)",

@@ -688,6 +688,7 @@
 	"apihelp-setnotificationtimestamp-example-all": "重置整个监视列表的通知状态。",
 	"apihelp-setnotificationtimestamp-example-pagetimestamp": "设置<kbd>Main page</kbd>的通知时间戳，这样所有从2012年1月1日起的编辑都会是未复核的。",
 	"apihelp-setnotificationtimestamp-example-allpages": "重置在<kbd>{{ns:user}}</kbd>名字空间中的页面的通知状态。",
+	"apihelp-tag-param-add": "要添加的标签。只有手动定义的标签可以添加。",
 	"apihelp-tokens-param-type": "要请求的令牌类型。",
 	"apihelp-unblock-description": "解封一位用户。",
 	"apihelp-unblock-param-id": "解封时需要的封禁ID（通过<kbd>list=blocks</kbd>获得）。不能与<var>$1user</var>一起使用。",

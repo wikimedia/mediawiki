@@ -4,7 +4,8 @@
 			"Hiong3-eng5",
 			"Ianbu",
 			"Kaihsu",
-			"아라"
+			"아라",
+			"唐吉訶德的侍從"
 		]
 	},
 	"tog-underline": "Liân-kiat oē té-sûn:",
@@ -324,7 +325,7 @@
 	"perfcachedts": "Ē-kha ê chu-liāu tùi lâi--ê, tī $1 keng-sin--koè. Tī khoài-chûn-khu siōng chē ē-tàng khǹg {{PLURAL:$4|pit|$4 pit}} chu-liāu.",
 	"querypage-no-updates": "Chit-má bē-sái kái chit ia̍h.\nChia ê chu-liāu bē-tàng sui tiông-sin chéng-lí.",
 	"viewsource": "Khoàⁿ goân-sú lōe-iông",
-	"viewsource-title": "看 $1的原本編碼。",
+	"viewsource-title": "Khoàⁿ $1 ê goân-sú lōe-iông",
 	"actionthrottled": "Tōng-chok hông tóng leh.",
 	"actionthrottledtext": "Ūi-tio̍h thê-hông lah-sap ê chhú-tì,  lí ū hông hān-chè tī té sî-kan lāi chò siuⁿ chē pái chit ê tōng-chok,  taⁿ lí í-keng chhiau-koè hān-chè.\nChhiáⁿ tī kúi hun-cheng hāu chiah koh chhì.",
 	"protectedpagetext": "Chit ia̍h hông só tiâu leh, bē pian-chi̍p tit, mā bē-tàng chò kî-thaⁿ oa̍h-tāng.",
@@ -774,7 +775,6 @@
 	"dellogpagetext": "Í-hā lia̍t chhut chòe-kīn thâi tiāu ê hāng-bo̍k.",
 	"deletecomment": "Lí-iû:",
 	"rollback": "Kā siu-kái ká tńg khì",
-	"rollback_short": "Ká tńg khì",
 	"rollbacklink": "ká tńg khì",
 	"rollbackfailed": "Ká bē tńg khì",
 	"cantrollback": "Bô-hoat-tō· kā siu-kái ká-tńg--khì; téng ūi kòng-hiàn-chiá sī chit ia̍h î-it ê chok-chiá.",

@@ -8,5 +8,6 @@
 	"apihelp-main-param-format": "Гойту формат.",
 	"apihelp-main-param-curtimestamp": "Хилламийн юкъатоха ханна йолу билгало",
 	"apihelp-createaccount-param-name": "Декъашхочун цӀе.",
-	"apihelp-userrights-param-userid": "Декъашхочун ID."
+	"apihelp-userrights-param-userid": "Декъашхочун ID.",
+	"api-help-datatypes-header": "Хаамийн тайпанаш"
 }

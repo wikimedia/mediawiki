@@ -6,7 +6,8 @@
 			"Inkbug",
 			"Danny-w",
 			"YaronSh",
-			"ערן"
+			"ערן",
+			"LaG roiL"
 		]
 	},
 	"apihelp-main-param-action": "איזו פעולה לבצע.",
@@ -129,6 +130,7 @@
 	"apihelp-query+redirects-param-limit": "כמה הפניות להחזיר.",
 	"apihelp-query+revisions+base-param-limit": "הגבלת מספר הגרסאות שיוחזרו.",
 	"apihelp-query+tokens-example-types": "אחזור אסימון של רשימת המעקב ואסימון של ניטור",
+	"apihelp-tag-param-reason": "סיבה לשינוי.",
 	"apihelp-xml-param-xslt": "אם צוין, יש להוסיף את שם הדף כגיליון עיצוב XSL. על הערך להיות כותרת ב {{ns:mediawiki}} במרחב שם המשתמש, המסתיים ב-  <code>.xsl</code>.",
 	"api-format-title": "תוצאה של API של מדיה־ויקי",
 	"api-format-prettyprint-header": "זהו ייצוג ב־HTML של תסדיר $1. תסדיר HTML טוב לתיקון שגיאות, אבל אינו מתאים ליישומים.\n\nיש לציין את הפרמטר format כדי לשנות את תסדיר הפלט. כדי לראות ייצוג של תסדיר $1 לא ב־HTML יש לרשום format=$2.\n\nר' את [https://www.mediawiki.org/wiki/API התיעוד המלא], או את [[Special:ApiHelp/main|העזרה של API]] למידע נוסף.",
@@ -150,6 +152,10 @@
 	"api-help-flag-writerights": "יחידה זו דורשת הרשאות כתיבה.",
 	"api-help-flag-mustbeposted": "יחידה זו מקבלת רק בקשות POST.",
 	"api-help-flag-generator": "היחידה הזאת יכולה להיות מחולל.",
+	"api-help-source": "מקור: $1",
+	"api-help-source-unknown": "מקור: <span class=\"apihelp-unknown\">לא ידוע</span>",
+	"api-help-license": "רישיון: [[$1|$2]]",
+	"api-help-license-noname": "רישיון: [[$1|ראו קישור]]",
 	"api-help-parameters": "{{PLURAL:$1|פרמטר|פרמטרים}}:",
 	"api-help-param-deprecated": "מיושן.",
 	"api-help-param-required": "פרמטר זה נדרש.",

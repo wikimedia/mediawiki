@@ -4,7 +4,8 @@
 			"Smtchahal",
 			"Vivek Rai",
 			"Phoenix303",
-			"संजीव कुमार"
+			"संजीव कुमार",
+			"Sahilrathod"
 		]
 	},
 	"config-desc": "साँचा लिए इंस्टॉलर",
@@ -43,6 +44,7 @@
 	"config-ns-generic": "प्रकल्प",
 	"config-ns-other": "अन्य (निर्दिष्ट करें)",
 	"config-ns-other-default": "मेरा विकि",
+	"config-admin-box": "व्यवस्थापक खाता",
 	"config-admin-password": "कूटशब्द:",
 	"config-admin-password-confirm": "फिर से कूटशब्द:",
 	"config-admin-email": "ईमेल पता:",
