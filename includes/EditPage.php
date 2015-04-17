@@ -899,6 +899,25 @@ class EditPage {
 		$this->oldid = $request->getInt( 'oldid' );
 		$this->parentRevId = $request->getInt( 'parentRevId' );
 
+		// Backwards compatibility to estimate the parentRevId from legacy
+		// timestamp parameters.
+		if ( !$this->parentRevId ) {
+			$timestamp = null;
+			if ( $this->edittime ) {
+				// The edittime is more accurate than starttime, so prefer if available.
+				$timestamp = wfTimestamp( TS_MW, $this->edittime );
+			} elseif ( $this->starttime ) {
+				$timestamp = wfTimestamp( TS_MW, $this->starttime );
+			}
+
+			if ( $timestamp ) {
+				$revision = $this->getTitle()->getRevisionAtTime( $timestamp );
+				if ( $revision ) {
+					$this->parentRevId = $revision->getId();
+				}
+			}
+		}
+
 		$this->bot = $request->getBool( 'bot', true );
 		$this->nosummary = $request->getBool( 'nosummary' );
 

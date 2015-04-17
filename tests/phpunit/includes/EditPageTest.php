@@ -177,6 +177,14 @@ class EditPageTest extends MediaWikiLangTestCase {
 				"Expected article text mismatch. $message" );
 		}
 
+		// Check that the EditPage's parentRevId is correct.
+		$currentRevision = $page->getRevision();
+		if ( $currentRevision ) {
+			$this->assertEquals( $currentRevision->getParentId(), $ep->getParentRevId() );
+		} else {
+			$this->assertEquals( 0, $ep->getParentRevId() );
+		}
+
 		return $page;
 	}
 
