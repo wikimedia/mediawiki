@@ -291,7 +291,10 @@ class HTMLForm extends ContextSource {
 		}
 
 		// Evil hack for mobile :(
-		if ( !$this->getConfig()->get( 'HTMLFormAllowTableFormat' ) && $this->displayFormat === 'table' ) {
+		if (
+			!$this->getConfig()->get( 'HTMLFormAllowTableFormat' )
+			&& $this->displayFormat === 'table'
+		) {
 			$this->displayFormat = 'div';
 		}
 
@@ -430,7 +433,9 @@ class HTMLForm extends ContextSource {
 	 * @throws MWException
 	 * @return HTMLFormField Instance of a subclass of HTMLFormField
 	 */
-	public static function loadInputFromParameters( $fieldname, $descriptor, HTMLForm $parent = null ) {
+	public static function loadInputFromParameters( $fieldname, $descriptor,
+		HTMLForm $parent = null
+	) {
 		$class = static::getClassFromDescriptor( $fieldname, $descriptor );
 
 		$descriptor['fieldname'] = $fieldname;
