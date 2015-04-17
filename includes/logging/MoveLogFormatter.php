@@ -103,6 +103,10 @@ class MoveLogFormatter extends LogFormatter {
 			}
 		}
 
+		if ( !isset( $params['5:bool:suppressredirect'] ) ) {
+			$params['5:bool:suppressredirect'] = false;
+		}
+
 		return $params;
 	}
 
