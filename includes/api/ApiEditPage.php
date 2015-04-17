@@ -87,6 +87,10 @@ class ApiEditPage extends ApiBase {
 
 				// Since the page changed, update $pageObj
 				$pageObj = WikiPage::factory( $titleObj );
+
+				// The caller sent the parent revision for the source of the redirect,
+				// but not for the target, so we clear the parameter.
+				$params['parentrevid'] = null;
 			}
 		}
 
@@ -535,6 +539,10 @@ class ApiEditPage extends ApiBase {
 				ApiBase::PARAM_TYPE => 'string',
 			),
 			'pageid' => array(
+				ApiBase::PARAM_TYPE => 'integer',
+			),
+			'parentrevid' => array(
+				ApiBase::PARAM_DFLT => 0,
 				ApiBase::PARAM_TYPE => 'integer',
 			),
 			'section' => null,
