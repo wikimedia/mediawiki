@@ -294,8 +294,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 					$vals['pageid'] = intval( $row->page_id );
 					$vals['logpage'] = intval( $row->log_page );
 				}
-				if ( $this->fld_details && $row->log_params !== '' ) {
-					$vals['params'] = LogFormatter::newFromRow( $row )->formatParametersForApi();
+				if ( $this->fld_details ) {
+					$vals['params'] = LogFormatter::newFromEntry( $logEntry )->formatParametersForApi();
 				}
 			}
 		}
