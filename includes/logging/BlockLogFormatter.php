@@ -187,17 +187,29 @@ class BlockLogFormatter extends LogFormatter {
 			}
 		}
 
-		if ( isset( $params['6:array:flags'] ) && !is_array( $params['6:array:flags'] ) ) {
-			$params['6:array:flags'] = $params['6:array:flags'] === ''
-				? array()
-				: explode( ',', $params['6:array:flags'] );
-		}
+		$subtype = $entry->getSubtype();
+		if ( $subtype === 'block' || $subtype === 'reblock' ) {
+			if ( !isset( $params['5::duration'] ) ) {
+				// Very old log entry without duration: means infinite
+				$params['5::duration'] = 'infinite';
+			}
+			if ( !isset( $params['6:array:flags'] ) ) {
+				$params['6:array:flags'] = array();
+			}
 
-		if ( isset( $params['5::duration'] ) &&
-			SpecialBlock::parseExpiryInput( $params['5::duration'] ) !== wfGetDB( DB_SLAVE )->getInfinity()
-		) {
-			$ts = wfTimestamp( TS_UNIX, $entry->getTimestamp() );
-			$params[':timestamp:expiry'] = strtotime( $params['5::duration'], $ts );
+			if ( !is_array( $params['6:array:flags'] ) ) {
+				$params['6:array:flags'] = $params['6:array:flags'] === ''
+					? array()
+					: explode( ',', $params['6:array:flags'] );
+			}
+
+			if ( !wfIsInfinity( $params['5::duration'] ) ) {
+				$ts = wfTimestamp( TS_UNIX, $entry->getTimestamp() );
+				$expiry = strtotime( $params['5::duration'], $ts );
+				if ( $expiry !== false && $expiry > 0 ) {
+					$params[':timestamp:expiry'] = $expiry;
+				}
+			}
 		}
 
 		return $params;
