@@ -473,47 +473,47 @@ LUA;
 	/**
 	 * @see JobQueue::getAllQueuedJobs()
 	 * @return Iterator
+	 * @throws JobQueueError
 	 */
 	public function getAllQueuedJobs() {
 		$conn = $this->getConnection();
 		try {
-			$that = $this;
-
-			return new MappedIterator(
-				$conn->lRange( $this->getQueueKey( 'l-unclaimed' ), 0, -1 ),
-				function ( $uid ) use ( $that, $conn ) {
-					return $that->getJobFromUidInternal( $uid, $conn );
-				},
-				array( 'accept' => function ( $job ) {
-					return is_object( $job );
-				} )
-			);
+			$uids = $conn->lRange( $this->getQueueKey( 'l-unclaimed' ), 0, -1 );
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $conn, $e );
 		}
+
+		return $this->getJobIterator( $conn, $uids );
 	}
 
 	/**
-	 * @see JobQueue::getAllQueuedJobs()
+	 * @see JobQueue::getAllDelayedJobs()
 	 * @return Iterator
 	 */
 	public function getAllDelayedJobs() {
 		$conn = $this->getConnection();
 		try {
-			$that = $this;
-
-			return new MappedIterator( // delayed jobs
-				$conn->zRange( $this->getQueueKey( 'z-delayed' ), 0, -1 ),
-				function ( $uid ) use ( $that, $conn ) {
-					return $that->getJobFromUidInternal( $uid, $conn );
-				},
-				array( 'accept' => function ( $job ) {
-					return is_object( $job );
-				} )
-			);
+			$uids = $conn->zRange( $this->getQueueKey( 'z-delayed' ), 0, -1 );
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $conn, $e );
 		}
+
+		return $this->getJobIterator( $conn, $uids );
+	}
+
+	/**
+	 * @see JobQueue::getAllAcquiredJobs()
+	 * @return Iterator
+	 */
+	public function getAllAcquiredJobs() {
+		$conn = $this->getConnection();
+		try {
+			$uids = $conn->zRange( $this->getQueueKey( 'z-claimed' ), 0, -1 );
+		} catch ( RedisException $e ) {
+			$this->throwRedisException( $conn, $e );
+		}
+
+		return $this->getJobIterator( $conn, $uids );
 	}
 
 	/**
@@ -523,20 +523,31 @@ LUA;
 	public function getAllAbandonedJobs() {
 		$conn = $this->getConnection();
 		try {
-			$that = $this;
-
-			return new MappedIterator( // delayed jobs
-				$conn->zRange( $this->getQueueKey( 'z-abandoned' ), 0, -1 ),
-				function ( $uid ) use ( $that, $conn ) {
-					return $that->getJobFromUidInternal( $uid, $conn );
-				},
-				array( 'accept' => function ( $job ) {
-					return is_object( $job );
-				} )
-			);
+			$uids = $conn->zRange( $this->getQueueKey( 'z-abandoned' ), 0, -1 );
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $conn, $e );
 		}
+
+		return $this->getJobIterator( $conn, $uids );
+	}
+
+	/**
+	 * @param RedisConnRef $conn
+	 * @param array $uids List of job UUIDs
+	 * @return MappedIterator
+	 */
+	protected function getJobIterator( RedisConnRef $conn, array $uids ) {
+		$that = $this;
+
+		return new MappedIterator(
+			$uids,
+			function ( $uid ) use ( $that, $conn ) {
+				return $that->getJobFromUidInternal( $uid, $conn );
+			},
+			array( 'accept' => function ( $job ) {
+				return is_object( $job );
+			} )
+		);
 	}
 
 	public function getCoalesceLocationInternal() {

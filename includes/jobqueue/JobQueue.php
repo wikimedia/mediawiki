@@ -616,6 +616,20 @@ abstract class JobQueue {
 	}
 
 	/**
+	 * Get an iterator to traverse over all claimed jobs in this queue
+	 *
+	 * Callers should be quick to iterator over it or few results
+	 * will be returned due to jobs being acknowledged and deleted
+	 *
+	 * @return Iterator
+	 * @throws JobQueueError
+	 * @since 1.26
+	 */
+	public function getAllAcquiredJobs() {
+		return new ArrayIterator( array() ); // not implemented
+	}
+
+	/**
 	 * Get an iterator to traverse over all abandoned jobs in this queue
 	 *
 	 * @return Iterator
