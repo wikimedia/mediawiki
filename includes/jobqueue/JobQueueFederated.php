@@ -422,6 +422,17 @@ class JobQueueFederated extends JobQueue {
 		return $iterator;
 	}
 
+	public function getAllAcquiredJobs() {
+		$iterator = new AppendIterator();
+
+		/** @var JobQueue $queue */
+		foreach ( $this->partitionQueues as $queue ) {
+			$iterator->append( $queue->getAllAcquiredJobs() );
+		}
+
+		return $iterator;
+	}
+
 	public function getAllAbandonedJobs() {
 		$iterator = new AppendIterator();
 
