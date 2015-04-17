@@ -32,6 +32,33 @@ abstract class HTMLFormField {
 	public $mParent;
 
 	/**
+	 * This function gets the input html of all elements of this form field,
+	 * including all mixins. Mixins use the label of the parent input field, so
+	 * this functions doesn't exist for the label. If no mixins exists for this
+	 * field, HTMLFormField::getInputHTML() will be called directly.
+	 *
+	 * @param string $value The value to set the input to; eg a default
+	 *     text for a text input.
+	 *
+	 * @return string Valid HTML.
+	 */
+	protected function getCompleteInputHTML( $value ) {
+		$inputHtml = $this->getInputHTML( $value );
+		if ( isset( $this->mParams['mixins'] ) ) {
+			$mixins = $this->mParams['mixins'];
+			if ( is_array( $mixins ) ) {
+				foreach ( $mixins as $fieldname => $info ) {
+					$field = HTMLForm::loadInputFromParameters( $fieldname, $info, $this->mParams['parent'] );
+					$inputHtml .= '&#160;' . $field->getInputHTML( $info['default'] );
+				}
+			} else {
+				throw new Exception( 'HTMLFormField mixins needs to be an array.' );
+			}
+		}
+		return $inputHtml;
+	}
+
+	/**
 	 * This function must be implemented to return the HTML to generate
 	 * the input object itself.  It should not implement the surrounding
 	 * table cells/rows, or labels/help messages.
@@ -439,7 +466,7 @@ abstract class HTMLFormField {
 	 */
 	function getTableRow( $value ) {
 		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
-		$inputHtml = $this->getInputHTML( $value );
+		$inputHtml = $this->getCompleteInputHTML( $value );
 		$fieldType = get_class( $this );
 		$helptext = $this->getHelpTextHtmlTable( $this->getHelpText() );
 		$cellAttributes = array();
@@ -497,7 +524,7 @@ abstract class HTMLFormField {
 	 */
 	public function getDiv( $value ) {
 		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
-		$inputHtml = $this->getInputHTML( $value );
+		$inputHtml = $this->getCompleteInputHTML( $value );
 		$fieldType = get_class( $this );
 		$helptext = $this->getHelpTextHtmlDiv( $this->getHelpText() );
 		$cellAttributes = array();
@@ -508,12 +535,20 @@ abstract class HTMLFormField {
 			'mw-htmlform-nolabel' => ( $label === '' )
 		);
 
-		$field = Html::rawElement(
-			'div',
-			array( 'class' => $outerDivClass ) + $cellAttributes,
-			$inputHtml . "\n$errors"
-		);
-		$divCssClasses = array( "mw-htmlform-field-$fieldType", $this->mClass, $this->mVFormClass, $errorClass );
+		$horizontalLabel = isset( $this->mParams['horizontal-label'] )
+			? $this->mParams['horizontal-label'] : false;
+
+		if ( $horizontalLabel ) {
+			$field = '&#160;' . $inputHtml . "\n$errors";
+		} else {
+			$field = Html::rawElement(
+				'div',
+				array( 'class' => $outerDivClass ) + $cellAttributes,
+				$inputHtml . "\n$errors"
+			);
+		}
+		$divCssClasses = array( "mw-htmlform-field-$fieldType",
+			$this->mClass, $this->mVFormClass, $errorClass );
 
 		$wrapperAttributes = array(
 			'class' => $divCssClasses,
@@ -539,7 +574,7 @@ abstract class HTMLFormField {
 	 */
 	public function getRaw( $value ) {
 		list( $errors, ) = $this->getErrorsAndErrorClass( $value );
-		$inputHtml = $this->getInputHTML( $value );
+		$inputHtml = $this->getCompleteInputHTML( $value );
 		$helptext = $this->getHelpTextHtmlRaw( $this->getHelpText() );
 		$cellAttributes = array();
 		$label = $this->getLabelHtml( $cellAttributes );
@@ -574,7 +609,7 @@ abstract class HTMLFormField {
 	 */
 	public function getInline( $value ) {
 		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
-		$inputHtml = $this->getInputHTML( $value );
+		$inputHtml = $this->getCompleteInputHTML( $value );
 		$helptext = $this->getHelpTextHtmlDiv( $this->getHelpText() );
 		$cellAttributes = array();
 		$label = $this->getLabelHtml( $cellAttributes );
@@ -729,6 +764,8 @@ abstract class HTMLFormField {
 
 		$displayFormat = $this->mParent->getDisplayFormat();
 		$html = '';
+		$horizontalLabel = isset( $this->mParams['horizontal-label'] )
+			? $this->mParams['horizontal-label'] : false;
 
 		if ( $displayFormat === 'table' ) {
 			$html =
@@ -736,7 +773,7 @@ abstract class HTMLFormField {
 					array( 'class' => 'mw-label' ) + $cellAttributes,
 					Html::rawElement( 'label', $for, $labelValue ) );
 		} elseif ( $hasLabel || $this->mShowEmptyLabels ) {
-			if ( $displayFormat === 'div' ) {
+			if ( $displayFormat === 'div' && !$horizontalLabel ) {
 				$html =
 					Html::rawElement( 'div',
 						array( 'class' => 'mw-label' ) + $cellAttributes,
