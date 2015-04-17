@@ -83,6 +83,12 @@
  *                             is "wp{$fieldname}".  If you want a different name
  *                             (eg one without the "wp" prefix), specify it here and
  *                             it will be used without modification.
+ *    'mixins'              -- Basic support for mixing different input fields into one
+ *                             inline form input field. Has to be an array of fields (like
+ *                             the form descriptor for this HTMLForm). Doesn't support an
+ *                             own label (the label of the parent field will be used) and only
+ *                             parameters for the inputhtml are observed. Fields will be added
+ *                             with a protected whitespace to one input html string.
  *
  * Since 1.20, you can chain mutators to ease the form generation:
  * @par Example:
