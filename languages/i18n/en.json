@@ -786,7 +786,7 @@
 	"rev-showdeleted": "show",
 	"revisiondelete": "Delete/undelete revisions",
 	"revdelete-nooldid-title": "Invalid target revision",
-	"revdelete-nooldid-text": "You have either not specified a target revision(s) to perform this\nfunction, the specified revision does not exist, or you are attempting to hide the current revision.",
+	"revdelete-nooldid-text": "You have either not specified any target revision on which to perform this function, or the specified revision does not exist, or you are attempting to hide the current revision.",
 	"revdelete-no-file": "The file specified does not exist.",
 	"revdelete-show-file-confirm": "Are you sure you want to view a deleted revision of the file \"<nowiki>$1</nowiki>\" from $2 at $3?",
 	"revdelete-show-file-submit": "Yes",
