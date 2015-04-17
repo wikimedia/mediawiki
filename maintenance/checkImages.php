@@ -42,39 +42,33 @@ class CheckImages extends Maintenance {
 		$numImages = 0;
 		$numGood = 0;
 
+		$repo = RepoGroup::singleton()->getLocalRepo();
 		do {
 			$res = $dbr->select( 'image', '*', array( 'img_name > ' . $dbr->addQuotes( $start ) ),
 				__METHOD__, array( 'LIMIT' => $this->mBatchSize ) );
 			foreach ( $res as $row ) {
 				$numImages++;
 				$start = $row->img_name;
-				$file = RepoGroup::singleton()->getLocalRepo()->newFileFromRow( $row );
+				$file = $repo->newFileFromRow( $row );
 				$path = $file->getPath();
 				if ( !$path ) {
 					$this->output( "{$row->img_name}: not locally accessible\n" );
 					continue;
 				}
-				wfSuppressWarnings();
-				$stat = stat( $file->getPath() );
-				wfRestoreWarnings();
-				if ( !$stat ) {
+				$size = $repo->getFileSize( $file->getPath() );
+				if ( $size === false ) {
 					$this->output( "{$row->img_name}: missing\n" );
 					continue;
 				}
 
-				if ( $stat['mode'] & 040000 ) {
-					$this->output( "{$row->img_name}: is a directory\n" );
-					continue;
-				}
-
-				if ( $stat['size'] == 0 && $row->img_size != 0 ) {
+				if ( $size == 0 && $row->img_size != 0 ) {
 					$this->output( "{$row->img_name}: truncated, was {$row->img_size}\n" );
 					continue;
 				}
 
-				if ( $stat['size'] != $row->img_size ) {
+				if ( $size != $row->img_size ) {
 					$this->output( "{$row->img_name}: size mismatch DB={$row->img_size}, "
-						. "actual={$stat['size']}\n" );
+						. "actual={$size}\n" );
 					continue;
 				}
 
