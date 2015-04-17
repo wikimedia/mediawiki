@@ -197,10 +197,10 @@ class ApiResult implements ApiSerializable {
 	 *
 	 * BC: (array) This transformation does various adjustments to bring the
 	 *  output in line with the pre-1.25 result format. The value array is a
-	 *  list of flags: 'nobools', 'no*', 'nosub'.
+	 *  list of flags: 'nobool', 'no*', 'nosub'.
 	 *  - Boolean-valued items are changed to '' if true or removed if false,
 	 *    unless listed in META_BC_BOOLS. This may be skipped by including
-	 *    'nobools' in the value array.
+	 *    'nobool' in the value array.
 	 *  - The tag named by META_CONTENT is renamed to '*', and META_CONTENT is
 	 *    set to '*'. This may be skipped by including 'no*' in the value
 	 *    array.
