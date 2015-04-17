@@ -443,11 +443,15 @@ class Block {
 
 		$dbw->insert( 'ipblocks', $row, __METHOD__, array( 'IGNORE' ) );
 		$affected = $dbw->affectedRows();
+		$this->mId = $dbw->insertId();
 
 		# Don't collide with expired blocks.
-		# Do this after trying to insert to avoid pointless gap locks.
+		# Do this after trying to insert to avoid locking.
 		if ( !$affected ) {
-			$dbw->delete( 'ipblocks',
+			# T96428: The ipb_address index uses a prefix on a field, so
+			# use a standard SELECT + DELETE to avoid annoying gap locks.
+			$ids = $dbw->selectFieldValues( 'ipblocks',
+				'ipb_id',
 				array(
 					'ipb_address' => $row['ipb_address'],
 					'ipb_user' => $row['ipb_user'],
@@ -455,12 +459,13 @@ class Block {
 				),
 				__METHOD__
 			);
-
-			$dbw->insert( 'ipblocks', $row, __METHOD__, array( 'IGNORE' ) );
-			$affected = $dbw->affectedRows();
+			if ( $ids ) {
+				$dbw->delete( 'ipblocks', array( 'ipb_id' => $ids ), __METHOD__ );
+				$dbw->insert( 'ipblocks', $row, __METHOD__, array( 'IGNORE' ) );
+				$affected = $dbw->affectedRows();
+				$this->mId = $dbw->insertId();
+			}
 		}
-
-		$this->mId = $dbw->insertId();
 
 		if ( $affected ) {
 			$auto_ipd_ids = $this->doRetroactiveAutoblock();
