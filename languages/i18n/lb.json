@@ -2945,6 +2945,7 @@
 	"tags-deactivate-submit": "Desaktivéieren",
 	"tags-update-remove-not-allowed-one": "D'Markéierung (tag) \"$1\" däerf net ewechgeholl ginn.",
 	"tags-update-remove-not-allowed-multi": "Dës {{PLURAL:$2|Markéierung däerf|Markéierungen däerfen}} net manuell ewechgeholl ginn: $1",
+	"tags-edit-existing-tags-none": "''Keng''",
 	"tags-edit-new-tags": "Nei Markéierungen (tags):",
 	"tags-edit-add": "Dës Markéierungen (tags) dobäisetzen:",
 	"tags-edit-reason": "Grond:",

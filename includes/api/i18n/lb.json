@@ -78,6 +78,7 @@
 	"apihelp-revisiondelete-description": "Versioune läschen a restauréieren.",
 	"apihelp-revisiondelete-param-reason": "Grond fir ze Läschen oder ze Restauréieren.",
 	"apihelp-rsd-example-simple": "Den RSD-Schema exportéieren",
+	"apihelp-tag-param-reason": "Grond fir d'Ännerung.",
 	"apihelp-unblock-description": "D'Spär vun engem Benotzer ophiewen.",
 	"apihelp-unblock-param-reason": "Grond fir d'Spär opzehiewen",
 	"apihelp-undelete-param-reason": "Grond fir ze restauréieren.",
