@@ -1,16 +1,6 @@
 <?php
 /**
- * This is the main web entry point for MediaWiki.
- *
- * If you are reading this in your web browser, your server is probably
- * not configured correctly to run PHP applications!
- *
- * See the README, INSTALL, and UPGRADE files for basic setup instructions
- * and pointers to the online documentation.
- *
- * https://www.mediawiki.org/
- *
- * ----------
+ * Check PHP Version, as well as for composer dependencies in entry points.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,13 +19,13 @@
  *
  * @file
  */
-
-// Bail on old versions of PHP, or if composer has not been run yet to install
-// dependencies. Using dirname( __FILE__ ) here because __DIR__ is PHP5.3+.
-require_once dirname( __FILE__ ) . '/includes/PHPVersionCheck.php';
-wfEntryPointCheck( 'index.php' );
-
-require __DIR__ . '/includes/WebStart.php';
-
-$mediaWiki = new MediaWiki();
-$mediaWiki->run();
+function wfEntryPointCheck( $entryPoint ) {
+	if ( !function_exists( 'version_compare' )
+		|| version_compare( PHP_VERSION, '5.3.3' ) < 0
+		|| !file_exists( dirname( __FILE__ ) . '/../vendor/autoload.php' )
+	) {
+		// We need to use dirname( __FILE__ ) here cause __DIR__ is PHP5.3+
+		require dirname( __FILE__ ) . '/PHPVersionError.php';
+		wfPHPVersionError( $entryPoint );
+	}
+}
