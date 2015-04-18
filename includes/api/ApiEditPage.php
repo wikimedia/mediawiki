@@ -544,7 +544,8 @@ class ApiEditPage extends ApiBase {
 			'text' => null,
 			'summary' => null,
 			'tags' => array(
-				ApiBase::PARAM_TYPE => ChangeTags::listExplicitlyDefinedTags(),
+				ApiBase::PARAM_TYPE => array_keys( array_diff_key(
+					ChangeTags::getStoredTags(), ChangeTags::getRegisteredTags() ) ),
 				ApiBase::PARAM_ISMULTI => true,
 			),
 			'minor' => false,
