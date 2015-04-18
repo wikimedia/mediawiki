@@ -45,12 +45,17 @@ function wfPHPVersionError( $type ) {
 	$phpVersion = PHP_VERSION;
 	$protocol = isset( $_SERVER['SERVER_PROTOCOL'] ) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0';
 	$message = "MediaWiki $mwVersion requires at least "
-		. "PHP version $minimumVersionPHP, you are using PHP $phpVersion.";
+		. "PHP version $minimumVersionPHP, you are using PHP $phpVersion. Installing some "
+		. " external dependencies (e.g. via composer) is also required.";
 
 	if ( $type == 'cli' ) {
-		$finalOutput = "You are using PHP version $phpVersion "
-			. "but MediaWiki $mwVersion needs PHP $minimumVersionPHP or higher. ABORTING.\n"
-			. "Check if you have a newer php executable with a different name, such as php5.\n";
+		$finalOutput = "Error: You are missing some external dependencies or are using on older PHP version. \n"
+			. "MediaWiki $mwVersion needs PHP $minimumVersionPHP or higher.\n\n"
+			. "Check if you have a newer php executable with a different name, such as php5.\n\n"
+			. "MediaWiki now also has some external dependencies that need to be installed\n"
+			. "via composer or from a separate git repo. Please see\n"
+			. "https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries\n"
+			. "for help on installing the required components.";
 	} elseif ( $type == 'index.php' || $type == 'mw-config/index.php' ) {
 		$pathinfo = pathinfo( $_SERVER['SCRIPT_NAME'] );
 		if ( $type == 'mw-config/index.php' ) {
@@ -83,12 +88,15 @@ function wfPHPVersionError( $type ) {
 				padding: 2em;
 				text-align: center;
 			}
-			p, img, h1 {
+			p, img, h1, h2 {
 				text-align: left;
-				margin: 0.5em 0;
+				margin: 0.5em 0 1em;
 			}
 			h1 {
 				font-size: 120%;
+			}
+			h2 {
+				font-size: 110%;
 			}
 		</style>
 	</head>
@@ -99,6 +107,7 @@ function wfPHPVersionError( $type ) {
 		<p>
 			{$message}
 		</p>
+		<h2>Supported PHP versions</h2>
 		<p>
 			Please consider <a href="http://www.php.net/downloads.php">upgrading your copy of PHP</a>.
 			PHP versions less than 5.3.0 are no longer supported by the PHP Group and will not receive
@@ -110,6 +119,13 @@ function wfPHPVersionError( $type ) {
 			of MediaWiki from our website.  See our
 			<a href="https://www.mediawiki.org/wiki/Compatibility#PHP">compatibility page</a>
 			for details of which versions are compatible with prior versions of PHP.
+		</p>
+		<h2>External dependencies</h2>
+		<p>
+			MediaWiki now also has some external dependencies that need to be installed via
+			composer or from a separate git repo. Please see
+			<a href="https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries">mediawiki.org</a>
+			for help on installing the required components.
 		</p>
 		</div>
 	</body>
