@@ -30,6 +30,7 @@ sftp-config.json
 /images/lockdir
 /images/temp
 /images/thumb
+/images/cache
 ## Extension:EasyTimeline
 /images/timeline
 /images/tmp
