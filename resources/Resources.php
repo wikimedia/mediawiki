@@ -311,6 +311,7 @@ return array(
 	'jquery.textSelection' => array(
 		'scripts' => 'resources/src/jquery/jquery.textSelection.js',
 		'dependencies' => 'jquery.client',
+		'targets' => array( 'mobile', 'desktop' ),
 	),
 	'jquery.throttle-debounce' => array(
 		'scripts' => 'resources/lib/jquery/jquery.ba-throttle-debounce.js',
