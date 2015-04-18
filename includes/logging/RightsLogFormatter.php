@@ -116,8 +116,13 @@ class RightsLogFormatter extends LogFormatter {
 			}
 		}
 
-		$params['4:array:oldgroups'] = $this->makeGroupArray( $params['4:array:oldgroups'] );
-		$params['5:array:newgroups'] = $this->makeGroupArray( $params['5:array:newgroups'] );
+		// Really old entries does not have log params
+		if ( isset( $params['4:array:oldgroups'] ) ) {
+			$params['4:array:oldgroups'] = $this->makeGroupArray( $params['4:array:oldgroups'] );
+		}
+		if ( isset( $params['5:array:newgroups'] ) ) {
+			$params['5:array:newgroups'] = $this->makeGroupArray( $params['5:array:newgroups'] );
+		}
 
 		return $params;
 	}
