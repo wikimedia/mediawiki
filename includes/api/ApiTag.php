@@ -26,7 +26,8 @@
 class ApiTag extends ApiBase {
 
 	protected function getAvailableTags() {
-		return ChangeTags::listExplicitlyDefinedTags();
+		return array_keys( array_diff_key(
+		ChangeTags::getStoredTags(), ChangeTags::getRegisteredTags() ) );
 	}
 
 	public function execute() {

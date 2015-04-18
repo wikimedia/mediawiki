@@ -50,21 +50,19 @@ class ApiQueryTags extends ApiQueryBase {
 		$limit = $params['limit'];
 		$result = $this->getResult();
 
-		$extensionDefinedTags = array_fill_keys( ChangeTags::listExtensionDefinedTags(), 0 );
-		$explicitlyDefinedTags = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), 0 );
-		$extensionActivatedTags = array_fill_keys( ChangeTags::listExtensionActivatedTags(), 0 );
-
-		$definedTags = array_merge( $extensionDefinedTags, $explicitlyDefinedTags );
+		$registeredTags = ChangeTags::getRegisteredTags();
+		$storedTags = ChangeTags::getStoredTags();
+		$definedTags = array_merge( $registeredTags, $storedTags );
 
 		# Fetch defined tags that aren't past the continuation
+		$tags = $definedTags;
 		if ( $params['continue'] !== null ) {
 			$cont = $params['continue'];
-			$tags = array_filter( array_keys( $definedTags ), function ( $v ) use ( $cont ) {
-				return $v >= $cont;
-			} );
-			$tags = array_fill_keys( $tags, 0 );
-		} else {
-			$tags = $definedTags;
+			foreach ( array_keys( $definedTags ) as $tag ) {
+				if ( $tag < $cont ) {
+					unset( $tags[$tag] );
+				}
+			}
 		}
 
 		# Merge in all used tags
@@ -92,6 +90,12 @@ class ApiQueryTags extends ApiQueryBase {
 			$tag = array();
 			$tag['name'] = $tagName;
 
+			$changeTag = new ChangeTag( $tagName );
+			$changeTag->setContext( array(
+				'storedTags' => &$storedTags,
+				'registeredTags' => &$registeredTags
+			) );
+
 			if ( $fld_displayname ) {
 				$tag['displayname'] = ChangeTags::tagDescription( $tagName );
 			}
@@ -108,23 +112,21 @@ class ApiQueryTags extends ApiQueryBase {
 			$isExtension = isset( $extensionDefinedTags[$tagName] );
 			$isExplicit = isset( $explicitlyDefinedTags[$tagName] );
 
-			if ( $fld_defined && ( $isExtension || $isExplicit ) ) {
+			if ( $fld_defined && $changeTag->isDefined ) {
 				$tag['defined'] = '';
 			}
 
 			if ( $fld_source ) {
 				$tag['source'] = array();
-				if ( $isExtension ) {
+				if ( $changeTag->extensionDefined ) {
 					$tag['source'][] = 'extension';
 				}
-				if ( $isExplicit ) {
+				if ( $changeTag->isStored ) {
 					$tag['source'][] = 'manual';
 				}
 			}
 
-			if ( $fld_active &&
-				( $isExplicit || isset( $extensionActivatedTags[$tagName] ) )
-			) {
+			if ( $fld_active && $changeTag->isActive() ) {
 				$tag['active'] = '';
 			}
 
