@@ -1294,12 +1294,19 @@ class Preferences {
 		$opt = array();
 
 		$localTZoffset = $context->getConfig()->get( 'LocalTZoffset' );
+		$timeZoneList = self::getTimeZoneList( $context->getLanguage() );
+
 		$timestamp = MWTimestamp::getLocalInstance();
 		// Check that the LocalTZoffset is the same as the local time zone offset
 		if ( $localTZoffset == $timestamp->format( 'Z' ) / 60 ) {
+			$timezoneName = $timestamp->getTimezone()->getName();
+			// Localize timezone
+			if ( isset( $timeZoneList[$timezoneName] ) ) {
+				$timezoneName = $timeZoneList[$timezoneName]['name'];
+			}
 			$server_tz_msg = $context->msg(
 				'timezoneuseserverdefault',
-				$timestamp->getTimezone()->getName()
+				$timezoneName
 			)->text();
 		} else {
 			$tzstring = sprintf(
@@ -1313,49 +1320,12 @@ class Preferences {
 		$opt[$context->msg( 'timezoneuseoffset' )->text()] = 'other';
 		$opt[$context->msg( 'guesstimezone' )->text()] = 'guess';
 
-		if ( function_exists( 'timezone_identifiers_list' ) ) {
-			# Read timezone list
-			$tzs = timezone_identifiers_list();
-			sort( $tzs );
-
-			$tzRegions = array();
-			$tzRegions['Africa'] = $context->msg( 'timezoneregion-africa' )->text();
-			$tzRegions['America'] = $context->msg( 'timezoneregion-america' )->text();
-			$tzRegions['Antarctica'] = $context->msg( 'timezoneregion-antarctica' )->text();
-			$tzRegions['Arctic'] = $context->msg( 'timezoneregion-arctic' )->text();
-			$tzRegions['Asia'] = $context->msg( 'timezoneregion-asia' )->text();
-			$tzRegions['Atlantic'] = $context->msg( 'timezoneregion-atlantic' )->text();
-			$tzRegions['Australia'] = $context->msg( 'timezoneregion-australia' )->text();
-			$tzRegions['Europe'] = $context->msg( 'timezoneregion-europe' )->text();
-			$tzRegions['Indian'] = $context->msg( 'timezoneregion-indian' )->text();
-			$tzRegions['Pacific'] = $context->msg( 'timezoneregion-pacific' )->text();
-			asort( $tzRegions );
-
-			$prefill = array_fill_keys( array_values( $tzRegions ), array() );
-			$opt = array_merge( $opt, $prefill );
-
-			$now = date_create( 'now' );
-
-			foreach ( $tzs as $tz ) {
-				$z = explode( '/', $tz, 2 );
-
-				# timezone_identifiers_list() returns a number of
-				# backwards-compatibility entries. This filters them out of the
-				# list presented to the user.
-				if ( count( $z ) != 2 || !array_key_exists( $z[0], $tzRegions ) ) {
-					continue;
-				}
-
-				# Localize region
-				$z[0] = $tzRegions[$z[0]];
-
-				$minDiff = floor( timezone_offset_get( timezone_open( $tz ), $now ) / 60 );
-
-				$display = str_replace( '_', ' ', $z[0] . '/' . $z[1] );
-				$value = "ZoneInfo|$minDiff|$tz";
-
-				$opt[$z[0]][$display] = $value;
+		foreach ( $timeZoneList as $timeZoneInfo ) {
+			$region = $timeZoneInfo['region'];
+			if ( !isset( $opt[$region] ) ) {
+				$opt[$region] = array();
 			}
+			$opt[$region][$timeZoneInfo['name']] = $timeZoneInfo['timecorrection'];
 		}
 		return $opt;
 	}
@@ -1490,6 +1460,68 @@ class Preferences {
 		}
 
 		return Status::newGood();
+	}
+
+	/**
+	 * Get a list of all time zones
+	 * @param Language $language Language used for the localized names
+	 * @return array A list of all time zones. The system name of the time zone is used as key and
+	 *  the value is an array which contains localized name, the timecorrection value used for
+	 *  preferences and the region
+	 * @since 1.26
+	 */
+	public static function getTimeZoneList( Language $language ) {
+		$identifiers = DateTimeZone::listIdentifiers();
+		if ( $identifiers === false ) {
+			return array();
+		}
+		sort( $identifiers );
+
+		$tzRegions = array(
+			'Africa' => wfMessage( 'timezoneregion-africa' )->inLanguage( $language )->text(),
+			'America' => wfMessage( 'timezoneregion-america' )->inLanguage( $language )->text(),
+			'Antarctica' => wfMessage( 'timezoneregion-antarctica' )->inLanguage( $language )->text(),
+			'Arctic' => wfMessage( 'timezoneregion-arctic' )->inLanguage( $language )->text(),
+			'Asia' => wfMessage( 'timezoneregion-asia' )->inLanguage( $language )->text(),
+			'Atlantic' => wfMessage( 'timezoneregion-atlantic' )->inLanguage( $language )->text(),
+			'Australia' => wfMessage( 'timezoneregion-australia' )->inLanguage( $language )->text(),
+			'Europe' => wfMessage( 'timezoneregion-europe' )->inLanguage( $language )->text(),
+			'Indian' => wfMessage( 'timezoneregion-indian' )->inLanguage( $language )->text(),
+			'Pacific' => wfMessage( 'timezoneregion-pacific' )->inLanguage( $language )->text(),
+		);
+		asort( $tzRegions );
+
+		$timeZoneList = array();
+
+		$now = new DateTime();
+
+		foreach ( $identifiers as $identifier ) {
+			$parts = explode( '/', $identifier, 2 );
+
+			// DateTimeZone::listIdentifiers() returns a number of
+			// backwards-compatibility entries. This filters them out of the
+			// list presented to the user.
+			if ( count( $parts ) !== 2 || !array_key_exists( $parts[0], $tzRegions ) ) {
+				continue;
+			}
+
+			// Localize region
+			$parts[0] = $tzRegions[$parts[0]];
+
+			$dateTimeZone = new DateTimeZone( $identifier );
+			$minDiff = floor( $dateTimeZone->getOffset( $now ) / 60 );
+
+			$display = str_replace( '_', ' ', $parts[0] . '/' . $parts[1] );
+			$value = "ZoneInfo|$minDiff|$identifier";
+
+			$timeZoneList[$identifier] = array(
+				'name' => $display,
+				'timecorrection' => $value,
+				'region' => $parts[0],
+			);
+		}
+
+		return $timeZoneList;
 	}
 }
 
