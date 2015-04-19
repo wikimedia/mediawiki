@@ -51,6 +51,7 @@
  *    'id'                  -- HTML id attribute
  *    'cssclass'            -- CSS class
  *    'csshelpclass'        -- CSS class used to style help text
+ *    'dir'                 -- Direction of the element.
  *    'options'             -- associative array mapping labels to values.
  *                             Some field types support multi-level arrays.
  *    'options-messages'    -- associative array mapping message keys to values.

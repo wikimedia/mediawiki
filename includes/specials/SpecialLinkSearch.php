@@ -121,43 +121,39 @@ class LinkSearchPage extends QueryPage {
 			'<nowiki>' . $this->getLanguage()->commaList( $protocols_list ) . '</nowiki>',
 			count( $protocols_list )
 		);
-		$s = Html::openElement(
-			'form',
-			array( 'id' => 'mw-linksearch-form', 'method' => 'get', 'action' => wfScript() )
-		) . "\n" .
-			Html::hidden( 'title', $this->getPageTitle()->getPrefixedDBkey() ) . "\n" .
-			Html::openElement( 'fieldset' ) . "\n" .
-			Html::element( 'legend', array(), $this->msg( 'linksearch' )->text() ) . "\n" .
-			Xml::inputLabel(
-				$this->msg( 'linksearch-pat' )->text(),
-				'target',
-				'target',
-				50,
-				$target,
-				array(
-					// URLs are always ltr
-					'dir' => 'ltr',
-				)
-			) . "\n";
-
+		$fields = array(
+			'target' => array(
+				'type' => 'text',
+				'name' => 'target',
+				'id' => 'target',
+				'size' => 50,
+				'label-message' => 'linksearch-pat',
+				'default' => $target,
+				'dir' => 'ltr',
+			)
+		);
 		if ( !$this->getConfig()->get( 'MiserMode' ) ) {
-			$s .= Html::namespaceSelector(
-				array(
-					'selected' => $namespace,
-					'all' => '',
-					'label' => $this->msg( 'linksearch-ns' )->text()
-				), array(
+			$fields += array(
+				'namespace' => array(
+					'class' => 'HTMLSelectNamespace',
 					'name' => 'namespace',
+					'label-message' => 'linksearch-ns',
+					'default' => $namespace,
 					'id' => 'namespace',
-					'class' => 'namespaceselector',
-				)
+					'cssclass' => 'namespaceselector',
+				),
 			);
 		}
-
-		$s .= Xml::submitButton( $this->msg( 'linksearch-ok' )->text() ) . "\n" .
-			Html::closeElement( 'fieldset' ) . "\n" .
-			Html::closeElement( 'form' ) . "\n";
-		$out->addHTML( $s );
+		$hiddenFields = array(
+			'title' => $this->getPageTitle()->getPrefixedDBkey(),
+		);
+		$htmlForm = HTMLForm::factory( 'inline', $fields, $this->getContext() );
+		$htmlForm->addHiddenFields( $hiddenFields );
+		$htmlForm->setSubmitTextMsg( 'linksearch-ok' );
+		$htmlForm->setWrapperLegendMsg( 'linksearch' );
+		$htmlForm->setAction( wfScript() );
+		$htmlForm->setMethod( 'get' );
+		$htmlForm->prepareForm()->displayForm( false );
 
 		if ( $target != '' ) {
 			$this->setParams( array(
