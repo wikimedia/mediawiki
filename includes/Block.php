@@ -208,11 +208,14 @@ class Block {
 	 *     3) An autoblock on the given IP
 	 * @param User|string $vagueTarget Also search for blocks affecting this target.  Doesn't
 	 *     make any sense to use TYPE_AUTO / TYPE_ID here. Leave blank to skip IP lookups.
+	 * @param DatabaseBase $db DatabaseBase to use for the query
 	 * @throws MWException
 	 * @return bool Whether a relevant block was found
 	 */
-	protected function newLoad( $vagueTarget = null ) {
-		$db = wfGetDB( $this->mFromMaster ? DB_MASTER : DB_SLAVE );
+	protected function newLoad( $vagueTarget = null, $db = null ) {
+		if ( $db === null ) {
+			$db = wfGetDB( $this->mFromMaster ? DB_MASTER : DB_SLAVE );
+		}
 
 		if ( $this->type !== null ) {
 			$conds = array(
@@ -479,13 +482,15 @@ class Block {
 	 * Update a block in the DB with new parameters.
 	 * The ID field needs to be loaded first.
 	 *
+	 * @param DatabaseBase $db DatabaseBase to use for the query
 	 * @return bool|array False on failure, array on success:
 	 *   ('id' => block ID, 'autoIds' => array of autoblock IDs)
 	 */
-	public function update() {
+	public function update( $dbw = null ) {
 		wfDebug( "Block::update; timestamp {$this->mTimestamp}\n" );
-		$dbw = wfGetDB( DB_MASTER );
-
+		if ( $dbw === null ) {
+			$dbw = wfGetDB( DB_MASTER );
+		}
 		$dbw->startAtomic( __METHOD__ );
 
 		$dbw->update(
@@ -1013,12 +1018,13 @@ class Block {
 	 * @param string|User|int $vagueTarget As above, but we will search for *any* block which
 	 *     affects that target (so for an IP address, get ranges containing that IP; and also
 	 *     get any relevant autoblocks). Leave empty or blank to skip IP-based lookups.
-	 * @param bool $fromMaster Whether to use the DB_MASTER database
+	 * @param bool $fromMaster Whether to use the DB_MASTER database. May be overriden by $db
+	 * @param DatabaseBase $db DatabaseBase to use for the query. Not used if TYPE_ID/TYPE_AUTO
 	 * @return Block|null (null if no relevant block could be found).  The target and type
 	 *     of the returned Block will refer to the actual block which was found, which might
 	 *     not be the same as the target you gave if you used $vagueTarget!
 	 */
-	public static function newFromTarget( $specificTarget, $vagueTarget = null, $fromMaster = false ) {
+	public static function newFromTarget( $specificTarget, $vagueTarget = null, $fromMaster = false, $db = null ) {
 
 		list( $target, $type ) = self::parseTarget( $specificTarget );
 		if ( $type == Block::TYPE_ID || $type == Block::TYPE_AUTO ) {
@@ -1041,7 +1047,7 @@ class Block {
 				$block->setTarget( $target );
 			}
 
-			if ( $block->newLoad( $vagueTarget ) ) {
+			if ( $block->newLoad( $vagueTarget, $db ) ) {
 				return $block;
 			}
 		}
