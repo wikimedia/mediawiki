@@ -92,14 +92,14 @@ class SpecialChangeEmail extends FormSpecialPage {
 			'NewEmail' => array(
 				'type' => 'email',
 				'label-message' => 'changeemail-newemail',
+				'autofocus' => true
 			),
 		);
 
 		if ( $this->getConfig()->get( 'RequirePasswordforEmailChange' ) ) {
 			$fields['Password'] = array(
 				'type' => 'password',
-				'label-message' => 'changeemail-password',
-				'autofocus' => true,
+				'label-message' => 'changeemail-password'
 			);
 		}
 
