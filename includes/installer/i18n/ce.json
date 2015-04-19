@@ -87,6 +87,6 @@
 	"config-download-localsettings": "Чуяккха <code>LocalSettings.php</code>",
 	"config-help": "гӀо",
 	"config-nofile": "Файл \"$1\" каро цаелира. И дӀаяьккхина ярий?",
-	"mainpagetext": "'''Вики-белха гlирс «MediaWiki» кхочуш дика дlахlоттийна.'''",
+	"mainpagetext": "'''Вики-белхан гӀирс «MediaWiki» кхочуш дика дӀахӀоттийна.'''",
 	"mainpagedocfooter": "Викийца болх бан хаамаш карор бу хӀокху чохь [//meta.wikimedia.org/wiki/Help:Contents нисвохааман куьйгаллица].\n\n== Цхьаболу пайде гӀирсаш ==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings ГӀирс нисбан тарлушболу могӀам];\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Сих сиха лушдолу хаттарш а жоьпаш оцу MediaWiki];\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Хаам бохьуьйту араяларца башхонца керла MediaWiki].\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Localise MediaWiki for your language]"
 }

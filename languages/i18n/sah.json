@@ -1819,6 +1819,7 @@
 	"protect-othertime": "Атын кэм:",
 	"protect-othertime-op": "атын кэм",
 	"protect-existing-expiry": "Билиҥҥи болдьоҕо: $3, $2",
+	"protect-existing-expiry-infinity": "Бүтэр болдьоҕо билигин: болдьоҕо суох",
 	"protect-otherreason": "Атын/эбии төрүөтэ:",
 	"protect-otherreason-op": "Атын төрүөт",
 	"protect-dropdown": "*Уларытыыны хааччахтааһын сүрүн төрүөттэрэ\n** дьаныардаах вандааллааһын\n** наһаалыыр спаамнааһын\n** уларытыы мөккүөрүгэр аһара барыы\n** элбэхтик туттуллар сирэй",

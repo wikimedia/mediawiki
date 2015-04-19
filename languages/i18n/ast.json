@@ -3123,6 +3123,7 @@
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|xubió}} una versión nueva de $3",
 	"logentry-upload-revert": "$1 {{GENDER:$2|xubió}} $3",
 	"log-name-managetags": "Rexistru de xestión d'etiquetes",
+	"logentry-managetags-create": "$1 {{GENDER:$2|creó}} la etiqueta «$4»",
 	"rightsnone": "(nengún)",
 	"revdelete-summary": "editar resume",
 	"feedback-adding": "Amestando el comentariu a la páxina...",
