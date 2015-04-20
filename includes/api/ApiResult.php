@@ -140,8 +140,7 @@ class ApiResult implements ApiSerializable {
 	 */
 	public function __construct( $maxSize ) {
 		if ( $maxSize instanceof ApiMain ) {
-			/// @todo: After fixing Wikidata unit tests, warn
-			//wfDeprecated( 'Passing ApiMain to ' . __METHOD__ . ' is deprecated', '1.25' );
+			wfDeprecated( 'Passing ApiMain to ' . __METHOD__ . ' is deprecated', '1.25' );
 			$this->errorFormatter = $maxSize->getErrorFormatter();
 			$this->mainForContinuation = $maxSize;
 			$maxSize = $maxSize->getConfig()->get( 'APIMaxResultSize' );
@@ -1130,7 +1129,7 @@ class ApiResult implements ApiSerializable {
 	 * @return array
 	 */
 	public function getData() {
-		/// @todo: Warn after fixing remaining callers: Wikibase, Gather
+		wfDeprecated( __METHOD__, '1.25' );
 		return $this->getResultData( null, array(
 			'BC' => array(),
 			'Types' => array(),
@@ -1172,7 +1171,7 @@ class ApiResult implements ApiSerializable {
 	 *    new method signature.
 	 */
 	public static function setElement( &$arr, $name, $value, $flags = 0 ) {
-		/// @todo: Warn after fixing remaining callers: Wikibase
+		wfDeprecated( __METHOD__, '1.25' );
 		return self::setValue( $arr, $name, $value, $flags );
 	}
 
@@ -1187,7 +1186,7 @@ class ApiResult implements ApiSerializable {
 	 *  format "<elem>text</elem>" without attributes.
 	 */
 	public static function setContent( &$arr, $value, $subElemName = null ) {
-		/// @todo: Warn after fixing remaining callers: Wikibase
+		wfDeprecated( __METHOD__, '1.25' );
 		if ( is_array( $value ) ) {
 			throw new InvalidArgumentException( __METHOD__ . ': Bad parameter' );
 		}
@@ -1211,25 +1210,10 @@ class ApiResult implements ApiSerializable {
 	 * @param string $tag Tag name
 	 */
 	public function setIndexedTagName_recursive( &$arr, $tag ) {
-		/// @todo: Warn after fixing remaining callers: Wikibase
+		wfDeprecated( __METHOD__, '1.25' );
 		if ( !is_array( $arr ) ) {
 			return;
 		}
-		self::setIndexedTagNameOnSubarrays( $arr, $tag );
-	}
-
-	/**
-	 * Set indexed tag name on all subarrays of $arr
-	 *
-	 * Does not set the tag name for $arr itself.
-	 *
-	 * @since 1.25
-	 * @deprecated For backwards compatibility, do not use
-	 * @todo: Remove after updating callers to use self::setIndexedTagNameRecursive
-	 * @param array &$arr
-	 * @param string $tag Tag name
-	 */
-	public static function setIndexedTagNameOnSubarrays( array &$arr, $tag ) {
 		if ( !is_string( $tag ) ) {
 			throw new InvalidArgumentException( 'Bad tag name' );
 		}
@@ -1248,7 +1232,7 @@ class ApiResult implements ApiSerializable {
 	 * @param string $tag
 	 */
 	public function setIndexedTagName_internal( $path, $tag ) {
-		/// @todo: Warn after fixing remaining callers: Wikibase, Gather
+		wfDeprecated( __METHOD__, '1.25' );
 		$this->addIndexedTagName( $path, $tag );
 	}
 
@@ -1288,7 +1272,7 @@ class ApiResult implements ApiSerializable {
 	public function beginContinuation(
 		$continue, array $allModules = array(), array $generatedModules = array()
 	) {
-		/// @todo: Warn after fixing remaining callers: Gather
+		wfDeprecated( __METHOD__, '1.25' );
 		if ( $this->mainForContinuation->getContinuationManager() ) {
 			throw new UnexpectedValueException(
 				__METHOD__ . ': Continuation already in progress from ' .
@@ -1368,7 +1352,7 @@ class ApiResult implements ApiSerializable {
 	 *   the style used in 1.20 and earlier.
 	 */
 	public function endContinuation( $style = 'standard' ) {
-		/// @todo: Warn after fixing remaining callers: Gather
+		wfDeprecated( __METHOD__, '1.25' );
 		if ( !$this->mainForContinuation->getContinuationManager() ) {
 			return;
 		}
@@ -1413,74 +1397,8 @@ class ApiResult implements ApiSerializable {
 	 * @return array
 	 */
 	public function convertStatusToArray( $status, $errorType = 'error' ) {
-		/// @todo: Warn after fixing remaining callers: CentralAuth
+		wfDeprecated( __METHOD__, '1.25' );
 		return $this->errorFormatter->arrayFromStatus( $status, $errorType );
-	}
-
-	/**
-	 * Alias for self::addIndexedTagName
-	 *
-	 * A bunch of extensions were updated for an earlier version of this
-	 * extension which used this name.
-	 * @deprecated For backwards compatibility, do not use
-	 * @todo: Remove after updating callers to use self::addIndexedTagName
-	 */
-	public function defineIndexedTagName( $path, $tag ) {
-		return $this->addIndexedTagName( $path, $tag );
-	}
-
-	/**
-	 * Alias for self::stripMetadata
-	 *
-	 * A bunch of extensions were updated for an earlier version of this
-	 * extension which used this name.
-	 * @deprecated For backwards compatibility, do not use
-	 * @todo: Remove after updating callers to use self::stripMetadata
-	 */
-	public static function removeMetadata( $data ) {
-		return self::stripMetadata( $data );
-	}
-
-	/**
-	 * Alias for self::stripMetadataNonRecursive
-	 *
-	 * A bunch of extensions were updated for an earlier version of this
-	 * extension which used this name.
-	 * @deprecated For backwards compatibility, do not use
-	 * @todo: Remove after updating callers to use self::stripMetadataNonRecursive
-	 */
-	public static function removeMetadataNonRecursive( $data, &$metadata = null ) {
-		return self::stripMetadataNonRecursive( $data, $metadata );
-	}
-
-	/**
-	 * @deprecated For backwards compatibility, do not use
-	 * @todo: Remove after updating callers
-	 */
-	public static function transformForBC( array $data ) {
-		return self::applyTransformations( $data, array(
-			'BC' => array(),
-		) );
-	}
-
-	/**
-	 * @deprecated For backwards compatibility, do not use
-	 * @todo: Remove after updating callers
-	 */
-	public static function transformForTypes( $data, $options = array() ) {
-		$transforms = array(
-			'Types' => array(),
-		);
-		if ( isset( $options['assocAsObject'] ) ) {
-			$transforms['Types']['AssocAsObject'] = $options['assocAsObject'];
-		}
-		if ( isset( $options['armorKVP'] ) ) {
-			$transforms['Types']['ArmorKVP'] = $options['armorKVP'];
-		}
-		if ( !empty( $options['BC'] ) ) {
-			$transforms['BC'] = array( 'nobool', 'no*', 'nosub' );
-		}
-		return self::applyTransformations( $data, $transforms );
 	}
 
 	/**@}*/
