@@ -115,6 +115,11 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $supported, $this->handler->isSupportedFormat( $format ) );
 	}
 
+	public function testSupportsDirectEditing() {
+		$handler = new WikiTextContentHandler();
+		$this->assertTrue( $handler->supportsDirectEditing(), 'direct editing is supported' );
+	}
+
 	public static function dataMerge3() {
 		return array(
 			array(
