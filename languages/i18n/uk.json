@@ -57,7 +57,8 @@
 			"Ypryima",
 			"Purodha",
 			"Green Zero",
-			"Macofe"
+			"Macofe",
+			"Alex Blokha"
 		]
 	},
 	"tog-underline": "Підкреслювання посилань:",
@@ -774,6 +775,7 @@
 	"history-feed-description": "Історія редагувань цієї сторінки в вікі",
 	"history-feed-item-nocomment": "$1 в $2",
 	"history-feed-empty": "Такої сторінки не існує.\nЇї могли вилучити чи перейменувати.\nСпробуйте [[Special:Search|знайти]] подібні сторінки.",
+	"history-edit-tags": "Редагувати теги обраних ревізій",
 	"rev-deleted-comment": "(опис редагування вилучено)",
 	"rev-deleted-user": "(ім'я автора стерто)",
 	"rev-deleted-event": "(запис журналу вилучений)",
@@ -1438,6 +1440,7 @@
 	"listfiles-delete": "видалити",
 	"listfiles-summary": "Ця спеціальна сторінка показує всі завантажені файли.",
 	"listfiles_search_for": "Пошук по назві зображення:",
+	"listfiles-userdoesnotexist": "Облыковий запис «$1» не зареэстровано.",
 	"imgfile": "файл",
 	"listfiles": "Список файлів",
 	"listfiles_thumb": "Мініатюра",
@@ -2416,6 +2419,7 @@
 	"pageinfo-protect-cascading-yes": "Так",
 	"pageinfo-protect-cascading-from": "Каскадний захист починається тут",
 	"pageinfo-category-info": "Інформація про категорію",
+	"pageinfo-category-total": "Загальна кількість членів",
 	"pageinfo-category-pages": "Кількість сторінок",
 	"pageinfo-category-subcats": "Кількість підкатегорій",
 	"pageinfo-category-files": "Кількість файлів",
@@ -3202,6 +3206,9 @@
 	"tags-deactivate-reason": "Причина:",
 	"tags-deactivate-not-allowed": "Неможливо вимкнути мітку «$1».",
 	"tags-deactivate-submit": "Вимкнути",
+	"tags-edit-title": "Редагувати теги",
+	"tags-edit-existing-tags": "Існуючі теги:",
+	"tags-edit-new-tags": "Нові теги:",
 	"comparepages": "Порівняння сторінок",
 	"compare-page1": "Сторінка 1",
 	"compare-page2": "Сторінка 2",

@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Ата",
-			"A1"
+			"A1",
+			"Ahonc"
 		]
 	},
 	"apihelp-main-param-action": "Яку дію виконати.",
@@ -26,5 +27,6 @@
 	"apihelp-expandtemplates-description": "Розгортає усі шаблони у вікітекст.",
 	"apihelp-expandtemplates-param-title": "Заголовок сторінки.",
 	"apihelp-expandtemplates-param-text": "Вікітекст для перетворення.",
-	"apihelp-move-param-ignorewarnings": "Ігнорувати всі попередження"
+	"apihelp-move-param-ignorewarnings": "Ігнорувати всі попередження",
+	"api-help-datatypes-header": "Типи даних"
 }

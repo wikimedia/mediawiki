@@ -1019,6 +1019,7 @@
 	"api-help-parameters": "{{PLURAL:$1|Parámetro|Parámetros}}:",
 	"api-help-param-deprecated": "Obsoleto.",
 	"api-help-param-required": "Este parámetro é obrigatorio.",
+	"api-help-datatypes-header": "Tipos de datos",
 	"api-help-param-type-limit": "Tipo: enteiro ou <kbd>max</kbd>",
 	"api-help-param-type-integer": "Tipo: {{PLURAL:$1|1=enteiro|2=lista de enteiros}}",
 	"api-help-param-type-boolean": "Tipo: booleano ([[Special:ApiHelp/main#main/datatypes|detalles]])",
