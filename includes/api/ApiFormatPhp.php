@@ -55,7 +55,7 @@ class ApiFormatPhp extends ApiFormatBase {
 				break;
 
 			default:
-				self::dieUsage( __METHOD__ . ': Unknown value for \'formatversion\'' );
+				$this->dieUsage( __METHOD__ . ': Unknown value for \'formatversion\'', 'unknownformatversion' );
 		}
 		$text = serialize( $this->getResult()->getResultData( null, $transforms ) );
 
