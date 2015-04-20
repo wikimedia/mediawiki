@@ -40,7 +40,7 @@ class ApiFormatJson extends ApiFormatBase {
 	public function getMimeType() {
 		$params = $this->extractRequestParams();
 		// callback:
-		if ( $params['callback'] ) {
+		if ( isset( $params['callback'] ) ) {
 			return 'text/javascript';
 		}
 
@@ -106,9 +106,8 @@ class ApiFormatJson extends ApiFormatBase {
 			);
 		}
 
-		$callback = $params['callback'];
-		if ( $callback !== null ) {
-			$callback = preg_replace( "/[^][.\\'\\\"_A-Za-z0-9]/", '', $callback );
+		if ( isset( $params['callback'] ) ) {
+			$callback = preg_replace( "/[^][.\\'\\\"_A-Za-z0-9]/", '', $params['callback'] );
 			# Prepend a comment to try to avoid attacks against content
 			# sniffers, such as bug 68187.
 			$this->printText( "/**/$callback($json)" );
