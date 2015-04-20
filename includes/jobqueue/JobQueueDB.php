@@ -256,12 +256,11 @@ class JobQueueDB extends JobQueue {
 			foreach ( array_chunk( $rows, 50 ) as $rowBatch ) {
 				$dbw->insert( 'job', $rowBatch, $method );
 			}
-			JobQueue::incrStats( 'job-insert', $this->type, count( $rows ), $this->wiki );
+			JobQueue::incrStats( 'job-insert', $this->type, count( $rows ) );
 			JobQueue::incrStats(
 				'job-insert-duplicate',
 				$this->type,
-				count( $rowSet ) + count( $rowList ) - count( $rows ),
-				$this->wiki
+				count( $rowSet ) + count( $rowList ) - count( $rows )
 			);
 		} catch ( DBError $e ) {
 			if ( $flags & self::QOS_ATOMIC ) {
@@ -312,7 +311,7 @@ class JobQueueDB extends JobQueue {
 					$this->cache->set( $this->getCacheKey( 'empty' ), 'true', self::CACHE_TTL_LONG );
 					break; // nothing to do
 				}
-				JobQueue::incrStats( 'job-pop', $this->type, 1, $this->wiki );
+				JobQueue::incrStats( 'job-pop', $this->type );
 				// Get the job object from the row...
 				$title = Title::makeTitle( $row->job_namespace, $row->job_title );
 				$job = Job::factory( $row->job_cmd, $title,
@@ -680,7 +679,7 @@ class JobQueueDB extends JobQueue {
 					);
 					$affected = $dbw->affectedRows();
 					$count += $affected;
-					JobQueue::incrStats( 'job-recycle', $this->type, $affected, $this->wiki );
+					JobQueue::incrStats( 'job-recycle', $this->type, $affected );
 					// The tasks recycled jobs or release delayed jobs into the queue
 					$this->cache->set( $this->getCacheKey( 'empty' ), 'false', self::CACHE_TTL_LONG );
 					$this->aggr->notifyQueueNonEmpty( $this->wiki, $this->type );
@@ -709,7 +708,7 @@ class JobQueueDB extends JobQueue {
 				$dbw->delete( 'job', array( 'job_id' => $ids ), __METHOD__ );
 				$affected = $dbw->affectedRows();
 				$count += $affected;
-				JobQueue::incrStats( 'job-abandon', $this->type, $affected, $this->wiki );
+				JobQueue::incrStats( 'job-abandon', $this->type, $affected );
 			}
 
 			$dbw->unlock( "jobqueue-recycle-{$this->type}", __METHOD__ );
