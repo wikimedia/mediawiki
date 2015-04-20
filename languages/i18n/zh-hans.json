@@ -3232,6 +3232,7 @@
 	"logentry-managetags-activate": "$1 {{GENDER:$2|激活了}}“$4”标签供用户和机器人使用",
 	"logentry-managetags-deactivate": "$1 {{GENDER:$2|停用了}}“$4”标签供用户和机器人使用",
 	"log-name-tag": "标签日志",
+	"log-description-tag": "此页面显示用户从个别修订或日志记录中添加或移除的[[Special:Tags|标签]]。日志不列举他们作为编辑、删除或类似操作的一部分进行的标记操作。",
 	"logentry-tag-update-add-revision": "$1{{GENDER:$2|添加了}}{{PLURAL:$7|标签}}$6至页面$3的修订版本$4",
 	"logentry-tag-update-add-logentry": "$1{{GENDER:$2|添加了}}{{PLURAL:$7|标签}}$6至页面$3的日志记录$5",
 	"logentry-tag-update-remove-revision": "$1从页面$3的修订$4中{{GENDER:$2|移除了}}{{PLURAL:$9|标签}}$8",

@@ -55,6 +55,7 @@
 	"api-help-flag-writerights": "Voor deze module zijn schrijfrechten nodig.",
 	"api-help-parameters": "{{PLURAL:$1|Parameter|Parameters}}:",
 	"api-help-param-deprecated": "Verouderd.",
+	"api-help-datatypes-header": "Gegevenstypen",
 	"api-help-param-default": "Standaard: $1",
 	"api-credits-header": "Vermeldingen",
 	"api-credits": "API-ontwikkelaars:\n* Roan Kattouw (hoofdontwikkelaar september 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (oorspronkelijke ontwikkelaar, hoofdontwikkelaar september 2006 – september 2007)\n* Brad Jorsch (hoofdontwikkelaar 2013 – heden)\n\nStuur uw opmerkingen, suggesties en vragen naar mediawiki-api@lists.wikimedia.org\nof maak een melding aan op https://phabricator.wikimedia.org/."

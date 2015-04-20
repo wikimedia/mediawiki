@@ -2403,6 +2403,7 @@
 	"pageinfo-protect-cascading-yes": "Ja",
 	"pageinfo-protect-cascading-from": "Pagina is beveiligd vanuit een andere pagina",
 	"pageinfo-category-info": "Categoriegegevens",
+	"pageinfo-category-total": "Totaal aantal leden",
 	"pageinfo-category-pages": "Aantal pagina's",
 	"pageinfo-category-subcats": "Aantal subcategorieën",
 	"pageinfo-category-files": "Aantal bestanden",
