@@ -387,10 +387,11 @@ abstract class ApiFormatBase extends ApiBase {
 	 * are required to ignore it or filter it out.
 	 *
 	 * @deprecated since 1.25
-	 * @return bool
+	 * @return bool Always true
 	 */
 	public function getNeedsRawData() {
-		return false;
+		wfDeprecated( __METHOD__, '1.25' );
+		return true;
 	}
 
 	/**@}*/
