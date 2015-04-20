@@ -3755,6 +3755,7 @@ function wfWaitForSlaves(
 	}
 
 	// Figure out which clusters need to be checked
+	/** @var LoadBalancer[] $lbs */
 	$lbs = array();
 	if ( $cluster === '*' ) {
 		wfGetLBFactory()->forEachLB( function ( LoadBalancer $lb ) use ( &$lbs ) {
