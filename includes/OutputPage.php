@@ -2854,10 +2854,8 @@ class OutputPage extends ContextSource {
 							$resourceLoader->makeModuleResponse( $context, $grpModules )
 						);
 					} else {
-						$links['html'] .= Html::inlineScript(
-							ResourceLoader::makeLoaderConditionalScript(
-								$resourceLoader->makeModuleResponse( $context, $grpModules )
-							)
+						$links['html'] .= ResourceLoader::makeInlineScript(
+							$resourceLoader->makeModuleResponse( $context, $grpModules )
 						);
 					}
 					$links['html'] .= "\n";
@@ -2896,10 +2894,8 @@ class OutputPage extends ContextSource {
 					if ( $only === ResourceLoaderModule::TYPE_STYLES ) {
 						$link = Html::linkedStyle( $url );
 					} elseif ( $loadCall ) {
-						$link = Html::inlineScript(
-							ResourceLoader::makeLoaderConditionalScript(
-								Xml::encodeJsCall( 'mw.loader.load', array( $url, 'text/javascript', true ) )
-							)
+						$link = ResourceLoader::makeInlineScript(
+							Xml::encodeJsCall( 'mw.loader.load', array( $url, 'text/javascript', true ) )
 						);
 					} else {
 						$link = Html::linkedScript( $url );
@@ -2908,10 +2904,8 @@ class OutputPage extends ContextSource {
 							// browsers not supported by the startup module would unconditionally
 							// execute this module. Otherwise users will get "ReferenceError: mw is
 							// undefined" or "jQuery is undefined" from e.g. a "site" module.
-							$link = Html::inlineScript(
-								ResourceLoader::makeLoaderConditionalScript(
-									Xml::encodeJsCall( 'document.write', array( $link ) )
-								)
+							$link = ResourceLoader::makeInlineScript(
+								Xml::encodeJsCall( 'document.write', array( $link ) )
 							);
 						}
 
@@ -2955,10 +2949,8 @@ class OutputPage extends ContextSource {
 		}
 
 		if ( count( $states ) ) {
-			$html = Html::inlineScript(
-				ResourceLoader::makeLoaderConditionalScript(
-					ResourceLoader::makeLoaderStateScript( $states )
-				)
+			$html = ResourceLoader::makeInlineScript(
+				ResourceLoader::makeLoaderStateScript( $states )
 			) . "\n" . $html;
 		}
 
@@ -2977,10 +2969,8 @@ class OutputPage extends ContextSource {
 		$links[] = $this->makeResourceLoaderLink( 'startup', ResourceLoaderModule::TYPE_SCRIPTS, true );
 
 		// Load config before anything else
-		$links[] = Html::inlineScript(
-			ResourceLoader::makeLoaderConditionalScript(
-				ResourceLoader::makeConfigSetScript( $this->getJSVars() )
-			)
+		$links[] = ResourceLoader::makeInlineScript(
+			ResourceLoader::makeConfigSetScript( $this->getJSVars() )
 		);
 
 		// Load embeddable private modules before any loader links
@@ -3004,10 +2994,8 @@ class OutputPage extends ContextSource {
 		// Only load modules that have marked themselves for loading at the top
 		$modules = $this->getModules( true, 'top' );
 		if ( $modules ) {
-			$links[] = Html::inlineScript(
-				ResourceLoader::makeLoaderConditionalScript(
-					Xml::encodeJsCall( 'mw.loader.load', array( $modules ) )
-				)
+			$links[] = ResourceLoader::makeInlineScript(
+				Xml::encodeJsCall( 'mw.loader.load', array( $modules ) )
 			);
 		}
 
@@ -3047,10 +3035,8 @@ class OutputPage extends ContextSource {
 		// Only load modules that have marked themselves for loading at the bottom
 		$modules = $this->getModules( true, 'bottom' );
 		if ( $modules ) {
-			$links[] = Html::inlineScript(
-				ResourceLoader::makeLoaderConditionalScript(
-					Xml::encodeJsCall( 'mw.loader.load', array( $modules, null, true ) )
-				)
+			$links[] = ResourceLoader::makeInlineScript(
+				Xml::encodeJsCall( 'mw.loader.load', array( $modules, null, true ) )
 			);
 		}
 
