@@ -1133,6 +1133,9 @@ class ApiResultTest extends MediaWikiTestCase {
 			if ( preg_match( '/Use of ApiResult::\S+ was deprecated in MediaWiki \d+.\d+\./', $errstr ) ) {
 				return true;
 			}
+			if ( preg_match( '/Use of ApiMain to ApiResult::__construct was deprecated in MediaWiki \d+.\d+\./', $errstr ) ) {
+				return true;
+			}
 			return false;
 		} );
 		$reset = new ScopedCallback( 'restore_error_handler' );
