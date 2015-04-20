@@ -482,6 +482,7 @@ class EditPage {
 		}
 
 		$this->importFormData( $wgRequest );
+		$wgOut->setRevisionId( $this->oldid ?: $this->mArticle->getRevIdFetched() );
 		$this->firsttime = false;
 
 		if ( wfReadOnly() && $this->save ) {
