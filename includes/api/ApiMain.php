@@ -495,7 +495,34 @@ class ApiMain extends ApiBase {
 		// Reset and print just the error message
 		ob_clean();
 
-		$this->printResult( true );
+		// Printer may not be initialized if the extractRequestParams() fails for the main module
+		$this->createErrorPrinter();
+
+		try {
+			$this->printResult( true );
+		} catch ( UsageException $ex ) {
+			// The error printer itself is failing. Try suppressing its request
+			// parameters and redo.
+			$this->setWarning(
+				'Error printer failed (will retry without params): ' . $ex->getMessage()
+			);
+			$this->mPrinter = null;
+			$this->createErrorPrinter();
+			$this->mPrinter->forceDefaultParams();
+			try {
+				$this->printResult( true );
+			} catch ( UsageException $ex ) {
+				// Still failed. One last try, just use the default printer
+				// (again with no parameters)
+				$this->setWarning(
+					'Error printer failed (will use ' . self::API_DEFAULT_FORMAT . '): ' .
+						$ex->getMessage()
+				);
+				$this->mPrinter = $this->createPrinterByName( self::API_DEFAULT_FORMAT );
+				$this->mPrinter->forceDefaultParams();
+				$this->printResult( true );
+			}
+		}
 	}
 
 	/**
@@ -792,22 +819,14 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * Replace the result data with the information about an exception.
-	 * Returns the error code
-	 * @param Exception $e
-	 * @return string
+	 * Create the printer for error output
 	 */
-	protected function substituteResultWithError( $e ) {
-		$result = $this->getResult();
-
-		// Printer may not be initialized if the extractRequestParams() fails for the main module
+	private function createErrorPrinter() {
 		if ( !isset( $this->mPrinter ) ) {
-			// The printer has not been created yet. Try to manually get formatter value.
 			$value = $this->getRequest()->getVal( 'format', self::API_DEFAULT_FORMAT );
 			if ( !$this->mModuleMgr->isDefined( $value, 'format' ) ) {
 				$value = self::API_DEFAULT_FORMAT;
 			}
-
 			$this->mPrinter = $this->createPrinterByName( $value );
 		}
 
@@ -816,10 +835,16 @@ class ApiMain extends ApiBase {
 		if ( !$this->mPrinter->canPrintErrors() ) {
 			$this->mPrinter = $this->createPrinterByName( self::API_DEFAULT_FORMAT );
 		}
+	}
 
-		// Update raw mode flag for the selected printer.
-		$result->setRawMode( $this->mPrinter->getNeedsRawData() );
-
+	/**
+	 * Replace the result data with the information about an exception.
+	 * Returns the error code
+	 * @param Exception $e
+	 * @return string
+	 */
+	protected function substituteResultWithError( $e ) {
+		$result = $this->getResult();
 		$config = $this->getConfig();
 
 		if ( $e instanceof UsageException ) {
