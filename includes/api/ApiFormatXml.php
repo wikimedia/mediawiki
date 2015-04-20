@@ -39,13 +39,6 @@ class ApiFormatXml extends ApiFormatBase {
 		return 'text/xml';
 	}
 
-	/**
-	 * @deprecated since 1.25
-	 */
-	public function getNeedsRawData() {
-		return true;
-	}
-
 	public function setRootElement( $rootElemName ) {
 		$this->mRootElemName = $rootElemName;
 	}

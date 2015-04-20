@@ -817,9 +817,6 @@ class ApiMain extends ApiBase {
 			$this->mPrinter = $this->createPrinterByName( self::API_DEFAULT_FORMAT );
 		}
 
-		// Update raw mode flag for the selected printer.
-		$result->setRawMode( $this->mPrinter->getNeedsRawData() );
-
 		$config = $this->getConfig();
 
 		if ( $e instanceof UsageException ) {
@@ -1054,10 +1051,6 @@ class ApiMain extends ApiBase {
 		if ( is_null( $this->mPrinter ) ) {
 			// Create an appropriate printer
 			$this->mPrinter = $this->createPrinterByName( $params['format'] );
-		}
-
-		if ( $this->mPrinter->getNeedsRawData() ) {
-			$this->getResult()->setRawMode();
 		}
 	}
 
