@@ -1245,17 +1245,6 @@ class ApiResultTest extends MediaWikiTestCase {
 			),
 			'*' => 'content',
 		), $result->getData() );
-		$result->setRawMode();
-		$this->assertSame( array(
-			'foo' => array(
-				'bar' => array(
-					'*' => 'content',
-				),
-			),
-			'*' => 'content',
-			'_element' => 'itn',
-			'_subelements' => array( 'sub' ),
-		), $result->getData() );
 
 		$arr = array();
 		ApiResult::setContent( $arr, 'value' );

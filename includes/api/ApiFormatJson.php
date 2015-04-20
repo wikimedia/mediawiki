@@ -59,13 +59,6 @@ class ApiFormatJson extends ApiFormatBase {
 	/**
 	 * @deprecated since 1.25
 	 */
-	public function getNeedsRawData() {
-		return $this->isRaw;
-	}
-
-	/**
-	 * @deprecated since 1.25
-	 */
 	public function getWantsHelp() {
 		wfDeprecated( __METHOD__, '1.25' );
 		// Help is always ugly in JSON

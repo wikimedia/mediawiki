@@ -1063,10 +1063,6 @@ class ApiMain extends ApiBase {
 			// Create an appropriate printer
 			$this->mPrinter = $this->createPrinterByName( $params['format'] );
 		}
-
-		if ( $this->mPrinter->getNeedsRawData() ) {
-			$this->getResult()->setRawMode();
-		}
 	}
 
 	/**

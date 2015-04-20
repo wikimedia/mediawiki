@@ -132,7 +132,7 @@ class ApiResult implements ApiSerializable {
 	private $errorFormatter;
 
 	// Deprecated fields
-	private $isRawMode, $checkingSize, $mainForContinuation;
+	private $checkingSize, $mainForContinuation;
 
 	/**
 	 * @param int|bool $maxSize Maximum result "size", or false for no limit
@@ -147,7 +147,6 @@ class ApiResult implements ApiSerializable {
 		}
 
 		$this->maxSize = $maxSize;
-		$this->isRawMode = false;
 		$this->checkingSize = true;
 		$this->reset();
 	}
@@ -1166,27 +1165,23 @@ class ApiResult implements ApiSerializable {
 	 */
 
 	/**
-	 * Call this function when special elements such as '_element'
-	 * are needed by the formatter, for example in XML printing.
+	 * Formerly used to enable/disable "raw mode".
 	 * @deprecated since 1.25, you shouldn't have been using it in the first place
 	 * @since 1.23 $flag parameter added
 	 * @param bool $flag Set the raw mode flag to this state
 	 */
 	public function setRawMode( $flag = true ) {
-		// Can't wfDeprecated() here, since we need to set this flag from
-		// ApiMain for BC with stuff using self::getIsRawMode as
-		// "self::getIsXMLMode".
-		$this->isRawMode = $flag;
+		wfDeprecated( __METHOD__, '1.25' );
 	}
 
 	/**
-	 * Returns true whether the formatter requested raw data.
+	 * Returns true, the equivalent of "raw mode" is always enabled now
 	 * @deprecated since 1.25, you shouldn't have been using it in the first place
 	 * @return bool
 	 */
 	public function getIsRawMode() {
-		/// @todo: After Wikibase stops calling this, warn
-		return $this->isRawMode;
+		wfDeprecated( __METHOD__, '1.25' );
+		return true;
 	}
 
 	/**
@@ -1199,7 +1194,7 @@ class ApiResult implements ApiSerializable {
 		return $this->getResultData( null, array(
 			'BC' => array(),
 			'Types' => array(),
-			'Strip' => $this->isRawMode ? 'bc' : 'all',
+			'Strip' => 'all',
 		) );
 	}
 
