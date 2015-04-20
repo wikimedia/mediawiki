@@ -75,11 +75,17 @@ class ApiOptions extends ApiBase {
 		$prefs = Preferences::getPreferences( $user, $this->getContext() );
 		$prefsKinds = $user->getOptionKinds( $this->getContext(), $changes );
 
+		$htmlForm = null;
 		foreach ( $changes as $key => $value ) {
 			switch ( $prefsKinds[$key] ) {
 				case 'registered':
 					// Regular option.
+					if ( $htmlForm === null ) {
+						// We need a dummy HTMLForm for the validate callback...
+						$htmlForm = new HTMLForm( array(), $this );
+					}
 					$field = HTMLForm::loadInputFromParameters( $key, $prefs[$key] );
+					$field->mParent = $htmlForm;
 					$validation = $field->validate( $value, $user->getOptions() );
 					break;
 				case 'registered-multiselect':
