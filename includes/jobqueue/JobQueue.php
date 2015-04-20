@@ -376,7 +376,7 @@ abstract class JobQueue {
 		// Flag this job as an old duplicate based on its "root" job...
 		try {
 			if ( $job && $this->isRootJobOldDuplicate( $job ) ) {
-				JobQueue::incrStats( 'job-pop-duplicate', $this->type, 1, $this->wiki );
+				JobQueue::incrStats( 'job-pop-duplicate', $this->type );
 				$job = DuplicateJob::newFromJob( $job ); // convert to a no-op
 			}
 		} catch ( MWException $e ) {
@@ -715,15 +715,11 @@ abstract class JobQueue {
 	 * @param string $key Event type
 	 * @param string $type Job type
 	 * @param int $delta
-	 * @param string $wiki Wiki ID (added in 1.23)
 	 * @since 1.22
 	 */
-	public static function incrStats( $key, $type, $delta = 1, $wiki = null ) {
+	public static function incrStats( $key, $type, $delta = 1 ) {
 		wfIncrStats( $key, $delta );
 		wfIncrStats( "{$key}-{$type}", $delta );
-		if ( $wiki !== null ) {
-			wfIncrStats( "{$key}-{$type}-{$wiki}", $delta );
-		}
 	}
 
 	/**

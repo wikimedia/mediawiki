@@ -237,9 +237,9 @@ class JobQueueRedis extends JobQueue {
 
 				return false;
 			}
-			JobQueue::incrStats( 'job-insert', $this->type, count( $items ), $this->wiki );
+			JobQueue::incrStats( 'job-insert', $this->type, count( $items ) );
 			JobQueue::incrStats( 'job-insert-duplicate', $this->type,
-				count( $items ) - $failed - $pushed, $this->wiki );
+				count( $items ) - $failed - $pushed );
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $conn, $e );
 		}
@@ -331,7 +331,7 @@ LUA;
 					break; // no jobs; nothing to do
 				}
 
-				JobQueue::incrStats( 'job-pop', $this->type, 1, $this->wiki );
+				JobQueue::incrStats( 'job-pop', $this->type );
 				$item = $this->unserialize( $blob );
 				if ( $item === false ) {
 					wfDebugLog( 'JobQueueRedis', "Could not unserialize {$this->type} job." );
@@ -715,8 +715,8 @@ LUA;
 			if ( $res ) {
 				list( $released, $abandoned, $pruned, $undelayed ) = $res;
 				$count += $released + $pruned + $undelayed;
-				JobQueue::incrStats( 'job-recycle', $this->type, $released, $this->wiki );
-				JobQueue::incrStats( 'job-abandon', $this->type, $abandoned, $this->wiki );
+				JobQueue::incrStats( 'job-recycle', $this->type, $released );
+				JobQueue::incrStats( 'job-abandon', $this->type, $abandoned );
 			}
 		} catch ( RedisException $e ) {
 			$this->throwRedisException( $conn, $e );
