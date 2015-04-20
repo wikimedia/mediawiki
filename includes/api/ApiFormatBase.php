@@ -32,6 +32,7 @@
 abstract class ApiFormatBase extends ApiBase {
 	private $mIsHtml, $mFormat, $mUnescapeAmps, $mHelp;
 	private $mBuffer, $mDisabled = false;
+	protected $mForceDefaultParams = false;
 
 	/**
 	 * If $format ends with 'fm', pretty-print the output in HTML.
@@ -105,6 +106,34 @@ abstract class ApiFormatBase extends ApiBase {
 	 */
 	public function canPrintErrors() {
 		return true;
+	}
+
+	/**
+	 * Ignore request parameters, force a default.
+	 *
+	 * Used as a fallback if errors are being thrown.
+	 * @since 1.26
+	 */
+	public function forceDefaultParams() {
+		$this->mForceDefaultParams = true;
+	}
+
+	/**
+	 * Overridden to honor $this->forceDefaultParams(), if applicable
+	 * @since 1.26
+	 */
+	protected function getParameterFromSettings( $paramName, $paramSettings, $parseLimit ) {
+		if ( !$this->mForceDefaultParams ) {
+			return parent::getParameterFromSettings( $paramName, $paramSettings, $parseLimit );
+		}
+
+		if ( !is_array( $paramSettings ) ) {
+			return $paramSettings;
+		} elseif ( isset( $paramSettings[self::PARAM_DFLT] ) ) {
+			return $paramSettings[self::PARAM_DFLT];
+		} else {
+			return null;
+		}
 	}
 
 	/**
