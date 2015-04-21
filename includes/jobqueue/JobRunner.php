@@ -123,8 +123,9 @@ class JobRunner implements LoggerAwareInterface {
 		$trxProfiler->setExpectation( 'maxAffected', 500, __METHOD__ );
 
 		// Bail out if there is too much DB lag
+		$maxAllowedLag = 5;
 		list( , $maxLag ) = wfGetLBFactory()->getMainLB( wfWikiID() )->getMaxLag();
-		if ( $maxLag >= 5 ) {
+		if ( $maxLag >= $maxAllowedLag ) {
 			$response['reached'] = 'slave-lag-limit';
 			return $response;
 		}
@@ -140,10 +141,9 @@ class JobRunner implements LoggerAwareInterface {
 		$jobsRun = 0;
 		$timeMsTotal = 0;
 		$flags = JobQueueGroup::USE_CACHE;
-		$checkPeriod = 5.0; // seconds
-		$checkPhase = mt_rand( 0, 1000 * $checkPeriod ) / 1000; // avoid stampedes
 		$startTime = microtime( true ); // time since jobs started running
-		$lastTime = microtime( true ) - $checkPhase; // time since last slave check
+		$checkLagPeriod = 1.0; // check slave lag this many seconds
+		$lastCheckTime = 1; // timestamp of last slave check
 		do {
 			// Sync the persistent backoffs with concurrent runners
 			$backoffs = $this->syncBackoffDeltas( $backoffs, $backoffDeltas, $wait );
@@ -234,13 +234,13 @@ class JobRunner implements LoggerAwareInterface {
 				// Don't let any of the main DB slaves get backed up.
 				// This only waits for so long before exiting and letting
 				// other wikis in the farm (on different masters) get a chance.
-				$timePassed = microtime( true ) - $lastTime;
-				if ( $timePassed >= 3 || $timePassed < 0 ) {
-					if ( !wfWaitForSlaves( $lastTime, false, '*', 5 ) ) {
+				$timePassed = microtime( true ) - $lastCheckTime;
+				if ( $timePassed >= $checkLagPeriod || $timePassed < 0 ) {
+					if ( !wfWaitForSlaves( $lastCheckTime, false, '*', $maxAllowedLag ) ) {
 						$response['reached'] = 'slave-lag-limit';
 						break;
 					}
-					$lastTime = microtime( true );
+					$lastCheckTime = microtime( true );
 				}
 				// Don't let any queue slaves/backups fall behind
 				if ( $jobsRun > 0 && ( $jobsRun % 100 ) == 0 ) {
