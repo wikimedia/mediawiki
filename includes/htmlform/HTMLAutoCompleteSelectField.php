@@ -98,11 +98,12 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 		return true;
 	}
 
-	function getAttributes( array $list ) {
+	// FIXME Ewww, this shouldn't be adding any attributes not requested in $list :(
+	public function getAttributes( array $list, array $mappings = null ) {
 		$attribs = array(
 			'type' => 'text',
 			'data-autocomplete' => FormatJson::encode( array_keys( $this->autocomplete ) ),
-		) + parent::getAttributes( $list );
+		) + parent::getAttributes( $list, $mappings );
 
 		if ( $this->getOptions() ) {
 			$attribs['data-hide-if'] = FormatJson::encode(
@@ -162,4 +163,13 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 		return $ret;
 	}
 
+	/**
+	 * Get the OOUI version of this input.
+	 * @param string $value
+	 * @return false
+	 */
+	function getInputOOUI( $value ) {
+		// To be implemented, for now override the function from HTMLTextField
+		return false;
+	}
 }
