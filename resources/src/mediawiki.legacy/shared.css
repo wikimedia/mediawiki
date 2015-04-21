@@ -304,6 +304,17 @@ tr.mw-htmlform-vertical-label td.mw-label {
 	padding-right: 0.5em;
 }
 
+.mw-htmlform-ooui .mw-htmlform-field-HTMLCheckMatrix,
+.mw-htmlform-ooui .mw-htmlform-matrix,
+.mw-htmlform-ooui .mw-htmlform-matrix tr {
+	width: 100%;
+}
+
+.mw-htmlform-ooui .mw-htmlform-matrix tr td.first {
+	margin-right: 5%;
+	width: 39%;
+}
+
 input#wpSummary {
 	width: 80%;
 	margin-bottom: 1em;

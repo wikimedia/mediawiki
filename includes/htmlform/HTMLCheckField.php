@@ -36,12 +36,45 @@ class HTMLCheckField extends HTMLFormField {
 	}
 
 	/**
+	 * Get the OOUI version of this field.
+	 * @since 1.26
+	 * @param string $value
+	 * @return OOUI\CheckboxInputLayout The checkbox widget.
+	 */
+	public function getInputOOUI( $value ) {
+		if ( !empty( $this->mParams['invert'] ) ) {
+			$value = !$value;
+		}
+
+		$attr = $this->getTooltipAndAccessKey();
+		$attr['id'] = $this->mID;
+
+		$attr += $this->getAttributes( array( 'disabled', 'tabindex' ) );
+
+		if ( $this->mClass !== '' ) {
+			$attr['classes'] = array( $this->mClass );
+		}
+
+		$attr['selected'] = $value;
+
+		return new OOUI\CheckboxInputWidget( $attr );
+	}
+
+	/**
 	 * For a checkbox, the label goes on the right hand side, and is
 	 * added in getInputHTML(), rather than HTMLFormField::getRow()
+	 *
+	 * ...unless OOUI is being used, in which case we actually return
+	 * the label here.
+	 * @param bool $ooui
 	 * @return string
 	 */
-	function getLabel() {
-		return '&#160;';
+	function getLabel( $ooui = false ) {
+		if ( $ooui ) {
+			return $this->mLabel;
+		} else {
+			return '&#160;';
+		}
 	}
 
 	/**
