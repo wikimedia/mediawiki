@@ -45,6 +45,17 @@ abstract class HTMLFormField {
 	abstract function getInputHTML( $value );
 
 	/**
+	 * Same as getInputHTML, but returns an OOUI object.
+	 * Defaults to false, which getOOUI will interpret as "use the HTML version"
+	 *
+	 * @param string $value
+	 * @return OOUI\Widget|false
+	 */
+	function getInputOOUI( $value ) {
+		return false;
+	}
+
+	/**
 	 * Get a translated interface message
 	 *
 	 * This is a wrapper around $this->mParent->msg() if $this->mParent is set
@@ -534,6 +545,54 @@ abstract class HTMLFormField {
 	}
 
 	/**
+	 * Get the OOUI version of the div. Falls back to getDiv by default.
+	 * @since 1.26
+	 *
+	 * @param string $value The value to set the input to.
+	 *
+	 * @return OOUI\FieldLayout|string
+	 */
+	public function getOOUI( $value ) {
+		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
+
+		$inputField = $this->getInputOOUI( $value );
+
+		if ( !$inputField ) {
+			// This field doesn't have an OOUI implementation yet at all.
+			// OK, use this trick:
+			return $this->getDiv( $value );
+		}
+
+		$infusable = true;
+		if ( is_string( $inputField ) ) {
+			// Mmm… We have an OOUI implementation, but it's not complete, and we got a load of HTML.
+			// Cheat a little and wrap it in a widget! It won't be infusable, though, since client-side
+			// JavaScript doesn't know how to rebuilt the contents.
+			$inputField = new OOUI\Widget( array( 'content' => new OOUI\HtmlSnippet( $inputField ) ) );
+			$infusable = false;
+		}
+
+		$fieldType = get_class( $this );
+		$field = new OOUI\FieldLayout( $inputField, array(
+			'classes' => array( "mw-htmlform-field-$fieldType", $this->mClass, $errorClass ),
+			'align' => $this->getLabelAlignOOUI(),
+			'label' => $this->getLabel(),
+			'help' => $this->getHelpText(),
+			'infusable' => $infusable,
+		) );
+
+		return $field;
+	}
+
+	/**
+	 * Get label alignment when generating field for OOUI.
+	 * @return string 'left', 'right', 'top' or 'inline'
+	 */
+	public function getLabelAlignOOUI() {
+		return 'top';
+	}
+
+	/**
 	 * Get the complete raw fields for the input, including help text,
 	 * labels, and whatever.
 	 * @since 1.20
@@ -713,6 +772,9 @@ abstract class HTMLFormField {
 		return array( $errors, $errorClass );
 	}
 
+	/**
+	 * @return string
+	 */
 	function getLabel() {
 		return is_null( $this->mLabel ) ? '' : $this->mLabel;
 	}
@@ -776,23 +838,43 @@ abstract class HTMLFormField {
 	}
 
 	/**
+	 * Get a translated key if necessary.
+	 * @param array|null $mappings Array of mappings, 'original' => 'translated'
+	 * @param string $key
+	 * @return string
+	 */
+	protected function getMappedKey( $mappings, $key ) {
+		if ( !is_array( $mappings ) ) {
+			return $key;
+		}
+
+		if ( !empty( $mappings[$key] ) ) {
+			return $mappings[$key];
+		}
+
+		return $key;
+	}
+
+	/**
 	 * Returns the given attributes from the parameters
 	 *
 	 * @param array $list List of attributes to get
+	 * @param array $mappings Optional - Key/value map of attribute names to use instead of the ones passed in
 	 * @return array Attributes
 	 */
-	public function getAttributes( array $list ) {
+	public function getAttributes( array $list, array $mappings = null ) {
 		static $boolAttribs = array( 'disabled', 'required', 'autofocus', 'multiple', 'readonly' );
 
 		$ret = array();
-
 		foreach ( $list as $key ) {
+			$mappedKey = $this->getMappedKey( $mappings, $key );
+
 			if ( in_array( $key, $boolAttribs ) ) {
 				if ( !empty( $this->mParams[$key] ) ) {
-					$ret[$key] = '';
+					$ret[$mappedKey] = '';
 				}
 			} elseif ( isset( $this->mParams[$key] ) ) {
-				$ret[$key] = $this->mParams[$key];
+				$ret[$mappedKey] = $this->mParams[$key];
 			}
 		}
 
@@ -879,6 +961,29 @@ abstract class HTMLFormField {
 		}
 
 		return $this->mOptions;
+	}
+
+	/**
+	 * Get options and make them into arrays suitable for OOUI.
+	 * @return array Options for inclusion in a select or whatever.
+	 */
+	public function getOptionsOOUI() {
+		$oldoptions = $this->getOptions();
+
+		if ( $oldoptions === null ) {
+			return null;
+		}
+
+		$options = array();
+
+		foreach ( $oldoptions as $text => $data ) {
+			$options[] = array(
+				'data' => $data,
+				'label' => $text,
+			);
+		}
+
+		return $options;
 	}
 
 	/**
