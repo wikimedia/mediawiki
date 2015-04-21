@@ -14,6 +14,16 @@ class HTMLInfoField extends HTMLFormField {
 		return !empty( $this->mParams['raw'] ) ? $value : htmlspecialchars( $value );
 	}
 
+	public function getInputOOUI( $value ) {
+		if ( !empty( $this->mParams['raw'] ) ) {
+			$value = new OOUI\HtmlSnippet( $value );
+		}
+
+		return new OOUI\LabelWidget( array(
+			'label' => $value,
+		) );
+	}
+
 	public function getTableRow( $value ) {
 		if ( !empty( $this->mParams['rawrow'] ) ) {
 			return $value;
