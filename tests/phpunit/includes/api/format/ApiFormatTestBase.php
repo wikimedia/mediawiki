@@ -33,6 +33,7 @@ abstract class ApiFormatTestBase extends MediaWikiTestCase {
 			$main->getModuleManager()->addModule( $this->printerName, 'format', $class );
 		}
 		$result = $main->getResult();
+		$result->addArrayType( null, 'default' );
 		foreach ( $data as $k => $v ) {
 			$result->addValue( null, $k, $v );
 		}

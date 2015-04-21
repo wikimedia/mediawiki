@@ -490,7 +490,7 @@ class ApiEditPage extends ApiBase {
 				$this->dieStatus( $status );
 
 			case EditPage::AS_SUCCESS_NEW_ARTICLE:
-				$r['new'] = '';
+				$r['new'] = true;
 				// fall-through
 
 			case EditPage::AS_SUCCESS_UPDATE:
@@ -500,7 +500,7 @@ class ApiEditPage extends ApiBase {
 				$r['contentmodel'] = $titleObj->getContentModel();
 				$newRevId = $articleObject->getLatest();
 				if ( $newRevId == $oldRevId ) {
-					$r['nochange'] = '';
+					$r['nochange'] = true;
 				} else {
 					$r['oldrevid'] = intval( $oldRevId );
 					$r['newrevid'] = intval( $newRevId );

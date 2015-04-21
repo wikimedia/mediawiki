@@ -144,7 +144,12 @@ class ApiResultTest extends MediaWikiTestCase {
 		$result2 = new ApiResult( 8388608 );
 		$result2->addValue( null, 'foo', 'bar' );
 		ApiResult::setValue( $arr, 'baz', $result2 );
-		$this->assertSame( array( 'baz' => array( 'foo' => 'bar' ) ), $arr );
+		$this->assertSame( array(
+			'baz' => array(
+				ApiResult::META_TYPE => 'assoc',
+				'foo' => 'bar',
+			)
+		), $arr );
 
 		$arr = array();
 		ApiResult::setValue( $arr, 'foo', "foo\x80bar" );
@@ -182,6 +187,7 @@ class ApiResultTest extends MediaWikiTestCase {
 			'unnamed 2',
 			'a' => array( 'b' => array() ),
 			'setContentValue' => '3',
+			ApiResult::META_TYPE => 'assoc',
 			ApiResult::META_CONTENT => 'setContentValue',
 		), $result->getResultData() );
 		$this->assertSame( 20, $result->getSize() );
@@ -217,7 +223,9 @@ class ApiResultTest extends MediaWikiTestCase {
 			$result->getResultData( array( ApiResult::META_CONTENT ) ) );
 
 		$result->reset();
-		$this->assertSame( array(), $result->getResultData() );
+		$this->assertSame( array(
+			ApiResult::META_TYPE => 'assoc',
+		), $result->getResultData() );
 		$this->assertSame( 0, $result->getSize() );
 
 		$result->addValue( null, 'foo', 1 );
@@ -227,7 +235,7 @@ class ApiResultTest extends MediaWikiTestCase {
 		$result->addValue( null, 'bottom', '2' );
 		$result->addValue( null, 'foo', '2', ApiResult::OVERRIDE );
 		$result->addValue( null, 'bar', '2', ApiResult::OVERRIDE | ApiResult::ADD_ON_TOP );
-		$this->assertSame( array( 0, 'top', 'foo', 'bar', 'bottom' ),
+		$this->assertSame( array( 0, 'top', 'foo', 'bar', 'bottom', ApiResult::META_TYPE ),
 			array_keys( $result->getResultData() ) );
 
 		$result->reset();
@@ -240,8 +248,10 @@ class ApiResultTest extends MediaWikiTestCase {
 		$result->reset();
 		$result->addValue( null, 'sub', array( 'foo' => 1 ) );
 		$result->addValue( null, 'sub', array( 'bar' => 1 ) );
-		$this->assertSame( array( 'sub' => array( 'foo' => 1, 'bar' => 1 ) ),
-			$result->getResultData() );
+		$this->assertSame( array(
+			'sub' => array( 'foo' => 1, 'bar' => 1 ),
+			ApiResult::META_TYPE => 'assoc',
+		), $result->getResultData() );
 
 		try {
 			$result->addValue( null, 'sub', array( 'foo' => 2, 'baz' => 2 ) );
@@ -264,6 +274,7 @@ class ApiResultTest extends MediaWikiTestCase {
 		$this->assertSame( array(
 			'title' => (string)$title,
 			'obj' => array( 'foo' => 1, 'bar' => 2, ApiResult::META_TYPE => 'assoc' ),
+			ApiResult::META_TYPE => 'assoc',
 		), $result->getResultData() );
 
 		$fh = tmpfile();
@@ -313,9 +324,15 @@ class ApiResultTest extends MediaWikiTestCase {
 
 		$result->reset();
 		$result->addParsedLimit( 'foo', 12 );
-		$this->assertSame( array( 'limits' => array( 'foo' => 12 ) ), $result->getResultData() );
+		$this->assertSame( array(
+			'limits' => array( 'foo' => 12 ),
+			ApiResult::META_TYPE => 'assoc',
+		), $result->getResultData() );
 		$result->addParsedLimit( 'foo', 13 );
-		$this->assertSame( array( 'limits' => array( 'foo' => 13 ) ), $result->getResultData() );
+		$this->assertSame( array(
+			'limits' => array( 'foo' => 13 ),
+			ApiResult::META_TYPE => 'assoc',
+		), $result->getResultData() );
 		$this->assertSame( null, $result->getResultData( array( 'foo', 'bar', 'baz' ) ) );
 		$this->assertSame( 13, $result->getResultData( array( 'limits', 'foo' ) ) );
 		try {
@@ -345,7 +362,13 @@ class ApiResultTest extends MediaWikiTestCase {
 		$result2 = new ApiResult( 8388608 );
 		$result2->addValue( null, 'foo', 'bar' );
 		$result->addValue( null, 'baz', $result2 );
-		$this->assertSame( array( 'baz' => array( 'foo' => 'bar' ) ), $result->getResultData() );
+		$this->assertSame( array(
+			'baz' => array(
+				'foo' => 'bar',
+				ApiResult::META_TYPE => 'assoc',
+			),
+			ApiResult::META_TYPE => 'assoc',
+		), $result->getResultData() );
 
 		$result = new ApiResult( 8388608 );
 		$result->addValue( null, 'foo', "foo\x80bar" );
@@ -355,6 +378,7 @@ class ApiResultTest extends MediaWikiTestCase {
 			'foo' => "foo\xef\xbf\xbdbar",
 			'bar' => "\xc3\xa1",
 			'baz' => 74,
+			ApiResult::META_TYPE => 'assoc',
 		), $result->getResultData() );
 	}
 
@@ -403,7 +427,7 @@ class ApiResultTest extends MediaWikiTestCase {
 		$result->removePreserveKeysList( null, 'baz' );
 		$result->addArrayTypeRecursive( null, 'default' );
 		$result->addArrayType( null, 'array' );
-		$this->assertSame( $expect, $result->getResultData() );
+		$this->assertEquals( $expect, $result->getResultData() );
 
 		$arr = array( 'foo' => array( 'bar' => array() ) );
 		$expect = array(
@@ -1211,7 +1235,7 @@ class ApiResultTest extends MediaWikiTestCase {
 			'gcontinue' => 3,
 			'continue' => 'gcontinue||',
 		), $result->getResultData( 'continue' ) );
-		$this->assertSame( '', $result->getResultData( 'batchcomplete' ) );
+		$this->assertSame( true, $result->getResultData( 'batchcomplete' ) );
 		$this->assertSame( array(
 			'mocklist' => array( 'mlcontinue' => 2 ),
 			'generator' => array( 'gcontinue' => 3 ),
@@ -1229,7 +1253,7 @@ class ApiResultTest extends MediaWikiTestCase {
 			'gcontinue' => 3,
 			'continue' => 'gcontinue||mocklist',
 		), $result->getResultData( 'continue' ) );
-		$this->assertSame( '', $result->getResultData( 'batchcomplete' ) );
+		$this->assertSame( true, $result->getResultData( 'batchcomplete' ) );
 		$this->assertSame( array(
 			'generator' => array( 'gcontinue' => 3 ),
 		), $result->getResultData( 'query-continue' ) );
@@ -1283,7 +1307,7 @@ class ApiResultTest extends MediaWikiTestCase {
 			'mlcontinue' => 2,
 			'continue' => '-||mock1|mock2',
 		), $result->getResultData( 'continue' ) );
-		$this->assertSame( '', $result->getResultData( 'batchcomplete' ) );
+		$this->assertSame( true, $result->getResultData( 'batchcomplete' ) );
 		$this->assertSame( array(
 			'mocklist' => array( 'mlcontinue' => 2 ),
 		), $result->getResultData( 'query-continue' ) );
@@ -1296,7 +1320,7 @@ class ApiResultTest extends MediaWikiTestCase {
 		$result->endContinuation( 'raw' );
 		$result->endContinuation( 'standard' );
 		$this->assertSame( null, $result->getResultData( 'continue' ) );
-		$this->assertSame( '', $result->getResultData( 'batchcomplete' ) );
+		$this->assertSame( true, $result->getResultData( 'batchcomplete' ) );
 		$this->assertSame( null, $result->getResultData( 'query-continue' ) );
 		$main->setContinuationManager( null );
 
