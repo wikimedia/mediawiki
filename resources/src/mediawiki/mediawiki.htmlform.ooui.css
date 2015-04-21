@@ -1,0 +1,16 @@
+/* OOUIHTMLForm styles */
+
+.mw-htmlform-ooui {
+	width: 50em;
+}
+
+.mw-htmlform-ooui .mw-htmlform-field-HTMLCheckMatrix,
+.mw-htmlform-ooui .mw-htmlform-matrix,
+.mw-htmlform-ooui .mw-htmlform-matrix tr {
+	width: 100%;
+}
+
+.mw-htmlform-ooui .mw-htmlform-matrix tr td.first {
+	margin-right: 5%;
+	width: 39%;
+}
