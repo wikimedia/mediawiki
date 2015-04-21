@@ -21,6 +21,7 @@
  *
  * @file
  */
+use MediaWiki\Logger\LoggerFactory;
 
 /**
  * Unit to authenticate account registration attempts to the current wiki.
@@ -95,6 +96,10 @@ class ApiCreateAccount extends ApiBase {
 		$loginForm->load();
 
 		$status = $loginForm->addNewaccountInternal();
+		LoggerFactory::getInstance( 'authmanager' )->info( 'Account creation attempt via API', array(
+			'event' => 'accountcreation',
+			'status' => $status,
+		) );
 		$result = array();
 		if ( $status->isGood() ) {
 			// Success!
