@@ -58,8 +58,8 @@ class MultiHttpClient {
 
 	/**
 	 * @param array $options
-	 *   - connTimeout     : default connection timeout
-	 *   - reqTimeout      : default request timeout
+	 *   - connTimeout     : default connection timeout (seconds)
+	 *   - reqTimeout      : default request timeout (seconds)
 	 *   - proxy           : HTTP proxy to use
 	 *   - usePipelining   : whether to use HTTP pipelining if possible (for all hosts)
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
@@ -95,8 +95,8 @@ class MultiHttpClient {
 	 *  </code>
 	 * @param array $req HTTP request array
 	 * @param array $opts
-	 *   - connTimeout    : connection timeout per request
-	 *   - reqTimeout     : post-connection timeout per request
+	 *   - connTimeout    : connection timeout per request (seconds)
+	 *   - reqTimeout     : post-connection timeout per request (seconds)
 	 * @return array Response array for request
 	 */
 	final public function run( array $req, array $opts = array() ) {
@@ -123,8 +123,8 @@ class MultiHttpClient {
 	 *
 	 * @param array $reqs Map of HTTP request arrays
 	 * @param array $opts
-	 *   - connTimeout     : connection timeout per request
-	 *   - reqTimeout      : post-connection timeout per request
+	 *   - connTimeout     : connection timeout per request (seconds)
+	 *   - reqTimeout      : post-connection timeout per request (seconds)
 	 *   - usePipelining   : whether to use HTTP pipelining if possible
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
 	 * @return array $reqs With response array populated for each
