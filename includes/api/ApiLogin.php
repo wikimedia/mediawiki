@@ -174,6 +174,11 @@ class ApiLogin extends ApiBase {
 		}
 
 		$this->getResult()->addValue( null, 'login', $result );
+
+		wfTrack( 'login', array(
+			'successful' => $authRes === LoginForm::SUCCESS,
+			'status' => $authRes,
+		) );
 	}
 
 	public function mustBePosted() {
