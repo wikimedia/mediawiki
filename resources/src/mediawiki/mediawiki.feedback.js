@@ -22,8 +22,8 @@
 	 * dialog box. Submitting that dialog box appends its contents to a
 	 * wiki page that you specify, as a new section.
 	 *
-	 * This feature works with classic MediaWiki pages
-	 * and is not compatible with LiquidThreads or Flow.
+	 * This feature works with any content model that defines a
+	 * `mw.messagePoster.MessagePoster`.
 	 *
 	 * Minimal usage example:
 	 *
