@@ -38,6 +38,46 @@ class HTMLRadioField extends HTMLFormField {
 		return $html;
 	}
 
+	/**
+	 * Same as getInputHTML, but returns an OOUI object.
+	 * @param string $value
+	 * @return OOUI\RadioSelectWidget
+	 */
+	// FIXME Not implemented D:
+	// function getInputOOUI( $value ) {
+	// 	$attribs = $this->getAttributes( array( 'disabled', 'tabindex' ) );
+	// 	return new OOUI\RadioSelectWidget( array(
+	// 		'items' => $this->formatOOUIOptions( $this->getOptions(), strval( $value ) ),
+	// 	) + $attribs );
+	// }
+
+	/**
+	 * Same as formatOptions, but returns an OOUI object.
+	 * @param array options
+	 * @param string $value
+	 * @return array A bunch of OOUI\RadioOptionWidget objects
+	 */
+	function formatOOUIOptions( $options, $value ) {
+		$options = $this->getOptions();
+		$optwidgets = array();
+
+		foreach ( $options as $label => $info ) {
+			if ( is_array( $info ) ) {
+				// TODO add H1 elements in here somehow
+				$optwidgets += $this->formatOOUIOptions( $info, $value );
+			} else {
+				$optwidgets[] = new OOUI\RadioOptionWidget( array(
+					'id' => Sanitizer::escapeId( $this->mID . "-$info" ),
+					'name' => $this->mName,
+					'data' => $info,
+					'label' => $label,
+				) );
+			}
+		}
+
+		return $optwidgets;
+	}
+
 	function formatOptions( $options, $value ) {
 		$html = '';
 
