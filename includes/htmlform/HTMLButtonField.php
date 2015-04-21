@@ -24,6 +24,21 @@ class HTMLButtonField extends HTMLFormField {
 		return Html::input( $this->mName, $value, $this->buttonType, $attr );
 	}
 
+	/**
+	 * Get the OOUI widget for this field.
+	 * @param string $value
+	 * @return OOUI\ButtonInputWidget
+	 */
+	public function getInputOOUI( $value ) {
+		return new OOUI\ButtonInputWidget( array(
+			'name' => $this->mName,
+			'value' => $value,
+			'type' => $this->buttonType,
+			'classes' => array( 'mw-htmlform-submit', $this->mClass ),
+			'id' => $this->mID,
+		) + $this->getAttributes( array( 'disabled', 'tabindex' ) ) );
+	}
+
 	protected function needsLabel() {
 		return false;
 	}

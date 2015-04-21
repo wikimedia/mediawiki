@@ -947,6 +947,13 @@ return array(
 			'colon-separator',
 		),
 	),
+	'mediawiki.htmlform.ooui' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.htmlform.ooui.js',
+		'dependencies' => 'oojs-ui',
+	),
+	'mediawiki.htmlform.ooui.styles' => array(
+		'styles' => 'resources/src/mediawiki/mediawiki.htmlform.ooui.css',
+	),
 	'mediawiki.icon' => array(
 		'styles' => 'resources/src/mediawiki/mediawiki.icon.less',
 	),

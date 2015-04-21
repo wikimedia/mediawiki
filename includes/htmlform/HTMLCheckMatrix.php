@@ -150,6 +150,81 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		return $html;
 	}
 
+	function getInputOOUI( $value ) {
+		$html = '';
+		$tableContents = '';
+		$rows = $this->mParams['rows'];
+		$columns = $this->mParams['columns'];
+
+		$attribs = $this->getAttributes( array( 'disabled', 'tabindex' ) );
+
+		// Build the column headers
+		$headerContents = Html::rawElement( 'td', array(), '&#160;' );
+		foreach ( $columns as $columnLabel => $columnTag ) {
+			$headerContents .= Html::rawElement( 'td', array(), $columnLabel );
+		}
+		$tableContents .= Html::rawElement( 'tr', array(), "\n$headerContents\n" );
+
+		$tooltipClass = 'mw-icon-question';
+		if ( isset( $this->mParams['tooltip-class'] ) ) {
+			$tooltipClass = $this->mParams['tooltip-class'];
+		}
+
+		// Build the options matrix
+		foreach ( $rows as $rowLabel => $rowTag ) {
+			// Append tooltip if configured
+			if ( isset( $this->mParams['tooltips'][$rowLabel] ) ) {
+				$tooltipAttribs = array(
+					'class' => "mw-htmlform-tooltip $tooltipClass",
+					'title' => $this->mParams['tooltips'][$rowLabel],
+				);
+				$rowLabel .= ' ' . Html::element( 'span', $tooltipAttribs, '' );
+			}
+			$rowContents = Html::rawElement( 'td', array( 'class' => 'first' ), $rowLabel );
+			foreach ( $columns as $columnTag ) {
+				$thisTag = "$columnTag-$rowTag";
+				// Construct the checkbox
+				$thisId = "{$this->mID}-$thisTag";
+				$thisAttribs = array(
+					'id' => $thisId,
+					'value' => $thisTag,
+				);
+				$checked = in_array( $thisTag, (array)$value, true );
+				if ( $this->isTagForcedOff( $thisTag ) ) {
+					$checked = false;
+					$thisAttribs['disabled'] = 1;
+				} elseif ( $this->isTagForcedOn( $thisTag ) ) {
+					$checked = true;
+					$thisAttribs['disabled'] = 1;
+				}
+				$chkBox = new OOUI\CheckboxInputWidget( array(
+					'name' => "{$this->mName}[]",
+					'selected' => $checked,
+				) + $attribs + $thisAttribs );
+
+				if ( $this->mParent->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
+					$chkBox = Html::openElement( 'div', array( 'class' => 'mw-ui-checkbox' ) ) .
+						$chkBox .
+						Html::element( 'label', array( 'for' => $thisId ) ) .
+						Html::closeElement( 'div' );
+				}
+				$rowContents .= Html::rawElement(
+					'td',
+					array( 'class' => 'others' ),
+					$chkBox
+				);
+			}
+			$tableContents .= Html::rawElement( 'tr', array(), "\n$rowContents\n" );
+		}
+
+		// Put it all in a table
+		$html .= Html::rawElement( 'table',
+				array( 'class' => 'mw-htmlform-matrix' ),
+				Html::rawElement( 'tbody', array(), "\n$tableContents\n" ) ) . "\n";
+
+		return $html;
+	}
+
 	protected function isTagForcedOff( $tag ) {
 		return isset( $this->mParams['force-options-off'] )
 			&& in_array( $tag, $this->mParams['force-options-off'] );

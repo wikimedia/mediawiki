@@ -836,6 +836,7 @@ $wgAutoloadLocalClasses = array(
 	'ObjectFileCache' => __DIR__ . '/includes/cache/ObjectFileCache.php',
 	'OldChangesList' => __DIR__ . '/includes/changes/OldChangesList.php',
 	'OldLocalFile' => __DIR__ . '/includes/filerepo/file/OldLocalFile.php',
+	'OOUIHTMLForm' => __DIR__ . '/includes/htmlform/OOUIHTMLForm.php',
 	'OracleInstaller' => __DIR__ . '/includes/installer/OracleInstaller.php',
 	'OracleUpdater' => __DIR__ . '/includes/installer/OracleUpdater.php',
 	'OrphanStats' => __DIR__ . '/maintenance/storage/orphanStats.php',
