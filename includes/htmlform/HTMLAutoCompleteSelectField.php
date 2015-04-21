@@ -162,4 +162,53 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 		return $ret;
 	}
 
+	/**
+	 * Get the OOUI version of this input.
+	 * @param string $value
+	 * @return OOUI\DropdownWidget
+	 */
+	function getInputOOUI( $value ) {
+		$oldClass = $this->mClass;
+		$this->mClass = (array)$this->mClass;
+		$choices = array();
+
+		$valInSelect = false;
+
+		if ( $this->getOptions() ) {
+			if ( $value !== false ) {
+				$value = strval( $value );
+				$valInSelect = in_array(
+					$value, HTMLFormField::flattenOptions( $this->getOptions() ), true
+				);
+			}
+
+			$this->mClass[] = 'mw-htmlform-hide-if';
+		}
+
+		if ( $valInSelect ) {
+			$value = '';
+		} else {
+			$key = array_search( strval( $value ), $this->autocomplete, true );
+			if ( $key !== false ) {
+				$value = $key;
+			}
+		}
+
+		$widget = new OOUI\DropdownInputWidget( array(
+			'name' => $this->mName . '-select',
+			'id' => $this->mID . '-select',
+			'options' => $this->getOptionsOOUI(),
+			'classes' => 'mw-htmlform-select-or-other',
+			'disabled' => !empty( $this->mParams['disabled'] ),
+			'tabindex' => isset( $this->mParams['tabindex'] ) && $this->mParams['tabindex'],
+		) );
+
+		$widget->setValue( $value );
+
+		$this->mClass[] = 'mw-htmlform-autocomplete';
+		$ret .= parent::getInputHTML( $valInSelect ? '' : $value );
+		$this->mClass = $oldClass;
+
+		return $widget;
+	}
 }
