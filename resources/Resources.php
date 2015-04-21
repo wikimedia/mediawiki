@@ -981,9 +981,11 @@ return array(
 	),
 	'mediawiki.notification' => array(
 		'styles' => array(
-			'resources/src/mediawiki/mediawiki.notification.css',
 			'resources/src/mediawiki/mediawiki.notification.hideForPrint.css'
 				=> array( 'media' => 'print' ),
+		),
+		'skinStyles' => array(
+			'default' => 'resources/src/mediawiki/mediawiki.notification.css',
 		),
 		'scripts' => 'resources/src/mediawiki/mediawiki.notification.js',
 		'dependencies' => 'mediawiki.page.startup',
