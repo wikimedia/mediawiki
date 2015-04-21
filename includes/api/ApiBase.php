@@ -2829,6 +2829,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return array
 	 */
 	public function getResultData() {
+		wfDeprecated( __METHOD__, '1.25' );
 		return $this->getResult()->getData();
 	}
 
