@@ -41,4 +41,25 @@ class HTMLSelectField extends HTMLFormField {
 
 		return $select->getHTML();
 	}
+
+	function getInputOOUI( $value ) {
+		$disabled = false;
+		$allowedParams = array( 'tabindex' );
+		$attribs = $this->getAttributes( $allowedParams );
+
+		if ( $this->mClass !== '' ) {
+			$attribs['classes'] = array( $this->mClass );
+		}
+
+		if ( !empty( $this->mParams['disabled'] ) ) {
+			$disabled = true;
+		}
+
+		return new OOUI\DropdownInputWidget( array(
+			'name' => $this->mName,
+			'id' => $this->mID,
+			'options' => $this->getOptionsOOUI(),
+			'disabled' => $disabled,
+		) + $attribs );
+	}
 }
