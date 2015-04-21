@@ -90,6 +90,10 @@ class ApiCreateAccount extends ApiBase {
 		$loginForm->load();
 
 		$status = $loginForm->addNewaccountInternal();
+		wfTrack( 'accountcreation', array(
+			'successful' => $status->isGood(),
+			'status' => $status->isGood() ? null : $status->getMessage()->getKey(),
+		) );
 		$result = array();
 		if ( $status->isGood() ) {
 			// Success!

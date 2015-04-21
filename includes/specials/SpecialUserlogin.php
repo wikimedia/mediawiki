@@ -338,6 +338,10 @@ class LoginForm extends SpecialPage {
 		}
 
 		$status = $this->addNewAccountInternal();
+		wfTrack( 'accountcreation', array(
+			'successful' => $status->isGood(),
+			'status' => $status->isGood() ? null : $status->getMessage()->getKey(),
+		) );
 		if ( !$status->isGood() ) {
 			$error = $status->getMessage();
 			$this->mainLoginForm( $error->toString() );
@@ -375,6 +379,11 @@ class LoginForm extends SpecialPage {
 
 		# Create the account and abort if there's a problem doing so
 		$status = $this->addNewAccountInternal();
+		wfTrack( 'accountcreation', array(
+			'successful' => $status->isGood(),
+			'status' => $status->isGood() ? null : $status->getMessage()->getKey(),
+		) );
+
 		if ( !$status->isGood() ) {
 			$error = $status->getMessage();
 			$this->mainLoginForm( $error->toString() );
@@ -909,7 +918,8 @@ class LoginForm extends SpecialPage {
 		global $wgMemc, $wgLang, $wgSecureLogin, $wgPasswordAttemptThrottle,
 			$wgInvalidPasswordReset;
 
-		switch ( $this->authenticateUserData() ) {
+		$status = $this->authenticateUserData();
+		switch ( $status ) {
 			case self::SUCCESS:
 				# We've verified now, update the real record
 				$user = $this->getUser();
@@ -1029,6 +1039,11 @@ class LoginForm extends SpecialPage {
 			default:
 				throw new MWException( 'Unhandled case value' );
 		}
+
+		wfTrack( 'login', array(
+			'successful' => $status === self::SUCCESS,
+			'status' => $status,
+		) );
 	}
 
 	/**
