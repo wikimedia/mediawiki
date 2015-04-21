@@ -6,15 +6,21 @@ class HTMLTextField extends HTMLFormField {
 	}
 
 	function getInputHTML( $value ) {
+		$useMediaWikiUIEverywhere = $this->getConfig()->get( 'UseMediaWikiUIEverywhere' );
 		$attribs = array(
 				'id' => $this->mID,
 				'name' => $this->mName,
 				'size' => $this->getSize(),
 				'value' => $value,
+				'class' => '',
 			) + $this->getTooltipAndAccessKey();
 
+		if ( $useMediaWikiUIEverywhere ) {
+			$attribs['class'] .= 'mw-ui-input mw-ui-input-inline';
+		}
+		
 		if ( $this->mClass !== '' ) {
-			$attribs['class'] = $this->mClass;
+			$attribs['class'] .= $this->mClass;
 		}
 
 		# @todo Enforce pattern, step, required, readonly on the server side as

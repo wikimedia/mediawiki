@@ -92,6 +92,14 @@ abstract class HTMLFormField {
 		return call_user_func_array( $callback, $args );
 	}
 
+	protected function getConfig() {
+		if ( $this->mParent instanceof IContextSource ) {
+			return $this->mParent->getConfig();
+		} else {
+			return ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
+		}
+	}
+
 
 	/**
 	 * Fetch a field value from $alldata for the closest field matching a given

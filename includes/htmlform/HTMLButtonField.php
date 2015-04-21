@@ -16,10 +16,19 @@ class HTMLButtonField extends HTMLFormField {
 	}
 
 	public function getInputHTML( $value ) {
+		$useMediaWikiUIEverywhere = $this->getConfig()->get( 'UseMediaWikiUIEverywhere' );
 		$attr = array(
 			'class' => 'mw-htmlform-submit ' . $this->mClass,
 			'id' => $this->mID,
 		) + $this->getAttributes( array( 'disabled', 'tabindex' ) );
+
+		if ( $useMediaWikiUIEverywhere ) {
+			if ( $this->buttonType === 'submit' ) {
+				$attr['class'] .= 'mw-ui-button mw-ui-constructive';
+			} else {
+				$attr['class'] .= 'mw-ui-button mw-ui-progressive';
+			}
+		}
 
 		return Html::input( $this->mName, $value, $this->buttonType, $attr );
 	}
