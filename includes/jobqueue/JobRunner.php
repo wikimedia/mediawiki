@@ -122,7 +122,8 @@ class JobRunner implements LoggerAwareInterface {
 		$trxProfiler->setLogger( LoggerFactory::getInstance( 'DBPerformance' ) );
 		$trxProfiler->setExpectation( 'maxAffected', 500, __METHOD__ );
 
-		// Bail out if there is too much DB lag
+		// Bail out if there is too much DB lag.
+		// This check should not block as we want to try other wiki queues.
 		$maxAllowedLag = 5;
 		list( , $maxLag ) = wfGetLBFactory()->getMainLB( wfWikiID() )->getMaxLag();
 		if ( $maxLag >= $maxAllowedLag ) {
