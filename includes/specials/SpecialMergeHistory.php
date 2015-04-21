@@ -152,7 +152,7 @@ class SpecialMergeHistory extends SpecialPage {
 
 		if ( count( $errors ) ) {
 			$this->showMergeForm();
-			$out->addHTML( implode( "\n", $errors ) );
+			$this->getOutput()->addHTML( implode( "\n", $errors ) );
 		} else {
 			$this->showHistory();
 		}
