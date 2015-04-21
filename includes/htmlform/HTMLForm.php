@@ -234,6 +234,9 @@ class HTMLForm extends ContextSource {
 			case 'vform':
 				$reflector = new ReflectionClass( 'VFormHTMLForm' );
 				return $reflector->newInstanceArgs( $arguments );
+			case 'ooui':
+				$reflector = new ReflectionClass( 'OOUIHTMLForm' );
+				return $reflector->newInstanceArgs( $arguments );
 			default:
 				$reflector = new ReflectionClass( 'HTMLForm' );
 				$form = $reflector->newInstanceArgs( $arguments );

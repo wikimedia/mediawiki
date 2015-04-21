@@ -44,6 +44,17 @@ abstract class HTMLFormField {
 	abstract function getInputHTML( $value );
 
 	/**
+	 * Same as getInputHTML, but returns an OOUI object.
+	 * Defaults to false, which getOOUI will interpret as "use the HTML version"
+	 *
+	 * @param string $value
+	 * @return OOUI\FieldsetLayout|false
+	 */
+	function getInputOOUI( $value ) {
+		return false;
+	}
+
+	/**
 	 * Get a translated interface message
 	 *
 	 * This is a wrapper around $this->mParent->msg() if $this->mParent is set
@@ -529,6 +540,59 @@ abstract class HTMLFormField {
 	}
 
 	/**
+	 * Get the OOUI version of the div. Falls back to getDiv by default.
+	 * @since 1.26
+	 *
+	 * @param string $value The value to set the input to.
+	 *
+	 * @return OOUI\FieldsetLayout|string
+	 */
+	public function getOOUI( $value ) {
+		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
+
+		$inputField = $this->getInputOOUI( $value );
+
+		$fieldType = get_class( $this );
+		$helptext = $this->getHelpText();
+
+		if ( !$inputField ) {
+			// This field doesn't have on OOUI implementation yet.
+			// OK, use this trick:
+			return $this->getDiv( $value );
+		} else if ( is_string( $inputField ) ) {
+			$label = $this->getLabelHtml( array() );
+			$divCssClasses = array( "mw-htmlform-field-$fieldType", $this->mClass, $this->mVFormClass, $errorClass );
+
+			$wrapperAttributes = array(
+				'class' => $divCssClasses,
+			);
+
+			return Html::rawElement( 'div', $wrapperAttributes, $label . $inputField ) . $helptext;
+		}
+
+		$fieldset = new OOUI\FieldsetLayout( array(
+			'classes' => array(
+				'mw-htmlform-field-' . $fieldType,
+				$this->mClass,
+				$this->mVFormClass,
+				$errorClass,
+			),
+		) );
+
+		$field = new OOUI\FieldLayout( $inputField, array(
+			'classes' => array(
+				'mw-input',
+			),
+			'label' => $this->getLabel( true ),
+			'help' => $helptext,
+		) );
+
+		$fieldset->addItems( array( $field ) );
+
+		return $fieldset;
+	}
+
+	/**
 	 * Get the complete raw fields for the input, including help text,
 	 * labels, and whatever.
 	 * @since 1.20
@@ -708,7 +772,11 @@ abstract class HTMLFormField {
 		return array( $errors, $errorClass );
 	}
 
-	function getLabel() {
+	/**
+	 * @param bool $ooui Used to signal whether this label should be for HTML or OOUI.
+	 * @return string
+	 */
+	function getLabel( $ooui = false ) {
 		return is_null( $this->mLabel ) ? '' : $this->mLabel;
 	}
 
@@ -874,6 +942,29 @@ abstract class HTMLFormField {
 		}
 
 		return $this->mOptions;
+	}
+
+	/**
+	 * Get options and make them into arrays suitable for OOUI.
+	 * @return array Options for inclusion in a select or whatever.
+	 */
+	public function getOptionsOOUI() {
+		$oldoptions = $this->getOptions();
+
+		if ( $oldoptions === null ) {
+			return null;
+		}
+
+		$options = array();
+
+		foreach ( $oldoptions as $text => $data ) {
+			$options[] = array(
+				'data' => $data,
+				'label' => $text,
+			);
+		}
+
+		return $options;
 	}
 
 	/**

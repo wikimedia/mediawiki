@@ -40,6 +40,11 @@ class HTMLTextField extends HTMLFormField {
 		$attribs += $this->getAttributes( $allowedParams );
 
 		# Extract 'type'
+		$type = $this->getType( $attribs );
+		return Html::input( $this->mName, $value, $type, $attribs );
+	}
+
+	protected function getType( &$attribs ) {
 		$type = isset( $attribs['type'] ) ? $attribs['type'] : 'text';
 		unset( $attribs['type'] );
 
@@ -65,6 +70,52 @@ class HTMLTextField extends HTMLFormField {
 			}
 		}
 
-		return Html::input( $this->mName, $value, $type, $attribs );
+		return $type;
+	}
+
+	function getInputOOUI( $value ) {
+		$attribs = $this->getTooltipAndAccessKey();
+
+		if ( $this->mClass !== '' ) {
+			$attribs['classes'] = array( $this->mClass );
+		}
+
+		# @todo Enforce pattern, step, required, readonly on the server side as
+		# well
+		$allowedParams = array(
+			'autoFitLabel',
+			'autofocus',
+			'autosize',
+			'disabled',
+			'flags',
+			'indicator',
+			'maxlength',
+			'placeholder',
+			'readonly',
+			'required',
+			'tabindex',
+			'type',
+		);
+
+		$attribs += $this->getAttributes( $allowedParams );
+
+		if ( isset( $attribs['maxlength'] ) ) {
+			$attribs['maxLength'] = $attribs['maxlength'];
+			unset( $attribs['maxlength'] );
+		}
+
+		if ( isset( $attribs['readonly'] ) ) {
+			$attribs['readOnly'] = $attribs['readonly'];
+			unset( $attribs['readonly'] );
+		}
+
+		$type = $this->getType( $attribs );
+
+		return new OOUI\TextInputWidget( array(
+			'id' => $this->mID,
+			'name' => $this->mName,
+			'value' => $value,
+			'type' => $type,
+		) + $attribs );
 	}
 }
