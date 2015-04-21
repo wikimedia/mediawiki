@@ -767,10 +767,10 @@
 	"revdelete-unsuppress": "Remuiv restreections oan restored reveesions",
 	"revdelete-log": "Raison:",
 	"revdelete-submit": "Applie til selected {{PLURAL:$1|reveesion|reveesions}}",
-	"revdelete-success": "<strong>Reveesion veesibeelitie successfully updated.</strong>",
-	"revdelete-failure": "<strong>Reveesion veesibeelitie coudna be updated:</strong>\n$1",
-	"logdelete-success": "<strong>Log veesibeelitie successfully set.</strong>",
-	"logdelete-failure": "<strong>Log veesibddlitie coudna be set:</strong>\n$1",
+	"revdelete-success": "Reveesion veesibeelitie successfully updated.",
+	"revdelete-failure": "Reveesion veesibeelitie coudna be updated:\n$1",
+	"logdelete-success": "Log veesibeelitie successfully set.",
+	"logdelete-failure": "Log veesibddlitie coudna be set:\n$1",
 	"revdel-restore": "chynge veesibeelitie",
 	"pagehist": "Page histerie",
 	"deletedhist": "Delytit histerie",
@@ -2187,9 +2187,7 @@
 	"import-rootpage-nosubpage": "Namespace \"$1\" o the ruit page disna permit subpages.",
 	"importlogpage": "The Import log",
 	"importlogpagetext": "Admeenistrateeve imports o pages wi eedit histerie fae ither wikis.",
-	"import-logentry-upload": "imported [[$1]] bi file uplaid",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|reveesion|reveesions}} importit",
-	"import-logentry-interwiki": "transwikied $1",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|reveesion|reveesions}} importit fae $2",
 	"javascripttest": "JavaScript testin",
 	"javascripttest-pagetext-noframework": "This page is reserved fer rinnin JavaScript tests.",
@@ -3141,5 +3139,6 @@
 	"json-error-utf8": "Malformed UTF-8 chairacters, possiblie wranglie encoded",
 	"json-error-recursion": "Yin or mair recurseeve references in the value tae be encoded",
 	"json-error-inf-or-nan": "Yin or mair NAN or INF values in the value tae be encoded",
-	"json-error-unsupported-type": "Ae value o ae type that canna be encoded wis gien"
+	"json-error-unsupported-type": "Ae value o ae type that canna be encoded wis gien",
+	"special-characters-group-ipa": "IPA"
 }

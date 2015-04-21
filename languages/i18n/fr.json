@@ -3225,7 +3225,7 @@
 	"tags-apply-not-allowed-multi": "{{PLURAL:$2|La balise suivante n’est pas autorisée à être appliquée|Les balises suivantes ne sont pas autorisées à être appliquées}} manuellement : $1",
 	"tags-edit-existing-tags-none": "\"Aucun\"",
 	"tags-edit-reason": "Motif :",
-	"tags-edit-success": "<strong>Les modifications ont été appliquées avec succès.</strong>",
+	"tags-edit-success": "Les modifications ont été appliquées avec succès.",
 	"comparepages": "Comparer des pages",
 	"compare-page1": "Page 1",
 	"compare-page2": "Page 2",

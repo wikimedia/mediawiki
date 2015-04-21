@@ -824,7 +824,7 @@
 	"revdelete-submit": "Toepassen op de geselecteerde {{PLURAL:$1|bewerking|bewerkingen}}",
 	"revdelete-success": "'''De zichtbaarheid van de wijziging is bijgewerkt.'''",
 	"revdelete-failure": "'''De zichtbaarheid van de wijziging kon niet bijgewerkt worden:'''\n$1",
-	"logdelete-success": "<strong>Zichtbaarheid van de gebeurtenis ingesteld.</strong>",
+	"logdelete-success": "Zichtbaarheid van de gebeurtenis ingesteld.",
 	"logdelete-failure": "'''De zichtbaarheid van de logboekregel kon niet ingesteld worden:'''\n$1",
 	"revdel-restore": "Zichtbaarheid wijzigen",
 	"pagehist": "Geschiedenis",

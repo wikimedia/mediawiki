@@ -230,7 +230,7 @@
 	"apihelp-query+allfileusages-param-to": "De Övverschreff vun dä Dattei, woh de Leß medd ophühre sull.",
 	"apihelp-query+allfileusages-param-prefix": "Söhk noh alle Övverschreffte, di met heh däm Täx aanfange.",
 	"apihelp-query+allfileusages-param-unique": "Donn blohß ongerscheidlijje Övverschreffte vun Datteije aanzeije. Kammer nit zesamme met „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">$1prop=ids<code>“ bruche.\nWann als ene  Jenerahtor enjesaz, bräng Zihlsigge un kein Kwällsigge.",
-	"apihelp-query+allfileusages-param-prop": "Which pieces of information to include:\n;ids:Adds the page ID of the using page (cannot be used with $1unique).\n;title:Adds the title of the file.\n<!-- \nhttps://translatewiki.net/wiki/Thread:Support/About_MediaWiki:Apihelp-query%2Ballfileusages-param-prop/ksh\n-->",
+	"apihelp-query+allfileusages-param-prop": "Wat för en Aanjahbe ennschlehße:\n;ids:Deiht de Kännonge vun dä Sigg derbei, di dat bruche. Kam_mer nit zersamme met „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">$1unique</code>“ bruche.\n;title:Deiht dä Dattei ehr Övverschreff derbei.",
 	"apihelp-query+allfileusages-param-limit": "Wi vill sulle överhoup aanjezeisch wähde?",
 	"apihelp-query+allfileusages-param-dir": "En wälsche Reijefollsch?",
 	"apihelp-query+allfileusages-example-B": "Donn Övverschreffte vun Datteije aanzeije, och vun Datteije, di (noch) nit doh sin, zesame met dä Kännonge vun dä Sigge, woh se vun sin, aanjevange vun <kbd>B</kbd>.",

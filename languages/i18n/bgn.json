@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Baloch Afghanistan",
-			"Ibrahim khashrowdi"
+			"Ibrahim khashrowdi",
+			"Rachitrali"
 		]
 	},
 	"tog-underline": "لینکانی جهلگا خط کشیتین",
@@ -77,7 +78,7 @@
 	"september": "سیپٹمبر",
 	"october": "اکتوبر",
 	"november": "نوامبر",
-	"december": "ڈ\tسمبر",
+	"december": "ڈسمبر",
 	"january-gen": "جنوری",
 	"february-gen": "فیبروری",
 	"march-gen": "مارچ",
@@ -695,7 +696,7 @@
 	"revdelete-submit": "اعمال بئ {{PLURAL:$1|نخسه|نخسه هان}} ئی سرا انتخاب بوته",
 	"revdelete-success": "'''نخسه ئی ودی بوتین گو کامیابیا اپڈیٹ بوت.'''",
 	"revdelete-failure": "'''نخسه ئی ودی بوتینئ اپڈیٹ بوتن امکان وجود نداریت :'''\n$1",
-	"logdelete-success": "<strong>لوگین ئی قابلیت دیست گو کامیابیا انجام بوت.</strong>",
+	"logdelete-success": "لوگین ئی قابلیت دیست گو کامیابیا انجام بوت.",
 	"logdelete-failure": "'''لوگین ئی قابلیت دیست تنظیم ئه نه بیئنت:'''\n$1",
 	"revdel-restore": "نمایش/نهفتن",
 	"pagehist": "تاکدیمی تاریخچه",
