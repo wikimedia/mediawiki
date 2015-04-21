@@ -8,10 +8,6 @@
 	z-index: 10000;
 }
 
-.mw-notification-area-floating {
-	position: fixed;
-}
-
 .mw-notification {
 	padding: 0.25em 1em;
 	margin-bottom: 0.5em;
