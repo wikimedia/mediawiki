@@ -861,7 +861,7 @@
 	"revertmerge": "Desfusiona",
 	"mergelogpagetext": "A sota hi ha una llista de les fusions més recents d'una pàgina d'historial en una altra.",
 	"history-title": "«$1»: Historial de revisions",
-	"difference-title": "$1: Diferència entre les revisions",
+	"difference-title": "Diferència entre revisions de la pàgina «$1»",
 	"difference-title-multipage": "$1 i $2: Diferència entre les pàgines",
 	"difference-multipage": "(Diferència entre pàgines)",
 	"lineno": "Línia $1:",

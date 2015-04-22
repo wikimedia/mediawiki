@@ -63,6 +63,7 @@
 	"apihelp-query+recentchanges-example-simple": "Lista ostatnich zmian.",
 	"apihelp-query+search-description": "Wykonaj wyszukiwanie pełnotekstowe.",
 	"apihelp-query+watchlist-param-excludeuser": "Nie wyświetlaj zmian wykonanych przez tego użytkownika.",
+	"apihelp-tag-param-reason": "Powód zmiany.",
 	"apihelp-unblock-param-reason": "Powód odblokowania.",
 	"apihelp-undelete-param-reason": "Powód przywracania.",
 	"apihelp-upload-param-filename": "Nazwa pliku docelowego.",

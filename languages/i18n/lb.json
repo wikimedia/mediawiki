@@ -2951,6 +2951,7 @@
 	"tags-edit-add": "Dës Markéierungen (tags) dobäisetzen:",
 	"tags-edit-reason": "Grond:",
 	"tags-edit-success": "D'Ännerunge goufen applizéiert.",
+	"tags-edit-failure": "D'Ännerunge konnten net applizéiert ginn: $1",
 	"comparepages": "Säite vergläichen",
 	"compare-page1": "Säit 1",
 	"compare-page2": "Säit 2",

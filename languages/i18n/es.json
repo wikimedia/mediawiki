@@ -3155,7 +3155,7 @@
 	"tags-edit-revision-submit": "Aplicar los cambios a {{PLURAL:$1|esta revisión|$1 revisiones}}",
 	"tags-edit-logentry-submit": "Aplicar los cambios a {{PLURAL:$1|esta entrada del registro|$1 entradas del registro}}",
 	"tags-edit-success": "Los cambios se aplicaron con éxito.",
-	"tags-edit-failure": "no se pudieron aplicar los cambios:\n$1",
+	"tags-edit-failure": "No se pudieron aplicar los cambios:\n$1",
 	"tags-edit-none-selected": "Selecciona al menos una etiqueta que añadir o quitar.",
 	"comparepages": "Comparar páginas",
 	"compare-page1": "Página 1",

@@ -845,7 +845,7 @@
 	"revdelete-log": "原因：",
 	"revdelete-submit": "应用于选中的{{PLURAL:$1|版本}}",
 	"revdelete-success": "版本可见性更新成功。",
-	"revdelete-failure": "版本可见性无法更新：$1",
+	"revdelete-failure": "版本可见性无法更新：\n$1",
 	"logdelete-success": "'''事件的可见性已经成功设置。'''",
 	"logdelete-failure": "'''事件的可见性无法设置：'''\n$1",
 	"revdel-restore": "更改可见性",

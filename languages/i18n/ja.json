@@ -64,7 +64,8 @@
 			"SkyDaisy9",
 			"Los688",
 			"朝彦",
-			"Otokoume"
+			"Otokoume",
+			"赤城。"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -2423,6 +2424,7 @@
 	"pageinfo-protect-cascading-yes": "はい",
 	"pageinfo-protect-cascading-from": "カスケード保護の起点",
 	"pageinfo-category-info": "カテゴリ情報",
+	"pageinfo-category-total": "総メンバー数",
 	"pageinfo-category-pages": "ページ数",
 	"pageinfo-category-subcats": "下位カテゴリ数",
 	"pageinfo-category-files": "ファイル数",
