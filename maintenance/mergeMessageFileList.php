@@ -173,10 +173,8 @@ foreach ( $mmfl['setupFiles'] as $fileName ) {
 	// Using extension.json or skin.json
 	if ( substr( $fileName, -strlen( '.json' ) ) === '.json' ) {
 		$queue[$fileName] = 1;
-	} elseif ( !( include_once $fileName ) ) {
-		// Include the extension to update $wgExtensionMessagesFiles
-		fwrite( STDERR, "Unable to read $fileName\n" );
-		exit( 1 );
+	} else {
+		require_once $fileName;
 	}
 }
 
