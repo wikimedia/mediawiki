@@ -22,6 +22,8 @@
  * @defgroup Profiler Profiler
  */
 
+use MediaWiki\Profiler\TransactionProfiler;
+
 /**
  * Profiler base class that defines the interface and some trivial
  * functionality
@@ -37,7 +39,7 @@ abstract class Profiler {
 	protected $params = array();
 	/** @var IContextSource Current request context */
 	protected $context = null;
-	/** @var TransactionProfiler */
+	/** @var MediaWiki\Profiler\TransactionProfiler */
 	protected $trxProfiler;
 	/** @var Profiler */
 	private static $instance = null;
@@ -166,7 +168,7 @@ abstract class Profiler {
 	}
 
 	/**
-	 * @return TransactionProfiler
+	 * @return MediaWiki\Profiler\TransactionProfiler
 	 * @since 1.25
 	 */
 	public function getTransactionProfiler() {

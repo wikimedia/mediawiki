@@ -153,7 +153,7 @@ abstract class DatabaseBase implements IDatabase {
 	 */
 	protected $allViews = null;
 
-	/** @var TransactionProfiler */
+	/** @var MediaWiki\Profiler\TransactionProfiler */
 	protected $trxProfiler;
 
 	/**
@@ -349,7 +349,7 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	/**
-	 * @return TransactionProfiler
+	 * @return MediaWiki\Profiler\TransactionProfiler
 	 */
 	protected function getTransactionProfiler() {
 		return $this->trxProfiler

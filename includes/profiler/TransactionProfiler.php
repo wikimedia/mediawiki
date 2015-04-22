@@ -22,9 +22,11 @@
  * @author Aaron Schulz
  */
 
+namespace MediaWiki\Profiler;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\NullLogger;
+
 /**
  * Helper class that detects high-contention DB queries via profiling calls
  *
