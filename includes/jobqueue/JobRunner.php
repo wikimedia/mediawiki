@@ -124,7 +124,7 @@ class JobRunner implements LoggerAwareInterface {
 
 		// Bail out if there is too much DB lag
 		$maxAllowedLag = 5;
-		list( , $maxLag ) = wfGetLBFactory()->getMainLB( wfWikiID() )->getMaxLag();
+		list( , $maxLag ) = wfGetLB( wfWikiID() )->getMaxLag();
 		if ( $maxLag >= $maxAllowedLag ) {
 			$response['reached'] = 'slave-lag-limit';
 			return $response;
@@ -182,7 +182,9 @@ class JobRunner implements LoggerAwareInterface {
 					++$jobsRun;
 					$status = $job->run();
 					$error = $job->getLastError();
-					wfGetLBFactory()->commitMasterChanges();
+					// @TODO: just count db write query time
+					$preCommitSec = microtime( true ) - $jobStartTime;
+					$this->commitMasterChanges( $preCommitSec );
 				} catch ( Exception $e ) {
 					MWExceptionHandler::rollbackMasterChangesAndLog( $e );
 					$status = false;
@@ -303,7 +305,6 @@ class JobRunner implements LoggerAwareInterface {
 	 * @return array Map of (job type => backoff expiry timestamp)
 	 */
 	private function loadBackoffs( array $backoffs, $mode = 'wait' ) {
-
 		$file = wfTempDir() . '/mw-runJobs-backoffs.json';
 		if ( is_file( $file ) ) {
 			$noblock = ( $mode === 'nowait' ) ? LOCK_NB : 0;
@@ -341,7 +342,6 @@ class JobRunner implements LoggerAwareInterface {
 	 * @return array The new backoffs account for $backoffs and the latest file data
 	 */
 	private function syncBackoffDeltas( array $backoffs, array &$deltas, $mode = 'wait' ) {
-
 		if ( !$deltas ) {
 			return $this->loadBackoffs( $backoffs, $mode );
 		}
@@ -407,5 +407,48 @@ class JobRunner implements LoggerAwareInterface {
 		if ( $this->debug ) {
 			call_user_func_array( $this->debug, array( wfTimestamp( TS_DB ) . " $msg\n" ) );
 		}
+	}
+
+	/**
+	 * Commit any DB changes from a job
+	 *
+	 * @param float $runtime Job run time (seconds)
+	 * @throws DBError
+	 */
+	private function commitMasterChanges( $runtime ) {
+		global $wgJobSerialCommitThreshold;
+
+		$lb = wfGetLB( wfWikiID() );
+		if ( !$lb->hasMasterChanges() ) {
+			return; // nothing to do
+		}
+
+		if ( $wgJobSerialCommitThreshold && $runtime > $wgJobSerialCommitThreshold ) {
+			$dbwSerial = $lb->getAnyOpenConnection( $lb->getWriterIndex() );
+		} else {
+			$dbwSerial = false;
+		}
+
+		if ( !$dbwSerial || !$dbwSerial->namedLocksEnqueue() ) {
+			// Writes are all to foreign DBs, named locks don't form queues,
+			// or $wgJobRunnerSerialCommit does not apply; commit changes now
+			wfGetLBFactory()->commitMasterChanges();
+			return;
+		}
+
+		// Make sure there is generic slave connection
+		$lb->getConnection( DB_SLAVE );
+
+		$key = 'jobrunner-serial-commit';
+		// Wait for an exclusive lock to commit
+		if ( !$dbwSerial->lock( $key, __METHOD__, 60 ) ) {
+			throw new DBError( $dbwSerial, "Timed out waiting on commit queue." );
+		}
+		// Wait for a generic non-zero load slave to catch up
+		$lb->waitForSlave( $lb->getMasterPos() ); // wait for the generic slave to catch up
+		// Actually commit the DB change
+		wfGetLBFactory()->commitMasterChanges();
+		// Release the lock
+		$dbwSerial->unlock( $key, __METHOD__ );
 	}
 }

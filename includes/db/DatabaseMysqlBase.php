@@ -873,6 +873,10 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		return ( $row->lockstatus == 1 );
 	}
 
+	public function namedLocksEnqueue() {
+		return true;
+	}
+
 	/**
 	 * @param array $read
 	 * @param array $write
