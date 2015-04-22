@@ -4235,7 +4235,7 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	/**
-	 * Check to see if a named lock is available. This is non-blocking.
+	 * Check to see if a named lock is available (non-blocking)
 	 *
 	 * @param string $lockName Name of lock to poll
 	 * @param string $method Name of method calling us
@@ -4249,8 +4249,7 @@ abstract class DatabaseBase implements IDatabase {
 	/**
 	 * Acquire a named lock
 	 *
-	 * Abstracted from Filestore::lock() so child classes can implement for
-	 * their own needs.
+	 * Named lock are not related to transactions
 	 *
 	 * @param string $lockName Name of lock to aquire
 	 * @param string $method Name of method calling us
@@ -4262,7 +4261,9 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	/**
-	 * Release a lock.
+	 * Release a lock
+	 *
+	 * Named lock are not related to transactions
 	 *
 	 * @param string $lockName Name of lock to release
 	 * @param string $method Name of method calling us
@@ -4273,6 +4274,16 @@ abstract class DatabaseBase implements IDatabase {
 	 */
 	public function unlock( $lockName, $method ) {
 		return true;
+	}
+
+	/**
+	 * Check to see if a named locks used by lock() use blocking queues
+	 *
+	 * @return bool
+	 * @since 1.26
+	 */
+	public function namedLocksEnqueue() {
+		return false;
 	}
 
 	/**
