@@ -20,6 +20,7 @@
  * @file
  * @ingroup Cache
  */
+use Wikimedia\Assert\Assert;
 
 /**
  * Handles a simple LRU key/value map with a maximum number of entries
@@ -41,9 +42,9 @@ class MapCacheLRU {
 	 * @throws Exception When $maxCacheKeys is not an int or =< 0.
 	 */
 	public function __construct( $maxKeys ) {
-		if ( !is_int( $maxKeys ) || $maxKeys < 1 ) {
-			throw new Exception( __METHOD__ . " must be given an integer and >= 1" );
-		}
+		Assert::parameterType( 'integer', $maxKeys, '$maxKeys' );
+		Assert::parameter( $maxKeys >= 1, '$maxKeys', 'must be >= 1' );
+
 		$this->maxCacheKeys = $maxKeys;
 	}
 
