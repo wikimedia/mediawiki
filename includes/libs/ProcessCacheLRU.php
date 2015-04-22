@@ -20,6 +20,7 @@
  * @file
  * @ingroup Cache
  */
+use Wikimedia\Assert\Assert;
 
 /**
  * Handles per process caching of items
@@ -128,9 +129,9 @@ class ProcessCacheLRU {
 	 * @throws UnexpectedValueException
 	 */
 	public function resize( $maxKeys ) {
-		if ( !is_int( $maxKeys ) || $maxKeys < 1 ) {
-			throw new UnexpectedValueException( __METHOD__ . " must be given an integer >= 1" );
-		}
+		Assert::parameterType( 'integer', $maxKeys, '$maxKeys' );
+		Assert::parameter( $maxKeys >= 1, '$maxKeys', 'must be >= 1' );
+
 		$this->maxCacheKeys = $maxKeys;
 		while ( count( $this->cache ) > $this->maxCacheKeys ) {
 			reset( $this->cache );
