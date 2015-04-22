@@ -61,6 +61,10 @@ class NamespaceConflictChecker extends Maintenance {
 		$this->addOption( 'move-talk', "If this is specified, pages in the Talk namespace that " .
 			"begin with a conflicting prefix will be renamed, for example " .
 			"Talk:File:Foo -> File_Talk:Foo" );
+		$this->addOption( 'former-namespace',
+			"The ID of an obsolete namespace to move to NS_MAIN.", false, true );
+		$this->addOption( 'former-namespace-prefix', "In combination with --former-namespace, " .
+			"specify the old namespace prefix (implied colon).", false, true );
 	}
 
 	public function execute() {
@@ -73,12 +77,19 @@ class NamespaceConflictChecker extends Maintenance {
 			'add-prefix' => $this->getOption( 'add-prefix', '' ),
 			'move-talk' => $this->hasOption( 'move-talk' ),
 			'source-pseudo-namespace' => $this->getOption( 'source-pseudo-namespace', '' ),
-			'dest-namespace' => intval( $this->getOption( 'dest-namespace', 0 ) ) );
+			'dest-namespace' => intval( $this->getOption( 'dest-namespace', 0 ) ),
+			'former-namespace' => intval( $this->getOption( 'former-namespace', 0 ) ),
+			'former-namespace-prefix' => $this->getOption( 'former-namespace-prefix', '' ),
+		);
 
 		if ( $options['source-pseudo-namespace'] !== '' ) {
 			$retval = $this->checkPrefix( $options );
 		} else {
 			$retval = $this->checkAll( $options );
+		}
+
+		if ( $options['former-namespace'] > 0 && $options['former-namespace-prefix'] !== '' ) {
+			$retval = $this->checkObsolete( $options ) && $retval;
 		}
 
 		if ( $retval ) {
@@ -208,73 +219,12 @@ class NamespaceConflictChecker extends Maintenance {
 			return true;
 		}
 
-		$dryRunNote = $options['fix'] ? '' : ' DRY RUN ONLY';
-
 		$ok = true;
 		foreach ( $targets as $row ) {
-
 			// Find the new title and determine the action to take
-
 			$newTitle = $this->getDestinationTitle( $ns, $name, $row, $options );
-			$logStatus = false;
-			if ( !$newTitle ) {
-				$logStatus = 'invalid title';
-				$action = 'abort';
-			} elseif ( $newTitle->exists() ) {
-				if ( $options['merge'] ) {
-					if ( $this->canMerge( $row->page_id, $newTitle, $logStatus ) ) {
-						$action = 'merge';
-					} else {
-						$action = 'abort';
-					}
-				} elseif ( $options['add-prefix'] == '' && $options['add-suffix'] == '' ) {
-					$action = 'abort';
-					$logStatus = 'dest title exists and --add-prefix not specified';
-				} else {
-					$newTitle = $this->getAlternateTitle( $newTitle, $options );
-					if ( !$newTitle ) {
-						$action = 'abort';
-						$logStatus = 'alternate title is invalid';
-					} elseif ( $newTitle->exists() ) {
-						$action = 'abort';
-						$logStatus = 'title conflict';
-					} else {
-						$action = 'move';
-						$logStatus = 'alternate';
-					}
-				}
-			} else {
-				$action = 'move';
-				$logStatus = 'no conflict';
-			}
 
-			// Take the action or log a dry run message
-
-			$logTitle = "id={$row->page_id} ns={$row->page_namespace} dbk={$row->page_title}";
-			$pageOK = true;
-
-			switch ( $action ) {
-				case 'abort':
-					$this->output( "$logTitle *** $logStatus\n" );
-					$pageOK = false;
-					break;
-				case 'move':
-					$this->output( "$logTitle -> " .
-						$newTitle->getPrefixedDBkey() . " ($logStatus)$dryRunNote\n" );
-
-					if ( $options['fix'] ) {
-						$pageOK = $this->movePage( $row->page_id, $newTitle );
-					}
-					break;
-				case 'merge':
-					$this->output( "$logTitle => " .
-						$newTitle->getPrefixedDBkey() . " (merge)$dryRunNote\n" );
-
-					if ( $options['fix'] ) {
-						$pageOK = $this->mergePage( $row->page_id, $newTitle );
-					}
-					break;
-			}
+			$pageOK = $this->correctTitle( $newTitle, $row, $options );
 
 			if ( $pageOK ) {
 				$this->resolvableCount++;
@@ -289,6 +239,119 @@ class NamespaceConflictChecker extends Maintenance {
 		// *_from.
 
 		return $ok;
+	}
+
+	/**
+	 * @param array $options
+	 * @return bool
+	 */
+	private function checkObsolete( array $options ) {
+		$ns = $options['former-namespace'];
+		$prefix = $options['former-namespace-prefix'];
+
+		$targets = $this->db->select( 'page',
+			array(
+				'page_id',
+				'page_title',
+				'page_namespace',
+			),
+			array( 'page_namespace' => $ns ),
+			__METHOD__
+		);
+
+		$ok = true;
+		foreach ( $targets as $row ) {
+			// Find the new title and determine the action to take
+			$newTitle = Title::makeTitleSafe( NS_MAIN, "$prefix:{$row->page_title}" );
+
+			$pageOK = $this->correctTitle( $newTitle, $row, $options );
+
+			if ( $pageOK ) {
+				$this->resolvableCount++;
+			} else {
+				$ok = false;
+			}
+		}
+
+		// @fixme Also needs to do like self::getTargetList() on the
+		// *_namespace and *_title fields of pagelinks, templatelinks, and
+		// redirects, and schedule a LinksUpdate job or similar for each found
+		// *_from.
+
+		return $ok;
+	}
+
+	/**
+	 * @param Title|bool $newTitle
+	 * @param stdClass $row page row
+	 * @param array $options
+	 * @return bool
+	 */
+	private function correctTitle( $newTitle, $row, array $options ) {
+		$logStatus = false;
+
+		$dryRunNote = $options['fix'] ? '' : ' DRY RUN ONLY';
+
+		if ( !$newTitle ) {
+			$logStatus = 'invalid title';
+			$action = 'abort';
+		} elseif ( $newTitle->exists() ) {
+			if ( $options['merge'] ) {
+				if ( $this->canMerge( $row->page_id, $newTitle, $logStatus ) ) {
+					$action = 'merge';
+				} else {
+					$action = 'abort';
+				}
+			} elseif ( $options['add-prefix'] == '' && $options['add-suffix'] == '' ) {
+				$action = 'abort';
+				$logStatus = 'dest title exists and --add-prefix not specified';
+			} else {
+				$newTitle = $this->getAlternateTitle( $newTitle, $options );
+				if ( !$newTitle ) {
+					$action = 'abort';
+					$logStatus = 'alternate title is invalid';
+				} elseif ( $newTitle->exists() ) {
+					$action = 'abort';
+					$logStatus = 'title conflict';
+				} else {
+					$action = 'move';
+					$logStatus = 'alternate';
+				}
+			}
+		} else {
+			$action = 'move';
+			$logStatus = 'no conflict';
+		}
+
+		// Take the action or log a dry run message
+
+		$logTitle = "id={$row->page_id} ns={$row->page_namespace} dbk={$row->page_title}";
+		$pageOK = true;
+
+		switch ( $action ) {
+			case 'abort':
+				$this->output( "$logTitle *** $logStatus\n" );
+				$pageOK = false;
+				break;
+			case 'move':
+				$this->output( "$logTitle -> " .
+					$newTitle->getPrefixedDBkey() . " ($logStatus)$dryRunNote\n" );
+
+				if ( $options['fix'] ) {
+					$pageOK = $this->movePage( $row->page_id, $newTitle );
+				}
+				break;
+			case 'merge':
+				$this->output( "$logTitle => " .
+					$newTitle->getPrefixedDBkey() . " (merge)$dryRunNote\n" );
+
+				if ( $options['fix'] ) {
+					$pageOK = $this->mergePage( $row->page_id, $newTitle );
+				}
+				break;
+		}
+
+		return $pageOK;
 	}
 
 	/**
@@ -443,6 +506,7 @@ class NamespaceConflictChecker extends Maintenance {
 	 *
 	 * @param integer $id The page_id
 	 * @param Title $newTitle The new title
+	 * @return bool
 	 */
 	private function mergePage( $id, Title $newTitle ) {
 		$destId = $newTitle->getArticleId();
