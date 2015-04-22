@@ -301,17 +301,6 @@ class ApiQuery extends ApiBase {
 		} else {
 			$continuationManager->setContinuationIntoResult( $this->getResult() );
 		}
-
-		/// @todo: Remove this after a suitable period of time. When REL1_26 is cut, if not before.
-		if ( $this->mParams['continue'] === null && !$this->mParams['rawcontinue'] &&
-			$this->getResult()->getResultData( 'continue' ) !== null
-		) {
-			$this->setWarning(
-				'Formatting of continuation data has changed. ' .
-				'To receive raw query-continue data, use the \'rawcontinue\' parameter. ' .
-				'To silence this warning, pass an empty string for \'continue\' in the initial query.'
-			);
-		}
 	}
 
 	/**
