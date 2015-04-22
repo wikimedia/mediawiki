@@ -485,8 +485,8 @@ require_once "$IP/includes/libs/normal/UtfNormalUtil.php";
 
 $ps_default2 = Profiler::instance()->scopedProfileIn( $fname . '-defaults2' );
 
-if ( defined( 'MW_ENTRY_PHP5' ) ) {
-	wfWarn( 'The ".php5" entry point files are deprecated. Use ".php" instead.' );
+if ( $wgScriptExtension !== 'php' || defined( 'MW_ENTRY_PHP5' ) ) {
+	wfWarn( 'Script extensions other than ".php" are deprecated.' );
 }
 
 if ( $wgCanonicalServer === false ) {
