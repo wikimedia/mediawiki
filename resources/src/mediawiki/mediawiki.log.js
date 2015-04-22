@@ -79,6 +79,7 @@
 
 	// Restore original methods
 	mw.log.warn = original.warn;
+	mw.log.error = original.error;
 	mw.log.deprecate = original.deprecate;
 
 }( mediaWiki, jQuery ) );
