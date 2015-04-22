@@ -154,12 +154,15 @@ $wgUsePathInfo = ( strpos( PHP_SAPI, 'cgi' ) === false ) &&
 	( strpos( PHP_SAPI, 'isapi' ) === false );
 
 /**
- * The extension to append to script names by default. This can either be .php
- * or .php5.
+ * The extension to append to script names by default.
  *
- * Some hosting providers use PHP 4 for *.php files, and PHP 5 for *.php5. This
- * variable is provided to support those providers.
+ * Some hosting providers used PHP 4 for *.php files, and PHP 5 for *.php5.
+ * This variable was provided to support those providers.
+ *
  * @since 1.11
+ * @deprecated since 1.25; support for '.php5' is being phased out of MediaWiki
+ *  proper. Backward-compatibility can be maintained by configuring your web
+ *  server to rewrite URLs. See RELEASE-NOTES for details.
  */
 $wgScriptExtension = '.php';
 
