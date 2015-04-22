@@ -359,6 +359,37 @@ class LoadBalancer {
 	}
 
 	/**
+	 * Set the master wait position and wait for a "generic" slave to catch up to it
+	 *
+	 * This can be used a faster proxy for waitForAll()
+	 *
+	 * @param DBMasterPos $pos
+	 * @param int $timeout Max seconds to wait; default is mWaitTimeout
+	 * @return bool Success (able to connect and no timeouts reached)
+	 * @since 1.26
+	 */
+	public function waitForOne( $pos, $timeout = null ) {
+		$this->mWaitForPos = $pos;
+
+		$i = $this->mReadIndex;
+		if ( $i <= 0 ) {
+			// Pick a generic slave if there isn't one yet
+			$readLoads = $this->mLoads;
+			unset( $readLoads[$this->getWriterIndex()] ); // slaves only
+			$readLoads = array_filter( $readLoads ); // with non-zero load
+			$i = ArrayUtils::pickRandom( $readLoads );
+		}
+
+		if ( $i > 0 ) {
+			$ok = $this->doWait( $i, true, $timeout );
+		} else {
+			$ok = true; // no applicable loads
+		}
+
+		return $ok;
+	}
+
+	/**
 	 * Set the master wait position and wait for ALL slaves to catch up to it
 	 * @param DBMasterPos $pos
 	 * @param int $timeout Max seconds to wait; default is mWaitTimeout
