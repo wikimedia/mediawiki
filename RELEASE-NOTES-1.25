@@ -482,10 +482,11 @@ changes to languages because of Bugzilla reports.
 * $wgResourceModuleSkinStyles no longer supports per-module local or remote paths. They
   can only be set for the entire skin.
 * Removed global function swap(). (deprecated since 1.24)
-* Deprecated the ".php5" file extension entry points. Refer to the ".php" files
-  instead. If you want ".php5" URLs to continue to work, set up redirects. In
-  Apache, this can be done by enabling mod_rewrite and adding the following
-  rules to your configuration:
+* Deprecated the ".php5" file extension entry points and the $wgScriptExtension
+  configuration variable. Refer to the ".php" files instead. If you want
+  ".php5" URLs to continue to work, set up redirects. In Apache, this can be
+  done by enabling mod_rewrite and adding the following rules to your
+  configuration:
 
     RewriteEngine On
     RewriteBase /
