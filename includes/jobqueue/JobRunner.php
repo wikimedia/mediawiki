@@ -123,8 +123,8 @@ class JobRunner implements LoggerAwareInterface {
 		$trxProfiler->setExpectation( 'maxAffected', 500, __METHOD__ );
 
 		// Bail out if there is too much DB lag
-		$maxAllowedLag = 5;
-		list( , $maxLag ) = wfGetLBFactory()->getMainLB( wfWikiID() )->getMaxLag();
+		$maxAllowedLag = 3;
+		list( , $maxLag ) = wfGetLB( wfWikiID() )->getMaxLag();
 		if ( $maxLag >= $maxAllowedLag ) {
 			$response['reached'] = 'slave-lag-limit';
 			return $response;
