@@ -32,6 +32,12 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'تهر_ئی_گپ',
 );
 
+$namespaceAliases = array(
+	'میڈیا' => NS_MEDIA,
+	'اکس' => NS_FILE,
+	'اکس_ئی_گپ' => NS_FILE_TALK,
+);
+
 $specialPageAliases = array(
 	'Activeusers'               => array( 'پئالین_کارمرزوکان' ),
 	'Allmessages'               => array( 'موچین_پیامان' ),
