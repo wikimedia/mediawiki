@@ -142,6 +142,13 @@ abstract class DatabaseBase implements IDatabase {
 	private $mTrxAutomaticAtomic = false;
 
 	/**
+	 * Track the seconds spent in write queries for the current transaction
+	 *
+	 * @var float
+	 */
+	private $mTrxWriteDuration = 0.0;
+
+	/**
 	 * @since 1.21
 	 * @var resource File handle for upgrade
 	 */
@@ -471,6 +478,18 @@ abstract class DatabaseBase implements IDatabase {
 		return $this->mTrxLevel && (
 			$this->mTrxDoneWrites || $this->mTrxIdleCallbacks || $this->mTrxPreCommitCallbacks
 		);
+	}
+
+	/**
+	 * Get the time spend running write queries for this
+	 *
+	 * High times could be due to scanning, updates, locking, and such
+	 *
+	 * @return float|bool Returns false if not transaction is active
+	 * @since 1.26
+	 */
+	public function pendingWriteQueryDuration() {
+		return $this->mTrxLevel ? $this->mTrxWriteDuration : false;
 	}
 
 	/**
@@ -1160,6 +1179,7 @@ abstract class DatabaseBase implements IDatabase {
 		# Do the query and handle errors
 		$startTime = microtime( true );
 		$ret = $this->doQuery( $commentedSql );
+		$queryRuntime = microtime( true ) - $startTime;
 		# Log the query time and feed it into the DB trx profiler
 		$this->getTransactionProfiler()->recordQueryCompletion(
 			$queryProf, $startTime, $isWriteQuery, $this->affectedRows() );
@@ -1191,6 +1211,7 @@ abstract class DatabaseBase implements IDatabase {
 					# Should be safe to silently retry (no trx and thus no callbacks)
 					$startTime = microtime( true );
 					$ret = $this->doQuery( $commentedSql );
+					$queryRuntime = microtime( true ) - $startTime;
 					# Log the query time and feed it into the DB trx profiler
 					$this->getTransactionProfiler()->recordQueryCompletion(
 						$queryProf, $startTime, $isWriteQuery, $this->affectedRows() );
@@ -1210,6 +1231,10 @@ abstract class DatabaseBase implements IDatabase {
 		// Destroy profile sections in the opposite order to their creation
 		$queryProfSection = false;
 		$totalProfSection = false;
+
+		if ( $isWriteQuery && $this->mTrxLevel ) {
+			$this->mTrxWriteDuration += $queryRuntime;
+		}
 
 		return $res;
 	}
@@ -3633,6 +3658,7 @@ abstract class DatabaseBase implements IDatabase {
 		$this->mTrxIdleCallbacks = array();
 		$this->mTrxPreCommitCallbacks = array();
 		$this->mTrxShortId = wfRandomString( 12 );
+		$this->mTrxWriteDuration = 0.0;
 	}
 
 	/**
