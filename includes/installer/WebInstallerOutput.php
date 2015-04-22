@@ -107,7 +107,7 @@ class WebInstallerOutput {
 	 * @throws MWException
 	 */
 	public function redirect( $url ) {
-		if ( $this->headerDone ) {
+		if ( $this->setHeaderDone ) {
 			throw new MWException( __METHOD__ . ' called after sending headers' );
 		}
 		$this->redirectTarget = $url;
@@ -193,7 +193,7 @@ class WebInstallerOutput {
 	}
 
 	public function flush() {
-		if ( !$this->headerDone ) {
+		if ( !$this->setHeaderDone ) {
 			$this->outputHeader();
 		}
 		if ( !$this->redirectTarget && strlen( $this->contents ) ) {
@@ -237,19 +237,19 @@ class WebInstallerOutput {
 	 * @return bool
 	 */
 	public function headerDone() {
-		return $this->headerDone;
+		return $this->setHeaderDone;
 	}
 
 	public function outputHeader() {
-		$this->headerDone = true;
-		$this->parent->request->response()->header( 'Content-Type: text/html; charset=utf-8' );
+		$this->setHeaderDone = true;
+		$this->parent->request->response()->setHeader( 'Content-Type: text/html; charset=utf-8' );
 
 		if ( !$this->allowFrames ) {
-			$this->parent->request->response()->header( 'X-Frame-Options: DENY' );
+			$this->parent->request->response()->setHeader( 'X-Frame-Options: DENY' );
 		}
 
 		if ( $this->redirectTarget ) {
-			$this->parent->request->response()->header( 'Location: ' . $this->redirectTarget );
+			$this->parent->request->response()->setHeader( 'Location: ' . $this->redirectTarget );
 
 			return;
 		}

@@ -3227,12 +3227,12 @@ $skin: Skin object
 REQUEST_URI.
 $router: The PathRouter instance
 
-'WebResponseSetCookie': when setting a cookie in WebResponse::setcookie().
+'WebResponseSetCookie': when setting a cookie in WebResponse::setCookie().
 Return false to prevent setting of the cookie.
-&$name: Cookie name passed to WebResponse::setcookie()
-&$value: Cookie value passed to WebResponse::setcookie()
+&$name: Cookie name passed to WebResponse::setCookie()
+&$value: Cookie value passed to WebResponse::setCookie()
 &$expire: Cookie expiration, as for PHP's setcookie()
-$options: Options passed to WebResponse::setcookie()
+$options: Options passed to WebResponse::setCookie()
 
 'WhatLinksHereProps': Allows annotations to be added to WhatLinksHere
 $row: The DB row of the entry.

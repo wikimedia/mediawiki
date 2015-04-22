@@ -1238,7 +1238,7 @@ class Article implements Page {
 		if ( !$this->mPage->hasViewableContent() && $wgSend404Code && !$validUserPage ) {
 			// If there's no backing content, send a 404 Not Found
 			// for better machine handling of broken links.
-			$this->getContext()->getRequest()->response()->header( "HTTP/1.1 404 Not Found" );
+			$this->getContext()->getRequest()->response()->setHeader( "HTTP/1.1 404 Not Found" );
 		}
 
 		// Also apply the robot policy for nonexisting pages (even if a 404 was used for sanity)
@@ -1509,7 +1509,7 @@ class Article implements Page {
 	 * Handle action=render
 	 */
 	public function render() {
-		$this->getContext()->getRequest()->response()->header( 'X-Robots-Tag: noindex' );
+		$this->getContext()->getRequest()->response()->setHeader( 'X-Robots-Tag: noindex' );
 		$this->getContext()->getOutput()->setArticleBodyOnly( true );
 		$this->getContext()->getOutput()->enableSectionEditLinks( false );
 		$this->view();

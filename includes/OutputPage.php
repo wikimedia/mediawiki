@@ -829,7 +829,7 @@ class OutputPage extends ContextSource {
 		# Give a 304 response code and disable body output
 		wfDebug( __METHOD__ . ": NOT MODIFIED, $info\n", 'log' );
 		ini_set( 'zlib.output_compression', 0 );
-		$this->getRequest()->response()->header( "HTTP/1.1 304 Not Modified" );
+		$this->getRequest()->response()->setHeader( "HTTP/1.1 304 Not Modified" );
 		$this->sendCacheControl();
 		$this->disable();
 
@@ -2123,7 +2123,7 @@ class OutputPage extends ContextSource {
 		$response = $this->getRequest()->response();
 		$config = $this->getConfig();
 		if ( $config->get( 'UseETag' ) && $this->mETag ) {
-			$response->header( "ETag: $this->mETag" );
+			$response->setHeader( "ETag: $this->mETag" );
 		}
 
 		$this->addVaryHeader( 'Cookie' );
@@ -2131,11 +2131,11 @@ class OutputPage extends ContextSource {
 
 		# don't serve compressed data to clients who can't handle it
 		# maintain different caches for logged-in users and non-logged in ones
-		$response->header( $this->getVaryHeader() );
+		$response->setHeader( $this->getVaryHeader() );
 
 		if ( $config->get( 'UseXVO' ) ) {
 			# Add an X-Vary-Options header for Squid with Wikimedia patches
-			$response->header( $this->getXVO() );
+			$response->setHeader( $this->getXVO() );
 		}
 
 		if ( $this->mEnableClientCache ) {
@@ -2150,9 +2150,9 @@ class OutputPage extends ContextSource {
 					wfDebug( __METHOD__ . ": proxy caching with ESI; {$this->mLastModified} **\n", 'log' );
 					# start with a shorter timeout for initial testing
 					# header( 'Surrogate-Control: max-age=2678400+2678400, content="ESI/1.0"');
-					$response->header( 'Surrogate-Control: max-age=' . $config->get( 'SquidMaxage' )
+					$response->setHeader( 'Surrogate-Control: max-age=' . $config->get( 'SquidMaxage' )
 						. '+' . $this->mSquidMaxage . ', content="ESI/1.0"' );
-					$response->header( 'Cache-Control: s-maxage=0, must-revalidate, max-age=0' );
+					$response->setHeader( 'Cache-Control: s-maxage=0, must-revalidate, max-age=0' );
 				} else {
 					# We'll purge the proxy cache for anons explicitly, but require end user agents
 					# to revalidate against the proxy on each visit.
@@ -2161,27 +2161,27 @@ class OutputPage extends ContextSource {
 					wfDebug( __METHOD__ . ": local proxy caching; {$this->mLastModified} **\n", 'log' );
 					# start with a shorter timeout for initial testing
 					# header( "Cache-Control: s-maxage=2678400, must-revalidate, max-age=0" );
-					$response->header( 'Cache-Control: s-maxage=' . $this->mSquidMaxage
+					$response->setHeader( 'Cache-Control: s-maxage=' . $this->mSquidMaxage
 						. ', must-revalidate, max-age=0' );
 				}
 			} else {
 				# We do want clients to cache if they can, but they *must* check for updates
 				# on revisiting the page.
 				wfDebug( __METHOD__ . ": private caching; {$this->mLastModified} **\n", 'log' );
-				$response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
-				$response->header( "Cache-Control: private, must-revalidate, max-age=0" );
+				$response->setHeader( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
+				$response->setHeader( "Cache-Control: private, must-revalidate, max-age=0" );
 			}
 			if ( $this->mLastModified ) {
-				$response->header( "Last-Modified: {$this->mLastModified}" );
+				$response->setHeader( "Last-Modified: {$this->mLastModified}" );
 			}
 		} else {
 			wfDebug( __METHOD__ . ": no caching **\n", 'log' );
 
 			# In general, the absence of a last modified header should be enough to prevent
 			# the client from using its cache. We send a few other things just to make sure.
-			$response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
-			$response->header( 'Cache-Control: no-cache, no-store, max-age=0, must-revalidate' );
-			$response->header( 'Pragma: no-cache' );
+			$response->setHeader( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
+			$response->setHeader( 'Cache-Control: no-cache, no-store, max-age=0, must-revalidate' );
+			$response->setHeader( 'Pragma: no-cache' );
 		}
 	}
 
@@ -2208,7 +2208,7 @@ class OutputPage extends ContextSource {
 				if ( $code == '301' || $code == '303' ) {
 					if ( !$config->get( 'DebugRedirects' ) ) {
 						$message = HttpStatus::getMessage( $code );
-						$response->header( "HTTP/1.1 $code $message" );
+						$response->setHeader( "HTTP/1.1 $code $message" );
 					}
 					$this->mLastModified = wfTimestamp( TS_RFC2822 );
 				}
@@ -2217,14 +2217,14 @@ class OutputPage extends ContextSource {
 				}
 				$this->sendCacheControl();
 
-				$response->header( "Content-Type: text/html; charset=utf-8" );
+				$response->setHeader( "Content-Type: text/html; charset=utf-8" );
 				if ( $config->get( 'DebugRedirects' ) ) {
 					$url = htmlspecialchars( $redirect );
 					print "<html>\n<head>\n<title>Redirect</title>\n</head>\n<body>\n";
 					print "<p>Location: <a href=\"$url\">$url</a></p>\n";
 					print "</body>\n</html>\n";
 				} else {
-					$response->header( 'Location: ' . $redirect );
+					$response->setHeader( 'Location: ' . $redirect );
 				}
 			}
 
@@ -2232,24 +2232,24 @@ class OutputPage extends ContextSource {
 		} elseif ( $this->mStatusCode ) {
 			$message = HttpStatus::getMessage( $this->mStatusCode );
 			if ( $message ) {
-				$response->header( 'HTTP/1.1 ' . $this->mStatusCode . ' ' . $message );
+				$response->setHeader( 'HTTP/1.1 ' . $this->mStatusCode . ' ' . $message );
 			}
 		}
 
 		# Buffer output; final headers may depend on later processing
 		ob_start();
 
-		$response->header( 'Content-type: ' . $config->get( 'MimeType' ) . '; charset=UTF-8' );
-		$response->header( 'Content-language: ' . $config->get( 'LanguageCode' ) );
+		$response->setHeader( 'Content-type: ' . $config->get( 'MimeType' ) . '; charset=UTF-8' );
+		$response->setHeader( 'Content-language: ' . $config->get( 'LanguageCode' ) );
 
 		// Avoid Internet Explorer "compatibility view" in IE 8-10, so that
 		// jQuery etc. can work correctly.
-		$response->header( 'X-UA-Compatible: IE=Edge' );
+		$response->setHeader( 'X-UA-Compatible: IE=Edge' );
 
 		// Prevent framing, if requested
 		$frameOptions = $this->getFrameOptions();
 		if ( $frameOptions ) {
-			$response->header( "X-Frame-Options: $frameOptions" );
+			$response->setHeader( "X-Frame-Options: $frameOptions" );
 		}
 
 		if ( $this->mArticleBodyOnly ) {

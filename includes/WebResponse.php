@@ -28,12 +28,21 @@
 class WebResponse {
 
 	/**
+	 * @deprecated since 1.26 Use WebResponse::setHeader() instead.
+	 */
+	public function header( $string, $replace = true, $http_response_code = null ) {
+		wfDeprecated( __METHOD__, '1.25' );
+		$this->setHeader( $string, $replace, $http_response_code );
+	}
+
+	/**
 	 * Output a HTTP header, wrapper for PHP's header()
 	 * @param string $string Header to output
 	 * @param bool $replace Replace current similar header
 	 * @param null|int $http_response_code Forces the HTTP response code to the specified value.
+	 * @since 1.26 renamed from 'header' to 'setHeader'.
 	 */
-	public function header( $string, $replace = true, $http_response_code = null ) {
+	public function setHeader( $string, $replace = true, $http_response_code = null ) {
 		header( $string, $replace, $http_response_code );
 	}
 
@@ -71,8 +80,9 @@ class WebResponse {
 	 *   the following two parameters will be interpreted as values for
 	 *   'prefix', 'domain', and 'secure'
 	 * @since 1.22 Replaced $prefix, $domain, and $forceSecure with $options
+	 * @since 1.26 Changed letter-case of name from 'setcookie' to 'setCookie'
 	 */
-	public function setcookie( $name, $value, $expire = 0, $options = array() ) {
+	public function setCookie( $name, $value, $expire = 0, $options = array() ) {
 		global $wgCookiePath, $wgCookiePrefix, $wgCookieDomain;
 		global $wgCookieSecure, $wgCookieExpiration, $wgCookieHttpOnly;
 
@@ -142,8 +152,9 @@ class FauxResponse extends WebResponse {
 	 * @param string $string Header to output
 	 * @param bool $replace Replace current similar header
 	 * @param null|int $http_response_code Forces the HTTP response code to the specified value.
+	 * @since 1.26 renamed from 'header' to 'setHeader'.
 	 */
-	public function header( $string, $replace = true, $http_response_code = null ) {
+	public function setHeader( $string, $replace = true, $http_response_code = null ) {
 		if ( substr( $string, 0, 5 ) == 'HTTP/' ) {
 			$parts = explode( ' ', $string, 3 );
 			$this->code = intval( $parts[1] );
@@ -190,7 +201,7 @@ class FauxResponse extends WebResponse {
 	 * @param int|null $expire Ignored in this faux subclass.
 	 * @param array $options Ignored in this faux subclass.
 	 */
-	public function setcookie( $name, $value, $expire = 0, $options = array() ) {
+	public function setCookie( $name, $value, $expire = 0, $options = array() ) {
 		$this->cookies[$name] = $value;
 	}
 
@@ -198,7 +209,7 @@ class FauxResponse extends WebResponse {
 	 * @param string $name
 	 * @return string|null
 	 */
-	public function getcookie( $name ) {
+	public function getCookie( $name ) {
 		if ( isset( $this->cookies[$name] ) ) {
 			return $this->cookies[$name];
 		}

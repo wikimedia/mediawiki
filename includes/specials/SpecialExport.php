@@ -166,12 +166,12 @@ class SpecialExport extends SpecialPage {
 			// Cancel output buffering and gzipping if set
 			// This should provide safer streaming for pages with history
 			wfResetOutputBuffers();
-			$request->response()->header( "Content-type: application/xml; charset=utf-8" );
+			$request->response()->setHeader( "Content-type: application/xml; charset=utf-8" );
 
 			if ( $request->getCheck( 'wpDownload' ) ) {
 				// Provide a sane filename suggestion
 				$filename = urlencode( $config->get( 'Sitename' ) . '-' . wfTimestampNow() . '.xml' );
-				$request->response()->header( "Content-disposition: attachment;filename={$filename}" );
+				$request->response()->setHeader( "Content-disposition: attachment;filename={$filename}" );
 			}
 
 			$this->doExport( $page, $history, $list_authors, $exportall );

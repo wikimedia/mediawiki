@@ -487,9 +487,9 @@ class ApiMain extends ApiBase {
 		$response = $this->getRequest()->response();
 		$headerStr = 'MediaWiki-API-Error: ' . $errCode;
 		if ( $e->getCode() === 0 ) {
-			$response->header( $headerStr );
+			$response->setHeader( $headerStr );
 		} else {
-			$response->header( $headerStr, true, $e->getCode() );
+			$response->setHeader( $headerStr, true, $e->getCode() );
 		}
 
 		// Reset and print just the error message
@@ -578,8 +578,8 @@ class ApiMain extends ApiBase {
 			// origin parameter set but incorrect
 			// Send a 403 response
 			$message = HttpStatus::getMessage( 403 );
-			$response->header( "HTTP/1.1 403 $message", true, 403 );
-			$response->header( 'Cache-Control: no-cache' );
+			$response->setHeader( "HTTP/1.1 403 $message", true, 403 );
+			$response->setHeader( 'Cache-Control: no-cache' );
 			echo "'origin' parameter does not match Origin header\n";
 
 			return false;
@@ -607,19 +607,19 @@ class ApiMain extends ApiBase {
 					if ( !self::matchRequestedHeaders( $requestedHeaders ) ) {
 						return true;
 					}
-					$response->header( 'Access-Control-Allow-Headers: ' . $requestedHeaders );
+					$response->setHeader( 'Access-Control-Allow-Headers: ' . $requestedHeaders );
 				}
 
 				// We only allow the actual request to be GET or POST
-				$response->header( 'Access-Control-Allow-Methods: POST, GET' );
+				$response->setHeader( 'Access-Control-Allow-Methods: POST, GET' );
 			}
 
-			$response->header( "Access-Control-Allow-Origin: $originHeader" );
-			$response->header( 'Access-Control-Allow-Credentials: true' );
-			$response->header( "Timing-Allow-Origin: $originHeader" ); # http://www.w3.org/TR/resource-timing/#timing-allow-origin
+			$response->setHeader( "Access-Control-Allow-Origin: $originHeader" );
+			$response->setHeader( 'Access-Control-Allow-Credentials: true' );
+			$response->setHeader( "Timing-Allow-Origin: $originHeader" ); # http://www.w3.org/TR/resource-timing/#timing-allow-origin
 
 			if ( !$preflight ) {
-				$response->header( 'Access-Control-Expose-Headers: MediaWiki-API-Error, Retry-After, X-Database-Lag' );
+				$response->setHeader( 'Access-Control-Expose-Headers: MediaWiki-API-Error, Retry-After, X-Database-Lag' );
 			}
 		}
 
@@ -733,35 +733,35 @@ class ApiMain extends ApiBase {
 		$privateCache = 'private, must-revalidate, max-age=' . $maxage;
 
 		if ( $this->mCacheMode == 'private' ) {
-			$response->header( "Cache-Control: $privateCache" );
+			$response->setHeader( "Cache-Control: $privateCache" );
 			return;
 		}
 
 		$useXVO = $config->get( 'UseXVO' );
 		if ( $this->mCacheMode == 'anon-public-user-private' ) {
 			$out->addVaryHeader( 'Cookie' );
-			$response->header( $out->getVaryHeader() );
+			$response->setHeader( $out->getVaryHeader() );
 			if ( $useXVO ) {
-				$response->header( $out->getXVO() );
+				$response->setHeader( $out->getXVO() );
 				if ( $out->haveCacheVaryCookies() ) {
 					// Logged in, mark this request private
-					$response->header( "Cache-Control: $privateCache" );
+					$response->setHeader( "Cache-Control: $privateCache" );
 					return;
 				}
 				// Logged out, send normal public headers below
 			} elseif ( session_id() != '' ) {
 				// Logged in or otherwise has session (e.g. anonymous users who have edited)
 				// Mark request private
-				$response->header( "Cache-Control: $privateCache" );
+				$response->setHeader( "Cache-Control: $privateCache" );
 
 				return;
 			} // else no XVO and anonymous, send public headers below
 		}
 
 		// Send public headers
-		$response->header( $out->getVaryHeader() );
+		$response->setHeader( $out->getVaryHeader() );
 		if ( $useXVO ) {
-			$response->header( $out->getXVO() );
+			$response->setHeader( $out->getXVO() );
 		}
 
 		// If nobody called setCacheMaxAge(), use the (s)maxage parameters
@@ -776,7 +776,7 @@ class ApiMain extends ApiBase {
 			// Public cache not requested
 			// Sending a Vary header in this case is harmless, and protects us
 			// against conditional calls of setCacheMaxAge().
-			$response->header( "Cache-Control: $privateCache" );
+			$response->setHeader( "Cache-Control: $privateCache" );
 
 			return;
 		}
@@ -786,7 +786,7 @@ class ApiMain extends ApiBase {
 		// Send an Expires header
 		$maxAge = min( $this->mCacheControl['s-maxage'], $this->mCacheControl['max-age'] );
 		$expiryUnixTime = ( $maxAge == 0 ? 1 : time() + $maxAge );
-		$response->header( 'Expires: ' . wfTimestamp( TS_RFC2822, $expiryUnixTime ) );
+		$response->setHeader( 'Expires: ' . wfTimestamp( TS_RFC2822, $expiryUnixTime ) );
 
 		// Construct the Cache-Control header
 		$ccHeader = '';
@@ -803,7 +803,7 @@ class ApiMain extends ApiBase {
 			}
 		}
 
-		$response->header( "Cache-Control: $ccHeader" );
+		$response->setHeader( "Cache-Control: $ccHeader" );
 	}
 
 	/**
@@ -984,8 +984,8 @@ class ApiMain extends ApiBase {
 			if ( $lag > $maxLag ) {
 				$response = $this->getRequest()->response();
 
-				$response->header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
-				$response->header( 'X-Database-Lag: ' . intval( $lag ) );
+				$response->setHeader( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
+				$response->setHeader( 'X-Database-Lag: ' . intval( $lag ) );
 
 				if ( $this->getConfig()->get( 'ShowHostnames' ) ) {
 					$this->dieUsage( "Waiting for $host: $lag seconds lagged", 'maxlag' );

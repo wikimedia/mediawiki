@@ -94,7 +94,7 @@ class RawAction extends FormlessAction {
 
 		$response = $request->response();
 
-		$response->header( 'Content-type: ' . $contentType . '; charset=UTF-8' );
+		$response->setHeader( 'Content-type: ' . $contentType . '; charset=UTF-8' );
 		# Output may contain user-specific data;
 		# vary generated content for open sessions on private wikis
 		$privateCache = !User::isEveryoneAllowed( 'read' ) && ( $smaxage == 0 || session_id() != '' );
@@ -103,7 +103,7 @@ class RawAction extends FormlessAction {
 		$privateCache = $privateCache ?: $this->getUser()->isLoggedIn();
 		# allow the client to cache this for 24 hours
 		$mode = $privateCache ? 'private' : 'public';
-		$response->header(
+		$response->setHeader(
 			'Cache-Control: ' . $mode . ', s-maxage=' . $smaxage . ', max-age=' . $maxage
 		);
 
@@ -114,7 +114,7 @@ class RawAction extends FormlessAction {
 			# 404s aren't generally cached and it would create
 			# extra hits when user CSS/JS are on and the user doesn't
 			# have the pages.
-			$response->header( 'HTTP/1.x 404 Not Found' );
+			$response->setHeader( 'HTTP/1.x 404 Not Found' );
 		}
 
 		if ( !Hooks::run( 'RawPageViewBeforeOutput', array( &$this, &$text ) ) ) {
@@ -157,7 +157,7 @@ class RawAction extends FormlessAction {
 			$rev = Revision::newFromTitle( $title, $this->getOldId() );
 			if ( $rev ) {
 				$lastmod = wfTimestamp( TS_RFC2822, $rev->getTimestamp() );
-				$request->response()->header( "Last-modified: $lastmod" );
+				$request->response()->setHeader( "Last-modified: $lastmod" );
 
 				// Public-only due to cache headers
 				$content = $rev->getContent();

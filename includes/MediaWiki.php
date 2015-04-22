@@ -440,10 +440,10 @@ class MediaWiki {
 			list( $host, $lag ) = wfGetLB()->getMaxLag();
 			if ( $lag > $maxLag ) {
 				$resp = $this->context->getRequest()->response();
-				$resp->header( 'HTTP/1.1 503 Service Unavailable' );
-				$resp->header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
-				$resp->header( 'X-Database-Lag: ' . intval( $lag ) );
-				$resp->header( 'Content-Type: text/plain' );
+				$resp->setHeader( 'HTTP/1.1 503 Service Unavailable' );
+				$resp->setHeader( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
+				$resp->setHeader( 'X-Database-Lag: ' . intval( $lag ) );
+				$resp->setHeader( 'Content-Type: text/plain' );
 				if ( $this->config->get( 'ShowHostnames' ) ) {
 					echo "Waiting for $host: $lag seconds lagged\n";
 				} else {

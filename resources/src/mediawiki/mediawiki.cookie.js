@@ -4,7 +4,7 @@
 	/**
 	 * Provides an API for getting and setting cookies that is
 	 * syntactically and functionally similar to the server-side cookie
-	 * API (`WebRequest#getCookie` and `WebResponse#setcookie`).
+	 * API (`WebRequest#getCookie` and `WebResponse#setCookie`).
 	 *
 	 * @author Sam Smith <samsmith@wikimedia.org>
 	 * @author Matthew Flaschen <mflaschen@wikimedia.org>
@@ -18,7 +18,7 @@
 		/**
 		 * Sets or deletes a cookie.
 		 *
-		 * While this is natural in JavaScript, contrary to `WebResponse#setcookie` in PHP, the
+		 * While this is natural in JavaScript, contrary to `WebResponse#setCookie` in PHP, the
 		 * default values for the `options` properties only apply if that property isn't set
 		 * already in your options object (e.g. passing `{ secure: null }` or `{ secure: undefined }`
 		 * overrides the default value for `options.secure`).

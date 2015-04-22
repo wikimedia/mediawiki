@@ -1469,7 +1469,7 @@ class WebInstallerComplete extends WebInstallerPage {
 			$this->addHtml( "\n<script>jQuery( function () { location.href = " .
 				Xml::encodeJsVar( $lsUrl ) . "; } );</script>\n" );
 		} else {
-			$this->parent->request->response()->header( "Refresh: 0;url=$lsUrl" );
+			$this->parent->request->response()->setHeader( "Refresh: 0;url=$lsUrl" );
 		}
 
 		$this->startForm();
