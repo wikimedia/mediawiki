@@ -207,15 +207,15 @@ function wfStreamThumb( array $params ) {
 		if ( $redirectedLocation ) {
 			// File has been moved. Give redirect.
 			$response = RequestContext::getMain()->getRequest()->response();
-			$response->header( "HTTP/1.1 302 " . HttpStatus::getMessage( 302 ) );
-			$response->header( 'Location: ' . $redirectedLocation );
-			$response->header( 'Expires: ' .
+			$response->setHeader( "HTTP/1.1 302 " . HttpStatus::getMessage( 302 ) );
+			$response->setHeader( 'Location: ' . $redirectedLocation );
+			$response->setHeader( 'Expires: ' .
 				gmdate( 'D, d M Y H:i:s', time() + 12 * 3600 ) . ' GMT' );
 			if ( $wgVaryOnXFP ) {
 				$varyHeader[] = 'X-Forwarded-Proto';
 			}
 			if ( count( $varyHeader ) ) {
-				$response->header( 'Vary: ' . implode( ', ', $varyHeader ) );
+				$response->setHeader( 'Vary: ' . implode( ', ', $varyHeader ) );
 			}
 			return;
 		}
@@ -273,16 +273,16 @@ function wfStreamThumb( array $params ) {
 		} elseif ( rawurldecode( $rel404 ) === $img->getThumbRel( $thumbName2 ) ) {
 			// Request for the "long" thumbnail name; redirect to canonical name
 			$response = RequestContext::getMain()->getRequest()->response();
-			$response->header( "HTTP/1.1 301 " . HttpStatus::getMessage( 301 ) );
-			$response->header( 'Location: ' .
+			$response->setHeader( "HTTP/1.1 301 " . HttpStatus::getMessage( 301 ) );
+			$response->setHeader( 'Location: ' .
 				wfExpandUrl( $img->getThumbUrl( $thumbName ), PROTO_CURRENT ) );
-			$response->header( 'Expires: ' .
+			$response->setHeader( 'Expires: ' .
 				gmdate( 'D, d M Y H:i:s', time() + 7 * 86400 ) . ' GMT' );
 			if ( $wgVaryOnXFP ) {
 				$varyHeader[] = 'X-Forwarded-Proto';
 			}
 			if ( count( $varyHeader ) ) {
-				$response->header( 'Vary: ' . implode( ', ', $varyHeader ) );
+				$response->setHeader( 'Vary: ' . implode( ', ', $varyHeader ) );
 			}
 			return;
 		} else {

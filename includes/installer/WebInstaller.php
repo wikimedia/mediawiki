@@ -165,8 +165,8 @@ class WebInstaller extends Installer {
 		if ( ( $this->getVar( '_InstallDone' ) || $this->getVar( '_UpgradeDone' ) )
 			&& $this->request->getVal( 'localsettings' )
 		) {
-			$this->request->response()->header( 'Content-type: application/x-httpd-php' );
-			$this->request->response()->header(
+			$this->request->response()->setHeader( 'Content-type: application/x-httpd-php' );
+			$this->request->response()->setHeader(
 				'Content-Disposition: attachment; filename="LocalSettings.php"'
 			);
 
@@ -291,7 +291,7 @@ class WebInstaller extends Installer {
 		}
 
 		# If it was posted, the page can request a continue to the next page.
-		if ( $result === 'continue' && !$this->output->headerDone() ) {
+		if ( $result === 'continue' && !$this->output->setHeaderDone() ) {
 			if ( $pageId !== false ) {
 				$this->happyPages[$pageId] = true;
 			}
@@ -1196,7 +1196,7 @@ class WebInstaller extends Installer {
 	 * Output stylesheet for web installer pages
 	 */
 	public function outputCss() {
-		$this->request->response()->header( 'Content-type: text/css' );
+		$this->request->response()->setHeader( 'Content-type: text/css' );
 		echo $this->output->getCSS();
 	}
 

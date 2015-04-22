@@ -331,11 +331,11 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		# if an admin previews a deleted image, and it's cached, then
 		# a user without appropriate permissions can toddle off and
 		# nab the image, and Squid will serve it
-		$this->getRequest()->response()->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
-		$this->getRequest()->response()->header(
+		$this->getRequest()->response()->setHeader( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
+		$this->getRequest()->response()->setHeader(
 			'Cache-Control: no-cache, no-store, max-age=0, must-revalidate'
 		);
-		$this->getRequest()->response()->header( 'Pragma: no-cache' );
+		$this->getRequest()->response()->setHeader( 'Pragma: no-cache' );
 
 		$key = $oimage->getStorageKey();
 		$path = $repo->getZonePath( 'deleted' ) . '/' . $repo->getDeletedHashPath( $key ) . $key;

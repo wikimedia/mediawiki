@@ -1197,9 +1197,9 @@ class SpecialUndelete extends SpecialPage {
 		# a user without appropriate permissions can toddle off and
 		# nab the image, and Squid will serve it
 		$response = $this->getRequest()->response();
-		$response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
-		$response->header( 'Cache-Control: no-cache, no-store, max-age=0, must-revalidate' );
-		$response->header( 'Pragma: no-cache' );
+		$response->setHeader( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
+		$response->setHeader( 'Cache-Control: no-cache, no-store, max-age=0, must-revalidate' );
+		$response->setHeader( 'Pragma: no-cache' );
 
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		$path = $repo->getZonePath( 'deleted' ) . '/' . $repo->getDeletedHashPath( $key ) . $key;

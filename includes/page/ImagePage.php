@@ -615,7 +615,7 @@ EOT
 			if ( !$this->getID() && $wgSend404Code ) {
 				// If there is no image, no shared image, and no description page,
 				// output a 404, to be consistent with articles.
-				$request->response()->header( 'HTTP/1.1 404 Not Found' );
+				$request->response()->setHeader( 'HTTP/1.1 404 Not Found' );
 			}
 		}
 		$out->setFileVersion( $this->displayImg );
