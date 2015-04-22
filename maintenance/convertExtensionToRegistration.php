@@ -1,4 +1,4 @@
-<?php
+<?php
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -13,6 +13,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 		'ResourceModuleSkinStyles' => 'handleResourceModules',
 		'Hooks' => 'handleHooks',
 		'ExtensionFunctions' => 'handleExtensionFunctions',
+		'namespaces' => 'removeAbsolutePath',
 		'ParserTestFiles' => 'removeAbsolutePath',
 	);
 
