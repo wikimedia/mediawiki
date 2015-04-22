@@ -194,13 +194,13 @@ class LoginForm extends SpecialPage {
 			&& in_array( $entryError->getKey(), self::getValidErrorMessages() )
 		) {
 			$this->mEntryErrorType = 'error';
-			$this->mEntryError = $entryError->rawParams( $loginreqlink )->escaped();
+			$this->mEntryError = $entryError->rawParams( $loginreqlink )->parse();
 
 		} elseif ( $entryWarning->exists()
 			&& in_array( $entryWarning->getKey(), self::getValidErrorMessages() )
 		) {
 			$this->mEntryErrorType = 'warning';
-			$this->mEntryError = $entryWarning->rawParams( $loginreqlink )->escaped();
+			$this->mEntryError = $entryWarning->rawParams( $loginreqlink )->parse();
 		}
 
 		if ( $wgEnableEmail ) {
