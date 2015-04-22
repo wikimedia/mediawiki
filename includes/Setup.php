@@ -530,7 +530,9 @@ if ( $wgTmpDirectory === false ) {
 
 // We don't use counters anymore. Left here for extensions still
 // expecting this to exist. Should be removed sometime 1.26 or later.
-$wgDisableCounters = true;
+if ( !isset( $wgDisableCounters ) ) {
+	$wgDisableCounters = true;
+}
 
 Profiler::instance()->scopedProfileOut( $ps_default2 );
 
