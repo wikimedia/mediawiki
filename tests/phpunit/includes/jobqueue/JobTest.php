@@ -61,6 +61,9 @@ class JobTest extends MediaWikiTestCase {
 			array( 'someCommand', new Title(), $params ),
 			'SomeJob'
 		);
+		$mock->expects($this->any())
+			->method('run')
+			->will($this->returnValue(true));
 		return $mock;
 	}
 
