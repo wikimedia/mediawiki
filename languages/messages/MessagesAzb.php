@@ -6,6 +6,9 @@
  * @ingroup Language
  * @file
  *
+ * @author Arjanizary
+ * @author E THP
+ * @author Mjbmr
  */
 
 $fallback = 'fa';
@@ -17,7 +20,7 @@ $namespaceNames = array(
 	NS_TALK             => 'دانیشیق',
 	NS_USER             => 'ایستیفاده‌چی',
 	NS_USER_TALK        => 'ایستیفاده‌چی_دانیشیغی',
-	NS_PROJECT_TALK     => '$1_دانیشیق',
+	NS_PROJECT_TALK     => '$1_دانیشیغی',
 	NS_FILE             => 'فایل',
 	NS_FILE_TALK        => 'فایل_دانیشیغی',
 	NS_MEDIAWIKI        => 'مئدیا‌ویکی',
