@@ -70,7 +70,7 @@ class ProcessCacheLRUTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider provideInvalidConstructorArg
-	 * @expectedException UnexpectedValueException
+	 * @expectedException Wikimedia\Assert\ParameterAssertionException
 	 * @covers ProcessCacheLRU::__construct
 	 */
 	public function testConstructorGivenInvalidValue( $maxSize ) {
