@@ -28,6 +28,8 @@ class ExtensionProcessor implements Processor {
 		'MediaHandlers',
 		'ExtensionFunctions',
 		'ExtensionEntryPointListFiles',
+		'EventLoggingSchemas',
+		'CapitalLinkOverrides',
 		'SpecialPages',
 		'JobClasses',
 		'LogTypes',
@@ -188,6 +190,14 @@ class ExtensionProcessor implements Processor {
 				$this->globals['wgExtraNamespaces'][$id] = $ns['name'];
 				if ( isset( $ns['gender'] ) ) {
 					$this->globals['wgExtraGenderNamespaces'][$id] = $ns['gender'];
+				}
+				$this->globals['wgNamespaceProtection'][$id] = $ns['name'];
+				if ( isset( $ns ) ) {
+					$this->globals['wgNamespaceProtection'][$id] = $ns;
+				}
+				$this->globals['wgNamespaceAliases'][$id] = $ns['name'];
+				if ( isset( $ns ) ) {
+					$this->globals['wgNamespaceAliases'][$ns] = $id;
 				}
 				if ( isset( $ns['subpages'] ) && $ns['subpages'] ) {
 					$this->globals['wgNamespacesWithSubpages'][$id] = true;
