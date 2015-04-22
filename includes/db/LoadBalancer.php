@@ -845,8 +845,9 @@ class LoadBalancer {
 
 	/**
 	 * @return int
+	 * @since 1.26
 	 */
-	private function getWriterIndex() {
+	public function getWriterIndex() {
 		return 0;
 	}
 
