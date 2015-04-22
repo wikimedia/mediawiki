@@ -590,6 +590,22 @@
 			};
 
 			/**
+			 * Write a message the console's error channel.
+			 *
+			 * Most browsers provide a stacktrace by default if the argument
+			 * is a caught Error object.
+			 *
+			 * @since 1.26
+			 * @param {Error|string...} msg Messages to output to console
+			 */
+			log.error = function () {
+				var console = window.console;
+				if ( console && console.error && console.error.apply ) {
+					console.error.apply( console, arguments );
+				}
+			};
+
+			/**
 			 * Create a property in a host object that, when accessed, will produce
 			 * a deprecation warning in the console with backtrace.
 			 *

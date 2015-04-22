@@ -179,7 +179,7 @@
 	 * </code>
 	 */
 	QUnit.newMwEnvironment = ( function () {
-		var warn, log, liveConfig, liveMessages,
+		var warn, error, log, liveConfig, liveMessages,
 			ajaxRequests = [];
 
 		liveConfig = mw.config.values;
@@ -187,13 +187,16 @@
 
 		function suppressWarnings() {
 			warn = mw.log.warn;
-			mw.log.warn = $.noop;
+			error = mw.log.error;
+			mw.log.warn = mw.log.error = $.noop;
 		}
 
 		function restoreWarnings() {
+			// Guard against calls not balanced with suppressWarnings()
 			if ( warn !== undefined ) {
 				mw.log.warn = warn;
-				warn = undefined;
+				mw.log.error = error;
+				warn = error = undefined;
 			}
 		}
 
