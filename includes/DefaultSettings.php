@@ -6452,6 +6452,20 @@ $wgJobTypesExcludedFromDefaultQueue = array( 'AssembleUploadChunks', 'PublishSta
 $wgJobBackoffThrottling = array();
 
 /**
+ * Issue COMMITs from the job runner one at a time, first waiting on slave lag.
+ * This is useful if there are many job workers that race on slave lag checks.
+ * If set, jobs taking this many seconds of DB write time have serialized commits.
+ *
+ * Note that affected jobs may have worse lock contention. Also, if they affect
+ * several DBs at once they may have a smaller chance of being atomic due to the
+ * possibility of connection loss while queueing up to commit. Affected jobs may
+ * also fail due to the commit lock acquisition timeout.
+ *
+ * @since 1.26
+ */
+$wgJobSerialCommitThreshold = false;
+
+/**
  * Map of job types to configuration arrays.
  * This determines which queue class and storage system is used for each job type.
  * Job types that do not have explicit configuration will use the 'default' config.
