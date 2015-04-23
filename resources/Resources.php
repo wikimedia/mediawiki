@@ -1753,6 +1753,7 @@ return array(
 
 	'oojs-ui.styles' => array(
 		'position' => 'top',
+		'styles' => 'resources/src/oojs-ui-local.css', // HACK, see inside the file
 		'skinStyles' => array(
 			'default' => 'resources/lib/oojs-ui/oojs-ui-mediawiki-noimages.css',
 		),

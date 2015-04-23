@@ -1,6 +1,24 @@
 {
 	"prefix": "oo-ui-icon",
 	"intro": "@import '../../../../src/styles/common';",
+	"variants": {
+		"invert": {
+			"color": "#FFFFFF",
+			"global": true
+		},
+		"progressive": {
+			"color": "#347BFF"
+		},
+		"constructive": {
+			"color": "#00AF89"
+		},
+		"destructive": {
+			"color": "#D11D13"
+		},
+		"warning": {
+			"color": "#FF5D00"
+		}
+	},
 	"images": {
 		"block": { "file": "images/icons/block.svg" },
 		"blockUndo": { "file": {
@@ -18,7 +36,7 @@
 		"lock": { "file": {
 			"ltr": "images/icons/lock-ltr.svg",
 			"rtl": "images/icons/lock-rtl.svg"
-		} },
+		}, "variants": [ "destructive" ] },
 		"star": { "file": "images/icons/star.svg" },
 		"trash": { "file": "images/icons/trash.svg" },
 		"trashUndo": { "file": {
@@ -28,7 +46,7 @@
 		"unLock": { "file": {
 			"ltr": "images/icons/unLock-ltr.svg",
 			"rtl": "images/icons/unLock-rtl.svg"
-		} },
+		}, "variants": [ "destructive" ] },
 		"unStar": { "file": "images/icons/unStar.svg" }
 	}
 }

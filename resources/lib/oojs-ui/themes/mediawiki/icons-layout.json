@@ -1,6 +1,24 @@
 {
 	"prefix": "oo-ui-icon",
 	"intro": "@import '../../../../src/styles/common';",
+	"variants": {
+		"invert": {
+			"color": "#FFFFFF",
+			"global": true
+		},
+		"progressive": {
+			"color": "#347BFF"
+		},
+		"constructive": {
+			"color": "#00AF89"
+		},
+		"destructive": {
+			"color": "#D11D13"
+		},
+		"warning": {
+			"color": "#FF5D00"
+		}
+	},
 	"images": {
 		"stripeFlow": { "file": {
 			"ltr": "images/icons/stripeFlow-ltr.svg",
@@ -14,6 +32,12 @@
 		"stripeToC": { "file": {
 			"ltr": "images/icons/stripeToC-ltr.svg",
 			"rtl": "images/icons/stripeToC-rtl.svg"
-		} }
+		}, "variants": [ "progressive" ] },
+		"viewCompact": { "file": "images/icons/viewCompact.svg" },
+		"viewDetails": { "file": {
+			"ltr": "images/icons/viewDetails-ltr.svg",
+			"rtl": "images/icons/viewDetails-rtl.svg"
+		} },
+		"visionSimulator": { "file": "images/icons/visionSimulator.svg" }
 	}
 }
