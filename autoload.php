@@ -1284,6 +1284,7 @@ $wgAutoloadLocalClasses = array(
 	'UserMailer' => __DIR__ . '/includes/mail/UserMailer.php',
 	'UserNotLoggedIn' => __DIR__ . '/includes/exception/UserNotLoggedIn.php',
 	'UserOptions' => __DIR__ . '/maintenance/userOptions.inc',
+	'UserPasswordPolicy' => __DIR__ . '/includes/password/UserPasswordPolicy.php',
 	'UserRightsProxy' => __DIR__ . '/includes/UserRightsProxy.php',
 	'UsercreateTemplate' => __DIR__ . '/includes/templates/Usercreate.php',
 	'UserloginTemplate' => __DIR__ . '/includes/templates/Userlogin.php',
