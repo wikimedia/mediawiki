@@ -2179,8 +2179,6 @@
 	"import-interwiki-history": "इस पृष्ठ के सभी इतिहास अवतरण कॉपी करें",
 	"import-interwiki-templates": "सभी साँचे शामिल करें",
 	"import-interwiki-submit": "आयात",
-	"import-interwiki-namespace": "गंतव्य नामस्थान:",
-	"import-interwiki-rootpage": "गंतव्य पृष्ठ उपसर्ग (वैकल्पिक):",
 	"import-upload-filename": "संचिका नाम:",
 	"import-comment": "टिप्पणी:",
 	"importtext": "कृपया स्रोत विकि से संचिका निर्यातित करने के लिए [[Special:Export|निर्यात सुविधा]] का इस्तेमाल करें।\nइसे अपने संगणक पर सँजो के यहाँ चढ़ा दें।",

@@ -2167,8 +2167,6 @@
 	"import-interwiki-history": "Copiar tote le versiones del historia de iste pagina",
 	"import-interwiki-templates": "Includer tote le patronos",
 	"import-interwiki-submit": "Importar",
-	"import-interwiki-namespace": "Spatio de nomines de destination:",
-	"import-interwiki-rootpage": "Pagina radice de destination (optional):",
 	"import-upload-filename": "Nomine del file:",
 	"import-comment": "Commento:",
 	"importtext": "Per favor exporta le file del wiki de origine con le [[Special:Export|facilitate de exportation]].\nSalveguarda lo in tu computator e incarga lo hic.",

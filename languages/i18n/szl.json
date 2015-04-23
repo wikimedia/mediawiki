@@ -1663,7 +1663,6 @@
 	"import-interwiki-text": "Wybjer wiki i nmjano zajty do importowańo.\nDaty a tyž mjana autorůw bydům zachowane.\nWšyjstke uoperacyje importu transwiki sům uodnotowywane w [[Special:Log/import|rejeře importu]].",
 	"import-interwiki-history": "Kopjuj couko historja sprowjyń tyi zajty",
 	"import-interwiki-submit": "Importuj",
-	"import-interwiki-namespace": "Docelowo przestrzyń mjan:",
 	"import-upload-filename": "Mjano plika:",
 	"import-comment": "Kůmyntorz:",
 	"importtext": "Używajůnc werkcojga [[Special:Export|eksportuj]] wyeksportuj plik ze zdrzůdłowyj wiki, naszkryflej go na swojym dysku, a potym wćepńij go tukej.",

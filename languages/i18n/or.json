@@ -15,9 +15,9 @@
 			"Macofe"
 		]
 	},
-	"tog-underline": "ତଳେ ଥିବା ଲିଙ୍କ:",
+	"tog-underline": "ଲିଙ୍କତଳେଗାର ଟାଣିବା:",
 	"tog-hideminor": "ନିକଟରେ ହୋଇଥିବା ଛୋଟ ବଦଳସବୁକୁ ଲୁଚାଇବେ",
-	"tog-hidepatrolled": "ନଗଦ ବଦଳରେ ଥିବା ଜଗାହୋଇଥିବା ବଦଳ ସବୁକୁ ଲୁଚାଇବେ",
+	"tog-hidepatrolled": "ନଗଦ ବଦଳରେ ନିରିକ୍ଷଣ କରାଯାଇଥିବା ବଦଳ ସବୁକୁ ଲୁଚାଇବେ",
 	"tog-newpageshidepatrolled": "ନୂଆ ପୃଷ୍ଠାତାଲିକାରୁ ଜଗାହୋଇଥିବା ବଦଳସବୁକୁ ଲୁଚାଇବେ",
 	"tog-extendwatchlist": "କେବଳ ନଗଦ ହିଁ ନୁହେଁ, ସବୁଯାକ ବଦଳକୁ ଦେଖାଇବା ପାଇଁ ଦେଖଣାତାଲିକାକୁ ପୂରା ଦେଖାଇବେ",
 	"tog-usenewrc": "ନଗଦ ବଦଳରେ ପୃଷ୍ଠା ଅନୁଯାୟୀ ଗୋଷ୍ଠୀ ବଦଳ ଏବଂ ଦେଖଣା",
@@ -2129,8 +2129,6 @@
 	"import-interwiki-history": "ଏହି ପୃଷ୍ଠା ନିମନ୍ତେ ସବୁଯାକ ସଂସ୍କରଣ ଇତିହାସ ନକଲ କରିନିଅନ୍ତୁ",
 	"import-interwiki-templates": "ସବୁଯାକ ଛାଞ୍ଚ ଏହା ଭିତରେ ରଖିବେ",
 	"import-interwiki-submit": "ଆମଦାନୀ",
-	"import-interwiki-namespace": "ଲକ୍ଷ ନେମସ୍ପେସ:",
-	"import-interwiki-rootpage": "ଲକ୍ଷସ୍ଥଳୀର ମୂଳ ପୃଷ୍ଠା(ଇଛାଧୀନ):",
 	"import-upload-filename": "ଫାଇଲ ନାମ:",
 	"import-comment": "ମତାମତ:",
 	"importtext": "[[Special:Export|ରପ୍ତାନି ସୁବିଧା]] ବ୍ୟବହାର କରି ମୂଳ ଉଇକିରୁ ଫାଇଲଟି ରପ୍ତାନି କରନ୍ତୁ ।\nତାହାକୁ ଆପଣା କମ୍ପୁଟରରେ ସାଇତି ଏଠାରେ ଅପଲୋଡ଼ କରନ୍ତୁ ।",

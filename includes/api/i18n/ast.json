@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Xuacu"
+		]
+	},
+	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentación]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Llista d'alderique]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anuncios de la API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Fallos y solicitúes]\n</div>\n<strong>Estau:</strong> Toles carauterístiques qu'apaecen nesta páxina tendríen de funcionar, pero la API inda ta en desendolcu activu, y puede camudar en cualquier momentu. Suscríbete a la [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ llista de corréu mediawiki-api-announce] p'avisos sobro anovamientos.\n\n<strong>Solicitúes incorreutes:</strong> Cuando s'unvíen solicitúes incorreutes a la API, unvíase una cabecera HTTP cola clave \"MediaWiki-API-Error\" y, darréu, tanto'l valor de la cabecera como'l códigu d'error devueltu pondránse al mesmu valor. Pa más información, consulta [[mw:API:Errors_and_warnings|API: Errores y avisos]].",
+	"apihelp-main-param-action": "Qué aición facer.",
+	"apihelp-main-param-format": "El formatu de la salida."
+}

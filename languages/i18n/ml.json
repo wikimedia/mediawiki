@@ -2181,8 +2181,6 @@
 	"import-interwiki-history": "ഈ താളിന്റെ എല്ലാ പൂർവ്വചരിത്രവും പകർത്തുക",
 	"import-interwiki-templates": "എല്ലാ ഫലകങ്ങളും ഉൾപ്പെടുത്തുക",
 	"import-interwiki-submit": "ഇറക്കുമതി",
-	"import-interwiki-namespace": "ഉദ്ദിഷ്ട നാമമേഖല:",
-	"import-interwiki-rootpage": "ലക്ഷ്യമിട്ട മൂലതാൾ (ഐച്ഛികം):",
 	"import-upload-filename": "പ്രമാണത്തിന്റെ പേര്‌",
 	"import-comment": "കുറിപ്പ്:",
 	"importtext": "ദയവായി സ്രോതസ്സ് വിക്കിയിൽ നിന്ന് [[Special:Export|കയറ്റുമതി ഉപകരണം]] ഉപയോഗിച്ച് പ്രമാണം കയറ്റുമതി ചെയ്യുക.\nഅത് താങ്കളുടെ കമ്പ്യൂട്ടറിൽ ശേഖരിച്ച് ഇവിടെ അപ്‌‌ലോഡ് ചെയ്യുക.",

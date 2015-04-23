@@ -2135,8 +2135,6 @@
 	"import-interwiki-history": "Kopiaen amin dagiti rebision ti pakasaritaan daytoy a panid",
 	"import-interwiki-templates": "Iraman amin dagiti plantilia",
 	"import-interwiki-submit": "Agala",
-	"import-interwiki-namespace": "Pangipanan a nagan ti espasio:",
-	"import-interwiki-rootpage": "Papanan a ramut ti panid (pagpilian):",
 	"import-upload-filename": "Nagan ti papeles:",
 	"import-comment": "Komentario:",
 	"importtext": "Pangngaasi nga ipanmo ti papeles manipud ti nagtaudan a wiki nga agusar ti [[Special:Export|ramit ti panagipan]].\nIdulinmo iti bukodmo a kompiuter ken ikarga ditoy.",

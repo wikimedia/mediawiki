@@ -2222,8 +2222,6 @@
 	"import-interwiki-history": "Kopiera hela versionshistoriken för denna sida",
 	"import-interwiki-templates": "Inkludera alla mallar",
 	"import-interwiki-submit": "Importera",
-	"import-interwiki-namespace": "Målnamnrymd:",
-	"import-interwiki-rootpage": "Destinationens grundsida (valfri):",
 	"import-upload-filename": "Filnamn:",
 	"import-comment": "Kommentar:",
 	"importtext": "Var god exportera filen från ursprungs-wikin med hjälp av [[Special:Export|exporteringsverktyget]].\nSpara den på din dator och ladda upp den här.",

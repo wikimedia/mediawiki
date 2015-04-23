@@ -1591,7 +1591,6 @@
 	"import-interwiki-history": "د دې مخ د پېښليک ټولې بڼې لمېسل",
 	"import-interwiki-templates": "ټولې کينډۍ نغاړل",
 	"import-interwiki-submit": "رالېږدول",
-	"import-interwiki-namespace": "د موخې نوم-تشيال:",
 	"import-upload-filename": "د دوتنې نوم:",
 	"import-comment": "تبصره:",
 	"import-revision-count": "$1 {{PLURAL:$1|بڼه|بڼې}}",

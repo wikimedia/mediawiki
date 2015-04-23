@@ -1940,7 +1940,6 @@
 	"import-interwiki-history": "Бұл беттің барлық тарихи нұсқаларын көшіру",
 	"import-interwiki-templates": "Кірістірілген барлық үлгілер",
 	"import-interwiki-submit": "Сырттан алу",
-	"import-interwiki-namespace": "Беттерді мына есім кеңістігіне апару:",
 	"import-upload-filename": "Файл атауы:",
 	"import-comment": "Пікірі:",
 	"importtext": "Қайнар уикиден [[Special:Export|export utility]]  қолданып файлды сыртқа беріңіз.\nКомьпютеріңізге сақтаңыз да мында жүктеп беріңіз.",

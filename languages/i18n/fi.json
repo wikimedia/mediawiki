@@ -2206,8 +2206,6 @@
 	"import-interwiki-history": "Kopioi sivun koko historia ja kaikki versiot",
 	"import-interwiki-templates": "Ota mukaan kaikki mallineet",
 	"import-interwiki-submit": "Tuo",
-	"import-interwiki-namespace": "Kohdenimiavaruus:",
-	"import-interwiki-rootpage": "Kohteessa oleva perussivu (valinnainen):",
 	"import-upload-filename": "Tiedostonimi:",
 	"import-comment": "Kommentti:",
 	"importtext": "Vie sivuja lähdewikistä käyttäen [[Special:Export|vientityökalua]].\nTallenna tiedot koneellesi ja tuo ne tällä sivulla.",

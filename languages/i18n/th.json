@@ -2117,7 +2117,6 @@
 	"import-interwiki-history": "คัดลอกประวัติทั้งหมดในหน้านี้",
 	"import-interwiki-templates": "รวมแม่แบบทั้งหมด",
 	"import-interwiki-submit": "นำเข้า",
-	"import-interwiki-namespace": "เนมสเปซปลายทาง:",
 	"import-upload-filename": "ชื่อไฟล์:",
 	"import-comment": "ความเห็น:",
 	"importtext": "กรุณาส่งออกไฟล์จากวิกิต้นทางโดยใช้[[Special:Export|เครื่องมือส่งออก]]\nบันทึกลงคอมพิวเตอร์ของคุณ และอัปโหลดที่นี่",

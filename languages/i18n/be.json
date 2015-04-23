@@ -2137,8 +2137,6 @@
 	"import-interwiki-history": "Капіраваць усе гістарычныя версіі гэтай старонкі",
 	"import-interwiki-templates": "Разам з усімі шаблонамі",
 	"import-interwiki-submit": "Імпартаваць",
-	"import-interwiki-namespace": "У прастору назваў:",
-	"import-interwiki-rootpage": "Мэтавая каранёвая старонка (неабавязкова):",
 	"import-upload-filename": "Назва файла:",
 	"import-comment": "Каментарый:",
 	"importtext": "Калі ласка, экспартуйце файл з крынічнай вікі з дапамогай [[Special:Export|прылады экспарту]].\nЗахавайце яго на свой камп'ютар, а потым загрузіце сюды.",

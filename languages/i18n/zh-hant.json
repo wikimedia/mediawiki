@@ -2215,8 +2215,6 @@
 	"import-interwiki-history": "複製此頁的所有歷史修訂",
 	"import-interwiki-templates": "包含所有模板",
 	"import-interwiki-submit": "匯入",
-	"import-interwiki-namespace": "目標命名空間：",
-	"import-interwiki-rootpage": "目標根頁面 (選填)：",
 	"import-upload-filename": "檔案名稱：",
 	"import-comment": "評論：",
 	"importtext": "請使用 [[Special:Export|匯出工具]] 從來源 Wiki 匯出檔案，\n儲存至您的電腦後再上傳到這裡。",

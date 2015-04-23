@@ -2145,8 +2145,6 @@
 	"import-interwiki-history": "A lap összes előzményváltozatainak másolása",
 	"import-interwiki-templates": "Az összes sablon hozzáadása",
 	"import-interwiki-submit": "Importálás",
-	"import-interwiki-namespace": "Célnévtér:",
-	"import-interwiki-rootpage": "Cél gyökér lap (opcionális):",
 	"import-upload-filename": "Fájlnév:",
 	"import-comment": "Megjegyzés:",
 	"importtext": "Exportáld a fájlt a forráswikiből az [[Special:Export|exportáló eszköz]] segítségével.\nMentsd el a számítógépedre, majd töltsd fel ide.",

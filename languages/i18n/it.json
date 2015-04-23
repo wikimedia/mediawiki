@@ -2245,8 +2245,6 @@
 	"import-interwiki-history": "Copia l'intera cronologia di questa pagina",
 	"import-interwiki-templates": "Includi tutti i template",
 	"import-interwiki-submit": "Importa",
-	"import-interwiki-namespace": "Namespace di destinazione:",
-	"import-interwiki-rootpage": "Pagina principale di destinazione (opzionale):",
 	"import-upload-filename": "Nome file:",
 	"import-comment": "Oggetto:",
 	"importtext": "Si prega di esportare il file dal sito wiki di origine con la [[Special:Export|funzione di esportazione]], salvarlo sul proprio disco e poi caricarlo qui.",

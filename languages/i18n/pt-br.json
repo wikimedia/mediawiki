@@ -2238,8 +2238,6 @@
 	"import-interwiki-history": "Copiar todas as edições para esta página",
 	"import-interwiki-templates": "Incluir todas as predefinições",
 	"import-interwiki-submit": "Importar",
-	"import-interwiki-namespace": "Domínio de destino:",
-	"import-interwiki-rootpage": "Página raiz de destino (opcional):",
 	"import-upload-filename": "Nome do arquivo:",
 	"import-comment": "Comentário:",
 	"importtext": "Por favor, exporte o arquivo do wiki de origem utilizando a página especial [[Special:Export|exportação de páginas]].\nSalve o arquivo no seu computador e importe-o aqui.",

@@ -2133,8 +2133,6 @@
 	"import-interwiki-history": "Kopijuoti visas istorijos versijas šiam puslapiui",
 	"import-interwiki-templates": "Įtraukti visus šablonus",
 	"import-interwiki-submit": "Importuoti",
-	"import-interwiki-namespace": "Paskirties vardų sritis:",
-	"import-interwiki-rootpage": "Paskirties namų puslapis (pasirinktinai):",
 	"import-upload-filename": "Failo pavadinimas:",
 	"import-comment": "Paaiškinimas:",
 	"importtext": "Prašome eksportuoti iš projekto-šaltinio failo, naudojant [[Special:Export|eksportavimo pagalbininką.]]\nIšsaugokite jį savo kompiuteryje ir įkelkite jį čia.",

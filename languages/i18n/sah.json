@@ -2155,8 +2155,6 @@
 	"import-interwiki-history": "Сирэй туох баар историятын көһөрөргө",
 	"import-interwiki-templates": "Бары халыыптары киллэр",
 	"import-interwiki-submit": "Импортаа",
-	"import-interwiki-namespace": "Бу аат далыгар көһөрөргө:",
-	"import-interwiki-rootpage": "Тирэх сирэйэ (булгуччута суох)",
 	"import-upload-filename": "Билэ аата:",
 	"import-comment": "Хос быһаарыы:",
 	"importtext": "Сирэйи [[Special:Export|экспорт үнүстүрүмүөнүн]] көмөтүнэн бастакы биикиттэн экспортаа. \nБилэни бастаан бэйэҥ көмпүүтэргэр суруй, онтон манна көһөр.",

@@ -2149,8 +2149,6 @@
 	"import-interwiki-history": "Copie aw histerie reveesions fer this page",
 	"import-interwiki-templates": "Incluid aw templates",
 	"import-interwiki-submit": "Import",
-	"import-interwiki-namespace": "Desteenation namespace:",
-	"import-interwiki-rootpage": "Desteenation ruit page (aen optie):",
 	"import-upload-filename": "Filename:",
 	"import-comment": "Comment:",
 	"importtext": "Please export the file fae the soorce wiki uising the [[Special:Export|export utilitie]].\nHain it til yer computer n uplaid it here.",

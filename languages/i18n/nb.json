@@ -2198,8 +2198,6 @@
 	"import-interwiki-history": "Kopier all historikk for denne siden",
 	"import-interwiki-templates": "Inkluder alle maler",
 	"import-interwiki-submit": "Importer",
-	"import-interwiki-namespace": "Målnavnerom:",
-	"import-interwiki-rootpage": "Destinasjonens grunnside (valgfri):",
 	"import-upload-filename": "Filnavn:",
 	"import-comment": "Kommentar:",
 	"importtext": "Importer filen fra kildewikien med [[Special:Export|eksporteringsverktøyet]].\nLagre den på din egen datamaskin og last den opp her.",

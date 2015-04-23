@@ -2214,8 +2214,6 @@
 	"import-interwiki-history": "Volledige geschiedenis van deze pagina ook kopiëren",
 	"import-interwiki-templates": "Alle sjablonen opnemen",
 	"import-interwiki-submit": "Importeren",
-	"import-interwiki-namespace": "Doelnaamruimte:",
-	"import-interwiki-rootpage": "Basispagina voor doel (optioneel):",
 	"import-upload-filename": "Bestandsnaam:",
 	"import-comment": "Opmerking:",
 	"importtext": "Gebruik de [[Special:Export|exportfunctie]] in de wiki waar de informatie vandaan komt.\nSla de uitvoer op uw eigen computer op, en voeg die daarna hier toe.",

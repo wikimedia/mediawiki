@@ -2104,8 +2104,6 @@
 	"import-interwiki-history": "ამ გვერდის ცვლილებათა ისტორიის კოპირება.",
 	"import-interwiki-templates": "ყველა თარგის ჩართვა",
 	"import-interwiki-submit": "იმპორტირება",
-	"import-interwiki-namespace": "სამიზნე სახელთა სივრცე",
-	"import-interwiki-rootpage": "ძირეული გვერდი (არასავალდებულო):",
 	"import-upload-filename": "ფაილის სახელი:",
 	"import-comment": "კომენტარი:",
 	"importtext": "გთხოვთ, მოახდინოთ გვერდის ექსპორტი თავდაპირველი ვიკიდან, [[Special:Export|შესაბამისი ხელსაწყოს]] გამოყენებით. ფაილი შეინახეთ დისკზე, ხოლო შემდეგ ატვირთეთ აქ.",

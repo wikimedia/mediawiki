@@ -2234,8 +2234,6 @@
 	"import-interwiki-history": "Kopiuj całą historię edycji tej strony",
 	"import-interwiki-templates": "Załącz wszystkie szablony",
 	"import-interwiki-submit": "Importuj",
-	"import-interwiki-namespace": "Docelowa przestrzeń nazw:",
-	"import-interwiki-rootpage": "Docelowa strona główna (opcjonalna):",
 	"import-upload-filename": "Nazwa pliku",
 	"import-comment": "Komentarz:",
 	"importtext": "Korzystając na źródłowej wiki z narzędzia [[Special:Export|eksportu]] wyeksportuj plik.\nZapisz go na swoim dysku, a następnie prześlij go tutaj.",

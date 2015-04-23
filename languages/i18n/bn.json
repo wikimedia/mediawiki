@@ -2153,8 +2153,6 @@
 	"import-interwiki-history": "এই পাতার সমস্ত ইতিহাসের সংস্করণের অনুলিপি করা হোক",
 	"import-interwiki-templates": "সকল টেম্পলেট অন্তর্ভুক্ত",
 	"import-interwiki-submit": "আমদানি",
-	"import-interwiki-namespace": "গন্তব্য নামস্থান:",
-	"import-interwiki-rootpage": "মূল পাতা (ঐচ্ছিক):",
 	"import-upload-filename": "ফাইলনাম:",
 	"import-comment": "মন্তব্য:",
 	"importtext": "অনুগ্রহ করে ফাইলটি উৎস উইকি থেকে [[Special:Export|এক্সপোর্ট ইউটিলিটি]] ব্যবহার করে এক্সপোর্ট করুন।\nফাইলটি আপনার কম্পিউটারে সংরক্ষণ করুন এবং এখানে আপলোড করুন।",

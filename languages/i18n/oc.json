@@ -2126,8 +2126,6 @@
 	"import-interwiki-history": "Copiar totas las versions de l'istoric d'aquesta pagina",
 	"import-interwiki-templates": "Enclure totes los modèls",
 	"import-interwiki-submit": "Importar",
-	"import-interwiki-namespace": "Espaci de noms de destinacion :",
-	"import-interwiki-rootpage": "Pagina raiç de destinacion (opcionala):",
 	"import-upload-filename": "Nom del fichièr :",
 	"import-comment": "Comentari :",
 	"importtext": "Exportatz lo fichièr dempuèi lo wiki d’origina en utilizant [[Special:Export|aisina d'exportacion]].\nSalvatz-lo sus vòstre disc dur puèi importatz-lo aicí.",

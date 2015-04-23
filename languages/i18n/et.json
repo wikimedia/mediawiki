@@ -2181,8 +2181,6 @@
 	"import-interwiki-history": "Kopeeri selle lehekülje kogu ajalugu",
 	"import-interwiki-templates": "Liida kõik mallid",
 	"import-interwiki-submit": "Impordi",
-	"import-interwiki-namespace": "Sihtkoha nimeruum:",
-	"import-interwiki-rootpage": "Sihtkoha juurlehekülg (valikuline):",
 	"import-upload-filename": "Failinimi:",
 	"import-comment": "Kommentaar:",
 	"importtext": "Palun kasuta faili allikvikist eksportimiseks [[Special:Export|ekspordivahendit]].\nSalvesta see oma arvutisse ja laadi siia üles.",

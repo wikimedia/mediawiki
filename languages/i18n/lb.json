@@ -2141,8 +2141,6 @@
 	"import-interwiki-history": "Importéier all d'Versioune vun dëser Säit",
 	"import-interwiki-templates": "Mat alle Schablounen",
 	"import-interwiki-submit": "Import",
-	"import-interwiki-namespace": "Zil-Nummraum:",
-	"import-interwiki-rootpage": "Zil-Stamm-Säit (fakultativ):",
 	"import-upload-filename": "Numm vum Fichier:",
 	"import-comment": "Bemierkung:",
 	"importtext": "Exportéiert de Fichier w.e.g. vun der Source-Wiki mat der [[Special:Export|Export-Funktioun]].\nSpäichert en op Ärem Computer of a luet en hei nees erop.",
