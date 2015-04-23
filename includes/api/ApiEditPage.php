@@ -497,7 +497,7 @@ class ApiEditPage extends ApiBase {
 				$r['result'] = 'Success';
 				$r['pageid'] = intval( $titleObj->getArticleID() );
 				$r['title'] = $titleObj->getPrefixedText();
-				$r['contentmodel'] = $titleObj->getContentModel();
+				$r['contentmodel'] = $articleObject->getContentModel();
 				$newRevId = $articleObject->getLatest();
 				if ( $newRevId == $oldRevId ) {
 					$r['nochange'] = true;
