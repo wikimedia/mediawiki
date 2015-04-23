@@ -486,8 +486,6 @@ MWExceptionHandler::installHandler();
 
 require_once "$IP/includes/libs/normal/UtfNormalUtil.php";
 
-$ps_default2 = Profiler::instance()->scopedProfileIn( $fname . '-defaults2' );
-
 if ( defined( 'MW_ENTRY_PHP5' ) ) {
 	wfWarn( 'The ".php5" entry point files are deprecated. Use ".php" instead.' );
 }
@@ -529,8 +527,6 @@ if ( $wgTmpDirectory === false ) {
 // We don't use counters anymore. Left here for extensions still
 // expecting this to exist. Should be removed sometime 1.26 or later.
 $wgDisableCounters = true;
-
-Profiler::instance()->scopedProfileOut( $ps_default2 );
 
 $ps_misc = Profiler::instance()->scopedProfileIn( $fname . '-misc1' );
 
