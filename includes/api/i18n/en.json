@@ -362,7 +362,7 @@
 	"apihelp-query+allfileusages-param-to": "The title of the file to stop enumerating at.",
 	"apihelp-query+allfileusages-param-prefix": "Search for all file titles that begin with this value.",
 	"apihelp-query+allfileusages-param-unique": "Only show distinct file titles. Cannot be used with $1prop=ids.\nWhen used as a generator, yields target pages instead of source pages.",
-	"apihelp-query+allfileusages-param-prop": "Which pieces of information to include:\n;ids:Adds the page ID of the using page (cannot be used with $1unique).\n;title:Adds the title of the file.",
+	"apihelp-query+allfileusages-param-prop": "Which pieces of information to include:\n;ids:Adds the page IDs of the using pages (cannot be used with $1unique).\n;title:Adds the title of the file.",
 	"apihelp-query+allfileusages-param-limit": "How many total items to return.",
 	"apihelp-query+allfileusages-param-dir": "The direction in which to list.",
 	"apihelp-query+allfileusages-example-B": "List file titles, including missing ones, with page IDs they are from, starting at <kbd>B</kbd>.",
