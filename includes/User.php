@@ -843,15 +843,14 @@ class User implements IDBAccessObject {
 	 * @since 1.23
 	 */
 	public function checkPasswordValidity( $password ) {
-		global $wgMinimalPasswordLength, $wgMaximalPasswordLength, $wgContLang;
+		global $wgPasswordPolicy;
 
-		static $blockedLogins = array(
-			'Useruser' => 'Passpass', 'Useruser1' => 'Passpass1', # r75589
-			'Apitestsysop' => 'testpass', 'Apitestuser' => 'testpass' # r75605
+		$upp = new UserPasswordPolicy(
+			$wgPasswordPolicy['policies'],
+			$wgPasswordPolicy['checks']
 		);
 
 		$status = Status::newGood();
-
 		$result = false; //init $result to false for the internal checks
 
 		if ( !Hooks::run( 'isValidPassword', array( $password, &$result, $this ) ) ) {
@@ -860,28 +859,8 @@ class User implements IDBAccessObject {
 		}
 
 		if ( $result === false ) {
-			if ( strlen( $password ) < $wgMinimalPasswordLength ) {
-				$status->error( 'passwordtooshort', $wgMinimalPasswordLength );
-				return $status;
-			} elseif ( strlen( $password ) > $wgMaximalPasswordLength ) {
-				// T64685: Password too long, might cause DoS attack
-				$status->fatal( 'passwordtoolong', $wgMaximalPasswordLength );
-				return $status;
-			} elseif ( $wgContLang->lc( $password ) == $wgContLang->lc( $this->mName ) ) {
-				$status->error( 'password-name-match' );
-				return $status;
-			} elseif ( isset( $blockedLogins[$this->getName()] )
-				&& $password == $blockedLogins[$this->getName()]
-			) {
-				$status->error( 'password-login-forbidden' );
-				return $status;
-			} else {
-				//it seems weird returning a Good status here, but this is because of the
-				//initialization of $result to false above. If the hook is never run or it
-				//doesn't modify $result, then we will likely get down into this if with
-				//a valid password.
-				return $status;
-			}
+			$status->merge( $upp->checkUserPassword( $this, $password ) );
+			return $status;
 		} elseif ( $result === true ) {
 			return $status;
 		} else {
