@@ -530,6 +530,18 @@ if ( $wgTmpDirectory === false ) {
 // expecting this to exist. Should be removed sometime 1.26 or later.
 $wgDisableCounters = true;
 
+if ( $wgMainWANCache === false ) {
+	// Setup a WAN cache from $wgMainCacheType with no relayer.
+	// Sites using multiple datacenters can configure a releyer.
+	$wgMainWANCache = 'mediawiki-main-default';
+	$wgWANObjectCaches[$wgMainWANCache] = array(
+		'class'         => 'WANObjectCache',
+		'cacheId'       => $wgMainCacheType,
+		'pool'          => 'mediawiki-main-default',
+		'relayerConfig' => array( 'class' => 'EventRelayerNull' )
+	);
+}
+
 Profiler::instance()->scopedProfileOut( $ps_default2 );
 
 $ps_misc = Profiler::instance()->scopedProfileIn( $fname . '-misc1' );
