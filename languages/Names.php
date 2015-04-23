@@ -155,6 +155,8 @@
 	'gl' => 'galego',		# Galician
 	'glk' => 'گیلکی',	# Gilaki
 	'gn' => 'Avañe\'ẽ',	# Guaraní, Paraguayan
+	'gom' => 'कोंकणी/Konknni',	# Goan Konkani
+	'gom-deva' => 'कोंकणी',	# Goan Konkani (Devanagari script)
 	'gom-latn' => 'Konknni',	# Goan Konkani (Latin script)
 	'got' => '𐌲𐌿𐍄𐌹𐍃𐌺',	# Gothic
 	'grc' => 'Ἀρχαία ἑλληνικὴ', # Ancient Greek
