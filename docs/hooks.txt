@@ -2232,6 +2232,10 @@ run. Use when page save hooks require the presence of custom tables to ensure
 that tests continue to run properly.
 &$tables: array of table names
 
+'PasswordPoliciesForUser': Alter the effective password policy for a user.
+$user: User object who's policy you are modifying
+&$effectivePolicy: Array of policy statements that apply to this user
+
 'PersonalUrls': Alter the user-specific navigation links (e.g. "my page,
 my talk page, my contributions" etc).
 &$personal_urls: Array of link specifiers (see SkinTemplate.php)

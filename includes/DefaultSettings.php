@@ -4173,6 +4173,59 @@ $wgActiveUserDays = 30;
  */
 
 /**
+ * Password policy for local wiki users. A user's effective policy
+ * is the superset of all policy statements from the policies for the
+ * groups where the user is a member. If more than one group policy
+ * include the same policy statement, the value is the max() of the
+ * values. Note true > false. The 'default' policy group is required,
+ * and serves as the minimum policy for all users. New statements can
+ * be added with UserPasswordPolicy::addPolicyCheckFunctions().
+ * Statements:
+ *	- MinimalPasswordLength - minimum length a user can set
+ *	- MinimumPasswordLengthToLogin - passwords shorter than this will
+ *		not be allowed to login, regardless if it is correct.
+ *	- MaximalPasswordLength - maximum length password a user is allowed
+ *		to attempt. Prevents DoS attacks with pbkdf2.
+ *	- PasswordCannotMatchUsername - Password cannot match username to
+ *	- PasswordCannotMatchBlacklist - Username/password combination cannot
+ *		match a specific, hardcoded blacklist.
+ * @since 1.26
+ */
+$wgPasswordPolicy = array(
+	'policies' => array(
+		'bureaucrat' => array(
+			'MinimalPasswordLength' => 8,
+			'MinimumPasswordLengthToLogin' => 1,
+			'PasswordCannotMatchUsername' => true,
+		),
+		'sysop' => array(
+			'MinimalPasswordLength' => 8,
+			'MinimumPasswordLengthToLogin' => 1,
+			'PasswordCannotMatchUsername' => true,
+		),
+		'bot' => array(
+			'MinimalPasswordLength' => 8,
+			'MinimumPasswordLengthToLogin' => 1,
+			'PasswordCannotMatchUsername' => true,
+		),
+		'default' => array(
+			'MinimalPasswordLength' => 1,
+			'PasswordCannotMatchUsername' => true,
+			'PasswordCannotMatchBlacklist' => true,
+			'MaximalPasswordLength' => 4096,
+		),
+	),
+	'checks' => array(
+		'MinimalPasswordLength' => 'PasswordPolicyChecks::checkMinimalPasswordLength',
+		'MinimumPasswordLengthToLogin' => 'PasswordPolicyChecks::checkMinimumPasswordLengthToLogin',
+		'PasswordCannotMatchUsername' => 'PasswordPolicyChecks::checkPasswordCannotMatchUsername',
+		'PasswordCannotMatchBlacklist' => 'PasswordPolicyChecks::checkPasswordCannotMatchBlacklist',
+		'MaximalPasswordLength' => 'PasswordPolicyChecks::checkMaximalPasswordLength',
+	),
+);
+
+
+/**
  * For compatibility with old installations set to false
  * @deprecated since 1.24 will be removed in future
  */
@@ -4181,8 +4234,9 @@ $wgPasswordSalt = true;
 /**
  * Specifies the minimal length of a user password. If set to 0, empty pass-
  * words are allowed.
+ * @deprecated since 1.26, use $wgPasswordPolicy's MinimalPasswordLength.
  */
-$wgMinimalPasswordLength = 1;
+$wgMinimalPasswordLength = false;
 
 /**
  * Specifies the maximal length of a user password (T64685).
@@ -4193,8 +4247,9 @@ $wgMinimalPasswordLength = 1;
  *
  * @warning Unlike other password settings, user with passwords greater than
  *      the maximum will not be able to log in.
+ * @deprecated since 1.26, use $wgPasswordPolicy's MaximalPasswordLength.
  */
-$wgMaximalPasswordLength = 4096;
+$wgMaximalPasswordLength = false;
 
 /**
  * Specifies if users should be sent to a password-reset form on login, if their
