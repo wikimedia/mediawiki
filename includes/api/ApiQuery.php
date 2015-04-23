@@ -448,7 +448,7 @@ class ApiQuery extends ApiBase {
 			ApiResult::setArrayType( $pages, 'BCarray' );
 
 			if ( $this->mParams['indexpageids'] ) {
-				$pageIDs = array_keys( $pages );
+				$pageIDs = array_keys( ApiResult::stripMetadataNonRecursive( $pages ) );
 				// json treats all map keys as strings - converting to match
 				$pageIDs = array_map( 'strval', $pageIDs );
 				ApiResult::setIndexedTagName( $pageIDs, 'id' );
