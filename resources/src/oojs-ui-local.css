@@ -1,0 +1,7 @@
+/* HACK: Set sane font-size for OOjs UI dialogs, in the most common case. This should be skin's
+   responsibility, but alas our skins tend to have the weirdest font-sizes on body. This shall be
+   removed when we make the MediaWiki skins bundled with tarball sane. (T91152) */
+body > .oo-ui-windowManager {
+	font-size: 12.8px;
+	font-size: 0.8rem;
+}
