@@ -16083,7 +16083,7 @@ div with braces in attribute value
 !! wikitext
 <div title="{}">Foo</div>
 !! html/php
-<div title="&#123;}">Foo</div>
+<div title="&#123;&#125;">Foo</div>
 
 !! html/parsoid
 <div title="{}">Foo</div>
@@ -20625,6 +20625,28 @@ Nested: -{zh-hans:Hi -{zh-cn:China;zh-sg:Singapore;}-;zh-hant:Hello -{zh-tw:Taiw
 # Since Parsoid is starting to emit canonical wikitext for links,
 # [http://example.com http://example.com] will not RT back to that
 # form anymore.
+!! test
+HTML markups with conversion syntax in attribs, nested in other conversion blocks
+!! options
+language=zh variant=zh-cn
+!! wikitext
+-{zh;zh-hans;zh-hant|<span title="-{X}-">A</span>}-
+!! html
+<p><span title="X">A</span>
+</p>
+!! end
+
+!! test
+HTML markups with conversion syntax in attribs, nested in other conversion blocks (not working yet)
+!! options
+language=zh variant=zh-cn disabled
+!! wikitext
+-{<span title="-{X}-">A</span>}-
+!! html
+<p><span title="X">A</span>
+</p>
+!! end
+
 !! test
 Proper conversion of text in external links
 !! options
