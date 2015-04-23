@@ -470,6 +470,15 @@ if ( $wgProfileOnly ) {
 	$wgDebugLogFile = '';
 }
 
+// Backwards compatibility with old password limits
+if ( $wgMinimalPasswordLength !== false ) {
+	$wgPasswordPolicy['policies']['default']['MinimalPasswordLength'] = $wgMinimalPasswordLength;
+}
+
+if ( $wgMaximalPasswordLength !== false ) {
+	$wgPasswordPolicy['policies']['default']['MaximalPasswordLength'] = $wgMaximalPasswordLength;
+}
+
 Profiler::instance()->scopedProfileOut( $ps_default );
 
 // Disable MWDebug for command line mode, this prevents MWDebug from eating up
