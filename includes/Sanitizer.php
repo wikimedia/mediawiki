@@ -1080,6 +1080,7 @@ class Sanitizer {
 			'>'    => '&gt;',   // we've received invalid input
 			'"'    => '&quot;', // which should have been escaped.
 			'{'    => '&#123;',
+			'}'    => '&#125;', // prevent unpaired language conversion syntax
 			'['    => '&#91;',
 			"''"   => '&#39;&#39;',
 			'ISBN' => '&#73;SBN',

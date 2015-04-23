@@ -15556,7 +15556,7 @@ div with braces in attribute value
 !! wikitext
 <div title="{}">Foo</div>
 !! html/php
-<div title="&#123;}">Foo</div>
+<div title="&#123;&#125;">Foo</div>
 
 !! html/parsoid
 <div title="{}">Foo</div>
@@ -19770,6 +19770,28 @@ language=zh variant=zh-hk
 Nested: -{zh-hans:Hi -{zh-cn:China;zh-sg:Singapore;}-;zh-hant:Hello -{zh-tw:Taiwan;zh-hk:H-{ong}- K-{}-ong;}-;}-!
 !! html
 <p>Nested: Hello Hong Kong!
+</p>
+!! end
+
+!! test
+HTML markups with conversion syntax in attribs, nested in other conversion blocks
+!! options
+language=zh variant=zh-cn
+!! wikitext
+-{zh;zh-hans;zh-hant|<span title="-{X}-">A</span>}-
+!! html
+<p><span title="X">A</span>
+</p>
+!! end
+
+!! test
+HTML markups with conversion syntax in attribs, nested in other conversion blocks (not working yet)
+!! options
+language=zh variant=zh-cn disabled
+!! wikitext
+-{<span title="-{X}-">A</span>}-
+!! html
+<p><span title="X">A</span>
 </p>
 !! end
 
