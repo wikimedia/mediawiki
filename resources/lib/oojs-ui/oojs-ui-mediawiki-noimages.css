@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.10.1
+ * OOjs UI v0.11.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-04-27T17:17:17Z
+ * Date: 2015-04-30T01:42:35Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -720,18 +720,17 @@
 .oo-ui-popupTool .oo-ui-popupWidget {
 	/* @noflip */
 	margin-left: 1.25em;
-	font-size: 0.8em;
 }
 .oo-ui-toolGroupTool > .oo-ui-popupToolGroup {
 	margin: 0;
 }
 .oo-ui-toolGroupTool > .oo-ui-popupToolGroup > .oo-ui-popupToolGroup-handle {
-	height: 1.5em;
-	padding: 0.25em;
+	height: 1.875em;
+	padding: 0.3125em;
 }
 .oo-ui-toolGroupTool > .oo-ui-popupToolGroup > .oo-ui-popupToolGroup-handle .oo-ui-iconElement-icon {
-	height: 1.5em;
-	width: 1.5em;
+	height: 1.875em;
+	width: 1.875em;
 	opacity: 0.8;
 }
 .oo-ui-toolGroupTool > .oo-ui-popupToolGroup.oo-ui-labelElement > .oo-ui-popupToolGroup-handle .oo-ui-labelElement-label {
@@ -740,7 +739,7 @@
 .oo-ui-toolGroup {
 	display: inline-block;
 	vertical-align: middle;
-	margin: 0.3em;
+	margin: 0.375em;
 }
 .oo-ui-toolGroup-empty {
 	display: none;
@@ -789,17 +788,16 @@
 	cursor: pointer;
 }
 .oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool > .oo-ui-tool-link {
-	height: 1.5em;
-	padding: 0.25em;
+	height: 1.875em;
+	padding: 0.3125em;
 }
 .oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool > .oo-ui-tool-link .oo-ui-iconElement-icon {
-	height: 1.5em;
-	width: 1.5em;
+	height: 1.875em;
+	width: 1.875em;
 	opacity: 0.8;
 }
 .oo-ui-barToolGroup > .oo-ui-toolGroup-tools > .oo-ui-tool > .oo-ui-tool-link .oo-ui-tool-title {
 	line-height: 2.1em;
-	font-size: 0.8em;
 }
 .oo-ui-barToolGroup.oo-ui-widget-enabled > .oo-ui-toolGroup-tools > .oo-ui-tool.oo-ui-tool-active.oo-ui-widget-enabled {
 	background-color: #eeeeee;
@@ -818,8 +816,8 @@
 }
 .oo-ui-popupToolGroup {
 	position: relative;
-	height: 2em;
-	min-width: 2em;
+	height: 2.5em;
+	min-width: 2.5em;
 }
 .oo-ui-popupToolGroup-handle {
 	display: block;
@@ -871,23 +869,22 @@
 	padding-left: 3em;
 }
 .oo-ui-toolbar-narrow .oo-ui-popupToolGroup {
-	min-width: 1.5em;
+	min-width: 1.875em;
 }
 .oo-ui-popupToolGroup.oo-ui-iconElement {
-	min-width: 2.5em;
+	min-width: 3.125em;
 }
 .oo-ui-toolbar-narrow .oo-ui-popupToolGroup.oo-ui-iconElement {
-	min-width: 2em;
+	min-width: 2.5em;
 }
 .oo-ui-popupToolGroup.oo-ui-indicatorElement.oo-ui-iconElement {
-	min-width: 3.5em;
+	min-width: 4.375em;
 }
 .oo-ui-toolbar-narrow .oo-ui-popupToolGroup.oo-ui-indicatorElement.oo-ui-iconElement {
-	min-width: 3em;
+	min-width: 3.75em;
 }
 .oo-ui-popupToolGroup.oo-ui-labelElement .oo-ui-popupToolGroup-handle .oo-ui-labelElement-label {
 	line-height: 2.6em;
-	font-size: 0.8em;
 	margin: 0 1em;
 }
 .oo-ui-toolbar-narrow .oo-ui-popupToolGroup.oo-ui-labelElement .oo-ui-popupToolGroup-handle .oo-ui-labelElement-label {
@@ -906,42 +903,41 @@
 	margin-right: 1.75em;
 }
 .oo-ui-popupToolGroup-handle .oo-ui-indicatorElement-indicator {
-	width: 0.75em;
-	height: 0.75em;
-	margin: 0.625em;
+	width: 0.9375em;
+	height: 0.9375em;
+	margin: 0.78125em;
 	top: 0;
 	right: 0;
 }
 .oo-ui-toolbar-narrow .oo-ui-popupToolGroup-handle .oo-ui-indicatorElement-indicator {
-	right: -0.25em;
+	right: -0.3125em;
 }
 .oo-ui-popupToolGroup-handle .oo-ui-iconElement-icon {
-	width: 1.5em;
-	height: 1.5em;
-	margin: 0.25em;
+	width: 1.875em;
+	height: 1.875em;
+	margin: 0.3125em;
 	top: 0;
-	left: 0.25em;
+	left: 0.3125em;
 }
 .oo-ui-toolbar-narrow .oo-ui-popupToolGroup-handle .oo-ui-iconElement-icon {
 	left: 0;
 }
 .oo-ui-popupToolGroup-header {
 	line-height: 2.6em;
-	font-size: 0.8em;
 	margin: 0 0.6em;
 	font-weight: bold;
 }
 .oo-ui-popupToolGroup .oo-ui-toolGroup-tools {
-	top: 2em;
+	top: 2.5em;
 	background-color: white;
 }
 .oo-ui-popupToolGroup .oo-ui-tool-link {
-	padding: 0.25em 0 0.25em 0.25em;
+	padding: 0.3125em 0 0.3125em 0.3125em;
 }
 .oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-iconElement-icon {
-	height: 1.5em;
-	width: 1.5em;
-	min-width: 1.5em;
+	height: 1.875em;
+	width: 1.875em;
+	min-width: 1.875em;
 }
 .oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-title {
 	padding-left: 0.5em;
@@ -949,7 +945,6 @@
 .oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-accel,
 .oo-ui-popupToolGroup .oo-ui-tool-link .oo-ui-tool-title {
 	line-height: 2em;
-	font-size: 0.8em;
 }
 .oo-ui-listToolGroup .oo-ui-tool {
 	display: block;
@@ -964,7 +959,7 @@
 	cursor: default;
 }
 .oo-ui-listToolGroup .oo-ui-tool {
-	padding: 0 0.75em 0 0.25em;
+	padding: 0 0.9375em 0 0.3125em;
 }
 .oo-ui-listToolGroup .oo-ui-tool.oo-ui-widget-enabled:hover {
 	background-color: #eeeeee;
@@ -990,14 +985,14 @@
 	opacity: 0.2;
 }
 .oo-ui-listToolGroup .oo-ui-toolGroup-tools {
-	padding: 0.25em 0 0.25em 0;
+	padding: 0.3125em 0 0.3125em 0;
 	border: 1px solid #aaaaaa;
-	border-radius: 0.2em;
-	box-shadow: inset 0 -0.2em 0 0 rgba(0, 0, 0, 0.2), 0 0.1em 0 0 rgba(0, 0, 0, 0.1);
+	border-radius: 0.25em;
+	box-shadow: inset 0 -0.25em 0 0 rgba(0, 0, 0, 0.2), 0 0.125em 0 0 rgba(0, 0, 0, 0.1);
 }
 .oo-ui-menuToolGroup {
 	border: 1px solid #cccccc;
-	border-radius: 0.1em;
+	border-radius: 0.125em;
 }
 .oo-ui-menuToolGroup .oo-ui-tool {
 	display: block;
@@ -1009,18 +1004,18 @@
 	cursor: default;
 }
 .oo-ui-menuToolGroup .oo-ui-popupToolGroup-handle {
-	min-width: 8em;
+	min-width: 10em;
 }
 .oo-ui-toolbar-narrow .oo-ui-menuToolGroup .oo-ui-popupToolGroup-handle {
-	min-width: 6.5em;
+	min-width: 8.125em;
 }
 .oo-ui-menuToolGroup .oo-ui-toolGroup-tools {
 	margin-left: -1px;
-	padding: 0.25em 0 0.25em 0;
+	padding: 0.3125em 0 0.3125em 0;
 	border: 1px solid #aaaaaa;
-	border-radius: 0.2em;
+	border-radius: 0.25em;
 	border-top-left-radius: 0;
-	box-shadow: inset 0 -0.2em 0 0 rgba(0, 0, 0, 0.2), 0 0.1em 0 0 rgba(0, 0, 0, 0.1);
+	box-shadow: inset 0 -0.25em 0 0 rgba(0, 0, 0, 0.2), 0 0.125em 0 0 rgba(0, 0, 0, 0.1);
 }
 .oo-ui-menuToolGroup.oo-ui-widget-enabled:hover {
 	border-color: #aaaaaa;
@@ -1029,7 +1024,7 @@
 	border-color: #aaaaaa;
 }
 .oo-ui-menuToolGroup .oo-ui-tool {
-	padding: 0 1em 0 0.25em;
+	padding: 0 1.25em 0 0.3125em;
 }
 .oo-ui-menuToolGroup .oo-ui-tool-link .oo-ui-iconElement-icon {
 	background-image: none;
@@ -1858,6 +1853,16 @@
 	border-color: #cccccc;
 	box-shadow: inset 0 0 0 0.1em #cccccc;
 }
+.oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid input,
+.oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid textarea {
+	border-color: red;
+	box-shadow: inset 0 0 0 0 red;
+}
+.oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid input:focus,
+.oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-flaggedElement-invalid textarea:focus {
+	border-color: red;
+	box-shadow: inset 0 0 0 0.1em red;
+}
 .oo-ui-textInputWidget.oo-ui-widget-disabled input,
 .oo-ui-textInputWidget.oo-ui-widget-disabled textarea {
 	color: #cccccc;
@@ -2180,7 +2185,6 @@
 }
 .oo-ui-window {
 	background: transparent;
-	font-size: 0.8em;
 }
 .oo-ui-window-frame {
 	-webkit-box-sizing: border-box;

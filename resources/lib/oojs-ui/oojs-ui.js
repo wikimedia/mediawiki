@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.10.1
+ * OOjs UI v0.11.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-04-27T17:17:10Z
+ * Date: 2015-04-30T01:42:23Z
  */
 ( function ( OO ) {
 
@@ -6672,7 +6672,7 @@ OO.ui.Tool.prototype.destroy = function () {
  *     var toolbar = new OO.ui.Toolbar( toolFactory, toolGroupFactory );
  *
  *     // We will be placing status text in this element when tools are used
- *     var $area = $( '<p>' ).css( 'font-size', '0.8em' ).text( 'Toolbar example' );
+ *     var $area = $( '<p>' ).text( 'Toolbar example' );
  *
  *     // Define the tools that we're going to place in our toolbar
  *
@@ -12036,9 +12036,11 @@ OO.ui.RadioInputWidget.prototype.isSelected = function () {
  * @cfg {string} [labelPosition='after'] The position of the inline label relative to that of
  *  the value or placeholder text: `'before'` or `'after'`
  * @cfg {boolean} [required=false] Mark the field as required
- * @cfg {RegExp|string} [validate] Validation pattern, either a regular expression or the
- *  symbolic name of a pattern defined by the class: 'non-empty' (the value cannot be an empty string)
- *  or 'integer' (the value must contain only numbers).
+ * @cfg {RegExp|Function|string} [validate] Validation pattern: when string, a symbolic name of a
+ *  pattern defined by the class: 'non-empty' (the value cannot be an empty string) or 'integer'
+ *  (the value must contain only numbers); when RegExp, a regular expression that must match the
+ *  value for it to be considered valid; when Function, a function receiving the value as parameter
+ *  that must return true, or promise resolving to true, for it to be considered valid.
  */
 OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	// Configuration initialization
@@ -12395,15 +12397,15 @@ OO.ui.TextInputWidget.prototype.select = function () {
 /**
  * Set the validation pattern.
  *
- * The validation pattern is either a regular expression or the symbolic name of a pattern
- * defined by the class: 'non-empty' (the value cannot be an empty string) or 'integer' (the
+ * The validation pattern is either a regular expression, a function, or the symbolic name of a
+ * pattern defined by the class: 'non-empty' (the value cannot be an empty string) or 'integer' (the
  * value must contain only numbers).
  *
- * @param {RegExp|string|null} validate Regular expression or the symbolic name of a
- *  pattern (either ‘integer’ or ‘non-empty’) defined by the class.
+ * @param {RegExp|Function|string|null} validate Regular expression, function, or the symbolic name
+ *  of a pattern (either ‘integer’ or ‘non-empty’) defined by the class.
  */
 OO.ui.TextInputWidget.prototype.setValidation = function ( validate ) {
-	if ( validate instanceof RegExp ) {
+	if ( validate instanceof RegExp || validate instanceof Function ) {
 		this.validate = validate;
 	} else {
 		this.validate = this.constructor.static.validationPatterns[ validate ] || /.*/;
@@ -12426,10 +12428,19 @@ OO.ui.TextInputWidget.prototype.setValidityFlag = function () {
  * This method returns a promise that resolves with a boolean `true` if the current value is
  * considered valid according to the supplied {@link #validate validation pattern}.
  *
- * @return {jQuery.Deferred} A promise that resolves to a boolean `true` if the value is valid.
+ * @return {jQuery.Promise} A promise that resolves to a boolean `true` if the value is valid.
  */
 OO.ui.TextInputWidget.prototype.isValid = function () {
-	return $.Deferred().resolve( !!this.getValue().match( this.validate ) ).promise();
+	if ( this.validate instanceof Function ) {
+		var result = this.validate( this.getValue() );
+		if ( $.isFunction( result.promise ) ) {
+			return result.promise();
+		} else {
+			return $.Deferred().resolve( !!result ).promise();
+		}
+	} else {
+		return $.Deferred().resolve( !!this.getValue().match( this.validate ) ).promise();
+	}
 };
 
 /**
@@ -13433,9 +13444,13 @@ OO.ui.OutlineOptionWidget.prototype.setLevel = function ( level ) {
  * @cfg {number} [width=320] Width of popup in pixels
  * @cfg {number} [height] Height of popup in pixels. Omit to use the automatic height.
  * @cfg {boolean} [anchor=true] Show anchor pointing to origin of popup
- * @cfg {string} [align='center'] Alignment of the popup: `center`, `left`, or `right`.
- *  If the popup is right-aligned, the right edge of the popup is aligned to the anchor.
- *  For left-aligned popups, the left edge is aligned to the anchor.
+ * @cfg {string} [align='center'] Alignment of the popup: `center`, `force-left`, `force-right`, `backwards` or `forwards`.
+ *  If the popup is forced-left the popup body is leaning towards the left. For force-right alignment, the body of the
+ *  popup is leaning towards the right of the screen.
+ *  Using 'backwards' is a logical direction which will result in the popup leaning towards the beginning of the sentence
+ *  in the given language, which means it will flip to the correct positioning in right-to-left languages.
+ *  Using 'forward' will also result in a logical alignment where the body of the popup leans towards the end of the
+ *  sentence in the given language.
  * @cfg {jQuery} [$container] Constrain the popup to the boundaries of the specified container.
  *  See the [OOjs UI docs on MediaWiki][3] for an example.
  *  [3]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Popups#containerExample
@@ -13477,7 +13492,12 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 	this.anchor = null;
 	this.width = config.width !== undefined ? config.width : 320;
 	this.height = config.height !== undefined ? config.height : null;
-	this.align = config.align || 'center';
+	// Validate alignment and transform deprecated values
+	if ( [ 'left', 'right', 'force-left', 'force-right', 'backwards', 'forwards', 'center' ].indexOf( config.align ) > -1 ) {
+		this.align = { left: 'force-right', right: 'force-left' }[ config.align ] || config.align;
+	} else {
+		this.align = 'center';
+	}
 	this.closeButton = new OO.ui.ButtonWidget( { framed: false, icon: 'close' } );
 	this.onMouseDownHandler = this.onMouseDown.bind( this );
 	this.onDocumentKeyDownHandler = this.onDocumentKeyDown.bind( this );
@@ -13693,6 +13713,7 @@ OO.ui.PopupWidget.prototype.setSize = function ( width, height, transition ) {
 OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
 	var popupOffset, originOffset, containerLeft, containerWidth, containerRight,
 		popupLeft, popupRight, overlapLeft, overlapRight, anchorWidth,
+		align = this.align,
 		widget = this;
 
 	if ( !this.$container ) {
@@ -13707,8 +13728,18 @@ OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
 		height: this.height !== null ? this.height : 'auto'
 	} );
 
+	// If we are in RTL, we need to flip the alignment, unless it is center
+	if ( align === 'forwards' || align === 'backwards' ) {
+		if ( this.$container.css( 'direction' ) === 'rtl' ) {
+			align = ( { forwards: 'force-left', backwards: 'force-right' } )[ this.align ];
+		} else {
+			align = ( { forwards: 'force-right', backwards: 'force-left' } )[ this.align ];
+		}
+
+	}
+
 	// Compute initial popupOffset based on alignment
-	popupOffset = this.width * ( { left: 0, center: -0.5, right: -1 } )[ this.align ];
+	popupOffset = this.width * ( { 'force-left': -1, center: -0.5, 'force-right': 0 } )[ align ];
 
 	// Figure out if this will cause the popup to go beyond the edge of the container
 	originOffset = this.$element.offset().left;

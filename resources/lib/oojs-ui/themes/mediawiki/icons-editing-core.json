@@ -1,11 +1,29 @@
 {
 	"prefix": "oo-ui-icon",
 	"intro": "@import '../../../../src/styles/common';",
+	"variants": {
+		"invert": {
+			"color": "#FFFFFF",
+			"global": true
+		},
+		"progressive": {
+			"color": "#347BFF"
+		},
+		"constructive": {
+			"color": "#00AF89"
+		},
+		"destructive": {
+			"color": "#D11D13"
+		},
+		"warning": {
+			"color": "#FF5D00"
+		}
+	},
 	"images": {
 		"edit": { "file": {
 			"ltr": "images/icons/edit-ltr.svg",
 			"rtl": "images/icons/edit-rtl.svg"
-		} },
+		}, "variants": [ "progressive" ] },
 		"editLock": { "file": {
 			"ltr": "images/icons/editLock-ltr.svg",
 			"rtl": "images/icons/editLock-rtl.svg"
