@@ -4172,6 +4172,27 @@ $wgActiveUserDays = 30;
  * @{
  */
 
+$wgPasswordPolicy = array(
+	'checkuser' => array(
+		'MinimalPasswordLength' => 10,
+		'MinimumPasswordLengthToLogin' => 6,
+		'PasswordCannotMatchUsername' => 1,
+	),
+	'sysop' => array(
+		'MinimalPasswordLength' => 8,
+		'MinimumPasswordLengthToLogin' => 1,
+		'PasswordCannotMatchUsername' => 1,
+	),
+	'default' => array(
+		'MinimalPasswordLength' => 1,
+		'PasswordCannotMatchUsername' => 1,  // true
+		'PasswordCannotMatchBlacklist' => 1, // true
+		'MaximalPasswordLength' => 4096, // prevent DoS with pbkdf2
+
+	),
+);
+
+
 /**
  * For compatibility with old installations set to false
  * @deprecated since 1.24 will be removed in future
