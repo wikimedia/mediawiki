@@ -205,9 +205,10 @@
 
 	msg = 'Use mw.loader instead.';
 	mw.log.deprecate( win, 'loadedScripts', loadedScripts, msg );
-	mw.log.deprecate( win, 'importScript', importScript, msg );
 	mw.log.deprecate( win, 'importScriptURI', importScriptURI, msg );
-	mw.log.deprecate( win, 'importStylesheet', importStylesheet, msg );
 	mw.log.deprecate( win, 'importStylesheetURI', importStylesheetURI, msg );
+	// Not quite deprecated yet.
+	win.importScript = importScript;
+	win.importStylesheet = importStylesheet;
 
 }( mediaWiki, jQuery ) );
