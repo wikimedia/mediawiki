@@ -523,9 +523,7 @@ if ( $wgSecureLogin && substr( $wgServer, 0, 2 ) !== '//' ) {
 
 // Now that GlobalFunctions is loaded, set defaults that depend on it.
 if ( $wgTmpDirectory === false ) {
-	$ps_tmpdir = Profiler::instance()->scopedProfileIn( $fname . '-tempDir' );
 	$wgTmpDirectory = wfTempDir();
-	Profiler::instance()->scopedProfileOut( $ps_tmpdir );
 }
 
 // We don't use counters anymore. Left here for extensions still
