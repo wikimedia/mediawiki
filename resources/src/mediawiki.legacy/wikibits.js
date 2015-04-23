@@ -162,8 +162,6 @@
 	 * Wikipage import methods
 	 *
 	 * See https://www.mediawiki.org/wiki/ResourceLoader/Legacy_JavaScript#wikibits.js
-	 *
-	 * @deprecated since 1.17 Use mw.loader instead. Warnings added in 1.26.
 	 */
 
 	function importScript( page ) {
@@ -173,6 +171,9 @@
 		return importScriptURI( uri );
 	}
 
+	/**
+	 * @deprecated since 1.17 Use mw.loader instead. Warnings added in 1.25.
+	 */
 	function importScriptURI( url ) {
 		if ( loadedScripts[url] ) {
 			return null;
@@ -192,6 +193,9 @@
 		return importStylesheetURI( uri );
 	}
 
+	/**
+	 * @deprecated since 1.17 Use mw.loader instead. Warnings added in 1.25.
+	 */
 	function importStylesheetURI( url, media ) {
 		var l = document.createElement( 'link' );
 		l.rel = 'stylesheet';
@@ -205,9 +209,10 @@
 
 	msg = 'Use mw.loader instead.';
 	mw.log.deprecate( win, 'loadedScripts', loadedScripts, msg );
-	mw.log.deprecate( win, 'importScript', importScript, msg );
 	mw.log.deprecate( win, 'importScriptURI', importScriptURI, msg );
-	mw.log.deprecate( win, 'importStylesheet', importStylesheet, msg );
 	mw.log.deprecate( win, 'importStylesheetURI', importStylesheetURI, msg );
+	// Not quite deprecated yet.
+	win.importScript = importScript;
+	win.importStylesheet = importStylesheet;
 
 }( mediaWiki, jQuery ) );
