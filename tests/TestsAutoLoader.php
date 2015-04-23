@@ -49,6 +49,7 @@ $wgAutoloadClasses += array(
 	# tests/phpunit/includes
 	'BlockTest' => "$testDir/phpunit/includes/BlockTest.php",
 	'RevisionStorageTest' => "$testDir/phpunit/includes/RevisionStorageTest.php",
+	'TestingAccessWrapper' => "$testDir/phpunit/includes/TestingAccessWrapper.php",
 	'WikiPageTest' => "$testDir/phpunit/includes/WikiPageTest.php",
 
 	# tests/phpunit/includes/api
