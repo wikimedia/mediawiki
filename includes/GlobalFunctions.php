@@ -27,6 +27,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 use Liuggio\StatsdClient\StatsdClient;
 use Liuggio\StatsdClient\Sender\SocketSender;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Profiler\Profiler;
 
 // Hide compatibility functions from Doxygen
 /// @cond
@@ -1258,7 +1259,7 @@ function wfLogProfilingData() {
 	}
 
 	# Profiling must actually be enabled...
-	if ( $profiler instanceof ProfilerStub ) {
+	if ( $profiler instanceof \Profiler\ProfilerStub ) {
 		return;
 	}
 

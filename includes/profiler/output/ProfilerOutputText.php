@@ -21,13 +21,15 @@
  * @ingroup Profiler
  */
 
+namespace MediaWiki\Profiler\Output;
+
 /**
  * The least sophisticated profiler output class possible, view your source! :)
  *
  * @ingroup Profiler
  * @since 1.25
  */
-class ProfilerOutputText extends ProfilerOutput {
+class Text extends Output {
 	/** @var float Min real time display threshold */
 	protected $thresholdMs;
 

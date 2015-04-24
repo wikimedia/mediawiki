@@ -21,6 +21,8 @@
  * @ingroup Profiler
  */
 
+namespace MediaWiki\Profiler;
+
 /**
  * Class for handling function-scope profiling
  *

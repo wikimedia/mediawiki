@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Profiler;
+
 /**
  * Profiler wrapper for XHProf extension.
  *

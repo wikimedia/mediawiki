@@ -24,6 +24,8 @@
  * @file
  */
 
+use MediaWiki\Profiler\Profiler;
+
 /**
  * @since 1.18
  */
