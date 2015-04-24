@@ -1700,6 +1700,23 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 
+	'mediawiki.widgets' => array(
+		'scripts' => array(
+			'resources/src/mediawiki.widgets/mw.widgets.js',
+			'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.js',
+		),
+		'skinStyles' => array(
+			'default' => 'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.css',
+		),
+		'dependencies' => array(
+			'oojs-ui',
+		),
+		'messages' => array(
+			// …
+		),
+		'targets' => array( 'desktop', 'mobile' ),
+	),
+
 	/* es5-shim */
 	'es5-shim' => array(
 		'scripts' => array(

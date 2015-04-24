@@ -21,6 +21,7 @@
 	"globals": {
 		"mediaWiki": true,
 		"JSON": true,
+		"OO": true,
 		"jQuery": false,
 		"QUnit": false,
 		"sinon": false
