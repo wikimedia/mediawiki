@@ -3502,7 +3502,7 @@
 	"redirect-text": "Inside fieldset for [[Special:Redirect]]",
 	"redirect-summary": "Shown at top of [[Special:Redirect]]",
 	"redirect-submit": "Button label in [[Special:Redirect]].\n{{Identical|Go}}",
-	"redirect-lookup": "First field label in [[Special:Redirect]].\n\nFollowed by the select box which has the following options:\n* {{msg-mw|Redirect-user}}\n* {{msg-mw|Redirect-page}}\n* {{msg-mw|Redirect-revision}}\n* {{msg-mw|Redirect-file}}",
+	"redirect-lookup": "First field label in [[Special:Redirect]].\n\nFollowed by the select box which has the following options:\n* {{msg-mw|Redirect-user}}\n* {{msg-mw|Redirect-page}}\n* {{msg-mw|Redirect-revision}}\n* {{msg-mw|Redirect-file}}\n{{Identical|Lookup}}",
 	"redirect-value": "Second field label in [[Special:Redirect]]\n{{Identical|Value}}",
 	"redirect-user": "Description of lookup type for [[Special:Redirect]].\n{{Identical|User ID}}",
 	"redirect-page": "Description of lookup type for [[Special:Redirect]].\n{{Identical|Page ID}}",
