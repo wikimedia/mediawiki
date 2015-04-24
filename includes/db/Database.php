@@ -69,6 +69,8 @@ abstract class DatabaseBase implements IDatabase {
 	protected $mLBInfo = array();
 	protected $mDefaultBigSelects = null;
 	protected $mSchemaVars = false;
+	/** @var array */
+	protected $mSessionVars = array();
 
 	protected $preparedArgs;
 
@@ -813,6 +815,8 @@ abstract class DatabaseBase implements IDatabase {
 			}
 		}
 
+		$this->mSessionVars = $params['variables'];
+
 		/** Get the default table prefix*/
 		if ( $tablePrefix == 'get from global' ) {
 			$this->mTablePrefix = $wgDBprefix;
@@ -926,6 +930,7 @@ abstract class DatabaseBase implements IDatabase {
 			$p['password'] = isset( $p['password'] ) ? $p['password'] : false;
 			$p['dbname'] = isset( $p['dbname'] ) ? $p['dbname'] : false;
 			$p['flags'] = isset( $p['flags'] ) ? $p['flags'] : 0;
+			$p['variables'] = isset( $p['variables'] ) ? $p['variables'] : array();
 			$p['tablePrefix'] = isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : 'get from global';
 			$p['schema'] = isset( $p['schema'] ) ? $p['schema'] : $defaultSchemas[$dbType];
 			$p['foreign'] = isset( $p['foreign'] ) ? $p['foreign'] : false;
