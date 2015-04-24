@@ -267,21 +267,24 @@ class SpecialActiveUsers extends SpecialPage {
 		$out->wrapWikiMsg( "<div class='mw-activeusers-intro'>\n$1\n</div>",
 			array( 'activeusers-intro', $this->getLanguage()->formatNum( $days ) ) );
 
-		// Get the timestamp of the last cache update
+		// Mention the level of cache staleness...
 		$dbr = wfGetDB( DB_SLAVE, 'recentchanges' );
-		$cTime = $dbr->selectField( 'querycache_info',
-			'qci_timestamp',
-			array( 'qci_type' => 'activeusers' )
-		);
-
-		$secondsOld = $cTime
-			? time() - wfTimestamp( TS_UNIX, $cTime )
-			: $days * 86400; // fully stale :)
-
-		if ( $secondsOld > 0 ) {
-			// Mention the level of staleness
-			$out->addWikiMsg( 'cachedspecial-viewing-cached-ttl',
+		$rcMax = $dbr->selectField( 'recentchanges', 'MAX(rc_timestamp)' );
+		if ( $rcMax ) {
+			$cTime = $dbr->selectField( 'querycache_info',
+				'qci_timestamp',
+				array( 'qci_type' => 'activeusers' )
+			);
+			if ( $cTime ) {
+				$secondsOld = wfTimestamp( TS_UNIX, $rcMax ) - wfTimestamp( TS_UNIX, $cTime );
+			} else {
+				$rcMin = $dbr->selectField( 'recentchanges', 'MIN(rc_timestamp)' );
+				$secondsOld = time() - wfTimestamp( TS_UNIX, $rcMin );
+			}
+			if ( $secondsOld > 0 ) {
+				$out->addWikiMsg( 'cachedspecial-viewing-cached-ttl',
 				$this->getLanguage()->formatDuration( $secondsOld ) );
+			}
 		}
 
 		$up = new ActiveUsersPager( $this->getContext(), null, $par );
