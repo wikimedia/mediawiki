@@ -1004,28 +1004,6 @@ class FormatMetadata extends ContextSource {
 	}
 
 	/**
-	 * Flatten an array, using the user language for any messages.
-	 *
-	 * @param array $vals Array of values
-	 * @param string $type Type of array (either lang, ul, ol).
-	 *   lang = language assoc array with keys being the lang code
-	 *   ul = unordered list, ol = ordered list
-	 *   type can also come from the '_type' member of $vals.
-	 * @param bool $noHtml If to avoid returning anything resembling HTML.
-	 *   (Ugly hack for backwards compatibility with old MediaWiki).
-	 * @param bool|IContextSource $context
-	 * @return string Single value (in wiki-syntax).
-	 */
-	public static function flattenArray( $vals, $type = 'ul', $noHtml = false, $context = false ) {
-		$obj = new FormatMetadata;
-		if ( $context ) {
-			$obj->setContext( $context );
-		}
-
-		return $obj->flattenArrayReal( $vals, $type, $noHtml );
-	}
-
-	/**
 	 * A function to collapse multivalued tags into a single value.
 	 * This turns an array of (for example) authors into a bulleted list.
 	 *
