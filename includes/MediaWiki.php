@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Profiler\Profiler;
 
 /**
  * The MediaWiki class is the helper class for the index.php entry point.

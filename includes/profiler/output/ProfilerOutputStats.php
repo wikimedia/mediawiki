@@ -22,6 +22,8 @@
  * @ingroup Profiler
  */
 
+namespace MediaWiki\Profiler\Output;
+
 /**
  * ProfilerOutput class that flushes profiling data to the profiling
  * context's stats buffer.
@@ -29,7 +31,7 @@
  * @ingroup Profiler
  * @since 1.25
  */
-class ProfilerOutputStats extends ProfilerOutput {
+class Stats extends Output {
 
 	/**
 	 * Flush profiling data to the current profiling context's stats buffer.

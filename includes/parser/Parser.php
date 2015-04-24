@@ -21,6 +21,8 @@
  * @ingroup Parser
  */
 
+use MediaWiki\Profiler\SectionProfiler;
+
 /**
  * @defgroup Parser Parser
  */

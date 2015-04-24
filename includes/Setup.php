@@ -24,6 +24,8 @@
  * @file
  */
 
+use MediaWiki\Profiler\Profiler;
+
 /**
  * This file is not a valid entry point, perform no further processing unless
  * MEDIAWIKI is defined

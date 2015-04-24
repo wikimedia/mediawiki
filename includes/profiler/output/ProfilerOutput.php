@@ -19,12 +19,14 @@
  * @ingroup Profiler
  */
 
+namespace MediaWiki\Profiler\Output;
+
 /**
  * Base class for profiling output
  *
  * Since 1.25
  */
-abstract class ProfilerOutput {
+abstract class Output {
 	/** @var Profiler */
 	protected $collector;
 	/** @var array Configuration of $wgProfiler */
