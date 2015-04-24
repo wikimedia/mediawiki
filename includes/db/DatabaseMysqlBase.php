@@ -132,6 +132,15 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		if ( is_string( $wgSQLMode ) ) {
 			$set[] = 'sql_mode = ' . $this->addQuotes( $wgSQLMode );
 		}
+		// Set any custom settings defined by site config
+		// (e.g. https://dev.mysql.com/doc/refman/4.1/en/innodb-parameters.html)
+		foreach ( $this->mSessionVars as $var => $val ) {
+			// Escape strings but not numbers to avoid MySQL complaining
+			if ( !is_int( $val ) && !is_float( $val ) ) {
+				$val = $this->addQuotes( $val );
+			}
+			$set[] = $this->addIdentifierQuotes( $var ) . ' = ' . $val;
+		}
 
 		if ( $set ) {
 			// Use doQuery() to avoid opening implicit transactions (DBO_TRX)
