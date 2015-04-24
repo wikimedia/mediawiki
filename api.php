@@ -1,4 +1,5 @@
 <?php
+echo "Helo";
 /**
  * This file is the entry point for all API queries.
  *
