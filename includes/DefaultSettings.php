@@ -2170,15 +2170,15 @@ $wgMainWANCache = CACHE_NONE;
 $wgWANObjectCaches = array(
 	CACHE_NONE => array(
 		'class'         => 'WANObjectCache',
-		'pool'          => 'mediawiki-main-none',
 		'cacheId'       => CACHE_NONE,
+		'pool'          => 'mediawiki-main-none',
 		'relayerConfig' => array( 'class' => 'EventRelayerNull' )
 	)
 	/* Example of a simple single data-center cache:
 	'memcached-php' => array(
 		'class'         => 'WANObjectCache',
-		'pool'          => 'mediawiki-main-memcached',
 		'cacheId'       => 'memcached-php',
+		'pool'          => 'mediawiki-main-memcached',
 		'relayerConfig' => array( 'class' => 'EventRelayerNull' )
 	)
 	*/
