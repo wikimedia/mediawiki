@@ -22,6 +22,9 @@
  * @defgroup Profiler Profiler
  */
 
+namespace MediaWiki\Profiler;
+use ScopedCallback;
+
 /**
  * Profiler base class that defines the interface and some trivial
  * functionality
@@ -62,7 +65,7 @@ abstract class Profiler {
 			global $wgProfiler, $wgProfileLimit;
 
 			$params = array(
-				'class'     => 'ProfilerStub',
+				'class'     => 'MediaWiki\\Profiler\\ProfilerStub',
 				'sampling'  => 1,
 				'threshold' => $wgProfileLimit,
 				'output'    => array(),

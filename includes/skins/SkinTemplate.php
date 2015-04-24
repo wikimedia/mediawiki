@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Profiler\Profiler;
+
 /**
  * Base class for template-based skins.
  *

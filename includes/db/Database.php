@@ -25,6 +25,8 @@
  * @ingroup Database
  */
 
+use MediaWiki\Profiler\Profiler;
+
 /**
  * Interface for classes that implement or wrap DatabaseBase
  * @ingroup Database

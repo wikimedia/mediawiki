@@ -21,6 +21,8 @@
  * @ingroup Cache
  */
 
+use MediaWiki\Profiler\TransactionProfiler;
+
 /**
  * Class to store objects in the database
  *

@@ -21,6 +21,8 @@
  * @ingroup Profiler
  */
 
+namespace MediaWiki\Profiler\Output;
+
 /**
  * ProfilerSimpleUDP class, that sends out messages for 'udpprofile' daemon
  * (see http://git.wikimedia.org/tree/operations%2Fsoftware.git/master/udpprofile)
@@ -28,7 +30,7 @@
  * @ingroup Profiler
  * @since 1.25
  */
-class ProfilerOutputUdp extends ProfilerOutput {
+class Udp extends Output {
 	/** @var int port to send profiling data to */
 	private $port = 3811;
 
