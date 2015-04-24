@@ -1,0 +1,10 @@
+/*!
+ * MediaWiki Widgets – TitleInputWidget styles.
+ *
+ * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
+ * @license The MIT License (MIT); see LICENSE.txt
+ */
+
+.mw-widget-TitleInputWidget {
+	width:30em;
+}
