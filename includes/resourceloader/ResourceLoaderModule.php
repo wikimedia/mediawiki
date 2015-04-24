@@ -520,6 +520,12 @@ abstract class ResourceLoaderModule {
 
 		wfDebugLog( 'resourceloader', __METHOD__ . ": New definition for module "
 			. "{$this->getName()} in context \"{$context->getHash()}\"" );
+		// WMF logging for T94810
+		global $wgRequest;
+		if ( isset( $wgRequest ) && $context->getUser() ) {
+			wfDebugLog( 'resourceloader', __METHOD__ . ": Request with user parameter in "
+			. "context \"{$context->getHash()}\" from " . $wgRequest->getRequestURL() );
+		}
 
 		$timestamp = time();
 		$cache->set( $key, $timestamp );
