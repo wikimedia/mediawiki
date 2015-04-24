@@ -1,4 +1,4 @@
-.PHONY: help test phpunit install coverage warning destructive parser noparser safe databaseless list-groups
+.PHONY: help test phpunit coverage warning destructive parser noparser safe databaseless list-groups
 .DEFAULT: warning
 
 SHELL = /bin/sh
@@ -34,9 +34,6 @@ destructive: phpunit
 
 phpunit:
 	${PU}
-
-install:
-	./install-phpunit.sh
 
 tap:
 	${PU} --tap
