@@ -21,6 +21,8 @@
  * @ingroup Database
  */
 
+use MediaWiki\Profiler\Profiler;
+
 /**
  * Database load balancing object
  *

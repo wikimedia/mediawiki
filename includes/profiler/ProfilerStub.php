@@ -21,6 +21,8 @@
  * @ingroup Profiler
  */
 
+namespace MediaWiki\Profiler;
+
 /**
  * Stub profiler that does nothing
  *

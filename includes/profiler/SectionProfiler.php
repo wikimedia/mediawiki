@@ -22,6 +22,9 @@
  * @author Aaron Schulz
  */
 
+namespace MediaWiki\Profiler;
+use ScopedCallback;
+
 /**
  * Custom PHP profiler for parser/DB type section names that xhprof/xdebug can't handle
  *

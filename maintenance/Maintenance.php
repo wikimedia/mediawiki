@@ -39,6 +39,7 @@ define( 'DO_MAINTENANCE', RUN_MAINTENANCE_IF_MAIN ); // original name, harmless
 $maintClass = false;
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Profiler\Profiler;
 
 /**
  * Abstract maintenance class for quickly writing and churning out

@@ -25,6 +25,8 @@
  * @defgroup HTTP HTTP
  */
 
+use MediaWiki\Profiler\Profiler;
+
 /**
  * Various HTTP related functions
  * @ingroup HTTP

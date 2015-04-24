@@ -21,13 +21,15 @@
  * @ingroup Profiler
  */
 
+namespace MediaWiki\Profiler\Output;
+
 /**
  * Profiler dumping output in xhprof dump file
  * @ingroup Profiler
  *
  * @since 1.25
  */
-class ProfilerOutputDump extends ProfilerOutput {
+class Dump extends Output {
 
 	protected $suffix = ".xhprof";
 

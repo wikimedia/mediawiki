@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Profiler\Profiler;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 

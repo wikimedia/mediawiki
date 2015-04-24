@@ -21,13 +21,15 @@
  * @ingroup Profiler
  */
 
+namespace MediaWiki\Profiler\Output;
+
 /**
  * Logs profiling data into the local DB
  *
  * @ingroup Profiler
  * @since 1.25
  */
-class ProfilerOutputDb extends ProfilerOutput {
+class Db extends Output {
 	/** @var bool Whether to store host data with profiling calls */
 	private $perHost = false;
 

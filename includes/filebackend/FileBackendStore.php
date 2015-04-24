@@ -22,6 +22,8 @@
  * @author Aaron Schulz
  */
 
+use MediaWiki\Profiler\Profiler;
+
 /**
  * @brief Base class for all backends using particular storage medium.
  *

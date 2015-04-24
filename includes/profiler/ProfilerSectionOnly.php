@@ -18,6 +18,8 @@
  * @file
  */
 
+namespace MediaWiki\Profiler;
+
 /**
  * Profiler that only tracks explicit profiling sections
  *
