@@ -1898,7 +1898,7 @@
 	"protect-othertime": "Другое время:",
 	"protect-othertime-op": "другое время",
 	"protect-existing-expiry": "Текущее время окончания: $2, $3",
-	"protect-existing-expiry-infinity": "Текущее время окончания: бесконечно",
+	"protect-existing-expiry-infinity": "Текущее время окончания: бессрочно",
 	"protect-otherreason": "Другая причина/дополнение:",
 	"protect-otherreason-op": "Другая причина",
 	"protect-dropdown": "* Типовые причины защиты\n** частый вандализм\n** чрезмерный спам\n** непродуктивная война правок\n** популярная страница",

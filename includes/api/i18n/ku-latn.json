@@ -4,7 +4,10 @@
 			"George Animal"
 		]
 	},
+	"apihelp-block-param-reason": "Sedemê bo astengkirinê.",
+	"apihelp-createaccount-param-name": "Navê bikarhêner.",
 	"apihelp-delete-description": "Rûpelekê jê bibe.",
+	"apihelp-edit-example-edit": "Rûpelekê biguehrîne.",
 	"apihelp-expandtemplates-param-title": "Sernavê rûpelê.",
 	"apihelp-tag-param-reason": "Sedemê bo guherandinê."
 }

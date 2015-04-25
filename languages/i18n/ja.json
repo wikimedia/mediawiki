@@ -1669,6 +1669,7 @@
 	"logempty": "該当する記録はありません。",
 	"log-title-wildcard": "この文字列で始まるページ名を検索",
 	"showhideselectedlogentries": "選択した記録項目を表示/非表示",
+	"log-edit-tags": "選択した記録項目のタグを編集",
 	"allpages": "全ページ",
 	"nextpage": "次のページ ($1)",
 	"prevpage": "前のページ ($1)",
