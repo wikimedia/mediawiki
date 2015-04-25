@@ -724,7 +724,6 @@ class ContribsPager extends ReverseChronologicalPager {
 			$limit,
 			$descending
 		);
-		$pager = $this;
 
 		/*
 		 * This hook will allow extensions to add in additional queries, so they can get their data
@@ -749,7 +748,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		) );
 		Hooks::run(
 			'ContribsPager::reallyDoQuery',
-			array( &$data, $pager, $offset, $limit, $descending )
+			array( &$data, $this, $offset, $limit, $descending )
 		);
 
 		$result = array();

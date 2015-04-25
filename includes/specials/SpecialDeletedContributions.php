@@ -88,15 +88,13 @@ class DeletedContribsPager extends IndexPager {
 	 * @return ResultWrapper
 	 */
 	function reallyDoQuery( $offset, $limit, $descending ) {
-		$pager = $this;
-
 		$data = array( parent::reallyDoQuery( $offset, $limit, $descending ) );
 
 		// This hook will allow extensions to add in additional queries, nearly
 		// identical to ContribsPager::reallyDoQuery.
 		Hooks::run(
 			'DeletedContribsPager::reallyDoQuery',
-			array( &$data, $pager, $offset, $limit, $descending )
+			array( &$data, $this, $offset, $limit, $descending )
 		);
 
 		$result = array();

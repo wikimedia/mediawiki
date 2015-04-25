@@ -34,11 +34,11 @@ class SiteImporterTest extends PHPUnit_Framework_TestCase {
 	private function newSiteImporter( array $expectedSites, $errorCount ) {
 		$store = $this->getMock( 'SiteStore' );
 
-		$self = $this;
+		$that = $this;
 		$store->expects( $this->once() )
 			->method( 'saveSites' )
-			->will( $this->returnCallback( function ( $sites ) use ( $expectedSites, $self ) {
-				$self->assertSitesEqual( $expectedSites, $sites );
+			->will( $this->returnCallback( function ( $sites ) use ( $expectedSites, $that ) {
+				$that->assertSitesEqual( $expectedSites, $sites );
 			} ) );
 
 		$store->expects( $this->any() )

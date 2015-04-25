@@ -235,16 +235,16 @@ class SwiftFileBackend extends FileBackendStore {
 			'body' => $params['content']
 		) );
 
-		$be = $this;
+		$that = $this;
 		$method = __METHOD__;
-		$handler = function ( array $request, Status $status ) use ( $be, $method, $params ) {
+		$handler = function ( array $request, Status $status ) use ( $that, $method, $params ) {
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $request['response'];
 			if ( $rcode === 201 ) {
 				// good
 			} elseif ( $rcode === 412 ) {
 				$status->fatal( 'backend-fail-contenttype', $params['dst'] );
 			} else {
-				$be->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
+				$that->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
 			}
 		};
 
@@ -298,16 +298,16 @@ class SwiftFileBackend extends FileBackendStore {
 			'body' => $handle // resource
 		) );
 
-		$be = $this;
+		$that = $this;
 		$method = __METHOD__;
-		$handler = function ( array $request, Status $status ) use ( $be, $method, $params ) {
+		$handler = function ( array $request, Status $status ) use ( $that, $method, $params ) {
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $request['response'];
 			if ( $rcode === 201 ) {
 				// good
 			} elseif ( $rcode === 412 ) {
 				$status->fatal( 'backend-fail-contenttype', $params['dst'] );
 			} else {
-				$be->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
+				$that->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
 			}
 		};
 
@@ -347,16 +347,16 @@ class SwiftFileBackend extends FileBackendStore {
 			) + $this->sanitizeHdrs( $params ), // extra headers merged into object
 		) );
 
-		$be = $this;
+		$that = $this;
 		$method = __METHOD__;
-		$handler = function ( array $request, Status $status ) use ( $be, $method, $params ) {
+		$handler = function ( array $request, Status $status ) use ( $that, $method, $params ) {
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $request['response'];
 			if ( $rcode === 201 ) {
 				// good
 			} elseif ( $rcode === 404 ) {
 				$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
 			} else {
-				$be->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
+				$that->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
 			}
 		};
 
@@ -405,9 +405,9 @@ class SwiftFileBackend extends FileBackendStore {
 			);
 		}
 
-		$be = $this;
+		$that = $this;
 		$method = __METHOD__;
-		$handler = function ( array $request, Status $status ) use ( $be, $method, $params ) {
+		$handler = function ( array $request, Status $status ) use ( $that, $method, $params ) {
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $request['response'];
 			if ( $request['method'] === 'PUT' && $rcode === 201 ) {
 				// good
@@ -416,7 +416,7 @@ class SwiftFileBackend extends FileBackendStore {
 			} elseif ( $rcode === 404 ) {
 				$status->fatal( 'backend-fail-move', $params['src'], $params['dst'] );
 			} else {
-				$be->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
+				$that->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
 			}
 		};
 
@@ -446,9 +446,9 @@ class SwiftFileBackend extends FileBackendStore {
 			'headers' => array()
 		) );
 
-		$be = $this;
+		$that = $this;
 		$method = __METHOD__;
-		$handler = function ( array $request, Status $status ) use ( $be, $method, $params ) {
+		$handler = function ( array $request, Status $status ) use ( $that, $method, $params ) {
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $request['response'];
 			if ( $rcode === 204 ) {
 				// good
@@ -457,7 +457,7 @@ class SwiftFileBackend extends FileBackendStore {
 					$status->fatal( 'backend-fail-delete', $params['src'] );
 				}
 			} else {
-				$be->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
+				$that->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
 			}
 		};
 
@@ -505,16 +505,16 @@ class SwiftFileBackend extends FileBackendStore {
 			'headers' => $metaHdrs + $customHdrs
 		) );
 
-		$be = $this;
+		$that = $this;
 		$method = __METHOD__;
-		$handler = function ( array $request, Status $status ) use ( $be, $method, $params ) {
+		$handler = function ( array $request, Status $status ) use ( $that, $method, $params ) {
 			list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $request['response'];
 			if ( $rcode === 202 ) {
 				// good
 			} elseif ( $rcode === 404 ) {
 				$status->fatal( 'backend-fail-describe', $params['src'] );
 			} else {
-				$be->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
+				$that->onError( $status, $method, $params, $rerr, $rcode, $rdesc );
 			}
 		};
 

@@ -1603,21 +1603,21 @@ class LocalFile extends File {
 
 		// Hack: the lock()/unlock() pair is nested in a transaction so the locking is not
 		// tied to BEGIN/COMMIT. To avoid slow purges in the transaction, move them outside.
-		$file = $this;
+		$that = $this;
 		$this->getRepo()->getMasterDB()->onTransactionIdle(
-			function () use ( $file, $archiveNames ) {
+			function () use ( $that, $archiveNames ) {
 				global $wgUseSquid;
 
-				$file->purgeEverything();
+				$that->purgeEverything();
 				foreach ( $archiveNames as $archiveName ) {
-					$file->purgeOldThumbnails( $archiveName );
+					$that->purgeOldThumbnails( $archiveName );
 				}
 
 				if ( $wgUseSquid ) {
 					// Purge the squid
 					$purgeUrls = array();
 					foreach ( $archiveNames as $archiveName ) {
-						$purgeUrls[] = $file->getArchiveUrl( $archiveName );
+						$purgeUrls[] = $that->getArchiveUrl( $archiveName );
 					}
 					SquidUpdate::purge( $purgeUrls );
 				}
