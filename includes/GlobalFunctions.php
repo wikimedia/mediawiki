@@ -1346,9 +1346,14 @@ function wfReadOnlyReason() {
 		}
 		// Callers use this method to be aware that data presented to a user
 		// may be very stale and thus allowing submissions can be problematic.
-		if ( $wgReadOnly === false && wfGetLB()->getLaggedSlaveMode() ) {
+		try {
+			if ( $wgReadOnly === false && wfGetLB()->getLaggedSlaveMode() ) {
+				$wgReadOnly = 'The database has been automatically locked ' .
+					'while the slave database servers catch up to the master';
+			}
+		} catch ( DBConnectionError $e ) {
 			$wgReadOnly = 'The database has been automatically locked ' .
-				'while the slave database servers catch up to the master';
+				'until the slave database servers become available';
 		}
 	}
 
