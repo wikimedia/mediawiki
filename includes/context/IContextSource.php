@@ -132,7 +132,7 @@ interface IContextSource {
 	public function getStats();
 
 	/**
-	 * Get a Message object with context set
+	 * Get a Message object with context set.  See wfMessage for parameters.
 	 *
 	 * @return Message
 	 */
