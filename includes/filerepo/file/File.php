@@ -1241,11 +1241,11 @@ abstract class File implements IDBAccessObject {
 		// Thumbnailing a very large file could result in network saturation if
 		// everyone does it at once.
 		if ( $this->getSize() >= 1e7 ) { // 10MB
-			$that = $this;
+			$file = $this;
 			$work = new PoolCounterWorkViaCallback( 'GetLocalFileCopy', sha1( $this->getName() ),
 				array(
-					'doWork' => function () use ( $that ) {
-						return $that->getLocalRefPath();
+					'doWork' => function () use ( $file ) {
+						return $file->getLocalRefPath();
 					}
 				)
 			);
