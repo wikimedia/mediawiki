@@ -3704,9 +3704,9 @@ class User implements IDBAccessObject {
 		// T95839: clear the cache again post-commit to reduce race conditions
 		// where stale values are written back to the cache by other threads.
 		// Note: this *still* doesn't deal with REPEATABLE-READ snapshot lag...
-		$that = $this;
-		$dbw->onTransactionIdle( function() use ( $that ) {
-			$that->clearSharedCache();
+		$user = $this;
+		$dbw->onTransactionIdle( function() use ( $user ) {
+			$user->clearSharedCache();
 		} );
 	}
 
@@ -4805,9 +4805,9 @@ class User implements IDBAccessObject {
 	 * Deferred version of incEditCountImmediate()
 	 */
 	public function incEditCount() {
-		$that = $this;
-		wfGetDB( DB_MASTER )->onTransactionPreCommitOrIdle( function() use ( $that ) {
-			$that->incEditCountImmediate();
+		$user = $this;
+		wfGetDB( DB_MASTER )->onTransactionPreCommitOrIdle( function() use ( $user ) {
+			$user->incEditCountImmediate();
 		} );
 	}
 

@@ -6377,9 +6377,9 @@ class Parser {
 		}
 		$this->mInParse = true;
 
-		$that = $this;
-		$recursiveCheck = new ScopedCallback( function() use ( $that ) {
-			$that->mInParse = false;
+		$parser = $this;
+		$recursiveCheck = new ScopedCallback( function() use ( $parser ) {
+			$parser->mInParse = false;
 		} );
 
 		return $recursiveCheck;
