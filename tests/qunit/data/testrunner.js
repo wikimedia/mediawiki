@@ -165,13 +165,6 @@
 	}
 
 	/**
-	 * Test environment recommended for all QUnit test modules
-	 *
-	 * Whether to log environment changes to the console
-	 */
-	QUnit.config.urlConfig.push( 'mwlogenv' );
-
-	/**
 	 * Reset mw.config and others to a fresh copy of the live config for each test(),
 	 * and restore it back to the live one afterwards.
 	 * @param localEnv {Object} [optional]
@@ -179,7 +172,7 @@
 	 * </code>
 	 */
 	QUnit.newMwEnvironment = ( function () {
-		var warn, error, log, liveConfig, liveMessages,
+		var warn, error, liveConfig, liveMessages,
 			ajaxRequests = [];
 
 		liveConfig = mw.config.values;
@@ -230,8 +223,6 @@
 			ajaxRequests.push( { xhr: jqXHR, options: ajaxOptions } );
 		}
 
-		log = QUnit.urlParams.mwlogenv ? mw.log : function () {};
-
 		return function ( localEnv ) {
 			localEnv = $.extend( {
 				// QUnit
@@ -244,8 +235,6 @@
 
 			return {
 				setup: function () {
-					log( 'MwEnvironment> SETUP    for "' + QUnit.config.current.module
-						+ ': ' + QUnit.config.current.testName + '"' );
 
 					// Greetings, mock environment!
 					mw.config.values = freshConfigCopy( localEnv.config );
@@ -261,8 +250,6 @@
 
 				teardown: function () {
 					var timers, active;
-					log( 'MwEnvironment> TEARDOWN for "' + QUnit.config.current.module
-						+ ': ' + QUnit.config.current.testName + '"' );
 
 					localEnv.teardown.call( this );
 
