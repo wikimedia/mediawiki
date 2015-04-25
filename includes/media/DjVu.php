@@ -137,17 +137,6 @@ class DjVuHandler extends ImageHandler {
 	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
 		global $wgDjvuRenderer, $wgDjvuPostProcessor;
 
-		// Fetch XML and check it, to give a more informative error message than the one which
-		// normaliseParams will inevitably give.
-		$xml = $image->getMetadata();
-		if ( !$xml ) {
-			$width = isset( $params['width'] ) ? $params['width'] : 0;
-			$height = isset( $params['height'] ) ? $params['height'] : 0;
-
-			return new MediaTransformError( 'thumbnail_error', $width, $height,
-				wfMessage( 'djvu_no_xml' )->text() );
-		}
-
 		if ( !$this->normaliseParams( $image, $params ) ) {
 			return new TransformParameterError( $params );
 		}
