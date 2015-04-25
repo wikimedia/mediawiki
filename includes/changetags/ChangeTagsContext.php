@@ -96,7 +96,8 @@ class ChangeTagsContext {
 	 * @since 1.26
 	 */
 	public function getDefined() {
-		return array_merge( $this->getStored(), $this->getRegistered() );
+		global $wgCoreTags;
+		return array_merge( $this->getStored(), $this->getRegistered(), $wgCoreTags );
 	}
 
 	/**
@@ -229,7 +230,8 @@ class ChangeTagsContext {
 	 * @since 1.26
 	 */
 	public static function definedTags() {
-		return array_merge( self::storedTags(), self::registeredTags() );
+		global $wgCoreTags;
+		return array_merge( self::storedTags(), self::registeredTags(), $wgCoreTags );
 	}
 
 	/**

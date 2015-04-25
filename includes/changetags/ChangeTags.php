@@ -89,8 +89,8 @@ class ChangeTags {
 	public static function tagDescription( $tag ) {
 		$msg = wfMessage( "tag-$tag" );
 		if ( !$msg->exists() ) {
-			// No such message, so return the HTML-escaped tag name.
-			return htmlspecialchars( $tag );
+			// No such message, so return the tag appearance.
+			return self::tagAppearance( $tag );
 		}
 		if ( $msg->isDisabled() ) {
 			// The message exists but is disabled, hide the tag.
@@ -99,6 +99,25 @@ class ChangeTags {
 
 		// Message exists and isn't disabled, use it.
 		return $msg->parse();
+	}
+
+	/**
+	 * Get a user-friendly localizable name for a tag.
+	 * This is for drop down menus.
+	 *
+	 * @param string $tag Tag
+	 * @return string
+	 * @since 1.25
+	 */
+	public static function tagAppearance( $tag ) {
+		$msg = wfMessage( "tag-$tag-appearance" );
+		if ( !$msg->exists() ) {
+			// No such message, so return the HTML-escaped tag name.
+			return htmlspecialchars( $tag );
+		}
+
+		// Message exists, use it.
+		return $msg->text();
 	}
 
 	/**
@@ -116,6 +135,15 @@ class ChangeTags {
 	public static function addTags( $tags, $rc_id = null, $rev_id = null,
 		$log_id = null, $params = null
 	) {
+		global $wgCoreTags;
+
+		// Remove inactive core tags
+		foreach ( $tags as $key => $tag ) {
+			if ( isset( $wgCoreTags[$tag] ) && !$wgCoreTags[$tag]['active'] ) {
+				unset( $tags[$key] );
+			}
+		}
+
 		$result = self::updateTags( $tags, null, $rc_id, $rev_id, $log_id, $params );
 		return (bool)$result[0];
 	}
@@ -417,10 +445,12 @@ class ChangeTags {
 			return Status::newFatal( 'tags-update-no-permission' );
 		}
 
+		$context = new ChangeTagsContext;
+
 		if ( $tagsToAdd ) {
 			// to be added, a tag has to be stored in valid_tag
 			// @todo Allow extensions to define tags that can be applied by users...
-			$storedTags = ChangeTagsContext::storedTags();
+			$storedTags = $context->getStored();
 			$disallowedTags = array();
 			foreach ( $tagsToAdd as $tag ) {
 				if ( !isset( $storedTags[$tag] ) ) {
@@ -435,11 +465,11 @@ class ChangeTags {
 
 		if ( $tagsToRemove ) {
 			// to be removed, a tag has to be stored in valid_tag or not defined at all
-			$registeredTags = ChangeTagsContext::registeredTags();
-			$storedTags = $storedTags ? $storedTags : ChangeTagsContext::storedTags();
+			$storedTags = $context->getStored();
+			$definedTags = $context->getDefined();
 			$disallowedTags = array();
 			foreach ( $tagsToRemove as $tag ) {
-				if (  !isset( $storedTags[$tag] ) && isset( $registeredTags[$tag] ) ) {
+				if (  !isset( $storedTags[$tag] ) && isset( $definedTags[$tag] ) ) {
 					$disallowedTags[] = $tag;
 				}
 			}
@@ -654,13 +684,13 @@ class ChangeTags {
 			$select .= Xml::option( $msgAll, '', true );
 		} else {
 			$select .= Xml::option( $msgAll, '', false );
-			$select .= Xml::option( $selected, $selected, true );
+			$select .= Xml::option( self::tagAppearance( $selected ), $selected, true );
 		}
 		// remove selected tag or empty key (already dealt with)
 		unset( $tagList[$selected] );
 		// add tags
 		foreach ( array_keys( $tagList ) as $tag ) {
-			$select .= Xml::option( $tag, $tag, false );
+			$select .= Xml::option( self::tagAppearance( $tag ), $tag, false );
 		}
 		$select .= Xml::closeElement( 'select' );
 

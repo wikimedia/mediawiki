@@ -358,11 +358,11 @@ class SpecialEditTags extends UnlistedSpecialPage {
 
 		$tags = ChangeTagsContext::storedTags();
 		foreach ( array_unique( $selectedTags ) as $tag ) {
-			$result[1] .= Xml::option( $tag, $tag, true );
+			$result[1] .= Xml::option( ChangeTags::tagAppearance( $tag ), $tag, true );
 			unset( $tags[$tag] );
 		}
 		foreach ( array_keys( $tags ) as $tag ) {
-			$result[1] .= Xml::option( $tag, $tag, false );
+			$result[1] .= Xml::option( ChangeTags::tagAppearance( $tag ), $tag, false );
 		}
 
 		$result[1] .= Xml::closeElement( 'select' );

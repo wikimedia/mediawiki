@@ -1695,7 +1695,8 @@ class WikiPage implements Page, IDBAccessObject {
 	public function doEditContent( Content $content, $summary, $flags = 0, $baseRevId = false,
 		User $user = null, $serialFormat = null
 	) {
-		global $wgUser, $wgUseAutomaticEditSummaries, $wgUseRCPatrol, $wgUseNPPatrol;
+		global $wgUser, $wgUseAutomaticEditSummaries, $wgUseRCPatrol, $wgUseNPPatrol,
+			$wgUseAutoTagging;
 
 		// Low-level sanity check
 		if ( $this->mTitle->getText() === '' ) {
@@ -1829,6 +1830,7 @@ class WikiPage implements Page, IDBAccessObject {
 					}
 
 					Hooks::run( 'NewRevisionFromEditComplete', array( $this, $revision, $baseRevId, $user ) );
+					$rc = null;
 					// Update recentchanges
 					if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
 						// Mark as patrolled if the user can do so
@@ -1845,6 +1847,22 @@ class WikiPage implements Page, IDBAccessObject {
 							PatrolLog::record( $rc, true, $user );
 						}
 					}
+
+					// Get automatic tags
+					if ( $wgUseAutoTagging ) {
+						$autoTags = ChangeTagsCore::getAutotagsForEditUpdate(
+							$old_content, $content, $this->mTitle );
+						if ( $autoTags ) {
+							if ( $rc !== null ) {
+								ChangeTagsCore::addAutoTags( $autoTags, $rc->mAttribs['rc_id'],
+									$revision->mAttribs['rev_id'], null, null );
+							} else {
+								ChangeTagsCore::addAutoTags( $autoTags, null,
+								$revision->mAttribs['rev_id'], null, null );
+							}
+						}
+					}
+
 					$user->incEditCount();
 				} catch ( Exception $e ) {
 					$dbw->rollback( __METHOD__ );
@@ -1933,6 +1951,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 				Hooks::run( 'NewRevisionFromEditComplete', array( $this, $revision, false, $user ) );
 
+				$rc = null;
 				// Update recentchanges
 				if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
 					// Mark as patrolled if the user can do so
@@ -1947,8 +1966,22 @@ class WikiPage implements Page, IDBAccessObject {
 						PatrolLog::record( $rc, true, $user );
 					}
 				}
-				$user->incEditCount();
 
+					// Get automatic tags
+					if ( $wgUseAutoTagging ) {
+						$autoTags = ChangeTagsCore::getAutotagsForEditNew( $content, $this->mTitle );
+						if ( $autoTags ) {
+							if ( $rc !== null ) {
+								ChangeTags::addTags( $autoTags, $rc->mAttribs['rc_id'],
+									$revision->mAttribs['rev_id'], null, null );
+							} else {
+								ChangeTags::addTags( $autoTags, null,
+								$revision->mAttribs['rev_id'], null, null );
+							}
+						}
+					}
+
+				$user->incEditCount();
 			} catch ( Exception $e ) {
 				$dbw->rollback( __METHOD__ );
 				throw $e;
