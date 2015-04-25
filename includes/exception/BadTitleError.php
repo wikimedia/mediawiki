@@ -28,11 +28,26 @@
  */
 class BadTitleError extends ErrorPageError {
 	/**
-	 * @param string|Message $msg A message key (default: 'badtitletext')
+	 * @param string|Message|MalformedTitleException $msg A message key (default: 'badtitletext'), or
+	 *     a MalformedTitleException to figure out things from
 	 * @param array $params Parameter to wfMessage()
 	 */
 	public function __construct( $msg = 'badtitletext', $params = array() ) {
-		parent::__construct( 'badtitle', $msg, $params );
+		if ( $msg instanceof MalformedTitleException ) {
+			$errorMessage = $msg->getErrorMessage();
+			if ( !$errorMessage ) {
+				parent::__construct( 'badtitle', 'badtitletext', array() );
+			} else {
+				$errorMessageParams = $msg->getErrorMessageParameters();
+				$titleText = $msg->getTitleText();
+				if ( $titleText ) {
+					$errorMessageParams[] = $titleText;
+				}
+				parent::__construct( 'badtitle', $errorMessage, $errorMessageParams );
+			}
+		} else {
+			parent::__construct( 'badtitle', $msg, $params );
+		}
 	}
 
 	/**
@@ -47,5 +62,4 @@ class BadTitleError extends ErrorPageError {
 		$wgOut->setStatusCode( 400 );
 		parent::report();
 	}
-
 }
