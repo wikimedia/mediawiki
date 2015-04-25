@@ -168,13 +168,24 @@ class ChangeTag {
 	}
 
 	/**
+	 * Returns whether the tag is core-defined.
+	 *
+	 * @return bool
+	 * @since 1.26
+	 */
+	public function isCoreDefined() {
+		global $wgCoreTags;
+		return isset( $wgCoreTags[$this->name] );
+	}
+
+	/**
 	 * Returns whether the tag is defined.
 	 *
 	 * @return bool
 	 * @since 1.26
 	 */
 	public function isDefined() {
-		return $this->isExtensionDefined() || $this->isUserDefined();
+		return $this->isCoreDefined() || $this->isExtensionDefined() || $this->isUserDefined();
 	}
 
 	/**
@@ -231,7 +242,10 @@ class ChangeTag {
 	 * @since 1.26
 	 */
 	public function isActive() {
-		if ( $this->isExtensionDefined() ) {
+		global $wgCoreTags;
+		if ( $this->isCoreDefined() ) {
+			return (bool) $wgCoreTags[$this->name]['active'];
+		} elseif ( $this->isExtensionDefined() ) {
 			// is the tag in active use by the extension ?
 			return isset( $this->extensionParams['active'] ) &&
 				$this->extensionParams['active'];
@@ -265,7 +279,7 @@ class ChangeTag {
 		}
 
 		// defined tags cannot be activated
-		if ( $this->isExtensionDefined() || $this->isUserDefined() ) {
+		if ( $this->isDefined() ) {
 			return Status::newFatal( 'tags-activate-not-allowed', $this->name );
 		}
 
@@ -326,6 +340,11 @@ class ChangeTag {
 			return Status::newFatal( 'tags-delete-too-many-uses', $this->name, self::MAX_DELETE_USES );
 		}
 
+		// core tags cannot be deleted
+		if ( $this->isCoreDefined() ) {
+			return Status::newFatal( 'tags-delete-core' );
+		}
+
 		// extension-defined tags can't be deleted unless the extension specifically allows it
 		if ( $this->isExtensionDefined() && ( !isset( $this->extensionParams['canDelete'] ) ||
 			!$this->extensionParams['canDelete'] ) ) {
@@ -360,6 +379,13 @@ class ChangeTag {
 		// slashes (would break tag description messages in MediaWiki namespace)
 		if ( strpos( $tag, ',' ) !== false || strpos( $tag, '/' ) !== false ) {
 			return Status::newFatal( 'tags-create-invalid-chars' );
+		}
+
+		// tags cannot contain some strings reserved for core tags, or system messages
+		if ( strpos( $tag, 'core-' ) === 0 ||
+			strpos( $tag, '-appearance' ) !== false ||
+			strpos( $tag, '-description' ) !== false ) {
+			return Status::newFatal( 'tags-create-invalid-reserved' );
 		}
 
 		// could the MediaWiki namespace description messages be created?

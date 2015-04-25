@@ -393,7 +393,7 @@ class MovePage {
 	 * @throws MWException
 	 */
 	private function moveToInternal( User $user, &$nt, $reason = '', $createRedirect = true ) {
-		global $wgContLang;
+		global $wgContLang, $wgUseAutoTagging;
 
 		if ( $nt->exists() ) {
 			$moveOverRedirect = true;
@@ -529,5 +529,14 @@ class MovePage {
 		# Log the move
 		$logid = $logEntry->insert();
 		$logEntry->publish( $logid );
+
+		// Get automatic tags
+		// we don't tag autopatrolled users since this may be used for 'patrolling' of page moves
+		if ( $wgUseAutoTagging && !$user->isAllowed( 'autopatrol' ) ) {
+			$autoTags = ChangeTagsCore::getAutotagsForMove( $this->oldTitle, $nt, $user );
+			if ( $autoTags ) {
+				ChangeTags::addTags( $autoTags, null, $nullRevision->getId(), $logid, null );
+			}
+		}
 	}
 }
