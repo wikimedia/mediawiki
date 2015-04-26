@@ -209,6 +209,7 @@ $wgAutoloadLocalClasses = array(
 	'ChangePassword' => __DIR__ . '/maintenance/changePassword.php',
 	'ChangeTag' => __DIR__ . '/includes/changetags/ChangeTag.php',
 	'ChangeTags' => __DIR__ . '/includes/changetags/ChangeTags.php',
+	'ChangeTagsArray' => __DIR__ . '/includes/changetags/ChangeTagsArray.php',
 	'ChangeTagsContext' => __DIR__ . '/includes/changetags/ChangeTagsContext.php',
 	'ChangeTagsCore' => __DIR__ . '/includes/changetags/ChangeTagsCore.php',
 	'ChangeTagsList' => __DIR__ . '/includes/changetags/ChangeTagsList.php',
