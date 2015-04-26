@@ -48,6 +48,11 @@ class ChangeTagsContext {
 	protected $tagStats = null;
 
 	/**
+	 * @var ChangeTagsArray
+	 */
+	private $tagsArray = null;
+
+	/**
 	 * @var Config
 	 */
 	private $config;
@@ -140,6 +145,20 @@ class ChangeTagsContext {
 	}
 
 	/**
+	 * Gets ChangeTagsArray of defined tags
+	 *
+	 * @return ChangeTagsArray
+	 * @since 1.27
+	 */
+	public function getArray() {
+		// Save in class if not already done
+		if ( $this->tagsArray === null ) {
+			$this->tagsArray = new ChangeTagsArray( array_keys( $this->getDefined() ) );
+		}
+		return $this->tagsArray;
+	}
+
+	/**
 	 * Gets tags stored in the `valid_tag` table of the database.
 	 * Tags in table 'change_tag' which are not in table 'valid_tag' are not
 	 * included.
@@ -200,6 +219,9 @@ class ChangeTagsContext {
 	 * might still appear registered.
 	 * If a tag should be updated quickly, this cache can be purged with the
 	 * purgeRegisteredTagsCache function.
+	 *
+	 * This shouldn't be used to define properties of change tags that must
+	 * be retrieved quickly, instead use the ChangeTagsArray class.
 	 *
 	 * @return Array of strings: tags => arrays of params
 	 */
