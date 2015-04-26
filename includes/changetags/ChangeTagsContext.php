@@ -48,6 +48,11 @@ class ChangeTagsContext {
 	protected $tagStats = null;
 
 	/**
+	 * @var array Array mapping tags to user-defined properties
+	 */
+	private $tagSettings = null;
+
+	/**
 	 * @var Config
 	 */
 	private $config;
@@ -139,6 +144,20 @@ class ChangeTagsContext {
 			$this->tagStats = $this->fetchStats();
 		}
 		return $this->tagStats;
+	}
+
+	/**
+	 * Retrieves user-defined ChangeTags settings from MediaWiki:Tags-settings.json
+	 *
+	 * @return array
+	 * @since 1.27
+	 */
+	public function getSettings() {
+		// Save in class if not already done
+		if ( $this->tagSettings === null ) {
+			$this->tagSettings = $this->fetchSettings();
+		}
+		return $this->tagSettings;
 	}
 
 	/**
@@ -298,6 +317,21 @@ class ChangeTagsContext {
 				'pcTTL' => 30
 			]
 		);
+	}
+
+	/**
+	 * Returns associative array of tags mapped to their user-defined properties
+	 * Not cached here since already handled by MessageCache
+	 *
+	 * @return array Array of tags mapped to their properties
+	 */
+	private function fetchSettings() {
+		$msg = wfMessage( 'tags-settings.json' );
+		if ( !$msg->exists() ) {
+			return [];
+		}
+		$res = json_decode( $msg->inContentLanguage()->text(), true );
+		return ( $res !== null ) ? $res : [];
 	}
 
 	/**
