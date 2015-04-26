@@ -663,9 +663,18 @@ class ChangeTags {
 	 *        - if $fullForm is true: String, html fragment
 	 */
 	public static function buildTagFilterSelector( $selected = '',
-		$fullForm = false, Title $title = null
+		$fullForm = false, Title $title = null, changeTagsContext $context = null,
+		$activeOnly = false, $problemOnly = false
 	) {
 		global $wgUseTagFilter;
+
+		// make sure defined tags are set in context if we're going to need them
+		if ( $activeOnly || $problemOnly ) {
+			if ( $changeTagsContext == null ) {
+				$changeTagsContext = new changeTagsContext;
+			}
+			$changeTagsContext->getDefined();
+		}
 
 		$tagList = ChangeTagsContext::tagStats( false );
 		// check config and if the list of tags is not empty
@@ -695,7 +704,11 @@ class ChangeTags {
 			$name = self::tagAppearance( $tag );
 			// tags with an empty appearance are not included in the drop down list
 			if ( $name !== '' ) {
-				$select .= Xml::option( $name, $tag, false );
+				$changeTag = new ChangeTag( $tag, $changeTagsContext );
+				if ( ( !$activeOnly || $changeTag->isActive() ) &&
+					( !$problemOnly || $changeTag->isProblem() ) ) {
+					$select .= Xml::option( $name, $tag, false );
+				}
 			}
 		}
 		$select .= Xml::closeElement( 'select' );

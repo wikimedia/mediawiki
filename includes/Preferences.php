@@ -859,6 +859,7 @@ class Preferences {
 	 * @param array $defaultPreferences
 	 */
 	static function rcPreferences( $user, IContextSource $context, &$defaultPreferences ) {
+		global $wgUseFullRCPatrolUI;
 		$config = $context->getConfig();
 		$rcMaxAge = $config->get( 'RCMaxAge' );
 		## RecentChanges #####################################
@@ -888,7 +889,7 @@ class Preferences {
 			'section' => 'rc/advancedrc',
 		);
 
-		if ( $user->useRCPatrol() ) {
+		if ( $user->useRCPatrol() && $wgUseFullRCPatrolUI ) {
 			$defaultPreferences['hidepatrolled'] = array(
 				'type' => 'toggle',
 				'section' => 'rc/advancedrc',
@@ -919,6 +920,7 @@ class Preferences {
 	 * @param array $defaultPreferences
 	 */
 	static function watchlistPreferences( $user, IContextSource $context, &$defaultPreferences ) {
+		global $wgUseFullRCPatrolUI;
 		$config = $context->getConfig();
 		$watchlistdaysMax = ceil( $config->get( 'RCMaxAge' ) / ( 3600 * 24 ) );
 
@@ -995,7 +997,7 @@ class Preferences {
 			'label-message' => 'tog-watchlisthideliu',
 		);
 
-		if ( $user->useRCPatrol() ) {
+		if ( $user->useRCPatrol() && $wgUseFullRCPatrolUI ) {
 			$defaultPreferences['watchlisthidepatrolled'] = array(
 				'type' => 'toggle',
 				'section' => 'watchlist/advancedwatchlist',

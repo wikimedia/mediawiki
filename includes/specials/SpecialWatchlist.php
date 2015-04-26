@@ -394,6 +394,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * @param int $numRows Number of rows in the result to show after this header
 	 */
 	public function doHeader( $opts, $numRows ) {
+		global $wgUseFullRCPatrolUI;
 		$user = $this->getUser();
 
 		$this->getOutput()->addSubtitle(
@@ -424,11 +425,12 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			'hidemyself' => 'rcshowhidemine',
 			'hidepatrolled' => 'rcshowhidepatr'
 		);
+		// we don't need the RC patrol toggle in minimalist UI
 		foreach ( $this->getCustomFilters() as $key => $params ) {
 			$filters[$key] = $params['msg'];
 		}
 		// Disable some if needed
-		if ( !$user->useRCPatrol() ) {
+		if ( !$user->useRCPatrol() || !$wgUseFullRCPatrolUI ) {
 			unset( $filters['hidepatrolled'] );
 		}
 

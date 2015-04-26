@@ -27,9 +27,14 @@
  * @ingroup SpecialPage
  */
 class SpecialRecentChanges extends ChangesListSpecialPage {
+
+	protected $changeTagsContext = null;
+
 	// @codingStandardsIgnoreStart Needed "useless" override to change parameters.
 	public function __construct( $name = 'Recentchanges', $restriction = '' ) {
 		parent::__construct( $name, $restriction );
+		$this->changeTagsContext = new changeTagsContext;
+		$this->changeTagsContext->getDefined();
 	}
 	// @codingStandardsIgnoreEnd
 
@@ -476,7 +481,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$extraOpts['category'] = $this->categoryFilterForm( $opts );
 		}
 
-		$tagFilter = ChangeTags::buildTagFilterSelector( $opts['tagfilter'] );
+		$tagFilter = ChangeTags::buildTagFilterSelector( $opts['tagfilter'],
+			false, null, $this->changeTagsContext, true );
 		if ( count( $tagFilter ) ) {
 			$extraOpts['tagfilter'] = $tagFilter;
 		}
@@ -656,6 +662,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @return string
 	 */
 	function optionsPanel( $defaults, $nondefaults, $numRows ) {
+		global $wgUseFullRCPatrolUI;
+
 		$options = $nondefaults + $defaults;
 
 		$note = '';
@@ -720,9 +728,22 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		foreach ( $this->getCustomFilters() as $key => $params ) {
 			$filters[$key] = $params['msg'];
 		}
-		// Disable some if needed
+
 		if ( !$user->useRCPatrol() ) {
+			// Disable patrol filter if RC patrol is not used
 			unset( $filters['hidepatrolled'] );
+		} elseif ( !$wgUseFullRCPatrolUI ) {
+			// Case where RC patrol is used with minimalist UI
+			if ( !$options['tagfilter'] ) {
+				// Disable if not filtered by a tag
+				unset( $filters['hidepatrolled'] );
+			} else {
+				// If filtered by a tag, disable if not a problem tag
+				$changeTag = new ChangeTag( $options['tagfilter'], $this->changeTagsContext );
+				if ( !$changeTag->isProblem() ) {
+					unset( $filters['hidepatrolled'] );
+				}
+			}
 		}
 
 		$links = array();
