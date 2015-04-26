@@ -1151,4 +1151,16 @@ class ChangeTags {
 		$context = new ChangeTagsContext();
 		return $user->isAllowed( 'changetags' ) && (bool)$context->getStored();
 	}
+
+	/**
+	 * Gives valid tag-related page_prop properties
+	 *
+	 * @return array Array
+	 * @since 1.27
+	 */
+	public static function validProps() {
+		$validProps = array( 'changetagproblem' );
+		Hooks::run( 'ChangeTagsValidProps', array( &$validProps ) );
+		return $validProps;
+	}
 }

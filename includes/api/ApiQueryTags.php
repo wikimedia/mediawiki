@@ -46,6 +46,7 @@ class ApiQueryTags extends ApiQueryBase {
 		$fld_defined = isset( $prop['defined'] );
 		$fld_source = isset( $prop['source'] );
 		$fld_active = isset( $prop['active'] );
+		$fld_problem = isset( $prop['problem'] );
 
 		$limit = $params['limit'];
 		$result = $this->getResult();
@@ -129,6 +130,10 @@ class ApiQueryTags extends ApiQueryBase {
 				$tag['active'] = $changeTag->isActive();
 			}
 
+			if ( $fld_problem ) {
+				$tag['problem'] = $changeTag->isProblem();
+			}
+
 			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $tag );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'continue', $tagName );
@@ -165,6 +170,7 @@ class ApiQueryTags extends ApiQueryBase {
 					'defined',
 					'source',
 					'active',
+					'problem',
 				),
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
