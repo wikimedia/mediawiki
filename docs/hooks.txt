@@ -970,6 +970,9 @@ all relevant information, such as its active status, the extension's name,
 whether it is deletable, params to use in the extension-specific message, etc.
 Available params :
 'active' (bool): Whether the tag is in active use by the extension.
+'problem' (bool): Whether the tag is meant to indicate a potential problem with the
+change (e.g. vandalism, syntax error, etc) - these can be highlighted in the
+user interface or used for specific purposes by extensions.
 'extName' (string): Name of the extension. Used to track tags defined by the extension.
 You can provide a specific source message (in the 'Source' column of Special:Tags), that
 replaces the default. The msg key is 'tags-source-extension-"extName"' (no params).
