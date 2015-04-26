@@ -1081,6 +1081,7 @@
 	"apihelp-query+tags-paramvalue-prop-defined": "{{doc-apihelp-paramvalue|query+tags|prop|defined}}",
 	"apihelp-query+tags-paramvalue-prop-source": "{{doc-apihelp-paramvalue|query+tags|prop|source}}",
 	"apihelp-query+tags-paramvalue-prop-active": "{{doc-apihelp-paramvalue|query+tags|prop|active}}",
+	"apihelp-query+tags-paramvalue-prop-settings": "{{doc-apihelp-paramvalue|query+tags|prop|settings}}",
 	"apihelp-query+tags-example-simple": "{{doc-apihelp-example|query+tags}}",
 	"apihelp-query+templates-description": "{{doc-apihelp-description|query+templates}}",
 	"apihelp-query+templates-param-namespace": "{{doc-apihelp-param|query+templates|namespace}}",
