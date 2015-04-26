@@ -88,7 +88,7 @@ class JobRunner implements LoggerAwareInterface {
 	 * @return array Summary response that can easily be JSON serialized
 	 */
 	public function run( array $options ) {
-		global $wgJobClasses;
+		global $wgJobClasses, $wgTrxProfilerLimits;
 
 		$response = array( 'jobs' => array(), 'reached' => 'none-ready' );
 
@@ -120,7 +120,7 @@ class JobRunner implements LoggerAwareInterface {
 		// Catch huge single updates that lead to slave lag
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$trxProfiler->setLogger( LoggerFactory::getInstance( 'DBPerformance' ) );
-		$trxProfiler->setExpectation( 'maxAffected', 500, __METHOD__ );
+		$trxProfiler->setExpectations( $wgTrxProfilerLimits['JobRunner'], __METHOD__ );
 
 		// Bail out if there is too much DB lag.
 		// This check should not block as we want to try other wiki queues.

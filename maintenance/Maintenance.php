@@ -603,7 +603,7 @@ abstract class Maintenance {
 	 * Activate the profiler (assuming $wgProfiler is set)
 	 */
 	protected function activateProfiler() {
-		global $wgProfiler;
+		global $wgProfiler, $wgTrxProfilerLimits;
 
 		$output = $this->getOption( 'profiler' );
 		if ( $output && is_array( $wgProfiler ) && isset( $wgProfiler['class'] ) ) {
@@ -617,8 +617,7 @@ abstract class Maintenance {
 
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$trxProfiler->setLogger( LoggerFactory::getInstance( 'DBPerformance' ) );
-		# Catch huge single updates that lead to slave lag
-		$trxProfiler->setExpectation( 'maxAffected', 1000, __METHOD__ );
+		$trxProfiler->setExpectations( $wgTrxProfilerLimits['Maintenance'], __METHOD__ );
 	}
 
 	/**
