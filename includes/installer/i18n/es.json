@@ -312,7 +312,7 @@
 	"config-install-database": "Configurando la base de datos",
 	"config-install-schema": "Creando el esquema",
 	"config-install-pg-schema-not-exist": "El esquema PostgreSQL no existe.",
-	"config-install-pg-schema-failed": "La creación de las tablas ha fallado.\nAsegúrate de que el usuario \"$1\" puede escribir en el esquema \"$2\".",
+	"config-install-pg-schema-failed": "Falló la creación de las tablas.\nAsegúrate de que la cuenta «$1» tiene permiso de escritura para el esquema «$2».",
 	"config-install-pg-commit": "Validando los cambios",
 	"config-install-pg-plpgsql": "Comprobación de lenguaje PL/pgSQL",
 	"config-pg-no-plpgsql": "Necesita instalar el lenguaje PL/pgSQL en la base de datos $1",

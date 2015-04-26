@@ -463,6 +463,7 @@
 	"apihelp-query+blocks-param-users": "Lista de usuarios a buscar (opcional).",
 	"apihelp-query+blocks-param-ip": "Obter todos os bloques aplicables a esta IPs ou a este rango CIDR, incluíndo bloques de rangos.\nNon pode usarse xunto con <var>$3users</var>. Os rangos CIDR maiores que IPv4/$1 ou IPv6/$2 non se aceptan.",
 	"apihelp-query+blocks-param-limit": "Número máximo de bloques a listar.",
+	"apihelp-query+blocks-param-prop": "Que propiedades obter:\n;id:Engade o identificador do bloqueo.\n;user:Engade o nome de usario do usuario bloqueado.\n;userid:Engade o identificador de usuario do usuario bloqueado.\n;by:Engade o nome de usuario do usuario que fixo o bloqueo.\n;byid:Engade o identificador do usuario que fixo o bloqueo.\n;timestamp:Engade o selo de tempo de cando se realizou o bloqueo.\n;expiry:Engade o selo de tempo de cando remata o bloqueo.\n;reason:Engade a razón dada para o bloqueo.\n;range:Engade o rango de direccións IP afectadas polo bloqueo.\n;flags:Etiqueta o bloqueo con (autoblock, anononly, etc.).",
 	"apihelp-query+blocks-param-show": "Só mostrar elementos correspondentes a eses criterios.\nPor exemplo, para ver só bloques indefinidos en direccións IP, ponga <kbd>$1show=ip|!temp</kbd>.",
 	"apihelp-query+blocks-example-simple": "Listar bloques.",
 	"apihelp-query+blocks-example-users": "Lista de bloques de usuarios <kbd>Alice</kbd> e <kbd>Bob</kbd>.",
