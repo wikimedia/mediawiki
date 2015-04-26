@@ -3707,6 +3707,7 @@
 	"tags-edit-nooldid-title": "Invalid target revision",
 	"tags-edit-nooldid-text": "You have either not specified any target revision on which to perform this function, or the specified revision does not exist.",
 	"tags-edit-none-selected": "Please select at least one tag to add or remove.",
+	"tags-settings": "Additional tag settings can be viewed and edited at [[MediaWiki:Tags-settings.json]].",
 	"tag-core-move-tomainspace-appearance": "Move to mainspace",
 	"tag-core-move-crossnamespace-appearance": "Cross namespace move",
 	"tag-core-move-rename-appearance": "Rename attempt",
