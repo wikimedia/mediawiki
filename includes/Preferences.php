@@ -899,7 +899,7 @@ class Preferences {
 			);
 		}
 
-		if ( $user->useRCPatrol() ) {
+		if ( $user->useRCPatrol() && !$config->get( 'UseMinimalistRCPatrolUI' ) ) {
 			$defaultPreferences['hidepatrolled'] = array(
 				'type' => 'toggle',
 				'section' => 'rc/advancedrc',
@@ -1019,7 +1019,7 @@ class Preferences {
 			);
 		}
 
-		if ( $user->useRCPatrol() ) {
+		if ( $user->useRCPatrol() && !$config->get( 'UseMinimalistRCPatrolUI' ) ) {
 			$defaultPreferences['watchlisthidepatrolled'] = array(
 				'type' => 'toggle',
 				'section' => 'watchlist/advancedwatchlist',
