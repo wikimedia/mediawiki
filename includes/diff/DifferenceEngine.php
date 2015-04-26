@@ -515,7 +515,7 @@ class DifferenceEngine extends ContextSource {
 	 *  or false if no link is needed
 	 */
 	protected function getMarkPatrolledLinkInfo() {
-		global $wgUseRCPatrol, $wgEnableAPI, $wgEnableWriteAPI;
+		global $wgUseRCPatrol, $wgUseMinimalistRCPatrolUI, $wgEnableAPI, $wgEnableWriteAPI;
 
 		$user = $this->getUser();
 
@@ -540,10 +540,31 @@ class DifferenceEngine extends ContextSource {
 
 			if ( $change && !$change->getPerformer()->equals( $user ) ) {
 				$rcid = $change->getAttribute( 'rc_id' );
+				if ( !$wgUseMinimalistRCPatrolUI ) {
+					// If full RC patrol UI is used, we can proceed
+					$proceed = true;
+				} else {
+					// If minimalist RC patrol UI is used, we can patrol a
+					// recent change only if it is tagged with a problem tag.
+					// We assume the RC and the revision have the same tags.
+					$newTags = explode( ',', $this->mNewTags );
+					if ( $newTags ) {
+						$changeTagsContext = new ChangeTagsContext();
+						foreach ( $newTags as $tag ) {
+							$changeTag = new ChangeTag( $tag, $changeTagsContext );
+							if ( $changeTag->isProblem() ) {
+								$proceed = true;
+								break;
+							}
+						}
+					} else {
+						$proceed = false;
+					}
+				}
 			} else {
 				// None found or the page has been created by the current user.
 				// If the user could patrol this it already would be patrolled
-				$rcid = 0;
+				$proceed = false;
 			}
 
 			// Allow extensions to possibly change the rcid here
@@ -553,7 +574,7 @@ class DifferenceEngine extends ContextSource {
 			Hooks::run( 'DifferenceEngineMarkPatrolledRCID', [ &$rcid, $this, $change, $user ] );
 
 			// Build the link
-			if ( $rcid ) {
+			if ( $proceed ) {
 				$this->getOutput()->preventClickjacking();
 				if ( $wgEnableAPI && $wgEnableWriteAPI
 					&& $user->isAllowed( 'writeapi' )

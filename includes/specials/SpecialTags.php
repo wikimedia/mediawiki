@@ -114,6 +114,7 @@ class SpecialTags extends SpecialPage {
 				return;
 			}
 		}
+		$out->wrapWikiMsg( "<div class='mw-tags-settings'>\n$1\n</div>", 'tags-settings' );
 
 		// Retrieve stats and definitions
 		$tagStats = $this->changeTagsContext->getTagStats();
