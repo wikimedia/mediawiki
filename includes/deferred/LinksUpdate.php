@@ -212,6 +212,14 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 		# Invalidate the necessary pages
 		$changed = $propertiesDeletes + array_diff_assoc( $this->mProperties, $existing );
 		$this->invalidateProperties( $changed );
+		if ( $this->getTitle()->getNamespace() === NS_MEDIAWIKI ) {
+			// update ChangeTag properties cache
+			ChangeTags::updatePropsCache(
+				$this->getTitle()->getDBKey(),
+				$this->mProperties,
+				$existing
+			);
+		}
 
 		# Update the links table freshness for this title
 		$this->updateLinksTimestamp();
