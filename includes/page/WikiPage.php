@@ -3298,6 +3298,7 @@ class WikiPage implements Page, IDBAccessObject {
 		// Messages
 		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
 			MessageCache::singleton()->replace( $title->getDBkey(), false );
+			ChangeTags::clearPropsCache( $title->getDBkey() );
 		}
 
 		// Images
