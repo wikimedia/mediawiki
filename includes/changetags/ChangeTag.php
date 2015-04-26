@@ -153,6 +153,18 @@ class ChangeTag {
 	}
 
 	/**
+	 * Retrieves 'problem' status for tags
+	 *
+	 * @return bool
+	 * @since 1.26
+	 */
+	public function isProblem() {
+		$definedTags = $this->context->getDefined();
+		return isset( $definedTags[$this->name]['problem'] ) &&
+			$definedTags[$this->name]['problem'];
+	}
+
+	/**
 	 * Returns name of the extension defining the tag, if provided by the hook
 	 * False if not provided or string is empty
 	 *

@@ -888,7 +888,7 @@ class Preferences {
 			'section' => 'rc/advancedrc',
 		);
 
-		if ( $user->useRCPatrol() ) {
+		if ( $user->useRCPatrol() && !$config->get( 'UseMinimalistRCPatrolUI' ) ) {
 			$defaultPreferences['hidepatrolled'] = array(
 				'type' => 'toggle',
 				'section' => 'rc/advancedrc',
@@ -995,7 +995,7 @@ class Preferences {
 			'label-message' => 'tog-watchlisthideliu',
 		);
 
-		if ( $user->useRCPatrol() ) {
+		if ( $user->useRCPatrol() && !$config->get( 'UseMinimalistRCPatrolUI' ) ) {
 			$defaultPreferences['watchlisthidepatrolled'] = array(
 				'type' => 'toggle',
 				'section' => 'watchlist/advancedwatchlist',
