@@ -39,6 +39,9 @@ class ChangesList extends ContextSource {
 	/** @var MapCacheLRU */
 	protected $watchingCache;
 
+	/** @var ChangeTagsContext */
+	protected $changeTagsContext;
+
 	/**
 	 * Changeslist constructor
 	 *
@@ -54,6 +57,7 @@ class ChangesList extends ContextSource {
 		}
 		$this->preCacheMessages();
 		$this->watchingCache = new MapCacheLRU( 50 );
+		$this->changeTagsContext = new ChangeTagsContext;
 	}
 
 	/**
@@ -602,7 +606,49 @@ class ChangesList extends ContextSource {
 	}
 
 	protected function showAsUnpatrolled( RecentChange $rc ) {
-		return self::isUnpatrolled( $rc, $this->getUser() );
+		global $wgUseMinimalistRCPatrolUI;
+
+		// case if RC item is already patrolled
+		if ( $rc->mAttribs['rc_patrolled'] ) {
+			return false;
+		}
+
+		$user = $this->getUser();
+
+		// case of new page
+		if ( $user->useNPPatrol() && $rcType == RC_NEW ) {
+			return true;
+		}
+
+		// case if user does not use RC patrol
+		if ( !$user->useRCPatrol() ) {
+			return false;
+		}
+
+		// case if user uses RC patrol and full RC patrol UI is enabled
+		if ( !$wgUseMinimalistRCPatrolUI ) {
+			return true;
+		}
+
+		$rcTags = explode( ',', $rc->mAttribs['ts_tags'] );
+
+		// In minimalist UI, we don't show as unpatrolled if not tagged
+		if ( !$rcTags ) {
+			return false;
+		}
+
+		// ensure defined tags were retrieved
+		$this->changeTagsContext->definedTags();
+
+		// we show as unpatrolled if tagged with a problem tag
+		foreach ( $rcTags as $tag ) {
+			$changeTag = new ChangeTag( $tag, $this->changeTagsContext );
+			if ( $changeTag->isProblem() ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**

@@ -428,8 +428,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		foreach ( $this->getCustomFilters() as $key => $params ) {
 			$filters[$key] = $params['msg'];
 		}
-		// Disable some if needed
-		if ( !$user->useRCPatrol() ) {
+		// Disable patrol toggle if we don't use RC patrol or only its minimalist UI
+		if ( !$user->useRCPatrol() || $this->getConfig()->get( 'UseMinimalistRCPatrolUI' ) ) {
 			unset( $filters['hidepatrolled'] );
 		}
 

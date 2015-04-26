@@ -130,18 +130,43 @@ class ChangeTagsContext {
 				array(), $fname );
 
 			// Stored tags are always assumed to be active.
+			// They are not considered 'problem', unless set as such in config.
 			// We need this filled so that this array can be
 			// seamlessly merged with getRegisteredTags() when we
-			// want all defined tags (with their active status).
+			// want all defined tags (with their active/problem status).
 			$storedTags = array();
 			foreach ( $res as $row ) {
 				$storedTags[$row->vt_tag] = array(
-					'active' => true
+					'active' => true,
+					'problem' => false
 				);
 			}
 
 			// Removing nulls inserted as keys
 			unset( $storedTags[''] );
+
+			// Get custom list of problem tags
+			$msg = wfMessage( 'tags-list-problem' );
+			if ( !$msg->exists() ) {
+				return $storedTags;
+			}
+
+			$text = $msg->inContentLanguage()->plain();
+			// parse msg text by exploding out empty lines
+			$list = explode( PHP_EOL . PHP_EOL, $text );
+			$list = array_unique( $list );
+
+			// shortcut
+			if ( !count( $list ) ) {
+				return $storedTags;
+			}
+
+			// mark as problem stored tags listed in msg
+			foreach ( $list as $tag ) {
+				if ( isset( $storedTags[$tag] ) ) {
+					$storedTags[$tag]['problem'] = true;
+				}
+			}
 
 			return $storedTags;
 		};
