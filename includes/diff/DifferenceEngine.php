@@ -497,14 +497,15 @@ class DifferenceEngine extends ContextSource {
 	 *  or false if no link is needed
 	 */
 	protected function getMarkPatrolledLinkInfo() {
-		global $wgUseRCPatrol, $wgEnableAPI, $wgEnableWriteAPI;
+		global $$wgEnableAPI, $wgEnableWriteAPI;
 
+		$config = RequestContext::getMain()->getConfig();
 		$user = $this->getUser();
 
 		// Prepare a change patrol link, if applicable
 		if (
 			// Is patrolling enabled and the user allowed to?
-			$wgUseRCPatrol && $this->mNewPage->quickUserCan( 'patrol', $user ) &&
+			$config->get( 'UseRCPatrol' ) && $this->mNewPage->quickUserCan( 'patrol', $user ) &&
 			// Only do this if the revision isn't more than 6 hours older
 			// than the Max RC age (6h because the RC might not be cleaned out regularly)
 			RecentChange::isInRCLifespan( $this->mNewRev->getTimestamp(), 21600 )
@@ -522,13 +523,31 @@ class DifferenceEngine extends ContextSource {
 
 			if ( $change && !$change->getPerformer()->equals( $user ) ) {
 				$rcid = $change->getAttribute( 'rc_id' );
+				if ( !$config->get( 'UseMinimalistRCPatrolUI' ) ) {
+					// If full RC patrol UI is used, we can proceed
+					$proceed = true;
+				} else {
+					// If minimalist RC patrol UI is used, we proceed
+					// only if the RC item (not the revision) is tagged
+					// with a problem tag
+					$proceed = false;
+					$context = new ChangeTagsContext( $config );
+					$tags = explode( ',', $this->mNewTags );
+					foreach ( $tags as $tag ) {
+						$changeTag = new ChangeTag( $tag, $context );
+						if ( $changeTag->isProblem() ) {
+							$proceed = true;
+							break;
+						}
+					}
+				}
 			} else {
 				// None found or the page has been created by the current user.
 				// If the user could patrol this it already would be patrolled
-				$rcid = 0;
+				$proceed = false;
 			}
 			// Build the link
-			if ( $rcid ) {
+			if ( $proceed ) {
 				$this->getOutput()->preventClickjacking();
 				if ( $wgEnableAPI && $wgEnableWriteAPI
 					&& $user->isAllowed( 'writeapi' )
