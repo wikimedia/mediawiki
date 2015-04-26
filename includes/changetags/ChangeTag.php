@@ -27,7 +27,7 @@
  * Deduces of those if it can be activated, deleted, etc
  * @since 1.27
  */
-class ChangeTag {
+class ChangeTag extends RawChangeTag {
 
 	/**
 	 * Can't delete tags with more than this many uses. Similar in intent to
@@ -35,11 +35,6 @@ class ChangeTag {
 	 * @todo Use the job queue for tag deletion to avoid this restriction
 	 */
 	const MAX_DELETE_USES = 5000;
-
-	/**
-	 * @var string Internal name of the tag
-	 */
-	private $name;
 
 	/**
 	 * @var ChangeTagsContext Context for this ChangeTag instance
@@ -52,18 +47,8 @@ class ChangeTag {
 	 * @since 1.27
 	 */
 	public function __construct( $tag, ChangeTagsContext $context ) {
-		$this->name = $tag;
+		parent::__construct( $tag );
 		$this->context = $context;
-	}
-
-	/**
-	 * Returns name of the tag
-	 *
-	 * @return string
-	 * @since 1.27
-	 */
-	final public function getName() {
-		return $this->name;
 	}
 
 	/**
@@ -141,6 +126,36 @@ class ChangeTag {
 		$definedTags = $this->context->getDefined();
 		return isset( $definedTags[$this->name]['active'] ) &&
 			$definedTags[$this->name]['active'];
+	}
+
+	/**
+	 * Retrieves 'problem' status for this tag
+	 *
+	 * @return bool
+	 * @since 1.27
+	 */
+	public function isProblem() {
+		$props = $this->getProps();
+		return isset( $props['changetagproblem'] );
+	}
+
+	/**
+	 * Retrieves page_prop properties associated to this tag
+	 * These are defined in the associated MediaWiki:Tag-$tag page
+	 * Returns null if this page doesn't exist
+	 * Uses context if set
+	 * Otherwise, retrieves result from cache or db
+	 *
+	 * @return array|null
+	 * @since 1.27
+	 */
+	public function getProps() {
+		// Save in class if not already done
+		if ( $this->props === null ) {
+			$tagProps = $this->context->getProps();
+			$this->props =  $tagProps[$this->name];
+		}
+		return $this->props;
 	}
 
 	/**
@@ -361,5 +376,103 @@ class ChangeTag {
 		$canCreateResult = Status::newGood();
 		Hooks::run( 'ChangeTagCanCreate', array( $tag, $user, &$canCreateResult ) );
 		return $canCreateResult;
+	}
+}
+
+/**
+ * Represents a raw change tag object, without any context (no tag stats, definitions)
+ * Only user-defined properties can be retrieved
+ * @since 1.27
+ */
+class RawChangeTag {
+
+	/**
+	 * @var int Duration of tag props cache
+	 */
+	const PROPS_CACHE_DURATION = 3600;
+
+	/**
+	 * @var string Internal name of the tag
+	 */
+	protected $name;
+
+	/**
+	 * @var array User-defined tag properties
+	 */
+	private $props = null;
+
+	/**
+	 * @param string $tag Tag's name
+	 * @since 1.27
+	 */
+	public function __construct( $tag ) {
+		$this->name = $tag;
+	}
+
+	/**
+	 * Returns name of the tag
+	 *
+	 * @return string
+	 * @since 1.27
+	 */
+	public function getName() {
+		return $this->name;
+	}
+
+	/**
+	 * Retrieves page_prop properties associated to this tag
+	 * These are defined in the associated MediaWiki:Tag-$tag page
+	 * Returns null if this page doesn't exist
+	 * Uses context if set
+	 * Otherwise, retrieves result from cache or db
+	 *
+	 * @return array|null
+	 * @since 1.27
+	 */
+	public function getProps() {
+		// Save in class if not already done
+		if ( $this->props === null ) {
+			$this->props =  $this->props();
+		}
+		return $this->props;
+	}
+
+	/**
+	 * Returns user-defined properties by first trying the cache
+	 * If not in cache, tries db and caches result
+	 *
+	 * @return array Array of tags mapped to their properties
+	 */
+	private function props() {
+		$cache = ObjectCache::getMainWANInstance();
+		$tag = $this->name;
+		$keyTagProps = wfMemcKey( 'ChangeTags', 'tag-props', $tag );
+
+		// try cache for this tag's props
+		$tagPropsCache = $cache->get( $keyTagProps );
+		if ( $tagPropsCache !== false ) {
+			return $tagPropsCache;
+		}
+
+		// check if associated page exists
+		$tagTitle = Title::makeTitle( NS_MEDIAWIKI, 'Tag-' . $tag );
+		$id = $tagTitle->getArticleID();
+		if ( !$id ) {
+			$cache->set( $keyTagProps, null, self::PROPS_CACHE_DURATION );
+			return null;
+		}
+
+		// query db
+		$tagPropsDB = array();
+		$dbr = wfGetDB( DB_SLAVE );
+		$fields = array( 'pp_page', 'pp_propname', 'pp_value' );
+		$res = $dbr->select( 'page_props', $fields, array(
+			'pp_propname' => ChangeTags::validProps(),
+			'pp_page' => $id,
+		) );
+		foreach ( $res as $row ) {
+			$tagPropsDB[$row->pp_propname] = $row->pp_value;
+		}
+		$cache->set( $keyTagProps, $tagPropsDB, self::PROPS_CACHE_DURATION );
 	}
 }
