@@ -150,11 +150,12 @@ class ChangeTagsContext {
 			// Stored tags are always assumed to be active.
 			// We need this filled so that this array can be
 			// seamlessly merged with getRegisteredTags() when we
-			// want all defined tags (with their active status).
+			// want all defined tags (with their active/problem status).
 			$storedTags = array();
 			foreach ( $res as $row ) {
 				$storedTags[$row->vt_tag] = array(
-					'active' => true
+					'active' => true,
+					'problem' => false
 				);
 			}
 

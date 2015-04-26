@@ -259,6 +259,29 @@ class ChangeTag {
 	}
 
 	/**
+	 * Retrieves 'problem' status for tags
+	 *
+	 * @return bool
+	 * @since 1.26
+	 */
+	public function isProblem() {
+		global $wgCoreTags;
+		if ( $this->isCoreDefined() ) {
+			return (bool) $wgCoreTags[$this->name]['problem'];
+		} elseif ( $this->isExtensionDefined() ) {
+			// is the tag in active use by the extension ?
+			return isset( $this->extensionParams['problem'] ) &&
+				$this->extensionParams['problem'];
+		} elseif ( $this->isUserDefined() ) {
+			// user defined tags are assumed not to be a problem
+			return false;
+		} else {
+			// for undefined tags
+			return false;
+		}
+	}
+
+	/**
 	 * Is it OK to allow the user to activate this tag?
 	 *
 	 * @param User|null $user User whose permission you wish to check, or null if
