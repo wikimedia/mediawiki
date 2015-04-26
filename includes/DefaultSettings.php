@@ -6049,6 +6049,13 @@ $wgRCEngines = array(
 $wgUseRCPatrol = true;
 
 /**
+ * When using RC patrol, set this to true if you want
+ * a minimalist RC patrol UI (only shown for new pages
+ * and changes tagged with a 'problem' tag)
+ */
+$wgUseMinimalistRCPatrolUI = false;
+
+/**
  * Use new page patrolling to check new pages on Special:Newpages
  */
 $wgUseNPPatrol = true;
@@ -6180,24 +6187,31 @@ $wgTagRegistrationCacheDuration = 60*60*24;
 $wgUseAutoTagging = false;
 
 /**
- * List of automated tags defined in core with their 'active' status.
+ * List of automated tags defined in core with their 'active' and 'problem' status.
  * To disable automated tagging for a specific tag, set its active
  * status to false.
  * To prevent it from appearing at Special:Tags, remove it altogether.
  */
 $wgCoreTags = array(
-	'core-move-tomainspace' => array( 'active' => true ),
-	'core-move-crossnamespace' => array( 'active' => true ),
-	'core-move-rename' => array( 'active' => true ),
-	'core-redirect-new' => array( 'active' => true ),
-	'core-redirect-changed' => array( 'active' => true ),
-	'core-redirect-self' => array( 'active' => true ),
-	'core-redirect-nonexistent' => array( 'active' => true ),
-	'core-redirect-removed' => array( 'active' => true ),
-	'core-edit-blank' => array( 'active' => true ),
-	'core-edit-replace' => array( 'active' => true ),
-	'core-newpage-blank' => array( 'active' => true )
+	'core-move-tomainspace' => array( 'active' => true, 'problem' => true ),
+	'core-move-crossnamespace' => array( 'active' => true, 'problem' => true ),
+	'core-move-rename' => array( 'active' => true, 'problem' => true ),
+	'core-redirect-new' => array( 'active' => true, 'problem' => true ),
+	'core-redirect-changed' => array( 'active' => true, 'problem' => true ),
+	'core-redirect-self' => array( 'active' => true, 'problem' => true ),
+	'core-redirect-nonexistent' => array( 'active' => true, 'problem' => true ),
+	'core-redirect-removed' => array( 'active' => true, 'problem' => true ),
+	'core-edit-blank' => array( 'active' => true, 'problem' => true ),
+	'core-edit-replace' => array( 'active' => true, 'problem' => true ),
+	'core-newpage-blank' => array( 'active' => true, 'problem' => true )
 );
+
+/**
+ * Whether to show the 'problem' status of tags at Special:Tags
+ * When RC patrol is used with minimalist UI, it is always shown regardless.
+ * But extensions might want to set this to true when needed for other purposes.
+ */
+$wgShowTagProblemStatus = false;
 
 /**
  * If set to an integer, pages that are watched by this many users or more
