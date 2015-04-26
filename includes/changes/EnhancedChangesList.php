@@ -108,7 +108,11 @@ class EnhancedChangesList extends ChangesList {
 			$this->lastdate = $date;
 		}
 
-		$cacheEntry = $this->cacheEntryFactory->newFromRecentChange( $rc, $watched );
+		$cacheEntry = $this->cacheEntryFactory->newFromRecentChange(
+			$rc,
+			$watched,
+			$this->changeTagsContext
+		);
 		$this->addCacheEntry( $cacheEntry );
 
 		return $ret;
