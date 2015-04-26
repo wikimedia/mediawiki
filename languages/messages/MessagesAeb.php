@@ -1,5 +1,5 @@
 <?php
-/** Tunisian Spoken Arabic (تونسي/Tûnsi)
+/** Tunisian Spoken Arabic (تونسي/Tûnsî)
  *
  * To improve a translation please visit https://translatewiki.net
  *
@@ -8,4 +8,4 @@
  *
  */
 
-$fallback = 'aeb-arab';
+$fallback = 'aeb-latn';
