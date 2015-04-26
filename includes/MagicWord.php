@@ -233,6 +233,7 @@ class MagicWord {
 		'staticredirect',
 		'notitleconvert',
 		'nocontentconvert',
+		'changetagproblem',
 	);
 
 	static public $mSubstIDs = array(

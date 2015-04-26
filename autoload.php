@@ -1007,6 +1007,7 @@ $wgAutoloadLocalClasses = array(
 	'RangeDifference' => __DIR__ . '/includes/diff/WikiDiff3.php',
 	'RawAction' => __DIR__ . '/includes/actions/RawAction.php',
 	'RawMessage' => __DIR__ . '/includes/Message.php',
+	'RawChangeTag' => __DIR__ . '/includes/changetags/ChangeTag.php',
 	'ReadOnlyError' => __DIR__ . '/includes/exception/ReadOnlyError.php',
 	'ReassignEdits' => __DIR__ . '/maintenance/reassignEdits.php',
 	'RebuildAll' => __DIR__ . '/maintenance/rebuildall.php',
