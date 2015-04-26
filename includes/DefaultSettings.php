@@ -6364,6 +6364,14 @@ $wgRCWatchCategoryMembership = false;
 $wgUseRCPatrol = true;
 
 /**
+ * When using RC patrol, set this to true if you want
+ * a minimalist RC patrol UI (only shown for new pages
+ * and changes tagged with a 'problem' tag)
+ * @since 1.27
+ */
+$wgUseMinimalistRCPatrolUI = false;
+
+/**
  * Use new page patrolling to check new pages on Special:Newpages
  */
 $wgUseNPPatrol = true;
@@ -6535,6 +6543,14 @@ $wgCoreTags = array(
 	'core-edit-replace' => array( 'active' => true ),
 	'core-newpage-blank' => array( 'active' => true ),
 );
+
+/**
+ * Whether to show the 'problem' status of tags at Special:Tags
+ * When RC patrol is used with minimalist UI, it is always shown regardless.
+ * But extensions might make use of 'problem' status for other purposes.
+ * @since 1.27
+ */
+$wgShowTagProblemStatus = false;
 
 /**
  * If set to an integer, pages that are watched by this many users or more

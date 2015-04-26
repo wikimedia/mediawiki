@@ -148,6 +148,40 @@ class ChangeTag {
 	}
 
 	/**
+	 * Retrieves 'problem' status for this tag
+	 *
+	 * Don't use this if you need to access this property quickly,
+	 * instead use the ChangeTagsArray class directly.
+	 *
+	 * @return bool
+	 * @since 1.27
+	 */
+	public function isProblem() {
+		$props = $this->getProps();
+		return isset( $props['changetagproblem'] );
+	}
+
+	/**
+	 * Retrieves page_prop properties associated to this tag
+	 *
+	 * Don't use this if you need to access properties quickly,
+	 * instead use the ChangeTagsArray class directly.
+	 *
+	 * @return bool
+	 * @since 1.27
+	 */
+	public function getProps() {
+		$tagsArray = $this->context->getArray();
+		$tagIds = $tagsArray->getIds();
+		$id = $tagIds[$this->name];
+		if ( !$id ) {
+			return array();
+		}
+		$tagProps = $tagsArray->getProps();
+		return $tagProps[$id];
+	}
+
+	/**
 	 * Returns name of the extension defining the tag, if provided by the hook
 	 * False if not provided or string is empty
 	 *
