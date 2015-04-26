@@ -1120,6 +1120,7 @@
 	"apihelp-query+tags-paramvalue-prop-defined": "Indicate whether the tag is defined.",
 	"apihelp-query+tags-paramvalue-prop-source": "Gets the source(s) of the tag, which may include <samp>extension</samp> for extension-defined tags, <samp>core</samp> for core-defined tags and <samp>manual</samp> for tags defined manually at Special:Tags.",
 	"apihelp-query+tags-paramvalue-prop-active": "Whether the tag is still being applied.",
+	"apihelp-query+tags-paramvalue-prop-problem": "Whether the tag indicates a potential problem.",
 	"apihelp-query+tags-example-simple": "List available tags.",
 
 	"apihelp-query+templates-description": "Returns all pages transcluded on the given pages.",

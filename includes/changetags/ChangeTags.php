@@ -1196,4 +1196,97 @@ class ChangeTags {
 		$changeTagsContext = new ChangeTagsContext();
 		return $user->isAllowed( 'changetags' ) && (bool)$changeTagsContext->getStored();
 	}
+
+	/**
+	 * Gives valid tag-related page_prop properties
+	 *
+	 * @return array Array
+	 * @since 1.27
+	 */
+	public static function validProps() {
+		$validProps = array( 'changetagproblem' );
+		Hooks::run( 'ChangeTagsValidProps', array( &$validProps ) );
+		return $validProps;
+	}
+
+	/**
+	 * Sets new ChangeTag props cache for a $tag when editing MediaWiki:Tag-$tag page
+	 * and invalidates combined props cache for all defined tags
+	 *
+	 * @param string $msgKey
+	 * @param array $properties New properties
+	 * @param array $existing Old properties
+	 * @since 1.27
+	 */
+	public static function updatePropsCache( $msgKey, array $properties, array $existing ) {
+		$tag = self::getTagFromMsgKey( $msgKey );
+		if ( $tag === null ) {
+			return;
+		}
+
+		// retrieve new ChangeTag properties
+		$changeTagProps = array();
+		$proceed = false;
+		foreach ( self::validProps() as $prop ) {
+			if ( isset( $properties[$prop] ) ) {
+				$changeTagProps[$prop] = $properties[$prop];
+				$proceed = true;
+			} elseif ( !$proceed && isset( $existing[$prop] ) ) {
+				$proceed = true;
+			}
+		}
+/* 		print_r($proceed ? 'GO' : 'NO');
+		die(); */
+		// don't cache if no ChangeTag properties were changed
+		if ( !$proceed ) {
+			return;
+		}
+
+		// save to cache
+		$cache = ObjectCache::getMainWANInstance();
+		$keyTagProps = wfMemcKey( 'ChangeTags', 'tag-props', $tag );
+		$cache->set( $keyTagProps, $changeTagProps, RawChangeTag::PROPS_CACHE_DURATION );
+
+		// purge cache for combined props of all defined tags
+		$keyAllProps = wfMemcKey( 'ChangeTags', 'tag-props' );
+		$cache->delete( $keyAllProps );
+	}
+
+	/**
+	 * Invalidates ChangeTag props when editing MediaWiki:Tag-$tag pages
+	 *
+	 * @param string $msgKey
+	 * @since 1.27
+	 */
+	public static function clearPropsCache( $msgKey ) {
+		$tag = self::getTagFromMsgKey( $msgKey );
+		if ( $tag === null ) {
+			return;
+		}
+
+		$cache = ObjectCache::getMainWANInstance();
+
+		// purge cache for this tag's props
+		$keyTagProps = wfMemcKey( 'ChangeTags', 'tag-props', $tag );
+		$cache->delete( $keyTagProps );
+
+		// purge cache for combined props of all defined tags
+		$keyAllProps = wfMemcKey( 'ChangeTags', 'tag-props' );
+		$cache->delete( $keyAllProps );
+	}
+
+	/**
+	 * Invalidates ChangeTag props when editing MediaWiki:Tag-$tag pages
+	 * @param string $msgKey
+	 */
+	private static function getTagFromMsgKey( $msgKey ) {
+		if ( strpos( $msgKey, 'Tag-' ) === 0 && strpos( $msgKey, '-appearance' ) === false
+			&& strpos( $msgKey, '-documentation' ) === false ) {
+			$tag = strtr( substr( $msgKey, 4 ), '_', ' ' );
+			if ( $tag !== '' ) {
+				return $tag;
+			}
+		}
+		return null;
+	}
 }
