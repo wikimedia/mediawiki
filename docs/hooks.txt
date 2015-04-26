@@ -1001,6 +1001,10 @@ If you allow users to define tags, it is advised to check that the name is legit
 the ChangeTag::canCreate() function.
 $tagStats: tag statistics (hitcounts) retrieved from change_tag table
 
+'ChangeTagsValidProps': Can be used to add page_prop properties relevant to change tagging,
+each controlled from the MediaWiki:Tag-$tag pages
+&$addedTags: array
+
 'Collation::factory': Called if $wgCategoryCollation is an unknown collation.
 $collationName: Name of the collation in question
 &$collationObject: Null. Replace with a subclass of the Collation class that

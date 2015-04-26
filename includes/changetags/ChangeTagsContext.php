@@ -48,6 +48,11 @@ class ChangeTagsContext {
 	protected $tagStats = null;
 
 	/**
+	 * @var array Array mapping tags to user-defined properties
+	 */
+	private $tagProps = null;
+
+	/**
 	 * @var Config
 	 */
 	private $config;
@@ -140,6 +145,24 @@ class ChangeTagsContext {
 	}
 
 	/**
+	 * Retrieves tag-related page_prop properties from MediaWiki:Tag-$tag pages,
+	 * for every defined tag with such a page existing
+	 *
+	 * Don't use this if you need to access properties quickly,
+	 * instead use the ChangeTagsArray class directly.
+	 *
+	 * @return array
+	 * @since 1.27
+	 */
+	public function getProps() {
+		// Save in class if not already done
+		if ( $this->tagProps === null ) {
+			$this->tagProps = $this->tagProps();
+		}
+		return $this->tagProps;
+	}
+
+	/**
 	 * Gets tags stored in the `valid_tag` table of the database.
 	 * Tags in table 'change_tag' which are not in table 'valid_tag' are not
 	 * included.
@@ -200,6 +223,9 @@ class ChangeTagsContext {
 	 * might still appear registered.
 	 * If a tag should be updated quickly, this cache can be purged with the
 	 * purgeRegisteredTagsCache function.
+	 *
+	 * This shouldn't be used to define properties of change tags that must
+	 * be retrieved quickly, instead use the ChangeTagsArray class.
 	 *
 	 * @return Array of strings: tags => arrays of params
 	 */
@@ -297,6 +323,62 @@ class ChangeTagsContext {
 			$callBack,
 			array(
 				'checkKeys' => array( $keyReactive ),
+				'lockTSE' => $cacheDuration,
+				'pcTTL' => 30
+			)
+		);
+	}
+
+	/**
+	 * Returns a map of defined tags to their user-defined properties
+	 * Result is cached
+	 *
+	 * @return array Array of tags mapped to their properties
+	 */
+	private function tagProps() {
+		$cacheDuration = $this->config->get( 'TagDefinitionCacheDuration' );
+
+		$keyAllProps = wfMemcKey( 'ChangeTags', 'tag-props' );
+		$definedTags = $this->getDefined();
+		$fname = __METHOD__;
+		$callBack = function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname, $definedTags ) {
+			$validIds = array();
+			foreach ( $definedTags as $tag => &$val ) {
+				$tagTitle = Title::makeTitle( NS_MEDIAWIKI, 'Tag-' . $tag );
+				$id = $tagTitle->getArticleID();
+				if ( $id ) {
+					$validIds[$tag] = $id;
+				}
+			}
+			if ( !$validIds ) {
+				return array();
+			}
+			$tagProps = array();
+			$dbr = wfGetDB( DB_SLAVE );
+			$setOpts += Database::getCacheSetOptions( $dbr );
+			$fields = array( 'pp_page', 'pp_propname', 'pp_value' );
+			$res = $dbr->select( 'page_props', $fields, array(
+				'pp_propname' => ChangeTags::validProps(),
+				'pp_page' => array_values( $validIds ),
+			) );
+			$propsByIds = array();
+			foreach ( $res as $row ) {
+				$propsByIds[$row->pp_page][$row->pp_propname] = $row->pp_value;
+			}
+			foreach ( $validIds as $tag => $id ) {
+				if ( isset( $propsByIds[$id] ) ) {
+					$tagProps[$tag] = $propsByIds[$id];
+				}
+			}
+			return $tagProps;
+		};
+
+		return ObjectCache::getMainWANInstance()->getWithSetCallback(
+			$keyAllProps,
+			$cacheDuration,
+			$callBack,
+			array(
+				'checkKeys' => array( $keyAllProps ),
 				'lockTSE' => $cacheDuration,
 				'pcTTL' => 30
 			)
@@ -447,5 +529,6 @@ class ChangeTagsContext {
 		$cache->touchCheckKey( wfMemcKey( 'ChangeTags', 'valid-tags-hook' ) );
 		$cache->touchCheckKey( wfMemcKey( 'ChangeTags', 'tag-stats-reactive' ) );
 		$cache->touchCheckKey( wfMemcKey( 'ChangeTags', 'tag-stats-stable' ) );
+		$cache->touchCheckKey( wfMemcKey( 'ChangeTags', 'tag-props' ) );
 	}
 }
