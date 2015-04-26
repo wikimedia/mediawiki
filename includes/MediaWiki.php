@@ -457,7 +457,7 @@ class MediaWiki {
 	}
 
 	private function main() {
-		global $wgTitle;
+		global $wgTitle, $wgTrxProfilerLimits;
 
 		$request = $this->context->getRequest();
 
@@ -489,10 +489,9 @@ class MediaWiki {
 		if ( !$request->wasPosted()
 			&& in_array( $action, array( 'view', 'edit', 'history' ) )
 		) {
-			$trxProfiler->setExpectation( 'masterConns', 0, __METHOD__ );
-			$trxProfiler->setExpectation( 'writes', 0, __METHOD__ );
+			$trxProfiler->setExpectations( $wgTrxProfilerLimits['GET'], __METHOD__ );
 		} else {
-			$trxProfiler->setExpectation( 'maxAffected', 500, __METHOD__ );
+			$trxProfiler->setExpectations( $wgTrxProfilerLimits['POST'], __METHOD__ );
 		}
 
 		// If the user has forceHTTPS set to true, or if the user

@@ -52,11 +52,13 @@ class TransactionProfiler implements LoggerAwareInterface {
 	);
 	/** @var array */
 	protected $expect = array(
-		'writes'      => INF,
-		'queries'     => INF,
-		'conns'       => INF,
-		'masterConns' => INF,
-		'maxAffected' => INF
+		'writes'         => INF,
+		'queries'        => INF,
+		'conns'          => INF,
+		'masterConns'    => INF,
+		'maxAffected'    => INF,
+		'readQueryTime'  => INF,
+		'writeQueryTime' => INF,
 	);
 	/** @var array */
 	protected $expectBy = array();
@@ -77,7 +79,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 	/**
 	 * Set performance expectations
 	 *
-	 * With conflicting expect, the most specific ones will be used
+	 * With conflicting expectations, the most narrow ones will be used
 	 *
 	 * @param string $event (writes,queries,conns,mConns)
 	 * @param integer $value Maximum count of the event
@@ -90,6 +92,21 @@ class TransactionProfiler implements LoggerAwareInterface {
 			: $value;
 		if ( $this->expect[$event] == $value ) {
 			$this->expectBy[$event] = $fname;
+		}
+	}
+
+	/**
+	 * Set multiple performance expectations
+	 *
+	 * With conflicting expectations, the most narrow ones will be used
+	 *
+	 * @param array $expects Map of (event => limit)
+	 * @param $fname
+	 * @since 1.26
+	 */
+	public function setExpectations( array $expects, $fname ) {
+		foreach ( $expects as $event => $value ) {
+			$this->setExpectation( $event, $value, $fname );
 		}
 	}
 
@@ -170,7 +187,8 @@ class TransactionProfiler implements LoggerAwareInterface {
 		$elapsed = ( $eTime - $sTime );
 
 		if ( $isWrite && $n > $this->expect['maxAffected'] ) {
-			$this->logger->info( "Query affected $n row(s):\n" . $query . "\n" . wfBacktrace( true ) );
+			$this->logger->info( "Query affected $n row(s):\n" . $query . "\n" .
+				wfBacktrace( true ) );
 		}
 
 		// Report when too many writes/queries happen...
@@ -179,6 +197,13 @@ class TransactionProfiler implements LoggerAwareInterface {
 		}
 		if ( $isWrite && $this->hits['writes']++ == $this->expect['writes'] ) {
 			$this->reportExpectationViolated( 'writes', $query );
+		}
+		// Report slow queries...
+		if ( !$isWrite && $elapsed > $this->expect['readQueryTime'] ) {
+			$this->reportExpectationViolated( 'readQueryTime', $query );
+		}
+		if ( $isWrite && $elapsed > $this->expect['writeQueryTime'] ) {
+			$this->reportExpectationViolated( 'writeQueryTime', $query );
 		}
 
 		if ( !$this->dbTrxHoldingLocks ) {
@@ -268,7 +293,8 @@ class TransactionProfiler implements LoggerAwareInterface {
 		$n = $this->expect[$expect];
 		$by = $this->expectBy[$expect];
 		$this->logger->info(
-			"[{$wgRequest->getMethod()}] Expectation ($expect <= $n) by $by not met:\n$query\n" . wfBacktrace( true )
+			"[{$wgRequest->getMethod()}] Expectation ($expect <= $n) by $by not met:\n$query\n" .
+			wfBacktrace( true )
 		);
 	}
 }
