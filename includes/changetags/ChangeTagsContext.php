@@ -127,19 +127,29 @@ class ChangeTagsContext {
 		$fname = __METHOD__;
 		$key = wfMemcKey( 'ChangeTags', 'valid-tags-db' );
 		$callBack = function() use ( $fname ) {
+			global $wgProblemCustomTags;
 			$dbr = wfGetDB( DB_SLAVE );
 			$res = $dbr->select( 'valid_tag', array( 'vt_tag' ),
 				array(), $fname );
 
 			// Stored tags are always assumed to be active.
+			// They are not considered 'problem', unless set as such in config.
 			// We need this filled so that this array can be
 			// seamlessly merged with getRegisteredTags() when we
-			// want all defined tags (with their active status).
+			// want all defined tags (with their active/problem status).
 			$storedTags = array();
 			foreach ( $res as $row ) {
 				$storedTags[$row->vt_tag] = array(
-					'active' => true
+					'active' => true,
+					'problem' => false
 				);
+			}
+
+			// Allow to mark stored tags as 'problem' from config
+			foreach ( $wgProblemCustomTags as $tag ) {
+				if ( isset( $storedTags[$tag] ) ) {
+					$storedTags[$tag]['problem'] = true;
+				}
 			}
 
 			// Removing nulls inserted as keys

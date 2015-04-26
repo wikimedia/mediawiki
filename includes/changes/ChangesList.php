@@ -35,6 +35,7 @@ class ChangesList extends ContextSource {
 	protected $rcCacheIndex;
 	protected $rclistOpen;
 	protected $rcMoveIndex;
+	protected $definedTags = null;
 
 	/** @var MapCacheLRU */
 	protected $watchingCache;
@@ -565,7 +566,50 @@ class ChangesList extends ContextSource {
 	}
 
 	protected function showAsUnpatrolled( RecentChange $rc ) {
-		return self::isUnpatrolled( $rc, $this->getUser() );
+		global $wgUseRCpatrol, $wgUseFullRCPatrolUI;
+
+		// case if RC item is already patrolled
+		if ( $rc->mAttribs['rc_patrolled'] ) {
+			return false;
+		}
+
+		$user = $this->getUser();
+
+		// case of new page
+		if ( $user->useNPPatrol() && $rcType == RC_NEW ) {
+			return true;
+		}
+
+		// case if user does not use RC patrol
+		if ( !$user->useRCPatrol() ) {
+			return false;
+		}
+
+		// case if user uses RC patrol and full RC patrol UI is enabled
+		if ( !$wgUseMinimalistRCPatrolUI ) {
+			return true;
+		}
+
+		$rcTags = explode( ',', $rc->mAttribs['ts_tags'] );
+
+		// In minimalist UI, we don't show as unpatrolled if not tagged
+		if ( !$rcTags ) {
+			return false;
+		}
+
+		// We fetch defined tags if not already done
+		if ( $this->definedTags === null ) {
+			$this->definedTags = ChangeTagsContext::definedTags();
+		}
+
+		// we show as unpatrolled if tagged with a problem tag
+		foreach ( $rcTags as $tag ) {
+			if ( $this->definedTags[$tag]['problem'] ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
