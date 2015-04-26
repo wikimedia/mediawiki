@@ -41,6 +41,9 @@ class ChangesList extends ContextSource {
 	/** @var BagOStuff */
 	protected $watchMsgCache;
 
+	/** @var ChangeTagsContext */
+	protected $changeTagsContext;
+
 	/**
 	 * @var LinkRenderer
 	 */
@@ -62,6 +65,7 @@ class ChangesList extends ContextSource {
 		$this->preCacheMessages();
 		$this->watchMsgCache = new HashBagOStuff( [ 'maxKeys' => 50 ] );
 		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$this->changeTagsContext = new ChangeTagsContext( $this->getConfig() );
 	}
 
 	/**
@@ -654,7 +658,18 @@ class ChangesList extends ContextSource {
 	}
 
 	protected function showAsUnpatrolled( RecentChange $rc ) {
-		return self::isUnpatrolled( $rc, $this->getUser() );
+		// if not recognized as unpatrolled, show as patrolled
+		if ( !self::isUnpatrolled( $rc, $this->getUser() ) ) {
+			return false;
+		}
+
+		// if recognized as unpatrolled, we show it as such unless
+		// minimalist RC patrol UI is used, then only if problem tagged
+		if ( !$this->getConfig()->get( 'UseMinimalistRCPatrolUI' ) ) {
+			return true;
+		} else {
+			return self::containsProblemTags( $rc, $this->changeTagsContext );
+		}
 	}
 
 	/**
@@ -685,6 +700,31 @@ class ChangesList extends ContextSource {
 			}
 		}
 
+		return false;
+	}
+
+	/**
+	 * @param object|RecentChange $rc Database row from recentchanges or a RecentChange object
+	 * @param ChangeTagsContext $changeTagsContext
+	 * @return bool
+	 */
+	public static function containsProblemTags( $rc, ChangeTagsContext $changeTagsContext ) {
+		if ( $rc instanceof RecentChange ) {
+			$rcTags = explode( ',', $rc->mAttribs['ts_tags'] );
+		} else {
+			$rcTags = explode( ',', $rc->ts_tags );
+		}
+
+		if ( !$rcTags ) {
+			return false;
+		}
+
+		foreach ( $rcTags as $tag ) {
+			$changeTag = new ChangeTag( $tag, $changeTagsContext );
+			if ( $changeTag->isProblem() ) {
+				return true;
+			}
+		}
 		return false;
 	}
 
