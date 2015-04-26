@@ -613,7 +613,35 @@ class ChangesList extends ContextSource {
 	}
 
 	protected function showAsUnpatrolled( RecentChange $rc ) {
-		return self::isUnpatrolled( $rc, $this->getUser() );
+		// if not recognized as unpatrolled, show as patrolled
+		if ( !self::isUnpatrolled( $rc, $this->getUser() ) ) {
+			return false;
+		}
+
+		// if recognized as unpatrolled, we show it as such unless
+		// minimalist RC patrol UI is used, then only if problem tagged
+
+		// case if user uses RC patrol and full RC patrol UI is enabled
+		if ( !$this->getConfig()->get( 'UseMinimalistRCPatrolUI' ) ) {
+			return true;
+		}
+
+		$rcTags = explode( ',', $rc->mAttribs['ts_tags'] );
+
+		// In minimalist UI, we don't show as unpatrolled if not tagged
+		if ( !$rcTags ) {
+			return false;
+		}
+
+		// we show as unpatrolled if tagged with a problem tag
+		foreach( $rcTags as $tag ) {
+			$changeTag = new RawChangeTag( $tag );
+			$props = $changeTag->getProps();
+			if ( isset( $props['changetagproblem'] ) ) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
