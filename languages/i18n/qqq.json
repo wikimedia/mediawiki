@@ -3883,6 +3883,7 @@
 	"tags-edit-nooldid-title": "Title for an error message ({{msg-mw|tags-edit-nooldid-text}}) for the edit tag form.",
 	"tags-edit-nooldid-text": "Error message for the edit tag form.\n\nSee also:\n* {{msg-mw|tags-edit-nooldid-title}}",
 	"tags-edit-none-selected": "Error message for the edit tag form.",
+	"tags-settings": "Explanation displayed at Special:Tags on how to view and modify additional tag settings (including problem status)",
 	"tag-core-move-tomainspace-appearance": "Appearance in drop down menu and change lists of the core tag for moves to mainspace from another namespace",
 	"tag-core-move-crossnamespace-appearance": "Appearance in drop down menu and change lists of the core tag for cross namespace moves",
 	"tag-core-move-rename-appearance": "Appearance in drop down menu and change lists of the core tag for moves attempting to 'rename' the user",
