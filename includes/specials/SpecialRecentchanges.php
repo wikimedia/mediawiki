@@ -235,12 +235,15 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		// rc_new is not an ENUM, but adding a redundant rc_new IN (0,1) gives mysql enough
 		// knowledge to use an index merge if it wants (it may use some other index though).
+		$query_options = array_merge( array(
+			'ORDER BY' => 'rc_timestamp DESC',
+			'LIMIT' => $opts['limit'] ), $query_options );
 		$rows = $dbr->select(
 			$tables,
 			$fields,
 			$conds + array( 'rc_new' => array( 0, 1 ) ),
 			__METHOD__,
-			array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $opts['limit'] ) + $query_options,
+			$query_options,
 			$join_conds
 		);
 
