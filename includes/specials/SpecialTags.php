@@ -72,6 +72,12 @@ class SpecialTags extends SpecialPage {
 		$userCanManage = $user->isAllowed( 'managechangetags' );
 		$userCanEditInterface = $user->isAllowed( 'editinterface' );
 
+		// we show problem status if requested in config, or when RC patrol is used
+		// with minimalist UI
+		$config = $this->getConfig();
+		$showProblemStatus = $config->get( 'ShowTagProblemStatus' ) ||
+			( $config->get( 'UseRCPatrol' ) && $config->get( 'UseMinimalistRCPatrolUI' ) );
+
 		// Show form to create a tag
 		if ( $userCanManage ) {
 			$fields = array(
@@ -130,6 +136,9 @@ class SpecialTags extends SpecialPage {
 			Xml::tags( 'th', null, $this->msg( 'tags-description-header' )->parse() ) .
 			Xml::tags( 'th', null, $this->msg( 'tags-source-header' )->parse() ) .
 			Xml::tags( 'th', null, $this->msg( 'tags-active-header' )->parse() ) .
+			( $showProblemStatus ?
+				Xml::tags( 'th', null, $this->msg( 'tags-problem-header' )->parse() ) :
+				'' ) .
 			Xml::tags( 'th', null, $this->msg( 'tags-hitcount-header' )->parse() ) .
 			( $userCanManage ?
 				Xml::tags( 'th', array( 'class' => 'unsortable' ),
@@ -139,13 +148,15 @@ class SpecialTags extends SpecialPage {
 
 		// Append tag rows for tags applied at least once (based on change_tag table)
 		foreach ( $tagStats as $tag => $hitcount ) {
-			$html .= $this->doTagRow( $tag, $hitcount, $userCanManage, $userCanEditInterface );
+			$html .= $this->doTagRow( $tag, $hitcount, $userCanManage,
+				$userCanEditInterface, $showProblemStatus );
 		}
 
 		// Append tag rows for tags that are not (currently) applied but are defined somewhere
 		foreach ( $definedTags as $tag => &$val ) {
 			if ( !isset( $tagStats[$tag] ) ) {
-				$html .= $this->doTagRow( $tag, 0, $userCanManage, $userCanEditInterface );
+				$html .= $this->doTagRow( $tag, 0, $userCanManage,
+					$userCanEditInterface, $showProblemStatus );
 			}
 		}
 
@@ -156,7 +167,7 @@ class SpecialTags extends SpecialPage {
 		) );
 	}
 
-	function doTagRow( $tag, $hitcount, $showActions, $showEditLinks ) {
+	function doTagRow( $tag, $hitcount, $showActions, $showEditLinks, $showProblemStatus ) {
 
 		// Build change tag object
 		$changeTag = new ChangeTag( $tag, $this->changeTagsContext );
@@ -242,6 +253,11 @@ class SpecialTags extends SpecialPage {
 
 		$activeMsg = $changeTag->isActive() ? 'tags-active-yes' : 'tags-active-no';
 		$newRow .= Xml::tags( 'td', null, $this->msg( $activeMsg )->escaped() );
+
+		if ( $showProblemStatus ) {
+			$problemMsg = $changeTag->isProblem() ? 'tags-problem-yes' : 'tags-problem-no';
+			$newRow .= Xml::tags( 'td', null, $this->msg( $problemMsg )->escaped() );
+		}
 
 		$hitcountLabel = $this->msg( 'tags-hitcount' )->numParams( $hitcount )->escaped();
 		if ( $this->getConfig()->get( 'UseTagFilter' ) ) {
