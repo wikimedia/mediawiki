@@ -6629,6 +6629,14 @@ $wgRCWatchCategoryMembership = false;
 $wgUseRCPatrol = true;
 
 /**
+ * When using RC patrol, set this to true if you want
+ * a minimalist RC patrol UI (only shown for new pages
+ * and changes tagged with a 'problem' tag)
+ * @since 1.27
+ */
+$wgUseMinimalistRCPatrolUI = false;
+
+/**
  * Use new page patrolling to check new pages on Special:Newpages
  */
 $wgUseNPPatrol = true;
