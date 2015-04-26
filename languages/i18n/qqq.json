@@ -3963,6 +3963,7 @@
 	"tags-edit-nooldid-title": "Title for an error message ({{msg-mw|tags-edit-nooldid-text}}) for the edit tag form.",
 	"tags-edit-nooldid-text": "Error message for the edit tag form.\n\nSee also:\n* {{msg-mw|tags-edit-nooldid-title}}",
 	"tags-edit-none-selected": "Error message for the edit tag form.",
+	"tags-settings": "Explanation displayed at Special:Tags on how to view and modify additional tag settings (including problem status)",
 	"comparepages": "The title of [[Special:ComparePages]]",
 	"comparepages-summary": "{{doc-specialpagesummary|comparepages}}",
 	"compare-page1": "Label for the field of the 1st page in the comparison for [[Special:ComparePages]]\n{{Identical|Page}}",
