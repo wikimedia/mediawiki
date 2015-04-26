@@ -747,9 +747,23 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		foreach ( $this->getCustomFilters() as $key => $params ) {
 			$filters[$key] = $params['msg'];
 		}
-		// Disable some if needed
+
 		if ( !$user->useRCPatrol() ) {
+			// Disable patrol filter if RC patrol is not used
 			unset( $filters['hidepatrolled'] );
+		} elseif ( $this->getConfig()->get( 'UseMinimalistRCPatrolUI' ) ) {
+			// Case where RC patrol is used with minimalist UI
+			if ( !$options['tagfilter'] ) {
+				// Disable if not filtered by a tag
+				unset( $filters['hidepatrolled'] );
+			} else {
+				// If filtered by a tag, disable if not a problem tag
+				$changeTagsContext = new ChangeTagsContext( $this->getConfig() );
+				$changeTag = new ChangeTag( $options['tagfilter'], $changeTagsContext );
+				if ( !$changeTag->isProblem() ) {
+					unset( $filters['hidepatrolled'] );
+				}
+			}
 		}
 
 		$links = [];

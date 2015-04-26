@@ -50,10 +50,14 @@ class RCCacheEntryFactory {
 	/**
 	 * @param RecentChange $baseRC
 	 * @param bool $watched
+	 * @param ChangeTagsContext|null $changeTagsContext
 	 *
 	 * @return RCCacheEntry
 	 */
-	public function newFromRecentChange( RecentChange $baseRC, $watched ) {
+	public function newFromRecentChange( RecentChange $baseRC, $watched,
+		ChangeTagsContext $changeTagsContext = null
+	) {
+		global $wgUseMinimalistRCPatrolUI;
 		$user = $this->context->getUser();
 		$counter = $baseRC->counter;
 
@@ -61,6 +65,13 @@ class RCCacheEntryFactory {
 
 		// Should patrol-related stuff be shown?
 		$cacheEntry->unpatrolled = ChangesList::isUnpatrolled( $baseRC, $user );
+		if ( $cacheEntry->unpatrolled && $wgUseMinimalistRCPatrolUI &&
+			$changeTagsContext !== null
+		) {
+			// in minimalist RC patrol UI, don't show as unpatrolled unless problem tagged
+			$cacheEntry->unpatrolled = ChangesList::containsProblemTags(
+				$baseRC, $changeTagsContext );
+		}
 
 		$cacheEntry->watched = $cacheEntry->mAttribs['rc_type'] == RC_LOG ? false : $watched;
 		$cacheEntry->numberofWatchingusers = $baseRC->numberofWatchingusers;

@@ -37,6 +37,11 @@ class ChangeTag {
 	const MAX_DELETE_USES = 5000;
 
 	/**
+	 * Key usable in MediaWiki:Tags-settings.json to indicate default settings
+	 */
+	const DEFAULT_SETTINGS = '#default';
+
+	/**
 	 * @var string Internal name of the tag
 	 */
 	private $name;
@@ -137,6 +142,45 @@ class ChangeTag {
 		$definedTags = $this->context->getDefinedTags();
 		return isset( $definedTags[$this->name]['active'] ) &&
 			$definedTags[$this->name]['active'];
+	}
+
+	/**
+	 * Retrieves user-defined ChangeTags settings from MediaWiki:Tags-settings.json
+	 * The key for self::DEFAULT_SETTINGS is used as a default.
+	 *
+	 * @return array
+	 * @since 1.28
+	 */
+	public function getSettings() {
+		$tagSettings = $this->context->getSettings();
+		// get default settings
+		$default = [];
+		if ( isset( $tagSettings[self::DEFAULT_SETTINGS] ) ) {
+			$default = $tagSettings[self::DEFAULT_SETTINGS];
+			if ( !is_array( $default ) ) {
+				$default = [];
+			}
+		}
+		// override with this tag's settings if defined and valid
+		$settings = $default;
+		if ( isset( $tagSettings[$this->name] ) ) {
+			$settings = $tagSettings[$this->name];
+			if ( !is_array( $settings ) ) {
+				$settings = $default;
+			}
+		}
+		return $settings;
+	}
+
+	/**
+	 * Retrieves 'problem' status for this tag
+	 *
+	 * @return bool
+	 * @since 1.28
+	 */
+	public function isProblem() {
+		$settings = $this->getSettings();
+		return isset( $settings['problem'] );
 	}
 
 	/**
@@ -324,7 +368,7 @@ class ChangeTag {
 		}
 
 		// tags cannot contain some strings reserved for core tags, or system messages
-		if ( strpos( $tag, 'mw-' ) === 0 ||
+		if ( strpos( $tag, 'mw-' ) === 0 || $tag === self::DEFAULT_SETTINGS ||
 			strpos( $tag, '-appearance' ) !== false ||
 			strpos( $tag, '-description' ) !== false ) {
 			return Status::newFatal( 'tags-create-invalid-reserved' );
