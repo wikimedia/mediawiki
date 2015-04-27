@@ -594,6 +594,17 @@ class OutputPage extends ContextSource {
 	 * @return array Array of module names
 	 */
 	public function getModuleStyles( $filter = false, $position = null ) {
+		// T97420
+		$resourceLoader = $this->getResourceLoader();
+
+		foreach ( $this->mModuleStyles as $val ) {
+			$module = $resourceLoader->getModule( $val );
+
+			if ( $module->isPositionDefault() ) {
+				wfLogWarning( 'Style module should define its position explicitly: ' . $val . ' ' . get_class( $module ) );
+			}
+		}
+
 		return $this->getModules( $filter, $position, 'mModuleStyles' );
 	}
 
@@ -3022,12 +3033,19 @@ class OutputPage extends ContextSource {
 		// If we're in the <head>, use load() calls rather than <script src="..."> tags
 		// Messages should go first
 		$links = array();
+
 		$links[] = $this->makeResourceLoaderLink( $this->getModuleMessages( true, 'bottom' ),
 			ResourceLoaderModule::TYPE_MESSAGES, /* $useESI = */ false, /* $extraQuery = */ array(),
 			/* $loadCall = */ $inHead
 		);
+
 		$links[] = $this->makeResourceLoaderLink( $this->getModuleScripts( true, 'bottom' ),
 			ResourceLoaderModule::TYPE_SCRIPTS, /* $useESI = */ false, /* $extraQuery = */ array(),
+			/* $loadCall = */ $inHead
+		);
+
+		$links[] = $this->makeResourceLoaderLink( $this->getModuleStyles( true, 'bottom' ),
+			ResourceLoaderModule::TYPE_STYLES, /* $useESI = */ false, /* $extraQuery = */ array(),
 			/* $loadCall = */ $inHead
 		);
 
@@ -3088,6 +3106,9 @@ class OutputPage extends ContextSource {
 	 * @return string
 	 */
 	function getBottomScripts() {
+		// In case the skin wants to add bottom CSS
+		$this->getSkin()->setupSkinUserCss( $this );
+
 		// Optimise jQuery ready event cross-browser.
 		// This also enforces $.isReady to be true at </body> which fixes the
 		// mw.loader bug in Firefox with using document.write between </body>
@@ -3599,7 +3620,7 @@ class OutputPage extends ContextSource {
 		$otherTags = ''; // Tags to append after the normal <link> tags
 		$resourceLoader = $this->getResourceLoader();
 
-		$moduleStyles = $this->getModuleStyles();
+		$moduleStyles = $this->getModuleStyles( true, 'top' );
 
 		// Per-site custom styles
 		$moduleStyles[] = 'site';
