@@ -128,7 +128,9 @@ class SwiftFileBackend extends FileBackendStore {
 		// HTTP helper client
 		$this->http = new MultiHttpClient( array() );
 		// Cache container information to mask latency
-		$this->memCache = wfGetMainCache();
+		if ( isset( $config['wanCache'] ) && $config['wanCache'] instanceof WANObjectCache ) {
+			$this->memCache = $config['wanCache'];
+		}
 		// Process cache for container info
 		$this->containerStatCache = new ProcessCacheLRU( 300 );
 		// Cache auth token information to avoid RTTs
