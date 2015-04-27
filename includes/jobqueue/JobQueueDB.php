@@ -29,7 +29,6 @@
  */
 class JobQueueDB extends JobQueue {
 	const CACHE_TTL_SHORT = 30; // integer; seconds to cache info without re-validating
-	const CACHE_TTL_LONG = 300; // integer; seconds to cache info that is kept up to date
 	const MAX_AGE_PRUNE = 604800; // integer; seconds a job can live once claimed
 	const MAX_JOB_RANDOM = 2147483647; // integer; 2^31 - 1, used for job_random
 	const MAX_OFFSET = 255; // integer; maximum number of rows to skip
@@ -71,15 +70,6 @@ class JobQueueDB extends JobQueue {
 	 * @return bool
 	 */
 	protected function doIsEmpty() {
-		$key = $this->getCacheKey( 'empty' );
-
-		$isEmpty = $this->cache->get( $key );
-		if ( $isEmpty === 'true' ) {
-			return true;
-		} elseif ( $isEmpty === 'false' ) {
-			return false;
-		}
-
 		$dbr = $this->getSlaveDB();
 		try {
 			$found = $dbr->selectField( // unclaimed job
@@ -88,7 +78,6 @@ class JobQueueDB extends JobQueue {
 		} catch ( DBError $e ) {
 			$this->throwDBException( $e );
 		}
-		$this->cache->add( $key, $found ? 'false' : 'true', self::CACHE_TTL_LONG );
 
 		return !$found;
 	}
@@ -272,8 +261,6 @@ class JobQueueDB extends JobQueue {
 			$dbw->commit( $method );
 		}
 
-		$this->cache->set( $this->getCacheKey( 'empty' ), 'false', JobQueueDB::CACHE_TTL_LONG );
-
 		return;
 	}
 
@@ -282,10 +269,6 @@ class JobQueueDB extends JobQueue {
 	 * @return Job|bool
 	 */
 	protected function doPop() {
-		if ( $this->cache->get( $this->getCacheKey( 'empty' ) ) === 'true' ) {
-			return false; // queue is empty
-		}
-
 		$dbw = $this->getMasterDB();
 		try {
 			$dbw->commit( __METHOD__, 'flush' ); // flush existing transaction
@@ -308,7 +291,6 @@ class JobQueueDB extends JobQueue {
 				}
 				// Check if we found a row to reserve...
 				if ( !$row ) {
-					$this->cache->set( $this->getCacheKey( 'empty' ), 'true', self::CACHE_TTL_LONG );
 					break; // nothing to do
 				}
 				JobQueue::incrStats( 'job-pop', $this->type );
@@ -569,7 +551,7 @@ class JobQueueDB extends JobQueue {
 	 * @return void
 	 */
 	protected function doFlushCaches() {
-		foreach ( array( 'empty', 'size', 'acquiredcount' ) as $type ) {
+		foreach ( array( 'size', 'acquiredcount' ) as $type ) {
 			$this->cache->delete( $this->getCacheKey( $type ) );
 		}
 	}
@@ -680,8 +662,6 @@ class JobQueueDB extends JobQueue {
 					$affected = $dbw->affectedRows();
 					$count += $affected;
 					JobQueue::incrStats( 'job-recycle', $this->type, $affected );
-					// The tasks recycled jobs or release delayed jobs into the queue
-					$this->cache->set( $this->getCacheKey( 'empty' ), 'false', self::CACHE_TTL_LONG );
 					$this->aggr->notifyQueueNonEmpty( $this->wiki, $this->type );
 				}
 			}
