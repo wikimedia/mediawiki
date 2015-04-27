@@ -115,10 +115,10 @@ class LoadMonitorMySQL implements LoadMonitor {
 		}
 
 		# Cache key missing or expired
-		if ( $cache->add( "$memcKey:lock", 1, 10 ) ) {
+		if ( $cache->lock( $memcKey, 0, 10 ) ) {
 			# Let this process alone update the cache value
 			$unlocker = new ScopedCallback( function () use ( $cache, $memcKey ) {
-				$cache->delete( $memcKey );
+				$cache->unlock( $memcKey );
 			} );
 		} elseif ( is_array( $times ) ) {
 			# Could not acquire lock but an old cache exists, so use it
