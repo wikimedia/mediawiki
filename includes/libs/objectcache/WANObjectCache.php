@@ -572,7 +572,7 @@ class WANObjectCache {
 	/**
 	 * @param array $keys
 	 * @param string $prefix
-	 * @return string
+	 * @return string[]
 	 */
 	protected static function prefixCacheKeys( array $keys, $prefix ) {
 		$res = array();
