@@ -64,6 +64,10 @@ abstract class ResourceLoaderModule {
 	// In-object cache for message blob mtime
 	protected $msgBlobMtime = array();
 
+	// Whether the position returned by getPosition() is defined in the module configuration
+	// and not a default value
+	protected $isPositionDefined;
+
 	/**
 	 * @var Config
 	 */
@@ -282,6 +286,17 @@ abstract class ResourceLoaderModule {
 	 */
 	public function getPosition() {
 		return 'bottom';
+	}
+
+	/**
+	 * Whether the position returned by getPosition() is a default value or comes from the module
+	 * definition.
+	 *
+	 * @return bool
+	 * @since  1.26
+	 */
+	public function isPositionDefault() {
+		return !$this->isPositionDefined;
 	}
 
 	/**
