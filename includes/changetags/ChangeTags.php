@@ -382,8 +382,9 @@ class ChangeTags {
 	 * @return Status
 	 * @since 1.25
 	 */
-	public static function addTagsAccompanyingChangeWithChecks( array $tags,
-		$rc_id, $rev_id, $log_id, $params, User $user ) {
+	public static function addTagsAccompanyingChangeWithChecks(
+		array $tags, $rc_id, $rev_id, $log_id, $params, User $user
+	) {
 
 		// are we allowed to do this?
 		$result = self::canAddTagsAccompanyingChange( $tags, $user );
@@ -393,7 +394,7 @@ class ChangeTags {
 		}
 
 		// do it!
-		self::addTags( $tagsToAdd, $rc_id, $rev_id, $log_id, $params );
+		self::addTags( $tags, $rc_id, $rev_id, $log_id, $params );
 
 		return Status::newGood( true );
 	}
