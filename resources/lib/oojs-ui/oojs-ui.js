@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.10.0
+ * OOjs UI v0.10.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-04-23T00:54:26Z
+ * Date: 2015-04-27T17:17:10Z
  */
 ( function ( OO ) {
 
@@ -1809,7 +1809,7 @@ OO.ui.Window = function OoUiWindow( config ) {
 	this.$overlay.addClass( 'oo-ui-window-overlay' );
 	this.$content
 		.addClass( 'oo-ui-window-content' )
-		.attr( 'tabIndex', 0 );
+		.attr( 'tabindex', 0 );
 	this.$frame
 		.addClass( 'oo-ui-window-frame' )
 		.append( this.$content );
@@ -6399,6 +6399,7 @@ OO.ui.ClippableElement.prototype.clip = function () {
  * @extends OO.ui.Widget
  * @mixins OO.ui.IconElement
  * @mixins OO.ui.FlaggedElement
+ * @mixins OO.ui.TabIndexedElement
  *
  * @constructor
  * @param {OO.ui.ToolGroup} toolGroup
@@ -6418,10 +6419,6 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 	// Parent constructor
 	OO.ui.Tool.super.call( this, config );
 
-	// Mixin constructors
-	OO.ui.IconElement.call( this, config );
-	OO.ui.FlaggedElement.call( this, config );
-
 	// Properties
 	this.toolGroup = toolGroup;
 	this.toolbar = this.toolGroup.getToolbar();
@@ -6430,6 +6427,11 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 	this.$accel = $( '<span>' );
 	this.$link = $( '<a>' );
 	this.title = null;
+
+	// Mixin constructors
+	OO.ui.IconElement.call( this, config );
+	OO.ui.FlaggedElement.call( this, config );
+	OO.ui.TabIndexedElement.call( this, $.extend( {}, config, { $tabIndexed: this.$link } ) );
 
 	// Events
 	this.toolbar.connect( this, { updateState: 'onUpdateState' } );
@@ -6447,7 +6449,6 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 	this.$link
 		.addClass( 'oo-ui-tool-link' )
 		.append( this.$icon, this.$title, this.$accel )
-		.prop( 'tabIndex', 0 )
 		.attr( 'role', 'button' );
 	this.$element
 		.data( 'oo-ui-tool', this )
@@ -6464,6 +6465,7 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 OO.inheritClass( OO.ui.Tool, OO.ui.Widget );
 OO.mixinClass( OO.ui.Tool, OO.ui.IconElement );
 OO.mixinClass( OO.ui.Tool, OO.ui.FlaggedElement );
+OO.mixinClass( OO.ui.Tool, OO.ui.TabIndexedElement );
 
 /* Events */
 
@@ -6830,7 +6832,7 @@ OO.ui.Toolbar = function OoUiToolbar( toolFactory, toolGroupFactory, config ) {
 	// Events
 	this.$element
 		.add( this.$bar ).add( this.$group ).add( this.$actions )
-		.on( 'mousedown', this.onPointerDown.bind( this ) );
+		.on( 'mousedown keydown', this.onPointerDown.bind( this ) );
 
 	// Initialization
 	this.$group.addClass( 'oo-ui-toolbar-tools' );
@@ -7065,14 +7067,18 @@ OO.ui.ToolGroup = function OoUiToolGroup( toolbar, config ) {
 	this.exclude = config.exclude || [];
 	this.promote = config.promote || [];
 	this.demote = config.demote || [];
-	this.onCapturedMouseUpHandler = this.onCapturedMouseUp.bind( this );
+	this.onCapturedMouseKeyUpHandler = this.onCapturedMouseKeyUp.bind( this );
 
 	// Events
 	this.$element.on( {
-		mousedown: this.onPointerDown.bind( this ),
-		mouseup: this.onPointerUp.bind( this ),
-		mouseover: this.onMouseOver.bind( this ),
-		mouseout: this.onMouseOut.bind( this )
+		mousedown: this.onMouseKeyDown.bind( this ),
+		mouseup: this.onMouseKeyUp.bind( this ),
+		keydown: this.onMouseKeyDown.bind( this ),
+		keyup: this.onMouseKeyUp.bind( this ),
+		focus: this.onMouseOverFocus.bind( this ),
+		blur: this.onMouseOutBlur.bind( this ),
+		mouseover: this.onMouseOverFocus.bind( this ),
+		mouseout: this.onMouseOutBlur.bind( this )
 	} );
 	this.toolbar.getToolFactory().connect( this, { register: 'onToolFactoryRegister' } );
 	this.aggregate( { disable: 'itemDisable' } );
@@ -7155,57 +7161,64 @@ OO.ui.ToolGroup.prototype.updateDisabled = function () {
 };
 
 /**
- * Handle mouse down events.
+ * Handle mouse down and key down events.
  *
- * @param {jQuery.Event} e Mouse down event
+ * @param {jQuery.Event} e Mouse down or key down event
  */
-OO.ui.ToolGroup.prototype.onPointerDown = function ( e ) {
-	if ( !this.isDisabled() && e.which === 1 ) {
+OO.ui.ToolGroup.prototype.onMouseKeyDown = function ( e ) {
+	if (
+		!this.isDisabled() &&
+		( e.which === 1 || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
+	) {
 		this.pressed = this.getTargetTool( e );
 		if ( this.pressed ) {
 			this.pressed.setActive( true );
-			this.getElementDocument().addEventListener(
-				'mouseup', this.onCapturedMouseUpHandler, true
-			);
+			this.getElementDocument().addEventListener( 'mouseup', this.onCapturedMouseKeyUpHandler, true );
+			this.getElementDocument().addEventListener( 'keyup', this.onCapturedMouseKeyUpHandler, true );
 		}
+		return false;
 	}
-	return false;
 };
 
 /**
- * Handle captured mouse up events.
+ * Handle captured mouse up and key up events.
  *
- * @param {Event} e Mouse up event
+ * @param {Event} e Mouse up or key up event
  */
-OO.ui.ToolGroup.prototype.onCapturedMouseUp = function ( e ) {
-	this.getElementDocument().removeEventListener( 'mouseup', this.onCapturedMouseUpHandler, true );
-	// onPointerUp may be called a second time, depending on where the mouse is when the button is
+OO.ui.ToolGroup.prototype.onCapturedMouseKeyUp = function ( e ) {
+	this.getElementDocument().removeEventListener( 'mouseup', this.onCapturedMouseKeyUpHandler, true );
+	this.getElementDocument().removeEventListener( 'keyup', this.onCapturedMouseKeyUpHandler, true );
+	// onMouseKeyUp may be called a second time, depending on where the mouse is when the button is
 	// released, but since `this.pressed` will no longer be true, the second call will be ignored.
-	this.onPointerUp( e );
+	this.onMouseKeyUp( e );
 };
 
 /**
- * Handle mouse up events.
+ * Handle mouse up and key up events.
  *
- * @param {jQuery.Event} e Mouse up event
+ * @param {jQuery.Event} e Mouse up or key up event
  */
-OO.ui.ToolGroup.prototype.onPointerUp = function ( e ) {
+OO.ui.ToolGroup.prototype.onMouseKeyUp = function ( e ) {
 	var tool = this.getTargetTool( e );
 
-	if ( !this.isDisabled() && e.which === 1 && this.pressed && this.pressed === tool ) {
+	if (
+		!this.isDisabled() && this.pressed && this.pressed === tool &&
+		( e.which === 1 || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
+	) {
 		this.pressed.onSelect();
+		this.pressed = null;
+		return false;
 	}
 
 	this.pressed = null;
-	return false;
 };
 
 /**
- * Handle mouse over events.
+ * Handle mouse over and focus events.
  *
- * @param {jQuery.Event} e Mouse over event
+ * @param {jQuery.Event} e Mouse over or focus event
  */
-OO.ui.ToolGroup.prototype.onMouseOver = function ( e ) {
+OO.ui.ToolGroup.prototype.onMouseOverFocus = function ( e ) {
 	var tool = this.getTargetTool( e );
 
 	if ( this.pressed && this.pressed === tool ) {
@@ -7214,11 +7227,11 @@ OO.ui.ToolGroup.prototype.onMouseOver = function ( e ) {
 };
 
 /**
- * Handle mouse out events.
+ * Handle mouse out and blur events.
  *
- * @param {jQuery.Event} e Mouse out event
+ * @param {jQuery.Event} e Mouse out or blur event
  */
-OO.ui.ToolGroup.prototype.onMouseOut = function ( e ) {
+OO.ui.ToolGroup.prototype.onMouseOutBlur = function ( e ) {
 	var tool = this.getTargetTool( e );
 
 	if ( this.pressed && this.pressed === tool ) {
@@ -9575,6 +9588,7 @@ OO.ui.BarToolGroup.static.name = 'bar';
  * @mixins OO.ui.LabelElement
  * @mixins OO.ui.TitledElement
  * @mixins OO.ui.ClippableElement
+ * @mixins OO.ui.TabIndexedElement
  *
  * @constructor
  * @param {OO.ui.Toolbar} toolbar
@@ -9594,23 +9608,26 @@ OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 	// Parent constructor
 	OO.ui.PopupToolGroup.super.call( this, toolbar, config );
 
-	// Mixin constructors
-	OO.ui.IconElement.call( this, config );
-	OO.ui.IndicatorElement.call( this, config );
-	OO.ui.LabelElement.call( this, config );
-	OO.ui.TitledElement.call( this, config );
-	OO.ui.ClippableElement.call( this, $.extend( {}, config, { $clippable: this.$group } ) );
-
 	// Properties
 	this.active = false;
 	this.dragging = false;
 	this.onBlurHandler = this.onBlur.bind( this );
 	this.$handle = $( '<span>' );
 
+	// Mixin constructors
+	OO.ui.IconElement.call( this, config );
+	OO.ui.IndicatorElement.call( this, config );
+	OO.ui.LabelElement.call( this, config );
+	OO.ui.TitledElement.call( this, config );
+	OO.ui.ClippableElement.call( this, $.extend( {}, config, { $clippable: this.$group } ) );
+	OO.ui.TabIndexedElement.call( this, $.extend( {}, config, { $tabIndexed: this.$handle } ) );
+
 	// Events
 	this.$handle.on( {
-		mousedown: this.onHandlePointerDown.bind( this ),
-		mouseup: this.onHandlePointerUp.bind( this )
+		keydown: this.onHandleMouseKeyDown.bind( this ),
+		keyup: this.onHandleMouseKeyUp.bind( this ),
+		mousedown: this.onHandleMouseKeyDown.bind( this ),
+		mouseup: this.onHandleMouseKeyUp.bind( this )
 	} );
 
 	// Initialization
@@ -9640,6 +9657,7 @@ OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.IndicatorElement );
 OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.LabelElement );
 OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.TitledElement );
 OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.ClippableElement );
+OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.TabIndexedElement );
 
 /* Static Properties */
 
@@ -9660,9 +9678,9 @@ OO.ui.PopupToolGroup.prototype.setDisabled = function () {
 /**
  * Handle focus being lost.
  *
- * The event is actually generated from a mouseup, so it is not a normal blur event object.
+ * The event is actually generated from a mouseup/keyup, so it is not a normal blur event object.
  *
- * @param {jQuery.Event} e Mouse up event
+ * @param {jQuery.Event} e Mouse up or key up event
  */
 OO.ui.PopupToolGroup.prototype.onBlur = function ( e ) {
 	// Only deactivate when clicking outside the dropdown element
@@ -9674,33 +9692,44 @@ OO.ui.PopupToolGroup.prototype.onBlur = function ( e ) {
 /**
  * @inheritdoc
  */
-OO.ui.PopupToolGroup.prototype.onPointerUp = function ( e ) {
+OO.ui.PopupToolGroup.prototype.onMouseKeyUp = function ( e ) {
 	// Only close toolgroup when a tool was actually selected
-	if ( !this.isDisabled() && e.which === 1 && this.pressed && this.pressed === this.getTargetTool( e ) ) {
+	if (
+		!this.isDisabled() && this.pressed && this.pressed === this.getTargetTool( e ) &&
+		( e.which === 1 || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
+	) {
 		this.setActive( false );
 	}
-	return OO.ui.PopupToolGroup.super.prototype.onPointerUp.call( this, e );
+	return OO.ui.PopupToolGroup.super.prototype.onMouseKeyUp.call( this, e );
 };
 
 /**
- * Handle mouse up events.
+ * Handle mouse up and key up events.
  *
- * @param {jQuery.Event} e Mouse up event
+ * @param {jQuery.Event} e Mouse up or key up event
  */
-OO.ui.PopupToolGroup.prototype.onHandlePointerUp = function () {
-	return false;
-};
-
-/**
- * Handle mouse down events.
- *
- * @param {jQuery.Event} e Mouse down event
- */
-OO.ui.PopupToolGroup.prototype.onHandlePointerDown = function ( e ) {
-	if ( !this.isDisabled() && e.which === 1 ) {
-		this.setActive( !this.active );
+OO.ui.PopupToolGroup.prototype.onHandleMouseKeyUp = function ( e ) {
+	if (
+		!this.isDisabled() &&
+		( e.which === 1 || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
+	) {
+		return false;
 	}
-	return false;
+};
+
+/**
+ * Handle mouse down and key down events.
+ *
+ * @param {jQuery.Event} e Mouse down or key down event
+ */
+OO.ui.PopupToolGroup.prototype.onHandleMouseKeyDown = function ( e ) {
+	if (
+		!this.isDisabled() &&
+		( e.which === 1 || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
+	) {
+		this.setActive( !this.active );
+		return false;
+	}
 };
 
 /**
@@ -9714,6 +9743,7 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 		this.active = value;
 		if ( value ) {
 			this.getElementDocument().addEventListener( 'mouseup', this.onBlurHandler, true );
+			this.getElementDocument().addEventListener( 'keyup', this.onBlurHandler, true );
 
 			// Try anchoring the popup to the left first
 			this.$element.addClass( 'oo-ui-popupToolGroup-active oo-ui-popupToolGroup-left' );
@@ -9728,6 +9758,7 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 			}
 		} else {
 			this.getElementDocument().removeEventListener( 'mouseup', this.onBlurHandler, true );
+			this.getElementDocument().removeEventListener( 'keyup', this.onBlurHandler, true );
 			this.$element.removeClass(
 				'oo-ui-popupToolGroup-active oo-ui-popupToolGroup-left  oo-ui-popupToolGroup-right'
 			);
@@ -9846,16 +9877,18 @@ OO.ui.ListToolGroup.prototype.getExpandCollapseTool = function () {
 /**
  * @inheritdoc
  */
-OO.ui.ListToolGroup.prototype.onPointerUp = function ( e ) {
-	var ret = OO.ui.ListToolGroup.super.prototype.onPointerUp.call( this, e );
-
+OO.ui.ListToolGroup.prototype.onMouseKeyUp = function ( e ) {
 	// Do not close the popup when the user wants to show more/fewer tools
-	if ( $( e.target ).closest( '.oo-ui-tool-name-more-fewer' ).length ) {
-		// Prevent the popup list from being hidden
-		this.setActive( true );
+	if (
+		$( e.target ).closest( '.oo-ui-tool-name-more-fewer' ).length &&
+		( e.which === 1 || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
+	) {
+		// HACK: Prevent the popup list from being hidden. Skip the PopupToolGroup implementation (which
+		// hides the popup list when a tool is selected) and call ToolGroup's implementation directly.
+		return OO.ui.ListToolGroup.super.super.prototype.onMouseKeyUp.call( this, e );
+	} else {
+		return OO.ui.ListToolGroup.super.prototype.onMouseKeyUp.call( this, e );
 	}
-
-	return ret;
 };
 
 OO.ui.ListToolGroup.prototype.updateCollapsibleState = function () {
