@@ -1,12 +1,13 @@
 <?php
 
-class MockDatabaseSqlite extends DatabaseSqlite {
+class DatabaseSqliteMock extends DatabaseSqlite {
 	private $lastQuery;
 
 	public static function newInstance( array $p = array() ) {
 		$p['dbFilePath'] = ':memory:';
+		$p['schema'] = false;
 
-		return new self( $p );
+		return DatabaseBase::factory( 'SqliteMock', $p );
 	}
 
 	function query( $sql, $fname = '', $tempIgnore = false ) {
@@ -29,7 +30,7 @@ class MockDatabaseSqlite extends DatabaseSqlite {
  * @group medium
  */
 class DatabaseSqliteTest extends MediaWikiTestCase {
-	/** @var MockDatabaseSqlite */
+	/** @var DatabaseSqliteMock */
 	protected $db;
 
 	protected function setUp() {
@@ -38,7 +39,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		if ( !Sqlite::isPresent() ) {
 			$this->markTestSkipped( 'No SQLite support detected' );
 		}
-		$this->db = MockDatabaseSqlite::newInstance();
+		$this->db = DatabaseSqliteMock::newInstance();
 		if ( version_compare( $this->db->getServerVersion(), '3.6.0', '<' ) ) {
 			$this->markTestSkipped( "SQLite at least 3.6 required, {$this->db->getServerVersion()} found" );
 		}
