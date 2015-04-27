@@ -1063,10 +1063,10 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function listExtensionActivatedTags() {
-		// Caching...
-		global $wgMemc;
+		$cache = ObjectCache::getMainWANInstance();
+
 		$key = wfMemcKey( 'active-tags' );
-		$tags = $wgMemc->get( $key );
+		$tags = $cache->get( $key );
 		if ( $tags ) {
 			return $tags;
 		}
@@ -1076,7 +1076,8 @@ class ChangeTags {
 		Hooks::run( 'ChangeTagsListActive', array( &$extensionActive ) );
 
 		// Short-term caching.
-		$wgMemc->set( $key, $extensionActive, 300 );
+		$cache->set( $key, $extensionActive, 300 );
+
 		return $extensionActive;
 	}
 
@@ -1104,10 +1105,10 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function listExplicitlyDefinedTags() {
-		// Caching...
-		global $wgMemc;
+		$cache = ObjectCache::getMainWANInstance();
+
 		$key = wfMemcKey( 'valid-tags-db' );
-		$tags = $wgMemc->get( $key );
+		$tags = $cache->get( $key );
 		if ( $tags ) {
 			return $tags;
 		}
@@ -1124,7 +1125,8 @@ class ChangeTags {
 		$emptyTags = array_filter( array_unique( $emptyTags ) );
 
 		// Short-term caching.
-		$wgMemc->set( $key, $emptyTags, 300 );
+		$cache->set( $key, $emptyTags, 300 );
+
 		return $emptyTags;
 	}
 
@@ -1138,10 +1140,10 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function listExtensionDefinedTags() {
-		// Caching...
-		global $wgMemc;
+		$cache = ObjectCache::getMainWANInstance();
+
 		$key = wfMemcKey( 'valid-tags-hook' );
-		$tags = $wgMemc->get( $key );
+		$tags = $cache->get( $key );
 		if ( $tags ) {
 			return $tags;
 		}
@@ -1151,7 +1153,8 @@ class ChangeTags {
 		$emptyTags = array_filter( array_unique( $emptyTags ) );
 
 		// Short-term caching.
-		$wgMemc->set( $key, $emptyTags, 300 );
+		$cache->set( $key, $emptyTags, 300 );
+
 		return $emptyTags;
 	}
 
@@ -1161,10 +1164,12 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function purgeTagCacheAll() {
-		global $wgMemc;
-		$wgMemc->delete( wfMemcKey( 'active-tags' ) );
-		$wgMemc->delete( wfMemcKey( 'valid-tags-db' ) );
-		$wgMemc->delete( wfMemcKey( 'valid-tags-hook' ) );
+		$cache = ObjectCache::getMainWANInstance();
+
+		$cache->delete( wfMemcKey( 'active-tags' ) );
+		$cache->delete( wfMemcKey( 'valid-tags-db' ) );
+		$cache->delete( wfMemcKey( 'valid-tags-hook' ) );
+
 		self::purgeTagUsageCache();
 	}
 
@@ -1173,8 +1178,9 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function purgeTagUsageCache() {
-		global $wgMemc;
-		$wgMemc->delete( wfMemcKey( 'change-tag-statistics' ) );
+		$cache = ObjectCache::getMainWANInstance();
+
+		$cache->delete( wfMemcKey( 'change-tag-statistics' ) );
 	}
 
 	/**
@@ -1187,10 +1193,10 @@ class ChangeTags {
 	 * @return array Array of string => int
 	 */
 	public static function tagUsageStatistics() {
-		// Caching...
-		global $wgMemc;
+		$cache = ObjectCache::getMainWANInstance();
+
 		$key = wfMemcKey( 'change-tag-statistics' );
-		$stats = $wgMemc->get( $key );
+		$stats = $cache->get( $key );
 		if ( $stats ) {
 			return $stats;
 		}
@@ -1216,7 +1222,8 @@ class ChangeTags {
 		}
 
 		// Cache for a very short time
-		$wgMemc->set( $key, $out, 300 );
+		$cache->set( $key, $out, 300 );
+
 		return $out;
 	}
 }
