@@ -119,10 +119,11 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @param int $attempts The amount of times to attempt a merge in case of failure
 	 * @return bool Success
+	 * @throws InvalidArgumentException
 	 */
 	public function merge( $key, $callback, $exptime = 0, $attempts = 10 ) {
 		if ( !is_callable( $callback ) ) {
-			throw new Exception( "Got invalid callback." );
+			throw new InvalidArgumentException( "Got invalid callback." );
 		}
 
 		return $this->mergeViaLock( $key, $callback, $exptime, $attempts );
@@ -166,6 +167,7 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	 * @param mixed $value
 	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @return bool Success
+	 * @throws Exception
 	 */
 	protected function cas( $casToken, $key, $value, $exptime = 0 ) {
 		throw new Exception( "CAS is not implemented in " . __CLASS__ );
