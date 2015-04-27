@@ -3031,6 +3031,11 @@ class OutputPage extends ContextSource {
 			/* $loadCall = */ $inHead
 		);
 
+		$links[] = $this->makeResourceLoaderLink( $this->getModuleStyles( true, 'forcebottom' ),
+			ResourceLoaderModule::TYPE_STYLES, /* $useESI = */ false, /* $extraQuery = */ array(),
+			/* $loadCall = */ $inHead
+		);
+
 		// Modules requests - let the client calculate dependencies and batch requests as it likes
 		// Only load modules that have marked themselves for loading at the bottom
 		$modules = $this->getModules( true, 'bottom' );
@@ -3088,6 +3093,9 @@ class OutputPage extends ContextSource {
 	 * @return string
 	 */
 	function getBottomScripts() {
+		// In case the skin wants to add bottom CSS
+		$this->getSkin()->setupSkinUserCss( $this );
+
 		// Optimise jQuery ready event cross-browser.
 		// This also enforces $.isReady to be true at </body> which fixes the
 		// mw.loader bug in Firefox with using document.write between </body>
@@ -3600,6 +3608,10 @@ class OutputPage extends ContextSource {
 		$resourceLoader = $this->getResourceLoader();
 
 		$moduleStyles = $this->getModuleStyles();
+		// Most CSS modules are "bottom" by default, by virtue of ResourceLoaderModule, despite
+		// being very much in the head in this context
+		// TODO: make CSS modules loaded in the head explicitely so
+		$moduleStyles = array_diff( $moduleStyles, $this->getModuleStyles( true, 'forcebottom' ) );
 
 		// Per-site custom styles
 		$moduleStyles[] = 'site';
