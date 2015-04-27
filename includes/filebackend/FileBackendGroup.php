@@ -145,6 +145,8 @@ class FileBackendGroup {
 	 * @throws FileBackendException
 	 */
 	public function get( $name ) {
+		global $wgMainWANCache;
+
 		if ( !isset( $this->backends[$name] ) ) {
 			throw new FileBackendException( "No backend defined with the name `$name`." );
 		}
@@ -160,6 +162,8 @@ class FileBackendGroup {
 			$config['fileJournal'] = isset( $config['fileJournal'] )
 				? FileJournal::factory( $config['fileJournal'], $name )
 				: FileJournal::factory( array( 'class' => 'NullFileJournal' ), $name );
+			$config['wanCache'] = ObjectCache::getWANInstance( $wgMainWANCache );
+
 			$this->backends[$name]['instance'] = new $class( $config );
 		}
 
