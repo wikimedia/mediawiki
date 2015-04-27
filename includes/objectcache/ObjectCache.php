@@ -57,6 +57,7 @@ class ObjectCache {
 	 * @param string $id
 	 *
 	 * @return WANObjectCache
+	 * @since 1.26
 	 */
 	static function getWANInstance( $id ) {
 		if ( isset( self::$wanInstances[$id] ) ) {
@@ -196,6 +197,7 @@ class ObjectCache {
 	 *
 	 * @throws MWException
 	 * @return WANObjectCache
+	 * @since 1.26
 	 */
 	static function newWANCacheFromId( $id ) {
 		global $wgWANObjectCaches;
@@ -212,5 +214,17 @@ class ObjectCache {
 		$class = $params['class'];
 
 		return new $class( $params );
+	}
+
+	/**
+	 * Get the main WAN cache object
+	 *
+	 * @return WANObjectCache
+	 * @since 1.26
+	 */
+	static function getMainWANInstance() {
+		global $wgMainWANCache;
+
+		return self::getWANInstance( $wgMainWANCache );
 	}
 }
