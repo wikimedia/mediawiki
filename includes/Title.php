@@ -940,7 +940,6 @@ class Title {
 	/**
 	 * Get the page's content model id, see the CONTENT_MODEL_XXX constants.
 	 *
-	 * @throws MWException
 	 * @param int $flags A bit field; may be Title::GAID_FOR_UPDATE to select for update
 	 * @return string Content model id
 	 */
@@ -953,10 +952,6 @@ class Title {
 
 		if ( !$this->mContentModel ) {
 			$this->mContentModel = ContentHandler::getDefaultModelFor( $this );
-		}
-
-		if ( !$this->mContentModel ) {
-			throw new MWException( 'Failed to determine content model!' );
 		}
 
 		return $this->mContentModel;
