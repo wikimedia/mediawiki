@@ -3941,6 +3941,17 @@ function wfGetMainCache() {
 }
 
 /**
+ * Get the main WAN cache object
+ *
+ * @return WANObjectCache
+ * @since 1.26
+ */
+function wfGetMainWANCache() {
+	global $wgMainWANCache;
+	return ObjectCache::getWANInstance( $wgMainWANCache );
+}
+
+/**
  * Get the cache object used by the message cache
  *
  * @return BagOStuff
