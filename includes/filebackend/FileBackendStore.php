@@ -36,7 +36,7 @@
  * @since 1.19
  */
 abstract class FileBackendStore extends FileBackend {
-	/** @var BagOStuff */
+	/** @var WANObjectCache */
 	protected $memCache;
 	/** @var ProcessCacheLRU Map of paths to small (RAM/disk) cache items */
 	protected $cheapCache;
@@ -58,6 +58,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * @see FileBackend::__construct()
 	 * Additional $config params include:
+	 *   - wanCache     : WANOBjectCache object to use for persistent caching.
 	 *   - mimeCallback : Callback that takes (storage path, content, file system path) and
 	 *                    returns the MIME type of the file or 'unknown/unknown'. The file
 	 *                    system path parameter should be used if the content one is null.
@@ -72,7 +73,7 @@ abstract class FileBackendStore extends FileBackend {
 				// @todo handle the case of extension-less files using the contents
 				return StreamFile::contentTypeFromPath( $storagePath ) ?: 'unknown/unknown';
 			};
-		$this->memCache = new EmptyBagOStuff(); // disabled by default
+		$this->memCache = WANObjectCache::newEmpty(); // disabled by default
 		$this->cheapCache = new ProcessCacheLRU( self::CACHE_CHEAP_SIZE );
 		$this->expensiveCache = new ProcessCacheLRU( self::CACHE_EXPENSIVE_SIZE );
 	}
@@ -1592,7 +1593,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param array $val Information to cache
 	 */
 	final protected function setContainerCache( $container, array $val ) {
-		$this->memCache->add( $this->containerCacheKey( $container ), $val, 14 * 86400 );
+		$this->memCache->set( $this->containerCacheKey( $container ), $val, 14 * 86400 );
 	}
 
 	/**
@@ -1602,7 +1603,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param string $container Resolved container name
 	 */
 	final protected function deleteContainerCache( $container ) {
-		if ( !$this->memCache->set( $this->containerCacheKey( $container ), 'PURGED', 300 ) ) {
+		if ( !$this->memCache->delete( $this->containerCacheKey( $container ), 300 ) ) {
 			trigger_error( "Unable to delete stat cache for container $container." );
 		}
 	}
@@ -1682,21 +1683,8 @@ abstract class FileBackendStore extends FileBackend {
 		$age = time() - wfTimestamp( TS_UNIX, $val['mtime'] );
 		$ttl = min( 7 * 86400, max( 300, floor( .1 * $age ) ) );
 		$key = $this->fileCacheKey( $path );
-		// Set the cache unless it is currently salted with the value "PURGED".
-		// Using add() handles this except it also is a no-op in that case where
-		// the current value is not "latest" but $val is, so use CAS in that case.
-		if ( !$this->memCache->add( $key, $val, $ttl ) && !empty( $val['latest'] ) ) {
-			$this->memCache->merge(
-				$key,
-				function ( BagOStuff $cache, $key, $cValue ) use ( $val ) {
-					return ( is_array( $cValue ) && empty( $cValue['latest'] ) )
-						? $val // update the stat cache with the lastest info
-						: false; // do nothing (cache is salted or some error happened)
-				},
-				$ttl,
-				1
-			);
-		}
+		// Set the cache unless it is currently salted.
+		$this->memCache->set( $key, $val, $ttl );
 	}
 
 	/**
@@ -1712,7 +1700,7 @@ abstract class FileBackendStore extends FileBackend {
 		if ( $path === null ) {
 			return; // invalid storage path
 		}
-		if ( !$this->memCache->set( $this->fileCacheKey( $path ), 'PURGED', 300 ) ) {
+		if ( !$this->memCache->delete( $this->fileCacheKey( $path ), 300 ) ) {
 			trigger_error( "Unable to delete stat cache for file $path." );
 		}
 	}
