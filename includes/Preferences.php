@@ -1097,7 +1097,7 @@ class Preferences {
 			$linkTools = array();
 
 			# Mark the default skin
-			if ( $skinkey == $defaultSkin ) {
+			if ( strcasecmp( $skinkey, $defaultSkin ) === 0 ) {
 				$linkTools[] = $context->msg( 'default' )->escaped();
 				$foundDefault = true;
 			}
