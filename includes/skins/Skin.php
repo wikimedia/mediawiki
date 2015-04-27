@@ -1234,12 +1234,13 @@ abstract class Skin extends ContextSource {
 	 * @return array
 	 */
 	function buildSidebar() {
-		global $wgMemc, $wgEnableSidebarCache, $wgSidebarCacheExpiry;
+		global $wgEnableSidebarCache, $wgSidebarCacheExpiry;
 
+		$cache = ObjectCache::getMainWANInstance();
 		$key = wfMemcKey( 'sidebar', $this->getLanguage()->getCode() );
 
 		if ( $wgEnableSidebarCache ) {
-			$cachedsidebar = $wgMemc->get( $key );
+			$cachedsidebar = $cache->get( $key );
 			if ( $cachedsidebar ) {
 				Hooks::run( 'SidebarBeforeOutput', array( $this, &$cachedsidebar ) );
 
@@ -1252,7 +1253,7 @@ abstract class Skin extends ContextSource {
 
 		Hooks::run( 'SkinBuildSidebar', array( $this, &$bar ) );
 		if ( $wgEnableSidebarCache ) {
-			$wgMemc->set( $key, $bar, $wgSidebarCacheExpiry );
+			$cache->set( $key, $bar, $wgSidebarCacheExpiry );
 		}
 
 		Hooks::run( 'SidebarBeforeOutput', array( $this, &$bar ) );

@@ -554,10 +554,10 @@ class MessageCache {
 			$codes = array_keys( Language::fetchLanguageNames() );
 		}
 
-		global $wgMemc;
+		$cache = ObjectCache::getMainWANInstance();
 		foreach ( $codes as $code ) {
 			$sidebarKey = wfMemcKey( 'sidebar', $code );
-			$wgMemc->delete( $sidebarKey );
+			$cache->delete( $sidebarKey, 5 );
 		}
 
 		// Update the message in the message blob store
