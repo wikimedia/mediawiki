@@ -2152,7 +2152,7 @@ $wgObjectCaches = array(
  *   - (other):          A string may be used which identifies a cache
  *                       configuration in $wgWANObjectCaches.
  */
-$wgMainWANCache = CACHE_NONE;
+$wgMainWANCache = false;
 
 /**
  * Advanced WAN object cache configuration.
