@@ -818,14 +818,14 @@ abstract class DatabaseBase implements IDatabase {
 		$this->mSessionVars = $params['variables'];
 
 		/** Get the default table prefix*/
-		if ( $tablePrefix == 'get from global' ) {
+		if ( $tablePrefix === 'get from global' ) {
 			$this->mTablePrefix = $wgDBprefix;
 		} else {
 			$this->mTablePrefix = $tablePrefix;
 		}
 
 		/** Get the database schema*/
-		if ( $schema == 'get from global' ) {
+		if ( $schema === 'get from global' ) {
 			$this->mSchema = $wgDBmwschema;
 		} else {
 			$this->mSchema = $schema;
@@ -2485,7 +2485,7 @@ abstract class DatabaseBase implements IDatabase {
 		}
 
 		# Quote $schema and merge it with the table name if needed
-		if ( $schema !== null ) {
+		if ( strlen( $schema ) ) {
 			if ( $format == 'quoted' && !$this->isQuotedIdentifier( $schema ) ) {
 				$schema = $this->addIdentifierQuotes( $schema );
 			}
