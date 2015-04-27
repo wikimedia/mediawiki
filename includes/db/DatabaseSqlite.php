@@ -63,17 +63,17 @@ class DatabaseSqlite extends DatabaseBase {
 
 		$this->dbDir = isset( $p['dbDirectory'] ) ? $p['dbDirectory'] : $wgSQLiteDataDir;
 
+		parent::__construct( $p );
+
 		if ( isset( $p['dbFilePath'] ) ) {
-			$this->mFlags = isset( $p['flags'] ) ? $p['flags'] : 0;
-			// Standalone .sqlite file mode
+			// Standalone .sqlite file mode.
+			// Super doesn't open when $user is false, but we can work with $dbName,
+			// which is derived from the file path in this case.
 			$this->openFile( $p['dbFilePath'] );
-			// @FIXME: clean up base constructor so this can call super instead
-			$this->mTrxAtomicLevels = new SplStack;
 		} else {
 			$this->mDBname = $p['dbname'];
-			// Stock wiki mode using standard file names per DB
-			parent::__construct( $p );
-			// parent doesn't open when $user is false, but we can work with $dbName
+			// Stock wiki mode using standard file names per DB.
+			// Super doesn't open when $user is false, but we can work with $dbName
 			if ( $p['dbname'] && !$this->isOpen() ) {
 				if ( $this->open( $p['host'], $p['user'], $p['password'], $p['dbname'] ) ) {
 					if ( $wgSharedDB ) {
@@ -105,8 +105,9 @@ class DatabaseSqlite extends DatabaseBase {
 	 */
 	public static function newStandaloneInstance( $filename, array $p = array() ) {
 		$p['dbFilePath'] = $filename;
+		$p['schema'] = false;
 
-		return new self( $p );
+		return DatabaseBase::factory( 'sqlite', $p );
 	}
 
 	/**
