@@ -22,7 +22,8 @@
 			"Calak",
 			"عرفان ارشد",
 			"Obaid Raza",
-			"عثمان خان شاہ"
+			"عثمان خان شاہ",
+			"Syedalinaqinaqvi"
 		]
 	},
 	"tog-underline": "ربط کی خط کشیدگی:",
@@ -338,6 +339,7 @@
 	"badarticleerror": "اس صفحہ پر یہ عمل انجام نہیں دیا جاسکتا۔",
 	"cannotdelete": "صفحہ یا ملف $1 کو حذف نہیں کیا جاسکتا.\nہوسکتا ہے کہ اسے پہلے ہی کسی نے حذف کردیا ہو.",
 	"cannotdelete-title": "صفحہ ھذف نہیں کیا جا سکتا \"$1\"",
+	"delete-hook-aborted": "حذف شدگی روک دی گئی\nوضاحت نہیں کی گئی",
 	"badtitle": "خراب عنوان",
 	"badtitletext": "درخواست شدہ صفحہ کا عنوان ناقص، خالی، یا کوئی غلط ربط شدہ بین لسانی یا بین ویکی عنوان ہے.\nشاید اِس میں ایک یا زیادہ ایسے حروف موجود ہوں جو عنوانات میں استعمال نہیں ہوسکتے.",
 	"perfcached": "ذیلی ڈیٹا ابطن شدہ (cached) ہے اور اِس کے پُرانے ہونے کا امکان ہے. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
@@ -398,7 +400,7 @@
 	"gotaccountlink": "داخل ہوجائیے",
 	"userlogin-resetlink": "داخلِ نوشتہ ہونے کی تفاصیل بھول گئے ہیں؟",
 	"userlogin-resetpassword-link": "کلمہ شناخت بھول گئے؟",
-	"userlogin-helplink2": "داخل ہو کر ہمارا مدد کریں",
+	"userlogin-helplink2": "داخل ہو کر ہماری مدد کریں",
 	"createacct-emailrequired": "ای میل پتہ",
 	"createacct-emailoptional": "ای میل ایڈریس (اختیاری)",
 	"createacct-email-ph": "اپنا برقی پتہ لکھیں",
@@ -648,6 +650,7 @@
 	"lineno": "لکیر $1:",
 	"compareselectedversions": "منتخب متـن کا موازنہ",
 	"editundo": "استرجع",
+	"diff-multi-sameuser": "({{PLURAL: $ 1 | ایک متوسط نظرثانی | $ 1 کئی متوسط نظرثانیاں}}ایک ہی صارف کی جانب سے نہیں دکھائی گئی)",
 	"searchresults": "تلاش کا نتیجہ",
 	"searchresults-title": "نتائجِ تلاش برائے \"$1\"",
 	"notextmatches": "کوئی بھی مماثل متن موجود نہیں",

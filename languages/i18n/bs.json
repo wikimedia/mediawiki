@@ -864,6 +864,7 @@
 	"searchrelated": "povezano",
 	"searchall": "sve",
 	"showingresults": "Dolje {{PLURAL:$1|je prikazan '''1''' rezultat|su prikazana '''$1''' rezultata|je prikazano '''$1''' rezultata}} počev od '''$2'''.",
+	"search-showingresults": "{{PLURAL:$4|Rezultat <strong>$1</strong> od <strong>$3</strong>|Rezultati <strong>$1 - $2</strong> od <strong>$3</strong>}}",
 	"search-nonefound": "Nisu pronađeni rezultati koji odgovaraju upitu.",
 	"powersearch-legend": "Napredna pretraga",
 	"powersearch-ns": "Pretraga u imenskim prostorima:",

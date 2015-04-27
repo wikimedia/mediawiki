@@ -114,7 +114,7 @@
 	"apihelp-help-example-help": "Nápověda k samotnému modulu nápovědy",
 	"apihelp-help-example-query": "Nápověda pro dva podmoduly query",
 	"apihelp-imagerotate-description": "Otočit jeden nebo více obrázků.",
-	"apihelp-imagerotate-example-generator": "Otočte všechny obrázky v <kbd>Category:Flip</kbd> o <kbd>180</kbd> stupňů.",
+	"apihelp-imagerotate-example-generator": "Otočit všechny obrázky v <kbd>Category:Flip</kbd> o <kbd>180</kbd> stupňů.",
 	"apihelp-import-param-summary": "Import shrnutí.",
 	"apihelp-import-param-xml": "Nahraný XML soubor.",
 	"apihelp-import-param-rootpage": "Importovat jako podstránku k této stránce.",

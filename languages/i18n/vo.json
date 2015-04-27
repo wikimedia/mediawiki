@@ -359,6 +359,7 @@
 	"createaccountmail": "me pot leäktronik",
 	"createaccountreason": "Kod:",
 	"createacct-reason": "Kod",
+	"createacct-imgcaptcha-ph": "Penolöd vödemi, keli logol löpo",
 	"createacct-submit": "Jafön kali olik",
 	"createacct-benefit-body1": "{{PLURAL:$1|redakam|redakams}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|pad|pads}}",
@@ -651,7 +652,7 @@
 	"shown-title": "Jonön {{PLURAL:$1|sukaseki|sukasekis}} $1 a pad",
 	"viewprevnext": "Logön padis ($1 {{int:pipe-separator}} $2) ($3).",
 	"searchmenu-exists": "'''Dabinon pad labü nem: \"[[:$1]]\" su vük at'''",
-	"searchmenu-new": "'''Jafolös padi: \"[[:$1]]\" su vük at!'''",
+	"searchmenu-new": "<strong>Jafolös padi: \"[[:$1]]\" su vük at!</strong> {{PLURAL:$2|0=|Logolös i padi me suk olik petuvöli.|Logolös i sukasekis petuvöl.}}",
 	"searchprofile-articles": "Ninädapads",
 	"searchprofile-images": "Mödamedäd",
 	"searchprofile-everything": "Valikos",
@@ -1299,6 +1300,7 @@
 	"delete-warning-toobig": "Pad at labon jenotemi lunik: {{PLURAL:$1|revid|revids}} plu $1.\nPrudö! Moükam onik ba osäkädükon jäfidi nünodema: {{SITENAME}}.",
 	"rollback": "Sädunön redakamis",
 	"rollbacklink": "sädunön vali",
+	"rollbacklinkcount": "sädunön {{PLURAL:$1|redakami|redakamis}} $1",
 	"rollbackfailed": "Sädunam no eplöpon",
 	"cantrollback": "Redakam no kanon pasädunön; keblünan lätik binon lautan teik pada at.",
 	"alreadyrolled": "No eplöpos ad sädunön redakami lätik pada: [[:$1]] fa geban: [[User:$2|$2]] ([[User talk:$2|Bespikapad]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); ek ya eredakon oni ud esädunon redakami ona.\n\nRedakam lätik päjenükon fa geban: [[User:$3|$3]] ([[User talk:$3|Bespikapad]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
@@ -1608,7 +1610,6 @@
 	"import-interwiki-history": "Kopiedön fomamis valik jenotema pada at",
 	"import-interwiki-templates": "Keninükön samafomotis valik",
 	"import-interwiki-submit": "Nüveigön",
-	"import-interwiki-namespace": "Ini nemaspad:",
 	"import-upload-filename": "Ragivanem:",
 	"import-comment": "Küpet:",
 	"importtext": "Seveigolös ragivi se fonätavük me [[Special:Export|stum seveiga]].\nDakipolös oni su nünöm olik e löpükolös oni isio.",
@@ -2134,5 +2135,7 @@
 	"expand_templates_ok": "Baiced",
 	"expand_templates_remove_comments": "Moükön küpetis",
 	"expand_templates_generate_xml": "Jonön bimi: XML",
-	"expand_templates_preview": "Büologed"
+	"expand_templates_preview": "Büologed",
+	"special-characters-group-ipa": "LFB",
+	"special-characters-group-greek": "Grikänapük"
 }

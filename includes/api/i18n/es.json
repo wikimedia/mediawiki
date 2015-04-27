@@ -6,7 +6,8 @@
 			"Alan",
 			"Fitoschido",
 			"JasterTDC",
-			"Edslov"
+			"Edslov",
+			"Carlos Cristia"
 		]
 	},
 	"apihelp-main-param-action": "Qué acción se realizará.",
@@ -20,6 +21,10 @@
 	"apihelp-block-param-reblock": "Si la cuenta ya está bloqueada, sobrescribir el bloqueo existente.",
 	"apihelp-block-param-watchuser": "Vigilar las páginas de usuario y de discusión del usuario o de la dirección IP.",
 	"apihelp-compare-param-fromtitle": "Primer título para comparar",
+	"apihelp-compare-param-fromrev": "Primera revisión para comparar.",
+	"apihelp-compare-param-totitle": "Segundo título para comparar.",
+	"apihelp-compare-param-toid": "Segunda página de IDENTIFICACIÓN para comparar.",
+	"apihelp-compare-param-torev": "Segunda revisión para comparar.",
 	"apihelp-createaccount-description": "Crear una nueva cuenta de usuario.",
 	"apihelp-createaccount-param-name": "Nombre de usuario.",
 	"apihelp-createaccount-param-email": "Dirección de correo electrónico del usuario (opcional).",
@@ -64,6 +69,7 @@
 	"apihelp-feedrecentchanges-param-feedformat": "El formato del canal.",
 	"apihelp-feedrecentchanges-param-invert": "Todos los espacios de nombres menos el que está seleccionado.",
 	"apihelp-feedrecentchanges-param-associated": "Incluir el espacio de nombres asociado (discusión o principal).",
+	"apihelp-feedrecentchanges-param-days": "Días a los que limitar los resultados.",
 	"apihelp-feedrecentchanges-param-limit": "Número máximo de resultados que devolver.",
 	"apihelp-feedrecentchanges-param-from": "Mostrar los cambios realizados a partir de entonces.",
 	"apihelp-feedrecentchanges-param-hideminor": "Ocultar cambios menores.",

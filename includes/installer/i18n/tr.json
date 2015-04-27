@@ -8,7 +8,9 @@
 			"Trncmvsr",
 			"Sayginer",
 			"Trockya",
-			"Aşilleus"
+			"Aşilleus",
+			"Nighteagle2000",
+			"Sadrettin"
 		]
 	},
 	"config-desc": "MediaWiki yükleyicisi",
@@ -53,7 +55,7 @@
 	"config-env-good": "Ortam kontrol edildi.\nMediaWiki'yi kurabilirsiniz.",
 	"config-env-bad": "Ortam kontrol edildi.\nMediaWiki'yi kuramazsınız.",
 	"config-env-php": "PHP $1 kurulu.",
-	"config-unicode-using-utf8": "Unikod normalleştirmesi için Brion Vibber'in utf8_normalize.so kullanılıyor.",
+	"config-env-hhvm": "HHVM $1 kuruldu",
 	"config-unicode-using-intl": "Unikod normalleştirmesi için [http://pecl.php.net/intl intl PECL uzantısı] kullanılıyor.",
 	"config-xml-bad": "PHP 'nin XML modülü eksik.\nMediaWiki bu modüldeki fonksiyonlara ihtiyaç duyar ve şimdiki kurulumda çalışmayacaktır.\nMandrake kullanıyorsanız php-xml paketini yükleyin.",
 	"config-pcre-old": "<strong>Ağır hata:</strong> PCRE $1 veya daha üst versiyon gerekli.\nSizin PHP kurulumunuz PCRE $2 ile bağlı.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Daha fazla bilgi].",
@@ -90,6 +92,7 @@
 	"config-pg-test-error": "Veritabanıyla bağlantı kurulamıyor ''' $1 ''':$2",
 	"config-sqlite-dir": "SQLite veri dizini",
 	"config-oracle-def-ts": "Varsayılan tablo alanı:",
+	"config-type-mssql": "Microsoft SQL Server",
 	"config-header-mysql": "MySQL ayarları",
 	"config-header-postgres": "PostgreSQL ayarları",
 	"config-header-sqlite": "SQLite ayarları",
@@ -173,6 +176,7 @@
 	"config-advanced-settings": "Gelişmiş yapılandırma",
 	"config-memcached-servers": "Memcached sunucuları:",
 	"config-extensions": "Uzantılar",
+	"config-skins": "Görünümler",
 	"config-install-step-done": "Yapıldı",
 	"config-install-step-failed": "Başarısız",
 	"config-install-database": "Veritabanı ayarlama",
