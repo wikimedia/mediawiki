@@ -170,7 +170,7 @@ class LocalRepo extends FileRepo {
 	 * @return bool|Title
 	 */
 	function checkRedirect( Title $title ) {
-		global $wgMemc;
+		$cache = ObjectCache::getMainWANInstance();
 
 		$title = File::normalizeTitle( $title, 'exception' );
 
@@ -181,7 +181,7 @@ class LocalRepo extends FileRepo {
 		} else {
 			$expiry = 86400; // has invalidation, 1 day
 		}
-		$cachedValue = $wgMemc->get( $memcKey );
+		$cachedValue = $cache->get( $memcKey );
 		if ( $cachedValue === ' ' || $cachedValue === '' ) {
 			// Does not exist
 			return false;
@@ -191,7 +191,7 @@ class LocalRepo extends FileRepo {
 
 		$id = $this->getArticleID( $title );
 		if ( !$id ) {
-			$wgMemc->add( $memcKey, " ", $expiry );
+			$cache->set( $memcKey, " ", $expiry );
 
 			return false;
 		}
@@ -205,11 +205,11 @@ class LocalRepo extends FileRepo {
 
 		if ( $row && $row->rd_namespace == NS_FILE ) {
 			$targetTitle = Title::makeTitle( $row->rd_namespace, $row->rd_title );
-			$wgMemc->add( $memcKey, $targetTitle->getDBkey(), $expiry );
+			$cache->set( $memcKey, $targetTitle->getDBkey(), $expiry );
 
 			return $targetTitle;
 		} else {
-			$wgMemc->add( $memcKey, '', $expiry );
+			$cache->set( $memcKey, '', $expiry );
 
 			return false;
 		}
@@ -489,14 +489,15 @@ class LocalRepo extends FileRepo {
 	 * @return void
 	 */
 	function invalidateImageRedirect( Title $title ) {
-		global $wgMemc;
+		$cache = ObjectCache::getMainWANInstance();
+
 		$memcKey = $this->getSharedCacheKey( 'image_redirect', md5( $title->getDBkey() ) );
 		if ( $memcKey ) {
 			// Set a temporary value for the cache key, to ensure
 			// that this value stays purged long enough so that
 			// it isn't refreshed with a stale value due to a
 			// lagged slave.
-			$wgMemc->set( $memcKey, ' PURGED', 12 );
+			$cache->delete( $memcKey, 12 );
 		}
 	}
 
