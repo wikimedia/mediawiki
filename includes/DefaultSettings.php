@@ -2148,11 +2148,13 @@ $wgObjectCaches = array(
  * cache with a relayer of type EventRelayerNull.
  *
  * The options are:
+ *   - false:            Configure the cache using $wgMainCacheType, without using
+ *                       a relayer (only matters if there are multiple data-centers)
  *   - CACHE_NONE:       Do not cache
  *   - (other):          A string may be used which identifies a cache
  *                       configuration in $wgWANObjectCaches.
  */
-$wgMainWANCache = CACHE_NONE;
+$wgMainWANCache = false;
 
 /**
  * Advanced WAN object cache configuration.
