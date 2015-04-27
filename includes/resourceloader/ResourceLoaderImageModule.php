@@ -43,6 +43,9 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	protected $selectorWithVariant = '.{prefix}-{name}-{variant}';
 	protected $targets = array( 'desktop', 'mobile' );
 
+	/** @var string Position on the page to load this module at */
+	protected $position = 'top';
+
 	/**
 	 * Constructs a new module from an options array.
 	 *
@@ -127,6 +130,8 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 					$this->{$member} = $option;
 					break;
 
+				case 'position':
+					$this->isPositionDefault = false;
 				case 'prefix':
 				case 'selectorWithoutVariant':
 				case 'selectorWithVariant':
@@ -366,5 +371,12 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 		}
 
 		return $localBasePath;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getPosition() {
+		return $this->position;
 	}
 }
