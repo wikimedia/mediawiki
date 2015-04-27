@@ -64,12 +64,12 @@ class InfoAction extends FormlessAction {
 	 * @param Title $title Title to clear cache for
 	 */
 	public static function invalidateCache( Title $title ) {
-		global $wgMemc;
+		$cache = ObjectCache::getMainWANInstance();
 
 		$revision = Revision::newFromTitle( $title, 0, Revision::READ_LATEST );
 		if ( $revision !== null ) {
 			$key = wfMemcKey( 'infoaction', sha1( $title->getPrefixedText() ), $revision->getId() );
-			$wgMemc->delete( $key );
+			$cache->delete( $key );
 		}
 	}
 
@@ -193,7 +193,7 @@ class InfoAction extends FormlessAction {
 	 * @return array
 	 */
 	protected function pageInfo() {
-		global $wgContLang, $wgMemc;
+		global $wgContLang;
 
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
@@ -201,16 +201,17 @@ class InfoAction extends FormlessAction {
 		$id = $title->getArticleID();
 		$config = $this->context->getConfig();
 
+		$cache = ObjectCache::getMainWANInstance();
 		$memcKey = wfMemcKey( 'infoaction',
 			sha1( $title->getPrefixedText() ), $this->page->getLatest() );
-		$pageCounts = $wgMemc->get( $memcKey );
+		$pageCounts = $cache->get( $memcKey );
 		$version = isset( $pageCounts['cacheversion'] ) ? $pageCounts['cacheversion'] : false;
 		if ( $pageCounts === false || $version !== self::CACHE_VERSION ) {
 			// Get page information that would be too "expensive" to retrieve by normal means
 			$pageCounts = $this->pageCounts( $title );
 			$pageCounts['cacheversion'] = self::CACHE_VERSION;
 
-			$wgMemc->set( $memcKey, $pageCounts );
+			$cache->set( $memcKey, $pageCounts );
 		}
 
 		// Get page properties
