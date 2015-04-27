@@ -52,23 +52,6 @@ class ObjectCache {
 	}
 
 	/**
-	 * Get a cached instance of the specified type of cache object.
-	 *
-	 * @param string $id
-	 *
-	 * @return WANObjectCache
-	 */
-	static function getWANInstance( $id ) {
-		if ( isset( self::$wanInstances[$id] ) ) {
-			return self::$wanInstances[$id];
-		}
-
-		$object = self::newWANCacheFromId( $id );
-		self::$wanInstances[$id] = $object;
-		return $object;
-	}
-
-	/**
 	 * Clear all the cached instances.
 	 */
 	static function clear() {
@@ -190,12 +173,31 @@ class ObjectCache {
 	}
 
 	/**
+	 * Get a cached instance of the specified type of cache object.
+	 *
+	 * @param string $id
+	 *
+	 * @return WANObjectCache
+	 * @since 1.26
+	 */
+	static function getWANInstance( $id ) {
+		if ( isset( self::$wanInstances[$id] ) ) {
+			return self::$wanInstances[$id];
+		}
+
+		$object = self::newWANCacheFromId( $id );
+		self::$wanInstances[$id] = $object;
+		return $object;
+	}
+
+	/**
 	 * Create a new cache object of the specified type
 	 *
 	 * @param string $id
 	 *
 	 * @throws MWException
 	 * @return WANObjectCache
+	 * @since 1.26
 	 */
 	static function newWANCacheFromId( $id ) {
 		global $wgWANObjectCaches;
@@ -212,5 +214,17 @@ class ObjectCache {
 		$class = $params['class'];
 
 		return new $class( $params );
+	}
+
+	/**
+	 * Get the main WAN cache object
+	 *
+	 * @return WANObjectCache
+	 * @since 1.26
+	 */
+	static function getMainWANInstance() {
+		global $wgMainWANCache;
+
+		return self::getWANInstance( $wgMainWANCache );
 	}
 }
