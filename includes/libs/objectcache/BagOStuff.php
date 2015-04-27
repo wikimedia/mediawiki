@@ -205,7 +205,7 @@ abstract class BagOStuff implements LoggerAwareInterface {
 
 	/**
 	 * @param string $key
-	 * @param int $timeout Lock wait timeout [optional]
+	 * @param int $timeout Lock wait timeout; 0 for non-blocking [optional]
 	 * @param int $expiry Lock expiry [optional]
 	 * @return bool Success
 	 */
