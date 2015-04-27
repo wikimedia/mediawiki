@@ -2485,7 +2485,7 @@ abstract class DatabaseBase implements IDatabase {
 		}
 
 		# Quote $schema and merge it with the table name if needed
-		if ( $schema !== null ) {
+		if ( strlen( $schema ) ) {
 			if ( $format == 'quoted' && !$this->isQuotedIdentifier( $schema ) ) {
 				$schema = $this->addIdentifierQuotes( $schema );
 			}
