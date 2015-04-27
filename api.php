@@ -75,7 +75,7 @@ try {
 	$processor = new ApiMain( RequestContext::getMain(), $wgEnableWriteAPI );
 
 	// Last chance hook before executing the API
-	wfRunHooks( 'ApiBeforeMain', array( &$processor ) );
+	Hooks::run( 'ApiBeforeMain', array( &$processor ) );
 	if ( !$processor instanceof ApiMain ) {
 		throw new MWException( 'ApiBeforeMain hook set $processor to a non-ApiMain class' );
 	}
