@@ -73,7 +73,6 @@ class EraseArchivedFile extends Maintenance {
 
 		$this->output( "Purging all thumbnails for file '$filename'..." );
 		$file->purgeCache();
-		$file->purgeHistory();
 		$this->output( "done.\n" );
 
 		if ( $afile instanceof ArchivedFile ) {

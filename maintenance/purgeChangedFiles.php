@@ -166,7 +166,6 @@ class PurgeChangedFiles extends Maintenance {
 
 				// Purge current version and any versions in oldimage table
 				$file->purgeCache();
-				$file->purgeHistory();
 
 				if ( $logType === 'delete' ) {
 					// If there is an orphaned storage file... delete it
@@ -191,7 +190,6 @@ class PurgeChangedFiles extends Maintenance {
 						$target = $params['4::target'];
 						$targetFile = $repo->newFile( Title::makeTitle( NS_FILE, $target ) );
 						$targetFile->purgeCache();
-						$targetFile->purgeHistory();
 						$this->verbose( "Purged file {$target}; move target @{$row->log_timestamp}.\n" );
 					}
 				}
