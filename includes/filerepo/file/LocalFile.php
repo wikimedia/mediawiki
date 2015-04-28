@@ -844,23 +844,6 @@ class LocalFile extends File {
 	function purgeMetadataCache() {
 		$this->loadFromDB( File::READ_LATEST );
 		$this->saveToCache();
-		$this->purgeHistory();
-	}
-
-	/**
-	 * Purge the shared history (OldLocalFile) cache.
-	 *
-	 * @note This used to purge old thumbnails as well.
-	 */
-	function purgeHistory() {
-		global $wgMemc;
-
-		$hashedName = md5( $this->getName() );
-		$oldKey = $this->repo->getSharedCacheKey( 'oldfile', $hashedName );
-
-		if ( $oldKey ) {
-			$wgMemc->delete( $oldKey );
-		}
 	}
 
 	/**
@@ -1667,7 +1650,6 @@ class LocalFile extends File {
 		$this->purgeOldThumbnails( $archiveName );
 		if ( $status->isOK() ) {
 			$this->purgeDescription();
-			$this->purgeHistory();
 		}
 
 		if ( $wgUseSquid ) {
@@ -2565,7 +2547,6 @@ class LocalFileRestoreBatch {
 			} else {
 				wfDebug( __METHOD__ . " restored {$status->successCount} as archived versions\n" );
 				$this->file->purgeDescription();
-				$this->file->purgeHistory();
 			}
 		}
 
