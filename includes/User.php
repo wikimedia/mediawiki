@@ -2252,8 +2252,6 @@ class User implements IDBAccessObject {
 	 *   page. Ignored if null or !$val.
 	 */
 	public function setNewtalk( $val, $curRev = null ) {
-		global $wgMemc;
-
 		if ( wfReadOnly() ) {
 			return;
 		}
@@ -2275,12 +2273,6 @@ class User implements IDBAccessObject {
 			$changed = $this->deleteNewtalk( $field, $id );
 		}
 
-		if ( $this->isAnon() ) {
-			// Anons have a separate memcached space, since
-			// user records aren't kept for them.
-			$key = wfMemcKey( 'newtalk', 'ip', $id );
-			$wgMemc->set( $key, $val ? 1 : 0, 1800 );
-		}
 		if ( $changed ) {
 			$this->invalidateCache();
 		}
