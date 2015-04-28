@@ -629,7 +629,7 @@ abstract class ContentHandler {
 
 		// hook: get difference engine
 		$differenceEngine = null;
-		if ( !wfRunHooks( 'GetDifferenceEngine',
+		if ( !Hooks::run( 'GetDifferenceEngine',
 			array( $context, $old, $new, $refreshCache, $unhide, &$differenceEngine )
 		) ) {
 			return $differenceEngine;
