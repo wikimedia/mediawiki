@@ -410,15 +410,14 @@ class User implements IDBAccessObject {
 	 * @since 1.25
 	 */
 	protected function loadFromCache() {
-		global $wgMemc;
-
 		if ( $this->mId == 0 ) {
 			$this->loadDefaults();
 			return false;
 		}
 
+		$cache = ObjectCache::getMainWANInstance();
 		$key = wfMemcKey( 'user', 'id', $this->mId );
-		$data = $wgMemc->get( $key );
+		$data = $cache->get( $key );
 		if ( !is_array( $data ) || $data['mVersion'] < self::VERSION ) {
 			// Object is expired
 			return false;
@@ -440,8 +439,6 @@ class User implements IDBAccessObject {
 	 * This method should not be called outside the User class
 	 */
 	public function saveToCache() {
-		global $wgMemc;
-
 		$this->load();
 		$this->loadGroups();
 		$this->loadOptions();
@@ -450,6 +447,8 @@ class User implements IDBAccessObject {
 			// Anonymous users are uncached
 			return;
 		}
+
+		$cache = ObjectCache::getMainWANInstance();
 
 		// The cache needs good consistency due to its high TTL, so the user
 		// should have been loaded from the master to avoid lag amplification.
@@ -465,7 +464,7 @@ class User implements IDBAccessObject {
 		$data['mVersion'] = self::VERSION;
 		$key = wfMemcKey( 'user', 'id', $this->mId );
 
-		$wgMemc->set( $key, $data );
+		$cache->set( $key, $data );
 	}
 
 	/** @name newFrom*() static factory methods */
@@ -2310,11 +2309,11 @@ class User implements IDBAccessObject {
 	 * Called implicitly from invalidateCache() and saveSettings().
 	 */
 	public function clearSharedCache() {
-		global $wgMemc;
-
 		$this->load();
 		if ( $this->mId ) {
-			$wgMemc->delete( wfMemcKey( 'user', 'id', $this->mId ) );
+			$cache = ObjectCache::getMainWANInstance();
+
+			$cache->delete( wfMemcKey( 'user', 'id', $this->mId ) );
 		}
 	}
 
