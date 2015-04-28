@@ -83,7 +83,7 @@ class RefreshLinks extends Maintenance {
 		}
 
 		// Give extensions a chance to optimize settings
-		wfRunHooks( 'MaintenanceRefreshLinksInit', array( $this ) );
+		Hooks::run( 'MaintenanceRefreshLinksInit', array( $this ) );
 
 		# Don't generate extension images (e.g. Timeline)
 		$wgParser->clearTagHooks();
