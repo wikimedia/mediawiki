@@ -63,7 +63,7 @@ class Languages {
 	 * files in the languages directory.
 	 */
 	function __construct() {
-		wfRunHooks( 'LocalisationIgnoredOptionalMessages',
+		Hooks::run( 'LocalisationIgnoredOptionalMessages',
 			array( &$this->mIgnoredMessages, &$this->mOptionalMessages ) );
 
 		$this->mLanguages = array_keys( Language::fetchLanguageNames( null, 'mwfile' ) );

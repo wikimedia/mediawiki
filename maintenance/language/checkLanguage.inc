@@ -339,7 +339,7 @@ ENDS;
 
 		$blacklist = $checkBlacklist;
 
-		wfRunHooks( 'LocalisationChecksBlacklist', array( &$blacklist ) );
+		Hooks::run( 'LocalisationChecksBlacklist', array( &$blacklist ) );
 
 		return $blacklist;
 	}
