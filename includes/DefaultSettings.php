@@ -5298,6 +5298,21 @@ $wgDebugDumpSql = false;
 $wgDebugDumpSqlLength = 500;
 
 /**
+ * Performance expectations for DB usage
+ *
+ * @since 1.26
+ */
+$wgTrxProfilerLimits = array(
+	// Basic GET and POST requests
+	'GET'  => array( 'masterConns' => 0, 'writes' => 0, 'readQueryTime' => 5 ),
+	'POST' => array( 'maxAffected' => 500, 'readQueryTime' => 5, 'writeQueryTime' => 1 ),
+	// Background job runner
+	'JobRunner' => array( 'maxAffected' => 500, 'readQueryTime' => 30, 'writeQueryTime' => 5 ),
+	// Command-line scripts
+	'Maintenance' => array( 'maxAffected' => 1000, 'writeQueryTime' => 5 )
+);
+
+/**
  * Map of string log group names to log destinations.
  *
  * If set, wfDebugLog() output for that group will go to that file instead
