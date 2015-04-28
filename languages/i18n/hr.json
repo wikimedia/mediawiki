@@ -28,7 +28,8 @@
 			"Treecko",
 			"לערי ריינהארט",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Fraxinus"
 		]
 	},
 	"tog-underline": "Podcrtane poveznice",
@@ -827,7 +828,7 @@
 	"shown-title": "Prikaži $1 {{PLURAL:$1|rezultat|rezultata|rezultata}} po stranici",
 	"viewprevnext": "Vidi ($1 {{int:pipe-separator}} $2) ($3).",
 	"searchmenu-exists": "* Stranica '''[[$1]]'''",
-	"searchmenu-new": "'''Stvori stranicu \"[[:$1]]\" na ovoj wiki!'''",
+	"searchmenu-new": "<strong>Napravite stranicu \"[[:$1]]\" na ovom wiki projektu!</strong>\n{{PLURAL:$2|0=|Cm. i stranica koje se nalaze u rezultatima vaših pretraživanja.|Cm. također su pronađeni rezultati pretraživanja.}}",
 	"searchprofile-articles": "Stranice sa sadržajem",
 	"searchprofile-images": "Multimedija",
 	"searchprofile-everything": "Sve",
@@ -2087,8 +2088,6 @@
 	"import-interwiki-history": "Prenesi sve inačice ove stranice",
 	"import-interwiki-templates": "Uključi sve predloške",
 	"import-interwiki-submit": "Uvezi",
-	"import-interwiki-namespace": "Odredišni imenski prostor:",
-	"import-interwiki-rootpage": "Odredišna početna stranica (parametar nije nužan):",
 	"import-upload-filename": "Ime datoteke:",
 	"import-comment": "Komentar:",
 	"importtext": "Molimo izvezite datoteku iz izvorišnog wikija koristeći [[Special:Export|izvozno pomagalo]]. \nSnimite je na svoje računalo i postavite je ovdje.",
@@ -2141,6 +2140,7 @@
 	"tooltip-pt-mycontris": "Popis mojih doprinosa",
 	"tooltip-pt-login": "Predlažemo Vam da se prijavite, ali nije obvezno.",
 	"tooltip-pt-logout": "Odjavi se",
+	"tooltip-pt-createaccount": "Nudimo vam mogućnost da napravite račun i prijavite se, iako to nije nužno.",
 	"tooltip-ca-talk": "Razgovor o stranici",
 	"tooltip-ca-edit": "Možete uređivati ovu stranicu. Koristite Pregled kako će izgledati prije nego što snimite.",
 	"tooltip-ca-addsection": "Dodaj novi odlomak",
