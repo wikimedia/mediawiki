@@ -247,8 +247,17 @@
 			$region: $searchRegion
 		} );
 
-		// If the form includes any fallback fulltext search buttons, remove them
-		$searchInput.closest( 'form' ).find( '.mw-fallbackSearchButton' ).remove();
+		$searchInput.closest( 'form' )
+			// track the form submit event
+			.on( 'submit', function () {
+				var context = $searchInput.data( 'suggestionsContext' );
+				mw.track( 'mediawiki.searchSuggest', {
+					action: 'submit-form',
+					numberOfResults: context.config.suggestions.length
+				} );
+			} )
+			// If the form includes any fallback fulltext search buttons, remove them
+			.find( '.mw-fallbackSearchButton' ).remove();
 	} );
 
 }( mediaWiki, jQuery ) );
