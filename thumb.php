@@ -167,7 +167,7 @@ function wfStreamThumb( array $params ) {
 
 	// Check if the file is hidden
 	if ( $img->isDeleted( File::DELETED_FILE ) ) {
-		wfThumbError( 404, "The source file '$fileName' does not exist." );
+		wfThumbErrorText( 404, "The source file '$fileName' does not exist." );
 		return;
 	}
 
@@ -221,10 +221,10 @@ function wfStreamThumb( array $params ) {
 		}
 
 		// If its not a redirect that has a target as a local file, give 404.
-		wfThumbError( 404, "The source file '$fileName' does not exist." );
+		wfThumbErrorText( 404, "The source file '$fileName' does not exist." );
 		return;
 	} elseif ( $img->getPath() === false ) {
-		wfThumbError( 500, "The source file '$fileName' is not locally accessible." );
+		wfThumbErrorText( 500, "The source file '$fileName' is not locally accessible." );
 		return;
 	}
 
@@ -286,7 +286,7 @@ function wfStreamThumb( array $params ) {
 			}
 			return;
 		} else {
-			wfThumbError( 404, "The given path of the specified thumbnail is incorrect;
+			wfThumbErrorText( 404, "The given path of the specified thumbnail is incorrect;
 				expected '" . $img->getThumbRel( $thumbName ) . "' but got '" .
 				rawurldecode( $rel404 ) . "'." );
 			return;
@@ -544,14 +544,26 @@ function wfExtractThumbParams( $file, $params ) {
 	return null;
 }
 
+
 /**
  * Output a thumbnail generation error message
  *
  * @param int $status
- * @param string $msg HTML
+ * @param string $msg Plain text (will be html escaped)
  * @return void
  */
-function wfThumbError( $status, $msg ) {
+function wfThumbErrorText( $status, $msgText ) {
+	return wfThumbError( $status, htmlspecialchars( $msgText ) );
+}
+
+/**
+ * Output a thumbnail generation error message
+ *
+ * @param int $status
+ * @param string $msgHtml HTML
+ * @return void
+ */
+function wfThumbError( $status, $msgHtml ) {
 	global $wgShowHostnames;
 
 	header( 'Cache-Control: no-cache' );
@@ -583,7 +595,7 @@ function wfThumbError( $status, $msg ) {
 <body>
 <h1>Error generating thumbnail</h1>
 <p>
-$msg
+$msgHtml
 </p>
 $debug
 </body>
