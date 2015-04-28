@@ -502,7 +502,7 @@ function wfExtractThumbParams( $file, $params ) {
 	unset( $params['thumbName'] );
 
 	// Do the hook first for older extensions that rely on it.
-	if ( !wfRunHooks( 'ExtractThumbParameters', array( $thumbname, &$params ) ) ) {
+	if ( !Hooks::run( 'ExtractThumbParameters', array( $thumbname, &$params ) ) ) {
 		// Check hooks if parameters can be extracted
 		// Hooks return false if they manage to *resolve* the parameters
 		// This hook should be considered deprecated
