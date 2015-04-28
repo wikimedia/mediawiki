@@ -2922,6 +2922,8 @@
 	"tags-edit": "szerkesztés",
 	"tags-hitcount": "{{PLURAL:$1|Egy|$1}} változtatás",
 	"tags-delete-not-allowed": "A kiterjesztés által létrehozott címkék nem törölhetők, ha a kiterjesztés nem engedélyezi kifejezetten azt.",
+	"tags-edit-title": "Címkék szerkesztése",
+	"tags-edit-existing-tags": "Létező címkék:",
 	"comparepages": "Lapok összehasonlítása",
 	"compare-page1": "1. lap",
 	"compare-page2": "2. lap",
