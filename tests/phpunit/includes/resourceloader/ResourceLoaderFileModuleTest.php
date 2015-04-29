@@ -226,23 +226,4 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 
 		$this->assertEquals( $rl->getTemplates(), $expected );
 	}
-
-	public static function providerGetModifiedTime() {
-		$modules = self::getModules();
-
-		return array(
-			// Check the default value when no templates present in module is 1
-			array( $modules['noTemplateModule'], 1 ),
-		);
-	}
-
-	/**
-	 * @dataProvider providerGetModifiedTime
-	 * @covers ResourceLoaderFileModule::getModifiedTime
-	 */
-	public function testGetModifiedTime( $module, $expected ) {
-		$rl = new ResourceLoaderFileModule( $module );
-		$ts = $rl->getModifiedTime( $this->getResourceLoaderContext() );
-		$this->assertEquals( $ts, $expected );
-	}
 }
