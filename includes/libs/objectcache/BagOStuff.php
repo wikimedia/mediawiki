@@ -37,10 +37,10 @@ use Psr\Log\NullLogger;
  * the PHP memcached client.
  *
  * backends for local hash array and SQL table included:
- * <code>
+ * @code
  *   $bag = new HashBagOStuff();
  *   $bag = new SqlBagOStuff(); # connect to db first
- * </code>
+ * @endcode
  *
  * @ingroup Cache
  */

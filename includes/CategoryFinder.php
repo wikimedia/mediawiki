@@ -27,7 +27,7 @@
  * articles are in one or all of a given subset of categories.
  *
  * Example use :
- * <code>
+ * @code
  *     # Determines whether the article with the page_id 12345 is in both
  *     # "Category 1" and "Category 2" or their subcategories, respectively
  *
@@ -39,7 +39,7 @@
  *     );
  *     $a = $cf->run();
  *     print implode( ',' , $a );
- * </code>
+ * @endcode
  *
  */
 class CategoryFinder {
