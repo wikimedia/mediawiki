@@ -677,6 +677,13 @@ return array(
 		'group' => 'jquery.ui',
 	),
 
+	/* sha1 */
+
+	'sha1' => array(
+		'scripts' => 'resources/lib/phpjs-sha1/sha1.js',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
+
 	/* json2 */
 
 	'json' => array(
