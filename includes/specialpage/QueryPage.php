@@ -253,6 +253,15 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	/**
+	 * Outputs some kind of an informative message (via OutputPage) to let the
+	 * user know that the query returned nothing and thus there's nothing to
+	 * show.
+	 */
+	function getEmptyText() {
+		$this->getOutput()->addWikiMsg( 'specialpage-empty' );
+	}
+
+	/**
 	 * If using extra form wheely-dealies, return a set of parameters here
 	 * as an associative array. They will be encoded and added to the paging
 	 * links (prev/next/lengths).
@@ -546,7 +555,7 @@ abstract class QueryPage extends SpecialPage {
 			} else {
 				# No results to show, so don't bother with "showing X of Y" etc.
 				# -- just let the user know and give up now
-				$out->addWikiMsg( 'specialpage-empty' );
+				$this->getEmptyText();
 				$out->addHTML( Xml::closeElement( 'div' ) );
 				return;
 			}
