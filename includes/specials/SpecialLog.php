@@ -165,7 +165,7 @@ class SpecialLog extends SpecialPage {
 		$loglist = new LogEventsList(
 			$this->getContext(),
 			null,
-			LogEventsList::USE_REVDEL_CHECKBOXES
+			LogEventsList::USE_CHECKBOXES
 		);
 		$pager = new LogPager(
 			$loglist,
