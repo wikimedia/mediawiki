@@ -1879,7 +1879,7 @@
 	"ipblocklist": "Blokkerte IP-adresser og brukarnamn",
 	"ipblocklist-legend": "Finn ein blokkert brukar",
 	"blocklist-userblocks": "Gøym kontoblokkeringar",
-	"blocklist-tempblocks": "Gøym mellombelse blokkeringar",
+	"blocklist-tempblocks": "Gøym mellombels blokkeringar",
 	"blocklist-addressblocks": "Gøym einskilde IP-blokkeringar",
 	"blocklist-rangeblocks": "Gøym intervallblokkeringar",
 	"blocklist-timestamp": "Tidsmerke",

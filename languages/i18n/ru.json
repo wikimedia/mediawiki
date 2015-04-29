@@ -2237,6 +2237,7 @@
 	"import-interwiki-history": "Копировать всю историю изменений этой страницы",
 	"import-interwiki-templates": "Включить все шаблоны",
 	"import-interwiki-submit": "Импортировать",
+	"import-mapping-namespace": "Импортировать в пространство имён:",
 	"import-upload-filename": "Имя файла:",
 	"import-comment": "Примечание:",
 	"importtext": "Пожалуйста, экспортируйте страницу из исходной вики, используя [[Special:Export|соответствующий инструмент]]. Сохраните файл на диск, а затем загрузите его сюда.",

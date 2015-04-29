@@ -10,7 +10,8 @@
 			"Macofe",
 			"Se4598",
 			"Purodha",
-			"Andreasburmeister"
+			"Andreasburmeister",
+			"Anomie"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page/de|Dokumentation]]\n* [[mw:API:FAQ/de|Häufig gestellte Fragen]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailingliste]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-Ankündigungen]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Fehlerberichte und Anfragen]\n</div>\n<strong>Status:</strong> Alle auf dieser Seite gezeigten Funktionen sollten funktionieren, allerdings ist die API in aktiver Entwicklung und kann sich zu jeder Zeit ändern. Abonniere die [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ MediaWiki-API-Ankündigungs-Mailingliste], um über Aktualisierungen informiert zu werden.\n\n<strong>Fehlerhafte Anfragen:</strong> Wenn fehlerhafte Anfragen an die API gesendet werden, wird ein HTTP-Header mit dem Schlüssel „MediaWiki-API-Error“ gesendet. Der Wert des Headers und der Fehlercode werden auf den gleichen Wert gesetzt. Für weitere Informationen siehe [[mw:API:Errors_and_warnings|API: Fehler und Warnungen]].",
@@ -422,7 +423,7 @@
 	"apihelp-yaml-description": "Daten im YAML-Format ausgeben.",
 	"apihelp-yamlfm-description": "Daten im YAML-Format ausgeben (schöngedruckt in HTML).",
 	"api-format-title": "MediaWiki-API-Ergebnis",
-	"api-format-prettyprint-header": "Dies ist die HTML-Repräsentation des $1-Formats. HTML ist zur Fehlerbehebung gut, aber unpassend für den Anwendungsgebrauch.\n\nGib den Parameter <var>Format</var> an, um das Ausgabeformat zu ändern. Um die Nicht-HTML-Repräsentation des $1-Formats anzusehen, lege <kbd>format=$2</kbd> fest.\n\nSiehe die [[mw:API|vollständige Dokumentation]] oder die [[Special:ApiHelp/main|API-Hilfe]] für weitere Informationen.",
+	"api-format-prettyprint-header": "Dies ist die HTML-Repräsentation des $1-Formats. HTML ist zur Fehlerbehebung gut, aber unpassend für den Anwendungsgebrauch.\n\nGib den Parameter <var>format</var> an, um das Ausgabeformat zu ändern. Um die Nicht-HTML-Repräsentation des $1-Formats anzusehen, lege <kbd>format=$2</kbd> fest.\n\nSiehe die [[mw:API|vollständige Dokumentation]] oder die [[Special:ApiHelp/main|API-Hilfe]] für weitere Informationen.",
 	"api-orm-param-props": "Felder an die Anfrage.",
 	"api-orm-param-limit": "Maximale Anzahl zurückgegebender Zeilen.",
 	"api-pageset-param-titles": "Eine Liste der Titel, an denen gearbeitet werden soll.",
