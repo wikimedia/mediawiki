@@ -422,7 +422,7 @@
 	"apihelp-yaml-description": "Daten im YAML-Format ausgeben.",
 	"apihelp-yamlfm-description": "Daten im YAML-Format ausgeben (schöngedruckt in HTML).",
 	"api-format-title": "MediaWiki-API-Ergebnis",
-	"api-format-prettyprint-header": "Dies ist die HTML-Repräsentation des $1-Formats. HTML ist zur Fehlerbehebung gut, aber unpassend für den Anwendungsgebrauch.\n\nGib den Parameter <var>Format</var> an, um das Ausgabeformat zu ändern. Um die Nicht-HTML-Repräsentation des $1-Formats anzusehen, lege <kbd>format=$2</kbd> fest.\n\nSiehe die [[mw:API|vollständige Dokumentation]] oder die [[Special:ApiHelp/main|API-Hilfe]] für weitere Informationen.",
+	"api-format-prettyprint-header": "Dies ist die HTML-Repräsentation des $1-Formats. HTML ist zur Fehlerbehebung gut, aber unpassend für den Anwendungsgebrauch.\n\nGib den Parameter <var>format</var> an, um das Ausgabeformat zu ändern. Um die Nicht-HTML-Repräsentation des $1-Formats anzusehen, lege <kbd>format=$2</kbd> fest.\n\nSiehe die [[mw:API|vollständige Dokumentation]] oder die [[Special:ApiHelp/main|API-Hilfe]] für weitere Informationen.",
 	"api-orm-param-props": "Felder an die Anfrage.",
 	"api-orm-param-limit": "Maximale Anzahl zurückgegebender Zeilen.",
 	"api-pageset-param-titles": "Eine Liste der Titel, an denen gearbeitet werden soll.",
