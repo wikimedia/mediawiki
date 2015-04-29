@@ -64,21 +64,9 @@ class MovePage {
 			$status->fatal( 'spamprotectiontext' );
 		}
 
-		# The move is allowed only if (1) the target doesn't exist, or
-		# (2) the target is a redirect to the source, and has no history
-		# (so we can undo bad moves right after they're done).
-
-		if ( $this->newTitle->getArticleID() ) { # Target exists; check for validity
-			if ( !$this->isValidMoveTarget() ) {
-				$status->fatal( 'articleexists' );
-			}
-		} else {
-			$tp = $this->newTitle->getTitleProtection();
-			if ( $tp !== false ) {
-				if ( !$user->isAllowed( $tp['permission'] ) ) {
-					$status->fatal( 'cantmove-titleprotected' );
-				}
-			}
+		$tp = $this->newTitle->getTitleProtection();
+		if ( $tp !== false && !$user->isAllowed( $tp['permission'] ) ) {
+				$status->fatal( 'cantmove-titleprotected' );
 		}
 
 		Hooks::run( 'MovePageCheckPermissions',
@@ -123,6 +111,13 @@ class MovePage {
 			( $this->newTitle->getDBkey() == '' )
 		) {
 			$status->fatal( 'badarticleerror' );
+		}
+
+		# The move is allowed only if (1) the target doesn't exist, or
+		# (2) the target is a redirect to the source, and has no history
+		# (so we can undo bad moves right after they're done).
+		if ( $this->newTitle->getArticleID() && !$this->isValidMoveTarget() ) {
+			$status->fatal( 'articleexists' );
 		}
 
 		// Content model checks
