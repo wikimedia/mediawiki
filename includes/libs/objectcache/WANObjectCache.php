@@ -305,7 +305,7 @@ class WANObjectCache {
 	 * value (false if not present). If false is returned, then nothing
 	 * will be saved to cache.
 	 *
-	 * Most callers should ignore the current value, but it can be used
+	 * Usually, callbacks ignore the current value, but it can be used
 	 * to maintain "most recent X" values that come from time or sequence
 	 * based source data, provided that the "as of" id/time is tracked.
 	 *
