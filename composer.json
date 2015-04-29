@@ -43,7 +43,9 @@
 		"ext-mbstring": "*",
 		"ext-wikidiff2": "*",
 		"ext-apc": "*",
-		"monolog/monolog": "*"
+		"monolog/monolog": "*",
+		"pear/mail": "*",
+		"pear/mail_mime": "*"
 	},
 	"autoload": {
 		"psr-0": {
