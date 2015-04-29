@@ -425,20 +425,36 @@ abstract class ResourceLoaderModule {
 	/* Abstract Methods */
 
 	/**
-	 * Get this module's last modification timestamp for a given
-	 * combination of language, skin and debug mode flag. This is typically
-	 * the highest of each of the relevant components' modification
-	 * timestamps. Whenever anything happens that changes the module's
-	 * contents for these parameters, the mtime should increase.
+	 * Get a string identifying the current version of this module in a given context.
 	 *
-	 * NOTE: The mtime of the module's messages is NOT automatically included.
-	 * If you want this to happen, you'll need to call getMsgBlobMtime()
-	 * yourself and take its result into consideration.
+	 * Whenever anything happens that changes the module's response (e.g. scripts, styles, and
+	 * messages) this value must change. This value is used to store module responses in cache.
+	 * (Both client-side and server-side.)
 	 *
-	 * NOTE: The mtime of the module's hash is NOT automatically included.
-	 * If your module provides a getModifiedHash() method, you'll need to call getHashMtime()
-	 * yourself and take its result into consideration.
+	 * This method should run fast because it is frequently run by ResourceLoaderStartUpModule to
+	 * propagate changes to the client and effectively  invalidate cache.
 	 *
+	 * A number of utility methods are available to help you gathering data:
+	 *
+	 * - getMsgBlobMtime
+	 *
+	 * If modules have a hash or timestamp from another source, that should be returned as-is.
+	 *
+	 * If modules need to collect data (e.g. file timestamps, definition summaries etc.),
+	 * return a serialised version of that data and defer hashing to ResourceLoader.
+	 * E.g. return `json_encode( .. )`, not `sha1( json_encode( .. ) )`.
+	 *
+	 * @param ResourceLoaderContext $context
+	 * @return string 0 or more characters
+	 */
+	public function getVersionHash( ResourceLoaderContext $context ) {
+		return '';
+	}
+
+	/**
+	 * Get this module's last modification timestamp for a given context.
+	 *
+	 * @deprecated since 1.26 Use getVersionHash() directly.
 	 * @param ResourceLoaderContext $context Context object
 	 * @return int UNIX timestamp
 	 */
@@ -447,8 +463,13 @@ abstract class ResourceLoaderModule {
 	}
 
 	/**
-	 * Helper method for calculating when the module's hash (if it has one) changed.
+	 * Helper method for calculating when the custom hash changed.
 	 *
+	 * This method uses ObjectCache to track when a hash was first seen. That principle stems from
+	 * a time that ResourceLoader could only identify module versions by timestamp.
+	 * That is no longer the case. Use getVersionHash() directly.
+	 *
+	 * @deprecated since 1.26 Use getVersionHash() directly.
 	 * @param ResourceLoaderContext $context
 	 * @return int UNIX timestamp
 	 */
@@ -484,9 +505,7 @@ abstract class ResourceLoaderModule {
 	/**
 	 * Get the hash for whatever this module may contain.
 	 *
-	 * This is the method subclasses should implement if they want to make
-	 * use of getHashMTime() inside getModifiedTime().
-	 *
+	 * @deprecated since 1.26 Use getVersionHash() directly.
 	 * @param ResourceLoaderContext $context
 	 * @return string|null Hash
 	 */
