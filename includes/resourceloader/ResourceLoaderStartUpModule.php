@@ -209,10 +209,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				continue;
 			}
 
-			// Coerce module timestamp to UNIX timestamp.
-			// getModifiedTime() is supposed to return a UNIX timestamp, but custom implementations
-			// might forget. TODO: Maybe emit warning?
-			$moduleMtime = wfTimestamp( TS_UNIX, $module->getModifiedTime( $context ) );
+			// Salt the version with wgCacheEpoch
+			$versionHash = $module->getVersionHash( $context ) . $this->getConfig()->get( 'CacheEpoch' );
 
 			$skipFunction = $module->getSkipFunction();
 			if ( $skipFunction !== null && !ResourceLoader::inDebugMode() ) {
@@ -225,14 +223,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				);
 			}
 
-			$mtime = max(
-				$moduleMtime,
-				wfTimestamp( TS_UNIX, $this->getConfig()->get( 'CacheEpoch' ) )
-			);
-
 			$registryData[$name] = array(
-				// Convert to numbers as wfTimestamp always returns a string, even for TS_UNIX
-				'version' => (int) $mtime,
+				// Actually hash it and summarise it for the version manifest
+				'versionHash' => substr( sha1( $versionHash ), 0, 16 ),
 				'dependencies' => $module->getDependencies(),
 				'group' => $module->getGroup(),
 				'source' => $module->getSource(),
@@ -253,7 +246,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			if ( $data['loader'] !== false ) {
 				$out .= ResourceLoader::makeCustomLoaderScript(
 					$name,
-					$data['version'],
+					$data['versionHash'],
 					$data['dependencies'],
 					$data['group'],
 					$data['source'],
@@ -265,7 +258,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			// Call mw.loader.register(name, timestamp, dependencies, group, source, skip)
 			$registrations[] = array(
 				$name,
-				$data['version'],
+				$data['versionHash'],
 				$data['dependencies'],
 				$data['group'],
 				// Swap default (local) for null

@@ -385,8 +385,7 @@ abstract class ResourceLoaderModule {
 	}
 
 	/**
-	 * Get the last modification timestamp of the message blob for this
-	 * module in a given language.
+	 * Get the last modification timestamp of the messages in this module for a given language.
 	 * @param string $lang Language code
 	 * @return int UNIX timestamp
 	 */
@@ -425,30 +424,91 @@ abstract class ResourceLoaderModule {
 	/* Abstract Methods */
 
 	/**
-	 * Get this module's last modification timestamp for a given
-	 * combination of language, skin and debug mode flag. This is typically
-	 * the highest of each of the relevant components' modification
-	 * timestamps. Whenever anything happens that changes the module's
-	 * contents for these parameters, the mtime should increase.
+	 * Get a string identifying the current version of this module in a given context.
 	 *
-	 * NOTE: The mtime of the module's messages is NOT automatically included.
-	 * If you want this to happen, you'll need to call getMsgBlobMtime()
-	 * yourself and take its result into consideration.
+	 * Whenever anything happens that changes the module's response (e.g. scripts, styles, and
+	 * messages) this value must change. This value is used to store module responses in cache.
+	 * (Both client-side and server-side.)
 	 *
-	 * NOTE: The mtime of the module's hash is NOT automatically included.
-	 * If your module provides a getModifiedHash() method, you'll need to call getHashMtime()
-	 * yourself and take its result into consideration.
+	 * In general one should call the parent getVersionHash() and build on that.
 	 *
-	 * @param ResourceLoaderContext $context Context object
-	 * @return int UNIX timestamp
+	 * This method should run fast because it is frequently run by ResourceLoaderStartUpModule to
+	 * propagate changes to the client and effectively  invalidate cache.
+	 *
+	 * A number of utility methods are available to help you gathering data:
+	 *
+	 * - getMsgBlobMtime()
+	 * - getDefinitionSummary()
+	 *
+	 * If modules have a hash or timestamp from another source, that should be returned as-is.
+	 *
+	 * If modules need to collect data (e.g. file timestamps, definition summaries etc.),
+	 * return a serialised version of that data and defer hashing to ResourceLoader.
+	 * E.g. return `json_encode( .. )`, not `sha1( json_encode( .. ) )`.
+	 *
+	 * @param ResourceLoaderContext $context
+	 * @return string 0 or more characters
 	 */
-	public function getModifiedTime( ResourceLoaderContext $context ) {
-		return 1;
+	public function getVersionHash( ResourceLoaderContext $context ) {
+		$str = json_encode( $this->getDefinitionSummary() );
+
+		$mtime = $this->getModifiedTime( $context );
+		if ( $mtime !== null ) {
+			$str .= strval( $mtime );
+		}
+
+		return $str;
 	}
 
 	/**
-	 * Helper method for calculating when the module's hash (if it has one) changed.
+	 * Get the definition summary for this module.
 	 *
+	 * This is the method subclasses are recommended to use to track values in their
+	 * version hash. Call this in getVersionHash() and pass it to e.g. json_encode.
+	 *
+	 * In general one should call the parent getDefinitionSummary() and build on that.
+	 *
+	 * Return an array containing values from all significant properties of this
+	 * module's definition.
+	 *
+	 * Be careful not to normalise too much and especially preserve the order of things that cary
+	 * significance in getScript and getStyles (T39812).
+	 *
+	 * Avoid including things that are insiginificant (e.g. order of message keys is insignificant
+	 * and should be sorted to avoid unnecessary cache invalidation).
+	 *
+	 * This data structure must exclusively contain arrays and scalars as values (avoid object
+	 * instances) to allow simple serialisation using json_encode.
+	 *
+	 * @since 1.23
+	 * @param ResourceLoaderContext $context
+	 * @return array|null
+	 */
+	public function getDefinitionSummary( ResourceLoaderContext $context ) {
+		return array(
+			'class' => get_class( $this ),
+		);
+	}
+
+	/**
+	 * Get this module's last modification timestamp for a given context.
+	 *
+	 * @deprecated since 1.26 Use getVersionHash() directly
+	 * @param ResourceLoaderContext $context Context object
+	 * @return int|null UNIX timestamp
+	 */
+	public function getModifiedTime( ResourceLoaderContext $context ) {
+		return null;
+	}
+
+	/**
+	 * Helper method for calculating when a custom hash last changed.
+	 *
+	 * This method uses ObjectCache to track when a hash was first seen. That principle stems from
+	 * a time that ResourceLoader could only identify module versions by timestamp.
+	 * That is no longer the case. Use getVersionHash() directly.
+	 *
+	 * @deprecated since 1.26 Use getVersionHash() directly
 	 * @param ResourceLoaderContext $context
 	 * @return int UNIX timestamp
 	 */
@@ -482,11 +542,9 @@ abstract class ResourceLoaderModule {
 	}
 
 	/**
-	 * Get the hash for whatever this module may contain.
+	 * Helper method for providing a hash to getHashMtime().
 	 *
-	 * This is the method subclasses should implement if they want to make
-	 * use of getHashMTime() inside getModifiedTime().
-	 *
+	 * @deprecated since 1.26 Use getVersionHash() directly
 	 * @param ResourceLoaderContext $context
 	 * @return string|null Hash
 	 */
@@ -497,8 +555,12 @@ abstract class ResourceLoaderModule {
 	/**
 	 * Helper method for calculating when this module's definition summary was last changed.
 	 *
-	 * @since 1.23
+	 * This method uses ObjectCache to track when a hash was first seen. That principle stems from
+	 * a time that ResourceLoader could only identify module versions by timestamp.
+	 * That is no longer the case. Use getVersionHash() directly.
 	 *
+	 * @since 1.23
+	 * @deprecated since 1.26 Use getVersionHash() directly
 	 * @param ResourceLoaderContext $context
 	 * @return int UNIX timestamp
 	 */
@@ -518,51 +580,9 @@ abstract class ResourceLoaderModule {
 			return $data;
 		}
 
-		wfDebugLog( 'resourceloader', __METHOD__ . ": New definition for module "
-			. "{$this->getName()} in context \"{$context->getHash()}\"" );
-		// WMF logging for T94810
-		global $wgRequest;
-		if ( isset( $wgRequest ) && $context->getUser() ) {
-			wfDebugLog( 'resourceloader', __METHOD__ . ": Request with user parameter in "
-			. "context \"{$context->getHash()}\" from " . $wgRequest->getRequestURL() );
-		}
-
 		$timestamp = time();
 		$cache->set( $key, $timestamp );
 		return $timestamp;
-	}
-
-	/**
-	 * Get the definition summary for this module.
-	 *
-	 * This is the method subclasses should implement if they want to make
-	 * use of getDefinitionMTime() inside getModifiedTime().
-	 *
-	 * Return an array containing values from all significant properties of this
-	 * module's definition. Be sure to include things that are explicitly ordered,
-	 * in their actaul order (bug 37812).
-	 *
-	 * Avoid including things that are insiginificant (e.g. order of message
-	 * keys is insignificant and should be sorted to avoid unnecessary cache
-	 * invalidation).
-	 *
-	 * Avoid including things already considered by other methods inside your
-	 * getModifiedTime(), such as file mtime timestamps.
-	 *
-	 * Serialisation is done using json_encode, which means object state is not
-	 * taken into account when building the hash. This data structure must only
-	 * contain arrays and scalars as values (avoid object instances) which means
-	 * it requires abstraction.
-	 *
-	 * @since 1.23
-	 *
-	 * @param ResourceLoaderContext $context
-	 * @return array|null
-	 */
-	public function getDefinitionSummary( ResourceLoaderContext $context ) {
-		return array(
-			'class' => get_class( $this ),
-		);
 	}
 
 	/**

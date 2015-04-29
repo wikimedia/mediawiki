@@ -144,15 +144,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	protected $hasGeneratedStyles = false;
 
 	/**
-	 * @var array Cache for mtime
-	 * @par Usage:
-	 * @code
-	 * array( [hash] => [mtime], [hash] => [mtime], ... )
-	 * @endcode
-	 */
-	protected $modifiedTime = array();
-
-	/**
 	 * @var array Place where readStyleFile() tracks file dependencies
 	 * @par Usage:
 	 * @code
@@ -522,7 +513,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Get the last modified timestamp of this module.
+	 * Helper method to gather file mtimes for getDefinitionSummary.
 	 *
 	 * Last modified timestamps are calculated from the highest last modified
 	 * timestamp of this module's constituent files as well as the files it
@@ -530,16 +521,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * calculations on files relevant to the given language, skin and debug
 	 * mode.
 	 *
-	 * @param ResourceLoaderContext $context Context in which to calculate
-	 *     the modified time
-	 * @return int UNIX timestamp
 	 * @see ResourceLoaderModule::getFileDependencies
+	 * @param ResourceLoaderContext $context
+	 * @return array
 	 */
-	public function getModifiedTime( ResourceLoaderContext $context ) {
-		if ( isset( $this->modifiedTime[$context->getHash()] ) ) {
-			return $this->modifiedTime[$context->getHash()];
-		}
-
+	protected function getFileMtimes( ResourceLoaderContext $context ) {
 		$files = array();
 
 		// Flatten style files into $files
@@ -578,22 +564,14 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		// entry point Less file we already know about.
 		$files = array_values( array_unique( $files ) );
 
-		// If a module is nothing but a list of dependencies, we need to avoid
-		// giving max() an empty array
-		if ( count( $files ) === 0 ) {
-			$this->modifiedTime[$context->getHash()] = 1;
-			return $this->modifiedTime[$context->getHash()];
+		$fileMtimes = array();
+		foreach ( $files as $file ) {
+			$fileMtimes[ $file ] = self::safeFilemtime( $file );
 		}
+		var_dump($fileMtimes);
+		exit;
 
-		$filesMtime = max( array_map( array( __CLASS__, 'safeFilemtime' ), $files ) );
-
-		$this->modifiedTime[$context->getHash()] = max(
-			$filesMtime,
-			$this->getMsgBlobMtime( $context->getLanguage() ),
-			$this->getDefinitionMtime( $context )
-		);
-
-		return $this->modifiedTime[$context->getHash()];
+		#return $fileMtimes;
 	}
 
 	/**
@@ -626,6 +604,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		) as $member ) {
 			$summary[$member] = $this->{$member};
 		};
+
+		$summary['fileMtimes'] = $this->getFileMTimes( $context );
+		$summary['msgBlobMtime']= $this->getMsgBlobMtime( $context->getLanguage() );
+
 		return $summary;
 	}
 
