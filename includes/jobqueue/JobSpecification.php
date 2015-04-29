@@ -68,7 +68,7 @@ interface IJobSpecification {
  * Job queue task description base code
  *
  * Example usage:
- * <code>
+ * @code
  * $job = new JobSpecification(
  *		'null',
  *		array( 'lives' => 1, 'usleep' => 100, 'pi' => 3.141569 ),
@@ -76,7 +76,7 @@ interface IJobSpecification {
  *		Title::makeTitle( NS_SPECIAL, 'nullity' )
  * );
  * JobQueueGroup::singleton()->push( $job )
- * </code>
+ * @endcode
  *
  * @ingroup JobQueue
  * @since 1.23

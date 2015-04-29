@@ -320,7 +320,7 @@ class WANObjectCache {
 	 * the 'lowTTL' parameter.
 	 *
 	 * Example usage:
-	 * <code>
+	 * @code
 	 *     $key = wfMemcKey( 'cat-recent-actions', $catId );
 	 *     // Function that derives the new key value given the old value
 	 *     $callback = function( $cValue ) { ... };
@@ -328,10 +328,10 @@ class WANObjectCache {
 	 *     // try to only let one cluster thread manage doing cache updates
 	 *     $opts = array( 'lockTSE' => 5, 'lowTTL' => 10 );
 	 *     $value = $cache->getWithSetCallback( $key, $callback, 60, array(), $opts );
-	 * </code>
+	 * @endcode
 	 *
 	 * Example usage:
-	 * <code>
+	 * @code
 	 *     $key = wfMemcKey( 'cat-state', $catId );
 	 *     // The "check" keys that represent things the value depends on;
 	 *     // Calling touchCheckKey() on them invalidates "cat-state"
@@ -346,7 +346,7 @@ class WANObjectCache {
 	 *     // try to only let one cluster thread manage doing cache updates
 	 *     $opts = array( 'lockTSE' => 5, 'lowTTL' => 10 );
 	 *     $value = $cache->getWithSetCallback( $key, $callback, 60, $checkKeys, $opts );
-	 * </code>
+	 * @endcode
 	 *
 	 * @see WANObjectCache::get()
 	 *
