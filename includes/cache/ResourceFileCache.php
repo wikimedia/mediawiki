@@ -1,6 +1,6 @@
 <?php
 /**
- * Resource loader request result caching in the file system.
+ * ResourceLoader request result caching in the file system.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@
  */
 
 /**
- * Resource loader request result caching in the file system.
+ * ResourceLoader request result caching in the file system.
  *
  * @ingroup Cache
  */
