@@ -1,12 +1,12 @@
 /*!
- * OOjs v1.1.6 optimised for jQuery
+ * OOjs v1.1.7 optimised for jQuery
  * https://www.mediawiki.org/wiki/OOjs
  *
  * Copyright 2011-2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-03-19T00:42:55Z
+ * Date: 2015-04-29T01:13:49Z
  */
 ( function ( global ) {
 
@@ -108,12 +108,12 @@ oo.inheritClass = function ( targetFn, originFn ) {
  *
  * The 'constructor' (whether implicit or explicit) is not copied over.
  *
- * This does not create inheritance to the origin. If inheritance is needed
- * use oo.inheritClass instead.
+ * This does not create inheritance to the origin. If you need inheritance,
+ * use OO.inheritClass instead.
  *
  * Beware: This can redefine a prototype property, call before setting your prototypes.
  *
- * Beware: Don't call before oo.inheritClass.
+ * Beware: Don't call before OO.inheritClass.
  *
  *     function Foo() {}
  *     function Context() {}
@@ -826,12 +826,18 @@ oo.mixinClass( oo.Registry, oo.EventEmitter );
  * @param {Mixed} data
  */
 
+/**
+ * @event unregister
+ * @param {string} name
+ * @param {Mixed} data Data removed from registry
+ */
+
 /* Methods */
 
 /**
  * Associate one or more symbolic names with some data.
  *
- * Only the base name will be registered, overriding any existing entry with the same base name.
+ * Any existing entry with the same name will be overridden.
  *
  * @param {string|string[]} name Symbolic name or list of symbolic names
  * @param {Mixed} data Data to associate with symbolic name
@@ -853,9 +859,31 @@ oo.Registry.prototype.register = function ( name, data ) {
 };
 
 /**
- * Get data for a given symbolic name.
+ * Remove one or more symbolic names from the registry
  *
- * Lookups are done using the base name.
+ * @param {string|string[]} name Symbolic name or list of symbolic names
+ * @fires unregister
+ * @throws {Error} Name argument must be a string or array
+ */
+oo.Registry.prototype.unregister = function ( name ) {
+	var i, len, data;
+	if ( typeof name === 'string' ) {
+		data = this.lookup( name );
+		if ( data !== undefined ) {
+			delete this.registry[name];
+			this.emit( 'unregister', name, data );
+		}
+	} else if ( Array.isArray( name ) ) {
+		for ( i = 0, len = name.length; i < len; i++ ) {
+			this.unregister( name[i] );
+		}
+	} else {
+		throw new Error( 'Name must be a string or array, cannot be a ' + typeof name );
+	}
+};
+
+/**
+ * Get data for a given symbolic name.
  *
  * @param {string} name Symbolic name
  * @return {Mixed|undefined} Data associated with symbolic name
@@ -873,10 +901,8 @@ oo.Registry.prototype.lookup = function ( name ) {
  * @constructor
  */
 oo.Factory = function OoFactory() {
+	// Parent constructor
 	oo.Factory.parent.call( this );
-
-	// Properties
-	this.entries = [];
 };
 
 /* Inheritance */
@@ -911,9 +937,31 @@ oo.Factory.prototype.register = function ( constructor ) {
 	if ( typeof name !== 'string' || name === '' ) {
 		throw new Error( 'Name must be a string and must not be empty' );
 	}
-	this.entries.push( name );
 
+	// Parent method
 	oo.Factory.parent.prototype.register.call( this, name, constructor );
+};
+
+/**
+ * Unregister a constructor from the factory.
+ *
+ * @param {Function} constructor Constructor to unregister
+ * @throws {Error} Name must be a string and must not be empty
+ * @throws {Error} Constructor must be a function
+ */
+oo.Factory.prototype.unregister = function ( constructor ) {
+	var name;
+
+	if ( typeof constructor !== 'function' ) {
+		throw new Error( 'constructor must be a function, cannot be a ' + typeof constructor );
+	}
+	name = constructor.static && constructor.static.name;
+	if ( typeof name !== 'string' || name === '' ) {
+		throw new Error( 'Name must be a string and must not be empty' );
+	}
+
+	// Parent method
+	oo.Factory.parent.prototype.unregister.call( this, name );
 };
 
 /**
