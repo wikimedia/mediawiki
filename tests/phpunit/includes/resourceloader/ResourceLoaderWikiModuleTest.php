@@ -31,16 +31,15 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 		$module = new ResourceLoaderWikiModule( $params );
 		$module->setConfig( $config );
 
-		// Use getDefinitionSummary because getPages is protected
-		$summary = $module->getDefinitionSummary( ResourceLoaderContext::newDummyContext() );
-		$this->assertEquals(
-			$expected,
-			$summary['pages']
-		);
+		// Because getPages is protected..
+		$getPages = new ReflectionMethod( $module, 'getPages' );
+		$getPages->setAccessible( true );
+		$out = $getPages->invoke( $module, ResourceLoaderContext::newDummyContext() );
+		$this->assertEquals( $expected, $out );
 	}
 
 	public static function provideGetPages() {
-		$settings = array(
+		$settings = self::getSettings() + array(
 			'UseSiteJs' => true,
 			'UseSiteCss' => true,
 		);
