@@ -65,25 +65,15 @@ class ResourceLoaderEditToolbarModule extends ResourceLoaderFileModule {
 	}
 
 	/**
+	 * Get the definition summary for this module.
+	 *
 	 * @param ResourceLoaderContext $context
-	 * @return int UNIX timestamp
+	 * @return array
 	 */
-	public function getModifiedTime( ResourceLoaderContext $context ) {
-		return max(
-			parent::getModifiedTime( $context ),
-			$this->getHashMtime( $context )
-		);
-	}
-
-	/**
-	 * @param ResourceLoaderContext $context
-	 * @return string Hash
-	 */
-	public function getModifiedHash( ResourceLoaderContext $context ) {
-		return md5(
-			parent::getModifiedHash( $context ) .
-			serialize( $this->getLessVars( $context ) )
-		);
+	public function getDefinitionSummary( ResourceLoaderContext $context ) {
+		$summary = parent::getDefinitionSummary( $context );
+		$summary['lessVars'] = $this->getLessVars( $context );
+		return $summary;
 	}
 
 	/**
