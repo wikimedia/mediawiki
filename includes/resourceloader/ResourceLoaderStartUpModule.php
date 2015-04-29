@@ -209,10 +209,17 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				continue;
 			}
 
-			// Coerce module timestamp to UNIX timestamp.
-			// getModifiedTime() is supposed to return a UNIX timestamp, but custom implementations
-			// might forget. TODO: Maybe emit warning?
-			$moduleMtime = wfTimestamp( TS_UNIX, $module->getModifiedTime( $context ) );
+			$versionHash = $module->getVersionHash( $context );
+			if ( $versionHash === '' ) {
+				// Support: MediaWiki 1.25 and earlier
+				// Beware: Some getModifiedTime() implementations return their timestamp in a format
+				// that is not an integer UNIX timestamp. This used to convert it with wfTimestamp(),
+				// but since we're hashing, use it as-is.
+				$versionHash = strval( $module->getModifiedTime( $context ) );
+			}
+
+			// Salt the hash with wgCacheEpoch
+			$versionHash = $versionHash . $this->getConfig()->get( 'CacheEpoch' );
 
 			$skipFunction = $module->getSkipFunction();
 			if ( $skipFunction !== null && !ResourceLoader::inDebugMode() ) {
@@ -225,14 +232,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				);
 			}
 
-			$mtime = max(
-				$moduleMtime,
-				wfTimestamp( TS_UNIX, $this->getConfig()->get( 'CacheEpoch' ) )
-			);
-
 			$registryData[$name] = array(
-				// Convert to numbers as wfTimestamp always returns a string, even for TS_UNIX
-				'version' => (int) $mtime,
+				'versionHash' => sha1( $versionHash ),
 				'dependencies' => $module->getDependencies(),
 				'group' => $module->getGroup(),
 				'source' => $module->getSource(),
@@ -253,7 +254,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			if ( $data['loader'] !== false ) {
 				$out .= ResourceLoader::makeCustomLoaderScript(
 					$name,
-					$data['version'],
+					$data['versionHash'],
 					$data['dependencies'],
 					$data['group'],
 					$data['source'],
@@ -265,7 +266,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			// Call mw.loader.register(name, timestamp, dependencies, group, source, skip)
 			$registrations[] = array(
 				$name,
-				$data['version'],
+				$data['versionHash'],
 				$data['dependencies'],
 				$data['group'],
 				// Swap default (local) for null
