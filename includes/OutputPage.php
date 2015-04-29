@@ -2875,6 +2875,7 @@ class OutputPage extends ContextSource {
 						$timestamp = max( $timestamp, $module->getModifiedTime( $context ) );
 					}
 					// Add a version parameter so cache will break when things change
+					// @todo FIXME: Update this to use getVesionHash hashing
 					$query['version'] = wfTimestamp( TS_ISO_8601_BASIC, $timestamp );
 				}
 
