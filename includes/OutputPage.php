@@ -2869,13 +2869,13 @@ class OutputPage extends ContextSource {
 				// and we shouldn't be putting timestamps in Squid-cached HTML
 				$version = null;
 				if ( $group === 'user' ) {
-					// Get the maximum timestamp
-					$timestamp = 1;
+					// Combine versions to propagate cache invalidation
+					// @todo FIXME: Move this logic to ResourceLoader.php
+					$hashes = '';
 					foreach ( $grpModules as $module ) {
-						$timestamp = max( $timestamp, $module->getModifiedTime( $context ) );
+						$hashes .= $module->getVersionHash( $context );
 					}
-					// Add a version parameter so cache will break when things change
-					$query['version'] = wfTimestamp( TS_ISO_8601_BASIC, $timestamp );
+					$query['version'] = substr( sha1( $hashes ), 0, 16 );
 				}
 
 				$query['modules'] = ResourceLoader::makePackedModulesString( array_keys( $grpModules ) );
