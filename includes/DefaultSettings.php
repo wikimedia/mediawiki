@@ -6681,7 +6681,7 @@ $wgLogActions = array(
 );
 
 /**
- * The same as above, but here values are names of functions,
+ * The same as above, but here values are names of classes,
  * not messages.
  * @see LogPage::actionText
  * @see LogFormatter
@@ -6699,9 +6699,9 @@ $wgLogActionsHandlers = array(
 	'patrol/patrol' => 'PatrolLogFormatter',
 	'rights/rights' => 'RightsLogFormatter',
 	'rights/autopromote' => 'RightsLogFormatter',
-	'upload/upload' => 'LogFormatter',
-	'upload/overwrite' => 'LogFormatter',
-	'upload/revert' => 'LogFormatter',
+	'upload/upload' => 'UploadLogFormatter',
+	'upload/overwrite' => 'UploadLogFormatter',
+	'upload/revert' => 'UploadLogFormatter',
 	'merge/merge' => 'MergeLogFormatter',
 	'tag/update' => 'TagLogFormatter',
 	'managetags/create' => 'LogFormatter',

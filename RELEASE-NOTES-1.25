@@ -125,6 +125,9 @@ production.
   Special:EditTags, generally accessed via the revision-deletion-like interface
   on history pages and Special:Log is likely to be more useful.
 * Added 'applychangetags' and 'changetags' user rights.
+* (T35235) LogFormatter subclasses are now responsible for formatting the
+  parameters for API log event output. Extensions should implement the new
+  getParametersForApi() method in their log formatters.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
@@ -253,6 +256,18 @@ production.
 * Default type param for query list=watchlist and list=recentchanges has
   been changed from all types (e.g. including 'external') to 'edit|new|log'.
 * Added formatversion to format=json, still experimental.
+* (T73020) Log event details are now always under a 'params' subkey for
+  list=logevents, and a 'logparams' subkey for list=watchlist and
+  list=recentchanges.
+* Log event details are changing formatting:
+  * block events now report flags as an array rather than as a comma-separated
+    list.
+  * patrol events now report the 'auto' flag as a boolean (absent/empty string
+    for BC formats) rather than as an integer.
+  * rights events now report the old and new group lists as arrays rather than
+    as comma-separated lists.
+  * merge events use new-style formatting.
+  * delete/event and delete/revision events use new-style formatting.
 * The root node and various other nodes will now always be an object in formats
   such as json that distinguish between arrays and objects.
   * Except for action=opensearch where the spec requires an array.
@@ -293,6 +308,21 @@ production.
   the current request was sent with the 'callback' parameter (or any future
   method that breaks the same-origin policy).
 * Profiling methods in ApiBase are deprecated and no longer need to be called.
+* ApiResult was greatly overhauled. See inline documentation for details.
+* ApiResult will automatically convert objects to strings or arrays (depending
+  on whether a __toString() method exists on the object), and will refuse to
+  add unsupported value types.
+  * An informal interface, ApiSerializable, exists to override the default
+    object conversion.
+* ApiResult/ApiFormatBase "raw mode" is deprecated.
+* ApiFormatXml now assumes defaults and so on instead of throwing errors when
+  metadata isn't set.
+* (T35235) LogFormatter subclasses are now responsible for formatting log event
+  parameters for the API.
+* Many modules have changed result data formats. While this shouldn't affect
+  clients not using the experimental formatversion=2015, code using
+  ApiResult::getResultData() and not using ApiResult::transformForBC() may need
+  updating.
 * The following methods have been deprecated and may be removed in a future
   release:
   * ApiBase::getDescription
@@ -309,30 +339,17 @@ production.
   * ApiBase::profileDBIn
   * ApiBase::profileDBOut
   * ApiBase::getProfileDBTime
+  * ApiBase::getResultData
   * ApiFormatBase::setUnescapeAmps
   * ApiFormatBase::getWantsHelp
   * ApiFormatBase::setHelp
   * ApiFormatBase::formatHTML
   * ApiFormatBase::setBufferResult
   * ApiFormatBase::getDescription
+  * ApiFormatBase::getNeedsRawData
   * ApiMain::setHelp
   * ApiMain::reallyMakeHelpMsg
   * ApiMain::makeHelpMsgHeader
-  * ApiQueryImageInfo::getPropertyDescriptions
-* The following classes have been deprecated and may be removed in a future
-  release:
-  * ApiQueryDeletedrevs
-* ApiResult was greatly overhauled. See inline documentation for details.
-* ApiResult will automatically convert objects to strings or arrays (depending
-  on whether a __toString() method exists on the object), and will refuse to
-  add unsupported value types.
-  * An informal interface, ApiSerializable, exists to override the default
-    object conversion.
-* ApiResult/ApiFormatBase "raw mode" is deprecated.
-* ApiFormatXml now assumes defaults and so on instead of throwing errors when
-  metadata isn't set.
-  * ApiBase::getResultData
-  * ApiFormatBase::getNeedsRawData
   * ApiResult::setRawMode
   * ApiResult::getIsRawMode
   * ApiResult::getData
@@ -347,10 +364,11 @@ production.
   * ApiResult::endContinuation
   * ApiResult::size
   * ApiResult::convertStatusToArray
-* Many modules have changed result data formats. While this shouldn't affect
-  clients not using the experimental formatversion=2015, code using
-  ApiResult::getResultData() and not using ApiResult::transformForBC() may need
-  updating.
+  * ApiQueryImageInfo::getPropertyDescriptions
+  * ApiQueryLogEvents::addLogParams
+* The following classes have been deprecated and may be removed in a future
+  release:
+  * ApiQueryDeletedrevs
 
 === Languages updated in 1.25 ===
 
