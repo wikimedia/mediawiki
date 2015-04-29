@@ -305,11 +305,14 @@ class WANObjectCache {
 	 * value (false if not present). If false is returned, then nothing
 	 * will be saved to cache.
 	 *
-	 * Most callers should ignore the current value, but it can be used
+	 * Usually, callbacks ignore the current value, but it can be used
 	 * to maintain "most recent X" values that come from time or sequence
 	 * based source data, provided that the "as of" id/time is tracked.
 	 *
-	 * Usage of $checkKeys is the same as with get().
+	 * Usage of $checkKeys is similar to get()/getMulti(). However,
+	 * rather than the caller having to inspect a "current time left"
+	 * variable (e.g. $curTTL, $curTTLs), a cache regeneration will be
+	 * triggered using the callback.
 	 *
 	 * The simplest way to avoid stampedes for hot keys is to use
 	 * the 'lockTSE' option in $opts. If cache purges are needed, also:
