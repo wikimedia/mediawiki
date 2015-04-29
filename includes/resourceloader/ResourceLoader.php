@@ -607,7 +607,7 @@ class ResourceLoader {
 			}
 		}
 
-		// Preload information needed to the mtime calculation below
+		// Preload information in a batch to optimise calls to ResourceLoader::getVersionHash below
 		try {
 			$this->preloadModuleInfo( array_keys( $modules ), $context );
 		} catch ( Exception $e ) {
@@ -616,25 +616,24 @@ class ResourceLoader {
 			$this->errors[] = self::formatExceptionNoComment( $e );
 		}
 
-		// To send Last-Modified and support If-Modified-Since, we need to detect
-		// the last modified time
-		$mtime = wfTimestamp( TS_UNIX, $this->config->get( 'CacheEpoch' ) );
+		$hashes = '';
 		foreach ( $modules as $module ) {
 			/**
 			 * @var $module ResourceLoaderModule
 			 */
 			try {
-				// Calculate maximum modified time
-				$mtime = max( $mtime, $module->getModifiedTime( $context ) );
+				// Combine
+				$hashes .= $module->getVersionHash( $context );
 			} catch ( Exception $e ) {
 				MWExceptionHandler::logException( $e );
 				wfDebugLog( 'resourceloader', __METHOD__ . ": calculating maximum modified time failed: $e" );
 				$this->errors[] = self::formatExceptionNoComment( $e );
 			}
 		}
+		$versionHash = sha1( $hashes );
 
-		// If there's an If-Modified-Since header, respond with a 304 appropriately
-		if ( $this->tryRespondLastModified( $context, $mtime ) ) {
+		// Try the client-side cache first
+		if ( $this->tryRespondNotModified( $context, $versionHash ) ) {
 			return; // output handled (buffers cleared)
 		}
 
@@ -659,8 +658,7 @@ class ResourceLoader {
 			}
 		}
 
-		// Send content type and cache related headers
-		$this->sendResponseHeaders( $context, $mtime, (bool)$this->errors );
+		$this->sendResponseHeaders( $context, $versionHash, (bool)$this->errors );
 
 		// Remove the output buffer and output the response
 		ob_end_clean();
@@ -687,13 +685,16 @@ class ResourceLoader {
 	}
 
 	/**
-	 * Send content type and last modified headers to the client.
+	 * Send main response headers to the client.
+	 *
+	 * Deals with Content-Type, CORS (for stylesheets), and caching.
+	 *
 	 * @param ResourceLoaderContext $context
-	 * @param string $mtime TS_MW timestamp to use for last-modified
+	 * @param string $etag E-Tag header value.
 	 * @param bool $errors Whether there are errors in the response
 	 * @return void
 	 */
-	protected function sendResponseHeaders( ResourceLoaderContext $context, $mtime, $errors ) {
+	protected function sendResponseHeaders( ResourceLoaderContext $context, $etag, $errors ) {
 		$rlMaxage = $this->config->get( 'ResourceLoaderMaxage' );
 		// If a version wasn't specified we need a shorter expiry time for updates
 		// to propagate to clients quickly
@@ -720,7 +721,7 @@ class ResourceLoader {
 		} else {
 			header( 'Content-Type: text/javascript; charset=utf-8' );
 		}
-		header( 'Last-Modified: ' . wfTimestamp( TS_RFC2822, $mtime ) );
+		header( 'ETag: ' . $etag );
 		if ( $context->getDebug() ) {
 			// Do not cache debug responses
 			header( 'Cache-Control: private, no-cache, must-revalidate' );
@@ -733,24 +734,21 @@ class ResourceLoader {
 	}
 
 	/**
-	 * Respond with 304 Last Modified if appropiate.
+	 * Respond with HTTP 304 Not Modified if appropiate.
 	 *
-	 * If there's an If-Modified-Since header, respond with a 304 appropriately
+	 * If there's an If-None-Match header, respond with a 304 appropriately
 	 * and clear out the output buffer. If the client cache is too old then do nothing.
 	 *
 	 * @param ResourceLoaderContext $context
-	 * @param string $mtime The TS_MW timestamp to check the header against
-	 * @return bool True if 304 header sent and output handled
+	 * @param string $versionHash The combined module version hash (SHA-1)
+	 * @return bool True if HTTP 304 was sent and output handled
 	 */
-	protected function tryRespondLastModified( ResourceLoaderContext $context, $mtime ) {
-		// If there's an If-Modified-Since header, respond with a 304 appropriately
-		// Some clients send "timestamp;length=123". Strip the part after the first ';'
-		// so we get a valid timestamp.
-		$ims = $context->getRequest()->getHeader( 'If-Modified-Since' );
+	protected function tryRespondNotModified( ResourceLoaderContext $context, $versionHash ) {
+		$etag = '"' . $versionHash . '"';
+		$clientKey = $context->getRequest()->getHeader( 'If-None-Match' );
 		// Never send 304s in debug mode
-		if ( $ims !== false && !$context->getDebug() ) {
-			$imsTS = strtok( $ims, ';' );
-			if ( $mtime <= wfTimestamp( TS_UNIX, $imsTS ) ) {
+		if ( $clientKey !== false && !$context->getDebug() ) {
+			if ( $clientKey === $etag ) {
 				// There's another bug in ob_gzhandler (see also the comment at
 				// the top of this function) that causes it to gzip even empty
 				// responses, meaning it's impossible to produce a truly empty
@@ -765,8 +763,7 @@ class ResourceLoader {
 				header( 'HTTP/1.0 304 Not Modified' );
 				header( 'Status: 304 Not Modified' );
 
-				// Send content type and cache headers
-				$this->sendResponseHeaders( $context, $mtime, false );
+				$this->sendResponseHeaders( $context, $etag, false );
 				return true;
 			}
 		}
@@ -800,9 +797,10 @@ class ResourceLoader {
 			}
 		}
 		if ( $good ) {
+			// FIXME: Broken, needs to be converted to use version hashes (T94810)
 			$ts = $fileCache->cacheTimestamp();
-			// If there's an If-Modified-Since header, respond with a 304 appropriately
-			if ( $this->tryRespondLastModified( $context, $ts ) ) {
+			// Try the client-side cache first
+			if ( $this->tryRespondNotModified( $context, $ts ) ) {
 				return false; // output handled (buffers cleared)
 			}
 			// Capture any PHP warnings from the output buffer and append them to the
@@ -810,7 +808,6 @@ class ResourceLoader {
 			if ( $context->getDebug() && strlen( $warnings = ob_get_contents() ) ) {
 				$response = "/*\n$warnings\n*/\n" . $response;
 			}
-			// Send content type and cache headers
 			$this->sendResponseHeaders( $context, $ts, false );
 			$response = $fileCache->fetchText();
 			// Remove the output buffer and output the response
@@ -1196,7 +1193,7 @@ MESSAGE;
 	 * and $group as supplied.
 	 *
 	 * @param string $name Module name
-	 * @param int $version Module version number as a timestamp
+	 * @param string $version Module version hash
 	 * @param array $dependencies List of module names on which this module depends
 	 * @param string $group Group which the module is in.
 	 * @param string $source Source of the module, or 'local' if not foreign.
@@ -1268,7 +1265,7 @@ MESSAGE;
 	 *        Registers modules with the given names and parameters.
 	 *
 	 * @param string $name Module name
-	 * @param int $version Module version number as a timestamp
+	 * @param string $version Module version hash
 	 * @param array $dependencies List of module names on which this module depends
 	 * @param string $group Group which the module is in
 	 * @param string $source Source of the module, or 'local' if not foreign
@@ -1460,7 +1457,7 @@ MESSAGE;
 
 	/**
 	 * Build a load.php URL
-	 * @deprecated since 1.24, use createLoaderURL instead
+	 * @deprecated since 1.24 Use createLoaderURL() instead
 	 * @param array $modules Array of module names (strings)
 	 * @param string $lang Language code
 	 * @param string $skin Skin name
