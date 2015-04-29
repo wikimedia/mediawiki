@@ -29,7 +29,7 @@
  */
 class SpecialAllMessages extends SpecialPage {
 	/**
-	 * @var AllmessagesTablePager
+	 * @var AllMessagesTablePager
 	 */
 	protected $table;
 
@@ -61,7 +61,7 @@ class SpecialAllMessages extends SpecialPage {
 		$out->addModuleStyles( 'mediawiki.special' );
 		$out->addHelpLink( 'Help:System message' );
 
-		$this->table = new AllmessagesTablePager(
+		$this->table = new AllMessagesTablePager(
 			$this,
 			array(),
 			wfGetLangObj( $request->getVal( 'lang', $par ) )

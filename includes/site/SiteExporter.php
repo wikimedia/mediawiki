@@ -57,13 +57,13 @@ class SiteExporter {
 			'xmlns' => 'http://www.mediawiki.org/xml/sitelist-1.0/',
 		);
 
-		fwrite( $this->sink, XML::openElement( 'sites', $attributes ) . "\n" );
+		fwrite( $this->sink, Xml::openElement( 'sites', $attributes ) . "\n" );
 
 		foreach ( $sites as $site ) {
 			$this->exportSite( $site );
 		}
 
-		fwrite( $this->sink, XML::closeElement( 'sites' ) . "\n" );
+		fwrite( $this->sink, Xml::closeElement( 'sites' ) . "\n" );
 		fflush( $this->sink );
 	}
 
@@ -79,36 +79,36 @@ class SiteExporter {
 			$siteAttr = null;
 		}
 
-		fwrite( $this->sink, "\t" . XML::openElement( 'site', $siteAttr ) . "\n" );
+		fwrite( $this->sink, "\t" . Xml::openElement( 'site', $siteAttr ) . "\n" );
 
-		fwrite( $this->sink, "\t\t" . XML::element( 'globalid', null, $site->getGlobalId() ) . "\n" );
+		fwrite( $this->sink, "\t\t" . Xml::element( 'globalid', null, $site->getGlobalId() ) . "\n" );
 
 		if ( $site->getGroup() !== Site::GROUP_NONE ) {
-			fwrite( $this->sink, "\t\t" . XML::element( 'group', null, $site->getGroup() ) . "\n" );
+			fwrite( $this->sink, "\t\t" . Xml::element( 'group', null, $site->getGroup() ) . "\n" );
 		}
 
 		if ( $site->getSource() !== Site::SOURCE_LOCAL ) {
-			fwrite( $this->sink, "\t\t" . XML::element( 'source', null, $site->getSource() ) . "\n" );
+			fwrite( $this->sink, "\t\t" . Xml::element( 'source', null, $site->getSource() ) . "\n" );
 		}
 
 		if ( $site->shouldForward() ) {
-			fwrite( $this->sink, "\t\t" . XML::element( 'forward', null, '' ) . "\n" );
+			fwrite( $this->sink, "\t\t" . Xml::element( 'forward', null, '' ) . "\n" );
 		}
 
 		foreach ( $site->getAllPaths() as $type => $path ) {
-			fwrite( $this->sink, "\t\t" . XML::element( 'path', array( 'type' => $type ), $path ) . "\n" );
+			fwrite( $this->sink, "\t\t" . Xml::element( 'path', array( 'type' => $type ), $path ) . "\n" );
 		}
 
 		foreach ( $site->getLocalIds() as $type => $ids ) {
 			foreach ( $ids as $id ) {
-				fwrite( $this->sink, "\t\t" . XML::element( 'localid', array( 'type' => $type ), $id ) . "\n" );
+				fwrite( $this->sink, "\t\t" . Xml::element( 'localid', array( 'type' => $type ), $id ) . "\n" );
 			}
 		}
 
 		//@todo: export <data>
 		//@todo: export <config>
 
-		fwrite( $this->sink, "\t" . XML::closeElement( 'site' ) . "\n" );
+		fwrite( $this->sink, "\t" . Xml::closeElement( 'site' ) . "\n" );
 	}
 
 }
