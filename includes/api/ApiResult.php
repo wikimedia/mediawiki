@@ -105,7 +105,7 @@ class ApiResult implements ApiSerializable {
 	 *    [{"name":key,"*":value}] in JSON. META_KVP_KEY_NAME must also be set.
 	 * @since 1.25
 	 */
-	const META_TYPE = '_type';
+	const META_TYPE = '_meta_type';
 
 	/**
 	 * Key (rather than "name" or other default) for when META_TYPE is 'kvp' or
