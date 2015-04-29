@@ -223,7 +223,10 @@ class UserMailer {
 				// remove the html body for text email fall back
 				$body = $body['text'];
 			} else {
-				require_once 'Mail/mime.php';
+				# Check if pear/mail_mime is already loaded (via composer)
+				if ( !class_exists( 'Mail_mime' ) ) {
+					require_once 'Mail/mime.php';
+				}
 				if ( wfIsWindows() ) {
 					$body['text'] = str_replace( "\n", "\r\n", $body['text'] );
 					$body['html'] = str_replace( "\n", "\r\n", $body['html'] );
@@ -260,14 +263,14 @@ class UserMailer {
 		}
 
 		if ( is_array( $wgSMTP ) ) {
-			#
-			# PEAR MAILER
-			#
-
-			if ( !stream_resolve_include_path( 'Mail.php' ) ) {
-				throw new MWException( 'PEAR mail package is not installed' );
+			# Check if pear/mail is already loaded (via composer)
+			if ( !class_exists( 'Mail' ) ) {
+				# PEAR MAILER
+				if ( !stream_resolve_include_path( 'Mail.php' ) ) {
+					throw new MWException( 'PEAR mail package is not installed' );
+				}
+				require_once 'Mail.php';
 			}
-			require_once 'Mail.php';
 
 			wfSuppressWarnings();
 
