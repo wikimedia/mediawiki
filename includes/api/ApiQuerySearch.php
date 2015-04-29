@@ -188,6 +188,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 						$vals['sectionsnippet'] = $result->getSectionSnippet();
 					}
 				}
+				if ( isset( $prop['isfilematch'] ) ) {
+					$vals['isfilematch'] = $result->isFileMatch()
+				}
 
 				// Add item to results and see whether it fits
 				$fit = $apiResult->addValue( array( 'query', $this->getModuleName() ),
@@ -314,6 +317,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 					'sectiontitle',
 					'sectionsnippet',
 					'hasrelated',
+                                        'isfilematch',
 				),
 				ApiBase::PARAM_ISMULTI => true,
 			),
