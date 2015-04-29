@@ -277,6 +277,10 @@ class ApiResult implements ApiSerializable {
 	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP.
 	 */
 	public static function setValue( array &$arr, $name, $value, $flags = 0 ) {
+		if ( !( $flags & ApiResult::NO_VALIDATE ) ) {
+			$value = self::validateValue( $value );
+		}
+
 		if ( $name === null ) {
 			if ( $flags & ApiResult::ADD_ON_TOP ) {
 				array_unshift( $arr, $value );
@@ -284,10 +288,6 @@ class ApiResult implements ApiSerializable {
 				array_push( $arr, $value );
 			}
 			return;
-		}
-
-		if ( !( $flags & ApiResult::NO_VALIDATE ) ) {
-			$value = self::validateValue( $value );
 		}
 
 		$exists = isset( $arr[$name] );
