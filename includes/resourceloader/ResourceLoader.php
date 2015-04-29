@@ -1196,7 +1196,7 @@ MESSAGE;
 	 * and $group as supplied.
 	 *
 	 * @param string $name Module name
-	 * @param int $version Module version number as a timestamp
+	 * @param string $version Module version hash
 	 * @param array $dependencies List of module names on which this module depends
 	 * @param string $group Group which the module is in.
 	 * @param string $source Source of the module, or 'local' if not foreign.
@@ -1268,7 +1268,7 @@ MESSAGE;
 	 *        Registers modules with the given names and parameters.
 	 *
 	 * @param string $name Module name
-	 * @param int $version Module version number as a timestamp
+	 * @param string $version Module version hash
 	 * @param array $dependencies List of module names on which this module depends
 	 * @param string $group Group which the module is in
 	 * @param string $source Source of the module, or 'local' if not foreign
@@ -1460,7 +1460,7 @@ MESSAGE;
 
 	/**
 	 * Build a load.php URL
-	 * @deprecated since 1.24, use createLoaderURL instead
+	 * @deprecated since 1.24 Use createLoaderURL() instead
 	 * @param array $modules Array of module names (strings)
 	 * @param string $lang Language code
 	 * @param string $skin Skin name

@@ -522,7 +522,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Get the last modified timestamp of this module.
+	 * Helper method to gather file mtimes for getDefinitionSummary.
 	 *
 	 * Last modified timestamps are calculated from the highest last modified
 	 * timestamp of this module's constituent files as well as the files it
