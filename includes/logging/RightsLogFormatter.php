@@ -67,20 +67,8 @@ class RightsLogFormatter extends LogFormatter {
 			return $params;
 		}
 
-		$oldGroups = $params[3];
-		$newGroups = $params[4];
-
-		// Less old entries
-		if ( $oldGroups === '' ) {
-			$oldGroups = array();
-		} elseif ( is_string( $oldGroups ) ) {
-			$oldGroups = array_map( 'trim', explode( ',', $oldGroups ) );
-		}
-		if ( $newGroups === '' ) {
-			$newGroups = array();
-		} elseif ( is_string( $newGroups ) ) {
-			$newGroups = array_map( 'trim', explode( ',', $newGroups ) );
-		}
+		$oldGroups = $this->makeGroupArray( $params[3] );
+		$newGroups = $this->makeGroupArray( $params[4] );
 
 		$userName = $this->entry->getTarget()->getText();
 		if ( !$this->plaintext && count( $oldGroups ) ) {
@@ -128,6 +116,9 @@ class RightsLogFormatter extends LogFormatter {
 			}
 		}
 
+		$params['4:array:oldgroups'] = $this->makeGroupArray( $params['4:array:oldgroups'] );
+		$params['5:array:newgroups'] = $this->makeGroupArray( $params['5:array:newgroups'] );
+
 		return $params;
 	}
 
@@ -140,5 +131,15 @@ class RightsLogFormatter extends LogFormatter {
 			ApiResult::setIndexedTagName( $ret['newgroups'], 'g' );
 		}
 		return $ret;
+	}
+
+	private function makeGroupArray( $group ) {
+		// Migrate old group params from string to array
+		if ( $group === '' ) {
+			$group = array();
+		} elseif ( is_string( $group ) ) {
+			$group = array_map( 'trim', explode( ',', $group ) );
+		}
+		return $group;
 	}
 }
