@@ -95,7 +95,7 @@ class SvgHandler extends ImageHandler {
 			$metadata = $this->unpackMetadata( $metadata );
 			if ( isset( $metadata['translations'] ) ) {
 				foreach ( $metadata['translations'] as $lang => $langType ) {
-					if ( $langType === SvgReader::LANG_FULL_MATCH ) {
+					if ( $langType === SVGReader::LANG_FULL_MATCH ) {
 						$langList[] = $lang;
 					}
 				}
