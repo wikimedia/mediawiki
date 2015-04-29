@@ -721,7 +721,7 @@
 			 *     {
 			 *         'moduleName': {
 			 *             // From startup mdoule
-			 *             'version': ############## (unix timestamp)
+			 *             'version': '################' (Hash)
 			 *             'dependencies': ['required.foo', 'bar.also', ...], (or) function () {}
 			 *             'group': 'somegroup', (or) null
 			 *             'source': 'local', (or) 'anotherwiki'
@@ -895,40 +895,6 @@
 				$( newStyleTag( cssText, getMarker() ) ).data( 'ResourceLoaderDynamicStyleTag', true );
 
 				cssCallbacks.fire().empty();
-			}
-
-			/**
-			 * Zero-pad three numbers.
-			 *
-			 * @private
-			 * @param {number} a
-			 * @param {number} b
-			 * @param {number} c
-			 * @return {string}
-			 */
-			function pad( a, b, c ) {
-				return (
-					( a < 10 ? '0' : '' ) + a +
-					( b < 10 ? '0' : '' ) + b +
-					( c < 10 ? '0' : '' ) + c
-				);
-			}
-
-			/**
-			 * Convert UNIX timestamp to ISO8601 format.
-			 *
-			 * @private
-			 * @param {number} timestamp UNIX timestamp
-			 */
-			function formatVersionNumber( timestamp ) {
-				var	d = new Date();
-				d.setTime( timestamp * 1000 );
-				return [
-					pad( d.getUTCFullYear(), d.getUTCMonth() + 1, d.getUTCDate() ),
-					'T',
-					pad( d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds() ),
-					'Z'
-				].join( '' );
 			}
 
 			/**
@@ -1592,7 +1558,7 @@
 							// modules for this group from this source.
 							modules = splits[source][group];
 
-							// Calculate the highest timestamp
+							// FIXME: Replace with hash-based getCombinedVersion
 							maxVersion = 0;
 							for ( g = 0; g < modules.length; g += 1 ) {
 								if ( registry[modules[g]].version > maxVersion ) {
@@ -1600,7 +1566,7 @@
 								}
 							}
 
-							currReqBase = $.extend( { version: formatVersionNumber( maxVersion ) }, reqBase );
+							currReqBase = $.extend( { version: maxVersion }, reqBase );
 							// For user modules append a user name to the request.
 							if ( group === 'user' && mw.config.get( 'wgUserName' ) !== null ) {
 								currReqBase.user = mw.config.get( 'wgUserName' );
@@ -1692,8 +1658,9 @@
 				},
 
 				/**
-				 * Register a module, letting the system know about it and its
-				 * properties. Startup modules contain calls to this function.
+				 * Register a module, letting the system know about it and its properties.
+				 *
+				 * The startup modules contain calls to this method.
 				 *
 				 * When using multiple module registration by passing an array, dependencies that
 				 * are specified as references to modules within the array will be resolved before
@@ -1701,7 +1668,8 @@
 				 *
 				 * @param {string|Array} module Module name or array of arrays, each containing
 				 *  a list of arguments compatible with this method
-				 * @param {number} version Module version number as a timestamp (falls backs to 0)
+				 * @param {string|number} version Module version hash (falls backs to empty string)
+				 *  Can also be a number (timestamp) for compatibility with MediaWiki 1.25 and earlier.
 				 * @param {string|Array|Function} dependencies One string or array of strings of module
 				 *  names on which this module depends, or a function that returns that array.
 				 * @param {string} [group=null] Group which the module is in
@@ -1733,7 +1701,7 @@
 					}
 					// List the module as registered
 					registry[module] = {
-						version: version !== undefined ? parseInt( version, 10 ) : 0,
+						version: version !== undefined ? String( version ) : '',
 						dependencies: [],
 						group: typeof group === 'string' ? group : null,
 						source: typeof source === 'string' ? source : 'local',
@@ -1980,7 +1948,7 @@
 					if ( !hasOwn.call( registry, module ) || registry[module].version === undefined ) {
 						return null;
 					}
-					return formatVersionNumber( registry[module].version );
+					return registry[module].version;
 				},
 
 				/**
