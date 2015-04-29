@@ -165,7 +165,7 @@ class SpecialLog extends SpecialPage {
 		$loglist = new LogEventsList(
 			$this->getContext(),
 			null,
-			LogEventsList::USE_REVDEL_CHECKBOXES
+			LogEventsList::USE_CHECKBOXES
 		);
 		$pager = new LogPager(
 			$loglist,
@@ -218,10 +218,10 @@ class SpecialLog extends SpecialPage {
 	private function getActionButtons( $formcontents ) {
 		$user = $this->getUser();
 		$canRevDelete = $user->isAllowedAll( 'deletedhistory', 'deletelogentry' );
-		$canModifyTags = $user->isAllowed( 'changetags' );
+		$showTagEditUI = ChangeTags::showTagEditingUI( $user );
 		# If the user doesn't have the ability to delete log entries nor edit tags,
 		# don't bother showing them the button(s).
-		if ( !$canRevDelete && !$canModifyTags ) {
+		if ( !$canRevDelete && !$showTagEditUI ) {
 			return $formcontents;
 		}
 
@@ -246,7 +246,7 @@ class SpecialLog extends SpecialPage {
 				$this->msg( 'showhideselectedlogentries' )->text()
 			) . "\n";
 		}
-		if ( $canModifyTags ) {
+		if ( $showTagEditUI ) {
 			$buttons .= Html::element(
 				'button',
 				array(

@@ -26,7 +26,7 @@
 class LogEventsList extends ContextSource {
 	const NO_ACTION_LINK = 1;
 	const NO_EXTRA_USER_LINKS = 2;
-	const USE_REVDEL_CHECKBOXES = 4;
+	const USE_CHECKBOXES = 4;
 
 	public $flags;
 
@@ -44,7 +44,7 @@ class LogEventsList extends ContextSource {
 	 *   a Skin object. Use of Skin is deprecated.
 	 * @param null $unused Unused; used to be an OutputPage object.
 	 * @param int $flags Can be a combination of self::NO_ACTION_LINK,
-	 *   self::NO_EXTRA_USER_LINKS or self::USE_REVDEL_CHECKBOXES.
+	 *   self::NO_EXTRA_USER_LINKS or self::USE_CHECKBOXES.
 	 */
 	public function __construct( $context, $unused = null, $flags = 0 ) {
 		if ( $context instanceof IContextSource ) {
@@ -341,14 +341,27 @@ class LogEventsList extends ContextSource {
 	 */
 	private function getShowHideLinks( $row ) {
 		// We don't want to see the links and
-		// no one can hide items from the suppress log.
-		if ( ( $this->flags == self::NO_ACTION_LINK )
-			|| $row->log_type == 'suppress'
-		) {
+		if ( $this->flags == self::NO_ACTION_LINK ) {
 			return '';
 		}
-		$del = '';
+
 		$user = $this->getUser();
+
+		// If change tag editing is available to this user, return the checkbox
+		if ( $this->flags & self::USE_CHECKBOXES && ChangeTags::showTagEditingUI( $user ) ) {
+			return Xml::check(
+				'showhiderevisions',
+				false,
+				array( 'name' => 'ids[' . $row->log_id . ']' )
+			);
+		}
+
+		// no one can hide items from the suppress log.
+		if ( $row->log_type == 'suppress' ) {
+			return '';
+		}
+
+		$del = '';
 		// Don't show useless checkbox to people who cannot hide log entries
 		if ( $user->isAllowed( 'deletedhistory' ) ) {
 			$canHide = $user->isAllowed( 'deletelogentry' );
@@ -358,7 +371,7 @@ class LogEventsList extends ContextSource {
 			$canViewThisSuppressedEntry = $canViewSuppressedOnly && $entryIsSuppressed;
 			if ( $row->log_deleted || $canHide ) {
 				// Show checkboxes instead of links.
-				if ( $canHide && $this->flags & self::USE_REVDEL_CHECKBOXES && !$canViewThisSuppressedEntry ) {
+				if ( $canHide && $this->flags & self::USE_CHECKBOXES && !$canViewThisSuppressedEntry ) {
 					// If event was hidden from sysops
 					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED, $user ) ) {
 						$del = Xml::check( 'deleterevisions', false, array( 'disabled' => 'disabled' ) );
