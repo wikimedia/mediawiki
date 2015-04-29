@@ -107,8 +107,29 @@ class ApiResultTest extends MediaWikiTestCase {
 			);
 		}
 		try {
+			ApiResult::setValue( $arr, null, $fh );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( InvalidArgumentException $ex ) {
+			$this->assertSame(
+				'Cannot add resource(stream) to ApiResult',
+				$ex->getMessage(),
+				'Expected exception'
+			);
+		}
+		try {
 			$obj->file = $fh;
 			ApiResult::setValue( $arr, 'sub', $obj );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( InvalidArgumentException $ex ) {
+			$this->assertSame(
+				'Cannot add resource(stream) to ApiResult',
+				$ex->getMessage(),
+				'Expected exception'
+			);
+		}
+		try {
+			$obj->file = $fh;
+			ApiResult::setValue( $arr, null, $obj );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( InvalidArgumentException $ex ) {
 			$this->assertSame(
@@ -130,7 +151,27 @@ class ApiResultTest extends MediaWikiTestCase {
 			);
 		}
 		try {
+			ApiResult::setValue( $arr, null, INF );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( InvalidArgumentException $ex ) {
+			$this->assertSame(
+				'Cannot add non-finite floats to ApiResult',
+				$ex->getMessage(),
+				'Expected exception'
+			);
+		}
+		try {
 			ApiResult::setValue( $arr, 'nan', NAN );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( InvalidArgumentException $ex ) {
+			$this->assertSame(
+				'Cannot add non-finite floats to ApiResult',
+				$ex->getMessage(),
+				'Expected exception'
+			);
+		}
+		try {
+			ApiResult::setValue( $arr, null, NAN );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( InvalidArgumentException $ex ) {
 			$this->assertSame(
@@ -155,10 +196,14 @@ class ApiResultTest extends MediaWikiTestCase {
 		ApiResult::setValue( $arr, 'foo', "foo\x80bar" );
 		ApiResult::setValue( $arr, 'bar', "a\xcc\x81" );
 		ApiResult::setValue( $arr, 'baz', 74 );
+		ApiResult::setValue( $arr, null, "foo\x80bar" );
+		ApiResult::setValue( $arr, null, "a\xcc\x81" );
 		$this->assertSame( array(
 			'foo' => "foo\xef\xbf\xbdbar",
 			'bar' => "\xc3\xa1",
 			'baz' => 74,
+			0 => "foo\xef\xbf\xbdbar",
+			1 => "\xc3\xa1",
 		), $arr );
 	}
 
@@ -289,8 +334,29 @@ class ApiResultTest extends MediaWikiTestCase {
 			);
 		}
 		try {
+			$result->addValue( null, null, $fh );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( InvalidArgumentException $ex ) {
+			$this->assertSame(
+				'Cannot add resource(stream) to ApiResult',
+				$ex->getMessage(),
+				'Expected exception'
+			);
+		}
+		try {
 			$obj->file = $fh;
 			$result->addValue( null, 'sub', $obj );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( InvalidArgumentException $ex ) {
+			$this->assertSame(
+				'Cannot add resource(stream) to ApiResult',
+				$ex->getMessage(),
+				'Expected exception'
+			);
+		}
+		try {
+			$obj->file = $fh;
+			$result->addValue( null, null, $obj );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( InvalidArgumentException $ex ) {
 			$this->assertSame(
@@ -312,7 +378,27 @@ class ApiResultTest extends MediaWikiTestCase {
 			);
 		}
 		try {
+			$result->addValue( null, null, INF );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( InvalidArgumentException $ex ) {
+			$this->assertSame(
+				'Cannot add non-finite floats to ApiResult',
+				$ex->getMessage(),
+				'Expected exception'
+			);
+		}
+		try {
 			$result->addValue( null, 'nan', NAN );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( InvalidArgumentException $ex ) {
+			$this->assertSame(
+				'Cannot add non-finite floats to ApiResult',
+				$ex->getMessage(),
+				'Expected exception'
+			);
+		}
+		try {
+			$result->addValue( null, null, NAN );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( InvalidArgumentException $ex ) {
 			$this->assertSame(
@@ -374,10 +460,14 @@ class ApiResultTest extends MediaWikiTestCase {
 		$result->addValue( null, 'foo', "foo\x80bar" );
 		$result->addValue( null, 'bar', "a\xcc\x81" );
 		$result->addValue( null, 'baz', 74 );
+		$result->addValue( null, null, "foo\x80bar" );
+		$result->addValue( null, null, "a\xcc\x81" );
 		$this->assertSame( array(
 			'foo' => "foo\xef\xbf\xbdbar",
 			'bar' => "\xc3\xa1",
 			'baz' => 74,
+			0 => "foo\xef\xbf\xbdbar",
+			1 => "\xc3\xa1",
 			ApiResult::META_TYPE => 'assoc',
 		), $result->getResultData() );
 	}
