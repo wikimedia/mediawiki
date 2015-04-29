@@ -233,10 +233,9 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	public function getDefinitionSummary( ResourceLoaderContext $context ) {
-		return array(
-			'class' => get_class( $this ),
-			'pages' => $this->getPages( $context ),
-		);
+		$summary = parent::getDefinitionSummary( $context );
+		$summary['pages'] = $this->getPages( $context );
+		return $summary;
 	}
 
 	/**

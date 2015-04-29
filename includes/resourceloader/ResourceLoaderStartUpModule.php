@@ -26,11 +26,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 	/* Protected Members */
 
-	protected $modifiedTime = array();
+	// Cache for getConfigSettings() as it's called my multiple methods
 	protected $configVars = array();
 	protected $targets = array( 'desktop', 'mobile' );
-
-	/* Protected Methods */
 
 	/**
 	 * @param ResourceLoaderContext $context
@@ -158,7 +156,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * data send to the client.
 	 *
 	 * @param array &$registryData Modules keyed by name with properties:
-	 *  - number 'version'
+	 *  - string 'version'
 	 *  - array 'dependencies'
 	 *  - string|null 'group'
 	 *  - string 'source'
@@ -209,10 +207,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				continue;
 			}
 
-			// Coerce module timestamp to UNIX timestamp.
-			// getModifiedTime() is supposed to return a UNIX timestamp, but custom implementations
-			// might forget. TODO: Maybe emit warning?
-			$moduleMtime = wfTimestamp( TS_UNIX, $module->getModifiedTime( $context ) );
+			$versionHash = $module->getVersionHash( $context );
+			// Summarise long sequence of serialised data into a short hash
+			$version = substr( sha1( $versionHash ), 0, 16 );
 
 			$skipFunction = $module->getSkipFunction();
 			if ( $skipFunction !== null && !ResourceLoader::inDebugMode() ) {
@@ -225,14 +222,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				);
 			}
 
-			$mtime = max(
-				$moduleMtime,
-				wfTimestamp( TS_UNIX, $this->getConfig()->get( 'CacheEpoch' ) )
-			);
-
 			$registryData[$name] = array(
-				// Convert to numbers as wfTimestamp always returns a string, even for TS_UNIX
-				'version' => (int) $mtime,
+				'version' => $version,
 				'dependencies' => $module->getDependencies(),
 				'group' => $module->getGroup(),
 				'source' => $module->getSource(),
@@ -262,7 +253,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				continue;
 			}
 
-			// Call mw.loader.register(name, timestamp, dependencies, group, source, skip)
+			// Call mw.loader.register(name, version, dependencies, group, source, skip)
 			$registrations[] = array(
 				$name,
 				$data['version'],
@@ -279,8 +270,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 		return $out;
 	}
-
-	/* Methods */
 
 	/**
 	 * @return bool
@@ -310,14 +299,13 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	public static function getStartupModulesUrl( ResourceLoaderContext $context ) {
 		$moduleNames = self::getStartupModules();
 
-		// Get the latest version
+		// Combine relevant version hashes
 		$loader = $context->getResourceLoader();
-		$version = 1;
+		$hashes = '';
 		foreach ( $moduleNames as $moduleName ) {
-			$version = max( $version,
-				$loader->getModule( $moduleName )->getModifiedTime( $context )
-			);
+			$hashes .= $loader->getModule( $moduleName )->getVersionHash( $context );
 		}
+		$versionHash = substr( sha1( $hashes ), 0, 16 );
 
 		$query = array(
 			'modules' => ResourceLoader::makePackedModulesString( $moduleNames ),
@@ -325,7 +313,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'lang' => $context->getLanguage(),
 			'skin' => $context->getSkin(),
 			'debug' => $context->getDebug() ? 'true' : 'false',
-			'version' => wfTimestamp( TS_ISO_8601_BASIC, $version )
+			'version' => $versionHash,
 		);
 		// Ensure uniform query order
 		ksort( $query );
@@ -382,59 +370,56 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * Get the definition summary for this module.
+	 *
 	 * @param ResourceLoaderContext $context
-	 * @return array|mixed
+	 * @return array
 	 */
-	public function getModifiedTime( ResourceLoaderContext $context ) {
+	public function getDefinitionSummary( ResourceLoaderContext $context ) {
+		$summary = parent::getDefinitionSummary( $context );
 		global $IP;
 
-		$hash = $context->getHash();
-		if ( isset( $this->modifiedTime[$hash] ) ) {
-			return $this->modifiedTime[$hash];
-		}
+		// Detect changes to variables exposed in mw.config (T30899).
+		$summary['vars'] = $this->getConfigSettings( $context );
 
-		// Call preloadModuleInfo() on ALL modules as we're about
-		// to call getModifiedTime() on all of them
-		$loader = $context->getResourceLoader();
-		$loader->preloadModuleInfo( $loader->getModuleNames(), $context );
+		// Changes how getScript() creates mw.Map for mw.config
+		$summary['wgLegacyJavaScriptGlobals'] = $this->getConfig()->get( 'LegacyJavaScriptGlobals' );
 
-		$time = max(
-			wfTimestamp( TS_UNIX, $this->getConfig()->get( 'CacheEpoch' ) ),
+		// Detect changes to the module registrations
+		$summary['moduleHashes'] = $this->getAllModuleHashes( $context );
+
+		$summary['fileMtimes'] = array(
 			filemtime( "$IP/resources/src/startup.js" ),
-			$this->getHashMtime( $context )
 		);
 
-		// ATTENTION!: Because of the line below, this is not going to cause
-		// infinite recursion - think carefully before making changes to this
-		// code!
-		// Pre-populate modifiedTime with something because the loop over
-		// all modules below includes the startup module (this module).
-		$this->modifiedTime[$hash] = 1;
-
-		foreach ( $loader->getModuleNames() as $name ) {
-			$module = $loader->getModule( $name );
-			$time = max( $time, $module->getModifiedTime( $context ) );
-		}
-
-		$this->modifiedTime[$hash] = $time;
-		return $this->modifiedTime[$hash];
+		return $summary;
 	}
 
 	/**
-	 * Hash of all dynamic data embedded in getScript().
-	 *
-	 * Detect changes to mw.config settings embedded in #getScript (bug 28899).
+	 * Helper method for getDefinitionSummary().
 	 *
 	 * @param ResourceLoaderContext $context
-	 * @return string Hash
+	 * @return string SHA-1
 	 */
-	public function getModifiedHash( ResourceLoaderContext $context ) {
-		$data = array(
-			'vars' => $this->getConfigSettings( $context ),
-			'wgLegacyJavaScriptGlobals' => $this->getConfig()->get( 'LegacyJavaScriptGlobals' ),
-		);
+	protected function getAllModuleHashes( ResourceLoaderContext $context ) {
+		// Preload information in a batch to optimise calls to ResourceLoader::getVersionHash below
+		$loader = $context->getResourceLoader();
+		$loader->preloadModuleInfo( $loader->getModuleNames(), $context );
 
-		return md5( serialize( $data ) );
+		// ATTENTION: Because of the line below, this is not going to cause infinite recursion.
+		// Think carefully before making changes to this code!
+		// Pre-populate versionHash with something because the loop over all modules below includes
+		// the startup module (this module).
+		// See ResourceLoaderModule::getVersionHash() for the user of this cache.
+		$this->versionHash[ $context->getHash() ] = 1;
+
+		$hashes = '';
+		foreach ( $loader->getModuleNames() as $name ) {
+			$module = $loader->getModule( $name );
+			$hashes .= $module->getVersionHash( $context );
+		}
+
+		return substr( sha1( $hashes ), 0, 16 );
 	}
 
 	/**
