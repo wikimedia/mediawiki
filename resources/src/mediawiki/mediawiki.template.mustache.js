@@ -5,7 +5,7 @@
 		compile: function ( src ) {
 			return {
 				render: function ( data ) {
-					return $.parseHTML( Mustache.render( src, data ) );
+					return $( $.parseHTML( Mustache.render( src, data ) ) );
 				}
 			};
 		}
