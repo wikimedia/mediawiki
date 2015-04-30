@@ -1429,13 +1429,6 @@ $wgEmergencyContact = false;
 $wgPasswordSender = false;
 
 /**
- * Password reminder name
- *
- * @deprecated since 1.23; use the system message 'emailsender' instead.
- */
-$wgPasswordSenderName = 'MediaWiki Mail';
-
-/**
  * Dummy address which should be accepted during mail send action.
  * It might be necessary to adapt the address or to set it equal
  * to the $wgEmergencyContact address.
