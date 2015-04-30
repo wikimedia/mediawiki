@@ -192,7 +192,7 @@ class LogPager extends ReverseChronologicalPager {
 	 * @return void
 	 */
 	private function limitTitle( $page, $pattern ) {
-		global $wgMiserMode;
+		global $wgMiserMode, $wgUserrightsInterwikiDelimiter;
 
 		if ( $page instanceof Title ) {
 			$title = $page;
@@ -209,7 +209,6 @@ class LogPager extends ReverseChronologicalPager {
 
 		$doUserRightsLogLike = false;
 		if ( $this->types == array( 'rights' ) ) {
-			global $wgUserrightsInterwikiDelimiter;
 			$parts = explode( $wgUserrightsInterwikiDelimiter, $title->getDBKey() );
 			if ( count( $parts ) == 2 ) {
 				list( $name, $database ) = array_map( 'trim', $parts );
