@@ -1471,11 +1471,11 @@ $wgPasswordSender = false;
 $wgPasswordSenderName = 'MediaWiki Mail';
 
 /**
- * Dummy address which should be accepted during mail send action.
- * It might be necessary to adapt the address or to set it equal
- * to the $wgEmergencyContact address.
+ * You can configure a dummy address for mail send actions
+ * 
+ * Defaults to wgPasswordSender when not specified
  */
-$wgNoReplyAddress = 'reply@not.possible';
+$wgNoReplyAddress = false;
 
 /**
  * Set to true to enable the e-mail basic features:

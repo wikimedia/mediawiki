@@ -431,7 +431,7 @@ class EmailNotification {
 			}
 		} else {
 			$this->from = $adminAddress;
-			$this->replyto = new MailAddress( $wgNoReplyAddress );
+			$this->replyto = new MailAddress( $wgNoReplyAddress ? $wgNoReplyAddress : $wgPasswordSender );
 		}
 	}
 
