@@ -2776,6 +2776,10 @@ $term: string of search term
 'SpecialStatsAddExtra': Add extra statistic at the end of Special:Statistics.
 &$extraStats: Array to save the new stats
   ( $extraStats['<name of statistic>'] => <value>; )
+&$i18nRowLabel: Array containing a i18n string to format the label
+  ( $i18nRowLabel['<name of statistic>'] => <i18n-message>; )
+    If there is no <name of statistic> set, then <name of statstic> is used as the message
+    to label that row.
 
 'SpecialUploadComplete': Called after successfully uploading a file from
 Special:Upload.
