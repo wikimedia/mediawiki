@@ -256,14 +256,23 @@ class SpecialStatistics extends SpecialPage {
 
 				// Collect all items that belong to the same header
 				foreach ( $items as $key => $value ) {
-					$name = $this->msg( $key )->parse();
-					$number = htmlspecialchars( $value );
+					if ( is_array( $value ) ) {
+						$name = $value[0];
+						$value = $value[1];
 
-					$return .= $this->formatRow(
-						$name,
-						$this->getLanguage()->formatNum( $number ),
-						array( 'class' => 'mw-statistics-hook', 'id' => 'mw-' . $key )
-					);
+						$return .= $this->formatRow( $name, $value,
+							array( 'class' => 'mw-statistics-hook', 'id' => 'mw-' . $key )
+						);
+					} else {
+						$name = $this->msg( $key )->parse();
+						$number = htmlspecialchars( $value );
+
+						$return .= $this->formatRow(
+							$name,
+							$this->getLanguage()->formatNum( $number ),
+							array( 'class' => 'mw-statistics-hook', 'id' => 'mw-' . $key )
+						);
+					}
 				}
 			} else {
 				// Create the legacy header only once
