@@ -193,6 +193,8 @@ class LogFormatter {
 	 * @return string Text
 	 */
 	public function getIRCActionText() {
+		global $wgContLang;
+
 		$this->plaintext = true;
 		$this->irctext = true;
 
@@ -338,7 +340,6 @@ class LogFormatter {
 			case 'block':
 				switch ( $entry->getSubtype() ) {
 					case 'block':
-						global $wgContLang;
 						// Keep compatibility with extensions by checking for
 						// new key (5::duration/6::flags) or old key (0/optional 1)
 						if ( $entry->isLegacy() ) {
@@ -358,7 +359,6 @@ class LogFormatter {
 							->rawParams( $target )->inContentLanguage()->escaped();
 						break;
 					case 'reblock':
-						global $wgContLang;
 						$duration = $wgContLang->translateBlockExpiry( $parameters['5::duration'] );
 						$flags = BlockLogFormatter::formatBlockFlags( $parameters['6::flags'], $wgContLang );
 						$text = wfMessage( 'reblock-logentry' )
