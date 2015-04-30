@@ -2141,7 +2141,7 @@ $wgObjectCaches = array(
 );
 
 /**
- * Main cache Wide-Area-Network cache type. This should be a cache with fast access,
+ * Main Wide-Area-Network cache type. This should be a cache with fast access,
  * but it may have limited space. By default, it is disabled, since the basic stock
  * cache is not fast enough to make it worthwhile. For single data-center setups, this can
  * simply be pointed to a cache in $wgWANObjectCaches that uses a local $wgObjectCaches
@@ -2152,7 +2152,8 @@ $wgObjectCaches = array(
  *                       a relayer (only matters if there are multiple data-centers)
  *   - CACHE_NONE:       Do not cache
  *   - (other):          A string may be used which identifies a cache
- *                       configuration in $wgWANObjectCaches.
+ *                       configuration in $wgWANObjectCaches
+ * @since 1.26
  */
 $wgMainWANCache = false;
 
@@ -2168,6 +2169,8 @@ $wgMainWANCache = false;
  * a cache identifier from $wgObjectCaches. The "relayerConfig" parameter is an
  * array used to construct an EventRelayer object. The "pool" parameter is a
  * string that is used as a PubSub channel prefix.
+ *
+ * @since 1.26
  */
 $wgWANObjectCaches = array(
 	CACHE_NONE => array(
@@ -2184,6 +2187,45 @@ $wgWANObjectCaches = array(
 		'relayerConfig' => array( 'class' => 'EventRelayerNull' )
 	)
 	*/
+);
+
+/**
+ * Main object stash type. This should be a fast storage system for storing
+ * lightweight data like hit counters and user activity. Sites with multiple
+ * data-centers should have this use to a store that replicates writes; such
+ * systems can be strongly consistent or use a simple conflict strategy like
+ * "last-write-wins". In any case, changes should be seen in all data-centers.
+ *
+ * The options are:
+ *
+ *   - db:      Store cache objects in the DB
+ *   - (other): A string may be used which identifies a cache
+ *              configuration in $wgObjectStashes
+ *
+ * @since 1.26
+ */
+$wgMainStash = 'db';
+
+/**
+ * Advanced object stash configuration.
+ *
+ * Use this to define the class names and constructor parameters which are used
+ * for the various stash types.
+ *
+ * The format is an associative array where the key is a stash identifier, and
+ * the value is an associative array of parameters. The "class" parameter is the
+ * class name which will be used.
+ *
+ * @since 1.26
+ */
+$wgObjectStashes = array(
+	'db' => array( 'class' => 'SqlBagOStuff', 'loggroup' => 'SQLBagOStuff' ),
+	'apc' => array( 'class' => 'APCBagOStuff' ),
+	'xcache' => array( 'class' => 'XCacheBagOStuff' ),
+	'wincache' => array( 'class' => 'WinCacheBagOStuff' ),
+	'memcached-php' => array( 'class' => 'MemcachedPhpBagOStuff', 'loggroup' => 'memcached' ),
+	'memcached-pecl' => array( 'class' => 'MemcachedPeclBagOStuff', 'loggroup' => 'memcached' ),
+	'hash' => array( 'class' => 'HashBagOStuff' ),
 );
 
 /**

@@ -834,6 +834,7 @@ $wgAutoloadLocalClasses = array(
 	'ObjectCacheSessionHandler' => __DIR__ . '/includes/objectcache/ObjectCacheSessionHandler.php',
 	'ObjectFactory' => __DIR__ . '/includes/libs/ObjectFactory.php',
 	'ObjectFileCache' => __DIR__ . '/includes/cache/ObjectFileCache.php',
+	'ObjectStash' => __DIR__ . '/includes/ObjectStash.php',
 	'OldChangesList' => __DIR__ . '/includes/changes/OldChangesList.php',
 	'OldLocalFile' => __DIR__ . '/includes/filerepo/file/OldLocalFile.php',
 	'OracleInstaller' => __DIR__ . '/includes/installer/OracleInstaller.php',
