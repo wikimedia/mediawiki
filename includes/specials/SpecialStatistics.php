@@ -250,12 +250,19 @@ class SpecialStatistics extends SpecialPage {
 
 				// Collect all items that belong to the same header
 				foreach ( $items as $key => $value ) {
-					$name = $this->msg( $key )->parse();
-					$number = htmlspecialchars( $value );
+					if ( is_array( $value ) ) {
+						global $wgParser, $wgUser;
+						$name = $wgParser->getFreshParser()->parse(
+							$value[0], Title::newFromText( "Special:Statistics" ),
+							ParserOptions::newFromUser( $wgUser )
+						)->getText();
+						$value = $value[1];
+					} else {
+						$name = $this->msg( $key )->parse();
+					}
 
-					$return .= $this->formatRow(
-						$name,
-						$this->getLanguage()->formatNum( $number ),
+					$return .= $this->formatRow( $name,
+						$this->getLanguage->formatNum( htmlspecialchars( $value ) ),
 						array( 'class' => 'mw-statistics-hook', 'id' => 'mw-' . $key )
 					);
 				}
