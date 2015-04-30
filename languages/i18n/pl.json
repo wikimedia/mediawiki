@@ -1677,6 +1677,7 @@
 	"logempty": "W rejestrze nie znaleziono pozycji odpowiadających zapytaniu.",
 	"log-title-wildcard": "Szukaj tytułów zaczynających się od tego tekstu",
 	"showhideselectedlogentries": "Pokaż/ukryj zaznaczone wpisy rejestru",
+	"log-edit-tags": "Edytuj znaczniki wybranych wpisów rejestru",
 	"allpages": "Wszystkie strony",
 	"nextpage": "Następna strona ($1)",
 	"prevpage": "Poprzednia strona ($1)",

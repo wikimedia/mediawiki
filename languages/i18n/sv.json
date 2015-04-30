@@ -3094,6 +3094,7 @@
 	"tags-edit-success": "Ändringarna verkställdes.",
 	"tags-edit-failure": "Ändringarna kunde inte verkställas:\n$1",
 	"tags-edit-nooldid-title": "Ogiltig målversion",
+	"tags-edit-nooldid-text": "Antingen har du inte valt en målversion för funktionen eller så finns inte den valda ändringen.",
 	"tags-edit-none-selected": "Välj åtminstone ett märke att lägga till eller ta bort.",
 	"comparepages": "Jämför sidor",
 	"compare-page1": "Sida 1",

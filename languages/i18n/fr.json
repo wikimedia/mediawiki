@@ -2498,7 +2498,7 @@
 	"patrol-log-page": "Journal des relectures",
 	"patrol-log-header": "Voici l’historique des versions relues.",
 	"log-show-hide-patrol": "$1 l’historique des relectures",
-	"log-show-hide-tag": "balise de journal $1",
+	"log-show-hide-tag": "$1 le journal des balises",
 	"deletedrevision": "Ancienne version $1 supprimée",
 	"filedeleteerror-short": "Erreur lors de la suppression du fichier : $1",
 	"filedeleteerror-long": "Des erreurs ont été rencontrées lors de la suppression du fichier :\n\n$1",

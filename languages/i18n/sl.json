@@ -9,7 +9,8 @@
 			"Vadgt",
 			"Yerpo",
 			"아라",
-			"MaGa"
+			"MaGa",
+			"Skalcaa"
 		]
 	},
 	"tog-underline": "Podčrtavanje povezav:",
@@ -2171,7 +2172,7 @@
 	"import-interwiki-history": "Kopiraj vse dosedanje redakcije te strani",
 	"import-interwiki-templates": "Vključi vse predloge",
 	"import-interwiki-submit": "Uvozi",
-	"import-mapping-default": "Uvozi na privzeta nahajališča",
+	"import-mapping-default": "Uvoz na privzete lokacije",
 	"import-mapping-namespace": "Uvozi v imenski prostor:",
 	"import-mapping-subpage": "Uvozi kot podstrani naslednje strani:",
 	"import-upload-filename": "Ime datoteke:",
@@ -3148,7 +3149,7 @@
 	"feedback-error1": "Napaka: Neznan rezultat iz API",
 	"feedback-error2": "Napaka: Urejanje je spodletelo",
 	"feedback-error3": "Napaka: Ni odgovora od API",
-	"feedback-error4": "Napaka: Ne morem objaviti navedenega naslova povratnih informacij",
+	"feedback-error4": "Napaka: Ni mogoče narediti objave na navedeni naslov povratnih informacij",
 	"feedback-message": "Sporočilo:",
 	"feedback-subject": "Zadeva:",
 	"feedback-submit": "Pošlji",
@@ -3255,7 +3256,7 @@
 	"log-name-pagelang": "Dnevnik spreminjanja jezika",
 	"log-description-pagelang": "Dnevnik sprememb jezika strani.",
 	"logentry-pagelang-pagelang": "$1 je {{GENDER:$2|spremenil|spremenila|spremenil(-a)}} jezik strani $3 z jezika $4 na jezik $5.",
-	"default-skin-not-found": "Ups! Privzeta koža vašega wikija, določena v <code dir=\"ltr\">$wgDefaultSkin</code> kot <code>$1</code>, ni na voljo.\n\nKot kaže, vaša namestitev vsebuje {{PLURAL:$4|kožo, navedeno|koži, navedeni|kože, navedene}} spodaj. Oglejte si [https://www.mediawiki.org/wiki/Manual:Skin_configuration Priročnik: Konfiguracija kož] za več informacij, kako {{PLURAL:$4|jo omogočiti in nastaviti kot privzeto|ju omogočiti in nastaviti kot privzeti|jih omogočiti in nastaviti kot privzete}}.\n\n$2\n\n; Če ste MediaWiki pravkar namestili:\n: Verjetno ste ga namestili z git ali neposredno iz izvorne kode na kakšen drug način. To je pričakovano. Poskusite namestiti nekaj kož z [https://www.mediawiki.org/wiki/Category:All_skins imenika kož mediawiki.org] tako:\n:* Prenesite [https://www.mediawiki.org/wiki/Download namestitveni program tarball], ki vsebuje nekaj kož in razširitev. Iz njega lahko kopirate in prilepite mapo <code>skins/</code>.\n:* Prenesite tarballe posamezne kož z [https://www.mediawiki.org/wiki/Special:SkinDistributor mediawiki.org].\n:* Klonirajte enega od repozitorijev <code>mediawiki/skins/*</code> z git v mapo <code dir=\"ltr\">skins/</code> vaše namestitve MediaWiki.\n: Če ste razvijalec MediaWiki, to ne sme poseči v vaš repozitorij git.\n\n; Če ste MediaWiki pravkar posodobili:\n: MediaWiki 1.24 in novejši nameščenih kož več ne omogočijo samodejno (oglejte si [https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery Priročnik: Samodejno odkrivanje kož]). V <code>LocalSettings.php</code> lahko prilepite {{PLURAL:$5|naslednjo vrstico|naslednji vrstici|naslednje vrstice}}, da omogočite trenutno {{PLURAL:$4|nameščeno kožo|nameščeni koži|nameščene kože}}:\n\n<pre dir=\"ltr\">$3</pre>\n\n; Če ste pravkar spremenili <code>LocalSettings.php</code>:\n: Ponovno preverite imena kož, če ste se morda zatipkali.",
+	"default-skin-not-found": "Ups! Privzeta koža vašega wikija, določena v <code dir=\"ltr\">$wgDefaultSkin</code> kot <code>$1</code>, ni na voljo.\n\nKot kaže, vaša namestitev vsebuje {{PLURAL:$4|kožo, navedeno|2=koži, navedeni|3=kože, navedene|4=kože, navedene|kož, navedenih}} spodaj. Oglejte si [https://www.mediawiki.org/wiki/Manual:Skin_configuration Priročnik: Konfiguracija kož] za več informacij, kako {{PLURAL:$4|jo omogočiti in nastaviti kot privzeto|ju omogočiti in nastaviti kot privzeti|jih omogočiti in nastaviti kot privzete}}.\n\n$2\n\n; Če ste MediaWiki pravkar namestili:\n: Verjetno ste ga namestili z git ali neposredno iz izvorne kode na kakšen drug način. To je pričakovano. Poskusite namestiti nekaj kož z [https://www.mediawiki.org/wiki/Category:All_skins imenika kož mediawiki.org] tako:\n:* Prenesite [https://www.mediawiki.org/wiki/Download namestitveni program tarball], ki vsebuje nekaj kož in razširitev. Iz njega lahko kopirate in prilepite mapo <code>skins/</code>.\n:* Prenesite tarballe posamezne kož z [https://www.mediawiki.org/wiki/Special:SkinDistributor mediawiki.org].\n:* Klonirajte enega od repozitorijev <code>mediawiki/skins/*</code> z git v mapo <code dir=\"ltr\">skins/</code> vaše namestitve MediaWiki.\n: Če ste razvijalec MediaWiki, to ne sme poseči v vaš repozitorij git.\n\n; Če ste MediaWiki pravkar posodobili:\n: MediaWiki 1.24 in novejši nameščenih kož več ne omogočijo samodejno (oglejte si [https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery Priročnik: Samodejno odkrivanje kož]). V <code>LocalSettings.php</code> lahko prilepite {{PLURAL:$5|naslednjo vrstico|naslednji vrstici|naslednje vrstice}}, da omogočite trenutno {{PLURAL:$4|nameščeno kožo|2=nameščeni koži|3=nameščene kože|4=nameščene kože|nameščenih kož}}:\n\n<pre dir=\"ltr\">$3</pre>\n\n; Če ste pravkar spremenili <code>LocalSettings.php</code>:\n: Ponovno preverite imena kož, če ste se morda zatipkali.",
 	"default-skin-not-found-no-skins": "Ups! Privzeta koža vašega wikija, določena v <code dir=\"ltr\">$wgDefaultSkin</code> kot <code>$1</code>, ni na voljo.\n\nNimate nameščenih kož.\n\n; Če ste MediaWiki pravkar namestili ali posodobili:\n: Verjetno ste ga namestili z git ali neposredno iz izvorne kode na kakšen drug način. To je pričakovano. MediaWiki 1.24 in novejši nimajo vključene nobene kože v glavnem repozitoriju. Poskusite namestiti nekaj kož z [https://www.mediawiki.org/wiki/Category:All_skins imenika kož mediawiki.org] tako:\n:* Prenesite [https://www.mediawiki.org/wiki/Download namestitveni program tarball], ki vsebuje nekaj kož in razširitev. Iz njega lahko kopirate in prilepite mapo <code dir=\"ltr\">skins/</code>.\n:* Prenesite tarballe posamezne kož z [https://www.mediawiki.org/wiki/Special:SkinDistributor mediawiki.org].\n:* Klonirajte enega od repozitorijev <code>mediawiki/skins/*</code> z git v mapo <code>skins/</code> vaše namestitve MediaWiki.\n: Če ste razvijalec MediaWiki, to ne sme poseči v vaš repozitorij git. Oglejte si [https://www.mediawiki.org/wiki/Manual:Skin_configuration Priročnik: Konfiguracija kož] za več informacij, kako jih omogočiti in nastaviti kot privzete.",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (omogočeno)",
 	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''onemogočeno''')",

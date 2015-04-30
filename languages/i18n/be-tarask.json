@@ -2173,6 +2173,7 @@
 	"import-interwiki-history": "Капіяваць гісторыю старонкі цалкам",
 	"import-interwiki-templates": "Уключыць усе шаблёны",
 	"import-interwiki-submit": "Імпартаваць",
+	"import-mapping-default": "Імпарт у месца па змоўчаньні",
 	"import-upload-filename": "Назва файла:",
 	"import-comment": "Камэнтар:",
 	"importtext": "Калі ласка, экспартуйце файл з крынічнай вікі з дапамогай [[Special:Export|прылады экспарту]].\nЗахавайце яго на свой кампутар, а потым загрузіце сюды.",
