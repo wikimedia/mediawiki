@@ -78,8 +78,9 @@ class SpecialStatistics extends SpecialPage {
 
 		# Statistic - other
 		$extraStats = array();
-		if ( Hooks::run( 'SpecialStatsAddExtra', array( &$extraStats ) ) ) {
-			$text .= $this->getOtherStats( $extraStats );
+		$i18nRowLabel = array();
+		if ( Hooks::run( 'SpecialStatsAddExtra', array( &$extraStats, &$i18nRowLabel ) ) ) {
+			$text .= $this->getOtherStats( $extraStats, $i18nRowLabel );
 		}
 
 		$text .= Xml::closeElement( 'table' );
@@ -242,7 +243,7 @@ class SpecialStatistics extends SpecialPage {
 	 * @param array $stats
 	 * @return string
 	 */
-	private function getOtherStats( array $stats ) {
+	private function getOtherStats( array $stats, array $i18nRowLabel ) {
 		$return = '';
 
 		foreach ( $stats as $header => $items ) {
@@ -256,7 +257,11 @@ class SpecialStatistics extends SpecialPage {
 
 				// Collect all items that belong to the same header
 				foreach ( $items as $key => $value ) {
-					$name = $this->msg( $key )->parse();
+					if ( isset( $i18nRowLabel[ $key ] ) ) {
+						$name = $this->msg( $i18nRowLabel[ $key ], $key )->parse();
+					} else {
+						$name = $this->msg( $key )->parse();
+					}
 					$number = htmlspecialchars( $value );
 
 					$return .= $this->formatRow(
