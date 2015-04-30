@@ -256,8 +256,13 @@ class SpecialStatistics extends SpecialPage {
 
 				// Collect all items that belong to the same header
 				foreach ( $items as $key => $value ) {
-					$name = $this->msg( $key )->parse();
-					$number = htmlspecialchars( $value );
+					if ( isset( $value['name'] ) ) {
+						$name = $this->msg( $value[ 'name' ], $key )->parse();
+						$number = htmlspecialchars( $value['number'] );
+					} else {
+						$name = $this->msg( $key )->parse();
+						$number = htmlspecialchars( $value );
+					}
 
 					$return .= $this->formatRow(
 						$name,
