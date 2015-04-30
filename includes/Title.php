@@ -4208,10 +4208,12 @@ class Title {
 	 * If you want to know if a title can be meaningfully viewed, you should
 	 * probably call the isKnown() method instead.
 	 *
+	 * @param int $flags An optional bit field; may be Title::GAID_FOR_UPDATE to check
+	 *   from master/for update
 	 * @return bool
 	 */
-	public function exists() {
-		$exists = $this->getArticleID() != 0;
+	public function exists( $flags = 0 ) {
+		$exists = $this->getArticleID( $flags ) != 0;
 		Hooks::run( 'TitleExists', array( $this, &$exists ) );
 		return $exists;
 	}
