@@ -78,7 +78,7 @@ class SpecialStatistics extends SpecialPage {
 
 		# Statistic - other
 		$extraStats = array();
-		if ( Hooks::run( 'SpecialStatsAddExtra', array( &$extraStats ) ) ) {
+		if ( Hooks::run( 'SpecialStatsAddExtra', array( &$extraStats, $this->getContext() ) ) ) {
 			$text .= $this->getOtherStats( $extraStats );
 		}
 
@@ -250,12 +250,17 @@ class SpecialStatistics extends SpecialPage {
 
 				// Collect all items that belong to the same header
 				foreach ( $items as $key => $value ) {
-					$name = $this->msg( $key )->parse();
-					$number = htmlspecialchars( $value );
+					if ( is_array( $value ) ) {
+						$name = $value['name'];
+						$number = $value['number'];
+					} else {
+						$name = $this->msg( $key )->parse();
+						$number = $value;
+					}
 
 					$return .= $this->formatRow(
 						$name,
-						$this->getLanguage()->formatNum( $number ),
+						$this->getLanguage()->formatNum( htmlspecialchars( $number ) ),
 						array( 'class' => 'mw-statistics-hook', 'id' => 'mw-' . $key )
 					);
 				}
