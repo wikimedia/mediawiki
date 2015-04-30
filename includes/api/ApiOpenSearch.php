@@ -61,7 +61,9 @@ class ApiOpenSearch extends ApiBase {
 	public function getCustomPrinter() {
 		switch ( $this->getFormat() ) {
 			case 'json':
-				return $this->getMain()->createPrinterByName( 'json' . $this->fm );
+				return new ApiOpenSearchFormatJson(
+					$this->getMain(), $this->fm, $this->getParameter( 'warningsaserror' )
+				);
 
 			case 'xml':
 				$printer = $this->getMain()->createPrinterByName( 'xml' . $this->fm );
@@ -212,7 +214,7 @@ class ApiOpenSearch extends ApiBase {
 		switch ( $this->getFormat() ) {
 			case 'json':
 				// http://www.opensearch.org/Specifications/OpenSearch/Extensions/Suggestions/1.1
-				$result->addArrayType( null, 'BCarray' );
+				$result->addArrayType( null, 'array' );
 				$result->addValue( null, 0, strval( $search ) );
 				$terms = array();
 				$descriptions = array();
@@ -286,7 +288,8 @@ class ApiOpenSearch extends ApiBase {
 			'format' => array(
 				ApiBase::PARAM_DFLT => 'json',
 				ApiBase::PARAM_TYPE => array( 'json', 'jsonfm', 'xml', 'xmlfm' ),
-			)
+			),
+			'warningsaserror' => false,
 		);
 	}
 
@@ -368,5 +371,28 @@ class ApiOpenSearch extends ApiBase {
 			default:
 				throw new MWException( __METHOD__ . ": Unknown type '$type'" );
 		}
+	}
+}
+
+class ApiOpenSearchFormatJson extends ApiFormatJson {
+	private $warningsAsError = false;
+
+	public function __construct( ApiMain $main, $fm, $warningsAsError ) {
+		parent::__construct( $main, "json$fm" );
+		$this->warningsAsError = $warningsAsError;
+	}
+
+	public function execute() {
+		if ( !$this->getResult()->getResultData( 'error' ) ) {
+			$warnings = $this->getResult()->removeValue( 'warnings' );
+			if ( $this->warningsAsError && $warnings ) {
+				$this->dieUsage(
+					'Warnings cannot be represented in OpenSearch JSON format', 'warnings', 0,
+					array( 'warnings' => $warnings )
+				);
+			}
+		}
+
+		parent::execute();
 	}
 }
