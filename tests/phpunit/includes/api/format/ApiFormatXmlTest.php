@@ -94,6 +94,8 @@ class ApiFormatXmlTest extends ApiFormatTestBase {
 			array( array( "foo\xe3\x80\x80bar" => 1 ), '<?xml version="1.0"?><api _foo.3000.bar="1" />' ),
 			array( array( 'foo:bar' => 1, ApiResult::META_PRESERVE_KEYS => array( 'foo:bar' ) ),
 				'<?xml version="1.0"?><api foo:bar="1" />' ),
+			array( array( 'a', 'b', ApiResult::META_INDEXED_TAG_NAME => 'foo bar' ),
+				'<?xml version="1.0"?><api><_foo.20.bar>a</_foo.20.bar><_foo.20.bar>b</_foo.20.bar></api>' ),
 
 			// includenamespace param
 			array( array( 'x' => 'foo' ), '<?xml version="1.0"?><api x="foo" xmlns="http://www.mediawiki.org/xml/api/" />',

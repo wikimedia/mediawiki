@@ -130,7 +130,7 @@ class ApiFormatXml extends ApiFormatBase {
 				? $value[ApiResult::META_PRESERVE_KEYS]
 				: array();
 			$indexedTagName = isset( $value[ApiResult::META_INDEXED_TAG_NAME] )
-				? $value[ApiResult::META_INDEXED_TAG_NAME]
+				? self::mangleName( $value[ApiResult::META_INDEXED_TAG_NAME], $preserveKeys )
 				: '_v';
 			$bcBools = isset( $value[ApiResult::META_BC_BOOLS] )
 				? $value[ApiResult::META_BC_BOOLS]
