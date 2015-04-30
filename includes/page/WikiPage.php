@@ -1141,6 +1141,7 @@ class WikiPage implements Page, IDBAccessObject {
 			return;
 		}
 
+		Hooks::run( 'PageViewUpdates', array( $this, $user ) );
 		// Update newtalk / watchlist notification status
 		try {
 			$user->clearNotification( $this->mTitle, $oldid );
