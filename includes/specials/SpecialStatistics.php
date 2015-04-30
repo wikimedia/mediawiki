@@ -78,8 +78,8 @@ class SpecialStatistics extends SpecialPage {
 
 		# Statistic - other
 		$extraStats = array();
-		if ( Hooks::run( 'SpecialStatsAddExtra', array( &$extraStats ) ) ) {
-			$text .= $this->getOtherStats( $extraStats );
+		if ( Hooks::run( 'SpecialStatsAddExtra', array( &$extraStats, &$i18nRowLabel ) ) ) {
+			$text .= $this->getOtherStats( $extraStats, $i18nRowLabel );
 		}
 
 		$text .= Xml::closeElement( 'table' );
@@ -141,9 +141,9 @@ class SpecialStatistics extends SpecialPage {
 		// Show the image row only, when there are files or upload is possible
 		if ( $this->images !== 0 || $this->getConfig()->get( 'EnableUploads' ) ) {
 			$pageStatsHtml .= $this->formatRow( Linker::linkKnown( SpecialPage::getTitleFor( 'MediaStatistics' ),
-				$this->msg( 'statistics-files' )->parse() ),
+					$this->msg( 'statistics-files' )->parse() ),
 				$this->getLanguage()->formatNum( $this->images ),
-				array( 'class' => 'mw-statistics-files' ) );
+					array( 'class' => 'mw-statistics-files' ) );
 		}
 
 		return $pageStatsHtml;
@@ -242,7 +242,7 @@ class SpecialStatistics extends SpecialPage {
 	 * @param array $stats
 	 * @return string
 	 */
-	private function getOtherStats( array $stats ) {
+	private function getOtherStats( array $stats, $i18nRowLabel ) {
 		$return = '';
 
 		foreach ( $stats as $header => $items ) {
@@ -256,7 +256,11 @@ class SpecialStatistics extends SpecialPage {
 
 				// Collect all items that belong to the same header
 				foreach ( $items as $key => $value ) {
-					$name = $this->msg( $key )->parse();
+					if ( isset( $i18nRowLabel[ $key ] ) ) {
+						$name = $this->msg( $i18nRowLabel[ $key ], $key )->parse();
+					} else {
+						$name = $this->msg( $key )->parse();
+					}
 					$number = htmlspecialchars( $value );
 
 					$return .= $this->formatRow(
@@ -273,7 +277,7 @@ class SpecialStatistics extends SpecialPage {
 
 				// Recursively remap the legacy structure
 				$return .= $this->getOtherStats( array( 'statistics-header-hooks' =>
-					array( $header => $items ) ) );
+						array( $header => $items ) ) );
 			}
 		}
 
