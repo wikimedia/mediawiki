@@ -638,4 +638,26 @@ class TitleTest extends MediaWikiTestCase {
 		$title = Title::makeTitle( NS_MAIN, 'Interwiki link', '', 'externalwiki' );
 		$this->assertTrue( $title->isAlwaysKnown() );
 	}
+
+	/**
+	 * @covers Title::exists
+	 */
+	public function testExists() {
+		$title = Title::makeTitle( NS_PROJECT, 'New page' );
+		$linkCache = LinkCache::singleton();
+
+		$article = new Article( $title );
+		$page = $article->getPage();
+		$page->doEditContent( new WikitextContent( 'Some [[link]]' ), 'summary' );
+
+		// Tell Title it doesn't know whether it exists
+		$title->mArticleID = -1;
+
+		// Tell the link cache it doesn't exists when it really does
+		$linkCache->clearLink( $title );
+		$linkCache->addBadLinkObj( $title );
+
+		$this->assertEquals( false, $title->exists(), 'exists() should rely on link cache unless GAID_FOR_UPDATE is used' );
+		$this->assertEquals( true, $title->exists( Title::GAID_FOR_UPDATE ), 'exists() should re-query database when GAID_FOR_UPDATE is used' );
+	}
 }
