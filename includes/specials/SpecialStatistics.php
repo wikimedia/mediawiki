@@ -141,9 +141,9 @@ class SpecialStatistics extends SpecialPage {
 		// Show the image row only, when there are files or upload is possible
 		if ( $this->images !== 0 || $this->getConfig()->get( 'EnableUploads' ) ) {
 			$pageStatsHtml .= $this->formatRow( Linker::linkKnown( SpecialPage::getTitleFor( 'MediaStatistics' ),
-				$this->msg( 'statistics-files' )->parse() ),
+					$this->msg( 'statistics-files' )->parse() ),
 				$this->getLanguage()->formatNum( $this->images ),
-				array( 'class' => 'mw-statistics-files' ) );
+					array( 'class' => 'mw-statistics-files' ) );
 		}
 
 		return $pageStatsHtml;
@@ -256,12 +256,20 @@ class SpecialStatistics extends SpecialPage {
 
 				// Collect all items that belong to the same header
 				foreach ( $items as $key => $value ) {
-					$name = $this->msg( $key )->parse();
-					$number = htmlspecialchars( $value );
+					if ( is_array( $value ) ) {
+						global $wgParser, $wgUser;
+						$name = $wgParser->getFreshParser()->parse(
+							$value[0], Title::newFromText( "Special:Statistics" ),
+							ParserOptions::newFromUser( $wgUser )
+						)->getText();
 
-					$return .= $this->formatRow(
-						$name,
-						$this->getLanguage()->formatNum( $number ),
+						$value = $value[1];
+					} else {
+						$name = $this->msg( $key )->parse();
+					}
+
+					$return .= $this->formatRow( $name,
+						$this->getLanguage()->formatNum( htmlspecialchars( $value ) ),
 						array( 'class' => 'mw-statistics-hook', 'id' => 'mw-' . $key )
 					);
 				}
