@@ -306,6 +306,23 @@
 			}
 
 			return d;
+		},
+
+		/**
+		 * Indicate that the cached token for a certain action of the API is bad.
+		 *
+		 * Call this if you get a 'badtoken' error when using the token returned by #getToken.
+		 * You may also want to use #postWithToken instead, which invalidates bad cached tokens
+		 * automatically.
+		 *
+		 * @param {string} type Token type
+		 * @since 1.26
+		 */
+		badToken: function ( type ) {
+			var promiseGroup = promises[ this.defaults.ajax.url ];
+			if ( promiseGroup ) {
+				delete promiseGroup[ type + 'Token' ];
+			}
 		}
 	};
 
