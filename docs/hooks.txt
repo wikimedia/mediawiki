@@ -2776,6 +2776,8 @@ $term: string of search term
 'SpecialStatsAddExtra': Add extra statistic at the end of Special:Statistics.
 &$extraStats: Array to save the new stats
   ( $extraStats['<name of statistic>'] => <value>; )
+    <value> can be an two-item array, in which case the first item is considered
+    the row's label and the second item is the value being displayed.
 
 'SpecialUploadComplete': Called after successfully uploading a file from
 Special:Upload.
