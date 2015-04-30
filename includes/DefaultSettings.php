@@ -1461,27 +1461,27 @@ $wgDjvuOutputExtension = 'jpg';
 $wgEmergencyContact = false;
 
 /**
- * Password reminder email address.
+ * Sender email address for e-mail notifications.
  *
- * The address we should use as sender when a user is requesting his password.
+ * The address we use as sender when a user requests a password reminder.
  *
  * Defaults to "apache@$wgServerName".
  */
 $wgPasswordSender = false;
 
 /**
- * Password reminder name
+ * Sender name for e-mail notifications.
  *
  * @deprecated since 1.23; use the system message 'emailsender' instead.
  */
 $wgPasswordSenderName = 'MediaWiki Mail';
 
 /**
- * Dummy address which should be accepted during mail send action.
- * It might be necessary to adapt the address or to set it equal
- * to the $wgEmergencyContact address.
+ * Reply-To address for e-mail notifications.
+ *
+ * Defaults to $wgPasswordSender.
  */
-$wgNoReplyAddress = 'reply@not.possible.invalid';
+$wgNoReplyAddress = false;
 
 /**
  * Set to true to enable the e-mail basic features:
@@ -1500,7 +1500,7 @@ $wgEnableUserEmail = true;
  * Set to true to put the sending user's email in a Reply-To header
  * instead of From. ($wgEmergencyContact will be used as From.)
  *
- * Some mailers (eg sSMTP) set the SMTP envelope sender to the From value,
+ * Some mailers (eg SMTP) set the SMTP envelope sender to the From value,
  * which can cause problems with SPF validation and leak recipient addresses
  * when bounces are sent to the sender.
  */

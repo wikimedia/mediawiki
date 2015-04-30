@@ -580,6 +580,9 @@ if ( !$wgEmergencyContact ) {
 if ( !$wgPasswordSender ) {
 	$wgPasswordSender = 'apache@' . $wgServerName;
 }
+if ( !$wgNoReplyAddress ) {
+	$wgNoReplyAddress = $wgNoReplyAddress;
+}
 
 if ( $wgSecureLogin && substr( $wgServer, 0, 2 ) !== '//' ) {
 	$wgSecureLogin = false;
