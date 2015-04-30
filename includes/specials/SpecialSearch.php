@@ -47,7 +47,10 @@ class SpecialSearch extends SpecialPage {
 	/** @var array For links */
 	protected $extraParams = array();
 
-	/** @var string No idea, apparently used by some other classes */
+	/**
+	 * @var string The prefix url parameter. Set on the searcher and the
+	 * is expected to treat it as prefix filter on titles.
+	 */
 	protected $mPrefix;
 
 	/**
