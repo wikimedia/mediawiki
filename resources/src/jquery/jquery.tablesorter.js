@@ -708,7 +708,6 @@
 	/* Public scope */
 
 	$.tablesorter = {
-
 			defaultOptions: {
 				cssHeader: 'headerSort',
 				cssAsc: 'headerSortUp',
