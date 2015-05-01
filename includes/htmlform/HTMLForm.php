@@ -357,6 +357,7 @@ class HTMLForm extends ContextSource {
 	 * @return bool
 	 */
 	public function isVForm() {
+		wfDeprecated( __METHOD__, '1.25' );
 		return false;
 	}
 
