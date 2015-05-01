@@ -180,12 +180,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 						$vals['redirectsnippet'] = $result->getRedirectSnippet();
 					}
 				}
-				if ( !is_null( $result->getSectionTitle() ) ) {
-					if ( isset( $prop['sectiontitle'] ) ) {
-						$vals['sectiontitle'] = $result->getSectionTitle()->getFragment();
-					}
-					if ( isset( $prop['sectionsnippet'] ) ) {
-						$vals['sectionsnippet'] = $result->getSectionSnippet();
+				if ( isset( $prop['categorysnippet'] ) ) {
+					if ( $result->getCategorySnippet() ) {
+						$vals['categorysnippet'] = $result->getCategorySnippet();
 					}
 				}
 
@@ -314,6 +311,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 					'sectiontitle',
 					'sectionsnippet',
 					'hasrelated',
+					'categorysnippet',
 				),
 				ApiBase::PARAM_ISMULTI => true,
 			),
