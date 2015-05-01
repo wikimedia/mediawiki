@@ -143,14 +143,6 @@ class DjVuHandler extends ImageHandler {
 		$width = $params['width'];
 		$height = $params['height'];
 		$page = $params['page'];
-		if ( $page > $this->pageCount( $image ) ) {
-			return new MediaTransformError(
-				'thumbnail_error',
-				$width,
-				$height,
-				wfMessage( 'djvu_page_error' )->text()
-			);
-		}
 
 		if ( $flags & self::TRANSFORM_LATER ) {
 			$params = array(
