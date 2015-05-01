@@ -107,7 +107,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 	}
 
 	protected function getDisplayFormat() {
-		return 'vform';
+		return 'ooui';
 	}
 
 	protected function alterForm( HTMLForm $form ) {
