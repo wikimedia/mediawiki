@@ -58,7 +58,8 @@ class SearchHighlighter {
 			3 => "/(\n\\{\\|)|(\n\\|\\})/" ); // table
 
 		// @todo FIXME: This should prolly be a hook or something
-		if ( function_exists( 'wfCite' ) ) {
+		// instead of hardcoding a class name from the Cite extension
+		if ( class_exists( 'Cite' ) ) {
 			$spat .= '|(<ref>)'; // references via cite extension
 			$endPatterns[4] = '/(<ref>)|(<\/ref>)/';
 		}
