@@ -2793,7 +2793,7 @@
 	"logentry-delete-event": "$1 એ {{PLURAL:$5|લૉગ ઘટના|$5 લૉગ ઘટનાઓ}} ની દ્રશ્યતા $3 પર {{GENDER:$2|બદલેલ}} છે: $4",
 	"logentry-delete-revision": "$1 {{GENDER:$2|બદલેલ}} બદલાઈ ના દૃશ્યતા {{PLURAL:$5 | સુધારણા | $5 આવૃત્તિઓ}} $3 પાનાં પર: $4",
 	"logentry-delete-event-legacy": "$1 એ $3 પર ફેરફારની દૃશ્યતા બદલી",
-	"logentry-delete-revision-legacy": "$1 {{GENDER:$2|બદલેલ}} બદલાઈ પાનાં પર આવૃત્તિઓની દૃશ્યતા $3",
+	"logentry-delete-revision-legacy": "પૃષ્ઠ $3 પરના પુનરાવર્તનોની દૃશ્યતા $1 {{GENDER:$2|એ બદલી}}",
 	"logentry-suppress-delete": "$1 એ $3 પાનું {{GENDER:$2|દબાવ્યું}}",
 	"logentry-suppress-event": "$1  ખાનગી રીતે {{GENDER:$2|દ્વારા માહિતીની દૃશ્યતા}} $3 : $4 પર બદલાઈ {{PLURAL:$5 | લોગ ઘટના | $5 લોગ}}",
 	"logentry-suppress-revision": "$1 છાની માહિતી {{GENDER:$2|બદલેલ}} બદલાઈ ના દૃશ્યતા {{PLURAL:$5 | આવૃત્તિ એ | $5 આવૃત્તિઓ}}: $4 $3 પાનાં પર",

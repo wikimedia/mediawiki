@@ -219,6 +219,7 @@
 	"apihelp-protect-param-pageid": "De Kännong vun dä Sigg zom Schöze udder Freijävve. Kam_mer nit zesamme met\n„<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">$1pageid</code>“ bruche.",
 	"apihelp-protect-param-reason": "Der Jrond för et Schöze udder Freijävve.",
 	"apihelp-protect-example-protect": "Donn en Sigg schöze.",
+	"apihelp-purge-param-forcelinkupdate": "Bräng de Tabälle met de lengks obb ene neue Schtand.",
 	"apihelp-query-param-list": "Wat för en Leßte holle.",
 	"apihelp-query-param-meta": "Wat för en Matta_Dahte ze holle.",
 	"apihelp-query+allcategories-description": "Alle Saachjroppe opzälle.",
