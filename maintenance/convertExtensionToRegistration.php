@@ -6,7 +6,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 
 	protected $custom = array(
 		'MessagesDirs' => 'handleMessagesDirs',
-		'ExtensionMessagesFiles' => 'removeAbsolutePath',
+		'ExtensionMessagesFiles' => 'handleExtensionMessagesFiles',
 		'AutoloadClasses' => 'removeAbsolutePath',
 		'ExtensionCredits' => 'handleCredits',
 		'ResourceModules' => 'handleResourceModules',
@@ -79,7 +79,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 			}
 			$realName = substr( $name, 2 ); // Strip 'wg'
 			if ( isset( $this->custom[$realName] ) ) {
-				call_user_func_array( array( $this, $this->custom[$realName] ), array( $realName, $value ) );
+				call_user_func_array( array( $this, $this->custom[$realName] ), array( $realName, $value, $vars ) );
 			} elseif ( in_array( $realName, $globalSettings ) ) {
 				$this->json[$realName] = $value;
 			} elseif ( strpos( $name, 'wg' ) === 0 ) {
@@ -119,6 +119,21 @@ class ConvertExtensionToRegistration extends Maintenance {
 		foreach ( $value as $key => $dirs ) {
 			foreach ( (array)$dirs as $dir ) {
 				$this->json[$realName][$key][] = $this->stripPath( $dir, $this->dir );
+			}
+		}
+	}
+
+	protected function handleExtensionMessagesFiles( $realName, $value, $vars ) {
+		foreach ( $value as $key => $file ) {
+			$strippedFile = $this->stripPath( $file, $this->dir );
+			if ( isset( $vars['wgMessagesDirs'][$key] ) ) {
+				$this->output(
+					"Note: Ignoring PHP shim $strippedFile. " .
+					"If your extension no longer supports versions of MediaWiki " .
+					"older than 1.23.0, you can safely delete it.\n"
+				);
+			} else {
+				$this->json[$realName][$key] = $strippedFile;
 			}
 		}
 	}
