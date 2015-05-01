@@ -135,6 +135,7 @@ class ApiParse extends ApiBase {
 					$main = new ApiMain( $req );
 					$pageSet = new ApiPageSet( $main );
 					$pageSet->execute();
+					$redirValues = $pageSet->getRedirectTitlesAsResult( $this->getResult() );
 
 					$to = $page;
 					foreach ( $pageSet->getRedirectTitles() as $title ) {
