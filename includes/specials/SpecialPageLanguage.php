@@ -94,7 +94,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 	}
 
 	protected function getDisplayFormat() {
-		return 'vform';
+		return 'ooui';
 	}
 
 	public function alterForm( HTMLForm $form ) {
