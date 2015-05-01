@@ -122,7 +122,8 @@
 			"Yzelf",
 			"0x010C",
 			"Thibaut120094",
-			"NemesisIII"
+			"NemesisIII",
+			"Housterdam"
 		]
 	},
 	"tog-underline": "Souligner les liens :",
@@ -553,7 +554,7 @@
 	"passwordtooshort": "Votre mot de passe doit contenir au moins $1 caractère{{PLURAL:$1||s}}.",
 	"passwordtoolong": "Les mots de passe ne peuvent pas dépasser {{PLURAL:$1|1 caractère|$1 caractères}}.",
 	"password-name-match": "Votre mot de passe doit être différent de votre nom d'utilisateur.",
-	"password-login-forbidden": "L'utilisation de ce nom d'utilisateur et de ce mot de passe a été interdite.",
+	"password-login-forbidden": "L'utilisation de ce nom d'utilisateur et/ou de ce mot de passe a été interdite.",
 	"mailmypassword": "Réinitialiser le mot de passe",
 	"passwordremindertitle": "Nouveau mot de passe temporaire pour {{SITENAME}}",
 	"passwordremindertext": "Quelqu'un (probablement vous, ayant l'adresse IP $1) a demandé un nouveau mot de\npasse pour {{SITENAME}} ($4). Un mot de passe temporaire a été créé pour\nl'utilisateur « $2 » et est « $3 ». Si cela était votre intention, vous devrez\nvous connecter et choisir un nouveau mot de passe.\nVotre mot de passe temporaire expirera dans $5 jour{{PLURAL:$5||s}}.\n\nSi vous n'êtes pas l'auteur de cette demande, ou si vous vous souvenez à présent\nde votre ancien mot de passe et que vous ne souhaitez plus en changer, vous\npouvez ignorer ce message et continuer à utiliser votre ancien mot de passe.",
@@ -895,7 +896,7 @@
 	"revdelete-modify-missing": "Erreur lors de la modification de l'élément avec l'ID $1 : il est manquant dans la base de données !",
 	"revdelete-no-change": "'''Attention :''' L'élément daté du $1 à $2 a déjà les paramètres de visibilité demandés.",
 	"revdelete-concurrent-change": "Erreur lors de la modification de l'élément daté du $1 à $2 : son statut a été changé par quelqu'un d'autre pendant que vous le modifiez.\nVérifiez les journaux.",
-	"revdelete-only-restricted": "Erreur lors de la suppression de l'entrée datée du $1 à $2 : vous ne pouvez pas supprimer ces éléments aux administrateurs sans également sélectionner des autres options de suppression.",
+	"revdelete-only-restricted": "Erreur lors de la suppression de l'entrée datée du $1 à $2 : vous ne pouvez pas supprimer ces éléments aux administrateurs sans également sélectionner les autres options de suppression.",
 	"revdelete-reason-dropdown": "* Raisons courantes de suppression :\n** Violation des droits d'auteurs ;\n** Commentaires ou renseignements personnels inappropriés ;\n** Informations potentiellement diffamatoires.",
 	"revdelete-otherreason": "Autre raison / raison supplémentaire :",
 	"revdelete-reasonotherlist": "Autre raison",
@@ -1326,7 +1327,7 @@
 	"uploadbtn": "Importer le fichier",
 	"reuploaddesc": "Annuler et retourner au formulaire d'import",
 	"upload-tryagain": "Envoyer la description du fichier modifiée",
-	"uploadnologin": "Pas connecté",
+	"uploadnologin": "Non connecté",
 	"uploadnologintext": "Vous devez $1 pour importer des fichiers.",
 	"upload_directory_missing": "Le répertoire d’import de fichier ($1) est introuvable et n’a pas pu être créé par le serveur web.",
 	"upload_directory_read_only": "Le répertoire d’import de fichier ($1) n’est pas accessible en écriture depuis le serveur web.",
