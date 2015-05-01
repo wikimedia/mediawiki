@@ -397,7 +397,7 @@
 		);
 	} );
 
-// Tests that {{-transformation vs. general parsing are done as requested
+	// Tests that {{-transformation vs. general parsing are done as requested
 	QUnit.test( 'Curly brace transformation', 16, function ( assert ) {
 		var oldUserLang = mw.config.get( 'wgUserLanguage' );
 
