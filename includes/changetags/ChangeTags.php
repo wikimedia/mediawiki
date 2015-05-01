@@ -1220,4 +1220,22 @@ class ChangeTags {
 		$wgMemc->set( $key, $out, 300 );
 		return $out;
 	}
+
+	/**
+	 * Indicate whether change tag editing UI is relevant
+	 *
+	 * Returns true if the user has the necessary right and there are any
+	 * editable tags defined.
+	 *
+	 * This intentionally doesn't check "any addable || any deletable", because
+	 * it seems like it would be more confusing than useful if the checkboxes
+	 * suddenly showed up because some abuse filter stopped defining a tag and
+	 * then suddenly disappeared when someone deleted all uses of that tag.
+	 *
+	 * @param User $user
+	 * @return bool
+	 */
+	public static function showTagEditingUI( User $user ) {
+		return $user->isAllowed( 'changetags' ) && (bool)self::listExplicitlyDefinedTags();
+	}
 }

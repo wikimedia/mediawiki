@@ -348,7 +348,7 @@ class LogEventsList extends ContextSource {
 		$user = $this->getUser();
 
 		// If change tag editing is available to this user, return the checkbox
-		if ( $this->flags & self::USE_CHECKBOXES && $user->isAllowed( 'changetags' ) ) {
+		if ( $this->flags & self::USE_CHECKBOXES && ChangeTags::showTagEditingUI( $user ) ) {
 			return Xml::check(
 				'showhiderevisions',
 				false,
