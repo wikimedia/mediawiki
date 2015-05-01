@@ -495,7 +495,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		if ( $user->isAllowed( 'deleterevision' ) ) {
 			$actionButtons .= $this->getRevisionButton( 'revisiondelete', 'showhideselectedversions' );
 		}
-		if ( $user->isAllowed( 'changetags' ) ) {
+		if ( ChangeTags::showTagEditingUI( $user ) ) {
 			$actionButtons .= $this->getRevisionButton( 'editchangetags', 'history-edit-tags' );
 		}
 		if ( $actionButtons ) {
@@ -617,14 +617,14 @@ class HistoryPager extends ReverseChronologicalPager {
 		$del = '';
 		$user = $this->getUser();
 		$canRevDelete = $user->isAllowed( 'deleterevision' );
-		$canModifyTags = $user->isAllowed( 'changetags' );
+		$showTagEditUI = ChangeTags::showTagEditingUI( $user );
 		// Show checkboxes for each revision, to allow for revision deletion and
 		// change tags
-		if ( $canRevDelete || $canModifyTags ) {
+		if ( $canRevDelete || $showTagEditUI ) {
 			$this->preventClickjacking();
 			// If revision was hidden from sysops and we don't need the checkbox
 			// for anything else, disable it
-			if ( !$canModifyTags && !$rev->userCan( Revision::DELETED_RESTRICTED, $user ) ) {
+			if ( !$showTagEditUI && !$rev->userCan( Revision::DELETED_RESTRICTED, $user ) ) {
 				$del = Xml::check( 'deleterevisions', false, array( 'disabled' => 'disabled' ) );
 			// Otherwise, enable the checkbox...
 			} else {
