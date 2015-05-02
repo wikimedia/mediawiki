@@ -518,7 +518,6 @@ class ChangeTags {
 		if ( $rev_id ) {
 			$rev = Revision::newFromId( $rev_id );
 			if ( $rev ) {
-				$title = $rev->getTitle();
 				$logEntry->setTarget( $rev->getTitle() );
 			}
 		} elseif ( $log_id ) {
@@ -706,6 +705,7 @@ class ChangeTags {
 	 * @param string $reason
 	 * @param User $user Who to attribute the action to
 	 * @param int $tagCount For deletion only, how many usages the tag had before
+	 * @return int ID of the inserted log entry
 	 * it was deleted.
 	 * @since 1.25
 	 */
