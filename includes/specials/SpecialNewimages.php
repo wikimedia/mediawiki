@@ -31,7 +31,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		$this->outputHeader();
 
 		$out = $this->getOutput();
-		$out->addHelpLink( 'Help:New images' );
+		$this->addHelpLink( 'Help:New images' );
 
 		$pager = new NewFilesPager( $this->getContext(), $par );
 
