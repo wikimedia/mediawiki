@@ -382,6 +382,10 @@ changes to languages because of Bugzilla reports.
   bugs and ensure better reading experience for different variants.
 
 === Other changes in 1.25 ===
+* (T45591) Links to MediaWiki.org translatable help were added to indicators,
+  mostly in special pages. Local custom target titles can be placed in the
+  relevant '(namespace-X|action name|special page name)-helppage' system message.
+  Extensions Can use the relevant addHelpLink() function to do the same.
 * The skin autodiscovery mechanism, deprecated in MediaWiki 1.23, has been
   removed. See https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery for
   migration guide for creators and users of custom skins that relied on it.
