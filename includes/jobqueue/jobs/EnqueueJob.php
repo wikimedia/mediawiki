@@ -45,7 +45,7 @@ final class EnqueueJob extends Job {
 	}
 
 	/**
-	 * @param Job|JobSpecification|array $jobs
+	 * @param JobSpecification|array $jobs
 	 * @return JobRouteJob
 	 */
 	public static function newFromLocalJobs( $jobs ) {
