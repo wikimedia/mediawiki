@@ -3181,6 +3181,7 @@
 	"logentry-managetags-activate": "$1 {{GENDER:$2|aktivoi}} merkkauksen \"$4\" käyttäjien ja bottien käytettäväksi",
 	"logentry-managetags-deactivate": "$1 {{GENDER:$2|otti pois käytöstä}} merkkauksen \"$4\" käyttäjiltä ja boteilta",
 	"log-name-tag": "Merkkausloki",
+	"log-description-tag": "Tällä sivulla näytetään käyttäjien lisäämät tai poistamat [[Special:Tags|merkkaukset]] yksittäisissä sivuversioissa tai lokimerkinnöissä. Lokiin eivät kirjaudu merkkaukset silloin, kun ne tulevat muokkaamisen, poistamisen tai muun vastaavan toimenpiteen yhteydessä.",
 	"logentry-tag-update-add-revision": "$1 {{GENDER:$2|lisäsi}} {{PLURAL:$7|merkkauksen|merkkaukset}} $6 kohdeversioon $4 sivulla $3",
 	"logentry-tag-update-add-logentry": "$1 {{GENDER:$2|lisäsi}} {{PLURAL:$7|merkkauksen|merkkaukset}} $6 lokimerkintään $5 sivulla $3",
 	"logentry-tag-update-remove-revision": "$1 {{GENDER:$2|poisti}} {{PLURAL:$9|merkkauksen|merkkaukset}} $8 kohdeversiosta $4 sivulla $3",

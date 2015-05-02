@@ -2175,6 +2175,7 @@
 	"import-interwiki-submit": "Імпартаваць",
 	"import-mapping-default": "Імпарт у месца па змоўчаньні",
 	"import-mapping-namespace": "Імпарт у прастору назваў:",
+	"import-mapping-subpage": "Імпарт у якасьці падстаронак наступнай старонкі:",
 	"import-upload-filename": "Назва файла:",
 	"import-comment": "Камэнтар:",
 	"importtext": "Калі ласка, экспартуйце файл з крынічнай вікі з дапамогай [[Special:Export|прылады экспарту]].\nЗахавайце яго на свой кампутар, а потым загрузіце сюды.",

@@ -1536,6 +1536,7 @@
 	"metadata-help": "Hic fasciculus alias res continet, saepius a machina originatore additas, et (si fasciculus postea recensus sit) fortasse corrigendas.",
 	"metadata-expand": "Plura ostende",
 	"metadata-collapse": "Partim celare",
+	"metadata-fields": "Campi metadatorum imaginis in hoc nuntio enumerati in pagina imaginis includentur cum tabula metadatorum occludatur.\nAlii abscondentur nisi actio contraria faciatur.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
 	"exif-imagewidth": "Amplitudo",
 	"exif-imagelength": "Altitudo",
 	"exif-bitspersample": "Biti per componentem",
