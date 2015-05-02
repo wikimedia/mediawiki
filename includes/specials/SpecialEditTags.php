@@ -206,7 +206,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			$this->targetObj->getPrefixedText()
 		) );
 
-		$out->addHelpLink( 'Help:Tags' );
+		$this->addHelpLink( 'Help:Tags' );
 		$out->addHTML( "<ul>" );
 
 		$numRevisions = 0;

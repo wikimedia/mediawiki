@@ -53,7 +53,7 @@ class SpecialDiff extends RedirectSpecialPage {
 			$this->mAddedRedirectParams['diff'] = $parts[1];
 		} else {
 			// Wrong number of parameters, bail out
-			$this->getOutput()->addHelpLink( 'Help:Diff' );
+			$this->addHelpLink( 'Help:Diff' );
 			throw new ErrorPageError( 'nopagetitle', 'nopagetext' );
 		}
 

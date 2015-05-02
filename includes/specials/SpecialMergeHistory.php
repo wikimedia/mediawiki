@@ -187,7 +187,7 @@ class SpecialMergeHistory extends SpecialPage {
 				'</form>'
 		);
 
-		$out->addHelpLink( 'Help:Merge history' );
+		$this->addHelpLink( 'Help:Merge history' );
 	}
 
 	private function showHistory() {

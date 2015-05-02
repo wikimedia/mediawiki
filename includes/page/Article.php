@@ -1506,6 +1506,28 @@ class Article implements Page {
 	}
 
 	/**
+	 * Adds help link with an icon via page indicators.
+	 * Link target can be overridden by a local message containing a wikilink:
+	 * the message key is: 'namespace-' + namespace number + '-helppage'.
+	 * @param string $to Target MediaWiki.org page title or encoded URL.
+	 * @param bool $overrideBaseUrl Whether $url is a full URL, to avoid MW.o.
+	 * @since 1.25
+	 */
+	public function addHelpLink( $to, $overrideBaseUrl = false ) {
+		$msg = wfMessage(
+			'namespace-' . $this->getTitle()->getNamespace() . '-helppage'
+		);
+
+		$out = $this->getContext()->getOutput();
+		if ( !$msg->isDisabled() ) {
+			$helpUrl = Skin::makeUrl( $msg->plain() );
+			$out->addHelpLink( $helpUrl, true );
+		} else {
+			$out->addHelpLink( $to, $overrideBaseUrl );
+		}
+	}
+
+	/**
 	 * Handle action=render
 	 */
 	public function render() {

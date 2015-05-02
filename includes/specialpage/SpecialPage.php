@@ -633,6 +633,26 @@ class SpecialPage {
 	}
 
 	/**
+	 * Adds help link with an icon via page indicators.
+	 * Link target can be overridden by a local message containing a wikilink:
+	 * the message key is: lowercase special page name + '-helppage'.
+	 * @param string $to Target MediaWiki.org page title or encoded URL.
+	 * @param bool $overrideBaseUrl Whether $url is a full URL, to avoid MW.o.
+	 * @since 1.25
+	 */
+	public function addHelpLink( $to, $overrideBaseUrl = false ) {
+		global $wgContLang;
+		$msg = $this->msg( $wgContLang->lc( $this->getName() ) . '-helppage' );
+
+		if ( !$msg->isDisabled() ) {
+			$helpUrl = Skin::makeUrl( $msg->plain() );
+			$this->getOutput()->addHelpLink( $helpUrl, true );
+		} else {
+			$this->getOutput()->addHelpLink( $to, $overrideBaseUrl );
+		}
+	}
+
+	/**
 	 * Get the group that the special page belongs in on Special:SpecialPage
 	 * Use this method, instead of getGroupName to allow customization
 	 * of the group name from the wiki side
