@@ -1401,20 +1401,33 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Adds help link with an icon via page indicators.
-	 * @param string $to
-	 * @param bool $overrideBaseUrl
+	 * Link target can be overridden by a local message containing a wikilink:
+	 * the message key is: lowercase action or special page name + '-helppage'.
+	 * @param string $to Target MediaWiki.org page title or encoded URL.
+	 * @param bool $overrideBaseUrl Whether $url is a full URL, to avoid MW.o.
 	 * @since 1.25
 	 */
 	public function addHelpLink( $to, $overrideBaseUrl = false ) {
 		$this->addModuleStyles( 'mediawiki.helplink' );
 		$text = $this->msg( 'helppage-top-gethelp' )->escaped();
 
-		if ( $overrideBaseUrl ) {
+		if ( method_exists( $this, 'getName' ) &&
+			!$this->msg( $wgContLang->lc( $this->getName() + '-helppage' )->isDisabled() )
+			) {
+			$title = $this->msg( $wgContLang->lc( $this->getName() + '-helppage' )->plain();
+			$helpUrl = Skin::makeUrl( $title );
+		} elseif ( method_exists( $this, 'getActionName' ) &&
+			!$this->msg( $wgContLang->lc( $this->getActionName() + '-helppage' )->isDisabled() )
+			) {
+			$title = $this->msg( $wgContLang->lc( $this->getActionName() + '-helppage' )->plain();
+			$helpUrl = Skin::makeUrl( $title );
+		} elseif ( $overrideBaseUrl ) {
 			$helpUrl = $to;
 		} else {
 			$toUrlencoded = wfUrlencode( str_replace( ' ', '_', $to ) );
 			$helpUrl = "//www.mediawiki.org/wiki/Special:MyLanguage/$toUrlencoded";
 		}
+
 		$link = Html::rawElement(
 			'a',
 			array(
