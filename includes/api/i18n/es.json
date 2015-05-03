@@ -101,7 +101,7 @@
 	"apihelp-imagerotate-example-generator": "Rotar todas las imágenes en la  <kbd>Categoría:Girar</kbd> <kbd>180</kbd> grados.",
 	"apihelp-import-param-summary": "Resumen de importación.",
 	"apihelp-import-param-xml": "Se cargó el archivo XML.",
-	"apihelp-import-param-rootpage": "Importar como subpágina de esta página.",
+	"apihelp-import-param-rootpage": "Importar como subpágina de esta página. Se ignora si se proporciona el parámetro <kbd>$1namespace</kbd>.",
 	"apihelp-login-param-name": "Nombre de usuario.",
 	"apihelp-login-param-password": "Contraseña.",
 	"apihelp-login-param-domain": "Dominio (opcional).",
