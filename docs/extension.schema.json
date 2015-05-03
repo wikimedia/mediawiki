@@ -542,6 +542,10 @@
 			"type": "object",
 			"description": "Flags (letter symbols) shown on RecentChanges pages"
 		},
+		"MediaHandlers": {
+			"type": "object",
+			"description": "Plugins for media file type handling. Each entry in the array maps a MIME type to a PHP class name."
+		},
 		"ExtensionFunctions": {
 			"type": [
 				"array",
