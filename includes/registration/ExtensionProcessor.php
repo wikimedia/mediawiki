@@ -24,7 +24,6 @@ class ExtensionProcessor implements Processor {
 		'ContentHandlers',
 		'ConfigRegistry',
 		'RateLimits',
-		'ParserTestFiles',
 		'RecentChangesFlags',
 		'ExtensionFunctions',
 		'ExtensionEntryPointListFiles',
@@ -122,6 +121,7 @@ class ExtensionProcessor implements Processor {
 		$this->extractMessagesDirs( $dir, $info );
 		$this->extractNamespaces( $info );
 		$this->extractResourceLoaderModules( $dir, $info );
+		$this->extractParserTestFiles( $dir, $info );
 		if ( isset( $info['callback'] ) ) {
 			$this->callbacks[] = $info['callback'];
 			$this->processed[] = 'callback';
@@ -266,6 +266,15 @@ class ExtensionProcessor implements Processor {
 				}
 			}
 			$this->processed[] = 'config';
+		}
+	}
+
+	protected function extractParserTestFiles( $dir, array $info ) {
+		if ( isset( $info['ParserTestFiles'] ) ) {
+			foreach ( $info['ParserTestFiles'] as $path ) {
+				$this->globals['wgParserTestFiles'][] = "$dir/$path";
+			}
+			$this->processed[] = 'ParserTestFiles';
 		}
 	}
 
