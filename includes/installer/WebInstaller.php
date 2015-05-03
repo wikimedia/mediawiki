@@ -49,13 +49,6 @@ class WebInstaller extends Installer {
 	protected $session;
 
 	/**
-	 * Captured PHP error text. Temporary.
-	 *
-	 * @var string[]
-	 */
-	protected $phpErrors;
-
-	/**
 	 * The main sequence of page names. These will be displayed in turn.
 	 *
 	 * To add a new installer page:
@@ -330,8 +323,9 @@ class WebInstaller extends Installer {
 
 	/**
 	 * Start the PHP session. This may be called before execute() to start the PHP session.
+	 * Throw SessionStartException if errors occur. Return true on success.
 	 *
-	 * @throws Exception
+	 * @throws SessionStartException
 	 * @return bool
 	 */
 	public function startSession() {
@@ -340,18 +334,17 @@ class WebInstaller extends Installer {
 			return true;
 		}
 
-		$this->phpErrors = array();
-		set_error_handler( array( $this, 'errorHandler' ) );
+		$errorHandler = new WebInstallerErrorHandler();
+		set_error_handler( array( $errorHandler, 'handleError' ) );
 		try {
 			session_start();
 		} catch ( Exception $e ) {
-			restore_error_handler();
-			throw $e;
+			$errorHandler->addError( $e->getMessage() );
 		}
 		restore_error_handler();
 
-		if ( $this->phpErrors ) {
-			return false;
+		if ( $errorHandler->hasErrors() ) {
+			throw new SessionStartException( $errorHandler->getErrors() );
 		}
 
 		return true;
@@ -395,16 +388,6 @@ class WebInstaller extends Installer {
 		$args = array_map( 'htmlspecialchars', $args );
 		$msg = wfMessage( $msg, $args )->useDatabase( false )->plain();
 		$this->output->addHTML( $this->getErrorBox( $msg ) );
-	}
-
-	/**
-	 * Temporary error handler for session start debugging.
-	 *
-	 * @param int $errno Unused
-	 * @param string $errstr
-	 */
-	public function errorHandler( $errno, $errstr ) {
-		$this->phpErrors[] = $errstr;
 	}
 
 	/**
@@ -1198,13 +1181,6 @@ class WebInstaller extends Installer {
 	public function outputCss() {
 		$this->request->response()->header( 'Content-type: text/css' );
 		echo $this->output->getCSS();
-	}
-
-	/**
-	 * @return string[]
-	 */
-	public function getPhpErrors() {
-		return $this->phpErrors;
 	}
 
 }
