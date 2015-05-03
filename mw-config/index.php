@@ -42,17 +42,18 @@ function wfInstallerMain() {
 
 	$installer = InstallerOverrides::getWebInstaller( $wgRequest );
 
-	if ( !$installer->startSession() ) {
-
+	try {
+		$installer->startSession();
+	} catch ( SessionStartException $e ) {
 		if ( $installer->request->getVal( "css" ) ) {
 			// Do not display errors on css pages
 			$installer->outputCss();
-			exit;
+		} else {
+			$errors = $e->getErrors();
+			$installer->showError( 'config-session-error', $errors[0] );
+			$installer->finish();
 		}
 
-		$errors = $installer->getPhpErrors();
-		$installer->showError( 'config-session-error', $errors[0] );
-		$installer->finish();
 		exit;
 	}
 
