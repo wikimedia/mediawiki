@@ -26,6 +26,7 @@ class ExtensionProcessor implements Processor {
 		'RateLimits',
 		'ParserTestFiles',
 		'RecentChangesFlags',
+		'MediaHandlers',
 		'ExtensionFunctions',
 		'ExtensionEntryPointListFiles',
 		'SpecialPages',
