@@ -632,6 +632,10 @@
 		"config": {
 			"type": "object",
 			"description": "Configuration options for this extension"
+		},
+		"ParserTestFiles": {
+			"type": "array",
+			"description": "Parser test suite files to be run by parserTests.php when no specific filename is passed to it"
 		}
 	}
 }
