@@ -182,9 +182,11 @@
 					version = match[1];
 				}
 			}
-			// And IE 12's different lies about not being IE
+			// And MS Edge's lies about being Chrome
+			// It's different enough from classic IE Trident engine that they do this
+			// to avoid getting caught by MSIE-specific browser sniffing.
 			if ( name === 'chrome' && ( match = ua.match( /\bedge\/([0-9\.]*)/ ) ) ) {
-				name = 'msie';
+				name = 'edge';
 				version = match[1];
 				layout = 'edge';
 				layoutversion = parseInt( match[1], 10 );
