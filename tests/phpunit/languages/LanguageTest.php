@@ -1413,6 +1413,61 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	/**
+	 * @dataProvider provideHebrewNumeralsData
+	 * @covers Language::hebrewNumeral
+	 */
+	public function testHebrewNumeral( $num, $numerals ) {
+		$this->assertEquals(
+			$numerals,
+			Language::hebrewNumeral( $num ),
+			"hebrewNumeral('$num')"
+		);
+	}
+
+	public static function provideHebrewNumeralsData() {
+		return array(
+			array( 0, false ),
+			array( 1, "א'" ),
+			array( 2, "ב'" ),
+			array( 3, "ג'" ),
+			array( 4, "ד'" ),
+			array( 5, "ה'" ),
+			array( 6, "ו'" ),
+			array( 7, "ז'" ),
+			array( 8, "ח'" ),
+			array( 9, "ט'" ),
+			array( 10, "י'" ),
+			array( 11, 'י"א' ),
+			array( 14, 'י"ד' ),
+			array( 15, 'ט"ו' ),
+			array( 16, 'ט"ז' ),
+			array( 17, 'י"ז' ),
+			array( 20, "כ'" ),
+			array( 21, 'כ"א' ),
+			array( 30, "ל'" ),
+			array( 40, "מ'" ),
+			array( 50, "נ'" ),
+			array( 60, "ס'" ),
+			array( 70, "ע'" ),
+			array( 80, "פ'" ),
+			array( 90, "צ'" ),
+			array( 99, 'צ"ט' ),
+			array( 100, "ק'" ),
+			array( 101, 'ק"א' ),
+			array( 110, 'ק"י' ),
+			array( 200, "ר'" ),
+			array( 300, "ש'" ),
+			array( 400, "ת'" ),
+			array( 500, 'ת"ק' ),
+			array( 800, 'ת"ת' ),
+			#array( 1000, "א'" ),
+			#array( 1001, "א'א" ),
+			array( 5708, "ה'תש\"ח" ),
+			array( 5775, "ה'תשע\"ה" ),
+		);
+	}
+
+	/**
 	 * @dataProvider providePluralData
 	 * @covers Language::convertPlural
 	 */
