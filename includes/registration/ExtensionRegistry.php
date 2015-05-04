@@ -62,7 +62,8 @@ class ExtensionRegistry {
 	}
 
 	public function __construct() {
-		$this->cache = ObjectCache::newAccelerator( array(), CACHE_NONE );
+		//$this->cache = ObjectCache::newAccelerator( array(), CACHE_NONE );
+		$this->cache = new EmptyBagOStuff();
 	}
 
 	/**
@@ -114,6 +115,9 @@ class ExtensionRegistry {
 		$autoloadClasses = array();
 		foreach ( $queue as $path => $mtime ) {
 			$json = file_get_contents( $path );
+			if ( $json === false ) {
+				throw new Exception( "Unable to read $path, does it exist?" );
+			}
 			$info = json_decode( $json, /* $assoc = */ true );
 			if ( !is_array( $info ) ) {
 				throw new Exception( "$path is not a valid JSON file." );
