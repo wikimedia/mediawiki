@@ -13,6 +13,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 		'ResourceModuleSkinStyles' => 'handleResourceModules',
 		'Hooks' => 'handleHooks',
 		'ExtensionFunctions' => 'handleExtensionFunctions',
+		'ParserTestFiles' => 'removeAbsolutePath',
 	);
 
 	/**
