@@ -33,7 +33,7 @@ class SearchEngine {
 	/** @var string */
 	public $prefix = '';
 
-	/** @var int[] */
+	/** @var int[]|null */
 	public $namespaces = array( NS_MAIN );
 
 	/** @var int */
