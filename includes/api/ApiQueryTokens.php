@@ -93,4 +93,8 @@ class ApiQueryTokens extends ApiQueryBase {
 	public function getCacheMode( $params ) {
 		return 'private';
 	}
+
+	public function getHelpUrls() {
+		return 'https://www.mediawiki.org/wiki/API:Tokens';
+	}
 }

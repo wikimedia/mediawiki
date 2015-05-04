@@ -42,13 +42,13 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 				$this->table = 'pagelinks';
 				$this->prefix = 'pl';
 				$this->titlesParam = 'titles';
-				$this->helpUrl = 'https://www.mediawiki.org/wiki/API:Properties#links_.2F_pl';
+				$this->helpUrl = 'https://www.mediawiki.org/wiki/API:Links';
 				break;
 			case self::TEMPLATES:
 				$this->table = 'templatelinks';
 				$this->prefix = 'tl';
 				$this->titlesParam = 'templates';
-				$this->helpUrl = 'https://www.mediawiki.org/wiki/API:Properties#templates_.2F_tl';
+				$this->helpUrl = 'https://www.mediawiki.org/wiki/API:Templates';
 				break;
 			default:
 				ApiBase::dieDebug( __METHOD__, 'Unknown module name' );

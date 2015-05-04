@@ -250,6 +250,6 @@ class ApiQueryContributors extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Properties#contributors_.2F_pc';
+		return 'https://www.mediawiki.org/wiki/API:Contributors';
 	}
 }

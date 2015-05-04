@@ -468,6 +468,6 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Properties#revisions_.2F_rv';
+		return 'https://www.mediawiki.org/wiki/API:Revisions';
 	}
 }

@@ -245,6 +245,6 @@ class ApiQueryAllMessages extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:Meta#allmessages_.2F_am';
+		return 'https://www.mediawiki.org/wiki/API:Allmessages';
 	}
 }
