@@ -1853,11 +1853,11 @@ $wgDBerrorLog = false;
  *
  * @par Examples:
  * @code
- * $wgLocaltimezone = 'UTC';
- * $wgLocaltimezone = 'GMT';
- * $wgLocaltimezone = 'PST8PDT';
- * $wgLocaltimezone = 'Europe/Sweden';
- * $wgLocaltimezone = 'CET';
+ * $wgDBerrorLogTZ = 'UTC';
+ * $wgDBerrorLogTZ = 'GMT';
+ * $wgDBerrorLogTZ = 'PST8PDT';
+ * $wgDBerrorLogTZ = 'Europe/Sweden';
+ * $wgDBerrorLogTZ = 'CET';
  * @endcode
  *
  * @since 1.20
