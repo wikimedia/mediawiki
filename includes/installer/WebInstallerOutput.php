@@ -133,26 +133,24 @@ class WebInstallerOutput {
 			'mediawiki.skinning.interface',
 		);
 
-		if ( file_exists( "$wgStyleDirectory/Vector/Vector.php" ) ) {
+		$resourceLoader = new ResourceLoader();
+
+		if ( file_exists( "$wgStyleDirectory/Vector/skin.json" ) ) {
 			// Force loading Vector skin if available as a fallback skin
 			// for whatever ResourceLoader wants to have as the default.
-
-			// Include instead of require, as this will work without it, it will just look bad.
-			// We need the 'global' statement for $wgResourceModules because the Vector skin adds the
-			// definitions for its RL modules there that we use implicitly below.
-
-			// @codingStandardsIgnoreStart
-			global $wgResourceModules; // This is NOT UNUSED!
-			// @codingStandardsIgnoreEnd
-
-			include_once "$wgStyleDirectory/Vector/Vector.php";
+			$registry = new ExtensionRegistry();
+			$data = $registry->readFromQueue( array(
+				"$wgStyleDirectory/Vector/skin.json" => 1,
+			) );
+			if ( isset( $data['globals']['wgResourceModules'] ) ) {
+				$resourceLoader->register( $data['globals']['wgResourceModules'] );
+			}
 
 			$moduleNames[] = 'skins.vector.styles';
 		}
 
 		$moduleNames[] = 'mediawiki.legacy.config';
 
-		$resourceLoader = new ResourceLoader();
 		$rlContext = new ResourceLoaderContext( $resourceLoader, new FauxRequest( array(
 				'debug' => 'true',
 				'lang' => $this->getLanguageCode(),
@@ -163,6 +161,10 @@ class WebInstallerOutput {
 		foreach ( $moduleNames as $moduleName ) {
 			/** @var ResourceLoaderFileModule $module */
 			$module = $resourceLoader->getModule( $moduleName );
+			if ( !$module ) {
+				// T98043: Don't fatal, but it won't look as pretty.
+				continue;
+			}
 
 			// Based on: ResourceLoaderFileModule::getStyles (without the DB query)
 			$styles = array_merge( $styles, ResourceLoader::makeCombinedStyles(
