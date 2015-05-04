@@ -1,7 +1,5 @@
 <?php
 /**
- * Representation of a page title within %MediaWiki.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,16 +16,49 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @license GPL 2+
- * @author Daniel Kinzler
  */
 
 /**
  * MalformedTitleException is thrown when a TitleParser is unable to parse a title string.
- *
- * @license GPL 2+
- * @author Daniel Kinzler
  * @since 1.23
  */
 class MalformedTitleException extends Exception {
+	private $titleText = null;
+	private $errorMessage = null;
+	private $errorMessageParameters = array();
+
+	/**
+	 * @param string $errorMessage Localisation message describing the error (since MW 1.26)
+	 * @param string $titleText The invalid title text (since MW 1.26)
+	 * @param string[] $errorMessageParameters Additional parameters for the error message (since MW 1.26)
+	 */
+	public function __construct( $errorMessage = null, $titleText = null, $errorMessageParameters = array() ) {
+		$this->errorMessage = $errorMessage;
+		$this->titleText = $titleText;
+		$this->errorMessageParameters = $errorMessageParameters;
+	}
+
+	/**
+	 * @since 1.26
+	 * @return string|null
+	 */
+	public function getTitleText() {
+		return $this->titleText;
+	}
+	
+	/**
+	 * @since 1.26
+	 * @return string|null
+	 */
+	public function getErrorMessage() {
+		return $this->errorMessage;
+	}
+	
+	/**
+	 * @since 1.26
+	 * @return string[]
+	 */
+	public function getErrorMessageParameters() {
+		return $this->errorMessageParameters;
+	}
 }
