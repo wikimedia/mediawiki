@@ -872,5 +872,11 @@
 	"htmlform-reset": "Хувцамаш юхадаккха",
 	"htmlform-selectorother-other": "Кхыдола",
 	"rightsnone": "(а)",
-	"revdelete-summary": "хувцамий лоацам"
+	"revdelete-summary": "хувцамий лоацам",
+	"special-characters-group-latin": "Лаьтмий",
+	"special-characters-group-greek": "Джелтий",
+	"special-characters-group-cyrillic": "Цырилиций",
+	"special-characters-group-arabic": "Ӏарбий",
+	"special-characters-group-persian": "Фаьранзий",
+	"special-characters-group-hebrew": "Жугтий"
 }

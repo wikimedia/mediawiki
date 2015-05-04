@@ -1053,5 +1053,21 @@
 	"searchsuggest-search": "Ronsaghey",
 	"searchsuggest-containing": "goaill stiagh...",
 	"expand_templates_ok": "OK",
-	"expand_templates_preview": "Roie-haishbynys"
+	"expand_templates_preview": "Roie-haishbynys",
+	"special-characters-group-latin": "Romanagh",
+	"special-characters-group-latinextended": "Romanagh sheeynt",
+	"special-characters-group-ipa": "ASE",
+	"special-characters-group-symbols": "Cowraghyn",
+	"special-characters-group-greek": "Greagagh",
+	"special-characters-group-cyrillic": "Kyrillagh",
+	"special-characters-group-arabic": "Arabagh",
+	"special-characters-group-persian": "Pershish",
+	"special-characters-group-hebrew": "Ewagh",
+	"special-characters-group-bangla": "Bengaalish",
+	"special-characters-group-telugu": "Telugish",
+	"special-characters-group-sinhala": "Sinhalish",
+	"special-characters-group-gujarati": "Gujaratish",
+	"special-characters-group-thai": "Thaish",
+	"special-characters-group-lao": "Laosish",
+	"special-characters-group-khmer": "Khmerish"
 }

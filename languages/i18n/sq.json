@@ -1955,7 +1955,6 @@
 	"import-interwiki-history": "Kopjo të gjitha versionet e historisë për këtë faqe",
 	"import-interwiki-templates": "Përfshini të gjitha stampat",
 	"import-interwiki-submit": "Importo",
-	"import-interwiki-namespace": "Hapësira e destinuar:",
 	"import-upload-filename": "Emri i skedës:",
 	"import-comment": "Arsyeja:",
 	"importtext": "Ju lutem eksportoni këtë skedë nga burimi wiki duke përdorur  [[Special:Export|export utility]].! XAU Save atë në kompjuterin tuaj dhe ngarkoni këtu.",

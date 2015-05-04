@@ -2157,8 +2157,6 @@
 	"import-interwiki-history": "Ii panna ke sab badlao ke itihaas ke copy karo",
 	"import-interwiki-templates": "Sab template ke include karo",
 	"import-interwiki-submit": "Import karo",
-	"import-interwiki-namespace": "Manzil waala namespace:",
-	"import-interwiki-rootpage": "Destination root panna (optional):",
 	"import-upload-filename": "File ke naam:",
 	"import-comment": "Aapan bichar do:",
 	"importtext": "Meharbani kar ke file ke [[Special:Export|export utility]] use kar ke source wiki me se export karo.\nAapan computer me save kar ke  hian pe upload karo.",

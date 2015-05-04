@@ -2367,6 +2367,7 @@
 	"patrol-log-page": "Журнал патруляваньняў",
 	"patrol-log-header": "Гэта журнал патруляваных вэрсіяў.",
 	"log-show-hide-patrol": "$1 журнал патруляваньняў",
+	"log-show-hide-tag": "$1 журнал метак",
 	"deletedrevision": "Выдаленая старая вэрсія $1",
 	"filedeleteerror-short": "Памылка выдаленьня файла: $1",
 	"filedeleteerror-long": "У часе выдаленьня файла ўзьніклі наступныя памылкі:\n\n$1",

@@ -733,5 +733,6 @@
 	"expand_templates_output": "Result",
 	"expand_templates_ok": "OK",
 	"expand_templates_remove_comments": "Anmaerrickinge lösche",
-	"expand_templates_preview": "Aagucke"
+	"expand_templates_preview": "Aagucke",
+	"special-characters-group-ipa": "IPA"
 }

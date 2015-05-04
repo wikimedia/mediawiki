@@ -1931,8 +1931,6 @@
 	"import-interwiki-history": "Copiar l'entira cronologia da questa pagina",
 	"import-interwiki-templates": "Includer tut ils models",
 	"import-interwiki-submit": "Importar",
-	"import-interwiki-namespace": "Tip da pagina da destinaziun:",
-	"import-interwiki-rootpage": "Pagina principala da destinaziun (opziunal):",
 	"import-upload-filename": "Num da datoteca:",
 	"import-comment": "Commentari:",
 	"importtext": "Exportescha la datoteca da la wiki da funtauna cun agid da la [[Special:Export|funcziun d'export]].\nLa memorisescha sin tes computer e chargia si ella qua.",

@@ -1082,8 +1082,6 @@
 	"import-interwiki-history": "Бул барактын бүткүл өзгөртүү тарыхын көчүрүү",
 	"import-interwiki-templates": "Бардык калыптарды камтуу",
 	"import-interwiki-submit": "Импорттоо",
-	"import-interwiki-namespace": "Максаттык ат мейкиндиги:",
-	"import-interwiki-rootpage": "Максаттык түпкү барагы (сөзсүз эмес):",
 	"import-upload-filename": "Файл аты:",
 	"import-comment": "Эскертүү:",
 	"importstart": "Барактарды импорттоо...",

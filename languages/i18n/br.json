@@ -2105,8 +2105,6 @@
 	"import-interwiki-history": "Eilañ holl stummoù istor ar bajenn-mañ",
 	"import-interwiki-templates": "Lakaat e-barzh an holl batromoù",
 	"import-interwiki-submit": "Enporzhiañ",
-	"import-interwiki-namespace": "Esaouenn anv ar pal :",
-	"import-interwiki-rootpage": "Pennpajenn kas (war zibab)",
 	"import-upload-filename": "Anv ar restr :",
 	"import-comment": "Notenn :",
 	"importtext": "Ezporzhiit ar restr adal ar wiki orin en ur ober gant an arc'hwel [[Special:Export|ezporzhiañ]].\nEnrollit ar bajenn war hoc'h urzhiataer ha kargit anezhi amañ.",

@@ -1219,5 +1219,21 @@
 	"feedback-close": "Ọméchá.",
 	"feedback-message": "Ozi:",
 	"searchsuggest-search": "Chọwa",
-	"expand_templates_ok": "Ngwanu"
+	"expand_templates_ok": "Ngwanu",
+	"special-characters-group-latin": "Latin",
+	"special-characters-group-latinextended": "Latin dọrọ",
+	"special-characters-group-ipa": "IPA",
+	"special-characters-group-symbols": "Nkárí",
+	"special-characters-group-greek": "Greek",
+	"special-characters-group-cyrillic": "Cyrillic",
+	"special-characters-group-arabic": "Arabiki",
+	"special-characters-group-persian": "Asụsụ Persia",
+	"special-characters-group-hebrew": "Asụsụ Hebrew",
+	"special-characters-group-bangla": "Bangla",
+	"special-characters-group-telugu": "Telugu",
+	"special-characters-group-sinhala": "Sinhala",
+	"special-characters-group-gujarati": "Gujarati",
+	"special-characters-group-thai": "Asụsụ Thai",
+	"special-characters-group-lao": "Asụsụ Laos",
+	"special-characters-group-khmer": "Khmer"
 }

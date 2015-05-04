@@ -2047,8 +2047,6 @@
 	"import-interwiki-history": "Kopyahon an gabos na mga bersyón para sa páhinang ini",
 	"import-interwiki-templates": "Ibali an gabos na mga panguyog",
 	"import-interwiki-submit": "Ipalaog",
-	"import-interwiki-namespace": "Destinasyon kan espasyong-pangaran:",
-	"import-interwiki-rootpage": "Destinasyon kan ugat pahina (opsyonal):",
 	"import-upload-filename": "Sagunsong Pangaran:",
 	"import-comment": "Komento:",
 	"importtext": "Paki-eksporta an sagunson gikan sa ginikanang wiki na gamit an [[Special:Export|gamiton pan-eksporta]].\nItagama ini sa saimong kompyuter asin ikarga ini digde.",

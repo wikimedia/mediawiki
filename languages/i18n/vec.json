@@ -1968,8 +1968,6 @@
 	"import-interwiki-history": "Copia l'intiera cronołogia de sta pàxena",
 	"import-interwiki-templates": "Tira dentro tuti i modèi",
 	"import-interwiki-submit": "Inporta",
-	"import-interwiki-namespace": "Namespace de destinassion:",
-	"import-interwiki-rootpage": "Pàjina prinsipałe de destinasion (opsionałe):",
 	"import-upload-filename": "Nome del file:",
 	"import-comment": "Comento:",
 	"importtext": "Se połe esportare el file da ła fonte wiki doparando ła [[Special:Export|funsion de esportasion]].\nSalveło so'l to conpiuter e carghelo cuà.",

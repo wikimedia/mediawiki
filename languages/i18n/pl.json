@@ -854,7 +854,7 @@
 	"revdelete-reason-dropdown": "* Najczęstsze powody usunięcia\n** Naruszenie praw autorskich\n** Niestosowny komentarz lub informacja naruszająca prywatność\n** Niestosowna nazwa użytkownika\n** Potencjalnie oszczercza informacja",
 	"revdelete-otherreason": "Inny lub dodatkowy powód:",
 	"revdelete-reasonotherlist": "Inny powód",
-	"revdelete-edit-reasonlist": "Edycja listy powodów usunięcia pliku",
+	"revdelete-edit-reasonlist": "Edytuj listę przyczyn usunięcia",
 	"revdelete-offender": "Autor wersji",
 	"suppressionlog": "Rejestr utajniania",
 	"suppressionlogtext": "Poniżej znajduje się lista usunięć i blokad utajnionych przed administratorami.\nZobacz [[Special:BlockList|rejestr blokad]], jeśli chcesz sprawdzić aktualne zakazy i blokady.",

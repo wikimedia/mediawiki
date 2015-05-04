@@ -1791,7 +1791,6 @@
 	"import-interwiki-sourcepage": "源頁：",
 	"import-interwiki-history": "審、誌同匯",
 	"import-interwiki-submit": "入匯",
-	"import-interwiki-namespace": "入名集：",
 	"import-upload-filename": "檔名：",
 	"import-comment": "註：",
 	"importtext": "請[[Special:Export|出匯]]儲之。\n再入匯於此。",
