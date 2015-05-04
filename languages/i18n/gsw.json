@@ -2047,8 +2047,6 @@
 	"import-interwiki-history": "Alli früeneri Versione vo dere Syte importiere",
 	"import-interwiki-templates": "Mit allene Vorlage",
 	"import-interwiki-submit": "Import",
-	"import-interwiki-namespace": "Ziilnamensruum:",
-	"import-interwiki-rootpage": "Ziilstammsyte (optional):",
 	"import-upload-filename": "Dateiname:",
 	"import-comment": "Grund:",
 	"importtext": "Datei iber d Spezialsyte [[Special:Export|Exportfunktion]] us em Quellwiki exportiere.\nDie uf em lokale Rächner spychere un derno do uffelade.",

@@ -2031,8 +2031,6 @@
 	"import-interwiki-history": "Копіровати вшыткы історічны верзії той сторінкы",
 	"import-interwiki-templates": "Загорнути вшыткы шаблоны",
 	"import-interwiki-submit": "Імпортовати",
-	"import-interwiki-namespace": "Цілёвый простор назв:",
-	"import-interwiki-rootpage": "Цїлёва корїнёва сторінка (необовязково):",
 	"import-upload-filename": "Назва файлу:",
 	"import-comment": "Коментарь:",
 	"importtext": "Просиме Вас, експортуйте сторінку з іншой вікі помочов [[Special:Export|інштрументу на експорт]], уложте файл на ваш діск а потім го заладуйте гев.",

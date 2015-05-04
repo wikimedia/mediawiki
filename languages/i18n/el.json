@@ -2157,8 +2157,6 @@
 	"import-interwiki-history": "Αντιγραφή όλων των εκδόσεων του ιστορικού για αυτή τη σελίδα",
 	"import-interwiki-templates": "Συμπερίληψη όλων των προτύπων",
 	"import-interwiki-submit": "Εισαγωγή",
-	"import-interwiki-namespace": "Προορισμός στον ονοματοχώρο:",
-	"import-interwiki-rootpage": "Ριζική σελίδα προορισμού (προαιρετικό):",
 	"import-upload-filename": "Όνομα αρχείου:",
 	"import-comment": "Σχόλιο:",
 	"importtext": "Παρακαλούμε εξαγάγετε το αρχείο από το πηγαίο wiki (χρησιμοποιώντας το [[Special:Export|εργαλείο εξαγωγής]]). \nΑποθηκεύστε το στον υπολογιστή σας και ανεβάστε το εδώ.",

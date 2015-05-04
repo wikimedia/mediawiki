@@ -1469,7 +1469,6 @@
 	"import-interwiki-history": "Ἀντιγράφειν ἁπάσας τὰς ἐκδόσεις τοῦ ἱστορικοῦ τῆσδε τῆς δέλτου",
 	"import-interwiki-templates": "Συμπερίληψις ἁπάντων τῶν προτύπων",
 	"import-interwiki-submit": "Εἰσάγειν",
-	"import-interwiki-namespace": "Ὀνοματεῖον προορισμός:",
 	"import-upload-filename": "Ὄνομα ἀρχείου:",
 	"import-comment": "Σχόλιον:",
 	"importstart": "Εἰσάγειν δέλτους...",
@@ -1493,9 +1492,7 @@
 	"import-invalid-interwiki": "Μὴ δυνατὴ ἡ εἰσαγωγὴ ἐκ τοῦ καθωρισμένου βίκι.",
 	"importlogpage": "Εἰσάγειν κατάλογον",
 	"importlogpagetext": "Διαχειριστικαὶ εἰσαγωγαὶ δέλτων ἐχουσῶν ἱστορικὸν μεταγραφῶν προερχόμενον ἐξ ἑτέρων βίκι.",
-	"import-logentry-upload": "εἰσήχθη τὸ [[$1]]",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|ἀναθεώρησις|ἀναθεωρήσεις}}",
-	"import-logentry-interwiki": "ὑπερδιαβικιπεποιημένη $1",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|ἀναθεώρησις|ἀναθεωρήσεις}} ἐκ τοῦ $2",
 	"tooltip-pt-userpage": "Ἡ δέλτος χρωμένου σου",
 	"tooltip-pt-anonuserpage": "Ἡ δέλτος χρωμένου περὶ τοῦ ip ὅνπερ μεταγράφεις ὡς",
@@ -2003,5 +2000,14 @@
 	"expandtemplates": "Ἐπεκτείνειν τὰ πρότυπα",
 	"expand_templates_output": "Ἀποτέλεσμα",
 	"expand_templates_ok": "εἶεν",
-	"expand_templates_preview": "Προθεώρησις"
+	"expand_templates_preview": "Προθεώρησις",
+	"special-characters-group-latin": "Λατινικόν",
+	"special-characters-group-latinextended": "Λατινικὸν προεκτεταμένον",
+	"special-characters-group-ipa": "ΔΦΑ",
+	"special-characters-group-symbols": "Σύμβολα",
+	"special-characters-group-greek": "Ἑλληνικόν",
+	"special-characters-group-cyrillic": "Κυριλλικόν",
+	"special-characters-group-arabic": "Ἀραβικόν",
+	"special-characters-group-hebrew": "Ἑβραϊκόν",
+	"special-characters-group-telugu": "Τελουγούϊον"
 }

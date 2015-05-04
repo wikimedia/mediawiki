@@ -1139,7 +1139,6 @@
 	"import-upload": "Uaslódaigh sonraí XML",
 	"import-token-mismatch": "Sonraí seisiún a bheith caillte. Déan iarracht arís.",
 	"importlogpage": "Log iompórtáil",
-	"import-logentry-interwiki": "traisvicithe $1",
 	"tooltip-pt-userpage": "Do leathanach úsáideora",
 	"tooltip-pt-anonuserpage": "Leathanach úsáideora don IP ina dhéanann tú do chuid athruithe",
 	"tooltip-pt-mytalk": "Do leathanach phlé",

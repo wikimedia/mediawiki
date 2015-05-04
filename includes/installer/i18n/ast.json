@@ -47,7 +47,6 @@
 	"config-env-bad": "Comprobóse l'entornu.\nNun pue instalar MediaWiki.",
 	"config-env-php": "PHP $1 ta instaláu.",
 	"config-env-hhvm": "HHVM $1 ta instaláu.",
-	"config-unicode-using-utf8": "Usando utf8_normalize.so de Brion Vibber pa la normalización Unicode.",
 	"config-unicode-using-intl": "Usando la [http://pecl.php.net/intl estensión intl PECL] pa la normalización Unicode.",
 	"config-unicode-pure-php-warning": "'''Avisu:''' La [http://pecl.php.net/intl estensión intl PECL] nun ta disponible pa xestionar la normalización Unicode; volviendo a la implementación lenta en PHP puru.\nSi xestiona un sitiu con un tráficu altu, tendría de lleer una migaya sobro la [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations normalización Unicode].",
 	"config-unicode-update-warning": "'''Avisu:''' La versión instalada del envoltoriu de normalización Unicode usa una versión antigua de la biblioteca [http://site.icu-project.org/ de los proyeutos ICU].\nTendría [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations d'anovala] si ye importante pa vusté usar Unicode.",

@@ -1010,5 +1010,21 @@
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|a wayas}} an folen $3 dhe $4 heb gasa daskedyans",
 	"logentry-move-move_redir": "$1 {{GENDER:$2|a wayas}} an folen $3 dhe $4 dres daskedyans",
 	"searchsuggest-search": "Hwilas",
-	"searchsuggest-containing": "ynni..."
+	"searchsuggest-containing": "ynni...",
+	"special-characters-group-latin": "Latin",
+	"special-characters-group-latinextended": "Latin ystynnys",
+	"special-characters-group-ipa": "IPA",
+	"special-characters-group-symbols": "Arwodhyow",
+	"special-characters-group-greek": "Greka",
+	"special-characters-group-arabic": "Arabek",
+	"special-characters-group-arabicextended": "Arabek ystynnys",
+	"special-characters-group-persian": "Persek",
+	"special-characters-group-hebrew": "Ebrow",
+	"special-characters-group-bangla": "Bengalek",
+	"special-characters-group-telugu": "Telugu",
+	"special-characters-group-sinhala": "Sinhala",
+	"special-characters-group-gujarati": "Gujarati",
+	"special-characters-group-thai": "Tay",
+	"special-characters-group-lao": "Laosek",
+	"special-characters-group-khmer": "Khmer"
 }

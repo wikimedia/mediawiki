@@ -1253,7 +1253,6 @@
 	"import": "Таргамс лопатнень",
 	"import-interwiki-templates": "Совавтомс весе лопа парцунтнэнь",
 	"import-interwiki-submit": "Таргамс",
-	"import-interwiki-namespace": "Норовазь лемпотмось:",
 	"import-upload-filename": "Файла лемесь:",
 	"import-comment": "Арсемат-мельть:",
 	"importstart": "Лопатне совавтовить...",
@@ -1605,5 +1604,8 @@
 	"duration-decades": "$1 {{PLURAL:$1|1=кеменьие|кеменьиеть}}",
 	"duration-centuries": "$1 {{PLURAL:$1|1=пинге|пингеть}}",
 	"duration-millennia": "$1 {{PLURAL:$1|1=тёжтьие|тёжтьиеть}}",
-	"expand_templates_preview": "Васнянь неевтезэ"
+	"expand_templates_preview": "Васнянь неевтезэ",
+	"special-characters-group-latin": "Латиница",
+	"special-characters-group-symbols": "Тешкстт",
+	"special-characters-group-cyrillic": "Кириллица"
 }

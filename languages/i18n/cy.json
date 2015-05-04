@@ -2137,8 +2137,6 @@
 	"import-interwiki-history": "Copïer yr holl fersiynau yn hanes y dudalen hon",
 	"import-interwiki-templates": "Cynhwyser pob nodyn",
 	"import-interwiki-submit": "Mewnforio",
-	"import-interwiki-namespace": "Parth y cyrchir ato:",
-	"import-interwiki-rootpage": "Tudalen wraidd y cyrchfan (dewisol):",
 	"import-upload-filename": "Enw'r ffeil:",
 	"import-comment": "Sylw:",
 	"importtext": "Allforiwch y ffeil o'r wici gwreiddiol trwy ddefnyddio'r [[Special:Export|nodwedd allforio]]. Rhowch hi ar gadw ar eich cyfrifiadur, ac wedyn ei huwchlwytho fan hyn.",

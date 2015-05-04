@@ -2061,8 +2061,6 @@
 	"import-interwiki-history": "Kopiraj sve verzije historije za ovu stranicu",
 	"import-interwiki-templates": "Uključi sve šablone",
 	"import-interwiki-submit": "Uvezi - Увези",
-	"import-interwiki-namespace": "Odredišni imenski prostor:",
-	"import-interwiki-rootpage": "Odredišna osnovna stranica (neobavezno):",
 	"import-upload-filename": "Naziv datoteke:",
 	"import-comment": "Komentar:",
 	"importtext": "Molimo Vas da izvezete datoteku iz izvornog wikija koristeći [[Special:Export|alat za izvoz]].\nSnimite je na Vašem računaru i pošaljite ovdje.",
