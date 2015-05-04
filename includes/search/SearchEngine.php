@@ -33,7 +33,7 @@ class SearchEngine {
 	/** @var string */
 	public $prefix = '';
 
-	/** @var int[] */
+	/** @var int[]|null */
 	public $namespaces = array( NS_MAIN );
 
 	/** @var int */
@@ -293,7 +293,7 @@ class SearchEngine {
 	 * Set which namespaces the search should include.
 	 * Give an array of namespace index numbers.
 	 *
-	 * @param array $namespaces
+	 * @param int[]|null $namespaces
 	 */
 	function setNamespaces( $namespaces ) {
 		$this->namespaces = $namespaces;
