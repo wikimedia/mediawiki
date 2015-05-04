@@ -345,7 +345,7 @@
 	"title-invalid-interwiki": "Title contains an interwiki link",
 	"title-invalid-talk-namespace": "The requested page title refers to a talk page that can not exist.",
 	"title-invalid-characters": "The requested page title contains invalid characters: \"$1\".",
-	"title-invalid-relative": "Title has relative path. Relative page titles (./, ../) are invalid, because they will often be unreachable when handled by user\"s browser.",
+	"title-invalid-relative": "Title has relative path. Relative page titles (./, ../) are invalid, because they will often be unreachable when handled by user's browser.",
 	"title-invalid-magic-tilde": "The requested page title contains invalid magic tilde sequence (<nowiki>~~~</nowiki>).",
 	"title-invalid-too-long": "The requested page title is too long. It must be no longer than $1 bytes in UTF-8 encoding.",
 	"title-invalid-leading-colon": "The requested page title contains an invalid colon at the beginning.",
