@@ -60,6 +60,7 @@
 	'ast' => 'asturianu',	# Asturian
 	'av' => 'авар',	# Avar
 	'avk' => 'Kotava', # Kotava
+	'awa' => 'अवधी',	# Awadhi
 	'ay' => 'Aymar aru',	# Aymara
 	'az' => 'azərbaycanca',	# Azerbaijani
 	'azb' => 'تورکجه',	# South Azerbaijani

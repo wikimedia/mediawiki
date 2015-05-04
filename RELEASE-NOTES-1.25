@@ -376,6 +376,11 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
+* Languages added:
+** awa (अवधी / Awadhi), thanks to translator 1AnuraagPandey;
+** bgn (بلوچی رخشانی / Western Balochi), thanks to translators
+   Baloch Afghanistan, Ibrahim khashrowdi and Rachitrali;
+** ses (Koyraboro Senni), thanks to translator Songhay.
 * (T66440) Kazakh (kk) wikis should no longer forcefully reset the user's
   interface language to kk where unexpected.
 * The Chinese conversion table was substantially updated to fix a lot of
