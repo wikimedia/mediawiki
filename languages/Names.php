@@ -41,9 +41,9 @@
 	'aa' => 'Qafár af',	# Afar
 	'ab' => 'Аҧсшәа',	# Abkhaz
 	'ace' => 'Acèh',	# Aceh
-	'aeb' => 'تونسي/Tûnsi',	# Tunisian Arabic (multiple scripts - defaults to Arabic)
+	'aeb' => 'تونسي/Tûnsî',	# Tunisian Arabic (multiple scripts - defaults to Arabic)
 	'aeb-arab' => 'تونسي',	# Tunisian Arabic (Arabic Script)
-	'aeb-latn' => 'Tûnsi',	# Tunisian Arabic (Latin Script)
+	'aeb-latn' => 'Tûnsî',	# Tunisian Arabic (Latin Script)
 	'af' => 'Afrikaans',	# Afrikaans
 	'ak' => 'Akan',		# Akan
 	'aln' => 'Gegë',	# Gheg Albanian
