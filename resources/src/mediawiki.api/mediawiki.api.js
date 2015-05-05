@@ -242,11 +242,9 @@
 					// Error handler
 					function ( code ) {
 						if ( code === 'badtoken' ) {
-							// Clear from cache
-							promises[ api.defaults.ajax.url ][ tokenType + 'Token' ] =
-								params.token = undefined;
-
+							api.badToken( tokenType );
 							// Try again, once
+							params.token = undefined;
 							return api.getToken( tokenType, params.assert ).then( function ( token ) {
 								params.token = token;
 								return api.post( params, ajaxOptions );
@@ -281,17 +279,16 @@
 
 				d = apiPromise
 					.then( function ( data ) {
-						// If token type is not available for this user,
-						// key '...token' is either missing or set to boolean false
 						if ( data.tokens && data.tokens[type + 'token'] ) {
 							return data.tokens[type + 'token'];
 						}
 
+						// If token type is not available for this user,
+						// key '...token' is either missing or set to boolean false
 						return $.Deferred().reject( 'token-missing', data );
 					}, function () {
 						// Clear promise. Do not cache errors.
 						delete promiseGroup[ type + 'Token' ];
-
 						// Pass on to allow the caller to handle the error
 						return this;
 					} )
@@ -306,6 +303,23 @@
 			}
 
 			return d;
+		},
+
+		/**
+		 * Indicate that the cached token for a certain action of the API is bad.
+		 *
+		 * Call this if you get a 'badtoken' error when using the token returned by #getToken.
+		 * You may also want to use #postWithToken instead, which invalidates bad cached tokens
+		 * automatically.
+		 *
+		 * @param {string} type Token type
+		 * @since 1.26
+		 */
+		badToken: function ( type ) {
+			var promiseGroup = promises[ this.defaults.ajax.url ];
+			if ( promiseGroup ) {
+				delete promiseGroup[ type + 'Token' ];
+			}
 		}
 	};
 
