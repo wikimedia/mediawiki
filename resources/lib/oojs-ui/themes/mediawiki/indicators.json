@@ -20,6 +20,10 @@
 			"ltr": "images/indicators/arrow-rtl.svg",
 			"rtl": "images/indicators/arrow-ltr.svg"
 		} },
-		"required": { "file": "images/indicators/required.svg" }
+		"required": { "file": "images/indicators/required.svg" },
+		"search": { "file": {
+			"ltr": "images/indicators/search-ltr.svg",
+			"rtl": "images/indicators/search-rtl.svg"
+		} }
 	}
 }

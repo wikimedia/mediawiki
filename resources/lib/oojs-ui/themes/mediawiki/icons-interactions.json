@@ -12,8 +12,8 @@
 			"ltr": "images/icons/browser-ltr.svg",
 			"rtl": "images/icons/browser-rtl.svg"
 		} },
+		"clear": { "file": "images/icons/clear.svg" },
 		"clock": { "file": "images/icons/clock.svg" },
-		"closeInput": { "file": "images/icons/closeInput.svg" },
 		"funnel": { "file": {
 			"ltr": "images/icons/funnel-ltr.svg",
 			"rtl": "images/icons/funnel-rtl.svg"
@@ -30,10 +30,6 @@
 		"logOut": { "file": {
 			"ltr": "images/icons/logOut-ltr.svg",
 			"rtl": "images/icons/logOut-rtl.svg"
-		} },
-		"magnifyingGlass": { "file": {
-			"ltr": "images/icons/magnifyingGlass-ltr.svg",
-			"rtl": "images/icons/magnifyingGlass-rtl.svg"
 		} },
 		"newWindow": { "file": {
 			"ltr": "images/icons/newWindow-ltr.svg",

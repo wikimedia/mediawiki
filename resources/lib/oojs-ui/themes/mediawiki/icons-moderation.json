@@ -20,7 +20,7 @@
 		}
 	},
 	"images": {
-		"block": { "file": "images/icons/block.svg" },
+		"block": { "file": "images/icons/block.svg", "variants": [ "destructive" ] },
 		"blockUndo": { "file": {
 			"ltr": "images/icons/blockUndo-ltr.svg",
 			"rtl": "images/icons/blockUndo-rtl.svg"

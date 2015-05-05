@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.11.0
+ * OOjs UI v0.11.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-04-30T01:42:35Z
+ * Date: 2015-05-05T00:40:57Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -458,6 +458,15 @@
 }
 .oo-ui-bookletLayout-outlinePanel > .oo-ui-outlineControlsWidget {
 	box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.25);
+}
+.oo-ui-indexLayout > .oo-ui-menuLayout-menu {
+	height: 3em;
+}
+.oo-ui-indexLayout > .oo-ui-menuLayout-content {
+	top: 3em;
+}
+.oo-ui-indexLayout-stackLayout > .oo-ui-panelLayout {
+	padding: 1.5em;
 }
 .oo-ui-fieldLayout {
 	display: block;
@@ -1525,11 +1534,11 @@
 	border-width: 9px;
 }
 .oo-ui-popupWidget-transitioning .oo-ui-popupWidget-popup {
-	-webkit-transition: width 100ms ease-in-out, height 100ms ease-in-out, left 100ms ease-in-out;
-	   -moz-transition: width 100ms ease-in-out, height 100ms ease-in-out, left 100ms ease-in-out;
-	    -ms-transition: width 100ms ease-in-out, height 100ms ease-in-out, left 100ms ease-in-out;
-	     -o-transition: width 100ms ease-in-out, height 100ms ease-in-out, left 100ms ease-in-out;
-	        transition: width 100ms ease-in-out, height 100ms ease-in-out, left 100ms ease-in-out;
+	-webkit-transition: width 0.1s ease-in-out, height 0.1s ease-in-out, left 0.1s ease-in-out;
+	   -moz-transition: width 0.1s ease-in-out, height 0.1s ease-in-out, left 0.1s ease-in-out;
+	    -ms-transition: width 0.1s ease-in-out, height 0.1s ease-in-out, left 0.1s ease-in-out;
+	     -o-transition: width 0.1s ease-in-out, height 0.1s ease-in-out, left 0.1s ease-in-out;
+	        transition: width 0.1s ease-in-out, height 0.1s ease-in-out, left 0.1s ease-in-out;
 }
 .oo-ui-popupWidget-head {
 	height: 2.5em;
@@ -1813,11 +1822,11 @@
 	border: solid 1px #cccccc;
 	box-shadow: inset 0 0 0 0 #347bff;
 	border-radius: 0.1em;
-	-webkit-transition: box-shadow 0.1s;
-	   -moz-transition: box-shadow 0.1s;
-	    -ms-transition: box-shadow 0.1s;
-	     -o-transition: box-shadow 0.1s;
-	        transition: box-shadow 0.1s;
+	-webkit-transition: box-shadow 0.1s ease-in-out;
+	   -moz-transition: box-shadow 0.1s ease-in-out;
+	    -ms-transition: box-shadow 0.1s ease-in-out;
+	     -o-transition: box-shadow 0.1s ease-in-out;
+	        transition: box-shadow 0.1s ease-in-out;
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
@@ -1831,11 +1840,11 @@
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled input,
 .oo-ui-textInputWidget.oo-ui-widget-enabled textarea {
-	-webkit-transition: border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1) box-shadow 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
-	   -moz-transition: border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1) box-shadow 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
-	    -ms-transition: border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1) box-shadow 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
-	     -o-transition: border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1) box-shadow 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
-	        transition: border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1) box-shadow 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+	-webkit-transition: border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+	   -moz-transition: border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+	    -ms-transition: border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+	     -o-transition: border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+	        transition: border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled input:focus,
 .oo-ui-textInputWidget.oo-ui-widget-enabled textarea:focus {
@@ -2134,6 +2143,42 @@
 	height: 2em;
 	margin: 0.5em 0 0.5em 0.5em;
 	opacity: 0.2;
+}
+.oo-ui-tabSelectWidget {
+	text-align: left;
+	white-space: nowrap;
+	overflow: hidden;
+	background-color: #dddddd;
+}
+.oo-ui-tabOptionWidget {
+	display: inline-block;
+	vertical-align: bottom;
+	padding: 0.35em 1em;
+	margin: 0.5em 0 0 0.75em;
+	border: 1px solid transparent;
+	border-bottom: none;
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+	color: #666666;
+	font-weight: bold;
+}
+.oo-ui-tabOptionWidget:hover {
+	background-color: rgba(255, 255, 255, 0.3);
+}
+.oo-ui-tabOptionWidget:active {
+	background-color: rgba(255, 255, 255, 0.8);
+}
+.oo-ui-tabOptionWidget.oo-ui-indicatorElement .oo-ui-labelElement-label {
+	padding-right: 1.5em;
+}
+.oo-ui-tabOptionWidget.oo-ui-indicatorElement .oo-ui-indicatorElement-indicator {
+	opacity: 0.5;
+}
+.oo-ui-selectWidget-pressed .oo-ui-tabOptionWidget.oo-ui-optionWidget-selected,
+.oo-ui-selectWidget-depressed .oo-ui-tabOptionWidget.oo-ui-optionWidget-selected,
+.oo-ui-tabOptionWidget.oo-ui-optionWidget-selected:hover {
+	background-color: #ffffff;
+	color: #333333;
 }
 .oo-ui-comboBoxWidget {
 	display: inline-block;
