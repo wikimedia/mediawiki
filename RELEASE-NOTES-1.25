@@ -255,7 +255,8 @@ production.
   Title::userCan() via the API.
 * Default type param for query list=watchlist and list=recentchanges has
   been changed from all types (e.g. including 'external') to 'edit|new|log'.
-* Added formatversion to format=json, still experimental.
+* Added formatversion to format=json. Still "experimental" as further changes
+  to the output formatting might still be made.
 * (T73020) Log event details are now always under a 'params' subkey for
   list=logevents, and a 'logparams' subkey for list=watchlist and
   list=recentchanges.
@@ -320,9 +321,10 @@ production.
 * (T35235) LogFormatter subclasses are now responsible for formatting log event
   parameters for the API.
 * Many modules have changed result data formats. While this shouldn't affect
-  clients not using the experimental formatversion=2015, code using
-  ApiResult::getResultData() and not using ApiResult::transformForBC() may need
-  updating.
+  clients not using the experimental formatversion=2, code using
+  ApiResult::getResultData() without the transformations for backwards
+  compatibility may need updating, as will code that wasn't following the old
+  conventions for API boolean output.
 * The following methods have been deprecated and may be removed in a future
   release:
   * ApiBase::getDescription
