@@ -33,90 +33,92 @@
  */
 class ReplicatedBagOStuff extends BagOStuff {
 	/** @var BagOStuff */
-	protected $mCache;
+	protected $writeStore;
 	/** @var BagOStuff */
-	protected $sCache;
+	protected $readStore;
 
 	/**
 	 * Constructor. Parameters are:
-	 *   - masterCache : Cache parameter structures, in the style required by $wgObjectCaches.
-	 *                   See the documentation of $wgObjectCaches for more detail.
-	 *   - slaveCache  : Cache parameter structures, in the style required by $wgObjectCaches.
-	 *                   See the documentation of $wgObjectCaches for more detail.
+	 *   - writeFactory : ObjectFactory::getObjectFromSpec parameters yeilding BagOStuff.
+	 *                    This object will be used for writes (e.g. the master DB).
+	 *   - readFactory  : ObjectFactory::getObjectFromSpec parameters yeilding BagOStuff.
+	 *                    This object will be used for reads (e.g. a slave DB).
 	 *
 	 * @param array $params
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 */
 	public function __construct( $params ) {
 		parent::__construct( $params );
 
-		if ( !isset( $params['masterCache'] ) ) {
-			throw new MWException( __METHOD__ . ': the "masterCache" parameter is required' );
-		} elseif ( !isset( $params['slaveCache'] ) ) {
-			throw new MWException( __METHOD__ . ': the "slaveCache" parameter is required' );
+		if ( !isset( $params['writeFactory'] ) ) {
+			throw new InvalidArgumentException(
+				__METHOD__ . ': the "writeFactory" parameter is required' );
+		} elseif ( !isset( $params['readFactory'] ) ) {
+			throw new InvalidArgumentException(
+				__METHOD__ . ': the "readFactory" parameter is required' );
 		}
 
-		$this->mCache = ( $params['masterCache'] instanceof BagOStuff )
-			? $params['masterCache']
-			: ObjectCache::newFromParams( $params['masterCache'] );
-		$this->sCache = ( $params['slaveCache'] instanceof BagOStuff )
-			? $params['slaveCache']
-			: ObjectCache::newFromParams( $params['slaveCache'] );
+		$this->writeStore = ( $params['writeFactory'] instanceof BagOStuff )
+			? $params['writeFactory']
+			: ObjectFactory::getObjectFromSpec( $params['writeFactory'] );
+		$this->readStore = ( $params['readFactory'] instanceof BagOStuff )
+			? $params['readFactory']
+			: ObjectFactory::getObjectFromSpec( $params['readFactory'] );
 	}
 
 	public function setDebug( $debug ) {
-		$this->mCache->setDebug( $debug );
-		$this->sCache->setDebug( $debug );
+		$this->writeStore->setDebug( $debug );
+		$this->readStore->setDebug( $debug );
 	}
 
 	public function get( $key, &$casToken = null ) {
-		return $this->sCache->get( $key, $casToken );
+		return $this->readStore->get( $key, $casToken );
 	}
 
 	public function getMulti( $keys ) {
-		return $this->sCache->getMulti( $keys );
+		return $this->readStore->getMulti( $keys );
 	}
 
 	public function set( $key, $value, $exptime = 0 ) {
-		return $this->mCache->set( $key, $value, $exptime );
+		return $this->writeStore->set( $key, $value, $exptime );
 	}
 
 	public function delete( $key ) {
-		return $this->mCache->delete( $key );
+		return $this->writeStore->delete( $key );
 	}
 
 	public function add( $key, $value, $exptime = 0 ) {
-		return $this->mCache->add( $key, $value, $exptime );
+		return $this->writeStore->add( $key, $value, $exptime );
 	}
 
 	public function incr( $key, $value = 1 ) {
-		return $this->mCache->incr( $key, $value );
+		return $this->writeStore->incr( $key, $value );
 	}
 
 	public function decr( $key ) {
-		return $this->mCache->decr( $key );
+		return $this->writeStore->decr( $key );
 	}
 
 	public function lock( $key, $timeout = 6, $expiry = 6 ) {
-		return $this->mCache->lock( $key, $timeout, $expiry );
+		return $this->writeStore->lock( $key, $timeout, $expiry );
 	}
 
 	public function unlock( $key ) {
-		return $this->mCache->unlock( $key );
+		return $this->writeStore->unlock( $key );
 	}
 
 	public function merge( $key, $callback, $exptime = 0, $attempts = 10 ) {
-		return $this->mCache->merge( $key, $callback, $exptime, $attempts );
+		return $this->writeStore->merge( $key, $callback, $exptime, $attempts );
 	}
 
 	public function getLastError() {
-		return ( $this->mCache->getLastError() != self::ERR_NONE )
-			? $this->mCache->getLastError()
-			: $this->sCache->getLastError();
+		return ( $this->writeStore->getLastError() != self::ERR_NONE )
+			? $this->writeStore->getLastError()
+			: $this->readStore->getLastError();
 	}
 
 	public function clearLastError() {
-		$this->mCache->clearLastError();
-		$this->sCache->clearLastError();
+		$this->writeStore->clearLastError();
+		$this->readStore->clearLastError();
 	}
 }
