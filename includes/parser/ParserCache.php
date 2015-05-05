@@ -57,7 +57,7 @@ class ParserCache {
 	}
 
 	/**
-	 * @param Article $article
+	 * @param WikiPage $article
 	 * @param string $hash
 	 * @return mixed|string
 	 */
@@ -73,7 +73,7 @@ class ParserCache {
 	}
 
 	/**
-	 * @param Article $article
+	 * @param WikiPage $article
 	 * @return mixed|string
 	 */
 	protected function getOptionsKey( $article ) {
@@ -91,7 +91,7 @@ class ParserCache {
 	 * English preferences. That's why we take into account *all* user
 	 * options. (r70809 CR)
 	 *
-	 * @param Article $article
+	 * @param WikiPage $article
 	 * @param ParserOptions $popts
 	 * @return string
 	 */
@@ -103,7 +103,7 @@ class ParserCache {
 
 	/**
 	 * Retrieve the ParserOutput from ParserCache, even if it's outdated.
-	 * @param Article $article
+	 * @param WikiPage $article
 	 * @param ParserOptions $popts
 	 * @return ParserOutput|bool False on failure
 	 */
@@ -126,7 +126,7 @@ class ParserCache {
 	 *
 	 * @todo Document parameter $useOutdated
 	 *
-	 * @param Article $article
+	 * @param WikiPage $article
 	 * @param ParserOptions $popts
 	 * @param bool $useOutdated (default true)
 	 * @return bool|mixed|string
@@ -176,7 +176,7 @@ class ParserCache {
 	 * Retrieve the ParserOutput from ParserCache.
 	 * false if not found or outdated.
 	 *
-	 * @param Article $article
+	 * @param WikiPage $article
 	 * @param ParserOptions $popts
 	 * @param bool $useOutdated (default false)
 	 *
