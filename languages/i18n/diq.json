@@ -560,7 +560,7 @@
 	"preview": "Verqayt",
 	"showpreview": "Verqayti bımocne",
 	"showdiff": "Vurnayışan bımocne",
-	"anoneditwarning": "<strong>İqaz:</strong> Şıma be hesabê xo nêkewtê cı. \nAdresê şımaê IP tarixê vırnayışê na pele de do qeyd bo.",
+	"anoneditwarning": "<strong>İqaz:</strong> Şıma be hesabê xo nêkewtê cı. \nAdresê şımayê IP tarixê vırnayışê na pele de do qeyd bo. Eke şıma <strong>[$1 cıkewê]</strong> ya zi <strong>[$2 hesab vırazê]</strong>, vurnayışê şıma be zewbina kare ra nameyê şıma rê bar beno.",
 	"anonpreviewwarning": "\"Şıma be hesabê xo nêkewtê cı. Eke qeyd kerê, adresê şımaê IP tarixê vırnayışê na pele de do qeyd bo.\"",
 	"missingsummary": "'''DİQET:''' Şıma jû xulasa nênuşte.\nEke şıma \"{{int:savearticle}}\" reyna bıtıknê, vırnayışê şıma bê xulasa qeyd beno.",
 	"missingcommenttext": "Cêr de jû fıkır bınusên, şıma rê zehmet.",

@@ -482,6 +482,7 @@
 	"semiprotectedpagewarning": "'''Fiiro gaar ah:''' Boggaan waa la difaacay si ee isticmaalada isdiiwaan geliyay kaliya wax uuga badalaan.\nFariinta gudagalihii ugu danbeeyay hoostaan ee ku qorontahay:",
 	"cascadeprotectedwarning": "'''Digniin:''' Boggaan waa la difaacay si ee maamulada kaliya wax uuga badalaan, sababtoo ah waxaa ku jirto kaskadyadaan la difaacay oo soo sosocoto {{PLURAL:$1|bog|boggaga}}:",
 	"templatesused": "{{PLURAL:$1|Tusmo|Tusmooyinka}} lagu isticmaalay boggaan:",
+	"templatesusedpreview": "{{PLURAL:$1|Tusmo|Tusmooyin}} loo adeegsaday horfiirintaan:",
 	"template-protected": "(la difaacay)",
 	"template-semiprotected": "(difaaca-fudud)",
 	"hiddencategories": "Boggaan wuxuu ka mid yahay {{PLURAL:$1|1 qeyb oo qarsoon|$1 oo ah qeybaha qarsoon}}:",
@@ -1113,6 +1114,9 @@
 	"api-error-unknown-code": "Qalad la aqoon: \"$1\"",
 	"api-error-unknown-warning": "Digniin la aqoon: $1",
 	"api-error-uploaddisabled": "Soo gelinta waa laga xiray wikigaan.",
+	"limitreport-title": "Faahin caddeymo:",
 	"limitreport-cputime": "Waqtiga adeegsiga CPU",
-	"limitreport-walltime": "Waqtiga dhabta ah adeegsiga"
+	"limitreport-walltime": "Waqtiga dhabta ah adeegsiga",
+	"limitreport-ppvisitednodes": "Tirooyinka gutinada ee maskaxda",
+	"limitreport-ppgeneratednodes": "Gutinada ay horay u soo booqatay maskaxda"
 }

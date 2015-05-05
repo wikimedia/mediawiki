@@ -98,5 +98,6 @@
 	"api-help-param-required": "Dëse Parameter ass obligatoresch.",
 	"api-help-datatypes-header": "Datentypen",
 	"api-help-param-type-user": "Typ: {{PLURAL:$1|1=Benotzernumm|2=Lëscht vu Benotzernimm}}",
-	"api-help-examples": "{{PLURAL:$1|Beispill|Beispiler}}:"
+	"api-help-examples": "{{PLURAL:$1|Beispill|Beispiler}}:",
+	"api-help-permissions": "{{PLURAL:$1|Autorisatioun|Autorisatiounen}}:"
 }

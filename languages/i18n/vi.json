@@ -3108,6 +3108,8 @@
 	"tags-deactivate-reason": "Lý do:",
 	"tags-deactivate-not-allowed": "Không thể vô hiệu hóa thẻ \"$1\".",
 	"tags-deactivate-submit": "Vô hiệu",
+	"tags-apply-no-permission": "Bạn không có quyền áp dụng các thẻ thay đổi cùng các thay đổi của bạn.",
+	"tags-apply-not-allowed-one": "Thẻ \"$1\" không được phép được áp dụng thủ công.",
 	"tags-edit-title": "Chỉnh sửa thẻ",
 	"tags-edit-manage-link": "Quản lý thẻ",
 	"tags-edit-revision-selected": "{{PLURAL:$1|Phiên bản|Các phiên bản}} [[:$2]] được chọn:",
