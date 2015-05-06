@@ -77,6 +77,7 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 		try {
 			$conn->multi( Redis::PIPELINE );
 			$conn->hSetNx( $this->getQueueTypesKey(), $type, 'enabled' );
+			$conn->sAdd( $this->getWikiSetKey(), $wiki );
 			$conn->hSet( $this->getReadyQueueKey(), $this->encQueueName( $type, $wiki ), time() );
 			$conn->exec();
 
@@ -195,6 +196,13 @@ class JobQueueAggregatorRedis extends JobQueueAggregator {
 	 */
 	private function getQueueTypesKey() {
 		return "jobqueue:aggregator:h-queue-types:v2"; // global
+	}
+
+	/**
+	 * @return string
+	 */
+	private function getWikiSetKey() {
+		return "jobqueue:aggregator:s-wikis:v2"; // global
 	}
 
 	/**
