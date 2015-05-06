@@ -414,7 +414,7 @@
 	"title-invalid-interwiki": "标题包含跨wiki链接",
 	"title-invalid-talk-namespace": "请求的页面标题引用了一个不能存在的讨论页。",
 	"title-invalid-characters": "请求的页面标题包含无效字符：“$1”。",
-	"title-invalid-relative": "标题有相对路径。相关的页面标题（./, ../）无效，因为用户浏览器经常无法进入这些页面。",
+	"title-invalid-relative": "标题有相对路径。相关的页面标题（./, ../）无效，因为用户浏览器经常无法到达这些页面。",
 	"title-invalid-magic-tilde": "请求的页面标题包含无效的连续波浪（<nowiki>~~~</nowiki>）。",
 	"title-invalid-too-long": "所请求的网页标题太长。标题不能超过$1个字节。",
 	"title-invalid-leading-colon": "请求的页面标题开头包含一个无效的冒号。",

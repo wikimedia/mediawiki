@@ -333,6 +333,7 @@
 	"no-null-revision": "Nun se può crià na nnova revisione nulla p' 'a paggena \"$1\"",
 	"badtitle": "'O nnomme nun è jùsto",
 	"badtitletext": "'O titolo d' 'a paggena richiesta è abbacante, sbagliato o pure nun è linkato buono a 'o titolo inter-lengua o inter-wiki.\nPutesse pure tené uno o cchiù carattere ca nun se ponno usà dint'e titule.",
+	"title-invalid-interwiki": "'O titulo cuntene nu link interwiki",
 	"perfcached": "Può darse, ch' 'e ddate ca stanno ccà (\"ncache\") nun song'agghiurnate. Nu massimo 'e {{PLURAL:$1|unu risultato è|$1 risultate songhe}} a disposizione 'n \"cache\".",
 	"perfcachedts": "'E ddate ca stanno ccà songhe asciute 'a na copia \"cache\" d' 'o database, 'o cuale tene l'úrdemo agghiurnamento 'o $1. Nu massimo 'e {{PLURAL:$4|unu risultato è|$4 risultate songhe}} a disposizione dint'a \"cache\".",
 	"querypage-no-updates": "Ll'agghiurnamente pe' sta paggena songo sospese mmo'. 'E ddate cuntenute ccà nun s'agghiurnarranno.",
