@@ -62,7 +62,14 @@ class ExtensionRegistry {
 	}
 
 	public function __construct() {
-		$this->cache = ObjectCache::newAccelerator( array(), CACHE_NONE );
+		// We use a try/catch instead of the $fallback parameter because
+		// we don't want to fail here if $wgObjectCaches is not configured
+		// properly for APC setup
+		try {
+			$this->cache = ObjectCache::newAccelerator( array() );
+		} catch ( MWException $e ) {
+			$this->cache = new EmptyBagOStuff();
+		}
 	}
 
 	/**
