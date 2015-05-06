@@ -39,10 +39,6 @@ class BadTitleError extends ErrorPageError {
 				parent::__construct( 'badtitle', 'badtitletext', array() );
 			} else {
 				$errorMessageParams = $msg->getErrorMessageParameters();
-				$titleText = $msg->getTitleText();
-				if ( $titleText ) {
-					$errorMessageParams[] = $titleText;
-				}
 				parent::__construct( 'badtitle', $errorMessage, $errorMessageParams );
 			}
 		} else {
