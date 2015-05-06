@@ -221,11 +221,18 @@ $wgLocalStylePath = false;
 $wgExtensionAssetsPath = false;
 
 /**
+ * Filesystem extensions directory.
+ * Defaults to "{$IP}/extensions".
+ * @since 1.25
+ */
+$wgExtensionDirectory = "{$IP}/extensions";
+
+/**
  * Filesystem stylesheets directory.
  * Defaults to "{$IP}/skins".
  * @since 1.3
  */
-$wgStyleDirectory = false;
+$wgStyleDirectory = "{$IP}/skins";
 
 /**
  * The URL path for primary article page views. This path should contain $1,
