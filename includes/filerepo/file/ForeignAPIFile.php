@@ -219,11 +219,15 @@ class ForeignAPIFile extends File {
 	}
 
 	/**
-	 * @param string $method
+	 * @param string $type
 	 * @return int|null|string
 	 */
-	public function getUser( $method = 'text' ) {
-		return isset( $this->mInfo['user'] ) ? strval( $this->mInfo['user'] ) : null;
+	public function getUser( $type = 'text' ) {
+		if ( $type == 'text' ) {
+			return isset( $this->mInfo['user'] ) ? strval( $this->mInfo['user'] ) : null;
+		} elseif ( $type == 'id' ) {
+			return 0; // What makes sense here, for a remote user?
+		}
 	}
 
 	/**

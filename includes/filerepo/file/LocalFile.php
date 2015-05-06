@@ -734,7 +734,7 @@ class LocalFile extends File {
 		if ( $type == 'text' ) {
 			return $this->user_text;
 		} elseif ( $type == 'id' ) {
-			return $this->user;
+			return (int)$this->user;
 		}
 	}
 
@@ -753,7 +753,7 @@ class LocalFile extends File {
 	function getBitDepth() {
 		$this->load();
 
-		return $this->bits;
+		return (int)$this->bits;
 	}
 
 	/**

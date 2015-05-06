@@ -328,7 +328,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 						$rev['user'] = $row->ar_user_text;
 					}
 					if ( $fld_userid ) {
-						$rev['userid'] = $row->ar_user;
+						$rev['userid'] = (int)$row->ar_user;
 					}
 				}
 			}

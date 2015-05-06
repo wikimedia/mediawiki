@@ -340,7 +340,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		}
 
 		// Any rows where we can't view the user were filtered out in the query.
-		$vals['userid'] = $row->rev_user;
+		$vals['userid'] = (int)$row->rev_user;
 		$vals['user'] = $row->rev_user_text;
 		if ( $row->rev_deleted & Revision::DELETED_USER ) {
 			$vals['userhidden'] = true;

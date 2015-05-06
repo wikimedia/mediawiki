@@ -485,7 +485,7 @@ class ArchivedFile {
 		if ( $type == 'text' ) {
 			return $this->user_text;
 		} elseif ( $type == 'id' ) {
-			return $this->user;
+			return (int)$this->user;
 		}
 
 		throw new MWException( "Unknown type '$type'." );
