@@ -407,8 +407,8 @@ class ApiQuery extends ApiBase {
 			$pages[$fakeId] = $vals;
 		}
 		// Report any invalid titles
-		foreach ( $pageSet->getInvalidTitles() as $fakeId => $title ) {
-			$pages[$fakeId] = array( 'title' => $title, 'invalid' => true );
+		foreach ( $pageSet->getInvalidTitlesAndReasons() as $fakeId => $data ) {
+			$pages[$fakeId] = $data + array( 'invalid' => true );
 		}
 		// Report any missing page ids
 		foreach ( $pageSet->getMissingPageIDs() as $pageid ) {
