@@ -134,7 +134,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	 * @return int
 	 */
 	function insertId() {
-		return $this->mConn->insert_id;
+		return (int)$this->mConn->insert_id;
 	}
 
 	/**

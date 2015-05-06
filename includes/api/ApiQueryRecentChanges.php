@@ -458,7 +458,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				}
 
 				if ( $this->fld_userid ) {
-					$vals['userid'] = $row->rc_user;
+					$vals['userid'] = (int)$row->rc_user;
 				}
 
 				if ( !$row->rc_user ) {
