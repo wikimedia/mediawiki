@@ -74,6 +74,9 @@ if ( $wgStylePath === false ) {
 if ( $wgLocalStylePath === false ) {
 	$wgLocalStylePath = "$wgScriptPath/skins";
 }
+if ( $wgExtensionDirectory === false ) {
+	$wgExtensionDirectory = "$IP/extensions";
+}
 if ( $wgStyleDirectory === false ) {
 	$wgStyleDirectory = "$IP/skins";
 }

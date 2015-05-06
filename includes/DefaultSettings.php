@@ -222,6 +222,13 @@ $wgExtensionAssetsPath = false;
 
 /**
  * Filesystem stylesheets directory.
+ * Defaults to "{$IP}/extensions".
+ * @since 1.25
+ */
+$wgExtensionDirectory = false;
+
+/**
+ * Filesystem stylesheets directory.
  * Defaults to "{$IP}/skins".
  * @since 1.3
  */
