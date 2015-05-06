@@ -59,7 +59,6 @@ class ImageBuilder extends Maintenance {
 
 	public function execute() {
 		$this->dbw = wfGetDB( DB_MASTER );
-		$this->maxLag = 10; # if slaves are lagged more than 10 secs, wait
 		$this->dryrun = $this->hasOption( 'dry-run' );
 		if ( $this->dryrun ) {
 			$GLOBALS['wgReadOnly'] = 'Dry run mode, image upgrades are suppressed';

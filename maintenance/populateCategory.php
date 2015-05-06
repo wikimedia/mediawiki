@@ -58,12 +58,6 @@ TEXT;
 			true
 		);
 		$this->addOption(
-			'max-slave-lag',
-			'If slave lag exceeds this many seconds, wait until it drops before continuing. Default: 10',
-			false,
-			true
-		);
-		$this->addOption(
 			'throttle',
 			'Wait this many milliseconds after each category. Default: 0',
 			false,
@@ -74,13 +68,9 @@ TEXT;
 
 	public function execute() {
 		$begin = $this->getOption( 'begin', '' );
-		$maxSlaveLag = $this->getOption( 'max-slave-lag', 10 );
 		$throttle = $this->getOption( 'throttle', 0 );
 		$force = $this->getOption( 'force', false );
-		$this->doPopulateCategory( $begin, $maxSlaveLag, $throttle, $force );
-	}
 
-	private function doPopulateCategory( $begin, $maxlag, $throttle, $force ) {
 		$dbw = wfGetDB( DB_MASTER );
 
 		if ( !$force ) {

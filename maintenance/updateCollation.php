@@ -24,8 +24,6 @@
  * @author Aryeh Gregor (Simetrical)
  */
 
-#$optionsWithArgs = array( 'begin', 'max-slave-lag' );
-
 require_once __DIR__ . '/Maintenance.php';
 
 /**
