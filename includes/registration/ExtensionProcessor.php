@@ -274,7 +274,7 @@ class ExtensionProcessor implements Processor {
 		if ( isset( $info['config'] ) ) {
 			foreach ( $info['config'] as $key => $val ) {
 				if ( $key[0] !== '@' ) {
-					$this->globals["wg$key"] = $val;
+					$this->globals["$key"] = $val;
 				}
 			}
 		}
