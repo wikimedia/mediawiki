@@ -235,14 +235,14 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			}
 
 			$data = array(
-				'userid' => $row->user_id,
+				'userid' => (int)$row->user_id,
 				'name' => $row->user_name,
 			);
 
 			if ( $fld_blockinfo && !is_null( $row->ipb_by_text ) ) {
-				$data['blockid'] = $row->ipb_id;
+				$data['blockid'] = (int)$row->ipb_id;
 				$data['blockedby'] = $row->ipb_by_text;
-				$data['blockedbyid'] = $row->ipb_by;
+				$data['blockedbyid'] = (int)$row->ipb_by;
 				$data['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $row->ipb_timestamp );
 				$data['blockreason'] = $row->ipb_reason;
 				$data['blockexpiry'] = $row->ipb_expiry;

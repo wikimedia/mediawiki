@@ -277,7 +277,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 
 				$vals = array();
 				if ( $fld_pageid ) {
-					$vals['pageid'] = $row->page_id;
+					$vals['pageid'] = (int)$row->page_id;
 				}
 				if ( $fld_title ) {
 					ApiQueryBase::addTitleInfo( $vals,
