@@ -170,13 +170,13 @@ if ( !function_exists( 'hash_equals' ) ) {
  * This queues an extension to be loaded through
  * the ExtensionRegistry system.
  *
- * @param string $name Name of the extension to load
+ * @param string $ext Name of the extension to load
  * @param string|null $path Absolute path of where to find the extension.json file
  */
-function wfLoadExtension( $name, $path = null ) {
+function wfLoadExtension( $ext, $path = null ) {
 	if ( !$path ) {
-		global $IP;
-		$path = "$IP/extensions/$name/extension.json";
+		global $wgExtensionDirectory;
+		$path = "$wgExtensionDirectory/$ext/extension.json";
 	}
 	ExtensionRegistry::getInstance()->queue( $path );
 }
@@ -194,10 +194,10 @@ function wfLoadExtension( $name, $path = null ) {
  * @param string[] $exts Array of extension names to load
  */
 function wfLoadExtensions( array $exts ) {
-	global $IP;
+	global $wgExtensionDirectory;
 	$registry = ExtensionRegistry::getInstance();
 	foreach ( $exts as $ext ) {
-		$registry->queue( "$IP/extensions/$ext/extension.json" );
+		$registry->queue( "$wgExtensionDirectory/$ext/extension.json" );
 	}
 }
 
@@ -205,13 +205,13 @@ function wfLoadExtensions( array $exts ) {
  * Load a skin
  *
  * @see wfLoadExtension
- * @param string $name Name of the extension to load
+ * @param string $skin Name of the extension to load
  * @param string|null $path Absolute path of where to find the skin.json file
  */
-function wfLoadSkin( $name, $path = null ) {
+function wfLoadSkin( $skin, $path = null ) {
 	if ( !$path ) {
-		global $IP;
-		$path = "$IP/skins/$name/skin.json";
+		global $wgStyleDirectory;
+		$path = "$wgStyleDirectory/$skin/skin.json";
 	}
 	ExtensionRegistry::getInstance()->queue( $path );
 }
@@ -223,10 +223,10 @@ function wfLoadSkin( $name, $path = null ) {
  * @param string[] $skins Array of extension names to load
  */
 function wfLoadSkins( array $skins ) {
-	global $IP;
+	global $wgStyleDirectory;
 	$registry = ExtensionRegistry::getInstance();
 	foreach ( $skins as $skin ) {
-		$registry->queue( "$IP/skins/$skin/skin.json" );
+		$registry->queue( "$wgStyleDirectory/$skin/skin.json" );
 	}
 }
 
