@@ -1709,9 +1709,10 @@ class Linker {
 	 * Currently unused.
 	 *
 	 * @param array $tree Return value of ParserOutput::getSections()
+	 * @param string|Language|bool $lang Language for the toc title, defaults to user language
 	 * @return string HTML fragment
 	 */
-	public static function generateTOC( $tree ) {
+	public static function generateTOC( $tree, $lang = false ) {
 		$toc = '';
 		$lastLevel = 0;
 		foreach ( $tree as $section ) {
@@ -1730,7 +1731,7 @@ class Linker {
 			$lastLevel = $section['toclevel'];
 		}
 		$toc .= self::tocLineEnd();
-		return self::tocList( $toc );
+		return self::tocList( $toc, $lang );
 	}
 
 	/**

@@ -2302,8 +2302,10 @@ abstract class ApiBase extends ContextSource {
 	 *
 	 * @param string[] &$help Array of help data
 	 * @param array $options Options passed to ApiHelp::getHelp
+	 * @param array &$tocData If a TOC is being generated, this array has keys
+	 *   as anchors in the page and values as for Linker::generateTOC().
 	 */
-	public function modifyHelp( array &$help, array $options ) {
+	public function modifyHelp( array &$help, array $options, array &$tocData ) {
 	}
 
 	/**@}*/

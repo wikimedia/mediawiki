@@ -420,6 +420,8 @@ $module: ApiBase Module object
 $module: ApiBase Module object
 &$help: Array of HTML strings to be joined for the output.
 $options: Array Options passed to ApiHelp::getHelp
+&$tocData: Array If a TOC is being generated, this array has keys as anchors in
+the page and values as for Linker::generateTOC().
 
 'ApiMain::moduleManager': Called when ApiMain has finished initializing its
 module manager. Can be used to conditionally register API modules.

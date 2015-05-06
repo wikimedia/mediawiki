@@ -82,6 +82,7 @@ class ApiHelp extends ApiBase {
 	 *  - submodules: (bool) Include help for submodules of the current module
 	 *  - recursivesubmodules: (bool) Include help for submodules recursively
 	 *  - helptitle: (string) Title to link for additional modules' help. Should contain $1.
+	 *  - toc: (bool) Include a table of contents
 	 *
 	 * @param IContextSource $context
 	 * @param ApiBase[]|ApiBase $modules
@@ -97,6 +98,9 @@ class ApiHelp extends ApiBase {
 
 		$out = $context->getOutput();
 		$out->addModules( 'mediawiki.apihelp' );
+		if ( !empty( $options['toc'] ) ) {
+			$out->addModules( 'mediawiki.toc' );
+		}
 		$out->setPageTitle( $context->msg( 'api-help-title' ) );
 
 		$cacheKey = null;
@@ -107,6 +111,7 @@ class ApiHelp extends ApiBase {
 			if ( $cacheHelpTimeout > 0 ) {
 				// Get help text from cache if present
 				$cacheKey = wfMemcKey( 'apihelp', $modules[0]->getModulePath(),
+					$options['toc'] ? 1 : 0,
 					str_replace( ' ', '_', SpecialVersion::getVersion( 'nodb' ) ) );
 				$cached = $wgMemc->get( $cacheKey );
 				if ( $cached ) {
@@ -133,7 +138,11 @@ class ApiHelp extends ApiBase {
 		}
 
 		$haveModules = array();
-		$out->addHTML( self::getHelpInternal( $context, $modules, $options, $haveModules ) );
+		$html = self::getHelpInternal( $context, $modules, $options, $haveModules );
+		if ( !empty( $options['toc'] ) && $haveModules ) {
+			$out->addHTML( Linker::generateTOC( $haveModules, $context->getLanguage() ) );
+		}
+		$out->addHTML( $html );
 
 		$helptitle = isset( $options['helptitle'] ) ? $options['helptitle'] : null;
 		$html = self::fixHelpLinks( $out->getHTML(), $helptitle, $haveModules );
@@ -150,7 +159,7 @@ class ApiHelp extends ApiBase {
 	 *
 	 * @param string $html
 	 * @param string|null $helptitle Title to link to rather than api.php, must contain '$1'
-	 * @param array $localModules Modules to link within the current page
+	 * @param array $localModules Keys are modules to link within the current page, values are ignored
 	 * @return string
 	 */
 	public static function fixHelpLinks( $html, $helptitle = null, $localModules = array() ) {
@@ -212,11 +221,16 @@ class ApiHelp extends ApiBase {
 	) {
 		$out = '';
 
-		$level = min( 6, empty( $options['headerlevel'] ) ? 2 : $options['headerlevel'] );
-		$options['headerlevel'] = $level;
+		$level = empty( $options['headerlevel'] ) ? 2 : $options['headerlevel'];
+		if ( empty( $options['tocnumber'] ) ) {
+			$tocnumber = array( 2 => 0 );
+		} else {
+			$tocnumber = &$options['tocnumber'];
+		}
 
 		foreach ( $modules as $module ) {
-			$haveModules[$module->getModulePath()] = true;
+			$tocnumber[$level]++;
+			$path = $module->getModulePath();
 			$module->setContext( $context );
 			$help = array(
 				'header' => '',
@@ -228,8 +242,13 @@ class ApiHelp extends ApiBase {
 				'submodules' => '',
 			);
 
-			if ( empty( $options['noheader'] ) ) {
-				$path = $module->getModulePath();
+			if ( empty( $options['noheader'] ) || !empty( $options['toc'] ) ) {
+				$anchor = $path;
+				$i = 1;
+				while ( isset( $haveModules[$anchor] ) ) {
+					$anchor = $path . '|' . ++$i;
+				}
+
 				if ( $module->isMain() ) {
 					$header = $context->msg( 'api-help-main-header' )->parse();
 				} else {
@@ -241,10 +260,22 @@ class ApiHelp extends ApiBase {
 							$context->msg( 'parentheses', $module->getModulePrefix() )->parse();
 					}
 				}
-				$help['header'] .= Html::element( "h$level",
-					array( 'id' => $path, 'class' => 'apihelp-header' ),
-					$header
+				$haveModules[$anchor] = array(
+					'toclevel' => count( $tocnumber ),
+					'level' => $level,
+					'anchor' => $anchor,
+					'line' => $header,
+					'number' => join( '.', $tocnumber ),
+					'index' => false,
 				);
+				if ( empty( $options['noheader'] ) ) {
+					$help['header'] .= Html::element( 'h' . min( 6, $level ),
+						array( 'id' => $anchor, 'class' => 'apihelp-header' ),
+						$header
+					);
+				}
+			} else {
+				$haveModules[$path] = true;
 			}
 
 			$links = array();
@@ -641,6 +672,15 @@ class ApiHelp extends ApiBase {
 				$help['examples'] .= Html::closeElement( 'div' );
 			}
 
+			$subtocnumber = $tocnumber;
+			$subtocnumber[$level + 1] = 0;
+			$suboptions = array(
+				'submodules' => $options['recursivesubmodules'],
+				'headerlevel' => $level + 1,
+				'tocnumber' => &$subtocnumber,
+				'noheader' => false,
+			) + $options;
+
 			if ( $options['submodules'] && $module->getModuleManager() ) {
 				$manager = $module->getModuleManager();
 				$submodules = array();
@@ -651,16 +691,13 @@ class ApiHelp extends ApiBase {
 						$submodules[] = $manager->getModule( $name );
 					}
 				}
-				$help['submodules'] .= self::getHelpInternal( $context, $submodules, array(
-					'submodules' => $options['recursivesubmodules'],
-					'headerlevel' => $level + 1,
-					'noheader' => false,
-				) + $options, $haveModules );
+				$help['submodules'] .= self::getHelpInternal( $context, $submodules, $suboptions, $haveModules );
+				$numSubmodules = count( $submodules );
 			}
 
-			$module->modifyHelp( $help, $options );
+			$module->modifyHelp( $help, $suboptions, $haveModules );
 
-			Hooks::run( 'APIHelpModifyOutput', array( $module, &$help, $options ) );
+			Hooks::run( 'APIHelpModifyOutput', array( $module, &$help, $suboptions, &$haveModules ) );
 
 			$out .= join( "\n", $help );
 		}
