@@ -112,9 +112,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 				: wfTimestamp( TS_ISO_8601, $timestamp );
 		} else {
 			// First, log the invalid titles
-			foreach ( $pageSet->getInvalidTitles() as $title ) {
-				$r = array();
-				$r['title'] = $title;
+			foreach ( $pageSet->getInvalidTitlesAndReasons() as $r ) {
 				$r['invalid'] = true;
 				$result[] = $r;
 			}

@@ -58,7 +58,7 @@ class ApiPageSet extends ApiBase {
 	private $mGoodTitles = array();
 	private $mMissingPages = array(); // [ns][dbkey] => fake page_id
 	private $mMissingTitles = array();
-	private $mInvalidTitles = array();
+	private $mInvalidTitles = array(); // [fake_page_id] => array( 'title' => $title, 'invalidreason' => $reason )
 	private $mMissingPageIDs = array();
 	private $mRedirectTitles = array();
 	private $mSpecialTitles = array();
@@ -396,9 +396,22 @@ class ApiPageSet extends ApiBase {
 	/**
 	 * Titles that were deemed invalid by Title::newFromText()
 	 * The array's index will be unique and negative for each item
+	 * @deprecated since 1.26, use self::getInvalidTitlesAndReasons()
 	 * @return string[] Array of strings (not Title objects)
 	 */
 	public function getInvalidTitles() {
+		wfDeprecated( __METHOD__, '1.26' );
+		return array_map( function ( $t ) {
+			return $t['title'];
+		}, $this->mInvalidTitles );
+	}
+
+	/**
+	 * Titles that were deemed invalid by Title::newFromText()
+	 * The array's index will be unique and negative for each item
+	 * @return array[] Array of arrays with 'title' and 'invalidreason' properties
+	 */
+	public function getInvalidTitlesAndReasons() {
 		return $this->mInvalidTitles;
 	}
 
@@ -552,7 +565,7 @@ class ApiPageSet extends ApiBase {
 	 *
 	 * @param array $invalidChecks List of types of invalid titles to include.
 	 *   Recognized values are:
-	 *   - invalidTitles: Titles from $this->getInvalidTitles()
+	 *   - invalidTitles: Titles and reasons from $this->getInvalidTitlesAndReasons()
 	 *   - special: Titles from $this->getSpecialTitles()
 	 *   - missingIds: ids from $this->getMissingPageIDs()
 	 *   - missingRevIds: ids from $this->getMissingRevisionIDs()
@@ -566,7 +579,7 @@ class ApiPageSet extends ApiBase {
 	) {
 		$result = array();
 		if ( in_array( "invalidTitles", $invalidChecks ) ) {
-			self::addValues( $result, $this->getInvalidTitles(), 'invalid', 'title' );
+			self::addValues( $result, $this->getInvalidTitlesAndReasons(), 'invalid' );
 		}
 		if ( in_array( "special", $invalidChecks ) ) {
 			self::addValues( $result, $this->getSpecialTitles(), 'special', 'title' );
@@ -1077,16 +1090,20 @@ class ApiPageSet extends ApiBase {
 
 		foreach ( $titles as $title ) {
 			if ( is_string( $title ) ) {
-				$titleObj = Title::newFromText( $title, $this->mDefaultNamespace );
+				try {
+					$titleObj = Title::newFromTextThrow( $title, $this->mDefaultNamespace );
+				} catch ( MalformedTitleException $ex ) {
+					// Handle invalid titles gracefully
+					$this->mAllPages[0][$title] = $this->mFakePageId;
+					$this->mInvalidTitles[$this->mFakePageId] = array(
+						'title' => $title,
+						'invalidreason' => $ex->getMessage(),
+					);
+					$this->mFakePageId--;
+					continue; // There's nothing else we can do
+				}
 			} else {
 				$titleObj = $title;
-			}
-			if ( !$titleObj ) {
-				// Handle invalid titles gracefully
-				$this->mAllPages[0][$title] = $this->mFakePageId;
-				$this->mInvalidTitles[$this->mFakePageId] = $title;
-				$this->mFakePageId--;
-				continue; // There's nothing else we can do
 			}
 			$unconvertedTitle = $titleObj->getPrefixedText();
 			$titleWasConverted = false;
