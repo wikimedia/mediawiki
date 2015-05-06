@@ -36,6 +36,10 @@ class MalformedTitleException extends Exception {
 		$this->errorMessage = $errorMessage;
 		$this->titleText = $titleText;
 		$this->errorMessageParameters = $errorMessageParameters;
+
+		$enMsg = wfMessage( $errorMessage, $errorMessageParameters );
+		$enMsg->inLanguage( 'en' )->useDatabase( false );
+		parent::__construct( $enMsg->text() );
 	}
 
 	/**
@@ -45,7 +49,7 @@ class MalformedTitleException extends Exception {
 	public function getTitleText() {
 		return $this->titleText;
 	}
-	
+
 	/**
 	 * @since 1.26
 	 * @return string|null
@@ -53,7 +57,7 @@ class MalformedTitleException extends Exception {
 	public function getErrorMessage() {
 		return $this->errorMessage;
 	}
-	
+
 	/**
 	 * @since 1.26
 	 * @return string[]
