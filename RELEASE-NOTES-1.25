@@ -47,6 +47,8 @@ production.
   be installed and running for any such queues to work.
 * $wgAutopromoteOnce no longer supports the 'view' event. For keeping some
   compatibility, any 'view' event triggers will still trigger on 'edit'.
+* $wgExtensionDirectory was added for when your extensions directory is somewhere
+  other than $IP/extensions (as $wgStyleDirectory does with the skins directory).
 
 === New features in 1.25 ===
 * (T64861) Updated plural rules to CLDR 26. Includes incompatible changes
