@@ -1047,6 +1047,7 @@
 	"apihelp-watch-example-unwatch": "{{doc-apihelp-example|watch}}",
 	"apihelp-watch-example-generator": "{{doc-apihelp-example|watch}}",
 	"apihelp-format-example-generic": "{{doc-apihelp-example|format|params=* $1 - Format name|paramstart=2|noseealso=1}}",
+	"apihelp-format-param-wrappedhtml": "{{doc-apihelp-param|format|wrappedhtml|description=the \"wrappedhtml\" parameter in pretty-printing format modules}}",
 	"apihelp-dbg-description": "{{doc-apihelp-description|dbg|seealso=* {{msg-mw|apihelp-dbgfm-description}}}}",
 	"apihelp-dbgfm-description": "{{doc-apihelp-description|dbgfm|seealso=* {{msg-mw|apihelp-dbg-description}}}}",
 	"apihelp-json-description": "{{doc-apihelp-description|json|seealso=* {{msg-mw|apihelp-jsonfm-description}}}}",
