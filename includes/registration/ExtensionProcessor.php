@@ -115,9 +115,11 @@ class ExtensionProcessor implements Processor {
 	 * @return array
 	 */
 	public function extractInfo( $path, array $info ) {
+		$dir = dirname( $path );
+		$this->extractRequire( $dir, $info );
+		$this->extractRequireOnce( $dir, $info );
 		$this->extractConfig( $info );
 		$this->extractHooks( $info );
-		$dir = dirname( $path );
 		$this->extractExtensionMessagesFiles( $dir, $info );
 		$this->extractMessagesDirs( $dir, $info );
 		$this->extractNamespaces( $info );
@@ -148,6 +150,24 @@ class ExtensionProcessor implements Processor {
 			'credits' => $this->credits,
 			'attributes' => $this->attributes,
 		);
+	}
+
+	protected function extractRequire( $dir, array $info ) {
+		if ( isset( $info['Require'] ) ) {
+			foreach ( $info['Require'] as $path ) {
+				$this->globals['wgRequire'] = require "$dir/$path";
+			}
+			$this->processed[] = 'Require';
+		}
+	}
+
+	protected function extractRequireOnce( $dir, array $info ) {
+		if ( isset( $info['RequireOnce'] ) ) {
+			foreach ( $info['RequireOnce'] as $path ) {
+				$this->globals['wgRequireOnce'] = require_once "$dir/$path";
+			}
+			$this->processed[] = 'RequireOnce';
+		}
 	}
 
 	protected function extractHooks( array $info ) {

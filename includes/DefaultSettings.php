@@ -5584,6 +5584,16 @@ $wgPageInfoTransclusionLimit = 50;
 $wgSiteStatsAsyncFactor = false;
 
 /**
+ * Mainly to be used with extension registration.
+ */
+$wgRequire = array();
+
+/**
+ * Mainly to be used with extension registration.
+ */
+$wgRequireOnce = array();
+
+/**
  * Parser test suite files to be run by parserTests.php when no specific
  * filename is passed to it.
  *
