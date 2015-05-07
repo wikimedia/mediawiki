@@ -65,7 +65,8 @@
 			"Boom",
 			"Marfuas",
 			"Macofe",
-			"Aaoo"
+			"Aaoo",
+			"Josve05a"
 		]
 	},
 	"tog-underline": "Stryk under länkar:",
@@ -387,6 +388,11 @@
 	"no-null-revision": "Kunde inte skapa ny tom version för sidan \"$1\"",
 	"badtitle": "Felaktig titel",
 	"badtitletext": "Den begärda sidtiteln är antingen ogiltig eller tom, eller så är titeln felaktigt länkad från en annan wiki.\nDen kan innehålla ett eller flera tecken som inte får användas i sidtitlar.",
+	"title-invalid-empty": "Den begärda sidtitel är tom eller innehåller bara namnet av en namnrymd.",
+	"title-invalid-utf8": "Den begärda sidtiteln innehåller en ogiltig UTF-8-sekvens.",
+	"title-invalid-interwiki": "Titel innehåller en interwiki-länk",
+	"title-invalid-talk-namespace": "Den begärda sidtitel hänvisar till en diskussionssida som inte kan existera.",
+	"title-invalid-too-long": "Den begärda sidtiteln är för lång. Det får inte vara längre än $1 byte i UTF-8-kodning.",
 	"perfcached": "Följande data är cachad och är möjligtvis inte helt uppdaterad. Maximalt {{PLURAL:$1|ett|$1}} resultat finns {{PLURAL:$1|tillgängligt|tillgängliga}} i cachen.",
 	"perfcachedts": "Följande data är cachad och uppdaterades senast $1. Maximalt {{PLURAL:$4|ett|$4}} resultat finns {{PLURAL:$4|tillgängligt|tillgängliga}} i cachen.",
 	"querypage-no-updates": "Uppdateringar för den här sidan är för närvarande inaktiverade.\nData kommer i nuläget inte att uppdateras.",
