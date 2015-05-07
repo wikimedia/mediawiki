@@ -5,6 +5,8 @@ require_once __DIR__ . '/Maintenance.php';
 class ConvertExtensionToRegistration extends Maintenance {
 
 	protected $custom = array(
+		'Require' => 'removeAbsolutePath',
+		'RequireOnce' => 'removeAbsolutePath',
 		'MessagesDirs' => 'handleMessagesDirs',
 		'ExtensionMessagesFiles' => 'handleExtensionMessagesFiles',
 		'AutoloadClasses' => 'removeAbsolutePath',
