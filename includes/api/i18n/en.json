@@ -6,7 +6,7 @@
 		]
 	},
 
-	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentation]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailing list]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API Announcements]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bugs & requests]\n</div>\n<strong>Status:</strong> All features shown on this page should be working, but the API is still in active development, and may change at any time. Subscribe to [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce mailing list] for notice of updates.\n\n<strong>Erroneous requests:</strong> When erroneous requests are sent to the API, an HTTP header will be sent with the key \"MediaWiki-API-Error\" and then both the value of the header and the error code sent back will be set to the same value. For more information see [[mw:API:Errors_and_warnings|API: Errors and warnings]].",
+	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentation]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailing list]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API Announcements]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bugs & requests]\n</div>\n<strong>Status:</strong> All features shown on this page should be working, but the API is still in active development, and may change at any time. Subscribe to [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce mailing list] for notice of updates.\n\n<strong>Erroneous requests:</strong> When erroneous requests are sent to the API, an HTTP header will be sent with the key \"MediaWiki-API-Error\" and then both the value of the header and the error code sent back will be set to the same value. For more information see [[mw:API:Errors_and_warnings|API: Errors and warnings]].\n\n<strong>Testing:</strong> For ease of testing API requests, see [[Special:ApiSandbox]].",
 	"apihelp-main-param-action": "Which action to perform.",
 	"apihelp-main-param-format": "The format of the output.",
 	"apihelp-main-param-maxlag": "Maximum lag can be used when MediaWiki is installed on a database replicated cluster. To save actions causing any more site replication lag, this parameter can make the client wait until the replication lag is less than the specified value. In case of excessive lag, error code <samp>maxlag</samp> is returned with a message like <samp>Waiting for $host: $lag seconds lagged</samp>.<br />See [[mw:Manual:Maxlag_parameter|Manual: Maxlag parameter]] for more information.",
@@ -1370,6 +1370,7 @@
 	"apihelp-watch-example-generator": "Watch the first few pages in the main namespace.",
 
 	"apihelp-format-example-generic": "Return the query result in the $1 format.",
+	"apihelp-format-param-wrappedhtml": "Return the pretty-printed HTML and associated ResourceLoader modules as a JSON object.",
 	"apihelp-json-description": "Output data in JSON format.",
 	"apihelp-json-param-callback": "If specified, wraps the output into a given function call. For safety, all user-specific data will be restricted.",
 	"apihelp-json-param-utf8": "If specified, encodes most (but not all) non-ASCII characters as UTF-8 instead of replacing them with hexadecimal escape sequences. Default when <var>formatversion</var> is not <kbd>1</kbd>.",
@@ -1451,6 +1452,7 @@
 	"api-help-permissions": "{{PLURAL:$1|Permission|Permissions}}:",
 	"api-help-permissions-granted-to": "{{PLURAL:$1|Granted to}}: $2",
 	"api-help-right-apihighlimits": "Use higher limits in API queries (slow queries: $1; fast queries: $2). The limits for slow queries also apply to multivalue parameters.",
+	"api-help-open-in-apisandbox": "<small>[open in sandbox]</small>",
 
 	"api-credits-header": "Credits",
 	"api-credits": "API developers:\n* Yuri Astrakhan (creator, lead developer Sep 2006–Sep 2007)\n* Roan Kattouw (lead developer Sep 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (lead developer 2013–present)\n\nPlease send your comments, suggestions and questions to mediawiki-api@lists.wikimedia.org\nor file a bug report at https://phabricator.wikimedia.org/."
