@@ -1,0 +1,37 @@
+.mw-apisandbox-spacer {
+	display: inline-block;
+	height: 1px;
+	width: 5em;
+}
+
+.mw-apisandbox-optionalWidget {
+	position: relative;
+	width: 100%;
+}
+
+.mw-apisandbox-optionalWidget-overlay {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 2;
+	cursor: pointer;
+}
+
+.mw-apisandbox-optionalWidget-fields {
+	display: table;
+	width: 100%;
+}
+
+.mw-apisandbox-optionalWidget-widget,
+.mw-apisandbox-optionalWidget-checkbox {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.mw-apisandbox-optionalWidget-checkbox {
+	width: 1%; /* Will be expanded by content */
+	white-space: nowrap;
+	padding-left: 0.5em;
+}
