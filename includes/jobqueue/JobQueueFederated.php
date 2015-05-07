@@ -386,14 +386,6 @@ class JobQueueFederated extends JobQueue {
 	}
 
 	protected function doFlushCaches() {
-		static $types = array(
-			'empty',
-			'size',
-			'acquiredcount',
-			'delayedcount',
-			'abandonedcount'
-		);
-
 		/** @var JobQueue $queue */
 		foreach ( $this->partitionQueues as $queue ) {
 			$queue->doFlushCaches();
