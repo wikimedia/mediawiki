@@ -111,7 +111,7 @@ class ApiHelp extends ApiBase {
 			if ( $cacheHelpTimeout > 0 ) {
 				// Get help text from cache if present
 				$cacheKey = wfMemcKey( 'apihelp', $modules[0]->getModulePath(),
-					$options['toc'] ? 1 : 0,
+					(int)!empty( $options['toc'] ),
 					str_replace( ' ', '_', SpecialVersion::getVersion( 'nodb' ) ) );
 				$cached = $wgMemc->get( $cacheKey );
 				if ( $cached ) {
