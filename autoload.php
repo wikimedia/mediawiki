@@ -1104,6 +1104,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialAllMyUploads' => __DIR__ . '/includes/specials/SpecialMyRedirectPages.php',
 	'SpecialAllPages' => __DIR__ . '/includes/specials/SpecialAllPages.php',
 	'SpecialApiHelp' => __DIR__ . '/includes/specials/SpecialApiHelp.php',
+	'SpecialApiSandbox' => __DIR__ . '/includes/specials/SpecialApiSandbox.php',
 	'SpecialBlankpage' => __DIR__ . '/includes/specials/SpecialBlankpage.php',
 	'SpecialBlock' => __DIR__ . '/includes/specials/SpecialBlock.php',
 	'SpecialBlockList' => __DIR__ . '/includes/specials/SpecialBlockList.php',
