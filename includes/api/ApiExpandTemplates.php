@@ -154,7 +154,7 @@ class ApiExpandTemplates extends ApiBase {
 				ApiBase::PARAM_DFLT => 'API',
 			),
 			'text' => array(
-				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_TYPE => 'text',
 				ApiBase::PARAM_REQUIRED => true,
 			),
 			'revid' => array(

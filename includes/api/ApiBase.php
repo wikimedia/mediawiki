@@ -85,6 +85,15 @@ abstract class ApiBase extends ContextSource {
 	// $msg for ApiBase::makeMessage(). Any value not having a mapping will use
 	// apihelp-{$path}-paramvalue-{$param}-{$value} is used.
 	const PARAM_HELP_MSG_PER_VALUE = 14;
+	/// @since 1.26
+	// When PARAM_TYPE is 'submodule', map parameter values to submodule paths.
+	// Default is to use all modules in $this->getModuleManager() in the group
+	// matching the parameter name.
+	const PARAM_SUBMODULE_MAP = 15;
+	/// @since 1.26
+	// When PARAM_TYPE is 'submodule', used to indicate the 'g' prefix added by
+	// ApiQueryGeneratorBase (and similar if anything else ever does that).
+	const PARAM_SUBMODULE_PARAM_PREFIX = 16;
 
 	const LIMIT_BIG1 = 500; // Fast query, std user limit
 	const LIMIT_BIG2 = 5000; // Fast query, bot/sysop limit
@@ -838,7 +847,11 @@ abstract class ApiBase extends ContextSource {
 				$type = MWNamespace::getValidNamespaces();
 			}
 			if ( isset( $value ) && $type == 'submodule' ) {
-				$type = $this->getModuleManager()->getNames( $paramName );
+				if ( isset( $paramSettings[self::PARAM_SUBMODULE_MAP] ) ) {
+					$type = array_keys( $paramSettings[self::PARAM_SUBMODULE_MAP] );
+				} else {
+					$type = $this->getModuleManager()->getNames( $paramName );
+				}
 			}
 		}
 
@@ -859,6 +872,8 @@ abstract class ApiBase extends ContextSource {
 					case 'NULL': // nothing to do
 						break;
 					case 'string':
+					case 'text':
+					case 'password':
 						if ( $required && $value === '' ) {
 							$this->dieUsageMsg( array( 'missingparam', $paramName ) );
 						}
@@ -1078,6 +1093,24 @@ abstract class ApiBase extends ContextSource {
 	 * @return string Validated and normalized parameter
 	 */
 	protected function validateTimestamp( $value, $encParamName ) {
+		// Confusing synonyms for the current time accepted by wfTimestamp()
+		// (wfTimestamp() also accepts various non-strings and the string of 14
+		// ASCII NUL bytes, but those can't get here)
+		if ( !$value ) {
+			$this->logFeatureUsage( 'unclear-"now"-timestamp' );
+			$this->setWarning(
+				"Passing '$value' for timestamp parameter $encParamName has been deprecated." .
+					' If for some reason you need to explicitly specify the current time without' .
+					' calculating it client-side, use "now".'
+			);
+			return wfTimestamp( TS_MW );
+		}
+
+		// Explicit synonym for the current time
+		if ( $value === 'now' ) {
+			return wfTimestamp( TS_MW );
+		}
+
 		$unixTimestamp = wfTimestamp( TS_UNIX, $value );
 		if ( $unixTimestamp === false ) {
 			$this->dieUsage(
@@ -2672,7 +2705,11 @@ abstract class ApiBase extends ContextSource {
 					}
 
 					if ( $type === 'submodule' ) {
-						$type = $this->getModuleManager()->getNames( $paramName );
+						if ( isset( $paramSettings[self::PARAM_SUBMODULE_MAP] ) ) {
+							$type = array_keys( $paramSettings[self::PARAM_SUBMODULE_MAP] );
+						} else {
+							$type = $this->getModuleManager()->getNames( $paramName );
+						}
 						sort( $type );
 					}
 					if ( is_array( $type ) ) {

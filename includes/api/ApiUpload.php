@@ -735,7 +735,9 @@ class ApiUpload extends ApiBase {
 			'comment' => array(
 				ApiBase::PARAM_DFLT => ''
 			),
-			'text' => null,
+			'text' => array(
+				ApiBase::PARAM_TYPE => 'text',
+			),
 			'watch' => array(
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_DEPRECATED => true,

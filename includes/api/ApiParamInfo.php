@@ -291,13 +291,19 @@ class ApiParamInfo extends ApiBase {
 			if ( isset( $settings[ApiBase::PARAM_DFLT] ) ) {
 				switch ( $settings[ApiBase::PARAM_TYPE] ) {
 					case 'boolean':
-						$item['default'] = ( $settings[ApiBase::PARAM_DFLT] ? 'true' : 'false' );
+						$item['default'] = (bool)$settings[ApiBase::PARAM_DFLT];
 						break;
 					case 'string':
+					case 'text':
+					case 'password':
 						$item['default'] = strval( $settings[ApiBase::PARAM_DFLT] );
 						break;
 					case 'integer':
+					case 'limit':
 						$item['default'] = intval( $settings[ApiBase::PARAM_DFLT] );
+						break;
+					case 'timestamp':
+						$item['default'] = wfTimestamp( TS_ISO_8601, $settings[ApiBase::PARAM_DFLT] );
 						break;
 					default:
 						$item['default'] = $settings[ApiBase::PARAM_DFLT];
@@ -320,9 +326,23 @@ class ApiParamInfo extends ApiBase {
 
 			if ( isset( $settings[ApiBase::PARAM_TYPE] ) ) {
 				if ( $settings[ApiBase::PARAM_TYPE] === 'submodule' ) {
-					$item['type'] = $module->getModuleManager()->getNames( $name );
-					sort( $item['type'] );
-					$item['submodules'] = true;
+					if ( isset( $settings[ApiBase::PARAM_SUBMODULE_MAP] ) ) {
+						ksort( $settings[ApiBase::PARAM_SUBMODULE_MAP] );
+						$item['type'] = array_keys( $settings[ApiBase::PARAM_SUBMODULE_MAP] );
+						$item['submodules'] = $settings[ApiBase::PARAM_SUBMODULE_MAP];
+					} else {
+						$item['type'] = $module->getModuleManager()->getNames( $name );
+						sort( $item['type'] );
+						$prefix = $module->isMain()
+							? '' : ( $module->getModulePath() . '+' );
+						$item['submodules'] = array();
+						foreach ( $item['type'] as $v ) {
+							$item['submodules'][$v] = $prefix.$v;
+						}
+					}
+					if ( isset( $settings[ApiBase::PARAM_SUBMODULE_PARAM_PREFIX] ) ) {
+						$item['submoduleparamprefix'] = $settings[ApiBase::PARAM_SUBMODULE_PARAM_PREFIX];
+					}
 				} else {
 					$item['type'] = $settings[ApiBase::PARAM_TYPE];
 				}
@@ -340,6 +360,9 @@ class ApiParamInfo extends ApiBase {
 			}
 			if ( isset( $settings[ApiBase::PARAM_MIN] ) ) {
 				$item['min'] = $settings[ApiBase::PARAM_MIN];
+			}
+			if ( !empty( $settings[ApiBase::PARAM_RANGE_ENFORCE] ) ) {
+				$item['enforcerange'] = true;
 			}
 
 			if ( !empty( $settings[ApiBase::PARAM_HELP_MSG_INFO] ) ) {
