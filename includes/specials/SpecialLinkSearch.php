@@ -140,6 +140,7 @@ class LinkSearchPage extends QueryPage {
 					'label-message' => 'linksearch-ns',
 					'default' => $namespace,
 					'id' => 'namespace',
+					'all' => '',
 					'cssclass' => 'namespaceselector',
 				),
 			);
