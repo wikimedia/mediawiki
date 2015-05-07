@@ -339,7 +339,7 @@ class ResourceLoader {
 					} elseif ( isset( $skinStyles['+' . $name] ) ) {
 						$paths = (array)$skinStyles['+' . $name];
 						$styleFiles = isset( $this->moduleInfos[$name]['skinStyles']['default'] ) ?
-							$this->moduleInfos[$name]['skinStyles']['default'] :
+							(array)$this->moduleInfos[$name]['skinStyles']['default'] :
 							array();
 					} else {
 						continue;
