@@ -10,6 +10,7 @@ abstract class HTMLFormField {
 	protected $mValidationCallback;
 	protected $mFilterCallback;
 	protected $mName;
+	protected $mDir;
 	protected $mLabel; # String label.  Set on construction
 	protected $mID;
 	protected $mClass = '';
@@ -375,6 +376,10 @@ abstract class HTMLFormField {
 		$this->mName = "wp{$params['fieldname']}";
 		if ( isset( $params['name'] ) ) {
 			$this->mName = $params['name'];
+		}
+
+		if ( isset( $params['dir'] ) ) {
+			$this->mDir = $params['dir'];
 		}
 
 		$validName = Sanitizer::escapeId( $this->mName );

@@ -11,6 +11,7 @@ class HTMLTextField extends HTMLFormField {
 				'name' => $this->mName,
 				'size' => $this->getSize(),
 				'value' => $value,
+				'dir' => $this->mDir,
 			) + $this->getTooltipAndAccessKey();
 
 		if ( $this->mClass !== '' ) {
