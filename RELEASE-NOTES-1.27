@@ -86,6 +86,8 @@ production.
   auto-creation when 'createaccount' is not granted to all users.
 * Deprecated AuthPluginAutoCreate hook in favor of LocalUserCreated.
 * Most cookie-handling methods in User are deprecated.
+* The functionality of the ApiSandbox extension has been merged into core. The
+  extension should no longer be used.
 
 === New features in 1.27 ===
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as
