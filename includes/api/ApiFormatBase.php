@@ -32,6 +32,7 @@
 abstract class ApiFormatBase extends ApiBase {
 	private $mIsHtml, $mFormat, $mUnescapeAmps, $mHelp;
 	private $mBuffer, $mDisabled = false;
+	private $mIsWrappedHtml = false;
 	protected $mForceDefaultParams = false;
 
 	/**
@@ -45,6 +46,7 @@ abstract class ApiFormatBase extends ApiBase {
 		$this->mIsHtml = ( substr( $format, -2, 2 ) === 'fm' ); // ends with 'fm'
 		if ( $this->mIsHtml ) {
 			$this->mFormat = substr( $format, 0, -2 ); // remove ending 'fm'
+			$this->mIsWrappedHtml = $this->getMain()->getCheck( 'wrappedhtml' );
 		} else {
 			$this->mFormat = $format;
 		}
@@ -77,6 +79,14 @@ abstract class ApiFormatBase extends ApiBase {
 	 */
 	public function getIsHtml() {
 		return $this->mIsHtml;
+	}
+
+	/**
+	 * Returns true when the special wrapped mode is enabled.
+	 * @return bool
+	 */
+	protected function getIsWrappedHtml() {
+		return $this->mIsWrappedHtml;
 	}
 
 	/**
@@ -145,7 +155,9 @@ abstract class ApiFormatBase extends ApiBase {
 			return;
 		}
 
-		$mime = $this->getIsHtml() ? 'text/html' : $this->getMimeType();
+		$mime = $this->getIsWrappedHtml()
+			? 'text/mediawiki-api-prettyprint-wrapped'
+			: ( $this->getIsHtml() ? 'text/html' : $this->getMimeType() );
 
 		// Some printers (ex. Feed) do their own header settings,
 		// in which case $mime will be set to null
@@ -184,14 +196,16 @@ abstract class ApiFormatBase extends ApiBase {
 			$out->addModules( 'mediawiki.apipretty' );
 			$out->setPageTitle( $context->msg( 'api-format-title' ) );
 
-			$header = $context->msg( 'api-format-prettyprint-header' )
-				->params( $format, strtolower( $format ) )
-				->parseAsBlock();
-			$out->addHTML(
-				Html::rawElement( 'div', array( 'class' => 'api-pretty-header' ),
-					ApiHelp::fixHelpLinks( $header )
-				)
-			);
+			if ( !$this->getIsWrappedHtml() ) {
+				$header = $context->msg( 'api-format-prettyprint-header' )
+					->params( $format, strtolower( $format ) )
+					->parseAsBlock();
+				$out->addHTML(
+					Html::rawElement( 'div', array( 'class' => 'api-pretty-header' ),
+						ApiHelp::fixHelpLinks( $header )
+					)
+				);
+			}
 
 			if ( Hooks::run( 'ApiFormatHighlight', array( $context, $result, $mime, $format ) ) ) {
 				$out->addHTML(
@@ -199,10 +213,38 @@ abstract class ApiFormatBase extends ApiBase {
 				);
 			}
 
-			// API handles its own clickjacking protection.
-			// Note, that $wgBreakFrames will still override $wgApiFrameOptions for format mode.
-			$out->allowClickJacking();
-			$out->output();
+			if ( $this->getIsWrappedHtml() ) {
+				// This is a special output mode mainly intended for ApiSandbox use
+				$time = microtime( true ) - $this->getConfig()->get( 'RequestTime' );
+				$json = FormatJson::encode(
+					array(
+						'html' => $out->getHTML(),
+						'modules' => array_values( array_unique( array_merge(
+							$out->getModules(),
+							$out->getModuleScripts(),
+							$out->getModuleStyles()
+						) ) ),
+						'time' => round( $time * 1000 ),
+					),
+					false, FormatJson::ALL_OK
+				);
+
+				// Bug 66776: wfMangleFlashPolicy() is needed to avoid a nasty bug in
+				// Flash, but what it does isn't friendly for the API, so we need to
+				// work around it.
+				if ( preg_match( '/\<\s*cross-domain-policy\s*\>/i', $json ) ) {
+					$json = preg_replace(
+						'/\<(\s*cross-domain-policy\s*)\>/i', '\\u003C$1\\u003E', $json
+					);
+				}
+
+				echo $json;
+			} else {
+				// API handles its own clickjacking protection.
+				// Note, that $wgBreakFrames will still override $wgApiFrameOptions for format mode.
+				$out->allowClickJacking();
+				$out->output();
+			}
 		} else {
 			// For non-HTML output, clear all errors that might have been
 			// displayed if display_errors=On
@@ -226,6 +268,18 @@ abstract class ApiFormatBase extends ApiBase {
 	 */
 	public function getBuffer() {
 		return $this->mBuffer;
+	}
+
+	public function getAllowedParams() {
+		$ret = array();
+		if ( $this->getIsHtml() ) {
+			$ret['wrappedhtml'] = array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_HELP_MSG => 'apihelp-format-param-wrappedhtml',
+
+			);
+		}
+		return $ret;
 	}
 
 	protected function getExamplesMessages() {
