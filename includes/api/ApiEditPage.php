@@ -543,7 +543,9 @@ class ApiEditPage extends ApiBase {
 			'sectiontitle' => array(
 				ApiBase::PARAM_TYPE => 'string',
 			),
-			'text' => null,
+			'text' => array(
+				ApiBase::PARAM_TYPE => 'text',
+			),
 			'summary' => null,
 			'tags' => array(
 				ApiBase::PARAM_TYPE => ChangeTags::listExplicitlyDefinedTags(),
@@ -552,8 +554,12 @@ class ApiEditPage extends ApiBase {
 			'minor' => false,
 			'notminor' => false,
 			'bot' => false,
-			'basetimestamp' => null,
-			'starttimestamp' => null,
+			'basetimestamp' => array(
+				ApiBase::PARAM_TYPE => 'timestamp',
+			),
+			'starttimestamp' => array(
+				ApiBase::PARAM_TYPE => 'timestamp',
+			),
 			'recreate' => false,
 			'createonly' => false,
 			'nocreate' => false,
@@ -575,8 +581,12 @@ class ApiEditPage extends ApiBase {
 				),
 			),
 			'md5' => null,
-			'prependtext' => null,
-			'appendtext' => null,
+			'prependtext' => array(
+				ApiBase::PARAM_TYPE => 'text',
+			),
+			'appendtext' => array(
+				ApiBase::PARAM_TYPE => 'text',
+			),
 			'undo' => array(
 				ApiBase::PARAM_TYPE => 'integer'
 			),
