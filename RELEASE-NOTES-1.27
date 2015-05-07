@@ -61,6 +61,8 @@ production.
   $wgSharedDB and $wgSharedTables are properly set even on the "central" wiki
   that all others are sharing from and that $wgLocalDatabases is set to the
   full list of sharing wikis on all those wikis.
+* The functionality of the ApiSandbox extension has been merged into core. The
+  extension should no longer be used.
 
 === New features in 1.27 ===
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as
