@@ -1307,7 +1307,7 @@ class ApiMain extends ApiBase {
 		);
 	}
 
-	public function modifyHelp( array &$help, array $options ) {
+	public function modifyHelp( array &$help, array $options, array &$tocData ) {
 		// Wish PHP had an "array_insert_before". Instead, we have to manually
 		// reindex the array to get 'permissions' in the right place.
 		$oldHelp = $help;
@@ -1353,19 +1353,46 @@ class ApiMain extends ApiBase {
 
 		// Fill 'datatypes' and 'credits', if applicable
 		if ( empty( $options['nolead'] ) ) {
-			$help['datatypes'] .= Html::rawelement( 'h' . min( 6, $options['headerlevel'] + 1 ),
+			$level = $options['headerlevel'];
+			$tocnumber = &$options['tocnumber'];
+
+			$header = $this->msg( 'api-help-datatypes-header' )->parse();
+			$help['datatypes'] .= Html::rawelement( 'h' . min( 6, $level ),
 				array( 'id' => 'main/datatypes', 'class' => 'apihelp-header' ),
 				Html::element( 'span', array( 'id' => Sanitizer::escapeId( 'main/datatypes' ) ) ) .
-				$this->msg( 'api-help-datatypes-header' )->parse()
+				$header
 			);
 			$help['datatypes'] .= $this->msg( 'api-help-datatypes' )->parseAsBlock();
+			if ( !isset( $tocData['main/datatypes'] ) ) {
+				$tocnumber[$level]++;
+				$tocData['main/datatypes'] = array(
+					'toclevel' => count( $tocnumber ),
+					'level' => $level,
+					'anchor' => 'main/datatypes',
+					'line' => $header,
+					'number' => join( '.', $tocnumber ),
+					'index' => false,
+				);
+			}
 
-			$help['credits'] .= Html::rawelement( 'h' . min( 6, $options['headerlevel'] + 1 ),
+			$header = $this->msg( 'api-credits-header' )->parse();
+			$help['credits'] .= Html::rawelement( 'h' . min( 6, $level ),
 				array( 'id' => 'main/credits', 'class' => 'apihelp-header' ),
 				Html::element( 'span', array( 'id' => Sanitizer::escapeId( 'main/credits' ) ) ) .
-				$this->msg( 'api-credits-header' )->parse()
+				$header
 			);
 			$help['credits'] .= $this->msg( 'api-credits' )->useDatabase( false )->parseAsBlock();
+			if ( !isset( $tocData['main/credits'] ) ) {
+				$tocnumber[$level]++;
+				$tocData['main/credits'] = array(
+					'toclevel' => count( $tocnumber ),
+					'level' => $level,
+					'anchor' => 'main/credits',
+					'line' => $header,
+					'number' => join( '.', $tocnumber ),
+					'index' => false,
+				);
+			}
 		}
 	}
 
