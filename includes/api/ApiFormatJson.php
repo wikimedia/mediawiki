@@ -118,10 +118,10 @@ class ApiFormatJson extends ApiFormatBase {
 
 	public function getAllowedParams() {
 		if ( $this->isRaw ) {
-			return array();
+			return parent::getAllowedParams();
 		}
 
-		$ret = array(
+		$ret = parent::getAllowedParams() + array(
 			'callback' => array(
 				ApiBase::PARAM_HELP_MSG => 'apihelp-json-param-callback',
 			),
