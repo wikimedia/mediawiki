@@ -606,7 +606,11 @@ abstract class Maintenance {
 		global $wgProfiler, $wgTrxProfilerLimits;
 
 		$output = $this->getOption( 'profiler' );
-		if ( $output && is_array( $wgProfiler ) && isset( $wgProfiler['class'] ) ) {
+		if ( !$output ) {
+			return;
+		}
+
+		if ( is_array( $wgProfiler ) && isset( $wgProfiler['class'] ) ) {
 			$class = $wgProfiler['class'];
 			$profiler = new $class(
 				array( 'sampling' => 1, 'output' => $output ) + $wgProfiler
