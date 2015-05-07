@@ -275,16 +275,19 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				if ( $fld_groups ) {
 					$data['groups'] = $groups;
 					ApiResult::setIndexedTagName( $data['groups'], 'g' );
+					ApiResult::setArrayType( $data['groups'], 'array' );
 				}
 
 				if ( $fld_implicitgroups ) {
 					$data['implicitgroups'] = $implicitGroups;
 					ApiResult::setIndexedTagName( $data['implicitgroups'], 'g' );
+					ApiResult::setArrayType( $data['implicitgroups'], 'array' );
 				}
 
 				if ( $fld_rights ) {
 					$data['rights'] = User::getGroupPermissions( $groups );
 					ApiResult::setIndexedTagName( $data['rights'], 'r' );
+					ApiResult::setArrayType( $data['rights'], 'array' );
 				}
 			}
 
