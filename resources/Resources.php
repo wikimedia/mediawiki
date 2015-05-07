@@ -1765,7 +1765,6 @@ return array(
 
 	'oojs-ui.styles.icons' => array(
 		'class' => 'ResourceLoaderImageModule',
-		'position' => 'top',
 		'localBasePath' => "$IP/resources/lib/oojs-ui/themes/mediawiki",
 		'data' => 'icons.json',
 		'selectorWithoutVariant' => '.oo-ui-icon-{name}, .mw-ui-icon-{name}:after, .mw-ui-icon-{name}:before',
@@ -1773,19 +1772,16 @@ return array(
 	),
 	'oojs-ui.styles.indicators' => array(
 		'class' => 'ResourceLoaderImageModule',
-		'position' => 'top',
 		'localBasePath' => "$IP/resources/lib/oojs-ui/themes/mediawiki",
 		'data' => 'indicators.json',
 	),
 	'oojs-ui.styles.textures' => array(
 		'class' => 'ResourceLoaderImageModule',
-		'position' => 'top',
 		'localBasePath' => "$IP/resources/lib/oojs-ui/themes/mediawiki",
 		'data' => 'textures.json',
 	),
 	'oojs-ui.styles.icons-alerts' => array(
 		'class' => 'ResourceLoaderImageModule',
-		'position' => 'top',
 		'localBasePath' => "$IP/resources/lib/oojs-ui/themes/mediawiki",
 		'data' => 'icons-alerts.json',
 		'selectorWithoutVariant' => '.oo-ui-icon-{name}, .mw-ui-icon-{name}:after, .mw-ui-icon-{name}:before',
@@ -1793,7 +1789,6 @@ return array(
 	),
 	'oojs-ui.styles.icons-content' => array(
 		'class' => 'ResourceLoaderImageModule',
-		'position' => 'top',
 		'localBasePath' => "$IP/resources/lib/oojs-ui/themes/mediawiki",
 		'data' => 'icons-content.json',
 		'selectorWithoutVariant' => '.oo-ui-icon-{name}, .mw-ui-icon-{name}:after, .mw-ui-icon-{name}:before',
@@ -1801,7 +1796,6 @@ return array(
 	),
 	'oojs-ui.styles.icons-editing-advanced' => array(
 		'class' => 'ResourceLoaderImageModule',
-		'position' => 'top',
 		'localBasePath' => "$IP/resources/lib/oojs-ui/themes/mediawiki",
 		'data' => 'icons-editing-advanced.json',
 		'selectorWithoutVariant' => '.oo-ui-icon-{name}, .mw-ui-icon-{name}:after, .mw-ui-icon-{name}:before',
@@ -1809,7 +1803,6 @@ return array(
 	),
 	'oojs-ui.styles.icons-editing-core' => array(
 		'class' => 'ResourceLoaderImageModule',
-		'position' => 'top',
 		'localBasePath' => "$IP/resources/lib/oojs-ui/themes/mediawiki",
 		'data' => 'icons-editing-core.json',
 		'selectorWithoutVariant' => '.oo-ui-icon-{name}, .mw-ui-icon-{name}:after, .mw-ui-icon-{name}:before',
@@ -1817,7 +1810,6 @@ return array(
 	),
 	'oojs-ui.styles.icons-editing-list' => array(
 		'class' => 'ResourceLoaderImageModule',
-		'position' => 'top',
 		'localBasePath' => "$IP/resources/lib/oojs-ui/themes/mediawiki",
 		'data' => 'icons-editing-list.json',
 		'selectorWithoutVariant' => '.oo-ui-icon-{name}, .mw-ui-icon-{name}:after, .mw-ui-icon-{name}:before',
@@ -1825,7 +1817,6 @@ return array(
 	),
 	'oojs-ui.styles.icons-editing-styling' => array(
 		'class' => 'ResourceLoaderImageModule',
-		'position' => 'top',
 		'localBasePath' => "$IP/resources/lib/oojs-ui/themes/mediawiki",
 		'data' => 'icons-editing-styling.json',
 		'selectorWithoutVariant' => '.oo-ui-icon-{name}, .mw-ui-icon-{name}:after, .mw-ui-icon-{name}:before',
@@ -1833,7 +1824,6 @@ return array(
 	),
 	'oojs-ui.styles.icons-interactions' => array(
 		'class' => 'ResourceLoaderImageModule',
-		'position' => 'top',
 		'localBasePath' => "$IP/resources/lib/oojs-ui/themes/mediawiki",
 		'data' => 'icons-interactions.json',
 		'selectorWithoutVariant' => '.oo-ui-icon-{name}, .mw-ui-icon-{name}:after, .mw-ui-icon-{name}:before',
@@ -1841,7 +1831,6 @@ return array(
 	),
 	'oojs-ui.styles.icons-layout' => array(
 		'class' => 'ResourceLoaderImageModule',
-		'position' => 'top',
 		'localBasePath' => "$IP/resources/lib/oojs-ui/themes/mediawiki",
 		'data' => 'icons-layout.json',
 		'selectorWithoutVariant' => '.oo-ui-icon-{name}, .mw-ui-icon-{name}:after, .mw-ui-icon-{name}:before',
@@ -1849,7 +1838,6 @@ return array(
 	),
 	'oojs-ui.styles.icons-location' => array(
 		'class' => 'ResourceLoaderImageModule',
-		'position' => 'top',
 		'localBasePath' => "$IP/resources/lib/oojs-ui/themes/mediawiki",
 		'data' => 'icons-location.json',
 		'selectorWithoutVariant' => '.oo-ui-icon-{name}, .mw-ui-icon-{name}:after, .mw-ui-icon-{name}:before',
@@ -1857,7 +1845,6 @@ return array(
 	),
 	'oojs-ui.styles.icons-media' => array(
 		'class' => 'ResourceLoaderImageModule',
-		'position' => 'top',
 		'localBasePath' => "$IP/resources/lib/oojs-ui/themes/mediawiki",
 		'data' => 'icons-media.json',
 		'selectorWithoutVariant' => '.oo-ui-icon-{name}, .mw-ui-icon-{name}:after, .mw-ui-icon-{name}:before',
@@ -1865,7 +1852,6 @@ return array(
 	),
 	'oojs-ui.styles.icons-moderation' => array(
 		'class' => 'ResourceLoaderImageModule',
-		'position' => 'top',
 		'localBasePath' => "$IP/resources/lib/oojs-ui/themes/mediawiki",
 		'data' => 'icons-moderation.json',
 		'selectorWithoutVariant' => '.oo-ui-icon-{name}, .mw-ui-icon-{name}:after, .mw-ui-icon-{name}:before',
@@ -1873,7 +1859,6 @@ return array(
 	),
 	'oojs-ui.styles.icons-movement' => array(
 		'class' => 'ResourceLoaderImageModule',
-		'position' => 'top',
 		'localBasePath' => "$IP/resources/lib/oojs-ui/themes/mediawiki",
 		'data' => 'icons-movement.json',
 		'selectorWithoutVariant' => '.oo-ui-icon-{name}, .mw-ui-icon-{name}:after, .mw-ui-icon-{name}:before',
@@ -1881,7 +1866,6 @@ return array(
 	),
 	'oojs-ui.styles.icons-user' => array(
 		'class' => 'ResourceLoaderImageModule',
-		'position' => 'top',
 		'localBasePath' => "$IP/resources/lib/oojs-ui/themes/mediawiki",
 		'data' => 'icons-user.json',
 		'selectorWithoutVariant' => '.oo-ui-icon-{name}, .mw-ui-icon-{name}:after, .mw-ui-icon-{name}:before',
@@ -1889,7 +1873,6 @@ return array(
 	),
 	'oojs-ui.styles.icons-wikimedia' => array(
 		'class' => 'ResourceLoaderImageModule',
-		'position' => 'top',
 		'localBasePath' => "$IP/resources/lib/oojs-ui/themes/mediawiki",
 		'data' => 'icons-wikimedia.json',
 		'selectorWithoutVariant' => '.oo-ui-icon-{name}, .mw-ui-icon-{name}:after, .mw-ui-icon-{name}:before',
