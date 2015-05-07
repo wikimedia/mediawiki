@@ -122,6 +122,7 @@ class SpecialPageFactory {
 		'ListDuplicatedFiles' => 'ListDuplicatedFilesPage',
 
 		// Data and tools
+		'ApiSandbox' => 'SpecialApiSandbox',
 		'Statistics' => 'SpecialStatistics',
 		'Allmessages' => 'SpecialAllMessages',
 		'Version' => 'SpecialVersion',

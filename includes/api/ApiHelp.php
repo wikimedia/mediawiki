@@ -677,9 +677,12 @@ class ApiHelp extends ApiBase {
 					) );
 
 					$link = wfAppendQuery( wfScript( 'api' ), $qs );
+					$sandbox = SpecialPage::getTitleFor( 'ApiSandbox' )->getLocalURL() . '#' . $qs;
 					$help['examples'] .= Html::rawElement( 'dt', null, $msg->parse() );
 					$help['examples'] .= Html::rawElement( 'dd', null,
-						Html::element( 'a', array( 'href' => $link ), "api.php?$qs" )
+						Html::element( 'a', array( 'href' => $link ), "api.php?$qs" ) . ' ' .
+						Html::rawElement( 'a', array( 'href' => $sandbox ),
+							$context->msg( 'api-help-open-in-apisandbox' )->parse() )
 					);
 				}
 				$help['examples'] .= Html::closeElement( 'dl' );
