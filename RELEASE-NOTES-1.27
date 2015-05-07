@@ -65,6 +65,8 @@ production.
 * $wgAllowAsyncCopyUploads and $CopyUploadAsyncTimeout were removed. This was an
   experimental feature that has never worked.
 * $wgEnotifUseJobQ was removed and the job queue is always used.
+* The functionality of the ApiSandbox extension has been merged into core. The
+  extension should no longer be used.
 
 === New features in 1.27 ===
 * $wgDataCenterUpdateStickTTL was also added. This decides how long a user
