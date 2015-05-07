@@ -227,20 +227,6 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 				);
 			}
 
-			// Query optimization: since we're targeting ranges of
-			// rev_timestamp,rev_id, if we're given an id then extract the
-			// corresponding timestamp from the DB.
-			// Note we don't use Revision::getTimestampFromId() since we don't
-			// have a Title to pass it and there's not any real need to create one.
-			if ( $params['startid'] !== null ) {
-				$params['start'] = $db->selectField( 'revision', 'rev_timestamp',
-					array( 'rev_id' => $params['startid'] ), __METHOD__ );
-			}
-			if ( $params['endid'] !== null ) {
-				$params['end'] = $db->selectField( 'revision', 'rev_timestamp',
-					array( 'rev_id' => $params['endid'] ), __METHOD__ );
-			}
-
 			$this->addTimestampWhereRange( 'rev_timestamp', $params['dir'],
 				$params['start'], $params['end'] );
 			$this->addWhereRange( 'rev_id', $params['dir'],
