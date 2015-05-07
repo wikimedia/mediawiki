@@ -78,7 +78,7 @@ class ApiFormatPhp extends ApiFormatBase {
 	}
 
 	public function getAllowedParams() {
-		$ret = array(
+		$ret = parent::getAllowedParams() + array(
 			'formatversion' => array(
 				ApiBase::PARAM_TYPE => array( 1, 2, 'latest' ),
 				ApiBase::PARAM_DFLT => 1,

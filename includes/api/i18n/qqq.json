@@ -1271,6 +1271,7 @@
 	"apihelp-watch-example-unwatch": "{{doc-apihelp-example|watch}}",
 	"apihelp-watch-example-generator": "{{doc-apihelp-example|watch}}",
 	"apihelp-format-example-generic": "{{doc-apihelp-example|format|params=* $1 - Format name|paramstart=2|noseealso=1}}",
+	"apihelp-format-param-wrappedhtml": "{{doc-apihelp-param|format|wrappedhtml|description=the \"wrappedhtml\" parameter in pretty-printing format modules}}",
 	"apihelp-json-description": "{{doc-apihelp-description|json|seealso=* {{msg-mw|apihelp-jsonfm-description}}}}",
 	"apihelp-json-param-callback": "{{doc-apihelp-param|json|callback}}",
 	"apihelp-json-param-utf8": "{{doc-apihelp-param|json|utf8}}",
