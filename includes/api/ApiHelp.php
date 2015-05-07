@@ -490,14 +490,23 @@ class ApiHelp extends ApiBase {
 							switch ( $type ) {
 								case 'submodule':
 									$groups[] = $name;
-									$submodules = $module->getModuleManager()->getNames( $name );
+									if ( isset( $settings[ApiBase::PARAM_SUBMODULE_MAP] ) ) {
+										$map = $settings[ApiBase::PARAM_SUBMODULE_MAP];
+										ksort( $map );
+										$submodules = array();
+										foreach ( $map as $v => $m ) {
+											$submodules[] = "[[Special:ApiHelp/{$m}|{$v}]]";
+										}
+									} else {
+										$submodules = $module->getModuleManager()->getNames( $name );
+										sort( $submodules );
+										$prefix = $module->isMain()
+											? '' : ( $module->getModulePath() . '+' );
+										$submodules = array_map( function ( $name ) use ( $prefix ) {
+											return "[[Special:ApiHelp/{$prefix}{$name}|{$name}]]";
+										}, $submodules );
+									}
 									$count = count( $submodules );
-									sort( $submodules );
-									$prefix = $module->isMain()
-										? '' : ( $module->getModulePath() . '+' );
-									$submodules = array_map( function ( $name ) use ( $prefix ) {
-										return "[[Special:ApiHelp/{$prefix}{$name}|{$name}]]";
-									}, $submodules );
 									$info[] = $context->msg( 'api-help-param-list' )
 										->params( $multi ? 2 : 1 )
 										->params( $context->getLanguage()->commaList( $submodules ) )
@@ -564,6 +573,7 @@ class ApiHelp extends ApiBase {
 									break;
 
 								case 'string':
+								case 'text':
 									// Displaying a type message here would be useless.
 									$type = null;
 									break;
@@ -573,6 +583,7 @@ class ApiHelp extends ApiBase {
 						// Add type. Messages for grep: api-help-param-type-limit
 						// api-help-param-type-integer api-help-param-type-boolean
 						// api-help-param-type-timestamp api-help-param-type-user
+						// api-help-param-type-password
 						if ( is_string( $type ) ) {
 							$msg = $context->msg( "api-help-param-type-$type" );
 							if ( !$msg->isDisabled() ) {

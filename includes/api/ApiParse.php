@@ -679,7 +679,9 @@ class ApiParse extends ApiBase {
 	public function getAllowedParams() {
 		return array(
 			'title' => null,
-			'text' => null,
+			'text' => array(
+				ApiBase::PARAM_TYPE => 'text',
+			),
 			'summary' => null,
 			'page' => null,
 			'pageid' => array(

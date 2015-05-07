@@ -1149,6 +1149,7 @@
 	"api-help-param-type-limit": "Type: integer or <kbd>max</kbd>",
 	"api-help-param-type-integer": "Type: {{PLURAL:$1|1=integer|2=list of integers}}",
 	"api-help-param-type-boolean": "Type: boolean ([[Special:ApiHelp/main#main/datatypes|details]])",
+	"api-help-param-type-password": "",
 	"api-help-param-type-timestamp": "Type: {{PLURAL:$1|1=timestamp|2=list of timestamps}} ([[Special:ApiHelp/main#main/datatypes|allowed formats]])",
 	"api-help-param-type-user": "Type: {{PLURAL:$1|1=user name|2=list of user names}}",
 	"api-help-param-list": "{{PLURAL:$1|1=One value|2=Values (separate with <kbd>{{!}}</kbd>)}}: $2",
