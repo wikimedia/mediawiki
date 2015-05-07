@@ -295,7 +295,7 @@ class ApiFormatXml extends ApiFormatBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
+		return parent::getAllowedParams() + array(
 			'xslt' => array(
 				ApiBase::PARAM_HELP_MSG => 'apihelp-xml-param-xslt',
 			),
