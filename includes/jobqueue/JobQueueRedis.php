@@ -205,7 +205,7 @@ class JobQueueRedis extends JobQueue {
 			if ( $flags & self::QOS_ATOMIC ) {
 				$batches = array( $items ); // all or nothing
 			} else {
-				$batches = array_chunk( $items, 500 ); // avoid tying up the server
+				$batches = array_chunk( $items, 100 ); // avoid tying up the server
 			}
 			$failed = 0;
 			$pushed = 0;
