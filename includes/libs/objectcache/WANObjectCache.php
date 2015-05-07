@@ -361,10 +361,12 @@ class WANObjectCache {
 	 *   - lowTTL  : consider pre-emptive updates when the current TTL (sec)
 	 *               of the key is less than this. It becomes more likely
 	 *               over time, becoming a certainty once the key is expired.
-	 *   - lockTSE : if the key is tombstoned or expired less (by $checkKeys)
+	 *   - lockTSE : if the key is tombstoned or expired (by $checkKeys) less
 	 *               than this many seconds ago, then try to have a single
 	 *               thread handle cache regeneration at any given time.
 	 *               Other threads will try to use stale values if possible.
+	 *               If, on miss, the time since expiration is low, the assumption
+	 *               is that the key is hot and that a stampede is worth avoiding.
 	 *   - tempTTL : when 'lockTSE' is set, this determines the TTL of the temp
 	 *               key used to cache values while a key is tombstoned.
 	 *               This avoids excessive regeneration of hot keys on delete() but
