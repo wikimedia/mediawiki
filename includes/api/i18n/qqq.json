@@ -1277,6 +1277,7 @@
 	"apihelp-watch-example-unwatch": "{{doc-apihelp-example|watch}}",
 	"apihelp-watch-example-generator": "{{doc-apihelp-example|watch}}",
 	"apihelp-format-example-generic": "{{doc-apihelp-example|format|params=* $1 - Format name|paramstart=2|noseealso=1}}",
+	"apihelp-format-param-wrappedhtml": "{{doc-apihelp-param|format|wrappedhtml|description=the \"wrappedhtml\" parameter in pretty-printing format modules}}",
 	"apihelp-json-description": "{{doc-apihelp-description|json|seealso=* {{msg-mw|apihelp-jsonfm-description}}}}",
 	"apihelp-json-param-callback": "{{doc-apihelp-param|json|callback}}",
 	"apihelp-json-param-utf8": "{{doc-apihelp-param|json|utf8}}",
@@ -1355,6 +1356,7 @@
 	"api-help-permissions": "Label for the \"permissions\" section in the main module's help output.\n\nParameters:\n* $1 - Number of permissions displayed\n{{Identical|Permission}}",
 	"api-help-permissions-granted-to": "Used to introduce the list of groups each permission is assigned to.\n\nParameters:\n* $1 - Number of groups\n* $2 - List of group names, comma-separated",
 	"api-help-right-apihighlimits": "{{technical}}{{doc-right|apihighlimits|prefix=api-help}}\nThis message is used instead of {{msg-mw|right-apihighlimits}} in the API help to display the actual limits.\n\nParameters:\n* $1 - Limit for slow queries\n* $2 - Limit for fast queries",
+	"api-help-open-in-apisandbox": "Text for the link to open an API example in [[Special:ApiSandbox]].",
 	"api-credits-header": "Header for the API credits section in the API help output\n{{Identical|Credit}}",
 	"api-credits": "API credits text, displayed in the API help output"
 }
