@@ -612,13 +612,6 @@ LUA;
 	}
 
 	/**
-	 * @return array
-	 */
-	protected function doGetPeriodicTasks() {
-		return array(); // managed in the runner loop
-	}
-
-	/**
 	 * @param IJobSpecification $job
 	 * @return array
 	 */
