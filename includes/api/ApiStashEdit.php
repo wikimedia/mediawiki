@@ -380,7 +380,7 @@ class ApiStashEdit extends ApiBase {
 				ApiBase::PARAM_TYPE => 'string'
 			),
 			'text' => array(
-				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_TYPE => 'text',
 				ApiBase::PARAM_REQUIRED => true
 			),
 			'contentmodel' => array(

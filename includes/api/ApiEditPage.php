@@ -281,16 +281,16 @@ class ApiEditPage extends ApiBase {
 			$requestArray['wpUndidRevision'] = $params['undo'];
 		}
 
-		// Watch out for basetimestamp == ''
-		// wfTimestamp() treats it as NOW, almost certainly causing an edit conflict
-		if ( !is_null( $params['basetimestamp'] ) && $params['basetimestamp'] != '' ) {
-			$requestArray['wpEdittime'] = wfTimestamp( TS_MW, $params['basetimestamp'] );
+		// Watch out for basetimestamp == '' or '0'
+		// It gets treated as NOW, almost certainly causing an edit conflict
+		if ( $params['basetimestamp'] !== null && (bool)$this->getMain()->getVal( 'basetimestamp' ) ) {
+			$requestArray['wpEdittime'] = $params['basetimestamp'];
 		} else {
 			$requestArray['wpEdittime'] = $pageObj->getTimestamp();
 		}
 
-		if ( !is_null( $params['starttimestamp'] ) && $params['starttimestamp'] != '' ) {
-			$requestArray['wpStarttime'] = wfTimestamp( TS_MW, $params['starttimestamp'] );
+		if ( $params['starttimestamp'] !== null ) {
+			$requestArray['wpStarttime'] = $params['starttimestamp'];
 		} else {
 			$requestArray['wpStarttime'] = wfTimestampNow(); // Fake wpStartime
 		}
@@ -543,7 +543,9 @@ class ApiEditPage extends ApiBase {
 			'sectiontitle' => array(
 				ApiBase::PARAM_TYPE => 'string',
 			),
-			'text' => null,
+			'text' => array(
+				ApiBase::PARAM_TYPE => 'text',
+			),
 			'summary' => null,
 			'tags' => array(
 				ApiBase::PARAM_TYPE => ChangeTags::listExplicitlyDefinedTags(),
@@ -552,8 +554,12 @@ class ApiEditPage extends ApiBase {
 			'minor' => false,
 			'notminor' => false,
 			'bot' => false,
-			'basetimestamp' => null,
-			'starttimestamp' => null,
+			'basetimestamp' => array(
+				ApiBase::PARAM_TYPE => 'timestamp',
+			),
+			'starttimestamp' => array(
+				ApiBase::PARAM_TYPE => 'timestamp',
+			),
 			'recreate' => false,
 			'createonly' => false,
 			'nocreate' => false,
@@ -575,8 +581,12 @@ class ApiEditPage extends ApiBase {
 				),
 			),
 			'md5' => null,
-			'prependtext' => null,
-			'appendtext' => null,
+			'prependtext' => array(
+				ApiBase::PARAM_TYPE => 'text',
+			),
+			'appendtext' => array(
+				ApiBase::PARAM_TYPE => 'text',
+			),
 			'undo' => array(
 				ApiBase::PARAM_TYPE => 'integer'
 			),

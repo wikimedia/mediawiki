@@ -1304,8 +1304,8 @@ class ApiPageSet extends ApiBase {
 			),
 			'generator' => array(
 				ApiBase::PARAM_TYPE => null,
-				ApiBase::PARAM_VALUE_LINKS => array(),
 				ApiBase::PARAM_HELP_MSG => 'api-pageset-param-generator',
+				ApiBase::PARAM_SUBMODULE_PARAM_PREFIX => 'g',
 			),
 			'redirects' => array(
 				ApiBase::PARAM_DFLT => false,
@@ -1331,10 +1331,8 @@ class ApiPageSet extends ApiBase {
 		if ( !$this->mAllowGenerator ) {
 			unset( $result['generator'] );
 		} elseif ( $flags & ApiBase::GET_VALUES_FOR_HELP ) {
-			foreach ( $this->getGenerators() as $g ) {
-				$result['generator'][ApiBase::PARAM_TYPE][] = $g;
-				$result['generator'][ApiBase::PARAM_VALUE_LINKS][$g] = "Special:ApiHelp/query+$g";
-			}
+			$result['generator'][ApiBase::PARAM_TYPE] = 'submodule';
+			$result['generator'][ApiBase::PARAM_SUBMODULE_MAP] = $this->getGenerators();
 		}
 
 		return $result;
@@ -1355,13 +1353,14 @@ class ApiPageSet extends ApiBase {
 				$query = $this->getMain()->getModuleManager()->getModule( 'query' );
 			}
 			$gens = array();
+			$prefix = $query->getModulePath() . '+';
 			$mgr = $query->getModuleManager();
 			foreach ( $mgr->getNamesWithClasses() as $name => $class ) {
 				if ( is_subclass_of( $class, 'ApiQueryGeneratorBase' ) ) {
-					$gens[] = $name;
+					$gens[$name] = $prefix . $name;
 				}
 			}
-			sort( $gens );
+			ksort( $gens );
 			self::$generators = $gens;
 		}
 
