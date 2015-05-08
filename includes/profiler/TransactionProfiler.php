@@ -254,10 +254,14 @@ class TransactionProfiler implements LoggerAwareInterface {
 			$this->logger->info( "Detected no transaction for '$name' - out of sync." );
 			return;
 		}
+
+		$slow = false;
+
 		// Warn if too much time was spend writing...
 		if ( $writeTime > $this->expect['writeQueryTime'] ) {
 			$this->reportExpectationViolated( 'writeQueryTime',
 				"[transaction $id writes to {$server} ({$db})]" );
+			$slow = true;
 		}
 		// Fill in the last non-query period...
 		$lastQuery = end( $this->dbTrxMethodTimes[$name] );
@@ -269,7 +273,6 @@ class TransactionProfiler implements LoggerAwareInterface {
 			}
 		}
 		// Check for any slow queries or non-query periods...
-		$slow = false;
 		foreach ( $this->dbTrxMethodTimes[$name] as $info ) {
 			$elapsed = ( $info[2] - $info[1] );
 			if ( $elapsed >= $this->dbLockThreshold ) {
