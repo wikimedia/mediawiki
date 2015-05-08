@@ -144,6 +144,9 @@ class ApiMain extends ApiBase {
 	private $mCacheControl = array();
 	private $mParamsUsed = array();
 
+	/** @var bool|null Cached return value from self::lacksSameOriginSecurity() */
+	private $lacksSameOriginSecurity = null;
+
 	/**
 	 * Constructs an instance of ApiMain that utilizes the module and format specified by $request.
 	 *
@@ -215,6 +218,35 @@ class ApiMain extends ApiBase {
 	 */
 	public function getResult() {
 		return $this->mResult;
+	}
+
+	/**
+	 * Get the security flag for the current request
+	 * @return bool
+	 */
+	public function lacksSameOriginSecurity() {
+		if ( $this->lacksSameOriginSecurity !== null ) {
+			return $this->lacksSameOriginSecurity;
+		}
+
+		$request = $this->getRequest();
+
+		// JSONP mode
+		if ( $request->getVal( 'callback' ) !== null ) {
+			$this->lacksSameOriginSecurity = true;
+			return true;
+		}
+
+		// Header to be used from XMLHTTPRequest when the request might
+		// otherwise be used for XSS.
+		if ( $request->getHeader( 'Treat-as-Untrusted' ) !== false ) {
+			$this->lacksSameOriginSecurity = true;
+			return true;
+		}
+
+		// Allow extensions to override.
+		$this->lacksSameOriginSecurity = !Hooks::run( 'RequestHasSameOriginSecurity', array( $request ) );
+		return $this->lacksSameOriginSecurity;
 	}
 
 	/**
@@ -557,6 +589,8 @@ class ApiMain extends ApiBase {
 		global $wgUseXVO, $wgVaryOnXFP;
 		$response = $this->getRequest()->response();
 		$out = $this->getOutput();
+
+		$out->addVaryHeader( 'Treat-as-Untrusted' );
 
 		if ( $wgVaryOnXFP ) {
 			$out->addVaryHeader( 'X-Forwarded-Proto' );
