@@ -3639,11 +3639,12 @@ abstract class DatabaseBase implements IDatabase {
 			}
 
 			$this->runOnTransactionPreCommitCallbacks();
+			$writeTime = $this->pendingWriteQueryDuration();
 			$this->doCommit( $fname );
 			if ( $this->mTrxDoneWrites ) {
 				$this->mDoneWrites = microtime( true );
 				$this->getTransactionProfiler()->transactionWritingOut(
-					$this->mServer, $this->mDBname, $this->mTrxShortId );
+					$this->mServer, $this->mDBname, $this->mTrxShortId, $writeTime );
 			}
 			$this->runOnTransactionIdleCallbacks();
 		}
@@ -3721,11 +3722,12 @@ abstract class DatabaseBase implements IDatabase {
 		}
 
 		$this->runOnTransactionPreCommitCallbacks();
+		$writeTime = $this->pendingWriteQueryDuration();
 		$this->doCommit( $fname );
 		if ( $this->mTrxDoneWrites ) {
 			$this->mDoneWrites = microtime( true );
 			$this->getTransactionProfiler()->transactionWritingOut(
-				$this->mServer, $this->mDBname, $this->mTrxShortId );
+				$this->mServer, $this->mDBname, $this->mTrxShortId, $writeTime );
 		}
 		$this->runOnTransactionIdleCallbacks();
 	}

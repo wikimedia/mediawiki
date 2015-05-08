@@ -5320,12 +5320,27 @@ $wgDebugDumpSqlLength = 500;
  */
 $wgTrxProfilerLimits = array(
 	// Basic GET and POST requests
-	'GET'  => array( 'masterConns' => 0, 'writes' => 0, 'readQueryTime' => 5 ),
-	'POST' => array( 'maxAffected' => 500, 'readQueryTime' => 5, 'writeQueryTime' => 1 ),
+	'GET' => array(
+		'masterConns' => 0,
+		'writes' => 0,
+		'readQueryTime' => 5
+	),
+	'POST' => array(
+		'readQueryTime' => 5,
+		'writeQueryTime' => 1,
+		'maxAffected' => 500
+	),
 	// Background job runner
-	'JobRunner' => array( 'maxAffected' => 500, 'readQueryTime' => 30, 'writeQueryTime' => 5 ),
+	'JobRunner' => array(
+		'readQueryTime' => 30,
+		'writeQueryTime' => 5,
+		'maxAffected' => 500
+	),
 	// Command-line scripts
-	'Maintenance' => array( 'maxAffected' => 1000, 'writeQueryTime' => 5 )
+	'Maintenance' => array(
+		'writeQueryTime' => 5,
+		'maxAffected' => 1000
+	)
 );
 
 /**
