@@ -101,7 +101,7 @@
 	'cho' => 'Choctaw',		# Choctaw
 	'chr' => 'ᏣᎳᎩ', # Cherokee
 	'chy' => 'Tsetsêhestâhese',	# Cheyenne
-	'ckb' => 'کوردی',	# Sorani. The name actually says "Kurdi" (Kurdish).
+	'ckb' => 'کوردیی ناوەندی',	# Central Kurdish
 	'co' => 'corsu',		# Corsican
 	'cps' => 'Capiceño', # Capiznon
 	'cr' => 'Nēhiyawēwin / ᓀᐦᐃᔭᐍᐏᐣ',		# Cree
