@@ -59,7 +59,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 		'masterConns'    => INF,
 		'maxAffected'    => INF,
 		'readQueryTime'  => INF,
-		'writeQueryTime' => INF,
+		'writeQueryTime' => INF
 	);
 	/** @var array */
 	protected $expectBy = array();
@@ -246,12 +246,18 @@ class TransactionProfiler implements LoggerAwareInterface {
 	 * @param string $server DB server
 	 * @param string $db DB name
 	 * @param string $id ID string of transaction
+	 * @param float $writeTime Time spent in write queries
 	 */
-	public function transactionWritingOut( $server, $db, $id ) {
+	public function transactionWritingOut( $server, $db, $id, $writeTime = 0.0 ) {
 		$name = "{$server} ({$db}) (TRX#$id)";
 		if ( !isset( $this->dbTrxMethodTimes[$name] ) ) {
 			$this->logger->info( "Detected no transaction for '$name' - out of sync." );
 			return;
+		}
+		// Warn if too much time was spend writing...
+		if ( $writeTime > $this->expect['writeQueryTime'] ) {
+			$this->reportExpectationViolated( 'writeQueryTime',
+				"[transaction $id writes to {$server} ({$db})]" );
 		}
 		// Fill in the last non-query period...
 		$lastQuery = end( $this->dbTrxMethodTimes[$name] );
