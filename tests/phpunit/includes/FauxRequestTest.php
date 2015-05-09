@@ -6,13 +6,18 @@ class FauxRequestTest extends MediaWikiTestCase {
 	 * @covers FauxRequest::getHeader
 	 */
 	public function testGetSetHeader() {
-		$value = 'test/test';
+		$value = 'text/plain, text/html';
 
 		$request = new FauxRequest();
-		$request->setHeader( 'Content-Type', $value );
+		$request->setHeader( 'Accept', $value );
 
-		$this->assertEquals( $request->getHeader( 'Content-Type' ), $value );
-		$this->assertEquals( $request->getHeader( 'CONTENT-TYPE' ), $value );
-		$this->assertEquals( $request->getHeader( 'content-type' ), $value );
+		$this->assertEquals( $request->getHeader( 'Nonexistent' ), false );
+		$this->assertEquals( $request->getHeader( 'Accept' ), $value );
+		$this->assertEquals( $request->getHeader( 'ACCEPT' ), $value );
+		$this->assertEquals( $request->getHeader( 'accept' ), $value );
+		$this->assertEquals(
+			$request->getHeader( 'Accept', WebRequest::GETHEADER_LIST ),
+			array( 'text/plain', 'text/html' )
+		);
 	}
 }
