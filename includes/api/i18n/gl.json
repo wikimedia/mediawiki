@@ -798,6 +798,7 @@
 	"apihelp-query+search-param-namespace": "Buscar só nestes espazos de nomes.",
 	"apihelp-query+search-param-what": "Que tipo de busca lanzar.",
 	"apihelp-query+search-param-info": "Que metadatos devolver.",
+	"apihelp-query+search-param-prop": "Que propiedades devolver:\n;size:Engade o tamaño da páxina en bytes.\n;wordcount:Engade o número de palabras da páxina.\n;timestamp:Engade o selo de tempo da última vez que foi editada a páxina.\n;snippet:Engade o fragmento analizado da páxina.\n;titlesnippet:Engade un fragmento analizado do título da páxina.\n;redirectsnippet:Engade un fragmento analizado do título da redirección.\n;redirecttitle:Engade o título da redirección asociada.\n;sectionsnippet:Engade un fragmento analizado do título de sección asociado.\n;sectiontitle:Engade o título da sección asociada.\n;categorysnippet:Engade un fragmento analizado da categoría asociada.\n;isfilematch:Engade unha marca indicando se o resultado da busca é un ficheiro.\n;score:<span class=\"apihelp-deprecated\">Obsoleto e ignorado.</span>\n;hasrelated:<span class=\"apihelp-deprecated\">Obsoleto e ignorado.</span>",
 	"apihelp-query+search-param-limit": "Número total de páxinas a devolver.",
 	"apihelp-query+search-param-interwiki": "Incluir na busca resultados de interwikis, se é posible.",
 	"apihelp-query+search-param-backend": "Que servidor de busca usar, se non se indica usa o que hai por defecto.",

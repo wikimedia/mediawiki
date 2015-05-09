@@ -392,6 +392,7 @@
 	"title-invalid-utf8": "Den begärda sidtiteln innehåller en ogiltig UTF-8-sekvens.",
 	"title-invalid-interwiki": "Titel innehåller en interwiki-länk",
 	"title-invalid-talk-namespace": "Den begärda sidtitel hänvisar till en diskussionssida som inte kan existera.",
+	"title-invalid-characters": "Den begärda sidtiteln innehåller ogiltiga tecken: \"$1\".",
 	"title-invalid-too-long": "Den begärda sidtiteln är för lång. Det får inte vara längre än $1 byte i UTF-8-kodning.",
 	"perfcached": "Följande data är cachad och är möjligtvis inte helt uppdaterad. Maximalt {{PLURAL:$1|ett|$1}} resultat finns {{PLURAL:$1|tillgängligt|tillgängliga}} i cachen.",
 	"perfcachedts": "Följande data är cachad och uppdaterades senast $1. Maximalt {{PLURAL:$4|ett|$4}} resultat finns {{PLURAL:$4|tillgängligt|tillgängliga}} i cachen.",

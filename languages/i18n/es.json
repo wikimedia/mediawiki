@@ -123,7 +123,8 @@
 			"Kroji",
 			"JasterTDC",
 			"Laurenslimb",
-			"Tusca"
+			"Tusca",
+			"Tadol"
 		]
 	},
 	"tog-underline": "Subrayar los enlaces:",
@@ -684,8 +685,8 @@
 	"subject-preview": "Previsualización del asunto/encabezado:",
 	"previewerrortext": "Se ha producido un error al intentar la vista previa de los cambios.",
 	"blockedtitle": "El usuario está bloqueado",
-	"blockedtext": "<strong>Tu nombre de usuario o dirección IP ha sido bloqueada.</strong>\n\nEl bloqueo fue hecho por $1.\nLa razón dada es <em>$2</em>.\n\n* Inicio del bloqueo: $8\n* Caducidad del bloqueo: $6\n* Bloqueo destinado a: $7\n\nPuedes contactar a $1 u otro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir el bloqueo.\nNo puedes utilizar la función «enviar correo electrónico a este usuario»  a menos que tengas una dirección de correo electrónico válida registrada en tus [[Special:Preferences|preferencias de usuario]] y que el bloqueo no haya inhabilitado esta función.\n\nTu dirección IP actual es $3, y el identificador del bloqueo es #$5.\nPor favor incluye todos los datos aquí mostrados en cualquier consulta que hagas.",
-	"autoblockedtext": "Tu dirección IP ha sido bloqueada automáticamente porque fue utilizada por otro usuario, que resultó bloqueado por $1.\nLa explicación proporcionada es la siguiente:\n\n:<em>$2</em>\n\n* Inicio del bloqueo: $8\n* Caducidad del bloqueo: $6\n* Bloqueo destinado a: $7\n\nPuedes contactar con $1 o con otro de los [[{{MediaWiki:Grouppage-sysop}}|administradores]] para discutir el bloqueo.\n\nTen en cuenta que no podrás utilizar la herramienta de «enviar correo electrónico a este usuario» a menos que tengas una dirección de correo electrónico válida registrada en tus [[Special:Preferences|preferencias de usuario]] y la función no haya sido también bloqueada.\n\nTu actual dirección IP es $3, y el identificador del bloqueo es #$5.\nPor favor, incluye todos los datos aquí mostrados en cualquier consulta que hagas al respecto.",
+	"blockedtext": "<strong>Tu nombre de usuario o dirección IP ha sido bloqueada.</strong>\n\nEl bloqueo fue hecho por $1.\nLa razón dada es <em>$2</em>.\n\n* Inicio del bloqueo: $8\n* Caducidad del bloqueo: $6\n* Bloqueo destinado a: $7\n\nPuedes contactar a $1 o con otro de los [[{{MediaWiki:Grouppage-sysop}}|administradores]] para discutir el bloqueo.\nNo puedes utilizar la función «enviar correo electrónico a este usuario»  a menos que tengas una dirección de correo electrónico válida registrada en tus [[Special:Preferences|preferencias de usuario]] y que el bloqueo no haya inhabilitado esta función.\n\nTu dirección IP actual es $3, y el identificador del bloqueo es #$5.\nPor favor incluye todos los datos aquí mostrados en cualquier consulta que hagas.",
+	"autoblockedtext": "Tu dirección IP ha sido bloqueada automáticamente porque fue utilizada por otro usuario, que resultó bloqueado por $1.\n\nEl motivo dado es el siguiente:\n\n:<em>$2</em>\n\n* Inicio del bloqueo: $8\n* Caducidad del bloqueo: $6\n* Bloqueo destinado a: $7\n\nPuedes contactar con $1 o con otro de los [[{{MediaWiki:Grouppage-sysop}}|administradores]] para discutir el bloqueo.\n\nTen en cuenta que no podrás utilizar la herramienta de «enviar correo electrónico a este usuario» a menos que tengas una dirección de correo electrónico válida registrada en tus [[Special:Preferences|preferencias de usuario]] y la función no haya sido también bloqueada.\n\nTu dirección IP actual es $3, y el identificador del bloqueo es #$5.\nPor favor, incluye todos los datos aquí mostrados en cualquier consulta que hagas al respecto.",
 	"blockednoreason": "no se ha especificado el motivo",
 	"whitelistedittext": "Tienes que $1 para editar artículos.",
 	"confirmedittext": "Debes confirmar tu dirección de correo electrónico antes de poder editar páginas. Por favor, configura y confirma tu dirección de correo a través de tus [[Special:Preferences|preferencias de usuario]].",

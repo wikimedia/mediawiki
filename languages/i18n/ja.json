@@ -3188,6 +3188,8 @@
 	"tags-deactivate-not-allowed": "タグ「$1」は無効化できません。",
 	"tags-deactivate-submit": "無効化",
 	"tags-edit-title": "タグの編集",
+	"tags-edit-existing-tags": "既存のタグ:",
+	"tags-edit-new-tags": "新しいタグ:",
 	"tags-edit-reason": "理由:",
 	"comparepages": "ページの比較",
 	"compare-page1": "ページ 1",

@@ -340,6 +340,7 @@
 	"title-invalid-characters": "'O titulo 'e paggena addimannato cuntene carattere invalide: \"$1\".",
 	"title-invalid-relative": "'O titulo tene nu nnerizzo relativo. 'E titule 'e paggene relative (./, ../) nun songhe valide, pecché nun se putessero trasì quanno s'ausasse nu navigatore 'utente.",
 	"title-invalid-magic-tilde": "'O titulo 'e paggena addimannato cuntene na sequenza che facesse maggie, e nun serve (<nowiki>~~~</nowiki>).",
+	"title-invalid-too-long": "'O titulo 'e paggena addimannato è troppo luongo. Nun s'avesse 'e ffà cchiù luongo 'e $1 byte dint'a na codifica UTF-8.",
 	"title-invalid-leading-colon": "'O titulo 'e paggena addimannato cuntene na culonna invalida addò 'o cummencio.",
 	"perfcached": "Può darse, ch' 'e ddate ca stanno ccà (\"ncache\") nun song'agghiurnate. Nu massimo 'e {{PLURAL:$1|unu risultato è|$1 risultate songhe}} a disposizione 'n \"cache\".",
 	"perfcachedts": "'E ddate ca stanno ccà songhe asciute 'a na copia \"cache\" d' 'o database, 'o cuale tene l'úrdemo agghiurnamento 'o $1. Nu massimo 'e {{PLURAL:$4|unu risultato è|$4 risultate songhe}} a disposizione dint'a \"cache\".",

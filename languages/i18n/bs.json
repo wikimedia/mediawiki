@@ -2086,7 +2086,7 @@
 	"thumbnail_gd-library": "Nekompletna konfiguracija GD biblioteke: nedostaje funkcija $1",
 	"thumbnail_image-missing": "Datoteka ne dostaje: $1",
 	"import": "Uvoz stranica",
-	"importinterwiki": "Međuwiki uvoz",
+	"importinterwiki": "Uvezeno sa druge wiki",
 	"import-interwiki-text": "Izaberi wiki i naslov stranice za uvoz.\nDatumi revizija i imena autora će biti sačuvani.\nSve akcije pri međuwiki uvozu će biti zapisane u [[Special:Log/import|zapisu uvoza]].",
 	"import-interwiki-history": "Kopiraj sve verzije historije za ovu stranicu",
 	"import-interwiki-templates": "Uključi sve šablone",
