@@ -35,7 +35,8 @@ class ResourceLoaderSpecialCharacterDataModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	protected function getData() {
-		return json_decode( file_get_contents( $this->path ) );
+		global $IP;
+		return json_decode( file_get_contents( "$IP/{$this->path}" ) );
 	}
 
 	/**
