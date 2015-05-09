@@ -37,6 +37,8 @@
 class RefreshLinksJob extends Job {
 	const PARSE_THRESHOLD_SEC = 1.0;
 
+	const CLOCK_FUDGE = 10;
+
 	function __construct( $title, $params = '' ) {
 		parent::__construct( 'refreshLinks', $title, $params );
 		// A separate type is used just for cascade-protected backlinks
@@ -140,22 +142,38 @@ class RefreshLinksJob extends Job {
 
 		$parserOutput = false;
 		$parserOptions = $page->makeParserOptions( 'canonical' );
-		// If page_touched changed after this root job (with a good slave lag skew factor),
-		// then it is likely that any views of the pages already resulted in re-parses which
-		// are now in cache. This can be reused to avoid expensive parsing in some cases.
+		// If page_touched changed after this root job, then it is likely that
+		// any views of the pages already resulted in re-parses which are now in
+		// cache. The cache can be reused to avoid expensive parsing in some cases.
 		if ( isset( $this->params['rootJobTimestamp'] ) ) {
-			$skewedTimestamp = wfTimestamp( TS_UNIX, $this->params['rootJobTimestamp'] ) + 5;
-			if ( $page->getLinksTimestamp() > wfTimestamp( TS_MW, $skewedTimestamp ) ) {
+			$opportunistic = !empty( $this->params['isOpportunistic'] );
+
+			$skewedTimestamp = $this->params['rootJobTimestamp'];
+			if ( $opportunistic ) {
+				// Niether clock skew nor DB snapshot/slave lag matter much for such
+				// updates; focus on reusing the (often recently updated) cache
+			} else {
+				// For transclusion updates, the template changes must be reflected
+				$skewedTimestamp = wfTimestamp( TS_MW,
+					wfTimestamp( TS_UNIX, $skewedTimestamp ) + self::CLOCK_FUDGE
+				);
+			}
+
+			if ( $page->getLinksTimestamp() > $skewedTimestamp ) {
 				// Something already updated the backlinks since this job was made
 				return true;
 			}
-			if ( $page->getTouched() > wfTimestamp( TS_MW, $skewedTimestamp ) ) {
+
+			if ( $page->getTouched() >= $skewedTimestamp || $opportunistic ) {
+				// Something bumped page_touched since this job was made
+				// or the cache is otherwise suspected to be up-to-date
 				$parserOutput = ParserCache::singleton()->getDirty( $page, $parserOptions );
-				if ( $parserOutput && $parserOutput->getCacheTime() <= $skewedTimestamp ) {
+				if ( $parserOutput && $parserOutput->getCacheTime() < $skewedTimestamp ) {
 					$parserOutput = false; // too stale
 				}
 			}
 		}
+
 		// Fetch the current revision and parse it if necessary...
 		if ( $parserOutput == false ) {
 			$start = microtime( true );
