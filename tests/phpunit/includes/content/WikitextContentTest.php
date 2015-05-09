@@ -167,6 +167,20 @@ just a test"
 				"New",
 				trim( WikitextContentTest::$sections ) . "\n\n\n== New ==\n\nNo more"
 			),
+			array(
+				"Foo\n__ALWAYSTOPPOST__",
+				"new",
+				"text!",
+				"Heading",
+				"== Heading ==\n\ntext!\n\nFoo\n__ALWAYSTOPPOST__",
+			),
+			array(
+				"",
+				"new",
+				"new text!",
+				"Subject line",
+				"== Subject line ==\n\nnew text!",
+			),
 		);
 	}
 
