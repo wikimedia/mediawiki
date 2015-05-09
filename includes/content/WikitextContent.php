@@ -91,9 +91,15 @@ class WikitextContent extends TextContent {
 			$subject = $sectionTitle ? wfMessage( 'newsectionheaderdefaultlevel' )
 					->rawParams( $sectionTitle )->inContentLanguage()->text() . "\n\n" : '';
 			if ( Hooks::run( 'PlaceNewSection', array( $this, $oldtext, $subject, &$text ) ) ) {
-				$text = strlen( trim( $oldtext ) ) > 0
-					? "{$oldtext}\n\n{$subject}{$text}"
-					: "{$subject}{$text}";
+				if ( strlen( trim( $oldtext ) ) === 0 ) {
+					$text = "{subject}{$text}";
+				} elseif ( $this->matchMagicWord( MagicWord::get( 'alwaystoppost' ) ) ) {
+					// Top posting
+					$text = "{$subject}{$text}\n\n{$oldtext}";
+				} else {
+					// Bottom posting
+					$text = "{$oldtext}\n\n{$subject}{$text}";
+				}
 			}
 		} else {
 			# Replacing an existing section; roll out the big guns

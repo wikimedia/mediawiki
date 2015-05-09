@@ -231,6 +231,8 @@ class MagicWord {
 		'staticredirect',
 		'notitleconvert',
 		'nocontentconvert',
+		'alwaystoppost',
+		'alwaysbottompost',
 	);
 
 	static public $mSubstIDs = array(
