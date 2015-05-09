@@ -118,8 +118,10 @@ class JobRunner implements LoggerAwareInterface {
 			return $response;
 		}
 
+		$profiler = Profiler::instance();
+
 		// Catch huge single updates that lead to slave lag
-		$trxProfiler = Profiler::instance()->getTransactionProfiler();
+		$trxProfiler = $profiler->getTransactionProfiler();
 		$trxProfiler->setLogger( LoggerFactory::getInstance( 'DBPerformance' ) );
 		$trxProfiler->setExpectations( $wgTrxProfilerLimits['JobRunner'], __METHOD__ );
 
@@ -179,6 +181,7 @@ class JobRunner implements LoggerAwareInterface {
 				$this->debugCallback( $msg );
 
 				// Run the job...
+				$psection = $profiler->scopedProfileIn( __METHOD__ . '-' . $jType );
 				$jobStartTime = microtime( true );
 				try {
 					++$jobsRun;
@@ -193,6 +196,7 @@ class JobRunner implements LoggerAwareInterface {
 				}
 				$timeMs = intval( ( microtime( true ) - $jobStartTime ) * 1000 );
 				$timeMsTotal += $timeMs;
+				$profiler->scopedProfileOut( $psection );
 
 				// Mark the job as done on success or when the job cannot be retried
 				if ( $status !== false || !$job->allowRetries() ) {
