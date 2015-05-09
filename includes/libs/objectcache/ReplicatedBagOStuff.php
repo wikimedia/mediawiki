@@ -29,7 +29,7 @@
  * writes are rare or they usually take place in the primary datacenter.
  *
  * @ingroup Cache
- * @since 1.25
+ * @since 1.26
  */
 class ReplicatedBagOStuff extends BagOStuff {
 	/** @var BagOStuff */
