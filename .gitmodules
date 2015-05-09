@@ -13,3 +13,6 @@
 [submodule "extensions/cldr"]
 	path = extensions/cldr
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/cldr.git
+[submodule "extensions/FundraisingEmailUnsubscribe"]
+	path = extensions/FundraisingEmailUnsubscribe
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/FundraisingEmailUnsubscribe.git
