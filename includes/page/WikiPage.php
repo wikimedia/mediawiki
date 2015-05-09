@@ -3411,6 +3411,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Check if the last link refresh was before page_touched
 		if ( $this->getLinksTimestamp() < $this->getTouched() ) {
+			$params['isOpportunistic'] = true;
+			$params['rootJobTimestamp'] = $this->getTouched();
+
 			JobQueueGroup::singleton()->push( EnqueueJob::newFromLocalJobs(
 				new JobSpecification( 'refreshLinks', $params,
 					array( 'removeDuplicates' => true ), $this->mTitle )
