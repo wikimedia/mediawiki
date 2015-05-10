@@ -26,6 +26,8 @@ production.
   to be set. If they are both set, the value of rootpage= will be ignored.
 * prop=revision output in enum mode is now sorted by timestamp rather than
   revision ID. This usually won't make any difference.
+* When errors about users being blocked are returned, they now include
+  information about the relevant block.
 
 === Action API internal changes in 1.26 ===
 
