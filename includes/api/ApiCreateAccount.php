@@ -48,7 +48,12 @@ class ApiCreateAccount extends ApiBase {
 			);
 		}
 		if ( $this->getUser()->isBlockedFromCreateAccount() ) {
-			$this->dieUsage( 'You cannot create a new account because you are blocked', 'blocked' );
+			$this->dieUsage(
+				'You cannot create a new account because you are blocked',
+				'blocked',
+				0,
+				array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $this->getUser()->getBlock() ) )
+			);
 		}
 
 		$params = $this->extractRequestParams();

@@ -37,7 +37,12 @@ class ApiUndelete extends ApiBase {
 		}
 
 		if ( $this->getUser()->isBlocked() ) {
-			$this->dieUsageMsg( 'blockedtext' );
+			$this->dieUsage(
+				'You have been blocked from editing',
+				'blocked',
+				0,
+				array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $this->getUser()->getBlock() ) )
+			);
 		}
 
 		$titleObj = Title::newFromText( $params['title'] );

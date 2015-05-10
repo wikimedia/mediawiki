@@ -51,8 +51,27 @@ class ApiBlock extends ApiBase {
 		# bug 15810: blocked admins should have limited access here
 		if ( $user->isBlocked() ) {
 			$status = SpecialBlock::checkUnblockSelf( $params['user'], $user );
-			if ( $status !== true ) {
-				$this->dieUsageMsg( array( $status ) );
+			switch ( $status ) {
+				case 'ipbblocked':
+					$this->dieUsage(
+						'You cannot block or unblock users while you are yourself blocked',
+						'ipbblocked',
+						0,
+						array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) )
+					);
+					break;
+				case 'ipbnounblockself':
+					$this->dieUsage(
+						'You are not allowed to unblock yourself',
+						'ipbnounblockself',
+						0,
+						array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) )
+					);
+					break;
+				default:
+					if ( $status !== true ) {
+						$this->dieUsageMsg( $status );
+					}
 			}
 		}
 
