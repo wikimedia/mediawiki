@@ -211,6 +211,9 @@ class SpecialContributions extends IncludableSpecialPage {
 
 				$output = $pager->getBody();
 				if ( !$this->including() ) {
+					if ( $this->opts['contribs'] !== 'newbie' ) {
+						$output = $this->getActionButtons( $output );
+					}
 					$output = '<p>' . $pager->getNavigationBar() . '</p>' .
 						$output .
 						'<p>' . $pager->getNavigationBar() . '</p>';
@@ -241,6 +244,56 @@ class SpecialContributions extends IncludableSpecialPage {
 				}
 			}
 		}
+	}
+
+	// Add revision delete and tag editing buttons (adapted from HistoryAction class)
+	private function getActionButtons( $formcontents ) {
+		$user = $this->getUser();
+		$canRevDelete = $user->isAllowedAll( 'deletedhistory', 'deletelogentry' );
+		$canEditTags = ChangeTags::showTagEditingUI( $user );
+		# If the user doesn't have the ability to delete log entries nor edit tags,
+		# don't bother showing them the button(s).
+		if ( !$canRevDelete && !$canEditTags ) {
+			return $formcontents;
+		}
+
+		# Show button to hide revisions and/or edit change tags
+		$s = Html::openElement(
+			'form',
+			[ 'action' => wfScript(), 'id' => 'mw-contributions-deleterevision-submit' ]
+		) . "\n";
+		$s .= Html::hidden( 'action', 'historysubmit' ) . "\n";
+		$s .= Html::hidden( 'type', 'contribs' ) . "\n";
+
+		$buttons = '';
+		if ( $canRevDelete ) {
+			$buttons .= Html::element(
+				'button',
+				[
+					'type' => 'submit',
+					'name' => 'revisiondelete',
+					'value' => '1',
+					'class' => "deleterevision-contributions-submit mw-contributions-deleterevision-button"
+				],
+				$this->msg( 'showhideselectedversions' )->text()
+			) . "\n";
+		}
+		if ( $canEditTags ) {
+			$buttons .= Html::element(
+				'button',
+				[
+					'type' => 'submit',
+					'name' => 'editchangetags',
+					'value' => '1',
+					'class' => "editchangetags-contributions-submit mw-contributions-editchangetags-button"
+				],
+				$this->msg( 'history-edit-tags' )->text()
+			) . "\n";
+		}
+		$s .= $buttons . $formcontents . $buttons;
+		$s .= Html::closeElement( 'form' );
+
+		return $s;
 	}
 
 	/**
