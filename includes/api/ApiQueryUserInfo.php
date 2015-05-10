@@ -51,9 +51,21 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		$result->addValue( 'query', $this->getModuleName(), $r );
 	}
 
-	protected function getCurrentUserInfo() {
+	public static function getBlockInfo( Block $block ) {
 		global $wgContLang;
+		$vals = array();
+		$vals['blockid'] = $block->getId();
+		$vals['blockedby'] = $block->getByName();
+		$vals['blockedbyid'] = $block->getBy();
+		$vals['blockreason'] = $block->mReason;
+		$vals['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $block->mTimestamp );
+		$vals['blockexpiry'] = $wgContLang->formatExpiry(
+			$block->getExpiry(), TS_ISO_8601, 'infinite'
+		);
+		return $vals;
+	}
 
+	protected function getCurrentUserInfo() {
 		$user = $this->getUser();
 		$result = $this->getResult();
 		$vals = array();
@@ -64,18 +76,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$vals['anon'] = true;
 		}
 
-		if ( isset( $this->prop['blockinfo'] ) ) {
-			if ( $user->isBlocked() ) {
-				$block = $user->getBlock();
-				$vals['blockid'] = $block->getId();
-				$vals['blockedby'] = $block->getByName();
-				$vals['blockedbyid'] = $block->getBy();
-				$vals['blockreason'] = $user->blockedFor();
-				$vals['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $block->mTimestamp );
-				$vals['blockexpiry'] = $wgContLang->formatExpiry(
-					$block->getExpiry(), TS_ISO_8601, 'infinite'
-				);
-			}
+		if ( isset( $this->prop['blockinfo'] ) && $user->isBlocked() ) {
+			$vals = array_merge( $vals, self::getBlockInfo( $user->getBlock() ) );
 		}
 
 		if ( isset( $this->prop['hasmsg'] ) ) {
