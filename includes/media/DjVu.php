@@ -27,6 +27,8 @@
  * @ingroup Media
  */
 class DjVuHandler extends ImageHandler {
+	const EXPENSIVE_SIZE_LIMIT = 10485760; // 10MiB
+
 	/**
 	 * @return bool
 	 */
@@ -47,6 +49,15 @@ class DjVuHandler extends ImageHandler {
 	 */
 	function mustRender( $file ) {
 		return true;
+	}
+
+	/**
+	 * True if creating thumbnails from the file is large or otherwise resource-intensive.
+	 * @param File $file
+	 * @return bool
+	 */
+	public function isExpensiveToThumbnail( $file ) {
+		return $file->getSize() > static::EXPENSIVE_SIZE_LIMIT;
 	}
 
 	/**
