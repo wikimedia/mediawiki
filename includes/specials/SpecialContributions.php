@@ -206,6 +206,9 @@ class SpecialContributions extends IncludableSpecialPage {
 
 				$output = $pager->getBody();
 				if ( !$this->including() ) {
+					if ( $this->opts['contribs'] !== 'newbie' ) {
+						$output = $this->getActionButtons( $output );
+					}
 					$output = '<p>' . $pager->getNavigationBar() . '</p>' .
 						$output .
 						'<p>' . $pager->getNavigationBar() . '</p>';
@@ -236,6 +239,56 @@ class SpecialContributions extends IncludableSpecialPage {
 				}
 			}
 		}
+	}
+
+	// Add revision delete and tag editing buttons (adapted from HistoryAction class)
+	private function getActionButtons( $formcontents ) {
+		$user = $this->getUser();
+		$canRevDelete = $user->isAllowedAll( 'deletedhistory', 'deletelogentry' );
+		$canEditTags = ChangeTags::showTagEditingUI( $user );
+		# If the user doesn't have the ability to delete log entries nor edit tags,
+		# don't bother showing them the button(s).
+		if ( !$canRevDelete && !$canEditTags ) {
+			return $formcontents;
+		}
+
+		# Show button to hide revisions and/or edit change tags
+		$s = Html::openElement(
+			'form',
+			array( 'action' => wfScript(), 'id' => 'mw-contributions-deleterevision-submit' )
+		) . "\n";
+		$s .= Html::hidden( 'action', 'historysubmit' ) . "\n";
+		$s .= Html::hidden( 'type', 'contribs' ) . "\n";
+
+		$buttons = '';
+		if ( $canRevDelete ) {
+			$buttons .= Html::element(
+				'button',
+				array(
+					'type' => 'submit',
+					'name' => 'revisiondelete',
+					'value' => '1',
+					'class' => "deleterevision-contributions-submit mw-contributions-deleterevision-button"
+				),
+				$this->msg( 'showhideselectedversions' )->text()
+			) . "\n";
+		}
+		if ( $canEditTags ) {
+			$buttons .= Html::element(
+				'button',
+				array(
+					'type' => 'submit',
+					'name' => 'editchangetags',
+					'value' => '1',
+					'class' => "editchangetags-contributions-submit mw-contributions-editchangetags-button"
+				),
+				$this->msg( 'history-edit-tags' )->text()
+			) . "\n";
+		}
+		$s .= $buttons . $formcontents . $buttons;
+		$s .= Html::closeElement( 'form' );
+
+		return $s;
 	}
 
 	/**
@@ -667,6 +720,11 @@ class ContribsPager extends ReverseChronologicalPager {
 	 */
 	protected $mParentLens;
 
+	/**
+	 * @var bool
+	 */
+	protected $showTagEditUI;
+
 	function __construct( IContextSource $context, array $options ) {
 		parent::__construct( $context );
 
@@ -695,6 +753,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		$year = isset( $options['year'] ) ? $options['year'] : false;
 		$month = isset( $options['month'] ) ? $options['month'] : false;
 		$this->getDateCond( $year, $month );
+		$this->showTagEditUI = ChangeTags::showTagEditingUI( $context->getUser() );
 
 		// Most of this code will use the 'contributions' group DB, which can map to slaves
 		// with extra user based indexes or partioning by user. The additional metadata
@@ -1080,9 +1139,42 @@ class ContribsPager extends ReverseChronologicalPager {
 				$mflag = '';
 			}
 
-			$del = Linker::getRevDeleteLink( $user, $rev, $page );
-			if ( $del !== '' ) {
-				$del .= ' ';
+			if ( $this->contribs === 'newbie' ) {
+				$del = Linker::getRevDeleteLink( $user, $rev, $page );
+				if ( $del !== '' ) {
+					$del .= ' ';
+				}
+			} else {
+				// Add checkboxes (adapted from HistoryAction class)
+				$del = '';
+				$user = $this->getUser();
+				$canRevDelete = $user->isAllowed( 'deleterevision' );
+				// Show checkboxes for each revision, to allow for revision deletion and
+				// change tags
+				if ( $canRevDelete || $this->showTagEditUI ) {
+					$this->preventClickjacking();
+					// If revision was hidden from sysops and we don't need the checkbox
+					// for anything else, disable it
+					if ( !$this->showTagEditUI && !$rev->userCan( Revision::DELETED_RESTRICTED, $user ) ) {
+						$del = Xml::check( 'deleterevisions', false, array( 'disabled' => 'disabled' ) );
+					// Otherwise, enable the checkbox...
+					} else {
+						$del = Xml::check( 'showhiderevisions', false,
+							array( 'name' => 'ids[' . $rev->getId() . ']' ) );
+					}
+				// User can only view deleted revisions...
+				} elseif ( $rev->getVisibility() && $user->isAllowed( 'deletedhistory' ) ) {
+					// If revision was hidden from sysops, disable the link
+					if ( !$rev->userCan( Revision::DELETED_RESTRICTED, $user ) ) {
+						$del = Linker::revDeleteLinkDisabled( false );
+					// Otherwise, show the link...
+					} else {
+						$query = array( 'type' => 'contribs',
+							'target' => $this->target, 'ids' => $rev->getId() );
+						$del .= Linker::revDeleteLink( $query,
+							$rev->isDeleted( Revision::DELETED_RESTRICTED ), false );
+					}
+				}
 			}
 
 			$diffHistLinks = $this->msg( 'parentheses' )

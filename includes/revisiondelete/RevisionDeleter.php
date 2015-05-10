@@ -30,6 +30,7 @@ class RevisionDeleter {
 	/** List of known revdel types, with their corresponding list classes */
 	private static $allowedTypes = array(
 		'revision' => 'RevDelRevisionList',
+		'contribs' => 'RevDelContribsList',
 		'archive' => 'RevDelArchiveList',
 		'oldimage' => 'RevDelFileList',
 		'filearchive' => 'RevDelArchivedFileList',

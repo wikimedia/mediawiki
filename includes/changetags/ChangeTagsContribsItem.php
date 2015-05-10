@@ -20,33 +20,69 @@
  */
 
 /**
- * Item class for a live revision table row with its associated change tags.
- * @since 1.25
+ * Item class for a live contribution with its associated change tags.
+ * @since 1.26
  */
-class ChangeTagsRevisionItem extends RevisionItem {
+class ChangeTagsContribsItem extends ChangeTagsRevisionItem {
 	/**
-	 * @return string Comma-separated list of tags
+	 * Get the HTML link to the revision text.
+	 * @return string
 	 */
-	public function getTags() {
-		return $this->row->ts_tags;
+	protected function getRevisionLink() {
+		$date = htmlspecialchars( $this->list->getLanguage()->userTimeAndDate(
+			$this->revision->getTimestamp(), $this->list->getUser() ) );
+
+		if ( $this->isDeleted() && !$this->canViewContent() ) {
+			return $date;
+		}
+
+		return Linker::linkKnown(
+			$this->revision->getTitle(),
+			$date,
+			array(),
+			array(
+				'oldid' => $this->revision->getId(),
+				'unhide' => 1
+			)
+		);
 	}
 
 	/**
-	 * @return string A HTML <li> element representing this revision, showing
+	 * Get the HTML link to the diff.
+	 * @return string
+	 */
+	protected function getDiffLink() {
+		if ( $this->isDeleted() && !$this->canViewContent() ) {
+			return $this->list->msg( 'diff' )->escaped();
+		} else {
+			return Linker::linkKnown(
+					$this->revision->getTitle(),
+					$this->list->msg( 'diff' )->escaped(),
+					array(),
+					array(
+						'diff' => $this->revision->getId(),
+						'oldid' => 'prev',
+						'unhide' => 1
+					)
+				);
+		}
+	}
+
+	/**
+	 * @return string A HTML <li> element representing this contribution, showing
 	 * change tags and everything
-	 * Overridden by ChangeTagsContribsItem
 	 */
 	public function getHTML() {
 		$difflink = $this->list->msg( 'parentheses' )
 			->rawParams( $this->getDiffLink() )->escaped();
 		$revlink = $this->getRevisionLink();
-		$userlink = Linker::revUserLink( $this->revision );
+		$articlelink = Linker::linkKnown( $this->revision->getTitle() );
 		$comment = Linker::revComment( $this->revision );
 		if ( $this->isDeleted() ) {
 			$revlink = "<span class=\"history-deleted\">$revlink</span>";
 		}
 
-		$content = "$difflink $revlink $userlink $comment";
+		$content = "$difflink $revlink $articlelink $comment";
 		$attribs = array();
 		$tags = $this->getTags();
 		if ( $tags ) {
