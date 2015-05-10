@@ -82,6 +82,13 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			'text' => 'revdelete-text-text',
 			'selected'=> 'revdelete-selected-text',
 		),
+		'contribs' => array(
+			'check-label' => 'revdelete-hide-text',
+			'success' => 'revdelete-success',
+			'failure' => 'revdelete-failure',
+			'text' => 'revdelete-text-text',
+			'selected'=> 'revdelete-selected-text',
+		),
 		'oldimage' => array(
 			'check-label' => 'revdelete-hide-image',
 			'success' => 'revdelete-success',
@@ -206,7 +213,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		LogEventsList::showLogExtract(
 			$output,
 			'delete',
-			$this->targetObj,
+			( $this->typeName === 'contribs' ) ? '' : $this->targetObj,
 			'', /* user */
 			array( 'lim' => 25, 'conds' => $qc, 'useMaster' => $this->wasSaved )
 		);
