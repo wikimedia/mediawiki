@@ -45,6 +45,9 @@ abstract class ChangeTagsList extends RevisionListBase {
 			case 'revision':
 				$className = 'ChangeTagsRevisionList';
 				break;
+			case 'contribs':
+				$className = 'ChangeTagsContribsList';
+				break;
 			case 'logentry':
 				$className = 'ChangeTagsLogList';
 				break;
