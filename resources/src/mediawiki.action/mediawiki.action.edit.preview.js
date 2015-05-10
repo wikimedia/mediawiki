@@ -121,12 +121,15 @@
 			$.extend( postData, {
 				pst: '',
 				preview: '',
-				prop: 'text|displaytitle|modules|categorieshtml|templates|langlinks|limitreporthtml',
+				prop: 'text|displaytitle|modules|jsconfigvars|categorieshtml|templates|langlinks|limitreporthtml',
 				disableeditsection: true
 			} );
 			request = api.post( postData );
 			request.done( function ( response ) {
 				var li, newList, $displaytitle, $content, $parent, $list;
+				if ( response.parse.jsconfigvars ) {
+					mw.config.set( response.parse.jsconfigvars );
+				}
 				if ( response.parse.modules ) {
 					mw.loader.load( response.parse.modules.concat(
 						response.parse.modulescripts,
