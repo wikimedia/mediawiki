@@ -317,6 +317,14 @@ abstract class RevDelList extends RevisionListBase {
 	}
 
 	/**
+	 * Updates the deletion log.
+	 * Subclasses may add several log entries
+	 */
+	protected function updateLog( $logType, $params ) {
+		$this->addLogEntry( $logType, $params );
+	}
+
+	/**
 	 * Record a log entry on the action
 	 * @param string $logType One of (delete,suppress)
 	 * @param array $params Associative array of parameters:
@@ -329,7 +337,7 @@ abstract class RevDelList extends RevisionListBase {
 	 *     authorsIPs:      The array of the IP/anon user offenders
 	 * @throws MWException
 	 */
-	private function updateLog( $logType, $params ) {
+	private function addLogEntry( $logType, $params ) {
 		// Get the URL param's corresponding DB field
 		$field = RevisionDeleter::getRelationType( $this->getType() );
 		if ( !$field ) {

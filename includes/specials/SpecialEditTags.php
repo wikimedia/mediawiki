@@ -59,6 +59,18 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		return true;
 	}
 
+	/**
+	 * Helper function giving message key prefix appropriate for the typeName
+	 */
+	public function appendMessagePrefix( $name ) {
+		if ( $this->typeName === 'contribs' ) {
+			$type = 'revision';
+		} else {
+			$type = $this->typeName;
+		}
+		return 'tags-edit-' . $type . '-' . $name;
+	}
+
 	public function execute( $par ) {
 		$this->checkPermissions();
 		$this->checkReadOnly();
@@ -105,6 +117,9 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			case 'logging':
 				$this->typeName = 'logentry';
 				break;
+			case 'contribs':
+				$this->typeName = 'contribs';
+				break;
 			default:
 				$this->typeName = 'revision';
 				break;
@@ -114,7 +129,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		// Yuck! Copied straight out of SpecialRevisiondelete, but it does exactly
 		// what we want
 		$this->targetObj = RevisionDeleter::suggestTarget(
-			$this->typeName === 'revision' ? 'revision' : 'logging',
+			( $this->typeName === 'logentry' ) ? 'logging' : $this->typeName,
 			$this->targetObj,
 			$this->ids
 		);
@@ -143,7 +158,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		LogEventsList::showLogExtract(
 			$output,
 			'tag',
-			$this->targetObj,
+			( $this->typeName === 'contribs' ) ? '' : $this->targetObj,
 			'', /* user */
 			[ 'lim' => 25, 'conds' => [], 'useMaster' => $this->wasSaved ]
 		);
@@ -159,15 +174,17 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			$this->getSkin()->setRelevantTitle( $this->targetObj );
 
 			$links = [];
-			$links[] = Linker::linkKnown(
-				SpecialPage::getTitleFor( 'Log' ),
-				$this->msg( 'viewpagelogs' )->escaped(),
-				[],
-				[
-					'page' => $this->targetObj->getPrefixedText(),
-					'hide_tag_log' => '0',
-				]
-			);
+			if ( $this->typeName !== 'contribs' ) {
+				$links[] = Linker::linkKnown(
+					SpecialPage::getTitleFor( 'Log' ),
+					$this->msg( 'viewpagelogs' )->escaped(),
+					[],
+					[
+						'page' => $this->targetObj->getPrefixedText(),
+						'hide_tag_log' => '0',
+					]
+				);
+			}
 			if ( !$this->targetObj->isSpecialPage() ) {
 				// Give a link to the page history
 				$links[] = Linker::linkKnown(
@@ -210,7 +227,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		$out = $this->getOutput();
 		// Messages: tags-edit-revision-selected, tags-edit-logentry-selected
 		$out->wrapWikiMsg( "<strong>$1</strong>", [
-			"tags-edit-{$this->typeName}-selected",
+			$this->appendMessagePrefix( 'selected' ),
 			$this->getLanguage()->formatNum( count( $this->ids ) ),
 			$this->targetObj->getPrefixedText()
 		] );
@@ -235,14 +252,14 @@ class SpecialEditTags extends UnlistedSpecialPage {
 
 		$out->addHTML( "</ul>" );
 		// Explanation text
-		$out->wrapWikiMsg( '<p>$1</p>', "tags-edit-{$this->typeName}-explanation" );
+		$out->wrapWikiMsg( '<p>$1</p>', $this->appendMessagePrefix( 'explanation' ) );
 
 		// Show form if the user can submit
 		if ( $this->isAllowed ) {
 			$form = Xml::openElement( 'form', [ 'method' => 'post',
 					'action' => $this->getPageTitle()->getLocalURL( [ 'action' => 'submit' ] ),
 					'id' => 'mw-revdel-form-revisions' ] ) .
-				Xml::fieldset( $this->msg( "tags-edit-{$this->typeName}-legend",
+				Xml::fieldset( $this->msg( $this->appendMessagePrefix( 'legend' ),
 					count( $this->ids ) )->text() ) .
 				$this->buildCheckBoxes() .
 				Xml::openElement( 'table' ) .
@@ -261,7 +278,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 				"</tr><tr>\n" .
 					'<td></td>' .
 					'<td class="mw-submit">' .
-						Xml::submitButton( $this->msg( "tags-edit-{$this->typeName}-submit",
+						Xml::submitButton( $this->msg( $this->appendMessagePrefix( 'submit' ),
 							$numRevisions )->text(), [ 'name' => 'wpSubmit' ] ) .
 					'</td>' .
 				"</tr>\n" .
