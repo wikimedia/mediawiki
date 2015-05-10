@@ -376,29 +376,55 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	function pageCount( $image ) {
-		$tree = $this->getMetaTree( $image );
-		if ( !$tree ) {
-			return false;
+		global $wgMemc;
+
+		$key = wfMemcKey( 'file-djvu', 'pageCount', $image->getSha1() );
+
+		$count = $wgMemc->get( $key );
+		if ( $count === false ) {
+			$tree = $this->getMetaTree( $image );
+			if ( !$tree ) {
+				return false;
+			}
+			$count = count( $tree->xpath( '//OBJECT' ) );
+			$wgMemc->set( $key, $count );
 		}
 
-		return count( $tree->xpath( '//OBJECT' ) );
+		return $count;
 	}
 
 	function getPageDimensions( $image, $page ) {
-		$tree = $this->getMetaTree( $image );
-		if ( !$tree ) {
-			return false;
+		global $wgMemc;
+
+		$key = wfMemcKey( 'file-djvu', 'dimensions', $image->getSha1() );
+
+		$dimsByPage = $wgMemc->get( $key );
+		if ( !is_array( $dimsByPage ) ) {
+			$tree = $this->getMetaTree( $image );
+			if ( !$tree ) {
+				return false;
+			}
+
+			$dimsByPage = array();
+			$count = count( $tree->xpath( '//OBJECT' ) );
+			for ( $i = 0; $i < $count; ++$i ) {
+				$o = $tree->BODY[0]->OBJECT[$i];
+				if ( $o ) {
+					$dimsByPage[$i] = array(
+						'width' => (int)$o['width'],
+						'height' => (int)$o['height']
+					);
+				} else {
+					$dimsByPage[$i] = false;
+				}
+			}
+
+			$wgMemc->set( $key, $dimsByPage );
 		}
 
-		$o = $tree->BODY[0]->OBJECT[$page - 1];
-		if ( $o ) {
-			return array(
-				'width' => intval( $o['width'] ),
-				'height' => intval( $o['height'] )
-			);
-		} else {
-			return false;
-		}
+		$index = $page - 1; // MW starts pages at 1
+
+		return isset( $dimsByPage[$index] ) ? $dimsByPage[$index] : false;
 	}
 
 	/**
