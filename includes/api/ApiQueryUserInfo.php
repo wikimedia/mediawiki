@@ -51,9 +51,32 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		$result->addValue( 'query', $this->getModuleName(), $r );
 	}
 
-	protected function getCurrentUserInfo() {
+	/**
+	 * Get basic info about a given block
+	 * @param Block $block
+	 * @return array Array containing several keys:
+	 *  - blockid - ID of the block
+	 *  - blockedby - username of the blocker
+	 *  - blockedbyid - user ID of the blocker
+	 *  - blockreason - reason provided for the block
+	 *  - blockedtimestamp - timestamp for when the block was placed/modified
+	 *  - blockexpiry - expiry time of the block
+	 */
+	public static function getBlockInfo( Block $block ) {
 		global $wgContLang;
+		$vals = array();
+		$vals['blockid'] = $block->getId();
+		$vals['blockedby'] = $block->getByName();
+		$vals['blockedbyid'] = $block->getBy();
+		$vals['blockreason'] = $block->mReason;
+		$vals['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $block->mTimestamp );
+		$vals['blockexpiry'] = $wgContLang->formatExpiry(
+			$block->getExpiry(), TS_ISO_8601, 'infinite'
+		);
+		return $vals;
+	}
 
+	protected function getCurrentUserInfo() {
 		$user = $this->getUser();
 		$result = $this->getResult();
 		$vals = array();
@@ -64,18 +87,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$vals['anon'] = true;
 		}
 
-		if ( isset( $this->prop['blockinfo'] ) ) {
-			if ( $user->isBlocked() ) {
-				$block = $user->getBlock();
-				$vals['blockid'] = $block->getId();
-				$vals['blockedby'] = $block->getByName();
-				$vals['blockedbyid'] = $block->getBy();
-				$vals['blockreason'] = $user->blockedFor();
-				$vals['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $block->mTimestamp );
-				$vals['blockexpiry'] = $wgContLang->formatExpiry(
-					$block->getExpiry(), TS_ISO_8601, 'infinite'
-				);
-			}
+		if ( isset( $this->prop['blockinfo'] ) && $user->isBlocked() ) {
+			$vals = array_merge( $vals, self::getBlockInfo( $user->getBlock() ) );
 		}
 
 		if ( isset( $this->prop['hasmsg'] ) ) {
