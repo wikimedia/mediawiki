@@ -130,7 +130,30 @@ class ApiEditPage extends ApiBase {
 			$errors = array_merge( $errors, $titleObj->getUserPermissionsErrors( 'create', $user ) );
 		}
 		if ( count( $errors ) ) {
-			$this->dieUsageMsg( $errors[0] );
+			if ( is_array( $errors[0] ) ) {
+				switch ( $errors[0][0] ) {
+					case 'blockedtext':
+						$this->dieUsage(
+							'You have been blocked from editing',
+							'blocked',
+							0,
+							array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) )
+						);
+						break;
+					case 'autoblockedtext':
+						$this->dieUsage(
+							'Your IP address has been blocked automatically, because it was used by a blocked user',
+							'autoblocked',
+							0,
+							array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) )
+						);
+						break;
+					default:
+						$this->dieUsageMsg( $errors[0] );
+				}
+			} else {
+				$this->dieUsageMsg( $errors[0] );
+			}
 		}
 
 		$toMD5 = $params['text'];
@@ -450,7 +473,12 @@ class ApiEditPage extends ApiBase {
 				$this->dieUsageMsg( array( 'spamdetected', $result['spam'] ) );
 
 			case EditPage::AS_BLOCKED_PAGE_FOR_USER:
-				$this->dieUsageMsg( 'blockedtext' );
+				$this->dieUsage(
+					'You have been blocked from editing',
+					'blocked',
+					0,
+					array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) )
+				);
 
 			case EditPage::AS_MAX_ARTICLE_SIZE_EXCEEDED:
 			case EditPage::AS_CONTENT_TOO_BIG:

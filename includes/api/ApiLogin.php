@@ -144,6 +144,10 @@ class ApiLogin extends ApiBase {
 			case LoginForm::CREATE_BLOCKED:
 				$result['result'] = 'CreateBlocked';
 				$result['details'] = 'Your IP address is blocked from account creation';
+				$result = array_merge(
+					$result,
+					ApiQueryUserInfo::getBlockInfo( $context->getUser()->getBlock() )
+				);
 				break;
 
 			case LoginForm::THROTTLED:
@@ -154,6 +158,10 @@ class ApiLogin extends ApiBase {
 
 			case LoginForm::USER_BLOCKED:
 				$result['result'] = 'Blocked';
+				$result = array_merge(
+					$result,
+					ApiQueryUserInfo::getBlockInfo( User::newFromName( $params['name'] )->getBlock() )
+				);
 				break;
 
 			case LoginForm::ABORTED:

@@ -53,7 +53,13 @@ class ApiUnblock extends ApiBase {
 		if ( $user->isBlocked() ) {
 			$status = SpecialBlock::checkUnblockSelf( $params['user'], $user );
 			if ( $status !== true ) {
-				$this->dieUsageMsg( $status );
+				$msg = $this->parseMsg( $status );
+				$this->dieUsage(
+					$msg['info'],
+					$msg['code'],
+					0,
+					array( 'blockinfo' => ApiQueryUserInfo::getBlockInfo( $user->getBlock() ) )
+				);
 			}
 		}
 
