@@ -85,7 +85,7 @@
 	'bn' => 'বাংলা',	# Bengali
 	'bo' => 'བོད་ཡིག',	# Tibetan
 	'bpy' => 'বিষ্ণুপ্রিয়া মণিপুরী',	# Bishnupriya Manipuri
-	'bqi' => 'بختياري',	# Bakthiari
+	'bqi' => 'بختیاری',	# Bakthiari
 	'br' => 'brezhoneg',	# Breton
 	'brh' => 'Bráhuí',	# Brahui
 	'bs' => 'bosanski',		# Bosnian
