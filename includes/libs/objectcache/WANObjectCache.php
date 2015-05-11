@@ -300,10 +300,13 @@ class WANObjectCache {
 	/**
 	 * Method to fetch/regenerate cache keys
 	 *
-	 * On cache miss, the key will be set to the callback result.
+	 * On cache miss, the key will be set to the callback result,
+	 * unless the callback returns false. The arguments supplied are:
+	 *     (current value or false, &$ttl)
 	 * The callback function returns the new value given the current
-	 * value (false if not present). If false is returned, then nothing
-	 * will be saved to cache.
+	 * value (false if not present). Preemptive re-caching and $checkKeys
+	 * can result in a non-false current value. The TTL of the new value
+	 * can be set dynamically by altering $ttl in the callback (by reference).
 	 *
 	 * Usually, callbacks ignore the current value, but it can be used
 	 * to maintain "most recent X" values that come from time or sequence
@@ -326,7 +329,7 @@ class WANObjectCache {
 	 * @code
 	 *     $key = wfMemcKey( 'cat-recent-actions', $catId );
 	 *     // Function that derives the new key value given the old value
-	 *     $callback = function( $cValue ) { ... };
+	 *     $callback = function( $cValue, &$ttl ) { ... };
 	 *     // Get the key value from cache or from source on cache miss;
 	 *     // try to only let one cluster thread manage doing cache updates
 	 *     $opts = array( 'lockTSE' => 5, 'lowTTL' => 10 );
@@ -419,7 +422,7 @@ class WANObjectCache {
 		}
 
 		// Generate the new value from the callback...
-		$value = call_user_func( $callback, $cValue );
+		$value = call_user_func_array( $callback, array( $cValue, &$ttl ) );
 		// When delete() is called, writes are write-holed by the tombstone,
 		// so use a special stash key to pass the new value around threads.
 		if ( $value !== false && ( $isHot || $isTombstone ) ) {
