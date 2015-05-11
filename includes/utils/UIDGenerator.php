@@ -20,6 +20,7 @@
  * @file
  * @author Aaron Schulz
  */
+use Wikimedia\Assert\Assert;
 
 /**
  * Class for getting statistically unique IDs
@@ -107,9 +108,10 @@ class UIDGenerator {
 	 * @throws MWException
 	 */
 	public static function newTimestampedUID88( $base = 10 ) {
-		if ( !is_integer( $base ) || $base > 36 || $base < 2 ) {
-			throw new MWException( "Base must an integer be between 2 and 36" );
-		}
+		Assert::parameterType( 'integer', $base, '$base' );
+		Assert::parameter( $base <= 36, '$base', 'must be <= 36' );
+		Assert::parameter( $base >= 2, '$base', 'must be >= 2' );
+
 		$gen = self::singleton();
 		$time = $gen->getTimestampAndDelay( 'lockFile88', 1, 1024 );
 
@@ -152,9 +154,10 @@ class UIDGenerator {
 	 * @throws MWException
 	 */
 	public static function newTimestampedUID128( $base = 10 ) {
-		if ( !is_integer( $base ) || $base > 36 || $base < 2 ) {
-			throw new MWException( "Base must be an integer between 2 and 36" );
-		}
+		Assert::parameterType( 'integer', $base, '$base' );
+		Assert::parameter( $base <= 36, '$base', 'must be <= 36' );
+		Assert::parameter( $base >= 2, '$base', 'must be >= 2' );
+
 		$gen = self::singleton();
 		$time = $gen->getTimestampAndDelay( 'lockFile128', 16384, 1048576 );
 
