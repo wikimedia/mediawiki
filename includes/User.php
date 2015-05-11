@@ -2333,15 +2333,14 @@ class User implements IDBAccessObject {
 	 * @since 1.25
 	 */
 	public function touch() {
-		global $wgMemc;
-
 		$this->load();
 
 		if ( $this->mId ) {
+			$this->mQuickTouched = $this->newTouchedTimestamp();
+
+			$cache = ObjectCache::getMainWANInstance();
 			$key = wfMemcKey( 'user-quicktouched', 'id', $this->mId );
-			$timestamp = $this->newTouchedTimestamp();
-			$wgMemc->set( $key, $timestamp );
-			$this->mQuickTouched = $timestamp;
+			$cache->touchCheckKey( $key );
 		}
 	}
 
@@ -2359,16 +2358,16 @@ class User implements IDBAccessObject {
 	 * @return string TS_MW Timestamp
 	 */
 	public function getTouched() {
-		global $wgMemc;
-
 		$this->load();
 
 		if ( $this->mId ) {
 			if ( $this->mQuickTouched === null ) {
+				$cache = ObjectCache::getMainWANInstance();
 				$key = wfMemcKey( 'user-quicktouched', 'id', $this->mId );
-				$timestamp = $wgMemc->get( $key );
+
+				$timestamp = $cache->getCheckKeyTime( $key );
 				if ( $timestamp ) {
-					$this->mQuickTouched = $timestamp;
+					$this->mQuickTouched = wfTimestamp( TS_MW, $timestamp );
 				} else {
 					# Set the timestamp to get HTTP 304 cache hits
 					$this->touch();
