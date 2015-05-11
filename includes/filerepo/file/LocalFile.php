@@ -255,7 +255,7 @@ class LocalFile extends File {
 		$cachedValues = $cache->get( $key );
 
 		// Check if the key existed and belongs to this version of MediaWiki
-		if ( isset( $cachedValues['version'] ) && $cachedValues['version'] == MW_FILE_VERSION ) {
+		if ( is_array( $cachedValues ) && $cachedValues['version'] == MW_FILE_VERSION ) {
 			wfDebug( "Pulling file metadata from cache key $key\n" );
 			$this->fileExists = $cachedValues['fileExists'];
 			if ( $this->fileExists ) {
@@ -289,12 +289,12 @@ class LocalFile extends File {
 		}
 
 		$fields = $this->getCacheFields( '' );
-		$cache = array( 'version' => MW_FILE_VERSION );
-		$cache['fileExists'] = $this->fileExists;
+		$cacheVal = array( 'version' => MW_FILE_VERSION );
+		$cacheVal['fileExists'] = $this->fileExists;
 
 		if ( $this->fileExists ) {
 			foreach ( $fields as $field ) {
-				$cache[$field] = $this->$field;
+				$cacheVal[$field] = $this->$field;
 			}
 		}
 
@@ -302,14 +302,14 @@ class LocalFile extends File {
 		// If the cache value gets to large it will not fit in memcached and nothing will
 		// get cached at all, causing master queries for any file access.
 		foreach ( $this->getLazyCacheFields( '' ) as $field ) {
-			if ( isset( $cache[$field] ) && strlen( $cache[$field] ) > 100 * 1024 ) {
-				unset( $cache[$field] ); // don't let the value get too big
+			if ( isset( $cacheVal[$field] ) && strlen( $cacheVal[$field] ) > 100 * 1024 ) {
+				unset( $cacheVal[$field] ); // don't let the value get too big
 			}
 		}
 
 		// Cache presence for 1 week and negatives for 1 day
 		$cache = ObjectCache::getMainWANInstance();
-		$cache->set( $key, $cache, $this->fileExists ? 86400 * 7 : 86400 );
+		$cache->set( $key, $cacheVal, $this->fileExists ? 86400 * 7 : 86400 );
 	}
 
 	/**
