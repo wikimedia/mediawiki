@@ -1609,6 +1609,13 @@ class UsageException extends MWException {
 	}
 
 	/**
+	 * @return bool
+	 */
+	public function isLoggable() {
+		return false;
+	}
+
+	/**
 	 * @return string
 	 */
 	public function getCodeString() {
