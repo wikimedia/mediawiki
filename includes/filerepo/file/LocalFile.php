@@ -243,18 +243,16 @@ class LocalFile extends File {
 	 * @return bool
 	 */
 	function loadFromCache() {
-		global $wgMemc;
-
 		$this->dataLoaded = false;
 		$this->extraDataLoaded = false;
 		$key = $this->getCacheKey();
 
 		if ( !$key ) {
-
 			return false;
 		}
 
-		$cachedValues = $wgMemc->get( $key );
+		$cache = ObjectCache::getMainWANInstance();
+		$cachedValues = $cache->get( $key );
 
 		// Check if the key existed and belongs to this version of MediaWiki
 		if ( isset( $cachedValues['version'] ) && $cachedValues['version'] == MW_FILE_VERSION ) {
@@ -283,11 +281,9 @@ class LocalFile extends File {
 	 * Save the file metadata to memcached
 	 */
 	function saveToCache() {
-		global $wgMemc;
-
 		$this->load();
-		$key = $this->getCacheKey();
 
+		$key = $this->getCacheKey();
 		if ( !$key ) {
 			return;
 		}
@@ -312,7 +308,23 @@ class LocalFile extends File {
 		}
 
 		// Cache presence for 1 week and negatives for 1 day
-		$wgMemc->set( $key, $cache, $this->fileExists ? 86400 * 7 : 86400 );
+		$cache = ObjectCache::getMainWANInstance();
+		$cache->set( $key, $cache, $this->fileExists ? 86400 * 7 : 86400 );
+	}
+
+	/**
+	 * Purge the file object/metadata cache
+	 */
+	function invalidateCache() {
+		$this->load();
+
+		$key = $this->getCacheKey();
+		if ( !$key ) {
+			return;
+		}
+
+		$cache = ObjectCache::getMainWANInstance();
+		$cache->delete( $key );
 	}
 
 	/**
@@ -612,7 +624,7 @@ class LocalFile extends File {
 			__METHOD__
 		);
 
-		$this->saveToCache();
+		$this->invalidateCache();
 
 		$this->unlock(); // done
 
@@ -842,8 +854,7 @@ class LocalFile extends File {
 	 * Refresh metadata in memcached, but don't touch thumbnails or squid
 	 */
 	function purgeMetadataCache() {
-		$this->loadFromDB( File::READ_LATEST );
-		$this->saveToCache();
+		$this->invalidateCache();
 	}
 
 	/**
@@ -1389,11 +1400,8 @@ class LocalFile extends File {
 		#       to after $wikiPage->doEdit has been called.
 		$dbw->commit( __METHOD__ );
 
-		# Save to memcache.
-		# We shall not saveToCache before the commit since otherwise
-		# in case of a rollback there is an usable file from memcached
-		# which in fact doesn't really exist (bug 24978)
-		$this->saveToCache();
+		# Update memcache after the commit
+		$this->invalidateCache();
 
 		if ( $exists ) {
 			# Invalidate the cache for the description page
@@ -1793,7 +1801,7 @@ class LocalFile extends File {
 					array( 'img_sha1' => $this->sha1 ),
 					array( 'img_name' => $this->getName() ),
 					__METHOD__ );
-				$this->saveToCache();
+				$this->invalidateCache();
 			}
 
 			$this->unlock(); // done
