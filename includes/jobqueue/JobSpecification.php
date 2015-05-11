@@ -97,7 +97,7 @@ class JobSpecification implements IJobSpecification {
 	/**
 	 * @param string $type
 	 * @param array $params Map of key/values
-	 * @param array $opts Map of key/values
+	 * @param array $opts Map of key/values; includes 'removeDuplicates'
 	 * @param Title $title Optional descriptive title
 	 */
 	public function __construct(
