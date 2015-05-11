@@ -39,6 +39,12 @@ class WebRequest {
 	protected $data, $headers = array();
 
 	/**
+	 * Flag to make WebRequest::getHeader return an array of values.
+	 * @since 1.26
+	 */
+	const GETHEADER_LIST = 1;
+
+	/**
 	 * Lazy-init response object
 	 * @var WebResponse
 	 */
@@ -894,19 +900,28 @@ class WebRequest {
 	}
 
 	/**
-	 * Get a request header, or false if it isn't set
-	 * @param string $name Case-insensitive header name
+	 * Get a request header, or false if it isn't set.
 	 *
-	 * @return string|bool False on failure
+	 * @param string $name Case-insensitive header name
+	 * @param int $flags Bitwise combination of:
+	 *   WebRequest::GETHEADER_LIST  Treat the header as a comma-separated list
+	 *                               of values, as described in RFC 2616 § 4.2.
+	 *                               (since 1.26).
+	 * @return string|array|bool False if header is unset; otherwise the
+	 *  header value(s) as either a string (the default) or an array, if
+	 *  WebRequest::GETHEADER_LIST flag was set.
 	 */
-	public function getHeader( $name ) {
+	public function getHeader( $name, $flags = 0 ) {
 		$this->initHeaders();
 		$name = strtoupper( $name );
-		if ( isset( $this->headers[$name] ) ) {
-			return $this->headers[$name];
-		} else {
+		if ( !isset( $this->headers[$name] ) ) {
 			return false;
 		}
+		$value = $this->headers[$name];
+		if ( $flags & self::GETHEADER_LIST ) {
+			$value = array_map( 'trim', explode( ',', $value ) );
+		}
+		return $value;
 	}
 
 	/**
@@ -1374,13 +1389,8 @@ class FauxRequest extends WebRequest {
 		return $this->protocol;
 	}
 
-	/**
-	 * @param string $name The name of the header to get (case insensitive).
-	 * @return bool|string
-	 */
-	public function getHeader( $name ) {
-		$name = strtoupper( $name );
-		return isset( $this->headers[$name] ) ? $this->headers[$name] : false;
+	private function initHeaders() {
+		return;
 	}
 
 	/**
@@ -1488,8 +1498,8 @@ class DerivativeRequest extends FauxRequest {
 		return $this->base->checkSessionCookie();
 	}
 
-	public function getHeader( $name ) {
-		return $this->base->getHeader( $name );
+	public function getHeader( $name, $flags = 0 ) {
+		return $this->base->getHeader( $name, $flags );
 	}
 
 	public function getAllHeaders() {
