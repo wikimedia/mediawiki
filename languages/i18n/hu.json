@@ -368,7 +368,7 @@
 	"viewsource-title": "$1 forrásának megtekintése",
 	"actionthrottled": "Művelet megszakítva",
 	"actionthrottledtext": "A spamek elleni védekezés miatt nem végezheted el a műveletet túl sokszor egy adott időn belül, és te átlépted a megengedett határt. Próbálkozz újra néhány perc múlva.",
-	"protectedpagetext": "Ez egy védett lap, így nem végezhető rajta szerkesztés és más tevékenység",
+	"protectedpagetext": "Ez egy védett lap, így nem végezhető rajta szerkesztés és más tevékenység.",
 	"viewsourcetext": "Megtekintheted és másolhatod a lap forrását:",
 	"viewyourtext": "Megtekintheted és kimásolhatod a '''saját szerkesztéseidet''' az alábbi lapra:",
 	"protectedinterface": "Ez a lap a szoftver felületéhez szolgáltat szöveget, és a visszaélések elkerülése miatt le van zárva.",

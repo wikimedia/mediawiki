@@ -2295,7 +2295,7 @@
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|Version|Versionen}} importiert",
 	"import-logentry-interwiki-detail": "$1 {{PLURAL:$1|Version|Versionen}} von $2 importiert",
 	"javascripttest": "JavaScript-Test",
-	"javascripttest-pagetext-noframework": "Diese Seite ist JavaSkript-Tests vorbehalten.",
+	"javascripttest-pagetext-noframework": "Diese Seite ist JavaScript-Tests vorbehalten.",
 	"javascripttest-pagetext-unknownframework": "Unbekanntes Framework „$1“.",
 	"javascripttest-pagetext-unknownaction": "Unbekannte Aktion „$1“.",
 	"javascripttest-pagetext-frameworks": "Bitte wähle eine der folgenden Prüfumgebungen aus: $1",
