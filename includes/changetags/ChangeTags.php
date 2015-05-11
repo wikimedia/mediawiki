@@ -1064,22 +1064,18 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function listExtensionActivatedTags() {
-		$cache = ObjectCache::getMainWANInstance();
-
-		$key = wfMemcKey( 'active-tags' );
-		$tags = $cache->get( $key );
-		if ( $tags ) {
-			return $tags;
-		}
-
-		// ask extensions which tags they consider active
-		$extensionActive = array();
-		Hooks::run( 'ChangeTagsListActive', array( &$extensionActive ) );
-
-		// Short-term caching.
-		$cache->set( $key, $extensionActive, 300 );
-
-		return $extensionActive;
+		return ObjectCache::getMainWANInstance()->getWithSetCallback(
+			wfMemcKey( 'active-tags' ),
+			function() {
+				// Ask extensions which tags they consider active
+				$extensionActive = array();
+				Hooks::run( 'ChangeTagsListActive', array( &$extensionActive ) );
+				return $extensionActive;
+			},
+			300,
+			array( wfMemcKey( 'active-tags' ) ),
+			array( 'lockTSE' => INF )
+		);
 	}
 
 	/**
@@ -1106,29 +1102,21 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function listExplicitlyDefinedTags() {
-		$cache = ObjectCache::getMainWANInstance();
+		$fname = __METHOD__;
 
-		$key = wfMemcKey( 'valid-tags-db' );
-		$tags = $cache->get( $key );
-		if ( $tags ) {
-			return $tags;
-		}
+		return ObjectCache::getMainWANInstance()->getWithSetCallback(
+			wfMemcKey( 'valid-tags-db' ),
+			function() use ( $fname ) {
+				$dbr = wfGetDB( DB_SLAVE );
+				$tags = $dbr->selectFieldValues(
+					'valid_tag', 'vt_tag', array(), $fname );
 
-		$emptyTags = array();
-
-		// Some DB stuff
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( 'valid_tag', 'vt_tag', array(), __METHOD__ );
-		foreach ( $res as $row ) {
-			$emptyTags[] = $row->vt_tag;
-		}
-
-		$emptyTags = array_filter( array_unique( $emptyTags ) );
-
-		// Short-term caching.
-		$cache->set( $key, $emptyTags, 300 );
-
-		return $emptyTags;
+				return array_filter( array_unique( $tags ) );
+			},
+			300,
+			array( wfMemcKey( 'valid-tags-db' ) ),
+			array( 'lockTSE' => INF )
+		);
 	}
 
 	/**
@@ -1141,22 +1129,17 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function listExtensionDefinedTags() {
-		$cache = ObjectCache::getMainWANInstance();
-
-		$key = wfMemcKey( 'valid-tags-hook' );
-		$tags = $cache->get( $key );
-		if ( $tags ) {
-			return $tags;
-		}
-
-		$emptyTags = array();
-		Hooks::run( 'ListDefinedTags', array( &$emptyTags ) );
-		$emptyTags = array_filter( array_unique( $emptyTags ) );
-
-		// Short-term caching.
-		$cache->set( $key, $emptyTags, 300 );
-
-		return $emptyTags;
+		return ObjectCache::getMainWANInstance()->getWithSetCallback(
+			wfMemcKey( 'valid-tags-hook' ),
+			function() {
+				$tags = array();
+				Hooks::run( 'ListDefinedTags', array( &$tags ) );
+				return array_filter( array_unique( $tags ) );
+			},
+			300,
+			array( wfMemcKey( 'valid-tags-hook' ) ),
+			array( 'lockTSE' => INF )
+		);
 	}
 
 	/**
@@ -1167,9 +1150,9 @@ class ChangeTags {
 	public static function purgeTagCacheAll() {
 		$cache = ObjectCache::getMainWANInstance();
 
-		$cache->delete( wfMemcKey( 'active-tags' ) );
-		$cache->delete( wfMemcKey( 'valid-tags-db' ) );
-		$cache->delete( wfMemcKey( 'valid-tags-hook' ) );
+		$cache->touchCheckKey( wfMemcKey( 'active-tags' ) );
+		$cache->touchCheckKey( wfMemcKey( 'valid-tags-db' ) );
+		$cache->touchCheckKey( wfMemcKey( 'valid-tags-hook' ) );
 
 		self::purgeTagUsageCache();
 	}
@@ -1194,38 +1177,38 @@ class ChangeTags {
 	 * @return array Array of string => int
 	 */
 	public static function tagUsageStatistics() {
-		$cache = ObjectCache::getMainWANInstance();
+		$fname = __METHOD__;
 
-		$key = wfMemcKey( 'change-tag-statistics' );
-		$stats = $cache->get( $key );
-		if ( $stats ) {
-			return $stats;
-		}
+		return ObjectCache::getMainWANInstance()->getWithSetCallback(
+			wfMemcKey( 'change-tag-statistics' ),
+			function() use ( $fname ) {
+				$out = array();
 
-		$out = array();
+				$dbr = wfGetDB( DB_SLAVE, 'vslow' );
+				$res = $dbr->select(
+					'change_tag',
+					array( 'ct_tag', 'hitcount' => 'count(*)' ),
+					array(),
+					$fname,
+					array( 'GROUP BY' => 'ct_tag', 'ORDER BY' => 'hitcount DESC' )
+				);
 
-		$dbr = wfGetDB( DB_SLAVE, 'vslow' );
-		$res = $dbr->select(
-			'change_tag',
-			array( 'ct_tag', 'hitcount' => 'count(*)' ),
-			array(),
-			__METHOD__,
-			array( 'GROUP BY' => 'ct_tag', 'ORDER BY' => 'hitcount DESC' )
+				foreach ( $res as $row ) {
+					$out[$row->ct_tag] = $row->hitcount;
+				}
+
+				foreach ( ChangeTags::listDefinedTags() as $tag ) {
+					if ( !isset( $out[$tag] ) ) {
+						$out[$tag] = 0;
+					}
+				}
+
+				return $out;
+			},
+			300,
+			array( wfMemcKey( 'change-tag-statistics' ) ),
+			array( 'lockTSE' => INF )
 		);
-
-		foreach ( $res as $row ) {
-			$out[$row->ct_tag] = $row->hitcount;
-		}
-		foreach ( self::listDefinedTags() as $tag ) {
-			if ( !isset( $out[$tag] ) ) {
-				$out[$tag] = 0;
-			}
-		}
-
-		// Cache for a very short time
-		$cache->set( $key, $out, 300 );
-
-		return $out;
 	}
 
 	/**
