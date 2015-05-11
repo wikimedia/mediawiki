@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.11.1
+ * OOjs UI v0.11.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-05-05T00:40:50Z
+ * Date: 2015-05-11T17:24:27Z
  */
 ( function ( OO ) {
 
@@ -4187,9 +4187,10 @@ OO.ui.ButtonElement.prototype.onMouseUp = function ( e ) {
  */
 OO.ui.ButtonElement.prototype.onClick = function ( e ) {
 	if ( !this.isDisabled() && e.which === 1 ) {
-		this.emit( 'click' );
+		if ( this.emit( 'click' ) ) {
+			return false;
+		}
 	}
-	return false;
 };
 
 /**
@@ -4232,8 +4233,9 @@ OO.ui.ButtonElement.prototype.onKeyUp = function ( e ) {
  */
 OO.ui.ButtonElement.prototype.onKeyPress = function ( e ) {
 	if ( !this.isDisabled() && ( e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER ) ) {
-		this.emit( 'click' );
-		return false;
+		if ( this.emit( 'click' ) ) {
+			return false;
+		}
 	}
 };
 
@@ -5739,16 +5741,15 @@ OO.ui.LookupElement.prototype.populateLookupMenu = function () {
 };
 
 /**
- * Select and highlight the first selectable item in the menu.
+ * Highlight the first selectable item in the menu.
  *
  * @private
  * @chainable
  */
 OO.ui.LookupElement.prototype.initializeLookupMenuSelection = function () {
 	if ( !this.lookupMenu.getSelectedItem() ) {
-		this.lookupMenu.selectItem( this.lookupMenu.getFirstSelectableItem() );
+		this.lookupMenu.highlightItem( this.lookupMenu.getFirstSelectableItem() );
 	}
-	this.lookupMenu.highlightItem( this.lookupMenu.getSelectedItem() );
 };
 
 /**
@@ -6695,9 +6696,9 @@ OO.ui.Tool.prototype.destroy = function () {
 /**
  * Collection of tool groups.
  *
- *     @example
- *     // Basic OOjs UI toolbar example
+ * The following is a minimal example using several tools and tool groups.
  *
+ *     @example
  *     // Create the toolbar
  *     var toolFactory = new OO.ui.ToolFactory();
  *     var toolGroupFactory = new OO.ui.ToolGroupFactory();
@@ -6711,7 +6712,7 @@ OO.ui.Tool.prototype.destroy = function () {
  *     // Create a class inheriting from OO.ui.Tool
  *     function PictureTool() {
  *         PictureTool.super.apply( this, arguments );
- *     };
+ *     }
  *     OO.inheritClass( PictureTool, OO.ui.Tool );
  *     // Each tool must have a 'name' (used as an internal identifier, see later) and at least one
  *     // of 'icon' and 'title' (displayed icon and text).
@@ -6721,12 +6722,7 @@ OO.ui.Tool.prototype.destroy = function () {
  *     // Defines the action that will happen when this tool is selected (clicked).
  *     PictureTool.prototype.onSelect = function () {
  *         $area.text( 'Picture tool clicked!' );
- *         this.setActive( false );
- *     };
- *     // The toolbar can be synchronized with the state of some external stuff, like a text
- *     // editor's editing area, highlighting the tools (e.g. a 'bold' tool would be shown as active
- *     // when the text cursor was inside bolded text). Here we simply disable this feature.
- *     PictureTool.prototype.onUpdateState = function () {
+ *         // Never display this tool as "active" (selected).
  *         this.setActive( false );
  *     };
  *     // Make this tool available in our toolFactory and thus our toolbar
@@ -6735,7 +6731,7 @@ OO.ui.Tool.prototype.destroy = function () {
  *     // Register two more tools, nothing interesting here
  *     function SettingsTool() {
  *         SettingsTool.super.apply( this, arguments );
- *     };
+ *     }
  *     OO.inheritClass( SettingsTool, OO.ui.Tool );
  *     SettingsTool.static.name = 'settings';
  *     SettingsTool.static.icon = 'settings';
@@ -6744,15 +6740,12 @@ OO.ui.Tool.prototype.destroy = function () {
  *         $area.text( 'Settings tool clicked!' );
  *         this.setActive( false );
  *     };
- *     SettingsTool.prototype.onUpdateState = function () {
- *         this.setActive( false );
- *     };
  *     toolFactory.register( SettingsTool );
  *
  *     // Register two more tools, nothing interesting here
  *     function StuffTool() {
  *         StuffTool.super.apply( this, arguments );
- *     };
+ *     }
  *     OO.inheritClass( StuffTool, OO.ui.Tool );
  *     StuffTool.static.name = 'stuff';
  *     StuffTool.static.icon = 'ellipsis';
@@ -6761,13 +6754,10 @@ OO.ui.Tool.prototype.destroy = function () {
  *         $area.text( 'More stuff tool clicked!' );
  *         this.setActive( false );
  *     };
- *     StuffTool.prototype.onUpdateState = function () {
- *         this.setActive( false );
- *     };
  *     toolFactory.register( StuffTool );
  *
  *     // This is a PopupTool. Rather than having a custom 'onSelect' action, it will display a
- *     // little popup window (a PopupWidget). 'onUpdateState' is also already implemented.
+ *     // little popup window (a PopupWidget).
  *     function HelpTool( toolGroup, config ) {
  *         OO.ui.PopupTool.call( this, toolGroup, $.extend( { popup: {
  *             padded: true,
@@ -6775,7 +6765,7 @@ OO.ui.Tool.prototype.destroy = function () {
  *             head: true
  *         } }, config ) );
  *         this.popup.$body.append( '<p>I am helpful!</p>' );
- *     };
+ *     }
  *     OO.inheritClass( HelpTool, OO.ui.PopupTool );
  *     HelpTool.static.name = 'help';
  *     HelpTool.static.icon = 'help';
@@ -6798,7 +6788,140 @@ OO.ui.Tool.prototype.destroy = function () {
  *             include: [ 'settings', 'stuff' ]
  *         }
  *         // Note how the tools themselves are toolgroup-agnostic - the same tool can be displayed
- *         // either in a 'list' or a 'bar'. There is a 'menu' tool group too, not showcased here.
+ *         // either in a 'list' or a 'bar'. There is a 'menu' tool group too, not showcased here,
+ *         // since it's more complicated to use. (See the next example snippet on this page.)
+ *     ] );
+ *
+ *     // Create some UI around the toolbar and place it in the document
+ *     var frame = new OO.ui.PanelLayout( {
+ *         expanded: false,
+ *         framed: true
+ *     } );
+ *     var contentFrame = new OO.ui.PanelLayout( {
+ *         expanded: false,
+ *         padded: true
+ *     } );
+ *     frame.$element.append(
+ *         toolbar.$element,
+ *         contentFrame.$element.append( $area )
+ *     );
+ *     $( 'body' ).append( frame.$element );
+ *
+ *     // Here is where the toolbar is actually built. This must be done after inserting it into the
+ *     // document.
+ *     toolbar.initialize();
+ *
+ * The following example extends the previous one to illustrate 'menu' tool groups and the usage of
+ * 'updateState' event.
+ *
+ *     @example
+ *     // Create the toolbar
+ *     var toolFactory = new OO.ui.ToolFactory();
+ *     var toolGroupFactory = new OO.ui.ToolGroupFactory();
+ *     var toolbar = new OO.ui.Toolbar( toolFactory, toolGroupFactory );
+ *
+ *     // We will be placing status text in this element when tools are used
+ *     var $area = $( '<p>' ).text( 'Toolbar example' );
+ *
+ *     // Define the tools that we're going to place in our toolbar
+ *
+ *     // Create a class inheriting from OO.ui.Tool
+ *     function PictureTool() {
+ *         PictureTool.super.apply( this, arguments );
+ *     }
+ *     OO.inheritClass( PictureTool, OO.ui.Tool );
+ *     // Each tool must have a 'name' (used as an internal identifier, see later) and at least one
+ *     // of 'icon' and 'title' (displayed icon and text).
+ *     PictureTool.static.name = 'picture';
+ *     PictureTool.static.icon = 'picture';
+ *     PictureTool.static.title = 'Insert picture';
+ *     // Defines the action that will happen when this tool is selected (clicked).
+ *     PictureTool.prototype.onSelect = function () {
+ *         $area.text( 'Picture tool clicked!' );
+ *         // Never display this tool as "active" (selected).
+ *         this.setActive( false );
+ *     };
+ *     // The toolbar can be synchronized with the state of some external stuff, like a text
+ *     // editor's editing area, highlighting the tools (e.g. a 'bold' tool would be shown as active
+ *     // when the text cursor was inside bolded text). Here we simply disable this feature.
+ *     PictureTool.prototype.onUpdateState = function () {
+ *     };
+ *     // Make this tool available in our toolFactory and thus our toolbar
+ *     toolFactory.register( PictureTool );
+ *
+ *     // Register two more tools, nothing interesting here
+ *     function SettingsTool() {
+ *         SettingsTool.super.apply( this, arguments );
+ *         this.reallyActive = false;
+ *     }
+ *     OO.inheritClass( SettingsTool, OO.ui.Tool );
+ *     SettingsTool.static.name = 'settings';
+ *     SettingsTool.static.icon = 'settings';
+ *     SettingsTool.static.title = 'Change settings';
+ *     SettingsTool.prototype.onSelect = function () {
+ *         $area.text( 'Settings tool clicked!' );
+ *         // Toggle the active state on each click
+ *         this.reallyActive = !this.reallyActive;
+ *         this.setActive( this.reallyActive );
+ *         // To update the menu label
+ *         this.toolbar.emit( 'updateState' );
+ *     };
+ *     SettingsTool.prototype.onUpdateState = function () {
+ *     };
+ *     toolFactory.register( SettingsTool );
+ *
+ *     // Register two more tools, nothing interesting here
+ *     function StuffTool() {
+ *         StuffTool.super.apply( this, arguments );
+ *         this.reallyActive = false;
+ *     }
+ *     OO.inheritClass( StuffTool, OO.ui.Tool );
+ *     StuffTool.static.name = 'stuff';
+ *     StuffTool.static.icon = 'ellipsis';
+ *     StuffTool.static.title = 'More stuff';
+ *     StuffTool.prototype.onSelect = function () {
+ *         $area.text( 'More stuff tool clicked!' );
+ *         // Toggle the active state on each click
+ *         this.reallyActive = !this.reallyActive;
+ *         this.setActive( this.reallyActive );
+ *         // To update the menu label
+ *         this.toolbar.emit( 'updateState' );
+ *     };
+ *     StuffTool.prototype.onUpdateState = function () {
+ *     };
+ *     toolFactory.register( StuffTool );
+ *
+ *     // This is a PopupTool. Rather than having a custom 'onSelect' action, it will display a
+ *     // little popup window (a PopupWidget). 'onUpdateState' is also already implemented.
+ *     function HelpTool( toolGroup, config ) {
+ *         OO.ui.PopupTool.call( this, toolGroup, $.extend( { popup: {
+ *             padded: true,
+ *             label: 'Help',
+ *             head: true
+ *         } }, config ) );
+ *         this.popup.$body.append( '<p>I am helpful!</p>' );
+ *     }
+ *     OO.inheritClass( HelpTool, OO.ui.PopupTool );
+ *     HelpTool.static.name = 'help';
+ *     HelpTool.static.icon = 'help';
+ *     HelpTool.static.title = 'Help';
+ *     toolFactory.register( HelpTool );
+ *
+ *     // Finally define which tools and in what order appear in the toolbar. Each tool may only be
+ *     // used once (but not all defined tools must be used).
+ *     toolbar.setup( [
+ *         {
+ *             // 'bar' tool groups display tools' icons only, side-by-side.
+ *             type: 'bar',
+ *             include: [ 'picture', 'help' ]
+ *         },
+ *         {
+ *             // 'menu' tool groups display both the titles and icons, in a dropdown menu.
+ *             // Menu label indicates which items are selected.
+ *             type: 'menu',
+ *             indicator: 'down',
+ *             include: [ 'settings', 'stuff' ]
+ *         }
  *     ] );
  *
  *     // Create some UI around the toolbar and place it in the document
@@ -8459,8 +8582,9 @@ OO.ui.FormLayout.static.tagName = 'form';
  * @fires submit
  */
 OO.ui.FormLayout.prototype.onFormSubmit = function () {
-	this.emit( 'submit' );
-	return false;
+	if ( this.emit( 'submit' ) ) {
+		return false;
+	}
 };
 
 /**
@@ -10283,8 +10407,6 @@ OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.TitledElement );
 OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.ClippableElement );
 OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.TabIndexedElement );
 
-/* Static Properties */
-
 /* Methods */
 
 /**
@@ -10439,8 +10561,6 @@ OO.inheritClass( OO.ui.ListToolGroup, OO.ui.PopupToolGroup );
 
 /* Static Properties */
 
-OO.ui.ListToolGroup.static.accelTooltips = true;
-
 OO.ui.ListToolGroup.static.name = 'list';
 
 /* Methods */
@@ -10562,8 +10682,6 @@ OO.ui.MenuToolGroup = function OoUiMenuToolGroup( toolbar, config ) {
 OO.inheritClass( OO.ui.MenuToolGroup, OO.ui.PopupToolGroup );
 
 /* Static Properties */
-
-OO.ui.MenuToolGroup.static.accelTooltips = true;
 
 OO.ui.MenuToolGroup.static.name = 'menu';
 
@@ -11206,28 +11324,6 @@ OO.ui.ButtonWidget.prototype.onMouseUp = function ( e ) {
 	}
 
 	return OO.ui.ButtonElement.prototype.onMouseUp.call( this, e );
-};
-
-/**
- * @inheritdoc
- */
-OO.ui.ButtonWidget.prototype.onClick = function ( e ) {
-	var ret = OO.ui.ButtonElement.prototype.onClick.call( this, e );
-	if ( this.href ) {
-		return true;
-	}
-	return ret;
-};
-
-/**
- * @inheritdoc
- */
-OO.ui.ButtonWidget.prototype.onKeyPress = function ( e ) {
-	var ret = OO.ui.ButtonElement.prototype.onKeyPress.call( this, e );
-	if ( this.href ) {
-		return true;
-	}
-	return ret;
 };
 
 /**
@@ -12702,7 +12798,7 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	// Events
 	this.$input.on( {
 		keypress: this.onKeyPress.bind( this ),
-		blur: this.setValidityFlag.bind( this )
+		blur: this.onBlur.bind( this )
 	} );
 	this.$input.one( {
 		focus: this.onElementAttach.bind( this )
@@ -12728,6 +12824,7 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	}
 	if ( config.required ) {
 		this.$input.attr( 'required', 'required' );
+		this.$input.attr( 'aria-required', 'true' );
 	}
 	if ( this.label || config.autosize ) {
 		this.installParentChangeDetector();
@@ -12800,6 +12897,16 @@ OO.ui.TextInputWidget.prototype.onKeyPress = function ( e ) {
 	if ( e.which === OO.ui.Keys.ENTER && !this.multiline ) {
 		this.emit( 'enter', e );
 	}
+};
+
+/**
+ * Handle blur events.
+ *
+ * @private
+ * @param {jQuery.Event} e Blur event
+ */
+OO.ui.TextInputWidget.prototype.onBlur = function () {
+	this.setValidityFlag();
 };
 
 /**
@@ -13025,17 +13132,25 @@ OO.ui.TextInputWidget.prototype.setValidation = function ( validate ) {
 
 /**
  * Sets the 'invalid' flag appropriately.
+ *
+ * @param {boolean} [isValid] Optionally override validation result
  */
-OO.ui.TextInputWidget.prototype.setValidityFlag = function () {
-	var widget = this;
-	this.isValid().done( function ( valid ) {
-		if ( !valid ) {
-			widget.$input.attr( 'aria-invalid', 'true' );
-		} else {
-			widget.$input.removeAttr( 'aria-invalid' );
-		}
-		widget.setFlags( { invalid: !valid } );
-	} );
+OO.ui.TextInputWidget.prototype.setValidityFlag = function ( isValid ) {
+	var widget = this,
+		setFlag = function ( valid ) {
+			if ( !valid ) {
+				widget.$input.attr( 'aria-invalid', 'true' );
+			} else {
+				widget.$input.removeAttr( 'aria-invalid' );
+			}
+			widget.setFlags( { invalid: !valid } );
+		};
+
+	if ( isValid !== undefined ) {
+		setFlag( isValid );
+	} else {
+		this.isValid().done( setFlag );
+	}
 };
 
 /**
@@ -14140,12 +14255,7 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 	this.anchor = null;
 	this.width = config.width !== undefined ? config.width : 320;
 	this.height = config.height !== undefined ? config.height : null;
-	// Validate alignment and transform deprecated values
-	if ( [ 'left', 'right', 'force-left', 'force-right', 'backwards', 'forwards', 'center' ].indexOf( config.align ) > -1 ) {
-		this.align = { left: 'force-right', right: 'force-left' }[ config.align ] || config.align;
-	} else {
-		this.align = 'center';
-	}
+	this.setAlignment( config.align );
 	this.closeButton = new OO.ui.ButtonWidget( { framed: false, icon: 'close' } );
 	this.onMouseDownHandler = this.onMouseDown.bind( this );
 	this.onDocumentKeyDownHandler = this.onDocumentKeyDown.bind( this );
@@ -14440,6 +14550,29 @@ OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
 	this.clip();
 
 	return this;
+};
+
+/**
+ * Set popup alignment
+ * @param {string} align Alignment of the popup, `center`, `force-left`, `force-right`,
+ *  `backwards` or `forwards`.
+ */
+OO.ui.PopupWidget.prototype.setAlignment = function ( align ) {
+	// Validate alignment and transform deprecated values
+	if ( [ 'left', 'right', 'force-left', 'force-right', 'backwards', 'forwards', 'center' ].indexOf( align ) > -1 ) {
+		this.align = { left: 'force-right', right: 'force-left' }[ align ] || align;
+	} else {
+		this.align = 'center';
+	}
+};
+
+/**
+ * Get popup alignment
+ * @return {string} align Alignment of the popup, `center`, `force-left`, `force-right`,
+ *  `backwards` or `forwards`.
+ */
+OO.ui.PopupWidget.prototype.getAlignment = function () {
+	return this.align;
 };
 
 /**
@@ -14747,6 +14880,7 @@ OO.ui.SearchWidget.prototype.getResults = function () {
  *
  * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options
  *
+ * @abstract
  * @class
  * @extends OO.ui.Widget
  * @mixins OO.ui.GroupElement
