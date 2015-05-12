@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.11.2
+ * OOjs UI v0.11.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-05-11T17:24:27Z
+ * Date: 2015-05-12T12:15:37Z
  */
 ( function ( OO ) {
 
@@ -6489,6 +6489,7 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 			'oo-ui-tool ' + 'oo-ui-tool-name-' +
 			this.constructor.static.name.replace( /^([^\/]+)\/([^\/]+).*$/, '$1-$2' )
 		)
+		.toggleClass( 'oo-ui-tool-with-label', this.constructor.static.displayBothIconAndLabel )
 		.append( this.$link );
 	this.setTitle( config.title || this.constructor.static.title );
 };
@@ -6548,6 +6549,16 @@ OO.ui.Tool.static.group = '';
  * @property {string|Function} Title text or a function that returns text
  */
 OO.ui.Tool.static.title = '';
+
+/**
+ * Whether this tool should be displayed with both title and label when used in a bar tool group.
+ * Normally only the icon is displayed, or only the label if no icon is given.
+ *
+ * @static
+ * @inheritable
+ * @property {boolean}
+ */
+OO.ui.Tool.static.displayBothIconAndLabel = false;
 
 /**
  * Tool can be automatically added to catch-all groups.
@@ -10791,6 +10802,9 @@ OO.ui.ToolGroupTool = function OoUiToolGroupTool( toolGroup, config ) {
 	// Properties
 	this.innerToolGroup = this.createGroup( this.constructor.static.groupConfig );
 
+	// Events
+	this.innerToolGroup.connect( this, { disable: 'onToolGroupDisable' } );
+
 	// Initialization
 	this.$link.remove();
 	this.$element
@@ -10821,6 +10835,16 @@ OO.ui.ToolGroupTool.static.groupConfig = {};
 OO.ui.ToolGroupTool.prototype.onSelect = function () {
 	this.innerToolGroup.setActive( !this.innerToolGroup.active );
 	return false;
+};
+
+/**
+ * Synchronize disabledness state of the tool with the inner toolgroup.
+ *
+ * @private
+ * @param {boolean} disabled Element is disabled
+ */
+OO.ui.ToolGroupTool.prototype.onToolGroupDisable = function ( disabled ) {
+	this.setDisabled( disabled );
 };
 
 /**

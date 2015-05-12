@@ -65,7 +65,7 @@
 			"rtl": "images/icons/search-rtl.svg"
 		} },
 		"settings": { "file": "images/icons/settings.svg" },
-		"tag": { "file": "images/icons/tag.svg" },
+		"tag": { "file": "images/icons/tag.svg", "variants": [ "destructive", "warning", "constructive", "progressive" ] },
 		"undo": { "file": {
 			"ltr": "images/icons/arched-arrow-rtl.svg",
 			"rtl": "images/icons/arched-arrow-ltr.svg"
