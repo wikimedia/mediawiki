@@ -13,6 +13,8 @@ production.
 === New features in 1.26 ===
 * Change tags can now be hidden in the interface by disabling the associated
   "tag-<id>" interface message.
+* ':' (colon) is now invalid in usernames for new accounts. Existing accounts
+  are not affected.
 
 ==== External libraries ====
 
