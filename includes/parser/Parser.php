@@ -4442,7 +4442,9 @@ class Parser {
 		$tocraw = array();
 		$refers = array();
 
-		foreach ( $matches[3] as $headline ) {
+		$headlines = $numMatches !== false ? $matches[3] : array();
+
+		foreach ( $headlines as $headline ) {
 			$isTemplate = false;
 			$titleText = false;
 			$sectionIndex = false;
