@@ -175,7 +175,7 @@ class JobRunner implements LoggerAwareInterface {
 				}
 
 				$msg = $job->toString() . " STARTING";
-				$this->logger->info( $msg );
+				$this->logger->debug( $msg );
 				$this->debugCallback( $msg );
 
 				// Run the job...
