@@ -471,6 +471,8 @@ class JobQueueDB extends JobQueue {
 			// Delete a row with a single DELETE without holding row locks over RTTs...
 			$dbw->delete( 'job',
 				array( 'job_cmd' => $this->type, 'job_id' => $job->metadata['id'] ), __METHOD__ );
+
+			JobQueue::incrStats( 'job-ack', $this->type );
 		} catch ( DBError $e ) {
 			$this->throwDBException( $e );
 		}
