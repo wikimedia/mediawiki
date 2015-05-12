@@ -263,6 +263,8 @@ class WANObjectCache {
 	/**
 	 * Fetch the value of a timestamp "check" key
 	 *
+	 * Note that "check" keys won't collide with other regular keys
+	 *
 	 * @param string $key
 	 * @return float|bool TS_UNIX timestamp of the key; false if not present
 	 */
@@ -282,6 +284,8 @@ class WANObjectCache {
 	 * It is set in the future a few seconds when this is called, to
 	 * avoid race conditions where dependent keys get updated with a
 	 * stale value (e.g. from a DB slave).
+	 *
+	 * Note that "check" keys won't collide with other regular keys
 	 *
 	 * @see WANObjectCache::get()
 	 *
