@@ -283,6 +283,7 @@
 	"nospecialpagetext": "<strong>Rûpela taybet a te xwestî tune ye.</strong>\n\nHemû rûpelên taybet dikarin di [[Special:SpecialPages|lîsteya rûpelên taybet]] de werin dîtin.",
 	"error": "Çewtî",
 	"databaseerror": "Çewtiya bingeha daneyan",
+	"databaseerror-query": "Pirs: $1",
 	"databaseerror-error": "Çewtî:$1",
 	"laggedslavemode": "'''Zanibe:''' Dibe ku di vê rûpelê de rojanekirinên dawî nîn bin.",
 	"readonly": "Bingeha daneyan hatiye girtin",

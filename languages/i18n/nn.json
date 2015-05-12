@@ -22,7 +22,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Gaute",
-			"Macofe"
+			"Macofe",
+			"Chameleon222"
 		]
 	},
 	"tog-underline": "Strek under lenkjer:",
@@ -668,7 +669,7 @@
 	"currentrev": "Versjonen no",
 	"currentrev-asof": "Versjonen no frå $1",
 	"revisionasof": "Versjonen frå $1",
-	"revision-info": "Versjonen frå $1 av $2",
+	"revision-info": "Versjonen frå $1 av {{GENDER:$6|$2}}$7",
 	"previousrevision": "← Eldre versjon",
 	"nextrevision": "Nyare versjon →",
 	"currentrevisionlink": "Versjonen no",
@@ -2913,6 +2914,7 @@
 	"logentry-rights-rights": "$1 {{GENDER:$2|endra}} gruppemedlemskap for $3 frå $4 til $5",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|endra}} gruppemedlemskap for $3",
 	"logentry-rights-autopromote": "$1 vart automatisk {{GENDER:$2|forfremja}} frå $4 til $5",
+	"logentry-upload-upload": "$1 {{GENDER:$2|lasta opp}} $3",
 	"rightsnone": "(ingen)",
 	"revdelete-summary": "Samandrag",
 	"feedback-adding": "Legg til attendemeldinga til sida...",

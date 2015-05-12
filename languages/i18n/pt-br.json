@@ -862,7 +862,7 @@
 	"revdelete-edit-reasonlist": "Editar motivos de eliminação",
 	"revdelete-offender": "Autor da revisão:",
 	"suppressionlog": "Registro de supressões",
-	"suppressionlogtext": "Abaixo está uma lista das eliminações e bloqueios envolvendo conteúdo ocultado por administradores.\nVeja a [[Special:BlockList|lista de bloqueios]] para uma lista de banimentos e bloqueios em efeito neste momento.",
+	"suppressionlogtext": "Abaixo está uma lista das eliminações e bloqueios envolvendo conteúdo ocultado para administradores.\nVeja a [[Special:BlockList|lista de bloqueios]] para uma lista de banimentos e bloqueios em efeito neste momento.",
 	"mergehistory": "Fundir históricos das páginas",
 	"mergehistory-header": "A partir desta página é possível fundir históricos de edições de uma página em outra.\nCertifique-se de que tal alteração manterá a continuidade das ações.",
 	"mergehistory-box": "Fundir revisões de duas páginas:",
