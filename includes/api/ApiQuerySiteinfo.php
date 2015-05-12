@@ -176,6 +176,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data['linktrail'] = $linktrail ?: '';
 
 		$data['legaltitlechars'] = Title::legalChars();
+		$data['invalidusernamechars'] = $config->get( 'InvalidUsernameCharacters' );
 
 		global $IP;
 		$git = SpecialVersion::getGitHeadSha1( $IP );
