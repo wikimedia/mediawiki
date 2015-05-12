@@ -1,8 +1,5 @@
 @import "mediawiki.mixins";
-
-// Variables
-@iconSize: 1.4em;
-@gutterWidth: 1em;
+@import "mediawiki.ui/variables";
 
 // Mixins
 .mixin-mw-ui-icon-bgimage(@iconSvg, @iconPng) {
@@ -42,7 +39,7 @@
 	//
 	// Styleguide 6.1.1.
 	&.mw-ui-icon-element {
-		@width: @iconSize + ( 2 * @gutterWidth );
+		@width: @iconSize + ( 2 * @iconGutterWidth );
 
 		text-indent: -999px;
 		overflow: hidden;
@@ -53,7 +50,7 @@
 			left: 0;
 			right: 0;
 			position: absolute;
-			margin: 0 @gutterWidth;
+			margin: 0 @iconGutterWidth;
 		}
 	}
 
@@ -81,7 +78,7 @@
 		&:before {
 			position: relative;
 			width: @iconSize;
-			margin-right: @gutterWidth;
+			margin-right: @iconGutterWidth;
 		}
 	}
 
@@ -96,7 +93,7 @@
 			position: relative;
 			float: right;
 			width: @iconSize;
-			margin-left: @gutterWidth;
+			margin-left: @iconGutterWidth;
 		}
 	}
 }
