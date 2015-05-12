@@ -61,7 +61,7 @@ class EmailNotification {
 	 * @param User $editor The editor that triggered the update.  Their notification
 	 *  timestamp will not be updated(they have already seen it)
 	 * @param Title $title The title to update timestamps for
-	 * @param string $timestamp Set the upate timestamp to this value
+	 * @param string $timestamp Set the update timestamp to this value
 	 * @return int[]
 	 */
 	public static function updateWatchlistTimestamp( User $editor, Title $title, $timestamp ) {
@@ -110,7 +110,6 @@ class EmailNotification {
 
 	/**
 	 * Send emails corresponding to the user $editor editing the page $title.
-	 * Also updates wl_notificationtimestamp.
 	 *
 	 * May be deferred via the job queue.
 	 *
@@ -187,7 +186,7 @@ class EmailNotification {
 	 * Immediate version of notifyOnPageChange().
 	 *
 	 * Send emails corresponding to the user $editor editing the page $title.
-	 * Also updates wl_notificationtimestamp.
+	 * Also updates wl_notificationtimestamp. [??]
 	 *
 	 * @param User $editor
 	 * @param Title $title
