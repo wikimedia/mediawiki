@@ -549,35 +549,6 @@ abstract class JobQueue {
 	}
 
 	/**
-	 * Return a map of task names to task definition maps.
-	 * A "task" is a fast periodic queue maintenance action.
-	 * Mutually exclusive tasks must implement their own locking in the callback.
-	 *
-	 * Each task value is an associative array with:
-	 *   - name     : the name of the task
-	 *   - callback : a PHP callable that performs the task
-	 *   - period   : the period in seconds corresponding to the task frequency
-	 *
-	 * @return array
-	 */
-	final public function getPeriodicTasks() {
-		$tasks = $this->doGetPeriodicTasks();
-		foreach ( $tasks as $name => &$def ) {
-			$def['name'] = $name;
-		}
-
-		return $tasks;
-	}
-
-	/**
-	 * @see JobQueue::getPeriodicTasks()
-	 * @return array
-	 */
-	protected function doGetPeriodicTasks() {
-		return array();
-	}
-
-	/**
 	 * Clear any process and persistent caches
 	 *
 	 * @return void

@@ -301,6 +301,12 @@ class JobQueueDB extends JobQueue {
 				$job->metadata['id'] = $row->job_id;
 				break; // done
 			} while ( true );
+
+			if ( !$job || mt_rand( 0, 9 ) == 0 ) {
+				// Handled jobs that need to be recycled/deleted;
+				// any recycled jobs will be picked up next attempt
+				$this->recycleAndDeleteStaleJobs();
+			}
 		} catch ( DBError $e ) {
 			$this->throwDBException( $e );
 		}
@@ -538,18 +544,6 @@ class JobQueueDB extends JobQueue {
 	}
 
 	/**
-	 * @return array
-	 */
-	protected function doGetPeriodicTasks() {
-		return array(
-			'recycleAndDeleteStaleJobs' => array(
-				'callback' => array( $this, 'recycleAndDeleteStaleJobs' ),
-				'period' => ceil( $this->claimTTL / 2 )
-			)
-		);
-	}
-
-	/**
 	 * @return void
 	 */
 	protected function doFlushCaches() {
@@ -591,6 +585,10 @@ class JobQueueDB extends JobQueue {
 
 	protected function doGetSiblingQueuesWithJobs( array $types ) {
 		$dbr = $this->getSlaveDB();
+		// @note: this does not check whether the jobs are claimed or not.
+		// This is useful so JobQueueGroup::pop() also sees queues that only
+		// have stale jobs. This lets recycleAndDeleteStaleJobs() re-enqueue
+		// failed jobs so that they can be popped again for that edge case.
 		$res = $dbr->select( 'job', 'DISTINCT job_cmd',
 			array( 'job_cmd' => $types ), __METHOD__ );
 

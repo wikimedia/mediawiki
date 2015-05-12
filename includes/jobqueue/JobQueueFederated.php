@@ -373,18 +373,6 @@ class JobQueueFederated extends JobQueue {
 		$this->throwErrorIfAllPartitionsDown( $failed );
 	}
 
-	protected function doGetPeriodicTasks() {
-		$tasks = array();
-		/** @var JobQueue $queue */
-		foreach ( $this->partitionQueues as $partition => $queue ) {
-			foreach ( $queue->getPeriodicTasks() as $task => $def ) {
-				$tasks["{$partition}:{$task}"] = $def;
-			}
-		}
-
-		return $tasks;
-	}
-
 	protected function doFlushCaches() {
 		/** @var JobQueue $queue */
 		foreach ( $this->partitionQueues as $queue ) {

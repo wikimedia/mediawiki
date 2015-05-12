@@ -103,15 +103,6 @@ class JobRunner implements LoggerAwareInterface {
 			return $response;
 		}
 
-		$group = JobQueueGroup::singleton();
-		// Handle any required periodic queue maintenance
-		$count = $group->executeReadyPeriodicTasks();
-		if ( $count > 0 ) {
-			$msg = "Executed $count periodic queue task(s).";
-			$this->logger->debug( $msg );
-			$this->debugCallback( $msg );
-		}
-
 		// Bail out if in read-only mode
 		if ( wfReadOnly() ) {
 			$response['reached'] = 'read-only';
@@ -134,6 +125,8 @@ class JobRunner implements LoggerAwareInterface {
 			return $response;
 		}
 
+		$group = JobQueueGroup::singleton();
+		
 		// Flush any pending DB writes for sanity
 		wfGetLBFactory()->commitMasterChanges();
 
