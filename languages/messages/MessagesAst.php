@@ -29,7 +29,7 @@ $namespaceNames = array(
 
 $namespaceAliases = array(
 	'Imaxe'               => NS_FILE,
-	'Imaxe alderique'     => NS_FILE_TALK,
+	'Imaxe_alderique'     => NS_FILE_TALK,
 	'Discusión'           => NS_TALK,
 	'Usuariu_discusión'   => NS_USER_TALK,
 	'$1_discusión'        => NS_PROJECT_TALK,
