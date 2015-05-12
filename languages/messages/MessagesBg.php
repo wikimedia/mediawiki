@@ -31,7 +31,7 @@ $namespaceNames = array(
 
 $namespaceAliases = array(
 	'Картинка' => NS_FILE,
-	'Картинка беседа' => NS_FILE_TALK,
+	'Картинка_беседа' => NS_FILE_TALK,
 );
 
 $specialPageAliases = array(
