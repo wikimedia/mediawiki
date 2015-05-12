@@ -808,7 +808,7 @@ class ResourceLoader {
 			// Capture any PHP warnings from the output buffer and append them to the
 			// response in a comment if we're in debug mode.
 			if ( $context->getDebug() && strlen( $warnings = ob_get_contents() ) ) {
-				$response = "/*\n$warnings\n*/\n" . $response;
+				$response = self::makeComment( $warnings ) . $response;
 			}
 			// Send content type and cache headers
 			$this->sendResponseHeaders( $context, $ts, false );
