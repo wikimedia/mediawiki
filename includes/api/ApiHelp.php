@@ -41,7 +41,7 @@ class ApiHelp extends ApiBase {
 
 		// Get the help
 		$context = new DerivativeContext( $this->getMain()->getContext() );
-		$context->setSkin( SkinFactory::getDefaultInstance()->makeSkin( 'apioutput' ) );
+		$context->setSkin( new SkinApi );
 		$context->setLanguage( $this->getMain()->getLanguage() );
 		$context->setTitle( SpecialPage::getTitleFor( 'ApiHelp' ) );
 		$out = new OutputPage( $context );

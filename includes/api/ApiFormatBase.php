@@ -176,7 +176,7 @@ abstract class ApiFormatBase extends ApiBase {
 			$result = $this->getBuffer();
 
 			$context = new DerivativeContext( $this->getMain() );
-			$context->setSkin( SkinFactory::getDefaultInstance()->makeSkin( 'apioutput' ) );
+			$context->setSkin( new SkinApi );
 			$context->setTitle( SpecialPage::getTitleFor( 'ApiHelp' ) );
 			$out = new OutputPage( $context );
 			$context->setOutput( $out );

@@ -292,13 +292,8 @@ call_user_func( function () use ( $wgValidSkinNames ) {
 	$factory->register( 'fallback', 'Fallback', function () {
 		return new SkinFallback;
 	} );
-	// Register a hidden skin for api output
-	$factory->register( 'apioutput', 'ApiOutput', function () {
-		return new SkinApi;
-	} );
 } );
 $wgSkipSkins[] = 'fallback';
-$wgSkipSkins[] = 'apioutput';
 
 if ( $wgLocalInterwiki ) {
 	array_unshift( $wgLocalInterwikis, $wgLocalInterwiki );
