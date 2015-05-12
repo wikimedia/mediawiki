@@ -111,6 +111,14 @@ class RefreshLinksJob extends Job {
 	 * @return bool
 	 */
 	protected function runForTitle( Title $title = null ) {
+		if (
+			!isset( $this->params['prioritize'] ) && // cascade protected pages
+			!isset( $this->params['isOpportunistic'] ) && // new opportunistic jobs
+			!isset( $this->params['rootJobTimestamp'] ) // regular LinksUpdate jobs
+		) {
+			return true; // ignore flood of duplicate old opportunistic jobs
+		}
+
 		$linkCache = LinkCache::singleton();
 		$linkCache->clear();
 
