@@ -773,6 +773,7 @@ return array(
 	/* MediaWiki */
 
 	'mediawiki' => array(
+		'class' => 'ResourceLoaderRawFileModule',
 		// Keep maintenance/jsduck/eg-iframe.html in sync
 		'scripts' => array(
 			'resources/src/mediawiki/mediawiki.js',
@@ -780,7 +781,6 @@ return array(
 			'resources/src/mediawiki/mediawiki.startUp.js',
 		),
 		'debugScripts' => 'resources/src/mediawiki/mediawiki.log.js',
-		'raw' => true,
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.apihelp' => array(
