@@ -74,6 +74,9 @@ class WANObjectCache {
 	/** Seconds to keep lock keys around */
 	const LOCK_TTL = 5;
 
+	/** Idiom for set()/getWithSetCallback() TTL */
+	const TTL_NONE = 0;
+
 	/** Cache format version number */
 	const VERSION = 1;
 
