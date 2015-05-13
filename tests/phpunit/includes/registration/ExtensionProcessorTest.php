@@ -36,6 +36,10 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 	}
 
 	public static function provideRegisterHooks() {
+		// Format:
+		// Current $wgHooks
+		// Content in extension.json
+		// Expected value of $wgHooks
 		return array(
 			// No hooks
 			array(
@@ -62,6 +66,22 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 				array(
 					'BarBaz' => array( 'BarBazCallback' ),
 					'FooBaz' => array( 'FooBazCallback' ),
+				),
+			),
+			// Callbacks for FooBaz wrapped in an array
+			array(
+				array(),
+				array( 'Hooks' => array( 'FooBaz' => array( 'Callback1' ) ) ) + self::$default,
+				array(
+					'FooBaz' => array( 'Callback1' ),
+				),
+			),
+			// Multiple callbacks for FooBaz hook
+			array(
+				array(),
+				array( 'Hooks' => array( 'FooBaz' => array( 'Callback1', 'Callback2' ) ) ) + self::$default,
+				array(
+					'FooBaz' => array( 'Callback1', 'Callback2' ),
 				),
 			),
 		);
