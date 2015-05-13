@@ -132,8 +132,9 @@ class RevDelContribsList extends RevDelList {
 		// Add one log entry by target page
 		foreach ( $this->latestIds as $latestRevID => $ids ) {
 			$entryParams = $params;
+			// We keep only rev ids of the target page that were actually updated.
 			$entryParams['ids'] = array_intersect( $params['ids'], $ids );
-			$entryParams['count'] = count( $params['ids'] );
+			$entryParams['count'] = count( $entryParams['ids'] );
 			if ( !$entryParams['count'] ) {
 				// Ignore if this target page had no revision updated
 				continue;
