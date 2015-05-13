@@ -1,5 +1,9 @@
 <?php
 
+use MediaWiki\Logger\LoggerFactory;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
+
 /**
  * ExtensionRegistry class
  *
@@ -9,7 +13,7 @@
  *
  * @since 1.25
  */
-class ExtensionRegistry {
+class ExtensionRegistry implements LoggerAwareInterface {
 
 	/**
 	 * @var BagOStuff
@@ -46,6 +50,11 @@ class ExtensionRegistry {
 	protected $processors = array();
 
 	/**
+	 * @var LoggerInterface
+	 */
+	protected $logger;
+
+	/**
 	 * @var ExtensionRegistry
 	 */
 	private static $instance;
@@ -70,6 +79,11 @@ class ExtensionRegistry {
 		} catch ( MWException $e ) {
 			$this->cache = new EmptyBagOStuff();
 		}
+		$this->setLogger( LoggerFactory::getInstance( 'registration' ) );
+	}
+
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
 	}
 
 	/**
@@ -83,6 +97,7 @@ class ExtensionRegistry {
 			$mtime = filemtime( $path );
 		}
 		$this->queued[$path] = $mtime;
+		$this->logger->debug( "Queued $path (mtime: $mtime)" );
 	}
 
 	public function loadFromQueue() {
@@ -94,10 +109,13 @@ class ExtensionRegistry {
 
 		// See if this queue is in APC
 		$key = wfMemcKey( 'registration', md5( json_encode( $this->queued ) ) );
+		$this->logger->debug( "Using APC key: $key" );
 		$data = $this->cache->get( $key );
 		if ( $data ) {
+			$this->logger->debug( "Cache hit on $key" );
 			$this->exportExtractedData( $data );
 		} else {
+			$this->logger->debug( "Cache miss on $key" );
 			$data = $this->readFromQueue( $this->queued );
 			$this->exportExtractedData( $data );
 			// Do this late since we don't want to extract it since we already
@@ -120,6 +138,7 @@ class ExtensionRegistry {
 		$data = array( 'globals' => array( 'wgAutoloadClasses' => array() ) );
 		$autoloadClasses = array();
 		foreach ( $queue as $path => $mtime ) {
+			$this->logger->debug( "Reading from $path (mtime: $mtime)" );
 			$json = file_get_contents( $path );
 			if ( $json === false ) {
 				throw new Exception( "Unable to read $path, does it exist?" );
