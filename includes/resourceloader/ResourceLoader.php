@@ -181,9 +181,9 @@ class ResourceLoader {
 		}
 
 		// Try for cache hit
-		// Use CACHE_ANYTHING since filtering is very slow compared to DB queries
+		// Use CACHE_ANYTHING / CACHE_ACCEL since filtering is very slow compared to DB queries
 		$key = wfMemcKey( 'resourceloader', 'filter', $filter, self::$filterCacheVersion, md5( $data ) );
-		$cache = wfGetCache( CACHE_ANYTHING );
+		$cache = wfGetCache( wfIsHHVM() ? CACHE_ACCEL : CACHE_ANYTHING );
 		$cacheEntry = $cache->get( $key );
 		if ( is_string( $cacheEntry ) ) {
 			wfIncrStats( "rl-$filter-cache-hits" );
