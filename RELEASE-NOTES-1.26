@@ -73,6 +73,8 @@ production.
 === Bug fixes in 1.26 ===
 * (T53283) load.php sometimes sends 304 response without full headers
 * (T65198) Talk page tabs now have a "rel=discussion" attribute
+* (T98841) {{msgnw:}} will correctly recover the original code of comments
+  even when it is not substituted as part of a pre-save transform.
 
 === Action API changes in 1.26 ===
 * New-style continuation is now the default for action=continue. Clients may

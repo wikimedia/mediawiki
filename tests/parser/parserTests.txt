@@ -10321,6 +10321,7 @@ Template:MSGNW test
 <gallery>
 File:Foobar.jpg
 </gallery>
+<!-- comment -->
 !! endarticle
 
 # hmm, fix this or just deprecate msgnw and document its behavior?
@@ -10336,6 +10337,7 @@ msgnw keyword
 &#60;gallery&#62;
 File:Foobar.jpg
 &#60;/gallery&#62;
+&#60;!-- comment --&#62;
 </p>
 !! end
 
