@@ -189,6 +189,7 @@ class MultiHttpClient {
 
 		// @TODO: use a per-host rolling handle window (e.g. CURLMOPT_MAX_HOST_CONNECTIONS)
 		$batches = array_chunk( $indexes, $this->maxConnsPerHost );
+		$infos = array();
 
 		foreach ( $batches as $batch ) {
 			// Attach all cURL handles for this batch
@@ -201,6 +202,10 @@ class MultiHttpClient {
 				// Do any available work...
 				do {
 					$mrc = curl_multi_exec( $chm, $active );
+					$info = curl_multi_info_read( $chm );
+					if ( $info !== false ) {
+						$infos[(int)$info['handle']] = $info;
+					}
 				} while ( $mrc == CURLM_CALL_MULTI_PERFORM );
 				// Wait (if possible) for available work...
 				if ( $active > 0 && $mrc == CURLM_OK ) {
@@ -216,10 +221,18 @@ class MultiHttpClient {
 		foreach ( $reqs as $index => &$req ) {
 			$ch = $handles[$index];
 			curl_multi_remove_handle( $chm, $ch );
-			if ( curl_errno( $ch ) !== 0 ) {
-				$req['response']['error'] = "(curl error: " .
-					curl_errno( $ch ) . ") " . curl_error( $ch );
+
+			$info = $infos[(int)$ch];
+
+			$errno = $info['result'];
+			if ( $errno !== 0 ) {
+				$req['response']['error'] = "(curl error: $errno)";
+
+				if ( version_compare( PHP_VERSION, '5.5.0' ) >= 0 ) {
+					$req['response']['error'] .= " " . curl_strerror( $errno );
+				}
 			}
+
 			// For convenience with the list() operator
 			$req['response'][0] = $req['response']['code'];
 			$req['response'][1] = $req['response']['reason'];
