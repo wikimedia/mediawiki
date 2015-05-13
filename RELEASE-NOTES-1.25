@@ -1,6 +1,14 @@
 Security reminder: If you have PHP's register_globals option set, you must
 turn it off. MediaWiki will not work with it enabled.
 
+== MediaWiki 1.25.3 ==
+
+THIS IS NOT YET A RELEASE!
+
+=== Changes since 1.25.2 ===
+
+* (T98975) Fix having multiple callbacks for a single hook.
+
 == MediaWiki 1.25.2 ==
 
 This is a security and maintenance release of the MediaWiki 1.25 branch.

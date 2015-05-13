@@ -166,8 +166,10 @@ class ExtensionProcessor implements Processor {
 
 	protected function extractHooks( array $info ) {
 		if ( isset( $info['Hooks'] ) ) {
-			foreach ( $info['Hooks'] as $name => $callable ) {
-				$this->globals['wgHooks'][$name][] = $callable;
+			foreach ( $info['Hooks'] as $name => $value ) {
+				foreach ( (array)$value as $callback ) {
+					$this->globals['wgHooks'][$name][] = $callback;
+				}
 			}
 		}
 	}
