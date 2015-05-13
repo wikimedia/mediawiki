@@ -20,6 +20,8 @@ production.
 
 === Bug fixes in 1.26 ===
 * (bug 51283) load.php sometimes sends 304 response without full headers
+* (T98841) {{msgnw:}} will correctly recover the original code of comments
+  even when it is not substituted as part of a pre-save transform.
 
 === Action API changes in 1.26 ===
 * API action=query&list=tags: The displayname can now be boolean false if the
