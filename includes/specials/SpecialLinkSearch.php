@@ -88,6 +88,7 @@ class LinkSearchPage extends QueryPage {
 
 		$out = $this->getOutput();
 		$out->allowClickjacking();
+		$out->addModules( 'mediawiki.special.linksearch' );
 
 		$request = $this->getRequest();
 		$target = $request->getVal( 'target', $par );

@@ -1564,6 +1564,9 @@ return array(
 	'mediawiki.special.version' => array(
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.version.css',
 	),
+	'mediawiki.special.linksearch' => array(
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.linksearch.css',
+	),
 
 	/* MediaWiki Installer */
 
