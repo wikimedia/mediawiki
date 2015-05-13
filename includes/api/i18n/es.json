@@ -123,6 +123,7 @@
 	"apihelp-options-example-reset": "Restablecer todas las preferencias",
 	"apihelp-paraminfo-description": "Obtener información acerca de los módulos de la API.",
 	"apihelp-paraminfo-param-helpformat": "Formato de las cadenas de ayuda.",
+	"apihelp-parse-paramvalue-prop-modules": "Da los módulos ResourceLoader utilizados en la página.",
 	"apihelp-patrol-example-rcid": "Patrullar un cambio reciente",
 	"apihelp-patrol-example-revid": "Patrullar una revisión",
 	"apihelp-protect-param-reason": "Motivo de la (des)protección.",

@@ -371,7 +371,7 @@
 	"createacct-error": "Error in ratione creanda",
 	"createaccounterror": "Rationem creare non potuit: $1",
 	"nocookiesnew": "Ratio usoris creata est, sed conventum non apertum est. {{SITENAME}} ''Cookies'' utitur in usorum conventa aperiendo. Cookies tua debiles sunt. Eis potestatem fac, tum conventum aperi cum nomine usoris tesseraque tua nova.",
-	"nocookieslogin": "{{SITENAME}} ''Cookies'' utitur in usorum conventa aperiendo. Cookies tua debiles sunt. Eis potestatem fac, tum conare denuo.",
+	"nocookieslogin": "{{SITENAME}} ''Cookies'' in conventis collatorum aperiendis adhibentur. ''Cookies'' tua debilitata sunt. Eis potestatem fac, tum conare denuo.",
 	"noname": "Nomen usoris ratum non designavisti.",
 	"loginsuccesstitle": "Conventum prospere apertum est",
 	"loginsuccess": "'''Apud {{grammar:accusative|{{SITENAME}}}} agnosceris nomine \"$1\".'''",

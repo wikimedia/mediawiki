@@ -254,6 +254,7 @@
 	"apihelp-parse-param-pageid": "解析此页的内容。覆盖<var>$1page</var>。",
 	"apihelp-parse-param-redirects": "如果<var>$1page</var>或<var>$1pageid</var>被设置为一个重定向，则解析它。",
 	"apihelp-parse-param-oldid": "解析该修订版本的内容。覆盖<var>$1page</var>和<var>$1pageid</var>。",
+	"apihelp-parse-paramvalue-prop-categorieshtml": "提供HTML版本分类。",
 	"apihelp-parse-paramvalue-prop-modules": "提供在页面中使用的ResourceLoader模块。",
 	"apihelp-parse-param-pst": "在解析输入前，对输入做一次保存前变换处理。仅当使用文本时有效。",
 	"apihelp-parse-param-effectivelanglinks": "包含由扩展提供的语言链接（用于与<kbd>$1prop=langlinks</kbd>一起使用）。",

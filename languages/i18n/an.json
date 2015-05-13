@@ -1342,6 +1342,7 @@
 	"querypage-disabled": "Ista pachina especial ye desactivata por motivos de rendimiento.",
 	"booksources": "Fuents de libros",
 	"booksources-search-legend": "Mirar fuents de libros",
+	"booksources-search": "Mirar",
 	"booksources-text": "Contino ye una lista de vinclos ta atros puestos an que venden libros nuevos y usatos, talment bi haiga más información sobre os libros que ye mirando.",
 	"booksources-invalid-isbn": "O numero d'ISBN dato pareix que no ye conforme; comprebe si no bi ha garra error en copiar d'a fuent orichinal.",
 	"specialloguserlabel": "Fedor:",
