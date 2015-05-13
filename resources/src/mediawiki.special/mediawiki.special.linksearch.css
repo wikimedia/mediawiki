@@ -1,0 +1,10 @@
+/*!
+ * Styling for Special:LinkSearch
+ */
+.namespaceselector {
+	/*
+	 * The namespaceselector get's vertical-align: top; in a legacy stylesheet
+	 * see mediawiki.skinning/elements.css. Overwrite it here to the default one.
+	 */
+	vertical-align: baseline;
+}
