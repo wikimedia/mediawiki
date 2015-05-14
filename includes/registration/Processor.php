@@ -21,7 +21,12 @@ interface Processor {
 	public function extractInfo( $path, array $info );
 
 	/**
-	 * @return array With 'globals', 'defines', 'callbacks', 'credits' keys.
+	 * @return array With following keys:
+	 * 		'globals' - variables to be set to $GLOBALS
+	 * 		'defines' - constants to define
+	 * 		'callbacks' - functions to be executed by the registry
+	 * 		'credits' - metadata to be stored by registry
+	 * 		'attributes' - registration info which isn't a global variable
 	 */
 	public function getExtractedInfo();
 }
