@@ -318,6 +318,15 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit;
 }
 
+## If you want to debug current MediaWiki installation, uncomment lines at below.
+## But these options can be lead to leaking of private information. So be careful.
+## DO NOT ENABLE THESE OPTIONS ON PRODUCTION SITE
+## You can find further information for debbuging at:
+## https://www.mediawiki.org/wiki/Manual:How_to_debug
+# ini_set( 'display_errors', 1 );
+# \$wgShowExceptionDetails = true;
+# \$wgShowSQLErrors = true;
+
 ## Uncomment this to disable output compression
 # \$wgDisableOutputCompression = true;
 
