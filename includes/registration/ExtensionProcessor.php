@@ -165,6 +165,15 @@ class ExtensionProcessor implements Processor {
 		);
 	}
 
+	public function getConstraints( array $info ) {
+		$constraints = array();
+		if ( isset( $info['supports'] ) ) {
+			$constraints[ExtensionRegistry::MEDIAWIKI_CORE] = $info['supports'];
+		}
+
+		return $constraints;
+	}
+
 	protected function extractHooks( array $info ) {
 		if ( isset( $info['Hooks'] ) ) {
 			foreach ( $info['Hooks'] as $name => $value ) {
