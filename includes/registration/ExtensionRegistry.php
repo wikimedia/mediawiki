@@ -11,6 +11,8 @@
  */
 class ExtensionRegistry {
 
+	const MEDIAWIKI_CORE = 'MediaWiki';
+
 	/**
 	 * @var BagOStuff
 	 */
@@ -117,8 +119,10 @@ class ExtensionRegistry {
 	 * @throws Exception
 	 */
 	public function readFromQueue( array $queue ) {
+		global $wgVersion;
 		$data = array( 'globals' => array( 'wgAutoloadClasses' => array() ) );
 		$autoloadClasses = array();
+		$coreVersionParser = new CoreVersionChecker( $wgVersion );
 		foreach ( $queue as $path => $mtime ) {
 			$json = file_get_contents( $path );
 			if ( $json === false ) {
@@ -138,6 +142,15 @@ class ExtensionRegistry {
 				$processor = $this->getProcessor( 'default' );
 			}
 			$processor->extractInfo( $path, $info );
+			$constraints = $processor->getConstraints( $info );
+			if ( isset( $constraints[self::MEDIAWIKI_CORE] ) ) {
+				if ( !$coreVersionParser->check( $constraints[self::MEDIAWIKI_CORE] ) ) {
+					throw new Exception(
+						"{$info['name']} is not compatible with the current MediaWiki core (version {$wgVersion}): "
+						. $constraints[self::MEDIAWIKI_CORE]
+					);
+				}
+			}
 		}
 		foreach ( $this->processors as $processor ) {
 			$data = array_merge_recursive( $data, $processor->getExtractedInfo() );
