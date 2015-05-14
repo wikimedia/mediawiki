@@ -218,9 +218,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			if ( $skipFunction !== null && !ResourceLoader::inDebugMode() ) {
 				$skipFunction = $resourceLoader->filter( 'minify-js',
 					$skipFunction,
-					// There will potentially be lots of these little string in the registrations
+					// There will potentially be lots of these little strings in the registrations
 					// manifest, we don't want to blow up the startup module with
-					// "/* cache key: ... */" all over it in non-debug mode.
+					// "/* cache key: ... */" all over it.
 					/* cacheReport = */ false
 				);
 			}
