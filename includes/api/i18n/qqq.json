@@ -7,7 +7,8 @@
 			"Umherirrender",
 			"McDutchie",
 			"Raymond",
-			"Anomie"
+			"Anomie",
+			"Nemo bis"
 		]
 	},
 	"apihelp-main-description": "{{doc-apihelp-description|main}}",
@@ -404,7 +405,7 @@
 	"apihelp-query+allmessages-param-includelocal": "{{doc-apihelp-param|query+allmessages|includelocal}}",
 	"apihelp-query+allmessages-param-args": "{{doc-apihelp-param|query+allmessages|args}}",
 	"apihelp-query+allmessages-param-filter": "{{doc-apihelp-param|query+allmessages|filter}}",
-	"apihelp-query+allmessages-param-customised": "{{doc-apihelp-param|query+allmessages|customised}}",
+	"apihelp-query+allmessages-param-customised": "\"Customisation state\" means the choice made by the user to only list locally customised system messages or not.\n----\n{{doc-apihelp-param|query+allmessages|customised}}",
 	"apihelp-query+allmessages-param-lang": "{{doc-apihelp-param|query+allmessages|lang}}",
 	"apihelp-query+allmessages-param-from": "{{doc-apihelp-param|query+allmessages|from}}",
 	"apihelp-query+allmessages-param-to": "{{doc-apihelp-param|query+allmessages|to}}",
