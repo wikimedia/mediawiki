@@ -76,6 +76,8 @@ class WANObjectCache {
 
 	/** Idiom for set()/getWithSetCallback() TTL */
 	const TTL_NONE = 0;
+	/** Idiom for getWithSetCallback() callbacks to avoid calling set() */
+	const TTL_UNCACHEABLE = -1;
 
 	/** Cache format version number */
 	const VERSION = 1;
@@ -365,7 +367,9 @@ class WANObjectCache {
 	 *
 	 * @param string $key Cache key
 	 * @param callable $callback Value generation function
-	 * @param integer $ttl Seconds to live when the key is updated [0=forever]
+	 * @param integer $ttl Seconds to live for key updates. Special values are:
+	 *   - WANObjectCache::TTL_NONE        : cache forever
+	 *   - WANObjectCache::TTL_UNCACHEABLE : do not cache at all
 	 * @param array $checkKeys List of "check" keys
 	 * @param array $opts Options map:
 	 *   - lowTTL  : consider pre-emptive updates when the current TTL (sec)
@@ -432,7 +436,7 @@ class WANObjectCache {
 		$value = call_user_func_array( $callback, array( $cValue, &$ttl ) );
 		// When delete() is called, writes are write-holed by the tombstone,
 		// so use a special stash key to pass the new value around threads.
-		if ( $value !== false && ( $isHot || $isTombstone ) ) {
+		if ( $value !== false && ( $isHot || $isTombstone ) && $ttl >= 0 ) {
 			$this->cache->set( self::STASH_KEY_PREFIX . $key, $value, $tempTTL );
 		}
 
@@ -440,7 +444,7 @@ class WANObjectCache {
 			$this->cache->unlock( $key );
 		}
 
-		if ( $value !== false ) {
+		if ( $value !== false && $ttl >= 0 ) {
 			// Update the cache; this will fail if the key is tombstoned
 			$this->set( $key, $value, $ttl );
 		}
