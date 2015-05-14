@@ -35,6 +35,8 @@ class ApiImport extends ApiBase {
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
+		$this->requireMaxOneParameter( $params, 'namespace', 'rootpage' );
+
 		$isUpload = false;
 		if ( isset( $params['interwikisource'] ) ) {
 			if ( !$user->isAllowed( 'import' ) ) {
