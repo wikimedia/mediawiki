@@ -64,6 +64,8 @@ abstract class ResourceLoaderModule {
 	protected $msgBlobMtime = array();
 	// In-object cache for version hash
 	protected $versionHash = array();
+	// In-object cache for module content
+	protected $contents = array();
 
 	// Whether the position returned by getPosition() is defined in the module configuration
 	// and not a default value
@@ -437,6 +439,120 @@ abstract class ResourceLoaderModule {
 	 */
 	public function setMsgBlobMtime( $lang, $mtime ) {
 		$this->msgBlobMtime[$lang] = $mtime;
+	}
+
+	/**
+	 * Recurse through all resources attached to this module and bundle them into an array.
+	 *
+	 * @param ResourceLoaderContext $context
+	 * @return array
+	 */
+	public function getModuleContent( $context ) {
+		$contextHash = $context->getHash();
+		// Cache this expensive operation. This calls builds the scripts, styles, and messages
+		// content which typically involves filesystem and/or database access.
+		if ( !array_key_exists( $contextHash, $this->contents ) ) {
+			$this->contents[ $contextHash ] = $this->buildContent( $context );
+		}
+		return $this->contents[ $contextHash ];
+	}
+
+	/**
+	 * Recurse through all resources attached to this module and bundle them into an array.
+	 *
+	 * @param ResourceLoaderContext $context
+	 * @return array
+	 */
+	final protected function buildContent( $context ) {
+		$rl = $context->getResourceLoader();
+
+		// Only include properties that are relevant to this context (e.g. only=scripts)
+		// and that are non-empty (e.g. don't include "templates" for modules without
+		// templates). This helps prevent invalidating cache for all modules when new
+		// optional properties are introduced.
+		$content = array();
+
+		// Scripts
+		if ( $context->shouldIncludeScripts() ) {
+			// If we are in debug mode, we'll want to return an array of URLs if possible
+			// However, we can't do this if the module doesn't support it
+			// We also can't do this if there is an only= parameter, because we have to give
+			// the module a way to return a load.php URL without causing an infinite loop
+			if ( $context->getDebug() && !$context->getOnly() && $this->supportsURLLoading() ) {
+				$scripts = $this->getScriptURLsForDebug( $context );
+			} else {
+				$scripts = $this->getScript( $context );
+				// rtrim() because there are usually a few line breaks
+				// after the last ';'. A new line at EOF, a new line
+				// added by ResourceLoaderFileModule::readScriptFiles, etc.
+				if ( is_string( $scripts )
+					&& strlen( $scripts )
+					&& substr( rtrim( $scripts ), -1 ) !== ';'
+				) {
+					// Append semicolon to prevent weird bugs caused by files not
+					// terminating their statements right (bug 27054)
+					$scripts .= ";\n";
+				}
+			}
+			$content['scripts'] = $scripts;
+		}
+
+		// Styles
+		if ( $context->shouldIncludeStyles() ) {
+			$styles = array();
+			// Don't create empty stylesheets like array( '' => '' ) for modules
+			// that don't *have* any stylesheets (bug 38024).
+			$stylePairs = $this->getStyles( $context );
+			if ( count( $stylePairs ) ) {
+				// If we are in debug mode without &only= set, we'll want to return an array of URLs
+				// See comment near shouldIncludeScripts() for more details
+				if ( $context->getDebug() && !$context->getOnly() && $this->supportsURLLoading() ) {
+					$styles = array(
+						'url' => $this->getStyleURLsForDebug( $context )
+					);
+				} else {
+					// Minify CSS before embedding in mw.loader.implement call
+					// (unless in debug mode)
+					if ( !$context->getDebug() ) {
+						foreach ( $stylePairs as $media => $style ) {
+							// Can be either a string or an array of strings.
+							if ( is_array( $style ) ) {
+								$stylePairs[$media] = array();
+								foreach ( $style as $cssText ) {
+									if ( is_string( $cssText ) ) {
+										$stylePairs[$media][] = $rl->filter( 'minify-css', $cssText );
+									}
+								}
+							} elseif ( is_string( $style ) ) {
+								$stylePairs[$media] = $rl->filter( 'minify-css', $style );
+							}
+						}
+					}
+					// Wrap styles into @media groups as needed and flatten into a numerical array
+					$styles = array(
+						'css' => $rl->makeCombinedStyles( $stylePairs )
+					);
+				}
+			}
+			$content['styles'] = $styles;
+		}
+
+		// Messages
+		$blobs = $rl->getMessageBlobStore()->get(
+			$rl,
+			array( $this->getName() => $this ),
+			$context->getLanguage()
+		);
+		if ( isset( $blobs[$this->getName()] ) ) {
+			$content['messagesBlob'] = $blobs[$this->getName()];
+		}
+
+		$templates = $this->getTemplates();
+		if ( $templates ) {
+			$content['templates'] = $templates;
+		}
+
+		return $content;
 	}
 
 	/**

@@ -298,8 +298,16 @@ class ResourceLoader implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @param MessageBlobStore $blobStore
+	 * @since 1.26
+	 * @return MessageBlobStore
+	 */
+	public function getMessageBlobStore() {
+		return $this->blobStore;
+	}
+
+	/**
 	 * @since 1.25
+	 * @param MessageBlobStore $blobStore
 	 */
 	public function setMessageBlobStore( MessageBlobStore $blobStore ) {
 		$this->blobStore = $blobStore;
@@ -962,7 +970,7 @@ MESSAGE;
 		// Pre-fetch blobs
 		if ( $context->shouldIncludeMessages() ) {
 			try {
-				$blobs = $this->blobStore->get( $this, $modules, $context->getLanguage() );
+				$this->blobStore->get( $this, $modules, $context->getLanguage() );
 			} catch ( Exception $e ) {
 				MWExceptionHandler::logException( $e );
 				$this->logger->warning( 'Prefetching MessageBlobStore failed: {exception}', array(
@@ -970,8 +978,6 @@ MESSAGE;
 				) );
 				$this->errors[] = self::formatExceptionNoComment( $e );
 			}
-		} else {
-			$blobs = array();
 		}
 
 		foreach ( $missing as $name ) {
@@ -981,79 +987,13 @@ MESSAGE;
 		// Generate output
 		$isRaw = false;
 		foreach ( $modules as $name => $module ) {
-			/**
-			 * @var $module ResourceLoaderModule
-			 */
-
 			try {
-				$scripts = '';
-				if ( $context->shouldIncludeScripts() ) {
-					// If we are in debug mode, we'll want to return an array of URLs if possible
-					// However, we can't do this if the module doesn't support it
-					// We also can't do this if there is an only= parameter, because we have to give
-					// the module a way to return a load.php URL without causing an infinite loop
-					if ( $context->getDebug() && !$context->getOnly() && $module->supportsURLLoading() ) {
-						$scripts = $module->getScriptURLsForDebug( $context );
-					} else {
-						$scripts = $module->getScript( $context );
-						// rtrim() because there are usually a few line breaks
-						// after the last ';'. A new line at EOF, a new line
-						// added by ResourceLoaderFileModule::readScriptFiles, etc.
-						if ( is_string( $scripts )
-							&& strlen( $scripts )
-							&& substr( rtrim( $scripts ), -1 ) !== ';'
-						) {
-							// Append semicolon to prevent weird bugs caused by files not
-							// terminating their statements right (bug 27054)
-							$scripts .= ";\n";
-						}
-					}
-				}
-				// Styles
-				$styles = array();
-				if ( $context->shouldIncludeStyles() ) {
-					// Don't create empty stylesheets like array( '' => '' ) for modules
-					// that don't *have* any stylesheets (bug 38024).
-					$stylePairs = $module->getStyles( $context );
-					if ( count( $stylePairs ) ) {
-						// If we are in debug mode without &only= set, we'll want to return an array of URLs
-						// See comment near shouldIncludeScripts() for more details
-						if ( $context->getDebug() && !$context->getOnly() && $module->supportsURLLoading() ) {
-							$styles = array(
-								'url' => $module->getStyleURLsForDebug( $context )
-							);
-						} else {
-							// Minify CSS before embedding in mw.loader.implement call
-							// (unless in debug mode)
-							if ( !$context->getDebug() ) {
-								foreach ( $stylePairs as $media => $style ) {
-									// Can be either a string or an array of strings.
-									if ( is_array( $style ) ) {
-										$stylePairs[$media] = array();
-										foreach ( $style as $cssText ) {
-											if ( is_string( $cssText ) ) {
-												$stylePairs[$media][] = $this->filter( 'minify-css', $cssText );
-											}
-										}
-									} elseif ( is_string( $style ) ) {
-										$stylePairs[$media] = $this->filter( 'minify-css', $style );
-									}
-								}
-							}
-							// Wrap styles into @media groups as needed and flatten into a numerical array
-							$styles = array(
-								'css' => self::makeCombinedStyles( $stylePairs )
-							);
-						}
-					}
-				}
-
-				// Messages
-				$messagesBlob = isset( $blobs[$name] ) ? $blobs[$name] : '{}';
+				$content = $module->getModuleContent( $context );
 
 				// Append output
 				switch ( $context->getOnly() ) {
 					case 'scripts':
+						$scripts = $content['scripts'];
 						if ( is_string( $scripts ) ) {
 							// Load scripts raw...
 							$out .= $scripts;
@@ -1063,6 +1003,7 @@ MESSAGE;
 						}
 						break;
 					case 'styles':
+						$styles = $content['styles'];
 						// We no longer seperate into media, they are all combined now with
 						// custom media type groups into @media .. {} sections as part of the css string.
 						// Module returns either an empty array or a numerical array with css strings.
@@ -1071,10 +1012,10 @@ MESSAGE;
 					default:
 						$out .= self::makeLoaderImplementScript(
 							$name,
-							$scripts,
-							$styles,
-							new XmlJsCode( $messagesBlob ),
-							$module->getTemplates()
+							isset( $content['scripts'] ) ? $content['scripts'] : '',
+							isset( $content['styles'] ) ? $content['styles'] : array(),
+							isset( $content['messagesBlob'] ) ? new XmlJsCode( $content['messagesBlob'] ) : array(),
+							isset( $content['templates'] ) ? $content['templates'] : array()
 						);
 						break;
 				}
