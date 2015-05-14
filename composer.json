@@ -16,6 +16,7 @@
 		"wiki": "https://www.mediawiki.org/"
 	},
 	"require": {
+		"composer/composer": "dev-master#bc45d9185513575434021527d7756420e9f4b2cf",
 		"cssjanus/cssjanus": "1.1.1",
 		"ext-iconv": "*",
 		"leafo/lessphp": "0.5.0",
