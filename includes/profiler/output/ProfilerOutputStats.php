@@ -44,6 +44,7 @@ class ProfilerOutputStats extends ProfilerOutput {
 			$key = str_replace( '::', '.', $stat['name'] );
 			$key = preg_replace( '/[^a-z.]+/i', '_', $key );
 			$key = trim( $key, '_.' );
+			$key = str_replace( array( '._', '_.' ), '.', $key );
 
 			// Convert fractional seconds to whole milliseconds
 			$cpu = round( $stat['cpu'] * 1000 );
