@@ -169,58 +169,69 @@ class ResourceLoader {
 	 *
 	 * @param string $filter Name of filter to run
 	 * @param string $data Text to filter, such as JavaScript or CSS text
-	 * @param string $cacheReport Whether to include the cache key report
+	 * @param array $options For back-compat, can also be the boolean value for "cacheReport". Keys:
+	 *  - (bool) cache: Whether to allow caching this data. Default: true.
+	 *  - (bool) cacheReport: Whether to include the "cache key" report comment. Default: true.
 	 * @return string Filtered data, or a comment containing an error message
 	 */
-	public function filter( $filter, $data, $cacheReport = true ) {
+	public function filter( $filter, $data, $options = array() ) {
+		// Back-compat
+		if ( is_bool( $options ) ) {
+			$options = array( 'cacheReport' => $options );
+		}
+		// Defaults
+		$options += array( 'cache' => true, 'cacheReport' => true );
 
-		// For empty/whitespace-only data or for unknown filters, don't perform
-		// any caching or processing
-		if ( trim( $data ) === '' || !in_array( $filter, array( 'minify-js', 'minify-css' ) ) ) {
+		// Don't filter empty content
+		if ( trim( $data ) === '' ) {
 			return $data;
 		}
 
-		// Try for cache hit
-		// Use CACHE_ANYTHING since filtering is very slow compared to DB queries
-		$key = wfMemcKey( 'resourceloader', 'filter', $filter, self::$filterCacheVersion, md5( $data ) );
-		$cache = wfGetCache( CACHE_ANYTHING );
-		$cacheEntry = $cache->get( $key );
-		if ( is_string( $cacheEntry ) ) {
-			wfIncrStats( "rl-$filter-cache-hits" );
-			return $cacheEntry;
+		if ( !in_array( $filter, array( 'minify-js', 'minify-css' ) ) ) {
+			wfDebugLog( 'resourceloader', __METHOD__ . ": Invalid filter: $filter" );
+			return $data;
 		}
 
-		$result = '';
-		// Run the filter - we've already verified one of these will work
-		try {
-			wfIncrStats( "rl-$filter-cache-misses" );
-			switch ( $filter ) {
-				case 'minify-js':
-					$result = JavaScriptMinifier::minify( $data,
-						$this->config->get( 'ResourceLoaderMinifierStatementsOnOwnLine' ),
-						$this->config->get( 'ResourceLoaderMinifierMaxLineLength' )
-					);
-					if ( $cacheReport ) {
-						$result .= "\n/* cache key: $key */";
-					}
-					break;
-				case 'minify-css':
-					$result = CSSMin::minify( $data );
-					if ( $cacheReport ) {
-						$result .= "\n/* cache key: $key */";
-					}
-					break;
+		if ( !$options['cache'] ) {
+			$result = $this->applyFilter( $filter, $data );
+		} else {
+			// Use CACHE_ANYTHING since filtering is very slow compared to DB queries
+			$key = wfMemcKey( 'resourceloader', 'filter', $filter, self::$filterCacheVersion, md5( $data ) );
+			$cache = wfGetCache( CACHE_ANYTHING );
+			$cacheEntry = $cache->get( $key );
+			if ( is_string( $cacheEntry ) ) {
+				wfIncrStats( "rl-$filter-cache-hits" );
+				return $cacheEntry;
 			}
-
-			// Save filtered text to Memcached
-			$cache->set( $key, $result );
-		} catch ( Exception $e ) {
-			MWExceptionHandler::logException( $e );
-			wfDebugLog( 'resourceloader', __METHOD__ . ": minification failed: $e" );
-			$this->errors[] = self::formatExceptionNoComment( $e );
+			$result = '';
+			try {
+				wfIncrStats( "rl-$filter-cache-misses" );
+				$result = $this->applyFilter( $filter, $data );
+				if ( $options['cacheReport'] ) {
+					$result .= "\n/* cache key: $key */";
+				}
+				$cache->set( $key, $result );
+			} catch ( Exception $e ) {
+				MWExceptionHandler::logException( $e );
+				wfDebugLog( 'resourceloader', __METHOD__ . ": minification failed: $e" );
+				$this->errors[] = self::formatExceptionNoComment( $e );
+			}
 		}
 
 		return $result;
+	}
+
+	private function applyFilter( $filter, $data ) {
+			switch ( $filter ) {
+				case 'minify-js':
+					return JavaScriptMinifier::minify( $data,
+						$this->config->get( 'ResourceLoaderMinifierStatementsOnOwnLine' ),
+						$this->config->get( 'ResourceLoaderMinifierMaxLineLength' )
+					);
+				case 'minify-css':
+					return CSSMin::minify( $data );
+			}
+			return $data;
 	}
 
 	/* Methods */
@@ -1078,11 +1089,19 @@ MESSAGE;
 			}
 		}
 
+		$enableFilterCache = true;
+		if ( count( $modules ) === 1 && reset( $modules ) instanceof ResourceLoaderUserTokensModule ) {
+			// If we're building the embedded user.tokens, don't cache (T84960)
+			$enableFilterCache = false;
+		}
+
 		if ( !$context->getDebug() ) {
 			if ( $context->getOnly() === 'styles' ) {
 				$out = $this->filter( 'minify-css', $out );
 			} else {
-				$out = $this->filter( 'minify-js', $out );
+				$out = $this->filter( 'minify-js', $out, array(
+					'cache' => $enableFilterCache
+				) );
 			}
 		}
 
