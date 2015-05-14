@@ -86,12 +86,21 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$cKey2 = wfRandomString();
 
 		$wasSet = 0;
-		$func = function() use ( &$wasSet, $value ) { ++$wasSet; return $value; };
+		$func = function( $old, &$ttl ) use ( &$wasSet, $value ) {
+			++$wasSet;
+			$ttl = 20; // override with another value
+			return $value;
+		};
 
 		$wasSet = 0;
 		$v = $cache->getWithSetCallback( $key, $func, 30, array(), array( 'lockTSE' => 5 ) );
 		$this->assertEquals( $v, $value );
 		$this->assertEquals( 1, $wasSet, "Value regenerated" );
+
+		$curTTL = null;
+		$v = $cache->get( $key, $curTTL );
+		$this->assertLessThanOrEqual( 20, $curTTL, 'Current TTL between 19-20 (overriden)' );
+		$this->assertGreaterThanOrEqual( 19, $curTTL, 'Current TTL between 19-20 (overriden)' );
 
 		$wasSet = 0;
 		$v = $cache->getWithSetCallback( $key, $func, 30, array(), array( 'lockTSE' => 5 ) );
