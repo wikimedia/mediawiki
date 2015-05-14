@@ -270,6 +270,16 @@
 				"Unlicense"
 			]
 		},
+		"supports": {
+			"type": "object",
+			"description": "Indicates what versions of MediaWiki core are supported. This syntax may be extended in the future, for example to check dependencies between other extensions.",
+			"properties": {
+				"MediaWiki": {
+					"type": "string",
+					"description": "Version constraint string against MediaWiki core."
+				}
+			}
+		},
 		"ResourceFileModulePaths": {
 			"type": "object",
 			"description": "Default paths to use for all ResourceLoader file modules",

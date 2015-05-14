@@ -30,4 +30,14 @@ interface Processor {
 	 * 		'attributes' - registration info which isn't a global variable
 	 */
 	public function getExtractedInfo();
+
+	/**
+	 * Get the constraints for the provided info
+	 *
+	 * @since 1.26
+	 * @param array $info
+	 * @return array Where keys are the name to have a constraint on,
+	 * 		like 'MediaWiki'. Values are a constraint string like "1.26.1".
+	 */
+	public function getConstraints( array $info );
 }
