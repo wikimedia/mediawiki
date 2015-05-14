@@ -30,6 +30,7 @@
  * @file
  */
 
+
 use MediaWiki\Logger\LegacyLogger;
 
 // So extensions (and other code) can check whether they're running in API mode
