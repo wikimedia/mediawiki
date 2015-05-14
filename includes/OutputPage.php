@@ -2974,8 +2974,10 @@ class OutputPage extends ContextSource {
 		// Load embeddable private modules before any loader links
 		// This needs to be TYPE_COMBINED so these modules are properly wrapped
 		// in mw.loader.implement() calls and deferred until mw.user is available
-		$embedScripts = array( 'user.options', 'user.tokens' );
+		$embedScripts = array( 'user.options' );
 		$links[] = $this->makeResourceLoaderLink( $embedScripts, ResourceLoaderModule::TYPE_COMBINED );
+		// Separate user.tokens as otherwise caching will be allowed (T84960)
+		$links[] = $this->makeResourceLoaderLink( 'user.tokens', ResourceLoaderModule::TYPE_COMBINED );
 
 		// Scripts and messages "only" requests marked for top inclusion
 		$links[] = $this->makeResourceLoaderLink(
