@@ -74,8 +74,8 @@ abstract class ApiBase extends ContextSource {
 	 * - string: Any non-empty string, not expected to be very long or contain newlines.
 	 *   <input type="text"> would be an appropriate HTML form field.
 	 * - submodule: The name of a submodule of this module, see PARAM_SUBMODULE_MAP.
-	 * - tags: A string naming an existing, explicitly-defined tag. Should usually be
-	 *   used with PARAM_ISMULTI.
+	 * - tags: A string naming one or several tags among those that can be added along
+	 *   a given action. Should usually be used with PARAM_ISMULTI.
 	 * - text: Any non-empty string, expected to be very long or contain newlines.
 	 *   <textarea> would be an appropriate HTML form field.
 	 * - timestamp: A timestamp in any format recognized by MWTimestamp, or the

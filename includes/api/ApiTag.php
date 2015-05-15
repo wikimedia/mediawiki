@@ -25,6 +25,24 @@
  */
 class ApiTag extends ApiBase {
 
+	/**
+	 * @param string $type
+	 */
+	protected function getAvailableTags( $type ) {
+		$changeTagsContext = new ChangeTagsContext( $this->getConfig() );
+		switch ( $type ) {
+			case 'add':
+				return array_keys( $changeTagsContext->getStored() );
+			case 'remove':
+				return array_keys( array_diff_key(
+					$changeTagsContext->getStats(),
+					$changeTagsContext->getRegistered()
+				) );
+			default:
+				return null;
+		}
+	}
+
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$user = $this->getUser();
@@ -146,11 +164,11 @@ class ApiTag extends ApiBase {
 				ApiBase::PARAM_ISMULTI => true,
 			),
 			'add' => array(
-				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_TYPE => $this->getAvailableTags( 'add' ),
 				ApiBase::PARAM_ISMULTI => true,
 			),
 			'remove' => array(
-				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_TYPE => $this->getAvailableTags( 'remove' ),
 				ApiBase::PARAM_ISMULTI => true,
 			),
 			'reason' => array(

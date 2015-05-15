@@ -339,7 +339,8 @@ class ApiParamInfo extends ApiBase {
 						$item['submoduleparamprefix'] = $settings[ApiBase::PARAM_SUBMODULE_PARAM_PREFIX];
 					}
 				} elseif ( $settings[ApiBase::PARAM_TYPE] === 'tags' ) {
-					$item['type'] = ChangeTags::listExplicitlyDefinedTags();
+					$changeTagsContext = new ChangeTagsContext( $this->getConfig() );
+					$item['type'] = $changeTagsContext->getStored();
 				} else {
 					$item['type'] = $settings[ApiBase::PARAM_TYPE];
 				}
