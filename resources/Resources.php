@@ -1558,6 +1558,9 @@ return array(
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'mediawiki.special.watchlist' => array(
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.watchlist.less',
+	),
 	'mediawiki.special.version' => array(
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.version.css',
 	),
