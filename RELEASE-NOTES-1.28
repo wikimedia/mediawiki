@@ -60,6 +60,12 @@ production.
   on the wiki farm with a different domain, MediaWiki will instead alter the redirect
   URL to include a ?cpPosTime parameter that triggers the database synchronization when
   the URL is followed by the client. The same-domain case uses a new cpPosTime cookie.
+* A new hook, ChangeTagsRegister, can be used to define tags added by
+ extensions, along with their active status and additional data.
+** The hooks ListDefinedTags and ChangeTagsListActive are deprecated in favor
+  of ChangeTagsRegister. In addition, the ChangeTagCanDelete hook is removed,
+  and the new ChangeTagsRegister hook must be used to allow admins to delete
+  extension-defined tags.
 
 === External library changes in 1.28 ===
 

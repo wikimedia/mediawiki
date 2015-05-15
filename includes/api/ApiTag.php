@@ -25,6 +25,23 @@
  */
 class ApiTag extends ApiBase {
 
+	/**
+	 * @param string $type
+	 */
+	protected function getAvailableTags( $type ) {
+		switch ( $type ) {
+			case 'add':
+				return array_keys( $this->getChangeTagsContext()->getUserTags() );
+			case 'remove':
+				return array_keys( array_diff_key(
+					$this->getChangeTagsContext()->getTagStats(),
+					$this->getChangeTagsContext()->getSoftwareTags()
+				) );
+			default:
+				return null;
+		}
+	}
+
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$user = $this->getUser();
@@ -99,7 +116,8 @@ class ApiTag extends ApiBase {
 			( $type === 'logid' ? $id : null ),
 			null,
 			$params['reason'],
-			$this->getUser() );
+			$this->getUser(),
+			$this->getChangeTagsContext() );
 
 		if ( !$status->isOK() ) {
 			if ( $status->hasMessage( 'actionthrottledtext' ) ) {
@@ -146,11 +164,11 @@ class ApiTag extends ApiBase {
 				ApiBase::PARAM_ISMULTI => true,
 			],
 			'add' => [
-				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_TYPE => $this->getAvailableTags( 'add' ),
 				ApiBase::PARAM_ISMULTI => true,
 			],
 			'remove' => [
-				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_TYPE => $this->getAvailableTags( 'remove' ),
 				ApiBase::PARAM_ISMULTI => true,
 			],
 			'reason' => [
