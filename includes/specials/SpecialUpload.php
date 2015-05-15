@@ -160,7 +160,7 @@ class SpecialUpload extends SpecialPage {
 			throw new ErrorPageError( 'uploaddisabled', 'uploaddisabledtext' );
 		}
 
-		$this->getOutput()->addHelpLink( 'Help:Managing files' );
+		$this->addHelpLink( 'Help:Managing files' );
 
 		# Check permissions
 		$user = $this->getUser();
