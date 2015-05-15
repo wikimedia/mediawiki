@@ -225,6 +225,7 @@
 	"apihelp-opensearch-param-suggest": "{{doc-apihelp-param|opensearch|suggest}}",
 	"apihelp-opensearch-param-redirects": "{{doc-apihelp-param|opensearch|redirects}}",
 	"apihelp-opensearch-param-format": "{{doc-apihelp-param|opensearch|format}}",
+	"apihelp-opensearch-param-warningsaserror": "{{doc-apihelp-param|opensearch|warningsaserror}}",
 	"apihelp-opensearch-example-te": "{{doc-apihelp-example|opensearch}}",
 	"apihelp-options-description": "{{doc-apihelp-description|options}}",
 	"apihelp-options-param-reset": "{{doc-apihelp-param|options|reset}}",

@@ -242,6 +242,7 @@
 	"apihelp-opensearch-param-suggest": "Do nothing if <var>[[mw:Manual:$wgEnableOpenSearchSuggest|$wgEnableOpenSearchSuggest]]</var> is false.",
 	"apihelp-opensearch-param-redirects": "How to handle redirects:\n;return:Return the redirect itself.\n;resolve:Return the target page. May return fewer than $1limit results.\nFor historical reasons, the default is \"return\" for $1format=json and \"resolve\" for other formats.",
 	"apihelp-opensearch-param-format": "The format of the output.",
+	"apihelp-opensearch-param-warningsaserror": "If warnings are raised with <kbd>format=json</kbd>, return an API error instead of ignoring them.",
 	"apihelp-opensearch-example-te": "Find pages beginning with <kbd>Te</kbd>.",
 
 	"apihelp-options-description": "Change preferences of the current user.\n\nOnly options which are registered in core or in one of installed extensions, or options with keys prefixed with \"userjs-\" (intended to be used by user scripts), can be set.",

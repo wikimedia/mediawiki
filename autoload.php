@@ -61,6 +61,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiModuleManager' => __DIR__ . '/includes/api/ApiModuleManager.php',
 	'ApiMove' => __DIR__ . '/includes/api/ApiMove.php',
 	'ApiOpenSearch' => __DIR__ . '/includes/api/ApiOpenSearch.php',
+	'ApiOpenSearchFormatJson' => __DIR__ . '/includes/api/ApiOpenSearch.php',
 	'ApiOptions' => __DIR__ . '/includes/api/ApiOptions.php',
 	'ApiPageSet' => __DIR__ . '/includes/api/ApiPageSet.php',
 	'ApiParamInfo' => __DIR__ . '/includes/api/ApiParamInfo.php',
