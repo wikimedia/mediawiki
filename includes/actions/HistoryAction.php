@@ -368,6 +368,9 @@ class HistoryPager extends ReverseChronologicalPager {
 	 */
 	protected $parentLens;
 
+	/** @var bool Whether to show the tag editing UI */
+	protected $showTagEditUI;
+
 	/**
 	 * @param HistoryAction $historyPage
 	 * @param string $year
@@ -381,6 +384,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->tagFilter = $tagFilter;
 		$this->getDateCond( $year, $month );
 		$this->conds = $conds;
+		$this->showTagEditUI = ChangeTags::showTagEditingUI( $this->getUser() );
 	}
 
 	// For hook compatibility...
@@ -504,7 +508,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		if ( $user->isAllowed( 'deleterevision' ) ) {
 			$actionButtons .= $this->getRevisionButton( 'revisiondelete', 'showhideselectedversions' );
 		}
-		if ( ChangeTags::showTagEditingUI( $user ) ) {
+		if ( $this->showTagEditUI ) {
 			$actionButtons .= $this->getRevisionButton( 'editchangetags', 'history-edit-tags' );
 		}
 		if ( $actionButtons ) {
@@ -631,14 +635,13 @@ class HistoryPager extends ReverseChronologicalPager {
 		$del = '';
 		$user = $this->getUser();
 		$canRevDelete = $user->isAllowed( 'deleterevision' );
-		$showTagEditUI = ChangeTags::showTagEditingUI( $user );
 		// Show checkboxes for each revision, to allow for revision deletion and
 		// change tags
-		if ( $canRevDelete || $showTagEditUI ) {
+		if ( $canRevDelete || $this->showTagEditUI ) {
 			$this->preventClickjacking();
 			// If revision was hidden from sysops and we don't need the checkbox
 			// for anything else, disable it
-			if ( !$showTagEditUI && !$rev->userCan( Revision::DELETED_RESTRICTED, $user ) ) {
+			if ( !$this->showTagEditUI && !$rev->userCan( Revision::DELETED_RESTRICTED, $user ) ) {
 				$del = Xml::check( 'deleterevisions', false, array( 'disabled' => 'disabled' ) );
 			// Otherwise, enable the checkbox...
 			} else {
