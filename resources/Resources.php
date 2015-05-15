@@ -1025,6 +1025,7 @@ return array(
 		'dependencies' => array(
 			'jquery.byteLength',
 			'mediawiki.util',
+			'es5-shim',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
