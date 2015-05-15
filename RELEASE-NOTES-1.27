@@ -169,6 +169,12 @@ HHVM 3.1.
   be a good idea, but will log out all current sessions.
 * $wgEventRelayerConfig was added, for managing PubSub event relay configuration,
   specifically for reliable CDN url purges.
+* A new hook, ChangeTagsRegister, can be used to define tags added by
+extensions, along with their active status and additional data.
+** The hooks ListDefinedTags and ChangeTagsListActive are deprecated in favor
+of ChangeTagsRegister. In addition, the ChangeTagCanDelete hook is removed,
+and the new ChangeTagsRegister hook must be used to allow admins to delete
+extension-defined tags.
 
 === External library changes in 1.27 ===
 
