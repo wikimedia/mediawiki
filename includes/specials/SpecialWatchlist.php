@@ -395,6 +395,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 */
 	public function doHeader( $opts, $numRows ) {
 		$user = $this->getUser();
+		$out = $this->getOutput();
 
 		$this->getOutput()->addSubtitle(
 			$this->msg( 'watchlistfor2', $user->getName() )
@@ -449,39 +450,52 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$form .= $wlInfo;
 		$form .= $cutofflinks;
 		$form .= $lang->pipeList( $links ) . "\n";
-		$form .= "<hr />\n<p>";
-		$form .= Html::namespaceSelector(
-			array(
-				'selected' => $opts['namespace'],
-				'all' => '',
-				'label' => $this->msg( 'namespace' )->text()
-			), array(
+		$form .= "<hr />\n";
+		$out->addHtml( $form );
+
+		$formDescriptor = array(
+			'namespace' => array(
 				'name' => 'namespace',
+				'cssclass' => 'namespaceselector',
+				'type' => 'namespaceselect',
 				'id' => 'namespace',
-				'class' => 'namespaceselector',
-			)
-		) . '&#160;';
-		$form .= Xml::checkLabel(
-			$this->msg( 'invert' )->text(),
-			'invert',
-			'nsinvert',
-			$opts['invert'],
-			array( 'title' => $this->msg( 'tooltip-invert' )->text() )
-		) . '&#160;';
-		$form .= Xml::checkLabel(
-			$this->msg( 'namespace_association' )->text(),
-			'associated',
-			'nsassociated',
-			$opts['associated'],
-			array( 'title' => $this->msg( 'tooltip-namespace_association' )->text() )
-		) . '&#160;';
-		$form .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "</p>\n";
-		foreach ( $hiddenFields as $key => $value ) {
-			$form .= Html::hidden( $key, $value ) . "\n";
-		}
+				'default' => $opts['namespace'],
+				'all' => '',
+				'label-message' => 'namespace',
+				'mixins' => array(
+					'invert' => array(
+						'type' => 'check',
+						'label' => $this->msg( 'invert' )->text(),
+						'name' => 'invert',
+						'id' => 'nsinvert',
+						'default' => $opts['invert'],
+						'title' => $this->msg( 'tooltip-invert' )->text(),
+					),
+					'associated' => array(
+						'type' => 'check',
+						'label' => $this->msg( 'namespace_association' )->text(),
+						'name' => 'associated',
+						'id' => 'nsassociated',
+						'default' => $opts['associated'],
+						'title' => $this->msg( 'tooltip-namespace_association' )->text(),
+					),
+					'allpagessubmit' => array(
+						'type' => 'submit',
+						'default' => $this->msg( 'allpagessubmit' )->text(),
+						'name' => 'allpagessubmit',
+					),
+				),
+			),
+		);
+		$htmlForm = HTMLForm::factory( 'inline', $formDescriptor, $this->getContext() );
+		$htmlForm->suppressDefaultSubmit();
+		$htmlForm->addHiddenFields( $hiddenFields );
+		$htmlForm->prepareForm()->displayForm( false );
+
+		$form = '';
 		$form .= Xml::closeElement( 'fieldset' ) . "\n";
 		$form .= Xml::closeElement( 'form' ) . "\n";
-		$this->getOutput()->addHTML( $form );
+		$out->addHtml( $form );
 
 		$this->setBottomText( $opts );
 	}

@@ -49,6 +49,7 @@ abstract class HTMLFormField {
 			$mixins = $this->mParams['mixins'];
 			if ( is_array( $mixins ) ) {
 				foreach ( $mixins as $fieldname => $info ) {
+					$info['isMixin'] = true;
 					$field = HTMLForm::loadInputFromParameters( $fieldname, $info, $this->mParams['parent'] );
 					$inputHtml .= '&#160;' . $field->getInputHTML( $info['default'] );
 				}
