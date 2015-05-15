@@ -422,8 +422,7 @@ class MediaWiki {
 	}
 
 	/**
-	 * Run the current MediaWiki instance
-	 * index.php just calls this
+	 * Run the current MediaWiki instance; index.php just calls this
 	 */
 	public function run() {
 		try {
@@ -437,9 +436,30 @@ class MediaWiki {
 				wfGetLBFactory()->commitMasterChanges();
 				$e->report(); // display the GUI error
 			}
-			if ( function_exists( 'fastcgi_finish_request' ) ) {
-				fastcgi_finish_request();
-			}
+		} catch ( Exception $e ) {
+			MWExceptionHandler::handleException( $e );
+		}
+
+		if ( function_exists( 'register_postsend_function' ) ) {
+			// https://github.com/facebook/hhvm/issues/1230
+			register_postsend_function( array( $this, 'postSendUpdates' ) );
+		} elseif ( function_exists( 'fastcgi_finish_request' ) ) {
+			fastcgi_finish_request();
+			$this->postSendUpdates();
+		} else {
+			$this->postSendUpdates();
+		}
+	}
+
+	/**
+	 * This function does work that can be done *after* the
+	 * user gets the HTTP response so they don't block on it
+	 *
+	 * @since 1.26
+	 */
+	public function postSendUpdates() {
+		try {
+			JobQueueGroup::singleton()->pushLazyJobs();
 			$this->triggerJobs();
 			$this->restInPeace();
 		} catch ( Exception $e ) {
@@ -604,6 +624,9 @@ class MediaWiki {
 
 		// Do any deferred jobs
 		DeferredUpdates::doUpdates( 'commit' );
+
+		// Make sure any lazy jobs are pushed
+		JobQueueGroup::singleton()->pushLazyJobs();
 
 		// Log profiling data, e.g. in the database or UDP
 		wfLogProfilingData();
