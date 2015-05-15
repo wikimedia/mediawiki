@@ -181,6 +181,7 @@ class ApiDelete extends ApiBase {
 	}
 
 	public function getAllowedParams() {
+		$context = new ChangeTagsContext();
 		return array(
 			'title' => null,
 			'pageid' => array(
@@ -188,7 +189,7 @@ class ApiDelete extends ApiBase {
 			),
 			'reason' => null,
 			'tags' => array(
-				ApiBase::PARAM_TYPE => ChangeTags::listExplicitlyDefinedTags(),
+				ApiBase::PARAM_TYPE => array_keys( $context->getStored() ),
 				ApiBase::PARAM_ISMULTI => true,
 			),
 			'watch' => array(
