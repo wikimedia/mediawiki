@@ -40,6 +40,9 @@ class JobQueueGroup {
 	/** @var array Map of (bucket => (queue => JobQueue, types => list of types) */
 	protected $coalescedQueues;
 
+	/** @var Job[] */
+	protected $bufferedJobs = array();
+
 	const TYPE_DEFAULT = 1; // integer; jobs popped by default
 	const TYPE_ANY = 2; // integer; any job
 
@@ -100,13 +103,13 @@ class JobQueueGroup {
 	}
 
 	/**
-	 * Insert jobs into the respective queues of with the belong.
+	 * Insert jobs into the respective queues of which they belong
 	 *
 	 * This inserts the jobs into the queue specified by $wgJobTypeConf
 	 * and updates the aggregate job queue information cache as needed.
 	 *
 	 * @param Job|Job[] $jobs A single Job or a list of Jobs
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 * @return void
 	 */
 	public function push( $jobs ) {
@@ -120,7 +123,8 @@ class JobQueueGroup {
 			if ( $job instanceof IJobSpecification ) {
 				$jobsByType[$job->getType()][] = $job;
 			} else {
-				throw new MWException( "Attempted to push a non-Job object into a queue." );
+				throw new InvalidArgumentException(
+					"Attempted to push a non-Job object into a queue." );
 			}
 		}
 
@@ -134,6 +138,35 @@ class JobQueueGroup {
 				$this->cache->clear( 'queues-ready' );
 			}
 		}
+	}
+
+	/**
+	 * Insert jobs into the respective queues of which they belong
+	 * at the end of the request rather than now (unless in CLI mode)
+	 *
+	 * This inserts the jobs into the queue specified by $wgJobTypeConf
+	 * and updates the aggregate job queue information cache as needed.
+	 *
+	 * @param Job|Job[] $jobs A single Job or a list of Jobs
+	 * @return void
+	 * @since 1.26
+	 */
+	public function lazyPush( $jobs ) {
+		if ( PHP_SAPI === 'cli' ) {
+			$this->push( $jobs );
+			return;
+		}
+
+		$jobs = is_array( $jobs ) ? $jobs : array( $jobs );
+
+		foreach ( $jobs as $job ) { // sanity checks
+			if ( !( $job instanceof IJobSpecification ) ) {
+				throw new InvalidArgumentException(
+					"Attempted to push a non-Job object into a queue." );
+			}
+		}
+
+		$this->bufferedJobs = array_merge( $this->bufferedJobs, $jobs );
 	}
 
 	/**
@@ -188,10 +221,10 @@ class JobQueueGroup {
 	 * Acknowledge that a job was completed
 	 *
 	 * @param Job $job
-	 * @return bool
+	 * @return void
 	 */
 	public function ack( Job $job ) {
-		return $this->get( $job->getType() )->ack( $job );
+		$this->get( $job->getType() )->ack( $job );
 	}
 
 	/**
@@ -211,7 +244,6 @@ class JobQueueGroup {
 	 * This does nothing for certain queue classes.
 	 *
 	 * @return void
-	 * @throws MWException
 	 */
 	public function waitForBackups() {
 		global $wgJobTypeConf;
@@ -309,6 +341,18 @@ class JobQueueGroup {
 		}
 
 		return $sizeMap;
+	}
+
+	/**
+	 * Push all jobs buffered via lazyPush() into their respective queues
+	 *
+	 * @return void
+	 * @since 1.26
+	 */
+	public function pushLazyJobs() {
+		$this->push( $this->bufferedJobs );
+
+		$this->bufferedJobs = array();
 	}
 
 	/**
