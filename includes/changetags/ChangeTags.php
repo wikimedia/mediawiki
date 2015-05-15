@@ -22,17 +22,6 @@
  */
 
 class ChangeTags {
-	/**
-	 * Can't delete tags with more than this many uses. Similar in intent to
-	 * the bigdelete user right
-	 * @todo Use the job queue for tag deletion to avoid this restriction
-	 */
-	const MAX_DELETE_USES = 5000;
-
-	/**
-	 * @var string[]
-	 */
-	private static $coreTags = [ 'mw-contentmodelchange' ];
 
 	/**
 	 * Creates HTML for the given tags
@@ -141,7 +130,7 @@ class ChangeTags {
 	 * both $tagsToAdd and $tagsToRemove, it will be removed.
 	 *
 	 * This function should only be used by extensions to manipulate tags they
-	 * have registered using the ListDefinedTags hook. When dealing with user
+	 * have registered using the ChangeTagsRegister hook. When dealing with user
 	 * input, call updateTagsWithChecks() instead.
 	 *
 	 * @param string|array|null $tagsToAdd Tags to add to the change
@@ -282,8 +271,8 @@ class ChangeTags {
 				$dbw->delete( 'change_tag', $conds, __METHOD__ );
 			}
 		}
+		ChangeTagsContext::purgeTagUsageCache();
 
-		self::purgeTagUsageCache();
 		return [ $tagsToAdd, $tagsToRemove, $prevTags ];
 	}
 
@@ -379,6 +368,8 @@ class ChangeTags {
 	 * you don't care (e.g. maintenance scripts)
 	 * @return Status
 	 * @since 1.25
+	 *
+	 * @todo Move this function to ChangeTagsContext
 	 */
 	public static function canAddTagsAccompanyingChange( array $tags,
 		User $user = null ) {
@@ -391,10 +382,16 @@ class ChangeTags {
 			}
 		}
 
-		// to be applied, a tag has to be explicitly defined
+		// to be applied, a tag has to be stored in valid_tag
 		// @todo Allow extensions to define tags that can be applied by users...
-		$allowedTags = self::listExplicitlyDefinedTags();
-		$disallowedTags = array_diff( $tags, $allowedTags );
+		$changeTagsContext = new ChangeTagsContext( RequestContext::getMain()->getConfig() );
+		$allowedTags = $changeTagsContext->getUserTags();
+		$disallowedTags = [];
+		foreach ( $tags as $tag ) {
+			if ( !isset( $allowedTags[$tag] ) ) {
+				$disallowedTags[] = $tag;
+			}
+		}
 		if ( $disallowedTags ) {
 			return self::restrictedTagError( 'tags-apply-not-allowed-one',
 				'tags-apply-not-allowed-multi', $disallowedTags );
@@ -404,95 +401,10 @@ class ChangeTags {
 	}
 
 	/**
-	 * Adds tags to a given change, checking whether it is allowed first, but
-	 * without adding a log entry. Useful for cases where the tag is being added
-	 * along with the action that generated the change (e.g. tagging an edit as
-	 * it is being made).
-	 *
-	 * Extensions should not use this function, unless directly handling a user
-	 * request to add a particular tag. Normally, extensions should call
-	 * ChangeTags::updateTags() instead.
-	 *
-	 * @param array $tags Tags to apply
-	 * @param int|null $rc_id The rc_id of the change to add the tags to
-	 * @param int|null $rev_id The rev_id of the change to add the tags to
-	 * @param int|null $log_id The log_id of the change to add the tags to
-	 * @param string $params Params to put in the ct_params field of table
-	 * 'change_tag' when adding tags
-	 * @param User $user Who to give credit for the action
-	 * @return Status
-	 * @since 1.25
-	 */
-	public static function addTagsAccompanyingChangeWithChecks(
-		array $tags, $rc_id, $rev_id, $log_id, $params, User $user
-	) {
-
-		// are we allowed to do this?
-		$result = self::canAddTagsAccompanyingChange( $tags, $user );
-		if ( !$result->isOK() ) {
-			$result->value = null;
-			return $result;
-		}
-
-		// do it!
-		self::addTags( $tags, $rc_id, $rev_id, $log_id, $params );
-
-		return Status::newGood( true );
-	}
-
-	/**
-	 * Is it OK to allow the user to adds and remove the given tags tags to/from a
-	 * change?
-	 *
-	 * @param array $tagsToAdd Tags that you are interested in adding
-	 * @param array $tagsToRemove Tags that you are interested in removing
-	 * @param User|null $user User whose permission you wish to check, or null if
-	 * you don't care (e.g. maintenance scripts)
-	 * @return Status
-	 * @since 1.25
-	 */
-	public static function canUpdateTags( array $tagsToAdd, array $tagsToRemove,
-		User $user = null ) {
-
-		if ( !is_null( $user ) ) {
-			if ( !$user->isAllowed( 'changetags' ) ) {
-				return Status::newFatal( 'tags-update-no-permission' );
-			} elseif ( $user->isBlocked() ) {
-				return Status::newFatal( 'tags-update-blocked' );
-			}
-		}
-
-		if ( $tagsToAdd ) {
-			// to be added, a tag has to be explicitly defined
-			// @todo Allow extensions to define tags that can be applied by users...
-			$explicitlyDefinedTags = self::listExplicitlyDefinedTags();
-			$diff = array_diff( $tagsToAdd, $explicitlyDefinedTags );
-			if ( $diff ) {
-				return self::restrictedTagError( 'tags-update-add-not-allowed-one',
-					'tags-update-add-not-allowed-multi', $diff );
-			}
-		}
-
-		if ( $tagsToRemove ) {
-			// to be removed, a tag must not be defined by an extension, or equivalently it
-			// has to be either explicitly defined or not defined at all
-			// (assuming no edge case of a tag both explicitly-defined and extension-defined)
-			$softwareDefinedTags = self::listSoftwareDefinedTags();
-			$intersect = array_intersect( $tagsToRemove, $softwareDefinedTags );
-			if ( $intersect ) {
-				return self::restrictedTagError( 'tags-update-remove-not-allowed-one',
-					'tags-update-remove-not-allowed-multi', $intersect );
-			}
-		}
-
-		return Status::newGood();
-	}
-
-	/**
 	 * Adds and/or removes tags to/from a given change, checking whether it is
 	 * allowed first, and adding a log entry afterwards.
 	 *
-	 * Includes a call to ChangeTag::canUpdateTags(), so your code doesn't need
+	 * Includes a call to ChangeTagContext::canUpdateTags(), so your code doesn't need
 	 * to do that. However, it doesn't check whether the *_id parameters are a
 	 * valid combination. That is up to you to enforce. See ApiTag::execute() for
 	 * an example.
@@ -506,6 +418,7 @@ class ChangeTags {
 	 * 'change_tag' when adding tags
 	 * @param string $reason Comment for the log
 	 * @param User $user Who to give credit for the action
+	 * @param ChangeTagsContext $changeTagsContext
 	 * @return Status If successful, the value of this Status object will be an
 	 * object (stdClass) with the following fields:
 	 *  - logId: the ID of the added log entry, or null if no log entry was added
@@ -515,7 +428,8 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function updateTagsWithChecks( $tagsToAdd, $tagsToRemove,
-		$rc_id, $rev_id, $log_id, $params, $reason, User $user ) {
+		$rc_id, $rev_id, $log_id, $params, $reason, User $user,
+		ChangeTagsContext $changeTagsContext ) {
 
 		if ( is_null( $tagsToAdd ) ) {
 			$tagsToAdd = [];
@@ -533,7 +447,7 @@ class ChangeTags {
 		}
 
 		// are we allowed to do this?
-		$result = self::canUpdateTags( $tagsToAdd, $tagsToRemove, $user );
+		$result = $changeTagsContext->canUpdateTags( $tagsToAdd, $tagsToRemove, $user );
 		if ( !$result->isOK() ) {
 			$result->value = null;
 			return $result;
@@ -667,10 +581,17 @@ class ChangeTags {
 	public static function buildTagFilterSelector( $selected = '',
 		$fullForm = false, Title $title = null, $ooui = false
 	) {
-		global $wgUseTagFilter;
-
-		if ( !$wgUseTagFilter || !count( self::listDefinedTags() ) ) {
+		$config = RequestContext::getMain()->getConfig();
+		// check config
+		if ( !$config->get( 'UseTagFilter' ) ) {
 			return $fullForm ? '' : [];
+		} else {
+			// check if tags are present in valid_tag
+			$context = new ChangeTagsContext( $config );
+			$tagList = $context->getUserTags();
+			if ( !count( $tagList ) ) {
+				return $fullForm ? '' : [];
+			}
 		}
 
 		$data = [
@@ -718,42 +639,6 @@ class ChangeTags {
 	}
 
 	/**
-	 * Defines a tag in the valid_tag table, without checking that the tag name
-	 * is valid.
-	 * Extensions should NOT use this function; they can use the ListDefinedTags
-	 * hook instead.
-	 *
-	 * @param string $tag Tag to create
-	 * @since 1.25
-	 */
-	public static function defineTag( $tag ) {
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->replace( 'valid_tag',
-			[ 'vt_tag' ],
-			[ 'vt_tag' => $tag ],
-			__METHOD__ );
-
-		// clear the memcache of defined tags
-		self::purgeTagCacheAll();
-	}
-
-	/**
-	 * Removes a tag from the valid_tag table. The tag may remain in use by
-	 * extensions, and may still show up as 'defined' if an extension is setting
-	 * it from the ListDefinedTags hook.
-	 *
-	 * @param string $tag Tag to remove
-	 * @since 1.25
-	 */
-	public static function undefineTag( $tag ) {
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'valid_tag', [ 'vt_tag' => $tag ], __METHOD__ );
-
-		// clear the memcache of defined tags
-		self::purgeTagCacheAll();
-	}
-
-	/**
 	 * Writes a tag action into the tag management log.
 	 *
 	 * @param string $action
@@ -790,67 +675,46 @@ class ChangeTags {
 	}
 
 	/**
-	 * Is it OK to allow the user to activate this tag?
-	 *
-	 * @param string $tag Tag that you are interested in activating
-	 * @param User|null $user User whose permission you wish to check, or null if
-	 * you don't care (e.g. maintenance scripts)
-	 * @return Status
-	 * @since 1.25
-	 */
-	public static function canActivateTag( $tag, User $user = null ) {
-		if ( !is_null( $user ) ) {
-			if ( !$user->isAllowed( 'managechangetags' ) ) {
-				return Status::newFatal( 'tags-manage-no-permission' );
-			} elseif ( $user->isBlocked() ) {
-				return Status::newFatal( 'tags-manage-blocked' );
-			}
-		}
-
-		// defined tags cannot be activated (a defined tag is either extension-
-		// defined, in which case the extension chooses whether or not to active it;
-		// or user-defined, in which case it is considered active)
-		$definedTags = self::listDefinedTags();
-		if ( in_array( $tag, $definedTags ) ) {
-			return Status::newFatal( 'tags-activate-not-allowed', $tag );
-		}
-
-		// non-existing tags cannot be activated
-		$tagUsage = self::tagUsageStatistics();
-		if ( !isset( $tagUsage[$tag] ) ) { // we already know the tag is undefined
-			return Status::newFatal( 'tags-activate-not-found', $tag );
-		}
-
-		return Status::newGood();
-	}
-
-	/**
 	 * Activates a tag, checking whether it is allowed first, and adding a log
 	 * entry afterwards.
 	 *
-	 * Includes a call to ChangeTag::canActivateTag(), so your code doesn't need
+	 * Includes a call to ChangeTag::canActivate(), so your code doesn't need
 	 * to do that.
 	 *
 	 * @param string $tag
 	 * @param string $reason
 	 * @param User $user Who to give credit for the action
 	 * @param bool $ignoreWarnings Can be used for API interaction, default false
+	 * @param ChangeTagsContext $changeTagsContext
 	 * @return Status If successful, the Status contains the ID of the added log
 	 * entry as its value
 	 * @since 1.25
 	 */
 	public static function activateTagWithChecks( $tag, $reason, User $user,
-		$ignoreWarnings = false ) {
+		$ignoreWarnings = false, ChangeTagsContext $changeTagsContext ) {
+
+		// purging cache for the sake of extensions that might not do it
+		ChangeTagsContext::purgeRegisteredTagsCache();
+
+		// get change tag object
+		$changeTag = new ChangeTag( $tag, $changeTagsContext );
 
 		// are we allowed to do this?
-		$result = self::canActivateTag( $tag, $user );
+		$result = $changeTag->canActivate( $user );
 		if ( $ignoreWarnings ? !$result->isOK() : !$result->isGood() ) {
 			$result->value = null;
 			return $result;
 		}
 
 		// do it!
-		self::defineTag( $tag );
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->replace( 'valid_tag',
+			[ 'vt_tag' ],
+			[ 'vt_tag' => $tag ],
+			__METHOD__ );
+
+		// clear the memcache of stored tags
+		ChangeTagsContext::purgeStoredTagsCache();
 
 		// log it
 		$logId = self::logTagManagementAction( 'activate', $tag, $reason, $user );
@@ -858,58 +722,43 @@ class ChangeTags {
 	}
 
 	/**
-	 * Is it OK to allow the user to deactivate this tag?
-	 *
-	 * @param string $tag Tag that you are interested in deactivating
-	 * @param User|null $user User whose permission you wish to check, or null if
-	 * you don't care (e.g. maintenance scripts)
-	 * @return Status
-	 * @since 1.25
-	 */
-	public static function canDeactivateTag( $tag, User $user = null ) {
-		if ( !is_null( $user ) ) {
-			if ( !$user->isAllowed( 'managechangetags' ) ) {
-				return Status::newFatal( 'tags-manage-no-permission' );
-			} elseif ( $user->isBlocked() ) {
-				return Status::newFatal( 'tags-manage-blocked' );
-			}
-		}
-
-		// only explicitly-defined tags can be deactivated
-		$explicitlyDefinedTags = self::listExplicitlyDefinedTags();
-		if ( !in_array( $tag, $explicitlyDefinedTags ) ) {
-			return Status::newFatal( 'tags-deactivate-not-allowed', $tag );
-		}
-		return Status::newGood();
-	}
-
-	/**
 	 * Deactivates a tag, checking whether it is allowed first, and adding a log
 	 * entry afterwards.
 	 *
-	 * Includes a call to ChangeTag::canDeactivateTag(), so your code doesn't need
+	 * Includes a call to ChangeTag::canDeactivate(), so your code doesn't need
 	 * to do that.
 	 *
 	 * @param string $tag
 	 * @param string $reason
 	 * @param User $user Who to give credit for the action
 	 * @param bool $ignoreWarnings Can be used for API interaction, default false
+	 * @param ChangeTagsContext $changeTagsContext
 	 * @return Status If successful, the Status contains the ID of the added log
 	 * entry as its value
 	 * @since 1.25
 	 */
 	public static function deactivateTagWithChecks( $tag, $reason, User $user,
-		$ignoreWarnings = false ) {
+		$ignoreWarnings = false, ChangeTagsContext $changeTagsContext ) {
+
+		// purging cache for the sake of extensions that might not do it
+		ChangeTagsContext::purgeRegisteredTagsCache();
+
+		// get change tag object
+		$changeTag = new ChangeTag( $tag, $changeTagsContext );
 
 		// are we allowed to do this?
-		$result = self::canDeactivateTag( $tag, $user );
+		$result = $changeTag->canDeactivate( $user );
 		if ( $ignoreWarnings ? !$result->isOK() : !$result->isGood() ) {
 			$result->value = null;
 			return $result;
 		}
 
 		// do it!
-		self::undefineTag( $tag );
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->delete( 'valid_tag', [ 'vt_tag' => $tag ], __METHOD__ );
+
+		// clear the memcache of stored tags
+		ChangeTagsContext::purgeStoredTagsCache();
 
 		// log it
 		$logId = self::logTagManagementAction( 'deactivate', $tag, $reason, $user );
@@ -917,78 +766,45 @@ class ChangeTags {
 	}
 
 	/**
-	 * Is it OK to allow the user to create this tag?
-	 *
-	 * @param string $tag Tag that you are interested in creating
-	 * @param User|null $user User whose permission you wish to check, or null if
-	 * you don't care (e.g. maintenance scripts)
-	 * @return Status
-	 * @since 1.25
-	 */
-	public static function canCreateTag( $tag, User $user = null ) {
-		if ( !is_null( $user ) ) {
-			if ( !$user->isAllowed( 'managechangetags' ) ) {
-				return Status::newFatal( 'tags-manage-no-permission' );
-			} elseif ( $user->isBlocked() ) {
-				return Status::newFatal( 'tags-manage-blocked' );
-			}
-		}
-
-		// no empty tags
-		if ( $tag === '' ) {
-			return Status::newFatal( 'tags-create-no-name' );
-		}
-
-		// tags cannot contain commas (used as a delimiter in tag_summary table) or
-		// slashes (would break tag description messages in MediaWiki namespace)
-		if ( strpos( $tag, ',' ) !== false || strpos( $tag, '/' ) !== false ) {
-			return Status::newFatal( 'tags-create-invalid-chars' );
-		}
-
-		// could the MediaWiki namespace description messages be created?
-		$title = Title::makeTitleSafe( NS_MEDIAWIKI, "Tag-$tag-description" );
-		if ( is_null( $title ) ) {
-			return Status::newFatal( 'tags-create-invalid-title-chars' );
-		}
-
-		// does the tag already exist?
-		$tagUsage = self::tagUsageStatistics();
-		if ( isset( $tagUsage[$tag] ) || in_array( $tag, self::listDefinedTags() ) ) {
-			return Status::newFatal( 'tags-create-already-exists', $tag );
-		}
-
-		// check with hooks
-		$canCreateResult = Status::newGood();
-		Hooks::run( 'ChangeTagCanCreate', [ $tag, $user, &$canCreateResult ] );
-		return $canCreateResult;
-	}
-
-	/**
 	 * Creates a tag by adding a row to the `valid_tag` table.
 	 *
-	 * Includes a call to ChangeTag::canDeleteTag(), so your code doesn't need to
+	 * Includes a call to ChangeTag::canCreate(), so your code doesn't need to
 	 * do that.
 	 *
 	 * @param string $tag
 	 * @param string $reason
 	 * @param User $user Who to give credit for the action
 	 * @param bool $ignoreWarnings Can be used for API interaction, default false
+	 * @param ChangeTagsContext $changeTagsContext
 	 * @return Status If successful, the Status contains the ID of the added log
 	 * entry as its value
 	 * @since 1.25
 	 */
 	public static function createTagWithChecks( $tag, $reason, User $user,
-		$ignoreWarnings = false ) {
+		$ignoreWarnings = false, ChangeTagsContext $changeTagsContext ) {
+
+		// purging cache for the sake of extensions that might not do it
+		ChangeTagsContext::purgeRegisteredTagsCache();
+
+		// get change tag object
+		$changeTag = new ChangeTag( $tag, $changeTagsContext );
 
 		// are we allowed to do this?
-		$result = self::canCreateTag( $tag, $user );
+		$result = $changeTag->canCreate( $user );
 		if ( $ignoreWarnings ? !$result->isOK() : !$result->isGood() ) {
 			$result->value = null;
 			return $result;
 		}
 
 		// do it!
-		self::defineTag( $tag );
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->replace( 'valid_tag',
+			[ 'vt_tag' ],
+			[ 'vt_tag' => $tag ],
+			__METHOD__ );
+
+		// purge stored tags cache
+		ChangeTagsContext::purgeStoredTagsCache();
 
 		// log it
 		$logId = self::logTagManagementAction( 'create', $tag, $reason, $user );
@@ -1012,7 +828,9 @@ class ChangeTags {
 		$dbw->startAtomic( __METHOD__ );
 
 		// delete from valid_tag
-		self::undefineTag( $tag );
+		$dbw->delete( 'valid_tag',
+			[ 'vt_tag' => $tag ],
+			__METHOD__ );
 
 		// find out which revisions use this tag, so we can delete from tag_summary
 		$result = $dbw->select( 'change_tag',
@@ -1041,51 +859,9 @@ class ChangeTags {
 			$status->ok = true;
 		}
 
-		// clear the memcache of defined tags
-		self::purgeTagCacheAll();
+		// purge all caches
+		ChangeTagsContext::purgeTagCacheAll();
 
-		return $status;
-	}
-
-	/**
-	 * Is it OK to allow the user to delete this tag?
-	 *
-	 * @param string $tag Tag that you are interested in deleting
-	 * @param User|null $user User whose permission you wish to check, or null if
-	 * you don't care (e.g. maintenance scripts)
-	 * @return Status
-	 * @since 1.25
-	 */
-	public static function canDeleteTag( $tag, User $user = null ) {
-		$tagUsage = self::tagUsageStatistics();
-
-		if ( !is_null( $user ) ) {
-			if ( !$user->isAllowed( 'deletechangetags' ) ) {
-				return Status::newFatal( 'tags-delete-no-permission' );
-			} elseif ( $user->isBlocked() ) {
-				return Status::newFatal( 'tags-manage-blocked' );
-			}
-		}
-
-		if ( !isset( $tagUsage[$tag] ) && !in_array( $tag, self::listDefinedTags() ) ) {
-			return Status::newFatal( 'tags-delete-not-found', $tag );
-		}
-
-		if ( isset( $tagUsage[$tag] ) && $tagUsage[$tag] > self::MAX_DELETE_USES ) {
-			return Status::newFatal( 'tags-delete-too-many-uses', $tag, self::MAX_DELETE_USES );
-		}
-
-		$softwareDefined = self::listSoftwareDefinedTags();
-		if ( in_array( $tag, $softwareDefined ) ) {
-			// extension-defined tags can't be deleted unless the extension
-			// specifically allows it
-			$status = Status::newFatal( 'tags-delete-not-allowed' );
-		} else {
-			// user-defined tags are deletable unless otherwise specified
-			$status = Status::newGood();
-		}
-
-		Hooks::run( 'ChangeTagCanDelete', [ $tag, $user, &$status ] );
 		return $status;
 	}
 
@@ -1093,30 +869,36 @@ class ChangeTags {
 	 * Deletes a tag, checking whether it is allowed first, and adding a log entry
 	 * afterwards.
 	 *
-	 * Includes a call to ChangeTag::canDeleteTag(), so your code doesn't need to
+	 * Includes a call to ChangeTag::canDelete(), so your code doesn't need to
 	 * do that.
 	 *
 	 * @param string $tag
 	 * @param string $reason
 	 * @param User $user Who to give credit for the action
 	 * @param bool $ignoreWarnings Can be used for API interaction, default false
+	 * @param ChangeTagsContext $changeTagsContext
 	 * @return Status If successful, the Status contains the ID of the added log
 	 * entry as its value
 	 * @since 1.25
 	 */
 	public static function deleteTagWithChecks( $tag, $reason, User $user,
-		$ignoreWarnings = false ) {
+		$ignoreWarnings = false, ChangeTagsContext $changeTagsContext ) {
+
+		// purging cache for the sake of extensions that might not do it
+		ChangeTagsContext::purgeRegisteredTagsCache();
+		// purging stats cache to get the up to date hitcount
+		ChangeTagsContext::purgeTagUsageCache();
+
+		// get change tag object
+		$changeTag = new ChangeTag( $tag, $changeTagsContext );
+		$hitcount = $changeTag->getHitcount();
 
 		// are we allowed to do this?
-		$result = self::canDeleteTag( $tag, $user );
+		$result = $changeTag->canDelete( $user );
 		if ( $ignoreWarnings ? !$result->isOK() : !$result->isGood() ) {
 			$result->value = null;
 			return $result;
 		}
-
-		// store the tag usage statistics
-		$tagUsage = self::tagUsageStatistics();
-		$hitcount = isset( $tagUsage[$tag] ) ? $tagUsage[$tag] : 0;
 
 		// do it!
 		$deleteResult = self::deleteTagEverywhere( $tag );
@@ -1131,89 +913,38 @@ class ChangeTags {
 	}
 
 	/**
-	 * Lists those tags which core or extensions report as being "active".
-	 *
-	 * @return array
-	 * @since 1.25
+	 * @deprecated since 1.28, use ChangeTagsContext class instead
+	 * @since 1.28
 	 */
 	public static function listSoftwareActivatedTags() {
-		// core active tags
-		$tags = self::$coreTags;
-		if ( !Hooks::isRegistered( 'ChangeTagsListActive' ) ) {
-			return $tags;
+		wfDeprecated( __METHOD__, '1.28' );
+		$changeTagsContext = new ChangeTagsContext( RequestContext::getMain()->getConfig() );
+		$tags = [];
+		$registered = $changeTagsContext->getSoftwareTags();
+		foreach ( $registered as $tag => &$val ) {
+			$changeTag = new ChangeTag( $tag, $changeTagsContext );
+			if ( $changeTag->isActive() ) {
+				$tags[] = $tag;
+			}
 		}
-		return ObjectCache::getMainWANInstance()->getWithSetCallback(
-			wfMemcKey( 'active-tags' ),
-			WANObjectCache::TTL_MINUTE * 5,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags ) {
-				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
-
-				// Ask extensions which tags they consider active
-				Hooks::run( 'ChangeTagsListActive', [ &$tags ] );
-				return $tags;
-			},
-			[
-				'checkKeys' => [ wfMemcKey( 'active-tags' ) ],
-				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
-				'pcTTL' => WANObjectCache::TTL_PROC_LONG
-			]
-		);
+		return $tags;
 	}
 
 	/**
-	 * @see listSoftwareActivatedTags
-	 * @deprecated since 1.28 call listSoftwareActivatedTags directly
-	 * @return array
+	 * @deprecated since 1.28, use ChangeTagsContext class instead
+	 * @since 1.25
 	 */
 	public static function listExtensionActivatedTags() {
-		wfDeprecated( __METHOD__, '1.28' );
 		return self::listSoftwareActivatedTags();
 	}
 
 	/**
-	 * Basically lists defined tags which count even if they aren't applied to anything.
-	 * It returns a union of the results of listExplicitlyDefinedTags() and
-	 * listExtensionDefinedTags().
-	 *
-	 * @return string[] Array of strings: tags
+	 * @deprecated since 1.28, use ChangeTagsContext class instead
 	 */
 	public static function listDefinedTags() {
-		$tags1 = self::listExplicitlyDefinedTags();
-		$tags2 = self::listSoftwareDefinedTags();
-		return array_values( array_unique( array_merge( $tags1, $tags2 ) ) );
-	}
-
-	/**
-	 * Lists tags explicitly defined in the `valid_tag` table of the database.
-	 * Tags in table 'change_tag' which are not in table 'valid_tag' are not
-	 * included.
-	 *
-	 * Tries memcached first.
-	 *
-	 * @return string[] Array of strings: tags
-	 * @since 1.25
-	 */
-	public static function listExplicitlyDefinedTags() {
-		$fname = __METHOD__;
-
-		return ObjectCache::getMainWANInstance()->getWithSetCallback(
-			wfMemcKey( 'valid-tags-db' ),
-			WANObjectCache::TTL_MINUTE * 5,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
-				$dbr = wfGetDB( DB_REPLICA );
-
-				$setOpts += Database::getCacheSetOptions( $dbr );
-
-				$tags = $dbr->selectFieldValues( 'valid_tag', 'vt_tag', [], $fname );
-
-				return array_filter( array_unique( $tags ) );
-			},
-			[
-				'checkKeys' => [ wfMemcKey( 'valid-tags-db' ) ],
-				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
-				'pcTTL' => WANObjectCache::TTL_PROC_LONG
-			]
-		);
+		wfDeprecated( __METHOD__, '1.28' );
+		$changeTagsContext = new ChangeTagsContext( RequestContext::getMain()->getConfig() );
+		return array_keys( $changeTagsContext->getDefinedTags() );
 	}
 
 	/**
@@ -1223,108 +954,57 @@ class ChangeTags {
 	 * Tries memcached first.
 	 *
 	 * @return string[] Array of strings: tags
-	 * @since 1.25
+	 * @since 1.28
 	 */
 	public static function listSoftwareDefinedTags() {
-		// core defined tags
-		$tags = self::$coreTags;
-		if ( !Hooks::isRegistered( 'ListDefinedTags' ) ) {
-			return $tags;
-		}
-		return ObjectCache::getMainWANInstance()->getWithSetCallback(
-			wfMemcKey( 'valid-tags-hook' ),
-			WANObjectCache::TTL_MINUTE * 5,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags ) {
-				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
-
-				Hooks::run( 'ListDefinedTags', [ &$tags ] );
-				return array_filter( array_unique( $tags ) );
-			},
-			[
-				'checkKeys' => [ wfMemcKey( 'valid-tags-hook' ) ],
-				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
-				'pcTTL' => WANObjectCache::TTL_PROC_LONG
-			]
-		);
+		return array_merge( self::$coreTags, array_keys( $changeTagsContext->getSoftwareTags() ) );
 	}
 
 	/**
-	 * Call listSoftwareDefinedTags directly
-	 *
-	 * @see listSoftwareDefinedTags
-	 * @deprecated since 1.28
+	 * @deprecated since 1.28, use ChangeTagsContext class instead
+	 * @since 1.25
+	 */
+	public static function listExplicitlyDefinedTags() {
+		wfDeprecated( __METHOD__, '1.28' );
+		$changeTagsContext = new ChangeTagsContext( RequestContext::getMain()->getConfig() );
+		return array_keys( $changeTagsContext->getUserTags() );
+	}
+
+	/**
+	 * @deprecated since 1.28, use ChangeTagsContext class instead
+	 * @since 1.25
 	 */
 	public static function listExtensionDefinedTags() {
 		wfDeprecated( __METHOD__, '1.28' );
-		return self::listSoftwareDefinedTags();
+		$changeTagsContext = new ChangeTagsContext( RequestContext::getMain()->getConfig() );
+		return array_keys( $changeTagsContext->getSoftwareTags() );
 	}
 
 	/**
-	 * Invalidates the short-term cache of defined tags used by the
-	 * list*DefinedTags functions, as well as the tag statistics cache.
+	 * @deprecated since 1.28, use ChangeTagsContext::purgeTagCacheAll() instead
 	 * @since 1.25
 	 */
 	public static function purgeTagCacheAll() {
-		$cache = ObjectCache::getMainWANInstance();
-
-		$cache->touchCheckKey( wfMemcKey( 'active-tags' ) );
-		$cache->touchCheckKey( wfMemcKey( 'valid-tags-db' ) );
-		$cache->touchCheckKey( wfMemcKey( 'valid-tags-hook' ) );
-
-		self::purgeTagUsageCache();
+		wfDeprecated( __METHOD__, '1.28' );
+		ChangeTagsContext::purgeTagCacheAll();
 	}
 
 	/**
-	 * Invalidates the tag statistics cache only.
+	 * @deprecated since 1.28, use ChangeTagsContext::purgeTagUsageCache() instead
 	 * @since 1.25
 	 */
 	public static function purgeTagUsageCache() {
-		$cache = ObjectCache::getMainWANInstance();
-
-		$cache->touchCheckKey( wfMemcKey( 'change-tag-statistics' ) );
+		wfDeprecated( __METHOD__, '1.28' );
+		ChangeTagsContext::purgeTagUsageCache();
 	}
 
 	/**
-	 * Returns a map of any tags used on the wiki to number of edits
-	 * tagged with them, ordered descending by the hitcount.
-	 * This does not include tags defined somewhere that have never been applied.
-	 *
-	 * Keeps a short-term cache in memory, so calling this multiple times in the
-	 * same request should be fine.
-	 *
-	 * @return array Array of string => int
+	 * @deprecated since 1.28, use ChangeTagsContext::getStats() instead
 	 */
 	public static function tagUsageStatistics() {
-		$fname = __METHOD__;
-		return ObjectCache::getMainWANInstance()->getWithSetCallback(
-			wfMemcKey( 'change-tag-statistics' ),
-			WANObjectCache::TTL_MINUTE * 5,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
-				$dbr = wfGetDB( DB_REPLICA, 'vslow' );
-
-				$setOpts += Database::getCacheSetOptions( $dbr );
-
-				$res = $dbr->select(
-					'change_tag',
-					[ 'ct_tag', 'hitcount' => 'count(*)' ],
-					[],
-					$fname,
-					[ 'GROUP BY' => 'ct_tag', 'ORDER BY' => 'hitcount DESC' ]
-				);
-
-				$out = [];
-				foreach ( $res as $row ) {
-					$out[$row->ct_tag] = $row->hitcount;
-				}
-
-				return $out;
-			},
-			[
-				'checkKeys' => [ wfMemcKey( 'change-tag-statistics' ) ],
-				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
-				'pcTTL' => WANObjectCache::TTL_PROC_LONG
-			]
-		);
+		wfDeprecated( __METHOD__, '1.28' );
+		$changeTagsContext = new ChangeTagsContext( RequestContext::getMain()->getConfig() );
+		return $changeTagsContext->getStats();
 	}
 
 	/**
@@ -1342,6 +1022,7 @@ class ChangeTags {
 	 * @return bool
 	 */
 	public static function showTagEditingUI( User $user ) {
-		return $user->isAllowed( 'changetags' ) && (bool)self::listExplicitlyDefinedTags();
+		$changeTagsContext = new ChangeTagsContext( RequestContext::getMain()->getConfig() );
+		return $user->isAllowed( 'changetags' ) && (bool)$changeTagsContext->getUserTags();
 	}
 }
