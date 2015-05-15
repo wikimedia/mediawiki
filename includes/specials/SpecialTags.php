@@ -29,19 +29,12 @@
 class SpecialTags extends SpecialPage {
 
 	/**
-	 * @var array List of explicitly defined tags
+	 * @var changeTagsContext object providing a unique context for
+	 * all individual ChangeTag instances, i.e. :
+	 * tag usage statistics, array of stored tags,
+	 * array of registered tags with their params.
 	 */
-	protected $explicitlyDefinedTags;
-
-	/**
-	 * @var array List of extension defined tags
-	 */
-	protected $extensionDefinedTags;
-
-	/**
-	 * @var array List of extension activated tags
-	 */
-	protected $extensionActivatedTags;
+	protected $changeTagsContext = null;
 
 	function __construct() {
 		parent::__construct( 'Tags' );
@@ -117,20 +110,15 @@ class SpecialTags extends SpecialPage {
 			}
 		}
 
-		// Used to get hitcounts for #doTagRow()
-		$tagStats = ChangeTags::tagUsageStatistics();
+		// Make ChangeTagsContext object to provide unified
+		// information for all ChangeTag instances
+		$this->changeTagsContext = new ChangeTagsContext();
 
-		// Used in #doTagRow()
-		$this->explicitlyDefinedTags = array_fill_keys(
-			ChangeTags::listExplicitlyDefinedTags(), true );
-		$this->extensionDefinedTags = array_fill_keys(
-			ChangeTags::listExtensionDefinedTags(), true );
+		// Retrieve context
+		$tagStats = $this->changeTagsContext->getStats();
+		$definedTags = $this->changeTagsContext->getDefined();
 
-		// List all defined tags, even if they were never applied
-		$definedTags = array_keys( array_merge(
-			$this->explicitlyDefinedTags, $this->extensionDefinedTags ) );
-
-		// Show header only if there exists atleast one tag
+		// Show header only if there exists at least one tag
 		if ( !$tagStats && !$definedTags ) {
 			return;
 		}
@@ -148,16 +136,13 @@ class SpecialTags extends SpecialPage {
 				'' )
 		);
 
-		// Used in #doTagRow()
-		$this->extensionActivatedTags = array_fill_keys(
-			ChangeTags::listExtensionActivatedTags(), true );
-
-		// Insert tags that have been applied at least once
+		// Append tag rows for tags applied at least once (based on change_tag table)
 		foreach ( $tagStats as $tag => $hitcount ) {
 			$html .= $this->doTagRow( $tag, $hitcount, $userCanManage, $userCanEditInterface );
 		}
-		// Insert tags defined somewhere but never applied
-		foreach ( $definedTags as $tag ) {
+
+		// Append tag rows for tags that are not (currently) applied but are defined somewhere
+		foreach ( array_keys( $definedTags ) as $tag ) {
 			if ( !isset( $tagStats[$tag] ) ) {
 				$html .= $this->doTagRow( $tag, 0, $userCanManage, $userCanEditInterface );
 			}
@@ -171,6 +156,13 @@ class SpecialTags extends SpecialPage {
 	}
 
 	function doTagRow( $tag, $hitcount, $showActions, $showEditLinks ) {
+
+		// Build change tag object
+		$changeTag = new ChangeTag( $tag, $this->changeTagsContext );
+
+		// Try to retrieve extension name (when relevant)
+		$extName = $changeTag->getExtensionName();
+
 		$newRow = '';
 		$newRow .= Xml::tags( 'td', null, Xml::element( 'code', null, $tag ) );
 
@@ -195,15 +187,37 @@ class SpecialTags extends SpecialPage {
 			);
 			$desc .= $this->msg( 'parentheses' )->rawParams( $editDescLink )->escaped();
 		}
+		if ( $extName ) {
+			// Add a description specific to the extension source with params from hook
+			$msgKey = 'tags-description-extension-' . $extName;
+			$extMsg = $this->msg( $msgKey );
+			if ( $extMsg->exists() ) {
+				$desc .= $desc ? Xml::element( 'br' ) : '';
+				$extParams = $changeTag->getExtensionDescriptionMessageParams();
+				if ( $extParams ) {
+					$desc .= $extMsg->params( $extParams )->parse();
+				} else {
+					$desc .= $extMsg->parse();
+				}
+			}
+		}
 		$newRow .= Xml::tags( 'td', null, $desc );
 
 		$sourceMsgs = array();
-		$isExtension = isset( $this->extensionDefinedTags[$tag] );
-		$isExplicit = isset( $this->explicitlyDefinedTags[$tag] );
-		if ( $isExtension ) {
-			$sourceMsgs[] = $this->msg( 'tags-source-extension' )->escaped();
+		if ( $changeTag->isExtensionDefined() ) {
+			// default message key
+			$msgKey = 'tags-source-extension';
+			// if specific source msg exists, overwrite default
+			if ( $extName ) {
+				$extMsgKey = 'tags-source-extension-' . $extName;
+				$extMsg = $this->msg( $extMsgKey );
+				if ( $extMsg->exists() ) {
+					$msgKey = $extMsgKey;
+				}
+			}
+			$sourceMsgs[] = $this->msg( $msgKey )->escaped();
 		}
-		if ( $isExplicit ) {
+		if ( $changeTag->isUserDefined() ) {
 			$sourceMsgs[] = $this->msg( 'tags-source-manual' )->escaped();
 		}
 		if ( !$sourceMsgs ) {
@@ -211,8 +225,7 @@ class SpecialTags extends SpecialPage {
 		}
 		$newRow .= Xml::tags( 'td', null, implode( Xml::element( 'br' ), $sourceMsgs ) );
 
-		$isActive = $isExplicit || isset( $this->extensionActivatedTags[$tag] );
-		$activeMsg = ( $isActive ? 'tags-active-yes' : 'tags-active-no' );
+		$activeMsg = $changeTag->isActive() ? 'tags-active-yes' : 'tags-active-no';
 		$newRow .= Xml::tags( 'td', null, $this->msg( $activeMsg )->escaped() );
 
 		$hitcountLabel = $this->msg( 'tags-hitcount' )->numParams( $hitcount )->escaped();
@@ -231,7 +244,7 @@ class SpecialTags extends SpecialPage {
 			$actionLinks = array();
 
 			// delete
-			if ( ChangeTags::canDeleteTag( $tag )->isOK() ) {
+			if ( $changeTag->canDelete()->isOK() ) {
 				$actionLinks[] = Linker::linkKnown( $this->getPageTitle( 'delete' ),
 					$this->msg( 'tags-delete' )->escaped(),
 					array(),
@@ -239,7 +252,7 @@ class SpecialTags extends SpecialPage {
 			}
 
 			// activate
-			if ( ChangeTags::canActivateTag( $tag )->isOK() ) {
+			if ( $changeTag->canActivate()->isOK() ) {
 				$actionLinks[] = Linker::linkKnown( $this->getPageTitle( 'activate' ),
 					$this->msg( 'tags-activate' )->escaped(),
 					array(),
@@ -247,7 +260,7 @@ class SpecialTags extends SpecialPage {
 			}
 
 			// deactivate
-			if ( ChangeTags::canDeactivateTag( $tag )->isOK() ) {
+			if ( $changeTag->canDeactivate()->isOK() ) {
 				$actionLinks[] = Linker::linkKnown( $this->getPageTitle( 'deactivate' ),
 					$this->msg( 'tags-deactivate' )->escaped(),
 					array(),
@@ -257,6 +270,7 @@ class SpecialTags extends SpecialPage {
 			$newRow .= Xml::tags( 'td', null, $this->getLanguage()->pipeList( $actionLinks ) );
 		}
 
+		$changeTag = null;
 		return Xml::tags( 'tr', null, $newRow ) . "\n";
 	}
 
@@ -325,8 +339,10 @@ class SpecialTags extends SpecialPage {
 		$out->setPageTitle( $this->msg( 'tags-delete-title' ) );
 		$out->addBacklinkSubtitle( $this->getPageTitle() );
 
+		$changeTag = new ChangeTag ( $tag );
+
 		// is the tag actually able to be deleted?
-		$canDeleteResult = ChangeTags::canDeleteTag( $tag, $user );
+		$canDeleteResult = $changeTag->canDelete( $user );
 		if ( !$canDeleteResult->isGood() ) {
 			$out->addWikiText( "<div class=\"error\">\n" . $canDeleteResult->getWikiText() .
 				"\n</div>" );
@@ -336,17 +352,17 @@ class SpecialTags extends SpecialPage {
 		}
 
 		$preText = $this->msg( 'tags-delete-explanation-initial', $tag )->parseAsBlock();
-		$tagUsage = ChangeTags::tagUsageStatistics();
-		if ( $tagUsage[$tag] > 0 ) {
+
+		// see if the tag has been previously applied
+		$hitcount = $changeTag->getHitcount();
+		if ( $hitcount > 0 ) {
 			$preText .= $this->msg( 'tags-delete-explanation-in-use', $tag,
-				$tagUsage[$tag] )->parseAsBlock();
+				$hitcount )->parseAsBlock();
 		}
 		$preText .= $this->msg( 'tags-delete-explanation-warning', $tag )->parseAsBlock();
 
-		// see if the tag is in use
-		$this->extensionActivatedTags = array_fill_keys(
-			ChangeTags::listExtensionActivatedTags(), true );
-		if ( isset( $this->extensionActivatedTags[$tag] ) ) {
+		// see if the tag is registered as active by an extension
+		if ( $changeTag->isExtensionDefined() && $changeTag->isActive() ) {
 			$preText .= $this->msg( 'tags-delete-explanation-active', $tag )->parseAsBlock();
 		}
 
@@ -387,8 +403,9 @@ class SpecialTags extends SpecialPage {
 		$out->addBacklinkSubtitle( $this->getPageTitle() );
 
 		// is it possible to do this?
-		$func = $activate ? 'canActivateTag' : 'canDeactivateTag';
-		$result = ChangeTags::$func( $tag, $user );
+		$changeTag = new ChangeTag( $tag );
+		$func = $activate ? 'canActivate' : 'canDeactivate';
+		$result = $changeTag->$func( $user );
 		if ( !$result->isGood() ) {
 			$out->wrapWikiMsg( "<div class=\"error\">\n$1" . $result->getWikiText() .
 				"\n</div>" );
