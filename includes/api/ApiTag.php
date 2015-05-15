@@ -25,6 +25,23 @@
  */
 class ApiTag extends ApiBase {
 
+	/**
+	 * @return array An array of tags, or an empty array.
+	 */
+	protected function getTagsForAddition() {
+		return array_keys( $this->getChangeTagsContext()->getUserTags() );
+	}
+
+	/**
+	 * @return array An array of tags, or an empty array.
+	 */
+	protected function getTagsForRemoval() {
+		return array_keys( array_diff_key(
+			$this->getChangeTagsContext()->getTagStats(),
+			$this->getChangeTagsContext()->getSoftwareTags()
+		) );
+	}
+
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$user = $this->getUser();
@@ -41,20 +58,25 @@ class ApiTag extends ApiBase {
 
 		// validate and process each revid, rcid and logid
 		$this->requireAtLeastOneParameter( $params, 'revid', 'rcid', 'logid' );
+		$updater = new ChangeTagsUpdater(
+			$this->getChangeTagsContext(),
+			$this->getContext()->getLanguage()
+		);
+		$updater->setPerformer( $this->getUser() );
 		$ret = [];
 		if ( $params['revid'] ) {
 			foreach ( $params['revid'] as $id ) {
-				$ret[] = $this->processIndividual( 'revid', $params, $id );
+				$ret[] = $this->processIndividual( 'revid', $params, $id, $updater );
 			}
 		}
 		if ( $params['rcid'] ) {
 			foreach ( $params['rcid'] as $id ) {
-				$ret[] = $this->processIndividual( 'rcid', $params, $id );
+				$ret[] = $this->processIndividual( 'rcid', $params, $id, $updater );
 			}
 		}
 		if ( $params['logid'] ) {
 			foreach ( $params['logid'] as $id ) {
-				$ret[] = $this->processIndividual( 'logid', $params, $id );
+				$ret[] = $this->processIndividual( 'logid', $params, $id, $updater );
 			}
 		}
 
@@ -69,7 +91,7 @@ class ApiTag extends ApiBase {
 		return (bool)$result;
 	}
 
-	protected function processIndividual( $type, $params, $id ) {
+	protected function processIndividual( $type, $params, $id, $updater ) {
 		$idResult = [ $type => $id ];
 
 		// validate the ID
@@ -92,14 +114,15 @@ class ApiTag extends ApiBase {
 			return $idResult;
 		}
 
-		$status = ChangeTags::updateTagsWithChecks( $params['add'],
+		$status = $updater->updateTagsWithChecks(
+			$params['add'],
 			$params['remove'],
 			( $type === 'rcid' ? $id : null ),
 			( $type === 'revid' ? $id : null ),
 			( $type === 'logid' ? $id : null ),
 			null,
-			$params['reason'],
-			$this->getUser() );
+			$params['reason']
+		);
 
 		if ( !$status->isOK() ) {
 			if ( $status->hasMessage( 'actionthrottledtext' ) ) {
@@ -146,11 +169,11 @@ class ApiTag extends ApiBase {
 				ApiBase::PARAM_ISMULTI => true,
 			],
 			'add' => [
-				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_TYPE => $this->getTagsForAddition(),
 				ApiBase::PARAM_ISMULTI => true,
 			],
 			'remove' => [
-				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_TYPE => $this->getTagsForRemoval(),
 				ApiBase::PARAM_ISMULTI => true,
 			],
 			'reason' => [
