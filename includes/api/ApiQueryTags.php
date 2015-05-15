@@ -50,22 +50,26 @@ class ApiQueryTags extends ApiQueryBase {
 		$limit = $params['limit'];
 		$result = $this->getResult();
 
-		$extensionDefinedTags = array_fill_keys( ChangeTags::listExtensionDefinedTags(), 0 );
-		$explicitlyDefinedTags = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), 0 );
-		$extensionActivatedTags = array_fill_keys( ChangeTags::listExtensionActivatedTags(), 0 );
+		$changeTagsContext = $this->getChangeTagsContext();
+		$tags = $changeTagsContext->getDefined();
 
-		$definedTags = array_merge( $extensionDefinedTags, $explicitlyDefinedTags );
-
-		# Fetch defined tags that aren't past the continuation
 		if ( $params['continue'] !== null ) {
+			# Fetch defined tags that aren't past the continuation, fill with zeros
 			$cont = $params['continue'];
-			$tags = array_filter( array_keys( $definedTags ), function ( $v ) use ( $cont ) {
-				return $v >= $cont;
-			} );
-			$tags = array_fill_keys( $tags, 0 );
+			foreach ( $tags as $tag => &$val ) {
+				if ( $tag >= $cont ) {
+					$tags[$tag] = 0;
+				} else {
+					unset( $tags[$tag] );
+				}
+			}
 		} else {
-			$tags = $definedTags;
+			# Fetch defined tags, fill with zeros
+			foreach ( $tags as $tag => &$val ) {
+				$tags[$tag] = 0;
+			}
 		}
+		$val = null;
 
 		# Merge in all used tags
 		$this->addTables( 'change_tag' );
@@ -92,6 +96,8 @@ class ApiQueryTags extends ApiQueryBase {
 			$tag = [];
 			$tag['name'] = $tagName;
 
+			$changeTag = new ChangeTag( $tagName, $changeTagsContext );
+
 			if ( $fld_displayname ) {
 				$tag['displayname'] = ChangeTags::tagDescription( $tagName );
 			}
@@ -105,25 +111,22 @@ class ApiQueryTags extends ApiQueryBase {
 				$tag['hitcount'] = $hitcount;
 			}
 
-			$isExtension = isset( $extensionDefinedTags[$tagName] );
-			$isExplicit = isset( $explicitlyDefinedTags[$tagName] );
-
 			if ( $fld_defined ) {
-				$tag['defined'] = $isExtension || $isExplicit;
+				$tag['defined'] = $changeTag->isDefined();
 			}
 
 			if ( $fld_source ) {
 				$tag['source'] = [];
-				if ( $isExtension ) {
+				if ( $changeTag->isExtensionDefined() ) {
 					$tag['source'][] = 'extension';
 				}
-				if ( $isExplicit ) {
+				if ( $changeTag->isUserDefined() ) {
 					$tag['source'][] = 'manual';
 				}
 			}
 
 			if ( $fld_active ) {
-				$tag['active'] = $isExplicit || isset( $extensionActivatedTags[$tagName] );
+				$tag['active'] = $changeTag->isActive();
 			}
 
 			$fit = $result->addValue( [ 'query', $this->getModuleName() ], null, $tag );
