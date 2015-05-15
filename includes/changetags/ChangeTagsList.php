@@ -23,6 +23,8 @@
  * Generic list for change tagging.
  */
 abstract class ChangeTagsList extends RevisionListBase {
+	private $changeTagsContext = null;
+
 	function __construct( IContextSource $context, Title $title, array $ids ) {
 		parent::__construct( $context, $title );
 		$this->ids = $ids;
@@ -74,4 +76,25 @@ abstract class ChangeTagsList extends RevisionListBase {
 	 */
 	abstract function updateChangeTagsOnAll( $tagsToAdd, $tagsToRemove, $params,
 		$reason, $user );
+
+	/**
+	 * Sets ChangeTagsContext for the list
+	 *
+	 * @param ChangeTagsContext $changeTagsContext
+	 */
+	final public function setChangeTagsContext( ChangeTagsContext $changeTagsContext ) {
+		$this->changeTagsContext = $changeTagsContext;
+	}
+
+	/**
+	 * Gets ChangeTagsContext for the list
+	 *
+	 * @return ChangeTagsContext $changeTagsContext
+	 */
+	final public function getChangeTagsContext() {
+		if ( $this->changeTagsContext === null ) {
+			throw new MWException( 'No ChangeTagsContext object was set.' );
+		}
+		return $this->changeTagsContext;
+	}
 }

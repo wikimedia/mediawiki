@@ -35,6 +35,28 @@ class ApiQueryTags extends ApiQueryBase {
 		parent::__construct( $query, $moduleName, 'tg' );
 	}
 
+	/**
+	 * @param array &$tags
+	 * @param string|null $continue
+	 */
+	public static function fillDefinedTags( &$tags, $continue ) {
+		if ( $continue !== null ) {
+			# Fetch defined tags that aren't past the continuation, fill with zeros
+			foreach ( $tags as $tag => &$val ) {
+				if ( $tag >= $continue ) {
+					$tags[$tag] = 0;
+				} else {
+					unset( $tags[$tag] );
+				}
+			}
+		} else {
+			# Fetch defined tags, fill with zeros
+			foreach ( $tags as $tag => &$val ) {
+				$tags[$tag] = 0;
+			}
+		}
+	}
+
 	public function execute() {
 		$params = $this->extractRequestParams();
 
@@ -50,22 +72,10 @@ class ApiQueryTags extends ApiQueryBase {
 		$limit = $params['limit'];
 		$result = $this->getResult();
 
-		$softwareDefinedTags = array_fill_keys( ChangeTags::listSoftwareDefinedTags(), 0 );
-		$explicitlyDefinedTags = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), 0 );
-		$softwareActivatedTags = array_fill_keys( ChangeTags::listSoftwareActivatedTags(), 0 );
+		$changeTagsContext = $this->getChangeTagsContext();
+		$tags = $changeTagsContext->getDefinedTags();
 
-		$definedTags = array_merge( $softwareDefinedTags, $explicitlyDefinedTags );
-
-		# Fetch defined tags that aren't past the continuation
-		if ( $params['continue'] !== null ) {
-			$cont = $params['continue'];
-			$tags = array_filter( array_keys( $definedTags ), function ( $v ) use ( $cont ) {
-				return $v >= $cont;
-			} );
-			$tags = array_fill_keys( $tags, 0 );
-		} else {
-			$tags = $definedTags;
-		}
+		self::fillDefinedTags( $tags, $params['continue'] );
 
 		# Merge in all used tags
 		$this->addTables( 'change_tag' );
@@ -92,6 +102,8 @@ class ApiQueryTags extends ApiQueryBase {
 			$tag = [];
 			$tag['name'] = $tagName;
 
+			$changeTag = new ChangeTag( $tagName, $changeTagsContext );
+
 			if ( $fld_displayname ) {
 				$tag['displayname'] = ChangeTags::tagDescription( $tagName );
 			}
@@ -105,26 +117,24 @@ class ApiQueryTags extends ApiQueryBase {
 				$tag['hitcount'] = $hitcount;
 			}
 
-			$isSoftware = isset( $softwareDefinedTags[$tagName] );
-			$isExplicit = isset( $explicitlyDefinedTags[$tagName] );
-
 			if ( $fld_defined ) {
-				$tag['defined'] = $isSoftware || $isExplicit;
+				$tag['defined'] = $changeTag->isDefined();
 			}
 
 			if ( $fld_source ) {
 				$tag['source'] = [];
-				if ( $isSoftware ) {
+
+				if ( $changeTag->isSoftwareDefined() ) {
 					// TODO: Can we change this to 'software'?
 					$tag['source'][] = 'extension';
 				}
-				if ( $isExplicit ) {
+				if ( $changeTag->isUserDefined() ) {
 					$tag['source'][] = 'manual';
 				}
 			}
 
 			if ( $fld_active ) {
-				$tag['active'] = $isExplicit || isset( $softwareActivatedTags[$tagName] );
+				$tag['active'] = $changeTag->isActive();
 			}
 
 			$fit = $result->addValue( [ 'query', $this->getModuleName() ], null, $tag );

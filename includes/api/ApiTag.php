@@ -25,6 +25,23 @@
  */
 class ApiTag extends ApiBase {
 
+	/**
+	 * @return array An array of tags, or an empty array.
+	 */
+	protected function getTagsForAddition() {
+		return array_keys( $this->getChangeTagsContext()->getUserTags() );
+	}
+
+	/**
+	 * @return array An array of tags, or an empty array.
+	 */
+	protected function getTagsForRemoval() {
+		return array_keys( array_diff_key(
+			$this->getChangeTagsContext()->getTagStats(),
+			$this->getChangeTagsContext()->getSoftwareTags()
+		) );
+	}
+
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$user = $this->getUser();
@@ -92,14 +109,17 @@ class ApiTag extends ApiBase {
 			return $idResult;
 		}
 
-		$status = ChangeTags::updateTagsWithChecks( $params['add'],
+		$status = $this->getChangeTagsContext()->updateTagsWithChecks(
+			$params['add'],
 			$params['remove'],
 			( $type === 'rcid' ? $id : null ),
 			( $type === 'revid' ? $id : null ),
 			( $type === 'logid' ? $id : null ),
 			null,
 			$params['reason'],
-			$this->getUser() );
+			$this->getUser(),
+			$this->getContext()->getLanguage()
+		);
 
 		if ( !$status->isOK() ) {
 			if ( $status->hasMessage( 'actionthrottledtext' ) ) {
@@ -146,11 +166,11 @@ class ApiTag extends ApiBase {
 				ApiBase::PARAM_ISMULTI => true,
 			],
 			'add' => [
-				ApiBase::PARAM_TYPE => 'tags',
+				ApiBase::PARAM_TYPE => $this->getTagsForAddition(),
 				ApiBase::PARAM_ISMULTI => true,
 			],
 			'remove' => [
-				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_TYPE => $this->getTagsForRemoval(),
 				ApiBase::PARAM_ISMULTI => true,
 			],
 			'reason' => [
