@@ -1518,11 +1518,12 @@ class Article implements Page {
 			'namespace-' . $this->getTitle()->getNamespace() . '-helppage'
 		);
 
+		$out = $this->getContext()->getOutput();
 		if ( !$msg->isDisabled() ) {
 			$helpUrl = Skin::makeUrl( $msg->plain() );
-			$this->getOutput()->addHelpLink( $helpUrl, true );
+			$out->addHelpLink( $helpUrl, true );
 		} else {
-			$this->getOutput()->addHelpLink( $to, $overrideBaseUrl );
+			$out->addHelpLink( $to, $overrideBaseUrl );
 		}
 	}
 
