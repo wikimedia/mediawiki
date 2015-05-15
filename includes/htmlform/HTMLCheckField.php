@@ -14,7 +14,7 @@ class HTMLCheckField extends HTMLFormField {
 		$attr = $this->getTooltipAndAccessKey();
 		$attr['id'] = $this->mID;
 
-		$attr += $this->getAttributes( array( 'disabled', 'tabindex' ) );
+		$attr += $this->getAttributes( array( 'disabled', 'tabindex', 'title' ) );
 
 		if ( $this->mClass !== '' ) {
 			$attr['class'] = $this->mClass;
@@ -25,9 +25,13 @@ class HTMLCheckField extends HTMLFormField {
 		. Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
 
 		if ( $wgUseMediaWikiUIEverywhere || $this->mParent instanceof VFormHTMLForm ) {
+			$class = '';
+			if ( $this->mParams['isMixin'] ) {
+				$class = ' mw-ui-input-inline';
+			}
 			$chkLabel = Html::rawElement(
 				'div',
-				array( 'class' => 'mw-ui-checkbox' ),
+				array( 'class' => 'mw-ui-checkbox' . $class ),
 				$chkLabel
 			);
 		}
