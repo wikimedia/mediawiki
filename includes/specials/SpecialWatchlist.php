@@ -396,7 +396,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	public function doHeader( $opts, $numRows ) {
 		$user = $this->getUser();
 
-		$this->getOutput()->addSubtitle(
+		$output = $this->getOutput();
+		$output->addSubtitle(
 			$this->msg( 'watchlistfor2', $user->getName() )
 				->rawParams( SpecialEditWatchlist::buildTools( null ) )
 		);
@@ -481,7 +482,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		}
 		$form .= Xml::closeElement( 'fieldset' ) . "\n";
 		$form .= Xml::closeElement( 'form' ) . "\n";
-		$this->getOutput()->addHTML( $form );
+
+		$output->addModuleStyles( 'mediawiki.special.watchlist' );
+		$output->addHTML( $form );
 
 		$this->setBottomText( $opts );
 	}
