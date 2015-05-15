@@ -264,8 +264,6 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-
-
 	public function add( $key, $value, $expiry = 0 ) {
 
 		list( $server, $conn ) = $this->getConnection( $key );
@@ -277,6 +275,7 @@ class RedisBagOStuff extends BagOStuff {
 			if ( $expiry ) {
 				$conn->multi();
 				$conn->setnx( $key, $this->serialize( $value ) );
+				// @FIXME: this always bumps the TTL; use Redis 2.8 or Lua
 				$conn->expire( $key, $expiry );
 				$result = ( $conn->exec() == array( true, true ) );
 			} else {
@@ -313,6 +312,7 @@ class RedisBagOStuff extends BagOStuff {
 			return null;
 		}
 		try {
+			// @FIXME: on races, the key may have a 0 TTL
 			$result = $conn->incrBy( $key, $value );
 		} catch ( RedisException $e ) {
 			$result = false;
