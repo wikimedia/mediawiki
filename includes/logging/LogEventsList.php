@@ -36,6 +36,11 @@ class LogEventsList extends ContextSource {
 	protected $mDefaultQuery;
 
 	/**
+	 * @var bool
+	 */
+	protected $showTagEditUI;
+
+	/**
 	 * Constructor.
 	 * The first two parameters used to be $skin and $out, but now only a context
 	 * is needed, that's why there's a second unused parameter.
@@ -55,6 +60,7 @@ class LogEventsList extends ContextSource {
 		}
 
 		$this->flags = $flags;
+		$this->showTagEditUI = ChangeTags::showTagEditingUI( $this->getUser() );
 	}
 
 	/**
@@ -348,7 +354,7 @@ class LogEventsList extends ContextSource {
 		$user = $this->getUser();
 
 		// If change tag editing is available to this user, return the checkbox
-		if ( $this->flags & self::USE_CHECKBOXES && ChangeTags::showTagEditingUI( $user ) ) {
+		if ( $this->flags & self::USE_CHECKBOXES && $this->showTagEditUI ) {
 			return Xml::check(
 				'showhiderevisions',
 				false,

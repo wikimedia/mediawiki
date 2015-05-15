@@ -961,20 +961,52 @@ $user: user initiating the action
   using `$status->warning()`. Errors and warnings will be relayed to the user.
   If you set an error, the user will be unable to create the tag.
 
-'ChangeTagCanDelete': Tell whether a change tag should be able to be
-deleted from the UI (Special:Tags) or via the API. The default is that tags
-defined using the ListDefinedTags hook are not allowed to be deleted unless
-specifically allowed. If you wish to allow deletion of the tag, set
-`$status = Status::newGood()` to allow deletion, and then `return false` from
-the hook function. Ensure you consume the 'ChangeTagAfterDelete' hook to carry
-out custom deletion actions.
-$tag: name of the tag
-$user: user initiating the action
-&$status: Status object. See above.
+'ChangeTagCanDelete': Deprecated, use 'ChangeTagsRegister' instead
 
-'ChangeTagsListActive': Allows you to nominate which of the tags your extension
-uses are in active use.
-&$tags: list of all active tags. Append to this array.
+'ChangeTagsListActive': Deprecated, use 'ChangeTagsRegister' instead
+
+'ChangeTagsRegister': The hook to use to register a change tag along with
+all relevant information, such as its active status, the extension's name,
+whether it is deletable, params to use in the extension-specific message, etc.
+Available params :
+'active' (bool): Whether the tag is in active use by the extension.
+'problem' (bool): Whether the tag is meant to indicate a potential problem with the
+change (e.g. vandalism, syntax error, etc) - these can be highlighted in the
+user interface or used for specific purposes by extensions.
+'extName' (string): Name of the extension. Used to track tags defined by the extension.
+You can provide a specific source message (in the 'Source' column of Special:Tags), that
+replaces the default. The msg key is 'tags-source-extension-"extName"' (no params).
+You can also provide an extension-specific description message, as a footer to the custom
+description. The message key is given by 'tags-description-extension-"extName"'. It
+accepts params, you need to provide them in this hook (see below).
+'descParams' (array): An array of params for use by the extension-specific description.
+'canDelete' (bool): Tell whether a change tag should be able to be deleted from the UI
+(Special:Tags) or via the API. The default is that tags registered with this hook are
+not allowed to be deleted unless specifically allowed. If you wish to allow deletion
+of the tag, set this param to true. This does not undefine the tag on its own, it only
+removes applied instances. Ensure you consume the 'ChangeTagAfterDelete' hook to carry
+out custom deletion actions (for example offering the opportunity for the admin to also
+undefine the tag).
+&$tags: the list of tags, append to this array using the tag name as '''key''' and
+an array of tag params as value, example :
+$tags['possible vandalism'] = array( 'active' => true, 'extName' = 'AbuseFilter',
+'descParams' = array( 12, 88, 256 ) )
+in this example, descParams is provided with the ids of abuse filters applying the tag.
+Don't use integers as tag names !
+If you allow users to define tags, it is advised to check that the name is legit with
+the ChangeTag::canCreate function.
+
+'ChangeTagsAfterUpdateTags': Called immediately after tags have been updated with the
+ChangeTags::updateTags function. Params:
+$addedTags: tags effectively added in the update
+$removedTags: tags effectively removed in the update
+$prevTags: tags that were present prior to the update
+$rc_id: recentchanges table id
+$rev_id: revision table id
+$log_id: logging table id
+$params: tag params
+$user: User who performed the tagging, or tagged user if it was automatic
+$flags: bit mask representing the source of the tagging, if done in core, see ChangeTags class
 
 'Collation::factory': Called if $wgCategoryCollation is an unknown collation.
 $collationName: Name of the collation in question
@@ -1099,6 +1131,7 @@ $oldRev: Revision object of the "old" revision (may be null)
 $diff: DifferenceEngine object that's calling
 $oldRev: Revision object of the "old" revision (may be null/invalid)
 $newRev: Revision object of the "new" revision
+&$showRCPatrolUI: bool, whether to show RC patrol UI (preliminary check, true by default)
 
 'DisplayOldSubtitle': before creating subtitle when browsing old versions of
 an article
@@ -1783,8 +1816,7 @@ including delete and insert, has completed for all link tables
 'LinksUpdateConstructed': At the end of LinksUpdate() is construction.
 &$linksUpdate: the LinksUpdate object
 
-'ListDefinedTags': When trying to find all defined tags.
-&$tags: The list of tags.
+'ListDefinedTags': Deprecated. Use 'ChangeTagsRegister' instead
 
 'LoadExtensionSchemaUpdates': Called during database installation and updates.
 &$updater: A DatabaseUpdater subclass

@@ -98,6 +98,9 @@ class DifferenceEngine extends ContextSource {
 	/** @var bool Refresh the diff cache */
 	protected $mRefreshCache = false;
 
+	/** @var bool Whether to show RC patrol UI (only preliminary checks) */
+	protected $showRCPatrolUI = true;
+
 	/**#@-*/
 
 	/**
@@ -284,7 +287,8 @@ class DifferenceEngine extends ContextSource {
 			$samePage = true;
 			$oldHeader = '';
 		} else {
-			Hooks::run( 'DiffViewHeader', array( $this, $this->mOldRev, $this->mNewRev ) );
+			Hooks::run( 'DiffViewHeader', array( $this, $this->mOldRev, $this->mNewRev,
+				&$this->showRCPatrolUI ) ); // ask extensions if they are okay with showing RC patrol UI
 
 			if ( $this->mNewPage->equals( $this->mOldPage ) ) {
 				$out->setPageTitle( $this->msg( 'difference-title', $this->mNewPage->getPrefixedText() ) );
@@ -294,6 +298,8 @@ class DifferenceEngine extends ContextSource {
 					$this->mOldPage->getPrefixedText(), $this->mNewPage->getPrefixedText() ) );
 				$out->addSubtitle( $this->msg( 'difference-multipage' ) );
 				$samePage = false;
+				// Don't show RC patrol UI if not the same page
+				$this->showRCPatrolUI = false;
 			}
 
 			if ( $samePage && $this->mNewPage->quickUserCan( 'edit', $user ) ) {
@@ -466,7 +472,7 @@ class DifferenceEngine extends ContextSource {
 	 * @return string
 	 */
 	protected function markPatrolledLink() {
-		global $wgUseRCPatrol, $wgEnableAPI, $wgEnableWriteAPI;
+		global $wgUseRCPatrol, $wgEnableAPI, $wgEnableWriteAPI, $wgUseMinimalistRCPatrolUI;
 		$user = $this->getUser();
 
 		if ( $this->mMarkPatrolledLink === null ) {
@@ -474,6 +480,8 @@ class DifferenceEngine extends ContextSource {
 			if (
 				// Is patrolling enabled and the user allowed to?
 				$wgUseRCPatrol && $this->mNewPage->quickUserCan( 'patrol', $user ) &&
+				// Is it a diff for a unique page and extensions are okay with showing it?
+				$this->showRCPatrolUI &&
 				// Only do this if the revision isn't more than 6 hours older
 				// than the Max RC age (6h because the RC might not be cleaned out regularly)
 				RecentChange::isInRCLifespan( $this->mNewRev->getTimestamp(), 21600 )
@@ -493,13 +501,32 @@ class DifferenceEngine extends ContextSource {
 
 				if ( $change && !$change->getPerformer()->equals( $user ) ) {
 					$rcid = $change->getAttribute( 'rc_id' );
+					if ( !$wgUseMinimalistRCPatrolUI ) {
+						// If full RC patrol UI is used, we can proceed
+						$proceed = true;
+					} else {
+						// If minimalist RC patrol UI is used, we proceed
+						// only if the RC item (not the revision) is tagged
+						// with a problem tag
+						$proceed = false;
+						$context = new ChangeTagsContext;
+						$context->getDefined();
+						$tags = explode( ',', $this->mNewTags );
+						foreach ( $tags as $tag ) {
+							$changeTag = new ChangeTag( $tag, $context );
+							if ( $changeTag->isProblem() ) {
+								$proceed = true;
+								break;
+							}
+						}
+					}
 				} else {
 					// None found or the page has been created by the current user.
 					// If the user could patrol this it already would be patrolled
-					$rcid = 0;
+					$proceed = false;
 				}
 				// Build the link
-				if ( $rcid ) {
+				if ( $proceed ) {
 					$this->getOutput()->preventClickjacking();
 					if ( $wgEnableAPI && $wgEnableWriteAPI
 						&& $user->isAllowed( 'writeapi' )
