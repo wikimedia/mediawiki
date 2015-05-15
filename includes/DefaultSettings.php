@@ -6254,6 +6254,21 @@ $wgAllowCategorizedRecentChanges = false;
 $wgUseTagFilter = true;
 
 /**
+ * Cache expiry for change tag statistics (hitcounts)
+ * displayed at Special:Tags
+ * 6 hours by default
+ * @since 1.27
+ */
+$wgTagUsageCacheDuration = 60*60*6;
+
+/**
+ * Cache expiry for change tag data other than hitcounts
+ * 24 hours by default
+ * @since 1.27
+ */
+$wgTagDefinitionCacheDuration = 60*60*24;
+
+/**
  * If set to an integer, pages that are watched by this many users or more
  * will not require the unwatchedpages permission to view the number of
  * watchers.
