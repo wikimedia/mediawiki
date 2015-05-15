@@ -1,0 +1,20 @@
+Change tags are annotations appended to revisions, logged actions or recent
+changes.
+
+They are either defined at the software level, in core or by extensions, or
+at the user level, by tag managers.
+
+Software-defined tags are applied directly by mediawiki when the tagged
+action is made, while user-defined tags are applied by users or bots when
+the tagged action is made (provided they have the applychangetags permission),
+or afterwards (provided they have the changetags permission).
+
+Tag managers, i.e. users with the managechangetags permission, can
+create new user-defined tags, deactivate them or activate them again,
+provided they are not software-defined.
+In addition, users with the deletechangetags permission can delete tags,
+i.e. remove them from all revisions, logged actions and recent changes.
+
+Extensions should use the ChangeTagsRegister hook to define tags.
+
+More information is available at https://www.mediawiki.org/wiki/Manual:Tags .
