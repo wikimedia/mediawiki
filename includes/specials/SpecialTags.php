@@ -29,19 +29,12 @@
 class SpecialTags extends SpecialPage {
 
 	/**
-	 * @var array List of explicitly defined tags
+	 * @var changeTagsContext object providing a unique context for
+	 * all individual ChangeTag instances, i.e. :
+	 * tag usage statistics, array of stored tags,
+	 * array of registered tags with their params.
 	 */
-	protected $explicitlyDefinedTags;
-
-	/**
-	 * @var array List of software defined tags
-	 */
-	protected $softwareDefinedTags;
-
-	/**
-	 * @var array List of software activated tags
-	 */
-	protected $softwareActivatedTags;
+	private $changeTagsContext = null;
 
 	function __construct() {
 		parent::__construct( 'Tags' );
@@ -50,6 +43,10 @@ class SpecialTags extends SpecialPage {
 	function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
+
+		// Make ChangeTagsContext object to provide unified
+		// information for all ChangeTag instances
+		$this->changeTagsContext = new ChangeTagsContext( $this->getConfig() );
 
 		$request = $this->getRequest();
 		switch ( $par ) {
@@ -118,19 +115,11 @@ class SpecialTags extends SpecialPage {
 			}
 		}
 
-		// Used to get hitcounts for #doTagRow()
-		$tagStats = ChangeTags::tagUsageStatistics();
+		// Retrieve stats and definitions
+		$tagStats = $this->changeTagsContext->getTagStats();
+		$definedTags = $this->changeTagsContext->getDefinedTags();
 
-		// Used in #doTagRow()
-		$this->explicitlyDefinedTags = array_fill_keys(
-			ChangeTags::listExplicitlyDefinedTags(), true );
-		$this->softwareDefinedTags = array_fill_keys(
-			ChangeTags::listSoftwareDefinedTags(), true );
-
-		// List all defined tags, even if they were never applied
-		$definedTags = array_keys( $this->explicitlyDefinedTags + $this->softwareDefinedTags );
-
-		// Show header only if there exists atleast one tag
+		// Show header only if there exists at least one tag
 		if ( !$tagStats && !$definedTags ) {
 			return;
 		}
@@ -148,19 +137,17 @@ class SpecialTags extends SpecialPage {
 				'' )
 		);
 
-		// Used in #doTagRow()
-		$this->softwareActivatedTags = array_fill_keys(
-			ChangeTags::listSoftwareActivatedTags(), true );
-
-		// Insert tags that have been applied at least once
+		// Append tag rows for tags applied at least once (based on change_tag table)
 		foreach ( $tagStats as $tag => $hitcount ) {
 			$html .= $this->doTagRow( $tag, $hitcount, $userCanManage,
 				$userCanDelete, $userCanEditInterface );
 		}
-		// Insert tags defined somewhere but never applied
-		foreach ( $definedTags as $tag ) {
+
+		// Append tag rows for tags that are not (currently) applied but are defined somewhere
+		foreach ( $definedTags as $tag => &$val ) {
 			if ( !isset( $tagStats[$tag] ) ) {
-				$html .= $this->doTagRow( $tag, 0, $userCanManage, $userCanDelete, $userCanEditInterface );
+				$html .= $this->doTagRow( $tag, 0, $userCanManage, $userCanDelete,
+					$userCanEditInterface );
 			}
 		}
 
@@ -171,7 +158,16 @@ class SpecialTags extends SpecialPage {
 		) );
 	}
 
-	function doTagRow( $tag, $hitcount, $showManageActions, $showDeleteActions, $showEditLinks ) {
+	function doTagRow( $tag, $hitcount, $showManageActions, $showDeleteActions,
+		$showEditLinks
+	) {
+
+		// Build change tag object
+		$changeTag = new ChangeTag( $tag, $this->changeTagsContext );
+
+		// Try to retrieve extension name (when relevant)
+		$extName = $changeTag->getExtensionName();
+
 		$newRow = '';
 		$newRow .= Xml::tags( 'td', null, Xml::element( 'code', null, $tag ) );
 
@@ -197,16 +193,38 @@ class SpecialTags extends SpecialPage {
 			);
 			$desc .= $this->msg( 'parentheses' )->rawParams( $editDescLink )->escaped();
 		}
+		if ( $extName ) {
+			// Add a description specific to the extension source with params from hook
+			$msgKey = 'tags-description-extension-' . $extName;
+			$extMsg = $this->msg( $msgKey );
+			if ( $extMsg->exists() ) {
+				$desc .= $desc ? Xml::element( 'br' ) : '';
+				$extParams = $changeTag->getExtensionDescriptionMessageParams();
+				if ( $extParams ) {
+					$desc .= $extMsg->params( $extParams )->parse();
+				} else {
+					$desc .= $extMsg->parse();
+				}
+			}
+		}
 		$newRow .= Xml::tags( 'td', null, $desc );
 
 		$sourceMsgs = [];
-		$isSoftware = isset( $this->softwareDefinedTags[$tag] );
-		$isExplicit = isset( $this->explicitlyDefinedTags[$tag] );
-		if ( $isSoftware ) {
+		if ( $changeTag->isSoftwareDefined() ) {
+			// default message key
 			// TODO: Rename this message
-			$sourceMsgs[] = $this->msg( 'tags-source-extension' )->escaped();
+			$msgKey = 'tags-source-extension';
+			// if specific source msg exists, overwrite default
+			if ( $extName ) {
+				$extMsgKey = 'tags-source-extension-' . $extName;
+				$extMsg = $this->msg( $extMsgKey );
+				if ( $extMsg->exists() ) {
+					$msgKey = $extMsgKey;
+				}
+			}
+			$sourceMsgs[] = $this->msg( $msgKey )->escaped();
 		}
-		if ( $isExplicit ) {
+		if ( $changeTag->isUserDefined() ) {
 			$sourceMsgs[] = $this->msg( 'tags-source-manual' )->escaped();
 		}
 		if ( !$sourceMsgs ) {
@@ -214,8 +232,7 @@ class SpecialTags extends SpecialPage {
 		}
 		$newRow .= Xml::tags( 'td', null, implode( Xml::element( 'br' ), $sourceMsgs ) );
 
-		$isActive = $isExplicit || isset( $this->softwareActivatedTags[$tag] );
-		$activeMsg = ( $isActive ? 'tags-active-yes' : 'tags-active-no' );
+		$activeMsg = $changeTag->isActive() ? 'tags-active-yes' : 'tags-active-no';
 		$newRow .= Xml::tags( 'td', null, $this->msg( $activeMsg )->escaped() );
 
 		$hitcountLabelMsg = $this->msg( 'tags-hitcount' )->numParams( $hitcount );
@@ -236,8 +253,8 @@ class SpecialTags extends SpecialPage {
 		// actions
 		$actionLinks = [];
 
-		// delete
-		if ( $showDeleteActions && ChangeTags::canDeleteTag( $tag )->isOK() ) {
+		// delete (we already know the user is allowed and the tag exists)
+		if ( $showDeleteActions && $changeTag->canDelete( null, false )->isOK() ) {
 			$actionLinks[] = $linkRenderer->makeKnownLink(
 				$this->getPageTitle( 'delete' ),
 				$this->msg( 'tags-delete' )->text(),
@@ -247,8 +264,8 @@ class SpecialTags extends SpecialPage {
 
 		if ( $showManageActions ) { // we've already checked that the user had the requisite userright
 
-			// activate
-			if ( ChangeTags::canActivateTag( $tag )->isOK() ) {
+			// activate (we already know the user is allowed and the tag exists)
+			if ( $changeTag->canActivate( null, false )->isOK() ) {
 				$actionLinks[] = $linkRenderer->makeKnownLink(
 					$this->getPageTitle( 'activate' ),
 					$this->msg( 'tags-activate' )->text(),
@@ -256,8 +273,8 @@ class SpecialTags extends SpecialPage {
 					[ 'tag' => $tag ] );
 			}
 
-			// deactivate
-			if ( ChangeTags::canDeactivateTag( $tag )->isOK() ) {
+			// deactivate (we already know the user is allowed and the tag exists)
+			if ( $changeTag->canDeactivate( null, false )->isOK() ) {
 				$actionLinks[] = $linkRenderer->makeKnownLink(
 					$this->getPageTitle( 'deactivate' ),
 					$this->msg( 'tags-deactivate' )->text(),
@@ -280,7 +297,7 @@ class SpecialTags extends SpecialPage {
 
 		$tag = trim( strval( $data['Tag'] ) );
 		$ignoreWarnings = isset( $data['IgnoreWarnings'] ) && $data['IgnoreWarnings'] === '1';
-		$status = ChangeTags::createTagWithChecks( $tag, $data['Reason'],
+		$status = $this->changeTagsContext->createTagWithChecks( $tag, $data['Reason'],
 			$context->getUser(), $ignoreWarnings );
 
 		if ( $status->isGood() ) {
@@ -339,8 +356,10 @@ class SpecialTags extends SpecialPage {
 		$out->setPageTitle( $this->msg( 'tags-delete-title' ) );
 		$out->addBacklinkSubtitle( $this->getPageTitle() );
 
+		$changeTag = new ChangeTag( $tag, $this->changeTagsContext );
+
 		// is the tag actually able to be deleted?
-		$canDeleteResult = ChangeTags::canDeleteTag( $tag, $user );
+		$canDeleteResult = $changeTag->canDelete( $user );
 		if ( !$canDeleteResult->isGood() ) {
 			$out->addWikiText( "<div class=\"error\">\n" . $canDeleteResult->getWikiText() .
 				"\n</div>" );
@@ -350,17 +369,17 @@ class SpecialTags extends SpecialPage {
 		}
 
 		$preText = $this->msg( 'tags-delete-explanation-initial', $tag )->parseAsBlock();
-		$tagUsage = ChangeTags::tagUsageStatistics();
-		if ( isset( $tagUsage[$tag] ) && $tagUsage[$tag] > 0 ) {
+
+		// see if the tag has been previously applied
+		$hitcount = $changeTag->getHitcount();
+		if ( $hitcount > 0 ) {
 			$preText .= $this->msg( 'tags-delete-explanation-in-use', $tag,
-				$tagUsage[$tag] )->parseAsBlock();
+				$hitcount )->parseAsBlock();
 		}
 		$preText .= $this->msg( 'tags-delete-explanation-warning', $tag )->parseAsBlock();
 
 		// see if the tag is in use
-		$this->softwareActivatedTags = array_fill_keys(
-			ChangeTags::listSoftwareActivatedTags(), true );
-		if ( isset( $this->softwareActivatedTags[$tag] ) ) {
+		if ( $changeTag->isSoftwareDefined() && $changeTag->isActive() ) {
 			$preText .= $this->msg( 'tags-delete-explanation-active', $tag )->parseAsBlock();
 		}
 
@@ -401,8 +420,9 @@ class SpecialTags extends SpecialPage {
 		$out->addBacklinkSubtitle( $this->getPageTitle() );
 
 		// is it possible to do this?
-		$func = $activate ? 'canActivateTag' : 'canDeactivateTag';
-		$result = ChangeTags::$func( $tag, $user );
+		$changeTag = new ChangeTag( $tag, $this->changeTagsContext );
+		$func = $activate ? 'canActivate' : 'canDeactivate';
+		$result = $changeTag->$func( $user );
 		if ( !$result->isGood() ) {
 			$out->addWikiText( "<div class=\"error\">\n" . $result->getWikiText() .
 				"\n</div>" );
@@ -443,7 +463,7 @@ class SpecialTags extends SpecialPage {
 		$out = $context->getOutput();
 
 		$tag = $data['HiddenTag'];
-		$status = call_user_func( [ 'ChangeTags', "{$form->tagAction}TagWithChecks" ],
+		$status = call_user_func( [ $this->changeTagsContext, "{$form->tagAction}TagWithChecks" ],
 			$tag, $data['Reason'], $context->getUser(), true );
 
 		if ( $status->isGood() ) {

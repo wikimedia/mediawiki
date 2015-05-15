@@ -349,7 +349,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	 *
 	 * @param array $selectedTags The tags that should be preselected in the
 	 * list. Any tags in this list, but not in the list returned by
-	 * ChangeTags::listExplicitlyDefinedTags, will be appended to the <select>
+	 * ChangeTagsContext::getUserTags, will be appended to the <select>
 	 * element.
 	 * @param string $label The text of a <label> to precede the <select>
 	 * @return array HTML <label> element at index 0, HTML <select> element at
@@ -363,11 +363,19 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		$select->setAttribute( 'multiple', 'multiple' );
 		$select->setAttribute( 'size', '8' );
 
-		$tags = ChangeTags::listExplicitlyDefinedTags();
-		$tags = array_unique( array_merge( $tags, $selectedTags ) );
+		$changeTagsContext = new ChangeTagsContext( $this->getConfig() );
+		$storedTags = $changeTagsContext->getUserTags();
 
+		$tags = [];
 		// Values of $tags are also used as <option> labels
-		$select->addOptions( array_combine( $tags, $tags ) );
+		foreach ( $storedTags  as $tag => &$val ) {
+			$select->addOption( $tag, $tag );
+		}
+		foreach ( $selectedTags as $tag ) {
+			if ( !isset( $storedTags[$tag] ) ) {
+				$select->addOption( $tag, $tag );
+			}
+		}
 
 		$result[1] = $select->getHTML();
 		return $result;
@@ -418,6 +426,8 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		if ( !$tagsToAdd && !$tagsToRemove ) {
 			$status = Status::newFatal( 'tags-edit-none-selected' );
 		} else {
+			$changeTagsContext = new ChangeTagsContext( $this->getConfig() );
+			$this->getList()->setChangeTagsContext( $changeTagsContext );
 			$status = $this->getList()->updateChangeTagsOnAll( $tagsToAdd,
 				$tagsToRemove, null, $this->reason, $this->getUser() );
 		}

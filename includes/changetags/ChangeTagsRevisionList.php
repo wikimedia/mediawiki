@@ -82,12 +82,14 @@ class ChangeTagsRevisionList extends ChangeTagsList {
 	public function updateChangeTagsOnAll( $tagsToAdd, $tagsToRemove, $params,
 		$reason, $user ) {
 
+		$changeTagsContext = $this->getChangeTagsContext();
+		$lang = $this->getLanguage();
 		// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
 		for ( $this->reset(); $this->current(); $this->next() ) {
 			// @codingStandardsIgnoreEnd
 			$item = $this->current();
-			$status = ChangeTags::updateTagsWithChecks( $tagsToAdd, $tagsToRemove,
-				null, $item->getId(), null, $params, $reason, $user );
+			$status = $changeTagsContext->updateTagsWithChecks( $tagsToAdd, $tagsToRemove,
+				null, $item->getId(), null, $params, $reason, $user, $lang );
 			// Should only fail on second and subsequent times if the user trips
 			// the rate limiter
 			if ( !$status->isOK() ) {
