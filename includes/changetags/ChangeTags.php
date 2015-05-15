@@ -1164,7 +1164,7 @@ class ChangeTags {
 	public static function purgeTagUsageCache() {
 		$cache = ObjectCache::getMainWANInstance();
 
-		$cache->delete( wfMemcKey( 'change-tag-statistics' ) );
+		$cache->touchCheckKey( wfMemcKey( 'change-tag-statistics' ) );
 	}
 
 	/**
