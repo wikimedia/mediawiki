@@ -3418,7 +3418,6 @@ class WikiPage implements Page, IDBAccessObject {
 				new JobSpecification( 'refreshLinks', $params,
 					array( 'removeDuplicates' => true ), $this->mTitle )
 			) );
-			return;
 		}
 
 		return;
