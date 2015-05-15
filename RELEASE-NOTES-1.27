@@ -156,6 +156,12 @@ production.
   aria-describedby, aria-flowto, aria-label, aria-labelledby, aria-owns.
 * Removed "presentation" restriction on the HTML role attribute in wikitext.
   All values are now allowed for the role attribute.
+* A new hook, ChangeTagsRegister, can be used to define tags added by
+extensions, along with their active status and additional data.
+*The hooks ListDefinedTags and ChangeTagsListActive are deprecated in favor
+of ChangeTagsRegister. In addition, the ChangeTagCanDelete hook is removed,
+and the new ChangeTagsRegister hook must be used to allow admins to delete
+extension-defined tags.
 
 === External library changes in 1.27 ===
 
