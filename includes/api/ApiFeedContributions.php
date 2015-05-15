@@ -202,7 +202,7 @@ class ApiFeedContributions extends ApiBase {
 			],
 			'tagfilter' => [
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array_values( ChangeTags::listDefinedTags() ),
+				ApiBase::PARAM_TYPE => array_keys( $this->getChangeTagsContext()->getDefined() ),
 				ApiBase::PARAM_DFLT => '',
 			],
 			'deletedonly' => false,
