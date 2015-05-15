@@ -404,16 +404,12 @@ class WANObjectCache {
 			return $value;
 		}
 
-		if ( !is_callable( $callback ) ) {
-			throw new InvalidArgumentException( "Invalid cache miss callback provided." );
-		}
-
+		$isTombstone = ( $curTTL !== null && $value === false );
 		// Assume a key is hot if requested soon after invalidation
 		$isHot = ( $curTTL !== null && $curTTL <= 0 && abs( $curTTL ) <= $lockTSE );
-		$isTombstone = ( $curTTL !== null && $value === false );
 
 		$locked = false;
-		if ( $isHot || $isTombstone ) {
+		if ( $isHot ) {
 			// Acquire a cluster-local non-blocking lock
 			if ( $this->cache->lock( $key, 0, self::LOCK_TTL ) ) {
 				// Lock acquired; this thread should update the key
@@ -421,15 +417,21 @@ class WANObjectCache {
 			} elseif ( $value !== false ) {
 				// If it cannot be acquired; then the stale value can be used
 				return $value;
-			} else {
-				// Either another thread has the lock or the lock failed.
-				// Use the stash value, which is likely from the prior thread.
-				$value = $this->cache->get( self::STASH_KEY_PREFIX . $key );
-				// Regenerate on timeout or if the other thread failed
-				if ( $value !== false ) {
-					return $value;
-				}
 			}
+		}
+
+		if ( !$locked && ( $isTombstone || $isHot ) ) {
+			// Use the stash value for tombstoned keys to reduce regeneration load.
+			// For hot keys, either another thread has the lock or the lock failed;
+			// use the stash value from the last thread that regenerated it.
+			$value = $this->cache->get( self::STASH_KEY_PREFIX . $key );
+			if ( $value !== false ) {
+				return $value;
+			}
+		}
+
+		if ( !is_callable( $callback ) ) {
+			throw new InvalidArgumentException( "Invalid cache miss callback provided." );
 		}
 
 		// Generate the new value from the callback...
