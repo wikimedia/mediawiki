@@ -6764,6 +6764,16 @@ $wgAllowCategorizedRecentChanges = false;
 $wgUseTagFilter = true;
 
 /**
+ * List of automated tags defined in core with their 'active' status.
+ * To enable (resp. disable) automated tagging for a specific tag, set its
+ * active status to true (resp. false).
+ * @since 1.28
+ */
+$wgCoreTags = [
+	'mw-contentmodelchange' => [ 'active' => true ],
+];
+
+/**
  * If set to an integer, pages that are watched by this many users or more
  * will not require the unwatchedpages permission to view the number of
  * watchers.
