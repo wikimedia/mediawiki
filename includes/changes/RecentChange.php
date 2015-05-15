@@ -269,8 +269,9 @@ class RecentChange {
 	/**
 	 * Writes the data in this object to the database
 	 * @param bool $noudp
+	 * @param User $user user performing the change (optional)
 	 */
-	public function save( $noudp = false ) {
+	public function save( $noudp = false, User $user = null ) {
 		global $wgPutIPinRC, $wgUseEnotif, $wgShowUpdatedMarker, $wgContLang;
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -309,7 +310,7 @@ class RecentChange {
 		$this->mAttribs['rc_id'] = $dbw->insertId();
 
 		# Notify extensions
-		Hooks::run( 'RecentChange_save', array( &$this ) );
+		Hooks::run( 'RecentChange_save', array( &$this, $user ) );
 
 		# Notify external application via UDP
 		if ( !$noudp ) {
@@ -515,12 +516,15 @@ class RecentChange {
 	 * @param int $newSize
 	 * @param int $newId
 	 * @param int $patrol
+	 * @param array $autoTags autotags to apply to the recent change
 	 * @return RecentChange
 	 */
 	public static function notifyEdit(
 		$timestamp, &$title, $minor, &$user, $comment, $oldId, $lastTimestamp,
-		$bot, $ip = '', $oldSize = 0, $newSize = 0, $newId = 0, $patrol = 0
+		$bot, $ip = '', $oldSize = 0, $newSize = 0, $newId = 0, $patrol = 0,
+		$autoTags = array()
 	) {
+		global $wgUseAutoTagging;
 		$rc = new RecentChange;
 		$rc->mTitle = $title;
 		$rc->mPerformer = $user;
@@ -558,8 +562,14 @@ class RecentChange {
 			'pageStatus' => 'changed'
 		);
 
-		DeferredUpdates::addCallableUpdate( function() use ( $rc ) {
-			$rc->save();
+		DeferredUpdates::addCallableUpdate( function() use ( $autoTags, $user, $rc ) {
+			$rc->save( false, $user );
+			// Apply autotags if any
+			if ( count( $autoTags ) ) {
+				ChangeTags::addTags( $autoTags, $rc->mAttribs['rc_id'],
+				$rc->mAttribs['rc_this_oldid'], null, null,
+				$user, $rc, ChangeTags::UPDATE_CORE_EDITUPDATE );
+			}
 			if ( $rc->mAttribs['rc_patrolled'] ) {
 				PatrolLog::record( $rc, true, $rc->getPerformer() );
 			}
@@ -582,11 +592,13 @@ class RecentChange {
 	 * @param int $size
 	 * @param int $newId
 	 * @param int $patrol
+	 * @param array $autoTags autotags to apply to the recent change
 	 * @return RecentChange
 	 */
 	public static function notifyNew(
 		$timestamp, &$title, $minor, &$user, $comment, $bot,
-		$ip = '', $size = 0, $newId = 0, $patrol = 0
+		$ip = '', $size = 0, $newId = 0, $patrol = 0,
+		$autoTags = array()
 	) {
 		$rc = new RecentChange;
 		$rc->mTitle = $title;
@@ -625,8 +637,14 @@ class RecentChange {
 			'pageStatus' => 'created'
 		);
 
-		DeferredUpdates::addCallableUpdate( function() use ( $rc ) {
-			$rc->save();
+		DeferredUpdates::addCallableUpdate( function() use ( $autoTags, $user, $rc ) {
+			$rc->save( false, $user );
+			// Apply autotags if any
+			if ( count( $autoTags ) ) {
+				ChangeTags::addTags( $autoTags, $rc->mAttribs['rc_id'],
+					$rc->mAttribs['rc_this_oldid'], null, null,
+					$user, $rc, ChangeTags::UPDATE_CORE_EDITNEW );
+			}
 			if ( $rc->mAttribs['rc_patrolled'] ) {
 				PatrolLog::record( $rc, true, $rc->getPerformer() );
 			}
@@ -661,7 +679,7 @@ class RecentChange {
 		}
 		$rc = self::newLogEntry( $timestamp, $title, $user, $actionComment, $ip, $type, $action,
 			$target, $logComment, $params, $newId, $actionCommentIRC );
-		$rc->save();
+		$rc->save( false, $user );
 
 		return true;
 	}

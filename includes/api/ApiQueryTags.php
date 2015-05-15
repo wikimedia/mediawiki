@@ -50,21 +50,19 @@ class ApiQueryTags extends ApiQueryBase {
 		$limit = $params['limit'];
 		$result = $this->getResult();
 
-		$extensionDefinedTags = array_fill_keys( ChangeTags::listExtensionDefinedTags(), 0 );
-		$explicitlyDefinedTags = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), 0 );
-		$extensionActivatedTags = array_fill_keys( ChangeTags::listExtensionActivatedTags(), 0 );
-
-		$definedTags = array_merge( $extensionDefinedTags, $explicitlyDefinedTags );
+		$context = new ChangeTagsContext;
+		$tags = $context->getDefined();
 
 		# Fetch defined tags that aren't past the continuation
 		if ( $params['continue'] !== null ) {
 			$cont = $params['continue'];
-			$tags = array_filter( array_keys( $definedTags ), function ( $v ) use ( $cont ) {
-				return $v >= $cont;
-			} );
-			$tags = array_fill_keys( $tags, 0 );
-		} else {
-			$tags = $definedTags;
+			foreach ( array_keys( $tags ) as $tag ) {
+				if ( $tag < $cont ) {
+					unset( $tags[$tag] );
+				} else {
+					$tags[$tag] = 0;
+				}
+			}
 		}
 
 		# Merge in all used tags
@@ -92,6 +90,8 @@ class ApiQueryTags extends ApiQueryBase {
 			$tag = array();
 			$tag['name'] = $tagName;
 
+			$changeTag = new ChangeTag( $tagName, $context );
+
 			if ( $fld_displayname ) {
 				$tag['displayname'] = ChangeTags::tagDescription( $tagName );
 			}
@@ -105,25 +105,25 @@ class ApiQueryTags extends ApiQueryBase {
 				$tag['hitcount'] = $hitcount;
 			}
 
-			$isExtension = isset( $extensionDefinedTags[$tagName] );
-			$isExplicit = isset( $explicitlyDefinedTags[$tagName] );
-
 			if ( $fld_defined ) {
-				$tag['defined'] = $isExtension || $isExplicit;
+				$tag['defined'] = $changeTag->isDefined();
 			}
 
 			if ( $fld_source ) {
 				$tag['source'] = array();
-				if ( $isExtension ) {
+				if ( $changeTag->isCoreDefined() ) {
+					$tag['source'][] = 'core';
+				}
+				if ( $changeTag->isExtensionDefined() ) {
 					$tag['source'][] = 'extension';
 				}
-				if ( $isExplicit ) {
+				if ( $changeTag->isUserDefined() ) {
 					$tag['source'][] = 'manual';
 				}
 			}
 
 			if ( $fld_active ) {
-				$tag['active'] = $isExplicit || isset( $extensionActivatedTags[$tagName] );
+				$tag['active'] = $changeTag->isActive();
 			}
 
 			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $tag );
