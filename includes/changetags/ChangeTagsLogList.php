@@ -72,12 +72,13 @@ class ChangeTagsLogList extends ChangeTagsList {
 	public function updateChangeTagsOnAll( $tagsToAdd, $tagsToRemove, $params,
 		$reason, $user ) {
 
+		$changeTagsContext = $this->getChangeTagsContext();
 		// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
 		for ( $this->reset(); $this->current(); $this->next() ) {
 			// @codingStandardsIgnoreEnd
 			$item = $this->current();
 			$status = ChangeTags::updateTagsWithChecks( $tagsToAdd, $tagsToRemove,
-				null, null, $item->getId(), $params, $reason, $user );
+				null, null, $item->getId(), $params, $reason, $user, $changeTagsContext );
 			// Should only fail on second and subsequent times if the user trips
 			// the rate limiter
 			if ( !$status->isOK() ) {
