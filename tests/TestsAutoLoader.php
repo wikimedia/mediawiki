@@ -110,6 +110,9 @@ $wgAutoloadClasses += array(
 	'FakeDimensionFile' => "$testDir/phpunit/includes/media/FakeDimensionFile.php",
 	'MediaWikiMediaTestCase' => "$testDir/phpunit/includes/media/MediaWikiMediaTestCase.php",
 
+	# tests/phpunit/changetags
+	'ChangeTagsTest' => "$testDir/phpunit/includes/changetags/ChangeTagsTest.php",
+
 	# tests/phpunit/mocks
 	'MockFSFile' => "$testDir/phpunit/mocks/filebackend/MockFSFile.php",
 	'MockFileBackend' => "$testDir/phpunit/mocks/filebackend/MockFileBackend.php",
