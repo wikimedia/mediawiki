@@ -70,8 +70,9 @@ abstract class ChangeTagsList extends RevisionListBase {
 	 * @param array $params
 	 * @param string $reason
 	 * @param User $user
+	 * @param ChangeTagsContext $changeTagsContext
 	 * @return Status
 	 */
 	abstract function updateChangeTagsOnAll( $tagsToAdd, $tagsToRemove, $params,
-		$reason, $user );
+		$reason, $user, $changeTagsContext );
 }
