@@ -47,7 +47,11 @@ class ApiManageTags extends ApiBase {
 		}
 
 		$result = $this->getResult();
-		$manager = new ChangeTagsManager( $user, $params['ignorewarnings'] );
+		$manager = new ChangeTagsManager(
+			$this->getChangeTagsContext(),
+			$user,
+			$params['ignorewarnings']
+		);
 		if ( $params['tags'] ) {
 			$manager->setChangeTagsForLogging( $params['tags'] );
 		}
