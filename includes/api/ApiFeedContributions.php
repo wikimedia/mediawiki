@@ -182,6 +182,7 @@ class ApiFeedContributions extends ApiBase {
 	public function getAllowedParams() {
 		$feedFormatNames = array_keys( $this->getConfig()->get( 'FeedClasses' ) );
 
+		$changeTagsContext = new ChangeTagsContext( $this->getConfig() );
 		$ret = array(
 			'feedformat' => array(
 				ApiBase::PARAM_DFLT => 'rss',
@@ -202,7 +203,7 @@ class ApiFeedContributions extends ApiBase {
 			),
 			'tagfilter' => array(
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array_values( ChangeTags::listDefinedTags() ),
+				ApiBase::PARAM_TYPE => array_keys( $changeTagsContext->getDefined() ),
 				ApiBase::PARAM_DFLT => '',
 			),
 			'deletedonly' => false,

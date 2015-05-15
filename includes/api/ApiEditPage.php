@@ -563,6 +563,7 @@ class ApiEditPage extends ApiBase {
 	}
 
 	public function getAllowedParams() {
+		$changeTagContext = new ChangeTagsContext( $this->getConfig() );
 		return array(
 			'title' => array(
 				ApiBase::PARAM_TYPE => 'string',
@@ -579,7 +580,7 @@ class ApiEditPage extends ApiBase {
 			),
 			'summary' => null,
 			'tags' => array(
-				ApiBase::PARAM_TYPE => ChangeTags::listExplicitlyDefinedTags(),
+				ApiBase::PARAM_TYPE => array_keys( $changeTagContext->getStored() ),
 				ApiBase::PARAM_ISMULTI => true,
 			),
 			'minor' => false,
