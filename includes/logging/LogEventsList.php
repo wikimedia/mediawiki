@@ -27,6 +27,7 @@ class LogEventsList extends ContextSource {
 	const NO_ACTION_LINK = 1;
 	const NO_EXTRA_USER_LINKS = 2;
 	const USE_CHECKBOXES = 4;
+	const SHOW_TAG_EDITING_UI = 8;
 
 	public $flags;
 
@@ -34,11 +35,6 @@ class LogEventsList extends ContextSource {
 	 * @var array
 	 */
 	protected $mDefaultQuery;
-
-	/**
-	 * @var bool
-	 */
-	protected $showTagEditUI;
 
 	/**
 	 * @var array
@@ -65,7 +61,6 @@ class LogEventsList extends ContextSource {
 		}
 
 		$this->flags = $flags;
-		$this->showTagEditUI = ChangeTags::showTagEditingUI( $this->getUser() );
 	}
 
 	/**
@@ -404,7 +399,7 @@ class LogEventsList extends ContextSource {
 		$user = $this->getUser();
 
 		// If change tag editing is available to this user, return the checkbox
-		if ( $this->flags & self::USE_CHECKBOXES && $this->showTagEditUI ) {
+		if ( $this->flags & self::USE_CHECKBOXES && $this->flags & self::SHOW_TAG_EDITING_UI ) {
 			return Xml::check(
 				'showhiderevisions',
 				false,

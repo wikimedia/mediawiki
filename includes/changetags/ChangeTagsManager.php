@@ -34,6 +34,11 @@ class ChangeTagsManager {
 	const MAX_DELETE_USES = 5000;
 
 	/**
+	 * @var ChangeTagsContext
+	 */
+	protected $context;
+
+	/**
 	 * @var User
 	 */
 	protected $performer;
@@ -44,11 +49,14 @@ class ChangeTagsManager {
 	protected $ignoreWarnings;
 
 	/**
-	 * @param User $performer
+	 * @param ChangeTagsContext $context
+	 * @param User|null $performer
 	 * @param bool $ignoreWarnings
 	 * @since 1.28
 	 */
-	public function __construct( User $performer = null, $ignoreWarnings = false ) {
+	public function __construct( ChangeTagsContext $context, User $performer = null,
+		$ignoreWarnings = false ) {
+		$this->context = $context;
 		$this->performer = $performer;
 		$this->ignoreWarnings = $ignoreWarnings;
 	}
@@ -57,11 +65,13 @@ class ChangeTagsManager {
 	 * Is it OK to allow the user to activate this tag?
 	 *
 	 * @param string $tag Tag that you are interested in activating
+	 * @param bool $checkExistence Set to false if tag is already known to exist
 	 * @return Status
 	 * @since 1.28
 	 */
-	public function canActivateTag( $tag ) {
-		if ( !is_null( $this->performer ) ) {
+	public function canActivateTag( $tag, $checkExistence = true ) {
+
+		if ( $this->performer !== null ) {
 			if ( !$this->performer->isAllowed( 'managechangetags' ) ) {
 				return Status::newFatal( 'tags-manage-no-permission' );
 			} elseif ( $this->performer->isBlocked() ) {
@@ -69,18 +79,15 @@ class ChangeTagsManager {
 			}
 		}
 
-		// defined tags cannot be activated (a defined tag is either extension-
-		// defined, in which case the extension chooses whether or not to active it;
-		// or user-defined, in which case it is considered active)
-		$definedTags = ChangeTags::listDefinedTags();
-		if ( in_array( $tag, $definedTags ) ) {
-			return Status::newFatal( 'tags-activate-not-allowed', $tag );
+		// non-existing tags cannot be managed
+		if ( $checkExistence && !$this->context->isDefined( $tag ) &&
+			!$this->context->getHitcount( $tag ) ) {
+			return Status::newFatal( 'tags-manage-not-found', $tag );
 		}
 
-		// non-existing tags cannot be activated
-		$tagUsage = ChangeTags::tagUsageStatistics();
-		if ( !isset( $tagUsage[$tag] ) ) { // we already know the tag is undefined
-			return Status::newFatal( 'tags-activate-not-found', $tag );
+		// defined tags cannot be activated
+		if ( $this->context->isDefined( $tag ) ) {
+			return Status::newFatal( 'tags-activate-not-allowed', $tag );
 		}
 
 		return Status::newGood();
@@ -90,11 +97,13 @@ class ChangeTagsManager {
 	 * Is it OK to allow the user to deactivate this tag?
 	 *
 	 * @param string $tag Tag that you are interested in deactivating
+	 * @param bool $checkExistence Set to false if tag is already known to exist
 	 * @return Status
 	 * @since 1.28
 	 */
-	public function canDeactivateTag( $tag ) {
-		if ( !is_null( $this->performer ) ) {
+	public function canDeactivateTag( $tag, $checkExistence = true ) {
+
+		if ( $this->performer !== null ) {
 			if ( !$this->performer->isAllowed( 'managechangetags' ) ) {
 				return Status::newFatal( 'tags-manage-no-permission' );
 			} elseif ( $this->performer->isBlocked() ) {
@@ -102,9 +111,14 @@ class ChangeTagsManager {
 			}
 		}
 
-		// only explicitly-defined tags can be deactivated
-		$explicitlyDefinedTags = ChangeTags::listExplicitlyDefinedTags();
-		if ( !in_array( $tag, $explicitlyDefinedTags ) ) {
+		// non-existing tags cannot be managed
+		if ( $checkExistence && !$this->context->isDefined( $tag ) &&
+			!$this->context->getHitcount( $tag ) ) {
+			return Status::newFatal( 'tags-manage-not-found', $tag );
+		}
+
+		// only tags stored in valid_tag can be deactivated
+		if ( !$this->context->isUserDefined( $tag ) ) {
 			return Status::newFatal( 'tags-deactivate-not-allowed', $tag );
 		}
 		return Status::newGood();
@@ -114,11 +128,13 @@ class ChangeTagsManager {
 	 * Is it OK to allow the user to create this tag?
 	 *
 	 * @param string $tag Tag that you are interested in creating
+	 * @param bool $checkExistence Set to false if existence check is not needed
 	 * @return Status
 	 * @since 1.28
 	 */
-	public function canCreateTag( $tag ) {
-		if ( !is_null( $this->performer ) ) {
+	public function canCreateTag( $tag, $checkExistence = true ) {
+
+		if ( $this->performer !== null ) {
 			if ( !$this->performer->isAllowed( 'managechangetags' ) ) {
 				return Status::newFatal( 'tags-manage-no-permission' );
 			} elseif ( $this->performer->isBlocked() ) {
@@ -139,13 +155,13 @@ class ChangeTagsManager {
 
 		// could the MediaWiki namespace description messages be created?
 		$title = Title::makeTitleSafe( NS_MEDIAWIKI, "Tag-$tag-description" );
-		if ( is_null( $title ) ) {
+		if ( $title === null ) {
 			return Status::newFatal( 'tags-create-invalid-title-chars' );
 		}
 
 		// does the tag already exist?
-		$tagUsage = ChangeTags::tagUsageStatistics();
-		if ( isset( $tagUsage[$tag] ) || in_array( $tag, ChangeTags::listDefinedTags() ) ) {
+		if ( $checkExistence && ( $this->context->isDefined( $tag ) ||
+			$this->context->getHitcount( $tag ) ) ) {
 			return Status::newFatal( 'tags-create-already-exists', $tag );
 		}
 
@@ -159,13 +175,13 @@ class ChangeTagsManager {
 	 * Is it OK to allow the user to delete this tag?
 	 *
 	 * @param string $tag Tag that you are interested in deleting
+	 * @param bool $checkExistence Set to false if tag is already known to exist
 	 * @return Status
 	 * @since 1.28
 	 */
-	public function canDeleteTag( $tag ) {
-		$tagUsage = ChangeTags::tagUsageStatistics();
+	public function canDeleteTag( $tag, $checkExistence = true ) {
 
-		if ( !is_null( $this->performer ) ) {
+		if ( $this->performer !== null ) {
 			if ( !$this->performer->isAllowed( 'deletechangetags' ) ) {
 				return Status::newFatal( 'tags-delete-no-permission' );
 			} elseif ( $this->performer->isBlocked() ) {
@@ -173,26 +189,28 @@ class ChangeTagsManager {
 			}
 		}
 
-		if ( !isset( $tagUsage[$tag] ) && !in_array( $tag, ChangeTags::listDefinedTags() ) ) {
-			return Status::newFatal( 'tags-delete-not-found', $tag );
+		// non-existing tags cannot be managed
+		if ( $checkExistence && !$this->context->isDefined( $tag ) &&
+			!$this->context->getHitcount( $tag ) ) {
+			return Status::newFatal( 'tags-manage-not-found', $tag );
 		}
 
-		if ( isset( $tagUsage[$tag] ) && $tagUsage[$tag] > self::MAX_DELETE_USES ) {
+		// tags with too many uses cannot be deleted
+		if ( $this->context->getHitcount( $tag ) > self::MAX_DELETE_USES ) {
 			return Status::newFatal( 'tags-delete-too-many-uses', $tag, self::MAX_DELETE_USES );
 		}
 
-		$softwareDefined = ChangeTags::listSoftwareDefinedTags();
-		if ( in_array( $tag, $softwareDefined ) ) {
-			// extension-defined tags can't be deleted unless the extension
-			// specifically allows it
-			$status = Status::newFatal( 'tags-delete-not-allowed' );
-		} else {
-			// user-defined tags are deletable unless otherwise specified
-			$status = Status::newGood();
+		// extension-defined tags can't be deleted unless the extension specifically allows it
+		if ( $this->context->isSoftwareDefined( $tag ) ) {
+			$registeredTags = $this->context->getSoftwareTags();
+			if ( !isset( $registeredTags[$tag]['canDelete'] ) ||
+				!$registeredTags[$tag]['canDelete'] ) {
+				return Status::newFatal( 'tags-delete-not-allowed' );
+			}
 		}
 
-		Hooks::run( 'ChangeTagCanDelete', [ $tag, $this->performer, &$status ] );
-		return $status;
+		// user-defined tags, extension defined tags when allowed, or undefined tags can be deleted
+		return Status::newGood();
 	}
 
 	/**
@@ -211,7 +229,7 @@ class ChangeTagsManager {
 	public function activateTagWithChecks( $tag, $reason ) {
 
 		// purging cache for the sake of extensions that might not do it
-		ChangeTags::purgeRegisteredTagsCache();
+		ChangeTagsContext::purgeRegisteredTagsCache();
 
 		// are we allowed to do this?
 		$result = $this->canActivateTag( $tag );
@@ -228,7 +246,7 @@ class ChangeTagsManager {
 			__METHOD__ );
 
 		// clear the memcache of stored tags
-		ChangeTags::purgeStoredTagsCache();
+		ChangeTagsContext::purgeStoredTagsCache();
 
 		// log it
 		$logId = $this->logTagManagementAction( 'activate', $tag, $reason );
@@ -251,7 +269,7 @@ class ChangeTagsManager {
 	public function deactivateTagWithChecks( $tag, $reason ) {
 
 		// purging cache for the sake of extensions that might not do it
-		ChangeTags::purgeRegisteredTagsCache();
+		ChangeTagsContext::purgeRegisteredTagsCache();
 
 		// are we allowed to do this?
 		$result = $this->canDeactivateTag( $tag );
@@ -265,7 +283,7 @@ class ChangeTagsManager {
 		$dbw->delete( 'valid_tag', [ 'vt_tag' => $tag ], __METHOD__ );
 
 		// clear the memcache of stored tags
-		ChangeTags::purgeStoredTagsCache();
+		ChangeTagsContext::purgeStoredTagsCache();
 
 		// log it
 		$logId = $this->logTagManagementAction( 'deactivate', $tag, $reason );
@@ -287,7 +305,7 @@ class ChangeTagsManager {
 	public function createTagWithChecks( $tag, $reason ) {
 
 		// purging cache for the sake of extensions that might not do it
-		ChangeTags::purgeRegisteredTagsCache();
+		ChangeTagsContext::purgeRegisteredTagsCache();
 
 		// are we allowed to do this?
 		$result = $this->canCreateTag( $tag );
@@ -304,7 +322,7 @@ class ChangeTagsManager {
 			__METHOD__ );
 
 		// purge stored tags cache
-		ChangeTags::purgeStoredTagsCache();
+		ChangeTagsContext::purgeStoredTagsCache();
 
 		// log it
 		$logId = $this->logTagManagementAction( 'create', $tag, $reason );
@@ -327,13 +345,11 @@ class ChangeTagsManager {
 	public function deleteTagWithChecks( $tag, $reason ) {
 
 		// purging cache for the sake of extensions that might not do it
-		ChangeTags::purgeRegisteredTagsCache();
+		ChangeTagsContext::purgeRegisteredTagsCache();
 		// purging stats cache to get the up to date hitcount
-		ChangeTags::purgeTagUsageCache();
+		ChangeTagsContext::purgeTagUsageCache();
 
-		// get change tag object
-		$stats = ChangeTags::tagUsageStatistics();
-		$hitcount = $stats[$tag];
+		$hitcount = $this->context->getHitcount( $tag );
 
 		// are we allowed to do this?
 		$result = $this->canDeleteTag( $tag );

@@ -27,6 +27,11 @@
 class ChangeTagsUpdater {
 
 	/**
+	 * @var array ChangeTagsContext
+	 */
+	protected $context;
+
+	/**
 	 * @var User
 	 */
 	protected $performer;
@@ -37,11 +42,14 @@ class ChangeTagsUpdater {
 	protected $lang;
 
 	/**
+	 * @param ChangeTagsContext $context
 	 * @param User|null $performer
 	 * @param Language $lang
 	 * @since 1.28
 	 */
-	public function __construct( User $performer = null, Language $lang ) {
+	public function __construct( ChangeTagsContext $context, User $performer = null,
+		Language $lang ) {
+		$this->context = $context;
 		$this->performer = $performer;
 		$this->lang = $lang;
 	}
@@ -66,9 +74,13 @@ class ChangeTagsUpdater {
 
 		// to be applied, a tag has to be stored in valid_tag
 		// @todo Allow extensions to define tags that can be applied by users...
-		$allowedTags = ChangeTags::listExplicitlyDefinedTags();
-		$userTags = ChangeTags::listExplicitlyDefinedTags();
-		$disallowedTags = array_diff( $tagsToAdd, $userTags );
+		$allowedTags = $this->context->getUserTags();
+		$disallowedTags = [];
+		foreach ( $tags as $tag ) {
+			if ( !isset( $allowedTags[$tag] ) ) {
+				$disallowedTags[] = $tag;
+			}
+		}
 		if ( $disallowedTags ) {
 			return $this->restrictedTagError( 'tags-apply-not-allowed-one',
 				'tags-apply-not-allowed-multi', $disallowedTags );
@@ -99,8 +111,13 @@ class ChangeTagsUpdater {
 		if ( $tagsToAdd ) {
 			// to be added, a tag has to be stored in valid_tag
 			// @todo Allow extensions to define tags that can be applied by users...
-			$userTags = ChangeTags::listExplicitlyDefinedTags();
-			$disallowedTags = array_diff( $tagsToAdd, $userTags );
+			$userTags = $this->context->getUserTags();
+			$disallowedTags = [];
+			foreach ( $tagsToAdd as $tag ) {
+				if ( !isset( $userTags[$tag] ) ) {
+					$disallowedTags[] = $tag;
+				}
+			}
 			if ( $disallowedTags ) {
 				return $this->restrictedTagError( 'tags-update-add-not-allowed-one',
 					'tags-update-add-not-allowed-multi', $disallowedTags );
@@ -109,8 +126,13 @@ class ChangeTagsUpdater {
 
 		if ( $tagsToRemove ) {
 			// to be removed, a tag must not be registered by extensions
-			$registeredTags = ChangeTags::listSoftwareDefinedTags();
-			$disallowedTags = array_intersect( $tagsToRemove, $registeredTags );
+			$registeredTags = $this->context->getSoftwareTags();
+			$disallowedTags = [];
+			foreach ( $tagsToRemove as $tag ) {
+				if ( isset( $registeredTags[$tag] ) ) {
+					$disallowedTags[] = $tag;
+				}
+			}
 			if ( $disallowedTags ) {
 				return $this->restrictedTagError( 'tags-update-remove-not-allowed-one',
 					'tags-update-remove-not-allowed-multi', $disallowedTags );
@@ -418,7 +440,7 @@ class ChangeTagsUpdater {
 				$dbw->delete( 'change_tag', $conds, __METHOD__ );
 			}
 		}
-		ChangeTags::purgeTagUsageCache();
+		ChangeTagsContext::purgeTagUsageCache();
 
 		Hooks::run( 'ChangeTagsAfterUpdateTags', [ $tagsToAdd, $tagsToRemove, $prevTags,
 			$rc_id, $rev_id, $log_id, $params, $rc, $user ] );
@@ -541,7 +563,7 @@ class ChangeTagsUpdater {
 		}
 
 		// purge all caches
-		ChangeTags::purgeTagCacheAll();
+		ChangeTagsContext::purgeTagCacheAll();
 
 		return $status;
 	}

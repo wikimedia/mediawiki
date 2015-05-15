@@ -83,6 +83,7 @@ class ChangeTagsRevisionList extends ChangeTagsList {
 		$reason, $user ) {
 
 		$updater = new ChangeTagsUpdater(
+			$this->getChangeTagsContext(),
 			$user,
 			$this->getLanguage()
 		);

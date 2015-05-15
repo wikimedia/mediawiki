@@ -73,6 +73,7 @@ class ChangeTagsLogList extends ChangeTagsList {
 		$reason, $user ) {
 
 		$updater = new ChangeTagsUpdater(
+			$this->getChangeTagsContext(),
 			$user,
 			$this->getLanguage()
 		);
