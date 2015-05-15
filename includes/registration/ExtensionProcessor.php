@@ -138,6 +138,10 @@ class ExtensionProcessor implements Processor {
 		$this->extractNamespaces( $info );
 		$this->extractResourceLoaderModules( $dir, $info );
 		$this->extractParserTestFiles( $dir, $info );
+		if ( isset( $info['define'] ) ) {
+			$this->defines[] = $info['define'];
+			$this->processed[] = 'define';
+		}
 		if ( isset( $info['callback'] ) ) {
 			$this->callbacks[] = $info['callback'];
 		}
