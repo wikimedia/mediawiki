@@ -707,12 +707,18 @@ class Html {
 	 * @param string $type Type attribute
 	 * @param array $attribs Associative array of miscellaneous extra
 	 *   attributes, passed to Html::element()
+	 * @param array $modifiers Modiefiers to add
 	 * @return string Raw HTML
 	 */
-	public static function input( $name, $value = '', $type = 'text', array $attribs = array() ) {
+	public static function input( $name, $value = '', $type = 'text',
+		array $attribs = array(), array $modifiers = array()
+	) {
 		$attribs['type'] = $type;
 		$attribs['value'] = $value;
 		$attribs['name'] = $name;
+		if ( in_array( $type, array( 'button', 'submit' ) ) ) {
+			$attribs = self::buttonAttributes( $attribs, $modifiers );
+		}
 		if ( in_array( $type, array( 'text', 'search', 'email', 'password', 'number' ) ) ) {
 			$attribs = self::getTextInputAttributes( $attribs );
 		}
