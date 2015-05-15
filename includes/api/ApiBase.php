@@ -75,8 +75,8 @@ abstract class ApiBase extends ContextSource {
 	 * - string: Any non-empty string, not expected to be very long or contain newlines.
 	 *   <input type="text"> would be an appropriate HTML form field.
 	 * - submodule: The name of a submodule of this module, see PARAM_SUBMODULE_MAP.
-	 * - tags: A string naming an existing, explicitly-defined tag. Should usually be
-	 *   used with PARAM_ISMULTI.
+	 * - tags: A string naming one or several tags among those that can be added along
+	 *   a given action. Should usually be used with PARAM_ISMULTI.
 	 * - text: Any non-empty string, expected to be very long or contain newlines.
 	 *   <textarea> would be an appropriate HTML form field.
 	 * - timestamp: A timestamp in any format recognized by MWTimestamp, or the
@@ -217,6 +217,8 @@ abstract class ApiBase extends ContextSource {
 	private $mParamCache = [];
 	/** @var array|null|bool */
 	private $mModuleSource = false;
+	/** @var ChangeTagsContext|null */
+	private $changeTagsContext = null;
 
 	/**
 	 * @param ApiMain $mainModule
@@ -2411,298 +2413,14 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * @deprecated since 1.29, use ApiBase::addWarning() instead
-	 * @param string $warning Warning message
+	 * @return ChangeTagsContext
+	 * @since 1.28
 	 */
-	public function setWarning( $warning ) {
-		$msg = new ApiRawMessage( $warning, 'warning' );
-		$this->getErrorFormatter()->addWarning( $this->getModulePath(), $msg );
-	}
-
-	/**
-	 * Throw an ApiUsageException, which will (if uncaught) call the main module's
-	 * error handler and die with an error message.
-	 *
-	 * @deprecated since 1.29, use self::dieWithError() instead
-	 * @param string $description One-line human-readable description of the
-	 *   error condition, e.g., "The API requires a valid action parameter"
-	 * @param string $errorCode Brief, arbitrary, stable string to allow easy
-	 *   automated identification of the error, e.g., 'unknown_action'
-	 * @param int $httpRespCode HTTP response code
-	 * @param array|null $extradata Data to add to the "<error>" element; array in ApiResult format
-	 * @throws ApiUsageException always
-	 */
-	public function dieUsage( $description, $errorCode, $httpRespCode = 0, $extradata = null ) {
-		$this->dieWithError(
-			new RawMessage( '$1', [ $description ] ),
-			$errorCode,
-			$extradata,
-			$httpRespCode
-		);
-	}
-
-	/**
-	 * Get error (as code, string) from a Status object.
-	 *
-	 * @since 1.23
-	 * @deprecated since 1.29, use ApiErrorFormatter::arrayFromStatus instead
-	 * @param Status $status
-	 * @param array|null &$extraData Set if extra data from IApiMessage is available (since 1.27)
-	 * @return array Array of code and error string
-	 * @throws MWException
-	 */
-	public function getErrorFromStatus( $status, &$extraData = null ) {
-		if ( $status->isGood() ) {
-			throw new MWException( 'Successful status passed to ApiBase::dieStatus' );
+	final protected function getChangeTagsContext() {
+		if ( $this->changeTagsContext === null ) {
+			$this->changeTagsContext = new ChangeTagsContext( $this->getConfig() );
 		}
-
-		$errors = $status->getErrorsByType( 'error' );
-		if ( !$errors ) {
-			// No errors? Assume the warnings should be treated as errors
-			$errors = $status->getErrorsByType( 'warning' );
-		}
-		if ( !$errors ) {
-			// Still no errors? Punt
-			$errors = [ [ 'message' => 'unknownerror-nocode', 'params' => [] ] ];
-		}
-
-		if ( $errors[0]['message'] instanceof MessageSpecifier ) {
-			$msg = $errors[0]['message'];
-		} else {
-			$msg = new Message( $errors[0]['message'], $errors[0]['params'] );
-		}
-		if ( !$msg instanceof IApiMessage ) {
-			$key = $msg->getKey();
-			$params = $msg->getParams();
-			array_unshift( $params, isset( self::$messageMap[$key] ) ? self::$messageMap[$key] : $key );
-			$msg = ApiMessage::create( $params );
-		}
-
-		return [
-			$msg->getApiCode(),
-			ApiErrorFormatter::stripMarkup( $msg->inLanguage( 'en' )->useDatabase( false )->text() )
-		];
-	}
-
-	/**
-	 * @deprecated since 1.29. Prior to 1.29, this was a public mapping from
-	 *  arbitrary strings (often message keys used elsewhere in MediaWiki) to
-	 *  API codes and message texts, and a few interfaces required poking
-	 *  something in here. Now we're repurposing it to map those same strings
-	 *  to i18n messages, and declaring that any interface that requires poking
-	 *  at this is broken and needs replacing ASAP.
-	 */
-	private static $messageMap = [
-		'unknownerror' => 'apierror-unknownerror',
-		'unknownerror-nocode' => 'apierror-unknownerror-nocode',
-		'ns-specialprotected' => 'ns-specialprotected',
-		'protectedinterface' => 'protectedinterface',
-		'namespaceprotected' => 'namespaceprotected',
-		'customcssprotected' => 'customcssprotected',
-		'customjsprotected' => 'customjsprotected',
-		'cascadeprotected' => 'cascadeprotected',
-		'protectedpagetext' => 'protectedpagetext',
-		'protect-cantedit' => 'protect-cantedit',
-		'deleteprotected' => 'deleteprotected',
-		'badaccess-group0' => 'badaccess-group0',
-		'badaccess-groups' => 'badaccess-groups',
-		'titleprotected' => 'titleprotected',
-		'nocreate-loggedin' => 'nocreate-loggedin',
-		'nocreatetext' => 'nocreatetext',
-		'movenologintext' => 'movenologintext',
-		'movenotallowed' => 'movenotallowed',
-		'confirmedittext' => 'confirmedittext',
-		'blockedtext' => 'apierror-blocked',
-		'autoblockedtext' => 'apierror-autoblocked',
-		'systemblockedtext' => 'apierror-systemblocked',
-		'actionthrottledtext' => 'apierror-ratelimited',
-		'alreadyrolled' => 'alreadyrolled',
-		'cantrollback' => 'cantrollback',
-		'readonlytext' => 'readonlytext',
-		'sessionfailure' => 'sessionfailure',
-		'cannotdelete' => 'cannotdelete',
-		'notanarticle' => 'apierror-missingtitle',
-		'selfmove' => 'selfmove',
-		'immobile_namespace' => 'apierror-immobilenamespace',
-		'articleexists' => 'articleexists',
-		'hookaborted' => 'hookaborted',
-		'cantmove-titleprotected' => 'cantmove-titleprotected',
-		'imagenocrossnamespace' => 'imagenocrossnamespace',
-		'imagetypemismatch' => 'imagetypemismatch',
-		'ip_range_invalid' => 'ip_range_invalid',
-		'range_block_disabled' => 'range_block_disabled',
-		'nosuchusershort' => 'nosuchusershort',
-		'badipaddress' => 'badipaddress',
-		'ipb_expiry_invalid' => 'ipb_expiry_invalid',
-		'ipb_already_blocked' => 'ipb_already_blocked',
-		'ipb_blocked_as_range' => 'ipb_blocked_as_range',
-		'ipb_cant_unblock' => 'ipb_cant_unblock',
-		'mailnologin' => 'apierror-cantsend',
-		'ipbblocked' => 'ipbblocked',
-		'ipbnounblockself' => 'ipbnounblockself',
-		'usermaildisabled' => 'usermaildisabled',
-		'blockedemailuser' => 'apierror-blockedfrommail',
-		'notarget' => 'apierror-notarget',
-		'noemail' => 'noemail',
-		'rcpatroldisabled' => 'rcpatroldisabled',
-		'markedaspatrollederror-noautopatrol' => 'markedaspatrollederror-noautopatrol',
-		'delete-toobig' => 'delete-toobig',
-		'movenotallowedfile' => 'movenotallowedfile',
-		'userrights-no-interwiki' => 'userrights-no-interwiki',
-		'userrights-nodatabase' => 'userrights-nodatabase',
-		'nouserspecified' => 'nouserspecified',
-		'noname' => 'noname',
-		'summaryrequired' => 'apierror-summaryrequired',
-		'import-rootpage-invalid' => 'import-rootpage-invalid',
-		'import-rootpage-nosubpage' => 'import-rootpage-nosubpage',
-		'readrequired' => 'apierror-readapidenied',
-		'writedisabled' => 'apierror-noapiwrite',
-		'writerequired' => 'apierror-writeapidenied',
-		'missingparam' => 'apierror-missingparam',
-		'invalidtitle' => 'apierror-invalidtitle',
-		'nosuchpageid' => 'apierror-nosuchpageid',
-		'nosuchrevid' => 'apierror-nosuchrevid',
-		'nosuchuser' => 'nosuchusershort',
-		'invaliduser' => 'apierror-invaliduser',
-		'invalidexpiry' => 'apierror-invalidexpiry',
-		'pastexpiry' => 'apierror-pastexpiry',
-		'create-titleexists' => 'apierror-create-titleexists',
-		'missingtitle-createonly' => 'apierror-missingtitle-createonly',
-		'cantblock' => 'apierror-cantblock',
-		'canthide' => 'apierror-canthide',
-		'cantblock-email' => 'apierror-cantblock-email',
-		'cantunblock' => 'apierror-permissiondenied-generic',
-		'cannotundelete' => 'cannotundelete',
-		'permdenied-undelete' => 'apierror-permissiondenied-generic',
-		'createonly-exists' => 'apierror-articleexists',
-		'nocreate-missing' => 'apierror-missingtitle',
-		'cantchangecontentmodel' => 'apierror-cantchangecontentmodel',
-		'nosuchrcid' => 'apierror-nosuchrcid',
-		'nosuchlogid' => 'apierror-nosuchlogid',
-		'protect-invalidaction' => 'apierror-protect-invalidaction',
-		'protect-invalidlevel' => 'apierror-protect-invalidlevel',
-		'toofewexpiries' => 'apierror-toofewexpiries',
-		'cantimport' => 'apierror-cantimport',
-		'cantimport-upload' => 'apierror-cantimport-upload',
-		'importnofile' => 'importnofile',
-		'importuploaderrorsize' => 'importuploaderrorsize',
-		'importuploaderrorpartial' => 'importuploaderrorpartial',
-		'importuploaderrortemp' => 'importuploaderrortemp',
-		'importcantopen' => 'importcantopen',
-		'import-noarticle' => 'import-noarticle',
-		'importbadinterwiki' => 'importbadinterwiki',
-		'import-unknownerror' => 'apierror-import-unknownerror',
-		'cantoverwrite-sharedfile' => 'apierror-cantoverwrite-sharedfile',
-		'sharedfile-exists' => 'apierror-fileexists-sharedrepo-perm',
-		'mustbeposted' => 'apierror-mustbeposted',
-		'show' => 'apierror-show',
-		'specialpage-cantexecute' => 'apierror-specialpage-cantexecute',
-		'invalidoldimage' => 'apierror-invalidoldimage',
-		'nodeleteablefile' => 'apierror-nodeleteablefile',
-		'fileexists-forbidden' => 'fileexists-forbidden',
-		'fileexists-shared-forbidden' => 'fileexists-shared-forbidden',
-		'filerevert-badversion' => 'filerevert-badversion',
-		'noimageredirect-anon' => 'apierror-noimageredirect-anon',
-		'noimageredirect-logged' => 'apierror-noimageredirect',
-		'spamdetected' => 'apierror-spamdetected',
-		'contenttoobig' => 'apierror-contenttoobig',
-		'noedit-anon' => 'apierror-noedit-anon',
-		'noedit' => 'apierror-noedit',
-		'wasdeleted' => 'apierror-pagedeleted',
-		'blankpage' => 'apierror-emptypage',
-		'editconflict' => 'editconflict',
-		'hashcheckfailed' => 'apierror-badmd5',
-		'missingtext' => 'apierror-notext',
-		'emptynewsection' => 'apierror-emptynewsection',
-		'revwrongpage' => 'apierror-revwrongpage',
-		'undo-failure' => 'undo-failure',
-		'content-not-allowed-here' => 'content-not-allowed-here',
-		'edit-hook-aborted' => 'edit-hook-aborted',
-		'edit-gone-missing' => 'edit-gone-missing',
-		'edit-conflict' => 'edit-conflict',
-		'edit-already-exists' => 'edit-already-exists',
-		'invalid-file-key' => 'apierror-invalid-file-key',
-		'nouploadmodule' => 'apierror-nouploadmodule',
-		'uploaddisabled' => 'uploaddisabled',
-		'copyuploaddisabled' => 'copyuploaddisabled',
-		'copyuploadbaddomain' => 'apierror-copyuploadbaddomain',
-		'copyuploadbadurl' => 'apierror-copyuploadbadurl',
-		'filename-tooshort' => 'filename-tooshort',
-		'filename-toolong' => 'filename-toolong',
-		'illegal-filename' => 'illegal-filename',
-		'filetype-missing' => 'filetype-missing',
-		'mustbeloggedin' => 'apierror-mustbeloggedin',
-	];
-
-	/**
-	 * @deprecated do not use
-	 * @param array|string|MessageSpecifier $error Element of a getUserPermissionsErrors()-style array
-	 * @return ApiMessage
-	 */
-	private function parseMsgInternal( $error ) {
-		$msg = Message::newFromSpecifier( $error );
-		if ( !$msg instanceof IApiMessage ) {
-			$key = $msg->getKey();
-			if ( isset( self::$messageMap[$key] ) ) {
-				$params = $msg->getParams();
-				array_unshift( $params, self::$messageMap[$key] );
-			} else {
-				$params = [ 'apierror-unknownerror', wfEscapeWikiText( $key ) ];
-			}
-			$msg = ApiMessage::create( $params );
-		}
-		return $msg;
-	}
-
-	/**
-	 * Return the error message related to a certain array
-	 * @deprecated since 1.29
-	 * @param array|string|MessageSpecifier $error Element of a getUserPermissionsErrors()-style array
-	 * @return [ 'code' => code, 'info' => info ]
-	 */
-	public function parseMsg( $error ) {
-		// Check whether someone passed the whole array, instead of one element as
-		// documented. This breaks if it's actually an array of fallback keys, but
-		// that's long-standing misbehavior introduced in r87627 to incorrectly
-		// fix T30797.
-		if ( is_array( $error ) ) {
-			$first = reset( $error );
-			if ( is_array( $first ) ) {
-				wfDebug( __METHOD__ . ' was passed an array of arrays. ' . wfGetAllCallers( 5 ) );
-				$error = $first;
-			}
-		}
-
-		$msg = $this->parseMsgInternal( $error );
-		return [
-			'code' => $msg->getApiCode(),
-			'info' => ApiErrorFormatter::stripMarkup(
-				$msg->inLanguage( 'en' )->useDatabase( false )->text()
-			),
-			'data' => $msg->getApiData()
-		];
-	}
-
-	/**
-	 * Output the error message related to a certain array
-	 * @deprecated since 1.29, use ApiBase::dieWithError() instead
-	 * @param array|string|MessageSpecifier $error Element of a getUserPermissionsErrors()-style array
-	 * @throws ApiUsageException always
-	 */
-	public function dieUsageMsg( $error ) {
-		$this->dieWithError( $this->parseMsgInternal( $error ) );
-	}
-
-	/**
-	 * Will only set a warning instead of failing if the global $wgDebugAPI
-	 * is set to true. Otherwise behaves exactly as dieUsageMsg().
-	 * @deprecated since 1.29, use ApiBase::dieWithErrorOrDebug() instead
-	 * @param array|string|MessageSpecifier $error Element of a getUserPermissionsErrors()-style array
-	 * @throws ApiUsageException
-	 * @since 1.21
-	 */
-	public function dieUsageMsgOrDebug( $error ) {
-		$this->dieWithErrorOrDebug( $this->parseMsgInternal( $error ) );
+		return $this->changeTagsContext;
 	}
 
 	/**@}*/

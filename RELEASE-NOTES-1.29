@@ -43,6 +43,12 @@ production.
   from certain IP ranges (e.g. private IPs).
 * (T59603) Added new magic word {{PAGELANGUAGE}} which returns the language code
   of the page being parsed.
+* A new hook, ChangeTagsRegister, can be used to define tags added by
+ extensions, along with their active status and additional data.
+** The hooks ListDefinedTags and ChangeTagsListActive are deprecated in favor
+  of ChangeTagsRegister. In addition, the ChangeTagCanDelete hook is removed,
+  and the new ChangeTagsRegister hook must be used to allow admins to delete
+  extension-defined tags.
 
 === External library changes in 1.29 ===
 
