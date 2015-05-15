@@ -390,7 +390,8 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->tagFilter = $tagFilter;
 		$this->getDateCond( $year, $month );
 		$this->conds = $conds;
-		$this->showTagEditUI = ChangeTags::showTagEditingUI( $this->getUser() );
+		$changeTagsContext = new ChangeTagsContext( $this->getContext()->getConfig() );
+		$this->showTagEditUI = $changeTagsContext->showTagEditingUI( $this->getUser() );
 	}
 
 	// For hook compatibility...
