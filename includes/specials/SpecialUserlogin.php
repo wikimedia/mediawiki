@@ -710,7 +710,11 @@ class LoginForm extends SpecialPage {
 		}
 
 		$u = User::newFromName( $this->mUsername );
+		if ( $u === false ) {
+			return self::ILLEGAL;
+		}
 
+		$msg = null;
 		// Give extensions a way to indicate the username has been updated,
 		// rather than telling the user the account doesn't exist.
 		if ( !Hooks::run( 'LoginUserMigrated', array( $u, &$msg ) ) ) {
@@ -718,7 +722,7 @@ class LoginForm extends SpecialPage {
 			return self::USER_MIGRATED;
 		}
 
-		if ( !( $u instanceof User ) || !User::isUsableName( $u->getName() ) ) {
+		if ( !User::isUsableName( $u->getName() ) ) {
 			return self::ILLEGAL;
 		}
 
@@ -736,7 +740,6 @@ class LoginForm extends SpecialPage {
 
 		// Give general extensions, such as a captcha, a chance to abort logins
 		$abort = self::ABORTED;
-		$msg = null;
 		if ( !Hooks::run( 'AbortLogin', array( $u, $this->mPassword, &$abort, &$msg ) ) ) {
 			$this->mAbortLoginErrorMsg = $msg;
 
