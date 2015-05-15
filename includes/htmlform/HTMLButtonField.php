@@ -21,7 +21,13 @@ class HTMLButtonField extends HTMLFormField {
 			'id' => $this->mID,
 		) + $this->getAttributes( array( 'disabled', 'tabindex' ) );
 
-		return Html::input( $this->mName, $value, $this->buttonType, $attr );
+		if ( $this->buttonType === 'submit' ) {
+			$modifiers = array( 'mw-ui-constructive' );
+		} else {
+			$modifiers = array( 'mw-ui-progressive' );
+		}
+
+		return Html::input( $this->mName, $value, $this->buttonType, $attr, $modifiers );
 	}
 
 	/**
