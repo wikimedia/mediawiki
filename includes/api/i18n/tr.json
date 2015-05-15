@@ -1,9 +1,16 @@
 {
 	"@metadata": {
 		"authors": [
-			"Sayginer"
+			"Sayginer",
+			"Sadrettin"
 		]
 	},
+	"apihelp-createaccount-param-name": "Kullanıcı adı.",
+	"apihelp-createaccount-param-password": "Parola (ignored if <var>$1mailpassword</var> is set).",
+	"apihelp-createaccount-param-email": "Kullanıcının e-posta adresi (isteğe bağlı).",
+	"apihelp-createaccount-param-realname": "Kullanıcının gerçek adı (isteğe bağlı).",
+	"apihelp-delete-description": "Sayfayı sil.",
+	"apihelp-edit-description": "Sayfa oluştur ve düzenle.",
 	"apihelp-edit-param-text": "Sayfa içeriği.",
 	"apihelp-edit-param-minor": "Küçük değişiklik.",
 	"apihelp-edit-param-nocreate": "Sayfa mevcut değilse hata oluştur.",

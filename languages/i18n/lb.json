@@ -3007,6 +3007,7 @@
 	"revdelete-uname-unhid": "Benotzernumm net verstoppt",
 	"revdelete-restricted": "Limitatioune fir Administrateuren ageschalt",
 	"revdelete-unrestricted": "Limitatioune fir Administrateuren opgehuewen",
+	"logentry-block-block": "$1 {{GENDER:$2|huet}} {{GENDER:$4|$3}} fir eng Zäit vun $5 $6 gespaart",
 	"logentry-block-unblock": "$1 {{GENDER:$2|huet}} d'Spär vum {{GENDER:$4|$3}} opgehuewen",
 	"logentry-import-interwiki": "$1 huet $3 vun enger anerer Wiki {{GENDER:$2|importéiert}}",
 	"logentry-move-move": "$1 huet d'Säit $3 op $4 {{GENDER:$2|geréckelt}}",
