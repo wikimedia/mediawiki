@@ -1101,6 +1101,7 @@ $wgAutoloadLocalClasses = [
 	'PopulateRecentChangesSource' => __DIR__ . '/maintenance/populateRecentChangesSource.php',
 	'PopulateRevisionLength' => __DIR__ . '/maintenance/populateRevisionLength.php',
 	'PopulateRevisionSha1' => __DIR__ . '/maintenance/populateRevisionSha1.php',
+	'PopulateTagUsageStatistics' => __DIR__ . '/maintenance/populateTagUsageStatistics.php',
 	'PostgreSqlLockManager' => __DIR__ . '/includes/libs/lockmanager/PostgreSqlLockManager.php',
 	'PostgresBlob' => __DIR__ . '/includes/libs/rdbms/encasing/PostgresBlob.php',
 	'PostgresField' => __DIR__ . '/includes/libs/rdbms/field/PostgresField.php',
