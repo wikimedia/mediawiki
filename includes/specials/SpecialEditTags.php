@@ -298,7 +298,12 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			$html .= '<tr><td>' . $this->msg( 'tags-edit-existing-tags' )->escaped() .
 				'</td><td>';
 			if ( $tags ) {
-				$html .= $this->getLanguage()->commaList( array_map( 'htmlspecialchars', $tags ) );
+				$appTags = [];
+				foreach ( $tags as $tag ) {
+					// use tag appearance, making sure it is not empty
+					$appTags[] = ChangeTags::tagAppearance( $tag, true );
+				}
+				$html .= $this->getLanguage()->commaList( $appTags );
 			} else {
 				$html .= $this->msg( 'tags-edit-existing-tags-none' )->parse();
 			}
@@ -327,7 +332,8 @@ class SpecialEditTags extends UnlistedSpecialPage {
 				'wpRemoveAllTags', 'mw-edittags-remove-all' );
 			$i = 0; // used for generating checkbox IDs only
 			foreach ( $tags as $tag ) {
-				$html .= Xml::element( 'br' ) . "\n" . Xml::checkLabel( $tag,
+				$tagLabel = ChangeTags::tagAppearance( $tag, true );
+				$html .= Xml::element( 'br' ) . "\n" . Xml::checkLabel( $tagLabel,
 					'wpTagsToRemove[]', 'mw-edittags-remove-' . $i++, false, [
 						'value' => $tag,
 						'class' => 'mw-edittags-remove-checkbox',
@@ -367,13 +373,15 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		$storedTags = $changeTagsContext->getStored();
 
 		$tags = [];
-		// Values of $tags are also used as <option> labels
+		// The appearance of each $tag is used as <option> label,
+		// required to be nonempty
 		foreach ( $storedTags  as $tag => &$val ) {
-			$select->addOption( $tag, $tag );
+			$select->addOption( ChangeTags::tagAppearance( $tag, true ), $tag );
 		}
+		// Also add selected tags if not already present
 		foreach ( $selectedTags as $tag ) {
 			if ( !isset( $storedTags[$tag] ) ) {
-				$select->addOption( $tag, $tag );
+				$select->addOption( ChangeTags::tagAppearance( $tag, true ), $tag );
 			}
 		}
 
