@@ -36,6 +36,7 @@ class ApiQueryTags extends ApiQueryBase {
 	}
 
 	public function execute() {
+		global $wgUseChangeTagStatisticsTable;
 		$params = $this->extractRequestParams();
 
 		$prop = array_flip( $params['prop'] );
@@ -43,6 +44,7 @@ class ApiQueryTags extends ApiQueryBase {
 		$fld_displayname = isset( $prop['displayname'] );
 		$fld_description = isset( $prop['description'] );
 		$fld_hitcount = isset( $prop['hitcount'] );
+		$fld_timestamp = isset( $prop['timestamp'] );
 		$fld_defined = isset( $prop['defined'] );
 		$fld_source = isset( $prop['source'] );
 		$fld_active = isset( $prop['active'] );
@@ -53,10 +55,27 @@ class ApiQueryTags extends ApiQueryBase {
 		$softwareDefinedTags = array_fill_keys( ChangeTags::listSoftwareDefinedTags(), 0 );
 		$explicitlyDefinedTags = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), 0 );
 		$softwareActivatedTags = array_fill_keys( ChangeTags::listSoftwareActivatedTags(), 0 );
-		$tagStats = ChangeTags::tagUsageStatistics();
 
-		$tagHitcounts = array_merge( $softwareDefinedTags, $explicitlyDefinedTags, $tagStats );
-		$tags = array_keys( $tagHitcounts );
+		if ( $wgUseChangeTagStatisticsTable > 1 ) {
+			$this->addTables( 'change_tag_statistics' );
+			$this->addFields( [ 'cts_tag', 'cts_count', 'cts_timestamp' ] );
+			$this->addOption( 'LIMIT', $limit + 1 );
+			$this->addWhereRange( 'cts_tag', 'newer', $params['continue'], null );
+			$res = $this->select( __METHOD__ );
+
+			$hitCounts = [];
+			$timestamps = [];
+			foreach ( $res as $row ) {
+				$hitCounts[$row->cts_tag] = (int)$row->cts_count;
+				$timestamps[$row->cts_tag] = (string)$row->cts_timestamp;
+			}
+		} else {
+			$hitCounts = ChangeTags::tagUsageStatistics();
+			$timestamps = [];
+		}
+
+		$allTagStats = array_merge( $softwareDefinedTags, $explicitlyDefinedTags, $tagStats );
+		$tags = array_keys( $allTagStats );
 
 		# Fetch defined tags that aren't past the continuation
 		if ( $params['continue'] !== null ) {
@@ -89,7 +108,11 @@ class ApiQueryTags extends ApiQueryBase {
 			}
 
 			if ( $fld_hitcount ) {
-				$tag['hitcount'] = intval( $tagHitcounts[$tagName] );
+				$tag['hitcount'] = isset( $hitCounts[$tagName] ) ? intval( $hitCounts[$tagName] ) : 0;
+			}
+
+			if ( $fld_timestamp ) {
+				$tag['timestamp'] = isset( $timestamps[$tagName] ) ? $timestamps[$tagName] : null;
 			}
 
 			$isSoftware = isset( $softwareDefinedTags[$tagName] );
@@ -147,6 +170,7 @@ class ApiQueryTags extends ApiQueryBase {
 					'displayname',
 					'description',
 					'hitcount',
+					'timestamp',
 					'defined',
 					'source',
 					'active',
