@@ -176,7 +176,8 @@ class SpecialTags extends SpecialPage {
 		$newRow .= Xml::tags( 'td', null, Xml::element( 'code', null, $tag ) );
 
 		$linkRenderer = $this->getLinkRenderer();
-		$disp = ChangeTags::tagDescription( $tag, $this->getContext() );
+		$utility = new ChangeTagsUtility( $this->getContext() );
+		$disp = $utility->tagDescription( $tag );
 		if ( $showEditLinks ) {
 			$disp .= ' ';
 			$editLink = $linkRenderer->makeLink(
