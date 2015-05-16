@@ -6819,6 +6819,13 @@ $wgAllowCategorizedRecentChanges = false;
 $wgUseTagFilter = true;
 
 /**
+ * Uses the change_tag_statistics table instead of change_tag to retrieve
+ * tag hitcounts, requires populateTagUsageStatistics to have been run,
+ * which requires patch_change_tag_statistics applied
+ */
+$wgUseChangeTagStatisticsTable = false;
+
+/**
  * If set to an integer, pages that are watched by this many users or more
  * will not require the unwatchedpages permission to view the number of
  * watchers.

@@ -172,6 +172,7 @@ class ChangeTags {
 		&$rev_id = null, &$log_id = null, $params = null, RecentChange $rc = null,
 		User $user = null
 	) {
+		global $wgUseChangeTagStatisticsTable;
 
 		$tagsToAdd = array_filter( (array)$tagsToAdd ); // Make sure we're submitting all tags...
 		$tagsToRemove = array_filter( (array)$tagsToRemove );
@@ -272,6 +273,14 @@ class ChangeTags {
 			}
 
 			$dbw->insert( 'change_tag', $tagsRows, __METHOD__, [ 'IGNORE' ] );
+			if ( $wgUseChangeTagStatisticsTable ) {
+				$dbw->update(
+					'change_tag_statistics',
+					[ 'cts_count = cts_count + 1' ],
+					[ 'cts_tag' => $tagsToAdd ],
+					__METHOD__
+				);
+			}
 		}
 
 		// delete from change_tag
@@ -286,6 +295,14 @@ class ChangeTags {
 					]
 				);
 				$dbw->delete( 'change_tag', $conds, __METHOD__ );
+			}
+			if ( $wgUseChangeTagStatisticsTable ) {
+				$dbw->update(
+					'change_tag_statistics',
+					[ 'cts_count = cts_count - 1' ],
+					[ 'cts_tag' => $tagsToRemove ],
+					__METHOD__
+				);
 			}
 		}
 
@@ -1018,6 +1035,7 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function deleteTagEverywhere( $tag ) {
+		global $wgUseChangeTagStatisticsTable;
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->startAtomic( __METHOD__ );
 
@@ -1039,6 +1057,10 @@ class ChangeTags {
 
 		// delete from change_tag
 		$dbw->delete( 'change_tag', [ 'ct_tag' => $tag ], __METHOD__ );
+
+		if ( $wgUseChangeTagStatisticsTable ) {
+			$dbw->delete( 'change_tag_statistics', [ 'cts_tag' => $tag ], __METHOD__ );
+		}
 
 		$dbw->endAtomic( __METHOD__ );
 
@@ -1314,21 +1336,39 @@ class ChangeTags {
 			wfMemcKey( 'change-tag-statistics' ),
 			WANObjectCache::TTL_MINUTE * 5,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
+				global $wgUseChangeTagStatisticsTable;
 				$dbr = wfGetDB( DB_REPLICA, 'vslow' );
 
 				$setOpts += Database::getCacheSetOptions( $dbr );
 
-				$res = $dbr->select(
-					'change_tag',
-					[ 'ct_tag', 'hitcount' => 'count(*)' ],
-					[],
-					$fname,
-					[ 'GROUP BY' => 'ct_tag', 'ORDER BY' => 'hitcount DESC' ]
-				);
+				if ( $wgUseChangeTagStatisticsTable ) {
+					$res = $dbr->select(
+						'change_tag_statistics',
+						[ 'cts_tag', 'cts_count' ],
+						[],
+						$fname,
+						[ 'ORDER BY' => 'cts_count DESC' ]
+					);
 
-				$out = [];
-				foreach ( $res as $row ) {
-					$out[$row->ct_tag] = $row->hitcount;
+					$out = [];
+					foreach ( $res as $row ) {
+						if ( $row->cts_count ) {
+							$out[$row->cts_tag] = $row->cts_count;
+						}
+					}
+				} else {
+					$res = $dbr->select(
+						'change_tag',
+						[ 'ct_tag', 'hitcount' => 'count(*)' ],
+						[],
+						$fname,
+						[ 'GROUP BY' => 'ct_tag', 'ORDER BY' => 'hitcount DESC' ]
+					);
+
+					$out = [];
+					foreach ( $res as $row ) {
+						$out[$row->ct_tag] = $row->hitcount;
+					}
 				}
 
 				return $out;
