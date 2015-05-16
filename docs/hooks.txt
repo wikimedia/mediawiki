@@ -2483,6 +2483,9 @@ $terms: Search terms, for highlighting
   hit. Must include the <li> ... </li> tags. Will only be used if the hook
   function returned false.
 
+'Shutdown': Execute work after the response has been sent to the client.
+$context: Main RequestContext.
+
 'SiteNoticeBefore': Before the sitenotice/anonnotice is composed. Return true to
 allow the normal method of notice selection/rendering to work, or change the
 value of $siteNotice and return false to alter it.

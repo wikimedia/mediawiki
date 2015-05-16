@@ -437,14 +437,11 @@ class MediaWiki {
 				wfGetLBFactory()->commitMasterChanges();
 				$e->report(); // display the GUI error
 			}
-			if ( function_exists( 'fastcgi_finish_request' ) ) {
-				fastcgi_finish_request();
-			}
-			$this->triggerJobs();
 			$this->restInPeace();
 		} catch ( Exception $e ) {
 			MWExceptionHandler::handleException( $e );
 		}
+
 	}
 
 	/**
@@ -595,25 +592,58 @@ class MediaWiki {
 	}
 
 	/**
+	 * Shut down the RequestContext and dispatch any deferred tasks that should
+	 * be executed once it has terminated.
+	 */
+	private function shutdown() {
+		$onShutdown = function () {
+			Hooks::run( 'Shutdown', array( RequestContext::getMain() ) );
+		};
+
+		// Choose a mechanism for dispatching work to be done after returning
+		// a response to the user:
+		//
+		// - On HHVM, use `register_postsend_function`, as described in
+		//   https://github.com/facebook/hhvm/issues/1230#issuecomment-42626926
+		// - On php-fpm, use `fastcgi_finish_request`.
+		// - On vanilla Zend PHP, use `register_shutdown_function`.
+		if ( function_exists( 'register_postsend_function' ) ) {
+			register_postsend_function( $onShutdown );
+		} else if ( function_exists( 'fastcgi_finish_request' ) ) {
+			fastcgi_finish_request();
+			$onShutdown();
+		} else {
+			register_shutdown_function( $onShutdown );
+		}
+	}
+
+	/**
 	 * Ends this task peacefully
 	 */
 	public function restInPeace() {
-		// Ignore things like master queries/connections on GET requests
-		// as long as they are in deferred updates (which catch errors).
-		Profiler::instance()->getTransactionProfiler()->resetExpectations();
+		$self = $this;
+		Hooks::register( 'Shutdown', function () use ( $self ) {
+			$self->triggerJobs();
 
-		// Do any deferred jobs
-		DeferredUpdates::doUpdates( 'commit' );
+			// Ignore things like master queries/connections on GET requests
+			// as long as they are in deferred updates (which catch errors).
+			Profiler::instance()->getTransactionProfiler()->resetExpectations();
 
-		// Log profiling data, e.g. in the database or UDP
-		wfLogProfilingData();
+			// Do any deferred jobs
+			DeferredUpdates::doUpdates( 'commit' );
 
-		// Commit and close up!
-		$factory = wfGetLBFactory();
-		$factory->commitMasterChanges();
-		$factory->shutdown();
+			// Log profiling data, e.g. in the database or UDP
+			wfLogProfilingData();
 
-		wfDebug( "Request ended normally\n" );
+			// Commit and close up!
+			$factory = wfGetLBFactory();
+			$factory->commitMasterChanges();
+			$factory->shutdown();
+
+			wfDebug( "Request ended normally\n" );
+		} );
+
+		$this->shutdown();
 	}
 
 	/**
@@ -621,7 +651,7 @@ class MediaWiki {
 	 * to run a specified number of jobs. This registers a callback to cleanup
 	 * the socket once it's done.
 	 */
-	protected function triggerJobs() {
+	public function triggerJobs() {
 		$jobRunRate = $this->config->get( 'JobRunRate' );
 		if ( $jobRunRate <= 0 || wfReadOnly() ) {
 			return;
