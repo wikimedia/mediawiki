@@ -36,6 +36,7 @@ class ApiQueryTags extends ApiQueryBase {
 	}
 
 	public function execute() {
+		global $wgUseChangeTagStatisticsTable;
 		$params = $this->extractRequestParams();
 
 		$prop = array_flip( $params['prop'] );
@@ -68,15 +69,27 @@ class ApiQueryTags extends ApiQueryBase {
 		}
 
 		# Merge in all used tags
-		$this->addTables( 'change_tag' );
-		$this->addFields( 'ct_tag' );
-		$this->addFields( [ 'hitcount' => $fld_hitcount ? 'COUNT(*)' : '0' ] );
-		$this->addOption( 'LIMIT', $limit + 1 );
-		$this->addOption( 'GROUP BY', 'ct_tag' );
-		$this->addWhereRange( 'ct_tag', 'newer', $params['continue'], null );
-		$res = $this->select( __METHOD__ );
-		foreach ( $res as $row ) {
-			$tags[$row->ct_tag] = (int)$row->hitcount;
+		if ( $wgUseChangeTagStatisticsTable > 1 ) {
+			$this->addTables( 'change_tag_statistics' );
+			$this->addFields( 'cts_tag' );
+			$this->addFields( 'cts_count' );
+			$this->addOption( 'LIMIT', $limit + 1 );
+			$this->addWhereRange( 'cts_tag', 'newer', $params['continue'], null );
+			$res = $this->select( __METHOD__ );
+			foreach ( $res as $row ) {
+				$tags[$row->cts_tag] = (int)$row->cts_count;
+			}
+		} else {
+			$this->addTables( 'change_tag' );
+			$this->addFields( 'ct_tag' );
+			$this->addFields( [ 'hitcount' => $fld_hitcount ? 'COUNT(*)' : '0' ] );
+			$this->addOption( 'LIMIT', $limit + 1 );
+			$this->addOption( 'GROUP BY', 'ct_tag' );
+			$this->addWhereRange( 'ct_tag', 'newer', $params['continue'], null );
+			$res = $this->select( __METHOD__ );
+			foreach ( $res as $row ) {
+				$tags[$row->ct_tag] = (int)$row->hitcount;
+			}
 		}
 
 		# Now make sure the array is sorted for proper continuation

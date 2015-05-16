@@ -675,6 +675,11 @@ CREATE UNIQUE INDEX change_tag_log_tag ON change_tag(ct_log_id,ct_tag);
 CREATE UNIQUE INDEX change_tag_rev_tag ON change_tag(ct_rev_id,ct_tag);
 CREATE INDEX change_tag_tag_id ON change_tag(ct_tag,ct_rc_id,ct_rev_id,ct_log_id);
 
+CREATE TABLE /*_*/change_tag_statistics (
+  cts_tag TEXT NOT NULL PRIMARY KEY,
+  cts_count INTEGER unsigned DEFAULT 0
+) /*$wgDBTableOptions*/;
+
 CREATE SEQUENCE tag_summary_ts_id_seq;
 CREATE TABLE tag_summary (
   ts_id      INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('tag_summary_ts_id_seq'),
