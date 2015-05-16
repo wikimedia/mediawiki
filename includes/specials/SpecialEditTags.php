@@ -299,7 +299,13 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			$html .= '<tr><td>' . $this->msg( 'tags-edit-existing-tags' )->escaped() .
 				'</td><td>';
 			if ( $tags ) {
-				$html .= $this->getLanguage()->commaList( array_map( 'htmlspecialchars', $tags ) );
+				$appTags = [];
+				foreach ( $tags as $tag ) {
+					// use tag description
+					$name = ChangeTags::decodedStrippedTagDescription( $tag, $this->getContext() );
+					$appTags[] = $name ? $name : $tag;
+				}
+				$html .= $this->getLanguage()->commaList( $appTags );
 			} else {
 				$html .= $this->msg( 'tags-edit-existing-tags-none' )->parse();
 			}
@@ -328,7 +334,10 @@ class SpecialEditTags extends UnlistedSpecialPage {
 				'wpRemoveAllTags', 'mw-edittags-remove-all' );
 			$i = 0; // used for generating checkbox IDs only
 			foreach ( $tags as $tag ) {
-				$html .= Xml::element( 'br' ) . "\n" . Xml::checkLabel( $tag,
+				// use tag description
+				$name = ChangeTags::decodedStrippedTagDescription( $tag, $this->getContext() );
+				$tagLabel = $name ? $name : $tag;
+				$html .= Xml::element( 'br' ) . "\n" . Xml::checkLabel( $tagLabel,
 					'wpTagsToRemove[]', 'mw-edittags-remove-' . $i++, false, [
 						'value' => $tag,
 						'class' => 'mw-edittags-remove-checkbox',
@@ -367,8 +376,14 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		$tags = ChangeTags::listExplicitlyDefinedTags();
 		$tags = array_unique( array_merge( $tags, $selectedTags ) );
 
-		// Values of $tags are also used as <option> labels
-		$select->addOptions( array_combine( $tags, $tags ) );
+		// The description of each $tag is used as <option> label
+		foreach ( $tags as $tag ) {
+			$name = ChangeTags::decodedStrippedTagDescription( $tag, $this->getContext() );
+			$select->addOption(
+				$name ? $name : $tag,
+				$tag
+			);
+		}
 
 		$result[1] = $select->getHTML();
 		return $result;

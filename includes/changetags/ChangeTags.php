@@ -118,6 +118,20 @@ class ChangeTags {
 	}
 
 	/**
+	 * Extract text from tag description
+	 * This is for drop down menus.
+	 *
+	 * @param string $tag Tag
+	 * @param IContextSource $context
+	 * @return string Decoded, tag-stripped html
+	 * @since 1.29
+	 */
+	public static function decodedStrippedTagDescription( $tag, IContextSource $context ) {
+		$html = self::tagDescription( $tag, $context );
+		return $html ? trim( html_entity_decode( strip_tags( $html ), ENT_QUOTES ) ) : '';
+	}
+
+	/**
 	 * Add tags to a change given its rc_id, rev_id and/or log_id
 	 *
 	 * @param string|string[] $tags Tags to add to the change
@@ -663,11 +677,10 @@ class ChangeTags {
 	}
 
 	/**
-	 * Build a text box to select a change tag
+	 * Build a drop-down menu to select a change tag
 	 *
 	 * @param string $selected Tag to select by default
-	 * @param bool $ooui Use an OOUI TextInputWidget as selector instead of a non-OOUI input field
-	 *        You need to call OutputPage::enableOOUI() yourself.
+	 * @param bool $ooui Use an OOUI HTMLSelectField as selector instead of a non-OOUI select field
 	 * @param IContextSource|null $context
 	 * @note Even though it takes null as a valid argument, an IContextSource is preferred
 	 *       in a new code, as the null value can change in the future
@@ -681,34 +694,53 @@ class ChangeTags {
 		}
 
 		$config = $context->getConfig();
-		if ( !$config->get( 'UseTagFilter' ) || !count( self::listDefinedTags() ) ) {
+		$tagList = self::secondaryTagUsageStatistics( $config );
+		// check config
+		if ( !$config->get( 'UseTagFilter' ) || !$tagList ) {
 			return [];
 		}
 
-		$data = [
-			Html::rawElement(
-				'label',
-				[ 'for' => 'tagfilter' ],
-				$context->msg( 'tag-filter' )->parse()
-			)
-		];
-
-		if ( $ooui ) {
-			$data[] = new OOUI\TextInputWidget( [
-				'id' => 'tagfilter',
-				'name' => 'tagfilter',
-				'value' => $selected,
-				'classes' => 'mw-tagfilter-input',
-			] );
-		} else {
-			$data[] = Xml::input(
-				'tagfilter',
-				20,
-				$selected,
-				[ 'class' => 'mw-tagfilter-input mw-ui-input mw-ui-input-inline', 'id' => 'tagfilter' ]
-			);
+		// make drop down menu for tags - T27909
+		$options = [ $context->msg( 'tags-all' )->text() => '' ];
+		// add tags
+		foreach ( array_keys( $tagList ) as $tag ) {
+			$name = self::decodedStrippedTagDescription( $tag, $context );
+			// tags with an empty description are not included in the drop down list
+			if ( $name !== '' ) {
+				$options[$name] = $tag;
+			}
+		}
+		if ( !$selected ) {
+			$selected = '';
 		}
 
+		if ( $ooui ) {
+			$formDescriptor = [
+				'tag' => [
+					'type' => 'select',
+					'name' => 'tagfilter',
+					'label-message' => 'tag-filter',
+					'options' => $options,
+					'default' => $selected
+				],
+			];
+			$data = [
+				HTMLForm::factory( 'ooui', $formDescriptor, $context )
+					->prepareForm()
+					->displayForm()
+			];
+		} else {
+			$select = new XmlSelect( 'tagfilter', 'mw-tagfilter', $selected );
+			$select->setOptions( $options );
+			$data = [
+				Html::rawElement(
+					'label',
+					[ 'for' => 'tagfilter' ],
+					$context->msg( 'tag-filter' )->parse()
+				),
+				$select->getHTML()
+			];
+		}
 		return $data;
 	}
 
@@ -1038,6 +1070,8 @@ class ChangeTags {
 
 		// clear the memcache of defined tags
 		self::purgeTagCacheAll();
+		// also clear drop down menus cache
+		self::purgeSecondaryTagUsageCache();
 
 		return $status;
 	}
@@ -1270,13 +1304,23 @@ class ChangeTags {
 	}
 
 	/**
-	 * Invalidates the tag statistics cache only.
+	 * Invalidates the primary tag statistics cache only.
 	 * @since 1.25
 	 */
 	public static function purgeTagUsageCache() {
 		$cache = ObjectCache::getMainWANInstance();
 
-		$cache->touchCheckKey( wfMemcKey( 'change-tag-statistics' ) );
+		$cache->touchCheckKey( wfMemcKey( 'change-tag-statistics-primary' ) );
+	}
+
+	/**
+	 * Invalidates the secondary tag statistics cache only.
+	 * @since 1.29
+	 */
+	public static function purgeSecondaryTagUsageCache() {
+		$cache = ObjectCache::getMainWANInstance();
+
+		$cache->touchCheckKey( wfMemcKey( 'change-tag-statistics-secondary' ) );
 	}
 
 	/**
@@ -1284,15 +1328,15 @@ class ChangeTags {
 	 * tagged with them, ordered descending by the hitcount.
 	 * This does not include tags defined somewhere that have never been applied.
 	 *
-	 * Keeps a short-term cache in memory, so calling this multiple times in the
-	 * same request should be fine.
+	 * This cache is invalidated whenever tags are updated and thus the data is
+	 * always up to date.
 	 *
 	 * @return array Array of string => int
 	 */
 	public static function tagUsageStatistics() {
 		$fname = __METHOD__;
 		return ObjectCache::getMainWANInstance()->getWithSetCallback(
-			wfMemcKey( 'change-tag-statistics' ),
+			wfMemcKey( 'change-tag-statistics-primary' ),
 			WANObjectCache::TTL_MINUTE * 5,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
 				$dbr = wfGetDB( DB_REPLICA, 'vslow' );
@@ -1315,8 +1359,36 @@ class ChangeTags {
 				return $out;
 			},
 			[
-				'checkKeys' => [ wfMemcKey( 'change-tag-statistics' ) ],
+				'checkKeys' => [ wfMemcKey( 'change-tag-statistics-primary' ) ],
 				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
+				'pcTTL' => WANObjectCache::TTL_PROC_LONG
+			]
+		);
+	}
+
+	/**
+	 * Returns a map of any tags used on the wiki to number of edits
+	 * tagged with them, ordered descending by the hitcount as of the
+	 * latest caching.
+	 * This does not include tags defined somewhere that have never been applied.
+	 *
+	 * This cache is invalidated only on deletion of a tag and thus the data may be
+	 * outdated by up to 24 hours.
+	 *
+	 * @return array Array of tags mapped to their hitcount
+	 * @since 1.29
+	 */
+	public static function secondaryTagUsageStatistics() {
+		$expiry = WANObjectCache::TTL_DAY;
+		return ObjectCache::getMainWANInstance()->getWithSetCallback(
+			wfMemcKey( 'change-tag-statistics-secondary' ),
+			$expiry,
+			function( $oldValue, &$ttl, array &$setOpts ) {
+				return self::tagUsageStatistics();
+			},
+			[
+				'checkKeys' => [ wfMemcKey( 'change-tag-statistics-secondary' ) ],
+				'lockTSE' => $expiry,
 				'pcTTL' => WANObjectCache::TTL_PROC_LONG
 			]
 		);
