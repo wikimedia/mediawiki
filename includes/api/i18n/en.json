@@ -1210,6 +1210,7 @@
 	"apihelp-query+tags-paramvalue-prop-displayname": "Adds system message for the tag.",
 	"apihelp-query+tags-paramvalue-prop-description": "Adds description of the tag.",
 	"apihelp-query+tags-paramvalue-prop-hitcount": "Adds the number of revisions and log entries that have this tag.",
+	"apihelp-query+tags-paramvalue-prop-timestamp": "Adds the timestamp of the last tag addition, null if unknown or never.",
 	"apihelp-query+tags-paramvalue-prop-defined": "Indicate whether the tag is defined.",
 	"apihelp-query+tags-paramvalue-prop-source": "Gets the sources of the tag, which may include <samp>extension</samp> for extension-defined tags and <samp>manual</samp> for tags that may be applied manually by users.",
 	"apihelp-query+tags-paramvalue-prop-active": "Whether the tag is still being applied.",
