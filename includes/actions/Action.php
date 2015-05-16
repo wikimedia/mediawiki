@@ -385,6 +385,7 @@ abstract class Action {
 	 * @since 1.25
 	 */
 	public function addHelpLink( $to, $overrideBaseUrl = false ) {
+		global $wgContLang;
 		$msg = wfMessage( $wgContLang->lc( $this->getActionName() ) . '-helppage' );
 
 		if ( !$msg->isDisabled() ) {
