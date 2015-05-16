@@ -753,6 +753,15 @@ CREATE UNIQUE INDEX &mw_prefix.change_tag_u02 ON &mw_prefix.change_tag (ct_log_i
 CREATE UNIQUE INDEX &mw_prefix.change_tag_u03 ON &mw_prefix.change_tag (ct_rev_id,ct_tag);
 CREATE INDEX &mw_prefix.change_tag_i01 ON &mw_prefix.change_tag (ct_tag,ct_rc_id,ct_rev_id,ct_log_id);
 
+CREATE TABLE /*_*/change_tag_statistics (
+  cts_tag VARCHAR2(255) NOT NULL,
+  cts_count NUMBER DEFAULT 0,
+  cts_timestamp TIMESTAMP(6) WITH TIME ZONE
+) /*$wgDBTableOptions*/;
+
+ALTER TABLE &mw_prefix.change_tag_statistics ADD CONSTRAINT &mw_prefix.change_tag_statistics_pk PRIMARY KEY (cts_tag);
+CREATE INDEX &mw_prefix.change_tag_statistics_i01 ON &mw_prefix.change_tag_statistics (cts_count);
+
 CREATE TABLE &mw_prefix.tag_summary (
   ts_id NUMBER NOT NULL,
   ts_rc_id NUMBER NULL,

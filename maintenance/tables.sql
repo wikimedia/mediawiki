@@ -1707,6 +1707,16 @@ CREATE UNIQUE INDEX /*i*/change_tag_rev_tag ON /*_*/change_tag (ct_rev_id,ct_tag
 -- Covering index, so we can pull all the info only out of the index.
 CREATE INDEX /*i*/change_tag_tag_id ON /*_*/change_tag (ct_tag,ct_rc_id,ct_rev_id,ct_log_id);
 
+-- Table giving hit counts and timestamp of last addition for tags,
+-- to avoid expansive queries on change_tag.
+CREATE TABLE /*_*/change_tag_statistics (
+  cts_tag varchar(255) NOT NULL PRIMARY KEY,
+  cts_count bigint unsigned default 0,
+  cts_timestamp varbinary(14) NOT NULL default ''
+) /*$wgDBTableOptions*/;
+
+-- Index so we can sort by count
+CREATE INDEX /*i*/change_tag_statistics_count ON /*_*/change_tag_statistics (cts_count);
 
 -- Rollup table to pull a LIST of tags simply without ugly GROUP_CONCAT
 -- that only works on MySQL 4.1+
