@@ -298,7 +298,12 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			$html .= '<tr><td>' . $this->msg( 'tags-edit-existing-tags' )->escaped() .
 				'</td><td>';
 			if ( $tags ) {
-				$html .= $this->getLanguage()->commaList( array_map( 'htmlspecialchars', $tags ) );
+				$appTags = [];
+				foreach ( $tags as $tag ) {
+					// use tag appearance, making sure it is not empty
+					$appTags[] = ChangeTags::tagAppearance( $tag, true, $this->getContext() );
+				}
+				$html .= $this->getLanguage()->commaList( $appTags );
 			} else {
 				$html .= $this->msg( 'tags-edit-existing-tags-none' )->parse();
 			}
@@ -327,7 +332,9 @@ class SpecialEditTags extends UnlistedSpecialPage {
 				'wpRemoveAllTags', 'mw-edittags-remove-all' );
 			$i = 0; // used for generating checkbox IDs only
 			foreach ( $tags as $tag ) {
-				$html .= Xml::element( 'br' ) . "\n" . Xml::checkLabel( $tag,
+				// use tag appearance, making sure it is not empty
+				$tagLabel = ChangeTags::tagAppearance( $tag, true, $this->getContext() );
+				$html .= Xml::element( 'br' ) . "\n" . Xml::checkLabel( $tagLabel,
 					'wpTagsToRemove[]', 'mw-edittags-remove-' . $i++, false, [
 						'value' => $tag,
 						'class' => 'mw-edittags-remove-checkbox',
@@ -366,8 +373,14 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		$tags = ChangeTags::listExplicitlyDefinedTags();
 		$tags = array_unique( array_merge( $tags, $selectedTags ) );
 
-		// Values of $tags are also used as <option> labels
-		$select->addOptions( array_combine( $tags, $tags ) );
+		// The appearance of each $tag is used as <option> label,
+		// required to be nonempty
+		foreach ( $tags as $tag ) {
+			$select->addOption(
+				ChangeTags::tagAppearance( $tag, true, $this->getContext() ),
+				$tag
+			);
+		}
 
 		$result[1] = $select->getHTML();
 		return $result;
