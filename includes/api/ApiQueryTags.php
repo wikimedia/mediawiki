@@ -40,6 +40,7 @@ class ApiQueryTags extends ApiQueryBase {
 
 		$prop = array_flip( $params['prop'] );
 
+		$fld_plaindisplayname = isset( $prop['plaindisplayname'] );
 		$fld_displayname = isset( $prop['displayname'] );
 		$fld_description = isset( $prop['description'] );
 		$fld_hitcount = isset( $prop['hitcount'] );
@@ -83,6 +84,7 @@ class ApiQueryTags extends ApiQueryBase {
 		ksort( $tags );
 
 		$count = 0;
+		$presentation = new ChangeTagsPresentation( $this );
 		foreach ( $tags as $tagName => $hitcount ) {
 			if ( ++$count > $limit ) {
 				$this->setContinueEnumParameter( 'continue', $tagName );
@@ -92,8 +94,12 @@ class ApiQueryTags extends ApiQueryBase {
 			$tag = [];
 			$tag['name'] = $tagName;
 
+			if ( $fld_plaindisplayname ) {
+				$tag['plaindisplayname'] = $presentation->plainTagDescription( $tagName );
+			}
+
 			if ( $fld_displayname ) {
-				$tag['displayname'] = ChangeTags::tagDescription( $tagName, $this );
+				$tag['displayname'] = $presentation->tagDescription( $tagName );
 			}
 
 			if ( $fld_description ) {
@@ -157,6 +163,7 @@ class ApiQueryTags extends ApiQueryBase {
 				ApiBase::PARAM_DFLT => 'name',
 				ApiBase::PARAM_TYPE => [
 					'name',
+					'plaindisplayname',
 					'displayname',
 					'description',
 					'hitcount',
