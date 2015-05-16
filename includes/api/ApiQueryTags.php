@@ -36,6 +36,7 @@ class ApiQueryTags extends ApiQueryBase {
 	}
 
 	public function execute() {
+		global $wgUseChangeTagStatisticsTable;
 		$params = $this->extractRequestParams();
 
 		$prop = array_flip( $params['prop'] );
@@ -43,6 +44,7 @@ class ApiQueryTags extends ApiQueryBase {
 		$fld_displayname = isset( $prop['displayname'] );
 		$fld_description = isset( $prop['description'] );
 		$fld_hitcount = isset( $prop['hitcount'] );
+		$fld_timestamp = isset( $prop['timestamp'] );
 		$fld_defined = isset( $prop['defined'] );
 		$fld_source = isset( $prop['source'] );
 		$fld_active = isset( $prop['active'] );
@@ -50,9 +52,12 @@ class ApiQueryTags extends ApiQueryBase {
 		$limit = $params['limit'];
 		$result = $this->getResult();
 
-		$softwareDefinedTags = array_fill_keys( ChangeTags::listSoftwareDefinedTags(), 0 );
-		$explicitlyDefinedTags = array_fill_keys( ChangeTags::listExplicitlyDefinedTags(), 0 );
-		$softwareActivatedTags = array_fill_keys( ChangeTags::listSoftwareActivatedTags(), 0 );
+		$softwareDefinedTags = array_fill_keys(
+			ChangeTags::listSoftwareDefinedTags(), [ 0, null ] );
+		$explicitlyDefinedTags = array_fill_keys(
+			ChangeTags::listExplicitlyDefinedTags(), [ 0, null ] );
+		$softwareActivatedTags = array_fill_keys(
+			ChangeTags::listSoftwareActivatedTags(), true );
 
 		$definedTags = array_merge( $softwareDefinedTags, $explicitlyDefinedTags );
 
@@ -62,28 +67,41 @@ class ApiQueryTags extends ApiQueryBase {
 			$tags = array_filter( array_keys( $definedTags ), function ( $v ) use ( $cont ) {
 				return $v >= $cont;
 			} );
-			$tags = array_fill_keys( $tags, 0 );
+			$tags = array_fill_keys( $tags, [ 0, null ] );
 		} else {
 			$tags = $definedTags;
 		}
 
 		# Merge in all used tags
-		$this->addTables( 'change_tag' );
-		$this->addFields( 'ct_tag' );
-		$this->addFields( [ 'hitcount' => $fld_hitcount ? 'COUNT(*)' : '0' ] );
-		$this->addOption( 'LIMIT', $limit + 1 );
-		$this->addOption( 'GROUP BY', 'ct_tag' );
-		$this->addWhereRange( 'ct_tag', 'newer', $params['continue'], null );
-		$res = $this->select( __METHOD__ );
-		foreach ( $res as $row ) {
-			$tags[$row->ct_tag] = (int)$row->hitcount;
+		if ( $wgUseChangeTagStatisticsTable > 1 ) {
+			$this->addTables( 'change_tag_statistics' );
+			$this->addFields( 'cts_tag' );
+			$this->addFields( 'cts_count' );
+			$this->addFields( 'cts_timestamp' );
+			$this->addOption( 'LIMIT', $limit + 1 );
+			$this->addWhereRange( 'cts_tag', 'newer', $params['continue'], null );
+			$res = $this->select( __METHOD__ );
+			foreach ( $res as $row ) {
+				$tags[$row->cts_tag] = [ (int)$row->cts_count, (string)$row->cts_timestamp ];
+			}
+		} else {
+			$this->addTables( 'change_tag' );
+			$this->addFields( 'ct_tag' );
+			$this->addFields( [ 'hitcount' => $fld_hitcount ? 'COUNT(*)' : '0' ] );
+			$this->addOption( 'LIMIT', $limit + 1 );
+			$this->addOption( 'GROUP BY', 'ct_tag' );
+			$this->addWhereRange( 'ct_tag', 'newer', $params['continue'], null );
+			$res = $this->select( __METHOD__ );
+			foreach ( $res as $row ) {
+				$tags[$row->ct_tag] = [ (int)$row->hitcount, '' ];
+			}
 		}
 
 		# Now make sure the array is sorted for proper continuation
 		ksort( $tags );
 
 		$count = 0;
-		foreach ( $tags as $tagName => $hitcount ) {
+		foreach ( $tags as $tagName => list( $hitcount, $timestamp ) ) {
 			if ( ++$count > $limit ) {
 				$this->setContinueEnumParameter( 'continue', $tagName );
 				break;
@@ -103,6 +121,10 @@ class ApiQueryTags extends ApiQueryBase {
 
 			if ( $fld_hitcount ) {
 				$tag['hitcount'] = $hitcount;
+			}
+
+			if ( $fld_timestamp ) {
+				$tag['timestamp'] = $timestamp;
 			}
 
 			$isSoftware = isset( $softwareDefinedTags[$tagName] );
@@ -160,6 +182,7 @@ class ApiQueryTags extends ApiQueryBase {
 					'displayname',
 					'description',
 					'hitcount',
+					'timestamp',
 					'defined',
 					'source',
 					'active',
