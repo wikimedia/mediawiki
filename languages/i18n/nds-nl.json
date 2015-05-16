@@ -2875,6 +2875,7 @@
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|hef}} t groepslidmaotschap ewiezigd veur $3",
 	"logentry-rights-autopromote": "$1 {{GENDER:$2|is}} automaties bevorderd van $4 tot $5",
 	"logentry-upload-upload": "$1 hef $3 {{GENDER:$2|op-estuurd}}",
+	"logentry-upload-overwrite": "$1 {{GENDER:$2|hef}} n nieje versie van $3 op-elaojen",
 	"rightsnone": "(gien)",
 	"revdelete-summary": "samenvatting bewarken",
 	"feedback-adding": "Joew kommentaar wörden op de zied ezet...",
