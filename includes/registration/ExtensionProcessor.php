@@ -29,7 +29,6 @@ class ExtensionProcessor implements Processor {
 		'ExtensionFunctions',
 		'ExtensionEntryPointListFiles',
 		'SpecialPages',
-		'SpecialPageGroups',
 		'JobClasses',
 		'LogTypes',
 		'LogRestrictions',

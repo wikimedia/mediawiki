@@ -26,6 +26,15 @@ class ConvertExtensionToRegistration extends Maintenance {
 	);
 
 	/**
+	 * No longer supported globals (with reason) should not be converted and emit a warning
+	 *
+	 * @var array
+	 */
+	protected $noLongerSupportedGlobals = array(
+		'SpecialPageGroups' => 'deprecated',
+	);
+
+	/**
 	 * Keys that should be put at the top of the generated JSON file (T86608)
 	 *
 	 * @var array
@@ -42,7 +51,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 		'type',
 	);
 
-	private $json, $dir;
+	private $json, $dir, $hasWarning = false;
 
 	public function __construct() {
 		parent::__construct();
@@ -83,6 +92,11 @@ class ConvertExtensionToRegistration extends Maintenance {
 				call_user_func_array( array( $this, $this->custom[$realName] ), array( $realName, $value ) );
 			} elseif ( in_array( $realName, $globalSettings ) ) {
 				$this->json[$realName] = $value;
+			} elseif ( array_key_exists( $realName, $this->noLongerSupportedGlobals ) ) {
+				$this->output( 'Warning: Skipped global "' . $name . '" (' .
+					$this->noLongerSupportedGlobals[$realName] . '). ' .
+					"Please update the entry point before convert to registration.\n" );
+				$this->hasWarning = true;
 			} elseif ( strpos( $name, 'wg' ) === 0 ) {
 				// Most likely a config setting
 				$this->json['config'][$realName] = $value;
@@ -104,6 +118,9 @@ class ConvertExtensionToRegistration extends Maintenance {
 		$prettyJSON = FormatJson::encode( $out, "\t", FormatJson::ALL_OK );
 		file_put_contents( $fname, $prettyJSON . "\n" );
 		$this->output( "Wrote output to $fname.\n" );
+		if ( $this->hasWarning ) {
+			$this->output( "Found warnings! Please resolve the warnings and rerun this script.\n" );
+		}
 	}
 
 	protected function handleExtensionFunctions( $realName, $value ) {
