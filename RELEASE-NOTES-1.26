@@ -15,6 +15,8 @@ production.
   "tag-<id>" interface message.
 * ':' (colon) is now invalid in usernames for new accounts. Existing accounts
   are not affected.
+* A 'RequestShutdown' hook is available for enqueueing work to be executed
+  after a response had already been sent to the client.
 
 ==== External libraries ====
 

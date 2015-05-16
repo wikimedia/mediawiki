@@ -437,11 +437,7 @@ class MediaWiki {
 				wfGetLBFactory()->commitMasterChanges();
 				$e->report(); // display the GUI error
 			}
-			if ( function_exists( 'fastcgi_finish_request' ) ) {
-				fastcgi_finish_request();
-			}
-			$this->triggerJobs();
-			$this->restInPeace();
+			$this->context->getRequest()->shutdown( array( $this, 'restInPeace' ) );
 		} catch ( Exception $e ) {
 			MWExceptionHandler::handleException( $e );
 		}
@@ -598,6 +594,8 @@ class MediaWiki {
 	 * Ends this task peacefully
 	 */
 	public function restInPeace() {
+		$this->triggerJobs();
+
 		// Ignore things like master queries/connections on GET requests
 		// as long as they are in deferred updates (which catch errors).
 		Profiler::instance()->getTransactionProfiler()->resetExpectations();

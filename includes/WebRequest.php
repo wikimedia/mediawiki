@@ -75,6 +75,17 @@ class WebRequest {
 		// POST overrides GET data
 		// We don't use $_REQUEST here to avoid interference from cookies...
 		$this->data = $_POST + $_GET;
+
+		$onShutdown = function () {
+			$context = RequestContext::getMain();
+			$request = $context->getRequest();
+			Hooks::run( 'RequestShutdown', array( $request, $context ) );
+		};
+		if ( function_exists( 'register_postsend_function' ) ) {
+			register_postsend_function( $onShutdown );
+		} else {
+			register_shutdown_function( $onShutdown );
+		}
 	}
 
 	/**
@@ -1168,6 +1179,25 @@ HTML;
 	public function setIP( $ip ) {
 		$this->ip = $ip;
 	}
+
+	/**
+	 * Shut down the request, allowing any shutdown handlers to run.
+	 *
+	 * For convenience, allow callers to shut down the request and
+	 * enqueue a post-shutdown callback in one go.
+	 *
+	 * @param callable $callback Function to call after shutdown.
+	 */
+	public function shutdown( $callback = null ) {
+		if ( $callback ) {
+			Hooks::register( 'RequestShutdown', $callback );
+		}
+		ignore_user_abort( true );
+		if ( function_exists( 'fastcgi_finish_request' ) ) {
+			fastcgi_finish_request();
+		}
+		exit;
+	}
 }
 
 /**
@@ -1465,6 +1495,10 @@ class FauxRequest extends WebRequest {
 	 */
 	protected function getRawIP() {
 		return '127.0.0.1';
+	}
+
+	public function shutdown() {
+		return;
 	}
 }
 

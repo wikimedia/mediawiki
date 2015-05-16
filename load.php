@@ -43,9 +43,13 @@ $configFactory = ConfigFactory::getDefaultInstance();
 $resourceLoader = new ResourceLoader( $configFactory->makeConfig( 'main' ) );
 $resourceLoader->respond( new ResourceLoaderContext( $resourceLoader, $wgRequest ) );
 
-Profiler::instance()->setTemplated( true );
-wfLogProfilingData();
+function onShutdown( $request, $context ) {
+	Profiler::instance()->setTemplated( true );
+	wfLogProfilingData();
 
-// Shut down the database.
-$lb = wfGetLBFactory();
-$lb->shutdown();
+	// Shut down the database.
+	$lb = wfGetLBFactory();
+	$lb->shutdown();
+}
+
+$wgRequest->shutdown( 'onShutdown' );
