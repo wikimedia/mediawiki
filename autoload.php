@@ -318,7 +318,6 @@ $wgAutoloadLocalClasses = array(
 	'DeleteDefaultMessages' => __DIR__ . '/maintenance/deleteDefaultMessages.php',
 	'DeleteEqualMessages' => __DIR__ . '/maintenance/deleteEqualMessages.php',
 	'DeleteFileOp' => __DIR__ . '/includes/filebackend/FileOp.php',
-	'DeleteImageCache' => __DIR__ . '/maintenance/deleteImageMemcached.php',
 	'DeleteLogFormatter' => __DIR__ . '/includes/logging/DeleteLogFormatter.php',
 	'DeleteOldRevisions' => __DIR__ . '/maintenance/deleteOldRevisions.php',
 	'DeleteOrphanedRevisions' => __DIR__ . '/maintenance/deleteOrphanedRevisions.php',
