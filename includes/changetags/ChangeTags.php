@@ -93,8 +93,9 @@ class ChangeTags {
 	public static function tagDescription( $tag ) {
 		$msg = wfMessage( "tag-$tag" );
 		if ( !$msg->exists() ) {
-			// No such message, so return the HTML-escaped tag name.
-			return htmlspecialchars( $tag );
+			// No such message, so return the tag appearance if not empty.
+			// If empty, return the HTML-escaped tag name.
+			return self::tagAppearance( $tag, true );
 		}
 		if ( $msg->isDisabled() ) {
 			// The message exists but is disabled, hide the tag.
@@ -103,6 +104,34 @@ class ChangeTags {
 
 		// Message exists and isn't disabled, use it.
 		return $msg->parse();
+	}
+
+	/**
+	 * Get a user-friendly localizable name for a tag.
+	 * This is for drop down menus.
+	 *
+	 * @param string $tag Tag
+	 * @param bool $notEmpty Can be used to force a non-empty return string
+	 * @return string
+	 * @since 1.28
+	 */
+	public static function tagAppearance( $tag, $notEmpty = false ) {
+		$msg = wfMessage( "tag-$tag-appearance" );
+		if ( !$msg->exists() ) {
+			// No such message, so return the HTML-escaped tag name.
+			return htmlspecialchars( $tag );
+		}
+
+		// Message exists, use it.
+		$text = trim( $msg->text() );
+
+		if ( !$notEmpty ) {
+			// Return msg text, even if empty
+			return $text;
+		} else {
+			// If empty, fallback to HTML-escaped tag name
+			return ( $text !== '' ) ? $text : htmlspecialchars( $tag );
+		}
 	}
 
 	/**
@@ -567,7 +596,7 @@ class ChangeTags {
 	}
 
 	/**
-	 * Build a text box to select a change tag
+	 * Build a drop-down menu (or text box in full form) to select a change tag
 	 *
 	 * @param string $selected Tag to select by default
 	 * @param bool $fullForm Affects return value, see below
@@ -593,6 +622,36 @@ class ChangeTags {
 			}
 		}
 
+		// make drop down menu for tags - T27909
+		$select = '';
+		$select .= Xml::openElement( 'select', [
+			'name' => 'tagfilter',
+			'id' => 'tagfilter',
+			'class' => 'mw-tagfilter-select'
+		] );
+		// add all tags first, then selection if different
+		$msgAll = wfMessage( 'tagsall' )->text();
+		if ( $selected === '' || $selected === null || $selected === false ) {
+			$select .= Xml::option( $msgAll, '', true );
+		} else {
+			$select .= Xml::option( $msgAll, '', false );
+			$name = self::tagAppearance( $selected );
+			// making sure a name is given since it is selected
+			$name = ( $name !== '' ) ? $name : $selected;
+			$select .= Xml::option( $name, $selected, true );
+		}
+		// remove selected tag or empty key (already dealt with)
+		unset( $tagList[$selected] );
+		// add tags
+		foreach ( array_keys( $tagList ) as $tag ) {
+			$name = self::tagAppearance( $tag );
+			// tags with an empty appearance are not included in the drop down list
+			if ( $name !== '' ) {
+				$select .= Xml::option( $name, $tag, false );
+			}
+		}
+		$select .= Xml::closeElement( 'select' );
+
 		$data = [
 			Html::rawElement(
 				'label',
@@ -600,6 +659,13 @@ class ChangeTags {
 				wfMessage( 'tag-filter' )->parse()
 			)
 		];
+
+		if ( !$fullForm ) {
+			$data[] = $select;
+			return $data;
+		}
+
+		// using previous behavior for fullForm
 
 		if ( $ooui ) {
 			$data[] = new OOUI\TextInputWidget( [
@@ -615,10 +681,6 @@ class ChangeTags {
 				$selected,
 				[ 'class' => 'mw-tagfilter-input mw-ui-input mw-ui-input-inline', 'id' => 'tagfilter' ]
 			);
-		}
-
-		if ( !$fullForm ) {
-			return $data;
 		}
 
 		$html = implode( '&#160;', $data );
