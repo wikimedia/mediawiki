@@ -367,11 +367,14 @@ class SpecialEditTags extends UnlistedSpecialPage {
 
 		$tags = $this->addableTags;
 		foreach ( array_unique( $selectedTags ) as $tag ) {
-			$result[1] .= Xml::option( $tag, $tag, true );
+			$result[1] .= Xml::option( ChangeTags::tagAppearance( $tag ), $tag, true );
 			unset( $tags[$tag] );
 		}
 		foreach ( array_keys( $tags ) as $tag ) {
-			$result[1] .= Xml::option( $tag, $tag, false );
+			$name = ChangeTags::tagAppearance( $tag );
+			// Making sure a name is given
+			$name = ( $name !== '' ) ? $name : $tag;
+			$result[1] .= Xml::option( $name, $tag, false );
 		}
 
 		$result[1] .= Xml::closeElement( 'select' );
