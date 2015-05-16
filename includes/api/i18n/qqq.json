@@ -1074,6 +1074,7 @@
 	"apihelp-query+tags-param-limit": "{{doc-apihelp-param|query+tags|limit}}",
 	"apihelp-query+tags-param-prop": "{{doc-apihelp-param|query+tags|prop|paramvalues=1}}",
 	"apihelp-query+tags-paramvalue-prop-name": "{{doc-apihelp-paramvalue|query+tags|prop|name}}",
+	"apihelp-query+tags-paramvalue-prop-dropdownname": "{{doc-apihelp-paramvalue|query+tags|prop|dropdownname}}",
 	"apihelp-query+tags-paramvalue-prop-displayname": "{{doc-apihelp-paramvalue|query+tags|prop|displayname}}",
 	"apihelp-query+tags-paramvalue-prop-description": "{{doc-apihelp-paramvalue|query+tags|prop|description}}",
 	"apihelp-query+tags-paramvalue-prop-hitcount": "{{doc-apihelp-paramvalue|query+tags|prop|hitcount}}",

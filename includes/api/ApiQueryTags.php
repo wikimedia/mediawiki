@@ -62,6 +62,7 @@ class ApiQueryTags extends ApiQueryBase {
 
 		$prop = array_flip( $params['prop'] );
 
+		$fld_dropdownname = isset( $prop['dropdownname'] );
 		$fld_displayname = isset( $prop['displayname'] );
 		$fld_description = isset( $prop['description'] );
 		$fld_hitcount = isset( $prop['hitcount'] );
@@ -103,6 +104,10 @@ class ApiQueryTags extends ApiQueryBase {
 			$tag['name'] = $tagName;
 
 			$changeTag = new ChangeTag( $tagName, $changeTagsContext );
+
+			if ( $fld_dropdownname ) {
+				$tag['dropdownname'] = ChangeTags::tagAppearance( $tagName );
+			}
 
 			if ( $fld_displayname ) {
 				$tag['displayname'] = ChangeTags::tagDescription( $tagName );
@@ -167,6 +172,7 @@ class ApiQueryTags extends ApiQueryBase {
 				ApiBase::PARAM_DFLT => 'name',
 				ApiBase::PARAM_TYPE => [
 					'name',
+					'dropdownname',
 					'displayname',
 					'description',
 					'hitcount',
