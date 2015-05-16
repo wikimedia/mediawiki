@@ -448,6 +448,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addPgField', 'externallinks', 'el_index_60', "BYTEA NOT NULL DEFAULT ''" ],
 			[ 'addPgIndex', 'externallinks', 'el_index_60', '( el_index_60, el_id )' ],
 			[ 'addPgIndex', 'externallinks', 'el_from_index_60', '( el_from, el_index_60, el_id )' ],
+			[ 'addTable', 'change_tag_statistics', 'patch-change_tag_statistics.sql' ],
 		];
 	}
 
