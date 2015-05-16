@@ -235,6 +235,8 @@ class ChangeTags {
 		&$rev_id = null, &$log_id = null, $params = null, RecentChange $rc = null,
 		User $user = null
 	) {
+		global $wgUseChangeTagStatisticsTable;
+
 		$tagsToAdd = array_filter( (array)$tagsToAdd ); // Make sure we're submitting all tags...
 		$tagsToRemove = array_filter( (array)$tagsToRemove );
 
@@ -316,13 +318,12 @@ class ChangeTags {
 
 		// insert a row into change_tag for each new tag
 		if ( count( $tagsToAdd ) ) {
-			$tagsRows = [];
 			foreach ( $tagsToAdd as $tag ) {
 				// Filter so we don't insert NULLs as zero accidentally.
 				// Keep in mind that $rc_id === null means "I don't care/know about the
 				// rc_id, just delete $tag on this revision/log entry". It doesn't
 				// mean "only delete tags on this revision/log WHERE rc_id IS NULL".
-				$tagsRows[] = array_filter(
+				$tagRow = array_filter(
 					[
 						'ct_tag' => $tag,
 						'ct_rc_id' => $rc_id,
@@ -331,9 +332,21 @@ class ChangeTags {
 						'ct_params' => $params
 					]
 				);
+				$dbw->startAtomic( __METHOD__ );
+				$dbw->insert( 'change_tag', $tagRow, __METHOD__, [ 'IGNORE' ] );
+				if ( $dbw->affectedRows() && $wgUseChangeTagStatisticsTable > 0 ) {
+					// increment tag hitcount and record timestamp
+					$timestamp = $dbw->timestamp();
+					$dbw->upsert(
+						'change_tag_statistics',
+						[ 'cts_tag' => $tag, 'cts_count' => 1, 'cts_timestamp' => $timestamp ],
+						[ 'cts_tag' ],
+						[ 'cts_count = cts_count + 1', 'cts_timestamp' => $timestamp ],
+						__METHOD__
+					);
+				}
+				$dbw->endAtomic( __METHOD__ );
 			}
-
-			$dbw->insert( 'change_tag', $tagsRows, __METHOD__, [ 'IGNORE' ] );
 		}
 
 		// delete from change_tag
@@ -347,7 +360,24 @@ class ChangeTags {
 						'ct_rev_id' => $rev_id
 					]
 				);
+				$dbw->startAtomic( __METHOD__ );
 				$dbw->delete( 'change_tag', $conds, __METHOD__ );
+				if ( $dbw->affectedRows() && $wgUseChangeTagStatisticsTable > 0 ) {
+					// decrement tag hitcount
+					$dbw->update(
+						'change_tag_statistics',
+						[ 'cts_count = cts_count - 1' ],
+						[ 'cts_tag' => $tag ],
+						__METHOD__
+					);
+					// delete row if it reaches count of zero
+					$dbw->delete(
+						'change_tag_statistics',
+						[ 'cts_tag' => $tag, 'cts_count' => 0 ],
+						__METHOD__
+					);
+				}
+				$dbw->endAtomic( __METHOD__ );
 			}
 		}
 
@@ -1110,6 +1140,7 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function deleteTagEverywhere( $tag ) {
+		global $wgUseChangeTagStatisticsTable;
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->startAtomic( __METHOD__ );
 
@@ -1131,6 +1162,10 @@ class ChangeTags {
 
 		// delete from change_tag
 		$dbw->delete( 'change_tag', [ 'ct_tag' => $tag ], __METHOD__ );
+
+		if ( $wgUseChangeTagStatisticsTable > 0 ) {
+			$dbw->delete( 'change_tag_statistics', [ 'cts_tag' => $tag ], __METHOD__ );
+		}
 
 		$dbw->endAtomic( __METHOD__ );
 
@@ -1411,21 +1446,41 @@ class ChangeTags {
 			$cache->makeKey( 'change-tag-statistics' ),
 			WANObjectCache::TTL_MINUTE * 5,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
+				global $wgUseChangeTagStatisticsTable;
 				$dbr = wfGetDB( DB_REPLICA, 'vslow' );
 
 				$setOpts += Database::getCacheSetOptions( $dbr );
 
-				$res = $dbr->select(
-					'change_tag',
-					[ 'ct_tag', 'hitcount' => 'count(*)' ],
-					[],
-					$fname,
-					[ 'GROUP BY' => 'ct_tag', 'ORDER BY' => 'hitcount DESC' ]
-				);
+				if ( $wgUseChangeTagStatisticsTable > 1 ) {
+					// fetch from change_tag_statistics table
+					$res = $dbr->select(
+						'change_tag_statistics',
+						[ 'cts_tag', 'cts_count' ],
+						[],
+						$fname,
+						[ 'ORDER BY' => 'cts_count DESC' ]
+					);
 
-				$out = [];
-				foreach ( $res as $row ) {
-					$out[$row->ct_tag] = $row->hitcount;
+					$out = [];
+					foreach ( $res as $row ) {
+						if ( $row->cts_count ) {
+							$out[$row->cts_tag] = $row->cts_count;
+						}
+					}
+				} else {
+					// fetch from change_tag table (expensive)
+					$res = $dbr->select(
+						'change_tag',
+						[ 'ct_tag', 'hitcount' => 'count(*)' ],
+						[],
+						$fname,
+						[ 'GROUP BY' => 'ct_tag', 'ORDER BY' => 'hitcount DESC' ]
+					);
+
+					$out = [];
+					foreach ( $res as $row ) {
+						$out[$row->ct_tag] = $row->hitcount;
+					}
 				}
 
 				return $out;
