@@ -1098,7 +1098,7 @@ return array(
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.edit.collapsibleFooter.css',
 		'dependencies' => array(
 			'jquery.makeCollapsible',
-			'jquery.cookie',
+			'mediawiki.cookie',
 			'mediawiki.icon',
 		),
 	),
@@ -1399,7 +1399,7 @@ return array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.legend.js',
 		'dependencies' => array(
 			'jquery.makeCollapsible',
-			'jquery.cookie',
+			'mediawiki.cookie',
 		),
 	),
 	'mediawiki.special.changeslist.enhanced' => array(
