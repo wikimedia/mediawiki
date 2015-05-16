@@ -568,10 +568,6 @@
 			"type": "object",
 			"description": "SpecialPages implemented in this extension (mapping of page name to class name)"
 		},
-		"SpecialPageGroups": {
-			"type": "object",
-			"description": "Mapping of special page name to group it belongs to"
-		},
 		"AutoloadClasses": {
 			"type": "object"
 		},
