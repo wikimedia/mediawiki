@@ -6262,8 +6262,8 @@ $wgUseTagFilter = true;
 $wgTagUsageCacheDuration = 60*60*6;
 
 /**
- * Cache expiry for list of change tags ordered by hitcount
- * checked in recent changes, histories, logs, etc
+ * Cache expiry for list of change tags ordered by hitcount used
+ * for drop down menus in recent changes, histories, logs, etc
  * Run in addition to $wgTagUsageCacheDuration
  * 24 hours by default
  * @since 1.27
