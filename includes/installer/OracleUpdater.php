@@ -121,6 +121,7 @@ class OracleUpdater extends DatabaseUpdater {
 
 			// 1.29
 			[ 'addField', 'externallinks', 'el_index_60', 'patch-externallinks-el_index_60.sql' ],
+			[ 'addTable', 'change_tag_statistics', 'patch-change_tag_statistics.sql' ],
 
 			// KEEP THIS AT THE BOTTOM!!
 			[ 'doRebuildDuplicateFunction' ],
