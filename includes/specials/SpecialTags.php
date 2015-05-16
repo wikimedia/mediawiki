@@ -125,6 +125,7 @@ class SpecialTags extends SpecialPage {
 
 		// Write the headers
 		$html = Xml::tags( 'tr', null, Xml::tags( 'th', null, $this->msg( 'tags-tag' )->parse() ) .
+			Xml::tags( 'th', null, $this->msg( 'tags-appearance-header' )->parse() ) .
 			Xml::tags( 'th', null, $this->msg( 'tags-display-header' )->parse() ) .
 			Xml::tags( 'th', null, $this->msg( 'tags-description-header' )->parse() ) .
 			Xml::tags( 'th', null, $this->msg( 'tags-source-header' )->parse() ) .
@@ -165,6 +166,17 @@ class SpecialTags extends SpecialPage {
 
 		$newRow = '';
 		$newRow .= Xml::tags( 'td', null, Xml::element( 'code', null, $tag ) );
+
+		$app = ChangeTags::tagAppearance( $tag );
+		if ( $showEditLinks ) {
+			$app .= ' ';
+			$editLink = Linker::link(
+				Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag-appearance" ),
+				$this->msg( 'tags-edit' )->escaped()
+			);
+			$app .= $this->msg( 'parentheses' )->rawParams( $editLink )->escaped();
+		}
+		$newRow .= Xml::tags( 'td', null, $app );
 
 		$disp = ChangeTags::tagDescription( $tag );
 		if ( $showEditLinks ) {
