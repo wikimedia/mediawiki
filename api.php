@@ -90,47 +90,47 @@ if ( $processor ) {
 	$processor->execute();
 }
 
-if ( function_exists( 'fastcgi_finish_request' ) ) {
-	fastcgi_finish_request();
-}
+$wgRequest->shutdown( function ( $request, $context ) {
+	global $wgAPIRequestLog;
 
-// Execute any deferred updates
-DeferredUpdates::doUpdates();
+	// Execute any deferred updates
+	DeferredUpdates::doUpdates();
 
-// Log what the user did, for book-keeping purposes.
-$endtime = microtime( true );
+	// Log what the user did, for book-keeping purposes.
+	$endtime = microtime( true );
 
-wfLogProfilingData();
+	wfLogProfilingData();
 
-// Log the request
-if ( $wgAPIRequestLog ) {
-	$items = array(
-		wfTimestamp( TS_MW ),
-		$endtime - $starttime,
-		$wgRequest->getIP(),
-		$wgRequest->getHeader( 'User-agent' )
-	);
-	$items[] = $wgRequest->wasPosted() ? 'POST' : 'GET';
-	if ( $processor ) {
-		try {
-			$manager = $processor->getModuleManager();
-			$module = $manager->getModule( $wgRequest->getVal( 'action' ), 'action' );
-		} catch ( Exception $ex ) {
-			$module = null;
-		}
-		if ( !$module || $module->mustBePosted() ) {
-			$items[] = "action=" . $wgRequest->getVal( 'action' );
+	// Log the request
+	if ( $wgAPIRequestLog ) {
+		$items = array(
+			wfTimestamp( TS_MW ),
+			$endtime - $starttime,
+			$request->getIP(),
+			$request->getHeader( 'User-agent' )
+		);
+		$items[] = $request->wasPosted() ? 'POST' : 'GET';
+		if ( $processor ) {
+			try {
+				$manager = $processor->getModuleManager();
+				$module = $manager->getModule( $request->getVal( 'action' ), 'action' );
+			} catch ( Exception $ex ) {
+				$module = null;
+			}
+			if ( !$module || $module->mustBePosted() ) {
+				$items[] = "action=" . $request->getVal( 'action' );
+			} else {
+				$items[] = wfArrayToCgi( $request->getValues() );
+			}
 		} else {
-			$items[] = wfArrayToCgi( $wgRequest->getValues() );
+			$items[] = "failed in ApiBeforeMain";
 		}
-	} else {
-		$items[] = "failed in ApiBeforeMain";
+		LegacyLogger::emit( implode( ',', $items ) . "\n", $wgAPIRequestLog );
+		wfDebug( "Logged API request to $wgAPIRequestLog\n" );
 	}
-	LegacyLogger::emit( implode( ',', $items ) . "\n", $wgAPIRequestLog );
-	wfDebug( "Logged API request to $wgAPIRequestLog\n" );
-}
 
-// Shut down the database.  foo()->bar() syntax is not supported in PHP4: we won't ever actually
-// get here to worry about whether this should be = or =&, but the file has to parse properly.
-$lb = wfGetLBFactory();
-$lb->shutdown();
+	// Shut down the database.  foo()->bar() syntax is not supported in PHP4: we won't ever actually
+	// get here to worry about whether this should be = or =&, but the file has to parse properly.
+	$lb = wfGetLBFactory();
+	$lb->shutdown();
+} );
