@@ -153,14 +153,16 @@ class SpecialTags extends SpecialPage {
 			ChangeTags::listSoftwareActivatedTags(), true );
 
 		// Insert tags that have been applied at least once
+		$presentation = new ChangeTagsPresentation( $this->getContext() );
 		foreach ( $tagStats as $tag => $hitcount ) {
 			$html .= $this->doTagRow( $tag, $hitcount, $userCanManage,
-				$userCanDelete, $userCanEditInterface );
+				$userCanDelete, $userCanEditInterface, $presentation );
 		}
 		// Insert tags defined somewhere but never applied
 		foreach ( $definedTags as $tag ) {
 			if ( !isset( $tagStats[$tag] ) ) {
-				$html .= $this->doTagRow( $tag, 0, $userCanManage, $userCanDelete, $userCanEditInterface );
+				$html .= $this->doTagRow( $tag, 0, $userCanManage,
+					$userCanDelete, $userCanEditInterface, $presentation );
 			}
 		}
 
@@ -171,12 +173,14 @@ class SpecialTags extends SpecialPage {
 		) );
 	}
 
-	function doTagRow( $tag, $hitcount, $showManageActions, $showDeleteActions, $showEditLinks ) {
+	function doTagRow(
+		$tag, $hitcount, $showManageActions, $showDeleteActions, $showEditLinks, $presentation
+	) {
 		$newRow = '';
 		$newRow .= Xml::tags( 'td', null, Xml::element( 'code', null, $tag ) );
 
 		$linkRenderer = $this->getLinkRenderer();
-		$disp = ChangeTags::tagDescription( $tag, $this->getContext() );
+		$disp = $presentation->tagDescription( $tag );
 		if ( $showEditLinks ) {
 			$disp .= ' ';
 			$editLink = $linkRenderer->makeLink(

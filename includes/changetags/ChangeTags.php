@@ -21,6 +21,8 @@
  * @ingroup Change tagging
  */
 
+use MediaWiki\MediaWikiServices;
+
 class ChangeTags {
 	/**
 	 * Can't delete tags with more than this many uses. Similar in intent to
@@ -46,47 +48,15 @@ class ChangeTags {
 	 * @return array Array with two items: (html, classes)
 	 *   - html: String: HTML for displaying the tags (empty string when param $tags is empty)
 	 *   - classes: Array of strings: CSS classes used in the generated html, one class for each tag
+	 * @todo deprecate
 	 */
 	public static function formatSummaryRow( $tags, $page, IContextSource $context = null ) {
-		if ( !$tags ) {
-			return [ '', [] ];
-		}
 		if ( !$context ) {
 			$context = RequestContext::getMain();
 		}
 
-		$classes = [];
-
-		$tags = explode( ',', $tags );
-		$displayTags = [];
-		foreach ( $tags as $tag ) {
-			if ( !$tag ) {
-				continue;
-			}
-			$description = self::tagDescription( $tag, $context );
-			if ( $description === false ) {
-				continue;
-			}
-			$displayTags[] = Xml::tags(
-				'span',
-				[ 'class' => 'mw-tag-marker ' .
-								Sanitizer::escapeClass( "mw-tag-marker-$tag" ) ],
-				$description
-			);
-			$classes[] = Sanitizer::escapeClass( "mw-tag-$tag" );
-		}
-
-		if ( !$displayTags ) {
-			return [ '', [] ];
-		}
-
-		$markers = $context->msg( 'tag-list-wrapper' )
-			->numParams( count( $displayTags ) )
-			->rawParams( $context->getLanguage()->commaList( $displayTags ) )
-			->parse();
-		$markers = Xml::tags( 'span', [ 'class' => 'mw-tag-markers' ], $markers );
-
-		return [ $markers, $classes ];
+		$presentation = new ChangeTagsPresentation( $context );
+		return $presentation->formatSummaryRow( $tags );
 	}
 
 	/**
@@ -101,20 +71,12 @@ class ChangeTags {
 	 * @param IContextSource $context
 	 * @return string|bool Tag description or false if tag is to be hidden.
 	 * @since 1.25 Returns false if tag is to be hidden.
+	 * @deprecated since 1.29, use ChangeTagsPresentation::tagDescription
 	 */
 	public static function tagDescription( $tag, IContextSource $context ) {
-		$msg = $context->msg( "tag-$tag" );
-		if ( !$msg->exists() ) {
-			// No such message, so return the HTML-escaped tag name.
-			return htmlspecialchars( $tag );
-		}
-		if ( $msg->isDisabled() ) {
-			// The message exists but is disabled, hide the tag.
-			return false;
-		}
-
-		// Message exists and isn't disabled, use it.
-		return $msg->parse();
+		wfDeprecated( __METHOD__, '1.29' );
+		$presentation = new ChangeTagsPresentation( $context );
+		return $presentation->tagDescription( $tags );
 	}
 
 	/**
@@ -290,6 +252,7 @@ class ChangeTags {
 		}
 
 		self::purgeTagUsageCache();
+		self::purgeSecondaryTagUsageCacheOnUpdate( $tagsToAdd, $tagsToRemove );
 
 		Hooks::run( 'ChangeTagsAfterUpdateTags', [ $tagsToAdd, $tagsToRemove, $prevTags,
 			$rc_id, $rev_id, $log_id, $params, $rc, $user ] );
@@ -663,53 +626,26 @@ class ChangeTags {
 	}
 
 	/**
-	 * Build a text box to select a change tag
+	 * Build a drop-down menu to select a change tag
 	 *
 	 * @param string $selected Tag to select by default
-	 * @param bool $ooui Use an OOUI TextInputWidget as selector instead of a non-OOUI input field
-	 *        You need to call OutputPage::enableOOUI() yourself.
+	 * @param bool $formDescriptor Use a form descriptor instead of a label and selector
 	 * @param IContextSource|null $context
 	 * @note Even though it takes null as a valid argument, an IContextSource is preferred
 	 *       in a new code, as the null value can change in the future
-	 * @return array an array of (label, selector)
+	 * @return array an array of (label, selector) or form descriptor
+	 * @todo deprecate
 	 */
 	public static function buildTagFilterSelector(
-		$selected = '', $ooui = false, IContextSource $context = null
+		$selected = '', $formDescriptor = false, IContextSource $context = null
 	) {
 		if ( !$context ) {
 			$context = RequestContext::getMain();
 		}
 
-		$config = $context->getConfig();
-		if ( !$config->get( 'UseTagFilter' ) || !count( self::listDefinedTags() ) ) {
-			return [];
-		}
+		$presentation = new ChangeTagsPresentation( $context );
 
-		$data = [
-			Html::rawElement(
-				'label',
-				[ 'for' => 'tagfilter' ],
-				$context->msg( 'tag-filter' )->parse()
-			)
-		];
-
-		if ( $ooui ) {
-			$data[] = new OOUI\TextInputWidget( [
-				'id' => 'tagfilter',
-				'name' => 'tagfilter',
-				'value' => $selected,
-				'classes' => 'mw-tagfilter-input',
-			] );
-		} else {
-			$data[] = Xml::input(
-				'tagfilter',
-				20,
-				$selected,
-				[ 'class' => 'mw-tagfilter-input mw-ui-input mw-ui-input-inline', 'id' => 'tagfilter' ]
-			);
-		}
-
-		return $data;
+		return $presentation->buildTagFilterSelector( $selected, $formDescriptor );
 	}
 
 	/**
@@ -1053,6 +989,8 @@ class ChangeTags {
 
 		// clear the memcache of defined tags
 		self::purgeTagCacheAll();
+		// also clear drop down menus cache
+		self::purgeSecondaryTagUsageCache();
 
 		return $status;
 	}
@@ -1279,23 +1217,56 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function purgeTagCacheAll() {
-		$cache = ObjectCache::getMainWANInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 
-		$cache->touchCheckKey( wfMemcKey( 'active-tags' ) );
-		$cache->touchCheckKey( wfMemcKey( 'valid-tags-db' ) );
-		$cache->touchCheckKey( wfMemcKey( 'valid-tags-hook' ) );
+		$cache->touchCheckKey( $cache->makeKey( 'active-tags' ) );
+		$cache->touchCheckKey( $cache->makeKey( 'valid-tags-db' ) );
+		$cache->touchCheckKey( $cache->makeKey( 'valid-tags-hook' ) );
 
 		self::purgeTagUsageCache();
 	}
 
 	/**
-	 * Invalidates the tag statistics cache only.
+	 * Invalidates the primary tag statistics cache only.
 	 * @since 1.25
 	 */
 	public static function purgeTagUsageCache() {
-		$cache = ObjectCache::getMainWANInstance();
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$cache->touchCheckKey( $cache->makeKey( 'change-tag-statistics' ) );
+	}
 
-		$cache->touchCheckKey( wfMemcKey( 'change-tag-statistics' ) );
+	/**
+	 * Invalidates the secondary tag statistics cache only.
+	 * @since 1.29
+	 */
+	public static function purgeSecondaryTagUsageCache() {
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$cache->touchCheckKey( $cache->makeKey( 'change-tag-statistics-secondary' ) );
+	}
+
+	/**
+	 * Invalidates the secondary tag statistics cache only, if
+	 * added tags are not present in the cache or removed tags are present in the cache
+	 * @param array $addedTags
+	 * @param array $removedTags
+	 * @since 1.29
+	 */
+	public static function purgeSecondaryTagUsageCacheOnUpdate( $addedTags, $removedTags ) {
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$key = $cache->makeKey( 'change-tag-statistics-secondary' );
+		$cachedTags = $cache->get( $key );
+		foreach ( $addedTags as $tag ) {
+			if ( !isset( $cachedTags[$tag] ) ) {
+				self::purgeSecondaryTagUsageCache();
+				return;
+			}
+		}
+		foreach ( $removedTags as $tag ) {
+			if ( isset( $cachedTags[$tag] ) ) {
+				self::purgeSecondaryTagUsageCache();
+				return;
+			}
+		}
 	}
 
 	/**
@@ -1303,15 +1274,17 @@ class ChangeTags {
 	 * tagged with them, ordered descending by the hitcount.
 	 * This does not include tags defined somewhere that have never been applied.
 	 *
-	 * Keeps a short-term cache in memory, so calling this multiple times in the
-	 * same request should be fine.
+	 * This cache is invalidated whenever tags are updated and thus the data is
+	 * always up to date.
 	 *
 	 * @return array Array of string => int
 	 */
 	public static function tagUsageStatistics() {
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$key = $cache->makeKey( 'change-tag-statistics' );
 		$fname = __METHOD__;
-		return ObjectCache::getMainWANInstance()->getWithSetCallback(
-			wfMemcKey( 'change-tag-statistics' ),
+		return $cache->getWithSetCallback(
+			$key,
 			WANObjectCache::TTL_MINUTE * 5,
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
 				$dbr = wfGetDB( DB_REPLICA, 'vslow' );
@@ -1334,8 +1307,38 @@ class ChangeTags {
 				return $out;
 			},
 			[
-				'checkKeys' => [ wfMemcKey( 'change-tag-statistics' ) ],
+				'checkKeys' => [ $key ],
 				'lockTSE' => WANObjectCache::TTL_MINUTE * 5,
+				'pcTTL' => WANObjectCache::TTL_PROC_LONG
+			]
+		);
+	}
+
+	/**
+	 * Returns a map of any tags used on the wiki to number of edits
+	 * tagged with them, ordered descending by the hitcount as of the
+	 * latest caching.
+	 * This does not include tags defined somewhere that have never been applied.
+	 *
+	 * This cache is invalidated only on deletion of a tag and thus the data may be
+	 * outdated by up to 24 hours.
+	 *
+	 * @return array Array of tags mapped to their hitcount
+	 * @since 1.29
+	 */
+	public static function secondaryTagUsageStatistics() {
+		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+		$key = $cache->makeKey( 'change-tag-statistics-secondary' );
+		$expiry = WANObjectCache::TTL_DAY;
+		return $cache->getWithSetCallback(
+			$key,
+			$expiry,
+			function( $oldValue, &$ttl, array &$setOpts ) {
+				return self::tagUsageStatistics();
+			},
+			[
+				'checkKeys' => [ $key ],
+				'lockTSE' => $expiry,
 				'pcTTL' => WANObjectCache::TTL_PROC_LONG
 			]
 		);

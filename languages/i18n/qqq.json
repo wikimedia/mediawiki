@@ -3892,6 +3892,7 @@
 	"tags": "Shown on [[Special:Specialpages]] for page listing the tags that the software may mark an edit with, and their meaning. For more information on tags see [[mw:Manual:Tags|MediaWiki]].\n\nIt appears that the word 'valid' describes 'tags', not 'change'. It also appears that you could use the term 'defined' instead of 'valid', or perhaps use a phrase meaning 'The change tags that are in use'.",
 	"tags-summary": "{{doc-specialpagesummary|tags}}",
 	"tag-filter": "Caption of a filter shown on lists of changes (e.g. [[Special:Log]], [[Special:Contributions]], [[Special:Newpages]], [[Special:Recentchanges]], [[Special:Recentchangeslinked]], page histories)",
+	"tag-filter-none-selected": "Option to not do any filtering by tag in dropdown menu",
 	"tag-filter-submit": "Caption of the submit button displayed next to the tag filter on lists of changes (e.g. [[Special:Log]], [[Special:Contributions]], [[Special:Newpages]], [[Special:Recentchanges]], [[Special:Recentchangeslinked]], page histories)\n\n{{Identical|Filter}}",
 	"tag-list-wrapper": "Wrapper for the list of tags shown on recent changes, watchlists, history pages and diffs.\n\nParameters:\n* $1 - number of distinct tags for given edit\n* $2 - comma-separated list of tags for given edit",
 	"tag-mw-contentmodelchange": "Change tag for edits that change the content model of a page",
