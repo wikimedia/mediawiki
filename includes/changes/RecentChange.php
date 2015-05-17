@@ -456,11 +456,13 @@ class RecentChange {
 	 * @return array Array of permissions errors, see Title::getUserPermissionsErrors()
 	 */
 	public function doMarkPatrolled( User $user, $auto = false ) {
-		global $wgUseRCPatrol, $wgUseNPPatrol;
+		global $wgUseRCPatrol, $wgUseNPPatrol, $wgUseFilePatrol;
 		$errors = array();
-		// If recentchanges patrol is disabled, only new pages
-		// can be patrolled
-		if ( !$wgUseRCPatrol && ( !$wgUseNPPatrol || $this->getAttribute( 'rc_type' ) != RC_NEW ) ) {
+		// If recentchanges patrol is disabled, only new pages or new file versions
+		// can be patrolled, provided the appropriate config variable is set
+		if ( !$wgUseRCPatrol && ( !$wgUseNPPatrol || $this->getAttribute( 'rc_type' ) != RC_NEW ) &&
+			( !$wgUseFilePatrol || !( $this->getAttribute( 'rc_type' ) == RC_LOG &&
+			$this->getAttribute( 'rc_log_type' ) == 'upload' ) ) ) {
 			$errors[] = array( 'rcpatroldisabled' );
 		}
 		// Automatic patrol needs "autopatrol", ordinary patrol needs "patrol"

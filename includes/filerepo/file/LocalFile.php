@@ -1340,6 +1340,7 @@ class LocalFile extends File {
 		}
 
 		$descTitle = $this->getTitle();
+		$descId = $descTitle->getArticleID();
 		$wikiPage = new WikiFilePage( $descTitle );
 		$wikiPage->setFile( $this );
 
@@ -1365,8 +1366,6 @@ class LocalFile extends File {
 		$logId = $logEntry->insert();
 
 		if ( $descTitle->exists() ) {
-			// Page exists, do RC entry now (otherwise we wait for later)
-			$logEntry->publish( $logId );
 			// Use own context to get the action text in content language
 			$formatter = LogFormatter::newFromEntry( $logEntry );
 			$formatter->setContext( RequestContext::newExtraneousContext( $descTitle ) );
@@ -1374,7 +1373,7 @@ class LocalFile extends File {
 
 			$nullRevision = Revision::newNullRevision(
 				$dbw,
-				$descTitle->getArticleID(),
+				$descId,
 				$editSummary,
 				false,
 				$user
@@ -1386,7 +1385,11 @@ class LocalFile extends File {
 					array( $wikiPage, $nullRevision, $nullRevision->getParentId(), $user )
 				);
 				$wikiPage->updateRevisionOn( $dbw, $nullRevision );
+				// Associate null revision id
+				$logEntry->setAssociatedRevId( $nullRevision->getId() );
 			}
+			// Page exists, do RC entry now (otherwise we wait for later)
+			$logEntry->publish( $logId );
 
 			$newPageContent = null;
 		} else {
@@ -1403,7 +1406,8 @@ class LocalFile extends File {
 		# b) They won't cause rollback of the log publish/update above
 		$that = $this;
 		$dbw->onTransactionIdle( function () use (
-			$that, $reupload, $wikiPage, $newPageContent, $comment, $user, $logEntry, $logId
+			$that, $reupload, $wikiPage, $newPageContent, $comment, $user, $logEntry, $logId,
+			$descId
 		) {
 			# Update memcache after the commit
 			$that->invalidateCache();
@@ -1420,6 +1424,10 @@ class LocalFile extends File {
 					$user
 				);
 
+				if ( isset( $status->value['revision'] ) ) {
+					// Associate new page revision id
+					$logEntry->setAssociatedRevId( $status->value['revision']->getId() );
+				}
 				// Now that the page exists, make an RC entry.
 				// This relies on the resetArticleID() call in WikiPage::insertOn(),
 				// which is triggered on $descTitle by doEditContent() above.
@@ -1438,6 +1446,8 @@ class LocalFile extends File {
 				# Existing file page: invalidate description page cache
 				$wikiPage->getTitle()->invalidateCache();
 				$wikiPage->getTitle()->purgeSquid();
+				# Allow the new file version to be patrolled from the page footer
+				Article::purgePatrolFooterCache( $descId );
 			}
 
 			# Run hook for other updates (typically more cache purging)
