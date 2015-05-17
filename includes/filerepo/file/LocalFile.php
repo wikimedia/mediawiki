@@ -1367,11 +1367,6 @@ class LocalFile extends File {
 
 		$exists = $descTitle->exists();
 		if ( $exists ) {
-			// Page exists, do RC entry now (otherwise we wait for later).
-			$logEntry->publish( $logId );
-		}
-
-		if ( $exists ) {
 			# Create a null revision
 			$latest = $descTitle->getLatestRevID();
 			// Use own context to get the action text in content language
@@ -1388,10 +1383,14 @@ class LocalFile extends File {
 			);
 			if ( !is_null( $nullRevision ) ) {
 				$nullRevision->insertOn( $dbw );
-
-				Hooks::run( 'NewRevisionFromEditComplete', array( $wikiPage, $nullRevision, $latest, $user ) );
 				$wikiPage->updateRevisionOn( $dbw, $nullRevision );
+				Hooks::run( 'NewRevisionFromEditComplete', array( $wikiPage, $nullRevision, $latest, $user ) );
+
+				// Associate null revision id
+				$logEntry->setAssociatedRevId( $nullRevision->getId() );
 			}
+			// Page exists, do RC entry now (otherwise we wait for later).
+			$logEntry->publish( $logId );
 		}
 
 		# Commit the transaction now, in case something goes wrong later
@@ -1407,6 +1406,8 @@ class LocalFile extends File {
 			# Invalidate the cache for the description page
 			$descTitle->invalidateCache();
 			$descTitle->purgeSquid();
+			# Allow the new file version to be patrolled from the page footer
+			Article::purgePatrolFooterCache( $descTitle->getArticleID() ); 
 		} else {
 			# New file; create the description page.
 			# There's already a log entry, so don't make a second RC entry
@@ -1419,6 +1420,10 @@ class LocalFile extends File {
 				false,
 				$user
 			);
+			if ( isset( $status->value['revision'] ) ) {
+				// Associate new page revision id
+				$logEntry->setAssociatedRevId( $status->value['revision']->getId() );
+			}
 
 			$dbw->begin( __METHOD__ ); // XXX; doEdit() uses a transaction
 			// Now that the page exists, make an RC entry.

@@ -490,13 +490,6 @@ class MovePage {
 		Hooks::run( 'NewRevisionFromEditComplete',
 			array( $newpage, $nullRevision, $nullRevision->getParentId(), $user ) );
 
-		$newpage->doEditUpdates( $nullRevision, $user,
-			array( 'changed' => false, 'moved' => true, 'oldcountable' => $oldcountable ) );
-
-		if ( !$moveOverRedirect ) {
-			WikiPage::onArticleCreate( $nt );
-		}
-
 		# Recreate the redirect, this time in the other direction.
 		if ( $redirectContent ) {
 			$redirectArticle = WikiPage::factory( $this->oldTitle );
@@ -516,13 +509,27 @@ class MovePage {
 
 				Hooks::run( 'NewRevisionFromEditComplete',
 					array( $redirectArticle, $redirectRevision, false, $user ) );
-
-				$redirectArticle->doEditUpdates( $redirectRevision, $user, array( 'created' => true ) );
 			}
 		}
 
+		# Associate null revision id
+		$logEntry->setAssociatedRevId( $nullRevision->getId() );
+
 		# Log the move
 		$logid = $logEntry->insert();
+
+		# Publish recent change now to ensure it gets the same timestamp as the null rev
 		$logEntry->publish( $logid );
+
+		# Now we can make the post-edit updates
+		$newpage->doEditUpdates( $nullRevision, $user,
+			array( 'changed' => false, 'moved' => true, 'oldcountable' => $oldcountable ) );
+		if ( $redirectContent && $newid ) {
+			$redirectArticle->doEditUpdates( $redirectRevision, $user, array( 'created' => true ) );
+		}
+
+		if ( !$moveOverRedirect ) {
+			WikiPage::onArticleCreate( $nt );
+		}
 	}
 }

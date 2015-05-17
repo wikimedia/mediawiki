@@ -429,6 +429,43 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
+	 * Insert patrol and revert links for unpatrolled moves
+	 *
+	 * @param RecentChange $rc
+	 * @return string
+	 * @since 1.26
+	 */
+	public function insertMoveActionLinks( $rc ) {
+		$html = '';
+		$formatter = LogFormatter::newFromRow( $rc->mAttribs );
+		$formatter->setContext( $this->getContext() );
+
+		$token = $this->getUser()->getEditToken( $rc->mAttribs['rc_id'] );
+
+		// Add revert link with additional info needed for patrol
+		$extraRequest = array(
+			'wpRevertMoveRCid' => $rc->mAttribs['rc_id'],
+			'wpRevertMoveToken' => $token
+		);
+		$html .= $formatter->getActionLinks( $extraRequest );
+
+		// Patrol link
+		$this->getOutput()->preventClickjacking();
+		$html .= ' <span class="patrollink">[' . Linker::linkKnown(
+			$rc->getTitle(),
+			$this->msg( 'markaspatrolleddiff' )->escaped(),
+			array(),
+			array(
+				'action' => 'markpatrolled',
+				'rcid' => $rc->mAttribs['rc_id'],
+				'token' => $token
+			)
+		) . ']</span>';
+
+		return $html;
+	}
+
+	/**
 	 * Insert a formatted comment
 	 * @param RecentChange $rc
 	 * @return string
@@ -577,9 +614,11 @@ class ChangesList extends ContextSource {
 		if ( $rc instanceof RecentChange ) {
 			$isPatrolled = $rc->mAttribs['rc_patrolled'];
 			$rcType = $rc->mAttribs['rc_type'];
+			$rcLogType = $rc->mAttribs['rc_log_type'];
 		} else {
 			$isPatrolled = $rc->rc_patrolled;
 			$rcType = $rc->rc_type;
+			$rcLogType = $rc->rc_log_type;
 		}
 
 		if ( !$isPatrolled ) {
@@ -587,6 +626,9 @@ class ChangesList extends ContextSource {
 				return true;
 			}
 			if ( $user->useNPPatrol() && $rcType == RC_NEW ) {
+				return true;
+			}
+			if ( $user->useFilePatrol() && $rcLogType == 'upload' ) {
 				return true;
 			}
 		}

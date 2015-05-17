@@ -362,6 +362,10 @@ class EnhancedChangesList extends ChangesList {
 
 			if ( $rcObj->mAttribs['rc_type'] == RC_LOG ) {
 				$r .= $this->insertLogEntry( $rcObj );
+				// Allow to patrol or revert unpatrolled moves from recent changes
+				if ( $rcObj->unpatrolled && $rcObj->mAttribs['rc_log_type'] === 'move' ) {
+					$r .= $this->insertMoveActionLinks( $rcObj );
+				}
 			} else {
 				# User links
 				$r .= $rcObj->userlink;

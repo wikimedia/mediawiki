@@ -1069,15 +1069,16 @@ class Article implements Page {
 	 * @return bool
 	 */
 	public function showPatrolFooter() {
-		global $wgUseNPPatrol, $wgUseRCPatrol, $wgEnableAPI, $wgEnableWriteAPI;
+		global $wgUseNPPatrol, $wgUseRCPatrol, $wgUseFilePatrol, $wgEnableAPI, $wgEnableWriteAPI;
 
 		$outputPage = $this->getContext()->getOutput();
 		$user = $this->getContext()->getUser();
 		$cache = wfGetMainCache();
 		$rc = false;
+		$markPatrolledMsg = wfMessage( 'markaspatrolledtext' );
 
 		if ( !$this->getTitle()->quickUserCan( 'patrol', $user )
-			|| !( $wgUseRCPatrol || $wgUseNPPatrol )
+			|| !( $wgUseRCPatrol || $wgUseNPPatrol || $wgUseFilePatrol )
 		) {
 			// Patrolling is disabled or the user isn't allowed to
 			return false;
@@ -1127,12 +1128,45 @@ class Article implements Page {
 			);
 		}
 
+		// Allow patrolling of latest file upload
+		if ( !$rc && $wgUseFilePatrol && $this->getTitle()->getNamespace() === NS_FILE ) {
+			// Retrieve timestamp of most recent upload
+			$newestUploadTimestamp = $dbr->selectField(
+				'image',
+				'MAX( img_timestamp )',
+				array( 'img_name' => $this->getTitle()->getDBkey() ),
+				__METHOD__
+			);
+			if ( $newestUploadTimestamp
+				&& RecentChange::isInRCLifespan( $newestUploadTimestamp, 21600 )
+			) {
+				// 6h tolerance because the RC might not be cleaned out regularly
+				$rc = RecentChange::newFromConds(
+					array(
+						'rc_type' => RC_LOG,
+						'rc_log_type' => 'upload',
+						'rc_timestamp' => $newestUploadTimestamp,
+						'rc_namespace' => NS_FILE,
+						'rc_cur_id' => $this->getTitle()->getArticleID(),
+						'rc_patrolled' => 0
+					),
+					__METHOD__,
+					array( 'USE INDEX' => 'rc_timestamp' )
+				);
+			}
+			if ( $rc ) {
+				// Use more specific message
+				$markPatrolledMsg = wfMessage( 'markaspatrolledtext-file' );
+			}
+		}
+
 		if ( !$rc ) {
 			// No RC entry around
 
 			// Cache the information we gathered above in case we can't patrol
 			// Don't cache in case we can patrol as this could change
 			$cache->set( wfMemcKey( 'NotPatrollablePage', $this->getTitle()->getArticleID() ), '1' );
+			// If RC patrol is used, cache is purged when moving the page or re-uploading a file
 
 			return false;
 		}
@@ -1154,7 +1188,7 @@ class Article implements Page {
 
 		$link = Linker::linkKnown(
 			$this->getTitle(),
-			wfMessage( 'markaspatrolledtext' )->escaped(),
+			$markPatrolledMsg->escaped(),
 			array(),
 			array(
 				'action' => 'markpatrolled',
@@ -1170,6 +1204,16 @@ class Article implements Page {
 		);
 
 		return true;
+	}
+
+	/**
+	 * Purge the cache used to check if it is worth showing the patrol footer
+	 * @param int $articleID ID of the article to purge
+	 * @since 1.26
+	 */
+	public static function purgePatrolFooterCache( $articleID ) {
+		$cache = wfGetMainCache();
+		$cache->delete( wfMemcKey( 'NotPatrollablePage', $articleID ) );
 	}
 
 	/**
