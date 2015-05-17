@@ -386,6 +386,9 @@ class ManualLogEntry extends LogEntryBase {
 	/** @var string Comment for the log entry */
 	protected $comment = '';
 
+	/** @var int A rev id associated to the log entry */
+	protected $revId = 0;
+
 	/** @var int Deletion state of the log entry */
 	protected $deleted;
 
@@ -482,6 +485,17 @@ class ManualLogEntry extends LogEntryBase {
 	 */
 	public function setComment( $comment ) {
 		$this->comment = $comment;
+	}
+
+	/**
+	 * Set an associated revision id.
+	 *
+	 * @since 1.26
+	 *
+	 * @param int $revId
+	 */
+	public function setAssociatedRevId( $revId ) {
+		$this->revId = $revId;
 	}
 
 	/**
@@ -608,7 +622,8 @@ class ManualLogEntry extends LogEntryBase {
 			$this->getComment(),
 			LogEntryBase::makeParamBlob( $this->getParameters() ),
 			$newId,
-			$formatter->getIRCActionComment() // Used for IRC feeds
+			$formatter->getIRCActionComment(), // Used for IRC feeds
+			$this->getAssociatedRevId() // Used for moves and uploads
 		);
 	}
 
@@ -616,6 +631,7 @@ class ManualLogEntry extends LogEntryBase {
 	 * Publishes the log entry.
 	 * @param int $newId Id of the log entry.
 	 * @param string $to One of: rcandudp (default), rc, udp
+	 * @return RecentChange
 	 */
 	public function publish( $newId, $to = 'rcandudp' ) {
 		$log = new LogPage( $this->getType() );
@@ -632,6 +648,14 @@ class ManualLogEntry extends LogEntryBase {
 		if ( $to === 'udp' || $to === 'rcandudp' ) {
 			$rc->notifyRCFeeds();
 		}
+
+		// Log the autopatrol if an associated rev id was passed
+		if ( $this->getAssociatedRevId() > 0 &&
+			$rc->getAttribute( 'rc_patrolled' ) === 1 ) {
+			PatrolLog::record( $rc, true, $this->getPerformer() );
+		}
+
+		return $rc;
 	}
 
 	// LogEntry->
@@ -670,6 +694,14 @@ class ManualLogEntry extends LogEntryBase {
 
 	public function getComment() {
 		return $this->comment;
+	}
+
+	/**
+	 * @since 1.26
+	 * @return int
+	 */
+	public function getAssociatedRevId() {
+		return $this->revId;
 	}
 
 	/**

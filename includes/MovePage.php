@@ -500,23 +500,6 @@ class MovePage {
 		Hooks::run( 'NewRevisionFromEditComplete',
 			array( $newpage, $nullRevision, $nullRevision->getParentId(), $user ) );
 
-		$newpage->doEditUpdates( $nullRevision, $user,
-			array( 'changed' => false, 'moved' => true, 'oldcountable' => $oldcountable ) );
-
-		// If the default content model changes, we need to populate rev_content_model
-		if ( $defaultContentModelChanging ) {
-			$dbw->update(
-				'revision',
-				array( 'rev_content_model' => $contentModel ),
-				array( 'rev_page' => $nt->getArticleID(), 'rev_content_model IS NULL' ),
-				__METHOD__
-			);
-		}
-
-		if ( !$moveOverRedirect ) {
-			WikiPage::onArticleCreate( $nt );
-		}
-
 		# Recreate the redirect, this time in the other direction.
 		if ( $redirectContent ) {
 			$redirectArticle = WikiPage::factory( $this->oldTitle );
@@ -536,13 +519,37 @@ class MovePage {
 
 				Hooks::run( 'NewRevisionFromEditComplete',
 					array( $redirectArticle, $redirectRevision, false, $user ) );
-
-				$redirectArticle->doEditUpdates( $redirectRevision, $user, array( 'created' => true ) );
 			}
 		}
 
+		# Associate null revision id
+		$logEntry->setAssociatedRevId( $nullRevision->getId() );
+
 		# Log the move
 		$logid = $logEntry->insert();
+
+		# Publish recent change now to ensure it gets the same timestamp as the null rev
 		$logEntry->publish( $logid );
+
+		# Now we can make the post-edit updates
+		$newpage->doEditUpdates( $nullRevision, $user,
+			array( 'changed' => false, 'moved' => true, 'oldcountable' => $oldcountable ) );
+		if ( $redirectContent && $newid ) {
+			$redirectArticle->doEditUpdates( $redirectRevision, $user, array( 'created' => true ) );
+		}
+
+		// If the default content model changes, we need to populate rev_content_model
+		if ( $defaultContentModelChanging ) {
+			$dbw->update(
+				'revision',
+				array( 'rev_content_model' => $contentModel ),
+				array( 'rev_page' => $nt->getArticleID(), 'rev_content_model IS NULL' ),
+				__METHOD__
+			);
+		}
+
+		if ( !$moveOverRedirect ) {
+			WikiPage::onArticleCreate( $nt );
+		}
 	}
 }

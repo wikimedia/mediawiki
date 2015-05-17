@@ -39,6 +39,9 @@ class ChangesList extends ContextSource {
 	/** @var MapCacheLRU */
 	protected $watchingCache;
 
+	/** @var string Name of the special page displaying the changes list, if relevant */
+	protected $specialPageName = null;
+
 	/**
 	 * Changeslist constructor
 	 *
@@ -90,6 +93,15 @@ class ChangesList extends ContextSource {
 	 */
 	public function isWatchlist() {
 		return (bool)$this->watchlist;
+	}
+
+
+	/**
+	 * Sets the name of the special page displaying the changes list
+	 * @param string $name
+	 */
+	public function setSpecialPageName( $name ) {
+		$this->specialPageName = $name;
 	}
 
 	/**
@@ -443,6 +455,49 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
+	 * Insert patrol and revert links for unpatrolled moves
+	 *
+	 * @param RecentChange $rc
+	 * @return string
+	 * @since 1.26
+	 */
+	public function insertMoveActionLinks( $rc ) {
+		$html = '';
+		$formatter = LogFormatter::newFromRow( $rc->mAttribs );
+		$formatter->setContext( $this->getContext() );
+
+		$token = $this->getUser()->getEditToken( $rc->mAttribs['rc_id'] );
+
+		// Add revert link with additional info needed for patrol
+		$extraRequest = array(
+			'wpRevertMoveRCid' => $rc->mAttribs['rc_id'],
+			'wpRevertMoveToken' => $token
+		);
+		$html .= '<span class="revertlink-move">' .
+			$formatter->getActionLinks( $extraRequest ) . '</span>';
+
+		// Patrol link
+		$this->getOutput()->preventClickjacking();
+		$params = array(
+			'action' => 'markpatrolled',
+			'rcid' => $rc->mAttribs['rc_id'],
+			'token' => $token
+		);
+		if ( $this->specialPageName !== null ) {
+			// Suggest returning to this special page
+			$params['wpReturnToSpecial'] = $this->specialPageName;
+		}
+		$html .= ' <span class="patrollink-move">[' . Linker::linkKnown(
+			$rc->getTitle(),
+			$this->msg( 'markaspatrolleddiff' )->escaped(),
+			array(),
+			$params
+		) . ']</span>';
+
+		return '<span class="actionlinks-move">' . $html . '</span>';
+	}
+
+	/**
 	 * Insert a formatted comment
 	 * @param RecentChange $rc
 	 * @return string
@@ -614,9 +669,11 @@ class ChangesList extends ContextSource {
 		if ( $rc instanceof RecentChange ) {
 			$isPatrolled = $rc->mAttribs['rc_patrolled'];
 			$rcType = $rc->mAttribs['rc_type'];
+			$rcLogType = $rc->mAttribs['rc_log_type'];
 		} else {
 			$isPatrolled = $rc->rc_patrolled;
 			$rcType = $rc->rc_type;
+			$rcLogType = $rc->rc_log_type;
 		}
 
 		if ( !$isPatrolled ) {
@@ -624,6 +681,9 @@ class ChangesList extends ContextSource {
 				return true;
 			}
 			if ( $user->useNPPatrol() && $rcType == RC_NEW ) {
+				return true;
+			}
+			if ( $user->useFilePatrol() && $rcLogType == 'upload' ) {
 				return true;
 			}
 		}

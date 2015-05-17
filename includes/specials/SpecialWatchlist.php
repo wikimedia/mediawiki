@@ -349,6 +349,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$list = ChangesList::newFromContext( $this->getContext() );
 		$list->setWatchlistDivs();
 		$list->initChangesListRows( $rows );
+		$list->setSpecialPageName( $this->getName() );
 		$dbr->dataSeek( $rows, 0 );
 
 		$s = $list->beginRecentChangesList();
