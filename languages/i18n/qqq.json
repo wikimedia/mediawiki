@@ -2821,6 +2821,7 @@
 	"newimages-legend": "Caption of the fieldset for the filter on [[Special:NewImages]]\n\n{{Identical|Filter}}",
 	"newimages-label": "Caption of the filter editbox on [[Special:NewImages]]",
 	"newimages-showbots": "Used as label for a checkbox. When checked, [[Special:NewImages]] will also display uploads by users in the bots group.",
+	"newimages-showbots": "Used as label for a checkbox. When checked, [[Special:NewImages]] will not display patrolled uploads.",
 	"noimages": "This is shown on the special page [[Special:NewImages]], when there aren't any recently uploaded files.",
 	"ilsubmit": "Used as label for input box in the MIMESearch form on [[Special:MIMESearch]].\n\nSee also:\n* {{msg-mw|Mimesearch|page title}}\n* {{msg-mw|Mimetype|label for input box}}\n{{Identical|Search}}",
 	"bydate": "{{Identical|Date}}",

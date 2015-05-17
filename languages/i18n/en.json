@@ -2652,6 +2652,7 @@
 	"newimages-legend": "Filter",
 	"newimages-label": "Filename (or a part of it):",
 	"newimages-showbots": "Show uploads by bots",
+	"newimages-hidepatrolled": "Hide patrolled files",
 	"noimages": "Nothing to see.",
 	"ilsubmit": "Search",
 	"bydate": "by date",

@@ -1204,6 +1204,7 @@ class LocalFile extends File {
 	function recordUpload2( $oldver, $comment, $pageText, $props = false, $timestamp = false,
 		$user = null
 	) {
+		global $wgUseRCPatrol;
 
 		if ( is_null( $user ) ) {
 			global $wgUser;
@@ -1367,11 +1368,6 @@ class LocalFile extends File {
 
 		$exists = $descTitle->exists();
 		if ( $exists ) {
-			// Page exists, do RC entry now (otherwise we wait for later).
-			$logEntry->publish( $logId );
-		}
-
-		if ( $exists ) {
 			# Create a null revision
 			$latest = $descTitle->getLatestRevID();
 			// Use own context to get the action text in content language
@@ -1389,6 +1385,18 @@ class LocalFile extends File {
 			if ( !is_null( $nullRevision ) ) {
 				$nullRevision->insertOn( $dbw );
 
+				# Associate null revision id
+				$logEntry->setAssociatedRevId( $nullRevision->getId() );
+			}
+
+			// Page exists, do RC entry now (otherwise we wait for later).
+			$logEntry->publish( $logId );
+
+			if ( !is_null( $nullRevision ) ) {
+				// If we use RC patrol, invalidate patrol cache for article ID
+				if ( $wgUseRCPatrol ) {
+					wfGetMainCache()->delete( wfMemcKey( 'NotPatrollablePage', $descTitle->getArticleID() ) );
+				}
 				Hooks::run( 'NewRevisionFromEditComplete', array( $wikiPage, $nullRevision, $latest, $user ) );
 				$wikiPage->updateRevisionOn( $dbw, $nullRevision );
 			}
@@ -1419,6 +1427,10 @@ class LocalFile extends File {
 				false,
 				$user
 			);
+			if ( isset( $status->value['revision'] ) ) {
+				// Associate new page revision id
+				$logEntry->setAssociatedRevId( $status->value['revision']->getId() );
+			}
 
 			$dbw->begin( __METHOD__ ); // XXX; doEdit() uses a transaction
 			// Now that the page exists, make an RC entry.

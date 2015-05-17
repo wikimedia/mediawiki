@@ -1127,12 +1127,47 @@ class Article implements Page {
 			);
 		}
 
+		// If not in recent changes as a new page, offer the opportunity to
+		// patrol the most recent move or upload for this title, if any,
+		// when RC patrolled is enabled, if not check if it's a new file
+		if ( !$rc ) {
+			if ( $wgUseRCPatrol ) {
+				// Retrieve latest move or patrol for this title
+				$rc = RecentChange::newFromConds(
+					array(
+						'rc_type' => RC_LOG,
+						'rc_log_type' => array( 'move', 'upload' ),
+						'rc_cur_id' => $this->getTitle()->getArticleID()
+					),
+					__METHOD__,
+					array( 'USE INDEX' => 'rc_timestamp' )
+				);
+			} else {
+				// Retrieve latest new file upload for this title
+				$rc = RecentChange::newFromConds(
+					array(
+						'rc_type' => RC_LOG,
+						'rc_log_type' => 'upload',
+						'rc_log_action' => 'upload',
+						'rc_cur_id' => $this->getTitle()->getArticleID()
+					),
+					__METHOD__,
+					array( 'USE INDEX' => 'rc_timestamp' )
+				);
+			}
+			// Ignore if patrolled already
+			if ( $rc && $rc->getAttribute( 'rc_patrolled' ) > 0 ) {
+				$rc = false;
+			}
+		}
+
 		if ( !$rc ) {
 			// No RC entry around
 
 			// Cache the information we gathered above in case we can't patrol
 			// Don't cache in case we can patrol as this could change
 			$cache->set( wfMemcKey( 'NotPatrollablePage', $this->getTitle()->getArticleID() ), '1' );
+			// If RC patrol is used, cache is purged when moving the page or re-uploading a file
 
 			return false;
 		}
