@@ -467,6 +467,45 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
+	 * Insert patrol and revert links for unpatrolled moves
+	 *
+	 * @param RecentChange $rc
+	 * @return string
+	 * @since 1.26
+	 */
+	public function insertMoveActionLinks( $rc ) {
+		$html = '';
+		$formatter = LogFormatter::newFromRow( $rc->mAttribs );
+		$formatter->setContext( $this->getContext() );
+
+		$token = $this->getUser()->getEditToken( $rc->mAttribs['rc_id'] );
+
+		// Add revert link with additional info needed for patrol
+		$extraRequest = array(
+			'wpRevertMoveRCid' => $rc->mAttribs['rc_id'],
+			'wpRevertMoveToken' => $token
+		);
+		$html .= '<span class="revertlink-move">' .
+			$formatter->getActionLinks( $extraRequest ) . '</span>';
+
+		// Patrol link
+		$this->getOutput()->preventClickjacking();
+		$params = array(
+			'action' => 'markpatrolled',
+			'rcid' => $rc->mAttribs['rc_id'],
+			'token' => $token
+		);
+		$html .= ' <span class="patrollink-move">[' . Linker::linkKnown(
+			$rc->getTitle(),
+			$this->msg( 'markaspatrolleddiff' )->escaped(),
+			array(),
+			$params
+		) . ']</span>';
+
+		return '<span class="actionlinks-move">' . $html . '</span>';
+	}
+
+	/**
 	 * Insert a formatted comment
 	 * @param RecentChange $rc
 	 * @return string
