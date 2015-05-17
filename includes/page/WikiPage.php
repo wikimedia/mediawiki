@@ -2200,6 +2200,13 @@ class WikiPage implements Page, IDBAccessObject {
 			$recursive = $options['changed']; // bug 50785
 			$updates = $content->getSecondaryDataUpdates(
 				$this->getTitle(), null, $recursive, $editInfo->output );
+
+			foreach ( $updates as $key => $update ) {
+				if ( $update instanceof LinksUpdate ) {
+					$update->setRevision( $revision );
+				}
+			}
+
 			DataUpdate::runUpdates( $updates );
 		}
 

@@ -861,6 +861,7 @@ class Preferences {
 	static function rcPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		$config = $context->getConfig();
 		$rcMaxAge = $config->get( 'RCMaxAge' );
+		$rcWatchCategoryMembership = $config->get( 'RCWatchCategoryMembership' );
 		## RecentChanges #####################################
 		$defaultPreferences['rcdays'] = array(
 			'type' => 'float',
@@ -904,6 +905,14 @@ class Preferences {
 			);
 		}
 
+		if ( $rcWatchCategoryMembership ) {
+			$defaultPreferences['hidecategorization'] = array(
+				'type' => 'toggle',
+				'label-message' => 'tog-hidecategorization',
+				'section' => 'rc/advancedrc',
+			);
+		}
+
 		if ( $config->get( 'RCShowWatchingUsers' ) ) {
 			$defaultPreferences['shownumberswatching'] = array(
 				'type' => 'toggle',
@@ -921,6 +930,7 @@ class Preferences {
 	static function watchlistPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		$config = $context->getConfig();
 		$watchlistdaysMax = ceil( $config->get( 'RCMaxAge' ) / ( 3600 * 24 ) );
+		$rcWatchCategoryMembership = $config->get( 'RCWatchCategoryMembership' );
 
 		## Watchlist #####################################
 		if ( $user->isAllowed( 'editmywatchlist' ) ) {
@@ -1000,6 +1010,14 @@ class Preferences {
 				'type' => 'toggle',
 				'section' => 'watchlist/advancedwatchlist',
 				'label-message' => 'tog-watchlisthidepatrolled',
+			);
+		}
+
+		if ( $rcWatchCategoryMembership ) {
+			$defaultPreferences['watchlisthidecategorization'] = array(
+				'type' => 'toggle',
+				'section' => 'watchlist/advancedwatchlist',
+				'label-message' => 'tog-watchlisthidecategorization',
 			);
 		}
 
