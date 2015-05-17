@@ -67,6 +67,7 @@ class RecentChange {
 	const SRC_NEW = 'mw.new';
 	const SRC_LOG = 'mw.log';
 	const SRC_EXTERNAL = 'mw.external'; // obsolete
+	const SRC_CATEGORIZE = 'mw.categorize';
 
 	public $mAttribs = array();
 	public $mExtra = array();
@@ -128,6 +129,8 @@ class RecentChange {
 				return RC_LOG;
 			case 'external':
 				return RC_EXTERNAL;
+			case 'categorize':
+				return RC_CATEGORIZE;
 			default:
 				throw new MWException( "Unknown type '$type'" );
 		}
@@ -152,6 +155,9 @@ class RecentChange {
 				break;
 			case RC_EXTERNAL:
 				$type = 'external';
+				break;
+			case RC_CATEGORIZE:
+				$type = 'categorize';
 				break;
 			default:
 				$type = "$rcType";
@@ -721,6 +727,69 @@ class RecentChange {
 			'pageStatus' => $pageStatus,
 			'actionCommentIRC' => $actionCommentIRC
 		);
+
+		return $rc;
+	}
+
+	/**
+	 * Makes an entry in the database corresponding to a categorization
+	 *
+	 * @param $timestamp
+	 * @param $title
+	 * @param $minor
+	 * @param $user
+	 * @param $comment
+	 * @param $pageTitle
+	 * @param $oldRevId
+	 * @param $newRevId
+	 * @param $lastTimestamp
+	 * @param $bot
+	 * @param string $ip
+	 * @param int $patrol
+	 * @param array|null $params
+	 * @return RecentChange
+	 * @throws MWException
+	 */
+	public static function notifyCategorization( $timestamp, &$title, $minor, &$user, $comment,
+			$pageTitle, $oldRevId, $newRevId, $lastTimestamp, $bot, $ip = '', $patrol = 0,
+			$params = null ) {
+		$rc = new RecentChange;
+		$rc->mTitle = $title;
+		$rc->mPerformer = $user;
+		$rc->mAttribs = array(
+			'rc_timestamp' => $timestamp,
+			'rc_namespace' => $title->getNamespace(),
+			'rc_title' => $title->getDBkey(),
+			'rc_type' => RC_CATEGORIZE,
+			'rc_source' => self::SRC_CATEGORIZE,
+			'rc_minor' => $minor ? 1 : 0,
+			'rc_cur_id' => $pageTitle->getArticleID(),
+			'rc_user' => $user->getId(),
+			'rc_user_text' => $user->getName(),
+			'rc_comment' => $comment,
+			'rc_this_oldid' => $newRevId,
+			'rc_last_oldid' => $oldRevId,
+			'rc_bot' => $bot ? 1 : 0,
+			'rc_ip' => self::checkIPAddress( $ip ),
+			'rc_patrolled' => intval( $patrol ),
+			'rc_new' => 0, # obsolete
+			'rc_old_len' => 0,
+			'rc_new_len' => 0,
+			'rc_deleted' => 0,
+			'rc_logid' => 0,
+			'rc_log_type' => null,
+			'rc_log_action' => '',
+			'rc_params' => $params ? serialize( $params ) : ''
+		);
+
+		$rc->mExtra = array(
+			'prefixedDBkey' => $title->getPrefixedDBkey(),
+			'lastTimestamp' => $lastTimestamp,
+			'oldSize' => 0,
+			'newSize' => 0,
+			'pageStatus' => 'changed'
+		);
+		$rc->save();
 
 		return $rc;
 	}

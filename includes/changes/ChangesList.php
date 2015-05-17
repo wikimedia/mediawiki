@@ -204,7 +204,8 @@ class ChangesList extends ContextSource {
 		$code = $lang->getCode();
 		static $fastCharDiff = array();
 		if ( !isset( $fastCharDiff[$code] ) ) {
-			$fastCharDiff[$code] = $config->get( 'MiserMode' ) || $context->msg( 'rc-change-size' )->plain() === '$1';
+			$fastCharDiff[$code] =
+				$config->get( 'MiserMode' ) || $context->msg( 'rc-change-size' )->plain() === '$1';
 		}
 
 		$formattedSize = $lang->formatNum( $szdiff );
@@ -443,6 +444,27 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
+	 * @param RecentChange $rc
+	 * @param $query
+	 * @return string
+	 */
+	public function insertDiffHistLinks( $rc, $query ) {
+		$pageTitle = $rc->getTitle();
+		if ( intval( $rc->getAttribute( 'rc_type' ) ) === RC_CATEGORIZE ) {
+			$pageTitle = $this->getTitleFromParams( $rc );
+		}
+
+		$retVal = ' ' . $this->msg( 'parentheses' )
+		->rawParams( $rc->difflink . $this->message['pipe-separator'] . Linker::linkKnown(
+				$pageTitle,
+				$this->message['hist'],
+				array(),
+				$query
+			) )->escaped();
+		return $retVal;
+	}
+
+	/**
 	 * Check whether to enable recent changes patrol features
 	 *
 	 * @deprecated since 1.22
@@ -592,5 +614,19 @@ class ChangesList extends ContextSource {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Get title out of 
+	 * 
+	 * @param RecentChange $rc
+	 * @return null|Title
+	 */
+	private function getTitleFromParams( $rc ) {
+		$params = unserialize( $rc->getAttribute( 'rc_params' ) );
+		if ( isset( $params['articleId'] ) ) {
+			return Title::newFromID( $params['articleId'] );
+		}
+		return $rc->getTitle();
 	}
 }
