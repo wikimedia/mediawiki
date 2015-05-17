@@ -57,6 +57,12 @@ class MovePageForm extends UnlistedSpecialPage {
 	/** @var bool */
 	protected $moveOverShared;
 
+	/** @var int */
+	protected $revertMoveRCid;
+
+	/** @var int */
+	protected $revertMoveToken;
+
 	private $watch = false;
 
 	public function __construct() {
@@ -120,6 +126,8 @@ class MovePageForm extends UnlistedSpecialPage {
 		$this->deleteAndMove = $request->getBool( 'wpDeleteAndMove' ) && $request->getBool( 'wpConfirm' );
 		$this->moveOverShared = $request->getBool( 'wpMoveOverSharedFile', false );
 		$this->watch = $request->getCheck( 'wpWatch' ) && $user->isLoggedIn();
+		$this->revertMoveRCid = $request->getVal( 'wpRevertMoveRCid' );
+		$this->revertMoveToken = $request->getVal( 'wpRevertMoveToken' );
 
 		if ( 'submit' == $request->getVal( 'action' ) && $request->wasPosted()
 			&& $user->matchEditToken( $request->getVal( 'wpEditToken' ) )
@@ -492,6 +500,8 @@ class MovePageForm extends UnlistedSpecialPage {
 		$out->addHTML(
 			Xml::closeElement( 'table' ) .
 			Html::hidden( 'wpEditToken', $user->getEditToken() ) .
+			Html::hidden( 'wpRevertMoveRCid', $this->revertMoveRCid ) .
+			Html::hidden( 'wpRevertMoveToken', $this->revertMoveToken ) .
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' ) .
 			"\n"
@@ -771,6 +781,13 @@ class MovePageForm extends UnlistedSpecialPage {
 		# Deal with watches (we don't watch subpages)
 		WatchAction::doWatchOrUnwatch( $this->watch, $ot, $user );
 		WatchAction::doWatchOrUnwatch( $this->watch, $nt, $user );
+
+		$rcid = $this->revertMoveRCid;
+		if ( $rcid > 0 && $user->matchEditToken( $this->revertMoveToken, $rcid ) ) {
+			$rc = RecentChange::newFromId( $this->revertMoveRCid );
+			// Mark patrolled, with no logging (like rollback)
+			RecentChange::newFromId( $rcid )->reallyMarkPatrolled();
+		}
 	}
 
 	function showLogFragment( $title ) {

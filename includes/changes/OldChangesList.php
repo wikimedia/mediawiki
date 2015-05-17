@@ -74,10 +74,16 @@ class OldChangesList extends ChangesList {
 	 */
 	private function formatChangeLine( RecentChange $rc, array &$classes, $watched ) {
 		$html = '';
+		$unpatrolled = $this->showAsUnpatrolled( $rc );
 
 		if ( $rc->mAttribs['rc_log_type'] ) {
 			$logtitle = SpecialPage::getTitleFor( 'Log', $rc->mAttribs['rc_log_type'] );
 			$this->insertLog( $html, $logtitle, $rc->mAttribs['rc_log_type'] );
+			$flags = $this->recentChangesFlags( array( 'unpatrolled' =>$unpatrolled,
+				'bot' => $rc->mAttribs['rc_bot'] ), '' );
+			if ( $flags !== '' ) {
+				$html .= ' ' . $flags;
+			}
 		// Log entries (old format) or log targets, and special pages
 		} elseif ( $rc->mAttribs['rc_namespace'] == NS_SPECIAL ) {
 			list( $name, $htmlubpage ) = SpecialPageFactory::resolveAlias( $rc->mAttribs['rc_title'] );
@@ -86,7 +92,6 @@ class OldChangesList extends ChangesList {
 			}
 		// Regular entries
 		} else {
-			$unpatrolled = $this->showAsUnpatrolled( $rc );
 
 			$this->insertDiffHist( $html, $rc, $unpatrolled );
 			# M, N, b and ! (minor, new, bot and unpatrolled)
@@ -113,6 +118,10 @@ class OldChangesList extends ChangesList {
 
 		if ( $rc->mAttribs['rc_type'] == RC_LOG ) {
 			$html .= $this->insertLogEntry( $rc );
+			// Allow to patrol or revert unpatrolled moves from recent changes
+			if ( $unpatrolled && $rc->mAttribs['rc_log_type'] === 'move' ) {
+				$html .= $this->insertMoveActionLinks( $rc );
+			}
 		} else {
 			# User tool links
 			$this->insertUserRelatedLinks( $html, $rc );

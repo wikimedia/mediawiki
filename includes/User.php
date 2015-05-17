@@ -3279,6 +3279,18 @@ class User implements IDBAccessObject {
 	}
 
 	/**
+	 * Check whether to enable new files patrol features for this user
+	 * @return bool True or false
+	 */
+	public function useFilePatrol() {
+		global $wgUseRCPatrol, $wgUseFilePatrol;
+		return (
+			( $wgUseRCPatrol || $wgUseFilePatrol )
+				&& ( $this->isAllowedAny( 'patrol', 'patrolmarks' ) )
+		);
+	}
+
+	/**
 	 * Get the WebRequest object to use with this object
 	 *
 	 * @return WebRequest
