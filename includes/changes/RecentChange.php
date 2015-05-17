@@ -67,6 +67,7 @@ class RecentChange {
 	const SRC_NEW = 'mw.new';
 	const SRC_LOG = 'mw.log';
 	const SRC_EXTERNAL = 'mw.external'; // obsolete
+	const SRC_CATEGORIZE = 'mw.categorize';
 
 	public $mAttribs = array();
 	public $mExtra = array();
@@ -88,6 +89,17 @@ class RecentChange {
 	 * @var int Line number of recent change. Default -1.
 	 */
 	public $counter = -1;
+
+	/**
+	 * @var array Array of change types
+	 */
+	private static $changeTypes = array(
+		'edit' => RC_EDIT,
+		'new' => RC_NEW,
+		'log' => RC_LOG,
+		'external' => RC_EXTERNAL,
+		'categorize' => RC_CATEGORIZE,
+	);
 
 	# Factory methods
 
@@ -119,18 +131,10 @@ class RecentChange {
 			return $retval;
 		}
 
-		switch ( $type ) {
-			case 'edit':
-				return RC_EDIT;
-			case 'new':
-				return RC_NEW;
-			case 'log':
-				return RC_LOG;
-			case 'external':
-				return RC_EXTERNAL;
-			default:
-				throw new MWException( "Unknown type '$type'" );
+		if ( !array_key_exists( $type, self::$changeTypes ) ) {
+			throw new MWException( "Unknown type '$type'" );
 		}
+		return self::$changeTypes[$type];
 	}
 
 	/**
@@ -140,24 +144,15 @@ class RecentChange {
 	 * @return string $type
 	 */
 	public static function parseFromRCType( $rcType ) {
-		switch ( $rcType ) {
-			case RC_EDIT:
-				$type = 'edit';
-				break;
-			case RC_NEW:
-				$type = 'new';
-				break;
-			case RC_LOG:
-				$type = 'log';
-				break;
-			case RC_EXTERNAL:
-				$type = 'external';
-				break;
-			default:
-				$type = "$rcType";
-		}
+		return array_search( $rcType, self::$changeTypes, true ) ?: "$rcType";
+	}
 
-		return $type;
+	/**
+	 * Get an array of all change types
+	 * @return array
+	 */
+	public static function getChangeTypes() {
+		return array_keys( self::$changeTypes );
 	}
 
 	/**
@@ -742,6 +737,72 @@ class RecentChange {
 			'pageStatus' => $pageStatus,
 			'actionCommentIRC' => $actionCommentIRC
 		);
+
+		return $rc;
+	}
+
+	/**
+	 * Makes an entry in the database corresponding to a categorization
+	 *
+	 * @param string $timestamp Timestamp of the recent change to occur
+	 * @param Title $categoryTitle Title of the category a page is being added to or removed from
+	 * @param User $user User object of the user that made the change
+	 * @param string $comment Change summary
+	 * @param Title $pageTitle Title of the page that is being added or removed
+	 * @param int $oldRevId Parent revision ID of this change
+	 * @param int $newRevId Revision ID of this change
+	 * @param string $lastTimestamp Parent revision timestamp of this change
+	 * @param bool $bot true, if the change was made by a bot
+	 * @param string $ip IP address of the user, if the change was made anonymously
+	 * @param int $patrol Indicates whether the change is patrolled/unpatrolled
+	 * @param int $deleted Indicates whether the change has been deleted
+	 * @param array|null $params Additional parameters as explained on
+	 * https://www.mediawiki.org/wiki/Manual:Logging_table#log_params
+	 * @return RecentChange
+	 * @throws MWException
+	 * @since 1.26
+	 */
+	public static function notifyCategorization( $timestamp, Title $categoryTitle, User $user = null,
+			$comment, Title $pageTitle, $oldRevId, $newRevId, $lastTimestamp, $bot, $ip = '',
+			$patrol = 0, $deleted = 0, $params = null ) {
+
+		$rc = new RecentChange;
+		$rc->mTitle = $categoryTitle;
+		$rc->mPerformer = $user;
+		$rc->mAttribs = array(
+			'rc_timestamp' => $timestamp,
+			'rc_namespace' => $categoryTitle->getNamespace(),
+			'rc_title' => $categoryTitle->getDBkey(),
+			'rc_type' => RC_CATEGORIZE,
+			'rc_source' => self::SRC_CATEGORIZE,
+			'rc_minor' => 0,
+			'rc_cur_id' => $pageTitle->getArticleID(),
+			'rc_user' => $user ? $user->getId() : 0,
+			'rc_user_text' => $user ? $user->getName() : '',
+			'rc_comment' => $comment,
+			'rc_this_oldid' => $newRevId,
+			'rc_last_oldid' => $oldRevId,
+			'rc_bot' => $bot ? 1 : 0,
+			'rc_ip' => self::checkIPAddress( $ip ),
+			'rc_patrolled' => intval( $patrol ),
+			'rc_new' => 0, # obsolete
+			'rc_old_len' => 0,
+			'rc_new_len' => 0,
+			'rc_deleted' => $deleted,
+			'rc_logid' => 0,
+			'rc_log_type' => null,
+			'rc_log_action' => '',
+			'rc_params' => $params ? serialize( $params ) : ''
+		);
+
+		$rc->mExtra = array(
+			'prefixedDBkey' => $categoryTitle->getPrefixedDBkey(),
+			'lastTimestamp' => $lastTimestamp,
+			'oldSize' => 0,
+			'newSize' => 0,
+			'pageStatus' => 'changed'
+		);
+		$rc->save();
 
 		return $rc;
 	}
