@@ -41,6 +41,18 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		);
 	}
 
+	protected function tearDown() {
+		parent::tearDown();
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->delete( 'recentchanges', 'rc_id > 0' );
+	}
+
+	public function addDBData() {
+		$this->insertPage( 'Testing' );
+		$this->insertPage( 'Some_other_page' );
+		$this->insertPage( 'Template:TestingTemplate' );
+	}
+
 	protected function makeTitleAndParserOutput( $name, $id ) {
 		$t = Title::newFromText( $name );
 		$t->mArticleID = $id; # XXX: this is fugly
@@ -131,6 +143,54 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		$this->assertLinksUpdate( $t, $po, 'categorylinks', 'cl_to, cl_sortkey', 'cl_from = 111', array(
 			array( 'Foo', "FOO\nTESTING" ),
 		) );
+	}
+
+	public function testOnAddingAndRemovingCategory_recentChangesRowIsAdded() {
+		$this->setMwGlobals( 'wgCategoryCollation', 'uppercase' );
+		$this->setMwGlobals( 'wgRCWatchCategoryMembership', true );
+
+		$title = Title::newFromText( 'Testing' );
+		$wikiPage = WikiPage::newFromID( $title->getArticleID() );
+		$wikiPage->doEditContent( new WikitextContent( '[[Category:Foo]]' ), 'added category' );
+
+		$this->assertRecentChangeByCategorization(
+			$title,
+			$wikiPage->getParserOutput( new ParserOptions() ),
+			Title::newFromText( 'Foo' ),
+			array( array( 'Foo', '[[:Testing]] added to category' ) )
+		);
+
+		$wikiPage->doEditContent( new WikitextContent( '[[Category:Bar]]' ), 'added category' );
+		$this->assertRecentChangeByCategorization(
+			$title,
+			$wikiPage->getParserOutput( new ParserOptions() ),
+			Title::newFromText( 'Foo' ),
+			array(
+				array( 'Foo', '[[:Testing]] added to category' ),
+				array( 'Foo', '[[:Testing]] removed from category' ),
+			)
+		);
+	}
+
+	public function testOnAddingAndRemovingCategoryToTemplates_embeddingPagesAreIgnored() {
+		$this->setMwGlobals( 'wgCategoryCollation', 'uppercase' );
+		$this->setMwGlobals( 'wgRCWatchCategoryMembership', true );
+
+		$templateTitle = Title::newFromText( 'Template:TestingTemplate' );
+		$templatePage = WikiPage::newFromID( $templateTitle->getArticleID() );
+
+		$wikiPage = WikiPage::newFromID( Title::newFromText( 'Testing' )->getArticleID() );
+		$wikiPage->doEditContent( new WikitextContent( '{{TestingTemplate}}' ), 'added template' );
+		$otherWikiPage = WikiPage::newFromID( Title::newFromText( 'Some_other_page' )->getArticleID() );
+		$otherWikiPage->doEditContent( new WikitextContent( '{{TestingTemplate}}' ), 'added template' );
+		$templatePage->doEditContent( new WikitextContent( '[[Category:Foo]]' ), 'added category' );
+
+		$this->assertRecentChangeByCategorization(
+			$templateTitle,
+			$templatePage->getParserOutput( new ParserOptions() ),
+			Title::newFromText( 'Foo' ),
+			array( array( 'Foo', '[[:Template:TestingTemplate]] and 2 pages added to category' ) )
+		);
 	}
 
 	/**
@@ -262,5 +322,27 @@ class LinksUpdateTest extends MediaWikiTestCase {
 
 		$this->assertSelect( $table, $fields, $condition, $expectedRows );
 		return $update;
+	}
+
+	protected function assertRecentChangeByCategorization( Title $pageTitle,
+		ParserOutput $parserOutput, Title $categoryTitle, $expectedRows
+	) {
+		$update = new LinksUpdate( $pageTitle, $parserOutput );
+		$revision = Revision::newFromPageId( $pageTitle->getArticleID() );
+		$update->setRevision( $revision );
+		$update->beginTransaction();
+		$update->doUpdate();
+		$update->commitTransaction();
+
+		$this->assertSelect(
+			'recentchanges',
+			'rc_title, rc_comment',
+			array(
+				'rc_type' => RC_CATEGORIZE,
+				'rc_namespace' => NS_CATEGORY,
+				'rc_title' => $categoryTitle->getDBkey()
+			),
+			$expectedRows
+		);
 	}
 }

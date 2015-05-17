@@ -204,7 +204,8 @@ class ChangesList extends ContextSource {
 		$code = $lang->getCode();
 		static $fastCharDiff = array();
 		if ( !isset( $fastCharDiff[$code] ) ) {
-			$fastCharDiff[$code] = $config->get( 'MiserMode' ) || $context->msg( 'rc-change-size' )->plain() === '$1';
+			$fastCharDiff[$code] =
+				$config->get( 'MiserMode' ) || $context->msg( 'rc-change-size' )->plain() === '$1';
 		}
 
 		$formattedSize = $lang->formatNum( $szdiff );
@@ -443,6 +444,27 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
+	 * @param RCCacheEntry $rc
+	 * @param array $query
+	 * @return string
+	 */
+	public function getDiffHistLinks( RCCacheEntry $rc, array $query ) {
+		$pageTitle = $rc->getTitle();
+		if ( intval( $rc->getAttribute( 'rc_type' ) ) === RC_CATEGORIZE ) {
+			$pageTitle = Title::newFromID( $rc->getAttribute( 'rc_cur_id' ) );
+		}
+
+		$retVal = ' ' . $this->msg( 'parentheses' )
+		->rawParams( $rc->difflink . $this->message['pipe-separator'] . Linker::linkKnown(
+				$pageTitle,
+				$this->message['hist'],
+				array(),
+				$query
+			) )->escaped();
+		return $retVal;
+	}
+
+	/**
 	 * Check whether to enable recent changes patrol features
 	 *
 	 * @deprecated since 1.22
@@ -593,4 +615,5 @@ class ChangesList extends ContextSource {
 
 		return false;
 	}
+
 }
