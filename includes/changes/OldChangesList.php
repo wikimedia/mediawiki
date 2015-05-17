@@ -113,6 +113,8 @@ class OldChangesList extends ChangesList {
 
 		if ( $rc->mAttribs['rc_type'] == RC_LOG ) {
 			$html .= $this->insertLogEntry( $rc );
+		} elseif ( $this->isCategorizationWithoutRevision( $rc ) ) {
+			$html .= $this->insertComment( $rc );
 		} else {
 			# User tool links
 			$this->insertUserRelatedLinks( $html, $rc );

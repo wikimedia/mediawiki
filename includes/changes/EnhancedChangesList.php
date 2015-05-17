@@ -362,6 +362,8 @@ class EnhancedChangesList extends ChangesList {
 
 			if ( $rcObj->mAttribs['rc_type'] == RC_LOG ) {
 				$r .= $this->insertLogEntry( $rcObj );
+			} elseif ( $this->isCategorizationWithoutRevision( $rcObj ) ) {
+				$r .= $this->insertComment( $rcObj );
 			} else {
 				# User links
 				$r .= $rcObj->userlink;
@@ -535,15 +537,9 @@ class EnhancedChangesList extends ChangesList {
 			$this->insertArticleLink( $r, $rcObj, $rcObj->unpatrolled, $rcObj->watched );
 		}
 		# Diff and hist links
-		if ( $type != RC_LOG ) {
+		if ( intval( $type ) !== RC_LOG && intval( $type ) !== RC_CATEGORIZE ) {
 			$query['action'] = 'history';
-			$r .= ' ' . $this->msg( 'parentheses' )
-				->rawParams( $rcObj->difflink . $this->message['pipe-separator'] . Linker::linkKnown(
-					$rcObj->getTitle(),
-					$this->message['hist'],
-					array(),
-					$query
-				) )->escaped();
+			$r .= $this->getDiffHistLinks( $rcObj, $query );
 		}
 		$r .= ' <span class="mw-changeslist-separator">. .</span> ';
 		# Character diff
@@ -556,9 +552,14 @@ class EnhancedChangesList extends ChangesList {
 
 		if ( $type == RC_LOG ) {
 			$r .= $this->insertLogEntry( $rcObj );
+		} elseif ( $this->isCategorizationWithoutRevision( $rcObj ) ) {
+			$r .= $this->insertComment( $rcObj );
 		} else {
 			$r .= ' ' . $rcObj->userlink . $rcObj->usertalklink;
 			$r .= $this->insertComment( $rcObj );
+			if ( intval( $type ) === RC_CATEGORIZE ) {
+				$r .= $this->getDiffHistLinks( $rcObj, $query );
+			}
 			$this->insertRollback( $r, $rcObj );
 		}
 
