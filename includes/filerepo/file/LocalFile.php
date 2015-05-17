@@ -1330,6 +1330,7 @@ class LocalFile extends File {
 		}
 
 		$descTitle = $this->getTitle();
+		$descId = $descTitle->getArticleID();
 		$wikiPage = new WikiFilePage( $descTitle );
 		$wikiPage->setFile( $this );
 
@@ -1362,7 +1363,7 @@ class LocalFile extends File {
 
 			$nullRevision = Revision::newNullRevision(
 				$dbw,
-				$descTitle->getArticleID(),
+				$descId,
 				$editSummary,
 				false,
 				$user
@@ -1374,6 +1375,8 @@ class LocalFile extends File {
 					array( $wikiPage, $nullRevision, $nullRevision->getParentId(), $user )
 				);
 				$wikiPage->updateRevisionOn( $dbw, $nullRevision );
+				// Associate null revision id
+				$logEntry->setAssociatedRevId( $nullRevision->getId() );
 			}
 
 			$newPageContent = null;
@@ -1391,7 +1394,7 @@ class LocalFile extends File {
 		# b) They won't cause rollback of the log publish/update above
 		$that = $this;
 		$dbw->onTransactionIdle( function () use (
-			$that, $reupload, $wikiPage, $newPageContent, $comment, $user, $logEntry, $logId
+			$that, $reupload, $wikiPage, $newPageContent, $comment, $user, $logEntry, $logId, $descId
 		) {
 			# Update memcache after the commit
 			$that->invalidateCache();
@@ -1408,6 +1411,10 @@ class LocalFile extends File {
 					$user
 				);
 
+				if ( isset( $status->value['revision'] ) ) {
+					// Associate new page revision id
+					$logEntry->setAssociatedRevId( $status->value['revision']->getId() );
+				}
 				// This relies on the resetArticleID() call in WikiPage::insertOn(),
 				// which is triggered on $descTitle by doEditContent() above.
 				if ( isset( $status->value['revision'] ) ) {
@@ -1424,6 +1431,8 @@ class LocalFile extends File {
 				# Existing file page: invalidate description page cache
 				$wikiPage->getTitle()->invalidateCache();
 				$wikiPage->getTitle()->purgeSquid();
+				# Allow the new file version to be patrolled from the page footer
+				Article::purgePatrolFooterCache( $descId );
 			}
 
 			# Now that the page exists, make an RC entry.

@@ -638,9 +638,11 @@ class ChangesList extends ContextSource {
 		if ( $rc instanceof RecentChange ) {
 			$isPatrolled = $rc->mAttribs['rc_patrolled'];
 			$rcType = $rc->mAttribs['rc_type'];
+			$rcLogType = $rc->mAttribs['rc_log_type'];
 		} else {
 			$isPatrolled = $rc->rc_patrolled;
 			$rcType = $rc->rc_type;
+			$rcLogType = $rc->rc_log_type;
 		}
 
 		if ( !$isPatrolled ) {
@@ -648,6 +650,9 @@ class ChangesList extends ContextSource {
 				return true;
 			}
 			if ( $user->useNPPatrol() && $rcType == RC_NEW ) {
+				return true;
+			}
+			if ( $user->useFilePatrol() && $rcLogType == 'upload' ) {
 				return true;
 			}
 		}
