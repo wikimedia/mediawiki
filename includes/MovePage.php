@@ -494,6 +494,9 @@ class MovePage {
 
 		$nullRevision->insertOn( $dbw );
 
+		# Ensure the log entry and associated recent change has the same timestamp as the null revision
+		$logEntry->setTimestamp( $nullRevision->getTimestamp() );
+
 		# Change the name of the target page:
 		$dbw->update( 'page',
 			/* SET */ array(
@@ -559,8 +562,13 @@ class MovePage {
 			}
 		}
 
+		# Associate null revision id
+		$logEntry->setAssociatedRevId( $nullRevision->getId() );
+
 		# Log the move
 		$logid = $logEntry->insert();
+
+		# Publish recent change
 		$logEntry->publish( $logid );
 
 		return $nullRevision;
