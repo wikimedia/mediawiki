@@ -437,9 +437,12 @@ class RecentChange {
 	public function doMarkPatrolled( User $user, $auto = false ) {
 		global $wgUseRCPatrol, $wgUseNPPatrol;
 		$errors = array();
-		// If recentchanges patrol is disabled, only new pages
+		// If recentchanges patrol is disabled, only new pages or new files
 		// can be patrolled
-		if ( !$wgUseRCPatrol && ( !$wgUseNPPatrol || $this->getAttribute( 'rc_type' ) != RC_NEW ) ) {
+		if ( !$wgUseRCPatrol && ( !$wgUseNPPatrol || ( $this->getAttribute( 'rc_type' ) != RC_NEW &&
+			( $this->getAttribute( 'rc_type' ) != RC_LOG || $this->getAttribute( 'rc_log_type' ) != 'upload' ||
+			$this->getAttribute( 'rc_log_action' ) != 'upload' ) ) ) ) {
+			
 			$errors[] = array( 'rcpatroldisabled' );
 		}
 		// Automatic patrol needs "autopatrol", ordinary patrol needs "patrol"
@@ -658,30 +661,38 @@ class RecentChange {
 	 * @param string $params
 	 * @param int $newId
 	 * @param string $actionCommentIRC
+	 * @param int $revId Id of associated revision, if any
 	 * @return RecentChange
 	 */
 	public static function newLogEntry( $timestamp, &$title, &$user, $actionComment, $ip,
-		$type, $action, $target, $logComment, $params, $newId = 0, $actionCommentIRC = '' ) {
+		$type, $action, $target, $logComment, $params, $newId = 0, $actionCommentIRC = '',
+		$revId = 0 ) {
 		global $wgRequest;
 
-		## Get pageStatus for email notification
+		## Get pageStatus for email notification and whether to mark as patrolled
 		switch ( $type . '-' . $action ) {
 			case 'delete-delete':
 				$pageStatus = 'deleted';
+				$markPatrolled = true;
 				break;
 			case 'move-move':
 			case 'move-move_redir':
 				$pageStatus = 'moved';
+				$markPatrolled = ( $revId > 0 ) && $user->isAllowed( 'autopatrol' );
 				break;
 			case 'delete-restore':
 				$pageStatus = 'restored';
+				$markPatrolled = true;
 				break;
 			case 'upload-upload':
 				$pageStatus = 'created';
+				$markPatrolled = ( $revId > 0 ) && $user->isAllowed( 'autopatrol' );
 				break;
 			case 'upload-overwrite':
+				$markPatrolled = ( $revId > 0 ) && $user->isAllowed( 'autopatrol' );
 			default:
 				$pageStatus = 'changed';
+				$markPatrolled = true;
 				break;
 		}
 
@@ -699,11 +710,11 @@ class RecentChange {
 			'rc_user' => $user->getId(),
 			'rc_user_text' => $user->getName(),
 			'rc_comment' => $logComment,
-			'rc_this_oldid' => 0,
+			'rc_this_oldid' => $revId,
 			'rc_last_oldid' => 0,
 			'rc_bot' => $user->isAllowed( 'bot' ) ? $wgRequest->getBool( 'bot', true ) : 0,
 			'rc_ip' => self::checkIPAddress( $ip ),
-			'rc_patrolled' => 1,
+			'rc_patrolled' => $markPatrolled ? 1 : 0,
 			'rc_new' => 0, # obsolete
 			'rc_old_len' => null,
 			'rc_new_len' => null,

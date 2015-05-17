@@ -490,6 +490,21 @@ class DifferenceEngine extends ContextSource {
 					__METHOD__,
 					array( 'USE INDEX' => 'rc_timestamp' )
 				);
+				if ( !$change ) {
+					// some moves or uploads might have been missed in the previous attempt due
+					// to a delay between the null revision and the associated recent change
+					$change = RecentChange::newFromConds(
+					array(
+						'rc_type' => RC_LOG,
+						'rc_log_type' => array( 'move', 'upload' ),
+						'rc_cur_id' => $this->mNewPage->getArticleID(),
+						'rc_this_oldid' => $this->mNewid,
+						'rc_patrolled' => 0
+					),
+					__METHOD__,
+					array( 'USE INDEX' => 'rc_timestamp' )
+				);
+				}
 
 				if ( $change && !$change->getPerformer()->equals( $user ) ) {
 					$rcid = $change->getAttribute( 'rc_id' );

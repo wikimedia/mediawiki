@@ -388,7 +388,7 @@ class MovePage {
 	 * @throws MWException
 	 */
 	private function moveToInternal( User $user, &$nt, $reason = '', $createRedirect = true ) {
-		global $wgContLang;
+		global $wgContLang, $wgUseRCPatrol;
 
 		if ( $nt->exists() ) {
 			$moveOverRedirect = true;
@@ -493,6 +493,9 @@ class MovePage {
 		$newpage->doEditUpdates( $nullRevision, $user,
 			array( 'changed' => false, 'moved' => true, 'oldcountable' => $oldcountable ) );
 
+		# Associate null revision id
+		$logEntry->setAssociatedRevId( $nullRevision->getId() );
+
 		if ( !$moveOverRedirect ) {
 			WikiPage::onArticleCreate( $nt );
 		}
@@ -523,6 +526,13 @@ class MovePage {
 
 		# Log the move
 		$logid = $logEntry->insert();
+
+		# Publish in recent changes
 		$logEntry->publish( $logid );
+
+		# If we use RC patrol, invalidate patrol cache for $oldid
+		if ( $wgUseRCPatrol ) {
+			wfGetMainCache()->delete( wfMemcKey( 'NotPatrollablePage', $oldid ) );
+		}
 	}
 }

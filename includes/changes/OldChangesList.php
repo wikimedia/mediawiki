@@ -78,6 +78,20 @@ class OldChangesList extends ChangesList {
 		if ( $rc->mAttribs['rc_log_type'] ) {
 			$logtitle = SpecialPage::getTitleFor( 'Log', $rc->mAttribs['rc_log_type'] );
 			$this->insertLog( $html, $logtitle, $rc->mAttribs['rc_log_type'] );
+			// Check if there is an associated revision, and add patrol flag if necessary
+			$revId = $rc->mAttribs['rc_this_oldid'];
+			if ( $revId > 0 && $this->showAsUnpatrolled( $rc ) ) {
+				$title = Revision::newFromId( $revId )->getTitle();
+				// Show diff
+				$diffLink = Linker::linkKnown(
+					$title,
+					$this->message['diff'],
+					array( 'tabindex' => $rc->counter ),
+					array( 'diff' => $revId )
+				);
+				$html .= ' ' . $this->msg( 'parentheses' )->rawParams( $diffLink )->escaped();
+				$html .= $this->recentChangesFlags( array( 'unpatrolled' => true ), ' ' );
+			}
 		// Log entries (old format) or log targets, and special pages
 		} elseif ( $rc->mAttribs['rc_namespace'] == NS_SPECIAL ) {
 			list( $name, $htmlubpage ) = SpecialPageFactory::resolveAlias( $rc->mAttribs['rc_title'] );
