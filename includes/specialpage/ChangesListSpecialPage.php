@@ -144,6 +144,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$opts->add( 'hideliu', false );
 		$opts->add( 'hidepatrolled', false );
 		$opts->add( 'hidemyself', false );
+		$opts->add( 'hidecategorization', false );
 
 		$opts->add( 'namespace', '', FormOptions::INTNULL );
 		$opts->add( 'invert', false );
@@ -248,6 +249,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			} else {
 				$conds[] = 'rc_user_text != ' . $dbr->addQuotes( $user->getName() );
 			}
+		}
+		if ( $opts['hidecategorization'] === true ) {
+			$conds[] = 'rc_type != ' . RC_CATEGORIZE;
 		}
 
 		// Namespace filtering

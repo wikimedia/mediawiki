@@ -61,6 +61,12 @@ class LinksUpdate extends SqlDataUpdate {
 	/** @var bool Whether to queue jobs for recursive updates */
 	public $mRecursive;
 
+	/** @var bool Whether this job was triggered by a recursive update job */
+	public $mTriggeredRecursive;
+
+	/** @var Revision Revision ID for which this update has been triggered */
+	public $mRevision;
+
 	/**
 	 * @var null|array Added links if calculated.
 	 */
@@ -147,6 +153,7 @@ class LinksUpdate extends SqlDataUpdate {
 	}
 
 	protected function doIncrementalUpdate() {
+		global $wgRCWatchCategoryMembership;
 
 		# Page links
 		$existing = $this->getExistingLinks();
@@ -198,6 +205,28 @@ class LinksUpdate extends SqlDataUpdate {
 		$categoryUpdates = $categoryInserts + $categoryDeletes;
 		$this->invalidateCategories( $categoryUpdates );
 		$this->updateCategoryCounts( $categoryInserts, $categoryDeletes );
+
+		# category membership changes
+		if ( $wgRCWatchCategoryMembership && $this->mRevision && !$this->mTriggeredRecursive &&
+				( $categoryInserts || $categoryDeletes ) ) {
+			try {
+				$catMembChange = new CategoryMembershipChange( $this->mTitle, $this->mRevision );
+
+				if ( $this->mRecursive ) {
+					$catMembChange->setRecursive();
+				}
+
+				foreach ( $categoryInserts as $categoryName => $value ) {
+					$catMembChange->pageAddedToCategory( $categoryName );
+				}
+
+				foreach ( $categoryDeletes as $categoryName => $value ) {
+					$catMembChange->pageRemovedFromCategory( $categoryName );
+				}
+			} catch ( MWException $e ) {
+				wfDebugLog( 'linksupdate', $e->getMessage() );
+			}
+		}
 
 		# Page properties
 		$existing = $this->getExistingProperties();
@@ -862,6 +891,21 @@ class LinksUpdate extends SqlDataUpdate {
 	 */
 	public function getImages() {
 		return $this->mImages;
+	}
+
+	/**
+	 * Set this object as being triggered by a recursive LinksUpdate
+	 */
+	public function setTriggeredRecursive() {
+		$this->mTriggeredRecursive = true;
+	}
+
+	/**
+	 * Set the revision corresponding to this LinksUpdate
+	 * @param Revision $revision
+	 */
+	public function setRevision( Revision $revision ) {
+		$this->mRevision = $revision;
 	}
 
 	/**
