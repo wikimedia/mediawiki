@@ -157,6 +157,7 @@
 	"apihelp-feedrecentchanges-param-hideliu": "{{doc-apihelp-param|feedrecentchanges|hideliu}}",
 	"apihelp-feedrecentchanges-param-hidepatrolled": "{{doc-apihelp-param|feedrecentchanges|hidepatrolled}}",
 	"apihelp-feedrecentchanges-param-hidemyself": "{{doc-apihelp-param|feedrecentchanges|hidemyself}}",
+	"apihelp-feedrecentchanges-param-hidecategorization": "{{doc-apihelp-param|feedrecentchanges|hidecategorization}}",
 	"apihelp-feedrecentchanges-param-tagfilter": "{{doc-apihelp-param|feedrecentchanges|tagfilter}}",
 	"apihelp-feedrecentchanges-param-target": "{{doc-apihelp-param|feedrecentchanges|target}}",
 	"apihelp-feedrecentchanges-param-showlinkedto": "{{doc-apihelp-param|feedrecentchanges|showlinkedto}}",
