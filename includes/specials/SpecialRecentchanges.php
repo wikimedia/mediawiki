@@ -79,6 +79,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$opts->add( 'hideliu', false );
 		$opts->add( 'hidepatrolled', $user->getBoolOption( 'hidepatrolled' ) );
 		$opts->add( 'hidemyself', false );
+		$opts->add( 'hidecategorization', $user->getBoolOption( 'hidecategorization' ) );
 
 		$opts->add( 'categories', '' );
 		$opts->add( 'categories_any', false );
@@ -133,6 +134,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			}
 			if ( 'hidemyself' === $bit ) {
 				$opts['hidemyself'] = true;
+			}
+			if ( 'hidecategorization' === $bit ) {
+				$opts['hidecategorization'] = true;
 			}
 
 			if ( is_numeric( $bit ) ) {
@@ -719,7 +723,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			'hideanons' => 'rcshowhideanons',
 			'hideliu' => 'rcshowhideliu',
 			'hidepatrolled' => 'rcshowhidepatr',
-			'hidemyself' => 'rcshowhidemine'
+			'hidemyself' => 'rcshowhidemine',
+			'hidecategorization' => 'rcshowhidecategorization'
 		);
 
 		$showhide = array( 'show', 'hide' );
@@ -737,7 +742,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			// The following messages are used here:
 			// rcshowhideminor-show, rcshowhideminor-hide, rcshowhidebots-show, rcshowhidebots-hide,
 			// rcshowhideanons-show, rcshowhideanons-hide, rcshowhideliu-show, rcshowhideliu-hide,
-			// rcshowhidepatr-show, rcshowhidepatr-hide, rcshowhidemine-show, rcshowhidemine-hide.
+			// rcshowhidepatr-show, rcshowhidepatr-hide, rcshowhidemine-show, rcshowhidemine-hide,
+			// rcshowhidecategorization-show, rcshowhidecategorization-hide.
 			$linkMessage = $this->msg( $msg . '-' . $showhide[1 - $options[$key]] );
 			// Extensions can define additional filters, but don't need to define the corresponding
 			// messages. If they don't exist, just fall back to 'show' and 'hide'.
