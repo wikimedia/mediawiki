@@ -123,7 +123,9 @@
 			"0x010C",
 			"Thibaut120094",
 			"NemesisIII",
-			"Housterdam"
+			"Housterdam",
+			"Chlomoh",
+			"Wladek92"
 		]
 	},
 	"tog-underline": "Souligner les liens :",
@@ -446,6 +448,15 @@
 	"no-null-revision": "Impossible de créer une nouvelle révision vide pour la page « $1 »",
 	"badtitle": "Mauvais titre",
 	"badtitletext": "Le titre de la page demandée est invalide, vide, ou il s’agit d’un titre inter-langue ou inter-projet mal formé. Il contient peut-être un ou plusieurs caractères qui ne peuvent pas être utilisés dans les titres.",
+	"title-invalid-empty": "Le titre de la page demandée est vide ou contient seulement le nom d'un espace de noms.",
+	"title-invalid-utf8": "Le titre de la page demandée contient une séquence UTF-8 invalide.",
+	"title-invalid-interwiki": "Le titre contient un lien interwiki",
+	"title-invalid-talk-namespace": "Le titre de la page demandée fait référence à une page de discussion qui peut ne pas exister.",
+	"title-invalid-characters": "Le titre de la page demandée contient des caractères non valides: \"$1\".",
+	"title-invalid-relative": "Le titre contient un chemin relatif. Les titres référençant des pages relatives (./, ../) sont invalides, car il seront souvent inaccessibles à partir des explorateurs des utilisateurs.",
+	"title-invalid-magic-tilde": "Le titre de la page demandée contient une séquence invalide de tilde magiques (<nowiki>~~~</nowiki>).",
+	"title-invalid-too-long": "Le titre de la page demandée est trop long. Il ne doit pas dépasser $1 octets encodés en UTF-8.",
+	"title-invalid-leading-colon": "Le titre de la page demandée contient une virgule invalide au début.",
 	"perfcached": "Les données suivantes sont en cache et peuvent ne pas être à jour. Un maximum de {{PLURAL:$1|un résultat|$1 résultats}} est disponible dans le cache.",
 	"perfcachedts": "Les données suivantes sont en cache et ont été mises à jour pour la dernière fois le $1. Un maximum de {{PLURAL:$4|un résultat est disponible|$4 résultats sont disponibles}} dans le cache.",
 	"querypage-no-updates": "Les mises à jour pour cette page sont actuellement désactivées. Les données ci-dessous ne sont pas mises à jour.",

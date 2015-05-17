@@ -13,7 +13,8 @@
 			"Arkanosis",
 			"Ltrlg",
 			"Crochet.david",
-			"0x010C"
+			"0x010C",
+			"Lucky"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentation]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Liste de diffusion]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annonces de l’API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bogues et demandes]\n</div>\n<strong>État :</strong> Toutes les fonctionnalités affichées sur cette page devraient fonctionner, mais l’API est encore en cours de développement et peut changer à tout moment. Inscrivez-vous à [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la liste de diffusion mediawiki-api-announce] pour être informé des mises à jour.\n\n<strong>Requêtes erronées :</strong> Si des requêtes erronées sont envoyées à l’API, un en-tête HTTP sera renvoyé avec la clé « MediaWiki-API-Error ». La valeur de cet en-tête et le code d’erreur renvoyé prendront la même valeur. Pour plus d’information, voyez [[mw:API:Errors_and_warnings|API: Errors and warnings]].",
@@ -1037,6 +1038,7 @@
 	"api-help-parameters": "{{PLURAL:$1|Paramètre|Paramètres}} :",
 	"api-help-param-deprecated": "Obsolète.",
 	"api-help-param-required": "Ce paramètre est obligatoire.",
+	"api-help-datatypes-header": "Type de données",
 	"api-help-param-list": "{{PLURAL:$1|1=Une valeur|2=Valeurs (séparées par <kbd>{{!}}</kbd>)}} : $2",
 	"api-help-param-list-can-be-empty": "{{PLURAL:$1|0=Doit être vide|Peut être vide, ou $2}}",
 	"api-help-param-limit": "Pas plus de $1 autorisé.",

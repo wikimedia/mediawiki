@@ -8,7 +8,8 @@
 			"Rob Church <robchur@gmail.com>",
 			"Shirayuki",
 			"Teòtlalili",
-			"아라"
+			"아라",
+			"Fitoschido"
 		]
 	},
 	"tog-underline": "Mokìnxòîkuilòtzàswis tzòwilistìn:",
@@ -190,6 +191,7 @@
 	"currentevents-url": "Project:Āxcāncāyōtl",
 	"disclaimers": "Nahuatīllahtōl",
 	"edithelp": "Tlapatlaliztechcopa tēpalēhuiliztli",
+	"helppage-top-gethelp": "Tēpalēhuiliztli",
 	"mainpage": "Achkàuhìxtlapalli",
 	"mainpage-description": "Achkàuhìxtlapalli",
 	"policy-url": "Project:Nahuatīltōn",
@@ -765,7 +767,6 @@
 	"deleteotherreason": "Occē īxtlamatiliztli:",
 	"deletereasonotherlist": "Occē īxtlamatiliztli",
 	"delete-edit-reasonlist": "Tiquimpatlāz īxtlamatiliztli tlapoloaliztechcopa",
-	"rollback_short": "Tlacuepāz",
 	"rollbacklink": "tlacuepāz",
 	"rollback-success": "Ōmotlacuep $1 ītlahcuilōl; āxcān achto $2 ītlahcuilōl.",
 	"protectedarticle": "ōmoquīxti \"[[$1]]\"",
@@ -1081,5 +1082,19 @@
 	"api-error-uploaddisabled": "Sèuhtok in êkawilistli ìpan inìn wiki.",
 	"api-error-verification-error": "Inìn èwalli welis îtlakauhtok, noso âmò kualli motzòwîtok.",
 	"expand_templates_ok": "Cualli",
-	"expand_templates_preview": "Xiquitta achtochīhualiztli"
+	"expand_templates_preview": "Xiquitta achtochīhualiztli",
+	"special-characters-group-latin": "Latintlahcuilōlli",
+	"special-characters-group-latinextended": "Mantoc latintlahcuilōlli",
+	"special-characters-group-greek": "Greciatlahcuilōlli",
+	"special-characters-group-cyrillic": "Cirilotlahcuilōlli",
+	"special-characters-group-arabic": "Arabiatlahcuilōlli",
+	"special-characters-group-persian": "Persiatlahcuilōlli",
+	"special-characters-group-hebrew": "Hebreotlahcuilōlli",
+	"special-characters-group-bangla": "Banglatlahcuilōlli",
+	"special-characters-group-telugu": "Telugutlahcuilōlli",
+	"special-characters-group-sinhala": "Cingalatlahcuilōlli",
+	"special-characters-group-gujarati": "Guyaratitlahcuilōlli",
+	"special-characters-group-thai": "Taitlahcuilōlli",
+	"special-characters-group-lao": "Laotlahcuilōlli",
+	"special-characters-group-khmer": "Jemertlahcuilōlli"
 }

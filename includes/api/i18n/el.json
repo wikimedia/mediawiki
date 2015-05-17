@@ -1,12 +1,22 @@
 {
 	"@metadata": {
 		"authors": [
-			"Glavkos"
+			"Glavkos",
+			"Protnet"
 		]
 	},
 	"apihelp-block-description": "Φραγή χρήστη",
 	"apihelp-block-param-user": "Όνομα χρήστη, διεύθυνση IP ή εύρος διευθύνσεων IP που θέλετε να επιβάλετε φραγή.",
 	"apihelp-block-param-reason": "Λόγος φραγής.",
 	"apihelp-createaccount-param-name": "Όνομα χρήστη.",
-	"apihelp-delete-description": "Διαγραφή σελίδας."
+	"apihelp-delete-description": "Διαγραφή σελίδας.",
+	"apihelp-emailuser-param-text": "Σώμα μηνύματος.",
+	"apihelp-emailuser-param-ccme": "Αποστολή αντιγράφου αυτού του μηνύματος σε εμένα.",
+	"apihelp-expandtemplates-param-title": "Τίτλος σελίδας.",
+	"apihelp-expandtemplates-param-text": "Κώδικας wiki προς μετατροπή.",
+	"apihelp-feedcontributions-param-feedformat": "Η μορφή της ροής.",
+	"apihelp-feedcontributions-param-deletedonly": "Εμφάνιση μόνο διαγεγραμμένων συνεισφορών.",
+	"apihelp-feedcontributions-param-toponly": "Εμφάνιση μόνο των επεξεργασιών που είναι οι πιο πρόσφατες αναθεωρήσεις.",
+	"apihelp-feedcontributions-param-newonly": "Εμφάνιση μόνο των επεξεργασιών που είναι δημιουργία σελίδας.",
+	"apihelp-feedcontributions-param-showsizediff": "Εμφάνιση της διαφοράς μεγέθους μεταξύ αναθεωρήσεων."
 }

@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Xuacu"
+			"Xuacu",
+			"Fitoschido"
 		]
 	},
 	"config-desc": "L'instalador pa MediaWiki",
@@ -57,6 +58,10 @@
 	"config-diff3-bad": "Nun s'alcontró GNU diff3.",
 	"config-git": "Alcontróse'l software de control de versiones Git: <code>$1</code>.",
 	"config-git-bad": "Nun s'alcontró el software de control de versiones Git.",
+	"config-db-type": "Tipu de base de datos:",
+	"config-db-name": "Nome de base de datos:",
+	"config-type-mysql": "MySQL (o compatible)",
+	"config-type-mssql": "Microsoft SQL Server",
 	"config-site-name": "Nome de la wiki:",
 	"config-site-name-help": "Esto apaecerá na barra de títulos del navegador y en dellos sitios más.",
 	"config-site-name-blank": "Escriba un nome pal sitiu.",

@@ -77,7 +77,8 @@
 			"XenonX3",
 			"Brackenheim",
 			"Robby",
-			"Andreasburmeister"
+			"Andreasburmeister",
+			"Tiin"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -320,7 +321,7 @@
 	"pagetitle": "$1 – {{SITENAME}}",
 	"retrievedfrom": "Von „$1“",
 	"youhavenewmessages": "Du hast $1 ($2).",
-	"youhavenewmessagesfromusers": "Du hast $1 von {{PLURAL:$3|einem anderen Benutzer|$3 Benutzern}} ($2).",
+	"youhavenewmessagesfromusers": "{{PLURAL:$4|Du hast}} $1 von {{PLURAL:$3|einem anderen Benutzer|$3 Benutzern}} ($2).",
 	"youhavenewmessagesmanyusers": "Du hast $1 von vielen Benutzern ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|eine neue Nachricht|999=neue Nachrichten}}",
 	"newmessagesdifflinkplural": "letzte {{PLURAL:$1|Änderung|999=Änderungen}}",
@@ -916,7 +917,7 @@
 	"nextn-title": "{{PLURAL:$1|Folgendes Ergebnis|Folgende $1 Ergebnisse}}",
 	"shown-title": "Zeige $1 {{PLURAL:$1|Ergebnis|Ergebnisse}} pro Seite",
 	"viewprevnext": "Zeige ($1 {{int:pipe-separator}} $2) ($3)",
-	"searchmenu-exists": "'''Es gibt eine Seite, die den Namen „[[:$1]]“ hat.'''",
+	"searchmenu-exists": "<strong>Es gibt eine Seite, die den Namen „[[:$1]]“ hat.</strong> {{PLURAL:$2|0=|Weitere Suchergebnisse anzeigen.}}",
 	"searchmenu-new": "<strong>Erstelle die Seite „[[:$1]]“ in diesem Wiki.</strong> {{PLURAL:$2|0=|Siehe auch die über deine Suche gefundene Seite.|Siehe auch die gefundenen Suchergebnisse.}}",
 	"searchprofile-articles": "Inhaltsseiten",
 	"searchprofile-images": "Multimedia",

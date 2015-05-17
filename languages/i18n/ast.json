@@ -333,6 +333,7 @@
 	"no-null-revision": "Nun pudo crease una nueva revisión nula pa la páxina «$1»",
 	"badtitle": "Títulu incorreutu",
 	"badtitletext": "El títulu de páxina solicitáu nun ye válidu, ta baleru o tien enllaces interllingua o interwiki incorreutos.\nPue contener un caráuter o más que nun puen usase nos títulos.",
+	"title-invalid-characters": "El títulu de la páxina solicitada contien calteres non válidos: «$1»",
 	"perfcached": "Los datos siguientes tán na caché y seique nun tean anovaos. Hai un máximu {{PLURAL:$1|d'un resultáu disponible|de $1 resultaos disponibles}} na caché.",
 	"perfcachedts": "Los datos siguientes tán na caché y anovaronse por última vegada'l $1. Hai un máximu {{PLURAL:$4|d'un resultáu disponible|de $4 resultaos disponibles}} na caché.",
 	"querypage-no-updates": "Anguaño los anovamientos d'esta páxina tán desactivaos.\nEstos datos nun van refrescase nestos momentos.",

@@ -30,6 +30,7 @@
 	"apihelp-delete-example-simple": "Verwijder <kbd>Hoofdpagina</kbd>.",
 	"apihelp-delete-example-reason": "Verwijder <kbd>Hoofdpagina</kbd> met als reden <kbd>Voorbereiding voor verplaatsing</kbd>.",
 	"apihelp-disabled-description": "Deze module is uitgeschakeld.",
+	"apihelp-edit-param-text": "Pagina-inhoud.",
 	"apihelp-edit-param-minor": "Kleine bewerking.",
 	"apihelp-edit-param-notminor": "Geen kleine bewerking.",
 	"apihelp-edit-param-bot": "Markeer deze bewerking als bot.",
