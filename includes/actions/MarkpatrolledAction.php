@@ -63,8 +63,14 @@ class MarkpatrolledAction extends FormlessAction {
 		}
 
 		# It would be nice to see where the user had actually come from, but for now just guess
-		$returnto = $rc->getAttribute( 'rc_type' ) == RC_NEW ? 'Newpages' : 'Recentchanges';
-		$return = SpecialPage::getTitleFor( $returnto );
+		if ( $rc->getAttribute( 'rc_type' ) == RC_NEW ) {
+			$returnTo =  'Newpages';
+		} elseif ( $rc->getAttribute( 'rc_log_type' ) == 'upload' ) {
+			$returnTo = 'Newfiles';
+		} else {
+			$returnTo =  'Recentchanges';
+		}
+		$return = SpecialPage::getTitleFor( $returnTo );
 
 		if ( in_array( array( 'markedaspatrollederror-noautopatrol' ), $errors ) ) {
 			$this->getOutput()->setPageTitle( $this->msg( 'markedaspatrollederror' ) );
