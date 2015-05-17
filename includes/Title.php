@@ -265,6 +265,7 @@ class Title {
 		if ( is_object( $text ) ) {
 			throw new InvalidArgumentException( '$text must be a string.' );
 		} elseif ( !is_string( $text ) ) {
+			wfDebugLog( 'T76305', wfGetAllCallers( 5 ) );
 			wfWarn( __METHOD__ . ': $text must be a string. This will throw an InvalidArgumentException in future.', 2 );
 		}
 
