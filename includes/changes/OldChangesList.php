@@ -112,6 +112,10 @@ class OldChangesList extends ChangesList {
 
 		if ( $rc->mAttribs['rc_type'] == RC_LOG ) {
 			$html .= $this->insertLogEntry( $rc );
+			// Allow to patrol (if enabled) or revert unpatrolled moves from recent changes
+			if ( $rc->mAttribs['rc_log_type'] === 'move' ) {
+				$html .= $this->insertMoveActionLinks( $rc, $unpatrolled );
+			}
 		} elseif ( $this->isCategorizationWithoutRevision( $rc ) ) {
 			$html .= $this->insertComment( $rc );
 		} else {

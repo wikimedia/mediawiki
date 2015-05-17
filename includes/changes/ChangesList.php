@@ -509,6 +509,54 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
+	 * Insert patrol (if enabled) and revert links for unpatrolled moves
+	 * Make it easy to patrol the move when reverting (like rollback)
+	 *
+	 * @param RecentChange $rc
+	 * @param Bool $unpatrolled
+	 * @return string
+	 * @since 1.26
+	 */
+	public function insertMoveActionLinks( $rc, $unpatrolled ) {
+		$html = '';
+		$formatter = LogFormatter::newFromRow( $rc->mAttribs );
+		$formatter->setContext( $this->getContext() );
+
+		if ( $unpatrolled ) {
+			// Gather additional info needed to patrol the move when reverting
+			$token = $this->getUser()->getEditToken( $rc->mAttribs['rc_id'] );
+			$extraRequest = [
+				'wpRevertMoveRCid' => $rc->mAttribs['rc_id'],
+				'wpRevertMoveToken' => $token
+			];
+		} else {
+			$extraRequest = [];
+		}
+
+		// Add revert link
+		$html .= '<span class="revertlink-move">' .
+			$formatter->getActionLinks( $extraRequest ) . '</span>';
+
+		if ( $unpatrolled ) {
+			// Patrol link
+			$this->getOutput()->preventClickjacking();
+			$params = [
+				'action' => 'markpatrolled',
+				'rcid' => $rc->mAttribs['rc_id'],
+				'token' => $token
+			];
+			$html .= ' <span class="patrollink-move">[' . Linker::linkKnown(
+				$rc->getTitle(),
+				$this->msg( 'markaspatrolleddiff' )->escaped(),
+				[],
+				$params
+			) . ']</span>';
+		}
+
+		return '<span class="actionlinks-move">' . $html . '</span>';
+	}
+
+	/**
 	 * Insert a formatted comment
 	 * @param RecentChange $rc
 	 * @return string
