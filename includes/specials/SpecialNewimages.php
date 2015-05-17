@@ -81,9 +81,20 @@ class NewFilesPager extends ReverseChronologicalPager {
 	 */
 	protected $gallery;
 
+	/**
+	 * @var bool
+	 */
+	protected $showBots;
+
+	/**
+	 * @var bool
+	 */
+	protected $hidePatrolled;
+
 	function __construct( IContextSource $context, $par = null ) {
 		$this->like = $context->getRequest()->getText( 'like' );
-		$this->showbots = $context->getRequest()->getBool( 'showbots', 0 );
+		$this->showBots = $context->getRequest()->getBool( 'showbots', 0 );
+		$this->hidePatrolled = $context->getRequest()->getBool( 'hidepatrolled', 0 );
 		if ( is_numeric( $par ) ) {
 			$this->setLimit( $par );
 		}
@@ -95,7 +106,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 		$conds = $jconds = array();
 		$tables = array( 'image' );
 
-		if ( !$this->showbots ) {
+		if ( !$this->showBots ) {
 			$groupsWithBotPermission = User::getGroupsWithPermission( 'bot' );
 
 			if ( count( $groupsWithBotPermission ) ) {
@@ -109,6 +120,21 @@ class NewFilesPager extends ReverseChronologicalPager {
 					)
 				);
 			}
+		}
+
+		if ( $this->hidePatrolled ) {
+			$tables[] = 'recentchanges';
+			$conds['rc_type'] = RC_LOG;
+			$conds['rc_log_type'] = 'upload';
+			$conds['rc_patrolled'] = 0;
+			$jconds['recentchanges'] = array(
+				'INNER JOIN',
+				array(
+					'rc_title = img_name',
+					'rc_user = img_user',
+					'rc_timestamp = img_timestamp'
+				)
+			);
 		}
 
 		if ( !$this->getConfig()->get( 'MiserMode' ) && $this->like !== null ) {
@@ -185,6 +211,11 @@ class NewFilesPager extends ReverseChronologicalPager {
 				'label-message' => 'newimages-showbots',
 				'name' => 'showbots',
 			),
+			'hidepatrolled' => array(
+				'type' => 'check',
+				'label-message' => 'newimages-hidepatrolled',
+				'name' => 'hidepatrolled',
+			),
 			'limit' => array(
 				'type' => 'hidden',
 				'default' => $this->mLimit,
@@ -199,6 +230,10 @@ class NewFilesPager extends ReverseChronologicalPager {
 
 		if ( $this->getConfig()->get( 'MiserMode' ) ) {
 			unset( $fields['like'] );
+		}
+
+		if ( !$this->getUser()->useFilePatrol() ) {
+			unset( $fields['hidepatrolled'] );
 		}
 
 		$context = new DerivativeContext( $this->getContext() );
