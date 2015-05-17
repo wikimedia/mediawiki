@@ -57,7 +57,10 @@ class MoveLogFormatter extends LogFormatter {
 		return $params;
 	}
 
-	public function getActionLinks() {
+	/**
+	 * @param array $extraRequestInfo Additional info to send in the request
+	 */
+	public function getActionLinks( $extraRequestInfo = array() ) {
 		if ( $this->entry->isDeleted( LogPage::DELETED_ACTION ) // Action is hidden
 			|| $this->entry->getSubtype() !== 'move'
 			|| !$this->context->getUser()->isAllowed( 'move' )
@@ -71,16 +74,18 @@ class MoveLogFormatter extends LogFormatter {
 			return '';
 		}
 
+		$request = array(
+			'wpOldTitle' => $destTitle->getPrefixedDBkey(),
+			'wpNewTitle' => $this->entry->getTarget()->getPrefixedDBkey(),
+			'wpReason' => $this->msg( 'revertmove' )->inContentLanguage()->text(),
+			'wpMovetalk' => 0
+		);
+
 		$revert = Linker::linkKnown(
 			SpecialPage::getTitleFor( 'Movepage' ),
 			$this->msg( 'revertmove' )->escaped(),
 			array(),
-			array(
-				'wpOldTitle' => $destTitle->getPrefixedDBkey(),
-				'wpNewTitle' => $this->entry->getTarget()->getPrefixedDBkey(),
-				'wpReason' => $this->msg( 'revertmove' )->inContentLanguage()->text(),
-				'wpMovetalk' => 0
-			)
+			array_merge( $extraRequestInfo, $request )
 		);
 
 		return $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
