@@ -209,6 +209,11 @@ class RCCacheEntryFactory {
 			$diffLink = $diffMessage;
 		} elseif ( in_array( $cacheEntry->mAttribs['rc_type'], $logTypes ) ) {
 			$diffLink = $diffMessage;
+		} elseif ( intval( $cacheEntry->getAttribute( 'rc_type' ) ) === RC_CATEGORIZE ) {
+			$rcParams = unserialize( $cacheEntry->getAttribute( 'rc_params' ) );
+			$pageTitle = Title::newFromID( $rcParams['articleId'] );
+			$diffUrl = htmlspecialchars( $pageTitle->getLinkURL( $queryParams ) );
+			$diffLink = "<a href=\"$diffUrl\" tabindex=\"$counter\">$diffMessage</a>";
 		} else {
 			$diffUrl = htmlspecialchars( $cacheEntry->getTitle()->getLinkURL( $queryParams ) );
 			$diffLink = "<a href=\"$diffUrl\" tabindex=\"$counter\">$diffMessage</a>";

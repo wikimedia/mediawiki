@@ -5974,6 +5974,11 @@ $wgRCEngines = array(
 );
 
 /**
+ * Treat category membership changes as a RecentChange
+ */
+$wgRCWatchCategoryMembership = false;
+
+/**
  * Use RC Patrolling to check for vandalism
  */
 $wgUseRCPatrol = true;
