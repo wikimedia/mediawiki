@@ -109,6 +109,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$opts->add( 'hideliu', $user->getBoolOption( 'watchlisthideliu' ) );
 		$opts->add( 'hidepatrolled', $user->getBoolOption( 'watchlisthidepatrolled' ) );
 		$opts->add( 'hidemyself', $user->getBoolOption( 'watchlisthideown' ) );
+		$opts->add( 'hidecategorization', $user->getBoolOption( 'watchlisthidecategorization' ) );
 
 		$opts->add( 'extended', $user->getBoolOption( 'extendwatchlist' ) );
 
@@ -422,7 +423,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			'hideanons' => 'rcshowhideanons',
 			'hideliu' => 'rcshowhideliu',
 			'hidemyself' => 'rcshowhidemine',
-			'hidepatrolled' => 'rcshowhidepatr'
+			'hidepatrolled' => 'rcshowhidepatr',
+			'hidecategorization' => 'rcshowhidecategorization',
 		);
 		foreach ( $this->getCustomFilters() as $key => $params ) {
 			$filters[$key] = $params['msg'];
