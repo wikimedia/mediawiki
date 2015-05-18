@@ -114,6 +114,17 @@ class WANObjectCache {
 	}
 
 	/**
+	 * @return WANObjectCache Cache that wraps EmptyBagOStuff
+	 */
+	public static function newEmpty() {
+		return new self( array(
+			'cache'   => new EmptyBagOStuff(),
+			'pool'    => 'empty',
+			'relayer' => new EventRelayerNull( array() )
+		) );
+	}
+
+	/**
 	 * Fetch the value of a key from cache
 	 *
 	 * If passed in, $curTTL is set to the remaining TTL (current time left):
