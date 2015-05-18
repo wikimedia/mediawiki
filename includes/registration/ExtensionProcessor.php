@@ -64,6 +64,27 @@ class ExtensionProcessor implements Processor {
 	);
 
 	/**
+	 * Things that are not 'attributes', but are not in
+	 * $globalSettings or $creditsAttributes.
+	 *
+	 * @var array
+	 */
+	protected static $notAttributes = array(
+		'callback',
+		'Hooks',
+		'namespaces',
+		'ResourceFileModulePaths',
+		'ResourceModules',
+		'ResourceModuleSkinStyles',
+		'ExtensionMessagesFiles',
+		'MessagesDirs',
+		'type',
+		'config',
+		'ParserTestFiles',
+		'AutoloadClasses',
+	);
+
+	/**
 	 * Stuff that is going to be set to $GLOBALS
 	 *
 	 * Some keys are pre-set to arrays so we can += to them
@@ -103,13 +124,6 @@ class ExtensionProcessor implements Processor {
 	protected $attributes = array();
 
 	/**
-	 * List of keys that have already been processed
-	 *
-	 * @var array
-	 */
-	protected $processed = array();
-
-	/**
 	 * @param string $path
 	 * @param array $info
 	 * @return array
@@ -125,7 +139,6 @@ class ExtensionProcessor implements Processor {
 		$this->extractParserTestFiles( $dir, $info );
 		if ( isset( $info['callback'] ) ) {
 			$this->callbacks[] = $info['callback'];
-			$this->processed[] = 'callback';
 		}
 
 		$this->extractCredits( $path, $info );
@@ -133,11 +146,12 @@ class ExtensionProcessor implements Processor {
 			if ( in_array( $key, self::$globalSettings ) ) {
 				$this->storeToArray( "wg$key", $val, $this->globals );
 			// Ignore anything that starts with a @
-			} elseif ( $key[0] !== '@' && !in_array( $key, $this->processed ) ) {
+			} elseif ( $key[0] !== '@' && !in_array( $key, self::$notAttributes )
+				&& !in_array( $key, self::$creditsAttributes )
+			) {
 				$this->storeToArray( $key, $val, $this->attributes );
 			}
 		}
-
 	}
 
 	public function getExtractedInfo() {
@@ -157,7 +171,6 @@ class ExtensionProcessor implements Processor {
 					$this->globals['wgHooks'][$name][] = $callback;
 				}
 			}
-			$this->processed[] = 'Hooks';
 		}
 	}
 
@@ -185,7 +198,6 @@ class ExtensionProcessor implements Processor {
 					$this->globals['wgNamespaceContentModels'][$id] = $ns['defaultcontentmodel'];
 				}
 			}
-			$this->processed[] = 'namespaces';
 		}
 	}
 
@@ -217,7 +229,6 @@ class ExtensionProcessor implements Processor {
 			$this->globals["wgExtensionMessagesFiles"] += array_map( function( $file ) use ( $dir ) {
 				return "$dir/$file";
 			}, $info['ExtensionMessagesFiles'] );
-			$this->processed[] = 'ExtensionMessagesFiles';
 		}
 	}
 
@@ -235,7 +246,6 @@ class ExtensionProcessor implements Processor {
 					$this->globals["wgMessagesDirs"][$name][] = "$dir/$file";
 				}
 			}
-			$this->processed[] = 'MessagesDirs';
 		}
 	}
 
@@ -244,11 +254,9 @@ class ExtensionProcessor implements Processor {
 			'path' => $path,
 			'type' => isset( $info['type'] ) ? $info['type'] : 'other',
 		);
-		$this->processed[] = 'type';
 		foreach ( self::$creditsAttributes as $attr ) {
 			if ( isset( $info[$attr] ) ) {
 				$credits[$attr] = $info[$attr];
-				$this->processed[] = $attr;
 			}
 		}
 
@@ -268,7 +276,6 @@ class ExtensionProcessor implements Processor {
 					$this->globals["wg$key"] = $val;
 				}
 			}
-			$this->processed[] = 'config';
 		}
 	}
 
@@ -277,7 +284,6 @@ class ExtensionProcessor implements Processor {
 			foreach ( $info['ParserTestFiles'] as $path ) {
 				$this->globals['wgParserTestFiles'][] = "$dir/$path";
 			}
-			$this->processed[] = 'ParserTestFiles';
 		}
 	}
 
