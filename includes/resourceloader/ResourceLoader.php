@@ -182,8 +182,12 @@ class ResourceLoader {
 		// Defaults
 		$options += array( 'cache' => true, 'cacheReport' => true );
 
-		// For empty/whitespace-only data or for unknown filters, don't do any caching or processing
-		if ( trim( $data ) === '' || !in_array( $filter, array( 'minify-js', 'minify-css' ) ) ) {
+		// Don't filter empty content
+		if ( trim( $data ) === '' ) {
+			return $data;
+		}
+
+		if ( !in_array( $filter, array( 'minify-js', 'minify-css' ) ) ) {
 			wfDebugLog( 'resourceloader', __METHOD__ . ": Invalid filter: $filter" );
 			return $data;
 		}
