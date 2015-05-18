@@ -534,10 +534,6 @@
 			"type": "object",
 			"description": "Rate limits"
 		},
-		"ParserTestFiles": {
-			"type": "array",
-			"description": "Parser test files to run"
-		},
 		"RecentChangesFlags": {
 			"type": "object",
 			"description": "Flags (letter symbols) shown on RecentChanges pages"
