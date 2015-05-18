@@ -278,8 +278,8 @@ class UserRightsProxy {
 			array( 'user_id' => $this->id ),
 			__METHOD__ );
 
-		global $wgMemc;
+		$cache = ObjectCache::getMainWANInstance();
 		$key = wfForeignMemcKey( $this->database, false, 'user', 'id', $this->id );
-		$wgMemc->delete( $key );
+		$cache->delete( $key );
 	}
 }
