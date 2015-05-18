@@ -12,11 +12,21 @@ class HTMLTextAreaField extends HTMLFormField {
 		return isset( $this->mParams['rows'] ) ? $this->mParams['rows'] : static::DEFAULT_ROWS;
 	}
 
+	function getSpellcheck() {
+		$val = isset( $this->mParams['spellcheck'] ) ? $this->mParams['spellcheck'] : null;
+		if( is_bool( $val ) ) {
+			// "spellcheck" attribute literally requires "true" or "false" to work.
+			return $val === true ? 'true' : 'false';
+		}
+		return null;
+	}
+
 	function getInputHTML( $value ) {
 		$attribs = array(
 				'id' => $this->mID,
 				'cols' => $this->getCols(),
 				'rows' => $this->getRows(),
+				'spellcheck' => $this->getSpellcheck(),
 			) + $this->getTooltipAndAccessKey();
 
 		if ( $this->mClass !== '' ) {
