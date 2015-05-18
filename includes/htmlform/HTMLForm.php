@@ -84,6 +84,27 @@
  *                             is "wp{$fieldname}".  If you want a different name
  *                             (eg one without the "wp" prefix), specify it here and
  *                             it will be used without modification.
+ *    'hide-if'             -- expression given as an array stating when the field
+ *                             should be hidden. The first array value has to be the
+ *                             expression's logic operator. Supported expressions:
+ *                               'NOT'
+ *                                 [ 'NOT', array $expression ]
+ *                                 To hide a field if a given expression is not true.
+ *                               '==='
+ *                                 [ '===', string $fieldName, string $value ]
+ *                                 To hide a field if another field identified by
+ *                                 $field has the value $value.
+ *                               '!=='
+ *                                 [ '!==', string $fieldName, string $value ]
+ *                                 Same as [ 'NOT', [ '===', $fieldName, $value ]
+ *                               'OR', 'AND', 'NOR', 'NAND'
+ *                                 [ 'XXX', array $expression1, ..., array $expressionN ]
+ *                                 To hide a field if one or more (OR), all (AND),
+ *                                 neither (NOR) or not all (NAND) given expressions
+ *                                 are evaluated as true.
+ *                             The expressions will be given to a JavaScript frontend
+ *                             module which will continually update the field's
+ *                             visibility.
  *
  * Since 1.20, you can chain mutators to ease the form generation:
  * @par Example:
