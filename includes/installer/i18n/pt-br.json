@@ -15,7 +15,8 @@
 			"Tuliouel",
 			"Marcos dias de oliveira",
 			"Fasouzafreitas",
-			"TheEduGobi"
+			"TheEduGobi",
+			"Dianakc"
 		]
 	},
 	"config-desc": "O instalador do MediaWiki",
@@ -96,6 +97,8 @@
 	"config-no-cli-uri": "<strong>Aviso:</strong> Nenhum <code>--scriptpath</code> foi especificado, usando o padrão: <code>$1</code>.",
 	"config-using-server": "Utilizando o nome do servidor \"<nowiki>$1</nowiki>\".",
 	"config-using-uri": "Usando URL do servidor \"<nowiki>$1$2</nowiki>\".",
+	"config-no-cli-uploads-check": "<strong>Atenção:</strong> O seu diretório padrão para envios (<code>$1</code>) não está marcado para vulnerabilidade\npara execução de script arbitrário durante a instalação do CLI.",
+	"config-brokenlibxml": "O sistema tem uma combinação de PHP e libxml2 que é conflitante e pode causar corrupção de dados ocultos no MediaWiki e outros aplicativos da web.\nAtualize para o libxml2 2.7.3 ou mais recente ([https://bugs.php.net/bug.php?id=45996 bugs com o PHP]).\nInstalação abortada.",
 	"config-db-type": "Tipo de base de dados:",
 	"config-db-host": "Servidor da base de dados:",
 	"config-db-host-help": "Se a base de dados do seu servidor está em um servidor diferente, digite o nome do hospedeiro ou o endereço IP aqui.\n\nSe você está utilizando um hospedeiro web compartilhado, o seu provedor de hospedagem deverá fornecer o nome do hospedeiro correto na sua documentação.\n\nSe você está instalando em um servidor Windows e usando o MySQL, usar \"localhost\" pode não funcionar para o nome de servidor. Se não funcionar, tente \"127.0.01\" para o endereço de IP local.\n\nSe você está usando PostgreSQl, deixe este campo em branco para se conectar através de um socket Unix.",
@@ -111,6 +114,7 @@
 	"config-db-install-username": "Digite o nome de usuário que será utilizado para conectar com o banco de dados durante o processo de instalação.\nEste não é a conta de usuário do MediaWiki; este é o nome de usuário para sua base de dados.",
 	"config-db-install-password": "Digite a senha que será utilizada para conectar com o banco de dados durante o processo de instalação.\nEsta não é a senha de usuário da conta do MediaWiki; esta será a senha para seu banco de dados.",
 	"config-db-install-help": "Digite o nome de usuário e a senha que serão utilizados para conectar com o banco de dados durante o processo de instalação.",
+	"config-db-account-lock": "Use o mesmo nome de usuário e senha durante a operação normal",
 	"config-db-wiki-account": "Conta de usuário para operação normal",
 	"config-db-wiki-help": "Digite o nome de usuário e senha que será usada para se conectar ao banco de dados durante a operação normal wiki.\nSe a conta não existir, e a conta de instalação tiver privilégios suficientes, a conta do usuário será criada com os privilégios mínimos necessários para o funcionamento do wiki.",
 	"config-db-prefix": "Prefixo da tabela de banco de dados:",

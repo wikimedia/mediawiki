@@ -223,6 +223,7 @@
 	"apihelp-opensearch-param-suggest": "Non facer nada se <var>[[mw:Manual:$wgEnableOpenSearchSuggest|$wgEnableOpenSearchSuggest]]</var> é falso.",
 	"apihelp-opensearch-param-redirects": "Como xestionar as redireccións:\n;return:Devolve a mesma redirección.\n;resolve:Devolve a páxina á que apunta. Pode devolver menos de $1limit resultados.\nPor razóns históricas, o valor por defecto para $1format=json é \"return\" e \"resolve\" para outros formatos.",
 	"apihelp-opensearch-param-format": "O formato de saída.",
+	"apihelp-opensearch-param-warningsaserror": "Se os avisos son recibidos con <kbd>format=json</kbd>, devolver un erro de API no canto de ignoralos.",
 	"apihelp-opensearch-example-te": "Atopar páxinas que comezan por <kbd>Te</kbd>.",
 	"apihelp-options-description": "Cambiar as preferencias do usuario actual.\n\nSó se poden cambiar opcións que estean rexistradas no núcleo ou nunha das extensións instaladas, ou opcións con claves prefixadas con \"userjs-\" (previstas para ser usadas por scripts de usuario).",
 	"apihelp-options-param-reset": "Reiniciar preferencias ás iniciais do sitio.",

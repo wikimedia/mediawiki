@@ -228,6 +228,7 @@
 	"apihelp-opensearch-param-suggest": "如果<var>[[mw:Manual:$wgEnableOpenSearchSuggest|$wgEnableOpenSearchSuggest]]</var>设置为false则不做任何事情。",
 	"apihelp-opensearch-param-redirects": "如何处理重定向：\n;return:返回重定向本身。\n;resolve:返回目标页面。可能返回少于$1limit个结果。\n由于历史原因，$1format=json默认为\"return\"，其他格式默认为\"resolve\"。",
 	"apihelp-opensearch-param-format": "输出格式。",
+	"apihelp-opensearch-param-warningsaserror": "如果警告通过<kbd>format=json</kbd>提升，返回一个API错误而不是忽略它们。",
 	"apihelp-opensearch-example-te": "查找以<kbd>Te</kbd>开头的页面。",
 	"apihelp-options-description": "更改当前用户的偏好设置。\n\n只有注册在核心或者已安装扩展中的选项，或者具有\"userjs-\"键值前缀（旨在被用户脚本使用）的选项可被设置。",
 	"apihelp-options-param-reset": "重置偏好设置到网站默认设置。",

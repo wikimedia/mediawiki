@@ -3153,7 +3153,7 @@
 	"log-name-tag": "태그 기록",
 	"log-description-tag": "이 문서는 사용자들이 특정 판이나 기록 항목에서 [[Special:Tags|태그]]를 추가하고 제거한 경우를 보여줍니다. 이 기록에는 편집이나 삭제, 이와 유사한 행위를 통해 태그가 붙는 경우는 기록되지 않습니다.",
 	"logentry-tag-update-add-revision": "$1 사용자가 $3 문서의 $4판에 $6 {{PLURAL:$7|태그}}를 {{GENDER:$2|추가했습니다}}",
-	"logentry-tag-update-add-logentry": "$1 사용자가 $3 문서의 기록 항목 $5에서 $6 {{PLURAL:$7|태그}}를 {{GENDER:$2|추가했습니다}}",
+	"logentry-tag-update-add-logentry": "$1 사용자가 $3 문서의 기록 항목 $5에 $6 {{PLURAL:$7|태그}}를 {{GENDER:$2|추가했습니다}}",
 	"logentry-tag-update-remove-revision": "$1 사용자가 $3 문서의 $4판에서 $8 {{PLURAL:$9|태그}}를 {{GENDER:$2|제거했습니다}}",
 	"logentry-tag-update-remove-logentry": "$1 사용자가 $3 문서의 기록 항목 $5에서 $8 {{PLURAL:$9|태그}}를 {{GENDER:$2|제거했습니다}}",
 	"rightsnone": "(없음)",

@@ -324,6 +324,7 @@
 	"filerenameerror": "De Fichier \"$1\" konnt net op \"$2\" ëmbenannt ginn.",
 	"filedeleteerror": "De Fichier \"$1\" konnt net geläscht ginn.",
 	"directorycreateerror": "De Repertoire \"$1\" konnt net geschafe ginn.",
+	"directorynotreadableerror": "Repertoire \"$1\" kann net geliest ginn.",
 	"filenotfound": "De Fichier \"$1\" gouf net fonnt.",
 	"unexpected": "Onerwaarte Wäert: \"$1\"=\"$2\".",
 	"formerror": "Feeler: Dat wat Dir aginn hutt konnt net verschafft ginn.",

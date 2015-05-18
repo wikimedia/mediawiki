@@ -371,7 +371,7 @@
 	"title-invalid-utf8": "Pyydetyn sivun nimessä on kelvoton UTF–8-jakso.",
 	"title-invalid-interwiki": "Nimessä on kieltenvälinen linkki",
 	"title-invalid-talk-namespace": "Pyydetyn sivun nimi viittaa sellaiseen keskustelusivuun, jota ei voi olla olemassa.",
-	"title-invalid-characters": "Pyydetyn sivun nimessä on kelvottomia merkkejä: \"$1\".",
+	"title-invalid-characters": "Pyydetyn sivun nimessä on kelvottomia merkkejä: ”$1”.",
 	"title-invalid-relative": "Nimessä on suhteellinen polku. Suhteellisen polun (./, ../) sisältävät sivujen nimet eivät ole kelvollisia, koska ne eivät useinkaan toimi käyttäjien selaimissa.",
 	"title-invalid-magic-tilde": "Pyydetyn sivun nimessä on kelvoton taikamatojakso (<nowiki>~~~</nowiki>).",
 	"title-invalid-too-long": "Pyydetyn sivun nimi on liian pitkä. Se ei saa olla pitempi kuin $1 tavua käytettäessä UTF–8-koodausta.",

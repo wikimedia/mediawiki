@@ -3119,7 +3119,7 @@
 	"exif-componentsconfiguration-5": "{{optional}}\n{{Related|Exif-componentsconfiguration}}",
 	"exif-componentsconfiguration-6": "{{optional}}\n{{Related|Exif-componentsconfiguration}}",
 	"exif-exposureprogram-0": "{{Related|Exif-exposureprogram}}",
-	"exif-exposureprogram-1": "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[[w:Mode_dial|Mode dial]]' for an explanation.\n{{Related|Exif-exposureprogram}}",
+	"exif-exposureprogram-1": "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article '[[w:Mode_dial|Mode dial]]' for an explanation.\n{{Related|Exif-exposureprogram}}\n{{Identical|Manual}}",
 	"exif-exposureprogram-2": "One of the exposure program types in the table of metadata on image description pages.\n{{Related|Exif-exposureprogram}}",
 	"exif-exposureprogram-3": "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article for a definition of the term [[w:Aperture_priority|aperture priority]].\n{{Related|Exif-exposureprogram}}",
 	"exif-exposureprogram-4": "One of the exposure program types in the table of metadata on image description pages. See the Wikipedia article for a definition of the term [[w:Shutter_priority|shutter priority]].\n{{Related|Exif-exposureprogram}}",

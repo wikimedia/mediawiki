@@ -359,6 +359,7 @@
 	"no-null-revision": "Ne eblis krei novan nulan revizion por paĝo \"$1\"",
 	"badtitle": "Fuŝa titolo",
 	"badtitletext": "La petita paĝotitolo estis malvalida, malplena, aŭ malĝuste ligita interlingva aŭ intervikia titolo.\nĜi eble enhavas unu aŭ pliaj signoj, kiuj ne povas esti uzataj en titoloj.",
+	"title-invalid-interwiki": "Titolo enhavas intervikian ligilon",
 	"perfcached": "La sekvantaj informoj venas el kaŝmemoro kaj eble ne estas ĝisdataj. Maksimumo de {{PLURAL:$1|unu rezulto estas disponebla|$1 rezultoj estas disponeblaj}} en la kaŝmemoro.",
 	"perfcachedts": "La jenaj datumoj estas el kaŝmemoro kaj estis laste ĝisdatigitaj $1. Maksimumo de {{PLURAL:$4|unu rezulto estas disponebla|$4 rezultoj estas disponeblaj}} en la kaŝmemoro.",
 	"querypage-no-updates": "Ĝisdatigoj por ĉi tiu paĝo estas nune neebligitaj.\nDatumoj ĉi tie ne estos nune refreŝigitaj.",
