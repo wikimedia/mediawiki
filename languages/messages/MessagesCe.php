@@ -311,6 +311,8 @@ $magicWords = array(
 	'url_wiki'                  => array( '0', 'ЧЕХКА', 'ВИКИ', 'WIKI' ),
 );
 
+$defaultDateFormat = 'ydm';
+
 $datePreferences = array(
 	'default',
 	'ydm',
