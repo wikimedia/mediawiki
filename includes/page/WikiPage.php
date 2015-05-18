@@ -1861,13 +1861,12 @@ class WikiPage implements Page, IDBAccessObject {
 			}
 
 			// Update links tables, site stats, etc.
-			$this->doEditUpdates(
-				$revision,
-				$user,
-				array(
-					'changed' => $changed,
-					'oldcountable' => $oldcountable
-				)
+			$that = $this;
+			$params = array( 'changed' => $changed, 'oldcountable' => $oldcountable );
+			DeferredUpdates::addCallableUpdate(
+				function() use ( $that, $revision, $user, $params ) {
+					$that->doEditUpdates( $revision, $user, $params );
+				}
 			);
 
 			if ( !$changed ) {
@@ -1956,8 +1955,13 @@ class WikiPage implements Page, IDBAccessObject {
 			}
 			$dbw->commit( __METHOD__ );
 
-			// Update links, etc.
-			$this->doEditUpdates( $revision, $user, array( 'created' => true ) );
+			// Update links tables, site stats, etc.
+			$that = $this;
+			DeferredUpdates::addCallableUpdate(
+				function() use ( $that, $revision, $user ) {
+					$that->doEditUpdates( $revision, $user, array( 'created' => true ) );
+				}
+			);
 
 			$hook_args = array( &$this, &$user, $content, $summary,
 								$flags & EDIT_MINOR, null, null, &$flags, $revision );
@@ -2282,7 +2286,6 @@ class WikiPage implements Page, IDBAccessObject {
 		} elseif ( $options['changed'] ) { // bug 50785
 			self::onArticleEdit( $this->mTitle );
 		}
-
 	}
 
 	/**
