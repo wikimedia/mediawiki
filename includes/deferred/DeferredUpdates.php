@@ -49,7 +49,21 @@ class DeferredUpdates {
 	 * @param DeferrableUpdate $update Some object that implements doUpdate()
 	 */
 	public static function addUpdate( DeferrableUpdate $update ) {
-		array_push( self::$updates, $update );
+		// CLI scripts may forget to periodically flush these updates,
+		// so try to handle that rather than OOMing and losing them.
+		if ( PHP_SAPI === 'cli' ) {
+			$lb = wfGetLB();
+			$dbw = $lb->getAnyOpenConnection( $lb->getWriterIndex() );
+			// Do the update as soon as there is no transaction
+			if ( $dbw ) {
+				$dbw->onTransactionIdle( array( $update, 'doUpdate' ) );
+			} else {
+				$update->doUpdate();
+			}
+		// Web requests can defer the updates till post-send
+		} else {
+			array_push( self::$updates, $update );
+		}
 	}
 
 	/**
