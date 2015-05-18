@@ -2213,7 +2213,7 @@ class WikiPage implements Page, IDBAccessObject {
 				$jobs[] = RecentChangesUpdateJob::newPurgeJob();
 			}
 
-			JobQueueGroup::singleton()->push( $jobs );
+			JobQueueGroup::singleton()->lazyPush( $jobs );
 		}
 
 		if ( !$this->exists() ) {
