@@ -34,13 +34,17 @@ interface DeferrableUpdate {
 }
 
 /**
- * Class for managing the deferred updates.
+ * Class for managing the deferred updates
+ *
+ * Deferred updates can be run at the end of the request,
+ * after the HTTP response has been sent. In CLI mode, updates
+ * are only deferred until there is no local master DB transaction.
  *
  * @since 1.19
  */
 class DeferredUpdates {
 	/**
-	 * Store of updates to be deferred until the end of the request.
+	 * @var array Updates to be deferred until the end of the request.
 	 */
 	private static $updates = array();
 
@@ -49,7 +53,28 @@ class DeferredUpdates {
 	 * @param DeferrableUpdate $update Some object that implements doUpdate()
 	 */
 	public static function addUpdate( DeferrableUpdate $update ) {
+		global $wgCommandLineMode;
+
 		array_push( self::$updates, $update );
+
+		// CLI scripts may forget to periodically flush these updates,
+		// so try to handle that rather than OOMing and losing them.
+		// Try to run the updates as soon as there is no local transaction.
+		static $waitingOnTrx = false; // de-duplicate callback
+		if ( $wgCommandLineMode && !$waitingOnTrx ) {
+			$lb = wfGetLB();
+			$dbw = $lb->getAnyOpenConnection( $lb->getWriterIndex() );
+			// Do the update as soon as there is no transaction
+			if ( $dbw->trxLevel() ) {
+				$waitingOnTrx = true;
+				$dbw->onTransactionIdle( function() use ( &$waitingOnTrx ) {
+					DeferredUpdates::doUpdates();
+					$waitingOnTrx = false;
+				} );
+			} else {
+				self::doUpdates();
+			}
+		}
 	}
 
 	/**
@@ -84,19 +109,7 @@ class DeferredUpdates {
 
 		$updates = array_merge( $wgDeferredUpdateList, self::$updates );
 
-		// No need to get master connections in case of empty updates array
-		if ( !count( $updates ) ) {
-
-			return;
-		}
-
-		$dbw = false;
-		$doCommit = $commit == 'commit';
-		if ( $doCommit ) {
-			$dbw = wfGetDB( DB_MASTER );
-		}
-
-		while ( $updates ) {
+		while ( count( $updates ) ) {
 			self::clearPendingUpdates();
 
 			/** @var DeferrableUpdate $update */
@@ -104,8 +117,8 @@ class DeferredUpdates {
 				try {
 					$update->doUpdate();
 
-					if ( $doCommit && $dbw->trxLevel() ) {
-						$dbw->commit( __METHOD__, 'flush' );
+					if ( $commit === 'commit' ) {
+						wfGetLBFactory()->commitMasterChanges();
 					}
 				} catch ( Exception $e ) {
 					// We don't want exceptions thrown during deferred updates to
@@ -116,9 +129,9 @@ class DeferredUpdates {
 					}
 				}
 			}
+
 			$updates = array_merge( $wgDeferredUpdateList, self::$updates );
 		}
-
 	}
 
 	/**
