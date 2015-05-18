@@ -386,7 +386,9 @@ abstract class Action {
 	 */
 	public function addHelpLink( $to, $overrideBaseUrl = false ) {
 		global $wgContLang;
-		$msg = wfMessage( $wgContLang->lc( $this->getActionName() ) . '-helppage' );
+		$msg = wfMessage( $wgContLang->lc(
+			Action::getActionName( $this->getContext() )
+			) . '-helppage' );
 
 		if ( !$msg->isDisabled() ) {
 			$helpUrl = Skin::makeUrl( $msg->plain() );
