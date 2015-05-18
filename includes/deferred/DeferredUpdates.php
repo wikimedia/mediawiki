@@ -50,6 +50,11 @@ class DeferredUpdates {
 	 */
 	public static function addUpdate( DeferrableUpdate $update ) {
 		array_push( self::$updates, $update );
+		// CLI scripts may forget to periodically flush these updates,
+		// so try to handle that rather than OOMing and losing them.
+		if ( count( self::$updates ) > 1000 && PHP_SAPI === 'cli' ) {
+			wfGetDB( DB_MASTER )->onTransactionIdle( array( __CLASS__, 'doUpdates' ) );
+		}
 	}
 
 	/**
