@@ -27,12 +27,14 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 		$processor->extractInfo( $this->dir, self::$default + array(
 			'@metadata' => array( 'foobarbaz' ),
 			'AnAttribute' => array( 'omg' ),
+			'AutoloadClasses' => array( 'FooBar' => 'includes/FooBar.php' ),
 		) );
 
 		$extracted = $processor->getExtractedInfo();
 		$attributes = $extracted['attributes'];
 		$this->assertArrayHasKey( 'AnAttribute', $attributes );
 		$this->assertArrayNotHasKey( '@metadata', $attributes );
+		$this->assertArrayNotHasKey( 'AutoloadClasses', $attributes );
 	}
 
 	public static function provideRegisterHooks() {
