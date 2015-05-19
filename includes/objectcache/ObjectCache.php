@@ -26,6 +26,13 @@ use MediaWiki\Logger\LoggerFactory;
 /**
  * Functions to get cache objects
  *
+ * The word "cache" has two main dictionary meanings, and both
+ * are used in this factory class. They are:
+ *   - a) A place to store copies or computations on existing data
+ *     for higher access speeds (the computer science definition)
+ *   - b) A place to store lightweight data that is not canonically
+ *     stored anywhere else (e.g. a "hoard" of objects)
+ *
  * @ingroup Cache
  */
 class ObjectCache {
@@ -226,5 +233,27 @@ class ObjectCache {
 		global $wgMainWANCache;
 
 		return self::getWANInstance( $wgMainWANCache );
+	}
+
+	/**
+	 * Stash objects are BagOStuff instances suitable for storing light
+	 * weight data that is not canonically stored elsewhere (such as RDBMS).
+	 * Stashes should be configured to propagate changes to all data-centers.
+	 *
+	 * Callers should be prepared for:
+	 *   - a) Writes to be slower in non-"primary" (e.g. HTTP GET/HEAD only) DCs
+	 *   - b) Reads to be eventually consistent, e.g. for get()/getMulti()
+	 * In general, this means avoiding updates on idempotent HTTP requests and
+	 * avoiding an assumption of perfect serializability (or accepting anomalies).
+	 * Reads may be eventually consistent or data might rollback as nodes flap.
+	 *
+	 *
+	 * @return BagOStuff
+	 * @since 1.26
+	 */
+	static function getMainStashInstance() {
+		global $wgMainStash;
+
+		return self::getInstance( $wgMainStash );
 	}
 }
