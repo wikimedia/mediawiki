@@ -28,7 +28,7 @@
  * @since 1.21
  */
 class JobQueueGroup {
-	/** @var array */
+	/** @var JobQueueGroup[] */
 	protected static $instances = array();
 
 	/** @var ProcessCacheLRU */
@@ -166,10 +166,11 @@ class JobQueueGroup {
 	 * @return void
 	 * @since 1.26
 	 */
-	public function pushLazyJobs() {
-		$this->push( $this->bufferedJobs );
-
-		$this->bufferedJobs = array();
+	public static function pushLazyJobs() {
+		foreach ( self::$instances as $group ) {
+			$group->push( $group->bufferedJobs );
+			$group->bufferedJobs = array();
+		}
 	}
 
 	/**
@@ -416,7 +417,6 @@ class JobQueueGroup {
 		$n = count( $this->bufferedJobs );
 		if ( $n > 0 ) {
 			trigger_error( __METHOD__ . ": $n buffered job(s) never inserted." );
-			$this->pushLazyJobs(); // try to do it now
 		}
 	}
 }
