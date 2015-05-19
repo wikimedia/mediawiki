@@ -90,8 +90,6 @@ class ExtensionRegistry {
 			return;
 		}
 
-		$this->queued = array_unique( $this->queued );
-
 		// See if this queue is in APC
 		$key = wfMemcKey( 'registration', md5( json_encode( $this->queued ) ) );
 		$data = $this->cache->get( $key );
