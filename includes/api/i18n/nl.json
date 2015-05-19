@@ -47,6 +47,8 @@
 	"apihelp-expandtemplates-param-title": "Paginanaam.",
 	"apihelp-feedcontributions-param-year": "Van jaar (en eerder).",
 	"apihelp-feedcontributions-param-month": "Van maand (en eerder).",
+	"apihelp-import-param-namespace": "Importeren in deze naamruimte. Can niet samen gebruikt worden met <var>$1rootpage</var>.",
+	"apihelp-import-param-rootpage": "Importeren als subpagina van deze pagina. Kan niet samen met <var>$1namespace</var> gebruikt worden.",
 	"apihelp-login-param-name": "Gebruikersnaam.",
 	"apihelp-login-param-password": "Wachtwoord.",
 	"apihelp-login-param-domain": "Domein (optioneel).",

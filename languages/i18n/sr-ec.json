@@ -1388,6 +1388,7 @@
 	"listfiles-delete": "обриши",
 	"listfiles-summary": "Ова посебна страница приказује све послате датотеке.",
 	"listfiles_search_for": "Назив датотеке:",
+	"listfiles-userdoesnotexist": "Кориснички налог „$1“ није регистрован.",
 	"imgfile": "датотека",
 	"listfiles": "Списак датотека",
 	"listfiles_thumb": "Минијатура",

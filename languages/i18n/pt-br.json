@@ -662,7 +662,7 @@
 	"confirmedittext": "Você precisa confirmar o seu endereço de e-mail antes de começar a editar páginas.\nPor favor, introduza um e valide-o através das suas [[Special:Preferences|preferências de usuário]].",
 	"nosuchsectiontitle": "Não foi possível encontrar a seção",
 	"nosuchsectiontext": "Você tentou editar uma seção que não existe.\nEla pode ter sido movida ou removido enquanto você estava vendo a página.",
-	"loginreqtitle": "Autenticação Requerida",
+	"loginreqtitle": "Autenticação requerida",
 	"loginreqlink": "autenticar-se",
 	"loginreqpagetext": "É necessário $1 para poder visualizar outras páginas.",
 	"accmailtitle": "Senha enviada.",
