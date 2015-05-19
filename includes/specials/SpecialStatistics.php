@@ -108,7 +108,8 @@ class SpecialStatistics extends SpecialPage {
 		if ( $descMsg ) {
 			$msg = $this->msg( $descMsg, $descMsgParam );
 			if ( $msg->exists() ) {
-				$descriptionText = $this->msg( 'parentheses' )->rawParams( $msg->parse() )->escaped();
+				$descriptionText = $this->msg( 'parentheses' )->rawParams( $msg->parse() )
+					->escaped();
 				$text .= "<br />" . Xml::element( 'small', array( 'class' => 'mw-statistic-desc' ),
 					" $descriptionText" );
 			}
@@ -127,7 +128,8 @@ class SpecialStatistics extends SpecialPage {
 	 */
 	private function getPageStats() {
 		$pageStatsHtml = Xml::openElement( 'tr' ) .
-			Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( 'statistics-header-pages' )->parse() ) .
+			Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( 'statistics-header-pages' )
+				->parse() ) .
 			Xml::closeElement( 'tr' ) .
 				$this->formatRow( Linker::linkKnown( SpecialPage::getTitleFor( 'Allpages' ),
 					$this->msg( 'statistics-articles' )->parse() ),
@@ -140,7 +142,8 @@ class SpecialStatistics extends SpecialPage {
 
 		// Show the image row only, when there are files or upload is possible
 		if ( $this->images !== 0 || $this->getConfig()->get( 'EnableUploads' ) ) {
-			$pageStatsHtml .= $this->formatRow( Linker::linkKnown( SpecialPage::getTitleFor( 'MediaStatistics' ),
+			$pageStatsHtml .= $this->formatRow(
+				Linker::linkKnown( SpecialPage::getTitleFor( 'MediaStatistics' ),
 				$this->msg( 'statistics-files' )->parse() ),
 				$this->getLanguage()->formatNum( $this->images ),
 				array( 'class' => 'mw-statistics-files' ) );
@@ -151,7 +154,8 @@ class SpecialStatistics extends SpecialPage {
 
 	private function getEditStats() {
 		return Xml::openElement( 'tr' ) .
-			Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( 'statistics-header-edits' )->parse() ) .
+			Xml::tags( 'th', array( 'colspan' => '2' ),
+				$this->msg( 'statistics-header-edits' )->parse() ) .
 			Xml::closeElement( 'tr' ) .
 			$this->formatRow( $this->msg( 'statistics-edits' )->parse(),
 				$this->getLanguage()->formatNum( $this->edits ),
@@ -166,7 +170,8 @@ class SpecialStatistics extends SpecialPage {
 
 	private function getUserStats() {
 		return Xml::openElement( 'tr' ) .
-			Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( 'statistics-header-users' )->parse() ) .
+			Xml::tags( 'th', array( 'colspan' => '2' ),
+				$this->msg( 'statistics-header-users' )->parse() ) .
 			Xml::closeElement( 'tr' ) .
 			$this->formatRow( $this->msg( 'statistics-users' )->parse(),
 				$this->getLanguage()->formatNum( $this->users ),
@@ -229,7 +234,8 @@ class SpecialStatistics extends SpecialPage {
 			}
 			$text .= $this->formatRow( $grouppage . ' ' . $grouplink,
 				$this->getLanguage()->formatNum( $countUsers ),
-				array( 'class' => 'statistics-group-' . Sanitizer::escapeClass( $group ) . $classZero ) );
+				array( 'class' => 'statistics-group-' . Sanitizer::escapeClass( $group ) .
+					$classZero ) );
 		}
 
 		return $text;
