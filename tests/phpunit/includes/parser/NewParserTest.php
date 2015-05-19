@@ -91,7 +91,7 @@ class NewParserTest extends MediaWikiTestCase {
 		);
 		$tmpGlobals['wgForeignFileRepos'] = array();
 		$tmpGlobals['wgDefaultExternalStore'] = array();
-		$tmpGlobals['wgEnableParserCache'] = false;
+		$tmpGlobals['wgParserCacheType'] = CACHE_NONE;
 		$tmpGlobals['wgCapitalLinks'] = true;
 		$tmpGlobals['wgNoFollowLinks'] = true;
 		$tmpGlobals['wgNoFollowDomainExceptions'] = array();
