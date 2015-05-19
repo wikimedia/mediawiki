@@ -147,6 +147,9 @@ class JobQueueGroup {
 	 * @since 1.26
 	 */
 	public function lazyPush( $jobs ) {
+		$this->push( $jobs ); // hack
+		return;
+
 		if ( PHP_SAPI === 'cli' ) {
 			$this->push( $jobs );
 			return;
