@@ -342,7 +342,7 @@
 	"badtitletext": "The requested page title was invalid, empty, or an incorrectly linked inter-language or inter-wiki title.\nIt may contain one or more characters that cannot be used in titles.",
 	"title-invalid-empty": "The requested page title is empty or contains only the name of a namespace.",
 	"title-invalid-utf8": "The requested page title contains an invalid UTF-8 sequence.",
-	"title-invalid-interwiki": "Title contains an interwiki link",
+	"title-invalid-interwiki": "The requested page title contains an interwiki link which cannot be used in titles.",
 	"title-invalid-talk-namespace": "The requested page title refers to a talk page that can not exist.",
 	"title-invalid-characters": "The requested page title contains invalid characters: \"$1\".",
 	"title-invalid-relative": "Title has relative path. Relative page titles (./, ../) are invalid, because they will often be unreachable when handled by user's browser.",
