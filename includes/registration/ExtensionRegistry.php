@@ -95,7 +95,7 @@ class ExtensionRegistry {
 			// did that, but it should be cached
 			$data['globals']['wgAutoloadClasses'] += $data['autoload'];
 			unset( $data['autoload'] );
-			$this->cache->set( $key, $data );
+			$this->cache->set( $key, $data, 60 * 60 * 24 );
 		}
 		$this->queued = array();
 	}
