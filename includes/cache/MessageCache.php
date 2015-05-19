@@ -236,10 +236,11 @@ class MessageCache {
 	 * is disabled.
 	 *
 	 * @param bool|string $code Language to which load messages
+	 * @param string $intent Use 'forupdate' to skip potentially state process cache
 	 * @throws MWException
 	 * @return bool
 	 */
-	function load( $code = false ) {
+	function load( $code = false, $intent = null ) {
 		global $wgUseLocalMessageCache;
 
 		if ( !is_string( $code ) ) {
@@ -250,7 +251,7 @@ class MessageCache {
 		}
 
 		# Don't do double loading...
-		if ( isset( $this->mLoadedLanguages[$code] ) ) {
+		if ( isset( $this->mLoadedLanguages[$code] ) && $intent !== 'forupdate' ) {
 			return true;
 		}
 
@@ -275,7 +276,6 @@ class MessageCache {
 		# Hash of the contents is stored in memcache, to detect if local cache goes
 		# out of date (e.g. due to replace() on some other server)
 		if ( $wgUseLocalMessageCache ) {
-
 			$hash = $this->mMemc->get( wfMemcKey( 'messages', $code, 'hash' ) );
 			if ( $hash ) {
 				$cache = $this->getLocalCache( $hash, $code );
@@ -508,27 +508,45 @@ class MessageCache {
 	}
 
 	/**
-	 * Updates cache as necessary when message page is changed
+	 * Update the cache to reflect a message page change
+	 *
+	 * This should only be called from job or test classes
 	 *
 	 * @param string $title Name of the page changed.
 	 * @param mixed $text New contents of the page.
 	 */
 	public function replace( $title, $text ) {
-		global $wgMaxMsgCacheEntrySize;
+		// Make sure all data-centers are updated
+		JobQueueGroup::singleton()->push(
+			new MessageCacheUpdateJob( Title::makeTitle( NS_MEDIAWIKI, $title ) )
+		);
+
+		$this->replaceOnCluster( $title, $text );
+	}
+
+	/**
+	 * Update the local datacenter's cache to reflect a message page change
+	 *
+	 * This should only be called from job or test classes
+	 *
+	 * @param string $title Name of the page changed.
+	 * @param mixed $text New contents of the page.
+	 * @since 1.26
+	 */
+	public function replaceOnCluster( $title, $text ) {
+		global $wgMaxMsgCacheEntrySize, $wgContLang;
 
 		if ( $this->mDisable ) {
-
 			return;
 		}
 
 		list( $msg, $code ) = $this->figureMessage( $title );
 
 		$cacheKey = wfMemcKey( 'messages', $code );
-		$this->load( $code );
 		$this->lock( $cacheKey );
+		$this->load( $code, 'forupdate' );
 
 		$titleKey = wfMemcKey( 'messages', 'individual', $title );
-
 		if ( $text === false ) {
 			# Article was deleted
 			$this->mCache[$code][$title] = '!NONEXISTENT';
@@ -561,12 +579,10 @@ class MessageCache {
 		}
 
 		// Update the message in the message blob store
-		global $wgContLang;
 		$blobStore = new MessageBlobStore();
 		$blobStore->updateMessage( $wgContLang->lcfirst( $msg ) );
 
 		Hooks::run( 'MessageCacheReplace', array( $title, $text ) );
-
 	}
 
 	/**

@@ -6537,6 +6537,7 @@ $wgJobClasses = array(
 	'recentChangesUpdate' => 'RecentChangesUpdateJob',
 	'refreshLinksPrioritized' => 'RefreshLinksJob', // for cascading protection
 	'activityUpdateJob' => 'ActivityUpdateJob',
+	'messageCacheUpdate' => 'MessageCacheUpdateJob',
 	'enqueue' => 'EnqueueJob', // local queue for multi-DC setups
 	'null' => 'NullJob'
 );
