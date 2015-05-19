@@ -459,7 +459,7 @@ class MediaWiki {
 	 */
 	public function postSendUpdates() {
 		try {
-			JobQueueGroup::singleton()->pushLazyJobs();
+			JobQueueGroup::pushLazyJobs();
 			$this->triggerJobs();
 			$this->restInPeace();
 		} catch ( Exception $e ) {
@@ -626,7 +626,7 @@ class MediaWiki {
 		DeferredUpdates::doUpdates( 'commit' );
 
 		// Make sure any lazy jobs are pushed
-		JobQueueGroup::singleton()->pushLazyJobs();
+		JobQueueGroup::pushLazyJobs();
 
 		// Log profiling data, e.g. in the database or UDP
 		wfLogProfilingData();
