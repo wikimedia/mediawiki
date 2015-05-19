@@ -2301,11 +2301,10 @@ class User implements IDBAccessObject {
 	 * Called implicitly from invalidateCache() and saveSettings().
 	 */
 	public function clearSharedCache() {
-		$this->load();
-		if ( $this->mId ) {
+		$id = $this->getId();
+		if ( $id ) {
 			$cache = ObjectCache::getMainWANInstance();
-
-			$cache->delete( wfMemcKey( 'user', 'id', $this->mId ) );
+			$cache->delete( wfMemcKey( 'user', 'id', $id ) );
 		}
 	}
 
