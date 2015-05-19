@@ -9,6 +9,8 @@ MediaWiki 1.26 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.26 ===
+* $wgEnableParserCache was deprecated, set $wgParserCacheType to CACHE_NONE
+  instead if you want the parser cache disabled.
 
 === New features in 1.26 ===
 * Change tags can now be hidden in the interface by disabling the associated

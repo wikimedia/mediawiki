@@ -2369,13 +2369,8 @@ $wgUseFileCache = false;
 $wgFileCacheDepth = 2;
 
 /**
- * Keep parsed pages in a cache (objectcache table or memcached)
- * to speed up output of the same page viewed by another user with the
- * same options.
- *
- * This can provide a significant speedup for medium to large pages,
- * so you probably want to keep it on. Extensions that conflict with the
- * parser cache should disable the cache on a per-page basis instead.
+ * Kept for extension compatibility; see $wgParserCacheType
+ * @deprecated 1.26
  */
 $wgEnableParserCache = true;
 
