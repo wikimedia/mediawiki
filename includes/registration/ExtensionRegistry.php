@@ -39,13 +39,6 @@ class ExtensionRegistry {
 	protected $attributes = array();
 
 	/**
-	 * Processors, 'default' should be set by subclasses in the constructor
-	 *
-	 * @var Processor[]
-	 */
-	protected $processors = array();
-
-	/**
 	 * @var ExtensionRegistry
 	 */
 	private static $instance;
@@ -117,6 +110,7 @@ class ExtensionRegistry {
 	public function readFromQueue( array $queue ) {
 		$data = array( 'globals' => array( 'wgAutoloadClasses' => array() ) );
 		$autoloadClasses = array();
+		$processor = new ExtensionProcessor();
 		foreach ( $queue as $path => $mtime ) {
 			$json = file_get_contents( $path );
 			if ( $json === false ) {
@@ -130,34 +124,16 @@ class ExtensionRegistry {
 			// Set up the autoloader now so custom processors will work
 			$GLOBALS['wgAutoloadClasses'] += $autoload;
 			$autoloadClasses += $autoload;
-			if ( isset( $info['processor'] ) ) {
-				$processor = $this->getProcessor( $info['processor'] );
-			} else {
-				$processor = $this->getProcessor( 'default' );
-			}
 			$processor->extractInfo( $path, $info );
 		}
-		foreach ( $this->processors as $processor ) {
-			$data = array_merge_recursive( $data, $processor->getExtractedInfo() );
-		}
+		$data = $processor->getExtractedInfo();
+		// Need to set this so we can += to it later
+		$data['globals']['wgAutoloadClasses'] = array();
 		foreach ( $data['credits'] as $credit ) {
 			$data['globals']['wgExtensionCredits'][$credit['type']][] = $credit;
 		}
-		$this->processors = array(); // Reset
 		$data['autoload'] = $autoloadClasses;
 		return $data;
-	}
-
-	protected function getProcessor( $type ) {
-		if ( !isset( $this->processors[$type] ) ) {
-			$processor = $type === 'default' ? new ExtensionProcessor() : new $type();
-			if ( !$processor instanceof Processor ) {
-				throw new Exception( "$type is not a Processor" );
-			}
-			$this->processors[$type] = $processor;
-		}
-
-		return $this->processors[$type];
 	}
 
 	protected function exportExtractedData( array $info ) {
