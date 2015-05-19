@@ -1188,7 +1188,7 @@ class WikiPage implements Page, IDBAccessObject {
 				$text = false;
 			}
 
-			MessageCache::singleton()->replace( $this->mTitle->getDBkey(), $text );
+			MessageCache::singleton()->purgeForTitle( $this->mTitle );
 		}
 
 		return true;
@@ -2274,7 +2274,7 @@ class WikiPage implements Page, IDBAccessObject {
 				$msgtext = '';
 			}
 
-			MessageCache::singleton()->replace( $shortTitle, $msgtext );
+			MessageCache::singleton()->purgeForTitle( $this->mTitle );
 		}
 
 		if ( $options['created'] ) {
@@ -3188,7 +3188,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Messages
 		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
-			MessageCache::singleton()->replace( $title->getDBkey(), false );
+			MessageCache::singleton()->purgeForTitle( $title );
 		}
 
 		// Images

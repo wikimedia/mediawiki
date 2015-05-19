@@ -776,6 +776,7 @@ $wgAutoloadLocalClasses = array(
 	'Message' => __DIR__ . '/includes/Message.php',
 	'MessageBlobStore' => __DIR__ . '/includes/cache/MessageBlobStore.php',
 	'MessageCache' => __DIR__ . '/includes/cache/MessageCache.php',
+	'MessageCacheUpdateJob' => __DIR__ . '/includes/jobqueue/jobs/MessageCacheUpdateJob.php',
 	'MessageContent' => __DIR__ . '/includes/content/MessageContent.php',
 	'MessageSpecifier' => __DIR__ . '/includes/libs/MessageSpecifier.php',
 	'MigrateUserGroup' => __DIR__ . '/maintenance/migrateUserGroup.php',
