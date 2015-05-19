@@ -1086,10 +1086,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return bool
 	 */
 	public function isParserCacheUsed( ParserOptions $parserOptions, $oldid ) {
-		global $wgEnableParserCache;
-
-		return $wgEnableParserCache
-			&& $parserOptions->getStubThreshold() == 0
+		return $parserOptions->getStubThreshold() == 0
 			&& $this->exists()
 			&& ( $oldid === null || $oldid === 0 || $oldid === $this->getLatest() )
 			&& $this->getContentHandler()->isParserCacheSupported();
@@ -2166,8 +2163,6 @@ class WikiPage implements Page, IDBAccessObject {
 	 *   - 'no-change': don't update the article count, ever
 	 */
 	public function doEditUpdates( Revision $revision, User $user, array $options = array() ) {
-		global $wgEnableParserCache;
-
 		$options += array(
 			'changed' => true,
 			'created' => false,
@@ -2188,12 +2183,9 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// Save it to the parser cache
-		if ( $wgEnableParserCache ) {
-			$parserCache = ParserCache::singleton();
-			$parserCache->save(
-				$editInfo->output, $this, $editInfo->popts, $editInfo->timestamp, $editInfo->revid
-			);
-		}
+		ParserCache::singleton()->save(
+			$editInfo->output, $this, $editInfo->popts, $editInfo->timestamp, $editInfo->revid
+		);
 
 		// Update the links tables and other secondary data
 		if ( $content ) {
