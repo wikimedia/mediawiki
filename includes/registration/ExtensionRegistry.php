@@ -70,10 +70,18 @@ class ExtensionRegistry {
 	 */
 	public function queue( $path ) {
 		global $wgExtensionInfoMTime;
-		if ( $wgExtensionInfoMTime !== false ) {
-			$mtime = $wgExtensionInfoMTime;
-		} else {
-			$mtime = filemtime( $path );
+
+		$mtime = $wgExtensionInfoMTime;
+		if ( $mtime === false ) {
+			if ( file_exists( $path ) ) {
+				$mtime = filemtime( $path );
+			} else {
+				throw new Exception( "$path does not exist!" );
+			}
+			if ( !$mtime ) {
+				$err = error_get_last();
+				throw new Exception( "Error reading $path: {$err['message']}" );
+			}
 		}
 		$this->queued[$path] = $mtime;
 	}
