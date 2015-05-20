@@ -3,6 +3,11 @@
 	"description": "MediaWiki extension.json schema",
 	"type": "object",
 	"properties": {
+		"manifest_version": {
+			"type": "integer",
+			"description": "Version of the extension.json schema the extension.json file is in.",
+			"required": true
+		},
 		"name": {
 			"type": "string",
 			"description": "The extension's canonical name.",
