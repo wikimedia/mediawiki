@@ -11,7 +11,8 @@
 			"Se4598",
 			"Purodha",
 			"Andreasburmeister",
-			"Anomie"
+			"Anomie",
+			"Duder"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page/de|Dokumentation]]\n* [[mw:API:FAQ/de|Häufig gestellte Fragen]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailingliste]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-Ankündigungen]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Fehlerberichte und Anfragen]\n</div>\n<strong>Status:</strong> Alle auf dieser Seite gezeigten Funktionen sollten funktionieren, allerdings ist die API in aktiver Entwicklung und kann sich zu jeder Zeit ändern. Abonniere die [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ MediaWiki-API-Ankündigungs-Mailingliste], um über Aktualisierungen informiert zu werden.\n\n<strong>Fehlerhafte Anfragen:</strong> Wenn fehlerhafte Anfragen an die API gesendet werden, wird ein HTTP-Header mit dem Schlüssel „MediaWiki-API-Error“ gesendet. Der Wert des Headers und der Fehlercode werden auf den gleichen Wert gesetzt. Für weitere Informationen siehe [[mw:API:Errors_and_warnings|API: Fehler und Warnungen]].",
@@ -297,10 +298,16 @@
 	"apihelp-query+alldeletedrevisions-param-user": "Nur Versionen von diesem Benutzer auflisten.",
 	"apihelp-query+alldeletedrevisions-param-excludeuser": "Schließt Bearbeitungen des angegebenen Benutzers aus.",
 	"apihelp-query+alldeletedrevisions-param-namespace": "Nur Seiten in diesem Namensraum auflisten.",
+	"apihelp-query+allfileusages-param-from": "Titel der Datei, bei der die Aufzählung beginnen soll.",
+	"apihelp-query+allfileusages-param-to": "Titel der Datei, bei der die Aufzählung enden soll.",
 	"apihelp-query+allfileusages-param-limit": "Wie viele Gesamtobjekte zurückgegeben werden sollen.",
+	"apihelp-query+allfileusages-param-dir": "Aufzählungsrichtung.",
 	"apihelp-query+allfileusages-example-unique": "Einheitliche Dateititel auflisten",
+	"apihelp-query+allfileusages-example-unique-generator": "Ruft alle Dateititel ab und markiert die fehlenden.",
 	"apihelp-query+allfileusages-example-generator": "Seiten abrufen, die die Dateien enthalten",
 	"apihelp-query+allimages-description": "Alle Bilder nacheinander auflisten.",
+	"apihelp-query+allimages-param-sort": "Eigenschaft, nach der sortiert werden soll.",
+	"apihelp-query+allimages-param-dir": "Aufzählungsrichtung.",
 	"apihelp-query+allimages-param-sha1": "SHA1-Hash des Bildes. Überschreibt $1sha1base36.",
 	"apihelp-query+allimages-param-sha1base36": "SHA1-Hash des Bildes (Basis 36; verwendet in MediaWiki).",
 	"apihelp-query+allimages-param-limit": "Wie viele Gesamtbilder zurückgegeben werden sollen.",

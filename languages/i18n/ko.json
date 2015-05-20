@@ -3045,6 +3045,7 @@
 	"tags-activate-reason": "이유:",
 	"tags-activate-not-found": "\"$1\" 태그가 존재하지 않습니다.",
 	"tags-deactivate-reason": "이유:",
+	"tags-deactivate-submit": "비활성화",
 	"tags-update-remove-not-allowed-one": "\"$1\" 태그를 제거하는 것은 허용되지 않습니다.",
 	"tags-edit-title": "태그 편집",
 	"tags-edit-manage-link": "태그 관리",

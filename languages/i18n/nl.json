@@ -709,7 +709,7 @@
 	"permissionserrorstext": "U hebt geen rechten om dit te doen om de volgende {{PLURAL:$1|reden|redenen}}:",
 	"permissionserrorstext-withaction": "U hebt geen rechten om $2, {{PLURAL:$1|want}}:",
 	"recreate-moveddeleted-warn": "'''Waarschuwing: u bent bezig met het aanmaken van een pagina die in het verleden verwijderd is.'''\n\nOverweeg of het terecht is dat u verder werkt aan deze pagina.\nVoor uw gemak staan hieronder het verwijderingslogboek en het hernoemingslogboek voor deze pagina:",
-	"moveddeleted-notice": "Deze pagina is verwijderd.\nTer informatie worden het verwijderingslogboek en het hernoemingslogboek van deze pagina hieronder weergegeven.",
+	"moveddeleted-notice": "Deze pagina is verwijderd.\nTer informatie wordt het verwijderingslogboek en het hernoemingslogboek van deze pagina hieronder weergegeven.",
 	"log-fulllog": "Het volledige logboek bekijken",
 	"edit-hook-aborted": "De bewerking is afgebroken door een hook.\nEr is geen toelichting beschikbaar.",
 	"edit-gone-missing": "De pagina is niet bijgewerkt.\nDeze lijkt verwijderd te zijn.",
