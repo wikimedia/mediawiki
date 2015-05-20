@@ -46,11 +46,9 @@ $wgArticlePath = false; # Don't let a "/*" article path clober our action path
 $wgActionPaths = array( "$wgUploadPath/" );
 
 wfImageAuthMain();
-wfLogProfilingData();
-// Commit and close up!
-$factory = wfGetLBFactory();
-$factory->commitMasterChanges();
-$factory->shutdown();
+
+$mediawiki = new MediaWiki();
+$mediawiki->doPostOutputShutdown( 'fast' );
 
 function wfImageAuthMain() {
 	global $wgImgAuthUrlPathMap;

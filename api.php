@@ -88,19 +88,8 @@ if ( $processor ) {
 	$processor->execute();
 }
 
-if ( function_exists( 'fastcgi_finish_request' ) ) {
-	fastcgi_finish_request();
-}
-
-JobQueueGroup::pushLazyJobs();
-
-// Execute any deferred updates
-DeferredUpdates::doUpdates();
-
 // Log what the user did, for book-keeping purposes.
 $endtime = microtime( true );
-
-wfLogProfilingData();
 
 // Log the request
 if ( $wgAPIRequestLog ) {
@@ -130,7 +119,5 @@ if ( $wgAPIRequestLog ) {
 	wfDebug( "Logged API request to $wgAPIRequestLog\n" );
 }
 
-// Shut down the database.  foo()->bar() syntax is not supported in PHP4: we won't ever actually
-// get here to worry about whether this should be = or =&, but the file has to parse properly.
-$lb = wfGetLBFactory();
-$lb->shutdown();
+$mediawiki = new MediaWiki();
+$mediawiki->doPostOutputShutdown( 'fast' );

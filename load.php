@@ -41,11 +41,7 @@ $configFactory = ConfigFactory::getDefaultInstance();
 $resourceLoader = new ResourceLoader( $configFactory->makeConfig( 'main' ) );
 $resourceLoader->respond( new ResourceLoaderContext( $resourceLoader, $wgRequest ) );
 
-JobQueueGroup::pushLazyJobs();
-
 Profiler::instance()->setTemplated( true );
-wfLogProfilingData();
 
-// Shut down the database.
-$lb = wfGetLBFactory();
-$lb->shutdown();
+$mediawiki = new MediaWiki();
+$mediawiki->doPostOutputShutdown( 'fast' );
