@@ -514,14 +514,17 @@ class MessageCache {
 	 * @param mixed $text New contents of the page.
 	 */
 	public function replace( $title, $text ) {
-		global $wgMaxMsgCacheEntrySize;
+		global $wgMaxMsgCacheEntrySize, $wgLanguageCode;
 
 		if ( $this->mDisable ) {
-
 			return;
 		}
 
 		list( $msg, $code ) = $this->figureMessage( $title );
+		if ( strpos( $title, '/' ) !== false && $code === $wgLanguageCode ) {
+			# Content language overrides do not use the /<code> suffix
+			return;
+		}
 
 		$cacheKey = wfMemcKey( 'messages', $code );
 		$this->load( $code );
@@ -1087,6 +1090,7 @@ class MessageCache {
 	 */
 	public function figureMessage( $key ) {
 		global $wgLanguageCode;
+
 		$pieces = explode( '/', $key );
 		if ( count( $pieces ) < 2 ) {
 			return array( $key, $wgLanguageCode );
