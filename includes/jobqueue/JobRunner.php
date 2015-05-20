@@ -181,6 +181,9 @@ class JobRunner implements LoggerAwareInterface {
 					$status = $job->run();
 					$error = $job->getLastError();
 					$this->commitMasterChanges( $job );
+
+					DeferredUpdates::doUpdates();
+					$this->commitMasterChanges( $job );
 				} catch ( Exception $e ) {
 					MWExceptionHandler::rollbackMasterChangesAndLog( $e );
 					$status = false;
