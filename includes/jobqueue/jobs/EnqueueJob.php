@@ -56,7 +56,7 @@ final class EnqueueJob extends Job {
 
 	/**
 	 * @param array $jobsByWiki Map of (wiki => JobSpecification list)
-	 * @return JobRouteJob
+	 * @return EnqueueJob
 	 */
 	public static function newFromJobsByWiki( array $jobsByWiki ) {
 		$jobMapsByWiki = array();
