@@ -46,4 +46,7 @@ class ProfilerStub extends Profiler {
 
 	public function logData() {
 	}
+
+	public function logDataPageOutputOnly() {
+	}
 }
