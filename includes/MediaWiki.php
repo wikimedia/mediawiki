@@ -433,34 +433,60 @@ class MediaWiki {
 				// Bug 62091: while exceptions are convenient to bubble up GUI errors,
 				// they are not internal application faults. As with normal requests, this
 				// should commit, print the output, do deferred updates, jobs, and profiling.
-				wfGetLBFactory()->commitMasterChanges();
+				$this->doPreSendCommit();
 				$e->report(); // display the GUI error
 			}
 		} catch ( Exception $e ) {
 			MWExceptionHandler::handleException( $e );
 		}
 
-		if ( function_exists( 'register_postsend_function' ) ) {
-			// https://github.com/facebook/hhvm/issues/1230
-			register_postsend_function( array( $this, 'postSendUpdates' ) );
-		} elseif ( function_exists( 'fastcgi_finish_request' ) ) {
-			fastcgi_finish_request();
-			$this->postSendUpdates();
-		} else {
-			$this->postSendUpdates();
-		}
+		$this->doPostSendShutdown();
+	}
+
+	/**
+	 * This function commits all DB changes as needed before
+	 * the user can receive a response (in case commit fails)
+	 *
+	 * @since 1.26
+	 */
+	public function doPreSendCommit() {
+		wfGetLBFactory()->commitMasterChanges();
 	}
 
 	/**
 	 * This function does work that can be done *after* the
 	 * user gets the HTTP response so they don't block on it
 	 *
+	 * @param string $mode Use 'fast' to always skip job running
 	 * @since 1.26
 	 */
-	public function postSendUpdates() {
+	public function doPostSendShutdown( $mode = 'normal' ) {
+		if ( function_exists( 'register_postsend_function' ) ) {
+			// https://github.com/facebook/hhvm/issues/1230
+			$that = $this;
+			register_postsend_function( function() use ( $that, $mode ) {
+				$that->doPostSendShutdownInternal( $mode );
+			} );
+		} else {
+			if ( function_exists( 'fastcgi_finish_request' ) ) {
+				fastcgi_finish_request();
+			}
+
+			$this->doPostSendShutdownInternal( $mode );
+		}
+	}
+
+	/**
+	 * This method should not be called from outside classes
+	 *
+	 * @param string $mode Use 'fast' to skip job running
+	 */
+	public function doPostSendShutdownInternal( $mode ) {
 		try {
 			JobQueueGroup::pushLazyJobs();
-			$this->triggerJobs();
+			if ( $mode === 'normal' ) {
+				$this->triggerJobs();
+			}
 			$this->restInPeace();
 		} catch ( Exception $e ) {
 			MWExceptionHandler::handleException( $e );
@@ -607,7 +633,7 @@ class MediaWiki {
 		ignore_user_abort( true );
 		// Now commit any transactions, so that unreported errors after
 		// output() don't roll back the whole DB transaction
-		wfGetLBFactory()->commitMasterChanges();
+		$this->doPreSendCommit();
 
 		// Output everything!
 		$this->context->getOutput()->output();
