@@ -86,16 +86,21 @@ class MessageCache {
 	protected $mLoadedLanguages = array();
 
 	/**
+	 * @var bool $mInParser
+	 */
+	protected $mInParser = false;
+
+	/** @var BagOStuff */
+	protected $mMemc;
+	/** @var WANObjectCache */
+	protected $wanCache;
+
+	/**
 	 * Singleton instance
 	 *
 	 * @var MessageCache $instance
 	 */
 	private static $instance;
-
-	/**
-	 * @var bool $mInParser
-	 */
-	protected $mInParser = false;
 
 	/**
 	 * Get the signleton instance of this class
@@ -138,6 +143,8 @@ class MessageCache {
 		$this->mMemc = $memCached;
 		$this->mDisable = !$useDB;
 		$this->mExpiry = $expiry;
+
+		$this->wanCache = ObjectCache::getMainWANInstance();
 	}
 
 	/**
@@ -271,20 +278,23 @@ class MessageCache {
 		# Loading code starts
 		$success = false; # Keep track of success
 		$staleCache = false; # a cache array with expired data, or false if none has been loaded
+		$hashExpired = false; # whether the cluster-local validation hash is stale
 		$where = array(); # Debug info, delayed to avoid spamming debug log too much
-		$cacheKey = wfMemcKey( 'messages', $code ); # Key in memc for messages
 
 		# Local cache
 		# Hash of the contents is stored in memcache, to detect if local cache goes
 		# out of date (e.g. due to replace() on some other server)
 		if ( $wgUseLocalMessageCache ) {
-			$hash = $this->mMemc->get( wfMemcKey( 'messages', $code, 'hash' ) );
+			list( $hash, $hashExpired ) = $this->getValidationHash( $code );
 			if ( $hash ) {
 				$cache = $this->getLocalCache( $hash, $code );
 				if ( !$cache ) {
 					$where[] = 'local cache is empty or has the wrong hash';
 				} elseif ( $this->isCacheExpired( $cache ) ) {
 					$where[] = 'local cache is expired';
+					$staleCache = $cache;
+				} elseif ( $hashExpired ) {
+					$where[] = 'local cache validation key is expired';
 					$staleCache = $cache;
 				} else {
 					$where[] = 'got from local cache';
@@ -295,21 +305,29 @@ class MessageCache {
 		}
 
 		if ( !$success ) {
+			$cacheKey = wfMemcKey( 'messages', $code ); # Key in memc for messages
 			# Try the global cache. If it is empty, try to acquire a lock. If
 			# the lock can't be acquired, wait for the other thread to finish
 			# and then try the global cache a second time.
 			for ( $failedAttempts = 0; $failedAttempts < 2; $failedAttempts++ ) {
-				$cache = $this->mMemc->get( $cacheKey );
-				if ( !$cache ) {
-					$where[] = 'global cache is empty';
-				} elseif ( $this->isCacheExpired( $cache ) ) {
-					$where[] = 'global cache is expired';
-					$staleCache = $cache;
+				if ( $hashExpired && $staleCache ) {
+					# Do not bother fetching the whole cache blob to avoid I/O.
+					# Instead, just try to get the non-blocking $statusKey lock
+					# below, and use the local stale value if it was not acquired.
+					$where[] = 'global cache is presumed expired';
 				} else {
-					$where[] = 'got from global cache';
-					$this->mCache[$code] = $cache;
-					$this->saveToCaches( $cache, 'local-only', $code );
-					$success = true;
+					$cache = $this->mMemc->get( $cacheKey );
+					if ( !$cache ) {
+						$where[] = 'global cache is empty';
+					} elseif ( $this->isCacheExpired( $cache ) ) {
+						$where[] = 'global cache is expired';
+						$staleCache = $cache;
+					} else {
+						$where[] = 'got from global cache';
+						$this->mCache[$code] = $cache;
+						$this->saveToCaches( $cache, 'local-only', $code );
+						$success = true;
+					}
 				}
 
 				if ( $success ) {
@@ -317,68 +335,11 @@ class MessageCache {
 					break;
 				}
 
-				# We need to call loadFromDB. Limit the concurrency to a single
-				# process. This prevents the site from going down when the cache
-				# expires.
-				$statusKey = wfMemcKey( 'messages', $code, 'status' );
-				$acquired = $this->mMemc->add( $statusKey, 'loading', MSG_LOAD_TIMEOUT );
-				if ( $acquired ) {
-					# Unlock the status key if there is an exception
-					$that = $this;
-					$statusUnlocker = new ScopedCallback( function () use ( $that, $statusKey ) {
-						$that->mMemc->delete( $statusKey );
-					} );
-
-					# Now let's regenerate
-					$where[] = 'loading from database';
-
-					# Lock the cache to prevent conflicting writes
-					# If this lock fails, it doesn't really matter, it just means the
-					# write is potentially non-atomic, e.g. the results of a replace()
-					# may be discarded.
-					if ( $this->lock( $cacheKey ) ) {
-						$mainUnlocker = new ScopedCallback( function () use ( $that, $cacheKey ) {
-							$that->unlock( $cacheKey );
-						} );
-					} else {
-						$mainUnlocker = null;
-						$where[] = 'could not acquire main lock';
-					}
-
-					$cache = $this->loadFromDB( $code );
-					$this->mCache[$code] = $cache;
-					$success = true;
-					$saveSuccess = $this->saveToCaches( $cache, 'all', $code );
-
-					# Unlock
-					ScopedCallback::consume( $mainUnlocker );
-					ScopedCallback::consume( $statusUnlocker );
-
-					if ( !$saveSuccess ) {
-						# Cache save has failed.
-						# There are two main scenarios where this could be a problem:
-						#
-						#   - The cache is more than the maximum size (typically
-						#     1MB compressed).
-						#
-						#   - Memcached has no space remaining in the relevant slab
-						#     class. This is unlikely with recent versions of
-						#     memcached.
-						#
-						# Either way, if there is a local cache, nothing bad will
-						# happen. If there is no local cache, disabling the message
-						# cache for all requests avoids incurring a loadFromDB()
-						# overhead on every request, and thus saves the wiki from
-						# complete downtime under moderate traffic conditions.
-						if ( !$wgUseLocalMessageCache ) {
-							$this->mMemc->set( $statusKey, 'error', 60 * 5 );
-							$where[] = 'could not save cache, disabled globally for 5 minutes';
-						} else {
-							$where[] = "could not save global cache";
-						}
-					}
-
+				# We need to call loadFromDB. Limit the concurrency to one process.
+				# This prevents the site from going down when the cache expires.
+				if ( $this->loadFromDBWithLock( $code, $where ) ) {
 					# Load from DB complete, no need to retry
+					$success = true;
 					break;
 				} elseif ( $staleCache ) {
 					# Use the stale cache while some other thread constructs the new one
@@ -393,6 +354,7 @@ class MessageCache {
 					$where[] = "could not acquire status key.";
 					break;
 				} else {
+					$statusKey = wfMemcKey( 'messages', $code, 'status' );
 					$status = $this->mMemc->get( $statusKey );
 					if ( $status === 'error' ) {
 						# Disable cache
@@ -417,10 +379,84 @@ class MessageCache {
 			# All good, just record the success
 			$this->mLoadedLanguages[$code] = true;
 		}
+
 		$info = implode( ', ', $where );
 		wfDebugLog( 'MessageCache', __METHOD__ . ": Loading $code... $info\n" );
 
 		return $success;
+	}
+
+	/**
+	 * @param string $code
+	 * @param array $where List of wfDebug() comments
+	 * @return bool Lock acquired and loadFromDB() called
+	 */
+	protected function loadFromDBWithLock( $code, array &$where ) {
+		global $wgUseLocalMessageCache;
+
+		$memCache = $this->mMemc;
+
+		$statusKey = wfMemcKey( 'messages', $code, 'status' );
+		if ( !$memCache->add( $statusKey, 'loading', MSG_LOAD_TIMEOUT ) ) {
+			return false; // could not acquire lock
+		}
+
+		# Unlock the status key if there is an exception
+		$statusUnlocker = new ScopedCallback( function () use ( $memCache, $statusKey ) {
+			$memCache->delete( $statusKey );
+		} );
+
+		# Now let's regenerate
+		$where[] = 'loading from database';
+
+		$cacheKey = wfMemcKey( 'messages', $code );
+		# Lock the cache to prevent conflicting writes
+		# If this lock fails, it doesn't really matter, it just means the
+		# write is potentially non-atomic, e.g. the results of a replace()
+		# may be discarded.
+		if ( $this->lock( $cacheKey ) ) {
+			$that = $this;
+			$mainUnlocker = new ScopedCallback( function () use ( $that, $cacheKey ) {
+				$that->unlock( $cacheKey );
+			} );
+		} else {
+			$mainUnlocker = null;
+			$where[] = 'could not acquire main lock';
+		}
+
+		$cache = $this->loadFromDB( $code );
+		$this->mCache[$code] = $cache;
+		$saveSuccess = $this->saveToCaches( $cache, 'all', $code );
+
+		# Unlock
+		ScopedCallback::consume( $mainUnlocker );
+		ScopedCallback::consume( $statusUnlocker );
+
+		if ( !$saveSuccess ) {
+			# Cache save has failed.
+			# There are two main scenarios where this could be a problem:
+			#
+			#   - The cache is more than the maximum size (typically
+			#     1MB compressed).
+			#
+			#   - Memcached has no space remaining in the relevant slab
+			#     class. This is unlikely with recent versions of
+			#     memcached.
+			#
+			# Either way, if there is a local cache, nothing bad will
+			# happen. If there is no local cache, disabling the message
+			# cache for all requests avoids incurring a loadFromDB()
+			# overhead on every request, and thus saves the wiki from
+			# complete downtime under moderate traffic conditions.
+			if ( !$wgUseLocalMessageCache ) {
+				$memCache->set( $statusKey, 'error', 60 * 5 );
+				$where[] = 'could not save cache, disabled globally for 5 minutes';
+			} else {
+				$where[] = "could not save global cache";
+			}
+		}
+
+		return true;
 	}
 
 	/**
@@ -551,6 +587,7 @@ class MessageCache {
 		# Update caches
 		$this->saveToCaches( $this->mCache[$code], 'all', $code );
 		$this->unlock( $cacheKey );
+		$this->wanCache->touchCheckKey( wfMemcKey( 'messages', $code ) );
 
 		// Also delete cached sidebar... just in case it is affected
 		$codes = array( $code );
@@ -560,10 +597,9 @@ class MessageCache {
 			$codes = array_keys( Language::fetchLanguageNames() );
 		}
 
-		$cache = ObjectCache::getMainWANInstance();
 		foreach ( $codes as $code ) {
 			$sidebarKey = wfMemcKey( 'sidebar', $code );
-			$cache->delete( $sidebarKey, 5 );
+			$this->wanCache->delete( $sidebarKey, 5 );
 		}
 
 		// Update the message in the message blob store
@@ -605,9 +641,8 @@ class MessageCache {
 	protected function saveToCaches( $cache, $dest, $code = false ) {
 		global $wgUseLocalMessageCache;
 
-		$cacheKey = wfMemcKey( 'messages', $code );
-
 		if ( $dest === 'all' ) {
+			$cacheKey = wfMemcKey( 'messages', $code );
 			$success = $this->mMemc->set( $cacheKey, $cache );
 		} else {
 			$success = true;
@@ -617,11 +652,43 @@ class MessageCache {
 		if ( $wgUseLocalMessageCache ) {
 			$serialized = serialize( $cache );
 			$hash = md5( $serialized );
-			$this->mMemc->set( wfMemcKey( 'messages', $code, 'hash' ), $hash );
+			$this->setValidationHash( $code, $hash );
 			$this->saveToLocal( $serialized, $hash, $code );
 		}
 
 		return $success;
+	}
+
+	/**
+	 * Get the md5 used to validate the local disk cache
+	 *
+	 * @param string $code
+	 * @return array (hash or false, bool expiry status)
+	 */
+	protected function getValidationHash( $code ) {
+		$curTTL = null;
+		$value = $this->wanCache->get(
+			wfMemcKey( 'messages', $code, 'hash' ),
+			$curTTL,
+			array( wfMemcKey( 'messages', $code ) )
+		);
+		$expired = ( $curTTL === null || $curTTL < 0 );
+
+		return array( $value, $expired );
+	}
+
+	/**
+	 * Set the md5 used to validate the local disk cache
+	 *
+	 * @param string $code
+	 * @param string $hash
+	 */
+	protected function setValidationHash( $code, $hash ) {
+		$this->wanCache->set(
+			wfMemcKey( 'messages', $code, 'hash' ),
+			$hash,
+			WANObjectCache::TTL_NONE
+		);
 	}
 
 	/**
@@ -1077,11 +1144,10 @@ class MessageCache {
 	function clear() {
 		$langs = Language::fetchLanguageNames( null, 'mw' );
 		foreach ( array_keys( $langs ) as $code ) {
-			# Global cache
-			$this->mMemc->delete( wfMemcKey( 'messages', $code ) );
-			# Invalidate all local caches
-			$this->mMemc->delete( wfMemcKey( 'messages', $code, 'hash' ) );
+			# Global and local caches
+			$this->wanCache->touchCheckKey( wfMemcKey( 'messages', $code ) );
 		}
+
 		$this->mLoadedLanguages = array();
 	}
 
