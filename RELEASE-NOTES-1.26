@@ -42,6 +42,7 @@ changes to languages because of Bugzilla reports.
 * ChangeTags::tagDescription() will return false if the interface message
   for the tag is disabled.
 * Added PageHistoryPager::doBatchLookups hook.
+* Added ParserCacheSaveComplete to ParserCache
 * supportsDirectEditing and supportsDirectApiEditing methods added to
 ContentHandler, to provide a way for ApiEditPage and EditPage to check
 if direct editing of content is allowed. These methods return false,
