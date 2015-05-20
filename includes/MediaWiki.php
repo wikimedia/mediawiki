@@ -114,7 +114,7 @@ class MediaWiki {
 			// If we get here, we definitely don't have a valid title; throw an exception.
 			// Try to get detailed invalid title exception first, fall back to MalformedTitleException.
 			Title::newFromTextThrow( $title );
-			throw new MalformedTitleException( null, $title );
+			throw new MalformedTitleException( 'badtitletext', $title );
 		}
 
 		return $ret;
