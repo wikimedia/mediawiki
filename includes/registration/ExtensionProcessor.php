@@ -81,6 +81,7 @@ class ExtensionProcessor implements Processor {
 		'config',
 		'ParserTestFiles',
 		'AutoloadClasses',
+		'manifest_version',
 	);
 
 	/**
@@ -125,9 +126,10 @@ class ExtensionProcessor implements Processor {
 	/**
 	 * @param string $path
 	 * @param array $info
+	 * @param int $version manifest_version for info
 	 * @return array
 	 */
-	public function extractInfo( $path, array $info ) {
+	public function extractInfo( $path, array $info, $version ) {
 		$this->extractConfig( $info );
 		$this->extractHooks( $info );
 		$dir = dirname( $path );
