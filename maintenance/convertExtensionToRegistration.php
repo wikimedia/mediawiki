@@ -98,7 +98,8 @@ class ConvertExtensionToRegistration extends Maintenance {
 			}
 		}
 		$out += $this->json;
-
+		// Put this at the bottom
+		$out['manifest_version'] = ExtensionRegistry::MANIFEST_VERSION;
 		$type = $this->hasOption( 'skin' ) ? 'skin' : 'extension';
 		$fname = "{$this->dir}/$type.json";
 		$prettyJSON = FormatJson::encode( $out, "\t", FormatJson::ALL_OK );

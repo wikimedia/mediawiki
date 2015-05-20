@@ -12,6 +12,16 @@
 class ExtensionRegistry {
 
 	/**
+	 * Version of the highest supported manifest version
+	 */
+	const MANIFEST_VERSION = 1;
+
+	/**
+	 * Version of the oldest supported manifest version
+	 */
+	const OLDEST_MANIFEST_VERSION = 1;
+
+	/**
 	 * @var BagOStuff
 	 */
 	protected $cache;
@@ -120,11 +130,18 @@ class ExtensionRegistry {
 			if ( !is_array( $info ) ) {
 				throw new Exception( "$path is not a valid JSON file." );
 			}
+			if ( !isset( $info['manifest_version' ] ) ) {
+				throw new Exception( "$path does not have a 'manifest_version' set." );
+			}
+			$version = $info['manifest_version' ];
+			if ( $version < self::OLDEST_MANIFEST_VERSION ) {
+				throw new Exception( "$path: unsupported manifest_version: {$version}" );
+			}
 			$autoload = $this->processAutoLoader( dirname( $path ), $info );
 			// Set up the autoloader now so custom processors will work
 			$GLOBALS['wgAutoloadClasses'] += $autoload;
 			$autoloadClasses += $autoload;
-			$processor->extractInfo( $path, $info );
+			$processor->extractInfo( $path, $info, $version );
 		}
 		$data = $processor->getExtractedInfo();
 		// Need to set this so we can += to it later
