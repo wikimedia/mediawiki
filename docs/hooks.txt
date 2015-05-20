@@ -2238,6 +2238,14 @@ $section: the section number, zero-based, but section 0 is usually empty
 &$sectionContent: ref to the content of the section. modify this.
 $showEditLinks: boolean describing whether this section has an edit link
 
+'ParserCacheSaveComplete': Called after a ParserOutput has been committed to
+the parser cache.
+$parserCache: ParserCache object $parserOutput was stored in
+$parserOutput: ParserOutput object that was stored
+$title: Title of the page that was parsed to generate $parserOutput
+$popts: ParserOptions used for generating $parserOutput
+$revId: ID of the revision that was parsed to create $parserOutput
+
 'ParserTestParser': Called when creating a new instance of Parser in
 tests/parser/parserTest.inc.
 $parser: Parser object created

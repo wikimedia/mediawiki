@@ -276,6 +276,8 @@ class ParserCache {
 
 			// ...and its pointer
 			$this->mMemc->set( $this->getOptionsKey( $page ), $optionsKey, $expire );
+
+			Hooks::run( 'ParserCacheSaveComplete', array( $this, $parserOutput, $page->getTitle(), $popts, $revId ) );
 		} else {
 			wfDebug( "Parser output was marked as uncacheable and has not been saved.\n" );
 		}
