@@ -52,7 +52,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		$this->makePage( 'MessageCacheTest-FullKeyTest', 'ru' );
 
 		// In content language -- get base if no derivative
-		$this->makePage( 'FallbackLanguageTest-NoDervContLang', 'de', 'de/none', false );
+		$this->makePage( 'FallbackLanguageTest-NoDervContLang', 'de', 'de/none' );
 	}
 
 	/**
@@ -63,7 +63,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	 * @param string|null $content Content of the created page, or null for a generic string
 	 * @param bool $createSubPage Set to false if a root page should be created
 	 */
-	protected function makePage( $title, $lang, $content = null, $createSubPage = true ) {
+	protected function makePage( $title, $lang, $content = null, $createSubPage = false ) {
 		global $wgContLang;
 
 		if ( $content === null ) {
