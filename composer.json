@@ -27,7 +27,7 @@
 		"wikimedia/assert": "0.2.2",
 		"wikimedia/composer-merge-plugin": "1.0.0",
 		"wikimedia/utfnormal": "1.0.2",
-		"zordius/lightncandy": "0.18"
+		"zordius/lightncandy": "0.21"
 	},
 	"require-dev": {
 		"jakub-onderka/php-parallel-lint": "~0.8",
