@@ -35,11 +35,9 @@ if ( defined( 'THUMB_HANDLER' ) ) {
 	wfStreamThumb( $_GET );
 }
 
-wfLogProfilingData();
-// Commit and close up!
-$factory = wfGetLBFactory();
-$factory->commitMasterChanges();
-$factory->shutdown();
+$mediawiki = new MediaWiki();
+$mediawiki->doPreSendCommit();
+$mediawiki->doPostSendShutdown();
 
 //--------------------------------------------------------------------------
 
