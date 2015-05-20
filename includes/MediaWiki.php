@@ -433,37 +433,56 @@ class MediaWiki {
 				// Bug 62091: while exceptions are convenient to bubble up GUI errors,
 				// they are not internal application faults. As with normal requests, this
 				// should commit, print the output, do deferred updates, jobs, and profiling.
-				wfGetLBFactory()->commitMasterChanges();
+				$this->doPreSendCommit();
 				$e->report(); // display the GUI error
 			}
 		} catch ( Exception $e ) {
 			MWExceptionHandler::handleException( $e );
 		}
 
-		if ( function_exists( 'register_postsend_function' ) ) {
-			// https://github.com/facebook/hhvm/issues/1230
-			register_postsend_function( array( $this, 'postSendUpdates' ) );
-		} elseif ( function_exists( 'fastcgi_finish_request' ) ) {
-			fastcgi_finish_request();
-			$this->postSendUpdates();
-		} else {
-			$this->postSendUpdates();
-		}
+		$this->doPostSendShutdown();
+	}
+
+	/**
+	 * This function commits all DB changes as needed before
+	 * the user can receive a response (in case commit fails)
+	 *
+	 * @since 1.26
+	 */
+	public function doPreSendCommit() {
+		wfGetLBFactory()->commitMasterChanges();
+
+		Profiler::instance()->logDataPageOutputOnly();
 	}
 
 	/**
 	 * This function does work that can be done *after* the
 	 * user gets the HTTP response so they don't block on it
 	 *
+	 * @param string $mode Use 'fast' to always skip job running
 	 * @since 1.26
 	 */
-	public function postSendUpdates() {
-		try {
-			JobQueueGroup::pushLazyJobs();
-			$this->triggerJobs();
-			$this->restInPeace();
-		} catch ( Exception $e ) {
-			MWExceptionHandler::handleException( $e );
+	public function doPostSendShutdown( $mode = 'normal' ) {
+		$that = $this;
+		$callback = function () use ( $that, $mode ) {
+			try {
+				JobQueueGroup::pushLazyJobs();
+				if ( $mode === 'normal' ) {
+					$that->triggerJobs();
+				}
+				$that->restInPeace( $mode );
+			} catch ( Exception $e ) {
+				MWExceptionHandler::handleException( $e );
+			}
+		};
+		if ( function_exists( 'register_postsend_function' ) ) {
+			// https://github.com/facebook/hhvm/issues/1230
+			register_postsend_function( $callback );
+		} else {
+			if ( function_exists( 'fastcgi_finish_request' ) ) {
+				fastcgi_finish_request();
+			}
+			$callback();
 		}
 	}
 
@@ -612,6 +631,8 @@ class MediaWiki {
 		// Output everything!
 		$this->context->getOutput()->output();
 
+		// Commit and show profiling data
+		$this->doPreSendCommit();
 	}
 
 	/**
@@ -644,7 +665,7 @@ class MediaWiki {
 	 * to run a specified number of jobs. This registers a callback to cleanup
 	 * the socket once it's done.
 	 */
-	protected function triggerJobs() {
+	public function triggerJobs() {
 		$jobRunRate = $this->config->get( 'JobRunRate' );
 		if ( $jobRunRate <= 0 || wfReadOnly() ) {
 			return;

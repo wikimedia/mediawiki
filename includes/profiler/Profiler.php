@@ -231,6 +231,21 @@ abstract class Profiler {
 	}
 
 	/**
+	 * Output current data to the page output if configured to do so
+	 *
+	 * @throws MWException
+	 * @since 1.26
+	 */
+	public function logDataPageOutputOnly() {
+		foreach ( $this->getOutputs() as $output ) {
+			if ( $output instanceof ProfilerOutputText ) {
+				$stats = $this->getFunctionStats();
+				$output->log( $stats );
+			}
+		}
+	}
+
+	/**
 	 * Get the content type sent out to the client.
 	 * Used for profilers that output instead of store data.
 	 * @return string
