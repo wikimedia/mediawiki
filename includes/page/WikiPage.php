@@ -1692,6 +1692,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 *     revision: The revision object for the inserted revision, or null.
 	 *
 	 * @since 1.21
+	 * @throws MWException
 	 */
 	public function doEditContent( Content $content, $summary, $flags = 0, $baseRevId = false,
 		User $user = null, $serialFormat = null
@@ -1803,56 +1804,52 @@ class WikiPage implements Page, IDBAccessObject {
 
 			if ( $changed ) {
 				$dbw->begin( __METHOD__ );
-				try {
 
-					$prepStatus = $content->prepareSave( $this, $flags, $oldid, $user );
-					$status->merge( $prepStatus );
+				$prepStatus = $content->prepareSave( $this, $flags, $oldid, $user );
+				$status->merge( $prepStatus );
 
-					if ( !$status->isOK() ) {
-						$dbw->rollback( __METHOD__ );
-
-						return $status;
-					}
-					$revisionId = $revision->insertOn( $dbw );
-
-					// Update page
-					//
-					// We check for conflicts by comparing $oldid with the current latest revision ID.
-					$ok = $this->updateRevisionOn( $dbw, $revision, $oldid, $oldIsRedirect );
-
-					if ( !$ok ) {
-						// Belated edit conflict! Run away!!
-						$status->fatal( 'edit-conflict' );
-
-						$dbw->rollback( __METHOD__ );
-
-						return $status;
-					}
-
-					Hooks::run( 'NewRevisionFromEditComplete', array( $this, $revision, $baseRevId, $user ) );
-					// Update recentchanges
-					if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
-						// Mark as patrolled if the user can do so
-						$patrolled = $wgUseRCPatrol && !count(
-						$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
-						// Add RC row to the DB
-						$rc = RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $user, $summary,
-							$oldid, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
-							$revisionId, $patrolled
-						);
-
-						// Log auto-patrolled edits
-						if ( $patrolled ) {
-							PatrolLog::record( $rc, true, $user );
-						}
-					}
-					$user->incEditCount();
-				} catch ( Exception $e ) {
+				if ( !$status->isOK() ) {
 					$dbw->rollback( __METHOD__ );
-					// Question: Would it perhaps be better if this method turned all
-					// exceptions into $status's?
-					throw $e;
+
+					return $status;
 				}
+				$revisionId = $revision->insertOn( $dbw );
+
+				// Update page
+				//
+				// We check for conflicts by comparing $oldid with the current latest revision ID.
+				$ok = $this->updateRevisionOn( $dbw, $revision, $oldid, $oldIsRedirect );
+
+				if ( !$ok ) {
+					// Belated edit conflict! Run away!!
+					$status->fatal( 'edit-conflict' );
+
+					$dbw->rollback( __METHOD__ );
+
+					return $status;
+				}
+
+				Hooks::run( 'NewRevisionFromEditComplete', array( $this, $revision, $baseRevId, $user ) );
+
+				// Update recentchanges
+				if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
+					// Mark as patrolled if the user can do so
+					$patrolled = $wgUseRCPatrol && !count(
+					$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
+					// Add RC row to the DB
+					$rc = RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $user, $summary,
+						$oldid, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
+						$revisionId, $patrolled
+					);
+
+					// Log auto-patrolled edits
+					if ( $patrolled ) {
+						PatrolLog::record( $rc, true, $user );
+					}
+				}
+
+				$user->incEditCount();
+
 				$dbw->commit( __METHOD__ );
 			} else {
 				// Bug 32948: revision ID must be set to page {{REVISIONID}} and
@@ -1882,78 +1879,74 @@ class WikiPage implements Page, IDBAccessObject {
 			$status->value['new'] = true;
 
 			$dbw->begin( __METHOD__ );
-			try {
 
-				$prepStatus = $content->prepareSave( $this, $flags, $oldid, $user );
-				$status->merge( $prepStatus );
+			$prepStatus = $content->prepareSave( $this, $flags, $oldid, $user );
+			$status->merge( $prepStatus );
 
-				if ( !$status->isOK() ) {
-					$dbw->rollback( __METHOD__ );
-
-					return $status;
-				}
-
-				$status->merge( $prepStatus );
-
-				// Add the page record; stake our claim on this title!
-				// This will return false if the article already exists
-				$newid = $this->insertOn( $dbw );
-
-				if ( $newid === false ) {
-					$dbw->rollback( __METHOD__ );
-					$status->fatal( 'edit-already-exists' );
-
-					return $status;
-				}
-
-				// Save the revision text...
-				$revision = new Revision( array(
-					'page'       => $newid,
-					'title'      => $this->getTitle(), // for determining the default content model
-					'comment'    => $summary,
-					'minor_edit' => $isminor,
-					'text'       => $serialized,
-					'len'        => $newsize,
-					'user'       => $user->getId(),
-					'user_text'  => $user->getName(),
-					'timestamp'  => $now,
-					'content_model' => $content->getModel(),
-					'content_format' => $serialFormat,
-				) );
-				$revisionId = $revision->insertOn( $dbw );
-
-				// Bug 37225: use accessor to get the text as Revision may trim it
-				$content = $revision->getContent(); // sanity; get normalized version
-
-				if ( $content ) {
-					$newsize = $content->getSize();
-				}
-
-				// Update the page record with revision data
-				$this->updateRevisionOn( $dbw, $revision, 0 );
-
-				Hooks::run( 'NewRevisionFromEditComplete', array( $this, $revision, false, $user ) );
-
-				// Update recentchanges
-				if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
-					// Mark as patrolled if the user can do so
-					$patrolled = ( $wgUseRCPatrol || $wgUseNPPatrol ) && !count(
-						$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
-					// Add RC row to the DB
-					$rc = RecentChange::notifyNew( $now, $this->mTitle, $isminor, $user, $summary, $bot,
-						'', $newsize, $revisionId, $patrolled );
-
-					// Log auto-patrolled edits
-					if ( $patrolled ) {
-						PatrolLog::record( $rc, true, $user );
-					}
-				}
-				$user->incEditCount();
-
-			} catch ( Exception $e ) {
+			if ( !$status->isOK() ) {
 				$dbw->rollback( __METHOD__ );
-				throw $e;
+
+				return $status;
 			}
+
+			$status->merge( $prepStatus );
+
+			// Add the page record; stake our claim on this title!
+			// This will return false if the article already exists
+			$newid = $this->insertOn( $dbw );
+
+			if ( $newid === false ) {
+				$dbw->rollback( __METHOD__ );
+				$status->fatal( 'edit-already-exists' );
+
+				return $status;
+			}
+
+			// Save the revision text...
+			$revision = new Revision( array(
+				'page'       => $newid,
+				'title'      => $this->getTitle(), // for determining the default content model
+				'comment'    => $summary,
+				'minor_edit' => $isminor,
+				'text'       => $serialized,
+				'len'        => $newsize,
+				'user'       => $user->getId(),
+				'user_text'  => $user->getName(),
+				'timestamp'  => $now,
+				'content_model' => $content->getModel(),
+				'content_format' => $serialFormat,
+			) );
+			$revisionId = $revision->insertOn( $dbw );
+
+			// Bug 37225: use accessor to get the text as Revision may trim it
+			$content = $revision->getContent(); // sanity; get normalized version
+
+			if ( $content ) {
+				$newsize = $content->getSize();
+			}
+
+			// Update the page record with revision data
+			$this->updateRevisionOn( $dbw, $revision, 0 );
+
+			Hooks::run( 'NewRevisionFromEditComplete', array( $this, $revision, false, $user ) );
+
+			// Update recentchanges
+			if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
+				// Mark as patrolled if the user can do so
+				$patrolled = ( $wgUseRCPatrol || $wgUseNPPatrol ) && !count(
+					$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
+				// Add RC row to the DB
+				$rc = RecentChange::notifyNew( $now, $this->mTitle, $isminor, $user, $summary, $bot,
+					'', $newsize, $revisionId, $patrolled );
+
+				// Log auto-patrolled edits
+				if ( $patrolled ) {
+					PatrolLog::record( $rc, true, $user );
+				}
+			}
+
+			$user->incEditCount();
+
 			$dbw->commit( __METHOD__ );
 
 			// Update links, etc.
