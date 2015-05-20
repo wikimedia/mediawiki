@@ -3264,6 +3264,7 @@
 	"feedback-error1": "Błąd – nierozpoznana odpowiedź API",
 	"feedback-error2": "Błąd – edycja nieudana",
 	"feedback-error3": "Błąd – brak odpowiedzi API",
+	"feedback-error4": "Błąd: Nie można wysłać danego tytułu opinii",
 	"feedback-message": "Wiadomość:",
 	"feedback-subject": "Temat",
 	"feedback-submit": "Wyślij",

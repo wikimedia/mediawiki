@@ -348,7 +348,7 @@
 	"badtitletext": "Soovitud lehekülje pealkiri oli vigane, tühi või teisest keeleversioonist või vikist valesti lingitud.\nSee võib sisaldada ühte või enamat märki, mida ei saa pealkirjades kasutada.",
 	"title-invalid-empty": "Päritud lehekülje pealkiri on tühi või sisaldab ainult nimeruumi nimi.",
 	"title-invalid-utf8": "Päritud lehekülje pealkiri sisaldab vigast UTF-8 jada.",
-	"title-invalid-interwiki": "Pealkiri sisaldab intervikilinki.",
+	"title-invalid-interwiki": "Päritud lehekülje pealkiri sisaldab intervikilinki, mida ei saa pealkirjas kasutada.",
 	"title-invalid-talk-namespace": "Päritud lehekülje pealkiri viitab aruteluleheküljele, mida ei saa olemas olla.",
 	"title-invalid-characters": "Päritud lehekülje pealkiri sisaldab vigaseid märke: \"$1\".",
 	"title-invalid-relative": "Pealkirjas on suhteline tee. Suhtelised lehekülje pealkirjad (./, ../) on vigased, sest nad on kasutaja brauseri jaoks sageli kättesaamatud.",

@@ -403,7 +403,7 @@
 	"badtitletext": "Der Titel der angeforderten Seite ist ungültig, leer oder ein ungültiger Sprachlink von einem anderen Wiki.",
 	"title-invalid-empty": "Der angeforderte Seitentitel ist leer oder enthält nur den Namen eines Namensraums.",
 	"title-invalid-utf8": "Der angeforderte Seitentitel enthält eine ungültige UTF-8-Sequenz.",
-	"title-invalid-interwiki": "Der Titel enthält einen Interwiki-Link",
+	"title-invalid-interwiki": "Der angeforderte Seitentitel enthält einen Interwiki-Link, der nicht in Titel verwendet werden kann.",
 	"title-invalid-talk-namespace": "Der angeforderte Seitentitel bezieht sich auf eine Diskussionsseite, die nicht existieren kann.",
 	"title-invalid-characters": "Der angeforderte Seitentitel enthält ungültige Zeichen: „$1“.",
 	"title-invalid-relative": "Der Titel hat einen relativen Pfad. Relative Seitentitel (./, ../) sind ungültig, da sie durch Webbrowser oft unerreichbar sind.",
