@@ -28,6 +28,9 @@
 [submodule "extensions/AntiSpoof"]
 	path = extensions/AntiSpoof
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/AntiSpoof.git
+[submodule "extensions/ApiFeatureUsage"]
+	path = extensions/ApiFeatureUsage
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ApiFeatureUsage.git
 [submodule "extensions/ApiSandbox"]
 	path = extensions/ApiSandbox
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ApiSandbox.git
