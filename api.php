@@ -94,6 +94,8 @@ if ( function_exists( 'fastcgi_finish_request' ) ) {
 	fastcgi_finish_request();
 }
 
+JobQueueGroup::pushLazyJobs();
+
 // Execute any deferred updates
 DeferredUpdates::doUpdates();
 
