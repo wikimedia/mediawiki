@@ -32,7 +32,8 @@ require_once __DIR__ . '/Maintenance.php';
 class MwSql extends Maintenance {
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Send SQL queries to a MediaWiki database";
+		$this->mDescription = "Send SQL queries to a MediaWiki database. " .
+				"Takes a file name containing SQL as argument or runs interactively.";
 		$this->addOption( 'cluster', 'Use an external cluster by name', false, true );
 		$this->addOption( 'wikidb', 'The database wiki ID to use if not the current one', false, true );
 		$this->addOption( 'slave', 'Use a slave server (either "any" or by name)', false, true );
