@@ -433,37 +433,68 @@ class MediaWiki {
 				// Bug 62091: while exceptions are convenient to bubble up GUI errors,
 				// they are not internal application faults. As with normal requests, this
 				// should commit, print the output, do deferred updates, jobs, and profiling.
-				wfGetLBFactory()->commitMasterChanges();
+				$this->doPreOutputCommit();
 				$e->report(); // display the GUI error
 			}
 		} catch ( Exception $e ) {
 			MWExceptionHandler::handleException( $e );
 		}
 
-		if ( function_exists( 'register_postsend_function' ) ) {
-			// https://github.com/facebook/hhvm/issues/1230
-			register_postsend_function( array( $this, 'postSendUpdates' ) );
-		} elseif ( function_exists( 'fastcgi_finish_request' ) ) {
-			fastcgi_finish_request();
-			$this->postSendUpdates();
-		} else {
-			$this->postSendUpdates();
-		}
+		$this->doPostOutputShutdown( 'normal' );
+	}
+
+	/**
+	 * This function commits all DB changes as needed before
+	 * the user can receive a response (in case commit fails)
+	 *
+	 * @since 1.26
+	 */
+	public function doPreOutputCommit() {
+		// Either all DBs should commit or none
+		ignore_user_abort( true );
+		wfGetLBFactory()->commitMasterChanges();
 	}
 
 	/**
 	 * This function does work that can be done *after* the
 	 * user gets the HTTP response so they don't block on it
 	 *
+	 * @param string $mode Use 'fast' to always skip job running
 	 * @since 1.26
 	 */
-	public function postSendUpdates() {
-		try {
-			JobQueueGroup::pushLazyJobs();
-			$this->triggerJobs();
-			$this->restInPeace();
-		} catch ( Exception $e ) {
-			MWExceptionHandler::handleException( $e );
+	public function doPostOutputShutdown( $mode = 'normal' ) {
+		// Show profiling data if enabled
+		Profiler::instance()->logDataPageOutputOnly();
+
+		$that = $this;
+		$callback = function () use ( $that, $mode ) {
+			try {
+				// Assure deferred updates are not in the main transaction
+				wfGetLBFactory()->commitMasterChanges();
+				// Run jobs occasionally, if enabled
+				if ( $mode === 'normal' ) {
+					$that->triggerJobs();
+				}
+				// Do deferred updates and job insertion and final commit
+				$that->restInPeace();
+			} catch ( Exception $e ) {
+				MWExceptionHandler::handleException( $e );
+			}
+		};
+
+		if ( function_exists( 'register_postsend_function' ) ) {
+			// https://github.com/facebook/hhvm/issues/1230
+			register_postsend_function( $callback );
+		} else {
+			if ( function_exists( 'fastcgi_finish_request' ) ) {
+				fastcgi_finish_request();
+			} else {
+				// Either all DB and deferred updates should happen or none.
+				// The later should not be cancelled due to client disconnect.
+				ignore_user_abort( true );
+			}
+
+			$callback();
 		}
 	}
 
@@ -602,16 +633,13 @@ class MediaWiki {
 		// Actually do the work of the request and build up any output
 		$this->performRequest();
 
-		// Either all DB and deferred updates should happen or none.
-		// The later should not be cancelled due to client disconnect.
-		ignore_user_abort( true );
 		// Now commit any transactions, so that unreported errors after
-		// output() don't roll back the whole DB transaction
-		wfGetLBFactory()->commitMasterChanges();
+		// output() don't roll back the whole DB transaction and so that
+		// we avoid having both success and error text in the response
+		$this->doPreOutputCommit();
 
 		// Output everything!
 		$this->context->getOutput()->output();
-
 	}
 
 	/**
@@ -644,7 +672,7 @@ class MediaWiki {
 	 * to run a specified number of jobs. This registers a callback to cleanup
 	 * the socket once it's done.
 	 */
-	protected function triggerJobs() {
+	public function triggerJobs() {
 		$jobRunRate = $this->config->get( 'JobRunRate' );
 		if ( $jobRunRate <= 0 || wfReadOnly() ) {
 			return;
