@@ -27,7 +27,7 @@
  * @ingroup JobQueue
  */
 class ThumbnailRenderJob extends Job {
-	public function __construct( $title, $params ) {
+	public function __construct( Title $title, array $params ) {
 		parent::__construct( 'ThumbnailRender', $title, $params );
 	}
 

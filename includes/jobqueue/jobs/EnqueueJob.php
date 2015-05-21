@@ -40,7 +40,7 @@ final class EnqueueJob extends Job {
 	 * @param Title $title
 	 * @param array $params Job parameters
 	 */
-	function __construct( $title, $params ) {
+	function __construct( Title $title, array $params ) {
 		parent::__construct( 'enqueue', $title, $params );
 	}
 

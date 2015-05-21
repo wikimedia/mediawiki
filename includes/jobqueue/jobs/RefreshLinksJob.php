@@ -39,7 +39,7 @@ class RefreshLinksJob extends Job {
 
 	const CLOCK_FUDGE = 10;
 
-	function __construct( $title, $params = '' ) {
+	function __construct( Title $title, array $params ) {
 		parent::__construct( 'refreshLinks', $title, $params );
 		// A separate type is used just for cascade-protected backlinks
 		if ( !empty( $this->params['prioritize'] ) ) {
