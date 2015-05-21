@@ -2,5 +2,5 @@
 host=gerrit.wikimedia.org
 port=29418
 project=mediawiki/core.git
-defaultbranch=REL1_25
+defaultbranch=fundraising/REL1_25
 defaultrebase=0
