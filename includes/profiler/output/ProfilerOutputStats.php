@@ -42,7 +42,7 @@ class ProfilerOutputStats extends ProfilerOutput {
 	 * @since 1.26
 	 */
 	private static function normalizeMetricKey( $key ) {
-		$key = str_replace( '::', '.', $key );
+		$key = preg_replace( '/[:.]+/', '.', $key );
 		$key = preg_replace( '/[^a-z.]+/i', '_', $key );
 		$key = trim( $key, '_.' );
 		return str_replace( array( '._', '_.' ), '.', $key );
