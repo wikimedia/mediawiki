@@ -2046,26 +2046,30 @@ class Language {
 		$s = '';
 		for ( $pow10 = 1000, $i = 3; $i >= 0; $pow10 /= 10, $i-- ) {
 			if ( $num >= $pow10 ) {
-				if ( $num == 15 || $num == 16 ) {
+				if ( $num === 15 || $num === 16 ) {
 					$s .= $table[0][9] . $table[0][$num - 9];
 					$num = 0;
 				} else {
 					$s .= $table[$i][intval( ( $num / $pow10 ) )];
-					if ( $pow10 == 1000 ) {
+					if ( $pow10 === 1000 ) {
 						$s .= "'";
 					}
 				}
 			}
+
 			$num = $num % $pow10;
 		}
-		if ( strlen( $s ) == 2 ) {
+
+		if ( strlen( $s ) === 2 ) {
 			$str = $s . "'";
 		} else {
 			$str = substr( $s, 0, strlen( $s ) - 2 ) . '"';
 			$str .= substr( $s, strlen( $s ) - 2, 2 );
 		}
+
 		$start = substr( $str, 0, strlen( $str ) - 2 );
 		$end = substr( $str, strlen( $str ) - 2 );
+
 		switch ( $end ) {
 			case 'כ':
 				$str = $start . 'ך';
@@ -2083,6 +2087,7 @@ class Language {
 				$str = $start . 'ץ';
 				break;
 		}
+
 		return $str;
 	}
 
