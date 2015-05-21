@@ -2043,16 +2043,30 @@ class Language {
 			return $num;
 		}
 
-		$s = '';
+		// Round thousands have special notations
+		if ( $num === 1000 ) {
+			return "א' אלף";
+		} elseif ( $num % 1000 === 0 ) {
+			return $table[0][$num / 1000] . "' אלפים";
+		}
+
+		$letters = array();
+
 		for ( $pow10 = 1000, $i = 3; $i >= 0; $pow10 /= 10, $i-- ) {
 			if ( $num >= $pow10 ) {
 				if ( $num === 15 || $num === 16 ) {
-					$s .= $table[0][9] . $table[0][$num - 9];
+					$letters[] = $table[0][9];
+					$letters[] = $table[0][$num - 9];
 					$num = 0;
 				} else {
-					$s .= $table[$i][intval( ( $num / $pow10 ) )];
+					// The splitting is needed to treat the big thousands as several letters
+					$lettersToPush = str_split( $table[$i][intval( ( $num / $pow10 ) )], 2 );
+					foreach( $lettersToPush as $letter ) {
+						$letters[] = $letter;
+					}
+
 					if ( $pow10 === 1000 ) {
-						$s .= "'";
+						$letters[] = "'";
 					}
 				}
 			}
@@ -2060,35 +2074,23 @@ class Language {
 			$num = $num % $pow10;
 		}
 
-		if ( strlen( $s ) === 2 ) {
-			$str = $s . "'";
+		$preTransformLength = count( $letters );
+		if ( $preTransformLength === 1 ) {
+			// Add geresh to one-letter numbers
+			$letters[] = "'";
 		} else {
-			$str = substr( $s, 0, strlen( $s ) - 2 ) . '"';
-			$str .= substr( $s, strlen( $s ) - 2, 2 );
+			// Add gershayim to multiple-letter numbers
+			array_splice( $letters, $preTransformLength - 1, 0, '"' );
 		}
 
-		$start = substr( $str, 0, strlen( $str ) - 2 );
-		$end = substr( $str, strlen( $str ) - 2 );
+		$lastIndex = count( $letters ) - 1;
+		$letters[ $lastIndex ] = str_replace(
+			array( 'כ', 'מ', 'נ', 'פ', 'צ' ),
+			array( 'ך', 'ם', 'ן', 'ף', 'ץ' ),
+			$letters[ $lastIndex ]
+		);
 
-		switch ( $end ) {
-			case 'כ':
-				$str = $start . 'ך';
-				break;
-			case 'מ':
-				$str = $start . 'ם';
-				break;
-			case 'נ':
-				$str = $start . 'ן';
-				break;
-			case 'פ':
-				$str = $start . 'ף';
-				break;
-			case 'צ':
-				$str = $start . 'ץ';
-				break;
-		}
-
-		return $str;
+		return implode( $letters );
 	}
 
 	/**
