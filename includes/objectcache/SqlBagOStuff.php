@@ -30,6 +30,7 @@ class SqlBagOStuff extends BagOStuff {
 	/** @var LoadBalancer */
 	protected $lb;
 
+	/** @var array */
 	protected $serverInfos;
 
 	/** @var array */
@@ -52,6 +53,9 @@ class SqlBagOStuff extends BagOStuff {
 
 	/** @var string */
 	protected $tableName = 'objectcache';
+
+	/** @var bool */
+	protected $slaveOnly = false;
 
 	/** @var array UNIX timestamps */
 	protected $connFailureTimes = array();
@@ -84,6 +88,10 @@ class SqlBagOStuff extends BagOStuff {
 	 *                  required to hold the largest shard index. Data will be
 	 *                  distributed across all tables by key hash. This is for
 	 *                  MySQL bugs 61735 and 61736.
+	 *   - slaveOnly:   Whether to only use slave DBs and avoid triggering
+	 *                  garbage collection logic of expired items. This only
+	 *                  makes sense if the primary DB is used and only if get()
+	 *                  calls will be used. This is used by ReplicatedBagOStuff.
 	 *
 	 * @param array $params
 	 */
@@ -112,6 +120,7 @@ class SqlBagOStuff extends BagOStuff {
 		if ( isset( $params['shards'] ) ) {
 			$this->shards = intval( $params['shards'] );
 		}
+		$this->slaveOnly = !empty( $params['slaveOnly'] );
 	}
 
 	/**
@@ -155,12 +164,13 @@ class SqlBagOStuff extends BagOStuff {
 				 * However, SQLite has an opposite behavior. And PostgreSQL needs to know
 				 * if we are in transaction or no
 				 */
-				if ( wfGetDB( DB_MASTER )->getType() == 'mysql' ) {
+				$index = $this->slaveOnly ? DB_SLAVE : DB_MASTER;
+				if ( wfGetDB( $index )->getType() == 'mysql' ) {
 					$this->lb = wfGetLBFactory()->newMainLB();
-					$db = $this->lb->getConnection( DB_MASTER );
+					$db = $this->lb->getConnection( $index );
 					$db->clearFlag( DBO_TRX ); // auto-commit mode
 				} else {
-					$db = wfGetDB( DB_MASTER );
+					$db = wfGetDB( $index );
 				}
 			}
 			if ( $wgDebugDBTransactions ) {
@@ -274,12 +284,7 @@ class SqlBagOStuff extends BagOStuff {
 				try {
 					$db = $this->getDB( $row->serverIndex );
 					if ( $this->isExpired( $db, $row->exptime ) ) { // MISS
-						$this->debug( "get: key has expired, deleting" );
-						# Put the expiry time in the WHERE condition to avoid deleting a
-						# newly-inserted value
-						$db->delete( $row->tableName,
-							array( 'keyname' => $key, 'exptime' => $row->exptime ),
-							__METHOD__ );
+						$this->debug( "get: key has expired" );
 					} else { // HIT
 						$values[$key] = $this->unserialize( $db->decodeBlob( $row->value ) );
 					}
@@ -546,7 +551,7 @@ class SqlBagOStuff extends BagOStuff {
 	}
 
 	protected function garbageCollect() {
-		if ( !$this->purgePeriod ) {
+		if ( !$this->purgePeriod || $this->slaveOnly ) {
 			// Disabled
 			return;
 		}

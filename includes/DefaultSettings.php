@@ -2151,6 +2151,19 @@ $wgObjectCaches = array(
 	CACHE_ACCEL => array( 'factory' => 'ObjectCache::newAccelerator' ),
 	CACHE_MEMCACHED => array( 'factory' => 'ObjectCache::newMemcached', 'loggroup' => 'memcached' ),
 
+	'db-replicated' => array(
+		'class'       => 'ReplicatedBagOStuff',
+		'readFactory' => array(
+			'class' => 'SqlBagOStuff',
+			'args'  => array( array( 'slaveOnly' => true ) )
+		),
+		'writeFactory' => array(
+			'class' => 'SqlBagOStuff',
+			'args'  => array( array( 'slaveOnly' => false ) )
+		),
+		'loggroup'  => 'SQLBagOStuff'
+	),
+
 	'apc' => array( 'class' => 'APCBagOStuff' ),
 	'xcache' => array( 'class' => 'XCacheBagOStuff' ),
 	'wincache' => array( 'class' => 'WinCacheBagOStuff' ),
@@ -2213,6 +2226,7 @@ $wgWANObjectCaches = array(
  * lightweight data like hit counters and user activity. Sites with multiple
  * data-centers should have this use a store that replicates all writes. The
  * store should have enough consistency for CAS operations to be usable.
+ * Reads outside of those needed for merge() may be eventually consistent.
  *
  * The options are:
  *   - db:      Store cache objects in the DB
@@ -2221,7 +2235,7 @@ $wgWANObjectCaches = array(
  *
  * @since 1.26
  */
-$wgMainStash = 'db';
+$wgMainStash = 'db-replicated';
 
 /**
  * The expiry time for the parser cache, in seconds.
