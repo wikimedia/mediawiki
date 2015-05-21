@@ -225,12 +225,18 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 	/**
 	 * @covers WANObjectCache::touchCheckKey()
 	 * @covers WANObjectCache::getCheckKeyTime()
+	 * @covers WANObjectCache::getCheckKeyTimeMulti()
 	 */
 	public function testTouchKeys() {
 		$key = wfRandomString();
+		$multiKeys = array();
 
 		$t0 = $this->cache->getCheckKeyTime( $key );
 		$this->assertFalse( $t0, 'Check key time is false' );
+
+		$newKey = wfRandomString();
+		$this->cache->touchCheckKey( $newKey );
+		$multiKeys[] = $newKey;
 
 		$priorTime = microtime( true );
 		usleep( 1 );
@@ -241,6 +247,10 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$t2 = $this->cache->getCheckKeyTime( $key );
 		$this->assertEquals( $t1, $t2, 'Check key time did not change' );
 
+		$newKey = wfRandomString();
+		$this->cache->touchCheckKey( $newKey );
+		$multiKeys[] = $newKey;
+
 		usleep( 1 );
 		$this->cache->touchCheckKey( $key );
 		$t3 = $this->cache->getCheckKeyTime( $key );
@@ -248,5 +258,15 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 
 		$t4 = $this->cache->getCheckKeyTime( $key );
 		$this->assertEquals( $t3, $t4, 'Check key time did not change' );
+
+		$newKey = wfRandomString();
+		$this->cache->touchCheckKey( $newKey );
+		$multiKeys[] = $newKey;
+
+		// Keys were made between usleep(), they should differ
+		$times = $this->cache->getCheckKeyTimeMulti( $multiKeys );
+		$this->assertEquals( 3, count( $times ), "getCheckKeyTimeMulti() returned 3 keys" );
+		$this->assertEquals( 3, count( array_unique( $times ) ),
+			"getCheckKeyTimeMulti() returned 3 different keys" );
 	}
 }

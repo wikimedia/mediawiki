@@ -285,7 +285,40 @@ class WANObjectCache {
 	 * @return float|bool TS_UNIX timestamp of the key; false if not present
 	 */
 	final public function getCheckKeyTime( $key ) {
-		return self::parsePurgeValue( $this->cache->get( self::TIME_KEY_PREFIX . $key ) );
+		$times = $this->getCheckKeyTimeMulti( array( $key ) );
+
+		return isset( $times[$key] ) ? $times[$key] : false;
+	}
+
+	/**
+	 * Fetch the value of multiple timestamp "check" keys
+	 *
+	 * Note that "check" keys won't collide with other regular keys
+	 *
+	 * @param array $keys
+	 * @return array Map of (key => float|bool TS_UNIX timestamp) for present keys
+	 */
+	final public function getCheckKeyTimeMulti( array $keys ) {
+		$cKeys = array();
+		foreach ( $keys as $key ) {
+			$cKeys[] = self::TIME_KEY_PREFIX . $key;
+		}
+
+		$values = $this->cache->getMulti( $cKeys );
+
+		$times = array();
+		foreach ( $keys as $key ) {
+			$cKey = self::TIME_KEY_PREFIX . $key;
+			$time = isset( $values[$cKey] )
+				? self::parsePurgeValue( $values[$cKey] )
+				: false;
+
+			if ( is_float( $time ) ) {
+				$times[$key] = $time;
+			}
+		}
+
+		return $times;
 	}
 
 	/**
