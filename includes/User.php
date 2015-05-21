@@ -2383,7 +2383,7 @@ class User implements IDBAccessObject {
 	 * @return string TS_MW Timestamp
 	 * @since 1.26
 	 */
-	protected function getDBTouched() {
+	public function getDBTouched() {
 		$this->load();
 
 		return $this->mTouched;
