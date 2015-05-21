@@ -40,12 +40,8 @@
  *
  * To restrict the functions for which profiling data is collected, you can
  * use either a whitelist ($wgProfiler['include']) or a blacklist
- * ($wgProfiler['exclude']) containing an array of function names. The
- * blacklist functionality is built into HHVM and will completely exclude the
- * named functions from profiling collection. The whitelist is implemented by
- * Xhprof class which will filter the data collected by XHProf before reporting.
- * See documentation for the Xhprof class and the XHProf extension for
- * additional information.
+ * ($wgProfiler['exclude']) containing an array of function names.
+ * Shell-style patterns are also accepted.
  *
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2014 Bryan Davis and Wikimedia Foundation.
@@ -77,7 +73,8 @@ class ProfilerXhprof extends Profiler {
 	}
 
 	public function scopedProfileIn( $section ) {
-		return $this->sprofiler->scopedProfileIn( $section );
+		$key = 'section.' . ltrim( $section, '.' );
+		return $this->sprofiler->scopedProfileIn( $key );
 	}
 
 	/**
@@ -86,12 +83,43 @@ class ProfilerXhprof extends Profiler {
 	public function close() {
 	}
 
+	/**
+	 * Check if a function or section should be excluded from the output.
+	 *
+	 * @param string $name Function or section name.
+	 * @return bool
+	 */
+	private function shouldExclude( $name ) {
+		if ( $name === '-total' ) {
+			return true;
+		}
+		if ( !empty( $this->params['include'] ) ) {
+			foreach ( $this->params['include'] as $pattern ) {
+				if ( fnmatch( $pattern, $name, FNM_NOESCAPE ) ) {
+					return false;
+				}
+			}
+			return true;
+		}
+		if ( !empty( $this->params['exclude'] ) ) {
+			foreach ( $this->params['exclude'] as $pattern ) {
+				if ( fnmatch( $pattern, $name, FNM_NOESCAPE ) ) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	public function getFunctionStats() {
 		$metrics = $this->xhprof->getCompleteMetrics();
 		$profile = array();
 
 		$main = null; // units in ms
 		foreach ( $metrics as $fname => $stats ) {
+			if ( $this->shouldExclude( $fname ) ) {
+				continue;
+			}
 			// Convert elapsed times from μs to ms to match interface
 			$entry = array(
 				'name' => $fname,
@@ -113,8 +141,7 @@ class ProfilerXhprof extends Profiler {
 
 		// Merge in all of the custom profile sections
 		foreach ( $this->sprofiler->getFunctionStats() as $stats ) {
-			if ( $stats['name'] === '-total' ) {
-				// Discard section profiler running totals
+			if ( $this->shouldExclude( $stats['name'] ) ) {
 				continue;
 			}
 
