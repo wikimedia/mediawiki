@@ -1835,18 +1835,14 @@ class WikiPage implements Page, IDBAccessObject {
 				if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
 					// Mark as patrolled if the user can do so
 					$patrolled = $wgUseRCPatrol && !count(
-					$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
 
+						$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
 					// Add RC row to the DB
-					$rc = RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $user, $summary,
+					RecentChange::notifyEdit(
+						$now, $this->mTitle, $isminor, $user, $summary,
 						$oldid, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
 						$revisionId, $patrolled
 					);
-
-					// Log auto-patrolled edits
-					if ( $patrolled ) {
-						PatrolLog::record( $rc, true, $user );
-					}
 				}
 
 				$user->incEditCount();
@@ -1937,13 +1933,10 @@ class WikiPage implements Page, IDBAccessObject {
 				$patrolled = ( $wgUseRCPatrol || $wgUseNPPatrol ) && !count(
 					$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
 				// Add RC row to the DB
-				$rc = RecentChange::notifyNew( $now, $this->mTitle, $isminor, $user, $summary, $bot,
-					'', $newsize, $revisionId, $patrolled );
-
-				// Log auto-patrolled edits
-				if ( $patrolled ) {
-					PatrolLog::record( $rc, true, $user );
-				}
+				RecentChange::notifyNew(
+					$now, $this->mTitle, $isminor, $user, $summary, $bot,
+					'', $newsize, $revisionId, $patrolled
+				);
 			}
 
 			$user->incEditCount();
