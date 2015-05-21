@@ -298,8 +298,16 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @return string
 	 */
 	public static function getStartupModulesUrl( ResourceLoaderContext $context ) {
-		$rl = $context->getResourceLoader();
 		$moduleNames = self::getStartupModules();
+
+		// Get the latest version 
+		$loader = $context->getResourceLoader();
+		$version = 1;
+		foreach ( $moduleNames as $moduleName ) {
+			$version = max( $version,
+				$loader->getModule( $moduleName )->getModifiedTime( $context )
+			);
+		}
 
 		$query = array(
 			'modules' => ResourceLoader::makePackedModulesString( $moduleNames ),
@@ -307,7 +315,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'lang' => $context->getLanguage(),
 			'skin' => $context->getSkin(),
 			'debug' => $context->getDebug() ? 'true' : 'false',
-			'version' => $rl->getCombinedVersion( $context, $moduleNames ),
+			'version' => wfTimestamp( TS_ISO_8601_BASIC, $version )
 		);
 		// Ensure uniform query order
 		ksort( $query );
