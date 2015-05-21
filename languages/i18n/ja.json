@@ -391,7 +391,7 @@
 	"badtitletext": "無効または空のページ名が指定されたか、言語間/ウィキ間リンクの方法に誤りがあります。\nページ名に使用できない文字が含まれている可能性があります。",
 	"title-invalid-empty": "指定されたページ名は空もしくは名前空間しか含んでいません。",
 	"title-invalid-utf8": "指定されたページ名が無効なUTF-8シーケンスを含んでいます。",
-	"title-invalid-interwiki": "ページ名がウィキ間リンクを含んでいます",
+	"title-invalid-interwiki": "指定されたページ名がページ名として使用できないウィキ間リンクを含んでいます。",
 	"title-invalid-talk-namespace": "指定されたページは存在し得ないトークページです。",
 	"title-invalid-characters": "指定されたページ名が無効な文字 \"$1\" を含んでいます。",
 	"title-invalid-magic-tilde": "指定されたページ名は無効なチルダ文字列 (<nowiki>~~~</nowiki>) を含んでいます。",

@@ -337,7 +337,7 @@
 	"badtitletext": "'A pàgene ca è cerchete tène 'nu titele errete, vacande, o jè 'nu collegamende inter-lènghe o inter-uicchi errete.\nPò essere ca tène une o cchiù carattere ca non ge ponne essere ausete jndr'à le titele.",
 	"title-invalid-empty": "'U titole d'a pàgene cercate jè vacande o téne sulamende 'u nome d'u namespace.",
 	"title-invalid-utf8": "'U titole d'a pàgene cercate téne 'na sequenze UTF-8 invalide.",
-	"title-invalid-interwiki": "'U titole téne 'nu collegamende inderuicchi",
+	"title-invalid-interwiki": "'U titole d'a vôsce cercate téne 'nu collegamende inderuicchi ca non ge pò essere ausate jndr'à le titole.",
 	"title-invalid-talk-namespace": "'U titole d'a pàgene cercate face referimende a 'na pàgene de 'ngazzaminde ca non ge pò esistere.",
 	"title-invalid-characters": "'U titole d'a pàgene cercare téne carattere non valide: \"$1\"",
 	"title-invalid-relative": "'U titole téne 'nu percorse relative. Le titole de pàggene relative (./, ../) so invalide, purcé lore assaije vote non ge avènene raggiunde quanne so gestite da le browser.",
