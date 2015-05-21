@@ -512,8 +512,10 @@ class RecentChange {
 	 * @param int $patrol
 	 * @return RecentChange
 	 */
-	public static function notifyEdit( $timestamp, &$title, $minor, &$user, $comment, $oldId,
-		$lastTimestamp, $bot, $ip = '', $oldSize = 0, $newSize = 0, $newId = 0, $patrol = 0 ) {
+	public static function notifyEdit(
+		$timestamp, &$title, $minor, &$user, $comment, $oldId, $lastTimestamp,
+		$bot, $ip = '', $oldSize = 0, $newSize = 0, $newId = 0, $patrol = 0
+	) {
 		$rc = new RecentChange;
 		$rc->mTitle = $title;
 		$rc->mPerformer = $user;
@@ -550,7 +552,13 @@ class RecentChange {
 			'newSize' => $newSize,
 			'pageStatus' => 'changed'
 		);
-		$rc->save();
+
+		DeferredUpdates::addCallableUpdate( function() use ( $rc ) {
+			$rc->save();
+			if ( $rc->mAttribs['rc_patrolled'] ) {
+				PatrolLog::record( $rc, true, $rc->getPerformer() );
+			}
+		} );
 
 		return $rc;
 	}
@@ -571,8 +579,10 @@ class RecentChange {
 	 * @param int $patrol
 	 * @return RecentChange
 	 */
-	public static function notifyNew( $timestamp, &$title, $minor, &$user, $comment, $bot,
-		$ip = '', $size = 0, $newId = 0, $patrol = 0 ) {
+	public static function notifyNew(
+		$timestamp, &$title, $minor, &$user, $comment, $bot,
+		$ip = '', $size = 0, $newId = 0, $patrol = 0
+	) {
 		$rc = new RecentChange;
 		$rc->mTitle = $title;
 		$rc->mPerformer = $user;
@@ -609,7 +619,13 @@ class RecentChange {
 			'newSize' => $size,
 			'pageStatus' => 'created'
 		);
-		$rc->save();
+
+		DeferredUpdates::addCallableUpdate( function() use ( $rc ) {
+			$rc->save();
+			if ( $rc->mAttribs['rc_patrolled'] ) {
+				PatrolLog::record( $rc, true, $rc->getPerformer() );
+			}
+		} );
 
 		return $rc;
 	}
