@@ -25,6 +25,12 @@
  * @ingroup Search
  */
 class SearchResultSet {
+	protected $containedSyntax = false;
+
+	public function __construct( $containedSyntax = false ) {
+		$this->containedSyntax = $containedSyntax;
+	}
+
 	/**
 	 * Fetch an array of regular expression fragments for matching
 	 * the search terms as parsed by this engine in a text extract.
@@ -120,7 +126,7 @@ class SearchResultSet {
 	 * @return bool
 	 */
 	public function searchContainedSyntax() {
-		return false;
+		return $this->containedSyntax;
 	}
 }
 
