@@ -405,6 +405,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgField', 'recentchanges', 'rc_source', "TEXT NOT NULL DEFAULT ''" ),
 			array( 'addPgField', 'page', 'page_links_updated', "TIMESTAMPTZ NULL" ),
 			array( 'addPgField', 'mwuser', 'user_password_expires', 'TIMESTAMPTZ NULL' ),
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 			array( 'changeFieldPurgeTable', 'l10n_cache', 'lc_value', 'bytea',
 				"replace(lc_value,'\','\\\\')::bytea" ),
 
@@ -422,6 +423,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'dropField', 'site_stats', 'ss_total_views', 'patch-drop-ss_total_views.sql' ),
 			array( 'dropField', 'page', 'page_counter', 'patch-drop-page_counter.sql' ),
 			array( 'dropFkey', 'recentchanges', 'rc_cur_id' )
+=======
+			array( 'changeFieldPurgeTable', 'l10n_cache', 'lc_value', 'bytea', "replace(lc_value,'\','\\\\')::bytea" ),
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 		);
 	}
 
@@ -701,7 +705,11 @@ END;
 			$this->output( "...column '$table.$field' is already of type '$newtype'\n" );
 		} else {
 			$this->output( "Purging data from cache table '$table'\n" );
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 			$this->db->query( "DELETE from $table" );
+=======
+			$this->db->query("DELETE from $table" );
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 			$this->output( "Changing column type of '$table.$field' from '{$fi->type()}' to '$newtype'\n" );
 			$sql = "ALTER TABLE $table ALTER $field TYPE $newtype";
 			if ( strlen( $default ) ) {

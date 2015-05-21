@@ -2,6 +2,7 @@
 
 class ConfigFactoryTest extends MediaWikiTestCase {
 
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	public function tearDown() {
 		// Reset this since we mess with it a bit
 		ConfigFactory::destroyDefaultInstance();
@@ -66,5 +67,47 @@ class ConfigFactoryTest extends MediaWikiTestCase {
 		$this->assertInstanceOf( 'Config', $factory->makeConfig( 'conf2' ) );
 		$this->setExpectedException( 'ConfigException' );
 		$factory->makeConfig( 'conf3' );
+=======
+	/**
+	 * @covers ConfigFactory::register
+	 */
+	public function testRegister() {
+		$factory = new ConfigFactory();
+		$factory->register( 'unittest', 'GlobalVarConfig::newInstance' );
+		$this->assertTrue( True ); // No exception thrown
+		$this->setExpectedException( 'InvalidArgumentException' );
+		$factory->register( 'invalid', 'Invalid callback' );
+	}
+
+	/**
+	 * @covers ConfigFactory::makeConfig
+	 */
+	public function testMakeConfig() {
+		$factory = new ConfigFactory();
+		$factory->register( 'unittest', 'GlobalVarConfig::newInstance' );
+		$conf = $factory->makeConfig( 'unittest' );
+		$this->assertInstanceOf( 'Config', $conf );
+	}
+
+	/**
+	 * @covers ConfigFactory::makeConfig
+	 */
+	public function testMakeConfigWithNoBuilders() {
+		$factory = new ConfigFactory();
+		$this->setExpectedException( 'ConfigException' );
+		$factory->makeConfig( 'nobuilderregistered' );
+	}
+
+	/**
+	 * @covers ConfigFactory::makeConfig
+	 */
+	public function testMakeConfigWithInvalidCallback() {
+		$factory = new ConfigFactory();
+		$factory->register( 'unittest', function() {
+			return true; // Not a Config object
+		});
+		$this->setExpectedException( 'UnexpectedValueException' );
+		$factory->makeConfig( 'unittest' );
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	}
 }

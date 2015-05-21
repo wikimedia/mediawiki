@@ -2355,9 +2355,17 @@ configuration variables to JavaScript. Things that depend on the current page
 or request state must be added through MakeGlobalVariablesScript instead.
 &$vars: array( variable name => value )
 
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 'ResourceLoaderGetLessVars': Called in ResourceLoader::getLessVars after variables
 from $wgResourceLoaderLESSVars are added. Can be used to add context-based variables.
 &$lessVars: array of variables already added
+=======
+'ResourceLoaderGetStartupModules': DEPRECATED. Run once the startup module is being
+generated. This allows you to add modules to the startup module. This hook
+should be used sparingly since any module added here will be loaded on all
+pages. This hook is useful if you want to make code available to module loader
+scripts.
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 
 'ResourceLoaderRegisterModules': Right before modules information is required,
 such as when responding to a resource

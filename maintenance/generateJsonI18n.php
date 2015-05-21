@@ -36,16 +36,26 @@ class GenerateJsonI18n extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Build JSON messages files from a PHP messages file";
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 
 		$this->addArg( 'phpfile', 'PHP file defining a $messages array', false );
 		$this->addArg( 'jsondir', 'Directory to write JSON files to', false );
+=======
+		$this->addArg( 'phpfile', 'PHP file defining a $messages array', true );
+		$this->addArg( 'jsondir', 'Directory to write JSON files to. ' .
+			'Required unless <phpfile> exists and --shim-only is specified', false );
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 		$this->addOption( 'langcode', 'Language code; only needed for converting core i18n files',
 			false, true );
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 		$this->addOption( 'extension', 'Perform default conversion on an extension',
 			false, true );
 		$this->addOption( 'shim-only', 'Only create or update the backward-compatibility shim' );
 		$this->addOption( 'supplementary', 'Find supplementary i18n files in subdirs and convert those',
 			false, false );
+=======
+		$this->addOption( 'shim-only', 'Only create or update the backward-compatibility shim' );
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	}
 
 	public function execute() {
@@ -53,6 +63,7 @@ class GenerateJsonI18n extends Maintenance {
 
 		$phpfile = $this->getArg( 0 );
 		$jsondir = $this->getArg( 1 );
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 		$extension = $this->getOption( 'extension' );
 		$convertSupplementaryI18nFiles = $this->hasOption( 'supplementary' );
 
@@ -111,6 +122,11 @@ class GenerateJsonI18n extends Maintenance {
 		if ( $this->hasOption( 'shim-only' ) ) {
 			$this->shimOnly( $phpfile, $jsondir );
 
+=======
+
+		if ( $this->hasOption( 'shim-only' ) ) {
+			$this->shimOnly( $phpfile, $jsondir );
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 			return;
 		}
 
@@ -245,7 +261,10 @@ PHP;
 		$jsondir = str_replace( '\\', '/', $jsondir );
 		$shim = str_replace( '{{OUT}}', $jsondir, $shim );
 		$shim = str_replace( '{{FUNC}}', 'wfJsonI18nShim' . wfRandomString( 16 ), $shim );
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 
+=======
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 		return $shim;
 	}
 

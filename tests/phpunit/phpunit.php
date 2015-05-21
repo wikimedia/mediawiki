@@ -231,9 +231,23 @@ if ( !$ok ) {
 	die( "Couldn't find a usable PHPUnit.\n" );
 }
 
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 $puVersion = PHPUnit_Runner_Version::id();
 if ( $puVersion !== '@package_version@' && version_compare( $puVersion, '3.7.0', '<' ) ) {
 	die( "PHPUnit 3.7.0 or later required; you have {$puVersion}.\n" );
 }
 
 PHPUnit_TextUI_Command::main();
+=======
+// Prevent segfault when we have lots of unit tests (bug 62623)
+if ( version_compare( PHP_VERSION, '5.4.0', '<' )
+	&& version_compare( PHP_VERSION, '5.3.0', '>=' )
+) {
+	register_shutdown_function( function() {
+		gc_collect_cycles();
+		gc_disable();
+	} );
+}
+
+MediaWikiPHPUnitCommand::main();
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)

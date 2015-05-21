@@ -18,7 +18,11 @@ class MediaWikiVersionFetcher {
 		$defaultSettings = file_get_contents( __DIR__ . '/DefaultSettings.php' );
 
 		$matches = array();
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 		preg_match( "/wgVersion = '([0-9a-zA-Z\.\-]+)';/", $defaultSettings, $matches );
+=======
+		preg_match( "/wgVersion = '([-0-9a-zA-Z\.]+)';/", $defaultSettings, $matches );
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 
 		if ( count( $matches ) !== 2 ) {
 			throw new RuntimeException( 'Could not extract the MediaWiki version from DefaultSettings.php' );

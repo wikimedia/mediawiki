@@ -39,6 +39,7 @@ class MssqlUpdater extends DatabaseUpdater {
 		return array(
 			// 1.23
 			array( 'addField', 'mwuser', 'user_password_expires', 'patch-user_password_expires.sql' ),
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 
 			// 1.24
 			array( 'addField', 'page', 'page_lang', 'patch-page-page_lang.sql'),
@@ -64,6 +65,8 @@ class MssqlUpdater extends DatabaseUpdater {
 				'patch-oi_major_mime-chemical.sql' ),
 			array( 'modifyField', 'filearchive', 'fa_major_mime',
 				'patch-fa_major_mime-chemical.sql' ),
+=======
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 		);
 	}
 

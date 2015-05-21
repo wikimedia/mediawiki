@@ -265,8 +265,11 @@ class LocalSettingsGenerator {
 						wfBoolToStr( $perm ) . ";\n";
 				}
 			}
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 			$groupRights .= "\n";
 
+=======
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 			if ( ( isset( $this->groupPermissions['*']['edit'] ) &&
 					$this->groupPermissions['*']['edit'] === false )
 				&& ( isset( $this->groupPermissions['*']['createaccount'] ) &&

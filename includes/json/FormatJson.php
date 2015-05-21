@@ -253,10 +253,16 @@ class FormatJson {
 		}
 
 		if ( $pretty !== false ) {
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 			// Workaround for <https://bugs.php.net/bug.php?id=66021>
 			if ( $bug66021 ) {
 				$json = preg_replace( self::WS_CLEANUP_REGEX, '', $json );
 			}
+=======
+			// Remove whitespace inside empty arrays/objects; different JSON encoders
+			// vary on this, and we want our output to be consistent across implementations.
+			$json = preg_replace( self::WS_CLEANUP_REGEX, '', $json );
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 			if ( $pretty !== '    ' ) {
 				// Change the four-space indent to a tab indent
 				$json = str_replace( "\n    ", "\n\t", $json );

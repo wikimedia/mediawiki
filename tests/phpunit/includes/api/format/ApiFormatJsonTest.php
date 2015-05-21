@@ -19,6 +19,7 @@ class ApiFormatJsonTest extends ApiFormatTestBase {
 		return $arr;
 	}
 
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	public static function provideGeneralEncoding() {
 		return array_merge(
 			self::addFormatVersion( 1, array(
@@ -107,4 +108,10 @@ class ApiFormatJsonTest extends ApiFormatTestBase {
 		);
 	}
 
+=======
+	public function testJsonpInjection( ) {
+		$data = $this->apiRequest( 'json', array( 'action' => 'query', 'meta' => 'siteinfo', 'callback' => 'myCallback' ) );
+		$this->assertEquals( '/**/myCallback(', substr( $data, 0, 15 ) );
+	}
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 }

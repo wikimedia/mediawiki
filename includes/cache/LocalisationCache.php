@@ -858,8 +858,13 @@ class LocalisationCache {
 			$codeSequence,
 			array_fill( 0, count( $codeSequence ), $initialData ) );
 		foreach ( $wgExtensionMessagesFiles as $extension => $fileName ) {
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 			if ( isset( $messageDirs[$extension] ) ) {
 				# This extension has JSON message data; skip the PHP shim
+=======
+			if ( isset( $wgMessagesDirs[$extension] ) ) {
+				# Already loaded the JSON files for this extension; skip the PHP shim
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 				continue;
 			}
 
@@ -867,11 +872,16 @@ class LocalisationCache {
 			$used = false;
 
 			foreach ( $data as $key => $item ) {
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 				foreach ( $codeSequence as $csCode ) {
 					if ( isset( $item[$csCode] ) ) {
 						$this->mergeItem( $key, $extensionData[$csCode][$key], $item[$csCode] );
 						$used = true;
 					}
+=======
+				if ( $this->mergeExtensionItem( $codeSequence, $key, $allData[$key], $item ) ) {
+					$used = true;
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 				}
 			}
 
@@ -1216,6 +1226,14 @@ class LCStoreDB implements LCStore {
 			'lc_lang' => $this->currentLang,
 			'lc_key' => $key,
 			'lc_value' => $this->dbw->encodeBlob( serialize( $value ) ) );
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
+=======
+
+		if ( count( $this->batch ) >= 100 ) {
+			$this->dbw->insert( 'l10n_cache', $this->batch, __METHOD__ );
+			$this->batch = array();
+		}
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	}
 }
 

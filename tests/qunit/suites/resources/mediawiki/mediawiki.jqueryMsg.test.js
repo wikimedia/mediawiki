@@ -89,6 +89,27 @@
 			} );
 		}
 		return mwLanguageCache[langCode];
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
+=======
+	}
+
+	/**
+	 * @param {Function[]} tasks List of functions that perform tasks
+	 *  that may be asynchronous. Invoke the callback parameter when done.
+	 * @param {Function} done When all tasks are done.
+	 * @return
+	 */
+	function process( tasks, done ) {
+		function run() {
+			var task = tasks.shift();
+			if ( task ) {
+				task( run );
+			} else {
+				done();
+			}
+		}
+		run();
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	}
 
 	/**
@@ -641,6 +662,7 @@
 		}
 	];
 
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	QUnit.test( 'formatnum', formatnumTests.length, function ( assert ) {
 		mw.messages.set( 'formatnum-msg', '{{formatnum:$1}}' );
 		mw.messages.set( 'formatnum-msg-int', '{{formatnum:$1|R}}' );
@@ -665,7 +687,36 @@
 		} );
 		QUnit.stop();
 		process( queue, QUnit.start );
+=======
+QUnit.test( 'formatnum', formatnumTests.length, function ( assert ) {
+	mw.messages.set( 'formatnum-msg', '{{formatnum:$1}}' );
+	mw.messages.set( 'formatnum-msg-int', '{{formatnum:$1|R}}' );
+	var queue = $.map( formatnumTests, function ( test ) {
+		return function ( next ) {
+			getMwLanguage( test.lang )
+				.done( function ( langClass ) {
+					mw.config.set( 'wgUserLanguage', test.lang );
+					var parser = new mw.jqueryMsg.parser( { language: langClass } );
+					assert.equal(
+						parser.parse( test.integer ? 'formatnum-msg-int' : 'formatnum-msg',
+							[ test.number ] ).html(),
+						test.result,
+						test.description
+					);
+				} )
+				.fail( function () {
+					assert.ok( false, 'Language "' + test.lang + '" failed to load' );
+				} )
+				.always( next );
+		};
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	} );
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
+=======
+	QUnit.stop();
+	process( queue, QUnit.start );
+} );
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 
 	// HTML in wikitext
 	QUnit.test( 'HTML', 26, function ( assert ) {

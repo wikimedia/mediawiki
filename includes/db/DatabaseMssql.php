@@ -969,11 +969,14 @@ class DatabaseMssql extends DatabaseBase {
 			return false;
 		}
 
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 		if ( $schema === false ) {
 			global $wgDBmwschema;
 			$schema = $wgDBmwschema;
 		}
 
+=======
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 		$res = $this->query( "SELECT 1 FROM INFORMATION_SCHEMA.TABLES
 			WHERE TABLE_TYPE = 'BASE TABLE'
 			AND TABLE_SCHEMA = '$schema' AND TABLE_NAME = '$table'" );
@@ -1314,7 +1317,11 @@ class DatabaseMssql extends DatabaseBase {
 			// Used internally, we want the schema split off from the table name and returned
 			// as a list with 3 elements (database, schema, table)
 			$table = explode( '.', $table );
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 			while ( count( $table ) < 3 ) {
+=======
+			if ( count( $table ) == 2 ) {
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 				array_unshift( $table, false );
 			}
 		}

@@ -51,6 +51,7 @@ class ParserOutput extends CacheTime {
 		$mTOCHTML = '',               # HTML of the TOC
 		$mTimestamp,                  # Timestamp of the revision
 		$mTOCEnabled = true;          # Whether TOC should be shown, can't override __NOTOC__
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	private $mIndexPolicy = '';       # 'index' or 'noindex'?  Any other value will result in no change.
 	private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
 	private $mExtensionData = array(); # extra data used by extensions
@@ -58,6 +59,15 @@ class ParserOutput extends CacheTime {
 	private $mParseStartTime = array(); # Timestamps for getTimeSinceStart()
 	private $mPreventClickjacking = false; # Whether to emit X-Frame-Options: DENY
 	private $mFlags = array();        # Generic flags
+=======
+		private $mIndexPolicy = '';       # 'index' or 'noindex'?  Any other value will result in no change.
+		private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
+		private $mSecondaryDataUpdates = array(); # List of DataUpdate, used to save info from the page somewhere else.
+		private $mExtensionData = array(); # extra data used by extensions
+		private $mLimitReportData = array(); # Parser limit report data
+		private $mParseStartTime = array(); # Timestamps for getTimeSinceStart()
+		private $mPreventClickjacking = false; # Whether to emit X-Frame-Options: DENY
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 
 	const EDITSECTION_REGEX =
 		'#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
@@ -481,6 +491,7 @@ class ParserOutput extends CacheTime {
 
 		$this->mHeadItems = array_merge( $this->mHeadItems, $out->getHeadItemsArray() );
 		$this->mPreventClickjacking = $this->mPreventClickjacking || $out->getPreventClickjacking();
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	}
 
 	/**
@@ -522,6 +533,8 @@ class ParserOutput extends CacheTime {
 			wfDebug( __METHOD__ . ": [[MediaWiki:$msg]] is not a valid title!\n" );
 			return false;
 		}
+=======
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	}
 
 	/**
@@ -862,6 +875,7 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	 * Check whether the cache TTL was lowered due to dynamic content
 	 *
 	 * When content is determined by more than hard state (e.g. page edits),
@@ -870,6 +884,20 @@ class ParserOutput extends CacheTime {
 	 *
 	 * @return bool
 	 * @since 1.25
+=======
+	 * Get or set the prevent-clickjacking flag
+	 *
+	 * @since 1.24
+	 * @param boolean|null $flag New flag value, or null to leave it unchanged
+	 * @return boolean Old flag value
+	 */
+	public function preventClickjacking( $flag = null ) {
+		return wfSetVar( $this->mPreventClickjacking, $flag );
+	}
+
+	/**
+	 * Save space for for serialization by removing useless values
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	 */
 	public function hasDynamicContent() {
 		global $wgParserCacheExpireTime;

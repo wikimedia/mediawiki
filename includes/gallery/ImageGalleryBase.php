@@ -28,35 +28,60 @@
  * @ingroup Media
  */
 abstract class ImageGalleryBase extends ContextSource {
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	/**
 	 * @var array Gallery images
 	 */
 	protected $mImages;
+=======
+	/** @var array Gallery images */
+	public $mImages;
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	/**
 	 * @var bool Whether to show the filesize in bytes in categories
 	 */
 	protected $mShowBytes;
+=======
+	/** @var bool Whether to show the filesize in bytes in categories */
+	public $mShowBytes;
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	/**
 	 * @var bool Whether to show the filename. Default: true
 	 */
 	protected $mShowFilename;
+=======
+	/** @var bool Whether to show the filename. Default: true */
+	public $mShowFilename;
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	/**
 	 * @var string Gallery mode. Default: traditional
 	 */
 	protected $mMode;
+=======
+	/** @var string Gallery mode. Default: traditional */
+	public $mMode;
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	/**
 	 * @var bool|string Gallery caption. Default: false
 	 */
 	protected $mCaption = false;
+=======
+	/** @var bool|string Gallery caption. Default: false */
+	public $mCaption = false;
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 
 	/**
 	 * @var bool Hide blacklisted images?
 	 */
-	protected $mHideBadImages;
+	public $mHideBadImages;
 
 	/**
 	 * @var Parser Registered parser object for output callbacks

@@ -41,6 +41,7 @@ class ConfigFactory {
 	 */
 	protected $configs = array();
 
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	/**
 	 * @var ConfigFactory
 	 */
@@ -92,6 +93,41 @@ class ConfigFactory {
 	 *                     'main' is used for core
 	 * @throws ConfigException If a factory function isn't registered for $name
 	 * @throws UnexpectedValueException If the factory function returns a non-Config object
+=======
+	public static function getDefaultInstance() {
+		static $self = null;
+		if ( !$self ) {
+			$self = new self;
+			global $wgConfigRegistry;
+			foreach ( $wgConfigRegistry as $name => $callback ) {
+				$self->register( $name, $callback );
+			}
+		}
+		return $self;
+	}
+
+	/**
+	 * Register a new config factory function
+	 * Will override if it's already registered
+	 * @param string $name
+	 * @param callable $callback that takes this ConfigFactory as an argument
+	 * @throws InvalidArgumentException if an invalid callback is provided
+	 */
+	public function register( $name, $callback ) {
+		if ( !is_callable( $callback ) ) {
+			throw new InvalidArgumentException( 'Invalid callback provided' );
+		}
+		$this->factoryFunctions[$name] = $callback;
+	}
+
+	/**
+	 * Create a given Config using the registered callback for $name.
+	 * If an object was already created, the same Config object is returned.
+	 * @param string $name of the extension/component you want a Config object for
+	 *                     'main' is used for core
+	 * @throws ConfigException if a factory function isn't registered for $name
+	 * @throws UnexpectedValueException if the factory function returns a non-Config object
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	 * @return Config
 	 */
 	public function makeConfig( $name ) {

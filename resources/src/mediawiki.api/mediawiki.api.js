@@ -243,7 +243,11 @@
 					function ( code ) {
 						if ( code === 'badtoken' ) {
 							// Clear from cache
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 							promises[ api.defaults.ajax.url ][ tokenType + 'Token' ] =
+=======
+							deferreds[ api.defaults.ajax.url ][ tokenType + 'Token' ] =
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 								params.token = undefined;
 
 							// Try again, once

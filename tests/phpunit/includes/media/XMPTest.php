@@ -64,6 +64,8 @@ class XMPTest extends MediaWikiTestCase {
 
 		$xmpFiles[] = array( 'doctype-included', 'XMP includes doctype' );
 
+		$xmpFiles[] = array( 'doctype-included', 'XMP includes doctype' );
+
 		foreach ( $xmpFiles as $file ) {
 			$xmp = file_get_contents( $xmpPath . $file[0] . '.xmp' );
 			// I'm not sure if this is the best way to handle getting the

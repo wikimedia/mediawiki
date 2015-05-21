@@ -288,12 +288,16 @@ abstract class JobQueue {
 	 *
 	 * @param Job|array $jobs A single job or an array of Jobs
 	 * @param int $flags Bitfield (supports JobQueue::QOS_ATOMIC)
-	 * @return void
+	 * @return bool Returns false on failure
 	 * @throws JobQueueError
 	 */
 	final public function push( $jobs, $flags = 0 ) {
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 		$jobs = is_array( $jobs ) ? $jobs : array( $jobs );
 		$this->batchPush( $jobs, $flags );
+=======
+		return $this->batchPush( is_array( $jobs ) ? $jobs : array( $jobs ), $flags );
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	}
 
 	/**
@@ -303,8 +307,8 @@ abstract class JobQueue {
 	 *
 	 * @param array $jobs List of Jobs
 	 * @param int $flags Bitfield (supports JobQueue::QOS_ATOMIC)
-	 * @return void
 	 * @throws MWException
+	 * @return bool Returns false on failure
 	 */
 	final public function batchPush( array $jobs, $flags = 0 ) {
 		if ( !count( $jobs ) ) {
@@ -321,14 +325,27 @@ abstract class JobQueue {
 			}
 		}
 
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 		$this->doBatchPush( $jobs, $flags );
 		$this->aggr->notifyQueueNonEmpty( $this->wiki, $this->type );
+=======
+		wfProfileIn( __METHOD__ );
+		$ok = $this->doBatchPush( $jobs, $flags );
+		wfProfileOut( __METHOD__ );
+
+		return $ok;
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	}
 
 	/**
 	 * @see JobQueue::batchPush()
 	 * @param array $jobs
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	 * @param int $flags
+=======
+	 * @param $flags
+	 * @return bool
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	 */
 	abstract protected function doBatchPush( array $jobs, $flags );
 
@@ -382,19 +399,28 @@ abstract class JobQueue {
 	 * Outside callers should use JobQueueGroup::ack() instead of this function.
 	 *
 	 * @param Job $job
-	 * @return void
 	 * @throws MWException
+	 * @return bool
 	 */
 	final public function ack( Job $job ) {
 		if ( $job->getType() !== $this->type ) {
 			throw new MWException( "Got '{$job->getType()}' job; expected '{$this->type}'." );
 		}
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 		$this->doAck( $job );
+=======
+		wfProfileIn( __METHOD__ );
+		$ok = $this->doAck( $job );
+		wfProfileOut( __METHOD__ );
+
+		return $ok;
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	}
 
 	/**
 	 * @see JobQueue::ack()
 	 * @param Job $job
+	 * @return bool
 	 */
 	abstract protected function doAck( Job $job );
 
@@ -513,17 +539,26 @@ abstract class JobQueue {
 	/**
 	 * Deleted all unclaimed and delayed jobs from the queue
 	 *
+	 * @return bool Success
 	 * @throws JobQueueError
 	 * @since 1.22
-	 * @return void
 	 */
 	final public function delete() {
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 		$this->doDelete();
+=======
+		wfProfileIn( __METHOD__ );
+		$res = $this->doDelete();
+		wfProfileOut( __METHOD__ );
+
+		return $res;
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	}
 
 	/**
 	 * @see JobQueue::delete()
 	 * @throws MWException
+	 * @return bool Success
 	 */
 	protected function doDelete() {
 		throw new MWException( "This method is not implemented." );

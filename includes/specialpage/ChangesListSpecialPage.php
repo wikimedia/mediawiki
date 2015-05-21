@@ -54,7 +54,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		if ( $rows === false ) {
 			if ( !$this->including() ) {
 				$this->doHeader( $opts, 0 );
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 				$this->getOutput()->setStatusCode( 404 );
+=======
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 			}
 
 			return;

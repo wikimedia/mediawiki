@@ -247,12 +247,16 @@ class SqlBagOStuff extends BagOStuff {
 					$res = $db->select( $tableName,
 						array( 'keyname', 'value', 'exptime' ),
 						array( 'keyname' => $tableKeys ),
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 						__METHOD__,
 						// Approximate write-on-the-fly BagOStuff API via blocking.
 						// This approximation fails if a ROLLBACK happens (which is rare).
 						// We do not want to flush the TRX as that can break callers.
 						$db->trxLevel() ? array( 'LOCK IN SHARE MODE' ) : array()
 					);
+=======
+						__METHOD__ );
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 					if ( $res === false ) {
 						continue;
 					}

@@ -165,6 +165,7 @@ class OutputPage extends ContextSource {
 	/** @var array */
 	protected $mModuleMessages = array();
 
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	/** @var ResourceLoader */
 	protected $mResourceLoader;
 
@@ -182,6 +183,8 @@ class OutputPage extends ContextSource {
 
 	protected $mFeedLinksAppendQuery = null;
 
+=======
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	/** @var array
 	 * What level of 'untrustworthiness' is allowed in CSS/JS modules loaded on this page?
 	 * @see ResourceLoaderModule::$origin
@@ -1456,10 +1459,23 @@ class OutputPage extends ContextSource {
 			ResourceLoaderModule::TYPE_STYLES,
 			$styleOrigin
 		);
+
+		// Site-wide styles are controlled by a config setting, see bug 71621
+		// for background on why. User styles are never allowed.
+		if ( $this->getConfig()->get( 'AllowSiteCSSOnRestrictedPages' ) ) {
+			$styleOrigin = ResourceLoaderModule::ORIGIN_USER_SITEWIDE;
+		} else {
+			$styleOrigin = ResourceLoaderModule::ORIGIN_CORE_INDIVIDUAL;
+		}
+		$this->reduceAllowedModules(
+			ResourceLoaderModule::TYPE_STYLES,
+			$styleOrigin
+		);
 	}
 
 	/**
-	 * Show what level of JavaScript / CSS untrustworthiness is allowed on this page
+	 * Get the level of JavaScript / CSS untrustworthiness allowed on this page.
+	 *
 	 * @see ResourceLoaderModule::$origin
 	 * @param string $type ResourceLoaderModule TYPE_ constant
 	 * @return int ResourceLoaderModule ORIGIN_ class constant
@@ -2090,6 +2106,16 @@ class OutputPage extends ContextSource {
 	 */
 	public function allowClickjacking() {
 		$this->mPreventClickjacking = false;
+	}
+
+	/**
+	 * Get the prevent-clickjacking flag
+	 *
+	 * @since 1.24
+	 * @return boolean
+	 */
+	public function getPreventClickjacking() {
+		return $this->mPreventClickjacking;
 	}
 
 	/**
@@ -2745,9 +2771,15 @@ class OutputPage extends ContextSource {
 	 *   call rather than a "<script src='...'>" tag.
 	 * @return string The html "<script>", "<link>" and "<style>" tags
 	 */
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	public function makeResourceLoaderLink( $modules, $only, $useESI = false,
 		array $extraQuery = array(), $loadCall = false
 	) {
+=======
+	public function makeResourceLoaderLink( $modules, $only, $useESI = false, array $extraQuery = array(), $loadCall = false ) {
+		global $wgResourceLoaderUseESI;
+
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 		$modules = (array)$modules;
 
 		$links = array(

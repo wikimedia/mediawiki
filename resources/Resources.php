@@ -60,6 +60,8 @@ return array(
 
 	/* MediaWiki base skinning modules */
 
+	/* MediaWiki base skinning modules */
+
 	/**
 	 * Common skin styles, grouped into three graded levels.
 	 *
@@ -101,7 +103,10 @@ return array(
 		),
 	),
 	'mediawiki.skinning.interface' => array(
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 		'class' => 'ResourceLoaderSkinModule',
+=======
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 		// Used in the web installer. Test it after modifying this definition!
 		'styles' => array(
 			'resources/src/mediawiki.skinning/elements.css' => array( 'media' => 'screen' ),
@@ -124,6 +129,61 @@ return array(
 		'styles' => array(
 			'resources/src/mediawiki.skinning/content.externallinks.css' => array( 'media' => 'screen' ),
 		),
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
+=======
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
+	'skins.modern' => array(
+		'styles' => array(
+			'modern/main.css' => array( 'media' => 'screen' ),
+			'modern/print.css' => array( 'media' => 'print' ),
+		),
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
+	'skins.vector.styles' => array(
+		// Used in the web installer. Test it after modifying this definition!
+		'styles' => array(
+			'vector/screen.less' => array( 'media' => 'screen' ),
+			'vector/screen-hd.less' => array( 'media' => 'screen and (min-width: 982px)' ),
+		),
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
+	'skins.monobook.styles' => array(
+		'styles' => array(
+			'monobook/main.css' => array( 'media' => 'screen' ),
+		),
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
+	'skins.vector.js' => array(
+		'scripts' => array(
+			'vector/collapsibleTabs.js',
+			'vector/vector.js',
+		),
+		'position' => 'top',
+		'dependencies' => 'jquery.throttle-debounce',
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+	),
+	'skins.vector.collapsibleNav' => array(
+		'scripts' => array(
+			'vector/collapsibleNav.js',
+		),
+		'messages' => array(
+			'vector-collapsiblenav-more',
+		),
+		'dependencies' => array(
+			'jquery.client',
+			'jquery.cookie',
+			'jquery.tabIndex',
+		),
+		'remoteBasePath' => $GLOBALS['wgStylePath'],
+		'localBasePath' => $GLOBALS['wgStyleDirectory'],
+		'position' => 'bottom',
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	),
 
 	/* jQuery */
@@ -1362,7 +1422,11 @@ return array(
 			'mediawiki.Uri',
 			'mediawiki.util',
 			'jquery.spinner',
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 		),
+=======
+		)
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	),
 
 	/* MediaWiki Special pages */
@@ -1552,7 +1616,13 @@ return array(
 			'colon-separator',
 			'javascripttest-pagetext-skins',
 		) ),
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 		'dependencies' => 'mediawiki.Uri',
+=======
+		'dependencies' => array(
+			'mediawiki.Uri',
+		),
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),

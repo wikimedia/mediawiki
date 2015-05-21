@@ -48,7 +48,14 @@ $wgAutoloadClasses += array(
 	'LessFileCompilationTest' => "$testDir/phpunit/LessFileCompilationTest.php",
 
 	# tests/phpunit/includes
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	'TestingAccessWrapper' => "$testDir/phpunit/includes/TestingAccessWrapper.php",
+=======
+	'BlockTest' => "$testDir/phpunit/includes/BlockTest.php",
+	'RevisionStorageTest' => "$testDir/phpunit/includes/RevisionStorageTest.php",
+	'TestingAccessWrapper' => "$testDir/phpunit/includes/TestingAccessWrapper.php",
+	'WikiPageTest' => "$testDir/phpunit/includes/WikiPageTest.php",
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 
 	# tests/phpunit/includes/api
 	'ApiFormatTestBase' => "$testDir/phpunit/includes/api/format/ApiFormatTestBase.php",

@@ -913,7 +913,11 @@ class LoginForm extends SpecialPage {
 			case self::SUCCESS:
 				# We've verified now, update the real record
 				$user = $this->getUser();
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 				$user->touch();
+=======
+				$user->invalidateCache();
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 
 				if ( $user->requiresHTTPS() ) {
 					$this->mStickHTTPS = true;

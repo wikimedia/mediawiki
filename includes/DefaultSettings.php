@@ -75,7 +75,11 @@ $wgConfigRegistry = array(
  * MediaWiki version number
  * @since 1.2
  */
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 $wgVersion = '1.25.0-rc.1';
+=======
+$wgVersion = '1.23.9';
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 
 /**
  * Name of the site. It must be changed in LocalSettings.php
@@ -3609,6 +3613,17 @@ $wgResourceLoaderStorageVersion = 1;
  * @since 1.25
  */
 $wgAllowSiteCSSOnRestrictedPages = false;
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
+=======
+
+/**
+ * When OutputHandler is used, mangle any output that contains
+ * <cross-domain-policy>. Without this, an attacker can send their own
+ * cross-domain policy unless it is prevented by the crossdomain.xml file at
+ * the domain root.
+ */
+$wgMangleFlashPolicy = true;
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 
 /** @} */ # End of resource loader settings }
 

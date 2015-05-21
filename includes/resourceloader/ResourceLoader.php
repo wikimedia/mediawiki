@@ -1592,6 +1592,7 @@ MESSAGE;
 	 * @since 1.22
 	 * @return array Map of variable names to string CSS values.
 	 */
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	public static function getLessVars( Config $config ) {
 		if ( !self::$lessVars ) {
 			$lessVars = $config->get( 'ResourceLoaderLESSVars' );
@@ -1601,5 +1602,14 @@ MESSAGE;
 			self::$lessVars = $lessVars;
 		}
 		return self::$lessVars;
+=======
+	public static function getLESSVars() {
+		global $wgResourceLoaderLESSVars;
+
+		$lessVars = $wgResourceLoaderLESSVars;
+		// Sort by key to ensure consistent hashing for cache lookups.
+		ksort( $lessVars );
+		return $lessVars;
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	}
 }

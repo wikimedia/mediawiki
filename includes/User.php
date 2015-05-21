@@ -1301,6 +1301,7 @@ class User implements IDBAccessObject {
 		}
 
 		if ( isset( $row->user_password ) ) {
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 			// Check for *really* old password hashes that don't even have a type
 			// The old hash format was just an md5 hex hash, with no type information
 			if ( preg_match( '/^[0-9a-f]{32}$/', $row->user_password ) ) {
@@ -1326,6 +1327,11 @@ class User implements IDBAccessObject {
 		}
 
 		if ( isset( $row->user_email ) ) {
+=======
+			$this->mPassword = $row->user_password;
+			$this->mNewpassword = $row->user_newpassword;
+			$this->mNewpassTime = wfTimestampOrNull( TS_MW, $row->user_newpass_time );
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 			$this->mEmail = $row->user_email;
 			$this->mTouched = wfTimestamp( TS_MW, $row->user_touched );
 			$this->mToken = $row->user_token;
@@ -5069,8 +5075,12 @@ class User implements IDBAccessObject {
 				$keysDelete[] = $row->up_property;
 			}
 		}
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 
 		if ( count( $keysDelete ) ) {
+=======
+		if ( count( $priorKeys ) ) {
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 			// Do the DELETE by PRIMARY KEY for prior rows.
 			// In the past a very large portion of calls to this function are for setting
 			// 'rememberpassword' for new accounts (a preference that has since been removed).

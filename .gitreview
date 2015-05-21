@@ -2,5 +2,9 @@
 host=gerrit.wikimedia.org
 port=29418
 project=mediawiki/core.git
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 defaultbranch=fundraising/REL1_25
+=======
+defaultbranch=fundraising/REL1_23
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 defaultrebase=0

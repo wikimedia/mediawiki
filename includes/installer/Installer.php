@@ -224,7 +224,11 @@ abstract class Installer {
 
 		// $wgLogo is probably wrong (bug 48084); set something that will work.
 		// Single quotes work fine here, as LocalSettingsGenerator outputs this unescaped.
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 		'wgLogo' => '$wgScriptPath/resources/assets/wiki.png',
+=======
+		'wgLogo' => '$wgStylePath/common/images/wiki.png',
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	);
 
 	/**
@@ -539,6 +543,13 @@ abstract class Installer {
 		// @see https://bugzilla.wikimedia.org/67440
 		global $wgAutoloadClasses;
 		$wgAutoloadClasses = array();
+
+		// You might be wondering why this is here. Well if you don't do this
+		// then some poorly-formed extensions try to call their own classes
+		// after immediately registering them. We really need to get extension
+		// registration out of the global scope and into a real format.
+		// @see https://bugzilla.wikimedia.org/67440
+		global $wgAutoloadClasses;
 
 		wfSuppressWarnings();
 		$_lsExists = file_exists( "$IP/LocalSettings.php" );

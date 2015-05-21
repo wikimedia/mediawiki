@@ -94,6 +94,19 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			case self::EDIT_CLEAR:
 				$out->setPageTitle( $this->msg( 'watchlistedit-clear-title' ) );
 				$form = $this->getClearForm();
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
+=======
+				if ( $form->show() ) {
+					$out->addHTML( $this->successMessage );
+					$out->addReturnTo( SpecialPage::getTitleFor( 'Watchlist' ) );
+				}
+				break;
+
+			case self::EDIT_NORMAL:
+			default:
+				$out->setPageTitle( $this->msg( 'watchlistedit-normal-title' ) );
+				$form = $this->getNormalForm();
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 				if ( $form->show() ) {
 					$out->addHTML( $this->successMessage );
 					$out->addReturnTo( SpecialPage::getTitleFor( 'Watchlist' ) );
@@ -230,6 +243,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		return true;
 	}
 
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	public function submitClear( $data ) {
 		$current = $this->getWatchlist();
 		$this->clearWatchlist();
@@ -241,6 +255,19 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 		return true;
 	}
+=======
+      public function submitClear( $data ) {
+		$current = $this->getWatchlist();
+		$this->clearWatchlist();
+		$this->getUser()->invalidateCache();
+			$this->successMessage = $this->msg( 'watchlistedit-clear-done' )->parse();
+		$this->successMessage .= ' ' . $this->msg( 'watchlistedit-clear-removed' )
+			->numParams( count( $current ) )->parse();
+		$this->showTitles( $current, $this->successMessage );
+
+		return true;
+}
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 
 	/**
 	 * Print out a list of linked titles
@@ -255,8 +282,13 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$talk = $this->msg( 'talkpagelinktext' )->escaped();
 		// Do a batch existence check
 		$batch = new LinkBatch();
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 		if ( count( $titles ) >= 100 ) {
 			$output = $this->msg( 'watchlistedit-too-many' )->parse();
+=======
+		if (count($titles) >= 100) {
+			$output = wfMessage( 'watchlistedit-too-many' )->parse();
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 			return;
 		}
 		foreach ( $titles as $title ) {
@@ -700,7 +732,10 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$form->setWrapperLegendMsg( 'watchlistedit-clear-legend' );
 		$form->addHeaderText( $this->msg( 'watchlistedit-clear-explain' )->parse() );
 		$form->setSubmitCallback( array( $this, 'submitClear' ) );
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 		$form->setSubmitDestructive();
+=======
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 
 		return $form;
 	}

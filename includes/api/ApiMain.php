@@ -458,6 +458,7 @@ class ApiMain extends ApiBase {
 		// Bug 63145: Rollback any open database transactions
 		if ( !( $e instanceof UsageException ) ) {
 			// UsageExceptions are intentional, so don't rollback if that's the case
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 			try {
 				MWExceptionHandler::rollbackMasterChangesAndLog( $e );
 			} catch ( DBError $e2 ) {
@@ -465,6 +466,9 @@ class ApiMain extends ApiBase {
 				// our regularly scheduled exception handling.
 				MWExceptionHandler::logException( $e2 );
 			}
+=======
+			MWExceptionHandler::rollbackMasterChangesAndLog( $e );
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 		}
 
 		// Allow extra cleanup and logging

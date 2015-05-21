@@ -129,8 +129,14 @@ class WebInstallerOutput {
 		$moduleNames = array(
 			// See SkinTemplate::setupSkinUserCss
 			'mediawiki.legacy.shared',
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 			// See Vector::setupSkinUserCss
 			'mediawiki.skinning.interface',
+=======
+			'mediawiki.skinning.interface',
+			'skins.vector.styles',
+			'mediawiki.legacy.config',
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 		);
 
 		$resourceLoader = new ResourceLoader();

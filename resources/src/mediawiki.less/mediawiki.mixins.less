@@ -20,7 +20,10 @@
 	background-size: @width @height;
 }
 
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 
+=======
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 .vertical-gradient(@startColor: gray, @endColor: white, @startPos: 0, @endPos: 100%) {
 	background-color: @endColor;
 	background-image: -moz-linear-gradient( top, @startColor @startPos, @endColor @endPos ); // Firefox 3.6+
@@ -29,6 +32,7 @@
 	background-image: linear-gradient( @startColor @startPos, @endColor @endPos ); // Standard
 }
 
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 // SVG support using a transparent gradient to guarantee cross-browser
 // compatibility (browsers able to understand gradient syntax support also SVG).
 // http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique
@@ -38,11 +42,36 @@
 // We do not embed the fallback image on the assumption that the gain for old browsers
 // is not worth the harm done to modern ones.
 .background-image-svg(@svg, @fallback) {
+=======
+/*
+ * SVG support using a transparent gradient to guarantee cross-browser
+ * compatibility (browsers able to understand gradient syntax support also SVG).
+ * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique
+ *
+ * We use gzip compression, which means that it is okay to embed twice.
+ *
+ * We do not embed the fallback image on the assumption that the gain for old browsers
+ * is not worth the harm done to modern ones.
+ */
+.background-image-svg(@svg, @fallback) when (embeddable(@svg)) {
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	background-image: url(@fallback);
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	background-image: -webkit-linear-gradient(transparent, transparent), e('/* @embed */') url(@svg);
 	background-image: linear-gradient(transparent, transparent), e('/* @embed */') url(@svg);
 	// Do not serve SVG to Opera 12, bad rendering with border-radius or background-size (T87504)
 	background-image: -o-linear-gradient(transparent, transparent), url(@fallback);
+=======
+	/* We don't need the !ie hack because this old IE uses the fallback already */
+	background-image: -webkit-linear-gradient(transparent, transparent), embed(@svg);
+	background-image: linear-gradient(transparent, transparent), embed(@svg);
+}
+
+.background-image-svg(@svg, @fallback) when not (embeddable(@svg)) {
+	background-image: url(@fallback);
+	background-image: -webkit-linear-gradient(transparent, transparent), url(@svg);
+	background-image: linear-gradient(transparent, transparent), url(@svg);
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 }
 
 .list-style-image(@url) {
@@ -89,4 +118,10 @@
 	-webkit-column-break-inside: avoid; // Chrome Any, Safari 3+, Opera 11.1+
 	page-break-inside: avoid; // Firefox 1.5+
 	break-inside: avoid-column; // IE 10+
+}
+
+.box-sizing(@value) {
+	-moz-box-sizing: @value;
+	-webkit-box-sizing: @value;
+	box-sizing: @value;
 }

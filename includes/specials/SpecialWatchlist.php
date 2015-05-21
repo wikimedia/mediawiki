@@ -49,7 +49,11 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			if ( $mode === SpecialEditWatchlist::EDIT_RAW ) {
 				$title = SpecialPage::getTitleFor( 'EditWatchlist', 'raw' );
 			} elseif ( $mode === SpecialEditWatchlist::EDIT_CLEAR ) {
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 				$title = SpecialPage::getTitleFor( 'EditWatchlist', 'clear' );
+=======
+                                $title = SpecialPage::getTitleFor( 'EditWatchlist', 'clear' );
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 			} else {
 				$title = SpecialPage::getTitleFor( 'EditWatchlist' );
 			}
@@ -333,6 +337,14 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$lag = wfGetLB()->safeGetLag( $dbr );
 		if ( $lag > 0 ) {
 			$output->showLagWarning( $lag );
+		}
+
+		# If no rows to display, show message before try to render the list
+		if ( $rows->numRows() == 0 ) {
+			$output->wrapWikiMsg(
+				"<div class='mw-changeslist-empty'>\n$1\n</div>", 'recentchanges-noresult'
+			);
+			return;
 		}
 
 		# If no rows to display, show message before try to render the list

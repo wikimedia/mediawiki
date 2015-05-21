@@ -2864,7 +2864,10 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 		@trigger_error( '' );
 		$numReadyPipes = @stream_select( $readyPipes, $emptyArray, $emptyArray, $timeout );
 		if ( $numReadyPipes === false ) {
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 			// @codingStandardsIgnoreEnd
+=======
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 			$error = error_get_last();
 			if ( strncmp( $error['message'], $eintrMessage, strlen( $eintrMessage ) ) == 0 ) {
 				continue;

@@ -35,6 +35,7 @@ class ApiFormatPhp extends ApiFormatBase {
 	}
 
 	public function execute() {
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 		$params = $this->extractRequestParams();
 
 		switch ( $params['formatversion'] ) {
@@ -58,6 +59,9 @@ class ApiFormatPhp extends ApiFormatBase {
 				$this->dieUsage( __METHOD__ . ': Unknown value for \'formatversion\'', 'unknownformatversion' );
 		}
 		$text = serialize( $this->getResult()->getResultData( null, $transforms ) );
+=======
+		$text = serialize( $this->getResultData() );
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 
 		// Bug 66776: wfMangleFlashPolicy() is needed to avoid a nasty bug in
 		// Flash, but what it does isn't friendly for the API. There's nothing

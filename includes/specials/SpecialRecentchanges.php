@@ -367,6 +367,11 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @param int $numRows Number of rows in the result to show after this header
 	 */
 	public function doHeader( $opts, $numRows ) {
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
+=======
+		global $wgScript;
+
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 		$this->setTopText( $opts );
 
 		$defaults = $opts->getAllValues();

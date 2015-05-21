@@ -97,10 +97,23 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		}
 		$mysqli->options( MYSQLI_OPT_CONNECT_TIMEOUT, 3 );
 
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 		if ( $mysqli->real_connect( $realServer, $this->mUser,
 			$this->mPassword, $this->mDBname, $port, $socket, $connFlags )
 		) {
 			return $mysqli;
+=======
+		$numAttempts = 2;
+		for ( $i = 0; $i < $numAttempts; $i++ ) {
+			if ( $i > 1 ) {
+				usleep( 1000 );
+			}
+			if ( $mysqli->real_connect( $realServer, $this->mUser,
+				$this->mPassword, $this->mDBname, $port, $socket, $connFlags )
+			) {
+				return $mysqli;
+			}
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 		}
 
 		return false;

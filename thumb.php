@@ -313,11 +313,20 @@ function wfStreamThumb( array $params ) {
 	}
 
 	$user = RequestContext::getMain()->getUser();
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	if ( !wfThumbIsStandard( $img, $params ) && $user->pingLimiter( 'renderfile-nonstandard' ) ) {
+=======
+	if ( $user->pingLimiter( 'renderfile' ) ) {
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 		wfThumbError( 500, wfMessage( 'actionthrottledtext' )->parse() );
 		return;
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	} elseif ( $user->pingLimiter( 'renderfile' ) ) {
 		wfThumbError( 500, wfMessage( 'actionthrottledtext' )->parse() );
+=======
+	} elseif ( wfThumbIsAttemptThrottled( $img, $thumbName, 5 ) ) {
+		wfThumbError( 500, wfMessage( 'thumbnail_image-failure-limit', 5 )->parse() );
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 		return;
 	}
 
@@ -547,7 +556,11 @@ function wfExtractThumbParams( $file, $params ) {
 /**
  * Output a thumbnail generation error message
  *
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
  * @param int $status
+=======
+ * @param $status integer
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
  * @param string $msg HTML
  * @return void
  */

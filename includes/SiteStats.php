@@ -275,7 +275,11 @@ class SiteStatsInit {
 
 	// Various stats
 	private $mEdits = null, $mArticles = null, $mPages = null;
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	private $mUsers = null, $mFiles = null;
+=======
+	private $mUsers = null, $mViews = null, $mFiles = null;
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 
 	/**
 	 * Constructor
@@ -389,7 +393,12 @@ class SiteStatsInit {
 	}
 
 	/**
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	 * Refresh site_stats
+=======
+	 * Refresh site_stats. If you want ss_total_views to be updated, be sure to
+	 * call views() first.
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	 */
 	public function refresh() {
 		$values = array(
@@ -399,6 +408,11 @@ class SiteStatsInit {
 			'ss_total_pages' => ( $this->mPages === null ? $this->pages() : $this->mPages ),
 			'ss_users' => ( $this->mUsers === null ? $this->users() : $this->mUsers ),
 			'ss_images' => ( $this->mFiles === null ? $this->files() : $this->mFiles ),
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
+=======
+		) + (
+			$this->mViews ? array( 'ss_total_views' => $this->mViews ) : array()
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 		);
 
 		$dbw = wfGetDB( DB_MASTER );

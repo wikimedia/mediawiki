@@ -2,6 +2,7 @@
 
 class GlobalVarConfigTest extends MediaWikiTestCase {
 
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	/**
 	 * @covers GlobalVarConfig::newInstance
 	 */
@@ -92,5 +93,37 @@ class GlobalVarConfigTest extends MediaWikiTestCase {
 			// Will be reset after this test is over
 			$this->stashMwGlobals( $var );
 		}
+=======
+	public function provideGet() {
+		$set = array(
+			'wgSomething' => 'default1',
+			'wgFoo' => 'default2',
+			'efVariable' => 'default3',
+			'BAR' => 'default4',
+		);
+
+		foreach ( $set as $var => $value ) {
+			$GLOBALS[$var] = $value;
+		}
+
+		return array(
+			array( 'Something', 'wg', 'default1' ),
+			array( 'Foo', 'wg', 'default2' ),
+			array( 'Variable', 'ef', 'default3' ),
+			array( 'BAR', '', 'default4' ),
+		);
+	}
+
+	/**
+	 * @param string $name
+	 * @param string $prefix
+	 * @param string $expected
+	 * @dataProvider provideGet
+	 * @covers GlobalVarConfig::get
+	 */
+	public function testGet( $name, $prefix, $expected ) {
+		$config = new GlobalVarConfig( $prefix );
+		$this->assertEquals( $config->get( $name ), $expected );
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	}
 }

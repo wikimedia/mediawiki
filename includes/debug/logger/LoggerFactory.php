@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Logger;
 
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 use ObjectFactory;
 
 /**
@@ -111,6 +112,32 @@ class LoggerFactory {
 		return self::getProvider()->getLogger( $channel );
 	}
 
+=======
+/**
+ * Backwards compatible PSR-3 logger instance factory.
+ *
+ * PSR-3 debug logging was introduced to MediaWiki in 1.25. This class
+ * provides a backward compatible PSR-3 logging layer to make backporting
+ * critical updates from 1.25+ easier. It also serves to allow extensions that
+ * maintain backwards compatibility with the 1.23 LTS releases to migrate to
+ * the new logging system.
+ *
+ * @since 1.23.10
+ * @author Bryan Davis <bd808@wikimedia.org>
+ * @copyright © 2015 Bryan Davis and Wikimedia Foundation.
+ */
+class LoggerFactory {
+
+	/**
+	 * Get a named logger instance.
+	 *
+	 * @param string $channel Logger channel (name)
+	 * @return \Psr\Log\LoggerInterface
+	 */
+	public static function getInstance( $channel ) {
+		return new BackcompatLogger( $channel );
+	}
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 
 	/**
 	 * Construction of utility class is not allowed.

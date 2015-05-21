@@ -85,7 +85,11 @@ class ApiLogin extends ApiBase {
 			case LoginForm::SUCCESS:
 				$user = $context->getUser();
 				$this->getContext()->setUser( $user );
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 				$user->setCookies( $this->getRequest(), null, true );
+=======
+				$user->setCookies( $this->getRequest() );
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 
 				ApiQueryInfo::resetTokenCache();
 

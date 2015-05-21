@@ -99,6 +99,7 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'addField', 'user', 'user_password_expires', 'patch-user_password_expire.sql' ),
 			array( 'addField', 'page', 'page_links_updated', 'patch-page_links_updated.sql' ),
 			array( 'addField', 'recentchanges', 'rc_source', 'patch-rc_source.sql' ),
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 
 			// 1.24
 			array( 'addField', 'page', 'page_lang', 'patch-page-page_lang.sql' ),
@@ -107,6 +108,8 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'dropTable', 'hitcounter' ),
 			array( 'dropField', 'site_stats', 'ss_total_views', 'patch-drop-ss_total_views.sql' ),
 			array( 'dropField', 'page', 'page_counter', 'patch-drop-page_counter.sql' ),
+=======
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 
 			// KEEP THIS AT THE BOTTOM!!
 			array( 'doRebuildDuplicateFunction' ),

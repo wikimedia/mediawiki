@@ -37,11 +37,23 @@ interface Config {
 	public function get( $name );
 
 	/**
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	 * Check whether a configuration option is set for the given name
 	 *
 	 * @param string $name Name of configuration option
 	 * @return bool
 	 * @since 1.24
+=======
+	 * Set a configuration variable such a "Sitename" to something like "My Wiki"
+	 *
+	 * @param string $name Name of configuration option
+	 * @param mixed $value Value to set
+	 * @throws ConfigException
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	 */
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	public function has( $name );
+=======
+	public function set( $name, $value );
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 }

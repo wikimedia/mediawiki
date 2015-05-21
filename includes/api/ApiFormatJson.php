@@ -65,6 +65,7 @@ class ApiFormatJson extends ApiFormatBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 
 		$opt = 0;
 		if ( $this->isRaw ) {
@@ -108,6 +109,26 @@ class ApiFormatJson extends ApiFormatBase {
 
 		if ( isset( $params['callback'] ) ) {
 			$callback = preg_replace( "/[^][.\\'\\\"_A-Za-z0-9]/", '', $params['callback'] );
+=======
+		$json = FormatJson::encode(
+			$this->getResultData(),
+			$this->getIsHtml(),
+			$params['utf8'] ? FormatJson::ALL_OK : FormatJson::XMLMETA_OK
+		);
+
+		// Bug 66776: wfMangleFlashPolicy() is needed to avoid a nasty bug in
+		// Flash, but what it does isn't friendly for the API, so we need to
+		// work around it.
+		if ( preg_match( '/\<\s*cross-domain-policy\s*\>/i', $json ) ) {
+			$json = preg_replace(
+				'/\<(\s*cross-domain-policy\s*)\>/i', '\\u003C$1\\u003E', $json
+			);
+		}
+
+		$callback = $params['callback'];
+		if ( $callback !== null ) {
+			$callback = preg_replace( "/[^][.\\'\\\"_A-Za-z0-9]/", '', $callback );
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 			# Prepend a comment to try to avoid attacks against content
 			# sniffers, such as bug 68187.
 			$this->printText( "/**/$callback($json)" );

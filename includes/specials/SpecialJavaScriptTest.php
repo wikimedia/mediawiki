@@ -26,7 +26,11 @@
  */
 class SpecialJavaScriptTest extends SpecialPage {
 	/**
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	 * @var array Supported frameworks.
+=======
+	* @var array Supported frameworks.
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	 */
 	private static $frameworks = array(
 		'qunit',
@@ -149,7 +153,13 @@ class SpecialJavaScriptTest extends SpecialPage {
 	 * Rendered by OutputPage and Skin.
 	 */
 	private function viewQUnit() {
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
+=======
+		global $wgJavaScriptTestConfig;
+
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 		$out = $this->getOutput();
+		$testConfig = $wgJavaScriptTestConfig;
 
 		$modules = $out->getResourceLoader()->getTestModuleNames( 'qunit' );
 
@@ -162,9 +172,13 @@ class SpecialJavaScriptTest extends SpecialPage {
 <div id="qunit"></div>
 </div>
 HTML;
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 
 		$out->addHtml( $this->wrapSummaryHtml( $summary ) . $baseHtml );
+=======
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 		// The testrunner configures QUnit and essentially depends on it. However, test suites
 		// are reusable in environments that preload QUnit (or a compatibility interface to
 		// another framework). Therefore we have to load it ourselves.
@@ -200,7 +214,15 @@ HTML;
 			'lang' => $this->getLanguage()->getCode(),
 			'skin' => $this->getSkin()->getSkinName(),
 			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
+=======
+		// Used in ./tests/qunit/data/testrunner.js, see also documentation of
+		// $wgJavaScriptTestConfig in DefaultSettings.php
+		$out->addJsConfigVars(
+			'QUnitTestSwarmInjectJSPath',
+			$testConfig['qunit']['testswarm-injectjs']
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 		);
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 		$embedContext = new ResourceLoaderContext( $rl, new FauxRequest( $query ) );
 		$query['only'] = 'scripts';
 		$startupContext = new ResourceLoaderContext( $rl, new FauxRequest( $query ) );
@@ -270,6 +292,104 @@ HTML;
 	 */
 	public function getSubpagesForPrefixSearch() {
 		return self::$frameworks;
+=======
+
+		$out->addHtml( $this->wrapSummaryHtml( $summary ) . $baseHtml );
+
+		// The testrunner configures QUnit and essentially depends on it. However, test suites
+		// are reusable in environments that preload QUnit (or a compatibility interface to
+		// another framework). Therefore we have to load it ourselves.
+		$out->addHtml( Html::inlineScript(
+			ResourceLoader::makeLoaderConditionalScript(
+				Xml::encodeJsCall( 'mw.loader.using', array(
+					array( 'jquery.qunit', 'jquery.qunit.completenessTest' ),
+					new XmlJsCode(
+						'function () {' . Xml::encodeJsCall( 'mw.loader.load', array( $modules ) ) . '}'
+					)
+				) )
+			)
+		) );
+	}
+
+	/**
+	 * Generate self-sufficient JavaScript payload to run the tests elsewhere.
+	 *
+	 * Includes startup module to request modules from ResourceLoader.
+	 *
+	 * Note: This modifies the registry to replace 'jquery.qunit' with an
+	 * empty module to allow external environment to preload QUnit with any
+	 * neccecary framework adapters (e.g. Karma). Loading it again would
+	 * re-define QUnit and dereference event handlers from Karma.
+	 */
+	private function exportQUnit() {
+		$out = $this->getOutput();
+
+		$out->disable();
+
+		$rl = $out->getResourceLoader();
+
+		$query = array(
+			'lang' => $this->getLanguage()->getCode(),
+			'skin' => $this->getSkin()->getSkinName(),
+			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
+		);
+		$embedContext = new ResourceLoaderContext( $rl, new FauxRequest( $query ) );
+		$query['only'] = 'scripts';
+		$startupContext = new ResourceLoaderContext( $rl, new FauxRequest( $query ) );
+
+		$modules = $rl->getTestModuleNames( 'qunit' );
+
+		// The below is essentially a pure-javascript version of OutputPage::getHeadScripts.
+		$startup = $rl->makeModuleResponse( $startupContext, array(
+			'startup' => $rl->getModule( 'startup' ),
+		) );
+		// Embed page-specific mw.config variables.
+		// The current Special page shouldn't be relevant to tests, but various modules (which
+		// are loaded before the test suites), reference mw.config while initialising.
+		$code = ResourceLoader::makeConfigSetScript( $out->getJSVars() );
+		// Embed private modules as they're not allowed to be loaded dynamically
+		$code .= $rl->makeModuleResponse( $embedContext, array(
+			'user.options' => $rl->getModule( 'user.options' ),
+			'user.tokens' => $rl->getModule( 'user.tokens' ),
+		) );
+		$code .= Xml::encodeJsCall( 'mw.loader.load', array( $modules ) );
+
+		header( 'Content-Type: text/javascript; charset=utf-8' );
+		header( 'Cache-Control: private, no-cache, must-revalidate' );
+		header( 'Pragma: no-cache' );
+		echo $startup;
+		echo "\n";
+		// Note: The following has to be wrapped in a script tag because the startup module also
+		// writes a script tag (the one loading mediawiki.js). Script tags are synchronous, block
+		// each other, and run in order. But they don't nest. The code appended after the startup
+		// module runs before the added script tag is parsed and executed.
+		echo Xml::encodeJsCall( 'document.write', array( Html::inlineScript( $code  ) ) );
+	}
+
+	private function plainQUnit() {
+		$out = $this->getOutput();
+		$out->disable();
+
+		$url = $this->getPageTitle( 'qunit/export' )->getFullURL( array(
+			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
+		) );
+
+		$styles = $out->makeResourceLoaderLink( 'jquery.qunit', ResourceLoaderModule::TYPE_STYLES, false );
+		// Use 'raw' since this is a plain HTML page without ResourceLoader
+		$scripts = $out->makeResourceLoaderLink( 'jquery.qunit', ResourceLoaderModule::TYPE_SCRIPTS, false, array( 'raw' => 'true' ) );
+
+		$head = trim( $styles['html'] . $scripts['html'] );
+		$html = <<<HTML
+<!DOCTYPE html>
+<title>QUnit</title>
+$head
+<div id="qunit"></div>
+HTML;
+		$html .= "\n" . Html::linkedScript( $url );
+
+		header( 'Content-Type: text/html; charset=utf-8' );
+		echo $html;
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	}
 
 	protected function getGroupName() {

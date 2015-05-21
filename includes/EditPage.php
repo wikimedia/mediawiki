@@ -163,6 +163,12 @@ class EditPage {
 	const AS_CHANGE_TAG_ERROR = 237;
 
 	/**
+	 * Status: user tried to modify the content model, but is not allowed to do that
+	 * ( User::isAllowed('editcontentmodel') == false )
+	 */
+	const AS_NO_CHANGE_CONTENT_MODEL = 235;
+
+	/**
 	 * Status: can't parse content
 	 */
 	const AS_PARSE_ERROR = 240;
@@ -1668,6 +1674,15 @@ class EditPage {
 			}
 		}
 
+		if ( $this->contentModel !== $this->mTitle->getContentModel()
+			&& !$wgUser->isAllowed( 'editcontentmodel' )
+		) {
+			$status->setResult( false, self::AS_NO_CHANGE_CONTENT_MODEL );
+			wfProfileOut( __METHOD__ . '-checks' );
+			wfProfileOut( __METHOD__ );
+			return $status;
+		}
+
 		if ( wfReadOnly() ) {
 			$status->fatal( 'readonlytext' );
 			$status->value = self::AS_READ_ONLY_PAGE;
@@ -2709,18 +2724,28 @@ class EditPage {
 				}
 				if ( $this->getTitle()->isSubpageOf( $wgUser->getUserPage() ) ) {
 					if ( $this->formtype !== 'preview' ) {
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 						if ( $this->isCssSubpage && $wgAllowUserCss ) {
 							$wgOut->wrapWikiMsg(
 								"<div id='mw-usercssyoucanpreview'>\n$1\n</div>",
 								array( 'usercssyoucanpreview' )
 							);
+=======
+						if ( $this->isCssSubpage ) {
+							$wgOut->wrapWikiMsg( "<div id='mw-usercssyoucanpreview'>\n$1\n</div>", array( 'usercssyoucanpreview' ) );
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 						}
 
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 						if ( $this->isJsSubpage && $wgAllowUserJs ) {
 							$wgOut->wrapWikiMsg(
 								"<div id='mw-userjsyoucanpreview'>\n$1\n</div>",
 								array( 'userjsyoucanpreview' )
 							);
+=======
+						if ( $this->isJsSubpage ) {
+							$wgOut->wrapWikiMsg( "<div id='mw-userjsyoucanpreview'>\n$1\n</div>", array( 'userjsyoucanpreview' ) );
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 						}
 					}
 				}
@@ -3530,26 +3555,40 @@ HTML
 				}
 			}
 
-			# If we're adding a comment, we need to show the
-			# summary as the headline
-			if ( $this->section === "new" && $this->summary !== "" ) {
-				$content = $content->addSectionHeader( $this->summary );
-			}
+			$rt = $content->getRedirectChain();
+			if ( $rt ) {
+				$previewHTML = $this->mArticle->viewRedirect( $rt, false );
+			} else {
 
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 			$hook_args = array( $this, &$content );
 			ContentHandler::runLegacyHooks( 'EditPageGetPreviewText', $hook_args );
 			Hooks::run( 'EditPageGetPreviewContent', $hook_args );
+=======
+				# If we're adding a comment, we need to show the
+				# summary as the headline
+				if ( $this->section === "new" && $this->summary !== "" ) {
+					$content = $content->addSectionHeader( $this->summary );
+				}
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 
-			$parserOptions->enableLimitReport();
+				$hook_args = array( $this, &$content );
+				ContentHandler::runLegacyHooks( 'EditPageGetPreviewText', $hook_args );
+				wfRunHooks( 'EditPageGetPreviewContent', $hook_args );
 
-			# For CSS/JS pages, we should have called the ShowRawCssJs hook here.
-			# But it's now deprecated, so never mind
+				$parserOptions->enableLimitReport();
 
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 			$pstContent = $content->preSaveTransform( $this->mTitle, $wgUser, $parserOptions );
 			$scopedCallback = $parserOptions->setupFakeRevision(
 				$this->mTitle, $pstContent, $wgUser );
 			$parserOutput = $pstContent->getParserOutput( $this->mTitle, null, $parserOptions );
+=======
+				# For CSS/JS pages, we should have called the ShowRawCssJs hook here.
+				# But it's now deprecated, so never mind
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 			# Try to stash the edit for the final submission step
 			# @todo: different date format preferences cause cache misses
 			ApiStashEdit::stashEditFromPreview(
@@ -3561,9 +3600,18 @@ HTML
 			$previewHTML = $parserOutput->getText();
 			$this->mParserOutput = $parserOutput;
 			$wgOut->addParserOutputMetadata( $parserOutput );
+=======
+				$content = $content->preSaveTransform( $this->mTitle, $wgUser, $parserOptions );
+				$parserOutput = $content->getParserOutput( $this->getArticle()->getTitle(), null, $parserOptions );
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 
-			if ( count( $parserOutput->getWarnings() ) ) {
-				$note .= "\n\n" . implode( "\n\n", $parserOutput->getWarnings() );
+				$previewHTML = $parserOutput->getText();
+				$this->mParserOutput = $parserOutput;
+				$wgOut->addParserOutputNoText( $parserOutput );
+
+				if ( count( $parserOutput->getWarnings() ) ) {
+					$note .= "\n\n" . implode( "\n\n", $parserOutput->getWarnings() );
+				}
 			}
 		} catch ( MWContentSerializationException $ex ) {
 			$m = wfMessage(

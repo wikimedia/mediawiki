@@ -136,7 +136,54 @@
 				if ( state && state.tag === 'mw-pagination' ) {
 					switchPage( location.href, true );
 				}
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 			} );
+=======
+			}
+		} );
+	}
+
+	function ajaxifyPageNavigation() {
+		// Intercept the default action of the links in the thumbnail navigation
+		$( '.multipageimagenavbox' ).one( 'click', 'a', function ( e ) {
+			var page, uri;
+
+			// Generate the same URL on client side as the one generated in ImagePage::openShowImage.
+			// We avoid using the URL in the link directly since it could have been manipulated (bug 66608)
+			page = Number( mw.util.getParamValue( 'page', this.href ) );
+			uri = new mw.Uri( mw.util.wikiScript() )
+				.extend( { title: mw.config.get( 'wgPageName' ), page: page } )
+				.toString();
+
+			loadPage( uri );
+			e.preventDefault();
+		} );
+
+		// Prevent the submission of the page select form and instead call loadPage
+		$( 'form[name="pageselector"]' ).one( 'change submit', function ( e ) {
+			loadPage( this.action + '?' + $( this ).serialize() );
+			e.preventDefault();
+		} );
+	}
+
+	$( document ).ready( function () {
+		// The presence of table.multipageimage signifies that this file is a multi-page image
+		if ( mw.config.get( 'wgNamespaceNumber' ) === 6 && $( 'table.multipageimage' ).length !== 0 ) {
+			ajaxifyPageNavigation();
+
+			// Set up history.pushState (if available), so that when the user browses to a new page of
+			// the same file, the browser's history is updated. If the user clicks the back/forward button
+			// in the midst of navigating a file's pages, load the page inline.
+			if ( window.history && history.pushState && history.replaceState ) {
+				history.replaceState( { url: window.location.href }, '' );
+				$( window ).on( 'popstate', function ( e ) {
+					var state = e.originalEvent.state;
+					if ( state ) {
+						loadPage( state.url, true );
+					}
+				} );
+			}
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 		}
 	} );
 }( mediaWiki, jQuery ) );

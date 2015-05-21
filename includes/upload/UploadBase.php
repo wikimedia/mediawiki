@@ -1386,6 +1386,14 @@ abstract class UploadBase {
 			return true;
 		}
 
+		# Check <style> css
+		if ( $strippedElement == 'style'
+			&& self::checkCssFragment( Sanitizer::normalizeCss( $data ) )
+		) {
+			wfDebug( __METHOD__ . ": hostile css in style element.\n" );
+			return true;
+		}
+
 		foreach ( $attribs as $attrib => $value ) {
 			$stripped = $this->stripXmlNamespace( $attrib );
 			$value = strtolower( $value );
@@ -1480,6 +1488,26 @@ abstract class UploadBase {
 			) {
 				wfDebug( __METHOD__ . ": Found svg setting a style with "
 					. "remote url '$attrib'='$value' in uploaded file.\n" );
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
+=======
+				return true;
+			}
+
+			# Several attributes can include css, css character escaping isn't allowed
+			$cssAttrs = array( 'font', 'clip-path', 'fill', 'filter', 'marker',
+				'marker-end', 'marker-mid', 'marker-start', 'mask', 'stroke' );
+			if ( in_array( $stripped, $cssAttrs )
+				&& self::checkCssFragment( $value )
+			) {
+				wfDebug( __METHOD__ . ": Found svg setting a style with "
+					. "remote url '$attrib'='$value' in uploaded file.\n" );
+				return true;
+			}
+
+			# image filters can pull in url, which could be svg that executes scripts
+			if ( $strippedElement == 'image' && $stripped == 'filter' && preg_match( '!url\s*\(!sim', $value ) ) {
+				wfDebug( __METHOD__ . ": Found image filter with url: \"<$strippedElement $stripped='$value'...\" in uploaded file.\n" );
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 				return true;
 			}
 

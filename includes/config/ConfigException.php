@@ -25,5 +25,9 @@
  *
  * @since 1.23
  */
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 class ConfigException extends Exception {
 }
+=======
+class ConfigException extends MWException {}
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)

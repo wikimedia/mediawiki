@@ -2,6 +2,7 @@
 	"--title": "MediaWiki core - Documentation",
 	"--categories": "maintenance/jsduck/categories.json",
 	"--eg-iframe": "maintenance/jsduck/eg-iframe.html",
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	"--tags": "maintenance/jsduck/custom_tags.rb",
 	"--warnings": ["-nodoc(class,public)"],
 	"--builtin-classes": true,
@@ -37,6 +38,30 @@
 		"resources/src/jquery/jquery.suggestions.js",
 		"resources/src/jquery/jquery.tabIndex.js",
 		"resources/lib/jquery.client/jquery.client.js",
+=======
+	"--tags": "maintenance/jsduck/CustomTags.rb",
+	"--warnings": ["-nodoc(class,public)"],
+	"--builtin-classes": true,
+	"--processes": "0",
+	"--warnings-exit-nonzero": true,
+	"--external": "HTMLElement,HTMLDocument,Window",
+	"--output": "docs/js",
+	"--": [
+		"maintenance/jsduck/external.js",
+		"resources/src/mediawiki",
+		"resources/src/mediawiki.action/mediawiki.action.edit.js",
+		"resources/src/mediawiki.action/mediawiki.action.view.postEdit.js",
+		"resources/src/mediawiki.page/mediawiki.page.startup.js",
+		"resources/src/mediawiki.page/mediawiki.page.watch.ajax.js",
+		"resources/src/mediawiki.api",
+		"resources/src/mediawiki.language",
+		"resources/src/jquery/jquery.arrowSteps.js",
+		"resources/src/jquery/jquery.autoEllipsis.js",
+		"resources/src/jquery/jquery.badge.js",
+		"resources/src/jquery/jquery.byteLimit.js",
+		"resources/src/jquery/jquery.localize.js",
+		"resources/src/jquery/jquery.spinner.js",
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 		"resources/lib/oojs",
 		"resources/lib/oojs-ui"
 	]

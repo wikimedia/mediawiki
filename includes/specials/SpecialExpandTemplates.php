@@ -249,7 +249,12 @@ class SpecialExpandTemplates extends SpecialPage {
 		$lang = $title->getPageViewLanguage();
 		$out->addHTML( "<h2>" . $this->msg( 'expand_templates_preview' )->escaped() . "</h2>\n" );
 
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 		if ( $this->getConfig()->get( 'RawHtml' ) ) {
+=======
+		global $wgRawHtml;
+		if ( $wgRawHtml ) {
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 			$request = $this->getRequest();
 			$user = $this->getUser();
 

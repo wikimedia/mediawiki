@@ -308,7 +308,13 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @return string
 	 */
 	public static function getStartupModulesUrl( ResourceLoaderContext $context ) {
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 		$moduleNames = self::getStartupModules();
+=======
+		// The core modules:
+		$moduleNames = array( 'jquery', 'mediawiki' );
+		wfRunHooks( 'ResourceLoaderGetStartupModules', array( &$moduleNames ), '1.23' );
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 
 		// Get the latest version
 		$loader = $context->getResourceLoader();

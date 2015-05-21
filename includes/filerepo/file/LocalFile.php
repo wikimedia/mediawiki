@@ -484,6 +484,8 @@ class LocalFile extends File {
 
 		$decoded['metadata'] = $this->repo->getSlaveDB()->decodeBlob( $decoded['metadata'] );
 
+		$decoded['metadata'] = $this->repo->getSlaveDB()->decodeBlob( $decoded['metadata'] );
+
 		if ( empty( $decoded['major_mime'] ) ) {
 			$decoded['mime'] = 'unknown/unknown';
 		} else {

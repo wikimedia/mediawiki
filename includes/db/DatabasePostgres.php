@@ -830,9 +830,14 @@ __INDEXATTR__;
 	 * In Postgres when using FOR UPDATE, only the main table and tables that are inner joined
 	 * can be locked. That means tables in an outer join cannot be FOR UPDATE locked. Trying to do
 	 * so causes a DB error. This wrapper checks which tables can be locked and adjusts it accordingly.
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 	 *
 	 * MySQL uses "ORDER BY NULL" as an optimization hint, but that syntax is illegal in PostgreSQL.
 	 * @see DatabaseBase::selectSQLText
+=======
+	 * 
+	 * MySQL uses "ORDER BY NULL" as an optimization hint, but that syntax is illegal in PostgreSQL.
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	 */
 	function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__,
 		$options = array(), $join_conds = array()
@@ -847,6 +852,10 @@ __INDEXATTR__;
 						$options['FOR UPDATE'][] = $table_cond;
 					}
 				}
+			}
+
+			if ( isset( $options['ORDER BY'] ) && $options['ORDER BY'] == 'NULL' ) {
+				unset( $options['ORDER BY'] );
 			}
 
 			if ( isset( $options['ORDER BY'] ) && $options['ORDER BY'] == 'NULL' ) {

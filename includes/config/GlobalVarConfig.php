@@ -49,6 +49,7 @@ class GlobalVarConfig implements Config {
 	 * @see Config::get
 	 */
 	public function get( $name ) {
+<<<<<<< HEAD   (ad3eed Merge fundraising release branch into REL1_25)
 		if ( !$this->has( $name ) ) {
 			throw new ConfigException( __METHOD__ . ": undefined option: '$name'" );
 		}
@@ -83,5 +84,42 @@ class GlobalVarConfig implements Config {
 	protected function hasWithPrefix( $prefix, $name ) {
 		$var = $prefix . $name;
 		return array_key_exists( $var, $GLOBALS );
+=======
+		return $this->getWithPrefix( $this->prefix, $name );
+	}
+
+	/**
+	 * @see Config::set
+	 */
+	public function set( $name, $value ) {
+		$this->setWithPrefix( $this->prefix, $name, $value );
+	}
+
+	/**
+	 * Get a variable with a given prefix, if not the defaults.
+	 *
+	 * @param string $prefix Prefix to use on the variable, if one.
+	 * @param string $name Variable name without prefix
+	 * @throws ConfigException
+	 * @return mixed
+	 */
+	protected function getWithPrefix( $prefix, $name ) {
+		$var = $prefix . $name;
+		if ( !array_key_exists( $var, $GLOBALS ) ) {
+			throw new ConfigException( __METHOD__ . ": undefined variable: '$var'" );
+		}
+		return $GLOBALS[ $var ];
+	}
+
+	/**
+	 * Get a variable with a given prefix, if not the defaults.
+	 *
+	 * @param string $prefix Prefix to use on the variable
+	 * @param string $name Variable name without prefix
+	 * @param mixed $value value to set
+	 */
+	protected function setWithPrefix( $prefix, $name, $value ) {
+		$GLOBALS[ $prefix . $name ] = $value;
+>>>>>>> BRANCH (a1211f Merge REL1_23 into fundraising/REL1_23)
 	}
 }
