@@ -2056,16 +2056,20 @@ class Language {
 					}
 				}
 			}
+
 			$num = $num % $pow10;
 		}
-		if ( strlen( $s ) == 2 ) {
+
+		if ( strlen( $s ) === 2 ) {
 			$str = $s . "'";
 		} else {
 			$str = substr( $s, 0, strlen( $s ) - 2 ) . '"';
 			$str .= substr( $s, strlen( $s ) - 2, 2 );
 		}
+
 		$start = substr( $str, 0, strlen( $str ) - 2 );
 		$end = substr( $str, strlen( $str ) - 2 );
+
 		switch ( $end ) {
 			case 'כ':
 				$str = $start . 'ך';
@@ -2083,6 +2087,7 @@ class Language {
 				$str = $start . 'ץ';
 				break;
 		}
+
 		return $str;
 	}
 
