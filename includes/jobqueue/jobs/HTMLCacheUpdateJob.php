@@ -34,7 +34,7 @@
  * @ingroup JobQueue
  */
 class HTMLCacheUpdateJob extends Job {
-	function __construct( $title, $params = '' ) {
+	function __construct( Title $title, array $params ) {
 		parent::__construct( 'htmlCacheUpdate', $title, $params );
 		// Base backlink purge jobs can be de-duplicated
 		$this->removeDuplicates = ( !isset( $params['range'] ) && !isset( $params['pages'] ) );

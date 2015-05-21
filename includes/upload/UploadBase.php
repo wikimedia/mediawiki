@@ -746,11 +746,11 @@ abstract class UploadBase {
 		$file = $this->getLocalFile();
 
 		foreach ( $sizes as $size ) {
-			if ( $file->isVectorized()
-				|| $file->getWidth() > $size ) {
-					$jobs[] = new ThumbnailRenderJob( $file->getTitle(), array(
-						'transformParams' => array( 'width' => $size ),
-					) );
+			if ( $file->isVectorized() || $file->getWidth() > $size ) {
+				$jobs[] = new ThumbnailRenderJob(
+					$file->getTitle(),
+					array( 'transformParams' => array( 'width' => $size ) )
+				);
 			}
 		}
 

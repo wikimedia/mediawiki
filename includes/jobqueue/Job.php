@@ -32,7 +32,7 @@ abstract class Job implements IJobSpecification {
 	/** @var string */
 	public $command;
 
-	/** @var array|bool Array of job parameters or false if none */
+	/** @var array Array of job parameters */
 	public $params;
 
 	/** @var array Additional queue metadata */
@@ -58,11 +58,11 @@ abstract class Job implements IJobSpecification {
 	 *
 	 * @param string $command Job command
 	 * @param Title $title Associated title
-	 * @param array|bool $params Job parameters
+	 * @param array $params Job parameters
 	 * @throws MWException
 	 * @return Job
 	 */
-	public static function factory( $command, Title $title, $params = false ) {
+	public static function factory( $command, Title $title, $params = array() ) {
 		global $wgJobClasses;
 		if ( isset( $wgJobClasses[$command] ) ) {
 			$class = $wgJobClasses[$command];
@@ -80,7 +80,7 @@ abstract class Job implements IJobSpecification {
 	public function __construct( $command, $title, $params = false ) {
 		$this->command = $command;
 		$this->title = $title;
-		$this->params = $params;
+		$this->params = is_array( $params ) ? $params : array(); // sanity
 
 		// expensive jobs may set this to true
 		$this->removeDuplicates = false;
