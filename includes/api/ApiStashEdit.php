@@ -331,7 +331,7 @@ class ApiStashEdit extends ApiBase {
 			$content->getDefaultFormat(),
 			sha1( $content->serialize( $content->getDefaultFormat() ) ),
 			$user->getId() ?: md5( $user->getName() ), // account for user parser options
-			$user->getId() ? $user->getTouched() : '-' // handle preference change races
+			$user->getId() ? $user->getDBTouched() : '-' // handle preference change races
 		) ) );
 
 		return wfMemcKey( 'prepared-edit', md5( $title->getPrefixedDBkey() ), $hash );
