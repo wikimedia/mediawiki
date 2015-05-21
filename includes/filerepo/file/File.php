@@ -163,7 +163,8 @@ abstract class File implements IDBAccessObject {
 	 * @param FileRepo|bool $repo
 	 */
 	function __construct( $title, $repo ) {
-		if ( $title !== false ) { // subclasses may not use MW titles
+		// Some subclasses do not use $title, but set name/title some other way
+		if ( $title !== false ) {
 			$title = self::normalizeTitle( $title, 'exception' );
 		}
 		$this->title = $title;
