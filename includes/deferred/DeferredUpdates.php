@@ -65,7 +65,7 @@ class DeferredUpdates {
 			$lb = wfGetLB();
 			$dbw = $lb->getAnyOpenConnection( $lb->getWriterIndex() );
 			// Do the update as soon as there is no transaction
-			if ( $dbw->trxLevel() ) {
+			if ( $dbw && $dbw->trxLevel() ) {
 				$waitingOnTrx = true;
 				$dbw->onTransactionIdle( function() use ( &$waitingOnTrx ) {
 					DeferredUpdates::doUpdates();
