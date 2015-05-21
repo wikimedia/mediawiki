@@ -480,6 +480,10 @@ $wgAutoloadLocalClasses = array(
 	# includes/debug
 	'MWDebug' => 'includes/debug/Debug.php',
 
+	# includes/debug/logger
+	'MediaWiki\\Logger\\BackcompatLogger' => 'includes/debug/logger/BackcompatLogger.php',
+	'MediaWiki\\Logger\\LoggerFactory' => 'includes/debug/logger/LoggerFactory.php',
+
 	# includes/deferred
 	'DataUpdate' => 'includes/deferred/DataUpdate.php',
 	'DeferrableUpdate' => 'includes/deferred/DeferredUpdates.php',
@@ -701,6 +705,12 @@ $wgAutoloadLocalClasses = array(
 	'ScopedCallback' => 'includes/libs/ScopedCallback.php',
 	'ScopedPHPTimeout' => 'includes/libs/ScopedPHPTimeout.php',
 	'XmlTypeCheck' => 'includes/libs/XmlTypeCheck.php',
+	'Psr\\Log\\AbstractLogger' => 'includes/libs/psr3/AbstractLogger.php',
+	'Psr\\Log\\InvalidArgumentException' => 'includes/libs/psr3/InvalidArgumentException.php',
+	'Psr\\Log\\LoggerAwareInterface' => 'includes/libs/psr3/LoggerAwareInterface.php',
+	'Psr\\Log\\LoggerInterface' => 'includes/libs/psr3/LoggerInterface.php',
+	'Psr\\Log\\LogLevel' => 'includes/libs/psr3/LogLevel.php',
+	'Psr\\Log\\NullLogger' => 'includes/libs/psr3/NullLogger.php',
 
 	# includes/libs/lessphp
 	'lessc' => 'includes/libs/lessc.inc.php',

@@ -70,13 +70,23 @@ class AutoLoaderTest extends MediaWikiTestCase {
 				)
 			/imx', $contents, $matches, PREG_SET_ORDER );
 
+			$namespaceMatch = array();
+			preg_match( '/
+				^ [\t ]*
+					namespace \s+
+						([a-zA-Z0-9_]+(\\\\[a-zA-Z0-9_]+)*)
+					\s* ;
+			/imx', $contents, $namespaceMatch );
+			$fileNamespace = $namespaceMatch ? $namespaceMatch[1] . '\\' : '';
+
 			$classesInFile = array();
 			$aliasesInFile = array();
 
 			foreach ( $matches as $match ) {
 				if ( !empty( $match['class'] ) ) {
-					$actual[$match['class']] = $file;
-					$classesInFile[$match['class']] = true;
+					$class = $fileNamespace . $match['class'];
+					$actual[$class] = $file;
+					$classesInFile[$class] = true;
 				} else {
 					$aliasesInFile[$match['alias']] = $match['original'];
 				}
