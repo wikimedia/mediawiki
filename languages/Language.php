@@ -2034,7 +2034,18 @@ class Language {
 		static $table = array(
 			array( '', 'א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח', 'ט', 'י' ),
 			array( '', 'י', 'כ', 'ל', 'מ', 'נ', 'ס', 'ע', 'פ', 'צ', 'ק' ),
-			array( '', 'ק', 'ר', 'ש', 'ת', 'תק', 'תר', 'תש', 'תת', 'תתק', 'תתר' ),
+			array( '',
+				array( 'ק' ),
+				array( 'ר' ),
+				array( 'ש' ),
+				array( 'ת' ),
+				array( 'ת', 'ק' ),
+				array( 'ת', 'ר' ),
+				array( 'ת', 'ש' ),
+				array( 'ת', 'ת' ),
+				array( 'ת', 'ת', 'ק' ),
+				array( 'ת', 'ת', 'ר' ),
+			),
 			array( '', 'א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז', 'ח', 'ט', 'י' )
 		);
 
@@ -2043,16 +2054,33 @@ class Language {
 			return $num;
 		}
 
-		$s = '';
+		// Round thousands have special notations
+		if ( $num === 1000 ) {
+			return "א' אלף";
+		} elseif ( $num % 1000 === 0 ) {
+			return $table[0][$num / 1000] . "' אלפים";
+		}
+
+		$letters = array();
+
 		for ( $pow10 = 1000, $i = 3; $i >= 0; $pow10 /= 10, $i-- ) {
 			if ( $num >= $pow10 ) {
 				if ( $num === 15 || $num === 16 ) {
-					$s .= $table[0][9] . $table[0][$num - 9];
+					$letters[] = $table[0][9];
+					$letters[] = $table[0][$num - 9];
 					$num = 0;
 				} else {
-					$s .= $table[$i][intval( ( $num / $pow10 ) )];
+					// The splitting is needed to treat the big thousands as several letters
+					$lettersToPush = $table[$i][intval( ( $num / $pow10 ) )];
+
+					if ( is_array( $lettersToPush ) ) {
+						$letters = array_merge( $letters, $lettersToPush );
+					} else {
+						$letters[] = $lettersToPush;
+					}
+
 					if ( $pow10 === 1000 ) {
-						$s .= "'";
+						$letters[] = "'";
 					}
 				}
 			}
@@ -2060,35 +2088,28 @@ class Language {
 			$num = $num % $pow10;
 		}
 
-		if ( strlen( $s ) === 2 ) {
-			$str = $s . "'";
+		$preTransformLength = count( $letters );
+		if ( $preTransformLength === 1 ) {
+			// Add geresh to one-letter numbers
+			$letters[] = "'";
 		} else {
-			$str = substr( $s, 0, strlen( $s ) - 2 ) . '"';
-			$str .= substr( $s, strlen( $s ) - 2, 2 );
+			// Add gershayim to multiple-letter numbers,
+			// but exclude numbers that are 1001-1009, 2001-2009, etc.
+			if ( $letters[1] === "'" && $preTransformLength === 3 ) {
+				$letters[] = "'";
+			} else {
+				array_splice( $letters, $preTransformLength - 1, 0, '"' );
+			}
 		}
 
-		$start = substr( $str, 0, strlen( $str ) - 2 );
-		$end = substr( $str, strlen( $str ) - 2 );
+		$lastIndex = count( $letters ) - 1;
+		$letters[ $lastIndex ] = str_replace(
+			array( 'כ', 'מ', 'נ', 'פ', 'צ' ),
+			array( 'ך', 'ם', 'ן', 'ף', 'ץ' ),
+			$letters[ $lastIndex ]
+		);
 
-		switch ( $end ) {
-			case 'כ':
-				$str = $start . 'ך';
-				break;
-			case 'מ':
-				$str = $start . 'ם';
-				break;
-			case 'נ':
-				$str = $start . 'ן';
-				break;
-			case 'פ':
-				$str = $start . 'ף';
-				break;
-			case 'צ':
-				$str = $start . 'ץ';
-				break;
-		}
-
-		return $str;
+		return implode( $letters );
 	}
 
 	/**
