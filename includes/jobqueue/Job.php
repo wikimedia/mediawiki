@@ -32,7 +32,7 @@ abstract class Job implements IJobSpecification {
 	/** @var string */
 	public $command;
 
-	/** @var array|bool Array of job parameters or false if none */
+	/** @var array Array of job parameters or false if none */
 	public $params;
 
 	/** @var array Additional queue metadata */
@@ -80,7 +80,7 @@ abstract class Job implements IJobSpecification {
 	public function __construct( $command, $title, $params = false ) {
 		$this->command = $command;
 		$this->title = $title;
-		$this->params = $params;
+		$this->params = is_array( $params ) ? $params : array(); // sanity
 
 		// expensive jobs may set this to true
 		$this->removeDuplicates = false;

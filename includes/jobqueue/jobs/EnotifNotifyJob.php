@@ -27,7 +27,7 @@
  * @ingroup JobQueue
  */
 class EnotifNotifyJob extends Job {
-	function __construct( $title, $params ) {
+	function __construct( Title $title, array $params ) {
 		parent::__construct( 'enotifNotify', $title, $params );
 	}
 

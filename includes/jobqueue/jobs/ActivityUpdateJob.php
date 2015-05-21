@@ -27,7 +27,7 @@
  * @since 1.26
  */
 class ActivityUpdateJob extends Job {
-	function __construct( $title, $params ) {
+	function __construct( Title $title, array $params ) {
 		parent::__construct( 'activityUpdateJob', $title, $params );
 
 		if ( !isset( $params['type'] ) ) {

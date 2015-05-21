@@ -39,7 +39,7 @@ class UploadFromUrlJob extends Job {
 	/** @var User */
 	protected $user;
 
-	public function __construct( $title, $params ) {
+	public function __construct( Title $title, array $params ) {
 		parent::__construct( 'uploadFromUrl', $title, $params );
 	}
 
