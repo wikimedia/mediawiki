@@ -411,7 +411,7 @@
 	"badtitletext": "您请求了个无效、不存在或者跨语言或跨wiki链接标题错误的页面。它可能包含一个或多个不能用于标题的字符。",
 	"title-invalid-empty": "请求的页面标题为空，或只包含名字空间名称。",
 	"title-invalid-utf8": "请求的页面标题包含一个无效的UTF-8序列。",
-	"title-invalid-interwiki": "标题包含跨wiki链接",
+	"title-invalid-interwiki": "请求的页面标题包含跨wiki链接，它不能用于标题。",
 	"title-invalid-talk-namespace": "请求的页面标题引用了一个不能存在的讨论页。",
 	"title-invalid-characters": "请求的页面标题包含无效字符：“$1”。",
 	"title-invalid-relative": "标题有相对路径。相关的页面标题（./, ../）无效，因为用户浏览器经常无法到达这些页面。",

@@ -324,6 +324,7 @@
 	"no-null-revision": "Dae makakamukna nin baguhong bunyaw na rebisyon para sa pahina \"$1\"",
 	"badtitle": "Raot na titulo",
 	"badtitletext": "An pinaghagad na titulo kan pahina imbalido, daeng laog, o sarong salaon na sinugpunan na titulo kan inter-lengguwahe o inter-wiki.\nIni gayod may laog nin o dakol na mga karakter na dae pinaggagamit sa mga titulo.",
+	"title-invalid-interwiki": "An pinaghahagad na titulo kan pahina igwang laman nin saguysoy sa panlaog na wiki na dae puwedeng gamiton sa mga titulo.",
 	"perfcached": "An minasunod na datos pinagtago asin bakong gayo napapanahon. An maximum na {{PLURAL:$1|sarong resulta na|$1 mga resulta na}} yaon sana sa pinagtago.",
 	"perfcachedts": "An minasunod na datos pinagtago, asin huring pinagdagdagan kan $1. An maximum na {{PLURAL:$4|sarong result na |$4 mga resulta na }} yaon sana sa pinagtago.",
 	"querypage-no-updates": "Mga kasugponan para sa pahinang ini sa ngunyan pinagpupugulan. An datos na yaon digde dae sa presente maipagpresko.",
