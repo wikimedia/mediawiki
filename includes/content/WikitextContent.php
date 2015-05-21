@@ -273,12 +273,11 @@ class WikitextContent extends TextContent {
 			return false;
 		}
 
-		$text = $this->getNativeData();
-
 		switch ( $wgArticleCountMethod ) {
 			case 'any':
 				return true;
 			case 'comma':
+				$text = $this->getNativeData();
 				return strpos( $text, ',' ) !== false;
 			case 'link':
 				if ( $hasLinks === null ) { # not known, find out
