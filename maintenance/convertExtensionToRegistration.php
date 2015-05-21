@@ -70,7 +70,10 @@ class ConvertExtensionToRegistration extends Maintenance {
 	public function execute() {
 		// Extensions will do stuff like $wgResourceModules += array(...) which is a
 		// fatal unless an array is already set. So set an empty value.
-		foreach ( array_merge( $this->getAllGlobals(), array_keys( $this->custom ) ) as $var ) {
+		// And use the weird $__settings name to avoid any conflicts
+		// with real poorly named settings.
+		$__settings = array_merge( $this->getAllGlobals(), array_keys( $this->custom ) );
+		foreach ( $__settings as $var ) {
 			$var = 'wg' . $var;
 			$$var = array();
 		}
@@ -79,15 +82,18 @@ class ConvertExtensionToRegistration extends Maintenance {
 		// Try not to create any local variables before this line
 		$vars = get_defined_vars();
 		unset( $vars['this'] );
+		unset( $vars['__settings'] );
 		$this->dir = dirname( realpath( $this->getArg( 0 ) ) );
 		$this->json = array();
 		$globalSettings = $this->getAllGlobals();
 		foreach ( $vars as $name => $value ) {
-			// If an empty array, assume it's the default we set, so skip it
-			if ( is_array( $value ) && count( $value ) === 0 ) {
+			$realName = substr( $name, 2 ); // Strip 'wg'
+
+			// If it's an empty array that we likely set, skip it
+			if ( is_array( $value ) && count( $value ) === 0 && in_array( $realName, $__settings ) ) {
 				continue;
 			}
-			$realName = substr( $name, 2 ); // Strip 'wg'
+
 			if ( isset( $this->custom[$realName] ) ) {
 				call_user_func_array( array( $this, $this->custom[$realName] ), array( $realName, $value, $vars ) );
 			} elseif ( in_array( $realName, $globalSettings ) ) {
