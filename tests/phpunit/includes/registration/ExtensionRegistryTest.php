@@ -172,6 +172,7 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 						'user' => array(
 							'right' => true,
 							'somethingtwo' => false,
+							'nonduplicated' => true,
 						)
 					),
 				),
@@ -186,6 +187,7 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 						'user' => array(
 							'somethingtwo' => true,
 							'right' => true,
+							'nonduplicated' => true,
 						)
 					),
 				),
