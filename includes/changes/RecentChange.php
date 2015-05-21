@@ -332,6 +332,11 @@ class RecentChange {
 					$this->mExtra['pageStatus'] );
 			}
 		}
+
+		// Update the cached list of active users
+		if ( $this->mAttribs['rc_user'] > 0 ) {
+			JobQueueGroup::singleton()->lazyPush( RecentChangesUpdateJob::newCacheUpdateJob() );
+		}
 	}
 
 	/**
