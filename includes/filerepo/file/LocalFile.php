@@ -316,15 +316,12 @@ class LocalFile extends File {
 	 * Purge the file object/metadata cache
 	 */
 	function invalidateCache() {
-		$this->load();
-
 		$key = $this->getCacheKey();
 		if ( !$key ) {
 			return;
 		}
 
-		$cache = ObjectCache::getMainWANInstance();
-		$cache->delete( $key );
+		ObjectCache::getMainWANInstance()->delete( $key );
 	}
 
 	/**
