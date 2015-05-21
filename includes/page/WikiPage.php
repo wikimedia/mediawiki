@@ -2193,20 +2193,23 @@ class WikiPage implements Page, IDBAccessObject {
 			$recursive = $options['changed']; // bug 50785
 			$updates = $content->getSecondaryDataUpdates(
 				$this->getTitle(), null, $recursive, $editInfo->output );
-			DataUpdate::runUpdates( $updates );
+			foreach ( $updates as $update ) {
+				DeferredUpdates::addUpdate( $update );
+			}
 		}
 
 		Hooks::run( 'ArticleEditUpdates', array( &$this, &$editInfo, $options['changed'] ) );
 
+		// Update the cached list of active users
+		if ( $user->getId() ) {
+			JobQueueGroup::singleton()->lazyPush( RecentChangesUpdateJob::newCacheUpdateJob() );
+		}
+
 		if ( Hooks::run( 'ArticleEditUpdatesDeleteFromRecentchanges', array( &$this ) ) ) {
-			// Update the cached list of active users
-			$jobs = array( RecentChangesUpdateJob::newCacheUpdateJob() );
 			// Flush old entries from the `recentchanges` table
 			if ( mt_rand( 0, 9 ) == 0 ) {
-				$jobs[] = RecentChangesUpdateJob::newPurgeJob();
+				JobQueueGroup::singleton()->lazyPush( RecentChangesUpdateJob::newPurgeJob() );
 			}
-
-			JobQueueGroup::singleton()->lazyPush( $jobs );
 		}
 
 		if ( !$this->exists() ) {
@@ -2275,7 +2278,6 @@ class WikiPage implements Page, IDBAccessObject {
 		} elseif ( $options['changed'] ) { // bug 50785
 			self::onArticleEdit( $this->mTitle );
 		}
-
 	}
 
 	/**
