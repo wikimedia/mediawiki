@@ -1835,7 +1835,7 @@ class WikiPage implements Page, IDBAccessObject {
 				if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
 					// Mark as patrolled if the user can do so
 					$patrolled = $wgUseRCPatrol && !count(
-					$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
+						$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
 					// Add RC row to the DB
 					$rc = RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $user, $summary,
 						$oldid, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
@@ -1968,13 +1968,13 @@ class WikiPage implements Page, IDBAccessObject {
 		$status->value['revision'] = $revision;
 
 		$hook_args = array( &$this, &$user, $content, $summary,
-							$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $baseRevId );
+			$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $baseRevId );
 
 		ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $hook_args );
 		Hooks::run( 'PageContentSaveComplete', $hook_args );
 
 		// Promote user to any groups they meet the criteria for
-		$dbw->onTransactionIdle( function () use ( $user ) {
+		DeferredUpdates::addCallableUpdate( function () use ( $user ) {
 			$user->addAutopromoteOnceGroups( 'onEdit' );
 			$user->addAutopromoteOnceGroups( 'onView' ); // b/c
 		} );
