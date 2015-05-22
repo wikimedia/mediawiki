@@ -2353,6 +2353,10 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Get the user touched timestamp
+	 *
+	 * Use this value only to validate caches via inequalities
+	 * such as in the case of HTTP If-Modified-Since response logic
+	 *
 	 * @return string TS_MW Timestamp
 	 */
 	public function getTouched() {
@@ -2363,13 +2367,7 @@ class User implements IDBAccessObject {
 				$cache = ObjectCache::getMainWANInstance();
 				$key = wfMemcKey( 'user-quicktouched', 'id', $this->mId );
 
-				$timestamp = $cache->getCheckKeyTime( $key );
-				if ( $timestamp ) {
-					$this->mQuickTouched = wfTimestamp( TS_MW, $timestamp );
-				} else {
-					# Set the timestamp to get HTTP 304 cache hits
-					$this->touch();
-				}
+				$this->mQuickTouched = wfTimestamp( TS_MW, $cache->getCheckKeyTime( $key ) );
 			}
 
 			return max( $this->mTouched, $this->mQuickTouched );
