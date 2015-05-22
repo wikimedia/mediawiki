@@ -36,6 +36,8 @@ abstract class RevDelItem extends RevisionItemBase {
 
 	/**
 	 * Get the current deletion bitfield value
+	 *
+	 * @return integer
 	 */
 	abstract public function getBits();
 
