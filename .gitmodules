@@ -13,3 +13,6 @@
 [submodule "extensions/cldr"]
 	path = extensions/cldr
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/cldr.git
+[submodule "skins/Vector"]
+	path = skins/Vector
+	url = https://git.wikimedia.org/git/mediawiki/skins/Vector.git
