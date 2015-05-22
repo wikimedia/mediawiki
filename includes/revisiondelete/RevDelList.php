@@ -89,9 +89,10 @@ abstract class RevDelList extends RevisionListBase {
 		$comment = $params['comment'];
 		$perItemStatus = isset( $params['perItemStatus'] ) ? $params['perItemStatus'] : false;
 
-		$this->res = false;
+		// CAS-style checks are done on the _deleted fields so the select
+		// does not need to use FOR UPDATE nor be in the atomic section
 		$dbw = wfGetDB( DB_MASTER );
-		$this->doQuery( $dbw );
+		$this->res = $this->doQuery( $dbw );
 
 		$dbw->startAtomic( __METHOD__ );
 
