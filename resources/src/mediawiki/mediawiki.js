@@ -7,7 +7,6 @@
  * @alternateClassName mediaWiki
  * @singleton
  */
-/*global sha1 */
 ( function ( $ ) {
 	'use strict';
 
@@ -722,7 +721,7 @@
 			 *     {
 			 *         'moduleName': {
 			 *             // From startup mdoule
-			 *             'version': '################' (Hash)
+			 *             'version': ############## (unix timestamp)
 			 *             'dependencies': ['required.foo', 'bar.also', ...], (or) function () {}
 			 *             'group': 'somegroup', (or) null
 			 *             'source': 'local', (or) 'anotherwiki'
@@ -899,18 +898,37 @@
 			}
 
 			/**
-			 * @since 1.26
-			 * @param {Object[]} modules List of module registry objects
-			 * @return {string} Hash of concatenated version hashes.
+			 * Zero-pad three numbers.
+			 *
+			 * @private
+			 * @param {number} a
+			 * @param {number} b
+			 * @param {number} c
+			 * @return {string}
 			 */
-			function getCombinedVersion( modules ) {
-				var hashes = $.map( modules, function ( module ) {
-					return module.version;
-				} );
-				// Trim for consistency with server-side ResourceLoader::makeHash. It also helps
-				// save precious space in the limited query string. Otherwise modules are more
-				// likely to require multiple HTTP requests.
-				return sha1( hashes.join( '' ) ).slice( 0, 12 );
+			function pad( a, b, c ) {
+				return (
+					( a < 10 ? '0' : '' ) + a +
+					( b < 10 ? '0' : '' ) + b +
+					( c < 10 ? '0' : '' ) + c
+				);
+			}
+
+			/**
+			 * Convert UNIX timestamp to ISO8601 format.
+			 *
+			 * @private
+			 * @param {number} timestamp UNIX timestamp
+			 */
+			function formatVersionNumber( timestamp ) {
+				var	d = new Date();
+				d.setTime( timestamp * 1000 );
+				return [
+					pad( d.getUTCFullYear(), d.getUTCMonth() + 1, d.getUTCDate() ),
+					'T',
+					pad( d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds() ),
+					'Z'
+				].join( '' );
 			}
 
 			/**
@@ -1467,7 +1485,7 @@
 				 */
 				work: function () {
 					var	reqBase, splits, maxQueryLength, q, b, bSource, bGroup, bSourceGroup,
-						source, concatSource, origBatch, group, i, modules, sourceLoadScript,
+						source, concatSource, origBatch, group, g, i, modules, maxVersion, sourceLoadScript,
 						currReqBase, currReqBaseLength, moduleMap, l,
 						lastDotIndex, prefix, suffix, bytesAdded, async;
 
@@ -1574,9 +1592,15 @@
 							// modules for this group from this source.
 							modules = splits[source][group];
 
-							currReqBase = $.extend( {
-								version: getCombinedVersion( modules )
-							}, reqBase );
+							// Calculate the highest timestamp
+							maxVersion = 0;
+							for ( g = 0; g < modules.length; g += 1 ) {
+								if ( registry[modules[g]].version > maxVersion ) {
+									maxVersion = registry[modules[g]].version;
+								}
+							}
+
+							currReqBase = $.extend( { version: formatVersionNumber( maxVersion ) }, reqBase );
 							// For user modules append a user name to the request.
 							if ( group === 'user' && mw.config.get( 'wgUserName' ) !== null ) {
 								currReqBase.user = mw.config.get( 'wgUserName' );
@@ -1668,9 +1692,8 @@
 				},
 
 				/**
-				 * Register a module, letting the system know about it and its properties.
-				 *
-				 * The startup modules contain calls to this method.
+				 * Register a module, letting the system know about it and its
+				 * properties. Startup modules contain calls to this function.
 				 *
 				 * When using multiple module registration by passing an array, dependencies that
 				 * are specified as references to modules within the array will be resolved before
@@ -1678,8 +1701,7 @@
 				 *
 				 * @param {string|Array} module Module name or array of arrays, each containing
 				 *  a list of arguments compatible with this method
-				 * @param {string|number} version Module version hash (falls backs to empty string)
-				 *  Can also be a number (timestamp) for compatibility with MediaWiki 1.25 and earlier.
+				 * @param {number} version Module version number as a timestamp (falls backs to 0)
 				 * @param {string|Array|Function} dependencies One string or array of strings of module
 				 *  names on which this module depends, or a function that returns that array.
 				 * @param {string} [group=null] Group which the module is in
@@ -1711,7 +1733,7 @@
 					}
 					// List the module as registered
 					registry[module] = {
-						version: version !== undefined ? String( version ) : '',
+						version: version !== undefined ? parseInt( version, 10 ) : 0,
 						dependencies: [],
 						group: typeof group === 'string' ? group : null,
 						source: typeof source === 'string' ? source : 'local',
@@ -1958,7 +1980,7 @@
 					if ( !hasOwn.call( registry, module ) || registry[module].version === undefined ) {
 						return null;
 					}
-					return registry[module].version;
+					return formatVersionNumber( registry[module].version );
 				},
 
 				/**

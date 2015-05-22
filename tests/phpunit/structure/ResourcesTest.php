@@ -36,14 +36,6 @@ class ResourcesTest extends MediaWikiTestCase {
 		);
 	}
 
-	public function testVersionHash() {
-		$data = self::getAllModules();
-		foreach ( $data['modules'] as $moduleName => $module ) {
-			$version = $module->getVersionHash( $data['context'] );
-			$this->assertEquals( 8, strlen( $version ), "$moduleName must use ResourceLoader::makeHash" );
-		}
-	}
-
 	/**
 	 * Verify that nothing explicitly depends on the 'jquery' and 'mediawiki' modules.
 	 * They are always loaded, depending on them is unsupported and leads to unexpected behaviour.
