@@ -229,8 +229,10 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 	public function testTouchKeys() {
 		$key = wfRandomString();
 
+		$priorTime = microtime( true );
+		usleep( 1 );
 		$t0 = $this->cache->getCheckKeyTime( $key );
-		$this->assertFalse( $t0, 'Check key time is false' );
+		$this->assertGreaterThanOrEqual( $priorTime, $t0, 'Check key auto-created' );
 
 		$priorTime = microtime( true );
 		usleep( 1 );
