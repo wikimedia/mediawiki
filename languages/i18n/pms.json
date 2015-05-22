@@ -338,7 +338,7 @@
 	"badtitletext": "Ël tìtol ëd la pàgina che a l'ha ciamà a l'era nen giust, veuid, o un tìtol nen lijà ëd fasson giusta antra le lenghe o antra le wiki. A podrìa conten-e un o pi caràter ch'a peulo nen esse dovrà ant ij tìtoj.",
 	"title-invalid-empty": "Ël tìtol ëd la pàgina ciamà a l'é veuid o a conten mach ël nòm ëd lë spassi nominal.",
 	"title-invalid-utf8": "Ël tìtol ëd la pàgina ciamà a conten na sequensa UTF-8 pa bon-a",
-	"title-invalid-interwiki": "Ël tìtol a conten n'anliura antërwiki",
+	"title-invalid-interwiki": "Ël tìtol ëd la pàgina ciamà a conten n'anliura antërwiki che a peul pa esse dovrà ant ij tìtoj.",
 	"title-invalid-talk-namespace": "Ël tìtol ëd la pàgina ciamà as arferiss a na pàgina 'd discussion ch'a esist pa.",
 	"title-invalid-characters": "Ël tìtol ëd la pàgina ciamà a conten dij caràter nen bon: \"$1\".",
 	"title-invalid-relative": "Ël tìtol a l'ha n'adrëssa relativa. Ij tìtoj relativ ëd pàgina (./, ../) a van nen bin, përchè soens a son introvàbij quand a son gestì dai navigador ëd j'utent.",

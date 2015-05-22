@@ -352,7 +352,7 @@
 	"badtitletext": "Požadovaný název stránky byl neplatný, prázdný nebo obsahoval nesprávnou předponu mezijazykového či interwiki odkazu. Možná obsahoval znaky, které v názvu nejsou dovoleny.",
 	"title-invalid-empty": "Požadovaný název stránky je prázdný nebo obsahuje pouze název jmenného prostoru.",
 	"title-invalid-utf8": "Požadovaný název stránky obsahuje neplatnou sekvenci UTF-8.",
-	"title-invalid-interwiki": "Název obsahuje interwiki odkaz",
+	"title-invalid-interwiki": "Požadovaný název stránky obsahuje interwiki odkaz, který nelze v názvech používat.",
 	"title-invalid-talk-namespace": "Požadovaný název stránky odkazuje na diskusní stránku, která neexistuje.",
 	"title-invalid-characters": "Požadovaný název stránky obsahuje neplatné znaky: „$1“.",
 	"title-invalid-relative": "Název obsahuje relativní cestu. Relativní názvy stránek (./, ../) jsou neplatné, protože často budou nedostupné, když je zpracuje prohlížeč uživatele.",

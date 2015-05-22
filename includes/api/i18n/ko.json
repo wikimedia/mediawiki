@@ -4,7 +4,8 @@
 			"Kwj2772",
 			"Twotwo2019",
 			"아라",
-			"LiteHell"
+			"LiteHell",
+			"Ysjbserver"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [https://www.mediawiki.org/wiki/API:Main_page 설명문서]\n* [https://www.mediawiki.org/wiki/API:FAQ FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 메일링 리스트]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API 공지 사항] * [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 버그 및 요청] </div>\n<strong>상태:</strong> 이 페이지에 표시된 모든 기능은 정상 작동할 것이지만, API는 여전히 활발하게 개발되고 있으며, 언제든지 바뀔 수 있습니다. 업데이트 정보를 받아보려면 [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce 메일링 리스트]를 구독하십시오.\n\n<strong>잘못된 요청:</strong> API에 잘못된 요청이 전송되면 HTTP 헤더에서 \"MediaWiki-API-Error\" 키를 보내고, 헤더 값과 오류 코드가 같게 설정됩니다. 자세한 정보에 대해서는 https://www.mediawiki.org/wiki/API:Errors_and_warnings 를 참고하십시오.",
@@ -24,7 +25,10 @@
 	"apihelp-block-param-watchuser": "해당 사용자 또는 IP 주소의 사용자 문서 및 토론 문서를 주시합니다.",
 	"apihelp-block-example-ip-simple": "IP <kbd>192.0.2.5</kbd>에 대해 <kbd>First strike</kbd>라는 이유로 3일간 차단하기",
 	"apihelp-block-example-user-complex": "사용자 <kbd>Vandal</kbd>을 <kbd>Vandalism</kbd>이라는 이유로 무기한 차단하며 계정 생성 및 이메일 발송을 막기",
+	"apihelp-createaccount-param-name": "사용자 이름",
+	"apihelp-delete-description": "문서 삭제",
 	"apihelp-delete-example-simple": "<kbd>Main Page</kbd>를 삭제합니다.",
+	"apihelp-disabled-description": "이 모듈은 해제되었습니다.",
 	"apihelp-edit-description": "문서를 만들고 편집합니다.",
 	"apihelp-edit-param-sectiontitle": "새 문단을 위한 제목.",
 	"apihelp-edit-param-text": "문서 내용.",
@@ -32,6 +36,8 @@
 	"apihelp-edit-param-minor": "사소한 편집.",
 	"apihelp-edit-param-notminor": "사소하지 않은 편집.",
 	"apihelp-edit-param-bot": "이 편집을 봇으로 표시.",
+	"apihelp-edit-example-edit": "문서 편집",
+	"apihelp-expandtemplates-param-title": "문서 제목",
 	"api-help-datatypes": "API 요청 내 몇몇 매개변수형에 대해 더 자세히 설명해보겠습니다:\n;boolean\n:Boolean 매개변수들은 HTML 체크박스처럼 동작합니다: 만약 매개변수가 지저오딨다면, 값에 상관없이 참의 값으로 여겨집니다. 거짓값은 매개변수 전체를 생략하여 표현해보세요.\n;timestamp\n:타임스팸프들은 여러 형식으로 표현될 수 있으나 ISO 8601 날짜와 시간이 추천됩니다. 모든 시간은 UTC이어야 하며, 포함된 시간대는 모두 무시됩니다.\n:* ISO 8601 날짜와 시간, <kbd><var>2001</var>-<var>01</var>-<var>15</var>T<var>14</var>:<var>56</var>:<var>00</var>Z</kbd> (구두점과 <kbd>Z</kbd>는 선택입니다.)\n:* ISO 8601 날짜와 시간과 (무시되는) 소수 초, <kbd><var>2001</var>-<var>01</var>-<var>15</var>T<var>14</var>:<var>56</var>:<var>00</var>.<var>00001</var>Z</kbd> (대시, 콜론과 <kbd>Z</kbd> 는 선택입니다.)\n:* 미디어위키 형식, <kbd><var>2001</var><var>01</var><var>15</var><var>14</var><var>56</var><var>00</var></kbd>\n:* 일반적인 수 형식 <kbd><var>2001</var>-<var>01</var>-<var>15</var> <var>14</var>:<var>56</var>:<var>00</var></kbd> (<kbd>GMT</kbd>, <kbd>+<var>##</var></kbd>, 또는 <kbd>-<var>##</var></kbd>와 같은 선택적 시간대는 무시됩니다)\n:*RFC 2822 형식 (시간대는 생략될 수 있음), <kbd><var>Mon</var>, <var>15</var> <var>Jan</var> <var>2001</var> <var>14</var>:<var>56</var>:<var>00</var></kbd>\n:* RFC 850 형식 (시간대는 생략될 수 있음), <kbd><var>Monday</var>, <var>15</var>-<var>Jan</var>-<var>2001</var> <var>14</var>:<var>56</var>:<var>00</var></kbd>\n:* C ctime 형식, <kbd><var>Mon</var> <var>Jan</var> <var>15</var> <var>14</var>:<var>56</var>:<var>00</var> <var>2001</var></kbd>\n:* 1부터 13자리까지의 숫자로 표현된 1970-01-01T00:00:00Z 부터 흐른 시간(초)",
 	"api-help-param-list": "{{PLURAL:$1|1=하나의 값|2=값 (\"{{!}}\"로 구분)}}: $2",
 	"api-help-param-default": "기본값: $1"

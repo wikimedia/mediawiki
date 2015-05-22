@@ -391,7 +391,7 @@
 	"badtitletext": "De naam van de opgegeven pagina was ongeldig, leeg of bevatte een verkeerde intertaal- of interwikikoppeling.\nWellicht bevat de paginanaam niet toegestane tekens.",
 	"title-invalid-empty": "De opgevraagde paginanaam is leeg of bevat de naam van een naamruimte.",
 	"title-invalid-utf8": "De opgevraagde paginanaam bevat een ongeldige UFT-8-reeks.",
-	"title-invalid-interwiki": "De paginanaam bevat een interwikilink.",
+	"title-invalid-interwiki": "De aangevraagde paginatitel bevat een interwikikoppeling die niet gebruikt kan worden in titels.",
 	"title-invalid-talk-namespace": "De opgevraagde paginanaam verwijst naar een overlegpagina die niet kan bestaan.",
 	"title-invalid-characters": "De opgevraagde paginanaam bevat ongeldige tekens: \"$1\".",
 	"title-invalid-relative": "De paginanaam bevat een relatief pad. Relatieve paginanamen (\"./\", \"../\") zijn ongeldig omdat ze vaak onbereikbaar zijn als de browser van een gebruiker ze toepast.",

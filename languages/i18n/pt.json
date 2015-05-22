@@ -388,7 +388,7 @@
 	"badtitletext": "O título de página solicitado era inválido, vazio, ou a ligação interlínguas estava incorreta.\nTalvez contenha um ou mais caracteres que não podem ser usados em títulos.",
 	"title-invalid-empty": "O título da página solicitada está vazio ou contém apenas o nome de um domínio.",
 	"title-invalid-utf8": "O título da página solicitada contém uma sequência UTF-8 inválida.",
-	"title-invalid-interwiki": "O título contém uma ligação interna",
+	"title-invalid-interwiki": "O título da página solicitada contém uma ligação interlíngua que não pode ser utilizada em títulos.",
 	"title-invalid-talk-namespace": "O título da página solicitada refere-se a uma página de discussão que não existe.",
 	"title-invalid-characters": "O título da página solicitada contém carateres inválidos: \"$1\".",
 	"title-invalid-too-long": "O título da página solicitada é demasiado longo. Não deverá ser maior que $1 bytes na codificação UTF-8.",

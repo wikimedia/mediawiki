@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Geopoet"
+		]
+	},
+	"apihelp-query+watchlistraw-param-fromtitle": "Titulo (may espasyong ngaran sa enotang panigmitan) sa pagpopoon kan gikanang pinagkuanan.",
+	"apihelp-query+watchlistraw-param-totitle": "Titulo (may espasyong ngaran sa enotang panigmitan) sa pagpapauntok kan gikanang pinaghalean."
+}

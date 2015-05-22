@@ -144,7 +144,7 @@
 	"apihelp-query+blocks-example-simple": "Listuj blokady.",
 	"apihelp-query+categorymembers-description": "Wszystkie strony w danej kategorii.",
 	"apihelp-query+categorymembers-param-limit": "Maksymalna liczba zwracanych wyników.",
-	"apihelp-query+categorymembers-param-sort": "Sortowanie po własności.",
+	"apihelp-query+categorymembers-param-sort": "Sortowanie według właściwości.",
 	"apihelp-query+deletedrevisions-param-tag": "Pokazuj tylko zmiany oznaczone tym tagiem.",
 	"apihelp-query+deletedrevisions-param-user": "Pokazuj tylko zmiany dokonane przez tego użytkownika.",
 	"apihelp-query+deletedrevs-paraminfo-modes": "{{PLURAL:$1|Tryb|Tryby}}: $2",

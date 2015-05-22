@@ -673,6 +673,7 @@
 	"content-model-javascript": "जाभास्क्रिप्ट",
 	"content-json-empty-object": "खाली वस्तु",
 	"content-json-empty-array": "खाली एरे",
+	"duplicate-args-category": "ढाँचाको यस खण्डमा पृष्ठहरू दोहो तर्कहरू प्रयोग गरि रहेका छन्",
 	"expensive-parserfunction-warning": "'''चेतावनी:''' यस पृष्टका अति धेरै संख्याका महँगा पार्सर फंक्सन कल्स (expensive parser function calls)  छन्।\nयसमा $2 भन्दा कम {{PLURAL:$2|कल|कल्स}} हुनुपर्छ,  यहाँ {{PLURAL:$1|अहिले $1 कल छ|अहिले $1 कल्स छ्न्}}.",
 	"expensive-parserfunction-category": "अति धेरै मेहनत पर्ने '''पार्सर फङ्सन कल'''हरू भएका पृष्ठहरू",
 	"post-expand-template-inclusion-warning": "'''चेतावनी:''' समेट्नुपर्ने टेम्प्लेट(नमुना) आकार अति ठूलो छ।\nकेही टेम्प्लेटहरु(नमुनाहरु) समेटिने छैनन् ।",
