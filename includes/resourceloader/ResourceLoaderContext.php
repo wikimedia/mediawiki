@@ -227,8 +227,6 @@ class ResourceLoaderContext {
 	}
 
 	/**
-	 * @see ResourceLoaderModule::getVersionHash
-	 * @see OutputPage::makeResourceLoaderLink
 	 * @return string|null
 	 */
 	public function getVersion() {
