@@ -2867,7 +2867,13 @@ class OutputPage extends ContextSource {
 				// and we shouldn't be putting timestamps in Squid-cached HTML
 				$version = null;
 				if ( $group === 'user' ) {
-					$query['version'] = $resourceLoader->getCombinedVersion( $context, array_keys( $grpModules ) );
+					// Get the maximum timestamp
+					$timestamp = 1;
+					foreach ( $grpModules as $module ) {
+						$timestamp = max( $timestamp, $module->getModifiedTime( $context ) );
+					}
+					// Add a version parameter so cache will break when things change
+					$query['version'] = wfTimestamp( TS_ISO_8601_BASIC, $timestamp );
 				}
 
 				$query['modules'] = ResourceLoader::makePackedModulesString( array_keys( $grpModules ) );
