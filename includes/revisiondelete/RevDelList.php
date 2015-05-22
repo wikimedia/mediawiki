@@ -89,9 +89,9 @@ abstract class RevDelList extends RevisionListBase {
 		$comment = $params['comment'];
 		$perItemStatus = isset( $params['perItemStatus'] ) ? $params['perItemStatus'] : false;
 
-		$this->res = false;
 		$dbw = wfGetDB( DB_MASTER );
-		$this->doQuery( $dbw );
+		$this->res = $this->doQuery( $dbw );
+
 		$dbw->startAtomic( __METHOD__ );
 		$status = Status::newGood();
 		$missing = array_flip( $this->ids );
