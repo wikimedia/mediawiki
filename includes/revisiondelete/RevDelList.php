@@ -92,7 +92,9 @@ abstract class RevDelList extends RevisionListBase {
 		$this->res = false;
 		$dbw = wfGetDB( DB_MASTER );
 		$this->doQuery( $dbw );
+
 		$dbw->startAtomic( __METHOD__ );
+
 		$status = Status::newGood();
 		$missing = array_flip( $this->ids );
 		$this->clearFileOps();

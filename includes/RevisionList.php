@@ -30,6 +30,7 @@ abstract class RevisionListBase extends ContextSource {
 	/** @var array */
 	protected $ids;
 
+	/** @var ResultWrapper|bool */
 	protected $res;
 
 	/** @var bool|object */
