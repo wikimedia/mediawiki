@@ -227,15 +227,16 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * Get the definition summary for this module.
+	 *
 	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
 	public function getDefinitionSummary( ResourceLoaderContext $context ) {
-		$summary = parent::getDefinitionSummary( $context );
-		$summary[] = array(
+		return array(
+			'class' => get_class( $this ),
 			'pages' => $this->getPages( $context ),
 		);
-		return $summary;
 	}
 
 	/**
