@@ -586,7 +586,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			throw new PermissionsError( 'suppressrevision' );
 		}
 		# If the save went through, go to success message...
-		$status = $this->save( $bitParams, $comment, $this->targetObj );
+		$status = $this->save( $bitParams, $comment );
 		if ( $status->isGood() ) {
 			$this->success();
 
@@ -652,14 +652,13 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 	/**
 	 * Do the write operations. Simple wrapper for RevDel*List::setVisibility().
-	 * @param int $bitfield
+	 * @param array $bitPars ExtractBitParams() bitfield array
 	 * @param string $reason
-	 * @param Title $title
 	 * @return Status
 	 */
-	protected function save( $bitfield, $reason, $title ) {
+	protected function save( array $bitPars, $reason ) {
 		return $this->getList()->setVisibility(
-			array( 'value' => $bitfield, 'comment' => $reason )
+			array( 'value' => $bitPars, 'comment' => $reason )
 		);
 	}
 

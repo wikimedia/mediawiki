@@ -78,7 +78,7 @@ abstract class RevDelList extends RevisionListBase {
 	 * transactions are done here.
 	 *
 	 * @param array $params Associative array of parameters. Members are:
-	 *     value:         The integer value to set the visibility to
+	 *     value:         ExtractBitParams() bitfield array
 	 *     comment:       The log comment.
 	 *     perItemStatus: Set if you want per-item status reports
 	 * @return Status
@@ -106,6 +106,7 @@ abstract class RevDelList extends RevisionListBase {
 		// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
 		for ( $this->reset(); $this->current(); $this->next() ) {
 			// @codingStandardsIgnoreEnd
+			/** @var $item RevDelItem */
 			$item = $this->current();
 			unset( $missing[$item->getId()] );
 
@@ -197,6 +198,7 @@ abstract class RevDelList extends RevisionListBase {
 		}
 
 		// Log it
+		// @FIXME: $newBits/$oldBits set in for loop, makes IDE warnings too
 		$this->updateLog( array(
 			'title' => $this->title,
 			'count' => $successCount,

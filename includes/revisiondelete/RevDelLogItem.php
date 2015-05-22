@@ -48,7 +48,7 @@ class RevDelLogItem extends RevDelItem {
 	}
 
 	public function getBits() {
-		return $this->row->log_deleted;
+		return (int)$this->row->log_deleted;
 	}
 
 	public function setBits( $bits ) {

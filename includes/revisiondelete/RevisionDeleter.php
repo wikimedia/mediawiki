@@ -233,9 +233,9 @@ class RevisionDeleter {
 	 * @since 1.22
 	 * @param array $bitPars ExtractBitParams() params
 	 * @param int $oldfield Current bitfield
-	 * @return array
+	 * @return integer
 	 */
-	public static function extractBitfield( $bitPars, $oldfield ) {
+	public static function extractBitfield( array $bitPars, $oldfield ) {
 		// Build the actual new rev_deleted bitfield
 		$newBits = 0;
 		foreach ( $bitPars as $const => $val ) {
