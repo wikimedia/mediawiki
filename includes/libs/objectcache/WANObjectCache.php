@@ -279,13 +279,32 @@ class WANObjectCache {
 	/**
 	 * Fetch the value of a timestamp "check" key
 	 *
+	 * The key will be *initialized* to the current time if not set,
+	 * so only call this method if this behavior is actually desired
+	 *
+	 * The timestamp can be used to check whether a cached value is valid.
+	 * Callers should not assume that this returns the same timestamp in
+	 * all datacenters due to relay delays.
+	 *
+	 * The level of staleness can roughly be estimated from this key, but
+	 * if the key was evicted from cache, such calculations may show the
+	 * time since expiry as ~0 seconds.
+	 *
 	 * Note that "check" keys won't collide with other regular keys
 	 *
 	 * @param string $key
-	 * @return float|bool TS_UNIX timestamp of the key; false if not present
+	 * @return float UNIX timestamp of the key
 	 */
 	final public function getCheckKeyTime( $key ) {
-		return self::parsePurgeValue( $this->cache->get( self::TIME_KEY_PREFIX . $key ) );
+		$key = self::TIME_KEY_PREFIX . $key;
+
+		$time = self::parsePurgeValue( $this->cache->get( $key ) );
+		if ( $time === false ) {
+			$time = microtime( true );
+			$this->cache->add( $key, self::PURGE_VAL_PREFIX . $time, self::CHECK_KEY_TTL );
+		}
+
+		return $time;
 	}
 
 	/**
