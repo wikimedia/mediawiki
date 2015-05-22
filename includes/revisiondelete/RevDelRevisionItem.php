@@ -67,7 +67,7 @@ class RevDelRevisionItem extends RevDelItem {
 			array(
 				'rev_id' => $this->revision->getId(),
 				'rev_page' => $this->revision->getPage(),
-				'rev_deleted' => $this->getBits()
+				'rev_deleted' => $this->getBits() // cas
 			),
 			__METHOD__
 		);
