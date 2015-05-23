@@ -20,7 +20,7 @@
  * @file
  * @ingroup Media
  */
-
+use MediaWiki\Logger\LoggerFactory;
 /**
  * Class to deal with reconciling and extracting metadata from bitmap images.
  * This is meant to comply with http://www.metadataworkinggroup.org/pdf/mwg_guidance.pdf
@@ -167,7 +167,7 @@ class BitmapMetadataHandler {
 			}
 		}
 		if ( isset( $seg['XMP'] ) && $showXMP ) {
-			$xmp = new XMPReader();
+			$xmp = new XMPReader( LoggerFactory::getInstance( 'XMP' ) );
 			$xmp->parse( $seg['XMP'] );
 			foreach ( $seg['XMP_ext'] as $xmpExt ) {
 				/* Support for extended xmp in jpeg files
@@ -203,7 +203,7 @@ class BitmapMetadataHandler {
 		if ( isset( $array['text']['xmp']['x-default'] )
 			&& $array['text']['xmp']['x-default'] !== '' && $showXMP
 		) {
-			$xmp = new XMPReader();
+			$xmp = new XMPReader( LoggerFactory::getInstance( 'XMP' ) );
 			$xmp->parse( $array['text']['xmp']['x-default'] );
 			$xmpRes = $xmp->getResults();
 			foreach ( $xmpRes as $type => $xmpSection ) {
@@ -237,7 +237,7 @@ class BitmapMetadataHandler {
 		}
 
 		if ( $baseArray['xmp'] !== '' && XMPReader::isSupported() ) {
-			$xmp = new XMPReader();
+			$xmp = new XMPReader( LoggerFactory::getInstance( 'XMP' ) );
 			$xmp->parse( $baseArray['xmp'] );
 			$xmpRes = $xmp->getResults();
 			foreach ( $xmpRes as $type => $xmpSection ) {
