@@ -1225,7 +1225,7 @@
 	"userrights-lookup-user": "Label text when managing user rights ([[Special:UserRights]])",
 	"userrights-user-editname": "Displayed on [[Special:UserRights]].",
 	"editusergroup": "Button name, in page [[Special:Userrights]] (only available to administrators), in the section named {{MediaWiki:userrights-lookup-user}}.\n\n{{Identical|Edit user groups}}",
-	"editinguser": "Appears on [[Special:UserRights]]. Parameters:\n* $1 - a username\n* $2 - user tool links. e.g. \"(Talk | contribs | block | send email)\"",
+	"editinguser": "Appears on [[Special:UserRights]]. Parameters:\n* $1 - a plaintext username\n* $2 - user tool links. e.g. \"(Talk | contribs | block | send email)\"",
 	"userrights-editusergroup": "Parameter:\n* $1 - (Optional) a username, can be used for GENDER\n{{Identical|Edit user groups}}",
 	"saveusergroups": "Button text when editing user groups",
 	"userrights-groupsmember": "Used when editing user groups in [[Special:Userrights]].\n\nThe message is followed by a list of group names.\n\nParameters:\n* $1 - (Optional) the number of items in the list following the message, for PLURAL\n* $2 - (Optional) the user name, for GENDER",
