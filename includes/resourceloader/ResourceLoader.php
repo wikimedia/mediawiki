@@ -247,6 +247,7 @@ class ResourceLoader {
 
 		// Register core modules
 		$this->register( include "$IP/resources/Resources.php" );
+		$this->register( include "$IP/resources/ResourcesOOUI.php" );
 		// Register extension modules
 		Hooks::run( 'ResourceLoaderRegisterModules', array( &$this ) );
 		$this->register( $config->get( 'ResourceModules' ) );
