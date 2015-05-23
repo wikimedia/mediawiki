@@ -359,20 +359,13 @@ class Sanitizer {
 	}
 
 	/**
-	 * Cleans up HTML, removes dangerous tags and attributes, and
-	 * removes HTML comments
-	 * @param string $text
-	 * @param callable $processCallback Callback to do any variable or parameter
-	 *   replacements in HTML attribute values
-	 * @param array|bool $args Arguments for the processing callback
+	 * Return the various lists of recognized tags
 	 * @param array $extratags For any extra tags to include
 	 * @param array $removetags For any tags (default or extra) to exclude
-	 * @return string
+	 * @return array
 	 */
-	public static function removeHTMLtags( $text, $processCallback = null,
-		$args = array(), $extratags = array(), $removetags = array()
-	) {
-		global $wgUseTidy, $wgAllowMicrodataAttributes, $wgAllowImageTag;
+	public static function getRecognizedTagData( $extratags = array(), $removetags = array() ) {
+		global $wgAllowMicrodataAttributes, $wgAllowImageTag;
 
 		static $htmlpairsStatic, $htmlsingle, $htmlsingleonly, $htmlnest, $tabletags,
 			$htmllist, $listtags, $htmlsingleallowed, $htmlelementsStatic, $staticInitialised;
@@ -431,11 +424,43 @@ class Sanitizer {
 			}
 			$staticInitialised = $globalContext;
 		}
+
 		# Populate $htmlpairs and $htmlelements with the $extratags and $removetags arrays
 		$extratags = array_flip( $extratags );
 		$removetags = array_flip( $removetags );
 		$htmlpairs = array_merge( $extratags, $htmlpairsStatic );
 		$htmlelements = array_diff_key( array_merge( $extratags, $htmlelementsStatic ), $removetags );
+
+		return array(
+			'htmlpairs' => $htmlpairs,
+			'htmlsingle' => $htmlsingle,
+			'htmlsingleonly' => $htmlsingleonly,
+			'htmlnest' => $htmlnest,
+			'tabletags' => $tabletags,
+			'htmllist' => $htmllist,
+			'listtags' => $listtags,
+			'htmlsingleallowed' => $htmlsingleallowed,
+			'htmlelements' => $htmlelements,
+		);
+	}
+
+	/**
+	 * Cleans up HTML, removes dangerous tags and attributes, and
+	 * removes HTML comments
+	 * @param string $text
+	 * @param callable $processCallback Callback to do any variable or parameter
+	 *   replacements in HTML attribute values
+	 * @param array|bool $args Arguments for the processing callback
+	 * @param array $extratags For any extra tags to include
+	 * @param array $removetags For any tags (default or extra) to exclude
+	 * @return string
+	 */
+	public static function removeHTMLtags( $text, $processCallback = null,
+		$args = array(), $extratags = array(), $removetags = array()
+	) {
+		global $wgUseTidy;
+
+		extract( self::getRecognizedTagData( $extratags, $removetags ) );
 
 		# Remove HTML comments
 		$text = Sanitizer::removeHTMLcomments( $text );

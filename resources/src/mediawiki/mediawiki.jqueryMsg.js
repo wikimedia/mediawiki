@@ -130,6 +130,12 @@
 		};
 	}
 
+	if ( mw.jqueryMsg && mw.jqueryMsg.data ) {
+		if ( mw.jqueryMsg.data.allowedHtmlElements ) {
+			parserDefaults.allowedHtmlElements = mw.jqueryMsg.data.allowedHtmlElements;
+		}
+	}
+
 	mw.jqueryMsg = {};
 
 	/**
