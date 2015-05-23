@@ -21,6 +21,10 @@
  * @ingroup Media
  */
 
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
+
 /**
  * Class for reading xmp data containing properties relevant to
  * images, and spitting out an array that FormatMetadata accepts.
@@ -46,7 +50,7 @@
  * read rdf.
  *
  */
-class XMPReader {
+class XMPReader implements LoggerAwareInterface {
 	/** @var array XMP item configuration array */
 	protected $items;
 
@@ -121,20 +125,34 @@ class XMPReader {
 	const PARSABLE_NO = 3;
 
 	/**
+	 * @var LoggerInterface
+	 */
+	private $logger;
+
+	/**
 	 * Constructor.
 	 *
 	 * Primary job is to initialize the XMLParser
 	 */
-	function __construct() {
+	function __construct( LoggerInterface $logger = null ) {
 
 		if ( !function_exists( 'xml_parser_create_ns' ) ) {
 			// this should already be checked by this point
 			throw new RuntimeException( 'XMP support requires XML Parser' );
 		}
+		if ( $logger ) {
+			$this->setLogger( $logger );
+		} else {
+			$this->setLogger( new NullLogger() );
+		}
 
 		$this->items = XMPInfo::getItems();
 
 		$this->resetXMLParser();
+	}
+
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
 	}
 
 	/**
@@ -353,12 +371,12 @@ class XMPReader {
 					. ' column: ' . xml_get_current_column_number( $this->xmlParser )
 					. ' byte offset: ' . xml_get_current_byte_index( $this->xmlParser );
 
-				wfDebugLog( 'XMP', "XMPReader::parse : Error reading XMP content: $error ($where)" );
+				$this->logger->info( "XMPReader::parse : Error reading XMP content: $error ($where)" );
 				$this->results = array(); // blank if error.
 				return false;
 			}
 		} catch ( Exception $e ) {
-			wfDebugLog( 'XMP', 'XMP parse error: ' . $e );
+			$this->logger->info( 'XMP parse error: ' . $e );
 			$this->results = array();
 
 			return false;
@@ -381,7 +399,7 @@ class XMPReader {
 		if ( !isset( $this->results['xmp-special']['HasExtendedXMP'] )
 			|| $this->results['xmp-special']['HasExtendedXMP'] !== $guid
 		) {
-			wfDebugLog( 'XMP', __METHOD__ .
+			$this->logger->info( __METHOD__ .
 				" Ignoring XMPExtended block due to wrong guid (guid= '$guid')" );
 
 			return false;
@@ -389,7 +407,7 @@ class XMPReader {
 		$len = unpack( 'Nlength/Noffset', substr( $content, 32, 8 ) );
 
 		if ( !$len || $len['length'] < 4 || $len['offset'] < 0 || $len['offset'] > $len['length'] ) {
-			wfDebugLog( 'XMP', __METHOD__ . 'Error reading extended XMP block, invalid length or offset.' );
+			$this->logger->info(  __METHOD__ . 'Error reading extended XMP block, invalid length or offset.' );
 
 			return false;
 		}
@@ -406,7 +424,7 @@ class XMPReader {
 		// > 128k, and be in the wrong order is very low...
 
 		if ( $len['offset'] !== $this->extendedXMPOffset ) {
-			wfDebugLog( 'XMP', __METHOD__ . 'Ignoring XMPExtended block due to wrong order. (Offset was '
+			$this->logger->info( __METHOD__ . 'Ignoring XMPExtended block due to wrong order. (Offset was '
 				. $len['offset'] . ' but expected ' . $this->extendedXMPOffset . ')' );
 
 			return false;
@@ -428,7 +446,7 @@ class XMPReader {
 			$atEnd = false;
 		}
 
-		wfDebugLog( 'XMP', __METHOD__ . 'Parsing a XMPExtended block' );
+		$this->logger->debug( __METHOD__ . 'Parsing a XMPExtended block' );
 
 		return $this->parse( $actualContent, $atEnd );
 	}
@@ -617,23 +635,27 @@ class XMPReader {
 			$finalName = isset( $info['map_name'] )
 				? $info['map_name'] : $tag;
 
-			$validate = is_array( $info['validate'] ) ? $info['validate']
-				: array( 'XMPValidate', $info['validate'] );
+			if ( is_array( $info['validate'] ) ) {
+				$validate = $info['validate'];
+			} else {
+				$validator = new XMPValidate( $this->logger );
+				$validate = array( $validator, $info['validate'] );
+			}
 
 			if ( !isset( $this->results['xmp-' . $info['map_group']][$finalName] ) ) {
 				// This can happen if all the members of the struct failed validation.
-				wfDebugLog( 'XMP', __METHOD__ . " <$ns:$tag> has no valid members." );
+				$this->logger->debug( __METHOD__ . " <$ns:$tag> has no valid members." );
 			} elseif ( is_callable( $validate ) ) {
 				$val =& $this->results['xmp-' . $info['map_group']][$finalName];
 				call_user_func_array( $validate, array( $info, &$val, false ) );
 				if ( is_null( $val ) ) {
 					// the idea being the validation function will unset the variable if
 					// its invalid.
-					wfDebugLog( 'XMP', __METHOD__ . " <$ns:$tag> failed validation." );
+					$this->logger->info( __METHOD__ . " <$ns:$tag> failed validation." );
 					unset( $this->results['xmp-' . $info['map_group']][$finalName] );
 				}
 			} else {
-				wfDebugLog( 'XMP', __METHOD__ . " Validation function for $finalName ("
+				$this->logger->warning( __METHOD__ . " Validation function for $finalName ("
 					. $validate[0] . '::' . $validate[1] . '()) is not callable.' );
 			}
 		}
@@ -674,7 +696,7 @@ class XMPReader {
 		array_shift( $this->mode );
 
 		if ( !isset( $this->results['xmp-' . $info['map_group']][$finalName] ) ) {
-			wfDebugLog( 'XMP', __METHOD__ . " Empty compund element $finalName." );
+			$this->logger->debug( __METHOD__ . " Empty compund element $finalName." );
 
 			return;
 		}
@@ -741,7 +763,7 @@ class XMPReader {
 		if ( $elm === self::NS_RDF . ' type' ) {
 			// these aren't really supported properly yet.
 			// However, it appears they almost never used.
-			wfDebugLog( 'XMP', __METHOD__ . ' encountered <rdf:type>' );
+			$this->logger->info( __METHOD__ . ' encountered <rdf:type>' );
 		}
 
 		if ( strpos( $elm, ' ' ) === false ) {
@@ -749,7 +771,7 @@ class XMPReader {
 			// However, there is a bug in an adobe product
 			// that forgets the namespace on some things.
 			// (Luckily they are unimportant things).
-			wfDebugLog( 'XMP', __METHOD__ . " Encountered </$elm> which has no namespace. Skipping." );
+			$this->logger->info( __METHOD__ . " Encountered </$elm> which has no namespace. Skipping." );
 
 			return;
 		}
@@ -795,7 +817,7 @@ class XMPReader {
 				$this->endElementModeQDesc( $elm );
 				break;
 			default:
-				wfDebugLog( 'XMP', __METHOD__ . " no mode (elm = $elm)" );
+				$this->logger->warning( __METHOD__ . " no mode (elm = $elm)" );
 				break;
 		}
 	}
@@ -845,7 +867,7 @@ class XMPReader {
 			array_unshift( $this->mode, self::MODE_LI );
 		} elseif ( $elm === self::NS_RDF . ' Bag' ) {
 			# bug 27105
-			wfDebugLog( 'XMP', __METHOD__ . ' Expected an rdf:Seq, but got an rdf:Bag. Pretending'
+			$this->logger->info( __METHOD__ . ' Expected an rdf:Seq, but got an rdf:Bag. Pretending'
 				. ' it is a Seq, since some buggy software is known to screw this up.' );
 			array_unshift( $this->mode, self::MODE_LI );
 		} else {
@@ -908,7 +930,7 @@ class XMPReader {
 			throw new RuntimeException( __METHOD__ . ' Encountered <rdf:value> where it was unexpected.' );
 		} else {
 			// something else we don't recognize, like a qualifier maybe.
-			wfDebugLog( 'XMP', __METHOD__ .
+			$this->logger->info( __METHOD__ .
 				" Encountered element <$elm> where only expecting character data as value of " .
 				$this->curItem[0] );
 			array_unshift( $this->mode, self::MODE_IGNORE );
@@ -962,7 +984,7 @@ class XMPReader {
 					// a child of a struct), then something weird is
 					// happening, so ignore this element and its children.
 
-					wfDebugLog( 'XMP', "Encountered <$ns:$tag> outside"
+					$this->logger->warning( "Encountered <$ns:$tag> outside"
 						. " of its expected parent. Ignoring." );
 
 					array_unshift( $this->mode, self::MODE_IGNORE );
@@ -984,7 +1006,7 @@ class XMPReader {
 				}
 			} else {
 				// This element is not on our list of allowed elements so ignore.
-				wfDebugLog( 'XMP', __METHOD__ . " Ignoring unrecognized element <$ns:$tag>." );
+				$this->logger->debug( __METHOD__ . " Ignoring unrecognized element <$ns:$tag>." );
 				array_unshift( $this->mode, self::MODE_IGNORE );
 				array_unshift( $this->curItem, $ns . ' ' . $tag );
 
@@ -1164,12 +1186,12 @@ class XMPReader {
 			//
 			// also it seems as if exiv2 and exiftool do not support
 			// this either (That or I misunderstand the standard)
-			wfDebugLog( 'XMP', __METHOD__ . ' Encountered <rdf:type> which isn\'t currently supported' );
+			$this->logger->info( __METHOD__ . ' Encountered <rdf:type> which isn\'t currently supported' );
 		}
 
 		if ( strpos( $elm, ' ' ) === false ) {
 			// This probably shouldn't happen.
-			wfDebugLog( 'XMP', __METHOD__ . " Encountered <$elm> which has no namespace. Skipping." );
+			$this->logger->info( __METHOD__ . " Encountered <$elm> which has no namespace. Skipping." );
 
 			return;
 		}
@@ -1251,7 +1273,7 @@ class XMPReader {
 			if ( strpos( $name, ' ' ) === false ) {
 				// This shouldn't happen, but so far some old software forgets namespace
 				// on rdf:about.
-				wfDebugLog( 'XMP', __METHOD__ . ' Encountered non-namespaced attribute: '
+				$this->logger->info( __METHOD__ . ' Encountered non-namespaced attribute: '
 					. " $name=\"$val\". Skipping. " );
 				continue;
 			}
@@ -1269,7 +1291,7 @@ class XMPReader {
 				}
 				$this->saveValue( $ns, $tag, $val );
 			} else {
-				wfDebugLog( 'XMP', __METHOD__ . " Ignoring unrecognized element <$ns:$tag>." );
+				$this->logger->debug( __METHOD__ . " Ignoring unrecognized element <$ns:$tag>." );
 			}
 		}
 	}
@@ -1291,20 +1313,24 @@ class XMPReader {
 		$finalName = isset( $info['map_name'] )
 			? $info['map_name'] : $tag;
 		if ( isset( $info['validate'] ) ) {
-			$validate = is_array( $info['validate'] ) ? $info['validate']
-				: array( 'XMPValidate', $info['validate'] );
+			if ( is_array( $info['validate'] ) ) {
+				$validate = $info['validate'];
+			} else {
+				$validator = new XMPValidate( $this->logger );
+				$validate = array( $validator, $info['validate'] );
+			}
 
 			if ( is_callable( $validate ) ) {
 				call_user_func_array( $validate, array( $info, &$val, true ) );
 				// the reasoning behind using &$val instead of using the return value
 				// is to be consistent between here and validating structures.
 				if ( is_null( $val ) ) {
-					wfDebugLog( 'XMP', __METHOD__ . " <$ns:$tag> failed validation." );
+					$this->logger->info( __METHOD__ . " <$ns:$tag> failed validation." );
 
 					return;
 				}
 			} else {
-				wfDebugLog( 'XMP', __METHOD__ . " Validation function for $finalName ("
+				$this->logger->warning( __METHOD__ . " Validation function for $finalName ("
 					. $validate[0] . '::' . $validate[1] . '()) is not callable.' );
 			}
 		}
