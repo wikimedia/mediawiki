@@ -44,6 +44,7 @@ class ExtensionProcessor implements Processor {
 		'APIPropModules',
 		'APIListModules',
 		'ValidSkinNames',
+		'SkinOOUIThemes',
 	);
 
 	/**
