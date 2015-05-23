@@ -3285,16 +3285,5 @@ $obj: The XmlDumpWriter object.
 $row: The database row for the revision.
 $text: The revision text.
 
-'XMPGetInfo': Called when obtaining the list of XMP tags to extract. Can be used
-to add additional tags to extract.
-&$items: Array containing information on which items to extract. See XMPInfo for
-  details on the format.
-
-'XMPGetResults': Called just before returning the results array of parsing xmp
-data. Can be used to post-process the results.
-&$data: Array of metadata sections (such as $data['xmp-general']) each section
-  is an array of metadata tags returned (each tag is either a value, or an array
-  of values).
-
 More hooks might be available but undocumented, you can execute
 "php maintenance/findHooks.php" to find hidden ones.
