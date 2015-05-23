@@ -50,7 +50,7 @@ class XMPInfo {
 	 *   * mode - What type of item (self::MODE_SIMPLE usually, see above for
 	 *     all values).
 	 *   * validate - Method to validate input. Could also post-process the
-	 *     input. A string value is assumed to be a static method of
+	 *     input. A string value is assumed to be a method of
 	 *     XMPValidate. Can also take a array( 'className', 'methodName' ).
 	 *   * choices - Array of potential values (format of 'value' => true ).
 	 *     Only used with validateClosed.
