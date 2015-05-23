@@ -6,5 +6,13 @@
 	},
 	"ooui-outline-control-move-down": "توکی ښکته راوړل",
 	"ooui-outline-control-move-up": "توکی پورته راوړل",
-	"ooui-toolbar-more": "نور"
+	"ooui-outline-control-remove": "توکی غورځول",
+	"ooui-toolbar-more": "نور",
+	"ooui-toolgroup-expand": "نور",
+	"ooui-toolgroup-collapse": "لږ تر لږ",
+	"ooui-dialog-message-accept": "ښه",
+	"ooui-dialog-message-reject": "ناگارل",
+	"ooui-dialog-process-error": "يوه ستونزه رامنځ ته شوه",
+	"ooui-dialog-process-dismiss": "تړل",
+	"ooui-dialog-process-retry": "بيا هڅه"
 }
