@@ -4,10 +4,12 @@
 			"EugeneZelenko",
 			"Wizardist",
 			"Чаховіч Уладзіслаў",
-			"Zedlik"
+			"Zedlik",
+			"Red Winged Duck"
 		]
 	},
 	"ooui-outline-control-move-down": "Перасунуць ніжэй",
 	"ooui-outline-control-move-up": "Перасунуць вышэй",
-	"ooui-toolbar-more": "Болей"
+	"ooui-toolbar-more": "Болей",
+	"ooui-toolgroup-collapse": "Меней"
 }

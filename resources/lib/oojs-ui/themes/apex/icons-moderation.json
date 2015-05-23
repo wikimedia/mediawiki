@@ -1,0 +1,33 @@
+{
+	"prefix": "oo-ui-icon",
+	"intro": "@import '../../../../src/styles/common';",
+	"images": {
+		"block": { "file": "images/icons/block.svg" },
+		"blockUndo": { "file": {
+			"ltr": "images/icons/blockUndo-ltr.svg",
+			"rtl": "images/icons/blockUndo-rtl.svg"
+		} },
+		"flag": { "file": {
+			"ltr": "images/icons/flag-ltr.svg",
+			"rtl": "images/icons/flag-rtl.svg"
+		} },
+		"flagUndo": { "file": {
+			"ltr": "images/icons/flagUndo-ltr.svg",
+			"rtl": "images/icons/flagUndo-rtl.svg"
+		} },
+		"lock": { "file": "images/icons/lock.svg" },
+		"star": { "file": "images/icons/star.svg" },
+		"trash": { "file": "images/icons/trash.svg" },
+		"trashUndo": { "file": {
+			"ltr": "images/icons/trashUndo-ltr.svg",
+			"rtl": "images/icons/trashUndo-rtl.svg"
+		} },
+		"unLock": { "file": {
+			"ltr": "images/icons/unLock-ltr.svg",
+			"rtl": "images/icons/unLock-rtl.svg"
+		} },
+		"unStar": { "file": "images/icons/unStar.svg" }
+
+
+	}
+}
