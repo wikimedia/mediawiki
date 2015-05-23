@@ -21,6 +21,10 @@
  * @ingroup Media
  */
 
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
+
 /**
  * Class for reading xmp data containing properties relevant to
  * images, and spitting out an array that FormatMetadata accepts.
@@ -46,7 +50,7 @@
  * read rdf.
  *
  */
-class XMPReader {
+class XMPReader implements LoggerAwareInterface {
 	/** @var array XMP item configuration array */
 	protected $items;
 
@@ -121,20 +125,34 @@ class XMPReader {
 	const PARSABLE_NO = 3;
 
 	/**
+	 * @var LoggerInterface
+	 */
+	private $logger;
+
+	/**
 	 * Constructor.
 	 *
 	 * Primary job is to initialize the XMLParser
 	 */
-	function __construct() {
+	function __construct( LoggerInterface $logger = null ) {
 
 		if ( !function_exists( 'xml_parser_create_ns' ) ) {
 			// this should already be checked by this point
 			throw new RuntimeException( 'XMP support requires XML Parser' );
 		}
+		if ( $logger ) {
+			$this->setLogger( $logger );
+		} else {
+			$this->setLogger( new NullLogger() );
+		}
 
 		$this->items = XMPInfo::getItems();
 
 		$this->resetXMLParser();
+	}
+
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
 	}
 
 	/**
