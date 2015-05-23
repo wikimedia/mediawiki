@@ -358,7 +358,8 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		# to subpage syntax for long titles, e.g. [[Special:Block/Long name]]
 		$maxLength = ( $parts['namespace'] != NS_SPECIAL ) ? 255 : 512;
 		if ( strlen( $dbkey ) > $maxLength ) {
-			throw new MalformedTitleException( 'title-invalid-too-long', $text, array( $maxLength ) );
+			throw new MalformedTitleException( 'title-invalid-too-long', $text,
+				array( Message::numParam( $maxLength ) ) );
 		}
 
 		# Normally, all wiki links are forced to have an initial capital letter so [[foo]]
