@@ -6,7 +6,7 @@
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-05-12T12:15:37Z
+ * Date: 2015-05-23T09:53:56Z
  */
 /**
  * @class

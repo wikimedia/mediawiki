@@ -6,7 +6,7 @@
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-05-12T12:15:37Z
+ * Date: 2015-05-23T09:53:56Z
  */
 ( function ( OO ) {
 
@@ -11915,6 +11915,7 @@ OO.ui.DropdownWidget.prototype.onMenuSelect = function ( item ) {
 	var selectedLabel;
 
 	if ( !item ) {
+		this.setLabel( null );
 		return;
 	}
 
