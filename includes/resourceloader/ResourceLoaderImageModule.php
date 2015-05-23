@@ -28,7 +28,7 @@
  */
 class ResourceLoaderImageModule extends ResourceLoaderModule {
 
-	private $definition = null;
+	protected $definition = null;
 
 	/**
 	 * Local base path, see __construct()
@@ -70,21 +70,27 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 *         'selectorWithVariant' => [CSS selector template, variables: {prefix} {name} {variant}],
 	 *         // List of variants that may be used for the image files
 	 *         'variants' => array(
+	 *             [theme name] => array(
 	 *                 [variant name] => array(
 	 *                     'color' => [color string, e.g. '#ffff00'],
 	 *                     'global' => [boolean, if true, this variant is available
 	 *                                  for all images of this type],
 	 *                 ),
+	 *                 ...
+	 *             ),
 	 *             ...
 	 *         ),
 	 *         // List of image files and their options
 	 *         'images' => array(
+	 *             [theme name] => array(
 	 *                 [file path string],
 	 *                 [file path string] => array(
 	 *                     'name' => [image name string, defaults to file name],
 	 *                     'variants' => [array of variant name strings, variants
 	 *                                    available for this image],
 	 *                 ),
+	 *                 ...
+	 *             ),
 	 *             ...
 	 *         ),
 	 *     )
@@ -100,7 +106,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	/**
 	 * Parse definition and external JSON data, if referenced.
 	 */
-	private function loadFromDefinition() {
+	protected function loadFromDefinition() {
 		if ( $this->definition === null ) {
 			return;
 		}
@@ -148,6 +154,17 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 							"Invalid list error. '$option' given, array expected."
 						);
 					}
+					if ( !isset( $option['default'] ) ) {
+						// Backwards compatibility
+						$option = array( 'default' => $option );
+					}
+					foreach ( $option as $skin => $data ) {
+						if ( !is_array( $option ) ) {
+							throw new InvalidArgumentException(
+								"Invalid list error. '$option' given, array expected."
+							);
+						}
+					}
 					$this->{$member} = $option;
 					break;
 
@@ -189,9 +206,9 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @param string $name Image name
 	 * @return ResourceLoaderImage|null
 	 */
-	public function getImage( $name ) {
+	public function getImage( $name, ResourceLoaderContext $context ) {
 		$this->loadFromDefinition();
-		$images = $this->getImages();
+		$images = $this->getImages( $context );
 		return isset( $images[$name] ) ? $images[$name] : null;
 	}
 
@@ -199,21 +216,28 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * Get ResourceLoaderImage objects for all images.
 	 * @return ResourceLoaderImage[] Array keyed by image name
 	 */
-	public function getImages() {
+	public function getImages( ResourceLoaderContext $context ) {
+		$contextHash = $context->getHash();
+		$skin = $context->getSkin();
 		if ( !isset( $this->imageObjects ) ) {
 			$this->loadFromDefinition();
 			$this->imageObjects = array();
-
-			foreach ( $this->images as $name => $options ) {
+		}
+		if ( !isset( $this->imageObjects[ $contextHash ] ) ) {
+			$this->imageObjects[ $contextHash ] = array();
+			if ( !isset( $this->images[ $skin ] ) ) {
+				$skin = 'default';
+			}
+			foreach ( $this->images[ $skin ] as $name => $options ) {
 				$fileDescriptor = is_string( $options ) ? $options : $options['file'];
 
 				$allowedVariants = array_merge(
 					is_array( $options ) && isset( $options['variants'] ) ? $options['variants'] : array(),
-					$this->getGlobalVariants()
+					$this->getGlobalVariants( $context )
 				);
-				if ( isset( $this->variants ) ) {
+				if ( isset( $this->variants[ $skin ] ) ) {
 					$variantConfig = array_intersect_key(
-						$this->variants,
+						$this->variants[ $skin ],
 						array_fill_keys( $allowedVariants, true )
 					);
 				} else {
@@ -227,11 +251,11 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 					$this->localBasePath,
 					$variantConfig
 				);
-				$this->imageObjects[ $image->getName() ] = $image;
+				$this->imageObjects[ $contextHash ][ $image->getName() ] = $image;
 			}
 		}
 
-		return $this->imageObjects;
+		return $this->imageObjects[ $contextHash ];
 	}
 
 	/**
@@ -239,21 +263,26 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * for every image regardless of image options.
 	 * @return string[]
 	 */
-	public function getGlobalVariants() {
+	public function getGlobalVariants( ResourceLoaderContext $context ) {
+		$contextHash = $context->getHash();
+		$skin = $context->getSkin();
 		if ( !isset( $this->globalVariants ) ) {
 			$this->loadFromDefinition();
 			$this->globalVariants = array();
-
-			if ( isset( $this->variants ) ) {
-				foreach ( $this->variants as $name => $config ) {
-					if ( isset( $config['global'] ) && $config['global'] ) {
-						$this->globalVariants[] = $name;
-					}
+		}
+		if ( !isset( $this->globalVariants[ $contextHash ] ) ) {
+			$this->globalVariants[ $contextHash ] = array();
+			if ( !isset( $this->variants[ $skin ] ) ) {
+				$skin = 'default';
+			}
+			foreach ( $this->variants[ $skin ] as $name => $config ) {
+				if ( isset( $config['global'] ) && $config['global'] ) {
+					$this->globalVariants[ $contextHash ][] = $name;
 				}
 			}
 		}
 
-		return $this->globalVariants;
+		return $this->globalVariants[ $contextHash ];
 	}
 
 	/**
@@ -268,7 +297,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 		$script = $context->getResourceLoader()->getLoadScript( $this->getSource() );
 		$selectors = $this->getSelectors();
 
-		foreach ( $this->getImages() as $name => $image ) {
+		foreach ( $this->getImages( $context ) as $name => $image ) {
 			$declarations = $this->getCssDeclarations(
 				$image->getDataUri( $context, null, 'original' ),
 				$image->getUrl( $context, $script, null, 'rasterized' )
@@ -366,7 +395,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	public function getModifiedTime( ResourceLoaderContext $context ) {
 		$this->loadFromDefinition();
 		$files = array();
-		foreach ( $this->getImages() as $name => $image ) {
+		foreach ( $this->getImages( $context ) as $name => $image ) {
 			$files[] = $image->getPath( $context );
 		}
 
