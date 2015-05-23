@@ -81,6 +81,7 @@ class JobQueueRedis extends JobQueue {
 	 *   - daemonized  : Set to true if the redisJobRunnerService runs in the background.
 	 *                   This will disable job recycling/undelaying from the MediaWiki side
 	 *                   to avoid redundance and out-of-sync configuration.
+	 * @throws InvalidArgumentException
 	 */
 	public function __construct( array $params ) {
 		parent::__construct( $params );
@@ -89,7 +90,7 @@ class JobQueueRedis extends JobQueue {
 		$this->compression = isset( $params['compression'] ) ? $params['compression'] : 'none';
 		$this->redisPool = RedisConnectionPool::singleton( $params['redisConfig'] );
 		if ( empty( $params['daemonized'] ) ) {
-			throw new Exception(
+			throw new InvalidArgumentException(
 				"Non-daemonized mode is no longer supported. Please install the " .
 				"mediawiki/services/jobrunner service and update \$wgJobTypeConf as needed." );
 		}
@@ -110,7 +111,7 @@ class JobQueueRedis extends JobQueue {
 	/**
 	 * @see JobQueue::doIsEmpty()
 	 * @return bool
-	 * @throws MWException
+	 * @throws JobQueueError
 	 */
 	protected function doIsEmpty() {
 		return $this->doGetSize() == 0;
@@ -119,7 +120,7 @@ class JobQueueRedis extends JobQueue {
 	/**
 	 * @see JobQueue::doGetSize()
 	 * @return int
-	 * @throws MWException
+	 * @throws JobQueueError
 	 */
 	protected function doGetSize() {
 		$conn = $this->getConnection();
@@ -356,11 +357,12 @@ LUA;
 	 * @see JobQueue::doAck()
 	 * @param Job $job
 	 * @return Job|bool
-	 * @throws MWException|JobQueueError
+	 * @throws UnexpectedValueException
+	 * @throws JobQueueError
 	 */
 	protected function doAck( Job $job ) {
 		if ( !isset( $job->metadata['uuid'] ) ) {
-			throw new MWException( "Job of type '{$job->getType()}' has no UUID." );
+			throw new UnexpectedValueException( "Job of type '{$job->getType()}' has no UUID." );
 		}
 
 		$conn = $this->getConnection();
@@ -402,11 +404,12 @@ LUA;
 	 * @see JobQueue::doDeduplicateRootJob()
 	 * @param Job $job
 	 * @return bool
-	 * @throws MWException|JobQueueError
+	 * @throws JobQueueError
+	 * @throws LogicException
 	 */
 	protected function doDeduplicateRootJob( Job $job ) {
 		if ( !$job->hasRootJobParams() ) {
-			throw new MWException( "Cannot register root job; missing parameters." );
+			throw new LogicException( "Cannot register root job; missing parameters." );
 		}
 		$params = $job->getRootJobParams();
 
@@ -591,7 +594,8 @@ LUA;
 	 * @param string $uid
 	 * @param RedisConnRef $conn
 	 * @return Job|bool Returns false if the job does not exist
-	 * @throws MWException|JobQueueError
+	 * @throws JobQueueError
+	 * @throws UnexpectedValueException
 	 */
 	public function getJobFromUidInternal( $uid, RedisConnRef $conn ) {
 		try {
@@ -601,7 +605,7 @@ LUA;
 			}
 			$item = $this->unserialize( $data );
 			if ( !is_array( $item ) ) { // this shouldn't happen
-				throw new MWException( "Could not find job with ID '$uid'." );
+				throw new UnexpectedValueException( "Could not find job with ID '$uid'." );
 			}
 			$title = Title::makeTitle( $item['namespace'], $item['title'] );
 			$job = Job::factory( $item['type'], $title, $item['params'] );
