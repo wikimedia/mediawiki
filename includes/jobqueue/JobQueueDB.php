@@ -488,11 +488,11 @@ class JobQueueDB extends JobQueue {
 
 	/**
 	 * @see JobQueue::doDeduplicateRootJob()
-	 * @param Job $job
+	 * @param IJobSpecification $job
 	 * @throws MWException
 	 * @return bool
 	 */
-	protected function doDeduplicateRootJob( Job $job ) {
+	protected function doDeduplicateRootJob( IJobSpecification $job ) {
 		$params = $job->getParams();
 		if ( !isset( $params['rootJobSignature'] ) ) {
 			throw new MWException( "Cannot register root job; missing 'rootJobSignature'." );

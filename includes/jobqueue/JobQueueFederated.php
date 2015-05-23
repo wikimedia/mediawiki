@@ -328,7 +328,7 @@ class JobQueueFederated extends JobQueue {
 		return false;
 	}
 
-	protected function doDeduplicateRootJob( Job $job ) {
+	protected function doDeduplicateRootJob( IJobSpecification $job ) {
 		$params = $job->getRootJobParams();
 		$sigature = $params['rootJobSignature'];
 		$partition = $this->partitionRing->getLiveLocation( $sigature );
