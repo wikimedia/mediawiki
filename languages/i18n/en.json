@@ -347,7 +347,7 @@
 	"title-invalid-characters": "The requested page title contains invalid characters: \"$1\".",
 	"title-invalid-relative": "Title has relative path. Relative page titles (./, ../) are invalid, because they will often be unreachable when handled by user's browser.",
 	"title-invalid-magic-tilde": "The requested page title contains invalid magic tilde sequence (<nowiki>~~~</nowiki>).",
-	"title-invalid-too-long": "The requested page title is too long. It must be no longer than $1 bytes in UTF-8 encoding.",
+	"title-invalid-too-long": "The requested page title is too long. It must be no longer than $1 {{PLURAL:$1|byte|bytes}} in UTF-8 encoding.",
 	"title-invalid-leading-colon": "The requested page title contains an invalid colon at the beginning.",
 	"perfcached": "The following data is cached and may not be up to date. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.",
 	"perfcachedts": "The following data is cached, and was last updated $1. A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.",
