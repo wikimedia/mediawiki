@@ -726,6 +726,15 @@ class ResourceLoader {
 	 * @return void
 	 */
 	protected function sendResponseHeaders( ResourceLoaderContext $context, $etag, $errors ) {
+		// Set proper HTTP response code
+		if ( $errors ) {
+			if ( function_exists( 'http_response_code' ) ) {
+				http_response_code( 500 );
+			} else {
+				header( 'X-PHP-Response-Code: 500', true, 500 );
+			}
+		}
+
 		$rlMaxage = $this->config->get( 'ResourceLoaderMaxage' );
 		// If a version wasn't specified we need a shorter expiry time for updates
 		// to propagate to clients quickly
