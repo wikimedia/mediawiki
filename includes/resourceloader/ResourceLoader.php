@@ -247,6 +247,7 @@ class ResourceLoader {
 
 		// Register core modules
 		$this->register( include "$IP/resources/Resources.php" );
+		$this->register( include "$IP/resources/ResourcesOOUI.php" );
 		// Register extension modules
 		Hooks::run( 'ResourceLoaderRegisterModules', array( &$this ) );
 		$this->register( $config->get( 'ResourceModules' ) );
@@ -313,6 +314,9 @@ class ResourceLoader {
 				$this->modules[$name] = $info;
 			} elseif ( is_array( $info ) ) {
 				// New calling convention
+				$this->moduleInfos[$name] = $info;
+			} elseif ( is_callable( $info ) ) {
+				// Lazy loading? o.O
 				$this->moduleInfos[$name] = $info;
 			} else {
 				throw new MWException(
@@ -502,6 +506,9 @@ class ResourceLoader {
 			}
 			// Construct the requested object
 			$info = $this->moduleInfos[$name];
+			if ( is_callable( $info ) ) {
+				$info = call_user_func( $info );
+			}
 			/** @var ResourceLoaderModule $object */
 			if ( isset( $info['object'] ) ) {
 				// Object given in info array
@@ -534,6 +541,9 @@ class ResourceLoader {
 			return false;
 		}
 		$info = $this->moduleInfos[$name];
+		if ( !is_array( $info ) ) {
+			return false;
+		}
 		if ( isset( $info['object'] ) || isset( $info['class'] ) ) {
 			return false;
 		}
