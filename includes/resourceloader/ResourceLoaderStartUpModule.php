@@ -206,7 +206,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				continue;
 			}
 
-			$versionHash = $module->getVersionHash( $context );
+			$versionHash = $module->getDefinitionSummary( $context );
 			if ( strlen( $versionHash ) !== 8 ) {
 				// Module implementation either broken or deviated from ResourceLoader::makeHash
 				// Asserted by tests/phpunit/structure/ResourcesTest.
