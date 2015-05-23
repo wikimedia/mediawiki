@@ -20,7 +20,8 @@
  * @file
  * @ingroup Media
  */
-
+use Psr\Log\LoggerInterface;
+use Psr\Log\LoggerAwareInterface;
 /**
  * This contains some static methods for
  * validating XMP properties. See XMPInfo and XMPReader classes.
@@ -40,7 +41,20 @@
  * @see http://www.adobe.com/devnet/xmp/pdfs/XMPSpecificationPart1.pdf starting at pg 28
  * @see http://www.adobe.com/devnet/xmp/pdfs/XMPSpecificationPart2.pdf starting at pg 11
  */
-class XMPValidate {
+class XMPValidate extends LoggerAwareInterface {
+
+	/**
+	 * @var LoggerInterface
+	 */
+	private $logger;
+
+	public function __construct( LoggerInterface $logger ) {
+		$this->setLogger( $logger );
+	}
+
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
+	}
 	/**
 	 * Function to validate boolean properties ( True or False )
 	 *
@@ -48,7 +62,7 @@ class XMPValidate {
 	 * @param mixed &$val Current value to validate
 	 * @param bool $standalone If this is a simple property or array
 	 */
-	public static function validateBoolean( $info, &$val, $standalone ) {
+	public function validateBoolean( $info, &$val, $standalone ) {
 		if ( !$standalone ) {
 			// this only validates standalone properties, not arrays, etc
 			return;
@@ -66,7 +80,7 @@ class XMPValidate {
 	 * @param mixed &$val Current value to validate
 	 * @param bool $standalone If this is a simple property or array
 	 */
-	public static function validateRational( $info, &$val, $standalone ) {
+	public function validateRational( $info, &$val, $standalone ) {
 		if ( !$standalone ) {
 			// this only validates standalone properties, not arrays, etc
 			return;
@@ -87,7 +101,7 @@ class XMPValidate {
 	 * @param mixed &$val Current value to validate
 	 * @param bool $standalone If this is a simple property or array
 	 */
-	public static function validateRating( $info, &$val, $standalone ) {
+	public function validateRating( $info, &$val, $standalone ) {
 		if ( !$standalone ) {
 			// this only validates standalone properties, not arrays, etc
 			return;
@@ -126,7 +140,7 @@ class XMPValidate {
 	 * @param mixed &$val Current value to validate
 	 * @param bool $standalone If this is a simple property or array
 	 */
-	public static function validateInteger( $info, &$val, $standalone ) {
+	public function validateInteger( $info, &$val, $standalone ) {
 		if ( !$standalone ) {
 			// this only validates standalone properties, not arrays, etc
 			return;
@@ -145,7 +159,7 @@ class XMPValidate {
 	 * @param mixed &$val Current value to validate
 	 * @param bool $standalone If this is a simple property or array
 	 */
-	public static function validateClosed( $info, &$val, $standalone ) {
+	public function validateClosed( $info, &$val, $standalone ) {
 		if ( !$standalone ) {
 			// this only validates standalone properties, not arrays, etc
 			return;
@@ -175,7 +189,7 @@ class XMPValidate {
 	 * @param mixed &$val Current value to validate
 	 * @param bool $standalone If this is a simple property or array
 	 */
-	public static function validateFlash( $info, &$val, $standalone ) {
+	public function validateFlash( $info, &$val, $standalone ) {
 		if ( $standalone ) {
 			// this only validates flash structs, not individual properties
 			return;
@@ -209,7 +223,7 @@ class XMPValidate {
 	 * @param mixed &$val Current value to validate
 	 * @param bool $standalone If this is a simple property or array
 	 */
-	public static function validateLangCode( $info, &$val, $standalone ) {
+	public function validateLangCode( $info, &$val, $standalone ) {
 		if ( !$standalone ) {
 			// this only validates standalone properties, not arrays, etc
 			return;
@@ -238,7 +252,7 @@ class XMPValidate {
 	 *    2011:04.
 	 * @param bool $standalone If this is a simple property or array
 	 */
-	public static function validateDate( $info, &$val, $standalone ) {
+	public function validateDate( $info, &$val, $standalone ) {
 		if ( !$standalone ) {
 			// this only validates standalone properties, not arrays, etc
 			return;
@@ -339,7 +353,7 @@ class XMPValidate {
 	 *   or DDD,MM.mmk form
 	 * @param bool $standalone If its a simple prop (should always be true)
 	 */
-	public static function validateGPS( $info, &$val, $standalone ) {
+	public function validateGPS( $info, &$val, $standalone ) {
 		if ( !$standalone ) {
 			return;
 		}
