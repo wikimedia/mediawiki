@@ -6490,8 +6490,7 @@ $wgJobQueueAggregator = array(
  * Expensive Querypages are already updated.
  */
 $wgSpecialPageCacheUpdates = array(
-	'Statistics' => array( 'SiteStatsUpdate', 'cacheUpdate' ),
-	'Activeusers' => array( 'SpecialActiveUsers', 'cacheUpdate' ),
+	'Statistics' => array( 'SiteStatsUpdate', 'cacheUpdate' )
 );
 
 /**
