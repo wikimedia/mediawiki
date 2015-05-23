@@ -14,7 +14,8 @@
 			"Ltrlg",
 			"Crochet.david",
 			"0x010C",
-			"Lucky"
+			"Lucky",
+			"Freak2fast4u"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentation]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Liste de diffusion]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annonces de l’API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bogues et demandes]\n</div>\n<strong>État :</strong> Toutes les fonctionnalités affichées sur cette page devraient fonctionner, mais l’API est encore en cours de développement et peut changer à tout moment. Inscrivez-vous à [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la liste de diffusion mediawiki-api-announce] pour être informé des mises à jour.\n\n<strong>Requêtes erronées :</strong> Si des requêtes erronées sont envoyées à l’API, un en-tête HTTP sera renvoyé avec la clé « MediaWiki-API-Error ». La valeur de cet en-tête et le code d’erreur renvoyé prendront la même valeur. Pour plus d’information, voyez [[mw:API:Errors_and_warnings|API: Errors and warnings]].",
@@ -898,6 +899,8 @@
 	"apihelp-query+watchlistraw-param-show": "Lister uniquement les éléments correspondant à ces critères.",
 	"apihelp-query+watchlistraw-param-owner": "Utilisé avec $1token pour accéder à la liste de suivi d’un autre utilisateur.",
 	"apihelp-query+watchlistraw-param-token": "Un jeton de sécurité (disponible dans les [[Special:Preferences#mw-prefsection-watchlist|préférences]] de l’utilisateur) pour permettre l’accès à la liste de suivi d’un autre utilisateur.",
+	"apihelp-query+watchlistraw-param-fromtitle": "Démarrer l'énumération avec ce Titre (inclure le préfixe d'espace de noms) :",
+	"apihelp-query+watchlistraw-param-totitle": "Terminer l'énumération avec ce Titre (inclure le préfixe d'espace de noms) :",
 	"apihelp-query+watchlistraw-example-simple": "Lister les pages dans la liste de suivi de l’utilisateur actuel",
 	"apihelp-query+watchlistraw-example-generator": "Chercher l’information sur les pages de la liste de suivi de l’utilisateur actuel",
 	"apihelp-revisiondelete-description": "Supprimer et annuler la suppression des révisions.",

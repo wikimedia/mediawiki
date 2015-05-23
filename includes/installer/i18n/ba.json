@@ -9,6 +9,8 @@
 	"config-desc": "MediaWiki йөкләүсе",
 	"config-title": "MediaWiki $1 йөкләмеше",
 	"config-information": "Мәғлүмәт",
+	"config-localsettings-upgrade": "<code>LocalSettings.php</code> файлы бар. \nБыл күрһәтмәне яңыртыу өсөн <code>$wgUpgradeKey</code> мәғәнәһен яҙығыҙ.\nУны <code>LocalSettings.php</code> файлында табырға була.",
+	"config-localsettings-cli-upgrade": "<code>LocalSettings.php</code> файлы бар. \nБыл күрһәтмәне яңыртыу өсөн <code>update.php</code> эшләтеп ебәрегеҙ.",
 	"config-localsettings-key": "Яңыртыу асҡысы:",
 	"config-localsettings-badkey": "Дөрөҫ булмаған асҡыс күрһәттегеҙ",
 	"config-session-error": "Эш башлағанда сыҡҡан хата: $1",

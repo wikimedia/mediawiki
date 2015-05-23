@@ -1114,9 +1114,10 @@
 	"api-error-unknown-code": "Qalad la aqoon: \"$1\"",
 	"api-error-unknown-warning": "Digniin la aqoon: $1",
 	"api-error-uploaddisabled": "Soo gelinta waa laga xiray wikigaan.",
-	"limitreport-title": "Faahin caddeymo:",
+	"limitreport-title": "Faahfaahin caddeymo:",
 	"limitreport-cputime": "Waqtiga adeegsiga CPU",
 	"limitreport-walltime": "Waqtiga dhabta ah adeegsiga",
 	"limitreport-ppvisitednodes": "Tirooyinka gutinada ee maskaxda",
-	"limitreport-ppgeneratednodes": "Gutinada ay horay u soo booqatay maskaxda"
+	"limitreport-ppgeneratednodes": "Gutinada ay horay u soo booqatay maskaxda",
+	"limitreport-expensivefunctioncount": "Tirada isle'egta gutinada xilgudashada"
 }
