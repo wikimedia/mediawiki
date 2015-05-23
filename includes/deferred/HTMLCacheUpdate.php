@@ -56,7 +56,6 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 		$count = $this->mTitle->getBacklinkCache()->getNumLinks( $this->mTable, 100 );
 		if ( $count >= 100 ) { // many backlinks
 			JobQueueGroup::singleton()->lazyPush( $job );
-			JobQueueGroup::singleton()->deduplicateRootJob( $job );
 		} else { // few backlinks ($count might be off even if 0)
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->onTransactionIdle( function () use ( $job ) {
