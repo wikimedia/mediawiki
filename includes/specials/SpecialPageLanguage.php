@@ -87,7 +87,10 @@ class SpecialPageLanguage extends FormSpecialPage {
 	}
 
 	protected function postText() {
-		return $this->showLogFragment( $this->par );
+		if ( $this->par ) {
+			return $this->showLogFragment( $this->par );
+		}
+		return '';
 	}
 
 	protected function getDisplayFormat() {
