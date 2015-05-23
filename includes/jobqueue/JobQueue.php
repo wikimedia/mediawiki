@@ -425,11 +425,11 @@ abstract class JobQueue {
 	 *
 	 * This does nothing for certain queue classes.
 	 *
-	 * @param Job $job
+	 * @param JobSpecification $job
 	 * @throws MWException
 	 * @return bool
 	 */
-	final public function deduplicateRootJob( Job $job ) {
+	final public function deduplicateRootJob( JobSpecification $job ) {
 		if ( $job->getType() !== $this->type ) {
 			throw new MWException( "Got '{$job->getType()}' job; expected '{$this->type}'." );
 		}
@@ -440,11 +440,11 @@ abstract class JobQueue {
 
 	/**
 	 * @see JobQueue::deduplicateRootJob()
-	 * @param Job $job
+	 * @param JobSpecification $job
 	 * @throws MWException
 	 * @return bool
 	 */
-	protected function doDeduplicateRootJob( Job $job ) {
+	protected function doDeduplicateRootJob( JobSpecification $job ) {
 		if ( !$job->hasRootJobParams() ) {
 			throw new MWException( "Cannot register root job; missing parameters." );
 		}
