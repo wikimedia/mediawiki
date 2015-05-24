@@ -577,8 +577,7 @@ class ApiMain extends ApiBase {
 		if ( !in_array( $originParam, $origins ) ) {
 			// origin parameter set but incorrect
 			// Send a 403 response
-			$message = HttpStatus::getMessage( 403 );
-			$response->header( "HTTP/1.1 403 $message", true, 403 );
+			$response->statusHeader( 403 );
 			$response->header( 'Cache-Control: no-cache' );
 			echo "'origin' parameter does not match Origin header\n";
 

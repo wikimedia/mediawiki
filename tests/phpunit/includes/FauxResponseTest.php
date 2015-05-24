@@ -108,6 +108,13 @@ class FauxResponseTest extends MediaWikiTestCase {
 			'Third parameter overrides the HTTP/... header'
 		);
 
+		$this->response->statusHeader( 210 );
+		$this->assertEquals(
+			210,
+			$this->response->getStatusCode(),
+			'Handle statusHeader method'
+		);
+
 		$this->response->header( 'Location: http://localhost/', false, 206 );
 		$this->assertEquals(
 			206,

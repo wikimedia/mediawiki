@@ -1238,7 +1238,7 @@ class Article implements Page {
 		if ( !$this->mPage->hasViewableContent() && $wgSend404Code && !$validUserPage ) {
 			// If there's no backing content, send a 404 Not Found
 			// for better machine handling of broken links.
-			$this->getContext()->getRequest()->response()->header( "HTTP/1.1 404 Not Found" );
+			$this->getContext()->getRequest()->response()->statusHeader( 404 );
 		}
 
 		// Also apply the robot policy for nonexisting pages (even if a 404 was used for sanity)
