@@ -238,6 +238,7 @@ class HTMLForm extends ContextSource {
 	 */
 	protected $availableSubclassDisplayFormats = array(
 		'vform',
+		'ooui',
 	);
 
 	/**
@@ -255,6 +256,9 @@ class HTMLForm extends ContextSource {
 		switch ( $displayFormat ) {
 			case 'vform':
 				$reflector = new ReflectionClass( 'VFormHTMLForm' );
+				return $reflector->newInstanceArgs( $arguments );
+			case 'ooui':
+				$reflector = new ReflectionClass( 'OOUIHTMLForm' );
 				return $reflector->newInstanceArgs( $arguments );
 			default:
 				$reflector = new ReflectionClass( 'HTMLForm' );
@@ -1392,6 +1396,17 @@ class HTMLForm extends ContextSource {
 						Html::rawElement( 'tbody', array(), "\n$html\n" ) ) . "\n";
 			} elseif ( $displayFormat === 'inline' ) {
 				$html = Html::rawElement( 'span', $attribs, "\n$html\n" );
+			} elseif ( $displayFormat === 'ooui' ) {
+				$config = array(
+					'classes' => $classes,
+				);
+				if ( $sectionName ) {
+					$config['id'] = Sanitizer::escapeId( $sectionName );
+				}
+				$fieldset = new OOUI\FieldsetLayout( $config );
+				// Ewww. We should pass this as $config['items'], but there might be string snippets.
+				$fieldset->group->appendContent( new OOUI\HtmlSnippet( $html ) );
+				$html = $fieldset->toString();
 			} else {
 				$html = Html::rawElement( 'div', $attribs, "\n$html\n" );
 			}
