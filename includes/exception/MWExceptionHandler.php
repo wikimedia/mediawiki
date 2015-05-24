@@ -365,8 +365,9 @@ class MWExceptionHandler {
 			if ( $json !== false ) {
 				wfDebugLog( 'exception-json', $json, 'private' );
 			}
-		}
 
+			Hooks::run( 'LogException', array( $e, false ) );
+		}
 	}
 
 }
