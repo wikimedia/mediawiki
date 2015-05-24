@@ -19,8 +19,12 @@ class ChangeTagsContextTest extends MediaWikiTestCase {
 			'StoredTag' => [ 'active' => true ],
 		];
 		$this->core = [
-			'mw-contentmodelchange' => [ 'active' => true ],
+			'mw-coretag1' => [ 'active' => true ],
+			'mw-coretag2' => [ 'active' => false ],
+			'mw-coretag3' => [],
+			'mw-coretag4' => null,
 		];
+		$this->setMwGlobals( [ 'wgCoreTags' => $this->core ] );
 		$config = RequestContext::getMain()->getConfig();
 		$this->context = $this->getMockBuilder( 'ChangeTagsContext' )
 			->setConstructorArgs( [ $config ] )
@@ -61,8 +65,8 @@ class ChangeTagsContextTest extends MediaWikiTestCase {
 			[ [ 'UndefinedTag' ], [], false ],
 			[ [], [ 'StoredTag' ], true ],
 			[ [], [ 'UndefinedTag' ], true ],
-			[ [ 'mw-contentmodelchange' ], [], false ],
-			[ [], [ 'mw-contentmodelchange' ], false ],
+			[ [ 'mw-coretag3' ], [], false ],
+			[ [], [ 'mw-coretag3' ], false ],
 		];
 	}
 }
