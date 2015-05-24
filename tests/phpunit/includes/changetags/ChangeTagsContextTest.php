@@ -13,8 +13,10 @@ class ChangeTagsContextTest extends ChangeTagsTest {
 	 * @covers ChangeTagsContext::definedTags
 	 */
 	public function testDefinedTags() {
+		$config = RequestContext::getMain()->getConfig();
+		$coreTags = $config->get( 'CoreTags' );
 		$actual = $this->fakeContext->getDefined();
-		$expected = array(
+		$expectedNonCore = array(
 			'StoredTagNoHits' => array( 'active' => true ),
 			'StoredTagWithHits' => array( 'active' => true ),
 			'ActiveRegisteredTag' => array(
@@ -22,6 +24,7 @@ class ChangeTagsContextTest extends ChangeTagsTest {
 			),
 			'InactiveRegisteredTag' => array(),
 			);
+		$expected = array_merge( $expectedNonCore, $coreTags );
 
 		ksort( $expected );
 		ksort( $actual );

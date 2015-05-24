@@ -34,6 +34,9 @@ class ChangeTagsTest extends MediaWikiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
+		$this->setMwGlobals( array(
+			'wgUseAutoTagging' => true,
+		) );
 		$this->fakeContext = new FakeChangeTagsContext;
 	}
 
