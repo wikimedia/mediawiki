@@ -6759,6 +6759,34 @@ $wgSecondaryTagUsageCacheDuration = 60 * 60 * 24;
 $wgTagMaxHitcountUpdate = 0;
 
 /**
+ * Whether to enable automated tagging.
+ * @since 1.28
+ */
+$wgUseAutoTagging = false;
+
+/**
+ * List of automated tags defined in core with their 'active' status.
+ * To disable automated tagging for a specific tag, set its active
+ * status to false.
+ * To prevent it from appearing at Special:Tags, remove it altogether.
+ * @since 1.28
+ */
+$wgCoreTags = [
+	'mw-contentmodelchange' => [ 'active' => true ],
+	'mw-move-tomainspace' => [ 'active' => true ],
+	'mw-move-crossnamespace' => [ 'active' => true ],
+	'mw-move-rename' => [ 'active' => true ],
+	'mw-redirect-new' => [ 'active' => true ],
+	'mw-redirect-changed' => [ 'active' => true ],
+	'mw-redirect-self' => [ 'active' => true ],
+	'mw-redirect-nonexistent' => [ 'active' => true ],
+	'mw-redirect-removed' => [ 'active' => true ],
+	'mw-edit-blank' => [ 'active' => true ],
+	'mw-edit-replace' => [ 'active' => true ],
+	'mw-newpage-blank' => [ 'active' => true ],
+];
+
+/**
  * If set to an integer, pages that are watched by this many users or more
  * will not require the unwatchedpages permission to view the number of
  * watchers.
