@@ -106,7 +106,6 @@ class RecentChange {
 	 * Parsing text to RC_* constants
 	 * @since 1.24
 	 * @param string|array $type
-	 * @throws MWException
 	 * @return int|array RC_TYPE
 	 */
 	public static function parseToRCType( $type ) {
@@ -129,7 +128,7 @@ class RecentChange {
 			case 'external':
 				return RC_EXTERNAL;
 			default:
-				throw new MWException( "Unknown type '$type'" );
+				return (int) $type;
 		}
 	}
 
