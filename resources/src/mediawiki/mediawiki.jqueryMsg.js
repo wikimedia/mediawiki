@@ -17,8 +17,10 @@
 			magic: {
 				'SITENAME': mw.config.get( 'wgSiteName' )
 			},
-			// This is a whitelist based on, but simpler than, Sanitizer.php.
+			// This is a whitelist like Sanitizer.php.
 			// Self-closing tags are not currently supported.
+			// The simplified default here is overridden below by data supplied
+			// by the mediawiki.jqueryMsg.data module.
 			allowedHtmlElements: [
 				'b',
 				'i'
@@ -128,6 +130,14 @@
 				return $( '<span>' ).text( fallback );
 			}
 		};
+	}
+
+	// Use data from mediawiki.jqueryMsg.data to override defaults, if
+	// available
+	if ( mw.jqueryMsg && mw.jqueryMsg.data ) {
+		if ( mw.jqueryMsg.data.allowedHtmlElements ) {
+			parserDefaults.allowedHtmlElements = mw.jqueryMsg.data.allowedHtmlElements;
+		}
 	}
 
 	mw.jqueryMsg = {};

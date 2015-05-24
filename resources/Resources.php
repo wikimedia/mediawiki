@@ -58,6 +58,9 @@ return array(
 	// Scripts for the dynamic language specific data, like grammar forms.
 	'mediawiki.language.data' => array( 'class' => 'ResourceLoaderLanguageDataModule' ),
 
+	// Dynamic data for mediawiki.jqueryMsg, such as allowed tags
+	'mediawiki.jqueryMsg.data' => array( 'class' => 'ResourceLoaderJqueryMsgDataModule' ),
+
 	/* MediaWiki base skinning modules */
 
 	/**
@@ -1270,6 +1273,7 @@ return array(
 	'mediawiki.jqueryMsg' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.jqueryMsg.js',
 		'dependencies' => array(
+			'mediawiki.jqueryMsg.data',
 			'mediawiki.util',
 			'mediawiki.language',
 			'dom-level2-shim',
