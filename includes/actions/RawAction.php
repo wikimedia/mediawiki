@@ -109,12 +109,12 @@ class RawAction extends FormlessAction {
 
 		$text = $this->getRawText();
 
+		// Don't return a 404 response for CSS or JavaScript;
+		// 404s aren't generally cached and it would create
+		// extra hits when user CSS/JS are on and the user doesn't
+		// have the pages.
 		if ( $text === false && $contentType == 'text/x-wiki' ) {
-			# Don't return a 404 response for CSS or JavaScript;
-			# 404s aren't generally cached and it would create
-			# extra hits when user CSS/JS are on and the user doesn't
-			# have the pages.
-			$response->header( 'HTTP/1.x 404 Not Found' );
+			$response->statusHeader( 404 );
 		}
 
 		if ( !Hooks::run( 'RawPageViewBeforeOutput', array( &$this, &$text ) ) ) {
