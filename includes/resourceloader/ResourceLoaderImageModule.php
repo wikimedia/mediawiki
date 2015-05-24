@@ -100,7 +100,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	/**
 	 * Parse definition and external JSON data, if referenced.
 	 */
-	private function ensureStuffLoaded() {
+	private function loadFromDefinition() {
 		if ( $this->definition === null ) {
 			return;
 		}
@@ -168,7 +168,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @return string
 	 */
 	public function getPrefix() {
-		$this->ensureStuffLoaded();
+		$this->loadFromDefinition();
 		return $this->prefix;
 	}
 
@@ -177,7 +177,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @return string
 	 */
 	public function getSelectors() {
-		$this->ensureStuffLoaded();
+		$this->loadFromDefinition();
 		return array(
 			'selectorWithoutVariant' => $this->selectorWithoutVariant,
 			'selectorWithVariant' => $this->selectorWithVariant,
@@ -190,7 +190,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @return ResourceLoaderImage|null
 	 */
 	public function getImage( $name ) {
-		$this->ensureStuffLoaded();
+		$this->loadFromDefinition();
 		$images = $this->getImages();
 		return isset( $images[$name] ) ? $images[$name] : null;
 	}
@@ -201,7 +201,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 */
 	public function getImages() {
 		if ( !isset( $this->imageObjects ) ) {
-			$this->ensureStuffLoaded();
+			$this->loadFromDefinition();
 			$this->imageObjects = array();
 
 			foreach ( $this->images as $name => $options ) {
@@ -241,7 +241,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 */
 	public function getGlobalVariants() {
 		if ( !isset( $this->globalVariants ) ) {
-			$this->ensureStuffLoaded();
+			$this->loadFromDefinition();
 			$this->globalVariants = array();
 
 			if ( isset( $this->variants ) ) {
@@ -261,7 +261,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
-		$this->ensureStuffLoaded();
+		$this->loadFromDefinition();
 
 		// Build CSS rules
 		$rules = array();
@@ -341,7 +341,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	public function getDefinitionSummary( ResourceLoaderContext $context ) {
-		$this->ensureStuffLoaded();
+		$this->loadFromDefinition();
 		$summary = parent::getDefinitionSummary( $context );
 		foreach ( array(
 			'localBasePath',
@@ -364,7 +364,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 * @return int UNIX timestamp
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
-		$this->ensureStuffLoaded();
+		$this->loadFromDefinition();
 		$files = array();
 		foreach ( $this->getImages() as $name => $image ) {
 			$files[] = $image->getPath( $context );
