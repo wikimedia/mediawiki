@@ -60,7 +60,8 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	public function __construct() {
 		parent::__construct( 'EditTags', 'changetags' );
 		$this->addableTags = ChangeTagsContext::storedTags();
-		$this->unremovableTags = ChangeTagsContext::registeredTags();
+		$this->unremovableTags = array_merge( ChangeTagsContext::registeredTags(),
+			ChangeTagsContext::coreTags() );
 	}
 
 	public function execute( $par ) {
