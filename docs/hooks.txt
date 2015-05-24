@@ -1690,6 +1690,11 @@ $param: Associative Array with the following additional options:
     "&lt;div ...>$1&lt;/div>").
   - flags Integer display flags (NO_ACTION_LINK,NO_EXTRA_USER_LINKS)
 
+'LogException': Called before an exception is logged. This is meant for integration with external
+error aggregation services; returning false will NOT prevent logging. API exceptions are passed to
+a separate hook, ApiMain::onException.
+$e: The exception
+
 'LoginAuthenticateAudit': A login attempt for a valid user account either
 succeeded or failed. No return data is accepted; this hook is for auditing only.
 $user: the User object being authenticated against
