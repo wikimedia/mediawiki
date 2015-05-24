@@ -448,7 +448,7 @@ abstract class ResourceLoaderModule {
 		// Cache this somewhat expensive operation. Especially because some classes
 		// (e.g. startup module) iterate more than once over all modules to get versions.
 		$contextHash = $context->getHash();
-		if ( !array_key_exists( $contextHash, $this->versionHash ) ) {
+		if ( array_key_exists( $contextHash, $this->versionHash ) ) {
 
 			$summary = $this->getDefinitionSummary( $context );
 			if ( !isset( $summary['_cacheEpoch'] ) ) {
