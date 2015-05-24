@@ -126,6 +126,33 @@ class AutoloadGenerator {
 	 *  developers towards the appropriate way to update the autoload.
 	 */
 	public function generateAutoload( $commandName = 'AutoloadGenerator' ) {
+		// We need to check whether an extenson.json exists or not, and
+		// incase it doesn't, update the autoload.php file.
+
+		if ( file_exists( $this->basepath . '/extension.json' ) ) {
+			$key = "AutoloadClasses";
+			$json = json_decode( $this->basepath . '/extension.json', true );
+
+			// Inverting the key-value pairs so that they become of the
+			// format class-name : path when they get converted into json.
+			foreach ( $this->classes as $path => $contained ) {
+				foreach ( $contained as $fqcn ) {
+					$json[$key][$fqcn] = $path;
+				}
+			}
+			foreach ( $this->overrides as $path => $fqcn ) {
+				$json[$key][$fqcn] = $path;
+			}
+
+			// Sorting the list of autoload classes.
+			ksort($json);
+
+			// Update extension.json, using constants for the required
+			// formatting.
+			file_put_contents($this->basepath . '/extension.json',
+			json_encode( $json, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES ) );
+		}
+		else {
 		$content = array();
 
 		// We need to generate a line each rather than exporting the
@@ -177,7 +204,7 @@ global \${$this->variableName};
 EOD
 		);
 	}
-
+}
 	/**
 	 * Ensure that Unix-style path separators ("/") are used in the path.
 	 *
