@@ -584,6 +584,15 @@ class MovePage {
 			}
 		}
 
+		// Associate rev id
+		$logEntry->setAssociatedRevId( $nullRevision->getId() );
+
+		// Apply tags if any
+		$autoTags = ChangeTagsCore::getAutotagsForMove( $this->oldTitle, $nt, $user );
+		if ( $autoTags ) {
+			$logEntry->setTags( $autoTags );
+		}
+
 		# Log the move
 		$logid = $logEntry->insert();
 		$logEntry->publish( $logid );

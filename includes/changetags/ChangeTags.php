@@ -809,7 +809,8 @@ class ChangeTags {
 
 		// defined tags cannot be activated (a defined tag is either extension-
 		// defined, in which case the extension chooses whether or not to active it;
-		// or user-defined, in which case it is considered active)
+		// or user-defined, in which case it is considered active, or core defined,
+		// in which case it is active or not according to the wiki settings)
 		$definedTags = self::listDefinedTags();
 		if ( in_array( $tag, $definedTags ) ) {
 			return Status::newFatal( 'tags-activate-not-allowed', $tag );
@@ -943,6 +944,12 @@ class ChangeTags {
 		// slashes (would break tag description messages in MediaWiki namespace)
 		if ( strpos( $tag, ',' ) !== false || strpos( $tag, '/' ) !== false ) {
 			return Status::newFatal( 'tags-create-invalid-chars' );
+		}
+
+		// tags cannot contain some strings reserved for core tags, or system messages
+		if ( strpos( $tag, 'mw-' ) === 0 ||
+			strpos( $tag, '-description' ) !== false ) {
+			return Status::newFatal( 'tags-create-invalid-reserved' );
 		}
 
 		// could the MediaWiki namespace description messages be created?
@@ -1137,8 +1144,14 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function listSoftwareActivatedTags() {
-		// core active tags
-		$tags = self::$coreTags;
+		global $wgCoreTags;
+		$tags = [];
+		foreach ( $wgCoreTags as $tag => $properties ) {
+			// retrieve active core tags
+			if ( $properties['active'] ) {
+				$tags[] = $tag;
+			}
+		}
 		if ( !Hooks::isRegistered( 'ChangeTagsListActive' ) ) {
 			return $tags;
 		}
@@ -1226,8 +1239,9 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function listSoftwareDefinedTags() {
+		global $wgCoreTags;
 		// core defined tags
-		$tags = self::$coreTags;
+		$tags = array_keys( $wgCoreTags );
 		if ( !Hooks::isRegistered( 'ListDefinedTags' ) ) {
 			return $tags;
 		}

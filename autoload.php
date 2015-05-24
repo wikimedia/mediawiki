@@ -224,6 +224,7 @@ $wgAutoloadLocalClasses = [
 	'CgzCopyTransaction' => __DIR__ . '/maintenance/storage/recompressTracked.php',
 	'ChangePassword' => __DIR__ . '/maintenance/changePassword.php',
 	'ChangeTags' => __DIR__ . '/includes/changetags/ChangeTags.php',
+	'ChangeTagsCore' => __DIR__ . '/includes/changetags/ChangeTagsCore.php',
 	'ChangeTagsList' => __DIR__ . '/includes/changetags/ChangeTagsList.php',
 	'ChangeTagsLogItem' => __DIR__ . '/includes/changetags/ChangeTagsLogItem.php',
 	'ChangeTagsLogList' => __DIR__ . '/includes/changetags/ChangeTagsLogList.php',
