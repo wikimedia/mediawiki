@@ -1840,6 +1840,11 @@ class WikiPage implements Page, IDBAccessObject {
 				// Mark as patrolled if the user can do so
 				$patrolled = $wgUseRCPatrol && !count(
 						$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
+
+				// Get autotags
+				$autoTags = ChangeTagsCore::getAutotagsForEditUpdate( $oldContent, $content,
+					$this->mTitle );
+
 				// Add RC row to the DB
 				RecentChange::notifyEdit(
 					$now,
@@ -1855,7 +1860,7 @@ class WikiPage implements Page, IDBAccessObject {
 					$newsize,
 					$revisionId,
 					$patrolled,
-					$meta['tags']
+					array_merge( $meta['tags'], $autoTags )
 				);
 			}
 
@@ -1983,6 +1988,10 @@ class WikiPage implements Page, IDBAccessObject {
 			// Mark as patrolled if the user can do so
 			$patrolled = ( $wgUseRCPatrol || $wgUseNPPatrol ) &&
 				!count( $this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
+
+			// Get autotags
+			$autoTags = ChangeTagsCore::getAutotagsForEditNew( $content, $this->mTitle );
+
 			// Add RC row to the DB
 			RecentChange::notifyNew(
 				$now,
@@ -1995,7 +2004,7 @@ class WikiPage implements Page, IDBAccessObject {
 				$newsize,
 				$revisionId,
 				$patrolled,
-				$meta['tags']
+				array_merge( $meta['tags'], $autoTags )
 			);
 		}
 
