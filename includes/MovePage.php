@@ -544,6 +544,13 @@ class MovePage {
 
 		# Log the move
 		$logid = $logEntry->insert();
-		$logEntry->publish( $logid );
+		$rc = $logEntry->publish( $logid );
+
+		// Apply automatic tags if any
+		$autoTags = ChangeTagsCore::getAutotagsForMove( $this->oldTitle, $nt, $user );
+		$autoTags = ChangeTags::filterInactiveTags( $autoTags );
+		if ( $autoTags ) {
+			ChangeTags::addTags( $autoTags, $rc->mAttribs['rc_id'], $nullRevision->getId(), $logid, null );
+		}
 	}
 }

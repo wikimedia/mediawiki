@@ -478,11 +478,12 @@ class ChangeTags {
 		}
 
 		if ( $tagsToRemove ) {
-			// to be removed, a tag must not be registered by extensions
-			$registeredTags = $context->getRegistered();
+			// to be removed, a tag must not be registered by extensions or defined in core
+			$unremovableTags = array_merge( $context->getRegistered(),
+				$context->getCoreDefined() );
 			$disallowedTags = array();
 			foreach ( $tagsToRemove as $tag ) {
-				if ( isset( $registeredTags[$tag] ) ) {
+				if ( isset( $unremovableTags[$tag] ) ) {
 					$disallowedTags[] = $tag;
 				}
 			}
@@ -1124,5 +1125,24 @@ class ChangeTags {
 	public static function showTagEditingUI( User $user ) {
 		$context = new ChangeTagsContext();
 		return $user->isAllowed( 'changetags' ) && (bool)$context->getStored();
+	}
+
+	/**
+	 * Filter out inactive tags
+	 *
+	 * @since 1.27
+	 *
+	 * @param array $tags Tags to filter
+	 * @return array An array of tags, or an empty array.
+	 */
+	public static function filterInactiveTags( $tags ) {
+		$context = new ChangeTagsContext();
+		foreach ( $tags as $key => $tag ) {
+			$changeTag = new ChangeTag( $tag, $context );
+			if ( !$changeTag->isActive() ) {
+				unset( $tags[$key] );
+			}
+		}
+		return $tags;
 	}
 }

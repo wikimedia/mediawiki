@@ -111,6 +111,9 @@ class ApiQueryTags extends ApiQueryBase {
 
 			if ( $fld_source ) {
 				$tag['source'] = array();
+				if ( $changeTag->isCoreDefined() ) {
+					$tag['source'][] = 'core';
+				}
 				if ( $changeTag->isExtensionDefined() ) {
 					$tag['source'][] = 'extension';
 				}
