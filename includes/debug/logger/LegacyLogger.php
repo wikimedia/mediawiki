@@ -22,6 +22,7 @@ namespace MediaWiki\Logger;
 
 use DateTimeZone;
 use MWDebug;
+use MWExceptionHandler;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
 use UDPTransport;
@@ -167,7 +168,7 @@ class LegacyLogger extends AbstractLogger {
 	 * @return string
 	 */
 	public static function format( $channel, $message, $context ) {
-		global $wgDebugLogGroups;
+		global $wgDebugLogGroups, $wgLogExceptionBacktrace;
 
 		if ( $channel === 'wfDebug' ) {
 			$text = self::formatAsWfDebug( $channel, $message, $context );
@@ -213,6 +214,16 @@ class LegacyLogger extends AbstractLogger {
 		} else {
 			// Default formatting is wfDebugLog's historic style
 			$text = self::formatAsWfDebugLog( $channel, $message, $context );
+		}
+
+		// Append stacktrace of exception if available
+		if ( $wgLogExceptionBacktrace &&
+			isset( $context['exception'] ) &&
+			$context['exception'] instanceof Exception
+		) {
+			$text .= MWExceptionHandler::getRedactedTraceAsString(
+				$context['exception']->getTraceAsString()
+			) . "\n";
 		}
 
 		return self::interpolate( $text, $context );
@@ -301,11 +312,71 @@ class LegacyLogger extends AbstractLogger {
 		if ( strpos( $message, '{' ) !== false ) {
 			$replace = array();
 			foreach ( $context as $key => $val ) {
-				$replace['{' . $key . '}'] = $val;
+				$replace['{' . $key . '}'] = self::flatten( $val );
 			}
 			$message = strtr( $message, $replace );
 		}
 		return $message;
+	}
+
+
+	/**
+	 * Convert a logging context element to a string suitable for
+	 * interpolation.
+	 *
+	 * @param mixed $item
+	 * @return string
+	 */
+	protected static function flatten( $item ) {
+		if ( null === $item ) {
+			return '[Null]';
+		}
+
+		if ( is_bool( $item ) ) {
+			return $item ? 'true' : 'false';
+		}
+
+		if ( is_float( $item ) ) {
+			if ( is_infinite( $item ) ) {
+				return ( $item > 0 ? '' : '-' ) . 'INF';
+			}
+			if ( is_nan( $item ) ) {
+				return 'NaN';
+			}
+			return $data;
+		}
+
+		if ( is_scalar( $item ) ) {
+			return (string) $item;
+		}
+
+		if ( is_array( $item ) ) {
+			return '[Array(' . count( $item ) . ')]';
+		}
+
+		if ( $item instanceof \DateTime ) {
+			return $item->format( 'c' );
+		}
+
+		if ( $item instanceof \Exception ) {
+			return '[Exception ' . get_class( $item ) . '( ' .
+				$item->getFile() . ':' . $item->getLine() . ') ' .
+				$item->getMessage() . ']';
+		}
+
+		if ( is_object( $item ) ) {
+			if ( method_exists( $item, '__toString' ) ) {
+				return (string) $item;
+			}
+
+			return '[Object ' . get_class( $item ) . ']';
+		}
+
+		if ( is_resource( $item ) ) {
+			return '[Resource ' . get_resource_type( $item ) . ']';
+		}
+
+		return '[Unknown ' . gettype( $item ) . ']';
 	}
 
 

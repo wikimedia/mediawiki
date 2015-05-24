@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * Handler class for MWExceptions
  * @ingroup Exception
@@ -86,7 +88,7 @@ class MWExceptionHandler {
 			$message = "Exception encountered, of type \"" . get_class( $e ) . "\"";
 
 			if ( $wgShowExceptionDetails ) {
-				$message .= "\n" . MWExceptionHandler::getLogMessage( $e ) . "\nBacktrace:\n" .
+				$message .= "\n" . self::getLogMessage( $e ) . "\nBacktrace:\n" .
 					self::getRedactedTraceAsString( $e ) . "\n";
 			}
 
@@ -127,10 +129,11 @@ class MWExceptionHandler {
 	public static function rollbackMasterChangesAndLog( Exception $e ) {
 		$factory = wfGetLBFactory();
 		if ( $factory->hasMasterChanges() ) {
-			wfDebugLog( 'Bug56269',
+			$logger = LoggerFactory::getInstance( 'Bug56269' );
+			$logger->warning(
 				'Exception thrown with an uncommited database transaction: ' .
-					MWExceptionHandler::getLogMessage( $e ) . "\n" .
-					$e->getTraceAsString()
+				self::getLogMessage( $e ),
+				self::getLogContext( $e )
 			);
 			$factory->rollbackMasterChanges();
 		}
@@ -276,9 +279,23 @@ TXT;
 	 * @return string
 	 */
 	public static function getRedactedTraceAsString( Exception $e ) {
+		return self::prettyPrintRedactedTrace(
+			self::getRedactedTrace( $e )
+		);
+	}
+
+	/**
+	 * Generate a string representation of a structured stack trace generated
+	 * by getRedactedTrace().
+	 *
+	 * @param array $trace
+	 * @return string
+	 * @since 1.26
+	 */
+	public static function prettyPrintRedactedTrace( array $trace ) {
 		$text = '';
 
-		foreach ( self::getRedactedTrace( $e ) as $level => $frame ) {
+		foreach ( $trace as $level => $frame ) {
 			if ( isset( $frame['file'] ) && isset( $frame['line'] ) ) {
 				$text .= "#{$level} {$frame['file']}({$frame['line']}): ";
 			} else {
@@ -380,6 +397,64 @@ TXT;
 	}
 
 	/**
+	 * Get a PSR-3 log event context from an Exception.
+	 *
+	 * Creates a structured array containing information about the provided
+	 * exception that can be used to augment a log message sent to a PSR-3
+	 * logger.
+	 *
+	 * @param Exception $e
+	 * @return array
+	 */
+	public static function getLogContext( Exception $e ) {
+		return array(
+			'exception' => $e,
+		);
+	}
+
+	/**
+	 * Get a structured representation of an Exception.
+	 *
+	 * Returns an array of structured data (class, message, code, file,
+	 * backtrace) derived from the given exception. The backtrace information
+	 * will be redacted as per getRedactedTraceAsArray().
+	 *
+	 * @param Exception $e
+	 * @return array
+	 * @since 1.26
+	 */
+	public static function getStructuredExceptionData( Exception $e ) {
+		global $wgLogExceptionBacktrace;
+		$data = array(
+			'id' => self::getLogId( $e ),
+			'type' => get_class( $e ),
+			'file' => $e->getFile(),
+			'line' => $e->getLine(),
+			'message' => $e->getMessage(),
+			'code' => $e->getCode(),
+			'url' => self::getURL() ?: null,
+		);
+
+		if ( $e instanceof ErrorException &&
+			( error_reporting() & $e->getSeverity() ) === 0
+		) {
+			// Flag surpressed errors
+			$data['suppressed'] = true;
+		}
+
+		if ( $wgLogExceptionBacktrace ) {
+			$data['backtrace'] = self::getRedactedTrace( $e );
+		}
+
+		$previous = $e->getPrevious();
+		if ( $previous !== null ) {
+			$data['previous'] = self::getStructuredExceptionData( $previous );
+		}
+
+		return $data;
+	}
+
+	/**
 	 * Serialize an Exception object to JSON.
 	 *
 	 * The JSON object will have keys 'id', 'file', 'line', 'message', and
@@ -433,33 +508,8 @@ TXT;
 	 * @return string|false JSON string if successful; false upon failure
 	 */
 	public static function jsonSerializeException( Exception $e, $pretty = false, $escaping = 0 ) {
-		global $wgLogExceptionBacktrace;
-
-		$exceptionData = array(
-			'id' => self::getLogId( $e ),
-			'type' => get_class( $e ),
-			'file' => $e->getFile(),
-			'line' => $e->getLine(),
-			'message' => $e->getMessage(),
-		);
-
-		if ( $e instanceof ErrorException && ( error_reporting() & $e->getSeverity() ) === 0 ) {
-			// Flag surpressed errors
-			$exceptionData['suppressed'] = true;
-		}
-
-		// Because MediaWiki is first and foremost a web application, we set a
-		// 'url' key unconditionally, but set it to null if the exception does
-		// not occur in the context of a web request, as a way of making that
-		// fact visible and explicit.
-		$exceptionData['url'] = self::getURL() ?: null;
-
-		if ( $wgLogExceptionBacktrace ) {
-			// Argument values may not be serializable, so redact them.
-			$exceptionData['backtrace'] = self::getRedactedTrace( $e );
-		}
-
-		return FormatJson::encode( $exceptionData, $pretty, $escaping );
+		$data = self::getStructuredExceptionData( $e );
+		return FormatJson::encode( $data, $pretty, $escaping );
 	}
 
 	/**
@@ -475,16 +525,16 @@ TXT;
 		global $wgLogExceptionBacktrace;
 
 		if ( !( $e instanceof MWException ) || $e->isLoggable() ) {
-			$log = self::getLogMessage( $e );
-			if ( $wgLogExceptionBacktrace ) {
-				wfDebugLog( 'exception', $log . "\n" . $e->getTraceAsString() );
-			} else {
-				wfDebugLog( 'exception', $log );
-			}
+			$logger = LoggerFactory::getInstance( 'exception' );
+			$logger->error(
+				self::getLogMessage( $e ),
+				self::getLogContext( $e )
+			);
 
 			$json = self::jsonSerializeException( $e, false, FormatJson::ALL_OK );
 			if ( $json !== false ) {
-				wfDebugLog( 'exception-json', $json, 'private' );
+				$logger = LoggerFactory::getInstance( 'exception-json' );
+				$logger->error( $json, array( 'private' => true ) );
 			}
 
 			Hooks::run( 'LogException', array( $e, false ) );
@@ -505,18 +555,18 @@ TXT;
 		// Filter out unwanted errors manually (e.g. when MediaWiki\suppressWarnings is active).
 		$suppressed = ( error_reporting() & $e->getSeverity() ) === 0;
 		if ( !$suppressed ) {
-			$log = self::getLogMessage( $e );
-			if ( $wgLogExceptionBacktrace ) {
-				wfDebugLog( $channel, $log . "\n" . $e->getTraceAsString() );
-			} else {
-				wfDebugLog( $channel, $log );
-			}
+			$logger = LoggerFactory::getInstance( $channel );
+			$logger->error(
+				self::getLogMessage( $e ),
+				self::getLogContext( $e )
+			);
 		}
 
 		// Include all errors in the json log (surpressed errors will be flagged)
 		$json = self::jsonSerializeException( $e, false, FormatJson::ALL_OK );
 		if ( $json !== false ) {
-			wfDebugLog( "$channel-json", $json, 'private' );
+			$logger = LoggerFactory::getInstance( "{$channel}-json" );
+			$logger->error( $json, array( 'private' => true )  );
 		}
 
 		Hooks::run( 'LogException', array( $e, $suppressed ) );

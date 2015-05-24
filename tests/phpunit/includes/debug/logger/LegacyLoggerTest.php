@@ -35,6 +35,8 @@ class LegacyLoggerTest extends MediaWikiTestCase {
 	}
 
 	public function provideInterpolate() {
+		$e = new \Exception( 'boom!' );
+		$d = new \DateTime();
 		return array(
 			array(
 				'no-op',
@@ -67,6 +69,50 @@ class LegacyLoggerTest extends MediaWikiTestCase {
 					'not interpolated' => 'This should NOT show up in the message',
 				),
 				'{ not interpolated }',
+			),
+			array(
+				'{null}',
+				array(
+					'null' => null,
+				),
+				'[Null]',
+			),
+			array(
+				'{bool}',
+				array(
+					'bool' => true,
+				),
+				'true',
+			),
+			array(
+				'{array}',
+				array(
+					'array' => array( 1, 2, 3 ),
+				),
+				'[Array(3)]',
+			),
+			array(
+				'{exception}',
+				array(
+					'exception' => $e,
+				),
+				'[Exception ' . get_class( $e ) . '( ' .
+				$e->getFile() . ':' . $e->getLine() . ') ' .
+				$e->getMessage() . ']',
+			),
+			array(
+				'{datetime}',
+				array(
+					'datetime' => $d,
+				),
+				$d->format( 'c' ),
+			),
+			array(
+				'{object}',
+				array(
+					'object' => new \stdClass,
+				),
+				'[Object stdClass]',
 			),
 		);
 	}
