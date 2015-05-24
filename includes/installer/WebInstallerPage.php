@@ -763,6 +763,16 @@ class WebInstallerName extends WebInstallerPage {
 				'label' => 'config-site-name',
 				'help' => $this->parent->getHelpBox( 'config-site-name-help' )
 			) ) .
+			$this->parent->getTextBox( array(
+				'var' => 'wgSiteTagline',
+				'label' => 'config-site-tagline',
+				'help' => $this->parent->getHelpBox( 'config-site-tagline-help' ),
+			) ) .
+			$this->parent->getTextArea( array(
+				'var' => 'wgSiteDescription',
+				'label' => 'config-site-description',
+				'help' => $this->parent->getHelpBox( 'config-site-description-help' ),
+			) ) .
 			// getRadioSet() builds a set of labeled radio buttons.
 			// For grep: The following messages are used as the item labels:
 			// config-ns-site-name, config-ns-generic, config-ns-other
@@ -832,8 +842,8 @@ class WebInstallerName extends WebInstallerPage {
 	 */
 	public function submit() {
 		$retVal = true;
-		$this->parent->setVarsFromRequest( array( 'wgSitename', '_NamespaceType',
-			'_AdminName', '_AdminPassword', '_AdminPasswordConfirm', '_AdminEmail',
+		$this->parent->setVarsFromRequest( array( 'wgSitename', 'wgSiteTagline', 'wgSiteDescription',
+			'_NamespaceType', '_AdminName', '_AdminPassword', '_AdminPasswordConfirm', '_AdminEmail',
 			'_Subscribe', '_SkipOptional', 'wgMetaNamespace' ) );
 
 		// Validate site name

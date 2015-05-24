@@ -65,7 +65,7 @@ class LocalSettingsGenerator {
 				'wgRightsText', 'wgMainCacheType', 'wgEnableUploads',
 				'wgMainCacheType', '_MemCachedServers', 'wgDBserver', 'wgDBuser',
 				'wgDBpassword', 'wgUseInstantCommons', 'wgUpgradeKey', 'wgDefaultSkin',
-				'wgMetaNamespace', 'wgLogo',
+				'wgMetaNamespace', 'wgLogo', 'wgSiteTagline', 'wgSiteDescription'
 			),
 			$db->getGlobalNames()
 		);
@@ -324,6 +324,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 # \$wgDisableOutputCompression = true;
 
 \$wgSitename = \"{$this->values['wgSitename']}\";
+\$wgSiteTagline = \"{$this->values['wgSiteTagline']}\";
+\$wgSiteDescription = \"{$this->values['wgSiteDescription']}\";
 {$metaNamespace}
 ## The URL base path to the directory containing the wiki;
 ## defaults for all runtime URL paths are based off of this.

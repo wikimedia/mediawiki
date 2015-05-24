@@ -44,6 +44,8 @@ class CliInstaller extends Installer {
 		'dbpath' => 'wgSQLiteDataDir',
 		'server' => 'wgServer',
 		'scriptpath' => 'wgScriptPath',
+		'tagline' => 'wgSiteTagline',
+		'description' => 'wgSiteDescription',
 	);
 
 	/**

@@ -83,6 +83,18 @@ $wgVersion = '1.26alpha';
 $wgSitename = 'MediaWiki';
 
 /**
+ * Short tagline for the site
+ * @since 1.26
+ */
+$wgSiteTagline = '';
+
+/**
+ * Longer description of the wiki and what it is for
+ * @since 1.26
+ */
+$wgSiteDescription = '';
+
+/**
  * URL of the server.
  *
  * @par Example:

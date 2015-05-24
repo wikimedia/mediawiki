@@ -66,6 +66,9 @@ class CommandLineInstaller extends Maintenance {
 		$this->addOption( 'lang', 'The language to use (en)', false, true );
 		/* $this->addOption( 'cont-lang', 'The content language (en)', false, true ); */
 
+		$this->addOption( 'tagline', 'Short tagline describing the wiki', false, true );
+		$this->addOption( 'description', 'Description of the wiki\'s purpose', false, true );
+
 		$this->addOption( 'dbtype', 'The type of database (mysql)', false, true );
 		$this->addOption( 'dbserver', 'The database host (localhost)', false, true );
 		$this->addOption( 'dbport', 'The database port; only for PostgreSQL (5432)', false, true );

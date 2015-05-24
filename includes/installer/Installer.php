@@ -160,6 +160,8 @@ abstract class Installer {
 	 */
 	protected $defaultVarNames = array(
 		'wgSitename',
+		'wgSiteTagline',
+		'wgSiteDescription',
 		'wgPasswordSender',
 		'wgLanguageCode',
 		'wgRightsIcon',
@@ -1736,7 +1738,7 @@ abstract class Installer {
 	}
 
 	/**
-	 * Insert Main Page with default content.
+	 * Insert Main Page and about page with default content.
 	 *
 	 * @param DatabaseInstaller $installer
 	 * @return Status
@@ -1744,11 +1746,23 @@ abstract class Installer {
 	protected function createMainpage( DatabaseInstaller $installer ) {
 		$status = Status::newGood();
 		try {
+			// First Main page
 			$page = WikiPage::factory( Title::newMainPage() );
 			$content = new WikitextContent(
 				wfMessage( 'mainpagetext' )->inContentLanguage()->text() . "\n\n" .
 				wfMessage( 'mainpagedocfooter' )->inContentLanguage()->text()
 			);
+
+			$page->doEditContent( $content,
+				'',
+				EDIT_NEW,
+				false,
+				User::newFromName( 'MediaWiki default' )
+			);
+
+			// And then about page
+			$page = WikiPage::factory( Title::makeTitle( NS_PROJECT, 'About' ) );
+			$content = new WikitextContent( $this->getVar( 'wgSiteDescription' ) );
 
 			$page->doEditContent( $content,
 				'',
