@@ -28,7 +28,7 @@
 class WebResponse {
 
 	/**
-	 * Output a HTTP header, wrapper for PHP's header()
+	 * Output an HTTP header, wrapper for PHP's header()
 	 * @param string $string Header to output
 	 * @param bool $replace Replace current similar header
 	 * @param null|int $http_response_code Forces the HTTP response code to the specified value.
@@ -51,6 +51,15 @@ class WebResponse {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Output an HTTP status code header
+	 * @since 1.26
+	 * @param int $code Status code
+	 */
+	public function statusHeader( $code ) {
+		HttpStatus::header( $code );
 	}
 
 	/**
@@ -160,6 +169,14 @@ class FauxResponse extends WebResponse {
 		if ( $http_response_code !== null ) {
 			$this->code = intval( $http_response_code );
 		}
+	}
+
+	/**
+	 * @since 1.26
+	 * @param int $code Status code
+	 */
+	public function statusHeader( $code ) {
+		$this->code = intval( $code );
 	}
 
 	/**

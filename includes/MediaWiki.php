@@ -509,7 +509,7 @@ class MediaWiki {
 			list( $host, $lag ) = wfGetLB()->getMaxLag();
 			if ( $lag > $maxLag ) {
 				$resp = $this->context->getRequest()->response();
-				$resp->header( 'HTTP/1.1 503 Service Unavailable' );
+				$resp->statusHeader( 503 );
 				$resp->header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
 				$resp->header( 'X-Database-Lag: ' . intval( $lag ) );
 				$resp->header( 'Content-Type: text/plain' );

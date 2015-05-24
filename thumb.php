@@ -204,7 +204,7 @@ function wfStreamThumb( array $params ) {
 		if ( $redirectedLocation ) {
 			// File has been moved. Give redirect.
 			$response = RequestContext::getMain()->getRequest()->response();
-			$response->header( "HTTP/1.1 302 " . HttpStatus::getMessage( 302 ) );
+			$response->statusHeader( 302 );
 			$response->header( 'Location: ' . $redirectedLocation );
 			$response->header( 'Expires: ' .
 				gmdate( 'D, d M Y H:i:s', time() + 12 * 3600 ) . ' GMT' );
@@ -270,7 +270,7 @@ function wfStreamThumb( array $params ) {
 		} elseif ( rawurldecode( $rel404 ) === $img->getThumbRel( $thumbName2 ) ) {
 			// Request for the "long" thumbnail name; redirect to canonical name
 			$response = RequestContext::getMain()->getRequest()->response();
-			$response->header( "HTTP/1.1 301 " . HttpStatus::getMessage( 301 ) );
+			$response->statusHeader( 301 );
 			$response->header( 'Location: ' .
 				wfExpandUrl( $img->getThumbUrl( $thumbName ), PROTO_CURRENT ) );
 			$response->header( 'Expires: ' .
