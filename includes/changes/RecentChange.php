@@ -536,11 +536,13 @@ class RecentChange {
 	 * @param int $newSize
 	 * @param int $newId
 	 * @param int $patrol
+	 * @param array $autoTags autotags to apply to the recent change
 	 * @return RecentChange
 	 */
 	public static function notifyEdit(
 		$timestamp, &$title, $minor, &$user, $comment, $oldId, $lastTimestamp,
-		$bot, $ip = '', $oldSize = 0, $newSize = 0, $newId = 0, $patrol = 0
+		$bot, $ip = '', $oldSize = 0, $newSize = 0, $newId = 0, $patrol = 0,
+		$autoTags = array()
 	) {
 		$rc = new RecentChange;
 		$rc->mTitle = $title;
@@ -579,8 +581,13 @@ class RecentChange {
 			'pageStatus' => 'changed'
 		);
 
-		DeferredUpdates::addCallableUpdate( function() use ( $rc ) {
+		DeferredUpdates::addCallableUpdate( function() use ( $rc, $autoTags ) {
 			$rc->save();
+			// Apply autotags if any
+			if ( $autoTags ) {
+				ChangeTags::addTags( $autoTags, $rc->mAttribs['rc_id'],
+					$rc->mAttribs['rc_this_oldid'], null, null );
+			}
 			if ( $rc->mAttribs['rc_patrolled'] ) {
 				PatrolLog::record( $rc, true, $rc->getPerformer() );
 			}
@@ -603,11 +610,13 @@ class RecentChange {
 	 * @param int $size
 	 * @param int $newId
 	 * @param int $patrol
+	 * @param array $autoTags autotags to apply to the recent change
 	 * @return RecentChange
 	 */
 	public static function notifyNew(
 		$timestamp, &$title, $minor, &$user, $comment, $bot,
-		$ip = '', $size = 0, $newId = 0, $patrol = 0
+		$ip = '', $size = 0, $newId = 0, $patrol = 0,
+		$autoTags = array()
 	) {
 		$rc = new RecentChange;
 		$rc->mTitle = $title;
@@ -646,8 +655,13 @@ class RecentChange {
 			'pageStatus' => 'created'
 		);
 
-		DeferredUpdates::addCallableUpdate( function() use ( $rc ) {
+		DeferredUpdates::addCallableUpdate( function() use ( $rc, $autoTags ) {
 			$rc->save();
+			// Apply autotags if any
+			if ( $autoTags ) {
+				ChangeTags::addTags( $autoTags, $rc->mAttribs['rc_id'],
+					$rc->mAttribs['rc_this_oldid'], null, null );
+			}
 			if ( $rc->mAttribs['rc_patrolled'] ) {
 				PatrolLog::record( $rc, true, $rc->getPerformer() );
 			}

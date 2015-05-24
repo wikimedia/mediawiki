@@ -79,8 +79,13 @@ class ChangeTagsContext {
 	 * @since 1.27
 	 */
 	public function getDefined() {
+		// Save in class if not already done
 		if ( $this->definedTags === null ) {
-			$this->definedTags = array_merge( $this->getStored(), $this->getRegistered() );
+			$this->definedTags = array_merge(
+				$this->getStored(),
+				$this->getRegistered(),
+				self::coreTags()
+			);
 		}
 		return $this->definedTags;
 	}
@@ -206,6 +211,20 @@ class ChangeTagsContext {
 				'pcTTL' => 30
 			)
 		);
+	}
+
+	/**
+	 * Returns all defined tags mapped to their params
+	 *
+	 * @return array Array of strings: tags mapped to arrays of params
+	 * @since 1.27
+	 */
+	public static function coreTags() {
+		$config = RequestContext::getMain()->getConfig();
+		if ( !$config->get( 'UseAutoTagging' ) ) {
+			return array();
+		}
+		return $config->get( 'CoreTags' );
 	}
 
 	/**
