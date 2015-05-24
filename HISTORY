@@ -194,6 +194,13 @@ Change notes from older releases. For current info see RELEASE-NOTES-1.26.
   Special:DeletedContributions
 * Added DeletedContributionsLineEnding hook allowing extensions to format
   Special:DeletedContributions lines
+* (T69525) You can now make MediaWiki speed up its thumbnail rendering by using
+  intermediary thumbnails. $wgThumbnailBuckets must be set to a list of target
+  thumbnail widths; when a new thumbnail needs to be rendered, MediaWiki will
+  find the smallest bucket smaller than the original but larger than the target
+  width + $wgThumbnailMinimumBucketDistance, and it will scale that thumbnail,
+  rather than the original, down to the target size at greater speed in return
+  for minor loss of fidelity.
 
 === Bug fixes in 1.24 ===
 * (bug 50572) MediaWiki:Blockip should support gender
