@@ -1177,9 +1177,15 @@ class ChangeTags {
 	 * @return array Array of string => int
 	 */
 	public static function tagUsageStatistics() {
-		$fname = __METHOD__;
+		static $cachedStats = null;
 
-		return ObjectCache::getMainWANInstance()->getWithSetCallback(
+		// Process cache to avoid I/O and repeated regens during holdoff
+		if ( $cachedStats !== null ) {
+			return $cachedStats;
+		}
+
+		$fname = __METHOD__;
+		$cachedStats = ObjectCache::getMainWANInstance()->getWithSetCallback(
 			wfMemcKey( 'change-tag-statistics' ),
 			function() use ( $fname ) {
 				$out = array();
@@ -1209,6 +1215,8 @@ class ChangeTags {
 			array( wfMemcKey( 'change-tag-statistics' ) ),
 			array( 'lockTSE' => INF )
 		);
+
+		return $cachedStats;
 	}
 
 	/**
