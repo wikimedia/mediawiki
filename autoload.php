@@ -997,6 +997,7 @@ $wgAutoloadLocalClasses = array(
 	'ResourceLoaderImage' => __DIR__ . '/includes/resourceloader/ResourceLoaderImage.php',
 	'ResourceLoaderImageModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderImageModule.php',
 	'ResourceLoaderJqueryMsgDataModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderJqueryMsgDataModule.php',
+	'ResourceLoaderOOUIImageModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderOOUIImageModule.php',
 	'ResourceLoaderLanguageDataModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderLanguageDataModule.php',
 	'ResourceLoaderLanguageNamesModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderLanguageNamesModule.php',
 	'ResourceLoaderModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderModule.php',
