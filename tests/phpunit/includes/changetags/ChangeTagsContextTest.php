@@ -5,9 +5,17 @@ class ChangeTagsContextTest extends MediaWikiTestCase {
 	private $stats;
 	private $stored;
 	private $registered;
+	private $core;
 
 	protected function setUp() {
 		parent::setUp();
+		$this->core = [
+			'mw-coretag1' => [ 'active' => true ],
+			'mw-coretag2' => [ 'active' => false ],
+			'mw-coretag3' => [],
+			'mw-coretag4' => null,
+		];
+		$this->setMwGlobals( [ 'wgCoreTags' => $this->core ] );
 		$config = RequestContext::getMain()->getConfig();
 		$this->context = $this->getMockBuilder( 'ChangeTagsContext' )
 			->setConstructorArgs( [ $config ] )
@@ -36,8 +44,7 @@ class ChangeTagsContextTest extends MediaWikiTestCase {
 		$this->context->expects( $this->any() )->method( 'fetchRegistered' )
 			->will( $this->returnValue( $this->registered ) );
 		$result = $this->context->getDefinedTags();
-		$expected = array_merge( $this->stored, $this->registered,
-			[ 'mw-contentmodelchange' => [ 'active' => true ] ] );
+		$expected = array_merge( $this->stored, $this->registered, $this->core );
 		ksort( $result );
 		ksort( $expected );
 		$this->assertEquals( $expected, $result );
