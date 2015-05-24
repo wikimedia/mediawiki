@@ -1067,7 +1067,7 @@
 	"userrights-lookup-user": "Zarządzaj grupami użytkownika",
 	"userrights-user-editname": "Wprowadź nazwę użytkownika",
 	"editusergroup": "Edytuj grupy użytkownika",
-	"editinguser": "Zmiana uprawnień użytkownika '''[[User:$1|$1]]''' $2",
+	"editinguser": "Zmiana uprawnień {{GENDER:$1|użytkownika|użytkowniczki}} <strong>[[User:$1|$1]]</strong> $2",
 	"userrights-editusergroup": "Edytuj grupy użytkownika",
 	"saveusergroups": "Zapisz",
 	"userrights-groupsmember": "Należy do:",

@@ -20,6 +20,7 @@
 	"apihelp-help-example-recursive": "Hemû alîkarî di rûpelekê de.",
 	"apihelp-login-param-name": "Navê bikarhêner.",
 	"apihelp-login-param-password": "Şîfre.",
+	"apihelp-login-example-login": "Têkeve.",
 	"apihelp-move-param-reason": "Sedemê bo guherandina nav.",
 	"apihelp-move-param-ignorewarnings": "Guh nede hişyariyan.",
 	"apihelp-tag-param-reason": "Sedemê bo guherandinê."

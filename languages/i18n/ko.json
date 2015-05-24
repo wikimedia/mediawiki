@@ -1025,7 +1025,7 @@
 	"userrights-lookup-user": "사용자 권한 관리",
 	"userrights-user-editname": "사용자 이름 입력:",
 	"editusergroup": "사용자 그룹 편집",
-	"editinguser": "'''[[User:$1|$1]]''' $2 사용자의 권한 바꾸기",
+	"editinguser": "<strong>[[User:$1|$1]]</strong> $2 {{GENDER:$1|사용자}}의 권한 바꾸기",
 	"userrights-editusergroup": "사용자 그룹 편집",
 	"saveusergroups": "사용자 권한 저장",
 	"userrights-groupsmember": "현재 권한:",

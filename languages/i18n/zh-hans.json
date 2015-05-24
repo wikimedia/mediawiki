@@ -1076,7 +1076,7 @@
 	"userrights-lookup-user": "管理用户组",
 	"userrights-user-editname": "输入用户名：",
 	"editusergroup": "编辑用户组",
-	"editinguser": "更改用户'''[[User:$1|$1]]'''的用户权限$2",
+	"editinguser": "更改{{GENDER:$1|用户}}<strong>[[User:$1|$1]]</strong>的用户权限$2",
 	"userrights-editusergroup": "编辑用户组",
 	"saveusergroups": "保存用户组",
 	"userrights-groupsmember": "用户组：",

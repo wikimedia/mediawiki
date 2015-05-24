@@ -1001,7 +1001,7 @@
 	"userrights-lookup-user": "Upravljanje z uporabniškimi skupinami",
 	"userrights-user-editname": "Vpišite uporabniško ime:",
 	"editusergroup": "Uredi uporabniške skupine",
-	"editinguser": "Urejanje pravic uporabnika '''[[User:$1|$1]]''' $2",
+	"editinguser": "Urejanje pravic {{GENDER:$1|uporabnika|uporabnice}} <strong>[[User:$1|$1]]</strong> $2",
 	"userrights-editusergroup": "Urejanje uporabniških skupin",
 	"saveusergroups": "Shrani spremembe",
 	"userrights-groupsmember": "Član skupine:",

@@ -1053,7 +1053,7 @@
 	"userrights-lookup-user": "सदस्य समूहों का व्यवस्थापन करें",
 	"userrights-user-editname": "सदस्यनाम दें:",
 	"editusergroup": "सदस्य समूहों का संपादन करें",
-	"editinguser": "सदस्य '''[[User:$1|$1]]''' $2 के अधिकार बदलें",
+	"editinguser": "सदस्य '''[[User:$1|$1]]''' $2 के अधिकार बदलें\n{{GENDER:$1|सदस्य}} के सदस्य अधिकार बदले जा रहे हैं <strong>[[User:$1|$1]]</strong> $2",
 	"userrights-editusergroup": "सदस्य समूहों का संपादन करें",
 	"saveusergroups": "सदस्य समूह संजोएँ",
 	"userrights-groupsmember": "निम्न {{PLURAL:$1|समूह|समूहों}} का सदस्य:",

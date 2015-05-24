@@ -1049,7 +1049,7 @@
 	"userrights-lookup-user": "管理使用者群組",
 	"userrights-user-editname": "請輸入使用者名稱：",
 	"editusergroup": "編輯使用者群組",
-	"editinguser": "變更使用者 <strong>[[User:$1|$1]]</strong> 的使用者權限 $2",
+	"editinguser": "變更{{GENDER:$1|使用者}} <strong>[[User:$1|$1]]</strong> 的使用者權限 $2",
 	"userrights-editusergroup": "編輯使用者群組",
 	"saveusergroups": "儲存使用者群組",
 	"userrights-groupsmember": "所屬群組：",

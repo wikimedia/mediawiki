@@ -2583,6 +2583,8 @@
 	"watchlistedit-raw-removed": "{{PLURAL:$1|1 башлыкъ|$1 башлыкъ}} кетерилди:",
 	"watchlistedit-clear-legend": "Кёздеги тизмени ариула",
 	"watchlistedit-clear-titles": "Башлыкъла:",
+	"watchlistedit-clear-submit": "Кёздеги тизмени ариула (ызына салынныкъ тюлдю!)",
+	"watchlisttools-clear": "Кёздеги тизмени ариула",
 	"watchlisttools-view": "Тизмеден бетледе тюрлениуле",
 	"watchlisttools-edit": "Тизмеге къарау эм тюрлендириу",
 	"watchlisttools-raw": "Текстча тюрлендириу",

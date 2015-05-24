@@ -1070,7 +1070,7 @@
 	"userrights-lookup-user": "Gruppenzugehörigkeit verwalten",
 	"userrights-user-editname": "Benutzername:",
 	"editusergroup": "Benutzerrechte bearbeiten",
-	"editinguser": "Ändere Benutzerrechte von '''[[User:$1|$1]]''' $2",
+	"editinguser": "Ändere Benutzerrechte {{GENDER:$1|des Benutzers|der Benutzerin}} <strong>[[User:$1|$1]]</strong> $2",
 	"userrights-editusergroup": "Benutzer-Gruppenzugehörigkeit bearbeiten",
 	"saveusergroups": "Gruppenzugehörigkeit ändern",
 	"userrights-groupsmember": "Mitglied von:",
