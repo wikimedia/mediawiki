@@ -1570,8 +1570,7 @@ class WikiRevision {
 		}
 
 		// avoid memory leak...?
-		$linkCache = LinkCache::singleton();
-		$linkCache->clear();
+		Title::clearCaches();
 
 		$page = WikiPage::factory( $this->title );
 		$page->loadPageData( 'fromdbmaster' );

@@ -3,6 +3,7 @@
  * Integration test that checks import success
  *
  * @group medium
+ * @group Database
  *
  * @author mwjames
  */
@@ -48,6 +49,9 @@ class SimpleLoremIpsumImporterTest extends MediaWikiTestCase {
 		$page->doDeleteArticle( 'import test: delete page' );
 	}
 
+	/**
+	 * @depends testImportForImportSource
+	 */
 	public function testReImportForImportSource() {
 
 		$this->doImport( $this->importStreamSource );
