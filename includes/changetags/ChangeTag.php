@@ -201,7 +201,7 @@ class ChangeTag {
 		}
 
 		// defined tags cannot be activated
-		if ( $this->isDefined() ) {
+		if ( $this->isDefined() || strpos( $this->name, 'mw-' ) === 0 ) {
 			return Status::newFatal( 'tags-activate-not-allowed', $this->name );
 		}
 
@@ -271,7 +271,7 @@ class ChangeTag {
 			return Status::newFatal( 'tags-delete-too-many-uses', $this->name, self::MAX_DELETE_USES );
 		}
 
-		// extension-defined tags can't be deleted unless the extension specifically allows it
+		// software-defined tags can't be deleted unless an extension specifically allows it
 		if ( $this->isSoftwareDefined() ) {
 			$registeredTags = $this->context->getSoftwareTags();
 			if ( !isset( $registeredTags[$this->name]['canDelete'] ) ||
@@ -321,6 +321,13 @@ class ChangeTag {
 		$testArray = array_merge( [], [ $tag => 1 ] );
 		if ( isset( $testArray[0] ) ) {
 			return Status::newFatal( 'tags-create-invalid-integer' );
+		}
+
+		// tags cannot contain some strings reserved for core tags, or system messages
+		if ( strpos( $tag, 'mw-' ) === 0 ||
+			strpos( $tag, '-appearance' ) !== false ||
+			strpos( $tag, '-description' ) !== false ) {
+			return Status::newFatal( 'tags-create-invalid-reserved' );
 		}
 
 		// could the MediaWiki namespace description messages be created?
