@@ -22,6 +22,7 @@ namespace MediaWiki\Logger;
 
 use DateTimeZone;
 use MWDebug;
+use MWExceptionHandler;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
 use UDPTransport;
@@ -167,7 +168,7 @@ class LegacyLogger extends AbstractLogger {
 	 * @return string
 	 */
 	public static function format( $channel, $message, $context ) {
-		global $wgDebugLogGroups;
+		global $wgDebugLogGroups, $wgLogExceptionBacktrace;
 
 		if ( $channel === 'wfDebug' ) {
 			$text = self::formatAsWfDebug( $channel, $message, $context );
@@ -213,6 +214,20 @@ class LegacyLogger extends AbstractLogger {
 		} else {
 			// Default formatting is wfDebugLog's historic style
 			$text = self::formatAsWfDebugLog( $channel, $message, $context );
+		}
+
+		if ( $wgLogExceptionBacktrace && isset( $context['exception'] ) ) {
+			// Append stacktrace of exception if available
+			$e = $context['exception'];
+			if ( is_object( $e ) && $e instanceof Exception ) {
+				$text .= MWExceptionHandler::getRedactedTraceAsString(
+					$e->getTraceAsString()
+				) . "\n";
+			} elseif ( is_array( $e ) && isset( $e['backtrace'] ) ) {
+				$text .= MWExceptionHandler::prettyPrintRedactedTrace(
+					$e['backtrace']
+				) . "\n";
+			}
 		}
 
 		return self::interpolate( $text, $context );
@@ -301,7 +316,9 @@ class LegacyLogger extends AbstractLogger {
 		if ( strpos( $message, '{' ) !== false ) {
 			$replace = array();
 			foreach ( $context as $key => $val ) {
-				$replace['{' . $key . '}'] = $val;
+				if ( is_string( $val ) ) {
+					$replace['{' . $key . '}'] = $val;
+				}
 			}
 			$message = strtr( $message, $replace );
 		}
