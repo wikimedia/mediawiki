@@ -22,7 +22,7 @@
 
 /**
  * Retrieves definitions and statistics on change tags from the valid_tag and
- * change_tag tables and from extensions
+ * change_tag tables, the site configuration and from extensions
  * @since 1.27
  */
 class ChangeTagsContext {
@@ -94,14 +94,33 @@ class ChangeTagsContext {
 	}
 
 	/**
+	 * Gets tags defined in core mapped to their params
+	 *
+	 * @return array Array of strings: tags mapped to arrays of params
+	 * @since 1.27
+	 */
+	public function getCoreDefined() {
+		// No need to save in class (method is fast)
+		if ( !$this->config->get( 'UseAutoTagging' ) ) {
+			return array();
+		}
+		return $this->config->get( 'CoreTags' );
+	}
+
+	/**
 	 * Gets all defined tags mapped to their params
 	 *
 	 * @return array Array of strings: tags mapped to arrays of params
 	 * @since 1.27
 	 */
 	public function getDefined() {
+		// Save in class if not already done
 		if ( $this->definedTags === null ) {
-			$this->definedTags = array_merge( $this->getStored(), $this->getRegistered() );
+			$this->definedTags = array_merge(
+				$this->getStored(),
+				$this->getRegistered(),
+				$this->getCoreDefined()
+			);
 		}
 		return $this->definedTags;
 	}
@@ -228,17 +247,6 @@ class ChangeTagsContext {
 				'pcTTL' => 30
 			)
 		);
-	}
-
-	/**
-	 * Returns all defined tags mapped to their params
-	 *
-	 * @return array Array of strings: tags mapped to arrays of params
-	 * @since 1.27
-	 */
-	public static function definedTags() {
-		$context = new ChangeTagsContext;
-		return $context->getDefined();
 	}
 
 	/**

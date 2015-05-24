@@ -1847,6 +1847,10 @@ class WikiPage implements Page, IDBAccessObject {
 				// Mark as patrolled if the user can do so
 				$patrolled = $wgUseRCPatrol && !count(
 						$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
+				// Get autotags
+				$autoTags = ChangeTagsCore::getAutotagsForEditUpdate( $oldContent, $content,
+					$this->mTitle );
+				$autoTags = ChangeTags::filterInactiveTags( $autoTags );
 				// Add RC row to the DB
 				RecentChange::notifyEdit(
 					$now,
@@ -1861,7 +1865,8 @@ class WikiPage implements Page, IDBAccessObject {
 					$oldContent ? $oldContent->getSize() : 0,
 					$newsize,
 					$revisionId,
-					$patrolled
+					$patrolled,
+					$autoTags
 				);
 			}
 
@@ -1979,6 +1984,9 @@ class WikiPage implements Page, IDBAccessObject {
 			// Mark as patrolled if the user can do so
 			$patrolled = ( $wgUseRCPatrol || $wgUseNPPatrol ) &&
 				!count( $this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
+			// Get autotags
+			$autoTags = ChangeTagsCore::getAutotagsForEditNew( $content, $this->mTitle );
+			$autoTags = ChangeTags::filterInactiveTags( $autoTags );
 			// Add RC row to the DB
 			RecentChange::notifyNew(
 				$now,
@@ -1990,7 +1998,8 @@ class WikiPage implements Page, IDBAccessObject {
 				'',
 				$newsize,
 				$revisionId,
-				$patrolled
+				$patrolled,
+				$autoTags
 			);
 		}
 
