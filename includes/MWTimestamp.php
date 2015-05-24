@@ -199,42 +199,20 @@ class MWTimestamp {
 	 *
 	 * @since 1.20
 	 * @since 1.22 Uses Language::getHumanTimestamp to produce the timestamp
+	 * @deprecated Use Language::getHumanTimestamp directly
 	 *
-	 * @param MWTimestamp|null $relativeTo The base timestamp to compare to
-	 *   (defaults to now).
-	 * @param User|null $user User the timestamp is being generated for (or null
-	 *   to use main context's user).
-	 * @param Language|null $lang Language to use to make the human timestamp
-	 *   (or null to use main context's language).
+	 * @param MWTimestamp|null $relativeTo The base timestamp to compare to (defaults to now)
+	 * @param User|null $user User the timestamp is being generated for (or null to use main context's user)
+	 * @param Language|null $lang Language to use to make the human timestamp (or null to use main context's language)
 	 * @return string Formatted timestamp
 	 */
-	public function getHumanTimestamp( MWTimestamp $relativeTo = null,
-		User $user = null, Language $lang = null
-	) {
-		if ( $relativeTo === null ) {
-			$relativeTo = new self();
-		}
-		if ( $user === null ) {
-			$user = RequestContext::getMain()->getUser();
-		}
+	public function getHumanTimestamp( MWTimestamp $relativeTo = null, User $user = null, Language $lang = null ) {
+		wfDeprecated( '1.26' );
 		if ( $lang === null ) {
 			$lang = RequestContext::getMain()->getLanguage();
 		}
 
-		// Adjust for the user's timezone.
-		$offsetThis = $this->offsetForUser( $user );
-		$offsetRel = $relativeTo->offsetForUser( $user );
-
-		$ts = '';
-		if ( Hooks::run( 'GetHumanTimestamp', array( &$ts, $this, $relativeTo, $user, $lang ) ) ) {
-			$ts = $lang->getHumanTimestamp( $this, $relativeTo, $user );
-		}
-
-		// Reset the timezone on the objects.
-		$this->timestamp->sub( $offsetThis );
-		$relativeTo->timestamp->sub( $offsetRel );
-
-		return $ts;
+		return $lang->getHumanTimestamp( $this, $relativeTo, $user );
 	}
 
 	/**
