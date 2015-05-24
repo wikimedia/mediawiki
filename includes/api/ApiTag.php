@@ -35,8 +35,10 @@ class ApiTag extends ApiBase {
 			case 'remove':
 				return array_keys( array_diff_key(
 					$this->getChangeTagsContext()->getStats(),
-					$this->getChangeTagsContext()->getRegistered()
-				) );
+					array_merge(
+						$this->getChangeTagsContext()->getRegistered(),
+						$this->getChangeTagsContext()->getCoreDefined()
+				) ) );
 			default:
 				return null;
 		}
