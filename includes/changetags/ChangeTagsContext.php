@@ -73,14 +73,26 @@ class ChangeTagsContext {
 	}
 
 	/**
+	 * Gets core tags mapped to their params
+	 *
+	 * @return array Array of strings: tags mapped to arrays of params
+	 * @since 1.26
+	 */
+	public function getCore() {
+		return self::coreTags();
+	}
+
+	/**
 	 * Gets all defined tags mapped to their params
 	 *
 	 * @return array Array of strings: tags mapped to arrays of params
 	 * @since 1.26
 	 */
 	public function getDefined() {
+		// Save in class if not already done
 		if ( $this->definedTags === null ) {
-			$this->definedTags = array_merge( $this->getStored(), $this->getRegistered() );
+			$this->definedTags = array_merge( $this->getStored(),
+				$this->getRegistered(), $this->getCore() );
 		}
 		return $this->definedTags;
 	}
@@ -196,6 +208,20 @@ class ChangeTagsContext {
 			array( $key ),
 			array( 'lockTSE' => INF )
 		);
+	}
+
+	/**
+	 * Returns all defined tags mapped to their params
+	 *
+	 * @return array Array of strings: tags mapped to arrays of params
+	 * @since 1.26
+	 */
+	public static function coreTags() {
+		global $wgCoreTags, $wgUseAutoTagging;
+		if ( !$wgUseAutoTagging ) {
+			return array();
+		}
+		return $wgCoreTags;
 	}
 
 	/**

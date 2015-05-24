@@ -216,6 +216,9 @@ class SpecialTags extends SpecialPage {
 		$newRow .= Xml::tags( 'td', null, $desc );
 
 		$sourceMsgs = array();
+		if ( $changeTag->isCoreDefined() ) {
+			$sourceMsgs[] = $this->msg( 'tags-source-core' )->escaped();
+		}
 		if ( $changeTag->isExtensionDefined() ) {
 			// default message key
 			$msgKey = 'tags-source-extension';

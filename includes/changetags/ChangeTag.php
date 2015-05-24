@@ -98,6 +98,17 @@ class ChangeTag {
 	}
 
 	/**
+	 * Returns whether the tag is core-defined.
+	 *
+	 * @return bool
+	 * @since 1.26
+	 */
+	public function isCoreDefined() {
+		$coreTags = $this->context->getCore();
+		return isset( $coreTags[$this->name] );
+	}
+
+	/**
 	 * Returns whether the tag is defined.
 	 *
 	 * @return bool
@@ -259,6 +270,11 @@ class ChangeTag {
 			return Status::newFatal( 'tags-delete-too-many-uses', $this->name, self::MAX_DELETE_USES );
 		}
 
+		// core tags cannot be deleted
+		if ( $this->isCoreDefined() ) {
+			return Status::newFatal( 'tags-delete-core' );
+		}
+
 		// extension-defined tags can't be deleted unless the extension specifically allows it
 		if ( $this->isExtensionDefined() ) {
 			$registeredTags = $this->context->getRegistered();
@@ -305,6 +321,13 @@ class ChangeTag {
 		$testArray = array_merge( array(), array( $tag => 1 ) );
 		if ( $testArray[0] === 1 ) {
 			return Status::newFatal( 'tags-create-invalid-integer' );
+		}
+
+		// tags cannot contain some strings reserved for core tags, or system messages
+		if ( strpos( $tag, 'core-' ) === 0 ||
+			strpos( $tag, '-appearance' ) !== false ||
+			strpos( $tag, '-description' ) !== false ) {
+			return Status::newFatal( 'tags-create-invalid-reserved' );
 		}
 
 		// could the MediaWiki namespace description messages be created?
