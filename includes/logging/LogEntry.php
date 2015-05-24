@@ -616,6 +616,7 @@ class ManualLogEntry extends LogEntryBase {
 	 * Publishes the log entry.
 	 * @param int $newId Id of the log entry.
 	 * @param string $to One of: rcandudp (default), rc, udp
+	 * @return RecentChange
 	 */
 	public function publish( $newId, $to = 'rcandudp' ) {
 		$log = new LogPage( $this->getType() );
@@ -632,6 +633,8 @@ class ManualLogEntry extends LogEntryBase {
 		if ( $to === 'udp' || $to === 'rcandudp' ) {
 			$rc->notifyRCFeeds();
 		}
+
+		return $rc;
 	}
 
 	// LogEntry->

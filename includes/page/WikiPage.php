@@ -1699,7 +1699,8 @@ class WikiPage implements Page, IDBAccessObject {
 	public function doEditContent( Content $content, $summary, $flags = 0, $baseRevId = false,
 		User $user = null, $serialFormat = null
 	) {
-		global $wgUser, $wgUseAutomaticEditSummaries, $wgUseRCPatrol, $wgUseNPPatrol;
+		global $wgUser, $wgUseAutomaticEditSummaries, $wgUseRCPatrol, $wgUseNPPatrol,
+			$wgUseAutoTagging;
 
 		// Low-level sanity check
 		if ( $this->mTitle->getText() === '' ) {
@@ -1840,16 +1841,22 @@ class WikiPage implements Page, IDBAccessObject {
 				Hooks::run( 'NewRevisionFromEditComplete',
 					array( $this, $revision, $baseRevId, $user ) );
 
+				$rc = null;
 				// Update recentchanges
 				if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
 					// Mark as patrolled if the user can do so
 					$patrolled = $wgUseRCPatrol && !count(
 						$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
+					// Get autotags
+					if ( $wgUseAutoTagging ) {
+						$autoTags = ChangeTagsCore::getAutotagsForEditUpdate( $old_content, $content,
+							$this->mTitle );
+					}
 					// Add RC row to the DB
-					RecentChange::notifyEdit(
+					$rc = RecentChange::notifyEdit(
 						$now, $this->mTitle, $isminor, $user, $summary,
 						$oldid, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
-						$revisionId, $patrolled
+						$revisionId, $patrolled, $autoTags
 					);
 				}
 
@@ -1942,10 +1949,14 @@ class WikiPage implements Page, IDBAccessObject {
 				// Mark as patrolled if the user can do so
 				$patrolled = ( $wgUseRCPatrol || $wgUseNPPatrol ) && !count(
 					$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
+				// Get autotags
+				if ( $wgUseAutoTagging ) {
+					$autoTags = ChangeTagsCore::getAutotagsForEditNew( $content, $this->mTitle );
+				}
 				// Add RC row to the DB
 				RecentChange::notifyNew(
 					$now, $this->mTitle, $isminor, $user, $summary, $bot,
-					'', $newsize, $revisionId, $patrolled
+					'', $newsize, $revisionId, $patrolled, $autoTags
 				);
 			}
 
