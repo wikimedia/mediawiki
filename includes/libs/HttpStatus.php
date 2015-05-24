@@ -26,11 +26,10 @@
 class HttpStatus {
 
 	/**
-	 * Get the message associated with HTTP response code $code
+	 * Get the message associated with an HTTP response status code
 	 *
-	 * @param $code Integer: status code
-	 * @return String or null: message or null if $code is not in the list of
-	 *         messages
+	 * @param int $code Status code
+	 * @return string|null Message, or null if $code is not known
 	 */
 	public static function getMessage( $code ) {
 		static $statusMessage = array(
@@ -86,6 +85,23 @@ class HttpStatus {
 			511 => 'Network Authentication Required',
 		);
 		return isset( $statusMessage[$code] ) ? $statusMessage[$code] : null;
+	}
+
+	/**
+	 * Output an HTTP status code header
+	 *
+	 * @since 1.26
+	 * @param int $code Status code
+	 */
+	public static function header( $code ) {
+		$message = self::getMessage( $code );
+		if ( $message === null ) {
+			trigger_error( 'Unknown HTTP status code', E_USER_WARNING );
+			return false;
+		}
+
+		// Simply hardcode 1.x. See T100984 for research.
+		header( "HTTP/1.x $code $message" );
 	}
 
 }
