@@ -113,21 +113,21 @@ class HttpError extends MWException {
 	 */
 	public function getHTML() {
 		if ( $this->header === null ) {
-			$header = HttpStatus::getMessage( $this->httpCode );
+			$titleHtml = htmlspecialchars( HttpStatus::getMessage( $this->httpCode ) );
 		} elseif ( $this->header instanceof Message ) {
-			$header = $this->header->escaped();
+			$titleHtml = $this->header->escaped();
 		} else {
-			$header = htmlspecialchars( $this->header );
+			$titleHtml = htmlspecialchars( $this->header );
 		}
 
 		if ( $this->content instanceof Message ) {
-			$content = $this->content->escaped();
+			$contentHtml = $this->content->escaped();
 		} else {
-			$content = htmlspecialchars( $this->content );
+			$contentHtml = htmlspecialchars( $this->content );
 		}
 
 		return "<!DOCTYPE html>\n" .
-		"<html><head><title>$header</title></head>\n" .
-		"<body><h1>$header</h1><p>$content</p></body></html>\n";
+		"<html><head><title>$titleHtml</title></head>\n" .
+		"<body><h1>$header</h1><p>$contentHtml</p></body></html>\n";
 	}
 }
