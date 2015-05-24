@@ -2463,21 +2463,55 @@ class Language {
 	}
 
 	/**
+	 * Get the timestamp in a human-friendly relative format, e.g., "3 days ago".
+	 *
+	 * Determine the difference between the timestamp and the current time, and
+	 * generate a readable timestamp by returning "<N> <units> ago", where the
+	 * largest possible unit is used.
+	 *
+	 * @since 1.26 (Prior to 1.26 method existed but was not meant to be used directly)
+	 *
+	 * @param MWTimestamp $time
+	 * @param MWTimestamp|null $relativeTo The base timestamp to compare to (defaults to now)
+	 * @param User|null $user User the timestamp is being generated for (or null to use main context's user)
+	 * @return string Formatted timestamp
+	 */
+	public function getHumanTimestamp( MWTimestamp $time, MWTimestamp $relativeTo = null, User $user = null ) {
+		if ( $relativeTo === null ) {
+			$relativeTo = new MWTimestamp();
+		}
+		if ( $user === null ) {
+			$user = RequestContext::getMain()->getUser();
+		}
+
+		// Adjust for the user's timezone.
+		$offsetThis = $time->offsetForUser( $user );
+		$offsetRel = $relativeTo->offsetForUser( $user );
+
+		$ts = '';
+		if ( Hooks::run( 'GetHumanTimestamp', array( &$ts, $time, $relativeTo, $user, $this ) ) ) {
+			$ts = $this->getHumanTimestampInternal( $time, $relativeTo, $user );
+		}
+
+		// Reset the timezone on the objects.
+		$time->timestamp->sub( $offsetThis );
+		$relativeTo->timestamp->sub( $offsetRel );
+
+		return $ts;
+	}
+
+	/**
 	 * Convert an MWTimestamp into a pretty human-readable timestamp using
 	 * the given user preferences and relative base time.
 	 *
-	 * DO NOT USE THIS FUNCTION DIRECTLY. Instead, call MWTimestamp::getHumanTimestamp
-	 * on your timestamp object, which will then call this function. Calling
-	 * this function directly will cause hooks to be skipped over.
-	 *
-	 * @see MWTimestamp::getHumanTimestamp
+	 * @see Language::getHumanTimestamp
 	 * @param MWTimestamp $ts Timestamp to prettify
 	 * @param MWTimestamp $relativeTo Base timestamp
 	 * @param User $user User preferences to use
 	 * @return string Human timestamp
-	 * @since 1.22
+	 * @since 1.26
 	 */
-	public function getHumanTimestamp( MWTimestamp $ts, MWTimestamp $relativeTo, User $user ) {
+	private function getHumanTimestampInternal( MWTimestamp $ts, MWTimestamp $relativeTo, User $user ) {
 		$diff = $ts->diff( $relativeTo );
 		$diffDay = (bool)( (int)$ts->timestamp->format( 'w' ) -
 			(int)$relativeTo->timestamp->format( 'w' ) );
