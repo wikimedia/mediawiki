@@ -253,6 +253,13 @@ release and submitting bug reports.
   to multiple Config instances.
 * Update CSSJanus to v1.1.0.
 * Added FormatJson::parse() returning status with result or localized error message
+* (T69525) You can now make MediaWiki speed up its thumbnail rendering by using
+  intermediary thumbnails. $wgThumbnailBuckets must be set to a list of target
+  thumbnail widths; when a new thumbnail needs to be rendered, MediaWiki will
+  find the smallest bucket smaller than the original but larger than the target
+  width + $wgThumbnailMinimumBucketDistance, and it will scale that thumbnail,
+  rather than the original, down to the target size at greater speed in return
+  for minor loss of fidelity.
 
 === Bug fixes in 1.24 ===
 * (bug 70686) More sensible behavior when special page aliases conflict
