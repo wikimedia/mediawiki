@@ -37,6 +37,23 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 		parent::__construct( 'MyLanguage' );
 	}
 
+	public function isIncludable() {
+		return true;
+	}
+
+	public function execute( $subpage ) {
+		if ( $this->including() ) {
+			$title = $this->findTitle( $subpage );
+			$page = new WikiPage( $title );
+			$content = $page->getContent();
+			if ( $content ) {
+				$this->getOutput()->addWikitext( $content->getWikitextForTransclusion() );
+			}
+		} else {
+			parent::execute( $subpage );
+		}
+	}
+
 	/**
 	 * If the special page is a redirect, then get the Title object it redirects to.
 	 * False otherwise.
