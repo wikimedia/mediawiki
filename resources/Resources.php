@@ -285,6 +285,7 @@ return array(
 	'jquery.spinner' => array(
 		'scripts' => 'resources/src/jquery/jquery.spinner.js',
 		'styles' => 'resources/src/jquery/jquery.spinner.css',
+		'targets' => array( 'mobile', 'desktop' ),
 	),
 	'jquery.jStorage' => array(
 		'scripts' => 'resources/lib/jquery/jquery.jStorage.js',
@@ -1340,6 +1341,7 @@ return array(
 			'markedaspatrollederrornotify',
 			'markedaspatrollederror-noautopatrol'
 		),
+		'targets' => array( 'mobile', 'desktop' ),
 	),
 	'mediawiki.page.watch.ajax' => array(
 		'scripts' => 'resources/src/mediawiki.page/mediawiki.page.watch.ajax.js',
