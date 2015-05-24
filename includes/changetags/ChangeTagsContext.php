@@ -22,15 +22,10 @@
 
 /**
  * Retrieves definitions and statistics on change tags from the valid_tag and
- * change_tag tables and from extensions
+ * change_tag tables, the site configuration and from extensions
  * @since 1.28
  */
 class ChangeTagsContext {
-
-	/**
-	 * @var string[]
-	 */
-	private static $coreTags = [ 'mw-contentmodelchange' => [ 'active' => true ] ];
 
 	/**
 	 * @var array Tags applied by users (stored in valid_tag table)
@@ -92,7 +87,8 @@ class ChangeTagsContext {
 	public function getSoftwareTags() {
 		// Save in class if not already done
 		if ( $this->softwareTags === null ) {
-			$this->softwareTags = array_merge( self::$coreTags, $this->fetchRegistered() );
+			$coreTags = $this->config->get( 'CoreTags' );
+			$this->softwareTags = array_merge( $coreTags, $this->fetchRegistered() );
 		}
 		return $this->softwareTags;
 	}
