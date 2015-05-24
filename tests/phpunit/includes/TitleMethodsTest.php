@@ -323,4 +323,17 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 		$title = Title::newFromText( $text );
 		$this->assertEquals( $expected, $title->getOtherPage()->getPrefixedText() );
 	}
+
+	public function testClearCaches() {
+		$linkCache = LinkCache::singleton();
+
+		$title1 = Title::newFromText( 'Foo' );
+		$linkCache->addGoodLinkObj( 23, $title1 );
+
+		Title::clearCaches();
+
+		$title2 = Title::newFromText( 'Foo' );
+		$this->assertNotSame( $title1, $title2, 'title cache should be empty' );
+		$this->assertEquals( 0, $linkCache->getGoodLinkID( 'Foo' ), 'link cache should be empty' );
+	}
 }
