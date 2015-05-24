@@ -6,6 +6,7 @@ class ChangeTagsTest extends MediaWikiTestCase {
 		parent::setUp();
 		$this->setMwGlobals( array(
 			'wgTagMaxHitcountUpdate' => 10,
+			'wgUseAutoTagging' => true,
 		) );
 		$this->initCaches();
 	}

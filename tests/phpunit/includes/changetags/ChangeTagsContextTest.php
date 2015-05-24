@@ -6,8 +6,10 @@ class ChangeTagsContextTest extends ChangeTagsTest {
 	 * @covers ChangeTagsContext::definedTags
 	 */
 	public function testDefinedTags() {
+		global $wgCoreTags;
 		$returned = array_keys( ChangeTagContext::definedTags() );
-		$expected = array( 'StoredTagNoHits', 'StoredTagWithHits', 'ActiveRegisteredTag', 'InactiveRegisteredTag' );
+		$expectedNonCore = array( 'StoredTagNoHits', 'StoredTagWithHits', 'ActiveRegisteredTag', 'InactiveRegisteredTag' );
+		$expected = array_merge( $expectedNonCore, $wgCoreTags );
 
 		sort( $returned );
 		sort( $expected );
