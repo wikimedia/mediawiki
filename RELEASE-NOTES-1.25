@@ -130,6 +130,7 @@ production.
 * (T35235) LogFormatter subclasses are now responsible for formatting the
   parameters for API log event output. Extensions should implement the new
   getParametersForApi() method in their log formatters.
+* Added a new hook, 'LogException', to log exceptions in nonstandard ways.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
