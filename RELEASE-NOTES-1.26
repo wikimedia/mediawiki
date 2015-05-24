@@ -15,6 +15,7 @@ production.
   "tag-<id>" interface message.
 * ':' (colon) is now invalid in usernames for new accounts. Existing accounts
   are not affected.
+* Added a new hook, 'LogException', to log exceptions in nonstandard ways.
 
 ==== External libraries ====
 
