@@ -832,11 +832,13 @@ class ApiResult implements ApiSerializable {
 				isset( $metadata[self::META_BC_SUBELEMENTS] )
 			) {
 				foreach ( $metadata[self::META_BC_SUBELEMENTS] as $k ) {
-					$data[$k] = array(
-						'*' => $data[$k],
-						self::META_CONTENT => '*',
-						self::META_TYPE => 'assoc',
-					);
+					if ( isset( $data[$k] ) ) {
+						$data[$k] = array(
+							'*' => $data[$k],
+							self::META_CONTENT => '*',
+							self::META_TYPE => 'assoc',
+						);
+					}
 				}
 			}
 
