@@ -454,8 +454,9 @@ class ChangeTags {
 		}
 
 		if ( $tagsToRemove ) {
-			// to be removed, a tag must not be registered by extensions
-			$registeredTags = ChangeTagsContext::registeredTags();
+			// to be removed, a tag must not be registered by extensions or core defined
+			$unremovableTags = array_merge( ChangeTagsContext::registeredTags(),
+				ChangeTagsContext::coreTags() );
 			$disallowedTags = array();
 			foreach ( $tagsToRemove as $tag ) {
 				if ( isset( $registeredTags[$tag] ) ) {
