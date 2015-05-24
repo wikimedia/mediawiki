@@ -352,6 +352,8 @@ class MWExceptionHandler {
 		global $wgLogExceptionBacktrace;
 
 		if ( !( $e instanceof MWException ) || $e->isLoggable() ) {
+			Hooks::run( 'LogException', array( $e ) );
+
 			$log = self::getLogMessage( $e );
 			if ( $wgLogExceptionBacktrace ) {
 				wfDebugLog( 'exception', $log . "\n" . $e->getTraceAsString() );
