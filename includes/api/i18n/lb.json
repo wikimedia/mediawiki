@@ -42,6 +42,7 @@
 	"apihelp-imagerotate-example-generator": "All Biller an der <kbd>Category:Flip]]<kbd> ëm <kbd>180<kbd> Grad dréinen.",
 	"apihelp-import-param-summary": "Resumé importéieren.",
 	"apihelp-import-param-xml": "Eropgeluedenen XML-Fichier.",
+	"apihelp-import-param-rootpage": "Als Ënnersäit vun dëser Säit importéieren. Kann net zesumme mam <var>$1namespace</var> benotzt ginn.",
 	"apihelp-login-param-name": "Benotzernumm.",
 	"apihelp-login-param-password": "Passwuert.",
 	"apihelp-login-example-login": "Aloggen.",

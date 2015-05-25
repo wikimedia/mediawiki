@@ -942,7 +942,7 @@
 	"userrights-lookup-user": "Magmaného kan mga grupo nin parágamit",
 	"userrights-user-editname": "Ilaog an pangaran kan parágamit:",
 	"editusergroup": "Hirahón an mga Grupo kan Parágamit",
-	"editinguser": "Sinasanglian an paragamit na karapatan kan paragamit '''[[User:$1|$1]]''' $2",
+	"editinguser": "Sinasanglian an mga karapatan kan paragamit na si {{GENDER:$1|paragamit}} <strong>[[User:$1|$1]]</strong> $2",
 	"userrights-editusergroup": "Hirahón an mga grupo kan parágamit",
 	"saveusergroups": "Itagama an mga Grupo nin Páragamit",
 	"userrights-groupsmember": "Myembro kan:",

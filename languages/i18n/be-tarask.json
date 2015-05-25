@@ -1002,7 +1002,7 @@
 	"userrights-lookup-user": "Кіраваньне групамі ўдзельнікаў і ўдзельніц",
 	"userrights-user-editname": "Увядзіце імя ўдзельніка:",
 	"editusergroup": "Рэдагаваць групы ўдзельнікаў і ўдзельніц",
-	"editinguser": "Зьмена правоў {{GENDER:$1|удзельніка|удзельніцы}} '''[[User:$1|$1]]''' $2",
+	"editinguser": "Зьмена правоў {{GENDER:$1|удзельніка|удзельніцы}} <strong>[[User:$1|$1]]</strong> $2",
 	"userrights-editusergroup": "Рэдагаваць групы ўдзельнікаў і ўдзельніц",
 	"saveusergroups": "Захаваць групы ўдзельнікаў і ўдзельніц",
 	"userrights-groupsmember": "Уваходзіць у:",

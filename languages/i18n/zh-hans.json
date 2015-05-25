@@ -416,7 +416,7 @@
 	"title-invalid-characters": "请求的页面标题包含无效字符：“$1”。",
 	"title-invalid-relative": "标题有相对路径。相关的页面标题（./, ../）无效，因为用户浏览器经常无法到达这些页面。",
 	"title-invalid-magic-tilde": "请求的页面标题包含无效的连续波浪（<nowiki>~~~</nowiki>）。",
-	"title-invalid-too-long": "请求的页面标题太长。作为UTF-8编码，它不能超过$1个字节。",
+	"title-invalid-too-long": "请求的页面标题太长。作为UTF-8编码，它不能超过$1个{{PLURAL:$1|字节}}。",
 	"title-invalid-leading-colon": "请求的页面标题开头包含一个无效的冒号。",
 	"perfcached": "以下是缓存的数据，可能不是最新的数据。缓存中最多有{{PLURAL:$1|$1条结果}}。",
 	"perfcachedts": "以下是缓存的数据，最后更新于$1。缓存中最多有{{PLURAL:$4|$4条结果}}。",

@@ -493,7 +493,7 @@
 	"createacct-imgcaptcha-ph": "Yukarıda gördüğünüz metni girin",
 	"createacct-submit": "Hesabınızı oluşturun",
 	"createacct-another-submit": "Başka bir hesap oluşturun",
-	"createacct-benefit-heading": "{{SITENAME}} sizin gibi insanlar tarafından oluşturulur.",
+	"createacct-benefit-heading": "{{SITENAME}} sizin gibi insanlar tarafından geliştirilir.",
 	"createacct-benefit-body1": "{{PLURAL:$1|düzenleme|düzenleme}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|madde|madde}}",
 	"createacct-benefit-body3": "en son {{PLURAL:$1|katkıda bulunan|katkıda bulunan}} kişi sayısı",

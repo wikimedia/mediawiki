@@ -1615,7 +1615,7 @@
 	"unusedimages": "Verwaiste Dateien",
 	"wantedcategories": "Gewünschte Kategorien",
 	"wantedpages": "Gewünschte Seiten",
-	"wantedpages-summary": "Liste nicht vorhandener Seiten mit den meisten Links auf diese Seiten, ausschließlich solche, die nur Weiterleitungen haben. Für eine Liste nicht vorhandener Seiten mit Weiterleitungen, siehe [[{{#special:BrokenRedirects}}]].",
+	"wantedpages-summary": "Liste nicht vorhandener Seiten mit den meisten Links auf diese Seiten, ausschließlich solche, die nur Weiterleitungen haben. Für eine Liste nicht vorhandener Seiten mit Weiterleitungen, siehe [[{{#special:BrokenRedirects}}|die Liste defekter Weiterleitungen]].",
 	"wantedpages-badtitle": "Ungültiger Titel im Ergebnis: $1",
 	"wantedfiles": "Gewünschte Dateien",
 	"wantedfiletext-cat": "Die folgenden Dateien werden verwendet, sind jedoch nicht vorhanden. Vorhandene Dateien aus fremden Repositorien können dennoch hier aufgelistet sein und werden <del>durchgestrichen</del> dargestellt. Zusätzlich werden Seiten, die nicht vorhandene Dateien enthalten, in die [[:$1]] eingeordnet.",

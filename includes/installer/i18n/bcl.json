@@ -27,6 +27,7 @@
 	"config-page-upgradedoc": "Ipinagpapalangkaw",
 	"config-page-existingwiki": "Eksistidong wiki",
 	"config-restart": "Iyo, pakipoon kaini otro",
+	"config-xml-bad": "An XML kan PHP na modyul nawawara.\nAn Mediawiki minakaipo nin mga punksyon sa modyul na ini asin dae matrabaho sa laog kaining konpigurasyon.\nIka minakaipong magmuntar kan php-xml RPM package",
 	"config-db-wiki-settings": "Bistohon ining wiki",
 	"config-db-name": "Pangaran kan datos-sarayan:",
 	"config-db-username": "Ngaran-paragamit nin datos-sarayan:",

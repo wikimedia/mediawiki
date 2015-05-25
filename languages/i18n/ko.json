@@ -3014,7 +3014,7 @@
 	"tags-active-yes": "예",
 	"tags-active-no": "아니오",
 	"tags-source-extension": "확장 기능에 의해 정의됨",
-	"tags-source-manual": "사용자와 봇에 의해 수동으로 적용됨",
+	"tags-source-manual": "사용자나 봇에 의해 수동으로 적용됨",
 	"tags-source-none": "더 이상 사용하지 않음",
 	"tags-edit": "편집",
 	"tags-delete": "삭제",
