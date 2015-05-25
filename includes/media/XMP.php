@@ -164,6 +164,7 @@ class XMPReader implements LoggerAwareInterface {
 		if ( $this->xmlParser ) {
 			//is this needed?
 			xml_parser_free( $this->xmlParser );
+			$this->xmlParser = null;
 		}
 
 		$this->xmlParser = xml_parser_create_ns( 'UTF-8', ' ' );
@@ -178,15 +179,6 @@ class XMPReader implements LoggerAwareInterface {
 
 		$this->parsable = self::PARSABLE_UNKNOWN;
 		$this->xmlParsableBuffer = '';
-	}
-
-	/** Destroy the xml parser
-	 *
-	 * Not sure if this is actually needed.
-	 */
-	function __destruct() {
-		// not sure if this is needed.
-		xml_parser_free( $this->xmlParser );
 	}
 
 	/**
@@ -294,12 +286,11 @@ class XMPReader implements LoggerAwareInterface {
 	 *
 	 * @param string $content XMP data
 	 * @param bool $allOfIt If this is all the data (true) or if its split up (false). Default true
-	 * @param bool $reset Does xml parser need to be reset. Default false
 	 * @throws RuntimeException
 	 * @return bool Success.
 	 */
-	public function parse( $content, $allOfIt = true, $reset = false ) {
-		if ( $reset ) {
+	public function parse( $content, $allOfIt = true ) {
+		if ( !$this->xmlParser ) {
 			$this->resetXMLParser();
 		}
 		try {
@@ -379,7 +370,15 @@ class XMPReader implements LoggerAwareInterface {
 			$this->logger->info( 'XMP parse error: ' . $e );
 			$this->results = array();
 
+			if ( $allOfIt ) {
+				xml_parser_free( $this->xmlParser );
+				$this->xmlParser = null;
+			}
 			return false;
+		}
+		if ( $allOfIt ) {
+			xml_parser_free( $this->xmlParser );
+			$this->xmlParser = null;
 		}
 
 		return true;
