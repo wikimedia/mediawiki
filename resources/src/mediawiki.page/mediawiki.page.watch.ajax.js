@@ -110,7 +110,7 @@
 			'#mw-unwatch-link2, #mw-watch-link2, #mw-watch-link1' );
 
 		// Allowing people to add inline animated links is a little scary
-		$links = $links.filter( ':not( #bodyContent *, #content * )' );
+		$links = $links.filter( ':not( #mw-content-text * )' );
 
 		$links.click( function ( e ) {
 			var action, api, $link;
