@@ -3,11 +3,6 @@ turn it off. MediaWiki will not work with it enabled.
 
 == MediaWiki 1.25 ==
 
-THIS IS NOT A RELEASE YET
-
-MediaWiki 1.25 is an alpha-quality branch and is not recommended for use in
-production.
-
 === Configuration changes in 1.25 ===
 * $wgPageShowWatchingUsers was removed.
 * $wgLocalVirtualHosts has been added to replace $wgConf->localVHosts.
