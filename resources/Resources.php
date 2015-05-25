@@ -1890,4 +1890,13 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 
+	// Meta-module that depends on infusable things
+	// TODO: Load the necessary modules instead of loading everything
+	'oojs-ui.infusable' => array(
+		'dependencies' => array(
+			'oojs-ui',
+			'oojs-ui.MWTitleInputWidget',
+		)
+	),
+
 );
