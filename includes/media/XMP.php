@@ -156,15 +156,26 @@ class XMPReader implements LoggerAwareInterface {
 	}
 
 	/**
+	 * free the XML parser.
+	 *
+	 * @note It is unclear to me if we really need to do this ourselves
+	 *  or if php garbage collection will automatically free the xmlParser
+	 *  when it is no longer needed.
+	 */
+	private function destroyXMLParser() {
+		if ( $this->xmlParser ) {
+			xml_parser_free( $this->xmlParser );
+			$this->xmlParser = null;
+		}
+	}
+
+	/**
 	 * Main use is if a single item has multiple xmp documents describing it.
 	 * For example in jpeg's with extendedXMP
 	 */
 	private function resetXMLParser() {
 
-		if ( $this->xmlParser ) {
-			//is this needed?
-			xml_parser_free( $this->xmlParser );
-		}
+		$this->destroyXMLParser();
 
 		$this->xmlParser = xml_parser_create_ns( 'UTF-8', ' ' );
 		xml_parser_set_option( $this->xmlParser, XML_OPTION_CASE_FOLDING, 0 );
@@ -178,15 +189,6 @@ class XMPReader implements LoggerAwareInterface {
 
 		$this->parsable = self::PARSABLE_UNKNOWN;
 		$this->xmlParsableBuffer = '';
-	}
-
-	/** Destroy the xml parser
-	 *
-	 * Not sure if this is actually needed.
-	 */
-	function __destruct() {
-		// not sure if this is needed.
-		xml_parser_free( $this->xmlParser );
 	}
 
 	/**
@@ -294,12 +296,11 @@ class XMPReader implements LoggerAwareInterface {
 	 *
 	 * @param string $content XMP data
 	 * @param bool $allOfIt If this is all the data (true) or if its split up (false). Default true
-	 * @param bool $reset Does xml parser need to be reset. Default false
 	 * @throws RuntimeException
 	 * @return bool Success.
 	 */
-	public function parse( $content, $allOfIt = true, $reset = false ) {
-		if ( $reset ) {
+	public function parse( $content, $allOfIt = true ) {
+		if ( !$this->xmlParser ) {
 			$this->resetXMLParser();
 		}
 		try {
@@ -373,13 +374,20 @@ class XMPReader implements LoggerAwareInterface {
 
 				$this->logger->info( "XMPReader::parse : Error reading XMP content: $error ($where)" );
 				$this->results = array(); // blank if error.
+				$this->destroyXMLParser();
 				return false;
 			}
 		} catch ( Exception $e ) {
 			$this->logger->info( 'XMP parse error: ' . $e );
 			$this->results = array();
 
+			if ( $allOfIt ) {
+				$this->destroyXMLParser();
+			}
 			return false;
+		}
+		if ( $allOfIt ) {
+			$this->destroyXMLParser();
 		}
 
 		return true;
