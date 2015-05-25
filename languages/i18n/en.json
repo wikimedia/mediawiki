@@ -655,6 +655,7 @@
 	"editingcomment": "Editing $1 (new section)",
 	"editconflict": "Edit conflict: $1",
 	"editnotice-notext": "-",
+	"editnotice-8-Editnotices-percategory": "Add category names with one empty line between each name, like the present editnotice.\n\nDo not append the category: prefix. Underscores are unnecessary.\n\nThe list is limited to ten entries by default (depending on your wiki configuration).\n\nThe actual editnotice for category Foo is located at Editnotice-category-Foo.",
 	"explainconflict": "Someone else has changed this page since you started editing it.\nThe upper text area contains the page text as it currently exists.\nYour changes are shown in the lower text area.\nYou will have to merge your changes into the existing text.\n<strong>Only</strong> the text in the upper text area will be saved when you press \"{{int:savearticle}}\".",
 	"yourtext": "Your text",
 	"storedversion": "Stored revision",

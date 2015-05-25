@@ -4758,6 +4758,17 @@ class Title {
 			}
 		}
 
+		// Optional notices on a per-category basis
+		foreach ( $this->getCategoryListForEditnotices() as $cat ) {
+			$editnotice_cat = 'editnotice-category-' . $cat;
+			$editnotice_cat_message = wfMessage ( $editnotice_cat );
+			if ( $editnotice_cat_message->exists() ) {
+				$notices[$editnotice_cat] = '<div class="mw-editnotice mw-editnotice-category ' .
+					Sanitizer::escapeClass( "mw-$editnotice_cat" ) . '">' .
+					$editnotice_cat_message->parseAsBlock() . '</div>';
+			}
+		}
+
 		Hooks::run( 'TitleGetEditNotices', array( $this, $oldid, &$notices ) );
 		return $notices;
 	}
@@ -4783,4 +4794,70 @@ class Title {
 		$this->mTextform = strtr( $this->mDbkeyform, '_', ' ' );
 	}
 
+	/**
+	 * Gets the categories with an associated editnotice this title belongs to
+	 * The result is cached.
+	 *
+	 * @since 1.26
+	 * @return array of strings : category names
+	 */
+	public function getCategoryListForEditnotices() {
+		// don't show or cache if page doesn't exist
+		if ( !$this->exists() ) {
+			return array();
+		}
+		// or if msg doesn't exist
+		$msg = wfMessage( 'editnotices-percategory' );
+		if ( !$msg->exists() ) {
+			return array();
+		}
+
+		$key = wfMemcKey( 'editnotices-categorylist',
+			$this->getInterwiki(), $this->getNamespace(), $this->getDBkey() );
+
+		$callBack = function() use ( $msg ) {
+			global $wgPerCategoryEditNoticesLimit, $wgContLang;
+			$text = $msg->inContentLanguage()->plain();
+			// parse msg text by exploding out empty lines
+			$list = explode( PHP_EOL . PHP_EOL, $text, $wgPerCategoryEditNoticesLimit + 1 );
+			// in case the limit was exceeded
+			unset( $list[$wgPerCategoryEditNoticesLimit] );
+			$list = array_unique( $list );
+
+			// shortcut
+			if ( !count( $list ) ) {
+				return $list;
+			}
+			// keep only the categories this page is in
+			$parentCategories = $this->getParentCategories();
+			foreach ( $list as $num => $cat ) {
+				$cat = str_replace( ' ', '_', $cat );
+				if ( !isset( $parentCategories[$wgContLang->getNsText( NS_CATEGORY ) . ':' . $cat] ) ) {
+					unset( $list[$num] );
+				}
+			}
+			return $list;
+		};
+
+		$ttl = 30*60; // half an hour, about the duration of an editing session
+
+		return ObjectCache::getMainWANInstance()->getWithSetCallback(
+			$key,
+			$callBack,
+			$ttl,
+			array( $key ),
+			array( 'lockTSE' => INF )
+		);
+	}
+
+	/**
+	 * Purges the cached list of categories for editnotices
+	 *
+	 * @since 1.26
+	 */
+	public function purgeCategoryListForEditnotices() {
+		$key = wfMemcKey( 'editnotices-categorylist',
+			$this->getInterwiki(), $this->getNamespace(), $this->getDBkey() );
+		ObjectCache::getMainWANInstance()->touchCheckKey( $key );
+	}
 }

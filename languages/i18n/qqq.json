@@ -826,6 +826,7 @@
 	"editingcomment": "This message displays at the top of the page when a user is creating a new section. Parameters:\n* $1 - page name\n{{Related|Editing}}",
 	"editconflict": "Alert message when saving a page causes an edit conflict",
 	"editnotice-notext": "{{ignored}}\nCustom message on top of the edit page if no edit notices apply to this page.",
+	"editnotice-8-Editnotices-percategory": "Explanatory editnotice for how to deploy per-category editnotices with Editnotices-percategory.",
 	"explainconflict": "Appears at the top of a page when there is an edit conflict.\n\nSee also:\n* {{msg-mw|Savearticle}}",
 	"yourtext": "Used in Diff Preview page. The diff is between {{msg-mw|currentrev}} and {{msg-mw|yourtext}}.\n\nAlso used in Edit Conflict page; the diff between {{msg-mw|yourtext}} and {{msg-mw|storedversion}}.",
 	"storedversion": "This is used in an edit conflict as the label for the top revision that has been stored, as opposed to your version {{msg-mw|yourtext}} that has not been stored which is shown at the bottom of the page.",

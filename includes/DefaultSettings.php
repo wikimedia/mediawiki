@@ -6791,6 +6791,11 @@ $wgCategoryMagicGallery = true;
 $wgCategoryPagingLimit = 200;
 
 /**
+ * Max number of categories that can have an editnotice
+ */
+$wgPerCategoryEditNoticesLimit = 10;
+
+/**
  * Specify how category names should be sorted, when listed on a category page.
  * A sorting scheme is also known as a collation.
  *
