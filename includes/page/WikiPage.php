@@ -1166,6 +1166,9 @@ class WikiPage implements Page, IDBAccessObject {
 			}
 		} );
 
+		// Purge cached list of categories displaying an editnotice
+		$title->purgeCategoryListForEditnotices();
+
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
 			// @todo move this logic to MessageCache
 			if ( $this->exists() ) {
