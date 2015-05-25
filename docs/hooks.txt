@@ -1104,6 +1104,7 @@ $oldRev: Revision object of the "old" revision (may be null)
 $diff: DifferenceEngine object that's calling
 $oldRev: Revision object of the "old" revision (may be null/invalid)
 $newRev: Revision object of the "new" revision
+&$showRCPatrolUI: bool, whether to show RC patrol UI (preliminary check, true by default)
 
 'DisplayOldSubtitle': before creating subtitle when browsing old versions of
 an article
