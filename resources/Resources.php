@@ -1883,4 +1883,11 @@ return array(
 		'selectorWithVariant' => '.oo-ui-image-{variant} .oo-ui-icon-{name}, .oo-ui-image-{variant}.oo-ui-icon-{name}, .mw-ui-icon-{name}-{variant}:after, .mw-ui-icon-{name}-{variant}:before, .mw-ui-hovericon:hover .mw-ui-icon-{name}-{variant}-hover:before, .mw-ui-hovericon.mw-ui-icon-{name}-{variant}-hover:hover:before',
 	),
 
+	'oojs-ui.MWTitleInputWidget' => array(
+		'scripts' => 'resources/src/oojs-ui/OO.ui.MWTitleInputWidget.js',
+		'styles' => 'resources/src/oojs-ui/OO.ui.MWTitleInputWidget.css',
+		'dependencies' => 'oojs-ui',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
+
 );

@@ -23,6 +23,7 @@
 		"JSON": true,
 		"jQuery": false,
 		"QUnit": false,
-		"sinon": false
+		"sinon": false,
+		"OO": false
 	}
 }
