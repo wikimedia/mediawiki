@@ -512,7 +512,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$vals['unpatrolled'] = ChangesList::isUnpatrolled( $row, $user );
 		}
 
-		if ( $this->fld_loginfo && $row->rc_type == RC_LOG ) {
+		if ( $this->fld_loginfo ) {
 			if ( $row->rc_deleted & LogPage::DELETED_ACTION ) {
 				$vals['actionhidden'] = true;
 				$anyHidden = true;
