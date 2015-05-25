@@ -813,6 +813,7 @@ $wgAutoloadLocalClasses = array(
 	'NullLockManager' => __DIR__ . '/includes/filebackend/lockmanager/LockManager.php',
 	'NullRepo' => __DIR__ . '/includes/filerepo/NullRepo.php',
 	'OOUIHTMLForm' => __DIR__ . '/includes/htmlform/OOUIHTMLForm.php',
+	'OOUI\\TitleInputWidget' => __DIR__ . '/includes/OOUI/TitleInputWidget.php',
 	'ORAField' => __DIR__ . '/includes/db/DatabaseOracle.php',
 	'ORAResult' => __DIR__ . '/includes/db/DatabaseOracle.php',
 	'ORMIterator' => __DIR__ . '/includes/db/ORMIterator.php',
