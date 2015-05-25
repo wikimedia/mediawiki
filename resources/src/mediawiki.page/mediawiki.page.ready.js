@@ -59,6 +59,18 @@
 		}
 		$nodes.updateTooltipAccessKeys();
 
+		// Infuse OOUI widgets, if any are present
+		$nodes = $( '[data-ooui]' );
+		if ( $nodes.length ) {
+			mw.loader.using( 'mediawiki.widgets' ).done( function () {
+				// HACK: OO.ui.infuse assumes all widgets are in the OO.ui. namespace
+				$.extend( OO.ui, mw.widgets );
+				$nodes.each( function () {
+					OO.ui.infuse( this );
+				} );
+			} );
+		}
+
 	} );
 
 }( mediaWiki, jQuery ) );
