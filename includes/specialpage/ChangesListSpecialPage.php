@@ -454,7 +454,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$legend =
 			'<div class="mw-changeslist-legend">' .
 				$context->msg( 'recentchanges-legend-heading' )->parse() .
-				'<div class="mw-collapsible-content">' . $legend . '</div>' .
+				'&nbsp;' . '<div class="mw-collapsible-content">' . $legend . '</div>' .
 			'</div>';
 
 		return $legend;
