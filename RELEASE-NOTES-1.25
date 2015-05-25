@@ -1,6 +1,14 @@
 Security reminder: If you have PHP's register_globals option set, you must
 turn it off. MediaWiki will not work with it enabled.
 
+== MediaWiki 1.25.1 ==
+
+This is a bug fix release of the MediaWiki 1.25 branch.
+
+== Changes since 1.25.1 ==
+
+* (T100351) Fix syntax errors in extension.json of ConfirmEdit extension
+
 == MediaWiki 1.25 ==
 
 === Configuration changes in 1.25 ===
