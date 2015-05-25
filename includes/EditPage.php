@@ -1958,11 +1958,13 @@ class EditPage {
 
 		if ( $this->changeTags && isset( $doEditStatus->value['revision'] ) ) {
 			// If a revision was created, apply any change tags that were requested
-			ChangeTags::addTags(
-				$this->changeTags,
-				isset( $doEditStatus->value['rc'] ) ? $doEditStatus->value['rc']->mAttribs['rc_id'] : null,
-				$doEditStatus->value['revision']->getId()
-			);
+			$addTags = $this->changeTags;
+			$revId = $doEditStatus->value['revision']->getId();
+			// Defer this both for performance and so that addTags() sees the rc_id
+			// since the recentchange entry addition is deferred first (bug T100248)
+			DeferredUpdates::addCallableUpdate( function() use ( $addTags, $revId ) {
+				ChangeTags::addTags( $addTags, null, $revId );
+			} );
 		}
 
 		return $status;
