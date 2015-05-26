@@ -996,6 +996,18 @@ Don't use integers as tag names !
 If you allow users to define tags, it is advised to check that the name is legit with
 the ChangeTag::canCreate function.
 
+'ChangeTagsAfterUpdateTags': Called immediately after tags have been updated with the
+ChangeTags::updateTags function. Params:
+$addedTags: tags effectively added in the update
+$removedTags: tags effectively removed in the update
+$prevTags: tags that were present prior to the update
+$rc_id: recentchanges table id
+$rev_id: revision table id
+$log_id: logging table id
+$params: tag params
+$user: User who performed the tagging, or tagged user if it was automatic
+$flags: bit mask representing the source of the tagging, if done in core, see ChangeTags class
+
 'Collation::factory': Called if $wgCategoryCollation is an unknown collation.
 $collationName: Name of the collation in question
 &$collationObject: Null. Replace with a subclass of the Collation class that
