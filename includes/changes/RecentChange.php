@@ -595,7 +595,8 @@ class RecentChange {
 			}
 			if ( count( $tags ) ) {
 				ChangeTags::addTags( $tags, $rc->mAttribs['rc_id'],
-					$rc->mAttribs['rc_this_oldid'], null, null );
+					$rc->mAttribs['rc_this_oldid'], null, null, $rc->getPerformer(),
+					$rc, ChangeTags::UPDATE_USER_SELF );
 			}
 		} );
 
@@ -667,7 +668,8 @@ class RecentChange {
 			}
 			if ( count( $tags ) ) {
 				ChangeTags::addTags( $tags, $rc->mAttribs['rc_id'],
-					$rc->mAttribs['rc_this_oldid'], null, null );
+					$rc->mAttribs['rc_this_oldid'], null, null, $rc->getPerformer(),
+					$rc, ChangeTags::UPDATE_USER_SELF );
 			}
 		} );
 
