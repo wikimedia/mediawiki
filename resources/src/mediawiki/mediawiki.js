@@ -866,9 +866,9 @@
 				// By default, always create a new <style>. Appending text to a <style>
 				// tag is bad as it means the contents have to be re-parsed (bug 45810).
 				//
-				// Except, of course, in IE 9 and below. In there we default to re-using and
+				// Except, of course, in IE 8 and below. In there we default to re-using and
 				// appending to a <style> tag due to the IE stylesheet limit (bug 31676).
-				if ( 'documentMode' in document && document.documentMode <= 9 ) {
+				if ( 'documentMode' in document && document.documentMode <= 8 ) {
 
 					$style = getMarker().prev();
 					// Verify that the element before the marker actually is a
