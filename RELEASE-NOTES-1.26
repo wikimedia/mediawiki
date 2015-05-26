@@ -53,6 +53,16 @@ for editing, such as action overrides or specific api modules.
 one function. The callback can't be called directly any more. The callback function
 is replaced with confirmCloseWindow.release().
 * Removed maintenance script deleteImageMemcached.php.
+* The parser will no longer randomize the string it uses to mark the place of
+  items that were stripped during parsing. It will use a fixed string instead.
+  This causes the parser to re-use the regular expressions it uses to search
+  and replace markers rather than generate novel expressions on each parse.
+  Re-using regular expressions will improve performance on HHVM and the
+  forthcoming PHP 7. The interfaces changes accompanying this change are:
+  - Parser::getRandomString() and Parser::uniqPrefix() have been deprecated.
+  - The $uniq_prefix argument for Parser::extractTagsAndParams() and the
+    $prefix argument for StripState::_construct() are deprecated and their
+    value is ignored.
 
 == Compatibility ==
 
