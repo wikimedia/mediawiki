@@ -112,7 +112,6 @@ class Preprocessor_Hash implements Preprocessor {
 	 * @return PPNode_Hash_Tree
 	 */
 	public function preprocessToObj( $text, $flags = 0 ) {
-
 		// Check cache.
 		global $wgMemc, $wgPreprocessorCacheThreshold;
 
@@ -1185,7 +1184,7 @@ class PPFrame_Hash implements PPFrame {
 						$titleText = $this->title->getPrefixedDBkey();
 						$this->parser->mHeadings[] = array( $titleText, $bits['i'] );
 						$serial = count( $this->parser->mHeadings ) - 1;
-						$marker = "{$this->parser->mUniqPrefix}-h-$serial-" . Parser::MARKER_SUFFIX;
+						$marker = Parser::MARKER_PREFIX . "-h-$serial-" . Parser::MARKER_SUFFIX;
 						$s = substr( $s, 0, $bits['level'] ) . $marker . substr( $s, $bits['level'] );
 						$this->parser->mStripState->addGeneral( $marker, '' );
 						$out .= $s;
