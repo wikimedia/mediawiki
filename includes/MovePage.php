@@ -567,7 +567,8 @@ class MovePage {
 		$autoTags = ChangeTagsCore::getAutotagsForMove( $this->oldTitle, $nt, $user );
 		$autoTags = ChangeTags::filterInactiveTags( $autoTags );
 		if ( $autoTags ) {
-			ChangeTags::addTags( $autoTags, $rc->mAttribs['rc_id'], $nullRevision->getId(), $logid, null );
+			ChangeTags::addTags( $autoTags, $rc->mAttribs['rc_id'], $nullRevision->getId(), $logid,
+				null, $user, $rc, ChangeTags::UPDATE_CORE_MOVE );
 		}
 
 		return $nullRevision;
