@@ -122,6 +122,7 @@
 	'diq' => 'Zazaki',		# Zazaki
 	'dsb' => 'dolnoserbski', # Lower Sorbian
 	'dtp' => 'Dusun Bundu-liwan', # Central Dusun
+	'dty' => 'डोटेली', # Doteli
 	'dv' => 'ދިވެހިބަސް',		# Dhivehi
 	'dz' => 'ཇོང་ཁ',		# Dzongkha (Bhutan)
 	'ee' => 'eʋegbe',	# Éwé
