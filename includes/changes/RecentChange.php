@@ -586,7 +586,8 @@ class RecentChange {
 			// Apply autotags if any
 			if ( $autoTags ) {
 				ChangeTags::addTags( $autoTags, $rc->mAttribs['rc_id'],
-					$rc->mAttribs['rc_this_oldid'], null, null );
+				$rc->mAttribs['rc_this_oldid'], null, null,
+				$rc->getPerformer(), $rc, ChangeTags::UPDATE_CORE_EDITUPDATE );
 			}
 			if ( $rc->mAttribs['rc_patrolled'] ) {
 				PatrolLog::record( $rc, true, $rc->getPerformer() );
@@ -660,7 +661,8 @@ class RecentChange {
 			// Apply autotags if any
 			if ( $autoTags ) {
 				ChangeTags::addTags( $autoTags, $rc->mAttribs['rc_id'],
-					$rc->mAttribs['rc_this_oldid'], null, null );
+					$rc->mAttribs['rc_this_oldid'], null, null,
+					$rc->getPerformer(), $rc, ChangeTags::UPDATE_CORE_EDITNEW );
 			}
 			if ( $rc->mAttribs['rc_patrolled'] ) {
 				PatrolLog::record( $rc, true, $rc->getPerformer() );
