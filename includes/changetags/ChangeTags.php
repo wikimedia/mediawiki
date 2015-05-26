@@ -23,6 +23,17 @@
 
 class ChangeTags {
 
+	/* Represents a tag manually applied along an edit by the user who performed it */
+	const UPDATE_USER_SELF = 2;
+	/* Represents a tag manually applied after an edit was saved */
+	const UPDATE_USER_POST = 4;
+	/* Represents a tag applied in core to an edit to an existing page */
+	const UPDATE_CORE_EDITUPDATE = 8;
+	/* Represents a tag applied in core to an edit creating a page */
+	const UPDATE_CORE_EDITNEW = 16;
+	/* Represents a tag applied in core to a page move */
+	const UPDATE_CORE_MOVE = 32;
+
 	/**
 	 * Creates HTML for the given tags
 	 *
@@ -135,9 +146,9 @@ class ChangeTags {
 	 * @return bool False if no changes are made, otherwise true
 	 */
 	public static function addTags( $tags, $rc_id = null, $rev_id = null,
-		$log_id = null, $params = null
+		$log_id = null, $params = null, User $user = null, RecentChange $rc = null, $flags = 0
 	) {
-		$result = self::updateTags( $tags, null, $rc_id, $rev_id, $log_id, $params );
+		$result = self::updateTags( $tags, null, $rc_id, $rev_id, $log_id, $params, $user, $rc, $flags );
 		return (bool)$result[0];
 	}
 
@@ -169,7 +180,7 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function updateTags( $tagsToAdd, $tagsToRemove, &$rc_id = null,
-		&$rev_id = null, &$log_id = null, $params = null ) {
+		&$rev_id = null, &$log_id = null, $params = null, User $user = null, RecentChange $rc = null, $flags = 0 ) {
 
 		$tagsToAdd = array_filter( (array)$tagsToAdd ); // Make sure we're submitting all tags...
 		$tagsToRemove = array_filter( (array)$tagsToRemove );
@@ -261,6 +272,9 @@ class ChangeTags {
 			}
 		}
 		ChangeTagsContext::clearCachesAfterUpdate( $tagsToAdd, $tagsToRemove );
+
+		Hooks::run( 'ChangeTagsAfterUpdateTags', array(
+			$tagsToAdd, $tagsToRemove, $prevTags, $rc_id, $rev_id, $log_id, $params, $user, $rc, $flags ) );
 
 		return array( $tagsToAdd, $tagsToRemove, $prevTags );
 	}
@@ -414,7 +428,7 @@ class ChangeTags {
 		}
 
 		// do it!
-		self::addTags( $tags, $rc_id, $rev_id, $log_id, $params );
+		self::addTags( $tags, $rc_id, $rev_id, $log_id, $params, $user, null, self::UPDATE_USER_SELF );
 
 		return Status::newGood( true );
 	}
@@ -530,7 +544,7 @@ class ChangeTags {
 
 		// do it!
 		list( $tagsAdded, $tagsRemoved, $initialTags ) = self::updateTags( $tagsToAdd,
-			$tagsToRemove, $rc_id, $rev_id, $log_id, $params );
+			$tagsToRemove, $rc_id, $rev_id, $log_id, $params, $user, null, self::UPDATE_USER_POST );
 		if ( !$tagsAdded && !$tagsRemoved ) {
 			// no-op, don't log it
 			return Status::newGood( (object)array(
