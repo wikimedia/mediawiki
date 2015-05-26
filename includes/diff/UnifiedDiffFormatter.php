@@ -38,6 +38,16 @@ class UnifiedDiffFormatter extends DiffFormatter {
 
 	/**
 	 * @param string[] $lines
+	 * @param string $prefix
+	 */
+	protected function lines( $lines, $prefix = ' ' ) {
+		foreach ( $lines as $line ) {
+			echo "{$prefix}{$line}\n";
+		}
+	}
+
+	/**
+	 * @param string[] $lines
 	 */
 	protected function added( $lines ) {
 		$this->lines( $lines, '+' );
