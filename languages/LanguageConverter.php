@@ -355,12 +355,7 @@ class LanguageConverter {
 		   2. HTML entities
 		   3. placeholders created by the parser
 		*/
-		global $wgParser;
-		if ( isset( $wgParser ) && $wgParser->UniqPrefix() != '' ) {
-			$marker = '|' . $wgParser->UniqPrefix() . '[\-a-zA-Z0-9]+';
-		} else {
-			$marker = '';
-		}
+		$marker = '|' . Parser::MARKER_PREFIX . '[\-a-zA-Z0-9]+';
 
 		// this one is needed when the text is inside an HTML markup
 		$htmlfix = '|<[^>]+$|^[^<>]*>';

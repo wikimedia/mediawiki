@@ -40,13 +40,10 @@ class MWTidyWrapper {
 	 */
 	protected $mTokens;
 
-	protected $mUniqPrefix;
-
 	protected $mMarkerIndex;
 
 	public function __construct() {
 		$this->mTokens = null;
-		$this->mUniqPrefix = null;
 	}
 
 	/**
@@ -55,8 +52,6 @@ class MWTidyWrapper {
 	 */
 	public function getWrapped( $text ) {
 		$this->mTokens = new ReplacementArray;
-		$this->mUniqPrefix = "\x7fUNIQ" .
-			dechex( mt_rand( 0, 0x7fffffff ) ) . dechex( mt_rand( 0, 0x7fffffff ) );
 		$this->mMarkerIndex = 0;
 
 		// Replace <mw:editsection> elements with placeholders
@@ -86,7 +81,7 @@ class MWTidyWrapper {
 	 * @return string
 	 */
 	public function replaceCallback( $m ) {
-		$marker = "{$this->mUniqPrefix}-item-{$this->mMarkerIndex}" . Parser::MARKER_SUFFIX;
+		$marker = Parser::MARKER_PREFIX . "-item-{$this->mMarkerIndex}" . Parser::MARKER_SUFFIX;
 		$this->mMarkerIndex++;
 		$this->mTokens->setPair( $marker, $m[0] );
 		return $marker;
