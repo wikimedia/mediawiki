@@ -1006,6 +1006,18 @@ $user: user initiating the action
 
 'ChangeTagsListActive': Deprecated, use 'ChangeTagsRegister' instead
 
+'ChangeTagsAfterUpdateTags': Called immediately after tags have been updated with the
+ChangeTags::updateTags function. Params:
+$addedTags: tags effectively added in the update
+$removedTags: tags effectively removed in the update
+$prevTags: tags that were present prior to the update
+$rc_id: recentchanges table id
+$rev_id: revision table id
+$log_id: logging table id
+$params: tag params
+$rc: Recent change being tagged, when the tagging accompanies the action
+$user: User who performed the tagging, when the tagging is subsequent to the action
+
 'ChangeTagsRegister': The hook to use to register a change tag along with
 all relevant information, such as its active status, the extension's name,
 whether it is deletable, params to use in the extension-specific message, etc.
