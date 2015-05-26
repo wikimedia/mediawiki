@@ -1543,7 +1543,7 @@
 	"unusedimages": "Osirotele datoteke",
 	"wantedcategories": "Želene kategorije",
 	"wantedpages": "Želene strani",
-	"wantedpages-summary": "Seznam neobstoječih strani z največ povezavami, ki kažejo na njih, izključujoč preusmeritve. Za seznam neobstoječih strani, ki so ciljne strani preusmeritev, glejte [[{{#special:BrokenRedirects}}]].",
+	"wantedpages-summary": "Seznam neobstoječih strani z največ povezavami, ki kažejo na njih, izključujoč preusmeritve. Za seznam neobstoječih strani, ki so ciljne strani preusmeritev, glejte [[{{#special:BrokenRedirects}}|seznam pretrganih preusmeritev]].",
 	"wantedpages-badtitle": "Neveljaven naslov v končnem nizu: $1",
 	"wantedfiles": "Želene datoteke",
 	"wantedfiletext-cat": "Naslednje datoteke so uporabljene, vendar ne obstajajo. Navedene so morda tudi datoteke iz zunanjih hramb, čeprav obstajajo. Vsi takšni lažni pozitivi bodo <del>prečrtani</del>. Poleg tega so strani, ki vključujejo neobstoječe datoteke, navedene na [[:$1]].",

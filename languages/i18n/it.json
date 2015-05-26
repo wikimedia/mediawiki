@@ -407,7 +407,7 @@
 	"title-invalid-empty": "Il titolo della pagina richiesta è vuoto o contiene solamente il nome di un namespace.",
 	"title-invalid-utf8": "Il titolo della pagina richiesta contiene una sequenza UTF-8 non valida.",
 	"title-invalid-interwiki": "Il titolo della pagina richiesta contiene un collegamento interwiki che non può essere usato nei titoli.",
-	"title-invalid-talk-namespace": "Il titolo della pagina richiesto fa riferimento a una pagina di discussione non presente.",
+	"title-invalid-talk-namespace": "Il titolo della pagina richiesta fa riferimento a una pagina di discussione non presente.",
 	"title-invalid-characters": "Il titolo della pagina richiesta contiene caratteri invalidi: \"$1\".",
 	"title-invalid-relative": "Il titolo indicato contiene un percorso relativo (./, ../). Tali titoli non sono validi, perché risulteranno spesso irraggiungibili quando gestiti dal browser dell'utente.",
 	"title-invalid-magic-tilde": "Il titolo della pagina richiesta non è valido in quanto contiene la successione speciale di tilde (<nowiki>~~~</nowiki>).",
