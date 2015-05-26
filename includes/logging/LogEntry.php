@@ -733,7 +733,8 @@ class ManualLogEntry extends LogEntryBase {
 					if ( !is_null( $tags ) ) {
 						$rcId = $rc->getAttribute( 'rc_id' );
 						$revId = $this->getAssociatedRevId(); // Use null if $revId is 0
-						ChangeTags::addTags( $tags, $rcId, $revId > 0 ? $revId : null, $newId );
+						ChangeTags::addTags( $tags, $rcId, $revId > 0 ? $revId : null, $newId,
+							null, $rc );
 					}
 				}
 			},

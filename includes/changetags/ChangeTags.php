@@ -142,14 +142,16 @@ class ChangeTags {
 	 * @param int|null $rev_id The rev_id of the change to add the tags to
 	 * @param int|null $log_id The log_id of the change to add the tags to
 	 * @param string $params Params to put in the ct_params field of table 'change_tag'
+	 * @param RecentChange|null $rc Recent change, in case the tagging accompanies the action
+	 * (this should normally be the case)
 	 *
 	 * @throws MWException
 	 * @return bool False if no changes are made, otherwise true
 	 */
 	public static function addTags( $tags, $rc_id = null, $rev_id = null,
-		$log_id = null, $params = null
+		$log_id = null, $params = null, RecentChange $rc = null
 	) {
-		$result = self::updateTags( $tags, null, $rc_id, $rev_id, $log_id, $params );
+		$result = self::updateTags( $tags, null, $rc_id, $rev_id, $log_id, $params, $rc );
 		return (bool)$result[0];
 	}
 
@@ -172,6 +174,9 @@ class ChangeTags {
 	 * Pass a variable whose value is null if the log_id is not relevant or unknown.
 	 * @param string $params Params to put in the ct_params field of table
 	 * 'change_tag' when adding tags
+	 * @param RecentChange|null $rc Recent change being tagged, in case the tagging accompanies
+	 * the action
+	 * @param User|null $user Tagging user, in case the tagging is subsequent to the tagged action
 	 *
 	 * @throws MWException When $rc_id, $rev_id and $log_id are all null
 	 * @return array Index 0 is an array of tags actually added, index 1 is an
@@ -180,9 +185,9 @@ class ChangeTags {
 	 *
 	 * @since 1.25
 	 */
-	public static function updateTags(
-		$tagsToAdd, $tagsToRemove,
-		&$rc_id = null, &$rev_id = null, &$log_id = null, $params = null
+	public static function updateTags( $tagsToAdd, $tagsToRemove, &$rc_id = null,
+		&$rev_id = null, &$log_id = null, $params = null, RecentChange $rc = null,
+		User $user = null
 	) {
 
 		$tagsToAdd = array_filter( (array)$tagsToAdd ); // Make sure we're submitting all tags...
@@ -301,6 +306,9 @@ class ChangeTags {
 			}
 		}
 		ChangeTagsContext::clearCachesAfterUpdate( $tagsToAdd, $tagsToRemove );
+
+		Hooks::run( 'ChangeTagsAfterUpdateTags', [ $tagsToAdd, $tagsToRemove, $prevTags,
+			$rc_id, $rev_id, $log_id, $params, $rc, $user ] );
 
 		return [ $tagsToAdd, $tagsToRemove, $prevTags ];
 	}
@@ -489,7 +497,7 @@ class ChangeTags {
 
 		// do it!
 		list( $tagsAdded, $tagsRemoved, $initialTags ) = self::updateTags( $tagsToAdd,
-			$tagsToRemove, $rc_id, $rev_id, $log_id, $params );
+			$tagsToRemove, $rc_id, $rev_id, $log_id, $params, null, $user );
 		if ( !$tagsAdded && !$tagsRemoved ) {
 			// no-op, don't log it
 			return Status::newGood( (object)[
