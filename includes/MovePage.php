@@ -568,7 +568,7 @@ class MovePage {
 		if ( $autoTags ) {
 			DeferredUpdates::addCallableUpdate( function() use ( $rc, $autoTags, $nullRevision, $logid ) {
 				ChangeTags::addTags( $autoTags, $rc->mAttribs['rc_id'], $nullRevision->getId(), $logid,
-				null, $rc->getPerformer(), $rc );
+				null, $rc->getPerformer(), $rc, ChangeTags::UPDATE_USER_SELF );
 			} );
 		}
 
