@@ -1162,9 +1162,9 @@ return array(
 		),
 	),
 	'mediawiki.action.history' => array(
+		'position' => 'top',
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.history.js',
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.history.css',
-		'group' => 'mediawiki.action.history',
 	),
 	'mediawiki.action.history.diff' => array(
 		'position' => 'top',
@@ -1174,7 +1174,6 @@ return array(
 				'media' => 'print'
 			),
 		),
-		'group' => 'mediawiki.action.history',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.action.view.dblClickEdit' => array(
