@@ -114,8 +114,20 @@ class Parser {
 	const OT_MSG = 3;
 	const OT_PLAIN = 4; # like extractSections() - portions of the original are returned unchanged.
 
-	# Marker Suffix needs to be accessible staticly.
+	/**
+	 * @var string Prefix and suffix for temporary replacement strings
+	 * for the multipass parser.
+	 *
+	 * \x7f should never appear in input as it's disallowed in XML.
+	 * Using it at the front also gives us a little extra robustness
+	 * since it shouldn't match when butted up against identifier-like
+	 * string constructs.
+	 *
+	 * Must not consist of all title characters, or else it will change
+	 * the behavior of <nowiki> in a link.
+	 */
 	const MARKER_SUFFIX = "-QINU\x7f";
+	const MARKER_PREFIX = "\x7fUNIQ-";
 
 	# Markers used for wrapping the table of contents
 	const TOC_START = '<mw:toc>';
@@ -206,9 +218,10 @@ class Parser {
 	public $mInputSize = false; # For {{PAGESIZE}} on current page.
 
 	/**
-	 * @var string
-	 */
-	public $mUniqPrefix;
+	 * @var string Deprecated accessor for the strip marker prefix.
+	 * @deprecated since 1.26; use Parser::MARKER_PREFIX instead.
+	 **/
+	public $mUniqPrefix = Parser::MARKER_PREFIX;
 
 	/**
 	 * @var array Array with the language name of each language link (i.e. the
@@ -336,18 +349,7 @@ class Parser {
 		$this->mLangLinkLanguages = array();
 		$this->currentRevisionCache = null;
 
-		/**
-		 * Prefix for temporary replacement strings for the multipass parser.
-		 * \x07 should never appear in input as it's disallowed in XML.
-		 * Using it at the front also gives us a little extra robustness
-		 * since it shouldn't match when butted up against identifier-like
-		 * string constructs.
-		 *
-		 * Must not consist of all title characters, or else it will change
-		 * the behavior of <nowiki> in a link.
-		 */
-		$this->mUniqPrefix = "\x7fUNIQ" . self::getRandomString();
-		$this->mStripState = new StripState( $this->mUniqPrefix );
+		$this->mStripState = new StripState;
 
 		# Clear these on every parse, bug 4549
 		$this->mTplRedirCache = $this->mTplDomCache = array();
@@ -399,6 +401,9 @@ class Parser {
 		global $wgShowHostnames;
 
 		if ( $clearState ) {
+			// We use U+007F DELETE to construct strip markers, so we have to make
+			// sure that this character does not occur in the input text.
+			$text = strtr( $text, "\x7f", "?" );
 			$magicScopeVariable = $this->lock();
 		}
 
@@ -412,7 +417,7 @@ class Parser {
 
 		# Remove the strip marker tag prefix from the input, if present.
 		if ( $clearState ) {
-			$text = str_replace( $this->mUniqPrefix, '', $text );
+			$text = str_replace( self::MARKER_PREFIX, '', $text );
 		}
 
 		$oldRevisionId = $this->mRevisionId;
@@ -686,6 +691,7 @@ class Parser {
 	 * Get a random string
 	 *
 	 * @return string
+	 * @deprecated since 1.26; use wfRandomString() instead.
 	 */
 	public static function getRandomString() {
 		return wfRandomString( 16 );
@@ -705,18 +711,11 @@ class Parser {
 	 * Accessor for mUniqPrefix.
 	 *
 	 * @return string
+	 * @deprecated since 1.26; use Parser::MARKER_PREFIX instead.
 	 */
 	public function uniqPrefix() {
-		if ( !isset( $this->mUniqPrefix ) ) {
-			# @todo FIXME: This is probably *horribly wrong*
-			# LanguageConverter seems to want $wgParser's uniqPrefix, however
-			# if this is called for a parser cache hit, the parser may not
-			# have ever been initialized in the first place.
-			# Not really sure what the heck is supposed to be going on here.
-			return '';
-			# throw new MWException( "Accessing uninitialized mUniqPrefix" );
-		}
-		return $this->mUniqPrefix;
+		wfDeprecated( __METHOD__, '1.26' );
+		return self::MARKER_PREFIX;
 	}
 
 	/**
@@ -938,7 +937,7 @@ class Parser {
 				$inside = $p[4];
 			}
 
-			$marker = "$uniq_prefix-$element-" . sprintf( '%08X', $n++ ) . self::MARKER_SUFFIX;
+			$marker = self::MARKER_PREFIX . "-$element-" . sprintf( '%08X', $n++ ) . self::MARKER_SUFFIX;
 			$stripped .= $marker;
 
 			if ( $close === '/>' ) {
@@ -991,7 +990,7 @@ class Parser {
 	 * @return string
 	 */
 	public function insertStripItem( $text ) {
-		$rnd = "{$this->mUniqPrefix}-item-{$this->mMarkerIndex}-" . self::MARKER_SUFFIX;
+		$rnd = self::MARKER_PREFIX . "-item-{$this->mMarkerIndex}-" . self::MARKER_SUFFIX;
 		$this->mMarkerIndex++;
 		$this->mStripState->addGeneral( $rnd, $text );
 		return $rnd;
@@ -1257,7 +1256,7 @@ class Parser {
 
 		# replaceInternalLinks may sometimes leave behind
 		# absolute URLs, which have to be masked to hide them from replaceExternalLinks
-		$text = str_replace( $this->mUniqPrefix . 'NOPARSE', '', $text );
+		$text = str_replace( self::MARKER_PREFIX . 'NOPARSE', '', $text );
 
 		$text = $this->doMagicLinks( $text );
 		$text = $this->formatHeadings( $text, $origText, $isMain );
@@ -2355,7 +2354,7 @@ class Parser {
 	 */
 	public function armorLinks( $text ) {
 		return preg_replace( '/\b((?i)' . $this->mUrlProtocols . ')/',
-			"{$this->mUniqPrefix}NOPARSE$1", $text );
+			self::MARKER_PREFIX . "NOPARSE$1", $text );
 	}
 
 	/**
@@ -2627,7 +2626,7 @@ class Parser {
 				$closematch = preg_match(
 					'/(?:<\\/table|<\\/h1|<\\/h2|<\\/h3|<\\/h4|<\\/h5|<\\/h6|'
 						. '<td|<th|<\\/?blockquote|<\\/?div|<hr|<\\/pre|<\\/p|<\\/mw:|'
-						. $this->mUniqPrefix
+						. self::MARKER_PREFIX
 						. '-pre|<\\/li|<\\/ul|<\\/ol|<\\/dl|<\\/?center)/iS',
 					$t
 				);
@@ -4190,7 +4189,7 @@ class Parser {
 		$name = $frame->expand( $params['name'] );
 		$attrText = !isset( $params['attr'] ) ? null : $frame->expand( $params['attr'] );
 		$content = !isset( $params['inner'] ) ? null : $frame->expand( $params['inner'] );
-		$marker = "{$this->mUniqPrefix}-$name-"
+		$marker = self::MARKER_PREFIX . "-$name-"
 			. sprintf( '%08X', $this->mMarkerIndex++ ) . self::MARKER_SUFFIX;
 
 		$isFunctionTag = isset( $this->mFunctionTagHooks[strtolower( $name )] ) &&
@@ -4435,7 +4434,7 @@ class Parser {
 		$prevlevel = 0;
 		$toclevel = 0;
 		$prevtoclevel = 0;
-		$markerRegex = "{$this->mUniqPrefix}-h-(\d+)-" . self::MARKER_SUFFIX;
+		$markerRegex = self::MARKER_PREFIX . "-h-(\d+)-" . self::MARKER_SUFFIX;
 		$baseTitleText = $this->mTitle->getPrefixedDBkey();
 		$oldType = $this->mOutputType;
 		$this->setOutputType( self::OT_WIKI );
@@ -5774,7 +5773,7 @@ class Parser {
 	public function replaceTransparentTags( $text ) {
 		$matches = array();
 		$elements = array_keys( $this->mTransparentTagHooks );
-		$text = self::extractTagsAndParams( $elements, $text, $matches, $this->mUniqPrefix );
+		$text = self::extractTagsAndParams( $elements, $text, $matches, self::MARKER_PREFIX );
 		$replacements = array();
 
 		foreach ( $matches as $marker => $data ) {
@@ -6233,7 +6232,7 @@ class Parser {
 		$i = 0;
 		$out = '';
 		while ( $i < strlen( $s ) ) {
-			$markerStart = strpos( $s, $this->mUniqPrefix, $i );
+			$markerStart = strpos( $s, self::MARKER_PREFIX, $i );
 			if ( $markerStart === false ) {
 				$out .= call_user_func( $callback, substr( $s, $i ) );
 				break;
