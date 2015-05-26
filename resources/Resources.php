@@ -39,6 +39,7 @@ return array(
 		'group' => 'noscript',
 	),
 	'filepage' => array(
+		'position' => 'top',
 		'class' => 'ResourceLoaderWikiModule',
 		'styles' => array( 'MediaWiki:Filepage.css' ),
 	),
