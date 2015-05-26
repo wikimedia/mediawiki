@@ -1,7 +1,5 @@
 <?php
 /**
- * Classes to cache objects in PHP accelerators, SQL database or DBA files
- *
  * Copyright © 2003-2004 Brion Vibber <brion@pobox.com>
  * https://www.mediawiki.org/
  *
