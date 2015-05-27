@@ -39,6 +39,7 @@ interface DeferrableUpdate {
  * Deferred updates can be run at the end of the request,
  * after the HTTP response has been sent. In CLI mode, updates
  * are only deferred until there is no local master DB transaction.
+ * When updates are deferred, they go into a simple FIFO queue.
  *
  * @since 1.19
  */
