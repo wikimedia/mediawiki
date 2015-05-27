@@ -7706,6 +7706,7 @@ $wgUseLinkNamespaceDBFields = true;
  *   $wgVirtualRestConfig['modules']['parsoid'] = array(
  *     'url' => 'http://localhost:8000',
  *     'prefix' => 'enwiki',
+ *     'domain' => 'en.wikipedia.org',
  *   );
  *
  * @var array
@@ -7716,6 +7717,7 @@ $wgVirtualRestConfig = array(
 	'global' => array(
 		# Timeout in seconds
 		'timeout' => 360,
+		'domain' => $wgCanonicalServer,
 		'forwardCookies' => false,
 		'HTTPProxy' => null
 	)
