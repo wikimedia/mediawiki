@@ -27,7 +27,7 @@
  * @ingroup Cache
  */
 class APCBagOStuff extends BagOStuff {
-	public function get( $key, &$casToken = null ) {
+	public function get( $key, &$casToken = null, $flags = 0 ) {
 		$val = apc_fetch( $key );
 
 		$casToken = $val;

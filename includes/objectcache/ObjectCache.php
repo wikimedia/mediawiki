@@ -29,9 +29,13 @@ use MediaWiki\Logger\LoggerFactory;
  * The word "cache" has two main dictionary meanings, and both
  * are used in this factory class. They are:
  *   - a) A place to store copies or computations on existing data
- *     for higher access speeds (the computer science definition)
+ *        for higher access speeds (the computer science definition)
  *   - b) A place to store lightweight data that is not canonically
- *     stored anywhere else (e.g. a "hoard" of objects)
+ *        stored anywhere else (e.g. a "hoard" of objects)
+ *
+ * The former should always use strongly consistent stores, so callers don't
+ * have to deal with stale reads. The later may be eventually consistent, but
+ * callers can use BagOStuff:READ_LATEST to see the latest available data.
  *
  * @ingroup Cache
  */
@@ -238,9 +242,10 @@ class ObjectCache {
 	 * In general, this means avoiding updates on idempotent HTTP requests and
 	 * avoiding an assumption of perfect serializability (or accepting anomalies).
 	 * Reads may be eventually consistent or data might rollback as nodes flap.
+	 * Callers can use BagOStuff:READ_LATEST to see the latest available data.
 	 *
-	 * @since 1.26
 	 * @return BagOStuff
+	 * @since 1.26
 	 */
 	static function getMainStashInstance() {
 		global $wgMainStash;
