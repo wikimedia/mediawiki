@@ -220,12 +220,7 @@ class SqlBagOStuff extends BagOStuff {
 		}
 	}
 
-	/**
-	 * @param string $key
-	 * @param mixed $casToken [optional]
-	 * @return mixed
-	 */
-	public function get( $key, &$casToken = null ) {
+	public function get( $key, &$casToken = null, $flags = 0 ) {
 		$values = $this->getMulti( array( $key ) );
 		if ( array_key_exists( $key, $values ) ) {
 			$casToken = $values[$key];
@@ -234,11 +229,7 @@ class SqlBagOStuff extends BagOStuff {
 		return false;
 	}
 
-	/**
-	 * @param array $keys
-	 * @return array
-	 */
-	public function getMulti( array $keys ) {
+	public function getMulti( array $keys, $flags = 0 ) {
 		$values = array(); // array of (key => value)
 
 		$keysByTable = array();

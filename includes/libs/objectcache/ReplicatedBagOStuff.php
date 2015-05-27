@@ -72,12 +72,16 @@ class ReplicatedBagOStuff extends BagOStuff {
 		$this->readStore->setDebug( $debug );
 	}
 
-	public function get( $key, &$casToken = null ) {
-		return $this->readStore->get( $key, $casToken );
+	public function get( $key, &$casToken = null, $flags = 0 ) {
+		return ( $flags & self::READ_LATEST )
+			? $this->writeStore->get( $key, $casToken, $flags )
+			: $this->readStore->get( $key, $casToken, $flags );
 	}
 
-	public function getMulti( array $keys ) {
-		return $this->readStore->getMulti( $keys );
+	public function getMulti( array $keys, $flags = 0 ) {
+		return ( $flags & self::READ_LATEST )
+			? $this->writeStore->getMulti( $keys, $flags )
+			: $this->readStore->getMulti( $keys, $flags );
 	}
 
 	public function set( $key, $value, $exptime = 0 ) {

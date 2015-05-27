@@ -80,7 +80,7 @@ class RedisBagOStuff extends BagOStuff {
 		}
 	}
 
-	public function get( $key, &$casToken = null ) {
+	public function get( $key, &$casToken = null, $flags = 0 ) {
 
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
@@ -174,7 +174,7 @@ class RedisBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-	public function getMulti( array $keys ) {
+	public function getMulti( array $keys, $flags = 0 ) {
 
 		$batches = array();
 		$conns = array();
