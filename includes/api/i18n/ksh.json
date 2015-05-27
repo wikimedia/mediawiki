@@ -662,7 +662,7 @@
 	"apihelp-upload-param-watch": "Op di Sigg heh oppaßße.",
 	"apihelp-upload-param-watchlist": "Donn di Sigg op däm aktoälle Metmaacher sing Oppaßleß udder nemm se druß fott, donn de Enschtällonge nämme, udder donn de Oppaßleß jaa nit verändere.",
 	"apihelp-upload-param-ignorewarnings": "Donn alle Warnonge övverjonn.",
-	"apihelp-upload-param-file": "Dä Datei ier Enhallde.",
+	"apihelp-upload-param-file": "Dä Dattei ier Enhallde.",
 	"apihelp-upload-param-url": "Der <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Uniform Ressource Locator\">URL</i>, öm di Dattei dervun ze holle.",
 	"apihelp-upload-param-filesize": "De Datteijrühße vum jannze Huhlahde.",
 	"apihelp-upload-param-asyncdownload": "Maach dat Holle vun ene <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Uniform Ressource Locator\">URL</i> zoh ene andere Zigg.",

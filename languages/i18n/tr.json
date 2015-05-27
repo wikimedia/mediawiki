@@ -1613,7 +1613,7 @@
 	"unusedimages": "Kullanılmayan dosyalar",
 	"wantedcategories": "İstenen kategoriler",
 	"wantedpages": "İstenen sayfalar",
-	"wantedpages-summary": "Sadece yönlendirme sayfalarınca bağlantı veilen sayfalar hariç, kendine en çok bağlantı verilmiş ve mevcut olmayan sayfaların listesi. Yönlendirme sayfalarınca bağlantı verilmiş, mevcut olmayan sayfaları görmek için bakınız: [[{{#special:BrokenRedirects}}]]",
+	"wantedpages-summary": "Bağlantı veren yönlendirme sayfaları hariç, kendine en çok bağlantı verilmiş ve mevcut olmayan sayfaların listesi. Yönlendirme sayfalarınca bağlantı verilmiş, mevcut olmayan sayfaları görmek için bakınız: [[{{#special:BrokenRedirects}}|Bozuk yönlendirmeler listesi]]",
 	"wantedpages-badtitle": "Sonuç kümesinde geçersiz başlık: $1",
 	"wantedfiles": "İstenen dosyalar",
 	"wantedfiletext-cat": "Aşağıdaki dosyalar kullanılıyor ama mevcut değil. Yabancı depolardaki dosyalar, varolsalar bile gösterilebilir. Böyle yanlış pozitiflerin <del>üstü çizilecektir</del>. Ek olarak, varolmayan dosyaları gömen sayfalar [[:$1]] sayfasında listelenmiştir.",
