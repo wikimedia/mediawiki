@@ -1526,7 +1526,7 @@
 	"unusedimages": "Net benotzt Fichieren",
 	"wantedcategories": "Gewënscht Kategorien",
 	"wantedpages": "Gewënscht Säiten",
-	"wantedpages-summary": "Lëscht vun de Säiten, déi et nach net gëtt, mat de meeschte Linken drop, ouni d'Säiten op déi nëmme Viruleedunge linken. Fir eng Lëscht vun de Säiten, déi et nach net gëtt, op déi Viruleedunge linken kuckt w.e.g. [[{{#special:BrokenRedirects}}]].",
+	"wantedpages-summary": "Lëscht vun de Säiten, déi et nach net gëtt, mat de meeschte Linken drop, ouni d'Säiten op déi nëmme Viruleedunge linken. Fir eng Lëscht vun de Säiten, déi et nach net gëtt, op déi Viruleedunge linken kuckt w.e.g. [[{{#special:BrokenRedirects}}|d'Lëscht vun de futtisse Viruleedungen]].",
 	"wantedpages-badtitle": "Net valabelen Titel am Resultat: $1",
 	"wantedfiles": "Gewënscht Fichieren",
 	"wantedfiletext-cat": "Dës Fichiere gi benotzt awer et gëtt se net. Fichiere aus frieme Repositorie kënnen hei gewise ginn och wann et se gëtt. All sou falsch Positiver ginn <del>duerchgestrach</del>. Zousätzlech gi Säiten an deene Fichieren dra sinn déi et net gëtt op [[:$1]] gewisen.",

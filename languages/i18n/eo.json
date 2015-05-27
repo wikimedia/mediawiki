@@ -1568,7 +1568,7 @@
 	"unusedimages": "Neuzataj bildoj",
 	"wantedcategories": "Dezirataj kategorioj",
 	"wantedpages": "Dezirataj paĝoj",
-	"wantedpages-summary": "Listo de neekzistantaj paĝoj kun plej multaj ligilo al ili, krom paĝoj al kiuj ligas nur alidirektiloj. Por listo de neekzistantaj paĝoj al kiuj ligas alidirektiloj, vidu [[{{#special:BrokenRedirects}}]].",
+	"wantedpages-summary": "Listo de neekzistantaj paĝoj kun plej multaj ligilo al ili, krom paĝoj al kiuj ligas nur alidirektiloj. Por listo de neekzistantaj paĝoj al kiuj ligas alidirektiloj, vidu [[{{#special:BrokenRedirects}}|liston de rompitaj alidirektiloj]].",
 	"wantedpages-badtitle": "Malvalida titolo en rezulta aro: $1",
 	"wantedfiles": "Dezirataj dosieroj",
 	"wantedfiletext-cat": "La jenaj dosieroj estas uzataj sed ne ekzistas. Dosieroj de eksteraj konservujoj eble estos listigita malgraŭ ne ekzistante. Tia malprave pozitivaj rezultoj estos <del>forstrekita</del>. Ankaŭ, paĝoj kiuj enmetas dosierojn kiuj ne ekzistas estas listigita en [[:$1]].",
