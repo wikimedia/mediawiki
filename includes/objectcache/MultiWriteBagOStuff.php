@@ -61,14 +61,9 @@ class MultiWriteBagOStuff extends BagOStuff {
 		$this->doWrite( 'setDebug', $debug );
 	}
 
-	/**
-	 * @param string $key
-	 * @param mixed $casToken [optional]
-	 * @return bool|mixed
-	 */
-	public function get( $key, &$casToken = null ) {
+	public function get( $key, &$casToken = null, $flags = 0 ) {
 		foreach ( $this->caches as $cache ) {
-			$value = $cache->get( $key );
+			$value = $cache->get( $key, null, $flags = 0 );
 			if ( $value !== false ) {
 				return $value;
 			}

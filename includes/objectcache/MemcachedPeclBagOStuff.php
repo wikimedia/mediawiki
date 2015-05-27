@@ -115,12 +115,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		$this->client->addServers( $servers );
 	}
 
-	/**
-	 * @param string $key
-	 * @param float $casToken [optional]
-	 * @return mixed
-	 */
-	public function get( $key, &$casToken = null ) {
+	public function get( $key, &$casToken = null, $flags = 0 ) {
 		$this->debugLog( "get($key)" );
 		$result = $this->client->get( $this->encodeKey( $key ), null, $casToken );
 		$result = $this->checkResult( $key, $result );
@@ -238,11 +233,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $result;
 	}
 
-	/**
-	 * @param array $keys
-	 * @return array
-	 */
-	public function getMulti( array $keys ) {
+	public function getMulti( array $keys, $flags = 0 ) {
 		$this->debugLog( 'getMulti(' . implode( ', ', $keys ) . ')' );
 		$callback = array( $this, 'encodeKey' );
 		$result = $this->client->getMulti( array_map( $callback, $keys ) );

@@ -48,7 +48,7 @@ class HashBagOStuff extends BagOStuff {
 		return true;
 	}
 
-	public function get( $key, &$casToken = null ) {
+	public function get( $key, &$casToken = null, $flags = 0 ) {
 		if ( !isset( $this->bag[$key] ) ) {
 			return false;
 		}
