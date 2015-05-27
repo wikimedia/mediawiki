@@ -65,6 +65,9 @@ class SpecialBlockList extends SpecialPage {
 			return;
 		}
 
+		# setup BlockListPager here to get the actual default Limit
+		$pager = $this->getBlockListPager();
+
 		# Just show the block list
 		$fields = array(
 			'Target' => array(
@@ -96,7 +99,7 @@ class SpecialBlockList extends SpecialPage {
 					$lang->formatNum( 500 ) => 500,
 				),
 				'name' => 'limit',
-				'default' => 50,
+				'default' => $pager->getLimit(),
 			),
 		);
 		$context = new DerivativeContext( $this->getContext() );
@@ -109,10 +112,14 @@ class SpecialBlockList extends SpecialPage {
 		$form->prepareForm();
 
 		$form->displayForm( '' );
-		$this->showList();
+		$this->showList( $pager );
 	}
 
-	function showList() {
+	/**
+	 * Setup a new BlockListPager instance.
+	 * @return BlockListPager
+	 */
+	protected function getBlockListPager() {
 		$conds = array();
 		# Is the user allowed to see hidden blocks?
 		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
@@ -163,6 +170,16 @@ class SpecialBlockList extends SpecialPage {
 			$conds[] = "ipb_range_end = ipb_range_start";
 		}
 
+		return new BlockListPager( $this, $conds );
+	}
+
+	/**
+	 * Show the list of blocked accounts matching the actual filter.
+	 * @param BlockListPager $pager The BlockListPager instance for this page
+	 */
+	protected function showList( BlockListPager $pager ) {
+		$out = $this->getOutput();
+
 		# Check for other blocks, i.e. global/tor blocks
 		$otherBlockLink = array();
 		Hooks::run( 'OtherBlockLogLink', array( &$otherBlockLink, $this->target ) );
@@ -177,7 +194,6 @@ class SpecialBlockList extends SpecialPage {
 			);
 		}
 
-		$pager = new BlockListPager( $this, $conds );
 		if ( $pager->getNumRows() ) {
 			$out->addParserOutputContent( $pager->getFullOutput() );
 		} elseif ( $this->target ) {
