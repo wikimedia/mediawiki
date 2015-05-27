@@ -150,7 +150,7 @@
 	"config-invalid-db-prefix": "Dä Vörsaz för de Name vun de Tabälle en de Daatebangk kann nit „$1“ sin, dä es esu nit jöltesch.\nDöh dörve bloß <i lang=\"en\" title=\"American Standard Code for Information Interchange\">ASCII</i> Boochshtaabe (a-z, A-Z), Zahle (0-9), Ongerstreshe (_), un Bendeshtreshe (-) dren vörkumme.",
 	"config-connection-error": "$1.\n\nDonn de Name för dä Rääschner, vun däm Aanwender för dä Zohjref op de Daatebangk, un et Paßwoot prööfe, repareere, un dann versöhg et norr_ens.",
 	"config-invalid-schema": "Dat Schema för MediaWiki kann nit „$1“ sin, dä Name wöhr esu nit jöltesch.\nDöh dörve bloß <i lang=\"en\" title=\"American Standard Code for Information Interchange\">ASCII</i> Boochshtaabe (a-z, A-Z), Zahle (0-9), un Ongerstreshe (_) dren vörkumme.",
-	"config-db-sys-create-oracle": "Dat Projramm för MehdijaWikkiopzesäze kann blohß <i lang=\"en\">SYSDBA</i> bruche för ene neuje Zohjang zor Dahtebangk enzereeschte!",
+	"config-db-sys-create-oracle": "Dat Projramm för MehdijaWikki opzesäze kann blohß ene <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\">SYSDBA</i>-Zohjang bruche för ene neuje Zohjang zor Dahtebangk ennzereeschte.",
 	"config-db-sys-user-exists-oracle": "Dä Aanwender „$1“ för dä Zohjref op de Daatebangk jidd_et ald. <i lang=\"en\">SYSDBA</i> kam_mer bloß bruche, för ene neue Zohjang enzereeschte!",
 	"config-postgres-old": "Mer bruche <i lang=\"en\">PostgreSQL</i> $1 udder neuer. Em Momang es <i lang=\"en\">PostgreSQL</i> $2 aam Loufe.",
 	"config-mssql-old": "Dä <i lang=\"en\" xml:lang=\"en\">SQL</i>-ẞööver vun <i lang=\"en\" xml:lang=\"en\">Microsoft</i>   aff de Väsjohn $1 es nüüdesch. Heh es bloß d Väsjohn $2 ze fenge.",

@@ -2408,7 +2408,7 @@
 	"pageinfo-redirects-name": "Bu sayfaya yönlendirme sayısı",
 	"pageinfo-redirects-value": "$1",
 	"pageinfo-subpages-name": "Bu sayfanın alt sayfaları",
-	"pageinfo-subpages-value": "$1 ($2 {{PLURAL:$2|yönlendirme|yönlendirme}}; $3 {{PLURAL:$3|yönlendirme olmayan|non-yönlendirme olmayan}})",
+	"pageinfo-subpages-value": "$1 ($2 {{PLURAL:$2|yönlendirme|yönlendirme}}; $3 {{PLURAL:$3|yönlendirme olmayan|yönlendirme olmayan}})",
 	"pageinfo-firstuser": "Sayfa oluşturucu",
 	"pageinfo-firsttime": "Sayfa oluşturulma tarihi",
 	"pageinfo-lastuser": "En son düzenleyici",

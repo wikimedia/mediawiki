@@ -155,7 +155,7 @@
 	"subcategories": "Alkategóriák",
 	"category-media-header": "A(z) „$1” kategóriába tartozó médiafájlok",
 	"category-empty": "''Ebben a kategóriában pillanatnyilag egyetlen lap vagy médiafájl sem szerepel.''",
-	"hidden-categories": "{{PLURAL:$1|Rejtett kategória|Rejtett kategória}}",
+	"hidden-categories": "{{PLURAL:$1|Rejtett kategória|Rejtett kategóriák}}",
 	"hidden-category-category": "Rejtett kategóriák",
 	"category-subcat-count": "''{{PLURAL:$2|Ennek a kategóriának csak egyetlen alkategóriája van.|Ez a kategória az alábbi {{PLURAL:$1|alkategóriával|$1 alkategóriával}} rendelkezik (összesen $2 alkategóriája van).}}''",
 	"category-subcat-count-limited": "Ebben a kategóriában {{PLURAL:$1|egy|$1}} alkategória található.",
