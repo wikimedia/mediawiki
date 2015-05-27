@@ -92,10 +92,10 @@ if ( function_exists( 'fastcgi_finish_request' ) ) {
 	fastcgi_finish_request();
 }
 
-JobQueueGroup::pushLazyJobs();
-
 // Execute any deferred updates
 DeferredUpdates::doUpdates();
+
+JobQueueGroup::pushLazyJobs();
 
 // Log what the user did, for book-keeping purposes.
 $endtime = microtime( true );
