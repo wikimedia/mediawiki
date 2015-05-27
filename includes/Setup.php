@@ -535,6 +535,8 @@ if ( $wgSecureLogin && substr( $wgServer, 0, 2 ) !== '//' ) {
 		. 'HTTP or HTTPS. Disabling secure login.' );
 }
 
+$wgVirtualRestConfig['global']['domain'] = $wgCanonicalServer;
+
 // Now that GlobalFunctions is loaded, set defaults that depend on it.
 if ( $wgTmpDirectory === false ) {
 	$wgTmpDirectory = wfTempDir();
