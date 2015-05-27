@@ -59,6 +59,9 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	const ERR_UNREACHABLE = 2; // can't connect
 	const ERR_UNEXPECTED = 3; // response gave some error
 
+	/** Bitfield constants for get()/getMulti() */
+	const READ_LATEST = 1; // use latest data for replicated stores
+
 	public function __construct( array $params = array() ) {
 		if ( isset( $params['logger'] ) ) {
 			$this->setLogger( $params['logger'] );
@@ -86,9 +89,10 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	 * Get an item with the given key. Returns false if it does not exist.
 	 * @param string $key
 	 * @param mixed $casToken [optional]
+	 * @param integer $flags Bitfield; supports READ_LATEST [optional]
 	 * @return mixed Returns false on failure
 	 */
-	abstract public function get( $key, &$casToken = null );
+	abstract public function get( $key, &$casToken = null, $flags = 0 );
 
 	/**
 	 * Set an item.
@@ -262,14 +266,13 @@ abstract class BagOStuff implements LoggerAwareInterface {
 		return false;
 	}
 
-	/* *** Emulated functions *** */
-
 	/**
 	 * Get an associative array containing the item for each of the keys that have items.
 	 * @param array $keys List of strings
+	 * @param integer $flags Bitfield; supports READ_LATEST [optional]
 	 * @return array
 	 */
-	public function getMulti( array $keys ) {
+	public function getMulti( array $keys, $flags = 0 ) {
 		$res = array();
 		foreach ( $keys as $key ) {
 			$val = $this->get( $key );
