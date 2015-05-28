@@ -9,6 +9,8 @@
 			"Nirjal stha"
 		]
 	},
+	"config-desc": "मेडियाविकिको लागि स्थापक",
+	"config-title": "मेडिया विकि $1 स्थापना",
 	"config-information": "जानकारी",
 	"config-localsettings-badkey": "तपाइले दिनु भएको कुन्जी गलत छ ।",
 	"config-your-language": "तपाईंको भाषा:",
@@ -30,6 +32,8 @@
 	"config-page-upgradedoc": "अद्यावधिक गरिदै",
 	"config-page-existingwiki": "विकि बन्द हुदै",
 	"config-restart": "हुन्छ, पुनः सुचारू गर्ने",
+	"config-env-php": "PHP $1 स्थापना गरिएको छ ।",
+	"config-env-hhvm": "HHVM $1 स्थापना गरिएको छ ।",
 	"config-db-type": "डाटाबेस प्रकारः",
 	"config-db-name": "डाटाबेस नामः",
 	"config-db-username": "डाटाबेस प्रयोगकर्ता नामः",

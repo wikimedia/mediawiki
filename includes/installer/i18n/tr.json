@@ -12,7 +12,8 @@
 			"Nighteagle2000",
 			"Sadrettin",
 			"Captantrips",
-			"Stultiwikia"
+			"Stultiwikia",
+			"Meelo"
 		]
 	},
 	"config-desc": "MediaWiki yükleyicisi",
@@ -63,7 +64,7 @@
 	"config-outdated-sqlite": "<strong>Uyarı:</strong> Elinizde SQLite $1 var. Gerekli minimum sürüm: $2. SQLite kullanılamayacaktır.",
 	"config-no-fts3": "<strong>Uyarı:</strong> SQLite [//sqlite.org/fts3.html FTS3 modülü] olmadan derlendi, bu arkayüzde arama özellikleri kullanılamayacaktır.",
 	"config-safe-mode": "<strong>Uyarı:</strong> PHP'nin [http://www.php.net/features.safe-mode güvenli modu] aktif.\nDosya yüklemesi kullanılıyorsa veya <code>matematik kodu</code> desteğinde sıkıntı çıkarabilir.",
-	"config-xml-bad": "PHP 'nin XML modülü eksik.\nMediaWiki bu modüldeki fonksiyonlara ihtiyaç duyar ve şimdiki kurulumda çalışmayacaktır.\nMandrake kullanıyorsanız php-xml paketini yükleyin.",
+	"config-xml-bad": "PHP 'nin XML modülü eksik.\nMediaWiki bu modüldeki fonksiyonlara ihtiyaç duyar ve şimdiki kurulumda çalışmayacaktır.\nPhp-xml RPM paketini yüklemeniz gerekebilir.",
 	"config-pcre-old": "<strong>Ağır hata:</strong> PCRE $1 veya daha üst versiyon gerekli.\nSizin PHP kurulumunuz PCRE $2 ile bağlı.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Daha fazla bilgi].",
 	"config-memory-raised": "PHP'nin <code>memory_limit</code> (hafıza sınırı) değeri $1, $2'ye yükseltildi.",
 	"config-memory-bad": "<strong>Uyarı:</strong> PHP'nin <code>memory_limit</code> (hafıza sınırı) değeri $1.\nBu büyük ihtimalle çok düşük.\nKurulum başarısız olabilir!",

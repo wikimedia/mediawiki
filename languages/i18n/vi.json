@@ -29,7 +29,8 @@
 			"Max20091",
 			"Dinhxuanduyet",
 			"Macofe",
-			"KhangND"
+			"KhangND",
+			"Darcy Le"
 		]
 	},
 	"tog-underline": "Gạch chân liên kết:",
@@ -1303,6 +1304,7 @@
 	"uploaddisabledtext": "Chức năng tải tập tin đã bị tắt.",
 	"php-uploaddisabledtext": "Việc tải tập tin trong PHP đã bị tắt. Xin hãy kiểm tra lại thiết lập file_uploads.",
 	"uploadscripted": "Tập tin này có chứa mã HTML hoặc kịch bản có thể khiến trình duyệt web thông dịch sai.",
+	"uploaded-image-filter-svg": "Tìm công cụ lọc ảnh với UPL: <Mã>&lt;$1 $2=\"$3\"&gt;</Mã> trong tập tin SVG được tải lên.",
 	"uploadscriptednamespace": "Tập tin SVG này chứa không gian tên “$1” không được cho phép",
 	"uploadinvalidxml": "Không thể phân tích mã XML trong tập tin tải lên.",
 	"uploadvirus": "Tập tin có virút! Chi tiết: $1",

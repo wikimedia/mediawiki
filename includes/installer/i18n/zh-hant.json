@@ -71,7 +71,7 @@
 	"config-magic-quotes-sybase": "<strong>嚴重：[http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase] 選項被開啟！</strong>\n此選項會導致資料在無法預測的情況下損壞。\n您必須將開選項關閉方可繼續安裝 MediaWiki。",
 	"config-mbstring": "<strong>嚴重：[http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] 選項被開啟！</strong>\n此選項會導致資料在無法預測的情況下損壞。\n您必須將開選項關閉方可繼續安裝 MediaWiki。",
 	"config-safe-mode": "<strong>警告：</strong>PHP 的 [http://www.php.net/features.safe-mode 安全模式] 選項被開啟。它可能會導致檔案上傳與數學函數 <code>math</code> 的問題。",
-	"config-xml-bad": "PHP 缺少的 XML 模組。\nMediaWiki 需要使用此模組中所提供的函數，且在目前的設定下將無法繼續作業。\n如果您使用的是 Mandrake Linux，請安裝 php-xml 套件。",
+	"config-xml-bad": "PHP 缺少的 XML 模組。\nMediaWiki 需要使用此模組中所提供的函數，且在目前的設定下將無法繼續作業。\n您可能需要安裝 php-xml RPM 套件。",
 	"config-pcre-old": "<strong>嚴重：</strong> 需要使用 PCRE $1 或更新的版本。\n您的 PHP 執行檔使用的是 PCRE $2。\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE 詳細資訊]。",
 	"config-pcre-no-utf8": "<strong>嚴重：</strong> PHP 的 PCRE 模組在編譯時未包含 PCRE_UTF8 支援。\nMediaWiki 需要支援 UTF-8 才可正常運作。",
 	"config-memory-raised": "PHP 的記憶體使用上限 <code>memory_limit</code> 目前為 $1，自動提高到 $2。",
