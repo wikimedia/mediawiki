@@ -384,12 +384,24 @@ class ApiOpenSearchFormatJson extends ApiFormatJson {
 
 	public function execute() {
 		if ( !$this->getResult()->getResultData( 'error' ) ) {
-			$warnings = $this->getResult()->removeValue( 'warnings', null );
+			$result = $this->getResult();
+
+			// Ignore warnings or treat as errors, as requested
+			$warnings = $result->removeValue( 'warnings', null );
 			if ( $this->warningsAsError && $warnings ) {
 				$this->dieUsage(
 					'Warnings cannot be represented in OpenSearch JSON format', 'warnings', 0,
 					array( 'warnings' => $warnings )
 				);
+			}
+
+			// Ignore any other unexpected keys (e.g. from $wgDebugToolbar)
+			$remove = array_keys( array_diff_key(
+				$result->getResultData(),
+				array( 0 => 'search', 1 => 'terms', 2 => 'descriptions', 3 => 'urls' )
+			) );
+			foreach ( $remove as $key ) {
+				$result->removeValue( $key, null );
 			}
 		}
 
