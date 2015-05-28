@@ -1349,7 +1349,7 @@
 	"nmembers": "$1 {{PLURAL:$1|عضو|عضو}}",
 	"nmemberschanged": "$1 → $2   {{PLURAL:$2| عضو|عضو}}",
 	"nrevisions": "$1 {{PLURAL:$1|نخسه|نخسه}}",
-	"nviews": "$1 {{PLURAL:$1|دیست|دیست}}",
+
 	"nimagelinks": "استفاده بوته بی  $1 {{PLURAL:$1|تاکدیم|تاکدیم}} ئی تا",
 	"ntransclusions": "استفاده بوته بی  $1 {{PLURAL:$1|تاکدیم|تاکدیم}} ئی تا",
 	"specialpage-empty": "نتیجه په راپور ئا موجود نه اینت.",

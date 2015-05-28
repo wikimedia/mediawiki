@@ -635,7 +635,7 @@
 	"nlinks": "$1 {{PLURAL:$1|холбаа}}",
 	"nmembers": "$1 {{PLURAL:$1|кежигүн}}",
 	"nrevisions": "$1 {{PLURAL:$1|үндүрери}}",
-	"nviews": "$1 {{PLURAL:$1|көрүш}}",
+
 	"specialpage-empty": "Бо илеткелдиң түңнели чок.",
 	"lonelypages": "Чааскаан арыннар",
 	"uncategorizedpages": "Бөлүк эвес арыннар",

@@ -99,7 +99,7 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( 'بلگه_زون' ),
 	'PasswordReset'             => array( 'د_نو_زنه_کردن_رازینه_گواردن' ),
 	'PermanentLink'             => array( 'هوم_پیوند_دایمی' ),
-	'Popularpages'              => array( 'صفحه‌های_محبوب' ),
+
 	'Preferences'               => array( 'میزونکاریا' ),
 	'Prefixindex'               => array( 'پیشون_سیائه' ),
 	'Protectedpages'            => array( 'بلگه_یا_پر_و_پیم_بیه' ),

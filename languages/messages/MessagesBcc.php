@@ -97,7 +97,7 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'منی گپ' ),
 	'Newimages'                 => array( 'نوکین عکسان' ),
 	'Newpages'                  => array( 'نوکین صفحات' ),
-	'Popularpages'              => array( 'مردمی صفحات' ),
+
 	'Preferences'               => array( 'ترجیحات' ),
 	'Prefixindex'               => array( 'ایندکس پیشوند' ),
 	'Protectedpages'            => array( 'صفحات محافظتی' ),

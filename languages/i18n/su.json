@@ -1293,7 +1293,7 @@
 	"nmembers": "$1 {{PLURAL:$1|kontributor|kontributor}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|anggota|anggota}}",
 	"nrevisions": "$1 {{PLURAL:$1|révisi|révisi}}",
-	"nviews": "$1 {{PLURAL:$1|témbongan|témbongan}}",
+
 	"nimagelinks": "Dipaké di $1 {{PLURAL:$1|kaca|kaca}}",
 	"ntransclusions": "dipaké di $1 {{PLURAL:$1|kaca|kaca}}",
 	"specialpage-empty": "Kaca ieu kosong.",

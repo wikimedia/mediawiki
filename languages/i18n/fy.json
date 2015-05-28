@@ -1115,7 +1115,7 @@
 	"nlinks": "$1 {{PLURAL:$1|keppeling|keppelings}}",
 	"nmembers": "$1 {{PLURAL:$1|lid|lea}}",
 	"nrevisions": "$1 {{PLURAL:$1|ferzje|ferzjes}}",
-	"nviews": "{{PLURAL:$1|1 kear|$1 kear}} sjoen",
+
 	"specialpage-empty": "Gjin resultaten foar dit rapport.",
 	"lonelypages": "Lossteande siden",
 	"lonelypagestext": "Nei de ûndersteande siden wurdt út {{SITENAME}} wei net ferwiisd.\nDe siden binne ek net as sjabloan opnommen.",

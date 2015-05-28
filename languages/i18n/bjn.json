@@ -1268,7 +1268,7 @@
 	"nlinks": "$1 {{PLURAL:$1|tautan|tautan}}",
 	"nmembers": "$1 {{PLURAL:$1|angguta|angguta}}",
 	"nrevisions": "$1 {{PLURAL:$1|ralatan|raralatan}}",
-	"nviews": "dilihat $1 {{PLURAL:$1|kali|kali}}",
+
 	"nimagelinks": "Diguna'akan pada $1 {{PLURAL:$1|tungkaran|tutungkaran}}",
 	"ntransclusions": "dipuruk pada $1 {{PLURAL:$1|tungkaran|tutungkaran}}",
 	"specialpage-empty": "Kadada kulihan gasan lapuran ngini.",

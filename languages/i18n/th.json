@@ -1475,7 +1475,7 @@
 	"nmembers": "$1 หน้า",
 	"nmemberschanged": "$1 → $2 สมาชิก",
 	"nrevisions": "$1 รุ่นปรับปรุง",
-	"nviews": "$1 ครั้ง",
+
 	"nimagelinks": "ใช้ใน $1 {{PLURAL:$1|หน้า|หน้า}}",
 	"ntransclusions": "ใช้ใน $1 {{PLURAL:$1|หน้า|หน้า}}",
 	"specialpage-empty": "ไม่มีผลลัพธ์รายงานนี้",

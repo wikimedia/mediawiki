@@ -105,7 +105,7 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( 'زبان_صفحه' ),
 	'PasswordReset'             => array( 'بازنشاندن_گذرواژه' ),
 	'PermanentLink'             => array( 'پیوند_دائمی' ),
-	'Popularpages'              => array( 'صفحه‌های_محبوب' ),
+
 	'Preferences'               => array( 'ترجیحات' ),
 	'Prefixindex'               => array( 'نمایه_پیشوندی' ),
 	'Protectedpages'            => array( 'صفحه‌های_محافظت‌شده' ),

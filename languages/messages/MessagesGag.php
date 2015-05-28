@@ -66,7 +66,7 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'SözleşmäkSayfam', 'SözleşmäkYapraım' ),
 	'Newimages'                 => array( 'EniDosyeler', 'EniPätretler' ),
 	'Newpages'                  => array( 'EniYazılar', 'EniSayfalar', 'EniYapraklar' ),
-	'Popularpages'              => array( 'EnAnılmışSayfalar', 'EnAnılmışYazılar' ),
+
 	'Preferences'               => array( 'Seçimner' ),
 	'Prefixindex'               => array( 'Prefiksİndeksi' ),
 	'Randompage'                => array( 'Razgele', 'RazgeleYazı', 'RazgeleSayfa', 'RazgeleYaprak' ),

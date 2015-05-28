@@ -90,7 +90,7 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'MojRazgovor' ),
 	'Newimages'                 => array( 'Nove_datoteke', 'Nove_slike' ),
 	'Newpages'                  => array( 'NoveStranice' ),
-	'Popularpages'              => array( 'PopularneStranice' ),
+
 	'Preferences'               => array( 'Postavke' ),
 	'Prefixindex'               => array( 'IndeksPrefiksa' ),
 	'Protectedpages'            => array( 'ZasticeneStranice' ),

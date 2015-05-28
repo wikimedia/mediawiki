@@ -104,7 +104,7 @@ $specialPageAliases = array(
 	'Newimages'                 => array( 'جدید_املاف', 'جدید_تصاویر' ),
 	'Newpages'                  => array( 'جدید_صفحات' ),
 	'PermanentLink'             => array( 'مستقل_ربط' ),
-	'Popularpages'              => array( 'مقبول_صفحات' ),
+
 	'Preferences'               => array( 'ترجیحات' ),
 	'Prefixindex'               => array( 'اشاریہ_سابقہ' ),
 	'Protectedpages'            => array( 'محفوظ_صفحات' ),

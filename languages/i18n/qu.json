@@ -1447,7 +1447,7 @@
 	"nmembers": "$1 {{PLURAL:$1|qillqa|qillqakuna}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|wankurisqa|wankurisqakuna}}",
 	"nrevisions": "$1 {{PLURAL:$1|llamk'apusqa|llamk'apusqakuna}}",
-	"nviews": "$1 {{PLURAL:$1|rikuy|rikuykuna}}",
+
 	"nimagelinks": "$1 {{PLURAL:$1|p'anqapi|p'anqakunapi}} llamk'achisqa",
 	"ntransclusions": "$1 {{PLURAL:$1|p'anqapi|p'anqakunapi}} llamk'achisqa",
 	"specialpage-empty": "Kay p'anqaqa ch'usaqmi.",

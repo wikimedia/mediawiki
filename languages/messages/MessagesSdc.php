@@ -68,7 +68,7 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'MéDischussioni' ),
 	'Newimages'                 => array( 'ImmaginiRizzenti' ),
 	'Newpages'                  => array( 'PàginiPiùRizzenti' ),
-	'Popularpages'              => array( 'PàginiPiùVisitaddi' ),
+
 	'Preferences'               => array( 'Prifirènzi' ),
 	'Prefixindex'               => array( 'Prefissi' ),
 	'Protectedpages'            => array( 'PàginiPrutiggiddi' ),

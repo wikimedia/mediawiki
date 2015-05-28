@@ -131,7 +131,7 @@ $specialPageAliases = array(
 	'Newimages'                 => array( 'ନୂଆଫାଇଲ' ),
 	'Newpages'                  => array( 'ନୂଆପୃଷ୍ଠା' ),
 	'PermanentLink'             => array( 'ଚିରକାଳଲିଙ୍କ' ),
-	'Popularpages'              => array( 'ଜଣାଶୁଣାପୃଷ୍ଠା' ),
+
 	'Preferences'               => array( 'ପସନ୍ଦ' ),
 	'Prefixindex'               => array( 'ଆଗରେଯୋଡ଼ାହେବାଇଣ୍ଡେକ୍ସ' ),
 	'Protectedpages'            => array( 'କିଳାଯାଇଥିବାପୃଷ୍ଠା' ),

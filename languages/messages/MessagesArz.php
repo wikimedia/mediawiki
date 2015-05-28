@@ -102,7 +102,7 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( 'لغه_الصفحه' ),
 	'PasswordReset'             => array( 'ضبط_الباسوورد' ),
 	'PermanentLink'             => array( 'وصله_دايمه' ),
-	'Popularpages'              => array( 'صفح_مشهوره' ),
+
 	'Preferences'               => array( 'تفضيلات' ),
 	'Prefixindex'               => array( 'فهرس_بدايه' ),
 	'Protectedpages'            => array( 'صفح_محميه' ),

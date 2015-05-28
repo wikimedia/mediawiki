@@ -1501,7 +1501,7 @@
 	"nmembers": "$1 {{PLURAL:$1|memmer|memmers}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|memmer|memmers}}",
 	"nrevisions": "$1 {{PLURAL:$1|reveesion|reveesions}}",
-	"nviews": "$1 {{PLURAL:$1|luik|luiks}}",
+
 	"nimagelinks": "Uised oan $1 {{PLURAL:$1|page|pages}}",
 	"ntransclusions": "uised oan $1 {{PLURAL:$1|page|pages}}",
 	"specialpage-empty": "Thaur's naw ootcomes fer this report.",

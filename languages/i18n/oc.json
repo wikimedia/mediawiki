@@ -1488,7 +1488,7 @@
 	"nmembers": "$1 {{PLURAL:$1|membre|membres}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|membre|membres}}",
 	"nrevisions": "$1 {{PLURAL:$1|revision|revisions}}",
-	"nviews": "$1 {{PLURAL:$1|consultacion|consultacions}}",
+
 	"nimagelinks": "Utilizat sus $1 {{PLURAL:$1|pagina|paginas}}",
 	"ntransclusions": "Utilizat sus $1 {{PLURAL:$1|pagina|paginas}}",
 	"specialpage-empty": "Aquesta pagina es voida.",

@@ -1483,7 +1483,7 @@
 	"nmembers": "$1 {{PLURAL:$1|member|ସଭ୍ୟ}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|ସଭ୍ୟ|ସଭ୍ୟଗଣ}}",
 	"nrevisions": "$1 ଗୋଟି {{PLURAL:$1|ସଂସ୍କରଣ|ସଂସ୍କରଣ}}",
-	"nviews": "$1 ଟି {{PLURAL:$1|ଦେଖଣା|ଦେଖଣା}}",
+
 	"nimagelinks": "$1 ଟି {{PLURAL:$1|ପୃଷ୍ଠା|ପୃଷ୍ଠା}}ରେ ବ୍ୟବହାର କରାଯାଇଅଛି",
 	"ntransclusions": "$1ଟି {{PLURAL:$1|ପୃଷ୍ଠା|ପୃଷ୍ଠା}}ରେ ବ୍ୟବହାର କରାଯାଇଅଛି",
 	"specialpage-empty": "ଏହି ଅନୁରୋଧ ପାଇଁ କିଛି ଫଳାଫଳ ମିଳିଲା ନାହିଁ ।",

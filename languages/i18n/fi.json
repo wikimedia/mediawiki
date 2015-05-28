@@ -1547,7 +1547,7 @@
 	"nmembers": "$1 {{PLURAL:$1|jäsen|jäsentä}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|jäsen|jäsentä}}",
 	"nrevisions": "$1 {{PLURAL:$1|muutos|muutosta}}",
-	"nviews": "$1 {{PLURAL:$1|lataus|latausta}}",
+
 	"nimagelinks": "Käytössä $1 {{PLURAL:$1|sivulla}}",
 	"ntransclusions": "käytössä $1 {{PLURAL:$1|sivulla}}",
 	"specialpage-empty": "Tämä sivu on tyhjä.",

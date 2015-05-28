@@ -717,7 +717,7 @@
 	"nlinks": "{{PLURAL:$1|a Link|$1 Links}}",
 	"nmembers": "{{PLURAL:$1|1 Eindrog|$1 Eindreg}}",
 	"nrevisions": "{{PLURAL:$1|oah Beorwatung|$1 Beorwatungen}}",
-	"nviews": "{{PLURAL:$1|1 Åbfråg|$1 Åbfrång}}",
+
 	"uncategorizedpages": "Néd kategorisirde Seiten",
 	"uncategorizedcategories": "Néd kategorisirde Kategorien",
 	"uncategorizedimages": "Néd kategorisirde Daatein",

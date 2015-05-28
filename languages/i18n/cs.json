@@ -1531,7 +1531,7 @@
 	"nmembers": "$1 {{PLURAL:$1|položka|položky|položek}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|položka|položky|položek}}",
 	"nrevisions": "$1 {{PLURAL:$1|revize|revize|revizí}}",
-	"nviews": "$1 {{PLURAL:$1|návšteva|návštevy|návštev}}",
+
 	"nimagelinks": "Použit na $1 {{PLURAL:$1|stránce|stránkách}}",
 	"ntransclusions": "použita na $1 {{PLURAL:$1|stránce|stránkách}}",
 	"specialpage-empty": "Tomuto požadavku neodpovídají žádné záznamy.",

@@ -147,7 +147,7 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'ទំព័រថ្មីៗ' ),
 	'PasswordReset'             => array( 'កំណត់ពាក្យសំងាត់ឡើងវិញ' ),
 	'PermanentLink'             => array( 'តំណភ្ជាប់អចិន្ត្រែយ៍' ),
-	'Popularpages'              => array( 'ទំព័រដែលមានប្រជាប្រិយ' ),
+
 	'Preferences'               => array( 'ចំណង់ចំណូលចិត្ត' ),
 	'Prefixindex'               => array( 'លិបិក្រមបុព្វបទ' ),
 	'Protectedpages'            => array( 'ទំព័របានការពារ' ),

@@ -1192,7 +1192,7 @@
 	"nlinks": "$1 {{PLURAL:$1|link|linki|linkůw}}",
 	"nmembers": "$1 {{PLURAL:$1|elyment|elymenty|elymentůw}}",
 	"nrevisions": "$1 {{PLURAL:$1|wersja|wersje|wersjůw}}",
-	"nviews": "filowano $1 {{PLURAL:$1|roz|rozůw}}",
+
 	"specialpage-empty": "Ta zajta je pusto.",
 	"lonelypages": "Poćepńynte zajty",
 	"lonelypagestext": "Do zajtůw půńiżyj ńy adresuje żodno inkszo zajta we {{SITENAME}}.",

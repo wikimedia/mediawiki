@@ -88,7 +88,7 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'A_mía_descusión', 'A_mía_pachina_de_descusión' ),
 	'Newimages'                 => array( 'Nuevos_fichers', 'Nuevas_imáchens', 'Nuevas_imachens', 'Nuebas_imachens' ),
 	'Newpages'                  => array( 'Pachinas_nuevas', 'Pachinas_recients', 'Pachinas_nuebas', 'Pachinas_más_nuebas', 'Pachinas_más_rezients', 'Pachinas_rezients' ),
-	'Popularpages'              => array( 'Pachinas_populars', 'Pachinas_más_populars' ),
+
 	'Preferences'               => array( 'Preferencias' ),
 	'Prefixindex'               => array( 'Pachinas_por_prefixo', 'Mirar_por_prefixo' ),
 	'Protectedpages'            => array( 'Pachinas_protechitas', 'Pachinas_protechidas' ),

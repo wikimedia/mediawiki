@@ -1409,7 +1409,7 @@
 	"nlinks": "$1 {{PLURAL:$1|ئۇلانما|ئۇلانما}}",
 	"nmembers": "$1 {{PLURAL:$1|ئەزا|ئەزا}}",
 	"nrevisions": "$1 {{PLURAL:$1|تۈزىتىش|تۈزىتىش}}",
-	"nviews": "$1 {{PLURAL:$1|زىيارەت|زىيارەت}}",
+
 	"nimagelinks": "$1 {{PLURAL:$1|بەت|بەت}} تە ئىشلىتىلىدۇ",
 	"ntransclusions": "$1 {{PLURAL:$1|بەت|بەت}} تە ئىشلىتىلدى",
 	"specialpage-empty": "بۇ دوكلاتنىڭ نەتىجىسى يوق.",

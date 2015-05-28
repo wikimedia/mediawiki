@@ -1256,7 +1256,7 @@
 	"nlinks": "$1 {{PLURAL:$1|vinclo|vinclos}}",
 	"nmembers": "$1 {{PLURAL:$1|miembro|miembros}}",
 	"nrevisions": "$1 {{PLURAL:$1|versión|versions}}",
-	"nviews": "$1 {{PLURAL:$1|vesita|vesitas}}",
+
 	"nimagelinks": "S'emplega en $1 {{PLURAL:$1|pachina|pachinas}}",
 	"ntransclusions": "s'emplega en $1 {{PLURAL:$1|pachina|pachinas}}",
 	"specialpage-empty": "Ista pachina ye bueda.",

@@ -1472,7 +1472,7 @@
 	"nmembers": "{{PLURAL:|$1 টা প্ৰবন্ধ বা উপশ্ৰেণী|$1 টা প্ৰবন্ধ বা উপশ্ৰেণী}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|জন সদস্য}}",
 	"nrevisions": "$1টা {{PLURAL:$1|সংশোধন|সংশোধন}}",
-	"nviews": "$1 {{PLURAL:$1|টা দৰ্শন|টা দৰ্শন}}",
+
 	"nimagelinks": "$1 {{PLURAL:$1|টা পৃষ্ঠাত}} ব্যৱহৃত",
 	"ntransclusions": "$1 {{PLURAL:$1|টা পৃষ্ঠাত}} ব্যৱহৃত",
 	"specialpage-empty": "এই বিৱৰণৰ কোনো ফলাফল নাই ।",

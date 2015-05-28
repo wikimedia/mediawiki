@@ -1501,7 +1501,7 @@
 	"nmembers": "$1 {{PLURAL:$1|membru|membra}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|membru|membra}}",
 	"nrevisions": "$1 {{PLURAL:$1|rivisioni|rivisioni}}",
-	"nviews": "$1 {{PLURAL:$1|vìsita|vìsiti}}",
+
 	"nimagelinks": "Adupiratu nta $1 {{PLURAL:$1|pàggina|pàggini}}",
 	"ntransclusions": "adupiratu nta $1 {{PLURAL:$1|pàggina|pàggini}}",
 	"specialpage-empty": "Nun cci su' risultati pi' stu rennicuntu.",

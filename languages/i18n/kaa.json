@@ -843,7 +843,7 @@
 	"nlinks": "{{PLURAL:$1|1 siltew|$1 siltew}}",
 	"nmembers": "{{PLURAL:$1|1 ag'za|$1 ag'zalar}}",
 	"nrevisions": "{{PLURAL:$1|1 nusqa|$1 nusqa}}",
-	"nviews": "{{PLURAL:$1|1 ma'rte|$1 ma'rte}} ko'rip shıg'ılg'an",
+
 	"specialpage-empty": "Bul sorawg'a hesh qanday na'tiyje joq.",
 	"lonelypages": "Hesh betten siltelmegen betler",
 	"lonelypagestext": "To'mendegi betlerge {{SITENAME}} proektindegi basqa betler siltemeydi.",

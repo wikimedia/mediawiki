@@ -1440,7 +1440,7 @@
 	"nmembers": "{{PLURAL:$1|بیر|$1}} عوضو",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|عۆضو}}",
 	"nrevisions": "{{PLURAL:$1|بیر|$1}} نوسخه",
-	"nviews": "{{PLURAL:$1|بیر|$1}} گؤرونوش",
+
 	"nimagelinks": "$1 ده{{PLURAL:$1|صحیفه‌ده}}ایستیفاده اولونمور",
 	"ntransclusions": "$1 ده{{PLURAL:$1|صحیفه‌ده}}ایستیفاده اولونور",
 	"specialpage-empty": "بو صحیفه بوشدور",

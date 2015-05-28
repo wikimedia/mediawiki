@@ -1237,7 +1237,7 @@
 	"nlinks": "$1 {{PLURAL:$1|link|جوڑ}}",
 	"nmembers": "$1 {{PLURAL:$1|member|ممبران}}",
 	"nrevisions": "$1 {{PLURAL:$1|ریوین|ریویناں}}",
-	"nviews": "$1 {{PLURAL:$1|وکھالہ|وکھالے}}",
+
 	"nimagelinks": "تے ورتیا $1 {{PLURAL:$1|صفہ|صفے}}",
 	"ntransclusions": "$1 تے ورتے  {{PLURAL:$1|صفہ|صفے}}",
 	"specialpage-empty": "ایس رپورٹ دے کوئی نتیجے نئیں۔",

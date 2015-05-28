@@ -1510,7 +1510,7 @@
 	"nmembers": "{{PLURAL:$1|egy|$1}} elem",
 	"nmemberschanged": "$1 → $2 tag",
 	"nrevisions": "{{PLURAL:$1|egy|$1}} változat",
-	"nviews": "{{PLURAL:$1|egy|$1}} megtekintés",
+
 	"nimagelinks": "{{PLURAL:$1|Egy|$1}} lapon van használva",
 	"ntransclusions": "{{PLURAL:$1|egy|$1}} lapon van használva",
 	"specialpage-empty": "Ez az oldal üres.",

@@ -89,7 +89,7 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'MajadilianoYangu' ),
 	'Newimages'                 => array( 'FailiMpya', 'FailimpyazaPicha' ),
 	'Newpages'                  => array( 'KurasaMpya' ),
-	'Popularpages'              => array( 'KurasaMaarufu' ),
+
 	'Preferences'               => array( 'Mapendekezo' ),
 	'Prefixindex'               => array( 'KurasaKuu' ),
 	'Protectedpages'            => array( 'KurasaZilizolindwa' ),

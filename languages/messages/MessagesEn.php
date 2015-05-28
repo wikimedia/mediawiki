@@ -451,7 +451,6 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( 'PageLanguage' ),
 	'PasswordReset'             => array( 'PasswordReset' ),
 	'PermanentLink'             => array( 'PermanentLink', 'PermaLink' ),
-	'Popularpages'              => array( 'PopularPages' ),
 	'Preferences'               => array( 'Preferences' ),
 	'Prefixindex'               => array( 'PrefixIndex' ),
 	'Protectedpages'            => array( 'ProtectedPages' ),

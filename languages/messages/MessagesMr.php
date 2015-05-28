@@ -128,7 +128,7 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'माझ्या_चर्चा' ),
 	'Newimages'                 => array( 'नवीन_संचिका', 'नवीन_चित्रे' ),
 	'Newpages'                  => array( 'नवीन_पाने' ),
-	'Popularpages'              => array( 'प्रसिद्ध_पाने' ),
+
 	'Preferences'               => array( 'पसंती' ),
 	'Prefixindex'               => array( 'उपसर्गसुची' ),
 	'Protectedpages'            => array( 'सुरक्षित_पाने' ),
