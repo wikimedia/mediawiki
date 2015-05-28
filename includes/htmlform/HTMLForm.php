@@ -244,7 +244,6 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Construct a HTMLForm object for given display type. May return a HTMLForm subclass.
 	 *
-	 * @throws MWException When the display format requested is not known
 	 * @param string $displayFormat
 	 * @param mixed $arguments... Additional arguments to pass to the constructor.
 	 * @return HTMLForm
