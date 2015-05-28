@@ -15,19 +15,25 @@
 				$tocList.slideDown( 'fast' );
 				$tocToggleLink.text( mw.msg( 'hidetoc' ) );
 				$toc.removeClass( 'tochidden' );
-				mw.cookie.set( 'hidetoc', null );
+				$.cookie( 'mw_hidetoc', null, {
+					expires: 30,
+					path: '/'
+				} );
 			} else {
 				$tocList.slideUp( 'fast' );
 				$tocToggleLink.text( mw.msg( 'showtoc' ) );
 				$toc.addClass( 'tochidden' );
-				mw.cookie.set( 'hidetoc', '1' );
+				$.cookie( 'mw_hidetoc', '1', {
+					expires: 30,
+					path: '/'
+				} );
 			}
 		}
 
 		// Only add it if there is a complete TOC and it doesn't
 		// have a toggle added already
 		if ( $toc.length && $tocTitle.length && $tocList.length && !$tocToggleLink.length ) {
-			hideToc = mw.cookie.get( 'hidetoc' ) === '1';
+			hideToc = $.cookie( 'mw_hidetoc' ) === '1';
 
 			$tocToggleLink = $( '<a href="#" id="togglelink"></a>' )
 				.text( hideToc ? mw.msg( 'showtoc' ) : mw.msg( 'hidetoc' ) )
