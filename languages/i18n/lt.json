@@ -1491,7 +1491,7 @@
 	"nmembers": "$1 {{PLURAL:$1|narys|nariai|narių}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|narys|nariai|narių}}",
 	"nrevisions": "$1 {{PLURAL:$1|keitimas|keitimai|keitimų}}",
-	"nviews": "$1 {{PLURAL:$1|parodymas|parodymai|parodymų}}",
+
 	"nimagelinks": "Naudojama $1 {{PLURAL:$1|puslapyje|puslapiuose|puslapių}}",
 	"ntransclusions": "naudojama $1 {{PLURAL:$1|puslapyje|puslapiuose|puslapių}}",
 	"specialpage-empty": "Šiai ataskaitai nėra rezultatų.",

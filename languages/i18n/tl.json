@@ -1405,7 +1405,7 @@
 	"nlinks": "$1 {{PLURAL:$1|ugnay|mga ugnay}}",
 	"nmembers": "$1 {{PLURAL:$1|kasapi|mga kasapi}}",
 	"nrevisions": "$1 {{PLURAL:$1|pagbabago|mga pagbabago}}",
-	"nviews": "$1 {{PLURAL:$1|pagtingin|mga pagtingin}}",
+
 	"nimagelinks": "Ginamit sa $1 {{PLURAL:$1|pahina|mga pahina}}",
 	"ntransclusions": "ginamit sa $1 {{PLURAL:$1|pahina|mga pahina}}",
 	"specialpage-empty": "Walang resulta para sa ulat na ito.",

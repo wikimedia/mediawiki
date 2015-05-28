@@ -1339,7 +1339,7 @@
 	"nlinks": "$1 {{PLURAL:$1|colliaziun|colliaziuns}}",
 	"nmembers": "$1 {{PLURAL:$1|commember|commembers}}",
 	"nrevisions": "{{PLURAL:$1|Ina versiun|$1 versiuns}}",
-	"nviews": "Contemplà $1 {{PLURAL:$1|giada|giadas}}",
+
 	"nimagelinks": "Utilisà sin $1 {{PLURAL:$1|pagina|paginas}}",
 	"ntransclusions": "utilisà sin $1 {{PLURAL:$1|pagina|paginas}}",
 	"specialpage-empty": "Questa pagina cuntegna actualmain naginas endataziuns.",

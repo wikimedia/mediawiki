@@ -1511,7 +1511,7 @@
 	"nmembers": "$1 {{PLURAL:$1|membro|membros}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|membro|membros}}",
 	"nrevisions": "$1 {{PLURAL:$1|version|versiones}}",
-	"nviews": "$1 {{PLURAL:$1|visita|visitas}}",
+
 	"nimagelinks": "Usate in $1 {{PLURAL:$1|pagina|paginas}}",
 	"ntransclusions": "usate in $1 {{PLURAL:$1|pagina|paginas}}",
 	"specialpage-empty": "Il non ha resultatos pro iste reporto.",

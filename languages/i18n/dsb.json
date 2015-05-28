@@ -1472,7 +1472,7 @@
 	"nmembers": "$1 {{PLURAL:$1|zapis|zapisa|zapise}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|cłon|cłonka|cłonki|cłonkow}}",
 	"nrevisions": "$1 {{PLURAL:$1|wobźěłanje|wobźěłani|wobźěłanja}}",
-	"nviews": "$1 {{PLURAL:$1|wótpšašanje|wótpšašani|wótpšašanja}}",
+
 	"nimagelinks": "Wužywa se na $1 {{PLURAL:$1|boku|bokoma|bokach|bokach}}",
 	"ntransclusions": "wužywa se na $1 {{PLURAL:$1|boku|bokoma|bokach|bokach}}",
 	"specialpage-empty": "Toś ten bok njewopśimjejo tuchylu žedne zapise.",

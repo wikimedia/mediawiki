@@ -993,7 +993,7 @@
 	"nlinks": "$1 {{PLURAL:$1|nexus|nexus}}",
 	"nmembers": "$1 {{PLURAL:$1|inest|insunt}}",
 	"nrevisions": "$1 {{PLURAL:$1|emendatio|emendationes}}",
-	"nviews": "$1 {{PLURAL:$1|visa|visae}}",
+
 	"lonelypages": "Paginae non annexae",
 	"uncategorizedpages": "Paginae sine categoriis",
 	"uncategorizedcategories": "Categoriae sine categoriis",

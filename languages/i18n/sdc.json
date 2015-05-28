@@ -838,7 +838,7 @@
 	"nlinks": "$1 {{PLURAL:$1|cullegamentu|cullegamenti}}",
 	"nmembers": "$1 {{PLURAL:$1|erementu|erementi}}",
 	"nrevisions": "$1 {{PLURAL:$1|ribisioni|ribisioni}}",
-	"nviews": "$1 {{PLURAL:$1|visita|visiti}}",
+
 	"specialpage-empty": "Chisthu rapporthu nò cunteni nisciun risulthaddu.",
 	"lonelypages": "Pàgini òiffani",
 	"lonelypagestext": "Li sighenti pàgini so chena cullegamenti chi prubenani d'althri pàgini di {{SITENAME}}.",

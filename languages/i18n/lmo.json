@@ -1016,7 +1016,7 @@
 	"nmembers": "$1 {{PLURAL:$1|element|element}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|elemènt|elemèncc}}",
 	"nrevisions": "$1 {{PLURAL:$1|reviziù}}",
-	"nviews": "$1 {{PLURAL:$1|vìzita|vìzite}}",
+
 	"nimagelinks": "Dopràt sö $1 {{PLURAL:$1|pàgina|pàgine}}",
 	"ntransclusions": "dopràt sö $1 {{PLURAL:$1|pàgina|pàgine}}",
 	"specialpage-empty": "Chèsta pàgina speciàl al momènt l'è öda.",

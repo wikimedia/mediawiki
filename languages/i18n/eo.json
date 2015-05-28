@@ -1532,7 +1532,7 @@
 	"nmembers": "{{PLURAL:$1|unu membro|$1 membroj}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|membro|membroj}}",
 	"nrevisions": "$1 {{PLURAL:$1|versio|versioj}}",
-	"nviews": "{{PLURAL:$1|unufoje|$1 fojojn}}",
+
 	"nimagelinks": "Uzita en $1 {{PLURAL:$1|paĝo|paĝoj}}",
 	"ntransclusions": "uzita en $1 {{PLURAL:$1|paĝo|paĝoj}}",
 	"specialpage-empty": "Ne estas rezultoj por ĉi tiu raporto.",

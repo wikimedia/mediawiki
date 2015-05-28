@@ -1429,7 +1429,7 @@
 	"nmembers": "{{PLURAL:$1|partaide 1|$1 partaide}}",
 	"nmemberschanged": "$1 → {{PLURAL:$2|kide $2|$2 kide}}",
 	"nrevisions": "{{PLURAL:$1|berrikuspen 1|$1 berrikuspen}}",
-	"nviews": "{{PLURAL:$1|ikusketa 1|$1 ikusketa}}",
+
 	"nimagelinks": "{{PLURAL:$1|Orrialde batean erabilia|$1 orrialdetan erabilia}}",
 	"ntransclusions": "{{PLURAL:$1|orrialde batean erabilia|$1 orrialdetan erabilia}}",
 	"specialpage-empty": "Ez dago emaitzarik bilaketa honetarako.",

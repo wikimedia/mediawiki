@@ -1528,7 +1528,7 @@
 	"nmembers": "$1 trang",
 	"nmemberschanged": "$1 → $2 trang",
 	"nrevisions": "$1 {{PLURAL:$1|phiên bản|phiên bản}}",
-	"nviews": "$1 {{PLURAL:$1|lượt truy cập|lượt truy cập}}",
+
 	"nimagelinks": "Được sử dụng trong $1 trang",
 	"ntransclusions": "được sử dụng trong $1 trang",
 	"specialpage-empty": "Trang này đang trống.",

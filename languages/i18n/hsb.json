@@ -1489,7 +1489,7 @@
 	"nmembers": "{{PLURAL:$1|$1 čłon|$1 čłonaj|$1 čłony|$1 čłonow}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|čłon|čłonaj|čłonojo|čłonow}}",
 	"nrevisions": "$1 {{PLURAL:$1|wobdźěłanje|wobdźěłani|wobdźěłanja|wobdźěłanjow}}",
-	"nviews": "$1 {{PLURAL:$1|jedyn wopyt|wopytaj|wopyty|wopytow}}",
+
 	"nimagelinks": "Wužiwa so na $1 {{PLURAL:$1|stronje|stronomaj|stronach|stronach}}",
 	"ntransclusions": "wužiwa so na $1 {{PLURAL:$1|stronje|stronomaj|stronach|stronach}}",
 	"specialpage-empty": "Tuchwilu žane zapiski.",

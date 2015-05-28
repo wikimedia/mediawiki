@@ -1288,7 +1288,7 @@
 	"nlinks": "$1 {{PLURAL:$1|saites|saite|saites}}",
 	"nmembers": "$1 {{PLURAL:$1|lapas|lapa|lapas}}",
 	"nrevisions": "$1 {{PLURAL:$1|versijas|versija|versijas}}",
-	"nviews": "skatīta $1 {{PLURAL:$1|reizes|reizi|reizes}}",
+
 	"nimagelinks": "Izmantots $1 {{PLURAL:$1|lapās|lapā|lapās}}",
 	"ntransclusions": "izmantots $1 {{PLURAL:$1|lapās|lapā|lapās}}",
 	"specialpage-empty": "Šim ziņojumam nav rezultātu.",

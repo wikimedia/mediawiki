@@ -1520,7 +1520,7 @@
 	"nmembers": "$1 {{PLURAL:$1|element|element}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|mèmber}}",
 	"nrevisions": "{{PLURAL:$1|na revision|$1 revision}}",
-	"nviews": "{{PLURAL:$1|na consultassion|$1 consultassion}}",
+
 	"nimagelinks": "Dovrà dzora a $1 {{PLURAL:$1|pàgina|pàgine}}",
 	"ntransclusions": "dovrà dzora a $1 {{PLURAL:$1|pàgina|pàgine}}",
 	"specialpage-empty": "Pàgina veujda.",

@@ -1203,7 +1203,7 @@
 	"nlinks": "{{PLURAL:$1|1 Ferbiendenge|$1 Ferbiendengen}}",
 	"nmembers": "{{PLURAL:$1|1 Iendraach|$1 Iendraage}}",
 	"nrevisions": "{{PLURAL:$1|1 Beoarbaideng|$1 Beoarbaidengen}}",
-	"nviews": "{{PLURAL:$1|1 Oufroage|$1 Oufroagen}}",
+
 	"nimagelinks": "Ferwoand ap $1 {{PLURAL:$1|Siede|Sieden}}",
 	"ntransclusions": "ferwoand ap $1 {{PLURAL:$1|Siede|Sieden}}",
 	"specialpage-empty": "Ju Siede änthaalt aktuell neen Iendraage.",

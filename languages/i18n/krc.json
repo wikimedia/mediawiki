@@ -1371,7 +1371,7 @@
 	"nmembers": "$1 {{PLURAL:$1|объект}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|объект}}",
 	"nrevisions": "$1 {{PLURAL:$1|версия}}",
-	"nviews": "$1 {{PLURAL:$1|къарау}}",
+
 	"nimagelinks": "$1 {{PLURAL:$1|бетде}} хайырланады",
 	"ntransclusions": "$1 {{PLURAL:$1|бетде}} хайырланады",
 	"specialpage-empty": "Сорма эсеб келтирмеди.",

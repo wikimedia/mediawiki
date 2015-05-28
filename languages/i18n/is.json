@@ -1439,7 +1439,7 @@
 	"nlinks": "$1 {{PLURAL:$1|tengill|tenglar}}",
 	"nmembers": "$1 {{PLURAL:$1|meðlimur|meðlimir}}",
 	"nrevisions": "$1 {{PLURAL:$1|breyting|breytingar}}",
-	"nviews": "$1 {{PLURAL:$1|fletting|flettingar}}",
+
 	"nimagelinks": "Ítengd á $1 {{PLURAL:$1|síðu|síðum}}",
 	"ntransclusions": "Ítengd á $1 {{PLURAL:$1|síðu|síðum}}",
 	"specialpage-empty": "Þessi síða er tóm.",

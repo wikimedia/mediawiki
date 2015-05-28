@@ -1446,7 +1446,7 @@
 	"nmembers": "$1 {{PLURAL:$1|miyembro|mga miyembro}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|miyembro|mga miyembro}}",
 	"nrevisions": "$1 {{PLURAL:$1|pagpakarhay|mga pagpakarhay}}",
-	"nviews": "$1 {{PLURAL:$1|hiling|mga hiling}}",
+
 	"nimagelinks": "Ginamit sa $1 {{PLURAL:$1|pahina|mga pahina}}",
 	"ntransclusions": "ginamit sa $1 {{PLURAL:$1|pahina|mga pahina}}",
 	"specialpage-empty": "Mayong mga resulta para sa report na ini.",

@@ -939,7 +939,7 @@
 	"nlinks": "$1 {{PLURAL:$1|nūruoda|nūruodas|nūruodu}}",
 	"nmembers": "$1 {{PLURAL:$1|narīs|narē|nariū}}",
 	"nrevisions": "$1 {{PLURAL:$1|pakeitėms|pakeitėmā|pakeitėmu}}",
-	"nviews": "$1 {{PLURAL:$1|paruodīms|paruodīmā|paruodīmu}}",
+
 	"specialpage-empty": "Šėtā ataskaitā nie rezoltatu.",
 	"lonelypages": "Vėinišė straipsnē",
 	"lonelypagestext": "I šėtuos poslapius nier nūruodu ėš kėtū šėta pruojekta poslapiu.",

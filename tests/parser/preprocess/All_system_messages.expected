@@ -3193,13 +3193,6 @@ About
 &lt;/td&gt;&lt;td&gt;
 <template lineStart="1"><title>int:Nstab-wp</title></template>
 &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;
-[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nviews&amp;action=edit nviews]&lt;br&gt;
-[[MediaWiki_talk:Nviews|Talk]]
-&lt;/td&gt;&lt;td&gt;
-$1 views
-&lt;/td&gt;&lt;td&gt;
-<template lineStart="1"><title>int:Nviews</title></template>
-&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;
 [http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Ok&amp;action=edit ok]&lt;br&gt;
 [[MediaWiki_talk:Ok|Talk]]
 &lt;/td&gt;&lt;td&gt;
@@ -3318,13 +3311,6 @@ Here&amp;#39;s a saved copy from $1:
 Personal tools
 &lt;/td&gt;&lt;td&gt;
 <template lineStart="1"><title>int:Personaltools</title></template>
-&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;
-[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Popularpages&amp;action=edit popularpages]&lt;br&gt;
-[[MediaWiki_talk:Popularpages|Talk]]
-&lt;/td&gt;&lt;td&gt;
-Popular pages
-&lt;/td&gt;&lt;td&gt;
-<template lineStart="1"><title>int:Popularpages</title></template>
 &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;
 [http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Portal&amp;action=edit portal]&lt;br&gt;
 [[MediaWiki_talk:Portal|Talk]]

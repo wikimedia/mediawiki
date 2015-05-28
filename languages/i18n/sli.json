@@ -913,7 +913,7 @@
 	"ncategories": "$1 {{PLURAL:$1|Kategorie|Kategoria}}",
 	"nmembers": "{{PLURAL:$1|1 Eentrag|$1 Eenträge}}",
 	"nrevisions": "{{PLURAL:$1|1 Beoarbeetung|$1 Beoarbeetunga}}",
-	"nviews": "{{PLURAL:$1|1 Obfroage|$1 Obfroaga}}",
+
 	"specialpage-empty": "De Seite enthält aktuell kenne Einträge.",
 	"lonelypages": "Verwaiste Seyta",
 	"lonelypagestext": "De folgenden Seyta waan ne eingebunden oder is werd ne uff se ei {{SITENAME}} verwiesa.",

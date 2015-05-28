@@ -1508,7 +1508,7 @@
 	"nmembers": "$1 {{PLURAL:$1|elemento|elemente}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|membro|membre}}",
 	"nrevisions": "$1 {{PLURAL:$1|verzione|verziune}}",
-	"nviews": "$1 {{PLURAL:$1|visita|visite}}",
+
 	"nimagelinks": "Ausate ncopp'a {{PLURAL:$1|na paggena|$1 paggene}}",
 	"ntransclusions": "ausate ncopp'a {{PLURAL:$1|na paggena|$1 paggene}}",
 	"specialpage-empty": "Nun ce stanno risultate pe' stu report.",

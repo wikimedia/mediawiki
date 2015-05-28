@@ -1240,7 +1240,7 @@
 	"nlinks": "$1 {{PLURAL:$1|keçid|keçidlər}}",
 	"nmembers": "$1 {{PLURAL:$1|üzv|üzv}}",
 	"nrevisions": "$1 dəyişiklik",
-	"nviews": "$1 baxış",
+
 	"nimagelinks": "$1 səhifədə istifadə olunmur",
 	"ntransclusions": "$1 səhifədə istifadə olunur",
 	"specialpage-empty": "Bu səhifə boşdur.",
