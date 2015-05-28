@@ -300,8 +300,10 @@ class WANObjectCache {
 
 		$time = self::parsePurgeValue( $this->cache->get( $key ) );
 		if ( $time === false ) {
-			$time = microtime( true );
+			// Casting assures identical floats for the next getCheckKeyTime() calls
+			$time = (string)microtime( true );
 			$this->cache->add( $key, self::PURGE_VAL_PREFIX . $time, self::CHECK_KEY_TTL );
+			$time = (float)$time;
 		}
 
 		return $time;
@@ -334,6 +336,36 @@ class WANObjectCache {
 			self::PURGE_VAL_PREFIX . microtime( true ), self::CHECK_KEY_TTL );
 		// Publish the purge to all clusters
 		return $this->relayPurge( $key, self::CHECK_KEY_TTL ) && $ok;
+	}
+
+	/**
+	 * Delete a "check" key from all clusters, invalidating keys that use it
+	 *
+	 * This is similar to touchCheckKey() in that keys using it via
+	 * getWithSetCallback() will be invalidated. The differences are:
+	 *   a) The timestamp will be deleted from all caches and lazily
+	 *      re-initialized when accessed (rather than set everywhere)
+	 *   b) Thus, dependent keys will be known to be invalid, but not
+	 *      for how long (they are treated as "just" purged), which
+	 *      effects any lockTSE logic in getWithSetCallback()
+	 * The advantage is that this does not place high TTL keys on every cache
+	 * server, making it better for code that will cache many different keys
+	 * and either does not use lockTSE or uses a low enough TTL anyway.
+	 *
+	 * Note that "check" keys won't collide with other regular keys
+	 *
+	 * @see WANObjectCache::touchCheckKey()
+	 * @see WANObjectCache::get()
+	 *
+	 * @param string $key Cache key
+	 * @return bool True if the item was purged or not found, false on failure
+	 */
+	final public function resetCheckKey( $key ) {
+		$key = self::TIME_KEY_PREFIX . $key;
+		// Update the local cluster immediately
+		$ok = $this->cache->delete( $key );
+		// Publish the purge to all clusters
+		return $this->relayDelete( $key ) && $ok;
 	}
 
 	/**
@@ -535,6 +567,26 @@ class WANObjectCache {
 			'val' => 'PURGED:$UNIXTIME$',
 			'ttl' => max( $ttl, 1 ),
 			'sbt' => true, // substitute $UNIXTIME$ with actual microtime
+		) );
+
+		$ok = $this->relayer->notify( "{$this->pool}:purge", $event );
+		if ( !$ok ) {
+			$this->lastRelayError = self::ERR_RELAY;
+		}
+
+		return $ok;
+	}
+
+	/**
+	 * Do the actual async bus delete of a key
+	 *
+	 * @param string $key Cache key
+	 * @return bool Success
+	 */
+	protected function relayDelete( $key ) {
+		$event = $this->cache->modifySimpleRelayEvent( array(
+			'cmd' => 'delete',
+			'key' => $key,
 		) );
 
 		$ok = $this->relayer->notify( "{$this->pool}:purge", $event );
