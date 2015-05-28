@@ -37,6 +37,10 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
+* Languages added:
+** gom-deva (कोंकणी/Konkani), thanks to translators Amire80, AshLin, Darshan kandolkar,
+   Konknni mogi 24, Pooja tople, Sanket.prabhu26, Santhosh.thottingal, Supriya kankumbikar
+   Vaishali Parab
 
 === Other changes in 1.26 ===
 * ChangeTags::tagDescription() will return false if the interface message
