@@ -22,6 +22,14 @@ class ExtensionRegistry {
 	const OLDEST_MANIFEST_VERSION = 1;
 
 	/**
+	 * Key set in cached arrays to indicate they have already
+	 * been merged
+	 *
+	 * @since 1.26
+	 */
+	const ALREADY_MERGED = '_ALREADY_MERGED';
+
+	/**
 	 * @var BagOStuff
 	 */
 	protected $cache;
@@ -97,12 +105,23 @@ class ExtensionRegistry {
 	}
 
 	public function loadFromQueue() {
+		global $wgIncludedSettingsFiles;
+
 		if ( !$this->queued ) {
 			return;
 		}
 
+		$extraTimestamps = array();
+		foreach ( $wgIncludedSettingsFiles as $file ) {
+			if ( file_exists( $file ) ) {
+				$extraTimestamps[] = filemtime( $file );
+			} else {
+				$extraTimestamps[] = 0;
+			}
+		}
+
 		// See if this queue is in APC
-		$key = wfMemcKey( 'registration', md5( json_encode( $this->queued ) ) );
+		$key = wfMemcKey( 'registration', md5( json_encode( $this->queued + $extraTimestamps ) ) );
 		$data = $this->cache->get( $key );
 		if ( $data ) {
 			$this->exportExtractedData( $data );
@@ -161,14 +180,18 @@ class ExtensionRegistry {
 		return $data;
 	}
 
-	protected function exportExtractedData( array $info ) {
+	protected function exportExtractedData( array &$info ) {
 		foreach ( $info['globals'] as $key => $val ) {
-			if ( !isset( $GLOBALS[$key] ) || ( is_array( $GLOBALS[$key] ) && !$GLOBALS[$key] ) ) {
+			if ( isset( $val[self::ALREADY_MERGED] ) ) {
+				$GLOBALS[$key] = $val;
+				unset( $GLOBALS[$key][self::ALREADY_MERGED] );
+			} elseif ( !isset( $GLOBALS[$key] ) || !$GLOBALS[$key] ) {
 				$GLOBALS[$key] = $val;
 			} elseif ( $key === 'wgHooks' || $key === 'wgExtensionCredits' ) {
 				// Special case $wgHooks and $wgExtensionCredits, which require a recursive merge.
 				// Ideally it would have been taken care of in the first if block though.
 				$GLOBALS[$key] = array_merge_recursive( $GLOBALS[$key], $val );
+				$info['globals'][$key] = $GLOBALS[$key] + array( self::ALREADY_MERGED => true );
 			} elseif ( $key === 'wgGroupPermissions' ) {
 				// First merge individual groups
 				foreach ( $GLOBALS[$key] as $name => &$groupVal ) {
@@ -178,8 +201,10 @@ class ExtensionRegistry {
 				}
 				// Now merge groups that didn't exist yet
 				$GLOBALS[$key] += $val;
+				$info['globals'][$key] = $GLOBALS[$key] + array( self::ALREADY_MERGED => true );
 			} elseif ( is_array( $GLOBALS[$key] ) && is_array( $val ) ) {
 				$GLOBALS[$key] = array_merge( $val, $GLOBALS[$key] );
+				$info['globals'][$key] = $GLOBALS[$key] + array( self::ALREADY_MERGED => true );
 			} // else case is a config setting where it has already been overriden, so don't set it
 		}
 		foreach ( $info['defines'] as $name => $val ) {

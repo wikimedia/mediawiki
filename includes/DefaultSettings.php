@@ -2446,6 +2446,19 @@ $wgInvalidateCacheOnLocalSettingsChange = true;
  */
 $wgExtensionInfoMTime = false;
 
+/**
+ * List of files where settings might be set. To be used for cache
+ * invalidation whenever a setting is changed.
+ *
+ * $wgIncludedSettingsFiles[] = "$IP/CommonSettings.php"
+ *
+ * @since 1.26
+ */
+$wgIncludedSettingsFiles = array(
+	__FILE__,
+	"$IP/LocalSettings.php",
+);
+
 /** @} */ # end of cache settings
 
 /************************************************************************//**
