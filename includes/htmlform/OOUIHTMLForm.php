@@ -32,10 +32,10 @@ class OOUIHTMLForm extends HTMLForm {
 	protected $mWrapperLegend = false;
 
 	public function __construct( $descriptor, $context = null, $messagePrefix = '' ) {
+		parent::__construct( $descriptor, $context, $messagePrefix );
 		$this->getOutput()->enableOOUI();
 		$this->getOutput()->addModules( 'mediawiki.htmlform.ooui' );
 		$this->getOutput()->addModuleStyles( 'mediawiki.htmlform.ooui.styles' );
-		parent::__construct( $descriptor, $context, $messagePrefix );
 	}
 
 	/**
