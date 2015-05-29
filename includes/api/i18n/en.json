@@ -324,11 +324,13 @@
 	"apihelp-protect-param-pageid": "ID of the page to (un)protect. Cannot be used together with $1title.",
 	"apihelp-protect-param-protections": "List of protection levels, formatted <kbd>action=level</kbd> (e.g. <kbd>edit=sysop</kbd>).\n\n<strong>Note:</strong> Any actions not listed will have restrictions removed.",
 	"apihelp-protect-param-expiry": "Expiry timestamps. If only one timestamp is set, it'll be used for all protections. Use <kbd>infinite</kbd>, <kbd>indefinite</kbd>, <kbd>infinity</kbd>, or <kbd>never</kbd>, for a never-expiring protection.",
+	"apihelp-protect-param-baselogid": "The ID of the latest entry in the protection log for the page, used to detect conflicts. Set it to an empty string if the page has never been protected.",
 	"apihelp-protect-param-reason": "Reason for (un)protecting.",
 	"apihelp-protect-param-cascade": "Enable cascading protection (i.e. protect pages included in this page). Ignored if all protection levels given do not support cascading.",
 	"apihelp-protect-param-watch": "If set, add the page being (un)protected to the current user's watchlist.",
 	"apihelp-protect-param-watchlist": "Unconditionally add or remove the page from the current user's watchlist, use preferences or do not change watch.",
 	"apihelp-protect-example-protect": "Protect a page.",
+	"apihelp-protect-example-protect-baselogid": "Protect a page, using <var>$1baselogid</var> to prevent conflicts.",
 	"apihelp-protect-example-unprotect": "Unprotect a page by setting restrictions to <kbd>all</kbd>.",
 	"apihelp-protect-example-unprotect2": "Unprotect a page by setting no restrictions.",
 
