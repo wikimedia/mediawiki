@@ -20,7 +20,7 @@
 		"psr/log": "1.0.0"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "*"
+		"phpunit/phpunit": "3.7.37"
 	},
 	"suggest": {
 		"ext-fileinfo": "*",
