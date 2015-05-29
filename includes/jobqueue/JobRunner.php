@@ -128,7 +128,7 @@ class JobRunner implements LoggerAwareInterface {
 		$group = JobQueueGroup::singleton();
 		
 		// Flush any pending DB writes for sanity
-		wfGetLBFactory()->commitMasterChanges();
+		wfGetLBFactory()->commitAll();
 
 		// Some jobs types should not run until a certain timestamp
 		$backoffs = array(); // map of (type => UNIX expiry)
@@ -190,6 +190,14 @@ class JobRunner implements LoggerAwareInterface {
 					$error = get_class( $e ) . ': ' . $e->getMessage();
 					MWExceptionHandler::logException( $e );
 				}
+				// Commit all outstanding connections that are in a transaction
+				// to get a fresh repeatable read snapshot on every connection.
+				// This is important because if you have an old snapshot on the
+				// database you could run the job incorrectly. Its possible, for
+				// example, to pick up a RefreshLinksJob for a new page that isn't
+				// even visible to the snapshot. The snapshot could have been
+				// created before the page. Fresh snapshots will see the page.
+				wfGetLBFactory()->commitAll();
 				$timeMs = intval( ( microtime( true ) - $jobStartTime ) * 1000 );
 				$timeMsTotal += $timeMs;
 				$profiler->scopedProfileOut( $psection );
@@ -410,7 +418,10 @@ class JobRunner implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Commit any DB master changes from a job on all load balancers
+	 * Issue a commit on all masters who are currently in a transaction and have
+	 * made changes to the database. It also supports sometimes waiting for the
+	 * local wiki's slaves to catch up. See the documentation for
+	 * $wgJobSerialCommitThreshold for more.
 	 *
 	 * @param Job $job
 	 * @throws DBError
