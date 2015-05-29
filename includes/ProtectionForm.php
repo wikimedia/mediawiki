@@ -269,6 +269,12 @@ class ProtectionForm {
 		$request = $this->mContext->getRequest();
 		$user = $this->mContext->getUser();
 		$out = $this->mContext->getOutput();
+		$sentLogID = $request->getVal( 'latest_log_id' );
+		$latestLogID = $this->getLatestLogID();
+		if ( $sentLogID != $latestLogID ) {
+			$this->show( array( 'protect_conflict' ) );
+			return false;
+		}
 		$token = $request->getVal( 'wpEditToken' );
 		if ( !$user->matchEditToken( $token, array( 'protect', $this->mTitle->getPrefixedDBkey() ) ) ) {
 			$this->show( array( 'sessionfailure' ) );
@@ -555,6 +561,10 @@ class ProtectionForm {
 				'wpEditToken',
 				$user->getEditToken( array( 'protect', $this->mTitle->getPrefixedDBkey() ) )
 			);
+			$latestLogID = $this->getLatestLogID();
+			if ( $latestLogID !== null ) {
+				$out .= Html::hidden( 'latest_log_id', $latestLogID );
+			}
 			$out .= Xml::closeElement( 'form' );
 		}
 
@@ -606,6 +616,25 @@ class ProtectionForm {
 				return $msg->text();
 			}
 			return $this->mContext->msg( 'protect-fallback', $permission )->text();
+		}
+	}
+
+	private function getLatestLogID() {
+		$dbw = wfGetDB( DB_MASTER );
+		$res = $dbw->select( 'logging',
+			'log_id',
+			array(
+				'log_type' => 'protect',
+				'log_page' => $this->mTitle->getArticleID()
+			),
+			__METHOD__,
+			array(
+				'ORDER BY' => 'log_id DESC',
+				'LIMIT' => 1
+			)
+		);
+		foreach ( $res as $row ) {
+			return $row->log_id;
 		}
 	}
 
