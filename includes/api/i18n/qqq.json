@@ -302,6 +302,7 @@
 	"apihelp-protect-param-pageid": "{{doc-apihelp-param|protect|pageid}}",
 	"apihelp-protect-param-protections": "{{doc-apihelp-param|protect|protections}}",
 	"apihelp-protect-param-expiry": "{{doc-apihelp-param|protect|expiry}}",
+	"apihelp-protect-param-baselogid": "{{doc-apihelp-param|protect|baselogid}}",
 	"apihelp-protect-param-reason": "{{doc-apihelp-param|protect|reason}}",
 	"apihelp-protect-param-cascade": "{{doc-apihelp-param|protect|cascade}}",
 	"apihelp-protect-param-watch": "{{doc-apihelp-param|protect|watch}}",
