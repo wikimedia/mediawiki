@@ -126,7 +126,6 @@ class ExtensionRegistry {
 	 * @throws Exception
 	 */
 	public function readFromQueue( array $queue ) {
-		$data = array( 'globals' => array( 'wgAutoloadClasses' => array() ) );
 		$autoloadClasses = array();
 		$processor = new ExtensionProcessor();
 		foreach ( $queue as $path => $mtime ) {
