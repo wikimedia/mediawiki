@@ -15,6 +15,9 @@ production.
   "tag-<id>" interface message.
 * ':' (colon) is now invalid in usernames for new accounts. Existing accounts
   are not affected.
+* (T18441) The protection form now shows an error message when trying to change
+  a page's restrictions and someone has already done so between the form's
+  display and its submission, similarly to how the edit form behaves.
 
 ==== External libraries ====
 
@@ -28,6 +31,8 @@ production.
   to be set. If they are both set, the value of rootpage= will be ignored.
 * prop=revision output in enum mode is now sorted by timestamp rather than
   revision ID. This usually won't make any difference.
+* (T18441) action=protect now supports an optional 'baselogid' parameter to
+  prevent protection conflicts.
 
 === Action API internal changes in 1.26 ===
 
