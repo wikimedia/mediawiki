@@ -648,6 +648,7 @@
 	"content-model-text": "yanong-teksto",
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
+	"duplicate-args-warning": "<strong>Patanid:</strong> [[:$1]] nag-aapod [[:$2]] na igwa nin sobra sa sarong halaga para sa \"$3\" na parametro. An pinakahuring halaga sanang ipinagtao an magagamit.",
 	"expensive-parserfunction-warning": "'''Patanid tabi:''' Ining pahina naglalaman nin grabe kadakulon na ekspensibong programang pambaranga sa punksyon nin mga pag-aapod.\n\nIni dapat magkaigwa nin menos sanang $2 {{PLURAL:$2|apod|mga apod}}, igwa na {{PLURAL:$1|ngunyan nin $1 apod|ngunyan nin $1 mga apod}}.",
 	"expensive-parserfunction-category": "Mga pahina na igwa nin grabe kadakulon na mga ekspensibong programang pambaranga sa punksyon nin mga pag-aapod",
 	"post-expand-template-inclusion-warning": "'''Patanid tabi:''' An panguyog (template) igwang sukol na grabe kadakula.\nAn ibang mga panguyog dae tabi maipagdadagdag.",

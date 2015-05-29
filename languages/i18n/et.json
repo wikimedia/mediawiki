@@ -689,6 +689,7 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Tühi objekt",
 	"content-json-empty-array": "Tühi massiiv",
+	"duplicate-args-warning": "<strong>Hoiatus:</strong> [[:$1]] kutsub malli [[:$2]] nii, et parameetrile \"$3\" vastab rohkem kui üks väärtus. Väärtustest kasutatakse ainult viimast.",
 	"duplicate-args-category": "Leheküljed, kus mallikutses on topeltargument",
 	"duplicate-args-category-desc": "Lehekülg sisaldab mallikutseid, kus mõnd argumenti on kasutatud mitu korda, näiteks <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> või <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "'''Hoiatus:''' See lehekülg kasutab liialt palju aeglustavaid laiendusfunktsioone. Neid võiks kasutada vähem kui {{PLURAL:$2|ühel|$2}} korral, praegu on kasutatud {{PLURAL:$1|ühel|$1}} korral.",

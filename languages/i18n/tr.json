@@ -73,7 +73,8 @@
 			"Macofe",
 			"Nighteagle2000",
 			"Watermelon juice",
-			"Ömer Berkay"
+			"Ömer Berkay",
+			"Demircimehmed"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çiz:",
@@ -407,7 +408,7 @@
 	"title-invalid-characters": "İstenen sayfa başlığı geçersiz karakter içeriyor: \"$1\"",
 	"title-invalid-relative": "Başlık göreli yol içeriyor. Göreli yol içeren başlıklar (./, ../ gibi) kullanılamaz, çünkü genelde kullanıcıların tarayıcıları bu şekildeki başlıklara erişimde sıkıntı yaşar.",
 	"title-invalid-magic-tilde": "İstenen sayfa başlığı geçersiz bir sihirli yaklaşık işareti dizisi içeriyor (<nowiki>~~~</nowiki>).",
-	"title-invalid-too-long": "İstenen sayfa başlığı çok uzun. UTF-8 kodlamasında $1 bayttan daha uzun olmamalı.",
+	"title-invalid-too-long": "İstenen sayfa başlığı çok uzun. UTF-8 kodlamasında $1 {{PLURAL:$1|bayttan}} daha uzun olmamalı.",
 	"title-invalid-leading-colon": "İstenen sayfa başlığının başında geçersiz bir \"iki nokta\" var.",
 	"perfcached": "Aşağıdaki veriler önbellekten alınmıştır ve güncel olmayabilir. Önbellekte en fazla {{PLURAL:$1|bir sonuç|$1 sonuç}} mevcut.",
 	"perfcachedts": "Aşağıdaki veri önbelleklenmiştir, son güncelleme tarihi: $1. Önbellekte en fazla {{PLURAL:$1|bir sonuç|$4 sonuç}} mevcut.",

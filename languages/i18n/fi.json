@@ -1576,7 +1576,7 @@
 	"unusedimages": "Käyttämättömät tiedostot",
 	"wantedcategories": "Halutut luokat",
 	"wantedpages": "Halutut sivut",
-	"wantedpages-summary": "Luettelo olemattomista sivuista, joihin johtaa eniten linkkejä. Luettelossa ei kuitenkaan ole sellaisia sivuja, joihin johtaa ainoastaan uudelleenohjauksia. Jos haluat nähdä luettelon niistä olemattomista sivuista, joihin on linkki uudelleenohjauksista, katso sivua [[{{#special:BrokenRedirects}}]].",
+	"wantedpages-summary": "Luettelo olemattomista sivuista, joihin johtaa eniten linkkejä. Luettelossa ei kuitenkaan ole sellaisia sivuja, joihin johtaa ainoastaan uudelleenohjauksia. Jos haluat nähdä luettelon niistä olemattomista sivuista, joihin on linkki uudelleenohjauksista, katso [[{{#special:BrokenRedirects}}|luettelo virheellisistä ohjauksista]].",
 	"wantedpages-badtitle": "Virheellinen otsikko tuloksissa: $1",
 	"wantedfiles": "Halutut tiedostot",
 	"wantedfiletext-cat": "Seuraavia tiedostoja käytetään, mutta niitä ei ole olemassa. Ulkopuolissa mediavarastoissa olevat tiedostot voivat näkyä tällä listalla, vaikka ne ovat olemassa. Tällaiset väärät merkinnät on <del>yliviivattu</del>. Lisäksi sellaiset sivut, joihin on sisällytetty tiedostoja, jotka eivät ole olemassa, on luetteloitu [[:$1|täällä]].",

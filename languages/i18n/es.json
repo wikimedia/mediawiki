@@ -789,6 +789,7 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Objeto vacío",
 	"content-json-empty-array": "Matriz vacía",
+	"duplicate-args-warning": "<strong>Aviso:</strong> [[:$1]] convoca a [[:$2]] con más de un valor para el parámetro «$3». Se usará solo el último valor proporcionado.",
 	"duplicate-args-category": "Páginas que usan argumentos duplicados en invocaciones de plantillas",
 	"duplicate-args-category-desc": "La página contiene invocaciones de plantillas que utilizan argumentos duplicados, como <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> o <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "Aviso: Esta página contiene demasiadas llamadas a funciones sintácticas costosas (#ifexist: y similares)\n\nTiene {{PLURAL:$1|una llamada|$1 llamadas}}, pero debería tener menos de $2.",

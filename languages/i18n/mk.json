@@ -687,6 +687,7 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Празен објект",
 	"content-json-empty-array": "Празна низа",
+	"duplicate-args-warning": "<strong>Предупредување:</strong> [[:$1]] го повикува [[:$2]] со повеќе од една вредност за параметарот „$3“. Ќе се употреби само последната вредност.",
 	"duplicate-args-category": "Страници што користат дуплирани аргументи во повикувања на шаблони",
 	"duplicate-args-category-desc": "Страницава содржи повикувања на шаблони кои се дупликати на аргументи, како што се <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> или <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "Предупредување: Оваа страница користи премногу повикувања на parser функции.\n\nТреба да има помалку од $2 {{PLURAL:$2|повикување|повикувања}} а сега има {{PLURAL:$1|$1 повикување|$1 повикувања}}.",

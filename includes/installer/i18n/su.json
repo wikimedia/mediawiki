@@ -4,6 +4,13 @@
 			"Kandar"
 		]
 	},
+	"config-desc": "Panginstal MediaWiki",
+	"config-title": "Instalasi MediaWiki $1",
+	"config-information": "Émbaran",
+	"config-localsettings-upgrade": "Hiji berkas <code>LocalSettings.php</code> kapanggih.\nPikeun apgréd ngamutahirkeun ieu instalasi, mangga asupkeun sandi <code>$wgUpgradeKey</code> kana kotak di handap.\nAnjeun bisa manggihan sandina di <code>LocalSettings.php</code>.",
+	"config-localsettings-cli-upgrade": "Hiji berkas <code>LocalSettings.php</code> geus kabaca.\nPikeun apgréd ieu instalasi, mangga jalankeun <code>update.php</code>",
+	"config-localsettings-key": "Sandi apgréd:",
+	"config-localsettings-badkey": "Sandi anu diasupkeun salah.",
 	"mainpagetext": "<strong>MediaWiki geus réngsé diinstal.</strong>",
 	"mainpagedocfooter": "Mangga tingal ''[//meta.wikimedia.org/wiki/MediaWiki_localisation documentation on customizing the interface]'' jeung [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Tungtunan Pamaké] pikeun pitulung maké jeung konfigurasi."
 }
