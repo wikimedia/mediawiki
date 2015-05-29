@@ -178,6 +178,15 @@ abstract class LBFactory {
 	}
 
 	/**
+	 * Commit on all connections. Done for two reasons:
+	 * 1. To commit changes to the masters.
+	 * 2. To release the snapshot on slaves.
+	 */
+	public function commitAll() {
+		$this->forEachLBCallMethod( 'commitAll' );
+	}
+
+	/**
 	 * Commit changes on all master connections
 	 */
 	public function commitMasterChanges() {

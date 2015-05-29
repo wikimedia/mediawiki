@@ -128,7 +128,7 @@ class JobRunner implements LoggerAwareInterface {
 		$group = JobQueueGroup::singleton();
 		
 		// Flush any pending DB writes for sanity
-		wfGetLBFactory()->commitMasterChanges();
+		wfGetLBFactory()->commitAll();
 
 		// Some jobs types should not run until a certain timestamp
 		$backoffs = array(); // map of (type => UNIX expiry)
@@ -180,12 +180,20 @@ class JobRunner implements LoggerAwareInterface {
 					++$jobsRun;
 					$status = $job->run();
 					$error = $job->getLastError();
-					$this->commitMasterChanges( $job );
+					$this->commitAll( $job );
 
 					DeferredUpdates::doUpdates();
-					$this->commitMasterChanges( $job );
+					$this->commitAll( $job );
 				} catch ( Exception $e ) {
 					MWExceptionHandler::rollbackMasterChangesAndLog( $e );
+					// Commit everything that wasn't rolled back - its just going to be
+					// slaves. We do this so we get a new snapshot of the database.
+					// This is important because if you have an old snapshot on the
+					// database you could run the job incorrectly. Its possible, for
+					// example, to pick up a RefreshLinksJob for a new page that isn't
+					// even visible to the snapshot. The snapshot could have been
+					// created before the page.
+					wfGetLBFactory()->commitAll();
 					$status = false;
 					$error = get_class( $e ) . ': ' . $e->getMessage();
 					MWExceptionHandler::logException( $e );
@@ -410,12 +418,17 @@ class JobRunner implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Commit any DB master changes from a job on all load balancers
+	 * Issue a commit on all open database connections. This does two things:
+	 * 1. It commits the results of the job.
+	 * 2. It gets a fresh snapshot for all the slaves.
+	 *
+	 * This also supports sometimes waiting for the local wiki's slaves to catch
+	 * up. See the documentation for $wgJobSerialCommitThreshold for more.
 	 *
 	 * @param Job $job
 	 * @throws DBError
 	 */
-	private function commitMasterChanges( Job $job ) {
+	private function commitAll( Job $job ) {
 		global $wgJobSerialCommitThreshold;
 
 		$lb = wfGetLB( wfWikiID() );
@@ -432,7 +445,7 @@ class JobRunner implements LoggerAwareInterface {
 		) {
 			// Writes are all to foreign DBs, named locks don't form queues,
 			// or $wgJobSerialCommitThreshold is not reached; commit changes now
-			wfGetLBFactory()->commitMasterChanges();
+			wfGetLBFactory()->commitAll();
 			return;
 		}
 
@@ -464,7 +477,7 @@ class JobRunner implements LoggerAwareInterface {
 		} );
 
 		// Actually commit the DB master changes
-		wfGetLBFactory()->commitMasterChanges();
+		wfGetLBFactory()->commitAll();
 
 		// Release the lock
 		$dbwSerial->unlock( 'jobrunner-serial-commit', __METHOD__ );
