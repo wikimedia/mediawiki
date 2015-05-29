@@ -1595,7 +1595,12 @@ class Linker {
 		$title = wfMessage( 'toc' )->inLanguage( $lang )->escaped();
 
 		return '<div id="toc" class="toc">'
-			. '<div class="toctitle"><h2>' . $title . "</h2></div>\n"
+			. Html::openElement( 'div', [
+				'class' => 'toctitle',
+				'lang' => $lang->getHtmlCode(),
+				'dir' => $lang->getDir(),
+			] )
+			. '<h2>' . $title . "</h2></div>\n"
 			. $toc
 			. "</ul>\n</div>\n";
 	}
