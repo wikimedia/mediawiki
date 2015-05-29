@@ -307,7 +307,7 @@
 			"description": "ResourceLoader modules to register",
 			"additionalProperties": false,
 			"patternProperties": {
-				"^[a-zA-Z0-9\\.]+$": {
+				"^[a-zA-Z0-9-\\.]+$": {
 					"type": "object",
 					"description": "A single ResourceLoader module descriptor",
 					"properties": {
@@ -361,21 +361,21 @@
 							}
 						},
 						"debugScripts": {
-							"type": "array",
+							"type": ["string", "array"],
 							"description": "Scripts to include in debug contexts",
 							"items": {
 								"type": "string"
 							}
 						},
 						"loaderScripts": {
-							"type": "array",
+							"type": ["string", "array"],
 							"description": "Scripts to include in the startup module",
 							"items": {
 								"type": "string"
 							}
 						},
 						"dependencies": {
-							"type": "array",
+							"type": ["string", "array"],
 							"description": "Modules which must be loaded before this module",
 							"items": {
 								"type": "string"
@@ -404,7 +404,7 @@
 							}
 						},
 						"messages": {
-							"type": "array",
+							"type": ["string", "array"],
 							"description": "Messages to always load",
 							"items": {
 								"type": "string"
