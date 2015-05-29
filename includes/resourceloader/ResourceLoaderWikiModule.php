@@ -30,6 +30,8 @@
  * Title::isCssJsSubpage.
  */
 class ResourceLoaderWikiModule extends ResourceLoaderModule {
+	/** @var string Position on the page to load this module at */
+	protected $position = 'bottom';
 
 	// Origin defaults to users with sitewide authority
 	protected $origin = self::ORIGIN_USER_SITEWIDE;
@@ -50,14 +52,17 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * @param array $options For back-compat, this can be omitted in favour of overwriting getPages.
 	 */
 	public function __construct( array $options = null ) {
-		if ( isset( $options['styles'] ) ) {
-			$this->styles = $options['styles'];
-		}
-		if ( isset( $options['scripts'] ) ) {
-			$this->scripts = $options['scripts'];
-		}
-		if ( isset( $options['group'] ) ) {
-			$this->group = $options['group'];
+		foreach ( $options as $member => $option ) {
+			switch ( $member ) {
+				case 'position':
+					$this->isPositionDefined = true;
+					// Don't break since we need the member set as well
+				case 'styles':
+				case 'scripts':
+				case 'group':
+					$this->{$member} = $option;
+					break;
+			}
 		}
 	}
 
@@ -304,5 +309,9 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			}
 		}
 		return $this->titleInfo[$hash];
+	}
+
+	public function getPosition() {
+		return $this->position;
 	}
 }
