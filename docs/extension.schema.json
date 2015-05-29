@@ -20,19 +20,7 @@
 		"type": {
 			"type": "string",
 			"description": "The extension's type, as an index to $wgExtensionCredits.",
-			"default": "other",
-			"enum": [
-				"api",
-				"antispam",
-				"datavalues",
-				"media",
-				"parserhook",
-				"semantic",
-				"skin",
-				"specialpage",
-				"variable",
-				"other"
-			]
+			"default": "other"
 		},
 		"author": {
 			"type": [
