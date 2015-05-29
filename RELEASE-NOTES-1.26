@@ -39,6 +39,9 @@ production.
   'webp'; to LocalSettings.php to enable uploading of WebP images.
 * Added a new hook 'EnhancedChangesListModifyLineData', to
   modify the data used to build lines in enhanced recentchanges and watchlist.
+* (T18441) The protection form now shows an error message when trying to change
+  a page's restrictions and someone has already done so between the form's
+  display and its submission, similarly to how the edit form behaves.
 
 ==== External libraries ====
 * Update es5-shim from v4.0.0 to v4.1.5.
@@ -67,6 +70,8 @@ production.
   sometimes being numerically-indexed objects with formatversion=2.
 * When errors about users being blocked are returned, they now include
   information about the relevant block.
+* (T18441) action=protect now supports an optional 'baselogid' parameter to
+  prevent protection conflicts.
 
 === Action API internal changes in 1.26 ===
 

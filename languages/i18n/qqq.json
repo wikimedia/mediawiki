@@ -2142,6 +2142,7 @@
 	"protect-legend": "Legend of the fieldset around the input form of the protection form.",
 	"protectcomment": "{{Identical|Reason}}",
 	"protectexpiry": "{{Identical|Expire}}",
+	"protect_conflict": "Appears at the top of a protection form when there is a protect conflict.",
 	"protect_expiry_invalid": "Used as error message about the Protection Form.\n\nSee also:\n* {{msg-mw|Protect expiry old}}",
 	"protect_expiry_old": "Used as error message about the Protection Form.\n\nSee also:\n* {{msg-mw|Protect expiry invalid}}",
 	"protect-unchain-permissions": "This message is a label for a checkbox displayed in the \"protect\" form just below the first selector (generally the \"edit\" protection). If the checkbox is checked (default) other selectors will be locked and have the same value as the first selector, otherwise other selectors are editable by the user.\nThis message was something like \"unlock move protection\" in the past.",

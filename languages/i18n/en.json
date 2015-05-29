@@ -1972,6 +1972,7 @@
 	"protect-legend": "Confirm protection",
 	"protectcomment": "Reason:",
 	"protectexpiry": "Expires:",
+	"protect_conflict": "Someone else has changed the protection status of this page since you started changing it.",
 	"protect_expiry_invalid": "Expiry time is invalid.",
 	"protect_expiry_old": "Expiry time is in the past.",
 	"protect-unchain-permissions": "Unlock further protect options",

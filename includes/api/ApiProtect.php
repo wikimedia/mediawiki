@@ -42,6 +42,19 @@ class ApiProtect extends ApiBase {
 			$this->dieUsageMsg( reset( $errors ) );
 		}
 
+		if ( isset( $params['baselogid'] ) ) {
+			$sentLogID = $params['baselogid'];
+			$sentLogID = ( $sentLogID !== '' ) ? (int)$sentLogID : null;
+			$latestLogID = ProtectionForm::getLatestLogID( $titleObj );
+			if ( $sentLogID != $latestLogID ) {
+				$this->dieUsage(
+					"The protection status of the page \"{$titleObj->getPrefixedText()}\" " .
+					"has been changed since log entry of ID \"$sentLogID\"",
+					'protect-conflict'
+				);
+			}
+		}
+
 		$expiry = (array)$params['expiry'];
 		if ( count( $expiry ) != count( $params['protections'] ) ) {
 			if ( count( $expiry ) == 1 ) {
@@ -156,6 +169,9 @@ class ApiProtect extends ApiBase {
 				ApiBase::PARAM_ALLOW_DUPLICATES => true,
 				ApiBase::PARAM_DFLT => 'infinite',
 			),
+			'baselogid' => array(
+				ApiBase::PARAM_TYPE => 'string',
+			),
 			'reason' => '',
 			'cascade' => false,
 			'watch' => array(
@@ -183,6 +199,10 @@ class ApiProtect extends ApiBase {
 			'action=protect&title=Main%20Page&token=123ABC&' .
 				'protections=edit=sysop|move=sysop&cascade=&expiry=20070901163000|never'
 				=> 'apihelp-protect-example-protect',
+			'action=protect&title=Main%20Page&token=123ABC&' .
+				'protections=edit=sysop|move=sysop&cascade=&expiry=20070901163000|never' .
+				'&baselogid=456'
+				=> 'apihelp-protect-example-protect-baselogid',
 			'action=protect&title=Main%20Page&token=123ABC&' .
 				'protections=edit=all|move=all&reason=Lifting%20restrictions'
 				=> 'apihelp-protect-example-unprotect',
