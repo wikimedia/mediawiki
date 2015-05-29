@@ -324,7 +324,7 @@
 							"description": "Equivalent of remoteBasePath, but relative to $wgExtensionAssetsPath"
 						},
 						"scripts": {
-							"type": "array",
+							"type": ["string", "array"],
 							"description": "Scripts to always include (array of file paths)",
 							"items": {
 								"type": "string"
@@ -382,7 +382,7 @@
 							}
 						},
 						"styles": {
-							"type": "array",
+							"type": ["string", "array", "object"],
 							"description": "Styles to always load",
 							"items": {
 								"type": "string"
