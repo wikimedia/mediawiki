@@ -1719,6 +1719,10 @@ abstract class ApiBase extends ContextSource {
 			'code' => 'nosuchlogid',
 			'info' => "There is no log entry with ID \"\$1\""
 		),
+		'protect-conflict' => array(
+			'code' => 'protect-conflict',
+			'info' => "The protection status of the page \"$1\" has been changed since log entry of ID \"$2\""
+		),
 		'protect-invalidaction' => array(
 			'code' => 'protect-invalidaction',
 			'info' => "Invalid protection type \"\$1\""
