@@ -158,7 +158,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					}
 					$startsortkey = pack( 'H*', $params['starthexsortkey'] );
 				} else {
-					$this->logFeatureUsage( 'list=categorymembers&cmstartsortkey' );
+					if ( $params['startsortkey'] !== null ) {
+						$this->logFeatureUsage( 'list=categorymembers&cmstartsortkey' );
+					}
 					$startsortkey = $params['startsortkey'];
 				}
 				if ( $params['endsortkeyprefix'] !== null ) {
@@ -169,7 +171,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					}
 					$endsortkey = pack( 'H*', $params['endhexsortkey'] );
 				} else {
-					$this->logFeatureUsage( 'list=categorymembers&cmendsortkey' );
+					if ( $params['endsortkey'] !== null ) {
+						$this->logFeatureUsage( 'list=categorymembers&cmendsortkey' );
+					}
 					$endsortkey = $params['endsortkey'];
 				}
 
