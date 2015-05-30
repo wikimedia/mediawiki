@@ -328,6 +328,7 @@ class SpecialSearch extends SpecialPage {
 		$num = $titleMatchesNum + $textMatchesNum;
 		$totalRes = $numTitleMatches + $numTextMatches;
 
+		$out->enableOOUI();
 		$out->addHtml(
 			# This is an awful awful ID name. It's not a table, but we
 			# named it poorly from when this was a table so now we're
@@ -1077,20 +1078,20 @@ class SpecialSearch extends SpecialPage {
 	protected function shortDialog( $term, $resultsShown, $totalNum ) {
 		$out = Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
 		$out .= Html::hidden( 'profile', $this->profile ) . "\n";
+		$out .= Html::hidden( 'fulltext', 'Search' );
 		// Term box
-		$out .= Html::input( 'search', $term, 'search', array(
-			'id' => $this->isPowerSearch() ? 'powerSearchText' : 'searchText',
-			'size' => '50',
+		$out .= new OOUI\TitleInputWidget( array(
+			'type' => 'search',
+			'id' => 'searchText',
+			'name' => 'search',
 			'autofocus' => trim( $term ) === '',
-			'class' => 'mw-ui-input mw-ui-input-inline',
-		) ) . "\n";
-		$out .= Html::hidden( 'fulltext', 'Search' ) . "\n";
-		$out .= Html::submitButton(
-			$this->msg( 'searchbutton' )->text(),
-			array( 'class' => 'mw-ui-button mw-ui-progressive' ),
-			array( 'mw-ui-progressive' )
-		) . "\n";
-
+			'value' => $term,
+		) );
+		$out .= new OOUI\ButtonInputWidget( array(
+			'type' => 'submit',
+			'label' => $this->msg( 'searchbutton' )->text(),
+			'flags' => array( 'progressive', 'primary' ),
+		) );
 		// Results-info
 		if ( $totalNum > 0 && $this->offset < $totalNum ) {
 			$top = $this->msg( 'search-showingresults' )
