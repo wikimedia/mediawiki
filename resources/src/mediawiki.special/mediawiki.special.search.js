@@ -33,7 +33,7 @@
 
 		// Change the header search links to what user entered
 		$headerLinks = $( '.search-types a' );
-		$( '#searchText, #powerSearchText' ).change( function () {
+		$( '#searchText input, #powerSearchText input' ).change( function () {
 			var searchterm = $( this ).val();
 			$headerLinks.each( function () {
 				var parts = $( this ).attr( 'href' ).split( 'search=' ),

@@ -172,3 +172,8 @@ table#mw-search-powertable {
 form#powersearch {
 	clear: both;
 }
+
+#searchText,
+#powerSearchText {
+	display: inline-block;
+}
