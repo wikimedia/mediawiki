@@ -1584,7 +1584,7 @@
 	"filedelete-maintenance": "Borrado y restauración de archivos temporalmente deshabilitados durante el mantenimiento.",
 	"filedelete-maintenance-title": "No se puede eliminar el archivo",
 	"mimesearch": "Búsqueda por MIME",
-	"mimesearch-summary": "Esta página permite el filtrado de ficheros por su tipo MIME.\nEntrada: contenttype/subtype o contenttype/*, p. ej. <code>image/jpeg</code>.",
+	"mimesearch-summary": "Esta página permite el filtrado de ficheros por su tipo MIME.\nEntrada: tipo/subtipo o tipo/*, p. ej. <code>image/jpeg</code>.",
 	"mimetype": "Tipo MIME:",
 	"download": "descargar",
 	"unwatchedpages": "Páginas no vigiladas",
