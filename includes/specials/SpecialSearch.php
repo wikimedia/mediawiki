@@ -328,6 +328,7 @@ class SpecialSearch extends SpecialPage {
 		$num = $titleMatchesNum + $textMatchesNum;
 		$totalRes = $numTitleMatches + $numTextMatches;
 
+		$out->enableOOUI();
 		$out->addHtml(
 			# This is an awful awful ID name. It's not a table, but we
 			# named it poorly from when this was a table so now we're
@@ -1078,21 +1079,22 @@ class SpecialSearch extends SpecialPage {
 	 * @return string
 	 */
 	protected function shortDialog( $term, $resultsShown, $totalNum ) {
-		$out = Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
-		$out .= Html::hidden( 'profile', $this->profile ) . "\n";
-		// Term box
-		$out .= Html::input( 'search', $term, 'search', array(
-			'id' => $this->isPowerSearch() ? 'powerSearchText' : 'searchText',
-			'size' => '50',
-			'autofocus' => trim( $term ) === '',
-			'class' => 'mw-ui-input mw-ui-input-inline',
-		) ) . "\n";
-		$out .= Html::hidden( 'fulltext', 'Search' ) . "\n";
-		$out .= Html::submitButton(
-			$this->msg( 'searchbutton' )->text(),
-			array( 'class' => 'mw-ui-button mw-ui-progressive' ),
-			array( 'mw-ui-progressive' )
-		) . "\n";
+		$out =
+			Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
+			Html::hidden( 'profile', $this->profile ) .
+			Html::hidden( 'fulltext', 'Search' ) .
+			new MediaWiki\Widget\TitleInputWidget( array(
+				'type' => 'search',
+				'id' => 'searchText',
+				'name' => 'search',
+				'autofocus' => trim( $term ) === '',
+				'value' => $term,
+			) ) .
+			new OOUI\ButtonInputWidget( array(
+				'type' => 'submit',
+				'label' => $this->msg( 'searchbutton' )->text(),
+				'flags' => array( 'progressive', 'primary' ),
+			) );
 
 		// Results-info
 		if ( $totalNum > 0 && $this->offset < $totalNum ) {
