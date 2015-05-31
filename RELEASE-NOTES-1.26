@@ -44,15 +44,15 @@ changes to languages because of Bugzilla reports.
 * Added PageHistoryPager::doBatchLookups hook.
 * Added ParserCacheSaveComplete to ParserCache
 * supportsDirectEditing and supportsDirectApiEditing methods added to
-ContentHandler, to provide a way for ApiEditPage and EditPage to check
-if direct editing of content is allowed. These methods return false,
-by default for the ContentHandler base class and true for TextContentHandler
-and it's derivative classes (everything in core). For Content types that
-do not support direct editing, an alternative mechanism should be provided
-for editing, such as action overrides or specific api modules.
+  ContentHandler, to provide a way for ApiEditPage and EditPage to check
+  if direct editing of content is allowed. These methods return false,
+  by default for the ContentHandler base class and true for TextContentHandler
+  and it's derivative classes (everything in core). For Content types that
+  do not support direct editing, an alternative mechanism should be provided
+  for editing, such as action overrides or specific api modules.
 * mediaWiki.confirmCloseWindow now returns an object of functions, instead of
-one function. The callback can't be called directly any more. The callback function
-is replaced with confirmCloseWindow.release().
+  one function. The callback can't be called directly any more. The callback
+  function is replaced with confirmCloseWindow.release().
 * Removed maintenance script deleteImageMemcached.php.
 
 == Compatibility ==
