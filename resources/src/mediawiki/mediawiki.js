@@ -900,12 +900,12 @@
 
 			/**
 			 * @since 1.26
-			 * @param {Object[]} modules List of module registry objects
+			 * @param {Arrat} modules List of module names
 			 * @return {string} Hash of concatenated version hashes.
 			 */
 			function getCombinedVersion( modules ) {
 				var hashes = $.map( modules, function ( module ) {
-					return module.version;
+					return registry[module].version;
 				} );
 				// Trim for consistency with server-side ResourceLoader::makeHash. It also helps
 				// save precious space in the limited query string. Otherwise modules are more
