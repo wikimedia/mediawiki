@@ -308,7 +308,7 @@
 	"config-install-begin": "Al pulsar en «{{int:config-continue}}» comenzará el proceso de instalación de MediaWiki.\nSi quieres realizar algún cambio, pulsa en «{{int:config-back}}».",
 	"config-install-step-done": "hecho",
 	"config-install-step-failed": "falló",
-	"config-install-extensions": "Extensiones inclusive",
+	"config-install-extensions": "Incluyendo extensiones",
 	"config-install-database": "Configurando la base de datos",
 	"config-install-schema": "Creando el esquema",
 	"config-install-pg-schema-not-exist": "El esquema PostgreSQL no existe.",
