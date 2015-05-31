@@ -1454,7 +1454,7 @@
 	"listfiles-delete": "видалити",
 	"listfiles-summary": "Ця спеціальна сторінка показує всі завантажені файли.",
 	"listfiles_search_for": "Пошук по назві зображення:",
-	"listfiles-userdoesnotexist": "Облыковий запис «$1» не зареэстровано.",
+	"listfiles-userdoesnotexist": "Обліковий запис «$1» не зареєстровано.",
 	"imgfile": "файл",
 	"listfiles": "Список файлів",
 	"listfiles_thumb": "Мініатюра",

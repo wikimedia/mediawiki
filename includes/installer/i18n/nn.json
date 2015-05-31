@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Harald Khan",
-			"Nghtwlkr"
+			"Nghtwlkr",
+			"Njardarlogar"
 		]
 	},
 	"config-your-language": "Språket ditt:",
@@ -36,6 +37,7 @@
 	"config-postgres-old": "PostgreSQL $1 eller seinare krevst, du har $2.",
 	"config-email-settings": "E-postinnstillingar",
 	"config-logo": "Logo-URL:",
+	"config-help": "hjelp",
 	"mainpagetext": "'''MediaWiki er no installert.'''",
 	"mainpagedocfooter": "Sjå [//meta.wikimedia.org/wiki/Help:Contents brukarmanualen] for informasjon om bruk og oppsettshjelp for wikiprogramvara.\n\n==Kome i gang==\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Liste over oppsettsinnstillingar]\n* [//www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Spørsmål og svar om MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce E-postliste med informasjon om nye MediaWiki-versjonar]"
 }
