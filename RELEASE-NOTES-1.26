@@ -54,6 +54,8 @@ changes to languages because of Bugzilla reports.
   one function. The callback can't be called directly any more. The callback
   function is replaced with confirmCloseWindow.release().
 * Removed maintenance script deleteImageMemcached.php.
+* MWFunction::newObj() was removed (deprecated in 1.25).
+  ObjectFactory::getObjectFromSpec() should be used instead.
 
 == Compatibility ==
 
