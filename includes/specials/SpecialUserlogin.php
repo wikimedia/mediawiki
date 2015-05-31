@@ -1529,7 +1529,6 @@ class LoginForm extends SpecialPage {
 	 */
 	public static function getCreateaccountToken() {
 		global $wgRequest;
-
 		return $wgRequest->getSessionData( 'wsCreateaccountToken' );
 	}
 
@@ -1604,22 +1603,21 @@ class LoginForm extends SpecialPage {
 	 */
 	function makeLanguageSelector() {
 		$msg = $this->msg( 'loginlanguagelinks' )->inContentLanguage();
-		if ( !$msg->isBlank() ) {
-			$langs = explode( "\n", $msg->text() );
-			$links = array();
-			foreach ( $langs as $lang ) {
-				$lang = trim( $lang, '* ' );
-				$parts = explode( '|', $lang );
-				if ( count( $parts ) >= 2 ) {
-					$links[] = $this->makeLanguageSelectorLink( $parts[0], trim( $parts[1] ) );
-				}
-			}
-
-			return count( $links ) > 0 ? $this->msg( 'loginlanguagelabel' )->rawParams(
-				$this->getLanguage()->pipeList( $links ) )->escaped() : '';
-		} else {
+		if ( $msg->isBlank() ) {
 			return '';
 		}
+		$langs = explode( "\n", $msg->text() );
+		$links = array();
+		foreach ( $langs as $lang ) {
+			$lang = trim( $lang, '* ' );
+			$parts = explode( '|', $lang );
+			if ( count( $parts ) >= 2 ) {
+				$links[] = $this->makeLanguageSelectorLink( $parts[0], trim( $parts[1] ) );
+			}
+		}
+
+		return count( $links ) > 0 ? $this->msg( 'loginlanguagelabel' )->rawParams(
+			$this->getLanguage()->pipeList( $links ) )->escaped() : '';
 	}
 
 	/**
