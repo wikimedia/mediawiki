@@ -473,12 +473,67 @@ class OutputPageTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider provideLinkHeaders
+	 * @covers OutputPage::addLinkHeader
+	 * @covers OutputPage::getLinkHeader
+	 */
+	public function testLinkHeaders( $headers, $result ) {
+		$outputPage = $this->newInstance();
+
+		foreach ( $headers as $header ) {
+			$outputPage->addLinkHeader( $header );
+		}
+
+		$this->assertEquals( $result, $outputPage->getLinkHeader() );
+	}
+
+	public function provideLinkHeaders() {
+		return [
+			[
+				[],
+				false
+			],
+			[
+				[ '<https://foo/bar.jpg>;rel=preload;as=image' ],
+				'Link: <https://foo/bar.jpg>;rel=preload;as=image',
+			],
+			[
+				[ '<https://foo/bar.jpg>;rel=preload;as=image', '<https://foo/baz.jpg>;rel=preload;as=image' ],
+				'Link: <https://foo/bar.jpg>;rel=preload;as=image,<https://foo/baz.jpg>;rel=preload;as=image',
+			],
+		];
+	}
+
+	/**
+	 * @covers OutputPage::addLogoPreloadLinkHeaders
+	 */
+	public function testPreloadLinkHeaders() {
+		$config = [
+			'Logo' => '/img/default.png',
+			'LogoHD' => [
+				'1.5x' => '/img/one-point-five.png',
+				'2x' => '/img/two-x.png',
+			],
+		];
+		$out = TestingAccessWrapper::newFromObject( $this->newInstance( $config ) );
+		$out->addLogoPreloadLinkHeaders();
+
+		$this->assertEquals(
+			'Link: </img/default.png>;rel=preload;as=image;media=(max-resolution: 1dppx),' .
+				'</img/one-point-five.png>;rel=preload;as=image;media=' .
+					'(max-resolution: 1.5dppx) and not (max-resolution: 1dppx),' .
+				'</img/two-x.png>;rel=preload;as=image;media=not (max-resolution: 1.5dppx)',
+			$out->getLinkHeader()
+		);
+	}
+
+	/**
 	 * @return OutputPage
 	 */
-	private function newInstance() {
+	private function newInstance( $config = [] ) {
 		$context = new RequestContext();
 
-		$context->setConfig( new HashConfig( [
+		$context->setConfig( new HashConfig( $config + [
 			'AppleTouchIcon' => false,
 			'DisableLangConversion' => true,
 			'EnableAPI' => false,
