@@ -235,7 +235,7 @@ function wfStreamThumb( array $params ) {
 		$imsUnix = strtotime( $imsString );
 		wfRestoreWarnings();
 		if ( wfTimestamp( TS_UNIX, $img->getTimestamp() ) <= $imsUnix ) {
-			header( 'HTTP/1.1 304 Not Modified' );
+			HttpStatus::header( 304  );
 			return;
 		}
 	}
@@ -554,14 +554,14 @@ function wfThumbError( $status, $msg ) {
 	header( 'Cache-Control: no-cache' );
 	header( 'Content-Type: text/html; charset=utf-8' );
 	if ( $status == 400 ) {
-		header( 'HTTP/1.1 400 Bad request' );
+		HttpStatus::header( 400 );
 	} elseif ( $status == 404 ) {
-		header( 'HTTP/1.1 404 Not found' );
+		HttpStatus::header( 404 );
 	} elseif ( $status == 403 ) {
-		header( 'HTTP/1.1 403 Forbidden' );
+		HttpStatus::header( 403 );
 		header( 'Vary: Cookie' );
 	} else {
-		header( 'HTTP/1.1 500 Internal server error' );
+		HttpStatus::header( 500 );
 	}
 	if ( $wgShowHostnames ) {
 		header( 'X-MW-Thumbnail-Renderer: ' . wfHostname() );

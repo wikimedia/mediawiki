@@ -78,7 +78,7 @@ class StreamFile {
 	) {
 		if ( !is_array( $info ) ) {
 			if ( $sendErrors ) {
-				header( 'HTTP/1.0 404 Not Found' );
+				HttpStatus::header( 404  );
 				header( 'Cache-Control: no-cache' );
 				header( 'Content-Type: text/html; charset=utf-8' );
 				$encFile = htmlspecialchars( $path );
@@ -126,7 +126,7 @@ class StreamFile {
 			$modsince = preg_replace( '/;.*$/', '', $_SERVER['HTTP_IF_MODIFIED_SINCE'] );
 			if ( wfTimestamp( TS_UNIX, $info['mtime'] ) <= strtotime( $modsince ) ) {
 				ini_set( 'zlib.output_compression', 0 );
-				header( "HTTP/1.0 304 Not Modified" );
+				HttpStatus::header( 304 );
 				return self::NOT_MODIFIED; // ok
 			}
 		}

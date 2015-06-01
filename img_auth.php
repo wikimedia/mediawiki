@@ -195,7 +195,7 @@ function wfForbidden( $msg1, $msg2 ) {
 			wfMessage( $msg2, $args )->inLanguage( 'en' )->text()
 	);
 
-	header( 'HTTP/1.0 403 Forbidden' );
+	HttpStatus::header( 403 );
 	header( 'Cache-Control: no-cache' );
 	header( 'Content-Type: text/html; charset=utf-8' );
 	echo <<<ENDS

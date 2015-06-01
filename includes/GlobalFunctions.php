@@ -2129,15 +2129,14 @@ function wfVarDump( $var ) {
  */
 function wfHttpError( $code, $label, $desc ) {
 	global $wgOut;
-	header( "HTTP/1.0 $code $label" );
-	header( "Status: $code $label" );
+	HttpStatus::header( $code );
 	if ( $wgOut ) {
 		$wgOut->disable();
 		$wgOut->sendCacheControl();
 	}
 
 	header( 'Content-type: text/html; charset=utf-8' );
-	print "<!doctype html>" .
+	print '<!DOCTYPE html>' .
 		'<html><head><title>' .
 		htmlspecialchars( $label ) .
 		'</title></head><body><h1>' .
