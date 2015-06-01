@@ -63,6 +63,12 @@
 				]
 			},
 			{
+				"name": "Widgets",
+				"classes": [
+					"mw.widgets*"
+				]
+			},
+			{
 				"name": "Special",
 				"classes": [
 					"mw.special*"
