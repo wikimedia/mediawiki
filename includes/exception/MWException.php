@@ -238,8 +238,7 @@ class MWException extends Exception {
 		} elseif ( self::isCommandLine() ) {
 			MWExceptionHandler::printError( $this->getText() );
 		} else {
-			self::header( 'HTTP/1.1 500 Internal Server Error' );
-			self::header( 'Status: 500 Internal Server Error' );
+			self::statusHeader( 500 );
 			self::header( "Content-Type: $wgMimeType; charset=utf-8" );
 
 			$this->reportHTML();
@@ -264,6 +263,11 @@ class MWException extends Exception {
 	private static function header( $header ) {
 		if ( !headers_sent() ) {
 			header( $header );
+		}
+	}
+	private static function statusHeader( $code ) {
+		if ( !headers_sent() ) {
+			HttpStatus::header( $code );
 		}
 	}
 }
