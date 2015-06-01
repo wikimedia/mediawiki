@@ -640,7 +640,7 @@ abstract class ResourceLoaderModule {
 			} catch ( Exception $e ) {
 				// We'll save this to cache to avoid having to validate broken JS over and over...
 				$err = $e->getMessage();
-				$result = "throw new Error(" . Xml::encodeJsVar( "JavaScript parse error: $err" ) . ");";
+				$result = "mw.log.error(" . Xml::encodeJsVar( "JavaScript parse error: $err" ) . ");";
 			}
 
 			$cache->set( $key, $result );
