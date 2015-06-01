@@ -473,6 +473,38 @@ class OutputPageTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider provideLinkHeaders
+	 * @covers OutputPage::addLinkHeader
+	 * @covers OutputPage::getLinkHeader
+	 */
+	public function testLinkHeaders( $headers, $result ) {
+		$outputPage = $this->newInstance();
+
+		foreach ( $headers as $header ) {
+			$outputPage->addLinkHeader( $header );
+		}
+
+		$this->assertEquals( $result, $outputPage->getLinkHeader() );
+	}
+
+	public function provideLinkHeaders() {
+		return [
+			[
+				[],
+				false
+			],
+			[
+				[ '<https://foo/bar.jpg>;rel=preload;as=image' ],
+				'Link: <https://foo/bar.jpg>;rel=preload;as=image',
+			],
+			[
+				[ '<https://foo/bar.jpg>;rel=preload;as=image', '<https://foo/baz.jpg>;rel=preload;as=image' ],
+				'Link: <https://foo/bar.jpg>;rel=preload;as=image,<https://foo/baz.jpg>;rel=preload;as=image',
+			],
+		];
+	}
+
+	/**
 	 * @return OutputPage
 	 */
 	private function newInstance() {

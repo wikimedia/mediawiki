@@ -303,6 +303,11 @@ class OutputPage extends ContextSource {
 	private $limitReportJSData = [];
 
 	/**
+	 * Link: header contents
+	 */
+	private $mLinkHeader = [];
+
+	/**
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead a new RequestContext should be created and it will implicitly create
 	 * a OutputPage tied to that context.
@@ -2106,6 +2111,28 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Add an HTTP Link: header
+	 *
+	 * @param string $header Header value
+	 */
+	public function addLinkHeader( $header ) {
+		$this->mLinkHeader[] = $header;
+	}
+
+	/**
+	 * Return a Link: header. Based on the values of $mLinkHeader.
+	 *
+	 * @return string
+	 */
+	public function getLinkHeader() {
+		if ( !$this->mLinkHeader ) {
+			return false;
+		}
+
+		return 'Link: ' . implode( ',', $this->mLinkHeader );
+	}
+
+	/**
 	 * Get a complete Key header
 	 *
 	 * @return string
@@ -2360,6 +2387,12 @@ class OutputPage extends ContextSource {
 		// Avoid Internet Explorer "compatibility view" in IE 8-10, so that
 		// jQuery etc. can work correctly.
 		$response->header( 'X-UA-Compatible: IE=Edge' );
+
+		$this->addLogoPreloadLinkHeaders();
+		$link_header = $this->getLinkHeader();
+		if ( $link_header ) {
+			$response->header( $link_header );
+		}
 
 		// Prevent framing, if requested
 		$frameOptions = $this->getFrameOptions();
@@ -3959,5 +3992,77 @@ class OutputPage extends ContextSource {
 			'oojs-ui.styles.textures',
 			'mediawiki.widgets.styles',
 		] );
+	}
+
+	/**
+	 * Adds Link: headers to preload the wiki's logo(s)
+	 *
+	 * @since  1.26
+	 */
+	public function addLogoPreloadLinkHeaders() {
+		global $wgLogo, $wgLogoHD;
+
+		$tags = [];
+		$logos = [];
+
+		if ( $wgLogo ) {
+			$logos[1.0] = $wgLogo;
+		}
+
+		if ( is_array( $wgLogoHD ) ) {
+			foreach ( $wgLogoHD as $dppx => $src ) {
+				// Only 1.5x and 2x are supported for now
+				if ( in_array( $dppx, [ '1.5x', '2x' ] ) ) {
+					// $wgLogoHD uses a string in this format: "1.5x"
+					$dppx = substr( $dppx, 0, -1 );
+					$logos[$dppx] = $src;
+				}
+			}
+		}
+
+		// Because PHP can't have floats as array keys
+		uasort( $logos, function ( $a , $b ) {
+			$a = floatval( $a );
+			$b = floatval( $b );
+
+			if ( $a == $b ) {
+				return 0;
+			}
+			return ( $a < $b ) ? -1 : 1;
+		} );
+
+		$first = true;
+		$prev_dppx = false;
+		$count = count( $logos );
+
+		foreach ( $logos as $dppx => $src ) {
+			$tag_key = 'logo-preload-' . $dppx;
+			$media_queries = [];
+
+			if ( !$first ) {
+				$media_queries[] = '(min-resolution: ' . $prev_dppx . 'dppx)';
+			} else {
+				$first = false;
+			}
+
+			$count--;
+
+			if ( $count > 0 ) {
+				$media_queries[] = '(max-resolution: ' . $dppx . 'dppx)';
+			}
+
+			$tags[$tag_key] = '<' . $src . '>;rel=preload;as=image';
+
+			if ( count( $media_queries ) ) {
+				$tags[$tag_key] .= ';media=' . implode( ' and ', $media_queries );
+			}
+
+			$prev_dppx = $dppx + 0.000001;
+
+		}
+
+		foreach ( $tags as $tag ) {
+			$this->addLinkHeader( $tag );
+		}
 	}
 }
