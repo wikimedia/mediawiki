@@ -128,6 +128,6 @@ class HttpError extends MWException {
 
 		return "<!DOCTYPE html>\n" .
 		"<html><head><title>$titleHtml</title></head>\n" .
-		"<body><h1>$header</h1><p>$contentHtml</p></body></html>\n";
+		"<body><h1>$titleHtml</h1><p>$contentHtml</p></body></html>\n";
 	}
 }
