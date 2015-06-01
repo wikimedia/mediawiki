@@ -3254,6 +3254,8 @@ class OutputPage extends ContextSource {
 
 		$canonicalUrl = $this->mCanonicalUrl;
 
+		$tags = array_merge( $tags, $this->getPreloadLogoElements() );
+
 		$tags['meta-generator'] = Html::element( 'meta', [
 			'name' => 'generator',
 			'content' => "MediaWiki $wgVersion",
@@ -3954,5 +3956,79 @@ class OutputPage extends ContextSource {
 			'oojs-ui.styles.textures',
 			'mediawiki.widgets.styles',
 		] );
+	}
+
+	/**
+	 * Returns a list of HTML tags meant to preload the wiki's logo(s)
+	 *
+	 * @return array Associate array of identifiers and Html element objects
+	 * @since  1.26
+	 */
+	public function getPreloadLogoElements() {
+		global $wgLogo, $wgLogoHD;
+
+		$tags = array();
+		$logos = array();
+
+		if ( isset( $wgLogo ) ) {
+			$logos[1.0] = $wgLogo;
+		}
+
+		if ( isset( $wgLogoHD ) ) {
+			foreach ( $wgLogoHD as $dppx => $src ) {
+				// $wgLogoHD uses a string in this format: "1.5x"
+				$dppx = substr( $dppx, 0, -1 );
+				$logos[$dppx] = $src;
+			}
+		}
+
+		// Because PHP can't have floats as array keys
+		uasort( $logos, function ( $a , $b ) {
+			$a = floatval( $a );
+			$b = floatval( $b );
+
+			if ($a == $b) {
+		        return 0;
+		    }
+		    return ($a < $b) ? -1 : 1;
+		} );
+
+		$first = true;
+		$prev_dppx = false;
+		$count = count( $logos );
+
+		foreach ( $logos as $dppx => $src ) {
+			$tag_key = 'logo-preload-' . $dppx;
+			$media_queries = array();
+
+			if ( !$first ) {
+				$media_queries[] = '(min-resolution: ' . $prev_dppx . 'dppx)';
+			} else {
+				$first = false;
+			}
+
+			$count--;
+
+			if ( $count > 0 ) {
+				$media_queries[] = '(max-resolution: ' . $dppx . 'dppx)';
+			}
+
+			$tag_params = array(
+				'href' => $src,
+				'rel' => 'preload',
+				'as' => 'image',
+			);
+
+			if ( count( $media_queries ) ) {
+				$tag_params['media'] = implode( ' and ', $media_queries );
+			}
+
+			$tags[$tag_key] = Html::element( 'link', $tag_params );
+
+			$prev_dppx = $dppx + 0.000001;
+
+		}
+
+		return $tags;
 	}
 }
