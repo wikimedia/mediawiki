@@ -473,12 +473,92 @@ class OutputPageTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider provideLinkHeaders
+	 * @covers OutputPage::addLinkHeader
+	 * @covers OutputPage::getLinkHeader
+	 */
+	public function testLinkHeaders( $headers, $result ) {
+		$outputPage = $this->newInstance();
+
+		foreach ( $headers as $header ) {
+			$outputPage->addLinkHeader( $header );
+		}
+
+		$this->assertEquals( $result, $outputPage->getLinkHeader() );
+	}
+
+	public function provideLinkHeaders() {
+		return [
+			[
+				[],
+				false
+			],
+			[
+				[ '<https://foo/bar.jpg>;rel=preload;as=image' ],
+				'Link: <https://foo/bar.jpg>;rel=preload;as=image',
+			],
+			[
+				[ '<https://foo/bar.jpg>;rel=preload;as=image','<https://foo/baz.jpg>;rel=preload;as=image' ],
+				'Link: <https://foo/bar.jpg>;rel=preload;as=image,<https://foo/baz.jpg>;rel=preload;as=image',
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider providePreloadLinkHeaders
+	 * @covers OutputPage::addLogoPreloadLinkHeaders
+	 */
+	public function testPreloadLinkHeaders( $config, $result ) {
+		$out = TestingAccessWrapper::newFromObject( $this->newInstance( $config ) );
+		$out->addLogoPreloadLinkHeaders();
+
+		$this->assertEquals( $result, $out->getLinkHeader() );
+	}
+
+	public function providePreloadLinkHeaders() {
+		return [
+			[
+				[
+					'Logo' => '/img/default.png',
+					'LogoHD' => [
+						'1.5x' => '/img/one-point-five.png',
+						'2x' => '/img/two-x.png',
+					],
+				],
+				'Link: </img/default.png>;rel=preload;as=image;media=' .
+				'not all and (min-resolution: 1.5dppx),' .
+				'</img/one-point-five.png>;rel=preload;as=image;media=' .
+				'(min-resolution: 1.5dppx) and (max-resolution: 1.999999dppx),' .
+				'</img/two-x.png>;rel=preload;as=image;media=(min-resolution: 2dppx)'
+			],
+			[
+				[
+					'Logo' => '/img/default.png',
+					'LogoHD' => false,
+				],
+				'Link: </img/default.png>;rel=preload;as=image'
+			],
+			[
+				[
+					'Logo' => '/img/default.png',
+					'LogoHD' => [
+						'2x' => '/img/two-x.png',
+					],
+				],
+				'Link: </img/default.png>;rel=preload;as=image;media=' .
+				'not all and (min-resolution: 2dppx),' .
+				'</img/two-x.png>;rel=preload;as=image;media=(min-resolution: 2dppx)'
+			],
+		];
+	}
+
+	/**
 	 * @return OutputPage
 	 */
-	private function newInstance() {
+	private function newInstance( $config = [] ) {
 		$context = new RequestContext();
 
-		$context->setConfig( new HashConfig( [
+		$context->setConfig( new HashConfig( $config + [
 			'AppleTouchIcon' => false,
 			'DisableLangConversion' => true,
 			'EnableAPI' => false,
