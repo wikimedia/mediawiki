@@ -756,7 +756,7 @@ class SpecialUndelete extends SpecialPage {
 	 * @param User $user
 	 * @return bool
 	 */
-	private function isAllowed( $permission, User $user = null ) {
+	protected function isAllowed( $permission, User $user = null ) {
 		$user = $user ? : $this->getUser();
 		if ( $this->mTargetObj !== null ) {
 			return $this->mTargetObj->userCan( $permission, $user );
@@ -1206,7 +1206,7 @@ class SpecialUndelete extends SpecialPage {
 		$repo->streamFile( $path );
 	}
 
-	private function showHistory() {
+	protected function showHistory() {
 		$out = $this->getOutput();
 		if ( $this->mAllowed ) {
 			$out->addModules( 'mediawiki.special.undelete' );
@@ -1377,7 +1377,7 @@ class SpecialUndelete extends SpecialPage {
 		return true;
 	}
 
-	private function formatRevisionRow( $row, $earliestLiveTime, $remaining ) {
+	protected function formatRevisionRow( $row, $earliestLiveTime, $remaining ) {
 		$rev = Revision::newFromArchiveRow( $row,
 			array(
 				'title' => $this->mTargetObj
