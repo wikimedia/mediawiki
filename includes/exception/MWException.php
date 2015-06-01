@@ -238,8 +238,8 @@ class MWException extends Exception {
 		} elseif ( self::isCommandLine() ) {
 			MWExceptionHandler::printError( $this->getText() );
 		} else {
-			self::header( 'HTTP/1.1 500 MediaWiki exception' );
-			self::header( 'Status: 500 MediaWiki exception' );
+			self::header( 'HTTP/1.1 500 Internal Server Error' );
+			self::header( 'Status: 500 Internal Server Error' );
 			self::header( "Content-Type: $wgMimeType; charset=utf-8" );
 
 			$this->reportHTML();
