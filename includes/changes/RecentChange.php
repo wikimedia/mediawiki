@@ -164,7 +164,7 @@ class RecentChange {
 	 * Obtain the recent change with a given rc_id value
 	 *
 	 * @param int $rcid The rc_id value to retrieve
-	 * @return RecentChange
+	 * @return RecentChange|null
 	 */
 	public static function newFromId( $rcid ) {
 		return self::newFromConds( array( 'rc_id' => $rcid ), __METHOD__ );
@@ -176,7 +176,7 @@ class RecentChange {
 	 * @param array $conds Array of conditions
 	 * @param mixed $fname Override the method name in profiling/logs
 	 * @param array $options Query options
-	 * @return RecentChange
+	 * @return RecentChange|null
 	 */
 	public static function newFromConds( $conds, $fname = __METHOD__, $options = array() ) {
 		$dbr = wfGetDB( DB_SLAVE );
