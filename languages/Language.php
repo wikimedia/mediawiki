@@ -4373,8 +4373,7 @@ class Language {
 			return false;
 		} else {
 			$fallbacks = self::getFallbacksFor( $code );
-			$first = array_shift( $fallbacks );
-			return $first;
+			return $fallbacks[0];
 		}
 	}
 
@@ -4383,19 +4382,15 @@ class Language {
 	 *
 	 * @since 1.19
 	 * @param string $code Language code
-	 * @return array
+	 * @return array Non-empty array, ending in "en"
 	 */
 	public static function getFallbacksFor( $code ) {
 		if ( $code === 'en' || !Language::isValidBuiltInCode( $code ) ) {
 			return array();
-		} else {
-			$v = self::getLocalisationCache()->getItem( $code, 'fallback' );
-			$v = array_map( 'trim', explode( ',', $v ) );
-			if ( $v[count( $v ) - 1] !== 'en' ) {
-				$v[] = 'en';
-			}
-			return $v;
 		}
+		// For unknown languages, fallbackSequence returns an empty array,
+		// hardcode fallback to 'en' in that case.
+		return self::getLocalisationCache()->getItem( $code, 'fallbackSequence' ) ?: array( 'en' );
 	}
 
 	/**
