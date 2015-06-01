@@ -303,6 +303,7 @@ class SpecialImport extends SpecialPage {
 		$action = $this->getPageTitle()->getLocalURL( array( 'action' => 'submit' ) );
 		$user = $this->getUser();
 		$out = $this->getOutput();
+		$this->addHelpLink( '//meta.wikimedia.org/wiki/Special:MyLanguage/Help:Import', true );
 		$importSources = $this->getConfig()->get( 'ImportSources' );
 
 		if ( $user->isAllowed( 'importupload' ) ) {
