@@ -3290,12 +3290,20 @@ class OutputPage extends ContextSource {
 	 * @return array Array in format "link name or number => 'link html'".
 	 */
 	public function getHeadLinksArray() {
-		global $wgVersion;
+		global $wgVersion, $wgLogo;
 
 		$tags = array();
 		$config = $this->getConfig();
 
 		$canonicalUrl = $this->mCanonicalUrl;
+
+		if ( isset( $wgLogo ) ) {
+			// Ask the preloader to fetch the logo ASAP since it's very prominent
+			$tags['logo-prefetch'] = Html::element( 'link', array(
+				'href' => $wgLogo,
+				'rel' => 'prefetch'
+			) );
+		}
 
 		$tags['meta-generator'] = Html::element( 'meta', array(
 			'name' => 'generator',
