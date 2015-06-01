@@ -40,6 +40,8 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		$styles['all'][] = '.mw-wiki-logo { background-image: ' .
 			CSSMin::buildUrlValue( $logo1 ) .
 			'; }';
+		// Only 1.5x and 2x are supported
+		// Note: Keep in sync with OutputPage::addLogoPreloadLinkHeaders()
 		if ( $logoHD ) {
 			if ( isset( $logoHD['1.5x'] ) ) {
 				$styles[
