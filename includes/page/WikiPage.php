@@ -1961,13 +1961,13 @@ class WikiPage implements Page, IDBAccessObject {
 		$status->value['revision'] = $revision;
 
 		$hook_args = array( &$this, &$user, $content, $summary,
-							$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $baseRevId );
+			$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $baseRevId );
 
 		ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $hook_args );
 		Hooks::run( 'PageContentSaveComplete', $hook_args );
 
 		// Promote user to any groups they meet the criteria for
-		$dbw->onTransactionIdle( function () use ( $user ) {
+		DeferredUpdates::addCallableUpdate( function () use ( $user ) {
 			$user->addAutopromoteOnceGroups( 'onEdit' );
 			$user->addAutopromoteOnceGroups( 'onView' ); // b/c
 		} );
