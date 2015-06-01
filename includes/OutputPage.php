@@ -303,6 +303,11 @@ class OutputPage extends ContextSource {
 	private $limitReportJSData = [];
 
 	/**
+	 * Link: header contents
+	 */
+	private $mLinkHeader = [];
+
+	/**
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead a new RequestContext should be created and it will implicitly create
 	 * a OutputPage tied to that context.
@@ -2106,6 +2111,28 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Add an HTTP Link: header
+	 *
+	 * @param string $header Header value
+	 */
+	public function addLinkHeader( $header ) {
+		$this->mLinkHeader[] = $header;
+	}
+
+	/**
+	 * Return a Link: header. Based on the values of $mLinkHeader.
+	 *
+	 * @return string
+	 */
+	public function getLinkHeader() {
+		if ( !$this->mLinkHeader ) {
+			return false;
+		}
+
+		return 'Link: ' . implode( ',', $this->mLinkHeader );
+	}
+
+	/**
 	 * Get a complete Key header
 	 *
 	 * @return string
@@ -2360,6 +2387,12 @@ class OutputPage extends ContextSource {
 		// Avoid Internet Explorer "compatibility view" in IE 8-10, so that
 		// jQuery etc. can work correctly.
 		$response->header( 'X-UA-Compatible: IE=Edge' );
+
+		$this->addLogoPreloadLinkHeaders();
+		$linkHeader = $this->getLinkHeader();
+		if ( $linkHeader ) {
+			$response->header( $linkHeader );
+		}
 
 		// Prevent framing, if requested
 		$frameOptions = $this->getFrameOptions();
@@ -3959,5 +3992,67 @@ class OutputPage extends ContextSource {
 			'oojs-ui.styles.textures',
 			'mediawiki.widgets.styles',
 		] );
+	}
+
+	/**
+	 * Adds Link: headers to preload the wiki's logo(s)
+	 *
+	 * @since  1.26
+	 */
+	protected function addLogoPreloadLinkHeaders() {
+		$logo = $this->getConfig()->get( 'Logo' ); // wgLogo
+		$logoHD = $this->getConfig()->get( 'LogoHD' ); // wgLogoHD
+
+		$tags = [];
+		$logosPerDppx = [];
+		$logos = [];
+
+		if ( $logo ) {
+			$logosPerDppx['1.0'] = $logo;
+		}
+
+		if ( is_array( $logoHD ) ) {
+			foreach ( $logoHD as $dppx => $src ) {
+				// Only 1.5x and 2x are supported for now
+				if ( in_array( $dppx, [ '1.5x', '2x' ] ) ) {
+					// LogoHD uses a string in this format: "1.5x"
+					$dppx = substr( $dppx, 0, -1 );
+					$logosPerDppx[$dppx] = $src;
+				}
+			}
+		} else {
+			// No media queries required if we only have one logo
+			$this->addLinkHeader( '<' . $logo . '>;rel=preload;as=image' );
+			return;
+		}
+
+		// Because PHP can't have floats as array keys
+		uksort( $logosPerDppx, function ( $a , $b ) {
+			$a = floatval( $a );
+			$b = floatval( $b );
+
+			if ( $a == $b ) {
+				return 0;
+			}
+			// Sort from smallest to largest (e.g. 1x, 1.5x, 2x)
+			return ( $a < $b ) ? -1 : 1;
+		} );
+
+		foreach ( $logosPerDppx as $dppx => $src ) {
+			$logos []= [ 'dppx' => $dppx, 'src' => $src ];
+		}
+
+		for ( $i = 0; $i < count( $logos ); $i++ ) {
+			if ( $i == 0 ) {
+				$media_query = 'not all and (min-resolution: ' . $logos[1]['dppx'] . 'dppx)';
+			} elseif ( $i == count( $logos ) - 1 ) {
+				$media_query = '(min-resolution: ' . $logos[$i]['dppx'] . 'dppx)';
+			} else {
+				$upper_bound = floatval($logos[$i + 1]['dppx']) - 0.000001;
+				$media_query = '(min-resolution: ' .  $logos[$i]['dppx'] . 'dppx) and (max-resolution: ' . $upper_bound . 'dppx)';
+			}
+
+			$this->addLinkHeader( '<' . $logos[$i]['src'] . '>;rel=preload;as=image;media=' . $media_query );
+		}
 	}
 }
