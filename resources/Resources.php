@@ -94,20 +94,22 @@ return array(
 	 * including more than one of them into your skin as this will result in duplicate CSS.
 	 */
 	'mediawiki.skinning.elements' => array(
+		'position' => 'top',
 		'styles' => array(
 			'resources/src/mediawiki.skinning/elements.css' => array( 'media' => 'screen' ),
 		),
 	),
 	'mediawiki.skinning.content' => array(
+		'position' => 'top',
 		'styles' => array(
 			'resources/src/mediawiki.skinning/elements.css' => array( 'media' => 'screen' ),
 			'resources/src/mediawiki.skinning/content.css' => array( 'media' => 'screen' ),
 		),
 	),
+	// Used in the web installer. Test it after modifying this definition!
 	'mediawiki.skinning.interface' => array(
 		'position' => 'top',
 		'class' => 'ResourceLoaderSkinModule',
-		// Used in the web installer. Test it after modifying this definition!
 		'styles' => array(
 			'resources/src/mediawiki.skinning/elements.css' => array( 'media' => 'screen' ),
 			'resources/src/mediawiki.skinning/content.css' => array( 'media' => 'screen' ),
@@ -127,7 +129,7 @@ return array(
 	),
 
 	'mediawiki.skinning.content.externallinks' => array(
-		'position' => 'top',
+		'position' => 'bottom',
 		'styles' => array(
 			'resources/src/mediawiki.skinning/content.externallinks.css' => array( 'media' => 'screen' ),
 		),
@@ -1600,8 +1602,8 @@ return array(
 
 	/* MediaWiki Installer */
 
+	// Used in the web installer. Test it after modifying this definition!
 	'mediawiki.legacy.config' => array(
-		// Used in the web installer. Test it after modifying this definition!
 		// These files are not actually loaded via ResourceLoader, so dependencies etc. won't work.
 		'scripts' => 'mw-config/config.js',
 		'styles' => 'mw-config/config.css',
@@ -1628,8 +1630,8 @@ return array(
 		'dependencies' => 'jquery.byteLimit',
 		'messages' => array( 'protect-unchain-permissions' )
 	),
+	// Used in the web installer. Test it after modifying this definition!
 	'mediawiki.legacy.shared' => array(
-		// Used in the web installer. Test it after modifying this definition!
 		'position' => 'top',
 		'styles' => array(
 			'resources/src/mediawiki.legacy/shared.css' => array( 'media' => 'screen' )
