@@ -23,7 +23,7 @@ mw.loader.addSource( {
 } );mw.loader.register( [
     [
         "test.blank",
-        "XyCC+PSK"
+        "KW19ALGt"
     ]
 ] );',
 			) ),
@@ -40,17 +40,17 @@ mw.loader.addSource( {
 } );mw.loader.register( [
     [
         "test.blank",
-        "XyCC+PSK"
+        "KW19ALGt"
     ],
     [
         "test.group.foo",
-        "XyCC+PSK",
+        "KW19ALGt",
         [],
         "x-foo"
     ],
     [
         "test.group.bar",
-        "XyCC+PSK",
+        "KW19ALGt",
         [],
         "x-bar"
     ]
@@ -68,7 +68,7 @@ mw.loader.addSource( {
 } );mw.loader.register( [
     [
         "test.blank",
-        "XyCC+PSK"
+        "KW19ALGt"
     ]
 ] );'
 			) ),
@@ -90,7 +90,7 @@ mw.loader.addSource( {
 } );mw.loader.register( [
     [
         "test.blank",
-        "XyCC+PSK",
+        "KW19ALGt",
         [],
         null,
         "example"
@@ -126,11 +126,11 @@ mw.loader.addSource( {
 } );mw.loader.register( [
     [
         "test.x.core",
-        "XyCC+PSK"
+        "KW19ALGt"
     ],
     [
         "test.x.polyfill",
-        "XyCC+PSK",
+        "KW19ALGt",
         [],
         null,
         null,
@@ -138,7 +138,7 @@ mw.loader.addSource( {
     ],
     [
         "test.y.polyfill",
-        "XyCC+PSK",
+        "KW19ALGt",
         [],
         null,
         null,
@@ -146,7 +146,7 @@ mw.loader.addSource( {
     ],
     [
         "test.z.foo",
-        "XyCC+PSK",
+        "KW19ALGt",
         [
             0,
             1,
@@ -222,36 +222,36 @@ mw.loader.addSource( {
 } );mw.loader.register( [
     [
         "test.blank",
-        "XyCC+PSK"
+        "KW19ALGt"
     ],
     [
         "test.x.core",
-        "XyCC+PSK"
+        "KW19ALGt"
     ],
     [
         "test.x.util",
-        "XyCC+PSK",
+        "KW19ALGt",
         [
             1
         ]
     ],
     [
         "test.x.foo",
-        "XyCC+PSK",
+        "KW19ALGt",
         [
             1
         ]
     ],
     [
         "test.x.bar",
-        "XyCC+PSK",
+        "KW19ALGt",
         [
             2
         ]
     ],
     [
         "test.x.quux",
-        "XyCC+PSK",
+        "KW19ALGt",
         [
             3,
             4,
@@ -260,25 +260,25 @@ mw.loader.addSource( {
     ],
     [
         "test.group.foo.1",
-        "XyCC+PSK",
+        "KW19ALGt",
         [],
         "x-foo"
     ],
     [
         "test.group.foo.2",
-        "XyCC+PSK",
+        "KW19ALGt",
         [],
         "x-foo"
     ],
     [
         "test.group.bar.1",
-        "XyCC+PSK",
+        "KW19ALGt",
         [],
         "x-bar"
     ],
     [
         "test.group.bar.2",
-        "XyCC+PSK",
+        "KW19ALGt",
         [],
         "x-bar",
         "example"
@@ -344,8 +344,8 @@ mw.loader.addSource( {
 		$this->assertEquals(
 'mw.loader.addSource({"local":"/w/load.php"});'
 . 'mw.loader.register(['
-. '["test.blank","XyCC+PSK"],'
-. '["test.min","XyCC+PSK",[0],null,null,'
+. '["test.blank","KW19ALGt"],'
+. '["test.min","KW19ALGt",[0],null,null,'
 . '"return!!(window.JSON\u0026\u0026JSON.parse\u0026\u0026JSON.stringify);"'
 . ']]);',
 			$module->getModuleRegistrations( $context ),
@@ -367,11 +367,11 @@ mw.loader.addSource( {
 } );mw.loader.register( [
     [
         "test.blank",
-        "XyCC+PSK"
+        "KW19ALGt"
     ],
     [
         "test.min",
-        "XyCC+PSK",
+        "KW19ALGt",
         [
             0
         ],
