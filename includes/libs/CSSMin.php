@@ -232,11 +232,15 @@ class CSSMin {
 			$remote = substr( $remote, 0, -1 );
 		}
 
+		// Disallow U+007F DELETE, which is illegal anyway, and which
+		// we use for comment placeholders.
+		$source = strtr( $source, "\x7f", "?" );
+
 		// Replace all comments by a placeholder so they will not interfere with the remapping.
 		// Warning: This will also catch on anything looking like the start of a comment between
 		// quotation marks (e.g. "foo /* bar").
 		$comments = array();
-		$placeholder = uniqid( '', true );
+		$placeholder = "\x7fPLACEHOLDER\x7f";
 
 		$pattern = '/(?!' . CSSMin::EMBED_REGEX . ')(' . CSSMin::COMMENT_REGEX . ')/s';
 
