@@ -33,6 +33,15 @@
  */
 class MessageBlobStore {
 	/**
+	 * In-process cache for message blobs.
+	 *
+	 * Keyed by language code, then module name.
+	 *
+	 * @var array
+	 */
+	protected $blobCache = array();
+
+	/**
 	 * Get the singleton instance
 	 *
 	 * @since 1.24
@@ -56,16 +65,38 @@ class MessageBlobStore {
 		if ( !count( $modules ) ) {
 			return array();
 		}
-		// Try getting from the DB first
-		$blobs = $this->getFromDB( $resourceLoader, array_keys( $modules ), $lang );
 
-		// Generate blobs for any missing modules and store them in the DB
-		$missing = array_diff( array_keys( $modules ), array_keys( $blobs ) );
-		foreach ( $missing as $name ) {
+		$blobs = array();
+
+		// Try in-process cache
+		$missingFromCache = array();
+		foreach ( $modules as $name => $module ) {
+			if ( isset( $this->blobCache[$lang][$name] ) ) {
+				$blobs[$name] = $this->blobCache[$lang][$name];
+			} else {
+				$missingFromCache[] = $name;
+			}
+		}
+
+		// Try DB cache
+		if ( $missingFromCache ) {
+			$blobs += $this->getFromDB( $resourceLoader, $missingFromCache, $lang );
+		}
+
+		// Generate new blobs for any remaining modules and store in DB
+		$missingFromDb = array_diff( array_keys( $modules ), array_keys( $blobs ) );
+		foreach ( $missingFromDb as $name ) {
 			$blob = $this->insertMessageBlob( $name, $modules[$name], $lang );
 			if ( $blob ) {
 				$blobs[$name] = $blob;
 			}
+		}
+
+		// Update in-process cache
+		if ( isset( $this->blobCache[$lang] ) ) {
+			$this->blobCache[$lang] += $blobs;
+		} else {
+			$this->blobCache[$lang] = $blobs;
 		}
 
 		return $blobs;
@@ -339,6 +370,10 @@ class MessageBlobStore {
 	 * @return array Array mapping module names to blobs
 	 */
 	private function getFromDB( ResourceLoader $resourceLoader, $modules, $lang ) {
+		if ( !count( $modules ) ) {
+			return array();
+		}
+
 		$config = $resourceLoader->getConfig();
 		$retval = array();
 		$dbr = wfGetDB( DB_SLAVE );
