@@ -291,8 +291,8 @@ class LoadBalancer {
 				return false;
 			}
 
-			wfDebugLog( 'connect', __METHOD__ .
-				": Using reader #$i: {$this->mServers[$i]['host']}..." );
+			$serverName = $this->getServerName( $i );
+			wfDebugLog( 'connect', __METHOD__ . ": Using reader #$i: $serverName..." );
 
 			$conn = $this->openConnection( $i, $wiki );
 			if ( !$conn ) {
@@ -462,7 +462,7 @@ class LoadBalancer {
 
 		if ( $result == -1 || is_null( $result ) ) {
 			# Timed out waiting for slave, use master instead
-			$server = $this->mServers[$index]['host'];
+			$server = $server = $this->getServerName( $index );
 			$msg = __METHOD__ . ": Timed out waiting on $server pos {$this->mWaitForPos}";
 			wfDebug( "$msg\n" );
 			wfDebugLog( 'DBPerformance', "$msg:\n" . wfBacktrace( true ) );
@@ -660,11 +660,12 @@ class LoadBalancer {
 			$server = $this->mServers[$i];
 			$server['serverIndex'] = $i;
 			$conn = $this->reallyOpenConnection( $server, false );
+			$serverName = $this->getServerName( $i );
 			if ( $conn->isOpen() ) {
-				wfDebug( "Connected to database $i at {$this->mServers[$i]['host']}\n" );
+				wfDebug( "Connected to database $i at $serverName\n" );
 				$this->mConns['local'][$i][0] = $conn;
 			} else {
-				wfDebug( "Failed to connect to database $i at {$this->mServers[$i]['host']}\n" );
+				wfDebug( "Failed to connect to database $i at $serverName\n" );
 				$this->mErrorConnection = $conn;
 				$conn = false;
 			}
@@ -888,12 +889,14 @@ class LoadBalancer {
 	 */
 	public function getServerName( $i ) {
 		if ( isset( $this->mServers[$i]['hostName'] ) ) {
-			return $this->mServers[$i]['hostName'];
+			$name = $this->mServers[$i]['hostName'];
 		} elseif ( isset( $this->mServers[$i]['host'] ) ) {
-			return $this->mServers[$i]['host'];
+			$name = $this->mServers[$i]['host'];
 		} else {
-			return '';
+			$name = '';
 		}
+
+		return ( $name != '' ) ? $name : 'localhost';
 	}
 
 	/**
