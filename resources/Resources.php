@@ -1061,6 +1061,15 @@ return array(
 			'jquery.byteLength',
 			'mediawiki.util',
 		),
+		'messages' => array(
+			'title-invalid-empty',
+			'title-invalid-talk-namespace',
+			'title-invalid-characters',
+			'title-invalid-relative',
+			'title-invalid-magic-tilde',
+			'title-invalid-too-long',
+			'title-invalid-leading-colon',
+		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.toc' => array(
