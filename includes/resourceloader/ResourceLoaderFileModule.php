@@ -514,6 +514,18 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * Disable module content versioning.
+	 *
+	 * This class uses getDefinitionSummary() instead, to avoid filesystem overhead
+	 * involved with building the full module content inside a startup request.
+	 *
+	 * @return bool
+	 */
+	public function enableModuleContentVersion() {
+		return false;
+	}
+
+	/**
 	 * Helper method to gather file mtimes for getDefinitionSummary.
 	 *
 	 * Last modified timestamps are calculated from the highest last modified
