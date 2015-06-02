@@ -73,15 +73,6 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 
 	/**
 	 * @param $context ResourceLoaderContext
-	 * @return int|mixed
-	 */
-	public function getModifiedTime( ResourceLoaderContext $context ) {
-		$parentMTime = parent::getModifiedTime( $context );
-		return max( $parentMTime, $this->getHashMtime( $context ) );
-	}
-
-	/**
-	 * @param $context ResourceLoaderContext
 	 * @return string: Hash
 	 */
 	public function getModifiedHash( ResourceLoaderContext $context ) {

@@ -42,14 +42,6 @@ class ResourceLoaderUserDefaultsModule extends ResourceLoaderModule {
 
 	/**
 	 * @param ResourceLoaderContext $context
-	 * @return int
-	 */
-	public function getModifiedTime( ResourceLoaderContext $context ) {
-		return $this->getHashMtime( $context );
-	}
-
-	/**
-	 * @param ResourceLoaderContext $context
 	 * @return string
 	 */
 	public function getScript( ResourceLoaderContext $context ) {

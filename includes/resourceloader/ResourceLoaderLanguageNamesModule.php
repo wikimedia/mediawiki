@@ -66,14 +66,6 @@ class ResourceLoaderLanguageNamesModule extends ResourceLoaderModule {
 
 	/**
 	 * @param ResourceLoaderContext $context
-	 * @return int UNIX timestamp
-	 */
-	public function getModifiedTime( ResourceLoaderContext $context ) {
-		return max( 1, $this->getHashMtime( $context ) );
-	}
-
-	/**
-	 * @param ResourceLoaderContext $context
 	 * @return string Hash
 	 */
 	public function getModifiedHash( ResourceLoaderContext $context ) {

@@ -409,10 +409,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 		$files = array_values( array_unique( $files ) );
 		$filesMtime = max( array_map( array( __CLASS__, 'safeFilemtime' ), $files ) );
 
-		return max(
-			$filesMtime,
-			$this->getDefinitionMtime( $context )
-		);
+		return $filesMtime;
 	}
 
 	/**

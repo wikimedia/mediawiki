@@ -229,8 +229,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		}
 		$modifiedTime = max(
 			$modifiedTime,
-			$this->getMsgBlobMtime( $context->getLanguage() ),
-			$this->getDefinitionMtime( $context )
+			$this->getMsgBlobMtime( $context->getLanguage() )
 		);
 		return $modifiedTime;
 	}
