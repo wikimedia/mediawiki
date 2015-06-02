@@ -225,6 +225,20 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * Disable module content versioning.
+	 *
+	 * This class does not support generating content outside of a module
+	 * request due to foreign database support.
+	 *
+	 * See getDefinitionSummary() for meta-data versioning.
+	 *
+	 * @return bool
+	 */
+	public function enableModuleContentVersion() {
+		return false;
+	}
+
+	/**
 	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */

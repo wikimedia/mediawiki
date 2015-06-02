@@ -54,11 +54,10 @@ class ResourceLoaderSpecialCharacterDataModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param ResourceLoaderContext $context
-	 * @return string Hash
+	 * @return bool
 	 */
-	public function getModifiedHash( ResourceLoaderContext $context ) {
-		return md5( serialize( $this->getData() ) );
+	public function enableModuleContentVersion() {
+		return true;
 	}
 
 	/**
