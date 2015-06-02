@@ -31,6 +31,9 @@ class CSSMin {
 
 	/* Constants */
 
+	/** @var string Strip marker for comments. **/
+	const PLACEHOLDER = "\x7fPLACEHOLDER\x7f";
+
 	/**
 	 * Internet Explorer data URI length limit. See encodeImageAsDataURI().
 	 */
@@ -232,19 +235,22 @@ class CSSMin {
 			$remote = substr( $remote, 0, -1 );
 		}
 
+		// Disallow U+007F DELETE, which is illegal anyway, and which
+		// we use for comment placeholders.
+		$source = str_replace( "\x7f", "?", $source );
+
 		// Replace all comments by a placeholder so they will not interfere with the remapping.
 		// Warning: This will also catch on anything looking like the start of a comment between
 		// quotation marks (e.g. "foo /* bar").
 		$comments = array();
-		$placeholder = uniqid( '', true );
 
 		$pattern = '/(?!' . CSSMin::EMBED_REGEX . ')(' . CSSMin::COMMENT_REGEX . ')/s';
 
 		$source = preg_replace_callback(
 			$pattern,
-			function ( $match ) use ( &$comments, $placeholder ) {
+			function ( $match ) use ( &$comments ) {
 				$comments[] = $match[ 0 ];
-				return $placeholder . ( count( $comments ) - 1 ) . 'x';
+				return CSSMin::PLACEHOLDER . ( count( $comments ) - 1 ) . 'x';
 			},
 			$source
 		);
@@ -257,13 +263,13 @@ class CSSMin {
 
 		$source = preg_replace_callback(
 			$pattern,
-			function ( $matchOuter ) use ( $local, $remote, $embedData, $placeholder ) {
+			function ( $matchOuter ) use ( $local, $remote, $embedData ) {
 				$rule = $matchOuter[0];
 
 				// Check for global @embed comment and remove it. Allow other comments to be present
 				// before @embed (they have been replaced with placeholders at this point).
 				$embedAll = false;
-				$rule = preg_replace( '/^((?:\s+|' . $placeholder . '(\d+)x)*)' . CSSMin::EMBED_REGEX . '\s*/', '$1', $rule, 1, $embedAll );
+				$rule = preg_replace( '/^((?:\s+|' . CSSMin::PLACEHOLDER . '(\d+)x)*)' . CSSMin::EMBED_REGEX . '\s*/', '$1', $rule, 1, $embedAll );
 
 				// Build two versions of current rule: with remapped URLs
 				// and with embedded data: URIs (where possible).
@@ -328,7 +334,7 @@ class CSSMin {
 			}, $source );
 
 		// Re-insert comments
-		$pattern = '/' . $placeholder . '(\d+)x/';
+		$pattern = '/' . CSSMin::PLACEHOLDER . '(\d+)x/';
 		$source = preg_replace_callback( $pattern, function( $match ) use ( &$comments ) {
 			return $comments[ $match[1] ];
 		}, $source );
