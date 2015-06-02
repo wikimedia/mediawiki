@@ -191,6 +191,16 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		$out = '';
 		$registryData = array();
 
+		// The startup module produces a manifest with versions representing the entire module.
+		// Typically, the request for the startup module itself has only=scripts. That must apply
+		// only to the startup module content, and not to the module versions computed here.
+		$contentNeutralContext = new DerivativeResourceLoaderContext( $context );
+		$contentNeutralContext->setModules( array() );
+		// Version hash must cover all resources, regardless of startup request itself.
+		$contentNeutralContext->setOnly( null );
+		// Compute version hash based on content, not debug urls.
+		$contentNeutralContext->setDebug( false );
+
 		// Get registry data
 		foreach ( $resourceLoader->getModuleNames() as $name ) {
 			$module = $resourceLoader->getModule( $name );
@@ -206,7 +216,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				continue;
 			}
 
-			$versionHash = $module->getVersionHash( $context );
+			$versionHash = $module->getVersionHash( $contentNeutralContext );
 			if ( strlen( $versionHash ) !== 8 ) {
 				// Module implementation either broken or deviated from ResourceLoader::makeHash
 				// Asserted by tests/phpunit/structure/ResourcesTest.
