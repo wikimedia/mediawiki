@@ -51,12 +51,9 @@ class ResourceLoaderJqueryMsgDataModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param ResourceLoaderContext $context
-	 * @return array|null
+	 * @return bool
 	 */
-	public function getDefinitionSummary( ResourceLoaderContext $context ) {
-		$ret = parent::getDefinitionSummary( $context );
-		$ret['hash'] = md5( $this->getScript( $context ) );
-		return $ret;
+	public function enableModuleContentVersion() {
+		return true;
 	}
 }
