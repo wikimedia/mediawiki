@@ -65,15 +65,10 @@ class ResourceLoaderEditToolbarModule extends ResourceLoaderFileModule {
 	}
 
 	/**
-	 * @param ResourceLoaderContext $context
-	 * @return array
+	 * @return bool
 	 */
-	public function getDefinitionSummary( ResourceLoaderContext $context ) {
-		$summary = parent::getDefinitionSummary( $context );
-		$summary[] = array(
-			'lessVars' => $this->getLessVars( $context ),
-		);
-		return $summary;
+	public function enableModuleContentVersion() {
+		return true;
 	}
 
 	/**
