@@ -54,19 +54,12 @@ class ResourceLoaderSpecialCharacterDataModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param ResourceLoaderContext $context
-	 * @return int UNIX timestamp
+	 * Generate version hash based on module content.
+	 *
+	 * @return bool
 	 */
-	public function getModifiedTime( ResourceLoaderContext $context ) {
-		return static::safeFilemtime( $this->path );
-	}
-
-	/**
-	 * @param ResourceLoaderContext $context
-	 * @return string Hash
-	 */
-	public function getModifiedHash( ResourceLoaderContext $context ) {
-		return md5( serialize( $this->getData() ) );
+	public function enableModuleContentVersion() {
+		return true;
 	}
 
 	/**
