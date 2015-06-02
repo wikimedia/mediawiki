@@ -574,27 +574,49 @@ abstract class ResourceLoaderModule {
 		$contextHash = $context->getHash();
 		if ( !array_key_exists( $contextHash, $this->versionHash ) ) {
 
-			$summary = $this->getDefinitionSummary( $context );
-			if ( !isset( $summary['_cacheEpoch'] ) ) {
-				throw new Exception( 'getDefinitionSummary must call parent method' );
-			}
-			$str = json_encode( $summary );
+			if ( $this->enableModuleContentVersion() ) {
+				// Detect changes directly
+				$str = json_encode( $this->getModuleContent( $context ) );
+			} else {
+				// Infer changes based on definition and other metrics
+				$summary = $this->getDefinitionSummary( $context );
+				if ( !isset( $summary['_cacheEpoch'] ) ) {
+					throw new Exception( 'getDefinitionSummary must call parent method' );
+				}
+				$str = json_encode( $summary );
 
-			$mtime = $this->getModifiedTime( $context );
-			if ( $mtime !== null ) {
 				// Support: MediaWiki 1.25 and earlier
-				$str .= strval( $mtime );
-			}
+				$mtime = $this->getModifiedTime( $context );
+				if ( $mtime !== null ) {
+					$str .= strval( $mtime );
+				}
 
-			$mhash = $this->getModifiedHash( $context );
-			if ( $mhash !== null ) {
 				// Support: MediaWiki 1.25 and earlier
-				$str .= strval( $mhash );
+				$mhash = $this->getModifiedHash( $context );
+				if ( $mhash !== null ) {
+					$str .= strval( $mhash );
+				}
 			}
 
 			$this->versionHash[ $contextHash ] = ResourceLoader::makeHash( $str );
 		}
 		return $this->versionHash[ $contextHash ];
+	}
+
+	/**
+	 * Whether this module should use getModuleContent() to make its version hash.
+	 *
+	 * For performance reasons, modules that depend on database or file system I/O
+	 * to build module contents, may want to disable this. If this is disabled,
+	 * the module class  in favour of having
+	 * getVersionHash() use getDefinitionSummary() .
+	 *
+	 * See getVersionHash() for how this is used.
+	 *
+	 * @return bool
+	 */
+	public function enableModuleContentVersion() {
+		return true;
 	}
 
 	/**
