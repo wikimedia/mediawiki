@@ -30,8 +30,7 @@
 			"description": "Extension's authors.",
 			"items": {
 				"type": "string"
-			},
-			"additionalItems": false
+			}
 		},
 		"version": {
 			"type": "string",
