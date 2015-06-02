@@ -206,6 +206,8 @@ class UserMailer {
 		$headers['Date'] = MWTimestamp::getLocalInstance()->format( 'r' );
 		$headers['Message-ID'] = self::makeMsgId();
 		$headers['X-Mailer'] = 'MediaWiki mailer';
+		$headers['List-Unsubscribe'] = '<' . SpecialPage::getTitleFor( 'Preferences' )
+			->getFullURL( '', false, PROTO_CANONICAL ) . '>';
 
 		# Line endings need to be different on Unix and Windows due to
 		# the bug described at http://trac.wordpress.org/ticket/2603
