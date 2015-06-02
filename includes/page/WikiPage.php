@@ -2769,9 +2769,16 @@ class WikiPage implements Page, IDBAccessObject {
 		$dbw->begin( __METHOD__ );
 
 		if ( $id == 0 ) {
-			$this->loadPageData( 'forupdate' );
+			// T98706: lock the page from various other updates but avoid using
+			// WikiPage::READ_LOCKING as that will carry over the FOR UPDATE to
+			// the revisions queries (which also JOIN on user). Only lock the page
+			// row and CAS check on page_latest to see if the trx snapshot matches.
+			$latest = $this->lock();
+
+			$this->loadPageData( WikiPage::READ_LATEST );
 			$id = $this->getID();
-			if ( $id == 0 ) {
+			if ( $id == 0 || $this->getLatest() != $latest ) {
+				// Page not there or trx snapshot is stale
 				$dbw->rollback( __METHOD__ );
 				$status->error( 'cannotdelete', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) );
 				return $status;
@@ -2876,6 +2883,24 @@ class WikiPage implements Page, IDBAccessObject {
 		Hooks::run( 'ArticleDeleteComplete', array( &$this, &$user, $reason, $id, $content, $logEntry ) );
 		$status->value = $logid;
 		return $status;
+	}
+
+	/**
+	 * Lock the page row for this title and return page_latest (or 0)
+	 *
+	 * @return integer
+	 */
+	protected function lock() {
+		return (int)wfGetDB( DB_MASTER )->selectField(
+			'page',
+			'page_latest',
+			array(
+				'page_namespace' => $this->getTitle()->getNamespace(),
+				'page_title' => $this->getTitle()->getDBkey()
+			),
+			__METHOD__,
+			array( 'FOR UPDATE' )
+		);
 	}
 
 	/**
