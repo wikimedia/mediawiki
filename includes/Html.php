@@ -104,8 +104,8 @@ class Html {
 	/**
 	 * Modifies a set of attributes meant for button elements
 	 * and apply a set of default attributes when $wgUseMediaWikiUIEverywhere enabled.
-	 * @param array $attrs
-	 * @param string[] $modifiers to add to the button
+	 * @param array $attrs HTML attributes in an associative array
+	 * @param string[] $modifiers classes to add to the button
 	 * @see https://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
 	 * @return array $attrs A modified attribute array
 	 */
@@ -115,16 +115,15 @@ class Html {
 			if ( isset( $attrs['class'] ) ) {
 				if ( is_array( $attrs['class'] ) ) {
 					$attrs['class'][] = 'mw-ui-button';
-					$attrs = array_merge( $attrs, $modifiers );
+					$attrs['class'] = array_merge( $attrs['class'], $modifiers );
 					// ensure compatibility with Xml
 					$attrs['class'] = implode( ' ', $attrs['class'] );
 				} else {
 					$attrs['class'] .= ' mw-ui-button ' . implode( ' ', $modifiers );
 				}
 			} else {
-				$attrs['class'] = array( 'mw-ui-button' );
 				// ensure compatibility with Xml
-				$attrs['class'] = implode( ' ', array_merge( $attrs['class'], $modifiers ) );
+				$attrs['class'] = 'mw-ui-button ' . implode( ' ', $modifiers );
 			}
 		}
 		return $attrs;
@@ -162,7 +161,7 @@ class Html {
 	 * @param array $attrs Associative array of attributes, e.g., array(
 	 *   'href' => 'http://www.mediawiki.org/' ). See expandAttributes() for
 	 *   further documentation.
-	 * @param string[] $modifiers to add to the button
+	 * @param string[] $modifiers classes to add to the button
 	 * @see http://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
 	 * @return string Raw HTML
 	 */
@@ -182,7 +181,7 @@ class Html {
 	 * @param array $attrs Associative array of attributes, e.g., array(
 	 *   'href' => 'http://www.mediawiki.org/' ). See expandAttributes() for
 	 *   further documentation.
-	 * @param string[] $modifiers to add to the button
+	 * @param string[] $modifiers classes to add to the button
 	 * @see http://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
 	 * @return string Raw HTML
 	 */
