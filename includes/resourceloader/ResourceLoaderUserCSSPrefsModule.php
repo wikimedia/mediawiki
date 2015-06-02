@@ -30,11 +30,10 @@ class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 	protected $origin = self::ORIGIN_CORE_INDIVIDUAL;
 
 	/**
-	 * @param ResourceLoaderContext $context
-	 * @return array|int|mixed
+	 * @return bool
 	 */
-	public function getModifiedTime( ResourceLoaderContext $context ) {
-		return wfTimestamp( TS_UNIX, $context->getUserObj()->getTouched() );
+	public function enableModuleContentVersion() {
+		return true;
 	}
 
 	/**
