@@ -610,6 +610,9 @@
 		"ValidSkinNames": {
 			"type": "object"
 		},
+		"SkinOOUIThemes": {
+			"type": "object"
+		},
 		"callback": {
 			"type": [
 				"array",
