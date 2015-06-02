@@ -13,7 +13,8 @@
 			"Southparkfan",
 			"Seb35",
 			"Mar(c)",
-			"Sjoerddebruin"
+			"Sjoerddebruin",
+			"Esketti"
 		]
 	},
 	"config-desc": "Het installatieprogramma voor MediaWiki",
@@ -71,7 +72,7 @@
 	"config-magic-quotes-sybase": "'''Onherstelbare fout: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_sybase] is actief!'''\nDeze instelling zorgt voor onvoorspelbare gegevenscorruptie.\nU kunt MediaWiki niet installeren tenzij deze instelling is uitgeschakeld.",
 	"config-mbstring": "'''Onherstelbare fout: [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] is actief!'''\nDeze instelling zorgt voor onvoorspelbare gegevenscorruptie.\nU kunt MediaWiki niet installeren tenzij deze instelling is uitgeschakeld.",
 	"config-safe-mode": "'''Waarschuwing:'''\n'''PHP's [http://www.php.net/features.safe-mode veilige modus] is actief.'''\nDit kan problemen veroorzaken, vooral bij het uploaden van bestanden en ondersteuning van <code>math</code>.",
-	"config-xml-bad": "De XML-module van PHP ontbreekt.\nMediaWiki heeft de functies van deze module nodig en werkt niet zonder deze module.\nAls u gebruik maakt van Mandrake, installeer dan het package php-xml.",
+	"config-xml-bad": "PHP-XML-module ontbreekt.\nMediaWiki is vereist functies in deze module en zal niet werken in deze configuratie.\nMoet u de php-xml-RPM pakket.",
 	"config-pcre-old": "'''Onherstelbare fout:''' PCRE $1 of een latere versie is vereist.\nUw uitvoerbare versie van PHP is gekoppeld met PCRE $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Meer informatie].",
 	"config-pcre-no-utf8": "'''Fataal:''' de module PRCE van PHP lijkt te zijn gecompileerd zonder ondersteuning voor PCRE_UTF8.\nMediaWiki heeft ondersteuning voor UTF-8 nodig om correct te kunnen werken.",
 	"config-memory-raised": "PHP's <code>memory_limit</code> is $1 en is verhoogd tot $2.",

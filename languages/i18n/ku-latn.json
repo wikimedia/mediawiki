@@ -559,7 +559,7 @@
 	"permissionserrors": "Çewtiyê destûrê",
 	"permissionserrorstext": "Tu nikanê vê tiştî bikê, ji bo {{PLURAL:$1|vê sedemê|van sedeman}}:",
 	"permissionserrorstext-withaction": "Mafên te bo $2 tune ye ji bo {{PLURAL:$1|vê sedemê|van sedeman}}:",
-	"recreate-moveddeleted-warn": "'''Zanibe: Tu kê rûpelekê çêkê yê niha hate jêbirin!'''\n\nZanibe ku nuhçêkirinê vê rûpelê hêja ye ya na.\nÎnformasyon li ser jêbirinê vê rûpelê li vir e:",
+	"recreate-moveddeleted-warn": "<strong>Zanibe: Tu kê rûpelekê çêkê yê niha hate jêbirin!</strong>\n\nZanibe ku nuhçêkirinê vê rûpelê hêja ye ya na.\nÎnformasyon li ser jêbirinê vê rûpelê li vir e:",
 	"moveddeleted-notice": "Ev rûpel hatiye jêbirin.\nSedema jêbirina rûpelê bi referansa li jêr hatiye piştrastkirin.",
 	"log-fulllog": "Tevahiya wê bibîne",
 	"edit-conflict": "Têkçûna guherandinan.",
