@@ -40,11 +40,10 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param ResourceLoaderContext $context
-	 * @return int
+	 * @return bool
 	 */
-	public function getModifiedTime( ResourceLoaderContext $context ) {
-		return wfTimestamp( TS_UNIX, $context->getUserObj()->getTouched() );
+	public function enableModuleContentVersion() {
+		return true;
 	}
 
 	/**
