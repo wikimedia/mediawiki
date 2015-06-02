@@ -2303,8 +2303,8 @@ class User implements IDBAccessObject {
 	public function clearSharedCache() {
 		$id = $this->getId();
 		if ( $id ) {
-			$cache = ObjectCache::getMainWANInstance();
-			$cache->delete( wfMemcKey( 'user', 'id', $id ) );
+			$key = wfMemcKey( 'user', 'id', $id );
+			ObjectCache::getMainWANInstance()->delete( $key );
 		}
 	}
 
@@ -2331,14 +2331,10 @@ class User implements IDBAccessObject {
 	 * @since 1.25
 	 */
 	public function touch() {
-		$this->load();
-
-		if ( $this->mId ) {
-			$this->mQuickTouched = $this->newTouchedTimestamp();
-
-			$cache = ObjectCache::getMainWANInstance();
-			$key = wfMemcKey( 'user-quicktouched', 'id', $this->mId );
-			$cache->touchCheckKey( $key );
+		$id = $this->getId();
+		if ( $id ) {
+			$key = wfMemcKey( 'user-quicktouched', 'id', $id );
+			ObjectCache::getMainWANInstance()->touchCheckKey( $key );
 		}
 	}
 
