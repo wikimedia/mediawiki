@@ -26,18 +26,13 @@
  */
 class ResourceLoaderUserDefaultsModule extends ResourceLoaderModule {
 
-	/* Protected Members */
-
 	protected $targets = array( 'desktop', 'mobile' );
 
-	/* Methods */
-
 	/**
-	 * @param ResourceLoaderContext $context
-	 * @return string Hash
+	 * @return bool
 	 */
-	public function getModifiedHash( ResourceLoaderContext $context ) {
-		return md5( serialize( User::getDefaultOptions() ) );
+	public function enableModuleContentVersion() {
+		return true;
 	}
 
 	/**
