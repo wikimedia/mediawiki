@@ -146,7 +146,6 @@ abstract class Installer {
 	 * @var array
 	 */
 	protected $envPreps = array(
-		'envPrepExtension',
 		'envPrepServer',
 		'envPrepPath',
 	);
@@ -177,7 +176,6 @@ abstract class Installer {
 		'wgGitBin',
 		'IP',
 		'wgScriptPath',
-		'wgScriptExtension',
 		'wgMetaNamespace',
 		'wgDeletedDirectory',
 		'wgEnableUploads',
@@ -1226,19 +1224,6 @@ abstract class Installer {
 	 * @return string
 	 */
 	abstract protected function envGetDefaultServer();
-
-	/**
-	 * Environment prep for setting the preferred PHP file extension.
-	 */
-	protected function envPrepExtension() {
-		// @todo FIXME: Detect this properly
-		if ( defined( 'MW_INSTALL_PHP5_EXT' ) ) {
-			$ext = '.php5';
-		} else {
-			$ext = '.php';
-		}
-		$this->setVar( 'wgScriptExtension', $ext );
-	}
 
 	/**
 	 * Environment prep for setting $IP and $wgScriptPath.

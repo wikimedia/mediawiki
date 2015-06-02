@@ -669,6 +669,8 @@ class WebInstallerUpgrade extends WebInstallerPage {
 	}
 
 	public function showDoneMessage() {
+		global $wgScriptExtension;
+
 		$this->startForm();
 		$regenerate = !$this->getVar( '_ExistingDBSettings' );
 		if ( $regenerate ) {
@@ -682,7 +684,7 @@ class WebInstallerUpgrade extends WebInstallerPage {
 				wfMessage( $msg,
 					$this->getVar( 'wgServer' ) .
 					$this->getVar( 'wgScriptPath' ) . '/index' .
-					$this->getVar( 'wgScriptExtension' )
+					$wgScriptExtension
 				)->plain(), 'tick-32.png'
 			)
 		);
@@ -1479,8 +1481,7 @@ class WebInstallerComplete extends WebInstallerPage {
 				wfMessage( 'config-install-done',
 					$lsUrl,
 					$this->getVar( 'wgServer' ) .
-					$this->getVar( 'wgScriptPath' ) . '/index' .
-					$this->getVar( 'wgScriptExtension' ),
+					$this->getVar( 'wgScriptPath' ) . '/index.php',
 					'<downloadlink/>'
 				)->plain(), 'tick-32.png'
 			)
