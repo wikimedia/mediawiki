@@ -63,19 +63,12 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param ResourceLoaderContext $context
-	 * @return int UNIX timestamp
+	 * Generate version hash based on module content.
+	 *
+	 * @return bool
 	 */
-	public function getModifiedTime( ResourceLoaderContext $context ) {
-		return max( 1, $this->getHashMtime( $context ) );
-	}
-
-	/**
-	 * @param ResourceLoaderContext $context
-	 * @return string Hash
-	 */
-	public function getModifiedHash( ResourceLoaderContext $context ) {
-		return md5( serialize( $this->getData( $context ) ) );
+	public function enableModuleContentVersion() {
+		return true;
 	}
 
 	/**
