@@ -49,14 +49,9 @@ class ResourceLoaderJqueryMsgModule extends ResourceLoaderFileModule {
 	}
 
 	/**
-	 * @param ResourceLoaderContext $context
-	 * @return array|null
+	 * @return bool
 	 */
-	public function getDefinitionSummary( ResourceLoaderContext $context ) {
-		$summary = parent::getDefinitionSummary( $context );
-		$summary[] = array(
-			'sanitizerData' => Sanitizer::getRecognizedTagData()
-		);
-		return $summary;
+	public function enableModuleContentVersion() {
+		return true;
 	}
 }
