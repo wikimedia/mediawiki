@@ -102,6 +102,10 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 	public function isRaw() {
 		return $this->isRaw;
 	}
+
+	public function enableModuleContentVersion() {
+		return true;
+	}
 }
 
 class ResourceLoaderFileModuleTestModule extends ResourceLoaderFileModule {
