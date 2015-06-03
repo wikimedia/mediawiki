@@ -109,9 +109,9 @@ class LoadMonitorMySQL implements LoadMonitor {
 
 				return $times;
 			}
-			wfIncrStats( 'lag_cache_miss_expired' );
+			wfIncrStats( 'lag_cache.miss.expired' );
 		} else {
-			wfIncrStats( 'lag_cache_miss_absent' );
+			wfIncrStats( 'lag_cache.miss.absent' );
 		}
 
 		# Cache key missing or expired

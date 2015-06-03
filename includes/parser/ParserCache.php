@@ -143,13 +143,13 @@ class ParserCache {
 		$optionsKey = $this->mMemc->get( $this->getOptionsKey( $article ) );
 		if ( $optionsKey != false ) {
 			if ( !$useOutdated && $optionsKey->expired( $article->getTouched() ) ) {
-				wfIncrStats( "pcache_miss_expired" );
+				wfIncrStats( "pcache.miss.expired" );
 				$cacheTime = $optionsKey->getCacheTime();
 				wfDebug( "Parser options key expired, touched " . $article->getTouched()
 					. ", epoch $wgCacheEpoch, cached $cacheTime\n" );
 				return false;
 			} elseif ( $optionsKey->isDifferentRevision( $article->getLatest() ) ) {
-				wfIncrStats( "pcache_miss_revid" );
+				wfIncrStats( "pcache.miss.revid" );
 				$revId = $article->getLatest();
 				$cachedRevId = $optionsKey->getCacheRevisionId();
 				wfDebug( "ParserOutput key is for an old revision, latest $revId, cached $cachedRevId\n" );
@@ -195,14 +195,14 @@ class ParserCache {
 
 		$parserOutputKey = $this->getKey( $article, $popts, $useOutdated );
 		if ( $parserOutputKey === false ) {
-			wfIncrStats( 'pcache_miss_absent' );
+			wfIncrStats( 'pcache.miss.absent' );
 			return false;
 		}
 
 		$value = $this->mMemc->get( $parserOutputKey );
 		if ( !$value ) {
 			wfDebug( "ParserOutput cache miss.\n" );
-			wfIncrStats( "pcache_miss_absent" );
+			wfIncrStats( "pcache.miss.absent" );
 			return false;
 		}
 
@@ -214,19 +214,19 @@ class ParserCache {
 		$value->setEditSectionTokens( $popts->getEditSection() );
 
 		if ( !$useOutdated && $value->expired( $touched ) ) {
-			wfIncrStats( "pcache_miss_expired" );
+			wfIncrStats( "pcache.miss.expired" );
 			$cacheTime = $value->getCacheTime();
 			wfDebug( "ParserOutput key expired, touched $touched, "
 				. "epoch $wgCacheEpoch, cached $cacheTime\n" );
 			$value = false;
 		} elseif ( $value->isDifferentRevision( $article->getLatest() ) ) {
-			wfIncrStats( "pcache_miss_revid" );
+			wfIncrStats( "pcache.miss.revid" );
 			$revId = $article->getLatest();
 			$cachedRevId = $value->getCacheRevisionId();
 			wfDebug( "ParserOutput key is for an old revision, latest $revId, cached $cachedRevId\n" );
 			$value = false;
 		} else {
-			wfIncrStats( "pcache_hit" );
+			wfIncrStats( "pcache.hit" );
 		}
 
 		return $value;
