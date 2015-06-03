@@ -299,6 +299,7 @@ class JobQueueDB extends JobQueue {
 				$job = Job::factory( $row->job_cmd, $title,
 					self::extractBlob( $row->job_params ), $row->job_id );
 				$job->metadata['id'] = $row->job_id;
+				$job->metadata['timestamp'] = $row->job_timestamp;
 				break; // done
 			} while ( true );
 
@@ -569,6 +570,7 @@ class JobQueueDB extends JobQueue {
 						strlen( $row->job_params ) ? unserialize( $row->job_params ) : false
 					);
 					$job->metadata['id'] = $row->job_id;
+					$job->metadata['timestamp'] = $row->job_timestamp;
 					return $job;
 				}
 			);
