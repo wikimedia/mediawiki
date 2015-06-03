@@ -269,9 +269,9 @@ class LocalFile extends File {
 		}
 
 		if ( $this->dataLoaded ) {
-			wfIncrStats( 'image_cache_hit' );
+			wfIncrStats( 'image_cache.hit' );
 		} else {
-			wfIncrStats( 'image_cache_miss' );
+			wfIncrStats( 'image_cache.miss' );
 		}
 
 		return $this->dataLoaded;
