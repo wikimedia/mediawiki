@@ -135,6 +135,7 @@ class JobRunner implements LoggerAwareInterface {
 		$backoffDeltas = array(); // map of (type => seconds)
 		$wait = 'wait'; // block to read backoffs the first time
 
+		$stats = RequestContext::getMain()->getStats();
 		$jobsRun = 0;
 		$timeMsTotal = 0;
 		$flags = JobQueueGroup::USE_CACHE;
@@ -172,12 +173,17 @@ class JobRunner implements LoggerAwareInterface {
 				$msg = $job->toString() . " STARTING";
 				$this->logger->debug( $msg );
 				$this->debugCallback( $msg );
+				$timeToRun = false;
 
 				// Run the job...
 				$psection = $profiler->scopedProfileIn( __METHOD__ . '-' . $jType );
 				$jobStartTime = microtime( true );
 				try {
 					++$jobsRun;
+					$queuedTime = $job->getQueuedTimestamp();
+					if ( $queuedTime !== null ) {
+						$timeToRun = time() - $queuedTime;
+					}
 					$status = $job->run();
 					$error = $job->getLastError();
 					$this->commitMasterChanges( $job );
@@ -201,6 +207,10 @@ class JobRunner implements LoggerAwareInterface {
 				$timeMs = intval( ( microtime( true ) - $jobStartTime ) * 1000 );
 				$timeMsTotal += $timeMs;
 				$profiler->scopedProfileOut( $psection );
+				if ( $timeToRun !== false ) {
+					// Record time to run for the job type
+					$stats->timing( "jobqueue.pickup_time.$jType", $timeToRun );
+				}
 
 				// Mark the job as done on success or when the job cannot be retried
 				if ( $status !== false || !$job->allowRetries() ) {
