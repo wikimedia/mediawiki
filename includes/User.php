@@ -1229,7 +1229,7 @@ class User implements IDBAccessObject {
 			self::selectFields(),
 			array( 'user_id' => $this->mId ),
 			__METHOD__,
-			( $flags & self::READ_LOCKING == self::READ_LOCKING )
+			( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING )
 				? array( 'LOCK IN SHARE MODE' )
 				: array()
 		);
