@@ -135,6 +135,16 @@ abstract class Job implements IJobSpecification {
 	}
 
 	/**
+	 * @return int|null UNIX timestamp of when the job was queued, or null
+	 * @since 1.26
+	 */
+	public function getQueuedTimestamp() {
+		return isset( $this->metadata['timestamp'] )
+			? wfTimestampOrNull( TS_UNIX, $this->metadata['timestamp'] )
+			: null;
+	}
+
+	/**
 	 * Whether the queue should reject insertion of this job if a duplicate exists
 	 *
 	 * This can be used to avoid duplicated effort or combined with delayed jobs to
