@@ -402,12 +402,12 @@ LUA;
 
 	/**
 	 * @see JobQueue::doDeduplicateRootJob()
-	 * @param Job $job
+	 * @param IJobSpecification $job
 	 * @return bool
 	 * @throws JobQueueError
 	 * @throws LogicException
 	 */
-	protected function doDeduplicateRootJob( Job $job ) {
+	protected function doDeduplicateRootJob( IJobSpecification $job ) {
 		if ( !$job->hasRootJobParams() ) {
 			throw new LogicException( "Cannot register root job; missing parameters." );
 		}
