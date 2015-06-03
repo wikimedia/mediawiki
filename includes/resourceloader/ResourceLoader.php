@@ -199,12 +199,12 @@ class ResourceLoader {
 			$cache = wfGetCache( wfIsHHVM() ? CACHE_ACCEL : CACHE_ANYTHING );
 			$cacheEntry = $cache->get( $key );
 			if ( is_string( $cacheEntry ) ) {
-				wfIncrStats( "rl-$filter-cache-hits" );
+				wfIncrStats( "resourceloader_cache.$filter.hit" );
 				return $cacheEntry;
 			}
 			$result = '';
 			try {
-				wfIncrStats( "rl-$filter-cache-misses" );
+				wfIncrStats( "resourceloader_cache.$filter.miss" );
 				$result = $this->applyFilter( $filter, $data );
 				if ( $options['cacheReport'] ) {
 					$result .= "\n/* cache key: $key */";

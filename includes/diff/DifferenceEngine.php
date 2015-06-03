@@ -714,7 +714,7 @@ class DifferenceEngine extends ContextSource {
 			if ( !$this->mRefreshCache ) {
 				$difftext = $wgMemc->get( $key );
 				if ( $difftext ) {
-					wfIncrStats( 'diff_cache_hit' );
+					wfIncrStats( 'diff_cache.hit' );
 					$difftext = $this->localiseLineNumbers( $difftext );
 					$difftext .= "\n<!-- diff cache key $key -->\n";
 
@@ -734,12 +734,12 @@ class DifferenceEngine extends ContextSource {
 
 		// Save to cache for 7 days
 		if ( !Hooks::run( 'AbortDiffCache', array( &$this ) ) ) {
-			wfIncrStats( 'diff_uncacheable' );
+			wfIncrStats( 'diff_cache.uncacheable' );
 		} elseif ( $key !== false && $difftext !== false ) {
-			wfIncrStats( 'diff_cache_miss' );
+			wfIncrStats( 'diff_cache.miss' );
 			$wgMemc->set( $key, $difftext, 7 * 86400 );
 		} else {
-			wfIncrStats( 'diff_uncacheable' );
+			wfIncrStats( 'diff_cache.uncacheable' );
 		}
 		// Replace line numbers with the text in the user's language
 		if ( $difftext !== false ) {

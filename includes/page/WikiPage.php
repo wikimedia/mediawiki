@@ -1111,7 +1111,7 @@ class WikiPage implements Page, IDBAccessObject {
 		$useParserCache = $this->isParserCacheUsed( $parserOptions, $oldid );
 		wfDebug( __METHOD__ . ': using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) . "\n" );
 		if ( $parserOptions->getStubThreshold() ) {
-			wfIncrStats( 'pcache_miss_stub' );
+			wfIncrStats( 'pcache.miss.stub' );
 		}
 
 		if ( $useParserCache ) {
