@@ -558,19 +558,35 @@ class JobQueueDB extends JobQueue {
 	 * @return Iterator
 	 */
 	public function getAllQueuedJobs() {
+		return $this->getJobIterator( array( 'job_cmd' => $this->getType(), 'job_token' => '' ) );
+	}
+
+	/**
+	 * @see JobQueue::getAllAcquiredJobs()
+	 * @return Iterator
+	 */
+	public function getAllAcquiredJobs() {
+		return $this->getJobIterator( array( 'job_cmd' => $this->getType(), "job_token > ''" ) );
+	}
+
+	/**
+	 * @param array $conds Query conditions
+	 * @return Iterator
+	 */
+	public function getJobIterator( array $conds ) {
 		$dbr = $this->getSlaveDB();
 		try {
 			return new MappedIterator(
-				$dbr->select( 'job', self::selectFields(),
-					array( 'job_cmd' => $this->getType(), 'job_token' => '' ) ),
-				function ( $row ) use ( $dbr ) {
+				$dbr->select( 'job', self::selectFields(), $conds ),
+				function ( $row ) {
 					$job = Job::factory(
 						$row->job_cmd,
 						Title::makeTitle( $row->job_namespace, $row->job_title ),
-						strlen( $row->job_params ) ? unserialize( $row->job_params ) : false
+						strlen( $row->job_params ) ? unserialize( $row->job_params ) : array()
 					);
 					$job->metadata['id'] = $row->job_id;
 					$job->metadata['timestamp'] = $row->job_timestamp;
+
 					return $job;
 				}
 			);
