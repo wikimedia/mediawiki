@@ -1740,7 +1740,7 @@
 	"unwatchthispage": "Prenehaj opazovati stran",
 	"notanarticle": "Ni članek",
 	"notvisiblerev": "Redakcija je bila izbrisana",
-	"watchlist-details": "Na vašem spisku nadzorov je $1 {{PLURAL:$1|stran|strani|strani}}; pogovorne strani niso štete posebej.",
+	"watchlist-details": "Na vašem spisku nadzorov {{PLURAL:$1|je $1 stran|sta $1 strani|so $1 strani|je $1 strani}}; pogovorne strani niso štete posebej.",
 	"wlheader-enotif": "Obveščanje po elektronski pošti je omogočeno.",
 	"wlheader-showupdated": "Strani, spremenjene od vašega zadnjega ogleda, so prikazane '''krepko'''.",
 	"wlnote": "{{PLURAL:$1|Navedena je zadnja|Navedeni sta zadnji|Navedene so zadnje|Navedenih je zadnjih}} <strong>$1</strong> {{PLURAL:$1|sprememba|spremembi|spremembe|sprememb}} v {{PLURAL:$2|zadnji <strong>$2</strong> uri|zadnjih <strong>$2</strong> urah}}, od $3, $4.",

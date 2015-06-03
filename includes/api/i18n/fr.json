@@ -209,7 +209,7 @@
 	"apihelp-managetags-param-reason": "Un motif facultatif pour créer, supprimer, activer ou désactiver la balise.",
 	"apihelp-managetags-param-ignorewarnings": "S’il faut ignorer tout avertissement qui se produirait au cours de l’opération.",
 	"apihelp-managetags-example-create": "Créer une balise nommée <kbd>pourriel</kbd> avec le motif <kbd>À utiliser lors de la revue des modifications</kbd>",
-	"apihelp-managetags-example-delete": "Supprimer la balise <kbd>vandlaisme</kbd> avec le motif <kbd>Mal épelé</kbd>",
+	"apihelp-managetags-example-delete": "Supprimer la balise <kbd>vandlaism</kbd> avec le motif <kbd>Misspelt</kbd>",
 	"apihelp-managetags-example-activate": "Activer une balise nommée <kbd>pourriel</kbd> avec le motif <kbd>À utiliser dans la revue des modifications</kbd>",
 	"apihelp-managetags-example-deactivate": "Désactiver une balise nommée <kbd>pourriel</kbd> avec le motif <kbd>Plus nécessaire</kbd>",
 	"apihelp-move-description": "Déplacer une page.",
