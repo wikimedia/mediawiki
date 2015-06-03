@@ -980,6 +980,7 @@ return array(
 	),
 	'mediawiki.htmlform.ooui.styles' => array(
 		'styles' => 'resources/src/mediawiki/mediawiki.htmlform.ooui.css',
+		'position' => 'top',
 	),
 	'mediawiki.icon' => array(
 		'styles' => 'resources/src/mediawiki/mediawiki.icon.less',
