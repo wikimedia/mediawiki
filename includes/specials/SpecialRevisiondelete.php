@@ -158,6 +158,13 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$this->ids
 		);
 
+		# We need a target page!
+		if ( $this->targetObj === null ) {
+			$output->addWikiMsg( 'undelete-header' );
+
+			return;
+		}
+
 		$this->typeLabels = self::$UILabels[$this->typeName];
 		$list = $this->getList();
 		$list->reset();
@@ -169,12 +176,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$this->mIsAllowed = $this->mIsAllowed && !( $canViewSuppressedOnly && $pageIsSuppressed );
 
 		$this->otherReason = $request->getVal( 'wpReason' );
-		# We need a target page!
-		if ( is_null( $this->targetObj ) ) {
-			$output->addWikiMsg( 'undelete-header' );
-
-			return;
-		}
 		# Give a link to the logs/hist for this page
 		$this->showConvenienceLinks();
 
