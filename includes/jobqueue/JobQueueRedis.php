@@ -610,6 +610,7 @@ LUA;
 			$title = Title::makeTitle( $item['namespace'], $item['title'] );
 			$job = Job::factory( $item['type'], $title, $item['params'] );
 			$job->metadata['uuid'] = $item['uuid'];
+			$job->metadata['timestamp'] = $item['timestamp'];
 
 			return $job;
 		} catch ( RedisException $e ) {
@@ -647,6 +648,7 @@ LUA;
 		$title = Title::makeTitle( $fields['namespace'], $fields['title'] );
 		$job = Job::factory( $fields['type'], $title, $fields['params'] );
 		$job->metadata['uuid'] = $fields['uuid'];
+		$job->metadata['timestamp'] = $fields['timestamp'];
 
 		return $job;
 	}
