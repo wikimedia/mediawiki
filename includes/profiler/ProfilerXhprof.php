@@ -25,7 +25,6 @@
  * $wgProfiler['class'] = 'ProfilerXhprof';
  * $wgProfiler['flags'] = XHPROF_FLAGS_NO_BUILTINS;
  * $wgProfiler['output'] = 'text';
- * $wgProfiler['visible'] = true;
  * @endcode
  *
  * @code

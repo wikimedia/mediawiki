@@ -24,7 +24,6 @@
  * @code
  * $wgProfiler['class'] = 'ProfilerSectionOnly';
  * $wgProfiler['output'] = 'text';
- * $wgProfiler['visible'] = true;
  * @endcode
  *
  * @author Aaron Schulz

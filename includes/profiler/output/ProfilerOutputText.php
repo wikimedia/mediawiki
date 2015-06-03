@@ -62,13 +62,7 @@ class ProfilerOutputText extends ProfilerOutput {
 			if ( PHP_SAPI === 'cli' ) {
 				print "<!--\n{$out}\n-->\n";
 			} elseif ( $contentType === 'text/html' ) {
-				$visible = isset( $this->params['visible'] ) ?
-					$this->params['visible'] : false;
-				if ( $visible ) {
-					print "<pre>{$out}</pre>";
-				} else {
-					print "<!--\n{$out}\n-->\n";
-				}
+				print "<!--\n{$out}\n-->\n";
 			} elseif ( $contentType === 'text/javascript' || $contentType === 'text/css' ) {
 				print "\n/*\n{$out}*/\n";
 			}
