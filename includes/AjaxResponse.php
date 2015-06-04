@@ -159,7 +159,7 @@ class AjaxResponse {
 	function sendHeaders() {
 		if ( $this->mResponseCode ) {
 			$n = preg_replace( '/^ *(\d+)/', '\1', $this->mResponseCode );
-			header( "Status: " . $this->mResponseCode, true, (int)$n );
+			HttpStatus::header( $n );
 		}
 
 		header ( "Content-Type: " . $this->mContentType );

@@ -74,9 +74,7 @@ class HttpError extends MWException {
 	public function report() {
 		$this->doLog();
 
-		$httpMessage = HttpStatus::getMessage( $this->httpCode );
-
-		header( "Status: {$this->httpCode} {$httpMessage}", true, $this->httpCode );
+		HttpStatus::header( $this->httpCode );
 		header( 'Content-type: text/html; charset=utf-8' );
 
 		print $this->getHTML();

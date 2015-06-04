@@ -821,8 +821,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			// sending the 304.
 			wfResetOutputBuffers( /* $resetGzipEncoding = */ true );
 
-			header( 'HTTP/1.0 304 Not Modified' );
-			header( 'Status: 304 Not Modified' );
+			HttpStatus::header( 304 );
 
 			$this->sendResponseHeaders( $context, $etag, false );
 			return true;
