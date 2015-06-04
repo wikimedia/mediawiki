@@ -27,25 +27,14 @@
  */
 class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 
-	/* Protected Members */
-
-	protected $modifiedTime = array();
-
 	protected $origin = self::ORIGIN_CORE_INDIVIDUAL;
-
-	/* Methods */
 
 	/**
 	 * @param ResourceLoaderContext $context
 	 * @return array|int|mixed
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
-		$hash = $context->getHash();
-		if ( !isset( $this->modifiedTime[$hash] ) ) {
-			$this->modifiedTime[$hash] = wfTimestamp( TS_UNIX, $context->getUserObj()->getTouched() );
-		}
-
-		return $this->modifiedTime[$hash];
+		return wfTimestamp( TS_UNIX, $context->getUserObj()->getTouched() );
 	}
 
 	/**

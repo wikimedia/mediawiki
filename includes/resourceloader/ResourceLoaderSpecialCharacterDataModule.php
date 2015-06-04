@@ -55,14 +55,6 @@ class ResourceLoaderSpecialCharacterDataModule extends ResourceLoaderModule {
 
 	/**
 	 * @param ResourceLoaderContext $context
-	 * @return int UNIX timestamp
-	 */
-	public function getModifiedTime( ResourceLoaderContext $context ) {
-		return static::safeFilemtime( $this->path );
-	}
-
-	/**
-	 * @param ResourceLoaderContext $context
 	 * @return string Hash
 	 */
 	public function getModifiedHash( ResourceLoaderContext $context ) {
