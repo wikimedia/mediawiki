@@ -152,7 +152,6 @@ Newtalk:
 
 Parser Cache:
 	stored in: $parserMemc
-	controlled by: $wgEnableParserCache
 	key: $wgDBname:pcache:idhash:$pageid-$renderkey!$hash
 		$pageid: id of the page
 		$renderkey: 1 if action=render, 0 otherwise
