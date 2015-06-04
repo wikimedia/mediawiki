@@ -109,39 +109,27 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 			array( array(), 'test1', true ),
 			// 'site' module with a non-empty page
 			array(
-				array(
-					'MediaWiki:Common.js' => array(
-						'timestamp' => 123456789,
-						'length' => 1234
-					)
-				), 'site', false,
+				array( 80 => array( 'rev_id' => 1080, 'rev_len' => 1234 ) ),
+				'site',
+				false,
 			),
 			// 'site' module with an empty page
 			array(
-				array(
-					'MediaWiki:Monobook.js' => array(
-						'timestamp' => 987654321,
-						'length' => 0,
-					),
-				), 'site', false,
+				array( 81 => array( 'rev_id' => 1081, 'rev_len' => 0 ) ),
+				'site',
+				false,
 			),
 			// 'user' module with a non-empty page
 			array(
-				array(
-					'User:FooBar/common.js' => array(
-						'timestamp' => 246813579,
-						'length' => 25,
-					),
-				), 'user', false,
+				array( 20 => array( 'rev_id' => 1020, 'rev_len' => 25 ) ),
+				'user',
+				false,
 			),
 			// 'user' module with an empty page
 			array(
-				array(
-					'User:FooBar/monobook.js' => array(
-						'timestamp' => 1357924680,
-						'length' => 0,
-					),
-				), 'user', true,
+				array( 21 => array( 'rev_id' => 1021, 'rev_len' => 0 ) ),
+				'user',
+				true,
 			),
 		);
 	}
