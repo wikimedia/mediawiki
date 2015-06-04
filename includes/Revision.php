@@ -1284,8 +1284,14 @@ class Revision implements IDBAccessObject {
 
 		if ( $wgCompressRevisions ) {
 			if ( function_exists( 'gzdeflate' ) ) {
-				$text = gzdeflate( $text );
-				$flags[] = 'gzip';
+				$deflated = gzdeflate( $text );
+
+				if ( $deflated === false ) {
+					wfLogWarning( __METHOD__ . ': gzdeflate() failed' );
+				} else {
+					$text = $deflated;
+					$flags[] = 'gzip';
+				}
 			} else {
 				wfDebug( __METHOD__ . " -- no zlib support, not compressing\n" );
 			}
@@ -1306,6 +1312,11 @@ class Revision implements IDBAccessObject {
 			# This can be done periodically via maintenance/compressOld.php, and
 			# as pages are saved if $wgCompressRevisions is set.
 			$text = gzinflate( $text );
+
+			if ( $text === false ) {
+				wfLogWarning( __METHOD__ . ': gzinflate() failed' );
+				return false;
+			}
 		}
 
 		if ( in_array( 'object', $flags ) ) {
