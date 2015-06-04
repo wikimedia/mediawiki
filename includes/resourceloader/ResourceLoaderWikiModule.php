@@ -36,8 +36,8 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	// Origin defaults to users with sitewide authority
 	protected $origin = self::ORIGIN_USER_SITEWIDE;
 
-	// In-object cache for title info
-	protected $titleInfo = array();
+	// In-object cache for page content
+	protected $pageContent = array();
 
 	// List of page names that contain CSS
 	protected $styles = array();
@@ -131,32 +131,43 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param Title $title
-	 * @return null|string
+	 * @param string $title
+	 * @return false|string
 	 */
-	protected function getContent( $title ) {
-		$handler = ContentHandler::getForTitle( $title );
-		if ( $handler->isSupportedFormat( CONTENT_FORMAT_CSS ) ) {
-			$format = CONTENT_FORMAT_CSS;
-		} elseif ( $handler->isSupportedFormat( CONTENT_FORMAT_JAVASCRIPT ) ) {
-			$format = CONTENT_FORMAT_JAVASCRIPT;
-		} else {
-			return null;
+	protected function getContent( $titleText ) {
+		$title = Title::newFromText( $titleText );
+		if ( !$title || $title->isRedirect() ) {
+			return false;
 		}
 
-		$revision = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
-		if ( !$revision ) {
-			return null;
+		if ( !isset( $this->pageContent[$titleText] ) ) {
+			$this->pageContent[$titleText] = false;
+
+			$handler = ContentHandler::getForTitle( $title );
+			if ( $handler->isSupportedFormat( CONTENT_FORMAT_CSS ) ) {
+				$format = CONTENT_FORMAT_CSS;
+			} elseif ( $handler->isSupportedFormat( CONTENT_FORMAT_JAVASCRIPT ) ) {
+				$format = CONTENT_FORMAT_JAVASCRIPT;
+			} else {
+				return false;
+			}
+
+			$revision = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
+			if ( !$revision ) {
+				return false;
+			}
+
+			$content = $revision->getContent( Revision::RAW );
+
+			if ( !$content ) {
+				wfDebugLog( 'resourceloader', __METHOD__ . ': failed to load content of JS/CSS page!' );
+				return false;
+			}
+
+			$this->pageContent[$titleText] = $content->serialize( $format );
 		}
 
-		$content = $revision->getContent( Revision::RAW );
-
-		if ( !$content ) {
-			wfDebugLog( 'resourceloader', __METHOD__ . ': failed to load content of JS/CSS page!' );
-			return null;
-		}
-
-		return $content->serialize( $format );
+		return $this->pageContent[$titleText];
 	}
 
 	/**
@@ -169,11 +180,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			if ( $options['type'] !== 'script' ) {
 				continue;
 			}
-			$title = Title::newFromText( $titleText );
-			if ( !$title || $title->isRedirect() ) {
-				continue;
-			}
-			$script = $this->getContent( $title );
+			$script = $this->getContent( $titleText );
 			if ( strval( $script ) !== '' ) {
 				$script = $this->validateScriptFile( $titleText, $script );
 				$scripts .= ResourceLoader::makeComment( $titleText ) . $script . "\n";
@@ -192,12 +199,8 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			if ( $options['type'] !== 'style' ) {
 				continue;
 			}
-			$title = Title::newFromText( $titleText );
-			if ( !$title || $title->isRedirect() ) {
-				continue;
-			}
 			$media = isset( $options['media'] ) ? $options['media'] : 'all';
-			$style = $this->getContent( $title );
+			$style = $this->getContent( $titleText );
 			if ( strval( $style ) === '' ) {
 				continue;
 			}
@@ -216,32 +219,13 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 	/**
 	 * @param ResourceLoaderContext $context
-	 * @return int
-	 */
-	public function getModifiedTime( ResourceLoaderContext $context ) {
-		$modifiedTime = 1;
-		$titleInfo = $this->getTitleInfo( $context );
-		if ( count( $titleInfo ) ) {
-			$mtimes = array_map( function ( $value ) {
-				return $value['timestamp'];
-			}, $titleInfo );
-			$modifiedTime = max( $modifiedTime, max( $mtimes ) );
-		}
-		$modifiedTime = max(
-			$modifiedTime,
-			$this->getMsgBlobMtime( $context->getLanguage() )
-		);
-		return $modifiedTime;
-	}
-
-	/**
-	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
 	public function getDefinitionSummary( ResourceLoaderContext $context ) {
 		$summary = parent::getDefinitionSummary( $context );
 		$summary[] = array(
 			'pages' => $this->getPages( $context ),
+			'content' => $this->getPagesContent( $context ),
 		);
 		return $summary;
 	}
@@ -251,67 +235,40 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * @return bool
 	 */
 	public function isKnownEmpty( ResourceLoaderContext $context ) {
-		$titleInfo = $this->getTitleInfo( $context );
-		// Bug 68488: For modules in the "user" group, we should actually
-		// check that the pages are empty (page_len == 0), but for other
-		// groups, just check the pages exist so that we don't end up
-		// caching temporarily-blank pages without the appropriate
-		// <script> or <link> tag.
-		if ( $this->getGroup() !== 'user' ) {
-			return count( $titleInfo ) === 0;
-		}
+		$pages = $this->getPagesContent( $context );
 
-		foreach ( $titleInfo as $info ) {
-			if ( $info['length'] !== 0 ) {
-				// At least one non-0-lenth page, not empty
-				return false;
+		// For user modules, don't needlessly load if there are no non-empty pages
+		if ( $this->getGroup() === 'user' ) {
+			foreach ( $pages as $content ) {
+				if ( $content !== '' ) {
+					// At least one non-empty page, module should be loaded
+					return false;
+				}
 			}
+			return true;
 		}
 
-		// All pages are 0-length, so it's empty
-		return true;
+		// Bug 68488: For other modules (i.e. ones that are called in cached html output) only check
+		// page existance. This ensures that, if some pages in a module are temporarily blanked,
+		// we don't end omit the module's script or link tag on some pages.
+		return count( $pages ) === 0;
 	}
 
 	/**
-	 * Get the modification times of all titles that would be loaded for
-	 * a given context.
-	 * @param ResourceLoaderContext $context Context object
-	 * @return array Keyed by page dbkey. Value is an array with 'length' and 'timestamp'
-	 *               keys, where the timestamp is a UNIX timestamp
+	 * @param ResourceLoaderContext $context
+	 * @return array
 	 */
-	protected function getTitleInfo( ResourceLoaderContext $context ) {
-		$dbr = $this->getDB();
-		if ( !$dbr ) {
-			// We're dealing with a subclass that doesn't have a DB
-			return array();
-		}
-
-		$hash = $context->getHash();
-		if ( isset( $this->titleInfo[$hash] ) ) {
-			return $this->titleInfo[$hash];
-		}
-
-		$this->titleInfo[$hash] = array();
-		$batch = new LinkBatch;
+	protected function getPagesContent( ResourceLoaderContext $context ) {
+		$pages = array();
 		foreach ( $this->getPages( $context ) as $titleText => $options ) {
-			$batch->addObj( Title::newFromText( $titleText ) );
-		}
-
-		if ( !$batch->isEmpty() ) {
-			$res = $dbr->select( 'page',
-				array( 'page_namespace', 'page_title', 'page_touched', 'page_len' ),
-				$batch->constructSet( 'page', $dbr ),
-				__METHOD__
-			);
-			foreach ( $res as $row ) {
-				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-				$this->titleInfo[$hash][$title->getPrefixedDBkey()] = array(
-					'timestamp' => wfTimestamp( TS_UNIX, $row->page_touched ),
-					'length' => $row->page_len,
-				);
+			if ( $options['type'] === 'style' || $options['type'] === 'script' ) {
+				$content = $this->getContent( $titleText );
+				if ( $content !== false ) {
+					$pages[$titleText] = $content;
+				}
 			}
 		}
-		return $this->titleInfo[$hash];
+		return $pages;
 	}
 
 	public function getPosition() {
