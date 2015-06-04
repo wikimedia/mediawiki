@@ -111,8 +111,9 @@ class ApiExpandTemplates extends ApiBase {
 				// the old way
 				ApiResult::setContentValue( $retval, 'wikitext', $wikitext );
 			} else {
+				$p_output = $wgParser->getOutput();
 				if ( isset( $prop['categories'] ) ) {
-					$categories = $wgParser->getOutput()->getCategories();
+					$categories = $p_output->getCategories();
 					if ( $categories ) {
 						$categories_result = array();
 						foreach ( $categories as $category => $sortkey ) {
@@ -126,7 +127,7 @@ class ApiExpandTemplates extends ApiBase {
 					}
 				}
 				if ( isset( $prop['properties'] ) ) {
-					$properties = $wgParser->getOutput()->getProperties();
+					$properties = $p_output->getProperties();
 					if ( $properties ) {
 						ApiResult::setArrayType( $properties, 'BCkvp', 'name' );
 						ApiResult::setIndexedTagName( $properties, 'property' );
@@ -141,6 +142,18 @@ class ApiExpandTemplates extends ApiBase {
 				}
 				if ( isset( $prop['wikitext'] ) ) {
 					$retval['wikitext'] = $wikitext;
+				}
+				if ( isset( $prop['modules'] ) ) {
+					$retval['modules'] = array_values( array_unique( $p_output->getModules() ) );
+					$retval['modulescripts'] = array_values( array_unique( $p_output->getModuleScripts() ) );
+					$retval['modulestyles'] = array_values( array_unique( $p_output->getModuleStyles() ) );
+					$retval['jsconfigvars'] = $result->formatJsConfigVars( $p_output->getJsConfigVars() );
+				}
+				if ( isset( $prop['encodedjsconfigvars'] ) ) {
+					$retval['encodedjsconfigvars'] = FormatJson::encode(
+						$p_output->getJsConfigVars(), false, FormatJson::ALL_OK
+					);
+					$retval[ApiResult::META_SUBELEMENTS][] = 'encodedjsconfigvars';
 				}
 			}
 		}
@@ -167,9 +180,12 @@ class ApiExpandTemplates extends ApiBase {
 					'properties',
 					'volatile',
 					'ttl',
+					'modules',
+					'encodedjsconfigvars',
 					'parsetree',
 				),
 				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'includecomments' => false,
 			'generatexml' => array(
