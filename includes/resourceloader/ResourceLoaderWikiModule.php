@@ -253,31 +253,28 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 */
 	public function isKnownEmpty( ResourceLoaderContext $context ) {
 		$titleInfo = $this->getTitleInfo( $context );
-		// Bug 68488: For modules in the "user" group, we should actually
-		// check that the pages are empty (page_len == 0), but for other
-		// groups, just check the pages exist so that we don't end up
-		// caching temporarily-blank pages without the appropriate
-		// <script> or <link> tag.
-		if ( $this->getGroup() !== 'user' ) {
-			return count( $titleInfo ) === 0;
-		}
 
-		foreach ( $titleInfo as $info ) {
-			if ( $info['length'] !== 0 ) {
-				// At least one non-0-lenth page, not empty
-				return false;
+		// For user modules, don't needlessly load if there are no non-empty pages
+		if ( $this->getGroup() === 'user' ) {
+			foreach ( $titleInfo as $info ) {
+				if ( $info['length'] > 0 ) {
+					// At least one non-empty page, module should be loaded
+					return false;
+				}
 			}
+			return true;
 		}
 
-		// All pages are 0-length, so it's empty
-		return true;
+		// Bug 68488: For other modules (i.e. ones that are called in cached html output) only check
+		// page existance. This ensures that, if some pages in a module are temporarily blanked,
+		// we don't end omit the module's script or link tag on some pages.
+		return count( $titleInfo ) === 0;
 	}
 
 	/**
-	 * Get the modification times of all titles that would be loaded for
-	 * a given context.
+	 * Get the information about wiki pages in a given context.
 	 * @param ResourceLoaderContext $context Context object
-	 * @return array Keyed by page dbkey. Value is an array with 'length' and 'timestamp'
+	 * @return array List of arrays with 'length' and 'timestamp'
 	 *               keys, where the timestamp is a UNIX timestamp
 	 */
 	protected function getTitleInfo( ResourceLoaderContext $context ) {
@@ -288,28 +285,25 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		}
 
 		$hash = $context->getHash();
-		if ( isset( $this->titleInfo[$hash] ) ) {
-			return $this->titleInfo[$hash];
-		}
+		if ( !isset( $this->titleInfo[$hash] ) ) {
+			$this->titleInfo[$hash] = array();
+			$batch = new LinkBatch;
+			foreach ( $this->getPages( $context ) as $titleText => $options ) {
+				$batch->addObj( Title::newFromText( $titleText ) );
+			}
 
-		$this->titleInfo[$hash] = array();
-		$batch = new LinkBatch;
-		foreach ( $this->getPages( $context ) as $titleText => $options ) {
-			$batch->addObj( Title::newFromText( $titleText ) );
-		}
-
-		if ( !$batch->isEmpty() ) {
-			$res = $dbr->select( 'page',
-				array( 'page_namespace', 'page_title', 'page_touched', 'page_len' ),
-				$batch->constructSet( 'page', $dbr ),
-				__METHOD__
-			);
-			foreach ( $res as $row ) {
-				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-				$this->titleInfo[$hash][$title->getPrefixedDBkey()] = array(
-					'timestamp' => wfTimestamp( TS_UNIX, $row->page_touched ),
-					'length' => $row->page_len,
+			if ( !$batch->isEmpty() ) {
+				$res = $dbr->select( 'page',
+					array( 'page_touched', 'page_len' ),
+					$batch->constructSet( 'page', $dbr ),
+					__METHOD__
 				);
+				foreach ( $res as $row ) {
+					$this->titleInfo[$hash][] = array(
+						'timestamp' => wfTimestamp( TS_UNIX, $row->page_touched ),
+						'length' => $row->page_len,
+					);
+				}
 			}
 		}
 		return $this->titleInfo[$hash];
