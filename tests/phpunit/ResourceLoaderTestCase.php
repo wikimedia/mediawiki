@@ -76,7 +76,7 @@ class ResourceLoaderTestModule extends ResourceLoaderModule {
 	}
 
 	public function getScript( ResourceLoaderContext $context ) {
-		return $this->script;
+		return $this->validateScriptFile( 'input', $this->script );
 	}
 
 	public function getStyles( ResourceLoaderContext $context ) {
