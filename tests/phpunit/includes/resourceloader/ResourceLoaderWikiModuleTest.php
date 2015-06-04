@@ -87,13 +87,13 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 	 * @covers ResourceLoaderWikiModule::isKnownEmpty
 	 * @dataProvider provideIsKnownEmpty
 	 */
-	public function testIsKnownEmpty( $titleInfo, $group, $expected ) {
+	public function testIsKnownEmpty( $pageContent, $group, $expected ) {
 		$module = $this->getMockBuilder( 'ResourceLoaderWikiModule' )
-			->setMethods( array( 'getTitleInfo', 'getGroup' ) )
+			->setMethods( array( 'getPagesContent', 'getGroup' ) )
 			->getMock();
 		$module->expects( $this->any() )
-			->method( 'getTitleInfo' )
-			->will( $this->returnValue( $titleInfo ) );
+			->method( 'getPagesContent' )
+			->will( $this->returnValue( $pageContent ) );
 		$module->expects( $this->any() )
 			->method( 'getGroup' )
 			->will( $this->returnValue( $group ) );
@@ -109,39 +109,27 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 			array( array(), 'test1', true ),
 			// 'site' module with a non-empty page
 			array(
-				array(
-					'MediaWiki:Common.js' => array(
-						'timestamp' => 123456789,
-						'length' => 1234
-					)
-				), 'site', false,
+				array( 'MediaWiki:Common.js' => 'foo();' ),
+				'site',
+				false,
 			),
 			// 'site' module with an empty page
 			array(
-				array(
-					'MediaWiki:Monobook.js' => array(
-						'timestamp' => 987654321,
-						'length' => 0,
-					),
-				), 'site', false,
+				array( 'MediaWiki:Monobook.js' => '' ),
+				'site',
+				false,
 			),
 			// 'user' module with a non-empty page
 			array(
-				array(
-					'User:FooBar/common.js' => array(
-						'timestamp' => 246813579,
-						'length' => 25,
-					),
-				), 'user', false,
+				array( 'User:FooBar/common.js' => 'foo();' ),
+				'user',
+				false,
 			),
 			// 'user' module with an empty page
 			array(
-				array(
-					'User:FooBar/monobook.js' => array(
-						'timestamp' => 1357924680,
-						'length' => 0,
-					),
-				), 'user', true,
+				array( 'User:FooBar/monobook.js' => '' ),
+				'user',
+				true,
 			),
 		);
 	}
