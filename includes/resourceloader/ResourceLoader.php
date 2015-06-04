@@ -650,7 +650,7 @@ class ResourceLoader implements LoggerAwareInterface {
 				// Do not allow private modules to be loaded from the web.
 				// This is a security issue, see bug 34907.
 				if ( $module->getGroup() === 'private' ) {
-					$this->logger->info( __METHOD__ . ": request for private module '$name' denied" );
+					$this->logger->debug( __METHOD__ . ": request for private module '$name' denied" );
 					$this->errors[] = "Cannot show private module \"$name\"";
 					continue;
 				}
