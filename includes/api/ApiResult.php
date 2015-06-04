@@ -302,10 +302,14 @@ class ApiResult implements ApiSerializable {
 				$arr[$name] += $value;
 			} else {
 				$keys = join( ', ', array_keys( $conflicts ) );
-				throw new RuntimeException( "Conflicting keys ($keys) when attempting to merge element $name" );
+				throw new RuntimeException(
+					"Conflicting keys ($keys) when attempting to merge element $name"
+				);
 			}
 		} else {
-			throw new RuntimeException( "Attempting to add element $name=$value, existing value is {$arr[$name]}" );
+			throw new RuntimeException(
+				"Attempting to add element $name=$value, existing value is {$arr[$name]}"
+			);
 		}
 	}
 
@@ -703,7 +707,9 @@ class ApiResult implements ApiSerializable {
 	 * @param string $kvpKeyName See ApiResult::META_KVP_KEY_NAME
 	 */
 	public static function setArrayType( array &$arr, $type, $kvpKeyName = null ) {
-		if ( !in_array( $type, array( 'default', 'array', 'assoc', 'kvp', 'BCarray', 'BCassoc', 'BCkvp' ), true ) ) {
+		if ( !in_array( $type, array(
+				'default', 'array', 'assoc', 'kvp', 'BCarray', 'BCassoc', 'BCkvp'
+				), true ) ) {
 			throw new InvalidArgumentException( 'Bad type' );
 		}
 		$arr[self::META_TYPE] = $type;
@@ -1035,7 +1041,8 @@ class ApiResult implements ApiSerializable {
 	/**
 	 * Get the 'real' size of a result item. This means the strlen() of the item,
 	 * or the sum of the strlen()s of the elements if the item is an array.
-	 * @note Once the deprecated public self::size is removed, we can rename this back to a less awkward name.
+	 * @note Once the deprecated public self::size is removed, we can rename
+	 *       this back to a less awkward name.
 	 * @param mixed $value
 	 * @return int
 	 */
@@ -1094,6 +1101,61 @@ class ApiResult implements ApiSerializable {
 			$ret = &$ret[$k];
 		}
 		return $ret;
+	}
+
+	/**
+	 * Add the correct metadata to an array of vars we want to export through
+	 * the API.
+	 *
+	 * @param array $vars
+	 * @param boolean $forceHash
+	 * @return array
+	 */
+	public static function addMetadataToResultVars( $vars, $forceHash = true ) {
+		// Process subarrays and determine if this is a JS [] or {}
+		$hash = $forceHash;
+		$maxKey = -1;
+		$bools = array();
+		foreach ( $vars as $k => $v ) {
+			if ( is_array( $v ) || is_object( $v ) ) {
+				$vars[$k] = ApiResult::addMetadataToResultVars( (array)$v, is_object( $v ) );
+			} elseif ( is_bool( $v ) ) {
+				// Better here to use real bools even in BC formats
+				$bools[] = $k;
+			}
+			if ( is_string( $k ) ) {
+				$hash = true;
+			} elseif ( $k > $maxKey ) {
+				$maxKey = $k;
+			}
+		}
+		if ( !$hash && $maxKey !== count( $vars ) - 1 ) {
+			$hash = true;
+		}
+
+		// Set metadata appropriately
+		if ( $hash ) {
+			// Get the list of keys we actually care about. Unfortunately, we can't support
+			// certain keys that conflict with ApiResult metadata.
+			$keys = array_diff( array_keys( $vars ), array(
+				ApiResult::META_TYPE, ApiResult::META_PRESERVE_KEYS, ApiResult::META_KVP_KEY_NAME,
+				ApiResult::META_INDEXED_TAG_NAME, ApiResult::META_BC_BOOLS
+			) );
+
+			return array(
+				ApiResult::META_TYPE => 'kvp',
+				ApiResult::META_KVP_KEY_NAME => 'key',
+				ApiResult::META_PRESERVE_KEYS => $keys,
+				ApiResult::META_BC_BOOLS => $bools,
+				ApiResult::META_INDEXED_TAG_NAME => 'var',
+			) + $vars;
+		} else {
+			return array(
+				ApiResult::META_TYPE => 'array',
+				ApiResult::META_BC_BOOLS => $bools,
+				ApiResult::META_INDEXED_TAG_NAME => 'value',
+			) + $vars;
+		}
 	}
 
 	/**@}*/

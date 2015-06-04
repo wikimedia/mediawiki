@@ -1127,6 +1127,76 @@ class ApiResultTest extends MediaWikiTestCase {
 	/**
 	 * @covers ApiResult
 	 */
+	public function testAddMetadataToResultVars() {
+		$arr = array(
+			'a' => "foo",
+			'b' => false,
+			'c' => 10,
+			'sequential_numeric_keys' => array( 'a', 'b', 'c' ),
+			'non_sequential_numeric_keys' => array( 'a', 'b', 4 => 'c' ),
+			'string_keys' => array(
+				'one' => 1,
+				'two' => 2
+			),
+			'object_sequential_keys' => (object)array( 'a', 'b', 'c' ),
+			'_type' => "should be overwritten in result",
+		);
+		$this->assertSame( array(
+			ApiResult::META_TYPE => 'kvp',
+			ApiResult::META_KVP_KEY_NAME => 'key',
+			ApiResult::META_PRESERVE_KEYS => array(
+				'a', 'b', 'c',
+				'sequential_numeric_keys', 'non_sequential_numeric_keys',
+				'string_keys', 'object_sequential_keys'
+			),
+			ApiResult::META_BC_BOOLS => array( 'b' ),
+			ApiResult::META_INDEXED_TAG_NAME => 'var',
+			'a' => "foo",
+			'b' => false,
+			'c' => 10,
+			'sequential_numeric_keys' => array(
+				ApiResult::META_TYPE => 'array',
+				ApiResult::META_BC_BOOLS => array(),
+				ApiResult::META_INDEXED_TAG_NAME => 'value',
+				0 => 'a',
+				1 => 'b',
+				2 => 'c',
+			),
+			'non_sequential_numeric_keys' => array(
+				ApiResult::META_TYPE => 'kvp',
+				ApiResult::META_KVP_KEY_NAME => 'key',
+				ApiResult::META_PRESERVE_KEYS => array( 0, 1, 4 ),
+				ApiResult::META_BC_BOOLS => array(),
+				ApiResult::META_INDEXED_TAG_NAME => 'var',
+				0 => 'a',
+				1 => 'b',
+				4 => 'c',
+			),
+			'string_keys' => array(
+				ApiResult::META_TYPE => 'kvp',
+				ApiResult::META_KVP_KEY_NAME => 'key',
+				ApiResult::META_PRESERVE_KEYS => array( 'one', 'two' ),
+				ApiResult::META_BC_BOOLS => array(),
+				ApiResult::META_INDEXED_TAG_NAME => 'var',
+				'one' => 1,
+				'two' => 2,
+			),
+			'object_sequential_keys' => array(
+				ApiResult::META_TYPE => 'kvp',
+				ApiResult::META_KVP_KEY_NAME => 'key',
+				ApiResult::META_PRESERVE_KEYS => array( 0, 1, 2 ),
+				ApiResult::META_BC_BOOLS => array(),
+				ApiResult::META_INDEXED_TAG_NAME => 'var',
+				0 => 'a',
+				1 => 'b',
+				2 => 'c',
+			),
+		), ApiResult::addMetadataToResultVars( $arr ) );
+	}
+
+	/**
+	 * @covers ApiResult
+	 */
 	public function testDeprecatedFunctions() {
 		// Ignore ApiResult deprecation warnings during this test
 		set_error_handler( function ( $errno, $errstr ) use ( &$warnings ) {
