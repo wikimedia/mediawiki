@@ -109,7 +109,6 @@ return array(
 	// Used in the web installer. Test it after modifying this definition!
 	'mediawiki.skinning.interface' => array(
 		'position' => 'top',
-		// Display wiki logo on .mw-wiki-logo elements.
 		'class' => 'ResourceLoaderSkinModule',
 		'styles' => array(
 			'resources/src/mediawiki.skinning/elements.css' => array( 'media' => 'screen' ),
@@ -134,13 +133,6 @@ return array(
 		'styles' => array(
 			'resources/src/mediawiki.skinning/content.externallinks.css' => array( 'media' => 'screen' ),
 		),
-	),
-
-	// Display wiki logo on .mw-wiki-logo elements.
-	// This is also part of 'mediawiki.skinning.interface' module; the skin shouldn't load them both.
-	'mediawiki.skinning.logo' => array(
-		'position' => 'top',
-		'class' => 'ResourceLoaderSkinModule',
 	),
 
 	/* jQuery */
