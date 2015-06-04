@@ -300,13 +300,12 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 		if ( !$batch->isEmpty() ) {
 			$res = $dbr->select( 'page',
-				array( 'page_namespace', 'page_title', 'page_touched', 'page_len' ),
+				array( 'page_touched', 'page_len' ),
 				$batch->constructSet( 'page', $dbr ),
 				__METHOD__
 			);
 			foreach ( $res as $row ) {
-				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-				$this->titleInfo[$hash][$title->getPrefixedDBkey()] = array(
+				$this->titleInfo[$hash][] = array(
 					'timestamp' => wfTimestamp( TS_UNIX, $row->page_touched ),
 					'length' => $row->page_len,
 				);
