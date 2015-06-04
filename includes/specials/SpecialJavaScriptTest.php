@@ -198,6 +198,7 @@ HTML;
 			'lang' => $this->getLanguage()->getCode(),
 			'skin' => $this->getSkin()->getSkinName(),
 			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
+			'target' => 'test',
 		);
 		$embedContext = new ResourceLoaderContext( $rl, new FauxRequest( $query ) );
 		$query['only'] = 'scripts';
