@@ -22,13 +22,17 @@
  * @author Trevor Parscal
  */
 
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
+
 /**
  * Dynamic JavaScript and CSS resource loading system.
  *
  * Most of the documentation is on the MediaWiki documentation wiki starting at:
  *    https://www.mediawiki.org/wiki/ResourceLoader
  */
-class ResourceLoader {
+class ResourceLoader implements LoggerAwareInterface {
 	/** @var int */
 	protected static $filterCacheVersion = 7;
 
@@ -76,6 +80,11 @@ class ResourceLoader {
 	 * @var MessageBlobStore
 	 */
 	protected $blobStore;
+
+	/**
+	 * @var LoggerInterface
+	 */
+	private $logger;
 
 	/**
 	 * Load information stored in the database about modules.
@@ -188,7 +197,7 @@ class ResourceLoader {
 		}
 
 		if ( !in_array( $filter, array( 'minify-js', 'minify-css' ) ) ) {
-			wfDebugLog( 'resourceloader', __METHOD__ . ": Invalid filter: $filter" );
+			$this->logger->info( __METHOD__ . ": Invalid filter: $filter" );
 			return $data;
 		}
 
@@ -212,7 +221,7 @@ class ResourceLoader {
 				$cache->set( $key, $result );
 			} catch ( Exception $e ) {
 				MWExceptionHandler::logException( $e );
-				wfDebugLog( 'resourceloader', __METHOD__ . ": minification failed: $e" );
+				$this->logger->info( __METHOD__ . ": minification failed: $e" );
 				$this->errors[] = self::formatExceptionNoComment( $e );
 			}
 		}
@@ -239,14 +248,18 @@ class ResourceLoader {
 	 * Register core modules and runs registration hooks.
 	 * @param Config|null $config
 	 */
-	public function __construct( Config $config = null ) {
+	public function __construct( Config $config = null, LoggerInterface $logger = null ) {
 		global $IP;
 
-		if ( $config === null ) {
-			wfDebug( __METHOD__ . ' was called without providing a Config instance' );
+		if ( !$logger ) {
+			$logger = new NullLogger();
+		}
+		$this->setLogger( $logger );
+
+		if ( !$config ) {
+			$this->logger->info( __METHOD__ . ' was called without providing a Config instance' );
 			$config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
 		}
-
 		$this->config = $config;
 
 		// Add 'local' source first
@@ -274,6 +287,10 @@ class ResourceLoader {
 	 */
 	public function getConfig() {
 		return $this->config;
+	}
+
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
 	}
 
 	/**
@@ -633,7 +650,7 @@ class ResourceLoader {
 				// Do not allow private modules to be loaded from the web.
 				// This is a security issue, see bug 34907.
 				if ( $module->getGroup() === 'private' ) {
-					wfDebugLog( 'resourceloader', __METHOD__ . ": request for private module '$name' denied" );
+					$this->logger->info( __METHOD__ . ": request for private module '$name' denied" );
 					$this->errors[] = "Cannot show private module \"$name\"";
 					continue;
 				}
@@ -648,7 +665,7 @@ class ResourceLoader {
 			$this->preloadModuleInfo( array_keys( $modules ), $context );
 		} catch ( Exception $e ) {
 			MWExceptionHandler::logException( $e );
-			wfDebugLog( 'resourceloader', __METHOD__ . ": preloading module info failed: $e" );
+			$this->logger->info( __METHOD__ . ": preloading module info failed: $e" );
 			$this->errors[] = self::formatExceptionNoComment( $e );
 		}
 
@@ -658,7 +675,7 @@ class ResourceLoader {
 			$versionHash = $this->getCombinedVersion( $context, array_keys( $modules ) );
 		} catch ( Exception $e ) {
 			MWExceptionHandler::logException( $e );
-			wfDebugLog( 'resourceloader', __METHOD__ . ": calculating version hash failed: $e" );
+			$this->logger->info( __METHOD__ . ": calculating version hash failed: $e" );
 			$this->errors[] = self::formatExceptionNoComment( $e );
 		}
 
@@ -1057,7 +1074,7 @@ MESSAGE;
 				}
 			} catch ( Exception $e ) {
 				MWExceptionHandler::logException( $e );
-				wfDebugLog( 'resourceloader', __METHOD__ . ": generating module package failed: $e" );
+				$this->logger->info( __METHOD__ . ": generating module package failed: $e" );
 				$this->errors[] = self::formatExceptionNoComment( $e );
 
 				// Respond to client with error-state instead of module implementation

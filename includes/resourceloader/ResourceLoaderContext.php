@@ -22,6 +22,8 @@
  * @author Roan Kattouw
  */
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * Object passed around to modules which contains information about the state
  * of a specific loader request
@@ -123,7 +125,8 @@ class ResourceLoaderContext {
 	 */
 	public static function newDummyContext() {
 		return new self( new ResourceLoader(
-			ConfigFactory::getDefaultInstance()->makeConfig( 'main' )
+			ConfigFactory::getDefaultInstance()->makeConfig( 'main' ),
+			LoggerFactory::getInstance( 'resourceloader' )
 		), new FauxRequest( array() ) );
 	}
 
