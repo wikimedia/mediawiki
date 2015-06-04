@@ -187,6 +187,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 		$resourceLoader = $context->getResourceLoader();
 		$target = $context->getRequest()->getVal( 'target', 'desktop' );
+		// Bypass target filter if this request is from a unit test context. To prevent misuse in
+		// production, this is only allowed if testing is enabled server-side.
+		$byPassTargetFilter = $this->getConfig()->get( 'EnableJavaScriptTest' ) && $target === 'test';
 
 		$out = '';
 		$registryData = array();
@@ -195,7 +198,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		foreach ( $resourceLoader->getModuleNames() as $name ) {
 			$module = $resourceLoader->getModule( $name );
 			$moduleTargets = $module->getTargets();
-			if ( !in_array( $target, $moduleTargets ) ) {
+			if ( !$byPassTargetFilter && !in_array( $target, $moduleTargets ) ) {
 				continue;
 			}
 
