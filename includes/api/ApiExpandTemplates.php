@@ -142,6 +142,15 @@ class ApiExpandTemplates extends ApiBase {
 				if ( isset( $prop['wikitext'] ) ) {
 					$retval['wikitext'] = $wikitext;
 				}
+				if ( isset( $prop['modules'] ) ) {
+					$p_output = $wgParser->getOutput();
+					$retval['modules'] = array_values( array_unique( $p_output->getModules() ) );
+					$retval['modulescripts'] = array_values( array_unique( $p_output->getModuleScripts() ) );
+					$retval['modulestyles'] = array_values( array_unique( $p_output->getModuleStyles() ) );
+					// To be removed in 1.27
+					$retval['modulemessages'] = array();
+					$this->setWarning( 'modulemessages is deprecated since MediaWiki 1.26' );
+				}
 			}
 		}
 		ApiResult::setSubelementsList( $retval, array( 'wikitext', 'parsetree' ) );
@@ -167,6 +176,7 @@ class ApiExpandTemplates extends ApiBase {
 					'properties',
 					'volatile',
 					'ttl',
+					'modules',
 					'parsetree',
 				),
 				ApiBase::PARAM_ISMULTI => true,
