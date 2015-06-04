@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * This class should be covered by a general architecture document which does
  * not exist as of January 2011.  This is one of the Core classes and should
@@ -2737,7 +2739,10 @@ class OutputPage extends ContextSource {
 	 */
 	public function getResourceLoader() {
 		if ( is_null( $this->mResourceLoader ) ) {
-			$this->mResourceLoader = new ResourceLoader( $this->getConfig() );
+			$this->mResourceLoader = new ResourceLoader(
+				$this->getConfig(),
+				LoggerFactory::getInstance( 'resourceloader' )
+			);
 		}
 		return $this->mResourceLoader;
 	}
