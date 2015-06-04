@@ -614,8 +614,8 @@ EOT
 			$out->wrapWikiMsg( "<div id='mw-imagepage-nofile' class='plainlinks'>\n$1\n</div>", $nofile );
 			if ( !$this->getID() && $wgSend404Code ) {
 				// If there is no image, no shared image, and no description page,
-				// output a 404, to be consistent with articles.
-				$request->response()->header( 'HTTP/1.1 404 Not Found' );
+				// output a 404, to be consistent with Article::showMissingArticle.
+				$request->response()->statusHeader( 404 );
 			}
 		}
 		$out->setFileVersion( $this->displayImg );

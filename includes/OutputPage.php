@@ -838,10 +838,10 @@ class OutputPage extends ContextSource {
 		}
 
 		# Not modified
-		# Give a 304 response code and disable body output
+		# Give a 304 Not Modified response code and disable body output
 		wfDebug( __METHOD__ . ": NOT MODIFIED, $info\n", 'log' );
 		ini_set( 'zlib.output_compression', 0 );
-		$this->getRequest()->response()->header( "HTTP/1.1 304 Not Modified" );
+		$this->getRequest()->response()->statusHeader( 304 );
 		$this->sendCacheControl();
 		$this->disable();
 
@@ -2220,8 +2220,7 @@ class OutputPage extends ContextSource {
 			if ( Hooks::run( "BeforePageRedirect", array( $this, &$redirect, &$code ) ) ) {
 				if ( $code == '301' || $code == '303' ) {
 					if ( !$config->get( 'DebugRedirects' ) ) {
-						$message = HttpStatus::getMessage( $code );
-						$response->header( "HTTP/1.1 $code $message" );
+						$response->statusHeader( $code );
 					}
 					$this->mLastModified = wfTimestamp( TS_RFC2822 );
 				}
@@ -2243,10 +2242,7 @@ class OutputPage extends ContextSource {
 
 			return;
 		} elseif ( $this->mStatusCode ) {
-			$message = HttpStatus::getMessage( $this->mStatusCode );
-			if ( $message ) {
-				$response->header( 'HTTP/1.1 ' . $this->mStatusCode . ' ' . $message );
-			}
+			$response->statusHeader( $this->mStatusCode );
 		}
 
 		# Buffer output; final headers may depend on later processing
