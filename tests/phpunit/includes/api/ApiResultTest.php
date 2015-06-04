@@ -205,6 +205,24 @@ class ApiResultTest extends MediaWikiTestCase {
 			0 => "foo\xef\xbf\xbdbar",
 			1 => "\xc3\xa1",
 		), $arr );
+
+		// Test addMetadataToResultVars
+		$arr = array(
+			'a' => "foo",
+			'b' => false,
+			'c' => 10,
+			'_type' => "should be overwritten in result",
+		);
+		$this->assertSame( array(
+			ApiResult::META_TYPE => 'kvp',
+			ApiResult::META_KVP_KEY_NAME => 'key',
+			ApiResult::META_PRESERVE_KEYS => array( 'a', 'b', 'c' ),
+			ApiResult::META_BC_BOOLS => array( 'b' ),
+			ApiResult::META_INDEXED_TAG_NAME => 'var',
+			'a' => "foo",
+			'b' => false,
+			'c' => 10,
+		), ApiResult::addMetadataToResultVars( $arr ));
 	}
 
 	/**
