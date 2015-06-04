@@ -197,7 +197,9 @@ class ResourceLoader implements LoggerAwareInterface {
 		}
 
 		if ( !in_array( $filter, array( 'minify-js', 'minify-css' ) ) ) {
-			$this->logger->info( __METHOD__ . ": Invalid filter: $filter" );
+			$this->logger->warning( 'Invalid filter {filter}', array(
+				'filter' => $filter
+			) );
 			return $data;
 		}
 
@@ -221,7 +223,9 @@ class ResourceLoader implements LoggerAwareInterface {
 				$cache->set( $key, $result );
 			} catch ( Exception $e ) {
 				MWExceptionHandler::logException( $e );
-				$this->logger->info( __METHOD__ . ": minification failed: $e" );
+				$this->logger->warning( 'Minification failed: {exception}', array(
+					'exception' => $e
+				) );
 				$this->errors[] = self::formatExceptionNoComment( $e );
 			}
 		}
@@ -257,7 +261,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		$this->setLogger( $logger );
 
 		if ( !$config ) {
-			$this->logger->info( __METHOD__ . ' was called without providing a Config instance' );
+			$this->logger->debug( __METHOD__ . ' was called without providing a Config instance' );
 			$config = ConfigFactory::getDefaultInstance()->makeConfig( 'main' );
 		}
 		$this->config = $config;
@@ -650,7 +654,7 @@ class ResourceLoader implements LoggerAwareInterface {
 				// Do not allow private modules to be loaded from the web.
 				// This is a security issue, see bug 34907.
 				if ( $module->getGroup() === 'private' ) {
-					$this->logger->info( __METHOD__ . ": request for private module '$name' denied" );
+					$this->logger->debug( "Request for private module '$name' denied" );
 					$this->errors[] = "Cannot show private module \"$name\"";
 					continue;
 				}
@@ -665,7 +669,9 @@ class ResourceLoader implements LoggerAwareInterface {
 			$this->preloadModuleInfo( array_keys( $modules ), $context );
 		} catch ( Exception $e ) {
 			MWExceptionHandler::logException( $e );
-			$this->logger->info( __METHOD__ . ": preloading module info failed: $e" );
+			$this->logger->warning( 'Preloading module info failed: {exception}', array(
+				'exception' => $e
+			) );
 			$this->errors[] = self::formatExceptionNoComment( $e );
 		}
 
@@ -675,7 +681,9 @@ class ResourceLoader implements LoggerAwareInterface {
 			$versionHash = $this->getCombinedVersion( $context, array_keys( $modules ) );
 		} catch ( Exception $e ) {
 			MWExceptionHandler::logException( $e );
-			$this->logger->info( __METHOD__ . ": calculating version hash failed: $e" );
+			$this->logger->warning( 'Calculating version hash failed: {exception}', array(
+				'exception' => $e
+			) );
 			$this->errors[] = self::formatExceptionNoComment( $e );
 		}
 
@@ -957,9 +965,9 @@ MESSAGE;
 				$blobs = $this->blobStore->get( $this, $modules, $context->getLanguage() );
 			} catch ( Exception $e ) {
 				MWExceptionHandler::logException( $e );
-				$this->logger->info(
-					__METHOD__ . ": pre-fetching blobs from MessageBlobStore failed: $e"
-				);
+				$this->logger->warning( 'Prefetching MessageBlobStore failed: {exception}', array(
+					'exception' => $e
+				) );
 				$this->errors[] = self::formatExceptionNoComment( $e );
 			}
 		} else {
@@ -1072,7 +1080,9 @@ MESSAGE;
 				}
 			} catch ( Exception $e ) {
 				MWExceptionHandler::logException( $e );
-				$this->logger->info( __METHOD__ . ": generating module package failed: $e" );
+				$this->logger->warning( 'Generating module package failed: {exception}', array(
+					'exception' => $e
+				) );
 				$this->errors[] = self::formatExceptionNoComment( $e );
 
 				// Respond to client with error-state instead of module implementation
