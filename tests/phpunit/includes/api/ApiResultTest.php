@@ -205,6 +205,19 @@ class ApiResultTest extends MediaWikiTestCase {
 			0 => "foo\xef\xbf\xbdbar",
 			1 => "\xc3\xa1",
 		), $arr );
+
+		// Test addMetadataToResultVars
+		$arr = array(
+			'a' => "foo",
+			'b' => false,
+			'c' => 10,
+			'_type' => "shouldn't appear in result",
+		);
+		$this->assertSame( array(
+			'a' => "foo",
+			'b' => false,
+			'c' => 10,
+		), ApiResult::addMetadataToResultVars( $arr ));
 	}
 
 	/**
