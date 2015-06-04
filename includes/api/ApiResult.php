@@ -1096,6 +1096,60 @@ class ApiResult implements ApiSerializable {
 		return $ret;
 	}
 
+	/**
+	 * Format an array of Javascript config vars for exporting.
+	 *
+	 * @param array $vars
+	 * @param boolean $forceHash
+	 * @return array
+	 */
+	public function formatJsConfigVars( $vars, $forceHash = true ) {
+		// Process subarrays and determine if this is a JS [] or {}
+		$hash = $forceHash;
+		$maxKey = -1;
+		$bools = array();
+		foreach ( $vars as $k => $v ) {
+			if ( is_array( $v ) || is_object( $v ) ) {
+				$vars[$k] = $this->formatJsConfigVars( (array)$v, false );
+			} elseif ( is_bool( $v ) ) {
+				// Better here to use real bools even in BC formats
+				$bools[] = $k;
+			}
+			if ( is_string( $k ) ) {
+				$hash = true;
+			} elseif ( $k > $maxKey ) {
+				$maxKey = $k;
+			}
+		}
+		if ( !$hash && $maxKey !== count( $vars ) - 1 ) {
+			$hash = true;
+		}
+
+		// Get the list of keys we actually care about. Unfortunately, we can't support
+		// certain keys that conflict with ApiResult metadata.
+		$keys = array_diff( array_keys( $vars ), array(
+			ApiResult::META_TYPE, ApiResult::META_PRESERVE_KEYS, ApiResult::META_KVP_KEY_NAME,
+			ApiResult::META_INDEXED_TAG_NAME, ApiResult::META_BC_BOOLS
+		) );
+
+		// Set metadata appropriately
+		if ( $hash ) {
+			return array(
+				ApiResult::META_TYPE => 'kvp',
+				ApiResult::META_KVP_KEY_NAME => 'key',
+				ApiResult::META_PRESERVE_KEYS => $keys,
+				ApiResult::META_BC_BOOLS => $bools,
+				ApiResult::META_INDEXED_TAG_NAME => 'var',
+			) + $vars;
+		} else {
+			return array(
+				ApiResult::META_TYPE => 'array',
+				ApiResult::META_BC_BOOLS => $bools,
+				ApiResult::META_INDEXED_TAG_NAME => 'value',
+			) + $vars;
+		}
+	}
+
 	/**@}*/
 
 	/************************************************************************//**
