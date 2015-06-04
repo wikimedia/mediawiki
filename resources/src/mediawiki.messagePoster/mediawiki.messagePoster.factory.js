@@ -67,7 +67,7 @@
 			indexpageids: 1,
 			titles: title.getPrefixedDb()
 		} ).then( function ( result ) {
-			if ( result.query.pageids.length > 0 ) {
+			if ( result.query.pageids && result.query.pageids.length > 0 ) {
 				pageId = result.query.pageids[0];
 				page = result.query.pages[pageId];
 
