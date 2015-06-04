@@ -1291,6 +1291,7 @@
 	"uploaded-hostile-svg": "Знойдзены небясьпечны CSS у элемэнце стылю загружанага SVG-файла.",
 	"uploaded-event-handler-on-svg": "Усталёўваць атрыбуты апрацоўніка падзеяў <code>$1=\"$2\"</code> не дазволена для SVG-файлаў.",
 	"uploaded-href-attribute-svg": "Href-атрыбуты <code>&lt;$1 $2=\"$3\"&gt;</code> зь нелякальнай мэтай (напрыклад, http://, javascript:, і г. д.) не дазволеныя ў SVG-файлах.",
+	"uploaded-href-unsafe-target-svg": "У загружаным SVG-файле знойдзеная спасылка на небясьпечную мэту <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploadscriptednamespace": "Гэты SVG-файл утрымлівае няслушную прастору назваў «$1»",
 	"uploadinvalidxml": "Не атрымалася прааналізаваць XML у загружаным файле.",
 	"uploadvirus": "Файл утрымлівае вірус! Падрабязнасьці: $1",

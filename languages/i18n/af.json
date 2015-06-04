@@ -20,7 +20,8 @@
 			"Xethron",
 			"පසිඳු කාවින්ද",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Fwolff"
 		]
 	},
 	"tog-underline": "Onderstreep skakels.",
@@ -498,7 +499,7 @@
 	"resetpass-wrong-oldpass": "Die huidige of tydelike wagwoord is ongeldig.\nU het moontlik reeds u wagwoord gewysig of 'n nuwe tydelike wagwoord aangevra.",
 	"resetpass-temp-password": "Tydelike wagwoord:",
 	"resetpass-abort-generic": "Wysiging van wagwoord is deur 'n uitbreiding gestop.",
-	"passwordreset": "Wagwoord herstel",
+	"passwordreset": "Herstel wagwoord",
 	"passwordreset-text-one": "Voltooi hierdie vorm om u wagwoord te herstel.",
 	"passwordreset-text-many": "{{PLURAL:$1|Vul een van die velde in om 'n tydelike wagwoord per e-pos te ontvang.}}",
 	"passwordreset-legend": "Kry nuwe wagwoord",
@@ -1639,8 +1640,10 @@
 	"watchnologin": "Nie ingeteken nie",
 	"addwatch": "Voeg by dophoulys",
 	"addedwatchtext": "Die bladsy \"[[:$1]]\" is by u [[Special:Watchlist|dophoulys]] bygevoeg.\nToekomstige wysigings aan hierdie bladsy en sy bybehorende besprekingsblad sal hier gelys word.",
+	"addedwatchtext-short": "Die bladsy \"$1\" is by u dophoulys gevoeg.",
 	"removewatch": "Verwyder van dophoulys",
 	"removedwatchtext": "Die bladsy \"[[:$1]]\" is van [[Special:Watchlist|u dophoulys]] afgehaal.",
+	"removedwatchtext-short": "Die bladsy \"$1\" is uit die dophoulys verwyder.",
 	"watch": "Hou dop",
 	"watchthispage": "Hou hierdie bladsy dop",
 	"unwatch": "Verwyder van dophoulys",

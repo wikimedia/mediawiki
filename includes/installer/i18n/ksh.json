@@ -108,7 +108,7 @@
 	"config-db-install-help": "Donn dä Name un et Paßwoot vun däm Aanwänder för der Zohjreff op de Daatebangk jäz för et Enreeshte aanjävve.",
 	"config-db-account-lock": "Donn dersälve Name un et sälve Paßwoot för der nomaale Bedrief vum Wiki bruche",
 	"config-db-wiki-account": "Dä Name vun däm Aanwender för dä Zohjref op de Daatebangk em nomaale Bedrief:",
-	"config-db-wiki-help": "Jiv ene Name un e Paßwoot aan, för dä Aanwender för dä Zohjref op de Daatebangk, wann et wiki nommaal aam Loufe es.\nWan et dä Name en der Daatebangk noch it jit, un dä Aanwender för dä Zohjref op de Daatebangk beim Enshtalleere\njenooch Beräschtijunge hät, läät dä heh dä Aanwender en der Daatebangk aan un jidd_em di Rääschde, di dä nüüdesch hät, ävver nit mieh.",
+	"config-db-wiki-help": "Jiv ene Nahme un e Paßwoot aan, för dä Aanwänder för dä Zohjref op de Dahtebangk, wann et Wikki nommahl aam Loufe es.\nWann et dä Nahme en der Dahtebangk noch nit jit, un dä Aanwender för dä Zohjrevv op de Dahtebangk beim Enschtallehre jenohch Berääschtejonge hät, läht dä heh dä Aanwänder en der Dahtebangk aan un jidd_em di Rääschde, di dä nühdesch hät, ävver nit mih.",
 	"config-db-prefix": "Vörsaz för de Name vun de Tabälle en de Daatebangk:",
 	"config-db-prefix-help": "Wann ein Daatebangk för mieh wi ein Wiki udder e Wiki uns söns jät zosamme jebruch weed, dann kam_mer noch jet vör de Tabälle ier Name säze. Esu ene Vörsaz sull dubblte Tabällename vermeide hälfe.\nDonn kein Zwescheräum enjävve!\n\nJewöhnlesch bliev dat Feld heh ävver läddesch.",
 	"config-db-charset": "Dä Daatebangk iere Zeischesaz",
