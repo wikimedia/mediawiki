@@ -26,8 +26,21 @@
  * Abstraction for resource loader modules which pull from wiki pages
  *
  * This can only be used for wiki pages in the MediaWiki and User namespaces,
- * because of its dependence on the functionality of
- * Title::isCssJsSubpage.
+ * because of its dependence on the functionality of Title::isCssJsSubpage.
+ *
+ * This module supports being used as a placeholder for a module on a remote wiki.
+ * To do so, getDB() must be overloaded to return a foreign database object that
+ * allows local wikis to query page metadata.
+ *
+ * Safe for calls on local wikis are:
+ * - Option getters:
+ *   - getGroup()
+ *   - getPosition()
+ *   - getPages()
+ * - Basic methods that strictly involve the foreign database
+ *   - getDB()
+ *   - isKnownEmpty()
+ *   - getTitleInfo()
  */
 class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	/** @var string Position on the page to load this module at */
@@ -36,7 +49,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	// Origin defaults to users with sitewide authority
 	protected $origin = self::ORIGIN_USER_SITEWIDE;
 
-	// In-object cache for title info
+	// In-process cache for title info
 	protected $titleInfo = array();
 
 	// List of page names that contain CSS
@@ -116,13 +129,13 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Get the Database object used in getTitleMTimes(). Defaults to the local slave DB
-	 * but subclasses may want to override this to return a remote DB object, or to return
-	 * null if getTitleMTimes() shouldn't access the DB at all.
+	 * Get the Database object used in getTitleInfo().
 	 *
-	 * NOTE: This ONLY works for getTitleMTimes() and getModifiedTime(), NOT FOR ANYTHING ELSE.
-	 * In particular, it doesn't work for getting the content of JS and CSS pages. That functionality
-	 * will use the local DB irrespective of the return value of this method.
+	 * Defaults to the local slave DB. Subclasses may want to override this to return a foreign
+	 * database object, or null if getTitleInfo() shouldn't access the database.
+	 *
+	 * NOTE: This ONLY works for getTitleInfo() and isKnownEmpty(), NOT FOR ANYTHING ELSE.
+	 * In particular, it doesn't work for getContent() or getScript() etc.
 	 *
 	 * @return IDatabase|null
 	 */
@@ -131,10 +144,15 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param Title $title
+	 * @param string $title
 	 * @return null|string
 	 */
-	protected function getContent( $title ) {
+	protected function getContent( $titleText ) {
+		$title = Title::newFromText( $titleText );
+		if ( !$title || $title->isRedirect() ) {
+			return null;
+		}
+
 		$handler = ContentHandler::getForTitle( $title );
 		if ( $handler->isSupportedFormat( CONTENT_FORMAT_CSS ) ) {
 			$format = CONTENT_FORMAT_CSS;
@@ -169,11 +187,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			if ( $options['type'] !== 'script' ) {
 				continue;
 			}
-			$title = Title::newFromText( $titleText );
-			if ( !$title || $title->isRedirect() ) {
-				continue;
-			}
-			$script = $this->getContent( $title );
+			$script = $this->getContent( $titleText );
 			if ( strval( $script ) !== '' ) {
 				$script = $this->validateScriptFile( $titleText, $script );
 				$scripts .= ResourceLoader::makeComment( $titleText ) . $script . "\n";
@@ -192,12 +206,8 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			if ( $options['type'] !== 'style' ) {
 				continue;
 			}
-			$title = Title::newFromText( $titleText );
-			if ( !$title || $title->isRedirect() ) {
-				continue;
-			}
 			$media = isset( $options['media'] ) ? $options['media'] : 'all';
-			$style = $this->getContent( $title );
+			$style = $this->getContent( $titleText );
 			if ( strval( $style ) === '' ) {
 				continue;
 			}
@@ -216,32 +226,14 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 
 	/**
 	 * @param ResourceLoaderContext $context
-	 * @return int
-	 */
-	public function getModifiedTime( ResourceLoaderContext $context ) {
-		$modifiedTime = 1;
-		$titleInfo = $this->getTitleInfo( $context );
-		if ( count( $titleInfo ) ) {
-			$mtimes = array_map( function ( $value ) {
-				return $value['timestamp'];
-			}, $titleInfo );
-			$modifiedTime = max( $modifiedTime, max( $mtimes ) );
-		}
-		$modifiedTime = max(
-			$modifiedTime,
-			$this->getMsgBlobMtime( $context->getLanguage() )
-		);
-		return $modifiedTime;
-	}
-
-	/**
-	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
 	public function getDefinitionSummary( ResourceLoaderContext $context ) {
 		$summary = parent::getDefinitionSummary( $context );
 		$summary[] = array(
 			'pages' => $this->getPages( $context ),
+			// Includes SHA1 of content
+			'titleInfo' => $this->getTitleInfo( $context ),
 		);
 		return $summary;
 	}
@@ -251,33 +243,29 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * @return bool
 	 */
 	public function isKnownEmpty( ResourceLoaderContext $context ) {
-		$titleInfo = $this->getTitleInfo( $context );
-		// Bug 68488: For modules in the "user" group, we should actually
-		// check that the pages are empty (page_len == 0), but for other
-		// groups, just check the pages exist so that we don't end up
-		// caching temporarily-blank pages without the appropriate
-		// <script> or <link> tag.
-		if ( $this->getGroup() !== 'user' ) {
-			return count( $titleInfo ) === 0;
-		}
+		$revisions = $this->getTitleInfo( $context );
 
-		foreach ( $titleInfo as $info ) {
-			if ( $info['length'] !== 0 ) {
-				// At least one non-0-lenth page, not empty
-				return false;
+		// For user modules, don't needlessly load if there are no non-empty pages
+		if ( $this->getGroup() === 'user' ) {
+			foreach ( $revisions as $revision ) {
+				if ( $revision['rev_len'] > 0 ) {
+					// At least one non-empty page, module should be loaded
+					return false;
+				}
 			}
+			return true;
 		}
 
-		// All pages are 0-length, so it's empty
-		return true;
+		// Bug 68488: For other modules (i.e. ones that are called in cached html output) only check
+		// page existance. This ensures that, if some pages in a module are temporarily blanked,
+		// we don't end omit the module's script or link tag on some pages.
+		return count( $revisions ) === 0;
 	}
 
 	/**
-	 * Get the modification times of all titles that would be loaded for
-	 * a given context.
-	 * @param ResourceLoaderContext $context Context object
-	 * @return array Keyed by page dbkey. Value is an array with 'length' and 'timestamp'
-	 *               keys, where the timestamp is a UNIX timestamp
+	 * Get the information about the wiki pages for a given context.
+	 * @param ResourceLoaderContext $context
+	 * @return array Keyed by page name. Contains arrays with 'rev_len' and 'rev_sha1' keys
 	 */
 	protected function getTitleInfo( ResourceLoaderContext $context ) {
 		$dbr = $this->getDB();
@@ -286,32 +274,36 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			return array();
 		}
 
-		$hash = $context->getHash();
-		if ( isset( $this->titleInfo[$hash] ) ) {
-			return $this->titleInfo[$hash];
-		}
+		$pages = $this->getPages( $context );
+		$key = implode( '|', array_keys( $pages ) );
+		if ( !isset( $this->titleInfo[$key] ) ) {
 
-		$this->titleInfo[$hash] = array();
-		$batch = new LinkBatch;
-		foreach ( $this->getPages( $context ) as $titleText => $options ) {
-			$batch->addObj( Title::newFromText( $titleText ) );
-		}
+			$this->titleInfo[$key] = array();
+			$batch = new LinkBatch;
+			foreach ( $pages as $titleText => $options ) {
+				$batch->addObj( Title::newFromText( $titleText ) );
+			}
 
-		if ( !$batch->isEmpty() ) {
-			$res = $dbr->select( 'page',
-				array( 'page_namespace', 'page_title', 'page_touched', 'page_len' ),
-				$batch->constructSet( 'page', $dbr ),
-				__METHOD__
-			);
-			foreach ( $res as $row ) {
-				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-				$this->titleInfo[$hash][$title->getPrefixedDBkey()] = array(
-					'timestamp' => wfTimestamp( TS_UNIX, $row->page_touched ),
-					'length' => $row->page_len,
+			if ( !$batch->isEmpty() ) {
+				$res = $dbr->select( array( 'page', 'revision' ),
+					array( 'page_namespace', 'page_title', 'rev_len', 'rev_sha1' ),
+					$batch->constructSet( 'page', $dbr ),
+					__METHOD__,
+					array(),
+					array( 'revision' => array( 'INNER JOIN', array( 'page_latest=rev_id' ) ) )
 				);
+				foreach ( $res as $row ) {
+					// Avoid including ids or timestamps of revision/page tables so
+					// that versions are not wasted
+					$title = Title::makeTitle( $row->page_namespace, $row->page_title );
+					$this->titleInfo[$key][$title->getPrefixedText()] = array(
+						'rev_len' => $row->rev_len,
+						'rev_sha1' => $row->rev_sha1,
+					);
+				}
 			}
 		}
-		return $this->titleInfo[$hash];
+		return $this->titleInfo[$key];
 	}
 
 	public function getPosition() {
