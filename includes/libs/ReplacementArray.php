@@ -111,7 +111,8 @@ class ReplacementArray {
 	 * @return string
 	 */
 	public function replace( $subject ) {
-		if ( function_exists( 'fss_prep_replace' ) ) {
+		global $wgDBname;
+		if ( ( $wgDBname !== 'zhwiki' || wfHostname() === 'mw1017' ) && function_exists( 'fss_prep_replace' ) ) {
 			if ( $this->fss === false ) {
 				$this->fss = fss_prep_replace( $this->data );
 			}
