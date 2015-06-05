@@ -715,6 +715,9 @@ class Html {
 		if ( in_array( $type, array( 'text', 'search', 'email', 'password', 'number' ) ) ) {
 			$attribs = self::getTextInputAttributes( $attribs );
 		}
+		if ( in_array( $type, array( 'button', 'reset', 'submit' ) ) ) {
+			$attribs = self::buttonAttributes( $attribs );
+		}
 		return self::element( 'input', $attribs );
 	}
 
