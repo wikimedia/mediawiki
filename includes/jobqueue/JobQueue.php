@@ -323,6 +323,12 @@ abstract class JobQueue {
 
 		$this->doBatchPush( $jobs, $flags );
 		$this->aggr->notifyQueueNonEmpty( $this->wiki, $this->type );
+
+		foreach ( $jobs as $job ) {
+			if ( $job->isRootJob() ) {
+				$this->deduplicateRootJob( $job );
+			}
+		}
 	}
 
 	/**

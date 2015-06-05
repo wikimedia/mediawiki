@@ -267,7 +267,6 @@ class LinksUpdate extends SqlDataUpdate {
 			);
 
 			JobQueueGroup::singleton()->push( $job );
-			JobQueueGroup::singleton()->deduplicateRootJob( $job );
 		}
 	}
 

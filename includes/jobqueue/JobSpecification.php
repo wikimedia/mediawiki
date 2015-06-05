@@ -73,6 +73,12 @@ interface IJobSpecification {
 	public function hasRootJobParams();
 
 	/**
+	 * @see JobQueue::deduplicateRootJob()
+	 * @return bool Whether this is job is a root job
+	 */
+	public function isRootJob();
+
+	/**
 	 * @return Title Descriptive title (this can simply be informative)
 	 */
 	public function getTitle();
@@ -193,6 +199,10 @@ class JobSpecification implements IJobSpecification {
 	public function hasRootJobParams() {
 		return isset( $this->params['rootJobSignature'] )
 			&& isset( $this->params['rootJobTimestamp'] );
+	}
+
+	public function isRootJob() {
+		return $this->hasRootJobParams() && !empty( $this->params['rootJobIsSelf'] );
 	}
 
 	/**
