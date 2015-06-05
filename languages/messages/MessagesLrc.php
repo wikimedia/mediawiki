@@ -1,5 +1,5 @@
 <?php
-/** Luri (لوری)
+/** Northern Luri (لوری شمالی)
  *
  * To improve a translation please visit https://translatewiki.net
  *
@@ -15,27 +15,27 @@ $fallback = 'fa';
 $rtl = true;
 
 $namespaceNames = array(
-	NS_MEDIA            => 'رسانه',
-	NS_SPECIAL          => 'ویجه',
-	NS_TALK             => 'چک_چنه',
-	NS_USER             => 'کارور',
-	NS_USER_TALK        => 'چک_چنه_کارور',
-	NS_PROJECT_TALK     => 'چک_چنه_$1',
+	NS_MEDIA            => 'ڤارئسگأر',
+	NS_SPECIAL          => 'ڤیجە',
+	NS_TALK             => 'چأک_چئنە',
+	NS_USER             => 'کاریار',
+	NS_USER_TALK        => 'چأک_چئنە_کاریار',
+	NS_PROJECT_TALK     => 'چأک_چئنە_$1',
 	NS_FILE             => 'جانیا',
-	NS_FILE_TALK        => 'چک_چنه_جانیا',
-	NS_MEDIAWIKI        => 'مدیاویکی',
-	NS_MEDIAWIKI_TALK   => 'چک_چنه_مدیاویکی',
-	NS_TEMPLATE         => 'چوئه',
-	NS_TEMPLATE_TALK    => 'چک_چنه_چوئه',
-	NS_HELP             => 'هومیاری',
-	NS_HELP_TALK        => 'چک_چنه_هومیاری',
-	NS_CATEGORY         => 'دسه',
-	NS_CATEGORY_TALK    => 'چک_چنه_دسه',
+	NS_FILE_TALK        => 'چأک_چئنە_جانیا',
+	NS_MEDIAWIKI        => 'مدیاڤیکی',
+	NS_MEDIAWIKI_TALK   => 'چأک_چئنە_مدیاڤیکی',
+	NS_TEMPLATE         => 'چوٙأ',
+	NS_TEMPLATE_TALK    => 'چأک_چئنە_چوأ',
+	NS_HELP             => 'ھومیاری',
+	NS_HELP_TALK        => 'چأک_چئنە_ھومیاری',
+	NS_CATEGORY         => 'دأسە',
+	NS_CATEGORY_TALK    => 'چأک_چئنە_دأسە',
 );
 
 $namespaceAliases = array(
-	'عسگ' => NS_FILE,
-	'چک_چنه_عسگ' => NS_FILE_TALK,
+	'عأسگ' => NS_FILE,
+	'چأک_چئنە_عأسگ' => NS_FILE_TALK,
 );
 
 $specialPageAliases = array(
