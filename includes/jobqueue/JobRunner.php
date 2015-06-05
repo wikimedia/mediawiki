@@ -136,7 +136,7 @@ class JobRunner implements LoggerAwareInterface {
 		$wait = 'wait'; // block to read backoffs the first time
 
 		$stats = RequestContext::getMain()->getStats();
-		$jobsRun = 0;
+		$jobsPopped = 0;
 		$timeMsTotal = 0;
 		$flags = JobQueueGroup::USE_CACHE;
 		$startTime = microtime( true ); // time since jobs started running
@@ -157,6 +157,7 @@ class JobRunner implements LoggerAwareInterface {
 			}
 
 			if ( $job ) { // found a job
+				$popTime = time();
 				$jType = $job->getType();
 
 				// Back off of certain jobs for a while (for throttling and for errors)
@@ -173,17 +174,12 @@ class JobRunner implements LoggerAwareInterface {
 				$msg = $job->toString() . " STARTING";
 				$this->logger->debug( $msg );
 				$this->debugCallback( $msg );
-				$timeToRun = false;
 
 				// Run the job...
 				$psection = $profiler->scopedProfileIn( __METHOD__ . '-' . $jType );
 				$jobStartTime = microtime( true );
 				try {
-					++$jobsRun;
-					$queuedTime = $job->getQueuedTimestamp();
-					if ( $queuedTime !== null ) {
-						$timeToRun = time() - $queuedTime;
-					}
+					++$jobsPopped;
 					$status = $job->run();
 					$error = $job->getLastError();
 					$this->commitMasterChanges( $job );
@@ -198,18 +194,15 @@ class JobRunner implements LoggerAwareInterface {
 				}
 				// Commit all outstanding connections that are in a transaction
 				// to get a fresh repeatable read snapshot on every connection.
-				// This is important because if you have an old snapshot on the
-				// database you could run the job incorrectly. Its possible, for
-				// example, to pick up a RefreshLinksJob for a new page that isn't
-				// even visible to the snapshot. The snapshot could have been
-				// created before the page. Fresh snapshots will see the page.
 				wfGetLBFactory()->commitAll();
 				$timeMs = intval( ( microtime( true ) - $jobStartTime ) * 1000 );
 				$timeMsTotal += $timeMs;
 				$profiler->scopedProfileOut( $psection );
-				if ( $timeToRun !== false ) {
+
+				if ( $job->getQueuedTimestamp() ) {
 					// Record time to run for the job type
-					$stats->timing( "jobqueue.pickup_time.$jType", $timeToRun );
+					$stats->timing( "job-pickuptime-$jType",
+						$popTime - $job->getQueuedTimestamp() );
 				}
 
 				// Mark the job as done on success or when the job cannot be retried
@@ -243,7 +236,7 @@ class JobRunner implements LoggerAwareInterface {
 				);
 
 				// Break out if we hit the job count or wall time limits...
-				if ( $maxJobs && $jobsRun >= $maxJobs ) {
+				if ( $maxJobs && $jobsPopped >= $maxJobs ) {
 					$response['reached'] = 'job-limit';
 					break;
 				} elseif ( $maxTime && ( microtime( true ) - $startTime ) > $maxTime ) {
@@ -263,7 +256,7 @@ class JobRunner implements LoggerAwareInterface {
 					$lastCheckTime = microtime( true );
 				}
 				// Don't let any queue slaves/backups fall behind
-				if ( $jobsRun > 0 && ( $jobsRun % 100 ) == 0 ) {
+				if ( $jobsPopped > 0 && ( $jobsPopped % 100 ) == 0 ) {
 					$group->waitForBackups();
 				}
 
