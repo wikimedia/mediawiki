@@ -1732,12 +1732,17 @@ return array(
 		'scripts' => array(
 			'resources/src/mediawiki.widgets/mw.widgets.js',
 			'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.js',
+			'resources/src/mediawiki.widgets/mw.widgets.DateInputWidget.js',
+			'resources/src/mediawiki.widgets/mw.widgets.CalendarWidget.js',
 		),
 		'skinStyles' => array(
 			'default' => 'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.css',
+			'default' => 'resources/src/mediawiki.widgets/mw.widgets.DateInputWidget.css',
+			'default' => 'resources/src/mediawiki.widgets/mw.widgets.CalendarWidget.less',
 		),
 		'dependencies' => array(
 			'oojs-ui',
+			'moment',
 		),
 		'messages' => array(
 			// …
