@@ -290,7 +290,7 @@ class ResourceLoaderContext {
 				return $this->imageObj;
 			}
 
-			$image = $module->getImage( $this->image );
+			$image = $module->getImage( $this->image, $this );
 			if ( !$image ) {
 				return $this->imageObj;
 			}
