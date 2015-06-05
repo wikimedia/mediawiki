@@ -18,6 +18,7 @@ production.
 * ':' (colon) is now invalid in usernames for new accounts. Existing accounts
   are not affected.
 * Added a new hook, 'LogException', to log exceptions in nonstandard ways.
+* Special:Export now has the ability to export pages within a prefix.
 
 ==== External libraries ====
 

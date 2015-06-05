@@ -51,6 +51,7 @@ class SpecialExport extends SpecialPage {
 			$request->getIntOrNull( 'pagelink-depth' )
 		);
 		$nsindex = '';
+		$prefixnsindex = '';
 		$exportall = false;
 
 		if ( $request->getCheck( 'addcat' ) ) {
@@ -82,6 +83,19 @@ class SpecialExport extends SpecialPage {
 				$nspages = $this->getPagesFromNamespace( $nsindex );
 				if ( $nspages ) {
 					$page .= "\n" . implode( "\n", $nspages );
+				}
+			}
+		} elseif ( $request->getCheck( 'addprefix' ) ) {
+			$page = $request->getText( 'pages' );
+			$prefix = $request->getText( 'prefix' );
+			$prefixnsindex = $request->getText( 'prefixnsindex', '' );
+			if ( $prefix !== '' && $prefix !== null && $prefix !== false && strval( $prefixnsindex ) !== '' ) {
+				/**
+				 * Same implementation as above, so same @todo
+				 */
+				$pagesinprefix = $this->getPagesInPrefix( $prefix, $prefixnsindex );
+				if ( $pagesinprefix ) {
+					$page .= "\n" . implode( "\n", $pagesinprefix );
 				}
 			}
 		} elseif ( $request->getCheck( 'exportall' ) && $config->get( 'ExportAllowAll' ) ) {
@@ -218,6 +232,25 @@ class SpecialExport extends SpecialPage {
 				array( 'name' => 'addns' )
 			) . '<br />';
 		}
+
+		$form .= Html::namespaceSelector(
+			array(
+				'selected' => $prefixnsindex,
+				'label' => $this->msg( 'export-addprefixtext' )->text()
+			), array(
+				'name' => 'prefixnsindex',
+				'id' => 'namespace',
+				'class' => 'namespaceselector'
+			)
+		) . '&#160;';
+		$form .= Xml::input(
+			'prefix',
+			40
+		);
+		$form .= Xml::submitButton(
+			$this->msg( 'export-addprefix' )->text(),
+			array( 'name' => 'addprefix' )
+		) . '<br />';
 
 		if ( $config->get( 'ExportAllowAll' ) ) {
 			$form .= Xml::checkLabel(
@@ -455,6 +488,72 @@ class SpecialExport extends SpecialPage {
 			array( 'page_namespace' => $nsindex ),
 			__METHOD__,
 			array( 'LIMIT' => '5000' )
+		);
+
+		$pages = array();
+
+		foreach ( $res as $row ) {
+			$n = $row->page_title;
+
+			if ( $row->page_namespace ) {
+				$ns = $wgContLang->getNsText( $row->page_namespace );
+				$n = $ns . ':' . $n;
+			}
+
+			$pages[] = $n;
+		}
+
+		return $pages;
+	}
+
+	/**
+	 * Get a list of pages with a prefix given in $prefix.
+	 * @param $prefix string
+	 * @param $nsindex int
+	 * @return array
+	 */
+	private function getPagesInPrefix( $prefix, $nsindex = NS_MAIN ) {
+		global $wgContLang, $wgExportFromNamespace;
+
+		$dbr = wfGetDB( DB_SLAVE );
+		// Check if the user entered a title ending with a colon
+		if ( substr( $prefix, -1 ) == ':' ) {
+			// This appends "Foo" to the end of $prefix (which ends with a colon)
+			// So if the user gave the prefix "Help:", this will make it "Help:Foo"
+			// @todo FIXME: This is a hacky way of getting the namespace index
+			$prefix = $prefix . 'Foo';
+			$title = Title::makeTitleSafe( $nsindex, $prefix );
+			$nsindex = $title->getNamespace();
+			// Add a check to see if exporting from a namespace is enabled
+			// @todo Maybe merge this function with $this->getPagesFromNamespace()?
+			if ( $wgExportFromNamespace && $nsindex !== NS_MAIN ) {
+				return $this->getPagesFromNamespace( $title->getNamespace() );
+			} elseif ( $nsindex == NS_MAIN ) {
+				// This will get called if the user gave "Foo:", but does not
+				// correspond to a wiki-defined namespace
+				// Subtract the "Foo" part out that was added above
+				$prefix = substr( $title->getDBKey(), 0, -3 );
+			}
+		} else {
+			$title = Title::makeTitleSafe( $nsindex, $prefix );
+			// $nsindex will return the namespace index if the wiki has got it defined, else defaults to NS_MAIN
+			$nsindex = $title->getNamespace();
+			$prefix = $title->getDBKey();
+		}
+		$conds = array(
+			'page_namespace' => $nsindex,
+			'page_title' . $dbr->buildLike( $prefix, $dbr->anyString() ),
+			'page_title >= ' . $dbr->addQuotes( $prefix ),
+		);
+		$res = $dbr->select(
+			'page',
+			array( 'page_namespace', 'page_title' ),
+			$conds,
+			__METHOD__,
+			array(
+				'LIMIT' => '5000',
+				'ORDER BY' => 'page_title'
+			)
 		);
 
 		$pages = array();
