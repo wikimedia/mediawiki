@@ -571,9 +571,10 @@ class ChangesList extends ContextSource {
 	/**
 	 * @param object|RecentChange $rc Database row from recentchanges or a RecentChange object
 	 * @param User $user
+	 * @param int $npChangeType
 	 * @return bool
 	 */
-	public static function isUnpatrolled( $rc, User $user ) {
+	public static function isUnpatrolled( $rc, User $user, $npChangeType = RC_NEW ) {
 		if ( $rc instanceof RecentChange ) {
 			$isPatrolled = $rc->mAttribs['rc_patrolled'];
 			$rcType = $rc->mAttribs['rc_type'];
@@ -586,7 +587,7 @@ class ChangesList extends ContextSource {
 			if ( $user->useRCPatrol() ) {
 				return true;
 			}
-			if ( $user->useNPPatrol() && $rcType == RC_NEW ) {
+			if ( $user->useNPPatrol() && $rcType == $npChangeType ) {
 				return true;
 			}
 		}
