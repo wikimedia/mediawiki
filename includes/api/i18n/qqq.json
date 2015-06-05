@@ -284,6 +284,7 @@
 	"apihelp-parse-paramvalue-prop-properties": "{{doc-apihelp-paramvalue|parse|prop|properties}}",
 	"apihelp-parse-paramvalue-prop-limitreportdata": "{{doc-apihelp-paramvalue|parse|prop|limitreportdata}}",
 	"apihelp-parse-paramvalue-prop-limitreporthtml": "{{doc-apihelp-paramvalue|parse|prop|limitreporthtml}}",
+	"apihelp-parse-paramvalue-prop-parsetree": "{{doc-apihelp-paramvalue|params=* $1 - Value of the constant CONTENT_MODEL_WIKITEXT|paramstart=2|parse|prop|parsetree}}",
 	"apihelp-parse-param-pst": "{{doc-apihelp-param|parse|pst}}",
 	"apihelp-parse-param-onlypst": "{{doc-apihelp-param|parse|onlypst}}",
 	"apihelp-parse-param-effectivelanglinks": "{{doc-apihelp-param|parse|effectivelanglinks}}",
