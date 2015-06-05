@@ -1729,13 +1729,20 @@ return array(
 		'scripts' => array(
 			'resources/src/mediawiki.widgets/mw.widgets.js',
 			'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.js',
+			'resources/src/mediawiki.widgets/mw.widgets.CalendarWidget.js',
+			'resources/src/mediawiki.widgets/mw.widgets.DateInputWidget.js',
 		),
 		'skinStyles' => array(
-			'default' => 'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.css',
+			'default' => array(
+				'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.css',
+				'resources/src/mediawiki.widgets/mw.widgets.CalendarWidget.less',
+				'resources/src/mediawiki.widgets/mw.widgets.DateInputWidget.less',
+			),
 		),
 		'dependencies' => array(
 			'mediawiki.Title',
 			'mediawiki.api',
+			'moment',
 			'oojs-ui',
 		),
 		'messages' => array(
