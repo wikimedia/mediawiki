@@ -397,9 +397,12 @@ class ApiParse extends ApiBase {
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'limitreporthtml';
 		}
 
-		if ( $params['generatexml'] ) {
+		if ( isset( $prop['parsetree'] ) || $params['generatexml'] ) {
+			if ( !isset( $prop['parsetree'] ) ) {
+				$this->logFeatureUsage( 'action=parse&generatexml' );
+			}
 			if ( $this->content->getModel() != CONTENT_MODEL_WIKITEXT ) {
-				$this->dieUsage( "generatexml is only supported for wikitext content", "notwikitext" );
+				$this->dieUsage( "parsetree is only supported for wikitext content", "notwikitext" );
 			}
 
 			$wgParser->startExternalParse( $titleObj, $popts, Parser::OT_PREPROCESS );
@@ -778,8 +781,11 @@ class ApiParse extends ApiBase {
 					'properties',
 					'limitreportdata',
 					'limitreporthtml',
+					'parsetree',
 				),
-				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(
+					'parsetree' => array( 'apihelp-parse-paramvalue-prop-parsetree', CONTENT_MODEL_WIKITEXT ),
+				),
 			),
 			'pst' => false,
 			'onlypst' => false,
@@ -795,6 +801,7 @@ class ApiParse extends ApiBase {
 				ApiBase::PARAM_HELP_MSG => array(
 					'apihelp-parse-param-generatexml', CONTENT_MODEL_WIKITEXT
 				),
+				ApiBase::PARAM_DEPRECATED => true,
 			),
 			'preview' => false,
 			'sectionpreview' => false,
