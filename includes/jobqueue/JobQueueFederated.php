@@ -93,6 +93,8 @@ class JobQueueFederated extends JobQueue {
 		) {
 			unset( $baseConfig[$o] ); // partition queue doesn't care about this
 		}
+		// The class handles all aggregator calls already
+		unset( $baseConfig['aggregator'] );
 		// Get the partition queue objects
 		foreach ( $partitionMap as $partition => $w ) {
 			if ( !isset( $params['configByPartition'][$partition] ) ) {
