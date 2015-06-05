@@ -4,6 +4,8 @@
  *
  * @since 1.21
  * @author Marius Hoch <hoo@online.de>
+ * @author Krinkle <krinklemail@gmail.com>
+ * @author Florian Schmidt <florian.schmidt.welzow@t-online.de>
  */
 ( function ( mw, $ ) {
 	if ( !mw.user.tokens.exists( 'patrolToken' ) ) {
@@ -12,29 +14,21 @@
 		return;
 	}
 	$( function () {
-		var $patrolLinks = $( '.patrollink a' );
-		$patrolLinks.on( 'click', function ( e ) {
-			var $spinner, href, rcid, apiRequest;
-
-			// Start preloading the notification module (normally loaded by mw.notify())
-			mw.loader.load( ['mediawiki.notification'], null, true );
-
-			// Hide the link and create a spinner to show it inside the brackets.
+		var $patrolLinks = $( '.patrollink a' ),
 			$spinner = $.createSpinner( {
 				size: 'small',
 				type: 'inline'
 			} );
+
+		mw.page.patrol.setup( $patrolLinks );
+		$patrolLinks.on( 'patrol::loading', function ( ev, status ) {
+			// Hide the link show a spinner instead.
 			$( this ).hide().after( $spinner );
 
-			href = $( this ).attr( 'href' );
-			rcid = mw.util.getParamValue( 'rcid', href );
-			apiRequest = new mw.Api();
+			// Start preloading the notification module (normally loaded by mw.notify())
+			mw.loader.load( ['mediawiki.notification'], null, true );
 
-			apiRequest.postWithToken( 'patrol', {
-				action: 'patrol',
-				rcid: rcid
-			} )
-			.done( function ( data ) {
+			status.done( function ( data ) {
 				// Remove all patrollinks from the page (including any spinners inside).
 				$patrolLinks.closest( '.patrollink' ).remove();
 				if ( data.patrol !== undefined ) {
@@ -45,8 +39,7 @@
 					// This should never happen as errors should trigger fail
 					mw.notify( mw.msg( 'markedaspatrollederrornotify' ) );
 				}
-			} )
-			.fail( function ( error ) {
+			} ).fail( function ( error ) {
 				$spinner.remove();
 				// Restore the patrol link. This allows the user to try again
 				// (or open it in a new window, bypassing this ajax module).
@@ -58,8 +51,6 @@
 					mw.notify( mw.msg( 'markedaspatrollederrornotify' ) );
 				}
 			} );
-
-			e.preventDefault();
 		} );
 	} );
 }( mediaWiki, jQuery ) );
