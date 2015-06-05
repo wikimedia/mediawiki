@@ -1356,21 +1356,29 @@ return array(
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
-	'mediawiki.page.patrol.ajax' => array(
-		'scripts' => 'resources/src/mediawiki.page/mediawiki.page.patrol.ajax.js',
+	'mediawiki.page.patrol' => array(
 		'dependencies' => array(
 			'mediawiki.page.startup',
 			'mediawiki.api',
 			'mediawiki.util',
-			'mediawiki.Title',
-			'mediawiki.notify',
-			'jquery.spinner',
-			'user.tokens'
+			'user.tokens',
+			'oojs',
 		),
+		'scripts' => 'resources/src/mediawiki.page/mediawiki.page.patrol.js',
 		'messages' => array(
 			'markedaspatrollednotify',
 			'markedaspatrollederrornotify',
 			'markedaspatrollederror-noautopatrol'
+		),
+		'targets' => array( 'desktop', 'mobile' ),
+	),
+	'mediawiki.page.patrol.ajax' => array(
+		'scripts' => 'resources/src/mediawiki.page/mediawiki.page.patrol.ajax.js',
+		'dependencies' => array(
+			'mediawiki.Title',
+			'mediawiki.notify',
+			'mediawiki.page.patrol',
+			'jquery.spinner',
 		),
 	),
 	'mediawiki.page.watch.ajax' => array(
