@@ -249,7 +249,7 @@
 	'lmo' => 'lumbaart',	# Lombard
 	'ln' => 'lingála',		# Lingala
 	'lo' => 'ລາວ',	# Laotian
-	'lrc' => 'لوری مینجایی',	# Northern Luri
+	'lrc' => 'لۊری شومالی',	# Northern Luri
 	'loz' => 'Silozi', # Lozi
 	'lt' => 'lietuvių',	# Lithuanian
 	'ltg' => 'latgaļu', 	# Latgalian
