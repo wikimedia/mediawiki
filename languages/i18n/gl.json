@@ -3181,7 +3181,7 @@
 	"feedback-bugornote": "Se está listo para describir un problema técnico en detalle, [$1 informe do erro].\nEn caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario aparecerá na páxina \"[$3 $2]\" xunto ao seu nome de usuario e o navegador que está usando.",
 	"feedback-cancel": "Cancelar",
 	"feedback-close": "Feito",
-	"feedback-external-bug-report-button": "Gardar unha tarefa técnica",
+	"feedback-external-bug-report-button": "Enviar unha tarefa técnica",
 	"feedback-dialog-title": "Enviar comentarios",
 	"feedback-dialog-intro": "Pode usar o formulario simple de abaixo para enviar os seus comentarios sobre o editor visual. O seu comentario será engadido á páxina \"$1\", xunto co seu nome de usuario.",
 	"feedback-error-title": "Erro",
