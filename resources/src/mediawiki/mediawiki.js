@@ -2011,6 +2011,10 @@
 					// Whether the store is in use on this page.
 					enabled: null,
 
+					// Modules whose string representation exceeds this length
+					// are ineligible for storage due to bug T66721.
+					MODULE_SIZE_MAX: 1e5,
+
 					// The contents of the store, mapping '[module name]@[version]' keys
 					// to module implementations.
 					items: {},
@@ -2141,7 +2145,7 @@
 					 * @param {Object} descriptor The module's descriptor as set in the registry
 					 */
 					set: function ( module, descriptor ) {
-						var args, key;
+						var args, key, src;
 
 						if ( !mw.loader.store.enabled ) {
 							return false;
@@ -2185,7 +2189,11 @@
 							return;
 						}
 
-						mw.loader.store.items[key] = 'mw.loader.implement(' + args.join( ',' ) + ');';
+						src = 'mw.loader.implement(' + args.join( ',' ) + ');';
+						if ( src.length > mw.loader.store.MODULE_SIZE_MAX ) {
+							return false;
+						}
+						mw.loader.store.items[key] = src;
 						mw.loader.store.update();
 					},
 
@@ -2204,6 +2212,9 @@
 							module = key.slice( 0, key.indexOf( '@' ) );
 							if ( mw.loader.store.getModuleKey( module ) !== key ) {
 								mw.loader.store.stats.expired++;
+								delete mw.loader.store.items[key];
+							} else if ( mw.loader.store.items[key].length > mw.loader.store.MODULE_SIZE_MAX ) {
+								// This value predates the enforcement of a size limit on cached modules.
 								delete mw.loader.store.items[key];
 							}
 						}
