@@ -209,6 +209,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	/**
 	 * Get a ResourceLoaderImage object for given image.
 	 * @param string $name Image name
+	 * @param ResourceLoaderContext $context
 	 * @return ResourceLoaderImage|null
 	 */
 	public function getImage( $name, ResourceLoaderContext $context ) {
@@ -219,6 +220,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 
 	/**
 	 * Get ResourceLoaderImage objects for all images.
+	 * @param ResourceLoaderContext $context
 	 * @return ResourceLoaderImage[] Array keyed by image name
 	 */
 	public function getImages( ResourceLoaderContext $context ) {
@@ -267,6 +269,7 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	/**
 	 * Get list of variants in this module that are 'global', i.e., available
 	 * for every image regardless of image options.
+	 * @param ResourceLoaderContext $context
 	 * @return string[]
 	 */
 	public function getGlobalVariants( ResourceLoaderContext $context ) {
