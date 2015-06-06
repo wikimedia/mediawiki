@@ -30,7 +30,8 @@
 			"Matthew Greg",
 			"Ата",
 			"Macofe",
-			"TomášPolonec"
+			"TomášPolonec",
+			"Mikulas1"
 		]
 	},
 	"tog-underline": "Podčiarkovať odkazy:",
@@ -1350,6 +1351,7 @@
 	"license": "Licencovanie:",
 	"license-header": "Licencovanie",
 	"nolicense": "Nič nebolo vybrané",
+	"licenses-edit": "Uprav možnosti licencie",
 	"license-nopreview": "(Náhľad nie je dostupný)",
 	"upload_source_url": " (platný, verejne prístupný URL)",
 	"upload_source_file": " (súbor na vašom počítači)",

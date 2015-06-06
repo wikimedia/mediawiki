@@ -4,7 +4,8 @@
 			"Beta16",
 			"Nivit",
 			"Toadino2",
-			"Gianfranco"
+			"Gianfranco",
+			"Alexmar983"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentazione (in inglese)]]\n* [[mw:API:FAQ|FAQ (in inglese)]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailing list]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annunci sull'API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bug & richieste]\n</div>\n<strong>Stato:</strong> Tutte le funzioni e caratteristiche mostrate su questa pagina dovrebbero funzionare, ma l'API è ancora in fase d'attivo sviluppo, e potrebbe cambiare in qualsiasi momenento. Iscriviti alla [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce mailing list] per essere informato sugli aggiornamenti.\n\n<strong>Istruzioni sbagliate:</strong> quando vengono impartite all'API delle istruzioni sbagliate, un'intestazione HTTP verrà inviata col messaggio \"MediaWiki-API-Error\" e sia al valore dell'intestazione sia al codice d'errore verrà impostato lo stesso valore. Per maggiori informazioni leggi [[mw:API:Errors_and_warnings|API:Errori ed avvertimenti (in inglese)]].",
@@ -75,6 +76,8 @@
 	"apihelp-expandtemplates-description": "Espandi tutti i template nel wikitesto.",
 	"apihelp-expandtemplates-param-title": "Titolo della pagina.",
 	"apihelp-expandtemplates-param-text": "Wikitesto da convertire.",
+	"apihelp-expandtemplates-paramvalue-prop-wikitext": "Il wikitext espanso.",
+	"apihelp-expandtemplates-paramvalue-prop-volatile": "Se l'output sia volatile e non debba essere riutilizzato altrove all'interno della pagina.",
 	"apihelp-query+recentchanges-example-simple": "Elenco modifiche recenti.",
 	"apihelp-upload-example-url": "Carica da un URL.",
 	"api-help-parameters": "{{PLURAL:$1|Parametro|Parametri}}:",
