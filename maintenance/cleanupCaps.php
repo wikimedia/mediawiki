@@ -32,13 +32,15 @@
 require_once __DIR__ . '/cleanupTable.inc';
 
 /**
- * Maintenance script to clean up broken page links when somebody turns on $wgCapitalLinks.
+ * Maintenance script to clean up broken page links when somebody turns
+ * on or off $wgCapitalLinks.
  *
  * @ingroup Maintenance
  */
 class CapsCleanup extends TableCleanup {
 
 	private $user;
+	private $namespace;
 
 	public function __construct() {
 		parent::__construct();
@@ -47,25 +49,66 @@ class CapsCleanup extends TableCleanup {
 	}
 
 	public function execute() {
-		global $wgCapitalLinks;
-
-		if ( $wgCapitalLinks ) {
-			$this->error( "\$wgCapitalLinks is on -- no need for caps links cleanup.", true );
-		}
-
 		$this->user = User::newSystemUser( 'Conversion script', [ 'steal' => true ] );
 
 		$this->namespace = intval( $this->getOption( 'namespace', 0 ) );
+
+		if ( MWNamespace::isCapitalized( $this->namespace ) ) {
+			$this->output( "Will be moving pages to first letter capitalized titles" );
+			$callback = 'processRowToUppercase';
+		} else {
+			$this->output( "Will be moving pages to first letter lowercase titles" );
+			$callback = 'processRowToLowercase';
+		}
+
 		$this->dryrun = $this->hasOption( 'dry-run' );
 
 		$this->runTable( [
 			'table' => 'page',
 			'conds' => [ 'page_namespace' => $this->namespace ],
 			'index' => 'page_id',
-			'callback' => 'processRow' ] );
+			'callback' => $callback ] );
 	}
 
-	protected function processRow( $row ) {
+	protected function processRowToUppercase( $row ) {
+		global $wgContLang;
+
+		$current = Title::makeTitle( $row->page_namespace, $row->page_title );
+		$display = $current->getPrefixedText();
+		$lower = $row->page_title;
+		$upper = $wgContLang->ucfirst( $row->page_title );
+		if ( $upper == $lower ) {
+			$this->output( "\"$display\" already uppercase.\n" );
+
+			return $this->progress( 0 );
+		}
+
+		$target = Title::makeTitle( $row->page_namespace, $upper );
+		if ( $target->exists() ) {
+			// Prefix "CapsCleanup" to bypass the conflict
+			$target = Title::newFromText( __CLASS__ . '/' . $display );
+		}
+		$ok = $this->movePage(
+			$current,
+			$target,
+			'Converting page title to first-letter uppercase',
+			false
+		);
+		if ( $ok ) {
+			$this->progress( 1 );
+			if ( $row->page_namespace == $this->namespace ) {
+				$talk = $target->getTalkPage();
+				$row->page_namespace = $talk->getNamespace();
+				if ( $talk->exists() ) {
+					return $this->processRowToUppercase( $row );
+				}
+			}
+		}
+
+		return $this->progress( 0 );
+	}
+
+	protected function processRowToLowercase( $row ) {
 		global $wgContLang;
 
 		$current = Title::makeTitle( $row->page_namespace, $row->page_title );
@@ -79,34 +122,50 @@ class CapsCleanup extends TableCleanup {
 		}
 
 		$target = Title::makeTitle( $row->page_namespace, $lower );
-		$targetDisplay = $target->getPrefixedText();
 		if ( $target->exists() ) {
+			$targetDisplay = $target->getPrefixedText();
 			$this->output( "\"$display\" skipped; \"$targetDisplay\" already exists\n" );
 
 			return $this->progress( 0 );
 		}
 
-		if ( $this->dryrun ) {
-			$this->output( "\"$display\" -> \"$targetDisplay\": DRY RUN, NOT MOVED\n" );
-			$ok = true;
-		} else {
-			$mp = new MovePage( $current, $target );
-			$status = $mp->move( $this->user, 'Converting page titles to lowercase', true );
-			$ok = $status->isOK() ? 'OK' : $status->getWikiText( false, false, 'en' );
-			$this->output( "\"$display\" -> \"$targetDisplay\": $ok\n" );
-		}
+		$ok = $this->movePage( $current, $target, 'Converting page titles to lowercase', true );
 		if ( $ok === true ) {
 			$this->progress( 1 );
 			if ( $row->page_namespace == $this->namespace ) {
 				$talk = $target->getTalkPage();
 				$row->page_namespace = $talk->getNamespace();
 				if ( $talk->exists() ) {
-					return $this->processRow( $row );
+					return $this->processRowToLowercase( $row );
 				}
 			}
 		}
 
 		return $this->progress( 0 );
+	}
+
+	/**
+	 * @param Title $current
+	 * @param Title $target
+	 * @param string $reason
+	 * @param bool $createRedirect
+	 * @return bool Success
+	 */
+	private function movePage( Title $current, Title $target, $reason, $createRedirect ) {
+		$display = $current->getPrefixedText();
+		$targetDisplay = $target->getPrefixedText();
+
+		if ( $this->dryrun ) {
+			$this->output( "\"$display\" -> \"$targetDisplay\": DRY RUN, NOT MOVED\n" );
+			$ok = 'OK';
+		} else {
+			$mp = new MovePage( $current, $target );
+			$status = $mp->move( $this->user, $reason, $createRedirect );
+			$ok = $status->isOK() ? 'OK' : $status->getWikiText( false, false, 'en' );
+			$this->output( "\"$display\" -> \"$targetDisplay\": $ok\n" );
+		}
+
+		return $ok === 'OK';
 	}
 }
 
