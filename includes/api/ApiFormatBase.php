@@ -173,6 +173,7 @@ abstract class ApiFormatBase extends ApiBase {
 		$mime = $this->getMimeType();
 		if ( $this->getIsHtml() && $mime !== null ) {
 			$format = $this->getFormat();
+			$lcformat = strtolower( $format );
 			$result = $this->getBuffer();
 
 			$context = new DerivativeContext( $this->getMain() );
@@ -184,9 +185,14 @@ abstract class ApiFormatBase extends ApiBase {
 			$out->addModules( 'mediawiki.apipretty' );
 			$out->setPageTitle( $context->msg( 'api-format-title' ) );
 
-			$header = $context->msg( 'api-format-prettyprint-header' )
-				->params( $format, strtolower( $format ) )
-				->parseAsBlock();
+			// When the format without suffix 'fm' is defined, there is a non-html version
+			if ( $this->getMain()->getModuleManager()->isDefined( $lcformat, 'format' ) ) {
+				$msg = $context->msg( 'api-format-prettyprint-header' )->params( $format, $lcformat );
+			} else {
+				$msg = $context->msg( 'api-format-prettyprint-header-only-html' )->params( $format );
+			}
+
+			$header = $msg->parseAsBlock();
 			$out->addHTML(
 				Html::rawElement( 'div', array( 'class' => 'api-pretty-header' ),
 					ApiHelp::fixHelpLinks( $header )
