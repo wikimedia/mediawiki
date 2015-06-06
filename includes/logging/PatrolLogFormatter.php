@@ -68,9 +68,11 @@ class PatrolLogFormatter extends LogFormatter {
 		$params = $entry->getParameters();
 
 		static $map = array(
-			'4::curid',
-			'5::previd',
+			'4:number:curid',
+			'5:number:previd',
 			'6:bool:auto',
+			'4::curid' => '4:number:curid',
+			'5::previd' => '5:number:previd',
 			'6::auto' => '6:bool:auto',
 		);
 		foreach ( $map as $index => $key ) {
