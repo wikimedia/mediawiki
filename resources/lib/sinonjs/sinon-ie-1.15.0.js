@@ -1,5 +1,5 @@
 /**
- * Sinon.JS 1.10.3, 2014/07/11
+ * Sinon.JS 1.15.0, 2015/05/30
  *
  * @author Christian Johansen (christian@cjohansen.no)
  * @author Contributors: https://github.com/cjohansen/Sinon.JS/blob/master/AUTHORS
@@ -33,7 +33,6 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/*global sinon, setTimeout, setInterval, clearTimeout, clearInterval, Date*/
 /**
  * Helps IE run the fake timers. By defining global functions, IE allows
  * them to be overwritten at a later point. If these are not defined like
@@ -47,25 +46,26 @@
  *
  * Copyright (c) 2010-2013 Christian Johansen
  */
-function setTimeout() {}
-function clearTimeout() {}
-function setImmediate() {}
-function clearImmediate() {}
-function setInterval() {}
-function clearInterval() {}
-function Date() {}
+if (typeof window !== "undefined") {
+    function setTimeout() {}
+    function clearTimeout() {}
+    function setImmediate() {}
+    function clearImmediate() {}
+    function setInterval() {}
+    function clearInterval() {}
+    function Date() {}
 
-// Reassign the original functions. Now their writable attribute
-// should be true. Hackish, I know, but it works.
-setTimeout = sinon.timers.setTimeout;
-clearTimeout = sinon.timers.clearTimeout;
-setImmediate = sinon.timers.setImmediate;
-clearImmediate = sinon.timers.clearImmediate;
-setInterval = sinon.timers.setInterval;
-clearInterval = sinon.timers.clearInterval;
-Date = sinon.timers.Date;
+    // Reassign the original functions. Now their writable attribute
+    // should be true. Hackish, I know, but it works.
+    setTimeout = sinon.timers.setTimeout;
+    clearTimeout = sinon.timers.clearTimeout;
+    setImmediate = sinon.timers.setImmediate;
+    clearImmediate = sinon.timers.clearImmediate;
+    setInterval = sinon.timers.setInterval;
+    clearInterval = sinon.timers.clearInterval;
+    Date = sinon.timers.Date;
+}
 
-/*global sinon*/
 /**
  * Helps IE run the fake XMLHttpRequest. By defining global functions, IE allows
  * them to be overwritten at a later point. If these are not defined like
@@ -79,12 +79,13 @@ Date = sinon.timers.Date;
  *
  * Copyright (c) 2010-2013 Christian Johansen
  */
-function XMLHttpRequest() {}
+if (typeof window !== "undefined") {
+    function XMLHttpRequest() {}
 
-// Reassign the original function. Now its writable attribute
-// should be true. Hackish, I know, but it works.
-XMLHttpRequest = sinon.xhr.XMLHttpRequest || undefined;
-/*global sinon*/
+    // Reassign the original function. Now its writable attribute
+    // should be true. Hackish, I know, but it works.
+    XMLHttpRequest = sinon.xhr.XMLHttpRequest || undefined;
+}
 /**
  * Helps IE run the fake XDomainRequest. By defining global functions, IE allows
  * them to be overwritten at a later point. If these are not defined like
@@ -93,8 +94,10 @@ XMLHttpRequest = sinon.xhr.XMLHttpRequest || undefined;
  *
  * If you don't require fake XDR to work in IE, don't include this file.
  */
-function XDomainRequest() {}
+if (typeof window !== "undefined") {
+    function XDomainRequest() {}
 
-// Reassign the original function. Now its writable attribute
-// should be true. Hackish, I know, but it works.
-XDomainRequest = sinon.xdr.XDomainRequest || undefined;
+    // Reassign the original function. Now its writable attribute
+    // should be true. Hackish, I know, but it works.
+    XDomainRequest = sinon.xdr.XDomainRequest || undefined;
+}
