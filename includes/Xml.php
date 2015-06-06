@@ -144,26 +144,19 @@ class Xml {
 	public static function monthSelector( $selected = '', $allmonths = null, $id = 'month' ) {
 		global $wgLang;
 		$options = array();
+		$data = new XmlSelect( 'month', $id, $selected );
 		if ( is_null( $selected ) ) {
 			$selected = '';
 		}
 		if ( !is_null( $allmonths ) ) {
-			$options[] = self::option(
-				wfMessage( 'monthsall' )->text(),
-				$allmonths,
-				$selected === $allmonths
-			);
+			$options[wfMessage( 'monthsall' )->text()] = $allmonths;
 		}
 		for ( $i = 1; $i < 13; $i++ ) {
-			$options[] = self::option( $wgLang->getMonthName( $i ), $i, $selected === $i );
+			$options[$wgLang->getMonthName( $i )] = $i;
 		}
-		return self::openElement( 'select', array(
-			'id' => $id,
-			'name' => 'month',
-			'class' => 'mw-month-selector'
-		) )
-			. implode( "\n", $options )
-			. self::closeElement( 'select' );
+		$data->addOptions( $options );
+		$data->setAttribute( 'class', 'mw-month-selector' );
+		return $data->getHTML();
 	}
 
 	/**
@@ -516,8 +509,11 @@ class Xml {
 		$selected = '', $class = '', $tabindex = null
 	) {
 		$optgroup = false;
+		$optgroupdata = array();
+		$optgroupvalue = '';
 
-		$options = self::option( $other, 'other', $selected === 'other' );
+		$options = new XmlSelect( $name ? $name : false, $name ? $name : false, $selected );
+		$options->addOption( $other, 'other' );
 
 		foreach ( explode( "\n", $list ) as $option ) {
 			$value = trim( $option );
@@ -527,48 +523,38 @@ class Xml {
 				// A new group is starting ...
 				$value = trim( substr( $value, 1 ) );
 				if ( $optgroup ) {
-					$options .= self::closeElement( 'optgroup' );
+					$options->addOption( $optgroupvalue, $optgroupdata );
 				}
-				$options .= self::openElement( 'optgroup', array( 'label' => $value ) );
+				$optgroupdata = array();
 				$optgroup = true;
+				$optgroupvalue = $value;
 			} elseif ( substr( $value, 0, 2 ) == '**' ) {
 				// groupmember
 				$value = trim( substr( $value, 2 ) );
-				$options .= self::option( $value, $value, $selected === $value );
+				$optgroupdata[$value] = $value;
 			} else {
 				// groupless reason list
 				if ( $optgroup ) {
-					$options .= self::closeElement( 'optgroup' );
+					$options->addOption( $optgroupvalue, $optgroupdata );
 				}
-				$options .= self::option( $value, $value, $selected === $value );
+				$options->addOption( $value, $value );
 				$optgroup = false;
 			}
 		}
 
 		if ( $optgroup ) {
-			$options .= self::closeElement( 'optgroup' );
-		}
-
-		$attribs = array();
-
-		if ( $name ) {
-			$attribs['id'] = $name;
-			$attribs['name'] = $name;
+			$options->addOption( $optgroupvalue, $optgroupdata );
 		}
 
 		if ( $class ) {
-			$attribs['class'] = $class;
+			$options->setAttribute( 'class', $class );
 		}
 
 		if ( $tabindex ) {
-			$attribs['tabindex'] = $tabindex;
+			$options->setAttribute( 'tabindex', $tabindex );
 		}
 
-		return Xml::openElement( 'select', $attribs )
-			. "\n"
-			. $options
-			. "\n"
-			. Xml::closeElement( 'select' );
+		return $options->getHTML();
 	}
 
 	/**
