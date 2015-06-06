@@ -17,7 +17,7 @@ abstract class LogFormatterTestCase extends MediaWikiLangTestCase {
 			'Action text is equal to expected text'
 		);
 
-		$this->assertEquals(
+		$this->assertSame( // ensure types and array key order
 			$extra['api'],
 			self::removeApiMetaData( $formatter->formatParametersForApi() ),
 			'Api log params is equal to expected array'

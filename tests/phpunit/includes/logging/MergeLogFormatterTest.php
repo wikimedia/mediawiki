@@ -25,9 +25,9 @@ class MergeLogFormatterTest extends LogFormatterTestCase {
 				array(
 					'text' => 'User merged OldPage into NewPage (revisions up to 16:07, 4 August 2014)',
 					'api' => array(
-						'mergepoint' => '2014-08-04T16:07:10Z',
 						'dest_ns' => 0,
 						'dest_title' => 'NewPage',
+						'mergepoint' => '2014-08-04T16:07:10Z',
 					),
 				),
 			),
@@ -49,9 +49,9 @@ class MergeLogFormatterTest extends LogFormatterTestCase {
 					'legacy' => true,
 					'text' => 'User merged OldPage into NewPage (revisions up to 16:07, 4 August 2014)',
 					'api' => array(
-						'mergepoint' => '2014-08-04T16:07:10Z',
 						'dest_ns' => 0,
 						'dest_title' => 'NewPage',
+						'mergepoint' => '2014-08-04T16:07:10Z',
 					),
 				),
 			),
