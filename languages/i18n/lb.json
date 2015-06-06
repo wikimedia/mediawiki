@@ -3032,7 +3032,7 @@
 	"revdelete-uname-unhid": "Benotzernumm net verstoppt",
 	"revdelete-restricted": "Limitatioune fir Administrateuren ageschalt",
 	"revdelete-unrestricted": "Limitatioune fir Administrateuren opgehuewen",
-	"logentry-block-block": "$1 {{GENDER:$2|huet}} {{GENDER:$4|$3}} fir eng Zäit vun $5 $6 gespaart",
+	"logentry-block-block": "$1 {{GENDER:$2|huet}} {{GENDER:$4|$3}} fir eng Zäit vu(n) $5 $6 gespaart",
 	"logentry-block-unblock": "$1 {{GENDER:$2|huet}} d'Spär vum {{GENDER:$4|$3}} opgehuewen",
 	"logentry-import-upload": "$1 {{GENDER:$2|huet}} $3 duerch Eropluede vun engem Fichier importéiert",
 	"logentry-import-interwiki": "$1 huet $3 vun enger anerer Wiki {{GENDER:$2|importéiert}}",
