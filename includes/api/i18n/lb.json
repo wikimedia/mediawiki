@@ -28,6 +28,7 @@
 	"apihelp-edit-param-watch": "D'Säit op dem aktuelle Benotzer seng Iwwerwaachungslëscht dobäisetzen.",
 	"apihelp-edit-example-edit": "Eng Säit änneren",
 	"apihelp-expandtemplates-param-title": "Titel vun der Säit.",
+	"apihelp-expandtemplates-paramvalue-prop-ttl": "D'Maximalzäit no där den Tëschespäicher vum Resultat net méi valabel si soll.",
 	"apihelp-feedcontributions-param-year": "Vum Joer (a virdrun).",
 	"apihelp-feedcontributions-param-month": "Vum Mount (a virdrun).",
 	"apihelp-feedrecentchanges-param-hideminor": "Kleng Ännerunge verstoppen.",

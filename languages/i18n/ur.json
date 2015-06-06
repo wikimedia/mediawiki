@@ -1071,7 +1071,7 @@
 	"invert": "انتخاب بالعکس",
 	"namespace_association": "متعلقہ فضا",
 	"blanknamespace": "(مرکز)",
-	"contributions": "{{جنس:$1|صارف}} شراکتیں",
+	"contributions": "{{GENDER:$1|صارف}} شراکتیں",
 	"contributions-title": "مساہماتِ صارف برائے $1",
 	"mycontris": "شراکت",
 	"contribsub2": "براۓ $1 ($2)",
