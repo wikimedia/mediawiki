@@ -1049,6 +1049,7 @@
 	"apihelp-yamlfm-description": "{{doc-apihelp-description|yamlfm|seealso=* {{msg-mw|apihelp-yaml-description}}}}",
 	"api-format-title": "{{technical}}\nPage title when API output is pretty-printed in HTML.",
 	"api-format-prettyprint-header": "{{technical}} Displayed as a header when API output is pretty-printed in HTML.\n\nParameters:\n* $1 - Format name\n* $2 - Non-pretty-printing module name",
+	"api-format-prettyprint-header-only-html": "{{technical}} Displayed as a header when API output is pretty-printed in HTML, but there is no non-html module.\n\nParameters:\n* $1 - Format name",
 	"api-orm-param-props": "{{doc-apihelp-param|orm|props|description=the \"props\" parameter in subclasses of ApiQueryORM}}",
 	"api-orm-param-limit": "{{doc-apihelp-param|orm|limit|description=the \"limit\" parameter in subclasses of ApiQueryORM}}",
 	"api-pageset-param-titles": "{{doc-apihelp-param|pageset|titles|description=the \"titles\" parameter in pageset-using modules}}",
