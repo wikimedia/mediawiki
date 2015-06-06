@@ -22,6 +22,8 @@ production.
 ==== External libraries ====
 * Update es5-shim from v4.0.0 to v4.1.5.
 * Update json2 from revision 2014-02-04 to 2015-05-03.
+* Update Sinon.JS from 1.10.3 to 1.15.0.
+
 
 === Bug fixes in 1.26 ===
 * (bug 51283) load.php sometimes sends 304 response without full headers
