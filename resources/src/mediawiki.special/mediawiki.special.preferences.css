@@ -19,3 +19,8 @@
 	height: 0;
 	zoom: 1;
 }
+
+/* When JS is enabled, .successbox is replaced with a mw.notification */
+.successbox {
+	display: none;
+}

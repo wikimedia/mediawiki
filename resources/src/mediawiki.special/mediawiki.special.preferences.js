@@ -1,3 +1,4 @@
+
 /*!
  * JavaScript for Special:Preferences
  */
@@ -5,7 +6,8 @@ jQuery( function ( $ ) {
 	var $preftoc, $preferences, $fieldsets, $legends,
 		hash, labelFunc,
 		$tzSelect, $tzTextbox, $localtimeHolder, servertime,
-		$checkBoxes, allowCloseWindow;
+		$checkBoxes, allowCloseWindow,
+		notif;
 
 	labelFunc = function () {
 		return this.id.replace( /^mw-prefsection/g, 'preftab' );
@@ -81,6 +83,21 @@ jQuery( function ( $ ) {
 
 			$preferences.children( 'fieldset' ).hide().attr( 'aria-hidden', 'true' );
 			$( document.getElementById( 'mw-prefsection-' + name ) ).show().attr( 'aria-hidden', 'false' );
+		}
+	}
+
+	// If there is a #mw-preferences-success box and javascript is enabled, use a slick notification instead!
+	if ( $( '#mw-preferences-success' ).length ) {
+		notif = mediaWiki.notification.notify( mediaWiki.message( 'savedprefs' ), { autoHide: false } );
+		$( '#preftoc, .prefsection' ).one( 'change keydown mousedown', function () { // 'change' event not reliable!
+			if ( notif ) {
+				notif.close();
+			}
+		} );
+
+		// Remove now-unnecessary success=1 querystring to prevent reappearance of notification on reload
+		if ( history.replaceState ) {
+			history.replaceState( {}, document.title, document.URL.replace( /&?success=1/, '' ) );
 		}
 	}
 
