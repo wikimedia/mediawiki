@@ -1,0 +1,16 @@
+.animatedWrapper {
+	position:relative;
+}
+.animatedWrapper > .playButton {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: .9;
+	cursor:pointer;
+	background-image: url( images/player_big_play_button.png );
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.animatedWrapper > .playButton:hover {
+	opacity:.5;
+}

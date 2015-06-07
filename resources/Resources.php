@@ -156,6 +156,11 @@ return array(
 		'messages' => array( 'brackets', 'word-separator' ),
 		'targets' => array( 'mobile', 'desktop' ),
 	),
+	'jquery.animationPlayer' => array(
+		'scripts' => 'resources/src/jquery/jquery.animationPlayer.js',
+		'styles' => 'resources/src/jquery/jquery.animationPlayer.css',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 	'jquery.appear' => array(
 		'scripts' => 'resources/lib/jquery/jquery.appear.js',
 	),

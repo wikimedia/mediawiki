@@ -12,7 +12,7 @@
 	}
 
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
-		var $sortableTables;
+		var $sortableTables, $animated;
 
 		// Run jquery.placeholder polyfill if placeholder is not supported
 		if ( !supportsPlaceholder ) {
@@ -32,6 +32,13 @@
 
 		// Run jquery.checkboxShiftClick
 		$content.find( 'input[type="checkbox"]:not(.noshiftselect)' ).checkboxShiftClick();
+
+		$animated = $content.find( 'img.animated.paused' );
+		if ( $animated.length ) {
+			mw.loader.using( 'jquery.animationPlayer', function () {
+				$animated.animationPlayer();
+			} );
+		}
 	} );
 
 	// Things outside the wikipage content

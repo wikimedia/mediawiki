@@ -407,6 +407,18 @@ class ThumbnailImage extends MediaTransformOutput {
 		if ( isset( $options['override-width'] ) ) {
 			$attribs['width'] = $options['override-width'];
 		}
+		if ( $this->file &&
+			!$this->fileIsSource() &&
+			$this->file->getHandler() &&
+			$this->file->getHandler()->isAnimatedImage( $this->file ) )
+		{
+			$attribs['class'] = isset( $attribs['class'] ) ? $attribs['class'] . " " : "";
+			$attribs['class'] .= "animated";
+			if ( !$this->file->canAnimateThumbIfAppropriate() ) {
+				$attribs['class'] .= " paused";
+				$attribs['data-file-original'] = $this->file->getUrl();
+			}
+		}
 
 		// Additional densities for responsive images, if specified.
 		if ( !empty( $this->responsiveUrls ) ) {
