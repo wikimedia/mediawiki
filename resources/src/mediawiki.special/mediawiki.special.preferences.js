@@ -5,7 +5,8 @@ jQuery( function ( $ ) {
 	var $preftoc, $preferences, $fieldsets, $legends,
 		hash, labelFunc,
 		$tzSelect, $tzTextbox, $localtimeHolder, servertime,
-		$checkBoxes, allowCloseWindow;
+		$checkBoxes, allowCloseWindow,
+		$successbox, notif;
 
 	labelFunc = function () {
 		return this.id.replace( /^mw-prefsection/g, 'preftab' );
@@ -81,6 +82,24 @@ jQuery( function ( $ ) {
 
 			$preferences.children( 'fieldset' ).hide().attr( 'aria-hidden', 'true' );
 			$( document.getElementById( 'mw-prefsection-' + name ) ).show().attr( 'aria-hidden', 'false' );
+		}
+	}
+
+	// If there is a .successbox and javascript is enabled, remove the old box and
+	// add a slick mw.notify box!
+	$successbox = $( '.successbox' );
+	if ( $successbox.length ) {
+		$successbox.remove();
+		notif = mediaWiki.notification.notify( mediaWiki.message( 'savedprefs' ), { autoHide: false } );
+		$( '#preftoc, .prefsection' ).on( 'keydown mousedown', function () { // 'change' event not reliable!
+			if ( notif ) {
+				notif.close();
+			}
+		} );
+
+		// Remove now-unnecessary success=1 querystring
+		if ( history.pushState ) {
+			history.pushState( {}, document.title, document.URL.replace( /success=1&?/, '' ) );
 		}
 	}
 
