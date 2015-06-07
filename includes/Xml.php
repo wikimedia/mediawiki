@@ -144,26 +144,19 @@ class Xml {
 	public static function monthSelector( $selected = '', $allmonths = null, $id = 'month' ) {
 		global $wgLang;
 		$options = array();
+		$data = new XmlSelect( 'month', $id, $selected );
 		if ( is_null( $selected ) ) {
 			$selected = '';
 		}
 		if ( !is_null( $allmonths ) ) {
-			$options[] = self::option(
-				wfMessage( 'monthsall' )->text(),
-				$allmonths,
-				$selected === $allmonths
-			);
+			$options[wfMessage( 'monthsall' )->text()] = $allmonths;
 		}
 		for ( $i = 1; $i < 13; $i++ ) {
-			$options[] = self::option( $wgLang->getMonthName( $i ), $i, $selected === $i );
+			$options[$wgLang->getMonthName( $i )] = $i;
 		}
-		return self::openElement( 'select', array(
-			'id' => $id,
-			'name' => 'month',
-			'class' => 'mw-month-selector'
-		) )
-			. implode( "\n", $options )
-			. self::closeElement( 'select' );
+		$data->addOptions( $options );
+		$data->setAttribute( 'class', 'mw-month-selector' );
+		return $data->getHTML();
 	}
 
 	/**
