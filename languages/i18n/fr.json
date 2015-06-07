@@ -126,7 +126,8 @@
 			"Housterdam",
 			"Chlomoh",
 			"Wladek92",
-			"Framafan"
+			"Framafan",
+			"Lucky"
 		]
 	},
 	"tog-underline": "Souligner les liens :",
@@ -793,6 +794,7 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Objet vide",
 	"content-json-empty-array": "Tableau vide",
+	"duplicate-args-warning": "<strong>Avertissement:</strong> [[:$1]] appelle [[:$2]] avec plus d'une valeur pour le paramètre \"$3\". Seule la dernière valeur fournie sera utilisée.",
 	"duplicate-args-category": "Pages utilisant des arguments dupliqués dans les appels de modèle",
 	"duplicate-args-category-desc": "La page contient des appels de modèle qui utilisent des arguments dupliqués, comme <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> ou <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "Attention : cette page contient de trop nombreux appels à des fonctions coûteuses de l'analyseur syntaxique.\n\nIl devrait y avoir moins de $2 appel{{PLURAL:$2||s}}, alors qu'il y en a maintenant $1.",

@@ -123,6 +123,8 @@
 	"apihelp-expandtemplates-paramvalue-prop-wikitext": "扩充的wiki文本。",
 	"apihelp-expandtemplates-paramvalue-prop-properties": "由wiki文本中扩充的魔术字定义的页面属性。",
 	"apihelp-expandtemplates-paramvalue-prop-modules": "任何解析器函数请求添加至输出的ResourceLoader模块。无论<kbd>jsconfigvars</kbd>还是<kbd>encodedjsconfigvars</kbd>都必须与<kbd>modules</kbd>共同被请求。",
+	"apihelp-expandtemplates-paramvalue-prop-jsconfigvars": "针对页面提供JavaScript配置变量。",
+	"apihelp-expandtemplates-paramvalue-prop-encodedjsconfigvars": "针对页面提供JavaScript配置变量为一个JSON字符串。",
 	"apihelp-expandtemplates-paramvalue-prop-parsetree": "输入的XML分析树。",
 	"apihelp-expandtemplates-param-includecomments": "输出时是否包含HTML摘要。",
 	"apihelp-expandtemplates-param-generatexml": "生成XML解析树（取代自$1prop=parsetree）。",
