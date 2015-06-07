@@ -20,6 +20,7 @@ production.
 * Added a new hook, 'LogException', to log exceptions in nonstandard ways.
 
 ==== External libraries ====
+* Update es5-shim from v4.0.0 to v4.1.5.
 
 === Bug fixes in 1.26 ===
 * (bug 51283) load.php sometimes sends 304 response without full headers
