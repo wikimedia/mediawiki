@@ -4380,9 +4380,10 @@ class Title {
 	/**
 	 * Updates page_touched for this page; called from LinksUpdate.php
 	 *
+	 * @param integer $purgeTime TS_MW timestamp [optional]
 	 * @return bool True if the update succeeded
 	 */
-	public function invalidateCache() {
+	public function invalidateCache( $purgeTime = null ) {
 		if ( wfReadOnly() ) {
 			return false;
 		}
@@ -4394,11 +4395,13 @@ class Title {
 		$method = __METHOD__;
 		$dbw = wfGetDB( DB_MASTER );
 		$conds = $this->pageCond();
-		$dbw->onTransactionIdle( function () use ( $dbw, $conds, $method ) {
+		$dbw->onTransactionIdle( function () use ( $dbw, $conds, $method, $purgeTime ) {
+			$dbTimestamp = $dbw->timestamp( $purgeTime ?: time() );
+
 			$dbw->update(
 				'page',
-				array( 'page_touched' => $dbw->timestamp() ),
-				$conds,
+				array( 'page_touched' => $dbTimestamp ),
+				$conds + array( 'page_touched < ' . $dbw->addQuotes( $dbTimestamp ) ),
 				$method
 			);
 		} );
