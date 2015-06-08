@@ -89,6 +89,10 @@ class SpecialRandomInCategory extends FormSpecialPage {
 		return false;
 	}
 
+	protected function alterForm( $form ) {
+		$form->setSubmitTextMsg( 'randomincategory-submit' );
+	}
+
 	protected function setParameter( $par ) {
 		// if subpage present, fake form submission
 		$this->onSubmit( array( 'category' => $par ) );
