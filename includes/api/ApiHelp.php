@@ -44,7 +44,7 @@ class ApiHelp extends ApiBase {
 		$context->setSkin( SkinFactory::getDefaultInstance()->makeSkin( 'apioutput' ) );
 		$context->setLanguage( $this->getMain()->getLanguage() );
 		$context->setTitle( SpecialPage::getTitleFor( 'ApiHelp' ) );
-		$out = new OutputPage( $context );
+		$out = new ApiHelpOutputPage( $context );
 		$context->setOutput( $out );
 
 		self::getHelp( $context, $modules, $params );

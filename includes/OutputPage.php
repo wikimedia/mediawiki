@@ -3290,6 +3290,27 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * @return string URL of a page specifying copyright conditions.
+	 */
+	protected function getCopyrightUrl() {
+		$config = $this->getConfig();
+		$copyright = '';
+		if ( $config->get( 'RightsPage' ) ) {
+			$copy = Title::newFromText( $config->get( 'RightsPage' ) );
+
+			if ( $copy ) {
+				$copyright = $copy->getLocalURL();
+			}
+		}
+
+		if ( !$copyright && $config->get( 'RightsUrl' ) ) {
+			$copyright = $config->get( 'RightsUrl' );
+		}
+
+		return $copyright;
+	}
+
+	/**
 	 * @return array Array in format "link name or number => 'link html'".
 	 */
 	public function getHeadLinksArray() {
@@ -3432,18 +3453,7 @@ class OutputPage extends ContextSource {
 		}
 
 		# Copyright
-		$copyright = '';
-		if ( $config->get( 'RightsPage' ) ) {
-			$copy = Title::newFromText( $config->get( 'RightsPage' ) );
-
-			if ( $copy ) {
-				$copyright = $copy->getLocalURL();
-			}
-		}
-
-		if ( !$copyright && $config->get( 'RightsUrl' ) ) {
-			$copyright = $config->get( 'RightsUrl' );
-		}
+		$copyright = $this->getCopyrightUrl();
 
 		if ( $copyright ) {
 			$tags['copyright'] = Html::element( 'link', array(
