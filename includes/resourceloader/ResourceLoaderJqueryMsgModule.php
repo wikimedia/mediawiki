@@ -1,6 +1,6 @@
 <?php
 /**
- * Resource loader module for populating mediawiki.jqueryMsg data.
+ * ResourceLoader module for mediawiki.jqueryMsg that provides generated data.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,21 +22,20 @@
  */
 
 /**
- * ResourceLoader module for populating mediawiki.jqueryMsg data.
+ * ResourceLoader module for mediawiki.jqueryMsg and its generated data
  */
-class ResourceLoaderJqueryMsgDataModule extends ResourceLoaderModule {
-
-	protected $targets = array( 'desktop', 'mobile' );
+class ResourceLoaderJqueryMsgModule extends ResourceLoaderFileModule {
 
 	/**
 	 * @param ResourceLoaderContext $context
 	 * @return string JavaScript code
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		$jsData = array();
+		$fileScript = parent::getScript( $context );
 
 		$tagData = Sanitizer::getRecognizedTagData();
-		$jsData['allowedHtmlElements'] = array_merge(
+		$parserDefaults = array();
+		$parserDefaults['allowedHtmlElements'] = array_merge(
 			array_keys( $tagData['htmlpairs'] ),
 			array_diff(
 				array_keys( $tagData['htmlsingle'] ),
@@ -44,10 +43,9 @@ class ResourceLoaderJqueryMsgDataModule extends ResourceLoaderModule {
 			)
 		);
 
-		return "if ( !mw.jqueryMsg ) {\n" .
-			"\tmw.jqueryMsg = {};\n" .
-			"}\n" .
-			"mw.jqueryMsg.data = " . Xml::encodeJsVar( $jsData ) . ";\n";
+		$dataScript = Xml::encodeJsCall( 'mw.jqueryMsg.setParserDefaults', array( $parserDefaults ) );
+
+		return $fileScript . $dataScript;
 	}
 
 	/**
@@ -55,8 +53,10 @@ class ResourceLoaderJqueryMsgDataModule extends ResourceLoaderModule {
 	 * @return array|null
 	 */
 	public function getDefinitionSummary( ResourceLoaderContext $context ) {
-		$ret = parent::getDefinitionSummary( $context );
-		$ret['hash'] = md5( $this->getScript( $context ) );
-		return $ret;
+		$summary = parent::getDefinitionSummary( $context );
+		$summary[] = array(
+			'sanitizerData' => Sanitizer::getRecognizedTagData()
+		);
+		return $summary;
 	}
 }
