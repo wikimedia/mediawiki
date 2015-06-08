@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.9.8
+ * OOjs UI v0.11.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-04-12T17:19:06Z
+ * Date: 2015-05-12T12:15:37Z
  */
 ( function ( OO ) {
 
@@ -42,6 +42,39 @@ OO.ui.Keys = {
 	ESCAPE: 27,
 	SHIFT: 16,
 	SPACE: 32
+};
+
+/**
+ * Check if an element is focusable.
+ * Inspired from :focusable in jQueryUI v1.11.4 - 2015-04-14
+ *
+ * @param {jQuery} element Element to test
+ * @return {Boolean} [description]
+ */
+OO.ui.isFocusableElement = function ( $element ) {
+	var node = $element[0],
+		nodeName = node.nodeName.toLowerCase(),
+		// Check if the element have tabindex set
+		isInElementGroup = /^(input|select|textarea|button|object)$/.test( nodeName ),
+		// Check if the element is a link with href or if it has tabindex
+		isOtherElement = (
+			( nodeName === 'a' && node.href ) ||
+			!isNaN( $element.attr( 'tabindex' ) )
+		),
+		// Check if the element is visible
+		isVisible = (
+			// This is quicker than calling $element.is( ':visible' )
+			$.expr.filters.visible( node ) &&
+			// Check that all parents are visible
+			!$element.parents().addBack().filter( function () {
+				return $.css( this, 'visibility' ) === 'hidden';
+			} ).length
+		);
+
+	return (
+		( isInElementGroup ? !node.disabled : isOtherElement ) &&
+		isVisible
+	);
 };
 
 /**
@@ -115,6 +148,38 @@ OO.ui.contains = function ( containers, contained, matchContainers ) {
 		}
 	}
 	return false;
+};
+
+/**
+ * Return a function, that, as long as it continues to be invoked, will not
+ * be triggered. The function will be called after it stops being called for
+ * N milliseconds. If `immediate` is passed, trigger the function on the
+ * leading edge, instead of the trailing.
+ *
+ * Ported from: http://underscorejs.org/underscore.js
+ *
+ * @param {Function} func
+ * @param {number} wait
+ * @param {boolean} immediate
+ * @return {Function}
+ */
+OO.ui.debounce = function ( func, wait, immediate ) {
+	var timeout;
+	return function () {
+		var context = this,
+			args = arguments,
+			later = function () {
+				timeout = null;
+				if ( !immediate ) {
+					func.apply( context, args );
+				}
+			};
+		if ( immediate && !timeout ) {
+			func.apply( context, args );
+		}
+		clearTimeout( timeout );
+		timeout = setTimeout( later, wait );
+	};
 };
 
 /**
@@ -1776,7 +1841,7 @@ OO.ui.Window = function OoUiWindow( config ) {
 	this.$overlay.addClass( 'oo-ui-window-overlay' );
 	this.$content
 		.addClass( 'oo-ui-window-content' )
-		.attr( 'tabIndex', 0 );
+		.attr( 'tabindex', 0 );
 	this.$frame
 		.addClass( 'oo-ui-window-frame' )
 		.append( this.$content );
@@ -4122,9 +4187,10 @@ OO.ui.ButtonElement.prototype.onMouseUp = function ( e ) {
  */
 OO.ui.ButtonElement.prototype.onClick = function ( e ) {
 	if ( !this.isDisabled() && e.which === 1 ) {
-		this.emit( 'click' );
+		if ( this.emit( 'click' ) ) {
+			return false;
+		}
 	}
-	return false;
 };
 
 /**
@@ -4167,8 +4233,9 @@ OO.ui.ButtonElement.prototype.onKeyUp = function ( e ) {
  */
 OO.ui.ButtonElement.prototype.onKeyPress = function ( e ) {
 	if ( !this.isDisabled() && ( e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER ) ) {
-		this.emit( 'click' );
-		return false;
+		if ( this.emit( 'click' ) ) {
+			return false;
+		}
 	}
 };
 
@@ -5305,9 +5372,9 @@ OO.ui.IndicatorElement.prototype.getIndicatorTitle = function () {
  * @param {Object} [config] Configuration options
  * @cfg {jQuery} [$label] The label element created by the class. If this
  *  configuration is omitted, the label element will use a generated `<span>`.
- * @cfg {jQuery|string|Function} [label] The label text. The label can be specified as a plaintext string,
- *  a jQuery selection of elements, or a function that will produce a string in the future. See the
- *  [OOjs UI documentation on MediaWiki] [2] for examples.
+ * @cfg {jQuery|string|Function|OO.ui.HtmlSnippet} [label] The label text. The label can be specified
+ *  as a plaintext string, a jQuery selection of elements, or a function that will produce a string
+ *  in the future. See the [OOjs UI documentation on MediaWiki] [2] for examples.
  *  [2]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Icons,_Indicators,_and_Labels#Labels
  * @cfg {boolean} [autoFitLabel=true] Fit the label to the width of the parent element.
  *  The label will be truncated to fit if necessary.
@@ -5674,16 +5741,15 @@ OO.ui.LookupElement.prototype.populateLookupMenu = function () {
 };
 
 /**
- * Select and highlight the first selectable item in the menu.
+ * Highlight the first selectable item in the menu.
  *
  * @private
  * @chainable
  */
 OO.ui.LookupElement.prototype.initializeLookupMenuSelection = function () {
 	if ( !this.lookupMenu.getSelectedItem() ) {
-		this.lookupMenu.selectItem( this.lookupMenu.getFirstSelectableItem() );
+		this.lookupMenu.highlightItem( this.lookupMenu.getFirstSelectableItem() );
 	}
-	this.lookupMenu.highlightItem( this.lookupMenu.getSelectedItem() );
 };
 
 /**
@@ -6366,6 +6432,7 @@ OO.ui.ClippableElement.prototype.clip = function () {
  * @extends OO.ui.Widget
  * @mixins OO.ui.IconElement
  * @mixins OO.ui.FlaggedElement
+ * @mixins OO.ui.TabIndexedElement
  *
  * @constructor
  * @param {OO.ui.ToolGroup} toolGroup
@@ -6385,10 +6452,6 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 	// Parent constructor
 	OO.ui.Tool.super.call( this, config );
 
-	// Mixin constructors
-	OO.ui.IconElement.call( this, config );
-	OO.ui.FlaggedElement.call( this, config );
-
 	// Properties
 	this.toolGroup = toolGroup;
 	this.toolbar = this.toolGroup.getToolbar();
@@ -6397,6 +6460,11 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 	this.$accel = $( '<span>' );
 	this.$link = $( '<a>' );
 	this.title = null;
+
+	// Mixin constructors
+	OO.ui.IconElement.call( this, config );
+	OO.ui.FlaggedElement.call( this, config );
+	OO.ui.TabIndexedElement.call( this, $.extend( {}, config, { $tabIndexed: this.$link } ) );
 
 	// Events
 	this.toolbar.connect( this, { updateState: 'onUpdateState' } );
@@ -6414,7 +6482,6 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 	this.$link
 		.addClass( 'oo-ui-tool-link' )
 		.append( this.$icon, this.$title, this.$accel )
-		.prop( 'tabIndex', 0 )
 		.attr( 'role', 'button' );
 	this.$element
 		.data( 'oo-ui-tool', this )
@@ -6422,6 +6489,7 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 			'oo-ui-tool ' + 'oo-ui-tool-name-' +
 			this.constructor.static.name.replace( /^([^\/]+)\/([^\/]+).*$/, '$1-$2' )
 		)
+		.toggleClass( 'oo-ui-tool-with-label', this.constructor.static.displayBothIconAndLabel )
 		.append( this.$link );
 	this.setTitle( config.title || this.constructor.static.title );
 };
@@ -6431,6 +6499,7 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 OO.inheritClass( OO.ui.Tool, OO.ui.Widget );
 OO.mixinClass( OO.ui.Tool, OO.ui.IconElement );
 OO.mixinClass( OO.ui.Tool, OO.ui.FlaggedElement );
+OO.mixinClass( OO.ui.Tool, OO.ui.TabIndexedElement );
 
 /* Events */
 
@@ -6480,6 +6549,16 @@ OO.ui.Tool.static.group = '';
  * @property {string|Function} Title text or a function that returns text
  */
 OO.ui.Tool.static.title = '';
+
+/**
+ * Whether this tool should be displayed with both title and label when used in a bar tool group.
+ * Normally only the icon is displayed, or only the label if no icon is given.
+ *
+ * @static
+ * @inheritable
+ * @property {boolean}
+ */
+OO.ui.Tool.static.displayBothIconAndLabel = false;
 
 /**
  * Tool can be automatically added to catch-all groups.
@@ -6628,6 +6707,254 @@ OO.ui.Tool.prototype.destroy = function () {
 /**
  * Collection of tool groups.
  *
+ * The following is a minimal example using several tools and tool groups.
+ *
+ *     @example
+ *     // Create the toolbar
+ *     var toolFactory = new OO.ui.ToolFactory();
+ *     var toolGroupFactory = new OO.ui.ToolGroupFactory();
+ *     var toolbar = new OO.ui.Toolbar( toolFactory, toolGroupFactory );
+ *
+ *     // We will be placing status text in this element when tools are used
+ *     var $area = $( '<p>' ).text( 'Toolbar example' );
+ *
+ *     // Define the tools that we're going to place in our toolbar
+ *
+ *     // Create a class inheriting from OO.ui.Tool
+ *     function PictureTool() {
+ *         PictureTool.super.apply( this, arguments );
+ *     }
+ *     OO.inheritClass( PictureTool, OO.ui.Tool );
+ *     // Each tool must have a 'name' (used as an internal identifier, see later) and at least one
+ *     // of 'icon' and 'title' (displayed icon and text).
+ *     PictureTool.static.name = 'picture';
+ *     PictureTool.static.icon = 'picture';
+ *     PictureTool.static.title = 'Insert picture';
+ *     // Defines the action that will happen when this tool is selected (clicked).
+ *     PictureTool.prototype.onSelect = function () {
+ *         $area.text( 'Picture tool clicked!' );
+ *         // Never display this tool as "active" (selected).
+ *         this.setActive( false );
+ *     };
+ *     // Make this tool available in our toolFactory and thus our toolbar
+ *     toolFactory.register( PictureTool );
+ *
+ *     // Register two more tools, nothing interesting here
+ *     function SettingsTool() {
+ *         SettingsTool.super.apply( this, arguments );
+ *     }
+ *     OO.inheritClass( SettingsTool, OO.ui.Tool );
+ *     SettingsTool.static.name = 'settings';
+ *     SettingsTool.static.icon = 'settings';
+ *     SettingsTool.static.title = 'Change settings';
+ *     SettingsTool.prototype.onSelect = function () {
+ *         $area.text( 'Settings tool clicked!' );
+ *         this.setActive( false );
+ *     };
+ *     toolFactory.register( SettingsTool );
+ *
+ *     // Register two more tools, nothing interesting here
+ *     function StuffTool() {
+ *         StuffTool.super.apply( this, arguments );
+ *     }
+ *     OO.inheritClass( StuffTool, OO.ui.Tool );
+ *     StuffTool.static.name = 'stuff';
+ *     StuffTool.static.icon = 'ellipsis';
+ *     StuffTool.static.title = 'More stuff';
+ *     StuffTool.prototype.onSelect = function () {
+ *         $area.text( 'More stuff tool clicked!' );
+ *         this.setActive( false );
+ *     };
+ *     toolFactory.register( StuffTool );
+ *
+ *     // This is a PopupTool. Rather than having a custom 'onSelect' action, it will display a
+ *     // little popup window (a PopupWidget).
+ *     function HelpTool( toolGroup, config ) {
+ *         OO.ui.PopupTool.call( this, toolGroup, $.extend( { popup: {
+ *             padded: true,
+ *             label: 'Help',
+ *             head: true
+ *         } }, config ) );
+ *         this.popup.$body.append( '<p>I am helpful!</p>' );
+ *     }
+ *     OO.inheritClass( HelpTool, OO.ui.PopupTool );
+ *     HelpTool.static.name = 'help';
+ *     HelpTool.static.icon = 'help';
+ *     HelpTool.static.title = 'Help';
+ *     toolFactory.register( HelpTool );
+ *
+ *     // Finally define which tools and in what order appear in the toolbar. Each tool may only be
+ *     // used once (but not all defined tools must be used).
+ *     toolbar.setup( [
+ *         {
+ *             // 'bar' tool groups display tools' icons only, side-by-side.
+ *             type: 'bar',
+ *             include: [ 'picture', 'help' ]
+ *         },
+ *         {
+ *             // 'list' tool groups display both the titles and icons, in a dropdown list.
+ *             type: 'list',
+ *             indicator: 'down',
+ *             label: 'More',
+ *             include: [ 'settings', 'stuff' ]
+ *         }
+ *         // Note how the tools themselves are toolgroup-agnostic - the same tool can be displayed
+ *         // either in a 'list' or a 'bar'. There is a 'menu' tool group too, not showcased here,
+ *         // since it's more complicated to use. (See the next example snippet on this page.)
+ *     ] );
+ *
+ *     // Create some UI around the toolbar and place it in the document
+ *     var frame = new OO.ui.PanelLayout( {
+ *         expanded: false,
+ *         framed: true
+ *     } );
+ *     var contentFrame = new OO.ui.PanelLayout( {
+ *         expanded: false,
+ *         padded: true
+ *     } );
+ *     frame.$element.append(
+ *         toolbar.$element,
+ *         contentFrame.$element.append( $area )
+ *     );
+ *     $( 'body' ).append( frame.$element );
+ *
+ *     // Here is where the toolbar is actually built. This must be done after inserting it into the
+ *     // document.
+ *     toolbar.initialize();
+ *
+ * The following example extends the previous one to illustrate 'menu' tool groups and the usage of
+ * 'updateState' event.
+ *
+ *     @example
+ *     // Create the toolbar
+ *     var toolFactory = new OO.ui.ToolFactory();
+ *     var toolGroupFactory = new OO.ui.ToolGroupFactory();
+ *     var toolbar = new OO.ui.Toolbar( toolFactory, toolGroupFactory );
+ *
+ *     // We will be placing status text in this element when tools are used
+ *     var $area = $( '<p>' ).text( 'Toolbar example' );
+ *
+ *     // Define the tools that we're going to place in our toolbar
+ *
+ *     // Create a class inheriting from OO.ui.Tool
+ *     function PictureTool() {
+ *         PictureTool.super.apply( this, arguments );
+ *     }
+ *     OO.inheritClass( PictureTool, OO.ui.Tool );
+ *     // Each tool must have a 'name' (used as an internal identifier, see later) and at least one
+ *     // of 'icon' and 'title' (displayed icon and text).
+ *     PictureTool.static.name = 'picture';
+ *     PictureTool.static.icon = 'picture';
+ *     PictureTool.static.title = 'Insert picture';
+ *     // Defines the action that will happen when this tool is selected (clicked).
+ *     PictureTool.prototype.onSelect = function () {
+ *         $area.text( 'Picture tool clicked!' );
+ *         // Never display this tool as "active" (selected).
+ *         this.setActive( false );
+ *     };
+ *     // The toolbar can be synchronized with the state of some external stuff, like a text
+ *     // editor's editing area, highlighting the tools (e.g. a 'bold' tool would be shown as active
+ *     // when the text cursor was inside bolded text). Here we simply disable this feature.
+ *     PictureTool.prototype.onUpdateState = function () {
+ *     };
+ *     // Make this tool available in our toolFactory and thus our toolbar
+ *     toolFactory.register( PictureTool );
+ *
+ *     // Register two more tools, nothing interesting here
+ *     function SettingsTool() {
+ *         SettingsTool.super.apply( this, arguments );
+ *         this.reallyActive = false;
+ *     }
+ *     OO.inheritClass( SettingsTool, OO.ui.Tool );
+ *     SettingsTool.static.name = 'settings';
+ *     SettingsTool.static.icon = 'settings';
+ *     SettingsTool.static.title = 'Change settings';
+ *     SettingsTool.prototype.onSelect = function () {
+ *         $area.text( 'Settings tool clicked!' );
+ *         // Toggle the active state on each click
+ *         this.reallyActive = !this.reallyActive;
+ *         this.setActive( this.reallyActive );
+ *         // To update the menu label
+ *         this.toolbar.emit( 'updateState' );
+ *     };
+ *     SettingsTool.prototype.onUpdateState = function () {
+ *     };
+ *     toolFactory.register( SettingsTool );
+ *
+ *     // Register two more tools, nothing interesting here
+ *     function StuffTool() {
+ *         StuffTool.super.apply( this, arguments );
+ *         this.reallyActive = false;
+ *     }
+ *     OO.inheritClass( StuffTool, OO.ui.Tool );
+ *     StuffTool.static.name = 'stuff';
+ *     StuffTool.static.icon = 'ellipsis';
+ *     StuffTool.static.title = 'More stuff';
+ *     StuffTool.prototype.onSelect = function () {
+ *         $area.text( 'More stuff tool clicked!' );
+ *         // Toggle the active state on each click
+ *         this.reallyActive = !this.reallyActive;
+ *         this.setActive( this.reallyActive );
+ *         // To update the menu label
+ *         this.toolbar.emit( 'updateState' );
+ *     };
+ *     StuffTool.prototype.onUpdateState = function () {
+ *     };
+ *     toolFactory.register( StuffTool );
+ *
+ *     // This is a PopupTool. Rather than having a custom 'onSelect' action, it will display a
+ *     // little popup window (a PopupWidget). 'onUpdateState' is also already implemented.
+ *     function HelpTool( toolGroup, config ) {
+ *         OO.ui.PopupTool.call( this, toolGroup, $.extend( { popup: {
+ *             padded: true,
+ *             label: 'Help',
+ *             head: true
+ *         } }, config ) );
+ *         this.popup.$body.append( '<p>I am helpful!</p>' );
+ *     }
+ *     OO.inheritClass( HelpTool, OO.ui.PopupTool );
+ *     HelpTool.static.name = 'help';
+ *     HelpTool.static.icon = 'help';
+ *     HelpTool.static.title = 'Help';
+ *     toolFactory.register( HelpTool );
+ *
+ *     // Finally define which tools and in what order appear in the toolbar. Each tool may only be
+ *     // used once (but not all defined tools must be used).
+ *     toolbar.setup( [
+ *         {
+ *             // 'bar' tool groups display tools' icons only, side-by-side.
+ *             type: 'bar',
+ *             include: [ 'picture', 'help' ]
+ *         },
+ *         {
+ *             // 'menu' tool groups display both the titles and icons, in a dropdown menu.
+ *             // Menu label indicates which items are selected.
+ *             type: 'menu',
+ *             indicator: 'down',
+ *             include: [ 'settings', 'stuff' ]
+ *         }
+ *     ] );
+ *
+ *     // Create some UI around the toolbar and place it in the document
+ *     var frame = new OO.ui.PanelLayout( {
+ *         expanded: false,
+ *         framed: true
+ *     } );
+ *     var contentFrame = new OO.ui.PanelLayout( {
+ *         expanded: false,
+ *         padded: true
+ *     } );
+ *     frame.$element.append(
+ *         toolbar.$element,
+ *         contentFrame.$element.append( $area )
+ *     );
+ *     $( 'body' ).append( frame.$element );
+ *
+ *     // Here is where the toolbar is actually built. This must be done after inserting it into the
+ *     // document.
+ *     toolbar.initialize();
+ *     toolbar.emit( 'updateState' );
+ *
  * @class
  * @extends OO.ui.Element
  * @mixins OO.EventEmitter
@@ -6671,7 +6998,7 @@ OO.ui.Toolbar = function OoUiToolbar( toolFactory, toolGroupFactory, config ) {
 	// Events
 	this.$element
 		.add( this.$bar ).add( this.$group ).add( this.$actions )
-		.on( 'mousedown', this.onPointerDown.bind( this ) );
+		.on( 'mousedown keydown', this.onPointerDown.bind( this ) );
 
 	// Initialization
 	this.$group.addClass( 'oo-ui-toolbar-tools' );
@@ -6906,14 +7233,18 @@ OO.ui.ToolGroup = function OoUiToolGroup( toolbar, config ) {
 	this.exclude = config.exclude || [];
 	this.promote = config.promote || [];
 	this.demote = config.demote || [];
-	this.onCapturedMouseUpHandler = this.onCapturedMouseUp.bind( this );
+	this.onCapturedMouseKeyUpHandler = this.onCapturedMouseKeyUp.bind( this );
 
 	// Events
 	this.$element.on( {
-		mousedown: this.onPointerDown.bind( this ),
-		mouseup: this.onPointerUp.bind( this ),
-		mouseover: this.onMouseOver.bind( this ),
-		mouseout: this.onMouseOut.bind( this )
+		mousedown: this.onMouseKeyDown.bind( this ),
+		mouseup: this.onMouseKeyUp.bind( this ),
+		keydown: this.onMouseKeyDown.bind( this ),
+		keyup: this.onMouseKeyUp.bind( this ),
+		focus: this.onMouseOverFocus.bind( this ),
+		blur: this.onMouseOutBlur.bind( this ),
+		mouseover: this.onMouseOverFocus.bind( this ),
+		mouseout: this.onMouseOutBlur.bind( this )
 	} );
 	this.toolbar.getToolFactory().connect( this, { register: 'onToolFactoryRegister' } );
 	this.aggregate( { disable: 'itemDisable' } );
@@ -6996,57 +7327,64 @@ OO.ui.ToolGroup.prototype.updateDisabled = function () {
 };
 
 /**
- * Handle mouse down events.
+ * Handle mouse down and key down events.
  *
- * @param {jQuery.Event} e Mouse down event
+ * @param {jQuery.Event} e Mouse down or key down event
  */
-OO.ui.ToolGroup.prototype.onPointerDown = function ( e ) {
-	if ( !this.isDisabled() && e.which === 1 ) {
+OO.ui.ToolGroup.prototype.onMouseKeyDown = function ( e ) {
+	if (
+		!this.isDisabled() &&
+		( e.which === 1 || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
+	) {
 		this.pressed = this.getTargetTool( e );
 		if ( this.pressed ) {
 			this.pressed.setActive( true );
-			this.getElementDocument().addEventListener(
-				'mouseup', this.onCapturedMouseUpHandler, true
-			);
+			this.getElementDocument().addEventListener( 'mouseup', this.onCapturedMouseKeyUpHandler, true );
+			this.getElementDocument().addEventListener( 'keyup', this.onCapturedMouseKeyUpHandler, true );
 		}
+		return false;
 	}
-	return false;
 };
 
 /**
- * Handle captured mouse up events.
+ * Handle captured mouse up and key up events.
  *
- * @param {Event} e Mouse up event
+ * @param {Event} e Mouse up or key up event
  */
-OO.ui.ToolGroup.prototype.onCapturedMouseUp = function ( e ) {
-	this.getElementDocument().removeEventListener( 'mouseup', this.onCapturedMouseUpHandler, true );
-	// onPointerUp may be called a second time, depending on where the mouse is when the button is
+OO.ui.ToolGroup.prototype.onCapturedMouseKeyUp = function ( e ) {
+	this.getElementDocument().removeEventListener( 'mouseup', this.onCapturedMouseKeyUpHandler, true );
+	this.getElementDocument().removeEventListener( 'keyup', this.onCapturedMouseKeyUpHandler, true );
+	// onMouseKeyUp may be called a second time, depending on where the mouse is when the button is
 	// released, but since `this.pressed` will no longer be true, the second call will be ignored.
-	this.onPointerUp( e );
+	this.onMouseKeyUp( e );
 };
 
 /**
- * Handle mouse up events.
+ * Handle mouse up and key up events.
  *
- * @param {jQuery.Event} e Mouse up event
+ * @param {jQuery.Event} e Mouse up or key up event
  */
-OO.ui.ToolGroup.prototype.onPointerUp = function ( e ) {
+OO.ui.ToolGroup.prototype.onMouseKeyUp = function ( e ) {
 	var tool = this.getTargetTool( e );
 
-	if ( !this.isDisabled() && e.which === 1 && this.pressed && this.pressed === tool ) {
+	if (
+		!this.isDisabled() && this.pressed && this.pressed === tool &&
+		( e.which === 1 || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
+	) {
 		this.pressed.onSelect();
+		this.pressed = null;
+		return false;
 	}
 
 	this.pressed = null;
-	return false;
 };
 
 /**
- * Handle mouse over events.
+ * Handle mouse over and focus events.
  *
- * @param {jQuery.Event} e Mouse over event
+ * @param {jQuery.Event} e Mouse over or focus event
  */
-OO.ui.ToolGroup.prototype.onMouseOver = function ( e ) {
+OO.ui.ToolGroup.prototype.onMouseOverFocus = function ( e ) {
 	var tool = this.getTargetTool( e );
 
 	if ( this.pressed && this.pressed === tool ) {
@@ -7055,11 +7393,11 @@ OO.ui.ToolGroup.prototype.onMouseOver = function ( e ) {
 };
 
 /**
- * Handle mouse out events.
+ * Handle mouse out and blur events.
  *
- * @param {jQuery.Event} e Mouse out event
+ * @param {jQuery.Event} e Mouse out or blur event
  */
-OO.ui.ToolGroup.prototype.onMouseOut = function ( e ) {
+OO.ui.ToolGroup.prototype.onMouseOutBlur = function ( e ) {
 	var tool = this.getTargetTool( e );
 
 	if ( this.pressed && this.pressed === tool ) {
@@ -8144,6 +8482,18 @@ OO.mixinClass( OO.ui.FieldsetLayout, OO.ui.GroupElement );
  * FormLayouts are used to wrap {@link OO.ui.FieldsetLayout FieldsetLayouts} when you intend to use browser-based
  * form submission for the fields instead of handling them in JavaScript. Form layouts can be configured with an
  * HTML form action, an encoding type, and a method using the #action, #enctype, and #method configs, respectively.
+ * See the [OOjs UI documentation on MediaWiki] [1] for more information and examples.
+ *
+ * Only widgets from the {@link OO.ui.InputWidget InputWidget} family support form submission. It
+ * includes standard form elements like {@link OO.ui.CheckboxInputWidget checkboxes}, {@link
+ * OO.ui.RadioInputWidget radio buttons} and {@link OO.ui.TextInputWidget text fields}, as well as
+ * some fancier controls. Some controls have both regular and InputWidget variants, for example
+ * OO.ui.DropdownWidget and OO.ui.DropdownInputWidget – only the latter support form submission and
+ * often have simplified APIs to match the capabilities of HTML forms.
+ * See the [OOjs UI Inputs documentation on MediaWiki] [2] for more information about InputWidgets.
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Layouts/Forms
+ * [2]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Inputs
  *
  *     @example
  *     // Example of a form layout that wraps a fieldset layout
@@ -8243,38 +8593,85 @@ OO.ui.FormLayout.static.tagName = 'form';
  * @fires submit
  */
 OO.ui.FormLayout.prototype.onFormSubmit = function () {
-	this.emit( 'submit' );
-	return false;
+	if ( this.emit( 'submit' ) ) {
+		return false;
+	}
 };
 
 /**
- * Layout with a content and menu area.
+ * MenuLayouts combine a menu and a content {@link OO.ui.PanelLayout panel}. The menu is positioned relative to the content (after, before, top, or bottom)
+ * and its size is customized with the #menuSize config. The content area will fill all remaining space.
  *
- * The menu area can be positioned at the top, after, bottom or before. The content area will fill
- * all remaining space.
+ *     @example
+ *     var menuLayout = new OO.ui.MenuLayout( {
+ *         position: 'top'
+ *     } ),
+ *         menuPanel = new OO.ui.PanelLayout( { padded: true, expanded: true, scrollable: true } ),
+ *         contentPanel = new OO.ui.PanelLayout( { padded: true, expanded: true, scrollable: true } ),
+ *         select = new OO.ui.SelectWidget( {
+ *             items: [
+ *                 new OO.ui.OptionWidget( {
+ *                     data: 'before',
+ *                     label: 'Before',
+ *                 } ),
+ *                 new OO.ui.OptionWidget( {
+ *                     data: 'after',
+ *                     label: 'After',
+ *                 } ),
+ *                 new OO.ui.OptionWidget( {
+ *                     data: 'top',
+ *                     label: 'Top',
+ *                 } ),
+ *                 new OO.ui.OptionWidget( {
+ *                     data: 'bottom',
+ *                     label: 'Bottom',
+ *                 } )
+ *              ]
+ *         } ).on( 'select', function ( item ) {
+ *            menuLayout.setMenuPosition( item.getData() );
+ *         } );
+ *
+ *     menuLayout.$menu.append(
+ *         menuPanel.$element.append( '<b>Menu panel</b>', select.$element )
+ *     );
+ *     menuLayout.$content.append(
+ *         contentPanel.$element.append( '<b>Content panel</b>', '<p>Note that the menu is positioned relative to the content panel: top, bottom, after, before.</p>')
+ *     );
+ *     $( 'body' ).append( menuLayout.$element );
+ *
+ * If menu size needs to be overridden, it can be accomplished using CSS similar to the snippet
+ * below. MenuLayout's CSS will override the appropriate values with 'auto' or '0' to display the
+ * menu correctly. If `menuPosition` is known beforehand, CSS rules corresponding to other positions
+ * may be omitted.
+ *
+ *     .oo-ui-menuLayout-menu {
+ *         height: 200px;
+ *         width: 200px;
+ *     }
+ *     .oo-ui-menuLayout-content {
+ *         top: 200px;
+ *         left: 200px;
+ *         right: 200px;
+ *         bottom: 200px;
+ *     }
  *
  * @class
  * @extends OO.ui.Layout
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {number|string} [menuSize='18em'] Size of menu in pixels or any CSS unit
  * @cfg {boolean} [showMenu=true] Show menu
  * @cfg {string} [menuPosition='before'] Position of menu: `top`, `after`, `bottom` or `before`
  */
 OO.ui.MenuLayout = function OoUiMenuLayout( config ) {
-	var positions = this.constructor.static.menuPositions;
-
 	// Configuration initialization
-	config = config || {};
+	config = $.extend( {
+		showMenu: true,
+		menuPosition: 'before'
+	}, config );
 
 	// Parent constructor
 	OO.ui.MenuLayout.super.call( this, config );
-
-	// Properties
-	this.showMenu = config.showMenu !== false;
-	this.menuSize = config.menuSize || '18em';
-	this.menuPosition = positions[ config.menuPosition ] || positions.before;
 
 	/**
 	 * Menu DOM node
@@ -8290,41 +8687,19 @@ OO.ui.MenuLayout = function OoUiMenuLayout( config ) {
 	this.$content = $( '<div>' );
 
 	// Initialization
-	this.toggleMenu( this.showMenu );
-	this.updateSizes();
 	this.$menu
-		.addClass( 'oo-ui-menuLayout-menu' )
-		.css( this.menuPosition.sizeProperty, this.menuSize );
+		.addClass( 'oo-ui-menuLayout-menu' );
 	this.$content.addClass( 'oo-ui-menuLayout-content' );
 	this.$element
-		.addClass( 'oo-ui-menuLayout ' + this.menuPosition.className )
+		.addClass( 'oo-ui-menuLayout' )
 		.append( this.$content, this.$menu );
+	this.setMenuPosition( config.menuPosition );
+	this.toggleMenu( config.showMenu );
 };
 
 /* Setup */
 
 OO.inheritClass( OO.ui.MenuLayout, OO.ui.Layout );
-
-/* Static Properties */
-
-OO.ui.MenuLayout.static.menuPositions = {
-	top: {
-		sizeProperty: 'height',
-		className: 'oo-ui-menuLayout-top'
-	},
-	after: {
-		sizeProperty: 'width',
-		className: 'oo-ui-menuLayout-after'
-	},
-	bottom: {
-		sizeProperty: 'height',
-		className: 'oo-ui-menuLayout-bottom'
-	},
-	before: {
-		sizeProperty: 'width',
-		className: 'oo-ui-menuLayout-before'
-	}
-};
 
 /* Methods */
 
@@ -8339,7 +8714,9 @@ OO.ui.MenuLayout.prototype.toggleMenu = function ( showMenu ) {
 
 	if ( this.showMenu !== showMenu ) {
 		this.showMenu = showMenu;
-		this.updateSizes();
+		this.$element
+			.toggleClass( 'oo-ui-menuLayout-showMenu', this.showMenu )
+			.toggleClass( 'oo-ui-menuLayout-hideMenu', !this.showMenu );
 	}
 
 	return this;
@@ -8355,59 +8732,6 @@ OO.ui.MenuLayout.prototype.isMenuVisible = function () {
 };
 
 /**
- * Set menu size.
- *
- * @param {number|string} size Size of menu in pixels or any CSS unit
- * @chainable
- */
-OO.ui.MenuLayout.prototype.setMenuSize = function ( size ) {
-	this.menuSize = size;
-	this.updateSizes();
-
-	return this;
-};
-
-/**
- * Update menu and content CSS based on current menu size and visibility
- *
- * This method is called internally when size or position is changed.
- */
-OO.ui.MenuLayout.prototype.updateSizes = function () {
-	if ( this.showMenu ) {
-		this.$menu
-			.css( this.menuPosition.sizeProperty, this.menuSize )
-			.css( 'overflow', '' );
-		// Set offsets on all sides. CSS resets all but one with
-		// 'important' rules so directionality flips are supported
-		this.$content.css( {
-			top: this.menuSize,
-			right: this.menuSize,
-			bottom: this.menuSize,
-			left: this.menuSize
-		} );
-	} else {
-		this.$menu
-			.css( this.menuPosition.sizeProperty, 0 )
-			.css( 'overflow', 'hidden' );
-		this.$content.css( {
-			top: 0,
-			right: 0,
-			bottom: 0,
-			left: 0
-		} );
-	}
-};
-
-/**
- * Get menu size.
- *
- * @return {number|string} Menu size
- */
-OO.ui.MenuLayout.prototype.getMenuSize = function () {
-	return this.menuSize;
-};
-
-/**
  * Set menu position.
  *
  * @param {string} position Position of menu, either `top`, `after`, `bottom` or `before`
@@ -8415,19 +8739,9 @@ OO.ui.MenuLayout.prototype.getMenuSize = function () {
  * @chainable
  */
 OO.ui.MenuLayout.prototype.setMenuPosition = function ( position ) {
-	var positions = this.constructor.static.menuPositions;
-
-	if ( !positions[ position ] ) {
-		throw new Error( 'Cannot set position; unsupported position value: ' + position );
-	}
-
-	this.$menu.css( this.menuPosition.sizeProperty, '' );
-	this.$element.removeClass( this.menuPosition.className );
-
-	this.menuPosition = positions[ position ];
-
-	this.updateSizes();
-	this.$element.addClass( this.menuPosition.className );
+	this.$element.removeClass( 'oo-ui-menuLayout-' + this.menuPosition );
+	this.menuPosition = position;
+	this.$element.addClass( 'oo-ui-menuLayout-' + position );
 
 	return this;
 };
@@ -8644,6 +8958,35 @@ OO.ui.BookletLayout.prototype.focus = function ( itemIndex ) {
 		if ( $input.length ) {
 			$input[ 0 ].focus();
 		}
+	}
+};
+
+/**
+ * Find the first focusable input in the booklet layout and focus
+ * on it.
+ */
+OO.ui.BookletLayout.prototype.focusFirstFocusable = function () {
+	var i, len,
+		found = false,
+		items = this.stackLayout.getItems(),
+		checkAndFocus = function () {
+			if ( OO.ui.isFocusableElement( $( this ) ) ) {
+				$( this ).focus();
+				found = true;
+				return false;
+			}
+		};
+
+	for ( i = 0, len = items.length; i < len; i++ ) {
+		if ( found ) {
+			break;
+		}
+		// Find all potentially focusable elements in the item
+		// and check if they are focusable
+		items[i].$element
+			.find( 'input, select, textarea, button, object' )
+			/* jshint loopfunc:true */
+			.each( checkAndFocus );
 	}
 };
 
@@ -8918,7 +9261,7 @@ OO.ui.BookletLayout.prototype.setPage = function ( name ) {
 		if ( this.outlined ) {
 			selectedItem = this.outlineSelectWidget.getSelectedItem();
 			if ( selectedItem && selectedItem.getData() !== name ) {
-				this.outlineSelectWidget.selectItem( this.outlineSelectWidget.getItemFromData( name ) );
+				this.outlineSelectWidget.selectItemByData( name );
 			}
 		}
 		if ( page ) {
@@ -8950,6 +9293,459 @@ OO.ui.BookletLayout.prototype.setPage = function ( name ) {
 OO.ui.BookletLayout.prototype.selectFirstSelectablePage = function () {
 	if ( !this.outlineSelectWidget.getSelectedItem() ) {
 		this.outlineSelectWidget.selectItem( this.outlineSelectWidget.getFirstSelectableItem() );
+	}
+
+	return this;
+};
+
+/**
+ * IndexLayouts contain {@link OO.ui.CardLayout card layouts} as well as
+ * {@link OO.ui.TabSelectWidget tabs} that allow users to easily navigate through the cards and
+ * select which one to display. By default, only one card is displayed at a time. When a user
+ * navigates to a new card, the index layout automatically focuses on the first focusable element,
+ * unless the default setting is changed.
+ *
+ * TODO: This class is similar to BookletLayout, we may want to refactor to reduce duplication
+ *
+ *     @example
+ *     // Example of a IndexLayout that contains two CardLayouts.
+ *
+ *     function CardOneLayout( name, config ) {
+ *         CardOneLayout.super.call( this, name, config );
+ *         this.$element.append( '<p>First card</p>' );
+ *     }
+ *     OO.inheritClass( CardOneLayout, OO.ui.CardLayout );
+ *     CardOneLayout.prototype.setupTabItem = function () {
+ *         this.tabItem.setLabel( 'Card One' );
+ *     };
+ *
+ *     function CardTwoLayout( name, config ) {
+ *         CardTwoLayout.super.call( this, name, config );
+ *         this.$element.append( '<p>Second card</p>' );
+ *     }
+ *     OO.inheritClass( CardTwoLayout, OO.ui.CardLayout );
+ *     CardTwoLayout.prototype.setupTabItem = function () {
+ *         this.tabItem.setLabel( 'Card Two' );
+ *     };
+ *
+ *     var card1 = new CardOneLayout( 'one' ),
+ *         card2 = new CardTwoLayout( 'two' );
+ *
+ *     var index = new OO.ui.IndexLayout();
+ *
+ *     index.addCards ( [ card1, card2 ] );
+ *     $( 'body' ).append( index.$element );
+ *
+ * @class
+ * @extends OO.ui.MenuLayout
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ * @cfg {boolean} [continuous=false] Show all cards, one after another
+ * @cfg {boolean} [autoFocus=true] Focus on the first focusable element when a new card is displayed.
+ */
+OO.ui.IndexLayout = function OoUiIndexLayout( config ) {
+	// Configuration initialization
+	config = $.extend( {}, config, { menuPosition: 'top' } );
+
+	// Parent constructor
+	OO.ui.IndexLayout.super.call( this, config );
+
+	// Properties
+	this.currentCardName = null;
+	this.cards = {};
+	this.ignoreFocus = false;
+	this.stackLayout = new OO.ui.StackLayout( { continuous: !!config.continuous } );
+	this.$content.append( this.stackLayout.$element );
+	this.autoFocus = config.autoFocus === undefined || !!config.autoFocus;
+
+	this.tabSelectWidget = new OO.ui.TabSelectWidget();
+	this.tabPanel = new OO.ui.PanelLayout();
+	this.$menu.append( this.tabPanel.$element );
+
+	this.toggleMenu( true );
+
+	// Events
+	this.stackLayout.connect( this, { set: 'onStackLayoutSet' } );
+	this.tabSelectWidget.connect( this, { select: 'onTabSelectWidgetSelect' } );
+	if ( this.autoFocus ) {
+		// Event 'focus' does not bubble, but 'focusin' does
+		this.stackLayout.$element.on( 'focusin', this.onStackLayoutFocus.bind( this ) );
+	}
+
+	// Initialization
+	this.$element.addClass( 'oo-ui-indexLayout' );
+	this.stackLayout.$element.addClass( 'oo-ui-indexLayout-stackLayout' );
+	this.tabPanel.$element
+		.addClass( 'oo-ui-indexLayout-tabPanel' )
+		.append( this.tabSelectWidget.$element );
+};
+
+/* Setup */
+
+OO.inheritClass( OO.ui.IndexLayout, OO.ui.MenuLayout );
+
+/* Events */
+
+/**
+ * A 'set' event is emitted when a card is {@link #setCard set} to be displayed by the index layout.
+ * @event set
+ * @param {OO.ui.CardLayout} card Current card
+ */
+
+/**
+ * An 'add' event is emitted when cards are {@link #addCards added} to the index layout.
+ *
+ * @event add
+ * @param {OO.ui.CardLayout[]} card Added cards
+ * @param {number} index Index cards were added at
+ */
+
+/**
+ * A 'remove' event is emitted when cards are {@link #clearCards cleared} or
+ * {@link #removeCards removed} from the index.
+ *
+ * @event remove
+ * @param {OO.ui.CardLayout[]} cards Removed cards
+ */
+
+/* Methods */
+
+/**
+ * Handle stack layout focus.
+ *
+ * @private
+ * @param {jQuery.Event} e Focusin event
+ */
+OO.ui.IndexLayout.prototype.onStackLayoutFocus = function ( e ) {
+	var name, $target;
+
+	// Find the card that an element was focused within
+	$target = $( e.target ).closest( '.oo-ui-cardLayout' );
+	for ( name in this.cards ) {
+		// Check for card match, exclude current card to find only card changes
+		if ( this.cards[ name ].$element[ 0 ] === $target[ 0 ] && name !== this.currentCardName ) {
+			this.setCard( name );
+			break;
+		}
+	}
+};
+
+/**
+ * Handle stack layout set events.
+ *
+ * @private
+ * @param {OO.ui.PanelLayout|null} card The card panel that is now the current panel
+ */
+OO.ui.IndexLayout.prototype.onStackLayoutSet = function ( card ) {
+	var layout = this;
+	if ( card ) {
+		card.scrollElementIntoView( { complete: function () {
+			if ( layout.autoFocus ) {
+				layout.focus();
+			}
+		} } );
+	}
+};
+
+/**
+ * Focus the first input in the current card.
+ *
+ * If no card is selected, the first selectable card will be selected.
+ * If the focus is already in an element on the current card, nothing will happen.
+ * @param {number} [itemIndex] A specific item to focus on
+ */
+OO.ui.IndexLayout.prototype.focus = function ( itemIndex ) {
+	var $input, card,
+		items = this.stackLayout.getItems();
+
+	if ( itemIndex !== undefined && items[ itemIndex ] ) {
+		card = items[ itemIndex ];
+	} else {
+		card = this.stackLayout.getCurrentItem();
+	}
+
+	if ( !card ) {
+		this.selectFirstSelectableCard();
+		card = this.stackLayout.getCurrentItem();
+	}
+	if ( !card ) {
+		return;
+	}
+	// Only change the focus if is not already in the current card
+	if ( !card.$element.find( ':focus' ).length ) {
+		$input = card.$element.find( ':input:first' );
+		if ( $input.length ) {
+			$input[ 0 ].focus();
+		}
+	}
+};
+
+/**
+ * Find the first focusable input in the index layout and focus
+ * on it.
+ */
+OO.ui.IndexLayout.prototype.focusFirstFocusable = function () {
+	var i, len,
+		found = false,
+		items = this.stackLayout.getItems(),
+		checkAndFocus = function () {
+			if ( OO.ui.isFocusableElement( $( this ) ) ) {
+				$( this ).focus();
+				found = true;
+				return false;
+			}
+		};
+
+	for ( i = 0, len = items.length; i < len; i++ ) {
+		if ( found ) {
+			break;
+		}
+		// Find all potentially focusable elements in the item
+		// and check if they are focusable
+		items[i].$element
+			.find( 'input, select, textarea, button, object' )
+			.each( checkAndFocus );
+	}
+};
+
+/**
+ * Handle tab widget select events.
+ *
+ * @private
+ * @param {OO.ui.OptionWidget|null} item Selected item
+ */
+OO.ui.IndexLayout.prototype.onTabSelectWidgetSelect = function ( item ) {
+	if ( item ) {
+		this.setCard( item.getData() );
+	}
+};
+
+/**
+ * Get the card closest to the specified card.
+ *
+ * @param {OO.ui.CardLayout} card Card to use as a reference point
+ * @return {OO.ui.CardLayout|null} Card closest to the specified card
+ */
+OO.ui.IndexLayout.prototype.getClosestCard = function ( card ) {
+	var next, prev, level,
+		cards = this.stackLayout.getItems(),
+		index = $.inArray( card, cards );
+
+	if ( index !== -1 ) {
+		next = cards[ index + 1 ];
+		prev = cards[ index - 1 ];
+		// Prefer adjacent cards at the same level
+		level = this.tabSelectWidget.getItemFromData( card.getName() ).getLevel();
+		if (
+			prev &&
+			level === this.tabSelectWidget.getItemFromData( prev.getName() ).getLevel()
+		) {
+			return prev;
+		}
+		if (
+			next &&
+			level === this.tabSelectWidget.getItemFromData( next.getName() ).getLevel()
+		) {
+			return next;
+		}
+	}
+	return prev || next || null;
+};
+
+/**
+ * Get the tabs widget.
+ *
+ * @return {OO.ui.TabSelectWidget} Tabs widget
+ */
+OO.ui.IndexLayout.prototype.getTabs = function () {
+	return this.tabSelectWidget;
+};
+
+/**
+ * Get a card by its symbolic name.
+ *
+ * @param {string} name Symbolic name of card
+ * @return {OO.ui.CardLayout|undefined} Card, if found
+ */
+OO.ui.IndexLayout.prototype.getCard = function ( name ) {
+	return this.cards[ name ];
+};
+
+/**
+ * Get the current card.
+ *
+ * @return {OO.ui.CardLayout|undefined} Current card, if found
+ */
+OO.ui.IndexLayout.prototype.getCurrentCard = function () {
+	var name = this.getCurrentCardName();
+	return name ? this.getCard( name ) : undefined;
+};
+
+/**
+ * Get the symbolic name of the current card.
+ *
+ * @return {string|null} Symbolic name of the current card
+ */
+OO.ui.IndexLayout.prototype.getCurrentCardName = function () {
+	return this.currentCardName;
+};
+
+/**
+ * Add cards to the index layout
+ *
+ * When cards are added with the same names as existing cards, the existing cards will be
+ * automatically removed before the new cards are added.
+ *
+ * @param {OO.ui.CardLayout[]} cards Cards to add
+ * @param {number} index Index of the insertion point
+ * @fires add
+ * @chainable
+ */
+OO.ui.IndexLayout.prototype.addCards = function ( cards, index ) {
+	var i, len, name, card, item, currentIndex,
+		stackLayoutCards = this.stackLayout.getItems(),
+		remove = [],
+		items = [];
+
+	// Remove cards with same names
+	for ( i = 0, len = cards.length; i < len; i++ ) {
+		card = cards[ i ];
+		name = card.getName();
+
+		if ( Object.prototype.hasOwnProperty.call( this.cards, name ) ) {
+			// Correct the insertion index
+			currentIndex = $.inArray( this.cards[ name ], stackLayoutCards );
+			if ( currentIndex !== -1 && currentIndex + 1 < index ) {
+				index--;
+			}
+			remove.push( this.cards[ name ] );
+		}
+	}
+	if ( remove.length ) {
+		this.removeCards( remove );
+	}
+
+	// Add new cards
+	for ( i = 0, len = cards.length; i < len; i++ ) {
+		card = cards[ i ];
+		name = card.getName();
+		this.cards[ card.getName() ] = card;
+		item = new OO.ui.TabOptionWidget( { data: name } );
+		card.setTabItem( item );
+		items.push( item );
+	}
+
+	if ( items.length ) {
+		this.tabSelectWidget.addItems( items, index );
+		this.selectFirstSelectableCard();
+	}
+	this.stackLayout.addItems( cards, index );
+	this.emit( 'add', cards, index );
+
+	return this;
+};
+
+/**
+ * Remove the specified cards from the index layout.
+ *
+ * To remove all cards from the index, you may wish to use the #clearCards method instead.
+ *
+ * @param {OO.ui.CardLayout[]} cards An array of cards to remove
+ * @fires remove
+ * @chainable
+ */
+OO.ui.IndexLayout.prototype.removeCards = function ( cards ) {
+	var i, len, name, card,
+		items = [];
+
+	for ( i = 0, len = cards.length; i < len; i++ ) {
+		card = cards[ i ];
+		name = card.getName();
+		delete this.cards[ name ];
+		items.push( this.tabSelectWidget.getItemFromData( name ) );
+		card.setTabItem( null );
+	}
+	if ( items.length ) {
+		this.tabSelectWidget.removeItems( items );
+		this.selectFirstSelectableCard();
+	}
+	this.stackLayout.removeItems( cards );
+	this.emit( 'remove', cards );
+
+	return this;
+};
+
+/**
+ * Clear all cards from the index layout.
+ *
+ * To remove only a subset of cards from the index, use the #removeCards method.
+ *
+ * @fires remove
+ * @chainable
+ */
+OO.ui.IndexLayout.prototype.clearCards = function () {
+	var i, len,
+		cards = this.stackLayout.getItems();
+
+	this.cards = {};
+	this.currentCardName = null;
+	this.tabSelectWidget.clearItems();
+	for ( i = 0, len = cards.length; i < len; i++ ) {
+		cards[ i ].setTabItem( null );
+	}
+	this.stackLayout.clearItems();
+
+	this.emit( 'remove', cards );
+
+	return this;
+};
+
+/**
+ * Set the current card by symbolic name.
+ *
+ * @fires set
+ * @param {string} name Symbolic name of card
+ */
+OO.ui.IndexLayout.prototype.setCard = function ( name ) {
+	var selectedItem,
+		$focused,
+		card = this.cards[ name ];
+
+	if ( name !== this.currentCardName ) {
+		selectedItem = this.tabSelectWidget.getSelectedItem();
+		if ( selectedItem && selectedItem.getData() !== name ) {
+			this.tabSelectWidget.selectItemByData( name );
+		}
+		if ( card ) {
+			if ( this.currentCardName && this.cards[ this.currentCardName ] ) {
+				this.cards[ this.currentCardName ].setActive( false );
+				// Blur anything focused if the next card doesn't have anything focusable - this
+				// is not needed if the next card has something focusable because once it is focused
+				// this blur happens automatically
+				if ( this.autoFocus && !card.$element.find( ':input' ).length ) {
+					$focused = this.cards[ this.currentCardName ].$element.find( ':focus' );
+					if ( $focused.length ) {
+						$focused[ 0 ].blur();
+					}
+				}
+			}
+			this.currentCardName = name;
+			this.stackLayout.setItem( card );
+			card.setActive( true );
+			this.emit( 'set', card );
+		}
+	}
+};
+
+/**
+ * Select the first selectable card.
+ *
+ * @chainable
+ */
+OO.ui.IndexLayout.prototype.selectFirstSelectableCard = function () {
+	if ( !this.tabSelectWidget.getSelectedItem() ) {
+		this.tabSelectWidget.selectItem( this.tabSelectWidget.getFirstSelectableItem() );
 	}
 
 	return this;
@@ -9010,6 +9806,145 @@ OO.ui.PanelLayout = function OoUiPanelLayout( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.PanelLayout, OO.ui.Layout );
+
+/**
+ * CardLayouts are used within {@link OO.ui.IndexLayout index layouts} to create cards that users can select and display
+ * from the index's optional {@link OO.ui.TabSelectWidget tab} navigation. Cards are usually not instantiated directly,
+ * rather extended to include the required content and functionality.
+ *
+ * Each card must have a unique symbolic name, which is passed to the constructor. In addition, the card's tab
+ * item is customized (with a label) using the #setupTabItem method. See
+ * {@link OO.ui.IndexLayout IndexLayout} for an example.
+ *
+ * @class
+ * @extends OO.ui.PanelLayout
+ *
+ * @constructor
+ * @param {string} name Unique symbolic name of card
+ * @param {Object} [config] Configuration options
+ */
+OO.ui.CardLayout = function OoUiCardLayout( name, config ) {
+	// Allow passing positional parameters inside the config object
+	if ( OO.isPlainObject( name ) && config === undefined ) {
+		config = name;
+		name = config.name;
+	}
+
+	// Configuration initialization
+	config = $.extend( { scrollable: true }, config );
+
+	// Parent constructor
+	OO.ui.CardLayout.super.call( this, config );
+
+	// Properties
+	this.name = name;
+	this.tabItem = null;
+	this.active = false;
+
+	// Initialization
+	this.$element.addClass( 'oo-ui-cardLayout' );
+};
+
+/* Setup */
+
+OO.inheritClass( OO.ui.CardLayout, OO.ui.PanelLayout );
+
+/* Events */
+
+/**
+ * An 'active' event is emitted when the card becomes active. Cards become active when they are
+ * shown in a index layout that is configured to display only one card at a time.
+ *
+ * @event active
+ * @param {boolean} active Card is active
+ */
+
+/* Methods */
+
+/**
+ * Get the symbolic name of the card.
+ *
+ * @return {string} Symbolic name of card
+ */
+OO.ui.CardLayout.prototype.getName = function () {
+	return this.name;
+};
+
+/**
+ * Check if card is active.
+ *
+ * Cards become active when they are shown in a {@link OO.ui.IndexLayout index layout} that is configured to display
+ * only one card at a time. Additional CSS is applied to the card's tab item to reflect the active state.
+ *
+ * @return {boolean} Card is active
+ */
+OO.ui.CardLayout.prototype.isActive = function () {
+	return this.active;
+};
+
+/**
+ * Get tab item.
+ *
+ * The tab item allows users to access the card from the index's tab
+ * navigation. The tab item itself can be customized (with a label, level, etc.) using the #setupTabItem method.
+ *
+ * @return {OO.ui.TabOptionWidget|null} Tab option widget
+ */
+OO.ui.CardLayout.prototype.getTabItem = function () {
+	return this.tabItem;
+};
+
+/**
+ * Set or unset the tab item.
+ *
+ * Specify a {@link OO.ui.TabOptionWidget tab option} to set it,
+ * or `null` to clear the tab item. To customize the tab item itself (e.g., to set a label or tab
+ * level), use #setupTabItem instead of this method.
+ *
+ * @param {OO.ui.TabOptionWidget|null} tabItem Tab option widget, null to clear
+ * @chainable
+ */
+OO.ui.CardLayout.prototype.setTabItem = function ( tabItem ) {
+	this.tabItem = tabItem || null;
+	if ( tabItem ) {
+		this.setupTabItem();
+	}
+	return this;
+};
+
+/**
+ * Set up the tab item.
+ *
+ * Use this method to customize the tab item (e.g., to add a label or tab level). To set or unset
+ * the tab item itself (with a {@link OO.ui.TabOptionWidget tab option} or `null`), use
+ * the #setTabItem method instead.
+ *
+ * @param {OO.ui.TabOptionWidget} tabItem Tab option widget to set up
+ * @chainable
+ */
+OO.ui.CardLayout.prototype.setupTabItem = function () {
+	return this;
+};
+
+/**
+ * Set the card to its 'active' state.
+ *
+ * Cards become active when they are shown in a index layout that is configured to display only one card at a time. Additional
+ * CSS is applied to the tab item to reflect the card's active state. Outside of the index
+ * context, setting the active state on a card does nothing.
+ *
+ * @param {boolean} value Card is active
+ * @fires active
+ */
+OO.ui.CardLayout.prototype.setActive = function ( active ) {
+	active = !!active;
+
+	if ( active !== this.active ) {
+		this.active = active;
+		this.$element.toggleClass( 'oo-ui-cardLayout-active', this.active );
+		this.emit( 'active', this.active );
+	}
+};
 
 /**
  * PageLayouts are used within {@link OO.ui.BookletLayout booklet layouts} to create pages that users can select and display
@@ -9412,6 +10347,7 @@ OO.ui.BarToolGroup.static.name = 'bar';
  * @mixins OO.ui.LabelElement
  * @mixins OO.ui.TitledElement
  * @mixins OO.ui.ClippableElement
+ * @mixins OO.ui.TabIndexedElement
  *
  * @constructor
  * @param {OO.ui.Toolbar} toolbar
@@ -9431,23 +10367,26 @@ OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 	// Parent constructor
 	OO.ui.PopupToolGroup.super.call( this, toolbar, config );
 
-	// Mixin constructors
-	OO.ui.IconElement.call( this, config );
-	OO.ui.IndicatorElement.call( this, config );
-	OO.ui.LabelElement.call( this, config );
-	OO.ui.TitledElement.call( this, config );
-	OO.ui.ClippableElement.call( this, $.extend( {}, config, { $clippable: this.$group } ) );
-
 	// Properties
 	this.active = false;
 	this.dragging = false;
 	this.onBlurHandler = this.onBlur.bind( this );
 	this.$handle = $( '<span>' );
 
+	// Mixin constructors
+	OO.ui.IconElement.call( this, config );
+	OO.ui.IndicatorElement.call( this, config );
+	OO.ui.LabelElement.call( this, config );
+	OO.ui.TitledElement.call( this, config );
+	OO.ui.ClippableElement.call( this, $.extend( {}, config, { $clippable: this.$group } ) );
+	OO.ui.TabIndexedElement.call( this, $.extend( {}, config, { $tabIndexed: this.$handle } ) );
+
 	// Events
 	this.$handle.on( {
-		mousedown: this.onHandlePointerDown.bind( this ),
-		mouseup: this.onHandlePointerUp.bind( this )
+		keydown: this.onHandleMouseKeyDown.bind( this ),
+		keyup: this.onHandleMouseKeyUp.bind( this ),
+		mousedown: this.onHandleMouseKeyDown.bind( this ),
+		mouseup: this.onHandleMouseKeyUp.bind( this )
 	} );
 
 	// Initialization
@@ -9477,8 +10416,7 @@ OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.IndicatorElement );
 OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.LabelElement );
 OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.TitledElement );
 OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.ClippableElement );
-
-/* Static Properties */
+OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.TabIndexedElement );
 
 /* Methods */
 
@@ -9497,9 +10435,9 @@ OO.ui.PopupToolGroup.prototype.setDisabled = function () {
 /**
  * Handle focus being lost.
  *
- * The event is actually generated from a mouseup, so it is not a normal blur event object.
+ * The event is actually generated from a mouseup/keyup, so it is not a normal blur event object.
  *
- * @param {jQuery.Event} e Mouse up event
+ * @param {jQuery.Event} e Mouse up or key up event
  */
 OO.ui.PopupToolGroup.prototype.onBlur = function ( e ) {
 	// Only deactivate when clicking outside the dropdown element
@@ -9511,33 +10449,44 @@ OO.ui.PopupToolGroup.prototype.onBlur = function ( e ) {
 /**
  * @inheritdoc
  */
-OO.ui.PopupToolGroup.prototype.onPointerUp = function ( e ) {
+OO.ui.PopupToolGroup.prototype.onMouseKeyUp = function ( e ) {
 	// Only close toolgroup when a tool was actually selected
-	if ( !this.isDisabled() && e.which === 1 && this.pressed && this.pressed === this.getTargetTool( e ) ) {
+	if (
+		!this.isDisabled() && this.pressed && this.pressed === this.getTargetTool( e ) &&
+		( e.which === 1 || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
+	) {
 		this.setActive( false );
 	}
-	return OO.ui.PopupToolGroup.super.prototype.onPointerUp.call( this, e );
+	return OO.ui.PopupToolGroup.super.prototype.onMouseKeyUp.call( this, e );
 };
 
 /**
- * Handle mouse up events.
+ * Handle mouse up and key up events.
  *
- * @param {jQuery.Event} e Mouse up event
+ * @param {jQuery.Event} e Mouse up or key up event
  */
-OO.ui.PopupToolGroup.prototype.onHandlePointerUp = function () {
-	return false;
-};
-
-/**
- * Handle mouse down events.
- *
- * @param {jQuery.Event} e Mouse down event
- */
-OO.ui.PopupToolGroup.prototype.onHandlePointerDown = function ( e ) {
-	if ( !this.isDisabled() && e.which === 1 ) {
-		this.setActive( !this.active );
+OO.ui.PopupToolGroup.prototype.onHandleMouseKeyUp = function ( e ) {
+	if (
+		!this.isDisabled() &&
+		( e.which === 1 || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
+	) {
+		return false;
 	}
-	return false;
+};
+
+/**
+ * Handle mouse down and key down events.
+ *
+ * @param {jQuery.Event} e Mouse down or key down event
+ */
+OO.ui.PopupToolGroup.prototype.onHandleMouseKeyDown = function ( e ) {
+	if (
+		!this.isDisabled() &&
+		( e.which === 1 || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
+	) {
+		this.setActive( !this.active );
+		return false;
+	}
 };
 
 /**
@@ -9551,6 +10500,7 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 		this.active = value;
 		if ( value ) {
 			this.getElementDocument().addEventListener( 'mouseup', this.onBlurHandler, true );
+			this.getElementDocument().addEventListener( 'keyup', this.onBlurHandler, true );
 
 			// Try anchoring the popup to the left first
 			this.$element.addClass( 'oo-ui-popupToolGroup-active oo-ui-popupToolGroup-left' );
@@ -9565,6 +10515,7 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 			}
 		} else {
 			this.getElementDocument().removeEventListener( 'mouseup', this.onBlurHandler, true );
+			this.getElementDocument().removeEventListener( 'keyup', this.onBlurHandler, true );
 			this.$element.removeClass(
 				'oo-ui-popupToolGroup-active oo-ui-popupToolGroup-left  oo-ui-popupToolGroup-right'
 			);
@@ -9620,8 +10571,6 @@ OO.ui.ListToolGroup = function OoUiListToolGroup( toolbar, config ) {
 OO.inheritClass( OO.ui.ListToolGroup, OO.ui.PopupToolGroup );
 
 /* Static Properties */
-
-OO.ui.ListToolGroup.static.accelTooltips = true;
 
 OO.ui.ListToolGroup.static.name = 'list';
 
@@ -9683,16 +10632,18 @@ OO.ui.ListToolGroup.prototype.getExpandCollapseTool = function () {
 /**
  * @inheritdoc
  */
-OO.ui.ListToolGroup.prototype.onPointerUp = function ( e ) {
-	var ret = OO.ui.ListToolGroup.super.prototype.onPointerUp.call( this, e );
-
+OO.ui.ListToolGroup.prototype.onMouseKeyUp = function ( e ) {
 	// Do not close the popup when the user wants to show more/fewer tools
-	if ( $( e.target ).closest( '.oo-ui-tool-name-more-fewer' ).length ) {
-		// Prevent the popup list from being hidden
-		this.setActive( true );
+	if (
+		$( e.target ).closest( '.oo-ui-tool-name-more-fewer' ).length &&
+		( e.which === 1 || e.which === OO.ui.Keys.SPACE || e.which === OO.ui.Keys.ENTER )
+	) {
+		// HACK: Prevent the popup list from being hidden. Skip the PopupToolGroup implementation (which
+		// hides the popup list when a tool is selected) and call ToolGroup's implementation directly.
+		return OO.ui.ListToolGroup.super.super.prototype.onMouseKeyUp.call( this, e );
+	} else {
+		return OO.ui.ListToolGroup.super.prototype.onMouseKeyUp.call( this, e );
 	}
-
-	return ret;
 };
 
 OO.ui.ListToolGroup.prototype.updateCollapsibleState = function () {
@@ -9742,8 +10693,6 @@ OO.ui.MenuToolGroup = function OoUiMenuToolGroup( toolbar, config ) {
 OO.inheritClass( OO.ui.MenuToolGroup, OO.ui.PopupToolGroup );
 
 /* Static Properties */
-
-OO.ui.MenuToolGroup.static.accelTooltips = true;
 
 OO.ui.MenuToolGroup.static.name = 'menu';
 
@@ -9853,6 +10802,9 @@ OO.ui.ToolGroupTool = function OoUiToolGroupTool( toolGroup, config ) {
 	// Properties
 	this.innerToolGroup = this.createGroup( this.constructor.static.groupConfig );
 
+	// Events
+	this.innerToolGroup.connect( this, { disable: 'onToolGroupDisable' } );
+
 	// Initialization
 	this.$link.remove();
 	this.$element
@@ -9883,6 +10835,16 @@ OO.ui.ToolGroupTool.static.groupConfig = {};
 OO.ui.ToolGroupTool.prototype.onSelect = function () {
 	this.innerToolGroup.setActive( !this.innerToolGroup.active );
 	return false;
+};
+
+/**
+ * Synchronize disabledness state of the tool with the inner toolgroup.
+ *
+ * @private
+ * @param {boolean} disabled Element is disabled
+ */
+OO.ui.ToolGroupTool.prototype.onToolGroupDisable = function ( disabled ) {
+	this.setDisabled( disabled );
 };
 
 /**
@@ -10013,7 +10975,7 @@ OO.ui.ItemWidget.prototype.setElementGroup = function ( group ) {
 /**
  * OutlineControlsWidget is a set of controls for an {@link OO.ui.OutlineSelectWidget outline select widget}.
  * Controls include moving items up and down, removing items, and adding different kinds of items.
- * ####Currently, this class is only used by {@link OO.ui.BookletLayout BookletLayouts}.####
+ * ####Currently, this class is only used by {@link OO.ui.BookletLayout booklet layouts}.####
  *
  * @class
  * @extends OO.ui.Widget
@@ -10157,11 +11119,12 @@ OO.ui.OutlineControlsWidget.prototype.onOutlineChange = function () {
 };
 
 /**
- * ToggleWidget is mixed into other classes to create widgets with an on/off state.
+ * ToggleWidget implements basic behavior of widgets with an on/off state.
  * Please see OO.ui.ToggleButtonWidget and OO.ui.ToggleSwitchWidget for examples.
  *
  * @abstract
  * @class
+ * @extends OO.ui.Widget
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -10172,6 +11135,9 @@ OO.ui.ToggleWidget = function OoUiToggleWidget( config ) {
 	// Configuration initialization
 	config = config || {};
 
+	// Parent constructor
+	OO.ui.ToggleWidget.super.call( this, config );
+
 	// Properties
 	this.value = null;
 
@@ -10179,6 +11145,10 @@ OO.ui.ToggleWidget = function OoUiToggleWidget( config ) {
 	this.$element.addClass( 'oo-ui-toggleWidget' );
 	this.setValue( !!config.value );
 };
+
+/* Setup */
+
+OO.inheritClass( OO.ui.ToggleWidget, OO.ui.Widget );
 
 /* Events */
 
@@ -10311,8 +11281,7 @@ OO.mixinClass( OO.ui.ButtonGroupWidget, OO.ui.GroupElement );
  */
 OO.ui.ButtonWidget = function OoUiButtonWidget( config ) {
 	// Configuration initialization
-	// FIXME: The `nofollow` alias is deprecated and will be removed (T89767)
-	config = $.extend( { noFollow: config && config.nofollow }, config );
+	config = config || {};
 
 	// Parent constructor
 	OO.ui.ButtonWidget.super.call( this, config );
@@ -10330,7 +11299,9 @@ OO.ui.ButtonWidget = function OoUiButtonWidget( config ) {
 	this.href = null;
 	this.target = null;
 	this.noFollow = false;
-	this.isHyperlink = false;
+
+	// Events
+	this.connect( this, { disable: 'onDisable' } );
 
 	// Initialization
 	this.$button.append( this.$icon, this.$label, this.$indicator );
@@ -10380,28 +11351,6 @@ OO.ui.ButtonWidget.prototype.onMouseUp = function ( e ) {
 };
 
 /**
- * @inheritdoc
- */
-OO.ui.ButtonWidget.prototype.onClick = function ( e ) {
-	var ret = OO.ui.ButtonElement.prototype.onClick.call( this, e );
-	if ( this.isHyperlink ) {
-		return true;
-	}
-	return ret;
-};
-
-/**
- * @inheritdoc
- */
-OO.ui.ButtonWidget.prototype.onKeyPress = function ( e ) {
-	var ret = OO.ui.ButtonElement.prototype.onKeyPress.call( this, e );
-	if ( this.isHyperlink ) {
-		return true;
-	}
-	return ret;
-};
-
-/**
  * Get hyperlink location.
  *
  * @return {string} Hyperlink location
@@ -10438,16 +11387,37 @@ OO.ui.ButtonWidget.prototype.setHref = function ( href ) {
 
 	if ( href !== this.href ) {
 		this.href = href;
-		if ( href !== null ) {
-			this.$button.attr( 'href', href );
-			this.isHyperlink = true;
-		} else {
-			this.$button.removeAttr( 'href' );
-			this.isHyperlink = false;
-		}
+		this.updateHref();
 	}
 
 	return this;
+};
+
+/**
+ * Update the `href` attribute, in case of changes to href or
+ * disabled state.
+ *
+ * @private
+ * @chainable
+ */
+OO.ui.ButtonWidget.prototype.updateHref = function () {
+	if ( this.href !== null && !this.isDisabled() ) {
+		this.$button.attr( 'href', this.href );
+	} else {
+		this.$button.removeAttr( 'href' );
+	}
+
+	return this;
+};
+
+/**
+ * Handle disable events.
+ *
+ * @private
+ * @param {boolean} disabled Element is disabled
+ */
+OO.ui.ButtonWidget.prototype.onDisable = function () {
+	this.updateHref();
 };
 
 /**
@@ -10673,7 +11643,7 @@ OO.ui.ActionWidget.prototype.toggle = function () {
  *         popup: {
  *             $content: $( '<p>Additional options here.</p>' ),
  *             padded: true,
- *             align: 'left'
+ *             align: 'force-left'
  *         }
  *     } );
  *     // Append the button to the DOM.
@@ -10742,8 +11712,14 @@ OO.ui.PopupButtonWidget.prototype.onAction = function () {
  * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Buttons_and_Switches#Toggle_buttons
  *
  * @class
- * @extends OO.ui.ButtonWidget
- * @mixins OO.ui.ToggleWidget
+ * @extends OO.ui.ToggleWidget
+ * @mixins OO.ui.ButtonElement
+ * @mixins OO.ui.IconElement
+ * @mixins OO.ui.IndicatorElement
+ * @mixins OO.ui.LabelElement
+ * @mixins OO.ui.TitledElement
+ * @mixins OO.ui.FlaggedElement
+ * @mixins OO.ui.TabIndexedElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -10758,26 +11734,41 @@ OO.ui.ToggleButtonWidget = function OoUiToggleButtonWidget( config ) {
 	OO.ui.ToggleButtonWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.ToggleWidget.call( this, config );
+	OO.ui.ButtonElement.call( this, config );
+	OO.ui.IconElement.call( this, config );
+	OO.ui.IndicatorElement.call( this, config );
+	OO.ui.LabelElement.call( this, config );
+	OO.ui.TitledElement.call( this, $.extend( {}, config, { $titled: this.$button } ) );
+	OO.ui.FlaggedElement.call( this, config );
+	OO.ui.TabIndexedElement.call( this, $.extend( {}, config, { $tabIndexed: this.$button } ) );
 
 	// Events
 	this.connect( this, { click: 'onAction' } );
 
 	// Initialization
-	this.$element.addClass( 'oo-ui-toggleButtonWidget' );
+	this.$button.append( this.$icon, this.$label, this.$indicator );
+	this.$element
+		.addClass( 'oo-ui-toggleButtonWidget' )
+		.append( this.$button );
 };
 
 /* Setup */
 
-OO.inheritClass( OO.ui.ToggleButtonWidget, OO.ui.ButtonWidget );
-OO.mixinClass( OO.ui.ToggleButtonWidget, OO.ui.ToggleWidget );
+OO.inheritClass( OO.ui.ToggleButtonWidget, OO.ui.ToggleWidget );
+OO.mixinClass( OO.ui.ToggleButtonWidget, OO.ui.ButtonElement );
+OO.mixinClass( OO.ui.ToggleButtonWidget, OO.ui.IconElement );
+OO.mixinClass( OO.ui.ToggleButtonWidget, OO.ui.IndicatorElement );
+OO.mixinClass( OO.ui.ToggleButtonWidget, OO.ui.LabelElement );
+OO.mixinClass( OO.ui.ToggleButtonWidget, OO.ui.TitledElement );
+OO.mixinClass( OO.ui.ToggleButtonWidget, OO.ui.FlaggedElement );
+OO.mixinClass( OO.ui.ToggleButtonWidget, OO.ui.TabIndexedElement );
 
 /* Methods */
 
 /**
+ * Handle the button action being triggered.
  *
  * @private
- * Handle the button action being triggered.
  */
 OO.ui.ToggleButtonWidget.prototype.onAction = function () {
 	this.setValue( !this.value );
@@ -10789,14 +11780,28 @@ OO.ui.ToggleButtonWidget.prototype.onAction = function () {
 OO.ui.ToggleButtonWidget.prototype.setValue = function ( value ) {
 	value = !!value;
 	if ( value !== this.value ) {
-		this.$button.attr( 'aria-pressed', value.toString() );
+		// Might be called from parent constructor before ButtonElement constructor
+		if ( this.$button ) {
+			this.$button.attr( 'aria-pressed', value.toString() );
+		}
 		this.setActive( value );
 	}
 
-	// Parent method (from mixin)
-	OO.ui.ToggleWidget.prototype.setValue.call( this, value );
+	// Parent method
+	OO.ui.ToggleButtonWidget.super.prototype.setValue.call( this, value );
 
 	return this;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.ToggleButtonWidget.prototype.setButtonElement = function ( $button ) {
+	if ( this.$button ) {
+		this.$button.removeAttr( 'aria-pressed' );
+	}
+	OO.ui.ButtonElement.prototype.setButtonElement.call( this, $button );
+	this.$button.attr( 'aria-pressed', this.value.toString() );
 };
 
 /**
@@ -11290,7 +12295,6 @@ OO.ui.InputWidget.prototype.blur = function () {
  * @mixins OO.ui.IndicatorElement
  * @mixins OO.ui.LabelElement
  * @mixins OO.ui.TitledElement
- * @mixins OO.ui.FlaggedElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -11316,7 +12320,6 @@ OO.ui.ButtonInputWidget = function OoUiButtonInputWidget( config ) {
 	OO.ui.IndicatorElement.call( this, config );
 	OO.ui.LabelElement.call( this, config );
 	OO.ui.TitledElement.call( this, $.extend( {}, config, { $titled: this.$input } ) );
-	OO.ui.FlaggedElement.call( this, config );
 
 	// Initialization
 	if ( !config.useInputTag ) {
@@ -11333,7 +12336,6 @@ OO.mixinClass( OO.ui.ButtonInputWidget, OO.ui.IconElement );
 OO.mixinClass( OO.ui.ButtonInputWidget, OO.ui.IndicatorElement );
 OO.mixinClass( OO.ui.ButtonInputWidget, OO.ui.LabelElement );
 OO.mixinClass( OO.ui.ButtonInputWidget, OO.ui.TitledElement );
-OO.mixinClass( OO.ui.ButtonInputWidget, OO.ui.FlaggedElement );
 
 /* Methods */
 
@@ -11392,9 +12394,11 @@ OO.ui.ButtonInputWidget.prototype.setValue = function ( value ) {
 
 /**
  * CheckboxInputWidgets, like HTML checkboxes, can be selected and/or configured with a value.
- *  Note that these {@link OO.ui.InputWidget input widgets} are best laid out
+ * Note that these {@link OO.ui.InputWidget input widgets} are best laid out
  * in {@link OO.ui.FieldLayout field layouts} that use the {@link OO.ui.FieldLayout#align inline}
  * alignment. For more information, please see the [OOjs UI documentation on MediaWiki][1].
+ *
+ * This widget can be used inside a HTML form, such as a OO.ui.FormLayout.
  *
  *     @example
  *     // An example of selected, unselected, and disabled checkbox inputs
@@ -11501,8 +12505,8 @@ OO.ui.CheckboxInputWidget.prototype.isSelected = function () {
 
 /**
  * DropdownInputWidget is a {@link OO.ui.DropdownWidget DropdownWidget} intended to be used
- * within a {@link OO.ui.FormLayout form}. The selected value is synchronized with the value
- * of  a hidden HTML `input` tag. Please see the [OOjs UI documentation on MediaWiki][1] for
+ * within a HTML form, such as a OO.ui.FormLayout. The selected value is synchronized with the value
+ * of a hidden HTML `input` tag. Please see the [OOjs UI documentation on MediaWiki][1] for
  * more information about input widgets.
  *
  *     @example
@@ -11574,10 +12578,7 @@ OO.ui.DropdownInputWidget.prototype.onMenuSelect = function ( item ) {
  * @inheritdoc
  */
 OO.ui.DropdownInputWidget.prototype.setValue = function ( value ) {
-	var item = this.dropdownWidget.getMenu().getItemFromData( value );
-	if ( item ) {
-		this.dropdownWidget.getMenu().selectItem( item );
-	}
+	this.dropdownWidget.getMenu().selectItemByData( value );
 	OO.ui.DropdownInputWidget.super.prototype.setValue.call( this, value );
 	return this;
 };
@@ -11645,6 +12646,8 @@ OO.ui.DropdownInputWidget.prototype.blur = function () {
  * in most cases you will want to use a {@link OO.ui.RadioSelectWidget radio select}
  * with {@link OO.ui.RadioOptionWidget radio options} instead of this class. For more information,
  * please see the [OOjs UI documentation on MediaWiki][1].
+ *
+ * This widget can be used inside a HTML form, such as a OO.ui.FormLayout.
  *
  *     @example
  *     // An example of selected, unselected, and disabled radio inputs
@@ -11741,6 +12744,8 @@ OO.ui.RadioInputWidget.prototype.isSelected = function () {
  * which modifies incoming values rather than validating them.
  * Please see the [OOjs UI documentation on MediaWiki] [1] for more information and examples.
  *
+ * This widget can be used inside a HTML form, such as a OO.ui.FormLayout.
+ *
  *     @example
  *     // Example of a text input widget
  *     var textInput = new OO.ui.TextInputWidget( {
@@ -11772,9 +12777,11 @@ OO.ui.RadioInputWidget.prototype.isSelected = function () {
  * @cfg {string} [labelPosition='after'] The position of the inline label relative to that of
  *  the value or placeholder text: `'before'` or `'after'`
  * @cfg {boolean} [required=false] Mark the field as required
- * @cfg {RegExp|string} [validate] Validation pattern, either a regular expression or the
- *  symbolic name of a pattern defined by the class: 'non-empty' (the value cannot be an empty string)
- *  or 'integer' (the value must contain only numbers).
+ * @cfg {RegExp|Function|string} [validate] Validation pattern: when string, a symbolic name of a
+ *  pattern defined by the class: 'non-empty' (the value cannot be an empty string) or 'integer'
+ *  (the value must contain only numbers); when RegExp, a regular expression that must match the
+ *  value for it to be considered valid; when Function, a function receiving the value as parameter
+ *  that must return true, or promise resolving to true, for it to be considered valid.
  */
 OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	// Configuration initialization
@@ -11815,7 +12822,7 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	// Events
 	this.$input.on( {
 		keypress: this.onKeyPress.bind( this ),
-		blur: this.setValidityFlag.bind( this )
+		blur: this.onBlur.bind( this )
 	} );
 	this.$input.one( {
 		focus: this.onElementAttach.bind( this )
@@ -11823,6 +12830,7 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	this.$icon.on( 'mousedown', this.onIconMouseDown.bind( this ) );
 	this.$indicator.on( 'mousedown', this.onIndicatorMouseDown.bind( this ) );
 	this.on( 'labelChange', this.updatePosition.bind( this ) );
+	this.connect( this, { change: 'onChange' } );
 
 	// Initialization
 	this.$element
@@ -11839,7 +12847,8 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 		this.$input.attr( 'autofocus', 'autofocus' );
 	}
 	if ( config.required ) {
-		this.$input.attr( 'required', 'true' );
+		this.$input.attr( 'required', 'required' );
+		this.$input.attr( 'aria-required', 'true' );
 	}
 	if ( this.label || config.autosize ) {
 		this.installParentChangeDetector();
@@ -11915,6 +12924,16 @@ OO.ui.TextInputWidget.prototype.onKeyPress = function ( e ) {
 };
 
 /**
+ * Handle blur events.
+ *
+ * @private
+ * @param {jQuery.Event} e Blur event
+ */
+OO.ui.TextInputWidget.prototype.onBlur = function () {
+	this.setValidityFlag();
+};
+
+/**
  * Handle element attach events.
  *
  * @private
@@ -11928,25 +12947,14 @@ OO.ui.TextInputWidget.prototype.onElementAttach = function () {
 };
 
 /**
- * @inheritdoc
+ * Handle change events.
+ *
+ * @param {string} value
+ * @private
  */
-OO.ui.TextInputWidget.prototype.onEdit = function () {
-	this.adjustSize();
-
-	// Parent method
-	return OO.ui.TextInputWidget.super.prototype.onEdit.call( this );
-};
-
-/**
- * @inheritdoc
- */
-OO.ui.TextInputWidget.prototype.setValue = function ( value ) {
-	// Parent method
-	OO.ui.TextInputWidget.super.prototype.setValue.call( this, value );
-
+OO.ui.TextInputWidget.prototype.onChange = function () {
 	this.setValidityFlag();
 	this.adjustSize();
-	return this;
 };
 
 /**
@@ -12131,15 +13139,15 @@ OO.ui.TextInputWidget.prototype.select = function () {
 /**
  * Set the validation pattern.
  *
- * The validation pattern is either a regular expression or the symbolic name of a pattern
- * defined by the class: 'non-empty' (the value cannot be an empty string) or 'integer' (the
+ * The validation pattern is either a regular expression, a function, or the symbolic name of a
+ * pattern defined by the class: 'non-empty' (the value cannot be an empty string) or 'integer' (the
  * value must contain only numbers).
  *
- * @param {RegExp|string|null} validate Regular expression or the symbolic name of a
- *  pattern (either ‘integer’ or ‘non-empty’) defined by the class.
+ * @param {RegExp|Function|string|null} validate Regular expression, function, or the symbolic name
+ *  of a pattern (either ‘integer’ or ‘non-empty’) defined by the class.
  */
 OO.ui.TextInputWidget.prototype.setValidation = function ( validate ) {
-	if ( validate instanceof RegExp ) {
+	if ( validate instanceof RegExp || validate instanceof Function ) {
 		this.validate = validate;
 	} else {
 		this.validate = this.constructor.static.validationPatterns[ validate ] || /.*/;
@@ -12148,12 +13156,25 @@ OO.ui.TextInputWidget.prototype.setValidation = function ( validate ) {
 
 /**
  * Sets the 'invalid' flag appropriately.
+ *
+ * @param {boolean} [isValid] Optionally override validation result
  */
-OO.ui.TextInputWidget.prototype.setValidityFlag = function () {
-	var widget = this;
-	this.isValid().done( function ( valid ) {
-		widget.setFlags( { invalid: !valid } );
-	} );
+OO.ui.TextInputWidget.prototype.setValidityFlag = function ( isValid ) {
+	var widget = this,
+		setFlag = function ( valid ) {
+			if ( !valid ) {
+				widget.$input.attr( 'aria-invalid', 'true' );
+			} else {
+				widget.$input.removeAttr( 'aria-invalid' );
+			}
+			widget.setFlags( { invalid: !valid } );
+		};
+
+	if ( isValid !== undefined ) {
+		setFlag( isValid );
+	} else {
+		this.isValid().done( setFlag );
+	}
 };
 
 /**
@@ -12162,10 +13183,19 @@ OO.ui.TextInputWidget.prototype.setValidityFlag = function () {
  * This method returns a promise that resolves with a boolean `true` if the current value is
  * considered valid according to the supplied {@link #validate validation pattern}.
  *
- * @return {jQuery.Deferred} A promise that resolves to a boolean `true` if the value is valid.
+ * @return {jQuery.Promise} A promise that resolves to a boolean `true` if the value is valid.
  */
 OO.ui.TextInputWidget.prototype.isValid = function () {
-	return $.Deferred().resolve( !!this.getValue().match( this.validate ) ).promise();
+	if ( this.validate instanceof Function ) {
+		var result = this.validate( this.getValue() );
+		if ( $.isFunction( result.promise ) ) {
+			return result.promise();
+		} else {
+			return $.Deferred().resolve( !!result ).promise();
+		}
+	} else {
+		return $.Deferred().resolve( !!this.getValue().match( this.validate ) ).promise();
+	}
 };
 
 /**
@@ -13142,6 +14172,38 @@ OO.ui.OutlineOptionWidget.prototype.setLevel = function ( level ) {
 };
 
 /**
+ * TabOptionWidget is an item in a {@link OO.ui.TabSelectWidget TabSelectWidget}.
+ *
+ * Currently, this class is only used by {@link OO.ui.IndexLayout index layouts}, which contain
+ * {@link OO.ui.CardLayout card layouts}. See {@link OO.ui.IndexLayout IndexLayout}
+ * for an example.
+ *
+ * @class
+ * @extends OO.ui.OptionWidget
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ */
+OO.ui.TabOptionWidget = function OoUiTabOptionWidget( config ) {
+	// Configuration initialization
+	config = config || {};
+
+	// Parent constructor
+	OO.ui.TabOptionWidget.super.call( this, config );
+
+	// Initialization
+	this.$element.addClass( 'oo-ui-tabOptionWidget' );
+};
+
+/* Setup */
+
+OO.inheritClass( OO.ui.TabOptionWidget, OO.ui.OptionWidget );
+
+/* Static Properties */
+
+OO.ui.TabOptionWidget.static.highlightable = false;
+
+/**
  * PopupWidget is a container for content. The popup is overlaid and positioned absolutely.
  * By default, each popup has an anchor that points toward its origin.
  * Please see the [OOjs UI documentation on Mediawiki] [1] for more information and examples.
@@ -13169,9 +14231,13 @@ OO.ui.OutlineOptionWidget.prototype.setLevel = function ( level ) {
  * @cfg {number} [width=320] Width of popup in pixels
  * @cfg {number} [height] Height of popup in pixels. Omit to use the automatic height.
  * @cfg {boolean} [anchor=true] Show anchor pointing to origin of popup
- * @cfg {string} [align='center'] Alignment of the popup: `center`, `left`, or `right`.
- *  If the popup is right-aligned, the right edge of the popup is aligned to the anchor.
- *  For left-aligned popups, the left edge is aligned to the anchor.
+ * @cfg {string} [align='center'] Alignment of the popup: `center`, `force-left`, `force-right`, `backwards` or `forwards`.
+ *  If the popup is forced-left the popup body is leaning towards the left. For force-right alignment, the body of the
+ *  popup is leaning towards the right of the screen.
+ *  Using 'backwards' is a logical direction which will result in the popup leaning towards the beginning of the sentence
+ *  in the given language, which means it will flip to the correct positioning in right-to-left languages.
+ *  Using 'forward' will also result in a logical alignment where the body of the popup leans towards the end of the
+ *  sentence in the given language.
  * @cfg {jQuery} [$container] Constrain the popup to the boundaries of the specified container.
  *  See the [OOjs UI docs on MediaWiki][3] for an example.
  *  [3]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Popups#containerExample
@@ -13213,7 +14279,7 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 	this.anchor = null;
 	this.width = config.width !== undefined ? config.width : 320;
 	this.height = config.height !== undefined ? config.height : null;
-	this.align = config.align || 'center';
+	this.setAlignment( config.align );
 	this.closeButton = new OO.ui.ButtonWidget( { framed: false, icon: 'close' } );
 	this.onMouseDownHandler = this.onMouseDown.bind( this );
 	this.onDocumentKeyDownHandler = this.onDocumentKeyDown.bind( this );
@@ -13429,6 +14495,7 @@ OO.ui.PopupWidget.prototype.setSize = function ( width, height, transition ) {
 OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
 	var popupOffset, originOffset, containerLeft, containerWidth, containerRight,
 		popupLeft, popupRight, overlapLeft, overlapRight, anchorWidth,
+		align = this.align,
 		widget = this;
 
 	if ( !this.$container ) {
@@ -13443,8 +14510,18 @@ OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
 		height: this.height !== null ? this.height : 'auto'
 	} );
 
+	// If we are in RTL, we need to flip the alignment, unless it is center
+	if ( align === 'forwards' || align === 'backwards' ) {
+		if ( this.$container.css( 'direction' ) === 'rtl' ) {
+			align = ( { forwards: 'force-left', backwards: 'force-right' } )[ this.align ];
+		} else {
+			align = ( { forwards: 'force-right', backwards: 'force-left' } )[ this.align ];
+		}
+
+	}
+
 	// Compute initial popupOffset based on alignment
-	popupOffset = this.width * ( { left: 0, center: -0.5, right: -1 } )[ this.align ];
+	popupOffset = this.width * ( { 'force-left': -1, center: -0.5, 'force-right': 0 } )[ align ];
 
 	// Figure out if this will cause the popup to go beyond the edge of the container
 	originOffset = this.$element.offset().left;
@@ -13497,6 +14574,29 @@ OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
 	this.clip();
 
 	return this;
+};
+
+/**
+ * Set popup alignment
+ * @param {string} align Alignment of the popup, `center`, `force-left`, `force-right`,
+ *  `backwards` or `forwards`.
+ */
+OO.ui.PopupWidget.prototype.setAlignment = function ( align ) {
+	// Validate alignment and transform deprecated values
+	if ( [ 'left', 'right', 'force-left', 'force-right', 'backwards', 'forwards', 'center' ].indexOf( align ) > -1 ) {
+		this.align = { left: 'force-right', right: 'force-left' }[ align ] || align;
+	} else {
+		this.align = 'center';
+	}
+};
+
+/**
+ * Get popup alignment
+ * @return {string} align Alignment of the popup, `center`, `force-left`, `force-right`,
+ *  `backwards` or `forwards`.
+ */
+OO.ui.PopupWidget.prototype.getAlignment = function () {
+	return this.align;
 };
 
 /**
@@ -13804,6 +14904,7 @@ OO.ui.SearchWidget.prototype.getResults = function () {
  *
  * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options
  *
+ * @abstract
  * @class
  * @extends OO.ui.Widget
  * @mixins OO.ui.GroupElement
@@ -14107,11 +15208,7 @@ OO.ui.SelectWidget.prototype.unbindKeyDownListener = function () {
  * @return {OO.ui.OptionWidget|null} Outline item widget, `null` if none was found
  */
 OO.ui.SelectWidget.prototype.getTargetItem = function ( e ) {
-	var $item = $( e.target ).closest( '.oo-ui-optionWidget' );
-	if ( $item.length ) {
-		return $item.data( 'oo-ui-optionWidget' );
-	}
-	return null;
+	return $( e.target ).closest( '.oo-ui-optionWidget' ).data( 'oo-ui-optionWidget' ) || null;
 };
 
 /**
@@ -14191,6 +15288,22 @@ OO.ui.SelectWidget.prototype.highlightItem = function ( item ) {
 	}
 
 	return this;
+};
+
+/**
+ * Programmatically select an option by its data. If the `data` parameter is omitted,
+ * or if the item does not exist, all options will be deselected.
+ *
+ * @param {Object|string} [data] Value of the item to select, omit to deselect all
+ * @fires select
+ * @chainable
+ */
+OO.ui.SelectWidget.prototype.selectItemByData = function ( data ) {
+	var itemFromData = this.getItemFromData( data );
+	if ( data === undefined || !itemFromData ) {
+		return this.selectItem();
+	}
+	return this.selectItem( itemFromData );
 };
 
 /**
@@ -14876,7 +15989,7 @@ OO.ui.TextInputMenuSelectWidget.prototype.position = function () {
  * OutlineSelectWidget is a structured list that contains {@link OO.ui.OutlineOptionWidget outline options}
  * A set of controls can be provided with an {@link OO.ui.OutlineControlsWidget outline controls} widget.
  *
- * ####Currently, this class is only used by {@link OO.ui.BookletLayout BookletLayouts}.####
+ * ####Currently, this class is only used by {@link OO.ui.BookletLayout booklet layouts}.####
  *
  * @class
  * @extends OO.ui.SelectWidget
@@ -14908,6 +16021,40 @@ OO.inheritClass( OO.ui.OutlineSelectWidget, OO.ui.SelectWidget );
 OO.mixinClass( OO.ui.OutlineSelectWidget, OO.ui.TabIndexedElement );
 
 /**
+ * TabSelectWidget is a list that contains {@link OO.ui.TabOptionWidget tab options}
+ *
+ * ####Currently, this class is only used by {@link OO.ui.IndexLayout index layouts}.####
+ *
+ * @class
+ * @extends OO.ui.SelectWidget
+ * @mixins OO.ui.TabIndexedElement
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ */
+OO.ui.TabSelectWidget = function OoUiTabSelectWidget( config ) {
+	// Parent constructor
+	OO.ui.TabSelectWidget.super.call( this, config );
+
+	// Mixin constructors
+	OO.ui.TabIndexedElement.call( this, config );
+
+	// Events
+	this.$element.on( {
+		focus: this.bindKeyDownListener.bind( this ),
+		blur: this.unbindKeyDownListener.bind( this )
+	} );
+
+	// Initialization
+	this.$element.addClass( 'oo-ui-tabSelectWidget' );
+};
+
+/* Setup */
+
+OO.inheritClass( OO.ui.TabSelectWidget, OO.ui.SelectWidget );
+OO.mixinClass( OO.ui.TabSelectWidget, OO.ui.TabIndexedElement );
+
+/**
  * ToggleSwitches are switches that slide on and off. Their state is represented by a Boolean
  * value (`true` for ‘on’, and `false` otherwise, the default). The ‘off’ state is represented
  * visually by a slider in the leftmost position.
@@ -14930,8 +16077,7 @@ OO.mixinClass( OO.ui.OutlineSelectWidget, OO.ui.TabIndexedElement );
  *     $( 'body' ).append( fieldset.$element );
  *
  * @class
- * @extends OO.ui.Widget
- * @mixins OO.ui.ToggleWidget
+ * @extends OO.ui.ToggleWidget
  * @mixins OO.ui.TabIndexedElement
  *
  * @constructor
@@ -14944,7 +16090,6 @@ OO.ui.ToggleSwitchWidget = function OoUiToggleSwitchWidget( config ) {
 	OO.ui.ToggleSwitchWidget.super.call( this, config );
 
 	// Mixin constructors
-	OO.ui.ToggleWidget.call( this, config );
 	OO.ui.TabIndexedElement.call( this, config );
 
 	// Properties
@@ -14971,8 +16116,7 @@ OO.ui.ToggleSwitchWidget = function OoUiToggleSwitchWidget( config ) {
 
 /* Setup */
 
-OO.inheritClass( OO.ui.ToggleSwitchWidget, OO.ui.Widget );
-OO.mixinClass( OO.ui.ToggleSwitchWidget, OO.ui.ToggleWidget );
+OO.inheritClass( OO.ui.ToggleSwitchWidget, OO.ui.ToggleWidget );
 OO.mixinClass( OO.ui.ToggleSwitchWidget, OO.ui.TabIndexedElement );
 
 /* Methods */

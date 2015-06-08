@@ -2204,8 +2204,12 @@ class WikiPage implements Page, IDBAccessObject {
 		Hooks::run( 'ArticleEditUpdates', array( &$this, &$editInfo, $options['changed'] ) );
 
 		if ( Hooks::run( 'ArticleEditUpdatesDeleteFromRecentchanges', array( &$this ) ) ) {
-			// Flush old entries from the `recentchanges` table
-			JobQueueGroup::singleton()->push( RecentChangesUpdateJob::newPurgeJob() );
+			JobQueueGroup::singleton()->push( array(
+				// Flush old entries from the `recentchanges` table
+				RecentChangesUpdateJob::newPurgeJob(),
+				// Update the cached list of active users
+				RecentChangesUpdateJob::newCacheUpdateJob()
+			) );
 		}
 
 		if ( !$this->exists() ) {

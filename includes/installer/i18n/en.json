@@ -57,7 +57,7 @@
 	"config-magic-quotes-sybase": "<strong>Fatal: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase] is active!</strong>\nThis option corrupts data input unpredictably.\nYou cannot install or use MediaWiki unless this option is disabled.",
 	"config-mbstring": "<strong>Fatal: [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] is active!</strong>\nThis option causes errors and may corrupt data unpredictably.\nYou cannot install or use MediaWiki unless this option is disabled.",
 	"config-safe-mode": "<strong>Warning:</strong> PHP's [http://www.php.net/features.safe-mode safe mode] is active.\nIt may cause problems, particularly if using file uploads and <code>math</code> support.",
-	"config-xml-bad": "PHP's XML module is missing.\nMediaWiki requires functions in this module and will not work in this configuration.\nIf you're running Mandrake, install the php-xml package.",
+	"config-xml-bad": "PHP's XML module is missing.\nMediaWiki requires functions in this module and will not work in this configuration.\nYou may need to install the php-xml RPM package.",
 	"config-pcre-old": "<strong>Fatal:</strong> PCRE $1 or later is required.\nYour PHP binary is linked with PCRE $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE More information].",
 	"config-pcre-no-utf8": "<strong>Fatal:</strong> PHP's PCRE module seems to be compiled without PCRE_UTF8 support.\nMediaWiki requires UTF-8 support to function correctly.",
 	"config-memory-raised": "PHP's <code>memory_limit</code> is $1, raised to $2.",

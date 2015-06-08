@@ -75,7 +75,7 @@ $wgConfigRegistry = array(
  * MediaWiki version number
  * @since 1.2
  */
-$wgVersion = '1.25.0-rc.1';
+$wgVersion = '1.25.1';
 
 /**
  * Name of the site. It must be changed in LocalSettings.php
@@ -6490,8 +6490,7 @@ $wgJobQueueAggregator = array(
  * Expensive Querypages are already updated.
  */
 $wgSpecialPageCacheUpdates = array(
-	'Statistics' => array( 'SiteStatsUpdate', 'cacheUpdate' ),
-	'Activeusers' => array( 'SpecialActiveUsers', 'cacheUpdate' ),
+	'Statistics' => array( 'SiteStatsUpdate', 'cacheUpdate' )
 );
 
 /**
