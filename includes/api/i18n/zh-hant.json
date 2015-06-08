@@ -4,7 +4,8 @@
 			"Cwlin0416",
 			"Liuxinyu970226",
 			"LNDDYL",
-			"EagerLin"
+			"EagerLin",
+			"Zhxy 519"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|文件]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 郵件清單]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bug與請求]\n</div>\n<strong>狀態資訊：</strong>本頁所展示的所有功能都應正常工作，但是 API 仍在開發當中，將會隨時變化。請訂閱[https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ mediawiki-api-announce 郵件清單]以便得到更新通知。\n\n<strong>錯誤請求：</strong>當 API 收到錯誤請求時， HTTP header 將會返回一個包含「MediaWiki-API-Error」的值，隨後 header 的值與錯誤碼將會送回並設定為相同的值。詳細資訊請參閱[[mw:API:Errors_and_warnings|API: 錯誤與警告]]。",
@@ -198,7 +199,7 @@
 	"apihelp-query+stashimageinfo-description": "回傳多筆儲藏檔案的檔案資訊。",
 	"apihelp-query+stashimageinfo-example-simple": "回傳儲藏檔案的檔案資訊。",
 	"apihelp-query+templates-description": "回傳指定頁面中所有引用的頁面。",
-	"apihelp-query+templates-param-limit": "要回傳的樣板數量。",
+	"apihelp-query+templates-param-limit": "要回傳的模板數量。",
 	"apihelp-query+tokens-param-type": "要請求的密鑰類型。",
 	"apihelp-query+tokens-example-simple": "接收 csrf 密鑰 (預設)。",
 	"apihelp-query+tokens-example-types": "接收監視密鑰以及巡邏密鑰。",

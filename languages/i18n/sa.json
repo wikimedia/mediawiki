@@ -2960,7 +2960,7 @@
 	"tags": "तर्कसिद्धानि परिवर्तनाङ्कनानि",
 	"tag-filter": "[[Special:Tags|Tag]] शोधनी:",
 	"tag-filter-submit": "शोधनी",
-	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|अङ्कनम्|अङ्कनानि}}]]: $2)",
+	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|अङ्कनम्|अङ्कनानि}}]] : $2)",
 	"tags-title": "अङ्कनानि",
 	"tags-intro": "एतत्पुटं सार्थसूत्राणि दर्शयति यस्य कोऽपि तन्त्रांशः यत्किमपि सम्पादनम् अङ्कयितुं प्रयोजयति ।",
 	"tags-tag": "अङ्कननाम",

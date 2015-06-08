@@ -1568,7 +1568,7 @@
 	"randompage-nopages": "Es sind keine Seiten {{PLURAL:$2|im folgenden Namensraum|in den folgenden Namensräumen}} enthalten: „$1“",
 	"randomincategory": "Zufällige Seite einer Kategorie",
 	"randomincategory-invalidcategory": "„$1“ ist kein gültiger Kategorienname.",
-	"randomincategory-nopages": "Es gibt keine Seiten in [[:Category:$1]].",
+	"randomincategory-nopages": "Es gibt keine Seiten in der Kategorie [[:Category:$1|$1]].",
 	"randomincategory-category": "Kategorie:",
 	"randomincategory-legend": "Zufällige Seite in Kategorie",
 	"randomredirect": "Zufällige Weiterleitung",

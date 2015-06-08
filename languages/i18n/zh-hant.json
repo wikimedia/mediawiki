@@ -1750,7 +1750,7 @@
 	"noindex-category-desc": "命名空間允許，且含有魔術字 <code><nowiki>__NOINDEX__</nowiki></code> 未被機器人列入索引的頁面。",
 	"index-category-desc": "命名空間允許，且含有魔術字 <code><nowiki>__INDEX__</nowiki></code> 被機器人列入索引的頁面。",
 	"post-expand-template-inclusion-category-desc": "展開模板後大小超過 <code>$wgMaxArticleSize</code> 導致部份模板未正常展開的頁面。",
-	"post-expand-template-argument-category-desc": "展開樣板參數後大小超過 <code>$wgMaxArticleSize</code> 的頁面 (有些於三括號中，如 <code>{{{Foo}}}</code>)。",
+	"post-expand-template-argument-category-desc": "展開模板參數後大小超過 <code>$wgMaxArticleSize</code> 的頁面 (有些於三括號中，如 <code>{{{Foo}}}</code>)。",
 	"expensive-parserfunction-category-desc": "頁面使用太多消耗系統資源的解析器函數 (如 <code>#ifexist</code>)。\n請參考 [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgExpensiveParserFunctionLimit Manual:$wgExpensiveParserFunctionLimit]。",
 	"broken-file-category-desc": "含有損壞檔案連結的頁面 (內嵌檔案連結的檔案不存在)。",
 	"hidden-category-category-desc": "內容中使用 <code><nowiki>__HIDDENCAT__</nowiki></code> 的分類，可隱藏預設在頁面上顯示的分類連結方塊。",
