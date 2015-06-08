@@ -1235,16 +1235,8 @@ class LoadBalancer {
 			return array( 0 => 0 ); // no replication = no lag
 		}
 
-		if ( $this->mProcCache->has( 'slave_lag', 'times', 1 ) ) {
-			return $this->mProcCache->get( 'slave_lag', 'times' );
-		}
-
 		# Send the request to the load monitor
-		$times = $this->getLoadMonitor()->getLagTimes( array_keys( $this->mServers ), $wiki );
-
-		$this->mProcCache->set( 'slave_lag', 'times', $times );
-
-		return $times;
+		return $this->getLoadMonitor()->getLagTimes( array_keys( $this->mServers ), $wiki );
 	}
 
 	/**
@@ -1271,8 +1263,10 @@ class LoadBalancer {
 
 	/**
 	 * Clear the cache for slag lag delay times
+	 *
+	 * This is only used for testing
 	 */
 	public function clearLagTimeCache() {
-		$this->mProcCache->clear( 'slave_lag' );
+		$this->getLoadMonitor()->clearCaches();
 	}
 }
