@@ -109,6 +109,24 @@ class ExtensionRegistry {
 	}
 
 	/**
+	 * Get the current load queue. Not intended to be used
+	 * outside of the installer.
+	 *
+	 * @return array
+	 */
+	public function getQueue() {
+		return $this->queued;
+	}
+
+	/**
+	 * Clear the current load queue. Not intended to be used
+	 * outside of the installer.
+	 */
+	public function clearQueue() {
+		$this->queued = array();
+	}
+
+	/**
 	 * Process a queue of extensions and return their extracted data
 	 *
 	 * @param array $queue keys are filenames, values are ignored
