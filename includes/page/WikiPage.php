@@ -1264,10 +1264,9 @@ class WikiPage implements Page, IDBAccessObject {
 			$conditions['page_latest'] = $lastRevision;
 		}
 
-		$now = wfTimestampNow();
 		$row = array( /* SET */
 			'page_latest'      => $revision->getId(),
-			'page_touched'     => $dbw->timestamp( $now ),
+			'page_touched'     => $dbw->timestamp( $revision->getTimestamp() ),
 			'page_is_new'      => ( $lastRevision === 0 ) ? 1 : 0,
 			'page_is_redirect' => $rt !== null ? 1 : 0,
 			'page_len'         => $len,
@@ -1865,7 +1864,7 @@ class WikiPage implements Page, IDBAccessObject {
 				$revision = null;
 				// Update page_touched, this is usually implicit in the page update
 				// Other cache updates are done in onArticleEdit()
-				$this->mTitle->invalidateCache();
+				$this->mTitle->invalidateCache( $now );
 			}
 		} else {
 			// Create new article
@@ -2168,9 +2167,11 @@ class WikiPage implements Page, IDBAccessObject {
 			$editInfo = $this->mPreparedEdit;
 		}
 
-		// Save it to the parser cache
+		// Save it to the parser cache.
+		// Make sure the cache time matches page_touched to avoid double parsing.
 		ParserCache::singleton()->save(
-			$editInfo->output, $this, $editInfo->popts, $editInfo->timestamp, $editInfo->revid
+			$editInfo->output, $this, $editInfo->popts,
+			$revision->getTimestamp(), $editInfo->revid
 		);
 
 		// Update the links tables and other secondary data
@@ -3159,7 +3160,6 @@ class WikiPage implements Page, IDBAccessObject {
 		// Update existence markers on article/talk tabs...
 		$other = $title->getOtherPage();
 
-		$other->invalidateCache();
 		$other->purgeSquid();
 
 		$title->touchLinks();
@@ -3176,7 +3176,6 @@ class WikiPage implements Page, IDBAccessObject {
 		// Update existence markers on article/talk tabs...
 		$other = $title->getOtherPage();
 
-		$other->invalidateCache();
 		$other->purgeSquid();
 
 		$title->touchLinks();
