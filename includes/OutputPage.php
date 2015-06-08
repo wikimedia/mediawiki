@@ -305,6 +305,11 @@ class OutputPage extends ContextSource {
 	private $mEnableSectionEditLinks = true;
 
 	/**
+	 * @var string|null The URL to send in a <link> element with rel=copyright
+	 */
+	private $copyrightUrl;
+
+	/**
 	 * Constructor for OutputPage. This should not be called directly.
 	 * Instead a new RequestContext should be created and it will implicitly create
 	 * a OutputPage tied to that context.
@@ -338,6 +343,16 @@ class OutputPage extends ContextSource {
 	 */
 	public function getRedirect() {
 		return $this->mRedirect;
+	}
+
+	/**
+	 * Set the copyright URL to send with the output.
+	 * Empty string to omit, null to reset.
+	 *
+	 * @param string|null $url
+	 */
+	public function setCopyrightUrl( $url ) {
+		$this->copyrightUrl = $url;
 	}
 
 	/**
@@ -3432,17 +3447,21 @@ class OutputPage extends ContextSource {
 		}
 
 		# Copyright
-		$copyright = '';
-		if ( $config->get( 'RightsPage' ) ) {
-			$copy = Title::newFromText( $config->get( 'RightsPage' ) );
+		if ( $this->copyrightUrl !== null ) {
+			$copyright = $this->copyrightUrl;
+		} else {
+			$copyright = '';
+			if ( $config->get( 'RightsPage' ) ) {
+				$copy = Title::newFromText( $config->get( 'RightsPage' ) );
 
-			if ( $copy ) {
-				$copyright = $copy->getLocalURL();
+				if ( $copy ) {
+					$copyright = $copy->getLocalURL();
+				}
 			}
-		}
 
-		if ( !$copyright && $config->get( 'RightsUrl' ) ) {
-			$copyright = $config->get( 'RightsUrl' );
+			if ( !$copyright && $config->get( 'RightsUrl' ) ) {
+				$copyright = $config->get( 'RightsUrl' );
+			}
 		}
 
 		if ( $copyright ) {
