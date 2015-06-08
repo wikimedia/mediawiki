@@ -34,9 +34,6 @@ class SpecialBookSources extends SpecialPage {
 	 */
 	private $isbn = '';
 
-	/**
-	 * Constructor
-	 */
 	public function __construct() {
 		parent::__construct( 'Booksources' );
 	}
@@ -49,9 +46,9 @@ class SpecialBookSources extends SpecialPage {
 	public function execute( $isbn ) {
 		$this->setHeaders();
 		$this->outputHeader();
-		$this->isbn = self::cleanIsbn( $isbn ? $isbn : $this->getRequest()->getText( 'isbn' ) );
+		$this->isbn = self::cleanIsbn( $isbn ?: $this->getRequest()->getText( 'isbn' ) );
 		$this->getOutput()->addHTML( $this->makeForm() );
-		if ( strlen( $this->isbn ) > 0 ) {
+		if ( $this->isbn !== '' ) {
 			if ( !self::isValidISBN( $this->isbn ) ) {
 				$this->getOutput()->wrapWikiMsg(
 					"<div class=\"error\">\n$1\n</div>",
@@ -63,7 +60,8 @@ class SpecialBookSources extends SpecialPage {
 	}
 
 	/**
-	 * Returns whether a given ISBN (10 or 13) is valid. True indicates validity.
+	 * Return whether a given ISBN (10 or 13) is valid.
+	 *
 	 * @param string $isbn ISBN passed for check
 	 * @return bool
 	 */
@@ -154,7 +152,7 @@ class SpecialBookSources extends SpecialPage {
 	 * format and output them
 	 *
 	 * @throws MWException
-	 * @return string
+	 * @return bool
 	 */
 	private function showList() {
 		global $wgContLang;
@@ -205,7 +203,8 @@ class SpecialBookSources extends SpecialPage {
 		$url = str_replace( '$1', $this->isbn, $url );
 
 		return Html::rawElement( 'li', [],
-			Html::element( 'a', [ 'href' => $url, 'class' => 'external' ], $label ) );
+			Html::element( 'a', [ 'href' => $url, 'class' => 'external' ], $label )
+		);
 	}
 
 	protected function getGroupName() {
