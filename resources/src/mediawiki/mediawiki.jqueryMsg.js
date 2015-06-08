@@ -17,14 +17,10 @@
 			magic: {
 				'SITENAME': mw.config.get( 'wgSiteName' )
 			},
-			// This is a whitelist like Sanitizer.php.
+			// Whitelist for allowed HTML elements in wikitext.
 			// Self-closing tags are not currently supported.
-			// The simplified default here is overridden below by data supplied
-			// by the mediawiki.jqueryMsg.data module.
-			allowedHtmlElements: [
-				'b',
-				'i'
-			],
+			// Can be populated via setPrivateData().
+			allowedHtmlElements: [],
 			// Key tag name, value allowed attributes for that tag.
 			// See Sanitizer::setupAttributeWhitelist
 			allowedHtmlCommonAttributes: [
@@ -132,15 +128,23 @@
 		};
 	}
 
-	// Use data from mediawiki.jqueryMsg.data to override defaults, if
-	// available
-	if ( mw.jqueryMsg && mw.jqueryMsg.data ) {
-		if ( mw.jqueryMsg.data.allowedHtmlElements ) {
-			parserDefaults.allowedHtmlElements = mw.jqueryMsg.data.allowedHtmlElements;
-		}
-	}
-
 	mw.jqueryMsg = {};
+
+	/**
+	 * Initialize parser defaults.
+	 *
+	 * ResourceLoaderJqueryMsgModule calls this to provide default values from
+	 * Sanitizer.php for allowed HTML elements. To override this data for individual
+	 * parsers, pass the relevnat options to mw.jqueryMsg.parser.
+	 *
+	 * @private
+	 * @param {Object} data
+	 */
+	mw.jqueryMsg.setParserDefaults = function ( data ) {
+		if ( data.allowedHtmlElements ) {
+			parserDefaults.allowedHtmlElements = data.allowedHtmlElements;
+		}
+	};
 
 	/**
 	 * Returns a function suitable for use as a global, to construct strings from the message key (and optional replacements).
