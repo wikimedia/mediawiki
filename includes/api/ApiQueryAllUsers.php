@@ -48,11 +48,6 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$params = $this->extractRequestParams();
 		$activeUserDays = $this->getConfig()->get( 'ActiveUserDays' );
 
-		if ( $params['activeusers'] ) {
-			// Update active user cache
-			SpecialActiveUsers::mergeActiveUsers( 300, $activeUserDays );
-		}
-
 		$db = $this->getDB();
 
 		$prop = $params['prop'];

@@ -297,7 +297,7 @@
 				}
 			}
 		},
-		"ResourceLoaderModules": {
+		"ResourceModules": {
 			"type": "object",
 			"description": "ResourceLoader modules to register",
 			"additionalProperties": false,

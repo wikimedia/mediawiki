@@ -143,7 +143,7 @@ class ExtensionRegistry {
 
 	protected function exportExtractedData( array $info ) {
 		foreach ( $info['globals'] as $key => $val ) {
-			if ( !isset( $GLOBALS[$key] ) || !$GLOBALS[$key] ) {
+			if ( !isset( $GLOBALS[$key] ) || ( is_array( $GLOBALS[$key] ) && !$GLOBALS[$key] ) ) {
 				$GLOBALS[$key] = $val;
 			} elseif ( $key === 'wgHooks' || $key === 'wgExtensionCredits' ) {
 				// Special case $wgHooks and $wgExtensionCredits, which require a recursive merge.

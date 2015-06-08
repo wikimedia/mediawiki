@@ -1,12 +1,23 @@
 Security reminder: If you have PHP's register_globals option set, you must
 turn it off. MediaWiki will not work with it enabled.
 
+== MediaWiki 1.25.2 ==
+
+THIS IS NOT YET A RELEASE!
+
+== Changes since 1.25.2 ==
+
+* (T100767) Setting a configuration setting for skin or extension to
+  false in LocalSettings.php was not working.
+* (T100635) API action=opensearch json output no longer breaks when
+  $wgDebugToolbar is enabled.
+
+=== Changes since 1.25 ===
+* (T100351) Fix syntax errors in extension.json of ConfirmEdit extension
+
 == MediaWiki 1.25 ==
 
-THIS IS NOT A RELEASE YET
-
-MediaWiki 1.25 is an alpha-quality branch and is not recommended for use in
-production.
+MediaWiki 1.25.x is the stable branch and is recommended for use in production.
 
 === Configuration changes in 1.25 ===
 * $wgPageShowWatchingUsers was removed.
@@ -193,6 +204,7 @@ production.
 * $wgUseTidy is now set when parserTests are run with the tidy option to match
   output on wiki.
 * (T37472) update.php will purge ResourceLoader cache unless --nopurge is passed to it.
+* (T72109) mediawiki.language should respect $wgTranslateNumerals in convertNumber().
 
 === Action API changes in 1.25 ===
 * (T67403) XML tag highlighting is now only performed for formats
