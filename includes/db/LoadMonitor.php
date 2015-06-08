@@ -75,13 +75,17 @@ class LoadMonitorMySQL implements LoadMonitor {
 	/** @var LoadBalancer */
 	public $parent;
 	/** @var BagOStuff */
-	protected $cache;
+	protected $srvCache;
+	/** @var BagOStuff */
+	protected $mainCache;
 
 	public function __construct( $parent ) {
 		global $wgMemc;
 
 		$this->parent = $parent;
-		$this->cache = $wgMemc ?: wfGetMainCache();
+
+		$this->srvCache = ObjectCache::newAccelerator( array(), 'hash' );
+		$this->mainCache = $wgMemc ?: wfGetMainCache();
 	}
 
 	public function scaleLoads( &$loads, $group = false, $wiki = false ) {
@@ -89,65 +93,79 @@ class LoadMonitorMySQL implements LoadMonitor {
 
 	public function getLagTimes( $serverIndexes, $wiki ) {
 		if ( count( $serverIndexes ) == 1 && reset( $serverIndexes ) == 0 ) {
-			// Single server only, just return zero without caching
+			# Single server only, just return zero without caching
 			return array( 0 => 0 );
 		}
 
-		$expiry = 5;
-		$requestRate = 10;
+		$key = $this->getLagTimeCacheKey();
+		# Randomize TTLs to reduce stampedes (4.0 - 5.0 sec)
+		$ttl = mt_rand( 4e6, 5e6 ) / 1e6;
+		# Keep keys around longer as fallbacks
+		$staleTTL = 60;
 
-		$cache = $this->cache;
-		$masterName = $this->parent->getServerName( 0 );
-		$memcKey = wfMemcKey( 'lag_times', $masterName );
-		$times = $cache->get( $memcKey );
-		if ( is_array( $times ) ) {
-			# Randomly recache with probability rising over $expiry
-			$elapsed = time() - $times['timestamp'];
-			$chance = max( 0, ( $expiry - $elapsed ) * $requestRate );
-			if ( mt_rand( 0, $chance ) != 0 ) {
-				unset( $times['timestamp'] ); // hide from caller
-
-				return $times;
-			}
-			wfIncrStats( 'lag_cache.miss.expired' );
-		} else {
-			wfIncrStats( 'lag_cache.miss.absent' );
+		# (a) Check the local APC cache
+		$value = $this->srvCache->get( $key );
+		if ( $value && $value['timestamp'] > ( microtime( true ) - $ttl ) ) {
+			wfDebugLog( 'replication',  __FUNCTION__ . ": got lag times ($key) from local cache" );
+			return $value['lagTimes']; // cache hit
 		}
+		$staleValue = $value ?: false;
 
-		# Cache key missing or expired
-		if ( $cache->lock( $memcKey, 0, 10 ) ) {
+		# (b) Check the shared cache and backfill APC
+		$value = $this->mainCache->get( $key );
+		if ( $value && $value['timestamp'] > ( microtime( true ) - $ttl ) ) {
+			$this->srvCache->set( $key, $value, $staleTTL );
+			wfDebugLog( 'replication',  __FUNCTION__ . ": got lag times ($key) from main cache" );
+
+			return $value['lagTimes']; // cache hit
+		}
+		$staleValue = $value ?: $staleValue;
+
+		# (c) Cache key missing or expired; regenerate and backfill
+		if ( $this->mainCache->lock( $key, 0, 10 ) ) {
 			# Let this process alone update the cache value
-			$unlocker = new ScopedCallback( function () use ( $cache, $memcKey ) {
-				$cache->unlock( $memcKey );
+			$cache = $this->mainCache;
+			$unlocker = new ScopedCallback( function () use ( $cache, $key ) {
+				$cache->unlock( $key );
 			} );
-		} elseif ( is_array( $times ) ) {
+		} elseif ( $staleValue ) {
 			# Could not acquire lock but an old cache exists, so use it
-			unset( $times['timestamp'] ); // hide from caller
-
-			return $times;
+			return $value['lagTimes'];
 		}
 
-		$times = array();
+		$lagTimes = array();
 		foreach ( $serverIndexes as $i ) {
 			if ( $i == 0 ) { # Master
-				$times[$i] = 0;
+				$lagTimes[$i] = 0;
 			} elseif ( false !== ( $conn = $this->parent->getAnyOpenConnection( $i ) ) ) {
-				$times[$i] = $conn->getLag();
+				$lagTimes[$i] = $conn->getLag();
 			} elseif ( false !== ( $conn = $this->parent->openConnection( $i, $wiki ) ) ) {
-				$times[$i] = $conn->getLag();
-				// Close the connection to avoid sleeper connections piling up.
-				// Note that the caller will pick one of these DBs and reconnect,
-				// which is slightly inefficient, but this only matters for the lag
-				// time cache miss cache, which is far less common that cache hits.
+				$lagTimes[$i] = $conn->getLag();
+				# Close the connection to avoid sleeper connections piling up.
+				# Note that the caller will pick one of these DBs and reconnect,
+				# which is slightly inefficient, but this only matters for the lag
+				# time cache miss cache, which is far less common that cache hits.
 				$this->parent->closeConnection( $conn );
 			}
 		}
 
 		# Add a timestamp key so we know when it was cached
-		$times['timestamp'] = time();
-		$cache->set( $memcKey, $times, $expiry + 10 );
-		unset( $times['timestamp'] ); // hide from caller
+		$value = array( 'lagTimes' => $lagTimes, 'timestamp' => microtime( true ) );
+		$this->mainCache->set( $key, $value, $staleTTL );
+		$this->srvCache->set( $key, $value, $staleTTL );
+		wfDebugLog( 'replication',  __FUNCTION__ . ": re-calculated lag times ($key)" );
 
-		return $times;
+		return $value['lagTimes'];
+	}
+
+	public function clearCaches() {
+		$key = $this->getLagTimeCacheKey();
+		$this->srvCache->delete( $key );
+		$this->mainCache->delete( $key );
+	}
+
+	private function getLagTimeCacheKey() {
+		# Lag is per-server, not per-DB, so key on the master DB name
+		return wfForeignMemcKey( $this->parent->getServerName( 0 ), '', 'lag_times' );
 	}
 }
