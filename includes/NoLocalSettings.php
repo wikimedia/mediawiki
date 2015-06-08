@@ -23,7 +23,7 @@
 # bug 30219 : can not use pathinfo() on URLs since slashes do not match
 $matches = array();
 $ext = 'php';
-$path = '/';
+$path = "http://".$_SERVER["SERVER_NAME"]."/";
 foreach ( array_filter( explode( '/', $_SERVER['PHP_SELF'] ) ) as $part ) {
 	if ( !preg_match( '/\.(php5?)$/', $part, $matches ) ) {
 		$path .= "$part/";
@@ -61,3 +61,5 @@ try {
 } catch ( Exception $e ) {
 	echo 'Error: ' . htmlspecialchars( $e->getMessage() );
 }
+
+header("Location: ". htmlspecialchars( $path ) . "mw-config/index." . htmlspecialchars( $ext )."",true,302);
