@@ -1745,6 +1745,7 @@
 	"randomincategory-nopages": "Message shown from [[Special:RandomInCategory]] if the category is empty.\n\nParameters:\n* $1 - the category name (without the namespace prefix)",
 	"randomincategory-category": "Shown on [[Special:RandomInCategory]] as a label for a text box allowing the user to input a category name.\n{{Identical|Category}}",
 	"randomincategory-legend": "Used as fieldset label for the form on [[Special:RandomInCategory]].",
+	"randomincategory-submit": "Used as label for the Submit button on [[Special:RandomInCategory]].\n{{Identical|Go}}",
 	"randomredirect": "{{doc-special|RandomRedirect}}",
 	"randomredirect-nopages": "Parameters:\n* $1 - list of namespaces\n* $2 - (Unused) number of namespaces\nSee also:\n* {{msg-mw|Randompage-nopages}}",
 	"statistics": "{{doc-special|Statistics}}\n{{Identical|Statistics}}",
