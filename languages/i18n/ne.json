@@ -18,7 +18,8 @@
 			"Steinsplitter",
 			"Macofe",
 			"बिप्लब आनन्द",
-			"Nirjal stha"
+			"Nirjal stha",
+			"राम प्रसाद जोशी"
 		]
 	},
 	"tog-underline": "रेखाङ्कित लिङ्क:",
@@ -872,7 +873,7 @@
 	"searchprofile-images-tooltip": "फाइलहरु खोज्ने",
 	"searchprofile-everything-tooltip": "सबै सामग्री खोज्ने (वार्तालाप समेत )",
 	"searchprofile-advanced-tooltip": "अनुकुल नेमस्पेसमा खोज्ने",
-	"search-result-size": "$1 ({{PLURAL:$2|1 शव्द|$2 शव्दहरु}})",
+	"search-result-size": "$1 ({{PLURAL:$2|1 शब्द|$2 शब्दहरू}})",
 	"search-result-category-size": "{{PLURAL:$1|एक सदस्य|$1 सदस्यहरु}} ({{PLURAL:$2|1 उपश्रेणी|$2  उपश्रेणीहरु}}, {{PLURAL:$3|एउटा फाइल|$3 फाइलहरु}})",
 	"search-redirect": "(जाने $1)",
 	"search-section": "(खण्ड $1)",
@@ -2789,7 +2790,7 @@
 	"exif-ycbcrpositioning-2": "सह-कुर्सीरहेको",
 	"exif-dc-contributor": "योगदानकर्ताहरु",
 	"exif-dc-coverage": "मेडियाको स्पाटिएल(आयाम) वा टेम्पोरल(काल) सान्दर्भिकता",
-	"exif-dc-date": "मिति(हरु)",
+	"exif-dc-date": "मिति(हरू)",
 	"exif-dc-publisher": "प्रकाशक",
 	"exif-dc-relation": "सम्वन्धित मेडिया",
 	"exif-dc-rights": "अधिकारहरु",

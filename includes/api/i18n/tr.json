@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Sayginer",
-			"Sadrettin"
+			"Sadrettin",
+			"Uğurkent"
 		]
 	},
 	"apihelp-createaccount-param-name": "Kullanıcı adı.",
@@ -34,6 +35,8 @@
 	"apihelp-feedrecentchanges-example-simple": "Son değişiklikleri göster",
 	"apihelp-feedrecentchanges-example-30days": "Son 30 gündeki değişiklikleri göster",
 	"apihelp-filerevert-description": "Bir dosyayı eski bir sürümüne geri döndür.",
+	"apihelp-login-param-name": "Kullanıcı adı.",
+	"apihelp-login-param-password": "Parola.",
 	"apihelp-move-description": "Bir sayfayı taşı.",
 	"apihelp-move-param-from": "Taşımak istediğiniz sayfanın başlığı. $1fromid ile birlikte kullanılamaz.",
 	"apihelp-move-param-noredirect": "Yönlendirme oluşturmayın.",

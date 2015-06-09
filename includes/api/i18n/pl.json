@@ -16,6 +16,7 @@
 	"apihelp-main-param-format": "Format danych wyjściowych.",
 	"apihelp-main-param-maxlag": "Maksymalne opóźnienie mogą być używane kiedy MediaWiki jest zainstalowana w klastrze zreplikowanej bazy danych. By zapisać działania powodujące większe opóźnienie replikacji, ten parametr może wymusić czekanie u klienta, dopóki opóźnienie replikacji jest mniejsze niż określona wartość. W przypadku nadmiernego opóźnienia, kod błędu <samp>maxlag</samp> jest zwracany z wiadomością jak <samp>Oczekiwanie na $host: $lag sekund opóźnienia</samp>.<br />Zobacz [[mw:Manual:Maxlag_parameter|Podręcznik:Parametr Maxlag]] by uzyskać więcej informacji.",
 	"apihelp-main-param-assert": "Sprawdź, czy użytkownik jest zalogowany jeżeli jest ustawiony na <kbd>użytkownik</kbd>, lub ma prawa bota jeśli <kbd>bot</kbd>.",
+	"apihelp-main-param-curtimestamp": "Dołącz obecny znacznik czasu do wyniku.",
 	"apihelp-block-description": "Zablokuj użytkownika.",
 	"apihelp-block-param-user": "Nazwa użytkownika, adres IP lub zakres adresów IP, które chcesz zablokować.",
 	"apihelp-block-param-reason": "Powód blokady.",

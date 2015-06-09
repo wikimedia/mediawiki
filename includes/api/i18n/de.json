@@ -188,7 +188,7 @@
 	"apihelp-import-param-templates": "Für Interwiki-Importe: importiere auch alle eingebundenen Vorlagen.",
 	"apihelp-import-param-namespace": "In diesen Namensraum importieren. Kann nicht zusammen mit <var>$1rootpage</var> verwendet werden.",
 	"apihelp-import-param-rootpage": "Als Unterseite dieser Seite importieren. Kann nicht zusammen mit <var>$1namespace</var> verwendet werden.",
-	"apihelp-import-example-import": "Importiere [[meta:Help:Parserfunctions]] mit der kompletten Versionsgeschichte in den Namensraum 100.",
+	"apihelp-import-example-import": "Importiere [[meta:Help:ParserFunctions]] mit der kompletten Versionsgeschichte in den Namensraum 100.",
 	"apihelp-login-description": "Anmelden und Authentifizierungs-Cookies beziehen.\n\nFalls das Anmelden erfolgreich war, werden die benötigten Cookies im Header der HTTP-Antwort des Servers übermittelt. Bei fehlgeschlagenen Anmeldeversuchen können weitere Versuche gedrosselt werden, um automatische Passwortermittlungsattacken zu verhinden.",
 	"apihelp-login-param-name": "Benutzername.",
 	"apihelp-login-param-password": "Passwort.",

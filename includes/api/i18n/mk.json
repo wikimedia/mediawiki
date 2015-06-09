@@ -179,7 +179,7 @@
 	"apihelp-import-param-templates": "За меѓујазични увози: увези ги и сите вклучени шаблони.",
 	"apihelp-import-param-namespace": "Увези во овој именски простор. Се наметнува врз параметарот <kbd>$1rootpage</kbd>.",
 	"apihelp-import-param-rootpage": "Увези како потстраница на страницава. Се занемарува ако е укажан параметарот <kbd>$1namespace</kbd>.",
-	"apihelp-import-example-import": "Увези [[meta:Help:Parserfunctions]] во именскиот простор 100 со целата историја.",
+	"apihelp-import-example-import": "Увези [[meta:Help:ParserFunctions]] во именскиот простор 100 со целата историја.",
 	"apihelp-login-description": "Најавете се и добијте колачиња за заверка.\n\nВо случај кога ќе се најавите успешно, потребните колачиња ќе се придодадат кон заглавијата на HTTP-одѕивот. Во случај да не успеете да се најавите, понатамошните обиди може да се ограничат за да се ограничат нападите со автоматизирано погодување на лозинката.",
 	"apihelp-login-param-name": "Корисничко име.",
 	"apihelp-login-param-password": "Лозинка.",

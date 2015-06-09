@@ -193,7 +193,7 @@
 	"apihelp-import-param-templates": "Pour les importations interwiki : importer aussi tous les modèles inclus.",
 	"apihelp-import-param-namespace": "Importer vers cet espace de noms. Écrase le paramètre <kbd>$1rootpage</kbd>.",
 	"apihelp-import-param-rootpage": "Importer comme une sous-page de cette page. Ignoré si le paramètre <kbd>$1namespace</kbd> est fourni.",
-	"apihelp-import-example-import": "Importer [[meta:Help:Parserfunctions]] vers l’espace de noms 100 avec tout l’historique.",
+	"apihelp-import-example-import": "Importer [[meta:Help:ParserFunctions]] vers l’espace de noms 100 avec tout l’historique.",
 	"apihelp-login-description": "Se connecter et obtenir les cookies d’authentification.\n\nDans le cas d’une connexion réussie, les cookies nécessaires seront inclus dans les entêtes de la réponse HTTP. Dans le cas d’une connexion en échec, les essais ultérieurs pourront être réduits afin de limiter les attaques automatisées de découverte du mot de passe.",
 	"apihelp-login-param-name": "Nom d’utilisateur.",
 	"apihelp-login-param-password": "Mot de passe.",

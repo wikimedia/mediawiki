@@ -197,7 +197,7 @@
 	"apihelp-import-param-templates": "用于跨wiki导入：连带导入所有包含的模板。",
 	"apihelp-import-param-namespace": "导入至此名字空间。不能与<var>$1rootpage</var>一起使用。",
 	"apihelp-import-param-rootpage": "作为此页面的子页面导入。不能与<var>$1namespace</var>一起使用。",
-	"apihelp-import-example-import": "将页面[[meta:Help:Parserfunctions]]连带完整历史导入至100名字空间。",
+	"apihelp-import-example-import": "将页面[[meta:Help:ParserFunctions]]连带完整历史导入至100名字空间。",
 	"apihelp-login-description": "登录并获得身份验证Cookie。\n\n在成功登录的情况下，所需的Cookie将包含在HTTP响应头中。在登录失败的情况下，进一步的尝试可能会被自动密码猜解攻击的限制所遏制。",
 	"apihelp-login-param-name": "用户名。",
 	"apihelp-login-param-password": "密码。",

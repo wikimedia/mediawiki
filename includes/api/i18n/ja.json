@@ -143,7 +143,7 @@
 	"apihelp-import-param-templates": "ウィキ間の取り込みの場合: 読み込まれているテンプレートも取り込む。",
 	"apihelp-import-param-namespace": "この名前空間に取り込む。<var>$1rootpage</var>パラメータとは同時に使用できません。",
 	"apihelp-import-param-rootpage": "このページの下位ページとして取り込む。<var>$1namespace</var> パラメータとは同時に使用できません。",
-	"apihelp-import-example-import": "[[meta:Help:Parserfunctions]] をすべての履歴とともに名前空間100に取り込む。",
+	"apihelp-import-example-import": "[[meta:Help:ParserFunctions]] をすべての履歴とともに名前空間100に取り込む。",
 	"apihelp-login-param-name": "利用者名。",
 	"apihelp-login-param-password": "パスワード。",
 	"apihelp-login-param-token": "最初のリクエストで取得したログイントークンです。",

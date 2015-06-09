@@ -177,7 +177,7 @@
 	"apihelp-import-param-templates": "Para importaciones interwiki: importar también todas las plantillas incluidas.",
 	"apihelp-import-param-namespace": "Importar a este espacio de nombres. No puede usarse simultáneamente con <var>$1rootpage</var>.",
 	"apihelp-import-param-rootpage": "Importar como subpágina de esta página. No puede usarse simultáneamente con <var>$1namespace</var>.",
-	"apihelp-import-example-import": "Importar [[meta:Help:Parserfunctions]] al espacio de nombres 100 con todo el historial.",
+	"apihelp-import-example-import": "Importar [[meta:Help:ParserFunctions]] al espacio de nombres 100 con todo el historial.",
 	"apihelp-login-description": "Iniciar sesión y obtener cookies de autenticación.\n\nSi inicias sesión sin problemas, las cookies necesarias se incluirán en los encabezados de respuesta HTTP. Si se produce algún error al iniciar sesión y este persiste, se puede regular para evitar los ataques masivos automatizados para adivinar contraseñas.",
 	"apihelp-login-param-name": "Nombre de usuario.",
 	"apihelp-login-param-password": "Contraseña.",

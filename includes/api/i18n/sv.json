@@ -179,7 +179,7 @@
 	"apihelp-import-param-templates": "För interwiki-importer: importera även alla mallar som ingår.",
 	"apihelp-import-param-namespace": "Importera till denna namnrymd. Kan inte användas tillsammans med <var>$1rootpage</var>.",
 	"apihelp-import-param-rootpage": "Importera som undersida till denna sida. Kan inte användas tillsammans med <var>$1namespace</var>.",
-	"apihelp-import-example-import": "Importera [[meta:Help:Parserfunktioner]] till namnrymd 100 med full historik.",
+	"apihelp-import-example-import": "Importera [[meta:Help:ParserFunctions]] till namnrymd 100 med full historik.",
 	"apihelp-login-description": "Logga in och hämta autentiserings-cookies.\n\nOm inloggningen lyckas, finns de cookies som krävs med i HTTP-svarshuvuden. Om inloggningen misslyckas kan ytterligare försök per tidsenhet begränsas, som ett sätt att försöka minska risken för automatiserade lösenordsgissningar.",
 	"apihelp-login-param-name": "Användarnamn.",
 	"apihelp-login-param-password": "Lösenord.",

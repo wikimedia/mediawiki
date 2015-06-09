@@ -193,7 +193,7 @@
 	"apihelp-import-param-templates": "Para importacións interwiki: importar tódolos modelos incluídos.",
 	"apihelp-import-param-namespace": "Importar a este espazo de nomes. Non se pode usar de forma conxunta con  <var>$1rootpage</var>.",
 	"apihelp-import-param-rootpage": "Importar como subpáxina desta páxina. Non se pode usar de forma conxunta con <var>$1namespace</var>.",
-	"apihelp-import-example-import": "Importar [[meta:Help:Parserfunctions]] ó espazo de nomes 100 con todo o historial.",
+	"apihelp-import-example-import": "Importar [[meta:Help:ParserFunctions]] ó espazo de nomes 100 con todo o historial.",
 	"apihelp-login-description": "No caso dunha conexión correcta, as cookies necesarias incluiranse nas cabeceiras HTTP de resposta. No caso dunha conexión fallida, os intentos posteriores poden ser reducidos para limitar ataques automaticos de roubo de contrasinais.",
 	"apihelp-login-param-name": "Nome de usuario.",
 	"apihelp-login-param-password": "Contrasinal",

@@ -6,7 +6,8 @@
 			"OsamaK",
 			"روخو",
 			"Claw eg",
-			"Kuwaity26"
+			"Kuwaity26",
+			"محمد أحمد عبد الفتاح"
 		]
 	},
 	"config-desc": "مثبت لميدياويكي",
@@ -45,7 +46,10 @@
 	"config-page-existingwiki": "ويكي موجودة",
 	"config-help-restart": "هل تريد إزالة البيانات المحفوظة التي قد قمت بإدخالها وإعادة تشغيل عملية التثبيت؟",
 	"config-restart": "نعم، إعادة التشغيل",
+	"config-env-good": "جرى التحقق من البيئة. يمكنك تنصيب ميدياويكي.",
+	"config-env-bad": "جرى التحقق من البيئة. لا يمكنك تنصيب ميدياويكي.",
 	"config-env-php": "بي إتش بي $1 مثبت.",
+	"config-env-hhvm": "نصبت HHVM $1.",
 	"config-db-type": "نوع قاعدة البيانات:",
 	"config-db-host": "مضيف قاعدة البيانات:",
 	"config-db-wiki-settings": "حدِّد هذا الويكي",
