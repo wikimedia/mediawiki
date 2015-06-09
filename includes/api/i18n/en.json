@@ -899,7 +899,7 @@
 	"apihelp-query+revisions+base-param-contentformat": "Serialization format used for <var>$1difftotext</var> and expected for output of content.",
 
 	"apihelp-query+search-description": "Perform a full text search.",
-	"apihelp-query+search-param-search": "Search for all page titles (or content) that have this value.",
+	"apihelp-query+search-param-search": "Search for page titles or content matching this value. You can use the search string to invoke special search features, depending on what the wiki's search backend implements.",
 	"apihelp-query+search-param-namespace": "Search only within these namespaces.",
 	"apihelp-query+search-param-what": "Which type of search to perform.",
 	"apihelp-query+search-param-info": "Which metadata to return.",
