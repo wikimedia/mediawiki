@@ -1358,6 +1358,18 @@
 				$.each( dependencies, function ( idx, module ) {
 					var state = mw.loader.getState( module );
 					if ( state === 'registered' && $.inArray( module, queue ) === -1 ) {
+						// WMF patch: Logging for T101806
+						if ( registry[module].group === 'private' ) {
+							mw.track( 'resourceloader.forbidden', {
+								module: module,
+								// Log which modules in this request depend on the private module
+								request: $.grep( dependencies, function ( dep ) {
+									if ( $.inArray( module, registry[dep].dependencies ) !== -1 ) {
+										return true;
+									}
+								} )
+							} );
+						}
 						queue.push( module );
 						if ( async ) {
 							registry[module].async = true;
