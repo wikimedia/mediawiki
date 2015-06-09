@@ -9,5 +9,13 @@
 	},
 	"ooui-outline-control-move-down": "Movi eron suben",
 	"ooui-outline-control-move-up": "Movi eron supren",
-	"ooui-toolbar-more": "Pli"
+	"ooui-outline-control-remove": "Forigi eron",
+	"ooui-toolbar-more": "Pli",
+	"ooui-toolgroup-expand": "Pli",
+	"ooui-toolgroup-collapse": "Mapli",
+	"ooui-dialog-message-accept": "Bone",
+	"ooui-dialog-message-reject": "Nuligi",
+	"ooui-dialog-process-error": "Io rompiĝis",
+	"ooui-dialog-process-retry": "Reprovi",
+	"ooui-dialog-process-continue": "Daŭrigi"
 }

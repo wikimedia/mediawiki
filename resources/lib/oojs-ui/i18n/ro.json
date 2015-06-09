@@ -19,5 +19,7 @@
 	"ooui-dialog-process-error": "Ceva nu a funcționat",
 	"ooui-dialog-process-dismiss": "Renunțare",
 	"ooui-dialog-process-retry": "Reîncearcă",
-	"ooui-dialog-process-continue": "Continuă"
+	"ooui-dialog-process-continue": "Continuă",
+	"ooui-selectfile-not-supported": "Selecția de fișiere nu este acceptată",
+	"ooui-selectfile-placeholder": "Niciun fișier selectat"
 }

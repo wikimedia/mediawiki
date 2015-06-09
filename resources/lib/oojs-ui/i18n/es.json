@@ -29,5 +29,7 @@
 	"ooui-dialog-process-error": "Algo salió mal",
 	"ooui-dialog-process-dismiss": "Descartar",
 	"ooui-dialog-process-retry": "Intentar de nuevo",
-	"ooui-dialog-process-continue": "Continuar"
+	"ooui-dialog-process-continue": "Continuar",
+	"ooui-selectfile-not-supported": "No se admite la selección de archivos",
+	"ooui-selectfile-placeholder": "Ningún archivo seleccionado"
 }

@@ -15,5 +15,7 @@
 	"ooui-dialog-process-error": "Öhnsjädd es scheif jejange",
 	"ooui-dialog-process-dismiss": "Maach fott, ha_sch jelässe",
 	"ooui-dialog-process-retry": "Norr_ens versöhke",
-	"ooui-dialog-process-continue": "Wigger maache"
+	"ooui-dialog-process-continue": "Wigger maache",
+	"ooui-selectfile-not-supported": "Mer ogerschtözze et Datteij_Ußwähle nit.",
+	"ooui-selectfile-placeholder": "Kein Dattei es ußjewählt"
 }
