@@ -70,7 +70,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	 * Return part of the request string for a special redirect page
 	 * This allows passing, e.g. action=history to Special:Mypage, etc.
 	 *
-	 * @return string
+	 * @return array|bool
 	 */
 	public function getRedirectQuery() {
 		$params = array();
@@ -86,6 +86,12 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 
 		foreach ( $this->mAddedRedirectParams as $arg => $val ) {
 			$params[$arg] = $val;
+		}
+
+		// 'uselang' is special
+		$lang = $request->getVal( 'uselang' );
+		if ( $lang !== null ) {
+			$params['uselang'] = $lang;
 		}
 
 		return count( $params )
