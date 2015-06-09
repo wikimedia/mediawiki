@@ -83,11 +83,6 @@ table.toc td {
 	margin: 0 0 0 2em;
 }
 
-#toc .toctoggle,
-.toc .toctoggle {
-	font-size: 94%;
-}
-
 /* Warning */
 .mw-warning {
 	margin-left: 50px;
