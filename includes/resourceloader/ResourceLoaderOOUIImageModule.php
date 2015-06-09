@@ -24,6 +24,19 @@
  * @since 1.26
  */
 class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
+	/**
+	 * Gets the mapped path to an image
+	 *
+	 * @param string $rootPath Base path for images
+	 * @param string $theme OO UI theme
+	 * @param string $relativePath Relative path
+	 * @return string Mapped path
+	 */
+	protected static function getMappedPath( $rootPath, $theme, $relativePath ) {
+		// TODO Allow extensions to specify this path somehow
+		return $rootPath . '/' . $theme . '/' . $relativePath;
+	}
+
 	protected function loadFromDefinition() {
 		if ( $this->definition === null ) {
 			return;
@@ -43,10 +56,15 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 
 			if ( file_exists( $dataPath ) ) {
 				$data = json_decode( file_get_contents( $dataPath ), true );
-				array_walk_recursive( $data['images'], function ( &$path ) use ( $rootPath, $theme ) {
-					// TODO Allow extensions to specify this path somehow
-					$path = $rootPath . '/' . $theme . '/' . $path;
-				} );
+				foreach ( $data['images'] as $imageKey => &$imageInfo ) {
+					if ( is_string( $imageInfo['file'] ) ) {
+						$imageInfo['file'] = self::getMappedPath( $rootPath, $theme, $imageInfo['file'] );
+					} else {
+						array_walk_recursive( $imageInfo['file'], function ( &$path ) use ( $rootPath, $theme ) {
+							$path = self::getMappedPath( $rootPath, $theme, $path );
+						} );
+					}
+				}
 			} else {
 				$data = array();
 			}
