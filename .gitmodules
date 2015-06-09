@@ -1,0 +1,51 @@
+[submodule "extensions/CentralNotice"]
+	path = extensions/CentralNotice
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CentralNotice.git
+[submodule "extensions/DonationInterface"]
+	path = extensions/DonationInterface
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/DonationInterface.git
+[submodule "extensions/Wikidata"]
+	path = extensions/Wikidata
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Wikidata.git
+[submodule "extensions/SemanticMediaWiki"]
+	path = extensions/SemanticMediaWiki
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SemanticMediaWiki.git
+[submodule "extensions/SemanticResultFormats"]
+	path = extensions/SemanticResultFormats
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SemanticResultFormats.git
+[submodule "extensions/Validator"]
+	path = extensions/Validator
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Validator.git
+[submodule "extensions/WikimediaMessages"]
+	path = extensions/WikimediaMessages
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WikimediaMessages.git
+[submodule "extensions/XAnalytics"]
+	path = extensions/XAnalytics
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/XAnalytics.git
+[submodule "extensions/ZeroBanner"]
+	path = extensions/ZeroBanner
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ZeroBanner.git
+[submodule "extensions/ZeroPortal"]
+	path = extensions/ZeroPortal
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ZeroPortal.git
+[submodule "extensions/SemanticForms"]
+	path = extensions/SemanticForms
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SemanticForms.git
+[submodule "skins/CologneBlue"]
+	path = skins/CologneBlue
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/skins/CologneBlue.git
+[submodule "skins/MonoBook"]
+	path = skins/MonoBook
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/skins/MonoBook.git
+[submodule "skins/Modern"]
+	path = skins/Modern
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/skins/Modern.git
+[submodule "skins/Nostalgia"]
+	path = skins/Nostalgia
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/skins/Nostalgia.git
+[submodule "skins/Vector"]
+	path = skins/Vector
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/skins/Vector.git
+[submodule "vendor"]
+	path = vendor
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/vendor.git
