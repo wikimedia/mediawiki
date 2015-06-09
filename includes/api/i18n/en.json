@@ -207,7 +207,7 @@
 	"apihelp-import-param-templates": "For interwiki imports: import all included templates as well.",
 	"apihelp-import-param-namespace": "Import to this namespace. Cannot be used together with <var>$1rootpage</var>.",
 	"apihelp-import-param-rootpage": "Import as subpage of this page. Cannot be used together with <var>$1namespace</var>.",
-	"apihelp-import-example-import": "Import [[meta:Help:Parserfunctions]] to namespace 100 with full history.",
+	"apihelp-import-example-import": "Import [[meta:Help:ParserFunctions]] to namespace 100 with full history.",
 
 	"apihelp-login-description": "Log in and get authentication cookies.\n\nIn the event of a successful log-in, the needed cookies will be included in the HTTP response headers. In the event of a failed log-in, further attempts may be throttled to limit automated password guessing attacks.",
 	"apihelp-login-param-name": "User name.",
@@ -909,7 +909,7 @@
 	"apihelp-query+search-param-backend": "Which search backend to use, if not the default.",
 	"apihelp-query+search-example-simple": "Search for <kbd>meaning</kbd>.",
 	"apihelp-query+search-example-text": "Search texts for <kbd>meaning</kbd>.",
-	"apihelp-query+search-example-generator": "Ger page info about the pages returned for a search for <kbd>meaning</kbd>.",
+	"apihelp-query+search-example-generator": "Get page info about the pages returned for a search for <kbd>meaning</kbd>.",
 
 	"apihelp-query+siteinfo-description": "Return general information about the site.",
 	"apihelp-query+siteinfo-param-prop": "Which information to get:\n;general:Overall system information.\n;namespaces:List of registered namespaces and their canonical names.\n;namespacealiases:List of registered namespace aliases.\n;specialpagealiases:List of special page aliases.\n;magicwords:List of magic words and their aliases.\n;statistics:Returns site statistics.\n;interwikimap:Returns interwiki map (optionally filtered, optionally localised by using <var>$1inlanguagecode</var>).\n;dbrepllag:Returns database server with the highest replication lag.\n;usergroups:Returns user groups and the associated permissions.\n;libraries:Returns libraries installed on the wiki.\n;extensions:Returns extensions installed on the wiki.\n;fileextensions:Returns list of file extensions allowed to be uploaded.\n;rightsinfo:Returns wiki rights (license) information if available.\n;restrictions:Returns information on available restriction (protection) types.\n;languages:Returns a list of languages MediaWiki supports (optionally localised by using <var>$1inlanguagecode</var>).\n;skins:Returns a list of all enabled skins (optionally localised by using <var>$1inlanguagecode</var>, otherwise in the content language).\n;extensiontags:Returns a list of parser extension tags.\n;functionhooks:Returns a list of parser function hooks.\n;showhooks:Returns a list of all subscribed hooks (contents of <var>[[mw:Manual:$wgHooks|$wgHooks]]</var>).\n;variables:Returns a list of variable IDs.\n;protocols:Returns a list of protocols that are allowed in external links.\n;defaultoptions:Returns the default values for user preferences.",
