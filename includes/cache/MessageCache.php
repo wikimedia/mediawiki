@@ -50,6 +50,8 @@ define( 'MSG_WAIT_TIMEOUT', 30 );
  * @ingroup Cache
  */
 class MessageCache {
+	const FOR_UPDATE = 1; // force message reload
+
 	/**
 	 * Process local cache of loaded messages that are defined in
 	 * MediaWiki namespace. First array level is a language code,
@@ -236,10 +238,11 @@ class MessageCache {
 	 * is disabled.
 	 *
 	 * @param bool|string $code Language to which load messages
+	 * @param integer $mode Use MessageCache::FOR_UPDATE to skip process cache
 	 * @throws MWException
 	 * @return bool
 	 */
-	function load( $code = false ) {
+	function load( $code = false, $mode = null ) {
 		global $wgUseLocalMessageCache;
 
 		if ( !is_string( $code ) ) {
@@ -250,7 +253,7 @@ class MessageCache {
 		}
 
 		# Don't do double loading...
-		if ( isset( $this->mLoadedLanguages[$code] ) ) {
+		if ( isset( $this->mLoadedLanguages[$code] ) && $mode != self::FOR_UPDATE ) {
 			return true;
 		}
 
@@ -275,7 +278,6 @@ class MessageCache {
 		# Hash of the contents is stored in memcache, to detect if local cache goes
 		# out of date (e.g. due to replace() on some other server)
 		if ( $wgUseLocalMessageCache ) {
-
 			$hash = $this->mMemc->get( wfMemcKey( 'messages', $code, 'hash' ) );
 			if ( $hash ) {
 				$cache = $this->getLocalCache( $hash, $code );
@@ -431,6 +433,7 @@ class MessageCache {
 	 */
 	function loadFromDB( $code ) {
 		global $wgMaxMsgCacheEntrySize, $wgLanguageCode, $wgAdaptiveMessageCache;
+
 		$dbr = wfGetDB( DB_SLAVE );
 		$cache = array();
 
@@ -514,18 +517,17 @@ class MessageCache {
 	 * @param mixed $text New contents of the page.
 	 */
 	public function replace( $title, $text ) {
-		global $wgMaxMsgCacheEntrySize;
+		global $wgMaxMsgCacheEntrySize, $wgContLang;
 
 		if ( $this->mDisable ) {
-
 			return;
 		}
 
 		list( $msg, $code ) = $this->figureMessage( $title );
 
 		$cacheKey = wfMemcKey( 'messages', $code );
-		$this->load( $code );
 		$this->lock( $cacheKey );
+		$this->load( $code, self::FOR_UPDATE );
 
 		$titleKey = wfMemcKey( 'messages', 'individual', $title );
 
@@ -561,7 +563,6 @@ class MessageCache {
 		}
 
 		// Update the message in the message blob store
-		global $wgContLang;
 		$blobStore = new MessageBlobStore();
 		$blobStore->updateMessage( $wgContLang->lcfirst( $msg ) );
 
