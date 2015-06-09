@@ -71,7 +71,7 @@ class NewUsersLogFormatterTest extends LogFormatterTestCase {
 					'namespace' => NS_USER,
 					'title' => 'New user',
 					'params' => array(
-						'4::userid' => '1',
+						'4::userid' => 1,
 					),
 				),
 				array(
@@ -109,7 +109,7 @@ class NewUsersLogFormatterTest extends LogFormatterTestCase {
 					'namespace' => NS_USER,
 					'title' => 'UTSysop',
 					'params' => array(
-						'4::userid' => '1',
+						'4::userid' => 1,
 					),
 				),
 				array(
@@ -147,7 +147,7 @@ class NewUsersLogFormatterTest extends LogFormatterTestCase {
 					'namespace' => NS_USER,
 					'title' => 'UTSysop',
 					'params' => array(
-						'4::userid' => '1',
+						'4::userid' => 1,
 					),
 				),
 				array(
@@ -185,7 +185,7 @@ class NewUsersLogFormatterTest extends LogFormatterTestCase {
 					'namespace' => NS_USER,
 					'title' => 'New user',
 					'params' => array(
-						'4::userid' => '1',
+						'4::userid' => 1,
 					),
 				),
 				array(

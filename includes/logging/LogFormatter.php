@@ -790,7 +790,7 @@ class LogFormatter {
 				break;
 
 			case 'number':
-				if ( ctype_digit( $value ) ) {
+				if ( ctype_digit( $value ) || is_int( $value ) ) {
 					$value = (int)$value;
 				} else {
 					$value = (float)$value;
