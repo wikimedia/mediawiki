@@ -59,6 +59,11 @@ changes to languages because of Bugzilla reports.
 * mediaWiki.confirmCloseWindow now returns an object of functions, instead of
   one function. The callback can't be called directly any more. The callback
   function is replaced with confirmCloseWindow.release().
+* BREAKING CHANGE: Added an optional ResouceLoaderContext parameter to
+  ResourceLoaderModule::getDependencies(). Extension classes that override that
+  method should be updated. If they aren't updated, PHP Strict standards
+  warnings will appear when E_STRICT error reporting is enabled. Note: in the
+  near future, this parameter will probably become non-optional.
 * Removed maintenance script deleteImageMemcached.php.
 * MWFunction::newObj() was removed (deprecated in 1.25).
   ObjectFactory::getObjectFromSpec() should be used instead.
