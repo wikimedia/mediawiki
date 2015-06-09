@@ -1,5 +1,5 @@
 <?php
-class MimeMagicTest extends MediaWikiTestCase {
+class MimeMagicTest extends PHPUnit_Framework_TestCase {
 
 	/** @var MimeMagic */
 	private $mimeMagic;

@@ -4,7 +4,7 @@
  * @author Adam Shorland
  * @covers TitleArrayFromResult
  */
-class TitleArrayFromResultTest extends MediaWikiTestCase {
+class TitleArrayFromResultTest extends PHPUnit_Framework_TestCase {
 
 	private function getMockResultWrapper( $row = null, $numRows = 1 ) {
 		$resultWrapper = $this->getMockBuilder( 'ResultWrapper' )
