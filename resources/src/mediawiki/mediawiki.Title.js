@@ -16,10 +16,13 @@
 	 * @param {string} title Title of the page. If no second argument given,
 	 *  this will be searched for a namespace
 	 * @param {number} [namespace=NS_MAIN] If given, will used as default namespace for the given title
-	 * @throws {mw.MalformedTitleException} Throws when the title is invalid with details on why the title is invalid
+	 * @throws {Error} When the title is invalid
 	 */
 	function Title( title, namespace ) {
 		var parsed = parse( title, namespace );
+		if ( !parsed ) {
+			throw new Error( 'Unable to parse title' );
+		}
 
 		this.namespace = parsed.namespace;
 		this.title = parsed.title;
@@ -217,8 +220,7 @@
 	 * @method parse
 	 * @param {string} title
 	 * @param {number} [defaultNamespace=NS_MAIN]
-	 * @return {Object}
-	 * @throws {mw.MalformedTitleException} When the title is invalid
+	 * @return {Object|boolean}
 	 */
 	parse = function ( title, defaultNamespace ) {
 		var namespace, m, id, i, fragment, ext;
@@ -243,7 +245,7 @@
 		}
 
 		if ( title === '' ) {
-			throw new MalformedTitleException( 'title-invalid-empty', title );
+			return false;
 		}
 
 		// Process namespace prefix (if any)
@@ -259,7 +261,7 @@
 				if ( namespace === NS_TALK && ( m = title.match( rSplit ) ) ) {
 					// Disallow titles like Talk:File:x (subject should roundtrip: talk:file:x -> file:x -> file_talk:x)
 					if ( getNsIdByName( m[1] ) !== false ) {
-						throw new MalformedTitleException( 'title-invalid-talk-namespace', title );
+						return false;
 					}
 				}
 			}
@@ -286,7 +288,7 @@
 
 		// Reject illegal characters
 		if ( title.match( rInvalid ) ) {
-			throw new MalformedTitleException( 'title-invalid-characters', title, [ title.match( rInvalid )[0] ] );
+			return false;
 		}
 
 		// Disallow titles that browsers or servers might resolve as directory navigation
@@ -301,12 +303,12 @@
 				title.slice( -3 ) === '/..'
 			)
 		) {
-			throw new MalformedTitleException( 'title-invalid-relative', title );
+			return false;
 		}
 
 		// Disallow magic tilde sequence
 		if ( title.indexOf( '~~~' ) !== -1 ) {
-			throw new MalformedTitleException( 'title-invalid-magic-tilde', title );
+			return false;
 		}
 
 		// Disallow titles exceeding the TITLE_MAX_BYTES byte size limit (size of underlying database field)
@@ -314,17 +316,17 @@
 		// Note: The PHP implementation also asserts that even in NS_SPECIAL, the title should
 		// be less than 512 bytes.
 		if ( namespace !== NS_SPECIAL && $.byteLength( title ) > TITLE_MAX_BYTES ) {
-			throw new MalformedTitleException( 'title-invalid-too-long', title, [ TITLE_MAX_BYTES ] );
+			return false;
 		}
 
 		// Can't make a link to a namespace alone.
 		if ( title === '' && namespace !== NS_MAIN ) {
-			throw new MalformedTitleException( 'title-invalid-empty', title );
+			return false;
 		}
 
 		// Any remaining initial :s are illegal.
 		if ( title.charAt( 0 ) === ':' ) {
-			throw new MalformedTitleException( 'title-invalid-leading-colon', title );
+			return false;
 		}
 
 		// For backwards-compatibility with old mw.Title, we separate the extension from the
@@ -455,10 +457,8 @@
 	 * @return {mw.Title|null} A valid Title object or null if the title is invalid
 	 */
 	Title.newFromText = function ( title, namespace ) {
-		var t, parsed;
-		try {
-			parsed = parse( title, namespace );
-		} catch ( e ) {
+		var t, parsed = parse( title, namespace );
+		if ( !parsed ) {
 			return null;
 		}
 
@@ -938,39 +938,5 @@
 
 	// Expose
 	mw.Title = Title;
-
-	/**
-	 * @class mw.MalformedTitleException
-	 *
-	 * Custom exception class that provides parameters for additional error
-	 * information regarding the reason behind the invalidity of the requested
-	 * title.  The information can be used in i18n messages that can be displayed
-	 * to the user.
-	 *
-	 * Based on MalformedTitleException.php#__construct
-	 *
-	 * @constructor
-	 * @param {string} message Reason e.g. invalid-title-too-long for a long title
-	 * @param {string} titleText The invalid title text involved
-	 * @param {Array} errorMessageParameters Additional error information
-	 */
-	function MalformedTitleException( message, titleText, errorMessageParameters ) {
-		this.message = message;
-		this.titleText = titleText;
-		if ( errorMessageParameters ) {
-			this.errorMessageParameters = errorMessageParameters;
-		} else {
-			this.errorMessageParameters = [ ];
-		}
-
-		if ( titleText ) {
-			this.errorMessageParameters.push( titleText );
-		}
-	}
-
-	MalformedTitleException.prototype = createObject(Error.prototype);
-	MalformedTitleException.prototype.name = 'MalformedTitleException';
-	MalformedTitleException.prototype.constructor = MalformedTitleException;
-	mw.MalformedTitleException = MalformedTitleException;
 
 }( mediaWiki, jQuery ) );

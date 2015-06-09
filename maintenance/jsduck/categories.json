@@ -22,7 +22,6 @@
 				"name": "General",
 				"classes": [
 					"mw.Title",
-					"mw.MalformedTitleException",
 					"mw.Uri",
 					"mw.messagePoster.*",
 					"mw.notification",
