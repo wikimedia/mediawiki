@@ -4,6 +4,3 @@ port=29418
 project=mediawiki/core.git
 defaultbranch=wmf/1.26wmf9
 defaultrebase=0
-
-# Branched at 2015-06-09 18:30:29
-# Branched at 2015-06-09 18:57:54
