@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"George Animal"
+			"George Animal",
+			"Bikarhêner"
 		]
 	},
+	"ooui-toolbar-more": "Bêhtir",
 	"ooui-toolgroup-expand": "Bêhtir",
 	"ooui-toolgroup-collapse": "Kêmtir",
 	"ooui-dialog-message-accept": "Baş e",

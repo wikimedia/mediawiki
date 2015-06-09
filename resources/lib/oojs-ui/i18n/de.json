@@ -24,5 +24,7 @@
 	"ooui-dialog-process-error": "Etwas ist schief gelaufen",
 	"ooui-dialog-process-dismiss": "Ausblenden",
 	"ooui-dialog-process-retry": "Erneut versuchen",
-	"ooui-dialog-process-continue": "Fortfahren"
+	"ooui-dialog-process-continue": "Fortfahren",
+	"ooui-selectfile-not-supported": "Die Dateiauswahl wird nicht unterstützt",
+	"ooui-selectfile-placeholder": "Keine Datei ausgewählt"
 }

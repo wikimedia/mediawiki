@@ -31,5 +31,8 @@
 	"ooui-dialog-process-error": "Title for process dialog error description",
 	"ooui-dialog-process-dismiss": "Label for process dialog dismiss error button, visible when describing errors\n{{Identical|Dismiss}}",
 	"ooui-dialog-process-retry": "Label for process dialog retry action button, visible when describing recoverable errors\n{{Identical|Try again}}",
-	"ooui-dialog-process-continue": "Label for process dialog retry action button, visible when describing only warnings\n{{Identical|Continue}}"
+	"ooui-dialog-process-continue": "Label for process dialog retry action button, visible when describing only warnings\n{{Identical|Continue}}",
+	"ooui-selectfile-not-supported": "Label for the file selection dialog if file selection is not supported",
+	"ooui-selectfile-placeholder": "Label for the file selection dialog when no file is currently selected",
+	"ooui-semicolon-separator": "{{optional}} Semicolon used as a separator"
 }
