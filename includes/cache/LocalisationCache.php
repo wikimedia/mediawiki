@@ -204,6 +204,9 @@ class LocalisationCache {
 				case 'db':
 					$storeClass = 'LCStoreDB';
 					break;
+				case 'array':
+					$storeClass = 'LCStoreStaticArray';
+					break;
 				case 'detect':
 					$storeClass = $wgCacheDirectory ? 'LCStoreCDB' : 'LCStoreDB';
 					break;
