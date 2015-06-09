@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.11.3
+ * OOjs UI v0.11.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-05-12T12:15:44Z
+ * Date: 2015-06-09T22:03:21Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -178,9 +178,8 @@
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #ffffff), color-stop(100%, #dddddd));
 	background-image: -webkit-linear-gradient(top, #ffffff 0%, #dddddd 100%);
 	background-image:    -moz-linear-gradient(top, #ffffff 0%, #dddddd 100%);
-	background-image:     -ms-linear-gradient(top, #ffffff 0%, #dddddd 100%);
 	background-image:      -o-linear-gradient(top, #ffffff 0%, #dddddd 100%);
-	background-image:         linear-gradient(top, #ffffff 0%, #dddddd 100%);
+	background-image:         linear-gradient(to bottom, #ffffff 0%, #dddddd 100%);
 }
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button:hover,
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button:focus {
@@ -202,9 +201,8 @@
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #dddddd), color-stop(100%, #ffffff));
 	background-image: -webkit-linear-gradient(top, #dddddd 0%, #ffffff 100%);
 	background-image:    -moz-linear-gradient(top, #dddddd 0%, #ffffff 100%);
-	background-image:     -ms-linear-gradient(top, #dddddd 0%, #ffffff 100%);
 	background-image:      -o-linear-gradient(top, #dddddd 0%, #ffffff 100%);
-	background-image:         linear-gradient(top, #dddddd 0%, #ffffff 100%);
+	background-image:         linear-gradient(to bottom, #dddddd 0%, #ffffff 100%);
 }
 .oo-ui-buttonElement-framed.oo-ui-iconElement > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
 	margin-left: -0.5em;
@@ -230,9 +228,8 @@
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #eaf4fa), color-stop(100%, #b0d9ee));
 	background-image: -webkit-linear-gradient(top, #eaf4fa 0%, #b0d9ee 100%);
 	background-image:    -moz-linear-gradient(top, #eaf4fa 0%, #b0d9ee 100%);
-	background-image:     -ms-linear-gradient(top, #eaf4fa 0%, #b0d9ee 100%);
 	background-image:      -o-linear-gradient(top, #eaf4fa 0%, #b0d9ee 100%);
-	background-image:         linear-gradient(top, #eaf4fa 0%, #b0d9ee 100%);
+	background-image:         linear-gradient(to bottom, #eaf4fa 0%, #b0d9ee 100%);
 }
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:hover,
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-progressive > .oo-ui-buttonElement-button:focus {
@@ -247,9 +244,8 @@
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #b0d9ee), color-stop(100%, #eaf4fa));
 	background-image: -webkit-linear-gradient(top, #b0d9ee 0%, #eaf4fa 100%);
 	background-image:    -moz-linear-gradient(top, #b0d9ee 0%, #eaf4fa 100%);
-	background-image:     -ms-linear-gradient(top, #b0d9ee 0%, #eaf4fa 100%);
 	background-image:      -o-linear-gradient(top, #b0d9ee 0%, #eaf4fa 100%);
-	background-image:         linear-gradient(top, #b0d9ee 0%, #eaf4fa 100%);
+	background-image:         linear-gradient(to bottom, #b0d9ee 0%, #eaf4fa 100%);
 }
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button {
 	border: 1px solid #b8d892;
@@ -258,9 +254,8 @@
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #f0fbe1), color-stop(100%, #c3e59a));
 	background-image: -webkit-linear-gradient(top, #f0fbe1 0%, #c3e59a 100%);
 	background-image:    -moz-linear-gradient(top, #f0fbe1 0%, #c3e59a 100%);
-	background-image:     -ms-linear-gradient(top, #f0fbe1 0%, #c3e59a 100%);
 	background-image:      -o-linear-gradient(top, #f0fbe1 0%, #c3e59a 100%);
-	background-image:         linear-gradient(top, #f0fbe1 0%, #c3e59a 100%);
+	background-image:         linear-gradient(to bottom, #f0fbe1 0%, #c3e59a 100%);
 }
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button:hover,
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-constructive > .oo-ui-buttonElement-button:focus {
@@ -275,9 +270,8 @@
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #c3e59a), color-stop(100%, #f0fbe1));
 	background-image: -webkit-linear-gradient(top, #c3e59a 0%, #f0fbe1 100%);
 	background-image:    -moz-linear-gradient(top, #c3e59a 0%, #f0fbe1 100%);
-	background-image:     -ms-linear-gradient(top, #c3e59a 0%, #f0fbe1 100%);
 	background-image:      -o-linear-gradient(top, #c3e59a 0%, #f0fbe1 100%);
-	background-image:         linear-gradient(top, #c3e59a 0%, #f0fbe1 100%);
+	background-image:         linear-gradient(to bottom, #c3e59a 0%, #f0fbe1 100%);
 }
 .oo-ui-buttonElement-framed.oo-ui-flaggedElement-destructive > .oo-ui-buttonElement-button {
 	color: #d45353;
@@ -464,11 +458,6 @@
 }
 .oo-ui-fieldLayout-disabled .oo-ui-labelElement-label {
 	color: #cccccc;
-}
-.oo-ui-actionFieldLayout-field {
-	display: table;
-	table-layout: fixed;
-	width: 100%;
 }
 .oo-ui-actionFieldLayout-input,
 .oo-ui-actionFieldLayout-button {
@@ -771,9 +760,8 @@
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #f1f7fb), color-stop(100%, #ffffff));
 	background-image: -webkit-linear-gradient(top, #f1f7fb 0%, #ffffff 100%);
 	background-image:    -moz-linear-gradient(top, #f1f7fb 0%, #ffffff 100%);
-	background-image:     -ms-linear-gradient(top, #f1f7fb 0%, #ffffff 100%);
 	background-image:      -o-linear-gradient(top, #f1f7fb 0%, #ffffff 100%);
-	background-image:         linear-gradient(top, #f1f7fb 0%, #ffffff 100%);
+	background-image:         linear-gradient(to bottom, #f1f7fb 0%, #ffffff 100%);
 }
 .oo-ui-barToolGroup.oo-ui-widget-enabled > .oo-ui-toolGroup-tools > .oo-ui-tool.oo-ui-tool-active.oo-ui-widget-enabled + .oo-ui-tool-active.oo-ui-widget-enabled {
 	border-left-color: rgba(0, 0, 0, 0.1);
@@ -909,9 +897,8 @@
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #f1f7fb), color-stop(100%, #ffffff));
 	background-image: -webkit-linear-gradient(top, #f1f7fb 0%, #ffffff 100%);
 	background-image:    -moz-linear-gradient(top, #f1f7fb 0%, #ffffff 100%);
-	background-image:     -ms-linear-gradient(top, #f1f7fb 0%, #ffffff 100%);
 	background-image:      -o-linear-gradient(top, #f1f7fb 0%, #ffffff 100%);
-	background-image:         linear-gradient(top, #f1f7fb 0%, #ffffff 100%);
+	background-image:         linear-gradient(to bottom, #f1f7fb 0%, #ffffff 100%);
 }
 .oo-ui-popupToolGroup .oo-ui-toolGroup-tools {
 	top: 2.5em;
@@ -969,9 +956,8 @@
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #f1f7fb), color-stop(100%, #ffffff));
 	background-image: -webkit-linear-gradient(top, #f1f7fb 0%, #ffffff 100%);
 	background-image:    -moz-linear-gradient(top, #f1f7fb 0%, #ffffff 100%);
-	background-image:     -ms-linear-gradient(top, #f1f7fb 0%, #ffffff 100%);
 	background-image:      -o-linear-gradient(top, #f1f7fb 0%, #ffffff 100%);
-	background-image:         linear-gradient(top, #f1f7fb 0%, #ffffff 100%);
+	background-image:         linear-gradient(to bottom, #f1f7fb 0%, #ffffff 100%);
 }
 .oo-ui-listToolGroup .oo-ui-tool-active.oo-ui-widget-enabled + .oo-ui-tool-active.oo-ui-widget-enabled {
 	border-top-color: rgba(0, 0, 0, 0.1);
@@ -1110,9 +1096,8 @@
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #ffffff), color-stop(100%, #f1f7fb));
 	background-image: -webkit-linear-gradient(top, #ffffff 0%, #f1f7fb 100%);
 	background-image:    -moz-linear-gradient(top, #ffffff 0%, #f1f7fb 100%);
-	background-image:     -ms-linear-gradient(top, #ffffff 0%, #f1f7fb 100%);
 	background-image:      -o-linear-gradient(top, #ffffff 0%, #f1f7fb 100%);
-	background-image:         linear-gradient(top, #ffffff 0%, #f1f7fb 100%);
+	background-image:         linear-gradient(to bottom, #ffffff 0%, #f1f7fb 100%);
 }
 .oo-ui-toolbar-bar .oo-ui-toolbar-bar {
 	border: none;
@@ -1364,9 +1349,8 @@
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #dddddd), color-stop(100%, #ffffff));
 	background-image: -webkit-linear-gradient(top, #dddddd 0%, #ffffff 100%);
 	background-image:    -moz-linear-gradient(top, #dddddd 0%, #ffffff 100%);
-	background-image:     -ms-linear-gradient(top, #dddddd 0%, #ffffff 100%);
 	background-image:      -o-linear-gradient(top, #dddddd 0%, #ffffff 100%);
-	background-image:         linear-gradient(top, #dddddd 0%, #ffffff 100%);
+	background-image:         linear-gradient(to bottom, #dddddd 0%, #ffffff 100%);
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-disabled {
 	cursor: default;
@@ -1418,9 +1402,8 @@
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #ffffff), color-stop(100%, #dddddd));
 	background-image: -webkit-linear-gradient(top, #ffffff 0%, #dddddd 100%);
 	background-image:    -moz-linear-gradient(top, #ffffff 0%, #dddddd 100%);
-	background-image:     -ms-linear-gradient(top, #ffffff 0%, #dddddd 100%);
 	background-image:      -o-linear-gradient(top, #ffffff 0%, #dddddd 100%);
-	background-image:         linear-gradient(top, #ffffff 0%, #dddddd 100%);
+	background-image:         linear-gradient(to bottom, #ffffff 0%, #dddddd 100%);
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:hover,
 .oo-ui-toggleSwitchWidget.oo-ui-widget-enabled:hover .oo-ui-toggleSwitchWidget-grip {
@@ -1439,9 +1422,8 @@
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #b0d9ee), color-stop(100%, #eaf4fa));
 	background-image: -webkit-linear-gradient(top, #b0d9ee 0%, #eaf4fa 100%);
 	background-image:    -moz-linear-gradient(top, #b0d9ee 0%, #eaf4fa 100%);
-	background-image:     -ms-linear-gradient(top, #b0d9ee 0%, #eaf4fa 100%);
 	background-image:      -o-linear-gradient(top, #b0d9ee 0%, #eaf4fa 100%);
-	background-image:         linear-gradient(top, #b0d9ee 0%, #eaf4fa 100%);
+	background-image:         linear-gradient(to bottom, #b0d9ee 0%, #eaf4fa 100%);
 }
 .oo-ui-toggleWidget-on .oo-ui-toggleSwitchWidget-glow {
 	opacity: 1;
@@ -1477,9 +1459,8 @@
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #eaf4fa), color-stop(100%, #b0d9ee));
 	background-image: -webkit-linear-gradient(top, #eaf4fa 0%, #b0d9ee 100%);
 	background-image:    -moz-linear-gradient(top, #eaf4fa 0%, #b0d9ee 100%);
-	background-image:     -ms-linear-gradient(top, #eaf4fa 0%, #b0d9ee 100%);
 	background-image:      -o-linear-gradient(top, #eaf4fa 0%, #b0d9ee 100%);
-	background-image:         linear-gradient(top, #eaf4fa 0%, #b0d9ee 100%);
+	background-image:         linear-gradient(to bottom, #eaf4fa 0%, #b0d9ee 100%);
 }
 .oo-ui-progressBarWidget-indeterminate .oo-ui-progressBarWidget-bar {
 	-webkit-animation: oo-ui-progressBarWidget-slide 2s infinite linear;
@@ -1630,6 +1611,7 @@
 	        box-sizing: border-box;
 }
 .oo-ui-dropdownInputWidget select {
+	background: #ffffff;
 	height: 2.5em;
 	padding: 0.5em;
 	font-size: inherit;
@@ -1646,6 +1628,9 @@
 	color: #cccccc;
 	border-color: #dddddd;
 	background-color: #f3f3f3;
+}
+.oo-ui-radioSelectInputWidget .oo-ui-fieldLayout {
+	margin-bottom: 0;
 }
 .oo-ui-textInputWidget {
 	position: relative;
@@ -1709,6 +1694,7 @@
 .oo-ui-textInputWidget input,
 .oo-ui-textInputWidget textarea {
 	padding: 0.5em;
+	line-height: 1.275em;
 	font-size: inherit;
 	font-family: inherit;
 	background-color: #ffffff;
@@ -1911,6 +1897,148 @@
 .oo-ui-dropdownWidget.oo-ui-indicatorElement .oo-ui-dropdownWidget-handle .oo-ui-labelElement-label {
 	margin-right: 2em;
 }
+.oo-ui-selectFileWidget {
+	display: inline-block;
+	position: relative;
+	vertical-align: middle;
+	margin: 0.25em 0;
+	width: 100%;
+	max-width: 50em;
+	margin-right: 0.5em;
+}
+.oo-ui-selectFileWidget-handle {
+	width: 100%;
+	display: inline-block;
+	cursor: pointer;
+	overflow: hidden;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.oo-ui-selectFileWidget-handle > .oo-ui-indicatorElement-indicator,
+.oo-ui-selectFileWidget-handle > .oo-ui-iconElement-icon,
+.oo-ui-selectFileWidget-handle > .oo-ui-selectFileWidget-clearButton {
+	position: absolute;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+.oo-ui-selectFileWidget-handle > input[type="file"] {
+	position: absolute;
+	margin: 0;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	z-index: 1;
+	cursor: pointer;
+}
+.oo-ui-selectFileWidget-handle > .oo-ui-selectFileWidget-clearButton {
+	z-index: 2;
+}
+.oo-ui-selectFileWidget.oo-ui-widget-disabled .oo-ui-selectFileWidget-handle,
+.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-handle {
+	cursor: default;
+}
+.oo-ui-selectFileWidget.oo-ui-widget-disabled .oo-ui-selectFileWidget-handle > input[type="file"],
+.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-handle > input[type="file"] {
+	display: none;
+}
+.oo-ui-selectFileWidget-empty .oo-ui-selectFileWidget-clearButton,
+.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-clearButton {
+	display: none;
+}
+.oo-ui-selectFileWidget:last-child {
+	margin-right: 0;
+}
+.oo-ui-selectFileWidget-handle {
+	height: 2.5em;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 0.25em;
+	padding: 0 0.5em;
+}
+.oo-ui-selectFileWidget-handle > .oo-ui-indicatorElement-indicator {
+	right: 0;
+}
+.oo-ui-selectFileWidget-handle > .oo-ui-iconElement-icon {
+	left: 0.25em;
+}
+.oo-ui-selectFileWidget-handle .oo-ui-selectFileWidget-label {
+	line-height: 2.5em;
+	margin: 0;
+	display: inline-block;
+	overflow: hidden;
+	width: 100%;
+	white-space: nowrap;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+	text-overflow: ellipsis;
+}
+.oo-ui-selectFileWidget-handle .oo-ui-selectFileWidget-clearButton {
+	top: 0;
+	width: 1.875em;
+	height: 1.875em;
+	margin: 0.3em;
+}
+.oo-ui-selectFileWidget-handle > .oo-ui-indicatorElement-indicator {
+	top: 0;
+	width: 0.9375em;
+	height: 0.9375em;
+	margin: 0.775em;
+}
+.oo-ui-selectFileWidget-handle > .oo-ui-iconElement-icon {
+	top: 0;
+	width: 1.875em;
+	height: 1.875em;
+	margin: 0.3em;
+}
+.oo-ui-selectFileWidget:hover .oo-ui-selectFileWidget-handle {
+	border-color: #aaaaaa;
+}
+.oo-ui-selectFileWidget.oo-ui-widget-disabled .oo-ui-selectFileWidget-handle {
+	color: #cccccc;
+	text-shadow: 0 1px 1px #ffffff;
+	border-color: #dddddd;
+	background-color: #f3f3f3;
+}
+.oo-ui-selectFileWidget.oo-ui-widget-disabled .oo-ui-selectFileWidget-handle > .oo-ui-iconElement-icon,
+.oo-ui-selectFileWidget.oo-ui-widget-disabled .oo-ui-selectFileWidget-handle > .oo-ui-indicatorElement-indicator {
+	opacity: 0.2;
+}
+.oo-ui-selectFileWidget-empty .oo-ui-selectFileWidget-label {
+	color: #cccccc;
+}
+.oo-ui-selectFileWidget.oo-ui-iconElement .oo-ui-selectFileWidget-handle {
+	padding-left: 3em;
+}
+.oo-ui-selectFileWidget .oo-ui-selectFileWidget-handle {
+	padding-right: 3em;
+}
+.oo-ui-selectFileWidget .oo-ui-selectFileWidget-handle .oo-ui-selectFileWidget-clearButton {
+	right: 0;
+}
+.oo-ui-selectFileWidget.oo-ui-indicatorElement .oo-ui-selectFileWidget-handle {
+	padding-right: 5em;
+}
+.oo-ui-selectFileWidget.oo-ui-indicatorElement .oo-ui-selectFileWidget-handle .oo-ui-selectFileWidget-clearButton {
+	right: 2em;
+}
+.oo-ui-selectFileWidget-empty .oo-ui-selectFileWidget-handle,
+.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-handle {
+	padding-right: 1em;
+}
+.oo-ui-selectFileWidget-empty.oo-ui-indicatorElement .oo-ui-selectFileWidget-handle,
+.oo-ui-selectFileWidget-notsupported.oo-ui-indicatorElement .oo-ui-selectFileWidget-handle {
+	padding-right: 2em;
+}
 .oo-ui-outlineOptionWidget {
 	position: relative;
 	cursor: pointer;
@@ -2101,6 +2229,48 @@
 	padding: 1em;
 	line-height: 0;
 }
+.oo-ui-numberInputWidget {
+	display: inline-block;
+	position: relative;
+	max-width: 50em;
+}
+.oo-ui-numberInputWidget-field {
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+}
+.oo-ui-numberInputWidget-field > .oo-ui-buttonWidget,
+.oo-ui-numberInputWidget-field > .oo-ui-textInputWidget {
+	display: table-cell;
+	vertical-align: middle;
+}
+.oo-ui-numberInputWidget-field > .oo-ui-textInputWidget {
+	width: 100%;
+}
+.oo-ui-numberInputWidget-field > .oo-ui-buttonWidget {
+	white-space: nowrap;
+}
+.oo-ui-numberInputWidget-field > .oo-ui-buttonWidget > .oo-ui-buttonElement-button {
+	box-sizing: border-box;
+}
+.oo-ui-numberInputWidget-field > .oo-ui-buttonWidget,
+.oo-ui-numberInputWidget-field > .oo-ui-buttonWidget > .oo-ui-buttonElement-button {
+	margin: 0;
+	width: 2.5em;
+}
+.oo-ui-numberInputWidget-minusButton.oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+	border-right-width: 0;
+}
+.oo-ui-numberInputWidget-plusButton.oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+	border-left-width: 0;
+}
+.oo-ui-numberInputWidget .oo-ui-textInputWidget input {
+	border-radius: 0;
+}
 .oo-ui-window {
 	background-color: transparent;
 	background-image: none;
@@ -2216,18 +2386,24 @@
 }
 .oo-ui-messageDialog-actions-horizontal .oo-ui-actionWidget {
 	border-right: 1px solid #e5e5e5;
+	margin: 0;
 }
 .oo-ui-messageDialog-actions-horizontal .oo-ui-actionWidget:last-child {
 	border-right-width: 0;
 }
 .oo-ui-messageDialog-actions-vertical .oo-ui-actionWidget {
 	border-bottom: 1px solid #e5e5e5;
+	margin: 0;
 }
 .oo-ui-messageDialog-actions-vertical .oo-ui-actionWidget:last-child {
 	border-bottom-width: 0;
 }
 .oo-ui-messageDialog-actions .oo-ui-actionWidget {
 	height: 3.4em;
+	margin-right: 0;
+}
+.oo-ui-messageDialog-actions .oo-ui-actionWidget:last-child {
+	margin-right: 0;
 }
 .oo-ui-messageDialog-actions .oo-ui-actionWidget.oo-ui-labelElement .oo-ui-labelElement-label {
 	text-align: center;

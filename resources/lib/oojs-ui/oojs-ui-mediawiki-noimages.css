@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.11.3
+ * OOjs UI v0.11.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-05-12T12:15:44Z
+ * Date: 2015-06-09T22:03:21Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -543,11 +543,6 @@
 }
 .oo-ui-fieldLayout-disabled .oo-ui-labelElement-label {
 	color: #cccccc;
-}
-.oo-ui-actionFieldLayout-field {
-	display: table;
-	table-layout: fixed;
-	width: 100%;
 }
 .oo-ui-actionFieldLayout-input,
 .oo-ui-actionFieldLayout-button {
@@ -1705,8 +1700,8 @@
 	        box-sizing: border-box;
 }
 .oo-ui-dropdownInputWidget select {
-	height: 2.5em;
-	padding: 0.5em;
+	background: #ffffff;
+	height: 2.275em;
 	font-size: inherit;
 	font-family: inherit;
 	-webkit-box-sizing: border-box;
@@ -1793,6 +1788,9 @@
 	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/circle-invert.svg");
 	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/circle-invert.png");
 }
+.oo-ui-radioSelectInputWidget .oo-ui-fieldLayout {
+	margin-bottom: 0;
+}
 .oo-ui-textInputWidget {
 	position: relative;
 	vertical-align: middle;
@@ -1855,6 +1853,7 @@
 .oo-ui-textInputWidget input,
 .oo-ui-textInputWidget textarea {
 	padding: 0.5em;
+	line-height: 1.275em;
 	margin: 0;
 	font-size: inherit;
 	font-family: inherit;
@@ -2050,7 +2049,7 @@
 	margin-right: 0;
 }
 .oo-ui-dropdownWidget-handle {
-	height: 2.5em;
+	padding: 0.5em 0;
 	border: 1px solid #cccccc;
 	border-radius: 0.1em;
 }
@@ -2061,7 +2060,7 @@
 	left: 0.25em;
 }
 .oo-ui-dropdownWidget-handle .oo-ui-labelElement-label {
-	line-height: 2.5em;
+	line-height: 1.275em;
 	margin: 0 1em;
 }
 .oo-ui-dropdownWidget-handle .oo-ui-indicatorElement-indicator {
@@ -2096,6 +2095,148 @@
 }
 .oo-ui-dropdownWidget .oo-ui-selectWidget {
 	border-top-color: #ffffff;
+}
+.oo-ui-selectFileWidget {
+	display: inline-block;
+	position: relative;
+	vertical-align: middle;
+	margin: 0.25em 0;
+	width: 100%;
+	max-width: 50em;
+	margin-right: 0.5em;
+}
+.oo-ui-selectFileWidget-handle {
+	width: 100%;
+	display: inline-block;
+	cursor: pointer;
+	overflow: hidden;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.oo-ui-selectFileWidget-handle > .oo-ui-indicatorElement-indicator,
+.oo-ui-selectFileWidget-handle > .oo-ui-iconElement-icon,
+.oo-ui-selectFileWidget-handle > .oo-ui-selectFileWidget-clearButton {
+	position: absolute;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+.oo-ui-selectFileWidget-handle > input[type="file"] {
+	position: absolute;
+	margin: 0;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	z-index: 1;
+	cursor: pointer;
+}
+.oo-ui-selectFileWidget-handle > .oo-ui-selectFileWidget-clearButton {
+	z-index: 2;
+}
+.oo-ui-selectFileWidget.oo-ui-widget-disabled .oo-ui-selectFileWidget-handle,
+.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-handle {
+	cursor: default;
+}
+.oo-ui-selectFileWidget.oo-ui-widget-disabled .oo-ui-selectFileWidget-handle > input[type="file"],
+.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-handle > input[type="file"] {
+	display: none;
+}
+.oo-ui-selectFileWidget-empty .oo-ui-selectFileWidget-clearButton,
+.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-clearButton {
+	display: none;
+}
+.oo-ui-selectFileWidget:last-child {
+	margin-right: 0;
+}
+.oo-ui-selectFileWidget-handle {
+	height: 2.5em;
+	border: 1px solid #cccccc;
+	border-radius: 0.1em;
+	padding: 0 1em;
+}
+.oo-ui-selectFileWidget-handle > .oo-ui-indicatorElement-indicator {
+	right: 0;
+}
+.oo-ui-selectFileWidget-handle > .oo-ui-iconElement-icon {
+	left: 0.25em;
+}
+.oo-ui-selectFileWidget-handle .oo-ui-selectFileWidget-label {
+	line-height: 2.5em;
+	margin: 0;
+	display: inline-block;
+	overflow: hidden;
+	width: 100%;
+	white-space: nowrap;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+	text-overflow: ellipsis;
+}
+.oo-ui-selectFileWidget-handle .oo-ui-selectFileWidget-clearButton {
+	top: 0;
+	width: 1.875em;
+	height: 1.875em;
+	margin: 0.3em;
+}
+.oo-ui-selectFileWidget-handle > .oo-ui-indicatorElement-indicator {
+	top: 0;
+	width: 0.9375em;
+	height: 0.9375em;
+	margin: 0.775em;
+}
+.oo-ui-selectFileWidget-handle > .oo-ui-iconElement-icon {
+	top: 0;
+	width: 1.875em;
+	height: 1.875em;
+	margin: 0.3em;
+}
+.oo-ui-selectFileWidget:hover .oo-ui-selectFileWidget-handle {
+	border-color: #aaaaaa;
+}
+.oo-ui-selectFileWidget.oo-ui-widget-disabled .oo-ui-selectFileWidget-handle {
+	color: #cccccc;
+	text-shadow: 0 1px 1px #ffffff;
+	border-color: #dddddd;
+	background-color: #f3f3f3;
+}
+.oo-ui-selectFileWidget.oo-ui-widget-disabled .oo-ui-selectFileWidget-handle > .oo-ui-iconElement-icon,
+.oo-ui-selectFileWidget.oo-ui-widget-disabled .oo-ui-selectFileWidget-handle > .oo-ui-indicatorElement-indicator {
+	opacity: 0.2;
+}
+.oo-ui-selectFileWidget-empty .oo-ui-selectFileWidget-label {
+	color: #cccccc;
+}
+.oo-ui-selectFileWidget.oo-ui-iconElement .oo-ui-selectFileWidget-handle {
+	padding-left: 3em;
+}
+.oo-ui-selectFileWidget .oo-ui-selectFileWidget-handle {
+	padding-right: 3em;
+}
+.oo-ui-selectFileWidget .oo-ui-selectFileWidget-handle .oo-ui-selectFileWidget-clearButton {
+	right: 0;
+}
+.oo-ui-selectFileWidget.oo-ui-indicatorElement .oo-ui-selectFileWidget-handle {
+	padding-right: 5em;
+}
+.oo-ui-selectFileWidget.oo-ui-indicatorElement .oo-ui-selectFileWidget-handle .oo-ui-selectFileWidget-clearButton {
+	right: 2em;
+}
+.oo-ui-selectFileWidget-empty .oo-ui-selectFileWidget-handle,
+.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-handle {
+	padding-right: 1em;
+}
+.oo-ui-selectFileWidget-empty.oo-ui-indicatorElement .oo-ui-selectFileWidget-handle,
+.oo-ui-selectFileWidget-notsupported.oo-ui-indicatorElement .oo-ui-selectFileWidget-handle {
+	padding-right: 2em;
 }
 .oo-ui-outlineOptionWidget {
 	position: relative;
@@ -2272,6 +2413,48 @@
 	padding: 1em;
 	line-height: 0;
 }
+.oo-ui-numberInputWidget {
+	display: inline-block;
+	position: relative;
+	max-width: 50em;
+}
+.oo-ui-numberInputWidget-field {
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+}
+.oo-ui-numberInputWidget-field > .oo-ui-buttonWidget,
+.oo-ui-numberInputWidget-field > .oo-ui-textInputWidget {
+	display: table-cell;
+	vertical-align: middle;
+}
+.oo-ui-numberInputWidget-field > .oo-ui-textInputWidget {
+	width: 100%;
+}
+.oo-ui-numberInputWidget-field > .oo-ui-buttonWidget {
+	white-space: nowrap;
+}
+.oo-ui-numberInputWidget-field > .oo-ui-buttonWidget > .oo-ui-buttonElement-button {
+	box-sizing: border-box;
+}
+.oo-ui-numberInputWidget-field > .oo-ui-buttonWidget,
+.oo-ui-numberInputWidget-field > .oo-ui-buttonWidget > .oo-ui-buttonElement-button {
+	margin: 0;
+	width: 2.5em;
+}
+.oo-ui-numberInputWidget-minusButton.oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+	border-right-width: 0;
+}
+.oo-ui-numberInputWidget-plusButton.oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+	border-left-width: 0;
+}
+.oo-ui-numberInputWidget .oo-ui-textInputWidget input {
+	border-radius: 0;
+}
 .oo-ui-window {
 	background: transparent;
 }
@@ -2383,18 +2566,24 @@
 }
 .oo-ui-messageDialog-actions-horizontal .oo-ui-actionWidget {
 	border-right: 1px solid #e5e5e5;
+	margin: 0;
 }
 .oo-ui-messageDialog-actions-horizontal .oo-ui-actionWidget:last-child {
 	border-right-width: 0;
 }
 .oo-ui-messageDialog-actions-vertical .oo-ui-actionWidget {
 	border-bottom: 1px solid #e5e5e5;
+	margin: 0;
 }
 .oo-ui-messageDialog-actions-vertical .oo-ui-actionWidget:last-child {
 	border-bottom-width: 0;
 }
 .oo-ui-messageDialog-actions .oo-ui-actionWidget {
 	height: 3.4em;
+	margin-right: 0;
+}
+.oo-ui-messageDialog-actions .oo-ui-actionWidget:last-child {
+	margin-right: 0;
 }
 .oo-ui-messageDialog-actions .oo-ui-actionWidget.oo-ui-labelElement .oo-ui-labelElement-label {
 	text-align: center;

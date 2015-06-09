@@ -10,7 +10,7 @@
 	 *
 	 * @class
 	 * @extends OO.ui.TextInputWidget
-	 * @mixins OO.ui.LookupElement
+	 * @mixins OO.ui.mixin.LookupElement
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
@@ -24,7 +24,7 @@
 		OO.ui.TextInputWidget.call( this, config );
 
 		// Mixin constructors
-		OO.ui.LookupElement.call( this, config );
+		OO.ui.mixin.LookupElement.call( this, config );
 
 		// Properties
 		this.namespace = config.namespace || null;
@@ -38,7 +38,7 @@
 
 	OO.inheritClass( mw.widgets.TitleInputWidget, OO.ui.TextInputWidget );
 
-	OO.mixinClass( mw.widgets.TitleInputWidget, OO.ui.LookupElement );
+	OO.mixinClass( mw.widgets.TitleInputWidget, OO.ui.mixin.LookupElement );
 
 	/* Methods */
 

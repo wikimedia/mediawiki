@@ -30,5 +30,7 @@
 	"ooui-dialog-process-error": "发生一些错误",
 	"ooui-dialog-process-dismiss": "解除",
 	"ooui-dialog-process-retry": "重试",
-	"ooui-dialog-process-continue": "继续"
+	"ooui-dialog-process-continue": "继续",
+	"ooui-selectfile-not-supported": "文件选择不受支持",
+	"ooui-selectfile-placeholder": "没有选定文件"
 }
