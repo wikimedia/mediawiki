@@ -79,7 +79,8 @@ class SpecialMycontributions extends RedirectSpecialPage {
 	public function __construct() {
 		parent::__construct( 'Mycontributions' );
 		$this->mAllowedRedirectParams = array( 'limit', 'namespace', 'tagfilter',
-			'offset', 'dir', 'year', 'month', 'feed' );
+			'offset', 'dir', 'year', 'month', 'feed',
+			'nsInvert', 'associated', 'newOnly', 'topOnly' );
 	}
 
 	/**
