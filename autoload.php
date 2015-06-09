@@ -607,6 +607,7 @@ $wgAutoloadLocalClasses = array(
 	'LCStoreCDB' => __DIR__ . '/includes/cache/LocalisationCache.php',
 	'LCStoreDB' => __DIR__ . '/includes/cache/LocalisationCache.php',
 	'LCStoreNull' => __DIR__ . '/includes/cache/LocalisationCache.php',
+	'LCStoreStaticArray' => __DIR__ . '/includes/cache/LCStoreStaticArray.php',
 	'LangMemUsage' => __DIR__ . '/maintenance/language/langmemusage.php',
 	'Language' => __DIR__ . '/languages/Language.php',
 	'LanguageAr' => __DIR__ . '/languages/classes/LanguageAr.php',
