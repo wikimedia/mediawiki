@@ -70,13 +70,15 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	 * Return part of the request string for a special redirect page
 	 * This allows passing, e.g. action=history to Special:Mypage, etc.
 	 *
-	 * @return string
+	 * @return array|bool
 	 */
 	public function getRedirectQuery() {
 		$params = array();
 		$request = $this->getRequest();
 
-		foreach ( $this->mAllowedRedirectParams as $arg ) {
+		foreach ( array_merge( $this->mAllowedRedirectParams,
+				array( 'uselang', 'useskin', 'debug' ) // parameters which can be passed to all pages
+			) as $arg ) {
 			if ( $request->getVal( $arg, null ) !== null ) {
 				$params[$arg] = $request->getVal( $arg );
 			} elseif ( $request->getArray( $arg, null ) !== null ) {
@@ -205,7 +207,7 @@ abstract class RedirectSpecialArticle extends RedirectSpecialPage {
 			'section', 'oldid', 'diff', 'dir',
 			'limit', 'offset', 'feed',
 			# Misc options
-			'redlink', 'debug',
+			'redlink',
 			# Options for action=raw; missing ctype can break JS or CSS in some browsers
 			'ctype', 'maxage', 'smaxage',
 		);
