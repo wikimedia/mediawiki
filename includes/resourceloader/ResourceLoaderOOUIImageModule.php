@@ -43,9 +43,11 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 
 			if ( file_exists( $dataPath ) ) {
 				$data = json_decode( file_get_contents( $dataPath ), true );
-				array_walk_recursive( $data['images'], function ( &$path ) use ( $rootPath, $theme ) {
-					// TODO Allow extensions to specify this path somehow
-					$path = $rootPath . '/' . $theme . '/' . $path;
+				array_walk_recursive( $data['images'], function ( &$value, $key ) use ( $rootPath, $theme ) {
+					if ( in_array( $key, array( 'file', 'ltr', 'rtl' ), true ) ) {
+						// TODO Allow extensions to specify this path somehow
+						$value = $rootPath . '/' . $theme . '/' . $value;
+					}
 				} );
 			} else {
 				$data = array();
