@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function ( mw ) {
 	var collapsibleLists, handleOne;
 
 	// Collapsible lists of categories and templates
@@ -21,7 +21,8 @@
 	];
 
 	handleOne = function ( $list, $toggler, cookieName ) {
-		var isCollapsed = $.cookie( cookieName ) !== 'expanded';
+		// Collapsed by default
+		var isCollapsed = mw.cookie.get( cookieName ) !== 'expanded';
 
 		// Style the toggler with an arrow icon and add a tabIndex and a role for accessibility
 		$toggler.addClass( 'mw-editfooter-toggler' ).prop( 'tabIndex', 0 ).attr( 'role', 'button' );
@@ -38,12 +39,12 @@
 
 		$list.on( 'beforeExpand.mw-collapsible', function () {
 			$toggler.removeClass( 'mw-icon-arrow-collapsed' ).addClass( 'mw-icon-arrow-expanded' );
-			$.cookie( cookieName, 'expanded' );
+			mw.cookie.set( cookieName, 'expanded' );
 		} );
 
 		$list.on( 'beforeCollapse.mw-collapsible', function () {
 			$toggler.removeClass( 'mw-icon-arrow-expanded' ).addClass( 'mw-icon-arrow-collapsed' );
-			$.cookie( cookieName, 'collapsed' );
+			mw.cookie.set( cookieName, 'collapsed' );
 		} );
 	};
 
@@ -58,4 +59,4 @@
 			);
 		}
 	} );
-}( mediaWiki, jQuery ) );
+}( mediaWiki ) );
