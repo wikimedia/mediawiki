@@ -28,32 +28,32 @@
  * @since 1.24
  */
 class DerivativeResourceLoaderContext extends ResourceLoaderContext {
+	const INHERIT_VALUE = -1;
 
 	/**
 	 * @var ResourceLoaderContext
 	 */
 	private $context;
-	protected $modules;
-	protected $language;
-	protected $direction;
-	protected $skin;
-	protected $user;
-	protected $debug;
-	protected $only;
-	protected $version;
-	protected $hash;
-	protected $raw;
+
+	protected $modules = self::INHERIT_VALUE;
+	protected $language = self::INHERIT_VALUE;
+	protected $direction = self::INHERIT_VALUE;
+	protected $skin = self::INHERIT_VALUE;
+	protected $user = self::INHERIT_VALUE;
+	protected $debug = self::INHERIT_VALUE;
+	protected $only = self::INHERIT_VALUE;
+	protected $version = self::INHERIT_VALUE;
+	protected $raw = self::INHERIT_VALUE;
 
 	public function __construct( ResourceLoaderContext $context ) {
 		$this->context = $context;
 	}
 
 	public function getModules() {
-		if ( !is_null( $this->modules ) ) {
-			return $this->modules;
-		} else {
+		if ( $this->modules === self::INHERIT_VALUE ) {
 			return $this->context->getModules();
 		}
+		return $this->modules;
 	}
 
 	/**
@@ -64,11 +64,10 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	}
 
 	public function getLanguage() {
-		if ( !is_null( $this->language ) ) {
-			return $this->language;
-		} else {
+		if ( $this->language === self::INHERIT_VALUE ) {
 			return $this->context->getLanguage();
 		}
+		return $this->language;
 	}
 
 	/**
@@ -76,16 +75,16 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	 */
 	public function setLanguage( $language ) {
 		$this->language = $language;
-		$this->direction = null; // Invalidate direction since it might be based on language
+		// Invalidate direction since it is based on language
+		$this->direction = self::INHERIT_VALUE;
 		$this->hash = null;
 	}
 
 	public function getDirection() {
-		if ( !is_null( $this->direction ) ) {
-			return $this->direction;
-		} else {
+		if ( $this->direction === self::INHERIT_VALUE ) {
 			return $this->context->getDirection();
 		}
+		return $this->direction;
 	}
 
 	/**
@@ -97,11 +96,10 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	}
 
 	public function getSkin() {
-		if ( !is_null( $this->skin ) ) {
-			return $this->skin;
-		} else {
+		if ( $this->skin === self::INHERIT_VALUE ) {
 			return $this->context->getSkin();
 		}
+		return $this->skin;
 	}
 
 	/**
@@ -113,11 +111,10 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	}
 
 	public function getUser() {
-		if ( !is_null( $this->user ) ) {
-			return $this->user;
-		} else {
+		if ( $this->user === self::INHERIT_VALUE ) {
 			return $this->context->getUser();
 		}
+		return $this->user;
 	}
 
 	/**
@@ -130,11 +127,10 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	}
 
 	public function getDebug() {
-		if ( !is_null( $this->debug ) ) {
-			return $this->debug;
-		} else {
+		if ( $this->debug === self::INHERIT_VALUE ) {
 			return $this->context->getDebug();
 		}
+		return $this->debug;
 	}
 
 	/**
@@ -146,15 +142,14 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	}
 
 	public function getOnly() {
-		if ( !is_null( $this->only ) ) {
-			return $this->only;
-		} else {
+		if ( $this->only === self::INHERIT_VALUE ) {
 			return $this->context->getOnly();
 		}
+		return $this->only;
 	}
 
 	/**
-	 * @param string $only
+	 * @param string|null $only
 	 */
 	public function setOnly( $only ) {
 		$this->only = $only;
@@ -162,15 +157,14 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	}
 
 	public function getVersion() {
-		if ( !is_null( $this->version ) ) {
-			return $this->version;
-		} else {
+		if ( $this->version === self::INHERIT_VALUE ) {
 			return $this->context->getVersion();
 		}
+		return $this->version;
 	}
 
 	/**
-	 * @param string $version
+	 * @param string|null $version
 	 */
 	public function setVersion( $version ) {
 		$this->version = $version;
@@ -178,11 +172,10 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	}
 
 	public function getRaw() {
-		if ( !is_null( $this->raw ) ) {
-			return $this->raw;
-		} else {
+		if ( $this->raw === self::INHERIT_VALUE ) {
 			return $this->context->getRaw();
 		}
+		return $this->raw;
 	}
 
 	/**
