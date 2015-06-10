@@ -297,16 +297,22 @@ class RecentChangeTest extends MediaWikiTestCase {
 		$sep = $this->context->msg( 'colon-separator' )->text();
 
 		# import/upload
+		$msg = $this->context->msg( 'import-logentry-upload', 'SomeTitle' )->plain() .
+			$sep .
+			$this->user_comment;
 		$this->assertIRCComment(
-			$this->context->msg( 'import-logentry-upload', 'SomeTitle' )->plain() . $sep . $this->user_comment,
+			$msg,
 			'import', 'upload',
 			array(),
 			$this->user_comment
 		);
 
 		# import/interwiki
+		$msg = $this->context->msg( 'import-logentry-interwiki', 'SomeTitle' )->plain() .
+			$sep .
+			$this->user_comment;
 		$this->assertIRCComment(
-			$this->context->msg( 'import-logentry-interwiki', 'SomeTitle' )->plain() . $sep . $this->user_comment,
+			$msg,
 			'import', 'interwiki',
 			array(),
 			$this->user_comment
@@ -335,6 +341,51 @@ class RecentChangeTest extends MediaWikiTestCase {
 		// $this->context->msg( 'undo-summary', .. );
 	}
 	*/
+
+	/**
+	 * @covers RecentChange::parseParams
+	 */
+	public function testParseParams() {
+		$params = array(
+			'root' => array(
+				'A' => 1,
+				'B' => 'two'
+			)
+		);
+
+		$this->assertParseParams(
+			$params,
+			'a:1:{s:4:"root";a:2:{s:1:"A";i:1;s:1:"B";s:3:"two";}}'
+		);
+
+		$this->assertParseParams(
+			null,
+			null
+		);
+
+		$this->assertParseParams(
+			null,
+			serialize( false )
+		);
+
+		$this->assertParseParams(
+			null,
+			'not-an-array'
+		);
+	}
+
+	/**
+	 * @param array $expectedParseParams
+	 * @param string|null $rawRcParams
+	 */
+	protected function assertParseParams( $expectedParseParams, $rawRcParams ) {
+		$rc = new RecentChange;
+		$rc->setAttribs( array( 'rc_params' => $rawRcParams ) );
+
+		$actualParseParams = $rc->parseParams();
+
+		$this->assertEquals( $expectedParseParams, $actualParseParams );
+	}
 
 	/**
 	 * @param string $expected Expected IRC text without colors codes
