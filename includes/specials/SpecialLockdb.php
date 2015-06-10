@@ -73,9 +73,9 @@ class SpecialLockdb extends FormSpecialPage {
 			return Status::newFatal( 'locknoconfirm' );
 		}
 
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$fp = fopen( $this->getConfig()->get( 'ReadOnlyFile' ), 'w' );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		if ( false === $fp ) {
 			# This used to show a file not found error, but the likeliest reason for fopen()

@@ -745,13 +745,13 @@ class MWMemcached {
 		$timeout = $this->_connect_timeout;
 		$errno = $errstr = null;
 		for ( $i = 0; !$sock && $i < $this->_connect_attempts; $i++ ) {
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			if ( $this->_persistent == 1 ) {
 				$sock = pfsockopen( $ip, $port, $errno, $errstr, $timeout );
 			} else {
 				$sock = fsockopen( $ip, $port, $errno, $errstr, $timeout );
 			}
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 		}
 		if ( !$sock ) {
 			$this->_error_log( "Error connecting to $host: $errstr\n" );

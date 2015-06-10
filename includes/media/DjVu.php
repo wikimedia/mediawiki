@@ -265,9 +265,9 @@ class DjVuHandler extends ImageHandler {
 			return $metadata;
 		}
 
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$unser = unserialize( $metadata );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( is_array( $unser ) ) {
 			if ( isset( $unser['error'] ) ) {
 				return false;
@@ -304,7 +304,7 @@ class DjVuHandler extends ImageHandler {
 			return false;
 		}
 
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		try {
 			// Set to false rather than null to avoid further attempts
 			$image->dejaMetaTree = false;
@@ -327,7 +327,7 @@ class DjVuHandler extends ImageHandler {
 		} catch ( Exception $e ) {
 			wfDebug( "Bogus multipage XML metadata on '{$image->getName()}'\n" );
 		}
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( $gettext ) {
 			return $image->djvuTextTree;
 		} else {

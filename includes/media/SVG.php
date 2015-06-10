@@ -206,10 +206,10 @@ class SvgHandler extends ImageHandler {
 		$lnPath = "$tmpDir/" . basename( $srcPath );
 		$ok = mkdir( $tmpDir, 0771 ) && symlink( $srcPath, $lnPath );
 		$cleaner = new ScopedCallback( function () use ( $tmpDir, $lnPath ) {
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			unlink( $lnPath );
 			rmdir( $tmpDir );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 		} );
 		if ( !$ok ) {
 			wfDebugLog( 'thumbnail',
@@ -375,9 +375,9 @@ class SvgHandler extends ImageHandler {
 	}
 
 	function unpackMetadata( $metadata ) {
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$unser = unserialize( $metadata );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( isset( $unser['version'] ) && $unser['version'] == self::SVG_METADATA_VERSION ) {
 			return $unser;
 		} else {

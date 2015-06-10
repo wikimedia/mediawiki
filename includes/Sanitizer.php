@@ -488,9 +488,9 @@ class Sanitizer {
 						$badtag = true;
 					} elseif ( $slash ) {
 						# Closing a tag... is it the one we just opened?
-						wfSuppressWarnings();
+						MediaWiki\suppressWarnings();
 						$ot = array_pop( $tagstack );
-						wfRestoreWarnings();
+						MediaWiki\restoreWarnings();
 
 						if ( $ot != $t ) {
 							if ( isset( $htmlsingleallowed[$ot] ) ) {
@@ -498,32 +498,32 @@ class Sanitizer {
 								# and see if we find a match below them
 								$optstack = array();
 								array_push( $optstack, $ot );
-								wfSuppressWarnings();
+								MediaWiki\suppressWarnings();
 								$ot = array_pop( $tagstack );
-								wfRestoreWarnings();
+								MediaWiki\restoreWarnings();
 								while ( $ot != $t && isset( $htmlsingleallowed[$ot] ) ) {
 									array_push( $optstack, $ot );
-									wfSuppressWarnings();
+									MediaWiki\suppressWarnings();
 									$ot = array_pop( $tagstack );
-									wfRestoreWarnings();
+									MediaWiki\restoreWarnings();
 								}
 								if ( $t != $ot ) {
 									# No match. Push the optional elements back again
 									$badtag = true;
-									wfSuppressWarnings();
+									MediaWiki\suppressWarnings();
 									$ot = array_pop( $optstack );
-									wfRestoreWarnings();
+									MediaWiki\restoreWarnings();
 									while ( $ot ) {
 										array_push( $tagstack, $ot );
-										wfSuppressWarnings();
+										MediaWiki\suppressWarnings();
 										$ot = array_pop( $optstack );
-										wfRestoreWarnings();
+										MediaWiki\restoreWarnings();
 									}
 								}
 							} else {
-								wfSuppressWarnings();
+								MediaWiki\suppressWarnings();
 								array_push( $tagstack, $ot );
-								wfRestoreWarnings();
+								MediaWiki\restoreWarnings();
 
 								# <li> can be nested in <ul> or <ol>, skip those cases:
 								if ( !isset( $htmllist[$ot] ) || !isset( $listtags[$t] ) ) {

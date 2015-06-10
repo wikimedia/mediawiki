@@ -523,9 +523,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 
 		if ( $meta ) {
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			$metadata = unserialize( $file->getMetadata() );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 			if ( $metadata && $version !== 'latest' ) {
 				$metadata = $file->convertMetadataVersion( $metadata, $version );
 			}

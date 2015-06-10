@@ -1132,7 +1132,7 @@ abstract class ContentHandler {
 			$handlers = Hooks::getHandlers( $event );
 			$handlerInfo = array();
 
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 
 			foreach ( $handlers as $handler ) {
 				if ( is_array( $handler ) ) {
@@ -1155,7 +1155,7 @@ abstract class ContentHandler {
 				$handlerInfo[] = $info;
 			}
 
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 
 			wfWarn( "Using obsolete hook $event via ContentHandler::runLegacyHooks()! Handlers: " .
 				implode( ', ', $handlerInfo ), 2 );

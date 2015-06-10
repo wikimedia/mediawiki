@@ -4025,9 +4025,9 @@ abstract class DatabaseBase implements IDatabase {
 	public function sourceFile(
 		$filename, $lineCallback = false, $resultCallback = false, $fname = false, $inputCallback = false
 	) {
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$fp = fopen( $filename, 'r' );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		if ( false === $fp ) {
 			throw new MWException( "Could not open \"{$filename}\".\n" );

@@ -12,11 +12,11 @@ class MWDebugTest extends MediaWikiTestCase {
 		}
 		/** Clear log before each test */
 		MWDebug::clearLog();
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 	}
 
 	protected function tearDown() {
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		parent::tearDown();
 	}
 
