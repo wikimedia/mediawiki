@@ -44,9 +44,9 @@ class StreamFile {
 			throw new MWException( __FUNCTION__ . " given storage path '$fname'." );
 		}
 
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$stat = stat( $fname );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		$res = self::prepareForStream( $fname, $stat, $headers, $sendErrors );
 		if ( $res == self::NOT_MODIFIED ) {

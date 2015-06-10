@@ -790,9 +790,9 @@ abstract class ResourceLoaderModule {
 	 * @return int UNIX timestamp
 	 */
 	protected static function safeFilemtime( $filename ) {
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$mtime = filemtime( $filename ) ?: 1;
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		return $mtime;
 	}

@@ -42,9 +42,9 @@ class MediaWikiI18N {
 		$m = array();
 		while ( preg_match( '/\$([0-9]*?)/sm', $value, $m ) ) {
 			list( $src, $var ) = $m;
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			$varValue = $this->context[$var];
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 			$value = str_replace( $src, $varValue, $value );
 		}
 		return $value;

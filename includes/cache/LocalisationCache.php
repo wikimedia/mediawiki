@@ -506,15 +506,15 @@ class LocalisationCache {
 	 */
 	protected function readPHPFile( $_fileName, $_fileType ) {
 		// Disable APC caching
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$_apcEnabled = ini_set( 'apc.cache_by_default', '0' );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		include $_fileName;
 
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		ini_set( 'apc.cache_by_default', $_apcEnabled );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		if ( $_fileType == 'core' || $_fileType == 'extension' ) {
 			$data = compact( self::$allKeys );

@@ -104,9 +104,9 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		}
 
 		if ( $dbName != '' ) {
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			$success = $this->selectDB( $dbName );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 			if ( !$success ) {
 				wfLogDBError(
 					"Error selecting database {db_name} on server {db_server}",
@@ -203,9 +203,9 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$ok = $this->mysqlFreeResult( $res );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( !$ok ) {
 			throw new DBUnexpectedError( $this, "Unable to free MySQL result" );
 		}
@@ -228,9 +228,9 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$row = $this->mysqlFetchObject( $res );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		$errno = $this->lastErrno();
 		// Unfortunately, mysql_fetch_object does not reset the last errno.
@@ -264,9 +264,9 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$row = $this->mysqlFetchArray( $res );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		$errno = $this->lastErrno();
 		// Unfortunately, mysql_fetch_array does not reset the last errno.
@@ -300,9 +300,9 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$n = $this->mysqlNumRows( $res );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		// Unfortunately, mysql_num_rows does not reset the last errno.
 		// We are not checking for any errors here, since
@@ -413,12 +413,12 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	function lastError() {
 		if ( $this->mConn ) {
 			# Even if it's non-zero, it can still be invalid
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			$error = $this->mysqlError( $this->mConn );
 			if ( !$error ) {
 				$error = $this->mysqlError();
 			}
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 		} else {
 			$error = $this->mysqlError();
 		}

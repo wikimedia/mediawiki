@@ -372,9 +372,9 @@ class SpecialExport extends SpecialPage {
 			$buffer = WikiExporter::STREAM;
 
 			// This might take a while... :D
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			set_time_limit( 0 );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 		}
 
 		$exporter = new WikiExporter( $db, $history, $buffer );

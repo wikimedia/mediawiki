@@ -2127,9 +2127,9 @@ class Language {
 		$data = explode( '|', $tz, 3 );
 
 		if ( $data[0] == 'ZoneInfo' ) {
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			$userTZ = timezone_open( $data[2] );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 			if ( $userTZ !== false ) {
 				$date = date_create( $ts, timezone_open( 'UTC' ) );
 				date_timezone_set( $date, $userTZ );
@@ -2164,7 +2164,7 @@ class Language {
 			return $ts;
 		}
 
-		wfSuppressWarnings(); // E_STRICT system time bitching
+		MediaWiki\suppressWarnings(); // E_STRICT system time bitching
 		# Generate an adjusted date; take advantage of the fact that mktime
 		# will normalize out-of-range values so we don't have to split $minDiff
 		# into hours and minutes.
@@ -2177,7 +2177,7 @@ class Language {
 			(int)substr( $ts, 0, 4 ) ); # Year
 
 		$date = date( 'YmdHis', $t );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		return $date;
 	}
@@ -2626,9 +2626,9 @@ class Language {
 		# *input* string. We just ignore those too.
 		# REF: http://bugs.php.net/bug.php?id=37166
 		# REF: https://bugzilla.wikimedia.org/show_bug.cgi?id=16885
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$text = iconv( $in, $out . '//IGNORE', $string );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		return $text;
 	}
 
