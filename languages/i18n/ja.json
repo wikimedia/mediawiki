@@ -3293,6 +3293,7 @@
 	"log-name-managetags": "タグ管理記録",
 	"log-description-managetags": "このページは[[Special:Tags|タグ]]に関係する管理タスクをリストアップしています。ログには管理者によって手動で実行された操作の記録しか記載されていません。ウィキ・ソフトウェアによって、ログを残さずにタグが作成・削除されている場合があります。",
 	"logentry-managetags-create": "$1 がタグ「$4」を{{GENDER:$2|作成しました}}",
+	"log-name-tag": "タグ記録",
 	"logentry-tag-update-add-revision": "$1 がページ $3 の版 $4 に{{PLURAL:$7|タグ}} $6 を{{GENDER:$2|追加しました}}",
 	"logentry-tag-update-add-logentry": "$1 がページ $3 の記録項目 $5 に{{PLURAL:$7|タグ}} $6 を{{GENDER:$2|追加しました}}",
 	"logentry-tag-update-remove-revision": "$1 がページ $3 の版 $4 から{{PLURAL:$9|タグ}} $8 を{{GENDER:$2|除去しました}}",

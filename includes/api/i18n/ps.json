@@ -21,6 +21,8 @@
 	"apihelp-query+search-example-simple": "د <kbd>مانا</kbd> پلټل.",
 	"apihelp-query+search-example-text": "د <kbd>مانا</kbd> لپاره متنونه پلټل.",
 	"apihelp-tag-param-reason": "د بدلون سبب.",
+	"apihelp-upload-param-watch": "مخ کتل.",
+	"apihelp-upload-param-file": "د دوتنې مېنځپانگه.",
 	"apihelp-userrights-param-user": "کارن نوم.",
 	"apihelp-userrights-param-userid": "کارن پېژند.",
 	"api-help-source": "سرچينه: $1",

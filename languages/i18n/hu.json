@@ -1726,7 +1726,7 @@
 	"emailuser-title-target": "E-mail küldése ennek a felhasználónak: $1",
 	"emailuser-title-notarget": "E-mail küldése a felhasználónak",
 	"emailpage": "E-mail küldése",
-	"emailpagetext": "{{GENDER:$1|felhasználó}}nevű szerkesztő e-mail-címére ezen űrlap kitöltésével üzenetet tudsz küldeni.\nFeladóként a [[Special:Preferences|beállításaid]]nál megadott e-mail-címed fog szerepelni, így a címzett közvetlenül tud majd válaszolni neked.",
+	"emailpagetext": "Ezzel az űrlappal tudsz ennek a {{GENDER:$1|felhasználónak}} e-mailt küldeni.\nFeladóként a [[Special:Preferences|beállításaidnál]] megadott e-mail címed fog szerepelni, így a címzett közvetlenül tud majd válaszolni neked.",
 	"defemailsubject": "{{SITENAME}} e-mail a következő felhasználótól: „$1”",
 	"usermaildisabled": "Email fogadás letiltva",
 	"usermaildisabledtext": "Nem küldhetsz emailt más felhasználóknak ezen a wikin",

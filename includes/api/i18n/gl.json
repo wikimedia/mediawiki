@@ -826,7 +826,7 @@
 	"apihelp-query+revisions+base-param-difftotext": "Texto co que comparar cada revisión. Só compara un número limitado de revisións. Ignora <var>$1diffto</var>.  Se <var>$1section</var> ten valor, só se comparará co texto esa sección.",
 	"apihelp-query+revisions+base-param-contentformat": "Formato de serialización usado por <var>$1difftotext</var> e esperado para a saída do contido.",
 	"apihelp-query+search-description": "Facer unha busca por texto completo.",
-	"apihelp-query+search-param-search": "Buscar tódolos títulos de páxina (ou contido) que teñan este valor.",
+	"apihelp-query+search-param-search": "Buscar os títulos de páxina ou contido que coincidan con este valor. Pode usar a cadea de busca para invocar funcións especiais de busca, dependendo do motor de busca que teña a wiki.",
 	"apihelp-query+search-param-namespace": "Buscar só nestes espazos de nomes.",
 	"apihelp-query+search-param-what": "Que tipo de busca lanzar.",
 	"apihelp-query+search-param-info": "Que metadatos devolver.",
