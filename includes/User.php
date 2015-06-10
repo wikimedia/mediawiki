@@ -2362,7 +2362,7 @@ class User implements IDBAccessObject {
 
 				$timestamp = $cache->getCheckKeyTime( $key );
 				if ( $timestamp ) {
-					$this->mQuickTouched = wfTimestamp( TS_MW, $timestamp );
+					$this->mQuickTouched = wfTimestamp( TS_MW, (int)$timestamp );
 				} else {
 					# Set the timestamp to get HTTP 304 cache hits
 					$this->touch();
