@@ -154,7 +154,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	}
 
 	/**
-	 * @param string $only
+	 * @param string|false $only
 	 */
 	public function setOnly( $only ) {
 		$this->only = $only;
@@ -170,7 +170,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	}
 
 	/**
-	 * @param string $version
+	 * @param string|false $version
 	 */
 	public function setVersion( $version ) {
 		$this->version = $version;
