@@ -1857,9 +1857,9 @@ class ImportStreamSource implements ImportSource {
 	 * @return Status
 	 */
 	static function newFromFile( $filename ) {
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$file = fopen( $filename, 'rt' );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( !$file ) {
 			return Status::newFatal( "importcantopen" );
 		}

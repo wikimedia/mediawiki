@@ -715,7 +715,7 @@ class MediaWiki {
 
 		$errno = $errstr = null;
 		$info = wfParseUrl( $this->config->get( 'Server' ) );
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$sock = fsockopen(
 			$info['host'],
 			isset( $info['port'] ) ? $info['port'] : 80,
@@ -725,7 +725,7 @@ class MediaWiki {
 			// is a problem elsewhere.
 			0.1
 		);
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( !$sock ) {
 			$runJobsLogger->error( "Failed to start cron API (socket error $errno): $errstr" );
 			// Fall back to running the job here while the user waits

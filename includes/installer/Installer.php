@@ -540,9 +540,9 @@ abstract class Installer {
 		global $wgAutoloadClasses;
 		$wgAutoloadClasses = array();
 
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$_lsExists = file_exists( "$IP/LocalSettings.php" );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		if ( !$_lsExists ) {
 			return false;
@@ -830,14 +830,14 @@ abstract class Installer {
 	 * @return bool
 	 */
 	protected function envCheckPCRE() {
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$regexd = preg_replace( '/[\x{0430}-\x{04FF}]/iu', '', '-АБВГД-' );
 		// Need to check for \p support too, as PCRE can be compiled
 		// with utf8 support, but not unicode property support.
 		// check that \p{Zs} (space separators) matches
 		// U+3000 (Ideographic space)
 		$regexprop = preg_replace( '/\p{Zs}/u', '', "-\xE3\x80\x80-" );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( $regexd != '--' || $regexprop != '--' ) {
 			$this->showError( 'config-pcre-no-utf8' );
 
@@ -1289,9 +1289,9 @@ abstract class Installer {
 		foreach ( $names as $name ) {
 			$command = $path . DIRECTORY_SEPARATOR . $name;
 
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			$file_exists = file_exists( $command );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 
 			if ( $file_exists ) {
 				if ( !$versionInfo ) {
@@ -1349,7 +1349,7 @@ abstract class Installer {
 
 		// it would be good to check other popular languages here, but it'll be slow.
 
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 
 		foreach ( $scriptTypes as $ext => $contents ) {
 			foreach ( $contents as $source ) {
@@ -1368,14 +1368,14 @@ abstract class Installer {
 				unlink( $dir . $file );
 
 				if ( $text == 'exec' ) {
-					wfRestoreWarnings();
+					MediaWiki\restoreWarnings();
 
 					return $ext;
 				}
 			}
 		}
 
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		return false;
 	}
@@ -1809,8 +1809,8 @@ abstract class Installer {
 	 * Some long-running pages (Install, Upgrade) will want to do this
 	 */
 	protected function disableTimeLimit() {
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		set_time_limit( 0 );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 	}
 }

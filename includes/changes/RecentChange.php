@@ -859,9 +859,9 @@ class RecentChange {
 	public function parseParams() {
 		$rcParams = $this->getAttribute( 'rc_params' );
 
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$unserializedParams = unserialize( $rcParams );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		return $unserializedParams;
 	}

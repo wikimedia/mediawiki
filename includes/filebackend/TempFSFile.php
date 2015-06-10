@@ -59,9 +59,9 @@ class TempFSFile extends FSFile {
 		$ext = ( $extension != '' ) ? ".{$extension}" : "";
 		for ( $attempt = 1; true; $attempt++ ) {
 			$path = "{$base}-{$attempt}{$ext}";
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			$newFileHandle = fopen( $path, 'x' );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 			if ( $newFileHandle ) {
 				fclose( $newFileHandle );
 				break; // got it
@@ -84,9 +84,9 @@ class TempFSFile extends FSFile {
 	 */
 	public function purge() {
 		$this->canDelete = false; // done
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$ok = unlink( $this->path );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		unset( self::$pathsCollect[$this->path] );
 
@@ -144,9 +144,9 @@ class TempFSFile extends FSFile {
 	 */
 	public static function purgeAllOnShutdown() {
 		foreach ( self::$pathsCollect as $path ) {
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			unlink( $path );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 		}
 	}
 

@@ -121,9 +121,9 @@ class CheckSyntax extends Maintenance {
 			return; // process only this path
 		} elseif ( $this->hasOption( 'list-file' ) ) {
 			$file = $this->getOption( 'list-file' );
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			$f = fopen( $file, 'r' );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 			if ( !$f ) {
 				$this->error( "Can't open file $file\n", true );
 			}

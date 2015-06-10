@@ -181,9 +181,9 @@ abstract class MediaHandler {
 		if ( !is_array( $metadata ) ) {
 
 			//unserialize to keep return parameter consistent.
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			$ret = unserialize( $metadata );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 
 			return $ret;
 		}

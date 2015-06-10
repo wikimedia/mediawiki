@@ -649,10 +649,10 @@ abstract class DatabaseInstaller {
 			return $status;
 		}
 		global $IP;
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$rows = file( "$IP/maintenance/interwiki.list",
 			FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		$interwikis = array();
 		if ( !$rows ) {
 			return Status::newFatal( 'config-install-interwiki-list' );

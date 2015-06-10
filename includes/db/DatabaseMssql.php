@@ -119,9 +119,9 @@ class DatabaseMssql extends DatabaseBase {
 			$connectionInfo['PWD'] = $password;
 		}
 
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$this->mConn = sqlsrv_connect( $server, $connectionInfo );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		if ( $this->mConn === false ) {
 			throw new DBConnectionError( $this, $this->lastError() );

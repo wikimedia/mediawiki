@@ -965,14 +965,14 @@ class ContribsPager extends ReverseChronologicalPager {
 		 * we're definitely dealing with revision data and we may proceed, if not, we'll leave it
 		 * to extensions to subscribe to the hook to parse the row.
 		 */
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		try {
 			$rev = new Revision( $row );
 			$validRevision = (bool)$rev->getId();
 		} catch ( Exception $e ) {
 			$validRevision = false;
 		}
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		if ( $validRevision ) {
 			$classes = array();

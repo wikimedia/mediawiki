@@ -104,9 +104,9 @@ class WebRequest {
 			if ( !preg_match( '!^https?://!', $url ) ) {
 				$url = 'http://unused' . $url;
 			}
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			$a = parse_url( $url );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 			if ( $a ) {
 				$path = isset( $a['path'] ) ? $a['path'] : '';
 
