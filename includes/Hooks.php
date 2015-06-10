@@ -135,9 +135,6 @@ class Hooks {
 	 *   returning null) is equivalent to returning true.
 	 */
 	public static function run( $event, array $args = array(), $deprecatedVersion = null ) {
-		$profiler = Profiler::instance();
-		$eventPS = $profiler->scopedProfileIn( 'hook: ' . $event );
-
 		foreach ( self::getHandlers( $event ) as $hook ) {
 			// Turn non-array values into an array. (Can't use casting because of objects.)
 			if ( !is_array( $hook ) ) {
@@ -196,8 +193,6 @@ class Hooks {
 			$badhookmsg = null;
 			$hook_args = array_merge( $hook, $args );
 
-			// Profile first in case the Profiler causes errors
-			$funcPS = $profiler->scopedProfileIn( $func );
 			set_error_handler( 'Hooks::hookErrorHandler' );
 
 			// mark hook as deprecated, if deprecation version is specified
@@ -215,7 +210,6 @@ class Hooks {
 			}
 
 			restore_error_handler();
-			$profiler->scopedProfileOut( $funcPS );
 
 			// Process the return value.
 			if ( is_string( $retval ) ) {
