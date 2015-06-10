@@ -38,6 +38,7 @@ use MediaWiki\Logger\LoggerFactory;
 class ObjectCache {
 	/** @var Array Map of (id => BagOStuff) */
 	public static $instances = array();
+
 	/** @var Array Map of (id => WANObjectCache) */
 	public static $wanInstances = array();
 
@@ -45,35 +46,29 @@ class ObjectCache {
 	 * Get a cached instance of the specified type of cache object.
 	 *
 	 * @param string $id
-	 *
 	 * @return BagOStuff
 	 */
 	static function getInstance( $id ) {
-		if ( isset( self::$instances[$id] ) ) {
-			return self::$instances[$id];
+		if ( !isset( self::$instances[$id] ) ) {
+			self::$instances[$id] = self::newFromId( $id );
 		}
 
-		$object = self::newFromId( $id );
-		self::$instances[$id] = $object;
-		return $object;
+		return self::$instances[$id];
 	}
 
 	/**
 	 * Get a cached instance of the specified type of cache object.
 	 *
-	 * @param string $id
-	 *
-	 * @return WANObjectCache
 	 * @since 1.26
+	 * @param string $id
+	 * @return WANObjectCache
 	 */
 	static function getWANInstance( $id ) {
-		if ( isset( self::$wanInstances[$id] ) ) {
-			return self::$wanInstances[$id];
+		if ( !isset( self::$wanInstances[$id] ) ) {
+			self::$wanInstances[$id] = self::newWANCacheFromId( $id );
 		}
 
-		$object = self::newWANCacheFromId( $id );
-		self::$wanInstances[$id] = $object;
-		return $object;
+		return self::$wanInstances[$id];
 	}
 
 	/**
@@ -88,9 +83,8 @@ class ObjectCache {
 	 * Create a new cache object of the specified type.
 	 *
 	 * @param string $id
-	 *
-	 * @throws MWException
 	 * @return BagOStuff
+	 * @throws MWException
 	 */
 	static function newFromId( $id ) {
 		global $wgObjectCaches;
@@ -107,9 +101,8 @@ class ObjectCache {
 	 * Create a new cache object from parameters
 	 *
 	 * @param array $params
-	 *
-	 * @throws MWException
 	 * @return BagOStuff
+	 * @throws MWException
 	 */
 	static function newFromParams( $params ) {
 		if ( isset( $params['loggroup'] ) ) {
@@ -140,6 +133,7 @@ class ObjectCache {
 	 * be an alias to the configured cache choice for that.
 	 * If no cache choice is configured (by default $wgMainCacheType is CACHE_NONE),
 	 * then CACHE_ANYTHING will forward to CACHE_DB.
+	 *
 	 * @param array $params
 	 * @return BagOStuff
 	 */
@@ -162,8 +156,8 @@ class ObjectCache {
 	 *
 	 * @param array $params
 	 * @param int|string $fallback Fallback cache, e.g. (CACHE_NONE, "hash") (since 1.24)
-	 * @throws MWException
 	 * @return BagOStuff
+	 * @throws MWException
 	 */
 	static function newAccelerator( $params, $fallback = null ) {
 		if ( function_exists( 'apc_fetch' ) ) {
@@ -173,11 +167,11 @@ class ObjectCache {
 		} elseif ( function_exists( 'wincache_ucache_get' ) ) {
 			$id = 'wincache';
 		} else {
-			if ( $fallback !== null ) {
-				return self::newFromId( $fallback );
+			if ( $fallback === null ) {
+				throw new MWException( 'CACHE_ACCEL requested but no suitable object ' .
+					'cache is present. You may want to install APC.' );
 			}
-			throw new MWException( "CACHE_ACCEL requested but no suitable object " .
-				"cache is present. You may want to install APC." );
+			$id = $fallback;
 		}
 		return self::newFromId( $id );
 	}
@@ -190,7 +184,6 @@ class ObjectCache {
 	 * switching between the two clients randomly would be disastrous.
 	 *
 	 * @param array $params
-	 *
 	 * @return MemcachedPhpBagOStuff
 	 */
 	static function newMemcached( $params ) {
@@ -200,11 +193,10 @@ class ObjectCache {
 	/**
 	 * Create a new cache object of the specified type
 	 *
-	 * @param string $id
-	 *
-	 * @throws MWException
-	 * @return WANObjectCache
 	 * @since 1.26
+	 * @param string $id
+	 * @return WANObjectCache
+	 * @throws MWException
 	 */
 	static function newWANCacheFromId( $id ) {
 		global $wgWANObjectCaches;
@@ -226,8 +218,8 @@ class ObjectCache {
 	/**
 	 * Get the main WAN cache object
 	 *
-	 * @return WANObjectCache
 	 * @since 1.26
+	 * @return WANObjectCache
 	 */
 	static function getMainWANInstance() {
 		global $wgMainWANCache;
@@ -247,9 +239,8 @@ class ObjectCache {
 	 * avoiding an assumption of perfect serializability (or accepting anomalies).
 	 * Reads may be eventually consistent or data might rollback as nodes flap.
 	 *
-	 *
-	 * @return BagOStuff
 	 * @since 1.26
+	 * @return BagOStuff
 	 */
 	static function getMainStashInstance() {
 		global $wgMainStash;
