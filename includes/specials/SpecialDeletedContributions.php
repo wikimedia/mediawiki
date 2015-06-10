@@ -201,14 +201,14 @@ class DeletedContribsPager extends IndexPager {
 		 * we're definitely dealing with revision data and we may proceed, if not, we'll leave it
 		 * to extensions to subscribe to the hook to parse the row.
 		 */
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		try {
 			$rev = Revision::newFromArchiveRow( $row );
 			$validRevision = (bool)$rev->getId();
 		} catch ( Exception $e ) {
 			$validRevision = false;
 		}
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		if ( $validRevision ) {
 			$ret = $this->formatRevisionRow( $row );

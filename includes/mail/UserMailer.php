@@ -271,13 +271,13 @@ class UserMailer {
 			}
 			require_once 'Mail.php';
 
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 
 			// Create the mail object using the Mail::factory method
 			$mail_object =& Mail::factory( 'smtp', $wgSMTP );
 			if ( PEAR::isError( $mail_object ) ) {
 				wfDebug( "PEAR::Mail factory failed: " . $mail_object->getMessage() . "\n" );
-				wfRestoreWarnings();
+				MediaWiki\restoreWarnings();
 				return Status::newFatal( 'pear-mail-error', $mail_object->getMessage() );
 			}
 
@@ -297,11 +297,11 @@ class UserMailer {
 				$status = self::sendWithPear( $mail_object, $chunk, $headers, $body );
 				# FIXME : some chunks might be sent while others are not!
 				if ( !$status->isOK() ) {
-					wfRestoreWarnings();
+					MediaWiki\restoreWarnings();
 					return $status;
 				}
 			}
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 			return Status::newGood();
 		} else {
 			#

@@ -792,14 +792,14 @@ class CurlHttpRequest extends MWHttpRequest {
 		}
 
 		if ( $this->followRedirects && $this->canFollowRedirects() ) {
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			if ( !curl_setopt( $curlHandle, CURLOPT_FOLLOWLOCATION, true ) ) {
 				wfDebug( __METHOD__ . ": Couldn't set CURLOPT_FOLLOWLOCATION. " .
 					"Probably safe_mode or open_basedir is set.\n" );
 				// Continue the processing. If it were in curl_setopt_array,
 				// processing would have halted on its entry
 			}
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 		}
 
 		if ( $this->profiler ) {
@@ -938,9 +938,9 @@ class PhpHttpRequest extends MWHttpRequest {
 		}
 		do {
 			$reqCount++;
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			$fh = fopen( $url, "r", false, $context );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 
 			if ( !$fh ) {
 				break;

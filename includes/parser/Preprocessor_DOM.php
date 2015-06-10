@@ -87,9 +87,9 @@ class Preprocessor_DOM implements Preprocessor {
 		$xml .= "</list>";
 
 		$dom = new DOMDocument();
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$result = $dom->loadXML( $xml );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( !$result ) {
 			// Try running the XML through UtfNormal to get rid of invalid characters
 			$xml = UtfNormal\Validator::cleanUp( $xml );
@@ -186,9 +186,9 @@ class Preprocessor_DOM implements Preprocessor {
 		}
 
 		$dom = new DOMDocument;
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$result = $dom->loadXML( $xml );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( !$result ) {
 			// Try running the XML through UtfNormal to get rid of invalid characters
 			$xml = UtfNormal\Validator::cleanUp( $xml );

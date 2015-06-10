@@ -1146,9 +1146,9 @@ class SpecialVersion extends SpecialPage {
 			}
 
 			// SimpleXml whines about the xmlns...
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			$xml = simplexml_load_file( $entries );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 
 			if ( $xml ) {
 				foreach ( $xml->entry as $entry ) {

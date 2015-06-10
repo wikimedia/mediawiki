@@ -270,9 +270,9 @@ class SwiftFileBackend extends FileBackendStore {
 			return $status;
 		}
 
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$sha1Hash = sha1_file( $params['src'] );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( $sha1Hash === false ) { // source doesn't exist?
 			$status->fatal( 'backend-fail-store', $params['src'], $params['dst'] );
 

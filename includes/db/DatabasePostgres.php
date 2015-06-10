@@ -551,9 +551,9 @@ class DatabasePostgres extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$ok = pg_free_result( $res );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( !$ok ) {
 			throw new DBUnexpectedError( $this, "Unable to free Postgres result\n" );
 		}
@@ -568,9 +568,9 @@ class DatabasePostgres extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$row = pg_fetch_object( $res );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		# @todo FIXME: HACK HACK HACK HACK debug
 
 		# @todo hashar: not sure if the following test really trigger if the object
@@ -589,9 +589,9 @@ class DatabasePostgres extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$row = pg_fetch_array( $res );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( pg_last_error( $this->mConn ) ) {
 			throw new DBUnexpectedError(
 				$this,
@@ -606,9 +606,9 @@ class DatabasePostgres extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$n = pg_num_rows( $res );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( pg_last_error( $this->mConn ) ) {
 			throw new DBUnexpectedError(
 				$this,

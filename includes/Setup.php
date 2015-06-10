@@ -434,9 +434,9 @@ if ( !$wgHtml5Version && $wgAllowRdfaAttributes ) {
 $wgFileExtensions = array_values( array_diff ( $wgFileExtensions, $wgFileBlacklist ) );
 
 if ( $wgInvalidateCacheOnLocalSettingsChange ) {
-	// @codingStandardsIgnoreStart Generic.PHP.NoSilencedErrors.Discouraged - No GlobalFunction here yet.
-	$wgCacheEpoch = max( $wgCacheEpoch, gmdate( 'YmdHis', @filemtime( "$IP/LocalSettings.php" ) ) );
-	// @codingStandardsIgnoreEnd
+	MediaWiki\suppressWarnings();
+	$wgCacheEpoch = max( $wgCacheEpoch, gmdate( 'YmdHis', filemtime( "$IP/LocalSettings.php" ) ) );
+	MediaWiki\restoreWarnings();
 }
 
 if ( $wgNewUserLog ) {
@@ -565,9 +565,9 @@ wfMemoryLimit();
  * explicitly set. Inspired by phpMyAdmin's treatment of the problem.
  */
 if ( is_null( $wgLocaltimezone ) ) {
-	wfSuppressWarnings();
+	MediaWiki\suppressWarnings();
 	$wgLocaltimezone = date_default_timezone_get();
-	wfRestoreWarnings();
+	MediaWiki\restoreWarnings();
 }
 
 date_default_timezone_set( $wgLocaltimezone );

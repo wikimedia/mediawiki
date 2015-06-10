@@ -167,9 +167,9 @@ class MessageCache {
 		$filename = "$wgCacheDirectory/messages-" . wfWikiID() . "-$code";
 
 		# Check file existence
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$file = fopen( $filename, 'r' );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( !$file ) {
 			return false; // No cache file
 		}
@@ -204,9 +204,9 @@ class MessageCache {
 		$filename = "$wgCacheDirectory/messages-" . wfWikiID() . "-$code";
 		wfMkdirParents( $wgCacheDirectory, null, __METHOD__ ); // might fail
 
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$file = fopen( $filename, 'w' );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		if ( !$file ) {
 			wfDebug( "Unable to open local cache file for writing\n" );
@@ -216,9 +216,9 @@ class MessageCache {
 
 		fwrite( $file, $hash . $serialized );
 		fclose( $file );
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		chmod( $filename, 0666 );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 	}
 
 	/**

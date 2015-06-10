@@ -234,9 +234,9 @@ class RecompressTracked {
 				array( 'file', 'php://stdout', 'w' ),
 				array( 'file', 'php://stderr', 'w' )
 			);
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			$proc = proc_open( "$cmd --slave-id $i", $spec, $pipes );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 			if ( !$proc ) {
 				$this->critical( "Error opening slave process: $cmd" );
 				exit( 1 );
