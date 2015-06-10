@@ -307,9 +307,30 @@ class UserTest extends MediaWikiTestCase {
 	 */
 	public function testCheckPasswordValidity() {
 		$this->setMwGlobals( array(
-			'wgMinimalPasswordLength' => 6,
-			'wgMaximalPasswordLength' => 30,
+			'wgPasswordPolicy' => array(
+				'policies' => array(
+					'sysop' => array(
+						'MinimalPasswordLength' => 8,
+						'MinimumPasswordLengthToLogin' => 1,
+						'PasswordCannotMatchUsername' => 1,
+					),
+					'default' => array(
+						'MinimalPasswordLength' => 6,
+						'PasswordCannotMatchUsername' => true,
+						'PasswordCannotMatchBlacklist' => true,
+						'MaximalPasswordLength' => 30,
+					),
+				),
+				'checks' => array(
+					'MinimalPasswordLength' => 'PasswordPolicyChecks::checkMinimalPasswordLength',
+					'MinimumPasswordLengthToLogin' => 'PasswordPolicyChecks::checkMinimumPasswordLengthToLogin',
+					'PasswordCannotMatchUsername' => 'PasswordPolicyChecks::checkPasswordCannotMatchUsername',
+					'PasswordCannotMatchBlacklist' => 'PasswordPolicyChecks::checkPasswordCannotMatchBlacklist',
+					'MaximalPasswordLength' => 'PasswordPolicyChecks::checkMaximalPasswordLength',
+				),
+			),
 		) );
+
 		$user = User::newFromName( 'Useruser' );
 		// Sanity
 		$this->assertTrue( $user->isValidPassword( 'Password1234' ) );
