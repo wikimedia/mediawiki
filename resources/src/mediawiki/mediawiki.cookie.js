@@ -16,7 +16,7 @@
 	mw.cookie = {
 
 		/**
-		 * Sets or deletes a cookie.
+		 * Set or delete a cookie.
 		 *
 		 * While this is natural in JavaScript, contrary to `WebResponse#setcookie` in PHP, the
 		 * default values for the `options` properties only apply if that property isn't set
@@ -101,13 +101,13 @@
 		},
 
 		/**
-		 * Gets the value of a cookie.
+		 * Get the value of a cookie.
 		 *
 		 * @param {string} key
 		 * @param {string} [prefix=wgCookiePrefix] The prefix of the key. If `prefix` is
 		 *   `undefined` or `null`, then `wgCookiePrefix` is used
 		 * @param {Mixed} [defaultValue=null]
-		 * @return {string} If the cookie exists, then the value of the
+		 * @return {string|null|Mixed} If the cookie exists, then the value of the
 		 *   cookie, otherwise `defaultValue`
 		 */
 		get: function ( key, prefix, defaultValue ) {
