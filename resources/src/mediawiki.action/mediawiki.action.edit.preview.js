@@ -212,7 +212,7 @@
 		request.done( function ( response ) {
 			var isSubject = ( section === 'new' ),
 				summaryMsg = isSubject ? 'subject-preview' : 'summary-preview';
-			if ( response.parse.parsedsummary ) {
+			if ( response.parse.parsedsummary && response.parse.parsedsummary['*'] !== '' ) {
 				$editform.find( '.mw-summary-preview' )
 					.empty()
 					.append(
