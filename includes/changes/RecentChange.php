@@ -848,4 +848,19 @@ class RecentChange {
 
 		return wfTimestamp( TS_UNIX, $timestamp ) > time() - $tolerance - $wgRCMaxAge;
 	}
+
+	/**
+	 * Parses and returns the rc_params attribute
+	 *
+	 * @return array|null
+	 */
+	public function parseParams() {
+		$rcParams = $this->getAttribute( 'rc_params' );
+
+		wfSuppressWarnings();
+		$unserializedParams = unserialize( $rcParams );
+		wfRestoreWarnings();
+
+		return $unserializedParams;
+	}
 }
