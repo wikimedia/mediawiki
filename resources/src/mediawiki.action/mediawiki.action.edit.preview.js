@@ -211,19 +211,18 @@
 		}
 		request.done( function ( response ) {
 			var isSubject = ( section === 'new' ),
-				summaryMsg = isSubject ? 'subject-preview' : 'summary-preview';
-			if ( response.parse.parsedsummary ) {
-				$editform.find( '.mw-summary-preview' )
-					.empty()
-					.append(
-						mw.message( summaryMsg ).parse(),
-						' ',
-						$( '<span>' ).addClass( 'comment' ).html(
-							// There is no equivalent to rawParams
-							mw.message( 'parentheses' ).escaped()
-								.replace( '$1', response.parse.parsedsummary['*'] )
-						)
-					);
+				summaryMsg = isSubject ? 'subject-preview' : 'summary-preview',
+				$summaryPreview = $editform.find( '.mw-summary-preview' ).empty();
+			if ( response.parse.parsedsummary && response.parse.parsedsummary['*'] !== '' ) {
+				$summaryPreview.append(
+					mw.message( summaryMsg ).parse(),
+					' ',
+					$( '<span>' ).addClass( 'comment' ).html(
+						// There is no equivalent to rawParams
+						mw.message( 'parentheses' ).escaped()
+							.replace( '$1', response.parse.parsedsummary['*'] )
+					)
+				);
 			}
 			mw.hook( 'wikipage.editform' ).fire( $editform );
 		} );
