@@ -33,23 +33,23 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	 * @var ResourceLoaderContext
 	 */
 	private $context;
-	protected $modules;
-	protected $language;
-	protected $direction;
-	protected $skin;
-	protected $user;
-	protected $debug;
-	protected $only;
-	protected $version;
+	protected $modules = -1;
+	protected $language = -1;
+	protected $direction = -1;
+	protected $skin = -1;
+	protected $user = -1;
+	protected $debug = -1;
+	protected $only = -1;
+	protected $version = -1;
 	protected $hash;
-	protected $raw;
+	protected $raw = -1;
 
 	public function __construct( ResourceLoaderContext $context ) {
 		$this->context = $context;
 	}
 
 	public function getModules() {
-		if ( !is_null( $this->modules ) ) {
+		if ( $this->modules !== -1 ) {
 			return $this->modules;
 		} else {
 			return $this->context->getModules();
@@ -64,7 +64,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	}
 
 	public function getLanguage() {
-		if ( !is_null( $this->language ) ) {
+		if ( $this->language !== -1 ) {
 			return $this->language;
 		} else {
 			return $this->context->getLanguage();
@@ -76,12 +76,12 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	 */
 	public function setLanguage( $language ) {
 		$this->language = $language;
-		$this->direction = null; // Invalidate direction since it might be based on language
+		$this->direction = -1; // Invalidate direction since it might be based on language
 		$this->hash = null;
 	}
 
 	public function getDirection() {
-		if ( !is_null( $this->direction ) ) {
+		if ( $this->direction !== -1 ) {
 			return $this->direction;
 		} else {
 			return $this->context->getDirection();
@@ -97,7 +97,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	}
 
 	public function getSkin() {
-		if ( !is_null( $this->skin ) ) {
+		if ( $this->skin !== -1 ) {
 			return $this->skin;
 		} else {
 			return $this->context->getSkin();
@@ -113,7 +113,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	}
 
 	public function getUser() {
-		if ( !is_null( $this->user ) ) {
+		if ( $this->user !== -1 ) {
 			return $this->user;
 		} else {
 			return $this->context->getUser();
@@ -130,7 +130,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	}
 
 	public function getDebug() {
-		if ( !is_null( $this->debug ) ) {
+		if ( $this->debug !== -1 ) {
 			return $this->debug;
 		} else {
 			return $this->context->getDebug();
@@ -146,7 +146,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	}
 
 	public function getOnly() {
-		if ( !is_null( $this->only ) ) {
+		if ( $this->only !== -1 ) {
 			return $this->only;
 		} else {
 			return $this->context->getOnly();
@@ -154,7 +154,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	}
 
 	/**
-	 * @param string $only
+	 * @param string|null $only
 	 */
 	public function setOnly( $only ) {
 		$this->only = $only;
@@ -162,7 +162,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	}
 
 	public function getVersion() {
-		if ( !is_null( $this->version ) ) {
+		if ( $this->version !== -1 ) {
 			return $this->version;
 		} else {
 			return $this->context->getVersion();
@@ -170,7 +170,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	}
 
 	/**
-	 * @param string $version
+	 * @param string|null $version
 	 */
 	public function setVersion( $version ) {
 		$this->version = $version;
@@ -178,7 +178,7 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	}
 
 	public function getRaw() {
-		if ( !is_null( $this->raw ) ) {
+		if ( $this->raw !== -1 ) {
 			return $this->raw;
 		} else {
 			return $this->context->getRaw();

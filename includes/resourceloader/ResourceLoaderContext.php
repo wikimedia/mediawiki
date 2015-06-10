@@ -59,24 +59,27 @@ class ResourceLoaderContext {
 		$this->resourceLoader = $resourceLoader;
 		$this->request = $request;
 
-		// Interpret request
 		// List of modules
 		$modules = $request->getVal( 'modules' );
 		$this->modules = $modules ? self::expandModuleNames( $modules ) : array();
+
+
 		// Various parameters
-		$this->skin = $request->getVal( 'skin' );
 		$this->user = $request->getVal( 'user' );
 		$this->debug = $request->getFuzzyBool(
-			'debug', $resourceLoader->getConfig()->get( 'ResourceLoaderDebug' )
+			'debug',
+			$resourceLoader->getConfig()->get( 'ResourceLoaderDebug' )
 		);
-		$this->only = $request->getVal( 'only' );
-		$this->version = $request->getVal( 'version' );
+		$this->only = $request->getVal( 'only', null );
+		$this->version = $request->getVal( 'version', null );
 		$this->raw = $request->getFuzzyBool( 'raw' );
+
 		// Image requests
 		$this->image = $request->getVal( 'image' );
 		$this->variant = $request->getVal( 'variant' );
 		$this->format = $request->getVal( 'format' );
 
+		$this->skin = $request->getVal( 'skin' );
 		$skinnames = Skin::getSkinNames();
 		// If no skin is specified, or we don't recognize the skin, use the default skin
 		if ( !$this->skin || !isset( $skinnames[$this->skin] ) ) {
@@ -177,7 +180,7 @@ class ResourceLoaderContext {
 	}
 
 	/**
-	 * @return string|null
+	 * @return string
 	 */
 	public function getSkin() {
 		return $this->skin;
@@ -305,21 +308,21 @@ class ResourceLoaderContext {
 	 * @return bool
 	 */
 	public function shouldIncludeScripts() {
-		return is_null( $this->getOnly() ) || $this->getOnly() === 'scripts';
+		return $this->getOnly() === null || $this->getOnly() === 'scripts';
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function shouldIncludeStyles() {
-		return is_null( $this->getOnly() ) || $this->getOnly() === 'styles';
+		return $this->getOnly() === null || $this->getOnly() === 'styles';
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function shouldIncludeMessages() {
-		return is_null( $this->getOnly() );
+		return $this->getOnly() === null;
 	}
 
 	/**
