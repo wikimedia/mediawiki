@@ -15,8 +15,8 @@ phpunit.php enables colors for other OSs at runtime
 	timeoutForSmallTests="10"
 	timeoutForMediumTests="30"
 	timeoutForLargeTests="60"
-	strict="true"
-	verbose="true">
+	strict="false"
+	verbose="false">
 	<testsuites>
 		<testsuite name="includes">
 			<directory>includes</directory>
