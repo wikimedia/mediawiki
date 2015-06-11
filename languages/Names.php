@@ -158,7 +158,9 @@
 	'gl' => 'galego',		# Galician
 	'glk' => 'گیلکی',	# Gilaki
 	'gn' => 'Avañe\'ẽ',	# Guaraní, Paraguayan
-	'gom-latn' => 'Konknni',	# Goan Konkani (Latin script)
+	'gom' => 'गोवा कोंकणी / Gova Konknni',	# Goan Konkani
+	'gom-deva' => 'गोवा कोंकणी',	# Goan Konkani (Devanagari script)
+	'gom-latn' => 'Gova Konknni',	# Goan Konkani (Latin script)
 	'got' => '𐌲𐌿𐍄𐌹𐍃𐌺',	# Gothic
 	'grc' => 'Ἀρχαία ἑλληνικὴ', # Ancient Greek
 	'gsw' => 'Alemannisch',	# Alemannic
