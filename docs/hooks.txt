@@ -2852,6 +2852,11 @@ $specialSearch: SpecialSearch object ($this)
 $output: $wgOut
 $term: Search term specified by the user
 
+'SpecialSearchResultsAppend': Called immediately before returning HTML
+on the search results page.  Useful for including a feedback link.
+$specialSearch: SpecialSearch object ($this)
+$output: $wgOut
+
 'SpecialSearchSetupEngine': Allows passing custom data to search engine.
 $search: SpecialSearch special page object
 $profile: String: current search profile

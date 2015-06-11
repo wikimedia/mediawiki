@@ -144,3 +144,10 @@ going to run a public MediaWiki, so you can be notified of security fixes.
 == IRC help ==
 
 There's usually someone online in #mediawiki on irc.freenode.net.
+
+== Special:Search ==
+
+Revive the SpecialSearchResultsAppend hook.
+* Occurs after the list of search results are rendered.
+* Use case: Append a "give us feedback" link beneath the search results
+
