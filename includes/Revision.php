@@ -19,6 +19,7 @@
  *
  * @file
  */
+use MediaWiki\Storage\Sql\TextTableBlobStore;
 
 /**
  * @todo document
@@ -1221,6 +1222,8 @@ class Revision implements IDBAccessObject {
 	 * $row is usually an object from wfFetchRow(), both the flags and the text
 	 * field must be included.
 	 *
+	 * @deprecated since 1.26 //TODO: alternative
+	 *
 	 * @param stdClass $row The text data
 	 * @param string $prefix Table prefix (default 'old_')
 	 * @param string|bool $wiki The name of the wiki to load the revision text from
@@ -1230,38 +1233,7 @@ class Revision implements IDBAccessObject {
 	 * @return string Text the text requested or false on failure
 	 */
 	public static function getRevisionText( $row, $prefix = 'old_', $wiki = false ) {
-
-		# Get data
-		$textField = $prefix . 'text';
-		$flagsField = $prefix . 'flags';
-
-		if ( isset( $row->$flagsField ) ) {
-			$flags = explode( ',', $row->$flagsField );
-		} else {
-			$flags = array();
-		}
-
-		if ( isset( $row->$textField ) ) {
-			$text = $row->$textField;
-		} else {
-			return false;
-		}
-
-		# Use external methods for external objects, text in table is URL-only then
-		if ( in_array( 'external', $flags ) ) {
-			$url = $text;
-			$parts = explode( '://', $url, 2 );
-			if ( count( $parts ) == 1 || $parts[1] == '' ) {
-				return false;
-			}
-			$text = ExternalStore::fetchFromURL( $url, array( 'wiki' => $wiki ) );
-		}
-
-		// If the text was fetched without an error, convert it
-		if ( $text !== false ) {
-			$text = self::decompressRevisionText( $text, $flags );
-		}
-		return $text;
+		return TextTableBlobStore::getRevisionText( $row, $prefix, $wiki );
 	}
 
 	/**
@@ -1271,77 +1243,26 @@ class Revision implements IDBAccessObject {
 	 * data is compressed, and 'utf-8' if we're saving in UTF-8
 	 * mode.
 	 *
+	 * @deprecated since 1.26 //TODO: alternative
+	 *
 	 * @param mixed $text Reference to a text
 	 * @return string
 	 */
 	public static function compressRevisionText( &$text ) {
-		global $wgCompressRevisions;
-		$flags = array();
-
-		# Revisions not marked this way will be converted
-		# on load if $wgLegacyCharset is set in the future.
-		$flags[] = 'utf-8';
-
-		if ( $wgCompressRevisions ) {
-			if ( function_exists( 'gzdeflate' ) ) {
-				$deflated = gzdeflate( $text );
-
-				if ( $deflated === false ) {
-					wfLogWarning( __METHOD__ . ': gzdeflate() failed' );
-				} else {
-					$text = $deflated;
-					$flags[] = 'gzip';
-				}
-			} else {
-				wfDebug( __METHOD__ . " -- no zlib support, not compressing\n" );
-			}
-		}
-		return implode( ',', $flags );
+		return TextTableBlobStore::compressRevisionText( $text );
 	}
 
 	/**
 	 * Re-converts revision text according to it's flags.
+	 *
+	 * @deprecated since 1.26 //TODO: alternative
 	 *
 	 * @param mixed $text Reference to a text
 	 * @param array $flags Compression flags
 	 * @return string|bool Decompressed text, or false on failure
 	 */
 	public static function decompressRevisionText( $text, $flags ) {
-		if ( in_array( 'gzip', $flags ) ) {
-			# Deal with optional compression of archived pages.
-			# This can be done periodically via maintenance/compressOld.php, and
-			# as pages are saved if $wgCompressRevisions is set.
-			$text = gzinflate( $text );
-
-			if ( $text === false ) {
-				wfLogWarning( __METHOD__ . ': gzinflate() failed' );
-				return false;
-			}
-		}
-
-		if ( in_array( 'object', $flags ) ) {
-			# Generic compressed storage
-			$obj = unserialize( $text );
-			if ( !is_object( $obj ) ) {
-				// Invalid object
-				return false;
-			}
-			$text = $obj->getText();
-		}
-
-		global $wgLegacyEncoding;
-		if ( $text !== false && $wgLegacyEncoding
-			&& !in_array( 'utf-8', $flags ) && !in_array( 'utf8', $flags )
-		) {
-			# Old revisions kept around in a legacy encoding?
-			# Upconvert on demand.
-			# ("utf8" checked for compatibility with some broken
-			#  conversion scripts 2008-12-30)
-			global $wgContLang;
-			$text = $wgContLang->iconv( $wgLegacyEncoding, 'UTF-8', $text );
-		}
-
-		return $text;
+		return TextTableBlobStore::decompressRevisionText( $text, $flags );
 	}
 
 	/**
@@ -1358,32 +1279,12 @@ class Revision implements IDBAccessObject {
 		$this->checkContentModel();
 
 		$data = $this->mText;
-		$flags = self::compressRevisionText( $data );
-
-		# Write to external storage if required
-		if ( $wgDefaultExternalStore ) {
-			// Store and get the URL
-			$data = ExternalStore::insertToDefault( $data );
-			if ( !$data ) {
-				throw new MWException( "Unable to store text to external storage" );
-			}
-			if ( $flags ) {
-				$flags .= ',';
-			}
-			$flags .= 'external';
-		}
 
 		# Record the text (or external storage URL) to the text table
 		if ( $this->mTextId === null ) {
-			$old_id = $dbw->nextSequenceValue( 'text_old_id_seq' );
-			$dbw->insert( 'text',
-				array(
-					'old_id' => $old_id,
-					'old_text' => $data,
-					'old_flags' => $flags,
-				), __METHOD__
-			);
-			$this->mTextId = $dbw->insertId();
+			//FIXME: use injected blob store
+			$blobStore = StorageServices::getDefaultInstance()->getDefaultBlobStore();
+			$old_id = $blobStore->saveData( $data );
 		}
 
 		if ( $this->mComment === null ) {
@@ -1447,6 +1348,7 @@ class Revision implements IDBAccessObject {
 			);
 		}
 
+		//FIXME: $flags are not known, they are internal to TextTableBlobStore
 		Hooks::run( 'RevisionInsertComplete', array( &$this, $data, $flags ) );
 
 		return $this->mId;
