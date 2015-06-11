@@ -9,7 +9,7 @@
 image/gif	[BITMAP]
 image/png image/x-png	[BITMAP]
 image/ief	[BITMAP]
-image/jpeg	[BITMAP]
+image/jpeg image/pjpeg	[BITMAP]
 image/jp2	[BITMAP]
 image/xbm	[BITMAP]
 image/tiff	[BITMAP]
