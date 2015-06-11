@@ -19,6 +19,8 @@
  *
  * @file
  */
+use MediaWiki\Storage\ContentBlobInfo;
+use MediaWiki\Storage\Sql\TextTableBlobStore;
 
 /**
  * @todo document
@@ -36,35 +38,28 @@ class Revision implements IDBAccessObject {
 	protected $mMinorEdit;
 	protected $mTimestamp;
 	protected $mDeleted;
-	protected $mSize;
-	protected $mSha1;
+
+	protected $mSize; //FIXME: across all primary content objects
+	protected $mSha1; //FIXME: over all primary data! (if there is just one, use it)
+
 	protected $mParentId;
 	protected $mComment;
-	protected $mText;
-	protected $mTextId;
-
-	/**
-	 * @var stdClass|null
-	 */
-	protected $mTextRow;
 
 	/**
 	 * @var null|Title
 	 */
 	protected $mTitle;
 	protected $mCurrent;
-	protected $mContentModel;
-	protected $mContentFormat;
 
 	/**
-	 * @var Content|null|bool
+	 * @var Content[]
 	 */
-	protected $mContent;
+	protected $mSlotContent;
 
 	/**
-	 * @var null|ContentHandler
+	 * @var ContentBlobInfo[]
 	 */
-	protected $mContentHandler;
+	protected $mSlotBlobInfo;
 
 	/**
 	 * @var int
@@ -170,6 +165,10 @@ class Revision implements IDBAccessObject {
 	 */
 	public static function newFromArchiveRow( $row, $overrides = array() ) {
 		global $wgContentHandlerUseDB;
+
+		// FIXME: when loading archive revisions, slot association needs to
+		// work differently! Perhaps use a different RevisionSlotTable instance
+		// in that case.
 
 		$attribs = $overrides + array(
 			'page'       => isset( $row->ar_page_id ) ? $row->ar_page_id : null,
@@ -426,12 +425,9 @@ class Revision implements IDBAccessObject {
 	 * @return array
 	 */
 	public static function selectFields() {
-		global $wgContentHandlerUseDB;
-
 		$fields = array(
 			'rev_id',
 			'rev_page',
-			'rev_text_id',
 			'rev_timestamp',
 			'rev_comment',
 			'rev_user_text',
@@ -442,11 +438,6 @@ class Revision implements IDBAccessObject {
 			'rev_parent_id',
 			'rev_sha1',
 		);
-
-		if ( $wgContentHandlerUseDB ) {
-			$fields[] = 'rev_content_format';
-			$fields[] = 'rev_content_model';
-		}
 
 		return $fields;
 	}
@@ -459,11 +450,13 @@ class Revision implements IDBAccessObject {
 	public static function selectArchiveFields() {
 		global $wgContentHandlerUseDB;
 		$fields = array(
+			//FIXME: to keep the link between slot content and revision intact,
+			//       ar_id would need to be the actual revision id. This is not the case at the moment.
 			'ar_id',
 			'ar_page_id',
 			'ar_rev_id',
 			'ar_text',
-			'ar_text_id',
+			'ar_text_id', // keep for B/C
 			'ar_timestamp',
 			'ar_comment',
 			'ar_user_text',
@@ -476,22 +469,11 @@ class Revision implements IDBAccessObject {
 		);
 
 		if ( $wgContentHandlerUseDB ) {
+			// keep for B/C
 			$fields[] = 'ar_content_format';
 			$fields[] = 'ar_content_model';
 		}
 		return $fields;
-	}
-
-	/**
-	 * Return the list of text fields that should be selected to read the
-	 * revision text
-	 * @return array
-	 */
-	public static function selectTextFields() {
-		return array(
-			'old_text',
-			'old_flags'
-		);
 	}
 
 	/**
@@ -549,7 +531,6 @@ class Revision implements IDBAccessObject {
 		if ( is_object( $row ) ) {
 			$this->mId = intval( $row->rev_id );
 			$this->mPage = intval( $row->rev_page );
-			$this->mTextId = intval( $row->rev_text_id );
 			$this->mComment = $row->rev_comment;
 			$this->mUser = intval( $row->rev_user );
 			$this->mMinorEdit = intval( $row->rev_minor_edit );
@@ -582,27 +563,6 @@ class Revision implements IDBAccessObject {
 				$this->mTitle = null;
 			}
 
-			if ( !isset( $row->rev_content_model ) ) {
-				$this->mContentModel = null; # determine on demand if needed
-			} else {
-				$this->mContentModel = strval( $row->rev_content_model );
-			}
-
-			if ( !isset( $row->rev_content_format ) ) {
-				$this->mContentFormat = null; # determine on demand if needed
-			} else {
-				$this->mContentFormat = strval( $row->rev_content_format );
-			}
-
-			// Lazy extraction...
-			$this->mText = null;
-			if ( isset( $row->old_text ) ) {
-				$this->mTextRow = $row;
-			} else {
-				// 'text' table row entry will be lazy-loaded
-				$this->mTextRow = null;
-			}
-
 			// Use user_name for users and rev_user_text for IPs...
 			$this->mUserText = null; // lazy load if left null
 			if ( $this->mUser == 0 ) {
@@ -615,23 +575,14 @@ class Revision implements IDBAccessObject {
 			// Build a new revision to be saved...
 			global $wgUser; // ugh
 
-			# if we have a content object, use it to set the model and type
-			if ( !empty( $row['content'] ) ) {
-				// @todo when is that set? test with external store setup! check out insertOn() [dk]
-				if ( !empty( $row['text_id'] ) ) {
-					throw new MWException( "Text already stored in external store (id {$row['text_id']}), " .
-						"can't serialize content object" );
-				}
-
-				$row['content_model'] = $row['content']->getModel();
-				# note: mContentFormat is initializes later accordingly
-				# note: content is serialized later in this method!
-				# also set text to null?
+			// FIXME: text_id would be used for old archive entries. We need ar_id too, in that case.
+			if ( !empty( $row['text_id'] ) ) {
+				throw new MWException( "Text already stored in external store (id {$row['text_id']}), " .
+					"can't serialize content object" );
 			}
 
 			$this->mId = isset( $row['id'] ) ? intval( $row['id'] ) : null;
 			$this->mPage = isset( $row['page'] ) ? intval( $row['page'] ) : null;
-			$this->mTextId = isset( $row['text_id'] ) ? intval( $row['text_id'] ) : null;
 			$this->mUserText = isset( $row['user_text'] )
 				? strval( $row['user_text'] ) : $wgUser->getName();
 			$this->mUser = isset( $row['user'] ) ? intval( $row['user'] ) : $wgUser->getId();
@@ -643,34 +594,27 @@ class Revision implements IDBAccessObject {
 			$this->mParentId = isset( $row['parent_id'] ) ? intval( $row['parent_id'] ) : null;
 			$this->mSha1 = isset( $row['sha1'] ) ? strval( $row['sha1'] ) : null;
 
-			$this->mContentModel = isset( $row['content_model'] )
-				? strval( $row['content_model'] ) : null;
-			$this->mContentFormat = isset( $row['content_format'] )
-				? strval( $row['content_format'] ) : null;
-
 			// Enforce spacing trimming on supplied text
 			$this->mComment = isset( $row['comment'] ) ? trim( strval( $row['comment'] ) ) : null;
-			$this->mText = isset( $row['text'] ) ? rtrim( strval( $row['text'] ) ) : null;
-			$this->mTextRow = null;
 
 			$this->mTitle = isset( $row['title'] ) ? $row['title'] : null;
 
 			// if we have a Content object, override mText and mContentModel
-			if ( !empty( $row['content'] ) ) {
-				if ( !( $row['content'] instanceof Content ) ) {
-					throw new MWException( '`content` field must contain a Content object.' );
-				}
-
-				$handler = $this->getContentHandler();
-				$this->mContent = $row['content'];
-
-				$this->mContentModel = $this->mContent->getModel();
-				$this->mContentHandler = null;
-
-				$this->mText = $handler->serializeContent( $row['content'], $this->getContentFormat() );
-			} elseif ( $this->mText !== null ) {
-				$handler = $this->getContentHandler();
-				$this->mContent = $handler->unserializeContent( $this->mText );
+			if ( isset( $row['slots'] ) ) {
+				//FIXME: Do we assume we have all primary slots here, explicitly?
+				//       Or do we allow only some slots to be specified, and take the rest
+				//       from the previous revision?
+				$this->setSlots( $row['slots'] );
+			} elseif ( isset( $row['content'] ) ) {
+				$this->setSlotContent( 'main', $row['content'] );
+			} elseif ( isset( $row['text'] ) ) {
+				// B/C only!
+				$format = isset( $row['format'] ) ? $row['format'] : null;
+				$model = isset( $row['model'] ) ? $row['model'] : null;
+				//FIXME: guess model from title if not given!
+				$this->setSlotText( 'main', $row['content'], $model, $format );
+			} else {
+				throw new MWException( 'No revision content defined.' );
 			}
 
 			// If we have a Title object, make sure it is consistent with mPage.
@@ -689,18 +633,15 @@ class Revision implements IDBAccessObject {
 			$this->mCurrent = false;
 
 			// If we still have no length, see it we have the text to figure it out
-			if ( !$this->mSize && $this->mContent !== null ) {
-				$this->mSize = $this->mContent->getSize();
+			if ( !$this->mSize ) {
+				$this->mSize = $this->calculateContentSize();
 			}
 
 			// Same for sha1
 			if ( $this->mSha1 === null ) {
-				$this->mSha1 = $this->mText === null ? null : self::base36Sha1( $this->mText );
+				$this->mSha1 = $this->calculateContentHash();
 			}
 
-			// force lazy init
-			$this->getContentModel();
-			$this->getContentFormat();
 		} else {
 			throw new MWException( 'Revision constructor passed invalid row format.' );
 		}
@@ -1016,6 +957,7 @@ class Revision implements IDBAccessObject {
 	 * @param User $user User object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter
 	 * @since 1.21
+	 * @deprecated since 1.26, use getContentSlots
 	 * @return Content|null
 	 */
 	public function getContent( $audience = self::FOR_PUBLIC, User $user = null ) {
@@ -1045,6 +987,7 @@ class Revision implements IDBAccessObject {
 	 * Fetch original serialized data without regard for view restrictions
 	 *
 	 * @since 1.21
+	 * @deprecated since 1.26, use a RevisionContentStore
 	 * @return string
 	 */
 	public function getSerializedData() {
@@ -1093,16 +1036,11 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @return string The content model id associated with this revision,
 	 *     see the CONTENT_MODEL_XXX constants.
+	 *
+	 * @deprecated since 1.26
 	 **/
 	public function getContentModel() {
-		if ( !$this->mContentModel ) {
-			$title = $this->getTitle();
-			$this->mContentModel = ( $title ? $title->getContentModel() : CONTENT_MODEL_WIKITEXT );
-
-			assert( !empty( $this->mContentModel ) );
-		}
-
-		return $this->mContentModel;
+		// FIXME: main slot!
 	}
 
 	/**
@@ -1113,16 +1051,11 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @return string The content format id associated with this revision,
 	 *     see the CONTENT_FORMAT_XXX constants.
+	 *
+	 * @deprecated since 1.26
 	 **/
 	public function getContentFormat() {
-		if ( !$this->mContentFormat ) {
-			$handler = $this->getContentHandler();
-			$this->mContentFormat = $handler->getDefaultFormat();
-
-			assert( !empty( $this->mContentFormat ) );
-		}
-
-		return $this->mContentFormat;
+		// FIXME: main slot!
 	}
 
 	/**
@@ -1130,21 +1063,10 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @throws MWException
 	 * @return ContentHandler
-	 */
+	 *
+	 * @deprecated since 1.26 */
 	public function getContentHandler() {
-		if ( !$this->mContentHandler ) {
-			$model = $this->getContentModel();
-			$this->mContentHandler = ContentHandler::getForModelID( $model );
-
-			$format = $this->getContentFormat();
-
-			if ( !$this->mContentHandler->isSupportedFormat( $format ) ) {
-				throw new MWException( "Oops, the content format $format is not supported for "
-					. "this content model, $model" );
-			}
-		}
-
-		return $this->mContentHandler;
+		// FIXME: main slot!
 	}
 
 	/**
@@ -1221,6 +1143,8 @@ class Revision implements IDBAccessObject {
 	 * $row is usually an object from wfFetchRow(), both the flags and the text
 	 * field must be included.
 	 *
+	 * @deprecated since 1.26 //TODO: alternative
+	 *
 	 * @param stdClass $row The text data
 	 * @param string $prefix Table prefix (default 'old_')
 	 * @param string|bool $wiki The name of the wiki to load the revision text from
@@ -1230,38 +1154,7 @@ class Revision implements IDBAccessObject {
 	 * @return string Text the text requested or false on failure
 	 */
 	public static function getRevisionText( $row, $prefix = 'old_', $wiki = false ) {
-
-		# Get data
-		$textField = $prefix . 'text';
-		$flagsField = $prefix . 'flags';
-
-		if ( isset( $row->$flagsField ) ) {
-			$flags = explode( ',', $row->$flagsField );
-		} else {
-			$flags = array();
-		}
-
-		if ( isset( $row->$textField ) ) {
-			$text = $row->$textField;
-		} else {
-			return false;
-		}
-
-		# Use external methods for external objects, text in table is URL-only then
-		if ( in_array( 'external', $flags ) ) {
-			$url = $text;
-			$parts = explode( '://', $url, 2 );
-			if ( count( $parts ) == 1 || $parts[1] == '' ) {
-				return false;
-			}
-			$text = ExternalStore::fetchFromURL( $url, array( 'wiki' => $wiki ) );
-		}
-
-		// If the text was fetched without an error, convert it
-		if ( $text !== false ) {
-			$text = self::decompressRevisionText( $text, $flags );
-		}
-		return $text;
+		return TextTableBlobStore::getRevisionText( $row, $prefix, $wiki );
 	}
 
 	/**
@@ -1271,77 +1164,26 @@ class Revision implements IDBAccessObject {
 	 * data is compressed, and 'utf-8' if we're saving in UTF-8
 	 * mode.
 	 *
+	 * @deprecated since 1.26 //TODO: alternative
+	 *
 	 * @param mixed $text Reference to a text
 	 * @return string
 	 */
 	public static function compressRevisionText( &$text ) {
-		global $wgCompressRevisions;
-		$flags = array();
-
-		# Revisions not marked this way will be converted
-		# on load if $wgLegacyCharset is set in the future.
-		$flags[] = 'utf-8';
-
-		if ( $wgCompressRevisions ) {
-			if ( function_exists( 'gzdeflate' ) ) {
-				$deflated = gzdeflate( $text );
-
-				if ( $deflated === false ) {
-					wfLogWarning( __METHOD__ . ': gzdeflate() failed' );
-				} else {
-					$text = $deflated;
-					$flags[] = 'gzip';
-				}
-			} else {
-				wfDebug( __METHOD__ . " -- no zlib support, not compressing\n" );
-			}
-		}
-		return implode( ',', $flags );
+		return TextTableBlobStore::compressRevisionText( $text );
 	}
 
 	/**
 	 * Re-converts revision text according to it's flags.
+	 *
+	 * @deprecated since 1.26 //TODO: alternative
 	 *
 	 * @param mixed $text Reference to a text
 	 * @param array $flags Compression flags
 	 * @return string|bool Decompressed text, or false on failure
 	 */
 	public static function decompressRevisionText( $text, $flags ) {
-		if ( in_array( 'gzip', $flags ) ) {
-			# Deal with optional compression of archived pages.
-			# This can be done periodically via maintenance/compressOld.php, and
-			# as pages are saved if $wgCompressRevisions is set.
-			$text = gzinflate( $text );
-
-			if ( $text === false ) {
-				wfLogWarning( __METHOD__ . ': gzinflate() failed' );
-				return false;
-			}
-		}
-
-		if ( in_array( 'object', $flags ) ) {
-			# Generic compressed storage
-			$obj = unserialize( $text );
-			if ( !is_object( $obj ) ) {
-				// Invalid object
-				return false;
-			}
-			$text = $obj->getText();
-		}
-
-		global $wgLegacyEncoding;
-		if ( $text !== false && $wgLegacyEncoding
-			&& !in_array( 'utf-8', $flags ) && !in_array( 'utf8', $flags )
-		) {
-			# Old revisions kept around in a legacy encoding?
-			# Upconvert on demand.
-			# ("utf8" checked for compatibility with some broken
-			#  conversion scripts 2008-12-30)
-			global $wgContLang;
-			$text = $wgContLang->iconv( $wgLegacyEncoding, 'UTF-8', $text );
-		}
-
-		return $text;
+		return TextTableBlobStore::decompressRevisionText( $text, $flags );
 	}
 
 	/**
@@ -1358,32 +1200,12 @@ class Revision implements IDBAccessObject {
 		$this->checkContentModel();
 
 		$data = $this->mText;
-		$flags = self::compressRevisionText( $data );
-
-		# Write to external storage if required
-		if ( $wgDefaultExternalStore ) {
-			// Store and get the URL
-			$data = ExternalStore::insertToDefault( $data );
-			if ( !$data ) {
-				throw new MWException( "Unable to store text to external storage" );
-			}
-			if ( $flags ) {
-				$flags .= ',';
-			}
-			$flags .= 'external';
-		}
 
 		# Record the text (or external storage URL) to the text table
 		if ( $this->mTextId === null ) {
-			$old_id = $dbw->nextSequenceValue( 'text_old_id_seq' );
-			$dbw->insert( 'text',
-				array(
-					'old_id' => $old_id,
-					'old_text' => $data,
-					'old_flags' => $flags,
-				), __METHOD__
-			);
-			$this->mTextId = $dbw->insertId();
+			//FIXME: use injected blob store
+			$blobStore = StorageServices::getDefaultInstance()->getDefaultBlobStore();
+			$old_id = $blobStore->saveData( $data );
 		}
 
 		if ( $this->mComment === null ) {
@@ -1447,6 +1269,7 @@ class Revision implements IDBAccessObject {
 			);
 		}
 
+		//FIXME: $flags are not known, they are internal to TextTableBlobStore
 		Hooks::run( 'RevisionInsertComplete', array( &$this, $data, $flags ) );
 
 		return $this->mId;
