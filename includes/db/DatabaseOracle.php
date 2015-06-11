@@ -220,9 +220,9 @@ class DatabaseOracle extends DatabaseBase {
 
 	function __destruct() {
 		if ( $this->mOpened ) {
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			$this->close();
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 		}
 	}
 
@@ -306,7 +306,7 @@ class DatabaseOracle extends DatabaseBase {
 
 		$session_mode = $this->mFlags & DBO_SYSDBA ? OCI_SYSDBA : OCI_DEFAULT;
 
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		if ( $this->mFlags & DBO_PERSISTENT ) {
 			$this->mConn = oci_pconnect(
 				$this->mUser,
@@ -332,7 +332,7 @@ class DatabaseOracle extends DatabaseBase {
 				$session_mode
 			);
 		}
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		if ( $this->mUser != $this->mDBname ) {
 			//change current schema in session
@@ -393,7 +393,7 @@ class DatabaseOracle extends DatabaseBase {
 			$explain_count
 		);
 
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 
 		if ( ( $this->mLastResult = $stmt = oci_parse( $this->mConn, $sql ) ) === false ) {
 			$e = oci_error( $this->mConn );
@@ -411,7 +411,7 @@ class DatabaseOracle extends DatabaseBase {
 			}
 		}
 
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		if ( $explain_count > 0 ) {
 			return $this->doQuery( 'SELECT id, cardinality "ROWS" FROM plan_table ' .
@@ -687,7 +687,7 @@ class DatabaseOracle extends DatabaseBase {
 			}
 		}
 
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 
 		if ( oci_execute( $stmt, $this->execFlags() ) === false ) {
 			$e = oci_error( $stmt );
@@ -702,7 +702,7 @@ class DatabaseOracle extends DatabaseBase {
 			$this->mAffectedRows = oci_num_rows( $stmt );
 		}
 
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		if ( isset( $lob ) ) {
 			foreach ( $lob as $lob_v ) {
@@ -1250,9 +1250,9 @@ class DatabaseOracle extends DatabaseBase {
 		}
 		$sql = 'ALTER SESSION SET CURRENT_SCHEMA=' . strtoupper( $db );
 		$stmt = oci_parse( $this->mConn, $sql );
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$success = oci_execute( $stmt );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( !$success ) {
 			$e = oci_error( $stmt );
 			if ( $e['code'] != '1435' ) {
@@ -1491,7 +1491,7 @@ class DatabaseOracle extends DatabaseBase {
 			}
 		}
 
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 
 		if ( oci_execute( $stmt, $this->execFlags() ) === false ) {
 			$e = oci_error( $stmt );
@@ -1506,7 +1506,7 @@ class DatabaseOracle extends DatabaseBase {
 			$this->mAffectedRows = oci_num_rows( $stmt );
 		}
 
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		if ( isset( $lob ) ) {
 			foreach ( $lob as $lob_v ) {

@@ -522,9 +522,9 @@ class DiffHistoryBlob implements HistoryBlob {
 	function diff( $t1, $t2 ) {
 		# Need to do a null concatenation with warnings off, due to bugs in the current version of xdiff
 		# "String is not zero-terminated"
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$diff = xdiff_string_rabdiff( $t1, $t2 ) . '';
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		return $diff;
 	}
 
@@ -535,9 +535,9 @@ class DiffHistoryBlob implements HistoryBlob {
 	 */
 	function patch( $base, $diff ) {
 		if ( function_exists( 'xdiff_string_bpatch' ) ) {
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			$text = xdiff_string_bpatch( $base, $diff ) . '';
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 			return $text;
 		}
 

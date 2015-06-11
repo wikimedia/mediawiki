@@ -231,9 +231,9 @@ function wfStreamThumb( array $params ) {
 		// Fix IE brokenness
 		$imsString = preg_replace( '/;.*$/', '', $_SERVER["HTTP_IF_MODIFIED_SINCE"] );
 		// Calculate time
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$imsUnix = strtotime( $imsString );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( wfTimestamp( TS_UNIX, $img->getTimestamp() ) <= $imsUnix ) {
 			HttpStatus::header( 304  );
 			return;

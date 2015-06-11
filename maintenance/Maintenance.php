@@ -957,10 +957,9 @@ abstract class Maintenance {
 
 		$wgShowSQLErrors = true;
 
-		// @codingStandardsIgnoreStart Allow error suppression. wfSuppressWarnings()
-		// is not available.
-		@set_time_limit( 0 );
-		// @codingStandardsIgnoreStart
+		MediaWiki\suppressWarnings();
+		set_time_limit( 0 );
+		MediaWiki\restoreWarnings();
 
 		$this->adjustMemoryLimit();
 	}

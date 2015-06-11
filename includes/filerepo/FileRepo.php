@@ -907,9 +907,9 @@ class FileRepo {
 		$status->merge( $backend->doOperations( $operations, $opts ) );
 		// Cleanup for disk source files...
 		foreach ( $sourceFSFilesToDelete as $file ) {
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			unlink( $file ); // FS cleanup
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 		}
 
 		return $status;
@@ -1295,9 +1295,9 @@ class FileRepo {
 		}
 		// Cleanup for disk source files...
 		foreach ( $sourceFSFilesToDelete as $file ) {
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			unlink( $file ); // FS cleanup
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 		}
 
 		return $status;

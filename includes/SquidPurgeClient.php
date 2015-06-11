@@ -95,9 +95,9 @@ class SquidPurgeClient {
 		}
 		$this->socket = socket_create( AF_INET, SOCK_STREAM, SOL_TCP );
 		socket_set_nonblock( $this->socket );
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$ok = socket_connect( $this->socket, $ip, $this->port );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( !$ok ) {
 			$error = socket_last_error( $this->socket );
 			if ( $error !== self::EINPROGRESS ) {
@@ -153,12 +153,12 @@ class SquidPurgeClient {
 			} elseif ( IP::isIPv6( $this->host ) ) {
 				throw new MWException( '$wgSquidServers does not support IPv6' );
 			} else {
-				wfSuppressWarnings();
+				MediaWiki\suppressWarnings();
 				$this->ip = gethostbyname( $this->host );
 				if ( $this->ip === $this->host ) {
 					$this->ip = false;
 				}
-				wfRestoreWarnings();
+				MediaWiki\restoreWarnings();
 			}
 		}
 		return $this->ip;
@@ -178,11 +178,11 @@ class SquidPurgeClient {
 	 */
 	public function close() {
 		if ( $this->socket ) {
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			socket_set_block( $this->socket );
 			socket_shutdown( $this->socket );
 			socket_close( $this->socket );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 		}
 		$this->socket = null;
 		$this->readBuffer = '';
@@ -252,9 +252,9 @@ class SquidPurgeClient {
 			$buf = substr( $this->writeBuffer, 0, self::BUFFER_SIZE );
 			$flags = 0;
 		}
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$bytesSent = socket_send( $socket, $buf, strlen( $buf ), $flags );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		if ( $bytesSent === false ) {
 			$error = socket_last_error( $socket );
@@ -278,9 +278,9 @@ class SquidPurgeClient {
 		}
 
 		$buf = '';
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$bytesRead = socket_recv( $socket, $buf, self::BUFFER_SIZE, 0 );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 		if ( $bytesRead === false ) {
 			$error = socket_last_error( $socket );
 			if ( $error != self::EAGAIN && $error != self::EINTR ) {
@@ -442,9 +442,9 @@ class SquidPurgeClientPool {
 			}
 			$exceptSockets = null;
 			$timeout = min( $startTime + $this->timeout - microtime( true ), 1 );
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			$numReady = socket_select( $readSockets, $writeSockets, $exceptSockets, $timeout );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 			if ( $numReady === false ) {
 				wfDebugLog( 'squid', __METHOD__ . ': Error in stream_select: ' .
 					socket_strerror( socket_last_error() ) . "\n" );

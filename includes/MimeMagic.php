@@ -624,9 +624,9 @@ class MimeMagic {
 	 */
 	private function doGuessMimeType( $file, $ext ) { // TODO: remove $ext param
 		// Read a chunk of the file
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$f = fopen( $file, 'rb' );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		if ( !$f ) {
 			return 'unknown/unknown';
@@ -780,9 +780,9 @@ class MimeMagic {
 			return $this->detectZipType( $head, $tail, $ext );
 		}
 
-		wfSuppressWarnings();
+		MediaWiki\suppressWarnings();
 		$gis = getimagesize( $file );
-		wfRestoreWarnings();
+		MediaWiki\restoreWarnings();
 
 		if ( $gis && isset( $gis['mime'] ) ) {
 			$mime = $gis['mime'];

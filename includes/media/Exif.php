@@ -294,9 +294,9 @@ class Exif {
 
 		$this->debugFile( $this->basename, __FUNCTION__, true );
 		if ( function_exists( 'exif_read_data' ) ) {
-			wfSuppressWarnings();
+			MediaWiki\suppressWarnings();
 			$data = exif_read_data( $this->file, 0, true );
-			wfRestoreWarnings();
+			MediaWiki\restoreWarnings();
 		} else {
 			throw new MWException( "Internal error: exif_read_data not present. " .
 				"\$wgShowEXIF may be incorrectly set or not checked by an extension." );
@@ -471,17 +471,17 @@ class Exif {
 					break;
 			}
 			if ( $charset ) {
-				wfSuppressWarnings();
+				MediaWiki\suppressWarnings();
 				$val = iconv( $charset, 'UTF-8//IGNORE', $val );
-				wfRestoreWarnings();
+				MediaWiki\restoreWarnings();
 			} else {
 				// if valid utf-8, assume that, otherwise assume windows-1252
 				$valCopy = $val;
 				UtfNormal\Validator::quickIsNFCVerify( $valCopy ); //validates $valCopy.
 				if ( $valCopy !== $val ) {
-					wfSuppressWarnings();
+					MediaWiki\suppressWarnings();
 					$val = iconv( 'Windows-1252', 'UTF-8//IGNORE', $val );
-					wfRestoreWarnings();
+					MediaWiki\restoreWarnings();
 				}
 			}
 

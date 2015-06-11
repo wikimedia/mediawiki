@@ -135,9 +135,9 @@ class BackupDumper {
 		foreach ( $args as $arg ) {
 			$matches = array();
 			if ( preg_match( '/^--(.+?)(?:=(.+?)(?::(.+?))?)?$/', $arg, $matches ) ) {
-				wfSuppressWarnings();
+				MediaWiki\suppressWarnings();
 				list( /* $full */, $opt, $val, $param ) = $matches;
-				wfRestoreWarnings();
+				MediaWiki\restoreWarnings();
 
 				switch ( $opt ) {
 					case "plugin":
