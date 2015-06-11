@@ -1,0 +1,7 @@
+
+page ---> revision ---> text
+page ---> revision ---> text  ---> extstore
+
+page ---> revision <--- revcontent ---> text
+                                   ---> extstore
+                                   ---> ...
