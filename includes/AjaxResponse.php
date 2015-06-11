@@ -86,7 +86,7 @@ class AjaxResponse {
 
 		$this->mDisabled = false;
 		$this->mText = '';
-		$this->mResponseCode = '200 OK';
+		$this->mResponseCode = 200;
 		$this->mLastModified = false;
 		$this->mContentType = 'application/x-wiki';
 
@@ -158,7 +158,11 @@ class AjaxResponse {
 	 */
 	function sendHeaders() {
 		if ( $this->mResponseCode ) {
-			$n = preg_replace( '/^ *(\d+)/', '\1', $this->mResponseCode );
+			// For back-compat, it is supported that mResponseCode be a string like " 200 OK"
+			// (with leading space and the status message after). Cast response code to an integer
+			// to take advantage of PHP's conversion rules which will turn "  200 OK" into 200.
+			// http://php.net/string#language.types.string.conversion
+			$n = intval( trim( $this->mResponseCode ) );
 			HttpStatus::header( $n );
 		}
 
@@ -246,7 +250,7 @@ class AjaxResponse {
 				$ismodsince >= $wgCacheEpoch
 			) {
 				ini_set( 'zlib.output_compression', 0 );
-				$this->setResponseCode( "304 Not Modified" );
+				$this->setResponseCode( 304 );
 				$this->disable();
 				$this->mLastModified = $lastmod;
 
