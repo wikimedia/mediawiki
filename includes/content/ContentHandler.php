@@ -722,13 +722,15 @@ abstract class ContentHandler {
 	 * content model can be used where.
 	 *
 	 * @param Title $title The page's title.
+	 * @param string $slotName //FIXME: update all implementations!
 	 *
 	 * @return bool True if content of this kind can be used on the given page, false otherwise.
 	 */
-	public function canBeUsedOn( Title $title ) {
+	public function canBeUsedOn( Title $title, $slotName = 'main' ) {
 		$ok = true;
 
-		Hooks::run( 'ContentModelCanBeUsedOn', array( $this->getModelID(), $title, &$ok ) );
+		//FIXME: update hook signature
+		Hooks::run( 'ContentModelCanBeUsedOn', array( $this->getModelID(), $title, &$ok, $slotName ) );
 
 		return $ok;
 	}

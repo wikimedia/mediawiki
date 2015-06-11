@@ -19,6 +19,7 @@
  *
  * @file
  */
+use MediaWiki\Storage\RevisionContentLookup;
 
 /**
  * Abstract class for type hinting (accepts WikiPage, Article, ImagePage, CategoryPage)
@@ -469,6 +470,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return bool
 	 */
 	public function isRedirect() {
+		//FIXME: which slot should define the redirect? main? any? all? or a special 'redirect' slot?
 		$content = $this->getContent();
 		if ( !$content ) {
 			return false;
@@ -656,11 +658,32 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return Content|null The content of the current revision
 	 *
 	 * @since 1.21
+	 * @deprecated since 1.26 use getContentSlots
 	 */
 	public function getContent( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+		$slots = $this->getContentSlots( array( 'main' ), $audience, $user );
+		return isset( $slots['main'] ) ? $slots['main'] : null;
+	}
+
+	/**
+	 * Get the content slots of the current revision.
+	 *
+	 * @since 1.26
+	 *
+	 * @param string[]|null $slots
+	 * @param int $audience One of:
+	 *   Revision::FOR_PUBLIC       to be displayed to all users
+	 *   Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *   Revision::RAW              get the text regardless of permissions
+	 * @param User $user User object to check for, only if FOR_THIS_USER is passed
+	 *   to the $audience parameter
+	 *
+	 * @return Content[]
+	 */
+	public function getContentSlots( $slots = null, $audience = Revision::FOR_PUBLIC, User $user = null ) {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
-			return $this->mLastRevision->getContent( $audience, $user );
+			return $this->mLastRevision->getContentSlots( $audience, $user );
 		}
 		return null;
 	}
@@ -1688,10 +1711,71 @@ class WikiPage implements Page, IDBAccessObject {
 	 *     new: Boolean indicating if the function attempted to create a new article.
 	 *     revision: The revision object for the inserted revision, or null.
 	 *
-	 * @since 1.21
+	 * @deprecated 1.26, use doEditContentSlots instead
 	 * @throws MWException
 	 */
 	public function doEditContent( Content $content, $summary, $flags = 0, $baseRevId = false,
+		User $user = null, $serialFormat = null
+	) {
+		$slots = array( 'main' => $content );
+		return $this->doEditContentSlots( $slots, $summary, $flags, $baseRevId, $user, $serialFormat );
+	}
+
+	/**
+	 * Change an existing article or create a new article. Updates RC and all necessary caches,
+	 * optionally via the deferred update array.
+	 *
+	 * @param Content[] $slots Content slots, keyed by slot name. Use 'main' for the main slot.
+	 * @param string $summary Edit summary
+	 * @param int $flags Bitfield:
+	 *      EDIT_NEW
+	 *          Article is known or assumed to be non-existent, create a new one
+	 *      EDIT_UPDATE
+	 *          Article is known or assumed to be pre-existing, update it
+	 *      EDIT_MINOR
+	 *          Mark this edit minor, if the user is allowed to do so
+	 *      EDIT_SUPPRESS_RC
+	 *          Do not log the change in recentchanges
+	 *      EDIT_FORCE_BOT
+	 *          Mark the edit a "bot" edit regardless of user rights
+	 *      EDIT_DEFER_UPDATES
+	 *          Defer some of the updates until the end of index.php
+	 *      EDIT_AUTOSUMMARY
+	 *          Fill in blank summaries with generated text where possible
+	 *
+	 * If neither EDIT_NEW nor EDIT_UPDATE is specified, the status of the
+	 * article will be detected. If EDIT_UPDATE is specified and the article
+	 * doesn't exist, the function will return an edit-gone-missing error. If
+	 * EDIT_NEW is specified and the article does exist, an edit-already-exists
+	 * error will be returned. These two conditions are also possible with
+	 * auto-detection due to MediaWiki's performance-optimised locking strategy.
+	 *
+	 * @param bool|int $baseRevId The revision ID this edit was based off, if any.
+	 *   This is not the parent revision ID, rather the revision ID for older
+	 *   content used as the source for a rollback, for example.
+	 * @param User $user The user doing the edit
+	 * @param string $serialFormat Format for storing the content in the
+	 *   database. //FIXME: this can only apply to one content object. Why is this here at all?
+	 *
+	 * @throws MWException
+	 * @return Status Possible errors:
+	 *     edit-hook-aborted: The ArticleSave hook aborted the edit but didn't
+	 *       set the fatal flag of $status.
+	 *     edit-gone-missing: In update mode, but the article didn't exist.
+	 *     edit-conflict: In update mode, the article changed unexpectedly.
+	 *     edit-no-change: Warning that the text was the same as before.
+	 *     edit-already-exists: In creation mode, but the article already exists.
+	 *
+	 *  Extensions may define additional errors.
+	 *
+	 *  $return->value will contain an associative array with members as follows:
+	 *     new: Boolean indicating if the function attempted to create a new article.
+	 *     revision: The revision object for the inserted revision, or null.
+	 *
+	 * @since 1.21
+	 * @throws MWException
+	 */
+	public function doEditContentSlots( $slots, $summary, $flags = 0, $baseRevId = false,
 		User $user = null, $serialFormat = null
 	) {
 		global $wgUser, $wgUseAutomaticEditSummaries, $wgUseRCPatrol, $wgUseNPPatrol;
@@ -1701,10 +1785,20 @@ class WikiPage implements Page, IDBAccessObject {
 			throw new MWException( 'Something is trying to edit an article with an empty title' );
 		}
 
-		if ( !$content->getContentHandler()->canBeUsedOn( $this->getTitle() ) ) {
-			return Status::newFatal( 'content-not-allowed-here',
-				ContentHandler::getLocalizedName( $content->getModel() ),
-				$this->getTitle()->getPrefixedText() );
+		if ( !isset( $slots['main'] ) ) {
+			//FIXME: This should actually be ok: we may be editing only a non-main slot.
+			//       The main slot should only be required for EDIT_NEW.
+			throw new MWException( 'Something is trying to edit an article with a main content object' );
+		}
+
+		$mainContent = $slots['main'];
+
+		foreach ( $slots as $slotName => $slotContent ) {
+			if ( !$slotContent->getContentHandler()->canBeUsedOn( $this->getTitle(), $slotName ) ) {
+				return Status::newFatal( 'content-not-allowed-here',
+					ContentHandler::getLocalizedName( $slotContent->getModel() ),
+					$this->getTitle()->getPrefixedText() );
+			}
 		}
 
 		$user = is_null( $user ) ? $wgUser : $user;
@@ -1718,7 +1812,8 @@ class WikiPage implements Page, IDBAccessObject {
 		$flags = $this->checkFlags( $flags );
 
 		// handle hook
-		$hook_args = array( &$this, &$user, &$content, &$summary,
+		//FIXME: $mainContent isn't sufficient; update hook signature, or introduce new hook!
+		$hook_args = array( &$this, &$user, &$mainContent, &$summary,
 							$flags & EDIT_MINOR, null, null, &$flags, &$status );
 
 		if ( !Hooks::run( 'PageContentSave', $hook_args )
@@ -1737,35 +1832,49 @@ class WikiPage implements Page, IDBAccessObject {
 		$isminor = ( $flags & EDIT_MINOR ) && $user->isAllowed( 'minoredit' );
 		$bot = $flags & EDIT_FORCE_BOT;
 
-		$old_content = $this->getContent( Revision::RAW ); // current revision's content
+		//FIXME: we want meta-info about the slots, not necessarily fully loaded content.
+		//  A ContentSlot object would be nice, with content model, format, size, hash, timstamp, etc.
+		$old_slots = $this->getContentSlots( array_keys( $slots ), Revision::RAW ); // current revision's content
 
-		$oldsize = $old_content ? $old_content->getSize() : 0;
 		$oldid = $this->getLatest();
 		$oldIsRedirect = $this->isRedirect();
 		$oldcountable = $this->isCountable();
 
-		$handler = $content->getContentHandler();
-
 		// Provide autosummaries if one is not provided and autosummaries are enabled.
 		if ( $wgUseAutomaticEditSummaries && $flags & EDIT_AUTOSUMMARY && $summary == '' ) {
-			if ( !$old_content ) {
-				$old_content = null;
-			}
-			$summary = $handler->getAutosummary( $old_content, $content, $flags );
+			//FIXME: what if there is no $mainContent? Which one do we want to use for the summary?
+			$old_content = isset( $old_slots['main'] ) ? $old_slots['main'] : null;
+			$mainHandler = $mainContent->getContentHandler();
+			$summary = $mainHandler->getAutosummary( $old_content, $mainContent, $flags );
 		}
 
-		$editInfo = $this->prepareContentForEdit( $content, null, $user, $serialFormat );
-		$serialized = $editInfo->pst;
+		//FIXME: spec out hook interface. Keep it narrow, or include $this?!
+		//FIXME: supply all old slots, with fully loaded content? or only meta-info about slots?
+		Hooks::run( 'EditPageDeriveContent', array( $old_slots, &$slots ) );
 
-		/**
-		 * @var Content $content
-		 */
-		$content = $editInfo->pstContent;
-		$newsize = $content->getSize();
+		//FIXME: we dropped $serialFormat from the parameters here!
+		$slotEditInfo = $this->prepareSlotsForEdit( $slots, null, $user );
+		$pstSlots = $slots;
+
+		foreach ( $slotEditInfo as $slotName => $info ) {
+			$pstSlots[$slotName] = $info->pst;
+		}
 
 		$dbw = wfGetDB( DB_MASTER );
 		$now = wfTimestampNow();
 		$this->mTimestamp = $now;
+
+		$revisionFields = array(
+			'page'       => false, // will be overwritten below
+			'title'      => $this->getTitle(), // for determining the default content model
+			'comment'    => $summary,
+			'minor_edit' => $isminor,
+			'slots'      => $pstSlots, //FIXME: fix all code relying on the 'text' field
+			'parent_id'  => $oldid,
+			'user'       => $user->getId(),
+			'user_text'  => $user->getName(),
+			'timestamp'  => $now,
+		);
 
 		if ( $flags & EDIT_UPDATE ) {
 			// Update article, but only if changed.
@@ -1777,39 +1886,37 @@ class WikiPage implements Page, IDBAccessObject {
 				$status->fatal( 'edit-gone-missing' );
 
 				return $status;
-			} elseif ( !$old_content ) {
-				// Sanity check for bug 37225
-				throw new MWException( "Could not find text for current revision {$oldid}." );
+			}
+			//FIXME: dropped sanity check for bug 37225 here, since it may be ok for the previous
+			// revision to not have the slots we are currently editing. We'dneed an extra check to
+			// see if the previous revision had *no* content in any slot.
+
+			$revisionFields['page'] = $this->getId();
+			$revision = new Revision( $revisionFields );
+
+			//FIXME: we currently do not handle dropping (removing) slots!
+			$changed = false;
+			foreach ( $pstSlots as $slotName => $slotContent ) {
+				if ( !isset( $old_slots[$slotName] ) || !$slotContent->equals( $old_slots[$slotName] ) ) {
+					$changed= true;
+					break;
+				}
 			}
 
-			$revision = new Revision( array(
-				'page'       => $this->getId(),
-				'title'      => $this->getTitle(), // for determining the default content model
-				'comment'    => $summary,
-				'minor_edit' => $isminor,
-				'text'       => $serialized,
-				'len'        => $newsize,
-				'parent_id'  => $oldid,
-				'user'       => $user->getId(),
-				'user_text'  => $user->getName(),
-				'timestamp'  => $now,
-				'content_model' => $content->getModel(),
-				'content_format' => $serialFormat,
-			) ); // XXX: pass content object?!
+			$dbw->begin( __METHOD__ );
 
-			$changed = !$content->equals( $old_content );
+			foreach ( $pstSlots as $slotName => $slotContent ) {
+				$prepStatus = $slotContent->prepareSave( $this, $flags, $oldid, $user );
+				$status->merge( $prepStatus );
+			}
+
+			if ( !$status->isOK() ) {
+				$dbw->rollback( __METHOD__ );
+
+				return $status;
+			}
 
 			if ( $changed ) {
-				$dbw->begin( __METHOD__ );
-
-				$prepStatus = $content->prepareSave( $this, $flags, $oldid, $user );
-				$status->merge( $prepStatus );
-
-				if ( !$status->isOK() ) {
-					$dbw->rollback( __METHOD__ );
-
-					return $status;
-				}
 				$revisionId = $revision->insertOn( $dbw );
 
 				// Update page
@@ -1827,6 +1934,10 @@ class WikiPage implements Page, IDBAccessObject {
 				}
 
 				Hooks::run( 'NewRevisionFromEditComplete', array( $this, $revision, $baseRevId, $user ) );
+
+				//FIXME: calculate size of old and new revision, across all slots!
+				// Alternatively, find a different measure for "size of change".
+				$oldsize = $newsize = -1;
 
 				// Update recentchanges
 				if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
@@ -1871,19 +1982,6 @@ class WikiPage implements Page, IDBAccessObject {
 			// Create new article
 			$status->value['new'] = true;
 
-			$dbw->begin( __METHOD__ );
-
-			$prepStatus = $content->prepareSave( $this, $flags, $oldid, $user );
-			$status->merge( $prepStatus );
-
-			if ( !$status->isOK() ) {
-				$dbw->rollback( __METHOD__ );
-
-				return $status;
-			}
-
-			$status->merge( $prepStatus );
-
 			// Add the page record; stake our claim on this title!
 			// This will return false if the article already exists
 			$newid = $this->insertOn( $dbw );
@@ -1895,28 +1993,15 @@ class WikiPage implements Page, IDBAccessObject {
 				return $status;
 			}
 
-			// Save the revision text...
-			$revision = new Revision( array(
-				'page'       => $newid,
-				'title'      => $this->getTitle(), // for determining the default content model
-				'comment'    => $summary,
-				'minor_edit' => $isminor,
-				'text'       => $serialized,
-				'len'        => $newsize,
-				'user'       => $user->getId(),
-				'user_text'  => $user->getName(),
-				'timestamp'  => $now,
-				'content_model' => $content->getModel(),
-				'content_format' => $serialFormat,
-			) );
+			// Save the revision...
+			$revisionFields['page'] = $newid;
+			$revision = new Revision( $revisionFields );
 			$revisionId = $revision->insertOn( $dbw );
 
-			// Bug 37225: use accessor to get the text as Revision may trim it
-			$content = $revision->getContent(); // sanity; get normalized version
+			//FIXME: "Bug 37225: use accessor to get the text as Revision may trim it"
+			// ^--- trimming should happen as part of PST, so it shouldn't be an issue here any more.
 
-			if ( $content ) {
-				$newsize = $content->getSize();
-			}
+			$newsize = -1; //FIXME: determine "size" of new reviewion (or some notion of "change size")
 
 			// Update the page record with revision data
 			$this->updateRevisionOn( $dbw, $revision, 0 );
@@ -1942,7 +2027,8 @@ class WikiPage implements Page, IDBAccessObject {
 			// Update links, etc.
 			$this->doEditUpdates( $revision, $user, array( 'created' => true ) );
 
-			$hook_args = array( &$this, &$user, $content, $summary,
+			//FIXME: $mainContent isn't sufficient; update hook signature, or introduce new hook!
+			$hook_args = array( &$this, &$user, $mainContent, $summary,
 								$flags & EDIT_MINOR, null, null, &$flags, $revision );
 
 			ContentHandler::runLegacyHooks( 'ArticleInsertComplete', $hook_args );
@@ -1957,7 +2043,8 @@ class WikiPage implements Page, IDBAccessObject {
 		// Return the new revision (or null) to the caller
 		$status->value['revision'] = $revision;
 
-		$hook_args = array( &$this, &$user, $content, $summary,
+		//FIXME: $mainContent isn't sufficient; update hook signature, or introduce new hook!
+		$hook_args = array( &$this, &$user, $mainContent, $summary,
 			$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $baseRevId );
 
 		ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $hook_args );
@@ -2009,6 +2096,35 @@ class WikiPage implements Page, IDBAccessObject {
 		ContentHandler::deprecated( __METHOD__, '1.21' );
 		$content = ContentHandler::makeContent( $text, $this->getTitle() );
 		return $this->prepareContentForEdit( $content, $revid, $user );
+	}
+
+
+	/**
+	 * Prepare content which is about to be saved.
+	 * Returns a an array of stdClass with source, pst and output members, one per slot.
+	 *
+	 * @param Content[] $content Slot content, by slot name
+	 * @param Revision|int|null $revision Revision object. For backwards compatibility, a
+	 *        revision ID is also accepted, but this is deprecated.
+	 * @param User|null $user
+	 * @param bool $useCache Check shared prepared edit cache
+	 *
+	 * @return object[] stdObjects with field, keyed by slot name.
+	 *
+	 * @since 1.21
+	 */
+	private function prepareSlotsForEdit(
+		array $slots, $revision = null, User $user = null, $useCache = true
+	) {
+		$slotEditInfo = array();
+
+		//FIXME: serial format??
+
+		foreach ( $slots as $slotName => $slotContent ) {
+			$slotEditInfo[$slotName] = $this->prepareContentForEdit( $slotContent, $revision, $user, null, $useCache );
+		}
+
+		return $slotEditInfo;
 	}
 
 	/**
@@ -2155,6 +2271,8 @@ class WikiPage implements Page, IDBAccessObject {
 			'moved' => false,
 			'oldcountable' => null
 		);
+
+		//FIXME: all slots!
 		$content = $revision->getContent();
 
 		// Parse the text
@@ -2169,10 +2287,12 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		// Save it to the parser cache
+		//FIXME: ParserCache key needs to know the slot name!
 		ParserCache::singleton()->save(
 			$editInfo->output, $this, $editInfo->popts, $editInfo->timestamp, $editInfo->revid
 		);
 
+		//FIXME: all slots!
 		// Update the links tables and other secondary data
 		if ( $content ) {
 			$recursive = $options['changed']; // bug 50785
@@ -3506,4 +3626,5 @@ class WikiPage implements Page, IDBAccessObject {
 		Hooks::run( 'WikiPageDeletionUpdates', array( $this, $content, &$updates ) );
 		return $updates;
 	}
+
 }
