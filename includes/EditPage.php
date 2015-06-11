@@ -3464,6 +3464,8 @@ HTML
 		global $wgOut, $wgUser, $wgRawHtml, $wgLang;
 		global $wgAllowUserCss, $wgAllowUserJs;
 
+		$stats = $wgOut->getContext()->getStats();
+
 		if ( $wgRawHtml && !$this->mTokenOk ) {
 			// Could be an offsite preview attempt. This is very unsafe if
 			// HTML is enabled, as it could be an attack.
@@ -3475,6 +3477,7 @@ HTML
 				$parsedNote = $wgOut->parse( "<div class='previewnote'>" .
 					wfMessage( 'session_fail_preview_html' )->text() . "</div>", true, /* interface */true );
 			}
+			$stats->increment( 'edit.failures.session_loss' );
 			return $parsedNote;
 		}
 
@@ -3498,11 +3501,16 @@ HTML
 			if ( $this->mTriedSave && !$this->mTokenOk ) {
 				if ( $this->mTokenOkExceptSuffix ) {
 					$note = wfMessage( 'token_suffix_mismatch' )->plain();
+					$stats->increment( 'edit.failures.bad_token' );
 				} else {
 					$note = wfMessage( 'session_fail_preview' )->plain();
+					$stats->increment( 'edit.failures.session_loss' );
 				}
 			} elseif ( $this->incompleteForm ) {
 				$note = wfMessage( 'edit_form_incomplete' )->plain();
+				if ( $this->mTriedSave ) {
+					$stats->increment( 'edit.failures.incomplete_form' );
+				}
 			} else {
 				$note = wfMessage( 'previewnote' )->plain() . ' ' . $continueEditing;
 			}
