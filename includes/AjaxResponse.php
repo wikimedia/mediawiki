@@ -158,7 +158,9 @@ class AjaxResponse {
 	 */
 	function sendHeaders() {
 		if ( $this->mResponseCode ) {
-			$n = preg_replace( '/^ *(\d+)/', '\1', $this->mResponseCode );
+			// Extract the first number from strings like "200 OK" and "304 Not Modified"
+			// http://php.net/string#language.types.string.conversion
+			$n = intval( trim( $this->mResponseCode ) );
 			HttpStatus::header( $n );
 		}
 
