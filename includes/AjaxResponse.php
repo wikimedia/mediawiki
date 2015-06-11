@@ -86,7 +86,7 @@ class AjaxResponse {
 
 		$this->mDisabled = false;
 		$this->mText = '';
-		$this->mResponseCode = '200 OK';
+		$this->mResponseCode = 200;
 		$this->mLastModified = false;
 		$this->mContentType = 'application/x-wiki';
 
@@ -158,8 +158,10 @@ class AjaxResponse {
 	 */
 	function sendHeaders() {
 		if ( $this->mResponseCode ) {
-			$n = preg_replace( '/^ *(\d+)/', '\1', $this->mResponseCode );
-			HttpStatus::header( $n );
+			// Cast response code to an integer to take advantage of PHP's
+			// string to integer conversion rules which will turn malformed
+			// status values like "  200 OK" into 200.
+			HttpStatus::header( (int) $this->mResponseCode );
 		}
 
 		header ( "Content-Type: " . $this->mContentType );
