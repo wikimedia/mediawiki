@@ -30,6 +30,12 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	/** @var bool Was the DB modified in this request */
 	protected $wasSaved = false;
 
+	/** @var array Tags that can be added */
+	protected $addableTags = null;
+
+	/** @var array Tags that cannot be removed */
+	protected $unremovableTags = null;
+
 	/** @var bool True if the submit button was clicked, and the form was posted */
 	private $submitClicked;
 
@@ -53,6 +59,8 @@ class SpecialEditTags extends UnlistedSpecialPage {
 
 	public function __construct() {
 		parent::__construct( 'EditTags', 'changetags' );
+		$this->addableTags = ChangeTags::listExplicitlyDefinedTags();
+		$this->unremovableTags = ChangeTags::listExtensionDefinedTags();
 	}
 
 	public function execute( $par ) {
@@ -280,6 +288,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			$tags = $list->current()->getTags();
 			if ( $tags ) {
 				$tags = explode( ',', $tags );
+				$tags = array_diff( $tags, $this->unremovableTags );
 			} else {
 				$tags = array();
 			}
@@ -298,31 +307,28 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		} else {
 			// Otherwise, use a multi-select field for adding tags, and a list of
 			// checkboxes for removing them
-			$tags = array();
-
-			// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
-			for ( $list->reset(); $list->current(); $list->next() ) {
-				// @codingStandardsIgnoreEnd
-				$currentTags = $list->current()->getTags();
-				if ( $currentTags ) {
-					$tags = array_merge( $tags, explode( ',', $currentTags ) );
-				}
-			}
-			$tags = array_unique( $tags );
 
 			$html = '<table id="mw-edittags-tags-selector-multi"><tr><td>';
+
+			// Tags to add
 			$tagSelect = $this->getTagSelect( array(), $this->msg( 'tags-edit-add' )->plain() );
 			$html .= '<p>' . $tagSelect[0] . '</p>' . $tagSelect[1] . '</td><td>';
-			$html .= Xml::element( 'p', null, $this->msg( 'tags-edit-remove' )->plain() );
-			$html .= Xml::checkLabel( $this->msg( 'tags-edit-remove-all-tags' )->plain(),
-				'wpRemoveAllTags', 'mw-edittags-remove-all' );
-			$i = 0; // used for generating checkbox IDs only
-			foreach ( $tags as $tag ) {
-				$html .= Xml::element( 'br' ) . "\n" . Xml::checkLabel( $tag,
-					'wpTagsToRemove[]', 'mw-edittags-remove-' . $i++, false, array(
-						'value' => $tag,
-						'class' => 'mw-edittags-remove-checkbox',
-					) );
+
+			// Tags to remove
+			$tags = $this->getTagsForRemoval( $list );
+			if ( $tags ) {
+				$html .= Xml::element( 'p', null, $this->msg( 'tags-edit-remove' )->plain() );
+				$html .= Xml::checkLabel( $this->msg( 'tags-edit-remove-all-tags' )->plain(),
+					'wpRemoveAllTags', 'mw-edittags-remove-all' );
+				$i = 0; // used for generating checkbox IDs only
+				foreach ( $tags as $tag ) {
+					$html .= Xml::element( 'br' ) . "\n" . Xml::checkLabel( $tag,
+						'wpTagsToRemove[]', 'mw-edittags-remove-' . $i++, false, array(
+							'value' => $tag,
+							'class' => 'mw-edittags-remove-checkbox',
+						)
+					);
+				}
 			}
 		}
 
@@ -339,9 +345,8 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	 * applied by users.
 	 *
 	 * @param array $selectedTags The tags that should be preselected in the
-	 * list. Any tags in this list, but not in the list returned by
-	 * ChangeTags::listExplicitlyDefinedTags, will be appended to the <select>
-	 * element.
+	 * list. Any tags in this list, but not in the list of tags that can be
+	 * added, will be appended to the <select> element.
 	 * @param string $label The text of a <label> to precede the <select>
 	 * @return array HTML <label> element at index 0, HTML <select> element at
 	 * index 1
@@ -356,14 +361,35 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			'size' => '8',
 		) );
 
-		$tags = ChangeTags::listExplicitlyDefinedTags();
-		$tags = array_unique( array_merge( $tags, $selectedTags ) );
-		foreach ( $tags as $tag ) {
-			$result[1] .= Xml::option( $tag, $tag, in_array( $tag, $selectedTags ) );
+		foreach ( $selectedTags as $tag ) {
+			$result[1] .= Xml::option( $tag, $tag, true );
+		}
+
+		foreach ( array_diff( $this->addableTags, $selectedTags ) as $tag ) {
+			$result[1] .= Xml::option( $tag, $tag, false );
 		}
 
 		$result[1] .= Xml::closeElement( 'select' );
 		return $result;
+	}
+
+	/**
+	 * Returns all tags from a list of tagged revisions that appear at least once
+	 * and can be removed
+	 */
+	protected function getTagsForRemoval( $list ) {
+		$tags = array();
+		// @codingStandardsIgnoreStart Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed
+		for ( $list->reset(); $list->current(); $list->next() ) {
+			// @codingStandardsIgnoreEnd
+			$currentTags = $list->current()->getTags();
+			if ( $currentTags ) {
+				$tags = array_merge( $tags, explode( ',', $currentTags ) );
+			}
+		}
+
+		// Return after removing duplicates and tags that cannot be removed
+		return array_diff( array_unique( $tags ), $this->unremovableTags );
 	}
 
 	/**
