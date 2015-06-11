@@ -426,16 +426,13 @@ class ChangeTags {
 				'tags-update-add-not-allowed-multi', $diff );
 		}
 
-		// to be removed, a tag has to be either explicitly defined or not defined
-		// at all
-		$definedTags = self::listDefinedTags();
-		$diff = array_diff( $tagsToRemove, $explicitlyDefinedTags );
-		if ( $diff ) {
-			$intersect = array_intersect( $diff, $definedTags );
-			if ( $intersect ) {
-				return self::restrictedTagError( 'tags-update-remove-not-allowed-one',
-					'tags-update-remove-not-allowed-multi', $intersect );
-			}
+		// to be removed, a tag must not be defined by an extension, or equivalently it
+		// has to be either explicitly defined or not defined at all
+		// (assuming no edge case of a tag both explicitly-defined and extension-defined)
+		$intersect = array_intersect( $tagsToRemove, self::listExtensionDefinedTags() );
+		if ( $intersect ) {
+			return self::restrictedTagError( 'tags-update-remove-not-allowed-one',
+				'tags-update-remove-not-allowed-multi', $intersect );
 		}
 
 		return Status::newGood();
