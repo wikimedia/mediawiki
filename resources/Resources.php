@@ -1734,6 +1734,8 @@ return array(
 			'default' => 'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.css',
 		),
 		'dependencies' => array(
+			'mediawiki.Title',
+			'mediawiki.api',
 			'oojs-ui',
 		),
 		'messages' => array(
