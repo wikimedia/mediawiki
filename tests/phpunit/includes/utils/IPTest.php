@@ -130,7 +130,7 @@ class IPTest extends PHPUnit_Framework_TestCase {
 			array( ':', 'A colon is not an IP' ),
 			array( '124.24.52', 'IPv4 not enough quads' ),
 			array( '24.324.52.13', 'IPv4 out of range' ),
-			array( '.24.52.13', 'IPv4 starts with period' ),		
+			array( '.24.52.13', 'IPv4 starts with period' ),
 		);
 	}
 
@@ -347,16 +347,31 @@ class IPTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @covers IP::isPublic
+	 * @dataProvider provideIsPublic
 	 */
-	public function testPrivateIPs() {
-		$private = array( 'fc00::3', 'fc00::ff', '::1', '10.0.0.1', '172.16.0.1', '192.168.0.1' );
-		foreach ( $private as $p ) {
-			$this->assertFalse( IP::isPublic( $p ), "$p is not a public IP address" );
-		}
-		$public = array( '2001:5c0:1000:a::133', 'fc::3', '00FC::' );
-		foreach ( $public as $p ) {
-			$this->assertTrue( IP::isPublic( $p ), "$p is a public IP address" );
-		}
+	public function testIsPublic( $expected, $input ) {
+		$result = IP::isPublic( $input );
+		$this->assertEquals( $expected, $result );
+	}
+
+	/**
+	 * Provider for IP::testIsPublic()
+	 */
+	public static function provideIsPublic() {
+		return array(
+			array( false, 'fc00::3' ), # RFC 4193 (local)
+			array( false, 'fc00::ff'), # RFC 4193 (local)
+			array( false, '127.1.2.3'), # loopback
+			array( false, '::1'), # loopback
+			array( false, 'fe80::1'), # link-local
+			array( false, '169.254.1.1'), # link-local
+			array( false, '10.0.0.1'), # RFC 1918 (private)
+			array( false, '172.16.0.1'), # RFC 1918 (private)
+			array( false, '192.168.0.1'), # RFC 1918 (private)
+			array( true, '2001:5c0:1000:a::133'), # public
+			array( true, 'fc::3'), # public
+			array( true, '00FC::') # public
+		);
 	}
 
 	// Private wrapper used to test CIDR Parsing.

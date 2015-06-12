@@ -375,6 +375,8 @@ class IP {
 				'127.0.0.0/8', # loopback
 				'fc00::/7', # RFC 4193 (local)
 				'0:0:0:0:0:0:0:1', # loopback
+				'169.254.0.0/16', # link-local
+				'fe80::/10', # link-local
 			) );
 		}
 		return !$privateSet->match( $ip );
