@@ -683,8 +683,12 @@ abstract class JobQueue {
 	 * @since 1.22
 	 */
 	public static function incrStats( $key, $type, $delta = 1 ) {
-		wfIncrStats( $key, $delta );
-		wfIncrStats( "{$key}-{$type}", $delta );
+		static $stats;
+		if ( !$stats ) {
+			$stats = RequestContext::getMain()->getStats();
+		}
+		$stats->updateCount( "jobqueue.{$key}", $delta );
+		$stats->updateCount( "jobqueue.{$key}.{$type}", $delta );
 	}
 
 	/**
