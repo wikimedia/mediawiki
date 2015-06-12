@@ -786,6 +786,7 @@
 	"showhideselectedversions": "Akllasqa musuqchasqakunata rikuchiy/pakay",
 	"editundo": "kutichiy",
 	"diff-empty": "(Manam wak hina kanchu)",
+	"diff-multi-otherusers": "(Wakin {{PLURAL:$2|huk|$2}} ruraqpa {{PLURAL:$1|chawpipi huk llamk'apusqanqa manam rikuchisqachu|chawpipi $1 llamk'apusqankunaqa manam rikuchisqachu}})",
 	"diff-multi-manyusers": "({{PLURAL:$2|Hukmanta|$2-manta}} aswan ruraqkunap {{PLURAL:$1|chawpipi huk llamk'apusqanqa manam rikuchisqachu|chawpipi $1 llamk'apusqankunaqa manam rikuchisqachu}})",
 	"difference-missing-revision": "Kay wakin kaymanta ($1) {{PLURAL:$2|huk musuqchasqa|$2 musuqchasqakuna}} manam tarisqachu.\n\nKayqa tukurqanman qullusqa p'anchaman t'inkimuq mawk'ayasqa wiñay kawsay t'inkiraykuchá.\nImaymanata [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apim] tariykiman.",
 	"searchresults": "Maskaymanta tarisqakuna",

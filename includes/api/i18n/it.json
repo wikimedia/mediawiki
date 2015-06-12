@@ -76,6 +76,7 @@
 	"apihelp-expandtemplates-description": "Espandi tutti i template nel wikitesto.",
 	"apihelp-expandtemplates-param-title": "Titolo della pagina.",
 	"apihelp-expandtemplates-param-text": "Wikitesto da convertire.",
+	"apihelp-expandtemplates-param-prop": "Quale informazione ottenere.\n\nNota che se non è selezionato alcun valore, il risultato conterrà il codice wiki, ma l'output sarà in un formato obsoleto.",
 	"apihelp-expandtemplates-paramvalue-prop-wikitext": "Il wikitext espanso.",
 	"apihelp-expandtemplates-paramvalue-prop-volatile": "Se l'output sia volatile e non debba essere riutilizzato altrove all'interno della pagina.",
 	"apihelp-query+recentchanges-example-simple": "Elenco modifiche recenti.",

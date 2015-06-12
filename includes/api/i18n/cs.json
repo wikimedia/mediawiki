@@ -248,6 +248,7 @@
 	"apihelp-yamlfm-description": "Vypisuje data ve formátu YAML (v čitelné HTML podobě).",
 	"api-format-title": "Odpověď z MediaWiki API",
 	"api-format-prettyprint-header": "Toto je HTML reprezentace formátu $1. HTML se hodí pro ladění, ale pro aplikační použití je nevhodné.\n\nPro změnu výstupního formátu uveďte parametr <var>format</var>. Abyste viděli ne-HTML reprezentaci formátu $1, nastavte <kbd>format=$2</kbd>.\n\nVíce informací najdete v [[mw:Special:MyLanguage/API:Main page|úplné dokumentaci]] nebo v [[Special:ApiHelp/main|nápovědě k API]].",
+	"api-format-prettyprint-header-only-html": "Toto je HTML reprezentace určená pro ladění, která není vhodná pro použití v aplikacích.\n\nVíce informací najdete v [[mw:API|úplné dokumentaci]] nebo [[Special:ApiHelp/main|dokumentaci API]].",
 	"api-help-title": "Nápověda k MediaWiki API",
 	"api-help-lead": "Toto je automaticky generovaná dokumentační stránka k MediaWiki API.\n\nDokumentace a příklady: https://www.mediawiki.org/wiki/API",
 	"api-help-main-header": "Hlavní modul",

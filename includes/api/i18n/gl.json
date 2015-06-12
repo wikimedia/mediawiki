@@ -1047,6 +1047,7 @@
 	"apihelp-yamlfm-description": "Datos de saída en formato YAML(impresión en HTML).",
 	"api-format-title": "Resultado de API de MediaWiki",
 	"api-format-prettyprint-header": "Esta é a representación HTML do formato $1. HTML é bó para depurar, pero non é axeitado para usar nunha aplicación.\n\nEspecifique o parámetro <var>format</var> para cambiar o formato de saída. Para ver a representación non-HTML do formato $1, fixe <kbd>format=$2</kbd>.\n\n\nRevise a [[mw:API|documentación completa]], ou a [[Special:ApiHelp/main|axuda da API]] para obter máis información.",
+	"api-format-prettyprint-header-only-html": "Esta é unha representación HTML empregada para a depuración de erros, e non é axeitada para o uso de aplicacións.\n\nVexa a [[mw:API|documentación completa]], ou a [[Special:ApiHelp/main|axuda da API]] para máis información.",
 	"api-orm-param-props": "Campos a consultar.",
 	"api-orm-param-limit": "Número máximo de filas a mostrar.",
 	"api-pageset-param-titles": "Lista de títulos nos que traballar.",

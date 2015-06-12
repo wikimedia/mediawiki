@@ -7,7 +7,8 @@
 			"Danny-w",
 			"YaronSh",
 			"ערן",
-			"LaG roiL"
+			"LaG roiL",
+			"Elyashiv"
 		]
 	},
 	"apihelp-main-param-action": "איזו פעולה לבצע.",
@@ -18,6 +19,7 @@
 	"apihelp-block-description": "חסימת משתמש.",
 	"apihelp-block-param-user": "שם משתמש, כתובת IP, או טווח IP שהנך רוצה לחסום.",
 	"apihelp-block-param-reason": "סיבה לחסימה.",
+	"apihelp-block-param-anononly": "חסום משתמשים אנונימיים בלבד (דהיינו, השבתת עריכות אנונימיות מכתובת הIP הזאת)",
 	"apihelp-block-param-nocreate": "מניעת יצירת חשבונות",
 	"apihelp-block-param-autoblock": "חסימה אוטומטית גם של כתובת ה־IP האחרונה שהשתמש בה ושל כל כתובת IP שינסה להשתמש בה בעתיד.",
 	"apihelp-compare-param-fromtitle": "כותרת ראשונה להשוואה.",

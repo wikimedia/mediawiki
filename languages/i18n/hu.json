@@ -1768,7 +1768,7 @@
 	"unwatchthispage": "Figyelés leállítása",
 	"notanarticle": "Nem szócikk",
 	"notvisiblerev": "A változat törölve lett",
-	"watchlist-details": "A vitalapokon kívül {{PLURAL:$1|egy|$1}} lap van a figyelőlistádon.",
+	"watchlist-details": "$1 lap van a figyelőlistádon, a vitalapokat külön nem számolva.",
 	"wlheader-enotif": "Az e-mailen keresztül történő értesítés engedélyezve.",
 	"wlheader-showupdated": "Azok a lapok, amelyek megváltoztak, mióta utoljára megnézted őket, '''vastagítva''' láthatók.",
 	"wlnote": "Alább {{PLURAL:$1|az utolsó változás|az utolsó <strong>$1</strong> változás}} látható az elmúlt {{PLURAL:$2|órában|<strong>$2</strong> órában}}, $3 $4-kor.",

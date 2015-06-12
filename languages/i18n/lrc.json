@@ -4,7 +4,8 @@
 			"Bonevarluri",
 			"Mogoeilor",
 			"아라",
-			"Macofe"
+			"Macofe",
+			"Mjbmr"
 		]
 	},
 	"tog-underline": "هوم پیوند زیرخط دار:",
@@ -596,8 +597,8 @@
 	"newarticle": "تازه",
 	"newarticletext": "شما وادما هوم پیوندی هئیت که وجود ناره.\nسی راس کردن بلگه.شرو د نیسنن مئن جعوه هاری بکید(سیل[$1 ] سی دونسمنی بیشتر بکید).\nار شما سی اشتوا کردن هایئن ایچه، دگمه وادما رئتن دوارته نیئر تونه بپورنیت.",
 	"anontalkpagetext": "----",
-	"noarticletext": "د تازه یا د ای بلگه نیسسه نی.\nشما می تونیت د[[Special:/{{PAGENAME}}|]] بگردید د ای بلگه یا د بلگیا هنی یا<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}   د هنی پی جوری بوئه  logs]</span>   \n   [{{fullurl:{{FULLPAGENAME}}|action=edit}} یای ای بلگه نه ویرایشت بکیدpage]</span>.",
-	"noarticletext-nopermission": "د تازه یا د ای بلگه نیسسه نی.\nشما می تونیت د[[Special:/{{PAGENAME}}]] بگردید د ای بلگه یا د بلگیا هنی یا<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}   د هنی پی جوری بوئه  logs]</span>      اما شما حق ناریتو ای بلگه نه راس بکیت",
+	"noarticletext": "د تازه یا د ای بلگه نیسسه نی.\nشما می تونیت د[[Special:Search/{{PAGENAME}}|بگردید]] د ای بلگه یا د بلگیا هنی یا <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} د هنی پی جوری بوئه]</span>، <span class=\"plainlinks\">[{{fullurl:{{FULLPAGENAME}}|action=edit}} یای ای بلگه نه ویرایشت بکید]</span>.",
+	"noarticletext-nopermission": "د تازه یا د ای بلگه نیسسه نی.\nشما می تونیت د [[Special:Search/{{PAGENAME}}|بگردید]] د ای بلگه یا د بلگیا هنی یا <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}   د هنی پی جوری بوئه]</span> اما شما حق ناریتو ای بلگه نه راس بکیت.",
 	"missing-revision": "وانئیری #$1 د بلگه ای که نومش ونه \"{{FULLPAGENAME}}\" وجود ناره.\n\nشایت بانی جاونه وه وا یه گل ویرگار وه هنگوم نبیه که د یه گل بلگه پاکسا بیه هوم پیوند بیه بوئه.\nشایت جزئیات د   [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log]  پیدا بوئن.",
 	"userpage-userdoesnotexist": "حساو کاریاری\"$1\" ثوت نام نبیه.\nار میهایت ای بلگه نه بسازیتو یا ویرایشت بکیت یه گل وارسی انجوم بئیت.",
 	"userpage-userdoesnotexist-view": "حساو کارور\"$1\" ثوت نبیه.",
