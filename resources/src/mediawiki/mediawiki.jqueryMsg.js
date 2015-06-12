@@ -1231,7 +1231,7 @@
 		 * @return {string} Other message
 		 */
 		'int': function ( nodes ) {
-			return mw.jqueryMsg.getMessageFunction()( nodes[0].toLowerCase() );
+			return mw.jqueryMsg.getMessageFunction()( nodes[0] );
 		},
 
 		/**
