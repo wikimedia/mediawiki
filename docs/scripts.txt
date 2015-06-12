@@ -49,7 +49,4 @@ Primary scripts:
 
 There is also a file with a .php5 extension for each script. They can be used if
 the web server needs a .php5 to run the file with the PHP 5 engine and runs .php
-scripts with PHP 4. To use these files, you have to modify $wgScriptExtension to
-'.php5' is LocalSettings.php but it is already done by the config script if you
-used mw-config/index.php5 for installation.
-
+scripts with PHP 4. You should not use them anymore.
