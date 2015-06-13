@@ -709,7 +709,7 @@ $wgMaxUploadSize = 1024 * 1024 * 100; # 100MB
  *
  * @par Example:
  * @code
- * $wgUploadNavigationUrl = 'http://commons.wikimedia.org/wiki/Special:Upload';
+ * $wgUploadNavigationUrl = 'https://commons.wikimedia.org/wiki/Special:Upload';
  * @endcode
  */
 $wgUploadNavigationUrl = false;
@@ -769,7 +769,7 @@ $wgHashedSharedUploadDirectory = true;
  *
  * Please specify the namespace, as in the example below.
  */
-$wgRepositoryBaseUrl = "http://commons.wikimedia.org/wiki/File:";
+$wgRepositoryBaseUrl = "https://commons.wikimedia.org/wiki/File:";
 
 /**
  * This is the list of preferred extensions for uploading files. Uploading files
@@ -4524,7 +4524,7 @@ $wgUserrightsInterwikiDelimiter = '@';
 /**
  * This is to let user authenticate using https when they come from http.
  * Based on an idea by George Herbert on wikitech-l:
- * http://lists.wikimedia.org/pipermail/wikitech-l/2010-October/050039.html
+ * https://lists.wikimedia.org/pipermail/wikitech-l/2010-October/050039.html
  * @since 1.17
  */
 $wgSecureLogin = false;
@@ -5582,7 +5582,7 @@ $wgProfilePerHost = null;
  *
  * The host should be running a daemon which can be obtained from MediaWiki
  * Git at:
- * http://git.wikimedia.org/tree/operations%2Fsoftware.git/master/udpprofile
+ * https://git.wikimedia.org/tree/operations%2Fsoftware.git/master/udpprofile
  *
  * @deprecated set $wgProfiler['udphost'] instead
  */
