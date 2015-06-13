@@ -1486,6 +1486,7 @@
 	"ninterwikis": "$1 {{PLURAL:$1|interwiki odkaz|interwiki odkazy|interwiki odkazov}}",
 	"nlinks": "$1 {{PLURAL:$1|odkaz|odkazy|odkazov}}",
 	"nmembers": "$1 {{PLURAL:$1|člen|členovia|členov}}",
+	"nmemberschanged": "$1 → $2 {{PLURAL:$2|člen|členovia|členov}}",
 	"nrevisions": "$1 {{PLURAL:$1|revízia|revízie|revízií}}",
 	"nviews": "$1 {{PLURAL:$1|návšteva|návštevy|návštev}}",
 	"nimagelinks": "Použité na $1 {{PLURAL:$1|stránke|stránkach}}",

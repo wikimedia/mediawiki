@@ -1079,6 +1079,7 @@
 	"api-help-param-type-limit": "Tipo: enteiro ou <kbd>max</kbd>",
 	"api-help-param-type-integer": "Tipo: {{PLURAL:$1|1=enteiro|2=lista de enteiros}}",
 	"api-help-param-type-boolean": "Tipo: booleano ([[Special:ApiHelp/main#main/datatypes|detalles]])",
+	"api-help-param-type-password": "",
 	"api-help-param-type-timestamp": "Tipo: {{PLURAL:$1|1=selo de tempo|2=lista de selos de tempo}} ([[Special:ApiHelp/main#main/datatypes|formatos permitidos]])",
 	"api-help-param-type-user": "Tipo: {{PLURAL:$1|1=nome de usuario|2=lista de nomes de usuarios}}",
 	"api-help-param-list": "{{PLURAL:$1|1=Un valor|2=Valores (separados con <kbd>{{!}}</kbd>)}}: $2",

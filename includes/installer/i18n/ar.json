@@ -123,6 +123,7 @@
 	"config-install-user-create-failed": "إنشاء مستخدم \"$1\" فشل:$2",
 	"config-install-tables": "إنشاء الجداول",
 	"config-install-keys": "توليد المفاتيح السرية",
+	"config-install-mainpage": "إنشاء صفحة رئيسية بالمحتوى الافتراضي",
 	"config-help": "مساعدة",
 	"config-help-tooltip": "اضغط للتوسيع",
 	"mainpagetext": "'''تم تثبيت ميدياويكي بنجاح.'''",

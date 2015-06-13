@@ -3140,6 +3140,7 @@
 	"tags-activate-submit": "تفعيل",
 	"tags-deactivate-title": "عطل الوسم",
 	"tags-deactivate-reason": "سبب",
+	"tags-update-remove-not-allowed-one": "من غير المسموح بإزالة وسم \"$1\".",
 	"tags-edit-title": "تعديل الوسوم",
 	"tags-edit-manage-link": "التحكم بالوسوم",
 	"tags-edit-existing-tags": "الوسوم الموجودة:",
