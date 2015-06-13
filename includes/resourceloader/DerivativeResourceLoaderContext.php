@@ -76,13 +76,16 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 	public function setLanguage( $language ) {
 		$this->language = $language;
 		// Invalidate direction since it is based on language
-		$this->direction = self::INHERIT_VALUE;
+		$this->direction = null;
 		$this->hash = null;
 	}
 
 	public function getDirection() {
 		if ( $this->direction === self::INHERIT_VALUE ) {
 			return $this->context->getDirection();
+		}
+		if ( $this->direction === null ) {
+			$this->direction = Language::factory( $this->getLanguage() )->getDir();
 		}
 		return $this->direction;
 	}
