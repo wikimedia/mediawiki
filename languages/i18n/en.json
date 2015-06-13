@@ -3779,5 +3779,7 @@
 	"special-characters-group-khmer": "Khmer",
 	"special-characters-title-endash": "en dash",
 	"special-characters-title-emdash": "em dash",
-	"special-characters-title-minus": "minus sign"
+	"special-characters-title-minus": "minus sign",
+	"mw-widgets-titleinput-description-new-page": "page does not exist yet",
+	"mw-widgets-titleinput-description-redirect": "redirect to $1"
 }

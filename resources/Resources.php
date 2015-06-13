@@ -1735,6 +1735,7 @@ return array(
 		'scripts' => array(
 			'resources/src/mediawiki.widgets/mw.widgets.js',
 			'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.js',
+			'resources/src/mediawiki.widgets/mw.widgets.TitleOptionWidget.js',
 		),
 		'skinStyles' => array(
 			'default' => 'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.css',
@@ -1745,7 +1746,8 @@ return array(
 			'oojs-ui',
 		),
 		'messages' => array(
-			// …
+			'mw-widgets-titleinput-description-new-page',
+			'mw-widgets-titleinput-description-redirect',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
