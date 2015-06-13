@@ -27,6 +27,7 @@ production.
 
 === Bug fixes in 1.26 ===
 * (bug 51283) load.php sometimes sends 304 response without full headers
+* (T65198) Talk page tabs now have a "rel=discussion" attribute
 
 === Action API changes in 1.26 ===
 * API action=query&list=tags: The displayname can now be boolean false if the
