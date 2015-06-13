@@ -706,7 +706,7 @@ class FormatMetadata extends ContextSource {
 						break;
 
 					case 'GPSDOP':
-						// See http://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
+						// See https://en.wikipedia.org/wiki/Dilution_of_precision_(GPS)
 						if ( $val <= 2 ) {
 							$val = $this->exifMsg( $tag, 'excellent', $this->formatNum( $val ) );
 						} elseif ( $val <= 5 ) {
@@ -1283,7 +1283,7 @@ class FormatMetadata extends ContextSource {
 	 */
 	private function gcd( $a, $b ) {
 		/*
-			// http://en.wikipedia.org/wiki/Euclidean_algorithm
+			// https://en.wikipedia.org/wiki/Euclidean_algorithm
 			// Recursive form would be:
 			if( $b == 0 )
 				return $a;

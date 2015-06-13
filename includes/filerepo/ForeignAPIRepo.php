@@ -29,7 +29,7 @@
  * $wgForeignFileRepos[] = array(
  *   'class'                  => 'ForeignAPIRepo',
  *   'name'                   => 'shared',
- *   'apibase'                => 'http://en.wikipedia.org/w/api.php',
+ *   'apibase'                => 'https://en.wikipedia.org/w/api.php',
  *   'fetchDescription'       => true, // Optional
  *   'descriptionCacheExpiry' => 3600,
  * );
@@ -72,7 +72,7 @@ class ForeignAPIRepo extends FileRepo {
 		global $wgLocalFileRepo;
 		parent::__construct( $info );
 
-		// http://commons.wikimedia.org/w/api.php
+		// https://commons.wikimedia.org/w/api.php
 		$this->mApiBase = isset( $info['apibase'] ) ? $info['apibase'] : null;
 
 		if ( isset( $info['apiThumbCacheExpiry'] ) ) {

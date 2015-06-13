@@ -691,7 +691,7 @@ class WebRequest {
 			// This shouldn't happen!
 			throw new MWException( "Web server doesn't provide either " .
 				"REQUEST_URI, HTTP_X_ORIGINAL_URL or SCRIPT_NAME. Report details " .
-				"of your web server configuration to http://bugzilla.wikimedia.org/" );
+				"of your web server configuration to https://phabricator.wikimedia.org/" );
 		}
 		// User-agents should not send a fragment with the URI, but
 		// if they do, and the web server passes it on to us, we
