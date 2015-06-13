@@ -8,7 +8,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
  *
- * Depends on mw.config (wgDigitTransformTable, wgDefaultDateFormat, wgContentLanguage)
+ * Depends on mw.config (wgDigitTransformTable, wgDefaultDateFormat, wgPageContentLanguage)
  * and mw.language.months.
  *
  * Uses 'tableSorterCollation' in mw.config (if available)
@@ -1110,7 +1110,7 @@
 			s = $.trim( s.toLowerCase() );
 
 			if ( ( match = s.match( ts.dateRegex[0] ) ) !== null ) {
-				if ( mw.config.get( 'wgDefaultDateFormat' ) === 'mdy' || mw.config.get( 'wgContentLanguage' ) === 'en' ) {
+				if ( mw.config.get( 'wgDefaultDateFormat' ) === 'mdy' || mw.config.get( 'wgPageContentLanguage' ) === 'en' ) {
 					s = [ match[3], match[1], match[2] ];
 				} else if ( mw.config.get( 'wgDefaultDateFormat' ) === 'dmy' ) {
 					s = [ match[3], match[2], match[1] ];
