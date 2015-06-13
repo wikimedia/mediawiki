@@ -1,5 +1,5 @@
 /*!
- * MediaWiki Widgets – TitleInputWidget class.
+ * MediaWiki Widgets - TitleInputWidget class.
  *
  * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
@@ -14,24 +14,53 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
+	 * @cfg {number} [limit=10] Number of results to show
 	 * @cfg {number} [namespace] Namespace to prepend to queries
+	 * @cfg {boolean} [showRedirects] Show redirect pages
+	 * @cfg {boolean} [showRedlink] Show red link to exact match if it doesn't exist
+	 * @cfg {boolean} [showImages] Show page images
+	 * @cfg {boolean} [showDescriptions] Show page descriptions
 	 */
-	mw.widgets.TitleInputWidget = function MWWTitleInputWidget( config ) {
+	mw.widgets.TitleInputWidget = function MwWidgetsTitleInputWidget( config ) {
+		var widget = this;
+
 		// Config initialization
 		config = config || {};
 
 		// Parent constructor
-		OO.ui.TextInputWidget.call( this, config );
+		mw.widgets.TitleInputWidget.super.call( this, config );
 
 		// Mixin constructors
 		OO.ui.mixin.LookupElement.call( this, config );
 
 		// Properties
+		this.limit = config.limit || 10;
 		this.namespace = config.namespace || null;
+		this.showRedirects = !!config.showRedirects;
+		this.showRedlink = !!config.showRedlink;
+		this.showImages = !!config.showImages;
+		this.showDescriptions = !!config.showDescriptions;
 
 		// Initialization
-		this.$element.addClass( 'mw-widget-TitleInputWidget' );
-		this.lookupMenu.$element.addClass( 'mw-widget-TitleInputWidget-menu' );
+		this.$element.addClass( 'mw-widget-titleInputWidget' );
+		this.lookupMenu.$element.addClass( 'mw-widget-titleInputWidget-menu' );
+		if ( this.showImages ) {
+			this.lookupMenu.$element.addClass( 'mw-widget-titleInputWidget-menu-withImages' );
+		}
+		if ( this.showDescriptions ) {
+			this.lookupMenu.$element.addClass( 'mw-widget-titleInputWidget-menu-withDescriptions' );
+		}
+
+		this.interwikiPrefixes = [];
+		this.interwikiPrefixesPromise = new mw.Api().get( {
+			action: 'query',
+			meta: 'siteinfo',
+			siprop: 'interwikimap'
+		} ).done( function ( data ) {
+			$.each( data.query.interwikimap, function ( index, interwiki ) {
+				widget.interwikiPrefixes.push( interwiki.prefix );
+			} );
+		} );
 	};
 
 	/* Inheritance */
@@ -55,58 +84,180 @@
 	/**
 	 * @inheritdoc
 	 */
-	mw.widgets.TitleInputWidget.prototype.getLookupRequest = function () {
-		var value = this.value;
+	mw.widgets.TitleInputWidget.prototype.focus = function () {
+		var retval;
+		// Prevent programmatic focus from opening the menu
+		this.setLookupsDisabled( true );
 
-		// Prefix with default namespace name
-		if ( this.namespace !== null && mw.Title.newFromText( value, this.namespace ) ) {
-			value = mw.Title.newFromText( value, this.namespace ).getPrefixedText();
-		}
+		// Parent method
+		retval = mw.widgets.TitleInputWidget.super.prototype.focus.apply( this, arguments );
 
-		// Dont send leading ':' to open search
-		if ( value.charAt( 0 ) === ':' ) {
-			value = value.slice( 1 );
-		}
-
-		return new mw.Api().get( {
-			action: 'opensearch',
-			search: value,
-			suggest: ''
-		} );
+		this.setLookupsDisabled( false );
+		return retval;
 	};
 
 	/**
 	 * @inheritdoc
+	 */
+	mw.widgets.TitleInputWidget.prototype.getLookupRequest = function () {
+		var req,
+			widget = this,
+			promiseAbortObject = { abort: function () {
+				// Do nothing. This is just so OOUI doesn't break due to abort being undefined.
+			} };
+
+		if ( mw.Title.newFromText( this.value ) ) {
+			return this.interwikiPrefixesPromise.then( function () {
+				var params, props,
+					interwiki = widget.value.substring( 0, widget.value.indexOf( ':' ) );
+				if (
+					interwiki && interwiki !== '' &&
+					widget.interwikiPrefixes.indexOf( interwiki ) !== -1
+				) {
+					return $.Deferred().resolve( { query: {
+						pages: [{
+							title: widget.value
+						}]
+					} } ).promise( promiseAbortObject );
+				} else {
+					params = {
+						action: 'query',
+						generator: 'prefixsearch',
+						gpssearch: widget.value,
+						gpsnamespace: widget.namespace !== null ? widget.namespace : undefined,
+						gpslimit: widget.limit,
+						ppprop: 'disambiguation'
+					};
+					props = [ 'info', 'pageprops' ];
+					if ( widget.showRedirects ) {
+						params.redirects = '1';
+					}
+					if ( widget.showImages ) {
+						props.push( 'pageimages' );
+						params.pithumbsize = 80;
+						params.pilimit = widget.limit;
+					}
+					if ( widget.showDescriptions ) {
+						props.push( 'pageterms' );
+						params.wbptterms = 'description';
+					}
+					params.prop = props.join( '|' );
+					req = new mw.Api().get( params );
+					promiseAbortObject.abort = req.abort.bind( req ); // todo: ew
+					return req;
+				}
+			} ).promise( promiseAbortObject );
+		} else {
+			// Don't send invalid titles to the API.
+			// Just pretend it returned nothing so we can show the 'invalid title' section
+			return $.Deferred().resolve( {} ).promise( promiseAbortObject );
+		}
+	};
+
+	/**
+	 * Get lookup cache item from server response data.
+	 *
+	 * @method
+	 * @param {Mixed} data Response from server
 	 */
 	mw.widgets.TitleInputWidget.prototype.getLookupCacheDataFromResponse = function ( data ) {
-		return data[1] || [];
+		return data.query || {};
 	};
 
 	/**
-	 * @inheritdoc
+	 * Get list of menu items from a server response.
+	 *
+	 * @param {Object} data Query result
+	 * @returns {OO.ui.MenuOptionWidget[]} Menu items
 	 */
 	mw.widgets.TitleInputWidget.prototype.getLookupMenuOptionsFromData = function ( data ) {
-		var i, len, title, value,
+		var i, len, index, pageExists, pageExistsExact, suggestionPage, page, redirect, redirects, title,
 			items = [],
-			matchingPages = data;
+			titles = [],
+			titleObj = mw.Title.newFromText( this.value ),
+			redirectsTo = {},
+			pageData = {};
 
-		// Matching pages
-		if ( matchingPages && matchingPages.length ) {
-			for ( i = 0, len = matchingPages.length; i < len; i++ ) {
-				title = new mw.Title( matchingPages[i] );
-				if ( this.namespace !== null ) {
-					value = title.getRelativeText( this.namespace );
-				} else {
-					value = title.getPrefixedText();
-				}
-				items.push( new OO.ui.MenuOptionWidget( {
-					data: value,
-					label: value
-				} ) );
+		if ( data.redirects ) {
+			for ( i = 0, len = data.redirects.length; i < len; i++ ) {
+				redirect = data.redirects[i];
+				redirectsTo[redirect.to] = redirectsTo[redirect.to] || [];
+				redirectsTo[redirect.to].push( redirect.from );
 			}
 		}
 
+		for ( index in data.pages ) {
+			suggestionPage = data.pages[index];
+			pageData[suggestionPage.title] = {
+				missing: suggestionPage.missing !== undefined,
+				redirect: suggestionPage.redirect !== undefined,
+				disambiguation: OO.getProp( suggestionPage, 'pageprops', 'disambiguation' ) !== undefined,
+				imageUrl: OO.getProp( suggestionPage, 'thumbnail', 'source' ),
+				description: OO.getProp( suggestionPage, 'terms', 'description' )
+			};
+			titles.push( suggestionPage.title );
+
+			redirects = redirectsTo[suggestionPage.title] || [];
+			for ( i = 0, len = redirects.length; i < len; i++ ) {
+				pageData[redirects[i]] = {
+					missing: false,
+					redirect: true,
+					disambiguation: false,
+					description: mw.msg( 'mw-widgets-titleinput-description-redirect', suggestionPage.title )
+				};
+				titles.push( redirects[i] );
+			}
+		}
+
+		// If not found, run value through mw.Title to avoid treating a match as a
+		// mismatch where normalisation would make them matching (bug 48476)
+
+		pageExistsExact = titles.indexOf( this.value ) !== -1;
+		pageExists = pageExistsExact || (
+			titleObj && titles.indexOf( titleObj.getPrefixedText() ) !== -1
+		);
+
+		if ( !pageExists ) {
+			pageData[this.value] = {
+				missing: true, redirect: false, disambiguation: false,
+				description: mw.msg( 'mw-widgets-titleinput-description-new-page' )
+			};
+		}
+
+		// Offer the exact text as a suggestion if the page exists
+		if ( pageExists && !pageExistsExact ) {
+			titles.unshift( this.value );
+		}
+		// Offer the exact text as a new page if the title is valid
+		if ( this.showRedlink && !pageExists && titleObj ) {
+			titles.push( this.value );
+		}
+		for ( i = 0, len = titles.length; i < len; i++ ) {
+			page = pageData[titles[i]] || {};
+			items.push( new mw.widgets.TitleOptionWidget( this.getOptionWidgetData( titles[i], page ) ) );
+		}
+
 		return items;
+	};
+
+	/**
+	 * Get menu option widget data from the title and page data
+	 *
+	 * @param {mw.Title} title Title object
+	 * @param {Object} data Page data
+	 * @return {Object} Data for option widget
+	 */
+	mw.widgets.TitleInputWidget.prototype.getOptionWidgetData = function ( title, data ) {
+		var mwTitle = new mw.Title( title );
+		return {
+			data: this.namespace !== null ? mwTitle.getRelativeText( this.namespace ) : mwTitle.getPrefixedText(),
+			imageUrl: this.showImages ? data.imageUrl : null,
+			description: this.showDescriptions ? data.description : null,
+			missing: data.missing,
+			redirect: data.redirect,
+			disambiguation: data.disambiguation,
+			query: this.value
+		};
 	};
 
 	/**
