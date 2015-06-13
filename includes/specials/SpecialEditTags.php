@@ -295,10 +295,6 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			$html .= '</td></tr>';
 			$tagSelect = $this->getTagSelect( $tags, $this->msg( 'tags-edit-new-tags' )->plain() );
 			$html .= '<tr><td>' . $tagSelect[0] . '</td><td>' . $tagSelect[1];
-			// also output the tags currently applied as a hidden form field, so we
-			// know what to remove from the revision/log entry when the form is submitted
-			$html .= Html::hidden( 'wpExistingTags', implode( ',', $tags ) );
-			$html .= '</td></tr></table>';
 		} else {
 			// Otherwise, use a multi-select field for adding tags, and a list of
 			// checkboxes for removing them
@@ -328,8 +324,12 @@ class SpecialEditTags extends UnlistedSpecialPage {
 						'class' => 'mw-edittags-remove-checkbox',
 					) );
 			}
-			$html .= '</td></tr></table>';
 		}
+
+		// also output the tags currently applied as a hidden form field, so we
+		// know what to remove from the revision/log entry when the form is submitted
+		$html .= Html::hidden( 'wpExistingTags', implode( ',', $tags ) );
+		$html .= '</td></tr></table>';
 
 		return $html;
 	}
