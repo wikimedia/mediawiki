@@ -190,7 +190,7 @@
 	"config-mssql-sqlauth": "De Aanmäldong bemm <i lang=\"en\" xml:lang=\"en\">SQL</i>-ẞööver vun <i lang=\"en\" xml:lang=\"en\">Microsoft</i>",
 	"config-mssql-windowsauth": "De Annmäldong bemm <i lang=\"en\" xml:lang=\"en\">Windows</i>",
 	"config-site-name": "Däm Wikki singe Nahme:",
-	"config-site-name-help": "Dä douch em Tettel vun de Brauserfinstere un aan ätlije andere Schtälle op.",
+	"config-site-name-help": "Dä douch en dä Övverschreff vun de Brauserfinstere un aan ätlije andere Schtälle op.",
 	"config-site-name-blank": "Donn ene Name för di Sait aanjävve.",
 	"config-project-namespace": "Dä Name för et Appachtemang övver et Projäk:",
 	"config-ns-generic": "Projäk",

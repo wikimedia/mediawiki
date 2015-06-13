@@ -1303,7 +1303,7 @@
 	"uploaddisabledtext": "אפשרות העלאת הקבצים מבוטלת.",
 	"php-uploaddisabledtext": "אפשרות העלאת הקבצים מבוטלת ברמת PHP. אנא בדקו את ההגדרה file_uploads.",
 	"uploadscripted": "הקובץ כולל קוד סקריפט או HTML שעשוי להתפרש או להתבצע בטעות על־ידי הדפדפן.",
-	"upload-scripted-pi-callback": "לא ניתן להעלות קובץ שמכיל את הוראת העיבוד xml-stylesheet.",
+	"upload-scripted-pi-callback": "לא ניתן להעלות קובץ שמכיל את הוראת העיבוד XML-stylesheet.",
 	"uploaded-script-svg": "נמצא אלמנט שאפשר לכתוב בו תסריט \"$1\" בקובץ ה־SVG שהועלה.",
 	"uploaded-hostile-svg": "נמצא CSS בלתי־מאובטח באלמנט style בקובץ ה־SVG שהועלה.",
 	"uploaded-event-handler-on-svg": "אסור להגדיר מאפייני טיפול באירועים <code dir=\"ltr\">$1=\"$2\"</code> בקובצי SVG.",

@@ -1361,7 +1361,7 @@
 	"uploaded-script-svg": "Skriptelement „$1“ in der hochgeladenen SVG-Datei gefunden.",
 	"uploaded-hostile-svg": "Unsicheres CSS im Styleelement der hochgeladenen SVG-Datei gefunden.",
 	"uploaded-event-handler-on-svg": "Das Festlegen von Ereignis-Handler-Attributen <code>$1=\"$2\"</code> ist in SVG-Dateien nicht erlaubt.",
-	"uploaded-href-attribute-svg": "Href-Attribute <code>&lt;$1 $2=\"$3\"&gt;</code> mit nicht-lokalem Ziel (z.&nbsp;B. http://, javascript: etc.) sind in SVG-Dateien nicht erlaubt.",
+	"uploaded-href-attribute-svg": "href-Attribute <code>&lt;$1 $2=\"$3\"&gt;</code> mit nicht-lokalem Ziel (z.&nbsp;B. http://, javascript: etc.) sind in SVG-Dateien nicht erlaubt.",
 	"uploaded-href-unsafe-target-svg": "href zu unsicherem Ziel <code>&lt;$1 $2=\"$3\"&gt;</code> in der hochgeladenen SVG-Datei gefunden.",
 	"uploaded-animate-svg": "Tag „animate“ gefunden, das href mithilfe des Attributs „from“ <code>&lt;$1 $2=\"$3\"&gt;</code> in der hochgeladenen SVG-Datei ändern könnte.",
 	"uploaded-setting-event-handler-svg": "Das Festlegen von Ereignis-Handler-Attributen ist gesperrt. <code>&lt;$1 $2=\"$3\"&gt;</code> in der hochgeladenen SVG-Datei gefunden.",

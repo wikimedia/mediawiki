@@ -1646,7 +1646,7 @@
 	"protectedpages-summary": "Questa pagina elenca le pagine esistenti che sono attualmente protette. Per un elenco di titoli protetti dalla creazione, vedi [[{{#special:ProtectedTitles}}|{{int:protectedtitles}}]].",
 	"protectedpages-cascade": "Solo protezioni ricorsive",
 	"protectedpages-noredirect": "Nascondi redirect",
-	"protectedpagesempty": "Al momento non vi sono pagine protette",
+	"protectedpagesempty": "Al momento non esistono pagine protette con i parametri specificati.",
 	"protectedpages-timestamp": "Data e ora",
 	"protectedpages-page": "Pagina",
 	"protectedpages-expiry": "Scadenza",
