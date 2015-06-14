@@ -72,7 +72,7 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 				new OOUI\CheckboxInputWidget( array(
 					'name' => "{$this->mName}[]",
 					'selected' => $checked,
-					'value' => '1',
+					'value' => $attribs['value'],
 				) + $attribs ),
 				array(
 					'label' => $label,

@@ -156,7 +156,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 			return new OOUI\CheckboxInputWidget( array(
 				'name' => "{$this->mName}[]",
 				'selected' => $checked,
-				'value' => '1',
+				'value' => $attribs['value'],
 			) + $attribs );
 		} else {
 			$checkbox = Xml::check( "{$this->mName}[]", $checked, $attribs );
