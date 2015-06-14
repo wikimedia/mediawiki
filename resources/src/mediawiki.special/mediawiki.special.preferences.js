@@ -110,6 +110,12 @@ jQuery( function ( $ ) {
 		$preftoc.append( $li );
 	} );
 
+	// Disable the button to save preferences unless preferences have changed
+	$( '#prefcontrol' ).prop( 'disabled', true );
+	$( '.prefsection' ).one( 'change keydown mousedown', function () {
+		$( '#prefcontrol' ).prop( 'disabled', false);
+	} );
+
 	// Enable keyboard users to use left and right keys to switch tabs
 	$preftoc.on( 'keydown', function ( event ) {
 		var keyLeft = 37,
