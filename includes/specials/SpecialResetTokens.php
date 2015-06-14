@@ -123,6 +123,10 @@ class SpecialResetTokens extends FormSpecialPage {
 		}
 	}
 
+	protected function getDisplayFormat() {
+		return 'ooui';
+	}
+
 	public function onSubmit( array $formData ) {
 		if ( $formData['tokens'] ) {
 			$user = $this->getUser();
