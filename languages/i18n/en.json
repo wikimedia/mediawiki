@@ -567,7 +567,6 @@
 	"resettokens-summary": "",
 	"resettokens-text": "You can reset tokens which allow access to certain private data associated with your account here.\n\nYou should do it if you accidentally shared them with someone or if your account has been compromised.",
 	"resettokens-no-tokens": "There are no tokens to reset.",
-	"resettokens-legend": "Reset tokens",
 	"resettokens-tokens": "Tokens:",
 	"resettokens-token-label": "$1 (current value: $2)",
 	"resettokens-watchlist-token": "Token for the web feed (Atom/RSS) of [[Special:Watchlist|changes to pages on your watchlist]]",
