@@ -2049,7 +2049,7 @@
 	"noautoblockblock": "بستن خودکار غیرفعال است",
 	"createaccountblock": "امکان ساخت حساب گرفته‌شده",
 	"emailblock": "ایمیل بسته‌شده",
-	"blocklist-nousertalk": "نمی تواند صفحهٔ بحث خود را ویرایش کند",
+	"blocklist-nousertalk": "نمی‌تواند صفحهٔ بحث خود را ویرایش کند",
 	"ipblocklist-empty": "فهرست بسته‌شدن‌ها خالی‌است.",
 	"ipblocklist-no-results": "دسترسی حساب کاربری یا نشانی آی‌پی مورد نظر قطع نیست.",
 	"blocklink": "بستن",
