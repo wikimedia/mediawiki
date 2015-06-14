@@ -437,7 +437,7 @@ class ChangeTagsUpdater {
 				$dbw->delete( 'change_tag', $conds, __METHOD__ );
 			}
 		}
-		ChangeTagsContext::purgeTagUsageCache();
+		ChangeTagsContext::clearCachesAfterUpdate( $tagsToAdd, $tagsToRemove );
 
 		return [ $tagsToAdd, $tagsToRemove, $prevTags ];
 	}
