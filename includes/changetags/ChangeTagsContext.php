@@ -235,7 +235,9 @@ class ChangeTagsContext {
 	 * Does not include tags defined somewhere but not applied
 	 *
 	 * The result is cached, and the cache is invalidated every time an
-	 * operation on change_tag is performed.
+	 * operation on change_tag is performed unless $wgTagMaxHitcountUpdate
+	 * is > 0. In that case, tags with a greater hitcount do not trigger
+	 * a cache purge and therefore are not updated.
 	 * The cache expires after 24 hours by default ($wgTagUsageCacheDuration).
 	 *
 	 * @return array Array of tags mapped to their hitcount
@@ -278,6 +280,102 @@ class ChangeTagsContext {
 	}
 
 	/**
+	 * Returns a map of any tags used on the wiki to number of edits
+	 * tagged with them, ordered descending by the hitcount as of the
+	 * latest caching.
+	 * Does not include tags defined somewhere but not applied
+	 *
+	 * This cache is invalidated only for first hits of a tag.
+	 * Updates may be delayed by up to 30 hours by default
+	 * ($wgTagUsageCacheDuration + $wgSecondaryTagUsageCacheDuration).
+	 *
+	 * @param Config|null $config
+	 * @return array Array of tags mapped to their hitcount
+	 * @since 1.27
+	 */
+	public static function cachedStats( Config $config = null ) {
+		$keyCached = wfMemcKey( 'ChangeTags', 'tag-stats-cached' );
+		$callBack = function( $oldValue, &$ttl, array &$setOpts ) use ( $config ) {
+			$changeTagsContext = new self( $config );
+			return $changeTagsContext->fetchStats();
+		};
+
+		return ObjectCache::getMainWANInstance()->getWithSetCallback(
+			$keyCached,
+			$config->get( 'SecondaryTagUsageCacheDuration' ),
+			$callBack,
+			[
+				'checkKeys' => [ $keyCached ],
+				'lockTSE' => $config->get( 'SecondaryTagUsageCacheDuration' ),
+				'pcTTL' => WANObjectCache::TTL_PROC_LONG
+			]
+		);
+	}
+
+	/**
+	 * Clear caches after tags have been updated
+	 * This should be called after writes on the change_tag table.
+	 *
+	 * @param array $tagsToAdd: tags that were added
+	 * @param array $tagsToRemove: tags that were removed
+	 *
+	 * @return array Array of invalidated 'ChangeTags' wfMemc keys
+	 * @since 1.27
+	 */
+	public static function clearCachesAfterUpdate( $tagsToAdd, $tagsToRemove ) {
+		$config = RequestContext::getMain()->getConfig();
+		$maxHitcount = $config->get( 'TagMaxHitcountUpdate' );
+		$cache = ObjectCache::getMainWANInstance();
+		$keyStats = wfMemcKey( 'ChangeTags', 'tag-stats' );
+
+		// Retrieve cached stats
+		$stats = $cache->get( $keyStats, $ttl );
+
+		$updatedTags = array_merge( $tagsToAdd, $tagsToRemove );
+		// If the cache does not exist or is invalidated,
+		// or one of the updated tags doesn't appear in it, we purge it
+		// since it might be a newly defined tag applied for the first time.
+		$doFullPurge = ( $ttl === null ) || ( $ttl < 0 );
+		if ( !$doFullPurge ) {
+			foreach ( $updatedTags as $tag ) {
+				if ( !isset( $stats[$tag] ) ) {
+					$doFullPurge = true;
+					break;
+				}
+			}
+		}
+		if ( $doFullPurge ) {
+			$cache->touchCheckKey( $keyStats );
+			// The "cached" stats cache is purged as well so that the new tag appears in
+			// drop down menus.
+			$cache->touchCheckKey( wfMemcKey( 'ChangeTags', 'tag-stats-cached' ) );
+			// We also purge the cache of extensions since they might not have purged it
+			// and we don't want the tag to appear out of nowhere at Special:Tags.
+			$cache->touchCheckKey( wfMemcKey( 'ChangeTags', 'valid-tags-hook' ) );
+
+			return [ 'tag-stats', 'tag-stats-cached', 'valid-tags-hook' ];
+		}
+
+		// In other cases, we purge the cache unless all of the updated tags
+		// have more hits than $wgTagMaxHitcountUpdate.
+		$doBasicPurge = ( $maxHitcount == 0 );
+		if ( !$doBasicPurge ) {
+			foreach ( $updatedTags as $tag ) {
+				if ( $stats[$tag] < $maxHitcount ) {
+					$doBasicPurge = true;
+					break;
+				}
+			}
+		}
+		if ( $doBasicPurge ) {
+			$cache->touchCheckKey( $keyStats );
+
+			return [ 'tag-stats' ];
+		}
+		return [];
+	}
+
+	/**
 	 * Invalidates the cache of tags stored in the valid_tag table.
 	 * This should be called after writes on the valid_tag table.
 	 *
@@ -311,11 +409,11 @@ class ChangeTagsContext {
 	 */
 	public static function purgeTagUsageCache() {
 		$cache = ObjectCache::getMainWANInstance();
-		$cache->touchCheckKey( wfMemcKey( 'ChangeTags', 'tag-stats' ) );
+		$cache->touchCheckKey( wfMemcKey( 'ChangeTags', 'tag-stat' ) );
 	}
 
 	/**
-	 * Invalidates all tags-related caches, including the stable stats cache.
+	 * Invalidates all tags-related caches.
 	 * This should be called when deleting a tag.
 	 *
 	 * @since 1.28
@@ -325,5 +423,6 @@ class ChangeTagsContext {
 		$cache->touchCheckKey( wfMemcKey( 'ChangeTags', 'valid-tags-db' ) );
 		$cache->touchCheckKey( wfMemcKey( 'ChangeTags', 'valid-tags-hook' ) );
 		$cache->touchCheckKey( wfMemcKey( 'ChangeTags', 'tag-stats' ) );
+		$cache->touchCheckKey( wfMemcKey( 'ChangeTags', 'tag-stats-cached' ) );
 	}
 }

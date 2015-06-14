@@ -6738,9 +6738,25 @@ $wgAllowCategorizedRecentChanges = false;
 
 /**
  * Allow filtering by change tag in recentchanges, history, etc
- * Has no effect if no tags are defined in valid_tag.
+ * Has no effect if no tags have been applied to edits
  */
 $wgUseTagFilter = true;
+
+/**
+ * Cache expiry for list of change tags ordered by hitcount
+ * checked in recent changes, histories, logs, etc
+ * 24 hours by default
+ * @since 1.27
+ */
+$wgSecondaryTagUsageCacheDuration = 60 * 60 * 24;
+
+/**
+ * Set this to a positive integer and tags with more than this many hits
+ * will not trigger a cache purge when applied. This means they won't be
+ * updated, but also less db queries and faster loading of Special:Tags.
+ * @since 1.27
+ */
+$wgTagMaxHitcountUpdate = 0;
 
 /**
  * If set to an integer, pages that are watched by this many users or more
