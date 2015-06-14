@@ -6162,6 +6162,13 @@ $wgUseTagFilter = true;
 $wgTagUsageCacheDuration = 60*60*24;
 
 /**
+ * Set this to a positive integer and tags with more than this many hits
+ * will not trigger a cache purge when applied. This means they won't be
+ * updated, but also less db queries and faster loading of Special:Tags.
+ */
+$wgTagMaxHitcountUpdate = 0;
+
+/**
  * Expiry to use for the caching of tags registered by extensions
  * 24 hours by default
  */
