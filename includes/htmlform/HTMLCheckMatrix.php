@@ -119,9 +119,8 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 			foreach ( $columns as $columnTag ) {
 				$thisTag = "$columnTag-$rowTag";
 				// Construct the checkbox
-				$thisId = "{$this->mID}-$thisTag";
 				$thisAttribs = array(
-					'id' => $thisId,
+					'id' => "{$this->mID}-$thisTag",
 					'value' => $thisTag,
 				);
 				$checked = in_array( $thisTag, (array)$value, true );
@@ -132,18 +131,13 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 					$checked = true;
 					$thisAttribs['disabled'] = 1;
 				}
-				$chkBox = $this->getOneCheckbox( $checked, $attribs + $thisAttribs );
 
-				if ( $this->mParent->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
-					$chkBox = Html::openElement( 'div', array( 'class' => 'mw-ui-checkbox' ) ) .
-						$chkBox .
-						Html::element( 'label', array( 'for' => $thisId ) ) .
-						Html::closeElement( 'div' );
-				}
+				$checkbox = $this->getOneCheckbox( $checked, $attribs + $thisAttribs );
+
 				$rowContents .= Html::rawElement(
 					'td',
 					array(),
-					$chkBox
+					$checkbox
 				);
 			}
 			$tableContents .= Html::rawElement( 'tr', array(), "\n$rowContents\n" );
@@ -164,9 +158,16 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 				'selected' => $checked,
 				'value' => '1',
 			) + $attribs );
+		} else {
+			$checkbox = Xml::check( "{$this->mName}[]", $checked, $attribs );
+			if ( $this->mParent->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
+				$checkbox = Html::openElement( 'div', array( 'class' => 'mw-ui-checkbox' ) ) .
+					$checkbox .
+					Html::element( 'label', array( 'for' => $attribs['id'] ) ) .
+					Html::closeElement( 'div' );
+			}
+			return $checkbox;
 		}
-
-		return Xml::check( "{$this->mName}[]", $checked, $attribs );
 	}
 
 	protected function isTagForcedOff( $tag ) {

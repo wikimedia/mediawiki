@@ -38,34 +38,19 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		$html = '';
 
 		$attribs = $this->getAttributes( array( 'disabled', 'tabindex' ) );
-		$elementFunc = array( 'Html', $this->mOptionsLabelsNotFromMessage ? 'rawElement' : 'element' );
 
 		foreach ( $options as $label => $info ) {
 			if ( is_array( $info ) ) {
 				$html .= Html::rawElement( 'h1', array(), $label ) . "\n";
 				$html .= $this->formatOptions( $info, $value );
 			} else {
-				$thisAttribs = array( 'id' => "{$this->mID}-$info", 'value' => $info );
-
-				// @todo: Make this use checkLabel for consistency purposes
-				$checkbox = Xml::check(
-					$this->mName . '[]',
-					in_array( $info, $value, true ),
-					$attribs + $thisAttribs
+				$thisAttribs = array(
+					'id' => "{$this->mID}-$info",
+					'value' => $info,
 				);
-				$checkbox .= '&#160;' . call_user_func( $elementFunc,
-					'label',
-					array( 'for' => "{$this->mID}-$info" ),
-					$label
-				);
+				$checked = in_array( $info, $value, true );
 
-				if ( $this->mParent->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
-					$checkbox = Html::rawElement(
-						'div',
-						array( 'class' => 'mw-ui-checkbox' ),
-						$checkbox
-					);
-				}
+				$checkbox = $this->getOneCheckbox( $checked, $attribs + $thisAttribs, $label );
 
 				$html .= ' ' . Html::rawElement(
 					'div',
@@ -76,6 +61,41 @@ class HTMLMultiSelectField extends HTMLFormField implements HTMLNestedFilterable
 		}
 
 		return $html;
+	}
+
+	protected function getOneCheckbox( $checked, $attribs, $label ) {
+		if ( $this->mParent instanceof OOUIHTMLForm ) {
+			if ( $this->mOptionsLabelsNotFromMessage ) {
+				$label = new OOUI\HtmlSnippet( $label );
+			}
+			return new OOUI\FieldLayout(
+				new OOUI\CheckboxInputWidget( array(
+					'name' => "{$this->mName}[]",
+					'selected' => $checked,
+					'value' => '1',
+				) + $attribs ),
+				array(
+					'label' => $label,
+					'align' => 'inline',
+				)
+			);
+		} else {
+			$elementFunc = array( 'Html', $this->mOptionsLabelsNotFromMessage ? 'rawElement' : 'element' );
+			$checkbox =
+				Xml::check( "{$this->mName}[]", $checked, $attribs ) .
+				'&#160;' .
+				call_user_func( $elementFunc,
+					'label',
+					array( 'for' => $attribs['id'] ),
+					$label
+				);
+			if ( $this->mParent->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
+				$checkbox = Html::openElement( 'div', array( 'class' => 'mw-ui-checkbox' ) ) .
+					$checkbox .
+					Html::closeElement( 'div' );
+			}
+			return $checkbox;
+		}
 	}
 
 	/**
