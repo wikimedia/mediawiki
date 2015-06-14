@@ -194,9 +194,8 @@ class ChangeTags {
 		if ( !$config->get( 'UseTagFilter' ) ) {
 			return $fullForm ? '' : [];
 		} else {
-			// check if tags are present in valid_tag
-			$context = new ChangeTagsContext( $config );
-			$tagList = $context->getUserTags();
+			// check if tags have been applied from cached stats
+			$tagList = ChangeTagsContext::cachedStats( $config );
 			if ( !count( $tagList ) ) {
 				return $fullForm ? '' : [];
 			}
