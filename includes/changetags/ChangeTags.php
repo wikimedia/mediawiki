@@ -190,9 +190,8 @@ class ChangeTags {
 		if ( !$config->get( 'UseTagFilter' ) ) {
 			return [];
 		} else {
-			// check if some tags are defined
-			$changeTagsContext = new ChangeTagsContext( $config );
-			$tagList = $changeTagsContext->getDefinedTags();
+			// check if tags have been applied from cached stats
+			$tagList = ChangeTagsContext::cachedStats( $config );
 			if ( !count( $tagList ) ) {
 				return [];
 			}

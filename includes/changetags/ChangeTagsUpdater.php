@@ -440,7 +440,7 @@ class ChangeTagsUpdater {
 				$dbw->delete( 'change_tag', $conds, __METHOD__ );
 			}
 		}
-		ChangeTagsContext::purgeTagUsageCache();
+		ChangeTagsContext::clearCachesAfterUpdate( $tagsToAdd, $tagsToRemove );
 
 		Hooks::run( 'ChangeTagsAfterUpdateTags', [ $tagsToAdd, $tagsToRemove, $prevTags,
 			$rc_id, $rev_id, $log_id, $params, $rc, $user ] );
