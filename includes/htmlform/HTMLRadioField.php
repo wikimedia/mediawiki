@@ -38,6 +38,23 @@ class HTMLRadioField extends HTMLFormField {
 		return $html;
 	}
 
+	function getInputOOUI( $value ) {
+		$options = array();
+		foreach ( $this->getOptions() as $label => $value ) {
+			$options[] = array(
+				'data' => $value,
+				'label' => $this->mOptionsLabelsNotFromMessage ? new OOUI\HtmlSnippet( $label ) : $label,
+			);
+		}
+
+		$attribs = $this->getAttributes( array( 'disabled', 'tabindex' ), array( 'tabindex' => 'tabIndex' ) ) );
+		return new OOUI\RadioSelectInputWidget( array(
+			'value' => $value,
+			'options' => $options,
+			'classes' => 'mw-htmlform-flatlist-item',
+		) + $attribs );
+	}
+
 	function formatOptions( $options, $value ) {
 		$html = '';
 
