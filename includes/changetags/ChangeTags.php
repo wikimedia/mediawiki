@@ -267,7 +267,7 @@ class ChangeTags {
 				$dbw->delete( 'change_tag', $conds, __METHOD__ );
 			}
 		}
-		ChangeTagsContext::purgeTagUsageCache();
+		ChangeTagsContext::clearCachesAfterUpdate( $tagsToAdd, $tagsToRemove );
 
 		return array( $tagsToAdd, $tagsToRemove, $prevTags );
 	}
@@ -678,9 +678,9 @@ class ChangeTags {
 		if ( !$config->get( 'UseTagFilter' ) ) {
 			return $fullForm ? '' : array();
 		} else {
-			// check if tags are present in valid_tag
-			$context = new ChangeTagsContext( $config );
-			$tagList = $context->getStored();
+			// check if tags have been applied from cached stats
+			$changeTagsContext = new ChangeTagsContext( $config );
+			$tagList = $changeTagsContext->getCachedStats();
 			if ( !count( $tagList ) ) {
 				return $fullForm ? '' : array();
 			}
