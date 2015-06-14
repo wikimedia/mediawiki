@@ -4,6 +4,9 @@ class ChangeTagsTest extends MediaWikiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
+		$this->setMwGlobals( array(
+			'wgTagMaxHitcountUpdate' => 10,
+		) );
 		$this->initCaches();
 	}
 
@@ -32,12 +35,16 @@ class ChangeTagsTest extends MediaWikiTestCase {
 		);
 		$cache->set( $key, $cacheData, 60 );
 
-		$key = wfMemcKey( 'ChangeTags', 'tag-stats' );
+		$key1 = wfMemcKey( 'ChangeTags', 'tag-stats-reactive' );
+		$key2 = wfMemcKey( 'ChangeTags', 'tag-stats-stable' );
 		$cacheData = array(
 			'UndefinedTag' => 65,
 			'StoredTagWithHits' => 30,
+			'TagWithFewHits' => 6,
+			'TagWithManyHits' => 800,
 		);
-		$cache->set( $key, $cacheData, 60 );
+		$cache->set( $key1, $cacheData, 60 );
+		$cache->set( $key2, $cacheData, 60 );
 	}
 
 	/**
@@ -52,7 +59,10 @@ class ChangeTagsTest extends MediaWikiTestCase {
 		$key = wfMemcKey( 'ChangeTags', 'valid-tags-hook' );
 		$cache->touchCheckKey( $key );
 
-		$key = wfMemcKey( 'ChangeTags', 'tag-stats' );
+		$key = wfMemcKey( 'ChangeTags', 'tag-stats-reactive' );
+		$cache->touchCheckKey( $key );
+
+		$key = wfMemcKey( 'ChangeTags', 'tag-stats-stable' );
 		$cache->touchCheckKey( $key );
 	}
 }
