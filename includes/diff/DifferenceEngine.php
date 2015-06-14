@@ -646,6 +646,7 @@ class DifferenceEngine extends ContextSource {
 	 */
 	public function showDiffStyle() {
 		$this->getOutput()->addModuleStyles( 'mediawiki.action.history.diff' );
+		$this->getOutput()->addModules( 'mediawiki.action.diff' );
 	}
 
 	/**

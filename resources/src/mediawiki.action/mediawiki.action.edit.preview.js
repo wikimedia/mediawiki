@@ -106,6 +106,7 @@
 					diffHtml = query.pages[ query.pageids[ 0 ] ]
 						.revisions[ 0 ].diff[ '*' ];
 					$wikiDiff.find( 'table.diff tbody' ).html( diffHtml );
+					mw.hook( 'wikipage.diff' ).fire( $wikiDiff.find( 'table.diff' ) );
 				} catch ( e ) {
 					// "result.blah is undefined" error, ignore
 					mw.log.warn( e );
