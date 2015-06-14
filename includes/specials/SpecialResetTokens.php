@@ -137,6 +137,10 @@ class SpecialResetTokens extends FormSpecialPage {
 		return false;
 	}
 
+	protected function getDisplayFormat() {
+		return 'ooui';
+	}
+
 	protected function getGroupName() {
 		return 'users';
 	}
