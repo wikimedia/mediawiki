@@ -54,6 +54,8 @@ class HTMLSelectField extends HTMLFormField {
 		if ( !empty( $this->mParams['disabled'] ) ) {
 			$disabled = true;
 		}
+		
+		var_dump($value);
 
 		return new OOUI\DropdownInputWidget( array(
 			'name' => $this->mName,
