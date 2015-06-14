@@ -68,15 +68,11 @@ class OOUIHTMLForm extends HTMLForm {
 				$attribs += Linker::tooltipAndAccesskeyAttribs( $this->mSubmitTooltip );
 			}
 
-			$attribs['classes'] = array(
-				'mw-htmlform-submit',
-				$this->mSubmitModifierClass,
-			);
-
+			$attribs['classes'] = array( 'mw-htmlform-submit' );
 			$attribs['type'] = 'submit';
 			$attribs['label'] = $this->getSubmitText();
 			$attribs['value'] = $this->getSubmitText();
-			$attribs['flags'] = array( 'primary', 'constructive' );
+			$attribs['flags'] = array( $this->mSubmitFlag );
 
 			$buttons .= new OOUI\ButtonInputWidget( $attribs );
 		}
