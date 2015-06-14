@@ -2427,6 +2427,7 @@ $out: OutputPage object
 
 'RecentChange_save': Called at the end of RecentChange::save().
 $recentChange: RecentChange object
+$user: User saving the recent change (not always provided)
 
 'RedirectSpecialArticleRedirectParams': Lets you alter the set of parameter
 names such as "oldid" that are preserved when using redirecting special pages
