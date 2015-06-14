@@ -13724,7 +13724,6 @@ OO.ui.RadioSelectInputWidget = function OoUiRadioSelectInputWidget( config ) {
 	this.setOptions( config.options || [] );
 	this.$element
 		.addClass( 'oo-ui-radioSelectInputWidget' )
-		.empty()
 		.append( this.radioSelectWidget.$element );
 };
 
