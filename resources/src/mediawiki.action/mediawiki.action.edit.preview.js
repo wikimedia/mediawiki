@@ -113,6 +113,7 @@
 						// "result.blah is undefined" error, ignore
 						mw.log.warn( e );
 					}
+					mw.hook( 'wikipage.diff' ).fire( $wikiDiff.find( '.diff' ) );
 					$wikiDiff.show();
 				} );
 			} );

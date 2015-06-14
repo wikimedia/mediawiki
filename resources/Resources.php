@@ -1104,6 +1104,9 @@ return array(
 
 	/* MediaWiki Action */
 
+	'mediawiki.action.diff' => array(
+		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.diff.js',
+	),
 	'mediawiki.action.edit' => array(
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.edit.js',
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.edit.css',
