@@ -269,8 +269,9 @@ class RecentChange {
 	/**
 	 * Writes the data in this object to the database
 	 * @param bool $noudp
+	 * @param User $user user performing the change (optional)
 	 */
-	public function save( $noudp = false ) {
+	public function save( $noudp = false, User $user = null ) {
 		global $wgPutIPinRC, $wgUseEnotif, $wgShowUpdatedMarker, $wgContLang;
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -309,7 +310,7 @@ class RecentChange {
 		$this->mAttribs['rc_id'] = $dbw->insertId();
 
 		# Notify extensions
-		Hooks::run( 'RecentChange_save', array( &$this ) );
+		Hooks::run( 'RecentChange_save', array( &$this, $user ) );
 
 		# Notify external application via UDP
 		if ( !$noudp ) {
@@ -562,7 +563,7 @@ class RecentChange {
 		);
 
 		DeferredUpdates::addCallableUpdate( function() use ( $rc, $autoTags, $user ) {
-			$rc->save();
+			$rc->save( false, $user );
 			// Apply autotags if any
 			if ( count( $autoTags ) ) {
 				ChangeTags::addTags( $autoTags, $rc->mAttribs['rc_id'],
@@ -637,7 +638,7 @@ class RecentChange {
 		);
 
 		DeferredUpdates::addCallableUpdate( function() use ( $rc, $autoTags, $user ) {
-			$rc->save();
+			$rc->save( false, $user );
 			// Apply autotags if any
 			if ( count( $autoTags ) ) {
 				ChangeTags::addTags( $autoTags, $rc->mAttribs['rc_id'],
@@ -678,7 +679,7 @@ class RecentChange {
 		}
 		$rc = self::newLogEntry( $timestamp, $title, $user, $actionComment, $ip, $type, $action,
 			$target, $logComment, $params, $newId, $actionCommentIRC );
-		$rc->save();
+		$rc->save( false, $user );
 
 		return true;
 	}
