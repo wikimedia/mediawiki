@@ -5,9 +5,12 @@
 			"Pikne",
 			"Boxmein",
 			"Cumbril",
-			"Roland"
+			"Roland",
+			"Postituvi"
 		]
 	},
+	"config-desc": "Mediawiki paigaldaja",
+	"config-title": "MediaWiki $1 installatsioon",
 	"config-information": "Teave",
 	"config-upgrade-key-missing": "Tuvastati olemasolev MediaWiki install.\nSelle installi täiendamiseks lisa palun järgmine rida faili <code>LocalSettings.php</code> lõppu:\n\n$1",
 	"config-session-error": "Tõrge seansi alustamisel: $1",

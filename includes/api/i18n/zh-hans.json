@@ -553,6 +553,7 @@
 	"apihelp-query+imageinfo-param-limit": "每个文件返回多少文件修订。",
 	"apihelp-query+imageinfo-param-start": "开始列举的时间戳。",
 	"apihelp-query+imageinfo-param-end": "列举的结束时间戳。",
+	"apihelp-query+imageinfo-param-urlwidth": "如果$2prop=url被设定，将返回至缩放到此宽度的一张图片的URL。\n由于性能原因，如果此消息被使用，将不会返回超过$1张被缩放的图片。",
 	"apihelp-query+imageinfo-param-urlheight": "与$1urlwidth类似。",
 	"apihelp-query+imageinfo-param-metadataversion": "要使用的元数据版本。如果<kbd>latest</kbd>被指定，则使用最新版本。默认为<kbd>1</kbd>以便向下兼容。",
 	"apihelp-query+imageinfo-param-extmetadatalanguage": "要取得extmetadata的语言。This affects both which translation to fetch, if multiple are available, as well as how things like numbers and various values are formatted.",
