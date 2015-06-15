@@ -915,10 +915,6 @@ abstract class DatabaseBase implements IDatabase {
 		// Although postgres and oracle support schemas, we don't use them (yet)
 		// to maintain backwards compatibility
 		$defaultSchemas = array(
-			'mysql' => null,
-			'postgres' => null,
-			'sqlite' => null,
-			'oracle' => null,
 			'mssql' => 'get from global',
 		);
 
@@ -932,7 +928,9 @@ abstract class DatabaseBase implements IDatabase {
 			$p['flags'] = isset( $p['flags'] ) ? $p['flags'] : 0;
 			$p['variables'] = isset( $p['variables'] ) ? $p['variables'] : array();
 			$p['tablePrefix'] = isset( $p['tablePrefix'] ) ? $p['tablePrefix'] : 'get from global';
-			$p['schema'] = isset( $p['schema'] ) ? $p['schema'] : $defaultSchemas[$dbType];
+			if ( !isset( $p['schema'] ) {
+				$p['schema'] = isset( $defaultSchemas[$dbType] ) ? $defaultSchemas[$dbType] : null;
+			}
 			$p['foreign'] = isset( $p['foreign'] ) ? $p['foreign'] : false;
 
 			return new $class( $p );
