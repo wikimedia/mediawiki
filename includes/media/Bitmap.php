@@ -70,7 +70,8 @@ class BitmapHandler extends TransformationalImageHandler {
 	protected function transformImageMagick( $image, $params ) {
 		# use ImageMagick
 		global $wgSharpenReductionThreshold, $wgSharpenParameter, $wgMaxAnimatedGifArea,
-			$wgImageMagickTempDir, $wgImageMagickConvertCommand;
+			$wgImageMagickTempDir, $wgImageMagickConvertCommand, $wgResourceBasePath,
+			$wgUseTinyRGBForJPGThumbnails;
 
 		$quality = array();
 		$sharpen = array();
@@ -176,6 +177,18 @@ class BitmapHandler extends TransformationalImageHandler {
 			$this->logErrorForExternalProcess( $retval, $err, $cmd );
 
 			return $this->getMediaTransformError( $params, "$err\nError code: $retval" );
+		}
+
+		if ( $params['mimeType'] == 'image/jpeg' ) {
+			// T100976 If the profile embedded in the JPG is sRGB, swap it for the smaller
+			// (and free) TinyRGB
+			if ( $wgUseTinyRGBForJPGThumbnails ) {
+				$this->swapICCProfile(
+					$params['dstPath'],
+					'IEC 61966-2.1 Default RGB colour space - sRGB',
+					realpath( dirname( __FILE__ ) ) . '/tinyrgb.icc'
+				);
+			}
 		}
 
 		return false; # No error
@@ -479,6 +492,48 @@ class BitmapHandler extends TransformationalImageHandler {
 			default:
 				return new MediaTransformError( 'thumbnail_error', 0, 0,
 					"$scaler rotation not implemented" );
+		}
+	}
+
+	/**
+	 * Swaps an embedded ICC profile for another, if found. Depends on exiftool, no-op if not installed.
+	 * @param string $filepath File to be manipulated (will be overwritten)
+	 * @param string $oldProfileString Exact name of color profile to look for (the one that will be replaced)
+	 * @param string $profileFilepath ICC profile file to apply to the file
+	 * @since 1.26
+	 * @return bool
+	 */
+	public function swapICCProfile( $filepath, $oldProfileString, $profileFilepath ) {
+		global $wgExiftool;
+
+		if ( $wgExiftool && is_file( $wgExiftool ) ) {
+			$cmd = wfEscapeShellArg( $wgExiftool ) .
+				" -DeviceModelDesc -S -T " .  wfEscapeShellArg( $filepath );
+
+			wfDebug( __METHOD__ . ": running exiftool: $cmd\n" );
+
+			$output = wfShellExecWithStderr( $cmd, $retval );
+
+			if ( $retval !== 0 || strcasecmp( trim( $output ), $oldProfileString ) !== 0 ) {
+				// We can't establish that this file has the expected ICC profile, don't process it
+				return false;
+			}
+
+			$cmd = wfEscapeShellArg( $wgExiftool ) .
+				" -overwrite_original  " . wfEscapeShellArg( '-icc_profile<=' . $profileFilepath ) .
+				" " . wfEscapeShellArg( $filepath );
+
+			wfDebug( __METHOD__ . ": running exiftool: $cmd\n" );
+
+			$output = wfShellExecWithStderr( $cmd, $retval );
+
+			if ( $retval !== 0 ) {
+				$this->logErrorForExternalProcess( $retval, $output, $cmd );
+
+				return new MediaTransformError( 'thumbnail_error', 0, 0, $output );
+			}
+
+			return false;
 		}
 	}
 }
