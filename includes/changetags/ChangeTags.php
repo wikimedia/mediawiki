@@ -417,21 +417,23 @@ class ChangeTags {
 			return Status::newFatal( 'tags-update-no-permission' );
 		}
 
-		// to be added, a tag has to be explicitly defined
-		// @todo Allow extensions to define tags that can be applied by users...
-		$explicitlyDefinedTags = self::listExplicitlyDefinedTags();
-		$diff = array_diff( $tagsToAdd, $explicitlyDefinedTags );
-		if ( $diff ) {
-			return self::restrictedTagError( 'tags-update-add-not-allowed-one',
-				'tags-update-add-not-allowed-multi', $diff );
+		if ( $tagsToAdd ) {
+			// to be added, a tag has to be explicitly defined
+			// @todo Allow extensions to define tags that can be applied by users...
+			$explicitlyDefinedTags = self::listExplicitlyDefinedTags();
+			$diff = array_diff( $tagsToAdd, $explicitlyDefinedTags );
+			if ( $diff ) {
+				return self::restrictedTagError( 'tags-update-add-not-allowed-one',
+					'tags-update-add-not-allowed-multi', $diff );
+			}
 		}
 
-		// to be removed, a tag has to be either explicitly defined or not defined
-		// at all
-		$definedTags = self::listDefinedTags();
-		$diff = array_diff( $tagsToRemove, $explicitlyDefinedTags );
-		if ( $diff ) {
-			$intersect = array_intersect( $diff, $definedTags );
+		if ( $tagsToRemove ) {
+			// to be removed, a tag must not be defined by an extension, or equivalently it
+			// has to be either explicitly defined or not defined at all
+			// (assuming no edge case of a tag both explicitly-defined and extension-defined)
+			$extensionDefinedTags = self::listExtensionDefinedTags();
+			$intersect = array_intersect( $tagsToRemove, $extensionDefinedTags );
 			if ( $intersect ) {
 				return self::restrictedTagError( 'tags-update-remove-not-allowed-one',
 					'tags-update-remove-not-allowed-multi', $intersect );
