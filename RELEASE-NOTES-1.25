@@ -7,6 +7,8 @@ THIS IS NOT YET A RELEASE!
 
 == Changes since 1.25.2 ==
 
+* (T102562) Fix InstantCommons parameters to handle the new HTTPS-only
+  policy of Wikimedia Commons.
 * (T100767) Setting a configuration setting for skin or extension to
   false in LocalSettings.php was not working.
 * (T100635) API action=opensearch json output no longer breaks when
