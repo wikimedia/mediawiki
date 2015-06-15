@@ -134,20 +134,30 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 
 		$prefix = isset( $options['prefix'] ) && $options['prefix'];
 		$selector = isset( $options['selector'] ) && $options['selector'];
-		$selectorWithoutVariant = isset( $options['selectorWithoutVariant'] ) && $options['selectorWithoutVariant'];
-		$selectorWithVariant = isset( $options['selectorWithVariant'] ) && $options['selectorWithVariant'];
+		$selectorWithoutVariant = isset( $options['selectorWithoutVariant'] )
+			&& $options['selectorWithoutVariant'];
+		$selectorWithVariant = isset( $options['selectorWithVariant'] )
+			&& $options['selectorWithVariant'];
 
 		if ( $selectorWithoutVariant && !$selectorWithVariant ) {
-			throw new InvalidArgumentException( "Given 'selectorWithoutVariant' but no 'selectorWithVariant'." );
+			throw new InvalidArgumentException(
+				"Given 'selectorWithoutVariant' but no 'selectorWithVariant'."
+			);
 		}
 		if ( $selectorWithVariant && !$selectorWithoutVariant ) {
-			throw new InvalidArgumentException( "Given 'selectorWithVariant' but no 'selectorWithoutVariant'." );
+			throw new InvalidArgumentException(
+				"Given 'selectorWithVariant' but no 'selectorWithoutVariant'."
+			);
 		}
 		if ( $selector && $selectorWithVariant ) {
-			throw new InvalidArgumentException( "Incompatible 'selector' and 'selectorWithVariant'+'selectorWithoutVariant' given." );
+			throw new InvalidArgumentException(
+				"Incompatible 'selector' and 'selectorWithVariant'+'selectorWithoutVariant' given."
+			);
 		}
 		if ( !$prefix && !$selector && !$selectorWithVariant ) {
-			throw new InvalidArgumentException( "None of 'prefix', 'selector' or 'selectorWithVariant'+'selectorWithoutVariant' given." );
+			throw new InvalidArgumentException(
+				"None of 'prefix', 'selector' or 'selectorWithVariant'+'selectorWithoutVariant' given."
+			);
 		}
 
 		foreach ( $options as $member => $option ) {
