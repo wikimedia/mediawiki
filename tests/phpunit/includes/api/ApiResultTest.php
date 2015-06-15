@@ -871,8 +871,12 @@ class ApiResultTest extends MediaWikiTestCase {
 				array( 'Types' => array( 'AssocAsObject' => true ) ),
 				(object)array(
 					'defaultArray' => array( 'b', 'c', 'a', ApiResult::META_TYPE => 'array' ),
-					'defaultAssoc' => (object)array( 'x' => 'a', 1 => 'b', 0 => 'c', ApiResult::META_TYPE => 'assoc' ),
-					'defaultAssoc2' => (object)array( 2 => 'a', 3 => 'b', 0 => 'c', ApiResult::META_TYPE => 'assoc' ),
+					'defaultAssoc' => (object)array( 'x' => 'a',
+						1 => 'b', 0 => 'c', ApiResult::META_TYPE => 'assoc'
+					),
+					'defaultAssoc2' => (object)array( 2 => 'a', 3 => 'b',
+						0 => 'c', ApiResult::META_TYPE => 'assoc'
+					),
 					'array' => array( 'a', 'c', 'b', ApiResult::META_TYPE => 'array' ),
 					'BCarray' => array( 'a', 'c', 'b', ApiResult::META_TYPE => 'array' ),
 					'BCassoc' => (object)array( 'a', 'b', 'c', ApiResult::META_TYPE => 'assoc' ),
@@ -960,8 +964,12 @@ class ApiResultTest extends MediaWikiTestCase {
 				array( 'Types' => array( 'ArmorKVP' => 'name', 'AssocAsObject' => true ) ),
 				(object)array(
 					'defaultArray' => array( 'b', 'c', 'a', ApiResult::META_TYPE => 'array' ),
-					'defaultAssoc' => (object)array( 'x' => 'a', 1 => 'b', 0 => 'c', ApiResult::META_TYPE => 'assoc' ),
-					'defaultAssoc2' => (object)array( 2 => 'a', 3 => 'b', 0 => 'c', ApiResult::META_TYPE => 'assoc' ),
+					'defaultAssoc' => (object)array( 'x' => 'a', 1 => 'b',
+						0 => 'c', ApiResult::META_TYPE => 'assoc'
+					),
+					'defaultAssoc2' => (object)array( 2 => 'a', 3 => 'b',
+						0 => 'c', ApiResult::META_TYPE => 'assoc'
+					),
 					'array' => array( 'a', 'c', 'b', ApiResult::META_TYPE => 'array' ),
 					'BCarray' => array( 'a', 'c', 'b', ApiResult::META_TYPE => 'array' ),
 					'BCassoc' => (object)array( 'a', 'b', 'c', ApiResult::META_TYPE => 'assoc' ),
@@ -1203,7 +1211,8 @@ class ApiResultTest extends MediaWikiTestCase {
 			if ( preg_match( '/Use of ApiResult::\S+ was deprecated in MediaWiki \d+.\d+\./', $errstr ) ) {
 				return true;
 			}
-			if ( preg_match( '/Use of ApiMain to ApiResult::__construct was deprecated in MediaWiki \d+.\d+\./', $errstr ) ) {
+			if ( preg_match( '/Use of ApiMain to ApiResult::__construct ' .
+				'was deprecated in MediaWiki \d+.\d+\./', $errstr ) ) {
 				return true;
 			}
 			return false;
@@ -1521,7 +1530,8 @@ class ApiResultTest extends MediaWikiTestCase {
 
 		$result = new ApiResult( 8388608 );
 		$result->setMainForContinuation( $main );
-		$result->beginContinuation( '||mock2', array_slice( $allModules, 0, 2 ), array( 'mock1', 'mock2' ) );
+		$result->beginContinuation( '||mock2', array_slice( $allModules, 0, 2 ),
+			array( 'mock1', 'mock2' ) );
 		try {
 			$result->setContinueParam( $allModules[1], 'm2continue', 1 );
 			$this->fail( 'Expected exception not thrown' );
@@ -1537,7 +1547,8 @@ class ApiResultTest extends MediaWikiTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( UnexpectedValueException $ex ) {
 			$this->assertSame(
-				'Module \'mocklist\' called ApiContinuationManager::addContinueParam but was not passed to ApiContinuationManager::__construct',
+				'Module \'mocklist\' called ApiContinuationManager::addContinueParam ' .
+					'but was not passed to ApiContinuationManager::__construct',
 				$ex->getMessage(),
 				'Expected exception'
 			);
@@ -1571,7 +1582,8 @@ class ApiResultTest extends MediaWikiTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( UnexpectedValueException $ex ) {
 			$this->assertSame(
-				'ApiResultTestSerializableObject::serializeForApiResult() returned an object of class ApiResultTestStringifiableObject',
+				'ApiResultTestSerializableObject::serializeForApiResult() ' .
+					'returned an object of class ApiResultTestStringifiableObject',
 				$ex->getMessage(),
 				'Expected exception'
 			);
@@ -1583,7 +1595,8 @@ class ApiResultTest extends MediaWikiTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( UnexpectedValueException $ex ) {
 			$this->assertSame(
-				'ApiResultTestSerializableObject::serializeForApiResult() returned an invalid value: Cannot add non-finite floats to ApiResult',
+				'ApiResultTestSerializableObject::serializeForApiResult() ' .
+					'returned an invalid value: Cannot add non-finite floats to ApiResult',
 				$ex->getMessage(),
 				'Expected exception'
 			);

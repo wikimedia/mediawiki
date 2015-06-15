@@ -69,7 +69,9 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 						if ( !isset( $definition[$key] ) ) {
 							$definition[$key] = $data[$key];
 						} elseif ( $definition[$key] !== $data[$key] ) {
-							throw new Exception( "Mismatched OOUI theme definitions are not supported: trying to load $key of $theme theme" );
+							throw new Exception(
+								"Mismatched OOUI theme definitions are not supported: trying to load $key of $theme theme"
+							);
 						}
 						break;
 				}
