@@ -9,6 +9,3 @@ resources/src/jquery.tipsy/**
 resources/src/jquery/jquery.farbtastic.js
 resources/src/mediawiki.libs/**
 tests/frontend/node_modules/**
-
-# github.com/jshint/jshint/issues/729
-tests/qunit/suites/resources/mediawiki/mediawiki.jscompat.test.js
