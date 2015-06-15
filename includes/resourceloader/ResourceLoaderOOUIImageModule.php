@@ -50,7 +50,7 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 				array_walk( $data['images'], function ( &$value ) use ( $fixPath ) {
 					if ( is_string( $value['file'] ) ) {
 						$fixPath( $value['file'] );
-					} else if ( is_array( $value['file'] ) ) {
+					} elseif ( is_array( $value['file'] ) ) {
 						array_walk_recursive( $value['file'], $fixPath );
 					}
 				} );
@@ -69,7 +69,9 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 						if ( !isset( $definition[$key] ) ) {
 							$definition[$key] = $data[$key];
 						} elseif ( $definition[$key] !== $data[$key] ) {
-							throw new Exception( "Mismatched OOUI theme definitions are not supported: trying to load $key of $theme theme" );
+							throw new Exception(
+								"Mismatched OOUI theme definitions are not supported: trying to load $key of $theme theme"
+							);
 						}
 						break;
 				}
