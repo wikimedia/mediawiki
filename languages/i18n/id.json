@@ -366,6 +366,7 @@
 	"no-null-revision": "Tidak dapat membuat revisi null baru untuk halaman \"$1\"",
 	"badtitle": "Judul tidak sah",
 	"badtitletext": "Judul halaman yang diminta tidak sah, kosong, atau judul antarbahasa atau antarwiki yang salah sambung.",
+	"title-invalid-empty": "Judul halaman yang diminta kosong atau berisi hanya nama sebuah ruang nama.",
 	"perfcached": "Data berikut ini diambil dari singgahan dan mungkin bukan data mutakhir. {{PLURAL:$1|Hasil}} maksimal ada di singgahan.",
 	"perfcachedts": "Data berikut ini diambil dari singgahan dan terakhir diperbarui pada $1. {{PLURAL:$4|Hasil}} maksimal ada di singgahan.",
 	"querypage-no-updates": "Pemutakhiran dari halaman ini sedang dimatikan. Data yang ada di sini saat ini tidak akan dimuat ulang.",

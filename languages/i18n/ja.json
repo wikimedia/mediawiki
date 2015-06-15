@@ -65,7 +65,8 @@
 			"Los688",
 			"朝彦",
 			"Otokoume",
-			"赤城。"
+			"赤城。",
+			"Sujiniku"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -1167,6 +1168,7 @@
 	"right-sendemail": "他の利用者にメールを送信",
 	"right-passwordreset": "パスワード再設定メールを閲覧",
 	"right-managechangetags": "[[Special:Tags|タグ]]のデータベースにおける作成および削除",
+	"right-changetags": "個々の版とログエントリの任意の[[Special:Tags|タグ]]の追加と削除",
 	"newuserlogpage": "アカウント作成記録",
 	"newuserlogpagetext": "以下はアカウント作成の記録です。",
 	"rightslog": "利用者権限変更記録",

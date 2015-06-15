@@ -1290,7 +1290,7 @@
 	"uploaded-script-svg": "У загружаным SVG-файле знойдзены небясьпечны элемэнт з падтрымкай сцэнароў «$1».",
 	"uploaded-hostile-svg": "Знойдзены небясьпечны CSS у элемэнце стылю загружанага SVG-файла.",
 	"uploaded-event-handler-on-svg": "Усталёўваць атрыбуты апрацоўніка падзеяў <code>$1=\"$2\"</code> не дазволена для SVG-файлаў.",
-	"uploaded-href-attribute-svg": "Href-атрыбуты <code>&lt;$1 $2=\"$3\"&gt;</code> зь нелякальнай мэтай (напрыклад, http://, javascript:, і г. д.) не дазволеныя ў SVG-файлах.",
+	"uploaded-href-attribute-svg": "У SVG-файлах не дазволеныя href-атрыбуты <code>&lt;$1 $2=\"$3\"&gt;</code> зь нелякальнай мэтай (напрыклад, http://, javascript:, і г. д.).",
 	"uploaded-href-unsafe-target-svg": "У загружаным SVG-файле знойдзеная спасылка на небясьпечную мэту <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-animate-svg": "У загружаным SVG-файле знойдзены тэг «animate», які можа зьмяняць спасылку з дапамогай атрыбуту «from» <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-setting-event-handler-svg": "Усталёўка атрыбутаў апрацоўкі падзеяў заблякаваная, у загружаным SVG-файле знойдзены код <code>&lt;$1 $2=\"$3\"&gt;</code>.",
