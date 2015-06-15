@@ -14,6 +14,7 @@ php:
 
 env:
   - dbtype=mysql
+  - dbtype=mariadb
   - dbtype=postgres
 
 # TODO: Travis CI's hhvm does not support PostgreSQL at the moment.
@@ -24,6 +25,7 @@ matrix:
 
 services:
   - mysql
+  - mariadb
 
 branches:
   # Test changes in master, in Wikimedia's production and in arbitrary
