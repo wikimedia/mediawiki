@@ -56,7 +56,8 @@ class ConvertExtensionToRegistration extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = 'Converts extension entry points to the new JSON registration format';
-		$this->addArg( 'path', 'Location to the PHP entry point you wish to convert', /* $required = */ true );
+		$this->addArg( 'path', 'Location to the PHP entry point you wish to convert',
+			/* $required = */ true );
 		$this->addOption( 'skin', 'Whether to write to skin.json', false, false );
 	}
 
@@ -95,7 +96,8 @@ class ConvertExtensionToRegistration extends Maintenance {
 			}
 
 			if ( isset( $this->custom[$realName] ) ) {
-				call_user_func_array( array( $this, $this->custom[$realName] ), array( $realName, $value, $vars ) );
+				call_user_func_array( array( $this, $this->custom[$realName] ),
+					array( $realName, $value, $vars ) );
 			} elseif ( in_array( $realName, $globalSettings ) ) {
 				$this->json[$realName] = $value;
 			} elseif ( array_key_exists( $realName, $this->noLongerSupportedGlobals ) ) {
@@ -133,7 +135,9 @@ class ConvertExtensionToRegistration extends Maintenance {
 	protected function handleExtensionFunctions( $realName, $value ) {
 		foreach ( $value as $func ) {
 			if ( $func instanceof Closure ) {
-				$this->error( "Error: Closures cannot be converted to JSON. Please move your extension function somewhere else.", 1 );
+				$this->error( "Error: Closures cannot be converted to JSON." .
+					"Please move your extension function somewhere else.", 1 
+				);
 			}
 		}
 
@@ -197,7 +201,9 @@ class ConvertExtensionToRegistration extends Maintenance {
 		foreach ( $value as $hookName => $handlers ) {
 			foreach ( $handlers as $func ) {
 				if ( $func instanceof Closure ) {
-					$this->error( "Error: Closures cannot be converted to JSON. Please move the handler for $hookName somewhere else.", 1 );
+					$this->error( "Error: Closures cannot be converted to JSON." .
+						"Please move the handler for $hookName somewhere else.", 1
+					);
 				}
 			}
 		}
@@ -228,7 +234,6 @@ class ConvertExtensionToRegistration extends Maintenance {
 					}
 				}
 			}
-
 
 			$this->json[$realName][$name] = $data;
 		}
