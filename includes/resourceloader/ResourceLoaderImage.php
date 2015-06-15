@@ -54,7 +54,8 @@ class ResourceLoaderImage {
 		$this->variants = $variants;
 
 		// Expand shorthands:
-		// array( "en,de,fr" => "foo.svg" ) → array( "en" => "foo.svg", "de" => "foo.svg", "fr" => "foo.svg" )
+		// array( "en,de,fr" => "foo.svg" ) 
+		// → array( "en" => "foo.svg", "de" => "foo.svg", "fr" => "foo.svg" )
 		if ( is_array( $this->descriptor ) && isset( $this->descriptor['lang'] ) ) {
 			foreach ( array_keys( $this->descriptor['lang'] ) as $langList ) {
 				if ( strpos( $langList, ',' ) !== false ) {
@@ -75,11 +76,15 @@ class ResourceLoaderImage {
 		} );
 		$extensions = array_unique( $extensions );
 		if ( count( $extensions ) !== 1 ) {
-			throw new InvalidArgumentException( "File type for different image files of '$name' not the same" );
+			throw new InvalidArgumentException(
+				"File type for different image files of '$name' not the same"
+			);
 		}
 		$ext = $extensions[0];
 		if ( !isset( self::$fileTypes[$ext] ) ) {
-			throw new InvalidArgumentException( "Invalid file type for image files of '$name' (valid: svg, png, gif, jpg)" );
+			throw new InvalidArgumentException(
+				"Invalid file type for image files of '$name' (valid: svg, png, gif, jpg)"
+			);
 		}
 		$this->extension = $ext;
 	}
