@@ -70,7 +70,8 @@ class BitmapHandler extends TransformationalImageHandler {
 	protected function transformImageMagick( $image, $params ) {
 		# use ImageMagick
 		global $wgSharpenReductionThreshold, $wgSharpenParameter, $wgMaxAnimatedGifArea,
-			$wgImageMagickTempDir, $wgImageMagickConvertCommand;
+			$wgImageMagickTempDir, $wgImageMagickConvertCommand, $wgResourceBasePath,
+			$wgUseTinyRGBForJPGThumbnails;
 
 		$quality = array();
 		$sharpen = array();
