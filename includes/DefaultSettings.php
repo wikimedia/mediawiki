@@ -970,6 +970,14 @@ $wgJpegTran = '/usr/bin/jpegtran';
  */
 $wgExiv2Command = '/usr/bin/exiv2';
 
+
+/**
+ * Used for lossless ICC profile swapping
+ *
+ * @since  1.26
+ */
+$wgExiftool = '/usr/bin/exiftool';
+
 /**
  * Scalable Vector Graphics (SVG) may be uploaded as images.
  * Since SVG support is not yet standard in browsers, it is
@@ -1321,6 +1329,14 @@ $wgUploadThumbnailRenderHttpCustomHost = false;
  * @since 1.25
  */
 $wgUploadThumbnailRenderHttpCustomDomain = false;
+
+/**
+ * When JPGs use the sRGB ICC profile, swaps it for the more lightweight (and free) TinyRGB profile
+ * when generating thumbnails.
+ *
+ * @since 1.26
+ */
+$wgUseTinyRGBForJPGThumbnails = false;
 
 /**
  * Default parameters for the "<gallery>" tag
