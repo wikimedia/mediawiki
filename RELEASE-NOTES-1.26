@@ -18,6 +18,10 @@ production.
 * ':' (colon) is now invalid in usernames for new accounts. Existing accounts
   are not affected.
 * Added a new hook, 'LogException', to log exceptions in nonstandard ways.
+* Revive the 'SpecialSearchResultsAppend' hook which occurs after the list of
+  search results are rendered. The initial use case is to append a "give us
+  feedback" link beneath the search results.
+
 
 ==== External libraries ====
 * Update es5-shim from v4.0.0 to v4.1.5.
@@ -150,3 +154,4 @@ going to run a public MediaWiki, so you can be notified of security fixes.
 == IRC help ==
 
 There's usually someone online in #mediawiki on irc.freenode.net.
+
