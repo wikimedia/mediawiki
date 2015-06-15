@@ -126,7 +126,7 @@ class JobRunner implements LoggerAwareInterface {
 		}
 
 		$group = JobQueueGroup::singleton();
-		
+
 		// Flush any pending DB writes for sanity
 		wfGetLBFactory()->commitAll();
 
@@ -199,10 +199,12 @@ class JobRunner implements LoggerAwareInterface {
 				$timeMsTotal += $timeMs;
 				$profiler->scopedProfileOut( $psection );
 
-				if ( $job->getQueuedTimestamp() ) {
+				$queuedTs = $job->getQueuedTimestamp();
+				if ( $queuedTs ) {
 					// Record time to run for the job type
-					$stats->timing( "job-pickuptime-$jType",
-						$popTime - $job->getQueuedTimestamp() );
+					$pickupDelay = $popTime - $queuedTs;
+					$stats->timing( 'jobqueue.pickup_delay.all', $queuedTs );
+					$stats->timing( "jobqueue.pickup_delay.$jType", $queuedTs );
 				}
 
 				// Mark the job as done on success or when the job cannot be retried
