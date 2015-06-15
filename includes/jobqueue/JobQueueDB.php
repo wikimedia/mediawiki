@@ -245,10 +245,8 @@ class JobQueueDB extends JobQueue {
 			foreach ( array_chunk( $rows, 50 ) as $rowBatch ) {
 				$dbw->insert( 'job', $rowBatch, $method );
 			}
-			JobQueue::incrStats( 'job-insert', $this->type, count( $rows ) );
-			JobQueue::incrStats(
-				'job-insert-duplicate',
-				$this->type,
+			JobQueue::incrStats( 'inserts', $this->type, count( $rows ) );
+			JobQueue::incrStats( 'dupe_inserts', $this->type,
 				count( $rowSet ) + count( $rowList ) - count( $rows )
 			);
 		} catch ( DBError $e ) {
@@ -293,7 +291,7 @@ class JobQueueDB extends JobQueue {
 				if ( !$row ) {
 					break; // nothing to do
 				}
-				JobQueue::incrStats( 'job-pop', $this->type );
+				JobQueue::incrStats( 'pops', $this->type );
 				// Get the job object from the row...
 				$title = Title::makeTitle( $row->job_namespace, $row->job_title );
 				$job = Job::factory( $row->job_cmd, $title,
@@ -479,7 +477,7 @@ class JobQueueDB extends JobQueue {
 			$dbw->delete( 'job',
 				array( 'job_cmd' => $this->type, 'job_id' => $job->metadata['id'] ), __METHOD__ );
 
-			JobQueue::incrStats( 'job-ack', $this->type );
+			JobQueue::incrStats( 'acks', $this->type );
 		} catch ( DBError $e ) {
 			$this->throwDBException( $e );
 		}
@@ -679,7 +677,7 @@ class JobQueueDB extends JobQueue {
 					);
 					$affected = $dbw->affectedRows();
 					$count += $affected;
-					JobQueue::incrStats( 'job-recycle', $this->type, $affected );
+					JobQueue::incrStats( 'recycles', $this->type, $affected );
 					$this->aggr->notifyQueueNonEmpty( $this->wiki, $this->type );
 				}
 			}
@@ -706,7 +704,7 @@ class JobQueueDB extends JobQueue {
 				$dbw->delete( 'job', array( 'job_id' => $ids ), __METHOD__ );
 				$affected = $dbw->affectedRows();
 				$count += $affected;
-				JobQueue::incrStats( 'job-abandon', $this->type, $affected );
+				JobQueue::incrStats( 'abandons', $this->type, $affected );
 			}
 
 			$dbw->unlock( "jobqueue-recycle-{$this->type}", __METHOD__ );
