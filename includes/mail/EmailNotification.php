@@ -201,7 +201,7 @@ class EmailNotification {
 	public function actuallyNotifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit,
 		$oldid, $watchers, $pageStatus = 'changed' ) {
 		# we use $wgPasswordSender as sender's address
-		global $wgEnotifWatchlist;
+		global $wgEnotifWatchlist, $wgBlockDisablesLogin;
 		global $wgEnotifMinorEdits, $wgEnotifUserTalk;
 
 		# The following code is only run, if several conditions are met:
@@ -240,12 +240,14 @@ class EmailNotification {
 
 			if ( $wgEnotifWatchlist ) {
 				// Send updates to watchers other than the current editor
+				// and don't send to watchers who are blocked and cannot login
 				$userArray = UserArray::newFromIDs( $watchers );
 				foreach ( $userArray as $watchingUser ) {
 					if ( $watchingUser->getOption( 'enotifwatchlistpages' )
 						&& ( !$minorEdit || $watchingUser->getOption( 'enotifminoredits' ) )
 						&& $watchingUser->isEmailConfirmed()
 						&& $watchingUser->getID() != $userTalkId
+						&& !( $wgBlockDisablesLogin && $watchingUser->isBlocked() )
 					) {
 						if ( Hooks::run( 'SendWatchlistEmailNotification', array( $watchingUser, $title, $this ) ) ) {
 							$this->compose( $watchingUser );
@@ -275,7 +277,7 @@ class EmailNotification {
 	 * @return bool
 	 */
 	private function canSendUserTalkEmail( $editor, $title, $minorEdit ) {
-		global $wgEnotifUserTalk;
+		global $wgEnotifUserTalk, $wgBlockDisablesLogin;
 		$isUserTalkPage = ( $title->getNamespace() == NS_USER_TALK );
 
 		if ( $wgEnotifUserTalk && $isUserTalkPage ) {
@@ -285,6 +287,8 @@ class EmailNotification {
 				wfDebug( __METHOD__ . ": user talk page edited, but user does not exist\n" );
 			} elseif ( $targetUser->getId() == $editor->getId() ) {
 				wfDebug( __METHOD__ . ": user edited their own talk page, no notification sent\n" );
+			} elseif ( $wgBlockDisablesLogin && $targetUser->isBlocked() ) {
+				wfDebug( __METHOD__ . ": talk page owner is blocked and cannot login, no notification sent\n" );
 			} elseif ( $targetUser->getOption( 'enotifusertalkpages' )
 				&& ( !$minorEdit || $targetUser->getOption( 'enotifminoredits' ) )
 			) {
