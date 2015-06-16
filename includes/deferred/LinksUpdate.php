@@ -995,15 +995,27 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 
 		# If using cleanup triggers, we can skip some manual deletes
 		if ( !$this->mDb->cleanupTriggers() ) {
-			# Clean up recentchanges entries...
-			$this->mDb->delete( 'recentchanges',
-				array( 'rc_type != ' . RC_LOG,
+			# Find recentchanges entries to clean up...
+			$rcIdsForTitle = $this->mDb->selectFieldValues( 'recentchanges',
+				'rc_id',
+				array(
+					'rc_type != ' . RC_LOG,
 					'rc_namespace' => $title->getNamespace(),
-					'rc_title' => $title->getDBkey() ),
-				__METHOD__ );
-			$this->mDb->delete( 'recentchanges',
+					'rc_title' => $title->getDBkey()
+				),
+				__METHOD__
+			);
+			$rcIdsForPage = $this->mDb->selectFieldValues( 'recentchanges',
+				'rc_id',
 				array( 'rc_type != ' . RC_LOG, 'rc_cur_id' => $id ),
-				__METHOD__ );
+				__METHOD__
+			);
+
+			# T98706: delete PK to avoid lock contention with RC delete log insertions
+			$rcIds = array_merge( $rcIdsForTitle, $rcIdsForPage );
+			if ( $rcIds ) {
+				$this->mDb->delete( 'recentchanges', array( 'rc_id' => $rcIds ), __METHOD__ );
+			}
 		}
 	}
 
