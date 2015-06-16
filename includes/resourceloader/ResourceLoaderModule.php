@@ -585,6 +585,16 @@ abstract class ResourceLoaderModule {
 	 * @return string Hash (should use ResourceLoader::makeHash)
 	 */
 	public function getVersionHash( ResourceLoaderContext $context ) {
+		// The startup module produces a manifest with versions representing the entire module.
+		// Typically, the request for the startup module itself has only=scripts. That must apply
+		// only to the startup module content, and not to the module version computed here.
+		$context = new DerivativeResourceLoaderContext( $context );
+		$context->setModules( array() );
+		// Version hash must cover all resources, regardless of startup request itself.
+		$context->setOnly( null );
+		// Compute version hash based on content, not debug urls.
+		$context->setDebug( false );
+
 		// Cache this somewhat expensive operation. Especially because some classes
 		// (e.g. startup module) iterate more than once over all modules to get versions.
 		$contextHash = $context->getHash();
