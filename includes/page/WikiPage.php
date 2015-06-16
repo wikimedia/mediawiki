@@ -3024,7 +3024,7 @@ class WikiPage implements Page, IDBAccessObject {
 			) );
 		}
 
-		// Get the last edit not by this guy...
+		// Get the last edit not by this person...
 		// Note: these may not be public values
 		$user = intval( $current->getUser( Revision::RAW ) );
 		$user_text = $dbw->addQuotes( $current->getUserText( Revision::RAW ) );
@@ -3044,29 +3044,6 @@ class WikiPage implements Page, IDBAccessObject {
 		) {
 			// Only admins can see this text
 			return array( array( 'notvisiblerev' ) );
-		}
-
-		// Set patrolling and bot flag on the edits, which gets rollbacked.
-		// This is done before the rollback edit to have patrolling also on failure (bug 62157).
-		$set = array();
-		if ( $bot && $guser->isAllowed( 'markbotedits' ) ) {
-			// Mark all reverted edits as bot
-			$set['rc_bot'] = 1;
-		}
-
-		if ( $wgUseRCPatrol ) {
-			// Mark all reverted edits as patrolled
-			$set['rc_patrolled'] = 1;
-		}
-
-		if ( count( $set ) ) {
-			$dbw->update( 'recentchanges', $set,
-				array( /* WHERE */
-					'rc_cur_id' => $current->getPage(),
-					'rc_user_text' => $current->getUserText(),
-					'rc_timestamp > ' . $dbw->addQuotes( $s->rev_timestamp ),
-				), __METHOD__
-			);
 		}
 
 		// Generate the edit summary if necessary
@@ -3116,6 +3093,30 @@ class WikiPage implements Page, IDBAccessObject {
 			$target->getId(),
 			$guser
 		);
+
+		// Set patrolling and bot flag on the edits, which gets rollbacked.
+		// This is done even on edit failure to have patrolling in that case (bug 62157).
+		$set = array();
+		if ( $bot && $guser->isAllowed( 'markbotedits' ) ) {
+			// Mark all reverted edits as bot
+			$set['rc_bot'] = 1;
+		}
+
+		if ( $wgUseRCPatrol ) {
+			// Mark all reverted edits as patrolled
+			$set['rc_patrolled'] = 1;
+		}
+
+		if ( count( $set ) ) {
+			$dbw->update( 'recentchanges', $set,
+				array( /* WHERE */
+					'rc_cur_id' => $current->getPage(),
+					'rc_user_text' => $current->getUserText(),
+					'rc_timestamp > ' . $dbw->addQuotes( $s->rev_timestamp ),
+				),
+				__METHOD__
+			);
+		}
 
 		if ( !$status->isOK() ) {
 			return $status->getErrorsArray();
