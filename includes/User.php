@@ -330,7 +330,7 @@ class User implements IDBAccessObject {
 	 *
 	 * @param integer $flags User::READ_* constant bitfield
 	 */
-	public function load( $flags = self::READ_LATEST ) {
+	public function load( $flags = self::READ_NORMAL ) {
 		if ( $this->mLoadedItems === true ) {
 			return;
 		}
@@ -344,9 +344,13 @@ class User implements IDBAccessObject {
 				$this->loadDefaults();
 				break;
 			case 'name':
-				// @TODO: this gets the ID from a slave, assuming renames
-				// are rare. This should be controllable and more consistent.
-				$this->mId = self::idFromName( $this->mName );
+				// Make sure this thread sees its own changes
+				if ( wfGetLB()->hasOrMadeRecentMasterChanges() ) {
+					$flags |= self::READ_LATEST;
+					$this->queryFlagsUsed = $flags;
+				}
+
+				$this->mId = self::idFromName( $this->mName, $flags );
 				if ( !$this->mId ) {
 					// Nonexistent user placeholder object
 					$this->loadDefaults( $this->mName );
@@ -380,21 +384,19 @@ class User implements IDBAccessObject {
 			return false;
 		}
 
-		// Try cache
-		$cache = $this->loadFromCache();
-		if ( !$cache ) {
+		// Try cache (unless this needs to lock the DB).
+		// NOTE: if this thread called saveSettings(), the cache was cleared.
+		if ( ( $flags & self::READ_LOCKING ) || !$this->loadFromCache() ) {
 			wfDebug( "User: cache miss for user {$this->mId}\n" );
-			// Load from DB
+			// Load from DB (make sure this thread sees its own changes)
+			if ( wfGetLB()->hasOrMadeRecentMasterChanges() ) {
+				$flags |= self::READ_LATEST;
+			}
 			if ( !$this->loadFromDatabase( $flags ) ) {
 				// Can't load from ID, user is anonymous
 				return false;
 			}
-			if ( $flags & self::READ_LATEST ) {
-				// Only save master data back to the cache to keep it consistent.
-				// @TODO: save it anyway and have callers specifiy $flags and have
-				// load() called as needed. That requires updating MANY callers...
-				$this->saveToCache();
-			}
+			$this->saveToCache();
 		}
 
 		$this->mLoadedItems = true;
@@ -415,9 +417,8 @@ class User implements IDBAccessObject {
 			return false;
 		}
 
-		$cache = ObjectCache::getMainWANInstance();
 		$key = wfMemcKey( 'user', 'id', $this->mId );
-		$data = $cache->get( $key );
+		$data = ObjectCache::getMainWANInstance()->get( $key );
 		if ( !is_array( $data ) || $data['mVersion'] < self::VERSION ) {
 			// Object is expired
 			return false;
@@ -448,15 +449,6 @@ class User implements IDBAccessObject {
 			return;
 		}
 
-		$cache = ObjectCache::getMainWANInstance();
-
-		// The cache needs good consistency due to its high TTL, so the user
-		// should have been loaded from the master to avoid lag amplification.
-		if ( !( $this->queryFlagsUsed & self::READ_LATEST ) ) {
-			wfWarn( "Cannot cache slave-loaded User object with ID '{$this->mId}'." );
-			return;
-		}
-
 		$data = array();
 		foreach ( self::$mCacheVars as $name ) {
 			$data[$name] = $this->$name;
@@ -464,7 +456,7 @@ class User implements IDBAccessObject {
 		$data['mVersion'] = self::VERSION;
 		$key = wfMemcKey( 'user', 'id', $this->mId );
 
-		$cache->set( $key, $data );
+		ObjectCache::getMainWANInstance()->set( $key, $data, 3600 );
 	}
 
 	/** @name newFrom*() static factory methods */
@@ -598,9 +590,10 @@ class User implements IDBAccessObject {
 	/**
 	 * Get database id given a user name
 	 * @param string $name Username
+	 * @param integer $flags User::READ_* constant bitfield
 	 * @return int|null The corresponding user's ID, or null if user is nonexistent
 	 */
-	public static function idFromName( $name ) {
+	public static function idFromName( $name, $flags = self::READ_NORMAL ) {
 		$nt = Title::makeTitleSafe( NS_USER, $name );
 		if ( is_null( $nt ) ) {
 			// Illegal name
@@ -611,8 +604,11 @@ class User implements IDBAccessObject {
 			return self::$idCacheByName[$name];
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
-		$s = $dbr->selectRow(
+		$db = ( $flags & self::READ_LATEST )
+			? wfGetDB( DB_MASTER )
+			: wfGetDB( DB_SLAVE );
+
+		$s = $db->selectRow(
 			'user',
 			array( 'user_id' ),
 			array( 'user_name' => $nt->getText() ),
@@ -1141,7 +1137,6 @@ class User implements IDBAccessObject {
 		}
 
 		$proposedUser = User::newFromId( $sId );
-		$proposedUser->load( self::READ_LATEST );
 		if ( !$proposedUser->isLoggedIn() ) {
 			// Not a valid ID
 			return false;
@@ -2336,10 +2331,9 @@ class User implements IDBAccessObject {
 
 		if ( $this->mId ) {
 			if ( $this->mQuickTouched === null ) {
-				$cache = ObjectCache::getMainWANInstance();
 				$key = wfMemcKey( 'user-quicktouched', 'id', $this->mId );
 
-				$timestamp = $cache->getCheckKeyTime( $key );
+				$timestamp = ObjectCache::getMainWANInstance()->getCheckKeyTime( $key );
 				if ( $timestamp ) {
 					$this->mQuickTouched = wfTimestamp( TS_MW, (int)$timestamp );
 				} else {
@@ -3619,12 +3613,6 @@ class User implements IDBAccessObject {
 			return; // anon
 		}
 
-		// This method is for updating existing users, so the user should
-		// have been loaded from the master to begin with to avoid problems.
-		if ( !( $this->queryFlagsUsed & self::READ_LATEST ) ) {
-			wfWarn( "Attempting to save slave-loaded User object with ID '{$this->mId}'." );
-		}
-
 		// Get a new user_touched that is higher than the old one.
 		// This will be used for a CAS check as a last-resort safety
 		// check against race conditions and slave lag.
@@ -3660,8 +3648,9 @@ class User implements IDBAccessObject {
 			// Maybe the problem was a missed cache update; clear it to be safe
 			$this->clearSharedCache();
 			// User was changed in the meantime or loaded with stale data
+			$from = ( $this->queryFlagsUsed & self::READ_LATEST ) ? 'master' : 'slave';
 			MWExceptionHandler::logException( new MWException(
-				"CAS update failed on user_touched for user ID '{$this->mId}';" .
+				"CAS update failed on user_touched for user ID '{$this->mId}' (read from $from);" .
 				"the version of the user to be saved is older than the current version."
 			) );
 
