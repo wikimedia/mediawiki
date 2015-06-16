@@ -19,7 +19,7 @@
 	"apihelp-block-description": "חסימת משתמש.",
 	"apihelp-block-param-user": "שם משתמש, כתובת IP, או טווח IP שהנך רוצה לחסום.",
 	"apihelp-block-param-reason": "סיבה לחסימה.",
-	"apihelp-block-param-anononly": "חסום משתמשים אנונימיים בלבד (דהיינו, השבתת עריכות אנונימיות מכתובת הIP הזאת)",
+	"apihelp-block-param-anononly": "לחסום משתמשים אלמוניים בלבד (דהיינו, השבתת עריכות אלמוניות מכתובת ה־IP הזאת)",
 	"apihelp-block-param-nocreate": "מניעת יצירת חשבונות",
 	"apihelp-block-param-autoblock": "חסימה אוטומטית גם של כתובת ה־IP האחרונה שהשתמש בה ושל כל כתובת IP שינסה להשתמש בה בעתיד.",
 	"apihelp-compare-param-fromtitle": "כותרת ראשונה להשוואה.",

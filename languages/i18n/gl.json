@@ -263,7 +263,7 @@
 	"ok": "Aceptar",
 	"retrievedfrom": "Traído desde \"$1\"",
 	"youhavenewmessages": "{{PLURAL:$3|Ten}} $1 ($2).",
-	"youhavenewmessagesfromusers": "{{PLURAL:$4|Ten} $1 {{PLURAL:$3|doutro usuario|de $3 usuarios}} ($2).",
+	"youhavenewmessagesfromusers": "{{PLURAL:$4|Ten}} $1 {{PLURAL:$3|doutro usuario|de $3 usuarios}} ($2).",
 	"youhavenewmessagesmanyusers": "Ten $1 de moitos usuarios ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|unha mensaxe nova|999=mensaxes novas}}",
 	"newmessagesdifflinkplural": "{{PLURAL:$1|última modificación|999=últimas modificacións}}",

@@ -393,7 +393,7 @@
 	"directorynotreadableerror": "Ścieżka \"$1\" nie jest odczytywalna.",
 	"filenotfound": "Nie można znaleźć pliku „$1”.",
 	"unexpected": "Nieoczekiwana wartość „$1”=„$2”.",
-	"formerror": "Błąd: nie można wysłać formularza",
+	"formerror": "Błąd: nie można wysłać formularza.",
 	"badarticleerror": "Dla tej strony ta operacja nie może być wykonana.",
 	"cannotdelete": "Nie można usunąć strony lub pliku „$1”.\nMożliwe, że zostało to już zrobione przez kogoś innego.",
 	"cannotdelete-title": "Strona „$1” nie może być usunięta.",

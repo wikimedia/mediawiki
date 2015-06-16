@@ -29,6 +29,7 @@
 	"apihelp-login-param-domain": "Domeinua (hautazkoa).",
 	"apihelp-login-example-login": "Saioa hasi",
 	"apihelp-move-description": "Orrialde bat mugitu",
+	"apihelp-options-example-reset": "Berrezarri hobespen guztiak.",
 	"apihelp-protect-example-protect": "Orrialde bat babestu",
 	"apihelp-query+allusers-param-witheditsonly": "Bakarrik zerrendatu aldaketak egin dituzten erabiltzaileak.",
 	"apihelp-query+allusers-param-activeusers": "Bakarrik zerrendatu azken {{PLURAL:$1|eguneko|$1 egunetako}} erabiltzaile aktiboak.",

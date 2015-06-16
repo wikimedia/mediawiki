@@ -3759,7 +3759,7 @@
 	"deletedarticle": "This is a ''logentry'' message. Parameters:\n* $1 - deleted page name\n{{Identical|Deleted}}",
 	"suppressedarticle": "Part of a [[mw:Manual:RevisionDelete|RevisionDelete]] log entry. Parameters:\n* $1 - suppressed page name\n{{Identical|Suppressed}}",
 	"undeletedarticle": "This is a ''logentry'' message. Parameters:\n* $1 - restored (undeleted) page name",
-	"patrol-log-line": "Text of notes on entries in the [http://translatewiki.net/w/i.php?title=Special%3ALog&type=patrol&user=&page=&year=&month=-1 patrol log].\nParameters:\n* $1 - the link whose text is {{msg-mw|patrol-log-diff}}\n* $2 - the name of the page\n* $3 - appears to be {{msg-mw|Patrol-log-auto}} (at least sometimes)\n\nThe message appears after the name of the patroller.",
+	"patrol-log-line": "Text of notes on entries in the [{{FULLURL:Special:Log|type=patrol}} patrol log].\nParameters:\n* $1 - the link whose text is {{msg-mw|patrol-log-diff}}\n* $2 - the name of the page\n* $3 - appears to be {{msg-mw|Patrol-log-auto}} (at least sometimes)\n\nThe message appears after the name of the patroller.",
 	"patrol-log-auto": "Automated edit summary when patrolling.\n\n{{Identical|Automatic}}",
 	"patrol-log-diff": "The text of the diff link in {{msg-mw|Patrol-log-line}} (inside <code>$1</code> there).\n\nParameters:\n* $1 - revision ID\n{{Identical|Revision}}",
 	"1movedto2": "{{ignored}}This is ''logentry'' message only used on IRC. Parameters:\n* $1 - the original page name\n* $2 - the destination page name\nSee also:\n* {{msg-mw|1movedto2 redir}}",
