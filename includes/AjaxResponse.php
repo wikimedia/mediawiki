@@ -166,12 +166,12 @@ class AjaxResponse {
 			HttpStatus::header( $n );
 		}
 
-		header ( "Content-Type: " . $this->mContentType );
+		header( "Content-Type: " . $this->mContentType );
 
 		if ( $this->mLastModified ) {
-			header ( "Last-Modified: " . $this->mLastModified );
+			header( "Last-Modified: " . $this->mLastModified );
 		} else {
-			header ( "Last-Modified: " . gmdate( "D, d M Y H:i:s" ) . " GMT" );
+			header( "Last-Modified: " . gmdate( "D, d M Y H:i:s" ) . " GMT" );
 		}
 
 		if ( $this->mCacheDuration ) {
@@ -193,20 +193,20 @@ class AjaxResponse {
 
 			} else {
 				# Let the client do the caching. Cache is not purged.
-				header ( "Expires: " . gmdate( "D, d M Y H:i:s", time() + $this->mCacheDuration ) . " GMT" );
-				header ( "Cache-Control: s-maxage={$this->mCacheDuration}," .
+				header( "Expires: " . gmdate( "D, d M Y H:i:s", time() + $this->mCacheDuration ) . " GMT" );
+				header( "Cache-Control: s-maxage={$this->mCacheDuration}," .
 					"public,max-age={$this->mCacheDuration}" );
 			}
 
 		} else {
 			# always expired, always modified
-			header ( "Expires: Mon, 26 Jul 1997 05:00:00 GMT" );    // Date in the past
-			header ( "Cache-Control: no-cache, must-revalidate" );  // HTTP/1.1
-			header ( "Pragma: no-cache" );                          // HTTP/1.0
+			header( "Expires: Mon, 26 Jul 1997 05:00:00 GMT" );    // Date in the past
+			header( "Cache-Control: no-cache, must-revalidate" );  // HTTP/1.1
+			header( "Pragma: no-cache" );                          // HTTP/1.0
 		}
 
 		if ( $this->mVary ) {
-			header ( "Vary: " . $this->mVary );
+			header( "Vary: " . $this->mVary );
 		}
 	}
 

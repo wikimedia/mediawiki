@@ -376,7 +376,7 @@ class ApiParse extends ApiBase {
 			!isset( $prop['jsconfigvars'] ) && !isset( $prop['encodedjsconfigvars'] ) ) {
 			$this->setWarning( "Property 'modules' was set but not 'jsconfigvars' " .
 				"or 'encodedjsconfigvars'. Configuration variables are necessary " .
-				"for proper module usage.");
+				"for proper module usage." );
 		}
 
 		if ( isset( $prop['indicators'] ) ) {

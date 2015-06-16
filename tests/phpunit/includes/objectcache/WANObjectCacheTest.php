@@ -68,7 +68,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 		$key = wfRandomString();
 		for ( $i=0; $i<3; ++$i ) {
 			$value = wfRandomString();
-			$this->cache->set($key, $value, 3);
+			$this->cache->set( $key, $value, 3 );
 
 			$this->assertEquals( $this->cache->get( $key ), $value );
 		}

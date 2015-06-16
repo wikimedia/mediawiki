@@ -158,7 +158,7 @@ class MediaWikiPageLinkRendererTest extends MediaWikiTestCase {
 				function ( TitleValue $title ) {
 					return str_replace( '_', ' ', "$title" );
 				}
-			));
+			) );
 
 		$renderer = new MediaWikiPageLinkRenderer( $formatter, '/' );
 		$actual = $renderer->renderWikitextLink( $title, $text );

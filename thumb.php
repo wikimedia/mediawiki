@@ -235,7 +235,7 @@ function wfStreamThumb( array $params ) {
 		$imsUnix = strtotime( $imsString );
 		MediaWiki\restoreWarnings();
 		if ( wfTimestamp( TS_UNIX, $img->getTimestamp() ) <= $imsUnix ) {
-			HttpStatus::header( 304  );
+			HttpStatus::header( 304 );
 			return;
 		}
 	}

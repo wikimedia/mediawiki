@@ -182,7 +182,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 		$this->json[$realName] = $out;
 	}
 
-	protected function handleCredits( $realName, $value) {
+	protected function handleCredits( $realName, $value ) {
 		$keys = array_keys( $value );
 		$this->json['type'] = $keys[0];
 		$values = array_values( $value );

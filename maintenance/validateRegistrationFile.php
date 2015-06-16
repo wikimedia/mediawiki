@@ -18,7 +18,7 @@ class ValidateRegistrationFile extends Maintenance {
 			$this->error( "$path is not a valid JSON file.", 1 );
 		}
 		if ( !isset( $data->manifest_version ) ) {
-			$this->output("Warning: No manifest_version set, assuming 1.\n" );
+			$this->output( "Warning: No manifest_version set, assuming 1.\n" );
 			// For backwards-compatability assume 1
 			$data->manifest_version = 1;
 		}
@@ -39,7 +39,7 @@ class ValidateRegistrationFile extends Maintenance {
 				. ExtensionRegistry::MANIFEST_VERSION . "\n" );
 		}
 		$retriever = new JsonSchema\Uri\UriRetriever();
-		$schema = $retriever->retrieve('file://' . $schemaPath );
+		$schema = $retriever->retrieve( 'file://' . $schemaPath );
 
 		$validator = new JsonSchema\Validator();
 		$validator->check( $data, $schema );

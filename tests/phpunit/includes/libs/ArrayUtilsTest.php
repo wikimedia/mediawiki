@@ -212,7 +212,7 @@ class ArrayUtilsTest extends PHPUnit_Framework_TestCase {
 				array(),
 				array( 1 => 1 ),
 				array( 1 ),
-				array( 1 => 1),
+				array( 1 => 1 ),
 			),
 			array(
 				array(),

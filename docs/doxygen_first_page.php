@@ -1,5 +1,5 @@
 <?php
-die("Not a valid entry point\n");
+die( "Not a valid entry point\n" );
 /**
  * This file does not hold any code. It is only there so we can generate
  * the doxygen documentation main page.
