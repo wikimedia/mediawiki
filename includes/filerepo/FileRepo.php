@@ -63,7 +63,7 @@ class FileRepo {
 	protected $transformVia404;
 
 	/** @var string URL of image description pages, e.g.
-	 *    http://en.wikipedia.org/wiki/File:
+	 *    https://en.wikipedia.org/wiki/File:
 	 */
 	protected $descBaseUrl;
 
@@ -76,7 +76,7 @@ class FileRepo {
 	 *    to $wgScriptExtension, e.g. .php5 defaults to .php */
 	protected $scriptExtension;
 
-	/** @var string Equivalent to $wgArticlePath, e.g. http://en.wikipedia.org/wiki/$1 */
+	/** @var string Equivalent to $wgArticlePath, e.g. https://en.wikipedia.org/wiki/$1 */
 	protected $articleUrl;
 
 	/** @var bool Equivalent to $wgCapitalLinks (or $wgCapitalLinkOverrides[NS_FILE],

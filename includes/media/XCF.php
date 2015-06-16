@@ -3,7 +3,7 @@
  * Handler for the Gimp's native file format (XCF)
  *
  * Overview:
- *   http://en.wikipedia.org/wiki/XCF_(file_format)
+ *   https://en.wikipedia.org/wiki/XCF_(file_format)
  * Specification in Gnome repository:
  *   http://svn.gnome.org/viewvc/gimp/trunk/devel-docs/xcf.txt?view=markup
  *

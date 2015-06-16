@@ -149,11 +149,11 @@ abstract class SpecialRedirectToSpecial extends RedirectSpecialPage {
  * - limit, offset: Useful for linking to history of one's own user page or
  * user talk page. For example, this would be a link to "the last edit to your
  * user talk page in the year 2010":
- * http://en.wikipedia.org/wiki/Special:MyPage?offset=20110000000000&limit=1&action=history
+ * https://en.wikipedia.org/wiki/Special:MyPage?offset=20110000000000&limit=1&action=history
  *
  * - feed: would allow linking to the current user's RSS feed for their user
  * talk page:
- * http://en.wikipedia.org/w/index.php?title=Special:MyTalk&action=history&feed=rss
+ * https://en.wikipedia.org/w/index.php?title=Special:MyTalk&action=history&feed=rss
  *
  * - preloadtitle: Can be used to provide a default section title for a
  * preloaded new comment on one's own talk page.
@@ -168,7 +168,7 @@ abstract class SpecialRedirectToSpecial extends RedirectSpecialPage {
  * - redlink: Affects the message the user sees if their talk page/user talk
  * page does not currently exist. Avoids confusion for newbies with no user
  * pages over why they got a "permission error" following this link:
- * http://en.wikipedia.org/w/index.php?title=Special:MyPage&redlink=1
+ * https://en.wikipedia.org/w/index.php?title=Special:MyPage&redlink=1
  *
  * - debug: determines whether the debug parameter is passed to load.php,
  * which disables reformatting and allows scripts to be debugged. Useful

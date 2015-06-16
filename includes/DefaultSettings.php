@@ -472,13 +472,13 @@ $wgImgAuthUrlPathMap = array();
  *
  * These settings describe a foreign MediaWiki installation. They are optional, and will be ignored
  * for local repositories:
- *   - descBaseUrl       URL of image description pages, e.g. http://en.wikipedia.org/wiki/File:
+ *   - descBaseUrl       URL of image description pages, e.g. https://en.wikipedia.org/wiki/File:
  *   - scriptDirUrl      URL of the MediaWiki installation, equivalent to $wgScriptPath, e.g.
- *                       http://en.wikipedia.org/w
+ *                       https://en.wikipedia.org/w
  *   - scriptExtension   Script extension of the MediaWiki installation, equivalent to
  *                       $wgScriptExtension, e.g. .php5 defaults to .php
  *
- *   - articleUrl        Equivalent to $wgArticlePath, e.g. http://en.wikipedia.org/wiki/$1
+ *   - articleUrl        Equivalent to $wgArticlePath, e.g. https://en.wikipedia.org/wiki/$1
  *   - fetchDescription  Fetch the text of the remote file description page. Equivalent to
  *                       $wgFetchCommonsDescriptions.
  *   - abbrvThreshold    File names over this size will use the short form of thumbnail names.
@@ -709,7 +709,7 @@ $wgMaxUploadSize = 1024 * 1024 * 100; # 100MB
  *
  * @par Example:
  * @code
- * $wgUploadNavigationUrl = 'http://commons.wikimedia.org/wiki/Special:Upload';
+ * $wgUploadNavigationUrl = 'https://commons.wikimedia.org/wiki/Special:Upload';
  * @endcode
  */
 $wgUploadNavigationUrl = false;
@@ -769,7 +769,7 @@ $wgHashedSharedUploadDirectory = true;
  *
  * Please specify the namespace, as in the example below.
  */
-$wgRepositoryBaseUrl = "http://commons.wikimedia.org/wiki/File:";
+$wgRepositoryBaseUrl = "https://commons.wikimedia.org/wiki/File:";
 
 /**
  * This is the list of preferred extensions for uploading files. Uploading files
@@ -2797,14 +2797,14 @@ $wgBrowserBlackList = array(
 	 * - Mozilla/4.0 (compatible; MSIE 5.23; Mac_PowerPC)
 	 * - [...]
 	 *
-	 * @link http://en.wikipedia.org/w/index.php?diff=12356041&oldid=12355864
-	 * @link http://en.wikipedia.org/wiki/Template%3AOS9
+	 * @link https://en.wikipedia.org/w/index.php?diff=12356041&oldid=12355864
+	 * @link https://en.wikipedia.org/wiki/Template%3AOS9
 	 */
 	'/^Mozilla\/4\.0 \(compatible; MSIE \d+\.\d+; Mac_PowerPC\)/',
 
 	/**
 	 * Google wireless transcoder, seems to eat a lot of chars alive
-	 * http://it.wikipedia.org/w/index.php?title=Luciano_Ligabue&diff=prev&oldid=8857361
+	 * https://it.wikipedia.org/w/index.php?title=Luciano_Ligabue&diff=prev&oldid=8857361
 	 */
 	'/^Mozilla\/4\.0 \(compatible; MSIE 6.0; Windows NT 5.0; Google Wireless Transcoder;\)/'
 );
@@ -4524,7 +4524,7 @@ $wgUserrightsInterwikiDelimiter = '@';
 /**
  * This is to let user authenticate using https when they come from http.
  * Based on an idea by George Herbert on wikitech-l:
- * http://lists.wikimedia.org/pipermail/wikitech-l/2010-October/050039.html
+ * https://lists.wikimedia.org/pipermail/wikitech-l/2010-October/050039.html
  * @since 1.17
  */
 $wgSecureLogin = false;
@@ -5051,7 +5051,7 @@ $wgAccountCreationThrottle = 0;
  * There's no administrator override on-wiki, so be careful what you set. :)
  * May be an array of regexes or a single string for backwards compatibility.
  *
- * @see http://en.wikipedia.org/wiki/Regular_expression
+ * @see https://en.wikipedia.org/wiki/Regular_expression
  *
  * @note Each regex needs a beginning/end delimiter, eg: # or /
  */
@@ -5582,7 +5582,7 @@ $wgProfilePerHost = null;
  *
  * The host should be running a daemon which can be obtained from MediaWiki
  * Git at:
- * http://git.wikimedia.org/tree/operations%2Fsoftware.git/master/udpprofile
+ * https://git.wikimedia.org/tree/operations%2Fsoftware.git/master/udpprofile
  *
  * @deprecated set $wgProfiler['udphost'] instead
  */
