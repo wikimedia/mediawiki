@@ -27,14 +27,21 @@
  * @ingroup SpecialPage
  */
 class SpecialTags extends SpecialPage {
+
 	/**
-	 * @var array List of defined tags
+	 * @var array List of explicitly defined tags
 	 */
-	public $definedTags;
+	protected $explicitlyDefinedTags;
+
 	/**
-	 * @var array List of active tags
+	 * @var array List of extension defined tags
 	 */
-	public $activeTags;
+	protected $extensionDefinedTags;
+
+	/**
+	 * @var array List of extension activated tags
+	 */
+	protected $extensionActivatedTags;
 
 	function __construct() {
 		parent::__construct( 'Tags' );
@@ -69,9 +76,11 @@ class SpecialTags extends SpecialPage {
 		$out->wrapWikiMsg( "<div class='mw-tags-intro'>\n$1\n</div>", 'tags-intro' );
 
 		$user = $this->getUser();
+		$userCanManage = $user->isAllowed( 'managechangetags' );
+		$userCanEditInterface = $user->isAllowed( 'editinterface' );
 
 		// Show form to create a tag
-		if ( $user->isAllowed( 'managechangetags' ) ) {
+		if ( $userCanManage ) {
 			$fields = array(
 				'Tag' => array(
 					'type' => 'text',
@@ -108,40 +117,50 @@ class SpecialTags extends SpecialPage {
 			}
 		}
 
-		// Whether to show the "Actions" column in the tag list
-		// If any actions added in the future require other user rights, add those
-		// rights here
-		$showActions = $user->isAllowed( 'managechangetags' );
-
-		// Write the headers
-		$tagUsageStatistics = ChangeTags::tagUsageStatistics();
-
-		// Show header only if there exists atleast one tag
-		if ( !$tagUsageStatistics ) {
-			return;
-		}
-		$html = Xml::tags( 'tr', null, Xml::tags( 'th', null, $this->msg( 'tags-tag' )->parse() ) .
-			Xml::tags( 'th', null, $this->msg( 'tags-display-header' )->parse() ) .
-			Xml::tags( 'th', null, $this->msg( 'tags-description-header' )->parse() ) .
-			Xml::tags( 'th', null, $this->msg( 'tags-source-header' )->parse() ) .
-			Xml::tags( 'th', null, $this->msg( 'tags-active-header' )->parse() ) .
-			Xml::tags( 'th', null, $this->msg( 'tags-hitcount-header' )->parse() ) .
-			( $showActions ?
-				Xml::tags( 'th', array( 'class' => 'unsortable' ),
-					$this->msg( 'tags-actions-header' )->parse() ) :
-				'' )
-		);
+		// Used to get hitcounts for #doTagRow()
+		$tagStats = ChangeTags::tagUsageStatistics();
 
 		// Used in #doTagRow()
 		$this->explicitlyDefinedTags = array_fill_keys(
 			ChangeTags::listExplicitlyDefinedTags(), true );
 		$this->extensionDefinedTags = array_fill_keys(
 			ChangeTags::listExtensionDefinedTags(), true );
+
+		// List all defined tags, even if they were never applied
+		$definedTags = array_keys( array_merge(
+			$this->explicitlyDefinedTags, $this->extensionDefinedTags ) );
+
+		// Show header only if there exists atleast one tag
+		if ( !$tagStats && !$definedTags ) {
+			return;
+		}
+
+		// Write the headers
+		$html = Xml::tags( 'tr', null, Xml::tags( 'th', null, $this->msg( 'tags-tag' )->parse() ) .
+			Xml::tags( 'th', null, $this->msg( 'tags-display-header' )->parse() ) .
+			Xml::tags( 'th', null, $this->msg( 'tags-description-header' )->parse() ) .
+			Xml::tags( 'th', null, $this->msg( 'tags-source-header' )->parse() ) .
+			Xml::tags( 'th', null, $this->msg( 'tags-active-header' )->parse() ) .
+			Xml::tags( 'th', null, $this->msg( 'tags-hitcount-header' )->parse() ) .
+			( $userCanManage ?
+				Xml::tags( 'th', array( 'class' => 'unsortable' ),
+					$this->msg( 'tags-actions-header' )->parse() ) :
+				'' )
+		);
+
+		// Used in #doTagRow()
 		$this->extensionActivatedTags = array_fill_keys(
 			ChangeTags::listExtensionActivatedTags(), true );
 
-		foreach ( $tagUsageStatistics as $tag => $hitcount ) {
-			$html .= $this->doTagRow( $tag, $hitcount, $showActions );
+		// Insert tags that have been applied at least once
+		foreach ( $tagStats as $tag => $hitcount ) {
+			$html .= $this->doTagRow( $tag, $hitcount, $userCanManage, $userCanEditInterface );
+		}
+		// Insert tags defined somewhere but never applied
+		foreach ( $definedTags as $tag ) {
+			if ( !isset( $tagStats[$tag] ) ) {
+				$html .= $this->doTagRow( $tag, 0, $userCanManage, $userCanEditInterface );
+			}
 		}
 
 		$out->addHTML( Xml::tags(
@@ -151,13 +170,12 @@ class SpecialTags extends SpecialPage {
 		) );
 	}
 
-	function doTagRow( $tag, $hitcount, $showActions ) {
-		$user = $this->getUser();
+	function doTagRow( $tag, $hitcount, $showActions, $showEditLinks ) {
 		$newRow = '';
 		$newRow .= Xml::tags( 'td', null, Xml::element( 'code', null, $tag ) );
 
 		$disp = ChangeTags::tagDescription( $tag );
-		if ( $user->isAllowed( 'editinterface' ) ) {
+		if ( $showEditLinks ) {
 			$disp .= ' ';
 			$editLink = Linker::link(
 				$this->msg( "tag-$tag" )->inContentLanguage()->getTitle(),
@@ -169,7 +187,7 @@ class SpecialTags extends SpecialPage {
 
 		$msg = $this->msg( "tag-$tag-description" );
 		$desc = !$msg->exists() ? '' : $msg->parse();
-		if ( $user->isAllowed( 'editinterface' ) ) {
+		if ( $showEditLinks ) {
 			$desc .= ' ';
 			$editDescLink = Linker::link(
 				$this->msg( "tag-$tag-description" )->inContentLanguage()->getTitle(),
@@ -209,10 +227,11 @@ class SpecialTags extends SpecialPage {
 		$newRow .= Xml::tags( 'td', array( 'data-sort-value' => $hitcount ), $hitcountLink );
 
 		// actions
-		$actionLinks = array();
-		if ( $showActions ) {
+		if ( $showActions ) { // we've already checked that the user had the requisite userright
+			$actionLinks = array();
+
 			// delete
-			if ( ChangeTags::canDeleteTag( $tag, $user )->isOK() ) {
+			if ( ChangeTags::canDeleteTag( $tag )->isOK() ) {
 				$actionLinks[] = Linker::linkKnown( $this->getPageTitle( 'delete' ),
 					$this->msg( 'tags-delete' )->escaped(),
 					array(),
@@ -220,7 +239,7 @@ class SpecialTags extends SpecialPage {
 			}
 
 			// activate
-			if ( ChangeTags::canActivateTag( $tag, $user )->isOK() ) {
+			if ( ChangeTags::canActivateTag( $tag )->isOK() ) {
 				$actionLinks[] = Linker::linkKnown( $this->getPageTitle( 'activate' ),
 					$this->msg( 'tags-activate' )->escaped(),
 					array(),
@@ -228,7 +247,7 @@ class SpecialTags extends SpecialPage {
 			}
 
 			// deactivate
-			if ( ChangeTags::canDeactivateTag( $tag, $user )->isOK() ) {
+			if ( ChangeTags::canDeactivateTag( $tag )->isOK() ) {
 				$actionLinks[] = Linker::linkKnown( $this->getPageTitle( 'deactivate' ),
 					$this->msg( 'tags-deactivate' )->escaped(),
 					array(),

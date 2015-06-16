@@ -1172,6 +1172,7 @@ class ChangeTags {
 	/**
 	 * Returns a map of any tags used on the wiki to number of edits
 	 * tagged with them, ordered descending by the hitcount.
+	 * This does not include tags defined somewhere that have never been applied.
 	 *
 	 * Keeps a short-term cache in memory, so calling this multiple times in the
 	 * same request should be fine.
@@ -1203,12 +1204,6 @@ class ChangeTags {
 
 				foreach ( $res as $row ) {
 					$out[$row->ct_tag] = $row->hitcount;
-				}
-
-				foreach ( ChangeTags::listDefinedTags() as $tag ) {
-					if ( !isset( $out[$tag] ) ) {
-						$out[$tag] = 0;
-					}
 				}
 
 				return $out;
