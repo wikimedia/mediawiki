@@ -276,8 +276,8 @@ class ResourceLoader implements LoggerAwareInterface {
 		$this->register( include "$IP/resources/Resources.php" );
 		$this->register( include "$IP/resources/ResourcesOOUI.php" );
 		// Register extension modules
-		Hooks::run( 'ResourceLoaderRegisterModules', array( &$this ) );
 		$this->register( $config->get( 'ResourceModules' ) );
+		Hooks::run( 'ResourceLoaderRegisterModules', array( &$this ) );
 
 		if ( $config->get( 'EnableJavaScriptTest' ) === true ) {
 			$this->registerTestModules();
