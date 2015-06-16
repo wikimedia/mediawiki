@@ -81,6 +81,7 @@ class ExtensionProcessor implements Processor {
 		'config',
 		'ParserTestFiles',
 		'AutoloadClasses',
+		'manifest_version',
 	);
 
 	/**

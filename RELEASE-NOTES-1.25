@@ -11,6 +11,9 @@ THIS IS NOT YET A RELEASE!
   false in LocalSettings.php was not working.
 * (T100635) API action=opensearch json output no longer breaks when
   $wgDebugToolbar is enabled.
+* (T102522) Using an extension.json or skin.json file which has
+  a "manifest_version" property for 1.26 compatability will no longer
+  trigger warnings.
 
 === Changes since 1.25 ===
 * (T100351) Fix syntax errors in extension.json of ConfirmEdit extension
