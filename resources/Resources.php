@@ -820,7 +820,10 @@ return array(
 	),
 	'mediawiki.api' => array(
 		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.js',
-		'dependencies' => 'mediawiki.util',
+		'dependencies' => array(
+			'mediawiki.util',
+			'user.tokens',
+		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.api.category' => array(
@@ -835,7 +838,6 @@ return array(
 		'dependencies' => array(
 			'mediawiki.api',
 			'mediawiki.Title',
-			'user.tokens',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
@@ -856,7 +858,6 @@ return array(
 		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.watch.js',
 		'dependencies' => array(
 			'mediawiki.api',
-			'user.tokens',
 		),
 	),
 	'mediawiki.content.json' => array(
