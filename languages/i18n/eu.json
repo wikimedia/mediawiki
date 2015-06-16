@@ -1492,6 +1492,7 @@
 	"pager-older-n": "{{PLURAL:$1|zaharragoa den 1|zaharragoak diren $1}}",
 	"suppress": "Gain-ikuspena",
 	"querypage-disabled": "Orrialde berezi hau desgaituta dago funtzionamendu arrazoiengatik.",
+	"apihelp": "API laguntza",
 	"apihelp-no-such-module": "Ez da \"$1\" modulua aurkitu.",
 	"booksources": "Iturri liburuak",
 	"booksources-search-legend": "Liburuen bilaketa",
@@ -2961,6 +2962,8 @@
 	"mediastatistics-table-mimetype": "MIME mota",
 	"mediastatistics-table-count": "Fitxategi kopurua",
 	"mediastatistics-header-unknown": "Ezezaguna",
+	"mediastatistics-header-bitmap": "Bit-mapako irudiak",
+	"mediastatistics-header-drawing": "Marrazkiak (irudi bektorialak)",
 	"mediastatistics-header-video": "Bideoak",
 	"json-error-syntax": "Sintaxi-errorea",
 	"special-characters-group-latin": "Latina",
@@ -2973,10 +2976,12 @@
 	"special-characters-group-persian": "Persiera",
 	"special-characters-group-hebrew": "Hebreera",
 	"special-characters-group-bangla": "Bangla",
+	"special-characters-group-tamil": "Tamil",
 	"special-characters-group-telugu": "Telugu",
 	"special-characters-group-sinhala": "Sinhala",
 	"special-characters-group-gujarati": "Guajarati",
 	"special-characters-group-thai": "Thaiera",
 	"special-characters-group-lao": "Laosera",
-	"special-characters-group-khmer": "Khmerrera"
+	"special-characters-group-khmer": "Khmerrera",
+	"special-characters-title-minus": "minus zeinua"
 }

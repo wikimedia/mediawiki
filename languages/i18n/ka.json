@@ -2408,7 +2408,7 @@
 	"markedaspatrolledtext": "არჩეული ვერსია [[:$1]] მონიშნულია როგორც პატრულირებული",
 	"rcpatroldisabled": "ბოლო ცვლილებების პატრულირება აკრძალულია",
 	"rcpatroldisabledtext": "ბოლო ცვლილებების პატრულირების შესაძლებლობა ამ მომენტისთვის გათიშულია",
-	"markedaspatrollederror": "შეუძლებელია ამ სტატიის მოhttp://translatewiki.net/w/i.php?title=MediaWiki:Markedaspatrollederror/ka&action=edit&loadgroup=core&loadtask=untranslatedნიშნვნა პატრულირებულად.",
+	"markedaspatrollederror": "შეუძლებელია ამ სტატიის მონიშნვნა პატრულირებულად.",
 	"markedaspatrollederrortext": "თქვენ უნდა მონიშნოთ ვერსია, რომელიც პატრულირებულად ჩაითვლება.",
 	"markedaspatrollederror-noautopatrol": "თქვენ ვერ მონიშნავთ თქვენივე შესწორებებს პატრულირებულად.",
 	"markedaspatrollednotify": "ეს ცვლილება გვერდზე „$1“ პატრულირებულად მოინიშნა.",
