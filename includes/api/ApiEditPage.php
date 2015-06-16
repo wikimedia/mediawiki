@@ -246,7 +246,7 @@ class ApiEditPage extends ApiBase {
 				$titleObj->getNextRevisionID( $undoafterRev->getID() ) == $params['undo']
 			) {
 				$params['summary'] = wfMessage( 'undo-summary' )
-					->params ( $params['undo'], $undoRev->getUserText() )->inContentLanguage()->text();
+					->params( $params['undo'], $undoRev->getUserText() )->inContentLanguage()->text();
 			}
 		}
 

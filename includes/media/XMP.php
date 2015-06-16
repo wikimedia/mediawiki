@@ -415,7 +415,7 @@ class XMPReader implements LoggerAwareInterface {
 		$len = unpack( 'Nlength/Noffset', substr( $content, 32, 8 ) );
 
 		if ( !$len || $len['length'] < 4 || $len['offset'] < 0 || $len['offset'] > $len['length'] ) {
-			$this->logger->info(  __METHOD__ . 'Error reading extended XMP block, invalid length or offset.' );
+			$this->logger->info( __METHOD__ . 'Error reading extended XMP block, invalid length or offset.' );
 
 			return false;
 		}

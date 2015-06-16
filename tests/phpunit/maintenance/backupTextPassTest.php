@@ -633,7 +633,7 @@ class TextPassDumperDatabaselessTest extends MediaWikiLangTestCase {
 	 */
 	function testBufferSizeSetting( $expected, $size, $msg ) {
 		$dumper = new TextPassDumperAccessor( array( "--buffersize=" . $size ) );
-		$this->assertEquals( $expected, $dumper->getBufferSize(), $msg);
+		$this->assertEquals( $expected, $dumper->getBufferSize(), $msg );
 	}
 
 	/**

@@ -218,7 +218,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'section' => 'new',
 			'text' => 'test',
 			'summary' => 'header',
-		));
+		) );
 
 		$this->assertEquals( 'Success', $re['edit']['result'] );
 		// Check the page text is correct
@@ -235,7 +235,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'section' => 'new',
 			'text' => 'test',
 			'summary' => 'header',
-		));
+		) );
 
 		$this->assertEquals( 'Success', $re2['edit']['result'] );
 		$text = WikiPage::factory( Title::newFromText( $name ) )

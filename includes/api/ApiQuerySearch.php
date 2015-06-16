@@ -238,7 +238,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 						// Add item to results and see whether it fits
 						$fit = $apiResult->addValue(
-							array( 'query', 'interwiki' . $this->getModuleName(), $result->getInterwikiPrefix()  ),
+							array( 'query', 'interwiki' . $this->getModuleName(), $result->getInterwikiPrefix() ),
 							null,
 							$vals
 						);

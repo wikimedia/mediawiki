@@ -69,11 +69,11 @@ class ArrayDiffFormatterTest extends MediaWikiTestCase {
 
 		$otherTestCases = array();
 		$otherTestCases[] = array(
-			$this->getMockDiff( array( $this->getMockDiffOp( 'add', array( ), array( 'a1' ) ) ) ),
+			$this->getMockDiff( array( $this->getMockDiffOp( 'add', array(), array( 'a1' ) ) ) ),
 			array( array( 'action' => 'add', 'new' => 'a1', 'newline' => 1 ) ),
 		);
 		$otherTestCases[] = array(
-			$this->getMockDiff( array( $this->getMockDiffOp( 'add', array( ), array( 'a1', 'a2' ) ) ) ),
+			$this->getMockDiff( array( $this->getMockDiffOp( 'add', array(), array( 'a1', 'a2' ) ) ) ),
 			array(
 				array( 'action' => 'add', 'new' => 'a1', 'newline' => 1 ),
 				array( 'action' => 'add', 'new' => 'a2', 'newline' => 2 ),

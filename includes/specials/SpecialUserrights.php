@@ -249,7 +249,7 @@ class UserrightsPage extends SpecialPage {
 		if ( $remove ) {
 			foreach ( $remove as $index => $group ) {
 				if ( !$user->removeGroup( $group ) ) {
-					unset($remove[$index]);
+					unset( $remove[$index] );
 				}
 			}
 			$newGroups = array_diff( $newGroups, $remove );
@@ -257,7 +257,7 @@ class UserrightsPage extends SpecialPage {
 		if ( $add ) {
 			foreach ( $add as $index => $group ) {
 				if ( !$user->addGroup( $group ) ) {
-					unset($add[$index]);
+					unset( $add[$index] );
 				}
 			}
 			$newGroups = array_merge( $newGroups, $add );

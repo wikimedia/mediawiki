@@ -236,7 +236,7 @@ class MediaStatisticsPage extends QueryPage {
 					'mw-mediastats-table-' . strtolower( $mediaType ),
 					'sortable',
 					'wikitable'
-				))
+				) )
 			)
 		);
 		$this->getOutput()->addHTML( $this->getTableHeaderRow() );
@@ -275,7 +275,7 @@ class MediaStatisticsPage extends QueryPage {
 				array( 'class' => array(
 					'mw-mediastats-mediatype',
 					'mw-mediastats-mediatype-' . strtolower( $mediaType )
-				)),
+				) ),
 				// for grep
 				// mediastatistics-header-unknown, mediastatistics-header-bitmap,
 				// mediastatistics-header-drawing, mediastatistics-header-audio,

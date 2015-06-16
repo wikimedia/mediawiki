@@ -181,7 +181,7 @@ class DatabaseMysqlBaseTest extends MediaWikiTestCase {
 				array( 'Tables_in_' => 'view2' ),
 				array( 'Tables_in_' => 'myview' ),
 				false  # no more rows
-			));
+			) );
 		return $db;
 	}
 	/**

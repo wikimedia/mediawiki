@@ -61,7 +61,7 @@ class LanguageEo extends Language {
 	 */
 	function iconv( $in, $out, $string ) {
 		if ( strcasecmp( $in, 'x' ) == 0 && strcasecmp( $out, 'utf-8' ) == 0 ) {
-			return preg_replace_callback (
+			return preg_replace_callback(
 				'/([cghjsu]x?)((?:xx)*)(?!x)/i',
 				array( $this, 'strrtxuCallback' ), $string );
 		} elseif ( strcasecmp( $in, 'UTF-8' ) == 0 && strcasecmp( $out, 'x' ) == 0 ) {

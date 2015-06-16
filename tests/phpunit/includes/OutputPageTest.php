@@ -244,36 +244,36 @@ document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\
 			'test.foo' => new ResourceLoaderTestModule( array(
 				'script' => 'mw.test.foo( { a: true } );',
 				'styles' => '.mw-test-foo { content: "style"; }',
-			)),
+			) ),
 			'test.bar' => new ResourceLoaderTestModule( array(
 				'script' => 'mw.test.bar( { a: true } );',
 				'styles' => '.mw-test-bar { content: "style"; }',
-			)),
+			) ),
 			'test.baz' => new ResourceLoaderTestModule( array(
 				'script' => 'mw.test.baz( { a: true } );',
 				'styles' => '.mw-test-baz { content: "style"; }',
-			)),
+			) ),
 			'test.quux' => new ResourceLoaderTestModule( array(
 				'script' => 'mw.test.baz( { token: 123 } );',
 				'styles' => '/* pref-animate=off */ .mw-icon { transition: none; }',
 				'group' => 'private',
-			)),
+			) ),
 			'test.raw' => new ResourceLoaderTestModule( array(
 				'script' => 'mw.test.baz( { token: 123 } );',
 				'isRaw' => true,
-			)),
+			) ),
 			'test.noscript' => new ResourceLoaderTestModule( array(
 				'styles' => '.mw-test-noscript { content: "style"; }',
 				'group' => 'noscript',
-			)),
+			) ),
 			'test.group.bar' => new ResourceLoaderTestModule( array(
 				'styles' => '.mw-group-bar { content: "style"; }',
 				'group' => 'bar',
-			)),
+			) ),
 			'test.group.foo' => new ResourceLoaderTestModule( array(
 				'styles' => '.mw-group-foo { content: "style"; }',
 				'group' => 'foo',
-			)),
+			) ),
 		) );
 		$links = $method->invokeArgs( $out, $args );
 		// Strip comments to avoid variation due to wgDBname in WikiID and cache key
@@ -286,19 +286,19 @@ document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\
  * MessageBlobStore that doesn't do anything
  */
 class NullMessageBlobStore extends MessageBlobStore {
-	public function get ( ResourceLoader $resourceLoader, $modules, $lang ) {
+	public function get( ResourceLoader $resourceLoader, $modules, $lang ) {
 		return array();
 	}
 
-	public function insertMessageBlob ( $name, ResourceLoaderModule $module, $lang ) {
+	public function insertMessageBlob( $name, ResourceLoaderModule $module, $lang ) {
 		return false;
 	}
 
-	public function updateModule ( $name, ResourceLoaderModule $module, $lang ) {
+	public function updateModule( $name, ResourceLoaderModule $module, $lang ) {
 		return;
 	}
 
-	public function updateMessage ( $key ) {
+	public function updateMessage( $key ) {
 	}
 	public function clear() {
 	}

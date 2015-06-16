@@ -78,7 +78,7 @@ class StreamFile {
 	) {
 		if ( !is_array( $info ) ) {
 			if ( $sendErrors ) {
-				HttpStatus::header( 404  );
+				HttpStatus::header( 404 );
 				header( 'Cache-Control: no-cache' );
 				header( 'Content-Type: text/html; charset=utf-8' );
 				$encFile = htmlspecialchars( $path );
