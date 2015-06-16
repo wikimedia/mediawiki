@@ -34,6 +34,9 @@ class DerivativeResourceLoaderContextTest extends PHPUnit_Framework_TestCase {
 
 		$derived->setLanguage( 'nl' );
 		$this->assertEquals( $derived->getLanguage(), 'nl' );
+
+		$derived->setLanguage( 'he' );
+		$this->assertEquals( $derived->getDirection(), 'rtl' );
 	}
 
 	public function testSetModules() {
