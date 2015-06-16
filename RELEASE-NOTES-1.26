@@ -41,6 +41,10 @@ production.
   to be set. If they are both set, the value of rootpage= will be ignored.
 * prop=revision output in enum mode is now sorted by timestamp rather than
   revision ID. This usually won't make any difference.
+* (T102645) Namespace list from meta=siteinfo&siprop=namespaces is now an array
+  with formatversion=2.
+* Various other output from meta=siteinfo will now always be arrays instead of
+  sometimes being numerically-indexed objects with formatversion=2.
 
 === Action API internal changes in 1.26 ===
 

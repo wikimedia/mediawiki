@@ -297,6 +297,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			}
 		}
 
+		ApiResult::setArrayType( $data, 'BCarray' );
 		ApiResult::setIndexedTagName( $data, 'ns' );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
@@ -511,6 +512,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					$groups = array_intersect( $rights[$group], $allGroups );
 					if ( $groups ) {
 						$arr[$type] = $groups;
+						ApiResult::setArrayType( $arr[$type], 'BCarray' );
 						ApiResult::setIndexedTagName( $arr[$type], 'group' );
 					}
 				}
@@ -682,6 +684,11 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			'semiprotectedlevels' => $config->get( 'SemiprotectedRestrictionLevels' ),
 		);
 
+		ApiResult::setArrayType( $data['types'], 'BCarray' );
+		ApiResult::setArrayType( $data['levels'], 'BCarray' );
+		ApiResult::setArrayType( $data['cascadinglevels'], 'BCarray' );
+		ApiResult::setArrayType( $data['semiprotectedlevels'], 'BCarray' );
+
 		ApiResult::setIndexedTagName( $data['types'], 'type' );
 		ApiResult::setIndexedTagName( $data['levels'], 'level' );
 		ApiResult::setIndexedTagName( $data['cascadinglevels'], 'level' );
@@ -741,6 +748,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		global $wgParser;
 		$wgParser->firstCallInit();
 		$tags = array_map( array( $this, 'formatParserTags' ), $wgParser->getTags() );
+		ApiResult::setArrayType( $tags, 'BCarray' );
 		ApiResult::setIndexedTagName( $tags, 't' );
 
 		return $this->getResult()->addValue( 'query', $property, $tags );
@@ -750,6 +758,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		global $wgParser;
 		$wgParser->firstCallInit();
 		$hooks = $wgParser->getFunctionHooks();
+		ApiResult::setArrayType( $hooks, 'BCarray' );
 		ApiResult::setIndexedTagName( $hooks, 'h' );
 
 		return $this->getResult()->addValue( 'query', $property, $hooks );
@@ -757,6 +766,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	public function appendVariables( $property ) {
 		$variables = MagicWord::getVariableIDs();
+		ApiResult::setArrayType( $variables, 'BCarray' );
 		ApiResult::setIndexedTagName( $variables, 'v' );
 
 		return $this->getResult()->addValue( 'query', $property, $variables );
@@ -765,6 +775,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	public function appendProtocols( $property ) {
 		// Make a copy of the global so we don't try to set the _element key of it - bug 45130
 		$protocols = array_values( $this->getConfig()->get( 'UrlProtocols' ) );
+		ApiResult::setArrayType( $protocols, 'BCarray' );
 		ApiResult::setIndexedTagName( $protocols, 'p' );
 
 		return $this->getResult()->addValue( 'query', $property, $protocols );
@@ -792,6 +803,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				'subscribers' => array_map( array( 'SpecialVersion', 'arrayToString' ), $subscribers ),
 			);
 
+			ApiResult::setArrayType( $arr['subscribers'], 'BCarray' );
 			ApiResult::setIndexedTagName( $arr['subscribers'], 's' );
 			$data[] = $arr;
 		}
