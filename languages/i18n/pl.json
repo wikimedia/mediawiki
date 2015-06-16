@@ -643,7 +643,8 @@
 	"missingsummary": "'''Uwaga:''' Nie wprowadz{{GENDER:|iłeś|iłaś|ono}} opisu zmian.\nJeżeli nie chcesz go wprowadzać, naciśnij przycisk „Zapisz” jeszcze raz.",
 	"selfredirect": "<strong>Ostrzeżenie:</strong> Przekierowujesz tę stronę do niej samej.\nByć może został przez Ciebie wybrany zły cel przekierowania lub edytujesz niewłaściwą stronę.\nJeżeli ponownie klikniesz „{{int:savearticle}}”, przekierowanie zostanie utworzone.",
 	"missingcommenttext": "Wprowadź komentarz poniżej.",
-	"missingcommentheader": "'''Uwaga''' – treść tytułu lub nagłówka komentarza jest pusta.\nJeśli ponownie klikniesz „{{int:savearticle}}“, zmiany zostaną zapisane bez niego.",
+	"missingcommentheader": "'''Uwaga''' – treść tytułu lub nagłówka komentarza jest pusta.\nJeśli ponownie klikniesz „{{int:savearticle}}”
+	, zmiany zostaną zapisane bez niego.",
 	"summary-preview": "Podgląd opisu:",
 	"subject-preview": "Podgląd nagłówka:",
 	"previewerrortext": "Wystąpił błąd podczas próby podglądu Twoich zmian.",
@@ -1441,7 +1442,8 @@
 	"img-auth-public": "Funkcja img_auth.php służy do pobierania plików z prywatnej wiki.\nPonieważ ta wiki została skonfigurowana jako publiczna dla zapewnienia optymalnego bezpieczeństwa img_auth.php została wyłączona.",
 	"img-auth-noread": "Użytkownik nie ma dostępu do odczytu „$1”.",
 	"http-invalid-url": "Niepoprawny adres URL: $1",
-	"http-invalid-scheme": "Adresy „$1“ nie są obsługiwane.",
+	"http-invalid-scheme": "Adresy „$1”
+	 nie są obsługiwane.",
 	"http-request-error": "Nieudane żądanie HTTP ze względu na nieznany błąd.",
 	"http-read-error": "Błąd odczytu HTTP.",
 	"http-timed-out": "Przekroczony czas żądania HTTP.",
@@ -1766,7 +1768,8 @@
 	"emailuser-title-notarget": "Wyślij wiadomość e‐mail",
 	"emailpage": "Wyślij e‐mail do użytkownika",
 	"emailpagetext": "Możesz użyć poniższego formularza, aby wysłać wiadomość e‐mail do {{GENDER:$1|tego użytkownika|tej użytkowniczki}}.\nAdres e‐mailowy, który został przez Ciebie wprowadzony w [[Special:Preferences|Twoich preferencjach]], zostanie umieszczony w polu „Od”, dzięki czemu odbiorca będzie mógł Ci odpowiedzieć.",
-	"defemailsubject": "{{SITENAME}} – e‐mail od użytkownika „$1“",
+	"defemailsubject": "{{SITENAME}} – e‐mail od użytkownika „$1”
+	",
 	"usermaildisabled": "E‐mail użytkownika jest wyłączony",
 	"usermaildisabledtext": "Nie możesz wysyłać e‐maili do innych użytkowników tej wiki",
 	"noemailtitle": "Brak adresu e‐mail",
@@ -2187,7 +2190,8 @@
 	"immobile-target-page": "Nie można przenieść pod wskazany tytuł.",
 	"bad-target-model": "Strona docelowa używa innego modelu zawartości. Konwersja $1 → $2 nie jest możliwa.",
 	"imagenocrossnamespace": "Nie można przenieść grafiki do przestrzeni nazw nie przeznaczonej dla grafik",
-	"nonfile-cannot-move-to-file": "Nie można przenieść obiektu nie będącego plikiem do przestrzeni nazw „{{ns:file}}“",
+	"nonfile-cannot-move-to-file": "Nie można przenieść obiektu nie będącego plikiem do przestrzeni nazw „{{ns:file}}”
+	",
 	"imagetypemismatch": "Nowe rozszerzenie nazwy pliku jest innego typu niż zawartość",
 	"imageinvalidfilename": "Nazwa pliku docelowego jest nieprawidłowa",
 	"fix-double-redirects": "Zaktualizuj wszystkie przekierowania wskazujące na stary tytuł",
@@ -2275,8 +2279,10 @@
 	"import-upload": "Prześlij dane w formacie XML",
 	"import-token-mismatch": "Utracono dane sesji. Proszę spróbować ponownie.",
 	"import-invalid-interwiki": "Nie można importować z podanej wiki.",
-	"import-error-edit": "Strona „$1“ nie została zaimportowana ponieważ nie jesteś uprawniony do jej edytowania.",
-	"import-error-create": "Strona „$1“ nie została zaimportowana ponieważ nie jesteś uprawniony do jej utworzenia.",
+	"import-error-edit": "Strona „$1”
+	 nie została zaimportowana ponieważ nie jesteś uprawniony do jej edytowania.",
+	"import-error-create": "Strona „$1”
+	 nie została zaimportowana ponieważ nie jesteś uprawniony do jej utworzenia.",
 	"import-error-interwiki": "Strona „$1” nie została zaimportowana, ponieważ jej nazwa jest zarezerwowana do linków zewnętrznych (interwiki).",
 	"import-error-special": "Strona „$1” nie została zaimportowana, ponieważ należy do specjalnej przestrzeni nazw, która nie zezwala na strony.",
 	"import-error-invalid": "Strona „$1” nie została zaimportowana, ponieważ jej nazwa jest nieprawidłowa na tej wiki.",
