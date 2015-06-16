@@ -178,7 +178,7 @@ class MWExceptionTest extends MediaWikiTestCase {
 		$this->setMwGlobals( array( 'wgLogExceptionBacktrace' => true ) );
 
 		$json = json_decode(
-			MWExceptionHandler::jsonSerializeException( new $exClass())
+			MWExceptionHandler::jsonSerializeException( new $exClass() )
 		);
 		$this->assertObjectHasAttribute( $key, $json,
 			"JSON serialized exception is missing key '$key'"

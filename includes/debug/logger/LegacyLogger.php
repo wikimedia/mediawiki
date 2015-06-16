@@ -181,7 +181,7 @@ class LegacyLogger extends AbstractLogger {
 		} elseif ( $channel === 'profileoutput' ) {
 			// Legacy wfLogProfilingData formatitng
 			$forward = '';
-			if ( isset( $context['forwarded_for'] )) {
+			if ( isset( $context['forwarded_for'] ) ) {
 				$forward = " forwarded for {$context['forwarded_for']}";
 			}
 			if ( isset( $context['client_ip'] ) ) {

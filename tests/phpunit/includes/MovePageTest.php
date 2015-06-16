@@ -57,7 +57,7 @@ class MovePageTest extends MediaWikiTestCase {
 			WikiPage::factory( $oldTitle )->getRevision()
 		);
 		$this->assertNotNull(
-			WikiPage::factory( $newTitle)->getRevision()
+			WikiPage::factory( $newTitle )->getRevision()
 		);
 	}
 }

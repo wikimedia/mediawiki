@@ -68,7 +68,7 @@ class ApiBlockTest extends ApiTestCase {
 	 * @expectedException UsageException
 	 * @expectedExceptionMessage The token parameter must be set
 	 */
-	public function testBlockingActionWithNoToken( ) {
+	public function testBlockingActionWithNoToken() {
 		$this->doApiRequest(
 			array(
 				'action' => 'block',

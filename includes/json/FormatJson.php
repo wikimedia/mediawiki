@@ -380,7 +380,7 @@ class FormatJson {
 		$inComment = false;
 		$multiline = false;
 
-		for ($idx = 0; $idx < $maxLen; $idx++) {
+		for ( $idx = 0; $idx < $maxLen; $idx++ ) {
 			switch ( $str[$idx] ) {
 				case '"':
 					$lookBehind = ( $idx - 1 >= 0 ) ? $str[$idx - 1] : '';

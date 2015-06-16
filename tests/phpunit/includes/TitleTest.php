@@ -145,7 +145,7 @@ class TitleTest extends MediaWikiTestCase {
 					}
 				)
 			)
-		));
+		) );
 	}
 
 	/**

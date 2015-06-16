@@ -329,7 +329,7 @@ class CategoryViewer extends ContextSource {
 					'category' => array( 'LEFT JOIN', array(
 						'cat_title = page_title',
 						'page_namespace' => NS_CATEGORY
-					))
+					) )
 				)
 			);
 

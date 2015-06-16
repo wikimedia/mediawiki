@@ -1040,7 +1040,7 @@ class DifferenceEngine extends ContextSource {
 			$key = $title->quickUserCan( 'edit', $user ) ? 'editold' : 'viewsourceold';
 			$msg = $this->msg( $key )->escaped();
 			$editLink = $this->msg( 'parentheses' )->rawParams(
-				Linker::linkKnown( $title, $msg, array( ), $editQuery ) )->escaped();
+				Linker::linkKnown( $title, $msg, array(), $editQuery ) )->escaped();
 			$header .= ' ' . Html::rawElement(
 				'span',
 				array( 'class' => 'mw-diff-edit' ),

@@ -138,7 +138,7 @@ class JsonContentTest extends MediaWikiLangTestCase {
 				'<tr><th>0</th><td class="value">"bar"</td></tr></tbody></table>'
 			),
 			array(
-				(object)array( '<script>alert("evil!")</script>'),
+				(object)array( '<script>alert("evil!")</script>' ),
 				'<table class="mw-json"><tbody><tr><th>0</th><td class="value">"' .
 				'&lt;script>alert("evil!")&lt;/script>"' .
 				'</td></tr></tbody></table>',

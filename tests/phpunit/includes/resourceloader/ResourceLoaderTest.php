@@ -16,7 +16,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 				},
 			),
 			'wgResourceLoaderLESSImportPaths' => array(
-				dirname( dirname( __DIR__  ) ) . '/data/less/common',
+				dirname( dirname( __DIR__ ) ) . '/data/less/common',
 			),
 			'wgResourceLoaderLESSVars' => array(
 				'foo'  => '2px',

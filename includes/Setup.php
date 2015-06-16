@@ -369,7 +369,7 @@ if ( $wgResourceLoaderMaxQueryLength === false ) {
 	} else {
 		$wgResourceLoaderMaxQueryLength = 2000;
 	}
-	unset($suhosinMaxValueLength);
+	unset( $suhosinMaxValueLength );
 }
 
 /**
@@ -429,7 +429,7 @@ if ( !$wgHtml5Version && $wgAllowRdfaAttributes ) {
 }
 
 // Blacklisted file extensions shouldn't appear on the "allowed" list
-$wgFileExtensions = array_values( array_diff ( $wgFileExtensions, $wgFileBlacklist ) );
+$wgFileExtensions = array_values( array_diff( $wgFileExtensions, $wgFileBlacklist ) );
 
 if ( $wgInvalidateCacheOnLocalSettingsChange ) {
 	MediaWiki\suppressWarnings();

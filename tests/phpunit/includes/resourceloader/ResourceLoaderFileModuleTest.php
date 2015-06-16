@@ -158,7 +158,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	 * @covers ResourceLoaderFileModule::getStyles
 	 * @covers ResourceLoaderFileModule::getStyleFiles
 	 */
-	public function testMixedCssAnnotations(  ) {
+	public function testMixedCssAnnotations() {
 		$basePath = __DIR__ . '/../../data/css';
 		$testModule = new ResourceLoaderFileModule( array(
 			'localBasePath' => $basePath,

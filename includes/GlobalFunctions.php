@@ -1756,7 +1756,7 @@ function wfMsgExt( $key, $options ) {
 	}
 
 	if ( in_array( 'escape', $options, true ) ) {
-		$string = htmlspecialchars ( $string );
+		$string = htmlspecialchars( $string );
 	} elseif ( in_array( 'escapenoentities', $options, true ) ) {
 		$string = Sanitizer::escapeHtmlAllowEntities( $string );
 	}
@@ -2758,7 +2758,7 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 
 	$useLogPipe = false;
 	if ( is_executable( '/bin/bash' ) ) {
-		$time = intval ( isset( $limits['time'] ) ? $limits['time'] : $wgMaxShellTime );
+		$time = intval( isset( $limits['time'] ) ? $limits['time'] : $wgMaxShellTime );
 		if ( isset( $limits['walltime'] ) ) {
 			$wallTime = intval( $limits['walltime'] );
 		} elseif ( isset( $limits['time'] ) ) {
@@ -2766,8 +2766,8 @@ function wfShellExec( $cmd, &$retval = null, $environ = array(),
 		} else {
 			$wallTime = intval( $wgMaxShellWallClockTime );
 		}
-		$mem = intval ( isset( $limits['memory'] ) ? $limits['memory'] : $wgMaxShellMemory );
-		$filesize = intval ( isset( $limits['filesize'] ) ? $limits['filesize'] : $wgMaxShellFileSize );
+		$mem = intval( isset( $limits['memory'] ) ? $limits['memory'] : $wgMaxShellMemory );
+		$filesize = intval( isset( $limits['filesize'] ) ? $limits['filesize'] : $wgMaxShellFileSize );
 
 		if ( $time > 0 || $mem > 0 || $filesize > 0 || $wallTime > 0 ) {
 			$cmd = '/bin/bash ' . escapeshellarg( "$IP/includes/limit.sh" ) . ' ' .
