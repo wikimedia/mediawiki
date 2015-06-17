@@ -453,8 +453,7 @@ class LoginForm extends SpecialPage {
 	 * @return Status
 	 */
 	public function addNewAccountInternal() {
-		global $wgAuth, $wgMemc, $wgAccountCreationThrottle,
-			$wgMinimalPasswordLength, $wgEmailConfirmToEdit;
+		global $wgAuth, $wgMemc, $wgAccountCreationThrottle, $wgEmailConfirmToEdit;
 
 		// If the user passes an invalid domain, something is fishy
 		if ( !$wgAuth->validDomain( $this->mDomain ) ) {
