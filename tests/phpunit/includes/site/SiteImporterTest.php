@@ -141,12 +141,12 @@ class SiteImporterTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * @dataProvider provideImportFromXML
 	 */
-	public function testImportFromXML( $xml, array $expectedSites, $errorCount = 0 )  {
+	public function testImportFromXML( $xml, array $expectedSites, $errorCount = 0 ) {
 		$importer = $this->newSiteImporter( $expectedSites, $errorCount );
 		$importer->importFromXML( $xml );
 	}
 
-	public function testImportFromXML_malformed()  {
+	public function testImportFromXML_malformed() {
 		$this->setExpectedException( 'Exception' );
 
 		$store = $this->getMock( 'SiteStore' );
@@ -154,7 +154,7 @@ class SiteImporterTest extends PHPUnit_Framework_TestCase {
 		$importer->importFromXML( 'THIS IS NOT XML' );
 	}
 
-	public function testImportFromFile()  {
+	public function testImportFromFile() {
 		$foo = Site::newForType( Site::TYPE_UNKNOWN );
 		$foo->setGlobalId( 'Foo' );
 

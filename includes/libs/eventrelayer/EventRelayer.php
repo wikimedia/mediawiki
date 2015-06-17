@@ -26,7 +26,8 @@ abstract class EventRelayer {
 	/**
 	 * @param array $params
 	 */
-	public function __construct( array $params ) {}
+	public function __construct( array $params ) {
+	}
 
 	/**
 	 * @param string $channel

@@ -26,7 +26,9 @@ class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
 	public function testClosureExpansionDisabled() {
 		$obj = ObjectFactory::getObjectFromSpec( array(
 			'class' => 'ObjectFactoryTest_Fixture',
-			'args' => array( function (){ return 'unwrapped'; }, ),
+			'args' => array( function() {
+				return 'unwrapped';
+			}, ),
 			'closure_expansion' => false,
 		) );
 		$this->assertInstanceOf( 'Closure', $obj->args[0] );
@@ -39,7 +41,9 @@ class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
 	public function testClosureExpansionEnabled() {
 		$obj = ObjectFactory::getObjectFromSpec( array(
 			'class' => 'ObjectFactoryTest_Fixture',
-			'args' => array( function (){ return 'unwrapped'; }, ),
+			'args' => array( function() {
+				return 'unwrapped';
+			}, ),
 			'closure_expansion' => true,
 		) );
 		$this->assertInternalType( 'string', $obj->args[0] );
@@ -47,7 +51,9 @@ class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
 
 		$obj = ObjectFactory::getObjectFromSpec( array(
 			'class' => 'ObjectFactoryTest_Fixture',
-			'args' => array( function (){ return 'unwrapped'; }, ),
+			'args' => array( function() {
+				return 'unwrapped';
+			}, ),
 		) );
 		$this->assertInternalType( 'string', $obj->args[0] );
 		$this->assertSame( 'unwrapped', $obj->args[0] );
@@ -56,5 +62,7 @@ class ObjectFactoryTest extends PHPUnit_Framework_TestCase {
 
 class ObjectFactoryTest_Fixture {
 	public $args;
-	public function __construct( /*...*/ ) { $this->args = func_get_args(); }
+	public function __construct( /*...*/ ) {
+		$this->args = func_get_args();
+	}
 }

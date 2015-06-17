@@ -1510,7 +1510,9 @@ SQL;
 		return pg_unescape_bytea( $b );
 	}
 
-	function strencode( $s ) { # Should not be called by us
+	function strencode( $s ) {
+		// Should not be called by us
+
 		return pg_escape_string( $this->mConn, $s );
 	}
 
@@ -1702,4 +1704,5 @@ SQL;
 	}
 } // end DatabasePostgres class
 
-class PostgresBlob extends Blob {}
+class PostgresBlob extends Blob {
+}

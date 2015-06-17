@@ -1089,7 +1089,9 @@ class DatabaseMssql extends DatabaseBase {
 	 * @param string $s
 	 * @return string
 	 */
-	public function strencode( $s ) { # Should not be called by us
+	public function strencode( $s ) {
+		// Should not be called by us
+
 		return str_replace( "'", "''", $s );
 	}
 

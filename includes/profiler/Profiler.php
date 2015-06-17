@@ -145,8 +145,11 @@ abstract class Profiler {
 	}
 
 	// Kept BC for now, remove when possible
-	public function profileIn( $functionname ) {}
-	public function profileOut( $functionname ) {}
+	public function profileIn( $functionname ) {
+	}
+
+	public function profileOut( $functionname ) {
+	}
 
 	/**
 	 * Mark the start of a custom profiling frame (e.g. DB queries).

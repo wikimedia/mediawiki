@@ -333,7 +333,9 @@ class Article implements Page {
 	 * @return string|bool String containing article contents, or false if null
 	 * @deprecated since 1.21, use WikiPage::getContent() instead
 	 */
-	function fetchContent() { #BC cruft!
+	function fetchContent() {
+		// BC cruft!
+
 		ContentHandler::deprecated( __METHOD__, '1.21' );
 
 		if ( $this->mContentLoaded && $this->mContent ) {

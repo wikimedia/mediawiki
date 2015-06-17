@@ -39,5 +39,6 @@ class ProfileSection {
 	 *
 	 * @param string $name Name of the function to profile
 	 */
-	public function __construct( $name ) {}
+	public function __construct( $name ) {
+	}
 }

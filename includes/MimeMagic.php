@@ -617,12 +617,14 @@ class MimeMagic {
 	/**
 	 * Guess the MIME type from the file contents.
 	 *
+	 * @todo Remove $ext param
+	 *
 	 * @param string $file
 	 * @param mixed $ext
 	 * @return bool|string
 	 * @throws MWException
 	 */
-	private function doGuessMimeType( $file, $ext ) { // TODO: remove $ext param
+	private function doGuessMimeType( $file, $ext ) {
 		// Read a chunk of the file
 		MediaWiki\suppressWarnings();
 		$f = fopen( $file, 'rb' );
