@@ -617,7 +617,8 @@ class OutputPage extends ContextSource {
 			$module = $resourceLoader->getModule( $val );
 
 			if ( $module instanceof ResourceLoaderModule && $module->isPositionDefault() ) {
-				$warning = __METHOD__ . ': style module should define its position explicitly: ' . $val . ' ' . get_class( $module );
+				$warning = __METHOD__ . ': style module should define its position explicitly: ' .
+					$val . ' ' . get_class( $module );
 				wfDebugLog( 'resourceloader', $warning );
 				wfLogWarning( $warning );
 			}
