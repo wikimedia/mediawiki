@@ -16,3 +16,6 @@
 [submodule "skins/Vector"]
 	path = skins/Vector
 	url = https://git.wikimedia.org/git/mediawiki/skins/Vector.git
+[submodule "vendor"]
+	path = vendor
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/vendor.git
