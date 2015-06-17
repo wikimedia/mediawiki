@@ -31,5 +31,6 @@
 	"ooui-dialog-process-error": "Er is iets misgegaan",
 	"ooui-dialog-process-dismiss": "Sluiten",
 	"ooui-dialog-process-retry": "Opnieuw proberen",
-	"ooui-dialog-process-continue": "Doorgaan"
+	"ooui-dialog-process-continue": "Doorgaan",
+	"ooui-selectfile-placeholder": "Er is geen bestand geselecteerd"
 }

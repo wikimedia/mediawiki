@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.11.4
+ * OOjs UI v0.11.5
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-06-09T22:03:21Z
+ * Date: 2015-06-17T00:59:03Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -136,9 +136,16 @@
 	margin-left: 0.25em;
 	margin-right: 0.25em;
 }
+.oo-ui-buttonElement-frameless > input.oo-ui-buttonElement-button {
+	padding-left: 0.25em;
+	padding-right: 0.25em;
+	color: #333333;
+}
+.oo-ui-buttonElement-frameless.oo-ui-widget-enabled > input.oo-ui-buttonElement-button,
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
 	color: #555555;
 }
+.oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-buttonElement-pressed > input.oo-ui-buttonElement-button,
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
 	color: #444444;
 }
@@ -541,7 +548,7 @@
 .oo-ui-fieldLayout > .oo-ui-popupButtonWidget:last-child {
 	margin-right: 0;
 }
-.oo-ui-fieldLayout-disabled .oo-ui-labelElement-label {
+.oo-ui-fieldLayout-disabled > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
 	color: #cccccc;
 }
 .oo-ui-actionFieldLayout-input,
@@ -1612,6 +1619,12 @@
 .oo-ui-buttonInputWidget {
 	display: inline-block;
 	vertical-align: middle;
+}
+.oo-ui-buttonInputWidget > button,
+.oo-ui-buttonInputWidget > input {
+	border: 0;
+	padding: 0;
+	background-color: transparent;
 }
 .oo-ui-checkboxInputWidget {
 	position: relative;

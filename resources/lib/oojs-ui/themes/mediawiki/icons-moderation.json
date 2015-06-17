@@ -37,6 +37,10 @@
 			"ltr": "images/icons/lock-ltr.svg",
 			"rtl": "images/icons/lock-rtl.svg"
 		}, "variants": [ "destructive" ] },
+		"ongoingConversation": { "file": {
+			"ltr": "images/icons/ongoingConversation-ltr.svg",
+			"rtl": "images/icons/ongoingConversation-rtl.svg"
+		} },
 		"star": { "file": "images/icons/star.svg" },
 		"trash": { "file": "images/icons/trash.svg" },
 		"trashUndo": { "file": {

@@ -19,5 +19,6 @@
 	"ooui-dialog-message-reject": "Mégse",
 	"ooui-dialog-process-dismiss": "Elrejt",
 	"ooui-dialog-process-retry": "Próbáld újra",
-	"ooui-dialog-process-continue": "Folytatás"
+	"ooui-dialog-process-continue": "Folytatás",
+	"ooui-selectfile-placeholder": "Nincs fájl kiválasztva"
 }

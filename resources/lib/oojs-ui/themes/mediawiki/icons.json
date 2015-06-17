@@ -25,7 +25,7 @@
 		"advanced": { "file": "images/icons/advanced.svg" },
 		"alert": { "file": "images/icons/alert.svg", "variants": [ "warning" ] },
 		"cancel": { "file": "images/icons/cancel.svg" },
-		"check": { "file": "images/icons/check.svg", "variants": [ "constructive", "progressive" ] },
+		"check": { "file": "images/icons/check.svg", "variants": [ "constructive", "progressive", "destructive" ] },
 		"circle": { "file": "images/icons/circle.svg", "variants": [ "constructive" ] },
 		"close": { "file": {
 			"ltr": "images/icons/close-ltr.svg",

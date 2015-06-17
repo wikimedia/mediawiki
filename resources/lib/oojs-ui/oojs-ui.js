@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.11.4
+ * OOjs UI v0.11.5
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-06-09T22:03:14Z
+ * Date: 2015-06-17T00:58:56Z
  */
 ( function ( OO ) {
 
@@ -13724,7 +13724,6 @@ OO.ui.RadioSelectInputWidget = function OoUiRadioSelectInputWidget( config ) {
 	this.setOptions( config.options || [] );
 	this.$element
 		.addClass( 'oo-ui-radioSelectInputWidget' )
-		.empty()
 		.append( this.radioSelectWidget.$element );
 };
 
@@ -14475,6 +14474,14 @@ OO.mixinClass( OO.ui.ComboBoxWidget, OO.ui.mixin.TabIndexedElement );
  */
 OO.ui.ComboBoxWidget.prototype.getMenu = function () {
 	return this.menu;
+};
+
+/**
+ * Get the combobox's text input widget.
+ * @return {OO.ui.TextInputWidget} Text input widget
+ */
+OO.ui.ComboBoxWidget.prototype.getInput = function () {
+	return this.input;
 };
 
 /**
@@ -16894,8 +16901,10 @@ OO.mixinClass( OO.ui.RadioSelectWidget, OO.ui.mixin.TabIndexedElement );
  * @cfg {OO.ui.TextInputWidget} [input] Text input used to implement option highlighting for menu items that match
  *  the text the user types. This config is used by {@link OO.ui.ComboBoxWidget ComboBoxWidget}
  *  and {@link OO.ui.mixin.LookupElement LookupElement}
- * @cfg {OO.ui.Widget} [widget] Widget associated with the menu’s active state. If the user clicks the mouse
- *  anywhere on the page outside of this widget, the menu is hidden.
+ * @cfg {OO.ui.Widget} [widget] Widget associated with the menu's active state. If the user clicks the mouse
+ *  anywhere on the page outside of this widget, the menu is hidden. For example, if there is a button
+ *  that toggles the menu's visibility on click, the menu will be hidden then re-shown when the user clicks
+ *  that button, unless the button (or its parent widget) is passed in here.
  * @cfg {boolean} [autoHide=true] Hide the menu when the mouse is pressed outside the menu.
  */
 OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {

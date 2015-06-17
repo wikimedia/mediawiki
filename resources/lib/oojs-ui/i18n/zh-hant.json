@@ -14,7 +14,8 @@
 			"Spring Roll Conan",
 			"Waihorace",
 			"Cwlin0416",
-			"LNDDYL"
+			"LNDDYL",
+			"Shangkuanlc"
 		]
 	},
 	"ooui-outline-control-move-down": "項目下移",
@@ -28,5 +29,7 @@
 	"ooui-dialog-process-error": "發生不明錯誤",
 	"ooui-dialog-process-dismiss": "關閉",
 	"ooui-dialog-process-retry": "再試一次",
-	"ooui-dialog-process-continue": "繼續"
+	"ooui-dialog-process-continue": "繼續",
+	"ooui-selectfile-not-supported": "無法支援所選擇的檔案",
+	"ooui-selectfile-placeholder": "沒有選擇檔案"
 }
