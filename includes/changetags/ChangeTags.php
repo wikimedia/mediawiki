@@ -749,18 +749,18 @@ class ChangeTags {
 			return Status::newFatal( 'tags-manage-no-permission' );
 		}
 
-		// non-existing tags cannot be activated
-		$tagUsage = self::tagUsageStatistics();
-		if ( !isset( $tagUsage[$tag] ) ) {
-			return Status::newFatal( 'tags-activate-not-found', $tag );
-		}
-
 		// defined tags cannot be activated (a defined tag is either extension-
 		// defined, in which case the extension chooses whether or not to active it;
 		// or user-defined, in which case it is considered active)
 		$definedTags = self::listDefinedTags();
 		if ( in_array( $tag, $definedTags ) ) {
 			return Status::newFatal( 'tags-activate-not-allowed', $tag );
+		}
+
+		// non-existing tags cannot be activated
+		$tagUsage = self::tagUsageStatistics();
+		if ( !isset( $tagUsage[$tag] ) ) { // we already know the tag is undefined
+			return Status::newFatal( 'tags-activate-not-found', $tag );
 		}
 
 		return Status::newGood();
@@ -887,7 +887,7 @@ class ChangeTags {
 
 		// does the tag already exist?
 		$tagUsage = self::tagUsageStatistics();
-		if ( isset( $tagUsage[$tag] ) ) {
+		if ( isset( $tagUsage[$tag] ) || in_array( $tag, self::listDefinedTags() ) ) {
 			return Status::newFatal( 'tags-create-already-exists', $tag );
 		}
 
@@ -997,11 +997,11 @@ class ChangeTags {
 			return Status::newFatal( 'tags-manage-no-permission' );
 		}
 
-		if ( !isset( $tagUsage[$tag] ) ) {
+		if ( !isset( $tagUsage[$tag] ) && !in_array( $tag, self::listDefinedTags() ) ) {
 			return Status::newFatal( 'tags-delete-not-found', $tag );
 		}
 
-		if ( $tagUsage[$tag] > self::MAX_DELETE_USES ) {
+		if ( isset( $tagUsage[$tag] ) && $tagUsage[$tag] > self::MAX_DELETE_USES ) {
 			return Status::newFatal( 'tags-delete-too-many-uses', $tag, self::MAX_DELETE_USES );
 		}
 
@@ -1046,6 +1046,7 @@ class ChangeTags {
 
 		// store the tag usage statistics
 		$tagUsage = self::tagUsageStatistics();
+		$hitcount = isset( $tagUsage[$tag] ) ? $tagUsage[$tag] : 0;
 
 		// do it!
 		$deleteResult = self::deleteTagEverywhere( $tag );
@@ -1054,7 +1055,7 @@ class ChangeTags {
 		}
 
 		// log it
-		$logId = self::logTagManagementAction( 'delete', $tag, $reason, $user, $tagUsage[$tag] );
+		$logId = self::logTagManagementAction( 'delete', $tag, $reason, $user, $hitcount );
 		$deleteResult->value = $logId;
 		return $deleteResult;
 	}
