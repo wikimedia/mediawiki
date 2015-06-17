@@ -11,6 +11,22 @@
 			data = {},
 			timer = null;
 
+		function stashEdit( token ) {
+			data = $form.serializeObject();
+
+			pending = api.post( {
+				action: 'stashedit',
+				token: token,
+				title: mw.config.get( 'wgPageName' ),
+				section: data.wpSection,
+				sectiontitle: '',
+				text: data.wpTextbox1,
+				contentmodel: data.model,
+				contentformat: data.format,
+				baserevid: data.parentRevId
+			} );
+		}
+
 		/* Has the edit body text changed since the last stashEdit() call? */
 		function isChanged() {
 			// Normalize line endings to CRLF, like $.fn.serializeObject does.
@@ -28,17 +44,7 @@
 				pending.abort();
 			}
 
-			data = $form.serializeObject();
-			pending = api.postWithToken( 'edit', {
-				action: 'stashedit',
-				title: mw.config.get( 'wgPageName' ),
-				section: data.wpSection,
-				sectiontitle: '',
-				text: data.wpTextbox1,
-				contentmodel: data.model,
-				contentformat: data.format,
-				baserevid: data.parentRevId
-			} );
+			api.getToken( 'edit' ).then( stashEdit );
 		}
 
 		function onKeyPress( e ) {
