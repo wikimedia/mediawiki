@@ -774,7 +774,7 @@ class WebRequest {
 	 *
 	 * @param int $deflimit Limit to use if no input and the user hasn't set the option.
 	 * @param string $optionname To specify an option other than rclimit to pull from.
-	 * @return array First element is limit, second is offset
+	 * @return int[] First element is limit, second is offset
 	 */
 	public function getLimitOffset( $deflimit = 50, $optionname = 'rclimit' ) {
 		global $wgUser;
