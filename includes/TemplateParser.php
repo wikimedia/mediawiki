@@ -130,7 +130,8 @@ class TemplateParser {
 		if ( !is_callable( $renderer ) ) {
 			throw new RuntimeException( "Requested template, {$templateName}, is not callable" );
 		}
-		return $this->renderers[$templateName] = $renderer;
+		$this->renderers[$templateName] = $renderer
+		return $renderer;
 	}
 
 	/**
