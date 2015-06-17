@@ -229,7 +229,6 @@ class ConvertExtensionToRegistration extends Maintenance {
 				}
 			}
 
-
 			$this->json[$realName][$name] = $data;
 		}
 		if ( $defaults ) {

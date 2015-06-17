@@ -63,7 +63,6 @@ class ResourceLoaderContext {
 		$modules = $request->getVal( 'modules' );
 		$this->modules = $modules ? self::expandModuleNames( $modules ) : array();
 
-
 		// Various parameters
 		$this->user = $request->getVal( 'user' );
 		$this->debug = $request->getFuzzyBool(
