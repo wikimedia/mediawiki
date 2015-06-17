@@ -28,7 +28,7 @@ class TemplateParserTest extends MediaWikiTestCase {
 		if ( $exception ) {
 			$this->setExpectedException( $exception );
 		}
-		$tp = new TemplateParser( $this->templateDir );
+		$tp = new TemplateParser( $this->templateDir, true );
 		$this->assertEquals( $result, $tp->processTemplate( $name, $args ) );
 	}
 
@@ -45,6 +45,16 @@ class TemplateParserTest extends MediaWikiTestCase {
 					'planet' => 'world',
 				),
 				"hello world!\n",
+			),
+			array(
+				'foobar_block_conditional',
+				array( 'person' => array( 'name' => 'John' ) ),
+				"Welcome John!\n",
+			),
+			array(
+				'foobar_block_conditional',
+				array(),
+				"Hellow stranger!\n",
 			),
 			array(
 				'../foobar',
