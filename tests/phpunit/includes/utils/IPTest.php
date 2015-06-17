@@ -360,17 +360,17 @@ class IPTest extends PHPUnit_Framework_TestCase {
 	public static function provideIsPublic() {
 		return array(
 			array( false, 'fc00::3' ), # RFC 4193 (local)
-			array( false, 'fc00::ff'), # RFC 4193 (local)
-			array( false, '127.1.2.3'), # loopback
-			array( false, '::1'), # loopback
-			array( false, 'fe80::1'), # link-local
-			array( false, '169.254.1.1'), # link-local
-			array( false, '10.0.0.1'), # RFC 1918 (private)
-			array( false, '172.16.0.1'), # RFC 1918 (private)
-			array( false, '192.168.0.1'), # RFC 1918 (private)
-			array( true, '2001:5c0:1000:a::133'), # public
-			array( true, 'fc::3'), # public
-			array( true, '00FC::') # public
+			array( false, 'fc00::ff' ), # RFC 4193 (local)
+			array( false, '127.1.2.3' ), # loopback
+			array( false, '::1' ), # loopback
+			array( false, 'fe80::1' ), # link-local
+			array( false, '169.254.1.1' ), # link-local
+			array( false, '10.0.0.1' ), # RFC 1918 (private)
+			array( false, '172.16.0.1' ), # RFC 1918 (private)
+			array( false, '192.168.0.1' ), # RFC 1918 (private)
+			array( true, '2001:5c0:1000:a::133' ), # public
+			array( true, 'fc::3' ), # public
+			array( true, '00FC::' ) # public
 		);
 	}
 

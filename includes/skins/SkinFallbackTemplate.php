@@ -87,7 +87,7 @@ class SkinFallbackTemplate extends BaseTemplate {
 		if ( file_exists( "$IP/skins/$skin/skin.json" ) ) {
 			return "wfLoadSkin( '$skin' );";
 		} else {
-			return  "require_once \"\$IP/skins/$skin/$skin.php\";";
+			return "require_once \"\$IP/skins/$skin/$skin.php\";";
 		}
 	}
 

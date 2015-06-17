@@ -51,7 +51,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiTestCase {
 
 		$globals = array();
 		foreach ( self::getSettings() as $key => $value ) {
-			$globals[ 'wg' . $key ] = $value;
+			$globals['wg' . $key] = $value;
 		}
 		$this->setMwGlobals( $globals );
 	}

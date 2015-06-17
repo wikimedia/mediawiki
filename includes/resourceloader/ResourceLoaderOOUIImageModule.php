@@ -50,7 +50,7 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 				array_walk( $data['images'], function ( &$value ) use ( $fixPath ) {
 					if ( is_string( $value['file'] ) ) {
 						$fixPath( $value['file'] );
-					} else if ( is_array( $value['file'] ) ) {
+					} elseif ( is_array( $value['file'] ) ) {
 						array_walk_recursive( $value['file'], $fixPath );
 					}
 				} );

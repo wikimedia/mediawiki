@@ -66,7 +66,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 
 	public function testSetOver() {
 		$key = wfRandomString();
-		for ( $i=0; $i<3; ++$i ) {
+		for ( $i = 0; $i < 3; ++$i ) {
 			$value = wfRandomString();
 			$this->cache->set( $key, $value, 3 );
 

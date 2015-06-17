@@ -60,9 +60,9 @@ class ResourceLoaderImage {
 				if ( strpos( $langList, ',' ) !== false ) {
 					$this->descriptor['lang'] += array_fill_keys(
 						explode( ',', $langList ),
-						$this->descriptor['lang'][ $langList ]
+						$this->descriptor['lang'][$langList]
 					);
-					unset( $this->descriptor['lang'][ $langList ] );
+					unset( $this->descriptor['lang'][$langList] );
 				}
 			}
 		}
@@ -121,10 +121,10 @@ class ResourceLoaderImage {
 		$desc = $this->descriptor;
 		if ( is_string( $desc ) ) {
 			return $this->basePath . '/' . $desc;
-		} elseif ( isset( $desc['lang'][ $context->getLanguage() ] ) ) {
-			return $this->basePath . '/' . $desc['lang'][ $context->getLanguage() ];
-		} elseif ( isset( $desc[ $context->getDirection() ] ) ) {
-			return $this->basePath . '/' . $desc[ $context->getDirection() ];
+		} elseif ( isset( $desc['lang'][$context->getLanguage()] ) ) {
+			return $this->basePath . '/' . $desc['lang'][$context->getLanguage()];
+		} elseif ( isset( $desc[$context->getDirection()] ) ) {
+			return $this->basePath . '/' . $desc[$context->getDirection()];
 		} else {
 			return $this->basePath . '/' . $desc['default'];
 		}
