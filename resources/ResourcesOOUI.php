@@ -115,7 +115,7 @@ return call_user_func( function () {
 			$module['selectorWithVariant'] = '.oo-ui-image-{variant} .oo-ui-icon-{name}, .oo-ui-image-{variant}.oo-ui-icon-{name}, .mw-ui-icon-{name}-{variant}:before, .mw-ui-hovericon:hover .mw-ui-icon-{name}-{variant}-hover:before, .mw-ui-hovericon.mw-ui-icon-{name}-{variant}-hover:hover:before';
 		}
 
-		$modules[ "oojs-ui.styles.$name" ] = $module;
+		$modules["oojs-ui.styles.$name"] = $module;
 	}
 
 	return $modules;

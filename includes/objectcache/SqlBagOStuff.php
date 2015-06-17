@@ -358,8 +358,6 @@ class SqlBagOStuff extends BagOStuff {
 		return $result;
 	}
 
-
-
 	/**
 	 * @param string $key
 	 * @param mixed $value

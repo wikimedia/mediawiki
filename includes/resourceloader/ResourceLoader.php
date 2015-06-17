@@ -1104,9 +1104,9 @@ MESSAGE;
 		$module = array(
 			$name,
 			$scripts,
-			(object) $styles,
-			(object) $messages,
-			(object) $templates,
+			(object)$styles,
+			(object)$messages,
+			(object)$templates,
 		);
 		self::trimArray( $module );
 

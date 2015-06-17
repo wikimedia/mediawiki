@@ -71,7 +71,7 @@ class ApiMainTest extends ApiTestCase {
 			new FauxRequest( array( 'action' => 'query', 'meta' => 'siteinfo' ) )
 		);
 		$modules = $api->getModuleManager()->getNamesWithClasses();
-		foreach( $modules as $name => $class ) {
+		foreach ( $modules as $name => $class ) {
 			$this->assertArrayHasKey(
 				$class,
 				$classes,

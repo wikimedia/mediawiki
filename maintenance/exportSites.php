@@ -34,7 +34,7 @@ class ExportSites extends Maintenance {
 
 		$handle = fopen( $file, 'w' );
 
-		if ( !$handle )  {
+		if ( !$handle ) {
 			$this->error( "Failed to open $file for writing.\n", 1 );
 		}
 
@@ -51,4 +51,4 @@ class ExportSites extends Maintenance {
 }
 
 $maintClass = 'ExportSites';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

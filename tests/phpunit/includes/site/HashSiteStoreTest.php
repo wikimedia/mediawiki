@@ -32,7 +32,7 @@ class HashSiteStoreTest extends MediaWikiTestCase {
 	public function testGetSites() {
 		$expectedSites = array();
 
-		foreach( TestSites::getSites() as $testSite ) {
+		foreach ( TestSites::getSites() as $testSite ) {
 			$siteId = $testSite->getGlobalId();
 			$expectedSites[$siteId] = $testSite;
 		}

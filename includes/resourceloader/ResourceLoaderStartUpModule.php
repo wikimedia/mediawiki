@@ -404,7 +404,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		// Pre-populate versionHash with something because the loop over all modules below includes
 		// the startup module (this module).
 		// See ResourceLoaderModule::getVersionHash() for usage of this cache.
-		$this->versionHash[ $context->getHash() ] = null;
+		$this->versionHash[$context->getHash()] = null;
 
 		return $rl->getCombinedVersion( $context, $rl->getModuleNames() );
 	}

@@ -137,7 +137,7 @@ class ExtensionRegistry {
 			if ( !is_array( $info ) ) {
 				throw new Exception( "$path is not a valid JSON file." );
 			}
-			if ( !isset( $info['manifest_version' ] ) ) {
+			if ( !isset( $info['manifest_version'] ) ) {
 				// For backwards-compatability, assume a version of 1
 				$info['manifest_version'] = 1;
 			}
