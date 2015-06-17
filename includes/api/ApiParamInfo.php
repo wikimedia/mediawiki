@@ -337,7 +337,7 @@ class ApiParamInfo extends ApiBase {
 							? '' : ( $module->getModulePath() . '+' );
 						$item['submodules'] = array();
 						foreach ( $item['type'] as $v ) {
-							$item['submodules'][$v] = $prefix.$v;
+							$item['submodules'][$v] = $prefix . $v;
 						}
 					}
 					if ( isset( $settings[ApiBase::PARAM_SUBMODULE_PARAM_PREFIX] ) ) {

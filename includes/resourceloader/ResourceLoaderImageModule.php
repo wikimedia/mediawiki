@@ -231,23 +231,23 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 			$this->loadFromDefinition();
 			$this->imageObjects = array();
 		}
-		if ( !isset( $this->imageObjects[ $skin ] ) ) {
-			$this->imageObjects[ $skin ] = array();
-			if ( !isset( $this->images[ $skin ] ) ) {
-				$this->images[ $skin ] = isset( $this->images[ 'default' ] ) ?
-					$this->images[ 'default' ] :
+		if ( !isset( $this->imageObjects[$skin] ) ) {
+			$this->imageObjects[$skin] = array();
+			if ( !isset( $this->images[$skin] ) ) {
+				$this->images[$skin] = isset( $this->images['default'] ) ?
+					$this->images['default'] :
 					array();
 			}
-			foreach ( $this->images[ $skin ] as $name => $options ) {
+			foreach ( $this->images[$skin] as $name => $options ) {
 				$fileDescriptor = is_string( $options ) ? $options : $options['file'];
 
 				$allowedVariants = array_merge(
 					is_array( $options ) && isset( $options['variants'] ) ? $options['variants'] : array(),
 					$this->getGlobalVariants( $context )
 				);
-				if ( isset( $this->variants[ $skin ] ) ) {
+				if ( isset( $this->variants[$skin] ) ) {
 					$variantConfig = array_intersect_key(
-						$this->variants[ $skin ],
+						$this->variants[$skin],
 						array_fill_keys( $allowedVariants, true )
 					);
 				} else {
@@ -261,11 +261,11 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 					$this->localBasePath,
 					$variantConfig
 				);
-				$this->imageObjects[ $skin ][ $image->getName() ] = $image;
+				$this->imageObjects[$skin][$image->getName()] = $image;
 			}
 		}
 
-		return $this->imageObjects[ $skin ];
+		return $this->imageObjects[$skin];
 	}
 
 	/**
@@ -280,21 +280,21 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 			$this->loadFromDefinition();
 			$this->globalVariants = array();
 		}
-		if ( !isset( $this->globalVariants[ $skin ] ) ) {
-			$this->globalVariants[ $skin ] = array();
-			if ( !isset( $this->variants[ $skin ] ) ) {
-				$this->variants[ $skin ] = isset( $this->variants[ 'default' ] ) ?
-					$this->variants[ 'default' ] :
+		if ( !isset( $this->globalVariants[$skin] ) ) {
+			$this->globalVariants[$skin] = array();
+			if ( !isset( $this->variants[$skin] ) ) {
+				$this->variants[$skin] = isset( $this->variants['default'] ) ?
+					$this->variants['default'] :
 					array();
 			}
-			foreach ( $this->variants[ $skin ] as $name => $config ) {
+			foreach ( $this->variants[$skin] as $name => $config ) {
 				if ( isset( $config['global'] ) && $config['global'] ) {
-					$this->globalVariants[ $skin ][] = $name;
+					$this->globalVariants[$skin][] = $name;
 				}
 			}
 		}
 
-		return $this->globalVariants[ $skin ];
+		return $this->globalVariants[$skin];
 	}
 
 	/**

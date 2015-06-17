@@ -48,7 +48,7 @@ class LCStoreStaticArray implements LCStore {
 
 	public function startWrite( $code ) {
 		$this->currentLang = $code;
-		$this->fname = $this->directory. '/' . $code . '.l10n.php';
+		$this->fname = $this->directory . '/' . $code . '.l10n.php';
 		$this->data[$code] = array();
 		if ( file_exists( $this->fname ) ) {
 			$this->data[$code] = require $this->fname;
@@ -125,7 +125,7 @@ class LCStoreStaticArray implements LCStore {
 
 	public function get( $code, $key ) {
 		if ( !array_key_exists( $code, $this->data ) ) {
-			$fname = $this->directory. '/' . $code . '.l10n.php';
+			$fname = $this->directory . '/' . $code . '.l10n.php';
 			if ( !file_exists( $fname ) ) {
 				return null;
 			}

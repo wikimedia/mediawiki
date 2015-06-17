@@ -394,9 +394,9 @@ class WikiImporter {
 			$countKey = 'title_' . $title->getPrefixedText();
 			$countable = $page->isCountable( $editInfo );
 			if ( array_key_exists( $countKey, $this->countableCache ) &&
-				$countable != $this->countableCache[ $countKey ] ) {
+				$countable != $this->countableCache[$countKey] ) {
 				DeferredUpdates::addUpdate( SiteStatsUpdate::factory( array(
-					'articles' => ( (int)$countable - (int)$this->countableCache[ $countKey ] )
+					'articles' => ( (int)$countable - (int)$this->countableCache[$countKey] )
 				) ) );
 			}
 		}
@@ -611,7 +611,7 @@ class WikiImporter {
 			$tag = $this->reader->localName;
 
 			if ( $tag == 'namespace' ) {
-				$this->foreignNamespaces[ $this->nodeAttribute( 'key' ) ] =
+				$this->foreignNamespaces[$this->nodeAttribute( 'key' )] =
 					$this->nodeContents();
 			} elseif ( in_array( $tag, $normalFields ) ) {
 				$siteInfo[$tag] = $this->nodeContents();

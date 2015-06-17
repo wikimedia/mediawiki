@@ -44,13 +44,13 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 					'(min-resolution: 1.5dppx), ' .
 					'(min-resolution: 144dpi)'
 				][] = '.mw-wiki-logo { background-image: ' .
-				CSSMin::buildUrlValue( $logoHD['1.5x'] ) .';' .
+				CSSMin::buildUrlValue( $logoHD['1.5x'] ) . ';' .
 				'background-size: 135px auto; }';
 			}
 			if ( isset( $logoHD['2x'] ) ) {
 				$styles[
 					'(-webkit-min-device-pixel-ratio: 2), ' .
-					'(min--moz-device-pixel-ratio: 2),'.
+					'(min--moz-device-pixel-ratio: 2),' .
 					'(min-resolution: 2dppx), ' .
 					'(min-resolution: 192dpi)'
 				][] = '.mw-wiki-logo { background-image: ' .

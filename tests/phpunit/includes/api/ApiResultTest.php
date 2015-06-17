@@ -1565,7 +1565,7 @@ class ApiResultTest extends MediaWikiTestCase {
 
 		try {
 			$arr = array();
-			ApiResult::setValue( $arr, 'foo',  new ApiResultTestSerializableObject(
+			ApiResult::setValue( $arr, 'foo', new ApiResultTestSerializableObject(
 				new ApiResultTestStringifiableObject()
 			) );
 			$this->fail( 'Expected exception not thrown' );
@@ -1579,7 +1579,7 @@ class ApiResultTest extends MediaWikiTestCase {
 
 		try {
 			$arr = array();
-			ApiResult::setValue( $arr, 'foo',  new ApiResultTestSerializableObject( NAN ) );
+			ApiResult::setValue( $arr, 'foo', new ApiResultTestSerializableObject( NAN ) );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( UnexpectedValueException $ex ) {
 			$this->assertSame(
@@ -1590,7 +1590,7 @@ class ApiResultTest extends MediaWikiTestCase {
 		}
 
 		$arr = array();
-		ApiResult::setValue( $arr, 'foo',  new ApiResultTestSerializableObject(
+		ApiResult::setValue( $arr, 'foo', new ApiResultTestSerializableObject(
 			array(
 				'one' => new ApiResultTestStringifiableObject( '1' ),
 				'two' => new ApiResultTestSerializableObject( 2 ),

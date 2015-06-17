@@ -458,9 +458,9 @@ abstract class ResourceLoaderModule {
 		// Cache this expensive operation. This calls builds the scripts, styles, and messages
 		// content which typically involves filesystem and/or database access.
 		if ( !array_key_exists( $contextHash, $this->contents ) ) {
-			$this->contents[ $contextHash ] = $this->buildContent( $context );
+			$this->contents[$contextHash] = $this->buildContent( $context );
 		}
-		return $this->contents[ $contextHash ];
+		return $this->contents[$contextHash];
 	}
 
 	/**
@@ -608,9 +608,9 @@ abstract class ResourceLoaderModule {
 				$str .= strval( $mhash );
 			}
 
-			$this->versionHash[ $contextHash ] = ResourceLoader::makeHash( $str );
+			$this->versionHash[$contextHash] = ResourceLoader::makeHash( $str );
 		}
-		return $this->versionHash[ $contextHash ];
+		return $this->versionHash[$contextHash];
 	}
 
 	/**

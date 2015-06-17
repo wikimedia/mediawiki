@@ -72,7 +72,7 @@ class ApiFormatXml extends ApiFormatBase {
 			'Custom' => function ( &$data, &$metadata ) {
 				if ( isset( $metadata[ApiResult::META_TYPE] ) ) {
 					// We want to use non-BC for BCassoc to force outputting of _idx.
-					switch( $metadata[ApiResult::META_TYPE] ) {
+					switch ( $metadata[ApiResult::META_TYPE] ) {
 						case 'BCassoc':
 							$metadata[ApiResult::META_TYPE] = 'assoc';
 							break;

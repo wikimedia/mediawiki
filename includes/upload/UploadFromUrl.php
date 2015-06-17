@@ -241,7 +241,7 @@ class UploadFromUrl extends UploadBase {
 			wfDebugLog(
 				'fileupload',
 				'Short write ' . $this->nbytes . '/' . strlen( $buffer ) .
-					' bytes, aborting with '  . $this->mFileSize . ' uploaded so far'
+					' bytes, aborting with ' . $this->mFileSize . ' uploaded so far'
 			);
 			fclose( $this->mTmpHandle );
 			$this->mTmpHandle = false;

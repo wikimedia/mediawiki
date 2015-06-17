@@ -131,7 +131,7 @@ class ApiQueryTest extends ApiTestCase {
 		);
 		$queryApi = new ApiQuery( $api, 'query' );
 		$modules = $queryApi->getModuleManager()->getNamesWithClasses();
-		foreach( $modules as $name => $class ) {
+		foreach ( $modules as $name => $class ) {
 			$this->assertArrayHasKey(
 				$class,
 				$classes,
