@@ -86,9 +86,11 @@ class ResourceLoaderImageModule extends ResourceLoaderModule {
 	 *         // List of image files and their options
 	 *         'images' => array(
 	 *             [theme name] => array(
-	 *                 [file path string],
-	 *                 [file path string] => array(
-	 *                     'name' => [image name string, defaults to file name],
+	 *                 [icon name] => array(
+	 *                     'file' => [file path string or array whose values are file path strings
+	 *                                    and whose keys are 'default', 'ltr', 'rtl', a single
+	 *                                    language code like 'en', or a list of language codes like
+	 *                                    'en,de,ar'],
 	 *                     'variants' => [array of variant name strings, variants
 	 *                                    available for this image],
 	 *                 ),
