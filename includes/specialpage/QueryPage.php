@@ -471,6 +471,16 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	/**
+	 * Returns limit and offset, as returned by $this->getRequest()->getLimitOffset().
+	 * Subclasses may override this to further restrict or modify limit and offset.
+	 *
+	 * @return array list( $limit, $offset )
+	 */
+	protected function getLimitOffset() {
+		return $this->getRequest()->getLimitOffset();
+	}
+
+	/**
 	 * This is the actual workhorse. It does everything needed to make a
 	 * real, honest-to-gosh query page.
 	 * @param string $par
@@ -495,7 +505,7 @@ abstract class QueryPage extends SpecialPage {
 		$out->setSyndicated( $this->isSyndicated() );
 
 		if ( $this->limit == 0 && $this->offset == 0 ) {
-			list( $this->limit, $this->offset ) = $this->getRequest()->getLimitOffset();
+			list( $this->limit, $this->offset ) = $this->getLimitOffset();
 		}
 
 		// @todo Use doQuery()
