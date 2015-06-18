@@ -1037,7 +1037,7 @@
 	"badsig": "Die Syntax der Signatur ist ungültig; bitte HTML überprüfen.",
 	"badsiglength": "Die Signatur darf maximal $1 {{PLURAL:$1|Zeichen}} lang sein.",
 	"yourgender": "Welches Geschlecht hast du?",
-	"gender-unknown": "Ich möchte hierzu keine Angabe machen",
+	"gender-unknown": "Beim Erwähnen deiner Person verwendet die Software geschlechtsneutrale Wörter, sofern möglich",
 	"gender-male": "Ich bin männlich",
 	"gender-female": "Ich bin weiblich",
 	"prefs-help-gender": "Dies ist eine freiwillige Angabe.\nDie Software nutzt sie, um dich anzureden sowie als Hinweis für andere durch Verwendung des zutreffenden grammatikalischen Geschlechts.\nDiese Information ist öffentlich.",

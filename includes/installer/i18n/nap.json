@@ -173,6 +173,7 @@
 	"config-mysql-engine": "Mutore d'astipo:",
 	"config-mysql-innodb": "InnoDB",
 	"config-mysql-myisam": "MyISAM",
+	"config-mysql-engine-help": "<strong>InnoDB</strong> è quase sempe 'a meglia opzione, pecché ave nu buono suppuorto concorrente.\n\n<strong>MyISAM</strong> putesse ghì cchiù ampressa int'a na installazione mono-utente e liegge-surtanto.\n'E database MyISAM se scassano cchiù spisso d' 'e database InnoDB.",
 	"config-mysql-charset": "Nzieme 'e carattere d' 'o database:",
 	"config-mysql-binary": "Binario",
 	"config-mysql-utf8": "UTF-8",

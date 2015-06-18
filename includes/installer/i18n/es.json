@@ -315,7 +315,7 @@
 	"config-install-pg-schema-failed": "Falló la creación de las tablas.\nAsegúrate de que la cuenta «$1» tiene permiso de escritura para el esquema «$2».",
 	"config-install-pg-commit": "Validando los cambios",
 	"config-install-pg-plpgsql": "Comprobación de lenguaje PL/pgSQL",
-	"config-pg-no-plpgsql": "Necesita instalar el lenguaje PL/pgSQL en la base de datos $1",
+	"config-pg-no-plpgsql": "Necesitas instalar el lenguaje PL/pgSQL en la base de datos $1",
 	"config-pg-no-create-privs": "La cuenta especificada para la instalación no tiene suficientes privilegios para crear una cuenta.",
 	"config-pg-not-in-role": "La cuenta especificada para el usuario web ya existe.\nLa cuenta especificada para la instalación no es de un superusuario y no es miembro del grupo de usuarios con acceso a la web, por lo que es incapaz de crear objetos pertenecientes al usuario web.\n\nMediaWiki requiere actualmente que las tablas sean propiedad del usuario web. Especifique otro nombre de cuenta web, o haga clic en \"atrás\" y especifique un usuario de instalación con los privilegios convenientes.",
 	"config-install-user": "Creando el usuario de la base de datos",

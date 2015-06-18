@@ -960,7 +960,7 @@
 	"badsig": "D'Syntax vun Ärer Ënnerschrëft ass net korrekt; iwwerpréift w.e.g. den HTML Code.",
 	"badsiglength": "Är Ënnerschrëft ass ze laang.\nSi muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.",
 	"yourgender": "Wéi wëllt Dir beschriwwe ginn?",
-	"gender-unknown": "Ech wëll dat net preziséieren",
+	"gender-unknown": "Wann Dir ernimmt gëtt da benotzt D'Software do wou et méiglech ass geschlechtsneutral Wierder",
 	"gender-male": "Hien ännert Wikisäiten",
 	"gender-female": "Si ännert Wikisäiten",
 	"prefs-help-gender": "Fakultativ:\nD'Software benotzt seng Wäerter fir Iech unzeschwätzen a fir vun Iech vis-a-vis vun Aneren grammatesch ''Gender-korrekt'' ze schwätzen. \n\nDës Informatioun ass ëffentlech.",

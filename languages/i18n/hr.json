@@ -29,7 +29,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Macofe",
-			"Fraxinus"
+			"Fraxinus",
+			"Srdjan m"
 		]
 	},
 	"tog-underline": "Podcrtane poveznice",
@@ -823,6 +824,8 @@
 	"notextmatches": "Nema pronađenih stranica prema tekstu članka",
 	"prevn": "prethodnih {{PLURAL:$1|$1}}",
 	"nextn": "sljedećih {{PLURAL:$1|$1}}",
+	"prev-page": "prethodna stranica",
+	"next-page": "sljedeća stranica",
 	"prevn-title": "$1 {{PLURAL:$1|prethodni rezultat|prethodna rezultata|prethodnih rezultata}}",
 	"nextn-title": "$1 {{PLURAL:$1|sljedeći rezultat|sljedeća rezultata|sljedećih rezultata}}",
 	"shown-title": "Prikaži $1 {{PLURAL:$1|rezultat|rezultata|rezultata}} po stranici",
@@ -1194,7 +1197,7 @@
 	"upload-permitted": "Dopušteni {{PLURAL:$2|tip|tipovi}} datoteka: $1.",
 	"upload-preferred": "Poželjni {{PLURAL:$2|tip|tipovi}} datoteka: $1.",
 	"upload-prohibited": "Zabranjeni {{PLURAL:$2|tip|tipovi}} datoteka: $1.",
-	"uploadlogpage": "Evidencija_postavljanja",
+	"uploadlogpage": "Evidencija postavljanja",
 	"uploadlogpagetext": "Dolje je popis nedavno postavljenih slika.",
 	"filename": "Ime datoteke",
 	"filedesc": "Sažetak",
@@ -1353,6 +1356,7 @@
 	"listfiles-delete": "izbriši",
 	"listfiles-summary": "Ova stranica pokazuje sve postavljene datoteke.\nKad je filtriran po suradniku, popis prikazuje samo one datoteke čije je posljednje inačice postavio taj suradnik.",
 	"listfiles_search_for": "Traži ime slike:",
+	"listfiles-userdoesnotexist": "Suradnički račun \"$1\" nije registriran.",
 	"imgfile": "datoteka",
 	"listfiles": "Popis slika",
 	"listfiles_thumb": "Smanjeni pregled",

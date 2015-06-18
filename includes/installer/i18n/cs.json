@@ -65,7 +65,7 @@
 	"config-magic-quotes-sybase": "'''Kritická chyba: Je zapnuto [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase]!'''\nToto nastavení nepředvídatelně poškozuje vstupní data.\nMediaWiki nelze nainstalovat ani používat, dokud není toto nastavení vypnuto.",
 	"config-mbstring": "'''Kritická chyba: Je zapnuto [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload]!'''\nToto nastavení způsobuje chyby a může nepředvídatelně poškozovat vstupní data.\nMediaWiki nelze nainstalovat ani používat, dokud není toto nastavení vypnuto.",
 	"config-safe-mode": "'''Upozornění:''' Je aktivní [http://www.php.net/features.safe-mode bezpečný režim] PHP.\nMůže způsobovat potíže, zejména při použití načítání souborů a podpory <code>math</code>.",
-	"config-xml-bad": "Chybí XML modul pro PHP.\nMediaWiki potřebuje funkce v tomto modulu a v této konfiguraci nebude fungovat.\nPokud běžíte na Mandrake, nainstalujte balíček php-xml.",
+	"config-xml-bad": "Chybí XML modul pro PHP.\nMediaWiki potřebuje funkce v tomto modulu a v této konfiguraci nebude fungovat.\nMožná si budete muset nainstalovat RPM balíček php-xml.",
 	"config-pcre-old": "'''Kritická chyba:''' Je vyžadováno PCRE verze $1 nebo novější.\nVaše binárka PHP obsahuje PCRE $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Více informací.]",
 	"config-pcre-no-utf8": "'''Kritická chyba''': PHP modul PCRE byl zřejmě přeložen bez podpory PCRE_UTF8.\nMediaWiki vyžaduje ke správné funkci podporu UTF-8.",
 	"config-memory-raised": "<code>memory_limit</code> v PHP byl nastaven na $1, zvýšen na $2.",

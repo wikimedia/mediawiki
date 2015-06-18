@@ -984,7 +984,7 @@
 	"badsig": "Chybný podpis, zkontrolujte syntaxi HTML.",
 	"badsiglength": "Váš podpis je příliš dlouhý. Musí být kratší než $1 {{PLURAL:$1|znak|znaky|znaků}}.",
 	"yourgender": "Jak chcete být popisován(a)?",
-	"gender-unknown": "Nechci sdělit.",
+	"gender-unknown": "Software nebude při zmínkách o vás používat konkrétní rod",
 	"gender-male": "On upravil článek.",
 	"gender-female": "Ona upravila článek.",
 	"prefs-help-gender": "Toto nastavení je nepovinné.\nSoftware ho používá pro volbu gramatického rodu, když vás oslovuje nebo vás zmiňuje.\nTato informace je veřejná.",

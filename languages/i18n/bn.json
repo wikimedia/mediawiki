@@ -296,7 +296,7 @@
 	"page-rss-feed": "\"$1\" আরএসএস ফিড",
 	"page-atom-feed": "\"$1\" অ্যাটম ফিড",
 	"feed-atom": "অ্যাটম",
-	"red-link-title": "$1 (পাতা নেই)",
+	"red-link-title": "$1 (পাতার অস্তিত্ব নেই)",
 	"sort-descending": "উল্টো বর্ণক্রমে সাজাও",
 	"sort-ascending": "বর্ণানুক্রমে সাজাও",
 	"nstab-main": "পাতা",

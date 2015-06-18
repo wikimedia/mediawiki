@@ -1298,7 +1298,7 @@
 	"uploaddisabledtext": "Faili üleslaadimine on keelatud.",
 	"php-uploaddisabledtext": "Failide üleslaadmine on PHP seadetes keelatud.\nPalun vaata <code>file_uploads</code> sätet.",
 	"uploadscripted": "See fail sisaldab HTML- või skriptikoodi, mida veebilehitseja võib valesti kuvada.",
-	"upload-scripted-pi-callback": "Üles ei saa laadida faili, mis sisaldab XML-laadilehe protsessikäsku.",
+	"upload-scripted-pi-callback": "Üles ei saa laadida faili, mis sisaldab XML-laadilehe töötluskäsku.",
 	"uploaded-script-svg": "Üleslaaditud SVG-failist leiti skriptitav element \"$1\".",
 	"uploaded-hostile-svg": "Üleslaaditud SVG-faili laadielemendist leiti ebaturvaline CSS.",
 	"uploaded-event-handler-on-svg": "Sündmuse halduse atribuutide <code>$1=\"$2\"</code> seadmine pole SVG-failis lubatud.",

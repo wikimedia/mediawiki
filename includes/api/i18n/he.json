@@ -309,6 +309,7 @@
 	"api-help-source-unknown": "מקור: <span class=\"apihelp-unknown\">לא ידוע</span>",
 	"api-help-license": "רישיון: [[$1|$2]]",
 	"api-help-license-noname": "רישיון: [[$1|ראו קישור]]",
+	"api-help-license-unknown": "רישיון: <span class=\"apihelp-unknown\">לא ידוע</span>",
 	"api-help-parameters": "{{PLURAL:$1|פרמטר|פרמטרים}}:",
 	"api-help-param-deprecated": "מיושן.",
 	"api-help-param-required": "פרמטר זה נדרש.",

@@ -1016,7 +1016,7 @@
 	"badsig": "Assinatura inválida; verifique o código HTML utilizado.",
 	"badsiglength": "A sua assinatura é demasiado longa.\nNão deverá conter mais de $1 {{PLURAL:$1|carácter|caracteres}}.",
 	"yourgender": "Como prefere ser descrito?",
-	"gender-unknown": "Prefiro não dizer",
+	"gender-unknown": "Ao mencioná-lo, o software irá utilizar palavras de género neutro sempre que possível",
 	"gender-male": "Ele edita páginas wiki",
 	"gender-female": "Ela edita páginas wiki",
 	"prefs-help-gender": "Esta preferência é opcional.\nO software usa o seu valor para o endereçar e para o mencionar a outros usando o género gramatical apropriado.\nEsta informação será pública.",
