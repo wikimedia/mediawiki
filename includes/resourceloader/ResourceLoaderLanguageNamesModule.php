@@ -32,7 +32,6 @@ class ResourceLoaderLanguageNamesModule extends ResourceLoaderModule {
 
 	protected $targets = array( 'desktop', 'mobile' );
 
-
 	/**
 	 * @param ResourceLoaderContext $context
 	 * @return array
@@ -69,11 +68,10 @@ class ResourceLoaderLanguageNamesModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param ResourceLoaderContext $context
-	 * @return string Hash
+	 * @return bool
 	 */
-	public function getModifiedHash( ResourceLoaderContext $context ) {
-		return md5( serialize( $this->getData( $context ) ) );
+	public function enableModuleContentVersion() {
+		return true;
 	}
 
 }
