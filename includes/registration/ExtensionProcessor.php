@@ -290,10 +290,14 @@ class ExtensionProcessor implements Processor {
 
 	/**
 	 * @param string $name
-	 * @param mixed $value
+	 * @param array $value
 	 * @param array &$array
+	 * @throws InvalidArgumentException
 	 */
 	protected function storeToArray( $name, $value, &$array ) {
+		if ( !is_array( $value ) ) {
+			throw new InvalidArgumentException( "The value for '$name' should be an array" );
+		}
 		if ( isset( $array[$name] ) ) {
 			$array[$name] = array_merge_recursive( $array[$name], $value );
 		} else {
