@@ -31,6 +31,8 @@ class ObjectCacheSessionHandler {
 	/** @var array Map of (session ID => SHA-1 of the data) */
 	protected static $hashCache = array();
 
+	const TTL_REFRESH_WINDOW = 600; // refresh if expiring in 10 minutes
+
 	/**
 	 * Install a session handler for the current web request
 	 */
@@ -157,10 +159,24 @@ class ObjectCacheSessionHandler {
 	}
 
 	/**
-	 * Shutdown function. See the comment inside ObjectCacheSessionHandler::install
-	 * for rationale.
+	 * Shutdown function.
+	 * See the comment inside ObjectCacheSessionHandler::install for rationale.
 	 */
 	static function handleShutdown() {
+		global $wgObjectCacheSessionExpiry;
+
+		$now = microtime( true );
+		// Session are only written in object stores when $_SESSION changes,
+		// which also renews the TTL ($wgObjectCacheSessionExpiry). If a user
+		// is active but not causing session data changes, it may suddenly
+		// as they view a form, blocking the first submission.
+		// Make a dummy change every so often to avoid this.
+		if ( !isset( $_SESSION['wsExpiresUnix'] )
+			|| ( $now + self::TTL_REFRESH_WINDOW ) > isset( $_SESSION['wsExpiresUnix'] )
+		) {
+			$_SESSION['wsExpiresUnix'] = $now + $wgObjectCacheSessionExpiry;
+		}
+
 		session_write_close();
 	}
 }
