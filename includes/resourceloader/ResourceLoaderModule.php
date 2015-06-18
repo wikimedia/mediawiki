@@ -293,9 +293,9 @@ abstract class ResourceLoaderModule {
 
 	/**
 	 * Whether the position returned by getPosition() is a default value or comes from the module
-	 * definition. This method is meant to be short-lived, and is only useful until classes added via
-	 * addModuleStyles with a default value define an explicit position. See getModuleStyles() in
-	 * OutputPage for the related migration warning.
+	 * definition. This method is meant to be short-lived, and is only useful until classes added
+	 * via addModuleStyles with a default value define an explicit position. See getModuleStyles()
+	 * in OutputPage for the related migration warning.
 	 *
 	 * @return bool
 	 * @since  1.26
@@ -386,16 +386,21 @@ abstract class ResourceLoaderModule {
 		}
 
 		$dbr = wfGetDB( DB_SLAVE );
-		$deps = $dbr->selectField( 'module_deps', 'md_deps', array(
+		$deps = $dbr->selectField( 'module_deps',
+			'md_deps',
+			array(
 				'md_module' => $this->getName(),
 				'md_skin' => $skin,
-			), __METHOD__
+			),
+			__METHOD__
 		);
+
 		if ( !is_null( $deps ) ) {
 			$this->fileDeps[$skin] = (array)FormatJson::decode( $deps, true );
 		} else {
 			$this->fileDeps[$skin] = array();
 		}
+
 		return $this->fileDeps[$skin];
 	}
 
@@ -421,10 +426,13 @@ abstract class ResourceLoaderModule {
 			}
 
 			$dbr = wfGetDB( DB_SLAVE );
-			$msgBlobMtime = $dbr->selectField( 'msg_resource', 'mr_timestamp', array(
+			$msgBlobMtime = $dbr->selectField( 'msg_resource',
+				'mr_timestamp',
+				array(
 					'mr_resource' => $this->getName(),
 					'mr_lang' => $lang
-				), __METHOD__
+				),
+				__METHOD__
 			);
 			// If no blob was found, but the module does have messages, that means we need
 			// to regenerate it. Return NOW
@@ -527,7 +535,8 @@ abstract class ResourceLoaderModule {
 								$stylePairs[$media] = array();
 								foreach ( $style as $cssText ) {
 									if ( is_string( $cssText ) ) {
-										$stylePairs[$media][] = $rl->filter( 'minify-css', $cssText );
+										$stylePairs[$media][] =
+											$rl->filter( 'minify-css', $cssText );
 									}
 								}
 							} elseif ( is_string( $style ) ) {
@@ -592,7 +601,7 @@ abstract class ResourceLoaderModule {
 
 			$summary = $this->getDefinitionSummary( $context );
 			if ( !isset( $summary['_cacheEpoch'] ) ) {
-				throw new Exception( 'getDefinitionSummary must call parent method' );
+				throw new LogicException( 'getDefinitionSummary must call parent method' );
 			}
 			$str = json_encode( $summary );
 
@@ -748,8 +757,13 @@ abstract class ResourceLoaderModule {
 	protected function validateScriptFile( $fileName, $contents ) {
 		if ( $this->getConfig()->get( 'ResourceLoaderValidateJS' ) ) {
 			// Try for cache hit
-			// Use CACHE_ANYTHING since filtering is very slow compared to DB queries
-			$key = wfMemcKey( 'resourceloader', 'jsparse', self::$parseCacheVersion, md5( $contents ) );
+			// Use CACHE_ANYTHING since parsing JS is much slower than a DB query
+			$key = wfMemcKey(
+				'resourceloader',
+				'jsparse',
+				self::$parseCacheVersion,
+				md5( $contents )
+			);
 			$cache = wfGetCache( CACHE_ANYTHING );
 			$cacheEntry = $cache->get( $key );
 			if ( is_string( $cacheEntry ) ) {
@@ -763,7 +777,8 @@ abstract class ResourceLoaderModule {
 			} catch ( Exception $e ) {
 				// We'll save this to cache to avoid having to validate broken JS over and over...
 				$err = $e->getMessage();
-				$result = "mw.log.error(" . Xml::encodeJsVar( "JavaScript parse error: $err" ) . ");";
+				$result = "mw.log.error(" .
+					Xml::encodeJsVar( "JavaScript parse error: $err" ) . ");";
 			}
 
 			$cache->set( $key, $result );
