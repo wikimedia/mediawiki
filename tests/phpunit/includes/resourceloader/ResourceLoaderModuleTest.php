@@ -3,10 +3,9 @@
 class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 
 	/**
-	 * @covers ResourceLoaderModule::getDefinitionSummary
-	 * @covers ResourceLoaderFileModule::getDefinitionSummary
+	 * @covers ResourceLoaderModule::getVersionHash
 	 */
-	public function testDefinitionSummary() {
+	public function testGetVersionHash() {
 		$context = $this->getResourceLoaderContext();
 
 		$baseParams = array(
@@ -16,15 +15,13 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		);
 
 		$module = new ResourceLoaderFileModule( $baseParams );
-
-		$jsonSummary = json_encode( $module->getDefinitionSummary( $context ) );
+		$version = json_encode( $module->getVersionHash( $context ) );
 
 		// Exactly the same
 		$module = new ResourceLoaderFileModule( $baseParams );
-
 		$this->assertEquals(
-			$jsonSummary,
-			json_encode( $module->getDefinitionSummary( $context ) ),
+			$version,
+			json_encode( $module->getVersionHash( $context ) ),
 			'Instance is insignificant'
 		);
 
@@ -32,10 +29,9 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		$module = new ResourceLoaderFileModule( array(
 			'dependencies' => array( 'mediawiki', 'jquery' ),
 		) + $baseParams );
-
 		$this->assertEquals(
-			$jsonSummary,
-			json_encode( $module->getDefinitionSummary( $context ) ),
+			$version,
+			json_encode( $module->getVersionHash( $context ) ),
 			'Order of dependencies is insignificant'
 		);
 
@@ -43,10 +39,9 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		$module = new ResourceLoaderFileModule( array(
 			'messages' => array( 'world', 'hello' ),
 		) + $baseParams );
-
 		$this->assertEquals(
-			$jsonSummary,
-			json_encode( $module->getDefinitionSummary( $context ) ),
+			$version,
+			json_encode( $module->getVersionHash( $context ) ),
 			'Order of messages is insignificant'
 		);
 
@@ -54,19 +49,17 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 		$module = new ResourceLoaderFileModule( array(
 			'scripts' => array( 'bar.js', 'foo.js' ),
 		) + $baseParams );
-
 		$this->assertNotEquals(
-			$jsonSummary,
-			json_encode( $module->getDefinitionSummary( $context ) ),
+			$version,
+			json_encode( $module->getVersionHash( $context ) ),
 			'Order of scripts is significant'
 		);
 
 		// Subclass
 		$module = new ResourceLoaderFileModuleTestModule( $baseParams );
-
 		$this->assertNotEquals(
-			$jsonSummary,
-			json_encode( $module->getDefinitionSummary( $context ) ),
+			$version,
+			json_encode( $module->getVersionHash( $context ) ),
 			'Class is significant'
 		);
 	}
