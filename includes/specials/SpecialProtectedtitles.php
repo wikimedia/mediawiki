@@ -67,10 +67,8 @@ class SpecialProtectedtitles extends SpecialPage {
 	 * @return string
 	 */
 	function formatRow( $row ) {
-
 		$title = Title::makeTitleSafe( $row->pt_namespace, $row->pt_title );
 		if ( !$title ) {
-
 			return Html::rawElement(
 				'li',
 				array(),

@@ -288,7 +288,6 @@ abstract class UploadBase {
 		 * If there was no filename or a zero size given, give up quick.
 		 */
 		if ( $this->isEmptyFile() ) {
-
 			return array( 'status' => self::EMPTY_FILE );
 		}
 
@@ -297,7 +296,6 @@ abstract class UploadBase {
 		 */
 		$maxSize = self::getMaxUploadSize( $this->getSourceType() );
 		if ( $this->mFileSize > $maxSize ) {
-
 			return array(
 				'status' => self::FILE_TOO_LARGE,
 				'max' => $maxSize,
@@ -311,7 +309,6 @@ abstract class UploadBase {
 		 */
 		$verification = $this->verifyFile();
 		if ( $verification !== true ) {
-
 			return array(
 				'status' => self::VERIFICATION_ERROR,
 				'details' => $verification
@@ -323,7 +320,6 @@ abstract class UploadBase {
 		 */
 		$result = $this->validateName();
 		if ( $result !== true ) {
-
 			return $result;
 		}
 
@@ -331,7 +327,6 @@ abstract class UploadBase {
 		if ( !Hooks::run( 'UploadVerification',
 			array( $this->mDestName, $this->mTempPath, &$error ) )
 		) {
-
 			return array( 'status' => self::HOOK_ABORTED, 'error' => $error );
 		}
 
@@ -380,7 +375,6 @@ abstract class UploadBase {
 			wfDebug( "mime: <$mime> extension: <{$this->mFinalExtension}>\n" );
 			global $wgMimeTypeBlacklist;
 			if ( $this->checkFileExtension( $mime, $wgMimeTypeBlacklist ) ) {
-
 				return array( 'filetype-badmime', $mime );
 			}
 
@@ -394,7 +388,6 @@ abstract class UploadBase {
 			$ieTypes = $magic->getIEMimeTypes( $this->mTempPath, $chunk, $extMime );
 			foreach ( $ieTypes as $ieType ) {
 				if ( $this->checkFileExtension( $ieType, $wgMimeTypeBlacklist ) ) {
-
 					return array( 'filetype-bad-ie-mime', $ieType );
 				}
 			}
@@ -413,7 +406,6 @@ abstract class UploadBase {
 
 		$status = $this->verifyPartialFile();
 		if ( $status !== true ) {
-
 			return $status;
 		}
 
@@ -423,7 +415,6 @@ abstract class UploadBase {
 		if ( $wgVerifyMimeType ) {
 			# XXX: Missing extension will be caught by validateName() via getTitle()
 			if ( $this->mFinalExtension != '' && !$this->verifyExtension( $mime, $this->mFinalExtension ) ) {
-
 				return array( 'filetype-mime-mismatch', $this->mFinalExtension, $mime );
 			}
 		}
@@ -433,7 +424,6 @@ abstract class UploadBase {
 			if ( $this->mFinalExtension == 'svg' || $mime == 'image/svg+xml' ) {
 				$svgStatus = $this->detectScriptInSvg( $this->mTempPath, false );
 				if ( $svgStatus !== false ) {
-
 					return $svgStatus;
 				}
 			}
@@ -451,7 +441,6 @@ abstract class UploadBase {
 
 		Hooks::run( 'UploadVerifyFile', array( $this, $mime, &$status ) );
 		if ( $status !== true ) {
-
 			return $status;
 		}
 
@@ -480,20 +469,17 @@ abstract class UploadBase {
 		$mime = $this->mFileProps['file-mime'];
 		$status = $this->verifyMimeType( $mime );
 		if ( $status !== true ) {
-
 			return $status;
 		}
 
 		# check for htmlish code and javascript
 		if ( !$wgDisableUploadScriptChecks ) {
 			if ( self::detectScript( $this->mTempPath, $mime, $this->mFinalExtension ) ) {
-
 				return array( 'uploadscripted' );
 			}
 			if ( $this->mFinalExtension == 'svg' || $mime == 'image/svg+xml' ) {
 				$svgStatus = $this->detectScriptInSvg( $this->mTempPath, true );
 				if ( $svgStatus !== false ) {
-
 					return $svgStatus;
 				}
 			}
@@ -509,12 +495,10 @@ abstract class UploadBase {
 				$errors = $zipStatus->getErrorsArray();
 				$error = reset( $errors );
 				if ( $error[0] !== 'zip-wrong-format' ) {
-
 					return $error;
 				}
 			}
 			if ( $this->mJavaDetected ) {
-
 				return array( 'uploadjava' );
 			}
 		}
@@ -522,7 +506,6 @@ abstract class UploadBase {
 		# Scan the uploaded file for viruses
 		$virus = $this->detectVirus( $this->mTempPath );
 		if ( $virus ) {
-
 			return array( 'uploadvirus', $virus );
 		}
 
@@ -1076,7 +1059,6 @@ abstract class UploadBase {
 		$chunk = strtolower( $chunk );
 
 		if ( !$chunk ) {
-
 			return false;
 		}
 
@@ -1100,7 +1082,6 @@ abstract class UploadBase {
 
 		# check for HTML doctype
 		if ( preg_match( "/<!DOCTYPE *X?HTML/i", $chunk ) ) {
-
 			return true;
 		}
 
@@ -1108,7 +1089,6 @@ abstract class UploadBase {
 		// PHP/expat will interpret the given encoding in the xml declaration (bug 47304)
 		if ( $extension == 'svg' || strpos( $mime, 'image/svg' ) === 0 ) {
 			if ( self::checkXMLEncodingMissmatch( $file ) ) {
-
 				return true;
 			}
 		}

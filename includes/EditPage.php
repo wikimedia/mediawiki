@@ -1037,7 +1037,6 @@ class EditPage {
 				$undo = $wgRequest->getInt( 'undo' );
 
 				if ( $undo > 0 && $undoafter > 0 ) {
-
 					$undorev = Revision::newFromId( $undo );
 					$oldrev = Revision::newFromId( $undoafter );
 
@@ -1046,8 +1045,8 @@ class EditPage {
 					# Otherwise, $content will be left as-is.
 					if ( !is_null( $undorev ) && !is_null( $oldrev ) &&
 						!$undorev->isDeleted( Revision::DELETED_TEXT ) &&
-						!$oldrev->isDeleted( Revision::DELETED_TEXT ) ) {
-
+						!$oldrev->isDeleted( Revision::DELETED_TEXT )
+					) {
 						$content = $this->mArticle->getUndoContent( $undorev, $oldrev );
 
 						if ( $content === false ) {

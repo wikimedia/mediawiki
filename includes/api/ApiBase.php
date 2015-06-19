@@ -1056,7 +1056,6 @@ abstract class ApiBase extends ContextSource {
 	 */
 	protected function validateLimit( $paramName, &$value, $min, $max, $botMax = null, $enforceLimits = false ) {
 		if ( !is_null( $min ) && $value < $min ) {
-
 			$msg = $this->encodeParamName( $paramName ) . " may not be less than $min (set to $value)";
 			$this->warnOrDie( $msg, $enforceLimits );
 			$value = $min;
@@ -2646,7 +2645,6 @@ abstract class ApiBase extends ContextSource {
 		wfDeprecated( __METHOD__, '1.25' );
 		$params = $this->getFinalParams( ApiBase::GET_VALUES_FOR_HELP );
 		if ( $params ) {
-
 			$paramsDescription = $this->getFinalParamDescription();
 			$msg = '';
 			$paramPrefix = "\n" . str_repeat( ' ', 24 );

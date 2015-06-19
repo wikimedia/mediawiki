@@ -71,7 +71,6 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 	 */
 	function loadDataFromRequest( $request ) {
 		if ( $request->getCheck( $this->mName ) ) {
-
 			$list = $request->getText( $this->mName );
 			$text = $request->getText( $this->mName . '-other' );
 

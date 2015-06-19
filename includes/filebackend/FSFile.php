@@ -200,7 +200,6 @@ class FSFile {
 	public function getSha1Base36( $recache = false ) {
 
 		if ( $this->sha1Base36 !== null && !$recache ) {
-
 			return $this->sha1Base36;
 		}
 

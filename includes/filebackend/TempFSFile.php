@@ -67,7 +67,6 @@ class TempFSFile extends FSFile {
 				break; // got it
 			}
 			if ( $attempt >= 5 ) {
-
 				return null; // give up
 			}
 		}

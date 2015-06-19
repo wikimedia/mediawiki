@@ -220,17 +220,14 @@ class LinkCache {
 
 		$key = $nt->getPrefixedDBkey();
 		if ( $this->isBadLink( $key ) || $nt->isExternal() ) {
-
 			return 0;
 		}
 		$id = $this->getGoodLinkID( $key );
 		if ( $id != 0 ) {
-
 			return $id;
 		}
 
 		if ( $key === '' ) {
-
 			return 0;
 		}
 

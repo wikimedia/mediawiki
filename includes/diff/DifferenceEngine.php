@@ -685,24 +685,20 @@ class DifferenceEngine extends ContextSource {
 		$this->mCacheHit = true;
 		// Check if the diff should be hidden from this user
 		if ( !$this->loadRevisionData() ) {
-
 			return false;
 		} elseif ( $this->mOldRev &&
 			!$this->mOldRev->userCan( Revision::DELETED_TEXT, $this->getUser() )
 		) {
-
 			return false;
 		} elseif ( $this->mNewRev &&
 			!$this->mNewRev->userCan( Revision::DELETED_TEXT, $this->getUser() )
 		) {
-
 			return false;
 		}
 		// Short-circuit
 		if ( $this->mOldRev === false || ( $this->mOldRev && $this->mNewRev
 			&& $this->mOldRev->getID() == $this->mNewRev->getID() )
 		) {
-
 			return '';
 		}
 		// Cacheable?
@@ -726,7 +722,6 @@ class DifferenceEngine extends ContextSource {
 
 		// Loadtext is permission safe, this just clears out the diff
 		if ( !$this->loadText() ) {
-
 			return false;
 		}
 
@@ -859,12 +854,10 @@ class DifferenceEngine extends ContextSource {
 
 			$tempFile1 = fopen( $tempName1, "w" );
 			if ( !$tempFile1 ) {
-
 				return false;
 			}
 			$tempFile2 = fopen( $tempName2, "w" );
 			if ( !$tempFile2 ) {
-
 				return false;
 			}
 			fwrite( $tempFile1, $otext );

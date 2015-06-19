@@ -638,7 +638,6 @@ class XMPReader implements LoggerAwareInterface {
 		// Validate structures.
 		list( $ns, $tag ) = explode( ' ', $elm, 2 );
 		if ( isset( $this->items[$ns][$tag]['validate'] ) ) {
-
 			$info =& $this->items[$ns][$tag];
 			$finalName = isset( $info['map_name'] )
 				? $info['map_name'] : $tag;

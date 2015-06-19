@@ -380,7 +380,6 @@ class RequestContext implements IContextSource {
 	 */
 	public function getSkin() {
 		if ( $this->skin === null ) {
-
 			$skin = null;
 			Hooks::run( 'RequestContextCreateSkin', array( $this, &$skin ) );
 			$factory = SkinFactory::getDefaultInstance();

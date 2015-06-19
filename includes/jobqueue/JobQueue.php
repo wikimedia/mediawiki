@@ -637,7 +637,6 @@ abstract class JobQueue {
 	 * @since 1.22
 	 */
 	final public function getSiblingQueuesWithJobs( array $types ) {
-
 		return $this->doGetSiblingQueuesWithJobs( $types );
 	}
 
@@ -661,7 +660,6 @@ abstract class JobQueue {
 	 * @since 1.22
 	 */
 	final public function getSiblingQueueSizes( array $types ) {
-
 		return $this->doGetSiblingQueueSizes( $types );
 	}
 

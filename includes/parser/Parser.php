@@ -3438,7 +3438,6 @@ class Parser {
 
 		# SUBST
 		if ( !$found ) {
-
 			$substMatch = $this->mSubstWords->matchStartAndRemove( $part1 );
 
 			# Possibilities for substMatch: "subst", "safesubst" or FALSE
@@ -3496,7 +3495,6 @@ class Parser {
 
 		# Parser functions
 		if ( !$found ) {
-
 			$colonPos = strpos( $part1, ':' );
 			if ( $colonPos !== false ) {
 				$func = substr( $part1, 0, $colonPos );

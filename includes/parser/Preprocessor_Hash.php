@@ -119,7 +119,6 @@ class Preprocessor_Hash implements Preprocessor {
 			&& strlen( $text ) > $wgPreprocessorCacheThreshold;
 
 		if ( $cacheable ) {
-
 			$cacheKey = wfMemcKey( 'preprocess-hash', md5( $text ), $flags );
 			$cacheValue = $wgMemc->get( $cacheKey );
 			if ( $cacheValue ) {

@@ -109,7 +109,6 @@ class MIMEsearchPage extends QueryPage {
 	 * Return HTML to put just before the results.
 	 */
 	function getPageHeader() {
-
 		return Xml::openElement(
 				'form',
 				array( 'id' => 'specialmimesearch', 'method' => 'get', 'action' => wfScript() )

@@ -572,7 +572,6 @@ class SpecialPageFactory {
 				$context->setTitle( $page->getPageTitle( $par ) );
 			}
 		} elseif ( !$page->isIncludable() ) {
-
 			return false;
 		}
 
