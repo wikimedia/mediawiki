@@ -96,9 +96,11 @@ class ApiEditPage extends ApiBase {
 			$contentHandler = ContentHandler::getForModelID( $params['contentmodel'] );
 		}
 
+		$name = $titleObj->getPrefixedDBkey();
+		$model = $contentHandler->getModelID();
 		if ( $contentHandler->supportsDirectApiEditing() === false ) {
 			$this->dieUsage(
-				'Direct editing via API is not supported for this content type.',
+				"Direct editing via API is not supported for content model $model used by $name",
 				'no-direct-editing'
 			);
 		}
@@ -110,8 +112,6 @@ class ApiEditPage extends ApiBase {
 		$contentFormat = $params['contentformat'];
 
 		if ( !$contentHandler->isSupportedFormat( $contentFormat ) ) {
-			$name = $titleObj->getPrefixedDBkey();
-			$model = $contentHandler->getModelID();
 
 			$this->dieUsage( "The requested format $contentFormat is not supported for content model " .
 				" $model used by $name", 'badformat' );
