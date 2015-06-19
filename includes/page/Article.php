@@ -1774,7 +1774,7 @@ class Article implements Page {
 			Xml::closeElement( 'form' );
 
 			if ( $user->isAllowed( 'editinterface' ) ) {
-				$link = Linker::link(
+				$link = Linker::linkKnown(
 					$ctx->msg( 'deletereason-dropdown' )->inContentLanguage()->getTitle(),
 					wfMessage( 'delete-edit-reasonlist' )->escaped(),
 					array(),
