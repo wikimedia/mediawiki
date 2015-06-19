@@ -908,6 +908,9 @@ class WebInstallerName extends WebInstallerPage {
 		$msg = false;
 		$pwd = $this->getVar( '_AdminPassword' );
 		$user = User::newFromName( $cname );
+		$user->mGroups[] = 'sysop';
+		$user->mGroups[] = 'bureaucrat';
+
 		if ( $user ) {
 			$valid = $user->getPasswordValidity( $pwd );
 		} else {
