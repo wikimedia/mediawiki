@@ -240,45 +240,7 @@ class MediaWiki {
 				throw new BadTitleError();
 			}
 		// Redirect loops, no title in URL, $wgUsePathInfo URLs, and URLs with a variant
-		} elseif ( $request->getVal( 'action', 'view' ) == 'view' && !$request->wasPosted()
-			&& ( $request->getVal( 'title' ) === null
-				|| $title->getPrefixedDBkey() != $request->getVal( 'title' ) )
-			&& !count( $request->getValueNames( array( 'action', 'title' ) ) )
-			&& Hooks::run( 'TestCanonicalRedirect', array( $request, $title, $output ) )
-		) {
-			if ( $title->isSpecialPage() ) {
-				list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
-				if ( $name ) {
-					$title = SpecialPage::getTitleFor( $name, $subpage );
-				}
-			}
-			$targetUrl = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
-			// Redirect to canonical url, make it a 301 to allow caching
-			if ( $targetUrl == $request->getFullRequestURL() ) {
-				$message = "Redirect loop detected!\n\n" .
-					"This means the wiki got confused about what page was " .
-					"requested; this sometimes happens when moving a wiki " .
-					"to a new server or changing the server configuration.\n\n";
-
-				if ( $this->config->get( 'UsePathInfo' ) ) {
-					$message .= "The wiki is trying to interpret the page " .
-						"title from the URL path portion (PATH_INFO), which " .
-						"sometimes fails depending on the web server. Try " .
-						"setting \"\$wgUsePathInfo = false;\" in your " .
-						"LocalSettings.php, or check that \$wgArticlePath " .
-						"is correct.";
-				} else {
-					$message .= "Your web server was detected as possibly not " .
-						"supporting URL path components (PATH_INFO) correctly; " .
-						"check your LocalSettings.php for a customized " .
-						"\$wgArticlePath setting and/or toggle \$wgUsePathInfo " .
-						"to true.";
-				}
-				throw new HttpError( 500, $message );
-			} else {
-				$output->setSquidMaxage( 1200 );
-				$output->redirect( $targetUrl, '301' );
-			}
+		} elseif ( $this->tryNormaliseRedirect( $title ) ) {
 		// Special pages
 		} elseif ( NS_SPECIAL == $title->getNamespace() ) {
 			// Actions that need to be made when we have a special pages
@@ -296,6 +258,75 @@ class MediaWiki {
 					. " returned neither an object nor a URL" );
 			}
 		}
+	}
+
+	/**
+	 * Handle redirects for uncanonical title requests.
+	 *
+	 * Handles:
+	 * - Redirect loops.
+	 * - No title in URL.
+	 * - $wgUsePathInfo URLs.
+	 * - URLs with a variant.
+	 * - Other non-standard URLs (as long as they have no extra query parameters).
+	 *
+	 * Behaviour:
+	 * - Normalise title values:
+	 *   /wiki/Foo%20Bar -> /wiki/Foo_Bar
+	 * - Normalise empty title:
+	 *   /wiki/ -> /wiki/Main
+	 *   /w/index.php?title= -> /wiki/Main
+	 * - Don't redirect anything with query parameters other than 'title' or 'action=view'.
+	 *
+	 * @return bool True if a redirect was set.
+	 */
+	private function tryNormaliseRedirect( $title ) {
+		$request = $this->context->getRequest();
+		$output = $this->context->getOutput();
+
+		if ( $request->getVal( 'action', 'view' ) != 'view'
+			|| $request->wasPosted()
+			|| ( $request->getVal( 'title' ) !== null
+				&& $title->getPrefixedDBkey() == $request->getVal( 'title' ) )
+			|| count( $request->getValueNames( array( 'action', 'title' ) ) )
+			|| !Hooks::run( 'TestCanonicalRedirect', array( $request, $title, $output ) )
+		) {
+			return false;
+		}
+
+		if ( $title->isSpecialPage() ) {
+			list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
+			if ( $name ) {
+				$title = SpecialPage::getTitleFor( $name, $subpage );
+			}
+		}
+		// Redirect to canonical url, make it a 301 to allow caching
+		$targetUrl = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
+		if ( $targetUrl == $request->getFullRequestURL() ) {
+			$message = "Redirect loop detected!\n\n" .
+				"This means the wiki got confused about what page was " .
+				"requested; this sometimes happens when moving a wiki " .
+				"to a new server or changing the server configuration.\n\n";
+
+			if ( $this->config->get( 'UsePathInfo' ) ) {
+				$message .= "The wiki is trying to interpret the page " .
+					"title from the URL path portion (PATH_INFO), which " .
+					"sometimes fails depending on the web server. Try " .
+					"setting \"\$wgUsePathInfo = false;\" in your " .
+					"LocalSettings.php, or check that \$wgArticlePath " .
+					"is correct.";
+			} else {
+				$message .= "Your web server was detected as possibly not " .
+					"supporting URL path components (PATH_INFO) correctly; " .
+					"check your LocalSettings.php for a customized " .
+					"\$wgArticlePath setting and/or toggle \$wgUsePathInfo " .
+					"to true.";
+			}
+			throw new HttpError( 500, $message );
+		}
+		$output->setSquidMaxage( 1200 );
+		$output->redirect( $targetUrl, '301' );
+		return true;
 	}
 
 	/**
