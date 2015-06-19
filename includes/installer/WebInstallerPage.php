@@ -905,6 +905,12 @@ class WebInstallerName extends WebInstallerPage {
 		$msg = false;
 		$pwd = $this->getVar( '_AdminPassword' );
 		$user = User::newFromName( $cname );
+		// Set user group and implicit group to disable user load from
+		// database and to allow password validity check.
+		$user->mGroups[] = 'sysop';
+		$user->mGroups[] = 'bureaucrat';
+		$user->addImplicitGroups( "*" );
+
 		if ( $user ) {
 			$status = $user->checkPasswordValidity( $pwd, 'create' );
 			$valid = $status->isGood() ? true : $status->getMessage()->escaped();
