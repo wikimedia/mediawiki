@@ -1515,6 +1515,18 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 		$s = '';
 		$this->doQuery();
 		if ( count( $this->mHist ) ) {
+			if ( $this->mImg->isLocal() ) {
+				// Do a batch existence check for user pages and talkpages
+				$linkBatch = new LinkBatch();
+				for ( $i = $this->mRange[0]; $i <= $this->mRange[1]; $i++ ) {
+					$file = $this->mHist[$i];
+					$user = $file->getUser( 'text' );
+					$linkBatch->add( NS_USER, $user );
+					$linkBatch->add( NS_USER_TALK, $user );
+				}
+				$linkBatch->execute();
+			}
+
 			$list = new ImageHistoryList( $this->mImagePage );
 			# Generate prev/next links
 			$navLink = $this->getNavigationBar();
