@@ -80,6 +80,7 @@ class OOUIHTMLForm extends HTMLForm {
 
 		if ( $this->mShowReset ) {
 			$buttons .= new OOUI\ButtonInputWidget( array(
+				'flags' => array( 'destructive' ),
 				'type' => 'reset',
 				'label' => $this->msg( 'htmlform-reset' )->text(),
 			) );
