@@ -331,7 +331,11 @@ class User implements IDBAccessObject {
 	 * @param integer $flags User::READ_* constant bitfield
 	 */
 	public function load( $flags = self::READ_NORMAL ) {
-		if ( $this->mLoadedItems === true ) {
+		if ( is_array( $this->mLoadedItems ) ) {
+			if ( $this->isItemLoaded ( $this->mFrom ) ) {
+				return;
+			}
+		} elseif ( $this->mLoadedItems === true ) {
 			return;
 		}
 
@@ -810,10 +814,10 @@ class User implements IDBAccessObject {
 		} else {
 			$messages = array();
 			foreach ( $result->getErrorsByType( 'error' ) as $error ) {
-				$messages[] = $error['message'];
+				$messages[] = wfMessage ( $error['message'], $error['params'] )->text();
 			}
 			foreach ( $result->getErrorsByType( 'warning' ) as $warning ) {
-				$messages[] = $warning['message'];
+				$messages[] = wfMessage ( $warning['message'], $warning['params'] )->text();
 			}
 			if ( count( $messages ) === 1 ) {
 				return $messages[0];
@@ -2988,8 +2992,10 @@ class User implements IDBAccessObject {
 	 * @return array Array of String internal group names
 	 */
 	public function getGroups() {
-		$this->load();
-		$this->loadGroups();
+		if ( is_null( $this->mGroups ) ) {
+			$this->load();
+			$this->loadGroups();
+		}
 		return $this->mGroups;
 	}
 
