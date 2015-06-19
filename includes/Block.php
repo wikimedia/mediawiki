@@ -123,7 +123,7 @@ class Block {
 				array_slice( array_keys( $defaults ), 0, func_num_args() ),
 				func_get_args()
 			);
-			//wfDeprecated( __METHOD__ . ' with multiple arguments', '1.26' );
+			wfDeprecated( __METHOD__ . ' with multiple arguments', '1.26' );
 		}
 
 		$options += $defaults;
