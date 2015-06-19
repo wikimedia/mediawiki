@@ -594,7 +594,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		foreach ( $this->mResult as $row ) {
 			$linkBatch->add( NS_USER, $row->rc_user_text );
 			$linkBatch->add( NS_USER_TALK, $row->rc_user_text );
-			$linkBatch->add( $row->rc_namespace, $row->rc_title );
+			$linkBatch->add( $row->page_namespace, $row->page_title );
 		}
 		$linkBatch->execute();
 
