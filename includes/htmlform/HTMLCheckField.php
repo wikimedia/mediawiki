@@ -26,9 +26,9 @@ class HTMLCheckField extends HTMLFormField {
 			$attrLabel['title'] = $attr['title'];
 		}
 
-		$chkLabel = Xml::check( $this->mName, $value, $attr )
-		. '&#160;'
-		. Html::rawElement( 'label', $attrLabel, $this->mLabel );
+		$chkLabel = Xml::check( $this->mName, $value, $attr ) .
+			'&#160;' .
+			Html::rawElement( 'label', $attrLabel, $this->mLabel );
 
 		if ( $wgUseMediaWikiUIEverywhere || $this->mParent instanceof VFormHTMLForm ) {
 			$chkLabel = Html::rawElement(

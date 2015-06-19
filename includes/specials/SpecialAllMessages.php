@@ -392,10 +392,10 @@ class AllMessagesTablePager extends TablePager {
 					);
 				}
 
-				return $title . ' '
-				. $this->msg( 'parentheses' )->rawParams( $talk )->escaped()
-				. ' '
-				. $this->msg( 'parentheses' )->rawParams( $translation )->escaped();
+				return $title . ' ' .
+					$this->msg( 'parentheses' )->rawParams( $talk )->escaped() .
+					' ' .
+					$this->msg( 'parentheses' )->rawParams( $translation )->escaped();
 
 			case 'am_default' :
 			case 'am_actual' :
