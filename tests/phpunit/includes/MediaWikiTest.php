@@ -34,7 +34,7 @@ class MediaWikiTest extends MediaWikiTestCase {
 				'url' => 'http://example.org/w/index.php?title=Foo_Bar',
 				'query' => array( 'title' => 'Foo_Bar' ),
 				'title' => 'Foo_Bar',
-				'redirect' => false,
+				'redirect' => 'http://example.org/wiki/Foo_Bar',
 			),
 			array(
 				// View: Index with escaped title
@@ -48,21 +48,21 @@ class MediaWikiTest extends MediaWikiTestCase {
 				'url' => 'http://example.org/w/?title=Foo_Bar',
 				'query' => array( 'title' => 'Foo_Bar' ),
 				'title' => 'Foo_Bar',
-				'redirect' => false,
+				'redirect' => 'http://example.org/wiki/Foo_Bar',
 			),
 			array(
 				// View: Root path with escaped title
 				'url' => 'http://example.org/?title=Foo_Bar',
 				'query' => array( 'title' => 'Foo_Bar' ),
 				'title' => 'Foo_Bar',
-				'redirect' => false,
+				'redirect' => 'http://example.org/wiki/Foo_Bar',
 			),
 			array(
 				// View: Canonical with redundant query
 				'url' => 'http://example.org/wiki/Foo_Bar?action=view',
 				'query' => array( 'action' => 'view' ),
 				'title' => 'Foo_Bar',
-				'redirect' => false,
+				'redirect' => 'http://example.org/wiki/Foo_Bar',
 			),
 			array(
 				// Edit: Canonical view url with action query
@@ -76,7 +76,7 @@ class MediaWikiTest extends MediaWikiTestCase {
 				'url' => 'http://example.org/w/index.php?title=Foo_Bar&action=view',
 				'query' => array( 'title' => 'Foo_Bar', 'action' => 'view' ),
 				'title' => 'Foo_Bar',
-				'redirect' => false,
+				'redirect' => 'http://example.org/wiki/Foo_Bar',
 			),
 			array(
 				// Edit: Index with action query
