@@ -82,7 +82,6 @@ class WikitextContent extends TextContent {
 		$text = $with->getNativeData();
 
 		if ( strval( $sectionId ) === '' ) {
-
 			return $with; # XXX: copy first?
 		}
 

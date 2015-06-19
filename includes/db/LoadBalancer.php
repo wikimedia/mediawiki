@@ -538,7 +538,6 @@ class LoadBalancer {
 		# Now we have an explicit index into the servers array
 		$conn = $this->openConnection( $i, $wiki );
 		if ( !$conn ) {
-
 			return $this->reportConnectionError();
 		}
 

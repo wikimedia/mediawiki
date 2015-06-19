@@ -2282,7 +2282,6 @@ class OutputPage extends ContextSource {
 		if ( $this->mArticleBodyOnly ) {
 			echo $this->mBodytext;
 		} else {
-
 			$sk = $this->getSkin();
 			// add skin specific modules
 			$modules = $sk->getDefaultModules();

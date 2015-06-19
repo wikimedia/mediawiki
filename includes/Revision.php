@@ -194,8 +194,8 @@ class Revision implements IDBAccessObject {
 
 		if ( !isset( $attribs['title'] )
 			&& isset( $row->ar_namespace )
-			&& isset( $row->ar_title ) ) {
-
+			&& isset( $row->ar_title )
+		) {
 			$attribs['title'] = Title::makeTitle( $row->ar_namespace, $row->ar_title );
 		}
 

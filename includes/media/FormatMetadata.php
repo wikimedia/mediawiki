@@ -1575,7 +1575,6 @@ class FormatMetadata extends ContextSource {
 
 		// If revision deleted, exit immediately
 		if ( $file->isDeleted( File::DELETED_FILE ) ) {
-
 			return array();
 		}
 

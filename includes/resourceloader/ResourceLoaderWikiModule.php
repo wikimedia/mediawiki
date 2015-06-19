@@ -291,7 +291,6 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		$pages = $this->getPages( $context );
 		$key = implode( '|', array_keys( $pages ) );
 		if ( !isset( $this->titleInfo[$key] ) ) {
-
 			$this->titleInfo[$key] = array();
 			$batch = new LinkBatch;
 			foreach ( $pages as $titleText => $options ) {

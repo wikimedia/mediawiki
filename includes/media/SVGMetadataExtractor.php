@@ -262,7 +262,6 @@ class SVGReader {
 			} elseif ( $this->reader->namespaceURI == self::NS_SVG
 				&& $this->reader->nodeType == XMLReader::ELEMENT
 			) {
-
 				$sysLang = $this->reader->getAttribute( 'systemLanguage' );
 				if ( !is_null( $sysLang ) && $sysLang !== '' ) {
 					// See http://www.w3.org/TR/SVG/struct.html#SystemLanguageAttribute

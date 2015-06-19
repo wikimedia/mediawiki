@@ -154,7 +154,6 @@ class Preprocessor_DOM implements Preprocessor {
 		$cacheable = ( $wgPreprocessorCacheThreshold !== false
 			&& strlen( $text ) > $wgPreprocessorCacheThreshold );
 		if ( $cacheable ) {
-
 			$cacheKey = wfMemcKey( 'preprocess-xml', md5( $text ), $flags );
 			$cacheValue = $wgMemc->get( $cacheKey );
 			if ( $cacheValue ) {

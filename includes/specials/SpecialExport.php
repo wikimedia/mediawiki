@@ -335,7 +335,6 @@ class SpecialExport extends SpecialPage {
 		if ( $exportall ) {
 			$history = WikiExporter::FULL;
 		} else {
-
 			$pageSet = array(); // Inverted index of all pages to look up
 
 			// Split up and normalize input

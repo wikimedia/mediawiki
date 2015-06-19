@@ -330,7 +330,6 @@ class EnhancedChangesList extends ChangesList {
 			} elseif ( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $this->getUser() ) ) {
 				$link = '<span class="history-deleted">' . $rcObj->timestamp . '</span> ';
 			} else {
-
 				$link = Linker::linkKnown(
 					$rcObj->getTitle(),
 					$rcObj->timestamp,

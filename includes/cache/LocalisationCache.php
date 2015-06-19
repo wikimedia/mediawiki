@@ -539,13 +539,11 @@ class LocalisationCache {
 	public function readJSONFile( $fileName ) {
 
 		if ( !is_readable( $fileName ) ) {
-
 			return array();
 		}
 
 		$json = file_get_contents( $fileName );
 		if ( $json === false ) {
-
 			return array();
 		}
 
