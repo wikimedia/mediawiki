@@ -5,7 +5,7 @@ turn it off. MediaWiki will not work with it enabled.
 
 THIS IS NOT YET A RELEASE!
 
-== Changes since 1.25.2 ==
+=== Changes since 1.25.1 ===
 
 * (T100767) Setting a configuration setting for skin or extension to
   false in LocalSettings.php was not working.
@@ -14,6 +14,10 @@ THIS IS NOT YET A RELEASE!
 * (T102522) Using an extension.json or skin.json file which has
   a "manifest_version" property for 1.26 compatability will no longer
   trigger warnings.
+
+== MediaWiki 1.25.1 ==
+
+This is a bug fix release of the MediaWiki 1.25 branch.
 
 === Changes since 1.25 ===
 * (T100351) Fix syntax errors in extension.json of ConfirmEdit extension
