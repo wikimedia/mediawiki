@@ -20,9 +20,15 @@ class HTMLCheckField extends HTMLFormField {
 			$attr['class'] = $this->mClass;
 		}
 
+		$attrLabel = array( 'for' => $this->mID );
+		if ( isset( $attr['title'] ) ) {
+			// propagate tooltip to label
+			$attrLabel['title'] = $attr['title'];
+		}
+
 		$chkLabel = Xml::check( $this->mName, $value, $attr )
 		. '&#160;'
-		. Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
+		. Html::rawElement( 'label', $attrLabel, $this->mLabel );
 
 		if ( $wgUseMediaWikiUIEverywhere || $this->mParent instanceof VFormHTMLForm ) {
 			$chkLabel = Html::rawElement(

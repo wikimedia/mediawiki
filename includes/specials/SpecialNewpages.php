@@ -233,7 +233,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 				'name' => 'invert',
 				'label-message' => 'invert',
 				'default' => $nsinvert,
-				'tooltip' => $this->msg( 'tooltip-invert' )->text(),
+				'tooltip' => 'invert',
 			),
 			'tagFilter' => array(
 				'type' => 'tagfilter',
