@@ -110,26 +110,34 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		if ( !is_null( $params['action'] ) ) {
 			// Do validation of action param, list of allowed actions can contains wildcards
 			// Allow the param, when the actions is in the list or a wildcard version is listed.
-			$logAction = $params['action'];
-			if ( strpos( $logAction, '/' ) === false ) {
-				// all items in the list have a slash
-				$valid = false;
-			} else {
-				$logActions = array_flip( $this->getAllowedLogActions() );
-				list( $type, $action ) = explode( '/', $logAction, 2 );
-				$valid = isset( $logActions[$logAction] ) || isset( $logActions[$type . '/*'] );
-			}
+			$actionConds = array();
+			foreach ( $params['action'] as $logAction ) {
+				if ( strpos( $logAction, '/' ) === false ) {
+					// all items in the list have a slash
+					$valid = false;
+				} else {
+					$logActions = array_flip( $this->getAllowedLogActions() );
+					list( $type, $action ) = explode( '/', $logAction, 2 );
+					$valid = isset( $logActions[$logAction] ) || isset( $logActions[$type . '/*'] );
+				}
 
-			if ( !$valid ) {
-				$valueName = $this->encodeParamName( 'action' );
-				$this->dieUsage(
-					"Unrecognized value for parameter '$valueName': {$logAction}",
-					"unknown_$valueName"
+				if ( !$valid ) {
+					$valueName = $this->encodeParamName( 'action' );
+					$this->dieUsage(
+						"Unrecognized value for parameter '$valueName': {$logAction}",
+						"unknown_$valueName"
+					);
+				}
+
+				$actionConds[] = $db->makeList(
+					array(
+						'log_type' => $type,
+						'log_action' => $action,
+					),
+					LIST_AND
 				);
 			}
-
-			$this->addWhereFld( 'log_type', $type );
-			$this->addWhereFld( 'log_action', $action );
+			$this->addWhere( $db->makeList( $actionConds, LIST_OR ) );
 		} elseif ( !is_null( $params['type'] ) ) {
 			$this->addWhereFld( 'log_type', $params['type'] );
 		}
@@ -404,13 +412,15 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				)
 			),
 			'type' => array(
-				ApiBase::PARAM_TYPE => $config->get( 'LogTypes' )
+				ApiBase::PARAM_TYPE => $config->get( 'LogTypes' ),
+				ApiBase::PARAM_ISMULTI => true
 			),
 			'action' => array(
 				// validation on request is done in execute()
 				ApiBase::PARAM_TYPE => ( $flags & ApiBase::GET_VALUES_FOR_HELP )
 					? $this->getAllowedLogActions()
-					: null
+					: null,
+				ApiBase::PARAM_ISMULTI => true
 			),
 			'start' => array(
 				ApiBase::PARAM_TYPE => 'timestamp'
@@ -456,6 +466,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		return array(
 			'action=query&list=logevents'
 				=> 'apihelp-query+logevents-example-simple',
+			'action=query&list=logevents&letype=move|protect'
+				=> 'apihelp-query+logevents-example-types',
 		);
 	}
 
