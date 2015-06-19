@@ -1663,13 +1663,13 @@ abstract class Installer {
 		}
 
 		if ( $user->idForName() == 0 ) {
-			$user->addToDatabase();
-
 			try {
 				$user->setPassword( $this->getVar( '_AdminPassword' ) );
 			} catch ( PasswordError $pwe ) {
 				return Status::newFatal( 'config-admin-error-password', $name, $pwe->getMessage() );
 			}
+
+			$user->addToDatabase();
 
 			$user->addGroup( 'sysop' );
 			$user->addGroup( 'bureaucrat' );
