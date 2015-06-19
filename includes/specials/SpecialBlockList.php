@@ -431,16 +431,12 @@ class BlockListPager extends TablePager {
 		$lb->setCaller( __METHOD__ );
 
 		foreach ( $result as $row ) {
-			# Usernames and titles are in fact related by a simple substitution of space -> underscore
-			# The last few lines of Title::secureAndSplit() tell the story.
-			$name = str_replace( ' ', '_', $row->ipb_address );
-			$lb->add( NS_USER, $name );
-			$lb->add( NS_USER_TALK, $name );
+			$lb->add( NS_USER, $row->ipb_address );
+			$lb->add( NS_USER_TALK, $row->ipb_address );
 
 			if ( isset( $row->by_user_name ) ) {
-				$username = str_replace( ' ', '_', $row->by_user_name );
-				$lb->add( NS_USER, $username );
-				$lb->add( NS_USER_TALK, $username );
+				$lb->add( NS_USER, $row->by_user_name );
+				$lb->add( NS_USER_TALK, $row->by_user_name );
 			}
 		}
 

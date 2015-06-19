@@ -123,11 +123,11 @@ class UserCache {
 		$lb = new LinkBatch();
 		foreach ( $usersToCheck as $userId => $name ) {
 			if ( $this->queryNeeded( $userId, 'userpage', $options ) ) {
-				$lb->add( NS_USER, str_replace( ' ', '_', $row->user_name ) );
+				$lb->add( NS_USER, $row->user_name );
 				$this->typesCached[$userId]['userpage'] = 1;
 			}
 			if ( $this->queryNeeded( $userId, 'usertalk', $options ) ) {
-				$lb->add( NS_USER_TALK, str_replace( ' ', '_', $row->user_name ) );
+				$lb->add( NS_USER_TALK, $row->user_name );
 				$this->typesCached[$userId]['usertalk'] = 1;
 			}
 		}
