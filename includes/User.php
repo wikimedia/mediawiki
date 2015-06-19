@@ -609,7 +609,7 @@ class User implements IDBAccessObject {
 			: wfGetDB( DB_SLAVE );
 
 		$s = $db->selectRow(
-			'user',
+			'mwuser',
 			array( 'user_id' ),
 			array( 'user_name' => $nt->getText() ),
 			__METHOD__
@@ -810,10 +810,10 @@ class User implements IDBAccessObject {
 		} else {
 			$messages = array();
 			foreach ( $result->getErrorsByType( 'error' ) as $error ) {
-				$messages[] = $error['message'];
+				$messages[] = wfMessage ( $error['message'], $error['params'] )->text();
 			}
 			foreach ( $result->getErrorsByType( 'warning' ) as $warning ) {
-				$messages[] = $warning['message'];
+				$messages[] = wfMessage ( $warning['message'], $warning['params'] )->text();
 			}
 			if ( count( $messages ) === 1 ) {
 				return $messages[0];
@@ -1199,7 +1199,7 @@ class User implements IDBAccessObject {
 			: wfGetDB( DB_SLAVE );
 
 		$s = $db->selectRow(
-			'user',
+			'mwuser',
 			self::selectFields(),
 			array( 'user_id' => $this->mId ),
 			__METHOD__,
@@ -2988,8 +2988,10 @@ class User implements IDBAccessObject {
 	 * @return array Array of String internal group names
 	 */
 	public function getGroups() {
-		$this->load();
-		$this->loadGroups();
+		if ( is_null( $this->mGroups ) ) {
+			$this->load();
+			$this->loadGroups();
+		}
 		return $this->mGroups;
 	}
 
@@ -5224,5 +5226,19 @@ class User implements IDBAccessObject {
 	 */
 	public function equals( User $user ) {
 		return $this->getName() === $user->getName();
+	}
+
+	/**
+	 * Add group name to the list of implicit groups.
+	 *
+	 * @since 1.26
+	 * @param string group name
+	 */
+	public function addImplicitGroups ( $group_name )
+	{
+		if ( is_null ( $this->mImplicitGroups )) {
+			$this->mImplicitGroups = array ( "*" );
+		} else {
+			$this->mImplicitGroups[] = $group_name;
 	}
 }
