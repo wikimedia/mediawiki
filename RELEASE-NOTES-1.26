@@ -47,6 +47,8 @@ production.
   sometimes being numerically-indexed objects with formatversion=2.
 * When errors about users being blocked are returned, they now include
   information about the relevant block.
+* list=logevents now accepts multiple pipe-separated values for the 'letype'
+  and 'leaction' parameters.
 
 === Action API internal changes in 1.26 ===
 

@@ -742,6 +742,7 @@
 	"apihelp-query+logevents-param-tag": "{{doc-apihelp-param|query+logevents|tag}}",
 	"apihelp-query+logevents-param-limit": "{{doc-apihelp-param|query+logevents|limit}}",
 	"apihelp-query+logevents-example-simple": "{{doc-apihelp-example|query+logevents}}",
+	"apihelp-query+logevents-example-types": "{{doc-apihelp-example|query+logevents}}",
 	"apihelp-query+pagepropnames-description": "{{doc-apihelp-description|query+pagepropnames}}",
 	"apihelp-query+pagepropnames-param-limit": "{{doc-apihelp-param|query+pagepropnames|limit}}",
 	"apihelp-query+pagepropnames-example-simple": "{{doc-apihelp-example|query+pagepropnames}}",
