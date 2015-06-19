@@ -328,8 +328,8 @@ class FileBackendMultiWrite extends FileBackend {
 				$cStat = $cBackend->getFileStat( array( 'src' => $cPath, 'latest' => true ) );
 				if ( $cStat === null || ( $cSha1 !== false && !$cStat ) ) { // sanity
 					$status->fatal( 'backend-fail-internal', $cBackend->getName() );
-					wfDebugLog( 'FileOperation', __METHOD__
-					. ': File is not available on the clone backend' );
+					wfDebugLog( 'FileOperation', __METHOD__ .
+						': File is not available on the clone backend' );
 					continue; // file is not available on the clone backend...
 				}
 				if ( $mSha1 === $cSha1 ) {

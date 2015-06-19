@@ -1241,9 +1241,9 @@ class EditPage {
 
 			if ( !$converted ) {
 				//TODO: somehow show a warning to the user!
-				wfDebug( "Attempt to preload incompatible content: "
-						. "can't convert " . $content->getModel()
-						. " to " . $handler->getModelID() );
+				wfDebug( "Attempt to preload incompatible content: " .
+					"can't convert " . $content->getModel() .
+					" to " . $handler->getModelID() );
 
 				return $handler->makeEmptyContent();
 			}
