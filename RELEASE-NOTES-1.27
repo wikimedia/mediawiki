@@ -206,6 +206,8 @@ HHVM 3.1.
   merely need to change the username and password used after setting up a bot
   password.
 * action=upload no longer understands statuskey, asyncdownload or leavemessage.
+* list=logevents now accepts multiple pipe-separated values for the 'letype'
+  and 'leaction' parameters.
 
 === Action API internal changes in 1.27 ===
 * ApiQueryORM removed.

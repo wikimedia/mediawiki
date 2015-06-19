@@ -903,8 +903,8 @@
 	"apihelp-query+logevents-paramvalue-prop-parsedcomment": "Adds the parsed comment of the log event.",
 	"apihelp-query+logevents-paramvalue-prop-details": "Lists additional details about the log event.",
 	"apihelp-query+logevents-paramvalue-prop-tags": "Lists tags for the log event.",
-	"apihelp-query+logevents-param-type": "Filter log entries to only this type.",
-	"apihelp-query+logevents-param-action": "Filter log actions to only this action. Overrides <var>$1type</var>. In the list of possible values, values with the asterisk wildcard such as <kbd>action/*</kbd> can have different strings after the slash (/).",
+	"apihelp-query+logevents-param-type": "Filter log entries to only these types.",
+	"apihelp-query+logevents-param-action": "Filter log actions to only these actions. Overrides <var>$1type</var>. In the list of possible values, values with the asterisk wildcard such as <kbd>action/*</kbd> can have different strings after the slash (/).",
 	"apihelp-query+logevents-param-start": "The timestamp to start enumerating from.",
 	"apihelp-query+logevents-param-end": "The timestamp to end enumerating.",
 	"apihelp-query+logevents-param-user": "Filter entries to those made by the given user.",
@@ -914,6 +914,7 @@
 	"apihelp-query+logevents-param-tag": "Only list event entries tagged with this tag.",
 	"apihelp-query+logevents-param-limit": "How many total event entries to return.",
 	"apihelp-query+logevents-example-simple": "List recent log events.",
+	"apihelp-query+logevents-example-types": "List recent log events with type <kbd>move</kbd> or <kbd>protect</kbd>.",
 
 	"apihelp-query+pagepropnames-description": "List all page property names in use on the wiki.",
 	"apihelp-query+pagepropnames-param-limit": "The maximum number of names to return.",
