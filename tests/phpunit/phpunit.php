@@ -220,7 +220,9 @@ foreach ( array(
 	'PHPUnit/Runner/Version.php',
 	'PHPUnit/Autoload.php'
 ) as $includePath ) {
+	// @codingStandardsIgnoreStart
 	@include_once $includePath;
+	// @codingStandardsIgnoreEnd
 	if ( class_exists( 'PHPUnit_TextUI_Command' ) ) {
 		$ok = true;
 		break;
