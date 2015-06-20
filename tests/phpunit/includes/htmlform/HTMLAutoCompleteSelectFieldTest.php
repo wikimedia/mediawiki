@@ -6,7 +6,7 @@
  */
 class HtmlAutoCompleteSelectFieldTest extends MediaWikiTestCase {
 
-	var $options = array(
+	public $options = array(
 		'Bulgaria'     => 'BGR',
 		'Burkina Faso' => 'BFA',
 		'Burundi'      => 'BDI',

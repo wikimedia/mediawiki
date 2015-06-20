@@ -14,7 +14,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 	 *
 	 * @var array
 	 */
-	static $default = array(
+	public static $default = array(
 		'name' => 'FooBar',
 	);
 
