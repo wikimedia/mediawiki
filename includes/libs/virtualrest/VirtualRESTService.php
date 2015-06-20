@@ -84,8 +84,8 @@ abstract class VirtualRESTService {
 	 *
 	 * This method may mangle any of the $reqs entry 'response' fields as needed:
 	 *   - code    : perform any code normalization [as needed]
- 	 *   - reason  : perform any reason normalization [as needed]
- 	 *   - headers : perform any header normalization [as needed]
+	 *   - reason  : perform any reason normalization [as needed]
+	 *   - headers : perform any header normalization [as needed]
 	 *
 	 * This method can also remove some of the requests as well as add new ones
 	 * (using $idGenerator to set each of the entries' array keys). For any existing
