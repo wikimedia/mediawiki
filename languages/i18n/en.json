@@ -667,6 +667,7 @@
 	"copyrightwarning2": "Please note that all contributions to {{SITENAME}} may be edited, altered, or removed by other contributors.\nIf you do not want your writing to be edited mercilessly, then do not submit it here.<br />\nYou are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource (see $1 for details).\n<strong>Do not submit copyrighted work without permission!</strong>",
 	"editpage-head-copy-warn": "-",
 	"editpage-tos-summary": "-",
+	"editpage-no-non-default-content-model": "The content model of this page cannot be changed",
 	"longpage-hint": "-",
 	"longpageerror": "<strong>Error: The text you have submitted is {{PLURAL:$1|one kilobyte|$1 kilobytes}} long, which is longer than the maximum of {{PLURAL:$2|one kilobyte|$2 kilobytes}}.</strong>\nIt cannot be saved.",
 	"readonlywarning": "<strong>Warning: The database has been locked for maintenance, so you will not be able to save your edits right now.</strong>\nYou may wish to copy and paste your text into a text file and save it for later.\n\nThe administrator who locked it offered this explanation: $1",
