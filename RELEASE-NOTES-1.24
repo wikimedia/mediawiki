@@ -1,6 +1,14 @@
 Security reminder: If you have PHP's register_globals option set, you must
 turn it off. MediaWiki will no longer work with it enabled.
 
+== MediaWiki 1.24.5 ==
+
+THIS IS NOT YET A RELEASE!
+
+== Changes since 1.24.4 ==
+
+* (T103237) $wgUseGzip had no effect when using file cache.
+
 == MediaWiki 1.24.4 ==
 
 This is a security and maintenance release of the MediaWiki 1.24 branch.
