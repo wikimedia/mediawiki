@@ -148,7 +148,7 @@ return array(
 		'scripts' => 'resources/src/jquery/jquery.accessKeyLabel.js',
 		'dependencies' => array(
 			'jquery.client',
-			'jquery.mwExtension',
+			'mediawiki.RegExp',
 		),
 		'messages' => array( 'brackets', 'word-separator' ),
 		'targets' => array( 'mobile', 'desktop' ),
@@ -247,7 +247,7 @@ return array(
 	),
 	'jquery.highlightText' => array(
 		'scripts' => 'resources/src/jquery/jquery.highlightText.js',
-		'dependencies' => 'jquery.mwExtension',
+		'dependencies' => 'mediawiki.RegExp',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.hoverIntent' => array(
@@ -309,7 +309,7 @@ return array(
 		'styles' => 'resources/src/jquery/jquery.tablesorter.css',
 		'messages' => array( 'sort-descending', 'sort-ascending' ),
 		'dependencies' => array(
-			'jquery.mwExtension',
+			'mediawiki.RegExp',
 			'mediawiki.language.months',
 		),
 	),
@@ -953,7 +953,7 @@ return array(
 	'mediawiki.htmlform' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.htmlform.js',
 		'dependencies' => array(
-			'jquery.mwExtension',
+			'mediawiki.RegExp',
 			'jquery.byteLimit',
 		),
 		'messages' => array(
@@ -977,6 +977,7 @@ return array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.inspect.js',
 		'dependencies' => array(
 			'jquery.byteLength',
+			'mediawiki.RegExp',
 			'json',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
@@ -1088,7 +1089,7 @@ return array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.util.js',
 		'dependencies' => array(
 			'jquery.accessKeyLabel',
-			'jquery.mwExtension',
+			'mediawiki.RegExp',
 			'mediawiki.notify',
 		),
 		'position' => 'top', // For $wgPreloadJavaScriptMwUtil
@@ -1380,7 +1381,7 @@ return array(
 			'mediawiki.page.startup',
 			'mediawiki.util',
 			'jquery.accessKeyLabel',
-			'jquery.mwExtension',
+			'mediawiki.RegExp',
 		),
 		'messages' => array(
 			'watch',
