@@ -168,6 +168,12 @@ class EditPage {
 	const AS_PARSE_ERROR = 240;
 
 	/**
+	 * Status: when changing the content model is disallowed due to
+	 * $wgContentHandlerUseDB being false
+	 */
+	const AS_CANNOT_USE_CUSTOM_MODEL = 241;
+
+	/**
 	 * HTML id and name for the beginning of the edit form.
 	 */
 	const EDITFORM_ID = 'editform';
@@ -1361,6 +1367,7 @@ class EditPage {
 			case self::AS_HOOK_ERROR:
 				return false;
 
+			case self::AS_CANNOT_USE_CUSTOM_MODEL:
 			case self::AS_PARSE_ERROR:
 				$wgOut->addWikiText( '<div class="error">' . $status->getWikiText() . '</div>' );
 				return true;
@@ -1543,6 +1550,7 @@ class EditPage {
 	 */
 	function internalAttemptSave( &$result, $bot = false ) {
 		global $wgUser, $wgRequest, $wgParser, $wgMaxArticleSize;
+		global $wgContentHandlerUseDB;
 
 		$status = Status::newGood();
 
@@ -1663,11 +1671,15 @@ class EditPage {
 			}
 		}
 
-		if ( $this->contentModel !== $this->mTitle->getContentModel()
-			&& !$wgUser->isAllowed( 'editcontentmodel' )
-		) {
-			$status->setResult( false, self::AS_NO_CHANGE_CONTENT_MODEL );
-			return $status;
+		if ( $this->contentModel !== $this->mTitle->getContentModel() ) {
+			if ( !$wgContentHandlerUseDB ) {
+				$status->fatal( 'editpage-cannot-use-custom-model' );
+				$status->value = self::AS_CANNOT_USE_CUSTOM_MODEL;
+				return $status;
+			} elseif ( !$wgUser->isAllowed( 'editcontentmodel' ) ) {
+				$status->setResult( false, self::AS_NO_CHANGE_CONTENT_MODEL );
+				return $status;
+			}
 		}
 
 		if ( $this->changeTags ) {
