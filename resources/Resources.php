@@ -1019,6 +1019,10 @@ return array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.notify.js',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'mediawiki.RegExp' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.RegExp.js',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 	'mediawiki.pager.tablePager' => array(
 		'styles' => 'resources/src/mediawiki/mediawiki.pager.tablePager.less',
 		'position' => 'top',
