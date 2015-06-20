@@ -48,6 +48,7 @@ class HTMLFileCache extends FileCacheBase {
 	 * @throws MWException
 	 */
 	public function __construct( $title, $action ) {
+		parent::__construct();
 		$allowedTypes = self::cacheablePageActions();
 		if ( !in_array( $action, $allowedTypes ) ) {
 			throw new MWException( 'Invalid file cache type given.' );
