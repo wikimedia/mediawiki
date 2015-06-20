@@ -497,7 +497,7 @@
 			// Construct regex for number identification
 			for ( i = 0; i < ascii.length; i++ ) {
 				ts.transformTable[localised[i]] = ascii[i];
-				digits.push( $.escapeRE( localised[i] ) );
+				digits.push( mw.RegExp.escape( localised[i] ) );
 			}
 		}
 		digitClass = '[' + digits.join( '', digits ) + ']';
@@ -518,13 +518,13 @@
 		for ( i = 0; i < 12; i++ ) {
 			name = mw.language.months.names[i].toLowerCase();
 			ts.monthNames[name] = i + 1;
-			regex.push( $.escapeRE( name ) );
+			regex.push( mw.RegExp.escape( name ) );
 			name = mw.language.months.genitive[i].toLowerCase();
 			ts.monthNames[name] = i + 1;
-			regex.push( $.escapeRE( name ) );
+			regex.push( mw.RegExp.escape( name ) );
 			name = mw.language.months.abbrev[i].toLowerCase().replace( '.', '' );
 			ts.monthNames[name] = i + 1;
-			regex.push( $.escapeRE( name ) );
+			regex.push( mw.RegExp.escape( name ) );
 		}
 
 		// Build piped string
