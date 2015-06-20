@@ -84,12 +84,12 @@ class MultiHttpClient {
 	 * Execute an HTTP(S) request
 	 *
 	 * This method returns a response map of:
- 	 *   - code    : HTTP response code or 0 if there was a serious cURL error
- 	 *   - reason  : HTTP response reason (empty if there was a serious cURL error)
- 	 *   - headers : <header name/value associative array>
- 	 *   - body    : HTTP response body or resource (if "stream" was set)
+	 *   - code    : HTTP response code or 0 if there was a serious cURL error
+	 *   - reason  : HTTP response reason (empty if there was a serious cURL error)
+	 *   - headers : <header name/value associative array>
+	 *   - body    : HTTP response body or resource (if "stream" was set)
 	 *   - error     : Any cURL error string
- 	 * The map also stores integer-indexed copies of these values. This lets callers do:
+	 * The map also stores integer-indexed copies of these values. This lets callers do:
 	 * @code
 	 *		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $http->run( $req );
 	 * @endcode
