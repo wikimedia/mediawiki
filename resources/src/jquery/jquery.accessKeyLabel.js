@@ -112,7 +112,7 @@ function getAccessKeyLabel( element ) {
  */
 function updateTooltipOnElement( element, titleElement ) {
 	var array = ( mw.msg( 'word-separator' ) + mw.msg( 'brackets' ) ).split( '$1' ),
-		regexp = new RegExp( $.map( array, $.escapeRE ).join( '.*?' ) + '$' ),
+		regexp = new RegExp( $.map( array, mw.RegExp.escape ).join( '.*?' ) + '$' ),
 		oldTitle = titleElement.title,
 		rawTitle = oldTitle.replace( regexp, '' ),
 		newTitle = rawTitle,
