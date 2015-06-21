@@ -74,6 +74,9 @@ class Article implements Page {
 	/** @var ParserOutput */
 	public $mParserOutput;
 
+	/** @var bool */
+	public $isPatrolFooterToBeShown = true;
+
 	/**
 	 * Constructor and clear the article
 	 * @param Title $title Reference to a Title object.
@@ -1072,6 +1075,11 @@ class Article implements Page {
 	 */
 	public function showPatrolFooter() {
 		global $wgUseNPPatrol, $wgUseRCPatrol, $wgEnableAPI, $wgEnableWriteAPI;
+
+		if ( !$this->isPatrolFooterToBeShown ) {
+			// an extension requested not to show the patrol footer
+			return false;
+		}
 
 		$outputPage = $this->getContext()->getOutput();
 		$user = $this->getContext()->getUser();
