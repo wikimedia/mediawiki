@@ -152,6 +152,7 @@
 				}
 				if ( response.parse.categorieshtml ) {
 					$( '#catlinks' ).replaceWith( response.parse.categorieshtml['*'] );
+					mw.hook( 'wikipage.categories' ).fire( $( '#catlinks' ) );
 				}
 				if ( response.parse.templates ) {
 					newList = [];
@@ -191,6 +192,7 @@
 					$list = $( '#p-lang ul' );
 					$parent = $list.parent();
 					$list.detach().empty().append( newList ).prependTo( $parent );
+					mw.hook( 'wikipage.languages' ).fire( $( '#p-list' ) );
 				}
 
 				if ( response.parse.text['*'] ) {
