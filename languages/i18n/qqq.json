@@ -718,7 +718,7 @@
 	"passwordreset-email": "{{Identical|E-mail address}}",
 	"passwordreset-emailtitle": "Used as subject (title) of email.",
 	"passwordreset-emailtext-ip": "Be consistent with {{msg-mw|Passwordreset-emailtext-user}}.\n\nParameters:\n* $1 - an IP address\n* $2 - message {{msg-mw|Passwordreset-emailelement}} repeated $3 times\n* $3 - the number of repetitions in $2\n* $4 - base URL of the wiki\n* $5 - number of days",
-	"passwordreset-emailtext-user": "Be consistent with {{msg-mw|Passwordreset-emailtext-ip}}.\n\nParameters:\n* $1 - a user name\n* $2 - message {{msg-mw|Passwordreset-emailelement|notext=1}} repeated $3 times\n* $3 - the number of repetitions in $2\n* $4 - base URL of the wiki\n* $5 - number of days",
+	"passwordreset-emailtext-user": "Be consistent with {{msg-mw|Passwordreset-emailtext-ip}}.\n\nParameters:\n* $1 - a user name, no GENDER suport.\n* $2 - message {{msg-mw|Passwordreset-emailelement|notext=1}} repeated $3 times\n* $3 - the number of repetitions in $2\n* $4 - base URL of the wiki\n* $5 - number of days",
 	"passwordreset-emailelement": "This is a body of a password reset email to allow them into the system with a new password. Parameters:\n* $1 - the user's login name. This parameter can be used for GENDER.\n* $2 - the temporary password given by the system",
 	"passwordreset-emailsent": "Used in [[Special:PasswordReset]].\n\nSee also:\n* {{msg-mw|Passwordreset-emailsent-capture}}\n* {{msg-mw|Passwordreset-emailerror-capture}}",
 	"passwordreset-emailsent-capture": "Used in [[Special:PasswordReset]].\n\nSee also:\n* {{msg-mw|Passwordreset-emailsent}}\n* {{msg-mw|Passwordreset-emailerror-capture}}",

@@ -3,7 +3,8 @@
 		"authors": [
 			"Baloch Afghanistan",
 			"Ibrahim khashrowdi",
-			"Rachitrali"
+			"Rachitrali",
+			"Mjbmr"
 		]
 	},
 	"tog-underline": "لینکانی جهلگا خط کشیتین",
@@ -2449,6 +2450,7 @@
 	"confirm-watch-top": "ای دیم بئ شمی دیدارلیست ئا ایزاپه بیئت؟",
 	"confirm-unwatch-button": "قبول داشتین",
 	"confirm-unwatch-top": "ای دیم شه شمئ دیدارلیست ئا پاک بیئت؟",
+	"semicolon-separator": "؛&#32;",
 	"quotation-marks": "\"$1\"",
 	"imgmultipageprev": "&rarr; دیمتیری تاکدیم",
 	"imgmultipagenext": "بئدین تاکدیم &larr;",

@@ -83,7 +83,8 @@
 			"Toadino2",
 			"Purodha",
 			"TecnoMaster",
-			"Alexmar983"
+			"Alexmar983",
+			"Federico Mugnaini"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -1039,7 +1040,7 @@
 	"badsig": "Errore nella firma non standard, verificare i tag HTML.",
 	"badsiglength": "La firma scelta è troppo lunga, non deve superare $1 {{PLURAL:$1|carattere|caratteri}}.",
 	"yourgender": "Come riferirsi a te?",
-	"gender-unknown": "Indifferente",
+	"gender-unknown": "Nel menzionarti, il software utilizzerà parole di genere neutrale ogni volta che sarà possibile",
 	"gender-male": "È registrato su {{SITENAME}}",
 	"gender-female": "È registrata su {{SITENAME}}",
 	"prefs-help-gender": "L'impostazione di questa preferenza è opzionale.\nIl software utilizza questo valore per rivolgersi a te e menzionarti agli altri usando il genere grammaticale appropriato.\nQuesta informazione sarà pubblica.",
@@ -1359,6 +1360,9 @@
 	"uploadscripted": "Questo file contiene codice HTML o di script, che potrebbe essere interpretato erroneamente da un browser web.",
 	"uploaded-script-svg": "Trovato elemento di script \"$1\" nel file caricato in formato SVG.",
 	"uploaded-hostile-svg": "Trovato CSS non sicuro nell'elemento di stile del file in formato SVG caricato.",
+	"uploaded-event-handler-on-svg": "Impostazione gestione eventi ed attributi <code>$1=\"$2\"</code> non è consentito in file SGV",
+	"uploaded-href-attribute-svg": "Attributi href <code>&lt;$1 $2=\"$3\"&gt;</code> com un bersaglio non locale (e.g. http://, javascript:, etc) non sono permessi file SGV",
+	"uploaded-href-unsafe-target-svg": "Trovati href ad un bersaglio non sicuro <code>&lt;$1 $2=\"$3\"&gt;</code> caricato nel file SVG",
 	"uploaded-image-filter-svg": "Trovato filtro immagine con URL: <code>&lt;$1 $2=\"$3\"&gt;</code> nel file in formato SVG caricato.",
 	"uploadscriptednamespace": "Questo file SVG contiene un namespace '$1' non consentito",
 	"uploadinvalidxml": "Il codice XML nel file caricato non può essere elaborato.",

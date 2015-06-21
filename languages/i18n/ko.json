@@ -48,7 +48,8 @@
 			"SeoJeongHo",
 			"Banwol",
 			"Ysjbserver",
-			"LiteHell"
+			"LiteHell",
+			"Lefion"
 		]
 	},
 	"tog-underline": "링크에 밑줄:",
@@ -1571,6 +1572,7 @@
 	"unusedimages": "사용하지 않는 파일 목록",
 	"wantedcategories": "필요한 분류 목록",
 	"wantedpages": "필요한 문서 목록",
+	"wantedpages-summary": "다른 문서들에 링크는 걸려 있지만 존재하지 않는 문서들 중, 넘겨주기 문서를 제외한 목록입니다.\n존재하지 않는 문서로 넘겨주는 문서 목록을 보려면 [[{{#special:BrokenRedirects}}|the list of broken redirects]]를 참고하세요.",
 	"wantedpages-badtitle": "문서 제목이 잘못되었습니다: $1",
 	"wantedfiles": "필요한 파일 목록",
 	"wantedfiletext-cat": "다음 파일은 쓰이고는 있지만 없는 파일입니다. 바깥 저장소에 있는 파일은 실제로는 있지만 여기 올라 있을 수 있습니다. 그런 오류는 <del>삭제선</del>이 그어질 것입니다. 또한 없는 파일을 포함하고 있는 문서는 [[:$1]]에 올라 있습니다.",

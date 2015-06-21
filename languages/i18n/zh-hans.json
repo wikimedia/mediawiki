@@ -1043,7 +1043,7 @@
 	"badsig": "错误的原始签名。请检查HTML标签。",
 	"badsiglength": "签名过长。请不超过$1个字符。",
 	"yourgender": "您希望使用什么性别称呼？",
-	"gender-unknown": "我不愿意指明",
+	"gender-unknown": "当提及您时，软件将使用性别中性的词汇（只要可能）",
 	"gender-male": "他",
 	"gender-female": "她",
 	"prefs-help-gender": "该设置为可选项。软件根据该值在称呼您及对他人提及您时使用适当的语法性别。该信息会被公开。",

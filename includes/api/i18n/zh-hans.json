@@ -228,7 +228,7 @@
 	"apihelp-move-param-unwatch": "从当前用户的监视列表中移除页面及重定向。",
 	"apihelp-move-param-watchlist": "无条件地将页面加入至当前用户的监视列表或将其移除，使用设置或不更改监视。",
 	"apihelp-move-param-ignorewarnings": "忽略任何警告。",
-	"apihelp-move-example-move": "移动<kbd>坏标题</kbd>到<kbd>好标题</kbd>并且不留下重定向。",
+	"apihelp-move-example-move": "移动<kbd>Badtitle</kbd>到<kbd>Goodtitle</kbd>，不保留重定向。",
 	"apihelp-opensearch-description": "使用OpenSearch协议搜索本wiki。",
 	"apihelp-opensearch-param-search": "搜索字符串。",
 	"apihelp-opensearch-param-limit": "要返回的结果最大数。",

@@ -878,7 +878,7 @@
 	"powersearch-remember": "Lagipen ti napili para kadagiti masakbayan a panagbiruk",
 	"search-external": "Akinruar a panagbiruk",
 	"searchdisabled": "Nabaldado ti panagbiruk iti {{SITENAME}}.\nMabalinmo itan ti agbiruk idiay Google.\nLaglagipem laeng a dagiti pagsurotan a linaon ti {{SITENAME}} ket mabalin a baak.",
-	"search-error": "Adda maysa a biddut a napasamak bayat nga agbirbiruk:$1",
+	"search-error": "Adda napasamak a biddut bayat nga agbirbiruk: $1",
 	"preferences": "Kakaykayatan",
 	"mypreferences": "Kakaykayatan",
 	"prefs-edits": "Bilang dagiti inurnos:",

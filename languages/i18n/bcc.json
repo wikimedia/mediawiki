@@ -2454,7 +2454,7 @@
 	"confirm_purge_button": "هوبنت",
 	"confirm-purge-top": "ذخیره ای صفحه پهک کنت؟",
 	"confirm-purge-bottom": "خالک کتن میانگیر یک صفحه باعث بیتن که آخرین نسخهٔ آی پیش دارگ بیت.",
-	"semicolon-separator": ";",
+	"semicolon-separator": "؛&#32;",
 	"colon-separator": ":&#32;",
 	"imgmultipageprev": "← پیشگین صفحه",
 	"imgmultipagenext": "صفحه بعدی →",

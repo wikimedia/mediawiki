@@ -977,7 +977,7 @@
 	"badsig": "Sinatura non válida; comprobe o código HTML utilizado.",
 	"badsiglength": "A súa sinatura é demasiado longa.\nHa de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.",
 	"yourgender": "Cal das seguintes oracións referidas a vostede é a máis axeitada?",
-	"gender-unknown": "Prefiro non indicalo",
+	"gender-unknown": "Ao mencionarlle, o software empregará verbas de xénero neutral sempre que sexa posible",
 	"gender-male": "El edita as páxinas do wiki",
 	"gender-female": "Ela edita as páxinas do wiki",
 	"prefs-help-gender": "Definir esta preferencia é opcional.\nO software usa este valor para dirixirse á súa persoa e para facerlle mencións mediante o xénero gramatical axeitado.\nEsta información será pública.",
