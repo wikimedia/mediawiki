@@ -70,6 +70,25 @@
 			} );
 		}
 
+		$nodes = $( '.catlinks[data-mw="interface"]' );
+		if ( $nodes.length ) {
+			/**
+			 * Fired when categories are being added to the DOM
+			 *
+			 * It is encouraged to fire it before the main DOM is changed (when $content
+			 * is still detached).  However, this order is not defined either way, so you
+			 * should only rely on $content itself.
+			 *
+			 * This includes the ready event on a page load (including post-edit loads)
+			 * and when content has been previewed with LivePreview.
+			 *
+			 * @event wikipage_categories
+			 * @member mw.hook
+			 * @param {jQuery} $content The most appropriate element containing the content,
+			 *   such as .catlinks
+			 */
+			mw.hook( 'wikipage.categories' ).fire( $nodes );
+		}
 	} );
 
 }( mediaWiki, jQuery ) );
