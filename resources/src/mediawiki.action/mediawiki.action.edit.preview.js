@@ -158,6 +158,7 @@
 				}
 				if ( response.parse.categorieshtml ) {
 					$( '#catlinks' ).replaceWith( response.parse.categorieshtml[ '*' ] );
+					mw.hook( 'wikipage.categories' ).fire( $( '#catlinks' ) );
 				}
 				if ( response.parse.templates ) {
 					newList = [];
