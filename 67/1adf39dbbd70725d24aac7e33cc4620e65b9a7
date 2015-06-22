@@ -1,0 +1,9 @@
+Verified+2: jenkins-bot
+Code-Review+2: Siebrand <siebrand@kitano.nl>
+Code-Review-1: Nikerabbit <niklas.laxstrom@gmail.com>
+Code-Review+1: Paladox <thomasmulhall410@yahoo.com>
+Submitted-by: jenkins-bot
+Submitted-at: Mon, 22 Jun 2015 14:56:38 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/218525
+Project: mediawiki/core
+Branch: refs/heads/master
