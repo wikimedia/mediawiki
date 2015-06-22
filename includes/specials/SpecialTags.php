@@ -337,7 +337,7 @@ class SpecialTags extends SpecialPage {
 
 		$preText = $this->msg( 'tags-delete-explanation-initial', $tag )->parseAsBlock();
 		$tagUsage = ChangeTags::tagUsageStatistics();
-		if ( $tagUsage[$tag] > 0 ) {
+		if ( isset( $tagUsage[$tag] ) && $tagUsage[$tag] > 0 ) {
 			$preText .= $this->msg( 'tags-delete-explanation-in-use', $tag,
 				$tagUsage[$tag] )->parseAsBlock();
 		}
