@@ -2543,6 +2543,16 @@
 	mw.trackSubscribe( 'resourceloader.exception', log );
 	mw.trackSubscribe( 'resourceloader.assert', log );
 
+	$( function() {
+		if ( 'serviceWorker' in navigator ) {
+			navigator.serviceWorker.register( '/w/load.php?modules=mediawiki.serviceworker&only=scripts&raw=1', { scope: '/' } ).then( function( registration ) {
+				mw.log( 'ServiceWorker registration successful with scope: ', registration.scope );
+			} ).catch( function ( err ) {
+				mw.log( 'ServiceWorker registration failed: ', err );
+			} );
+		}
+	});
+
 	// Attach to window and globally alias
 	window.mw = window.mediaWiki = mw;
 }( jQuery ) );
