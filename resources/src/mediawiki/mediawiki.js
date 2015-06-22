@@ -1444,6 +1444,14 @@
 				} );
 			}
 
+			if ( 'serviceWorker' in navigator ) {
+				navigator.serviceWorker.register( '/w/load.php?modules=mediawiki.serviceworker&only=scripts', { scope: '/' } ).then( function( registration ) {
+					mw.log( 'ServiceWorker registration successful with scope: ', registration.scope );
+				} ).catch( function ( err ) {
+					mw.log( 'ServiceWorker registration failed: ', err );
+				} );
+			}
+
 			/* Public Members */
 			return {
 				/**
