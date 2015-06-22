@@ -952,13 +952,13 @@ ol:lang(fa) li,
 ol:lang(glk) li,
 ol:lang(kk-arab) li,
 ol:lang(lrc) li,
-ol:lang(mzn) li,
-ol:lang(sdh) li {
+ol:lang(mzn) li {
 	list-style-type: -moz-persian;
 	list-style-type: persian;
 }
 
-ol:lang(ckb) li {
+ol:lang(ckb) li,
+ol:lang(sdh) li {
 	list-style-type: -moz-arabic-indic;
 	list-style-type: arabic-indic;
 }
