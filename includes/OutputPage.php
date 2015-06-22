@@ -3524,8 +3524,25 @@ class OutputPage extends ContextSource {
 			if ( $canonicalUrl !== false ) {
 				$canonicalUrl = wfExpandUrl( $canonicalUrl, PROTO_CANONICAL );
 			} else {
-				$reqUrl = $this->getRequest()->getRequestURL();
-				$canonicalUrl = wfExpandUrl( $reqUrl, PROTO_CANONICAL );
+				if ( $this->isArticleRelated() ) {
+					// This affects all requests where "setArticleRelated" is true. This is
+					// typically all requests that show content (query title, curid, oldid, diff),
+					// and all wikipage actions (edit, delete, purge, info, history etc.).
+					// It does not apply to File pages and Special pages.
+					// 'history' and 'info' actions address page metadata rather than the page
+					// content itself, so they may not be canonicalized to the view page url.
+					// TODO: this ought to be better encapsulated in the Action class.
+					$action = Action::getActionName( $this->getContext() );
+					if ( in_array( $action, array( 'history', 'info' ) ) ) {
+						$query = "action={$action}";
+					} else {
+						$query = '';
+					}
+					$canonicalUrl = $this->getTitle()->getCanonicalURL( $query );
+				} else {
+					$reqUrl = $this->getRequest()->getRequestURL();
+					$canonicalUrl = wfExpandUrl( $reqUrl, PROTO_CANONICAL );
+				}
 			}
 		}
 		if ( $canonicalUrl !== false ) {
