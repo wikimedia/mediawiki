@@ -3524,8 +3524,23 @@ class OutputPage extends ContextSource {
 			if ( $canonicalUrl !== false ) {
 				$canonicalUrl = wfExpandUrl( $canonicalUrl, PROTO_CANONICAL );
 			} else {
-				$reqUrl = $this->getRequest()->getRequestURL();
-				$canonicalUrl = wfExpandUrl( $reqUrl, PROTO_CANONICAL );
+				if ( $this->isArticleRelated() ) {
+					// 'history' and 'info' views address article metadata
+					// rather than the article content itself, so they may not
+					// be canonicalized to the article page.
+					// TODO: this ought to be better encapsulated in the Action
+					// class.
+					$action = Action::getActionName( $this->getContext() );
+					if ( in_array( $action, array( 'history', 'info' ) ) ) {
+						$query = "action={$action}";
+					} else {
+						$query = '';
+					}
+					$canonicalUrl = $this->getTitle()->getCanonicalURL( $query );
+				} else {
+					$reqUrl = $this->getRequest()->getRequestURL();
+					$canonicalUrl = wfExpandUrl( $reqUrl, PROTO_CANONICAL );
+				}
 			}
 		}
 		if ( $canonicalUrl !== false ) {
