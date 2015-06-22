@@ -1626,7 +1626,6 @@
 	"nmembers": "$1 {{PLURAL:$1|member|members}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|member|members}}",
 	"nrevisions": "$1 {{PLURAL:$1|revision|revisions}}",
-	"nviews": "$1 {{PLURAL:$1|view|views}}",
 	"nimagelinks": "Used on $1 {{PLURAL:$1|page|pages}}",
 	"ntransclusions": "used on $1 {{PLURAL:$1|page|pages}}",
 	"specialpage-empty": "There are no results for this report.",
