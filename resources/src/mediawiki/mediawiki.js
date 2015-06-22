@@ -2089,8 +2089,16 @@
 							mw.loader.store.enabled = false;
 							return;
 						}
+
 						if ( mw.config.get( 'debug' ) ) {
 							// Disable module store in debug mode
+							mw.loader.store.enabled = false;
+							return;
+						}
+
+						if ( 'serviceWorker' in navigator ) {
+							// Disable module store if ServiceWorkers are supported
+							// Local caching of RL modules will be provided by the SW
 							mw.loader.store.enabled = false;
 							return;
 						}
@@ -2542,6 +2550,16 @@
 	// subscribe to error streams
 	mw.trackSubscribe( 'resourceloader.exception', log );
 	mw.trackSubscribe( 'resourceloader.assert', log );
+
+	$( function () {
+		if ( 'serviceWorker' in navigator ) {
+			navigator.serviceWorker.register( '/w/load.php?modules=mediawiki.serviceworker&only=scripts', { scope: '/' } ).then( function ( registration ) {
+				mw.log( 'ServiceWorker registration successful with scope: ', registration.scope );
+			}, function ( err ) {
+				mw.log( 'ServiceWorker registration failed: ', err );
+			} );
+		}
+	});
 
 	// Attach to window and globally alias
 	window.mw = window.mediaWiki = mw;
