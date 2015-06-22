@@ -23,6 +23,7 @@
 				"classes": [
 					"mw.Title",
 					"mw.Uri",
+					"mw.RegExp",
 					"mw.messagePoster.*",
 					"mw.notification",
 					"mw.Notification_",
