@@ -541,7 +541,7 @@ class ProtectionForm {
 		$out .= Xml::closeElement( 'fieldset' );
 
 		if ( $user->isAllowed( 'editinterface' ) ) {
-			$link = Linker::link(
+			$link = Linker::linkKnown(
 				$context->msg( 'protect-dropdown' )->inContentLanguage()->getTitle(),
 				$context->msg( 'protect-edit-reasonlist' )->escaped(),
 				array(),

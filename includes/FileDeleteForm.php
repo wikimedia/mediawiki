@@ -297,7 +297,7 @@ class FileDeleteForm {
 
 			if ( $wgUser->isAllowed( 'editinterface' ) ) {
 				$title = wfMessage( 'filedelete-reason-dropdown' )->inContentLanguage()->getTitle();
-				$link = Linker::link(
+				$link = Linker::linkKnown(
 					$title,
 					wfMessage( 'filedelete-edit-reasonlist' )->escaped(),
 					array(),

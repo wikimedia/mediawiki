@@ -451,7 +451,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				Xml::closeElement( 'form' ) . "\n";
 			// Show link to edit the dropdown reasons
 			if ( $this->getUser()->isAllowed( 'editinterface' ) ) {
-				$link = Linker::link(
+				$link = Linker::linkKnown(
 					$this->msg( 'revdelete-reason-dropdown' )->inContentLanguage()->getTitle(),
 					$this->msg( 'revdelete-edit-reasonlist' )->escaped(),
 					array(),
