@@ -52,7 +52,7 @@ class WantedFilesPage extends WantedQueryPage {
 		$noForeign = '';
 		if ( !$this->likelyToHaveFalsePositives() ) {
 			// Additional messages for grep:
-			// wantedfiletext-cat-noforeign, wantedfiletext-nocat
+			// wantedfiletext-cat-noforeign, wantedfiletext-nocat-noforeign
 			$noForeign = '-noforeign';
 		}
 
