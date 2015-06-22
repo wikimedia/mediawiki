@@ -1505,7 +1505,7 @@
 	"nmembers": "{{PLURAL:$1|1 iindrach|$1 iindracher}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|lasmoot|lasmooten}}",
 	"nrevisions": "$1 {{PLURAL:$1|feranrang|feranrangen}}",
-	"nviews": "$1 {{PLURAL:$1|klik|kliks}}",
+
 	"nimagelinks": "Brükt üüb $1 {{PLURAL:$1|sidj|sidjen}}",
 	"ntransclusions": "brükt üüb $1 {{PLURAL:$1|sidj|sidjen}}",
 	"specialpage-empty": "Diar san tu tidj nian iindracher.",

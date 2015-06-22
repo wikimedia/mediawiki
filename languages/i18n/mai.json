@@ -1459,7 +1459,7 @@
 	"nmembers": "$1 {{PLURAL:$1|सदस्य|सदस्य सभ}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|प्रयोक्ता|प्रयोक्ता सभ}}",
 	"nrevisions": "$1{{PLURAL:$1|संशोधन|संशोधन सभ}}",
-	"nviews": "$1 {{PLURAL:$1|दृश्य|दृश्य सभ}}",
+
 	"nimagelinks": "$1पर प्रयुक्त {{PLURAL:$1|पन्ना|पन्ना सभ}}",
 	"ntransclusions": "$1पर प्रयुक्त {{PLURAL:$1|पन्ना|पन्ना सभ}}",
 	"specialpage-empty": "ऐ पन्ना लेल कोनो परिणाम नै अछि।",

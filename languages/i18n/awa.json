@@ -1472,7 +1472,7 @@
 	"nmembers": "$1 {{PLURAL:$1|सदस्य}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|सदस्य}}",
 	"nrevisions": "$1 {{PLURAL:$1|अवतरण}}",
-	"nviews": "{{PLURAL:$1|एक|$1}} दाइ देखि गा है",
+
 	"nimagelinks": "$1 {{PLURAL:$1|पन्ना|पन्नन्}} पे प्रयुक्त",
 	"ntransclusions": "$1 {{PLURAL:$1|पन्ना|पन्नन}} पे प्रयुक्त",
 	"specialpage-empty": "इ ब्यौरा कय खर्तीन कवनो परिणाम नाई है।",

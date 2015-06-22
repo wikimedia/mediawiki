@@ -1419,7 +1419,7 @@
 	"nmembers": "$1 {{PLURAL:$1|anggota|anggota}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|anggota|anggota}}",
 	"nrevisions": "$1 {{PLURAL:$1|revisi|revisi}}",
-	"nviews": "Wis kaping $1 {{PLURAL:$1|dituduhaké|dituduhaké}}",
+
 	"nimagelinks": "Kanggo nèng {{PLURAL:$1|kaca|kaca}}",
 	"ntransclusions": "kanggo nèng $1 {{PLURAL:$1|kaca|kaca}}",
 	"specialpage-empty": "Ora ana sing perlu dilaporaké.",

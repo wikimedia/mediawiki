@@ -1058,7 +1058,7 @@
 	"nlinks": "$1 መያያዣዎች",
 	"nmembers": "$1 {{PLURAL:$1|መጣጥፍ|መጣጥፎች}}",
 	"nrevisions": "$1 ለውጦች",
-	"nviews": "$1 {{PLURAL:$1|ዕይታ|ዕይታዎች}}",
+
 	"nimagelinks": "በ$1 {{PLURAL:$1|ገጽ|ገጾች}} ላይ ይጠቀማል።",
 	"ntransclusions": "በ$1 {{PLURAL:$1|ገጽ|ገጾች}} ይጠቀማል።",
 	"specialpage-empty": "(ይህ ገጽ ባዶ ነው።)",

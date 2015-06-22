@@ -3193,13 +3193,6 @@ About
 </td><td>
 {{int:Nstab-wp}}
 </td></tr><tr><td>
-[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Nviews&action=edit nviews]<br>
-[[MediaWiki_talk:Nviews|Talk]]
-</td><td>
-$1 views
-</td><td>
-{{int:Nviews}}
-</td></tr><tr><td>
 [http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Ok&action=edit ok]<br>
 [[MediaWiki_talk:Ok|Talk]]
 </td><td>
@@ -3318,13 +3311,6 @@ Here&#39;s a saved copy from $1:
 Personal tools
 </td><td>
 {{int:Personaltools}}
-</td></tr><tr><td>
-[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Popularpages&action=edit popularpages]<br>
-[[MediaWiki_talk:Popularpages|Talk]]
-</td><td>
-Popular pages
-</td><td>
-{{int:Popularpages}}
 </td></tr><tr><td>
 [http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Portal&action=edit portal]<br>
 [[MediaWiki_talk:Portal|Talk]]

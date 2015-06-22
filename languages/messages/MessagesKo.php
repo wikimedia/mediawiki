@@ -139,7 +139,7 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( '문서언어' ),
 	'PasswordReset'             => array( '비밀번호재설정', '비밀번호초기화' ),
 	'PermanentLink'             => array( '고유링크', '영구링크' ),
-	'Popularpages'              => array( '인기있는문서' ),
+
 	'Preferences'               => array( '환경설정' ),
 	'Prefixindex'               => array( '접두어찾기' ),
 	'Protectedpages'            => array( '보호된문서' ),

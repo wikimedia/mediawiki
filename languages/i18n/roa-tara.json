@@ -1438,7 +1438,7 @@
 	"nlinks": "$1 {{PLURAL:$1|collegamende|collegaminde}}",
 	"nmembers": "$1 {{PLURAL:$1|membre|membre}}",
 	"nrevisions": "$1 {{PLURAL:$1|revisione|revisiune}}",
-	"nviews": "$1 {{PLURAL:$1|visite|visite}}",
+
 	"nimagelinks": "Ausate sus a $1 {{PLURAL:$1|pàgene|pàggene}}",
 	"ntransclusions": "ausate sus a $1 {{PLURAL:$1|pàgene|pàggene}}",
 	"specialpage-empty": "Non ge stonne resultete pe stu report.",

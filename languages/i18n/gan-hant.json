@@ -836,7 +836,7 @@
 	"nlinks": "$1隻連結",
 	"nmembers": "$1隻成員",
 	"nrevisions": "$1隻改動",
-	"nviews": "$1回瀏覽",
+
 	"specialpage-empty": "箇隻報告嗰結果係空嗰。",
 	"lonelypages": "孤立嗰頁面",
 	"lonelypagestext": "底下頁面冇連結到{{SITENAME}}箇別嗰頁面。",

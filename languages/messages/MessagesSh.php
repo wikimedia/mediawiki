@@ -76,7 +76,7 @@ $specialPageAliases = array(
 	'Myuploads'                 => array( 'Moje_postavljene_datoteke' ),
 	'Newimages'                 => array( 'Nove_datoteke', 'Nove_slike' ),
 	'Newpages'                  => array( 'Nove_stranice' ),
-	'Popularpages'              => array( 'Popularne_stranice' ),
+
 	'Preferences'               => array( 'Postavke' ),
 	'Prefixindex'               => array( 'Prefiks_indeks', 'Stranice_po_prefiksu' ),
 	'Protectedpages'            => array( 'Zaštićene_stranice' ),

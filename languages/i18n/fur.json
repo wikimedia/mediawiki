@@ -768,7 +768,7 @@
 	"nlinks": "$1 {{PLURAL:$1|leam|leams}}",
 	"nmembers": "$1 {{PLURAL:$1|element|elements}}",
 	"nrevisions": "$1 {{PLURAL:$1|revision|revisions}}",
-	"nviews": "$1 {{PLURAL:$1|viodude|viodudis}}",
+
 	"nimagelinks": "Doprât $1 {{PLURAL:$1|intune pagjine|in $1 pagjinis}}",
 	"lonelypages": "Pagjinis solitaris",
 	"lonelypagestext": "Lis pagjinis ca sot no àn leams di altris pagjinis di {{SITENAME}} e no son includudis in altris pagjinis.",

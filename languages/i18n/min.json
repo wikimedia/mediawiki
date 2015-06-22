@@ -1107,7 +1107,7 @@
 	"nlinks": "$1 {{PLURAL:$1|pautan}}",
 	"nmembers": "$1 {{PLURAL:$1|anggota}}",
 	"nrevisions": "$1 {{PLURAL:$1|revisi}}",
-	"nviews": "dilihek $1 {{PLURAL:$1|kali}}",
+
 	"nimagelinks": "Digunoan pado $1 {{PLURAL:$1|laman}}",
 	"ntransclusions": "digunoan pado $1 {{PLURAL:$1|laman}}",
 	"specialpage-empty": "Indak ado nan paralu dilaporan.",

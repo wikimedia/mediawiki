@@ -867,7 +867,7 @@
 	"nlinks": "$1 {{PLURAL:$1|link|suglung}}",
 	"nmembers": "$1 {{PLURAL:$1|kayanib}}",
 	"nrevisions": "$1 {{PLURAL:$1|pamagbayu|pamagbayu}}",
-	"nviews": "$1 {{PLURAL:$1|linawe|linawe}}",
+
 	"specialpage-empty": "Alang linual/resulta king ulat (report) a ini.",
 	"lonelypages": "Bulung a alang suglung (orphaned)",
 	"lonelypagestext": "Alang suglung manibat kareng aliwang bulung ning {{SITENAME}} kareng makatuking bulung.",

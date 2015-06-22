@@ -1376,7 +1376,7 @@
 	"nlinks": "$1 {{PLURAL:$1|lidhje|lidhje}}",
 	"nmembers": "$1 {{PLURAL:$1|antar|antarë}}",
 	"nrevisions": "$1 {{PLURAL:$1|version|versione}}",
-	"nviews": "$1 {{PLURAL:$1|shikim|shikime}}",
+
 	"nimagelinks": "Përdorur në $1 {{PLURAL:$1|faqe|faqe}}",
 	"ntransclusions": "përdorur në $1 {{PLURAL:$1|faqe|faqe}}",
 	"specialpage-empty": "Kjo faqe është boshe.",
