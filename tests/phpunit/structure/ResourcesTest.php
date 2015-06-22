@@ -47,6 +47,9 @@ class ResourcesTest extends MediaWikiTestCase {
 	/**
 	 * Verify that nothing explicitly depends on the 'jquery' and 'mediawiki' modules.
 	 * They are always loaded, depending on them is unsupported and leads to unexpected behaviour.
+	 * TODO PHP-based modules may dynamically choose dependencies based on context. This method
+	 * does not test such dependencies. The same goes for testMissingDependencies() and
+	 * testUnsatisfiableDependencies().
 	 */
 	public function testIllegalDependencies() {
 		$data = self::getAllModules();
@@ -57,7 +60,7 @@ class ResourcesTest extends MediaWikiTestCase {
 			foreach ( $illegalDeps as $illegalDep ) {
 				$this->assertNotContains(
 					$illegalDep,
-					$module->getDependencies(),
+					$module->getDependencies( $data['context'] ),
 					"Module '$moduleName' must not depend on '$illegalDep'"
 				);
 			}
@@ -73,7 +76,7 @@ class ResourcesTest extends MediaWikiTestCase {
 
 		/** @var ResourceLoaderModule $module */
 		foreach ( $data['modules'] as $moduleName => $module ) {
-			foreach ( $module->getDependencies() as $dep ) {
+			foreach ( $module->getDependencies( $data['context'] ) as $dep ) {
 				$this->assertContains(
 					$dep,
 					$validDeps,
@@ -97,7 +100,7 @@ class ResourcesTest extends MediaWikiTestCase {
 		/** @var ResourceLoaderModule $module */
 		foreach ( $data['modules'] as $moduleName => $module ) {
 			$moduleTargets = $module->getTargets();
-			foreach ( $module->getDependencies() as $dep ) {
+			foreach ( $module->getDependencies( $data['context'] ) as $dep ) {
 				if ( !isset( $data['modules'][$dep] ) ) {
 					// Missing dependencies reported by testMissingDependencies
 					continue;
