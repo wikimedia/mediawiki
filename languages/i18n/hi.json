@@ -1588,7 +1588,6 @@
 	"nmembers": "$1 {{PLURAL:$1|सदस्य}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|सदस्य}}",
 	"nrevisions": "$1 {{PLURAL:$1|अवतरण}}",
-	"nviews": "{{PLURAL:$1|एक|$1}} बार देखा गया है",
 	"nimagelinks": "$1 {{PLURAL:$1|पृष्ठ|पृष्ठों}} पर प्रयुक्त",
 	"ntransclusions": "$1 {{PLURAL:$1|पृष्ठ|पृष्ठों}} पर प्रयुक्त",
 	"specialpage-empty": "इस ब्यौरे के लिये कोई परिणाम नहीं हैं।",

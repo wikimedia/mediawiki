@@ -10,7 +10,8 @@
 			"Taichi",
 			"Universal Life",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"StevenJ81"
 		]
 	},
 	"tog-underline": "Suliñar los atamientos:",
@@ -1064,6 +1065,10 @@
 	"watchlisttools-view": "Ver los trocamientos",
 	"watchlisttools-edit": "Ver i trocar tu lista de escogidas",
 	"watchlisttools-raw": "Troca tu lista de escogidas en crudo",
+	"hebrew-calendar-m1": "Tishre",
+	"hebrew-calendar-m2": "Heshvan",
+	"hebrew-calendar-m1-gen": "Tishre",
+	"hebrew-calendar-m2-gen": "Heshvan",
 	"duplicate-defaultsort": "'''Aviso:''' la klave primaria para ordenamiento \"$2\" anula la primera \"$1\"",
 	"version": "Versión",
 	"version-specialpages": "Pajinas espesiales",

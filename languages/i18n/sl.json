@@ -1543,7 +1543,6 @@
 	"nmembers": "$1 {{PLURAL:$1|element|elementa|elementi|elementov|elementov}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|element|elementa|elementi|elementov}}",
 	"nrevisions": "$1 {{PLURAL:$1|redakcija|redakciji|redakcije|redakcij|redakcij}}",
-	"nviews": "$1 {{PLURAL:$1|ogled|ogleda|ogledi|ogledov|ogledov}}",
 	"nimagelinks": "Uporabljeno na $1 {{PLURAL:$1|strani|straneh}}",
 	"ntransclusions": "uporabljeno na $1 {{PLURAL:$1|strani|straneh}}",
 	"specialpage-empty": "Za to poročilo ni rezultatov.",

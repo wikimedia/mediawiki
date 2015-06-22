@@ -1543,7 +1543,6 @@
 	"nmembers": "$1 {{PLURAL:$1|miembru|miembros}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|miembru|miembros}}",
 	"nrevisions": "$1 {{PLURAL:$1|revisión|revisiones}}",
-	"nviews": "$1 {{PLURAL:$1|vista|vistes}}",
 	"nimagelinks": "Usao en $1 {{PLURAL:$1|páxina|páxines}}",
 	"ntransclusions": "usao en $1 {{PLURAL:$1|páxina|páxines}}",
 	"specialpage-empty": "Nun hai resultaos nestos momentos.",

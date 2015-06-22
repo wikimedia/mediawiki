@@ -1500,7 +1500,6 @@
 	"nlinks": "$1 {{PLURAL:$1|veza|veze}}",
 	"nmembers": "$1 {{PLURAL:$1|član|članova}}",
 	"nrevisions": "$1 {{PLURAL:$1|revizija|revizije|revizija}}",
-	"nviews": "$1 {{PLURAL:$1|pregled|pregleda}}",
 	"nimagelinks": "Koristi se na $1 {{PLURAL:$1|stranici|stranice|stranica}}",
 	"ntransclusions": "koristi se na $1 {{PLURAL:$1|stranici|stranice|stranica}}",
 	"specialpage-empty": "Nepostoje rezultati za ovaj izvještaj.",

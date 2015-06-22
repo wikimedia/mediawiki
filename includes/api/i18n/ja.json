@@ -5,7 +5,8 @@
 			"2nd-player",
 			"Los688",
 			"Whym",
-			"Mfuji"
+			"Mfuji",
+			"Otokoume"
 		]
 	},
 	"apihelp-main-param-action": "実行する操作です。",
@@ -63,6 +64,7 @@
 	"apihelp-edit-param-tags": "この版に適用する変更タグ。",
 	"apihelp-edit-param-minor": "細部の編集",
 	"apihelp-edit-param-notminor": "細部の編集ではない。",
+	"apihelp-edit-param-bot": "この編集をボットとしてマークする。",
 	"apihelp-edit-param-basetimestamp": "編集前の版のタイムスタンプ。編集競合を検出するために使用されます。\n[[Special:ApiHelp/query+revisions|action=query&prop=revisions&rvprop=timestamp]] で取得できます。",
 	"apihelp-edit-param-starttimestamp": "編集作業を開始したときのタイムスタンプ。編集競合を検出するために使用されます。適切な値は <var>[[Special:ApiHelp/main|curtimestamp]]</var> を使用して編集作業を開始するとき (たとえば、編集するページの本文を読み込んだとき) に取得できます。",
 	"apihelp-edit-param-createonly": "すでにそのページが存在する場合は編集を行いません。",

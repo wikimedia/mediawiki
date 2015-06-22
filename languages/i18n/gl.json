@@ -1553,7 +1553,6 @@
 	"nmembers": "$1 {{PLURAL:$1|páxina|páxinas}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|membro|membros}}",
 	"nrevisions": "$1 {{PLURAL:$1|revisión|revisións}}",
-	"nviews": "vista {{PLURAL:$1|unha vez|$1 veces}}",
 	"nimagelinks": "Empregada {{PLURAL:$1|nunha páxina|en $1 páxinas}}",
 	"ntransclusions": "empregado en $1 {{PLURAL:$1|páxina|páxinas}}",
 	"specialpage-empty": "Non hai resultados para o que solicitou.",

@@ -1442,7 +1442,6 @@
 	"nlinks": "{{PLURAL:$1|Éi lenkje|$1 lenkjer}}",
 	"nmembers": "$1 {{PLURAL:$1|medlem|medlemmer}}",
 	"nrevisions": "{{PLURAL:$1|Éin versjon|$1 versjonar}}",
-	"nviews": "{{PLURAL:$1|Éi vising|$1 visingar}}",
 	"nimagelinks": "Brukt på $1 {{PLURAL:$1|side|sider}}",
 	"ntransclusions": "brukt på $1 {{PLURAL:$1|side|sider}}",
 	"specialpage-empty": "Det er ingen resultat for denne rapporten.",

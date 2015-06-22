@@ -1512,7 +1512,6 @@
 	"nmembers": "$1 {{PLURAL:$1|člen|členovia|členov}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|člen|členovia|členov}}",
 	"nrevisions": "$1 {{PLURAL:$1|revízia|revízie|revízií}}",
-	"nviews": "$1 {{PLURAL:$1|návšteva|návštevy|návštev}}",
 	"nimagelinks": "Použité na $1 {{PLURAL:$1|stránke|stránkach}}",
 	"ntransclusions": "použité na $1 {{PLURAL:$1|stránke|stránkach}}",
 	"specialpage-empty": "Táto správa neobsahuje žiadne položky.",

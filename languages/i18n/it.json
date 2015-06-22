@@ -1609,7 +1609,6 @@
 	"nmembers": "$1 {{PLURAL:$1|elemento|elementi}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|elemento|elementi}}",
 	"nrevisions": "$1 {{PLURAL:$1|versione|versioni}}",
-	"nviews": "$1 {{PLURAL:$1|visita|visite}}",
 	"nimagelinks": "Utilizzato su $1 {{PLURAL:$1|pagina|pagine}}",
 	"ntransclusions": "usato in $1 {{PLURAL:$1|pagina|pagine}}",
 	"specialpage-empty": "Questa pagina speciale è attualmente vuota.",

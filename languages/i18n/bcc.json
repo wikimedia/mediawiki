@@ -1480,7 +1480,6 @@
 	"nmembers": "$1 {{PLURAL:$1|member|اعضا}}",
 	"nmemberschanged": "$1 → $2   {{PLURAL:$2| عضو|عضو}}",
 	"nrevisions": "$1 {{PLURAL:$1|بازبینی|بازبینی ان}}",
-	"nviews": "$1 {{PLURAL:$1|دیستن|دیستن}}",
 	"nimagelinks": "$1 × $2, $3 {{PLURAL:$3|صفحه|صفحات}}",
 	"ntransclusions": "بی $1 {{PLURAL:$1|تاکدیم|تاکدیم}} استپاده بوته",
 	"specialpage-empty": "په ای گزارش هچ نتیجه ای نیست ان.",

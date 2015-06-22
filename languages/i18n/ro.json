@@ -1558,7 +1558,6 @@
 	"nmembers": "$1 {{PLURAL:$1|membru|membri|de membri}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|membru|membri|de membri}}",
 	"nrevisions": "{{PLURAL:$1|o versiune|$1 versiuni|$1 de versiuni}}",
-	"nviews": "{{PLURAL:$1|o accesare|$1 accesări|$1 de accesări}}",
 	"nimagelinks": "Utilizat pe $1 {{PLURAL:$1|pagină|pagini}}",
 	"ntransclusions": "utilizat pe $1 {{PLURAL:$1|pagină|pagini}}",
 	"specialpage-empty": "Această pagină este goală.",

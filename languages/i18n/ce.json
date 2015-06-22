@@ -1388,7 +1388,6 @@
 	"nmembers": "$1 {{PLURAL:$1|хӀума|хӀумнаш}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|хӀума|хӀумнаш}}",
 	"nrevisions": "$1 {{PLURAL:$1|верси|версеш}}",
-	"nviews": "$1 {{PLURAL:$1|хьажар}}",
 	"nimagelinks": "Лелош ю $1 {{PLURAL:$1|агӀонгахь|агӀонашкахь}}",
 	"ntransclusions": "лелош ю $1 {{PLURAL:$1|агӀонгахь|агӀонашкахь}}",
 	"specialpage-empty": "Дехаро хӀумма ца елла.",

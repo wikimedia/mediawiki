@@ -1608,7 +1608,6 @@
 	"nmembers": "{{PLURAL:$1|üye|üye}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|üye|üye}}",
 	"nrevisions": "{{PLURAL:$1|değişiklik|değişiklikler}}",
-	"nviews": "$1 {{PLURAL:$1|görünüm|görünüm}}",
 	"nimagelinks": "$1 {{PLURAL:$1|sayfada|sayfada}} kullanılıyor",
 	"ntransclusions": "$1 {{PLURAL:$1|sayfada|sayfada}} kullanılıyor",
 	"specialpage-empty": "Bu rapor için hiç sonuç yok.",

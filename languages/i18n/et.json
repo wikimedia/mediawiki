@@ -1556,7 +1556,6 @@
 	"nmembers": "$1 {{PLURAL:$1|liige|liiget}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|liige|liiget}}",
 	"nrevisions": "$1 {{PLURAL:$1|redaktsioon|redaktsiooni}}",
-	"nviews": "$1 {{PLURAL:$1|külastus|külastust}}",
 	"nimagelinks": "Kasutuses {{PLURAL:$1|ühel leheküljel|$1 leheküljel}}",
 	"ntransclusions": "kasutuses {{PLURAL:$1|ühel leheküljel|$1 leheküljel}}",
 	"specialpage-empty": "Vasteid ei leidu.",

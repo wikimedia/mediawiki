@@ -1512,7 +1512,6 @@
 	"nmembers": "$1 {{PLURAL:$1|Member|Memberen}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|Member|Memberen}}",
 	"nrevisions": "$1 {{PLURAL:$1|Versioun|Versiounen}}",
-	"nviews": "$1 {{PLURAL:$1|Offro|Offroen}}",
 	"nimagelinks": "Benotzt op {{PLURAL:$1|enger Säit|$1 Säiten}}",
 	"ntransclusions": "benotzt op {{PLURAL:$1|enger Säit|$1 Säiten}}",
 	"specialpage-empty": "Dës Säit ass eidel.",

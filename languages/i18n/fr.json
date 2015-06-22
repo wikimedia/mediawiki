@@ -1658,7 +1658,6 @@
 	"nmembers": "$1 membre{{PLURAL:$1||s}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|membre|membres}}",
 	"nrevisions": "$1 version{{PLURAL:$1||s}}",
-	"nviews": "$1 consultation{{PLURAL:$1||s}}",
 	"nimagelinks": "Utilisé sur $1 {{PLURAL:$1|page|pages}}",
 	"ntransclusions": "Utilisé sur $1 {{PLURAL:$1|page|pages}}",
 	"specialpage-empty": "Il n'y a aucun résultat à afficher.",

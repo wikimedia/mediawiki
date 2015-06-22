@@ -1655,7 +1655,6 @@
 	"nmembers": "$1 {{PLURAL:$1|artículo|artículos}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|miembro|miembros}}",
 	"nrevisions": "$1 {{PLURAL:$1|revisión|revisiones}}",
-	"nviews": "$1 {{PLURAL:$1|vista|vistas}}",
 	"nimagelinks": "Usado en {{PLURAL:$1|una página|$1 páginas}}",
 	"ntransclusions": "usado en {{PLURAL:$1|una página|$1 páginas}}",
 	"specialpage-empty": "Esta página está vacía.",

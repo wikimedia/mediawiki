@@ -1615,7 +1615,6 @@
 	"nmembers": "{{PLURAL:$1|1 Eintrag|$1 Einträge}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|Mitglied|Mitglieder}}",
 	"nrevisions": "{{PLURAL:$1|1 Bearbeitung|$1 Bearbeitungen}}",
-	"nviews": "{{PLURAL:$1|1 Abfrage|$1 Abfragen}}",
 	"nimagelinks": "Verwendet auf {{PLURAL:$1|einer Seite|$1 Seiten}}",
 	"ntransclusions": "verwendet auf {{PLURAL:$1|einer Seite|$1 Seiten}}",
 	"specialpage-empty": "Es sind aktuell keine zutreffenden Einträge vorhanden.",

@@ -1484,7 +1484,6 @@
 	"nlinks": "$1 {{PLURAL:$1|poveznica|poveznice|poveznica}}",
 	"nmembers": "$1 {{PLURAL:$1|član|članova}}",
 	"nrevisions": "$1 {{PLURAL:$1|inačica|inačice|inačica}}",
-	"nviews": "$1 {{PLURAL:$1|put pogledano|puta pogledano|puta pogledano}}",
 	"nimagelinks": "Koristi se na $1 {{PLURAL:$1|stranici|stranice|stranica}}",
 	"ntransclusions": "koristi se na $1 {{PLURAL:$1|stranici|stranice|stranica}}",
 	"specialpage-empty": "Nema rezultata za traženi izvještaj.",

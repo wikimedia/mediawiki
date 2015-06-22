@@ -1559,7 +1559,6 @@
 	"nmembers": "$1 {{PLURAL:$1|isi}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|anggota|anggota}}",
 	"nrevisions": "$1 {{PLURAL:$1|revisi|revisi}}",
-	"nviews": "dilihat $1 {{PLURAL:$1|kali|kali}}",
 	"nimagelinks": "Digunakan pada $1 {{PLURAL:$1|halaman|halaman}}",
 	"ntransclusions": "digunakan pada $1 {{PLURAL:$1|halaman|halaman}}",
 	"specialpage-empty": "Tak ada yang perlu dilaporkan.",

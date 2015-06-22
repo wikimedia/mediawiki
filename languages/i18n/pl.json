@@ -1596,7 +1596,6 @@
 	"nmembers": "$1 {{PLURAL:$1|element|elementy|elementów}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|element|elementy|elementów}}",
 	"nrevisions": "$1 {{PLURAL:$1|wersja|wersje|wersji}}",
-	"nviews": "odwiedzono $1 {{PLURAL:$1|raz|razy}}",
 	"nimagelinks": "Używane na $1 {{PLURAL:$1|stronie|stronach}}",
 	"ntransclusions": "używany na $1 {{PLURAL:$1|stronie|stronach}}",
 	"specialpage-empty": "Ta strona raportu jest pusta.",
