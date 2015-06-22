@@ -261,8 +261,7 @@
 		 */
 		grep: function ( pattern ) {
 			if ( typeof pattern.test !== 'function' ) {
-				// Based on Y.Escape.regex from YUI v3.15.0
-				pattern = new RegExp( pattern.replace( /[\-$\^*()+\[\]{}|\\,.?\s]/g, '\\$&' ), 'g' );
+				pattern = new RegExp( mw.RegExp.escape( pattern ), 'g' );
 			}
 
 			return $.grep( inspect.getLoadedModules(), function ( moduleName ) {

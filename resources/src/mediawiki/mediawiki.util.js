@@ -159,7 +159,7 @@
 				url = location.href;
 			}
 			// Get last match, stop at hash
-			var	re = new RegExp( '^[^#]*[&?]' + $.escapeRE( param ) + '=([^&#]*)' ),
+			var	re = new RegExp( '^[^#]*[&?]' + mw.RegExp.escape( param ) + '=([^&#]*)' ),
 				m = re.exec( url );
 			if ( m ) {
 				// Beware that decodeURIComponent is not required to understand '+'
