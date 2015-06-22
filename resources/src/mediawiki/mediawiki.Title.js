@@ -785,7 +785,7 @@
 			if ( $.inArray( this.namespace, mw.config.get( 'wgCaseSensitiveNamespaces' ) ) !== -1 ) {
 				return this.title;
 			} else {
-				return $.ucFirst( this.title );
+				return this.title.charAt( 0 ).toUpperCase() + this.title.slice( 1 );
 			}
 		},
 
