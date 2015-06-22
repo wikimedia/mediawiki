@@ -176,6 +176,8 @@ class WebRequest {
 	 * @return string
 	 */
 	public static function detectServer() {
+		global $wgAssumeProxiesUseDefaultProtocolPorts;
+
 		$proto = self::detectProtocol();
 		$stdPort = $proto === 'https' ? 443 : 80;
 
@@ -186,13 +188,15 @@ class WebRequest {
 			if ( !isset( $_SERVER[$varName] ) ) {
 				continue;
 			}
+
 			$parts = IP::splitHostAndPort( $_SERVER[$varName] );
 			if ( !$parts ) {
 				// Invalid, do not use
 				continue;
 			}
+
 			$host = $parts[0];
-			if ( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) ) {
+			if ( $wgAssumeProxiesUseDefaultPorts && isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) ) {
 				// Bug 70021: Assume that upstream proxy is running on the default
 				// port based on the protocol. We have no reliable way to determine
 				// the actual port in use upstream.
