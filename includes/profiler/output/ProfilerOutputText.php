@@ -35,7 +35,7 @@ class ProfilerOutputText extends ProfilerOutput {
 		parent::__construct( $collector, $params );
 		$this->thresholdMs = isset( $params['thresholdMs'] )
 			? $params['thresholdMs']
-			: .25;
+			: 1.0;
 	}
 	public function log( array $stats ) {
 		if ( $this->collector->getTemplated() ) {
