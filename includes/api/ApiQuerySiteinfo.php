@@ -297,7 +297,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			}
 		}
 
-		ApiResult::setArrayType( $data, 'BCarray' );
+		ApiResult::setArrayType( $data, 'assoc' );
 		ApiResult::setIndexedTagName( $data, 'ns' );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
