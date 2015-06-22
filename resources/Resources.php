@@ -1750,6 +1750,12 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 
+	'mediawiki.serviceworker' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.serviceworker.js',
+		'targets' => array( 'desktop', 'mobile' ),
+		'raw' => true,
+	),
+
 	/* es5-shim */
 	'es5-shim' => array(
 		'scripts' => array(
