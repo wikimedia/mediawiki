@@ -659,6 +659,7 @@ class ResourceLoader implements LoggerAwareInterface {
 					$this->errors[] = "Cannot show private module \"$name\"";
 					continue;
 				}
+
 				$modules[$name] = $module;
 			} else {
 				$missing[] = $name;
@@ -726,6 +727,12 @@ class ResourceLoader implements LoggerAwareInterface {
 				} else {
 					$fileCache->incrMissesRecent( $context->getRequest() );
 				}
+			}
+		}
+
+		foreach ( $modules as $module ) {
+			if ( $module instanceof ResourceLoaderServiceWorkerModule ) {
+				header( 'Service-Worker-Allowed: /' );
 			}
 		}
 

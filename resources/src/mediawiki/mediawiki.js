@@ -1496,6 +1496,16 @@
 				} );
 			}
 
+			$( function () {
+				if ( 'serviceWorker' in navigator && sources.local !== undefined ) {
+					navigator.serviceWorker.register( sources.local + '?modules=mediawiki.serviceworker&only=scripts', { scope: '/' } ).then( function ( registration ) {
+						mw.log( 'ServiceWorker registration successful with scope: ', registration.scope );
+					}, function ( err ) {
+						mw.log( 'ServiceWorker registration failed: ', err );
+					} );
+				}
+			});
+
 			/* Public Members */
 			return {
 				/**
@@ -2122,8 +2132,16 @@
 							mw.loader.store.enabled = false;
 							return;
 						}
+
 						if ( mw.config.get( 'debug' ) ) {
 							// Disable module store in debug mode
+							mw.loader.store.enabled = false;
+							return;
+						}
+
+						if ( 'serviceWorker' in navigator ) {
+							// Disable module store if ServiceWorkers are supported
+							// Local caching of RL modules will be provided by the SW
 							mw.loader.store.enabled = false;
 							return;
 						}
