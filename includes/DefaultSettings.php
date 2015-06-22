@@ -83,6 +83,14 @@ $wgVersion = '1.26alpha';
 $wgSitename = 'MediaWiki';
 
 /**
+ * When the wiki is running behind a proxy and this is set to true, assumes that the proxy exposes
+ * the wiki on the standard ports (443 for https and 80 for http).
+ * @var bool
+ * @since 1.26
+ */
+$wgAssumeProxiesUseDefaultProtocolPorts = true;
+
+/**
  * URL of the server.
  *
  * @par Example:
