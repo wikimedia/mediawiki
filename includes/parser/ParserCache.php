@@ -213,6 +213,11 @@ class ParserCache {
 		// key. Force it here. See bug 31445.
 		$value->setEditSectionTokens( $popts->getEditSection() );
 
+		// RejectParserCacheValue hook handlers that wish to reject an
+		// otherwise valid cached value can override this string to provide
+		// a better message for the debug log.
+		$whyRejected = '(no reason given)';
+
 		if ( !$useOutdated && $value->expired( $touched ) ) {
 			wfIncrStats( "pcache.miss.expired" );
 			$cacheTime = $value->getCacheTime();
@@ -224,6 +229,10 @@ class ParserCache {
 			$revId = $article->getLatest();
 			$cachedRevId = $value->getCacheRevisionId();
 			wfDebug( "ParserOutput key is for an old revision, latest $revId, cached $cachedRevId\n" );
+			$value = false;
+		} elseif ( Hooks::run( 'RejectParserCacheValue', array( $value, $article, $popts, &$whyRejected ) === false ) ) {
+			wfIncrStats( 'pcache.miss.rejected' );
+			wfDebug( "ParserOutput key valid, but rejected by RejectParserCacheValue hook handler: {$whyRejected}\n" );
 			$value = false;
 		} else {
 			wfIncrStats( "pcache.hit" );

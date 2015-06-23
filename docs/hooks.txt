@@ -2402,6 +2402,14 @@ names such as "oldid" that are preserved when using redirecting special pages
 such as Special:MyPage and Special:MyTalk.
 &$redirectParams: An array of parameters preserved by redirecting special pages.
 
+'RejectParserCacheValue': Return false to reject an otherwise usable
+cached value from the Parser cache.
+$parserCache: ParserCache value.
+$wikiPage: WikiPage object.
+$parserOptions: ParserOptions object.
+&$whyRejected: When rejecting a cached value, set this string to a brief
+  explanation for the reason. It will be logged in the debug log.
+
 'RequestContextCreateSkin': Called when RequestContext::getSkin creates a skin
 instance. Can be used by an extension override what skin is used in certain
 contexts.
