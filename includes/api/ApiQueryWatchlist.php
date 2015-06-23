@@ -414,8 +414,13 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		return $vals;
 	}
 
+	protected function isPatrollingEnabled() {
+		$config = $this->getConfig();
+		return $config->get( 'UseRCPatrol' ) || $config->get( 'UseNPPatrol' );
+	}
+
 	public function getAllowedParams() {
-		return array(
+		$params = array(
 			'allrev' => false,
 			'start' => array(
 				ApiBase::PARAM_TYPE => 'timestamp'
@@ -461,7 +466,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					'comment',
 					'parsedcomment',
 					'timestamp',
-					'patrol',
 					'sizes',
 					'notificationtimestamp',
 					'loginfo',
@@ -476,8 +480,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					'!bot',
 					'anon',
 					'!anon',
-					'patrolled',
-					'!patrolled',
 					'unread',
 					'!unread',
 				)
@@ -502,6 +504,14 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			),
 		);
+
+		if ( $this->isPatrollingEnabled() ) {
+			$params['prop'][ApiBase::PARAM_TYPE][] = 'patrol';
+			$params['show'][ApiBase::PARAM_TYPE][] = 'patrolled';
+			$params['show'][ApiBase::PARAM_TYPE][] = '!patrolled';
+		}
+
+		return $params;
 	}
 
 	protected function getExamplesMessages() {
