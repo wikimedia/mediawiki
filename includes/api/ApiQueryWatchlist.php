@@ -80,7 +80,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 			if ( $this->fld_patrol ) {
 				if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
-					$this->dieUsage( 'patrol property is not available', 'patrol' );
+					$this->setWarning( 'patrol property is not available for your account' );
+					$this->fld_patrol = false;
 				}
 			}
 		}
@@ -176,10 +177,11 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			// Check permissions.
 			if ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ) {
 				if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
-					$this->dieUsage(
-						'You need the patrol right to request the patrolled flag',
-						'permissiondenied'
+					$this->setWarning(
+						'You need the patrol right to request the patrolled flag'
 					);
+					unset( $show['patrolled'] );
+					unset( $show['!patrolled'] );
 				}
 			}
 
