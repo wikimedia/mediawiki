@@ -1,5 +1,14 @@
 ( function ( $ ) {
-	QUnit.module( 'jquery.mwExtension', QUnit.newMwEnvironment() );
+	QUnit.module( 'jquery.mwExtension', QUnit.newMwEnvironment( {
+		// This entire module is deprecated.
+		// Surpress deprecation warnings in test output.
+		setup: function () {
+			this.suppressWarnings();
+		},
+		teardown: function () {
+			this.restoreWarnings();
+		}
+	}) );
 
 	QUnit.test( 'String functions', 7, function ( assert ) {
 		assert.equal( $.trimLeft( '  foo bar  ' ), 'foo bar  ', 'trimLeft' );
