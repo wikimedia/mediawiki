@@ -176,7 +176,7 @@ class ParserCache {
 	 * Retrieve the ParserOutput from ParserCache.
 	 * false if not found or outdated.
 	 *
-	 * @param WikiPage $article
+	 * @param WikiPage|Article $article
 	 * @param ParserOptions $popts
 	 * @param bool $useOutdated (default false)
 	 *
@@ -213,6 +213,11 @@ class ParserCache {
 		// key. Force it here. See bug 31445.
 		$value->setEditSectionTokens( $popts->getEditSection() );
 
+		$wikiPage = method_exists( $article, 'getPage' )
+			? $article->getPage()
+			: $article;
+
+
 		if ( !$useOutdated && $value->expired( $touched ) ) {
 			wfIncrStats( "pcache.miss.expired" );
 			$cacheTime = $value->getCacheTime();
@@ -225,7 +230,7 @@ class ParserCache {
 			$cachedRevId = $value->getCacheRevisionId();
 			wfDebug( "ParserOutput key is for an old revision, latest $revId, cached $cachedRevId\n" );
 			$value = false;
-		} elseif ( Hooks::run( 'RejectParserCacheValue', array( $value, $article, $popts ) ) === false ) {
+		} elseif ( Hooks::run( 'RejectParserCacheValue', array( $value, $wikiPage, $popts ) ) === false ) {
 			wfIncrStats( 'pcache.miss.rejected' );
 			wfDebug( "ParserOutput key valid, but rejected by RejectParserCacheValue hook handler.\n" );
 			$value = false;
