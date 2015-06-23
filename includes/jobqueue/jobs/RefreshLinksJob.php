@@ -185,7 +185,7 @@ class RefreshLinksJob extends Job {
 			// wasted CPU by other apaches or job runners. We don't want to always save to
 			// cache as this can cause high cache I/O and LRU churn when a template changes.
 			if ( $ellapsed >= self::PARSE_THRESHOLD_SEC
-				&& $page->isParserCacheUsed( $parserOptions, $revision->getId() )
+				&& $page->shouldCheckParserCache( $parserOptions, $revision->getId() )
 				&& $parserOutput->isCacheable()
 			) {
 				$ctime = wfTimestamp( TS_MW, (int)$start ); // cache time
