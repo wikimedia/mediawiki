@@ -21,6 +21,9 @@ production.
 * Revive the 'SpecialSearchResultsAppend' hook which occurs after the list of
   search results are rendered. The initial use case is to append a "give us
   feedback" link beneath the search results.
+* Added a new hook, 'AbortParserCacheLookup', which allows extensions to
+  prevent a pending lookup in the parser cache. The intent is to allow
+  extensions to manage the eviction of archaic HTML output from the cache.
 
 
 ==== External libraries ====

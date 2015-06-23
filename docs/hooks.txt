@@ -278,6 +278,12 @@ $user: the User object about to be created (read-only, incomplete)
   Create the object with Status::newFatal() to ensure proper API error
   messages are returned when creating account through API clients.
 
+'AbortParserCacheLookup': Return false to cancel a parser cache lookup.
+$wikiPage: WikiPage object
+$parserOptions: ParserOptions object
+$oldid: Requested revision ID as an integer, or null to represent
+  a request for the latest revision.
+
 'AbortTalkPageEmailNotification': Return false to cancel talk page email
 notification
 $targetUser: the user whom to send talk page email notification

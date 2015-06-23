@@ -1104,8 +1104,14 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @return ParserOutput|bool ParserOutput or false if the revision was not found
 	 */
 	public function getParserOutput( ParserOptions $parserOptions, $oldid = null ) {
-
+		if ( $oldid === 0 ) {
+			$oldid = null;
+		}
 		$useParserCache = $this->shouldCheckParserCache( $parserOptions, $oldid );
+		if ( $useParserCache ) {
+			$useParserCache = Hooks::run( 'AbortParserCacheLookup',
+				array( $this, $parserOptions, $oldid ) ) !== false;
+		}
 		wfDebug( __METHOD__ . ': using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) . "\n" );
 		if ( $parserOptions->getStubThreshold() ) {
 			wfIncrStats( 'pcache.miss.stub' );
