@@ -297,9 +297,9 @@ abstract class Profiler {
 	 * @return array List of method entries arrays, each having:
 	 *   - name     : method name
 	 *   - calls    : the number of invoking calls
-	 *   - real     : real time ellapsed (ms)
+	 *   - real     : real time elapsed (ms)
 	 *   - %real    : percent real time
-	 *   - cpu      : CPU time ellapsed (ms)
+	 *   - cpu      : CPU time elapsed (ms)
 	 *   - %cpu     : percent CPU time
 	 *   - memory   : memory used (bytes)
 	 *   - %memory  : percent memory used

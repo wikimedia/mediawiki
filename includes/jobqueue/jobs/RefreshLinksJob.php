@@ -180,11 +180,11 @@ class RefreshLinksJob extends Job {
 			// Revision ID must be passed to the parser output to get revision variables correct
 			$parserOutput = $content->getParserOutput(
 				$title, $revision->getId(), $parserOptions, false );
-			$ellapsed = microtime( true ) - $start;
+			$elapsed = microtime( true ) - $start;
 			// If it took a long time to render, then save this back to the cache to avoid
 			// wasted CPU by other apaches or job runners. We don't want to always save to
 			// cache as this can cause high cache I/O and LRU churn when a template changes.
-			if ( $ellapsed >= self::PARSE_THRESHOLD_SEC
+			if ( $elapsed >= self::PARSE_THRESHOLD_SEC
 				&& $page->isParserCacheUsed( $parserOptions, $revision->getId() )
 				&& $parserOutput->isCacheable()
 			) {
