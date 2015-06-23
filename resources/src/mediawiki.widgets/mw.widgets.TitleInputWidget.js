@@ -64,7 +64,7 @@
 		}
 
 		// Dont send leading ':' to open search
-		if ( value.charAt( 0 ) === ':' ) {
+		if ( value[0] === ':' ) {
 			value = value.slice( 1 );
 		}
 

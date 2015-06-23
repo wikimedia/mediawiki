@@ -234,7 +234,7 @@
 			.replace( rUnderscoreTrim, '' );
 
 		// Process initial colon
-		if ( title !== '' && title.charAt( 0 ) === ':' ) {
+		if ( title !== '' && title[0] === ':' ) {
 			// Initial colon means main namespace instead of specified default
 			namespace = NS_MAIN;
 			title = title
@@ -325,7 +325,7 @@
 		}
 
 		// Any remaining initial :s are illegal.
-		if ( title.charAt( 0 ) === ':' ) {
+		if ( title[0] === ':' ) {
 			return false;
 		}
 
@@ -518,7 +518,7 @@
 		title = $.trim( title.replace( rWhitespace, ' ' ) );
 
 		// Process initial colon
-		if ( title !== '' && title.charAt( 0 ) === ':' ) {
+		if ( title !== '' && title[0] === ':' ) {
 			// Initial colon means main namespace instead of specified default
 			namespace = NS_MAIN;
 			title = title
@@ -784,9 +784,8 @@
 		getName: function () {
 			if ( $.inArray( this.namespace, mw.config.get( 'wgCaseSensitiveNamespaces' ) ) !== -1 ) {
 				return this.title;
-			} else {
-				return this.title.charAt( 0 ).toUpperCase() + this.title.slice( 1 );
 			}
+			return this.title[0].toUpperCase() + this.title.slice( 1 );
 		},
 
 		/**

@@ -228,7 +228,7 @@
 				fname = fname.replace( / /g, '_' );
 				// Capitalise first letter if needed
 				if ( mw.config.get( 'wgCapitalizeUploads' ) ) {
-					fname = fname.charAt( 0 ).toUpperCase().concat( fname.slice( 1 ) );
+					fname = fname[0].toUpperCase() + fname.slice( 1 );
 				}
 
 				// Output result
