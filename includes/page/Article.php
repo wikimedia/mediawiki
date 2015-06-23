@@ -574,7 +574,7 @@ class Article implements Page {
 		}
 
 		# Should the parser cache be used?
-		$useParserCache = $this->mPage->isParserCacheUsed( $parserOptions, $oldid );
+		$useParserCache = $this->mPage->shouldCheckParserCache( $parserOptions, $oldid );
 		wfDebug( 'Article::view using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) . "\n" );
 		if ( $user->getStubThreshold() ) {
 			$this->getContext()->getStats()->increment( 'pcache_miss_stub' );

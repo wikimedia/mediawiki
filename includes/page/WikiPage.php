@@ -1085,7 +1085,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @param int $oldId
 	 * @return bool
 	 */
-	public function isParserCacheUsed( ParserOptions $parserOptions, $oldId ) {
+	public function shouldCheckParserCache( ParserOptions $parserOptions, $oldId ) {
 		return $parserOptions->getStubThreshold() == 0
 			&& $this->exists()
 			&& ( $oldId === null || $oldId === 0 || $oldId === $this->getLatest() )
@@ -1105,7 +1105,7 @@ class WikiPage implements Page, IDBAccessObject {
 	 */
 	public function getParserOutput( ParserOptions $parserOptions, $oldid = null ) {
 
-		$useParserCache = $this->isParserCacheUsed( $parserOptions, $oldid );
+		$useParserCache = $this->shouldCheckParserCache( $parserOptions, $oldid );
 		wfDebug( __METHOD__ . ': using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) . "\n" );
 		if ( $parserOptions->getStubThreshold() ) {
 			wfIncrStats( 'pcache.miss.stub' );
