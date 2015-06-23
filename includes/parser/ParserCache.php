@@ -225,6 +225,10 @@ class ParserCache {
 			$cachedRevId = $value->getCacheRevisionId();
 			wfDebug( "ParserOutput key is for an old revision, latest $revId, cached $cachedRevId\n" );
 			$value = false;
+		} elseif ( Hooks::run( 'RejectParserCacheValue', array( $value, $article, $popts ) === false ) ) {
+			wfIncrStats( 'pcache.miss.rejected' );
+			wfDebug( "ParserOutput key valid, but rejected by RejectParserCacheValue hook handler.\n" );
+			$value = false;
 		} else {
 			wfIncrStats( "pcache.hit" );
 		}
