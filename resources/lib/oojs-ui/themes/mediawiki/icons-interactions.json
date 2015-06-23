@@ -1,6 +1,12 @@
 {
 	"prefix": "oo-ui-icon",
 	"intro": "@import '../../../../src/styles/common';",
+	"variants": {
+		"invert": {
+			"color": "#FFFFFF",
+			"global": true
+		}
+	},
 	"images": {
 		"beta": { "file": "images/icons/beta.svg" },
 		"betaLaunch": { "file": "images/icons/betaLaunch.svg" },

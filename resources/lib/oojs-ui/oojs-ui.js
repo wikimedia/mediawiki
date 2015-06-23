@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.11.5
+ * OOjs UI v0.11.6
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-06-17T00:58:56Z
+ * Date: 2015-06-23T21:49:33Z
  */
 ( function ( OO ) {
 
@@ -349,7 +349,7 @@ OO.ui.mixin = {};
  *
  *     @example
  *     function MessageDialog( config ) {
- *         MessageDialog.super.call( this, config );
+ *         MessageDialog.parent.call( this, config );
  *     }
  *     OO.inheritClass( MessageDialog, OO.ui.MessageDialog );
  *
@@ -359,7 +359,7 @@ OO.ui.mixin = {};
  *     ];
  *
  *     MessageDialog.prototype.initialize = function () {
- *         MessageDialog.super.prototype.initialize.apply( this, arguments );
+ *         MessageDialog.parent.prototype.initialize.apply( this, arguments );
  *         this.content = new OO.ui.PanelLayout( { $: this.$, padded: true } );
  *         this.content.$element.append( '<p>Click the \'Done\' action widget to see its pending state. Note that action widgets can be marked pending in message dialogs but not process dialogs.</p>' );
  *         this.$body.append( this.content.$element );
@@ -377,7 +377,7 @@ OO.ui.mixin = {};
  *                 dialog.getActions().get({actions: 'save'})[0].popPending();
  *             } );
  *         }
- *         return MessageDialog.super.prototype.getActionProcess.call( this, action );
+ *         return MessageDialog.parent.prototype.getActionProcess.call( this, action );
  *     };
  *
  *     var windowManager = new OO.ui.WindowManager();
@@ -484,7 +484,7 @@ OO.ui.mixin.PendingElement.prototype.popPending = function () {
  *     @example
  *     // Example: An action set used in a process dialog
  *     function MyProcessDialog( config ) {
- *         MyProcessDialog.super.call( this, config );
+ *         MyProcessDialog.parent.call( this, config );
  *     }
  *     OO.inheritClass( MyProcessDialog, OO.ui.ProcessDialog );
  *     MyProcessDialog.static.title = 'An action set in a process dialog';
@@ -497,7 +497,7 @@ OO.ui.mixin.PendingElement.prototype.popPending = function () {
  *     ];
  *
  *     MyProcessDialog.prototype.initialize = function () {
- *         MyProcessDialog.super.prototype.initialize.apply( this, arguments );
+ *         MyProcessDialog.parent.prototype.initialize.apply( this, arguments );
  *         this.panel1 = new OO.ui.PanelLayout( { padded: true, expanded: false } );
  *         this.panel1.$element.append( '<p>This dialog uses an action set (continue, help, cancel, back) configured with modes. This is edit mode. Click \'help\' to see help mode.</p>' );
  *         this.panel2 = new OO.ui.PanelLayout( { padded: true, expanded: false } );
@@ -508,7 +508,7 @@ OO.ui.mixin.PendingElement.prototype.popPending = function () {
  *         this.$body.append( this.stackLayout.$element );
  *     };
  *     MyProcessDialog.prototype.getSetupProcess = function ( data ) {
- *         return MyProcessDialog.super.prototype.getSetupProcess.call( this, data )
+ *         return MyProcessDialog.parent.prototype.getSetupProcess.call( this, data )
  *             .next( function () {
  *                 this.actions.setMode( 'edit' );
  *             }, this );
@@ -526,7 +526,7 @@ OO.ui.mixin.PendingElement.prototype.popPending = function () {
  *                 dialog.close();
  *             } );
  *         }
- *         return MyProcessDialog.super.prototype.getActionProcess.call( this, action );
+ *         return MyProcessDialog.parent.prototype.getActionProcess.call( this, action );
  *     };
  *     MyProcessDialog.prototype.getBodyHeight = function () {
  *         return this.panel1.$element.outerHeight( true );
@@ -1749,7 +1749,7 @@ OO.ui.Layout = function OoUiLayout( config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.Layout.super.call( this, config );
+	OO.ui.Layout.parent.call( this, config );
 
 	// Mixin constructors
 	OO.EventEmitter.call( this );
@@ -1783,7 +1783,7 @@ OO.ui.Widget = function OoUiWidget( config ) {
 	config = $.extend( { disabled: false }, config );
 
 	// Parent constructor
-	OO.ui.Widget.super.call( this, config );
+	OO.ui.Widget.parent.call( this, config );
 
 	// Mixin constructors
 	OO.EventEmitter.call( this );
@@ -1929,7 +1929,7 @@ OO.ui.Window = function OoUiWindow( config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.Window.super.call( this, config );
+	OO.ui.Window.parent.call( this, config );
 
 	// Mixin constructors
 	OO.EventEmitter.call( this );
@@ -2518,11 +2518,11 @@ OO.ui.Window.prototype.teardown = function ( data ) {
  *     @example
  *     // A simple dialog window.
  *     function MyDialog( config ) {
- *         MyDialog.super.call( this, config );
+ *         MyDialog.parent.call( this, config );
  *     }
  *     OO.inheritClass( MyDialog, OO.ui.Dialog );
  *     MyDialog.prototype.initialize = function () {
- *         MyDialog.super.prototype.initialize.call( this );
+ *         MyDialog.parent.prototype.initialize.call( this );
  *         this.content = new OO.ui.PanelLayout( { padded: true, expanded: false } );
  *         this.content.$element.append( '<p>A simple dialog window. Press \'Esc\' to close.</p>' );
  *         this.$body.append( this.content.$element );
@@ -2552,7 +2552,7 @@ OO.ui.Window.prototype.teardown = function ( data ) {
  */
 OO.ui.Dialog = function OoUiDialog( config ) {
 	// Parent constructor
-	OO.ui.Dialog.super.call( this, config );
+	OO.ui.Dialog.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.PendingElement.call( this );
@@ -2730,7 +2730,7 @@ OO.ui.Dialog.prototype.getSetupProcess = function ( data ) {
 	data = data || {};
 
 	// Parent method
-	return OO.ui.Dialog.super.prototype.getSetupProcess.call( this, data )
+	return OO.ui.Dialog.parent.prototype.getSetupProcess.call( this, data )
 		.next( function () {
 			var config = this.constructor.static,
 				actions = data.actions !== undefined ? data.actions : config.actions;
@@ -2751,7 +2751,7 @@ OO.ui.Dialog.prototype.getSetupProcess = function ( data ) {
  */
 OO.ui.Dialog.prototype.getTeardownProcess = function ( data ) {
 	// Parent method
-	return OO.ui.Dialog.super.prototype.getTeardownProcess.call( this, data )
+	return OO.ui.Dialog.parent.prototype.getTeardownProcess.call( this, data )
 		.first( function () {
 			if ( this.constructor.static.escapable ) {
 				this.$document.off( 'keydown', this.onDocumentKeyDownHandler );
@@ -2767,7 +2767,7 @@ OO.ui.Dialog.prototype.getTeardownProcess = function ( data ) {
  */
 OO.ui.Dialog.prototype.initialize = function () {
 	// Parent method
-	OO.ui.Dialog.super.prototype.initialize.call( this );
+	OO.ui.Dialog.parent.prototype.initialize.call( this );
 
 	var titleId = OO.ui.generateElementId();
 
@@ -2898,7 +2898,7 @@ OO.ui.WindowManager = function OoUiWindowManager( config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.WindowManager.super.call( this, config );
+	OO.ui.WindowManager.parent.call( this, config );
 
 	// Mixin constructors
 	OO.EventEmitter.call( this );
@@ -3817,7 +3817,7 @@ OO.ui.Process.prototype.next = function ( step, context ) {
  */
 OO.ui.ToolFactory = function OoUiToolFactory() {
 	// Parent constructor
-	OO.ui.ToolFactory.super.call( this );
+	OO.ui.ToolFactory.parent.call( this );
 };
 
 /* Setup */
@@ -6593,7 +6593,7 @@ OO.ui.Tool = function OoUiTool( toolGroup, config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.Tool.super.call( this, config );
+	OO.ui.Tool.parent.call( this, config );
 
 	// Properties
 	this.toolGroup = toolGroup;
@@ -6894,7 +6894,7 @@ OO.ui.Tool.prototype.destroy = function () {
  *
  *     // Create a class inheriting from OO.ui.Tool
  *     function PictureTool() {
- *         PictureTool.super.apply( this, arguments );
+ *         PictureTool.parent.apply( this, arguments );
  *     }
  *     OO.inheritClass( PictureTool, OO.ui.Tool );
  *     // Each tool must have a 'name' (used as an internal identifier, see later) and at least one
@@ -6913,7 +6913,7 @@ OO.ui.Tool.prototype.destroy = function () {
  *
  *     // Register two more tools, nothing interesting here
  *     function SettingsTool() {
- *         SettingsTool.super.apply( this, arguments );
+ *         SettingsTool.parent.apply( this, arguments );
  *     }
  *     OO.inheritClass( SettingsTool, OO.ui.Tool );
  *     SettingsTool.static.name = 'settings';
@@ -6927,7 +6927,7 @@ OO.ui.Tool.prototype.destroy = function () {
  *
  *     // Register two more tools, nothing interesting here
  *     function StuffTool() {
- *         StuffTool.super.apply( this, arguments );
+ *         StuffTool.parent.apply( this, arguments );
  *     }
  *     OO.inheritClass( StuffTool, OO.ui.Tool );
  *     StuffTool.static.name = 'stuff';
@@ -7010,7 +7010,7 @@ OO.ui.Tool.prototype.destroy = function () {
  *
  *     // Create a class inheriting from OO.ui.Tool
  *     function PictureTool() {
- *         PictureTool.super.apply( this, arguments );
+ *         PictureTool.parent.apply( this, arguments );
  *     }
  *     OO.inheritClass( PictureTool, OO.ui.Tool );
  *     // Each tool must have a 'name' (used as an internal identifier, see later) and at least one
@@ -7034,7 +7034,7 @@ OO.ui.Tool.prototype.destroy = function () {
  *
  *     // Register two more tools, nothing interesting here
  *     function SettingsTool() {
- *         SettingsTool.super.apply( this, arguments );
+ *         SettingsTool.parent.apply( this, arguments );
  *         this.reallyActive = false;
  *     }
  *     OO.inheritClass( SettingsTool, OO.ui.Tool );
@@ -7055,7 +7055,7 @@ OO.ui.Tool.prototype.destroy = function () {
  *
  *     // Register two more tools, nothing interesting here
  *     function StuffTool() {
- *         StuffTool.super.apply( this, arguments );
+ *         StuffTool.parent.apply( this, arguments );
  *         this.reallyActive = false;
  *     }
  *     OO.inheritClass( StuffTool, OO.ui.Tool );
@@ -7153,7 +7153,7 @@ OO.ui.Toolbar = function OoUiToolbar( toolFactory, toolGroupFactory, config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.Toolbar.super.call( this, config );
+	OO.ui.Toolbar.parent.call( this, config );
 
 	// Mixin constructors
 	OO.EventEmitter.call( this );
@@ -7416,7 +7416,7 @@ OO.ui.ToolGroup = function OoUiToolGroup( toolbar, config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.ToolGroup.super.call( this, config );
+	OO.ui.ToolGroup.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.GroupElement.call( this, config );
@@ -7506,7 +7506,7 @@ OO.ui.ToolGroup.static.autoDisable = true;
  * @inheritdoc
  */
 OO.ui.ToolGroup.prototype.isDisabled = function () {
-	return this.autoDisabled || OO.ui.ToolGroup.super.prototype.isDisabled.apply( this, arguments );
+	return this.autoDisabled || OO.ui.ToolGroup.parent.prototype.isDisabled.apply( this, arguments );
 };
 
 /**
@@ -7525,7 +7525,7 @@ OO.ui.ToolGroup.prototype.updateDisabled = function () {
 		}
 		this.autoDisabled = allDisabled;
 	}
-	OO.ui.ToolGroup.super.prototype.updateDisabled.apply( this, arguments );
+	OO.ui.ToolGroup.parent.prototype.updateDisabled.apply( this, arguments );
 };
 
 /**
@@ -7776,7 +7776,7 @@ OO.ui.ToolGroup.prototype.destroy = function () {
  */
 OO.ui.MessageDialog = function OoUiMessageDialog( config ) {
 	// Parent constructor
-	OO.ui.MessageDialog.super.call( this, config );
+	OO.ui.MessageDialog.parent.call( this, config );
 
 	// Properties
 	this.verticalActionLayout = null;
@@ -7832,7 +7832,7 @@ OO.ui.MessageDialog.static.actions = [
  * @inheritdoc
  */
 OO.ui.MessageDialog.prototype.setManager = function ( manager ) {
-	OO.ui.MessageDialog.super.prototype.setManager.call( this, manager );
+	OO.ui.MessageDialog.parent.prototype.setManager.call( this, manager );
 
 	// Events
 	this.manager.connect( this, {
@@ -7847,7 +7847,7 @@ OO.ui.MessageDialog.prototype.setManager = function ( manager ) {
  */
 OO.ui.MessageDialog.prototype.onActionResize = function ( action ) {
 	this.fitActions();
-	return OO.ui.MessageDialog.super.prototype.onActionResize.call( this, action );
+	return OO.ui.MessageDialog.parent.prototype.onActionResize.call( this, action );
 };
 
 /**
@@ -7894,7 +7894,7 @@ OO.ui.MessageDialog.prototype.getActionProcess = function ( action ) {
 			this.close( { action: action } );
 		}, this );
 	}
-	return OO.ui.MessageDialog.super.prototype.getActionProcess.call( this, action );
+	return OO.ui.MessageDialog.parent.prototype.getActionProcess.call( this, action );
 };
 
 /**
@@ -7911,7 +7911,7 @@ OO.ui.MessageDialog.prototype.getSetupProcess = function ( data ) {
 	data = data || {};
 
 	// Parent method
-	return OO.ui.MessageDialog.super.prototype.getSetupProcess.call( this, data )
+	return OO.ui.MessageDialog.parent.prototype.getSetupProcess.call( this, data )
 		.next( function () {
 			this.title.setLabel(
 				data.title !== undefined ? data.title : this.constructor.static.title
@@ -7949,7 +7949,7 @@ OO.ui.MessageDialog.prototype.getBodyHeight = function () {
  */
 OO.ui.MessageDialog.prototype.setDimensions = function ( dim ) {
 	var $scrollable = this.container.$element;
-	OO.ui.MessageDialog.super.prototype.setDimensions.call( this, dim );
+	OO.ui.MessageDialog.parent.prototype.setDimensions.call( this, dim );
 
 	// Twiddle the overflow property, otherwise an unnecessary scrollbar will be produced.
 	// Need to do it after transition completes (250ms), add 50ms just in case.
@@ -7970,7 +7970,7 @@ OO.ui.MessageDialog.prototype.setDimensions = function ( dim ) {
  */
 OO.ui.MessageDialog.prototype.initialize = function () {
 	// Parent method
-	OO.ui.MessageDialog.super.prototype.initialize.call( this );
+	OO.ui.MessageDialog.parent.prototype.initialize.call( this );
 
 	// Properties
 	this.$actions = $( '<div>' );
@@ -8001,7 +8001,7 @@ OO.ui.MessageDialog.prototype.attachActions = function () {
 	var i, len, other, special, others;
 
 	// Parent method
-	OO.ui.MessageDialog.super.prototype.attachActions.call( this );
+	OO.ui.MessageDialog.parent.prototype.attachActions.call( this );
 
 	special = this.actions.getSpecial();
 	others = this.actions.getOthers();
@@ -8077,7 +8077,7 @@ OO.ui.MessageDialog.prototype.fitActions = function () {
  *     @example
  *     // Example: Creating and opening a process dialog window.
  *     function MyProcessDialog( config ) {
- *         MyProcessDialog.super.call( this, config );
+ *         MyProcessDialog.parent.call( this, config );
  *     }
  *     OO.inheritClass( MyProcessDialog, OO.ui.ProcessDialog );
  *
@@ -8088,7 +8088,7 @@ OO.ui.MessageDialog.prototype.fitActions = function () {
  *     ];
  *
  *     MyProcessDialog.prototype.initialize = function () {
- *         MyProcessDialog.super.prototype.initialize.apply( this, arguments );
+ *         MyProcessDialog.parent.prototype.initialize.apply( this, arguments );
  *         this.content = new OO.ui.PanelLayout( { padded: true, expanded: false } );
  *         this.content.$element.append( '<p>This is a process dialog window. The header contains the title and two buttons: \'Cancel\' (a safe action) on the left and \'Done\' (a primary action)  on the right.</p>' );
  *         this.$body.append( this.content.$element );
@@ -8100,7 +8100,7 @@ OO.ui.MessageDialog.prototype.fitActions = function () {
  *                 dialog.close( { action: action } );
  *             } );
  *         }
- *         return MyProcessDialog.super.prototype.getActionProcess.call( this, action );
+ *         return MyProcessDialog.parent.prototype.getActionProcess.call( this, action );
  *     };
  *
  *     var windowManager = new OO.ui.WindowManager();
@@ -8121,7 +8121,7 @@ OO.ui.MessageDialog.prototype.fitActions = function () {
  */
 OO.ui.ProcessDialog = function OoUiProcessDialog( config ) {
 	// Parent constructor
-	OO.ui.ProcessDialog.super.call( this, config );
+	OO.ui.ProcessDialog.parent.call( this, config );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-processDialog' );
@@ -8163,7 +8163,7 @@ OO.ui.ProcessDialog.prototype.onActionResize = function ( action ) {
 	if ( this.actions.isSpecial( action ) ) {
 		this.fitLabel();
 	}
-	return OO.ui.ProcessDialog.super.prototype.onActionResize.call( this, action );
+	return OO.ui.ProcessDialog.parent.prototype.onActionResize.call( this, action );
 };
 
 /**
@@ -8171,7 +8171,7 @@ OO.ui.ProcessDialog.prototype.onActionResize = function ( action ) {
  */
 OO.ui.ProcessDialog.prototype.initialize = function () {
 	// Parent method
-	OO.ui.ProcessDialog.super.prototype.initialize.call( this );
+	OO.ui.ProcessDialog.parent.prototype.initialize.call( this );
 
 	// Properties
 	this.$navigation = $( '<div>' );
@@ -8234,7 +8234,7 @@ OO.ui.ProcessDialog.prototype.attachActions = function () {
 	var i, len, other, special, others;
 
 	// Parent method
-	OO.ui.ProcessDialog.super.prototype.attachActions.call( this );
+	OO.ui.ProcessDialog.parent.prototype.attachActions.call( this );
 
 	special = this.actions.getSpecial();
 	others = this.actions.getOthers();
@@ -8258,7 +8258,7 @@ OO.ui.ProcessDialog.prototype.attachActions = function () {
  */
 OO.ui.ProcessDialog.prototype.executeAction = function ( action ) {
 	var process = this;
-	return OO.ui.ProcessDialog.super.prototype.executeAction.call( this, action )
+	return OO.ui.ProcessDialog.parent.prototype.executeAction.call( this, action )
 		.fail( function ( errors ) {
 			process.showErrors( errors || [] );
 		} );
@@ -8369,7 +8369,7 @@ OO.ui.ProcessDialog.prototype.hideErrors = function () {
  */
 OO.ui.ProcessDialog.prototype.getTeardownProcess = function ( data ) {
 	// Parent method
-	return OO.ui.ProcessDialog.super.prototype.getTeardownProcess.call( this, data )
+	return OO.ui.ProcessDialog.parent.prototype.getTeardownProcess.call( this, data )
 		.first( function () {
 			// Make sure to hide errors
 			this.hideErrors();
@@ -8420,7 +8420,7 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	config = $.extend( { align: 'left' }, config );
 
 	// Parent constructor
-	OO.ui.FieldLayout.super.call( this, config );
+	OO.ui.FieldLayout.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.LabelElement.call( this, config );
@@ -8592,7 +8592,7 @@ OO.ui.ActionFieldLayout = function OoUiActionFieldLayout( fieldWidget, buttonWid
 	}
 
 	// Parent constructor
-	OO.ui.ActionFieldLayout.super.call( this, fieldWidget, config );
+	OO.ui.ActionFieldLayout.parent.call( this, fieldWidget, config );
 
 	// Properties
 	this.buttonWidget = buttonWidget;
@@ -8663,7 +8663,7 @@ OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.FieldsetLayout.super.call( this, config );
+	OO.ui.FieldsetLayout.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.IconElement.call( this, config );
@@ -8770,7 +8770,7 @@ OO.ui.FormLayout = function OoUiFormLayout( config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.FormLayout.super.call( this, config );
+	OO.ui.FormLayout.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.GroupElement.call( this, $.extend( {}, config, { $group: this.$element } ) );
@@ -8896,7 +8896,7 @@ OO.ui.MenuLayout = function OoUiMenuLayout( config ) {
 	}, config );
 
 	// Parent constructor
-	OO.ui.MenuLayout.super.call( this, config );
+	OO.ui.MenuLayout.parent.call( this, config );
 
 	/**
 	 * Menu DOM node
@@ -8993,7 +8993,7 @@ OO.ui.MenuLayout.prototype.getMenuPosition = function () {
  *     // Example of a BookletLayout that contains two PageLayouts.
  *
  *     function PageOneLayout( name, config ) {
- *         PageOneLayout.super.call( this, name, config );
+ *         PageOneLayout.parent.call( this, name, config );
  *         this.$element.append( '<p>First page</p><p>(This booklet has an outline, displayed on the left)</p>' );
  *     }
  *     OO.inheritClass( PageOneLayout, OO.ui.PageLayout );
@@ -9002,7 +9002,7 @@ OO.ui.MenuLayout.prototype.getMenuPosition = function () {
  *     };
  *
  *     function PageTwoLayout( name, config ) {
- *         PageTwoLayout.super.call( this, name, config );
+ *         PageTwoLayout.parent.call( this, name, config );
  *         this.$element.append( '<p>Second page</p>' );
  *     }
  *     OO.inheritClass( PageTwoLayout, OO.ui.PageLayout );
@@ -9035,7 +9035,7 @@ OO.ui.BookletLayout = function OoUiBookletLayout( config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.BookletLayout.super.call( this, config );
+	OO.ui.BookletLayout.parent.call( this, config );
 
 	// Properties
 	this.currentPageName = null;
@@ -9536,7 +9536,7 @@ OO.ui.BookletLayout.prototype.selectFirstSelectablePage = function () {
  *     // Example of a IndexLayout that contains two CardLayouts.
  *
  *     function CardOneLayout( name, config ) {
- *         CardOneLayout.super.call( this, name, config );
+ *         CardOneLayout.parent.call( this, name, config );
  *         this.$element.append( '<p>First card</p>' );
  *     }
  *     OO.inheritClass( CardOneLayout, OO.ui.CardLayout );
@@ -9545,7 +9545,7 @@ OO.ui.BookletLayout.prototype.selectFirstSelectablePage = function () {
  *     };
  *
  *     function CardTwoLayout( name, config ) {
- *         CardTwoLayout.super.call( this, name, config );
+ *         CardTwoLayout.parent.call( this, name, config );
  *         this.$element.append( '<p>Second card</p>' );
  *     }
  *     OO.inheritClass( CardTwoLayout, OO.ui.CardLayout );
@@ -9574,7 +9574,7 @@ OO.ui.IndexLayout = function OoUiIndexLayout( config ) {
 	config = $.extend( {}, config, { menuPosition: 'top' } );
 
 	// Parent constructor
-	OO.ui.IndexLayout.super.call( this, config );
+	OO.ui.IndexLayout.parent.call( this, config );
 
 	// Properties
 	this.currentCardName = null;
@@ -10010,7 +10010,7 @@ OO.ui.PanelLayout = function OoUiPanelLayout( config ) {
 	}, config );
 
 	// Parent constructor
-	OO.ui.PanelLayout.super.call( this, config );
+	OO.ui.PanelLayout.parent.call( this, config );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-panelLayout' );
@@ -10059,7 +10059,7 @@ OO.ui.CardLayout = function OoUiCardLayout( name, config ) {
 	config = $.extend( { scrollable: true }, config );
 
 	// Parent constructor
-	OO.ui.CardLayout.super.call( this, config );
+	OO.ui.CardLayout.parent.call( this, config );
 
 	// Properties
 	this.name = name;
@@ -10198,7 +10198,7 @@ OO.ui.PageLayout = function OoUiPageLayout( name, config ) {
 	config = $.extend( { scrollable: true }, config );
 
 	// Parent constructor
-	OO.ui.PageLayout.super.call( this, config );
+	OO.ui.PageLayout.parent.call( this, config );
 
 	// Properties
 	this.name = name;
@@ -10348,7 +10348,7 @@ OO.ui.StackLayout = function OoUiStackLayout( config ) {
 	config = $.extend( { scrollable: true }, config );
 
 	// Parent constructor
-	OO.ui.StackLayout.super.call( this, config );
+	OO.ui.StackLayout.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.GroupElement.call( this, $.extend( {}, config, { $group: this.$element } ) );
@@ -10548,7 +10548,7 @@ OO.ui.StackLayout.prototype.updateHiddenState = function ( items, selectedItem )
  *
  *     // Create a class inheriting from OO.ui.Tool
  *     function PictureTool() {
- *         PictureTool.super.apply( this, arguments );
+ *         PictureTool.parent.apply( this, arguments );
  *     }
  *     OO.inheritClass( PictureTool, OO.ui.Tool );
  *     // Each tool must have a 'name' (used as an internal identifier, see later) and at least one
@@ -10630,7 +10630,7 @@ OO.ui.BarToolGroup = function OoUiBarToolGroup( toolbar, config ) {
 	}
 
 	// Parent constructor
-	OO.ui.BarToolGroup.super.call( this, toolbar, config );
+	OO.ui.BarToolGroup.parent.call( this, toolbar, config );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-barToolGroup' );
@@ -10679,7 +10679,7 @@ OO.ui.PopupToolGroup = function OoUiPopupToolGroup( toolbar, config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.PopupToolGroup.super.call( this, toolbar, config );
+	OO.ui.PopupToolGroup.parent.call( this, toolbar, config );
 
 	// Properties
 	this.active = false;
@@ -10739,7 +10739,7 @@ OO.mixinClass( OO.ui.PopupToolGroup, OO.ui.mixin.TabIndexedElement );
  */
 OO.ui.PopupToolGroup.prototype.setDisabled = function () {
 	// Parent method
-	OO.ui.PopupToolGroup.super.prototype.setDisabled.apply( this, arguments );
+	OO.ui.PopupToolGroup.parent.prototype.setDisabled.apply( this, arguments );
 
 	if ( this.isDisabled() && this.isElementAttached() ) {
 		this.setActive( false );
@@ -10772,7 +10772,7 @@ OO.ui.PopupToolGroup.prototype.onMouseKeyUp = function ( e ) {
 	) {
 		this.setActive( false );
 	}
-	return OO.ui.PopupToolGroup.super.prototype.onMouseKeyUp.call( this, e );
+	return OO.ui.PopupToolGroup.parent.prototype.onMouseKeyUp.call( this, e );
 };
 
 /**
@@ -10865,7 +10865,7 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
  *
  *     // Configure and register two tools
  *     function SettingsTool() {
- *         SettingsTool.super.apply( this, arguments );
+ *         SettingsTool.parent.apply( this, arguments );
  *     }
  *     OO.inheritClass( SettingsTool, OO.ui.Tool );
  *     SettingsTool.static.name = 'settings';
@@ -10877,7 +10877,7 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
  *     toolFactory.register( SettingsTool );
  *     // Register two more tools, nothing interesting here
  *     function StuffTool() {
- *         StuffTool.super.apply( this, arguments );
+ *         StuffTool.parent.apply( this, arguments );
  *     }
  *     OO.inheritClass( StuffTool, OO.ui.Tool );
  *     StuffTool.static.name = 'stuff';
@@ -10951,7 +10951,7 @@ OO.ui.ListToolGroup = function OoUiListToolGroup( toolbar, config ) {
 	this.collapsibleTools = [];
 
 	// Parent constructor
-	OO.ui.ListToolGroup.super.call( this, toolbar, config );
+	OO.ui.ListToolGroup.parent.call( this, toolbar, config );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-listToolGroup' );
@@ -10973,7 +10973,7 @@ OO.ui.ListToolGroup.static.name = 'list';
 OO.ui.ListToolGroup.prototype.populate = function () {
 	var i, len, allowCollapse = [];
 
-	OO.ui.ListToolGroup.super.prototype.populate.call( this );
+	OO.ui.ListToolGroup.parent.prototype.populate.call( this );
 
 	// Update the list of collapsible tools
 	if ( this.allowCollapse !== undefined ) {
@@ -10999,7 +10999,7 @@ OO.ui.ListToolGroup.prototype.populate = function () {
 OO.ui.ListToolGroup.prototype.getExpandCollapseTool = function () {
 	if ( this.expandCollapseTool === undefined ) {
 		var ExpandCollapseTool = function () {
-			ExpandCollapseTool.super.apply( this, arguments );
+			ExpandCollapseTool.parent.apply( this, arguments );
 		};
 
 		OO.inheritClass( ExpandCollapseTool, OO.ui.Tool );
@@ -11031,9 +11031,9 @@ OO.ui.ListToolGroup.prototype.onMouseKeyUp = function ( e ) {
 	) {
 		// HACK: Prevent the popup list from being hidden. Skip the PopupToolGroup implementation (which
 		// hides the popup list when a tool is selected) and call ToolGroup's implementation directly.
-		return OO.ui.ListToolGroup.super.super.prototype.onMouseKeyUp.call( this, e );
+		return OO.ui.ListToolGroup.parent.parent.prototype.onMouseKeyUp.call( this, e );
 	} else {
-		return OO.ui.ListToolGroup.super.prototype.onMouseKeyUp.call( this, e );
+		return OO.ui.ListToolGroup.parent.prototype.onMouseKeyUp.call( this, e );
 	}
 };
 
@@ -11073,7 +11073,7 @@ OO.ui.ListToolGroup.prototype.updateCollapsibleState = function () {
  *     // Define the tools that we're going to place in our toolbar
  *
  *     function SettingsTool() {
- *         SettingsTool.super.apply( this, arguments );
+ *         SettingsTool.parent.apply( this, arguments );
  *         this.reallyActive = false;
  *     }
  *     OO.inheritClass( SettingsTool, OO.ui.Tool );
@@ -11093,7 +11093,7 @@ OO.ui.ListToolGroup.prototype.updateCollapsibleState = function () {
  *     toolFactory.register( SettingsTool );
  *
  *     function StuffTool() {
- *         StuffTool.super.apply( this, arguments );
+ *         StuffTool.parent.apply( this, arguments );
  *         this.reallyActive = false;
  *     }
  *     OO.inheritClass( StuffTool, OO.ui.Tool );
@@ -11167,7 +11167,7 @@ OO.ui.MenuToolGroup = function OoUiMenuToolGroup( toolbar, config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.MenuToolGroup.super.call( this, toolbar, config );
+	OO.ui.MenuToolGroup.parent.call( this, toolbar, config );
 
 	// Events
 	this.toolbar.connect( this, { updateState: 'onUpdateState' } );
@@ -11250,7 +11250,7 @@ OO.ui.PopupTool = function OoUiPopupTool( toolGroup, config ) {
 	}
 
 	// Parent constructor
-	OO.ui.PopupTool.super.call( this, toolGroup, config );
+	OO.ui.PopupTool.parent.call( this, toolGroup, config );
 
 	// Mixin constructors
 	OO.ui.mixin.PopupElement.call( this, config );
@@ -11300,7 +11300,7 @@ OO.ui.PopupTool.prototype.onUpdateState = function () {
  *     // Example: ToolGroupTool with two nested tools, 'setting1' and 'setting2', defined elsewhere.
  *
  *     function SettingsTool() {
- *         SettingsTool.super.apply( this, arguments );
+ *         SettingsTool.parent.apply( this, arguments );
  *     };
  *     OO.inheritClass( SettingsTool, OO.ui.ToolGroupTool );
  *     SettingsTool.static.name = 'settings';
@@ -11335,7 +11335,7 @@ OO.ui.ToolGroupTool = function OoUiToolGroupTool( toolGroup, config ) {
 	}
 
 	// Parent constructor
-	OO.ui.ToolGroupTool.super.call( this, toolGroup, config );
+	OO.ui.ToolGroupTool.parent.call( this, toolGroup, config );
 
 	// Properties
 	this.innerToolGroup = this.createGroup( this.constructor.static.groupConfig );
@@ -11431,7 +11431,7 @@ OO.ui.ToolGroupTool.prototype.createGroup = function ( group ) {
  */
 OO.ui.mixin.GroupWidget = function OoUiMixinGroupWidget( config ) {
 	// Parent constructor
-	OO.ui.mixin.GroupWidget.super.call( this, config );
+	OO.ui.mixin.GroupWidget.parent.call( this, config );
 };
 
 /* Setup */
@@ -11542,7 +11542,7 @@ OO.ui.OutlineControlsWidget = function OoUiOutlineControlsWidget( outline, confi
 	config = $.extend( { icon: 'add' }, config );
 
 	// Parent constructor
-	OO.ui.OutlineControlsWidget.super.call( this, config );
+	OO.ui.OutlineControlsWidget.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.GroupElement.call( this, config );
@@ -11678,7 +11678,7 @@ OO.ui.ToggleWidget = function OoUiToggleWidget( config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.ToggleWidget.super.call( this, config );
+	OO.ui.ToggleWidget.parent.call( this, config );
 
 	// Properties
 	this.value = null;
@@ -11769,7 +11769,7 @@ OO.ui.ButtonGroupWidget = function OoUiButtonGroupWidget( config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.ButtonGroupWidget.super.call( this, config );
+	OO.ui.ButtonGroupWidget.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.GroupElement.call( this, $.extend( {}, config, { $group: this.$element } ) );
@@ -11826,7 +11826,7 @@ OO.ui.ButtonWidget = function OoUiButtonWidget( config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.ButtonWidget.super.call( this, config );
+	OO.ui.ButtonWidget.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.ButtonElement.call( this, config );
@@ -12030,7 +12030,7 @@ OO.ui.ActionWidget = function OoUiActionWidget( config ) {
 	config = $.extend( { framed: false }, config );
 
 	// Parent constructor
-	OO.ui.ActionWidget.super.call( this, config );
+	OO.ui.ActionWidget.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.PendingElement.call( this, config );
@@ -12167,7 +12167,7 @@ OO.ui.ActionWidget.prototype.clearFlags = function () {
  */
 OO.ui.ActionWidget.prototype.toggle = function () {
 	// Parent method
-	OO.ui.ActionWidget.super.prototype.toggle.apply( this, arguments );
+	OO.ui.ActionWidget.parent.prototype.toggle.apply( this, arguments );
 	this.propagateResize();
 
 	return this;
@@ -12200,7 +12200,7 @@ OO.ui.ActionWidget.prototype.toggle = function () {
  */
 OO.ui.PopupButtonWidget = function OoUiPopupButtonWidget( config ) {
 	// Parent constructor
-	OO.ui.PopupButtonWidget.super.call( this, config );
+	OO.ui.PopupButtonWidget.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.PopupElement.call( this, config );
@@ -12273,7 +12273,7 @@ OO.ui.ToggleButtonWidget = function OoUiToggleButtonWidget( config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.ToggleButtonWidget.super.call( this, config );
+	OO.ui.ToggleButtonWidget.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.ButtonElement.call( this, config );
@@ -12330,7 +12330,7 @@ OO.ui.ToggleButtonWidget.prototype.setValue = function ( value ) {
 	}
 
 	// Parent method
-	OO.ui.ToggleButtonWidget.super.prototype.setValue.call( this, value );
+	OO.ui.ToggleButtonWidget.parent.prototype.setValue.call( this, value );
 
 	return this;
 };
@@ -12399,7 +12399,7 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 	config = $.extend( { indicator: 'down' }, config );
 
 	// Parent constructor
-	OO.ui.DropdownWidget.super.call( this, config );
+	OO.ui.DropdownWidget.parent.call( this, config );
 
 	// Properties (must be set before TabIndexedElement constructor call)
 	this.$handle = this.$( '<span>' );
@@ -12542,7 +12542,7 @@ OO.ui.SelectFileWidget = function OoUiSelectFileWidget( config ) {
 	}, config );
 
 	// Parent constructor
-	OO.ui.SelectFileWidget.super.call( this, config );
+	OO.ui.SelectFileWidget.parent.call( this, config );
 
 	// Properties (must be set before TabIndexedElement constructor call)
 	this.$handle = $( '<span>' );
@@ -12879,7 +12879,7 @@ OO.ui.SelectFileWidget.prototype.onDrop = function ( e ) {
  * @inheritdoc
  */
 OO.ui.SelectFileWidget.prototype.setDisabled = function ( state ) {
-	OO.ui.SelectFileWidget.super.prototype.setDisabled.call( this, state );
+	OO.ui.SelectFileWidget.parent.prototype.setDisabled.call( this, state );
 	if ( this.clearButton ) {
 		this.clearButton.setDisabled( state );
 	}
@@ -12919,7 +12919,7 @@ OO.ui.IconWidget = function OoUiIconWidget( config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.IconWidget.super.call( this, config );
+	OO.ui.IconWidget.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.IconElement.call( this, $.extend( {}, config, { $icon: this.$element } ) );
@@ -12974,7 +12974,7 @@ OO.ui.IndicatorWidget = function OoUiIndicatorWidget( config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.IndicatorWidget.super.call( this, config );
+	OO.ui.IndicatorWidget.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.IndicatorElement.call( this, $.extend( {}, config, { $indicator: this.$element } ) );
@@ -13020,7 +13020,7 @@ OO.ui.InputWidget = function OoUiInputWidget( config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.InputWidget.super.call( this, config );
+	OO.ui.InputWidget.parent.call( this, config );
 
 	// Properties
 	this.$input = this.getInputElement( config );
@@ -13179,7 +13179,7 @@ OO.ui.InputWidget.prototype.simulateLabelClick = function () {
  * @inheritdoc
  */
 OO.ui.InputWidget.prototype.setDisabled = function ( state ) {
-	OO.ui.InputWidget.super.prototype.setDisabled.call( this, state );
+	OO.ui.InputWidget.parent.prototype.setDisabled.call( this, state );
 	if ( this.$input ) {
 		this.$input.prop( 'disabled', this.isDisabled() );
 	}
@@ -13248,7 +13248,7 @@ OO.ui.ButtonInputWidget = function OoUiButtonInputWidget( config ) {
 	this.useInputTag = config.useInputTag;
 
 	// Parent constructor
-	OO.ui.ButtonInputWidget.super.call( this, config );
+	OO.ui.ButtonInputWidget.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.ButtonElement.call( this, $.extend( {}, config, { $button: this.$input } ) );
@@ -13325,7 +13325,7 @@ OO.ui.ButtonInputWidget.prototype.setLabel = function ( label ) {
  */
 OO.ui.ButtonInputWidget.prototype.setValue = function ( value ) {
 	if ( !this.useInputTag ) {
-		OO.ui.ButtonInputWidget.super.prototype.setValue.call( this, value );
+		OO.ui.ButtonInputWidget.parent.prototype.setValue.call( this, value );
 	}
 	return this;
 };
@@ -13376,7 +13376,7 @@ OO.ui.CheckboxInputWidget = function OoUiCheckboxInputWidget( config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.CheckboxInputWidget.super.call( this, config );
+	OO.ui.CheckboxInputWidget.parent.call( this, config );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-checkboxInputWidget' );
@@ -13481,7 +13481,7 @@ OO.ui.DropdownInputWidget = function OoUiDropdownInputWidget( config ) {
 	this.dropdownWidget = new OO.ui.DropdownWidget();
 
 	// Parent constructor
-	OO.ui.DropdownInputWidget.super.call( this, config );
+	OO.ui.DropdownInputWidget.parent.call( this, config );
 
 	// Events
 	this.dropdownWidget.getMenu().connect( this, { select: 'onMenuSelect' } );
@@ -13522,7 +13522,7 @@ OO.ui.DropdownInputWidget.prototype.onMenuSelect = function ( item ) {
  */
 OO.ui.DropdownInputWidget.prototype.setValue = function ( value ) {
 	this.dropdownWidget.getMenu().selectItemByData( value );
-	OO.ui.DropdownInputWidget.super.prototype.setValue.call( this, value );
+	OO.ui.DropdownInputWidget.parent.prototype.setValue.call( this, value );
 	return this;
 };
 
@@ -13531,7 +13531,7 @@ OO.ui.DropdownInputWidget.prototype.setValue = function ( value ) {
  */
 OO.ui.DropdownInputWidget.prototype.setDisabled = function ( state ) {
 	this.dropdownWidget.setDisabled( state );
-	OO.ui.DropdownInputWidget.super.prototype.setDisabled.call( this, state );
+	OO.ui.DropdownInputWidget.parent.prototype.setDisabled.call( this, state );
 	return this;
 };
 
@@ -13630,7 +13630,7 @@ OO.ui.RadioInputWidget = function OoUiRadioInputWidget( config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.RadioInputWidget.super.call( this, config );
+	OO.ui.RadioInputWidget.parent.call( this, config );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-radioInputWidget' );
@@ -13715,7 +13715,7 @@ OO.ui.RadioSelectInputWidget = function OoUiRadioSelectInputWidget( config ) {
 	this.radioSelectWidget = new OO.ui.RadioSelectWidget();
 
 	// Parent constructor
-	OO.ui.RadioSelectInputWidget.super.call( this, config );
+	OO.ui.RadioSelectInputWidget.parent.call( this, config );
 
 	// Events
 	this.radioSelectWidget.connect( this, { select: 'onMenuSelect' } );
@@ -13760,7 +13760,7 @@ OO.ui.RadioSelectInputWidget.prototype.onMenuSelect = function ( item ) {
  */
 OO.ui.RadioSelectInputWidget.prototype.setValue = function ( value ) {
 	this.radioSelectWidget.selectItemByData( value );
-	OO.ui.RadioSelectInputWidget.super.prototype.setValue.call( this, value );
+	OO.ui.RadioSelectInputWidget.parent.prototype.setValue.call( this, value );
 	return this;
 };
 
@@ -13769,7 +13769,7 @@ OO.ui.RadioSelectInputWidget.prototype.setValue = function ( value ) {
  */
 OO.ui.RadioSelectInputWidget.prototype.setDisabled = function ( state ) {
 	this.radioSelectWidget.setDisabled( state );
-	OO.ui.RadioSelectInputWidget.super.prototype.setDisabled.call( this, state );
+	OO.ui.RadioSelectInputWidget.parent.prototype.setDisabled.call( this, state );
 	return this;
 };
 
@@ -13863,7 +13863,7 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	}, config );
 
 	// Parent constructor
-	OO.ui.TextInputWidget.super.call( this, config );
+	OO.ui.TextInputWidget.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.IconElement.call( this, config );
@@ -14409,7 +14409,7 @@ OO.ui.ComboBoxWidget = function OoUiComboBoxWidget( config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.ComboBoxWidget.super.call( this, config );
+	OO.ui.ComboBoxWidget.parent.call( this, config );
 
 	// Properties (must be set before TabIndexedElement constructor call)
 	this.$indicator = this.$( '<span>' );
@@ -14573,7 +14573,7 @@ OO.ui.ComboBoxWidget.prototype.onMenuItemsChange = function () {
  */
 OO.ui.ComboBoxWidget.prototype.setDisabled = function ( disabled ) {
 	// Parent method
-	OO.ui.ComboBoxWidget.super.prototype.setDisabled.call( this, disabled );
+	OO.ui.ComboBoxWidget.parent.prototype.setDisabled.call( this, disabled );
 
 	if ( this.input ) {
 		this.input.setDisabled( this.isDisabled() );
@@ -14629,7 +14629,7 @@ OO.ui.LabelWidget = function OoUiLabelWidget( config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.LabelWidget.super.call( this, config );
+	OO.ui.LabelWidget.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.LabelElement.call( this, $.extend( {}, config, { $label: this.$element } ) );
@@ -14691,7 +14691,7 @@ OO.ui.OptionWidget = function OoUiOptionWidget( config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.OptionWidget.super.call( this, config );
+	OO.ui.OptionWidget.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.ItemWidget.call( this );
@@ -14885,7 +14885,7 @@ OO.ui.OptionWidget.prototype.setPressed = function ( state ) {
  */
 OO.ui.DecoratedOptionWidget = function OoUiDecoratedOptionWidget( config ) {
 	// Parent constructor
-	OO.ui.DecoratedOptionWidget.super.call( this, config );
+	OO.ui.DecoratedOptionWidget.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.IconElement.call( this, config );
@@ -14925,7 +14925,7 @@ OO.ui.ButtonOptionWidget = function OoUiButtonOptionWidget( config ) {
 	config = $.extend( { tabIndex: -1 }, config );
 
 	// Parent constructor
-	OO.ui.ButtonOptionWidget.super.call( this, config );
+	OO.ui.ButtonOptionWidget.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.ButtonElement.call( this, config );
@@ -14956,7 +14956,7 @@ OO.ui.ButtonOptionWidget.static.highlightable = false;
  * @inheritdoc
  */
 OO.ui.ButtonOptionWidget.prototype.setSelected = function ( state ) {
-	OO.ui.ButtonOptionWidget.super.prototype.setSelected.call( this, state );
+	OO.ui.ButtonOptionWidget.parent.prototype.setSelected.call( this, state );
 
 	if ( this.constructor.static.selectable ) {
 		this.setActive( state );
@@ -14986,7 +14986,7 @@ OO.ui.RadioOptionWidget = function OoUiRadioOptionWidget( config ) {
 	this.radio = new OO.ui.RadioInputWidget( { value: config.data, tabIndex: -1 } );
 
 	// Parent constructor
-	OO.ui.RadioOptionWidget.super.call( this, config );
+	OO.ui.RadioOptionWidget.parent.call( this, config );
 
 	// Events
 	this.radio.$input.on( 'focus', this.onInputFocus.bind( this ) );
@@ -15026,7 +15026,7 @@ OO.ui.RadioOptionWidget.prototype.onInputFocus = function () {
  * @inheritdoc
  */
 OO.ui.RadioOptionWidget.prototype.setSelected = function ( state ) {
-	OO.ui.RadioOptionWidget.super.prototype.setSelected.call( this, state );
+	OO.ui.RadioOptionWidget.parent.prototype.setSelected.call( this, state );
 
 	this.radio.setSelected( state );
 
@@ -15037,7 +15037,7 @@ OO.ui.RadioOptionWidget.prototype.setSelected = function ( state ) {
  * @inheritdoc
  */
 OO.ui.RadioOptionWidget.prototype.setDisabled = function ( disabled ) {
-	OO.ui.RadioOptionWidget.super.prototype.setDisabled.call( this, disabled );
+	OO.ui.RadioOptionWidget.parent.prototype.setDisabled.call( this, disabled );
 
 	this.radio.setDisabled( this.isDisabled() );
 
@@ -15062,7 +15062,7 @@ OO.ui.MenuOptionWidget = function OoUiMenuOptionWidget( config ) {
 	config = $.extend( { icon: 'check' }, config );
 
 	// Parent constructor
-	OO.ui.MenuOptionWidget.super.call( this, config );
+	OO.ui.MenuOptionWidget.parent.call( this, config );
 
 	// Initialization
 	this.$element
@@ -15118,7 +15118,7 @@ OO.ui.MenuOptionWidget.static.scrollIntoViewOnSelect = true;
  */
 OO.ui.MenuSectionOptionWidget = function OoUiMenuSectionOptionWidget( config ) {
 	// Parent constructor
-	OO.ui.MenuSectionOptionWidget.super.call( this, config );
+	OO.ui.MenuSectionOptionWidget.parent.call( this, config );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-menuSectionOptionWidget' );
@@ -15154,7 +15154,7 @@ OO.ui.OutlineOptionWidget = function OoUiOutlineOptionWidget( config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.OutlineOptionWidget.super.call( this, config );
+	OO.ui.OutlineOptionWidget.parent.call( this, config );
 
 	// Properties
 	this.level = 0;
@@ -15283,7 +15283,7 @@ OO.ui.TabOptionWidget = function OoUiTabOptionWidget( config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.TabOptionWidget.super.call( this, config );
+	OO.ui.TabOptionWidget.parent.call( this, config );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-tabOptionWidget' );
@@ -15351,7 +15351,7 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.PopupWidget.super.call( this, config );
+	OO.ui.PopupWidget.parent.call( this, config );
 
 	// Properties (must be set before ClippableElement constructor call)
 	this.$body = $( '<div>' );
@@ -15537,7 +15537,7 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 	var change = show !== this.isVisible();
 
 	// Parent method
-	OO.ui.PopupWidget.super.prototype.toggle.call( this, show );
+	OO.ui.PopupWidget.parent.prototype.toggle.call( this, show );
 
 	if ( change ) {
 		if ( show ) {
@@ -15734,7 +15734,7 @@ OO.ui.ProgressBarWidget = function OoUiProgressBarWidget( config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.ProgressBarWidget.super.call( this, config );
+	OO.ui.ProgressBarWidget.parent.call( this, config );
 
 	// Properties
 	this.$bar = $( '<div>' );
@@ -15815,7 +15815,7 @@ OO.ui.SearchWidget = function OoUiSearchWidget( config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.SearchWidget.super.call( this, config );
+	OO.ui.SearchWidget.parent.call( this, config );
 
 	// Properties
 	this.query = new OO.ui.TextInputWidget( {
@@ -16015,7 +16015,7 @@ OO.ui.SelectWidget = function OoUiSelectWidget( config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.SelectWidget.super.call( this, config );
+	OO.ui.SelectWidget.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.GroupWidget.call( this, $.extend( {}, config, { $group: this.$element } ) );
@@ -16389,7 +16389,7 @@ OO.ui.SelectWidget.prototype.getItemMatcher = function ( s ) {
 	if ( s.normalize ) {
 		s = s.normalize();
 	}
-	re = new RegExp( '^\s*' + s.replace( /([\\{}()|.?*+\-\^$\[\]])/g, '\\$1' ).replace( /\s+/g, '\\s+' ), 'i' );
+	re = new RegExp( '^\\s*' + s.replace( /([\\{}()|.?*+\-\^$\[\]])/g, '\\$1' ).replace( /\s+/g, '\\s+' ), 'i' );
 	return function ( item ) {
 		var l = item.getLabel();
 		if ( typeof l !== 'string' ) {
@@ -16789,7 +16789,7 @@ OO.ui.SelectWidget.prototype.clearItems = function () {
  */
 OO.ui.ButtonSelectWidget = function OoUiButtonSelectWidget( config ) {
 	// Parent constructor
-	OO.ui.ButtonSelectWidget.super.call( this, config );
+	OO.ui.ButtonSelectWidget.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.TabIndexedElement.call( this, config );
@@ -16851,7 +16851,7 @@ OO.mixinClass( OO.ui.ButtonSelectWidget, OO.ui.mixin.TabIndexedElement );
  */
 OO.ui.RadioSelectWidget = function OoUiRadioSelectWidget( config ) {
 	// Parent constructor
-	OO.ui.RadioSelectWidget.super.call( this, config );
+	OO.ui.RadioSelectWidget.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.TabIndexedElement.call( this, config );
@@ -16912,7 +16912,7 @@ OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.MenuSelectWidget.super.call( this, config );
+	OO.ui.MenuSelectWidget.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.ClippableElement.call( this, $.extend( {}, config, { $clippable: this.$group } ) );
@@ -16970,7 +16970,7 @@ OO.ui.MenuSelectWidget.prototype.onKeyDown = function ( e ) {
 			case OO.ui.Keys.RIGHT:
 				// Do nothing if a text field is associated, arrow keys will be handled natively
 				if ( !this.$input ) {
-					OO.ui.MenuSelectWidget.super.prototype.onKeyDown.call( this, e );
+					OO.ui.MenuSelectWidget.parent.prototype.onKeyDown.call( this, e );
 				}
 				break;
 			case OO.ui.Keys.ESCAPE:
@@ -16986,7 +16986,7 @@ OO.ui.MenuSelectWidget.prototype.onKeyDown = function ( e ) {
 				}
 				break;
 			default:
-				OO.ui.MenuSelectWidget.super.prototype.onKeyDown.call( this, e );
+				OO.ui.MenuSelectWidget.parent.prototype.onKeyDown.call( this, e );
 				return;
 		}
 	}
@@ -16999,7 +16999,7 @@ OO.ui.MenuSelectWidget.prototype.bindKeyDownListener = function () {
 	if ( this.$input ) {
 		this.$input.on( 'keydown', this.onKeyDownHandler );
 	} else {
-		OO.ui.MenuSelectWidget.super.prototype.bindKeyDownListener.call( this );
+		OO.ui.MenuSelectWidget.parent.prototype.bindKeyDownListener.call( this );
 	}
 };
 
@@ -17010,7 +17010,7 @@ OO.ui.MenuSelectWidget.prototype.unbindKeyDownListener = function () {
 	if ( this.$input ) {
 		this.$input.off( 'keydown', this.onKeyDownHandler );
 	} else {
-		OO.ui.MenuSelectWidget.super.prototype.unbindKeyDownListener.call( this );
+		OO.ui.MenuSelectWidget.parent.prototype.unbindKeyDownListener.call( this );
 	}
 };
 
@@ -17019,7 +17019,7 @@ OO.ui.MenuSelectWidget.prototype.unbindKeyDownListener = function () {
  */
 OO.ui.MenuSelectWidget.prototype.bindKeyPressListener = function () {
 	if ( !this.$input ) {
-		OO.ui.MenuSelectWidget.super.prototype.bindKeyPressListener.call( this );
+		OO.ui.MenuSelectWidget.parent.prototype.bindKeyPressListener.call( this );
 	}
 };
 
@@ -17030,7 +17030,7 @@ OO.ui.MenuSelectWidget.prototype.unbindKeyPressListener = function () {
 	if ( this.$input ) {
 		this.clearKeyPressBuffer();
 	} else {
-		OO.ui.MenuSelectWidget.super.prototype.unbindKeyPressListener.call( this );
+		OO.ui.MenuSelectWidget.parent.prototype.unbindKeyPressListener.call( this );
 	}
 };
 
@@ -17045,7 +17045,7 @@ OO.ui.MenuSelectWidget.prototype.unbindKeyPressListener = function () {
  * @chainable
  */
 OO.ui.MenuSelectWidget.prototype.chooseItem = function ( item ) {
-	OO.ui.MenuSelectWidget.super.prototype.chooseItem.call( this, item );
+	OO.ui.MenuSelectWidget.parent.prototype.chooseItem.call( this, item );
 	this.toggle( false );
 	return this;
 };
@@ -17057,7 +17057,7 @@ OO.ui.MenuSelectWidget.prototype.addItems = function ( items, index ) {
 	var i, len, item;
 
 	// Parent method
-	OO.ui.MenuSelectWidget.super.prototype.addItems.call( this, items, index );
+	OO.ui.MenuSelectWidget.parent.prototype.addItems.call( this, items, index );
 
 	// Auto-initialize
 	if ( !this.newItems ) {
@@ -17085,7 +17085,7 @@ OO.ui.MenuSelectWidget.prototype.addItems = function ( items, index ) {
  */
 OO.ui.MenuSelectWidget.prototype.removeItems = function ( items ) {
 	// Parent method
-	OO.ui.MenuSelectWidget.super.prototype.removeItems.call( this, items );
+	OO.ui.MenuSelectWidget.parent.prototype.removeItems.call( this, items );
 
 	// Reevaluate clipping
 	this.clip();
@@ -17098,7 +17098,7 @@ OO.ui.MenuSelectWidget.prototype.removeItems = function ( items ) {
  */
 OO.ui.MenuSelectWidget.prototype.clearItems = function () {
 	// Parent method
-	OO.ui.MenuSelectWidget.super.prototype.clearItems.call( this );
+	OO.ui.MenuSelectWidget.parent.prototype.clearItems.call( this );
 
 	// Reevaluate clipping
 	this.clip();
@@ -17116,7 +17116,7 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 		change = visible !== this.isVisible();
 
 	// Parent method
-	OO.ui.MenuSelectWidget.super.prototype.toggle.call( this, visible );
+	OO.ui.MenuSelectWidget.parent.prototype.toggle.call( this, visible );
 
 	if ( change ) {
 		if ( visible ) {
@@ -17175,7 +17175,7 @@ OO.ui.TextInputMenuSelectWidget = function OoUiTextInputMenuSelectWidget( inputW
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.TextInputMenuSelectWidget.super.call( this, config );
+	OO.ui.TextInputMenuSelectWidget.parent.call( this, config );
 
 	// Properties
 	this.inputWidget = inputWidget;
@@ -17218,7 +17218,7 @@ OO.ui.TextInputMenuSelectWidget.prototype.toggle = function ( visible ) {
 	}
 
 	// Parent method
-	OO.ui.TextInputMenuSelectWidget.super.prototype.toggle.call( this, visible );
+	OO.ui.TextInputMenuSelectWidget.parent.prototype.toggle.call( this, visible );
 
 	if ( change ) {
 		if ( this.isVisible() ) {
@@ -17269,7 +17269,7 @@ OO.ui.TextInputMenuSelectWidget.prototype.position = function () {
  */
 OO.ui.OutlineSelectWidget = function OoUiOutlineSelectWidget( config ) {
 	// Parent constructor
-	OO.ui.OutlineSelectWidget.super.call( this, config );
+	OO.ui.OutlineSelectWidget.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.TabIndexedElement.call( this, config );
@@ -17303,7 +17303,7 @@ OO.mixinClass( OO.ui.OutlineSelectWidget, OO.ui.mixin.TabIndexedElement );
  */
 OO.ui.TabSelectWidget = function OoUiTabSelectWidget( config ) {
 	// Parent constructor
-	OO.ui.TabSelectWidget.super.call( this, config );
+	OO.ui.TabSelectWidget.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.TabIndexedElement.call( this, config );
@@ -17361,7 +17361,7 @@ OO.ui.NumberInputWidget = function OoUiNumberInputWidget( config ) {
 	}, config );
 
 	// Parent constructor
-	OO.ui.NumberInputWidget.super.call( this, config );
+	OO.ui.NumberInputWidget.parent.call( this, config );
 
 	// Properties
 	this.input = new OO.ui.TextInputWidget( $.extend(
@@ -17628,7 +17628,8 @@ OO.ui.NumberInputWidget.prototype.onWheel = function ( event ) {
 	}
 
 	if ( delta ) {
-		this.adjustValue( Math.sign( delta ) * this.step );
+		delta = delta < 0 ? -1 : 1;
+		this.adjustValue( delta * this.step );
 	}
 
 	return false;
@@ -17665,7 +17666,7 @@ OO.ui.NumberInputWidget.prototype.onKeyDown = function ( e ) {
  */
 OO.ui.NumberInputWidget.prototype.setDisabled = function ( disabled ) {
 	// Parent method
-	OO.ui.NumberInputWidget.super.prototype.setDisabled.call( this, disabled );
+	OO.ui.NumberInputWidget.parent.prototype.setDisabled.call( this, disabled );
 
 	if ( this.input ) {
 		this.input.setDisabled( this.isDisabled() );
@@ -17713,7 +17714,7 @@ OO.ui.NumberInputWidget.prototype.setDisabled = function ( disabled ) {
  */
 OO.ui.ToggleSwitchWidget = function OoUiToggleSwitchWidget( config ) {
 	// Parent constructor
-	OO.ui.ToggleSwitchWidget.super.call( this, config );
+	OO.ui.ToggleSwitchWidget.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.TabIndexedElement.call( this, config );

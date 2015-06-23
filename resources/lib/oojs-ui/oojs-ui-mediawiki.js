@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.11.5
+ * OOjs UI v0.11.6
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-06-17T00:58:56Z
+ * Date: 2015-06-23T21:49:33Z
  */
 /**
  * @class
@@ -16,7 +16,7 @@
  */
 OO.ui.MediaWikiTheme = function OoUiMediaWikiTheme() {
 	// Parent constructor
-	OO.ui.MediaWikiTheme.super.call( this );
+	OO.ui.MediaWikiTheme.parent.call( this );
 };
 
 /* Setup */
@@ -39,7 +39,7 @@ OO.ui.MediaWikiTheme.prototype.getElementClasses = function ( element ) {
 			destructive: false
 		},
 		// Parent method
-		classes = OO.ui.MediaWikiTheme.super.prototype.getElementClasses.call( this, element ),
+		classes = OO.ui.MediaWikiTheme.parent.prototype.getElementClasses.call( this, element ),
 		isFramed;
 
 	if ( element.supports( [ 'hasFlag' ] ) ) {

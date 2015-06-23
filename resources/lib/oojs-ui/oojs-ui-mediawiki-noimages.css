@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.11.5
+ * OOjs UI v0.11.6
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-06-17T00:59:03Z
+ * Date: 2015-06-23T21:49:41Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -2030,6 +2030,7 @@
 	margin: 0.25em 0;
 	width: 100%;
 	max-width: 50em;
+	background: #ffffff;
 	margin-right: 0.5em;
 }
 .oo-ui-dropdownWidget-handle {
@@ -2175,6 +2176,7 @@
 	border: 1px solid #cccccc;
 	border-radius: 0.1em;
 	padding: 0 1em;
+	background: #ffffff;
 }
 .oo-ui-selectFileWidget-handle > .oo-ui-indicatorElement-indicator {
 	right: 0;

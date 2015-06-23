@@ -15,5 +15,7 @@
 	"ooui-dialog-process-error": "Adda madi a napasamak",
 	"ooui-dialog-process-dismiss": "Pugsayen",
 	"ooui-dialog-process-retry": "Padasen manen",
-	"ooui-dialog-process-continue": "Agtuloy"
+	"ooui-dialog-process-continue": "Agtuloy",
+	"ooui-selectfile-not-supported": "Saan a masuportaran ti panagpili ti papeles",
+	"ooui-selectfile-placeholder": "Awan ti napili a papeles"
 }

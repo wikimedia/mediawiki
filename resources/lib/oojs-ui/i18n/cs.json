@@ -25,5 +25,7 @@
 	"ooui-dialog-process-error": "Něco se pokazilo",
 	"ooui-dialog-process-dismiss": "Zavřít",
 	"ooui-dialog-process-retry": "Zkusit znovu",
-	"ooui-dialog-process-continue": "Pokračovat"
+	"ooui-dialog-process-continue": "Pokračovat",
+	"ooui-selectfile-not-supported": "Výběr souboru není podporován",
+	"ooui-selectfile-placeholder": "Nebyl vybrán žádný soubor"
 }
