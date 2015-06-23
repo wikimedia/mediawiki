@@ -3495,7 +3495,7 @@ function wfGetPrecompiledData( $name ) {
 }
 
 /**
- * Get a cache key
+ * Make a cache key for the local wiki.
  *
  * @param string $args,...
  * @return string
@@ -3510,7 +3510,9 @@ function wfMemcKey( /*...*/ ) {
 }
 
 /**
- * Get a cache key for a foreign DB
+ * Make a cache key for a foreign DB.
+ *
+ * Must match what wfMemcKey() would produce in context of the foreign wiki.
  *
  * @param string $db
  * @param string $prefix
@@ -3520,11 +3522,30 @@ function wfMemcKey( /*...*/ ) {
 function wfForeignMemcKey( $db, $prefix /*...*/ ) {
 	$args = array_slice( func_get_args(), 2 );
 	if ( $prefix ) {
+		// Match wfWikiID() logic
 		$key = "$db-$prefix:" . implode( ':', $args );
 	} else {
 		$key = $db . ':' . implode( ':', $args );
 	}
 	return str_replace( ' ', '_', $key );
+}
+
+/**
+ * Make a cache key with database-agnostic prefix.
+ *
+ * Doesn't have a wiki-specific namespace. Uses a generic 'global' prefix
+ * instead. Must have a prefix as otherwise keys that use a database name
+ * in the first segment will clash with wfMemcKey/wfForeignMemcKey.
+ *
+ * @since 1.26
+ * @param string $args,...
+ * @return string
+ */
+function wfGlobalCacheKey( $db, $prefix /*...*/ ) {
+	$args = func_get_args();
+	$key = 'global:' . implode( ':', $args );
+	$key = str_replace( ' ', '_', $key );
+	return $key;
 }
 
 /**
