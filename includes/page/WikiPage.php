@@ -1082,13 +1082,13 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Should the parser cache be used?
 	 *
 	 * @param ParserOptions $parserOptions ParserOptions to check
-	 * @param int $oldid
+	 * @param int $oldId
 	 * @return bool
 	 */
-	public function isParserCacheUsed( ParserOptions $parserOptions, $oldid ) {
+	public function isParserCacheUsed( ParserOptions $parserOptions, $oldId ) {
 		return $parserOptions->getStubThreshold() == 0
 			&& $this->exists()
-			&& ( $oldid === null || $oldid === 0 || $oldid === $this->getLatest() )
+			&& ( $oldId === null || $oldId === 0 || $oldId === $this->getLatest() )
 			&& $this->getContentHandler()->isParserCacheSupported();
 	}
 
