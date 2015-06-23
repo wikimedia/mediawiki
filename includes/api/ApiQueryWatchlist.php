@@ -451,6 +451,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_DFLT => 'ids|title|flags',
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 				ApiBase::PARAM_TYPE => array(
 					'ids',
 					'title',
