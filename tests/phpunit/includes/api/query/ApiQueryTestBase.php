@@ -87,6 +87,7 @@ STR;
 
 	/**
 	 * Checks that the request's result matches the expected results.
+	 * Assumes no rawcontinue and a complete batch.
 	 * @param array $values Array is a two element array( request, expected_results )
 	 * @param array $session
 	 * @param bool $appendModule
@@ -99,8 +100,9 @@ STR;
 		if ( !array_key_exists( 'action', $req ) ) {
 			$req['action'] = 'query';
 		}
-		if ( !array_key_exists( 'continue', $req ) ) {
-			$req['rawcontinue'] = '1';
+		// Silence warning
+		if ( !isset( $params['continue'] ) ) {
+			$params['continue'] = '';
 		}
 		foreach ( $req as &$val ) {
 			if ( is_array( $val ) ) {
@@ -108,7 +110,7 @@ STR;
 			}
 		}
 		$result = $this->doApiRequest( $req, $session, $appendModule, $user );
-		$this->assertResult( array( 'query' => $exp ), $result[0], $req );
+		$this->assertResult( array( 'batchcomplete' => true, 'query' => $exp ), $result[0], $req );
 	}
 
 	protected function assertResult( $exp, $result, $message = '' ) {

@@ -331,7 +331,6 @@
 	"apihelp-query-param-export": "{{doc-apihelp-param|query|export}}",
 	"apihelp-query-param-exportnowrap": "{{doc-apihelp-param|query|exportnowrap}}",
 	"apihelp-query-param-iwurl": "{{doc-apihelp-param|query|iwurl}}",
-	"apihelp-query-param-continue": "{{doc-apihelp-param|query|continue}}",
 	"apihelp-query-param-rawcontinue": "{{doc-apihelp-param|query|rawcontinue}}",
 	"apihelp-query-example-revisions": "{{doc-apihelp-example|query}}",
 	"apihelp-query-example-allpages": "{{doc-apihelp-example|query}}",
