@@ -226,8 +226,8 @@ class CopyFileBackend extends Maintenance {
 			}
 			$t_start = microtime( true );
 			$fsFiles = $src->getLocalReferenceMulti( array( 'srcs' => $srcPaths, 'latest' => 1 ) );
-			$ellapsed_ms = floor( ( microtime( true ) - $t_start ) * 1000 );
-			$this->output( "\n\tDownloaded these file(s) [{$ellapsed_ms}ms]:\n\t" .
+			$elapsed_ms = floor( ( microtime( true ) - $t_start ) * 1000 );
+			$this->output( "\n\tDownloaded these file(s) [{$elapsed_ms}ms]:\n\t" .
 				implode( "\n\t", $srcPaths ) . "\n\n" );
 		}
 
@@ -281,12 +281,12 @@ class CopyFileBackend extends Maintenance {
 			sleep( 10 ); // wait and retry copy again
 			$status = $dst->doQuickOperations( $ops, array( 'bypassReadOnly' => 1 ) );
 		}
-		$ellapsed_ms = floor( ( microtime( true ) - $t_start ) * 1000 );
+		$elapsed_ms = floor( ( microtime( true ) - $t_start ) * 1000 );
 		if ( !$status->isOK() ) {
 			$this->error( print_r( $status->getErrorsArray(), true ) );
 			$this->error( "$wikiId: Could not copy file batch.", 1 ); // die
 		} elseif ( count( $copiedRel ) ) {
-			$this->output( "\n\tCopied these file(s) [{$ellapsed_ms}ms]:\n\t" .
+			$this->output( "\n\tCopied these file(s) [{$elapsed_ms}ms]:\n\t" .
 				implode( "\n\t", $copiedRel ) . "\n\n" );
 		}
 	}
@@ -318,12 +318,12 @@ class CopyFileBackend extends Maintenance {
 			sleep( 10 ); // wait and retry copy again
 			$status = $dst->doQuickOperations( $ops, array( 'bypassReadOnly' => 1 ) );
 		}
-		$ellapsed_ms = floor( ( microtime( true ) - $t_start ) * 1000 );
+		$elapsed_ms = floor( ( microtime( true ) - $t_start ) * 1000 );
 		if ( !$status->isOK() ) {
 			$this->error( print_r( $status->getErrorsArray(), true ) );
 			$this->error( "$wikiId: Could not delete file batch.", 1 ); // die
 		} elseif ( count( $deletedRel ) ) {
-			$this->output( "\n\tDeleted these file(s) [{$ellapsed_ms}ms]:\n\t" .
+			$this->output( "\n\tDeleted these file(s) [{$elapsed_ms}ms]:\n\t" .
 				implode( "\n\t", $deletedRel ) . "\n\n" );
 		}
 	}
