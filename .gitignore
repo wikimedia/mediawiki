@@ -71,3 +71,6 @@ Thumbs.db
 /tags
 /.htaccess
 /.htpasswd
+
+# Custom images
+/resources/assets/logo.png
