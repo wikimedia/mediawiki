@@ -2405,7 +2405,7 @@ such as Special:MyPage and Special:MyTalk.
 'RejectParserCacheValue': Return false to reject an otherwise usable
 cached value from the Parser cache.
 $parserOutput: ParserOutput value.
-$wikiPage: WikiPage object.
+$wikiPage: WikiPage or Article object.
 $parserOptions: ParserOptions object.
 
 'RequestContextCreateSkin': Called when RequestContext::getSkin creates a skin

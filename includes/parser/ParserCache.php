@@ -176,7 +176,7 @@ class ParserCache {
 	 * Retrieve the ParserOutput from ParserCache.
 	 * false if not found or outdated.
 	 *
-	 * @param WikiPage $article
+	 * @param WikiPage|Article $article
 	 * @param ParserOptions $popts
 	 * @param bool $useOutdated (default false)
 	 *
