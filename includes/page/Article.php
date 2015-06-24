@@ -1000,7 +1000,7 @@ class Article implements Page {
 				$outputPage->addModules( 'mediawiki.action.view.redirect' );
 
 				// Add a <link rel="canonical"> tag
-				$outputPage->setCanonicalUrl( $this->getTitle()->getLocalURL() );
+				$outputPage->setCanonicalUrl( $this->getTitle()->getCanonicalURL() );
 
 				// Tell the output object that the user arrived at this article through a redirect
 				$outputPage->setRedirectedFrom( $this->mRedirectedFrom );
