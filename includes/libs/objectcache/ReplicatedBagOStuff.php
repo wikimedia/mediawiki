@@ -53,7 +53,8 @@ class ReplicatedBagOStuff extends BagOStuff {
 		if ( !isset( $params['writeFactory'] ) ) {
 			throw new InvalidArgumentException(
 				__METHOD__ . ': the "writeFactory" parameter is required' );
-		} elseif ( !isset( $params['readFactory'] ) ) {
+		}
+		if ( !isset( $params['readFactory'] ) ) {
 			throw new InvalidArgumentException(
 				__METHOD__ . ': the "readFactory" parameter is required' );
 		}
@@ -75,7 +76,7 @@ class ReplicatedBagOStuff extends BagOStuff {
 		return $this->readStore->get( $key, $casToken );
 	}
 
-	public function getMulti( $keys ) {
+	public function getMulti( array $keys ) {
 		return $this->readStore->getMulti( $keys );
 	}
 
@@ -95,8 +96,8 @@ class ReplicatedBagOStuff extends BagOStuff {
 		return $this->writeStore->incr( $key, $value );
 	}
 
-	public function decr( $key ) {
-		return $this->writeStore->decr( $key );
+	public function decr( $key, $value = 1 ) {
+		return $this->writeStore->decr( $key, $value );
 	}
 
 	public function lock( $key, $timeout = 6, $expiry = 6 ) {
