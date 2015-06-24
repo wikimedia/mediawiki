@@ -234,7 +234,7 @@ class InfoAction extends FormlessAction {
 
 		// Display title
 		$displayTitle = $title->getPrefixedText();
-		if ( !empty( $pageProperties['displaytitle'] ) ) {
+		if ( isset( $pageProperties['displaytitle'] ) ) {
 			$displayTitle = $pageProperties['displaytitle'];
 		}
 
@@ -259,7 +259,7 @@ class InfoAction extends FormlessAction {
 
 		// Default sort key
 		$sortKey = $title->getCategorySortkey();
-		if ( !empty( $pageProperties['defaultsort'] ) ) {
+		if ( isset( $pageProperties['defaultsort'] ) ) {
 			$sortKey = $pageProperties['defaultsort'];
 		}
 
