@@ -854,6 +854,10 @@ return array(
 		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.parse.js',
 		'dependencies' => 'mediawiki.api',
 	),
+	'mediawiki.api.upload' => array(
+		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.upload.js',
+		'dependencies' => array( 'mediawiki.api', 'mediawiki.api.edit' ),
+	),
 	'mediawiki.api.watch' => array(
 		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.watch.js',
 		'dependencies' => array(
