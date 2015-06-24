@@ -855,6 +855,10 @@ return array(
 		'dependencies' => 'mediawiki.api',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'mediawiki.api.upload' => array(
+		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.upload.js',
+		'dependencies' => array( 'mediawiki.api', 'mediawiki.api.edit', 'json' ),
+	),
 	'mediawiki.api.watch' => array(
 		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.watch.js',
 		'dependencies' => array(
