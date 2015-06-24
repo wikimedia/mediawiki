@@ -67,6 +67,9 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
+* Languages added:
+** dty (डोटेली/Doteli), thanks to translators जनक राज भट्ट, बिप्लब आनन्द,
+   मेश सिंह बोहरा, and राम प्रसाद जोशी
 
 === Other changes in 1.26 ===
 * ChangeTags::tagDescription() will return false if the interface message
