@@ -46,6 +46,29 @@
 	}
 
 	/**
+	 * Parse response from an XHR to the server.
+	 * @private
+	 * @param {Event} e
+	 * @return {Object}
+	 */
+	function parseXHRResponse( e ) {
+		var response;
+
+		try {
+			response = $.parseJSON( e.target.responseText );
+		} catch ( error ) {
+			response = {
+				error: {
+					code: e.target.code,
+					info: e.target.responseText
+				}
+			};
+		}
+
+		return response;
+	}
+
+	/**
 	 * Process the result of the form submission, returned to an iframe.
 	 * This is the iframe's onload event.
 	 *
@@ -84,20 +107,35 @@
 		return response;
 	}
 
+	function formDataAvailable() {
+		return window.FormData !== undefined &&
+			window.File !== undefined &&
+			window.File.prototype.slice !== undefined;
+	}
+
 	$.extend( mw.Api.prototype, {
 		/**
 		 * Upload a file to MediaWiki.
-		 * @param {HTMLInputElement} file HTML input type=file element with a file already inside of it.
+		 * @param {HTMLInputElement|File} file HTML input type=file element with a file already inside of it, or a File object.
 		 * @param {Object} data Other upload options, see action=upload API docs for more
 		 * @return {jQuery.Promise}
 		 */
 		upload: function ( file, data ) {
+			var iframe, formData;
+
 			if ( !file ) {
 				return $.Deferred().reject( 'No file' );
 			}
 
-			if ( !file.nodeType || file.nodeType !== file.ELEMENT_NODE ) {
+			iframe = file.nodeType && file.nodeType === file.ELEMENT_NODE;
+			formData = formDataAvailable() && file instanceof window.File;
+
+			if ( !iframe && !formData ) {
 				return $.Deferred().reject( 'Unsupported argument type passed to mw.Api.upload' );
+			}
+
+			if ( formData ) {
+				return this.uploadWithFormData( file, data );
 			}
 
 			return this.uploadWithIframe( file, data );
@@ -138,7 +176,7 @@
 
 			$form.css( 'display', 'none' )
 				.attr( {
-					action: api.defaults.ajax.url,
+					action: this.defaults.ajax.url,
 					method: 'POST',
 					target: id,
 					enctype: 'multipart/form-data'
@@ -184,6 +222,70 @@
 			} );
 
 			$( 'body' ).append( $form, $iframe );
+
+			return deferred.promise();
+		},
+
+		/**
+		 * Uploads a file using the FormData API.
+		 * @param {File} file
+		 * @param {Object} data
+		 */
+		uploadWithFormData: function ( file, data ) {
+			var xhr, tokenPromise,
+				api = this,
+				formData = new FormData(),
+				deferred = $.Deferred(),
+				filenameFound = false;
+
+			formData.append( 'action', 'upload' );
+			formData.append( 'format', 'json' );
+
+			$.each( data, function ( key, val ) {
+				if ( key === 'filename' ) {
+					filenameFound = true;
+				}
+
+				if ( fieldsAllowed[key] === true ) {
+					formData.append( key, val );
+				}
+			} );
+
+			if ( !filenameFound ) {
+				return $.Deferred().reject( 'Filename not included in file data.' );
+			}
+
+			formData.append( 'file', file );
+
+			xhr = new XMLHttpRequest();
+
+			xhr.upload.addEventListener( 'progress', function ( e ) {
+				if ( e.lengthComputable ) {
+					deferred.notify( e.loaded / e.total );
+				}
+			}, false );
+
+			xhr.addEventListener( 'abort', function ( e ) {
+				deferred.reject( parseXHRResponse( e ) );
+			}, false );
+
+			xhr.addEventListener( 'load', function ( e ) {
+				deferred.resolve( parseXHRResponse( e ) );
+			}, false );
+
+			xhr.addEventListener( 'error', function ( e ) {
+				deferred.reject( parseXHRResponse( e ) );
+			}, false );
+
+			xhr.open( 'POST', this.defaults.ajax.url, true );
+
+			tokenPromise = this.getEditToken().then( function ( token ) {
+				formData.append( 'token', token );
+				xhr.send( formData );
+			}, function () {
+				// Mark the edit token as bad, it's been used.
+				api.badToken( 'edit' );
+			} );
 
 			return deferred.promise();
 		}
