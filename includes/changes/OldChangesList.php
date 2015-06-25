@@ -122,9 +122,9 @@ class OldChangesList extends ChangesList {
 		}
 
 		# Tags
-		$this->insertTags( $html, $rc, $classes );
+		$html .= $this->insertTags( $rc, $classes );
 		# Rollback
-		$this->insertRollback( $html, $rc );
+		$html .= $this->insertRollback( $rc );
 		# For subclasses
 		$this->insertExtra( $html, $rc, $classes );
 
