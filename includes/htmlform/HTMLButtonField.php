@@ -10,8 +10,13 @@
 class HTMLButtonField extends HTMLFormField {
 	protected $buttonType = 'button';
 
+	/** @var array $mFlags Flags to add to OOUI Button widget */
+	protected $mFlags = array();
+
 	public function __construct( $info ) {
 		$info['nodata'] = true;
+		if ( isset( $info['flags'] ) )
+			$this->mFlags = $info['flags'];
 		parent::__construct( $info );
 	}
 
@@ -33,9 +38,11 @@ class HTMLButtonField extends HTMLFormField {
 		return new OOUI\ButtonInputWidget( array(
 			'name' => $this->mName,
 			'value' => $value,
+			'label' => $value,
 			'type' => $this->buttonType,
 			'classes' => array( 'mw-htmlform-submit', $this->mClass ),
 			'id' => $this->mID,
+			'flags' => $this->mFlags,
 		) + $this->getAttributes( array( 'disabled', 'tabindex' ), array( 'tabindex' => 'tabIndex' ) ) );
 	}
 
