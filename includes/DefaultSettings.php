@@ -6970,14 +6970,6 @@ $wgAllowSpecialInclusion = true;
 $wgDisableQueryPageUpdate = false;
 
 /**
- * List of special pages, followed by what subtitle they should go under
- * at Special:SpecialPages
- *
- * @deprecated since 1.21 Override SpecialPage::getGroupName instead
- */
-$wgSpecialPageGroups = array();
-
-/**
  * On Special:Unusedimages, consider images "used", if they are put
  * into a category. Default (false) is not to count those as used.
  */
