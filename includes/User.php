@@ -369,7 +369,8 @@ class User implements IDBAccessObject {
 				Hooks::run( 'UserLoadAfterLoadFromSession', array( $this ) );
 				break;
 			default:
-				throw new MWException( "Unrecognised value for User->mFrom: \"{$this->mFrom}\"" );
+				throw new UnexpectedValueException(
+					"Unrecognised value for User->mFrom: \"{$this->mFrom}\"" );
 		}
 	}
 
@@ -990,7 +991,8 @@ class User implements IDBAccessObject {
 				}
 				break;
 			default:
-				throw new MWException( 'Invalid parameter value for $validate in ' . __METHOD__ );
+				throw new InvalidArgumentException(
+					'Invalid parameter value for $validate in ' . __METHOD__ );
 		}
 		return $name;
 	}
