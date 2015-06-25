@@ -315,32 +315,9 @@ class EnhancedChangesList extends ChangesList {
 				'unpatrolled' => $rcObj->unpatrolled,
 				'bot' => $rcObj->mAttribs['rc_bot'],
 			) );
-			$r .= '&#160;</td><td class="mw-enhanced-rc-nested"><span class="mw-enhanced-rc-time">';
+			$r .= '&#160;</td><td class="mw-enhanced-rc-nested">';
 
-			$params = $queryParams;
-
-			if ( $rcObj->mAttribs['rc_this_oldid'] != 0 ) {
-				$params['oldid'] = $rcObj->mAttribs['rc_this_oldid'];
-			}
-
-			# Log timestamp
-			if ( $type == RC_LOG ) {
-				$link = $rcObj->timestamp;
-			# Revision link
-			} elseif ( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $this->getUser() ) ) {
-				$link = '<span class="history-deleted">' . $rcObj->timestamp . '</span> ';
-			} else {
-				$link = Linker::linkKnown(
-					$rcObj->getTitle(),
-					$rcObj->timestamp,
-					array(),
-					$params
-				);
-				if ( $this->isDeleted( $rcObj, Revision::DELETED_TEXT ) ) {
-					$link = '<span class="history-deleted">' . $link . '</span> ';
-				}
-			}
-			$r .= $link . '</span>';
+			$r .= $this->getTimestampLink( $queryParams, $rcObj );
 
 			if ( !$type == RC_LOG || $type == RC_NEW ) {
 				$r .= ' ' . $this->msg( 'parentheses' )->rawParams(
@@ -601,5 +578,47 @@ class EnhancedChangesList extends ChangesList {
 	 */
 	public function endRecentChangesList() {
 		return $this->recentChangesBlock() . '</div>';
+	}
+
+	/**
+	 * Generates the timestamp link or a plain span when it cannot be a link.
+	 * Invokes the 'EnhancedChangesList::getTimestampLink' hook.
+	 * @param array $params
+	 * @param RecentChange|RCCacheEntry $rcObj
+	 * @return string
+	 */
+	protected function getTimestampLink( $params, $rcObj )
+	{
+		$type = $rcObj->mAttribs['rc_type'];
+		$isDeleted = false;
+
+		# Log timestamp
+		if ( $type == RC_LOG ) {
+			$link = $rcObj->timestamp;
+			# Revision link
+		} elseif ( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $this->getUser() ) ) {
+			$isDeleted = true;
+			$link = '<span class="history-deleted">' . $rcObj->timestamp . '</span> ';
+		} else {
+			if ( $rcObj->mAttribs['rc_this_oldid'] != 0 ) {
+				$params['oldid'] = $rcObj->mAttribs['rc_this_oldid'];
+			}
+			$link = Linker::linkKnown(
+				$rcObj->getTitle(),
+				$rcObj->timestamp,
+				array(),
+				$params
+			);
+			if ( $this->isDeleted( $rcObj, Revision::DELETED_TEXT ) ) {
+				$isDeleted = true;
+				$link = '<span class="history-deleted">' . $link . '</span> ';
+			}
+		}
+
+		# Allow others to alter or replace the timestamp link
+		Hooks::run( 'EnhancedChangesList::getTimestampLink',
+			array( $this, &$link, $rcObj, $isDeleted ) );
+
+		return '<span class="mw-enhanced-rc-time">' . $link . '</span>';
 	}
 }
