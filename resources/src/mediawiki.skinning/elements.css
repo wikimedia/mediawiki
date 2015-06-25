@@ -199,6 +199,11 @@ pre, .mw-code {
 	background-color: #f9f9f9;
 	border: 1px solid #ddd;
 	padding: 1em;
+	/* @noflip */
+	direction: ltr;
+	unicode-bidi: embed;
+	/* Wrap lines in overflow. T103780 */
+	white-space: pre-wrap;
 }
 
 /* Tables */
