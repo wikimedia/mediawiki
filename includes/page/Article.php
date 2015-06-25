@@ -1706,10 +1706,8 @@ class Article implements Page {
 
 		if ( $user->isAllowed( 'suppressrevision' ) ) {
 			$suppress = Html::openElement( 'div', array( 'id' => 'wpDeleteSuppressRow' ) ) .
-				"<strong>" .
-						Xml::checkLabel( wfMessage( 'revdelete-suppress' )->text(),
-							'wpSuppress', 'wpSuppress', false, array( 'tabindex' => '4' ) ) .
-					"</strong>" .
+				Xml::checkLabel( wfMessage( 'revdelete-suppress' )->text(),
+					'wpSuppress', 'wpSuppress', false, array( 'tabindex' => '4' ) ) .
 				Html::closeElement( 'div' );
 		} else {
 			$suppress = '';
