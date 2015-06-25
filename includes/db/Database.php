@@ -1020,6 +1020,17 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	/**
+	 * Make sure isOpen() returns true as a sanity check
+	 *
+	 * @throws DBUnexpectedError
+	 */
+	protected function assertOpen() {
+		if ( !$this->isOpen() ) {
+			throw new DBUnexpectedError( $this, "DB connection was already closed." );
+		}
+	}
+
+	/**
 	 * Closes underlying database connection
 	 * @since 1.20
 	 * @return bool Whether connection was closed successfully
@@ -1175,9 +1186,7 @@ abstract class DatabaseBase implements IDatabase {
 		$queryId = MWDebug::query( $sql, $fname, $isMaster );
 
 		# Avoid fatals if close() was called
-		if ( !$this->isOpen() ) {
-			throw new DBUnexpectedError( $this, "DB connection was already closed." );
-		}
+		$this->assertOpen();
 
 		# Do the query and handle errors
 		$startTime = microtime( true );
@@ -3648,9 +3657,7 @@ abstract class DatabaseBase implements IDatabase {
 		}
 
 		# Avoid fatals if close() was called
-		if ( !$this->isOpen() ) {
-			throw new DBUnexpectedError( $this, "DB connection was already closed." );
-		}
+		$this->assertOpen();
 
 		$this->doBegin( $fname );
 		$this->mTrxTimestamp = microtime( true );
@@ -3715,9 +3722,7 @@ abstract class DatabaseBase implements IDatabase {
 		}
 
 		# Avoid fatals if close() was called
-		if ( !$this->isOpen() ) {
-			throw new DBUnexpectedError( $this, "DB connection was already closed." );
-		}
+		$this->assertOpen();
 
 		$this->runOnTransactionPreCommitCallbacks();
 		$writeTime = $this->pendingWriteQueryDuration();
@@ -3774,9 +3779,7 @@ abstract class DatabaseBase implements IDatabase {
 		}
 
 		# Avoid fatals if close() was called
-		if ( !$this->isOpen() ) {
-			throw new DBUnexpectedError( $this, "DB connection was already closed." );
-		}
+		$this->assertOpen();
 
 		$this->doRollback( $fname );
 		$this->mTrxIdleCallbacks = array(); // cancel
