@@ -240,7 +240,7 @@
 			'ResourceLoader', 't-rl', 'More info about ResourceLoader on MediaWiki.org ', 'l'
 		);
 
-		assert.ok( $.isDomElement( tbRL ), 'addPortletLink returns a valid DOM Element according to $.isDomElement' );
+		assert.ok( tbRL && tbRL.nodeType, 'addPortletLink returns a DOM Node' );
 
 		tbMW = mw.util.addPortletLink( 'p-test-tb', '//mediawiki.org/',
 			'MediaWiki.org', 't-mworg', 'Go to MediaWiki.org', 'm', tbRL );
