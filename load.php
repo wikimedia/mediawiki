@@ -49,4 +49,5 @@ $resourceLoader->respond( new ResourceLoaderContext( $resourceLoader, $wgRequest
 Profiler::instance()->setTemplated( true );
 
 $mediawiki = new MediaWiki();
+$mediawiki->setEntrypointKey( array( 'load' ) );
 $mediawiki->doPostOutputShutdown( 'fast' );

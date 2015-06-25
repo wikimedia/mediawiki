@@ -120,4 +120,8 @@ if ( $wgAPIRequestLog ) {
 }
 
 $mediawiki = new MediaWiki();
+$mediawiki->setEntrypointKey( array(
+	'api',
+	$processor ? $processor->getModuleName() : 'nomodule'
+) );
 $mediawiki->doPostOutputShutdown( 'fast' );
