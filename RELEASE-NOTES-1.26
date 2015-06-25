@@ -34,6 +34,8 @@ production.
   if ImageMagick is used as image scaler ($wgUseImageMagick = true). Uploading
   of WebP images still disabled by default. Add $wgFileExtensions[] =
   'webp'; to LocalSettings.php to enable uploading of WebP images.
+* Added a new hook 'EnhancedChangesListModifyLineData', to
+  modify the data used to build lines in enhanced recentchanges and watchlist.
 
 ==== External libraries ====
 * Update es5-shim from v4.0.0 to v4.1.5.
@@ -116,7 +118,6 @@ changes to languages because of Bugzilla reports.
   way will issue a deprecation warning.
 * The jquery.mwExtension module was deprecated.
 
-
 == Compatibility ==
 
 MediaWiki 1.26 requires PHP 5.3.3 or later. There is experimental support for
@@ -182,4 +183,3 @@ going to run a public MediaWiki, so you can be notified of security fixes.
 == IRC help ==
 
 There's usually someone online in #mediawiki on irc.freenode.net.
-

@@ -204,7 +204,8 @@ class ChangesList extends ContextSource {
 		$code = $lang->getCode();
 		static $fastCharDiff = array();
 		if ( !isset( $fastCharDiff[$code] ) ) {
-			$fastCharDiff[$code] = $config->get( 'MiserMode' ) || $context->msg( 'rc-change-size' )->plain() === '$1';
+			$fastCharDiff[$code] = $config->get( 'MiserMode' )
+				|| $context->msg( 'rc-change-size' )->plain() === '$1';
 		}
 
 		$formattedSize = $lang->formatNum( $szdiff );
@@ -543,6 +544,17 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
+	 * @param RecentChange $rc
+	 * @return string
+	 * @since 1.26
+	 */
+	public function getRollback( RecentChange $rc ) {
+		$s = '';
+		$this->insertRollback( $s, $rc );
+		return $s;
+	}
+
+	/**
 	 * @param string $s
 	 * @param RecentChange $rc
 	 * @param array $classes
@@ -558,6 +570,18 @@ class ChangesList extends ContextSource {
 		);
 		$classes = array_merge( $classes, $newClasses );
 		$s .= ' ' . $tagSummary;
+	}
+
+	/**
+	 * @param RecentChange $rc
+	 * @param array $classes
+	 * @return string
+	 * @since 1.26
+	 */
+	public function getTags( RecentChange $rc, array &$classes ) {
+		$s = '';
+		$this->insertTags( $s, $rc, $classes );
+		return $s;
 	}
 
 	public function insertExtra( &$s, &$rc, &$classes ) {
