@@ -514,12 +514,12 @@ class ChangesList extends ContextSource {
 		}
 	}
 
-	/** Inserts a rollback link
+	/** Returns a rollback link
 	 *
-	 * @param string $s
 	 * @param RecentChange $rc
+	 * @return string
 	 */
-	public function insertRollback( &$s, &$rc ) {
+	public function insertRollback( &$rc ) {
 		if ( $rc->mAttribs['rc_type'] == RC_EDIT
 			&& $rc->mAttribs['rc_this_oldid']
 			&& $rc->mAttribs['rc_cur_id']
@@ -537,19 +537,20 @@ class ChangesList extends ContextSource {
 					'user_text' => $rc->mAttribs['rc_user_text'],
 					'deleted' => $rc->mAttribs['rc_deleted']
 				) );
-				$s .= ' ' . Linker::generateRollback( $rev, $this->getContext() );
+				return ' ' . Linker::generateRollback( $rev, $this->getContext() );
 			}
+			return '';
 		}
 	}
 
 	/**
-	 * @param string $s
 	 * @param RecentChange $rc
 	 * @param array $classes
+	 * @return string
 	 */
-	public function insertTags( &$s, &$rc, &$classes ) {
+	public function insertTags( &$rc, &$classes ) {
 		if ( empty( $rc->mAttribs['ts_tags'] ) ) {
-			return;
+			return '';
 		}
 
 		list( $tagSummary, $newClasses ) = ChangeTags::formatSummaryRow(
@@ -557,7 +558,7 @@ class ChangesList extends ContextSource {
 			'changeslist'
 		);
 		$classes = array_merge( $classes, $newClasses );
-		$s .= ' ' . $tagSummary;
+		return ' ' . $tagSummary;
 	}
 
 	public function insertExtra( &$s, &$rc, &$classes ) {
