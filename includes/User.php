@@ -369,7 +369,8 @@ class User implements IDBAccessObject {
 				Hooks::run( 'UserLoadAfterLoadFromSession', array( $this ) );
 				break;
 			default:
-				throw new MWException( "Unrecognised value for User->mFrom: \"{$this->mFrom}\"" );
+				throw new UnexpectedValueException(
+					"Unrecognised value for User->mFrom: \"{$this->mFrom}\"" );
 		}
 	}
 
@@ -943,7 +944,7 @@ class User implements IDBAccessObject {
 	 *   - 'usable'     Valid for batch processes and login
 	 *   - 'creatable'  Valid for batch processes, login and account creation
 	 *
-	 * @throws MWException
+	 * @throws InvalidArgumentException
 	 * @return bool|string
 	 */
 	public static function getCanonicalName( $name, $validate = 'valid' ) {
@@ -990,7 +991,8 @@ class User implements IDBAccessObject {
 				}
 				break;
 			default:
-				throw new MWException( 'Invalid parameter value for $validate in ' . __METHOD__ );
+				throw new InvalidArgumentException(
+					'Invalid parameter value for $validate in ' . __METHOD__ );
 		}
 		return $name;
 	}
