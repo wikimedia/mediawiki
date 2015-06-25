@@ -201,6 +201,14 @@ pre, .mw-code {
 	padding: 1em;
 }
 
+.mw-code {
+	/* @noflip */
+	direction: ltr;
+	unicode-bidi: embed;
+	/* Wrap lines in overflow. T103780 */
+	white-space: pre-wrap;
+}
+
 /* Tables */
 table {
 	font-size: 100%;
