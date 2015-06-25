@@ -36,6 +36,9 @@ class MediaWiki {
 	 */
 	private $config;
 
+	/** @var array List of strings */
+	private $entryProfileKey;
+
 	/**
 	 * @param IContextSource|null $context
 	 */
@@ -242,7 +245,6 @@ class MediaWiki {
 		// Handle any other redirects.
 		// Redirect loops, titleless URL, $wgUsePathInfo URLs, and URLs with a variant
 		} elseif ( !$this->tryNormaliseRedirect( $title ) ) {
-
 			// Special pages
 			if ( NS_SPECIAL == $title->getNamespace() ) {
 				// Actions that need to be made when we have a special pages
@@ -252,6 +254,7 @@ class MediaWiki {
 				// may still be a wikipage redirect to another article or URL.
 				$article = $this->initializeArticle();
 				if ( is_object( $article ) ) {
+					$this->setEntrypointKey( array( 'index', $this->getAction() ) );
 					$this->performAction( $article, $requestTitle );
 				} elseif ( is_string( $article ) ) {
 					$output->redirect( $article );
@@ -416,7 +419,6 @@ class MediaWiki {
 	 * @param Title $requestTitle The original title, before any redirects were applied
 	 */
 	private function performAction( Page $page, Title $requestTitle ) {
-
 		$request = $this->context->getRequest();
 		$output = $this->context->getOutput();
 		$title = $this->context->getTitle();
@@ -691,7 +693,7 @@ class MediaWiki {
 		JobQueueGroup::pushLazyJobs();
 
 		// Log profiling data, e.g. in the database or UDP
-		wfLogProfilingData();
+		$this->logProfilingData();
 
 		// Commit and close up!
 		$factory = wfGetLBFactory();
@@ -699,6 +701,98 @@ class MediaWiki {
 		$factory->shutdown();
 
 		wfDebug( "Request ended normally\n" );
+	}
+
+	/**
+	 * Log profiling information at the end of the request
+	 *
+	 * @since 1.26
+	 */
+	public function logProfilingData() {
+		global $wgDebugLogGroups, $wgDebugRawPage, $wgRequestTime;
+
+		$context = RequestContext::getMain();
+		$request = $context->getRequest();
+
+		$profiler = Profiler::instance();
+		$profiler->setContext( $context );
+		$profiler->logData();
+
+		$stats = $context->getStats();
+
+		// Track performance of all major endpoints
+		if ( $this->entryProfileKey ) {
+			$key = implode( '.', array_merge(
+				array( 'responseTime' ),
+				$this->entryProfileKey,
+				PHP_SAPI === 'cli' ? 'CLI' : $request->getMethod()
+			) );
+			$timeMs = round( ( microtime( true ) - $wgRequestTime ) * 1000 );
+
+			RequestContext::getMain()->getStats()->timing( $key, $timeMs );
+		}
+
+		# Emit all buffered stats to the endpoint
+		$config = $context->getConfig();
+		if ( $config->has( 'StatsdServer' ) ) {
+			$statsdServer = explode( ':', $config->get( 'StatsdServer' ) );
+			$statsdHost = $statsdServer[0];
+			$statsdPort = isset( $statsdServer[1] ) ? $statsdServer[1] : 8125;
+			$statsdSender = new SocketSender( $statsdHost, $statsdPort );
+			$statsdClient = new StatsdClient( $statsdSender );
+			$statsdClient->send( $stats->getBuffer() );
+		}
+
+		# Profiling must actually be enabled...
+		if ( $profiler instanceof ProfilerStub ) {
+			return;
+		}
+
+		if ( isset( $wgDebugLogGroups['profileoutput'] )
+			&& $wgDebugLogGroups['profileoutput'] === false
+		) {
+			// Explicitly disabled
+			return;
+		}
+		if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
+			return;
+		}
+
+		$ctx = array( 'elapsed' => $request->getElapsedTime() );
+		if ( !empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+			$ctx['forwarded_for'] = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		}
+		if ( !empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
+			$ctx['client_ip'] = $_SERVER['HTTP_CLIENT_IP'];
+		}
+		if ( !empty( $_SERVER['HTTP_FROM'] ) ) {
+			$ctx['from'] = $_SERVER['HTTP_FROM'];
+		}
+		if ( isset( $ctx['forwarded_for'] ) ||
+			isset( $ctx['client_ip'] ) ||
+			isset( $ctx['from'] )
+		) {
+			$ctx['proxy'] = $_SERVER['REMOTE_ADDR'];
+		}
+
+		// Don't load $wgUser at this late stage just for statistics purposes
+		// @todo FIXME: We can detect some anons even if it is not loaded.
+		// See User::getId()
+		$user = $context->getUser();
+		$ctx['anon'] = $user->isItemLoaded( 'id' ) && $user->isAnon();
+
+		// Command line script uses a FauxRequest object which does not have
+		// any knowledge about an URL and throw an exception instead.
+		try {
+			$ctx['url'] = urldecode( $request->getRequestURL() );
+		} catch ( Exception $ignored ) {
+			// no-op
+		}
+
+		$ctx['output'] = $profiler->getOutput();
+
+		$log = LoggerFactory::getInstance( 'profileoutput' );
+		$log->info( "Elapsed: {elapsed}; URL: <{url}>\n{output}", $ctx );
 	}
 
 	/**
@@ -792,5 +886,15 @@ class MediaWiki {
 			}
 		}
 		fclose( $sock );
+	}
+
+	/**
+	 * Set the profile key this entry point (e.g. API, index, ect...)
+	 *
+	 * @param array $parts Key fragment hierarchy
+	 * @since 1.26
+	 */
+	public function setEntrypointKey( array $parts ) {
+		$this->entryProfileKey = $parts;
 	}
 }

@@ -48,6 +48,7 @@ $wgActionPaths = array( "$wgUploadPath/" );
 wfImageAuthMain();
 
 $mediawiki = new MediaWiki();
+$mediawiki->setEntrypointKey( array( 'img_auth' ) );
 $mediawiki->doPostOutputShutdown( 'fast' );
 
 function wfImageAuthMain() {

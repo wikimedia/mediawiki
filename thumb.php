@@ -36,6 +36,7 @@ if ( defined( 'THUMB_HANDLER' ) ) {
 }
 
 $mediawiki = new MediaWiki();
+$mediawiki->setEntrypointKey( array( 'thumb' ) );
 $mediawiki->doPostOutputShutdown( 'fast' );
 
 //--------------------------------------------------------------------------
