@@ -304,18 +304,18 @@ class EnhancedChangesList extends ChangesList {
 			# Classes to apply -- TODO implement
 			$classes = array();
 			$type = $rcObj->mAttribs['rc_type'];
+			$data = array();
 
 			$trClass = $rcObj->watched && $rcObj->mAttribs['rc_timestamp'] >= $rcObj->watched
 				? ' class="mw-enhanced-watched"' : '';
+			$separator = ' <span class="mw-changeslist-separator">. .</span> ';
 
-			$r .= '<tr' . $trClass . '><td></td><td class="mw-enhanced-rc">';
-			$r .= $this->recentChangesFlags( array(
+			$data['recentChangesFlags'] = array(
 				'newpage' => $type == RC_NEW,
 				'minor' => $rcObj->mAttribs['rc_minor'],
 				'unpatrolled' => $rcObj->unpatrolled,
 				'bot' => $rcObj->mAttribs['rc_bot'],
-			) );
-			$r .= '&#160;</td><td class="mw-enhanced-rc-nested"><span class="mw-enhanced-rc-time">';
+			);
 
 			$params = $queryParams;
 
@@ -340,40 +340,65 @@ class EnhancedChangesList extends ChangesList {
 					$link = '<span class="history-deleted">' . $link . '</span> ';
 				}
 			}
-			$r .= $link . '</span>';
+			$data['timestampLink'] = $link;
 
+			$currentAndLastLinks = '';
 			if ( !$type == RC_LOG || $type == RC_NEW ) {
-				$r .= ' ' . $this->msg( 'parentheses' )->rawParams(
+				$currentAndLastLinks .= ' ' . $this->msg( 'parentheses' )->rawParams(
 					$rcObj->curlink .
 						$this->message['pipe-separator'] .
 						$rcObj->lastlink
 				)->escaped();
 			}
-			$r .= ' <span class="mw-changeslist-separator">. .</span> ';
+			$data['currentAndLastLinks'] = $currentAndLastLinks;
+			$data['separatorAfterCurrentAndLastLinks'] = $separator;
 
 			# Character diff
 			if ( $RCShowChangedSize ) {
 				$cd = $this->formatCharacterDifference( $rcObj );
 				if ( $cd !== '' ) {
-					$r .= $cd . ' <span class="mw-changeslist-separator">. .</span> ';
+					$data['characterDiff'] = $cd;
+					$data['separatorAfterCharacterDiff'] = $separator;
 				}
 			}
 
 			if ( $rcObj->mAttribs['rc_type'] == RC_LOG ) {
-				$r .= $this->insertLogEntry( $rcObj );
+				$data['logEntry'] = $this->insertLogEntry( $rcObj );
 			} else {
 				# User links
-				$r .= $rcObj->userlink;
-				$r .= $rcObj->usertalklink;
-				$r .= $this->insertComment( $rcObj );
+				$data['userLink'] = $rcObj->userlink;
+				$data['userTalkLink'] = $rcObj->usertalklink;
+				$data['comment'] = $this->insertComment( $rcObj );
 			}
 
 			# Rollback
-			$this->insertRollback( $r, $rcObj );
-			# Tags
-			$this->insertTags( $r, $rcObj, $classes );
+			$data['rollback'] = $this->getRollback( $rcObj );
 
-			$r .= "</td></tr>\n";
+			# Tags
+			$data['tags'] = $this->getTags( $rcObj, $classes );
+
+			// give the hook a chance to modify the data
+			Hooks::run( 'EnhancedChangesList::getRecentChangeEntryLineData',
+				array( $this, &$data, $block, $rcObj ) );
+
+			$line = '<tr' . $trClass . '><td></td><td class="mw-enhanced-rc">';
+			if ( isset( $data['recentChangesFlags'] ) ) {
+				$line .= $this->recentChangesFlags( $data['recentChangesFlags'] );
+				unset( $data['recentChangesFlags'] );
+			}
+			$line .= '&#160;</td><td class="mw-enhanced-rc-nested">';
+
+			if ( isset( $data['timestampLink'] ) ) {
+				$line .= '<span class="mw-enhanced-rc-time">' . $data['timestampLink'] . '</span>';
+				unset( $data['timestampLink'] );
+			}
+
+			// everything else: makes it easier for extensions to add or remove data
+			$line .= implode( '', $data );
+
+			$line .= "</td></tr>\n";
+
+			$r .= $line;
 		}
 		$r .= "</table>\n";
 
