@@ -1238,7 +1238,7 @@ function wfErrorLog( $text, $file, array $context = array() ) {
  * @todo document
  */
 function wfLogProfilingData() {
-	global $wgDebugLogGroups, $wgDebugRawPage;
+	global $wgDebugLogGroups, $wgDebugRawPage, $wgRequestTime;
 
 	$context = RequestContext::getMain();
 	$request = $context->getRequest();
@@ -1247,6 +1247,12 @@ function wfLogProfilingData() {
 	$profiler->setContext( $context );
 	$profiler->logData();
 
+	$stats = $context->getStats();
+	$action = Action::getActionName( $context );
+
+	$responseTime = round( ( microtime( true ) - $wgRequestTime ) * 1000 );
+	$stats->timing( "responseTime.{$action}", $key, $count );
+
 	$config = $context->getConfig();
 	if ( $config->has( 'StatsdServer' ) ) {
 		$statsdServer = explode( ':', $config->get( 'StatsdServer' ) );
@@ -1254,7 +1260,7 @@ function wfLogProfilingData() {
 		$statsdPort = isset( $statsdServer[1] ) ? $statsdServer[1] : 8125;
 		$statsdSender = new SocketSender( $statsdHost, $statsdPort );
 		$statsdClient = new StatsdClient( $statsdSender );
-		$statsdClient->send( $context->getStats()->getBuffer() );
+		$statsdClient->send( $stats->getBuffer() );
 	}
 
 	# Profiling must actually be enabled...
