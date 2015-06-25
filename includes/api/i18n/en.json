@@ -198,7 +198,7 @@
 	"apihelp-imagerotate-example-simple": "Rotate <kbd>File:Example.png</kbd> by <kbd>90</kbd> degrees.",
 	"apihelp-imagerotate-example-generator": "Rotate all images in <kbd>Category:Flip</kbd> by <kbd>180</kbd> degrees.",
 
-	"apihelp-import-description": "Import a page from another wiki, or an XML file.\n\nNote that the HTTP POST must be done as a file upload (i.e. using multipart/form-data) when sending a file for the <var>xml</var> parameter.",
+	"apihelp-import-description": "Import a page from another wiki, or from an XML file.\n\nNote that the HTTP POST must be done as a file upload (i.e. using multipart/form-data) when sending a file for the <var>xml</var> parameter.",
 	"apihelp-import-param-summary": "Import summary.",
 	"apihelp-import-param-xml": "Uploaded XML file.",
 	"apihelp-import-param-interwikisource": "For interwiki imports: wiki to import from.",
