@@ -662,7 +662,6 @@ class SpecialPage {
 	 */
 	public function getFinalGroupName() {
 		$name = $this->getName();
-		$specialPageGroups = $this->getConfig()->get( 'SpecialPageGroups' );
 
 		// Allow overbidding the group from the wiki side
 		$msg = $this->msg( 'specialpages-specialpagegroup-' . strtolower( $name ) )->inContentLanguage();
@@ -671,18 +670,6 @@ class SpecialPage {
 		} else {
 			// Than use the group from this object
 			$group = $this->getGroupName();
-
-			// Group '-' is used as default to have the chance to determine,
-			// if the special pages overrides this method,
-			// if not overridden, $wgSpecialPageGroups is checked for b/c
-			if ( $group === '-' && isset( $specialPageGroups[$name] ) ) {
-				$group = $specialPageGroups[$name];
-			}
-		}
-
-		// never give '-' back, change to 'other'
-		if ( $group === '-' ) {
-			$group = 'other';
 		}
 
 		return $group;
@@ -697,8 +684,6 @@ class SpecialPage {
 	 * @since 1.21
 	 */
 	protected function getGroupName() {
-		// '-' used here to determine, if this group is overridden or has a hardcoded 'other'
-		// Needed for b/c in getFinalGroupName
-		return '-';
+		return 'other';
 	}
 }

@@ -348,34 +348,6 @@ class SpecialPageFactory {
 	}
 
 	/**
-	 * Add a page to a certain display group for Special:SpecialPages
-	 *
-	 * @param SpecialPage|string $page
-	 * @param string $group
-	 * @deprecated since 1.21 Override SpecialPage::getGroupName
-	 */
-	public static function setGroup( $page, $group ) {
-		wfDeprecated( __METHOD__, '1.21' );
-
-		global $wgSpecialPageGroups;
-		$name = is_object( $page ) ? $page->getName() : $page;
-		$wgSpecialPageGroups[$name] = $group;
-	}
-
-	/**
-	 * Get the group that the special page belongs in on Special:SpecialPage
-	 *
-	 * @param SpecialPage $page
-	 * @return string
-	 * @deprecated since 1.21 Use SpecialPage::getFinalGroupName
-	 */
-	public static function getGroup( &$page ) {
-		wfDeprecated( __METHOD__, '1.21' );
-
-		return $page->getFinalGroupName();
-	}
-
-	/**
 	 * Check if a given name exist as a special page or as a special page alias
 	 *
 	 * @param string $name Name of a special page

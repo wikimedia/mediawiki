@@ -31,7 +31,7 @@ class ConvertExtensionToRegistration extends Maintenance {
 	 * @var array
 	 */
 	protected $noLongerSupportedGlobals = array(
-		'SpecialPageGroups' => 'deprecated',
+		'SpecialPageGroups' => 'deprecated', // Deprecated 1.21, removed in 1.26
 	);
 
 	/**
