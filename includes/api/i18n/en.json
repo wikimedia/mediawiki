@@ -12,7 +12,7 @@
 	"apihelp-main-param-maxlag": "Maximum lag can be used when MediaWiki is installed on a database replicated cluster. To save actions causing any more site replication lag, this parameter can make the client wait until the replication lag is less than the specified value. In case of excessive lag, error code <samp>maxlag</samp> is returned with a message like <samp>Waiting for $host: $lag seconds lagged</samp>.<br />See [[mw:Manual:Maxlag_parameter|Manual: Maxlag parameter]] for more information.",
 	"apihelp-main-param-smaxage": "Set the <code>s-maxage</code> HTTP cache control header to this many seconds. Errors are never cached.",
 	"apihelp-main-param-maxage": "Set the <code>max-age</code> HTTP cache control header to this many seconds. Errors are never cached.",
-	"apihelp-main-param-assert": "Verify the user is logged in if set to <kbd>user</kbd>, or has the bot userright if <kbd>bot</kbd>.",
+	"apihelp-main-param-assert": "Verify the user is logged in if set to <kbd>user</kbd>, or has the bot user right if <kbd>bot</kbd>.",
 	"apihelp-main-param-requestid": "Any value given here will be included in the response. May be used to distinguish requests.",
 	"apihelp-main-param-servedby": "Include the hostname that served the request in the results.",
 	"apihelp-main-param-curtimestamp": "Include the current timestamp in the result.",
