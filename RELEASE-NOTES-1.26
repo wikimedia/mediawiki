@@ -111,7 +111,9 @@ changes to languages because of Bugzilla reports.
   instead of many optional positional arguments. Calling the constructor the old
   way will issue a deprecation warning.
 * The jquery.mwExtension module was deprecated.
-
+* $wgSpecialPageGroups was removed (deprecated in 1.21).
+* SpecialPageFactory::setGroup was removed (deprecated in 1.21).
+* SpecialPageFactory::getGroup was removed (deprecated in 1.21).
 
 == Compatibility ==
 
