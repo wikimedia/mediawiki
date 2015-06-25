@@ -3099,5 +3099,6 @@
 	"special-characters-group-gujarati": "Gudžaratski znakovi",
 	"special-characters-group-thai": "Tajlandski (tajski) znakovi",
 	"special-characters-group-lao": "Laoski znakovi",
-	"special-characters-group-khmer": "kmerski"
+	"special-characters-group-khmer": "kmerski",
+	"mw-widgets-titleinput-description-redirect": "preusmjeravanje na $1"
 }

@@ -2962,5 +2962,7 @@
 	"special-characters-group-sinhala": "Sinhalskt",
 	"special-characters-group-devanagari": "Devanagari",
 	"special-characters-group-thai": "Taílenskt",
-	"special-characters-group-lao": "Laoskt"
+	"special-characters-group-lao": "Laoskt",
+	"mw-widgets-titleinput-description-new-page": "síðan er ekki enn til",
+	"mw-widgets-titleinput-description-redirect": "tilvísun á $1"
 }

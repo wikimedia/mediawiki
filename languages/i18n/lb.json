@@ -3202,5 +3202,7 @@
 	"special-characters-group-thai": "Thai",
 	"special-characters-group-lao": "Lao",
 	"special-characters-group-khmer": "Khmer",
-	"special-characters-title-minus": "Minus-Zeechen"
+	"special-characters-title-minus": "Minus-Zeechen",
+	"mw-widgets-titleinput-description-new-page": "Säit gëtt et nach net",
+	"mw-widgets-titleinput-description-redirect": "Viruleedung op $1"
 }

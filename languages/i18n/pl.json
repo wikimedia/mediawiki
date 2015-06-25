@@ -77,7 +77,8 @@
 			"VerMa",
 			"Ency",
 			"Kszapsza",
-			"Openbk"
+			"Openbk",
+			"Doctore"
 		]
 	},
 	"tog-underline": "Podkreślenie linków:",
@@ -743,6 +744,7 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Pusty obiekt",
 	"content-json-empty-array": "Pusta tablica",
+	"duplicate-args-warning": "<strong>Ostrzeżenie:</strong> [[:$1]] wywołuje [[:$2]] z więcej niż jedną wartością dla parametru \"$3\". Tylko ostatnia podana wartość zostanie użyta.",
 	"duplicate-args-category": "Strony zawierające wywołania szablonów z parametrami o takich samych nazwach",
 	"duplicate-args-category-desc": "Strona zawiera szablony, które używają duplikatów argumentów, jak <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> lub <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "Uwaga! Ta strona zawiera zbyt wiele wywołań złożonych obliczeniowo funkcji parsera.\n\nPowinno być mniej niż $2 {{PLURAL:$2|wywołanie|wywołania|wywołań}}, a obecnie {{PLURAL:$1|jest $1 wywołanie|są $1 wywołania|jest $1 wywołań}}.",
@@ -3421,5 +3423,7 @@
 	"special-characters-group-khmer": "Khmerskie",
 	"special-characters-title-endash": "półpauza",
 	"special-characters-title-emdash": "pauza",
-	"special-characters-title-minus": "minus"
+	"special-characters-title-minus": "minus",
+	"mw-widgets-titleinput-description-new-page": "strona jeszcze nie istnieje",
+	"mw-widgets-titleinput-description-redirect": "przekierowanie do $1"
 }

@@ -3218,5 +3218,7 @@
 	"special-characters-group-khmer": "Khmer",
 	"special-characters-title-endash": "en dash",
 	"special-characters-title-emdash": "em dash",
-	"special-characters-title-minus": "senial a panagkissay"
+	"special-characters-title-minus": "senial a panagkissay",
+	"mw-widgets-titleinput-description-new-page": "awan pay ti panid",
+	"mw-widgets-titleinput-description-redirect": "ibaw-ing iti $1"
 }

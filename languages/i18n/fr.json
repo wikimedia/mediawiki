@@ -3548,5 +3548,7 @@
 	"special-characters-group-khmer": "khmer",
 	"special-characters-title-endash": "tiret demi-cadratin",
 	"special-characters-title-emdash": "tiret cadratin",
-	"special-characters-title-minus": "signe moins"
+	"special-characters-title-minus": "signe moins",
+	"mw-widgets-titleinput-description-new-page": "la page n’existe pas encore",
+	"mw-widgets-titleinput-description-redirect": "Redirection vers $1"
 }

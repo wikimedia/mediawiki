@@ -3269,5 +3269,7 @@
 	"special-characters-group-khmer": "খেমার",
 	"special-characters-title-endash": "en ড্যাশ",
 	"special-characters-title-emdash": "em ড্যাশ",
-	"special-characters-title-minus": "বিয়োগ চিহ্ন"
+	"special-characters-title-minus": "বিয়োগ চিহ্ন",
+	"mw-widgets-titleinput-description-new-page": "পাতা এখনো বিদ্যমান নয়",
+	"mw-widgets-titleinput-description-redirect": "$1-এ পুনঃনির্দেশিত"
 }

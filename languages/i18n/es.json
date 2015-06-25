@@ -3459,5 +3459,7 @@
 	"special-characters-group-khmer": "Jemer",
 	"special-characters-title-endash": "semirraya",
 	"special-characters-title-emdash": "raya",
-	"special-characters-title-minus": "signo de resta"
+	"special-characters-title-minus": "signo de resta",
+	"mw-widgets-titleinput-description-new-page": "la página aún no existe",
+	"mw-widgets-titleinput-description-redirect": "redirigir a $1"
 }

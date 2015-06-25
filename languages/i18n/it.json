@@ -705,6 +705,7 @@
 	"yourdiff": "Differenze",
 	"copyrightwarning": "Per favore tieni presente che tutti i contributi a {{SITENAME}} si considerano pubblicati nei termini d'uso della licenza $2 (vedi $1 per maggiori dettagli).\nSe non desideri che i tuoi testi possano essere modificati e ridistribuiti da chiunque senza alcuna limitazione, non inviarli qui.<br />\nInviando il testo dichiari inoltre, sotto tua responsabilità, che è stato scritto da te personalmente oppure è stato copiato da una fonte di pubblico dominio o similarmente libera.\n'''Non inviare materiale protetto da copyright senza autorizzazione!'''",
 	"copyrightwarning2": "Per favore tieni presente che tutti i contributi a {{SITENAME}} possono essere modificati, stravolti o cancellati da altri contributori.\nSe non vuoi che i tuoi testi possano essere alterati, allora non inserirli.<br />\nInviando il testo dichiari inoltre, sotto tua responsabilità, che è stato scritto da te personalmente oppure è stato copiato da una fonte di pubblico dominio o similarmente libera (vedi $1 per maggiori dettagli).\n'''Non inviare materiale protetto da copyright senza autorizzazione!'''",
+	"editpage-cannot-use-custom-model": "Il modello del contenuto di questa pagina non può essere modificato.",
 	"longpageerror": "'''Errore: il testo inviato è lungo {{PLURAL:$1|1|$1}} kilobyte, che è maggiore della dimensione massima consentita ({{PLURAL:$2|1|$2}} kilobyte).'''\nIl testo non può essere salvato.",
 	"readonlywarning": "<strong>ATTENZIONE</strong>: il database è bloccato per manutenzione, non è momentaneamente possibile salvare le modifiche effettuate.\nPer non perderle, copiale in un file di testo e salvalo in attesa dello sblocco del database.\n\nL'amministratore che impostato il blocco ha fornito questa spiegazione: $1.",
 	"protectedpagewarning": "'''Attenzione: questa pagina è stata bloccata in modo che solo gli utenti con privilegi di amministratore possano modificarla.'''\nL'ultimo elemento del registro è riportato di seguito per informazione:",
@@ -1622,7 +1623,7 @@
 	"unusedimages": "File non utilizzati",
 	"wantedcategories": "Categorie richieste",
 	"wantedpages": "Pagine più richieste",
-	"wantedpages-summary": "Elenco delle pagine inesistenti con il maggior numero di collegamenti a loro, escludendo le pagine che hanno solo i reindirizzamenti che li collegano. Per un elenco di pagine inesistenti che hanno reindirizzamenti che li collegano, vedere [[{{#special:BrokenRedirects}}]].",
+	"wantedpages-summary": "Elenco delle pagine inesistenti con il maggior numero di collegamenti a loro, escludendo le pagine che hanno solo i reindirizzamenti che li collegano. Per un elenco di pagine inesistenti che hanno reindirizzamenti che li collegano, vedi [[{{#special:BrokenRedirects}}|l'elenco dei reindirizzamenti errati]].",
 	"wantedpages-badtitle": "Titolo non valido nel gruppo di risultati: $1",
 	"wantedfiles": "File richiesti",
 	"wantedfiletext-cat": "I seguenti file sono utilizzati, ma non esistono. I file ospitati su repository esterni potrebbero essere elencati anche se di fatto esistenti. Questi falsi positivi saranno <del>barrati</del>. Le pagine che incorporano i file che non esistono sono elencate in [[:$1]].",
@@ -3418,5 +3419,7 @@
 	"special-characters-group-khmer": "Khmer",
 	"special-characters-title-endash": "lineetta enne",
 	"special-characters-title-emdash": "lineetta emme",
-	"special-characters-title-minus": "segno meno"
+	"special-characters-title-minus": "segno meno",
+	"mw-widgets-titleinput-description-new-page": "Questa pagina non esiste ancora.",
+	"mw-widgets-titleinput-description-redirect": "reindirizzamento a $1"
 }

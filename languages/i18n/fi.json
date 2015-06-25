@@ -3375,5 +3375,7 @@
 	"special-characters-group-khmer": "Khmer",
 	"special-characters-title-endash": "ajatusviiva",
 	"special-characters-title-emdash": "pitkä ajatusviiva",
-	"special-characters-title-minus": "miinusmerkki"
+	"special-characters-title-minus": "miinusmerkki",
+	"mw-widgets-titleinput-description-new-page": "sivua ei ole vielä olemassa",
+	"mw-widgets-titleinput-description-redirect": "ohjaus sivulle $1"
 }

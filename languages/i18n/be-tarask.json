@@ -3032,6 +3032,7 @@
 	"tags-delete-submit": "Незваротна выдаліць гэтую метку",
 	"tags-delete-not-allowed": "Меткі, вызначаныя пашырэньнем, ня могуць быць выдаленыя, акрамя выпадку, калі пашырэньне дазваляе гэта.",
 	"tags-delete-not-found": "Метка «$1» не існуе.",
+	"tags-delete-too-many-uses": "Метка «$1» выкарыстаная ў больш чым $2 {{PLURAL:$2|вэрсіі|вэрсіях}}, адпаведна, яна ня можа быць выдаленая.",
 	"comparepages": "Параўнаньне старонак",
 	"compare-page1": "Старонка 1",
 	"compare-page2": "Старонка 2",
@@ -3280,5 +3281,6 @@
 	"special-characters-group-khmer": "Кхмэрскія",
 	"special-characters-title-endash": "кароткі працяжнік",
 	"special-characters-title-emdash": "доўгі працяжнік",
-	"special-characters-title-minus": "мінус"
+	"special-characters-title-minus": "мінус",
+	"mw-widgets-titleinput-description-new-page": "старонка яшчэ не існуе"
 }

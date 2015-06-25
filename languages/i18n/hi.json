@@ -3412,5 +3412,7 @@
 	"special-characters-group-khmer": "खमेर",
 	"special-characters-title-endash": "एन डैश",
 	"special-characters-title-emdash": "एम डैश",
-	"special-characters-title-minus": "ऋण चिह्न"
+	"special-characters-title-minus": "ऋण चिह्न",
+	"mw-widgets-titleinput-description-new-page": "पृष्ठ अभी मौजूद नहीं है",
+	"mw-widgets-titleinput-description-redirect": "$1 को अनुप्रेषित"
 }

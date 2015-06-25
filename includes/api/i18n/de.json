@@ -271,7 +271,7 @@
 	"apihelp-query-param-export": "Exportiert die aktuellen Versionen der angegebenen oder generierten Seiten.",
 	"apihelp-query-param-exportnowrap": "Gibt den XML-Export zurück, ohne ihn in ein XML-Ergebnis einzuschließen (gleiches Format wie durch [[Special:Export]]). Kann nur zusammen mit $1export genutzt werden.",
 	"apihelp-query-param-iwurl": "Gibt an, ob die komplette URL zurückgegeben werden soll, wenn der Titel ein Interwikilink ist.",
-	"apihelp-query-param-rawcontinue": "Gibt rohe <samp>query-continue</samp>-Daten zur Fortsetzung zurück.",
+	"apihelp-query-param-rawcontinue": "Gibt <samp>query-continue</samp>-Rohdaten zur Fortsetzung zurück.",
 	"apihelp-query-example-revisions": "Bezieht [[Special:ApiHelp/query+siteinfo|Seiteninformationen]] und [[Special:ApiHelp/query+revisions|Versionen]] der <kbd>Main Page</kbd>.",
 	"apihelp-query-example-allpages": "Bezieht Versionen von Seiten, die mit <kbd>API/</kbd> beginnen.",
 	"apihelp-query+allcategories-description": "Alle Kategorien aufzählen.",
