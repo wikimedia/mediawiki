@@ -3486,5 +3486,7 @@
 	"special-characters-group-khmer": "Кмерски",
 	"special-characters-title-endash": "цртичка",
 	"special-characters-title-emdash": "тире",
-	"special-characters-title-minus": "минус"
+	"special-characters-title-minus": "минус",
+	"mw-widgets-titleinput-description-new-page": "страницата сè уште не постои",
+	"mw-widgets-titleinput-description-redirect": "пренасочување кон $1"
 }

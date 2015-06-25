@@ -3415,5 +3415,7 @@
 	"special-characters-group-khmer": "Khmer-Kambodschaanesch",
 	"special-characters-title-endash": "Ene Halfjeviertschtresch",
 	"special-characters-title-emdash": "Ene Jeviertschtresch",
-	"special-characters-title-minus": "Et Winnijer-Zeische"
+	"special-characters-title-minus": "Et Winnijer-Zeische",
+	"mw-widgets-titleinput-description-new-page": "di Sigg jidd_et noch nit",
+	"mw-widgets-titleinput-description-redirect": "ömleijde op „$1“"
 }

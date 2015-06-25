@@ -3406,5 +3406,7 @@
 	"special-characters-group-khmer": "Khmerština",
 	"special-characters-title-endash": "krátká pomlčka",
 	"special-characters-title-emdash": "dlouhá pomlčka",
-	"special-characters-title-minus": "znaménko minus"
+	"special-characters-title-minus": "znaménko minus",
+	"mw-widgets-titleinput-description-new-page": "stránka zatím neexistuje",
+	"mw-widgets-titleinput-description-redirect": "přesměrování na $1"
 }

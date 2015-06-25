@@ -3415,5 +3415,7 @@
 	"special-characters-group-khmer": "ქჰმერული",
 	"special-characters-title-endash": "ტირე",
 	"special-characters-title-emdash": "გრძელი ტირე",
-	"special-characters-title-minus": "მინუსის ნიშანი"
+	"special-characters-title-minus": "მინუსის ნიშანი",
+	"mw-widgets-titleinput-description-new-page": "გვერდი ჯერ არ არსებობს",
+	"mw-widgets-titleinput-description-redirect": "გადამისამართება $1-ზე"
 }

@@ -3431,5 +3431,7 @@
 	"special-characters-group-khmer": "Khmer",
 	"special-characters-title-endash": "Halbgeviertstrich",
 	"special-characters-title-emdash": "Geviertstrich",
-	"special-characters-title-minus": "Minus"
+	"special-characters-title-minus": "Minus",
+	"mw-widgets-titleinput-description-new-page": "Seite ist noch nicht vorhanden",
+	"mw-widgets-titleinput-description-redirect": "Weiterleitung nach $1"
 }

@@ -3386,5 +3386,7 @@
 	"special-characters-group-khmer": "Khmer",
 	"special-characters-title-endash": "tankstreck",
 	"special-characters-title-emdash": "långt tankstreck",
-	"special-characters-title-minus": "minustecken"
+	"special-characters-title-minus": "minustecken",
+	"mw-widgets-titleinput-description-new-page": "sidan existerar inte ännu",
+	"mw-widgets-titleinput-description-redirect": "omdirigerar till $1"
 }

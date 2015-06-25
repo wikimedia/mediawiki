@@ -3424,5 +3424,7 @@
 	"special-characters-group-khmer": "קמרית",
 	"special-characters-title-endash": "קו מפריד",
 	"special-characters-title-emdash": "קו מפריד ארוך",
-	"special-characters-title-minus": "מינוס"
+	"special-characters-title-minus": "מינוס",
+	"mw-widgets-titleinput-description-new-page": "הדף עדיין לא קיים",
+	"mw-widgets-titleinput-description-redirect": "הפניה ל{{GRAMMAR:תחילית|$1}}"
 }

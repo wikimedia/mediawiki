@@ -2980,7 +2980,7 @@
 	"watchlistedit-normal-done": "已从你的监视列表删除$1个标题：",
 	"watchlistedit-raw-title": "编辑原始监视列表",
 	"watchlistedit-raw-legend": "编辑原始监视列表",
-	"watchlistedit-raw-explain": "您的监视列表中的标题在下面显示，同时也可以可以通过编辑这个表去加入以及移除标题；一行一个标题。当完成以后，点击{{int:Watchlistedit-raw-submit}}。您也可以使用[[Special:EditWatchlist|标准编辑器]]。",
+	"watchlistedit-raw-explain": "您的监视列表中的标题在下面显示，并可通过编辑此表以添加或移除标题；每行一个标题。当完成以后，点击“{{int:Watchlistedit-raw-submit}}”。您也可以[[Special:EditWatchlist|使用标准编辑器]]。",
 	"watchlistedit-raw-titles": "标题：",
 	"watchlistedit-raw-submit": "更新监视列表",
 	"watchlistedit-raw-done": "您的监视列表已经更新。",
@@ -3440,5 +3440,7 @@
 	"special-characters-group-khmer": "高棉语字母",
 	"special-characters-title-endash": "短划线",
 	"special-characters-title-emdash": "长划线",
-	"special-characters-title-minus": "减号"
+	"special-characters-title-minus": "减号",
+	"mw-widgets-titleinput-description-new-page": "页面不存在",
+	"mw-widgets-titleinput-description-redirect": "重定向至$1"
 }

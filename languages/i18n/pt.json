@@ -3346,5 +3346,7 @@
 	"special-characters-group-khmer": "Cambojano",
 	"special-characters-title-endash": "hífen",
 	"special-characters-title-emdash": "travessão",
-	"special-characters-title-minus": "sinal de subtração"
+	"special-characters-title-minus": "sinal de subtração",
+	"mw-widgets-titleinput-description-new-page": "a página ainda não existe.",
+	"mw-widgets-titleinput-description-redirect": "redirecionar para $1"
 }

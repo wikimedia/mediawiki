@@ -642,6 +642,7 @@
 	"yourdiff": "Diferenzas",
 	"copyrightwarning": "Por favor, teña en conta que todas as contribucións a {{SITENAME}} considéranse publicadas baixo a $2 (vexa $1 para máis detalles). Se non quere que o que escriba se edite sen piedade e se redistribúa sen límites, entón non o envíe aquí.<br />\nAo mesmo tempo, prométanos que o que escribiu é da súa autoría ou que está copiado dun recurso do dominio público ou que permite unha liberdade semellante.\n'''NON ENVÍE MATERIAL CON DEREITOS DE AUTOR SEN PERMISO!'''",
 	"copyrightwarning2": "Por favor, decátese de que todas as súas contribucións a {{SITENAME}} poden ser editadas, alteradas ou eliminadas por outras persoas. Se non quere que os seus escritos sexan editados sen piedade, non os publique aquí.<br />\nDo mesmo xeito, comprométese a que o que vostede escriba sexa da súa autoría ou copiado dunha fonte de dominio público ou recurso público semellante (vexa $1 para detalles).\n'''NON ENVÍE SEN PERMISO TRABALLOS CON DEREITOS DE COPIA!'''",
+	"editpage-cannot-use-custom-model": "O modelo de contido desta páxina non se pode modificar.",
 	"longpageerror": "'''Erro: O texto que pretende gardar ocupa {{PLURAL:$1|$1 kilobyte|$1 kilobytes}}, e existe un límite dun máximo de {{PLURAL:$2|$2 kilobyte|$2 kilobytes}}.'''\nPolo tanto, non se pode gardar.",
 	"readonlywarning": "'''Atención: A base de datos foi pechada para facer mantemento, polo que non vai poder gardar as súas edicións polo de agora.'''\nSe cadra, pode cortar e pegar o texto nun ficheiro de texto e gardalo para despois.\n\nO administrador que a pechou deu esta explicación: $1",
 	"protectedpagewarning": "'''Aviso: Esta páxina foi protexida de xeito que só os usuarios con privilexios de administrador a poidan editar.'''\nVelaquí está a última entrada no rexistro, por se quere consultala:",
@@ -3347,5 +3348,7 @@
 	"special-characters-group-khmer": "Camboxano",
 	"special-characters-title-endash": "guión",
 	"special-characters-title-emdash": "raia",
-	"special-characters-title-minus": "signo menos"
+	"special-characters-title-minus": "signo menos",
+	"mw-widgets-titleinput-description-new-page": "a páxina aínda non existe",
+	"mw-widgets-titleinput-description-redirect": "redirección cara a $1"
 }
