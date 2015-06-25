@@ -136,7 +136,7 @@ class SpecialSearchTest extends MediaWikiTestCase {
 
 		# Compare :-]
 		$this->assertRegExp(
-			'/' . preg_quote( $term ) . '/',
+			'/' . preg_quote( $term, '/' ) . '/',
 			$pageTitle,
 			"Search term '{$term}' should not be expanded in Special:Search <title>"
 		);

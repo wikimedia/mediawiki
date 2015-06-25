@@ -130,7 +130,7 @@ class AllMessagesTablePager extends TablePager {
 
 		if ( $prefix !== null ) {
 			$this->displayPrefix = $prefix->getDBkey();
-			$this->prefix = '/^' . preg_quote( $this->displayPrefix ) . '/i';
+			$this->prefix = '/^' . preg_quote( $this->displayPrefix, '/' ) . '/i';
 		} else {
 			$this->displayPrefix = false;
 			$this->prefix = false;

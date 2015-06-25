@@ -433,7 +433,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 */
 	protected function substPaths( $paths, FileBackendStore $backend ) {
 		return preg_replace(
-			'!^mwstore://' . preg_quote( $this->name ) . '/!',
+			'!^mwstore://' . preg_quote( $this->name, '!' ) . '/!',
 			StringUtils::escapeRegexReplacement( "mwstore://{$backend->getName()}/" ),
 			$paths // string or array
 		);

@@ -103,7 +103,7 @@ class ParserOutput extends CacheTime {
 			$text = str_replace( array( Parser::TOC_START, Parser::TOC_END ), '', $text );
 		} else {
 			$text = preg_replace(
-				'#' . preg_quote( Parser::TOC_START ) . '.*?' . preg_quote( Parser::TOC_END ) . '#s',
+				'#' . preg_quote( Parser::TOC_START, '#' ) . '.*?' . preg_quote( Parser::TOC_END, '#' ) . '#s',
 				'',
 				$text
 			);
