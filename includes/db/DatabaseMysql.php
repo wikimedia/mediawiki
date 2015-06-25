@@ -73,6 +73,9 @@ class DatabaseMysql extends DatabaseMysqlBase {
 
 		$conn = false;
 
+		# The kernel's default SYN retransmission period is far too slow for us,
+		# so we use a short timeout plus a manual retry. Retrying means that a small
+		# but finite rate of SYN packet loss won't cause user-visible errors.
 		for ( $i = 0; $i < $numAttempts && !$conn; $i++ ) {
 			if ( $i > 1 ) {
 				usleep( 1000 );
