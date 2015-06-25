@@ -30,6 +30,8 @@ production.
 * (T68699) The expiration of the UserID and Token login cookies
   ($wgExtendedLoginCookieExpiration) can be configured independently of the
   expiration of all other cookies ($wgCookieExpiration).
+* Added a new hook 'EnhancedChangesList::getRecentChangeEntryLineData', to
+  modify the data used to build lines in recent changes and watch list.
 
 ==== External libraries ====
 * Update es5-shim from v4.0.0 to v4.1.5.
