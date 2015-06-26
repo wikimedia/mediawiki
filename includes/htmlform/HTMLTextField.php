@@ -7,7 +7,7 @@ class HTMLTextField extends HTMLFormField {
 
 	function getSpellCheck() {
 		$val = isset( $this->mParams['spellcheck'] ) ? $this->mParams['spellcheck'] : null;
-		if( is_bool( $val ) ) {
+		if ( is_bool( $val ) ) {
 			// "spellcheck" attribute literally requires "true" or "false" to work.
 			return $val === true ? 'true' : 'false';
 		}

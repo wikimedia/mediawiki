@@ -1732,8 +1732,9 @@ class FormatMetadata extends ContextSource {
 	}
 
 	/**
-	 * Turns an XMP-style multivalue array into a single value by dropping all but the first value.
-	 * If the value is not a multivalue array (or a multivalue array inside a multilang array), it is returned unchanged.
+	 * Turns an XMP-style multivalue array into a single value by dropping all but the first
+	 * value. If the value is not a multivalue array (or a multivalue array inside a multilang
+	 * array), it is returned unchanged.
 	 * See mediawiki.org/wiki/Manual:File_metadata_handling#Multi-language_array_format
 	 * @param mixed $value
 	 * @return mixed The value, or the first value if there were multiple ones
@@ -1742,7 +1743,8 @@ class FormatMetadata extends ContextSource {
 	protected function resolveMultivalueValue( $value ) {
 		if ( !is_array( $value ) ) {
 			return $value;
-		} elseif ( isset( $value['_type'] ) && $value['_type'] === 'lang' ) { // if this is a multilang array, process fields separately
+		} elseif ( isset( $value['_type'] ) && $value['_type'] === 'lang' ) {
+			// if this is a multilang array, process fields separately
 			$newValue = array();
 			foreach ( $value as $k => $v ) {
 				$newValue[$k] = $this->resolveMultivalueValue( $v );

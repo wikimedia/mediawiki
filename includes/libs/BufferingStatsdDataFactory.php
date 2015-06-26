@@ -23,7 +23,6 @@
 use Liuggio\StatsdClient\Entity\StatsdDataInterface;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 
-
 /**
  * A factory for application metric data.
  *

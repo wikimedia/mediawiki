@@ -448,7 +448,8 @@ class InfoAction extends FormlessAction {
 				}
 			}
 			$expiry = $title->getRestrictionExpiry( $restrictionType );
-			$formattedexpiry = $this->msg( 'parentheses', $this->getLanguage()->formatExpiry( $expiry ) )->escaped();
+			$formattedexpiry = $this->msg( 'parentheses',
+				$this->getLanguage()->formatExpiry( $expiry ) )->escaped();
 			$message .= $this->msg( 'word-separator' )->escaped() . $formattedexpiry;
 
 			// Messages: restriction-edit, restriction-move, restriction-create,

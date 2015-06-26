@@ -217,7 +217,6 @@ class ParserCache {
 			? $article->getPage()
 			: $article;
 
-
 		if ( !$useOutdated && $value->expired( $touched ) ) {
 			wfIncrStats( "pcache.miss.expired" );
 			$cacheTime = $value->getCacheTime();
