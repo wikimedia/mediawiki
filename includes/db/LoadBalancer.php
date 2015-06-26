@@ -650,10 +650,7 @@ class LoadBalancer {
 	public function openConnection( $i, $wiki = false ) {
 		if ( $wiki !== false ) {
 			$conn = $this->openForeignConnection( $i, $wiki );
-
-			return $conn;
-		}
-		if ( isset( $this->mConns['local'][$i][0] ) ) {
+		} elseif ( isset( $this->mConns['local'][$i][0] ) ) {
 			$conn = $this->mConns['local'][$i][0];
 		} else {
 			$server = $this->mServers[$i];
@@ -668,6 +665,15 @@ class LoadBalancer {
 				$this->mErrorConnection = $conn;
 				$conn = false;
 			}
+		}
+
+		if ( $conn && !$conn->isOpen() ) {
+			// Connection was made but later unrecoverably lost for some reason.
+			// Do not return a handle that will just throw exceptions on use,
+			// but let the calling code (e.g. getReaderIndex) try another server.
+			// See DatabaseMyslBase::ping() for how this can happen.
+			$this->mErrorConnection = $conn;
+			$conn = false;
 		}
 
 		return $conn;
