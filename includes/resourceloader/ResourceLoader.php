@@ -215,11 +215,16 @@ class ResourceLoader implements LoggerAwareInterface {
 			}
 			$result = '';
 			try {
-				wfIncrStats( "resourceloader_cache.$filter.miss" );
+				$startTime = microtime( true );
+
 				$result = $this->applyFilter( $filter, $data );
 				if ( $options['cacheReport'] ) {
 					$result .= "\n/* cache key: $key */";
 				}
+
+				$stats = RequestContext::getMain()->getStats();
+				$stats->timing( "resourceloader_cache.$filter.miss", microtime( true ) - $startTime );
+
 				$cache->set( $key, $result );
 			} catch ( Exception $e ) {
 				MWExceptionHandler::logException( $e );
@@ -984,11 +989,19 @@ MESSAGE;
 			$states[$name] = 'missing';
 		}
 
+		$stats = RequestContext::getMain()->getStats();
+
 		// Generate output
 		$isRaw = false;
 		foreach ( $modules as $name => $module ) {
 			try {
+				$startTime = microtime( true );
+
 				$content = $module->getModuleContent( $context );
+
+				$timing = microtime( true ) - $startTime;
+				$stats->timing( "resourceloader_build.all", $timing );
+				$stats->timing( "resourceloader_build.$name", $timing );
 
 				// Append output
 				switch ( $context->getOnly() ) {
