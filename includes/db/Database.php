@@ -3829,6 +3829,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @param string $prefix Only show tables with this prefix, e.g. mw_
 	 * @param string $fname Calling function name
 	 * @throws MWException
+	 * @return array
 	 */
 	function listTables( $prefix = null, $fname = __METHOD__ ) {
 		throw new MWException( 'DatabaseBase::listTables is not implemented in descendant class' );
@@ -3851,6 +3852,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @param string $prefix Only show VIEWs with this prefix, eg. unit_test_
 	 * @param string $fname Name of calling function
 	 * @throws MWException
+	 * @return array
 	 * @since 1.22
 	 */
 	public function listViews( $prefix = null, $fname = __METHOD__ ) {
@@ -3862,6 +3864,7 @@ abstract class DatabaseBase implements IDatabase {
 	 *
 	 * @param string $name Name of the database-structure to test.
 	 * @throws MWException
+	 * @return bool
 	 * @since 1.22
 	 */
 	public function isView( $name ) {
