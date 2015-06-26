@@ -522,6 +522,9 @@ class SpecialVersion extends SpecialPage {
 		$out .= Html::openElement( 'tr' )
 			. Html::element( 'th', array(), $this->msg( 'version-libraries-library' )->text() )
 			. Html::element( 'th', array(), $this->msg( 'version-libraries-version' )->text() )
+			. Html::element( 'th', array(), $this->msg( 'version-libraries-license' )->text() )
+			. Html::element( 'th', array(), $this->msg( 'version-libraries-description' )->text() )
+			. Html::element( 'th', array(), $this->msg( 'version-libraries-authors' )->text() )
 			. Html::closeElement( 'tr' );
 
 		foreach ( $lock->getInstalledDependencies() as $name => $info ) {
@@ -530,13 +533,28 @@ class SpecialVersion extends SpecialPage {
 				// in their proper section
 				continue;
 			}
+			$authors = array_map( function( $arr ) {
+				// If a homepage is set, link to it
+				if ( isset( $arr['homepage'] ) ) {
+					return "[{$arr['homepage']} {$arr['name']}]";
+				}
+				return $arr['name'];
+			}, $info['authors'] );
+			$authors = $this->listAuthors( $authors, false, "$IP/vendor/$name" );
 			$out .= Html::openElement( 'tr' )
 				. Html::rawElement(
 					'td',
 					array(),
-					Linker::makeExternalLink( "https://packagist.org/packages/$name", $name )
+					Linker::makeExternalLink(
+						"https://packagist.org/packages/$name", $name,
+						true, '',
+						array( 'class' => 'mw-version-library-name' )
+					)
 				)
 				. Html::element( 'td', array(), $info['version'] )
+				. Html::element( 'td', array(), $this->listToText( $info['licenses'] ) )
+				. Html::element( 'td', array(), $info['description'] )
+				. Html::rawElement( 'td', array(), $authors )
 				. Html::closeElement( 'tr' );
 		}
 		$out .= Html::closeElement( 'table' );
@@ -959,7 +977,8 @@ class SpecialVersion extends SpecialPage {
 	 *   'and others' will be added to the end of the credits.
 	 *
 	 * @param string|array $authors
-	 * @param string $extName Name of the extension for link creation
+	 * @param string|bool $extName Name of the extension for link creation,
+	 *   false if no links should be created
 	 * @param string $extDir Path to the extension root directory
 	 *
 	 * @return string HTML fragment
@@ -972,7 +991,7 @@ class SpecialVersion extends SpecialPage {
 			if ( $item == '...' ) {
 				$hasOthers = true;
 
-				if ( $this->getExtAuthorsFileName( $extDir ) ) {
+				if ( $extName && $this->getExtAuthorsFileName( $extDir ) ) {
 					$text = Linker::link(
 						$this->getPageTitle( "Credits/$extName" ),
 						$this->msg( 'version-poweredby-others' )->escaped()
@@ -991,7 +1010,7 @@ class SpecialVersion extends SpecialPage {
 			}
 		}
 
-		if ( !$hasOthers && $this->getExtAuthorsFileName( $extDir ) ) {
+		if ( $extName && !$hasOthers && $this->getExtAuthorsFileName( $extDir ) ) {
 			$list[] = $text = Linker::link(
 				$this->getPageTitle( "Credits/$extName" ),
 				$this->msg( 'version-poweredby-others' )->escaped()
