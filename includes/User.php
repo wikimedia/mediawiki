@@ -378,7 +378,7 @@ class User implements IDBAccessObject {
 	 * @param integer $flags User::READ_* constant bitfield
 	 * @return bool False if the ID does not exist, true otherwise
 	 */
-	public function loadFromId( $flags = self::READ_LATEST ) {
+	public function loadFromId( $flags = self::READ_NORMAL ) {
 		if ( $this->mId == 0 ) {
 			$this->loadDefaults();
 			return false;
