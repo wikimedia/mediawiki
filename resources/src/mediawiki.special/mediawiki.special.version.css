@@ -1,7 +1,8 @@
 /*!
  * Styling for Special:Version
  */
-.mw-version-ext-name {
+.mw-version-ext-name,
+.mw-version-library-name {
 	font-weight: bold;
 }
 

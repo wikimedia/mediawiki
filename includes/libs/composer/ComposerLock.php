@@ -30,6 +30,9 @@ class ComposerLock {
 			$deps[$installed['name']] = array(
 				'version' => ComposerJson::normalizeVersion( $installed['version'] ),
 				'type' => $installed['type'],
+				'licenses' => isset( $installed['license'] ) ? $installed['license'] : array(),
+				'authors' => isset( $installed['authors'] ) ? $installed['authors'] : array(),
+				'description' => isset( $installed['description'] ) ? $installed['description']: '',
 			);
 		}
 
