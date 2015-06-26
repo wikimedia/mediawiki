@@ -33,10 +33,12 @@ class DatabaseMysql extends DatabaseMysqlBase {
 	 * @return resource False on error
 	 */
 	protected function doQuery( $sql ) {
+		$conn = $this->getBindingHandle();
+
 		if ( $this->bufferResults() ) {
-			$ret = mysql_query( $sql, $this->mConn );
+			$ret = mysql_query( $sql, $conn );
 		} else {
-			$ret = mysql_unbuffered_query( $sql, $this->mConn );
+			$ret = mysql_unbuffered_query( $sql, $conn );
 		}
 
 		return $ret;
@@ -48,8 +50,7 @@ class DatabaseMysql extends DatabaseMysqlBase {
 	 * @throws DBConnectionError
 	 */
 	protected function mysqlConnect( $realServer ) {
-		# Fail now
-		# Otherwise we get a suppressed fatal error, which is very hard to track down
+		# Avoid a suppressed fatal error, which is very hard to track down
 		if ( !extension_loaded( 'mysql' ) ) {
 			throw new DBConnectionError(
 				$this,
@@ -93,8 +94,10 @@ class DatabaseMysql extends DatabaseMysqlBase {
 	 * @return bool
 	 */
 	protected function mysqlSetCharset( $charset ) {
+		$conn = $this->getBindingHandle();
+
 		if ( function_exists( 'mysql_set_charset' ) ) {
-			return mysql_set_charset( $charset, $this->mConn );
+			return mysql_set_charset( $charset, $conn );
 		} else {
 			return $this->query( 'SET NAMES ' . $charset, __METHOD__ );
 		}
@@ -104,14 +107,18 @@ class DatabaseMysql extends DatabaseMysqlBase {
 	 * @return bool
 	 */
 	protected function closeConnection() {
-		return mysql_close( $this->mConn );
+		$conn = $this->getBindingHandle();
+
+		return mysql_close( $conn );
 	}
 
 	/**
 	 * @return int
 	 */
 	function insertId() {
-		return mysql_insert_id( $this->mConn );
+		$conn = $this->getBindingHandle();
+
+		return mysql_insert_id( $conn );
 	}
 
 	/**
@@ -129,7 +136,9 @@ class DatabaseMysql extends DatabaseMysqlBase {
 	 * @return int
 	 */
 	function affectedRows() {
-		return mysql_affected_rows( $this->mConn );
+		$conn = $this->getBindingHandle();
+
+		return mysql_affected_rows( $conn );
 	}
 
 	/**
@@ -137,9 +146,11 @@ class DatabaseMysql extends DatabaseMysqlBase {
 	 * @return bool
 	 */
 	function selectDB( $db ) {
+		$conn = $this->getBindingHandle();
+
 		$this->mDBname = $db;
 
-		return mysql_select_db( $db, $this->mConn );
+		return mysql_select_db( $db, $conn );
 	}
 
 	protected function mysqlFreeResult( $res ) {
@@ -183,10 +194,14 @@ class DatabaseMysql extends DatabaseMysqlBase {
 	}
 
 	protected function mysqlRealEscapeString( $s ) {
-		return mysql_real_escape_string( $s, $this->mConn );
+		$conn = $this->getBindingHandle();
+
+		return mysql_real_escape_string( $s, $conn );
 	}
 
 	protected function mysqlPing() {
-		return mysql_ping( $this->mConn );
+		$conn = $this->getBindingHandle();
+
+		return mysql_ping( $conn );
 	}
 }
