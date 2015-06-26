@@ -30,7 +30,8 @@ class MalformedTitleException extends Exception {
 	/**
 	 * @param string $errorMessage Localisation message describing the error (since MW 1.26)
 	 * @param string $titleText The invalid title text (since MW 1.26)
-	 * @param string[] $errorMessageParameters Additional parameters for the error message. $titleText will be appended if it's not null. (since MW 1.26)
+	 * @param string[] $errorMessageParameters Additional parameters for the error message.
+	 * $titleText will be appended if it's not null. (since MW 1.26)
 	 */
 	public function __construct( $errorMessage = null, $titleText = null, $errorMessageParameters = array() ) {
 		$this->errorMessage = $errorMessage;

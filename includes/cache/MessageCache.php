@@ -1113,7 +1113,8 @@ class MessageCache {
 
 		if ( !$title || !$title instanceof Title ) {
 			global $wgTitle;
-			wfDebugLog( 'GlobalTitleFail', __METHOD__ . ' called by ' . wfGetAllCallers( 5 ) . ' with no title set.' );
+			wfDebugLog( 'GlobalTitleFail', __METHOD__ . ' called by ' .
+				wfGetAllCallers( 5 ) . ' with no title set.' );
 			$title = $wgTitle;
 		}
 		// Sometimes $wgTitle isn't set either...

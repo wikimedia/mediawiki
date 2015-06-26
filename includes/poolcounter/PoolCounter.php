@@ -192,10 +192,11 @@ abstract class PoolCounter {
 	}
 
 	/**
-	 * Given a key (any string) and the number of lots, returns a slot number (an integer from the [0..($slots-1)] range).
-	 * This is used for a global limit on the number of instances  of a given type that can acquire a lock.
-	 * The hashing is deterministic so that PoolCounter::$workers is always an upper limit of how many instances with
-	 * the same key can acquire a lock.
+	 * Given a key (any string) and the number of lots, returns a slot number (an integer from
+	 * the [0..($slots-1)] range). This is used for a global limit on the number of instances of
+	 * a given type that can acquire a lock. The hashing is deterministic so that
+	 * PoolCounter::$workers is always an upper limit of how many instances with the same key
+	 * can acquire a lock.
 	 *
 	 * @param string $key PoolCounter instance key (any string)
 	 * @param int $slots The number of slots (max allowed value is 65536)
