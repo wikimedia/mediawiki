@@ -21,6 +21,8 @@
  * @author Antoine Musso "<hashar at free dot fr>", Aaron Schulz
  */
 
+use IPSet\IPSet;
+
 // Some regex definition to "play" with IP address and IP address blocks
 
 // An IPv4 address is made of 4 bytes from x00 to xFF which is d0 to d255
