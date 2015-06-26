@@ -1414,25 +1414,8 @@ class Revision implements IDBAccessObject {
 		);
 
 		if ( $wgContentHandlerUseDB ) {
-			//NOTE: Store null for the default model and format, to save space.
-			//XXX: Makes the DB sensitive to changed defaults.
-			// Make this behavior optional? Only in miser mode?
-
-			$model = $this->getContentModel();
-			$format = $this->getContentFormat();
-
-			$title = $this->getTitle();
-
-			if ( $title === null ) {
-				throw new MWException( "Insufficient information to determine the title of the "
-					. "revision's page!" );
-			}
-
-			$defaultModel = ContentHandler::getDefaultModelFor( $title );
-			$defaultFormat = ContentHandler::getForModelID( $defaultModel )->getDefaultFormat();
-
-			$row['rev_content_model'] = ( $model === $defaultModel ) ? null : $model;
-			$row['rev_content_format'] = ( $format === $defaultFormat ) ? null : $format;
+			$row['rev_content_model'] = $this->getContentModel();
+			$row['rev_content_format'] = $this->getContentFormat();
 		}
 
 		$dbw->insert( 'revision', $row, __METHOD__ );
