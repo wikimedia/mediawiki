@@ -575,7 +575,7 @@
 			"type": "object"
 		},
 		"FilterLogTypes": {
-			"type": "array"
+			"type": "object"
 		},
 		"LogNames": {
 			"type": "object"
