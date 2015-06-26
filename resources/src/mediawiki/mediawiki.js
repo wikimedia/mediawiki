@@ -604,9 +604,6 @@
 				var console = window.console;
 				if ( console && console.warn && console.warn.apply ) {
 					console.warn.apply( console, arguments );
-					if ( console.trace ) {
-						console.trace();
-					}
 				}
 			};
 
