@@ -203,8 +203,8 @@ class JobRunner implements LoggerAwareInterface {
 				if ( $queuedTs ) {
 					// Record time to run for the job type
 					$pickupDelay = $popTime - $queuedTs;
-					$stats->timing( 'jobqueue.pickup_delay.all', $queuedTs );
-					$stats->timing( "jobqueue.pickup_delay.$jType", $queuedTs );
+					$stats->timing( 'jobqueue.pickup_delay.all', $pickupDelay );
+					$stats->timing( "jobqueue.pickup_delay.$jType", $pickupDelay );
 				}
 
 				// Mark the job as done on success or when the job cannot be retried
