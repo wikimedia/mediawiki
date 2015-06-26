@@ -68,7 +68,7 @@
 	"config-magic-quotes-sybase": "'''Проблема: Опція PHP [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase] увімкнена!'''\nЦя опція призводить до непередбачуваного пошкодження даних.\nВи не можете встановити і використовувати MediaWiki, поки не буде вимкнено цю опцію.",
 	"config-mbstring": "'''Проблема: Опція PHP [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] увімкнена!'''\nЦя опція призводить до непередбачуваного пошкодження даних.\nВи не можете встановити і використовувати MediaWiki, поки не буде вимкнено цю опцію.",
 	"config-safe-mode": "'''Увага:''' Опція PHP [http://www.php.net/features.safe-mode «безпечний режим»] увімкнена.\nЦе може спричинити проблеми, зокрема із завантаженням файлів та вставкою математичних формул.",
-	"config-xml-bad": "XML-модуть PHP відсутній.\nMediaWiki необхідні його функції, без цього модуля вона працювати не буде.\nЯкщо Ви використовуєте Mandrake, встановіть php-xml пакет.",
+	"config-xml-bad": "XML-модуть PHP відсутній.\nMediaWiki необхідні його функції, без цього модуля вона працювати не буде.\nВам може знадобитися встановити php-xml RPM пакет.",
 	"config-pcre-old": "'''Фатальна помилка:''' потрібно PCRE версії $1 або пізнішої.\nВаш виконуваний файл PHP пов'язаний з PCRE версії $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Подробиці].",
 	"config-pcre-no-utf8": "'''Помилка''': PCRE-модуть PHP, вочевидь, було зібрано без підтримки PCRE_UTF8.\nMediaWiki вимагає підтримку UTF-8 для коректної роботи.",
 	"config-memory-raised": "Обмеження пам'яті PHP (<code>memory_limit</code>) $1, піднято до $2.",

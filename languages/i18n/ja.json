@@ -3215,9 +3215,14 @@
 	"tags-edit-existing-tags": "既存のタグ:",
 	"tags-edit-existing-tags-none": "（なし）",
 	"tags-edit-new-tags": "新しいタグ:",
+	"tags-edit-add": "これらのタグを追加:",
+	"tags-edit-remove": "これらのタグを除去:",
 	"tags-edit-remove-all-tags": "（すべてのタグを除去）",
+	"tags-edit-chosen-placeholder": "いくつかのタグを選択",
 	"tags-edit-chosen-no-results": "一致するタグが見つかりません",
 	"tags-edit-reason": "理由:",
+	"tags-edit-revision-submit": "変更を {{PLURAL:$1|this revision|$1 revisions}} に適用",
+	"tags-edit-logentry-submit": "変更を {{PLURAL:$1|this log entry|$1 log entries}} に適用",
 	"tags-edit-success": "変更が正常に適用されました。",
 	"tags-edit-failure": "変更は適用できませんでした: $1",
 	"tags-edit-nooldid-title": "無効な対象版",
@@ -3423,7 +3428,7 @@
 	"log-description-pagelang": "これはページ言語の変更の記録です。",
 	"logentry-pagelang-pagelang": "$1 がページ $3 の言語を $4 から $5 に{{GENDER:$2|変更しました}}",
 	"default-skin-not-found": "おっと! あなたのウィキの既定の外装「<code>$1</code>」 (<code>$wgDefaultSkin</code>)は利用できません。\n\nあなたのインストールには以下の外装が含まれています。外装の有効化と既定の選択については、[https://www.mediawiki.org/wiki/Manual:Skin_configuration マニュアル: 外装設定] をご覧ください。\n\n$2\n\n; MediaWikiをインストールしたばかりの場合:\n: gitからインストールしたか、その他の何らかの方法でソースコードから直接インストールした場合には、これは期待されたとおりの動作です。\n:* [https://www.mediawiki.org/wiki/Category:All_skins mediawiki.org's skin directory] から外装をインストールしてみてください。\n:* [https://www.mediawiki.org/wiki/Download tarball installer] をダウンロードしてみてください。これにはいくつかの外装と拡張機能が含まれています。 <code>skins/</code> ディレクトリからコピー&ペーストできます。\n: あなたがMediaWiki開発者の場合、これを行うことであなたのgitリポジトリに干渉することはありません。\n\n; MediaWiki をアップグレードした場合:\n: MediaWiki 1.24 以降のバージョンでは、インストール済みの外装は自動的には有効になりません。 ([https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery マニュアル:外装の自動探索] をご覧ください)。<code>LocalSettings.php</code> に以下の行をペーストして、現在インストールされている外装を有効にできます。\n\n<pre>$3</pre>\n\n; <code>LocalSettings.php</code>を編集したばかりの場合:\n: 外装名に打ち間違いがないか再度確認してください。",
-	"default-skin-not-found-no-skins": "おっと! あなたのウィキの既定の外装「<code>$1</code>」 (<code>$wgDefaultSkin</code>)は利用できません。\n\n外装をインストールしていません。\n\n; MediaWikiをインストールしたばかりの場合:\n: gitからインストールしたか、その他の何らかの方法でソースコードから直接インストールした場合には、これは期待されたとおりの動作です。\n:* [https://www.mediawiki.org/wiki/Category:All_skins mediawiki.org's skin directory] から外装をインストールしてみてください。\n:* [https://www.mediawiki.org/wiki/Download tarball installer] をダウンロードしてみてください。これには外装と拡張機能がいくつか含まれています。 <code>skins/</code> ディレクトリからコピー&ペーストできます。\n: あなたがMediaWiki開発者の場合、これを行うことであなたのgitリポジトリに干渉することはありません。外装の有効化と既定の選択についての情報は、[https://www.mediawiki.org/wiki/Manual:Skin_configuration マニュアル:外装設定] をご覧ください。",
+	"default-skin-not-found-no-skins": "おっと! <code>$1</code>で定義されている、あなたのウィキの既定の外装 (<code>$wgDefaultSkin</code>)は利用できません。\n\n外装をインストールしていません。\n\n; MediaWikiをインストールしたばかりか更新したばかりの場合:\n: gitからインストールしたか、その他の何らかの方法でソースコードから直接インストールした場合には、これは期待されたとおりの動作です。MediaWikiの1.24およびそれ以降は、メインのリポジトリ内には任意の外装が含まれていません。[https://www.mediawiki.org/wiki/Category:All_skins mediawiki.org's skin directory] から外装をインストールしてみてください。, by:\n:* 個々の外装 tarballs を[https://www.mediawiki.org/wiki/Special:SkinDistributor mediawiki.org] ダウンロードすること。\n:* [https://www.mediawiki.org/wiki/Download_from_Git#Using_Git_to_download_MediaWiki_skins Using Git to download skins].\n: あなたがMediaWiki開発者の場合、これを行うことであなたのgitリポジトリに干渉することはありません。外装の有効化と既定の選択についての情報は、[https://www.mediawiki.org/wiki/Manual:Skin_configuration マニュアル:外装設定] をご覧ください。",
 	"default-skin-not-found-row-enabled": "* <code>$1</code> / $2 (有効)",
 	"default-skin-not-found-row-disabled": "* <code>$1</code> / $2 ('''無効''')",
 	"mediastatistics": "メディア統計",
@@ -3475,5 +3480,7 @@
 	"special-characters-group-khmer": "クメール文字",
 	"special-characters-title-endash": "en ダッシュ",
 	"special-characters-title-emdash": "em ダッシュ",
-	"special-characters-title-minus": "マイナス記号"
+	"special-characters-title-minus": "マイナス記号",
+	"mw-widgets-titleinput-description-new-page": "ページは存在しません",
+	"mw-widgets-titleinput-description-redirect": "$1 へのリダイレクト"
 }

@@ -9,7 +9,8 @@
 			"Edslov",
 			"Carlos Cristia",
 			"Ryo567",
-			"Csbotero"
+			"Csbotero",
+			"Chris TR"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentación]]\n* [[mw:API:FAQ|Preguntas frecuentes]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de correos]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API de anuncios]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Errores y peticiones]\n</div>\n<strong>Estado:</strong> Todas las características que se muestran en esta página debería funcionar, pero la API aún está en desarrollo activo y puede cambiar en cualquier momento. Suscríbete a [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la lista de correo de mediawiki-api-announce] para estar al día de las actualizaciones.\n\n<strong>Solicitudes erróneas:</strong> Cuando se envían solicitudes erróneas a la API, se envía un encabezado HTTP con la clave \"MediaWiki-API-Error\" y ambos valores, del encabezado y el código de error, se establecerán en el mismo valor. Para más información, véase [[mw:API:Errors_and_warnings|API: Errores y advertencias]].",
@@ -17,6 +18,7 @@
 	"apihelp-main-param-format": "El formato de la salida.",
 	"apihelp-main-param-smaxage": "Establece el encabezado <code>s-maxage</code> durante estos segundos. Los errores nunca se almacenan en caché.",
 	"apihelp-main-param-maxage": "Establece el encabezado <code>max-age</code> durante estos segundos. Los errores nunca se almacenan en caché.",
+	"apihelp-main-param-assert": "Comprobar que el usuario haya iniciado sesión si el valor es <kbd>user</kbd> o si tiene el permiso de bot si <kbd>bot</kbd>.",
 	"apihelp-main-param-requestid": "Cualquier valor dado aquí se incluirá en la respuesta. Se puede utilizar para distinguir solicitudes.",
 	"apihelp-main-param-servedby": "Incluir el nombre del host que ha servido la solicitud en los resultados.",
 	"apihelp-main-param-curtimestamp": "Incluir la marca de tiempo actual en el resultado.",

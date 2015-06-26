@@ -635,6 +635,7 @@
 	"yourdiff": "Differenze",
 	"copyrightwarning": "Pe piacere vide ca tutte le condrebbute de {{SITENAME}} sonde considerete de essere rilasciete sotte 'a $2 (vide $1 pe le dettaglie).\nCe tu non ge vuè ca le condrebbute tue avènene ausete da otre o avènene cangete, non le scè mettènne proprie.<br />\nTu na promettere pure ca le cose ca scrive tu, sonde 'mbormaziune libbere o copiete da 'nu pubbleche dominie.<br />\n'''NON METTE' NISCIUNA FATJE CA JE' PROTETTE DA DERITTE SENZA PERMESSE!'''",
 	"copyrightwarning2": "Pe piacere vide ca tutte le condrebbute de {{SITENAME}} ponne essere cangete, alterate o luvete da otre condrebbutore.\nCe tu non ge vuè ca quidde ca scrive avène cangete da tre, allore non scè scrivenne proprie aqquà.<br />\nTu ne stè promitte ca quidde ca scrive tu, o lè scritte cu 'u penziere tue o lè cupiate da risorse de pubbliche dominie o sembre robba libbere (vide $1 pe cchiù dettaglie).\n'''NO REGGISTRA' FATIJE CUPERTE DA 'U COPYRIGHT SENZA PERMESSE! NO FA STUDECARIE!'''",
+	"editpage-cannot-use-custom-model": "'U modelle de condenute de sta pàgene non ge pò essere cangiate.",
 	"longpageerror": "'''ERRORE: 'U teste ca tu vuè ccu reggistre è luenghe {{PLURAL:$1|'nu kilobyte|$1 kilobyte}}, invece 'u limite massime jè de {{PLURAL:$2|'nu kilobyte|$2 kilobyte}}.'''\nNon ge puè reggistrà sta pàggene.",
 	"readonlywarning": "'''FA ATTENZIO': 'U database ha state bloccate pe manutenzione, e allore tu non ge puè reggistrà le cangiaminde ca ste face mò.'''\nTu puè fa 'na bella cose, tagghie e 'nzicche le cangiaminde jndr'à 'nu file de teste sus a 'u combiuter tune e pò cchiù tarde le reggistre sus 'a Uicchi.\n\nL'amministratore ca ha bloccate 'u database ha date stu mutive: $1",
 	"protectedpagewarning": "'''ATTENZIO': Sta pàgene ha state bloccate e allore sulamende le utinde cu le privilegge de ''sysop'' ponne cangiarle.'''\nL'urteme archivie de le trasute ha state previste aqquà sotte pe referimende:",
@@ -680,6 +681,7 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Oggette vacande",
 	"content-json-empty-array": "Matrice vacande",
+	"duplicate-args-warning": "<strong>Attenziò:</strong> [[:$1]] ste chiame [[:$2]] cu cchiù de 'nu valore pu parametre \"$3\". Sulamende l'urteme valore date avène ausate.",
 	"duplicate-args-category": "Pàggene ca ausane le argumende a doppie jndr'à le chiamate d'u template",
 	"duplicate-args-category-desc": "'A pàgene téne chiamate a template ca ausane arguminde a doppie, cumme <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> o <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "Fà attenziò: Sta vosce tène 'nu sbuenne de funziune de chiamate a l'analizzatore.\n\nAvessere a essere mene de $2 {{PLURAL:$2|chiamate|chiamate}}, 'nvece mò {{PLURAL:$1|ste $1 chiamate|ne stonne $1 chiamate}}.",
@@ -1297,6 +1299,7 @@
 	"uploaded-script-svg": "Acchiate elemende pe script \"$1\" jndr'à 'u file SVG carecate.",
 	"uploaded-hostile-svg": "Acchiate 'nu CSS insecure ndr'à l'elemende de stile d'u file SVG carecate.",
 	"uploaded-event-handler-on-svg": "'A 'mbostazione de le attribute de gestione de l'evende <code>$1=\"$2\"</code> non ge se pò ffà cu le file SVG.",
+	"uploaded-href-attribute-svg": "le attribbute href <code>&lt;$1 $2=\"$3\"&gt;</code> cu le destinaziune de fore (p.e. http://, javascript:, etc) non ge se ponne mettere jndr'à le file SVG.",
 	"uploadscriptednamespace": "Stu file SVG tène 'nu namespace illegale '$1'",
 	"uploadinvalidxml": "L'XML jndr'à 'u file carecate non ge pò essere analizzate.",
 	"uploadvirus": "Alanga toje, 'u file condiene 'nu virus! Dettaglie: $1",
@@ -3490,5 +3493,7 @@
 	"special-characters-group-khmer": "Khmer",
 	"special-characters-title-endash": "trattine en",
 	"special-characters-title-emdash": "trattine em",
-	"special-characters-title-minus": "segne mene"
+	"special-characters-title-minus": "segne mene",
+	"mw-widgets-titleinput-description-new-page": "'a pàgene non g'esiste angore",
+	"mw-widgets-titleinput-description-redirect": "redirezionate sus a $1"
 }
