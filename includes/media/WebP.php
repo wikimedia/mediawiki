@@ -43,7 +43,7 @@ class WebPHandler extends BitmapHandler {
 	const VP8X_XMP = 4;
 	const VP8X_ANIM = 2;
 
-	function getMetadata( $image, $filename ) {
+	public function getMetadata( $image, $filename ) {
 		$parsedWebPData = self::extractMetadata( $filename );
 		if ( !$parsedWebPData ) {
 			return self::BROKEN_FILE;
@@ -53,11 +53,11 @@ class WebPHandler extends BitmapHandler {
 		return serialize( $parsedWebPData );
 	}
 
-	function getMetadataType( $image ) {
+	public function getMetadataType( $image ) {
 		return 'parsed-webp';
 	}
 
-	function isMetadataValid( $image, $metadata ) {
+	public function isMetadataValid( $image, $metadata ) {
 		if ( $metadata === self::BROKEN_FILE ) {
 				// Do not repetitivly regenerate metadata on broken file.
 				return self::METADATA_GOOD;
@@ -226,7 +226,7 @@ class WebPHandler extends BitmapHandler {
 		);
 	}
 
-	function getImageSize( $file, $path, $metadata = false ) {
+	public function getImageSize( $file, $path, $metadata = false ) {
 		if ( $file === null ) {
 			$metadata = self::getMetadata( $file, $path );
 		}
@@ -248,7 +248,7 @@ class WebPHandler extends BitmapHandler {
 	 * @param $file
 	 * @return bool True, not all browsers support WebP
 	 */
-	function mustRender( $file ) {
+	public function mustRender( $file ) {
 		return true;
 	}
 
@@ -256,7 +256,7 @@ class WebPHandler extends BitmapHandler {
 	 * @param $file
 	 * @return bool False if we are unable to render this image
 	 */
-	function canRender( $file ) {
+	public function canRender( $file ) {
 		if ( self::isAnimatedImage( $file ) ) {
 			return false;
 		}
@@ -267,7 +267,7 @@ class WebPHandler extends BitmapHandler {
 	 * @param File $image
 	 * @return bool
 	 */
-	function isAnimatedImage( $image ) {
+	public function isAnimatedImage( $image ) {
 		$ser = $image->getMetadata();
 		if ( $ser ) {
 			$metadata = unserialize( $ser );
@@ -279,7 +279,7 @@ class WebPHandler extends BitmapHandler {
 		return false;
 	}
 
-	function canAnimateThumbnail( $file ) {
+	public function canAnimateThumbnail( $file ) {
 		return false;
 	}
 
@@ -291,7 +291,7 @@ class WebPHandler extends BitmapHandler {
 	 * @param $params
 	 * @return array
 	 */
-	function getThumbType( $ext, $mime, $params = null ) {
+	public function getThumbType( $ext, $mime, $params = null ) {
 		return array( 'png', 'image/png' );
 	}
 
