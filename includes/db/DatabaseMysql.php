@@ -33,6 +33,8 @@ class DatabaseMysql extends DatabaseMysqlBase {
 	 * @return resource False on error
 	 */
 	protected function doQuery( $sql ) {
+		$this->assertHandleIsValid();
+
 		if ( $this->bufferResults() ) {
 			$ret = mysql_query( $sql, $this->mConn );
 		} else {
@@ -48,8 +50,7 @@ class DatabaseMysql extends DatabaseMysqlBase {
 	 * @throws DBConnectionError
 	 */
 	protected function mysqlConnect( $realServer ) {
-		# Fail now
-		# Otherwise we get a suppressed fatal error, which is very hard to track down
+		# Avoid a suppressed fatal error, which is very hard to track down
 		if ( !extension_loaded( 'mysql' ) ) {
 			throw new DBConnectionError(
 				$this,
@@ -93,6 +94,8 @@ class DatabaseMysql extends DatabaseMysqlBase {
 	 * @return bool
 	 */
 	protected function mysqlSetCharset( $charset ) {
+		$this->assertHandleIsValid();
+
 		if ( function_exists( 'mysql_set_charset' ) ) {
 			return mysql_set_charset( $charset, $this->mConn );
 		} else {
@@ -104,6 +107,8 @@ class DatabaseMysql extends DatabaseMysqlBase {
 	 * @return bool
 	 */
 	protected function closeConnection() {
+		$this->assertHandleIsValid();
+
 		return mysql_close( $this->mConn );
 	}
 
@@ -111,6 +116,8 @@ class DatabaseMysql extends DatabaseMysqlBase {
 	 * @return int
 	 */
 	function insertId() {
+		$this->assertHandleIsValid();
+
 		return mysql_insert_id( $this->mConn );
 	}
 
@@ -118,6 +125,8 @@ class DatabaseMysql extends DatabaseMysqlBase {
 	 * @return int
 	 */
 	function lastErrno() {
+		$this->assertHandleIsValid();
+
 		if ( $this->mConn ) {
 			return mysql_errno( $this->mConn );
 		} else {
@@ -129,6 +138,8 @@ class DatabaseMysql extends DatabaseMysqlBase {
 	 * @return int
 	 */
 	function affectedRows() {
+		$this->assertHandleIsValid();
+
 		return mysql_affected_rows( $this->mConn );
 	}
 
@@ -137,6 +148,8 @@ class DatabaseMysql extends DatabaseMysqlBase {
 	 * @return bool
 	 */
 	function selectDB( $db ) {
+		$this->assertHandleIsValid();
+
 		$this->mDBname = $db;
 
 		return mysql_select_db( $db, $this->mConn );
@@ -183,10 +196,14 @@ class DatabaseMysql extends DatabaseMysqlBase {
 	}
 
 	protected function mysqlRealEscapeString( $s ) {
+		$this->assertHandleIsValid();
+
 		return mysql_real_escape_string( $s, $this->mConn );
 	}
 
 	protected function mysqlPing() {
+		$this->assertHandleIsValid();
+
 		return mysql_ping( $this->mConn );
 	}
 }

@@ -1059,6 +1059,23 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	}
 
 	/**
+	 * Make sure that mConn is set (disconnects and ping() failure can unset it)
+	 *
+	 * This catches broken callers than catch and ignore disconnection exceptions.
+	 * Unlike checking isOpen(), this is safe to call inside of open().
+	 *
+	 * @throws DBUnexpectedError
+	 */
+	protected function assertHandleIsValid() {
+		if ( !$this->mConn ) {
+			throw new DBUnexpectedError(
+				$this,
+				'DB connection was already closed or the connection dropped.'
+			);
+		}
+	}
+
+	/**
 	 * @param string $oldName
 	 * @param string $newName
 	 * @param bool $temporary

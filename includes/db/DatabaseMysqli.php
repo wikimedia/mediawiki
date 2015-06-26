@@ -34,6 +34,8 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	 * @return resource
 	 */
 	protected function doQuery( $sql ) {
+		$this->assertHandleIsValid();
+
 		if ( $this->bufferResults() ) {
 			$ret = $this->mConn->query( $sql );
 		} else {
@@ -50,8 +52,8 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	 */
 	protected function mysqlConnect( $realServer ) {
 		global $wgDBmysql5;
-		# Fail now
-		# Otherwise we get a suppressed fatal error, which is very hard to track down
+
+		# Avoid suppressed fatal error, which is very hard to track down
 		if ( !function_exists( 'mysqli_init' ) ) {
 			throw new DBConnectionError( $this, "MySQLi functions missing,"
 				. " have you compiled PHP with the --with-mysqli option?\n" );
@@ -116,6 +118,8 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	 * @return bool
 	 */
 	protected function mysqlSetCharset( $charset ) {
+		$this->assertHandleIsValid();
+
 		if ( method_exists( $this->mConn, 'set_charset' ) ) {
 			return $this->mConn->set_charset( $charset );
 		} else {
@@ -127,6 +131,8 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	 * @return bool
 	 */
 	protected function closeConnection() {
+		$this->assertHandleIsValid();
+
 		return $this->mConn->close();
 	}
 
@@ -134,6 +140,8 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	 * @return int
 	 */
 	function insertId() {
+		$this->assertHandleIsValid();
+
 		return (int)$this->mConn->insert_id;
 	}
 
@@ -152,6 +160,8 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	 * @return int
 	 */
 	function affectedRows() {
+		$this->assertHandleIsValid();
+
 		return $this->mConn->affected_rows;
 	}
 
@@ -160,6 +170,8 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	 * @return bool
 	 */
 	function selectDB( $db ) {
+		$this->assertHandleIsValid();
+
 		$this->mDBname = $db;
 
 		return $this->mConn->select_db( $db );
@@ -289,10 +301,14 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	 * @return string
 	 */
 	protected function mysqlRealEscapeString( $s ) {
+		$this->assertHandleIsValid();
+
 		return $this->mConn->real_escape_string( $s );
 	}
 
 	protected function mysqlPing() {
+		$this->assertHandleIsValid();
+
 		return $this->mConn->ping();
 	}
 
@@ -303,6 +319,8 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	 * @return string
 	 */
 	public function __toString() {
+		$this->assertHandleIsValid();
+
 		if ( $this->mConn instanceof Mysqli ) {
 			return (string)$this->mConn->thread_id;
 		} else {
