@@ -24,9 +24,10 @@
 		"oojs/oojs-ui": "0.12.2",
 		"php": ">=5.3.3",
 		"psr/log": "1.0.0",
-		"wikimedia/cdb": "1.0.1",
 		"wikimedia/assert": "0.2.2",
+		"wikimedia/cdb": "1.0.1",
 		"wikimedia/composer-merge-plugin": "1.2.1",
+		"wikimedia/ip-set": "1.0.0",
 		"wikimedia/utfnormal": "1.0.2",
 		"wikimedia/wrappedstring": "2.0.0",
 		"zordius/lightncandy": "0.21"
