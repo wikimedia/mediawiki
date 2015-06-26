@@ -480,6 +480,8 @@ abstract class ResourceLoaderModule {
 	 */
 	final protected function buildContent( ResourceLoaderContext $context ) {
 		$rl = $context->getResourceLoader();
+		$stats = RequestContext::getMain()->getStats();
+		$statStart = microtime( true );
 
 		// Only include properties that are relevant to this context (e.g. only=scripts)
 		// and that are non-empty (e.g. don't include "templates" for modules without
@@ -567,6 +569,11 @@ abstract class ResourceLoaderModule {
 		if ( $templates ) {
 			$content['templates'] = $templates;
 		}
+
+		$statTiming = microtime( true ) - $statStart;
+		$statName = str_replace( '.', '_', $this->getName() );
+		$stats->timing( "resourceloader_build.all", $statTiming );
+		$stats->timing( "resourceloader_build.$statName", $statTiming );
 
 		return $content;
 	}
