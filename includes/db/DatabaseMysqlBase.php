@@ -586,9 +586,12 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	function ping() {
 		$ping = $this->mysqlPing();
 		if ( $ping ) {
+			// Connection was good or lost but reconnected...
+			// @note: mysqlnd (php 5.6+) does not support this (PHP bug 52561)
 			return true;
 		}
 
+		// Try a full disconnect/reconnect cycle if ping() failed
 		$this->closeConnection();
 		$this->mOpened = false;
 		$this->mConn = false;
