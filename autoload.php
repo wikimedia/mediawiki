@@ -538,7 +538,6 @@ $wgAutoloadLocalClasses = array(
 	'IORMRow' => __DIR__ . '/includes/db/IORMRow.php',
 	'IORMTable' => __DIR__ . '/includes/db/IORMTable.php',
 	'IP' => __DIR__ . '/includes/utils/IP.php',
-	'IPSet' => __DIR__ . '/includes/libs/IPSet.php',
 	'IPTC' => __DIR__ . '/includes/media/IPTC.php',
 	'IRCColourfulRCFeedFormatter' => __DIR__ . '/includes/rcfeed/IRCColourfulRCFeedFormatter.php',
 	'IcuCollation' => __DIR__ . '/includes/Collation.php',
