@@ -5693,6 +5693,29 @@ $wgAggregateStatsID = false;
 $wgStatsFormatString = "stats/%s - %s 1 1 1 1 %s\n";
 
 /**
+ * Destination of statsd metrics.
+ *
+ * A host or host:port of a statsd server. Port defaults to 8125.
+ *
+ * If not set, statsd metrics will not be collected.
+ *
+ * @see wfLogProfilingData
+ * @since 1.25
+ */
+$wgStatsdServer = false;
+
+/**
+ * Prefix for metric names sent to wgStatsdServer.
+ *
+ * Defaults to "MediaWiki".
+ *
+ * @see RequestContext::getStats
+ * @see BufferingStatsdDataFactory
+ * @since 1.25
+ */
+$wgStatsdMetricPrefix = false;
+
+/**
  * InfoAction retrieves a list of transclusion links (both to and from).
  * This number puts a limit on that query in the case of highly transcluded
  * templates.
