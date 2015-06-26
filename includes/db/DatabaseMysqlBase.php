@@ -1059,6 +1059,28 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 	}
 
 	/**
+	 * Get the underlying binding handle, mConn
+	 *
+	 * Makes sure that mConn is set (disconnects and ping() failure can unset it).
+	 * This catches broken callers than catch and ignore disconnection exceptions.
+	 * Unlike checking isOpen(), this is safe to call inside of open().
+	 *
+	 * @return resource|object
+	 * @throws DBUnexpectedError
+	 * @since 1.26
+	 */
+	protected function getBindingHandle() {
+		if ( !$this->mConn ) {
+			throw new DBUnexpectedError(
+				$this,
+				'DB connection was already closed or the connection dropped.'
+			);
+		}
+
+		return $this->mConn;
+	}
+
+	/**
 	 * @param string $oldName
 	 * @param string $newName
 	 * @param bool $temporary
