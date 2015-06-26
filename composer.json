@@ -26,6 +26,7 @@
 		"psr/log": "1.0.0",
 		"wikimedia/cdb": "1.0.1",
 		"wikimedia/assert": "0.2.2",
+		"wikimedia/ip-set": "1.0.0",
 		"wikimedia/composer-merge-plugin": "1.2.0",
 		"wikimedia/utfnormal": "1.0.2",
 		"zordius/lightncandy": "0.21"
