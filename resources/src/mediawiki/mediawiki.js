@@ -1357,7 +1357,16 @@
 
 				$.each( dependencies, function ( idx, module ) {
 					var state = mw.loader.getState( module );
+					// Only queue modules that are still in the initial 'registered' state
+					// (not ones already loading, ready or error).
 					if ( state === 'registered' && $.inArray( module, queue ) === -1 ) {
+						// Private modules must be embedded in the page. Don't bother queuing
+						// these as the server will deny them anyway (T101806).
+						if ( registry[module].group === 'private' ) {
+							registry[module].state = 'error';
+							handlePending( module );
+							return;
+						}
 						queue.push( module );
 						if ( async ) {
 							registry[module].async = true;
