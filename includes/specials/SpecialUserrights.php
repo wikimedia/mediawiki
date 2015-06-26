@@ -106,7 +106,7 @@ class UserrightsPage extends SpecialPage {
 			}
 		}
 
-		if ( User::getCanonicalName( $this->mTarget ) === $user->getName() ) {
+		if ( $this->mTarget !== null && User::getCanonicalName( $this->mTarget ) === $user->getName() ) {
 			$this->isself = true;
 		}
 
@@ -145,6 +145,7 @@ class UserrightsPage extends SpecialPage {
 		if (
 			$request->wasPosted() &&
 			$request->getCheck( 'saveusergroups' ) &&
+			$this->mTarget !== null &&
 			$user->matchEditToken( $request->getVal( 'wpEditToken' ), $this->mTarget )
 		) {
 			// save settings
