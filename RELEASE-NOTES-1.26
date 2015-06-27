@@ -83,6 +83,7 @@ changes to languages because of Phabricator reports.
 * Languages added:
 ** dty (डोटेली/Doteli), thanks to translators जनक राज भट्ट, बिप्लब आनन्द,
    मेश सिंह बोहरा, and राम प्रसाद जोशी
+** luz (لئری جئنوٙڤی / Southern Luri)
 
 === Other changes in 1.26 ===
 * ChangeTags::tagDescription() will return false if the interface message
