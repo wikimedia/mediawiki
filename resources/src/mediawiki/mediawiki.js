@@ -595,7 +595,6 @@
 
 			/**
 			 * Write a message the console's warning channel.
-			 * Also logs a stacktrace for easier debugging.
 			 * Actions not supported by the browser console are silently ignored.
 			 *
 			 * @param {string...} msg Messages to output to console
@@ -604,9 +603,6 @@
 				var console = window.console;
 				if ( console && console.warn && console.warn.apply ) {
 					console.warn.apply( console, arguments );
-					if ( console.trace ) {
-						console.trace();
-					}
 				}
 			};
 
