@@ -737,7 +737,6 @@
 	"resettokens-summary": "{{ignored}}",
 	"resettokens-text": "Text on [[Special:ResetTokens]].",
 	"resettokens-no-tokens": "Additional text on [[Special:ResetTokens]] if the user has no tokens.",
-	"resettokens-legend": "Form legend on [[Special:ResetTokens]].\n{{Identical|Reset token}}",
 	"resettokens-tokens": "Form label on [[Special:ResetTokens]].\n{{Identical|Token}}",
 	"resettokens-token-label": "Label for each checkbox on [[Special:ResetTokens]]. Parameters:\n* $1 - short information about the token (for example {{msg-mw|resettokens-watchlist-token}})\n* $2 - its current value",
 	"resettokens-watchlist-token": "Label for watchlist token checkbox on [[Special:ResetTokens]] (see {{msg-mw|prefs-watchlist-token}} at [[Special:Preferences#mw-prefsection-watchlist]]).",
