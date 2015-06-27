@@ -54,7 +54,7 @@ class OOUIHTMLForm extends HTMLForm {
 		$buttons = '';
 
 		if ( $this->mShowSubmit ) {
-			$attribs = array();
+			$attribs = array( 'infusable' => true );
 
 			if ( isset( $this->mSubmitID ) ) {
 				$attribs['id'] = $this->mSubmitID;
