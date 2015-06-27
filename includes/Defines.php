@@ -198,7 +198,7 @@ define( 'LIST_OR', 4 );
 /**
  * Unicode and normalisation related
  */
-require_once __DIR__ . '/libs/normal/UtfNormalDefines.php';
+require_once __DIR__ . '/compat/normal/UtfNormalDefines.php';
 
 /**@{
  * Hook support constants

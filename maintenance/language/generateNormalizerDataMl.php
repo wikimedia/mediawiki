@@ -25,7 +25,7 @@ require_once __DIR__ . '/../Maintenance.php';
 
 /**
  * Generates the normalizer data file for Malayalam.
- * For NFC see includes/libs/normal.
+ * For NFC see includes/compat/normal.
  *
  * @ingroup MaintenanceLanguage
  */
