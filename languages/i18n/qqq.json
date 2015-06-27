@@ -708,7 +708,6 @@
 	"passwordreset": "Title of [[Special:PasswordReset]].\n{{Identical|Reset password}}",
 	"passwordreset-text-one": "Text on [[Special:PasswordReset]] that appears when there is only one way of resetting the password.\n\n{{msg-mw|Passwordreset-text-many}} will be used, when there are multiple ways of resetting the password.",
 	"passwordreset-text-many": "Text on [[Special:PasswordReset]] that appears when there are multiple ways of resetting the password.\n\nParameters:\n* $1 - the number of password reset routes\n\n{{msg-mw|Passwordreset-text-one}} will be used, when there is only one way of resetting the password.",
-	"passwordreset-legend": "{{Identical|Reset password}}",
 	"passwordreset-disabled": "Used as error message in changing password.",
 	"passwordreset-emaildisabled": "Used as error message in changing password when site's email feature is disabled.",
 	"passwordreset-username": "{{Identical|Username}}",

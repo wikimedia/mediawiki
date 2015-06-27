@@ -538,7 +538,6 @@
 	"passwordreset": "Reset password",
 	"passwordreset-text-one": "Complete this form to receive a temporary password via email.",
 	"passwordreset-text-many": "{{PLURAL:$1|Fill in one of the fields to receive a temporary password via email.}}",
-	"passwordreset-legend": "Reset password",
 	"passwordreset-disabled": "Password resets have been disabled on this wiki.",
 	"passwordreset-emaildisabled": "Email features have been disabled on this wiki.",
 	"passwordreset-username": "Username:",
