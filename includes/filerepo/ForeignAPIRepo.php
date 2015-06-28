@@ -521,6 +521,7 @@ class ForeignAPIRepo extends FileRepo {
 		if ( $status->isOK() ) {
 			return $req->getContent();
 		} else {
+			wfDebug( "ForeignAPIRepo: ERROR on GET: " . $status->getWikiText() );
 			return false;
 		}
 	}
