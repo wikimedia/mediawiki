@@ -1795,8 +1795,10 @@ class Article implements Page {
 	 */
 	public function doDelete( $reason, $suppress = false ) {
 		$error = '';
-		$outputPage = $this->getContext()->getOutput();
-		$status = $this->mPage->doDeleteArticleReal( $reason, $suppress, 0, true, $error );
+		$context = $this->getContext();
+		$outputPage = $context->getOutput();
+		$user = $context->getUser();
+		$status = $this->mPage->doDeleteArticleReal( $reason, $suppress, 0, true, $error, $user );
 
 		if ( $status->isGood() ) {
 			$deleted = $this->getTitle()->getPrefixedText();
