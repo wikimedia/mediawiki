@@ -761,6 +761,8 @@ class SqlBagOStuff extends BagOStuff {
 	 * @param int $serverIndex
 	 */
 	protected function markServerDown( $exception, $serverIndex ) {
+		unset( $this->conns[$serverIndex] ); // bug T103435
+
 		if ( isset( $this->connFailureTimes[$serverIndex] ) ) {
 			if ( time() - $this->connFailureTimes[$serverIndex] >= 60 ) {
 				unset( $this->connFailureTimes[$serverIndex] );
