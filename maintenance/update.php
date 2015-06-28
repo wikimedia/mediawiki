@@ -4,7 +4,6 @@
  * Run all updaters.
  *
  * This is used when the database schema is modified and we need to apply patches.
- * It is kept compatible with php 4 parsing so that it can give out a meaningful error.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -62,8 +61,7 @@ class UpdateMediaWiki extends Maintenance {
 	}
 
 	function compatChecks() {
-		// Avoid syntax error in PHP4
-		$minimumPcreVersion = constant( 'Installer::MINIMUM_PCRE_VERSION' );
+		$minimumPcreVersion = Installer::MINIMUM_PCRE_VERSION;
 
 		list( $pcreVersion ) = explode( ' ', PCRE_VERSION, 2 );
 		if ( version_compare( $pcreVersion, $minimumPcreVersion, '<' ) ) {
@@ -174,7 +172,7 @@ class UpdateMediaWiki extends Maintenance {
 			$child = $this->runChild( $maint );
 
 			// LoggedUpdateMaintenance is checking the updatelog itself
-			$isLoggedUpdate = is_a( $child, 'LoggedUpdateMaintenance' );
+			$isLoggedUpdate = $child instanceof LoggedUpdateMaintenance;
 
 			if ( !$isLoggedUpdate && $updater->updateRowExists( $maint ) ) {
 				continue;
