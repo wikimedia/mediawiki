@@ -149,7 +149,8 @@ class PageArchive {
 			$fields,
 			$conds,
 			$join_conds,
-			$options
+			$options,
+			''
 		);
 
 		return $dbr->select( $tables,
