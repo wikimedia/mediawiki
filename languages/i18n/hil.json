@@ -420,7 +420,6 @@
 	"resetpass-wrong-oldpass": "Sala nga temporaryo ukon subong nga pasword.\nMahimo nga madinalag-on mo nga nga gin-ilisan ang imo pasword ukon nagpangabay ka na sang bag-o nga temporaryo nga pasword.",
 	"resetpass-temp-password": "Temporaryo nga pasword:",
 	"passwordreset": "Liwaton ang pasword",
-	"passwordreset-legend": "Liwaton ang pasword",
 	"passwordreset-disabled": "Ang mga pagliwat sang pasword gin-untat sa sini nga wiki.",
 	"passwordreset-username": "Ngalan sang Manog-gamit\"",
 	"passwordreset-domain": "Domeyn:",

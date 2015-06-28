@@ -476,7 +476,6 @@
 	"resetpass-abort-generic": "Paroles nomaiņu pārtrauca paplašinājums.",
 	"passwordreset": "Paroles atiestatīšana",
 	"passwordreset-text-one": "Aizpildiet šo veidlapu, lai atiestatītu savu paroli.",
-	"passwordreset-legend": "Atiestatīt paroli",
 	"passwordreset-disabled": "Paroles atiestates šajā viki ir atspējotas.",
 	"passwordreset-emaildisabled": "Šajā viki ir atspējotas e-pasta iespējas.",
 	"passwordreset-username": "Lietotājvārds:",

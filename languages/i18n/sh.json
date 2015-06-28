@@ -8,7 +8,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Milicevic01",
-			"Macofe"
+			"Macofe",
+			"KWiki"
 		]
 	},
 	"tog-underline": "Podvuci linkove:",
@@ -484,7 +485,6 @@
 	"passwordreset": "Ponovno postavi lozinku",
 	"passwordreset-text-one": "Dovršite ovaj obrazac kako biste resetirali svoju lozinku/zaporku.",
 	"passwordreset-text-many": "{{PLURAL:$1|Ispunite jedno od polja kako bi ste resetirali svoju lozinku/zaporku.}}",
-	"passwordreset-legend": "Ponovno postavi lozinku",
 	"passwordreset-disabled": "Ponovno postavljanje lozinke je onemogućeno na ovom wikiju.",
 	"passwordreset-emaildisabled": "Postavke E-maila su deaktivirane na ovoj wiki.",
 	"passwordreset-username": "Korisničko ime:",
@@ -511,7 +511,6 @@
 	"resettokens": "Resetirajte tokene",
 	"resettokens-text": "Možete resetirati tokene koji dozvoljavaju pristup određenim privatnim podacima povezanim sa vašim računom ovdje.\n\nTo možete učiniti ako ste ih slučajno podijelili sa nekim ili ako je vaš račun kompromitiran.",
 	"resettokens-no-tokens": "Nema tokena za resetiranje.",
-	"resettokens-legend": "Resetiranje tokena",
 	"resettokens-tokens": "Tokeni:",
 	"resettokens-token-label": "$1 (trenutna vrijednost: $2)",
 	"resettokens-watchlist-token": "Token za web feed (Atom/RSS) [[Special:Watchlist|promjena za vašem spisku praćenja]]",
@@ -1453,7 +1452,6 @@
 	"nmembers": "$1 {{PLURAL:$1|član|članova}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|član|članova}}",
 	"nrevisions": "$1 {{PLURAL:$1|revizija|revizije|revizija}}",
-	"nviews": "$1 {{PLURAL:$1|pregled|pregleda}}",
 	"nimagelinks": "Koristi se na $1 {{PLURAL:$1|stranici|stranice|stranica}}",
 	"ntransclusions": "koristi se na $1 {{PLURAL:$1|stranici|stranice|stranica}}",
 	"specialpage-empty": "Ne postoje rezultati za ovaj izvještaj.",
@@ -1978,7 +1976,7 @@
 	"movepage-moved-noredirect": "Pravljenje preusmjerenja je onemogućeno.",
 	"articleexists": "Stranica pod tim imenom već postoji, ili je ime koje ste izabrali neispravno.\nMolimo Vas da izaberete drugo ime.",
 	"cantmove-titleprotected": "Ne možete premjestiti stranicu na ovu lokaciju, jer je novi naslov zaštićen od pravljenja",
-	"movetalk": "Premjesti i stranicu za diskusiju zajedno sa člankom (ukoliko nije prazna).",
+	"movetalk": "Premjesti i stranicu za diskusiju zajedno sa člankom (ako nije prazna).",
 	"move-subpages": "Premjesti sve podstranice (do $1)",
 	"move-talk-subpages": "Premjesti podstranice stranica za razgovor (do $1)",
 	"movepage-page-exists": "Stranica $1 već postoji i ne može biti automatski zamijenjena.",

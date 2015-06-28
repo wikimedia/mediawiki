@@ -7,7 +7,8 @@
 			"Xqt",
 			"לערי ריינהארט",
 			"아라",
-			"Purodha"
+			"Purodha",
+			"Geitost"
 		]
 	},
 	"tog-underline": "Gleecher unnerleine:",
@@ -237,7 +238,6 @@
 	"resetpass-submit-loggedin": "Paesswatt ennere",
 	"resetpass-submit-cancel": "Ausduh",
 	"passwordreset": "Paesswatt zerricksetze",
-	"passwordreset-legend": "Paesswatt zerricksetze",
 	"passwordreset-username": "Yuuser-Naame:",
 	"passwordreset-email": "E-Poschd:",
 	"passwordreset-emailelement": "Yuusernaame: $1\nPaesswatt fer nau: $2",
@@ -587,7 +587,7 @@
 	"ipbreason": "Grund:",
 	"ipbsubmit": "Daen Yuuser aabinne",
 	"ipbother": "Annere Zeit (englisch):",
-	"ipboptions": "2 Schtund:2 hours,1 Daag:1 day,3 Daag:3 days,1 Woch:1 week,2 Woche:2 weeks,1 Munet:1 month,3 Munede:3 months,6 Monate:6 months,1 Yaar:1 year,Fer immer:infinite",
+	"ipboptions": "2 Schtund:2 hours,1 Daag:1 day,3 Daag:3 days,1 Woch:1 week,2 Woche:2 weeks,1 Munet:1 month,3 Munede:3 months,6 Munede:6 months,1 Yaar:1 year,fer immer:infinite",
 	"blocklist-reason": "Grund",
 	"ipblocklist-submit": "Guck uff",
 	"infiniteblock": "fer immer",

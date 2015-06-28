@@ -6,13 +6,14 @@
 			"Los688",
 			"Whym",
 			"Mfuji",
-			"Otokoume"
+			"Otokoume",
+			"Sujiniku"
 		]
 	},
 	"apihelp-main-param-action": "実行する操作です。",
 	"apihelp-main-param-format": "出力する形式です。",
-	"apihelp-main-param-smaxage": "<code>s-maxage</code> ヘッダーにこの秒数を設定します。エラーがキャッシュされることはありません。",
-	"apihelp-main-param-maxage": "<code>max-age</code> ヘッダーにこの秒数を設定します。エラーがキャッシュされることはありません。",
+	"apihelp-main-param-smaxage": "<code>s-maxage</code> HTTP キャッシュ コントロール ヘッダー に、この秒数を設定します。エラーがキャッシュされることはありません。",
+	"apihelp-main-param-maxage": "<code>max-age</code> HTTP キャッシュ コントロール ヘッダー に、この秒数を設定します。エラーがキャッシュされることはありません。",
 	"apihelp-main-param-assert": "<kbd>user</kbd> を設定した場合は利用者がログイン済みかどうかを、<kbd>bot</kbd> を指定した場合はボット権限があるかどうかを、それぞれ検証します。",
 	"apihelp-main-param-requestid": "任意の値を指定でき、その値が結果に含められます。リクエストを識別するために使用できます。",
 	"apihelp-main-param-servedby": "リクエストを処理したホスト名を結果に含めます。",
@@ -411,7 +412,7 @@
 	"apihelp-query+revisions-example-first5-not-localhost": "<kbd>Main Page</kbd> の匿名利用者 <kbd>127.0.0.1</kbd> 以外による最初の5版を取得する。",
 	"apihelp-query+revisions-example-first5-user": "<kbd>Main Page</kbd> の <kbd>MediaWiki default</kbd> による最初の5版を取得する。",
 	"apihelp-query+search-description": "全文検索を行います。",
-	"apihelp-query+search-param-search": "この値を含むすべてのページ名 (または本文) を検索します。",
+	"apihelp-query+search-param-search": "この値を含むページ名または本文を検索します。Wikiの検索バックエンド実装に応じて、あなたは特別な検索機能を呼び出すための文字列を検索することができます。",
 	"apihelp-query+search-param-namespace": "この名前空間内のみを検索します。",
 	"apihelp-query+search-param-what": "実行する検索の種類です。",
 	"apihelp-query+search-param-limit": "返すページの総数です。",

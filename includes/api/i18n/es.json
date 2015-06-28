@@ -18,7 +18,7 @@
 	"apihelp-main-param-format": "El formato de la salida.",
 	"apihelp-main-param-smaxage": "Establece el encabezado <code>s-maxage</code> durante estos segundos. Los errores nunca se almacenan en caché.",
 	"apihelp-main-param-maxage": "Establece el encabezado <code>max-age</code> durante estos segundos. Los errores nunca se almacenan en caché.",
-	"apihelp-main-param-assert": "Comprobar que el usuario haya iniciado sesión si el valor es <kbd>user</kbd> o si tiene el permiso de bot si <kbd>bot</kbd>.",
+	"apihelp-main-param-assert": "Comprobar que el usuario haya iniciado sesión si el valor es <kbd>user</kbd> o si tiene el permiso de bot si es <kbd>bot</kbd>.",
 	"apihelp-main-param-requestid": "Cualquier valor dado aquí se incluirá en la respuesta. Se puede utilizar para distinguir solicitudes.",
 	"apihelp-main-param-servedby": "Incluir el nombre del host que ha servido la solicitud en los resultados.",
 	"apihelp-main-param-curtimestamp": "Incluir la marca de tiempo actual en el resultado.",

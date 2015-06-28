@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"ଶିତିକଣ୍ଠ ଦାଶ"
+		]
+	},
+	"apihelp-main-param-action": "କେଉଁ କାମ କରାଯିବ ।",
+	"apihelp-main-param-format": "ଆଉଟପୁଟ୍‌ର ଫର୍ମାଟ ।",
+	"apihelp-block-description": "ଜଣେ ବ୍ୟବହାରକାରୀଙ୍କୁ ବ୍ଲକ କରନ୍ତୁ ।",
+	"apihelp-block-param-reason": "ବ୍ଲକ କରିବାର କାରଣ ।",
+	"apihelp-block-param-nocreate": "ଆକାଉଣ୍ଟ ତିଆରି ହେବାକୁ ପ୍ରତିରୋଧ କରନ୍ତୁ ।",
+	"apihelp-createaccount-param-name": "ବ୍ୟବହାରକାରୀଙ୍କ ନାମ",
+	"apihelp-delete-description": "ପୃଷ୍ଠାଟି ଲିଭାଇଦେବେ"
+}

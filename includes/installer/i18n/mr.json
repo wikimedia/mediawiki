@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"V.narsikar"
+			"V.narsikar",
+			"Suyog"
 		]
 	},
 	"config-information": "माहिती",
@@ -11,6 +12,7 @@
 	"config-your-language": "आपली भाषा:",
 	"config-your-language-help": "उभारणी प्रक्रियेत वापरावयाची भाषा निवडा.",
 	"config-wiki-language": "विकी भाषा:",
+	"config-wiki-language-help": "तुमची लेखन भाषा निवडा",
 	"config-back": "← परत",
 	"config-continue": "चालू ठेवा →",
 	"config-page-language": "भाषा",
@@ -23,6 +25,7 @@
 	"config-page-readme": "हे वाचा",
 	"config-page-releasenotes": "विमोचन टिप्पण्या",
 	"config-page-existingwiki": "साध्याचा विकि",
+	"config-restart": "हो, परत चालू करा",
 	"config-pg-test-error": "विदागाराशी अनुबंधन करता येत नाही <strong>$1</strong>: $2",
 	"config-type-mssql": "मायक्रोसॉफ्ट एसक्युएल सर्व्हर",
 	"config-header-mssql": "मायक्रोसॉफ्ट एसक्युएल सर्व्हर मांडणावळ",

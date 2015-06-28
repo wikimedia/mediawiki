@@ -13,7 +13,8 @@
 			"青子守歌",
 			"아라",
 			"Shield-9",
-			"Takot"
+			"Takot",
+			"Sujiniku"
 		]
 	},
 	"config-desc": "MediaWiki のインストーラー",
@@ -71,7 +72,7 @@
 	"config-magic-quotes-sybase": "<strong>致命的エラー: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase] が動作しています!</strong>\nこのオプションは、予期せずデータ入力を破壊します。\nこのオプションを無効化しない限り、MediaWiki のインストールや使用はできません。",
 	"config-mbstring": "<strong>致命的エラー: [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] が動作しています!</strong>\nこのオプションは、エラーを引き起こし、予期せずデータを破壊するおそれがあります。\nこのオプションを無効化しない限り、MediaWiki のインストールや使用はできません。",
 	"config-safe-mode": "<strong>警告:</strong> PHPの[http://www.php.net/features.safe-mode セーフモード]が有効になっています。\n特に、ファイルのアップロードや<code>math</code>機能で、問題が発生するおそれがあります。",
-	"config-xml-bad": "PHPのXMLモジュールが不足しています。\nMediaWikiは、このモジュールの関数を必要としているため、この構成では動作しません。\nMandrakeを実行している場合、php-xmlパッケージをインストールしてください。",
+	"config-xml-bad": "PHPのXMLモジュールが不足しています。\nMediaWikiは、このモジュールの関数を必要としているため、この構成では動作しません。\nphp-xml RPM パッケージをインストールする必要があります。",
 	"config-pcre-old": "<strong>致命的エラー:</strong> PCRE $1 以降が必要です。\nご使用中の PHP のバイナリは PCRE $2 とリンクされています。\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE 詳細情報]",
 	"config-pcre-no-utf8": "<strong>致命的エラー:</strong> PHP の PCRE が PCRE_UTF8 対応なしでコンパイルされているようです。\nMediaWiki を正しく動作させるには、UTF-8 対応が必要です。",
 	"config-memory-raised": "PHPの<code>memory_limit</code>は$1で、$2に引き上げられました。",

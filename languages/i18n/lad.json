@@ -393,7 +393,6 @@
 	"resetpass-submit-loggedin": "Kambiar kontrasenya",
 	"resetpass-submit-cancel": "Anular",
 	"passwordreset": "Restableser kontrasenya",
-	"passwordreset-legend": "Restableser kontrasenya",
 	"passwordreset-username": "Nombre de usador:",
 	"passwordreset-domain": "Dominio:",
 	"passwordreset-email": "Adresso de letral:",

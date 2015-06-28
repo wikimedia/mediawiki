@@ -47,7 +47,8 @@
 			"Darshan kandolkar",
 			"Steinsplitter",
 			"Macofe",
-			"Nemo bis"
+			"Nemo bis",
+			"Suyog"
 		]
 	},
 	"tog-underline": "दुव्यांचे अधोरेखन:",
@@ -298,6 +299,8 @@
 	"hidetoc": "लपवा",
 	"collapsible-collapse": "निपात करा",
 	"collapsible-expand": "विस्तार",
+	"confirmable-yes": "होय",
+	"confirmable-no": "नाही",
 	"thisisdeleted": "$1चे अवलोकन किंवा पुनर्स्थापन करायचे ?",
 	"viewdeleted": " $1चे अवलोकन करायचे?",
 	"restorelink": "{{PLURAL:$1|एक वगळलेले संपादन|$1 वगळलेली संपादने}}",
@@ -519,7 +522,6 @@
 	"passwordreset": "परवलीचा शब्द पूर्ववत करा",
 	"passwordreset-text-one": "आपला परवलीचा शब्द बदलण्यास हे आवेदन भरा.",
 	"passwordreset-text-many": "{{PLURAL:$1|आपला तात्पुरता परवलीचा शब्द विपत्रामार्फत प्राप्त करण्यास खालील क्षेत्रातील एखादे भरा.}}",
-	"passwordreset-legend": "परवलीचा शब्द पूर्ववत करा",
 	"passwordreset-disabled": "या विकिवर परवलीचा शब्द पुनर्स्थापित करता येत नाही.",
 	"passwordreset-emaildisabled": "या विकिवर विपत्र पाठविणे 'अशक्य' करण्यात आलेले आहे.",
 	"passwordreset-username": "सदस्यनाव:",
@@ -546,7 +548,6 @@
 	"resettokens": "ओळखचिन्ह(टोकन) पुनर्स्थापित करा",
 	"resettokens-text": "येथे आपल्या खात्यात असलेला व्यक्तिगत मजकूरापर्यंत पोचण्यासाठी आपण ओळखचिन्ह(टोकन) पुनर्स्थापित करू शकता.\nआपण जर तो अपघाताने कोणासमवेत सहभागीला असेल किंवा आपले खात्याची आपण तडजोड केली असल्यास, हे करावयास हवे.",
 	"resettokens-no-tokens": "पुनर्स्थापित करण्यासाठी कोणतीही ओळखचिन्हे नाहीत.",
-	"resettokens-legend": "ओळखचिन्ह(टोकन) पुनर्स्थापित करा",
 	"resettokens-tokens": "ओळखचिन्हे:",
 	"resettokens-token-label": "$1 (सद्य मुल्य: $2)",
 	"resettokens-watchlist-token": "[[Special:Watchlist|आपल्या निरीक्षणसूचीतील पानांमधील बदलाचा]] वेब रसद बिल्ला (ॲटम/आरएसएस)",
@@ -1472,7 +1473,6 @@
 	"nmembers": "$1 {{PLURAL:$1|सदस्य}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|सदस्य}}",
 	"nrevisions": "$1 {{PLURAL:$1|आवर्तन|आवर्तने}}",
-	"nviews": "$1 {{PLURAL:$1|दृषीपथ|दृषीपथ}}",
 	"nimagelinks": "$1{{PLURAL:$1|पानावर|पानांवर}}",
 	"ntransclusions": "$1{{PLURAL:$1|पानावर|पानांवर}} वापर",
 	"specialpage-empty": "या अहवालाकरिता(रिपोर्ट)कोणताही निकाल नाही.",

@@ -5,6 +5,7 @@
 			"Psubhashish"
 		]
 	},
+	"config-information": "ସୂଚନା",
 	"config-session-error": "ଅଧିବେଶନ ଆରମ୍ଭରେ ଅସୁବିଧା: $1",
 	"config-your-language": "ଆପଣଙ୍କ ଭାଷା:",
 	"config-your-language-help": "ଇନଷ୍ଟଲ କରିବା ବେଳେ ବ୍ୟବହାର ପାଇଁ ଏକ ଭାଷା ବାଛନ୍ତୁ ।",
@@ -28,6 +29,20 @@
 	"config-page-existingwiki": "ଏବେକାର ଉଇକି",
 	"config-restart": "ହଁ, ଏହାକୁ ପୁନରାରମ୍ଭ କରନ୍ତୁ",
 	"config-env-php": "PHP $1 ଇନଷ୍ଟଲ ହେଲା ।",
+	"config-db-type": "ଡାଟାବେସ ପ୍ରକାର:",
+	"config-db-host": "ଡାଟାବେସ ହୋଷ୍ଟ:",
+	"config-db-name": "ଡାଟାବେସ ନାମ:",
+	"config-site-name": "ଉଇକିର ନାମ:",
+	"config-site-name-blank": "ସାଇଟ ନାମ ଦିଅନ୍ତୁ ।",
+	"config-project-namespace": "ପ୍ରକଳ୍ପ ନେମସ୍ପେସ:",
+	"config-ns-generic": "ପ୍ରକଳ୍ପ",
+	"config-ns-other": "ଅନ୍ୟ (ଦର୍ଶାଇବେ)",
+	"config-ns-other-default": "ମୋଉଇକି",
+	"config-admin-box": "ପରିଚାଳକ ଆକାଉଣ୍ଟ",
+	"config-admin-name": "ଆପଣଙ୍କର ବ୍ୟବହାରକାରୀ ନାମ:",
+	"config-admin-password": "ପାସୱାର୍ଡ",
+	"config-admin-password-confirm": "ଆଉଥରେ ପାସୱାର୍ଡ",
 	"config-license-cc-by-sa": "କ୍ରିଏଟିଭ କମନ୍ସ ଆଟ୍ରିବ୍ୟୁସନ-ସେଆର ଏଲାଇକ",
-	"config-license-cc-by-nc-sa": "କ୍ରିଏଟିଭ କମନ୍ସ ଆଟ୍ରିବ୍ୟୁସନ-ନନକମର୍ସିଆଲ ସେଆର ଏଲାଇକ"
+	"config-license-cc-by-nc-sa": "କ୍ରିଏଟିଭ କମନ୍ସ ଆଟ୍ରିବ୍ୟୁସନ-ନନକମର୍ସିଆଲ ସେଆର ଏଲାଇକ",
+	"config-install-step-done": "ହୋଇଗଲା"
 }
