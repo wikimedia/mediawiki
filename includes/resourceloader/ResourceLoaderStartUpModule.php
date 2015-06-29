@@ -100,6 +100,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgLegalTitleChars' => Title::convertByteClassToUnicodeClass( Title::legalChars() ),
 			'wgResourceLoaderStorageVersion' => $conf->get( 'ResourceLoaderStorageVersion' ),
 			'wgResourceLoaderStorageEnabled' => $conf->get( 'ResourceLoaderStorageEnabled' ),
+			'wgExperimentalHtmlIds' => $conf->get( 'ExperimentalHtmlIds' ),
 		);
 
 		Hooks::run( 'ResourceLoaderGetConfigVars', array( &$vars ) );
