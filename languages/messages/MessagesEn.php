@@ -303,6 +303,7 @@ $magicWords = array(
 	'stylepath'               => array( 0, 'STYLEPATH' ),
 	'grammar'                 => array( 0, 'GRAMMAR:' ),
 	'gender'                  => array( 0, 'GENDER:' ),
+	'bidi'                    => array( 0, 'BIDI:' ),
 	'notitleconvert'          => array( 0, '__NOTITLECONVERT__', '__NOTC__' ),
 	'nocontentconvert'        => array( 0, '__NOCONTENTCONVERT__', '__NOCC__' ),
 	'currentweek'             => array( 1, 'CURRENTWEEK' ),
