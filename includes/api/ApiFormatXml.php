@@ -267,7 +267,7 @@ class ApiFormatXml extends ApiFormatBase {
 		return '_' . preg_replace_callback(
 			"/[^$nc]/uS",
 			function ( $m ) {
-				return sprintf( '.%X.', utf8ToCodepoint( $m[0] ) );
+				return sprintf( '.%X.', UtfNormal\Utils::utf8ToCodepoint( $m[0] ) );
 			},
 			str_replace( '.', '.2E.', $name )
 		);
