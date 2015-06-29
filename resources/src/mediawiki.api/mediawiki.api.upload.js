@@ -7,6 +7,8 @@
 ( function ( mw, $ ) {
 	var nonce = 0,
 		fieldsAllowed = {
+			stash: true,
+			filekey: true,
 			filename: true,
 			comment: true,
 			text: true,
@@ -205,7 +207,7 @@
 				}
 			} );
 
-			if ( !filenameFound ) {
+			if ( !filenameFound && !data.stash ) {
 				return $.Deferred().reject( 'Filename not included in file data.' );
 			}
 
@@ -242,7 +244,7 @@
 				}
 			} );
 
-			if ( !filenameFound ) {
+			if ( !filenameFound && !data.stash ) {
 				return $.Deferred().reject( 'Filename not included in file data.' );
 			}
 
@@ -276,6 +278,46 @@
 			} );
 
 			return deferred.promise();
+		},
+
+		/**
+		 * Upload a file to the stash.
+		 * @param {File|HTMLInputElement} file
+		 * @param {Object} [data]
+		 * @return {jQuery.Promise}
+		 * @return {Function} return.finishStashUpload Call this function to finish the upload.
+		 * @return {Object} return.finishStashUpload data Additional data for the upload.
+		 */
+		uploadToStash: function ( file, data ) {
+			var filekey,
+				api = this;
+
+			if ( !data.filename ) {
+				return $.Deferred().reject( 'Filename not included in file data.' );
+			}
+
+			function finishUpload( moreData ) {
+				data = $.extend( data, moreData );
+				data.filekey = filekey;
+				data.action = 'upload';
+				data.format = 'json';
+
+				if ( !data.filename ) {
+					return $.Deferred().reject( 'Filename not included in file data.' );
+				}
+
+				return api.postWithEditToken( data );
+			}
+
+			return this.upload( file, { stash: true, filename: data.filename } ).then( function ( result ) {
+				if ( result && result.upload && result.upload.filekey ) {
+					filekey = result.upload.filekey;
+				} else if ( result && ( result.error || result.warning ) ) {
+					return $.Deferred().reject( result );
+				}
+
+				return finishUpload;
+			} );
 		}
 	} );
 
