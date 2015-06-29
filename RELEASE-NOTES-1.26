@@ -45,6 +45,7 @@ production.
   blocked users to edit their talk pages unless explicitly disabled
   when they are being blocked.
 * CLDRPluralRule* classes have been replaced with wikimedia/cldr-plural-rule-parser.
+* (T27397) WebP is enabled by default as an uploadable filetype
 
 === New features in 1.26 ===
 * (T51506) Now action=info gives estimates of actual watchers for a page.

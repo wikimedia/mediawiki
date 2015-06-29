@@ -787,7 +787,7 @@ $wgRepositoryBaseUrl = "https://commons.wikimedia.org/wiki/File:";
  * such as odt or doc, and untrusted users are allowed to upload files, then
  * your wiki will be vulnerable to cross-site request forgery (CSRF).
  */
-$wgFileExtensions = array( 'png', 'gif', 'jpg', 'jpeg' );
+$wgFileExtensions = array( 'png', 'gif', 'jpg', 'jpeg', 'webp' );
 
 /**
  * Files with these extensions will never be allowed as uploads.
