@@ -6,6 +6,8 @@
 ( function ( mw, $ ) {
 	var nonce = 0,
 		fieldsAllowed = {
+			stash: true,
+			filekey: true,
 			filename: true,
 			comment: true,
 			text: true,
@@ -209,7 +211,7 @@
 				}
 			} );
 
-			if ( !filenameFound ) {
+			if ( !filenameFound && !data.stash ) {
 				return $.Deferred().reject( 'Filename not included in file data.' );
 			}
 
@@ -249,7 +251,7 @@
 				}
 			} );
 
-			if ( !filenameFound ) {
+			if ( !filenameFound && !data.stash ) {
 				return $.Deferred().reject( 'Filename not included in file data.' );
 			}
 
@@ -286,6 +288,60 @@
 			} );
 
 			return deferred.promise();
+		},
+
+		/**
+		 * Upload a file to the stash.
+		 *
+		 * This function will return a promise, which when resolved, will pass back a function
+		 * to finish the stash upload. You can call that function with an argument containing
+		 * more, or conflicting, data to pass to the server. For example:
+		 *     // upload a file to the stash with a placeholder filename
+		 *     api.uploadToStash( file, { filename: 'testing.png' } ).done( function ( finish ) {
+		 *         // finish is now the function we can use to finalize the upload
+		 *         // pass it a new filename from user input to override the initial value
+		 *         finish( { filename: getFilenameFromUser() } ).done( function ( data ) {
+		 *             // the upload is complete, data holds the API response
+		 *         } );
+		 *     } );
+		 * @param {File|HTMLInputElement} file
+		 * @param {Object} [data]
+		 * @return {jQuery.Promise}
+		 * @return {Function} return.finishStashUpload Call this function to finish the upload.
+		 * @return {Object} return.finishStashUpload.data Additional data for the upload.
+		 * @return {jQuery.Promise} return.finishStashUpload.return API promise for the final upload
+		 * @return {Object} return.finishStashUpload.return.data API return value for the final upload
+		 */
+		uploadToStash: function ( file, data ) {
+			var filekey,
+				api = this;
+
+			if ( !data.filename ) {
+				return $.Deferred().reject( 'Filename not included in file data.' );
+			}
+
+			function finishUpload( moreData ) {
+				data = $.extend( data, moreData );
+				data.filekey = filekey;
+				data.action = 'upload';
+				data.format = 'json';
+
+				if ( !data.filename ) {
+					return $.Deferred().reject( 'Filename not included in file data.' );
+				}
+
+				return api.postWithEditToken( data );
+			}
+
+			return this.upload( file, { stash: true, filename: data.filename } ).then( function ( result ) {
+				if ( result && result.upload && result.upload.filekey ) {
+					filekey = result.upload.filekey;
+				} else if ( result && ( result.error || result.warning ) ) {
+					return $.Deferred().reject( result );
+				}
+
+				return finishUpload;
+			} );
 		}
 	} );
 
