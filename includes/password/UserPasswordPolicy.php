@@ -72,22 +72,53 @@ class UserPasswordPolicy {
 	 */
 	public function checkUserPassword( User $user, $password ) {
 		$effectivePolicy = $this->getPoliciesForUser( $user );
-		$status = Status::newGood();
+		return $this->checkPolicies(
+			$user,
+			$password,
+			$effectivePolicy,
+			$this->policyCheckFunctions
+		);
+	}
 
-		foreach ( $effectivePolicy as $policy => $value ) {
-			if ( !isset( $this->policyCheckFunctions[$policy] ) ) {
+	/**
+	 * Check if a passwords meets the effective password policy for a User, using a set
+	 * of groups they may or may not belong to. This function does not use the DB, so can
+	 * be used in the installer.
+	 * @param User $user who's policy we are checking
+	 * @param string $password the password to check
+	 * @param array $groups list of groups to which we assume the user belongs
+	 * @return Status error to indicate the password didn't meet the policy, or fatal to
+	 *	indicate the user shouldn't be allowed to login.
+	 */
+	public function checkUserPasswordForGroups( User $user, $password, array $groups ) {
+		$effectivePolicy = self::getPoliciesForGroups(
+			$this->policies,
+			$groups,
+			$this->policies['default']
+		);
+		return $this->checkPolicies(
+			$user,
+			$password,
+			$effectivePolicy,
+			$this->policyCheckFunctions
+		);
+	}
+
+	private function checkPolicies( User $user, $password, $policies, $policyCheckFunctions ) {
+		$status = Status::newGood();
+		foreach ( $policies as $policy => $value ) {
+			if ( !isset( $policyCheckFunctions[$policy] ) ) {
 				throw new DomainException( 'Invalid password policy config' );
 			}
 			$status->merge(
 				call_user_func(
-					$this->policyCheckFunctions[$policy],
+					$policyCheckFunctions[$policy],
 					$value,
 					$user,
 					$password
 				)
 			);
 		}
-
 		return $status;
 	}
 
