@@ -152,7 +152,10 @@ class InfoAction extends FormlessAction {
 	 * @return string The HTML.
 	 */
 	protected function makeHeader( $header ) {
-		$spanAttribs = array( 'class' => 'mw-headline', 'id' => Sanitizer::escapeId( $header ) );
+		$spanAttribs = array(
+			'class' => 'mw-headline',
+			'id' => Sanitizer::escapeId( $header, 'noentities' )
+		);
 
 		return Html::rawElement( 'h2', array(), Html::element( 'span', $spanAttribs, $header ) );
 	}
