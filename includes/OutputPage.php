@@ -3066,7 +3066,7 @@ class OutputPage extends ContextSource {
 
 		// Add site JS if enabled
 		$links[] = $this->makeResourceLoaderLink( 'site', ResourceLoaderModule::TYPE_SCRIPTS,
-			/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
+			/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ true
 		);
 
 		// Add user JS if enabled
@@ -3079,8 +3079,9 @@ class OutputPage extends ContextSource {
 			# XXX: additional security check/prompt?
 			// We're on a preview of a JS subpage
 			// Exclude this page from the user module in case it's in there (bug 26283)
+			// Set loadCall=false since this should execute before the inline script.
 			$links[] = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_SCRIPTS, false,
-				array( 'excludepage' => $this->getTitle()->getPrefixedDBkey() ), $inHead
+				array( 'excludepage' => $this->getTitle()->getPrefixedDBkey() ), /* $loadCall = */ false
 			);
 			// Load the previewed JS
 			$links[] = Html::inlineScript( "\n"
@@ -3092,13 +3093,13 @@ class OutputPage extends ContextSource {
 		} else {
 			// Include the user module normally, i.e., raw to avoid it being wrapped in a closure.
 			$links[] = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_SCRIPTS,
-				/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
+				/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ true
 			);
 		}
 
 		// Group JS is only enabled if site JS is enabled.
 		$links[] = $this->makeResourceLoaderLink( 'user.groups', ResourceLoaderModule::TYPE_COMBINED,
-			/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
+			/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ true
 		);
 
 		return self::getHtmlFromLoaderLinks( $links );
