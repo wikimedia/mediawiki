@@ -1930,7 +1930,8 @@ class ApiMain extends ApiBase {
 
 			// Add an additional span with sanitized ID
 			if ( !$this->getConfig()->get( 'ExperimentalHtmlIds' ) ) {
-				$header = Html::element( 'span', [ 'id' => Sanitizer::escapeId( 'main/datatypes' ) ] ) .
+				$header =
+					Html::element( 'span', [ 'id' => Sanitizer::escapeId( 'main/datatypes', 'noentities' ) ] ) .
 					$header;
 			}
 			$help['datatypes'] .= Html::rawElement( 'h' . min( 6, $level ),
@@ -1952,7 +1953,8 @@ class ApiMain extends ApiBase {
 
 			// Add an additional span with sanitized ID
 			if ( !$this->getConfig()->get( 'ExperimentalHtmlIds' ) ) {
-				$header = Html::element( 'span', [ 'id' => Sanitizer::escapeId( 'main/credits' ) ] ) .
+				$header =
+					Html::element( 'span', [ 'id' => Sanitizer::escapeId( 'main/credits', 'noentities' ) ] ) .
 					$header;
 			}
 			$header = $this->msg( 'api-credits-header' )->parse();
