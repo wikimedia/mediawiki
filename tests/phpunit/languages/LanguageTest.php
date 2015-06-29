@@ -1529,6 +1529,31 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	/**
+	 * @covers Language::embedBidi()
+	 */
+	public function testEmbedBidi() {
+		$lre = "\xE2\x80\xAA"; // U+202A LEFT-TO-RIGHT EMBEDDING
+		$rle = "\xE2\x80\xAB"; // U+202B RIGHT-TO-LEFT EMBEDDING
+		$pdf = "\xE2\x80\xAC"; // U+202C POP DIRECTIONAL FORMATTING
+		$lang = $this->getLang();
+		$this->assertEquals(
+			'123',
+			$lang->embedBidi( '123' ),
+			'embedBidi with neutral argument'
+		);
+		$this->assertEquals(
+			$lre . 'Ben_(WMF)' . $pdf,
+			$lang->embedBidi( 'Ben_(WMF)' ),
+			'embedBidi with LTR argument'
+		);
+		$this->assertEquals(
+			$rle . 'יהודי (מנוחין)' . $pdf,
+			$lang->embedBidi( 'יהודי (מנוחין)' ),
+			'embedBidi with RTL argument'
+		);
+	}
+
+	/**
 	 * @covers Language::translateBlockExpiry()
 	 * @dataProvider provideTranslateBlockExpiry
 	 */
