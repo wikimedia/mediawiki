@@ -609,7 +609,7 @@
 	"resettokens-token-label": "$1 (aktueller Wert: $2)",
 	"resettokens-watchlist-token": "Token für den Webfeed (Atom/RSS) der [[Special:Watchlist|Änderungen an Seiten auf deiner Beobachtungsliste]]",
 	"resettokens-done": "Tokens zurückgesetzt.",
-	"resettokens-resetbutton": "Ausgewählte Token ändern",
+	"resettokens-resetbutton": "Ausgewählte Token zurücksetzen",
 	"bold_sample": "Fetter Text",
 	"bold_tip": "Fetter Text",
 	"italic_sample": "Kursiver Text",

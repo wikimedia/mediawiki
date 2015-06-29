@@ -1901,7 +1901,7 @@
 	"historywarning": "<strong>Atención:</strong> la página que estás a punto de borrar tiene un historial con $1 {{PLURAL:$1|revisión|revisiones}}:",
 	"confirmdeletetext": "Estás a punto de borrar una página, así como todo su historial.\nPor favor, confirma que realmente quieres hacer eso, que entiendes las consecuencias, y que lo estás haciendo de acuerdo con [[{{MediaWiki:Policy-url}}|las políticas]].",
 	"actioncomplete": "Acción completada",
-	"actionfailed": "Acción fallida",
+	"actionfailed": "Falló la acción",
 	"deletedtext": "«$1» ha sido borrado.\nVéase $2 para un registro de los borrados recientes.",
 	"dellogpage": "Registro de borrados",
 	"dellogpagetext": "A continuación se muestra una lista de los borrados más recientes.",

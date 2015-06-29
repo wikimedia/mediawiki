@@ -188,7 +188,7 @@
 	"apihelp-imagerotate-param-rotation": "顺时针旋转图像的度数。",
 	"apihelp-imagerotate-example-simple": "<kbd>90</kbd>度旋转<kbd>File:Example.png</kbd>。",
 	"apihelp-imagerotate-example-generator": "将<kbd>Category:Flip</kbd>之中的所有图像旋转<kbd>180</kbd>度。",
-	"apihelp-import-description": "从另一个wiki导入一个页面，或一个XML文件。\n\n注意当发送一个用于<var>xml</var>参数的文件时，HTTP POST必须作为一次文件上传完成（也就是使用multipart/form-data）。",
+	"apihelp-import-description": "从另一个wiki或从一个XML文件导入页面。\n\n注意当发送一个用于<var>xml</var>参数的文件时，HTTP POST必须作为一次文件上传完成（也就是使用multipart/form-data）。",
 	"apihelp-import-param-summary": "导入摘要。",
 	"apihelp-import-param-xml": "上传的XML文件。",
 	"apihelp-import-param-interwikisource": "用于跨wiki导入：导入的来源wiki。",

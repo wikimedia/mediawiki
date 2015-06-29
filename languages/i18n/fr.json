@@ -3152,6 +3152,9 @@
 	"version-libraries": "Bibliothèques installées",
 	"version-libraries-library": "Bibliothèque",
 	"version-libraries-version": "Version",
+	"version-libraries-license": "Licence",
+	"version-libraries-description": "Description",
+	"version-libraries-authors": "Auteurs",
 	"redirect": "Redirigé par fichier, utilisateur, page ou ID de révision",
 	"redirect-legend": "Rediriger vers une page ou un fichier",
 	"redirect-summary": "Cette page spéciale redirige vers un fichier (nom de fichier fourni), une page (ID de révision ou de page fourni) ou une page d’utilisateur (identifiant numérique de l’utilisateur fourni). Utilisation : [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], ou [[{{#Special:Redirect}}/user/101]].",
@@ -3548,5 +3551,5 @@
 	"special-characters-title-emdash": "tiret cadratin",
 	"special-characters-title-minus": "signe moins",
 	"mw-widgets-titleinput-description-new-page": "la page n’existe pas encore",
-	"mw-widgets-titleinput-description-redirect": "Redirection vers $1"
+	"mw-widgets-titleinput-description-redirect": "redirection vers $1"
 }

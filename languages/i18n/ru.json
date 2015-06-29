@@ -582,7 +582,6 @@
 	"passwordreset": "Сброс пароля",
 	"passwordreset-text-one": "Заполните эту форму, чтобы сбросить свой пароль.",
 	"passwordreset-text-many": "{{PLURAL:$1|Заполните одно из полей для получения временного пароля по электронной почте.}}",
-	"passwordreset-legend": "Сбросить пароль",
 	"passwordreset-disabled": "Сбросы пароля отключены на этой вики.",
 	"passwordreset-emaildisabled": "Функции электронной почты отключены в этой вики.",
 	"passwordreset-username": "Имя участника:",
@@ -609,7 +608,6 @@
 	"resettokens": "Сбросить токены",
 	"resettokens-text": "Вы можете сбросить токены, позволяющие получить доступ к некоторым личным данным, связанным с вашей учётной записью на этом сайте.\n\nВам необходимо сделать это, если вы случайно поделились ими с кем-то, или если ваша учётная запись была взломана.",
 	"resettokens-no-tokens": "Нет токенов для сброса.",
-	"resettokens-legend": "Сбросить токены",
 	"resettokens-tokens": "Токены:",
 	"resettokens-token-label": "$1 (текущее значение: $2)",
 	"resettokens-watchlist-token": "Токен для веб-канала (Atom/RSS)  [[Special:Watchlist|изменений страниц в вашем списке наблюдения]]",
@@ -3088,6 +3086,9 @@
 	"version-libraries": "Установленные библиотеки",
 	"version-libraries-library": "Библиотека",
 	"version-libraries-version": "Версия",
+	"version-libraries-license": "Лицензия",
+	"version-libraries-description": "Описание",
+	"version-libraries-authors": "Авторы",
 	"redirect": "Перенаправление с файла, участника, страницы или идентификатора версии",
 	"redirect-legend": "Перенаправление на файл или страницу",
 	"redirect-summary": "Эта служебная страница перенаправляет на файл (с имени файла), страницу (с идентификатора версии или страницы) или страницу участника (с числового идентификатора участника). Использование: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]] или [[{{#Special:Redirect}}/user/101]].",
@@ -3482,5 +3483,7 @@
 	"special-characters-group-khmer": "Кхмерские",
 	"special-characters-title-endash": "среднее тире",
 	"special-characters-title-emdash": "длинное тире",
-	"special-characters-title-minus": "знак минус"
+	"special-characters-title-minus": "знак минус",
+	"mw-widgets-titleinput-description-new-page": "страница ещё не существует",
+	"mw-widgets-titleinput-description-redirect": "перенаправление на $1"
 }
