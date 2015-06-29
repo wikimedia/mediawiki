@@ -5075,7 +5075,7 @@ class Parser {
 	 * in the Parser class.
 	 *
 	 * This interface (introduced r61913) appears to be undocumented, but
-	 * 'markerName' is used by some core tag hooks to override which strip
+	 * 'markerType' is used by some core tag hooks to override which strip
 	 * array their results are placed in. **Use great caution if attempting
 	 * this interface, as it is not documented and injudicious use could smash
 	 * private variables.**
