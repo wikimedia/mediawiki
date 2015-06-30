@@ -156,7 +156,6 @@ class DoubleRedirectsPage extends QueryPage {
 			$this->msg( 'parentheses', $this->msg( 'editlink' )->text() )->escaped(),
 			array(),
 			array(
-				'redirect' => 'no',
 				'action' => 'edit'
 			)
 		);
