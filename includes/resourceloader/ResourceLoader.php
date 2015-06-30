@@ -215,7 +215,12 @@ class ResourceLoader implements LoggerAwareInterface {
 			}
 			$result = '';
 			try {
+				$stats = RequestContext::getMain()->getStats();
+				$statStart = microtime( true );
+
 				$result = $this->applyFilter( $filter, $data );
+
+				$stats->timing( "resourceloader_cache.$filter.miss", microtime( true ) - $statStart );
 				if ( $options['cacheReport'] ) {
 					$result .= "\n/* cache key: $key */";
 				}
@@ -233,22 +238,16 @@ class ResourceLoader implements LoggerAwareInterface {
 	}
 
 	private function applyFilter( $filter, $data ) {
-		$stats = RequestContext::getMain()->getStats();
-		$statStart = microtime( true );
-
 		switch ( $filter ) {
 			case 'minify-js':
-				$data = JavaScriptMinifier::minify( $data,
+				return JavaScriptMinifier::minify( $data,
 					$this->config->get( 'ResourceLoaderMinifierStatementsOnOwnLine' ),
 					$this->config->get( 'ResourceLoaderMinifierMaxLineLength' )
 				);
-				break;
 			case 'minify-css':
-				$data = CSSMin::minify( $data );
-				break;
+				return CSSMin::minify( $data );
 		}
 
-		$stats->timing( "resourceloader_cache.$filter.miss", microtime( true ) - $statStart );
 		return $data;
 	}
 
