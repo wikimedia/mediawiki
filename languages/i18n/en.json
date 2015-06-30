@@ -2483,7 +2483,7 @@
 	"tooltip-pt-logout": "Log out",
 	"tooltip-pt-createaccount": "You are encouraged to create an account and log in; however, it is not mandatory",
 	"tooltip-ca-talk": "Discussion about the content page",
-	"tooltip-ca-edit": "You can edit this page. Please use the preview button before saving",
+	"tooltip-ca-edit": "Edit this page",
 	"tooltip-ca-addsection": "Start a new section",
 	"tooltip-ca-viewsource": "This page is protected.\nYou can view its source",
 	"tooltip-ca-history": "Past revisions of this page",
