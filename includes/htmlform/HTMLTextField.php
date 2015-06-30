@@ -113,6 +113,11 @@ class HTMLTextField extends HTMLFormField {
 			'tabindex' => 'tabIndex',
 		) );
 
+		if ( isset( $attribs['readOnly'] ) ) {
+			// This needs to be set to a boolean value
+			$attribs['readOnly'] = true;
+		}
+
 		$type = $this->getType( $attribs );
 
 		return new OOUI\TextInputWidget( array(
