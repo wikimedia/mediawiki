@@ -1342,6 +1342,7 @@ class Linker {
 						$section = str_replace( ']]', '', $section );
 
 						$section = Sanitizer::normalizeSectionNameWhitespace( $section ); # bug 22784
+						$section = Sanitizer::decodeCharReferences( $section );
 						if ( $local ) {
 							$sectionTitle = Title::newFromText( '#' . $section );
 						} else {
