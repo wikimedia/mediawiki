@@ -619,7 +619,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			$out .= Html::rawElement(
 				'div',
 				array(
-					'id' => Sanitizer::escapeId( "mw-indicator-$id" ),
+					'id' => Sanitizer::escapeId( "mw-indicator-$id", 'noentities' ),
 					'class' => 'mw-indicator',
 				),
 				$content
