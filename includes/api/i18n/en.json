@@ -1114,7 +1114,7 @@
 	"apihelp-watch-example-unwatch": "Unwatch the page <kbd>Main Page</kbd>.",
 	"apihelp-watch-example-generator": "Watch the first few pages in the main namespace.",
 
-	"apihelp-format-example-generic": "Format the query result in the $1 format.",
+	"apihelp-format-example-generic": "Return the query result in the $1 format.",
 	"apihelp-dbg-description": "Output data in PHP's <code>var_export()</code> format.",
 	"apihelp-dbgfm-description": "Output data in PHP's <code>var_export()</code> format (pretty-print in HTML).",
 	"apihelp-dump-description": "Output data in PHP's <code>var_dump()</code> format.",
