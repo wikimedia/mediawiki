@@ -1737,6 +1737,8 @@ class WikiPage implements Page, IDBAccessObject {
 		$bot = $flags & EDIT_FORCE_BOT;
 
 		$old_content = $this->getContent( Revision::RAW ); // current revision's content
+		$oldModel = $old_content->getModel();
+		$changingContentModel = $oldModel !== $content->getModel();
 
 		$oldsize = $old_content ? $old_content->getSize() : 0;
 		$oldid = $this->getLatest();
@@ -1823,6 +1825,21 @@ class WikiPage implements Page, IDBAccessObject {
 					$dbw->rollback( __METHOD__ );
 
 					return $status;
+				}
+
+				if ( $changingContentModel
+					&& ( ContentHandler::getDefaultModelFor( $this->getTitle() ) === $oldModel )
+				) {
+					// T73163: When changing the content model of a page, we need to make sure
+					// rev_content_model is not null so the old revisions are still accessible.
+					// If the old content model was not the default, we don't need to worry
+					// about this.
+					$dbw->update(
+						'revision',
+						array( 'rev_content_model' => $old_content->getModel() ),
+						array( 'rev_page' => $this->getId(), 'rev_content_model' => null ),
+						__METHOD__
+					);
 				}
 
 				Hooks::run( 'NewRevisionFromEditComplete', array( $this, $revision, $baseRevId, $user ) );
