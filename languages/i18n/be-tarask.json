@@ -2949,6 +2949,7 @@
 	"version-libraries-version": "Вэрсія",
 	"version-libraries-license": "Ліцэнзія",
 	"version-libraries-description": "Апісаньне",
+	"version-libraries-authors": "Аўтары",
 	"redirect": "Перанакіраваньне да файла, удзельніка, старонкі або вэрсіі старонкі",
 	"redirect-legend": "Перанакіраваньне да файла або старонкі",
 	"redirect-summary": "Гэтая спэцыяльная старонка перанакіруе да файла (паводле імя файла), старонкі (паводле нумару вэрсіі або старонкі) або старонкі ўдзельніка (паводле нумару ўдзельніка). Ужываньне: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]] або [[{{#Special:Redirect}}/user/101]].",

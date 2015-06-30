@@ -5,7 +5,8 @@
 			"Kaganer",
 			"MacTire02",
 			"Shimmin Beg",
-			"아라"
+			"아라",
+			"Xð"
 		]
 	},
 	"tog-underline": "Cur linnaghyn fo chianglaghyn:",
@@ -100,7 +101,7 @@
 	"march-date": "$1 Mayrnt",
 	"april-date": "$1 Averil",
 	"may-date": "$1 Boaldyn",
-	"june-date": "1 Mean Souree",
+	"june-date": "$1 Mean Souree",
 	"july-date": "$1 Jerrey Souree",
 	"august-date": "$1 Luanistyn",
 	"september-date": "$1 Mean Fouyir",

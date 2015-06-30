@@ -525,7 +525,6 @@
 	"passwordreset": "Parooli lähtestamine",
 	"passwordreset-text-one": "Täida see vorm, et oma parool lähtestada.",
 	"passwordreset-text-many": "{{PLURAL:$1|Täida üks väljadest, et saada e-kiri ajutise parooliga.}}",
-	"passwordreset-legend": "Parooli lähtestamine",
 	"passwordreset-disabled": "Selles vikis on paroolide lähtestamine keelatud.",
 	"passwordreset-emaildisabled": "E-posti funktsioonid on selles vikis keelatud.",
 	"passwordreset-username": "Kasutajanimi:",
@@ -552,7 +551,6 @@
 	"resettokens": "Lubade lähtestamine",
 	"resettokens-text": "Saad lähtestada load, mida on vaja siin sinu kontoga seotud kindlatele eraandmetele ligipääsuks.\n\nPeaksid load lähtestama, kui jagasid neid kogemata või kui su konto on kellegi teise võimusesse sattunud.",
 	"resettokens-no-tokens": "Lähtestatavad load puuduvad.",
-	"resettokens-legend": "Lubade lähtestamine",
 	"resettokens-tokens": "Load:",
 	"resettokens-token-label": "$1 (praegune väärtus: $2)",
 	"resettokens-watchlist-token": "[[Special:Watchlist|Jälgimisloendis olevatel lehekülgedel tehtud muudatuste]] veebivoo (Atom/RSS) luba",
@@ -646,6 +644,7 @@
 	"yourdiff": "Erinevused",
 	"copyrightwarning": "Pea silmas, et kogu kaastöö võrgukohale {{SITENAME}} loetakse avaldatuks litsentsi $2 all (üksikasjad leheküljel $1). Kui sa ei soovi, et sinu kirjutatut halastamatult redigeeritakse ja oma äranägemise järgi kasutatakse, siis ära seda siia salvesta.<br />\nKinnitad ka, et kirjutasid selle ise või võtsid selle allikast, mille materjale ei kaitsta autoriõigusega või muust sarnasest vabast allikast.<br />\n'''Ära salvesta autoriõigusega kaitstud materjali ilma loata!'''",
 	"copyrightwarning2": "Pea silmas, et teised kaastöölised võivad kogu {{GRAMMAR:inessive|{{SITENAME}}}} tehtud kaastööd muuta või eemaldada. Kui sa ei soovi, et su kirjutatut halastamatult redigeeritakse, siis ära seda siia salvesta.<br />\nSa kinnitad ka, et kirjutasid selle ise või võtsid selle kopeerimiskitsenduseta allikast (vaata ka $1).\n'''Ära saada autoriõigusega kaitstud materjali loata!'''",
+	"editpage-cannot-use-custom-model": "Selle lehekülje sisumudelit ei saa muuta.",
 	"longpageerror": "'''Tõrge: Lehekülge ei saa salvestada, sest sinu esitatud {{PLURAL:$1|ühe|$1}} kilobaidi suurune tekst ületab {{PLURAL:$2|ühekilobaidist|$2-kilobaidist}} ülemmäära.'''",
 	"readonlywarning": "'''Hoiatus: Andmebaas on lukustatud hooldustöödeks, nii et praegu ei saa parandusi salvestada.'''\nVõid teksti hilisemaks kasutamiseks alles hoida tekstifailina.\n\nAdministraator, kes andmebaasi lukustas, andis järgmise selgituse: $1",
 	"protectedpagewarning": "'''Hoiatus: See lehekülg on lukustatud, nii et ainult administraatori õigustega kasutajad saavad seda redigeerida.'''\nAllpool on toodud uusim logisissekanne:",
@@ -2956,6 +2955,9 @@
 	"version-libraries": "Paigaldatud teegid",
 	"version-libraries-library": "Teek",
 	"version-libraries-version": "Versioon",
+	"version-libraries-license": "Litsents",
+	"version-libraries-description": "Kirjeldus",
+	"version-libraries-authors": "Autorid",
 	"redirect": "Ümbersuunamine faili, kasutaja, lehekülje või redaktsiooni identifikaatori järgi",
 	"redirect-legend": "Ümbersuunamine faili juurde või leheküljele",
 	"redirect-summary": "See erilehekülg suunab ümber faili (toodud failinimi), lehekülje (toodud redaktsiooni või lehekülje identifikaator) või kasutajalehekülje (toodud numbriline kasutaja identfikaator) juurde. Kasutamine: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]] või [[{{#Special:Redirect}}/user/101]].",
@@ -3351,5 +3353,6 @@
 	"special-characters-title-endash": "mõttekriips",
 	"special-characters-title-emdash": "pikk mõttekriips",
 	"special-characters-title-minus": "miinusmärk",
-	"mw-widgets-titleinput-description-new-page": "lehekülge pole veel"
+	"mw-widgets-titleinput-description-new-page": "lehekülge pole veel",
+	"mw-widgets-titleinput-description-redirect": "ümbersuunamine leheküljele \"$1\""
 }

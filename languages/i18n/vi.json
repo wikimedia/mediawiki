@@ -695,6 +695,7 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Đối tượng trống",
 	"content-json-empty-array": "Mảng trống",
+	"duplicate-args-warning": "<strong>Cảnh báo:</strong> [[:$1]] đang gọi  [[:$2]] với nhiều hơn một giá trị cho thông số \"$3\". Chỉ giá trị cuối cùng mới được sử dụng.",
 	"duplicate-args-category": "Trang đưa đối số thừa vào bản mẫu",
 	"duplicate-args-category-desc": "Trang đưa một đối số nhiều lần vào một bản mẫu được nhúng, thí dụ <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> hoặc <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "Cảnh báo: Trang này có quá nhiều lần gọi hàm cú pháp cần mức độ xử lý cao.\n\nNó nên ít hơn $2 {{PLURAL:$2|lần gọi|lần gọi}}, hiện giờ đang là {{PLURAL:$1|$1 lần gọi|$1 lần gọi}}.",
@@ -1304,6 +1305,7 @@
 	"php-uploaddisabledtext": "Việc tải tập tin trong PHP đã bị tắt. Xin hãy kiểm tra lại thiết lập file_uploads.",
 	"uploadscripted": "Tập tin này có chứa mã HTML hoặc kịch bản có thể khiến trình duyệt web thông dịch sai.",
 	"upload-scripted-pi-callback": "Không thể tải lên một file có chứa lệnh xử lý XML-stylesheet",
+	"uploaded-setting-href-svg": "Sử dụng tag \"set\" để thêm thuộc tính \"href\" tới thành phần mẹ bị khóa.",
 	"uploaded-image-filter-svg": "Tìm công cụ lọc ảnh với UPL: <Mã>&lt;$1 $2=\"$3\"&gt;</Mã> trong tập tin SVG được tải lên.",
 	"uploadscriptednamespace": "Tập tin SVG này chứa không gian tên “$1” không được cho phép",
 	"uploadinvalidxml": "Không thể phân tích mã XML trong tập tin tải lên.",
@@ -3430,5 +3432,6 @@
 	"special-characters-title-endash": "dấu gạch en",
 	"special-characters-title-emdash": "dấu gạch em",
 	"special-characters-title-minus": "dấu trừ",
-	"mw-widgets-titleinput-description-new-page": "Trang này chưa tồn tại"
+	"mw-widgets-titleinput-description-new-page": "Trang này chưa tồn tại",
+	"mw-widgets-titleinput-description-redirect": "Đổi hướng đến $4"
 }
