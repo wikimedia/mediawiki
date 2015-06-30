@@ -34,7 +34,6 @@ class OOUIHTMLForm extends HTMLForm {
 	public function __construct( $descriptor, $context = null, $messagePrefix = '' ) {
 		parent::__construct( $descriptor, $context, $messagePrefix );
 		$this->getOutput()->enableOOUI();
-		$this->getOutput()->addModules( 'mediawiki.htmlform.ooui' );
 		$this->getOutput()->addModuleStyles( 'mediawiki.htmlform.ooui.styles' );
 	}
 
