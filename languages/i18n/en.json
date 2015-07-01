@@ -1953,7 +1953,7 @@
 	"changecontentmodel-nodirectediting": "The $1 content model does not support direct editing",
 	"log-name-contentmodel": "Content model change log",
 	"log-description-contentmodel": "Events related to the content models of a page",
-	"logentry-contentmodel-change": "$1 changed the content model of the page $3 from \"$4\" to \"$5\"",
+	"logentry-contentmodel-change": "$1 {{GENDER:$2|changed}} the content model of the page $3 from \"$4\" to \"$5\"",
 	"logentry-contentmodel-change-revertlink": "revert",
 	"logentry-contentmodel-change-revert": "revert",
 	"protectlogpage": "Protection log",
