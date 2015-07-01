@@ -782,7 +782,10 @@
 		 * @return {string}
 		 */
 		getName: function () {
-			if ( $.inArray( this.namespace, mw.config.get( 'wgCaseSensitiveNamespaces' ) ) !== -1 ) {
+			if (
+				$.inArray( this.namespace, mw.config.get( 'wgCaseSensitiveNamespaces' ) ) !== -1 ||
+				!this.title.length
+			) {
 				return this.title;
 			}
 			return this.title[0].toUpperCase() + this.title.slice( 1 );
