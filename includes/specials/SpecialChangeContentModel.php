@@ -80,6 +80,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		$fields = array(
 			'pagetitle' => array(
 				'type' => 'text',
+				'autocomplete' => 'title',
 				'name' => 'pagetitle',
 				'default' => $this->par,
 				'label-message' => 'changecontentmodel-title-label',
