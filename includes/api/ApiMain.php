@@ -100,8 +100,6 @@ class ApiMain extends ApiBase {
 		'jsonfm' => 'ApiFormatJson',
 		'php' => 'ApiFormatPhp',
 		'phpfm' => 'ApiFormatPhp',
-		'wddx' => 'ApiFormatWddx',
-		'wddxfm' => 'ApiFormatWddx',
 		'xml' => 'ApiFormatXml',
 		'xmlfm' => 'ApiFormatXml',
 		'yaml' => 'ApiFormatYaml',
@@ -111,8 +109,6 @@ class ApiMain extends ApiBase {
 		'txtfm' => 'ApiFormatTxt',
 		'dbg' => 'ApiFormatDbg',
 		'dbgfm' => 'ApiFormatDbg',
-		'dump' => 'ApiFormatDump',
-		'dumpfm' => 'ApiFormatDump',
 		'none' => 'ApiFormatNone',
 	);
 
