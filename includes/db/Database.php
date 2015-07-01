@@ -26,13 +26,6 @@
  */
 
 /**
- * Interface for classes that implement or wrap DatabaseBase
- * @ingroup Database
- */
-interface IDatabase {
-}
-
-/**
  * Database abstraction object
  * @ingroup Database
  */
@@ -1067,7 +1060,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @param string $sql
 	 * @return bool
 	 */
-	public function isWriteQuery( $sql ) {
+	protected function isWriteQuery( $sql ) {
 		return !preg_match( '/^(?:SELECT|BEGIN|ROLLBACK|COMMIT|SET|SHOW|EXPLAIN|\(SELECT)\b/i', $sql );
 	}
 
@@ -1080,7 +1073,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @param string $sql
 	 * @return bool
 	 */
-	public function isTransactableQuery( $sql ) {
+	protected function isTransactableQuery( $sql ) {
 		$verb = substr( $sql, 0, strcspn( $sql, " \t\r\n" ) );
 		return !in_array( $verb, array( 'BEGIN', 'COMMIT', 'ROLLBACK', 'SHOW', 'SET' ) );
 	}
@@ -1493,7 +1486,7 @@ abstract class DatabaseBase implements IDatabase {
 	 * @return array
 	 * @see DatabaseBase::select()
 	 */
-	public function makeSelectOptions( $options ) {
+	protected function makeSelectOptions( $options ) {
 		$preLimitTail = $postLimitTail = '';
 		$startOpts = '';
 
