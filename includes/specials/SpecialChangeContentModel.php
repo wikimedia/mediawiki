@@ -79,7 +79,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		$that = $this;
 		$fields = array(
 			'pagetitle' => array(
-				'type' => 'text',
+				'type' => 'title',
 				'name' => 'pagetitle',
 				'default' => $this->par,
 				'label-message' => 'changecontentmodel-title-label',
