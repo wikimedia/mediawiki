@@ -1913,7 +1913,7 @@
 	"deletereason-dropdown": "*Razones comunes de borrado\n** Spam\n** Vandalismo\n** Violación de copyright\n** A petición del mismo autor\n** Redirección incorrecta",
 	"delete-edit-reasonlist": "Editar razones de borrado",
 	"delete-toobig": "Esta página tiene un historial muy grande, con más de $1 {{PLURAL:$1|revisión|revisiones}}. Borrar este tipo de páginas ha sido restringido para prevenir posibles problemas en {{SITENAME}}.",
-	"delete-warning-toobig": "Esta página tiene un historial de más de $1 {{PLURAL:$1|revisión|revisiones}}. Eliminarla puede perturbar las operaciones de la base de datos de {{SITENAME}}. Ten cuidado al borrar.",
+	"delete-warning-toobig": "Esta página tiene un historial de más de $1 {{PLURAL:$1|revisión|revisiones}}.\nEliminarla puede perturbar las operaciones de la base de datos de {{SITENAME}}.\nProcede con cautela.",
 	"deleteprotected": "No puedes eliminar esta página porque ha sido protegida.",
 	"deleting-backlinks-warning": "'''Advertencia:''' [[Special:WhatLinksHere/{{FULLPAGENAME}}|Otras páginas]] enlazan o transcluyen la página que vas a eliminar.",
 	"rollback": "Revertir ediciones",

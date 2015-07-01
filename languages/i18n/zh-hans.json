@@ -2331,7 +2331,7 @@
 	"tooltip-pt-logout": "退出登录",
 	"tooltip-pt-createaccount": "建议您创建一个账户并登录，但这不是强制的",
 	"tooltip-ca-talk": "关于内容页面的讨论",
-	"tooltip-ca-edit": "你可以编辑本页面。请在保存前使用预览按钮",
+	"tooltip-ca-edit": "您可以编辑本页面。请在保存前使用预览按钮",
 	"tooltip-ca-addsection": "开始新段落",
 	"tooltip-ca-viewsource": "本页面受到保护。\n您可以查看其源代码",
 	"tooltip-ca-history": "本页面过去的版本",
