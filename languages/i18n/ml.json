@@ -2943,6 +2943,9 @@
 	"version-libraries": "ഇൻസ്റ്റോൾ ചെയ്തിട്ടുള്ള ലൈബ്രറികൾ",
 	"version-libraries-library": "ലൈബ്രറി",
 	"version-libraries-version": "പതിപ്പ്",
+	"version-libraries-license": "ഉപയോഗാനുമതി",
+	"version-libraries-description": "വിവരണം",
+	"version-libraries-authors": "രചയിതാക്കൾ",
 	"redirect": "പ്രമാണത്താൽ, ഉപയോക്താവിനാൽ, താളിനാൽ അഥവാ നാൾപ്പതിപ്പ് ഐ.ഡി.യാൽ ചെയ്യുന്ന തിരിച്ചുവിടൽ",
 	"redirect-legend": "ഒരു പ്രമാണത്തിലോട്ടോ താളിലോട്ടോ ഉള്ള തിരിച്ചുവിടൽ",
 	"redirect-summary": "ഈ പ്രത്യേക താൾ ഒരു പ്രമാണത്തിലേയ്ക്കോ (പ്രമാണത്തിന്റെ പേര് തന്നിട്ടുണ്ട്), ഒരു താളിലേയ്ക്കോ (നാൾപ്പതിപ്പിന്റെ ഐ.ഡി. അല്ലെങ്കിൽ താൾ തന്നിട്ടുണ്ട്), അല്ലെങ്കിൽ ഒരു ഉപയോക്തൃതാളിലേയ്ക്കോ (ഉപയോക്താവിന്റെ സംഖ്യാ ഐ.ഡി. തന്നിട്ടുണ്ട്) തിരിച്ചുവിടുന്നു. ഉപയോഗം: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]],  [[{{#Special:Redirect}}/revision/328429]], അല്ലെങ്കിൽ [[{{#Special:Redirect}}/user/101]].",
@@ -3329,5 +3332,7 @@
 	"special-characters-group-khmer": "ഖെമർ",
 	"special-characters-title-endash": "ഇം  ഡാഷ്",
 	"special-characters-title-emdash": "എം ഡാഷ്",
-	"special-characters-title-minus": "വ്യവകലന ചിഹ്നം"
+	"special-characters-title-minus": "വ്യവകലന ചിഹ്നം",
+	"mw-widgets-titleinput-description-new-page": "താൾ ഇപ്പോൾ നിലവിലില്ല",
+	"mw-widgets-titleinput-description-redirect": "$1 എന്ന താളിലേക്കുള്ള തിരിച്ചുവിടൽ"
 }

@@ -476,7 +476,6 @@
 	"passwordreset": "پټنوم بياپرځايول",
 	"passwordreset-text-one": "د برېښليک له لارې د لنډمهاله پټنوم د ترلاسه کولو لپاره دا فورمه ډکه کړئ.",
 	"passwordreset-text-many": "{{PLURAL:$1|د برېښليک له لارې د يو لنډمهاله پټنوم د ترلاسه کولو لپاره له لاندينيو ډگرونو څخه يو يې ډک کړۍ.}}",
-	"passwordreset-legend": "پټنوم بياپرځايول",
 	"passwordreset-disabled": "په دې ويکي پټنوم بياپرځای کولو کړنه ناچارنه شوې.",
 	"passwordreset-emaildisabled": "په دې ويکي باندې د برېښليک ځانتياوې ناچارنې شوي دي.",
 	"passwordreset-username": "کارن-نوم:",
@@ -1221,7 +1220,6 @@
 	"nmembers": "$1 {{PLURAL:$1|غړی|غړي}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|غړی|غړي}}",
 	"nrevisions": "$1 {{PLURAL:$1|بڼه|بڼې}}",
-	"nviews": "$1 {{PLURAL:$1|کتنه|کتنې}}",
 	"nimagelinks": "په $1 {{PLURAL:$1|کارېدلی مخ|کارېدلي مخونه}}",
 	"ntransclusions": "په $1 {{PLURAL:$1|مخ|مخونو}} کارېدلی",
 	"specialpage-empty": "د دې راپور لپاره کومې پايلې نشته.",
@@ -1736,7 +1734,7 @@
 	"tooltip-pt-logout": "وتل",
 	"tooltip-pt-createaccount": "تاسې ته د يو گڼون د جوړولو او بيا غونډال کې ورننوتلو سپارښتنه کېږي؛ که څه هم چې دا يو اړين کار نه دی",
 	"tooltip-ca-talk": "د مخ د مېنځپانگې په اړه خبرې اترې",
-	"tooltip-ca-edit": "تاسې همدا مخ سمولای شی. لطفاً د ليکنې د خوندي کولو دمخه، د همدې ليکنې مخليدنه وگورۍ.",
+	"tooltip-ca-edit": "تاسې همدا مخ سمولای شی. لطفاً د ليکنې د خوندي کولو دمخه، د مخليدنې تڼۍ وکاروئ.",
 	"tooltip-ca-addsection": "يوه نوې برخه پيلول",
 	"tooltip-ca-viewsource": "دا مخ ژغورل شوی. تاسې کولای شی چې د دې مخ سرجينه وگورۍ.",
 	"tooltip-ca-history": "د دې مخ پخوانۍ بڼې",
@@ -2196,6 +2194,9 @@
 	"version-entrypoints-header-url": "يو آر اېل",
 	"version-libraries-library": "کتابتون",
 	"version-libraries-version": "بڼه",
+	"version-libraries-license": "منښتليک",
+	"version-libraries-description": "څرگندونه",
+	"version-libraries-authors": "ليکوالان",
 	"redirect": "د دوتنې، کارن، مخ يا بڼې پېژند له مخې ورگرځېدنې",
 	"redirect-submit": "ورځه",
 	"redirect-value": "ارزښت:",
@@ -2408,5 +2409,7 @@
 	"special-characters-group-devanagari": "دېوانګري",
 	"special-characters-group-thai": "تايلنډي",
 	"special-characters-group-lao": "لاوي",
-	"special-characters-group-khmer": "خمري"
+	"special-characters-group-khmer": "خمري",
+	"mw-widgets-titleinput-description-new-page": "پدې نوم لا تر اوسه پورې مخ نشته",
+	"mw-widgets-titleinput-description-redirect": "$1 ته ورگرځول"
 }

@@ -568,7 +568,6 @@
 	"passwordreset": "Wachtwoord opnieuw instellen",
 	"passwordreset-text-one": "Vul dit formulier in om uw wachtwoord opnieuw in te stellen.",
 	"passwordreset-text-many": "{{PLURAL:$1|Vul een van de gegevensvelden in om per e-mail een tijdelijk wachtwoord te ontvangen.}}",
-	"passwordreset-legend": "Wachtwoord opnieuw instellen",
 	"passwordreset-disabled": "Het is in deze wiki niet mogelijk uw wachtwoord opnieuw in te stellen.",
 	"passwordreset-emaildisabled": "E-mailmogelijkheden zijn uitgeschakeld op deze wiki.",
 	"passwordreset-username": "Gebruiker:",
@@ -595,7 +594,6 @@
 	"resettokens": "Tokens opnieuw instellen",
 	"resettokens-text": "U kunt hier tokens opnieuw instellen die toegang tot bepaalde persoonlijke gegevens die zijn gekoppeld aan uw gebruiker.\n\nDoe dit als u ze per ongeluk met iemand hebt gedeeld of als uw onbevoegden toegang hebben gekregen tot uw gebruiker.",
 	"resettokens-no-tokens": "Er zijn geen tokens om opnieuw in te stellen.",
-	"resettokens-legend": "Tokens opnieuw instellen",
 	"resettokens-tokens": "Tokens:",
 	"resettokens-token-label": "$1 (huidige waarde: $2)",
 	"resettokens-watchlist-token": "Token voor webfeed van [[Special:Watchlist|uw volglijst]] (Atom/RSS)",
@@ -1601,7 +1599,6 @@
 	"nmembers": "$1 {{PLURAL:$1|item|items}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|lid|leden}}",
 	"nrevisions": "$1 {{PLURAL:$1|versie|versies}}",
-	"nviews": "{{PLURAL:$1|1 keer|$1 keer}} bekeken",
 	"nimagelinks": "Gebruikt op {{PLURAL:$1|één pagina|$1 pagina's}}",
 	"ntransclusions": "gebruikt op {{PLURAL:$1|één pagina|$1 pagina's}}",
 	"specialpage-empty": "Er zijn geen resultaten voor deze rapportage.",
@@ -2312,7 +2309,7 @@
 	"tooltip-pt-logout": "Afmelden",
 	"tooltip-pt-createaccount": "Registreer u vooral en meld u aan. Dit is echter niet vereist.",
 	"tooltip-ca-talk": "Overleg over deze pagina",
-	"tooltip-ca-edit": "U kunt deze pagina bewerken. Gebruik de knop \"Bewerking ter controle bekijken\" voordat u de pagina opslaat",
+	"tooltip-ca-edit": "U kunt deze pagina bewerken. Gebruik de knop voor het maken van een voorbeeld voordat u de pagina opslaat",
 	"tooltip-ca-addsection": "Nieuw kopje toevoegen",
 	"tooltip-ca-viewsource": "Deze pagina is beveiligd.\nU kunt wel de broncode bekijken.",
 	"tooltip-ca-history": "Eerdere versies van deze pagina",
@@ -3409,5 +3406,7 @@
 	"special-characters-group-khmer": "Khmer",
 	"special-characters-title-endash": "liggend streepje",
 	"special-characters-title-emdash": "gedachtenstreepje",
-	"special-characters-title-minus": "minteken"
+	"special-characters-title-minus": "minteken",
+	"mw-widgets-titleinput-description-new-page": "pagina bestaat nog niet",
+	"mw-widgets-titleinput-description-redirect": "doorverwijzing naar $1"
 }

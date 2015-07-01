@@ -81,7 +81,8 @@
 			"DonRumata",
 			"Mariya",
 			"Marina Melik-Adamyan",
-			"Normalex"
+			"Normalex",
+			"WindEwriX"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -1890,6 +1891,10 @@
 	"rollback-success": "Откачены правки $1; возврат к версии $2.",
 	"sessionfailure-title": "Ошибка сеанса",
 	"sessionfailure": "Похоже, возникли проблемы с текущим сеансом работы;\nэто действие было отменено в целях предотвращения «захвата сеанса».\nПожалуйста, нажмите кнопку «Назад» и перезагрузите страницу, с которой вы пришли.",
+	"changecontentmodel": "Редактирование контентной модели страницы",
+	"changecontentmodel-title-label": "Заголовок страницы",
+	"changecontentmodel-reason-label": "Причина:",
+	"logentry-contentmodel-change-revert": "Откат",
 	"protectlogpage": "Журнал защиты",
 	"protectlogtext": "Ниже приведён журнал изменений защиты страницы.\nВы можете также просмотреть [[Special:ProtectedPages|список страниц, которые в данный момент защищены]].",
 	"protectedarticle": "защищена страница «[[$1]]»",

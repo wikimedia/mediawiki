@@ -3037,6 +3037,7 @@
 	"logentry-rights-rights-legacy": "$1 je {{GENDER:$2|promijenio|promijenila|promijenio}} članstvo grupe za $3",
 	"logentry-rights-autopromote": "$1 {{GENDER:$1|je automatski promijenjeno članstvo|su automatski promijenjena članstva}} iz $4 u $5",
 	"logentry-upload-upload": "$1 {{GENDER:$2|uploaded}} $3",
+	"logentry-upload-overwrite": "$1 {{GENDER:$2|postavio|postavila}} је novu verziju $3",
 	"log-name-managetags": "Zapisnik upravljanja oznaka",
 	"log-name-tag": "Zapisnik oznaka",
 	"rightsnone": "(nema)",

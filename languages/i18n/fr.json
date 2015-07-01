@@ -2374,7 +2374,7 @@
 	"tooltip-pt-logout": "Se déconnecter",
 	"tooltip-pt-createaccount": "Il vous est conseillé de créer un compte et de vous connecter ; cependant, ce n’est pas obligatoire",
 	"tooltip-ca-talk": "Discussion au sujet de cette page de contenu",
-	"tooltip-ca-edit": "Vous pouvez modifier cette page.\nVeuillez utiliser le bouton de prévisualisation avant d'enregistrer.",
+	"tooltip-ca-edit": "Modifier le wikicode",
 	"tooltip-ca-addsection": "Commencer une nouvelle section",
 	"tooltip-ca-viewsource": "Cette page est protégée.\nVous pouvez toutefois en visualiser la source.",
 	"tooltip-ca-history": "Les versions passées de cette page (avec leurs contributeurs)",

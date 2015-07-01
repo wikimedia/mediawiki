@@ -8,7 +8,8 @@
 			"KhabarNegar",
 			"Sahehco",
 			"Signal89",
-			"Mjbmr"
+			"Mjbmr",
+			"Ebraminio"
 		]
 	},
 	"apihelp-main-param-action": "کدام عملیات را انجام دهد.",
@@ -40,7 +41,7 @@
 	"apihelp-createaccount-param-name": "نام کاربری.",
 	"apihelp-createaccount-param-password": "رمز عبور (نادیده گرفته می‌شود اگر <var>$1mailpassword</var> تنظیم شده‌باشد).",
 	"apihelp-createaccount-param-domain": "دامنه برای احراز هویت خارجی (اختیاری).",
-	"apihelp-createaccount-param-email": "آدرس ایمیل کاربر (اختیاری)",
+	"apihelp-createaccount-param-email": "نشانی ایمیل کاربر (اختیاری)",
 	"apihelp-createaccount-param-realname": "نام واقعی کاربر (اختیاری).",
 	"apihelp-createaccount-param-mailpassword": "اگر به هر مقداری تنظیم شود، یک رمز عبور تصادفی به کاربر ایمیل خواهد شد.",
 	"apihelp-createaccount-param-reason": "دلیل اختیاری برای ایجاد حساب کاربری جهت قرارگرفتن در سیاهه‌ها.",
