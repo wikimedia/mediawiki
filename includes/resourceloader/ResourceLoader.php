@@ -206,7 +206,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		if ( !$options['cache'] ) {
 			$result = $this->applyFilter( $filter, $data );
 		} else {
-			$key = wfMemcKey( 'resourceloader', 'filter', $filter, self::$filterCacheVersion, md5( $data ) );
+			$key = wfGlobalCacheKey( 'resourceloader', 'filter', $filter, self::$filterCacheVersion, md5( $data ) );
 			$cache = wfGetCache( wfIsHHVM() ? CACHE_ACCEL : CACHE_ANYTHING );
 			$cacheEntry = $cache->get( $key );
 			if ( is_string( $cacheEntry ) ) {
