@@ -43,6 +43,14 @@ class CreateAndPromote extends Maintenance {
 		foreach ( self::$permitRoles as $role ) {
 			$this->addOption( $role, "Add the account to the {$role} group" );
 		}
+
+		$this->addOption(
+			'custom-groups',
+			'Comma-separated list of groups to add the user to',
+			false,
+			true
+		);
+
 		$this->addArg( "username", "Username of new user" );
 		$this->addArg( "password", "Password to set (not required if --force is used)", false );
 	}
@@ -69,8 +77,16 @@ class CreateAndPromote extends Maintenance {
 			$inGroups = $user->getGroups();
 		}
 
+		$groups = array_filter( self::$permitRoles, array( $this, 'hasOption' ) );
+		if ( $this->hasOption( 'custom-groups' ) ) {
+			$customGroups = explode( ',', $this->getOption( 'custom-groups' ) );
+			foreach ( $customGroups as $customGroup ) {
+				$groups[] = trim( $customGroup );
+			}
+		}
+
 		$promotions = array_diff(
-			array_filter( self::$permitRoles, array( $this, 'hasOption' ) ),
+			$groups,
 			$inGroups
 		);
 
