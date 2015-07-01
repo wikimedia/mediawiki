@@ -328,7 +328,8 @@ class InfoAction extends FormlessAction {
 				$this->msg( 'pageinfo-watchers' ),
 				$lang->formatNum( $pageCounts['watchers'] )
 			);
-			if ( $config->get( 'ShowUpdatedMarker' ) ) {
+			if ( $config->get( 'ShowUpdatedMarker' ) &&
+				isset( $pageCounts['visitingWatchers'] ) ) {
 				$minToDisclose = $config->get( 'UnwatchedPageSecret' );
 				if ( $pageCounts['visitingWatchers'] > $minToDisclose ||
 					$user->isAllowed( 'unwatchedpages' ) ) {
