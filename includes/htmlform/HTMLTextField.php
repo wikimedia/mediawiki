@@ -118,9 +118,22 @@ class HTMLTextField extends HTMLFormField {
 			$attribs['readOnly'] = true;
 		}
 
+		if ( isset( $this->mParams['autocomplete'] ) ) {
+			if ( $this->mParams['autocomplete'] === 'title' ) {
+				$class = 'MediaWiki\\Widget\\TitleInputWidget';
+				$this->mParent->getOutput()->addModules( 'mediawiki.widgets' );
+			} else {
+				// @todo add a user autocomplete
+				throw new UnexpectedValueException( "Unrecognized value '{$this->mParams['autocomplete']}'"
+					. " for 'autocomplete' parameter" );
+			}
+		} else {
+			$class = 'OOUI\\TextInputWidget';
+		}
+
 		$type = $this->getType( $attribs );
 
-		return new OOUI\TextInputWidget( array(
+		return new $class( array(
 			'id' => $this->mID,
 			'name' => $this->mName,
 			'value' => $value,
