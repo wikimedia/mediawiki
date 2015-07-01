@@ -915,12 +915,29 @@ class PhpHttpRequest extends MWHttpRequest {
 			$options['ssl']['CN_match'] = $this->parsedUrl['host'];
 		}
 
-		if ( is_dir( $this->caInfo ) ) {
-			$options['ssl']['capath'] = $this->caInfo;
-		} elseif ( is_file( $this->caInfo ) ) {
-			$options['ssl']['cafile'] = $this->caInfo;
-		} elseif ( $this->caInfo ) {
-			throw new MWException( "Invalid CA info passed: {$this->caInfo}" );
+		if ( $this->caInfo ) {
+			$certLocations = array( $this->caInfo );
+		} else {
+			// Default locations, based on
+			// https://www.happyassassin.net/2015/01/12/a-note-about-ssltls-trusted-certificate-stores-and-platforms/
+			// PHP doesn't seem to have sane defaults, so we set ourselves.
+			$certLocations = array(
+				'/etc/pki/tls/certs/ca-bundle.crt', # Fedora et al
+				'/etc/ssl/certs',  # Debian et al
+				'/etc/pki/tls/certs/ca-bundle.trust.crt',
+				'/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem',
+				'/System/Library/OpenSSL', # OSX
+			);
+		}
+
+		foreach( $certLocations as $cert ) {
+			if ( is_dir( $cert ) ) {
+				$options['ssl']['capath'] = $cert;
+				break;
+			} elseif ( is_file( $cert ) ) {
+				$options['ssl']['cafile'] = $cert;
+				break;
+			}
 		}
 
 		$context = stream_context_create( $options );
