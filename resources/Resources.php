@@ -1088,10 +1088,12 @@ return array(
 			'jquery.accessKeyLabel',
 			'mediawiki.RegExp',
 			'mediawiki.notify',
+			'mediawiki.util.data',
 		),
 		'position' => 'top', // For $wgPreloadJavaScriptMwUtil
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'mediawiki.util.data' => array( 'class' => 'ResourceLoaderUtilModule' ),
 	'mediawiki.cookie' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.cookie.js',
 		'dependencies' => 'jquery.cookie',
