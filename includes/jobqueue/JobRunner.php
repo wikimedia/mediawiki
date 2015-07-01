@@ -199,10 +199,10 @@ class JobRunner implements LoggerAwareInterface {
 				$timeMsTotal += $timeMs;
 				$profiler->scopedProfileOut( $psection );
 
-				$queuedTs = $job->getQueuedTimestamp();
-				if ( $queuedTs ) {
+				$readyTs = $job->getReadyTimestamp();
+				if ( $readyTs ) {
 					// Record time to run for the job type
-					$pickupDelay = $popTime - $queuedTs;
+					$pickupDelay = $popTime - $readyTs;
 					$stats->timing( 'jobqueue.pickup_delay.all', $pickupDelay );
 					$stats->timing( "jobqueue.pickup_delay.$jType", $pickupDelay );
 				}
