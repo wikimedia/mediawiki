@@ -163,7 +163,7 @@
 		}
 	} );
 
-	QUnit.test( 'Basic parsing', 12, function ( assert ) {
+	QUnit.test( 'Basic parsing', 21, function ( assert ) {
 		var title;
 		title = new mw.Title( 'File:Foo_bar.JPG' );
 
@@ -181,6 +181,17 @@
 		title = new mw.Title( 'Foo#bar' );
 		assert.equal( title.getPrefixedText(), 'Foo' );
 		assert.equal( title.getFragment(), 'bar' );
+
+		title = new mw.Title( '.foo' );
+		assert.equal( title.getPrefixedText(), '.foo' );
+		assert.equal( title.getName(), '' );
+		assert.equal( title.getNameText(), '' );
+		assert.equal( title.getExtension(), 'foo' );
+		assert.equal( title.getDotExtension(), '.foo' );
+		assert.equal( title.getMain(), '.foo' );
+		assert.equal( title.getMainText(), '.foo' );
+		assert.equal( title.getPrefixedDb(), '.foo' );
+		assert.equal( title.getPrefixedText(), '.foo' );
 	} );
 
 	QUnit.test( 'Transformation', 11, function ( assert ) {
