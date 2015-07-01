@@ -830,6 +830,50 @@ class PhpHttpRequest extends MWHttpRequest {
 		return 'tcp://' . $parsedUrl['host'] . ':' . $parsedUrl['port'];
 	}
 
+	/**
+	 * Returns an array with a 'capath' or 'cafile' key that is suitable to be merged into the 'ssl' sub-array of a
+	 * stream context options array. Uses the 'caInfo' option of the class if it is provided, otherwise uses the system
+	 * default CA bundle if PHP supports that, or searches a few standard locations.
+	 * @return array
+	 * @throws DomainException
+	 */
+	protected function getCertOptions() {
+		$certOptions = array();
+		$certLocations = array();
+		if ( $this->caInfo ) {
+			$certLocations = array( 'manual' => $this->caInfo );
+		} elseif ( version_compare( PHP_VERSION, '5.6.0', '<' ) ) {
+			// Default locations, based on
+			// https://www.happyassassin.net/2015/01/12/a-note-about-ssltls-trusted-certificate-stores-and-platforms/
+			// PHP 5.5 and older doesn't have any defaults, so we try to guess ourselves. PHP 5.6+ gets the CA location
+			// from OpenSSL as long as it is not set manually, so we should leave capath/cafile empty there.
+			$certLocations = array_filter( array(
+				getenv( 'SSL_CERT_DIR' ),
+				getenv( 'SSL_CERT_PATH' ),
+				'/etc/pki/tls/certs/ca-bundle.crt', # Fedora et al
+				'/etc/ssl/certs',  # Debian et al
+				'/etc/pki/tls/certs/ca-bundle.trust.crt',
+				'/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem',
+				'/System/Library/OpenSSL', # OSX
+			) );
+		}
+
+		foreach( $certLocations as $key => $cert ) {
+			if ( is_dir( $cert ) ) {
+				$certOptions['capath'] = $cert;
+				break;
+			} elseif ( is_file( $cert ) ) {
+				$certOptions['cafile'] = $cert;
+				break;
+			} elseif ( $key === 'manual' ) {
+				// fail more loudly if a cert path was manually configured and it is not valid
+				throw new DomainException( "Invalid CA info passed: $cert" );
+			}
+		}
+
+		return $certOptions;
+	}
+
 	public function execute() {
 		wfProfileIn( __METHOD__ );
 
@@ -886,13 +930,7 @@ class PhpHttpRequest extends MWHttpRequest {
 			$options['ssl']['CN_match'] = $this->parsedUrl['host'];
 		}
 
-		if ( is_dir( $this->caInfo ) ) {
-			$options['ssl']['capath'] = $this->caInfo;
-		} elseif ( is_file( $this->caInfo ) ) {
-			$options['ssl']['cafile'] = $this->caInfo;
-		} elseif ( $this->caInfo ) {
-			throw new MWException( "Invalid CA info passed: {$this->caInfo}" );
-		}
+		$options['ssl'] += $this->getCertOptions();
 
 		$context = stream_context_create( $options );
 
