@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.11.6
+ * OOjs UI v0.11.7
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-06-23T21:49:41Z
+ * Date: 2015-07-01T19:04:35Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -1111,12 +1111,24 @@
 	border: none;
 	background: none;
 }
-.oo-ui-toolbar-actions > .oo-ui-buttonElement {
+.oo-ui-toolbar-actions > .oo-ui-buttonElement-framed,
+.oo-ui-toolbar-actions > .oo-ui-buttonElement-framed:last-child {
 	margin-top: 0.4em;
 	margin-bottom: 0.4em;
-}
-.oo-ui-toolbar-actions > .oo-ui-buttonElement:last-child {
 	margin-right: 0.5em;
+}
+.oo-ui-toolbar-actions > .oo-ui-buttonElement-frameless.oo-ui-labelElement,
+.oo-ui-toolbar-actions > .oo-ui-buttonElement-frameless:last-child.oo-ui-labelElement {
+	margin: 0;
+}
+.oo-ui-toolbar-actions > .oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button,
+.oo-ui-toolbar-actions > .oo-ui-buttonElement-frameless:last-child.oo-ui-labelElement > .oo-ui-buttonElement-button {
+	margin: 0;
+	padding: 1.1953125em 0.3125em;
+}
+.oo-ui-toolbar-actions > .oo-ui-buttonElement-frameless.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label,
+.oo-ui-toolbar-actions > .oo-ui-buttonElement-frameless:last-child.oo-ui-labelElement > .oo-ui-buttonElement-button > .oo-ui-labelElement-label {
+	margin: 0 1em;
 }
 .oo-ui-toolbar-shadow {
 	background-image: /* @embed */ url(themes/apex/images/toolbar-shadow.png);
@@ -2531,12 +2543,25 @@
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-framed,
 .oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-framed,
 .oo-ui-processDialog-actions-other .oo-ui-actionWidget.oo-ui-buttonElement-framed {
-	margin: 0.75em 0 0.75em 0.75em;
+	margin: 0.75em;
 }
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-framed .oo-ui-buttonElement-button,
 .oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-framed .oo-ui-buttonElement-button,
 .oo-ui-processDialog-actions-other .oo-ui-actionWidget.oo-ui-buttonElement-framed .oo-ui-buttonElement-button {
 	padding: 0 1em;
+	vertical-align: middle;
+	/* Adjust for border so text aligns with title */
+	margin: -1px;
+}
+.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless,
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless,
+.oo-ui-processDialog-actions-other .oo-ui-actionWidget.oo-ui-buttonElement-frameless {
+	margin: 0;
+}
+.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-frameless .oo-ui-buttonElement-button,
+.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-frameless .oo-ui-buttonElement-button,
+.oo-ui-processDialog-actions-other .oo-ui-actionWidget.oo-ui-buttonElement-frameless .oo-ui-buttonElement-button {
+	padding: 0.75em 1em;
 	vertical-align: middle;
 }
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget:hover,
@@ -2546,15 +2571,6 @@
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget:active,
 .oo-ui-processDialog-actions-primary .oo-ui-actionWidget:active {
 	background-color: rgba(0, 0, 0, 0.1);
-}
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-framed,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-framed {
-	margin: 0.75em;
-}
-.oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-buttonElement-framed .oo-ui-buttonElement-button,
-.oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-buttonElement-framed .oo-ui-buttonElement-button {
-	/* Adjust for border so text aligns with title */
-	margin: -1px;
 }
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggedElement-progressive:hover,
 .oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-flaggedElement-progressive:hover {
@@ -2583,6 +2599,9 @@
 .oo-ui-processDialog-actions-safe .oo-ui-actionWidget.oo-ui-flaggedElement-destructive:active,
 .oo-ui-processDialog-actions-primary .oo-ui-actionWidget.oo-ui-flaggedElement-destructive:active {
 	background-color: rgba(212, 83, 83, 0.1);
+}
+.oo-ui-processDialog-actions-other .oo-ui-actionWidget.oo-ui-buttonElement {
+	margin-right: 0;
 }
 .oo-ui-processDialog > .oo-ui-window-frame {
 	min-height: 5em;
