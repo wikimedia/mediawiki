@@ -21,5 +21,6 @@
 	"ooui-dialog-process-error": "Noe gikk galt",
 	"ooui-dialog-process-dismiss": "Lukk",
 	"ooui-dialog-process-retry": "Prøv igjen",
-	"ooui-dialog-process-continue": "Fortsett"
+	"ooui-dialog-process-continue": "Fortsett",
+	"ooui-selectfile-placeholder": "Ingen fil er valgt"
 }

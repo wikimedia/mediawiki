@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.11.6
+ * OOjs UI v0.11.7
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-06-23T21:49:33Z
+ * Date: 2015-07-01T19:04:28Z
  */
 ( function ( OO ) {
 
@@ -11517,7 +11517,8 @@ OO.ui.mixin.ItemWidget.prototype.setElementGroup = function ( group ) {
 /**
  * OutlineControlsWidget is a set of controls for an {@link OO.ui.OutlineSelectWidget outline select widget}.
  * Controls include moving items up and down, removing items, and adding different kinds of items.
- * ####Currently, this class is only used by {@link OO.ui.BookletLayout booklet layouts}.####
+ *
+ * **Currently, this class is only used by {@link OO.ui.BookletLayout booklet layouts}.**
  *
  * @class
  * @extends OO.ui.Widget
@@ -14707,6 +14708,7 @@ OO.ui.OptionWidget = function OoUiOptionWidget( config ) {
 	this.$element
 		.data( 'oo-ui-optionWidget', this )
 		.attr( 'role', 'option' )
+		.attr( 'aria-selected', 'false' )
 		.addClass( 'oo-ui-optionWidget' )
 		.append( this.$label );
 };
@@ -17258,7 +17260,7 @@ OO.ui.TextInputMenuSelectWidget.prototype.position = function () {
  * OutlineSelectWidget is a structured list that contains {@link OO.ui.OutlineOptionWidget outline options}
  * A set of controls can be provided with an {@link OO.ui.OutlineControlsWidget outline controls} widget.
  *
- * ####Currently, this class is only used by {@link OO.ui.BookletLayout booklet layouts}.####
+ * **Currently, this class is only used by {@link OO.ui.BookletLayout booklet layouts}.**
  *
  * @class
  * @extends OO.ui.SelectWidget
@@ -17292,7 +17294,7 @@ OO.mixinClass( OO.ui.OutlineSelectWidget, OO.ui.mixin.TabIndexedElement );
 /**
  * TabSelectWidget is a list that contains {@link OO.ui.TabOptionWidget tab options}
  *
- * ####Currently, this class is only used by {@link OO.ui.IndexLayout index layouts}.####
+ * **Currently, this class is only used by {@link OO.ui.IndexLayout index layouts}.**
  *
  * @class
  * @extends OO.ui.SelectWidget

@@ -25,5 +25,6 @@
 	"ooui-dialog-process-error": "Något gick fel",
 	"ooui-dialog-process-dismiss": "Stäng",
 	"ooui-dialog-process-retry": "Försök igen",
-	"ooui-dialog-process-continue": "Fortsätt"
+	"ooui-dialog-process-continue": "Fortsätt",
+	"ooui-selectfile-placeholder": "Ingen fil är vald"
 }

@@ -27,5 +27,7 @@
 	"ooui-dialog-process-error": "Jokin meni pieleen",
 	"ooui-dialog-process-dismiss": "Hylkää",
 	"ooui-dialog-process-retry": "Yritä uudelleen",
-	"ooui-dialog-process-continue": "Jatka"
+	"ooui-dialog-process-continue": "Jatka",
+	"ooui-selectfile-not-supported": "Tiedoston valitsemista ei tueta",
+	"ooui-selectfile-placeholder": "Tiedostoa ei ole valittu"
 }
