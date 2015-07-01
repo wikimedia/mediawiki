@@ -971,6 +971,8 @@ class PhpHttpRequest extends MWHttpRequest {
 			'ssl' => array(
 				'verify_peer' => $this->sslVerifyCert,
 				'SNI_enabled' => true,
+				'ciphers' => 'HIGH:!SSLv2:!SSLv3:-ADH:-kDH:-kECDH:-DSS',
+				'disable_compression' => true,
 			),
 		);
 
