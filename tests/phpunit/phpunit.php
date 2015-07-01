@@ -215,17 +215,23 @@ if ( version_compare( PHP_VERSION, '5.4.0', '<' ) ) {
 
 $ok = false;
 
-foreach ( array(
-	stream_resolve_include_path( 'phpunit.phar' ),
-	'PHPUnit/Runner/Version.php',
-	'PHPUnit/Autoload.php'
-) as $includePath ) {
-	// @codingStandardsIgnoreStart
-	@include_once $includePath;
-	// @codingStandardsIgnoreEnd
-	if ( class_exists( 'PHPUnit_TextUI_Command' ) ) {
-		$ok = true;
-		break;
+if ( class_exists( 'PHPUnit_TextUI_Command' ) ) {
+	echo "PHPUnit already present\n";
+	$ok = true;
+} else {
+	foreach ( array(
+				stream_resolve_include_path( 'phpunit.phar' ),
+				'PHPUnit/Runner/Version.php',
+				'PHPUnit/Autoload.php'
+			) as $includePath ) {
+		// @codingStandardsIgnoreStart
+		@include_once $includePath;
+		// @codingStandardsIgnoreEnd
+		if ( class_exists( 'PHPUnit_TextUI_Command' ) ) {
+			$ok = true;
+			echo "Using PHPUnit from $includePath\n";
+			break;
+		}
 	}
 }
 
