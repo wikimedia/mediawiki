@@ -120,11 +120,15 @@ class HTMLTextField extends HTMLFormField {
 
 		$type = $this->getType( $attribs );
 
-		return new OOUI\TextInputWidget( array(
+		return $this->getInputWidget( array(
 			'id' => $this->mID,
 			'name' => $this->mName,
 			'value' => $value,
 			'type' => $type,
 		) + $attribs );
+	}
+
+	protected function getInputWidget( $params ) {
+		return new OOUI\TextInputWidget( $params );
 	}
 }
