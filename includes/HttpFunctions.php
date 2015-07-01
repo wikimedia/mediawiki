@@ -926,12 +926,33 @@ class PhpHttpRequest extends MWHttpRequest {
 			}
 		}
 
-		if ( is_dir( $this->caInfo ) ) {
-			$options['ssl']['capath'] = $this->caInfo;
-		} elseif ( is_file( $this->caInfo ) ) {
-			$options['ssl']['cafile'] = $this->caInfo;
-		} elseif ( $this->caInfo ) {
-			throw new MWException( "Invalid CA info passed: {$this->caInfo}" );
+		$certLocations = array();
+		if ( $this->caInfo ) {
+			$certLocations = array( $this->caInfo );
+		} elseif ( version_compare( PHP_VERSION, '5.6.0', '<' ) ) {
+			// Default locations, based on
+			// https://www.happyassassin.net/2015/01/12/a-note-about-ssltls-trusted-certificate-stores-and-platforms/
+			// PHP 5.5 and older doesn't have any defaults, so we try to guess ourselves. PHP 5.6+ gets the CA location
+			// from OpenSSL as long as it is not set manually, so we should leave capath/cafile empty there.
+			$certLocations = array_filter( array(
+				getenv( 'SSL_CERT_DIR' ),
+				getenv( 'SSL_CERT_PATH' ),
+				'/etc/pki/tls/certs/ca-bundle.crt', # Fedora et al
+				'/etc/ssl/certs',  # Debian et al
+				'/etc/pki/tls/certs/ca-bundle.trust.crt',
+				'/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem',
+				'/System/Library/OpenSSL', # OSX
+			) );
+		}
+
+		foreach( $certLocations as $cert ) {
+			if ( is_dir( $cert ) ) {
+				$options['ssl']['capath'] = $cert;
+				break;
+			} elseif ( is_file( $cert ) ) {
+				$options['ssl']['cafile'] = $cert;
+				break;
+			}
 		}
 
 		$context = stream_context_create( $options );
