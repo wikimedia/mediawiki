@@ -14,9 +14,13 @@ class ApiMessageTest extends MediaWikiTestCase {
 
 		$msg = TestingAccessWrapper::newFromObject( $msg );
 		$msg2 = TestingAccessWrapper::newFromObject( $msg2 );
-		foreach ( array( 'interface', 'useDatabase', 'title' ) as $key ) {
-			$this->assertSame( $msg->$key, $msg2->$key, $key );
-		}
+		$this->assertSame( $msg->interface, $msg2->interface, 'interface' );
+		$this->assertSame( $msg->useDatabase, $msg2->useDatabase, 'useDatabase' );
+		$this->assertSame(
+			$msg->title ? $msg->title->getFullText() : null,
+			$msg2->title ? $msg2->title->getFullText() : null,
+			'title'
+		);
 	}
 
 	/**
@@ -26,6 +30,11 @@ class ApiMessageTest extends MediaWikiTestCase {
 		$msg = new Message( array( 'foo', 'bar' ), array( 'baz' ) );
 		$msg->inLanguage( 'de' )->title( Title::newMainPage() );
 		$msg2 = new ApiMessage( $msg, 'code', array( 'data' ) );
+		$this->compareMessages( $msg, $msg2 );
+		$this->assertEquals( 'code', $msg2->getApiCode() );
+		$this->assertEquals( array( 'data' ), $msg2->getApiData() );
+
+		$msg2 = unserialize( serialize( $msg2 ) );
 		$this->compareMessages( $msg, $msg2 );
 		$this->assertEquals( 'code', $msg2->getApiCode() );
 		$this->assertEquals( array( 'data' ), $msg2->getApiData() );
@@ -59,6 +68,11 @@ class ApiMessageTest extends MediaWikiTestCase {
 		$msg = new RawMessage( 'foo', array( 'baz' ) );
 		$msg->inLanguage( 'de' )->title( Title::newMainPage() );
 		$msg2 = new ApiRawMessage( $msg, 'code', array( 'data' ) );
+		$this->compareMessages( $msg, $msg2 );
+		$this->assertEquals( 'code', $msg2->getApiCode() );
+		$this->assertEquals( array( 'data' ), $msg2->getApiData() );
+
+		$msg2 = unserialize( serialize( $msg2 ) );
 		$this->compareMessages( $msg, $msg2 );
 		$this->assertEquals( 'code', $msg2->getApiCode() );
 		$this->assertEquals( array( 'data' ), $msg2->getApiData() );
