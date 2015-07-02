@@ -1097,7 +1097,7 @@ abstract class Maintenance {
 	 */
 	private function lockSearchindex( $db ) {
 		$write = array( 'searchindex' );
-		$read = array( 'page', 'revision', 'text', 'interwiki', 'l10n_cache', 'user' );
+		$read = array( 'page', 'revision', 'text', 'interwiki', 'l10n_cache', 'user', 'page_restrictions' );
 		$db->lockTables( $read, $write, __CLASS__ . '::' . __METHOD__ );
 	}
 

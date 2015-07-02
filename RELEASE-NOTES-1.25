@@ -16,6 +16,8 @@ THIS IS NOT YET A RELEASE!
 * (T102522) Using an extension.json or skin.json file which has
   a "manifest_version" property for 1.26 compatability will no longer
   trigger warnings.
+* (T86156) Running updateSearchIndex.php will not throw an error as
+  page_restrictions has been added to the locked table list.
 
 === Changes since 1.25 ===
 * (T100351) Fix syntax errors in extension.json of ConfirmEdit extension
