@@ -548,4 +548,22 @@ class MessageTest extends MediaWikiLangTestCase {
 	public function testInLanguageThrows() {
 		wfMessage( 'foo' )->inLanguage( 123 );
 	}
+
+	/**
+	 * @covers Message::serialize
+	 * @covers Message::unserialize
+	 */
+	public function testSerialization() {
+		$msg = new Message( 'parentheses' );
+		$msg->rawParams( '<a>foo</a>' );
+		$this->assertEquals( '(<a>foo</a>)', $msg->parse(), 'Sanity check' );
+		$msg = unserialize( serialize( $msg ) );
+		$this->assertEquals( '(<a>foo</a>)', $msg->parse() );
+
+		$msg = new Message( 'mainpage' );
+		$msg->inLanguage( 'de' );
+		$this->assertEquals( 'Hauptseite', $msg->plain(), 'Sanity check' );
+		$msg = unserialize( serialize( $msg ) );
+		$this->assertEquals( 'Hauptseite', $msg->plain() );
+	}
 }
