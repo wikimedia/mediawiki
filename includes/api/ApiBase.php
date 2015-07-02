@@ -2481,7 +2481,7 @@ abstract class ApiBase extends ContextSource {
 	 * Returns the description string for this module
 	 *
 	 * Ignored if an i18n message exists for
-	 * "apihelp-{$this->getModulePathString()}-description".
+	 * "apihelp-{$this->getModulePath()}-description".
 	 *
 	 * @deprecated since 1.25
 	 * @return Message|string|array
@@ -2495,7 +2495,7 @@ abstract class ApiBase extends ContextSource {
 	 *
 	 * For each parameter, ignored if an i18n message exists for the parameter.
 	 * By default that message is
-	 * "apihelp-{$this->getModulePathString()}-param-{$param}", but it may be
+	 * "apihelp-{$this->getModulePath()}-param-{$param}", but it may be
 	 * overridden using ApiBase::PARAM_HELP_MSG in the data returned by
 	 * self::getFinalParams().
 	 *
