@@ -545,8 +545,6 @@
 	"apihelp-query+deletedrevisions-param-tag": "{{doc-apihelp-param|query+deletedrevisions|tag}}",
 	"apihelp-query+deletedrevisions-param-user": "{{doc-apihelp-param|query+deletedrevisions|user}}",
 	"apihelp-query+deletedrevisions-param-excludeuser": "{{doc-apihelp-param|query+deletedrevisions|excludeuser}}",
-	"apihelp-query+deletedrevisions-param-limit": "{{doc-apihelp-param|query+deletedrevisions|limit}}",
-	"apihelp-query+deletedrevisions-param-prop": "{{doc-apihelp-param|query+deletedrevisions|prop}}",
 	"apihelp-query+deletedrevisions-example-titles": "{{doc-apihelp-example|query+deletedrevisions}}",
 	"apihelp-query+deletedrevisions-example-revids": "{{doc-apihelp-example|query+deletedrevisions}}",
 	"apihelp-query+deletedrevs-description": "{{doc-apihelp-description|query+deletedrevs}}",
