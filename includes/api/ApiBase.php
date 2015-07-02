@@ -132,6 +132,8 @@ abstract class ApiBase extends ContextSource {
 		if ( !$this->isMain() ) {
 			$this->setContext( $mainModule->getContext() );
 		}
+
+		$this->getContext()->getStats()->increment( 'api.modules.'. $moduleName );
 	}
 
 
