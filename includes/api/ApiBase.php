@@ -132,6 +132,10 @@ abstract class ApiBase extends ContextSource {
 		if ( !$this->isMain() ) {
 			$this->setContext( $mainModule->getContext() );
 		}
+
+		$this->getContext()->getStats()->increment(
+			'api.modules.'. strtr( $this->getModulePath(), '+', '.' ) );
+
 	}
 
 
@@ -415,12 +419,13 @@ abstract class ApiBase extends ContextSource {
 	 * @return string
 	 */
 	public function getModulePath() {
-		if ( $this->isMain() ) {
+		$parent = $this->getParent();
+		if ( $parent === null ) {
 			return 'main';
-		} elseif ( $this->getParent()->isMain() ) {
+		} elseif ( $parent->isMain() ) {
 			return $this->getModuleName();
 		} else {
-			return $this->getParent()->getModulePath() . '+' . $this->getModuleName();
+			return $parent->getModulePath() . '+' . $this->getModuleName();
 		}
 	}
 
