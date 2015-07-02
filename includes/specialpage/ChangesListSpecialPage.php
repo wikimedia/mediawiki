@@ -434,7 +434,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$legend .= Html::element( 'dt',
 				array( 'class' => $cssClass ), $context->msg( $letter )->text()
 			) . "\n" .
-			Html::rawElement( 'dd', array(),
+			Html::rawElement( 'dd',
+				array( 'class' => Sanitizer::escapeClass( 'mw-changeslist-legend-' . $key ) ),
 				$context->msg( $label )->parse()
 			) . "\n";
 		}
