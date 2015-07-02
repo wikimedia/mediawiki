@@ -1305,10 +1305,16 @@ $changesList: EnhancedChangesList object
 $block: The RecentChanges objects in that block
 
 'EnhancedChangesListModifyLineData': to alter data used to build
-a recent change inner line in EnhancedChangesList.
+a grouped recent change inner line in EnhancedChangesList.
 $changesList: EnhancedChangesList object
 &$data: An array with all the components that will be joined in order to create the line
 $block: An array of RecentChange objects in that block
+$rc: The RecentChange object for this line
+
+'EnhancedChangesListModifyBlockLineData': to alter data used to build
+a non-grouped recent change line in EnhancedChangesList.
+$changesList: EnhancedChangesList object
+&$data: An array with all the components that will be joined in order to create the line
 $rc: The RecentChange object for this line
 
 'ExemptFromAccountCreationThrottle': Exemption from the account creation

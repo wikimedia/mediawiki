@@ -522,6 +522,8 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string A HTML formatted line (generated using $r)
 	 */
 	protected function recentChangesBlockLine( $rcObj ) {
+		$data = array();
+
 		$query['curid'] = $rcObj->mAttribs['rc_cur_id'];
 
 		$type = $rcObj->mAttribs['rc_type'];
@@ -536,32 +538,33 @@ class EnhancedChangesList extends ChangesList {
 		}
 		$classes[] = $rcObj->watched && $rcObj->mAttribs['rc_timestamp'] >= $rcObj->watched
 			? 'mw-changeslist-line-watched' : 'mw-changeslist-line-not-watched';
-		$r = Html::openElement( 'table', array( 'class' => $classes ) ) .
-			Html::openElement( 'tr' );
 
-		$r .= '<td class="mw-enhanced-rc"><span class="mw-enhancedchanges-arrow-space"></span>';
 		# Flag and Timestamp
-		$r .= $this->recentChangesFlags( array(
+		$data['recentChangesFlags'] = $this->recentChangesFlags( array(
 			'newpage' => $type == RC_NEW,
 			'minor' => $rcObj->mAttribs['rc_minor'],
 			'unpatrolled' => $rcObj->unpatrolled,
 			'bot' => $rcObj->mAttribs['rc_bot'],
 		) );
-		$r .= '&#160;' . $rcObj->timestamp . '&#160;</td><td>';
+		// timestamp is not really a link here, but is called timestampLink
+		// for consistency with EnhancedChangesListModifyLineData
+		$data['timestampLink'] = $rcObj->timestamp;
+
 		# Article or log link
 		if ( $logType ) {
 			$logPage = new LogPage( $logType );
 			$logTitle = SpecialPage::getTitleFor( 'Log', $logType );
 			$logName = $logPage->getName()->escaped();
-			$r .= $this->msg( 'parentheses' )
+			$data['logLink'] = $this->msg( 'parentheses' )
 				->rawParams( Linker::linkKnown( $logTitle, $logName ) )->escaped();
 		} else {
-			$this->insertArticleLink( $r, $rcObj, $rcObj->unpatrolled, $rcObj->watched );
+			$data['articleLink'] = $this->getArticleLink( $rcObj, $rcObj->unpatrolled, $rcObj->watched );
 		}
+
 		# Diff and hist links
 		if ( $type != RC_LOG ) {
 			$query['action'] = 'history';
-			$r .= ' ' . $this->msg( 'parentheses' )
+			$data['historyLink'] = ' ' . $this->msg( 'parentheses' )
 				->rawParams( $rcObj->difflink . $this->message['pipe-separator'] . Linker::linkKnown(
 					$rcObj->getTitle(),
 					$this->message['hist'],
@@ -569,31 +572,57 @@ class EnhancedChangesList extends ChangesList {
 					$query
 				) )->escaped();
 		}
-		$r .= ' <span class="mw-changeslist-separator">. .</span> ';
+		$data['separatorAfterLinks'] = ' <span class="mw-changeslist-separator">. .</span> ';
+
 		# Character diff
 		if ( $this->getConfig()->get( 'RCShowChangedSize' ) ) {
 			$cd = $this->formatCharacterDifference( $rcObj );
 			if ( $cd !== '' ) {
-				$r .= $cd . ' <span class="mw-changeslist-separator">. .</span> ';
+				$data['characterDiff'] = $cd;
+				$data['separatorAftercharacterDiff'] = ' <span class="mw-changeslist-separator">. .</span> ';
 			}
 		}
 
 		if ( $type == RC_LOG ) {
-			$r .= $this->insertLogEntry( $rcObj );
+			$data['logEntry'] = $this->insertLogEntry( $rcObj );
 		} else {
-			$r .= ' ' . $rcObj->userlink . $rcObj->usertalklink;
-			$r .= $this->insertComment( $rcObj );
-			$this->insertRollback( $r, $rcObj );
+			$data['userLink'] = $rcObj->userlink;
+			$data['userTalkLink'] = $rcObj->usertalklink;
+			$data['comment'] = $this->insertComment( $rcObj );
+			$data['rollback'] = $this->getRollback( $rcObj );
 		}
 
 		# Tags
-		$this->insertTags( $r, $rcObj, $classes );
+		$data['tags'] = $this->getTags( $rcObj, $classes );
+
 		# Show how many people are watching this if enabled
-		$r .= $this->numberofWatchingusers( $rcObj->numberofWatchingusers );
+		$data['watchingUsers'] = $this->numberofWatchingusers( $rcObj->numberofWatchingusers );
 
-		$r .= "</td></tr></table>\n";
+		// give the hook a chance to modify the data
+		Hooks::run( 'EnhancedChangesListModifyBlockLineData',
+			array( $this, &$data, $rcObj ) );
 
-		return $r;
+		$line = Html::openElement( 'table', array( 'class' => $classes ) ) .
+			Html::openElement( 'tr' );
+		$line .= '<td class="mw-enhanced-rc"><span class="mw-enhancedchanges-arrow-space"></span>';
+
+		if ( isset( $data['recentChangesFlags'] ) ) {
+			$line .= $this->recentChangesFlags( $data['recentChangesFlags'] );
+			unset( $data['recentChangesFlags'] );
+		}
+
+		if ( isset( $data['timestampLink'] ) ) {
+			$line .= '&#160;' . $data['timestampLink'];
+			unset( $data['timestampLink'] );
+		}
+		$line .= '&#160;</td><td>';
+
+		// everything else: makes it easier for extensions to add or remove data
+		$line .= implode( '', $data );
+
+		$line .= "</td></tr></table>\n";
+
+		return $line;
 	}
 
 	/**

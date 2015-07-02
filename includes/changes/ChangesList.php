@@ -372,6 +372,19 @@ class ChangesList extends ContextSource {
 	}
 
 	/**
+	 * @param RecentChange $rc
+	 * @param bool $unpatrolled
+	 * @param bool $watched
+	 * @return string
+	 * @since 1.26
+	 */
+	public function getArticleLink( RecentChange $rc, $unpatrolled, $watched ) {
+		$s = '';
+		$this->insertArticleLink( $s, $rc, $unpatrolled, $watched );
+		return $s;
+	}
+
+	/**
 	 * Get the timestamp from $rc formatted with current user's settings
 	 * and a separator
 	 *
