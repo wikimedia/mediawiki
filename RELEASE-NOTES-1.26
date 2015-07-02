@@ -38,8 +38,9 @@ production.
   if ImageMagick is used as image scaler ($wgUseImageMagick = true). Uploading
   of WebP images still disabled by default. Add $wgFileExtensions[] =
   'webp'; to LocalSettings.php to enable uploading of WebP images.
-* Added a new hook 'EnhancedChangesListModifyLineData', to
-  modify the data used to build lines in enhanced recentchanges and watchlist.
+* Added new hooks 'EnhancedChangesListModifyLineData' &
+  'EnhancedChangesListModifyBlockLineData', to modify the data used to build
+  lines in enhanced recentchanges and watchlist.
 
 ==== External libraries ====
 * Update es5-shim from v4.0.0 to v4.1.5.
