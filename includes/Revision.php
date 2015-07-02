@@ -1087,7 +1087,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Returns the content model for this revision.
 	 *
-	 * If no content model was stored in the database, $this->getTitle()->getContentModel() is
+	 * If no content model was stored in the database, the default content model for the title is
 	 * used to determine the content model to use. If no title is know, CONTENT_MODEL_WIKITEXT
 	 * is used as a last resort.
 	 *
@@ -1097,7 +1097,11 @@ class Revision implements IDBAccessObject {
 	public function getContentModel() {
 		if ( !$this->mContentModel ) {
 			$title = $this->getTitle();
-			$this->mContentModel = ( $title ? $title->getContentModel() : CONTENT_MODEL_WIKITEXT );
+			if ( $title ) {
+				$this->mContentModel = ContentHandler::getDefaultModelFor( $title );
+			} else {
+				$this->mContentModel = CONTENT_MODEL_WIKITEXT;
+			}
 
 			assert( !empty( $this->mContentModel ) );
 		}
