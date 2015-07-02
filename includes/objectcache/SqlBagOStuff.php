@@ -370,37 +370,7 @@ class SqlBagOStuff extends BagOStuff {
 	 * @return bool
 	 */
 	public function set( $key, $value, $exptime = 0 ) {
-		list( $serverIndex, $tableName ) = $this->getTableByKey( $key );
-		try {
-			$db = $this->getDB( $serverIndex );
-			$exptime = intval( $exptime );
-
-			if ( $exptime < 0 ) {
-				$exptime = 0;
-			}
-
-			if ( $exptime == 0 ) {
-				$encExpiry = $this->getMaxDateTime( $db );
-			} else {
-				$exptime = $this->convertExpiry( $exptime );
-				$encExpiry = $db->timestamp( $exptime );
-			}
-			// (bug 24425) use a replace if the db supports it instead of
-			// delete/insert to avoid clashes with conflicting keynames
-			$db->replace(
-				$tableName,
-				array( 'keyname' ),
-				array(
-					'keyname' => $key,
-					'value' => $db->encodeBlob( $this->serialize( $value ) ),
-					'exptime' => $encExpiry
-				), __METHOD__ );
-		} catch ( DBError $e ) {
-			$this->handleWriteError( $e, $serverIndex );
-			return false;
-		}
-
-		return true;
+		return $this->setMulti( array( $key => $value ), $exptime );
 	}
 
 	/**
