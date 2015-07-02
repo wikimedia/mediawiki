@@ -587,6 +587,6 @@ class ArchivedFile {
 		$this->load();
 
 		$title = $this->getTitle();
-		return Revision::userCanBitfield( $this->deleted, $field, $user, $title ? : null );
+		return Revision::userCanBitfield( $this->deleted, $field, $user, $title ?: null );
 	}
 }

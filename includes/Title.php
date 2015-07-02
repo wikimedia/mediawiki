@@ -3632,7 +3632,7 @@ class Title {
 			);
 		}
 
-		return $errors ? : true;
+		return $errors ?: true;
 	}
 
 	/**

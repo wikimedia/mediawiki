@@ -757,7 +757,7 @@ class SpecialUndelete extends SpecialPage {
 	 * @return bool
 	 */
 	protected function isAllowed( $permission, User $user = null ) {
-		$user = $user ? : $this->getUser();
+		$user = $user ?: $this->getUser();
 		if ( $this->mTargetObj !== null ) {
 			return $this->mTargetObj->userCan( $permission, $user );
 		} else {
