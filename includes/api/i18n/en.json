@@ -584,8 +584,6 @@
 	"apihelp-query+deletedrevisions-param-tag": "Only list revisions tagged with this tag.",
 	"apihelp-query+deletedrevisions-param-user": "Only list revisions by this user.",
 	"apihelp-query+deletedrevisions-param-excludeuser": "Don't list revisions by this user.",
-	"apihelp-query+deletedrevisions-param-limit": "The maximum amount of revisions to list.",
-	"apihelp-query+deletedrevisions-param-prop": "Which properties to get:\n;revid:Adds the revision ID of the deleted revision.\n;parentid:Adds the revision ID of the previous revision to the page.\n;user:Adds the user who made the revision.\n;userid:Adds the user ID who made the revision.\n;comment:Adds the comment of the revision.\n;parsedcomment:Adds the parsed comment of the revision.\n;minor:Tags if the revision is minor.\n;len:Adds the length (bytes) of the revision.\n;sha1:Adds the SHA-1 (base 16) of the revision.\n;content:Adds the content of the revision.\n;tags:Tags for the revision.",
 	"apihelp-query+deletedrevisions-example-titles": "List the deleted revisions of the pages <kbd>Main Page</kbd> and <kbd>Talk:Main Page</kbd>, with content.",
 	"apihelp-query+deletedrevisions-example-revids": "List the information for deleted revision <kbd>123456</kbd>.",
 
