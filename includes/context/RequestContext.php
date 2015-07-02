@@ -131,7 +131,7 @@ class RequestContext implements IContextSource {
 	public function getStats() {
 		if ( $this->stats === null ) {
 			$config = $this->getConfig();
-			$prefix = $config->has( 'StatsdMetricPrefix' )
+			$prefix = $config->get( 'StatsdMetricPrefix' )
 				? rtrim( $config->get( 'StatsdMetricPrefix' ), '.' )
 				: 'MediaWiki';
 			$this->stats = new BufferingStatsdDataFactory( $prefix );

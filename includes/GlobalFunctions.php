@@ -1248,7 +1248,7 @@ function wfLogProfilingData() {
 	$profiler->logData();
 
 	$config = $context->getConfig();
-	if ( $config->has( 'StatsdServer' ) ) {
+	if ( $config->get( 'StatsdServer' ) ) {
 		$statsdServer = explode( ':', $config->get( 'StatsdServer' ) );
 		$statsdHost = $statsdServer[0];
 		$statsdPort = isset( $statsdServer[1] ) ? $statsdServer[1] : 8125;
