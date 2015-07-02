@@ -3022,6 +3022,8 @@
 	"revdelete-uname-unhid": "korisničko ime je otkriveno",
 	"revdelete-restricted": "primijenjena ograničenja za administratore",
 	"revdelete-unrestricted": "uklonjena ograničenja za administratore",
+	"logentry-block-block": "$1 {{GENDER:$2|blokirao|blokirala}} je {{GENDER:$4|$3}} sa vremenom isticanja blokade od $5 $6",
+	"logentry-suppress-block": "$1 {{GENDER:$2|blokirao|blokirala}} je {{GENDER:$4|$3}} sa vremenom isticanja blokade od $5 $6",
 	"logentry-move-move": "$1 {{GENDER:$2|premjestio|premjestila}} je stranicu $3 na $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|premjestio|premjestila}} je stranicu $3 na $4 bez ostavljanja preusmjerenja",
 	"logentry-move-move_redir": "$1 {{GENDER:$2|premjestio|premjestila}} je stranicu $3 na $4 preko preusmjeravanja",

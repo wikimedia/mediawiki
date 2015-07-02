@@ -874,7 +874,7 @@
 	"searchrelated": "súvisiace",
 	"searchall": "všetko",
 	"showingresults": "Nižšie {{PLURAL:$1|je zobrazený jeden výsledok|sú zobrazené '''1''' výsledky|je zobrazených '''$1''' výsledkov}}, počnúc od  #<b>$2</b>.",
-	"showingresultsinrange": "Nižšie {{PLURAL:$1|je zobrazený|sú zobrazené|je zobrazených}} max strong>$1</strong> {{PLURAL:$1|výsledok|výsledky|výsledkov}} v rozsahu #<strong>$2</strong> – #<strong>$3</strong>.",
+	"showingresultsinrange": "Nižšie {{PLURAL:$1|je zobrazený|sú zobrazené|je zobrazených}} max <strong>$1</strong> {{PLURAL:$1|výsledok|výsledky|výsledkov}} v rozsahu #<strong>$2</strong> – #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Výsledok <strong>$1</strong> z <strong>$3</strong>|Výsledky <strong>$1 – $2</strong> z <strong>$3</strong>}}",
 	"search-nonefound": "Vyhľadávanie nenašlo žiadne výsledky.",
 	"powersearch-legend": "Pokročilé hľadanie",
