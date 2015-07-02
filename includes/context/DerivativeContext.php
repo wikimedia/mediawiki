@@ -68,6 +68,11 @@ class DerivativeContext extends ContextSource {
 	private $config;
 
 	/**
+	 * @var Stats
+	 */
+	private $stats;
+
+	/**
 	 * Constructor
 	 * @param IContextSource $context Context to inherit from
 	 */
