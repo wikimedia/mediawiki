@@ -1297,6 +1297,7 @@ class FauxRequest extends WebRequest {
 	private $wasPosted = false;
 	private $session = array();
 	private $requestUrl;
+	protected $cookies = array();
 
 	/**
 	 * @param array $data Array of *non*-urlencoded key => value pairs, the
@@ -1371,7 +1372,36 @@ class FauxRequest extends WebRequest {
 	}
 
 	public function getCookie( $key, $prefix = null, $default = null ) {
-		return $default;
+		if ( $prefix === null ) {
+			global $wgCookiePrefix;
+			$prefix = $wgCookiePrefix;
+		}
+		$name = $prefix . $key;
+		return isset( $this->cookies[$name] ) ? $this->cookies[$name] : $default;
+	}
+
+	/**
+	 * @param string $name Unprefixed name of the cookie to set
+	 * @param string|null $value Value of the cookie to set
+	 * @param string|null $prefix Cookie prefix. Defaults to $wgCookiePrefix
+	 */
+	public function setCookie( $key, $value, $prefix = null ) {
+		$this->setCookies( array( $key => $value ), $prefix );
+	}
+
+	/**
+	 * @param array $cookies
+	 * @param string|null $prefix Cookie prefix. Defaults to $wgCookiePrefix
+	 */
+	public function setCookies( $cookies, $prefix = null ) {
+		if ( $prefix === null ) {
+			global $wgCookiePrefix;
+			$prefix = $wgCookiePrefix;
+		}
+		foreach ( $cookies as $key => $value ) {
+			$name = $prefix . $key;
+			$this->cookies[$name] = $value;
+		}
 	}
 
 	public function checkSessionCookie() {
@@ -1402,8 +1432,17 @@ class FauxRequest extends WebRequest {
 	 * @param string $val
 	 */
 	public function setHeader( $name, $val ) {
-		$name = strtoupper( $name );
-		$this->headers[$name] = $val;
+		$this->setHeaders( array( $name => $val ) );
+	}
+
+	/**
+	 * @param array $headers
+	 */
+	public function setHeaders( $headers ) {
+		foreach ( $headers as $name => $val ) {
+			$name = strtoupper( $name );
+			$this->headers[$name] = $val;
+		}
 	}
 
 	/**
