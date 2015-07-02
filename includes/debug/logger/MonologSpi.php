@@ -129,7 +129,25 @@ class MonologSpi implements Spi {
 	 * @param array $config Configuration data.
 	 */
 	public function __construct( array $config ) {
-		$this->config = $config;
+		$this->config = array();
+		$this->mergeConfig( $config );
+	}
+
+
+	/**
+	 * Merge additional configuration data into the configuration.
+	 *
+	 * @since 1.26
+	 * @param array $config Configuration data.
+	 */
+	public function mergeConfig( array $config ) {
+		foreach ( $config as $key => $value ) {
+			if ( isset( $this->config[$key] ) ) {
+				$this->config[$key] = array_merge( $this->config[$key], $value );
+			} else {
+				$this->config[$key] = $value;
+			}
+		}
 		$this->reset();
 	}
 
