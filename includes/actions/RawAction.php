@@ -34,10 +34,10 @@
  */
 class RawAction extends FormlessAction {
 	/**
-	 * @var bool Does the request include a gen=css|javascript parameter
-	 * @deprecated This used to be a string for "css" or "javascript" but
-	 * it is no longer used. Setting this parameter results in empty content
-	 * being served
+	 * Whether the request includes a 'gen' parameter
+	 * @var bool
+	 * @deprecated since 1.17 This used to be a string for "css" or "javascript" but
+	 * it is no longer used. Setting this parameter results in an empty response.
 	 */
 	private $gen = false;
 
@@ -56,6 +56,7 @@ class RawAction extends FormlessAction {
 	function onView() {
 		$this->getOutput()->disable();
 		$request = $this->getRequest();
+		$response = $request->response();
 		$config = $this->context->getConfig();
 
 		if ( !$request->checkUrlExtension() ) {
@@ -66,42 +67,35 @@ class RawAction extends FormlessAction {
 			return; // Client cache fresh and headers sent, nothing more to do.
 		}
 
-		# special case for 'generated' raw things: user css/js
-		# This is deprecated and will only return empty content
 		$gen = $request->getVal( 'gen' );
-		$smaxage = $request->getIntOrNull( 'smaxage' );
-
 		if ( $gen == 'css' || $gen == 'js' ) {
 			$this->gen = true;
-			if ( $smaxage === null ) {
-				$smaxage = $config->get( 'SquidMaxage' );
-			}
 		}
 
 		$contentType = $this->getContentType();
 
-		# Force caching for CSS and JS raw content, default: 5 minutes.
-		# Note: If using a canonical url for userpage css/js, we send an HTCP purge.
+		$maxage = $request->getInt( 'maxage', $config->get( 'SquidMaxage' ) );
+		$smaxage = $request->getIntOrNull( 'smaxage' );
 		if ( $smaxage === null ) {
-			if ( $contentType == 'text/css' || $contentType == 'text/javascript' ) {
+			if ( $this->gen ) {
+				$smaxage = $config->get( 'SquidMaxage' );
+			} elseif ( $contentType == 'text/css' || $contentType == 'text/javascript' ) {
+				// CSS/JS raw content has its own squid max age configuration.
+				// Note: Title::getSquidURLs() includes action=raw for css/js pages,
+				// so if using the canonical url, this will get HTCP purges.
 				$smaxage = intval( $config->get( 'ForcedRawSMaxage' ) );
 			} else {
+				// No squid cache for anything else
 				$smaxage = 0;
 			}
 		}
 
-		$maxage = $request->getInt( 'maxage', $config->get( 'SquidMaxage' ) );
-
-		$response = $request->response();
-
 		$response->header( 'Content-type: ' . $contentType . '; charset=UTF-8' );
-		# Output may contain user-specific data;
-		# vary generated content for open sessions on private wikis
+		// Output may contain user-specific data;
+		// vary generated content for open sessions on private wikis
 		$privateCache = !User::isEveryoneAllowed( 'read' ) && ( $smaxage == 0 || session_id() != '' );
-		// Bug 53032 - make this private if user is logged in,
-		// so we don't accidentally cache cookies
-		$privateCache = $privateCache ?: $this->getUser()->isLoggedIn();
-		# allow the client to cache this for 24 hours
+		// Don't accidentally cache cookies if user is logged in (T55032)
+		$privateCache = $privateCache || $this->getUser()->isLoggedIn();
 		$mode = $privateCache ? 'private' : 'public';
 		$response->header(
 			'Cache-Control: ' . $mode . ', s-maxage=' . $smaxage . ', max-age=' . $maxage
