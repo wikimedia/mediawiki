@@ -2541,13 +2541,16 @@ $wgInternalServer = false;
 /**
  * Cache timeout for the squid, will be sent as s-maxage (without ESI) or
  * Surrogate-Control (with ESI). Without ESI, you should strip out s-maxage in
- * the Squid config. 18000 seconds = 5 hours, more cache hits with 2678400 = 31
- * days
+ * the Squid config.
+ *
+* 18000 seconds = 5 hours, more cache hits with 2678400 = 31 days.
  */
 $wgSquidMaxage = 18000;
 
 /**
  * Default maximum age for raw CSS/JS accesses
+ *
+ * 300 seconds = 5 minutes.
  */
 $wgForcedRawSMaxage = 300;
 
