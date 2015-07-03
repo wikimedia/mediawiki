@@ -207,7 +207,6 @@
 	"apihelp-query+deletedrevisions-param-tag": "Pokazuj tylko zmiany oznaczone tym tagiem.",
 	"apihelp-query+deletedrevisions-param-user": "Pokazuj tylko zmiany dokonane przez tego użytkownika.",
 	"apihelp-query+deletedrevisions-param-excludeuser": "Nie pokazuj zmian dokonanych przez tego użytkownika.",
-	"apihelp-query+deletedrevisions-param-limit": "Maksymalna ilość zmian do wylistowania.",
 	"apihelp-query+deletedrevs-paraminfo-modes": "{{PLURAL:$1|Tryb|Tryby}}: $2",
 	"apihelp-query+deletedrevs-param-unique": "Liatuj tylko jedną edycję dla każdej strony.",
 	"apihelp-query+deletedrevs-param-tag": "Pokazuj tylko zmiany oznaczone tym tagiem.",

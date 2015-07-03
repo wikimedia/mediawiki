@@ -10,7 +10,8 @@
 			"Carlos Cristia",
 			"Ryo567",
 			"Csbotero",
-			"Chris TR"
+			"Chris TR",
+			"Ncontinanza"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentación]]\n* [[mw:API:FAQ|Preguntas frecuentes]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de correos]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API de anuncios]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Errores y peticiones]\n</div>\n<strong>Estado:</strong> Todas las características que se muestran en esta página debería funcionar, pero la API aún está en desarrollo activo y puede cambiar en cualquier momento. Suscríbete a [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la lista de correo de mediawiki-api-announce] para estar al día de las actualizaciones.\n\n<strong>Solicitudes erróneas:</strong> Cuando se envían solicitudes erróneas a la API, se envía un encabezado HTTP con la clave \"MediaWiki-API-Error\" y ambos valores, del encabezado y el código de error, se establecerán en el mismo valor. Para más información, véase [[mw:API:Errors_and_warnings|API: Errores y advertencias]].",
@@ -399,7 +400,6 @@
 	"apihelp-query+deletedrevisions-param-tag": "Listar solo las revisiones con esta etiqueta.",
 	"apihelp-query+deletedrevisions-param-user": "Listar solo las revisiones de este usuario.",
 	"apihelp-query+deletedrevisions-param-excludeuser": "No listar las revisiones de este usuario.",
-	"apihelp-query+deletedrevisions-param-limit": "La cantidad máxima de revisiones que listar.",
 	"apihelp-query+deletedrevs-paraminfo-modes": "{{PLURAL:$1|Modo|Modos}}: $2",
 	"apihelp-query+deletedrevs-param-from": "Empezar a listar en este título.",
 	"apihelp-query+deletedrevs-param-to": "Terminar de listar en este título.",
@@ -549,6 +549,7 @@
 	"apihelp-userrights-example-user": "Agregar al usuario <kbd>FooBot</kbd> al grupo <kbd>bot</kbd> y eliminarlo de los grupos <kbd>sysop</kbd> y <kbd>burócrata</kbd>.",
 	"apihelp-watch-example-watch": "Vigilar la página <kbd>Portada</kbd>.",
 	"apihelp-watch-example-unwatch": "Dejar de vigilar la <kbd>Portada</kbd>.",
+	"apihelp-format-example-generic": "Devolver el resultado de la consulta en formato $1.",
 	"api-help-main-header": "Módulo principal",
 	"api-help-flag-deprecated": "Este módulo está en desuso.",
 	"api-help-flag-readrights": "Este módulo requiere permisos de lectura.",

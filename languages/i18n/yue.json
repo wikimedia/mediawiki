@@ -633,7 +633,7 @@
 	"creating": "開版$1",
 	"editingsection": "而家喺度編輯$1 （小節）",
 	"editingcomment": "而家喺度編輯$1 （新小節）",
-	"editconflict": "編輯衝突：$1",
+	"editconflict": "由於編輯衝突，{{GENDER:|你|妳|你}}嘅修改記唔低。{{GENDER:|你|妳|你}}想唔想人手解決呢個衝突？",
 	"explainconflict": "有其他人喺你開始編輯之後已經更改呢一頁。\n喺上面嗰個空間而家現存嘅頁面文字。\n你嘅更改會喺下面嘅文字空間顯示。\n你需要合併你嘅更改到原有嘅文字。\n喺你撳「{{int:savearticle}}」之後，'''只有'''喺上面嘅文字區會被儲存。",
 	"yourtext": "你嘅文字",
 	"storedversion": "已經儲存咗嘅修訂",

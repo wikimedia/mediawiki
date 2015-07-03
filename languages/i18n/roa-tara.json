@@ -624,7 +624,7 @@
 	"creating": "Stoche a ccreje $1",
 	"editingsection": "Cangiaminde de $1 (sezione)",
 	"editingcomment": "Cangiaminde de $1 (seziona nove)",
-	"editconflict": "Conflitte de cangiaminde: $1",
+	"editconflict": "Le cangiaminde tune non ge ponne essere reggistrate purcé ste 'nu conflitte de cangiaminde. Vuè {{GENDER:|ccu}} resolve stu conflitte a màne?",
 	"explainconflict": "Quacchedune otre ha cangete 'a pàgene apprime ca tu accumenzasse a fà 'u cangiamende tue.\n'U teste ca iacchie sus condene 'u teste d'a pàgene accume se iacchije jndr'à stu mumende.\nLe cangiaminde sonde fatte vedè jndr'à vanne de sotte.\nTu puè scuagghià le cangiaminde jndr'à 'u teste de mò.\n'''Sulamende''' 'u teste ca stè sus avène reggistrate cazzanne 'u buttone \"{{int:savearticle}}\".",
 	"yourtext": "'U teste tue",
 	"storedversion": "Versione archivijete",

@@ -1950,7 +1950,7 @@
 	"changecontentmodel-nodirectediting": "Le modèle de contenu $1 ne permet pas la modification directe",
 	"log-name-contentmodel": "Journal de modification de modèle de contenu",
 	"log-description-contentmodel": "Événements relatifs aux modèles de contenu d’une page",
-	"logentry-contentmodel-change": "$1 a modifié le modèle de contenu de la page $3 de « $4 » en « $5 »",
+	"logentry-contentmodel-change": "$1 {{GENDER:$2|a modifié}} le modèle de contenu de la page $3 de « $4 » en « $5 »",
 	"logentry-contentmodel-change-revertlink": "rétablir",
 	"logentry-contentmodel-change-revert": "rétablir",
 	"protectlogpage": "Journal des protections",

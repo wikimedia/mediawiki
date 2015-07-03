@@ -18,7 +18,7 @@
 	"apihelp-block-description": "بستن کاربر",
 	"apihelp-block-param-user": "نام کاربری، آدرس آی پی یا محدوده آی پی موردنظر شما برای بستن.",
 	"apihelp-block-param-reason": "دلیل بسته‌شدن",
-	"apihelp-block-param-anononly": "فقط بستن کاربران ناشناس (مانند غیرفعال‌کردن ویرایش‌های ناشناس این آی‌پی).",
+	"apihelp-block-param-anononly": "فقط بستن کاربران ناشناس (مانند غیرفعال کردن ویرایش‌های ناشناس این آی‌پی).",
 	"apihelp-block-param-nocreate": "جلوگیری از ایجاد حساب.",
 	"apihelp-block-param-autoblock": "به طور خودکار آخرین نشانی آی‌پی استفاده‌شده، و هر نشانی پس از آن که سعی می‌کند از آن داخل شود را ببند.",
 	"apihelp-block-param-noemail": "از کاربر در برابر ارسال ایمیل از طریق ویکی جلوگیری شود. (نیازمند دسترسی <code>blockemail</code> است).",

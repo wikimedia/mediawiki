@@ -641,7 +641,7 @@
 	"creating": "Kuriama $1",
 	"editingsection": "Taisomas $1 (skyrelis)",
 	"editingcomment": "Taisomas $1 (naujas skyrius)",
-	"editconflict": "Išpręskite konfliktą: $1",
+	"editconflict": "Jūsų pakeitimai negali būti įrašyti dėl redagavimo konflikto. Ar norite išspręsti konfliktą rankiniu būdu?",
 	"explainconflict": "Kažkas kitas jau pakeitė puslapį nuo tada, kai jūs pradėjote jį redaguoti.\nViršutiniame tekstiniame lauke pateikta šiuo metu esanti puslapio versija.\nJūsų keitimai pateikti žemiau esančiame lauke.\nJums reikia sujungti jūsų pakeitimus su esančia versija.\nKai paspausite „{{int:savearticle}}“, bus įrašytas '''tik''' tekstas viršutiniame tekstiniame lauke.",
 	"yourtext": "Jūsų tekstas",
 	"storedversion": "Išsaugota versija",
