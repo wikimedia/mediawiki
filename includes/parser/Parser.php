@@ -1023,6 +1023,7 @@ class Parser {
 			}
 
 			$first_character = $line[0];
+			$first_two = substr( $line, 0, 2 );
 			$matches = array();
 
 			if ( preg_match( '/^(:*)\{\|(.*)$/', $line, $matches ) ) {
@@ -1042,7 +1043,7 @@ class Parser {
 				# Don't do any of the following
 				$out .= $outLine . "\n";
 				continue;
-			} elseif ( substr( $line, 0, 2 ) === '|}' ) {
+			} elseif ( $first_two === '|}' ) {
 				# We are ending a table
 				$line = '</table>' . substr( $line, 2 );
 				$last_tag = array_pop( $last_tag_history );
@@ -1060,7 +1061,7 @@ class Parser {
 				}
 				array_pop( $tr_attributes );
 				$outLine = $line . str_repeat( '</dd></dl>', $indent_level );
-			} elseif ( substr( $line, 0, 2 ) === '|-' ) {
+			} elseif ( $first_two === '|-' ) {
 				# Now we have a table row
 				$line = preg_replace( '#^\|-+#', '', $line );
 
@@ -1089,15 +1090,15 @@ class Parser {
 				array_push( $last_tag_history, '' );
 			} elseif ( $first_character === '|'
 				|| $first_character === '!'
-				|| substr( $line, 0, 2 ) === '|+'
+				|| $first_two === '|+'
 			) {
 				# This might be cell elements, td, th or captions
-				if ( substr( $line, 0, 2 ) === '|+' ) {
+				if ( $first_two === '|+' ) {
 					$first_character = '+';
+					$line = substr( $line, 2 );
+				} else {
 					$line = substr( $line, 1 );
 				}
-
-				$line = substr( $line, 1 );
 
 				if ( $first_character === '!' ) {
 					$line = str_replace( '!!', '||', $line );
