@@ -1737,6 +1737,7 @@ return array(
 			'default' => 'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.css',
 		),
 		'dependencies' => array(
+			'jquery.autoEllipsis',
 			'mediawiki.Title',
 			'mediawiki.api',
 			'oojs-ui',
