@@ -1739,6 +1739,7 @@ return array(
 		'dependencies' => array(
 			'mediawiki.Title',
 			'mediawiki.api',
+			'jquery.autoEllipsis',
 			'oojs-ui',
 		),
 		'messages' => array(
