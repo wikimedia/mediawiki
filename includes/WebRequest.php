@@ -1381,6 +1381,7 @@ class FauxRequest extends WebRequest {
 	}
 
 	/**
+	 * @since 1.26
 	 * @param string $name Unprefixed name of the cookie to set
 	 * @param string|null $value Value of the cookie to set
 	 * @param string|null $prefix Cookie prefix. Defaults to $wgCookiePrefix
@@ -1390,6 +1391,7 @@ class FauxRequest extends WebRequest {
 	}
 
 	/**
+	 * @since 1.26
 	 * @param array $cookies
 	 * @param string|null $prefix Cookie prefix. Defaults to $wgCookiePrefix
 	 */
@@ -1436,6 +1438,7 @@ class FauxRequest extends WebRequest {
 	}
 
 	/**
+	 * @since 1.26
 	 * @param array $headers
 	 */
 	public function setHeaders( $headers ) {
