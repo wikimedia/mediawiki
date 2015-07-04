@@ -16,6 +16,7 @@
 	 * @param {Object} [config] Configuration options
 	 * @cfg {number} [limit=10] Number of results to show
 	 * @cfg {number} [namespace] Namespace to prepend to queries
+	 * @cfg {boolean} [relative] If a namespace is set, return a title relative to it (default; true)
 	 * @cfg {boolean} [showRedirectTargets=true] Show the targets of redirects
 	 * @cfg {boolean} [showRedlink] Show red link to exact match if it doesn't exist
 	 * @cfg {boolean} [showImages] Show page images
@@ -37,6 +38,7 @@
 		// Properties
 		this.limit = config.limit || 10;
 		this.namespace = config.namespace || null;
+		this.relative = config.relative !== undefined ? config.relative : true;
 		this.showRedirectTargets = config.showRedirectTargets !== false;
 		this.showRedlink = !!config.showRedlink;
 		this.showImages = !!config.showImages;
@@ -258,7 +260,9 @@
 	mw.widgets.TitleInputWidget.prototype.getOptionWidgetData = function ( title, data ) {
 		var mwTitle = new mw.Title( title );
 		return {
-			data: this.namespace !== null ? mwTitle.getRelativeText( this.namespace ) : title,
+			data: this.namespace !== null && this.relative
+				? mwTitle.getRelativeText( this.namespace )
+				: title,
 			imageUrl: this.showImages ? data.imageUrl : null,
 			description: this.showDescriptions ? data.description : null,
 			missing: data.missing,
