@@ -335,7 +335,7 @@
 	"apihelp-protect-param-protections": "List of protection levels, formatted <kbd>action=level</kbd> (e.g. <kbd>edit=sysop</kbd>).\n\n<strong>Note:</strong> Any actions not listed will have restrictions removed.",
 	"apihelp-protect-param-expiry": "Expiry timestamps. If only one timestamp is set, it'll be used for all protections. Use <kbd>infinite</kbd>, <kbd>indefinite</kbd>, <kbd>infinity</kbd>, or <kbd>never</kbd>, for a never-expiring protection.",
 	"apihelp-protect-param-reason": "Reason for (un)protecting.",
-	"apihelp-protect-param-cascade": "Enable cascading protection (i.e. protect pages included in this page). Ignored if all protection levels given do not support cascading.",
+	"apihelp-protect-param-cascade": "Enable cascading protection (i.e. protect pages transcluded in this page). Ignored if all protection levels given do not support cascading.",
 	"apihelp-protect-param-watch": "If set, add the page being (un)protected to the current user's watchlist.",
 	"apihelp-protect-param-watchlist": "Unconditionally add or remove the page from the current user's watchlist, use preferences or do not change watch.",
 	"apihelp-protect-example-protect": "Protect a page.",
