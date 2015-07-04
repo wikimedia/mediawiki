@@ -70,15 +70,14 @@ class SpecialRandomInCategory extends FormSpecialPage {
 	protected function getFormFields() {
 		$this->addHelpLink( 'Help:RandomInCategory' );
 
-		$form = array(
+		return array(
 			'category' => array(
-				'type' => 'text',
+				'type' => 'title',
+				'namespace' => NS_CATEGORY,
 				'label-message' => 'randomincategory-category',
 				'required' => true,
 			)
 		);
-
-		return $form;
 	}
 
 	public function requiresWrite() {
@@ -87,6 +86,10 @@ class SpecialRandomInCategory extends FormSpecialPage {
 
 	public function requiresUnblock() {
 		return false;
+	}
+
+	protected function getDisplayFormat() {
+		return 'ooui';
 	}
 
 	protected function setParameter( $par ) {
