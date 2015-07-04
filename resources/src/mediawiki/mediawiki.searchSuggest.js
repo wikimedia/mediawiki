@@ -3,7 +3,7 @@
  */
 ( function ( mw, $ ) {
 	$( function () {
-		var api, map, resultRenderCache, searchboxesSelectors,
+		var api, map, searchboxesSelectors,
 			// Region where the suggestions box will appear directly below
 			// (using the same width). Can be a container element or the input
 			// itself, depending on what suits best in the environment.
@@ -86,18 +86,18 @@
 
 		// The function used to render the suggestions.
 		function renderFunction( text, context ) {
-			if ( !resultRenderCache ) {
-				resultRenderCache = computeResultRenderCache( context );
+			if ( !context.cache ) {
+				context.cache = computeResultRenderCache( context );
 			}
 
 			// linkParams object is modified and reused
-			resultRenderCache.linkParams[ resultRenderCache.textParam ] = text;
+			context.cache.linkParams[ context.cache.textParam ] = text;
 
 			// this is the container <div>, jQueryfied
 			this.text( text )
 				.wrap(
 					$( '<a>' )
-						.attr( 'href', resultRenderCache.baseHref + $.param( resultRenderCache.linkParams ) )
+						.attr( 'href', context.cache.baseHref + $.param( context.cache.linkParams ) )
 						.attr( 'title', text )
 						.addClass( 'mw-searchSuggest-link' )
 				);
@@ -121,12 +121,12 @@
 		function specialRenderFunction( query, context ) {
 			var $el = this;
 
-			if ( !resultRenderCache ) {
-				resultRenderCache = computeResultRenderCache( context );
+			if ( !context.cache ) {
+				context.cache = computeResultRenderCache( context );
 			}
 
 			// linkParams object is modified and reused
-			resultRenderCache.linkParams[ resultRenderCache.textParam ] = query;
+			context.cache.linkParams[ context.cache.textParam ] = query;
 
 			if ( $el.children().length === 0 ) {
 				$el
@@ -145,11 +145,11 @@
 			}
 
 			if ( $el.parent().hasClass( 'mw-searchSuggest-link' ) ) {
-				$el.parent().attr( 'href', resultRenderCache.baseHref + $.param( resultRenderCache.linkParams ) + '&fulltext=1' );
+				$el.parent().attr( 'href', context.cache.baseHref + $.param( context.cache.linkParams ) + '&fulltext=1' );
 			} else {
 				$el.wrap(
 					$( '<a>' )
-						.attr( 'href', resultRenderCache.baseHref + $.param( resultRenderCache.linkParams ) + '&fulltext=1' )
+						.attr( 'href', context.cache.baseHref + $.param( context.cache.linkParams ) + '&fulltext=1' )
 						.addClass( 'mw-searchSuggest-link' )
 				);
 			}
