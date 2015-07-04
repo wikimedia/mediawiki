@@ -903,7 +903,7 @@
 	"apihelp-query+usercontribs-example-user": "{{doc-apihelp-example|query+usercontribs}}",
 	"apihelp-query+usercontribs-example-ipprefix": "{{doc-apihelp-example|query+usercontribs}}",
 	"apihelp-query+userinfo-description": "{{doc-apihelp-description|query+userinfo}}",
-	"apihelp-query+userinfo-param-prop": "{{doc-apihelp-param|query+userinfo|prop|params=* $1 - Maximum value for the \"unreadcount\" property.\n$2 - Return value when there are more unread pages.|paramstart=3}}",
+	"apihelp-query+userinfo-param-prop": "{{doc-apihelp-param|query+userinfo|prop|params=* $1 - Maximum value for the \"unreadcount\" property.\n* $2 - Return value when there are more unread pages.|paramstart=3}}",
 	"apihelp-query+userinfo-example-simple": "{{doc-apihelp-example|query+userinfo}}",
 	"apihelp-query+userinfo-example-data": "{{doc-apihelp-example|query+userinfo}}",
 	"apihelp-query+users-description": "{{doc-apihelp-description|query+users}}",

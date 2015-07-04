@@ -62,7 +62,8 @@
 			"Macofe",
 			"Ankita-ks",
 			"Sahilrathod",
-			"Hindustanilanguage"
+			"Hindustanilanguage",
+			"राम प्रसाद जोशी"
 		]
 	},
 	"tog-underline": "कड़ियाँ अधोरेखन:",
@@ -729,7 +730,7 @@
 	"content-json-empty-array": "रिक्त ऐरे",
 	"duplicate-args-warning": "<strong>चेतावनी:</strong> [[:$1]] प्राचल \"$3\" के लिए [[:$2]] को एक से अधिक बार काम में ले रहा है। केवल अन्त में दिया गया मान ही काम में लिया जायेगा।",
 	"duplicate-args-category": "टेम्पलेट कॉल में डुप्लिकेट तर्क का उपयोग करते हुए पन्ने",
-	"duplicate-args-category-desc": "पेज जैसे तर्कों के डुप्लिकेट का उपयोग करने वाले टेम्पलेट कॉल, जैसे <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> ओैर <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
+	"duplicate-args-category-desc": "पेज जैसे तर्कों के डुप्लिकेट का उपयोग करने वाले टेम्पलेट कॉल, जैसे <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> और <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "'''चेतावनी:''' इस पृष्ठ पर बहुत अधिक संख्या में कीमती पार्सर फ़ंक्शनों का प्रयोग किया गया है।\n\nइनका प्रयोग $2 से कम बार होना चाहिये, इस समय प्रयोग $1 बार {{PLURAL:$1|है|हैं}}।",
 	"expensive-parserfunction-category": "कीमती पार्सर फ़ंक्शनों का अत्यधिक प्रयोग कर रहे पृष्ठ",
 	"post-expand-template-inclusion-warning": "'''चेतावनी:''' साँचे जुड़ने की सीमा पार हो चुकी है।\nकुछ साँचे नहीं जुड़ेंगे।",

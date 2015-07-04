@@ -691,6 +691,8 @@
 	"apihelp-query+revisions-example-first5-after": "获取<kbd>Main Page</kbd>于2006年05月01日之后做出的前5次修订版本。",
 	"apihelp-query+revisions-example-first5-not-localhost": "获取<kbd>Main Page</kbd>的前5次不是由匿名用户<kbd>127.0.0.1</kbd>做出的修订。",
 	"apihelp-query+revisions-example-first5-user": "获取<kbd>Main Page</kbd>的前5次由用户<kbd>MediaWiki default</kbd>做出的修订。",
+	"apihelp-query+revisions+base-paramvalue-prop-ids": "修订ID。",
+	"apihelp-query+revisions+base-paramvalue-prop-flags": "修订标记（小编辑）。",
 	"apihelp-query+revisions+base-param-limit": "限制返回多少修订。",
 	"apihelp-query+revisions+base-param-generatexml": "生成用于修订内容的XML解析树（需要$1prop=content；被<kbd>$1prop=parsetree</kbd>所取代）。",
 	"apihelp-query+search-description": "执行一次全文本搜索。",

@@ -78,7 +78,8 @@
 			"Ency",
 			"Kszapsza",
 			"Openbk",
-			"Doctore"
+			"Doctore",
+			"PiotrAntosz"
 		]
 	},
 	"tog-underline": "Podkreślenie linków:",
@@ -1871,8 +1872,11 @@
 	"rollback-success": "Wycofano edycje użytkownika $1;\nprzywrócono ostatnią wersję autorstwa $2.",
 	"sessionfailure-title": "Błąd sesji",
 	"sessionfailure": "Wystąpił problem z weryfikacją zalogowania.\nPolecenie zostało anulowane, aby uniknąć przechwycenia sesji.\nNaciśnij „wstecz” w przeglądarce, przeładuj stronę, po czym ponownie wydaj polecenie.",
+	"changecontentmodel": "Edycja modelu zawartości strony",
 	"changecontentmodel-title-label": "Tytuł strony",
 	"changecontentmodel-reason-label": "Powód:",
+	"logentry-contentmodel-change-revertlink": "Przywróć",
+	"logentry-contentmodel-change-revert": "Przywróć",
 	"protectlogpage": "Zabezpieczone",
 	"protectlogtext": "Poniżej znajduje się lista zmian w zabezpieczeniu pojedynczych stron.\nWszystkie aktywne zabezpieczenia odnajdziesz na liście [[Special:ProtectedPages|zabezpieczonych stron]].",
 	"protectedarticle": "zabezpieczył(a) „[[$1]]”",
@@ -2308,7 +2312,7 @@
 	"tooltip-pt-logout": "Wyloguj",
 	"tooltip-pt-createaccount": "Zachęcamy do stworzenia konta i zalogowania, ale nie jest to konieczne.",
 	"tooltip-ca-talk": "Dyskusja o zawartości tej strony",
-	"tooltip-ca-edit": "Możesz edytować tę stronę. Przed zapisaniem zmian użyj przycisku podgląd.",
+	"tooltip-ca-edit": "Edytuj tę stronę.",
 	"tooltip-ca-addsection": "Dodaj nowy wątek.",
 	"tooltip-ca-viewsource": "Ta strona jest zabezpieczona. Możesz zobaczyć tekst źródłowy.",
 	"tooltip-ca-history": "Starsze wersje tej strony.",

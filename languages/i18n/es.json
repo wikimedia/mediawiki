@@ -1941,7 +1941,7 @@
 	"changecontentmodel-nodirectediting": "El modelo de contenido $1 no admite la edición directa",
 	"log-name-contentmodel": "Registro de cambios del modelo de contenido",
 	"log-description-contentmodel": "Eventos relacionados con los modelos de contenido de una página",
-	"logentry-contentmodel-change": "$1 cambió el modelo de contenido de la página $3 de \"$4\" a \"$5\"",
+	"logentry-contentmodel-change": "$1 {{GENDER:$2|cambió}} el modelo de contenido de la página $3 de \"$4\" a \"$5\"",
 	"logentry-contentmodel-change-revertlink": "revertir",
 	"logentry-contentmodel-change-revert": "revertir",
 	"protectlogpage": "Registro de protección",

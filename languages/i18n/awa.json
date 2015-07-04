@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"1AnuraagPandey"
+			"1AnuraagPandey",
+			"राम प्रसाद जोशी"
 		]
 	},
 	"tog-underline": "कड़ि अधोरेखन:",
@@ -655,7 +656,7 @@
 	"content-json-empty-object": "खाली चिज",
 	"content-json-empty-array": "खाली एरे",
 	"duplicate-args-category": "टेम्पलेट कॉल में डुप्लिकेट तर्क का उपयोग करते हुए पन्ने",
-	"duplicate-args-category-desc": "पेज जैसे तर्कों के डुप्लिकेट का उपयोग करने वाले टेम्पलेट कॉल, जैसे <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> ओैर <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
+	"duplicate-args-category-desc": "पेज जैसे तर्कों के डुप्लिकेट का उपयोग करने वाले टेम्पलेट कॉल, जैसे <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> और <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "'''चेतावनी:''' इ पन्ना पे बहुत ढेर संख्या में कीमती पार्सर फ़ंक्शनों कय प्रयोग कई गा है।\n\nएकर प्रयोग $2 से कम दाइ होएक चाहि, इ समय प्रयोग $1 दाइ कै गा {{PLURAL:$1|है}}।",
 	"expensive-parserfunction-category": "अईसन पन्ना जवन महङा पार्सर फ़ंक्शनन् कय ढेर प्रयोग करत हैं",
 	"post-expand-template-inclusion-warning": "'''चेतावनी:''' साँचा जोडे कय सीमा पार होई चुका है।\nकवनो-कवनो साँचा नाई जुड़ी।",
