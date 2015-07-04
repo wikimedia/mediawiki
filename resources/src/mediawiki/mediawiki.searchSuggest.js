@@ -3,7 +3,7 @@
  */
 ( function ( mw, $ ) {
 	$( function () {
-		var api, map, resultRenderCache, searchboxesSelectors,
+		var api, map, searchboxesSelectors,
 			// Region where the suggestions box will appear directly below
 			// (using the same width). Can be a container element or the input
 			// itself, depending on what suits best in the environment.
@@ -33,22 +33,26 @@
 		}
 
 		// Compute form data for search suggestions functionality.
-		function computeResultRenderCache( context ) {
+		function getFormData( context ) {
 			var $form, baseHref, linkParams;
 
-			// Compute common parameters for links' hrefs
-			$form = context.config.$region.closest( 'form' );
+			if ( !context.formData ) {
+				// Compute common parameters for links' hrefs
+				$form = context.config.$region.closest( 'form' );
 
-			baseHref = $form.attr( 'action' );
-			baseHref += baseHref.indexOf( '?' ) > -1 ? '&' : '?';
+				baseHref = $form.attr( 'action' );
+				baseHref += baseHref.indexOf( '?' ) > -1 ? '&' : '?';
 
-			linkParams = $form.serializeObject();
+				linkParams = $form.serializeObject();
 
-			return {
-				textParam: context.data.$textbox.attr( 'name' ),
-				linkParams: linkParams,
-				baseHref: baseHref
-			};
+				context.formData = {
+					textParam: context.data.$textbox.attr( 'name' ),
+					linkParams: linkParams,
+					baseHref: baseHref
+				};
+			}
+
+			return context.formData;
 		}
 
 		/**
@@ -86,18 +90,16 @@
 
 		// The function used to render the suggestions.
 		function renderFunction( text, context ) {
-			if ( !resultRenderCache ) {
-				resultRenderCache = computeResultRenderCache( context );
-			}
+			var formData = getFormData( context );
 
 			// linkParams object is modified and reused
-			resultRenderCache.linkParams[ resultRenderCache.textParam ] = text;
+			formData.linkParams[ formData.textParam ] = text;
 
 			// this is the container <div>, jQueryfied
 			this.text( text )
 				.wrap(
 					$( '<a>' )
-						.attr( 'href', resultRenderCache.baseHref + $.param( resultRenderCache.linkParams ) )
+						.attr( 'href', formData.baseHref + $.param( formData.linkParams ) )
 						.attr( 'title', text )
 						.addClass( 'mw-searchSuggest-link' )
 				);
@@ -119,14 +121,11 @@
 		}
 
 		function specialRenderFunction( query, context ) {
-			var $el = this;
-
-			if ( !resultRenderCache ) {
-				resultRenderCache = computeResultRenderCache( context );
-			}
+			var $el = this,
+				formData = getFormData( context );
 
 			// linkParams object is modified and reused
-			resultRenderCache.linkParams[ resultRenderCache.textParam ] = query;
+			formData.linkParams[ formData.textParam ] = query;
 
 			if ( $el.children().length === 0 ) {
 				$el
@@ -145,11 +144,11 @@
 			}
 
 			if ( $el.parent().hasClass( 'mw-searchSuggest-link' ) ) {
-				$el.parent().attr( 'href', resultRenderCache.baseHref + $.param( resultRenderCache.linkParams ) + '&fulltext=1' );
+				$el.parent().attr( 'href', formData.baseHref + $.param( formData.linkParams ) + '&fulltext=1' );
 			} else {
 				$el.wrap(
 					$( '<a>' )
-						.attr( 'href', resultRenderCache.baseHref + $.param( resultRenderCache.linkParams ) + '&fulltext=1' )
+						.attr( 'href', formData.baseHref + $.param( formData.linkParams ) + '&fulltext=1' )
 						.addClass( 'mw-searchSuggest-link' )
 				);
 			}
