@@ -1625,6 +1625,18 @@ $options: the options.  Will always include either 'known' or 'broken', and may
   associative array form.
 &$ret: the value to return if your hook returns false.
 
+'LinkerMakeEditLink': Used in Linker::makeEditLink() when generating 'edit'
+links.  If you return true, the usual parameters (e.g. action=edit) will be
+added to the query.  If you return false, the values will be left as
+manipulated by the hook function.  This hook is NOT called when generating the
+'edit' tab at the top of pages (use the 'SkinTemplateNavigation' hook to modify
+this) or section edit links (use the 'DoEditSectionLink' hook to modify these).
+&$target: the link target as Title object
+&$query: array of parameters for the querystring
+&$options: array of options. See the comment above the definition of
+  Linker::getEditLinkParameters() in includes/Linker.php for the list of
+  possible options.
+
 'LinkerMakeExternalImage': At the end of Linker::makeExternalImage() just
 before the return.
 &$url: the image url

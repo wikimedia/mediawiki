@@ -543,11 +543,9 @@ class ProtectionForm {
 
 		if ( $user->isAllowed( 'editinterface' ) ) {
 			$title = Title::makeTitle( NS_MEDIAWIKI, 'Protect-dropdown' );
-			$link = Linker::link(
+			$link = Linker::linkEdit(
 				$title,
-				wfMessage( 'protect-edit-reasonlist' )->escaped(),
-				array(),
-				array( 'action' => 'edit' )
+				wfMessage( 'protect-edit-reasonlist' )->escaped()
 			);
 			$out .= '<p class="mw-protect-editreasons">' . $link . '</p>';
 		}

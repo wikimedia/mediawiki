@@ -297,11 +297,9 @@ class FileDeleteForm {
 
 			if ( $wgUser->isAllowed( 'editinterface' ) ) {
 				$title = Title::makeTitle( NS_MEDIAWIKI, 'Filedelete-reason-dropdown' );
-				$link = Linker::link(
+				$link = Linker::linkEdit(
 					$title,
-					wfMessage( 'filedelete-edit-reasonlist' )->escaped(),
-					array(),
-					array( 'action' => 'edit' )
+					wfMessage( 'filedelete-edit-reasonlist' )->escaped()
 				);
 				$form .= '<p class="mw-filedelete-editreasons">' . $link . '</p>';
 			}

@@ -1054,7 +1054,7 @@ class DifferenceEngine extends ContextSource {
 			array( 'oldid' => $rev->getID() ) );
 
 		if ( $rev->userCan( Revision::DELETED_TEXT, $user ) ) {
-			$editQuery = array( 'action' => 'edit' );
+			$editQuery = array();
 			if ( !$rev->isCurrent() ) {
 				$editQuery['oldid'] = $rev->getID();
 			}
@@ -1062,7 +1062,7 @@ class DifferenceEngine extends ContextSource {
 			$key = $title->quickUserCan( 'edit', $user ) ? 'editold' : 'viewsourceold';
 			$msg = $this->msg( $key )->escaped();
 			$editLink = $this->msg( 'parentheses' )->rawParams(
-				Linker::linkKnown( $title, $msg, array( ), $editQuery ) )->plain();
+				Linker::linkEdit( $title, $msg, array(), $editQuery ) )->plain();
 			$header .= ' ' . Html::rawElement(
 				'span',
 				array( 'class' => 'mw-diff-edit' ),

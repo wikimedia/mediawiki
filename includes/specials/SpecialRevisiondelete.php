@@ -457,11 +457,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			// Show link to edit the dropdown reasons
 			if ( $this->getUser()->isAllowed( 'editinterface' ) ) {
 				$title = Title::makeTitle( NS_MEDIAWIKI, 'Revdelete-reason-dropdown' );
-				$link = Linker::link(
+				$link = Linker::linkEdit(
 					$title,
-					$this->msg( 'revdelete-edit-reasonlist' )->escaped(),
-					array(),
-					array( 'action' => 'edit' )
+					$this->msg( 'revdelete-edit-reasonlist' )->escaped()
 				);
 				$out .= Xml::tags( 'p', array( 'class' => 'mw-revdel-editreasons' ), $link ) . "\n";
 			}

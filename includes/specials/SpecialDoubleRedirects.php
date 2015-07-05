@@ -151,14 +151,9 @@ class DoubleRedirectsPage extends QueryPage {
 			array( 'redirect' => 'no' )
 		);
 
-		$edit = Linker::linkKnown(
+		$edit = Linker::linkEdit(
 			$titleA,
-			$this->msg( 'parentheses', $this->msg( 'editlink' )->text() )->escaped(),
-			array(),
-			array(
-				'redirect' => 'no',
-				'action' => 'edit'
-			)
+			$this->msg( 'parentheses', $this->msg( 'editlink' )->text() )->escaped()
 		);
 
 		$linkB = Linker::linkKnown(
