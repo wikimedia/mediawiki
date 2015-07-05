@@ -1534,6 +1534,7 @@
 	"randomincategory-nopages": "No hi ha pàgines a la categoria [[:Category:$1|$1]].",
 	"randomincategory-category": "Categoria:",
 	"randomincategory-legend": "Pàgina a l’atzar en la categoria",
+	"randomincategory-submit": "Vés-hi",
 	"randomredirect": "Redirecció a l'atzar",
 	"randomredirect-nopages": "No hi ha cap redirecció a l'espai de noms «$1».",
 	"statistics": "Estadístiques",

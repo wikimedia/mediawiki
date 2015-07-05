@@ -13,7 +13,8 @@
 			"פוילישער",
 			"아라",
 			"Har-wradim",
-			"Amire80"
+			"Amire80",
+			"පසිඳු කාවින්ද"
 		]
 	},
 	"tog-underline": "שטרייכט אונטער לינקען",
@@ -1460,6 +1461,7 @@
 	"randomincategory-nopages": "נישט פאראן קיין בלעטער אין [[:Category:$1]].",
 	"randomincategory-category": "קאַטעגאריע:",
 	"randomincategory-legend": "צופעליקער בלאט אין קאטעגאריע",
+	"randomincategory-submit": "גיין",
 	"randomredirect": "צופֿעליק ווײַטערפֿירן",
 	"randomredirect-nopages": "נישטא קיין ווײַטערפֿירונגען אין דעם נאמענטייל $1.",
 	"statistics": "סטאַטיסטיק",

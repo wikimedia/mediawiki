@@ -1548,6 +1548,7 @@
 	"randomincategory-nopages": "カテゴリ [[:Category:$1|$1]] にはページがありません。",
 	"randomincategory-category": "カテゴリ:",
 	"randomincategory-legend": "カテゴリ内でおまかせ表示",
+	"randomincategory-submit": "表示",
 	"randomredirect": "おまかせリダイレクト",
 	"randomredirect-nopages": "「$1」名前空間に転送ページはありません。",
 	"statistics": "統計",

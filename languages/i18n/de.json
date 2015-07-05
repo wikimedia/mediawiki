@@ -1570,6 +1570,7 @@
 	"randomincategory-nopages": "Es gibt keine Seiten in der Kategorie [[:Category:$1|$1]].",
 	"randomincategory-category": "Kategorie:",
 	"randomincategory-legend": "Zufällige Seite in Kategorie",
+	"randomincategory-submit": "Los",
 	"randomredirect": "Zufällige Weiterleitung",
 	"randomredirect-nopages": "Im Namensraum „$1“ sind keine Weiterleitungen vorhanden.",
 	"statistics": "Statistik",

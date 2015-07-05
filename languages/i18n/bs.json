@@ -1465,6 +1465,7 @@
 	"randomincategory-nopages": "Nema stranica u kategoriji [[:Category:$1|$1]].",
 	"randomincategory-category": "Kategorija:",
 	"randomincategory-legend": "Slučajna stranica u kategoriji",
+	"randomincategory-submit": "Idi",
 	"randomredirect": "Slučajno preusmjerenje",
 	"randomredirect-nopages": "Ne postoje preusmjerenja u imenskom prostoru \"$1\".",
 	"statistics": "Statistike",

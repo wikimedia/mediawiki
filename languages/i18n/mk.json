@@ -1512,6 +1512,7 @@
 	"randomincategory-nopages": "Нема страници во [[:Category:$1]].",
 	"randomincategory-category": "Категорија:",
 	"randomincategory-legend": "Случајна страница во категорија",
+	"randomincategory-submit": "Оди",
 	"randomredirect": "Случајно пренасочување",
 	"randomredirect-nopages": "Нема пренасочувања во именскиот простор „$1“.",
 	"statistics": "Статистики",

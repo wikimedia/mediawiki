@@ -495,6 +495,7 @@
 	"apihelp-query+revisions+base-param-prop": "Las propiedades que se obtendrán para cada revisión:",
 	"apihelp-query+revisions+base-paramvalue-prop-ids": "El identificador de la revisión.",
 	"apihelp-query+revisions+base-paramvalue-prop-flags": "Marcas de revisión (menor).",
+	"apihelp-query+revisions+base-paramvalue-prop-timestamp": "La fecha y hora de la revisión.",
 	"apihelp-query+revisions+base-paramvalue-prop-user": "Usuario que realizó la revisión.",
 	"apihelp-query+revisions+base-paramvalue-prop-userid": "Identificador de usuario del creador de la revisión.",
 	"apihelp-query+revisions+base-paramvalue-prop-size": "Longitud (en bytes) de la revisión.",

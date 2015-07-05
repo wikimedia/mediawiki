@@ -12,7 +12,8 @@
 			"Jenniesarina",
 			"Marfuas",
 			"VickyC",
-			"Josve05a"
+			"Josve05a",
+			"Rockyfelle"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Dokumentation]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api E-postlista]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-aviseringar]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R|Buggar & förslag]\n</div>\n<strong>Status:</strong> Alla funktioner som visas på denna sida borde fungera. API:et är dock fortfarande under aktiv utveckling och kan ändras när som helst. Prenumerera på [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/mediawiki-api-announce e-postlistan] för att få aviseringar om uppdateringar.\n\n<strong>Felaktiga förfrågningar:</strong> När felaktiga förfrågningar skickas till API:et skickas en HTTP-header med nyckeln \"MediaWiki-API-Error\" och sedan sätts både värdet på headern och den felkoden som returneras till samma värde. För mer information läs [[mw:API:Errors_and_warnings|API: Fel och varningar]].",
@@ -20,7 +21,7 @@
 	"apihelp-main-param-format": "Formatet för utdata.",
 	"apihelp-main-param-smaxage": "Ange headervärdet <code>s-maxage</code> till så här många sekunder. Fel cachelagras aldrig.",
 	"apihelp-main-param-maxage": "Ange headervärdet <code>max-age</code> till så här många sekunder. Fel cachelagras aldrig.",
-	"apihelp-main-param-assert": "Bekräftar att användaren är inloggad om satt till <kbd>user</kbd>, eller har bot-användarrättigheter om satt till <kbd>bot</kbd>.",
+	"apihelp-main-param-assert": "Bekräfta att användaren är inloggad om satt till <kbd>user</kbd>, eller har bot-användarrättigheter om satt till <kbd>bot</kbd>.",
 	"apihelp-main-param-requestid": "Alla värde som anges här kommer att inkluderas i svaret. Kan användas för att särskilja förfrågningar.",
 	"apihelp-main-param-servedby": "Inkludera det värdnamn som besvarade förfrågan i resultatet.",
 	"apihelp-main-param-curtimestamp": "Inkludera den aktuella tidsstämpeln i resultatet.",
@@ -350,7 +351,6 @@
 	"apihelp-query+contributors-param-limit": "Hur många bidragsgivare att returnera.",
 	"apihelp-query+deletedrevisions-param-user": "Lista endast sidversioner av denna användare.",
 	"apihelp-query+deletedrevisions-param-excludeuser": "Lista inte sidversioner av denna användare.",
-	"apihelp-query+deletedrevisions-param-limit": "Maximala antalet sidversioner att lista.",
 	"apihelp-query+deletedrevs-paraminfo-modes": "{{PLURAL:$1|Läge|Lägen}}: $2",
 	"apihelp-query+deletedrevs-param-from": "Börja lista vid denna titel.",
 	"apihelp-query+deletedrevs-param-to": "Sluta lista vid denna titel.",

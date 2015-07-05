@@ -1511,6 +1511,7 @@
 	"randomincategory-nopages": "Kategoorias \"[[:Category:$1|$1]]\" puuduvad leheküljed.",
 	"randomincategory-category": "Kategooria:",
 	"randomincategory-legend": "Juhuslik lehekülg kategoorias",
+	"randomincategory-submit": "Mine",
 	"randomredirect": "Juhuslik ümbersuunamine",
 	"randomredirect-nopages": "Nimeruumis \"$1\" ei ole ümbersuunamislehekülgi.",
 	"statistics": "Arvandmestik",

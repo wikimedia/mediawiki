@@ -1515,6 +1515,7 @@
 	"randomincategory-nopages": "V [[:Category:$1|kategorii $1]] žádné stránky nejsou.",
 	"randomincategory-category": "Kategorie:",
 	"randomincategory-legend": "Náhodná stránka v kategorii",
+	"randomincategory-submit": "Jít na",
 	"randomredirect": "Náhodné přesměrování",
 	"randomredirect-nopages": "Ve jmenném prostoru „$1“ nejsou žádná přesměrování.",
 	"statistics": "Statistika",

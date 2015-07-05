@@ -1513,6 +1513,7 @@
 	"randomincategory-nopages": "[[:Category:$1]]에 문서가 없습니다.",
 	"randomincategory-category": "분류:",
 	"randomincategory-legend": "분류 안의 임의 문서",
+	"randomincategory-submit": "보기",
 	"randomredirect": "임의 넘겨주기 문서로",
 	"randomredirect-nopages": "\"$1\" 이름공간에서 해당하는 넘겨주기 문서가 없습니다.",
 	"statistics": "통계",

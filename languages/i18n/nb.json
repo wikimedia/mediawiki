@@ -1516,6 +1516,7 @@
 	"randomincategory-nopages": "Det finnes ingen sider i [[:Category:$1|$1]]-kategorien.",
 	"randomincategory-category": "Kategori:",
 	"randomincategory-legend": "Tilfeldig side i kategori",
+	"randomincategory-submit": "{{int:Go}}",
 	"randomredirect": "Tilfeldig omdirigering",
 	"randomredirect-nopages": "Det er ingen omdirigeringer i navnerommet $1.",
 	"statistics": "Statistikk",

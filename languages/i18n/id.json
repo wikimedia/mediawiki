@@ -1513,6 +1513,7 @@
 	"randomincategory-nopages": "Tidak ada halaman dalam [[:Category:$1]].",
 	"randomincategory-category": "Kategori:",
 	"randomincategory-legend": "Halaman sembarang di kategori",
+	"randomincategory-submit": "Tuju ke",
 	"randomredirect": "Pengalihan sembarang",
 	"randomredirect-nopages": "Tak terdapat pengalihan pada ruang nama \"$1\".",
 	"statistics": "Statistik",

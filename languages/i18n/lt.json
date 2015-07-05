@@ -1516,6 +1516,7 @@
 	"randomincategory-nopages": "[[:Category:$1|$1]] kategorijoje nėra puslapių.",
 	"randomincategory-category": "Kategorija:",
 	"randomincategory-legend": "Atsitiktinis puslapis kategorijoje",
+	"randomincategory-submit": "Eiti",
 	"randomredirect": "Atsitiktinis peradresavimas",
 	"randomredirect-nopages": "Vardų srityje „$1“ nėra jokių peradresavimų.",
 	"statistics": "Statistika",

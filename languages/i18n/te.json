@@ -1484,6 +1484,7 @@
 	"randomincategory-nopages": "[[:Category:$1|$1]] వర్గంలో పేజీలేమీ లేవు.",
 	"randomincategory-category": "వర్గం:",
 	"randomincategory-legend": "వర్గంలోని యాదృచ్చిక పేజీ",
+	"randomincategory-submit": "వెళ్ళు",
 	"randomredirect": "యాదృచ్చిక దారిమార్పు",
 	"randomredirect-nopages": "\"$1\" పేరుబరిలో దారిమార్పులేమీ లేవు.",
 	"statistics": "గణాంకాలు",

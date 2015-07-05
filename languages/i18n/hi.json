@@ -1543,6 +1543,7 @@
 	"randomincategory-nopages": "[[:Category:$1|$1]] श्रेणी में कोई पृष्ठ नहीं हैं।",
 	"randomincategory-category": "श्रेणी:",
 	"randomincategory-legend": "श्रेणी में यादृच्छिक पृष्ठ",
+	"randomincategory-submit": "जायें",
 	"randomredirect": "किसी एक पुनर्निर्देशन पर जाएँ",
 	"randomredirect-nopages": "नामस्थान \"$1\" में कोई पुनर्निर्देशन नहीं हैं।",
 	"statistics": "आँकड़े",

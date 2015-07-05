@@ -1553,6 +1553,7 @@
 	"randomincategory-nopages": "Nie ma żadnych stron w [[:Category:$1]].",
 	"randomincategory-category": "Kategoria:",
 	"randomincategory-legend": "Losowa strona w kategorii",
+	"randomincategory-submit": "Dalej",
 	"randomredirect": "Losowe przekierowanie",
 	"randomredirect-nopages": "Brak jakichkolwiek przekierowań w przestrzeni nazw „$1”.",
 	"statistics": "Statystyki",

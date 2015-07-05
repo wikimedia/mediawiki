@@ -1514,6 +1514,7 @@
 	"randomincategory-nopages": "لا توجد صفحات في التصنيف [[:Category:$1|$1]].",
 	"randomincategory-category": "التصنيف:",
 	"randomincategory-legend": "صفحة عشوائية في التصنيف",
+	"randomincategory-submit": "اذهب",
 	"randomredirect": "تحويلة عشوائية",
 	"randomredirect-nopages": "لا توجد تحويلات في النطاق \"$1\".",
 	"statistics": "إحصاءات",

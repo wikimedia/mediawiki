@@ -1388,6 +1388,7 @@
 	"randomincategory-invalidcategory": "\"$1\" ez da kategoria izen baliagarri bat.",
 	"randomincategory-nopages": "Ez dago orrialderik [[:Category:$1|$1]] kategorian.",
 	"randomincategory-category": "Kategoria:",
+	"randomincategory-submit": "Joan",
 	"randomredirect": "Ausazko birbideratzea",
 	"randomredirect-nopages": "Ez dago birzuzenketarik \"$1\" izen-tartean.",
 	"statistics": "Estatistikak",

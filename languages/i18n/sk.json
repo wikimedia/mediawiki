@@ -1472,6 +1472,7 @@
 	"randomincategory-nopages": "V [[:Category:$1|kategórii $1]] nie sú žiadne stránky.",
 	"randomincategory-category": "Kategória:",
 	"randomincategory-legend": "Náhodná stránka v kategórii",
+	"randomincategory-submit": "Vykonať",
 	"randomredirect": "Náhodná presmerovacia stránka",
 	"randomredirect-nopages": "V mennom „$1“ priestore nie sú žiadne presmerovania.",
 	"statistics": "Štatistiky",

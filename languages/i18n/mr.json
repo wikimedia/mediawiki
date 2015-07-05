@@ -1429,6 +1429,7 @@
 	"randomincategory": "वर्गातील अनियत पान",
 	"randomincategory-invalidcategory": "\"$1\" हे अधिकृत वर्गाचे नाव नाही.",
 	"randomincategory-nopages": "[[:Category:$1]] यात काहीच पाने नाहीत.",
+	"randomincategory-submit": "चला",
 	"randomredirect": "अविशिष्ट पुनर्निर्देशन",
 	"randomredirect-nopages": "$1 या नामविश्वात कोणतीही पुर्ननिर्देशने नाहीत.",
 	"statistics": "सांख्यिकी",

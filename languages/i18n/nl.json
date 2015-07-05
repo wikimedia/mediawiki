@@ -1555,6 +1555,7 @@
 	"randomincategory-nopages": "Er zijn geen pagina's in de categorie [[:Category:$1|$1]].",
 	"randomincategory-category": "Categorie:",
 	"randomincategory-legend": "Willekeurige pagina in een categorie",
+	"randomincategory-submit": "OK",
 	"randomredirect": "Willekeurige doorverwijzing",
 	"randomredirect-nopages": "Er zijn geen doorverwijzingen in de naamruimte \"$1\".",
 	"statistics": "Statistieken",

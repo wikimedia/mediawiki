@@ -1545,6 +1545,7 @@
 	"randomincategory-nopages": "Det finns inga sidor i kategorin [[:Category:$1]].",
 	"randomincategory-category": "Kategori:",
 	"randomincategory-legend": "Slumpsida i kategori",
+	"randomincategory-submit": "Gå",
 	"randomredirect": "Slumpmässig omdirigering",
 	"randomredirect-nopages": "Det finns inte några omdirigeringar i namnrymden \"$1\".",
 	"statistics": "Statistik",

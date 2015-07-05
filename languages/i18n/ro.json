@@ -1513,6 +1513,7 @@
 	"randomincategory-nopages": "Nu există pagini în [[:Category:$1]].",
 	"randomincategory-category": "Categorie:",
 	"randomincategory-legend": "Pagină aleatorie din categoria",
+	"randomincategory-submit": "Du-te",
 	"randomredirect": "Redirecționare aleatorie",
 	"randomredirect-nopages": "Nu există redirecționări în spațiul de nume \"$1\".",
 	"statistics": "Statistici",

@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Y-M D"
+		]
+	},
+	"apihelp-block-description": "Stankañ un implijer",
+	"apihelp-block-param-reason": "Abeg evit stankañ.",
+	"apihelp-delete-description": "Diverkañ ur bajenn.",
+	"apihelp-edit-param-minor": "Kemmig dister.",
+	"apihelp-edit-example-edit": "Kemmañ ur bajenn.",
+	"apihelp-expandtemplates-param-title": "Titl ar bajenn."
+}

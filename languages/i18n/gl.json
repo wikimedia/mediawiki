@@ -1508,6 +1508,7 @@
 	"randomincategory-nopages": "Non hai páxinas na [[:Category:$1]].",
 	"randomincategory-category": "Categoría:",
 	"randomincategory-legend": "Páxina aleatoria na categoría",
+	"randomincategory-submit": "Continuar",
 	"randomredirect": "Redirección aleatoria",
 	"randomredirect-nopages": "Non hai redireccións no espazo de nomes \"$1\".",
 	"statistics": "Estatísticas",

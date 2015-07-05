@@ -1500,6 +1500,7 @@
 	"randomincategory-nopages": "Non ge stonne pàggene jndr'à [[:Category:$1]].",
 	"randomincategory-category": "Categorije:",
 	"randomincategory-legend": "Pàgene a uecchije jndr'à categorije",
+	"randomincategory-submit": "Veje",
 	"randomredirect": "Redirezionamende a uecchie",
 	"randomredirect-nopages": "Non ge stonne redirezionaminde jndr'à 'u namespace \"$1\".",
 	"statistics": "Statisteche",

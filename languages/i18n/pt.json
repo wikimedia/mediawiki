@@ -1532,6 +1532,7 @@
 	"randomincategory-nopages": "Não há páginas na categoria [[:Category:$1|$1]].",
 	"randomincategory-category": "Categoria:",
 	"randomincategory-legend": "Página aleatória na categoria",
+	"randomincategory-submit": "Ir",
 	"randomredirect": "Redirecionamento aleatório",
 	"randomredirect-nopages": "Não há redirecionamentos no domínio \"$1\".",
 	"statistics": "Estatísticas",

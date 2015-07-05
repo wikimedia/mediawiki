@@ -1513,6 +1513,7 @@
 	"randomincategory-nopages": "Nincsenek lapok a [[:Category:$1|$1]] kategóriában.",
 	"randomincategory-category": "Kategória:",
 	"randomincategory-legend": "Véletlen lap a kategóriából",
+	"randomincategory-submit": "Menj",
 	"randomredirect": "Átirányítás találomra",
 	"randomredirect-nopages": "A(z) „$1” névtérben nincsenek átirányítások.",
 	"statistics": "Statisztika",

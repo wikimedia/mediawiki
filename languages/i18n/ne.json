@@ -1501,6 +1501,7 @@
 	"randomincategory-nopages": "यस [[:Category:$1|$1]] श्रेणीमा कुनै पनि पृष्ठ छैन् ।",
 	"randomincategory-category": "श्रेणी:",
 	"randomincategory-legend": "श्रेणीमा अनियमित पृष्ठ",
+	"randomincategory-submit": "जाउ",
 	"randomredirect": "कुनै एउटा अनुप्रेषितमा जाने",
 	"randomredirect-nopages": "\"$1\" नामस्थानमा अनुप्रेषित छैन।",
 	"statistics": "तथ्यांक",

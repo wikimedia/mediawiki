@@ -1564,6 +1564,7 @@
 	"randomincategory-nopages": "Non ci sono pagine in [[:Category:$1]].",
 	"randomincategory-category": "Categoria:",
 	"randomincategory-legend": "Pagina casuale in una categoria",
+	"randomincategory-submit": "Vai",
 	"randomredirect": "Un redirect a caso",
 	"randomredirect-nopages": "Non ci sono redirect nel namespace \"$1\".",
 	"statistics": "Statistiche",

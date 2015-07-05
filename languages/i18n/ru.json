@@ -1569,6 +1569,7 @@
 	"randomincategory-nopages": "Нет страниц в категории [[:Category:$1]].",
 	"randomincategory-category": "Категория:",
 	"randomincategory-legend": "Случайная страница в категории",
+	"randomincategory-submit": "Перейти",
 	"randomredirect": "Случайное перенаправление",
 	"randomredirect-nopages": "Пространство имён «$1» не содержит перенаправлений.",
 	"statistics": "Статистика",

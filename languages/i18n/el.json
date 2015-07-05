@@ -1518,6 +1518,7 @@
 	"randomincategory-nopages": "Δεν υπάρχουν σελίδες στην κατηγορία [[:Category:$1|$1]].",
 	"randomincategory-category": "Κατηγορία:",
 	"randomincategory-legend": "Τυχαία σελίδα στην κατηγορία",
+	"randomincategory-submit": "Πήγαινε",
 	"randomredirect": "Τυχαία ανακατεύθυνση",
 	"randomredirect-nopages": "Δεν υπάρχουν ανακατευθύνσεις στον ονοματοχώρο \"$1\".",
 	"statistics": "Στατιστικά",

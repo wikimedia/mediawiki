@@ -30,7 +30,8 @@
 			"아라",
 			"Macofe",
 			"Fraxinus",
-			"Srdjan m"
+			"Srdjan m",
+			"Teoo3"
 		]
 	},
 	"tog-underline": "Podcrtane poveznice",
@@ -142,7 +143,7 @@
 	"october-date": "$1. listopada",
 	"november-date": "$1. studenoga",
 	"december-date": "$1. prosinca",
-	"pagecategories": "{{PLURAL:$1|Kategorija|Kategorije}}",
+	"pagecategories": "{{PLURAL:$1|Kategorija|Kategorije|Kategorija}}",
 	"category_header": "Članci u kategoriji \"$1\"",
 	"subcategories": "Potkategorije",
 	"category-media-header": "Mediji u kategoriji \"$1\":",
@@ -1443,6 +1444,7 @@
 	"randomincategory-invalidcategory": "\"$1\" nije valjano ime kategorije.",
 	"randomincategory-category": "Kategorija:",
 	"randomincategory-legend": "Slučajna stranica u kategoriji",
+	"randomincategory-submit": "Kreni",
 	"randomredirect": "Slučajno preusmjeravanje",
 	"randomredirect-nopages": "Nema preusmjeravanja u imenskom prostoru \"$1\".",
 	"statistics": "Statistika",
@@ -2144,7 +2146,7 @@
 	"tooltip-pt-logout": "Odjavi se",
 	"tooltip-pt-createaccount": "Nudimo vam mogućnost da napravite račun i prijavite se, iako to nije nužno.",
 	"tooltip-ca-talk": "Razgovor o stranici",
-	"tooltip-ca-edit": "Možete uređivati ovu stranicu. Koristite Pregled kako će izgledati prije nego što snimite.",
+	"tooltip-ca-edit": "Uredi ovu stranicu",
 	"tooltip-ca-addsection": "Dodaj novi odlomak",
 	"tooltip-ca-viewsource": "Ova stranica je zaštićena. Možete pogledati izvorni kod.",
 	"tooltip-ca-history": "Ranije izmjene na ovoj stranici.",
@@ -3080,6 +3082,7 @@
 	"expand_templates_remove_nowiki": "Ukloni <nowiki> tagove u rezultatima.",
 	"expand_templates_generate_xml": "Prikaži XML stablo",
 	"expand_templates_preview": "Vidi kako će izgledati",
+	"pagelang-select-lang": "Odaberi jezik",
 	"mediastatistics": "Statistika datoteka",
 	"mediastatistics-summary": "Slijede statistike postavljenih datoteka koje pokazuju zadnju inačicu datoteke. Starije ili izbrisane inačice nisu prikazane.",
 	"headline-anchor-title": "Poveznica na ovaj odlomak",

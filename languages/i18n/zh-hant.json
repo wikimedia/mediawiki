@@ -1547,6 +1547,7 @@
 	"randomincategory-nopages": "[[:Category:$1]] 中沒有任何頁面。",
 	"randomincategory-category": "分類：",
 	"randomincategory-legend": "隨機分類頁面",
+	"randomincategory-submit": "進入",
 	"randomredirect": "隨機重新導向",
 	"randomredirect-nopages": "在命名空間 \"$1\" 中沒有任何重新導向頁面。",
 	"statistics": "統計",

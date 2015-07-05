@@ -1527,6 +1527,7 @@
 	"randomincategory-nopages": "هیج صفحه‌ای در رده [[:Category:$1|$1]] وجود ندارد.",
 	"randomincategory-category": "رده:",
 	"randomincategory-legend": "صفحهٔ تصادفی در رده",
+	"randomincategory-submit": "برو",
 	"randomredirect": "تغییرمسیر تصادفی",
 	"randomredirect-nopages": "هیج صفحهٔ تغییرمسیری در فضای نام «$1» موجود نیست.",
 	"statistics": "آمار",
