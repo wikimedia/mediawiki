@@ -28,10 +28,13 @@
  */
 function wfEntryPointCheck( $entryPoint ) {
 	if ( !function_exists( 'version_compare' )
-		|| version_compare( PHP_VERSION, '5.3.3' ) < 0
-		|| !file_exists( dirname( __FILE__ ) . '/../vendor/autoload.php' )
+		|| version_compare( PHP_VERSION, '5.3.3' ) < 0 )
 	) {
 		wfPHPVersionError( $entryPoint );
+	}
+
+	if ( !file_exists( dirname( __FILE__ ) . '/../vendor/autoload.php' ) ) {
+		wfMissingVendorError( $entryPoint );
 	}
 }
 
@@ -60,17 +63,12 @@ function wfPHPVersionError( $type ) {
 	$phpVersion = PHP_VERSION;
 	$protocol = isset( $_SERVER['SERVER_PROTOCOL'] ) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0';
 	$message = "MediaWiki $mwVersion requires at least "
-		. "PHP version $minimumVersionPHP, you are using PHP $phpVersion. Installing some "
-		. " external dependencies (e.g. via composer) is also required.";
+		. "PHP version $minimumVersionPHP, you are using PHP $phpVersion.";
 
 	if ( $type == 'cli' ) {
-		$finalOutput = "Error: You are missing some external dependencies or are using on older PHP version. \n"
+		$finalOutput = "Error: You might be using on older PHP version. \n"
 			. "MediaWiki $mwVersion needs PHP $minimumVersionPHP or higher.\n\n"
-			. "Check if you have a newer php executable with a different name, such as php5.\n\n"
-			. "MediaWiki now also has some external dependencies that need to be installed\n"
-			. "via composer or from a separate git repo. Please see\n"
-			. "https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries\n"
-			. "for help on installing the required components.";
+			. "Check if you have a newer php executable with a different name, such as php5.\n\n";
 	} elseif ( $type == 'index.php' || $type == 'mw-config/index.php' ) {
 		$pathinfo = pathinfo( $_SERVER['SCRIPT_NAME'] );
 		if ( $type == 'mw-config/index.php' ) {
@@ -134,6 +132,103 @@ function wfPHPVersionError( $type ) {
 			of MediaWiki from our website.  See our
 			<a href="https://www.mediawiki.org/wiki/Compatibility#PHP">compatibility page</a>
 			for details of which versions are compatible with prior versions of PHP.
+		</p>
+		</div>
+	</body>
+</html>
+HTML;
+	// Handle everything that's not index.php
+	} else {
+		// So nothing thinks this is JS or CSS
+		$finalOutput = ( $type == 'load.php' ) ? "/* $message */" : $message;
+		header( "$protocol 500 MediaWiki configuration Error" );
+	}
+	echo "$finalOutput\n";
+	die( 1 );
+}
+
+/**
+ * Display something vaguely comprehensible in the event of a totally unrecoverable error.
+ * Does not assume access to *anything*; no globals, no autoloader, no database, no localisation.
+ * Safe for PHP4 (and putting this here means that WebStart.php and GlobalSettings.php
+ * no longer need to be).
+ *
+ * Calling this function kills execution immediately.
+ *
+ * @param string $type Which entry point we are protecting. One of:
+ *   - index.php
+ *   - load.php
+ *   - api.php
+ *   - mw-config/index.php
+ *   - cli
+ *
+ * @note Since we can't rely on anything, the minimum PHP versions and MW current
+ * version are hardcoded here
+ */
+function wfMissingVendorError( $type ) {
+	$mwVersion = '1.26';
+	$minimumVersionPHP = '5.3.3';
+
+	$phpVersion = PHP_VERSION;
+	$protocol = isset( $_SERVER['SERVER_PROTOCOL'] ) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0';
+	$message = "Installing some external dependencies (e.g. via composer) is also required.";
+
+	if ( $type == 'cli' ) {
+		$finalOutput = "Error: You are missing some external dependencies. \n"
+			. "MediaWiki now also has some external dependencies that need to be installed\n"
+			. "via composer or from a separate git repo. Please see\n"
+			. "https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries\n"
+			. "for help on installing the required components.";
+	} elseif ( $type == 'index.php' || $type == 'mw-config/index.php' ) {
+		$pathinfo = pathinfo( $_SERVER['SCRIPT_NAME'] );
+		if ( $type == 'mw-config/index.php' ) {
+			$dirname = dirname( $pathinfo['dirname'] );
+		} else {
+			$dirname = $pathinfo['dirname'];
+		}
+		$encLogo = htmlspecialchars(
+			str_replace( '//', '/', $dirname . '/' ) .
+			'resources/assets/mediawiki.png'
+		);
+
+		header( "$protocol 500 MediaWiki configuration Error" );
+		header( 'Content-type: text/html; charset=UTF-8' );
+		// Don't cache error pages!  They cause no end of trouble...
+		header( 'Cache-control: none' );
+		header( 'Pragma: no-cache' );
+
+		$finalOutput = <<<HTML
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="UTF-8" />
+		<title>MediaWiki {$mwVersion}</title>
+		<style media='screen'>
+			body {
+				color: #000;
+				background-color: #fff;
+				font-family: sans-serif;
+				padding: 2em;
+				text-align: center;
+			}
+			p, img, h1, h2 {
+				text-align: left;
+				margin: 0.5em 0 1em;
+			}
+			h1 {
+				font-size: 120%;
+			}
+			h2 {
+				font-size: 110%;
+			}
+		</style>
+	</head>
+	<body>
+		<img src="{$encLogo}" alt='The MediaWiki logo' />
+		<h1>MediaWiki {$mwVersion} internal error</h1>
+		<div class='error'>
+		<p>
+			{$message}
 		</p>
 		<h2>External dependencies</h2>
 		<p>
