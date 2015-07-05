@@ -1,3 +1,4 @@
+#!/bin/bash
 # Include-able script to require that we have a known php binary we can execute
 
 . "$DEV/includes/php.sh"

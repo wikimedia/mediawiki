@@ -1,3 +1,4 @@
+#!/bin/bash
 # Include-able script to determine the location of our php if any
 # We search for a environment var called PHP, native php,
 # a local copy, home directory location used by installphp.sh
