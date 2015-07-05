@@ -678,6 +678,37 @@
 	};
 
 	/**
+	 * Get the title from a link element.
+	 *
+	 *     var title = mw.Title.newFromLink( $( 'a.new:first' ) );
+	 *
+	 * @static
+	 * @param {HTMLElement|jQuery} link The link to use
+	 * @return {mw.Title|null} The link title or null if unsuccessful
+	 */
+	Title.newFromLink = function ( link ) {
+		var serverUrl, url, regex, href, decodedHref, matches;
+
+		serverUrl = mw.config.get( 'wgServer' );
+		// The regex matches everything either until the end of the string or first ? or & found
+		url = serverUrl + mw.config.get( 'wgArticlePath' ).replace( '$1', '(.+?(?=[\?\&])|.+)' );
+		regex = new RegExp( url );
+
+		href = link.jquery ? link[0].href : link.href;
+		decodedHref = decodeURIComponent( href );
+		matches = decodedHref.match( regex );
+
+		if ( matches && matches[1] ) {
+			return mw.Title.newFromText( matches[1] );
+		} else if ( href.indexOf( serverUrl + mw.config.get( 'wgScript' ) ) !== -1 ) {
+			// Handle redlinks and other special links which does not use $wgArticlePath pattern
+			return mw.Title.newFromText( mw.util.getParamValue( 'title', href ) );
+		}
+
+		return null;
+	};
+
+	/**
 	 * Whether this title exists on the wiki.
 	 *
 	 * @static
