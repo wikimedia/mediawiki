@@ -121,11 +121,9 @@ class BrokenRedirectsPage extends QueryPage {
 			array( 'redirect' => 'no' )
 		);
 		$links = array();
-		$links[] = Linker::linkKnown(
+		$links[] = Linker::linkEdit(
 			$fromObj,
-			$this->msg( 'brokenredirects-edit' )->escaped(),
-			array(),
-			array( 'action' => 'edit' )
+			$this->msg( 'brokenredirects-edit' )->escaped()
 		);
 		$to = Linker::link(
 			$toObj,
