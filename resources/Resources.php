@@ -1233,6 +1233,7 @@ return array(
 			'jquery.textSelection',
 			'mediawiki.jqueryMsg',
 			'mediawiki.confirmCloseWindow',
+			'user.options',
 		),
 		'messages' => array(
 			'editwarning-warning',
@@ -1523,6 +1524,7 @@ return array(
 			'mediawiki.Title',
 			'mediawiki.util',
 			'mediawiki.confirmCloseWindow',
+			'user.options',
 		),
 	),
 	'mediawiki.special.userlogin.common.styles' => array(
