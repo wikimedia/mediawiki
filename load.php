@@ -26,8 +26,10 @@ use MediaWiki\Logger\LoggerFactory;
 
 // Bail on old versions of PHP, or if composer has not been run yet to install
 // dependencies. Using dirname( __FILE__ ) here because __DIR__ is PHP5.3+.
-require_once dirname( __FILE__ ) . '/includes/PHPVersionCheck.php';
-wfEntryPointCheck( 'load.php' );
+if ( !function_exists( 'version_compare' ) || version_compare( PHP_VERSION, '5.3.3' ) < 0 ) {
+	require_once dirname( __FILE__ ) . '/includes/PHPVersionCheck.php';
+	wfEntryPointCheck( 'load.php' );
+}
 
 require __DIR__ . '/includes/WebStart.php';
 
