@@ -566,7 +566,6 @@ table.wikitable > caption {
 	border: 1px solid;
 	padding: .5em 1em;
 	margin-bottom: 1em;
-	display: -moz-inline-block;
 	display: inline-block;
 	zoom: 1;
 	*display: inline;
