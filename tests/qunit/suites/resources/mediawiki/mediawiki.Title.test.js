@@ -447,6 +447,82 @@
 		}
 	} );
 
+	QUnit.test( 'newFromURL', 20, function ( assert ) {
+		var i, thisCase, title, prefix,
+			server = 'http://localhost',
+			cases = [
+				{
+					url: '/wiki/Main_Page',
+					nameText: 'Main Page',
+					namespace: 0
+				},
+				{
+					url: '/wiki/Talk:Sandbox',
+					nameText: 'Sandbox',
+					namespace: 1
+				},
+				{
+					url: '/wiki/Talk%3ATest%20Page',
+					nameText: 'Test Page',
+					namespace: 1
+				},
+				{
+					url: '/wiki/Test?foo=bar',
+					nameText: 'Test',
+					namespace: 0
+				},
+				{
+					url: '/index.php?title=Foo bar',
+					nameText: 'Foo bar',
+					namespace: 0
+				},
+				{
+					url: '/index.php?title=Main_Page&oldid=180',
+					nameText: 'Main Page',
+					namespace: 0
+				},
+				{
+					url: '/foobar'
+				},
+				{
+					url: ''
+				}
+			];
+
+		mw.config.set( 'wgServer', server );
+		mw.config.set( 'wgScript', '/index.php' );
+		mw.config.set( 'wgArticlePath', '/wiki/$1' );
+
+		for ( i = 0; i < cases.length; i++ ) {
+			thisCase = cases[i];
+			title = mw.Title.newFromURL( server + thisCase.url );
+			prefix = (thisCase.url === '' ? 'Empty path' : thisCase.url) + ': ';
+
+			if (thisCase.nameText !== undefined) {
+				assert.notStrictEqual( title, null, prefix + 'Parses successfully' );
+				assert.equal( title.getNameText(), thisCase.nameText, prefix + 'Page title matches original' );
+				assert.equal( title.getNamespaceId(), thisCase.namespace, prefix + 'Namespace matches original' );
+			} else {
+				assert.strictEqual(title, null, prefix + 'Does not create mw.Title')
+			}
+		}
+	} );
+
+	QUnit.test( 'newFromLink', 3, function(assert) {
+		var server = 'http://localhost',
+			url = server + '/index.php?title=Main_Page',
+			title;
+
+		mw.config.set( 'wgServer', server );
+		mw.config.set( 'wgScript', '/index.php' );
+
+		title = mw.Title.newFromLink( { href: url } );
+		assert.notStrictEqual( title, null, 'Basic link parses successfully' );
+		assert.equal( title.getNameText(), 'Main Page', 'Page title matches original' );
+		title = mw.Title.newFromLink( { src: url } );
+		assert.strictEqual( title, null, 'Element without href attribute does not create mw.Title' );
+	});
+
 	QUnit.test( 'getRelativeText', 5, function ( assert ) {
 		var i, thisCase, title,
 			cases = [
