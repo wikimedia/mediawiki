@@ -691,6 +691,46 @@
 	};
 
 	/**
+	 * Get the title from a URL.
+	 *
+	 *     var title = mw.Title.newFromURL( 'http://localhost/index.php/Main_Page' );
+	 *
+	 * @static
+	 * @param {string} url The URL to create Title from
+	 * @return {mw.Title|null} The link title or null if unsuccessful
+	 */
+	Title.newFromURL = function ( url ) {
+		var titleText, fragmentPos,
+			serverUrl = mw.config.get( 'wgServer' ),
+			// The regex matches everything either until the end of the string or
+			// first ?, & or #, if found
+			artUrl = serverUrl + mw.config.get( 'wgArticlePath' )
+					.replace( '$1', '(.+?(?=[?&#])|.+)' ),
+			regex = new RegExp( artUrl ),
+			matches = url.match( regex );
+
+		if ( matches && matches[ 1 ] ) {
+			titleText = decodeURIComponent( matches[ 1 ] );
+		} else if ( url.indexOf( serverUrl + mw.config.get( 'wgScript' ) ) !== -1 ) {
+			// Handle redlinks and other special links which do not use $wgArticlePath pattern
+			titleText = mw.util.getParamValue( 'title', url );
+		} else {
+			return null;
+		}
+		if ( titleText === null ) {
+			return null;
+		}
+
+		// Get fragment
+		fragmentPos = url.lastIndexOf( '#' );
+		if ( fragmentPos !== -1 ) {
+			titleText += decodeURIComponent( url.substr( fragmentPos ) );
+		}
+
+		return mw.Title.newFromText( titleText );
+	};
+
+	/**
 	 * Whether this title exists on the wiki.
 	 *
 	 * @static
