@@ -75,6 +75,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 				'type' => 'text',
 				'label-message' => 'randomincategory-category',
 				'required' => true,
+				'cssclass' => 'mw-autocomplete-category', // used by mediawiki.categorySuggest
 			)
 		);
 
@@ -302,5 +303,9 @@ class SpecialRandomInCategory extends FormSpecialPage {
 
 	protected function getGroupName() {
 		return 'redirects';
+	}
+
+	protected function preText() {
+		$this->getOutput()->addModules( 'mediawiki.categorySuggest' );
 	}
 }
