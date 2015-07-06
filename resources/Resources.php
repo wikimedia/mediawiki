@@ -860,6 +860,14 @@ return array(
 			'mediawiki.api',
 		),
 	),
+	'mediawiki.categorySuggest' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.categorySuggest.js',
+		'dependencies' => array(
+			'jquery.suggestions',
+			'mediawiki.api',
+			'mediawiki.api.category',
+		)
+	),
 	'mediawiki.content.json' => array(
 		'position' => 'top',
 		'styles' => 'resources/src/mediawiki/mediawiki.content.json.css',
