@@ -1604,6 +1604,10 @@ return array(
 	'mediawiki.special.version' => array(
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.version.css',
 	),
+	'mediawiki.special.watchlist' => array(
+		'position' => 'top',
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.watchlist.css',
+	),
 
 	/* MediaWiki Installer */
 
