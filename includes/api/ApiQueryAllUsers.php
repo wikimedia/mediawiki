@@ -41,7 +41,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	 * @return string
 	 */
 	private function getCanonicalUserName( $name ) {
-		return str_replace( '_', ' ', $name );
+		return strtr( $name, '_', ' ' );
 	}
 
 	public function execute() {

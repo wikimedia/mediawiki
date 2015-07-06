@@ -960,11 +960,11 @@ class LocalisationCache {
 		$allData['deps'] = $deps;
 
 		# Replace spaces with underscores in namespace names
-		$allData['namespaceNames'] = str_replace( ' ', '_', $allData['namespaceNames'] );
+		$allData['namespaceNames'] = strtr( $allData['namespaceNames'], ' ', '_' );
 
 		# And do the same for special page aliases. $page is an array.
 		foreach ( $allData['specialPageAliases'] as &$page ) {
-			$page = str_replace( ' ', '_', $page );
+			$page = strtr( $page, ' ', '_' );
 		}
 		# Decouple the reference to prevent accidental damage
 		unset( $page );

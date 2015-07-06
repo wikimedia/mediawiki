@@ -77,7 +77,7 @@ class Linker {
 		wfDeprecated( __METHOD__, '1.25' );
 
 		$title = urldecode( $title );
-		$title = str_replace( '_', ' ', $title );
+		$title = strtr( $title, '_', ' ' );
 		return self::getLinkAttributesInternal( $title, $class );
 	}
 
@@ -1414,10 +1414,9 @@ class Linker {
 
 				# fix up urlencoded title texts (copied from Parser::replaceInternalLinks)
 				if ( strpos( $match[1], '%' ) !== false ) {
-					$match[1] = str_replace(
-						array( '<', '>' ),
-						array( '&lt;', '&gt;' ),
-						rawurldecode( $match[1] )
+					$match[1] = strtr(
+						rawurldecode( $match[1] ),
+						array( '<' => '&lt;', '>' => '&gt;' )
 					);
 				}
 
