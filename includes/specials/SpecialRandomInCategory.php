@@ -72,9 +72,10 @@ class SpecialRandomInCategory extends FormSpecialPage {
 
 		$form = array(
 			'category' => array(
-				'type' => 'text',
+				'type' => 'oouisearch',
 				'label-message' => 'randomincategory-category',
 				'required' => true,
+				'namespace' => 14,
 			)
 		);
 

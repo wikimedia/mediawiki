@@ -1,6 +1,9 @@
 <?php
 
 class HTMLTextField extends HTMLFormField {
+	/** @var string $mOOUIClass provides the class used to create the OOUI input */
+	protected $mOOUIClass = 'OOUI\TextInputField';
+
 	function getSize() {
 		return isset( $this->mParams['size'] ) ? $this->mParams['size'] : 45;
 	}
@@ -104,7 +107,7 @@ class HTMLTextField extends HTMLFormField {
 			'readonly',
 			'required',
 			'tabindex',
-			'type',
+			'icon',
 		);
 
 		$attribs += $this->getAttributes( $allowedParams, array(
@@ -120,7 +123,7 @@ class HTMLTextField extends HTMLFormField {
 
 		$type = $this->getType( $attribs );
 
-		return new OOUI\TextInputWidget( array(
+		return new $this->mOOUIClass( array(
 			'id' => $this->mID,
 			'name' => $this->mName,
 			'value' => $value,
