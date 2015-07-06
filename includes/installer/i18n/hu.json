@@ -213,7 +213,7 @@
 	"config-optional-continue": "További információk megadása.",
 	"config-optional-skip": "Épp elég volt, települjön a wiki!",
 	"config-profile": "Felhasználói jogosultságok profilja:",
-	"config-profile-wiki": "Wiki megnyitása",
+	"config-profile-wiki": "Nyílt wiki",
 	"config-profile-no-anon": "Felhasználói fiók létrehozása szükséges",
 	"config-profile-fishbowl": "Csak engedélyezett szerkesztők",
 	"config-profile-private": "Privát wiki",
