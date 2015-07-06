@@ -1691,8 +1691,11 @@ class WikiPage implements Page, IDBAccessObject {
 	 * @throws MWException
 	 */
 	public function doEditContent( Content $content, $summary, $flags = 0, $baseRevId = false,
-		User $user = null, $serialFormat = null
+		$user = null, $serialFormat = null
 	) {
+		if ( is_bool( $user ) ) {
+			throw new Exception( 'stacktrace');
+		}
 		global $wgUser, $wgUseAutomaticEditSummaries, $wgUseRCPatrol, $wgUseNPPatrol;
 
 		// Low-level sanity check
