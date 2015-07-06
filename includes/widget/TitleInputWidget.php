@@ -15,19 +15,24 @@ use OOUI\TextInputWidget;
 class TitleInputWidget extends TextInputWidget {
 
 	protected $namespace = null;
+	protected $relative = null;
 
 	/**
 	 * @param array $config Configuration options
-	 * @param number|null $config['namespace'] Namespace to prepend to queries
+	 * @param int|null $config['namespace'] Namespace to prepend to queries
+	 * @param bool|null $config['relative'] If a namespace is set, return a title relative to it (default; true)
 	 */
 	public function __construct( array $config = array() ) {
 		// Parent constructor
 		parent::__construct( array_merge( $config, array( 'infusable' => true ) ) );
 
-		// Properties
+		// Properties, which are ignored in PHP and just shipped back to JS
 		if ( isset( $config['namespace'] ) ) {
-			// Actually ignored in PHP, we just ship it back to JS
 			$this->namespace = $config['namespace'];
+		}
+
+		if ( isset( $config['relative'] ) ) {
+			$this->relative = $config['relative'];
 		}
 
 		// Initialization
@@ -37,6 +42,9 @@ class TitleInputWidget extends TextInputWidget {
 	public function getConfig( &$config ) {
 		if ( $this->namespace !== null ) {
 			$config['namespace'] = $this->namespace;
+		}
+		if ( $this->relative !== null ) {
+			$config['relative'] = $this->relative;
 		}
 		return parent::getConfig( $config );
 	}
