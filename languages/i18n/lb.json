@@ -1788,6 +1788,7 @@
 	"changecontentmodel-title-label": "Titel vun der Säit",
 	"changecontentmodel-model-label": "Neie Modell vun enger Säit mat Inhalt",
 	"changecontentmodel-reason-label": "Grond:",
+	"changecontentmodel-success-text": "Den Typ vum Inhalt vu(n) [[:$1]] gouf geännert.",
 	"changecontentmodel-title-cantexist": "Et ass net méiglech enger Säit den Numm $1 ze ginn.",
 	"protectlogpage": "Protektiounslogbuch",
 	"protectlogtext": "Dëst ass d'Lëscht vun de Säitespären.\nKuckt d'[[Special:ProtectedPages|Lëscht vun de gespaarte Säite]] fir eng Lëscht vun den aktuelle Säitespären.",
