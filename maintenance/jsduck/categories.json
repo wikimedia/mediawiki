@@ -22,6 +22,7 @@
 				"name": "General",
 				"classes": [
 					"mw.Title",
+					"mw.Upload*",
 					"mw.Uri",
 					"mw.RegExp",
 					"mw.messagePoster.*",
