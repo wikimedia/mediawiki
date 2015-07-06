@@ -14,7 +14,7 @@ class HTMLCheckField extends HTMLFormField {
 		$attr = $this->getTooltipAndAccessKey();
 		$attr['id'] = $this->mID;
 
-		$attr += $this->getAttributes( array( 'disabled', 'tabindex' ) );
+		$attr += $this->getAttributes( array( 'disabled', 'tabindex', 'title' ) );
 
 		if ( $this->mClass !== '' ) {
 			$attr['class'] = $this->mClass;
