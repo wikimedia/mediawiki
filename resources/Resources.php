@@ -1302,6 +1302,7 @@ return array(
 		'dependencies' => array(
 			'mediawiki.util',
 			'mediawiki.language',
+			'user.options',
 			'dom-level2-shim',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
