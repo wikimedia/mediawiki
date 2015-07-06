@@ -91,6 +91,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 
 	protected function alterForm( HTMLForm $form ) {
 		$form->setSubmitTextMsg( 'randomincategory-submit' );
+		$form->setSubmitProgressive();
 	}
 
 	protected function setParameter( $par ) {
@@ -302,5 +303,9 @@ class SpecialRandomInCategory extends FormSpecialPage {
 
 	protected function getGroupName() {
 		return 'redirects';
+	}
+
+	protected function getDisplayFormat() {
+		return 'ooui';
 	}
 }
