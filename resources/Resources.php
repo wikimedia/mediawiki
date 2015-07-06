@@ -1058,6 +1058,13 @@ return array(
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'mediawiki.Upload' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.Upload.js',
+		'dependencies' => array(
+			'dom-level2-shim',
+			'mediawiki.api.upload',
+		),
+	),
 	'mediawiki.toc' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.toc.js',
 		'dependencies' => 'mediawiki.cookie',
