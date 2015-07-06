@@ -1,0 +1,11 @@
+.oo-ui-horizontal-widget > div {
+	display: inline-block;
+	vertical-align: middle;
+	margin-bottom: 0;
+	margin-right: 1em;
+}
+
+.oo-ui-horizontal-widget #namespace {
+	display: inline-block;
+	width: 20em;
+}
