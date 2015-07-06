@@ -570,7 +570,7 @@ function wfThumbError( $status, $msg ) {
 	} else {
 		$debug = '';
 	}
-	echo <<<EOT
+	$content = <<<EOT
 <!DOCTYPE html>
 <html><head>
 <meta charset="UTF-8" />
@@ -586,4 +586,6 @@ $debug
 </html>
 
 EOT;
+	header( 'Content-Length: ' . strlen( $content ) );
+	echo $content;
 }
