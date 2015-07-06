@@ -313,7 +313,7 @@ class Title {
 		$filteredText = Sanitizer::decodeCharReferencesAndNormalize( $text );
 
 		$t = new Title();
-		$t->mDbkeyform = str_replace( ' ', '_', $filteredText );
+		$t->mDbkeyform = strtr( $filteredText, ' ', '_' );
 		$t->mDefaultNamespace = intval( $defaultNamespace );
 
 		$t->secureAndSplit();
@@ -345,10 +345,10 @@ class Title {
 		# but some URLs used it as a space replacement and they still come
 		# from some external search tools.
 		if ( strpos( self::legalChars(), '+' ) === false ) {
-			$url = str_replace( '+', ' ', $url );
+			$url = strtr( $url, '+', ' ' );
 		}
 
-		$t->mDbkeyform = str_replace( ' ', '_', $url );
+		$t->mDbkeyform = strtr( $url, ' ', '_' );
 
 		try {
 			$t->secureAndSplit();
@@ -509,10 +509,10 @@ class Title {
 		$t->mInterwiki = $interwiki;
 		$t->mFragment = $fragment;
 		$t->mNamespace = $ns = intval( $ns );
-		$t->mDbkeyform = str_replace( ' ', '_', $title );
+		$t->mDbkeyform = strtr( $title, ' ', '_' );
 		$t->mArticleID = ( $ns >= 0 ) ? -1 : 0;
 		$t->mUrlform = wfUrlencode( $t->mDbkeyform );
-		$t->mTextform = str_replace( '_', ' ', $title );
+		$t->mTextform = strtr( $title, '_', ' ' );
 		$t->mContentModel = false; # initialized lazily in getContentModel()
 		return $t;
 	}
@@ -1419,7 +1419,7 @@ class Title {
 	 * @param string $fragment Text
 	 */
 	public function setFragment( $fragment ) {
-		$this->mFragment = str_replace( '_', ' ', substr( $fragment, 1 ) );
+		$this->mFragment = strtr( substr( $fragment, 1 ), '_', ' ' );
 	}
 
 	/**
@@ -1449,7 +1449,7 @@ class Title {
 	 */
 	public function getPrefixedDBkey() {
 		$s = $this->prefix( $this->mDbkeyform );
-		$s = str_replace( ' ', '_', $s );
+		$s = strtr( $s, ' ', '_' );
 		return $s;
 	}
 
@@ -1462,7 +1462,7 @@ class Title {
 	public function getPrefixedText() {
 		if ( $this->mPrefixedText === null ) {
 			$s = $this->prefix( $this->mTextform );
-			$s = str_replace( '_', ' ', $s );
+			$s = strtr( $s, ' ', '_' );
 			$this->mPrefixedText = $s;
 		}
 		return $this->mPrefixedText;
@@ -1610,7 +1610,7 @@ class Title {
 	 */
 	public function getSubpageUrlForm() {
 		$text = $this->getSubpageText();
-		$text = wfUrlencode( str_replace( ' ', '_', $text ) );
+		$text = wfUrlencode( strtr( $text, ' ', '_' ) );
 		return $text;
 	}
 
@@ -1621,7 +1621,7 @@ class Title {
 	 */
 	public function getPrefixedURL() {
 		$s = $this->prefix( $this->mDbkeyform );
-		$s = wfUrlencode( str_replace( ' ', '_', $s ) );
+		$s = wfUrlencode( strtr( $s, ' ', '_' ) );
 		return $s;
 	}
 
@@ -3370,7 +3370,7 @@ class Title {
 
 		$this->mDbkeyform = $parts['dbkey'];
 		$this->mUrlform = wfUrlencode( $this->mDbkeyform );
-		$this->mTextform = str_replace( '_', ' ', $this->mDbkeyform );
+		$this->mTextform = strtr( $this->mDbkeyform, '_', ' ' );
 
 		# We already know that some pages won't be in the database!
 		if ( $this->isExternal() || $this->mNamespace == NS_SPECIAL ) {
@@ -4738,7 +4738,7 @@ class Title {
 			}
 		} else {
 			// Even if there are no subpages in namespace, we still don't want "/" in MediaWiki message keys
-			$editnoticeText = $editnotice_ns . '-' . str_replace( '/', '-', $this->getDBkey() );
+			$editnoticeText = $editnotice_ns . '-' . strtr( $this->getDBkey(), '/', '-' );
 			$msg = wfMessage( $editnoticeText );
 			if ( $msg->exists() ) {
 				$html = $msg->parseAsBlock();
