@@ -823,6 +823,28 @@ class Html {
 	}
 
 	/**
+	 * Returns an associative array of options for a namespaceSelector element.
+	 *
+	 * @param array $params Params to set (@see self::namespaceSelector)
+	 * @return array Namesapces
+	 */
+	public static function getNSOptions( array $params = array() ) {
+		global $wgContLang;
+		// Associative array between option-values and option-labels
+		$options = array();
+
+		if ( isset( $params['all'] ) ) {
+			// add an option that would let the user select all namespaces.
+			// Value is provided by user, the name shown is localized for the user.
+			$options[$params['all']] = wfMessage( 'namespacesall' )->text();
+		}
+		// Add all namespaces as options (in the content language)
+		$options += $wgContLang->getFormattedNamespaces();
+
+		return $options;
+	}
+
+	/**
 	 * Build a drop-down box for selecting a namespace
 	 *
 	 * @param array $params Params to set.
@@ -866,16 +888,7 @@ class Html {
 			$params['disable'] = array();
 		}
 
-		// Associative array between option-values and option-labels
-		$options = array();
-
-		if ( isset( $params['all'] ) ) {
-			// add an option that would let the user select all namespaces.
-			// Value is provided by user, the name shown is localized for the user.
-			$options[$params['all']] = wfMessage( 'namespacesall' )->text();
-		}
-		// Add all namespaces as options (in the content language)
-		$options += $wgContLang->getFormattedNamespaces();
+		$options = self::getNSOptions( $params );
 
 		// Convert $options to HTML and filter out namespaces below 0
 		$optionsHtml = array();
