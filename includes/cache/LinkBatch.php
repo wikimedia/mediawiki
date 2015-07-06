@@ -78,7 +78,7 @@ class LinkBatch {
 			$this->data[$ns] = array();
 		}
 
-		$this->data[$ns][str_replace( ' ', '_', $dbkey )] = 1;
+		$this->data[$ns][strtr( $dbkey, ' ', '_' )] = 1;
 	}
 
 	/**
