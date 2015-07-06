@@ -571,7 +571,7 @@ abstract class ResourceLoaderModule {
 		}
 
 		$statTiming = microtime( true ) - $statStart;
-		$statName = str_replace( '.', '_', $this->getName() );
+		$statName = strtr( $this->getName(), '.', '_' );
 		$stats->timing( "resourceloader_build.all", $statTiming );
 		$stats->timing( "resourceloader_build.$statName", $statTiming );
 

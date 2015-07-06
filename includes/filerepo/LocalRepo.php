@@ -285,7 +285,7 @@ class LocalRepo extends FileRepo {
 				$file = $that->newFileFromRow( $row );
 				// There must have been a search for this DB key, but this has to handle the
 				// cases were title capitalization is different on the client and repo wikis.
-				$dbKeysLook = array( str_replace( ' ', '_', $file->getName() ) );
+				$dbKeysLook = array( strtr( $file->getName(), ' ', '_' ) );
 				if ( !empty( $info['initialCapital'] ) ) {
 					// Search keys for "hi.png" and "Hi.png" should use the "Hi.png file"
 					$dbKeysLook[] = $wgContLang->lcfirst( $file->getName() );

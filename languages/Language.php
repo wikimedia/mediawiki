@@ -525,10 +525,8 @@ class Language {
 	}
 
 	/**
-	 * A convenience function that returns the same thing as
-	 * getNamespaces() except with the array values changed to ' '
-	 * where it found '_', useful for producing output to be displayed
-	 * e.g. in <select> forms.
+	 * A convenience function that returns getNamespaces() with spaces instead of underscores
+	 * in values. Useful for producing output to be displayed e.g. in `<select>` forms.
 	 *
 	 * @return array
 	 */
@@ -542,6 +540,7 @@ class Language {
 
 	/**
 	 * Get a namespace value by key
+	 *
 	 * <code>
 	 * $mw_ns = $wgContLang->getNsText( NS_MEDIAWIKI );
 	 * echo $mw_ns; // prints 'MediaWiki'
@@ -552,7 +551,6 @@ class Language {
 	 */
 	function getNsText( $index ) {
 		$ns = $this->getNamespaces();
-
 		return isset( $ns[$index] ) ? $ns[$index] : false;
 	}
 
@@ -571,7 +569,6 @@ class Language {
 	 */
 	function getFormattedNsText( $index ) {
 		$ns = $this->getNsText( $index );
-
 		return strtr( $ns, '_', ' ' );
 	}
 
