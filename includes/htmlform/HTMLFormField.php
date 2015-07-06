@@ -581,13 +581,11 @@ abstract class HTMLFormField {
 		}
 
 		$fieldType = get_class( $this );
-		$field = new OOUI\FieldLayout( $inputField, array(
-			'classes' => array( "mw-htmlform-field-$fieldType", $this->mClass, $errorClass ),
-			'align' => $this->getLabelAlignOOUI(),
-			'label' => $this->getLabel(),
-			'help' => $this->getHelpText(),
-			'infusable' => $infusable,
-		) );
+		$field = $this->getFieldLayoutOOUI(
+			$inputField,
+			array( "mw-htmlform-field-$fieldType", $this->mClass, $errorClass ),
+			$infusable
+		);
 
 		return $field . $errors;
 	}
@@ -598,6 +596,20 @@ abstract class HTMLFormField {
 	 */
 	protected function getLabelAlignOOUI() {
 		return 'top';
+	}
+
+	/**
+	 * Get a FieldLayout (or subclass thereof) to wrap this field in when using OOUI output.
+	 * @return OOUI\FieldLayout
+	 */
+	protected function getFieldLayoutOOUI( $inputField, $classes, $infusable ) {
+		return new OOUI\FieldLayout( $inputField, array(
+			'classes' => $classes,
+			'align' => $this->getLabelAlignOOUI(),
+			'label' => $this->getLabel(),
+			'help' => $this->getHelpText(),
+			'infusable' => $infusable,
+		) );
 	}
 
 	/**
