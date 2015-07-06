@@ -874,7 +874,7 @@ class XmlDumpWriter {
 		}
 
 		global $wgContLang;
-		$prefix = str_replace( '_', ' ', $wgContLang->getNsText( $title->getNamespace() ) );
+		$prefix = $wgContLang->getFormattedNsText( $title->getNamespace() );
 
 		if ( $prefix !== '' ) {
 			$prefix .= ':';
