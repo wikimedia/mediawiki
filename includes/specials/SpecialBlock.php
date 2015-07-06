@@ -394,11 +394,9 @@ class SpecialBlock extends FormSpecialPage {
 
 		# Link to edit the block dropdown reasons, if applicable
 		if ( $user->isAllowed( 'editinterface' ) ) {
-			$links[] = Linker::linkKnown(
+			$links[] = Linker::linkEdit(
 				$this->msg( 'ipbreason-dropdown' )->inContentLanguage()->getTitle(),
-				$this->msg( 'ipb-edit-dropdown' )->escaped(),
-				array(),
-				array( 'action' => 'edit' )
+				$this->msg( 'ipb-edit-dropdown' )->escaped()
 			);
 		}
 

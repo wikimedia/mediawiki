@@ -817,11 +817,9 @@ class UploadForm extends HTMLForm {
 
 		# Add a link to edit MediaWik:Licenses
 		if ( $this->getUser()->isAllowed( 'editinterface' ) ) {
-			$licensesLink = Linker::linkKnown(
+			$licensesLink = Linker::linkEdit(
 				$this->msg( 'licenses' )->inContentLanguage()->getTitle(),
-				$this->msg( 'licenses-edit' )->escaped(),
-				array(),
-				array( 'action' => 'edit' )
+				$this->msg( 'licenses-edit' )->escaped()
 			);
 			$editLicenses = '<p class="mw-upload-editlicenses">' . $licensesLink . '</p>';
 			$this->addFooterText( $editLicenses, 'description' );

@@ -1862,15 +1862,21 @@ class Title {
 	/**
 	 * Get the edit URL for this Title
 	 *
+	 * @param array $query Additional query parameters, e.g. oldid
 	 * @return string The URL, or a null string if this is an interwiki link
 	 */
-	public function getEditURL() {
+	public function getEditURL( array $query = array() ) {
 		if ( $this->isExternal() ) {
 			return '';
 		}
-		$s = $this->getLocalURL( 'action=edit' );
 
-		return $s;
+		$target = clone $this;
+		Linker::getEditLinkParameters( $target, $query );
+		if ( $target === null ) {
+			return '';
+		} else {
+			return $target->getLocalURL( $query );
+		}
 	}
 
 	/**

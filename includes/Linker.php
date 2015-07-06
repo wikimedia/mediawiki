@@ -267,6 +267,53 @@ class Linker {
 	}
 
 	/**
+	 * Generates relevant parameters to create an edit link for a given page.
+	 *
+	 * After calling this function, the values of the $target and $query
+	 * parameters can be passed to Linker::link or similar functions.
+	 *
+	 * @param Title &$target This object may be modified by the hook, consider
+	 * cloning the object before passing it to this function
+	 * @param array &$query Extra query parameters. Do not include action=edit.
+	 * @param array $options Array of strings. The following options may be used:
+	 *   - 'redlink': Set this to make the link function as a red link.
+	 * @since 1.26
+	 */
+	public static function getEditLinkParameters(
+		Title &$target, array &$query, array $options = array()
+	) {
+		if ( Hooks::run( 'LinkerMakeEditLink', array( &$target, &$query, &$options ) ) ) {
+			$query['action'] = 'edit';
+			if ( in_array( 'redlink', $options ) ) {
+				$query['redlink'] = '1';
+			}
+		}
+	}
+
+	/**
+	 * This function returns an HTML link to edit the given target page. The link
+	 * will always be blue, regardless of whether the page exists or not.
+	 *
+	 * It is a convenience wrapper for Linker::getEditLinkParameters.
+	 *
+	 * @param Title $target
+	 * @param string $html See Linker::link
+	 * @param array $customAttribs See Linker::link
+	 * @param array $query Extra query parameters. Do NOT include action=edit
+	 *   itself.
+	 * @return string HTML <a> element
+	 * @since 1.26
+	 */
+	public static function linkEdit(
+		Title $target, $html, array $customAttribs = array(), array $query = array()
+	) {
+		// Hooks may modify this, so we have to clone it
+		$newTarget = clone $target;
+		Linker::getEditLinkParameters( $newTarget, $query );
+		return Linker::linkKnown( $newTarget, $html, $customAttribs, $query );
+	}
+
+	/**
 	 * Returns the Url used to link to a Title
 	 *
 	 * @param Title $target
@@ -287,8 +334,7 @@ class Linker {
 		# (i.e., for a nonexistent special page).
 		if ( in_array( 'broken', $options ) && empty( $query['action'] )
 			&& !$target->isSpecialPage() ) {
-			$query['action'] = 'edit';
-			$query['redlink'] = '1';
+			self::getEditLinkParameters( $target, $query, array( 'redlink' ) );
 		}
 
 		if ( in_array( 'http', $options ) ) {
@@ -2043,18 +2089,14 @@ class Linker {
 					}
 				}
 				if ( $titleObj->quickUserCan( 'edit' ) ) {
-					$editLink = self::link(
+					$editLink = self::linkEdit(
 						$titleObj,
-						wfMessage( 'editlink' )->escaped(),
-						array(),
-						array( 'action' => 'edit' )
+						wfMessage( 'editlink' )->escaped()
 					);
 				} else {
-					$editLink = self::link(
+					$editLink = self::linkEdit(
 						$titleObj,
-						wfMessage( 'viewsourcelink' )->escaped(),
-						array(),
-						array( 'action' => 'edit' )
+						wfMessage( 'viewsourcelink' )->escaped()
 					);
 				}
 				$outText .= '<li>' . self::link( $titleObj )

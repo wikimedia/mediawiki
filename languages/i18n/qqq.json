@@ -795,7 +795,7 @@
 	"newarticletextanon": "{{notranslate}}\nDefault:\n* {{msg-mw|Newarticletext}}",
 	"talkpagetext": "{{notranslate}}",
 	"anontalkpagetext": "Displayed at the bottom of talk pages of anonymous users.",
-	"noarticletext": "This is the message that you get if you search for a term that has not yet got any entries on the wiki.\n\nSee also:\n* {{msg-mw|Noarticletext-nopermission}}",
+	"noarticletext": "This is the message that you get if you search for a term that has not yet got any entries on the wiki.\n\nParameters:\n* $1 - The URL to edit the page.\n\nSee also:\n* {{msg-mw|Noarticletext-nopermission}}",
 	"noarticletext-nopermission": "See also {{msg-mw|Noarticletext}}.",
 	"noarticletextanon": "{{notranslate}}\nDefault:\n* {{msg-mw|Noarticletext}}",
 	"missing-revision": "Text displayed when the requested revision does not exist using a permalink.\n\nExample: [{{canonicalurl:Project:News|oldid=9999999}} Permalink with invalid revision#]\n\nParameters:\n* $1 - the ID of the missing revision",
