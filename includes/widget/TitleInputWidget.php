@@ -46,6 +46,8 @@ class TitleInputWidget extends TextInputWidget {
 		if ( $this->relative !== null ) {
 			$config['relative'] = $this->relative;
 		}
+		// disable browser autocomplete
+		$config['autocomplete'] = 'off';
 		return parent::getConfig( $config );
 	}
 }
