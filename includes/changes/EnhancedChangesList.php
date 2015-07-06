@@ -378,8 +378,12 @@ class EnhancedChangesList extends ChangesList {
 			$data['tags'] = $this->getTags( $rcObj, $classes );
 
 			// give the hook a chance to modify the data
-			Hooks::run( 'EnhancedChangesListModifyLineData',
+			$success = Hooks::run( 'EnhancedChangesListModifyLineData',
 				array( $this, &$data, $block, $rcObj ) );
+			if ( !$success ) {
+				// skip entry if hook aborted it
+				continue;
+			}
 
 			$line = '<tr' . $trClass . '><td></td><td class="mw-enhanced-rc">';
 			if ( isset( $data['recentChangesFlags'] ) ) {
@@ -599,8 +603,12 @@ class EnhancedChangesList extends ChangesList {
 		$data['watchingUsers'] = $this->numberofWatchingusers( $rcObj->numberofWatchingusers );
 
 		// give the hook a chance to modify the data
-		Hooks::run( 'EnhancedChangesListModifyBlockLineData',
+		$success = Hooks::run( 'EnhancedChangesListModifyBlockLineData',
 			array( $this, &$data, $rcObj ) );
+		if ( !$success ) {
+			// skip entry if hook aborted it
+			return '';
+		}
 
 		$line = Html::openElement( 'table', array( 'class' => $classes ) ) .
 			Html::openElement( 'tr' );
