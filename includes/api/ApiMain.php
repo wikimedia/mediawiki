@@ -404,6 +404,8 @@ class ApiMain extends ApiBase {
 		} else {
 			$this->executeActionWithErrorHandling();
 		}
+		$this->getContext()->getStats()->increment(
+			'api.modules.' . strtr( $this->getModule()->getModulePath(), '+', '.' ) );
 	}
 
 	/**
