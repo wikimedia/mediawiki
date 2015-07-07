@@ -356,7 +356,13 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			$replyTo = null;
 		}
 
-		$status = UserMailer::send( $to, $mailFrom, $subject, $text, $replyTo );
+		$status = UserMailer::sendMail( array(
+			'to' => $to,
+			'from' => $mailFrom,
+			'subject' => $subject,
+			'body' => $text,
+			'replyTo' => $replyTo,
+		) );
 
 		if ( !$status->isGood() ) {
 			return $status;
@@ -368,7 +374,12 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				$cc_subject = $context->msg( 'emailccsubject' )->rawParams(
 					$target->getName(), $subject )->text();
 				Hooks::run( 'EmailUserCC', array( &$from, &$from, &$cc_subject, &$text ) );
-				$ccStatus = UserMailer::send( $from, $from, $cc_subject, $text );
+				$ccStatus = UserMailer::sendMail( array(
+					'to' => $from,
+					'from' => $from,
+					'subject' => $cc_subject,
+					'body' => $text,
+				) );
 				$status->merge( $ccStatus );
 			}
 

@@ -33,13 +33,13 @@ class EmaillingJob extends Job {
 	}
 
 	function run() {
-		$status = UserMailer::send(
-			$this->params['to'],
-			$this->params['from'],
-			$this->params['subj'],
-			$this->params['body'],
-			$this->params['replyto']
-		);
+		$status = UserMailer::sendMail( array(
+			'to' => $this->params['to'],
+			'from' => $this->params['from'],
+			'subject' => $this->params['subj'],
+			'body' => $this->params['body'],
+			'replyTo' => $this->params['replyto'],
+		) );
 
 		return $status->isOK();
 	}
