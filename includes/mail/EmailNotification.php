@@ -43,6 +43,20 @@
  * Visit the documentation pages under http://meta.wikipedia.com/Enotif
  */
 class EmailNotification {
+
+	/**
+	 * Notification is due to user's user talk being edited
+	 */
+	const USER_TALK = 'user_talk';
+	/**
+	 * Notification is due to a watchlisted page being edited
+	 */
+	const WATCHLIST = 'watchlist';
+	/**
+	 * Notification because user is notified for all changes
+	 */
+	const ALL_CHANGES = 'all_changes';
+
 	protected $subject, $body, $replyto, $from;
 	protected $timestamp, $summary, $minorEdit, $oldid, $composed_common, $pageStatus;
 	protected $mailTargets = array();
@@ -234,7 +248,7 @@ class EmailNotification {
 				&& $this->canSendUserTalkEmail( $editor, $title, $minorEdit )
 			) {
 				$targetUser = User::newFromName( $title->getText() );
-				$this->compose( $targetUser );
+				$this->compose( $targetUser, self::USER_TALK );
 				$userTalkId = $targetUser->getId();
 			}
 
@@ -248,7 +262,7 @@ class EmailNotification {
 						&& $watchingUser->getID() != $userTalkId
 					) {
 						if ( Hooks::run( 'SendWatchlistEmailNotification', array( $watchingUser, $title, $this ) ) ) {
-							$this->compose( $watchingUser );
+							$this->compose( $watchingUser, self::WATCHLIST );
 						}
 					}
 				}
@@ -262,7 +276,7 @@ class EmailNotification {
 				continue;
 			}
 			$user = User::newFromName( $name );
-			$this->compose( $user );
+			$this->compose( $user, self::ALL_CHANGES );
 		}
 
 		$this->sendMails();
@@ -421,8 +435,9 @@ class EmailNotification {
 	 *
 	 * Call sendMails() to send any mails that were queued.
 	 * @param User $user
+	 * @param string $source
 	 */
-	function compose( $user ) {
+	function compose( $user, $source ) {
 		global $wgEnotifImpersonal;
 
 		if ( !$this->composed_common ) {
@@ -432,7 +447,7 @@ class EmailNotification {
 		if ( $wgEnotifImpersonal ) {
 			$this->mailTargets[] = MailAddress::newFromUser( $user );
 		} else {
-			$this->sendPersonalised( $user );
+			$this->sendPersonalised( $user, $source );
 		}
 	}
 
@@ -452,10 +467,11 @@ class EmailNotification {
 	 * Returns true if the mail was sent successfully.
 	 *
 	 * @param User $watchingUser
+	 * @param string $source
 	 * @return bool
 	 * @private
 	 */
-	function sendPersonalised( $watchingUser ) {
+	function sendPersonalised( $watchingUser, $source ) {
 		global $wgContLang, $wgEnotifUseRealName;
 		// From the PHP manual:
 		//   Note: The to parameter cannot be an address in the form of
@@ -476,12 +492,18 @@ class EmailNotification {
 				$wgContLang->userTime( $this->timestamp, $watchingUser ) ),
 			$this->body );
 
+		$headers = array();
+		if ( $source === self::WATCHLIST ) {
+			$headers['List-Help'] = 'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Watchlist';
+		}
+
 		return UserMailer::sendMail( array(
 			'to' => $to,
 			'from' => $this->from,
 			'subject' => $this->subject,
 			'body' => $body,
 			'replyTo' => $this->replyto,
+			'headers' => $headers,
 		) );
 	}
 

@@ -130,6 +130,7 @@ class UserMailer {
 	 * 			'body' - array|string Email's text or array of two strings to be the text and html bodies (required)
 	 * 			'replyTo' - MailAddress Reply-to email (optional)
 	 * 			'contentType' - string Custom Content-Type (optional, default is 'text/plain; charset=UTF-8')
+	 * 			'headers' - array Extra headers to set (optional)
 	 * @return Status
 	 * @throws Exception
 	 * @throws MWException
@@ -151,6 +152,7 @@ class UserMailer {
 		/** @var MailAddress|null $replyto */
 		$replyto = isset( $options['replyTo'] ) ? $options['replyTo'] : null;
 		$contentType = isset( $options['contentType'] ) ? $options['contentType'] : 'text/plain; charset=UTF-8';
+		$headers = isset( $options['headers'] ) ? $options['headers'] : array();
 		$mime = null;
 
 		// mail body must have some content
@@ -244,7 +246,6 @@ class UserMailer {
 		$headers['X-Mailer'] = 'MediaWiki mailer';
 		$headers['List-Unsubscribe'] = '<' . SpecialPage::getTitleFor( 'Preferences' )
 			->getFullURL( '', false, PROTO_CANONICAL ) . '>';
-
 		# Line endings need to be different on Unix and Windows due to
 		# the bug described at http://trac.wordpress.org/ticket/2603
 		if ( wfIsWindows() ) {
