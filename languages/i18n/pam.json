@@ -7,7 +7,8 @@
 			"Urhixidur",
 			"Val2397",
 			"아라",
-			"Leeheonjin"
+			"Leeheonjin",
+			"TTO"
 		]
 	},
 	"tog-underline": "Gulisan lang panglalam deng suglung:",
@@ -1303,7 +1304,7 @@
 	"tooltip-pt-logout": "Mag log out",
 	"tooltip-ca-talk": "Pamisabi-sabi tungkul king bulung kalamnan (content page)",
 	"tooltip-ca-edit": "Malyari meng samasan ing bulung a ini. Pakigamit me pamu ing \"pasinag a pipindutan\" bayu me isikap.",
-	"tooltip-ca-addsection": "Mangibili kang bayung dake o ''section''.",
+	"tooltip-ca-addsection": "Mangibili kang bayung dake o \"section\".",
 	"tooltip-ca-viewsource": "Protektadu/makakambil ya ing bulung a ini. Malyari meng lon ing kayang pikuanan (source).",
 	"tooltip-ca-history": "Deng milabas a bersion ning bulung a ini.",
 	"tooltip-ca-protect": "Protektan/kambilan ya ing bulung a ini",
