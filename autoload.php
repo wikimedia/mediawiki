@@ -933,6 +933,7 @@ $wgAutoloadLocalClasses = array(
 	'ProfilerXhprof' => __DIR__ . '/includes/profiler/ProfilerXhprof.php',
 	'Protect' => __DIR__ . '/maintenance/protect.php',
 	'ProtectAction' => __DIR__ . '/includes/actions/ProtectAction.php',
+	'ProtectLogFormatter' => __DIR__ . '/includes/logging/ProtectLogFormatter.php',
 	'ProtectedPagesPager' => __DIR__ . '/includes/specials/SpecialProtectedpages.php',
 	'ProtectedTitlesPager' => __DIR__ . '/includes/specials/SpecialProtectedtitles.php',
 	'ProtectionForm' => __DIR__ . '/includes/ProtectionForm.php',
