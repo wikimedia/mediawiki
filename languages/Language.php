@@ -254,10 +254,16 @@ class Language {
 	 * @since 1.21
 	 */
 	public static function isSupportedLanguage( $code ) {
-		return self::isValidBuiltInCode( $code )
-			&& ( is_readable( self::getMessagesFileName( $code ) )
-				|| is_readable( self::getJsonMessagesFileName( $code ) )
-		);
+		if ( !self::isValidBuiltInCode( $code ) ) {
+			return false;
+		}
+
+		if ( $code === 'qqq' ) {
+			#return false;
+		}
+
+		return is_readable( self::getMessagesFileName( $code ) ) ||
+			is_readable( self::getJsonMessagesFileName( $code ) );
 	}
 
 	/**
