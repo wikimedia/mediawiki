@@ -839,10 +839,11 @@
 	"apihelp-query+querypage-param-limit": "Number of results to return.",
 	"apihelp-query+querypage-example-ancientpages": "Return results from [[Special:Ancientpages]].",
 
-	"apihelp-query+random-description": "Get a set of random pages.\n\nPages are listed in a fixed sequence, only the starting point is random. This means that if, for example, <samp>Main Page</samp> is the first random page in the list, <samp>List of fictional monkeys</samp> will <em>always</em> be second, <samp>List of people on stamps of Vanuatu</samp> third, etc.\n\nIf the number of pages in the namespace is lower than <var>$1limit</var>, fewer pages will be returned. The same page will not be returned twice.",
+	"apihelp-query+random-description": "Get a set of random pages.\n\nPages are listed in a fixed sequence, only the starting point is random. This means that if, for example, <samp>Main Page</samp> is the first random page in the list, <samp>List of fictional monkeys</samp> will <em>always</em> be second, <samp>List of people on stamps of Vanuatu</samp> third, etc.",
 	"apihelp-query+random-param-namespace": "Return pages in these namespaces only.",
 	"apihelp-query+random-param-limit": "Limit how many random pages will be returned.",
-	"apihelp-query+random-param-redirect": "Load a random redirect instead of a random page.",
+	"apihelp-query+random-param-redirect": "Use <kbd>$1filterredir=redirects</kbd> instead.",
+	"apihelp-query+random-param-filterredir": "How to filter for redirects.",
 	"apihelp-query+random-example-simple": "Return two random pages from the main namespace.",
 	"apihelp-query+random-example-generator": "Return page info about two random pages from the main namespace.",
 
