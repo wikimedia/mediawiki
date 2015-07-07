@@ -259,3 +259,7 @@ textarea {
 table.small {
 	font-size: 100%;
 }
+
+.external.free {
+	word-wrap: break-word;
+}
