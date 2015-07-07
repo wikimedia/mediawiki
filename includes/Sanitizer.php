@@ -1276,9 +1276,7 @@ class Sanitizer {
 			# Double-quoted
 			return $set[3];
 		} elseif ( !isset( $set[2] ) ) {
-			# In XHTML, attributes must have a value.
-			# For 'reduced' form, return explicitly the attribute name here.
-			return $set[1];
+			return "";
 		} else {
 			throw new MWException( "Tag conditions not met. This should never happen and is a bug." );
 		}

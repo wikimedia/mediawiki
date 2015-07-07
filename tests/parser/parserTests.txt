@@ -7980,8 +7980,8 @@ Handling html with a br self-closing tag
 <br title=bar/>
 <br title=bar/ >
 !! html/php
-<p><br title="title" />
-<br title="title" />
+<p><br title="" />
+<br title="" />
 <br />
 <br title="bar" />
 <br title="bar" />
@@ -14633,7 +14633,7 @@ Attribute test: no value
 !! wikitext
 <font color>foo</font>
 !! html
-<p><font color="color">foo</font>
+<p><font color="">foo</font>
 </p>
 !! end
 
@@ -15165,7 +15165,7 @@ array (
   'width' => '200',
   'height' => '100',
   'depth' => '50',
-  'square' => 'square',
+  'square' => '',
 )
 </pre>
 
@@ -15213,7 +15213,7 @@ array (
   'width' => '200',
   'height' => '100',
   'depth' => '50',
-  'square' => 'square',
+  'square' => '',
 )
 </pre>
 <p>other stuff
@@ -15360,7 +15360,7 @@ Sanitizer: Validating that <meta> and <link> work, but only for Microdata
 	<link rel="stylesheet" itemprop="hello" href="{{SERVER}}">
 </div>
 !! html
-<div itemscope="itemscope">
+<div itemscope="">
 <p>	<meta itemprop="hello" content="world" />
 	&lt;meta http-equiv="refresh" content="5"&gt;
 	<meta itemprop="hello" content="5" />
@@ -19279,7 +19279,7 @@ Page status indicators: Weird syntaxes that are okay
 showindicators
 !! wikitext
 <indicator name="empty" />
-<indicator name></indicator>
+<indicator name="name"></indicator>
 !! html
 empty=
 name=
