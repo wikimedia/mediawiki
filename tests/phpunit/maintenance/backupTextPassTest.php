@@ -418,7 +418,10 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 	}
 
 	/**
+	 * Broken per T70653.
+	 *
 	 * @group large
+	 * @group Broken
 	 */
 	function testCheckpointPlain() {
 		$this->checkpointHelper();
