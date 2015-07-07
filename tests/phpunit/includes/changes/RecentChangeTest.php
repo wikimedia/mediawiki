@@ -243,7 +243,9 @@ class RecentChangeTest extends MediaWikiTestCase {
 			$this->context->msg( 'movedarticleprotection', 'SomeTitle', 'OldTitle' )
 				->plain() . $sep . $this->user_comment,
 			'protect', 'move_prot',
-			array( 'OldTitle' ),
+			array(
+				'4::oldtitle' => 'OldTitle'
+			),
 			$this->user_comment
 		);
 	}

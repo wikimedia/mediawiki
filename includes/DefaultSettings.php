@@ -6948,7 +6948,6 @@ $wgLogActions = array(
 	'protect/protect' => 'protectedarticle',
 	'protect/modify' => 'modifiedarticleprotection',
 	'protect/unprotect' => 'unprotectedarticle',
-	'protect/move_prot' => 'movedarticleprotection',
 );
 
 /**
@@ -6968,6 +6967,7 @@ $wgLogActionsHandlers = array(
 	'suppress/event' => 'DeleteLogFormatter',
 	'suppress/delete' => 'DeleteLogFormatter',
 	'patrol/patrol' => 'PatrolLogFormatter',
+	'protect/move_prot' => 'ProtectLogFormatter',
 	'rights/rights' => 'RightsLogFormatter',
 	'rights/autopromote' => 'RightsLogFormatter',
 	'upload/upload' => 'UploadLogFormatter',
