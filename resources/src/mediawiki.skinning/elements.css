@@ -64,6 +64,10 @@ a.new:visited, #p-personal a.new:visited {
 	color: #b63;
 }
 
+.mw-body a.external.free {
+	word-wrap: break-word;
+}
+
 /* Inline Elements */
 img {
 	border: none;
