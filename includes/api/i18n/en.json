@@ -310,7 +310,7 @@
 	"apihelp-parse-param-effectivelanglinks": "Includes language links supplied by extensions (for use with <kbd>$1prop=langlinks</kbd>).",
 	"apihelp-parse-param-section": "Only retrieve the content of this section number or when <kbd>new</kbd> generate a new section.\n\n<kbd>new</kbd> section is only honored when specifying <var>text</var>.",
 	"apihelp-parse-param-sectiontitle": "New section title when <var>section</var> is <kbd>new</kbd>.\n\nUnlike page editing, this does not fall back to <var>summary</var> when omitted or empty.",
-	"apihelp-parse-param-disablepp": "Disable the PP Report from the parser output.",
+	"apihelp-parse-param-disablepp": "Disable the preprocessor report (\"NewPP limit report\") from the parser output.",
 	"apihelp-parse-param-disableeditsection": "Disable edit section links from the parser output.",
 	"apihelp-parse-param-generatexml": "Generate XML parse tree (requires content model <code>$1</code>; replaced by <kbd>$2prop=parsetree</kbd>).",
 	"apihelp-parse-param-preview": "Parse in preview mode.",
