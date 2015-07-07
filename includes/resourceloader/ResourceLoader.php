@@ -224,7 +224,8 @@ class ResourceLoader implements LoggerAwareInterface {
 				if ( $options['cacheReport'] ) {
 					$result .= "\n/* cache key: $key */";
 				}
-				$cache->set( $key, $result );
+				// Set a TTL since HHVM's APC doesn't have any limitation or eviction logic.
+				$cache->set( $key, $result, 24 * 3600 );
 			} catch ( Exception $e ) {
 				MWExceptionHandler::logException( $e );
 				$this->logger->warning( 'Minification failed: {exception}', array(
