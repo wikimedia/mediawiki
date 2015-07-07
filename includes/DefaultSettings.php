@@ -6947,7 +6947,6 @@ $wgLogHeaders = array(
  */
 $wgLogActions = array(
 	'protect/modify' => 'modifiedarticleprotection',
-	'protect/move_prot' => 'movedarticleprotection',
 	'protect/protect' => 'protectedarticle',
 	'protect/unprotect' => 'unprotectedarticle',
 );
@@ -6977,6 +6976,7 @@ $wgLogActionsHandlers = array(
 	'move/move' => 'MoveLogFormatter',
 	'move/move_redir' => 'MoveLogFormatter',
 	'patrol/patrol' => 'PatrolLogFormatter',
+	'protect/move_prot' => 'ProtectLogFormatter',
 	'rights/autopromote' => 'RightsLogFormatter',
 	'rights/rights' => 'RightsLogFormatter',
 	'suppress/block' => 'BlockLogFormatter',
