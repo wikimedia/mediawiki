@@ -173,7 +173,9 @@ class TemplateParser {
 			array(
 				// Do not add more flags here without discussion.
 				// If you do add more flags, be sure to update unit tests as well.
-				'flags' => LightnCandy::FLAG_ERROR_EXCEPTION
+				'flags' => LightnCandy::FLAG_ERROR_EXCEPTION,
+				'basedir' => $this->templateDir,
+				'fileext' => '.mustache',
 			)
 		);
 	}
