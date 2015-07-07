@@ -4237,7 +4237,13 @@ class User implements IDBAccessObject {
 		}
 
 		$to = MailAddress::newFromUser( $this );
-		return UserMailer::send( $to, $sender, $subject, $body, $replyto );
+		return UserMailer::sendMail( array(
+			'to' => $to,
+			'from' => $sender,
+			'subject' => $subject,
+			'body' => $body,
+			'replyTo' => $replyto,
+		) );
 	}
 
 	/**

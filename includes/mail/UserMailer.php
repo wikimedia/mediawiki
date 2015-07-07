@@ -98,6 +98,7 @@ class UserMailer {
 	 * array of parameters. It requires PEAR:Mail to do that.
 	 * Otherwise it just uses the standard PHP 'mail' function.
 	 *
+	 * @deprecated since 1.26. Use UserMailer::sendMail instead
 	 * @param MailAddress|MailAddress[] $to Recipient's email (or an array of them)
 	 * @param MailAddress $from Sender's email
 	 * @param string $subject Email's subject.
@@ -111,11 +112,46 @@ class UserMailer {
 	public static function send( $to, $from, $subject, $body, $replyto = null,
 		$contentType = 'text/plain; charset=UTF-8'
 	) {
+		return self::sendMail( array(
+			'to' => $to,
+			'from' => $from,
+			'subject' => $subject,
+			'body' => $body,
+			'replyTo' => $replyto,
+			'contentType' => $contentType,
+		) );
+	}
+
+	/**
+	 * @param array $options Parameters about the email:
+	 * 			'to' - MailAddress|MailAddress[] Recipient's email or an array of them (required)
+	 * 			'from' - MailAddress Sender's email (required)
+	 * 			'subject' - string Email's subject (required)
+	 * 			'body' - array|string Email's text or array of two strings to be the text and html bodies (required)
+	 * 			'replyTo' - MailAddress Reply-to email (optional)
+	 * 			'contentType' - string Custom Content-Type (optional, default is 'text/plain; charset=UTF-8')
+	 * @return Status
+	 * @throws Exception
+	 * @throws MWException
+	 */
+	public static function sendMail( array $options ) {
 		global $wgSMTP, $wgEnotifMaxRecips, $wgAdditionalMailParams, $wgAllowHTMLEmail;
-		$mime = null;
+
+		// Set up parameters
+
+		/** @var MailAddress[] $to */
+		$to = $options['to'];
 		if ( !is_array( $to ) ) {
 			$to = array( $to );
 		}
+		/** @var MailAddress $from */
+		$from = $options['from'];
+		$subject = $options['subject'];
+		$body = $options['body'];
+		/** @var MailAddress|null $replyto */
+		$replyto = isset( $options['replyTo'] ) ? $options['replyTo'] : null;
+		$contentType = isset( $options['contentType'] ) ? $options['contentType'] : 'text/plain; charset=UTF-8';
+		$mime = null;
 
 		// mail body must have some content
 		$minBodyLen = 10;
