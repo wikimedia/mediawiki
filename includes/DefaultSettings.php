@@ -6948,7 +6948,6 @@ $wgLogActions = array(
 	'protect/protect' => 'protectedarticle',
 	'protect/modify' => 'modifiedarticleprotection',
 	'protect/unprotect' => 'unprotectedarticle',
-	'protect/move_prot' => 'movedarticleprotection',
 );
 
 /**
@@ -6987,6 +6986,7 @@ $wgLogActionsHandlers = array(
 	'import/upload' => 'LogFormatter',
 	'import/interwiki' => 'LogFormatter',
 	'contentmodel/change' => 'ContentModelLogFormatter',
+	'protect/move_prot' => 'ProtectLogFormatter',
 );
 
 /**
