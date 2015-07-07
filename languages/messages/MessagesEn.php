@@ -396,6 +396,7 @@ $specialPageAliases = array(
 	'Booksources'               => array( 'BookSources' ),
 	'BrokenRedirects'           => array( 'BrokenRedirects' ),
 	'Categories'                => array( 'Categories' ),
+	'ChangeContentModel'        => array( 'ChangeContentModel' ),
 	'ChangeEmail'               => array( 'ChangeEmail' ),
 	'ChangePassword'            => array( 'ChangePassword', 'ResetPass', 'ResetPassword' ),
 	'ComparePages'              => array( 'ComparePages' ),
