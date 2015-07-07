@@ -70,6 +70,11 @@ production.
   sometimes being numerically-indexed objects with formatversion=2.
 * When errors about users being blocked are returned, they now include
   information about the relevant block.
+* (T99926) list=random has higher limits, in line with other API modules.
+* list=random's rnredirect parameter is deprecated in favor of a new
+  rnfilterredir parameter that also allows for listing both redirects and
+  non-redirects.
+* list=random now supports continuation.
 
 === Action API internal changes in 1.26 ===
 

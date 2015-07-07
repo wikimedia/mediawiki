@@ -777,6 +777,7 @@
 	"apihelp-query+random-description": "{{doc-apihelp-description|query+random}}",
 	"apihelp-query+random-param-namespace": "{{doc-apihelp-param|query+random|namespace}}",
 	"apihelp-query+random-param-limit": "{{doc-apihelp-param|query+random|limit}}",
+	"apihelp-query+random-param-filterredir": "{{apihelp-param|query+random|filterredir}}",
 	"apihelp-query+random-param-redirect": "{{doc-apihelp-param|query+random|redirect}}",
 	"apihelp-query+random-example-simple": "{{doc-apihelp-example|query+random}}",
 	"apihelp-query+random-example-generator": "{{doc-apihelp-example|query+random}}",
