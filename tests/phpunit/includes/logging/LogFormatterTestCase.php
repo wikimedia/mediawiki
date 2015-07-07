@@ -48,6 +48,7 @@ abstract class LogFormatterTestCase extends MediaWikiLangTestCase {
 	}
 
 	private static function removeSomeHtml( $html ) {
+		$html = str_replace( '&quot;', '"', $html );
 		return trim( preg_replace( '/<(a|span)[^>]*>([^<]*)<\/\1>/', '$2', $html ) );
 	}
 
