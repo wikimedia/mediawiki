@@ -90,11 +90,11 @@
 					}
 				},
 				teardown: function () {
-					this.sandbox.verifyAndRestore();
-
 					if ( localEnv.teardown ) {
 						localEnv.teardown.call( this );
 					}
+
+					this.sandbox.verifyAndRestore();
 				}
 			} );
 		};
