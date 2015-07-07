@@ -105,6 +105,7 @@ class UserMailer {
 	 * @param array $options:
 	 * 		'replyTo' MailAddress
 	 * 		'contentType' string default 'text/plain; charset=UTF-8'
+	 * 		'headers' array Extra headers to set
 	 *
 	 * Previous versions of this function had $replyto as the 5th argument and $contentType
 	 * as the 6th. These are still supported for backwards compatability, but deprecated.
@@ -116,9 +117,11 @@ class UserMailer {
 	public static function send( $to, $from, $subject, $body, $options = array() ) {
 		global $wgSMTP, $wgEnotifMaxRecips, $wgAdditionalMailParams, $wgAllowHTMLEmail;
 		$contentType = 'text/plain; charset=UTF-8';
+		$headers = array();
 		if ( is_array( $options ) ) {
 			$replyto = isset( $options['replyTo'] ) ? $options['replyTo'] : null;
 			$contentType = isset( $options['contentType'] ) ? $options['contentType'] : $contentType;
+			$headers = isset( $options['headers'] ) ? $options['headers'] : $headers;
 		} else {
 			// Old calling style
 			wfDeprecated( __METHOD__ . ' with $replyto as 5th parameter', '1.26' );
