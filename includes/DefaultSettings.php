@@ -6927,15 +6927,15 @@ $wgLogNames = array(
 $wgLogHeaders = array(
 	'' => 'alllogstext',
 	'block' => 'blocklogtext',
+	'delete' => 'dellogpagetext',
+	'import' => 'importlogpagetext',
+	'merge' => 'mergelogpagetext',
+	'move' => 'movelogpagetext',
+	'patrol' => 'patrol-log-header',
 	'protect' => 'protectlogtext',
 	'rights' => 'rightslogtext',
-	'delete' => 'dellogpagetext',
-	'upload' => 'uploadlogpagetext',
-	'move' => 'movelogpagetext',
-	'import' => 'importlogpagetext',
-	'patrol' => 'patrol-log-header',
-	'merge' => 'mergelogpagetext',
 	'suppress' => 'suppressionlogtext',
+	'upload' => 'uploadlogpagetext',
 );
 
 /**
@@ -6945,10 +6945,10 @@ $wgLogHeaders = array(
  * Extensions with custom log types may add to this array.
  */
 $wgLogActions = array(
-	'protect/protect' => 'protectedarticle',
 	'protect/modify' => 'modifiedarticleprotection',
-	'protect/unprotect' => 'unprotectedarticle',
 	'protect/move_prot' => 'movedarticleprotection',
+	'protect/protect' => 'protectedarticle',
+	'protect/unprotect' => 'unprotectedarticle',
 );
 
 /**
@@ -6958,35 +6958,35 @@ $wgLogActions = array(
  * @see LogFormatter
  */
 $wgLogActionsHandlers = array(
-	'move/move' => 'MoveLogFormatter',
-	'move/move_redir' => 'MoveLogFormatter',
+	'block/block' => 'BlockLogFormatter',
+	'block/reblock' => 'BlockLogFormatter',
+	'block/unblock' => 'BlockLogFormatter',
+	'contentmodel/change' => 'ContentModelLogFormatter',
 	'delete/delete' => 'DeleteLogFormatter',
+	'delete/event' => 'DeleteLogFormatter',
 	'delete/restore' => 'DeleteLogFormatter',
 	'delete/revision' => 'DeleteLogFormatter',
-	'delete/event' => 'DeleteLogFormatter',
-	'suppress/revision' => 'DeleteLogFormatter',
-	'suppress/event' => 'DeleteLogFormatter',
-	'suppress/delete' => 'DeleteLogFormatter',
+	'import/interwiki' => 'LogFormatter',
+	'import/upload' => 'LogFormatter',
+	'managetags/activate' => 'LogFormatter',
+	'managetags/create' => 'LogFormatter',
+	'managetags/deactivate' => 'LogFormatter',
+	'managetags/delete' => 'LogFormatter',
+	'merge/merge' => 'MergeLogFormatter',
+	'move/move' => 'MoveLogFormatter',
+	'move/move_redir' => 'MoveLogFormatter',
 	'patrol/patrol' => 'PatrolLogFormatter',
-	'rights/rights' => 'RightsLogFormatter',
 	'rights/autopromote' => 'RightsLogFormatter',
-	'upload/upload' => 'UploadLogFormatter',
+	'rights/rights' => 'RightsLogFormatter',
+	'suppress/block' => 'BlockLogFormatter',
+	'suppress/delete' => 'DeleteLogFormatter',
+	'suppress/event' => 'DeleteLogFormatter',
+	'suppress/reblock' => 'BlockLogFormatter',
+	'suppress/revision' => 'DeleteLogFormatter',
+	'tag/update' => 'TagLogFormatter',
 	'upload/overwrite' => 'UploadLogFormatter',
 	'upload/revert' => 'UploadLogFormatter',
-	'merge/merge' => 'MergeLogFormatter',
-	'tag/update' => 'TagLogFormatter',
-	'managetags/create' => 'LogFormatter',
-	'managetags/delete' => 'LogFormatter',
-	'managetags/activate' => 'LogFormatter',
-	'managetags/deactivate' => 'LogFormatter',
-	'block/block' => 'BlockLogFormatter',
-	'block/unblock' => 'BlockLogFormatter',
-	'block/reblock' => 'BlockLogFormatter',
-	'suppress/block' => 'BlockLogFormatter',
-	'suppress/reblock' => 'BlockLogFormatter',
-	'import/upload' => 'LogFormatter',
-	'import/interwiki' => 'LogFormatter',
-	'contentmodel/change' => 'ContentModelLogFormatter',
+	'upload/upload' => 'UploadLogFormatter',
 );
 
 /**
