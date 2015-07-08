@@ -14,5 +14,8 @@
 	"ooui-dialog-message-reject": "ناگارل",
 	"ooui-dialog-process-error": "يوه ستونزه رامنځ ته شوه",
 	"ooui-dialog-process-dismiss": "تړل",
-	"ooui-dialog-process-retry": "بيا هڅه"
+	"ooui-dialog-process-retry": "بيا هڅه",
+	"ooui-dialog-process-continue": "پرله پورې",
+	"ooui-selectfile-not-supported": "د دوتنې د ټاکنې ملاتړ نه دی شوی",
+	"ooui-selectfile-placeholder": "کومه دوتنه نه ده ټاکل شوې"
 }

@@ -30,5 +30,6 @@
 	"ooui-dialog-process-error": "Что-то пошло не так",
 	"ooui-dialog-process-dismiss": "Закрыть",
 	"ooui-dialog-process-retry": "Попробовать ещё раз",
-	"ooui-dialog-process-continue": "Продолжить"
+	"ooui-dialog-process-continue": "Продолжить",
+	"ooui-selectfile-not-supported": "Выбор файла не поддерживается"
 }

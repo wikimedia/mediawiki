@@ -17,7 +17,7 @@
 		"link": { "file": "images/icons/link.svg" },
 		"linkExternal": { "file": {
 			"ltr": "images/icons/external-link-ltr.svg",
-			"rtl":  "images/icons/external-link-rtl.svg"
+			"rtl": "images/icons/external-link-rtl.svg"
 		} },
 		"linkSecure": { "file": "images/icons/secure-link.svg" }
 	}

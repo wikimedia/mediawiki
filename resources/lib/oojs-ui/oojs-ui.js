@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.11.7
+ * OOjs UI v0.11.8
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-07-01T19:04:28Z
+ * Date: 2015-07-08T01:31:38Z
  */
 ( function ( OO ) {
 
@@ -1436,11 +1436,12 @@ OO.ui.Element.static.getRootScrollableElement = function ( el ) {
  */
 OO.ui.Element.static.getClosestScrollableContainer = function ( el, dimension ) {
 	var i, val,
-		props = [ 'overflow' ],
+		// props = [ 'overflow' ] doesn't work due to https://bugzilla.mozilla.org/show_bug.cgi?id=889091
+		props = [ 'overflow-x', 'overflow-y' ],
 		$parent = $( el ).parent();
 
 	if ( dimension === 'x' || dimension === 'y' ) {
-		props.push( 'overflow-' + dimension );
+		props = [ 'overflow-' + dimension ];
 	}
 
 	while ( $parent.length ) {
@@ -13522,6 +13523,7 @@ OO.ui.DropdownInputWidget.prototype.onMenuSelect = function ( item ) {
  * @inheritdoc
  */
 OO.ui.DropdownInputWidget.prototype.setValue = function ( value ) {
+	value = this.cleanUpValue( value );
 	this.dropdownWidget.getMenu().selectItemByData( value );
 	OO.ui.DropdownInputWidget.parent.prototype.setValue.call( this, value );
 	return this;
@@ -13543,15 +13545,18 @@ OO.ui.DropdownInputWidget.prototype.setDisabled = function ( state ) {
  * @chainable
  */
 OO.ui.DropdownInputWidget.prototype.setOptions = function ( options ) {
-	var value = this.getValue();
+	var
+		value = this.getValue(),
+		widget = this;
 
 	// Rebuild the dropdown menu
 	this.dropdownWidget.getMenu()
 		.clearItems()
 		.addItems( options.map( function ( opt ) {
+			var optValue = widget.cleanUpValue( opt.data );
 			return new OO.ui.MenuOptionWidget( {
-				data: opt.data,
-				label: opt.label !== undefined ? opt.label : opt.data
+				data: optValue,
+				label: opt.label !== undefined ? opt.label : optValue
 			} );
 		} ) );
 
@@ -13760,6 +13765,7 @@ OO.ui.RadioSelectInputWidget.prototype.onMenuSelect = function ( item ) {
  * @inheritdoc
  */
 OO.ui.RadioSelectInputWidget.prototype.setValue = function ( value ) {
+	value = this.cleanUpValue( value );
 	this.radioSelectWidget.selectItemByData( value );
 	OO.ui.RadioSelectInputWidget.parent.prototype.setValue.call( this, value );
 	return this;
@@ -13781,15 +13787,18 @@ OO.ui.RadioSelectInputWidget.prototype.setDisabled = function ( state ) {
  * @chainable
  */
 OO.ui.RadioSelectInputWidget.prototype.setOptions = function ( options ) {
-	var value = this.getValue();
+	var
+		value = this.getValue(),
+		widget = this;
 
 	// Rebuild the radioSelect menu
 	this.radioSelectWidget
 		.clearItems()
 		.addItems( options.map( function ( opt ) {
+			var optValue = widget.cleanUpValue( opt.data );
 			return new OO.ui.RadioOptionWidget( {
-				data: opt.data,
-				label: opt.label !== undefined ? opt.label : opt.data
+				data: optValue,
+				label: opt.label !== undefined ? opt.label : optValue
 			} );
 		} ) );
 
@@ -13843,12 +13852,16 @@ OO.ui.RadioSelectInputWidget.prototype.setOptions = function ( options ) {
  * @cfg {boolean} [readOnly=false] Prevent changes to the value of the text input.
  * @cfg {number} [maxLength] Maximum number of characters allowed in the input.
  * @cfg {boolean} [multiline=false] Allow multiple lines of text
+ * @cfg {number} [rows] If multiline, number of visible lines in textarea. If used with `autosize`,
+ *  specifies minimum number of rows to display.
  * @cfg {boolean} [autosize=false] Automatically resize the text input to fit its content.
  *  Use the #maxRows config to specify a maximum number of displayed rows.
- * @cfg {boolean} [maxRows=10] Maximum number of rows to display when #autosize is set to true.
+ * @cfg {boolean} [maxRows] Maximum number of rows to display when #autosize is set to true.
+ *  Defaults to the maximum of `10` and `2 * rows`, or `10` if `rows` isn't provided.
  * @cfg {string} [labelPosition='after'] The position of the inline label relative to that of
  *  the value or placeholder text: `'before'` or `'after'`
  * @cfg {boolean} [required=false] Mark the field as required
+ * @cfg {boolean} [autocomplete=true] Should the browser support autocomplete for this field
  * @cfg {RegExp|Function|string} [validate] Validation pattern: when string, a symbolic name of a
  *  pattern defined by the class: 'non-empty' (the value cannot be an empty string) or 'integer'
  *  (the value must contain only numbers); when RegExp, a regular expression that must match the
@@ -13859,8 +13872,7 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	// Configuration initialization
 	config = $.extend( {
 		type: 'text',
-		labelPosition: 'after',
-		maxRows: 10
+		labelPosition: 'after'
 	}, config );
 
 	// Parent constructor
@@ -13876,7 +13888,8 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	this.readOnly = false;
 	this.multiline = !!config.multiline;
 	this.autosize = !!config.autosize;
-	this.maxRows = config.maxRows;
+	this.minRows = config.rows !== undefined ? config.rows : '';
+	this.maxRows = config.maxRows || Math.max( 2 * ( this.minRows || 0 ), 10 );
 	this.validate = null;
 
 	// Clone for resizing
@@ -13921,6 +13934,12 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	if ( config.required ) {
 		this.$input.attr( 'required', 'required' );
 		this.$input.attr( 'aria-required', 'true' );
+	}
+	if ( config.autocomplete === false ) {
+		this.$input.attr( 'autocomplete', 'off' );
+	}
+	if ( this.multiline && config.rows ) {
+		this.$input.attr( 'rows', config.rows );
 	}
 	if ( this.label || config.autosize ) {
 		this.installParentChangeDetector();
@@ -14132,7 +14151,7 @@ OO.ui.TextInputWidget.prototype.adjustSize = function () {
 	if ( this.multiline && this.autosize && this.$input.val() !== this.valCache ) {
 		this.$clone
 			.val( this.$input.val() )
-			.attr( 'rows', '' )
+			.attr( 'rows', this.minRows )
 			// Set inline height property to 0 to measure scroll height
 			.css( 'height', 0 );
 

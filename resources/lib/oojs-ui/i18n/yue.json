@@ -2,13 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Deryck Chan",
-			"William915"
+			"William915",
+			"Shinjiman"
 		]
 	},
 	"ooui-outline-control-move-down": "向下搬",
 	"ooui-outline-control-move-up": "向上搬",
 	"ooui-outline-control-remove": "拎走",
-	"ooui-toolbar-more": "仲有...",
+	"ooui-toolbar-more": "仲有",
 	"ooui-toolgroup-expand": "更多",
 	"ooui-dialog-message-accept": "好",
 	"ooui-dialog-message-reject": "取消",

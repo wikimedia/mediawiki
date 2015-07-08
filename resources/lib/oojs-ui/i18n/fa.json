@@ -11,7 +11,8 @@
 			"Taha",
 			"درفش کاویانی",
 			"Armin1392",
-			"Alirezaaa"
+			"Alirezaaa",
+			"Leyth"
 		]
 	},
 	"ooui-outline-control-move-down": "انتقال مورد به پایین",
@@ -25,5 +26,7 @@
 	"ooui-dialog-process-error": "مشکلی وجود دارد",
 	"ooui-dialog-process-dismiss": "نپذیرفتن",
 	"ooui-dialog-process-retry": "دوباره امتحان کن",
-	"ooui-dialog-process-continue": "ادامه"
+	"ooui-dialog-process-continue": "ادامه",
+	"ooui-selectfile-not-supported": "انتخاب پرونده پشتیبانی نمی‌شود",
+	"ooui-selectfile-placeholder": "هیچ پرونده‌ای انتخاب نشده‌است"
 }
