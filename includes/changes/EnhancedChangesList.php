@@ -544,12 +544,12 @@ class EnhancedChangesList extends ChangesList {
 			? 'mw-changeslist-line-watched' : 'mw-changeslist-line-not-watched';
 
 		# Flag and Timestamp
-		$data['recentChangesFlags'] = $this->recentChangesFlags( array(
+		$data['recentChangesFlags'] = array(
 			'newpage' => $type == RC_NEW,
 			'minor' => $rcObj->mAttribs['rc_minor'],
 			'unpatrolled' => $rcObj->unpatrolled,
 			'bot' => $rcObj->mAttribs['rc_bot'],
-		) );
+		);
 		// timestamp is not really a link here, but is called timestampLink
 		// for consistency with EnhancedChangesListModifyLineData
 		$data['timestampLink'] = $rcObj->timestamp;
