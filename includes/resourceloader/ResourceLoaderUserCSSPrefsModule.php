@@ -50,14 +50,10 @@ class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 		// Build CSS rules
 		$rules = array();
 
-		// Underline: 2 = browser default, 1 = always, 0 = never
+		// Underline: 2 = skin default, 1 = always, 0 = never
 		if ( $options['underline'] < 2 ) {
 			$rules[] = "a { text-decoration: " .
 				( $options['underline'] ? 'underline' : 'none' ) . "; }";
-		} else {
-			# The scripts of these languages are very hard to read with underlines
-			$rules[] = 'a:lang(ar), a:lang(kk-arab), a:lang(mzn), ' .
-			'a:lang(ps), a:lang(ur) { text-decoration: none; }';
 		}
 		if ( $options['editfont'] !== 'default' ) {
 			// Double-check that $options['editfont'] consists of safe characters only
@@ -70,6 +66,15 @@ class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 			$style = CSSJanus::transform( $style, true, false );
 		}
 		return array( 'all' => $style );
+	}
+
+	/**
+	 * @param ResourceLoaderContext $context
+	 * @return bool
+	 */
+	public function isKnownEmpty( ResourceLoaderContext $context ) {
+		$styles = $this->getStyles( $context );
+		return isset( $styles['all'] ) && $styles['all'] === '';
 	}
 
 	/**
