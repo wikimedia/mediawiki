@@ -47,6 +47,10 @@ class HTMLTextAreaField extends HTMLFormField {
 	}
 
 	function getInputOOUI( $value ) {
+		if ( isset( $this->mParams['cols'] ) ) {
+			throw new Exception( "OOUIHTMLForm does not support the 'cols' parameter for textareas" );
+		}
+
 		$attribs = $this->getTooltipAndAccessKey();
 
 		if ( $this->mClass !== '' ) {
@@ -72,6 +76,7 @@ class HTMLTextAreaField extends HTMLFormField {
 			'name' => $this->mName,
 			'multiline' => true,
 			'value' => $value,
+			'rows' => $this->getRows(),
 		) + $attribs );
 	}
 }
