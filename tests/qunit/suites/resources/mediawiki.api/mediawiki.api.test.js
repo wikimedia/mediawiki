@@ -78,10 +78,10 @@
 
 		var api = new mw.Api();
 
-		// Get editToken for local wiki, this should not make
+		// Get csrfToken for local wiki, this should not make
 		// a request as it should be retrieved from user.tokens.
 		// This means that this test must run before the #badToken test below.
-		api.getToken( 'edit' )
+		api.getToken( 'csrf' )
 			.done( function ( token ) {
 				assert.ok( token.length, 'Got a token' );
 			} )
@@ -98,9 +98,9 @@
 		var api = new mw.Api();
 
 		// Clear the default cached token
-		api.badToken( 'edit' );
+		api.badToken( 'csrf' );
 
-		api.getToken( 'edit' )
+		api.getToken( 'csrf' )
 			.done( function ( token ) {
 				assert.equal( token, '0123abc', 'Got a non-cached token' );
 			} )
@@ -109,7 +109,7 @@
 			} );
 
 		this.server.requests[0].respond( 200, { 'Content-Type': 'application/json' },
-			'{ "tokens": { "edittoken": "0123abc" } }'
+			'{ "tokens": { "csrftoken": "0123abc" } }'
 		);
 
 		assert.equal( this.server.requests.length, 1, 'Requests made' );
@@ -222,7 +222,7 @@
 		var api = new mw.Api();
 
 		api.postWithToken(
-			'edit',
+			'csrf',
 			{
 				action: 'example'
 			},
@@ -234,7 +234,7 @@
 		);
 
 		api.postWithToken(
-			'edit',
+			'csrf',
 			{
 				action: 'example'
 			},

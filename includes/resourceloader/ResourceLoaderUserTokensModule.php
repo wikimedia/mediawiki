@@ -44,7 +44,7 @@ class ResourceLoaderUserTokensModule extends ResourceLoaderModule {
 		$user = $context->getUserObj();
 
 		return array(
-			'editToken' => $user->getEditToken(),
+			'csrfToken' => $user->getEditToken(),
 			'patrolToken' => $user->getEditToken( 'patrol' ),
 			'watchToken' => $user->getEditToken( 'watch' ),
 		);

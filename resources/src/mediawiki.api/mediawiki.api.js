@@ -271,11 +271,29 @@
 		 */
 		getToken: function ( type, assert ) {
 			var apiPromise,
+				oldTokens = [ 'block', 'delete', 'edit', 'email', 'import', 'move', 'options',
+					'protect', 'unblock' ],
 				promiseGroup = promises[ this.defaults.ajax.url ],
 				d = promiseGroup && promiseGroup[ type + 'Token' ];
 
 			if ( !d ) {
-				apiPromise = this.get( { action: 'tokens', type: type, assert: assert } );
+				if ( $.inArray( type, oldTokens ) ) {
+					// Old-school token retrieval
+					apiPromise = this.get( {
+						action: 'tokens',
+						type: type,
+						assert: assert
+					} );
+					mw.log.warn( "Use of " + type + "Token is deprecated since 1.24. " +
+						"Use new token types instead." );
+				} else {
+					apiPromise = this.get( {
+						action: 'query',
+						meta: 'tokens',
+						type: type,
+						assert: assert
+					} );
+				}
 
 				d = apiPromise
 					.then( function ( data ) {
