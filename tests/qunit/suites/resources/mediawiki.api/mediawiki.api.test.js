@@ -94,9 +94,9 @@
 		QUnit.expect( 2 );
 		var api = new mw.Api();
 
-		// Get editToken for local wiki, this should not make
+		// Get csrfToken for local wiki, this should not make
 		// a request as it should be retrieved from mw.user.tokens.
-		api.getToken( 'edit' )
+		api.getToken( 'csrf' )
 			.done( function ( token ) {
 				assert.ok( token.length, 'Got a token' );
 			} )
@@ -230,7 +230,7 @@
 		this.server.respond( [ 200, { 'Content-Type': 'application/json' }, '{ "example": "quux" }' ] );
 
 		api.postWithToken(
-			'edit',
+			'csrf',
 			{
 				action: 'example'
 			},
@@ -242,7 +242,7 @@
 		);
 
 		api.postWithToken(
-			'edit',
+			'csrf',
 			{
 				action: 'example'
 			},
