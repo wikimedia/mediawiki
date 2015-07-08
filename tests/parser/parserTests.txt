@@ -3570,20 +3570,26 @@ Definition Lists: Hacky use to indent tables, with comment before table
 </tr></table></dd></dl></dd></dl>
 !! end
 
-# Bug 52473
+# The trailing whitespace in this test is to catch a regression in
+# Parsoid after T54473.
 !! test
 Definition Lists: Hacky use to indent tables (WS-insensitive)
-!! options
-parsoid
 !! wikitext
 : {|
 |a
 |} 
-!! html
-<dl>
-<dd> <table><tr><td>a</td></tr></table> </dd>
-</dl>
+!! html/php
+<dl><dd><table>
+<tr>
+<td>a
+</td></tr></table></dd></dl>
+
+!! html/parsoid
+<dl><dd> <table>
+<tbody><tr><td>a</td></tr>
+</tbody></table> </dd></dl>
 !! end
+
 ## The PHP parser treats : items (dd) without a corresponding ; item (dt)
 ## as an empty dt item.  It also ignores all but the last ";" when followed
 ## by ":" later on.  So, ";" are not ignored in ";;;t3" but are ignored  in
