@@ -374,10 +374,32 @@ class RedisBagOStuff extends BagOStuff {
 
 		foreach ( $candidates as $tag ) {
 			$server = $this->serverTagMap[$tag];
+
 			$conn = $this->redisPool->getConnection( $server );
-			if ( $conn ) {
-				return array( $server, $conn );
+			if ( !$conn ) {
+				continue;
 			}
+
+			try {
+				$info = $conn->info();
+				// Check if this server has an unreachable redis master
+				if ( $info['role'] === 'slave'
+					&& $info['master_link_status'] === 'down'
+					&& $this->automaticFailover
+				) {
+					// If the master cannot be reached, fail-over to the next server.
+					// If masters are in data-center A, and slaves in data-center B,
+					// this helps avoid the case were fail-over happens in A but not
+					// to the corresponding server in B (e.g. read/write mismatch).
+					continue;
+				}
+			} catch ( RedisException $e ) {
+				// Server is not accepting commands
+				$this->handleException( $conn, $e );
+				continue;
+			}
+
+			return array( $server, $conn );
 		}
 
 		$this->setLastError( BagOStuff::ERR_UNREACHABLE );
