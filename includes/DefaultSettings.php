@@ -75,7 +75,7 @@ $wgConfigRegistry = array(
  * MediaWiki version number
  * @since 1.2
  */
-$wgVersion = '1.26alpha';
+$wgVersion = '1.26wmf13';
 
 /**
  * Name of the site. It must be changed in LocalSettings.php
@@ -7720,6 +7720,12 @@ $wgVirtualRestConfig = array(
 		'HTTPProxy' => null
 	)
 );
+
+$wgCustomInstallerSkin = "$wgStyleDirectory/Metrolook/skin.json";
+
+$wgCustomInstallerSkinJson = "$wgStyleDirectory/Metrolook/skin.json";
+
+$wgCustomInstallerStyles = 'skins.metrolook.styles';
 
 /**
  * For really cool vim folding this needs to be at the end:
