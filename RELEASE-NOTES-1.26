@@ -45,7 +45,7 @@ production.
 ==== External libraries ====
 * Update es5-shim from v4.0.0 to v4.1.5.
 * Update json2 from revision 2014-02-04 to 2015-05-03.
-* Update Sinon.JS from 1.10.3 to 1.15.0.
+* Update Sinon.JS from 1.10.3 to 1.15.4.
 * Upgrade jQuery Client from v1.0.0 to v2.0.0.
 * Added mediawiki/at-ease 1.0.0.
 * Update QUnit from v1.17.1 to v1.18.0.
