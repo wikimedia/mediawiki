@@ -1828,6 +1828,13 @@
 	"rollback-success": "Đã hủy sửa đổi của $1;\nquay về phiên bản cuối của $2.",
 	"sessionfailure-title": "Phiên thất bại",
 	"sessionfailure": "Dường như có trục trặc với phiên đăng nhập của bạn; thao tác này đã bị hủy để tránh việc cướp quyền đăng nhập. Xin hãy nhấn nút “Back”, tải lại trang đó, rồi thử lại.",
+	"changecontentmodel": "Thay đổi kiểu nội dung của một trang",
+	"changecontentmodel-legend": "Thay đổi kiểu nội dung",
+	"changecontentmodel-title-label": "Tên trang",
+	"changecontentmodel-model-label": "Kiểu nội dung mới",
+	"changecontentmodel-reason-label": "Lý do:",
+	"changecontentmodel-success-title": "Kiểu nội dung đã thay đổi",
+	"changecontentmodel-success-text": "Loại nội dung của [[:$1]] đã được thay đổi.",
 	"protectlogpage": "Nhật trình khóa",
 	"protectlogtext": "Đây là danh sách các thay đổi mức khóa trang. Xem [[Special:ProtectedPages|danh sách các trang hiện thời đang bị khóa]].",
 	"protectedarticle": "đã khóa “[[$1]]”",
@@ -2263,7 +2270,7 @@
 	"tooltip-pt-logout": "Đăng xuất",
 	"tooltip-pt-createaccount": "Khuyến khích bạn mở tài khoản và đăng nhập; tuy nhiên, không phải bắt buộc phải có tài khoản",
 	"tooltip-ca-talk": "Thảo luận về trang này",
-	"tooltip-ca-edit": "Bạn có thể sửa được trang này! (Xin vui lòng xem trước trước khi lưu.)",
+	"tooltip-ca-edit": "Chỉnh sửa trang này",
 	"tooltip-ca-addsection": "Bắt đầu một đề mục mới",
 	"tooltip-ca-viewsource": "Trang này được khóa. Bạn có thể xem mã nguồn.",
 	"tooltip-ca-history": "Các phiên bản cũ của trang này",
@@ -3434,5 +3441,5 @@
 	"special-characters-title-emdash": "dấu gạch em",
 	"special-characters-title-minus": "dấu trừ",
 	"mw-widgets-titleinput-description-new-page": "Trang này chưa tồn tại",
-	"mw-widgets-titleinput-description-redirect": "Đổi hướng đến $4"
+	"mw-widgets-titleinput-description-redirect": "Đổi hướng đến $1"
 }

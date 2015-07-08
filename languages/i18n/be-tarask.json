@@ -1822,6 +1822,7 @@
 	"changecontentmodel": "Зьмена мадэлі зьместу старонкі",
 	"changecontentmodel-legend": "Зьмена мадэлі зьместу",
 	"changecontentmodel-title-label": "Назва старонкі",
+	"changecontentmodel-model-label": "Новая мадэль зьместу",
 	"protectlogpage": "Журнал абаронаў",
 	"protectlogtext": "Ніжэй пададзены сьпіс зьменаў абароны старонкі.\nГлядзіце [[Special:ProtectedPages|сьпіс абароненых старонак на цяперашні момант]].",
 	"protectedarticle": "абароненая «[[$1]]»",

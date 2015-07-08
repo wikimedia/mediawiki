@@ -1538,7 +1538,7 @@
 	"filerevert-comment": "原因：",
 	"filerevert-defaultcomment": "恢复至$1 $2的版本",
 	"filerevert-submit": "恢复",
-	"filerevert-success": "'''[[Media:$1|$1]]'''已经恢复至[$4 $2 $3的版本]。",
+	"filerevert-success": "<strong>[[Media:$1|$1]]</strong>已经恢复至[$4 $2 $3的版本]。",
 	"filerevert-badversion": "文件并无所请求时间戳下的早期本地版本。",
 	"filedelete": "删除$1",
 	"filedelete-legend": "删除文件",
