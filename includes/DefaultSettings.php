@@ -8625,6 +8625,20 @@ $wgVirtualRestConfig = [
 ];
 
 /**
+ * Used for adding path to the main file holding the code for skin.
+ *
+ * @since 1.30
+ */
+$wgCustomInstallerSkin = "$wgStyleDirectory/Vector/skin.json";
+
+/**
+ * Used adding your skin style resource loader name.
+ *
+ * @since 1.30
+ */
+$wgCustomInstallerStyles = 'skins.vector.styles';
+
+/**
  * Controls whether zero-result search queries with suggestions should display results for
  * these suggestions.
  *
