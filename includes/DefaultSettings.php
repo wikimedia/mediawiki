@@ -7766,6 +7766,26 @@ $wgVirtualRestConfig = array(
 		'HTTPProxy' => null
 	)
 );
+/**
+ * Used for adding path to the main file holding the code for skin.
+ *
+ * @since 1.26
+ */
+$wgCustomInstallerSkin = "$wgStyleDirectory/Vector/skin.json";
+
+/**
+ * Used for adding path to thejson file holding the skin stuff.
+ *
+ * @since 1.26
+ */
+$wgCustomInstallerSkinJson = "$wgStyleDirectory/Vector/skin.json";
+
+/**
+ * Used adding your skin style resource loader name.
+ *
+ * @since 1.26
+ */
+$wgCustomInstallerStyles = 'skins.vector.styles';
 
 /**
  * Controls whether zero-result search queries with suggestions should display results for
