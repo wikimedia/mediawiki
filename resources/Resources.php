@@ -853,6 +853,7 @@ return array(
 	'mediawiki.api.parse' => array(
 		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.parse.js',
 		'dependencies' => 'mediawiki.api',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.api.watch' => array(
 		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.watch.js',
