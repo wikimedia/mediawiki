@@ -30,6 +30,7 @@
 		 * - .mw-spinner for every spinner
 		 * - .mw-spinner-small / .mw-spinner-large for size
 		 * - .mw-spinner-block / .mw-spinner-inline for display types
+		 * - .mw-spinner-svg when we're using animated SVG
 		 *
 		 * Example:
 		 *
@@ -75,6 +76,13 @@
 			$spinner.addClass( opts.size === 'large' ? 'mw-spinner-large' : 'mw-spinner-small' );
 			$spinner.addClass( opts.type === 'block' ? 'mw-spinner-block' : 'mw-spinner-inline' );
 
+			// HiDPI-friendly CSS animation based on sample from loader.io
+			if ( supportsAnimation() ) {
+				$spinner
+					.addClass( 'mw-spinner-anim' )
+					.append( createAnimation() );
+			}
+
 			return $spinner;
 		},
 
@@ -103,6 +111,39 @@
 	$.fn.injectSpinner = function ( opts ) {
 		return this.after( $.createSpinner( opts ) );
 	};
+
+	function supportsAnimation() {
+		var $div = $( '<div>' ),
+			div = $div[0],
+			style = div.style;
+		return ( typeof style.animation === 'string' )
+			|| ( typeof style.webkitAnimation === 'string' );
+	}
+
+	function createAnimation() {
+		var $anim = $( '<div>' ).addClass( 'mw-spinner-anim-inner' ),
+			i,
+			deg,
+			transform;
+		for ( i = 0; i < 12; i++ ) {
+			deg = i * 30;
+			transform = 'rotate(' + deg + 'deg) translate(0,-60px)';
+			$( '<div>' )
+				.css( {
+					top: '80px',
+					left: '93px',
+					width: '14px',
+					height: '40px',
+					background: 'black',
+					transform: transform,
+					'-webkit-transform': transform,
+					borderRadius: '10px',
+					position: 'absolute'
+				} )
+				.appendTo( $anim );
+		}
+		return $anim;
+	}
 
 	/**
 	 * @class jQuery
