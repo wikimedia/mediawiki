@@ -592,7 +592,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$retval = array();
 		if ( is_array( $metadata ) ) {
 			foreach ( $metadata as $key => $value ) {
-				$r = array( 'name' => $key );
+				$r = array(
+					'name' => $key,
+					ApiResult::META_BC_BOOLS => array( 'value' ),
+				);
 				if ( is_array( $value ) ) {
 					$r['value'] = self::processMetaData( $value, $result );
 				} else {
