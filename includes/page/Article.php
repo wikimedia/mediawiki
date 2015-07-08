@@ -237,7 +237,8 @@ class Article implements Page {
 				$content = ContentHandler::makeContent( $text, $this->getTitle() );
 			} else {
 				$message = $this->getContext()->getUser()->isLoggedIn() ? 'noarticletext' : 'noarticletextanon';
-				$content = new MessageContent( $message, null, 'parsemag' );
+				$content = new MessageContent( $message,
+					array( wfExpandUrl( $this->getTitle()->getEditURL(), PROTO_CURRENT ) ) );
 			}
 		} else {
 			$this->fetchContentObject();
@@ -1265,7 +1266,7 @@ class Article implements Page {
 				&& $title->quickUserCan( 'edit', $this->getContext()->getUser() )
 			) {
 				$message = $this->getContext()->getUser()->isLoggedIn() ? 'noarticletext' : 'noarticletextanon';
-				$text = wfMessage( $message )->plain();
+				$text = wfMessage( $message, wfExpandUrl( $title->getEditURL(), PROTO_CURRENT ) )->plain();
 			} else {
 				$text = wfMessage( 'noarticletext-nopermission' )->plain();
 			}
@@ -1772,11 +1773,9 @@ class Article implements Page {
 			Xml::closeElement( 'form' );
 
 			if ( $user->isAllowed( 'editinterface' ) ) {
-				$link = Linker::linkKnown(
+				$link = Linker::linkEdit(
 					$ctx->msg( 'deletereason-dropdown' )->inContentLanguage()->getTitle(),
-					wfMessage( 'delete-edit-reasonlist' )->escaped(),
-					array(),
-					array( 'action' => 'edit' )
+					wfMessage( 'delete-edit-reasonlist' )->escaped()
 				);
 				$form .= '<p class="mw-delete-editreasons">' . $link . '</p>';
 			}

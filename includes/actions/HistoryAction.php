@@ -721,12 +721,11 @@ class HistoryPager extends ReverseChronologicalPager {
 				$undoTooltip = $latest
 					? array( 'title' => $this->msg( 'tooltip-undo' )->text() )
 					: array();
-				$undolink = Linker::linkKnown(
+				$undolink = Linker::linkEdit(
 					$this->getTitle(),
 					$this->msg( 'editundo' )->escaped(),
 					$undoTooltip,
 					array(
-						'action' => 'edit',
 						'undoafter' => $prevRev->getId(),
 						'undo' => $rev->getId()
 					)
