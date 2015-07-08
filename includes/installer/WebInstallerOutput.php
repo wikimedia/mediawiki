@@ -135,18 +135,18 @@ class WebInstallerOutput {
 
 		$resourceLoader = new ResourceLoader();
 
-		if ( file_exists( "$wgStyleDirectory/Vector/skin.json" ) ) {
+		if ( file_exists( $GLOBALS['wgCustomInstallerSkin'] ) ) {
 			// Force loading Vector skin if available as a fallback skin
 			// for whatever ResourceLoader wants to have as the default.
 			$registry = new ExtensionRegistry();
 			$data = $registry->readFromQueue( array(
-				"$wgStyleDirectory/Vector/skin.json" => 1,
+				$GLOBALS['wgCustomInstallerSkinJson'] => 1,
 			) );
 			if ( isset( $data['globals']['wgResourceModules'] ) ) {
 				$resourceLoader->register( $data['globals']['wgResourceModules'] );
 			}
 
-			$moduleNames[] = 'skins.vector.styles';
+			$moduleNames[] = $GLOBALS['wgCustomInstallerStyles'];
 		}
 
 		$moduleNames[] = 'mediawiki.legacy.config';
