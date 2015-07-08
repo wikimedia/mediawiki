@@ -38,3 +38,93 @@
 	zoom: 1;
 	*display: inline;
 }
+
+
+/* Spinner animation CSS generated via loader.io and manually cleaned up*/
+
+@-webkit-keyframes mw-spinner-anim {
+	0% {
+		opacity: 1
+	}
+	100% {
+		opacity: 0
+	}
+}
+@keyframes mw-spinner-anim {
+	0% {
+		opacity: 1
+	}
+	100% {
+		opacity: 0
+	}
+}
+
+.mw-spinner-small.mw-spinner-anim {
+	background: none;
+	-webkit-transform: scale(0.1);
+	transform: scale(0.1);
+}
+.mw-spinner-large.mw-spinner-anim {
+	background: none;
+	-webkit-transform: scale(0.16);
+	transform: scale(0.16);
+}
+
+.mw-spinner-anim-inner {
+	position: relative;
+	background: none;
+	width: 200px;
+	height: 200px;
+}
+.mw-spinner-anim-inner > div {
+	-webkit-animation: mw-spinner-anim 1s linear infinite;
+	animation: mw-spinner-anim 1s linear infinite;
+}
+.mw-spinner-anim-inner > div:nth-of-type(1){
+	-webkit-animation-delay: -0.5s;
+	animation-delay: -0.5s;
+}
+.mw-spinner-anim-inner > div:nth-of-type(2){
+	-webkit-animation-delay: -0.417s;
+	animation-delay: -0.417s;
+}
+.mw-spinner-anim-inner > div:nth-of-type(3){
+	-webkit-animation-delay: -0.333s;
+	animation-delay: -0.333s;
+}
+.mw-spinner-anim-inner > div:nth-of-type(4){
+	-webkit-animation-delay: -0.25s;
+	animation-delay: -0.25s;
+}
+.mw-spinner-anim-inner > div:nth-of-type(5){
+	-webkit-animation-delay: -0.167s;
+	animation-delay: -0.167s;
+}
+.mw-spinner-anim-inner > div:nth-of-type(6){
+	-webkit-animation-delay: -0.083s;
+	animation-delay: -0.083s;
+}
+.mw-spinner-anim-inner > div:nth-of-type(7){
+	-webkit-animation-delay: 0s;
+	animation-delay: 0s;
+}
+.mw-spinner-anim-inner > div:nth-of-type(8){
+	-webkit-animation-delay: 0.083s;
+	animation-delay: 0.083s;
+}
+.mw-spinner-anim-inner > div:nth-of-type(9){
+	-webkit-animation-delay: 0.167s;
+	animation-delay: 0.167s;
+}
+.mw-spinner-anim-inner > div:nth-of-type(10){
+	-webkit-animation-delay: 0.25s;
+	animation-delay: 0.25s;
+}
+.mw-spinner-anim-inner > div:nth-of-type(11){
+	-webkit-animation-delay: 0.333s;
+	animation-delay: 0.333s;
+}
+.mw-spinner-anim-inner > div:nth-of-type(12){
+	-webkit-animation-delay: 0.417s;
+	animation-delay: 0.417s;
+}
