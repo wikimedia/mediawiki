@@ -1026,7 +1026,7 @@ class Parser {
 			$first_two = substr( $line, 0, 2 );
 			$matches = array();
 
-			if ( preg_match( '/^(:*)\{\|(.*)$/', $line, $matches ) ) {
+			if ( preg_match( '/^(:*)\s*\{\|(.*)$/', $line, $matches ) ) {
 				# First check if we are starting a new table
 				$indent_level = strlen( $matches[1] );
 
