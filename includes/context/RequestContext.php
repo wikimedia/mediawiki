@@ -494,15 +494,17 @@ class RequestContext implements IContextSource {
 	/**
 	 * Import an client IP address, HTTP headers, user ID, and session ID
 	 *
-	 * This sets the current session and sets $wgUser and $wgRequest.
+	 * This sets the current session, $wgUser, and $wgRequest from $params.
 	 * Once the return value falls out of scope, the old context is restored.
-	 * This method should only be called in contexts (CLI or HTTP job runners)
-	 * where there is no session ID or end user receiving the response. This
+	 * This method should only be called in contexts where there is no session
+	 * ID or end user receiving the response (CLI or HTTP job runners). This
 	 * is partly enforced, and is done so to avoid leaking cookies if certain
 	 * error conditions arise.
 	 *
-	 * This will setup the session from the given ID. This is useful when
-	 * background scripts inherit context when acting on behalf of a user.
+	 * This is useful when background scripts inherit context when acting on
+	 * behalf of a user. In general the 'sessionId' parameter should be set
+	 * to an empty string unless session importing is *truly* needed. This
+	 * feature is somewhat deprecated.
 	 *
 	 * @note suhosin.session.encrypt may interfere with this method.
 	 *
