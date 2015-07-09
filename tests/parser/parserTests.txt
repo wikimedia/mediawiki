@@ -7075,7 +7075,7 @@ Link containing a tilde
 !! wikitext
 [[Foo~bar]]
 !! html/php
-<p><a href="/wiki/Foo%7Ebar" title="Foo~bar">Foo~bar</a>
+<p><a href="/wiki/Foo~bar" title="Foo~bar">Foo~bar</a>
 </p>
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./Foo~bar" title="Foo~bar">Foo~bar</a></p>
