@@ -21,8 +21,20 @@ class HTMLButtonField extends HTMLFormField {
 	}
 
 	public function getInputHTML( $value ) {
+		$flags = '';
+		$prefix = 'mw-htmlform-';
+		if ( $this->mParent instanceof VFormHTMLForm ||
+			$this->mParent->getConfig()->get( 'UseMediaWikiUIEverywhere' )
+		) {
+			$prefix = 'mw-ui-';
+			// add mw-ui-button separately, so the descriptor doesn't need to set it
+			$flags .= $prefix.'button';
+		}
+		foreach ( $this->mFlags as $flag ) {
+			$flags .= ' ' . $prefix . $flag;
+		}
 		$attr = array(
-			'class' => 'mw-htmlform-submit ' . $this->mClass,
+			'class' => 'mw-htmlform-submit ' . $this->mClass . $flags,
 			'id' => $this->mID,
 		) + $this->getAttributes( array( 'disabled', 'tabindex' ) );
 
