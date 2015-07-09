@@ -1597,7 +1597,8 @@ $wgEnotifRevealEditorAddress = false;
 
 /**
  * Send notification mails on minor edits to watchlist pages. This is enabled
- * by default. Does not affect user talk notifications.
+ * by default. User talk notifications are affected by this, $wgEnotifUserTalk, and
+ * the nominornewtalk user right.
  */
 $wgEnotifMinorEdits = true;
 
