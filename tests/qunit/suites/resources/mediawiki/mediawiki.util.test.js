@@ -92,7 +92,7 @@
 		assert.equal( mw.util.rawurlencode( 'Test:A & B/Here' ), 'Test%3AA%20%26%20B%2FHere' );
 	} );
 
-	QUnit.test( 'wikiUrlencode', 10, function ( assert ) {
+	QUnit.test( 'wikiUrlencode', 11, function ( assert ) {
 		assert.equal( mw.util.wikiUrlencode( 'Test:A & B/Here' ), 'Test:A_%26_B/Here' );
 		// See also wfUrlencodeTest.php#provideURLS
 		$.each( {
@@ -102,6 +102,7 @@
 			':': ':',
 			';@$-_.!*': ';@$-_.!*',
 			'/': '/',
+			'~': '~',
 			'[]': '%5B%5D',
 			'<>': '%3C%3E',
 			'\'': '%27'
