@@ -6736,7 +6736,7 @@ $wgJobSerialCommitThreshold = false;
  * These settings should be global to all wikis.
  */
 $wgJobTypeConf = array(
-	'default' => array( 'class' => 'JobQueueDB', 'order' => 'random' ),
+	'default' => array( 'class' => 'JobQueueDB', 'order' => 'random', 'claimTTL' => 3600 ),
 );
 
 /**
