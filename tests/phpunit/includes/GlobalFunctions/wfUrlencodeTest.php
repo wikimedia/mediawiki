@@ -112,6 +112,8 @@ class WfUrlencodeTest extends MediaWikiTestCase {
 			### Other tests
 			// slash remain unchanged. %2F seems to break things
 			array( '/', '/' ),
+			// T105265
+			array( '~', '~' ),
 
 			// Other 'funnies' chars
 			array( '[]', '%5B%5D' ),
