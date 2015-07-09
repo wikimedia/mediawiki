@@ -1,14 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Palapa"
+			"Palapa",
+			"Semso98"
 		]
 	},
 	"apihelp-main-param-action": "Koju akciju izvesti.",
 	"apihelp-main-param-format": "Format izlaza.",
 	"apihelp-block-description": "Blokiraj korisnika",
 	"apihelp-block-param-reason": "Razlog za blokadu",
-	"apihelp-block-example-ip-simple": "Blokiraj IP 192.0.2.5 na tri dana sa razlogom \"Prvi napad\"",
+	"apihelp-block-example-ip-simple": "Blokiraj IP adresu <kbd>192.0.2.5</kbd> na tri dana sa razlogom <kbd>Prvi napad</kbd>.",
 	"apihelp-compare-param-fromtitle": "Prvi naslov za poređenje.",
 	"apihelp-delete-description": "Obriši stranicu.",
 	"apihelp-edit-param-text": "Sadržaj stranice.",

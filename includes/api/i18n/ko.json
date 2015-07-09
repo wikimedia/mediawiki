@@ -26,6 +26,7 @@
 	"apihelp-block-param-watchuser": "해당 사용자 또는 IP 주소의 사용자 문서 및 토론 문서를 주시합니다.",
 	"apihelp-block-example-ip-simple": "IP <kbd>192.0.2.5</kbd>에 대해 <kbd>First strike</kbd>라는 이유로 3일간 차단하기",
 	"apihelp-block-example-user-complex": "사용자 <kbd>Vandal</kbd>을 <kbd>Vandalism</kbd>이라는 이유로 무기한 차단하며 계정 생성 및 이메일 발송을 막기",
+	"apihelp-createaccount-description": "새 계정 만들기",
 	"apihelp-createaccount-param-name": "사용자 이름",
 	"apihelp-delete-description": "문서 삭제",
 	"apihelp-delete-example-simple": "<kbd>Main Page</kbd>를 삭제합니다.",

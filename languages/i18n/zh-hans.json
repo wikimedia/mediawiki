@@ -666,7 +666,7 @@
 	"loginreqlink": "登录",
 	"loginreqpagetext": "您必须$1才能查看其它页面。",
 	"accmailtitle": "密码已寄出",
-	"accmailtext": "为[[User talk:$1|$1]]随机生成的密码已送至$2。登录后可以在''[[Special:ChangePassword|更改密码]]''页面中修改。",
+	"accmailtext": "为[[User talk:$1|$1]]随机生成的密码已送至$2。登录后可以在<em>[[Special:ChangePassword|更改密码]]</em>页面中修改。",
 	"newarticle": "（新页面）",
 	"newarticletext": "你点击了一个尚不存在的页面的链接。要创建该页面，请在下面的编辑框中输入内容（更多信息请见[$1 帮助页面]）。如果你是错误地到达这里，请点击您的浏览器的<strong>返回</strong>按钮。",
 	"anontalkpagetext": "---- ''这是一个还未建立账户的匿名用户的讨论页, 因此我们只能用IP地址来与他或她联络。该IP地址可能由几名用户共享。如果您是一名匿名用户并认为此页上的评语与您无关，请[[Special:UserLogin/signup|创建新账户]]或[[Special:UserLogin|登录]]以避免在未来与其他匿名用户混淆。''",

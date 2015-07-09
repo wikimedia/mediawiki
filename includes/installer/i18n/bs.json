@@ -3,15 +3,19 @@
 		"authors": [
 			"CERminator",
 			"Palapa",
-			"Emir Mujadzic"
+			"Emir Mujadzic",
+			"Semso98"
 		]
 	},
 	"config-desc": "Instalacija za MediaWiki",
 	"config-title": "MediaWiki $1 instalacija",
 	"config-information": "Informacija",
 	"config-localsettings-upgrade": "Otkrivena je datoteka <code>LocalSettings.php</code>.\nDa biste unaprijedili vaš softver, molimo vas upišite vrijednost od <code>$wgUpgradeKey</code> u okvir ispod.\nNaći ćete ga u <code>LocalSettings.php</code>.",
+	"config-localsettings-cli-upgrade": "Datoteka <code>LocalSettings.php</code> file je otkrivena.\nZa nadogradnju ove instalacije, molimo da pokrenete <code>update.php</code> umjesto toga",
 	"config-localsettings-key": "Ključ za nadgradnju:",
 	"config-localsettings-badkey": "Ključ koji ste dali je pogrešan.",
+	"config-upgrade-key-missing": "Postojeća instalacije MediaWiki je pronađena.\nZa nadogradnju ove instalacije, molimo da stavite sljedeće liniju na dno vašeg <code>LocalSettings.php</code>:\n\n$1",
+	"config-localsettings-incomplete": "Postojeći <code>LocalSettings.php</code> se čini da je nepotpun.\nVarijabla $1 nije podešena.\nMolimo da zamjenite <code>LocalSettings.php</code> tako da je varijabla podešena, i kliknite \"{{int:Config-continue}}\".",
 	"config-session-error": "Greška pri pokretanju sesije: $1",
 	"config-no-session": "Vaši podaci sesije su izgubljeni!\nProvjerite vaš php.ini i provjerite da li je <code>session.save_path</code> postavljen na pravilni direktorijum.",
 	"config-your-language": "Vaš jezik:",

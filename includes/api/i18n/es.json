@@ -267,7 +267,7 @@
 	"apihelp-parse-param-effectivelanglinks": "Incluye enlaces de idiomas proporcionados por las extensiones (para utilizar con <kbd>$1prop=langlinks</kbd>).",
 	"apihelp-parse-param-preview": "Analizar en modo de vista previa.",
 	"apihelp-parse-param-sectionpreview": "Analizar sección en modo de vista previa (activa el modo de vista previa).",
-	"apihelp-parse-param-disabletoc": "Desactivar la tabla de contenidos en la salida.",
+	"apihelp-parse-param-disabletoc": "Omitir la tabla de contenidos en la salida.",
 	"apihelp-parse-example-page": "Analizar una página.",
 	"apihelp-parse-example-text": "Analizar wikitexto.",
 	"apihelp-parse-example-texttitle": "Analizar wikitexto, especificando el título de la página.",

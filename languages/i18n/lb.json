@@ -2030,7 +2030,7 @@
 	"ip_range_invalid": "Ongëltegen IP Block.",
 	"ip_range_toolarge": "Späre vu Beräicher déi méi grouss wéi /$1 si sinn net erlaabt.",
 	"proxyblocker": "Proxy blocker",
-	"proxyblockreason": "Är IP-Adress gouf gespaart, well si een oppene Proxy ass. Kontaktéiert w.e.g. ären Internet-Provider oder ärs Systemadministrateuren und informéiert si iiwwer dëses méigleche Sécherheetsprobleem.",
+	"proxyblockreason": "Är IP-Adress gouf gespaart, well si een oppene Proxy ass. Kontaktéiert w.e.g. ären Internet-Provider oder Är Systemadministrateuren an informéiert si iwwer dëse méigleche Sécherheetsproblem.",
 	"sorbsreason": "Är IP Adress steet als oppene Proxy an der schwaarzer Lëscht (DNSBL) déi vu {{SITENAME}} benotzt gëtt.",
 	"sorbs_create_account_reason": "Är IP-Adress steet als oppene Proxy an der schwaarzer Lëscht déi op {{SITENAME}} benotzt gëtt. DIr kënnt keen neie Benotzerkont opmaachen.",
 	"xffblockreason": "Eng IP-Adress am X-Forwarded-For-Header gouf gespaart, entweder Är oder déi vum Proxyserver deen Dir benotzt. De Grond vun der Spär war: $1",
