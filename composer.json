@@ -51,7 +51,7 @@
 	},
 	"scripts": {
 		"lint": "parallel-lint --exclude vendor",
-		"phpcs": "phpcs $PHPCS_ARGS -s --standard=vendor/mediawiki/mediawiki-codesniffer/MediaWiki --ignore=vendor,node_modules --encoding=utf-8 --extensions=php,php5,inc,sample",
+		"phpcs": "phpcs -p $PHPCS_ARGS",
 		"test": [
 			"composer lint",
 			"composer phpcs"
