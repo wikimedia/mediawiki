@@ -37,7 +37,7 @@ class CachingSiteStoreTest extends MediaWikiTestCase {
 
 		$store = new CachingSiteStore(
 			$this->getHashSiteStore( $testSites ),
-			wfGetMainCache()
+			$this->getWANCache()
 		);
 
 		$sites = $store->getSites();
@@ -158,4 +158,11 @@ class CachingSiteStoreTest extends MediaWikiTestCase {
 		return $siteStore;
 	}
 
+	private function getWANCache() {
+		return new WANObjectCache( array(
+			'cache'   => new HashBagOStuff(),
+			'pool'    => 'empty',
+			'relayer' => new EventRelayerNull( array() )
+		) );
+	}
 }
