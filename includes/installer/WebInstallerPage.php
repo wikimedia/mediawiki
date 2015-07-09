@@ -833,6 +833,8 @@ class WebInstallerName extends WebInstallerPage {
 	 * @return bool
 	 */
 	public function submit() {
+		global $wgPasswordPolicy;
+
 		$retVal = true;
 		$this->parent->setVarsFromRequest( array( 'wgSitename', '_NamespaceType',
 			'_AdminName', '_AdminPassword', '_AdminPasswordConfirm', '_AdminEmail',
@@ -909,7 +911,16 @@ class WebInstallerName extends WebInstallerPage {
 		$pwd = $this->getVar( '_AdminPassword' );
 		$user = User::newFromName( $cname );
 		if ( $user ) {
-			$valid = $user->getPasswordValidity( $pwd );
+			$upp = new UserPasswordPolicy(
+				$wgPasswordPolicy['policies'],
+				$wgPasswordPolicy['checks']
+			);
+			$status = $upp->checkUserPasswordForGroups(
+				$user,
+				$pwd,
+				array( 'sysop', 'bureaucrat' )
+			);
+			$valid = $status->isGood();
 		} else {
 			$valid = 'config-admin-name-invalid';
 		}
