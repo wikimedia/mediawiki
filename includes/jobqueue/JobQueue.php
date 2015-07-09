@@ -94,7 +94,7 @@ abstract class JobQueue {
 	 *                  This might be useful for improving concurrency for job acquisition.
 	 *   - claimTTL   : If supported, the queue will recycle jobs that have been popped
 	 *                  but not acknowledged as completed after this many seconds. Recycling
-	 *                  of jobs simple means re-inserting them into the queue. Jobs can be
+	 *                  of jobs simply means re-inserting them into the queue. Jobs can be
 	 *                  attempted up to three times before being discarded.
 	 *
 	 * Queue classes should throw an exception if they do not support the options given.
