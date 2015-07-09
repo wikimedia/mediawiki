@@ -402,12 +402,17 @@ function wfRandomString( $length = 32 ) {
  *
  * ;:@&=$-_.+!*'(),
  *
+ * RFC 1738 says ~ is unsafe, however RFC 3986 considers it an unreserved
+ * character which should not be encoded. More importantly, google chrome
+ * always converts %7E back to ~, and converting it in this function can
+ * cause a redirect loop (T105265).
+ *
  * But + is not safe because it's used to indicate a space; &= are only safe in
  * paths and not in queries (and we don't distinguish here); ' seems kind of
  * scary; and urlencode() doesn't touch -_. to begin with.  Plus, although /
  * is reserved, we don't care.  So the list we unescape is:
  *
- * ;:@$!*(),/
+ * ;:@$!*(),/~
  *
  * However, IIS7 redirects fail when the url contains a colon (Bug 22709),
  * so no fancy : for IIS7.
@@ -426,7 +431,7 @@ function wfUrlencode( $s ) {
 	}
 
 	if ( is_null( $needle ) ) {
-		$needle = array( '%3B', '%40', '%24', '%21', '%2A', '%28', '%29', '%2C', '%2F' );
+		$needle = array( '%3B', '%40', '%24', '%21', '%2A', '%28', '%29', '%2C', '%2F', '%7E' );
 		if ( !isset( $_SERVER['SERVER_SOFTWARE'] ) ||
 			( strpos( $_SERVER['SERVER_SOFTWARE'], 'Microsoft-IIS/7' ) === false )
 		) {
@@ -437,7 +442,7 @@ function wfUrlencode( $s ) {
 	$s = urlencode( $s );
 	$s = str_ireplace(
 		$needle,
-		array( ';', '@', '$', '!', '*', '(', ')', ',', '/', ':' ),
+		array( ';', '@', '$', '!', '*', '(', ')', ',', '/', '~', ':' ),
 		$s
 	);
 
