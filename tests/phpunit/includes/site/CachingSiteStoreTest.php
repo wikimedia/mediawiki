@@ -37,7 +37,7 @@ class CachingSiteStoreTest extends MediaWikiTestCase {
 
 		$store = new CachingSiteStore(
 			$this->getHashSiteStore( $testSites ),
-			wfGetMainCache()
+			$this->getWANCache()
 		);
 
 		$sites = $store->getSites();
@@ -62,7 +62,7 @@ class CachingSiteStoreTest extends MediaWikiTestCase {
 	 * @covers CachingSiteStore::saveSites
 	 */
 	public function testSaveSites() {
-		$store = new CachingSiteStore( new HashSiteStore(), wfGetMainCache() );
+		$store = new CachingSiteStore( new HashSiteStore(), $this->getWANCache() );
 
 		$sites = array();
 
@@ -111,7 +111,7 @@ class CachingSiteStoreTest extends MediaWikiTestCase {
 				return $siteList;
 			} ) );
 
-		$store = new CachingSiteStore( $dbSiteStore, wfGetMainCache() );
+		$store = new CachingSiteStore( $dbSiteStore, $this->getWANCache() );
 
 		// initialize internal cache
 		$this->assertGreaterThan( 0, $store->getSites()->count(), 'count sites' );
@@ -141,7 +141,7 @@ class CachingSiteStoreTest extends MediaWikiTestCase {
 	 * @covers CachingSiteStore::clear
 	 */
 	public function testClear() {
-		$store = new CachingSiteStore( new HashSiteStore(), wfGetMainCache() );
+		$store = new CachingSiteStore( new HashSiteStore(), $this->getWANCache() );
 		$this->assertTrue( $store->clear() );
 
 		$site = $store->getSite( 'enwiki' );
@@ -158,4 +158,11 @@ class CachingSiteStoreTest extends MediaWikiTestCase {
 		return $siteStore;
 	}
 
+	private function getWANCache() {
+		return new WANObjectCache( array(
+			'cache'   => new HashBagOStuff(),
+			'pool'    => 'empty',
+			'relayer' => new EventRelayerNull( array() )
+		) );
+	}
 }

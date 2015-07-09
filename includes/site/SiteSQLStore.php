@@ -34,19 +34,13 @@ class SiteSQLStore extends CachingSiteStore {
 	 * @since 1.21
 	 * @deprecated 1.25 Construct a SiteStore instance directly instead.
 	 *
-	 * @param ORMTable|null $sitesTable
-	 * @param BagOStuff|null $cache
-	 *
 	 * @return SiteStore
 	 */
-	public static function newInstance( ORMTable $sitesTable = null, BagOStuff $cache = null ) {
-		if ( $cache === null ) {
-			$cache = wfGetMainCache();
-		}
-
+	public static function newInstance() {
 		$siteStore = new DBSiteStore();
+		$wanCache = ObjectCache::getMainWANInstance();
 
-		return new static( $siteStore, $cache );
+		return new static( $siteStore, $wanCache );
 	}
 
 }
