@@ -28,7 +28,7 @@
  */
 class MovePageForm extends UnlistedSpecialPage {
 	/** @var Title */
-	protected $oldTitle;
+	protected $oldTitle = null;
 
 	/** @var Title */
 	protected $newTitle;
@@ -75,9 +75,12 @@ class MovePageForm extends UnlistedSpecialPage {
 		// Yes, the use of getVal() and getText() is wanted, see bug 20365
 
 		$oldTitleText = $request->getVal( 'wpOldTitle', $target );
-		$this->oldTitle = Title::newFromText( $oldTitleText );
+		if ( is_string( $oldTitleText ) ) {
+			$this->oldTitle = Title::newFromText( $oldTitleText );
+		}
 
-		if ( is_null( $this->oldTitle ) ) {
+		if ( $this->oldTitle === null ) {
+			// Either oldTitle wasn't passed, or newFromText returned null
 			throw new ErrorPageError( 'notargettitle', 'notargettext' );
 		}
 		if ( !$this->oldTitle->exists() ) {
