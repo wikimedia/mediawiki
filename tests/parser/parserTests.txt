@@ -20370,8 +20370,10 @@ Strip marker in urlencode
 {{urlencode:x<nowiki/>y}}
 {{urlencode:x<nowiki/>y|wiki}}
 {{urlencode:x<nowiki/>y|path}}
+{{urlencode:x<pre id="one">two</pre>y}}
 !! html
 <p>xy
+xy
 xy
 xy
 </p>
