@@ -7680,6 +7680,16 @@ $wgVirtualRestConfig = array(
 );
 
 /**
+ * Controls the percentage of zero-result search queries with suggestions that
+ * run the suggestion automatically. Must be a number between 0 and 1.  This
+ * can be lowered to reduce query volume at the expense of result quality.
+ *
+ * @var float
+ * @since 1.26
+ */
+$wgSearchRunSuggestedQueryPercent = 1;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
