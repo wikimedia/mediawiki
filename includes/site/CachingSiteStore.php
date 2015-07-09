@@ -46,7 +46,7 @@ class CachingSiteStore implements SiteStore {
 	private $cacheTimeout;
 
 	/**
-	 * @var BagOStuff
+	 * @var WANObjectCache
 	 */
 	private $cache;
 
@@ -57,13 +57,13 @@ class CachingSiteStore implements SiteStore {
 
 	/**
 	 * @param SiteStore $siteStore
-	 * @param BagOStuff $cache
+	 * @param WANObjectCache $cache
 	 * @param string|null $cacheKey
 	 * @param int $cacheTimeout
 	 */
 	public function __construct(
 		SiteStore $siteStore,
-		BagOStuff $cache,
+		WANObjectCache $cache,
 		$cacheKey = null,
 		$cacheTimeout = 3600
 	) {
