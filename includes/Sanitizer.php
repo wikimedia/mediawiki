@@ -753,7 +753,7 @@ class Sanitizer {
 			}
 
 			# Allow any attribute beginning with "data-"
-			if ( !preg_match( '/^data-/i', $attribute ) && !isset( $whitelist[$attribute] ) ) {
+			if ( !preg_match( '/^data-(?!ooui)/i', $attribute ) && !isset( $whitelist[$attribute] ) ) {
 				continue;
 			}
 
