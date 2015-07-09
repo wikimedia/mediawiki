@@ -9597,7 +9597,7 @@ hi+world%3F%21
 Magic Word: prioritize type info over data-parsoid
 !! options
 parsoid=html2wt
-!! html
+!! html/parsoid
 <meta property="mw:PageProp/forcetoc" data-parsoid='{"magicSrc":"__NOTOC__"}'/>
 !! wikitext
 __FORCETOC__
@@ -14151,7 +14151,7 @@ __FORCETOC__
 == Headline ==
 == Headline 2 ==
 == Headline ==
-!! html
+!! html/php
 <div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Headline_2"><span class="tocnumber">1</span> <span class="toctext">Headline 2</span></a></li>
@@ -14270,7 +14270,7 @@ TOC for heading containing <span id="..."></span> (T96153)
 !! wikitext
 __FORCETOC__
 ==<span id="old-anchor"></span>New title==
-!! html
+!! html/php
 <div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#New_title"><span class="tocnumber">1</span> <span class="toctext">New title</span></a></li>
@@ -17880,7 +17880,7 @@ __FORCETOC__ override
 !! wikitext
 __NEWSECTIONLINK__
 __FORCETOC__
-!! html
+!! html/php
 <p><br />
 </p>
 !! end
@@ -24462,7 +24462,7 @@ parsoid=html2wt
 Magic words
 !! options
 parsoid=html2wt
-!! html
+!! html/parsoid
 <meta property='mw:PageProp/toc' />
 <meta property='mw:PageProp/notoc' />
 <meta property='mw:PageProp/forcetoc' />
