@@ -141,4 +141,107 @@ class SpecialSearchTest extends MediaWikiTestCase {
 			"Search term '{$term}' should not be expanded in Special:Search <title>"
 		);
 	}
+
+	public function provideRewriteQueryWithSuggestion() {
+		return array(
+			array(
+				'With results and a suggestion does not run suggested query',
+				'/Did you mean: <a[^>]+>first suggestion/',
+				array(
+					new SpecialSearchTestMockResultSet( 'first suggestion', array(
+						SearchResult::newFromTitle( Title::newMainPage() ),
+					) ),
+					new SpecialSearchTestMockResultSet( 'was never run', array() ),
+				),
+			),
+
+			array(
+				'With no results and a suggestion responds with suggested query results',
+				'/Showing results for <a[^>]+>first suggestion/',
+				array(
+					new SpecialSearchTestMockResultSet( 'first suggestion', array() ),
+					new SpecialSearchTestMockResultSet( 'second suggestion', array(
+						SearchResult::newFromTitle( Title::newMainPage() ),
+					) ),
+				),
+			),
+
+			array(
+				'When both queries have no results user gets no results',
+				'/There were no results matching the query/',
+				array(
+					new SpecialSearchTestMockResultSet( 'first suggestion', array() ),
+					new SpecialSearchTestMockResultSet( 'second suggestion', array() ),
+				),
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider provideRewriteQueryWithSuggestion
+	 */
+	public function testRewriteQueryWithSuggestion( $message, $expectRegex, $fromResults ) {
+		$mockSearchEngine = $this->mockSearchEngine( $fromResults );
+		$search = $this->getMockBuilder( 'SpecialSearch' )
+			->setMethods( array( 'getSearchEngine' ) )
+			->getMock();
+		$search->expects( $this->any() )
+			->method( 'getSearchEngine' )
+			->will( $this->returnValue( $mockSearchEngine ) );
+
+		$search->getContext()->setTitle( Title::makeTitle( NS_SPECIAL, 'Search' ) );
+		$search->load();
+		$search->showResults( 'this is a fake search' );
+
+		$html = $search->getContext()->getOutput()->getHTML();
+		foreach ( (array)$expectRegex as $regex ) {
+			$this->assertRegExp( $regex, $html, $message );
+		}
+	}
+
+	protected function mockSearchEngine( array $returnValues ) {
+		$mock = $this->getMockBuilder( 'SearchEngine' )
+			->setMethods( array( 'searchText' ) )
+			->getMock();
+
+		$mock->expects( $this->any() )
+			->method( 'searchText' )
+			->will( call_user_func_array(
+				array( $this, 'onConsecutiveCalls' ),
+				array_map( array( $this, 'returnValue' ), $returnValues )
+			) );
+
+		return $mock;
+	}
+}
+
+class SpecialSearchTestMockResultSet extends SearchResultSet {
+	protected $results;
+	protected $suggestion;
+
+	public function __construct( $suggestion = null, array $results = array(), $containedSyntax = false) {
+		$this->results = $results;
+		$this->suggestion = $suggestion;
+		$this->containedSyntax = $containedSyntax;
+	}
+
+	public function numRows() {
+		return count( $this->results );
+	}
+
+	public function getTotalHits() {
+		return $this->numRows();
+	}
+
+	public function hasSuggestion() {
+		return $this->suggestion !== null;
+	}
+
+	public function getSuggestionQuery() {
+		return $this->suggestion;
+	}
+
+	public function getSuggestionSnippet() {
+		return $this->suggestion;
+	}
 }
