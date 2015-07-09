@@ -82,6 +82,7 @@
 				.replace( /%29/g, ')' )
 				.replace( /%2C/g, ',' )
 				.replace( /%2F/g, '/' )
+				.replace( /%7E/g, '~' )
 				.replace( /%3A/g, ':' );
 		},
 
