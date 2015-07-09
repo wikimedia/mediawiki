@@ -1084,6 +1084,7 @@
 	"search-category": "This text will be shown on the search result listing after the page title of a result if the search algorithm thinks that the page being in a particular category is relevant.\n\nParameters:\n* $1 - the category's name with any matching portion highlighted\n{{Identical|Category}}",
 	"search-file-match": "This text will be shown on the search result listing after the page title of a result if the search engine got search results from the contents of files, rather than the pages.",
 	"search-suggest": "Used for \"Did you mean\" suggestions:\n* $1 - suggested link",
+	"search-rewritten": "Used when the user is served the results for a query other than what they provided. Parameters:\n* $1 - a link to search for the current result set.* $2 - a link to perform the original search without rewriting.",
 	"search-interwiki-caption": "Used in [[Special:Search]], when showing search results from other wikis.",
 	"search-interwiki-default": "Parameters:\n* $1 - the hostname of the remote wiki from where the additional results listed below are returned",
 	"search-interwiki-custom": "#REDIRECT [[MediaWiki:Wmf-search-interwiki-custom/qqq]]",
