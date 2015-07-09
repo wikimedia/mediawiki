@@ -166,6 +166,6 @@ class LoadMonitorMySQL implements LoadMonitor {
 
 	private function getLagTimeCacheKey() {
 		# Lag is per-server, not per-DB, so key on the master DB name
-		return wfForeignMemcKey( $this->parent->getServerName( 0 ), '', 'lag_times' );
+		return wfGlobalCacheKey( 'lag-times', $this->parent->getServerName( 0 ) );
 	}
 }
