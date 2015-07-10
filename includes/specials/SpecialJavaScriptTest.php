@@ -44,6 +44,11 @@ class SpecialJavaScriptTest extends SpecialPage {
 
 		if ( $par === null ) {
 			// No framework specified
+			// If only one framework is configured, redirect to it. Otherwise display a list.
+			if ( count( self::$frameworks ) === 1 ) {
+				$out->redirect( $this->getPageTitle( self::$frameworks[0] )->getLocalURL() );
+				return;
+			}
 			$out->setStatusCode( 404 );
 			$out->setPageTitle( $this->msg( 'javascripttest' ) );
 			$out->addHTML(
@@ -74,10 +79,14 @@ class SpecialJavaScriptTest extends SpecialPage {
 		// no sensitive data. In order to allow TestSwarm to embed it into a test client window,
 		// we need to allow iframing of this page.
 		$out->allowClickjacking();
-		$out->setSubtitle(
-			$this->msg( 'javascripttest-backlink' )
-				->rawParams( Linker::linkKnown( $this->getPageTitle() ) )
-		);
+		if ( count( self::$frameworks ) !== 1 ) {
+			// If there's only one framework, don't set the subtitle since it
+			// is going to redirect back to this page
+			$out->setSubtitle(
+				$this->msg( 'javascripttest-backlink' )
+					->rawParams( Linker::linkKnown( $this->getPageTitle() ) )
+			);
+		}
 
 		// Custom actions
 		if ( isset( $pars[1] ) ) {
