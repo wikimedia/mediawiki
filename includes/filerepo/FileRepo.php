@@ -431,16 +431,18 @@ class FileRepo {
 		# Now try an old version of the file
 		if ( $time !== false ) {
 			$img = $this->newFile( $title, $time );
+			if ( $img ) {
 			$img->load( $flags );
-			if ( $img && $img->exists() ) {
-				if ( !$img->isDeleted( File::DELETED_FILE ) ) {
-					return $img; // always OK
-				} elseif ( !empty( $options['private'] ) &&
-					$img->userCan( File::DELETED_FILE,
-						$options['private'] instanceof User ? $options['private'] : null
-					)
-				) {
-					return $img;
+				if ( $img && $img->exists() ) {
+					if ( !$img->isDeleted( File::DELETED_FILE ) ) {
+						return $img; // always OK
+					} elseif ( !empty( $options['private'] ) &&
+						$img->userCan( File::DELETED_FILE,
+							$options['private'] instanceof User ? $options['private'] : null
+						)
+					) {
+						return $img;
+					}
 				}
 			}
 		}
@@ -452,14 +454,16 @@ class FileRepo {
 		$redir = $this->checkRedirect( $title );
 		if ( $redir && $title->getNamespace() == NS_FILE ) {
 			$img = $this->newFile( $redir );
-			$img->load( $flags );
-			if ( !$img ) {
-				return false;
-			}
-			if ( $img->exists() ) {
-				$img->redirectedFrom( $title->getDBkey() );
+			if ( $img ) {
+				$img->load( $flags );
+				if ( !$img ) {
+					return false;
+				}
+				if ( $img->exists() ) {
+					$img->redirectedFrom( $title->getDBkey() );
 
-				return $img;
+					return $img;
+				}
 			}
 		}
 
