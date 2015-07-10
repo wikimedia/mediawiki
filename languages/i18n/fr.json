@@ -2497,7 +2497,7 @@
 	"pageinfo-robot-index": "Autorisée",
 	"pageinfo-robot-noindex": "Interdite",
 	"pageinfo-watchers": "Nombre de contributeurs ayant la page dans leur liste de suivi",
-	"pageinfo-visiting-watchers": "Nombre d’observateurs de page ayant visité les modifications récentes",
+	"pageinfo-visiting-watchers": "Nombre d’observateurs de la page ayant visité les modifications récentes",
 	"pageinfo-few-watchers": "Moins de $1 {{PLURAL:$1|observateur|observateurs}}",
 	"pageinfo-few-visiting-watchers": "Il peut ou non y avoir un observateur regardant les modifications récentes",
 	"pageinfo-redirects-name": "Nombre de redirections vers cette page",

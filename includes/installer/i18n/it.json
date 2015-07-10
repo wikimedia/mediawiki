@@ -11,7 +11,8 @@
 			"Ontsed",
 			"Seb35",
 			"Nemo bis",
-			"Ricordisamoa"
+			"Ricordisamoa",
+			"Fpugliajno"
 		]
 	},
 	"config-desc": "Il programma di installazione per MediaWiki",
@@ -57,7 +58,6 @@
 	"config-env-bad": "L'ambiente è stato controllato.\nNon è possibile installare MediaWiki.",
 	"config-env-php": "PHP $1 è installato.",
 	"config-env-hhvm": "HHVM $1 è installato.",
-	"config-unicode-using-utf8": "Usa Brion Vibber's utf8_normalize.so per la normalizzazione Unicode.",
 	"config-unicode-using-intl": "Usa [http://pecl.php.net/intl l'estensione PECL intl] per la normalizzazione Unicode.",
 	"config-unicode-pure-php-warning": "'''Attenzione:''' [http://pecl.php.net/intl l'estensione PECL intl] non è disponibile per gestire la normalizzazione Unicode, così si usa la lenta implementazione in puro PHP.\nSe esegui un sito ad alto traffico, dovresti leggere alcune considerazioni sulla [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations normalizzazione Unicode].",
 	"config-unicode-update-warning": "'''Attenzione:''' La versione installata del gestore per la normalizzazione Unicode usa una vecchia versione della libreria [http://site.icu-project.org/ del progetto ICU].\nDovresti [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations aggiornare] se ti interessa usare l'Unicode.",
@@ -70,7 +70,7 @@
 	"config-magic-quotes-sybase": "'''Errore: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase] è attivato!''' Questa opzione interferisce in modo imprevedibile con l'inserimento dei dati. Non è possibile installare o utilizzare MediaWiki a meno che questa opzione non sia disabilitata.",
 	"config-mbstring": "'''Errore: [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] è attivato!''' Questa opzione causa errori e può interferire in modo imprevedibile coi dati. Non è possibile installare o utilizzare MediaWiki a meno che questa opzione non sia disabilitata.",
 	"config-safe-mode": "'''Attenzione:''' [http://www.php.net/features.safe-mode safe mode] è attivato!\nQuesta opzione potrebbe causare problemi, in particolare nel caricamento di documenti e nel supporto delle funzioni <code>math</code>.",
-	"config-xml-bad": "Il modulo XML di PHP è mancante.\nMediaWIki necessita di funzioni presenti in questo modulo e non funzionerà con la configurazione corrente.\nSe si sta eseguendo Mandrake, installare il paccketto php-xml.",
+	"config-xml-bad": "Manca il modulo XML di PHP.\nMediaWIki ha bisogno di funzionalità presenti in questo modulo e non funzionerà con la configurazione corrente.\nSe stai eseguendo Mandrake, installa il paccketto php-xml.",
 	"config-pcre-old": "<strong>Errore fatale:</strong> si richiede PCRE  $1 o successivo.\nIl tuo file binario PHP è collegato con PCRE $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/Maggiori informazioni su PCRE].",
 	"config-pcre-no-utf8": "'''Errore''': Il modulo PCRE di PHP sembra essere stato compilato senza il supporto PCRE_UTF8, ma MediaWiki lo richiede per funzionare correttamente.",
 	"config-memory-raised": "Il valore <code>memory_limit</code> di PHP è $1, aumentato a $2.",

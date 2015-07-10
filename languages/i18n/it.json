@@ -84,7 +84,8 @@
 			"Purodha",
 			"TecnoMaster",
 			"Alexmar983",
-			"Federico Mugnaini"
+			"Federico Mugnaini",
+			"Fpugliajno"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -1357,11 +1358,13 @@
 	"uploaddisabledtext": "Il caricamento dei file non è attivo.",
 	"php-uploaddisabledtext": "Il caricamento di file tramite PHP è disabilitato. Controlla la configurazione di file_uploads.",
 	"uploadscripted": "Questo file contiene codice HTML o di script, che potrebbe essere interpretato erroneamente da un browser web.",
+	"upload-scripted-pi-callback": "Impossibile caricare un file che contiene istruzione di elaborazione in XML-stylesheet.",
 	"uploaded-script-svg": "Trovato elemento di script \"$1\" nel file caricato in formato SVG.",
 	"uploaded-hostile-svg": "Trovato CSS non sicuro nell'elemento di stile del file in formato SVG caricato.",
 	"uploaded-event-handler-on-svg": "Impostazione gestione eventi ed attributi <code>$1=\"$2\"</code> non è consentito in file SGV",
 	"uploaded-href-attribute-svg": "Attributi href <code>&lt;$1 $2=\"$3\"&gt;</code> com un bersaglio non locale (e.g. http://, javascript:, etc) non sono permessi file SGV",
 	"uploaded-href-unsafe-target-svg": "Trovati href ad un bersaglio non sicuro <code>&lt;$1 $2=\"$3\"&gt;</code> caricato nel file SVG",
+	"uploaded-animate-svg": "Trovato il tag \"animate\" che potrebbe cambiare href, usando l'attributo \"from\" <code>&lt;$1 $2=\"$3\"&gt;</code> nel file SVG caricato.",
 	"uploaded-image-filter-svg": "Trovato filtro immagine con URL: <code>&lt;$1 $2=\"$3\"&gt;</code> nel file in formato SVG caricato.",
 	"uploadscriptednamespace": "Questo file SVG contiene un namespace '$1' non consentito",
 	"uploadinvalidxml": "Il codice XML nel file caricato non può essere elaborato.",
