@@ -6,6 +6,7 @@
     "doc": "jsduck",
     "postdoc": "grunt copy:jsduck"
   },
+  "private": true,
   "devDependencies": {
     "grunt": "0.4.5",
     "grunt-cli": "0.1.13",
@@ -15,6 +16,9 @@
     "grunt-contrib-watch": "0.6.1",
     "grunt-jscs": "2.1.0",
     "grunt-jsonlint": "1.0.4",
+    "grunt-postcss": "0.6.0",
+    "autoprefixer": "6.0.3",
+    "stylelint": "1.1.0",
     "grunt-karma": "0.11.0",
     "karma": "0.12.36",
     "karma-chrome-launcher": "0.1.12",
