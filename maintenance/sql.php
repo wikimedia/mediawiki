@@ -125,12 +125,12 @@ class MwSql extends Maintenance {
 			try {
 				$res = $db->query( $wholeLine );
 				$this->sqlPrintResult( $res, $db );
-				$prompt = $newPrompt;
-				$wholeLine = '';
 			} catch ( DBQueryError $e ) {
 				$doDie = !Maintenance::posix_isatty( 0 );
 				$this->error( $e, $doDie );
 			}
+			$prompt = $newPrompt;
+			$wholeLine = '';
 		}
 		wfWaitForSlaves();
 	}
