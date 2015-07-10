@@ -44,6 +44,11 @@ class SpecialJavaScriptTest extends SpecialPage {
 
 		if ( $par === null ) {
 			// No framework specified
+			// If only one framework is configured, redirect to it. Otherwise display a list.
+			if ( count( self::$frameworks ) === 1 ) {
+				$out->redirect( $this->getPageTitle( self::$frameworks[0] . '/plain' )->getLocalURL() );
+				return;
+			}
 			$out->setStatusCode( 404 );
 			$out->setPageTitle( $this->msg( 'javascripttest' ) );
 			$out->addHTML(
@@ -74,10 +79,14 @@ class SpecialJavaScriptTest extends SpecialPage {
 		// no sensitive data. In order to allow TestSwarm to embed it into a test client window,
 		// we need to allow iframing of this page.
 		$out->allowClickjacking();
-		$out->setSubtitle(
-			$this->msg( 'javascripttest-backlink' )
-				->rawParams( Linker::linkKnown( $this->getPageTitle() ) )
-		);
+		if ( count( self::$frameworks ) !== 1 ) {
+			// If there's only one framework, don't set the subtitle since it
+			// is going to redirect back to this page
+			$out->setSubtitle(
+				$this->msg( 'javascripttest-backlink' )
+					->rawParams( Linker::linkKnown( $this->getPageTitle() ) )
+			);
+		}
 
 		// Custom actions
 		if ( isset( $pars[1] ) ) {
@@ -134,13 +143,15 @@ class SpecialJavaScriptTest extends SpecialPage {
 	}
 
 	/**
-	 * Wrap HTML contents in a summary container.
+	 * Get summary text wrapped in a container
 	 *
-	 * @param string $html HTML contents to be wrapped
 	 * @return string HTML
 	 */
-	private function wrapSummaryHtml( $html ) {
-		return "<div id=\"mw-javascripttest-summary\">$html</div>";
+	private function getSummaryHtml() {
+		$summary = $this->msg( 'javascripttest-qunit-intro' )
+			->params( 'https://www.mediawiki.org/wiki/Manual:JavaScript_unit_testing' )
+			->parseAsBlock();
+		return "<div id=\"mw-javascripttest-summary\">$summary</div>";
 	}
 
 	/**
@@ -153,17 +164,13 @@ class SpecialJavaScriptTest extends SpecialPage {
 
 		$modules = $out->getResourceLoader()->getTestModuleNames( 'qunit' );
 
-		$summary = $this->msg( 'javascripttest-qunit-intro' )
-			->params( 'https://www.mediawiki.org/wiki/Manual:JavaScript_unit_testing' )
-			->parseAsBlock();
-
 		$baseHtml = <<<HTML
 <div class="mw-content-ltr">
 <div id="qunit"></div>
 </div>
 HTML;
 
-		$out->addHtml( $this->wrapSummaryHtml( $summary ) . $baseHtml );
+		$out->addHtml( $this->getSummaryHtml() . $baseHtml );
 
 		// The testrunner configures QUnit and essentially depends on it. However, test suites
 		// are reusable in environments that preload QUnit (or a compatibility interface to
@@ -249,10 +256,12 @@ HTML;
 		);
 
 		$head = trim( $styles['html'] . $scripts['html'] );
+		$summary = $this->getSummaryHtml();
 		$html = <<<HTML
 <!DOCTYPE html>
 <title>QUnit</title>
 $head
+$summary
 <div id="qunit"></div>
 HTML;
 		$html .= "\n" . Html::linkedScript( $url );
