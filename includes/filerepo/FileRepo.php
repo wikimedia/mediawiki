@@ -433,16 +433,16 @@ class FileRepo {
 			$img = $this->newFile( $title, $time );
 			if ( $img ) {
 				$img->load( $flags );
-			}
-			if ( $img && $img->exists() ) {
-				if ( !$img->isDeleted( File::DELETED_FILE ) ) {
-					return $img; // always OK
-				} elseif ( !empty( $options['private'] ) &&
-					$img->userCan( File::DELETED_FILE,
-						$options['private'] instanceof User ? $options['private'] : null
-					)
-				) {
-					return $img;
+				if ( $img->exists() ) {
+					if ( !$img->isDeleted( File::DELETED_FILE ) ) {
+						return $img; // always OK
+					} elseif ( !empty( $options['private'] ) &&
+						$img->userCan( File::DELETED_FILE,
+							$options['private'] instanceof User ? $options['private'] : null
+						)
+					) {
+						return $img;
+					}
 				}
 			}
 		}
