@@ -1912,7 +1912,7 @@ abstract class DatabaseBase implements IDatabase {
 	) {
 		$rows = 0;
 		$sql = $this->selectSQLText( $table, '1', $conds, $fname, $options );
-		$res = $this->query( "SELECT COUNT(*) AS rowcount FROM ($sql) tmp_count" );
+		$res = $this->query( "SELECT COUNT(*) AS rowcount FROM ($sql) tmp_count", $fname );
 
 		if ( $res ) {
 			$row = $this->fetchRow( $res );
