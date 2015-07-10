@@ -4005,6 +4005,7 @@ class User implements IDBAccessObject {
 			return true;
 		} elseif ( $wgAuth->strict() ) {
 			// Auth plugin doesn't allow local authentication
+			wfDebugLog( 'AuthPluginStrict', "Authentication denied for {$this->getName()}" );
 			return false;
 		} elseif ( $wgAuth->strictUserAuth( $this->getName() ) ) {
 			// Auth plugin doesn't allow local authentication for this user name
