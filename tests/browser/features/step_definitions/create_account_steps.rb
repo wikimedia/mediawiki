@@ -22,5 +22,5 @@ When(/^I submit the form$/) do
 end
 
 Then(/^an error message is displayed$/) do
-  expect(on(CreateAccountPage).error_message_element.class_name).to eq "errorbox"
+  expect(on(CreateAccountPage).error_message_element.class_name).to eq 'errorbox'
 end
