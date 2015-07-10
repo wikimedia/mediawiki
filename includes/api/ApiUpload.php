@@ -527,17 +527,28 @@ class ApiUpload extends ApiBase {
 				$this->dieUsage( $msg, 'filetype-banned', 0, $extradata );
 				break;
 			case UploadBase::VERIFICATION_ERROR:
+				$params = $verification['details'];
+				$key = array_shift( $params );
+				$msg = $this->msg( $key, $params )->inLanguage( 'en' )->useDatabase( false )->text();
 				ApiResult::setIndexedTagName( $verification['details'], 'detail' );
-				$this->dieUsage( 'This file did not pass file verification', 'verification-error',
+				$this->dieUsage( "This file did not pass file verification: $msg", 'verification-error',
 					0, array( 'details' => $verification['details'] ) );
 				break;
 			case UploadBase::HOOK_ABORTED:
-				$this->dieUsage( "The modification you tried to make was aborted by an extension hook",
-					'hookaborted', 0, array( 'error' => $verification['error'] ) );
+				if ( is_array( $verification['error'] ) ) {
+					$params = $verification['error'];
+				} elseif ( $verification['error'] !== '' ) {
+					$params = array( $verification['error'] );
+				} else {
+					$params = array( 'hookaborted' );
+				}
+				$key = array_shift( $params );
+				$msg = $this->msg( $key, $params )->inLanguage( 'en' )->useDatabase( false )->text();
+				$this->dieUsage( $msg, 'hookaborted', 0, array( 'details' => $verification['error'] ) );
 				break;
 			default:
 				$this->dieUsage( 'An unknown error occurred', 'unknown-error',
-					0, array( 'code' => $verification['status'] ) );
+					0, array( 'details' => array( 'code' => $verification['status'] ) ) );
 				break;
 		}
 	}
