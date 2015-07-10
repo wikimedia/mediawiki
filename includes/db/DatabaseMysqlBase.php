@@ -940,7 +940,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 				$value = $this->mDefaultBigSelects;
 			}
 		} elseif ( $this->mDefaultBigSelects === null ) {
-			$this->mDefaultBigSelects = (bool)$this->selectField( false, '@@sql_big_selects' );
+			$this->mDefaultBigSelects = (bool)$this->selectField( false, '@@sql_big_selects', '', __METHOD__ );
 		}
 		$encValue = $value ? '1' : '0';
 		$this->query( "SET sql_big_selects=$encValue", __METHOD__ );
