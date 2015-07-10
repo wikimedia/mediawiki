@@ -1,16 +1,19 @@
 /*jshint node:true */
 module.exports = function ( grunt ) {
+	grunt.loadNpmTasks( 'grunt-banana-checker' );
 	grunt.loadNpmTasks( 'grunt-contrib-copy' );
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
-	grunt.loadNpmTasks( 'grunt-banana-checker' );
 	grunt.loadNpmTasks( 'grunt-jscs' );
 	grunt.loadNpmTasks( 'grunt-jsonlint' );
 	grunt.loadNpmTasks( 'grunt-karma' );
+	grunt.loadNpmTasks( 'grunt-postcss' );
 
 	var wgServer = process.env.MW_SERVER,
 		wgScriptPath = process.env.MW_SCRIPT_PATH,
-		karmaProxy = {};
+		karmaProxy = {},
+		fs = require( 'fs' ),
+		stylelintrc = JSON.parse( fs.readFileSync( '.stylelintrc', 'utf8' ) );
 
 	karmaProxy[ wgScriptPath ] = wgServer + wgScriptPath;
 
@@ -22,7 +25,26 @@ module.exports = function ( grunt ) {
 			all: '.'
 		},
 		jscs: {
-			all: '.'
+			main: {
+				src: '.'
+			},
+			fix: {
+				options: {
+					fix: true
+				},
+				src: '.'
+			}
+		},
+		postcss: {
+			options: {
+				processors: [
+					require( 'autoprefixer' )( { browsers: '> 0.1%' } ),
+					require( 'stylelint' )( stylelintrc )
+				]
+			},
+			dist: {
+				src: '{mw-config,resources/src}/**/*.css'
+			}
 		},
 		jsonlint: {
 			all: [
@@ -97,9 +119,10 @@ module.exports = function ( grunt ) {
 		return !!( process.env.MW_SERVER && process.env.MW_SCRIPT_PATH );
 	} );
 
-	grunt.registerTask( 'lint', [ 'jshint', 'jscs', 'jsonlint', 'banana' ] );
+	grunt.registerTask( 'lint', [ 'jshint', 'jscs:main', 'jsonlint', 'banana' ] );
 	grunt.registerTask( 'qunit', [ 'assert-mw-env', 'karma:main' ] );
 
 	grunt.registerTask( 'test', [ 'lint' ] );
+	grunt.registerTask( 'fix', [ 'jscs:fix', 'postcss' ] );
 	grunt.registerTask( 'default', 'test' );
 };
