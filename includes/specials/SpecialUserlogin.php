@@ -529,9 +529,9 @@ class LoginForm extends SpecialPage {
 
 		# Now create a dummy user ($u) and check if it is valid
 		$u = User::newFromName( $this->mUsername, 'creatable' );
-		if ( !is_object( $u ) ) {
+		if ( !$u ) {
 			return Status::newFatal( 'noname' );
-		} elseif ( 0 != $u->idForName() ) {
+		} elseif ( 0 != $u->idForName( User::READ_LOCKING ) ) {
 			return Status::newFatal( 'userexists' );
 		}
 
