@@ -46,7 +46,7 @@ module.exports = function ( grunt ) {
 		jsonlint: {
 			all: [
 				'.jscsrc',
-				'{languages,maintenance,resources}/**/*.json',
+				'{docs,includes,languages,maintenance,resources,tests}/**/*.json',
 				'package.json'
 			]
 		},
