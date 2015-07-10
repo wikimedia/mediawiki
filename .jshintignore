@@ -8,4 +8,5 @@ resources/lib/**
 resources/src/jquery.tipsy/**
 resources/src/jquery/jquery.farbtastic.js
 resources/src/mediawiki.libs/**
-tests/frontend/node_modules/**
+skins/**
+vendor/**
