@@ -1,6 +1,7 @@
 /*jshint node:true */
 module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-contrib-copy' );
+	grunt.loadNpmTasks( 'grunt-contrib-csslint' );
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-banana-checker' );
@@ -23,6 +24,12 @@ module.exports = function ( grunt ) {
 		},
 		jscs: {
 			all: '.'
+		},
+		csslint: {
+			options: {
+				csslintrc: '.csslintrc'
+			},
+			all: '{mw-config,resources/src}/**/*.css'
 		},
 		jsonlint: {
 			all: [
@@ -92,7 +99,7 @@ module.exports = function ( grunt ) {
 		return !!( process.env.MW_SERVER && process.env.MW_SCRIPT_PATH );
 	} );
 
-	grunt.registerTask( 'lint', [ 'jshint', 'jscs', 'jsonlint', 'banana' ] );
+	grunt.registerTask( 'lint', [ 'jshint', 'jscs', 'csslint', 'jsonlint', 'banana' ] );
 	grunt.registerTask( 'qunit', [ 'assert-mw-env', 'karma:main' ] );
 
 	grunt.registerTask( 'test', [ 'lint' ] );
