@@ -15,7 +15,6 @@ module.exports = function ( grunt ) {
 	karmaProxy[wgScriptPath] = wgServer + wgScriptPath;
 
 	grunt.initConfig( {
-		pkg: grunt.file.readJSON( 'package.json' ),
 		jshint: {
 			options: {
 				jshintrc: true
