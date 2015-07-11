@@ -148,7 +148,7 @@ class LinkSearchPage extends QueryPage {
 		$hiddenFields = array(
 			'title' => $this->getPageTitle()->getPrefixedDBkey(),
 		);
-		$htmlForm = HTMLForm::factory( 'inline', $fields, $this->getContext() );
+		$htmlForm = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
 		$htmlForm->addHiddenFields( $hiddenFields );
 		$htmlForm->setSubmitTextMsg( 'linksearch-ok' );
 		$htmlForm->setWrapperLegendMsg( 'linksearch' );
