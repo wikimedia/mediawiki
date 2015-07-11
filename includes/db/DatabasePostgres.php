@@ -217,7 +217,7 @@ class PostgresTransactionState {
  * @since 1.19
  */
 class SavepointPostgres {
-	/** @var DatabaseBase Establish a savepoint within a transaction */
+	/** @var DatabasePostgres Establish a savepoint within a transaction */
 	protected $dbw;
 	protected $id;
 	protected $didbegin;
