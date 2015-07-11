@@ -44,7 +44,8 @@
 			"SMAUG",
 			"SuperPete",
 			"McSalama",
-			"Macofe"
+			"Macofe",
+			"Beluga"
 		]
 	},
 	"tog-underline": "Linkkien alleviivaus:",
@@ -1859,6 +1860,7 @@
 	"changecontentmodel-reason-label": "Syy:",
 	"changecontentmodel-success-title": "Sisältömallia on muutettu",
 	"changecontentmodel-success-text": "Sisältötyyppiä kohteessa [[:$1]] on muutettu.",
+	"changecontentmodel-cannot-convert": "Sisältöä sivulla [[:$1]] ei voida muuntaa tyypiksi $2.",
 	"changecontentmodel-title-cantexist": "Ei ole mahdollista, että kohteessa $1 on sivua.",
 	"changecontentmodel-nodirectediting": "Sisältömalli $1 ei tue suoraa muokkaamista",
 	"log-name-contentmodel": "Sisältömallin muutosloki",
@@ -2400,7 +2402,7 @@
 	"pageinfo-length": "Sivun pituus (tavuina)",
 	"pageinfo-article-id": "Sivun tunnistenumero",
 	"pageinfo-language": "Sivun sisällön kieli",
-	"pageinfo-content-model": "Sivun sisällön muoto",
+	"pageinfo-content-model": "Sivun sisältömalli",
 	"pageinfo-robot-policy": "Hakukonemerkinnät",
 	"pageinfo-robot-index": "Indeksoitava",
 	"pageinfo-robot-noindex": "Ei indeksoitava",
