@@ -1777,7 +1777,7 @@
 	"linksearch-pat": "Search pattern:",
 	"linksearch-ns": "Namespace:",
 	"linksearch-ok": "Search",
-	"linksearch-text": "Wildcards such as \"*.wikipedia.org\" may be used.\nNeeds at least a top-level domain, for example \"*.org\".<br />\nSupported {{PLURAL:$2|protocol|protocols}}: <code>$1</code> (defaults to http:// if no protocol is specified).",
+	"linksearch-text": "Wildcards such as \"*.wikipedia.org\" may be used.\nNeeds at least a top-level domain, for example \"*.org\".<br />\nSupported {{PLURAL:$2|protocol|protocols}}: $1 (defaults to <nowiki>http://</nowiki> if no protocol is specified).",
 	"linksearch-line": "$1 is linked from $2",
 	"linksearch-error": "Wildcards may appear only at the start of the hostname.",
 	"listusersfrom": "Display users starting at:",
