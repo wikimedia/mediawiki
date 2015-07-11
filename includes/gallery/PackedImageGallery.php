@@ -21,8 +21,8 @@
  */
 
 class PackedImageGallery extends TraditionalImageGallery {
-	function __construct( $mode = 'traditional' ) {
-		parent::__construct( $mode );
+	function __construct( $mode = 'traditional', IContextSource $context = null ) {
+		parent::__construct( $mode, $context );
 		// Does not support per row option.
 		$this->mPerRow = 0;
 	}
