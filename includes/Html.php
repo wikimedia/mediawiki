@@ -823,6 +823,47 @@ class Html {
 	}
 
 	/**
+	 * Helper for Html::namespaceSelector().
+	 * @param array $params
+	 * @return array
+	 */
+	public static function namespaceSelectorOptions( array $params = array() ) {
+		global $wgContLang;
+
+		$options = array();
+
+		if ( !isset( $params['exclude'] ) || !is_array( $params['exclude'] ) ) {
+			$params['exclude'] = array();
+		}
+
+		if ( isset( $params['all'] ) ) {
+			// add an option that would let the user select all namespaces.
+			// Value is provided by user, the name shown is localized for the user.
+			$options[$params['all']] = wfMessage( 'namespacesall' )->text();
+		}
+		// Add all namespaces as options (in the content language)
+		$options += $wgContLang->getFormattedNamespaces();
+
+		$optionsOut = array();
+		// Filter out namespaces below 0 and massage labels
+		foreach ( $options as $nsId => $nsName ) {
+			if ( $nsId < NS_MAIN || in_array( $nsId, $params['exclude'] ) ) {
+				continue;
+			}
+			if ( $nsId === NS_MAIN ) {
+				// For other namespaces use the namespace prefix as label, but for
+				// main we don't use "" but the user message describing it (e.g. "(Main)" or "(Article)")
+				$nsName = wfMessage( 'blanknamespace' )->text();
+			} elseif ( is_int( $nsId ) ) {
+				$nsName = $wgContLang->convertNamespace( $nsId );
+			}
+			$optionsOut[ $nsId ] = $nsName;
+		}
+
+		return $optionsOut;
+	}
+
+	/**
 	 * Build a drop-down box for selecting a namespace
 	 *
 	 * @param array $params Params to set.
@@ -841,8 +882,6 @@ class Html {
 	public static function namespaceSelector( array $params = array(),
 		array $selectAttribs = array()
 	) {
-		global $wgContLang;
-
 		ksort( $selectAttribs );
 
 		// Is a namespace selected?
@@ -859,37 +898,16 @@ class Html {
 			$params['selected'] = '';
 		}
 
-		if ( !isset( $params['exclude'] ) || !is_array( $params['exclude'] ) ) {
-			$params['exclude'] = array();
-		}
 		if ( !isset( $params['disable'] ) || !is_array( $params['disable'] ) ) {
 			$params['disable'] = array();
 		}
 
 		// Associative array between option-values and option-labels
-		$options = array();
+		$options = self::namespaceSelectorOptions( $params );
 
-		if ( isset( $params['all'] ) ) {
-			// add an option that would let the user select all namespaces.
-			// Value is provided by user, the name shown is localized for the user.
-			$options[$params['all']] = wfMessage( 'namespacesall' )->text();
-		}
-		// Add all namespaces as options (in the content language)
-		$options += $wgContLang->getFormattedNamespaces();
-
-		// Convert $options to HTML and filter out namespaces below 0
+		// Convert $options to HTML
 		$optionsHtml = array();
 		foreach ( $options as $nsId => $nsName ) {
-			if ( $nsId < NS_MAIN || in_array( $nsId, $params['exclude'] ) ) {
-				continue;
-			}
-			if ( $nsId === NS_MAIN ) {
-				// For other namespaces use the namespace prefix as label, but for
-				// main we don't use "" but the user message describing it (e.g. "(Main)" or "(Article)")
-				$nsName = wfMessage( 'blanknamespace' )->text();
-			} elseif ( is_int( $nsId ) ) {
-				$nsName = $wgContLang->convertNamespace( $nsId );
-			}
 			$optionsHtml[] = self::element(
 				'option', array(
 					'disabled' => in_array( $nsId, $params['disable'] ),
