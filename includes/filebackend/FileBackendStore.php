@@ -1364,19 +1364,38 @@ abstract class FileBackendStore extends FileBackend {
 	abstract protected function directoriesAreVirtual();
 
 	/**
-	 * Check if a container name is valid.
+	 * Check if a short container name is valid
+	 *
 	 * This checks for length and illegal characters.
+	 * This may disallow certain characters that can appear
+	 * in the prefix used to make the full container name.
+	 *
+	 * @param string $container
+	 * @return bool
+	 */
+	final protected static function isValidShortContainerName( $container ) {
+		// Suffixes like '.xxx' (hex shard chars) or '.seg' (file segments)
+		// might be used by subclasses. Reserve the dot character for sanity.
+		// The only way dots end up in containers (e.g. resolveStoragePath)
+		// is due to the wikiId container prefix or the above suffixes.
+		return self::isValidContainerName( $container ) && !preg_match( '/[.]/', $container );
+	}
+
+	/**
+	 * Check if a full container name is valid
+	 *
+	 * This checks for length and illegal characters.
+	 * Limiting the characters makes migrations to other stores easier.
 	 *
 	 * @param string $container
 	 * @return bool
 	 */
 	final protected static function isValidContainerName( $container ) {
-		// This accounts for Swift and S3 restrictions while leaving room
-		// for things like '.xxx' (hex shard chars) or '.seg' (segments).
-		// This disallows directory separators or traversal characters.
+		// This accounts for NTFS, Swift, and Ceph restrictions
+		// and disallows directory separators or traversal characters.
 		// Note that matching strings URL encode to the same string;
-		// in Swift, the length restriction is *after* URL encoding.
-		return preg_match( '/^[a-z0-9][a-z0-9-_]{0,199}$/i', $container );
+		// in Swift/Ceph, the length restriction is *after* URL encoding.
+		return (bool)preg_match( '/^[a-z0-9][a-z0-9-_.]{0,199}$/i', $container );
 	}
 
 	/**
@@ -1393,17 +1412,17 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return array (container, path, container suffix) or (null, null, null) if invalid
 	 */
 	final protected function resolveStoragePath( $storagePath ) {
-		list( $backend, $container, $relPath ) = self::splitStoragePath( $storagePath );
+		list( $backend, $shortCont, $relPath ) = self::splitStoragePath( $storagePath );
 		if ( $backend === $this->name ) { // must be for this backend
 			$relPath = self::normalizeContainerPath( $relPath );
-			if ( $relPath !== null ) {
+			if ( $relPath !== null && self::isValidShortContainerName( $shortCont ) ) {
 				// Get shard for the normalized path if this container is sharded
-				$cShard = $this->getContainerShard( $container, $relPath );
+				$cShard = $this->getContainerShard( $shortCont, $relPath );
 				// Validate and sanitize the relative path (backend-specific)
-				$relPath = $this->resolveContainerPath( $container, $relPath );
+				$relPath = $this->resolveContainerPath( $shortCont, $relPath );
 				if ( $relPath !== null ) {
 					// Prepend any wiki ID prefix to the container name
-					$container = $this->fullContainerName( $container );
+					$container = $this->fullContainerName( $shortCont );
 					if ( self::isValidContainerName( $container ) ) {
 						// Validate and sanitize the container name (backend-specific)
 						$container = $this->resolveContainerName( "{$container}{$cShard}" );
