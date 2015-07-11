@@ -3706,19 +3706,29 @@ class User implements IDBAccessObject {
 
 	/**
 	 * If only this user's username is known, and it exists, return the user ID.
+	 *
+	 * @param int $flags Bitfield of User:READ_* constants; useful for existence checks
 	 * @return int
 	 */
-	public function idForName() {
+	public function idForName( $flags = 0 ) {
 		$s = trim( $this->getName() );
 		if ( $s === '' ) {
 			return 0;
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
-		$id = $dbr->selectField( 'user', 'user_id', array( 'user_name' => $s ), __METHOD__ );
+		$db = ( ( $flags & self::READ_LATEST ) == self::READ_LATEST )
+			? wfGetDB( DB_MASTER )
+			: wfGetDB( DB_SLAVE );
+
+		$options = ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING )
+			? array( 'FOR UPDATE' )
+			: array();
+
+		$id = $db->selectField( 'user', 'user_id', array( 'user_name' => $s ), __METHOD__, $options );
 		if ( $id === false ) {
 			$id = 0;
 		}
+
 		return $id;
 	}
 
