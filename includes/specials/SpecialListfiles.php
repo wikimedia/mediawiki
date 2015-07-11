@@ -413,11 +413,26 @@ class ImageListPager extends TablePager {
 	function doBatchLookups() {
 		$userIds = array();
 		$this->mResult->seek( 0 );
+		$linkBatch = new LinkBatch();
 		foreach ( $this->mResult as $row ) {
 			$userIds[] = $row->img_user;
+			$linkBatch->add( NS_FILE, $row->img_name );
 		}
-		# Do a link batch query for names and userpages
-		UserCache::singleton()->doQuery( $userIds, array( 'userpage' ), __METHOD__ );
+
+		// fill LinkBatch with user page
+		if ( count( $userIds ) ) {
+			$userIds = array_unique( $userIds );
+			$userCache = UserCache::singleton();
+			$userCache->doQuery( $userIds, array(), __METHOD__ );
+			foreach ( $userIds as $userId ) {
+				$name = $userCache->getProp( $userId, 'name' );
+				if ( $name !== false ) {
+					$linkBatch->add( NS_USER, $name );
+				}
+			}
+		}
+
+		$linkBatch->execute();
 	}
 
 	/**
