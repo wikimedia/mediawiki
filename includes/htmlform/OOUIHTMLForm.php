@@ -25,12 +25,6 @@
  * Compact stacked vertical format for forms, implemented using OOUI widgets.
  */
 class OOUIHTMLForm extends HTMLForm {
-	/**
-	 * Wrapper and its legend are never generated in OOUI mode.
-	 * @var boolean
-	 */
-	protected $mWrapperLegend = false;
-
 	public function __construct( $descriptor, $context = null, $messagePrefix = '' ) {
 		parent::__construct( $descriptor, $context, $messagePrefix );
 		$this->getOutput()->enableOOUI();
@@ -110,23 +104,30 @@ class OOUIHTMLForm extends HTMLForm {
 		return $html;
 	}
 
-	function getFormAttributes() {
-		$attribs = parent::getFormAttributes();
-		if ( !isset( $attribs['class'] ) ) {
-			$attribs['class'] = '';
+	function getBody() {
+		$fieldset = parent::getBody();
+		// FIXME This only works for forms with no subsections
+		if ( $fieldset instanceof OOUI\FieldsetLayout ) {
+			$fieldset->group->prependContent( new OOUI\HtmlSnippet( $this->mHeader ) );
 		}
-
-		if ( is_string( $attribs['class'] ) ) {
-			$attribs['class'] = trim( $attribs['class'] . ' mw-htmlform-ooui' );
-		} else {
-			$attribs['class'][] = 'mw-htmlform-ooui';
-		}
-
-		return $attribs;
+		return $fieldset;
 	}
 
 	function wrapForm( $html ) {
-		// Always discard $this->mWrapperLegend
-		return Html::rawElement( 'form', $this->getFormAttributes(), $html );
+		$form = new OOUI\FormLayout( $this->getFormAttributes() + array(
+			'classes' => array( 'mw-htmlform-ooui' ),
+			'content' => new OOUI\HtmlSnippet( $html ),
+		) );
+
+		// Include a wrapper for style, if requested.
+		$form = new OOUI\PanelLayout( array(
+			'classes' => array( 'mw-htmlform-ooui-wrapper' ),
+			'expanded' => false,
+			'padded' => $this->mWrapperLegend !== false,
+			'framed' => $this->mWrapperLegend !== false,
+			'content' => $form,
+		) );
+
+		return $form;
 	}
 }

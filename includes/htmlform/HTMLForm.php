@@ -869,7 +869,8 @@ class HTMLForm extends ContextSource {
 
 		$html = ''
 			. $this->getErrors( $submitResult )
-			. $this->mHeader
+			// In OOUI forms, we handle mHeader elsewhere. FIXME This is horrible.
+			. ( $this->getDisplayFormat() === 'ooui' ? '' : $this->mHeader )
 			. $this->getBody()
 			. $this->getHiddenFields()
 			. $this->getButtons()
@@ -893,7 +894,6 @@ class HTMLForm extends ContextSource {
 		$attribs = array(
 			'action' => $this->getAction(),
 			'method' => $this->getMethod(),
-			'class' => array( 'visualClear' ),
 			'enctype' => $encType,
 		);
 		if ( !empty( $this->mId ) ) {
@@ -912,10 +912,11 @@ class HTMLForm extends ContextSource {
 	function wrapForm( $html ) {
 		# Include a <fieldset> wrapper for style, if requested.
 		if ( $this->mWrapperLegend !== false ) {
-			$html = Xml::fieldset( $this->mWrapperLegend, $html );
+			$legend = is_string( $this->mWrapperLegend ) ? $this->mWrapperLegend : false;
+			$html = Xml::fieldset( $legend, $html );
 		}
 
-		return Html::rawElement( 'form', $this->getFormAttributes(), $html );
+		return Html::rawElement( 'form', $this->getFormAttributes() + array( 'class' => 'visualClear' ), $html );
 	}
 
 	/**
@@ -1219,9 +1220,10 @@ class HTMLForm extends ContextSource {
 	 * Prompt the whole form to be wrapped in a "<fieldset>", with
 	 * this text as its "<legend>" element.
 	 *
-	 * @param string|bool $legend HTML to go inside the "<legend>" element, or
-	 * false for no <legend>
-	 *     Will be escaped
+	 * @param string|bool $legend If false, no wrapper or legend will be displayed.
+	 *     If true, a wrapper will be displayed, but no legend.
+	 *     If a string, a wrapper will be displayed with that string as a legend.
+	 *     The string will be escaped before being output (this doesn't support HTML).
 	 *
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
@@ -1409,19 +1411,26 @@ class HTMLForm extends ContextSource {
 				if ( $sectionName ) {
 					$config['id'] = Sanitizer::escapeId( $sectionName );
 				}
+				if ( is_string( $this->mWrapperLegend ) ) {
+					$config['label'] = $this->mWrapperLegend;
+				}
 				$fieldset = new OOUI\FieldsetLayout( $config );
 				// Ewww. We should pass this as $config['items'], but there might be string snippets.
 				$fieldset->group->appendContent( new OOUI\HtmlSnippet( $html ) );
-				$html = $fieldset->toString();
+				$html = $fieldset;
 			} else {
 				$html = Html::rawElement( 'div', $attribs, "\n$html\n" );
 			}
 		}
 
-		if ( $this->mSubSectionBeforeFields ) {
-			return $subsectionHtml . "\n" . $html;
+		if ( $subsectionHtml ) {
+			if ( $this->mSubSectionBeforeFields ) {
+				return $subsectionHtml . "\n" . $html;
+			} else {
+				return $html . "\n" . $subsectionHtml;
+			}
 		} else {
-			return $html . "\n" . $subsectionHtml;
+			return $html;
 		}
 	}
 
