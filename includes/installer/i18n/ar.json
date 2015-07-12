@@ -55,6 +55,7 @@
 	"config-db-wiki-settings": "حدِّد هذا الويكي",
 	"config-db-name": "اسم قاعدة البيانات",
 	"config-db-name-oracle": "سكيما قاعدة البيانات:",
+	"config-db-install-account": "حساب المستخدم للتنصيب",
 	"config-db-username": "اسم مستخدم قاعدة البيانات:",
 	"config-db-password": "كلمة سر قاعدة البيانات:",
 	"config-db-prefix": "بادئة جدول قاعدة البيانات:",

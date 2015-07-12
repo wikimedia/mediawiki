@@ -15,7 +15,8 @@
 			"Crochet.david",
 			"0x010C",
 			"Lucky",
-			"Freak2fast4u"
+			"Freak2fast4u",
+			"Urhixidur"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentation]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Liste de diffusion]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annonces de l’API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bogues et demandes]\n</div>\n<strong>État :</strong> Toutes les fonctionnalités affichées sur cette page devraient fonctionner, mais l’API est encore en cours de développement et peut changer à tout moment. Inscrivez-vous à [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la liste de diffusion mediawiki-api-announce] pour être informé des mises à jour.\n\n<strong>Requêtes erronées :</strong> Si des requêtes erronées sont envoyées à l’API, un en-tête HTTP sera renvoyé avec la clé « MediaWiki-API-Error ». La valeur de cet en-tête et le code d’erreur renvoyé prendront la même valeur. Pour plus d’information, voyez [[mw:API:Errors_and_warnings|API: Errors and warnings]].",
@@ -1015,7 +1016,7 @@
 	"apihelp-undelete-param-watchlist": "Ajouter ou supprimer la page de la liste de suivi de l’utilisateur actuel sans condition, utiliser les préférences ou ne pas modifier le suivi.",
 	"apihelp-undelete-example-page": "Annuler la suppression de la page <kbd>Main Page</kbd>.",
 	"apihelp-undelete-example-revisions": "Annuler la suppression de deux révisions de la page <kbd>Main Page</kbd>.",
-	"apihelp-upload-description": "Télécharger un fichier, ou obtenir l’état des téléchargements en cours.\n\nPlusieurs méthodes sont disponibles :\n* Télécharger directement le contenu du fichier, en utilisant le paramètre <var>$1file</var>.\n* Télécharger le fichier par morceaux, en utilsiant les paramètres <var>$1filesize</var>, <var>$1chunk</var>, and <var>$1offset</var>.\n* Pour que le serveur MédiaWiki cherche un fichier depuis une URL, utiliser le paramètre <var>$1url</var>.\n* Terminer un téléchargement précédent qui a échoué à cause d’avertissements, en utilisant le paramètre <var>$1filekey</var>.\nNoter que le POST HTTP doit être fait comme un téléchargement de fichier (par ex. en utilisant <code>multipart/form-data</code>) en envoyant le <code>multipart/form-data</code>.",
+	"apihelp-upload-description": "Téléverser un fichier, ou obtenir l’état des téléversements en cours.\n\nPlusieurs méthodes sont disponibles :\n* Téléverser directement le contenu du fichier, en utilisant le paramètre <var>$1file</var>.\n* Téléverser le fichier par morceaux, en utilisant les paramètres <var>$1filesize</var>, <var>$1chunk</var>, and <var>$1offset</var>.\n* Pour que le serveur MédiaWiki cherche un fichier depuis une URL, utilisez le paramètre <var>$1url</var>.\n* Terminer un téléversement précédent qui a échoué à cause d’avertissements, en utilisant le paramètre <var>$1filekey</var>.\nNoter que le POST HTTP doit être fait comme un téléversement de fichier (par ex. en utilisant <code>multipart/form-data</code>) en envoyant le <code>multipart/form-data</code>.",
 	"apihelp-upload-param-filename": "Nom de fichier cible.",
 	"apihelp-upload-param-comment": "Télécharger le commentaire. Utilisé aussi comme texte de la page initiale pour les nouveaux fichiers si <var>$1text</var> n’est pas spécifié.",
 	"apihelp-upload-param-text": "Texte de page initiale pour les nouveaux fichiers.",

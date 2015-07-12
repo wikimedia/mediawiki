@@ -63,7 +63,8 @@
 			"Ankita-ks",
 			"Sahilrathod",
 			"Hindustanilanguage",
-			"राम प्रसाद जोशी"
+			"राम प्रसाद जोशी",
+			"ShrUtiable"
 		]
 	},
 	"tog-underline": "कड़ियाँ अधोरेखन:",
@@ -1864,6 +1865,12 @@
 	"rollback-success": "$1 के संपादन हटाए;\n$2 द्वारा संपादित अन्तिम अवतरण को पुनर्स्थापित किया।",
 	"sessionfailure-title": "सत्र विफलता",
 	"sessionfailure": "ऐसा प्रतीत होता है कि आपके लॉगिन सत्र के साथ कोई समस्या है।\nसत्र अपहरण से बचाने के लिए सावधानी के तौर पर आपका यह क्रियाकलाप रद्द कर दिया गया है।\nकृपया पीछे जाएँ और पृष्ठ को पुनः लोड करें, तब दुबारा कोशिश करें।",
+	"changecontentmodel": "पेज कि सामगरिि मोदल को बदलिये",
+	"changecontentmodel-legend": "पृष्ठ सामग्री का नमूना",
+	"changecontentmodel-title-label": "पृष्ठ शीर्षक",
+	"changecontentmodel-model-label": "नयि सामग्री का नमूना",
+	"changecontentmodel-reason-label": "कारण:",
+	"changecontentmodel-success-title": "सामगरि का नामुने मे बदलाव हुुुाा हेेे",
 	"protectlogpage": "सुरक्षा लॉग",
 	"protectlogtext": "नीचे पृष्ठ सुरक्षा में हुए बदलावों की सूची है।\nवर्तमान सुरक्षित पृष्ठों की सूची के लिए [[Special:ProtectedPages|सुरक्षित पृष्ठों की सूची]] देखें।",
 	"protectedarticle": "\"[[$1]]\" सुरक्षित कर दिया",

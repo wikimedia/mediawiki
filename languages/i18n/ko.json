@@ -1065,7 +1065,7 @@
 	"right-edit": "문서 편집",
 	"right-createpage": "문서 만들기 (토론 문서 제외)",
 	"right-createtalk": "토론 문서 만들기",
-	"right-createaccount": "새 계정 만들기",
+	"right-createaccount": "새 사용자 계정 만들기",
 	"right-minoredit": "사소한 편집으로 표시",
 	"right-move": "문서 옮기기",
 	"right-move-subpages": "문서와 하위 문서 옮기기",
