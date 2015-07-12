@@ -102,16 +102,32 @@ class UserMailer {
 	 * @param MailAddress $from Sender's email
 	 * @param string $subject Email's subject.
 	 * @param string $body Email's text or Array of two strings to be the text and html bodies
-	 * @param MailAddress $replyto Optional reply-to email (default: null).
-	 * @param string $contentType Optional custom Content-Type (default: text/plain; charset=UTF-8)
+	 * @param array $options:
+	 * 		'replyTo' MailAddress
+	 * 		'contentType' string default 'text/plain; charset=UTF-8'
+	 *
+	 * Previous versions of this function had $replyto as the 5th argument and $contentType
+	 * as the 6th. These are still supported for backwards compatability, but deprecated.
+	 *
 	 * @throws MWException
 	 * @throws Exception
 	 * @return Status
 	 */
-	public static function send( $to, $from, $subject, $body, $replyto = null,
-		$contentType = 'text/plain; charset=UTF-8'
-	) {
+	public static function send( $to, $from, $subject, $body, $options = array() ) {
 		global $wgSMTP, $wgEnotifMaxRecips, $wgAdditionalMailParams, $wgAllowHTMLEmail;
+		$contentType = 'text/plain; charset=UTF-8';
+		if ( is_array( $options ) ) {
+			$replyto = isset( $options['replyTo'] ) ? $options['replyTo'] : null;
+			$contentType = isset( $options['contentType'] ) ? $options['contentType'] : $contentType;
+		} else {
+			// Old calling style
+			wfDeprecated( __METHOD__ . ' with $replyto as 5th parameter', '1.26' );
+			$replyto = $options;
+			if ( func_num_args() === 6 ) {
+				$contentType = func_get_arg( 5 );
+			}
+		}
+
 		$mime = null;
 		if ( !is_array( $to ) ) {
 			$to = array( $to );
