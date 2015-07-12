@@ -135,7 +135,7 @@ class LinkSearchPage extends QueryPage {
 		if ( !$this->getConfig()->get( 'MiserMode' ) ) {
 			$fields += array(
 				'namespace' => array(
-					'class' => 'HTMLSelectNamespace',
+					'type' => 'namespaceselect',
 					'name' => 'namespace',
 					'label-message' => 'linksearch-ns',
 					'default' => $namespace,
