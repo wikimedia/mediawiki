@@ -585,7 +585,7 @@ abstract class HTMLFormField {
 			'classes' => array( "mw-htmlform-field-$fieldType", $this->mClass, $errorClass ),
 			'align' => $this->getLabelAlignOOUI(),
 			'label' => $this->getLabel(),
-			'help' => $this->getHelpText(),
+			'help' => new OOUI\HtmlSnippet( $this->getHelpText() ),
 			'infusable' => $infusable,
 		) );
 
@@ -729,7 +729,7 @@ abstract class HTMLFormField {
 	/**
 	 * Determine the help text to display
 	 * @since 1.20
-	 * @return string
+	 * @return string HTML
 	 */
 	public function getHelpText() {
 		$helptext = null;
