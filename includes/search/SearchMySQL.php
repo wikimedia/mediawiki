@@ -439,7 +439,7 @@ class SearchMySQL extends SearchDatabase {
 			$sql = "SHOW GLOBAL VARIABLES LIKE 'ft\\_min\\_word\\_len'";
 
 			$dbr = wfGetDB( DB_SLAVE );
-			$result = $dbr->query( $sql );
+			$result = $dbr->query( $sql, __METHOD__ );
 			$row = $result->fetchObject();
 			$result->free();
 
