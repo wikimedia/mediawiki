@@ -30,7 +30,7 @@
 		config = config || {};
 
 		// Parent constructor
-		OO.ui.TextInputWidget.call( this, config );
+		OO.ui.TextInputWidget.call( this, $.extend( {}, config, { autocomplete: false } ) );
 
 		// Mixin constructors
 		OO.ui.mixin.LookupElement.call( this, config );
