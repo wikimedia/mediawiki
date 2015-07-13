@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.11.8
+ * OOjs UI v0.12.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-07-08T01:31:46Z
+ * Date: 2015-07-13T23:47:11Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -1527,10 +1527,10 @@
 	    -ms-user-select: none;
 	        user-select: none;
 }
-.oo-ui-popupWidget-head .oo-ui-buttonWidget {
+.oo-ui-popupWidget-head > .oo-ui-buttonWidget {
 	float: right;
 }
-.oo-ui-popupWidget-head .oo-ui-labelElement-label {
+.oo-ui-popupWidget-head > .oo-ui-labelElement-label {
 	float: left;
 	cursor: default;
 }
@@ -1579,10 +1579,10 @@
 .oo-ui-popupWidget-head {
 	height: 2.5em;
 }
-.oo-ui-popupWidget-head .oo-ui-buttonWidget {
+.oo-ui-popupWidget-head > .oo-ui-buttonWidget {
 	margin: 0.25em;
 }
-.oo-ui-popupWidget-head .oo-ui-labelElement-label {
+.oo-ui-popupWidget-head > .oo-ui-labelElement-label {
 	margin: 0.75em 1em;
 }
 .oo-ui-popupWidget-body-padded {
@@ -1696,7 +1696,7 @@
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-iconElement-icon,
 .oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-indicatorElement-indicator {
-	cursor: pointer;
+	cursor: text;
 }
 .oo-ui-textInputWidget.oo-ui-labelElement > .oo-ui-labelElement-label {
 	display: block;
@@ -2206,6 +2206,9 @@
 .oo-ui-comboBoxWidget > .oo-ui-menuSelectWidget {
 	z-index: 1;
 	width: 100%;
+}
+.oo-ui-comboBoxWidget > .oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-indicatorElement-indicator {
+	cursor: pointer;
 }
 .oo-ui-comboBoxWidget:last-child {
 	margin-right: 0;

@@ -10,7 +10,9 @@
 			"Vriullop",
 			"Toniher",
 			"Edustus",
-			"Davidpar"
+			"Davidpar",
+			"Maceleiro",
+			"Kippelboy"
 		]
 	},
 	"ooui-outline-control-move-down": "Baixa l'element",
@@ -24,5 +26,7 @@
 	"ooui-dialog-process-error": "Alguna cosa no ha funcionat",
 	"ooui-dialog-process-dismiss": "Descarta",
 	"ooui-dialog-process-retry": "Torneu-ho a provar",
-	"ooui-dialog-process-continue": "Continua"
+	"ooui-dialog-process-continue": "Continua",
+	"ooui-selectfile-not-supported": "El tipus de fitxer no és compatible",
+	"ooui-selectfile-placeholder": "No s'ha seleccionat cap fitxer"
 }

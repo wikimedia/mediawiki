@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Avjoska",
-			"Pikne"
+			"Pikne",
+			"Suwa"
 		]
 	},
 	"ooui-outline-control-move-down": "Liiguta üksust allapoole",
@@ -16,5 +17,7 @@
 	"ooui-dialog-process-error": "Midagi läks valesti",
 	"ooui-dialog-process-dismiss": "Hülga",
 	"ooui-dialog-process-retry": "Proovi uuesti",
-	"ooui-dialog-process-continue": "Jätka"
+	"ooui-dialog-process-continue": "Jätka",
+	"ooui-selectfile-not-supported": "Faili valik ei ole toetatud",
+	"ooui-selectfile-placeholder": "Faili ei ole valitud"
 }

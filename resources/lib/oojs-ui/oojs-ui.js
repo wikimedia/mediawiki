@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.11.8
+ * OOjs UI v0.12.0
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-07-08T01:31:38Z
+ * Date: 2015-07-13T23:47:04Z
  */
 ( function ( OO ) {
 
@@ -1097,7 +1097,7 @@ OO.ui.Element.static.infuse = function ( idOrNode ) {
  */
 OO.ui.Element.static.unsafeInfuse = function ( idOrNode, top ) {
 	// look for a cached result of a previous infusion.
-	var id, $elem, data, cls, obj;
+	var id, $elem, data, cls, parts, parent, obj;
 	if ( typeof idOrNode === 'string' ) {
 		id = idOrNode;
 		$elem = $( document.getElementById( id ) );
@@ -1132,10 +1132,33 @@ OO.ui.Element.static.unsafeInfuse = function ( idOrNode, top ) {
 		// Special case: this is a raw Tag; wrap existing node, don't rebuild.
 		return new OO.ui.Element( { $element: $elem } );
 	}
-	cls = OO.ui[data._];
-	if ( !cls ) {
-		throw new Error( 'Unknown widget type: ' + id );
+	parts = data._.split( '.' );
+	cls = OO.getProp.apply( OO, [ window ].concat( parts ) );
+	if ( cls === undefined ) {
+		// The PHP output might be old and not including the "OO.ui" prefix
+		// TODO: Remove this back-compat after next major release
+		cls = OO.getProp.apply( OO, [ OO.ui ].concat( parts ) );
+		if ( cls === undefined ) {
+			throw new Error( 'Unknown widget type: id: ' + id + ', class: ' + data._ );
+		}
 	}
+
+	// Verify that we're creating an OO.ui.Element instance
+	parent = cls.parent;
+
+	while ( parent !== undefined ) {
+		if ( parent === OO.ui.Element ) {
+			// Safe
+			break;
+		}
+
+		parent = parent.parent;
+	}
+
+	if ( parent !== OO.ui.Element ) {
+		throw new Error( 'Unknown widget type: id: ' + id + ', class: ' + data._ );
+	}
+
 	$elem.data( 'ooui-infused', true ); // prevent loops
 	data.id = id; // implicit
 	data = OO.copy( data, null, function deserialize( value ) {
@@ -5992,6 +6015,28 @@ OO.ui.mixin.LookupElement.prototype.getLookupMenuOptionsFromData = function () {
 };
 
 /**
+ * Set the read-only state of the widget.
+ *
+ * This will also disable/enable the lookups functionality.
+ *
+ * @param {boolean} readOnly Make input read-only
+ * @chainable
+ */
+OO.ui.mixin.LookupElement.prototype.setReadOnly = function ( readOnly ) {
+	// Parent method
+	// Note: Calling #setReadOnly this way assumes this is mixed into an OO.ui.TextInputWidget
+	OO.ui.TextInputWidget.prototype.setReadOnly.call( this, readOnly );
+
+	this.setLookupsDisabled( readOnly );
+	// During construction, #setReadOnly is called before the OO.ui.mixin.LookupElement constructor
+	if ( readOnly && this.lookupMenu ) {
+		this.closeLookupMenu();
+	}
+
+	return this;
+};
+
+/**
  * PopupElement is mixed into other classes to generate a {@link OO.ui.PopupWidget popup widget}.
  * A popup is a container for content. It is overlaid and positioned absolutely. By default, each
  * popup has an anchor, which is an arrow-like protrusion that points toward the popup’s origin.
@@ -6516,8 +6561,9 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 		ccHeight = $container.innerHeight() - buffer,
 		ccWidth = $container.innerWidth() - buffer,
 		cWidth = this.$clippable.outerWidth() + buffer,
-		scrollTop = this.$clippableScroller[0] === this.$clippableWindow[0] ? this.$clippableScroller.scrollTop() : 0,
-		scrollLeft = this.$clippableScroller.scrollLeft(),
+		scrollerIsWindow = this.$clippableScroller[0] === this.$clippableWindow[0],
+		scrollTop = scrollerIsWindow ? this.$clippableScroller.scrollTop() : 0,
+		scrollLeft = scrollerIsWindow ? this.$clippableScroller.scrollLeft() : 0,
 		desiredWidth = cOffset.left < 0 ?
 			cWidth + cOffset.left :
 			( ccOffset.left + scrollLeft + ccWidth ) - cOffset.left,
@@ -6539,7 +6585,7 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 	}
 
 	// If we stopped clipping in at least one of the dimensions
-	if ( !clipWidth || !clipHeight ) {
+	if ( ( this.clippedHorizontally && !clipWidth ) || ( this.clippedVertically && !clipHeight ) ) {
 		OO.ui.Element.static.reconsiderScrollbars( this.$clippable[ 0 ] );
 	}
 
@@ -8405,7 +8451,7 @@ OO.ui.ProcessDialog.prototype.getTeardownProcess = function ( data ) {
  * @param {OO.ui.Widget} fieldWidget Field widget
  * @param {Object} [config] Configuration options
  * @cfg {string} [align='left'] Alignment of the label: 'left', 'right', 'top' or 'inline'
- * @cfg {string} [help] Help text. When help text is specified, a help icon will appear
+ * @cfg {string|OO.ui.HtmlSnippet} [help] Help text. When help text is specified, a help icon will appear
  *  in the upper-right corner of the rendered field.
  */
 OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
@@ -8415,7 +8461,8 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 		fieldWidget = config.fieldWidget;
 	}
 
-	var hasInputWidget = fieldWidget.constructor.static.supportsSimpleLabel;
+	var hasInputWidget = fieldWidget.constructor.static.supportsSimpleLabel,
+		div;
 
 	// Configuration initialization
 	config = $.extend( { align: 'left' }, config );
@@ -8438,10 +8485,14 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 			icon: 'info'
 		} );
 
+		div = $( '<div>' );
+		if ( config.help instanceof OO.ui.HtmlSnippet ) {
+			div.html( config.help.toString() );
+		} else {
+			div.text( config.help );
+		}
 		this.popupButtonWidget.getPopup().$body.append(
-			$( '<div>' )
-				.text( config.help )
-				.addClass( 'oo-ui-fieldLayout-help-content' )
+			div.addClass( 'oo-ui-fieldLayout-help-content' )
 		);
 		this.$help = this.popupButtonWidget.$element;
 	} else {
@@ -13040,7 +13091,9 @@ OO.ui.InputWidget = function OoUiInputWidget( config ) {
 	this.$input
 		.attr( 'name', config.name )
 		.prop( 'disabled', this.isDisabled() );
-	this.$element.addClass( 'oo-ui-inputWidget' ).append( this.$input, $( '<span>' ) );
+	this.$element
+		.addClass( 'oo-ui-inputWidget' )
+		.append( this.$input );
 	this.setValue( config.value );
 };
 
@@ -13275,6 +13328,14 @@ OO.mixinClass( OO.ui.ButtonInputWidget, OO.ui.mixin.IndicatorElement );
 OO.mixinClass( OO.ui.ButtonInputWidget, OO.ui.mixin.LabelElement );
 OO.mixinClass( OO.ui.ButtonInputWidget, OO.ui.mixin.TitledElement );
 
+/* Static Properties */
+
+/**
+ * Disable generating `<label>` elements for buttons. One would very rarely need additional label
+ * for a button, and it's already a big clickable target, and it causes unexpected rendering.
+ */
+OO.ui.ButtonInputWidget.static.supportsSimpleLabel = false;
+
 /* Methods */
 
 /**
@@ -13381,7 +13442,10 @@ OO.ui.CheckboxInputWidget = function OoUiCheckboxInputWidget( config ) {
 	OO.ui.CheckboxInputWidget.parent.call( this, config );
 
 	// Initialization
-	this.$element.addClass( 'oo-ui-checkboxInputWidget' );
+	this.$element
+		.addClass( 'oo-ui-checkboxInputWidget' )
+		// Required for pretty styling in MediaWiki theme
+		.append( $( '<span>' ) );
 	this.setSelected( config.selected !== undefined ? config.selected : false );
 };
 
@@ -13639,7 +13703,10 @@ OO.ui.RadioInputWidget = function OoUiRadioInputWidget( config ) {
 	OO.ui.RadioInputWidget.parent.call( this, config );
 
 	// Initialization
-	this.$element.addClass( 'oo-ui-radioInputWidget' );
+	this.$element
+		.addClass( 'oo-ui-radioInputWidget' )
+		// Required for pretty styling in MediaWiki theme
+		.append( $( '<span>' ) );
 	this.setSelected( config.selected !== undefined ? config.selected : false );
 };
 
@@ -14129,7 +14196,7 @@ OO.ui.TextInputWidget.prototype.installParentChangeDetector = function () {
 		};
 
 		// Create a fake parent and observe it
-		fakeParentNode = $( '<div>' ).append( this.$element )[0];
+		fakeParentNode = $( '<div>' ).append( topmostNode )[0];
 		mutationObserver.observe( fakeParentNode, { childList: true } );
 	} else {
 		// Using the DOMNodeInsertedIntoDocument event is much nicer and less magical, and works for
@@ -15013,8 +15080,13 @@ OO.ui.RadioOptionWidget = function OoUiRadioOptionWidget( config ) {
 	this.radio.$input.on( 'focus', this.onInputFocus.bind( this ) );
 
 	// Initialization
+	// Remove implicit role, we're handling it ourselves
+	this.radio.$input.attr( 'role', 'presentation' );
 	this.$element
 		.addClass( 'oo-ui-radioOptionWidget' )
+		.attr( 'role', 'radio' )
+		.attr( 'aria-checked', 'false' )
+		.removeAttr( 'aria-selected' )
 		.prepend( this.radio.$element );
 };
 
@@ -15050,6 +15122,9 @@ OO.ui.RadioOptionWidget.prototype.setSelected = function ( state ) {
 	OO.ui.RadioOptionWidget.parent.prototype.setSelected.call( this, state );
 
 	this.radio.setSelected( state );
+	this.$element
+		.attr( 'aria-checked', state.toString() )
+		.removeAttr( 'aria-selected' );
 
 	return this;
 };
@@ -15853,10 +15928,6 @@ OO.ui.SearchWidget = function OoUiSearchWidget( config ) {
 		change: 'onQueryChange',
 		enter: 'onQueryEnter'
 	} );
-	this.results.connect( this, {
-		highlight: 'onResultsHighlight',
-		select: 'onResultsSelect'
-	} );
 	this.query.$input.on( 'keydown', this.onQueryKeydown.bind( this ) );
 
 	// Initialization
@@ -15874,28 +15945,6 @@ OO.ui.SearchWidget = function OoUiSearchWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.SearchWidget, OO.ui.Widget );
-
-/* Events */
-
-/**
- * A 'highlight' event is emitted when an item is highlighted. The highlight indicates which
- * item will be selected. When a user mouses over a menu item, it is highlighted. If a search
- * string is typed into the query field instead, the first menu item that matches the query
- * will be highlighted.
-
- * @event highlight
- * @deprecated Connect straight to getResults() events instead
- * @param {Object|null} item Item data or null if no item is highlighted
- */
-
-/**
- * A 'select' event is emitted when an item is selected. A menu item is selected when it is clicked,
- * or when a user types a search query, a menu result is highlighted, and the user presses enter.
- *
- * @event select
- * @deprecated Connect straight to getResults() events instead
- * @param {Object|null} item Item data or null if no item is selected
- */
 
 /* Methods */
 
@@ -15936,38 +15985,14 @@ OO.ui.SearchWidget.prototype.onQueryChange = function () {
 /**
  * Handle select widget enter key events.
  *
- * Selects highlighted item.
+ * Chooses highlighted item.
  *
  * @private
  * @param {string} value New value
  */
 OO.ui.SearchWidget.prototype.onQueryEnter = function () {
 	// Reset
-	this.results.selectItem( this.results.getHighlightedItem() );
-};
-
-/**
- * Handle select widget highlight events.
- *
- * @private
- * @deprecated Connect straight to getResults() events instead
- * @param {OO.ui.OptionWidget} item Highlighted item
- * @fires highlight
- */
-OO.ui.SearchWidget.prototype.onResultsHighlight = function ( item ) {
-	this.emit( 'highlight', item ? item.getData() : null );
-};
-
-/**
- * Handle select widget select events.
- *
- * @private
- * @deprecated Connect straight to getResults() events instead
- * @param {OO.ui.OptionWidget} item Selected item
- * @fires select
- */
-OO.ui.SearchWidget.prototype.onResultsSelect = function ( item ) {
-	this.emit( 'select', item ? item.getData() : null );
+	this.results.chooseItem( this.results.getHighlightedItem() );
 };
 
 /**
@@ -16884,7 +16909,9 @@ OO.ui.RadioSelectWidget = function OoUiRadioSelectWidget( config ) {
 	} );
 
 	// Initialization
-	this.$element.addClass( 'oo-ui-radioSelectWidget' );
+	this.$element
+		.addClass( 'oo-ui-radioSelectWidget' )
+		.attr( 'role', 'radiogroup' );
 };
 
 /* Setup */

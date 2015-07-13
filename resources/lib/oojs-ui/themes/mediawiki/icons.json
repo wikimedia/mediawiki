@@ -50,6 +50,7 @@
 			"ltr": "images/icons/move-ltr.svg",
 			"rtl": "images/icons/move-rtl.svg"
 		} },
+		"notice": { "file": "images/icons/notice.svg" },
 		"picture": { "file": "images/icons/picture.svg" },
 		"previous": { "file": {
 			"ltr": "images/icons/move-rtl.svg",
