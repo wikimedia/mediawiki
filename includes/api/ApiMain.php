@@ -1090,6 +1090,8 @@ class ApiMain extends ApiBase {
 		$this->checkAsserts( $params );
 
 		// Execute
+		$this->getContext()->getStats()->increment(
+			'api.modules.' . strtr( $module->getModulePath(), '+', '.' ) );
 		$module->execute();
 		Hooks::run( 'APIAfterExecute', array( &$module ) );
 
