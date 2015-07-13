@@ -122,7 +122,7 @@
 				return $.Deferred().reject( 'No file' );
 			}
 
-			iframe = file.nodeType && file.nodeType === file.ELEMENT_NODE;
+			iframe = file.nodeType && file.nodeType === Node.ELEMENT_NODE;
 			formData = formDataAvailable() && file instanceof window.File;
 
 			if ( !iframe && !formData ) {

@@ -23,8 +23,7 @@
 		// scans a node looking for the pattern and wraps a span around each match
 		innerHighlight: function ( node, pat ) {
 			var i, match, pos, spannode, middlebit, middleclone;
-			// if this is a text node
-			if ( node.nodeType === 3 ) {
+			if ( node.nodeType === Node.TEXT_NODE ) {
 				// TODO - need to be smarter about the character matching here.
 				// non latin characters can make regex think a new word has begun: do not use \b
 				// http://stackoverflow.com/questions/3787072/regex-wordwrap-with-utf8-characters-in-js
@@ -46,8 +45,8 @@
 					// replace the matched node, with our span-wrapped clone of the matched node
 					middlebit.parentNode.replaceChild( spannode, middlebit );
 				}
-			// if this is an element with childnodes, and not a script, style or an element we created
-			} else if ( node.nodeType === 1
+			} else if ( node.nodeType === Node.ELEMENT_NODE
+				// element with childnodes, and not a script, style or an element we created
 				&& node.childNodes
 				&& !/(script|style)/i.test( node.tagName )
 				&& !( node.tagName.toLowerCase() === 'span'
