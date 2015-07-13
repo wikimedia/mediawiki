@@ -1392,7 +1392,7 @@
 	"linksearch-pat": "Meklēt:",
 	"linksearch-ns": "Vārdtelpas:",
 	"linksearch-ok": "Meklēt",
-	"linksearch-text": "Atbalstītie protokoli: <code>$1</code>",
+	"linksearch-text": "Atbalstītie protokoli: $1",
 	"linksearch-line": "$1 ir izveidota saite no $2",
 	"listusersfrom": "Parādīt lietotājus sākot ar:",
 	"listusers-submit": "Parādīt",

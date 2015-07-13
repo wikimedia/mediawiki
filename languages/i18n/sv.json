@@ -1708,7 +1708,7 @@
 	"linksearch-pat": "Sökmönster:",
 	"linksearch-ns": "Namnrymd:",
 	"linksearch-ok": "Sök",
-	"linksearch-text": "Jokertecken (wildcards) som t.ex. \"*.wikipedia.org\" kan användas.\nDet krävs åtminstone en toppdomän, t.ex. \"*.org\".<br />\n{{PLURAL:$2|Protokollet|Protokollen}} som stöds: <code>$1</code> (sätts till http:// om inget protokoll anges).",
+	"linksearch-text": "Jokertecken (wildcards) som t.ex. \"*.wikipedia.org\" kan användas.\nDet krävs åtminstone en toppdomän, t.ex. \"*.org\".<br />\n{{PLURAL:$2|Protokollet|Protokollen}} som stöds: $1 (sätts till http:// om inget protokoll anges).",
 	"linksearch-line": "$1 länkas från $2",
 	"linksearch-error": "Jokertecken kan bara användas i början av domännamnet.",
 	"listusersfrom": "Visa användare från och med:",

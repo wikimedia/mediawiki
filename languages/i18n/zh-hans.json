@@ -1737,7 +1737,7 @@
 	"linksearch-pat": "搜索网址：",
 	"linksearch-ns": "名字空间：",
 	"linksearch-ok": "搜索",
-	"linksearch-text": "可以使用类似“*.wikipedia.org”的通配符。必须至少是顶级域名，例如“*.org”。<br />\n支持的{{PLURAL:$2|协议}}：<code>$1</code>（如果没有设置协议则默认为<nowiki>http://</nowiki>）。",
+	"linksearch-text": "可以使用类似“*.wikipedia.org”的通配符。必须至少是顶级域名，例如“*.org”。<br />\n支持的{{PLURAL:$2|协议}}：$1（如果没有设置协议则默认为<nowiki>http://</nowiki>）。",
 	"linksearch-line": "$1 链自 $2",
 	"linksearch-error": "通配符仅可在主机名称的开头使用。",
 	"listusersfrom": "显示用户开始于：",

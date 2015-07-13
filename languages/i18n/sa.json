@@ -522,7 +522,6 @@
 	"passwordreset": "कूटशब्दः परिवर्त्यताम्",
 	"passwordreset-text-one": "वि-पत्रमाध्यमेन अल्पकालीनकूटशब्दं प्राप्तुम् अधस्तनं प्रपत्रं पूरयतु ।",
 	"passwordreset-text-many": "{{PLURAL:$1|वि-पत्रमाध्यमेन अल्पकालीनकूटशब्दं प्राप्तुम् अधस्तनां कामपि एकां पेटिकां पूरयतु ।}}",
-	"passwordreset-legend": "कूटशब्दः परिवर्त्यताम्",
 	"passwordreset-disabled": "अस्मिन् विकि-जालस्थाने कूटशब्दं परिर्तितुं निषेधः अस्ति ।",
 	"passwordreset-emaildisabled": "अस्मिन् विकि-जालस्थाने वि-पत्रसम्बद्धाः सेवाः असमर्थिताः सन्ति ।",
 	"passwordreset-username": "योजकनाम:",
@@ -549,7 +548,6 @@
 	"resettokens": "चिह्नानि (tokens) परिवर्त्यताम्",
 	"resettokens-text": "भवतः/भवत्याः सदस्यतया सह सल्लग्नानि चिह्नानि () उपयोक्तुं शक्यन्ते । येन अनया सदस्यतया सह सल्लग्नाः काश्चन गुप्तसूचनाः ज्ञातुं शक्यन्ते ।",
 	"resettokens-no-tokens": "परिवर्तनार्थं न किमपि चिह्नं तत्र विद्यते ।",
-	"resettokens-legend": "चिह्नानि (tokens) परिवर्त्यताम्",
 	"resettokens-tokens": "चिह्नानि :",
 	"resettokens-token-label": "$1 (वर्तमानमूल्यम् : $2)",
 	"resettokens-watchlist-token": "[[Special:Watchlist|भवतः/भवत्याः ध्यानसूच्याः परिवर्तनस्य]] जालपूर्तेः (Atom/RSS) चिह्नं",
@@ -1652,7 +1650,7 @@
 	"linksearch-pat": "अन्वेषणस्य क्रमः ।",
 	"linksearch-ns": "नामस्थानम् :",
 	"linksearch-ok": "अन्वेषणम्",
-	"linksearch-text": "\"*.wikipedia.org\" सदृशानि वन्यपत्राणि योजयितुं शक्यते । \nन्यूनातिन्यूनं \".org\" सदृशः अत्युन्नतस्तरस्य डोमेन आवश्यकम् अस्ति <br />\nअनुमोदितक्रमागतिः {{PLURAL:$2|protocol|protocols}}: <code>$1</code> (http:// एतेषु कतममपि अन्वेषणे न योजयतु )",
+	"linksearch-text": "\"*.wikipedia.org\" सदृशानि वन्यपत्राणि योजयितुं शक्यते । \nन्यूनातिन्यूनं \".org\" सदृशः अत्युन्नतस्तरस्य डोमेन आवश्यकम् अस्ति <br />\nअनुमोदितक्रमागतिः {{PLURAL:$2|protocol|protocols}}: $1 (http:// एतेषु कतममपि अन्वेषणे न योजयतु )",
 	"linksearch-line": " $1 इति $2 इत्यस्मात् परिसन्धितमस्ति",
 	"linksearch-error": "वन्यपत्राणि आतिथेयस्य नाम्ना समं केवलं प्रभान्ति ।",
 	"listusersfrom": "एतस्मात् आरभमाणान् योजकान् दर्शयतु ।",
@@ -3311,5 +3309,6 @@
 	"special-characters-group-khmer": "खमेर",
 	"special-characters-title-endash": "en dash",
 	"special-characters-title-emdash": "em dash",
-	"special-characters-title-minus": "minus sign"
+	"special-characters-title-minus": "minus sign",
+	"mw-widgets-titleinput-description-new-page": "पृष्ठं न विद्यते"
 }

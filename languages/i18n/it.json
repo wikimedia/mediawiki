@@ -1729,7 +1729,7 @@
 	"linksearch-pat": "Pattern di ricerca:",
 	"linksearch-ns": "Namespace:",
 	"linksearch-ok": "Cerca",
-	"linksearch-text": "È possibile fare uso di metacaratteri, ad esempio \"*.wikipedia.org\".\nÈ necessario almeno un dominio di primo livello, ad esempio \"*.org\".<br />\n{{PLURAL:$2|Protocollo supportato|Protocolli supportati}}: <code>$1</code> (predefinito http:// se nessun protocollo è specificato).",
+	"linksearch-text": "È possibile fare uso di metacaratteri, ad esempio \"*.wikipedia.org\".\nÈ necessario almeno un dominio di primo livello, ad esempio \"*.org\".<br />\n{{PLURAL:$2|Protocollo supportato|Protocolli supportati}}: $1 (predefinito http:// se nessun protocollo è specificato).",
 	"linksearch-line": "$1 presente nella pagina $2",
 	"linksearch-error": "I metacaratteri possono essere usati solo all'inizio dell'indirizzo.",
 	"listusersfrom": "Mostra gli utenti a partire da:",

@@ -1629,7 +1629,7 @@
 	"linksearch-pat": "Vyhľadávací vzor:",
 	"linksearch-ns": "Menný priestor:",
 	"linksearch-ok": "Hľadať",
-	"linksearch-text": "Je možné používať zástupné znaky, napr. „*.wikipedia.org“.\nPovinná je minimálne doména najvyššej úrovne, napr. „*.org“.<br />\n{{PLURAL:$2|Podporovaný protokol|Podporované protokoly}}: <code>$1</code> (ak protokol nie je uvedený, použije sa http://).",
+	"linksearch-text": "Je možné používať zástupné znaky, napr. „*.wikipedia.org“.\nPovinná je minimálne doména najvyššej úrovne, napr. „*.org“.<br />\n{{PLURAL:$2|Podporovaný protokol|Podporované protokoly}}: $1 (ak protokol nie je uvedený, použije sa http://).",
 	"linksearch-line": "Na $1 odkazuje $2",
 	"linksearch-error": "Zástupné znaky je možné použiť iba na začiatku názvu domény.",
 	"listusersfrom": "Zobraziť používateľov počnúc:",

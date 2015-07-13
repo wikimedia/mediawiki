@@ -1624,7 +1624,7 @@
 	"linksearch-pat": "Schükmünster:",
 	"linksearch-ns": "Nöömrüm:",
 	"linksearch-ok": "Schük",
-	"linksearch-text": "Diar kön wariaabeln üs t.b. \"*.bispal.de\" brükt wurd. Tumanst ian TLD üs t.b. \"*.org\" skal uunden wurd.<br />{{PLURAL:$2|Protokol|Protokolen}}: <code>$1</code> (Diar woort http nimen, wan niks ööders uunden as.)",
+	"linksearch-text": "Diar kön wariaabeln üs t.b. \"*.bispal.de\" brükt wurd. Tumanst ian TLD üs t.b. \"*.org\" skal uunden wurd.<br />{{PLURAL:$2|Protokol|Protokolen}}: $1 (Diar woort http nimen, wan niks ööders uunden as.)",
 	"linksearch-line": "$2 ferwiset üüb $1",
 	"linksearch-error": "Wariaabeln (\"*\") mut bluas bi a began faan en URL uunden wurd.",
 	"listusersfrom": "Wise brükern mä began üüb:",

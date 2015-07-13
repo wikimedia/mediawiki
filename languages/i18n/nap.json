@@ -1652,7 +1652,7 @@
 	"linksearch-pat": "Ascìa pe' mudello 'e ricerca:",
 	"linksearch-ns": "Namespace:",
 	"linksearch-ok": "Truova",
-	"linksearch-text": "'E wildcard cumm'a \"*.wikipedia.org\" ponno essere ausate.<br />\nCe vulesse minimo nu dominio d'auto livello, p'esempio \"*.org\". <br />\n{{PLURAL:$2|Prutucolle}} suppurtate: <code>$1</code> ('o valore 'e bbase è http:// si 'o protocollo nun è stato specificato).",
+	"linksearch-text": "'E wildcard cumm'a \"*.wikipedia.org\" ponno essere ausate.<br />\nCe vulesse minimo nu dominio d'auto livello, p'esempio \"*.org\". <br />\n{{PLURAL:$2|Prutucolle}} suppurtate: $1 ('o valore 'e bbase è http:// si 'o protocollo nun è stato specificato).",
 	"linksearch-line": "$1 presente dint'â paggena $2",
 	"linksearch-error": "'E wildcard ponno essere ausate sulamente a l'inizio d' 'o hostname.",
 	"listusersfrom": "Fà vedè l'utente partenno 'a:",

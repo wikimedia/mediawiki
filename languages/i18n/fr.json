@@ -1780,7 +1780,7 @@
 	"linksearch-pat": "Expression recherchée :",
 	"linksearch-ns": "Espace de noms :",
 	"linksearch-ok": "Rechercher",
-	"linksearch-text": "Des caractères jokers comme « *.wikipedia.org » peuvent être utilisés.\nIls nécessitent au moins un domaine de niveau supérieur, par exemple « *.org ».<br />\n{{PLURAL:$2|Protocole reconnu|Protocoles reconnus}}: <code>$1</code> (http:// par défaut si aucun protocole n'est indiqué).",
+	"linksearch-text": "Des caractères jokers comme « *.wikipedia.org » peuvent être utilisés.\nIls nécessitent au moins un domaine de niveau supérieur, par exemple « *.org ».<br />\n{{PLURAL:$2|Protocole reconnu|Protocoles reconnus}}: $1 (http:// par défaut si aucun protocole n'est indiqué).",
 	"linksearch-line": "$1 est lié depuis $2",
 	"linksearch-error": "Les caractères jokers ne peuvent être utilisés qu'au début du nom de domaine de l'hôte.",
 	"listusersfrom": "Afficher les utilisateurs à partir de :",

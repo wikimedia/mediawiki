@@ -1659,7 +1659,7 @@
 	"linksearch-pat": "Patrón de busca:",
 	"linksearch-ns": "Espaciu de nomes:",
 	"linksearch-ok": "Buscar",
-	"linksearch-text": "Se puen usar comodinos como \"*.wikipedia.org\".\nNecesita polo menos un dominiu de primer nivel, como \"*.org\".<br />\n{{PLURAL:$2|Protocolu almitíu|Protocolos almitíos}}: <code>$1</code> (el predetermináu ye http:// si nun se conseña dengún protocolu).",
+	"linksearch-text": "Se puen usar comodinos como \"*.wikipedia.org\".\nNecesita polo menos un dominiu de primer nivel, como \"*.org\".<br />\n{{PLURAL:$2|Protocolu almitíu|Protocolos almitíos}}: $1 (el predetermináu ye http:// si nun se conseña dengún protocolu).",
 	"linksearch-line": "$1 enllaciáu dende $2",
 	"linksearch-error": "Los comodinos namái puen apaecer al entamu del nome del güéspede.",
 	"listusersfrom": "Amosar usuarios emprimando dende:",

@@ -1695,7 +1695,7 @@
 	"linksearch-pat": "Patró de cerca:",
 	"linksearch-ns": "Espai de noms:",
 	"linksearch-ok": "Cerca",
-	"linksearch-text": "Es poden utilitzar caràcters comodí com \"*.wikipedia.org\".\nEs necessita com a mínim un domini de primer nivell, per exemple \"*.org\".<br />\n{{PLURAL:$2|Protocol admès|Protocols admesos}}: <code>$1</code> (http:// per defecte si no se n'especifica cap).",
+	"linksearch-text": "Es poden utilitzar caràcters comodí com \"*.wikipedia.org\".\nEs necessita com a mínim un domini de primer nivell, per exemple \"*.org\".<br />\n{{PLURAL:$2|Protocol admès|Protocols admesos}}: $1 (http:// per defecte si no se n'especifica cap).",
 	"linksearch-line": "$1 enllaçat a $2",
 	"linksearch-error": "Els caràcters comodí només poden aparèixer a l'inici de l'url.",
 	"listusersfrom": "Mostra usuaris començant per:",

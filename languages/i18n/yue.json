@@ -1570,7 +1570,7 @@
 	"linksearch-pat": "搵嘅形態:",
 	"linksearch-ns": "空間名",
 	"linksearch-ok": "搵",
-	"linksearch-text": "可以用類似「*.wikipedia.org」嘅萬用字元。\n需要至少一個頂級域名，好似「*.org」。<br />\n支援嘅{{PLURAL:$2|協議}}：<code>$1</code> （預設用 http:// 如果唔指定協議）",
+	"linksearch-text": "可以用類似「*.wikipedia.org」嘅萬用字元。\n需要至少一個頂級域名，好似「*.org」。<br />\n支援嘅{{PLURAL:$2|協議}}：$1 （預設用 http:// 如果唔指定協議）",
 	"linksearch-line": "$1 連自 $2",
 	"linksearch-error": "萬用字元只可以響主機名嘅開頭度用。",
 	"listusersfrom": "顯示由呢個字開始嘅用戶：",

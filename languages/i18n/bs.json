@@ -1619,7 +1619,7 @@
 	"linksearch-pat": "Šema traženja:",
 	"linksearch-ns": "Imenski prostor:",
 	"linksearch-ok": "Traži",
-	"linksearch-text": "Mogu se koristiti općeniti izrazi poput \"*.wikipedia.org\".\nPotrebna je najmanje osnovna domena, naprimjer \"*.org.\"<br />\nPodržani {{PLURAL:$2|protokol|protokoli}}: <code>$1</code> (default je http:// ako nijedan protokol nije naveden).",
+	"linksearch-text": "Mogu se koristiti općeniti izrazi poput \"*.wikipedia.org\".\nPotrebna je najmanje osnovna domena, naprimjer \"*.org.\"<br />\nPodržani {{PLURAL:$2|protokol|protokoli}}: $1 (default je http:// ako nijedan protokol nije naveden).",
 	"linksearch-line": "$1 je povezan od $2",
 	"linksearch-error": "Džokeri se mogu pojavljivati samo na početku naziva servera.",
 	"listusersfrom": "Prikaži korisnike koji počinju sa:",

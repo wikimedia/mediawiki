@@ -1534,7 +1534,7 @@
 	"linksearch-pat": "Bilaketa katea:",
 	"linksearch-ns": "Izen-tartea:",
 	"linksearch-ok": "Bilatu",
-	"linksearch-text": "\"*.wikipedia.org\" bezalako izartxoak erabil daitezke.\nGutxienez goi mailako domeinua behar du, adibidez \"*.org\".<br />\nBaimendutako {{PLURAL:$2|protokoloa|protokoloak}}: <code>$1</code> (protokoloa zehazten ez bada http:// hartzen da lehenetsitzat).",
+	"linksearch-text": "\"*.wikipedia.org\" bezalako izartxoak erabil daitezke.\nGutxienez goi mailako domeinua behar du, adibidez \"*.org\".<br />\nBaimendutako {{PLURAL:$2|protokoloa|protokoloak}}: $1 (protokoloa zehazten ez bada http:// hartzen da lehenetsitzat).",
 	"linksearch-line": "$1, $2(e)tik lotuta",
 	"linksearch-error": "Komodinak izenaren hasieran bakarrik agertu beharko lirateke.",
 	"listusersfrom": "Honela hasten diren erabiltzaileak bistaratu:",

@@ -1557,7 +1557,7 @@
 	"linksearch-pat": "Leitarmynstur:",
 	"linksearch-ns": "Nafnrými:",
 	"linksearch-ok": "Leita",
-	"linksearch-text": "Algildisleit eins og \"*.wikipedia.org\" er leyfð.<br />\nLeitin þarf að minnsta kosti að innihalda rótarlén, eins og \"*.org\"\n{{PLURAL:$2|Studd samskiptaregla|Studdar samskiptareglur}}: <code>$1</code> (http:// sjálfgefið ef engin regla er valin).",
+	"linksearch-text": "Algildisleit eins og \"*.wikipedia.org\" er leyfð.<br />\nLeitin þarf að minnsta kosti að innihalda rótarlén, eins og \"*.org\"\n{{PLURAL:$2|Studd samskiptaregla|Studdar samskiptareglur}}: $1 (http:// sjálfgefið ef engin regla er valin).",
 	"linksearch-line": "Tengt er í $1 á síðunni $2",
 	"linksearch-error": "Algildistafir mega engöngu birtast í upphafi vefslóðarinnar.",
 	"listusersfrom": "Sýna notendur sem byrja á:",

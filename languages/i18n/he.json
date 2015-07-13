@@ -2393,7 +2393,7 @@
 	"pageinfo-robot-index": "מותר",
 	"pageinfo-robot-noindex": "אסור",
 	"pageinfo-watchers": "מספר העוקבים אחר הדף",
-	"pageinfo-visiting-watchers": "מספר העוקבים אחר הדף שמבקרים בעריכות האחרונות",
+	"pageinfo-visiting-watchers": "מספר העוקבים אחר הדף שביקרו בעריכות האחרונות",
 	"pageinfo-few-watchers": "פחות מ{{PLURAL:$1|עוקב אחד|־$1 עוקבים}}",
 	"pageinfo-few-visiting-watchers": "ייתכן שיש וייתכן שאין משתמש שעוקב אחר הדף ומבקר בעריכות האחרונות",
 	"pageinfo-redirects-name": "מספר ההפניות לדף זה",

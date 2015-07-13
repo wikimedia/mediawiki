@@ -1672,7 +1672,7 @@
 	"linksearch-pat": "Otsimisvorm:",
 	"linksearch-ns": "Nimeruum:",
 	"linksearch-ok": "Otsi",
-	"linksearch-text": "Metamärgina võib kasutada tärni, näiteks \"*.wikipedia.org\".\nOtsingus peab olema vähemalt tipptaseme domeen, näiteks \"*.org\".<br />\nToetatud {{PLURAL:$2|protokoll|protokollid}}: <code>$1</code> (määramata protokolli korral vaikimisi http://).",
+	"linksearch-text": "Metamärgina võib kasutada tärni, näiteks \"*.wikipedia.org\".\nOtsingus peab olema vähemalt tipptaseme domeen, näiteks \"*.org\".<br />\nToetatud {{PLURAL:$2|protokoll|protokollid}}: $1 (määramata protokolli korral vaikimisi http://).",
 	"linksearch-line": "$1 on lingitud leheküljelt $2",
 	"linksearch-error": "Metamärk võib olla ainult internetiaadressi alguses.",
 	"listusersfrom": "Näita kasutajaid alates:",

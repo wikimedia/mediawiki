@@ -1692,7 +1692,7 @@
 	"linksearch-pat": "Padrão de pesquisa:",
 	"linksearch-ns": "Domínio:",
 	"linksearch-ok": "Pesquisar",
-	"linksearch-text": "É possível usar caracteres de substituição ''(wildcards)'', tais como \"*.wikipedia.org\".\nÉ necessário, pelo menos, um domínio de topo, por exemplo \"*.org\".<br />\n{{PLURAL:$2|Protocolo suportado|Protocolos suportados}}: <code>$1</code> (será utilizado http:// se não for especificado um protocolo).",
+	"linksearch-text": "É possível usar caracteres de substituição ''(wildcards)'', tais como \"*.wikipedia.org\".\nÉ necessário, pelo menos, um domínio de topo, por exemplo \"*.org\".<br />\n{{PLURAL:$2|Protocolo suportado|Protocolos suportados}}: $1 (será utilizado http:// se não for especificado um protocolo).",
 	"linksearch-line": "Ligação para $1 na página $2",
 	"linksearch-error": "Caracteres de substituição ''(wildcards)'' só podem ser usados no início do endereço.",
 	"listusersfrom": "Mostrar utilizadores começados por:",
