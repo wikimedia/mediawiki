@@ -282,7 +282,18 @@
 			}, false );
 
 			xhr.addEventListener( 'load', function ( e ) {
-				deferred.resolve( parseXHRResponse( e ) );
+				var result = parseXHRResponse( e );
+
+				if ( result.error || result.warnings ) {
+					if ( result.error && result.error.code === 'badtoken' ) {
+						api.badToken( 'edit' );
+					}
+
+					deferred.reject( result.error || result.warnings );
+				} else {
+					deferred.notify( 1 );
+					deferred.resolve( result );
+				}
 			}, false );
 
 			xhr.addEventListener( 'error', function ( e ) {
@@ -295,9 +306,6 @@
 				this.getEditToken().then( function ( token ) {
 					formData.append( 'token', token );
 					xhr.send( formData );
-				}, function () {
-					// Mark the edit token as bad, it's been used.
-					api.badToken( 'edit' );
 				} );
 			} else {
 				xhr.send( formData );
