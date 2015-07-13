@@ -79,7 +79,7 @@ class LCStoreStaticArray implements LCStore {
 			// [A]rray
 			return array( 'a', array_map( function ( $v ) {
 				return LCStoreStaticArray::encode( $v );
-			}, $data ) );
+			}, $value ) );
 		}
 
 		throw new RuntimeException( 'Cannot encode ' . var_export( $value, true ) );
