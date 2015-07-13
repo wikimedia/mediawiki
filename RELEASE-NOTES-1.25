@@ -5,7 +5,7 @@ turn it off. MediaWiki will not work with it enabled.
 
 THIS IS NOT YET A RELEASE!
 
-== Changes since 1.25.2 ==
+=== Changes since 1.25.1 ===
 
 * (T102562) Fix InstantCommons parameters to handle the new HTTPS-only
   policy of Wikimedia Commons.
@@ -20,6 +20,10 @@ THIS IS NOT YET A RELEASE!
   page_restrictions has been added to the locked table list.
 * Special:Version would throw notices if using SVN due to an incorrectly
   named variable. Add an additional check that an index is defined.
+
+== MediaWiki 1.25.1 ==
+
+This is a bug fix release of the MediaWiki 1.25 branch.
 
 === Changes since 1.25 ===
 * (T100351) Fix syntax errors in extension.json of ConfirmEdit extension
