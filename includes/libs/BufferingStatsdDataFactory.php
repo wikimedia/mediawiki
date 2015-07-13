@@ -39,11 +39,28 @@ class BufferingStatsdDataFactory extends StatsdDataFactory {
 		$this->prefix = $prefix;
 	}
 
+	/**
+	 * Normalize a metric key for StatsD
+	 *
+	 * Replace occurences of '::' with dots and any other non-alphabetic
+	 * characters with underscores. Combine runs of dots or underscores.
+	 * Then trim leading or trailing dots or underscores.
+	 *
+	 * @param string $key
+	 * @since 1.26
+	 */
+	private static function normalizeMetricKey( $key ) {
+		$key = preg_replace( '/[:.]+/', '.', $key );
+		$key = preg_replace( '/[^a-z.]+/i', '_', $key );
+		$key = trim( $key, '_.' );
+		return str_replace( array( '._', '_.' ), '.', $key );
+	}
+
 	public function produceStatsdData( $key, $value = 1, $metric = StatsdDataInterface::STATSD_METRIC_COUNT ) {
 		$entity = $this->produceStatsdDataEntity();
 		if ( $key !== null ) {
-			$prefixedKey = ltrim( $this->prefix . '.' . $key, '.' );
-			$entity->setKey( $prefixedKey );
+			$key = self::normalizeMetricKey( "{$this->prefix}.{$key}" );
+			$entity->setKey( $key );
 		}
 		if ( $value !== null ) {
 			$entity->setValue( $value );
