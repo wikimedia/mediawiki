@@ -9,6 +9,8 @@ This is a security and maintenance release of the MediaWiki 1.23 branch.
 
 * (bug 67644) Make AutoLoaderTest handle namespaces
 * (T91653) Minimal PSR-3 debug logger to support backports from 1.25+.
+* (T102562) Fix InstantCommons parameters to handle the new HTTPS-only
+  policy of Wikimedia Commons.
 
 == MediaWiki 1.23.9 ==
 
