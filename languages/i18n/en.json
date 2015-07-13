@@ -2594,7 +2594,7 @@
 	"pageinfo-robot-index": "Allowed",
 	"pageinfo-robot-noindex": "Disallowed",
 	"pageinfo-watchers": "Number of page watchers",
-	"pageinfo-visiting-watchers": "Number of page watchers visiting recent edits",
+	"pageinfo-visiting-watchers": "Number of page watchers who visited recent edits",
 	"pageinfo-few-watchers": "Fewer than $1 {{PLURAL:$1|watcher|watchers}}",
 	"pageinfo-few-visiting-watchers": "There may or may not be a watching user visiting recent edits",
 	"pageinfo-redirects-name": "Number of redirects to this page",
