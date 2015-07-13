@@ -53,7 +53,7 @@ class RebuildLocalisationCache extends Maintenance {
 			return parent::memoryLimit();
 		}
 
-		return '1000M';
+		return 'max';
 	}
 
 	public function finalSetup() {
