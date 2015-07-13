@@ -816,7 +816,7 @@
 	"apihelp-query+pageswithprop-param-limit": "The maximum number of pages to return.",
 	"apihelp-query+pageswithprop-param-dir": "In which direction to sort.",
 	"apihelp-query+pageswithprop-example-simple": "List the first 10 pages using <code>&#123;&#123;DISPLAYTITLE:&#125;&#125;</code>.",
-	"apihelp-query+pageswithprop-example-generator": "Get page info about first 10 pages using <code>_&#95;NOTOC_&#95;</code>.",
+	"apihelp-query+pageswithprop-example-generator": "Get additional information about the first 10 pages using <code>_&#95;NOTOC_&#95;</code>.",
 
 	"apihelp-query+prefixsearch-description": "Perform a prefix search for page titles.",
 	"apihelp-query+prefixsearch-param-search": "Search string.",
