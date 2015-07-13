@@ -16,6 +16,7 @@ THIS IS NOT YET A RELEASE!
   HtmlFormatter. It was causing an error when accessing the api help page
   if the mbstring PHP extension was not installed.
 * (T105896) Confirmation emails would sometimes contain invalid codes.
+* (T105597) Fixed edit stash inclusion queries.
 
 == MediaWiki 1.25.2 ==
 
