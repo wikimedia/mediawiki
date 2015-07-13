@@ -131,6 +131,23 @@ class MessageCache {
 	}
 
 	/**
+	 * Normalize message key input
+	 *
+	 * @param string $key Input message key to be normalized
+	 * @return string Normalized message key
+	 */
+	public static function normalizeKey( $key ) {
+		$lckey = strtr( $key, ' ', '_' );
+		if ( ord( $lckey ) < 128 ) {
+			$lckey[0] = strtolower( $lckey[0] );
+		} else {
+			$lckey = $wgContLang->lcfirst( $lckey );
+		}
+
+		return $lckey;
+	}
+
+	/**
 	 * @param BagOStuff $memCached A cache instance. If none, fall back to CACHE_NONE.
 	 * @param bool $useDB
 	 * @param int $expiry Lifetime for cache. @see $mExpiry.
@@ -784,12 +801,7 @@ class MessageCache {
 		}
 
 		// Normalise title-case input (with some inlining)
-		$lckey = strtr( $key, ' ', '_' );
-		if ( ord( $lckey ) < 128 ) {
-			$lckey[0] = strtolower( $lckey[0] );
-		} else {
-			$lckey = $wgContLang->lcfirst( $lckey );
-		}
+		$lckey = MessageCache::normalizeKey( $key )
 
 		Hooks::run( 'MessageCache::get', array( &$lckey ) );
 
