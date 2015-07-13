@@ -183,50 +183,50 @@ class User implements IDBAccessObject {
 	 */
 	protected static $mAllRights = false;
 
-	/** @name Cache variables */
+	/** Cache variables */
 	//@{
 	public $mId;
-
+	/** @var string */
 	public $mName;
-
+	/** @var string */
 	public $mRealName;
-
 	/**
 	 * @todo Make this actually private
 	 * @private
+	 * @var Password
 	 */
 	public $mPassword;
-
 	/**
 	 * @todo Make this actually private
 	 * @private
+	 * @var Password
 	 */
 	public $mNewpassword;
-
+	/** @var string */
 	public $mNewpassTime;
-
+	/** @var string */
 	public $mEmail;
 	/** @var string TS_MW timestamp from the DB */
 	public $mTouched;
 	/** @var string TS_MW timestamp from cache */
 	protected $mQuickTouched;
-
+	/** @var string */
 	protected $mToken;
-
+	/** @var string */
 	public $mEmailAuthenticated;
-
+	/** @var string */
 	protected $mEmailToken;
-
+	/** @var string */
 	protected $mEmailTokenExpires;
-
+	/** @var string */
 	protected $mRegistration;
-
+	/** @var int */
 	protected $mEditCount;
-
+	/** @var array */
 	public $mGroups;
-
+	/** @var array */
 	protected $mOptionOverrides;
-
+	/** @var string */
 	protected $mPasswordExpires;
 	//@}
 
@@ -257,29 +257,29 @@ class User implements IDBAccessObject {
 	 * Lazy-initialized variables, invalidated with clearInstanceCache
 	 */
 	protected $mNewtalk;
-
+	/** @var string */
 	protected $mDatePreference;
-
+	/** @var string */
 	public $mBlockedby;
-
+	/** @var string */
 	protected $mHash;
-
+	/** @var array */
 	public $mRights;
-
+	/** @var string */
 	protected $mBlockreason;
-
+	/** @var array */
 	protected $mEffectiveGroups;
-
+	/** @var array */
 	protected $mImplicitGroups;
-
+	/** @var array */
 	protected $mFormerGroups;
-
+	/** @var bool */
 	protected $mBlockedGlobally;
-
+	/** @var bool */
 	protected $mLocked;
-
+	/** @var bool */
 	public $mHideName;
-
+	/** @var array */
 	public $mOptions;
 
 	/**
@@ -2152,6 +2152,7 @@ class User implements IDBAccessObject {
 				&& $newMessageLinks[0]['wiki'] === wfWikiID()
 				&& $newMessageLinks[0]['rev']
 			) {
+				/** @var Revision $newMessageRevision */
 				$newMessageRevision = $newMessageLinks[0]['rev'];
 				$newMessageRevisionId = $newMessageRevision->getId();
 			}
@@ -4234,21 +4235,22 @@ class User implements IDBAccessObject {
 	 *
 	 * @param string $subject Message subject
 	 * @param string $body Message body
-	 * @param string $from Optional From address; if unspecified, default
+	 * @param User|null $from Optional sending user; if unspecified, default
 	 *   $wgPasswordSender will be used.
 	 * @param string $replyto Reply-To address
 	 * @return Status
 	 */
 	public function sendMail( $subject, $body, $from = null, $replyto = null ) {
-		if ( is_null( $from ) ) {
-			global $wgPasswordSender;
+		global $wgPasswordSender;
+
+		if ( $from instanceof User ) {
+			$sender = MailAddress::newFromUser( $from );
+		} else {
 			$sender = new MailAddress( $wgPasswordSender,
 				wfMessage( 'emailsender' )->inContentLanguage()->text() );
-		} else {
-			$sender = MailAddress::newFromUser( $from );
 		}
-
 		$to = MailAddress::newFromUser( $this );
+
 		return UserMailer::send( $to, $sender, $subject, $body, $replyto );
 	}
 
