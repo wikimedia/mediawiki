@@ -17,7 +17,7 @@
 	"apihelp-main-param-servedby": "Include the hostname that served the request in the results.",
 	"apihelp-main-param-curtimestamp": "Include the current timestamp in the result.",
 	"apihelp-main-param-origin": "When accessing the API using a cross-domain AJAX request (CORS), set this to the originating domain. This must be included in any pre-flight request, and therefore must be part of the request URI (not the POST body). This must match one of the origins in the <code>Origin</code> header exactly, so it has to be set to something like <kbd>https://en.wikipedia.org</kbd> or <kbd>https://meta.wikimedia.org</kbd>. If this parameter does not match the <code>Origin</code> header, a 403 response will be returned. If this parameter matches the <code>Origin</code> header and the origin is whitelisted, an <code>Access-Control-Allow-Origin</code> header will be set.",
-	"apihelp-main-param-uselang": "Language to use for message translations. A list of codes may be fetched from <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> with <kbd>siprop=languages</kbd>, or specify <kbd>user</kbd> to use the current user's language preference, or specify <kbd>content</kbd> to use this wiki's content language.",
+	"apihelp-main-param-uselang": "Language to use for message translations. <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> with <kbd>siprop=languages</kbd> returns a list of language codes, or specify <kbd>user</kbd> to use the current user's language preference, or specify <kbd>content</kbd> to use this wiki's content language.",
 
 	"apihelp-block-description": "Block a user.",
 	"apihelp-block-param-user": "Username, IP address, or IP range to block.",
@@ -806,12 +806,12 @@
 	"apihelp-query+pagepropnames-param-limit": "The maximum number of names to return.",
 	"apihelp-query+pagepropnames-example-simple": "Get first 10 property names.",
 
-	"apihelp-query+pageprops-description": "Get various properties defined in the page content.",
-	"apihelp-query+pageprops-param-prop": "Only list these props. Useful for checking whether a certain page uses a certain page prop.",
+	"apihelp-query+pageprops-description": "Get various page properties defined in the page content.",
+	"apihelp-query+pageprops-param-prop": "Only list these page properties (<kbd>[[Special:ApiHelp/query+pagepropnames|action=query&list=pagepropnames]]</kbd> returns page property names in use). Useful for checking whether pages use a certain page property.",
 	"apihelp-query+pageprops-example-simple": "Get properties for the pages <kbd>Main Page</kbd> and <kbd>MediaWiki</kbd>.",
 
 	"apihelp-query+pageswithprop-description": "List all pages using a given page property.",
-	"apihelp-query+pageswithprop-param-propname": "Page prop for which to enumerate pages.",
+	"apihelp-query+pageswithprop-param-propname": "Page property for which to enumerate pages (<kbd>[[Special:ApiHelp/query+pagepropnames|action=query&list=pagepropnames]]</kbd> returns page property names in use).",
 	"apihelp-query+pageswithprop-param-prop": "Which pieces of information to include:\n;ids:Adds the page ID.\n;title:Adds the title and namespace ID of the page.\n;value:Adds the value of the page prop.",
 	"apihelp-query+pageswithprop-param-limit": "The maximum number of pages to return.",
 	"apihelp-query+pageswithprop-param-dir": "In which direction to sort.",
