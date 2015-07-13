@@ -126,6 +126,9 @@ class ApiQueryAllMessages extends ApiQueryBase {
 		$useto = !is_null( $params['to'] );
 		$result = $this->getResult();
 		foreach ( $messages_target as $message ) {
+			// Normalize message
+			$message = Title::newFromText( $message )->getPrefixedText();
+
 			// Skip all messages up to $params['from']
 			if ( $skip && $message === $params['from'] ) {
 				$skip = false;
