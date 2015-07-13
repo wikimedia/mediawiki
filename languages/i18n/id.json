@@ -1675,7 +1675,7 @@
 	"linksearch-pat": "Pola pencarian:",
 	"linksearch-ns": "Ruang nama:",
 	"linksearch-ok": "Cari",
-	"linksearch-text": "Tanda bintang seperti \"*.wikipedia.org\" dapat digunakan.\nPerlu sedikitnya satu domain tingkat atas, misalnya \"*.org\".<br />\n{{PLURAL:$2|Protokol|Protokol}} yang didukung: <code>$1</code> (menggunakan http:// bila protokol tidak ditentukan)",
+	"linksearch-text": "Tanda bintang seperti \"*.wikipedia.org\" dapat digunakan.\nPerlu sedikitnya satu domain tingkat atas, misalnya \"*.org\".<br />\n{{PLURAL:$2|Protokol|Protokol}} yang didukung: $1 (menggunakan http:// bila protokol tidak ditentukan)",
 	"linksearch-line": "$1 memiliki pranala dari $2",
 	"linksearch-error": "''Wildcards'' hanya dapat digunakan di bagian awal dari nama host.",
 	"listusersfrom": "Tampilkan pengguna mulai dari:",

@@ -1587,7 +1587,7 @@
 	"linksearch-pat": "Uzorak traženja:",
 	"linksearch-ns": "Imenski prostor:",
 	"linksearch-ok": "Traži",
-	"linksearch-text": "Možete koristiti džoker znakove poput \"*.wikipedia.org\".\nPotrebno je navesti osnovnu domenu (TLD), npr. \"*.org\".<br />\nPodržani {{PLURAL:$2|protokol|protokoli}}: <code>$1</code> (default je http:// ako nijedan protokol nije naveden).",
+	"linksearch-text": "Možete koristiti džoker znakove poput \"*.wikipedia.org\".\nPotrebno je navesti osnovnu domenu (TLD), npr. \"*.org\".<br />\nPodržani {{PLURAL:$2|protokol|protokoli}}: $1 (default je http:// ako nijedan protokol nije naveden).",
 	"linksearch-line": "$1 poveznica s članka $2",
 	"linksearch-error": "Džoker znakovi se mogu rabiti samo na početku imena poslužitelja.",
 	"listusersfrom": "Prikaži suradnike počevši od:",

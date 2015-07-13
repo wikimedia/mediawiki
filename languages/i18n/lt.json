@@ -1677,7 +1677,7 @@
 	"linksearch-pat": "Ieškoti modulio:",
 	"linksearch-ns": "Vardų sritis:",
 	"linksearch-ok": "Ieškoti",
-	"linksearch-text": "Galima naudoti žvaigždutes, pvz., „*.wikipedia.org“.<br />\nYra būtinas bent jau aukščiausio lygio domenas, pvz., „*.org“.<br />\n{{PLURAL:$2|Palaikomas protokolas|Palaikomi protokolai|Palaikomų protokolų}}: <code>$1</code> (numato į http://, jei nenurodytas joks protokolas).",
+	"linksearch-text": "Galima naudoti žvaigždutes, pvz., „*.wikipedia.org“.<br />\nYra būtinas bent jau aukščiausio lygio domenas, pvz., „*.org“.<br />\n{{PLURAL:$2|Palaikomas protokolas|Palaikomi protokolai|Palaikomų protokolų}}: $1 (numato į http://, jei nenurodytas joks protokolas).",
 	"linksearch-line": "$1 yra susietas iš $2",
 	"linksearch-error": "Žvaigždutės gali būti tik adreso pradžioje.",
 	"listusersfrom": "Rodyti naudotojus pradedant nuo:",

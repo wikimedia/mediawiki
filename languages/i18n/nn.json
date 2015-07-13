@@ -1552,7 +1552,7 @@
 	"linksearch-pat": "Søkjemønster:",
 	"linksearch-ns": "Namnerom:",
 	"linksearch-ok": "Søk",
-	"linksearch-text": "Jokerteikn som «*.wikipedia.org» kan nyttast.\nDet er påkravt med eit toppnivådomene, til dømes «*.org».<br />\n{{PLURAL:$2|Stødd protokoll|Stødde protokollar}}: <code>$1</code> (nyttar http:// som standard om ingen protokoll er oppgjeven)",
+	"linksearch-text": "Jokerteikn som «*.wikipedia.org» kan nyttast.\nDet er påkravt med eit toppnivådomene, til dømes «*.org».<br />\n{{PLURAL:$2|Stødd protokoll|Stødde protokollar}}: $1 (nyttar http:// som standard om ingen protokoll er oppgjeven)",
 	"linksearch-line": "$2 lenkjer til $1",
 	"linksearch-error": "Jokerteikn kan berre nyttast føre tenarnamnet.",
 	"listusersfrom": "Vis brukarnamna frå og med:",

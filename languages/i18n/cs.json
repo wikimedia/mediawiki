@@ -1676,7 +1676,7 @@
 	"linksearch-pat": "Vyhledávací vzor:",
 	"linksearch-ns": "Jmenný prostor:",
 	"linksearch-ok": "Hledat",
-	"linksearch-text": "Lze používat zástupné znaky, např. „*.wikipedia.org“.\nPovinná je přinejmenším doména nejvyššího řádu, např. „*.org“.<br />\n{{PLURAL:$2|Podporovaný protokol|Podporované protokoly}}: <code>$1</code> (pokud není protokol uveden, použije se http://).",
+	"linksearch-text": "Lze používat zástupné znaky, např. „*.wikipedia.org“.\nPovinná je přinejmenším doména nejvyššího řádu, např. „*.org“.<br />\n{{PLURAL:$2|Podporovaný protokol|Podporované protokoly}}: $1 (pokud není protokol uveden, použije se http://).",
 	"linksearch-line": "$2 odkazuje na $1",
 	"linksearch-error": "Zástupné znaky lze použít jen na začátku doménového jména.",
 	"listusersfrom": "Zobrazit uživatele počínaje od:",

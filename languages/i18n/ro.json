@@ -1674,7 +1674,7 @@
 	"linksearch-pat": "De căutat:",
 	"linksearch-ns": "Spațiu de nume:",
 	"linksearch-ok": "Caută",
-	"linksearch-text": "Pot fi folosite metacaractere precum „*.wikipedia.org”.\nNecesită cel puțin un domeniu de nivel superior, cum ar fi „*.org”.<br />\n{{PLURAL:$2|Protocol suportat|Protocoale suportate}}: <code>$1</code> (se trece implicit la http:// dacă nu este specificat niciun protocol).",
+	"linksearch-text": "Pot fi folosite metacaractere precum „*.wikipedia.org”.\nNecesită cel puțin un domeniu de nivel superior, cum ar fi „*.org”.<br />\n{{PLURAL:$2|Protocol suportat|Protocoale suportate}}: $1 (se trece implicit la http:// dacă nu este specificat niciun protocol).",
 	"linksearch-line": "$1 este legat de $2",
 	"linksearch-error": "Metacaracterele pot să apară doar la începutul hostname-ului.",
 	"listusersfrom": "Afișează utilizatori începând cu:",

@@ -1662,7 +1662,7 @@
 	"linksearch-pat": "Cirche le cambiune:",
 	"linksearch-ns": "Neimspeise:",
 	"linksearch-ok": "Cirche",
-	"linksearch-text": "Le wildcard cumme a \"*.wikipedia.org\" ponne essere ausate.<br />\nOnne abbesogne almene de 'nu dominie de levèlle ierte, pe esembie \"*.org\". <br />\n{{PLURAL:$2|Protocolle}} supportate: <code>$1</code> ('u valore de base jè http:// ce 'u protocolle non g'è specificate).",
+	"linksearch-text": "Le wildcard cumme a \"*.wikipedia.org\" ponne essere ausate.<br />\nOnne abbesogne almene de 'nu dominie de levèlle ierte, pe esembie \"*.org\". <br />\n{{PLURAL:$2|Protocolle}} supportate: $1 ('u valore de base jè http:// ce 'u protocolle non g'è specificate).",
 	"linksearch-line": "$1 jè pundete da $2",
 	"linksearch-error": "Le wildcard ponne essere ausate sulamende a l'inzie de l'hostname.",
 	"listusersfrom": "Fà vedè l'utinde partenne da:",

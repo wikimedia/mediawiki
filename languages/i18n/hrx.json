@@ -1567,7 +1567,7 @@
 	"linksearch-pat": "Suchmuster:",
 	"linksearch-ns": "Noomeraum:",
 	"linksearch-ok": "Suche",
-	"linksearch-text": "Die Spezialseit ermöchlicht die Such noh Seite, in dene bestimmte Weblinks enthalt sind. Dabei könne Platzhalter wie beispielsweis <code>*.beispiel.de</code> benutzt sin. Es muss minnschtens en Top-Level-Domain, z. B. \"*.org\". ppngeb sin. <br />{{PLURAL:$2|Unnergeschtütztes Protokoll|Unnergestützte Protokolle}}: <code>$1</code> (Standard ist http, falls ken Protokoll angeb ist.)",
+	"linksearch-text": "Die Spezialseit ermöchlicht die Such noh Seite, in dene bestimmte Weblinks enthalt sind. Dabei könne Platzhalter wie beispielsweis <code>*.beispiel.de</code> benutzt sin. Es muss minnschtens en Top-Level-Domain, z. B. \"*.org\". ppngeb sin. <br />{{PLURAL:$2|Unnergeschtütztes Protokoll|Unnergestützte Protokolle}}: $1 (Standard ist http, falls ken Protokoll angeb ist.)",
 	"linksearch-line": "$1 ist verlinkt von $2",
 	"linksearch-error": "Wildcards könne nuar am Oonfang von der URL verwendt sin.",
 	"listusersfrom": "Zeich Benutzer ab:",

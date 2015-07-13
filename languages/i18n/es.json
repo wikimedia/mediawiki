@@ -1771,7 +1771,7 @@
 	"linksearch-pat": "Patrón de búsqueda:",
 	"linksearch-ns": "Espacio de nombre:",
 	"linksearch-ok": "Buscar",
-	"linksearch-text": "Se pueden usar caracteres comodín como \"*.wikipedia.org\".\nEs necesario, por lo menos, un dominio de alto nivel, por ejemplo \"*.org\".<br />\n{{PLURAL:$2|Protocolo soportado|Protocolos soportados}}: <code>$1</code> (si no se especifica ninguno, el predeterminado es http://).",
+	"linksearch-text": "Se pueden usar caracteres comodín como \"*.wikipedia.org\".\nEs necesario, por lo menos, un dominio de alto nivel, por ejemplo \"*.org\".<br />\n{{PLURAL:$2|Protocolo soportado|Protocolos soportados}}: $1 (si no se especifica ninguno, el predeterminado es http://).",
 	"linksearch-line": "$1 enlazado desde $2",
 	"linksearch-error": "Los comodines sólo pueden aparecer al principio del nombre de sitio.",
 	"listusersfrom": "Mostrar usuarios que empiecen por:",

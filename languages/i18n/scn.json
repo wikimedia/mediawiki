@@ -1660,7 +1660,7 @@
 	"linksearch-pat": "Esprissioni di risciduta:",
 	"linksearch-ns": "Namespace:",
 	"linksearch-ok": "Arriscedi",
-	"linksearch-text": "Si ponnu adupirari li caràttiri matta, ad esempiu \"*.wikipedia.org\".\nCci voli almenu nu duminiu di primu liveddu, ad esempiu \"*.org\".<br />\n{{PLURAL:$2|Protucollu suppurtatu|Protucolli suppurtati}}: <code>$1</code> (è pridifinutu http:// si' nun si nni spicìfica)",
+	"linksearch-text": "Si ponnu adupirari li caràttiri matta, ad esempiu \"*.wikipedia.org\".\nCci voli almenu nu duminiu di primu liveddu, ad esempiu \"*.org\".<br />\n{{PLURAL:$2|Protucollu suppurtatu|Protucolli suppurtati}}: $1 (è pridifinutu http:// si' nun si nni spicìfica)",
 	"linksearch-line": "$1 è culligatu dâ pàggina $2",
 	"linksearch-error": "Li caràttiri matta ponnu appariri sulu ô principiu dû nomu host.",
 	"listusersfrom": "Ammustra l'utenti a' pàrtiri di:",

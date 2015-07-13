@@ -579,7 +579,6 @@
 	"passwordreset": "Parola sıfırlama",
 	"passwordreset-text-one": "Parolanızı sıfırlamak için bu formu doldurun.",
 	"passwordreset-text-many": "{{PLURAL:$1|E-posta ile geçici bir parola almak için alanlardan birini doldurun.}}",
-	"passwordreset-legend": "Şifreyi sıfırla",
 	"passwordreset-disabled": "Parola sıfırlamaları bu wiki üzerinde devre dışı bırakıldı.",
 	"passwordreset-emaildisabled": "Bu wiki'deki e-posta özellikleri devre dışı bırakıldı.",
 	"passwordreset-username": "Kullanıcı adı:",
@@ -606,7 +605,6 @@
 	"resettokens": "Anahtarları sıfırla",
 	"resettokens-text": "Burada hesabınızla ilişkili bazı özel verilere erişim izin anahtarları sıfırlayabilirsiniz.\n\n\nSiz yanlışlıkla bunları paylaştıysanız veya hesabınızda bir bozulma varsa bunu yapmalısınız.",
 	"resettokens-no-tokens": "Sıfırlamak için hiç bir belirteç bulunmuyor.",
-	"resettokens-legend": "Anahtarları sıfırla",
 	"resettokens-tokens": "Belirteçler:",
 	"resettokens-token-label": "$1 (geçerli değer: $2)",
 	"resettokens-watchlist-token": "[[Special:Watchlist|İzleme listenizdeki sayfa değişiklikleri]] için web beslemeleri (Atom/RSS) anahtarı",
@@ -1564,6 +1562,7 @@
 	"randomincategory-nopages": "[[:Category:$1|$1]] kategorisinde hiç sayfa yok.",
 	"randomincategory-category": "Kategori:",
 	"randomincategory-legend": "Kategoriden rastgele sayfa",
+	"randomincategory-submit": "Git",
 	"randomredirect": "Rastgele yönlendirme",
 	"randomredirect-nopages": "\"$1\" ad alanında hiç bir yönlendirme yok.",
 	"statistics": "İstatistikler",
@@ -1725,7 +1724,7 @@
 	"linksearch-pat": "Motif ara:",
 	"linksearch-ns": "Ad alanı:",
 	"linksearch-ok": "Ara",
-	"linksearch-text": "\"*.wikipedia.org\" gibi jokerler kullanılabilir.\nEn az bir üst-seviye alan gerekir, örneğin \"*.org\".<br />\nDesteklenen {{PLURAL:$2|iletişim kuralı|iletişim kuralları}}: <code>$1</code> (herhangi bir iletişim kuralı belirtmezseniz http:// otomatik olarak eklenir).",
+	"linksearch-text": "\"*.wikipedia.org\" gibi jokerler kullanılabilir.\nEn az bir üst-seviye alan gerekir, örneğin \"*.org\".<br />\nDesteklenen {{PLURAL:$2|iletişim kuralı|iletişim kuralları}}: $1 (herhangi bir iletişim kuralı belirtmezseniz http:// otomatik olarak eklenir).",
 	"linksearch-line": "$1'e $2'den bağlantı verilmiş",
 	"linksearch-error": "Jokerler sadece ana makine adının başında görünebilir.",
 	"listusersfrom": "Şununla başlayan kullanıcıları görüntüle:",
@@ -3414,5 +3413,6 @@
 	"special-characters-group-khmer": "Kmer",
 	"special-characters-title-endash": "tire",
 	"special-characters-title-emdash": "uzun çizgi",
-	"special-characters-title-minus": "Eksi işareti"
+	"special-characters-title-minus": "Eksi işareti",
+	"mw-widgets-titleinput-description-new-page": "sayfa henüz mevcut değil"
 }

@@ -1674,7 +1674,7 @@
 	"linksearch-pat": "Keresett minta:",
 	"linksearch-ns": "Névtér:",
 	"linksearch-ok": "keresés",
-	"linksearch-text": "Helyettesítő karaktereket is lehet használni, például \"*.wikipedia.org\".\nLegalább egy felső szintű tartománynak lennie kell, például \"*.org\"<br />\nTámogatott {{PLURAL:$2|protokoll|protokollok}}: <code>$1</code> (http:// az alapértelmezett, ha nincs protokoll megadva).",
+	"linksearch-text": "Helyettesítő karaktereket is lehet használni, például \"*.wikipedia.org\".\nLegalább egy felső szintű tartománynak lennie kell, például \"*.org\"<br />\nTámogatott {{PLURAL:$2|protokoll|protokollok}}: $1 (http:// az alapértelmezett, ha nincs protokoll megadva).",
 	"linksearch-line": "$1 hivatkozva innen: $2",
 	"linksearch-error": "Helyettesítő karakterek csak a cím elején szerepelhetnek.",
 	"listusersfrom": "Szerkesztők listázása a következő névtől kezdve:",

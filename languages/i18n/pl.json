@@ -1714,7 +1714,7 @@
 	"linksearch-pat": "Wzorzec wyszukiwania",
 	"linksearch-ns": "Przestrzeń nazw:",
 	"linksearch-ok": "Szukaj",
-	"linksearch-text": "Można użyć symboli wieloznacznych jak „*.wikipedia.org”.\nWymaga podania co najmniej domeny najwyższego poziomu np. „*.org”.<br />\n{{PLURAL:$2|Obsługiwany protokół|Obsługiwane protokoły}}: <code>$1</code> (jeśli nie podano, domyślny to http://).",
+	"linksearch-text": "Można użyć symboli wieloznacznych jak „*.wikipedia.org”.\nWymaga podania co najmniej domeny najwyższego poziomu np. „*.org”.<br />\n{{PLURAL:$2|Obsługiwany protokół|Obsługiwane protokoły}}: $1 (jeśli nie podano, domyślny to http://).",
 	"linksearch-line": "$1 link na stronie $2",
 	"linksearch-error": "Symbolu wieloznacznego można użyć wyłącznie na początku nazwy hosta.",
 	"listusersfrom": "Pokaż użytkowników zaczynając od",

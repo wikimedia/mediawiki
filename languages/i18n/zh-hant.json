@@ -1709,7 +1709,7 @@
 	"linksearch-pat": "搜尋關鍵字：",
 	"linksearch-ns": "命名空間：",
 	"linksearch-ok": "搜尋",
-	"linksearch-text": "可使用萬用字元如 *.wikipedia.org。\n萬用字元必須使用在最上層網域，例如 *.org 。<br />\n支援的{{PLURAL:$2|通訊協定}}有：<code>$1</code>  (若未指定則預設使用 http:// 通訊協定) 。",
+	"linksearch-text": "可使用萬用字元如 *.wikipedia.org。\n萬用字元必須使用在最上層網域，例如 *.org 。<br />\n支援的{{PLURAL:$2|通訊協定}}有：$1  (若未指定則預設使用 http:// 通訊協定) 。",
 	"linksearch-line": "$1 由 $2 所連結",
 	"linksearch-error": "萬用字元僅可在主機名稱的開頭使用。",
 	"listusersfrom": "顯示使用者開始自：",
