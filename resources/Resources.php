@@ -247,7 +247,7 @@ return array(
 	),
 	'jquery.highlightText' => array(
 		'scripts' => 'resources/src/jquery/jquery.highlightText.js',
-		'dependencies' => 'mediawiki.RegExp',
+		'dependencies' => array( 'mediawiki.RegExp', 'dom-level2-shim' ),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.hoverIntent' => array(
@@ -309,6 +309,7 @@ return array(
 		'styles' => 'resources/src/jquery/jquery.tablesorter.css',
 		'messages' => array( 'sort-descending', 'sort-ascending' ),
 		'dependencies' => array(
+			'dom-level2-shim',
 			'mediawiki.RegExp',
 			'mediawiki.language.months',
 		),
@@ -856,7 +857,7 @@ return array(
 	),
 	'mediawiki.api.upload' => array(
 		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.upload.js',
-		'dependencies' => array( 'mediawiki.api', 'mediawiki.api.edit', 'json' ),
+		'dependencies' => array( 'mediawiki.api', 'mediawiki.api.edit', 'json', 'dom-level2-shim' ),
 	),
 	'mediawiki.api.watch' => array(
 		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.watch.js',

@@ -95,8 +95,7 @@
 				return $node.attr( 'alt' ) || ''; // handle undefined alt
 			} else {
 				return $.map( $.makeArray( node.childNodes ), function ( elem ) {
-					// 1 is for document.ELEMENT_NODE (the constant is undefined on old browsers)
-					if ( elem.nodeType === 1 ) {
+					if ( elem.nodeType === Node.ELEMENT_NODE ) {
 						return getElementSortKey( elem );
 					} else {
 						return $.text( elem );

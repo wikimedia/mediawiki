@@ -31,6 +31,7 @@ return array(
 			'mediawiki.page.ready',
 			'mediawiki.page.startup',
 			'test.sinonjs',
+			'dom-level2-shim',
 		),
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
