@@ -35,7 +35,11 @@ class SpecialUpload extends SpecialPage {
 	 * @param WebRequest $request Data posted.
 	 */
 	public function __construct( $request = null ) {
+		global $wgUseMediaWikiUIEverywhere;
 		parent::__construct( 'Upload', 'upload' );
+
+		$this->mOverrideRequest = $request;
+		$wgUseMediaWikiUIEverywhere = true;
 	}
 
 	/** Misc variables **/

@@ -34,7 +34,10 @@ class UserrightsPage extends SpecialPage {
 	protected $isself = false;
 
 	public function __construct() {
+		global $wgUseMediaWikiUIEverywhere;
 		parent::__construct( 'Userrights' );
+
+		$wgUseMediaWikiUIEverywhere = true;
 	}
 
 	public function isRestricted() {
