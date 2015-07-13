@@ -4557,6 +4557,25 @@ http://example.com/url_with_entity&#60;
 !! end
 
 !! test
+External links: Lone protocols are never linked (T105697)
+!! wikitext
+http://
+http://;
+(http://)
+bitcoin:
+bitcoin:;
+(bitcoin:)
+!! html
+<p>http://
+http://;
+(http://)
+bitcoin:
+bitcoin:;
+(bitcoin:)
+</p>
+!! end
+
+!! test
 External links: No preceding word characters allowed (bug 65278)
 !! wikitext
 NOPEhttp://example.com

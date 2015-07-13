@@ -1458,6 +1458,7 @@ class Parser {
 	 * @private
 	 */
 	public function makeFreeExternalLink( $url ) {
+		global $wgUrlProtocols;
 
 		$trail = '';
 
@@ -1497,6 +1498,14 @@ class Parser {
 		}
 
 		$url = Sanitizer::cleanUrl( $url );
+
+		# Verify that we still have a real URL after trail removal, and not just lone protocol
+		if (
+			in_array( $url, $wgUrlProtocols ) ||
+			( $trail[0] === ':' && in_array( $url . ':', $wgUrlProtocols ) )
+		) {
+			return $url . $trail;
+		}
 
 		# Is this an external image?
 		$text = $this->maybeMakeExternalImage( $url );
