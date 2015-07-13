@@ -804,7 +804,7 @@
 
 	"apihelp-query+pagepropnames-description": "List all page property names in use on the wiki.",
 	"apihelp-query+pagepropnames-param-limit": "The maximum number of names to return.",
-	"apihelp-query+pagepropnames-example-simple": "Get first 10 property names.",
+	"apihelp-query+pagepropnames-example-simple": "Get property names, up to the maximum allowed in one request.",
 
 	"apihelp-query+pageprops-description": "Get various properties defined in the page content.",
 	"apihelp-query+pageprops-param-prop": "Only list these props. Useful for checking whether a certain page uses a certain page prop.",
