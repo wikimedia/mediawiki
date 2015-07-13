@@ -27,8 +27,11 @@
  * @ingroup SpecialPage
  */
 class SpecialPreferences extends SpecialPage {
-	function __construct() {
+	public function __construct() {
+		global $wgUseMediaWikiUIEverywhere;
 		parent::__construct( 'Preferences' );
+
+		$wgUseMediaWikiUIEverywhere = true;
 	}
 
 	public function execute( $par ) {
