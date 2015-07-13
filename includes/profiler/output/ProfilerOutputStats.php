@@ -32,38 +32,16 @@
 class ProfilerOutputStats extends ProfilerOutput {
 
 	/**
-	 * Normalize a metric key for StatsD
-	 *
-	 * Replace occurences of '::' with dots and any other non-alphabetic
-	 * characters with underscores. Combine runs of dots or underscores.
-	 * Then trim leading or trailing dots or underscores.
-	 *
-	 * @param string $key
-	 * @since 1.26
-	 */
-	private static function normalizeMetricKey( $key ) {
-		$key = preg_replace( '/[:.]+/', '.', $key );
-		$key = preg_replace( '/[^a-z.]+/i', '_', $key );
-		$key = trim( $key, '_.' );
-		return str_replace( array( '._', '_.' ), '.', $key );
-	}
-
-	/**
 	 * Flush profiling data to the current profiling context's stats buffer.
 	 *
 	 * @param array $stats
 	 */
 	public function log( array $stats ) {
-		if ( isset( $this->params['prefix'] ) ) {
-			$prefix = self::normalizeMetricKey( $this->params['prefix'] );
-		} else {
-			$prefix = '';
-		}
-
+		$prefix = isset( $this->params['prefix'] ) ? $this->params['prefix'] : '';
 		$contextStats = $this->collector->getContext()->getStats();
 
 		foreach ( $stats as $stat ) {
-			$key = self::normalizeMetricKey( "{$prefix}.{$stat['name']}" );
+			$key = "{$prefix}.{$stat['name']}";
 
 			// Convert fractional seconds to whole milliseconds
 			$cpu = round( $stat['cpu'] * 1000 );
