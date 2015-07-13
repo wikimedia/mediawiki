@@ -55,7 +55,7 @@ class PHPUnitMaintClass extends Maintenance {
 	public function finalSetup() {
 		parent::finalSetup();
 
-		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType;
+		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgMainWANCache;
 		global $wgLanguageConverterCacheType, $wgUseDatabaseMessages;
 		global $wgLocaltimezone, $wgLocalisationCacheConf;
 		global $wgDevelopmentWarnings;
@@ -67,6 +67,7 @@ class PHPUnitMaintClass extends Maintenance {
 		$wgDevelopmentWarnings = true;
 
 		$wgMainCacheType = CACHE_NONE;
+		$wgMainWANCache = CACHE_NONE;
 		$wgMessageCacheType = CACHE_NONE;
 		$wgParserCacheType = CACHE_NONE;
 		$wgLanguageConverterCacheType = CACHE_NONE;
