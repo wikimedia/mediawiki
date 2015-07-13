@@ -224,6 +224,7 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 
 	/**
 	 * @covers WANObjectCache::touchCheckKey()
+	 * @covers WANObjectCache::resetCheckKey()
 	 * @covers WANObjectCache::getCheckKeyTime()
 	 */
 	public function testTouchKeys() {
@@ -250,5 +251,13 @@ class WANObjectCacheTest extends MediaWikiTestCase {
 
 		$t4 = $this->cache->getCheckKeyTime( $key );
 		$this->assertEquals( $t3, $t4, 'Check key time did not change' );
+
+		usleep( 1 );
+		$this->cache->resetCheckKey( $key );
+		$t5 = $this->cache->getCheckKeyTime( $key );
+		$this->assertGreaterThan( $t4, $t5, 'Check key time increased' );
+
+		$t6 = $this->cache->getCheckKeyTime( $key );
+		$this->assertEquals( $t5, $t6, 'Check key time did not change' );
 	}
 }
