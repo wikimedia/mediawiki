@@ -8,6 +8,8 @@ This is a not yet released security and maintenance release of the MediaWiki 1.2
 == Changes since 1.24.2 ==
 
 * Update jQuery from v1.11.2 to v1.11.3.
+* (T102562) Fix InstantCommons parameters to handle the new HTTPS-only
+  policy of Wikimedia Commons.
 
 == MediaWiki 1.24.2 ==
 
