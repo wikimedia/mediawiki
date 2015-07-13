@@ -92,6 +92,49 @@
 		assert.equal( mw.util.rawurlencode( 'Test:A & B/Here' ), 'Test%3AA%20%26%20B%2FHere' );
 	} );
 
+	QUnit.test( 'escapeId', 17, function ( assert ) {
+		$.each( mw.config.get( 'wgExperimentalHtmlIds' ) ?
+		{
+			'+': '+',
+			'&': '_',
+			'=': '=',
+			':': ':',
+			';': ';',
+			'@': '@',
+			'$': '$',
+			'-_.': '-_.',
+			'!': '!',
+			'*': '*',
+			'/': '/',
+			'[]': '[]',
+			'<>': '<>',
+			'\'': '_',
+			'§': '§',
+			'Test:A & B/Here': 'Test:A_B/Here',
+			'A&B&amp;C&amp;amp;D&amp;amp;amp;E': 'A_B_amp;C_amp;amp;D_amp;amp;amp;E'
+		} : {
+			'+': '.2B',
+			'&': '.26',
+			'=': '.3D',
+			':': ':',
+			';': '.3B',
+			'@': '.40',
+			'$': '.24',
+			'-_.': '-_.',
+			'!': '.21',
+			'*': '.2A',
+			'/': '.2F',
+			'[]': '.5B.5D',
+			'<>': '.3C.3E',
+			'\'': '.27',
+			'§': '.C2.A7',
+			'Test:A & B/Here': 'Test:A_.26_B.2FHere',
+			'A&B&amp;C&amp;amp;D&amp;amp;amp;E': 'A.26B.26amp.3BC.26amp.3Bamp.3BD.26amp.3Bamp.3Bamp.3BE'
+		}, function ( input, output ) {
+			assert.equal( mw.util.escapeId( input ), output );
+		} );
+	} );
+
 	QUnit.test( 'wikiUrlencode', 11, function ( assert ) {
 		assert.equal( mw.util.wikiUrlencode( 'Test:A & B/Here' ), 'Test:A_%26_B/Here' );
 		// See also wfUrlencodeTest.php#provideURLS
