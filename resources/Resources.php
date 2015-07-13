@@ -1084,6 +1084,7 @@ return array(
 		)
 	),
 	'mediawiki.util' => array(
+		'class' => 'ResourceLoaderUtilModule',
 		'scripts' => 'resources/src/mediawiki/mediawiki.util.js',
 		'dependencies' => array(
 			'jquery.accessKeyLabel',
