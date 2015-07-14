@@ -393,16 +393,16 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$panel[] = '<hr />';
 
 		$extraOpts = $this->getExtraOptions( $opts );
-		$extraOptsCount = count( $extraOpts );
-		$count = 0;
-		$submit = ' ' . Xml::submitbutton( $this->msg( 'allpagessubmit' )->text() );
+		$extraOpts['submit'] = array(
+			'',
+			new OOUI\ButtonInputWidget( array(
+				'label' => $this->msg( 'allpagessubmit' )->text(),
+				'type' => 'submit',
+			) ),
+		);
 
 		$out = Xml::openElement( 'table', array( 'class' => 'mw-recentchanges-table' ) );
 		foreach ( $extraOpts as $name => $optionRow ) {
-			# Add submit button to the last row only
-			++$count;
-			$addSubmit = ( $count === $extraOptsCount ) ? $submit : '';
-
 			$out .= Xml::openElement( 'tr' );
 			if ( is_array( $optionRow ) ) {
 				$out .= Xml::tags(
@@ -413,13 +413,13 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 				$out .= Xml::tags(
 					'td',
 					array( 'class' => 'mw-input' ),
-					$optionRow[1] . $addSubmit
+					$optionRow[1]
 				);
 			} else {
 				$out .= Xml::tags(
 					'td',
 					array( 'class' => 'mw-input', 'colspan' => 2 ),
-					$optionRow . $addSubmit
+					$optionRow
 				);
 			}
 			$out .= Xml::closeElement( 'tr' );
@@ -487,7 +487,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$extraOpts['category'] = $this->categoryFilterForm( $opts );
 		}
 
-		$tagFilter = ChangeTags::buildTagFilterSelector( $opts['tagfilter'] );
+		$tagFilter = ChangeTags::buildTagFilterSelector( $opts['tagfilter'], false, null, true );
 		if ( count( $tagFilter ) ) {
 			$extraOpts['tagfilter'] = $tagFilter;
 		}
@@ -506,7 +506,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	protected function addModules() {
 		parent::addModules();
 		$out = $this->getOutput();
-		$out->addModules( 'mediawiki.special.recentchanges' );
+		$out->enableOOUI();
 	}
 
 	/**
@@ -530,23 +530,21 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @return string
 	 */
 	protected function namespaceFilterForm( FormOptions $opts ) {
-		$nsSelect = Html::namespaceSelector(
-			array( 'selected' => $opts['namespace'], 'all' => '' ),
-			array( 'name' => 'namespace', 'id' => 'namespace' )
-		);
-		$nsLabel = Xml::label( $this->msg( 'namespace' )->text(), 'namespace' );
-		$invert = Xml::checkLabel(
-			$this->msg( 'invert' )->text(), 'invert', 'nsinvert',
-			$opts['invert'],
-			array( 'title' => $this->msg( 'tooltip-invert' )->text() )
-		);
-		$associated = Xml::checkLabel(
-			$this->msg( 'namespace_association' )->text(), 'associated', 'nsassociated',
-			$opts['associated'],
-			array( 'title' => $this->msg( 'tooltip-namespace_association' )->text() )
-		);
+		$label = Xml::label( $this->msg( 'namespace' )->text(), 'namespace' );
+		$widget = new MediaWiki\Widget\NamespaceInputWidget( array(
+			'infusable' => true,
+			'nameNamespace' => 'namespace',
+			'valueNamespace' => $opts['namespace'],
+			'includeAllValue' => '',
+			'nameInvert' => 'invert',
+			'labelInvert' => $this->msg( 'invert' )->text(),
+			'valueInvert' => $opts['invert'],
+			'nameAssociated' => 'associated',
+			'valueAssociated' => $opts['associated'],
+			'labelAssociated' => $this->msg( 'namespace_association' )->text(),
+		) );
 
-		return array( $nsLabel, "$nsSelect $invert $associated" );
+		return array( $label, $widget );
 	}
 
 	/**
@@ -556,13 +554,21 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @return array
 	 */
 	protected function categoryFilterForm( FormOptions $opts ) {
-		list( $label, $input ) = Xml::inputLabelSep( $this->msg( 'rc_categories' )->text(),
-			'categories', 'mw-categories', false, $opts['categories'] );
+		$textLabel = Xml::label( $this->msg( 'rc_categories' )->text(), 'mw-categories' );
+		$textWidget = new OOUI\TextInputWidget( array(
+			'name' => 'categories',
+			'id' => 'mw-categories',
+			'value' => $opts['categories'],
+		) );
+		$checkLabel = Xml::label( $this->msg( 'rc_categories_any' )->text(), 'mw-categories_any' );
+		$checkWidget = new OOUI\CheckboxInputWidget( array(
+			'name' => 'categories_any',
+			'id' => 'mw-categories_any',
+			'value' => '1',
+			'selected' => $opts['categories_any'],
+		) );
 
-		$input .= ' ' . Xml::checkLabel( $this->msg( 'rc_categories_any' )->text(),
-			'categories_any', 'mw-categories_any', $opts['categories_any'] );
-
-		return array( $label, $input );
+		return array( $textLabel, $textWidget . $checkWidget . $checkLabel );
 	}
 
 	/**
