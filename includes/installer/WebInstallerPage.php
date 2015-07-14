@@ -911,16 +911,8 @@ class WebInstallerName extends WebInstallerPage {
 		$pwd = $this->getVar( '_AdminPassword' );
 		$user = User::newFromName( $cname );
 		if ( $user ) {
-			$upp = new UserPasswordPolicy(
-				$wgPasswordPolicy['policies'],
-				$wgPasswordPolicy['checks']
-			);
-			$status = $upp->checkUserPasswordForGroups(
-				$user,
-				$pwd,
-				array( 'sysop', 'bureaucrat' )
-			);
-			$valid = $status->isGood();
+			$status = $user->checkPasswordValidity( $pwd, 'create' );
+			$valid = $status->isGood() ? true : $status->getMessage()->escaped();
 		} else {
 			$valid = 'config-admin-name-invalid';
 		}

@@ -545,7 +545,7 @@ class LoginForm extends SpecialPage {
 			}
 
 			# check for password validity, return a fatal Status if invalid
-			$validity = $u->checkPasswordValidity( $this->mPassword );
+			$validity = $u->checkPasswordValidity( $this->mPassword, 'create' );
 			if ( !$validity->isGood() ) {
 				$validity->ok = false; // make sure this Status is fatal
 				return $validity;
@@ -948,7 +948,10 @@ class LoginForm extends SpecialPage {
 					} elseif ( $wgInvalidPasswordReset
 						&& !$user->isValidPassword( $this->mPassword )
 					) {
-						$status = $user->checkPasswordValidity( $this->mPassword );
+						$status = $user->checkPasswordValidity(
+							$this->mPassword,
+							'login'
+						);
 						$this->resetLoginForm(
 							$status->getMessage( 'resetpass-validity-soft' )
 						);

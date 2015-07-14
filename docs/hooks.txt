@@ -2313,6 +2313,8 @@ that tests continue to run properly.
 'PasswordPoliciesForUser': Alter the effective password policy for a user.
 $user: User object whose policy you are modifying
 &$effectivePolicy: Array of policy statements that apply to this user
+$purpose: string indicating purpose of the check, one of 'login', 'create',
+  or 'reset'
 
 'PerformRetroactiveAutoblock': Called before a retroactive autoblock is applied
 to a user.
