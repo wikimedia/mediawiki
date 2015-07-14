@@ -235,7 +235,6 @@ class SpecialExport extends SpecialPage {
 				'class' => 'HTMLTextAreaField',
 				'name' => 'pages',
 				'nodata' => true,
-				'cols' => 40,
 				'rows' => 10,
 				'default' => $page,
 			),
@@ -307,7 +306,7 @@ class SpecialExport extends SpecialPage {
 			);
 		}
 
-		$htmlForm = HTMLForm::factory( 'div', $formDescriptor, $this->getContext() );
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
 		$htmlForm->setSubmitTextMsg( 'export-submit' );
 		$htmlForm->prepareForm()->displayForm( false );
 		$this->addHelpLink( 'Help:Export' );
