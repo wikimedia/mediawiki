@@ -6687,6 +6687,7 @@ $wgJobClasses = array(
 	'refreshLinksPrioritized' => 'RefreshLinksJob', // for cascading protection
 	'activityUpdateJob' => 'ActivityUpdateJob',
 	'enqueue' => 'EnqueueJob', // local queue for multi-DC setups
+	'LeastAccessedThumbnailsCleanupJob' => 'LeastAccessedThumbnailsCleanupJob',
 	'null' => 'NullJob'
 );
 
@@ -7720,6 +7721,22 @@ $wgVirtualRestConfig = array(
 		'HTTPProxy' => null
 	)
 );
+
+/**
+ * Command used to find files on the local file system.
+ * @var string
+ * @since 1.26
+ */
+$wgFindCommand = '/usr/bin/find';
+
+/**
+ * If set to a non-zero value, periodically deletes local thumbnails that haven't been
+ * accessed for that many days
+ * If set to 0, doesn't clean up thumbnails
+ * @var integer
+ * @since 1.26
+ */
+$wgThumbnailsUnaccessedCleanupDays = 0;
 
 /**
  * For really cool vim folding this needs to be at the end:

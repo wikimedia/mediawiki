@@ -357,7 +357,7 @@ function wfStreamThumb( array $params ) {
  * @return array (MediaTransformOutput|bool, string|bool error message HTML)
  */
 function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath ) {
-	global $wgMemc, $wgAttemptFailureEpoch;
+	global $wgMemc, $wgAttemptFailureEpoch, $wgLocalFileRepo, $wgThumbnailsUnaccessedCleanupDays;
 
 	$key = wfMemcKey( 'attempt-failures', $wgAttemptFailureEpoch,
 		$file->getRepo()->getName(), $file->getSha1(), md5( $thumbName ) );
@@ -426,6 +426,15 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath 
 	if ( !$thumb || $thumb->isError() ) {
 		// Randomize TTL to reduce stampedes
 		$wgMemc->incrWithInit( $key, 3600 + mt_rand( 0, 300 ) );
+	}
+
+	if ( $wgLocalFileRepo && $wgThumbnailsUnaccessedCleanupDays > 0 ) {
+		// We've introduced a new thumbnail, opportunistically free some room by cleaning up
+		// the least accessed ones
+		JobQueueGroup::singleton()->push( new LeastAccessedThumbnailsCleanupJob(
+			new Title(),
+			array( 'unaccessedDays' => $wgThumbnailsUnaccessedCleanupDays )
+		) );
 	}
 
 	return array( $thumb, $errorHtml );
