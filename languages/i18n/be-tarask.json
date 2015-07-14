@@ -1828,6 +1828,7 @@
 	"changecontentmodel-success-text": "Тып зьместу [[:$1]] быў зьменены.",
 	"changecontentmodel-cannot-convert": "Зьмест [[:$1]] ня можа быць ператвораны ў тып $2.",
 	"changecontentmodel-title-cantexist": "Немагчыма мець старонку ў $1.",
+	"changecontentmodel-nodirectediting": "Мадэль зьместу $1 не падтрымлівае наўпроставае рэдагаваньне",
 	"protectlogpage": "Журнал абаронаў",
 	"protectlogtext": "Ніжэй пададзены сьпіс зьменаў абароны старонкі.\nГлядзіце [[Special:ProtectedPages|сьпіс абароненых старонак на цяперашні момант]].",
 	"protectedarticle": "абароненая «[[$1]]»",

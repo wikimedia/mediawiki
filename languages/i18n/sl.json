@@ -2360,7 +2360,7 @@
 	"pageinfo-robot-index": "Dovoljeno",
 	"pageinfo-robot-noindex": "Nedovoljeno",
 	"pageinfo-watchers": "Število spremljevalcev strani",
-	"pageinfo-visiting-watchers": "Število sledilcev strani, ki si ogledujejo zadnja urejanja",
+	"pageinfo-visiting-watchers": "Število sledilcev strani, ki so si ogledali zadnja urejanja",
 	"pageinfo-few-watchers": "Manj kot $1 {{PLURAL:$1|spremljevalec|spremljevalca|spremljevalci|spremljevalcev}}",
 	"pageinfo-few-visiting-watchers": "Lahko obstaja uporabnik, ki si ogleduje zadnja urejanja",
 	"pageinfo-redirects-name": "Število preusmeritev na stran",

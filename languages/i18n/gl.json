@@ -2382,7 +2382,7 @@
 	"pageinfo-robot-index": "Permitida",
 	"pageinfo-robot-noindex": "Non permitida",
 	"pageinfo-watchers": "Número de vixiantes da páxina",
-	"pageinfo-visiting-watchers": "Número de usuarios vixiando a páxina visitando as edicións recentes",
+	"pageinfo-visiting-watchers": "Número de usuarios vixiando a páxina que visitaron as edicións recentes",
 	"pageinfo-few-watchers": "Menos de $1 {{PLURAL:$1|vixiante|vixiantes}}",
 	"pageinfo-few-visiting-watchers": "Pode haber, ou non, un usuario que vixía páxinas visitando as edicións recentes",
 	"pageinfo-redirects-name": "Número de redireccións cara a esta páxina",

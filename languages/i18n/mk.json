@@ -2391,7 +2391,7 @@
 	"pageinfo-robot-index": "Дозволено",
 	"pageinfo-robot-noindex": "Недозволено",
 	"pageinfo-watchers": "Број на набљудувачи",
-	"pageinfo-visiting-watchers": "Број на набљудувачи на страницата што ги посетуваат скорешните уредувања",
+	"pageinfo-visiting-watchers": "Број на набљудувачи на страницата што ги посетиле скорешните уредувања",
 	"pageinfo-few-watchers": "Помалку од $1 {{PLURAL:$1|набљудувач|набљудувачи}}",
 	"pageinfo-few-visiting-watchers": "Не се знае дали има набљудувач што ги посетува скорешните уредувања",
 	"pageinfo-redirects-name": "Пренасочувања кон страницата",
