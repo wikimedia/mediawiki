@@ -17,8 +17,10 @@
 	"ooui-toolgroup-collapse": "Kevesebb",
 	"ooui-dialog-message-accept": "OK",
 	"ooui-dialog-message-reject": "Mégse",
+	"ooui-dialog-process-error": "Valami elromlott.",
 	"ooui-dialog-process-dismiss": "Elrejt",
 	"ooui-dialog-process-retry": "Próbáld újra",
 	"ooui-dialog-process-continue": "Folytatás",
+	"ooui-selectfile-not-supported": "A fájl kiválasztása nincs támogatva",
 	"ooui-selectfile-placeholder": "Nincs fájl kiválasztva"
 }

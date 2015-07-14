@@ -22,5 +22,7 @@
 	"ooui-dialog-process-error": "Κάτι πήγε στραβά",
 	"ooui-dialog-process-dismiss": "Απόρριψη",
 	"ooui-dialog-process-retry": "Δοκιμάστε ξανά",
-	"ooui-dialog-process-continue": "Συνέχεια"
+	"ooui-dialog-process-continue": "Συνέχεια",
+	"ooui-selectfile-not-supported": "Επιλογή αρχείου δεν υποστηρίζεται",
+	"ooui-selectfile-placeholder": "Κανένα αρχείο δεν είναι επιλεγμένο"
 }

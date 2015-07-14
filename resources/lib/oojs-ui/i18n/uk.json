@@ -15,7 +15,8 @@
 			"Tel'et",
 			"Tifinaghes",
 			"Ата",
-			"Piramidion"
+			"Piramidion",
+			"A1"
 		]
 	},
 	"ooui-outline-control-move-down": "Перемістити елемент униз",
@@ -29,5 +30,6 @@
 	"ooui-dialog-process-error": "Щось пішло не так",
 	"ooui-dialog-process-dismiss": "Приховати",
 	"ooui-dialog-process-retry": "Спробуйте ще раз",
-	"ooui-dialog-process-continue": "Продовжити"
+	"ooui-dialog-process-continue": "Продовжити",
+	"ooui-selectfile-placeholder": "Жодного файлу не вибрано"
 }
