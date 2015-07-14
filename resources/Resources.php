@@ -1746,13 +1746,17 @@ return array(
 	'mediawiki.widgets' => array(
 		'scripts' => array(
 			'resources/src/mediawiki.widgets/mw.widgets.js',
+			'resources/src/mediawiki.widgets/mw.widgets.NamespaceInputWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.TitleOptionWidget.js',
 		),
 		'skinStyles' => array(
-			'default' => 'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.css',
+			'default' => array(
+				'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.css',
+			),
 		),
 		'dependencies' => array(
+			'mediawiki.widgets.styles',
 			'jquery.autoEllipsis',
 			'mediawiki.Title',
 			'mediawiki.api',
@@ -1762,6 +1766,15 @@ return array(
 			'mw-widgets-titleinput-description-new-page',
 			'mw-widgets-titleinput-description-redirect',
 		),
+		'targets' => array( 'desktop', 'mobile' ),
+	),
+	'mediawiki.widgets.styles' => array(
+		'skinStyles' => array(
+			'default' => array(
+				'resources/src/mediawiki.widgets/mw.widgets.NamespaceInputWidget.base.css',
+			),
+		),
+		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 
