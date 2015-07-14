@@ -754,6 +754,7 @@ $wgAutoloadLocalClasses = array(
 	'MediaWiki\\Logger\\NullSpi' => __DIR__ . '/includes/debug/logger/NullSpi.php',
 	'MediaWiki\\Logger\\Spi' => __DIR__ . '/includes/debug/logger/Spi.php',
 	'MediaWiki\\Widget\\TitleInputWidget' => __DIR__ . '/includes/widget/TitleInputWidget.php',
+	'MediaWiki\\Widget\\NamespaceInputWidget' => __DIR__ . '/includes/widget/NamespaceInputWidget.php',
 	'MemCachedClientforWiki' => __DIR__ . '/includes/objectcache/MemcachedClient.php',
 	'MemcLockManager' => __DIR__ . '/includes/filebackend/lockmanager/MemcLockManager.php',
 	'MemcachedBagOStuff' => __DIR__ . '/includes/objectcache/MemcachedBagOStuff.php',
