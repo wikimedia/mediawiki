@@ -487,7 +487,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$extraOpts['category'] = $this->categoryFilterForm( $opts );
 		}
 
-		$tagFilter = ChangeTags::buildTagFilterSelector( $opts['tagfilter'] );
+		$tagFilter = ChangeTags::buildTagFilterSelector( $opts['tagfilter'], false, null, true );
 		if ( count( $tagFilter ) ) {
 			$extraOpts['tagfilter'] = $tagFilter;
 		}
@@ -506,7 +506,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	protected function addModules() {
 		parent::addModules();
 		$out = $this->getOutput();
-		$out->addModules( 'mediawiki.special.recentchanges' );
+		$out->enableOOUI();
+		$out->addModules( 'mediawiki.widgets' );
 	}
 
 	/**
@@ -530,23 +531,21 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @return string
 	 */
 	protected function namespaceFilterForm( FormOptions $opts ) {
-		$nsSelect = Html::namespaceSelector(
-			array( 'selected' => $opts['namespace'], 'all' => '' ),
-			array( 'name' => 'namespace', 'id' => 'namespace' )
-		);
 		$nsLabel = Xml::label( $this->msg( 'namespace' )->text(), 'namespace' );
-		$invert = Xml::checkLabel(
-			$this->msg( 'invert' )->text(), 'invert', 'nsinvert',
-			$opts['invert'],
-			array( 'title' => $this->msg( 'tooltip-invert' )->text() )
-		);
-		$associated = Xml::checkLabel(
-			$this->msg( 'namespace_association' )->text(), 'associated', 'nsassociated',
-			$opts['associated'],
-			array( 'title' => $this->msg( 'tooltip-namespace_association' )->text() )
-		);
+		$widget = new MediaWiki\Widget\NamespaceInputWidget( array(
+			'infusable' => true,
+			'nameNamespace' => 'namespace',
+			'valueNamespace' => $opts['namespace'],
+			'includeAllValue' => '',
+			'nameInvert' => 'invert',
+			'labelInvert' => $this->msg( 'invert' )->text(),
+			'valueInvert' => $opts['invert'],
+			'nameAssociated' => 'associated',
+			'valueAssociated' => $opts['associated'],
+			'labelAssociated' => $this->msg( 'namespace_association' )->text(),
+		) );
 
-		return array( $nsLabel, "$nsSelect $invert $associated" );
+		return array( $nsLabel, $widget );
 	}
 
 	/**

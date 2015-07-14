@@ -1504,11 +1504,6 @@ return array(
 			'mediawiki.confirmCloseWindow',
 		),
 	),
-	'mediawiki.special.recentchanges' => array(
-		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.recentchanges.js',
-		'dependencies' => 'mediawiki.special',
-		'position' => 'top',
-	),
 	'mediawiki.special.search' => array(
 		'position' => 'top',
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.search.js',
