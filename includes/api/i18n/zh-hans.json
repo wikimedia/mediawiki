@@ -819,6 +819,7 @@
 	"apihelp-query+watchlist-paramvalue-prop-timestamp": "添加编辑时间戳。",
 	"apihelp-query+watchlist-paramvalue-prop-patrol": "将编辑标记为已巡查。",
 	"apihelp-query+watchlist-paramvalue-prop-sizes": "添加页面的旧有长度和新长度。",
+	"apihelp-query+watchlist-paramvalue-prop-notificationtimestamp": "添加最近被通知有关编辑的用户的时间戳。",
 	"apihelp-query+watchlist-paramvalue-prop-loginfo": "在适当位置添加日志信息。",
 	"apihelp-query+watchlist-param-token": "允许访问其他用户监视列表的安全密钥（可通过用户的[[Special:Preferences#mw-prefsection-watchlist|参数设置]]找到）。",
 	"apihelp-query+watchlist-example-generator": "在当前用户的监视列表中检索用于最近更改页面的页面信息。",

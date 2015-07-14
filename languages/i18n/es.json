@@ -2486,7 +2486,7 @@
 	"pageinfo-robot-index": "Permitido",
 	"pageinfo-robot-noindex": "No permitido",
 	"pageinfo-watchers": "Número de usuarios que vigilan la página",
-	"pageinfo-visiting-watchers": "Número de vigiladores de la página visitando las ediciones recientes",
+	"pageinfo-visiting-watchers": "Número de seguidores de la página que visitaron las ediciones recientes",
 	"pageinfo-few-watchers": "Menos de $1 {{PLURAL:$1|vigilante|vigilantes}}",
 	"pageinfo-few-visiting-watchers": "Puede o no haber seguidores visitando las ediciones recientes",
 	"pageinfo-redirects-name": "Número de redirecciones a esta página",

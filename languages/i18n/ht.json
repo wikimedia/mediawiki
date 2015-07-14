@@ -7,7 +7,8 @@
 			"Masterches",
 			"Urhixidur",
 			"아라",
-			"Tisave"
+			"Tisave",
+			"Bfpage"
 		]
 	},
 	"tog-underline": "Souliyen lyen yo :",
@@ -519,6 +520,7 @@
 	"yourdiff": "Diferans",
 	"copyrightwarning": "Tanpri sonje tout piblikasyon ki fèt nan {{SITENAME}} piblye anba kontra $2 an (wè $1 pou konnen plis). Si ou pa vle sa ou ekri pataje oubyen modifye, ou pa dwe soumèt yo isit.<br />\nW ap pwomèt tou ke sa w ap ekri a se ou menm menm ki ekri li oubyen ke ou kopye li de yon sous ki nan domèn piblik, ou byen you sous ki lib. '''PA ITILIZE TRAVAY KI ANBA DWA DOTÈ SI OTÈ PA T BAY OTORIZASYON LI TOUTBON !'''",
 	"copyrightwarning2": "Tanpri, konnen ke tout kontribisyon yo nan {{SITENAME}} kapab modifye, change oubyen retire pa lòt itilizatè yo.\nSi ou pa vle pou sa ou ekri pataje oubyen modifye, ou pa dwe soumèt li isit.<br />\nW ap pwomèt tou ke sa w ap ekri a se ou menm menm ki ekri li oubyen ke ou kopye li de yon sous ki nan domèn piblik, ou byen you sous ki lib (gade $1 pou konnen pi plis).\n'''PA ITILIZE TRAVAY KI ANBA DWA DOTÈ SI OTÈ PA T BAY OTORIZASYON LI TOUTBON !'''",
+	"editpage-cannot-use-custom-model": "Modèl la kontni nan paj sa a pa ka chanje.",
 	"longpageerror": "'''ERÈ : Tèks ou anrejistre a ap fè $1 Ko, tay sa a depase kapasite limit nou kapab aksepte kounye a: $2 Ko. Nou pa kapab anrejistre tèks sa. Eseye ritounen nan paj ou te ye anvan pou kopye modifikasyon ou yo.'''",
 	"readonlywarning": "'''Atansyon: Bazdone a bare pou fè travay sou li, kidonk ou pap kapab anrejistre modifikasyon ou yo kounye a.'''\nPetèt ou ta renmen kopye-kole teks sa a nan yon fichye teks epi anrejistre l pou pita.\n\nAdministratè ki te bare bazdone a te bay rezon sa a: $1",
 	"protectedpagewarning": "'''Pote atansyon : paj sa a pwoteje. Se sèl itilizatè yo ki genyen estati administratè ki kapab modifye l.'''\nDènye jounal la parèt anba kòm referans.",
@@ -808,6 +810,7 @@
 	"deleteotherreason": "Rezon an plis :",
 	"deletereasonotherlist": "Lòt rezon",
 	"rollbacklink": "revoke",
+	"changecontentmodel-title-label": "Paj Tit",
 	"protectlogpage": "Jounal pwoteksyon yo",
 	"protectedarticle": "pwoteje « [[$1]] »",
 	"modifiedarticleprotection": "te modifye nivo pwoteksyon pou « [[$1]] »",

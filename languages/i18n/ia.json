@@ -2231,7 +2231,7 @@
 	"tooltip-pt-logout": "Clauder session",
 	"tooltip-pt-createaccount": "Tu es incoragiate a crear un conto e aperir session; totevia, non es obligatori",
 	"tooltip-ca-talk": "Discussiones a proposito del pagina de contento",
-	"tooltip-ca-edit": "Tu pote modificar iste pagina.\nPer favor usa le previsualisation ante de publicar.",
+	"tooltip-ca-edit": "Modificar iste pagina",
 	"tooltip-ca-addsection": "Initiar un nove section",
 	"tooltip-ca-viewsource": "Iste pagina es protegite. Tu pote vider su codice fonte.",
 	"tooltip-ca-history": "Versiones anterior de iste pagina",
