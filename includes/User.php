@@ -3721,15 +3721,13 @@ class User implements IDBAccessObject {
 			: wfGetDB( DB_SLAVE );
 
 		$options = ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING )
-			? array( 'FOR UPDATE' )
+			? array( 'LOCK IN SHARE MODE' )
 			: array();
 
-		$id = $db->selectField( 'user', 'user_id', array( 'user_name' => $s ), __METHOD__, $options );
-		if ( $id === false ) {
-			$id = 0;
-		}
+		$id = $db->selectField( 'user',
+			'user_id', array( 'user_name' => $s ), __METHOD__, $options );
 
-		return $id;
+		return (int)$id;
 	}
 
 	/**
