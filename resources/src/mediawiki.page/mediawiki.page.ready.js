@@ -64,7 +64,7 @@
 		if ( $nodes.length ) {
 			mw.loader.using( 'mediawiki.widgets' ).done( function () {
 				$nodes.each( function () {
-					OO.ui.infuse( this );
+					OO.ui.infuse( this.id );
 				} );
 			} );
 		}
