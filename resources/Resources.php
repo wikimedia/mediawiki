@@ -1735,12 +1735,16 @@ return array(
 	'mediawiki.widgets' => array(
 		'scripts' => array(
 			'resources/src/mediawiki.widgets/mw.widgets.js',
+			'resources/src/mediawiki.widgets/mw.widgets.NamespaceInputWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.TitleOptionWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.infuse.js',
 		),
 		'skinStyles' => array(
-			'default' => 'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.css',
+			'default' => array(
+				'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.css',
+				'resources/src/mediawiki.widgets/mw.widgets.NamespaceInputWidget.css',
+			),
 		),
 		'dependencies' => array(
 			'jquery.autoEllipsis',
