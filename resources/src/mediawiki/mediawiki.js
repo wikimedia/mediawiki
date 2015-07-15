@@ -2414,7 +2414,31 @@
 
 		// Skeleton user object. mediawiki.user.js extends this
 		user: {
-			options: new Map(),
+			options: ( function () {
+				var
+					map = new Map(),
+					oldGet = map.get,
+					oldSet = map.set;
+
+				map.defaultsLoaded = false;
+				map.optionsLoaded = false;
+				map.get = function () {
+					if ( !this.optionsLoaded || !this.defaultsLoaded ) {
+						throw new Error( 'user.options module not loaded yet, ' +
+							'add a dependency on it to use mw.user.options.get()' );
+					}
+					return oldGet.apply( this, arguments );
+				};
+				map.set = function () {
+					if ( this.optionsLoaded && !this.defaultsLoaded ) {
+						mw.log.warn( 'ResourceLoader epic fail, dependencies are not enforced in debug mode. ' +
+							'mw.user.options values will not be correct. (T105872)' );
+					}
+					return oldSet.apply( this, arguments );
+				};
+
+				return map;
+			} )(),
 			tokens: new Map()
 		},
 

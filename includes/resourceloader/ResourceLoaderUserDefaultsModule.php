@@ -44,6 +44,6 @@ class ResourceLoaderUserDefaultsModule extends ResourceLoaderModule {
 			'mw.user.options.set',
 			array( User::getDefaultOptions() ),
 			ResourceLoader::inDebugMode()
-		);
+		) . ";mw.user.options.defaultsLoaded=1";
 	}
 }
