@@ -814,6 +814,11 @@ class ResourceLoader implements LoggerAwareInterface {
 			$exp = min( $maxage, $smaxage );
 			header( 'Expires: ' . wfTimestamp( TS_RFC2822, $exp + time() ) );
 		}
+
+		// Send the current time expressed as fractional seconds since epoch,
+		// with microsecond precision. This helps distinguish hits from misses
+		// in edge caches.
+		header( 'MediaWiki-Timestamp: ' . microtime( true ) );
 	}
 
 	/**
