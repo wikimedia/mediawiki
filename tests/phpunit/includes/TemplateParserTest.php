@@ -57,7 +57,20 @@ class TemplateParserTest extends MediaWikiTestCase {
 				array(),
 				false,
 				'RuntimeException',
-			)
+			),
+			array(
+				'has_partial',
+				array(
+					'planet' => 'world',
+				),
+				"Partial hello world!\n in here\n",
+			),
+			array(
+				'bad_partial',
+				array(),
+				false,
+				'Exception',
+			),
 		);
 	}
 }
