@@ -1318,6 +1318,8 @@
 	"uploaddisabledtext": "Opplasting er slått av.",
 	"php-uploaddisabledtext": "PHP-filopplasting er deaktivert. Sjekk innstillingen for file_uploads.",
 	"uploadscripted": "Denne filen inneholder HTML eller skripting som kan feiltolkes av en nettleser.",
+	"upload-scripted-pi-callback": "Det er ikke tillatt å laste opp en fil som inneholder et kjørbart XML-stilark.",
+	"uploaded-script-svg": "Fant et skriptelement \"$1\" i den opplastede SVG-koden.",
 	"uploadscriptednamespace": "Denne SVG-filen inneholder et ulovlig navnerom \"$1\"",
 	"uploadinvalidxml": "XML-en i den opplastede filen kunne ikke tolkes.",
 	"uploadvirus": "Denne filen inneholder virus! Detaljer: $1",

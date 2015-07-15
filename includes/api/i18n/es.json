@@ -465,7 +465,7 @@
 	"apihelp-query+linkshere-example-generator": "Obtener información acerca de las páginas enlazadas a la [[Main Page|Portada]].",
 	"apihelp-query+pageswithprop-param-limit": "El máximo número de páginas que se devolverán.",
 	"apihelp-query+pageswithprop-example-simple": "Listar las 10 primeras páginas que utilicen <code>&#123;&#123;DISPLAYTITLE:&#125;&#125;</code>.",
-	"apihelp-query+pageswithprop-example-generator": "Obtener información acerca de las 10 primeras páginas que utilicen <code>_&#95;NOTOC_&#95;</code>.",
+	"apihelp-query+pageswithprop-example-generator": "Obtener información adicional acerca de las 10 primeras páginas que utilicen <code>_&#95;NOTOC_&#95;</code>.",
 	"apihelp-query+prefixsearch-param-search": "Buscar cadena.",
 	"apihelp-query+prefixsearch-param-namespace": "Espacio de nombres que buscar.",
 	"apihelp-query+prefixsearch-param-limit": "Número máximo de resultados que devolver.",

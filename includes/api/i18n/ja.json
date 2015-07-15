@@ -382,7 +382,7 @@
 	"apihelp-query+pageswithprop-description": "与えられたページプロパティが使用されているすべてのページを一覧表示します。",
 	"apihelp-query+pageswithprop-param-limit": "返すページの最大数。",
 	"apihelp-query+pageswithprop-example-simple": "<code>&#123;&#123;DISPLAYTITLE:&#125;&#125;</code> を使用している最初の10ページを一覧表示する。",
-	"apihelp-query+pageswithprop-example-generator": "Get page info about first 10 pages using <code>_&#95;NOTOC_&#95;</code> を使用している最初の10ページのページ情報を取得する。",
+	"apihelp-query+pageswithprop-example-generator": "<code>_&#95;NOTOC_&#95;</code> を使用している最初の10ページについての追加情報を取得する。",
 	"apihelp-query+prefixsearch-description": "ページ名の先頭一致検索を行います。",
 	"apihelp-query+prefixsearch-param-search": "検索文字列。",
 	"apihelp-query+prefixsearch-param-namespace": "検索する名前空間。",

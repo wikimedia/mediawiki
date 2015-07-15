@@ -1290,6 +1290,8 @@
 	"uploaded-hostile-svg": "Хачайдаммыт SVG-билэ истиилин элэмиэнигэр кутталлаах CSS-куод көһүннэ.",
 	"uploaded-event-handler-on-svg": "SVG-билэлэргэ <code>$1=\"$2\"</code> сабыытыйаны таҥастааччы атрибууттарын туруоруу көҥүллэммэт.",
 	"uploaded-href-attribute-svg": "SVG-билэлэргэ олохтоох соруга суох href-атрибууттар <code>&lt;$1 $2=\"$3\"&gt;</code> бобуллаллар (а.э. http://, javascript:, уо.д.а.).",
+	"uploaded-href-unsafe-target-svg": "Хачайдаммыт SVG-билэҕэ кутталлаах сигэ көһүннэ <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-animate-svg": "«Animate» тиэк көһүннэ, кини «from»-атрибут көмөтүнэн  <code>&lt;$1 $2=\"$3\"&gt;</code> хачайдаммыт SVG-билэҕэ сигэни уларытыан сөп.",
 	"uploaded-image-filter-svg": "Хачайдаммыт SVG-билэҕэ маннык URL-аадырыстаах ойуу сиидэтэ көстүбүт <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploadscriptednamespace": "Бу SVG-билэ алҕастаах аат даллаах эбит: '$1'",
 	"uploadinvalidxml": "Хачайдаммит билэҕэ XML анаалыстанар кыаҕа суох.",

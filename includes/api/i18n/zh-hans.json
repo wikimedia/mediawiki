@@ -679,7 +679,7 @@
 	"apihelp-query+pageswithprop-param-limit": "返回页面的最大数量。",
 	"apihelp-query+pageswithprop-param-dir": "排序的方向。",
 	"apihelp-query+pageswithprop-example-simple": "列出前10个使用<code>&#123;&#123;DISPLAYTITLE:&#125;&#125;</code>的页面。",
-	"apihelp-query+pageswithprop-example-generator": "获取有关前10个使用<code>_&#95;NOTOC_&#95;</code>的页面的信息。",
+	"apihelp-query+pageswithprop-example-generator": "获取有关前10个使用<code>_&#95;NOTOC_&#95;</code>的页面的额外信息。",
 	"apihelp-query+prefixsearch-param-search": "搜索字符串。",
 	"apihelp-query+prefixsearch-param-namespace": "搜索的名字空间。",
 	"apihelp-query+prefixsearch-param-limit": "要返回的结果最大数。",

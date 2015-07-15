@@ -39,5 +39,7 @@
 	"apihelp-feedrecentchanges-example-simple": "Mostra els canvis recents.",
 	"apihelp-help-example-recursive": "Tota l'ajuda en una sola pàgina.",
 	"apihelp-import-param-rootpage": "Importa com a subpàgina d'aquesta pàgina.",
+	"apihelp-login-param-name": "Nom d'usuari.",
+	"apihelp-login-param-password": "Contrasenya.",
 	"apihelp-login-example-login": "Inicia sessió."
 }

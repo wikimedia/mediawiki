@@ -2423,6 +2423,7 @@
 	"pageinfo-robot-index": "Tillåten",
 	"pageinfo-robot-noindex": "Inte tillåten",
 	"pageinfo-watchers": "Antal användare som bevakar sidan",
+	"pageinfo-visiting-watchers": "Antalet sidbevakare som har besökt senaste ändringar",
 	"pageinfo-few-watchers": "Färre än $1 {{PLURAL:$1|bevakare}}",
 	"pageinfo-redirects-name": "Antal omdirigeringar till denna sida",
 	"pageinfo-subpages-name": "Undersidor till denna sida",

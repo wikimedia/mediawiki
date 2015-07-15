@@ -760,7 +760,7 @@
 	"apihelp-query+pageswithprop-param-limit": "Le nombre maximal de pages à renvoyer.",
 	"apihelp-query+pageswithprop-param-dir": "Dans quelle direction trier.",
 	"apihelp-query+pageswithprop-example-simple": "Lister les 10 premières pages en utilisant <code>&#123;&#123;DISPLAYTITLE:&#125;&#125;</code>.",
-	"apihelp-query+pageswithprop-example-generator": "Obtenir des informations sur les 10 premières pages utilisant <code>_&#95;NOTOC_&#95;</code>.",
+	"apihelp-query+pageswithprop-example-generator": "Obtenir des informations supplémentaires sur les 10 premières pages utilisant <code>_&#95;NOTOC_&#95;</code>.",
 	"apihelp-query+prefixsearch-description": "Effectuer une recherche de préfixe sur les titres de page.",
 	"apihelp-query+prefixsearch-param-search": "Chaîne de recherche.",
 	"apihelp-query+prefixsearch-param-namespace": "Espaces de nom à rechercher.",

@@ -580,6 +580,7 @@
 	"apihelp-query+pageswithprop-description": "Donn alle Sigge met bechtemmpte Sigge_Eijeschaff opleßte.",
 	"apihelp-query+pageswithprop-param-limit": "De jrüüßte Zahl Sigge för ußzejävve.",
 	"apihelp-query+pageswithprop-param-dir": "En wälsche Reihjefollsch opleßte.",
+	"apihelp-query+pageswithprop-example-generator": "Holl zohsäzlejje Aanjahbe övver de eezde zehn Sigge, woh <code>_&#95;NOTOC_&#95;</code> dren vörkütt.",
 	"apihelp-query+prefixsearch-description": "Söhk nohm Aanfang vun dä Övverschreffte vun de Sigge.",
 	"apihelp-query+prefixsearch-param-search": "Noh wat söhke?",
 	"apihelp-query+prefixsearch-param-namespace": "En wällschem Appachtemang söhke.",
