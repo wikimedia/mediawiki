@@ -36,7 +36,7 @@ class TitleInputWidget extends TextInputWidget {
 		}
 
 		// Initialization
-		$this->addClasses( array( 'mw-widget-TitleInputWidget' ) );
+		$this->addClasses( array( 'mw-widget-titleInputWidget' ) );
 	}
 
 	protected function getJavaScriptClassName() {
