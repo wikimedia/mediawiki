@@ -154,7 +154,7 @@
 		 * @return {jQuery.Promise}
 		 */
 		uploadWithIframe: function ( file, data ) {
-			var tokenPromise,
+			var tokenPromise = $.Deferred(),
 				api = this,
 				filenameFound = false,
 				deferred = $.Deferred(),
@@ -224,9 +224,14 @@
 				return $.Deferred().reject( 'Filename not included in file data.' );
 			}
 
-			tokenPromise = this.getEditToken().then( function ( token ) {
-				$form.append( getHiddenInput( 'token', token ) );
-			} );
+			if ( this.needToken() ) {
+				this.getEditToken().then( function ( token ) {
+					$form.append( getHiddenInput( 'token', token ) );
+					tokenPromise.resolve();
+				}, tokenPromise.reject );
+			} else {
+				tokenPromise.resolve();
+			}
 
 			$( 'body' ).append( $form, $iframe );
 
@@ -239,7 +244,7 @@
 		 * @param {Object} data
 		 */
 		uploadWithFormData: function ( file, data ) {
-			var xhr, tokenPromise,
+			var xhr,
 				api = this,
 				formData = new FormData(),
 				deferred = $.Deferred(),
@@ -286,13 +291,15 @@
 
 			xhr.open( 'POST', this.defaults.ajax.url, true );
 
-			tokenPromise = this.getEditToken().then( function ( token ) {
-				formData.append( 'token', token );
-				xhr.send( formData );
-			}, function () {
-				// Mark the edit token as bad, it's been used.
-				api.badToken( 'edit' );
-			} );
+			if ( this.needToken() ) {
+				this.getEditToken().then( function ( token ) {
+					formData.append( 'token', token );
+					xhr.send( formData );
+				}, function () {
+					// Mark the edit token as bad, it's been used.
+					api.badToken( 'edit' );
+				} );
+			}
 
 			return deferred.promise();
 		},
@@ -349,6 +356,10 @@
 
 				return finishUpload;
 			} );
+		},
+
+		needToken: function () {
+			return true;
 		}
 	} );
 
