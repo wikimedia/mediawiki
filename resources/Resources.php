@@ -1748,7 +1748,6 @@ return array(
 			'resources/src/mediawiki.widgets/mw.widgets.js',
 			'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.TitleOptionWidget.js',
-			'resources/src/mediawiki.widgets/mw.widgets.infuse.js',
 		),
 		'skinStyles' => array(
 			'default' => 'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.css',
