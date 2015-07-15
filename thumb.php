@@ -298,12 +298,19 @@ function wfStreamThumb( array $params ) {
 		$headers[] = 'Vary: ' . implode( ', ', $varyHeader );
 	}
 
+	$stats = RequestContext::getMain()->getStats();
+
 	// Stream the file if it exists already...
 	$thumbPath = $img->getThumbPath( $thumbName );
 	if ( $img->getRepo()->fileExists( $thumbPath ) ) {
+		$starttime = microtime( true );
 		$success = $img->getRepo()->streamFile( $thumbPath, $headers );
+		$streamtime = microtime( true ) - $starttime;
+
 		if ( !$success ) {
 			wfThumbError( 500, 'Could not stream the file' );
+		} else {
+			$stats->timing( 'media.thumbnail.stream', $streamtime );
 		}
 		return;
 	}
@@ -318,7 +325,9 @@ function wfStreamThumb( array $params ) {
 	}
 
 	// Actually generate a new thumbnail
+	$starttime = microtime( true );
 	list( $thumb, $errorMsg ) = wfGenerateThumbnail( $img, $params, $thumbName, $thumbPath );
+	$generatetime = microtime( true ) - $starttime;
 	/** @var MediaTransformOutput|bool $thumb */
 
 	// Check for thumbnail generation errors...
@@ -339,6 +348,8 @@ function wfStreamThumb( array $params ) {
 	if ( $errorMsg !== false ) {
 		wfThumbError( $errorCode, $errorMsg );
 	} else {
+		$stats->timing( 'media.thumbnail.generate', $generatetime );
+
 		// Stream the file if there were no errors
 		$success = $thumb->streamFile( $headers );
 		if ( !$success ) {
