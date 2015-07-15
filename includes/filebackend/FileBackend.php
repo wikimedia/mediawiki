@@ -380,6 +380,7 @@ abstract class FileBackend {
 				$op['headers']['Content-Disposition'] = $op['disposition'];
 			}
 		}
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedPHPBehaviorForOps(); // try to ignore client aborts
 		return $this->doOperationsInternal( $ops, $opts );
 	}
@@ -612,6 +613,7 @@ abstract class FileBackend {
 				$op['headers']['Content-Disposition'] = $op['disposition'];
 			}
 		}
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedPHPBehaviorForOps(); // try to ignore client aborts
 		return $this->doQuickOperationsInternal( $ops );
 	}
@@ -756,6 +758,7 @@ abstract class FileBackend {
 		if ( empty( $params['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedPHPBehaviorForOps(); // try to ignore client aborts
 		return $this->doPrepare( $params );
 	}
@@ -785,6 +788,7 @@ abstract class FileBackend {
 		if ( empty( $params['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedPHPBehaviorForOps(); // try to ignore client aborts
 		return $this->doSecure( $params );
 	}
@@ -816,6 +820,7 @@ abstract class FileBackend {
 		if ( empty( $params['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedPHPBehaviorForOps(); // try to ignore client aborts
 		return $this->doPublish( $params );
 	}
@@ -840,6 +845,7 @@ abstract class FileBackend {
 		if ( empty( $params['bypassReadOnly'] ) && $this->isReadOnly() ) {
 			return Status::newFatal( 'backend-fail-readonly', $this->name, $this->readOnly );
 		}
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedPHPBehaviorForOps(); // try to ignore client aborts
 		return $this->doClean( $params );
 	}
