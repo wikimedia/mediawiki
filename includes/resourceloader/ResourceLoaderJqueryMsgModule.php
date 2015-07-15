@@ -49,6 +49,15 @@ class ResourceLoaderJqueryMsgModule extends ResourceLoaderFileModule {
 	}
 
 	/**
+	* @param ResourceLoaderContext $context
+	* @return array
+	*/
+	public function getScriptURLsForDebug( ResourceLoaderContext $context ) {
+		// Bypass file module urls
+		return ResourceLoaderModule::getScriptURLsForDebug( $context );
+	}
+
+	/**
 	 * @return bool
 	 */
 	public function enableModuleContentVersion() {
