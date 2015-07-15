@@ -1,7 +1,8 @@
 /* OOUIHTMLForm styles */
 
-.mw-htmlform-ooui {
+.mw-htmlform-ooui-wrapper {
 	width: 50em;
+	margin: 1em 0;
 }
 
 .mw-htmlform-ooui .mw-htmlform-submit-buttons {
