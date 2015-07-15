@@ -154,7 +154,7 @@
 		 * @return {jQuery.Promise}
 		 */
 		uploadWithIframe: function ( file, data ) {
-			var tokenPromise,
+			var tokenPromise = $.Deferred(),
 				api = this,
 				filenameFound = false,
 				deferred = $.Deferred(),
@@ -224,9 +224,11 @@
 				return $.Deferred().reject( 'Filename not included in file data.' );
 			}
 
-			tokenPromise = this.getEditToken().then( function ( token ) {
-				$form.append( getHiddenInput( 'token', token ) );
-			} );
+			if ( this.needToken() ) {
+				this.getEditToken().then( function ( token ) {
+					$form.append( getHiddenInput( 'token', token ) );
+				} );
+			}
 
 			$( 'body' ).append( $form, $iframe );
 
@@ -286,13 +288,19 @@
 
 			xhr.open( 'POST', this.defaults.ajax.url, true );
 
-			tokenPromise = this.getEditToken().then( function ( token ) {
-				formData.append( 'token', token );
-				xhr.send( formData );
-			}, function () {
-				// Mark the edit token as bad, it's been used.
-				api.badToken( 'edit' );
-			} );
+			if ( this.needToken() ) {
+				this.getEditToken().then( function ( token ) {
+					formData.append( 'token', token );
+					xhr.send( formData );
+					tokenPromise.resolve();
+				}, function () {
+					// Mark the edit token as bad, it's been used.
+					api.badToken( 'edit' );
+					tokenPromise.reject();
+				} );
+			} else {
+				tokenPromise.resolve();
+			}
 
 			return deferred.promise();
 		},
@@ -349,6 +357,16 @@
 
 				return finishUpload;
 			} );
+		},
+
+		/**
+		 * Whether we need a token for this upload process.
+		 * Override and return false if you're doing a request based on a
+		 * CentralAuth token, or other method of validation.
+		 * @return {boolean}
+		 */
+		needToken: function () {
+			return true;
 		}
 	} );
 
