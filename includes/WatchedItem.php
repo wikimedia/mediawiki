@@ -224,8 +224,6 @@ class WatchedItem {
 	public function resetNotificationTimestamp(
 		$force = '', $oldid = 0, $mode = self::IMMEDIATE
 	) {
-		global $wgActivityUpdatesUseJobQueue;
-
 		// Only loggedin user can have a watchlist
 		if ( wfReadOnly() || $this->mUser->isAnon() || !$this->isAllowed( 'editmywatchlist' ) ) {
 			return;
@@ -275,20 +273,20 @@ class WatchedItem {
 		}
 
 		// If the page is watched by the user (or may be watched), update the timestamp
-		if ( $mode === self::DEFERRED && $wgActivityUpdatesUseJobQueue ) {
-			JobQueueGroup::singleton()->push(
-				EnqueueJob::newFromLocalJobs( new JobSpecification(
-					'activityUpdateJob',
-					array(
-						'type'      => 'updateWatchlistNotification',
-						'userid'    => $this->getUserId(),
-						'notifTime' => $notificationTimestamp,
-						'curTime'   => time()
-					),
-					array( 'removeDuplicates' => true ),
-					$title
-				) )
+		if ( $mode === self::DEFERRED ) {
+			$job = new ActivityUpdateJob(
+				$title,
+				array(
+					'type'      => 'updateWatchlistNotification',
+					'userid'    => $this->getUserId(),
+					'notifTime' => $notificationTimestamp,
+					'curTime'   => time()
+				)
 			);
+			// Try to run this post-send
+			DeferredUpdates::addCallableUpdate( function() use ( $job ) {
+				$job->run();
+			} );
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update( 'watchlist',
