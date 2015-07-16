@@ -1594,4 +1594,44 @@ CREATE UNIQUE INDEX /*i*/site_ids_type ON /*_*/site_identifiers (si_type, si_key
 CREATE INDEX /*i*/site_ids_site ON /*_*/site_identifiers (si_site);
 CREATE INDEX /*i*/site_ids_key ON /*_*/site_identifiers (si_key);
 
+-- Pending server-side file transformations such as rotations, crops, trims
+-- This table lists pending operations, which are triggered via the job queue.
+CREATE TABLE /*_*/file_transform (
+  -- primary key of this transform operation
+  ft_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
+
+  -- Time this transform operation was originally scheduled
+  ft_timestamp binary(14) NOT NULL,
+
+  -- Key on image.img_name
+  ft_img_name varchar(255) binary NOT NULL,
+
+  -- Timestamp of the file at time the job was queued, to detect upload conflicts
+  ft_img_timestamp binary(14) NOT NULL,
+
+  -- Key on user.user_id; user who triggered this operation.
+  -- Will be 'uploader' of the updated file; edit/upload permissions are checked.
+  ft_user_id int unsigned NOT NULL,
+
+  -- What sort of transform operation are we doing?
+  -- Ability to actually perform these depends on MediaHandler support.
+  ft_op ENUM('rotate', 'crop', 'trim') NOT NULL default 'rotate',
+
+  -- Amount to rotate, in degrees clockwise
+  ft_rotate_deg int,
+
+  -- Coordinates for a crop, in pixels
+  ft_crop_x int,
+  ft_crop_y int,
+  ft_crop_width int,
+  ft_crop_height int,
+
+  -- Times for a trim, in seconds
+  ft_trim_start float,
+  ft_trim_length float
+
+) /*$wgDBTableOptions*/;
+
+CREATE INDEX /*i*/ft_name_timestamp_id ON /*_*/file_transform (ft_img_name, ft_timestamp, ft_id);
+
 -- vim: sw=2 sts=2 et
