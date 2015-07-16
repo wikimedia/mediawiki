@@ -18,6 +18,9 @@ class HTMLFormFieldWithButton extends HTMLFormField {
 	/** @var string $mButtonType Value for the button in this field */
 	protected $mButtonValue;
 
+	/** @var string $mButtonType Value for the button in this field */
+	protected $mButtonFlags = array( 'primary', 'progressive' );
+
 	public function __construct( $info ) {
 		if ( isset( $info['buttonclass'] ) ) {
 			$this->mButtonClass = $info['buttonclass'];
@@ -34,6 +37,9 @@ class HTMLFormFieldWithButton extends HTMLFormField {
 		if ( isset( $info['buttontype'] ) ) {
 			$this->mButtonType = $info['buttontype'];
 		}
+		if ( isset( $info['buttonflags'] ) ) {
+			$this->mButtonFlags = $info['buttonflags'];
+		}
 		parent::__construct( $info );
 	}
 
@@ -44,6 +50,16 @@ class HTMLFormFieldWithButton extends HTMLFormField {
 		) + $this->getAttributes( array( 'disabled', 'tabindex' ) );
 
 		return Html::input( $this->mButtonName, $this->mButtonValue, $this->mButtonType, $attr );
+	}
+
+	public function getInputOOUI( $value ) {
+		return new OOUI\ButtonInputWidget( array(
+			'name' => $this->mButtonName,
+			'value' => $this->mButtonValue,
+			'type' => $this->mButtonType,
+			'label' => $this->mButtonValue,
+			'flags' => $this->mButtonFlags,
+		) );
 	}
 
 	/**
