@@ -84,7 +84,7 @@ class LoadMonitorMySQL implements LoadMonitor {
 			} );
 		} elseif ( $staleValue ) {
 			# Could not acquire lock but an old cache exists, so use it
-			return $value['lagTimes'];
+			return $staleValue['lagTimes'];
 		}
 
 		$lagTimes = array();
