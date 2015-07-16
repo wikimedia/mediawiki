@@ -56,7 +56,17 @@ class SpecialListGroupRights extends SpecialPage {
 
 		$config = $this->getConfig();
 		$groupPermissions = $config->get( 'GroupPermissions' );
+		foreach ( $groupPermissions as $group => $rights ) {
+			if ( count( array_filter( $rights ) ) === 0 ) {
+				unset( $groupPermissions[$group] );
+			}
+		}
 		$revokePermissions = $config->get( 'RevokePermissions' );
+		foreach ( $revokePermissions as $group => $rights ) {
+			if ( count( array_filter( $rights ) ) === 0 ) {
+				unset( $revokePermissions[$group] );
+			}
+		}
 		$addGroups = $config->get( 'AddGroups' );
 		$removeGroups = $config->get( 'RemoveGroups' );
 		$groupsAddToSelf = $config->get( 'GroupsAddToSelf' );
