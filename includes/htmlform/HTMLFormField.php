@@ -581,11 +581,12 @@ abstract class HTMLFormField {
 		}
 
 		$fieldType = get_class( $this );
+		$helpText = $this->getHelpText();
 		$field = new OOUI\FieldLayout( $inputField, array(
 			'classes' => array( "mw-htmlform-field-$fieldType", $this->mClass, $errorClass ),
 			'align' => $this->getLabelAlignOOUI(),
 			'label' => $this->getLabel(),
-			'help' => new OOUI\HtmlSnippet( $this->getHelpText() ),
+			'help' => $helpText !== null ? new OOUI\HtmlSnippet( $helpText ) : null,
 			'infusable' => $infusable,
 		) );
 
