@@ -48,6 +48,7 @@ class ApiQuery extends ApiBase {
 		'deletedrevisions' => 'ApiQueryDeletedRevisions',
 		'duplicatefiles' => 'ApiQueryDuplicateFiles',
 		'extlinks' => 'ApiQueryExternalLinks',
+		'filetransformstatus' => 'ApiQueryFileTransformStatus',
 		'fileusage' => 'ApiQueryBacklinksprop',
 		'images' => 'ApiQueryImages',
 		'imageinfo' => 'ApiQueryImageInfo',

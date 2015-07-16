@@ -6687,6 +6687,7 @@ $wgJobClasses = array(
 	'refreshLinksPrioritized' => 'RefreshLinksJob', // for cascading protection
 	'activityUpdateJob' => 'ActivityUpdateJob',
 	'enqueue' => 'EnqueueJob', // local queue for multi-DC setups
+	'fileTransform' => 'FileTransformJob', // server-side 'uploads' modifying existing files
 	'null' => 'NullJob'
 );
 

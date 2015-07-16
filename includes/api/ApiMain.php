@@ -86,7 +86,7 @@ class ApiMain extends ApiBase {
 		'clearhasmsg' => 'ApiClearHasMsg',
 		'userrights' => 'ApiUserrights',
 		'options' => 'ApiOptions',
-		'imagerotate' => 'ApiImageRotate',
+		'filetransform' => 'ApiFileTransform',
 		'revisiondelete' => 'ApiRevisionDelete',
 		'managetags' => 'ApiManageTags',
 		'tag' => 'ApiTag',
