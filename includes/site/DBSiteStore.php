@@ -153,7 +153,11 @@ class DBSiteStore implements SiteStore {
 	protected function loadSites() {
 		$this->sites = new SiteList();
 
-		foreach ( $this->sitesTable->select() as $siteRow ) {
+		$siteRows = $this->sitesTable->select( null, array(), array(
+			'ORDER BY' => 'site_global_key'
+		) );
+
+		foreach ( $siteRows as $siteRow ) {
 			$this->sites[] = $this->siteFromRow( $siteRow );
 		}
 
