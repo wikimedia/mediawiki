@@ -22,8 +22,14 @@
 			ajax: {
 				url: mw.util.wikiScript( 'api' ),
 				timeout: 30 * 1000, // 30 seconds
-				dataType: 'json'
-			}
+				dataType: 'json',
+				headers: {}
+			},
+
+			// Will be set as the 'Api-user-agent' header
+			// Should be set to something that will make it easy to identify
+			// the caller
+			userAgent: false
 		},
 
 		// Keyed by ajax url and symbolic name for the individual request
@@ -62,6 +68,23 @@
 	} );
 
 	/**
+	 * Sanitize and then validate a User-Agent as per RFC 2616
+	 * @param {string} input
+	 * @return {string|boolean} false if the input is invalid
+	 * @private
+	 * @member mw.Api
+	 */
+	function sanitizeAndValidateUserAgent( input ) {
+		var token = '[!#$%&\'*+\\-.0-9A-Za-z^_`|~]+',
+			product = token + '(?:/' + token + ')?',
+			comment = '\\((?:[\\x32-\\x7e]+|\\\\[\\x00-\\x7f])*\\)',
+			re = new RegExp( '(?:' + product + '|' + comment + ')(?: (?:' + product + '|' + comment + '))*' );
+		// Remove extra whitespace
+		input = input.replace( /\s+/g, ' ' ).trim();
+		return re.test( input ) ? input : false;
+	}
+
+	/**
 	 * Constructor to create an object to interact with the API of a particular MediaWiki server.
 	 * mw.Api objects represent the API of a particular MediaWiki server.
 	 *
@@ -91,6 +114,7 @@
 	 *  each individual request by passing them to #get or #post (or directly #ajax) later on.
 	 */
 	mw.Api = function ( options ) {
+		var agent = '';
 		options = options || {};
 
 		// Force a string if we got a mw.Uri object
@@ -101,7 +125,17 @@
 		options = $.extend( { useUS: !options.ajax || !options.ajax.url }, options );
 
 		options.parameters = $.extend( {}, defaultOptions.parameters, options.parameters );
-		options.ajax = $.extend( {}, defaultOptions.ajax, options.ajax );
+		options.ajax = $.extend( true, {}, defaultOptions.ajax, options.ajax );
+		if ( !options.ajax.headers[ 'Api-user-agent' ] ) {
+			if ( options.userAgent ) {
+				agent = sanitizeAndValidateUserAgent( options.userAgent );
+				if ( agent === false ) {
+					throw new Error( 'Invalid user-agent provided' );
+				}
+			}
+			agent += ' MediaWiki/' + mw.config.get( 'wgVersion' ) + ' (mediawiki.api)';
+			options.ajax.headers[ 'Api-user-agent' ] = agent.trim();
+		}
 
 		this.defaults = options;
 		this.requests = [];

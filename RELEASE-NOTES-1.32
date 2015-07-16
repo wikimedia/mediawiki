@@ -33,6 +33,9 @@ production.
   temporary user groups.
 * (T152462) A cookie can now be set when an IP user is blocked to track that user if
   they move to a new IP address. This is disabled by default.
+* Users of the mediawiki.Api JavaScript API are now able and recommended to set
+  a custom API User-Agent to provide more identifying information besides the
+  browser's User-Agent.
 
 === External library changes in 1.32 ===
 * …
