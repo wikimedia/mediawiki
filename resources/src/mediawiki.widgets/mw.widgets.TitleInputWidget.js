@@ -263,6 +263,7 @@
 			data: this.namespace !== null && this.relative
 				? mwTitle.getRelativeText( this.namespace )
 				: title,
+			title: mwTitle,
 			imageUrl: this.showImages ? data.imageUrl : null,
 			description: this.showDescriptions ? data.description : null,
 			missing: data.missing,
