@@ -17,8 +17,15 @@
 
 				timeout: 30 * 1000, // 30 seconds
 
-				dataType: 'json'
-			}
+				dataType: 'json',
+
+				headers: {}
+			},
+
+			// Will be set as the 'Api-user-agent' header
+			// Should be set to something that will make it easy to identify
+			// the caller
+			userAgent: 'mediawiki.api'
 		},
 
 		// Keyed by ajax url and symbolic name for the individual request
@@ -34,6 +41,23 @@
 			.resolve( value )
 			.promise( { abort: function () {} } );
 	} );
+
+	/**
+	 * Sanitize and then validate a User-Agent as per RFC 2616
+	 * @param {string} input
+	 * @return {string|boolean} false if the input is invalid
+	 * @private
+	 * @member mw.Api
+	 */
+	function sanitizeAndValidateUserAgent( input ) {
+		var token = '[!#$%&\'*+\\-.0-9A-Za-z^_`|~]+',
+			product = token + '(?:/' + token + ')?',
+			comment = '\\((?:[\\x32-\\x7e]+|\\\\[\\x00-\\x7f])*\\)',
+			re = new RegExp( '(?:' + product + '|' + comment + ')(?: (?:' + product + '|' + comment + '))*' );
+		// Remove extra whitespace
+		input = $.trim( input.replace( /\s+/g, ' ' ) );
+		return re.test( input ) ? input : false;
+	}
 
 	/**
 	 * Constructor to create an object to interact with the API of a particular MediaWiki server.
@@ -78,6 +102,13 @@
 
 		options.parameters = $.extend( {}, defaultOptions.parameters, options.parameters );
 		options.ajax = $.extend( {}, defaultOptions.ajax, options.ajax );
+		if ( !options.ajax.headers['Api-user-agent'] ) {
+			var agent = sanitizeAndValidateUserAgent( options.userAgent || defaultOptions.userAgent );
+			if ( agent === false ) {
+				throw new Error( 'Invalid user-agent provided' );
+			}
+			options.ajax.headers['Api-user-agent'] = agent;
+		}
 
 		this.defaults = options;
 	};
