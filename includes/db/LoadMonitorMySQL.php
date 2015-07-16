@@ -79,6 +79,7 @@ class LoadMonitorMySQL implements LoadMonitor {
 		if ( $this->mainCache->lock( $key, 0, 10 ) ) {
 			# Let this process alone update the cache value
 			$cache = $this->mainCache;
+			/** @noinspection PhpUnusedLocalVariableInspection */
 			$unlocker = new ScopedCallback( function () use ( $cache, $key ) {
 				$cache->unlock( $key );
 			} );
