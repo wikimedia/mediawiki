@@ -4759,4 +4759,26 @@ class Title {
 		Hooks::run( 'TitleGetEditNotices', array( $this, $oldid, &$notices ) );
 		return $notices;
 	}
+
+	/**
+	 * @return array
+	 */
+	public function __sleep() {
+		return array(
+			'mNamespace',
+			'mDbkeyform',
+			'mFragment',
+			'mInterwiki',
+			'mLocalInterwiki',
+			'mUserCaseDBKey',
+			'mDefaultNamespace',
+		);
+	}
+
+	public function __wakeup() {
+		$this->mArticleID = ( $this->mNamespace >= 0 ) ? -1 : 0;
+		$this->mUrlform = wfUrlencode( $this->mDbkeyform );
+		$this->mTextform = strtr( $this->mDbkeyform, '_', ' ' );
+	}
+
 }
