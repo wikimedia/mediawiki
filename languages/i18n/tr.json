@@ -74,7 +74,8 @@
 			"Nighteagle2000",
 			"Watermelon juice",
 			"Ömer Berkay",
-			"Demircimehmed"
+			"Demircimehmed",
+			"Uğurkent"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çiz:",
@@ -2318,7 +2319,7 @@
 	"tooltip-pt-logout": "Sistemden çık",
 	"tooltip-pt-createaccount": "Bir hesap oluşturup oturum açmanız tavsiye edilmektedir ancak bu zorunlu değildir",
 	"tooltip-ca-talk": "İçerik ile ilgili tartışma",
-	"tooltip-ca-edit": "Bu sayfayı değiştirebilirsiniz. Lütfen kaydetmeden önce önizleme düğmesini kullanın.",
+	"tooltip-ca-edit": "Bu sayfayı düzenleyin",
 	"tooltip-ca-addsection": "Yeni bir altbaşlık aç",
 	"tooltip-ca-viewsource": "Bu sayfa koruma altında. Sadece kaynağını görebilirsiniz.",
 	"tooltip-ca-history": "Bu sayfanın geçmiş sürümleri",

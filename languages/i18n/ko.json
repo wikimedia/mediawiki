@@ -2378,7 +2378,7 @@
 	"pageinfo-robot-index": "허용됨",
 	"pageinfo-robot-noindex": "불허됨",
 	"pageinfo-watchers": "문서를 주시하는 사용자 수",
-	"pageinfo-few-watchers": "{{PLURAL:$1|주시하는 사용자}} $1명 미만",
+	"pageinfo-few-watchers": "{{PLURAL:$1|주시하는 사용자}} $1명보다 적음",
 	"pageinfo-redirects-name": "이 문서의 넘겨주기 수",
 	"pageinfo-redirects-value": "$1개",
 	"pageinfo-subpages-name": "이 문서의 하위 문서 수",

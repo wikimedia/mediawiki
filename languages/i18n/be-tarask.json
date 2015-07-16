@@ -1830,6 +1830,7 @@
 	"changecontentmodel-title-cantexist": "Немагчыма мець старонку ў $1.",
 	"changecontentmodel-nodirectediting": "Мадэль зьместу $1 не падтрымлівае наўпроставае рэдагаваньне",
 	"log-name-contentmodel": "Журнал зьменаў мадэляў зьместу",
+	"log-description-contentmodel": "Падзеі, зьвязаныя з мадэлямі зьместу старонак",
 	"protectlogpage": "Журнал абаронаў",
 	"protectlogtext": "Ніжэй пададзены сьпіс зьменаў абароны старонкі.\nГлядзіце [[Special:ProtectedPages|сьпіс абароненых старонак на цяперашні момант]].",
 	"protectedarticle": "абароненая «[[$1]]»",
