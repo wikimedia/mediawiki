@@ -299,6 +299,8 @@
 					// Mark the edit token as bad, it's been used.
 					api.badToken( 'edit' );
 				} );
+			} else {
+				xhr.send( formData );
 			}
 
 			return deferred.promise();
