@@ -17,8 +17,15 @@
 
 				timeout: 30 * 1000, // 30 seconds
 
-				dataType: 'json'
-			}
+				dataType: 'json',
+
+				headers: {}
+			},
+
+			// Will be set as the 'Api-user-agent' header
+			// Should be set to something that will make it easy to identify
+			// the caller
+			useragent: 'mediawiki.api'
 		},
 
 		// Keyed by ajax url and symbolic name for the individual request
@@ -78,6 +85,13 @@
 
 		options.parameters = $.extend( {}, defaultOptions.parameters, options.parameters );
 		options.ajax = $.extend( {}, defaultOptions.ajax, options.ajax );
+		if ( !options.ajax.headers['Api-user-agent'] ) {
+			if ( options.useragent && !/^[!#$%&'*+\-.0-9A-Za-z^_`|~]+$/.test( options.useragent ) ) {
+				// FIXME this regex doesn't allow spaces
+				throw new Error( 'Invalid useragent provided, only 0-9, A-z, !#$%&\'*+-.^_|~` allowed' );
+			}
+			options.ajax.headers['Api-user-agent'] = options.useragent || defaultOptions.useragent;
+		}
 
 		this.defaults = options;
 	};
