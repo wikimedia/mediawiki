@@ -21,7 +21,7 @@
  * @file
  */
 
-class ApiImageRotate extends ApiBase {
+class ApiFileTransform extends ApiBase {
 	private $mPageSet = null;
 
 	/**
@@ -50,7 +50,14 @@ class ApiImageRotate extends ApiBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
-		$rotation = $params['rotation'];
+		if ( array_key_exists( 'rotation', $params ) ) {
+			$this->op = 'rotate';
+			$this->rotation = $params['rotation'];
+		} else {
+			// @fixme report this error, must provide one of 'rotation', ....?
+			// or better to use an explicit op param?
+			return;
+		}
 
 		$continuationManager = new ApiContinuationManager( $this, array(), array() );
 		$this->setContinuationManager( $continuationManager );
@@ -75,68 +82,39 @@ class ApiImageRotate extends ApiBase {
 			}
 
 			$file = wfFindFile( $title, array( 'latest' => true ) );
-			if ( !$file ) {
-				$r['result'] = 'Failure';
-				$r['errormessage'] = 'File does not exist';
-				$result[] = $r;
-				continue;
-			}
-			$handler = $file->getHandler();
-			if ( !$handler || !$handler->canRotate() ) {
-				$r['result'] = 'Failure';
-				$r['errormessage'] = 'File type cannot be rotated';
-				$result[] = $r;
-				continue;
-			}
+			$transform = $this->createTransform( $file );
 
-			// Check whether we're allowed to rotate this file
-			$permError = $this->checkPermissions( $this->getUser(), $file->getTitle() );
-			if ( $permError !== null ) {
-				$r['result'] = 'Failure';
-				$r['errormessage'] = $permError;
-				$result[] = $r;
-				continue;
-			}
-
-			$srcPath = $file->getLocalRefPath();
-			if ( $srcPath === false ) {
-				$r['result'] = 'Failure';
-				$r['errormessage'] = 'Cannot get local file path';
-				$result[] = $r;
-				continue;
-			}
-			$ext = strtolower( pathinfo( "$srcPath", PATHINFO_EXTENSION ) );
-			$tmpFile = TempFSFile::factory( 'rotate_', $ext );
-			$dstPath = $tmpFile->getPath();
-			$err = $handler->rotate( $file, array(
-				"srcPath" => $srcPath,
-				"dstPath" => $dstPath,
-				"rotation" => $rotation
-			) );
-			if ( !$err ) {
-				$comment = wfMessage(
-					'rotate-comment'
-				)->numParams( $rotation )->inContentLanguage()->text();
-				$status = $file->upload( $dstPath,
-					$comment, $comment, 0, false, false, $this->getUser() );
-				if ( $status->isGood() ) {
-					$r['result'] = 'Success';
-				} else {
-					$r['result'] = 'Failure';
-					$r['errormessage'] = $this->getErrorFormatter()->arrayFromStatus( $status );
-				}
+			$status = $transform->queue();
+			if ( $status->isGood() ) {
+				$r['result'] = 'Queued';
+				// @fixme provide the id number ... and an api method to check its status
 			} else {
 				$r['result'] = 'Failure';
-				$r['errormessage'] = $err->toText();
+				$r['errormessage'] = $status->getMessage()->text();
 			}
+
 			$result[] = $r;
 		}
+
 		$apiResult = $this->getResult();
 		ApiResult::setIndexedTagName( $result, 'page' );
 		$apiResult->addValue( null, $this->getModuleName(), $result );
 
 		$this->setContinuationManager( null );
 		$continuationManager->setContinuationIntoResult( $apiResult );
+	}
+
+	/**
+	 * @return FileTransform
+	 */
+	function createTransform( File $file ) {
+		switch ( $this->op ) {
+		case 'rotate':
+			return new RotateFileTransform( $file, $this->getUser(), $this->rotation );
+		default:
+			// should not happen :D
+			return null;
+		}
 	}
 
 	/**
@@ -151,28 +129,6 @@ class ApiImageRotate extends ApiBase {
 		return $this->mPageSet;
 	}
 
-	/**
-	 * Checks that the user has permissions to perform rotations.
-	 * @param User $user The user to check
-	 * @param Title $title
-	 * @return string|null Permission error message, or null if there is no error
-	 */
-	protected function checkPermissions( $user, $title ) {
-		$permissionErrors = array_merge(
-			$title->getUserPermissionsErrors( 'edit', $user ),
-			$title->getUserPermissionsErrors( 'upload', $user )
-		);
-
-		if ( $permissionErrors ) {
-			// Just return the first error
-			$msg = $this->parseMsg( $permissionErrors[0] );
-
-			return $msg['info'];
-		}
-
-		return null;
-	}
-
 	public function mustBePosted() {
 		return true;
 	}
@@ -183,10 +139,12 @@ class ApiImageRotate extends ApiBase {
 
 	public function getAllowedParams( $flags = 0 ) {
 		$result = array(
+			// at least one operation is required
 			'rotation' => array(
 				ApiBase::PARAM_TYPE => array( '90', '180', '270' ),
-				ApiBase::PARAM_REQUIRED => true
 			),
+			// @todo add 'crop' for visual cropping
+			// @todo add 'trim' for timed-media trimming
 			'continue' => array(
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			),
@@ -204,11 +162,11 @@ class ApiImageRotate extends ApiBase {
 
 	protected function getExamplesMessages() {
 		return array(
-			'action=imagerotate&titles=File:Example.jpg&rotation=90&token=123ABC'
-				=> 'apihelp-imagerotate-example-simple',
-			'action=imagerotate&generator=categorymembers&gcmtitle=Category:Flip&gcmtype=file&' .
+			'action=filetransform&titles=File:Example.jpg&rotation=90&token=123ABC'
+				=> 'apihelp-filetransform-example-simple',
+			'action=filetransform&generator=categorymembers&gcmtitle=Category:Flip&gcmtype=file&' .
 				'rotation=180&token=123ABC'
-				=> 'apihelp-imagerotate-example-generator',
+				=> 'apihelp-filetransform-example-generator',
 		);
 	}
 }
