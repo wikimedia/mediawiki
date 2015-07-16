@@ -509,6 +509,7 @@ $wgAutoloadLocalClasses = array(
 	'HTMLTextAreaField' => __DIR__ . '/includes/htmlform/HTMLTextAreaField.php',
 	'HTMLTextField' => __DIR__ . '/includes/htmlform/HTMLTextField.php',
 	'HTMLTextFieldWithButton' => __DIR__ . '/includes/htmlform/HTMLTextFieldWithButton.php',
+	'HTMLTitleTextField' => __DIR__ . '/includes/htmlform/HTMLTitleTextField.php',
 	'HWLDFWordAccumulator' => __DIR__ . '/includes/diff/DairikiDiff.php',
 	'HashBagOStuff' => __DIR__ . '/includes/libs/objectcache/HashBagOStuff.php',
 	'HashConfig' => __DIR__ . '/includes/config/HashConfig.php',
