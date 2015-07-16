@@ -15,7 +15,8 @@
 			"아라",
 			"Serwan",
 			"Ebraminio",
-			"Macofe"
+			"Macofe",
+			"Pirehelokan"
 		]
 	},
 	"tog-underline": "ھێڵ ھێنان بەژێر بەستەرەکان:",
@@ -2043,6 +2044,7 @@
 	"pageinfo-robot-index": "ڕێ پێدراو",
 	"pageinfo-robot-noindex": "ڕێ پێنەدراوه",
 	"pageinfo-watchers": "ژمارەی چاودێرانی پەڕە",
+	"pageinfo-visiting-watchers": "ژمارەی ئەو بینەرانە کە دوایین دەستکارییەکانیان چاو پێکەوتووە.",
 	"pageinfo-few-watchers": "کەمتر لە $1 {{PLURAL:$1|چاودێر}}",
 	"pageinfo-redirects-name": "ژمارەی ڕەوانەکەرەکان بۆ ئەم پەڕەیە",
 	"pageinfo-subpages-name": "ژێرپەڕەکانی ئەم پەڕەیە",

@@ -3159,7 +3159,7 @@
 	"logentry-move-move": "$1 pervadino puslapį $3 į $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|perkėlė}} puslapį $3 į $4 be nukreipimo",
 	"logentry-move-move_redir": "$1 {{GENDER:$2|perkėlė}} puslapį $3 į $4 per nukreipimą",
-	"logentry-move-move_redir-noredirect": "$1 {{GENDER:$2|perkėlė}} puslapį $3 į $4 per nukreipimą be paliko nukreipimo",
+	"logentry-move-move_redir-noredirect": "$1 {{GENDER:$2|pervadino}} puslapį $3 į $4, nesukurdamas nukreipimo",
 	"logentry-patrol-patrol": "$1 {{GENDER:$2|payžėmjo}} versiją $4 puslapio $3 kaip patruliuojama",
 	"logentry-patrol-patrol-auto": "$1 automatiškai {{GENDER:$2|pažymėjo}} versiją $4 puslapio $3 kaip patruliuojama",
 	"logentry-newusers-newusers": "Vartotojo paskyra $1 buvo {{GENDER:$2|sukurta}}",
