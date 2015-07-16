@@ -14,7 +14,8 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {string} [data] Page title
+	 * @cfg {string} [data] Label to display
+	 * @cfg {mw.Title} [title] Page title object
 	 * @cfg {string} [imageUrl] Thumbnail image URL with URL encoding
 	 * @cfg {string} [description] Page description
 	 * @cfg {boolean} [missing] Page doesn't exist
@@ -23,7 +24,7 @@
 	 * @cfg {string} [query] Matching query string
 	 */
 	mw.widgets.TitleOptionWidget = function MwWidgetsTitleOptionWidget( config ) {
-		var icon, title = config.data;
+		var icon;
 
 		if ( config.missing ) {
 			icon = 'page-not-found';
@@ -38,8 +39,8 @@
 		// Config initialization
 		config = $.extend( {
 			icon: icon,
-			label: title,
-			href: mw.util.getUrl( title ),
+			label: config.data,
+			href: config.title.getUrl(),
 			autoFitLabel: false
 		}, config );
 
