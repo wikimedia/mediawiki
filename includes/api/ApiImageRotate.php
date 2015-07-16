@@ -98,39 +98,16 @@ class ApiImageRotate extends ApiBase {
 				continue;
 			}
 
-			$srcPath = $file->getLocalRefPath();
-			if ( $srcPath === false ) {
-				$r['result'] = 'Failure';
-				$r['errormessage'] = 'Cannot get local file path';
-				$result[] = $r;
-				continue;
-			}
-			$ext = strtolower( pathinfo( "$srcPath", PATHINFO_EXTENSION ) );
-			$tmpFile = TempFSFile::factory( 'rotate_', $ext );
-			$dstPath = $tmpFile->getPath();
-			$err = $handler->rotate( $file, array(
-				"srcPath" => $srcPath,
-				"dstPath" => $dstPath,
-				"rotation" => $rotation
+			// Queue up a job to actually run the rotation...
+			$job = new ImageRotateJob( $file->getTitle(), array(
+				'user_id' => $this->getUser()->getId(),
+				'rotation' => $rotation
 			) );
-			if ( !$err ) {
-				$comment = wfMessage(
-					'rotate-comment'
-				)->numParams( $rotation )->inContentLanguage()->text();
-				$status = $file->upload( $dstPath,
-					$comment, $comment, 0, false, false, $this->getUser() );
-				if ( $status->isGood() ) {
-					$r['result'] = 'Success';
-				} else {
-					$r['result'] = 'Failure';
-					$r['errormessage'] = $this->getErrorFormatter()->arrayFromStatus( $status );
-				}
-			} else {
-				$r['result'] = 'Failure';
-				$r['errormessage'] = $err->toText();
-			}
+			JobQueueGroup::singleton()->push( $job );
+			$r['result'] = 'Queued';
 			$result[] = $r;
 		}
+
 		$apiResult = $this->getResult();
 		ApiResult::setIndexedTagName( $result, 'page' );
 		$apiResult->addValue( null, $this->getModuleName(), $result );
