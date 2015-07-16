@@ -621,7 +621,7 @@ class ChangeTags {
 	 *        - if $fullForm is true: String, html fragment
 	 */
 	public static function buildTagFilterSelector( $selected = '',
-		$fullForm = false, Title $title = null
+		$fullForm = false, Title $title = null, $ooui = false
 	) {
 		global $wgUseTagFilter;
 
@@ -629,19 +629,34 @@ class ChangeTags {
 			return $fullForm ? '' : array();
 		}
 
-		$data = array(
-			Html::rawElement(
-				'label',
-				array( 'for' => 'tagfilter' ),
-				wfMessage( 'tag-filter' )->parse()
-			),
-			Xml::input(
-				'tagfilter',
-				20,
-				$selected,
-				array( 'class' => 'mw-tagfilter-input mw-ui-input mw-ui-input-inline', 'id' => 'tagfilter' )
-			)
-		);
+		if ( $ooui ) {
+			$data = new \OOUI\FieldLayout(
+				new OOUI\TextInputWidget( array(
+					'id' => 'tagfilter',
+					'name' => 'tagfilter',
+					'value' => $selected,
+					'classes' => 'mw-tagfilter-input mw-ui-input mw-ui-input-inline',
+				) ),
+				array(
+					'align' => 'left',
+					'label' => new OOUI\HtmlSnippet( wfMessage( 'tag-filter' )->parse() ),
+				)
+			);
+		} else {
+			$data = array(
+				Html::rawElement(
+					'label',
+					array( 'for' => 'tagfilter' ),
+					wfMessage( 'tag-filter' )->parse()
+				),
+				Xml::input(
+					'tagfilter',
+					20,
+					$selected,
+					array( 'class' => 'mw-tagfilter-input mw-ui-input mw-ui-input-inline', 'id' => 'tagfilter' )
+				)
+			);
+		}
 
 		if ( !$fullForm ) {
 			return $data;
