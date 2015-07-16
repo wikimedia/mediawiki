@@ -450,7 +450,7 @@ class BitmapHandler extends TransformationalImageHandler {
 			case 'im':
 				$cmd = wfEscapeShellArg( $wgImageMagickConvertCommand ) . " " .
 					wfEscapeShellArg( $this->escapeMagickInput( $params['srcPath'], $scene ) ) .
-					" -rotate " . wfEscapeShellArg( "-$rotation" ) . " " .
+					" -rotate " . wfEscapeShellArg( $rotation ) . " " .
 					wfEscapeShellArg( $this->escapeMagickOutput( $params['dstPath'] ) );
 				wfDebug( __METHOD__ . ": running ImageMagick: $cmd\n" );
 				$retval = 0;

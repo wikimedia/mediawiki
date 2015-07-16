@@ -273,6 +273,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'doUserNewTalkUseridUnsigned' ),
 			// note this patch covers other _comment and _description fields too
 			array( 'modifyField', 'recentchanges', 'rc_comment', 'patch-editsummary-length.sql' ),
+			array( 'addTable', 'file_transform', 'patch-file_transform.sql' ),
 		);
 	}
 
