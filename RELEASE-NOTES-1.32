@@ -28,6 +28,9 @@ production.
 * Added 'ApiParseMakeOutputPage' hook.
 * (T174313) Added checkbox on Special:ListUsers to display only users in
   temporary user groups.
+* Users of the mediawiki.Api JavaScript API are now able and recommended to set
+  a custom API User-Agent to provide more identifying information besides the
+  browser's User-Agent.
 
 === External library changes in 1.32 ===
 * …
