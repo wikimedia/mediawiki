@@ -136,7 +136,11 @@ class ApiQueryAllMessages extends ApiQueryBase {
 			}
 
 			if ( !$skip ) {
-				$a = array( 'name' => $message );
+				$a = array(
+					'name' => $message,
+					'normalizedname' => MessageCache::normalizeKey( $message ),
+				);
+
 				$args = array();
 				if ( isset( $params['args'] ) && count( $params['args'] ) != 0 ) {
 					$args = $params['args'];
