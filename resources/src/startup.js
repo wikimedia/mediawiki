@@ -6,6 +6,14 @@
 
 var mediaWikiLoadStart = ( new Date() ).getTime();
 
+if ( !window.performance ) {
+	window.performance = {};
+}
+if ( !performance.mark ) {
+	performance.mark = function () {};
+}
+performance.mark( 'mediaWikiStartUp' );
+
 /**
  * Returns false for Grade C supported browsers.
  *
