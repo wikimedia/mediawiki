@@ -2468,6 +2468,7 @@
 	"semiprotectedpagemovewarning": "{{Related|Semiprotectedpagewarning}}",
 	"move-over-sharedrepo": "Notice when a file with that filename already exists on a shared repository, such as Wikimedia Commons.\n\nParameters:\n* $1 - the destination page title",
 	"file-exists-sharedrepo": "Used in [[Special:MovePage]].",
+	"movepage-null-revision-failed": "Error message returned in case of an internal error during page move.",
 	"export": "Page title of [[Special:Export]], a page where a user can export pages from a wiki to a file.",
 	"export-summary": "{{doc-specialpagesummary|export}}",
 	"exporttext": "{{doc-important|Leave the line <code><nowiki>[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]</nowiki></code> exactly as it is!}}\nMain text on [[Special:Export]].\n\nRefers to {{msg-mw|Mainpage}}.",
