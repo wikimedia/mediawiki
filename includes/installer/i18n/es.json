@@ -124,8 +124,6 @@
 	"config-db-install-account": "Cuenta de usuario para instalación",
 	"config-db-username": "Nombre de usuario de la base de datos:",
 	"config-db-password": "Contraseña de la base de datos:",
-	"config-db-password-empty": "Escribe una contraseña para el nuevo usuario de base de datos: $1.\nAunque es posible crear usuarios sin contraseña, esto no es seguro.",
-	"config-db-username-empty": "Debes introducir un valor para \"{{int:config-db-username}}\"",
 	"config-db-install-username": "Escribe el nombre de usuario que se utilizará para conectarse a la base de datos durante el proceso de instalación.\nEste no es el nombre de usuario de la cuenta de MediaWiki, sino el nombre de usuario para la base de datos.",
 	"config-db-install-password": "Escribe la contraseña que se utilizará para conectarse a la base de datos durante el proceso de instalación.\nEsta no es la contraseña para la cuenta de MediaWiki, sino la contraseña para la base de datos.",
 	"config-db-install-help": "Escribe el nombre de usuario y la contraseña que se utilizarán para conectarse a la base de datos durante el proceso de instalación.",

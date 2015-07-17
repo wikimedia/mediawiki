@@ -262,6 +262,7 @@
 	"apihelp-protect-param-title": "De Övverschreff vun dä Sigg zom Schöze udder Freijävve. Kam_mer nit zesamme met\n„<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">$1pageid</code>“ bruche.",
 	"apihelp-protect-param-pageid": "De Kännong vun dä Sigg zom Schöze udder Freijävve. Kam_mer nit zesamme met\n„<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">$1pageid</code>“ bruche.",
 	"apihelp-protect-param-reason": "Der Jrond för et Schöze udder Freijävve.",
+	"apihelp-protect-param-cascade": "Donn en Schotz-Kaskahd zohlohße, alsu ene Schoz för ennjeföhschte Schablohne un upjerohfe Bellder vun dä Sigg. Deiht nix, wann keine von dä aanjejovve Zoote Schoz en Kaskahd zohlöht.",
 	"apihelp-protect-example-protect": "Donn en Sigg schöze.",
 	"apihelp-purge-param-forcelinkupdate": "Bräng de Tabälle met de lengks obb ene neue Schtand.",
 	"apihelp-purge-example-simple": "Donn fö de Sigge „<kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">Main Page</kbd>“ un „<kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">API</kbd>“ de zweschejeschpeijscherte Väsjohn fottschmiiße.",

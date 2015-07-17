@@ -3136,6 +3136,7 @@
 	"htmlform-cloner-create": "Legg til mer",
 	"htmlform-cloner-delete": "Fjern",
 	"htmlform-cloner-required": "Minst én verdi kreves.",
+	"htmlform-title-not-exists": "[[:$1]] forefinnes ikke.",
 	"sqlite-has-fts": "$1 med støtte for fulltekstsøk",
 	"sqlite-no-fts": "$1 uten støtte for fulltekstsøk",
 	"logentry-delete-delete": "$1 {{GENDER:$2|slettet}} siden $3",

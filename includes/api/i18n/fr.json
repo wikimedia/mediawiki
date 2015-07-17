@@ -16,7 +16,8 @@
 			"0x010C",
 			"Lucky",
 			"Freak2fast4u",
-			"Urhixidur"
+			"Urhixidur",
+			"Wladek92"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentation]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Liste de diffusion]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annonces de l’API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bogues et demandes]\n</div>\n<strong>État :</strong> Toutes les fonctionnalités affichées sur cette page devraient fonctionner, mais l’API est encore en cours de développement et peut changer à tout moment. Inscrivez-vous à [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la liste de diffusion mediawiki-api-announce] pour être informé des mises à jour.\n\n<strong>Requêtes erronées :</strong> Si des requêtes erronées sont envoyées à l’API, un en-tête HTTP sera renvoyé avec la clé « MediaWiki-API-Error ». La valeur de cet en-tête et le code d’erreur renvoyé prendront la même valeur. Pour plus d’information, voyez [[mw:API:Errors_and_warnings|API: Errors and warnings]].",
@@ -321,7 +322,7 @@
 	"apihelp-protect-param-protections": "Liste des niveaux de protection, au format <kbd>action=niveau</kbd> (par ex. <kbd>edit=sysop</kbd>).\n\n<strong>NOTE :<strong> Toutes les actions non listées auront leur restrictions supprimées.",
 	"apihelp-protect-param-expiry": "Horodatages d’expiration. Si un seul horodatage est fourni, il sera utilisé pour toutes les protections. Utiliser <kbd>infinite</kbd>, <kbd>indefinite</kbd>, <kbd>infinity</kbd> ou <kbd>never</kbd> pour une protection sans expiration.",
 	"apihelp-protect-param-reason": "Motif de (dé)protection.",
-	"apihelp-protect-param-cascade": "Activer la protection en cascade (c’est-à-dire protéger les pages incluses dans cette page). Ignoré si tous les niveaux de protection fournis ne supportent pas la mise en cascade.",
+	"apihelp-protect-param-cascade": "Activer la protection en cascade (c’est-à-dire protéger les modèles transclus et les images utilisées dans cette page). Ignoré si aucun des niveaux de protection fournis ne supporte la mise en cascade.",
 	"apihelp-protect-param-watch": "Si activé, ajouter la page (dé)protégée à la liste de suivi de l'utilisateur actuel.",
 	"apihelp-protect-param-watchlist": "Ajouter ou supprimer sans condition la page de la liste de suivi de l'utilisateur actuel, utiliser les préférences ou ne pas modifier le suivi.",
 	"apihelp-protect-example-protect": "Protéger une page",

@@ -311,7 +311,7 @@
 	"apihelp-protect-param-protections": "Lista dos niveis de protección, con formato <kbd>action=level</kbd> (p.ex. <kbd>edit=sysop</kbd>).\n\n<strong>Nota:</strong> Todas as accións que non estean listadas terán restriccións para ser eliminadas.",
 	"apihelp-protect-param-expiry": "Selos de tempo de caducidade. Se só se indica un selo de tempo, usarase para todas as proteccións. Use <kbd>infinite</kbd>, <kbd>indefinite</kbd>, <kbd>infinity</kbd>, ou <kbd>never</kbd>, para unha protección sen caducidade.",
 	"apihelp-protect-param-reason": "Razón para (des)protexer.",
-	"apihelp-protect-param-cascade": "Activar protección en cascada (p. ex. protexer páxinas incluídas nesta páxina). Ignorado se todos os niveis de protección proporcionados non permiten o uso en cascada.",
+	"apihelp-protect-param-cascade": "Activar protección en cascada (p. ex. protexer modelos transcluídos e imaxes usadas nesta páxina). Ignorado se ningún dos niveis de protección proporcionados soportan o uso en cascada.",
 	"apihelp-protect-param-watch": "Se se define este parámetro, engadir a páxina que se (des)protexe á lista de vixilancia do usuario actual.",
 	"apihelp-protect-param-watchlist": "Engadir ou eliminar sen condicións a páxina da lista de vixiancia do usuario actual, use as preferencias ou non cambie a vixiancia.",
 	"apihelp-protect-example-protect": "Protexer unha páxina",

@@ -5,7 +5,8 @@
 			"Ianbu",
 			"Kaihsu",
 			"아라",
-			"唐吉訶德的侍從"
+			"唐吉訶德的侍從",
+			"Luuva"
 		]
 	},
 	"tog-underline": "Liân-kiat oē té-sûn:",
@@ -997,6 +998,7 @@
 	"specialpages": "Te̍k-sû-ia̍h",
 	"tag-filter": "[[Special:Tags|Piau-chhiam]] chhoē mi̍h:",
 	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|个標籤}}]]：$2)",
+	"logentry-move-move": "$1 {{GENDER:$2|sóa}} $3 chit ia̍h khì $4",
 	"logentry-newusers-create": "已經{{GENDER:$2|開好}}用者口座 $1",
 	"searchsuggest-search": "Chhiau",
 	"expandtemplates": "Khok-chhiong pang-bô͘",

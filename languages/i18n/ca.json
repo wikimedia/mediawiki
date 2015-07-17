@@ -48,7 +48,8 @@
 			"Macofe",
 			"Gerardduenas",
 			"Medol",
-			"Xavier Dengra"
+			"Xavier Dengra",
+			"Pginer"
 		]
 	},
 	"tog-underline": "Subratlla els enllaços:",
@@ -1858,6 +1859,7 @@
 	"sessionfailure-title": "Error de sessió",
 	"sessionfailure": "S'ha produït un error amb la vostra sessió. S'ha anul·lat aquesta acció en prevenció de pirateig de sessió. Premeu «Torna», recarregueu la pàgina des d'on veniu i torneu-ho a intentar.",
 	"changecontentmodel-title-label": "Títol de la pàgina",
+	"changecontentmodel-model-label": "Nou model de contingut",
 	"changecontentmodel-reason-label": "Motiu:",
 	"logentry-contentmodel-change-revertlink": "reverteix",
 	"logentry-contentmodel-change-revert": "reverteix",

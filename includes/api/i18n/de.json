@@ -259,7 +259,7 @@
 	"apihelp-protect-param-protections": "Liste der Schutzebenen nach dem Format <kbd>Aktion=Ebene</kbd> (z.B. <kbd>edit=sysop</kbd>).\n\n<strong>HINWEIS:</strong> Wenn eine Aktion nicht angegeben wird, wird deren Schutz entfernt.",
 	"apihelp-protect-param-expiry": "Zeitstempel des Schutzablaufs. Wenn nur ein Zeitstempel übergeben wird, ist dieser für alle Seitenschutze gültig. Um eine unendliche Schutzdauer festzulegen, kannst du die Werte <kbd>infinite</kbd>, <kbd>indefinite</kbd>, <kbd>infinity</kbd> oder <kbd>never</kbd> übergeben.",
 	"apihelp-protect-param-reason": "Grund für den Seitenschutz oder dessen Aufhebung.",
-	"apihelp-protect-param-cascade": "Aktiviert den Kaskadenschutz (alle eingebundenen Seiten werden ebenfalls geschützt). Wenn die übergebenen Schutzebenen keinen Kaskadenschutz unterstützen, wird dieser Parameter ignoriert.",
+	"apihelp-protect-param-cascade": "Aktiviert den Kaskadenschutz (z.&nbsp;B. werden eingebundene Vorlagen und Bilder in dieser Seite geschützt). Wird ignoriert, falls keine der angegebenen Schutzebenen Kaskaden unterstützt.",
 	"apihelp-protect-param-watch": "Wenn vorhanden, fügt dieser Parameter die zu (ent-)sperrende Seite der Beobachtungsliste des aktuellen Benutzers hinzu.",
 	"apihelp-protect-param-watchlist": "Die Seite bedingungslos zur Beobachtungsliste des aktuellen Benutzers hinzufügen oder von ihr entfernen, Einstellungen verwenden oder Beobachtung nicht ändern.",
 	"apihelp-protect-example-protect": "Schützt eine Seite",

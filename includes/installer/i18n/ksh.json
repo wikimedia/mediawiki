@@ -101,8 +101,6 @@
 	"config-db-install-account": "Der Zohjang för en Enreeschte",
 	"config-db-username": "Dä Name vun däm Aanwender för dä Zohjref op de Daatebangk:",
 	"config-db-password": "Et Paßwoot vun däm Aanwender för dä Zohjref op de Daatebangk:",
-	"config-db-password-empty": "Jiv e Paßwoot aan, för dä neue Aanwender för dä Zohjref op de Daatebangk, $1.\nEd es zwa müjjelesch, Aanwender för dä Zohjref op de Daatebangk der ohne e Paßwoot aanzelääje,\nävver dat wöhr en schwere Jevah för de Sescherheit vum Wiki.",
-	"config-db-username-empty": "Do moß jäd aanjävve för \"{{int:config-db-username}}\".",
 	"config-db-install-username": "Jiv ene Nahme aan för dä Aanwender för dä Zohjref op de Datebangk beim Enshtallehre.\nDat es keine Metmaacher_Nahme em Wikki — heh dä Nahme es alleins en der Dahtebangk bikannt.",
 	"config-db-install-password": "Jiv e Paßwoot aan för dä Aanwender för dä Zohjref op de Daatebangk beim Enshtalleere.\nDat es kei Paßwoot för ene Metmaacher em Wiki — et es alleins en der Daatebangk bikannt.",
 	"config-db-install-help": "Donn dä Name un et Paßwoot vun däm Aanwänder för der Zohjreff op de Daatebangk jäz för et Enreeshte aanjävve.",

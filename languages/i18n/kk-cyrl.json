@@ -3138,7 +3138,7 @@
 	"logentry-suppress-revision-legacy": "$1 $3 бетіндегі нұсқалардың көрінулігін құпия түрде {{GENDER:$2|өзгертті}}",
 	"revdelete-content-hid": "мағлұматын жасырыды",
 	"revdelete-summary-hid": "өңдеу түйіндемесін жасырды",
-	"revdelete-uname-hid": "қатысушы есіміy жасырды",
+	"revdelete-uname-hid": "қатысушы есімін жасырды",
 	"revdelete-content-unhid": "мағлұматы жасырылмаған",
 	"revdelete-summary-unhid": "өңдеу түйіндемесі жасырылмаған",
 	"revdelete-uname-unhid": "қатысушы есімі жасырылмаған",

@@ -21,7 +21,8 @@
 			"පසිඳු කාවින්ද",
 			"아라",
 			"Macofe",
-			"Fwolff"
+			"Fwolff",
+			"Oesjaar"
 		]
 	},
 	"tog-underline": "Onderstreep skakels.",
@@ -2880,6 +2881,9 @@
 	"htmlform-cloner-create": "Meer meer by",
 	"htmlform-cloner-delete": "Verwyder",
 	"htmlform-cloner-required": "Ten minste één waarde verwag.",
+	"htmlform-title-badnamespace": "[[:$1]] is nie in die \"{{ns:$2}}\" naamspasie nie.",
+	"htmlform-title-not-creatable": "\"$1\" is nie 'n aanvaarbare blad titel nie",
+	"htmlform-title-not-exists": "[[:$1]] bestaan nie.",
 	"sqlite-has-fts": "Weergawe $1 met ondersteuning vir vol-teks soektogte (\"full-text search\")",
 	"sqlite-no-fts": "Weergawe $1 sonder ondersteuning vir vol-teks soektogte (\"full-text search\")",
 	"logentry-delete-delete": "$1 {{GENDER:$2|het}} bladsy $3 verwyder",
