@@ -1,5 +1,5 @@
 <?php
-/** Southern Balochi (بلوچی مکرانی)
+/** Southern Balochi (جهلسری بلوچی)
  *
  * To improve a translation please visit https://translatewiki.net
  *
