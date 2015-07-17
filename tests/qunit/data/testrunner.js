@@ -3,10 +3,7 @@
 ( function ( $, mw, QUnit ) {
 	'use strict';
 
-	var mwTestIgnore, mwTester,
-		addons,
-		ELEMENT_NODE = 1,
-		TEXT_NODE = 3;
+	var mwTestIgnore, mwTester, addons;
 
 	/**
 	 * Add bogus to url to prevent IE crazy caching
@@ -331,12 +328,12 @@
 	function getDomStructure( node ) {
 		var $node, children, processedChildren, i, len, el;
 		$node = $( node );
-		if ( node.nodeType === ELEMENT_NODE ) {
+		if ( node.nodeType === Node.ELEMENT_NODE ) {
 			children = $node.contents();
 			processedChildren = [];
 			for ( i = 0, len = children.length; i < len; i++ ) {
 				el = children[i];
-				if ( el.nodeType === ELEMENT_NODE || el.nodeType === TEXT_NODE ) {
+				if ( el.nodeType === Node.ELEMENT_NODE || el.nodeType === Node.TEXT_NODE ) {
 					processedChildren.push( getDomStructure( el ) );
 				}
 			}
