@@ -398,6 +398,25 @@ class MovePage {
 			$logType = 'move';
 		}
 
+		if ( $moveOverRedirect ) {
+			$newpage = WikiPage::factory( $nt );
+			$errs = array();
+			$status = $newpage->doDeleteArticleReal(
+				$overwriteMessage,
+				/* $suppress */ false,
+				$nt->getArticleId(),
+				/* $commit */ false ,
+				$errs,
+				$user
+			);
+
+			if ( !$status->isGood() ) {
+				throw new MWException( 'Failed to delete old redirect being moved over' );
+			}
+
+			$nt->resetArticleID( false );
+		}
+
 		if ( $createRedirect ) {
 			if ( $this->oldTitle->getNamespace() == NS_CATEGORY
 				&& !wfMessage( 'category-move-redirect-override' )->inContentLanguage()->isDisabled()
@@ -445,19 +464,6 @@ class MovePage {
 
 		$newpage = WikiPage::factory( $nt );
 
-		if ( $moveOverRedirect ) {
-			$newid = $nt->getArticleID();
-			$newcontent = $newpage->getContent();
-
-			# Delete the old redirect. We don't save it to history since
-			# by definition if we've got here it's rather uninteresting.
-			# We have to remove it so that the next step doesn't trigger
-			# a conflict on the unique namespace+title index...
-			$dbw->delete( 'page', array( 'page_id' => $newid ), __METHOD__ );
-
-			$newpage->doDeleteUpdates( $newid, $newcontent );
-		}
-
 		# Save a null revision in the page's history notifying of the move
 		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, true, $user );
 		if ( !is_object( $nullRevision ) ) {
@@ -493,9 +499,7 @@ class MovePage {
 		$newpage->doEditUpdates( $nullRevision, $user,
 			array( 'changed' => false, 'moved' => true, 'oldcountable' => $oldcountable ) );
 
-		if ( !$moveOverRedirect ) {
-			WikiPage::onArticleCreate( $nt );
-		}
+		WikiPage::onArticleCreate( $nt );
 
 		# Recreate the redirect, this time in the other direction.
 		if ( $redirectContent ) {
