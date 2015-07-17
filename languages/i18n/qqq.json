@@ -3709,6 +3709,8 @@
 	"htmlform-title-badnamespace": "Error message shown if the page title provided by the user is not in the required namespace. $1 is the page, $2 is the numerical namespace index.",
 	"htmlform-title-not-creatable": "Error message shown if the page title provided by the user is not creatable (a special page). $1 is the page title.",
 	"htmlform-title-not-exists": "Error message shown if the page title provided by the user does not exist. $1 is the page title.",
+	"htmlform-user-not-exists": "Error message shown if a user with the name provided by the user does not exist. $1 is the username.",
+	"htmlform-user-not-valid": "Error message shown if the name provided by the user isn't a valid username. $1 is the username.",
 	"sqlite-has-fts": "Shown on [[Special:Version]].\nParameters:\n* $1 - version",
 	"sqlite-no-fts": "Shown on [[Special:Version]].\nParameters:\n* $1 - version",
 	"logentry-delete-delete": "{{Logentry|[[Special:Log/delete]]}}",
