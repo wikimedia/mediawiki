@@ -1095,7 +1095,7 @@ abstract class File implements IDBAccessObject {
 	 * @return bool|MediaTransformOutput
 	 */
 	public function generateAndSaveThumb( $tmpFile, $transformParams, $flags ) {
-		global $wgUseSquid, $wgIgnoreImageErrors;
+		global $wgIgnoreImageErrors;
 
 		$stats = RequestContext::getMain()->getStats();
 
@@ -1148,21 +1148,6 @@ abstract class File implements IDBAccessObject {
 			// Give extensions a chance to do something with this thumbnail...
 			Hooks::run( 'FileTransformed', array( $this, $thumb, $tmpThumbPath, $thumbPath ) );
 		}
-
-		// Purge. Useful in the event of Core -> Squid connection failure or squid
-		// purge collisions from elsewhere during failure. Don't keep triggering for
-		// "thumbs" which have the main image URL though (bug 13776)
-		if ( $wgUseSquid ) {
-			if ( !$thumb || $thumb->isError() || $thumb->getUrl() != $this->getURL() ) {
-				$starttime = microtime( true );
-
-				SquidUpdate::purge( array( $thumbUrl ) );
-
-				$stats->timing( 'media.thumbnail.generate.purge', microtime( true ) - $starttime );
-			}
-		}
-
-
 
 		return $thumb;
 	}
