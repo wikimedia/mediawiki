@@ -2297,6 +2297,7 @@
 	"semiprotectedpagemovewarning": "<strong>Note:</strong> This page has been protected so that only registered users can move it.\nThe latest log entry is provided below for reference:",
 	"move-over-sharedrepo": "== File exists ==\n[[:$1]] exists on a shared repository. Moving a file to this title will override the shared file.",
 	"file-exists-sharedrepo": "The filename chosen is already in use on a shared repository.\nPlease choose another name.",
+	"movepage-null-revision-failed": "Failed to save page-move revision.",
 	"export": "Export pages",
 	"export-summary": "",
 	"exporttext": "You can export the text and editing history of a particular page or set of pages wrapped in some XML.\nThis can be imported into another wiki using MediaWiki via the [[Special:Import|import page]].\n\nTo export pages, enter the titles in the text box below, one title per line, and select whether you want the current revision as well as all old revisions, with the page history lines, or the current revision with the info about the last edit.\n\nIn the latter case you can also use a link, for example [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] for the page \"[[{{MediaWiki:Mainpage}}]]\".",
