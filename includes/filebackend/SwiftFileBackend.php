@@ -666,8 +666,9 @@ class SwiftFileBackend extends FileBackendStore {
 			return $objHdrs; // nothing to do
 		}
 
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
-		trigger_error( "$path was not stored with SHA-1 metadata.", E_USER_WARNING );
+		wfDebugLog( 'SwiftBackend', __METHOD__ . ": $path was not stored with SHA-1 metadata." );
 
 		$auth = $this->getAuthentication();
 		if ( !$auth ) {
@@ -677,6 +678,7 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		$status = Status::newGood();
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scopeLockS = $this->getScopedFileLocks( array( $path ), LockManager::LOCK_UW, $status );
 		if ( $status->isOK() ) {
 			$tmpFile = $this->getLocalCopy( array( 'src' => $path, 'latest' => 1 ) );
@@ -696,7 +698,8 @@ class SwiftFileBackend extends FileBackendStore {
 				}
 			}
 		}
-		trigger_error( "Unable to set SHA-1 metadata for $path", E_USER_WARNING );
+
+		wfDebugLog( 'SwiftBackend', __METHOD__ . ": unable to set SHA-1 metadata for $path" );
 		$objHdrs['x-object-meta-sha1base36'] = false;
 
 		return $objHdrs; // failed
