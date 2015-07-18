@@ -1591,6 +1591,10 @@ return array(
 			'jquery.throttle-debounce',
 		),
 	),
+	'mediawiki.special.userrights' => array(
+		'position' => 'top',
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.userrights.css',
+	),
 	'mediawiki.special.unwatchedPages' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.unwatchedPages.js',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.unwatchedPages.css',
