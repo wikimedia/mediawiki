@@ -73,5 +73,16 @@
 	"apihelp-unblock-param-reason": "Motiu del desblocatge.",
 	"apihelp-unblock-example-id": "Levar lo blocatge d’ID #<kbd>105</kbd>.",
 	"apihelp-userrights-param-user": "Nom d'utilizaire.",
-	"apihelp-userrights-param-userid": "ID de l'utilizaire."
+	"apihelp-userrights-param-userid": "ID de l'utilizaire.",
+	"api-help-main-header": "Modul principal",
+	"api-help-source": "Font : $1",
+	"api-help-source-unknown": "Font : <span class=\"apihelp-unknown\">desconeguda</span>",
+	"api-help-license": "Licéncia : [[$1|$2]]",
+	"api-help-license-noname": "Licéncia : [[$1|Veire lo ligam]]",
+	"api-help-license-unknown": "Licéncia : <span class=\"apihelp-unknown\">desconeguda</span>",
+	"api-help-parameters": "{{PLURAL:$1|Paramètre|Paramètres}} :",
+	"api-help-param-deprecated": "Obsolet.",
+	"api-help-datatypes-header": "Tipe de donadas",
+	"api-help-param-default": "Per defaut : $1",
+	"api-credits-header": "Mercejaments"
 }

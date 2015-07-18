@@ -1086,6 +1086,7 @@
 	"right-override-export-depth": "Exportar las paginas en incluent las paginas ligadas fins a una prigondor de 5 nivèls",
 	"right-sendemail": "Mandar un corrièl als autres utilizaires",
 	"right-passwordreset": "Veire los corrièrs electronics de reïnicializacion dels senhals",
+	"right-applychangetags": "Aplicar [[Special:Tags|las balisas]] amb sas pròprias modificacions",
 	"newuserlogpage": "Istoric de las creacions de comptes",
 	"newuserlogpagetext": "Jornal de las creacions de comptes d'utilizaires.",
 	"rightslog": "Istoric de las modificacions d'estatut",

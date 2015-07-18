@@ -95,6 +95,7 @@
 	"apihelp-query+usercontribs-description": "All Ännerunge vun engem Benotzer kréien.",
 	"apihelp-query+watchlist-param-user": "Nëmmen Ännerunge vun dësem Benotzer opzielen.",
 	"apihelp-query+watchlist-param-excludeuser": "Ännerunge vun dësem Benotzer net opzielen.",
+	"apihelp-query+watchlist-paramvalue-prop-title": "Setzt den Titel vun der Säit derbäi.",
 	"apihelp-query+watchlistraw-param-show": "Nëmmen Elementer opzielen déi dëse Critèren entspriechen.",
 	"apihelp-query+watchlistraw-example-simple": "Säite vum aktuelle Benotzer senger Iwwerwaachungslëscht opzielen",
 	"apihelp-revisiondelete-description": "Versioune läschen a restauréieren.",
