@@ -409,9 +409,34 @@ class UserrightsPage extends SpecialPage {
 	 * Output a form to allow searching for a user
 	 */
 	function switchForm() {
-		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
+		$out = $this->getOutput();
+		$out->enableOOUI();
+		$out->addModules( 'mediawiki.widgets' );
 
-		$this->getOutput()->addHTML(
+		$fieldset = new OOUI\FieldsetLayout( [
+			'items' => [
+				new OOUI\ActionFieldLayout(
+					new MediaWiki\Widget\UserInputWidget( [
+						'id' => 'username',
+						'name' => 'user',
+						'value' => str_replace( '_', ' ', $this->mTarget ),
+					] + (
+						// Set autofocus on blank input and error input
+						$this->mFetchedUser === null ? [ 'autofocus' => '' ] : []
+					) ),
+					new OOUI\ButtonInputWidget( [
+						'type' => 'submit',
+						'label' => $this->msg( 'editusergroup' )->text(),
+						'flags' => [ 'progressive', 'primary' ],
+					] ),
+					[
+						'label' => $this->msg( 'userrights-user-editname' )->text(),
+						'align' => 'left',
+					]
+				),
+			],
+		] );
+		$out->addHTML(
 			Html::openElement(
 				'form',
 				[
@@ -422,24 +447,13 @@ class UserrightsPage extends SpecialPage {
 				]
 			) .
 			Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
-			Xml::fieldset( $this->msg( 'userrights-lookup-user' )->text() ) .
-			Xml::inputLabel(
-				$this->msg( 'userrights-user-editname' )->text(),
-				'user',
-				'username',
-				30,
-				str_replace( '_', ' ', $this->mTarget ),
-				[
-					'class' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
-				] + (
-					// Set autofocus on blank input and error input
-					$this->mFetchedUser === null ? [ 'autofocus' => '' ] : []
-				)
-			) . ' ' .
-			Xml::submitButton(
-				$this->msg( 'editusergroup' )->text()
-			) .
-			Html::closeElement( 'fieldset' ) .
+			new OOUI\PanelLayout( array(
+				'classes' => array( 'mw-userrights-ooui-wrapper' ),
+				'expanded' => false,
+				'padded' => true,
+				'framed' => true,
+				'content' => $fieldset,
+			) ) .
 			Html::closeElement( 'form' ) . "\n"
 		);
 	}
@@ -528,7 +542,34 @@ class UserrightsPage extends SpecialPage {
 			Linker::TOOL_LINKS_EMAIL /* Add "send e-mail" link */
 		);
 
-		list( $groupCheckboxes, $canChangeAny ) = $this->groupCheckboxes( $groups, $user );
+		$fieldset = new OOUI\FieldsetLayout( [
+			'label' => $this->msg( 'userrights-editusergroup', $user->getName() )->text(),
+		] );
+		$fieldset->appendContent( new OOUI\HtmlSnippet(
+			$this->msg( 'editinguser' )->params( wfEscapeWikiText( $user->getName() ) )
+				->rawParams( $userToolLinks )->parse() .
+			$this->msg( 'userrights-groups-help', $user->getName() )->parse() .
+			$grouplist .
+			$this->groupCheckboxes( $groups, $user ) .
+			new OOUI\FieldLayout(
+				new OOUI\TextInputWidget( [
+					'name' => 'user-reason',
+					'value' => $this->getRequest()->getVal( 'user-reason', false ),
+					'id' => 'wpReason',
+					'maxlength' => 255,
+				] ),
+				[
+					'align' => 'top',
+					'label' => $this->msg( 'userrights-reason' )->text(),
+				]
+			) .
+			new OOUI\ButtonInputWidget( [
+				'label' => $this->msg( 'saveusergroups', $user->getName() )->text(),
+				'name' => 'saveusergroups',
+				'flags' => [ 'constructive', 'primary' ],
+				'type' => 'submit',
+			] + Linker::tooltipAndAccesskeyAttribs( 'userrights-set' ) )
+		) );
 		$this->getOutput()->addHTML(
 			Xml::openElement(
 				'form',
@@ -545,46 +586,13 @@ class UserrightsPage extends SpecialPage {
 				'conflictcheck-originalgroups',
 				implode( ',', $user->getGroups() )
 			) . // Conflict detection
-			Xml::openElement( 'fieldset' ) .
-			Xml::element(
-				'legend',
-				[],
-				$this->msg( 'userrights-editusergroup', $user->getName() )->text()
-			) .
-			$this->msg( 'editinguser' )->params( wfEscapeWikiText( $user->getName() ) )
-				->rawParams( $userToolLinks )->parse()
-		);
-		if ( $canChangeAny ) {
-			$this->getOutput()->addHTML(
-				$this->msg( 'userrights-groups-help', $user->getName() )->parse() .
-				$grouplist .
-				$groupCheckboxes .
-				Xml::openElement( 'table', [ 'id' => 'mw-userrights-table-outer' ] ) .
-					"<tr>
-						<td class='mw-label'>" .
-							Xml::label( $this->msg( 'userrights-reason' )->text(), 'wpReason' ) .
-						"</td>
-						<td class='mw-input'>" .
-							Xml::input( 'user-reason', 60, $this->getRequest()->getVal( 'user-reason', false ),
-								[ 'id' => 'wpReason', 'maxlength' => 255 ] ) .
-						"</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td class='mw-submit'>" .
-							Xml::submitButton( $this->msg( 'saveusergroups', $user->getName() )->text(),
-								[ 'name' => 'saveusergroups' ] +
-									Linker::tooltipAndAccesskeyAttribs( 'userrights-set' )
-							) .
-						"</td>
-					</tr>" .
-				Xml::closeElement( 'table' ) . "\n"
-			);
-		} else {
-			$this->getOutput()->addHTML( $grouplist );
-		}
-		$this->getOutput()->addHTML(
-			Xml::closeElement( 'fieldset' ) .
+			new OOUI\PanelLayout( [
+				'classes' => [ 'mw-userrights-ooui-wrapper' ],
+				'expanded' => false,
+				'padded' => true,
+				'framed' => true,
+				'content' => $fieldset,
+			] ) .
 			Xml::closeElement( 'form' ) . "\n"
 		);
 	}
@@ -680,7 +688,6 @@ class UserrightsPage extends SpecialPage {
 			}
 			$ret .= "\t<td style='vertical-align:top;'>\n";
 			foreach ( $column as $group => $checkbox ) {
-				$attr = $checkbox['disabled'] ? [ 'disabled' => 'disabled' ] : [];
 
 				$member = User::getGroupMember( $group, $user->getName() );
 				if ( $checkbox['irreversible'] ) {
@@ -688,18 +695,34 @@ class UserrightsPage extends SpecialPage {
 				} else {
 					$text = $member;
 				}
-				$checkboxHtml = Xml::checkLabel( $text, "wpGroup-" . $group,
-					"wpGroup-" . $group, $checkbox['set'], $attr );
-				$ret .= "\t\t" . ( $checkbox['disabled']
-					? Xml::tags( 'span', [ 'class' => 'mw-userrights-disabled' ], $checkboxHtml )
-					: $checkboxHtml
-				) . "<br />\n";
+				$checkboxHtml = new OOUI\FieldLayout(
+					new OOUI\CheckboxInputWidget( [
+						'name' => 'wpGroup-' . $group,
+						'id' => 'wgGroup-' . $group,
+						'selected' => $checkbox['set'],
+						'disabled' => $checkbox['disabled'],
+					] ),
+					[
+						'align' => 'inline',
+						'label' => $text,
+					]
+				);
+				if ( $checkbox['disabled'] ) {
+					$tag = new OOUI\Tag( 'span' );
+					$tag
+						->addClasses( [ 'mw-userrights-disabled' ] )
+						->appendContent( $checkboxHtml );
+
+					$ret .= $tag;
+				} else {
+					$ret .= $checkboxHtml;
+				}
 			}
 			$ret .= "\t</td>\n";
 		}
 		$ret .= Xml::closeElement( 'tr' ) . Xml::closeElement( 'table' );
 
-		return [ $ret, (bool)$columns['changeable'] ];
+		return $ret;
 	}
 
 	/**
