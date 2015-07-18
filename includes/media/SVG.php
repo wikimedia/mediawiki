@@ -170,6 +170,7 @@ class SvgHandler extends ImageHandler {
 		$physicalWidth = $params['physicalWidth'];
 		$physicalHeight = $params['physicalHeight'];
 		$lang = isset( $params['lang'] ) ? $params['lang'] : $this->getDefaultRenderLanguage( $image );
+		$color = isset( $params['color'] ) ? $params['color'] : false;
 
 		if ( $flags & self::TRANSFORM_LATER ) {
 			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
@@ -204,7 +205,18 @@ class SvgHandler extends ImageHandler {
 		// https://git.gnome.org/browse/librsvg/commit/?id=f01aded72c38f0e18bc7ff67dee800e380251c8e
 		$tmpDir = wfTempDir() . '/svg_' . wfRandomString( 24 );
 		$lnPath = "$tmpDir/" . basename( $srcPath );
-		$ok = mkdir( $tmpDir, 0771 ) && symlink( $srcPath, $lnPath );
+		$ok = mkdir( $tmpDir, 0771 );
+
+		if ( $color === false ) {
+			// symlink awayyyyy
+			$ok = $ok && symlink( $srcPath, $lnPath );
+		} else {
+			// We have to modify the file to add a tint color, so make a modified copy instead
+			$srcXml = file_get_contents( $srcPath );
+			$dstXml = self::applyTintColor( $srcXml, $color );
+			$ok = $ok && (file_put_contents( $lnPath, $dstXml ) !== false);
+		}
+
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$cleaner = new ScopedCallback( function () use ( $tmpDir, $lnPath ) {
 			MediaWiki\suppressWarnings();
@@ -227,6 +239,84 @@ class SvgHandler extends ImageHandler {
 			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
 		} else {
 			return $status; // MediaTransformError
+		}
+	}
+
+	/**
+	 * Take SVG source string and add a filter layer to tint to the given color.
+	 * Useful for icons that need to be used in different color schemes.
+	 *
+	 * @return string
+	 */
+	public static function applyTintColor( $xmlSource, $color ) {
+		$color = self::validateColor( $color );
+		$alpha = hexdec( substr( $color, 7, 2 ) ) / 255;
+		$color = substr( $color, 0, 7 );
+
+		/*
+		  <svg .... filter="url(#mw-svg-tint-filter)">
+		    <defs>
+			  <filter id="mw-svg-tint-filter">
+			    <feFlood flood-color="#8090f0" flood-opacity="1"/>
+			    <feComposite in2="SourceAlpha" operator="in"/>
+			  </filter>
+		    </defs>
+		  ..
+		  </svg>
+		*/
+
+		$dom = new DomDocument();
+		MediaWiki\suppressWarnings();
+		$result = $dom->loadXML( $xmlSource );
+		MediaWiki\restoreWarnings();
+		if ( !$result ) {
+			// unable to tint! give up
+			return $xmlSource;
+		}
+
+		$svgns = 'http://www.w3.org/2000/svg';
+
+		$defs = $dom->documentElement->getElementsByTagNameNS( $svgns, 'defs' );
+		if ( $defs->length == 0 ) {
+			$def = $dom->createElementNS( $svgns, 'defs' );
+			$dom->documentElement->insertBefore( $def, $dom->documentElement->firstChild );
+		} else {
+			$def = $defs->get(0);
+		}
+
+		$filter = $dom->createElementNS( $svgns, 'filter' );
+		$filter->setAttribute( 'id', 'mw-svg-tint-filter' );
+		$feFlood = $dom->createElementNS( $svgns, 'feFlood' );
+		$feFlood->setAttribute( 'flood-color', $color );
+		$feFlood->setAttribute( 'flood-opacity', $alpha );
+		$filter->appendChild( $feFlood );
+		$feComposite = $dom->createElementNS( $svgns, 'feComposite' );
+		$feComposite->setAttribute( 'in2', 'SourceAlpha' );
+		$feComposite->setAttribute( 'operator', 'in' );
+		$filter->appendChild( $feComposite );
+		$def->appendChild( $filter );
+
+		// @todo is there a way to apply multiple filters in case one is already there?
+		$dom->documentElement->setAttribute( 'filter', 'url(#mw-svg-tint-filter)' );
+
+		return $dom->saveXML();
+	}
+
+	/**
+	 * @return bool|string false or validated color
+	 */
+	public static function validateColor( $color ) {
+		$color = strtolower( $color );
+		if ( preg_match( '/^#([0-9a-f])([0-9a-f])([0-9a-f])$/', $color ) ) {
+			return $m{0} . $m{0} . $m{1} . $m{1} . $m{2} . $m{2} . 'ff';
+		} else if ( preg_match( '/^#([0-9a-f])([0-9a-f])([0-9a-f])([0-9a-f])$/', $color ) ) {
+			return $m{0} . $m{0} . $m{1} . $m{1} . $m{2} . $m{2} . $m{3} . $m{3};
+		} else if ( preg_match( '/^#[0-9a-f]{6}$/', $color ) ) {
+			return $color . 'ff';
+		} else if ( preg_match( '/^#[0-9a-f]{8}$/', $color ) ) {
+			return $color;
+		} else {
+			return false;
 		}
 	}
 
@@ -475,6 +565,8 @@ class SvgHandler extends ImageHandler {
 			}
 
 			return true;
+		} elseif ( $name == 'color' ) {
+			return ( $false !== self::validateColor( $value ) );
 		}
 
 		// Only lang, width and height are acceptable keys
@@ -487,30 +579,43 @@ class SvgHandler extends ImageHandler {
 	 */
 	function makeParamString( $params ) {
 		$lang = '';
+		$color = '';
 		if ( isset( $params['lang'] ) && $params['lang'] !== 'en' ) {
 			$params['lang'] = strtolower( $params['lang'] );
 			$lang = "lang{$params['lang']}-";
+		}
+		if ( isset( $params['color'] ) ) {
+			$colorval = self::validateColor( $params['color'] );
+			$color = 'color' . ltrim( $colorval, '#' ) . '-';
 		}
 		if ( !isset( $params['width'] ) ) {
 			return false;
 		}
 
-		return "$lang{$params['width']}px";
+		return "$lang$color{$params['width']}px";
 	}
 
 	function parseParamString( $str ) {
 		$m = false;
-		if ( preg_match( '/^lang([a-z]+(?:-[a-z]+)*)-(\d+)px$/', $str, $m ) ) {
-			return array( 'width' => array_pop( $m ), 'lang' => $m[1] );
-		} elseif ( preg_match( '/^(\d+)px$/', $str, $m ) ) {
-			return array( 'width' => $m[1], 'lang' => 'en' );
+		if ( preg_match( '/^(?:lang([a-z]+(?:-[a-z]+)*)-)?(?:color([0-9a-f]{6})-)?(\d+)px$/', $str, $m ) ) {
+			$arr = array();
+			if ( $m[3] ) {
+				$arr['width'] = $m[3];
+			}
+			if ( $m[2] ) {
+				$arr['color'] = '#' . $m[2];
+			}
+			if ( $m[1] ) {
+				$arr['lang'] = $m[1];
+			}
+			return $arr;
 		} else {
 			return false;
 		}
 	}
 
 	function getParamMap() {
-		return array( 'img_lang' => 'lang', 'img_width' => 'width' );
+		return array( 'img_lang' => 'lang', 'img_width' => 'width', 'img_color' => 'color' );
 	}
 
 	/**
@@ -521,6 +626,9 @@ class SvgHandler extends ImageHandler {
 		$scriptParams = array( 'width' => $params['width'] );
 		if ( isset( $params['lang'] ) ) {
 			$scriptParams['lang'] = $params['lang'];
+		}
+		if ( isset( $params['color'] ) ) {
+			$scriptParams['color'] = $params['color'];
 		}
 
 		return $scriptParams;
