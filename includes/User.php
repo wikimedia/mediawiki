@@ -1044,7 +1044,7 @@ class User implements IDBAccessObject {
 		$passwordFactory = self::getPasswordFactory();
 
 		$this->mId = 0;
-		$this->mName = $name;
+		$this->mName = $name ?: IP::sanitizeIP( $this->getRequest()->getIP() );
 		$this->mRealName = '';
 		$this->mPassword = $passwordFactory->newFromCiphertext( null );
 		$this->mNewpassword = $passwordFactory->newFromCiphertext( null );
@@ -2044,8 +2044,7 @@ class User implements IDBAccessObject {
 		} else {
 			$this->load();
 			if ( $this->mName === false ) {
-				// Clean up IPs
-				$this->mName = IP::sanitizeIP( $this->getRequest()->getIP() );
+				throw new Exception( 'Could not find user name for ' . $this->mId . ' in ' . __METHOD__ );
 			}
 			return $this->mName;
 		}
