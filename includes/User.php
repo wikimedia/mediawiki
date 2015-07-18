@@ -3385,19 +3385,24 @@ class User implements IDBAccessObject {
 				return;
 			}
 
-			$nextid = $oldid ? $title->getNextRevisionID( $oldid ) : null;
-
-			if ( !$oldid || !$nextid ) {
-				// If we're looking at the latest revision, we should definitely clear it
-				$this->setNewtalk( false );
-			} else {
-				// Otherwise we should update its revision, if it's present
-				if ( $this->getNewtalk() ) {
-					// Naturally the other one won't clear by itself
-					$this->setNewtalk( false );
-					$this->setNewtalk( true, Revision::newFromId( $nextid ) );
+			$that = $this;
+			// Try to update the DB post-send and only if needed...
+			DeferredUpdates::addCallableUpdate( function() use ( $that, $title, $oldid ) {
+				if ( !$that->getNewtalk() ) {
+					return; // no notifications to clear
 				}
-			}
+
+				// Delete the last notifications (they stack up)
+				$that->setNewtalk( false );
+
+				// If there is a new, unseen, revision, use its timestamp
+				$nextid = $oldid
+					? $title->getNextRevisionID( $oldid, Title::GAID_FOR_UPDATE )
+					: null;
+				if ( $nextid ) {
+					$that->setNewtalk( true, Revision::newFromId( $nextid ) );
+				}
+			} );
 		}
 
 		if ( !$wgUseEnotif && !$wgShowUpdatedMarker ) {
