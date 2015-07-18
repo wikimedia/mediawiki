@@ -4439,7 +4439,7 @@ $wgPasswordConfig = array(
  */
 $wgPasswordResetRoutes = array(
 	'username' => true,
-	'email' => false,
+	'email' => true,
 );
 
 /**

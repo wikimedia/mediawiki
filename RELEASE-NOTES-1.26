@@ -9,6 +9,7 @@ MediaWiki 1.26 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.26 ===
+* $wgPasswordResetRoutes['email'] = true by default.
 * $wgEnableParserCache was deprecated, set $wgParserCacheType to CACHE_NONE
   instead if you want to disable the parser cache.
 * New-style continuation is now the default for API action=continue. Clients may
