@@ -2177,7 +2177,7 @@ the key.
 &$confstr: reference to a hash key string which can be modified
 $user: User (object) requesting the page
 
-'PageViewUpdate': Allow database (or other) changes to be made after a
+'PageViewUpdates': Allow database (or other) changes to be made after a
 page view is seen by MediaWiki.  Note this does not capture views made
 via external caches such as Squid.
 $wikipage: WikiPage (object) for the page being viewed.
