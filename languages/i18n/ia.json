@@ -358,7 +358,7 @@
 	"protectedinterface": "Iste pagina contine texto pro le interfacie del software de iste wiki, e es protegite pro impedir le abuso. Pro adder o modificar traductiones pro tote le wikis, per favor usa [//translatewiki.net/ translatewiki.net], le projecto de traduction de MediaWiki.",
 	"editinginterface": "<strong>Attention:</strong> Le texto de iste pagina face parte del interfacie pro le software.\nOmne modification apportate a iste pagina cambiara le apparentia del interfacie pro altere usatores de iste wiki.",
 	"translateinterface": "Pro adder o modificar traductiones pro tote le wikis, per favor usa [//translatewiki.net/ translatewiki.net], le projecto de localisation de MediaWiki.",
-	"cascadeprotected": "Iste pagina ha essite protegite contra modificationes, proque illo es includite in le sequente {{PLURAL:$1|pagina, le qual|paginas, le quales}} es protegite usante le option \"cascada\":\n$2",
+	"cascadeprotected": "Iste pagina ha essite protegite contra modificationes perque illo es transcludite in le sequente {{PLURAL:$1|pagina, le qual|paginas, le quales}} es protegite usante le option \"cascada\":\n$2",
 	"namespaceprotected": "Tu non ha le permission de modificar paginas in le spatio de nomines '''$1'''.",
 	"customcssprotected": "Tu non ha le permission de modificar iste pagina de CSS perque illo contine le configuration personal de un altere usator.",
 	"customjsprotected": "Tu non ha le permission de modificar iste pagina de JavaScript perque illo contine le configuration personal de un altere usator.",

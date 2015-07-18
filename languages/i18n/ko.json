@@ -181,7 +181,7 @@
 	"broken-file-category": "깨진 파일 링크가 포함된 문서",
 	"about": "소개",
 	"article": "본문",
-	"newwindow": "(새 창으로 열림)",
+	"newwindow": "(새 창에서 열림)",
 	"cancel": "취소",
 	"moredotdotdot": "더 보기...",
 	"morenotlisted": "이 목록은 완성되지 않았습니다.",
@@ -3337,5 +3337,7 @@
 	"special-characters-group-khmer": "크메르어",
 	"special-characters-title-endash": "en 대시",
 	"special-characters-title-emdash": "em 대시",
-	"special-characters-title-minus": "빼기 기호"
+	"special-characters-title-minus": "빼기 기호",
+	"mw-widgets-titleinput-description-new-page": "문서가 존재하지 않습니다",
+	"mw-widgets-titleinput-description-redirect": "$1 문서로 넘겨주기"
 }
