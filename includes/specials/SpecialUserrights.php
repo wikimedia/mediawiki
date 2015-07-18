@@ -126,7 +126,6 @@ class UserrightsPage extends SpecialPage {
 		$this->addHelpLink( 'Help:Assigning permissions' );
 
 		$this->switchForm();
-
 		if (
 			$request->wasPosted() &&
 			$request->getCheck( 'saveusergroups' ) &&
@@ -199,10 +198,11 @@ class UserrightsPage extends SpecialPage {
 
 		// This could possibly create a highly unlikely race condition if permissions are changed between
 		//  when the form is loaded and when the form is saved. Ignoring it for the moment.
+		$wpgrouplist = $this->getRequest()->getArray( "wpgrouplist" );
 		foreach ( $allgroups as $group ) {
 			// We'll tell it to remove all unchecked groups, and add all checked groups.
 			// Later on, this gets filtered for what can actually be removed
-			if ( $this->getRequest()->getCheck( "wpGroup-$group" ) ) {
+			if ( in_array("wpGroup-$group", $wpgrouplist ) ) {
 				$addgroup[] = $group;
 			} else {
 				$removegroup[] = $group;
@@ -331,7 +331,7 @@ class UserrightsPage extends SpecialPage {
 	 * @param bool $writing
 	 * @return Status
 	 */
-	public function fetchUser( $username, $writing ) {
+	public function fetchUser( $username, $writing = true ) {
 		$parts = explode( $this->getConfig()->get( 'UserrightsInterwikiDelimiter' ), $username );
 		if ( count( $parts ) < 2 ) {
 			$name = trim( $username );
@@ -409,9 +409,35 @@ class UserrightsPage extends SpecialPage {
 	 * Output a form to allow searching for a user
 	 */
 	function switchForm() {
-		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
+		$out = $this->getOutput();
+		$out->enableOOUI();
+		$out->addModules( 'mediawiki.widgets' );
 
-		$this->getOutput()->addHTML(
+		$fieldset = new OOUI\FieldsetLayout( [
+			'items' => [
+				new OOUI\ActionFieldLayout(
+					new MediaWiki\Widget\UserInputWidget( [
+						'id' => 'username',
+						'name' => 'user',
+						'value' => str_replace( '_', ' ', $this->mTarget ),
+						'align' => 'top'
+					] + (
+						// Set autofocus on blank input and error input
+						$this->mFetchedUser === null ? [ 'autofocus' => '' ] : []
+					) ),
+					new OOUI\ButtonInputWidget( [
+						'type' => 'submit',
+						'label' => $this->msg( 'editusergroup' )->text(),
+						'flags' => [ 'progressive', 'primary' ],
+					] ),
+					[
+						'label' => $this->msg( 'userrights-user-editname' )->text(),
+						'align' => 'top',
+					]
+				),
+			],
+		] );
+		$out->addHTML(
 			Html::openElement(
 				'form',
 				[
@@ -422,24 +448,13 @@ class UserrightsPage extends SpecialPage {
 				]
 			) .
 			Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
-			Xml::fieldset( $this->msg( 'userrights-lookup-user' )->text() ) .
-			Xml::inputLabel(
-				$this->msg( 'userrights-user-editname' )->text(),
-				'user',
-				'username',
-				30,
-				str_replace( '_', ' ', $this->mTarget ),
-				[
-					'class' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
-				] + (
-					// Set autofocus on blank input and error input
-					$this->mFetchedUser === null ? [ 'autofocus' => '' ] : []
-				)
-			) . ' ' .
-			Xml::submitButton(
-				$this->msg( 'editusergroup' )->text()
-			) .
-			Html::closeElement( 'fieldset' ) .
+			new OOUI\PanelLayout( [
+				'classes' => [ 'mw-userrights-ooui-wrapper' ],
+				'expanded' => false,
+				'padded' => true,
+				'framed' => true,
+				'content' => $fieldset,
+			] ) .
 			Html::closeElement( 'form' ) . "\n"
 		);
 	}
@@ -528,65 +543,43 @@ class UserrightsPage extends SpecialPage {
 			Linker::TOOL_LINKS_EMAIL /* Add "send e-mail" link */
 		);
 
-		list( $groupCheckboxes, $canChangeAny ) = $this->groupCheckboxes( $groups, $user );
-		$this->getOutput()->addHTML(
-			Xml::openElement(
-				'form',
+		$formDescriptor = [
+			'grouplist' => $this->groupCheckboxes( $groups, $user ),
+			'user-reason' =>
 				[
-					'method' => 'post',
-					'action' => $this->getPageTitle()->getLocalURL(),
-					'name' => 'editGroup',
-					'id' => 'mw-userrights-form2'
-				]
-			) .
-			Html::hidden( 'user', $this->mTarget ) .
-			Html::hidden( 'wpEditToken', $this->getUser()->getEditToken( $this->mTarget ) ) .
-			Html::hidden(
+					'id' => 'wpReason',
+					'maxlength' => 255,
+					'value' => $this->getRequest()->getVal( 'user-reason', false ),
+					'label' => $this->msg( 'userrights-reason' )->text(),
+					'type' => 'text',
+
+				],
+		];
+
+		HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
+			->setName('editGroup')
+			->setFormIdentifier( 'mw-userrights-form2' )
+			->setWrapperLegendMsg( 'userrights-editusergroup' )
+			->setHeaderText(
+				$this->msg( 'editinguser' )->params( wfEscapeWikiText( $user->getName() ) )
+					->rawParams( $userToolLinks )->parse() .
+				$this->msg( 'userrights-groups-help', $user->getName() )->parse() .
+				$grouplist
+			)
+			->setSubmitTextMsg( 'saveusergroups' )
+			->setSubmitName( 'saveusergroups' )
+			->setSubmitID( 'saveusergroups' )
+			->setAction( $this->getPageTitle()->getLocalURL() )
+			->setMethod( 'post' )
+			->addHiddenField( 'user', $this->mTarget )
+			->addHiddenField( 'wpEditToken', $this->getUser()->getEditToken( $this->mTarget ) )
+			->addHiddenField(
 				'conflictcheck-originalgroups',
 				implode( ',', $user->getGroups() )
-			) . // Conflict detection
-			Xml::openElement( 'fieldset' ) .
-			Xml::element(
-				'legend',
-				[],
-				$this->msg( 'userrights-editusergroup', $user->getName() )->text()
-			) .
-			$this->msg( 'editinguser' )->params( wfEscapeWikiText( $user->getName() ) )
-				->rawParams( $userToolLinks )->parse()
-		);
-		if ( $canChangeAny ) {
-			$this->getOutput()->addHTML(
-				$this->msg( 'userrights-groups-help', $user->getName() )->parse() .
-				$grouplist .
-				$groupCheckboxes .
-				Xml::openElement( 'table', [ 'id' => 'mw-userrights-table-outer' ] ) .
-					"<tr>
-						<td class='mw-label'>" .
-							Xml::label( $this->msg( 'userrights-reason' )->text(), 'wpReason' ) .
-						"</td>
-						<td class='mw-input'>" .
-							Xml::input( 'user-reason', 60, $this->getRequest()->getVal( 'user-reason', false ),
-								[ 'id' => 'wpReason', 'maxlength' => 255 ] ) .
-						"</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td class='mw-submit'>" .
-							Xml::submitButton( $this->msg( 'saveusergroups', $user->getName() )->text(),
-								[ 'name' => 'saveusergroups' ] +
-									Linker::tooltipAndAccesskeyAttribs( 'userrights-set' )
-							) .
-						"</td>
-					</tr>" .
-				Xml::closeElement( 'table' ) . "\n"
-			);
-		} else {
-			$this->getOutput()->addHTML( $grouplist );
-		}
-		$this->getOutput()->addHTML(
-			Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' ) . "\n"
-		);
+			)
+			->setSubmitTooltip( 'userrights-set' )
+			->prepareForm()
+			->displayForm( false );
 	}
 
 	/**
@@ -628,78 +621,49 @@ class UserrightsPage extends SpecialPage {
 	 */
 	private function groupCheckboxes( $usergroups, $user ) {
 		$allgroups = $this->getAllGroups();
-		$ret = '';
 
-		// Put all column info into an associative array so that extensions can
-		// more easily manage it.
-		$columns = [ 'unchangeable' => [], 'changeable' => [] ];
+		$checkedGroups = [];
+		$disabledGroups = [];
+		$checkboxData = [];
 
 		foreach ( $allgroups as $group ) {
 			$set = in_array( $group, $usergroups );
-			// Should the checkbox be disabled?
-			$disabled = !(
-				( $set && $this->canRemove( $group ) ) ||
-				( !$set && $this->canAdd( $group ) ) );
-			// Do we need to point out that this action is irreversible?
-			$irreversible = !$disabled && (
-				( $set && !$this->canAdd( $group ) ) ||
-				( !$set && !$this->canRemove( $group ) ) );
+			if ( $set ) {
+				$checkedGroups[] = "wpGroup-$group";
+			}
 
-			$checkbox = [
-				'set' => $set,
-				'disabled' => $disabled,
-				'irreversible' => $irreversible
-			];
+			// Should the checkbox be disabled?
+			$disabled =
+				!( ( $set && $this->canRemove( $group ) ) || ( !$set && $this->canAdd( $group ) ) );
 
 			if ( $disabled ) {
-				$columns['unchangeable'][$group] = $checkbox;
+				$disabledGroups[] = "wpGroup-$group";
+			}
+
+
+			// Do we need to point out that this action is irreversible?
+			$irreversible =
+				!$disabled && ( ( $set && !$this->canAdd( $group ) ) ||
+				                ( !$set && !$this->canRemove( $group ) ) );
+
+			$member = User::getGroupMember( $group, $user->getName() );
+			var_dump( $irreversible );
+			if ( $irreversible ) {
+				$text = $this->msg( 'userrights-irreversible-marker', $member )->text();
 			} else {
-				$columns['changeable'][$group] = $checkbox;
+				$text = $member;
 			}
+			$checkboxData[$text] = "wpGroup-$group";
 		}
 
-		// Build the HTML table
-		$ret .= Xml::openElement( 'table', [ 'class' => 'mw-userrights-groups' ] ) .
-			"<tr>\n";
-		foreach ( $columns as $name => $column ) {
-			if ( $column === [] ) {
-				continue;
-			}
-			// Messages: userrights-changeable-col, userrights-unchangeable-col
-			$ret .= Xml::element(
-				'th',
-				null,
-				$this->msg( 'userrights-' . $name . '-col', count( $column ) )->text()
-			);
-		}
-
-		$ret .= "</tr>\n<tr>\n";
-		foreach ( $columns as $column ) {
-			if ( $column === [] ) {
-				continue;
-			}
-			$ret .= "\t<td style='vertical-align:top;'>\n";
-			foreach ( $column as $group => $checkbox ) {
-				$attr = $checkbox['disabled'] ? [ 'disabled' => 'disabled' ] : [];
-
-				$member = User::getGroupMember( $group, $user->getName() );
-				if ( $checkbox['irreversible'] ) {
-					$text = $this->msg( 'userrights-irreversible-marker', $member )->text();
-				} else {
-					$text = $member;
-				}
-				$checkboxHtml = Xml::checkLabel( $text, "wpGroup-" . $group,
-					"wpGroup-" . $group, $checkbox['set'], $attr );
-				$ret .= "\t\t" . ( $checkbox['disabled']
-					? Xml::tags( 'span', [ 'class' => 'mw-userrights-disabled' ], $checkboxHtml )
-					: $checkboxHtml
-				) . "<br />\n";
-			}
-			$ret .= "\t</td>\n";
-		}
-		$ret .= Xml::closeElement( 'tr' ) . Xml::closeElement( 'table' );
-
-		return [ $ret, (bool)$columns['changeable'] ];
+		$ret = [
+			'type' => 'multiselect',
+			'flatlist' => true,
+		    'options' => $checkboxData,
+		    'default' => $checkedGroups,
+		    'disabledOptions' => $disabledGroups,
+		];
+		return $ret;
 	}
 
 	/**
@@ -776,4 +740,3 @@ class UserrightsPage extends SpecialPage {
 		return 'users';
 	}
 }
-
