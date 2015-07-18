@@ -2873,6 +2873,7 @@ abstract class DatabaseBase implements IDatabase {
 			$rows = array( $rows );
 		}
 
+		// @FXIME: this is not atomic, but a trx would break affectedRows()
 		foreach ( $rows as $row ) {
 			# Delete rows which collide
 			if ( $uniqueIndexes ) {
