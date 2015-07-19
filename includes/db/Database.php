@@ -606,125 +606,6 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	/**
-	 * Get the type of the DBMS, as it appears in $wgDBtype.
-	 *
-	 * @return string
-	 */
-	abstract function getType();
-
-	/**
-	 * Open a connection to the database. Usually aborts on failure
-	 *
-	 * @param string $server Database server host
-	 * @param string $user Database user name
-	 * @param string $password Database user password
-	 * @param string $dbName Database name
-	 * @return bool
-	 * @throws DBConnectionError
-	 */
-	abstract function open( $server, $user, $password, $dbName );
-
-	/**
-	 * Fetch the next row from the given result object, in object form.
-	 * Fields can be retrieved with $row->fieldname, with fields acting like
-	 * member variables.
-	 * If no more rows are available, false is returned.
-	 *
-	 * @param ResultWrapper|stdClass $res Object as returned from DatabaseBase::query(), etc.
-	 * @return stdClass|bool
-	 * @throws DBUnexpectedError Thrown if the database returns an error
-	 */
-	abstract function fetchObject( $res );
-
-	/**
-	 * Fetch the next row from the given result object, in associative array
-	 * form. Fields are retrieved with $row['fieldname'].
-	 * If no more rows are available, false is returned.
-	 *
-	 * @param ResultWrapper $res Result object as returned from DatabaseBase::query(), etc.
-	 * @return array|bool
-	 * @throws DBUnexpectedError Thrown if the database returns an error
-	 */
-	abstract function fetchRow( $res );
-
-	/**
-	 * Get the number of rows in a result object
-	 *
-	 * @param mixed $res A SQL result
-	 * @return int
-	 */
-	abstract function numRows( $res );
-
-	/**
-	 * Get the number of fields in a result object
-	 * @see http://www.php.net/mysql_num_fields
-	 *
-	 * @param mixed $res A SQL result
-	 * @return int
-	 */
-	abstract function numFields( $res );
-
-	/**
-	 * Get a field name in a result object
-	 * @see http://www.php.net/mysql_field_name
-	 *
-	 * @param mixed $res A SQL result
-	 * @param int $n
-	 * @return string
-	 */
-	abstract function fieldName( $res, $n );
-
-	/**
-	 * Get the inserted value of an auto-increment row
-	 *
-	 * The value inserted should be fetched from nextSequenceValue()
-	 *
-	 * Example:
-	 * $id = $dbw->nextSequenceValue( 'page_page_id_seq' );
-	 * $dbw->insert( 'page', array( 'page_id' => $id ) );
-	 * $id = $dbw->insertId();
-	 *
-	 * @return int
-	 */
-	abstract function insertId();
-
-	/**
-	 * Change the position of the cursor in a result object
-	 * @see http://www.php.net/mysql_data_seek
-	 *
-	 * @param mixed $res A SQL result
-	 * @param int $row
-	 */
-	abstract function dataSeek( $res, $row );
-
-	/**
-	 * Get the last error number
-	 * @see http://www.php.net/mysql_errno
-	 *
-	 * @return int
-	 */
-	abstract function lastErrno();
-
-	/**
-	 * Get a description of the last error
-	 * @see http://www.php.net/mysql_error
-	 *
-	 * @return string
-	 */
-	abstract function lastError();
-
-	/**
-	 * mysql_fetch_field() wrapper
-	 * Returns false if the field doesn't exist
-	 *
-	 * @param string $table Table name
-	 * @param string $field Field name
-	 *
-	 * @return Field
-	 */
-	abstract function fieldInfo( $table, $field );
-
-	/**
 	 * Get information about an index into an object
 	 * @param string $table Table name
 	 * @param string $index Index name
@@ -734,38 +615,12 @@ abstract class DatabaseBase implements IDatabase {
 	abstract function indexInfo( $table, $index, $fname = __METHOD__ );
 
 	/**
-	 * Get the number of rows affected by the last write query
-	 * @see http://www.php.net/mysql_affected_rows
-	 *
-	 * @return int
-	 */
-	abstract function affectedRows();
-
-	/**
 	 * Wrapper for addslashes()
 	 *
 	 * @param string $s String to be slashed.
 	 * @return string Slashed string.
 	 */
 	abstract function strencode( $s );
-
-	/**
-	 * Returns a wikitext link to the DB's website, e.g.,
-	 *   return "[http://www.mysql.com/ MySQL]";
-	 * Should at least contain plain text, if for some reason
-	 * your database has no website.
-	 *
-	 * @return string Wikitext of a link to the server software's web site
-	 */
-	abstract function getSoftwareLink();
-
-	/**
-	 * A string describing the current software version, like from
-	 * mysql_get_server_info().
-	 *
-	 * @return string Version information from the database server.
-	 */
-	abstract function getServerVersion();
 
 	/**
 	 * Constructor.
