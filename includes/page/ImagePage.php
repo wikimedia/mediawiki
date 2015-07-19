@@ -382,13 +382,8 @@ class ImagePage extends Article {
 					}
 					$otherSizes = array_unique( $otherSizes );
 
-					$msgsmall = '';
 					$sizeLinkBigImagePreview = $this->makeSizeLink( $params, $width, $height );
-					if ( $sizeLinkBigImagePreview ) {
-						$msgsmall .= $this->getContext()->msg( 'show-big-image-preview' )->
-							rawParams( $sizeLinkBigImagePreview )->
-							parse();
-					}
+					$msgsmall = $this->getThumbPrevText( $params, $sizeLinkBigImagePreview );
 					if ( count( $otherSizes ) ) {
 						$msgsmall .= ' ' .
 						Html::rawElement(
@@ -630,6 +625,44 @@ EOT
 			}
 		}
 		$out->setFileVersion( $this->displayImg );
+	}
+
+	/**
+	 * Make the text under the image to say what size preview
+	 *
+	 * @param $params Array parameters for thumbnail
+	 * @param $sizeLinkBigImagePreview HTML for the current size
+	 * @return string HTML output
+	 */
+	private function getThumbPrevText( $params, $sizeLinkBigImagePreview ) {
+		if ( $sizeLinkBigImagePreview ) {
+			// Show a different message of preview is different format from original.
+			$previewTypeDiffers = false;
+			$origExt = $thumbExt = $this->displayImg->getExtension();
+			if ( $this->displayImg->getHandler() ) {
+				$origMime = $this->displayImg->getMimeType();
+				$typeParams = $params;
+				$this->displayImg->getHandler()->normaliseParams( $this->displayImg, $typeParams );
+				list( $thumbExt, $thumbMime ) = $this->displayImg->getHandler()->getThumbType(
+					$origExt, $origMime, $typeParams );
+				if ( $thumbMime !== $origMime ) {
+					$previewTypeDiffers = true;
+				}
+			}
+			if ( $previewTypeDiffers ) {
+				return $this->getContext()->msg( 'show-big-image-preview-differ' )->
+					rawParams( $sizeLinkBigImagePreview )->
+					params( strtoupper( $origExt ) )->
+					params( strtoupper( $thumbExt ) )->
+					parse();
+			} else {
+				return $this->getContext()->msg( 'show-big-image-preview' )->
+					rawParams( $sizeLinkBigImagePreview )->
+				parse();
+			}
+		} else {
+			return '';
+		}
 	}
 
 	/**
