@@ -83,11 +83,31 @@ class CssContentTest extends JavaScriptContentTest {
 	}
 
 	/**
-	 * Override this since CssContent does not support redirects yet
+	 * @dataProvider provideGetRedirectTarget
+	 */
+	public function testGetRedirectTarget( $title, $text ) {
+		$this->setMwGlobals( array(
+			'wgServer' => '//example.org',
+			'wgScriptPath' => '/w',
+			'wgScript' => '/w/index.php',
+		) );
+		$content = new CssContent( $text );
+		$target = $content->getRedirectTarget();
+		$this->assertEquals( $title, $target ? $target->getPrefixedText() : null );
+	}
+
+	/**
+	 * Keep this in sync with CssContentHandlerTest::provideMakeRedirectContent()
 	 */
 	public static function provideGetRedirectTarget() {
 		return array(
-			array( null, '' ),
+			array( 'MediaWiki:MonoBook.css', "/* #REDIRECT */@import url(//example.org/w/index.php?title=MediaWiki:MonoBook.css&action=raw&ctype=text/css);" ),
+			array( 'User:FooBar/common.css', "/* #REDIRECT */@import url(//example.org/w/index.php?title=User:FooBar/common.css&action=raw&ctype=text/css);" ),
+			array( 'Gadget:FooBaz.css', "/* #REDIRECT */@import url(//example.org/w/index.php?title=Gadget:FooBaz.css&action=raw&ctype=text/css);" ),
+			# No #REDIRECT comment
+			array( null, "@import url(//example.org/w/index.php?title=Gadget:FooBaz.css&action=raw&ctype=text/css);" ),
+			# Wrong domain
+			array( null, "/* #REDIRECT */@import url(//example.com/w/index.php?title=Gadget:FooBaz.css&action=raw&ctype=text/css);" ),
 		);
 	}
 
