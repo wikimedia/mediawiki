@@ -33,6 +33,11 @@
 class CssContent extends TextContent {
 
 	/**
+	 * @var bool|Title|null
+	 */
+	private $redirectTarget = false;
+
+	/**
 	 * @param string $text CSS code.
 	 * @param string $modelId the content content model
 	 */
@@ -72,6 +77,48 @@ class CssContent extends TextContent {
 		$html .= "\n</pre>\n";
 
 		return $html;
+	}
+
+	/**
+	 * @param Title $target
+	 * @return CssContent
+	 */
+	public function updateRedirect( Title $target ) {
+		if ( !$this->isRedirect() ) {
+			return $this;
+		}
+
+		return $this->getContentHandler()->makeRedirectContent( $target );
+	}
+
+	/**
+	 * @return Title|null
+	 */
+	public function getRedirectTarget() {
+		if ( $this->redirectTarget !== false ) {
+			return $this->redirectTarget;
+		}
+		$this->redirectTarget = null;
+		$text = $this->getNativeData();
+		if ( strpos( $text, '/* #REDIRECT */' ) === 0 ) {
+			// Extract the title from the url
+			preg_match( '/title=(.*?)&action=raw/', $text, $matches );
+			var_dump($matches);
+			if ( isset( $matches[1] ) ) {
+				$title = Title::newFromText( $matches[1] );
+				if ( $title ) {
+					// Have a title, check that the current content equals what
+					// the redirect content should be
+					if ( $this->equals( $this->getContentHandler()->makeRedirectContent( $title ) ) ) {
+						$this->redirectTarget = $title;
+					} else {
+						var_dump($this->getContentHandler()->makeRedirectContent( $title ));
+					}
+				}
+			}
+		}
+
+		return $this->redirectTarget;
 	}
 
 }

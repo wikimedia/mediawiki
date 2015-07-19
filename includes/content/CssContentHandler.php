@@ -39,4 +39,23 @@ class CssContentHandler extends CodeContentHandler {
 	protected function getContentClass() {
 		return 'CssContent';
 	}
+
+	public function supportsRedirects() {
+		return true;
+	}
+
+	/**
+	 * Create a redirect that is also valid CSS
+	 *
+	 * @param Title $destination
+	 * @param string $text ignored
+	 * @return JavaScriptContent
+	 */
+	public function makeRedirectContent( Title $destination, $text = '' ) {
+		// The parameters are passed as a string so the / is not url-encoded by wfArrayToCgi
+		$url = $destination->getFullURL( 'action=raw&ctype=text/css', false, PROTO_RELATIVE );
+		$class = $this->getContentClass();
+		return new $class( '/* #REDIRECT */' . "@import url('$url');" );
+	}
+
 }
