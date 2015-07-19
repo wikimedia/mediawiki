@@ -1390,6 +1390,7 @@ class LoginForm extends SpecialPage {
 			: is_array( $wgPasswordResetRoutes ) && in_array( true, array_values( $wgPasswordResetRoutes ) );
 
 		$template->set( 'header', '' );
+		$template->set( 'formheader', '' );
 		$template->set( 'skin', $this->getSkin() );
 		$template->set( 'name', $this->mUsername );
 		$template->set( 'password', $this->mPassword );
