@@ -378,9 +378,29 @@ class ImagePage extends Article {
 					$msgsmall = '';
 					$sizeLinkBigImagePreview = $this->makeSizeLink( $params, $width, $height );
 					if ( $sizeLinkBigImagePreview ) {
-						$msgsmall .= $this->getContext()->msg( 'show-big-image-preview' )->
-							rawParams( $sizeLinkBigImagePreview )->
-							parse();
+						// Show a different message of preview is different format from original.
+						$previewTypeDiffers = false;
+						$origExt = $thumbExt = $this->displayImg->getExtension();
+						if ( $this->displayImg->getHandler() ) {
+							$origMime = $this->displayImg->getMimeType();
+							$typeParams = $params;
+							$this->displayImg->getHandler()->normaliseParams( $this->displayImg, $typeParams );
+							list( $thumbExt, $thumbMime ) = $this->displayImg->getHandler()->getThumbType( $origExt, $origMime, $typeParams );
+							if ( $thumbMime !== $origMime ) {
+								$previewTypeDiffers = true;
+							}
+						}
+						if ( $previewTypeDiffers ) {
+							$msgsmall .= $this->getContext()->msg( 'show-big-image-preview-differ' )->
+								rawParams( $sizeLinkBigImagePreview )->
+								params( strtoupper( $origExt ) )->
+								params( strtoupper( $thumbExt ) )->
+								parse();
+						} else {
+							$msgsmall .= $this->getContext()->msg( 'show-big-image-preview' )->
+								rawParams( $sizeLinkBigImagePreview )->
+								parse();
+						}
 					}
 					if ( count( $otherSizes ) ) {
 						$msgsmall .= ' ' .

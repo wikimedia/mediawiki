@@ -2666,6 +2666,7 @@
 	"svg-long-error": "Invalid SVG file: $1",
 	"show-big-image": "Original file",
 	"show-big-image-preview": "Size of this preview: $1.",
+	"show-big-image-preview-differ": "Size of this $3 preview of this $2 file: $1.",
 	"show-big-image-other": "Other {{PLURAL:$2|resolution|resolutions}}: $1.",
 	"show-big-image-size": "$1 × $2 pixels",
 	"file-info-gif-looped": "looped",
