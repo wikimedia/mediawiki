@@ -124,4 +124,24 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	/**
+	 * @dataProvider provideNormalizeKey
+	 */
+	public function testNormalizeKey( $key, $expected ) {
+		$actual = MessageCache::normalizeKey( $key );
+		$this->assertEquals( $expected, $actual );
+	}
+
+	public function provideNormalizeKey() {
+		return array(
+			array( 'Foo', 'foo' ),
+			array( 'foo', 'foo' ),
+			array( 'fOo', 'fOo' ),
+			array( 'FOO', 'fOO' ),
+			array( 'Ćab', 'ćab' ),
+			array( 'ĆAB', 'ćAB' ),
+			array( 'ćab', 'ćab' ),
+			array( 'ćaB', 'ćaB' ),
+		);
+	}
 }
