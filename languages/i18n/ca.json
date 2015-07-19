@@ -2406,6 +2406,7 @@
 	"pageinfo-robot-index": "Permès",
 	"pageinfo-robot-noindex": "No permès",
 	"pageinfo-watchers": "Número d'usuaris que vigilen la pàgina",
+	"pageinfo-visiting-watchers": "Nombre de vigilants de la pàgina que han visitat els canvis recents",
 	"pageinfo-few-watchers": "Menys de $1 {{PLURAL:$1|observador|observadors}}",
 	"pageinfo-redirects-name": "Nombre de redireccions a aquesta pàgina",
 	"pageinfo-redirects-value": "$1",

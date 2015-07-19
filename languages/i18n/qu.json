@@ -1515,6 +1515,7 @@
 	"pager-older-n": "{{PLURAL:$1|aswan mawk'a 1|aswan mawk'a $1}}",
 	"suppress": "Rikurpariy",
 	"querypage-disabled": "Kay sapaq p'anqamanqa ama nisqam allinta llamk'anapaq.",
+	"apihelp": "API yanapa",
 	"booksources": "Liwrukunapi pukyukuna",
 	"booksources-search-legend": "Liwrukunapi pukyukunata maskay",
 	"booksources-search": "Maskay",

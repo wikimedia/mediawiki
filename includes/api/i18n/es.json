@@ -94,7 +94,7 @@
 	"apihelp-edit-param-undo": "Deshacer esta revisión. Reemplaza $1text, $1prependtext y $1appendtext.",
 	"apihelp-edit-param-undoafter": "Deshacer todas las revisiones desde $1undo a esta. Si no está establecido solo se deshace una revisión.",
 	"apihelp-edit-param-redirect": "Resolver redirecciones automáticamente.",
-	"apihelp-edit-param-contentformat": "Formato de serialización de contenido, utilizado para introducir texto.",
+	"apihelp-edit-param-contentformat": "Formato de serialización de contenido utilizado para el texto de entrada.",
 	"apihelp-edit-param-contentmodel": "Modelo de contenido del nuevo contenido.",
 	"apihelp-edit-param-token": "La clave debe enviarse siempre como el último parámetro o, al menos, después del parámetro $1text.",
 	"apihelp-edit-example-edit": "Editar una página",

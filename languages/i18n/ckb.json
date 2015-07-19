@@ -2532,6 +2532,8 @@
 	"htmlform-selectorother-other": "دیکە",
 	"htmlform-no": "نا",
 	"htmlform-yes": "بەڵێ",
+	"htmlform-title-not-creatable": "پەڕە بە سەردێڕی \"$1\" دروست ناکرێت",
+	"htmlform-title-not-exists": "[[$1]] بوونی نیە.",
 	"logentry-delete-delete": "$1 پەڕەی $3ی {{GENDER:$2|سڕییەوە}}",
 	"logentry-delete-restore": "$1 پەڕەی $3ی {{GENDER:$2|ھێنایەوە}}",
 	"logentry-delete-revision": "$1 دەرکەوتنی {{PLURAL:$5|پێداچوونەوەیەکی|$5 پێداچوونەوەی}} پەڕەی $3ی {{GENDER:$2|گۆڕیی}}: $4",
