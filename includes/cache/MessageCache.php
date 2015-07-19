@@ -137,6 +137,7 @@ class MessageCache {
 	 * @return string Normalized message key
 	 */
 	public static function normalizeKey( $key ) {
+		global $wgContLang;
 		$lckey = strtr( $key, ' ', '_' );
 		if ( ord( $lckey ) < 128 ) {
 			$lckey[0] = strtolower( $lckey[0] );
