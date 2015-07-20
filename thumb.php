@@ -309,6 +309,7 @@ function wfStreamThumb( array $params ) {
 			wfThumbError( 500, 'Could not stream the file' );
 		} else {
 			RequestContext::getMain()->getStats()->timing( 'media.thumbnail.stream', $streamtime );
+			wfDebugLog( 'thumbnail', 'Access ' . time() . ' ' . $thumbPath . ' ' . ob_get_length() . ' Streamed ' );
 		}
 		return;
 	}
