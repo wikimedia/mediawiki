@@ -226,8 +226,9 @@ class Message implements MessageSpecifier, Serializable {
 	/**
 	 * @since 1.17
 	 *
-	 * @param string|string[] $key Message key or array of message keys to try and use the first
-	 * non-empty message for.
+	 * @param string|string[]|MessageSpecifier $key Message key, or array of
+	 * message keys to try and use the first non-empty message for, or a
+	 * MessageSpecifier to copy from.
 	 * @param array $params Message parameters.
 	 * @param Language $language Optional language of the message, defaults to $wgLang.
 	 *
@@ -235,6 +236,16 @@ class Message implements MessageSpecifier, Serializable {
 	 */
 	public function __construct( $key, $params = array(), Language $language = null ) {
 		global $wgLang;
+
+		if ( $key instanceof MessageSpecifier ) {
+			if ( $params ) {
+				throw new InvalidArgumentException(
+					'$params must be empty if $key is a MessageSpecifier'
+				);
+			}
+			$params = $key->getParams();
+			$key = $key->getKey();
+		}
 
 		if ( !is_string( $key ) && !is_array( $key ) ) {
 			throw new InvalidArgumentException( '$key must be a string or an array' );
@@ -362,7 +373,7 @@ class Message implements MessageSpecifier, Serializable {
 	 *
 	 * @since 1.17
 	 *
-	 * @param string|string[] $key Message key or array of keys.
+	 * @param string|string[]|MessageSpecifier $key
 	 * @param mixed $param,... Parameters as strings.
 	 *
 	 * @return Message
