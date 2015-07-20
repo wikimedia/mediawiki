@@ -301,9 +301,15 @@ function wfStreamThumb( array $params ) {
 	// Stream the file if it exists already...
 	$thumbPath = $img->getThumbPath( $thumbName );
 	if ( $img->getRepo()->fileExists( $thumbPath ) ) {
+		$starttime = microtime( true );
 		$success = $img->getRepo()->streamFile( $thumbPath, $headers );
+		$streamtime = microtime( true ) - $starttime;
+
 		if ( !$success ) {
 			wfThumbError( 500, 'Could not stream the file' );
+		} else {
+			RequestContext::getMain()->getStats()->timing( 'media.thumbnail.stream', $streamtime );
+			wfDebugLog( 'thumbnailaccess', time() . ' ' . $thumbPath . ' ' . ob_get_length() . ' Streamed ' );
 		}
 		return;
 	}
@@ -317,8 +323,8 @@ function wfStreamThumb( array $params ) {
 		return;
 	}
 
-	// Actually generate a new thumbnail
 	list( $thumb, $errorMsg ) = wfGenerateThumbnail( $img, $params, $thumbName, $thumbPath );
+
 	/** @var MediaTransformOutput|bool $thumb */
 
 	// Check for thumbnail generation errors...
