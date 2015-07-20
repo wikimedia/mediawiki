@@ -670,6 +670,60 @@
 
 	} );
 
+	QUnit.asyncTest( 'mw.loader.implement( dependency with styles )', 4, function ( assert ) {
+		var $element = $( '<div class="mw-test-implement-e"></div>' ).appendTo( '#qunit-fixture' ),
+			$element2 = $( '<div class="mw-test-implement-e2"></div>' ).appendTo( '#qunit-fixture' );
+
+		assert.notEqual(
+			$element.css( 'float' ),
+			'right',
+			'style is clear'
+		);
+		assert.notEqual(
+			$element2.css( 'float' ),
+			'left',
+			'style is clear'
+		);
+
+		mw.loader.register( [
+			[ 'test.implement.e', '0', ['test.implement.e2']],
+			[ 'test.implement.e2', '0' ]
+		] );
+
+		mw.loader.implement(
+			'test.implement.e',
+			function () {
+				assert.equal(
+					$element.css( 'float' ),
+					'right',
+					'Depending module\'s style is applied'
+				);
+				QUnit.start();
+			},
+			{
+				'all': '.mw-test-implement-e { float: right; }'
+			}
+		);
+
+		mw.loader.implement(
+			'test.implement.e2',
+			function () {
+				assert.equal(
+					$element2.css( 'float' ),
+					'left',
+					'Dependency\'s style is applied'
+				);
+			},
+			{
+				'all': '.mw-test-implement-e2 { float: left; }'
+			}
+		);
+
+		mw.loader.load( [
+			'test.implement.e'
+		] );
+	} );
+
 	QUnit.test( 'mw.loader.implement( only scripts )', 1, function ( assert ) {
 		mw.loader.implement( 'test.onlyscripts', function () {} );
 		assert.strictEqual( mw.loader.getState( 'test.onlyscripts' ), 'ready' );

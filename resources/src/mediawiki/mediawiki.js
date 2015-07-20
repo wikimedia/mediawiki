@@ -819,6 +819,14 @@
 			function addEmbeddedCSS( cssText, callback ) {
 				var $style, styleEl;
 
+				function fireCallbacks() {
+					var oldCallbacks = cssCallbacks;
+					// Reset cssCallbacks variable so it's not polluted by any calls to
+					// addEmbeddedCSS() from one of the callbacks (T105973)
+					cssCallbacks = $.Callbacks();
+					oldCallbacks.fire().empty();
+				}
+
 				if ( callback ) {
 					cssCallbacks.add( callback );
 				}
@@ -884,14 +892,14 @@
 						} else {
 							styleEl.appendChild( document.createTextNode( cssText ) );
 						}
-						cssCallbacks.fire().empty();
+						fireCallbacks();
 						return;
 					}
 				}
 
 				$( newStyleTag( cssText, getMarker() ) ).data( 'ResourceLoaderDynamicStyleTag', true );
 
-				cssCallbacks.fire().empty();
+				fireCallbacks();
 			}
 
 			/**
