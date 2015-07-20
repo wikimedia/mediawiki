@@ -1149,6 +1149,8 @@ abstract class File implements IDBAccessObject {
 			Hooks::run( 'FileTransformed', array( $this, $thumb, $tmpThumbPath, $thumbPath ) );
 		}
 
+		wfDebugLog( 'thumbnailaccess', time() . ' ' . $thumbPath . ' ' . filesize( $tmpThumbPath ) . ' Generated ' );
+
 		return $thumb;
 	}
 
