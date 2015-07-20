@@ -874,7 +874,7 @@ abstract class HTMLFormField {
 	 * @return array Attributes
 	 */
 	public function getAttributes( array $list, array $mappings = null ) {
-		static $boolAttribs = array( 'disabled', 'required', 'autofocus', 'multiple', 'readonly' );
+		static $boolAttribs = array( 'disabled', 'required', 'multiple', 'readonly' );
 
 		$ret = array();
 		foreach ( $list as $key ) {
