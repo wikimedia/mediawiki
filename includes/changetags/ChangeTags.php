@@ -611,14 +611,11 @@ class ChangeTags {
 	 * Build a text box to select a change tag
 	 *
 	 * @param string $selected Tag to select by default
-	 * @param bool $fullForm
-	 *        - if false, then it returns an array of (label, form).
-	 *        - if true, it returns an entire form around the selector.
-	 * @param Title $title Title object to send the form to.
-	 *        Used when, and only when $fullForm is true.
+	 * @param bool $fullForm Affects return value, see below
+	 * @param Title $title Title object to send the form to. Used only if $fullForm is true.
 	 * @return string|array
-	 *        - if $fullForm is false: Array with
-	 *        - if $fullForm is true: String, html fragment
+	 *        - if $fullForm is false: an array of (label, selector).
+	 *        - if $fullForm is true: HTML of entire form built around the selector.
 	 */
 	public static function buildTagFilterSelector( $selected = '',
 		$fullForm = false, Title $title = null
