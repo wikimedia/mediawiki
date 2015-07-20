@@ -1491,9 +1491,8 @@ class Article implements Page {
 				$title,
 				htmlspecialchars( $title->getFullText() ),
 				array(),
-				// Automatically append redirect=no to each link, since most of them are
-				// redirect pages themselves.
-				array( 'redirect' => 'no' ),
+				// Append redirect=no to links to redirects.
+				$title->isRedirect() ? array( 'redirect' => 'no' ) : array(),
 				( $forceKnown ? array( 'known', 'noclasses' ) : array() )
 			) . '</li>';
 		}
