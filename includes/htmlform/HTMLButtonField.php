@@ -44,7 +44,7 @@ class HTMLButtonField extends HTMLFormField {
 	/**
 	 * Get the OOUI widget for this field.
 	 * @param string $value
-	 * @return OOUI\ButtonInputWidget
+	 * @return OOUI\\ButtonInputWidget
 	 */
 	public function getInputOOUI( $value ) {
 		return new OOUI\ButtonInputWidget( array(

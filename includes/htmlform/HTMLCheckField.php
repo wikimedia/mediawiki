@@ -45,7 +45,7 @@ class HTMLCheckField extends HTMLFormField {
 	 * Get the OOUI version of this field.
 	 * @since 1.26
 	 * @param string $value
-	 * @return OOUI\CheckboxInputWidget The checkbox widget.
+	 * @return OOUI\\CheckboxInputWidget The checkbox widget.
 	 */
 	public function getInputOOUI( $value ) {
 		if ( !empty( $this->mParams['invert'] ) ) {
