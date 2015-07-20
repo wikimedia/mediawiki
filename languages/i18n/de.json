@@ -3213,6 +3213,8 @@
 	"htmlform-title-badnamespace": "[[:$1]] ist nicht im Namensraum „{{ns:$2}}“.",
 	"htmlform-title-not-creatable": "„$1“ ist kein erstellbarer Seitentitel",
 	"htmlform-title-not-exists": "[[:$1]] ist nicht vorhanden.",
+	"htmlform-user-not-exists": "<strong>$1</strong> ist nicht vorhanden.",
+	"htmlform-user-not-valid": "<strong>$1</strong> ist kein gültiger Benutzername.",
 	"sqlite-has-fts": "Version $1 mit Unterstützung für die Volltextsuche",
 	"sqlite-no-fts": "Version $1 ohne Unterstützung für die Volltextsuche",
 	"logentry-delete-delete": "$1 {{GENDER:$2|löschte}} Seite $3",

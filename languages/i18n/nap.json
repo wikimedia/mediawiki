@@ -3095,6 +3095,8 @@
 	"htmlform-cloner-create": "Azzecca 'e cchiù",
 	"htmlform-cloner-delete": "Lèva",
 	"htmlform-cloner-required": "Servesse al minimo nu valore.",
+	"htmlform-title-badnamespace": "[[:$1]] nun è dint'a lu namespace \"{{ns:$2}}\".",
+	"htmlform-title-not-creatable": "\"$1\" nun è nu titolo criabbele 'e paggena",
 	"htmlform-title-not-exists": "[[:$1]] nun esiste.",
 	"sqlite-has-fts": "$1 cu supporto 'e ricerche full-text",
 	"sqlite-no-fts": "$1 senza supporto 'e ricerche full-text",

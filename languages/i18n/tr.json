@@ -3190,6 +3190,8 @@
 	"htmlform-cloner-create": "Daha fazla ekle",
 	"htmlform-cloner-delete": "Sil",
 	"htmlform-cloner-required": "En az bir değer gereklidir.",
+	"htmlform-title-not-creatable": "\"$1\"oluşturulabilir bir sayfa ismi değil.",
+	"htmlform-title-not-exists": "[[:$1]] mevcut değil",
 	"sqlite-has-fts": "$1 tam-metin arama desteği ile",
 	"sqlite-no-fts": "$1 tam-metin arama desteği olmaksızın",
 	"logentry-delete-delete": "$1 $3 sayfasını {{GENDER:$2|sildi}}",

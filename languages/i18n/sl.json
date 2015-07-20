@@ -3118,6 +3118,8 @@
 	"htmlform-title-badnamespace": "[[:$1]] ni v imenskem prostoru »{{ns:$2}}«.",
 	"htmlform-title-not-creatable": "»$1« je naslov strani, ki ga ni mogoče ustvariti",
 	"htmlform-title-not-exists": "[[:$1]] ne obstaja.",
+	"htmlform-user-not-exists": "<strong>$1</strong> ne obstaja.",
+	"htmlform-user-not-valid": "<strong>$1</strong> ni veljavno uporabniško ime.",
 	"sqlite-has-fts": "$1 s podporo iskanju polnih besedil",
 	"sqlite-no-fts": "$1 brez podpore iskanju polnih besedil",
 	"logentry-delete-delete": "$1 je {{GENDER:$2|izbrisal|izbrisala|izbrisal(-a)}} stran $3",

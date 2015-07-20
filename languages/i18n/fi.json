@@ -1865,6 +1865,7 @@
 	"changecontentmodel-nodirectediting": "Sisältömalli $1 ei tue suoraa muokkaamista",
 	"log-name-contentmodel": "Sisältömallin muutosloki",
 	"log-description-contentmodel": "Tapahtumat, jotka liittyvät sivun sisältömalleihin",
+	"logentry-contentmodel-change": "$1 {{GENDER:$2|muutti}} sivun $3 sisältömallia muodosta \"$4\" muotoon \"$5\"",
 	"logentry-contentmodel-change-revertlink": "kumoa",
 	"logentry-contentmodel-change-revert": "kumottu",
 	"protectlogpage": "Suojausloki",

@@ -30,7 +30,8 @@
 			"Dinhxuanduyet",
 			"Macofe",
 			"KhangND",
-			"Darcy Le"
+			"Darcy Le",
+			"Quenhitran"
 		]
 	},
 	"tog-underline": "Gạch chân liên kết:",
@@ -200,7 +201,7 @@
 	"edit": "Sửa đổi",
 	"edit-local": "Sửa đổi miêu tả địa phương",
 	"create": "Tạo",
-	"create-local": "Thêm miêu tả địa phương",
+	"create-local": "Thêm miêu tả trên wiki địa phương",
 	"editthispage": "Sửa đổi trang này",
 	"create-this-page": "Tạo trang này",
 	"delete": "Xóa",

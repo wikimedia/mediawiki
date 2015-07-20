@@ -161,7 +161,7 @@
 	"apihelp-patrol-example-revid": "Sprawdź edycje.",
 	"apihelp-protect-description": "Zmień poziom zabezpieczenia strony.",
 	"apihelp-protect-param-reason": "Powód zabezpieczania/odbezpieczania.",
-	"apihelp-protect-param-cascade": "Włacz ochronę kaskadową (chronione są wszystkie strony zawarte w tej stronie). Ignorowane jeśli wszystkie poziomy ochrony nie wspierają kaskadowania.",
+	"apihelp-protect-param-cascade": "Włącz ochronę kaskadową (chronione są wszystkie osadzone szablony i obrazki na tej stronie). Ignorowane, jeśli żaden z danych poziomów ochrony nie wspiera kaskadowania.",
 	"apihelp-protect-example-protect": "Zabezpiecz stronę",
 	"apihelp-protect-example-unprotect": "Odbezpiecz stronę ustawiając ograniczenia na <kbd>wszystkie</kbd>.",
 	"apihelp-protect-example-unprotect2": "Odbezpiecz stronę ustawiając brak ograniczeń.",

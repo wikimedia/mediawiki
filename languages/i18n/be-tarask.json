@@ -1832,6 +1832,7 @@
 	"log-name-contentmodel": "Журнал зьменаў мадэляў зьместу",
 	"log-description-contentmodel": "Падзеі, зьвязаныя з мадэлямі зьместу старонак",
 	"logentry-contentmodel-change": "$1 {{GENDER:$2|зьмяніў|зьмяніла}} мадэль зьместу старонкі $3 з «$4» на «$5»",
+	"logentry-contentmodel-change-revertlink": "адкаціць",
 	"protectlogpage": "Журнал абаронаў",
 	"protectlogtext": "Ніжэй пададзены сьпіс зьменаў абароны старонкі.\nГлядзіце [[Special:ProtectedPages|сьпіс абароненых старонак на цяперашні момант]].",
 	"protectedarticle": "абароненая «[[$1]]»",
