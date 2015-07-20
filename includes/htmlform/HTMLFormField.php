@@ -49,7 +49,7 @@ abstract class HTMLFormField {
 	 * Defaults to false, which getOOUI will interpret as "use the HTML version"
 	 *
 	 * @param string $value
-	 * @return OOUI\Widget|false
+	 * @return OOUI\\Widget|false
 	 */
 	function getInputOOUI( $value ) {
 		return false;
