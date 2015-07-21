@@ -1,0 +1,644 @@
+[submodule "extensions/AbuseFilter"]
+	path = extensions/AbuseFilter
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/AbuseFilter.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/AccountAudit"]
+	path = extensions/AccountAudit
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/AccountAudit.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/ActiveAbstract"]
+	path = extensions/ActiveAbstract
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ActiveAbstract.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/AntiSpoof"]
+	path = extensions/AntiSpoof
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/AntiSpoof.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/ApiFeatureUsage"]
+	path = extensions/ApiFeatureUsage
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ApiFeatureUsage.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/ApiSandbox"]
+	path = extensions/ApiSandbox
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ApiSandbox.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Babel"]
+	path = extensions/Babel
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Babel.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/BetaFeatures"]
+	path = extensions/BetaFeatures
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/BetaFeatures.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/BounceHandler"]
+	path = extensions/BounceHandler
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/BounceHandler.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Calendar"]
+	path = extensions/Calendar
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Calendar.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Campaigns"]
+	path = extensions/Campaigns
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Campaigns.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/CategoryTree"]
+	path = extensions/CategoryTree
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CategoryTree.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/CentralAuth"]
+	path = extensions/CentralAuth
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CentralAuth.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/CharInsert"]
+	path = extensions/CharInsert
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CharInsert.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/CheckUser"]
+	path = extensions/CheckUser
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CheckUser.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/CirrusSearch"]
+	path = extensions/CirrusSearch
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CirrusSearch.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Cite"]
+	path = extensions/Cite
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Cite.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/CiteThisPage"]
+	path = extensions/CiteThisPage
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CiteThisPage.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Citoid"]
+	path = extensions/Citoid
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Citoid.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/cldr"]
+	path = extensions/cldr
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/cldr.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/CleanChanges"]
+	path = extensions/CleanChanges
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CleanChanges.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/CodeEditor"]
+	path = extensions/CodeEditor
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CodeEditor.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/CodeReview"]
+	path = extensions/CodeReview
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CodeReview.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Collection"]
+	path = extensions/Collection
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Collection.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/CommonsMetadata"]
+	path = extensions/CommonsMetadata
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CommonsMetadata.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/ConfirmEdit"]
+	path = extensions/ConfirmEdit
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ConfirmEdit.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/ContactPage"]
+	path = extensions/ContactPage
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ContactPage.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/ContentTranslation"]
+	path = extensions/ContentTranslation
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ContentTranslation.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/ContributionTracking"]
+	path = extensions/ContributionTracking
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ContributionTracking.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/CreditsSource"]
+	path = extensions/CreditsSource
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CreditsSource.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/CustomData"]
+	path = extensions/CustomData
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CustomData.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/DisableAccount"]
+	path = extensions/DisableAccount
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/DisableAccount.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Disambiguator"]
+	path = extensions/Disambiguator
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Disambiguator.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/DismissableSiteNotice"]
+	path = extensions/DismissableSiteNotice
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/DismissableSiteNotice.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/DoubleWiki"]
+	path = extensions/DoubleWiki
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/DoubleWiki.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/DynamicSidebar"]
+	path = extensions/DynamicSidebar
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/DynamicSidebar.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Echo"]
+	path = extensions/Echo
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Echo.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/EducationProgram"]
+	path = extensions/EducationProgram
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/EducationProgram.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Elastica"]
+	path = extensions/Elastica
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Elastica.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/EventLogging"]
+	path = extensions/EventLogging
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/EventLogging.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/ExtensionDistributor"]
+	path = extensions/ExtensionDistributor
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ExtensionDistributor.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/FeaturedFeeds"]
+	path = extensions/FeaturedFeeds
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/FeaturedFeeds.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/FlaggedRevs"]
+	path = extensions/FlaggedRevs
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/FlaggedRevs.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Flow"]
+	path = extensions/Flow
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Flow.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/FundraiserLandingPage"]
+	path = extensions/FundraiserLandingPage
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/FundraiserLandingPage.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/FundraisingTranslateWorkflow"]
+	path = extensions/FundraisingTranslateWorkflow
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/FundraisingTranslateWorkflow.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Gadgets"]
+	path = extensions/Gadgets
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Gadgets.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Gather"]
+	path = extensions/Gather
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Gather.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/GeoCrumbs"]
+	path = extensions/GeoCrumbs
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/GeoCrumbs.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/GeoData"]
+	path = extensions/GeoData
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/GeoData.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/GettingStarted"]
+	path = extensions/GettingStarted
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/GettingStarted.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Graph"]
+	path = extensions/Graph
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Graph.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/GlobalBlocking"]
+	path = extensions/GlobalBlocking
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/GlobalBlocking.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/GlobalCssJs"]
+	path = extensions/GlobalCssJs
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/GlobalCssJs.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/GlobalUsage"]
+	path = extensions/GlobalUsage
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/GlobalUsage.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/GlobalUserPage"]
+	path = extensions/GlobalUserPage
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/GlobalUserPage.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/GoogleNewsSitemap"]
+	path = extensions/GoogleNewsSitemap
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/GoogleNewsSitemap.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/GuidedTour"]
+	path = extensions/GuidedTour
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/GuidedTour.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/GWToolset"]
+	path = extensions/GWToolset
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/GWToolset.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/ImageMap"]
+	path = extensions/ImageMap
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ImageMap.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/ImageMetrics"]
+	path = extensions/ImageMetrics
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ImageMetrics.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/InputBox"]
+	path = extensions/InputBox
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/InputBox.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Insider"]
+	path = extensions/Insider
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Insider.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/intersection"]
+	path = extensions/intersection
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/intersection.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Interwiki"]
+	path = extensions/Interwiki
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Interwiki.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Josa"]
+	path = extensions/Josa
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Josa.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/JsonConfig"]
+	path = extensions/JsonConfig
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/JsonConfig.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/LabeledSectionTransclusion"]
+	path = extensions/LabeledSectionTransclusion
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/LabeledSectionTransclusion.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/LandingCheck"]
+	path = extensions/LandingCheck
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/LandingCheck.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/LdapAuthentication"]
+	path = extensions/LdapAuthentication
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/LdapAuthentication.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/LiquidThreads"]
+	path = extensions/LiquidThreads
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/LiquidThreads.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Listings"]
+	path = extensions/Listings
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Listings.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/LocalisationUpdate"]
+	path = extensions/LocalisationUpdate
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/LocalisationUpdate.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/MapSources"]
+	path = extensions/MapSources
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/MapSources.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/MassMessage"]
+	path = extensions/MassMessage
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/MassMessage.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Math"]
+	path = extensions/Math
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Math.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/MobileApp"]
+	path = extensions/MobileApp
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/MobileApp.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/MobileFrontend"]
+	path = extensions/MobileFrontend
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/MobileFrontend.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/MoodBar"]
+	path = extensions/MoodBar
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/MoodBar.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/MultimediaViewer"]
+	path = extensions/MultimediaViewer
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/MultimediaViewer.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/MwEmbedSupport"]
+	path = extensions/MwEmbedSupport
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/MwEmbedSupport.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/NavigationTiming"]
+	path = extensions/NavigationTiming
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/NavigationTiming.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/NewUserMessage"]
+	path = extensions/NewUserMessage
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/NewUserMessage.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Nuke"]
+	path = extensions/Nuke
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Nuke.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/OAuth"]
+	path = extensions/OAuth
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/OAuth.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/OAI"]
+	path = extensions/OAI
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/OAI.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/OATHAuth"]
+	path = extensions/OATHAuth
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/OATHAuth.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/OpenStackManager"]
+	path = extensions/OpenStackManager
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/OpenStackManager.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Oversight"]
+	path = extensions/Oversight
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Oversight.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/PagedTiffHandler"]
+	path = extensions/PagedTiffHandler
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/PagedTiffHandler.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/PageImages"]
+	path = extensions/PageImages
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/PageImages.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/PageTriage"]
+	path = extensions/PageTriage
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/PageTriage.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/ParserFunctions"]
+	path = extensions/ParserFunctions
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ParserFunctions.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/PdfHandler"]
+	path = extensions/PdfHandler
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/PdfHandler.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Petition"]
+	path = extensions/Petition
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Petition.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Poem"]
+	path = extensions/Poem
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Poem.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/PoolCounter"]
+	path = extensions/PoolCounter
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/PoolCounter.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Popups"]
+	path = extensions/Popups
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Popups.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/ProofreadPage"]
+	path = extensions/ProofreadPage
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ProofreadPage.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Quiz"]
+	path = extensions/Quiz
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Quiz.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/RandomRootPage"]
+	path = extensions/RandomRootPage
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/RandomRootPage.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/RelatedArticles"]
+	path = extensions/RelatedArticles
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/RelatedArticles.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/RelatedSites"]
+	path = extensions/RelatedSites
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/RelatedSites.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Renameuser"]
+	path = extensions/Renameuser
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Renameuser.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/RestBaseUpdateJobs"]
+	path = extensions/RestBaseUpdateJobs
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/RestBaseUpdateJobs.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/RSS"]
+	path = extensions/RSS
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/RSS.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/SandboxLink"]
+	path = extensions/SandboxLink
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SandboxLink.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Scribunto"]
+	path = extensions/Scribunto
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Scribunto.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Score"]
+	path = extensions/Score
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Score.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/SearchExtraNS"]
+	path = extensions/SearchExtraNS
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SearchExtraNS.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/SecurePoll"]
+	path = extensions/SecurePoll
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SecurePoll.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/ShortUrl"]
+	path = extensions/ShortUrl
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ShortUrl.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/SiteMatrix"]
+	path = extensions/SiteMatrix
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SiteMatrix.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/SpamBlacklist"]
+	path = extensions/SpamBlacklist
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SpamBlacklist.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/SubPageList3"]
+	path = extensions/SubPageList3
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SubPageList3.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/SubpageSortkey"]
+	path = extensions/SubpageSortkey
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SubpageSortkey.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/SyntaxHighlight_GeSHi"]
+	path = extensions/SyntaxHighlight_GeSHi
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SyntaxHighlight_GeSHi.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/TemplateData"]
+	path = extensions/TemplateData
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/TemplateData.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/TemplateSandbox"]
+	path = extensions/TemplateSandbox
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/TemplateSandbox.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/TextExtracts"]
+	path = extensions/TextExtracts
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/TextExtracts.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Thanks"]
+	path = extensions/Thanks
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Thanks.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/TimedMediaHandler"]
+	path = extensions/TimedMediaHandler
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/TimedMediaHandler.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/timeline"]
+	path = extensions/timeline
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/timeline.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/TitleBlacklist"]
+	path = extensions/TitleBlacklist
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/TitleBlacklist.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/TocTree"]
+	path = extensions/TocTree
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/TocTree.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/TorBlock"]
+	path = extensions/TorBlock
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/TorBlock.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/Translate"]
+	path = extensions/Translate
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Translate.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/TranslationNotifications"]
+	path = extensions/TranslationNotifications
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/TranslationNotifications.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/TrustedXFF"]
+	path = extensions/TrustedXFF
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/TrustedXFF.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/UnicodeConverter"]
+	path = extensions/UnicodeConverter
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/UnicodeConverter.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/UniversalLanguageSelector"]
+	path = extensions/UniversalLanguageSelector
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/UniversalLanguageSelector.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/UploadWizard"]
+	path = extensions/UploadWizard
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/UploadWizard.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/UserDailyContribs"]
+	path = extensions/UserDailyContribs
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/UserDailyContribs.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/UserMerge"]
+	path = extensions/UserMerge
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/UserMerge.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/VectorBeta"]
+	path = extensions/VectorBeta
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/VectorBeta.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/VipsScaler"]
+	path = extensions/VipsScaler
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/VipsScaler.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/VisualEditor"]
+	path = extensions/VisualEditor
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/VisualEditor.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/WikiEditor"]
+	path = extensions/WikiEditor
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WikiEditor.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/WikiGrok"]
+	path = extensions/WikiGrok
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WikiGrok.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/wikihiero"]
+	path = extensions/wikihiero
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/wikihiero.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/WikiLove"]
+	path = extensions/WikiLove
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WikiLove.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/WikimediaEvents"]
+	path = extensions/WikimediaEvents
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WikimediaEvents.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/WikimediaIncubator"]
+	path = extensions/WikimediaIncubator
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WikimediaIncubator.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/WikimediaMaintenance"]
+	path = extensions/WikimediaMaintenance
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WikimediaMaintenance.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/WikimediaMessages"]
+	path = extensions/WikimediaMessages
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WikimediaMessages.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/XAnalytics"]
+	path = extensions/XAnalytics
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/XAnalytics.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/ZeroBanner"]
+	path = extensions/ZeroBanner
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ZeroBanner.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/ZeroPortal"]
+	path = extensions/ZeroPortal
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ZeroPortal.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/SemanticForms"]
+	path = extensions/SemanticForms
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SemanticForms.git
+	branch = wmf/1.26wmf15
+[submodule "extensions/CentralNotice"]
+	path = extensions/CentralNotice
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/CentralNotice.git
+	branch = wmf_deploy
+[submodule "extensions/DonationInterface"]
+	path = extensions/DonationInterface
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/DonationInterface.git
+	branch = deployment
+[submodule "extensions/Wikidata"]
+	path = extensions/Wikidata
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Wikidata.git
+	branch = wmf/1.26wmf13
+[submodule "extensions/SemanticMediaWiki"]
+	path = extensions/SemanticMediaWiki
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SemanticMediaWiki.git
+	branch = 1.8.x
+[submodule "extensions/SemanticResultFormats"]
+	path = extensions/SemanticResultFormats
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SemanticResultFormats.git
+	branch = 1.8.x
+[submodule "extensions/Validator"]
+	path = extensions/Validator
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Validator.git
+	branch = 0.5.x
+[submodule "skins/CologneBlue"]
+	path = skins/CologneBlue
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/skins/CologneBlue.git
+	branch = wmf/1.26wmf15
+[submodule "skins/MonoBook"]
+	path = skins/MonoBook
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/skins/MonoBook.git
+	branch = wmf/1.26wmf15
+[submodule "skins/Modern"]
+	path = skins/Modern
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/skins/Modern.git
+	branch = wmf/1.26wmf15
+[submodule "skins/Nostalgia"]
+	path = skins/Nostalgia
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/skins/Nostalgia.git
+	branch = wmf/1.26wmf15
+[submodule "skins/Vector"]
+	path = skins/Vector
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/skins/Vector.git
+	branch = wmf/1.26wmf15
+[submodule "vendor"]
+	path = vendor
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/vendor.git
+	branch = wmf/1.26wmf15
