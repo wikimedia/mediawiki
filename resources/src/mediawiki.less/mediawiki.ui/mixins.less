@@ -38,13 +38,12 @@
 
 	&:hover {
 		// The inner bottom bevel should match the active background color.
-		box-shadow: 0 1px rgba(0, 0, 0, 10%), inset 0 -3px rgba(0, 0, 0, 20%);
-		border-bottom-color: @highlightColor;
+		background-color: @highlightColor;
 	}
 
 	&:focus {
-		border-color: rgba(0,0,0,0.2);
-		box-shadow: inset 0 0 0 1px rgba(0,0,0,0.2);
+		border-color: @colorWhite;
+		box-shadow: 0 0 0 1px @highlightColor;
 
 		outline: none;
 		// remove outline in Firefox
@@ -69,6 +68,10 @@
 	&:visited {
 		// make sure that is isn't inheriting from a general rule
 		color: @colorButtonText;
+	}
+
+	&:focus {
+		background-color: @highlightColor;
 	}
 
 	&:disabled {
