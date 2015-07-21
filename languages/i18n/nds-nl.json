@@ -1450,7 +1450,7 @@
 	"nlinks": "$1 {{PLURAL:$1|verwiezing|verwiezingen}}",
 	"nmembers": "$1 {{PLURAL:$1|onderwarp|onderwarpen}}",
 	"nrevisions": "$1 {{PLURAL:$1|versie|versies}}",
-	"nviews": "{{PLURAL:$1|1 keer|$1 keer}} bekeken",
+
 	"nimagelinks": "Wörden op {{PLURAL:$1|één zied|$1 ziejen}} gebruukt",
 	"ntransclusions": "wörden op {{PLURAL:$1|één zied|$1 ziejen}} gebruukt",
 	"specialpage-empty": "Disse zied is leeg.",

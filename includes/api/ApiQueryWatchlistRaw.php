@@ -123,7 +123,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 			}
 		}
 		if ( is_null( $resultPageSet ) ) {
-			$this->getResult()->setIndexedTagName_internal( $this->getModuleName(), 'wr' );
+			$this->getResult()->addIndexedTagName( $this->getModuleName(), 'wr' );
 		} else {
 			$resultPageSet->populateFromTitles( $titles );
 		}

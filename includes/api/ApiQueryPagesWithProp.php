@@ -99,7 +99,9 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 			}
 
 			if ( $resultPageSet === null ) {
-				$vals = array();
+				$vals = array(
+					ApiResult::META_TYPE => 'assoc',
+				);
 				if ( $fld_ids ) {
 					$vals['pageid'] = (int)$row->page_id;
 				}
@@ -121,7 +123,7 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 		}
 
 		if ( $resultPageSet === null ) {
-			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'page' );
+			$result->addIndexedTagName( array( 'query', $this->getModuleName() ), 'page' );
 		}
 	}
 

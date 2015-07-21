@@ -1,0 +1,15 @@
+/*!
+ * Styling for Special:EditTags and action=editchangetags
+ */
+#mw-edittags-tags-selector td {
+	vertical-align: top;
+}
+
+#mw-edittags-tags-selector-multi td {
+	vertical-align: top;
+	padding-right: 1.5em;
+}
+
+#mw-edittags-tag-list {
+	min-width: 20em;
+}

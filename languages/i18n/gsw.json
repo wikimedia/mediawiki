@@ -1442,7 +1442,7 @@
 	"nlinks": "$1 {{PLURAL:$1|Link|Links}}",
 	"nmembers": "$1 {{PLURAL:$1|Syte|Sytene}}",
 	"nrevisions": "$1 {{PLURAL:$1|Revision|Revisione}}",
-	"nviews": "$1 {{PLURAL:$1|Betrachtig|Betrachtige}}",
+
 	"nimagelinks": "Brucht uf $1 {{PLURAL:$1|Syte|Syte}}",
 	"ntransclusions": "brucht uf $1 {{PLURAL:$1|Syte|Syte}}",
 	"specialpage-empty": "In dr Syte het s no kei aktuälli Yytreg.",

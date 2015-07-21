@@ -165,7 +165,7 @@ class SpecialLog extends SpecialPage {
 		$loglist = new LogEventsList(
 			$this->getContext(),
 			null,
-			LogEventsList::USE_REVDEL_CHECKBOXES
+			LogEventsList::USE_CHECKBOXES
 		);
 		$pager = new LogPager(
 			$loglist,
@@ -203,7 +203,7 @@ class SpecialLog extends SpecialPage {
 		if ( $logBody ) {
 			$this->getOutput()->addHTML(
 				$pager->getNavigationBar() .
-					$this->getRevisionButton(
+					$this->getActionButtons(
 						$loglist->beginLogEventsList() .
 							$logBody .
 							$loglist->endLogEventsList()
@@ -215,30 +215,50 @@ class SpecialLog extends SpecialPage {
 		}
 	}
 
-	private function getRevisionButton( $formcontents ) {
-		# If the user doesn't have the ability to delete log entries,
-		# don't bother showing them the button.
-		if ( !$this->getUser()->isAllowedAll( 'deletedhistory', 'deletelogentry' ) ) {
+	private function getActionButtons( $formcontents ) {
+		$user = $this->getUser();
+		$canRevDelete = $user->isAllowedAll( 'deletedhistory', 'deletelogentry' );
+		$showTagEditUI = ChangeTags::showTagEditingUI( $user );
+		# If the user doesn't have the ability to delete log entries nor edit tags,
+		# don't bother showing them the button(s).
+		if ( !$canRevDelete && !$showTagEditUI ) {
 			return $formcontents;
 		}
 
-		# Show button to hide log entries
+		# Show button to hide log entries and/or edit change tags
 		$s = Html::openElement(
 			'form',
 			array( 'action' => wfScript(), 'id' => 'mw-log-deleterevision-submit' )
 		) . "\n";
-		$s .= Html::hidden( 'title', SpecialPage::getTitleFor( 'Revisiondelete' ) ) . "\n";
-		$s .= Html::hidden( 'target', SpecialPage::getTitleFor( 'Log' ) ) . "\n";
+		$s .= Html::hidden( 'action', 'historysubmit' ) . "\n";
 		$s .= Html::hidden( 'type', 'logging' ) . "\n";
-		$button = Html::element(
-			'button',
-			array(
-				'type' => 'submit',
-				'class' => "deleterevision-log-submit mw-log-deleterevision-button"
-			),
-			$this->msg( 'showhideselectedlogentries' )->text()
-		) . "\n";
-		$s .= $button . $formcontents . $button;
+
+		$buttons = '';
+		if ( $canRevDelete ) {
+			$buttons .= Html::element(
+				'button',
+				array(
+					'type' => 'submit',
+					'name' => 'revisiondelete',
+					'value' => '1',
+					'class' => "deleterevision-log-submit mw-log-deleterevision-button"
+				),
+				$this->msg( 'showhideselectedlogentries' )->text()
+			) . "\n";
+		}
+		if ( $showTagEditUI ) {
+			$buttons .= Html::element(
+				'button',
+				array(
+					'type' => 'submit',
+					'name' => 'editchangetags',
+					'value' => '1',
+					'class' => "editchangetags-log-submit mw-log-editchangetags-button"
+				),
+				$this->msg( 'log-edit-tags' )->text()
+			) . "\n";
+		}
+		$s .= $buttons . $formcontents . $buttons;
 		$s .= Html::closeElement( 'form' );
 
 		return $s;

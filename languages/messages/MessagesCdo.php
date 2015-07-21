@@ -88,7 +88,7 @@ $specialPageAliases = array(
 	'Newpages'                  => array( '新其頁面' ),
 	'PasswordReset'             => array( '密碼重置' ),
 	'PermanentLink'             => array( '永久鏈接' ),
-	'Popularpages'              => array( '受歡迎其頁面' ),
+
 	'Preferences'               => array( '喜好' ),
 	'Prefixindex'               => array( '前綴索引' ),
 	'Protectedpages'            => array( '受保護其頁面' ),

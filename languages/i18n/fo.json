@@ -1391,7 +1391,7 @@
 	"nlinks": "$1 {{PLURAL:$1|slóð|slóðir}}",
 	"nmembers": "$1 {{PLURAL:$1|limur|limir}}",
 	"nrevisions": "$1 {{PLURAL:$1|versjón|versjónir}}",
-	"nviews": "$1 {{PLURAL:$1|skoðan|skoðanir}}",
+
 	"nimagelinks": "Brúkt á $1 {{PLURAL:$1|síðu|síðum}}",
 	"ntransclusions": "brúkt á $1 {{PLURAL:$1|síðu|síðum}}",
 	"specialpage-empty": "Tað eru ongi úrslit fyri hesa rapportina.",

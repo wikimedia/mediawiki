@@ -69,7 +69,7 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 					'title' => $title->getPrefixedText(),
 				);
 				if ( $title->isSpecialPage() ) {
-					$vals['special'] = '';
+					$vals['special'] = true;
 				} else {
 					$vals['pageid'] = intval( $title->getArticleId() );
 				}
@@ -79,7 +79,7 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 					break;
 				}
 			}
-			$result->setIndexedTagName_internal(
+			$result->addIndexedTagName(
 				array( 'query', $this->getModuleName() ), $this->getModulePrefix()
 			);
 		}

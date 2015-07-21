@@ -61,7 +61,9 @@ class ApiOpenSearch extends ApiBase {
 	public function getCustomPrinter() {
 		switch ( $this->getFormat() ) {
 			case 'json':
-				return $this->getMain()->createPrinterByName( 'json' . $this->fm );
+				return new ApiOpenSearchFormatJson(
+					$this->getMain(), $this->fm, $this->getParameter( 'warningsaserror' )
+				);
 
 			case 'xml':
 				$printer = $this->getMain()->createPrinterByName( 'xml' . $this->fm );
@@ -212,6 +214,7 @@ class ApiOpenSearch extends ApiBase {
 		switch ( $this->getFormat() ) {
 			case 'json':
 				// http://www.opensearch.org/Specifications/OpenSearch/Extensions/Suggestions/1.1
+				$result->addArrayType( null, 'array' );
 				$result->addValue( null, 0, strval( $search ) );
 				$terms = array();
 				$descriptions = array();
@@ -237,23 +240,24 @@ class ApiOpenSearch extends ApiBase {
 				);
 				$items = array();
 				foreach ( $results as $r ) {
-					$item = array();
-					$result->setContent( $item, $r['title']->getPrefixedText(), 'Text' );
-					$result->setContent( $item, $r['url'], 'Url' );
+					$item = array(
+						'Text' => $r['title']->getPrefixedText(),
+						'Url' => $r['url'],
+					);
 					if ( is_string( $r['extract'] ) && $r['extract'] !== '' ) {
-						$result->setContent( $item, $r['extract'], 'Description' );
+						$item['Description'] = $r['extract'];
 					}
 					if ( is_array( $r['image'] ) && isset( $r['image']['source'] ) ) {
 						$item['Image'] = array_intersect_key( $r['image'], $imageKeys );
 					}
+					ApiResult::setSubelementsList( $item, array_keys( $item ) );
 					$items[] = $item;
 				}
-				$result->setIndexedTagName( $items, 'Item' );
+				ApiResult::setIndexedTagName( $items, 'Item' );
 				$result->addValue( null, 'version', '2.0' );
 				$result->addValue( null, 'xmlns', 'http://opensearch.org/searchsuggest2' );
-				$query = array();
-				$result->setContent( $query, strval( $search ) );
-				$result->addValue( null, 'Query', $query );
+				$result->addValue( null, 'Query', strval( $search ) );
+				$result->addSubelementsList( null, 'Query' );
 				$result->addValue( null, 'Section', $items );
 				break;
 
@@ -284,7 +288,8 @@ class ApiOpenSearch extends ApiBase {
 			'format' => array(
 				ApiBase::PARAM_DFLT => 'json',
 				ApiBase::PARAM_TYPE => array( 'json', 'jsonfm', 'xml', 'xmlfm' ),
-			)
+			),
+			'warningsaserror' => false,
 		);
 	}
 
@@ -366,5 +371,40 @@ class ApiOpenSearch extends ApiBase {
 			default:
 				throw new MWException( __METHOD__ . ": Unknown type '$type'" );
 		}
+	}
+}
+
+class ApiOpenSearchFormatJson extends ApiFormatJson {
+	private $warningsAsError = false;
+
+	public function __construct( ApiMain $main, $fm, $warningsAsError ) {
+		parent::__construct( $main, "json$fm" );
+		$this->warningsAsError = $warningsAsError;
+	}
+
+	public function execute() {
+		if ( !$this->getResult()->getResultData( 'error' ) ) {
+			$result = $this->getResult();
+
+			// Ignore warnings or treat as errors, as requested
+			$warnings = $result->removeValue( 'warnings', null );
+			if ( $this->warningsAsError && $warnings ) {
+				$this->dieUsage(
+					'Warnings cannot be represented in OpenSearch JSON format', 'warnings', 0,
+					array( 'warnings' => $warnings )
+				);
+			}
+
+			// Ignore any other unexpected keys (e.g. from $wgDebugToolbar)
+			$remove = array_keys( array_diff_key(
+				$result->getResultData(),
+				array( 0 => 'search', 1 => 'terms', 2 => 'descriptions', 3 => 'urls' )
+			) );
+			foreach ( $remove as $key ) {
+				$result->removeValue( $key, null );
+			}
+		}
+
+		parent::execute();
 	}
 }

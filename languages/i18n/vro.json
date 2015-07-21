@@ -967,7 +967,7 @@
 	"nlinks": "$1 {{PLURAL:$1|link|linki}}",
 	"nmembers": "$1 {{PLURAL:$1|liigõq|liigõt}}",
 	"nrevisions": "$1 {{PLURAL:$1|muutminõ|muutmist}}",
-	"nviews": "Käümiisi: $1",
+
 	"specialpage-empty": "Taa leht om tühi.",
 	"lonelypages": "Artikliq, kohe olõ-i linke",
 	"lonelypagestext": "Nailõ lehile olõ-i muialt vikist linke.",

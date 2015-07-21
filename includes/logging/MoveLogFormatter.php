@@ -85,4 +85,29 @@ class MoveLogFormatter extends LogFormatter {
 
 		return $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
 	}
+
+	protected function getParametersForApi() {
+		$entry = $this->entry;
+		$params = $entry->getParameters();
+
+		static $map = array(
+			'4:title:target',
+			'5:bool:suppressredirect',
+			'4::target' => '4:title:target',
+			'5::noredir' => '5:bool:suppressredirect',
+		);
+		foreach ( $map as $index => $key ) {
+			if ( isset( $params[$index] ) ) {
+				$params[$key] = $params[$index];
+				unset( $params[$index] );
+			}
+		}
+
+		if ( !isset( $params['5:bool:suppressredirect'] ) ) {
+			$params['5:bool:suppressredirect'] = false;
+		}
+
+		return $params;
+	}
+
 }

@@ -82,7 +82,7 @@ class ApiEditPage extends ApiBase {
 					$titleObj = $newTitle;
 				}
 
-				$apiResult->setIndexedTagName( $redirValues, 'r' );
+				ApiResult::setIndexedTagName( $redirValues, 'r' );
 				$apiResult->addValue( null, 'redirects', $redirValues );
 
 				// Since the page changed, update $pageObj
@@ -331,6 +331,15 @@ class ApiEditPage extends ApiBase {
 			$requestArray['wpWatchthis'] = '';
 		}
 
+		// Apply change tags
+		if ( count( $params['tags'] ) ) {
+			if ( $user->isAllowed( 'applychangetags' ) ) {
+				$requestArray['wpChangeTags'] = implode( ',', $params['tags'] );
+			} else {
+				$this->dieUsage( 'You don\'t have permission to set change tags.', 'taggingnotallowed' );
+			}
+		}
+
 		// Pass through anything else we might have been given, to support extensions
 		// This is kind of a hack but it's the best we can do to make extensions work
 		$requestArray += $this->getRequest()->getValues();
@@ -475,8 +484,11 @@ class ApiEditPage extends ApiBase {
 			case EditPage::AS_TEXTBOX_EMPTY:
 				$this->dieUsageMsg( 'emptynewsection' );
 
+			case EditPage::AS_CHANGE_TAG_ERROR:
+				$this->dieStatus( $status );
+
 			case EditPage::AS_SUCCESS_NEW_ARTICLE:
-				$r['new'] = '';
+				$r['new'] = true;
 				// fall-through
 
 			case EditPage::AS_SUCCESS_UPDATE:
@@ -486,7 +498,7 @@ class ApiEditPage extends ApiBase {
 				$r['contentmodel'] = $titleObj->getContentModel();
 				$newRevId = $articleObject->getLatest();
 				if ( $newRevId == $oldRevId ) {
-					$r['nochange'] = '';
+					$r['nochange'] = true;
 				} else {
 					$r['oldrevid'] = intval( $oldRevId );
 					$r['newrevid'] = intval( $newRevId );
@@ -531,6 +543,10 @@ class ApiEditPage extends ApiBase {
 			),
 			'text' => null,
 			'summary' => null,
+			'tags' => array(
+				ApiBase::PARAM_TYPE => ChangeTags::listExplicitlyDefinedTags(),
+				ApiBase::PARAM_ISMULTI => true,
+			),
 			'minor' => false,
 			'notminor' => false,
 			'bot' => false,

@@ -74,9 +74,6 @@ if ( $wgStylePath === false ) {
 if ( $wgLocalStylePath === false ) {
 	$wgLocalStylePath = "$wgScriptPath/skins";
 }
-if ( $wgStyleDirectory === false ) {
-	$wgStyleDirectory = "$IP/skins";
-}
 if ( $wgExtensionAssetsPath === false ) {
 	$wgExtensionAssetsPath = "$wgScriptPath/extensions";
 }
@@ -235,9 +232,7 @@ if ( $wgUseInstantCommons ) {
 	$wgForeignFileRepos[] = array(
 		'class' => 'ForeignAPIRepo',
 		'name' => 'wikimediacommons',
-		'apibase' => WebRequest::detectProtocol() === 'https' ?
-			'https://commons.wikimedia.org/w/api.php' :
-			'http://commons.wikimedia.org/w/api.php',
+		'apibase' => 'https://commons.wikimedia.org/w/api.php',
 		'hashLevels' => 2,
 		'fetchDescription' => true,
 		'descriptionCacheExpiry' => 43200,
@@ -488,6 +483,10 @@ require_once "$IP/includes/libs/normal/UtfNormalUtil.php";
 
 $ps_default2 = Profiler::instance()->scopedProfileIn( $fname . '-defaults2' );
 
+if ( $wgScriptExtension !== '.php' || defined( 'MW_ENTRY_PHP5' ) ) {
+	wfWarn( 'Script extensions other than ".php" are deprecated.' );
+}
+
 if ( $wgCanonicalServer === false ) {
 	$wgCanonicalServer = wfExpandUrl( $wgServer, PROTO_HTTP );
 }
@@ -526,7 +525,9 @@ if ( $wgTmpDirectory === false ) {
 
 // We don't use counters anymore. Left here for extensions still
 // expecting this to exist. Should be removed sometime 1.26 or later.
-$wgDisableCounters = true;
+if ( !isset( $wgDisableCounters ) ) {
+	$wgDisableCounters = true;
+}
 
 Profiler::instance()->scopedProfileOut( $ps_default2 );
 

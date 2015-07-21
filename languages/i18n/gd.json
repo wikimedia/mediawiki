@@ -1525,7 +1525,7 @@
 	"nmembers": "$1 {{PLURAL:$1|bhall|bhall|buill|ball}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|bhall|bhall|buill|ball}}",
 	"nrevisions": "$1 {{PLURAL:$1|mhùthadh|mhùthadh|mùthaidhean|mùthadh}}",
-	"nviews": "$1 {{PLURAL:$1|sealladh|shealladh|seallaidhean|sealladh}}",
+
 	"nimagelinks": "'Ga chleachdadh air $1 {{PLURAL:$1|duilleag|dhuilleag|duilleagan|duilleag}}",
 	"ntransclusions": "'ga chleachdadh air $1 {{PLURAL:$1|duilleag|dhuilleag|duilleagan|duilleag}}",
 	"specialpage-empty": "Chan eil toradh ann airson na h-aithris seo.",

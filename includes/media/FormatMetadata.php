@@ -1626,7 +1626,7 @@ class FormatMetadata extends ContextSource {
 			// This is an API-specific function so it would be cleaner to call it from
 			// outside fetchExtendedMetadata, but this way we don't need to redo the
 			// computation on a cache hit.
-			$this->sanitizeArrayForXml( $extendedMetadata );
+			$this->sanitizeArrayForAPI( $extendedMetadata );
 			$valueToCache = array( 'data' => $extendedMetadata, 'timestamp' => wfTimestampNow() );
 			$wgMemc->set( $cacheKey, $valueToCache, $maxCacheTime );
 		}
@@ -1822,17 +1822,16 @@ class FormatMetadata extends ContextSource {
 
 	/**
 	 * Makes sure the given array is a valid API response fragment
-	 * (can be transformed into XML)
 	 * @param array $arr
 	 */
-	protected function sanitizeArrayForXml( &$arr ) {
+	protected function sanitizeArrayForAPI( &$arr ) {
 		if ( !is_array( $arr ) ) {
 			return;
 		}
 
 		$counter = 1;
 		foreach ( $arr as $key => &$value ) {
-			$sanitizedKey = $this->sanitizeKeyForXml( $key );
+			$sanitizedKey = $this->sanitizeKeyForAPI( $key );
 			if ( $sanitizedKey !== $key ) {
 				if ( isset( $arr[$sanitizedKey] ) ) {
 					// Make the sanitized keys hopefully unique.
@@ -1846,20 +1845,24 @@ class FormatMetadata extends ContextSource {
 				unset( $arr[$key] );
 			}
 			if ( is_array( $value ) ) {
-				$this->sanitizeArrayForXml( $value );
+				$this->sanitizeArrayForAPI( $value );
 			}
+		}
+
+		// Handle API metadata keys (particularly "_type")
+		$keys = array_filter( array_keys( $arr ), 'ApiResult::isMetadataKey' );
+		if ( $keys ) {
+			ApiResult::setPreserveKeysList( $arr, $keys );
 		}
 	}
 
 	/**
-	 * Turns a string into a valid XML identifier.
-	 * Used to ensure that keys of an associative array in the
-	 * API response do not break the XML formatter.
+	 * Turns a string into a valid API identifier.
 	 * @param string $key
 	 * @return string
 	 * @since 1.23
 	 */
-	protected function sanitizeKeyForXml( $key ) {
+	protected function sanitizeKeyForAPI( $key ) {
 		// drop all characters which are not valid in an XML tag name
 		// a bunch of non-ASCII letters would be valid but probably won't
 		// be used so we take the easy way

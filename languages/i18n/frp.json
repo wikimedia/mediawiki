@@ -1355,7 +1355,7 @@
 	"nlinks": "$1 lim{{PLURAL:$1||s}}",
 	"nmembers": "$1 membro{{PLURAL:$1||s}}",
 	"nrevisions": "$1 vèrsion{{PLURAL:$1||s}}",
-	"nviews": "$1 vu{{PLURAL:$1|a|es}}",
+
 	"nimagelinks": "Empleyê dessus $1 pâge{{PLURAL:$1||s}}",
 	"ntransclusions": "empleyê dessus $1 pâge{{PLURAL:$1||s}}",
 	"specialpage-empty": "Y at gins de rèsultat a fâre vêre.",

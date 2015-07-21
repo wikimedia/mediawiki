@@ -1147,7 +1147,7 @@
 	"nlinks": "$1 {{PLURAL:$1|nga sumpay|nga mga sumpay}}",
 	"nmembers": "$1 {{PLURAL:$1|nga api|nga mga api}}",
 	"nrevisions": "$1 {{PLURAL:$1|nga pagliwat|nga mga pagliwat}}",
-	"nviews": "$1 {{PLURAL:$1|nga pangita|nga mga pangita}}",
+
 	"nimagelinks": "Gingamit ha $1 {{PLURAL:$1|nga pakli|nga mga pakli}}",
 	"ntransclusions": "gingamit ha $1 {{PLURAL:$1|nga pakli|nga mga pakli}}",
 	"specialpage-empty": "Waray mga resulta para hini nga report.",

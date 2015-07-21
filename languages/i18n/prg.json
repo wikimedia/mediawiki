@@ -1006,7 +1006,7 @@
 	"nlinks": "$1 {{PLURAL:$1|autengīnsenis|autengīnsenei}}",
 	"nmembers": "$1 {{PLURAL:$1|streīpstus|streīpstai}}",
 	"nrevisions": "$1 {{PLURAL:$1|wersiōni|wersiōnis}}",
-	"nviews": "$1 {{PLURAL:$1|kāimalukisenis|kāimalukisenei}}",
+
 	"specialpage-empty": "Ni ast rezultātai per šin repōrtan.",
 	"lonelypages": "Ainaseīlingis pāusai",
 	"lonelypagestext": "Prēi zemmaisins pāusans ni autenginna niaīnan kittan pāusan anga tenēi ni autenginna prei niaīnan kittan pāusan en {{SITENAME}}.",

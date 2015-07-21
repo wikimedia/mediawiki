@@ -48,7 +48,7 @@ class DeleteAction extends FormlessAction {
 				'mediawiki.ui.checkbox',
 			) );
 		}
-		$out->addHelpLink( 'Help:Sysop deleting and undeleting' );
+		$this->addHelpLink( 'Help:Sysop deleting and undeleting' );
 		$this->page->delete();
 	}
 }

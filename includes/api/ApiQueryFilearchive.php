@@ -218,17 +218,17 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			}
 
 			if ( $row->fa_deleted & File::DELETED_FILE ) {
-				$file['filehidden'] = '';
+				$file['filehidden'] = true;
 			}
 			if ( $row->fa_deleted & File::DELETED_COMMENT ) {
-				$file['commenthidden'] = '';
+				$file['commenthidden'] = true;
 			}
 			if ( $row->fa_deleted & File::DELETED_USER ) {
-				$file['userhidden'] = '';
+				$file['userhidden'] = true;
 			}
 			if ( $row->fa_deleted & File::DELETED_RESTRICTED ) {
 				// This file is deleted for normal admins
-				$file['suppressed'] = '';
+				$file['suppressed'] = true;
 			}
 
 			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $file );
@@ -240,7 +240,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			}
 		}
 
-		$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'fa' );
+		$result->addIndexedTagName( array( 'query', $this->getModuleName() ), 'fa' );
 	}
 
 	public function getAllowedParams() {

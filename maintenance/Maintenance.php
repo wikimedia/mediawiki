@@ -20,12 +20,10 @@
  * @defgroup Maintenance Maintenance
  */
 
-// Make sure we're on PHP5.3.3 or better
-if ( !function_exists( 'version_compare' ) || version_compare( PHP_VERSION, '5.3.3' ) < 0 ) {
-	// We need to use dirname( __FILE__ ) here cause __DIR__ is PHP5.3+
-	require_once dirname( __FILE__ ) . '/../includes/PHPVersionError.php';
-	wfPHPVersionError( 'cli' );
-}
+// Bail on old versions of PHP, or if composer has not been run yet to install
+// dependencies. Using dirname( __FILE__ ) here because __DIR__ is PHP5.3+.
+require_once dirname( __FILE__ ) . '/../includes/PHPVersionCheck.php';
+wfEntryPointCheck( 'cli' );
 
 /**
  * @defgroup MaintenanceArchive Maintenance archives
@@ -1099,7 +1097,7 @@ abstract class Maintenance {
 	 */
 	private function lockSearchindex( $db ) {
 		$write = array( 'searchindex' );
-		$read = array( 'page', 'revision', 'text', 'interwiki', 'l10n_cache', 'user' );
+		$read = array( 'page', 'revision', 'text', 'interwiki', 'l10n_cache', 'user', 'page_restrictions' );
 		$db->lockTables( $read, $write, __CLASS__ . '::' . __METHOD__ );
 	}
 

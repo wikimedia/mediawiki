@@ -905,7 +905,7 @@
 	"nlinks": "$1 {{PLURAL:$1|atihu|atihus}}",
 	"nmembers": "$1 {{PLURAL:$1|miembru|miembrus}}",
 	"nrevisions": "$1 {{PLURAL:$1|revisión|revisionis}}",
-	"nviews": "$1 {{PLURAL:$1|vesita|vesitas}}",
+
 	"specialpage-empty": "Esta páhina está vacia.",
 	"lonelypages": "Páhinas güérfanas",
 	"lonelypagestext": "Las siguientis páginas nu están atijás (dendi otras páginas) ena {{SITENAME}}.",

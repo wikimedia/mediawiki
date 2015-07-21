@@ -3284,6 +3284,14 @@ class Title {
 		$this->mIsBigDeletion = null;
 	}
 
+	public static function clearCaches() {
+		$linkCache = LinkCache::singleton();
+		$linkCache->clear();
+
+		$titleCache = self::getTitleCache();
+		$titleCache->clear();
+	}
+
 	/**
 	 * Capitalize a text string for a title if it belongs to a namespace that capitalizes
 	 *

@@ -68,4 +68,24 @@ class MergeLogFormatter extends LogFormatter {
 
 		return $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
 	}
+
+	protected function getParametersForApi() {
+		$entry = $this->entry;
+		$params = $entry->getParameters();
+
+		static $map = array(
+			'4:title:dest',
+			'5:timestamp:mergepoint',
+			'4::dest' => '4:title:dest',
+			'5::mergepoint' => '5:timestamp:mergepoint',
+		);
+		foreach ( $map as $index => $key ) {
+			if ( isset( $params[$index] ) ) {
+				$params[$key] = $params[$index];
+				unset( $params[$index] );
+			}
+		}
+
+		return $params;
+	}
 }

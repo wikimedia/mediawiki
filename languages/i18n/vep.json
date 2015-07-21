@@ -1179,7 +1179,7 @@
 	"nlinks": "$1 {{PLURAL:$1|kosketuz|kosketust}}",
 	"nmembers": "$1 {{PLURAL:$1|ühtnii|ühtnijad}}",
 	"nrevisions": "$1 {{PLURAL:$1|versii|versijad}}",
-	"nviews": "$1 {{PLURAL:$1|kacund|kacundad}}",
+
 	"specialpage-empty": "Ecind ei ole andnu rezul'tatad.",
 	"lonelypages": "Üksjäižed lehtpoled",
 	"lonelypagestext": "Ozutadud lehtpolid ei kosketagoi toižed necen saitan lehtpoled; ozutadud lehtpoled mugažo ei olgoi mülütadud toižihe lehtpolihe.",

@@ -46,7 +46,8 @@ class ApiSetNotificationTimestamp extends ApiBase {
 		$params = $this->extractRequestParams();
 		$this->requireMaxOneParameter( $params, 'timestamp', 'torevid', 'newerthanrevid' );
 
-		$this->getResult()->beginContinuation( $params['continue'], array(), array() );
+		$continuationManager = new ApiContinuationManager( $this, array(), array() );
+		$this->setContinuationManager( $continuationManager );
 
 		$pageSet = $this->getPageSet();
 		if ( $params['entirewatchlist'] && $pageSet->getDataSource() !== null ) {
@@ -114,21 +115,21 @@ class ApiSetNotificationTimestamp extends ApiBase {
 			foreach ( $pageSet->getInvalidTitles() as $title ) {
 				$r = array();
 				$r['title'] = $title;
-				$r['invalid'] = '';
+				$r['invalid'] = true;
 				$result[] = $r;
 			}
 			foreach ( $pageSet->getMissingPageIDs() as $p ) {
 				$page = array();
 				$page['pageid'] = $p;
-				$page['missing'] = '';
-				$page['notwatched'] = '';
+				$page['missing'] = true;
+				$page['notwatched'] = true;
 				$result[] = $page;
 			}
 			foreach ( $pageSet->getMissingRevisionIDs() as $r ) {
 				$rev = array();
 				$rev['revid'] = $r;
-				$rev['missing'] = '';
-				$rev['notwatched'] = '';
+				$rev['missing'] = true;
+				$rev['notwatched'] = true;
 				$result[] = $rev;
 			}
 
@@ -162,7 +163,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 						'title' => $title->getPrefixedText(),
 					);
 					if ( !$title->exists() ) {
-						$r['missing'] = '';
+						$r['missing'] = true;
 					}
 					if ( isset( $timestamps[$ns] ) && array_key_exists( $dbkey, $timestamps[$ns] ) ) {
 						$r['notificationtimestamp'] = '';
@@ -170,17 +171,18 @@ class ApiSetNotificationTimestamp extends ApiBase {
 							$r['notificationtimestamp'] = wfTimestamp( TS_ISO_8601, $timestamps[$ns][$dbkey] );
 						}
 					} else {
-						$r['notwatched'] = '';
+						$r['notwatched'] = true;
 					}
 					$result[] = $r;
 				}
 			}
 
-			$apiResult->setIndexedTagName( $result, 'page' );
+			ApiResult::setIndexedTagName( $result, 'page' );
 		}
 		$apiResult->addValue( null, $this->getModuleName(), $result );
 
-		$apiResult->endContinuation();
+		$this->setContinuationManager( null );
+		$continuationManager->setContinuationIntoResult( $apiResult );
 	}
 
 	/**

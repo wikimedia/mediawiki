@@ -99,7 +99,7 @@ $specialPageAliases = array(
 	'Newimages'                 => array( 'Barakas_hanyar' ),
 	'Newpages'                  => array( 'Tungkaran_hanyar' ),
 	'PermanentLink'             => array( 'Tautan_tatap' ),
-	'Popularpages'              => array( 'Tungkaran_popular' ),
+
 	'Preferences'               => array( 'Kakatujuan' ),
 	'Protectedpages'            => array( 'Tungkaran_nang_dilindungi' ),
 	'Protectedtitles'           => array( 'Judul_nang_dilindungi' ),

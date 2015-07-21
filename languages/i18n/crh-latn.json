@@ -934,7 +934,7 @@
 	"nlinks": "{{PLURAL:$1|1 bağlantı|$1 bağlantı}}",
 	"nmembers": "{{PLURAL:$1|1 aza|$1 aza}}",
 	"nrevisions": "{{PLURAL:$1|1 versiya|$1 versiya}}",
-	"nviews": "{{PLURAL:$1|1 körünüv|$1 körünüv}}",
+
 	"specialpage-empty": "Bu soratma içün iç netice yoq.",
 	"lonelypages": "Özüne iç bağlantı olmağan saifeler",
 	"lonelypagestext": "Aşağıdaki saifelerge {{SITENAME}} saytındaki diger saifelerden bağlantı berilmegen, ondan da ğayrı mezkür saifeler diger saiferlrge kirsetilmegen.",
