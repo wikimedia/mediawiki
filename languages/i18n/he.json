@@ -1532,7 +1532,7 @@
 	"nmembers": "{{PLURAL:$1|דף אחד|$1 דפים}}",
 	"nmemberschanged": "$1 ← {{PLURAL:$2|חבר אחד|$2 חברים}}",
 	"nrevisions": "{{PLURAL:$1|גרסה אחת|$1 גרסאות}}",
-	"nviews": "{{PLURAL:$1|צפייה אחת|$1 צפיות}}",
+
 	"nimagelinks": "בשימוש {{PLURAL:$1|בדף אחד|ב־$1 דפים}}",
 	"ntransclusions": "בשימוש {{PLURAL:$1|בדף אחד|ב־$1 דפים}}",
 	"specialpage-empty": "אין תוצאות.",

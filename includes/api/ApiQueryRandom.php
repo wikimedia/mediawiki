@@ -131,7 +131,7 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		}
 
 		if ( is_null( $resultPageSet ) ) {
-			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'page' );
+			$result->addIndexedTagName( array( 'query', $this->getModuleName() ), 'page' );
 		}
 	}
 

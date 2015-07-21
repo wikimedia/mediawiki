@@ -59,7 +59,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		$vals['name'] = $user->getName();
 
 		if ( $user->isAnon() ) {
-			$vals['anon'] = '';
+			$vals['anon'] = true;
 		}
 
 		if ( isset( $this->prop['blockinfo'] ) ) {
@@ -76,36 +76,40 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			}
 		}
 
-		if ( isset( $this->prop['hasmsg'] ) && $user->getNewtalk() ) {
-			$vals['messages'] = '';
+		if ( isset( $this->prop['hasmsg'] ) ) {
+			$vals['messages'] = $user->getNewtalk();
 		}
 
 		if ( isset( $this->prop['groups'] ) ) {
 			$vals['groups'] = $user->getEffectiveGroups();
-			$result->setIndexedTagName( $vals['groups'], 'g' ); // even if empty
+			ApiResult::setArrayType( $vals['groups'], 'array' ); // even if empty
+			ApiResult::setIndexedTagName( $vals['groups'], 'g' ); // even if empty
 		}
 
 		if ( isset( $this->prop['implicitgroups'] ) ) {
 			$vals['implicitgroups'] = $user->getAutomaticGroups();
-			$result->setIndexedTagName( $vals['implicitgroups'], 'g' ); // even if empty
+			ApiResult::setArrayType( $vals['implicitgroups'], 'array' ); // even if empty
+			ApiResult::setIndexedTagName( $vals['implicitgroups'], 'g' ); // even if empty
 		}
 
 		if ( isset( $this->prop['rights'] ) ) {
 			// User::getRights() may return duplicate values, strip them
 			$vals['rights'] = array_values( array_unique( $user->getRights() ) );
-			$result->setIndexedTagName( $vals['rights'], 'r' ); // even if empty
+			ApiResult::setArrayType( $vals['rights'], 'array' ); // even if empty
+			ApiResult::setIndexedTagName( $vals['rights'], 'r' ); // even if empty
 		}
 
 		if ( isset( $this->prop['changeablegroups'] ) ) {
 			$vals['changeablegroups'] = $user->changeableGroups();
-			$result->setIndexedTagName( $vals['changeablegroups']['add'], 'g' );
-			$result->setIndexedTagName( $vals['changeablegroups']['remove'], 'g' );
-			$result->setIndexedTagName( $vals['changeablegroups']['add-self'], 'g' );
-			$result->setIndexedTagName( $vals['changeablegroups']['remove-self'], 'g' );
+			ApiResult::setIndexedTagName( $vals['changeablegroups']['add'], 'g' );
+			ApiResult::setIndexedTagName( $vals['changeablegroups']['remove'], 'g' );
+			ApiResult::setIndexedTagName( $vals['changeablegroups']['add-self'], 'g' );
+			ApiResult::setIndexedTagName( $vals['changeablegroups']['remove-self'], 'g' );
 		}
 
 		if ( isset( $this->prop['options'] ) ) {
 			$vals['options'] = $user->getOptions();
+			$vals['options'][ApiResult::META_BC_BOOLS] = array_keys( $vals['options'] );
 		}
 
 		if ( isset( $this->prop['preferencestoken'] ) ) {
@@ -157,10 +161,10 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$acceptLang = array();
 			foreach ( $langs as $lang => $val ) {
 				$r = array( 'q' => $val );
-				ApiResult::setContent( $r, $lang );
+				ApiResult::setContentValue( $r, 'code', $lang );
 				$acceptLang[] = $r;
 			}
-			$result->setIndexedTagName( $acceptLang, 'lang' );
+			ApiResult::setIndexedTagName( $acceptLang, 'lang' );
 			$vals['acceptlang'] = $acceptLang;
 		}
 
@@ -189,9 +193,13 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	}
 
 	protected function getRateLimits() {
+		$retval = array(
+			ApiResult::META_TYPE => 'assoc',
+		);
+
 		$user = $this->getUser();
 		if ( !$user->isPingLimitable() ) {
-			return array(); // No limits
+			return $retval; // No limits
 		}
 
 		// Find out which categories we belong to
@@ -211,7 +219,6 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		$categories = array_merge( $categories, $user->getGroups() );
 
 		// Now get the actual limits
-		$retval = array();
 		foreach ( $this->getConfig()->get( 'RateLimits' ) as $action => $limits ) {
 			foreach ( $categories as $cat ) {
 				if ( isset( $limits[$cat] ) && !is_null( $limits[$cat] ) ) {

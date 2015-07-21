@@ -101,7 +101,7 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'నాచర్చ' ),
 	'Newimages'                 => array( 'కొత్తఫైళ్లు', 'కొత్తబొమ్మలు' ),
 	'Newpages'                  => array( 'కొత్తపేజీలు' ),
-	'Popularpages'              => array( 'ప్రాచుర్యంపొందినపేజీలు' ),
+
 	'Preferences'               => array( 'అభిరుచులు' ),
 	'Protectedpages'            => array( 'సంరక్షితపేజీలు' ),
 	'Randompage'                => array( 'యాదృచ్చికపేజీ' ),

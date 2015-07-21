@@ -19,6 +19,7 @@
 	"ooui-toolgroup-collapse": "কম দেখাও",
 	"ooui-dialog-message-accept": "ঠিক আছে",
 	"ooui-dialog-message-reject": "বাতিল",
+	"ooui-dialog-process-error": "কিছু একটায় ত্রুটি হয়েছে",
 	"ooui-dialog-process-dismiss": "বাতিল করুন",
 	"ooui-dialog-process-retry": "আবার চেষ্টা করুন",
 	"ooui-dialog-process-continue": "অগ্রসর হোন"

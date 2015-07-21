@@ -1551,7 +1551,7 @@
 	"nmembers": "$1 {{PLURAL:$1|عضو|عضو}}",
 	"nmemberschanged": "$1 → $2   {{PLURAL:$2| عضو|عضو}}",
 	"nrevisions": "$1 {{PLURAL:$1|نسخه|نسخه}}",
-	"nviews": "$1 {{PLURAL:$1|بازدید|بازدید}}",
+
 	"nimagelinks": "مورد استفاده در $1 {{PLURAL:$1|صفحه|صفحه}}",
 	"ntransclusions": "در $1 {{PLURAL:$1|صفحه|صفحه}} استفاده شده‌است",
 	"specialpage-empty": "نتیجه‌ای برای این گزارش وجود ندارد.",

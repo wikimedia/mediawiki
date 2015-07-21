@@ -1,12 +1,36 @@
 Security reminder: If you have PHP's register_globals option set, you must
 turn it off. MediaWiki will not work with it enabled.
 
+== MediaWiki 1.25.2 ==
+
+THIS IS NOT YET A RELEASE!
+
+=== Changes since 1.25.1 ===
+
+* (T102562) Fix InstantCommons parameters to handle the new HTTPS-only
+  policy of Wikimedia Commons.
+* (T100767) Setting a configuration setting for skin or extension to
+  false in LocalSettings.php was not working.
+* (T100635) API action=opensearch json output no longer breaks when
+  $wgDebugToolbar is enabled.
+* (T102522) Using an extension.json or skin.json file which has
+  a "manifest_version" property for 1.26 compatability will no longer
+  trigger warnings.
+* (T86156) Running updateSearchIndex.php will not throw an error as
+  page_restrictions has been added to the locked table list.
+* Special:Version would throw notices if using SVN due to an incorrectly
+  named variable. Add an additional check that an index is defined.
+
+== MediaWiki 1.25.1 ==
+
+This is a bug fix release of the MediaWiki 1.25 branch.
+
+=== Changes since 1.25 ===
+* (T100351) Fix syntax errors in extension.json of ConfirmEdit extension
+
 == MediaWiki 1.25 ==
 
-THIS IS NOT A RELEASE YET
-
-MediaWiki 1.25 is an alpha-quality branch and is not recommended for use in
-production.
+MediaWiki 1.25.x is the stable branch and is recommended for use in production.
 
 === Configuration changes in 1.25 ===
 * $wgPageShowWatchingUsers was removed.
@@ -47,6 +71,8 @@ production.
   be installed and running for any such queues to work.
 * $wgAutopromoteOnce no longer supports the 'view' event. For keeping some
   compatibility, any 'view' event triggers will still trigger on 'edit'.
+* $wgExtensionDirectory was added for when your extensions directory is somewhere
+  other than $IP/extensions (as $wgStyleDirectory does with the skins directory).
 
 === New features in 1.25 ===
 * (T64861) Updated plural rules to CLDR 26. Includes incompatible changes
@@ -84,7 +110,7 @@ production.
   this allows for pagination of prefix results. Extensions using this hook
   should implement supporting behavior. Not doing so can result in undefined
   behavior from API clients trying to continue through prefix results.
-* Update jQuery from v1.11.1 to v1.11.2.
+* Update jQuery from v1.11.1 to v1.11.3.
 * External libraries installed via composer will now be displayed
   on Special:Version in their own section. Extensions or skins that are
   installed via composer will not be shown in this section as it is assumed
@@ -94,8 +120,7 @@ production.
 * Update QUnit from v1.14.0 to v1.16.0.
 * Update Moment.js from v2.8.3 to v2.8.4.
 * Special:Tags now allows for manipulating the list of user-modifiable change
-  tags. Actually modifying the tagging of a revision or log entry is not
-  implemented yet.
+  tags.
 * Added 'managetags' user right and 'ChangeTagCanCreate', 'ChangeTagCanDelete',
   and 'ChangeTagCanCreate' hooks to allow for managing user-modifiable change
   tags.
@@ -122,6 +147,13 @@ production.
 * (T94536) You can now make the sitenotice appear to logged-in users only by
   editing MediaWiki:Anonnotice and replacing its content with "". Setting it to
   "-" (default) will continue disable it and fallback to MediaWiki:Sitenotice.
+* Modifying the tagging of a revision or log entry is now available via
+  Special:EditTags, generally accessed via the revision-deletion-like interface
+  on history pages and Special:Log is likely to be more useful.
+* Added 'applychangetags' and 'changetags' user rights.
+* (T35235) LogFormatter subclasses are now responsible for formatting the
+  parameters for API log event output. Extensions should implement the new
+  getParametersForApi() method in their log formatters.
 
 ==== External libraries ====
 * MediaWiki now requires certain external libraries to be installed. In the past
@@ -185,6 +217,7 @@ production.
 * $wgUseTidy is now set when parserTests are run with the tidy option to match
   output on wiki.
 * (T37472) update.php will purge ResourceLoader cache unless --nopurge is passed to it.
+* (T72109) mediawiki.language should respect $wgTranslateNumerals in convertNumber().
 
 === Action API changes in 1.25 ===
 * (T67403) XML tag highlighting is now only performed for formats
@@ -249,6 +282,23 @@ production.
   Title::userCan() via the API.
 * Default type param for query list=watchlist and list=recentchanges has
   been changed from all types (e.g. including 'external') to 'edit|new|log'.
+* Added formatversion to format=json. Still "experimental" as further changes
+  to the output formatting might still be made.
+* (T73020) Log event details are now always under a 'params' subkey for
+  list=logevents, and a 'logparams' subkey for list=watchlist and
+  list=recentchanges.
+* Log event details are changing formatting:
+  * block events now report flags as an array rather than as a comma-separated
+    list.
+  * patrol events now report the 'auto' flag as a boolean (absent/empty string
+    for BC formats) rather than as an integer.
+  * rights events now report the old and new group lists as arrays rather than
+    as comma-separated lists.
+  * merge events use new-style formatting.
+  * delete/event and delete/revision events use new-style formatting.
+* The root node and various other nodes will now always be an object in formats
+  such as json that distinguish between arrays and objects.
+  * Except for action=opensearch where the spec requires an array.
 
 === Action API internal changes in 1.25 ===
 * ApiHelp has been rewritten to support i18n and paginated HTML output.
@@ -286,6 +336,22 @@ production.
   the current request was sent with the 'callback' parameter (or any future
   method that breaks the same-origin policy).
 * Profiling methods in ApiBase are deprecated and no longer need to be called.
+* ApiResult was greatly overhauled. See inline documentation for details.
+* ApiResult will automatically convert objects to strings or arrays (depending
+  on whether a __toString() method exists on the object), and will refuse to
+  add unsupported value types.
+  * An informal interface, ApiSerializable, exists to override the default
+    object conversion.
+* ApiResult/ApiFormatBase "raw mode" is deprecated.
+* ApiFormatXml now assumes defaults and so on instead of throwing errors when
+  metadata isn't set.
+* (T35235) LogFormatter subclasses are now responsible for formatting log event
+  parameters for the API.
+* Many modules have changed result data formats. While this shouldn't affect
+  clients not using the experimental formatversion=2, code using
+  ApiResult::getResultData() without the transformations for backwards
+  compatibility may need updating, as will code that wasn't following the old
+  conventions for API boolean output.
 * The following methods have been deprecated and may be removed in a future
   release:
   * ApiBase::getDescription
@@ -302,16 +368,33 @@ production.
   * ApiBase::profileDBIn
   * ApiBase::profileDBOut
   * ApiBase::getProfileDBTime
+  * ApiBase::getResultData
   * ApiFormatBase::setUnescapeAmps
   * ApiFormatBase::getWantsHelp
   * ApiFormatBase::setHelp
   * ApiFormatBase::formatHTML
   * ApiFormatBase::setBufferResult
   * ApiFormatBase::getDescription
+  * ApiFormatBase::getNeedsRawData
   * ApiMain::setHelp
   * ApiMain::reallyMakeHelpMsg
   * ApiMain::makeHelpMsgHeader
+  * ApiResult::setRawMode
+  * ApiResult::getIsRawMode
+  * ApiResult::getData
+  * ApiResult::setElement
+  * ApiResult::setContent
+  * ApiResult::setIndexedTagName_recursive
+  * ApiResult::setIndexedTagName_internal
+  * ApiResult::setParsedLimit
+  * ApiResult::beginContinuation
+  * ApiResult::setContinueParam
+  * ApiResult::setGeneratorContinueParam
+  * ApiResult::endContinuation
+  * ApiResult::size
+  * ApiResult::convertStatusToArray
   * ApiQueryImageInfo::getPropertyDescriptions
+  * ApiQueryLogEvents::addLogParams
 * The following classes have been deprecated and may be removed in a future
   release:
   * ApiQueryDeletedrevs
@@ -322,12 +405,21 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
+* Languages added:
+** awa (अवधी / Awadhi), thanks to translator 1AnuraagPandey;
+** bgn (بلوچی رخشانی / Western Balochi), thanks to translators
+   Baloch Afghanistan, Ibrahim khashrowdi and Rachitrali;
+** ses (Koyraboro Senni), thanks to translator Songhay.
 * (T66440) Kazakh (kk) wikis should no longer forcefully reset the user's
   interface language to kk where unexpected.
 * The Chinese conversion table was substantially updated to fix a lot of
   bugs and ensure better reading experience for different variants.
 
 === Other changes in 1.25 ===
+* (T45591) Links to MediaWiki.org translatable help were added to indicators,
+  mostly in special pages. Local custom target titles can be placed in the
+  relevant '(namespace-X|action name|special page name)-helppage' system
+  message. Extensions can use the addHelpLink() function to do the same.
 * The skin autodiscovery mechanism, deprecated in MediaWiki 1.23, has been
   removed. See https://www.mediawiki.org/wiki/Manual:Skin_autodiscovery for
   migration guide for creators and users of custom skins that relied on it.
@@ -364,9 +456,6 @@ changes to languages because of Bugzilla reports.
   and getInternalLinkAttributes methods in Linker, and removed
   getExternalLinkAttributes method, which was deprecated in MediaWiki 1.18.
 * Removed Sites class, which was deprecated in 1.21 and replaced by SiteSQLStore.
-* The mw.api.getToken() method now uses action=query?meta=tokens. This will now
-  fail for custom tokens registered only via the deprecated ApiTokensGetTokenTypes
-  hook. The ApiQueryTokensRegisterTypes hook should be used for this to work.
 * Added wgRelevantArticleId to the client-side config, for use on special pages.
 * Deprecated the TitleIsCssOrJsPage hook. Superseded by the
   ContentHandlerDefaultModelFor hook since MediaWiki 1.21.
@@ -431,6 +520,19 @@ changes to languages because of Bugzilla reports.
 * $wgResourceModuleSkinStyles no longer supports per-module local or remote paths. They
   can only be set for the entire skin.
 * Removed global function swap(). (deprecated since 1.24)
+* Deprecated the ".php5" file extension entry points and the $wgScriptExtension
+  configuration variable. Refer to the ".php" files instead. If you want
+  ".php5" URLs to continue to work, set up redirects. In Apache, this can be
+  done by enabling mod_rewrite and adding the following rules to your
+  configuration:
+
+    RewriteEngine On
+    RewriteBase /
+    RewriteRule ^(.*)\.php5 $1.php [R=301,L]
+
+* The global importScriptURI and importStylesheetURI functions, as well as the
+  loadedScripts object, from wikibits.js (deprecated since 1.17) now emit
+  warnings through mw.log.warn when accessed.
 
 == Compatibility ==
 

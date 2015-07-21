@@ -252,7 +252,7 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'Halaman_baru', 'HalamanBaru' ),
 	'PasswordReset'             => array( 'Reset_sandi', 'ResetSandi' ),
 	'PermanentLink'             => array( 'Pranala_permanen' ),
-	'Popularpages'              => array( 'Halaman_populer', 'HalamanPopuler' ),
+
 	'Preferences'               => array( 'Preferensi' ),
 	'Prefixindex'               => array( 'Indeks_awalan', 'IndeksAwalan' ),
 	'Protectedpages'            => array( 'Halaman_yang_dilindungi', 'HalamanDilindungi' ),

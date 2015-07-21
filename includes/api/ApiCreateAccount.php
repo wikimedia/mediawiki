@@ -152,9 +152,9 @@ class ApiCreateAccount extends ApiBase {
 			$warnings = $status->getErrorsByType( 'warning' );
 			if ( $warnings ) {
 				foreach ( $warnings as &$warning ) {
-					$apiResult->setIndexedTagName( $warning['params'], 'param' );
+					ApiResult::setIndexedTagName( $warning['params'], 'param' );
 				}
-				$apiResult->setIndexedTagName( $warnings, 'warning' );
+				ApiResult::setIndexedTagName( $warnings, 'warning' );
 				$result['warnings'] = $warnings;
 			}
 		} else {

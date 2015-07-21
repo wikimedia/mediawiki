@@ -187,7 +187,9 @@ class ApiQueryBlocks extends ApiQueryBase {
 				$this->setContinueEnumParameter( 'continue', "$row->ipb_timestamp|$row->ipb_id" );
 				break;
 			}
-			$block = array();
+			$block = array(
+				ApiResult::META_TYPE => 'assoc',
+			);
 			if ( $fld_id ) {
 				$block['id'] = $row->ipb_id;
 			}
@@ -218,27 +220,13 @@ class ApiQueryBlocks extends ApiQueryBase {
 			}
 			if ( $fld_flags ) {
 				// For clarity, these flags use the same names as their action=block counterparts
-				if ( $row->ipb_auto ) {
-					$block['automatic'] = '';
-				}
-				if ( $row->ipb_anon_only ) {
-					$block['anononly'] = '';
-				}
-				if ( $row->ipb_create_account ) {
-					$block['nocreate'] = '';
-				}
-				if ( $row->ipb_enable_autoblock ) {
-					$block['autoblock'] = '';
-				}
-				if ( $row->ipb_block_email ) {
-					$block['noemail'] = '';
-				}
-				if ( $row->ipb_deleted ) {
-					$block['hidden'] = '';
-				}
-				if ( $row->ipb_allow_usertalk ) {
-					$block['allowusertalk'] = '';
-				}
+				$block['automatic'] = (bool)$row->ipb_auto;
+				$block['anononly'] = (bool)$row->ipb_anon_only;
+				$block['nocreate'] = (bool)$row->ipb_create_account;
+				$block['autoblock'] = (bool)$row->ipb_enable_autoblock;
+				$block['noemail'] = (bool)$row->ipb_block_email;
+				$block['hidden'] = (bool)$row->ipb_deleted;
+				$block['allowusertalk'] = (bool)$row->ipb_allow_usertalk;
 			}
 			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $block );
 			if ( !$fit ) {
@@ -246,7 +234,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 				break;
 			}
 		}
-		$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'block' );
+		$result->addIndexedTagName( array( 'query', $this->getModuleName() ), 'block' );
 	}
 
 	protected function prepareUsername( $user ) {

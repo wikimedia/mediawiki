@@ -1564,7 +1564,7 @@
 	"nmembers": "$1 {{PLURAL:$1|membro|membros}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|membro|membros}}",
 	"nrevisions": "$1 {{PLURAL:$1|edição|edições}}",
-	"nviews": "$1 {{PLURAL:$1|visita|visitas}}",
+
 	"nimagelinks": "Usada {{PLURAL:$1|numa página|em $1 páginas}}",
 	"ntransclusions": "usada {{PLURAL:$1|numa página|em $1 páginas}}",
 	"specialpage-empty": "Não existem dados para apresentar.",

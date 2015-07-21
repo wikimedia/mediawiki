@@ -205,7 +205,7 @@ abstract class ApiQueryORM extends ApiQueryBase {
 	 * @param array $serializedResults
 	 */
 	protected function setIndexedTagNames( array &$serializedResults ) {
-		$this->getResult()->setIndexedTagName( $serializedResults, $this->getRowName() );
+		ApiResult::setIndexedTagName( $serializedResults, $this->getRowName() );
 	}
 
 	/**

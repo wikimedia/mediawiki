@@ -85,7 +85,8 @@ jQuery( function ( $ ) {
 				$copyForm.find( 'input[name^="ids["]:checked' ).prop( 'checked', false );
 
 			// Remove diff=&oldid=, change action=historysubmit to revisiondelete, remove revisiondelete
-			} else if ( $historySubmitter.hasClass( 'mw-history-revisiondelete-button' ) ) {
+			} else if ( $historySubmitter.hasClass( 'mw-history-revisiondelete-button' ) ||
+					$historySubmitter.hasClass( 'mw-history-editchangetags-button' ) ) {
 				$copyRadios.remove();
 				$copyAction.val( $historySubmitter.attr( 'name' ) );
 				$copyForm.find( ':submit' ).remove();

@@ -1346,7 +1346,7 @@
 	"nmembers": "$1 {{PLURAL:$1|мүше|мүше}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|мүше|мүше}}",
 	"nrevisions": "$1 {{PLURAL:$1|түзету|түзету}}",
-	"nviews": "$1 {{PLURAL:$1|қаралу|қаралу}}",
+
 	"nimagelinks": "$1 {{PLURAL:$1|бетте|бетте}} қолданылады",
 	"ntransclusions": "$1 {{PLURAL:$1|бетте|бетте}} қолданылады",
 	"specialpage-empty": "Бұл сұраныс бойынша нәтиже жоқ.",

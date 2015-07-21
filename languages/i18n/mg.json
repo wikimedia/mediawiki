@@ -1466,7 +1466,7 @@
 	"nlinks": "{{PLURAL:$1|rohy|rohy}} $1",
 	"nmembers": "{{PLURAL:$1|mpikambana|mpikambana}} $1",
 	"nrevisions": "{{PLURAL:$1|fanovana|fanovana}} $1",
-	"nviews": "{{PLURAL:}}Tsidika $1",
+
 	"nimagelinks": "Ampiasain'ny pejy miisa{{PLURAL:}} $1",
 	"ntransclusions": "Ampiasaina eo amin'ny pejy miisa $1 {{PLURAL:}}",
 	"specialpage-empty": "Tsy misy valiny ho aseho.",

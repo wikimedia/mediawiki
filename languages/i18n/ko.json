@@ -1546,7 +1546,7 @@
 	"nmembers": "{{PLURAL:$1|문서}} $1개",
 	"nmemberschanged": "$1 → $2{{PLURAL:$2|개}}",
 	"nrevisions": "{{PLURAL:$1|판}} $1개",
-	"nviews": "$1번 {{PLURAL:$1|읽음}}",
+
 	"nimagelinks": "{{PLURAL:$1|문서}} $1개에서 사용됨",
 	"ntransclusions": "{{PLURAL:$1|문서}} $1개에서 사용됨",
 	"specialpage-empty": "명령에 대한 결과가 없습니다.",

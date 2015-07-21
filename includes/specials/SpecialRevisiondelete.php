@@ -132,18 +132,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		// $this->ids = array_map( 'intval', $this->ids );
 		$this->ids = array_unique( array_filter( $this->ids ) );
 
-		if ( $request->getVal( 'action' ) == 'historysubmit'
-			|| $request->getVal( 'action' ) == 'revisiondelete'
-		) {
-			// For show/hide form submission from history page
-			// Since we are access through index.php?title=XXX&action=historysubmit
-			// getFullTitle() will contain the target title and not our title
-			$this->targetObj = $this->getFullTitle();
-			$this->typeName = 'revision';
-		} else {
-			$this->typeName = $request->getVal( 'type' );
-			$this->targetObj = Title::newFromText( $request->getText( 'target' ) );
-		}
+		$this->typeName = $request->getVal( 'type' );
+		$this->targetObj = Title::newFromText( $request->getText( 'target' ) );
 
 		# For reviewing deleted files...
 		$this->archiveName = $request->getVal( 'file' );
@@ -378,7 +368,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$out->wrapWikiMsg( "<strong>$1</strong>", array( $this->typeLabels['selected'],
 			$this->getLanguage()->formatNum( count( $this->ids ) ), $this->targetObj->getPrefixedText() ) );
 
-		$out->addHelpLink( 'Help:RevisionDelete' );
+		$this->addHelpLink( 'Help:RevisionDelete' );
 		$out->addHTML( "<ul>" );
 
 		$numRevisions = 0;

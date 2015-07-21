@@ -1450,7 +1450,7 @@
 	"nmembers": "$1 {{PLURAL:$1|lid|lede}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|lid|lede}}",
 	"nrevisions": "$1 {{PLURAL:$1|weergawe|weergawes}}",
-	"nviews": "$1 {{PLURAL:$1|keer|kere}} aangevra",
+
 	"nimagelinks": "Gebruik op {{PLURAL:$1|een bladsy|$1 bladsye}}",
 	"ntransclusions": "gebruik op {{PLURAL:$1|een bladsy|$1 bladsye}}",
 	"specialpage-empty": "Die verslag lewer geen resultate nie.",

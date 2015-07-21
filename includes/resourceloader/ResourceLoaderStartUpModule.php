@@ -82,6 +82,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgServerName' => $conf->get( 'ServerName' ),
 			'wgUserLanguage' => $context->getLanguage(),
 			'wgContentLanguage' => $wgContLang->getCode(),
+			'wgTranslateNumerals' => $conf->get( 'TranslateNumerals' ),
 			'wgVersion' => $conf->get( 'Version' ),
 			'wgEnableAPI' => $conf->get( 'EnableAPI' ),
 			'wgEnableWriteAPI' => $conf->get( 'EnableWriteAPI' ),

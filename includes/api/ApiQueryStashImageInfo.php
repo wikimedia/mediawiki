@@ -59,7 +59,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 				$finalThumbParam = $this->mergeThumbParams( $file, $scale, $params['urlparam'] );
 				$imageInfo = ApiQueryImageInfo::getInfo( $file, $prop, $result, $finalThumbParam );
 				$result->addValue( array( 'query', $this->getModuleName() ), null, $imageInfo );
-				$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), $modulePrefix );
+				$result->addIndexedTagName( array( 'query', $this->getModuleName() ), $modulePrefix );
 			}
 		// @todo Update exception handling here to understand current getFile exceptions
 		} catch ( UploadStashFileNotFoundException $e ) {

@@ -98,7 +98,7 @@ $specialPageAliases = array(
 	'Newimages'                 => array( 'Új_fájlok', 'Új_képek', 'Új_képek_galériája' ),
 	'Newpages'                  => array( 'Új_lapok' ),
 	'PasswordReset'             => array( 'Jelszó_helyreállítása' ),
-	'Popularpages'              => array( 'Népszerű_lapok', 'Népszerű_oldalak' ),
+
 	'Preferences'               => array( 'Beállításaim' ),
 	'Prefixindex'               => array( 'Keresés_előtag_szerint' ),
 	'Protectedpages'            => array( 'Védett_lapok' ),

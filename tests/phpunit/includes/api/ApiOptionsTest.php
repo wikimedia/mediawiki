@@ -138,7 +138,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$this->mContext->setRequest( new FauxRequest( $request, true, $this->mSession ) );
 		$this->mTested->execute();
 
-		return $this->mTested->getResult()->getData();
+		return $this->mTested->getResult()->getResultData( null, array( 'Strip' => 'all' ) );
 	}
 
 	/**
@@ -396,7 +396,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			'options' => 'success',
 			'warnings' => array(
 				'options' => array(
-					'*' => "Validation error for 'special': cannot be set by this module"
+					'warnings' => "Validation error for 'special': cannot be set by this module"
 				)
 			)
 		), $response );
@@ -419,7 +419,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			'options' => 'success',
 			'warnings' => array(
 				'options' => array(
-					'*' => "Validation error for 'unknownOption': not a valid preference"
+					'warnings' => "Validation error for 'unknownOption': not a valid preference"
 				)
 			)
 		), $response );

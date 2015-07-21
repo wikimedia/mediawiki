@@ -540,11 +540,11 @@ class MWDebug {
 		MWDebug::log( 'MWDebug output complete' );
 		$debugInfo = self::getDebugInfo( $context );
 
-		$result->setIndexedTagName( $debugInfo, 'debuginfo' );
-		$result->setIndexedTagName( $debugInfo['log'], 'line' );
-		$result->setIndexedTagName( $debugInfo['debugLog'], 'msg' );
-		$result->setIndexedTagName( $debugInfo['queries'], 'query' );
-		$result->setIndexedTagName( $debugInfo['includes'], 'queries' );
+		ApiResult::setIndexedTagName( $debugInfo, 'debuginfo' );
+		ApiResult::setIndexedTagName( $debugInfo['log'], 'line' );
+		ApiResult::setIndexedTagName( $debugInfo['debugLog'], 'msg' );
+		ApiResult::setIndexedTagName( $debugInfo['queries'], 'query' );
+		ApiResult::setIndexedTagName( $debugInfo['includes'], 'queries' );
 		$result->addValue( null, 'debuginfo', $debugInfo );
 	}
 
