@@ -194,7 +194,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				$a = array( 'pageid' => intval( $row->page_id ) );
 				ApiQueryBase::addTitleInfo( $a, $t );
 				if ( $row->page_is_redirect ) {
-					$a['redirect'] = '';
+					$a['redirect'] = true;
 				}
 				// Put all the results in an array first
 				$this->resultArr[$a['pageid']] = $a;
@@ -313,7 +313,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				$a['pageid'] = intval( $row->page_id );
 				ApiQueryBase::addTitleInfo( $a, Title::makeTitle( $row->page_namespace, $row->page_title ) );
 				if ( $row->page_is_redirect ) {
-					$a['redirect'] = '';
+					$a['redirect'] = true;
 				}
 				$parentID = $this->pageMap[$ns][$row->{$this->bl_title}];
 				// Put all the results in an array first
@@ -338,7 +338,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 		if ( $this->params['limit'] == 'max' ) {
 			$this->params['limit'] = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
-			$result->setParsedLimit( $this->getModuleName(), $this->params['limit'] );
+			$result->addParsedLimit( $this->getModuleName(), $this->params['limit'] );
 		} else {
 			$this->params['limit'] = intval( $this->params['limit'] );
 			$this->validateLimit( 'limit', $this->params['limit'], 1, $userMax, $botMax );
@@ -426,7 +426,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$data = array_map( function ( $arr ) use ( $result, $code ) {
 				if ( isset( $arr['redirlinks'] ) ) {
 					$arr['redirlinks'] = array_values( $arr['redirlinks'] );
-					$result->setIndexedTagName( $arr['redirlinks'], $code );
+					ApiResult::setIndexedTagName( $arr['redirlinks'], $code );
 				}
 				return $arr;
 			}, array_values( $this->resultArr ) );
@@ -482,7 +482,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 						$hasRedirs = true;
 					}
 					if ( $hasRedirs ) {
-						$result->setIndexedTagName_internal(
+						$result->addIndexedTagName(
 							array( 'query', $this->getModuleName(), $idx, 'redirlinks' ),
 							$this->bl_code );
 					}
@@ -494,7 +494,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				}
 			}
 
-			$result->setIndexedTagName_internal(
+			$result->addIndexedTagName(
 				array( 'query', $this->getModuleName() ),
 				$this->bl_code
 			);

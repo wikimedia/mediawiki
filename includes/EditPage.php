@@ -157,6 +157,12 @@ class EditPage {
 	const AS_SELF_REDIRECT = 236;
 
 	/**
+	 * Status: an error relating to change tagging. Look at the message key for
+	 * more details
+	 */
+	const AS_CHANGE_TAG_ERROR = 237;
+
+	/**
 	 * Status: can't parse content
 	 */
 	const AS_PARSE_ERROR = 240;
@@ -350,6 +356,9 @@ class EditPage {
 
 	/** @var null|string */
 	public $contentFormat = null;
+
+	/** @var null|array */
+	public $changeTags = null;
 
 	# Placeholders for text injection by hooks (must be HTML)
 	# extensions should take care to _append_ to the present value
@@ -844,6 +853,14 @@ class EditPage {
 
 			$this->allowBlankArticle = $request->getBool( 'wpIgnoreBlankArticle' );
 			$this->allowSelfRedirect = $request->getBool( 'wpIgnoreSelfRedirect' );
+
+			$changeTags = $request->getVal( 'wpChangeTags' );
+			if ( is_null( $changeTags ) || $changeTags === '' ) {
+				$this->changeTags = array();
+			} else {
+				$this->changeTags = array_filter( array_map( 'trim', explode( ',',
+					$changeTags ) ) );
+			}
 		} else {
 			# Not a posted form? Start with nothing.
 			wfDebug( __METHOD__ . ": Not a posted form.\n" );
@@ -1642,6 +1659,15 @@ class EditPage {
 			return $status;
 		}
 
+		if ( $this->changeTags ) {
+			$changeTagsStatus = ChangeTags::canAddTagsAccompanyingChange(
+				$this->changeTags, $wgUser );
+			if ( !$changeTagsStatus->isOK() ) {
+				$changeTagsStatus->value = self::AS_CHANGE_TAG_ERROR;
+				return $changeTagsStatus;
+			}
+		}
+
 		if ( wfReadOnly() ) {
 			$status->fatal( 'readonlytext' );
 			$status->value = self::AS_READ_ONLY_PAGE;
@@ -1915,7 +1941,18 @@ class EditPage {
 			$wgUser->pingLimiter( 'linkpurge' );
 		}
 		$result['redirect'] = $content->isRedirect();
+
 		$this->updateWatchlist();
+
+		if ( $this->changeTags && isset( $doEditStatus->value['revision'] ) ) {
+			// If a revision was created, apply any change tags that were requested
+			ChangeTags::addTags(
+				$this->changeTags,
+				isset( $doEditStatus->value['rc'] ) ? $doEditStatus->value['rc']->mAttribs['rc_id'] : null,
+				$doEditStatus->value['revision']->getId()
+			);
+		}
+
 		return $status;
 	}
 

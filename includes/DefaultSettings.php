@@ -75,7 +75,7 @@ $wgConfigRegistry = array(
  * MediaWiki version number
  * @since 1.2
  */
-$wgVersion = '1.25beta';
+$wgVersion = '1.25.1';
 
 /**
  * Name of the site. It must be changed in LocalSettings.php
@@ -154,12 +154,15 @@ $wgUsePathInfo = ( strpos( PHP_SAPI, 'cgi' ) === false ) &&
 	( strpos( PHP_SAPI, 'isapi' ) === false );
 
 /**
- * The extension to append to script names by default. This can either be .php
- * or .php5.
+ * The extension to append to script names by default.
  *
- * Some hosting providers use PHP 4 for *.php files, and PHP 5 for *.php5. This
- * variable is provided to support those providers.
+ * Some hosting providers used PHP 4 for *.php files, and PHP 5 for *.php5.
+ * This variable was provided to support those providers.
+ *
  * @since 1.11
+ * @deprecated since 1.25; support for '.php5' is being phased out of MediaWiki
+ *  proper. Backward-compatibility can be maintained by configuring your web
+ *  server to rewrite URLs. See RELEASE-NOTES for details.
  */
 $wgScriptExtension = '.php';
 
@@ -221,11 +224,18 @@ $wgLocalStylePath = false;
 $wgExtensionAssetsPath = false;
 
 /**
+ * Filesystem extensions directory.
+ * Defaults to "{$IP}/extensions".
+ * @since 1.25
+ */
+$wgExtensionDirectory = "{$IP}/extensions";
+
+/**
  * Filesystem stylesheets directory.
  * Defaults to "{$IP}/skins".
  * @since 1.3
  */
-$wgStyleDirectory = false;
+$wgStyleDirectory = "{$IP}/skins";
 
 /**
  * The URL path for primary article page views. This path should contain $1,
@@ -4563,6 +4573,8 @@ $wgGroupPermissions['user']['reupload-shared'] = true;
 $wgGroupPermissions['user']['minoredit'] = true;
 $wgGroupPermissions['user']['purge'] = true; // can use ?action=purge without clicking "ok"
 $wgGroupPermissions['user']['sendemail'] = true;
+$wgGroupPermissions['user']['applychangetags'] = true;
+$wgGroupPermissions['user']['changetags'] = true;
 
 // Implicit group for accounts that pass $wgAutoConfirmAge
 $wgGroupPermissions['autoconfirmed']['autoconfirmed'] = true;
@@ -5043,7 +5055,11 @@ $wgRateLimits = array(
 		'newbie' => null,
 		'ip' => null,
 		'subnet' => null,
-	)
+	),
+	'changetag' => array( // adding or removing change tags
+		'user' => null,
+		'newbie' => null,
+	),
 );
 
 /**
@@ -6474,8 +6490,7 @@ $wgJobQueueAggregator = array(
  * Expensive Querypages are already updated.
  */
 $wgSpecialPageCacheUpdates = array(
-	'Statistics' => array( 'SiteStatsUpdate', 'cacheUpdate' ),
-	'Activeusers' => array( 'SpecialActiveUsers', 'cacheUpdate' ),
+	'Statistics' => array( 'SiteStatsUpdate', 'cacheUpdate' )
 );
 
 /**
@@ -6573,6 +6588,7 @@ $wgLogTypes = array(
 	'patrol',
 	'merge',
 	'suppress',
+	'tag',
 	'managetags',
 );
 
@@ -6610,7 +6626,8 @@ $wgLogRestrictions = array(
  * for the link text.
  */
 $wgFilterLogTypes = array(
-	'patrol' => true
+	'patrol' => true,
+	'tag' => true,
 );
 
 /**
@@ -6673,7 +6690,7 @@ $wgLogActions = array(
 );
 
 /**
- * The same as above, but here values are names of functions,
+ * The same as above, but here values are names of classes,
  * not messages.
  * @see LogPage::actionText
  * @see LogFormatter
@@ -6691,10 +6708,11 @@ $wgLogActionsHandlers = array(
 	'patrol/patrol' => 'PatrolLogFormatter',
 	'rights/rights' => 'RightsLogFormatter',
 	'rights/autopromote' => 'RightsLogFormatter',
-	'upload/upload' => 'LogFormatter',
-	'upload/overwrite' => 'LogFormatter',
-	'upload/revert' => 'LogFormatter',
+	'upload/upload' => 'UploadLogFormatter',
+	'upload/overwrite' => 'UploadLogFormatter',
+	'upload/revert' => 'UploadLogFormatter',
 	'merge/merge' => 'MergeLogFormatter',
+	'tag/update' => 'TagLogFormatter',
 	'managetags/create' => 'LogFormatter',
 	'managetags/delete' => 'LogFormatter',
 	'managetags/activate' => 'LogFormatter',
@@ -6772,6 +6790,7 @@ $wgActions = array(
 	'credits' => true,
 	'delete' => true,
 	'edit' => true,
+	'editchangetags' => 'SpecialPageAction',
 	'history' => true,
 	'info' => true,
 	'markpatrolled' => true,
@@ -6780,7 +6799,7 @@ $wgActions = array(
 	'raw' => true,
 	'render' => true,
 	'revert' => true,
-	'revisiondelete' => true,
+	'revisiondelete' => 'SpecialPageAction',
 	'rollback' => true,
 	'submit' => true,
 	'unprotect' => true,

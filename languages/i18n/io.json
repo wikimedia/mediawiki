@@ -661,7 +661,7 @@
 	"ncategories": "$1 {{PLURAL:$1|kategorio|kategorii}}",
 	"nlinks": "$1 {{PLURAL:$1|ligilo|ligili}}",
 	"nmembers": "$1 {{PLURAL:$1|membro|membri}}",
-	"nviews": "$1 {{PLURAL:$1|vizito|viziti}}",
+
 	"lonelypages": "Pagini sen ligili",
 	"uncategorizedpages": "Nekategorizita pagini",
 	"uncategorizedcategories": "Nekategorizita kategorii",

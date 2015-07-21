@@ -160,7 +160,7 @@ $specialPageAliases = array(
 	'PagesWithProp'             => array( 'Sider_med_egenskap' ),
 	'PasswordReset'             => array( 'Nullstill_passord' ),
 	'PermanentLink'             => array( 'Permanent_lenke' ),
-	'Popularpages'              => array( 'Populære_sider' ),
+
 	'Preferences'               => array( 'Innstillinger' ),
 	'Prefixindex'               => array( 'Prefiksindeks' ),
 	'Protectedpages'            => array( 'Beskyttede_sider' ),

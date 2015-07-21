@@ -1259,7 +1259,7 @@
 	"nlinks": "{{PLURAL:$1|kiungo|viungo}} $1",
 	"nmembers": "{{PLURAL:$1|kitu|vitu}} $1",
 	"nrevisions": "{{PLURAL:$1|pitio|mapitio}} $1",
-	"nviews": "{{PLURAL:$1|mtazamaji|mitazamaji}} $1",
+
 	"nimagelinks": "Inatumika katika {{PLURAL:$1|ukurasa moja tu|kurasa $1}}",
 	"ntransclusions": "inatumika katika {{PLURAL:$1|ukurasa moja tu|kurasa $1}}",
 	"specialpage-empty": "Hakuna matokeo katika taarifa hii.",

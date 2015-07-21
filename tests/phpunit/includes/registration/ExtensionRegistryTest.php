@@ -189,7 +189,19 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 						)
 					),
 				),
-			)
+			),
+			array(
+				'False local setting should not be overridden (T100767)',
+				array(
+					'mwtestT100767' => false,
+				),
+				array(
+					'mwtestT100767' => true,
+				),
+				array(
+					'mwtestT100767' => false,
+				),
+			),
 		);
 	}
 }

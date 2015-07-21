@@ -1543,7 +1543,7 @@
 	"nmembers": "$1 {{PLURAL:$1|medlem|medlemmer}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|medlem|medlemmer}}",
 	"nrevisions": "$1 {{PLURAL:$1|revisjon|revisjoner}}",
-	"nviews": "$1 {{PLURAL:$1|visning|visninger}}",
+
 	"nimagelinks": "Brukt på $1 {{PLURAL:$1|side|sider}}",
 	"ntransclusions": "brukt på $1 {{PLURAL:$1|side|sider}}",
 	"specialpage-empty": "Denne siden er tom.",

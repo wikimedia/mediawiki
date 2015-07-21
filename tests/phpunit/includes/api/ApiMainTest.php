@@ -16,7 +16,7 @@ class ApiMainTest extends ApiTestCase {
 			new FauxRequest( array( 'action' => 'query', 'meta' => 'siteinfo' ) )
 		);
 		$api->execute();
-		$data = $api->getResultData();
+		$data = $api->getResult()->getResultData();
 		$this->assertInternalType( 'array', $data );
 		$this->assertArrayHasKey( 'query', $data );
 	}

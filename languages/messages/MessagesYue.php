@@ -151,7 +151,7 @@ $specialPageAliases = array(
 	'Newpages'                  => array( '新版' ),
 	'PasswordReset'             => array( '重設密碼' ),
 	'PermanentLink'             => array( '永久鏈' ),
-	'Popularpages'              => array( '最歡迎頁' ),
+
 	'Preferences'               => array( '喜好設定' ),
 	'Prefixindex'               => array( '全部頁嘅前綴' ),
 	'Protectedpages'            => array( '保護頁' ),

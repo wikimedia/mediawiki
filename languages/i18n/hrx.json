@@ -1450,7 +1450,7 @@
 	"nmembers": "{{PLURAL:$1|1 Eintrooch|$1 Einträche}}",
 	"nmemberschanged": "$1 → {{PLURAL:$2|En Mitglied|$2 Mitglieder}}",
 	"nrevisions": "{{PLURAL:$1|1 Beoorbeitung|$1 Beoorbeitunge}}",
-	"nviews": "{{PLURAL:$1|1 Abfroch|$1 Abfroche}}",
+
 	"nimagelinks": "Verwendt uff {{PLURAL:$1|en Seit|$1 Seite}}",
 	"ntransclusions": "Verwendt uff {{PLURAL:$1|en Seit|$1 Seite}}",
 	"specialpage-empty": "Do sind aktuell ken zutreffende Einträche voarhand.",

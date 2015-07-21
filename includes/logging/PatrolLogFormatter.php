@@ -62,4 +62,24 @@ class PatrolLogFormatter extends LogFormatter {
 
 		return $params;
 	}
+
+	protected function getParametersForApi() {
+		$entry = $this->entry;
+		$params = $entry->getParameters();
+
+		static $map = array(
+			'4::curid',
+			'5::previd',
+			'6:bool:auto',
+			'6::auto' => '6:bool:auto',
+		);
+		foreach ( $map as $index => $key ) {
+			if ( isset( $params[$index] ) ) {
+				$params[$key] = $params[$index];
+				unset( $params[$index] );
+			}
+		}
+
+		return $params;
+	}
 }

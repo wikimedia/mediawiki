@@ -124,11 +124,11 @@ class ApiProtect extends ApiBase {
 			'reason' => $params['reason']
 		);
 		if ( $cascade ) {
-			$res['cascade'] = '';
+			$res['cascade'] = true;
 		}
 		$res['protections'] = $resultProtections;
 		$result = $this->getResult();
-		$result->setIndexedTagName( $res['protections'], 'protection' );
+		ApiResult::setIndexedTagName( $res['protections'], 'protection' );
 		$result->addValue( null, $this->getModuleName(), $res );
 	}
 

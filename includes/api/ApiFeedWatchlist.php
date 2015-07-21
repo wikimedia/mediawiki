@@ -112,11 +112,12 @@ class ApiFeedWatchlist extends ApiBase {
 			$module = new ApiMain( $fauxReq );
 			$module->execute();
 
-			// Get data array
-			$data = $module->getResultData();
-
+			$data = $module->getResult()->getResultData( array( 'query', 'watchlist' ) );
 			$feedItems = array();
-			foreach ( (array)$data['query']['watchlist'] as $info ) {
+			foreach ( (array)$data as $key => $info ) {
+				if ( ApiResult::isMetadataKey( $key ) ) {
+					continue;
+				}
 				$feedItem = $this->createFeedItem( $info );
 				if ( $feedItem ) {
 					$feedItems[] = $feedItem;

@@ -61,7 +61,7 @@ class ApiFileRevert extends ApiBase {
 		} else {
 			$result = array(
 				'result' => 'Failure',
-				'errors' => $this->getResult()->convertStatusToArray( $status ),
+				'errors' => $this->getErrorFormatter()->arrayFromStatus( $status ),
 			);
 		}
 

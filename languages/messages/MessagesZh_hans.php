@@ -199,7 +199,6 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( '页面语言' ),
 	'PasswordReset'             => array( '重设密码' ),
 	'PermanentLink'             => array( '固定链接', '永久链接' ),
-	'Popularpages'              => array( '热点页面' ),
 	'Preferences'               => array( '参数设置', '设置' ),
 	'Prefixindex'               => array( '前缀索引' ),
 	'Protectedpages'            => array( '已保护页面' ),

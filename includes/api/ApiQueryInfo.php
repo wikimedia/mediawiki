@@ -395,10 +395,10 @@ class ApiQueryInfo extends ApiQueryBase {
 			$pageInfo['length'] = intval( $this->pageLength[$pageid] );
 
 			if ( isset( $this->pageIsRedir[$pageid] ) && $this->pageIsRedir[$pageid] ) {
-				$pageInfo['redirect'] = '';
+				$pageInfo['redirect'] = true;
 			}
 			if ( $this->pageIsNew[$pageid] ) {
-				$pageInfo['new'] = '';
+				$pageInfo['new'] = true;
 			}
 		}
 
@@ -421,18 +421,18 @@ class ApiQueryInfo extends ApiQueryBase {
 				$pageInfo['protection'] =
 					$this->protections[$ns][$dbkey];
 			}
-			$this->getResult()->setIndexedTagName( $pageInfo['protection'], 'pr' );
+			ApiResult::setIndexedTagName( $pageInfo['protection'], 'pr' );
 
 			$pageInfo['restrictiontypes'] = array();
 			if ( isset( $this->restrictionTypes[$ns][$dbkey] ) ) {
 				$pageInfo['restrictiontypes'] =
 					$this->restrictionTypes[$ns][$dbkey];
 			}
-			$this->getResult()->setIndexedTagName( $pageInfo['restrictiontypes'], 'rt' );
+			ApiResult::setIndexedTagName( $pageInfo['restrictiontypes'], 'rt' );
 		}
 
-		if ( $this->fld_watched && isset( $this->watched[$ns][$dbkey] ) ) {
-			$pageInfo['watched'] = '';
+		if ( $this->fld_watched ) {
+			$pageInfo['watched'] = isset( $this->watched[$ns][$dbkey] );
 		}
 
 		if ( $this->fld_watchers ) {
@@ -464,8 +464,8 @@ class ApiQueryInfo extends ApiQueryBase {
 			$pageInfo['editurl'] = wfExpandUrl( $title->getFullURL( 'action=edit' ), PROTO_CURRENT );
 			$pageInfo['canonicalurl'] = wfExpandUrl( $title->getFullURL(), PROTO_CANONICAL );
 		}
-		if ( $this->fld_readable && $title->userCan( 'read', $this->getUser() ) ) {
-			$pageInfo['readable'] = '';
+		if ( $this->fld_readable ) {
+			$pageInfo['readable'] = $title->userCan( 'read', $this->getUser() );
 		}
 
 		if ( $this->fld_preload ) {
@@ -497,9 +497,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$pageInfo['actions'] = array();
 			foreach ( $this->params['testactions'] as $action ) {
 				$this->countTestedActions++;
-				if ( $title->userCan( $action, $user ) ) {
-					$pageInfo['actions'][$action] = '';
-				}
+				$pageInfo['actions'][$action] = $title->userCan( $action, $user );
 			}
 		}
 
@@ -532,7 +530,7 @@ class ApiQueryInfo extends ApiQueryBase {
 					'expiry' => $wgContLang->formatExpiry( $row->pr_expiry, TS_ISO_8601 )
 				);
 				if ( $row->pr_cascade ) {
-					$a['cascade'] = '';
+					$a['cascade'] = true;
 				}
 				$this->protections[$title->getNamespace()][$title->getDBkey()][] = $a;
 			}

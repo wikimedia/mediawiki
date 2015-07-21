@@ -35,7 +35,10 @@ class UploadFromUrlTest extends ApiTestCase {
 
 		wfSetupSession( $sessionId );
 
-		return array( $module->getResultData(), $req );
+		return array(
+			$module->getResult()->getResultData( null, array( 'Strip' => 'all' ) ),
+			$req
+		);
 	}
 
 	/**

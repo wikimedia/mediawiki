@@ -1522,7 +1522,7 @@
 	"nmembers": "$1 ahli",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|ahli}}",
 	"nrevisions": "$1 semakan",
-	"nviews": "Dilihat $1 kali",
+
 	"nimagelinks": "Digunakan pada {{PLURAL:$1|sebuah|$1 buah}} laman",
 	"ntransclusions": "digunakan pada {{PLURAL:$1|sebuah|$1 buah}} laman",
 	"specialpage-empty": "Tiada keputusan bagi laporan ini.",

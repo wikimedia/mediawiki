@@ -230,19 +230,17 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			}
 
 			$vals = $this->extractRowInfo( $row );
-			if ( !$vals ) {
-				continue;
-			}
 			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $vals );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'continue', "$row->log_timestamp|$row->log_id" );
 				break;
 			}
 		}
-		$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'item' );
+		$result->addIndexedTagName( array( 'query', $this->getModuleName() ), 'item' );
 	}
 
 	/**
+	 * @deprecated since 1.25 Use LogFormatter::formatParametersForApi instead
 	 * @param ApiResult $result
 	 * @param array $vals
 	 * @param string $params
@@ -255,149 +253,23 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	public static function addLogParams( $result, &$vals, $params, $type,
 		$action, $ts, $legacy = false
 	) {
-		switch ( $type ) {
-			case 'move':
-				if ( $legacy ) {
-					$targetKey = 0;
-					$noredirKey = 1;
-				} else {
-					$targetKey = '4::target';
-					$noredirKey = '5::noredir';
-				}
+		wfDeprecated( __METHOD__, '1.25' );
 
-				if ( isset( $params[$targetKey] ) ) {
-					$title = Title::newFromText( $params[$targetKey] );
-					if ( $title ) {
-						$vals2 = array();
-						ApiQueryBase::addTitleInfo( $vals2, $title, 'new_' );
-						$vals[$type] = $vals2;
-					}
-				}
-				if ( isset( $params[$noredirKey] ) && $params[$noredirKey] ) {
-					$vals[$type]['suppressedredirect'] = '';
-				}
-				$params = null;
-				break;
-			case 'patrol':
-				if ( $legacy ) {
-					$cur = 0;
-					$prev = 1;
-					$auto = 2;
-				} else {
-					$cur = '4::curid';
-					$prev = '5::previd';
-					$auto = '6::auto';
-				}
-				$vals2 = array();
-				$vals2['cur'] = $params[$cur];
-				$vals2['prev'] = $params[$prev];
-				$vals2['auto'] = $params[$auto];
-				$vals[$type] = $vals2;
-				$params = null;
-				break;
-			case 'rights':
-				$vals2 = array();
-				if ( $legacy ) {
-					list( $vals2['old'], $vals2['new'] ) = $params;
-				} else {
-					$vals2['new'] = implode( ', ', $params['5::newgroups'] );
-					$vals2['old'] = implode( ', ', $params['4::oldgroups'] );
-				}
-				$vals[$type] = $vals2;
-				$params = null;
-				break;
-			case 'block':
-				if ( $action == 'unblock' ) {
-					break;
-				}
-				if ( $legacy ) {
-					$durationKey = 0;
-					$flagsKey = 1;
-				} else {
-					$durationKey = '5::duration';
-					$flagsKey = '6::flags';
-				}
-				$vals2 = array();
-				$vals2['duration'] = $params[$durationKey];
-				$vals2['flags'] = isset( $params[$flagsKey] ) ? $params[$flagsKey] : '';
-
-				// Indefinite blocks have no expiry time
-				if ( SpecialBlock::parseExpiryInput( $params[$durationKey] ) !== wfGetDB( DB_SLAVE )->getInfinity() ) {
-					$vals2['expiry'] = wfTimestamp( TS_ISO_8601,
-						strtotime( $params[$durationKey], wfTimestamp( TS_UNIX, $ts ) ) );
-				}
-				$vals[$type] = $vals2;
-				$params = null;
-				break;
-			case 'upload':
-				if ( isset( $params['img_timestamp'] ) ) {
-					$params['img_timestamp'] = wfTimestamp( TS_ISO_8601, $params['img_timestamp'] );
-				}
-				break;
-			case 'merge':
-				// replace the named parameter with numbered for backward compatibility
-				if ( isset( $params['4::dest'] ) ) {
-					$params[] = $params['4::dest'];
-					unset( $params['4::dest'] );
-				}
-				if ( isset( $params['5::mergepoint'] ) ) {
-					$params[] = $params['5::mergepoint'];
-					unset( $params['5::mergepoint'] );
-				}
-				break;
-			case 'delete':
-				if ( $action === 'event' || $action === 'revision' ) {
-					// replace the named parameter with numbered for backward compatibility
-					if ( $action === 'event' ) {
-						$idsKey = '4::ids';
-						$ofieldKey = '5::ofield';
-						$nfieldKey = '6::nfield';
-					} else {
-						if ( isset( $params['4::type'] ) ) {
-							$params[] = $params['4::type'];
-							unset( $params['4::type'] );
-						}
-						$idsKey = '5::ids';
-						$ofieldKey = '6::ofield';
-						$nfieldKey = '7::nfield';
-					}
-					if ( isset( $params[$idsKey] ) ) {
-						$params[] = implode( ',', $params[$idsKey] );
-						unset( $params[$idsKey] );
-					}
-					if ( isset( $params[$ofieldKey] ) ) {
-						$params[] = 'ofield=' . $params[$ofieldKey];
-						unset( $params[$ofieldKey] );
-					}
-					if ( isset( $params[$nfieldKey] ) ) {
-						$params[] = 'nfield=' . $params[$nfieldKey];
-						unset( $params[$nfieldKey] );
-					}
-				}
-				break;
-		}
-		if ( !is_null( $params ) ) {
-			$logParams = array();
-			// Keys like "4::paramname" can't be used for output so we change them to "paramname"
-			foreach ( $params as $key => $value ) {
-				if ( strpos( $key, ':' ) === false ) {
-					$logParams[$key] = $value;
-					continue;
-				}
-				$logParam = explode( ':', $key, 3 );
-				$logParams[$logParam[2]] = $value;
-			}
-			$result->setIndexedTagName( $logParams, 'param' );
-			$result->setIndexedTagName_recursive( $logParams, 'param' );
-			$vals = array_merge( $vals, $logParams );
-		}
+		$entry = new ManualLogEntry( $type, $action );
+		$entry->setParameters( $params );
+		$entry->setTimestamp( $ts );
+		$entry->setLegacy( $legacy );
+		$formatter = LogFormatter::newFromEntry( $entry );
+		$vals['params'] = $formatter->formatParametersForApi();
 
 		return $vals;
 	}
 
 	private function extractRowInfo( $row ) {
 		$logEntry = DatabaseLogEntry::newFromRow( $row );
-		$vals = array();
+		$vals = array(
+			ApiResult::META_TYPE => 'assoc',
+		);
 		$anyHidden = false;
 		$user = $this->getUser();
 
@@ -411,7 +283,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		if ( $this->fld_title || $this->fld_ids || $this->fld_details && $row->log_params !== '' ) {
 			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_ACTION ) ) {
-				$vals['actionhidden'] = '';
+				$vals['actionhidden'] = true;
 				$anyHidden = true;
 			}
 			if ( LogEventsList::userCan( $row, LogPage::DELETED_ACTION, $user ) ) {
@@ -422,16 +294,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 					$vals['pageid'] = intval( $row->page_id );
 					$vals['logpage'] = intval( $row->log_page );
 				}
-				if ( $this->fld_details && $row->log_params !== '' ) {
-					self::addLogParams(
-						$this->getResult(),
-						$vals,
-						$logEntry->getParameters(),
-						$logEntry->getType(),
-						$logEntry->getSubtype(),
-						$logEntry->getTimestamp(),
-						$logEntry->isLegacy()
-					);
+				if ( $this->fld_details ) {
+					$vals['params'] = LogFormatter::newFromEntry( $logEntry )->formatParametersForApi();
 				}
 			}
 		}
@@ -443,7 +307,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		if ( $this->fld_user || $this->fld_userid ) {
 			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_USER ) ) {
-				$vals['userhidden'] = '';
+				$vals['userhidden'] = true;
 				$anyHidden = true;
 			}
 			if ( LogEventsList::userCan( $row, LogPage::DELETED_USER, $user ) ) {
@@ -455,7 +319,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				}
 
 				if ( !$row->log_user ) {
-					$vals['anon'] = '';
+					$vals['anon'] = true;
 				}
 			}
 		}
@@ -465,7 +329,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		if ( ( $this->fld_comment || $this->fld_parsedcomment ) && isset( $row->log_comment ) ) {
 			if ( LogEventsList::isDeleted( $row, LogPage::DELETED_COMMENT ) ) {
-				$vals['commenthidden'] = '';
+				$vals['commenthidden'] = true;
 				$anyHidden = true;
 			}
 			if ( LogEventsList::userCan( $row, LogPage::DELETED_COMMENT, $user ) ) {
@@ -482,7 +346,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		if ( $this->fld_tags ) {
 			if ( $row->ts_tags ) {
 				$tags = explode( ',', $row->ts_tags );
-				$this->getResult()->setIndexedTagName( $tags, 'tag' );
+				ApiResult::setIndexedTagName( $tags, 'tag' );
 				$vals['tags'] = $tags;
 			} else {
 				$vals['tags'] = array();
@@ -490,7 +354,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		}
 
 		if ( $anyHidden && LogEventsList::isDeleted( $row, LogPage::DELETED_RESTRICTED ) ) {
-			$vals['suppressed'] = '';
+			$vals['suppressed'] = true;
 		}
 
 		return $vals;

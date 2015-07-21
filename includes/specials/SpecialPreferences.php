@@ -55,7 +55,7 @@ class SpecialPreferences extends SpecialPage {
 			);
 		}
 
-		$out->addHelpLink( 'Help:Preferences' );
+		$this->addHelpLink( 'Help:Preferences' );
 
 		$htmlForm = Preferences::getFormObject( $this->getUser(), $this->getContext() );
 		$htmlForm->setSubmitCallback( array( 'Preferences', 'tryUISubmit' ) );

@@ -1487,7 +1487,7 @@
 	"nmembers": "$1 a {{PLURAL:$1|kameng|kamkameng}}",
 	"nmemberschanged": "$1 → $2 a {{PLURAL:$2|kameng|kamkameng}}",
 	"nrevisions": "$1 {{PLURAL:$1|a rebison|kadagiti rebision}}",
-	"nviews": "$1 {{PLURAL:$1|a panangkita|kadagiti panangkita}}",
+
 	"nimagelinks": "Inusar iti $1 a {{PLURAL:$1|panid|pampanid}}",
 	"ntransclusions": "inusar iti $1 a {{PLURAL:$1|panid|pampanid}}",
 	"specialpage-empty": "Awan dagiti nagbanagan daytoy a reporta.",

@@ -1,11 +1,5 @@
 <?php
 /**
- *
- *
- * Created on Sep 4, 2006
- *
- * Copyright © 2006 Yuri Astrakhan "<Firstname><Lastname>@gmail.com"
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -33,110 +27,232 @@
  * Each subarray may either be a dictionary - key-value pairs with unique keys,
  * or lists, where the items are added using $data[] = $value notation.
  *
- * There are three special key values that change how XML output is generated:
- *   '_element'     This key sets the tag name for the rest of the elements in the current array.
- *                  It is only inserted if the formatter returned true for getNeedsRawData()
- *   '_subelements' This key causes the specified elements to be returned as subelements rather than attributes.
- *                  It is only inserted if the formatter returned true for getNeedsRawData()
- *   '*'            This key has special meaning only to the XML formatter, and is outputted as is
- *                  for all others. In XML it becomes the content of the current element.
- *
+ * @since 1.25 this is no longer a subclass of ApiBase
  * @ingroup API
  */
-class ApiResult extends ApiBase {
+class ApiResult implements ApiSerializable {
 
 	/**
-	 * override existing value in addValue() and setElement()
+	 * Override existing value in addValue(), setValue(), and similar functions
 	 * @since 1.21
 	 */
 	const OVERRIDE = 1;
 
 	/**
-	 * For addValue() and setElement(), if the value does not exist, add it as the first element.
-	 * In case the new value has no name (numerical index), all indexes will be renumbered.
+	 * For addValue(), setValue() and similar functions, if the value does not
+	 * exist, add it as the first element. In case the new value has no name
+	 * (numerical index), all indexes will be renumbered.
 	 * @since 1.21
 	 */
 	const ADD_ON_TOP = 2;
 
 	/**
-	 * For addValue() and setElement(), do not check size while adding a value
+	 * For addValue() and similar functions, do not check size while adding a value
 	 * Don't use this unless you REALLY know what you're doing.
-	 * Values added while the size checking was disabled will never be counted
+	 * Values added while the size checking was disabled will never be counted.
+	 * Ignored for setValue() and similar functions.
 	 * @since 1.24
 	 */
 	const NO_SIZE_CHECK = 4;
 
-	private $mData, $mIsRawMode, $mSize, $mCheckingSize;
-
-	private $continueAllModules = array();
-	private $continueGeneratedModules = array();
-	private $continuationData = array();
-	private $generatorContinuationData = array();
-	private $generatorParams = array();
-	private $generatorDone = false;
+	/**
+	 * For addValue(), setValue() and similar functions, do not validate data.
+	 * Also disables size checking. If you think you need to use this, you're
+	 * probably wrong.
+	 * @since 1.25
+	 */
+	const NO_VALIDATE = 12;
 
 	/**
-	 * @param ApiMain $main
+	 * Key for the 'indexed tag name' metadata item. Value is string.
+	 * @since 1.25
 	 */
-	public function __construct( ApiMain $main ) {
-		parent::__construct( $main, 'result' );
-		$this->mIsRawMode = false;
-		$this->mCheckingSize = true;
+	const META_INDEXED_TAG_NAME = '_element';
+
+	/**
+	 * Key for the 'subelements' metadata item. Value is string[].
+	 * @since 1.25
+	 */
+	const META_SUBELEMENTS = '_subelements';
+
+	/**
+	 * Key for the 'preserve keys' metadata item. Value is string[].
+	 * @since 1.25
+	 */
+	const META_PRESERVE_KEYS = '_preservekeys';
+
+	/**
+	 * Key for the 'content' metadata item. Value is string.
+	 * @since 1.25
+	 */
+	const META_CONTENT = '_content';
+
+	/**
+	 * Key for the 'type' metadata item. Value is one of the following strings:
+	 *  - default: Like 'array' if all (non-metadata) keys are numeric with no
+	 *    gaps, otherwise like 'assoc'.
+	 *  - array: Keys are used for ordering, but are not output. In a format
+	 *    like JSON, outputs as [].
+	 *  - assoc: In a format like JSON, outputs as {}.
+	 *  - kvp: For a format like XML where object keys have a restricted
+	 *    character set, use an alternative output format. For example,
+	 *    <container><item name="key">value</item></container> rather than
+	 *    <container key="value" />
+	 *  - BCarray: Like 'array' normally, 'default' in backwards-compatibility mode.
+	 *  - BCassoc: Like 'assoc' normally, 'default' in backwards-compatibility mode.
+	 *  - BCkvp: Like 'kvp' normally. In backwards-compatibility mode, forces
+	 *    the alternative output format for all formats, for example
+	 *    [{"name":key,"*":value}] in JSON. META_KVP_KEY_NAME must also be set.
+	 * @since 1.25
+	 */
+	const META_TYPE = '_type';
+
+	/**
+	 * Key (rather than "name" or other default) for when META_TYPE is 'kvp' or
+	 * 'BCkvp'. Value is string.
+	 * @since 1.25
+	 */
+	const META_KVP_KEY_NAME = '_kvpkeyname';
+
+	/**
+	 * Key for the 'BC bools' metadata item. Value is string[].
+	 * Note no setter is provided.
+	 * @since 1.25
+	 */
+	const META_BC_BOOLS = '_BC_bools';
+
+	/**
+	 * Key for the 'BC subelements' metadata item. Value is string[].
+	 * Note no setter is provided.
+	 * @since 1.25
+	 */
+	const META_BC_SUBELEMENTS = '_BC_subelements';
+
+	private $data, $size, $maxSize;
+	private $errorFormatter;
+
+	// Deprecated fields
+	private $isRawMode, $checkingSize, $mainForContinuation;
+
+	/**
+	 * @param int|bool $maxSize Maximum result "size", or false for no limit
+	 * @since 1.25 Takes an integer|bool rather than an ApiMain
+	 */
+	public function __construct( $maxSize ) {
+		if ( $maxSize instanceof ApiMain ) {
+			wfDeprecated( 'ApiMain to ' . __METHOD__, '1.25' );
+			$this->errorFormatter = $maxSize->getErrorFormatter();
+			$this->mainForContinuation = $maxSize;
+			$maxSize = $maxSize->getConfig()->get( 'APIMaxResultSize' );
+		}
+
+		$this->maxSize = $maxSize;
+		$this->isRawMode = false;
+		$this->checkingSize = true;
 		$this->reset();
 	}
+
+	/**
+	 * Set the error formatter
+	 * @since 1.25
+	 * @param ApiErrorFormatter $formatter
+	 */
+	public function setErrorFormatter( ApiErrorFormatter $formatter ) {
+		$this->errorFormatter = $formatter;
+	}
+
+	/**
+	 * Allow for adding one ApiResult into another
+	 * @since 1.25
+	 * @return mixed
+	 */
+	public function serializeForApiResult() {
+		return $this->data;
+	}
+
+	/************************************************************************//**
+	 * @name   Content
+	 * @{
+	 */
 
 	/**
 	 * Clear the current result data.
 	 */
 	public function reset() {
-		$this->mData = array();
-		$this->mSize = 0;
+		$this->data = array(
+			self::META_TYPE => 'assoc', // Usually what's desired
+		);
+		$this->size = 0;
 	}
 
 	/**
-	 * Call this function when special elements such as '_element'
-	 * are needed by the formatter, for example in XML printing.
-	 * @since 1.23 $flag parameter added
-	 * @param bool $flag Set the raw mode flag to this state
+	 * Get the result data array
+	 *
+	 * The returned value should be considered read-only.
+	 *
+	 * Transformations include:
+	 *
+	 * Custom: (callable) Applied before other transformations. Signature is
+	 *  function ( &$data, &$metadata ), return value is ignored. Called for
+	 *  each nested array.
+	 *
+	 * BC: (array) This transformation does various adjustments to bring the
+	 *  output in line with the pre-1.25 result format. The value array is a
+	 *  list of flags: 'nobool', 'no*', 'nosub'.
+	 *  - Boolean-valued items are changed to '' if true or removed if false,
+	 *    unless listed in META_BC_BOOLS. This may be skipped by including
+	 *    'nobool' in the value array.
+	 *  - The tag named by META_CONTENT is renamed to '*', and META_CONTENT is
+	 *    set to '*'. This may be skipped by including 'no*' in the value
+	 *    array.
+	 *  - Tags listed in META_BC_SUBELEMENTS will have their values changed to
+	 *    array( '*' => $value ). This may be skipped by including 'nosub' in
+	 *    the value array.
+	 *  - If META_TYPE is 'BCarray', set it to 'default'
+	 *  - If META_TYPE is 'BCassoc', set it to 'default'
+	 *  - If META_TYPE is 'BCkvp', perform the transformation (even if
+	 *    the Types transformation is not being applied).
+	 *
+	 * Types: (assoc) Apply transformations based on META_TYPE. The values
+	 * array is an associative array with the following possible keys:
+	 *  - AssocAsObject: (bool) If true, return arrays with META_TYPE 'assoc'
+	 *    as objects.
+	 *  - ArmorKVP: (string) If provided, transform arrays with META_TYPE 'kvp'
+	 *    and 'BCkvp' into arrays of two-element arrays, something like this:
+	 *      $output = array();
+	 *      foreach ( $input as $key => $value ) {
+	 *          $pair = array();
+	 *          $pair[$META_KVP_KEY_NAME ?: $ArmorKVP_value] = $key;
+	 *          ApiResult::setContentValue( $pair, 'value', $value );
+	 *          $output[] = $pair;
+	 *      }
+	 *
+	 * Strip: (string) Strips metadata keys from the result.
+	 *  - 'all': Strip all metadata, recursively
+	 *  - 'base': Strip metadata at the top-level only.
+	 *  - 'none': Do not strip metadata.
+	 *  - 'bc': Like 'all', but leave certain pre-1.25 keys.
+	 *
+	 * @since 1.25
+	 * @param array|string|null $path Path to fetch, see ApiResult::addValue
+	 * @param array $transforms See above
+	 * @return mixed Result data, or null if not found
 	 */
-	public function setRawMode( $flag = true ) {
-		$this->mIsRawMode = $flag;
-	}
-
-	/**
-	 * Returns true whether the formatter requested raw data.
-	 * @return bool
-	 */
-	public function getIsRawMode() {
-		return $this->mIsRawMode;
-	}
-
-	/**
-	 * Get the result's internal data array (read-only)
-	 * @return array
-	 */
-	public function getData() {
-		return $this->mData;
-	}
-
-	/**
-	 * Get the 'real' size of a result item. This means the strlen() of the item,
-	 * or the sum of the strlen()s of the elements if the item is an array.
-	 * @param mixed $value
-	 * @return int
-	 */
-	public static function size( $value ) {
-		$s = 0;
-		if ( is_array( $value ) ) {
-			foreach ( $value as $v ) {
-				$s += self::size( $v );
-			}
-		} elseif ( !is_object( $value ) ) {
-			// Objects can't always be cast to string
-			$s = strlen( $value );
+	public function getResultData( $path = array(), $transforms = array() ) {
+		$path = (array)$path;
+		if ( !$path ) {
+			return self::applyTransformations( $this->data, $transforms );
 		}
 
-		return $s;
+		$last = array_pop( $path );
+		$ret = &$this->path( $path, 'dummy' );
+		if ( !isset( $ret[$last] ) ) {
+			return null;
+		} elseif ( is_array( $ret[$last] ) ) {
+			return self::applyTransformations( $ret[$last], $transforms );
+		} else {
+			return $ret[$last];
+		}
 	}
 
 	/**
@@ -144,45 +260,33 @@ class ApiResult extends ApiBase {
 	 * @return int
 	 */
 	public function getSize() {
-		return $this->mSize;
-	}
-
-	/**
-	 * Disable size checking in addValue(). Don't use this unless you
-	 * REALLY know what you're doing. Values added while size checking
-	 * was disabled will not be counted (ever)
-	 * @deprecated since 1.24, use ApiResult::NO_SIZE_CHECK
-	 */
-	public function disableSizeCheck() {
-		$this->mCheckingSize = false;
-	}
-
-	/**
-	 * Re-enable size checking in addValue()
-	 * @deprecated since 1.24, use ApiResult::NO_SIZE_CHECK
-	 */
-	public function enableSizeCheck() {
-		$this->mCheckingSize = true;
+		return $this->size;
 	}
 
 	/**
 	 * Add an output value to the array by name.
+	 *
 	 * Verifies that value with the same name has not been added before.
-	 * @param array $arr To add $value to
-	 * @param string $name Index of $arr to add $value at
+	 *
+	 * @since 1.25
+	 * @param array &$arr To add $value to
+	 * @param string|int|null $name Index of $arr to add $value at,
+	 *   or null to use the next numeric index.
 	 * @param mixed $value
 	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP.
-	 *    This parameter used to be boolean, and the value of OVERRIDE=1 was
-	 *    specifically chosen so that it would be backwards compatible with the
-	 *    new method signature.
-	 *
-	 * @since 1.21 int $flags replaced boolean $override
 	 */
-	public static function setElement( &$arr, $name, $value, $flags = 0 ) {
-		if ( $arr === null || $name === null || $value === null
-			|| !is_array( $arr ) || is_array( $name )
-		) {
-			ApiBase::dieDebug( __METHOD__, 'Bad parameter' );
+	public static function setValue( array &$arr, $name, $value, $flags = 0 ) {
+		if ( !( $flags & ApiResult::NO_VALIDATE ) ) {
+			$value = self::validateValue( $value );
+		}
+
+		if ( $name === null ) {
+			if ( $flags & ApiResult::ADD_ON_TOP ) {
+				array_unshift( $arr, $value );
+			} else {
+				array_push( $arr, $value );
+			}
+			return;
 		}
 
 		$exists = isset( $arr[$name] );
@@ -193,23 +297,892 @@ class ApiResult extends ApiBase {
 				$arr[$name] = $value;
 			}
 		} elseif ( is_array( $arr[$name] ) && is_array( $value ) ) {
-			$merged = array_intersect_key( $arr[$name], $value );
-			if ( !count( $merged ) ) {
+			$conflicts = array_intersect_key( $arr[$name], $value );
+			if ( !$conflicts ) {
 				$arr[$name] += $value;
 			} else {
-				ApiBase::dieDebug( __METHOD__, "Attempting to merge element $name" );
+				$keys = join( ', ', array_keys( $conflicts ) );
+				throw new RuntimeException( "Conflicting keys ($keys) when attempting to merge element $name" );
 			}
 		} else {
-			ApiBase::dieDebug(
-				__METHOD__,
-				"Attempting to add element $name=$value, existing value is {$arr[$name]}"
+			throw new RuntimeException( "Attempting to add element $name=$value, existing value is {$arr[$name]}" );
+		}
+	}
+
+	/**
+	 * Validate a value for addition to the result
+	 * @param mixed $value
+	 */
+	private static function validateValue( $value ) {
+		global $wgContLang;
+
+		if ( is_object( $value ) ) {
+			// Note we use is_callable() here instead of instanceof because
+			// ApiSerializable is an informal protocol (see docs there for details).
+			if ( is_callable( array( $value, 'serializeForApiResult' ) ) ) {
+				$oldValue = $value;
+				$value = $value->serializeForApiResult();
+				if ( is_object( $value ) ) {
+					throw new UnexpectedValueException(
+						get_class( $oldValue ) . "::serializeForApiResult() returned an object of class " .
+							get_class( $value )
+					);
+				}
+
+				// Recursive call instead of fall-through so we can throw a
+				// better exception message.
+				try {
+					return self::validateValue( $value );
+				} catch ( Exception $ex ) {
+					throw new UnexpectedValueException(
+						get_class( $oldValue ) . "::serializeForApiResult() returned an invalid value: " .
+							$ex->getMessage(),
+						0,
+						$ex
+					);
+				}
+			} elseif ( is_callable( array( $value, '__toString' ) ) ) {
+				$value = (string)$value;
+			} else {
+				$value = (array)$value + array( self::META_TYPE => 'assoc' );
+			}
+		}
+		if ( is_array( $value ) ) {
+			foreach ( $value as $k => $v ) {
+				$value[$k] = self::validateValue( $v );
+			}
+		} elseif ( is_float( $value ) && !is_finite( $value ) ) {
+			throw new InvalidArgumentException( "Cannot add non-finite floats to ApiResult" );
+		} elseif ( is_string( $value ) ) {
+			$value = $wgContLang->normalize( $value );
+		} elseif ( $value !== null && !is_scalar( $value ) ) {
+			$type = gettype( $value );
+			if ( is_resource( $value ) ) {
+				$type .= '(' . get_resource_type( $value ) . ')';
+			}
+			throw new InvalidArgumentException( "Cannot add $type to ApiResult" );
+		}
+
+		return $value;
+	}
+
+	/**
+	 * Add value to the output data at the given path.
+	 *
+	 * Path can be an indexed array, each element specifying the branch at which to add the new
+	 * value. Setting $path to array('a','b','c') is equivalent to data['a']['b']['c'] = $value.
+	 * If $path is null, the value will be inserted at the data root.
+	 *
+	 * @param array|string|int|null $path
+	 * @param string|int|null $name See ApiResult::setValue()
+	 * @param mixed $value
+	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP.
+	 *   This parameter used to be boolean, and the value of OVERRIDE=1 was specifically
+	 *   chosen so that it would be backwards compatible with the new method signature.
+	 * @return bool True if $value fits in the result, false if not
+	 * @since 1.21 int $flags replaced boolean $override
+	 */
+	public function addValue( $path, $name, $value, $flags = 0 ) {
+		$arr = &$this->path( $path, ( $flags & ApiResult::ADD_ON_TOP ) ? 'prepend' : 'append' );
+
+		if ( $this->checkingSize && !( $flags & ApiResult::NO_SIZE_CHECK ) ) {
+			$newsize = $this->size + self::valueSize( $value );
+			if ( $this->maxSize !== false && $newsize > $this->maxSize ) {
+				/// @todo Add i18n message when replacing calls to ->setWarning()
+				$msg = new ApiRawMessage( 'This result was truncated because it would otherwise ' .
+					' be larger than the limit of $1 bytes', 'truncatedresult' );
+				$msg->numParams( $this->maxSize );
+				$this->errorFormatter->addWarning( 'result', $msg );
+				return false;
+			}
+			$this->size = $newsize;
+		}
+
+		self::setValue( $arr, $name, $value, $flags );
+		return true;
+	}
+
+	/**
+	 * Remove an output value to the array by name.
+	 * @param array &$arr To remove $value from
+	 * @param string|int $name Index of $arr to remove
+	 * @return mixed Old value, or null
+	 */
+	public static function unsetValue( array &$arr, $name ) {
+		$ret = null;
+		if ( isset( $arr[$name] ) ) {
+			$ret = $arr[$name];
+			unset( $arr[$name] );
+		}
+		return $ret;
+	}
+
+	/**
+	 * Remove value from the output data at the given path.
+	 *
+	 * @since 1.25
+	 * @param array|string|null $path See ApiResult::addValue()
+	 * @param string|int|null $name Index to remove at $path.
+	 *   If null, $path itself is removed.
+	 * @param int $flags Flags used when adding the value
+	 * @return mixed Old value, or null
+	 */
+	public function removeValue( $path, $name, $flags = 0 ) {
+		$path = (array)$path;
+		if ( $name === null ) {
+			if ( !$path ) {
+				throw new InvalidArgumentException( 'Cannot remove the data root' );
+			}
+			$name = array_pop( $path );
+		}
+		$ret = self::unsetValue( $this->path( $path, 'dummy' ), $name );
+		if ( $this->checkingSize && !( $flags & ApiResult::NO_SIZE_CHECK ) ) {
+			$newsize = $this->size - self::valueSize( $ret );
+			$this->size = max( $newsize, 0 );
+		}
+		return $ret;
+	}
+
+	/**
+	 * Add an output value to the array by name and mark as META_CONTENT.
+	 *
+	 * @since 1.25
+	 * @param array &$arr To add $value to
+	 * @param string|int $name Index of $arr to add $value at.
+	 * @param mixed $value
+	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP.
+	 */
+	public static function setContentValue( array &$arr, $name, $value, $flags = 0 ) {
+		if ( $name === null ) {
+			throw new InvalidArgumentException( 'Content value must be named' );
+		}
+		self::setContentField( $arr, $name, $flags );
+		self::setValue( $arr, $name, $value, $flags );
+	}
+
+	/**
+	 * Add value to the output data at the given path and mark as META_CONTENT
+	 *
+	 * @since 1.25
+	 * @param array|string|null $path See ApiResult::addValue()
+	 * @param string|int $name See ApiResult::setValue()
+	 * @param mixed $value
+	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP.
+	 * @return bool True if $value fits in the result, false if not
+	 */
+	public function addContentValue( $path, $name, $value, $flags = 0 ) {
+		if ( $name === null ) {
+			throw new InvalidArgumentException( 'Content value must be named' );
+		}
+		$this->addContentField( $path, $name, $flags );
+		$this->addValue( $path, $name, $value, $flags );
+	}
+
+	/**
+	 * Add the numeric limit for a limit=max to the result.
+	 *
+	 * @since 1.25
+	 * @param string $moduleName
+	 * @param int $limit
+	 */
+	public function addParsedLimit( $moduleName, $limit ) {
+		// Add value, allowing overwriting
+		$this->addValue( 'limits', $moduleName, $limit,
+			ApiResult::OVERRIDE | ApiResult::NO_SIZE_CHECK );
+	}
+
+	/**@}*/
+
+	/************************************************************************//**
+	 * @name   Metadata
+	 * @{
+	 */
+
+	/**
+	 * Set the name of the content field name (META_CONTENT)
+	 *
+	 * @since 1.25
+	 * @param array &$arr
+	 * @param string|int $name Name of the field
+	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP.
+	 */
+	public static function setContentField( array &$arr, $name, $flags = 0 ) {
+		if ( isset( $arr[self::META_CONTENT] ) &&
+			isset( $arr[$arr[self::META_CONTENT]] ) &&
+			!( $flags & self::OVERRIDE )
+		) {
+			throw new RuntimeException(
+				"Attempting to set content element as $name when " . $arr[self::META_CONTENT] .
+					" is already set as the content element"
 			);
 		}
+		$arr[self::META_CONTENT] = $name;
+	}
+
+	/**
+	 * Set the name of the content field name (META_CONTENT)
+	 *
+	 * @since 1.25
+	 * @param array|string|null $path See ApiResult::addValue()
+	 * @param string|int $name Name of the field
+	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP.
+	 */
+	public function addContentField( $path, $name, $flags = 0 ) {
+		$arr = &$this->path( $path, ( $flags & ApiResult::ADD_ON_TOP ) ? 'prepend' : 'append' );
+		self::setContentField( $arr, $name, $flags );
+	}
+
+	/**
+	 * Causes the elements with the specified names to be output as
+	 * subelements rather than attributes.
+	 * @since 1.25 is static
+	 * @param array &$arr
+	 * @param array|string|int $names The element name(s) to be output as subelements
+	 */
+	public static function setSubelementsList( array &$arr, $names ) {
+		if ( !isset( $arr[self::META_SUBELEMENTS] ) ) {
+			$arr[self::META_SUBELEMENTS] = (array)$names;
+		} else {
+			$arr[self::META_SUBELEMENTS] = array_merge( $arr[self::META_SUBELEMENTS], (array)$names );
+		}
+	}
+
+	/**
+	 * Causes the elements with the specified names to be output as
+	 * subelements rather than attributes.
+	 * @since 1.25
+	 * @param array|string|null $path See ApiResult::addValue()
+	 * @param array|string|int $names The element name(s) to be output as subelements
+	 */
+	public function addSubelementsList( $path, $names ) {
+		$arr = &$this->path( $path );
+		self::setSubelementsList( $arr, $names );
+	}
+
+	/**
+	 * Causes the elements with the specified names to be output as
+	 * attributes (when possible) rather than as subelements.
+	 * @since 1.25
+	 * @param array &$arr
+	 * @param array|string|int $names The element name(s) to not be output as subelements
+	 */
+	public static function unsetSubelementsList( array &$arr, $names ) {
+		if ( isset( $arr[self::META_SUBELEMENTS] ) ) {
+			$arr[self::META_SUBELEMENTS] = array_diff( $arr[self::META_SUBELEMENTS], (array)$names );
+		}
+	}
+
+	/**
+	 * Causes the elements with the specified names to be output as
+	 * attributes (when possible) rather than as subelements.
+	 * @since 1.25
+	 * @param array|string|null $path See ApiResult::addValue()
+	 * @param array|string|int $names The element name(s) to not be output as subelements
+	 */
+	public function removeSubelementsList( $path, $names ) {
+		$arr = &$this->path( $path );
+		self::unsetSubelementsList( $arr, $names );
+	}
+
+	/**
+	 * Set the tag name for numeric-keyed values in XML format
+	 * @since 1.25 is static
+	 * @param array &$arr
+	 * @param string $tag Tag name
+	 */
+	public static function setIndexedTagName( array &$arr, $tag ) {
+		if ( !is_string( $tag ) ) {
+			throw new InvalidArgumentException( 'Bad tag name' );
+		}
+		$arr[self::META_INDEXED_TAG_NAME] = $tag;
+	}
+
+	/**
+	 * Set the tag name for numeric-keyed values in XML format
+	 * @since 1.25
+	 * @param array|string|null $path See ApiResult::addValue()
+	 * @param string $tag Tag name
+	 */
+	public function addIndexedTagName( $path, $tag ) {
+		$arr = &$this->path( $path );
+		self::setIndexedTagName( $arr, $tag );
+	}
+
+	/**
+	 * Set indexed tag name on $arr and all subarrays
+	 *
+	 * @since 1.25
+	 * @param array &$arr
+	 * @param string $tag Tag name
+	 */
+	public static function setIndexedTagNameRecursive( array &$arr, $tag ) {
+		if ( !is_string( $tag ) ) {
+			throw new InvalidArgumentException( 'Bad tag name' );
+		}
+		$arr[self::META_INDEXED_TAG_NAME] = $tag;
+		foreach ( $arr as $k => &$v ) {
+			if ( !self::isMetadataKey( $k ) && is_array( $v ) ) {
+				self::setIndexedTagNameRecursive( $v, $tag );
+			}
+		}
+	}
+
+	/**
+	 * Set indexed tag name on $path and all subarrays
+	 *
+	 * @since 1.25
+	 * @param array|string|null $path See ApiResult::addValue()
+	 * @param string $tag Tag name
+	 */
+	public function addIndexedTagNameRecursive( $path, $tag ) {
+		$arr = &$this->path( $path );
+		self::setIndexedTagNameRecursive( $arr, $tag );
+	}
+
+	/**
+	 * Preserve specified keys.
+	 *
+	 * This prevents XML name mangling and preventing keys from being removed
+	 * by self::stripMetadata().
+	 *
+	 * @since 1.25
+	 * @param array &$arr
+	 * @param array|string $names The element name(s) to preserve
+	 */
+	public static function setPreserveKeysList( array &$arr, $names ) {
+		if ( !isset( $arr[self::META_PRESERVE_KEYS] ) ) {
+			$arr[self::META_PRESERVE_KEYS] = (array)$names;
+		} else {
+			$arr[self::META_PRESERVE_KEYS] = array_merge( $arr[self::META_PRESERVE_KEYS], (array)$names );
+		}
+	}
+
+	/**
+	 * Preserve specified keys.
+	 * @since 1.25
+	 * @see self::setPreserveKeysList()
+	 * @param array|string|null $path See ApiResult::addValue()
+	 * @param array|string $names The element name(s) to preserve
+	 */
+	public function addPreserveKeysList( $path, $names ) {
+		$arr = &$this->path( $path );
+		self::setPreserveKeysList( $arr, $names );
+	}
+
+	/**
+	 * Don't preserve specified keys.
+	 * @since 1.25
+	 * @see self::setPreserveKeysList()
+	 * @param array &$arr
+	 * @param array|string $names The element name(s) to not preserve
+	 */
+	public static function unsetPreserveKeysList( array &$arr, $names ) {
+		if ( isset( $arr[self::META_PRESERVE_KEYS] ) ) {
+			$arr[self::META_PRESERVE_KEYS] = array_diff( $arr[self::META_PRESERVE_KEYS], (array)$names );
+		}
+	}
+
+	/**
+	 * Don't preserve specified keys.
+	 * @since 1.25
+	 * @see self::setPreserveKeysList()
+	 * @param array|string|null $path See ApiResult::addValue()
+	 * @param array|string $names The element name(s) to not preserve
+	 */
+	public function removePreserveKeysList( $path, $names ) {
+		$arr = &$this->path( $path );
+		self::unsetPreserveKeysList( $arr, $names );
+	}
+
+	/**
+	 * Set the array data type
+	 *
+	 * @since 1.25
+	 * @param array &$arr
+	 * @param string $type See ApiResult::META_TYPE
+	 * @param string $kvpKeyName See ApiResult::META_KVP_KEY_NAME
+	 */
+	public static function setArrayType( array &$arr, $type, $kvpKeyName = null ) {
+		if ( !in_array( $type, array( 'default', 'array', 'assoc', 'kvp', 'BCarray', 'BCassoc', 'BCkvp' ), true ) ) {
+			throw new InvalidArgumentException( 'Bad type' );
+		}
+		$arr[self::META_TYPE] = $type;
+		if ( is_string( $kvpKeyName ) ) {
+			$arr[self::META_KVP_KEY_NAME] = $kvpKeyName;
+		}
+	}
+
+	/**
+	 * Set the array data type for a path
+	 * @since 1.25
+	 * @param array|string|null $path See ApiResult::addValue()
+	 * @param string $type See ApiResult::META_TYPE
+	 * @param string $kvpKeyName See ApiResult::META_KVP_KEY_NAME
+	 */
+	public function addArrayType( $path, $tag, $kvpKeyName = null ) {
+		$arr = &$this->path( $path );
+		self::setArrayType( $arr, $tag, $kvpKeyName );
+	}
+
+	/**
+	 * Set the array data type recursively
+	 * @since 1.25
+	 * @param array &$arr
+	 * @param string $type See ApiResult::META_TYPE
+	 * @param string $kvpKeyName See ApiResult::META_KVP_KEY_NAME
+	 */
+	public static function setArrayTypeRecursive( array &$arr, $type, $kvpKeyName = null ) {
+		self::setArrayType( $arr, $type, $kvpKeyName );
+		foreach ( $arr as $k => &$v ) {
+			if ( !self::isMetadataKey( $k ) && is_array( $v ) ) {
+				self::setArrayTypeRecursive( $v, $type, $kvpKeyName );
+			}
+		}
+	}
+
+	/**
+	 * Set the array data type for a path recursively
+	 * @since 1.25
+	 * @param array|string|null $path See ApiResult::addValue()
+	 * @param string $type See ApiResult::META_TYPE
+	 * @param string $kvpKeyName See ApiResult::META_KVP_KEY_NAME
+	 */
+	public function addArrayTypeRecursive( $path, $tag, $kvpKeyName = null ) {
+		$arr = &$this->path( $path );
+		self::setArrayTypeRecursive( $arr, $tag, $kvpKeyName );
+	}
+
+	/**@}*/
+
+	/************************************************************************//**
+	 * @name   Utility
+	 * @{
+	 */
+
+	/**
+	 * Test whether a key should be considered metadata
+	 *
+	 * @param string $key
+	 * @return bool
+	 */
+	public static function isMetadataKey( $key ) {
+		return substr( $key, 0, 1 ) === '_';
+	}
+
+	/**
+	 * Apply transformations to an array, returning the transformed array.
+	 *
+	 * @see ApiResult::getResultData()
+	 * @since 1.25
+	 * @param array $data
+	 * @param array $transforms
+	 * @return array|object
+	 */
+	protected static function applyTransformations( array $dataIn, array $transforms ) {
+		$strip = isset( $transforms['Strip'] ) ? $transforms['Strip'] : 'none';
+		if ( $strip === 'base' ) {
+			$transforms['Strip'] = 'none';
+		}
+		$transformTypes = isset( $transforms['Types'] ) ? $transforms['Types'] : null;
+		if ( $transformTypes !== null && !is_array( $transformTypes ) ) {
+			throw new InvalidArgumentException( __METHOD__ . ':Value for "Types" must be an array' );
+		}
+
+		$metadata = array();
+		$data = self::stripMetadataNonRecursive( $dataIn, $metadata );
+
+		if ( isset( $transforms['Custom'] ) ) {
+			if ( !is_callable( $transforms['Custom'] ) ) {
+				throw new InvalidArgumentException( __METHOD__ . ': Value for "Custom" must be callable' );
+			}
+			call_user_func_array( $transforms['Custom'], array( &$data, &$metadata ) );
+		}
+
+		if ( ( isset( $transforms['BC'] ) || $transformTypes !== null ) &&
+			isset( $metadata[self::META_TYPE] ) && $metadata[self::META_TYPE] === 'BCkvp' &&
+			!isset( $metadata[self::META_KVP_KEY_NAME] )
+		) {
+			throw new UnexpectedValueException( 'Type "BCkvp" used without setting ' .
+				'ApiResult::META_KVP_KEY_NAME metadata item' );
+		}
+
+		// BC transformations
+		$boolKeys = null;
+		$forceKVP = false;
+		if ( isset( $transforms['BC'] ) ) {
+			if ( !is_array( $transforms['BC'] ) ) {
+				throw new InvalidArgumentException( __METHOD__ . ':Value for "BC" must be an array' );
+			}
+			if ( !in_array( 'nobool', $transforms['BC'], true ) ) {
+				$boolKeys = isset( $metadata[self::META_BC_BOOLS] )
+					? array_flip( $metadata[self::META_BC_BOOLS] )
+					: array();
+			}
+
+			if ( !in_array( 'no*', $transforms['BC'], true ) &&
+				isset( $metadata[self::META_CONTENT] ) && $metadata[self::META_CONTENT] !== '*'
+			) {
+				$k = $metadata[self::META_CONTENT];
+				$data['*'] = $data[$k];
+				unset( $data[$k] );
+				$metadata[self::META_CONTENT] = '*';
+			}
+
+			if ( !in_array( 'nosub', $transforms['BC'], true ) &&
+				isset( $metadata[self::META_BC_SUBELEMENTS] )
+			) {
+				foreach ( $metadata[self::META_BC_SUBELEMENTS] as $k ) {
+					if ( isset( $data[$k] ) ) {
+						$data[$k] = array(
+							'*' => $data[$k],
+							self::META_CONTENT => '*',
+							self::META_TYPE => 'assoc',
+						);
+					}
+				}
+			}
+
+			if ( isset( $metadata[self::META_TYPE] ) ) {
+				switch ( $metadata[self::META_TYPE] ) {
+					case 'BCarray':
+					case 'BCassoc':
+						$metadata[self::META_TYPE] = 'default';
+						break;
+					case 'BCkvp':
+						$transformTypes['ArmorKVP'] = $metadata[self::META_KVP_KEY_NAME];
+						break;
+				}
+			}
+		}
+
+		// Figure out type, do recursive calls, and do boolean transform if necessary
+		$defaultType = 'array';
+		$maxKey = -1;
+		foreach ( $data as $k => &$v ) {
+			$v = is_array( $v ) ? self::applyTransformations( $v, $transforms ) : $v;
+			if ( $boolKeys !== null && is_bool( $v ) && !isset( $boolKeys[$k] ) ) {
+				if ( !$v ) {
+					unset( $data[$k] );
+					continue;
+				}
+				$v = '';
+			}
+			if ( is_string( $k ) ) {
+				$defaultType = 'assoc';
+			} elseif ( $k > $maxKey ) {
+				$maxKey = $k;
+			}
+		}
+		unset( $v );
+
+		// Determine which metadata to keep
+		switch ( $strip ) {
+			case 'all':
+			case 'base':
+				$keepMetadata = array();
+				break;
+			case 'none':
+				$keepMetadata = &$metadata;
+				break;
+			case 'bc':
+				$keepMetadata = array_intersect_key( $metadata, array(
+					self::META_INDEXED_TAG_NAME => 1,
+					self::META_SUBELEMENTS => 1,
+				) );
+				break;
+			default:
+				throw new InvalidArgumentException( __METHOD__ . ': Unknown value for "Strip"' );
+		}
+
+		// Type transformation
+		if ( $transformTypes !== null ) {
+			if ( $defaultType === 'array' && $maxKey !== count( $data ) - 1 ) {
+				$defaultType = 'assoc';
+			}
+
+			// Override type, if provided
+			$type = $defaultType;
+			if ( isset( $metadata[self::META_TYPE] ) && $metadata[self::META_TYPE] !== 'default' ) {
+				$type = $metadata[self::META_TYPE];
+			}
+			if ( ( $type === 'kvp' || $type === 'BCkvp' ) &&
+				empty( $transformTypes['ArmorKVP'] )
+			) {
+				$type = 'assoc';
+			} elseif ( $type === 'BCarray' ) {
+				$type = 'array';
+			} elseif ( $type === 'BCassoc' ) {
+				$type = 'assoc';
+			}
+
+			// Apply transformation
+			switch ( $type ) {
+				case 'assoc':
+					$metadata[self::META_TYPE] = 'assoc';
+					$data += $keepMetadata;
+					return empty( $transformTypes['AssocAsObject'] ) ? $data : (object)$data;
+
+				case 'array':
+					ksort( $data );
+					$data = array_values( $data );
+					$metadata[self::META_TYPE] = 'array';
+					return $data + $keepMetadata;
+
+				case 'kvp':
+				case 'BCkvp':
+					$key = isset( $metadata[self::META_KVP_KEY_NAME] )
+						? $metadata[self::META_KVP_KEY_NAME]
+						: $transformTypes['ArmorKVP'];
+					$valKey = isset( $transforms['BC'] ) ? '*' : 'value';
+					$assocAsObject = !empty( $transformTypes['AssocAsObject'] );
+
+					$ret = array();
+					foreach ( $data as $k => $v ) {
+						$item = array(
+							$key => $k,
+							$valKey => $v,
+						);
+						if ( $strip === 'none' ) {
+							$item += array(
+								self::META_PRESERVE_KEYS => array( $key ),
+								self::META_CONTENT => $valKey,
+								self::META_TYPE => 'assoc',
+							);
+						}
+						$ret[] = $assocAsObject ? (object)$item : $item;
+					}
+					$metadata[self::META_TYPE] = 'array';
+
+					return $ret + $keepMetadata;
+
+				default:
+					throw new UnexpectedValueException( "Unknown type '$type'" );
+			}
+		} else {
+			return $data + $keepMetadata;
+		}
+	}
+
+	/**
+	 * Recursively remove metadata keys from a data array or object
+	 *
+	 * Note this removes all potential metadata keys, not just the defined
+	 * ones.
+	 *
+	 * @since 1.25
+	 * @param array|object $data
+	 * @return array|object
+	 */
+	public static function stripMetadata( $data ) {
+		if ( is_array( $data ) || is_object( $data ) ) {
+			$isObj = is_object( $data );
+			if ( $isObj ) {
+				$data = (array)$data;
+			}
+			$preserveKeys = isset( $data[self::META_PRESERVE_KEYS] )
+				? (array)$data[self::META_PRESERVE_KEYS]
+				: array();
+			foreach ( $data as $k => $v ) {
+				if ( self::isMetadataKey( $k ) && !in_array( $k, $preserveKeys, true ) ) {
+					unset( $data[$k] );
+				} elseif ( is_array( $v ) || is_object( $v ) ) {
+					$data[$k] = self::stripMetadata( $v );
+				}
+			}
+			if ( $isObj ) {
+				$data = (object)$data;
+			}
+		}
+		return $data;
+	}
+
+	/**
+	 * Remove metadata keys from a data array or object, non-recursive
+	 *
+	 * Note this removes all potential metadata keys, not just the defined
+	 * ones.
+	 *
+	 * @since 1.25
+	 * @param array|object $data
+	 * @param array &$metadata Store metadata here, if provided
+	 * @return array|object
+	 */
+	public static function stripMetadataNonRecursive( $data, &$metadata = null ) {
+		if ( !is_array( $metadata ) ) {
+			$metadata = array();
+		}
+		if ( is_array( $data ) || is_object( $data ) ) {
+			$isObj = is_object( $data );
+			if ( $isObj ) {
+				$data = (array)$data;
+			}
+			$preserveKeys = isset( $data[self::META_PRESERVE_KEYS] )
+				? (array)$data[self::META_PRESERVE_KEYS]
+				: array();
+			foreach ( $data as $k => $v ) {
+				if ( self::isMetadataKey( $k ) && !in_array( $k, $preserveKeys, true ) ) {
+					$metadata[$k] = $v;
+					unset( $data[$k] );
+				}
+			}
+			if ( $isObj ) {
+				$data = (object)$data;
+			}
+		}
+		return $data;
+	}
+
+	/**
+	 * Get the 'real' size of a result item. This means the strlen() of the item,
+	 * or the sum of the strlen()s of the elements if the item is an array.
+	 * @note Once the deprecated public self::size is removed, we can rename this back to a less awkward name.
+	 * @param mixed $value
+	 * @return int
+	 */
+	private static function valueSize( $value ) {
+		$s = 0;
+		if ( is_array( $value ) ||
+			is_object( $value ) && !is_callable( array( $value, '__toString' ) )
+		) {
+			foreach ( $value as $k => $v ) {
+				if ( !self::isMetadataKey( $s ) ) {
+					$s += self::valueSize( $v );
+				}
+			}
+		} elseif ( is_scalar( $value ) ) {
+			$s = strlen( $value );
+		}
+
+		return $s;
+	}
+
+	/**
+	 * Return a reference to the internal data at $path
+	 *
+	 * @param array|string|null $path
+	 * @param string $create
+	 *   If 'append', append empty arrays.
+	 *   If 'prepend', prepend empty arrays.
+	 *   If 'dummy', return a dummy array.
+	 *   Else, raise an error.
+	 * @return array
+	 */
+	private function &path( $path, $create = 'append' ) {
+		$path = (array)$path;
+		$ret = &$this->data;
+		foreach ( $path as $i => $k ) {
+			if ( !isset( $ret[$k] ) ) {
+				switch ( $create ) {
+					case 'append':
+						$ret[$k] = array();
+						break;
+					case 'prepend':
+						$ret = array( $k => array() ) + $ret;
+						break;
+					case 'dummy':
+						$tmp = array();
+						return $tmp;
+					default:
+						$fail = join( '.', array_slice( $path, 0, $i + 1 ) );
+						throw new InvalidArgumentException( "Path $fail does not exist" );
+				}
+			}
+			if ( !is_array( $ret[$k] ) ) {
+				$fail = join( '.', array_slice( $path, 0, $i + 1 ) );
+				throw new InvalidArgumentException( "Path $fail is not an array" );
+			}
+			$ret = &$ret[$k];
+		}
+		return $ret;
+	}
+
+	/**@}*/
+
+	/************************************************************************//**
+	 * @name   Deprecated
+	 * @{
+	 */
+
+	/**
+	 * Call this function when special elements such as '_element'
+	 * are needed by the formatter, for example in XML printing.
+	 * @deprecated since 1.25, you shouldn't have been using it in the first place
+	 * @since 1.23 $flag parameter added
+	 * @param bool $flag Set the raw mode flag to this state
+	 */
+	public function setRawMode( $flag = true ) {
+		// Can't wfDeprecated() here, since we need to set this flag from
+		// ApiMain for BC with stuff using self::getIsRawMode as
+		// "self::getIsXMLMode".
+		$this->isRawMode = $flag;
+	}
+
+	/**
+	 * Returns true whether the formatter requested raw data.
+	 * @deprecated since 1.25, you shouldn't have been using it in the first place
+	 * @return bool
+	 */
+	public function getIsRawMode() {
+		/// @todo: After Wikibase stops calling this, warn
+		return $this->isRawMode;
+	}
+
+	/**
+	 * Get the result's internal data array (read-only)
+	 * @deprecated since 1.25, use $this->getResultData() instead
+	 * @return array
+	 */
+	public function getData() {
+		wfDeprecated( __METHOD__, '1.25' );
+		return $this->getResultData( null, array(
+			'BC' => array(),
+			'Types' => array(),
+			'Strip' => $this->isRawMode ? 'bc' : 'all',
+		) );
+	}
+
+	/**
+	 * Disable size checking in addValue(). Don't use this unless you
+	 * REALLY know what you're doing. Values added while size checking
+	 * was disabled will not be counted (ever)
+	 * @deprecated since 1.24, use ApiResult::NO_SIZE_CHECK
+	 */
+	public function disableSizeCheck() {
+		wfDeprecated( __METHOD__, '1.24' );
+		$this->checkingSize = false;
+	}
+
+	/**
+	 * Re-enable size checking in addValue()
+	 * @deprecated since 1.24, use ApiResult::NO_SIZE_CHECK
+	 */
+	public function enableSizeCheck() {
+		wfDeprecated( __METHOD__, '1.24' );
+		$this->checkingSize = true;
+	}
+
+	/**
+	 * Alias for self::setValue()
+	 *
+	 * @since 1.21 int $flags replaced boolean $override
+	 * @deprecated since 1.25, use self::setValue() instead
+	 * @param array $arr To add $value to
+	 * @param string $name Index of $arr to add $value at
+	 * @param mixed $value
+	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP.
+	 *    This parameter used to be boolean, and the value of OVERRIDE=1 was
+	 *    specifically chosen so that it would be backwards compatible with the
+	 *    new method signature.
+	 */
+	public static function setElement( &$arr, $name, $value, $flags = 0 ) {
+		wfDeprecated( __METHOD__, '1.25' );
+		return self::setValue( $arr, $name, $value, $flags );
 	}
 
 	/**
 	 * Adds a content element to an array.
 	 * Use this function instead of hardcoding the '*' element.
+	 * @deprecated since 1.25, use self::setContentValue() instead
 	 * @param array $arr To add the content element to
 	 * @param mixed $value
 	 * @param string $subElemName When present, content element is created
@@ -217,241 +1190,75 @@ class ApiResult extends ApiBase {
 	 *  format "<elem>text</elem>" without attributes.
 	 */
 	public static function setContent( &$arr, $value, $subElemName = null ) {
+		wfDeprecated( __METHOD__, '1.25' );
 		if ( is_array( $value ) ) {
-			ApiBase::dieDebug( __METHOD__, 'Bad parameter' );
+			throw new InvalidArgumentException( __METHOD__ . ': Bad parameter' );
 		}
 		if ( is_null( $subElemName ) ) {
-			ApiResult::setElement( $arr, '*', $value );
+			self::setContentValue( $arr, 'content', $value );
 		} else {
 			if ( !isset( $arr[$subElemName] ) ) {
 				$arr[$subElemName] = array();
 			}
-			ApiResult::setElement( $arr[$subElemName], '*', $value );
+			self::setContentValue( $arr[$subElemName], 'content', $value );
 		}
 	}
 
 	/**
-	 * Causes the elements with the specified names to be output as
-	 * subelements rather than attributes.
-	 * @param array $arr
-	 * @param array|string $names The element name(s) to be output as subelements
-	 */
-	public function setSubelements( &$arr, $names ) {
-		// In raw mode, add the '_subelements', otherwise just ignore
-		if ( !$this->getIsRawMode() ) {
-			return;
-		}
-		if ( $arr === null || $names === null || !is_array( $arr ) ) {
-			ApiBase::dieDebug( __METHOD__, 'Bad parameter' );
-		}
-		if ( !is_array( $names ) ) {
-			$names = array( $names );
-		}
-		if ( !isset( $arr['_subelements'] ) ) {
-			$arr['_subelements'] = $names;
-		} else {
-			$arr['_subelements'] = array_merge( $arr['_subelements'], $names );
-		}
-	}
-
-	/**
-	 * In case the array contains indexed values (in addition to named),
-	 * give all indexed values the given tag name. This function MUST be
-	 * called on every array that has numerical indexes.
-	 * @param array $arr
-	 * @param string $tag Tag name
-	 */
-	public function setIndexedTagName( &$arr, $tag ) {
-		// In raw mode, add the '_element', otherwise just ignore
-		if ( !$this->getIsRawMode() ) {
-			return;
-		}
-		if ( $arr === null || $tag === null || !is_array( $arr ) || is_array( $tag ) ) {
-			ApiBase::dieDebug( __METHOD__, 'Bad parameter' );
-		}
-		// Do not use setElement() as it is ok to call this more than once
-		$arr['_element'] = $tag;
-	}
-
-	/**
-	 * Calls setIndexedTagName() on each sub-array of $arr
+	 * Set indexed tag name on all subarrays of $arr
+	 *
+	 * Does not set the tag name for $arr itself.
+	 *
+	 * @deprecated since 1.25, use self::setIndexedTagNameRecursive() instead
 	 * @param array $arr
 	 * @param string $tag Tag name
 	 */
 	public function setIndexedTagName_recursive( &$arr, $tag ) {
+		wfDeprecated( __METHOD__, '1.25' );
 		if ( !is_array( $arr ) ) {
 			return;
 		}
-		foreach ( $arr as &$a ) {
-			if ( !is_array( $a ) ) {
-				continue;
+		if ( !is_string( $tag ) ) {
+			throw new InvalidArgumentException( 'Bad tag name' );
+		}
+		foreach ( $arr as $k => &$v ) {
+			if ( !self::isMetadataKey( $k ) && is_array( $v ) ) {
+				$v[self::META_INDEXED_TAG_NAME] = $tag;
+				$this->setIndexedTagName_recursive( $v, $tag );
 			}
-			$this->setIndexedTagName( $a, $tag );
-			$this->setIndexedTagName_recursive( $a, $tag );
 		}
 	}
 
 	/**
-	 * Calls setIndexedTagName() on an array already in the result.
-	 * Don't specify a path to a value that's not in the result, or
-	 * you'll get nasty errors.
+	 * Alias for self::addIndexedTagName()
+	 * @deprecated since 1.25, use $this->addIndexedTagName() instead
 	 * @param array $path Path to the array, like addValue()'s $path
 	 * @param string $tag
 	 */
 	public function setIndexedTagName_internal( $path, $tag ) {
-		$data = &$this->mData;
-		foreach ( (array)$path as $p ) {
-			if ( !isset( $data[$p] ) ) {
-				$data[$p] = array();
-			}
-			$data = &$data[$p];
-		}
-		if ( is_null( $data ) ) {
-			return;
-		}
-		$this->setIndexedTagName( $data, $tag );
+		wfDeprecated( __METHOD__, '1.25' );
+		$this->addIndexedTagName( $path, $tag );
 	}
 
 	/**
-	 * Add value to the output data at the given path.
-	 * Path can be an indexed array, each element specifying the branch at which to add the new
-	 * value. Setting $path to array('a','b','c') is equivalent to data['a']['b']['c'] = $value.
-	 * If $path is null, the value will be inserted at the data root.
-	 * If $name is empty, the $value is added as a next list element data[] = $value.
-	 *
-	 * @param array|string|null $path
-	 * @param string $name
-	 * @param mixed $value
-	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP.
-	 *   This parameter used to be boolean, and the value of OVERRIDE=1 was specifically
-	 *   chosen so that it would be backwards compatible with the new method signature.
-	 * @return bool True if $value fits in the result, false if not
-	 *
-	 * @since 1.21 int $flags replaced boolean $override
-	 */
-	public function addValue( $path, $name, $value, $flags = 0 ) {
-		$data = &$this->mData;
-		if ( $this->mCheckingSize && !( $flags & ApiResult::NO_SIZE_CHECK ) ) {
-			$newsize = $this->mSize + self::size( $value );
-			$maxResultSize = $this->getConfig()->get( 'APIMaxResultSize' );
-			if ( $newsize > $maxResultSize ) {
-				$this->setWarning(
-					"This result was truncated because it would otherwise be larger than the " .
-						"limit of {$maxResultSize} bytes" );
-
-				return false;
-			}
-			$this->mSize = $newsize;
-		}
-
-		$addOnTop = $flags & ApiResult::ADD_ON_TOP;
-		if ( $path !== null ) {
-			foreach ( (array)$path as $p ) {
-				if ( !isset( $data[$p] ) ) {
-					if ( $addOnTop ) {
-						$data = array( $p => array() ) + $data;
-						$addOnTop = false;
-					} else {
-						$data[$p] = array();
-					}
-				}
-				$data = &$data[$p];
-			}
-		}
-
-		if ( !$name ) {
-			// Add list element
-			if ( $addOnTop ) {
-				// This element needs to be inserted in the beginning
-				// Numerical indexes will be renumbered
-				array_unshift( $data, $value );
-			} else {
-				// Add new value at the end
-				$data[] = $value;
-			}
-		} else {
-			// Add named element
-			self::setElement( $data, $name, $value, $flags );
-		}
-
-		return true;
-	}
-
-	/**
-	 * Add a parsed limit=max to the result.
-	 *
+	 * Alias for self::addParsedLimit()
+	 * @deprecated since 1.25, use $this->addParsedLimit() instead
 	 * @param string $moduleName
 	 * @param int $limit
 	 */
 	public function setParsedLimit( $moduleName, $limit ) {
-		// Add value, allowing overwriting
-		$this->addValue( 'limits', $moduleName, $limit, ApiResult::OVERRIDE );
+		wfDeprecated( __METHOD__, '1.25' );
+		$this->addParsedLimit( $moduleName, $limit );
 	}
 
 	/**
-	 * Unset a value previously added to the result set.
-	 * Fails silently if the value isn't found.
-	 * For parameters, see addValue()
-	 * @param array|null $path
-	 * @param string $name
+	 * Set the ApiMain for use by $this->beginContinuation()
+	 * @since 1.25
+	 * @deprecated for backwards compatibility only, do not use
+	 * @param ApiMain $main
 	 */
-	public function unsetValue( $path, $name ) {
-		$data = &$this->mData;
-		if ( $path !== null ) {
-			foreach ( (array)$path as $p ) {
-				if ( !isset( $data[$p] ) ) {
-					return;
-				}
-				$data = &$data[$p];
-			}
-		}
-		$this->mSize -= self::size( $data[$name] );
-		unset( $data[$name] );
-	}
-
-	/**
-	 * Ensure all values in this result are valid UTF-8.
-	 */
-	public function cleanUpUTF8() {
-		array_walk_recursive( $this->mData, array( 'ApiResult', 'cleanUp_helper' ) );
-	}
-
-	/**
-	 * Callback function for cleanUpUTF8()
-	 *
-	 * @param string $s
-	 */
-	private static function cleanUp_helper( &$s ) {
-		if ( !is_string( $s ) ) {
-			return;
-		}
-		global $wgContLang;
-		$s = $wgContLang->normalize( $s );
-	}
-
-	/**
-	 * Converts a Status object to an array suitable for addValue
-	 * @param Status $status
-	 * @param string $errorType
-	 * @return array
-	 */
-	public function convertStatusToArray( $status, $errorType = 'error' ) {
-		if ( $status->isGood() ) {
-			return array();
-		}
-
-		$result = array();
-		foreach ( $status->getErrorsByType( $errorType ) as $error ) {
-			$this->setIndexedTagName( $error['params'], 'param' );
-			$result[] = $error;
-		}
-		$this->setIndexedTagName( $result, $errorType );
-
-		return $result;
-	}
-
-	public function execute() {
-		ApiBase::dieDebug( __METHOD__, 'execute() is not supported on Result object' );
+	public function setMainForContinuation( ApiMain $main ) {
+		$this->mainForContinuation = $main;
 	}
 
 	/**
@@ -460,184 +1267,148 @@ class ApiResult extends ApiBase {
 	 * This must be balanced by a call to endContinuation().
 	 *
 	 * @since 1.24
-	 * @param string|null $continue The "continue" parameter, if any
-	 * @param ApiBase[] $allModules Contains ApiBase instances that will be executed
-	 * @param array $generatedModules Names of modules that depend on the generator
-	 * @return array Two elements: a boolean indicating if the generator is done,
-	 *   and an array of modules to actually execute.
+	 * @deprecated since 1.25, use ApiContinuationManager instead
+	 * @param string|null $continue
+	 * @param ApiBase[] $allModules
+	 * @param array $generatedModules
+	 * @return array
 	 */
 	public function beginContinuation(
 		$continue, array $allModules = array(), array $generatedModules = array()
 	) {
-		$this->continueGeneratedModules = $generatedModules
-			? array_combine( $generatedModules, $generatedModules )
-			: array();
-		$this->continuationData = array();
-		$this->generatorContinuationData = array();
-		$this->generatorParams = array();
-
-		$skip = array();
-		if ( is_string( $continue ) && $continue !== '' ) {
-			$continue = explode( '||', $continue );
-			$this->dieContinueUsageIf( count( $continue ) !== 2 );
-			$this->generatorDone = ( $continue[0] === '-' );
-			$skip = explode( '|', $continue[1] );
-			if ( !$this->generatorDone ) {
-				$this->generatorParams = explode( '|', $continue[0] );
-			} else {
-				// When the generator is complete, don't run any modules that
-				// depend on it.
-				$skip += $this->continueGeneratedModules;
-			}
+		wfDeprecated( __METHOD__, '1.25' );
+		if ( $this->mainForContinuation->getContinuationManager() ) {
+			throw new UnexpectedValueException(
+				__METHOD__ . ': Continuation already in progress from ' .
+				$this->mainForContinuation->getContinuationManager()->getSource()
+			);
 		}
 
-		$this->continueAllModules = array();
-		$runModules = array();
-		foreach ( $allModules as $module ) {
-			$name = $module->getModuleName();
-			if ( in_array( $name, $skip ) ) {
-				$this->continueAllModules[$name] = false;
-				// Prevent spurious "unused parameter" warnings
-				$module->extractRequestParams();
-			} else {
-				$this->continueAllModules[$name] = true;
-				$runModules[] = $module;
-			}
+		// Ugh. If $continue doesn't match that in the request, temporarily
+		// replace the request when creating the ApiContinuationManager.
+		if ( $continue === null ) {
+			$continue = '';
 		}
+		if ( $this->mainForContinuation->getVal( 'continue', '' ) !== $continue ) {
+			$oldCtx = $this->mainForContinuation->getContext();
+			$newCtx = new DerivativeContext( $oldCtx );
+			$newCtx->setRequest( new DerivativeRequest(
+				$oldCtx->getRequest(),
+				array( 'continue' => $continue ) + $oldCtx->getRequest()->getValues(),
+				$oldCtx->getRequest()->wasPosted()
+			) );
+			$this->mainForContinuation->setContext( $newCtx );
+			$reset = new ScopedCallback(
+				array( $this->mainForContinuation, 'setContext' ),
+				array( $oldCtx )
+			);
+		}
+		$manager = new ApiContinuationManager(
+			$this->mainForContinuation, $allModules, $generatedModules
+		);
+		$reset = null;
+
+		$this->mainForContinuation->setContinuationManager( $manager );
 
 		return array(
-			$this->generatorDone,
-			$runModules,
+			$manager->isGeneratorDone(),
+			$manager->getRunModules(),
 		);
 	}
 
 	/**
-	 * Set the continuation parameter for a module
-	 *
 	 * @since 1.24
+	 * @deprecated since 1.25, use ApiContinuationManager instead
 	 * @param ApiBase $module
 	 * @param string $paramName
 	 * @param string|array $paramValue
-	 * @throws MWException
 	 */
 	public function setContinueParam( ApiBase $module, $paramName, $paramValue ) {
-		$name = $module->getModuleName();
-		if ( !isset( $this->continueAllModules[$name] ) ) {
-			throw new MWException(
-				"Module '$name' called ApiResult::setContinueParam but was not " .
-				'passed to ApiResult::beginContinuation'
+		wfDeprecated( __METHOD__, '1.25' );
+		if ( $this->mainForContinuation->getContinuationManager() ) {
+			$this->mainForContinuation->getContinuationManager()->addContinueParam(
+				$module, $paramName, $paramValue
 			);
 		}
-		if ( !$this->continueAllModules[$name] ) {
-			throw new MWException(
-				"Module '$name' was not supposed to have been executed, but " .
-				'it was executed anyway'
-			);
-		}
-		$paramName = $module->encodeParamName( $paramName );
-		if ( is_array( $paramValue ) ) {
-			$paramValue = join( '|', $paramValue );
-		}
-		$this->continuationData[$name][$paramName] = $paramValue;
 	}
 
 	/**
-	 * Set the continuation parameter for the generator module
-	 *
 	 * @since 1.24
+	 * @deprecated since 1.25, use ApiContinuationManager instead
 	 * @param ApiBase $module
 	 * @param string $paramName
 	 * @param string|array $paramValue
 	 */
 	public function setGeneratorContinueParam( ApiBase $module, $paramName, $paramValue ) {
-		$name = $module->getModuleName();
-		$paramName = $module->encodeParamName( $paramName );
-		if ( is_array( $paramValue ) ) {
-			$paramValue = join( '|', $paramValue );
+		wfDeprecated( __METHOD__, '1.25' );
+		if ( $this->mainForContinuation->getContinuationManager() ) {
+			$this->mainForContinuation->getContinuationManager()->addGeneratorContinueParam(
+				$module, $paramName, $paramValue
+			);
 		}
-		$this->generatorContinuationData[$name][$paramName] = $paramValue;
 	}
 
 	/**
 	 * Close continuation, writing the data into the result
-	 *
 	 * @since 1.24
+	 * @deprecated since 1.25, use ApiContinuationManager instead
 	 * @param string $style 'standard' for the new style since 1.21, 'raw' for
 	 *   the style used in 1.20 and earlier.
 	 */
 	public function endContinuation( $style = 'standard' ) {
-		if ( $style === 'raw' ) {
-			$key = 'query-continue';
-			$data = array_merge_recursive(
-				$this->continuationData, $this->generatorContinuationData
-			);
-		} else {
-			$key = 'continue';
-			$data = array();
-			$batchcomplete = false;
-
-			$finishedModules = array_diff(
-				array_keys( $this->continueAllModules ),
-				array_keys( $this->continuationData )
-			);
-
-			// First, grab the non-generator-using continuation data
-			$continuationData = array_diff_key(
-				$this->continuationData, $this->continueGeneratedModules
-			);
-			foreach ( $continuationData as $module => $kvp ) {
-				$data += $kvp;
-			}
-
-			// Next, handle the generator-using continuation data
-			$continuationData = array_intersect_key(
-				$this->continuationData, $this->continueGeneratedModules
-			);
-			if ( $continuationData ) {
-				// Some modules are unfinished: include those params, and copy
-				// the generator params.
-				foreach ( $continuationData as $module => $kvp ) {
-					$data += $kvp;
-				}
-				$data += array_intersect_key(
-					$this->getMain()->getRequest()->getValues(),
-					array_flip( $this->generatorParams )
-				);
-			} elseif ( $this->generatorContinuationData ) {
-				// All the generator-using modules are complete, but the
-				// generator isn't. Continue the generator and restart the
-				// generator-using modules
-				$this->generatorParams = array();
-				foreach ( $this->generatorContinuationData as $kvp ) {
-					$this->generatorParams = array_merge(
-						$this->generatorParams, array_keys( $kvp )
-					);
-					$data += $kvp;
-				}
-				$finishedModules = array_diff(
-					$finishedModules, $this->continueGeneratedModules
-				);
-				$batchcomplete = true;
-			} else {
-				// Generator and prop modules are all done. Mark it so.
-				$this->generatorDone = true;
-				$batchcomplete = true;
-			}
-
-			// Set 'continue' if any continuation data is set or if the generator
-			// still needs to run
-			if ( $data || !$this->generatorDone ) {
-				$data['continue'] =
-					( $this->generatorDone ? '-' : join( '|', $this->generatorParams ) ) .
-					'||' . join( '|', $finishedModules );
-			}
-
-			if ( $batchcomplete ) {
-				$this->addValue( null, 'batchcomplete', '', ApiResult::ADD_ON_TOP | ApiResult::NO_SIZE_CHECK );
-			}
+		wfDeprecated( __METHOD__, '1.25' );
+		if ( !$this->mainForContinuation->getContinuationManager() ) {
+			return;
 		}
-		if ( $data ) {
-			$this->addValue( null, $key, $data, ApiResult::ADD_ON_TOP | ApiResult::NO_SIZE_CHECK );
+
+		if ( $style === 'raw' ) {
+			$data = $this->mainForContinuation->getContinuationManager()->getRawContinuation();
+			if ( $data ) {
+				$this->addValue( null, 'query-continue', $data, self::ADD_ON_TOP | self::NO_SIZE_CHECK );
+			}
+		} else {
+			$this->mainForContinuation->getContinuationManager()->setContinuationIntoResult( $this );
 		}
 	}
+
+	/**
+	 * No-op, this is now checked on insert.
+	 * @deprecated since 1.25
+	 */
+	public function cleanUpUTF8() {
+		wfDeprecated( __METHOD__, '1.25' );
+	}
+
+	/**
+	 * Get the 'real' size of a result item. This means the strlen() of the item,
+	 * or the sum of the strlen()s of the elements if the item is an array.
+	 * @deprecated since 1.25, no external users known and there doesn't seem
+	 *  to be any case for such use over just checking the return value from the
+	 *  add/set methods.
+	 * @param mixed $value
+	 * @return int
+	 */
+	public static function size( $value ) {
+		wfDeprecated( __METHOD__, '1.25' );
+		return self::valueSize( $value );
+	}
+
+	/**
+	 * Converts a Status object to an array suitable for addValue
+	 * @deprecated since 1.25, use ApiErrorFormatter::arrayFromStatus()
+	 * @param Status $status
+	 * @param string $errorType
+	 * @return array
+	 */
+	public function convertStatusToArray( $status, $errorType = 'error' ) {
+		wfDeprecated( __METHOD__, '1.25' );
+		return $this->errorFormatter->arrayFromStatus( $status, $errorType );
+	}
+
+	/**@}*/
 }
+
+/**
+ * For really cool vim folding this needs to be at the end:
+ * vim: foldmarker=@{,@} foldmethod=marker
+ */

@@ -48,11 +48,6 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		$params = $this->extractRequestParams();
 		$activeUserDays = $this->getConfig()->get( 'ActiveUserDays' );
 
-		if ( $params['activeusers'] ) {
-			// Update active user cache
-			SpecialActiveUsers::mergeActiveUsers( 300, $activeUserDays );
-		}
-
 		$db = $this->getDB();
 
 		$prop = $params['prop'];
@@ -100,7 +95,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 			// no group with the given right(s) exists, no need for a query
 			if ( !count( $groups ) ) {
-				$this->getResult()->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), '' );
+				$this->getResult()->addIndexedTagName( array( 'query', $this->getModuleName() ), '' );
 
 				return;
 			}
@@ -253,7 +248,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				$data['blockexpiry'] = $row->ipb_expiry;
 			}
 			if ( $row->ipb_deleted ) {
-				$data['hidden'] = '';
+				$data['hidden'] = true;
 			}
 			if ( $fld_editcount ) {
 				$data['editcount'] = intval( $row->user_editcount );
@@ -279,17 +274,20 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 				if ( $fld_groups ) {
 					$data['groups'] = $groups;
-					$result->setIndexedTagName( $data['groups'], 'g' );
+					ApiResult::setIndexedTagName( $data['groups'], 'g' );
+					ApiResult::setArrayType( $data['groups'], 'array' );
 				}
 
 				if ( $fld_implicitgroups ) {
 					$data['implicitgroups'] = $implicitGroups;
-					$result->setIndexedTagName( $data['implicitgroups'], 'g' );
+					ApiResult::setIndexedTagName( $data['implicitgroups'], 'g' );
+					ApiResult::setArrayType( $data['implicitgroups'], 'array' );
 				}
 
 				if ( $fld_rights ) {
 					$data['rights'] = User::getGroupPermissions( $groups );
-					$result->setIndexedTagName( $data['rights'], 'r' );
+					ApiResult::setIndexedTagName( $data['rights'], 'r' );
+					ApiResult::setArrayType( $data['rights'], 'array' );
 				}
 			}
 
@@ -300,7 +298,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			}
 		}
 
-		$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'u' );
+		$result->addIndexedTagName( array( 'query', $this->getModuleName() ), 'u' );
 	}
 
 	public function getCacheMode( $params ) {

@@ -1486,7 +1486,7 @@
 	"nmembers": "$1 {{PLURAL:$1|సభ్యుడు|సభ్యులు}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|సభ్యుడు|సభ్యులు}}",
 	"nrevisions": "{{PLURAL:$1|కూర్పు|$1 కూర్పులు}}",
-	"nviews": "$1 {{PLURAL:$1|సందర్శన|సందర్శనలు}}",
+
 	"nimagelinks": "$1 {{PLURAL:$1|పుట|పుటల}}లో ఉపయోగించారు",
 	"ntransclusions": "$1 {{PLURAL:$1|పుట|పుటల}}లో ఉపయోగించారు",
 	"specialpage-empty": "ఈ పేజీ ఖాళీగా ఉంది.",

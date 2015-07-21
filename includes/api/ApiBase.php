@@ -467,11 +467,17 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Get the result data array (read-only)
-	 * @return array
+	 * Get the error formatter
+	 * @return ApiErrorFormatter
 	 */
-	public function getResultData() {
-		return $this->getResult()->getData();
+	public function getErrorFormatter() {
+		// Main module has getErrorFormatter() method overridden
+		// Safety - avoid infinite loop:
+		if ( $this->isMain() ) {
+			ApiBase::dieDebug( __METHOD__, 'base method was called on main module. ' );
+		}
+
+		return $this->getMain()->getErrorFormatter();
 	}
 
 	/**
@@ -484,6 +490,34 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		return $this->mSlaveDB;
+	}
+
+	/**
+	 * Get the continuation manager
+	 * @return ApiContinuationManager|null
+	 */
+	public function getContinuationManager() {
+		// Main module has getContinuationManager() method overridden
+		// Safety - avoid infinite loop:
+		if ( $this->isMain() ) {
+			ApiBase::dieDebug( __METHOD__, 'base method was called on main module. ' );
+		}
+
+		return $this->getMain()->getContinuationManager();
+	}
+
+	/**
+	 * Set the continuation manager
+	 * @param ApiContinuationManager|null
+	 */
+	public function setContinuationManager( $manager ) {
+		// Main module has setContinuationManager() method overridden
+		// Safety - avoid infinite loop:
+		if ( $this->isMain() ) {
+			ApiBase::dieDebug( __METHOD__, 'base method was called on main module. ' );
+		}
+
+		$this->getMain()->setContinuationManager( $manager );
 	}
 
 	/**@}*/
@@ -865,7 +899,7 @@ abstract class ApiBase extends ContextSource {
 							$value = $this->getMain()->canApiHighLimits()
 								? $paramSettings[self::PARAM_MAX2]
 								: $paramSettings[self::PARAM_MAX];
-							$this->getResult()->setParsedLimit( $this->getModuleName(), $value );
+							$this->getResult()->addParsedLimit( $this->getModuleName(), $value );
 						} else {
 							$value = intval( $value );
 							$this->validateLimit(
@@ -1241,28 +1275,8 @@ abstract class ApiBase extends ContextSource {
 	 * @param string $warning Warning message
 	 */
 	public function setWarning( $warning ) {
-		$result = $this->getResult();
-		$data = $result->getData();
-		$moduleName = $this->getModuleName();
-		if ( isset( $data['warnings'][$moduleName] ) ) {
-			// Don't add duplicate warnings
-			$oldWarning = $data['warnings'][$moduleName]['*'];
-			$warnPos = strpos( $oldWarning, $warning );
-			// If $warning was found in $oldWarning, check if it starts at 0 or after "\n"
-			if ( $warnPos !== false && ( $warnPos === 0 || $oldWarning[$warnPos - 1] === "\n" ) ) {
-				// Check if $warning is followed by "\n" or the end of the $oldWarning
-				$warnPos += strlen( $warning );
-				if ( strlen( $oldWarning ) <= $warnPos || $oldWarning[$warnPos] === "\n" ) {
-					return;
-				}
-			}
-			// If there is a warning already, append it to the existing one
-			$warning = "$oldWarning\n$warning";
-		}
-		$msg = array();
-		ApiResult::setContent( $msg, $warning );
-		$result->addValue( 'warnings', $moduleName,
-			$msg, ApiResult::OVERRIDE | ApiResult::ADD_ON_TOP | ApiResult::NO_SIZE_CHECK );
+		$msg = new ApiRawMessage( $warning, 'warning' );
+		$this->getErrorFormatter()->addWarning( $this->getModuleName(), $msg );
 	}
 
 	/**
@@ -1662,6 +1676,10 @@ abstract class ApiBase extends ContextSource {
 		'nosuchrcid' => array(
 			'code' => 'nosuchrcid',
 			'info' => "There is no change with rcid \"\$1\""
+		),
+		'nosuchlogid' => array(
+			'code' => 'nosuchlogid',
+			'info' => "There is no log entry with ID \"\$1\""
 		),
 		'protect-invalidaction' => array(
 			'code' => 'protect-invalidaction',
@@ -2711,6 +2729,16 @@ abstract class ApiBase extends ContextSource {
 	public function getProfileDBTime() {
 		wfDeprecated( __METHOD__, '1.25' );
 		return 0;
+	}
+
+	/**
+	 * Get the result data array (read-only)
+	 * @deprecated since 1.25, use $this->getResult() methods instead
+	 * @return array
+	 */
+	public function getResultData() {
+		wfDeprecated( __METHOD__, '1.25' );
+		return $this->getResult()->getData();
 	}
 
 	/**@}*/

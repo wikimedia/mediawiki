@@ -373,7 +373,7 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( 'لغة_الصفحة' ),
 	'PasswordReset'             => array( 'إعادة_ضبط_كلمة_السر' ),
 	'PermanentLink'             => array( 'وصلة_دائمة', 'رابط_دائم' ),
-	'Popularpages'              => array( 'صفحات_مشهورة' ),
+
 	'Preferences'               => array( 'تفضيلات' ),
 	'Prefixindex'               => array( 'فهرس_بادئة' ),
 	'Protectedpages'            => array( 'صفحات_محمية' ),

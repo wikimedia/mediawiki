@@ -135,7 +135,7 @@ class UserrightsPage extends SpecialPage {
 
 		$out = $this->getOutput();
 		$out->addModuleStyles( 'mediawiki.special' );
-		$out->addHelpLink( 'Help:Assigning permissions' );
+		$this->addHelpLink( 'Help:Assigning permissions' );
 
 		// show the general form
 		if ( count( $available['add'] ) || count( $available['remove'] ) ) {

@@ -170,7 +170,7 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( 'Bahasa_laman' ),
 	'PasswordReset'             => array( 'Tetap_semula_kata_kunci' ),
 	'PermanentLink'             => array( 'Pautan_kekal' ),
-	'Popularpages'              => array( 'Laman_popular' ),
+
 	'Preferences'               => array( 'Keutamaan' ),
 	'Prefixindex'               => array( 'Indeks_awalan' ),
 	'Protectedpages'            => array( 'Laman_dilindungi' ),

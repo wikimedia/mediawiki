@@ -81,7 +81,7 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'لێدوانەکەم' ),
 	'Newimages'                 => array( 'پەڕگە_نوێکان' ),
 	'Newpages'                  => array( 'پەڕە_نوێکان' ),
-	'Popularpages'              => array( 'پەڕە_ناودارەکان' ),
+
 	'Preferences'               => array( 'ھەڵبژاردەکان' ),
 	'Protectedpages'            => array( 'پەڕە_پارێزراوەکان' ),
 	'Protectedtitles'           => array( 'بابەتە_پارێزراوەکان' ),

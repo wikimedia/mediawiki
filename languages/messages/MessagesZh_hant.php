@@ -183,7 +183,6 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( '頁面語言' ),
 	'PasswordReset'             => array( '重設密碼' ),
 	'PermanentLink'             => array( '靜態連結', '永久連結' ),
-	'Popularpages'              => array( '熱門頁面', '熱點頁面' ),
 	'Preferences'               => array( '偏好設定' ),
 	'Prefixindex'               => array( '字首索引', '前綴索引' ),
 	'Protectedpages'            => array( '受保護頁面', '已保護頁面' ),

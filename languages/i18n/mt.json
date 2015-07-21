@@ -1357,7 +1357,7 @@
 	"nlinks": "{{PLURAL:$1|link|$1 links}}",
 	"nmembers": "$1 {{PLURAL:$1|membru|membri}}",
 	"nrevisions": "{{PLURAL:$1|reviżjoni|$1 reviżjonijiet}}",
-	"nviews": "{{PLURAL:$1|visita|$1 visiti}}",
+
 	"nimagelinks": "Użat fuq $1 {{PLURAL:$1|paġna|paġni}}",
 	"ntransclusions": "użat fuq $1 {{PLURAL:$1|paġna|paġni}}",
 	"specialpage-empty": "Dan ir-rapport ma fih l-ebda riżultat.",

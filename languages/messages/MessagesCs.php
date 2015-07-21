@@ -98,7 +98,7 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'Moje_diskuse' ),
 	'Newimages'                 => array( 'Nové_obrázky', 'Galerie_nových_obrázků', 'Nove_obrazky' ),
 	'Newpages'                  => array( 'Nové_stránky', 'Nove_stranky', 'Nejnovější_stránky', 'Nejnovejsi_stranky' ),
-	'Popularpages'              => array( 'Nejnavštěvovanější_stránky', 'Nejnavstevovanejsi_stranky' ),
+
 	'Preferences'               => array( 'Nastavení', 'Nastaveni' ),
 	'Protectedpages'            => array( 'Zamčené_stránky', 'Zamcene_stranky' ),
 	'Protectedtitles'           => array( 'Zamčené_názvy', 'Zamcene_nazvy', 'Stránky_které_nelze_vytvořit' ),

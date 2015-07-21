@@ -118,7 +118,7 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( 'Zıwanê_Pele' ),
 	'PasswordReset'             => array( 'ParolaPeysereştış' ),
 	'PermanentLink'             => array( 'GıreyoDaimi' ),
-	'Popularpages'              => array( 'PelêPopuleri' ),
+
 	'Preferences'               => array( 'Tercihi' ),
 	'Prefixindex'               => array( 'VerbendZerrek' ),
 	'Protectedpages'            => array( 'PelêKeŞevekiyayiyé' ),

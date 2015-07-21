@@ -1124,7 +1124,7 @@
 	"nlinks": "$1 {{PLURAL:$1|تړنه|تړنې}}",
 	"nmembers": "$1 {{PLURAL:$1|غړی|غړي}}",
 	"nrevisions": "$1 {{PLURAL:$1|بڼه|بڼې}}",
-	"nviews": "$1 {{PLURAL:$1|کتنه|کتنې}}",
+
 	"nimagelinks": "په $1 {{PLURAL:$1|کارېدلی مخ|کارېدلي مخونه}}",
 	"ntransclusions": "په $1 {{PLURAL:$1|مخ|مخونو}} کارېدلی",
 	"specialpage-empty": "د دې راپور لپاره کومې پايلې نشته.",

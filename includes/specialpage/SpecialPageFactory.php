@@ -159,6 +159,7 @@ class SpecialPageFactory {
 		'ApiHelp' => 'SpecialApiHelp',
 		'Blankpage' => 'SpecialBlankpage',
 		'Diff' => 'SpecialDiff',
+		'EditTags' => 'SpecialEditTags',
 		'Emailuser' => 'SpecialEmailUser',
 		'Movepage' => 'MovePageForm',
 		'Mycontributions' => 'SpecialMycontributions',
