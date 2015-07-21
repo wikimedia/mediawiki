@@ -3902,6 +3902,13 @@ function wfShorthandToInteger( $string = '' ) {
  * @return string The language code which complying with BCP 47 standards.
  */
 function wfBCP47( $code ) {
+	// Replace some special internal used language codes to BCP 47 conform language codes.
+	// T106367
+	switch ( $code ) {
+		case 'de-formal': return 'de-x-formal';
+		case 'en-rtl': return 'en';
+		case 'nl-informal': return 'nl-x-informal';
+	}
 	$codeSegment = explode( '-', $code );
 	$codeBCP = array();
 	foreach ( $codeSegment as $segNo => $seg ) {
