@@ -575,7 +575,10 @@ class SpecialVersion extends SpecialPage {
 		if ( count( $tags ) ) {
 			$out = Html::rawElement(
 				'h2',
-				array( 'class' => 'mw-headline plainlinks' ),
+				array(
+					'class' => 'mw-headline plainlinks',
+					'id' => 'mw-version-parser-extensiontags',
+				),
 				Linker::makeExternalLink(
 					'//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Tag_extensions',
 					$this->msg( 'version-parser-extensiontags' )->parse(),
@@ -615,7 +618,10 @@ class SpecialVersion extends SpecialPage {
 		if ( count( $fhooks ) ) {
 			$out = Html::rawElement(
 				'h2',
-				array( 'class' => 'mw-headline plainlinks' ),
+				array(
+					'class' => 'mw-headline plainlinks',
+					'id' => 'mw-version-parser-function-hooks',
+				),
 				Linker::makeExternalLink(
 					'//www.mediawiki.org/wiki/Special:MyLanguage/Manual:Parser_functions',
 					$this->msg( 'version-parser-function-hooks' )->parse(),
