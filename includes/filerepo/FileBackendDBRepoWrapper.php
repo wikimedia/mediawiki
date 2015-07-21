@@ -46,7 +46,7 @@ class FileBackendDBRepoWrapper extends FileBackend {
 	protected $dbHandleFunc;
 	/** @var ProcessCacheLRU */
 	protected $resolvedPathCache;
-	/** @var Array Map of (index => DBConnRef) */
+	/** @var DBConnRef[] */
 	protected $dbs;
 
 	public function __construct( array $config ) {
@@ -95,7 +95,6 @@ class FileBackendDBRepoWrapper extends FileBackend {
 	 */
 	public function getBackendPaths( array $paths, $latest = true ) {
 		$db = $this->getDB( $latest ? DB_MASTER : DB_SLAVE );
-		$origBasePath = $this->backend->getContainerStoragePath( "{$this->repoName}-original" );
 
 		// @TODO: batching
 		$resolved = array();
@@ -105,7 +104,7 @@ class FileBackendDBRepoWrapper extends FileBackend {
 				continue;
 			}
 
-			list( , $container, $rel ) = FileBackend::splitStoragePath( $path );
+			list( , $container ) = FileBackend::splitStoragePath( $path );
 
 			if ( $container === "{$this->repoName}-public" ) {
 				$name = basename( $path );
@@ -258,7 +257,7 @@ class FileBackendDBRepoWrapper extends FileBackend {
 	}
 
 	public function getScopedLocksForOps( array $ops, Status $status ) {
-		return $this->backend->getScopedFileLocks( $ops, $status );
+		return $this->backend->getScopedLocksForOps( $ops, $status );
 	}
 
 	/**
@@ -271,7 +270,7 @@ class FileBackendDBRepoWrapper extends FileBackend {
 	 */
 	public function getPathForSHA1( $sha1 ) {
 		if ( strlen( $sha1 ) < 3 ) {
-			throw new MWException( "Invalid file SHA-1." );
+			throw new InvalidArgumentException( "Invalid file SHA-1." );
 		}
 		return $this->backend->getContainerStoragePath( "{$this->repoName}-original" ) .
 			"/{$sha1[0]}/{$sha1[1]}/{$sha1[2]}/{$sha1}";
@@ -284,11 +283,11 @@ class FileBackendDBRepoWrapper extends FileBackend {
 	 * @return DBConnRef
 	 */
 	protected function getDB( $index ) {
-		if ( !isset( $this->db[$index] ) ) {
+		if ( !isset( $this->dbs[$index] ) ) {
 			$func = $this->dbHandleFunc;
-			$this->db[$index] = $func( $index );
+			$this->dbs[$index] = $func( $index );
 		}
-		return $this->db[$index];
+		return $this->dbs[$index];
 	}
 
 	/**
