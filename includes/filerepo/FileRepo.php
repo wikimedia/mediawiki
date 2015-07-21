@@ -49,6 +49,9 @@ class FileRepo {
 	/** @var int */
 	public $descriptionCacheExpiry;
 
+	/** @var bool */
+	protected $hasSha1Storage = false;
+
 	/** @var FileBackend */
 	protected $backend;
 
@@ -1884,6 +1887,14 @@ class FileRepo {
 		}
 
 		return $ret;
+	}
+
+	/**
+	 * Returns whether or not storage is SHA-1 based
+	 * @return boolean
+	 */
+	public function hasSha1Storage() {
+		return $this->hasSha1Storage;
 	}
 }
 
