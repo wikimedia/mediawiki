@@ -1,0 +1,16 @@
+[submodule "extensions/CheckUser"]
+	path = extensions/CheckUser
+	url = https://github.com/wikimedia/mediawiki-extensions-CheckUser.git
+	branch = REL1_25
+[submodule "extensions/AbuseFilter"]
+	path = extensions/AbuseFilter
+	url = https://github.com/wikimedia/mediawiki-extensions-AbuseFilter
+	branch = REL1_25
+[submodule "extensions/CentralAuth"]
+	path = extensions/CentralAuth
+	url = https://github.com/wikimedia/mediawiki-extensions-CentralAuth
+	branch = REL1_25
+[submodule "extensions/ParserFunctions"]
+	path = extensions/ParserFunctions
+	url = https://github.com/wikimedia/mediawiki-extensions-ParserFunctions
+	branch = REL1_25
