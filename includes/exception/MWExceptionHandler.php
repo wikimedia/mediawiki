@@ -486,6 +486,8 @@ TXT;
 			if ( $json !== false ) {
 				wfDebugLog( 'exception-json', $json, 'private' );
 			}
+
+			Hooks::run( 'LogException', array( $e, false ) );
 		}
 	}
 
@@ -501,7 +503,8 @@ TXT;
 
 		// The set_error_handler callback is independent from error_reporting.
 		// Filter out unwanted errors manually (e.g. when wfSuppressWarnings is active).
-		if ( ( error_reporting() & $e->getSeverity() ) !== 0 ) {
+		$suppressed = ( error_reporting() & $e->getSeverity() ) === 0;
+		if ( !$suppressed ) {
 			$log = self::getLogMessage( $e );
 			if ( $wgLogExceptionBacktrace ) {
 				wfDebugLog( $channel, $log . "\n" . $e->getTraceAsString() );
@@ -515,5 +518,7 @@ TXT;
 		if ( $json !== false ) {
 			wfDebugLog( "$channel-json", $json, 'private' );
 		}
+
+		Hooks::run( 'LogException', array( $e, $suppressed ) );
 	}
 }

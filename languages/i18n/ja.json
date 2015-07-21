@@ -1577,7 +1577,7 @@
 	"nmembers": "$1項目",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|項目}}",
 	"nrevisions": "$1版",
-	"nviews": "$1回の閲覧",
+
 	"nimagelinks": "$1 {{PLURAL:$1|ページ}}で使用",
 	"ntransclusions": "$1 {{PLURAL:$1|ページ}}で使用",
 	"specialpage-empty": "該当するものはありません。",

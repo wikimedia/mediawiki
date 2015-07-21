@@ -138,7 +138,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		if ( $this->limit == 'max' ) {
 			$this->limit = $this->getMain()->canApiHighLimits() ? $botMax : $userMax;
 			if ( $this->setParsedLimit ) {
-				$this->getResult()->setParsedLimit( $this->getModuleName(), $this->limit );
+				$this->getResult()->addParsedLimit( $this->getModuleName(), $this->limit );
 			}
 		}
 
@@ -168,13 +168,13 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			}
 		}
 
-		if ( $this->fld_flags && $revision->isMinor() ) {
-			$vals['minor'] = '';
+		if ( $this->fld_flags ) {
+			$vals['minor'] = $revision->isMinor();
 		}
 
 		if ( $this->fld_user || $this->fld_userid ) {
 			if ( $revision->isDeleted( Revision::DELETED_USER ) ) {
-				$vals['userhidden'] = '';
+				$vals['userhidden'] = true;
 				$anyHidden = true;
 			}
 			if ( $revision->userCan( Revision::DELETED_USER, $user ) ) {
@@ -183,7 +183,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				}
 				$userid = $revision->getUser( Revision::RAW );
 				if ( !$userid ) {
-					$vals['anon'] = '';
+					$vals['anon'] = true;
 				}
 
 				if ( $this->fld_userid ) {
@@ -206,7 +206,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 		if ( $this->fld_sha1 ) {
 			if ( $revision->isDeleted( Revision::DELETED_TEXT ) ) {
-				$vals['sha1hidden'] = '';
+				$vals['sha1hidden'] = true;
 				$anyHidden = true;
 			}
 			if ( $revision->userCan( Revision::DELETED_TEXT, $user ) ) {
@@ -224,7 +224,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 		if ( $this->fld_comment || $this->fld_parsedcomment ) {
 			if ( $revision->isDeleted( Revision::DELETED_COMMENT ) ) {
-				$vals['commenthidden'] = '';
+				$vals['commenthidden'] = true;
 				$anyHidden = true;
 			}
 			if ( $revision->userCan( Revision::DELETED_COMMENT, $user ) ) {
@@ -243,7 +243,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		if ( $this->fld_tags ) {
 			if ( $row->ts_tags ) {
 				$tags = explode( ',', $row->ts_tags );
-				$this->getResult()->setIndexedTagName( $tags, 'tag' );
+				ApiResult::setIndexedTagName( $tags, 'tag' );
 				$vals['tags'] = $tags;
 			} else {
 				$vals['tags'] = array();
@@ -267,10 +267,10 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				}
 			}
 			if ( $revision->isDeleted( Revision::DELETED_TEXT ) ) {
-				$vals['texthidden'] = '';
+				$vals['texthidden'] = true;
 				$anyHidden = true;
 			} elseif ( !$content ) {
-				$vals['textmissing'] = '';
+				$vals['textmissing'] = true;
 			}
 		}
 		if ( $this->fld_content && $content ) {
@@ -293,7 +293,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					}
 					$vals['parsetree'] = $xml;
 				} else {
-					$vals['badcontentformatforparsetree'] = '';
+					$vals['badcontentformatforparsetree'] = true;
 					$this->setWarning( "Conversion to XML is supported for wikitext only, " .
 						$title->getPrefixedDBkey() .
 						" uses content model " . $content->getModel() );
@@ -314,7 +314,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					$this->setWarning( "Template expansion is supported for wikitext only, " .
 						$title->getPrefixedDBkey() .
 						" uses content model " . $content->getModel() );
-					$vals['badcontentformat'] = '';
+					$vals['badcontentformat'] = true;
 					$text = false;
 				}
 			}
@@ -335,7 +335,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					$name = $title->getPrefixedDBkey();
 					$this->setWarning( "The requested format {$this->contentFormat} is not " .
 						"supported for content model $model used by $name" );
-					$vals['badcontentformat'] = '';
+					$vals['badcontentformat'] = true;
 					$text = false;
 				} else {
 					$text = $content->serialize( $format );
@@ -347,7 +347,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			}
 
 			if ( $text !== false ) {
-				ApiResult::setContent( $vals, $text );
+				ApiResult::setContentValue( $vals, 'content', $text );
 			}
 		}
 
@@ -369,7 +369,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 						$name = $title->getPrefixedDBkey();
 						$this->setWarning( "The requested format {$this->contentFormat} is not " .
 							"supported for content model $model used by $name" );
-						$vals['diff']['badcontentformat'] = '';
+						$vals['diff']['badcontentformat'] = true;
 						$engine = null;
 					} else {
 						$difftocontent = ContentHandler::makeContent(
@@ -389,18 +389,18 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				}
 				if ( $engine ) {
 					$difftext = $engine->getDiffBody();
-					ApiResult::setContent( $vals['diff'], $difftext );
+					ApiResult::setContentValue( $vals['diff'], 'body', $difftext );
 					if ( !$engine->wasCacheHit() ) {
 						$n++;
 					}
 				}
 			} else {
-				$vals['diff']['notcached'] = '';
+				$vals['diff']['notcached'] = true;
 			}
 		}
 
 		if ( $anyHidden && $revision->isDeleted( Revision::DELETED_RESTRICTED ) ) {
-			$vals['suppressed'] = '';
+			$vals['suppressed'] = true;
 		}
 
 		return $vals;

@@ -5,7 +5,8 @@
 	var msg,
 		win = window,
 		ua = navigator.userAgent.toLowerCase(),
-		onloadFuncts = [];
+		onloadFuncts = [],
+		loadedScripts = {};
 
 	/**
 	 * User-agent sniffing.
@@ -159,38 +160,43 @@
 
 	/**
 	 * Wikipage import methods
+	 *
+	 * See https://www.mediawiki.org/wiki/ResourceLoader/Legacy_JavaScript#wikibits.js
 	 */
 
-	// included-scripts tracker
-	win.loadedScripts = {};
-
-	win.importScript = function ( page ) {
+	function importScript( page ) {
 		var uri = mw.config.get( 'wgScript' ) + '?title=' +
 			mw.util.wikiUrlencode( page ) +
 			'&action=raw&ctype=text/javascript';
-		return win.importScriptURI( uri );
-	};
+		return importScriptURI( uri );
+	}
 
-	win.importScriptURI = function ( url ) {
-		if ( win.loadedScripts[url] ) {
+	/**
+	 * @deprecated since 1.17 Use mw.loader instead. Warnings added in 1.25.
+	 */
+	function importScriptURI( url ) {
+		if ( loadedScripts[url] ) {
 			return null;
 		}
-		win.loadedScripts[url] = true;
+		loadedScripts[url] = true;
 		var s = document.createElement( 'script' );
 		s.setAttribute( 'src', url );
 		s.setAttribute( 'type', 'text/javascript' );
 		document.getElementsByTagName( 'head' )[0].appendChild( s );
 		return s;
-	};
+	}
 
-	win.importStylesheet = function ( page ) {
+	function importStylesheet( page ) {
 		var uri = mw.config.get( 'wgScript' ) + '?title=' +
 			mw.util.wikiUrlencode( page ) +
 			'&action=raw&ctype=text/css';
-		return win.importStylesheetURI( uri );
-	};
+		return importStylesheetURI( uri );
+	}
 
-	win.importStylesheetURI = function ( url, media ) {
+	/**
+	 * @deprecated since 1.17 Use mw.loader instead. Warnings added in 1.25.
+	 */
+	function importStylesheetURI( url, media ) {
 		var l = document.createElement( 'link' );
 		l.rel = 'stylesheet';
 		l.href = url;
@@ -199,6 +205,14 @@
 		}
 		document.getElementsByTagName( 'head' )[0].appendChild( l );
 		return l;
-	};
+	}
+
+	msg = 'Use mw.loader instead.';
+	mw.log.deprecate( win, 'loadedScripts', loadedScripts, msg );
+	mw.log.deprecate( win, 'importScriptURI', importScriptURI, msg );
+	mw.log.deprecate( win, 'importStylesheetURI', importStylesheetURI, msg );
+	// Not quite deprecated yet.
+	win.importScript = importScript;
+	win.importStylesheet = importStylesheet;
 
 }( mediaWiki, jQuery ) );

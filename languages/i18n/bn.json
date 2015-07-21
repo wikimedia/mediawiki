@@ -1514,7 +1514,7 @@
 	"nmembers": "$1টি {{PLURAL:$1|সদস্য}}",
 	"nmemberschanged": "$1 জন → $2 জন {{PLURAL:$2|সদস্য}}",
 	"nrevisions": "$1 {{PLURAL:$1|সংশোধন|সংশোধনসমূহ}}",
-	"nviews": "$1 {{PLURAL:$1|বার দেখা হয়েছে|বার দেখা হয়েছে}}",
+
 	"nimagelinks": "$1 {{PLURAL:$1|টি পাতায়| টি পাতায়}} ব্যবহৃত",
 	"ntransclusions": "$1 {{PLURAL:$1|টি পাতায়| টি পাতায়}} ব্যবহৃত",
 	"specialpage-empty": "এই রিপোর্টের জন্য কোন ফলাফল নেই।",

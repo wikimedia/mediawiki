@@ -108,8 +108,8 @@ class ApiQueryTags extends ApiQueryBase {
 			$isExtension = isset( $extensionDefinedTags[$tagName] );
 			$isExplicit = isset( $explicitlyDefinedTags[$tagName] );
 
-			if ( $fld_defined && ( $isExtension || $isExplicit ) ) {
-				$tag['defined'] = '';
+			if ( $fld_defined ) {
+				$tag['defined'] = $isExtension || $isExplicit;
 			}
 
 			if ( $fld_source ) {
@@ -122,10 +122,8 @@ class ApiQueryTags extends ApiQueryBase {
 				}
 			}
 
-			if ( $fld_active &&
-				( $isExplicit || isset( $extensionActivatedTags[$tagName] ) )
-			) {
-				$tag['active'] = '';
+			if ( $fld_active ) {
+				$tag['active'] = $isExplicit || isset( $extensionActivatedTags[$tagName] );
 			}
 
 			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $tag );
@@ -135,7 +133,7 @@ class ApiQueryTags extends ApiQueryBase {
 			}
 		}
 
-		$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'tag' );
+		$result->addIndexedTagName( array( 'query', $this->getModuleName() ), 'tag' );
 	}
 
 	public function getCacheMode( $params ) {

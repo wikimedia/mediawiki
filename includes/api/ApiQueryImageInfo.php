@@ -373,7 +373,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			);
 		}
 		$version = $opts['version'];
-		$vals = array();
+		$vals = array(
+			ApiResult::META_TYPE => 'assoc',
+		);
 		// Timestamp is shown even if the file is revdelete'd in interface
 		// so do same here.
 		if ( isset( $prop['timestamp'] ) ) {
@@ -397,7 +399,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 		if ( $user || $userid ) {
 			if ( $file->isDeleted( File::DELETED_USER ) ) {
-				$vals['userhidden'] = '';
+				$vals['userhidden'] = true;
 				$anyHidden = true;
 			}
 			if ( $canShowField( File::DELETED_USER ) ) {
@@ -408,7 +410,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					$vals['userid'] = $file->getUser( 'id' );
 				}
 				if ( !$file->getUser( 'id' ) ) {
-					$vals['anon'] = '';
+					$vals['anon'] = true;
 				}
 			}
 		}
@@ -438,7 +440,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 		if ( $pcomment || $comment ) {
 			if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
-				$vals['commenthidden'] = '';
+				$vals['commenthidden'] = true;
 				$anyHidden = true;
 			}
 			if ( $canShowField( File::DELETED_COMMENT ) ) {
@@ -469,7 +471,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 
 		if ( $file->isDeleted( File::DELETED_FILE ) ) {
-			$vals['filehidden'] = '';
+			$vals['filehidden'] = true;
 			$anyHidden = true;
 		}
 
@@ -590,7 +592,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$retval = array();
 		if ( is_array( $metadata ) ) {
 			foreach ( $metadata as $key => $value ) {
-				$r = array( 'name' => $key );
+				$r = array(
+					'name' => $key,
+					ApiResult::META_BC_BOOLS => array( 'value' ),
+				);
 				if ( is_array( $value ) ) {
 					$r['value'] = self::processMetaData( $value, $result );
 				} else {
@@ -599,7 +604,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				$retval[] = $r;
 			}
 		}
-		$result->setIndexedTagName( $retval, 'metadata' );
+		ApiResult::setIndexedTagName( $retval, 'metadata' );
 
 		return $retval;
 	}

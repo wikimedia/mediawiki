@@ -1472,7 +1472,7 @@
 	"nmembers": "$1 {{PLURAL:$1|सदस्य}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|सदस्य}}",
 	"nrevisions": "$1 {{PLURAL:$1|आवर्तन|आवर्तने}}",
-	"nviews": "$1 {{PLURAL:$1|दृषीपथ|दृषीपथ}}",
+
 	"nimagelinks": "$1{{PLURAL:$1|पानावर|पानांवर}}",
 	"ntransclusions": "$1{{PLURAL:$1|पानावर|पानांवर}} वापर",
 	"specialpage-empty": "या अहवालाकरिता(रिपोर्ट)कोणताही निकाल नाही.",

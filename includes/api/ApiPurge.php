@@ -38,7 +38,8 @@ class ApiPurge extends ApiBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		$this->getResult()->beginContinuation( $params['continue'], array(), array() );
+		$continuationManager = new ApiContinuationManager( $this, array(), array() );
+		$this->setContinuationManager( $continuationManager );
 
 		$forceLinkUpdate = $params['forcelinkupdate'];
 		$forceRecursiveLinkUpdate = $params['forcerecursivelinkupdate'];
@@ -52,7 +53,7 @@ class ApiPurge extends ApiBase {
 			ApiQueryBase::addTitleInfo( $r, $title );
 			$page = WikiPage::factory( $title );
 			$page->doPurge(); // Directly purge and skip the UI part of purge().
-			$r['purged'] = '';
+			$r['purged'] = true;
 
 			if ( $forceLinkUpdate || $forceRecursiveLinkUpdate ) {
 				if ( !$this->getUser()->pingLimiter( 'linkpurge' ) ) {
@@ -73,7 +74,7 @@ class ApiPurge extends ApiBase {
 						$title, null, $forceRecursiveLinkUpdate, $p_result );
 					DataUpdate::runUpdates( $updates );
 
-					$r['linkupdate'] = '';
+					$r['linkupdate'] = true;
 
 					if ( $enableParserCache ) {
 						$pcache = ParserCache::singleton();
@@ -89,7 +90,7 @@ class ApiPurge extends ApiBase {
 			$result[] = $r;
 		}
 		$apiResult = $this->getResult();
-		$apiResult->setIndexedTagName( $result, 'page' );
+		ApiResult::setIndexedTagName( $result, 'page' );
 		$apiResult->addValue( null, $this->getModuleName(), $result );
 
 		$values = $pageSet->getNormalizedTitlesAsResult( $apiResult );
@@ -105,7 +106,8 @@ class ApiPurge extends ApiBase {
 			$apiResult->addValue( null, 'redirects', $values );
 		}
 
-		$apiResult->endContinuation();
+		$this->setContinuationManager( null );
+		$continuationManager->setContinuationIntoResult( $apiResult );
 	}
 
 	/**

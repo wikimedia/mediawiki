@@ -145,7 +145,7 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'Бәхәсем' ),
 	'Newimages'                 => array( 'Яңа_файл' ),
 	'Newpages'                  => array( 'Яңа_бит' ),
-	'Popularpages'              => array( 'Популяр_битләр' ),
+
 	'Preferences'               => array( 'Көйләнмәләр' ),
 	'Protectedpages'            => array( 'Якланган_битләр' ),
 	'Protectedtitles'           => array( 'Якланган_башлыклар' ),

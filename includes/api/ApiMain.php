@@ -89,6 +89,7 @@ class ApiMain extends ApiBase {
 		'imagerotate' => 'ApiImageRotate',
 		'revisiondelete' => 'ApiRevisionDelete',
 		'managetags' => 'ApiManageTags',
+		'tag' => 'ApiTag',
 	);
 
 	/**
@@ -139,7 +140,7 @@ class ApiMain extends ApiBase {
 	 */
 	private $mPrinter;
 
-	private $mModuleMgr, $mResult;
+	private $mModuleMgr, $mResult, $mErrorFormatter, $mContinuationManager;
 	private $mAction;
 	private $mEnableWrite;
 	private $mInternalMode, $mSquidMaxage, $mModule;
@@ -217,7 +218,11 @@ class ApiMain extends ApiBase {
 
 		Hooks::run( 'ApiMain::moduleManager', array( $this->mModuleMgr ) );
 
-		$this->mResult = new ApiResult( $this );
+		$this->mResult = new ApiResult( $this->getConfig()->get( 'APIMaxResultSize' ) );
+		$this->mErrorFormatter = new ApiErrorFormatter_BackCompat( $this->mResult );
+		$this->mResult->setErrorFormatter( $this->mErrorFormatter );
+		$this->mResult->setMainForContinuation( $this );
+		$this->mContinuationManager = null;
 		$this->mEnableWrite = $enableWrite;
 
 		$this->mSquidMaxage = -1; // flag for executeActionWithErrorHandling()
@@ -239,6 +244,43 @@ class ApiMain extends ApiBase {
 	 */
 	public function getResult() {
 		return $this->mResult;
+	}
+
+	/**
+	 * Get the ApiErrorFormatter object associated with current request
+	 * @return ApiErrorFormatter
+	 */
+	public function getErrorFormatter() {
+		return $this->mErrorFormatter;
+	}
+
+	/**
+	 * Get the continuation manager
+	 * @return ApiContinuationManager|null
+	 */
+	public function getContinuationManager() {
+		return $this->mContinuationManager;
+	}
+
+	/**
+	 * Set the continuation manager
+	 * @param ApiContinuationManager|null
+	 */
+	public function setContinuationManager( $manager ) {
+		if ( $manager !== null ) {
+			if ( !$manager instanceof ApiContinuationManager ) {
+				throw new InvalidArgumentException( __METHOD__ . ': Was passed ' .
+					is_object( $manager ) ? get_class( $manager ) : gettype( $manager )
+				);
+			}
+			if ( $this->mContinuationManager !== null ) {
+				throw new UnexpectedValueException(
+					__METHOD__ . ': tried to set manager from ' . $manager->getSource() .
+					' when a manager is already set from ' . $this->mContinuationManager->getSource()
+				);
+			}
+		}
+		$this->mContinuationManager = $manager;
 	}
 
 	/**
@@ -453,7 +495,22 @@ class ApiMain extends ApiBase {
 		// Reset and print just the error message
 		ob_clean();
 
-		$this->printResult( true );
+		// Printer may not be initialized if the extractRequestParams() fails for the main module
+		$this->createErrorPrinter();
+
+		try {
+			$this->printResult( true );
+		} catch ( UsageException $ex ) {
+			// The error printer itself is failing. Try suppressing its request
+			// parameters and redo.
+			$this->setWarning(
+				'Error printer failed (will retry without params): ' . $ex->getMessage()
+			);
+			$this->mPrinter = null;
+			$this->createErrorPrinter();
+			$this->mPrinter->forceDefaultParams();
+			$this->printResult( true );
+		}
 	}
 
 	/**
@@ -750,22 +807,14 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * Replace the result data with the information about an exception.
-	 * Returns the error code
-	 * @param Exception $e
-	 * @return string
+	 * Create the printer for error output
 	 */
-	protected function substituteResultWithError( $e ) {
-		$result = $this->getResult();
-
-		// Printer may not be initialized if the extractRequestParams() fails for the main module
+	private function createErrorPrinter() {
 		if ( !isset( $this->mPrinter ) ) {
-			// The printer has not been created yet. Try to manually get formatter value.
 			$value = $this->getRequest()->getVal( 'format', self::API_DEFAULT_FORMAT );
 			if ( !$this->mModuleMgr->isDefined( $value, 'format' ) ) {
 				$value = self::API_DEFAULT_FORMAT;
 			}
-
 			$this->mPrinter = $this->createPrinterByName( $value );
 		}
 
@@ -774,17 +823,23 @@ class ApiMain extends ApiBase {
 		if ( !$this->mPrinter->canPrintErrors() ) {
 			$this->mPrinter = $this->createPrinterByName( self::API_DEFAULT_FORMAT );
 		}
+	}
 
-		// Update raw mode flag for the selected printer.
-		$result->setRawMode( $this->mPrinter->getNeedsRawData() );
-
+	/**
+	 * Replace the result data with the information about an exception.
+	 * Returns the error code
+	 * @param Exception $e
+	 * @return string
+	 */
+	protected function substituteResultWithError( $e ) {
+		$result = $this->getResult();
 		$config = $this->getConfig();
 
 		if ( $e instanceof UsageException ) {
 			// User entered incorrect parameters - generate error response
 			$errMessage = $e->getMessageArray();
 			$link = wfExpandUrl( wfScript( 'api' ) );
-			ApiResult::setContent( $errMessage, "See $link for API usage" );
+			ApiResult::setContentValue( $errMessage, 'docref', "See $link for API usage" );
 		} else {
 			// Something is seriously wrong
 			if ( ( $e instanceof DBQueryError ) && !$config->get( 'ShowSQLErrors' ) ) {
@@ -798,16 +853,16 @@ class ApiMain extends ApiBase {
 				'info' => '[' . MWExceptionHandler::getLogId( $e ) . '] ' . $info,
 			);
 			if ( $config->get( 'ShowExceptionDetails' ) ) {
-				ApiResult::setContent(
+				ApiResult::setContentValue(
 					$errMessage,
+					'trace',
 					MWExceptionHandler::getRedactedTraceAsString( $e )
 				);
 			}
 		}
 
 		// Remember all the warnings to re-add them later
-		$oldResult = $result->getData();
-		$warnings = isset( $oldResult['warnings'] ) ? $oldResult['warnings'] : null;
+		$warnings = $result->getResultData( array( 'warnings' ) );
 
 		$result->reset();
 		// Re-add the id
@@ -1190,9 +1245,7 @@ class ApiMain extends ApiBase {
 			$this->setWarning( 'SECURITY WARNING: $wgDebugAPI is enabled' );
 		}
 
-		$this->getResult()->cleanUpUTF8();
 		$printer = $this->mPrinter;
-
 		$printer->initPrinter( false );
 		$printer->execute();
 		$printer->closePrinter();

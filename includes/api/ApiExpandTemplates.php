@@ -96,9 +96,8 @@ class ApiExpandTemplates extends ApiBase {
 				$retval['parsetree'] = $xml;
 			} else {
 				// the old way
-				$xml_result = array();
-				ApiResult::setContent( $xml_result, $xml );
-				$result->addValue( null, 'parsetree', $xml_result );
+				$result->addValue( null, 'parsetree', $xml );
+				$result->addValue( null, ApiResult::META_BC_SUBELEMENTS, array( 'parsetree' ) );
 			}
 		}
 
@@ -110,7 +109,7 @@ class ApiExpandTemplates extends ApiBase {
 			$wikitext = $wgParser->preprocess( $params['text'], $title_obj, $options, $revid, $frame );
 			if ( $params['prop'] === null ) {
 				// the old way
-				ApiResult::setContent( $retval, $wikitext );
+				ApiResult::setContentValue( $retval, 'wikitext', $wikitext );
 			} else {
 				if ( isset( $prop['categories'] ) ) {
 					$categories = $wgParser->getOutput()->getCategories();
@@ -119,29 +118,23 @@ class ApiExpandTemplates extends ApiBase {
 						foreach ( $categories as $category => $sortkey ) {
 							$entry = array();
 							$entry['sortkey'] = $sortkey;
-							ApiResult::setContent( $entry, $category );
+							ApiResult::setContentValue( $entry, 'category', $category );
 							$categories_result[] = $entry;
 						}
-						$result->setIndexedTagName( $categories_result, 'category' );
+						ApiResult::setIndexedTagName( $categories_result, 'category' );
 						$retval['categories'] = $categories_result;
 					}
 				}
 				if ( isset( $prop['properties'] ) ) {
 					$properties = $wgParser->getOutput()->getProperties();
 					if ( $properties ) {
-						$properties_result = array();
-						foreach ( $properties as $name => $value ) {
-							$entry = array();
-							$entry['name'] = $name;
-							ApiResult::setContent( $entry, $value );
-							$properties_result[] = $entry;
-						}
-						$result->setIndexedTagName( $properties_result, 'property' );
-						$retval['properties'] = $properties_result;
+						ApiResult::setArrayType( $properties, 'BCkvp', 'name' );
+						ApiResult::setIndexedTagName( $properties, 'property' );
+						$retval['properties'] = $properties;
 					}
 				}
-				if ( isset( $prop['volatile'] ) && $frame->isVolatile() ) {
-					$retval['volatile'] = '';
+				if ( isset( $prop['volatile'] ) ) {
+					$retval['volatile'] = $frame->isVolatile();
 				}
 				if ( isset( $prop['ttl'] ) && $frame->getTTL() !== null ) {
 					$retval['ttl'] = $frame->getTTL();
@@ -151,7 +144,7 @@ class ApiExpandTemplates extends ApiBase {
 				}
 			}
 		}
-		$result->setSubelements( $retval, array( 'wikitext', 'parsetree' ) );
+		ApiResult::setSubelementsList( $retval, array( 'wikitext', 'parsetree' ) );
 		$result->addValue( null, $this->getModuleName(), $retval );
 	}
 

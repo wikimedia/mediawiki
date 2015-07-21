@@ -79,7 +79,7 @@ $specialPageAliases = array(
 	'Myuploads'                 => array( 'ჩემი_ატვირთვები' ),
 	'Newimages'                 => array( 'ახალი_ფაილები' ),
 	'Newpages'                  => array( 'ახალი_გვერდები' ),
-	'Popularpages'              => array( 'პოპგვერდები' ),
+
 	'Preferences'               => array( 'კონფიგურაცია' ),
 	'Protectedpages'            => array( 'დაცული_გვერდები' ),
 	'Protectedtitles'           => array( 'დაცული_სათაურები' ),

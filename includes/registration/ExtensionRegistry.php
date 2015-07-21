@@ -39,13 +39,6 @@ class ExtensionRegistry {
 	protected $attributes = array();
 
 	/**
-	 * Processors, 'default' should be set by subclasses in the constructor
-	 *
-	 * @var Processor[]
-	 */
-	protected $processors = array();
-
-	/**
 	 * @var ExtensionRegistry
 	 */
 	private static $instance;
@@ -62,7 +55,14 @@ class ExtensionRegistry {
 	}
 
 	public function __construct() {
-		$this->cache = ObjectCache::newAccelerator( array(), CACHE_NONE );
+		// We use a try/catch instead of the $fallback parameter because
+		// we don't want to fail here if $wgObjectCaches is not configured
+		// properly for APC setup
+		try {
+			$this->cache = ObjectCache::newAccelerator( array() );
+		} catch ( MWException $e ) {
+			$this->cache = new EmptyBagOStuff();
+		}
 	}
 
 	/**
@@ -70,10 +70,18 @@ class ExtensionRegistry {
 	 */
 	public function queue( $path ) {
 		global $wgExtensionInfoMTime;
-		if ( $wgExtensionInfoMTime !== false ) {
-			$mtime = $wgExtensionInfoMTime;
-		} else {
-			$mtime = filemtime( $path );
+
+		$mtime = $wgExtensionInfoMTime;
+		if ( $mtime === false ) {
+			if ( file_exists( $path ) ) {
+				$mtime = filemtime( $path );
+			} else {
+				throw new Exception( "$path does not exist!" );
+			}
+			if ( !$mtime ) {
+				$err = error_get_last();
+				throw new Exception( "Couldn't stat $path: {$err['message']}" );
+			}
 		}
 		$this->queued[$path] = $mtime;
 	}
@@ -82,8 +90,6 @@ class ExtensionRegistry {
 		if ( !$this->queued ) {
 			return;
 		}
-
-		$this->queued = array_unique( $this->queued );
 
 		// See if this queue is in APC
 		$key = wfMemcKey( 'registration', md5( json_encode( $this->queued ) ) );
@@ -97,7 +103,7 @@ class ExtensionRegistry {
 			// did that, but it should be cached
 			$data['globals']['wgAutoloadClasses'] += $data['autoload'];
 			unset( $data['autoload'] );
-			$this->cache->set( $key, $data );
+			$this->cache->set( $key, $data, 60 * 60 * 24 );
 		}
 		$this->queued = array();
 	}
@@ -112,6 +118,7 @@ class ExtensionRegistry {
 	public function readFromQueue( array $queue ) {
 		$data = array( 'globals' => array( 'wgAutoloadClasses' => array() ) );
 		$autoloadClasses = array();
+		$processor = new ExtensionProcessor();
 		foreach ( $queue as $path => $mtime ) {
 			$json = file_get_contents( $path );
 			$info = json_decode( $json, /* $assoc = */ true );
@@ -122,39 +129,21 @@ class ExtensionRegistry {
 			// Set up the autoloader now so custom processors will work
 			$GLOBALS['wgAutoloadClasses'] += $autoload;
 			$autoloadClasses += $autoload;
-			if ( isset( $info['processor'] ) ) {
-				$processor = $this->getProcessor( $info['processor'] );
-			} else {
-				$processor = $this->getProcessor( 'default' );
-			}
 			$processor->extractInfo( $path, $info );
 		}
-		foreach ( $this->processors as $processor ) {
-			$data = array_merge_recursive( $data, $processor->getExtractedInfo() );
-		}
+		$data = $processor->getExtractedInfo();
+		// Need to set this so we can += to it later
+		$data['globals']['wgAutoloadClasses'] = array();
 		foreach ( $data['credits'] as $credit ) {
 			$data['globals']['wgExtensionCredits'][$credit['type']][] = $credit;
 		}
-		$this->processors = array(); // Reset
 		$data['autoload'] = $autoloadClasses;
 		return $data;
 	}
 
-	protected function getProcessor( $type ) {
-		if ( !isset( $this->processors[$type] ) ) {
-			$processor = $type === 'default' ? new ExtensionProcessor() : new $type();
-			if ( !$processor instanceof Processor ) {
-				throw new Exception( "$type is not a Processor" );
-			}
-			$this->processors[$type] = $processor;
-		}
-
-		return $this->processors[$type];
-	}
-
 	protected function exportExtractedData( array $info ) {
 		foreach ( $info['globals'] as $key => $val ) {
-			if ( !isset( $GLOBALS[$key] ) || !$GLOBALS[$key] ) {
+			if ( !isset( $GLOBALS[$key] ) || ( is_array( $GLOBALS[$key] ) && !$GLOBALS[$key] ) ) {
 				$GLOBALS[$key] = $val;
 			} elseif ( $key === 'wgHooks' || $key === 'wgExtensionCredits' ) {
 				// Special case $wgHooks and $wgExtensionCredits, which require a recursive merge.

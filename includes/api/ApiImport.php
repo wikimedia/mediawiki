@@ -85,7 +85,7 @@ class ApiImport extends ApiBase {
 
 		$resultData = $reporter->getData();
 		$result = $this->getResult();
-		$result->setIndexedTagName( $resultData, 'page' );
+		ApiResult::setIndexedTagName( $resultData, 'page' );
 		$result->addValue( null, $this->getModuleName(), $resultData );
 	}
 
@@ -155,7 +155,7 @@ class ApiImportReporter extends ImportReporter {
 		if ( $title === null ) {
 			# Invalid or non-importable title
 			$r['title'] = $pageInfo['title'];
-			$r['invalid'] = '';
+			$r['invalid'] = true;
 		} else {
 			ApiQueryBase::addTitleInfo( $r, $title );
 			$r['revisions'] = intval( $successCount );

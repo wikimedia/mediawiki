@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.9.7
+ * OOjs UI v0.11.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-04-03T21:01:34Z
+ * Date: 2015-05-12T12:15:44Z
  */
 .oo-ui-icon-beta {
 	background-image: url("themes/mediawiki/images/icons/beta.png");
@@ -32,17 +32,17 @@
 	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/browser-ltr.svg");
 	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/browser-ltr.png");
 }
+.oo-ui-icon-clear {
+	background-image: url("themes/mediawiki/images/icons/clear.png");
+	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/clear.svg");
+	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/clear.svg");
+	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/clear.png");
+}
 .oo-ui-icon-clock {
 	background-image: url("themes/mediawiki/images/icons/clock.png");
 	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/clock.svg");
 	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/clock.svg");
 	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/clock.png");
-}
-.oo-ui-icon-closeInput {
-	background-image: url("themes/mediawiki/images/icons/closeInput.png");
-	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/closeInput.svg");
-	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/closeInput.svg");
-	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/closeInput.png");
 }
 .oo-ui-icon-funnel {
 	background-image: url("themes/mediawiki/images/icons/funnel-ltr.png");
@@ -73,12 +73,6 @@
 	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/logOut-ltr.svg");
 	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/logOut-ltr.svg");
 	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/logOut-ltr.png");
-}
-.oo-ui-icon-magnifyingGlass {
-	background-image: url("themes/mediawiki/images/icons/magnifyingGlass-ltr.png");
-	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/magnifyingGlass-ltr.svg");
-	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/magnifyingGlass-ltr.svg");
-	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/magnifyingGlass-ltr.png");
 }
 .oo-ui-icon-newWindow {
 	background-image: url("themes/mediawiki/images/icons/newWindow-ltr.png");

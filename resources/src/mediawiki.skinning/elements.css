@@ -141,7 +141,6 @@ h5 {
 
 p {
 	margin: .4em 0 .5em 0;
-	line-height: 1.5em;
 }
 
 p img {
@@ -149,14 +148,12 @@ p img {
 }
 
 ul {
-	line-height: 1.5em;
 	list-style-type: square;
 	margin: .3em 0 0 1.6em;
 	padding: 0;
 }
 
 ol {
-	line-height: 1.5em;
 	margin: .3em 0 0 3.2em;
 	padding: 0;
 	list-style-image: none;
@@ -177,7 +174,6 @@ dl {
 }
 
 dd {
-	line-height: 1.5em;
 	margin-left: 1.6em;
 	margin-bottom: .1em;
 }
@@ -215,7 +211,6 @@ fieldset {
 	border: 1px solid #2f6fab;
 	margin: 1em 0 1em 0;
 	padding: 0 1em 1em;
-	line-height: 1.5em;
 }
 
 fieldset.nested {

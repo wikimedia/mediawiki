@@ -137,11 +137,9 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 					$r = array(
 						'name' => $dupName,
 						'user' => $dupFile->getUser( 'text' ),
-						'timestamp' => wfTimestamp( TS_ISO_8601, $dupFile->getTimestamp() )
+						'timestamp' => wfTimestamp( TS_ISO_8601, $dupFile->getTimestamp() ),
+						'shared' => !$dupFile->isLocal(),
 					);
-					if ( !$dupFile->isLocal() ) {
-						$r['shared'] = '';
-					}
 					$fit = $this->addPageSubItem( $pageId, $r );
 					if ( !$fit ) {
 						$this->setContinueEnumParameter( 'continue', $image . '|' . $dupName );

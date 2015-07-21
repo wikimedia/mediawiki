@@ -281,7 +281,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 
 		if ( is_null( $resultPageSet ) ) {
-			$this->getResult()->setIndexedTagName_internal(
+			$this->getResult()->addIndexedTagName(
 				array( 'query', $this->getModuleName() ),
 				'item'
 			);
@@ -307,7 +307,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		if ( $this->fld_title || $this->fld_ids ) {
 			// These should already have been filtered out of the query, but just in case.
 			if ( $type === RC_LOG && ( $row->rc_deleted & LogPage::DELETED_ACTION ) ) {
-				$vals['actionhidden'] = '';
+				$vals['actionhidden'] = true;
 				$anyHidden = true;
 			}
 			if ( $type !== RC_LOG ||
@@ -327,7 +327,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		/* Add user data and 'anon' flag, if user is anonymous. */
 		if ( $this->fld_user || $this->fld_userid ) {
 			if ( $row->rc_deleted & Revision::DELETED_USER ) {
-				$vals['userhidden'] = '';
+				$vals['userhidden'] = true;
 				$anyHidden = true;
 			}
 			if ( Revision::userCanBitfield( $row->rc_deleted, Revision::DELETED_USER, $user ) ) {
@@ -342,22 +342,16 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				}
 
 				if ( !$row->rc_user ) {
-					$vals['anon'] = '';
+					$vals['anon'] = true;
 				}
 			}
 		}
 
 		/* Add flags, such as new, minor, bot. */
 		if ( $this->fld_flags ) {
-			if ( $row->rc_bot ) {
-				$vals['bot'] = '';
-			}
-			if ( $row->rc_type == RC_NEW ) {
-				$vals['new'] = '';
-			}
-			if ( $row->rc_minor ) {
-				$vals['minor'] = '';
-			}
+			$vals['bot'] = (bool)$row->rc_bot;
+			$vals['new'] = $row->rc_type == RC_NEW;
+			$vals['minor'] = (bool)$row->rc_minor;
 		}
 
 		/* Add sizes of each revision. (Only available on 1.10+) */
@@ -380,7 +374,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		/* Add edit summary / log summary. */
 		if ( $this->fld_comment || $this->fld_parsedcomment ) {
 			if ( $row->rc_deleted & Revision::DELETED_COMMENT ) {
-				$vals['commenthidden'] = '';
+				$vals['commenthidden'] = true;
 				$anyHidden = true;
 			}
 			if ( Revision::userCanBitfield( $row->rc_deleted, Revision::DELETED_COMMENT, $user ) ) {
@@ -395,38 +389,26 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 
 		/* Add the patrolled flag */
-		if ( $this->fld_patrol && $row->rc_patrolled == 1 ) {
-			$vals['patrolled'] = '';
-		}
-
-		if ( $this->fld_patrol && ChangesList::isUnpatrolled( $row, $user ) ) {
-			$vals['unpatrolled'] = '';
+		if ( $this->fld_patrol ) {
+			$vals['patrolled'] = $row->rc_patrolled == 1;
+			$vals['unpatrolled'] = ChangesList::isUnpatrolled( $row, $user );
 		}
 
 		if ( $this->fld_loginfo && $row->rc_type == RC_LOG ) {
 			if ( $row->rc_deleted & LogPage::DELETED_ACTION ) {
-				$vals['actionhidden'] = '';
+				$vals['actionhidden'] = true;
 				$anyHidden = true;
 			}
 			if ( LogEventsList::userCanBitfield( $row->rc_deleted, LogPage::DELETED_ACTION, $user ) ) {
 				$vals['logid'] = intval( $row->rc_logid );
 				$vals['logtype'] = $row->rc_log_type;
 				$vals['logaction'] = $row->rc_log_action;
-				$logEntry = DatabaseLogEntry::newFromRow( $row );
-				ApiQueryLogEvents::addLogParams(
-					$this->getResult(),
-					$vals,
-					$logEntry->getParameters(),
-					$logEntry->getType(),
-					$logEntry->getSubtype(),
-					$logEntry->getTimestamp(),
-					$logEntry->isLegacy()
-				);
+				$vals['logparams'] = LogFormatter::newFromRow( $row )->formatParametersForApi();
 			}
 		}
 
 		if ( $anyHidden && ( $row->rc_deleted & Revision::DELETED_RESTRICTED ) ) {
-			$vals['suppressed'] = '';
+			$vals['suppressed'] = true;
 		}
 
 		return $vals;

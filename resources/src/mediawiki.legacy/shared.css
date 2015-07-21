@@ -426,7 +426,7 @@ p.mw-upload-editlicenses {
 	border: 1px dashed #aaa;
 }
 
-.mw-history-revisiondelete-button, #mw-fileduplicatesearch-icon {
+.mw-history-revisionactions, #mw-fileduplicatesearch-icon {
 	float: right;
 }
 

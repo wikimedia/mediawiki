@@ -1112,7 +1112,7 @@
 	"nlinks": "{{PLURAL:$1|yüm|yüms}} $1",
 	"nmembers": "{{PLURAL:$1|liman|limans}} $1",
 	"nrevisions": "{{PLURAL:$1|fomam|fomams}} $1",
-	"nviews": "{{PLURAL:$1|logam|logams}} $1",
+
 	"nimagelinks": "Pageböl in {{PLURAL:$1|pad|pads}} $1",
 	"ntransclusions": "pageböl in {{PLURAL:$1|pad|pads}} $1",
 	"specialpage-empty": "Pad at vagon.",

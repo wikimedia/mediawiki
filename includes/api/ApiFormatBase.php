@@ -32,6 +32,7 @@
 abstract class ApiFormatBase extends ApiBase {
 	private $mIsHtml, $mFormat, $mUnescapeAmps, $mHelp;
 	private $mBuffer, $mDisabled = false;
+	protected $mForceDefaultParams = false;
 
 	/**
 	 * If $format ends with 'fm', pretty-print the output in HTML.
@@ -59,14 +60,6 @@ abstract class ApiFormatBase extends ApiBase {
 	 * @return string
 	 */
 	abstract public function getMimeType();
-
-	/**
-	 * Whether this formatter needs raw data such as _element tags
-	 * @return bool
-	 */
-	public function getNeedsRawData() {
-		return false;
-	}
 
 	/**
 	 * Get the internal format name
@@ -113,6 +106,34 @@ abstract class ApiFormatBase extends ApiBase {
 	 */
 	public function canPrintErrors() {
 		return true;
+	}
+
+	/**
+	 * Ignore request parameters, force a default.
+	 *
+	 * Used as a fallback if errors are being thrown.
+	 * @since 1.26
+	 */
+	public function forceDefaultParams() {
+		$this->mForceDefaultParams = true;
+	}
+
+	/**
+	 * Overridden to honor $this->forceDefaultParams(), if applicable
+	 * @since 1.26
+	 */
+	protected function getParameterFromSettings( $paramName, $paramSettings, $parseLimit ) {
+		if ( !$this->mForceDefaultParams ) {
+			return parent::getParameterFromSettings( $paramName, $paramSettings, $parseLimit );
+		}
+
+		if ( !is_array( $paramSettings ) ) {
+			return $paramSettings;
+		} elseif ( isset( $paramSettings[self::PARAM_DFLT] ) ) {
+			return $paramSettings[self::PARAM_DFLT];
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -348,6 +369,22 @@ abstract class ApiFormatBase extends ApiBase {
 	 * @param bool $value
 	 */
 	public function setBufferResult( $value ) {
+	}
+
+	/**
+	 * Formerly indicated whether the formatter needed metadata from ApiResult.
+	 *
+	 * ApiResult previously (indirectly) used this to decide whether to add
+	 * metadata or to ignore calls to metadata-setting methods, which
+	 * unfortunately made several methods that should have been static have to
+	 * be dynamic instead. Now ApiResult always stores metadata and formatters
+	 * are required to ignore it or filter it out.
+	 *
+	 * @deprecated since 1.25
+	 * @return bool
+	 */
+	public function getNeedsRawData() {
+		return false;
 	}
 
 	/**@}*/

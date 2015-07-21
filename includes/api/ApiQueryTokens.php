@@ -35,7 +35,9 @@ class ApiQueryTokens extends ApiQueryBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
-		$res = array();
+		$res = array(
+			ApiResult::META_TYPE => 'assoc',
+		);
 
 		if ( $this->lacksSameOriginSecurity() ) {
 			$this->setWarning( 'Tokens may not be obtained when the same-origin policy is not applied' );

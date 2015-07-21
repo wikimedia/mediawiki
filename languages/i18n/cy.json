@@ -1493,7 +1493,7 @@
 	"nmembers": "$1 {{PLURAL:$1|aelod|aelod|aelod|aelod|aelod|aelod}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|aelodau|aelod|aelodau}}",
 	"nrevisions": "$1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}}",
-	"nviews": "$1 {{PLURAL:$1|ymweliad|ymweliad|ymweliad|ymweliad|ymweliad|ymweliad}}",
+
 	"nimagelinks": "Defnyddir ar {{PLURAL:$1||$1 dudalen|$1 dudalen|$1 tudalen|$1 thudalen|$1 tudalen}}",
 	"ntransclusions": "defnyddir ar {{PLURAL:$1||$1 dudalen|$1 dudalen|$1 tudalen|$1 thudalen|$1 tudalen}}",
 	"specialpage-empty": "Ni chafwyd canlyniadau i'w hadrodd.",

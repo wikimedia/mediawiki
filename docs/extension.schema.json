@@ -297,7 +297,7 @@
 				}
 			}
 		},
-		"ResourceLoaderModules": {
+		"ResourceModules": {
 			"type": "object",
 			"description": "ResourceLoader modules to register",
 			"additionalProperties": false,
@@ -534,13 +534,13 @@
 			"type": "object",
 			"description": "Rate limits"
 		},
-		"ParserTestFiles": {
-			"type": "array",
-			"description": "Parser test files to run"
-		},
 		"RecentChangesFlags": {
 			"type": "object",
 			"description": "Flags (letter symbols) shown on RecentChanges pages"
+		},
+		"MediaHandlers": {
+			"type": "object",
+			"description": "Plugins for media file type handling. Each entry in the array maps a MIME type to a PHP class name."
 		},
 		"ExtensionFunctions": {
 			"type": [
@@ -563,10 +563,6 @@
 		"SpecialPages": {
 			"type": "object",
 			"description": "SpecialPages implemented in this extension (mapping of page name to class name)"
-		},
-		"SpecialPageGroups": {
-			"type": "object",
-			"description": "Mapping of special page name to group it belongs to"
 		},
 		"AutoloadClasses": {
 			"type": "object"
@@ -632,6 +628,10 @@
 		"config": {
 			"type": "object",
 			"description": "Configuration options for this extension"
+		},
+		"ParserTestFiles": {
+			"type": "array",
+			"description": "Parser test suite files to be run by parserTests.php when no specific filename is passed to it"
 		}
 	}
 }

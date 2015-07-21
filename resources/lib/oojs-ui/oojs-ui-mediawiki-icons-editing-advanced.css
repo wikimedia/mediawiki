@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.9.7
+ * OOjs UI v0.11.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-04-03T21:01:34Z
+ * Date: 2015-05-12T12:15:44Z
  */
 .oo-ui-icon-alignCentre {
 	background-image: url("themes/mediawiki/images/icons/align-center.png");
@@ -25,6 +25,12 @@
 	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/align-float-right.svg");
 	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/align-float-right.svg");
 	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/align-float-right.png");
+}
+.oo-ui-icon-find {
+	background-image: url("themes/mediawiki/images/icons/find-ltr.png");
+	background-image: -webkit-linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/find-ltr.svg");
+	background-image:         linear-gradient(transparent, transparent), /* @embed */ url("themes/mediawiki/images/icons/find-ltr.svg");
+	background-image:      -o-linear-gradient(transparent, transparent), url("themes/mediawiki/images/icons/find-ltr.png");
 }
 .oo-ui-icon-insert {
 	background-image: url("themes/mediawiki/images/icons/insert.png");

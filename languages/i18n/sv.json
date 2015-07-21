@@ -1569,7 +1569,7 @@
 	"nmembers": "$1 {{PLURAL:$1|medlem|medlemmar}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|medlem|medlemmar}}",
 	"nrevisions": "$1 {{PLURAL:$1|version|versioner}}",
-	"nviews": "$1 {{PLURAL:$1|visning|visningar}}",
+
 	"nimagelinks": "Används på $1 {{PLURAL:$1|sida|sidor}}",
 	"ntransclusions": "används på $1 {{PLURAL:$1|sida|sidor}}",
 	"specialpage-empty": "Den här sidan är tom.",

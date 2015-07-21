@@ -100,7 +100,7 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'MusuqPanqa' ),
 	'PasswordReset'             => array( 'YaykunaRimaKutichina' ),
 	'PermanentLink'             => array( 'KakuqTinki' ),
-	'Popularpages'              => array( 'WatukuqsapaPanqa', 'RikuqsapaPanqa', 'QhawaqsapaPanqa' ),
+
 	'Preferences'               => array( 'Allinkachina', 'Allinkachinakuna' ),
 	'Prefixindex'               => array( 'QallarinaKaskaSutisuyu' ),
 	'Protectedpages'            => array( 'AmachasqaPanqa' ),

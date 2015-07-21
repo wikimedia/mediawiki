@@ -308,7 +308,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 		}
 
 		if ( is_null( $resultPageSet ) ) {
-			$result->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), 'img' );
+			$result->addIndexedTagName( array( 'query', $this->getModuleName() ), 'img' );
 		} else {
 			$resultPageSet->populateFromTitles( $titles );
 		}

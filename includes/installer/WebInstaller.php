@@ -1163,6 +1163,25 @@ class WebInstaller extends Installer {
 		} elseif ( !empty( $_SERVER['SCRIPT_NAME'] ) ) {
 			$path = $_SERVER['SCRIPT_NAME'];
 		}
+		if ( $path === false ) {
+			$this->showError( 'config-no-uri' );
+			return false;
+		}
+
+		return parent::envCheckPath();
+	}
+
+	public function envPrepPath() {
+		parent::envPrepPath();
+		// PHP_SELF isn't available sometimes, such as when PHP is CGI but
+		// cgi.fix_pathinfo is disabled. In that case, fall back to SCRIPT_NAME
+		// to get the path to the current script... hopefully it's reliable. SIGH
+		$path = false;
+		if ( !empty( $_SERVER['PHP_SELF'] ) ) {
+			$path = $_SERVER['PHP_SELF'];
+		} elseif ( !empty( $_SERVER['SCRIPT_NAME'] ) ) {
+			$path = $_SERVER['SCRIPT_NAME'];
+		}
 		if ( $path !== false ) {
 			$scriptPath = preg_replace( '{^(.*)/(mw-)?config.*$}', '$1', $path );
 			$scriptExtension = $this->getVar( 'wgScriptExtension' );
@@ -1175,14 +1194,8 @@ class WebInstaller extends Installer {
 			$this->setVar( 'wgLocalStylePath', "$scriptPath/skins" );
 			$this->setVar( 'wgExtensionAssetsPath', "$scriptPath/extensions" );
 			$this->setVar( 'wgUploadPath', "$scriptPath/images" );
-
-		} else {
-			$this->showError( 'config-no-uri' );
-
-			return false;
+			$this->setVar( 'wgResourceBasePath', "$scriptPath" );
 		}
-
-		return parent::envCheckPath();
 	}
 
 	/**

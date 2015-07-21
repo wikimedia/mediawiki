@@ -1563,7 +1563,7 @@
 	"nmembers": "$1 {{PLURAL:$1|element|elements}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|element|elements}}",
 	"nrevisions": "$1 {{PLURAL:$1|revisió|revisions}}",
-	"nviews": "$1 {{PLURAL:$1|visita|visites}}",
+
 	"nimagelinks": "S'utilitza en {{PLURAL:$1|una pàgina|$1 pàgines}}",
 	"ntransclusions": "utilitzada en {{PLURAL:$1|una pàgina|$1 pàgines}}",
 	"specialpage-empty": "Aquesta pàgina és buida.",

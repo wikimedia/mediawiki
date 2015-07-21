@@ -115,6 +115,6 @@ class CategoryPage extends Article {
 		);
 		$out = $this->getContext()->getOutput();
 		$out->addHTML( $viewer->getHTML() );
-		$out->addHelpLink( 'Help:Categories' );
+		$this->addHelpLink( 'Help:Categories' );
 	}
 }

@@ -1508,7 +1508,7 @@
 	"nmembers": "$1 {{PLURAL:$1|član|člana|članova}}",
 	"nmemberschanged": "$1 → $2 {{PLURAL:$2|član|člana|članova}}",
 	"nrevisions": "$1 {{PLURAL:$1|izmena|izmene|izmena}}",
-	"nviews": "$1 {{PLURAL:$1|pregled|pregleda|pregleda}}",
+
 	"nimagelinks": "Koristi se na $1 {{PLURAL:$1|stranici|stranice|stranica}}",
 	"ntransclusions": "koristi se na $1 {{PLURAL:$1|stranici|stranice|stranica}}",
 	"specialpage-empty": "Nema rezultata za ovaj izveštaj.",

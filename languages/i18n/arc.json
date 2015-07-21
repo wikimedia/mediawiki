@@ -783,7 +783,7 @@
 	"nlinks": "$1 {{PLURAL:$1|ܐܣܘܪܐ|ܐܣܘܪ̈ܐ}}",
 	"nmembers": "$1 {{PLURAL:$1|ܗܕܡܐ|ܗܕ̈ܡܐ}}",
 	"nrevisions": "$1 {{PLURAL:$1|ܬܢܝܬܐ|ܬܢܝܬ̈ܐ }}",
-	"nviews": "$1 {{PLURAL:$1|ܚܘܘܝܐ|ܚܘܘܝ̈ܐ}}",
+
 	"specialpage-empty": "ܠܝܬ ܦܠܛ̈ܐ ܒܬܫܪܪܐ ܗܢܐ.",
 	"lonelypages": "ܦܐܬܬ̈ܐ ܝܬܡܬ̈ܐ",
 	"uncategorizedpages": "ܦܐܬܬ̈ܐ ܠܐ ܣܕܝܪ̈ܬܐ",

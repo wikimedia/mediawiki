@@ -1202,6 +1202,7 @@ return array(
 			'jquery.textSelection',
 			'mediawiki.jqueryMsg',
 			'mediawiki.confirmCloseWindow',
+			'user.options',
 		),
 		'messages' => array(
 			'editwarning-warning',
@@ -1401,6 +1402,20 @@ return array(
 	'mediawiki.special.changeslist.enhanced' => array(
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.enhanced.css',
 	),
+	'mediawiki.special.edittags' => array(
+		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.edittags.js',
+		'dependencies' => array(
+			'jquery.chosen',
+		),
+		'messages' => array(
+			'tags-edit-chosen-placeholder',
+			'tags-edit-chosen-no-results',
+		),
+	),
+	'mediawiki.special.edittags.styles' => array(
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.edittags.css',
+		'position' => 'top',
+	),
 	'mediawiki.special.import' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.import.js',
 	),
@@ -1469,6 +1484,7 @@ return array(
 			'mediawiki.Title',
 			'mediawiki.util',
 			'mediawiki.confirmCloseWindow',
+			'user.options',
 		),
 	),
 	'mediawiki.special.userlogin.common.styles' => array(
@@ -1729,120 +1745,6 @@ return array(
 		'skinStyles' => array(
 			'default' => 'resources/lib/oojs-ui/oojs-ui-mediawiki.css',
 		),
-		'targets' => array( 'desktop', 'mobile' ),
-	),
-
-	// FIXME: This is a bit of a mess; T92551 requests fixing
-	'oojs-ui.styles.icons-alerts' => array(
-		'position' => 'top',
-		'skinStyles' => array(
-			'default' => 'resources/lib/oojs-ui/oojs-ui-mediawiki-icons-alerts.css',
-		),
-		'dependencies' => array( 'oojs-ui.styles' ),
-		'targets' => array( 'desktop', 'mobile' ),
-	),
-	'oojs-ui.styles.icons-content' => array(
-		'position' => 'top',
-		'skinStyles' => array(
-			'default' => 'resources/lib/oojs-ui/oojs-ui-mediawiki-icons-content.css',
-		),
-		'dependencies' => array( 'oojs-ui.styles' ),
-		'targets' => array( 'desktop', 'mobile' ),
-	),
-	'oojs-ui.styles.icons-editing-advanced' => array(
-		'position' => 'top',
-		'skinStyles' => array(
-			'default' => 'resources/lib/oojs-ui/oojs-ui-mediawiki-icons-editing-advanced.css',
-		),
-		'dependencies' => array( 'oojs-ui.styles' ),
-		'targets' => array( 'desktop', 'mobile' ),
-	),
-	'oojs-ui.styles.icons-editing-core' => array(
-		'position' => 'top',
-		'skinStyles' => array(
-			'default' => 'resources/lib/oojs-ui/oojs-ui-mediawiki-icons-editing-core.css',
-		),
-		'dependencies' => array( 'oojs-ui.styles' ),
-		'targets' => array( 'desktop', 'mobile' ),
-	),
-	'oojs-ui.styles.icons-editing-list' => array(
-		'position' => 'top',
-		'skinStyles' => array(
-			'default' => 'resources/lib/oojs-ui/oojs-ui-mediawiki-icons-editing-list.css',
-		),
-		'dependencies' => array( 'oojs-ui.styles' ),
-		'targets' => array( 'desktop', 'mobile' ),
-	),
-	'oojs-ui.styles.icons-editing-styling' => array(
-		'position' => 'top',
-		'skinStyles' => array(
-			'default' => 'resources/lib/oojs-ui/oojs-ui-mediawiki-icons-editing-styling.css',
-		),
-		'dependencies' => array( 'oojs-ui.styles' ),
-		'targets' => array( 'desktop', 'mobile' ),
-	),
-	'oojs-ui.styles.icons-interactions' => array(
-		'position' => 'top',
-		'skinStyles' => array(
-			'default' => 'resources/lib/oojs-ui/oojs-ui-mediawiki-icons-interactions.css',
-		),
-		'dependencies' => array( 'oojs-ui.styles' ),
-		'targets' => array( 'desktop', 'mobile' ),
-	),
-	'oojs-ui.styles.icons-layout' => array(
-		'position' => 'top',
-		'skinStyles' => array(
-			'default' => 'resources/lib/oojs-ui/oojs-ui-mediawiki-icons-layout.css',
-		),
-		'dependencies' => array( 'oojs-ui.styles' ),
-		'targets' => array( 'desktop', 'mobile' ),
-	),
-	'oojs-ui.styles.icons-location' => array(
-		'position' => 'top',
-		'skinStyles' => array(
-			'default' => 'resources/lib/oojs-ui/oojs-ui-mediawiki-icons-location.css',
-		),
-		'dependencies' => array( 'oojs-ui.styles' ),
-		'targets' => array( 'desktop', 'mobile' ),
-	),
-	'oojs-ui.styles.icons-media' => array(
-		'position' => 'top',
-		'skinStyles' => array(
-			'default' => 'resources/lib/oojs-ui/oojs-ui-mediawiki-icons-media.css',
-		),
-		'dependencies' => array( 'oojs-ui.styles' ),
-		'targets' => array( 'desktop', 'mobile' ),
-	),
-	'oojs-ui.styles.icons-moderation' => array(
-		'position' => 'top',
-		'skinStyles' => array(
-			'default' => 'resources/lib/oojs-ui/oojs-ui-mediawiki-icons-moderation.css',
-		),
-		'dependencies' => array( 'oojs-ui.styles' ),
-		'targets' => array( 'desktop', 'mobile' ),
-	),
-	'oojs-ui.styles.icons-movement' => array(
-		'position' => 'top',
-		'skinStyles' => array(
-			'default' => 'resources/lib/oojs-ui/oojs-ui-mediawiki-icons-movement.css',
-		),
-		'dependencies' => array( 'oojs-ui.styles' ),
-		'targets' => array( 'desktop', 'mobile' ),
-	),
-	'oojs-ui.styles.icons-user' => array(
-		'position' => 'top',
-		'skinStyles' => array(
-			'default' => 'resources/lib/oojs-ui/oojs-ui-mediawiki-icons-user.css',
-		),
-		'dependencies' => array( 'oojs-ui.styles' ),
-		'targets' => array( 'desktop', 'mobile' ),
-	),
-	'oojs-ui.styles.icons-wikimedia' => array(
-		'position' => 'top',
-		'skinStyles' => array(
-			'default' => 'resources/lib/oojs-ui/oojs-ui-mediawiki-icons-wikimedia.css',
-		),
-		'dependencies' => array( 'oojs-ui.styles' ),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 

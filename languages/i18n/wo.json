@@ -1004,7 +1004,7 @@
 	"nlinks": "$1 {{PLURAL:$1|lëkkalekaay|ciy lëkkalekaay}}",
 	"nmembers": "$1 {{PLURAL:$1|xët|ciy xët}} ci biir",
 	"nrevisions": "$1 {{PLURAL:$1|sumb|sumb}}",
-	"nviews": "$1 {{PLURAL:$1|nemmeeku|nemmeeku}}",
+
 	"specialpage-empty": "Xët wii amul dara",
 	"lonelypages": "Xëti jiriim",
 	"lonelypagestext": "Xët yiy toftal amuñuy lëkkalekaay yu ne ci yeneen xët yu leen di ubbi te ëmbuwuñu itam ci benn xëtu {{SITENAME}}.",
