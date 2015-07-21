@@ -1935,7 +1935,7 @@ abstract class UploadBase {
 	public static function getSessionStatus( User $user, $statusKey ) {
 		$key = wfMemcKey( 'uploadstatus', $user->getId() ?: md5( $user->getName() ), $statusKey );
 
-		return wfGetCache( CACHE_ANYTHING )->get( $key );
+		return ObjectCache::getMainStashInstance()->get( $key );
 	}
 
 	/**
@@ -1951,7 +1951,7 @@ abstract class UploadBase {
 	public static function setSessionStatus( User $user, $statusKey, $value ) {
 		$key = wfMemcKey( 'uploadstatus', $user->getId() ?: md5( $user->getName() ), $statusKey );
 
-		$cache = wfGetCache( CACHE_ANYTHING );
+		$cache = ObjectCache::getMainStashInstance();
 		if ( $value === false ) {
 			$cache->delete( $key );
 		} else {
