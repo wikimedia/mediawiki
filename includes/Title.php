@@ -4823,14 +4823,16 @@ class Title {
 	public function isValidRedirectTarget() {
 		global $wgInvalidRedirectTargets;
 
-		// invalid redirect targets are stored in a global array, but explicitly disallow Userlogout here
-		if ( $this->isSpecial( 'Userlogout' ) ) {
-			return false;
-		}
-
-		foreach ( $wgInvalidRedirectTargets as $target ) {
-			if ( $this->isSpecial( $target ) ) {
+		if ( $this->isSpecialPage() ) {
+			// invalid redirect targets are stored in a global array, but explicitly disallow Userlogout here
+			if ( $this->isSpecial( 'Userlogout' ) ) {
 				return false;
+			}
+
+			foreach ( $wgInvalidRedirectTargets as $target ) {
+				if ( $this->isSpecial( $target ) ) {
+					return false;
+				}
 			}
 		}
 
