@@ -283,6 +283,8 @@ class ApiQuery extends ApiBase {
 			$params = $module->extractRequestParams();
 			$cacheMode = $this->mergeCacheMode(
 				$cacheMode, $module->getCacheMode( $params ) );
+			$this->getContext()->getStats()->increment(
+				'api.modules.' . strtr( $module->getModulePath(), '+', '.' ) )->getSampleRate( 0.001 );
 			$module->execute();
 			Hooks::run( 'APIQueryAfterExecute', array( &$module ) );
 		}
