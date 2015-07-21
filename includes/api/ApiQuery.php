@@ -285,6 +285,8 @@ class ApiQuery extends ApiBase {
 				$cacheMode, $module->getCacheMode( $params ) );
 			$module->execute();
 			Hooks::run( 'APIQueryAfterExecute', array( &$module ) );
+			$this->getContext()->getStats()->increment(
+				'api.modules.' . strtr( $module->getModulePath(), '+', '.' ) )->getSampleRate( 0.001 );
 		}
 
 		// Set the cache mode
