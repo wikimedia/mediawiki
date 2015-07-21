@@ -3335,6 +3335,8 @@
 	"htmlform-title-badnamespace": "[[:$1]] n'est pas dans l'espace de noms \"{{ns:$2}}\" .",
 	"htmlform-title-not-creatable": "\"$1\" n'est pas un titre de page réalisable",
 	"htmlform-title-not-exists": "[[:$1]] n’existe pas",
+	"htmlform-user-not-exists": "<strong>$1</strong> n’existe pas.",
+	"htmlform-user-not-valid": "<strong>$1</strong> n’est pas un nom d’utilisateur valide.",
 	"sqlite-has-fts": "$1 avec recherche en texte intégral supportée",
 	"sqlite-no-fts": "$1 sans recherche en texte intégral supportée",
 	"logentry-delete-delete": "$1 {{GENDER:$2|a supprimé}} la page $3",

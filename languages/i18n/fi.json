@@ -908,7 +908,7 @@
 	"searchrelated": "samankaltainen",
 	"searchall": "kaikki",
 	"showingresults": "Alla on vain {{PLURAL:$1|<strong>1</strong> hakutulos|<strong>$1</strong> hakutulosta}} alkaen tuloksesta nro <strong>$2</strong>.",
-	"showingresultsinrange": "Alla näytetään {{PLURAL:$1|<strong>1</strong> tulos|<strong>$1</strong> tulosta}} väliltä <strong>$2</strong> – <strong>$3</strong>.",
+	"showingresultsinrange": "Alla näytetään {{PLURAL:$1|<strong>1</strong> tulos|<strong>$1</strong> tulosta}} väliltä <strong>$2</strong>–<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Tulos <strong>$1</strong> enimmäismäärästä <strong>$3</strong>|Tulokset <strong>$1 – $2</strong> enimmäismäärästä <strong>$3</strong>}}",
 	"search-nonefound": "Hakusi ei tuottanut tulosta.",
 	"powersearch-legend": "Laajennettu haku",

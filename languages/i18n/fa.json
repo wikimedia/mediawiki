@@ -3217,6 +3217,8 @@
 	"htmlform-title-badnamespace": "[[:$1]] در فضای نام \"{{ns:$2}}\"  موجود نیست.",
 	"htmlform-title-not-creatable": "\"$1\" عنوان قابل ایجاد نیست",
 	"htmlform-title-not-exists": "[[:$1]] وجود ندارد.",
+	"htmlform-user-not-exists": "<strong>$1</strong> وجود ندارد.",
+	"htmlform-user-not-valid": "حساب کاربری <strong>$1</strong> معتبر نیست.",
 	"sqlite-has-fts": "$1 با پشتیبانی از جستجو در متن کامل",
 	"sqlite-no-fts": "$1 بدون پشتیبانی از جستجو در متن کامل",
 	"logentry-delete-delete": "$1 صفحهٔ $3 را {{GENDER:$2|حذف کرد}}",

@@ -12,11 +12,12 @@
 			"Seb35",
 			"Nemo bis",
 			"Ricordisamoa",
-			"Fpugliajno"
+			"Fpugliajno",
+			"The Polish"
 		]
 	},
 	"config-desc": "Il programma di installazione per MediaWiki",
-	"config-title": "Installazione MediaWiki $1",
+	"config-title": "Installazione di MediaWiki $1",
 	"config-information": "Informazioni",
 	"config-localsettings-upgrade": "È stato rilevato un file <code>LocalSettings.php</code>.\nPer aggiornare questa installazione, si prega di inserire il valore di <code>$wgUpgradeKey</code> nella casella qui sotto.\nLo potete trovare in <code>LocalSettings.php</code>.",
 	"config-localsettings-cli-upgrade": "È stato rilevato un file <code>LocalSettings.php</code>.\nPer aggiornare questa installazione, eseguire <code>update.php</code>",

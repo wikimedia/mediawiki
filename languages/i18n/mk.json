@@ -3272,6 +3272,8 @@
 	"htmlform-title-badnamespace": "[[:$1]] не се наоѓа во именскиот простор „{{ns:$2}}“.",
 	"htmlform-title-not-creatable": "Насловот „$1“ не може да се создава",
 	"htmlform-title-not-exists": "[[:$1]] не постои.",
+	"htmlform-user-not-exists": "<strong>$1</strong> не постои.",
+	"htmlform-user-not-valid": "<strong>$1</strong> не претставува важечко корисничко име.",
 	"sqlite-has-fts": "$1 со поддршка за пребарување по цели текстови",
 	"sqlite-no-fts": "$1 без поддршка за пребарување по цели текстови",
 	"logentry-delete-delete": "$1 {{GENDER:$2|ја избриша}} страницата $3",

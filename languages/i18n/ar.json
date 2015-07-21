@@ -51,7 +51,8 @@
 			"Khaled",
 			"Emara",
 			"Macofe",
-			"Yahya Sakhnini"
+			"Yahya Sakhnini",
+			"Mervat Salman"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -3201,6 +3202,8 @@
 	"htmlform-cloner-create": "إضافة المزيد",
 	"htmlform-cloner-delete": "إزالة",
 	"htmlform-cloner-required": "مطلوب قيمة واحدة على الأقل.",
+	"htmlform-user-not-exists": "<strong>$1</strong> غير موجود",
+	"htmlform-user-not-valid": "اسم المستخدم <strong>$1</strong> غير صالح.",
 	"sqlite-has-fts": "$1 بدعم البحث في كامل النص",
 	"sqlite-no-fts": "$1 بدون دعم البحث في كامل النص",
 	"logentry-delete-delete": "{{GENDER:$2|حذف|حذفت}} $1 صفحة $3",

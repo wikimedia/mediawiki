@@ -3210,6 +3210,8 @@
 	"htmlform-title-badnamespace": "[[:$1]] אינו במרחב השם \"{{ns:$2}}\".",
 	"htmlform-title-not-creatable": "\"$1\" אינו שם של דף שאפשר ליצור",
 	"htmlform-title-not-exists": "[[:$1]] אינו קיים.",
+	"htmlform-user-not-exists": "<strong>$1</strong> אינו קיים.",
+	"htmlform-user-not-valid": "<strong>$1</strong> אינו שם משתמש תקין.",
 	"sqlite-has-fts": "$1 עם תמיכה בחיפוש בטקסט מלא",
 	"sqlite-no-fts": "$1 ללא תמיכה בחיפוש בטקסט מלא",
 	"logentry-delete-delete": "$1 {{GENDER:$2|מחק|מחקה}} את הדף $3&rlm;",
