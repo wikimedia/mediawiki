@@ -276,6 +276,7 @@ class ApiQuery extends ApiBase {
 		}
 
 		$cacheMode = $this->mPageSet->getCacheMode();
+		$stats =  $this->getContext()->getStats();
 
 		// Execute all unfinished modules
 		/** @var $module ApiQueryBase */
@@ -283,6 +284,11 @@ class ApiQuery extends ApiBase {
 			$params = $module->extractRequestParams();
 			$cacheMode = $this->mergeCacheMode(
 				$cacheMode, $module->getCacheMode( $params ) );
+
+			$statsPath = 'api.modules.' . strtr( $module->getModulePath(), '+', '.' );
+			$metric = $stats->increment( $statsPath );
+			$metric->setSampleRate( 0.001 );
+
 			$module->execute();
 			Hooks::run( 'APIQueryAfterExecute', array( &$module ) );
 		}

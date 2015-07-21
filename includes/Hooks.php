@@ -135,6 +135,10 @@ class Hooks {
 	 *   returning null) is equivalent to returning true.
 	 */
 	public static function run( $event, array $args = array(), $deprecatedVersion = null ) {
+		$stats = RequestContext::getMain()->getStats();
+		$metric = $stats->increment( 'hooks.' . $event );
+		$metric->setSampleRate( 0.001 );
+
 		foreach ( self::getHandlers( $event ) as $hook ) {
 			// Turn non-array values into an array. (Can't use casting because of objects.)
 			if ( !is_array( $hook ) ) {
