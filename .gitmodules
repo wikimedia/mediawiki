@@ -14,3 +14,11 @@
 	path = extensions/ParserFunctions
 	url = https://github.com/wikimedia/mediawiki-extensions-ParserFunctions
 	branch = REL1_25
+[submodule "extensions/TitleBlacklist"]
+	path = extensions/TitleBlacklist
+	url = https://github.com/wikimedia/mediawiki-extensions-TitleBlacklist
+	branch = REL1_25
+[submodule "extensions/SpamBlacklist"]
+	path = extensions/SpamBlacklist
+	url = https://github.com/wikimedia/mediawiki-extensions-SpamBlacklist
+	branch = REL1_25
