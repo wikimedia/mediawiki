@@ -11,7 +11,8 @@
 			"Sendelbach",
 			"Skalman",
 			"WikiPhoenix",
-			"Lokal Profil"
+			"Lokal Profil",
+			"Warrakkk"
 		]
 	},
 	"ooui-outline-control-move-down": "Flytta ned objekt",
@@ -26,5 +27,6 @@
 	"ooui-dialog-process-dismiss": "Stäng",
 	"ooui-dialog-process-retry": "Försök igen",
 	"ooui-dialog-process-continue": "Fortsätt",
+	"ooui-selectfile-not-supported": "Filval stöds inte",
 	"ooui-selectfile-placeholder": "Ingen fil är vald"
 }

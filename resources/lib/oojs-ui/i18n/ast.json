@@ -10,9 +10,14 @@
 	"ooui-outline-control-move-up": "Mover arriba l'elementu",
 	"ooui-outline-control-remove": "Desaniciar elementu",
 	"ooui-toolbar-more": "Más",
+	"ooui-toolgroup-expand": "Más",
+	"ooui-toolgroup-collapse": "Menos",
 	"ooui-dialog-message-accept": "Aceutar",
 	"ooui-dialog-message-reject": "Encaboxar",
 	"ooui-dialog-process-error": "Daqué funcionó mal",
 	"ooui-dialog-process-dismiss": "Descartar",
-	"ooui-dialog-process-retry": "Vuelvi a intentalo"
+	"ooui-dialog-process-retry": "Vuelvi a intentalo",
+	"ooui-dialog-process-continue": "Siguir",
+	"ooui-selectfile-not-supported": "Nun hai encontu pa la seleición de ficheros",
+	"ooui-selectfile-placeholder": "Nun se seleicionó nengún ficheru"
 }

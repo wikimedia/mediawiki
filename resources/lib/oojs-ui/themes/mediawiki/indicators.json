@@ -10,6 +10,7 @@
 	},
 	"images": {
 		"alert": { "file": "images/indicators/alert.svg" },
+		"clear": { "file": "images/indicators/clear.svg" },
 		"up": { "file": "images/indicators/arrow-up.svg" },
 		"down": { "file": "images/indicators/arrow-down.svg" },
 		"next": { "file": {

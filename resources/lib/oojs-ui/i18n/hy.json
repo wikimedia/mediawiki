@@ -3,7 +3,8 @@
 		"authors": [
 			"Vacio",
 			"Xelgen",
-			"Դավիթ Սարոյան"
+			"Դավիթ Սարոյան",
+			"Vahe Gharakhanyan"
 		]
 	},
 	"ooui-outline-control-move-down": "Իջեցնել կետը",
@@ -17,5 +18,7 @@
 	"ooui-dialog-process-error": "Ինչ-որ սխալ է տեղի ունեցել",
 	"ooui-dialog-process-dismiss": "Փակել",
 	"ooui-dialog-process-retry": "Կրկին փորձել",
-	"ooui-dialog-process-continue": "Շարունակել"
+	"ooui-dialog-process-continue": "Շարունակել",
+	"ooui-selectfile-not-supported": "Ֆայլի ընտրությունը չի պաշտպանվում",
+	"ooui-selectfile-placeholder": "Ֆայլն ընտրված չէ"
 }

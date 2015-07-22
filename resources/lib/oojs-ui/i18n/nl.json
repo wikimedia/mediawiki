@@ -32,5 +32,6 @@
 	"ooui-dialog-process-dismiss": "Sluiten",
 	"ooui-dialog-process-retry": "Opnieuw proberen",
 	"ooui-dialog-process-continue": "Doorgaan",
+	"ooui-selectfile-not-supported": "Selectie van een bestand wordt niet ondersteund",
 	"ooui-selectfile-placeholder": "Er is geen bestand geselecteerd"
 }

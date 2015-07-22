@@ -31,5 +31,6 @@
 	"ooui-dialog-process-dismiss": "Ukryj",
 	"ooui-dialog-process-retry": "Spróbuj ponownie",
 	"ooui-dialog-process-continue": "Kontynuuj",
+	"ooui-selectfile-not-supported": "Wybór pliku nie jest obsługiwany",
 	"ooui-selectfile-placeholder": "Nie wybrano pliku"
 }
