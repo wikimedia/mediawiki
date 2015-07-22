@@ -22,3 +22,11 @@
 	path = extensions/SpamBlacklist
 	url = https://github.com/wikimedia/mediawiki-extensions-SpamBlacklist
 	branch = REL1_25
+[submodule "skins/Vector"]
+	path = skins/Vector
+	url = https://github.com/wikimedia/mediawiki-skins-Vector
+	branch = REL1_25
+[submodule "skins/MonoBook"]
+	path = skins/MonoBook
+	url = https://github.com/wikimedia/mediawiki-skins-MonoBook
+	branch = REL1_25
