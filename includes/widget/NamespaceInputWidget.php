@@ -40,7 +40,6 @@ class NamespaceInputWidget extends \OOUI\Widget {
 	 */
 	public function __construct( array $config = array() ) {
 		// Configuration initialization
-
 		$config = array_merge(
 			array(
 				'nameNamespace' => 'namespace',

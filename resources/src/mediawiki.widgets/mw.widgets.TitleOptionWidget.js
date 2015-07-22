@@ -45,9 +45,9 @@
 		}, config );
 
 		// Parent constructor
-		OO.ui.MenuOptionWidget.call( this, config );
+		mw.widgets.TitleOptionWidget.parent.call( this, config );
 
-		// Intialization
+		// Initialization
 		this.$label.wrap( '<a>' );
 		this.$link = this.$label.parent();
 		this.$link.attr( 'href', config.href );
@@ -75,7 +75,7 @@
 		}
 	};
 
-	/* Inheritance */
+	/* Setup */
 
 	OO.inheritClass( mw.widgets.TitleOptionWidget, OO.ui.MenuOptionWidget );
 

@@ -7,12 +7,10 @@
  */
 namespace MediaWiki\Widget;
 
-use OOUI\TextInputWidget;
-
 /**
  * Title input widget.
  */
-class TitleInputWidget extends TextInputWidget {
+class TitleInputWidget extends \OOUI\TextInputWidget {
 
 	protected $namespace = null;
 	protected $relative = null;

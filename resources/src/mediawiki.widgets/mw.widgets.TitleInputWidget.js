@@ -5,6 +5,7 @@
  * @license The MIT License (MIT); see LICENSE.txt
  */
 ( function ( $, mw ) {
+
 	/**
 	 * Creates an mw.widgets.TitleInputWidget object.
 	 *
@@ -30,7 +31,7 @@
 		config = config || {};
 
 		// Parent constructor
-		OO.ui.TextInputWidget.call( this, $.extend( {}, config, { autocomplete: false } ) );
+		mw.widgets.TitleInputWidget.parent.call( this, $.extend( {}, config, { autocomplete: false } ) );
 
 		// Mixin constructors
 		OO.ui.mixin.LookupElement.call( this, config );
@@ -67,10 +68,9 @@
 		} );
 	};
 
-	/* Inheritance */
+	/* Setup */
 
 	OO.inheritClass( mw.widgets.TitleInputWidget, OO.ui.TextInputWidget );
-
 	OO.mixinClass( mw.widgets.TitleInputWidget, OO.ui.mixin.LookupElement );
 
 	/* Methods */
@@ -95,7 +95,7 @@
 		this.setLookupsDisabled( true );
 
 		// Parent method
-		retval = OO.ui.TextInputWidget.prototype.focus.apply( this, arguments );
+		retval = mw.widgets.TitleInputWidget.parent.prototype.focus.apply( this, arguments );
 
 		this.setLookupsDisabled( false );
 
@@ -164,10 +164,10 @@
 	 * Get lookup cache item from server response data.
 	 *
 	 * @method
-	 * @param {Mixed} data Response from server
+	 * @param {Mixed} response Response from server
 	 */
-	mw.widgets.TitleInputWidget.prototype.getLookupCacheDataFromResponse = function ( data ) {
-		return data.query || {};
+	mw.widgets.TitleInputWidget.prototype.getLookupCacheDataFromResponse = function ( response ) {
+		return response.query || {};
 	};
 
 	/**
