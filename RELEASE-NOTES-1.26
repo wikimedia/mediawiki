@@ -42,6 +42,11 @@ production.
 * Added new hooks 'EnhancedChangesListModifyLineData' &
   'EnhancedChangesListModifyBlockLineData', to modify the data used to build
   lines in enhanced recentchanges and watchlist.
+* Caches than need purging ability now use the WANObjectCache interface.
+  This corresponds to a new $wgMainWANCache setting, which defaults to using
+  the $wgMainCacheType settings.
+* Callers needing fast light-weight data stores use $wgMainStash to select
+  the store type from $wgObjectCaches. The default is the local database.
 
 ==== External libraries ====
 * Update es5-shim from v4.0.0 to v4.1.5.
