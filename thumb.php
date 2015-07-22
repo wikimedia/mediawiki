@@ -24,6 +24,8 @@
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
 require __DIR__ . '/includes/WebStart.php';
 
+use MediaWiki\Logger\LoggerFactory;
+
 // Don't use fancy MIME detection, just check the file extension for jpg/gif/png
 $wgTrivialMimeDetection = true;
 
@@ -309,7 +311,14 @@ function wfStreamThumb( array $params ) {
 			wfThumbError( 500, 'Could not stream the file' );
 		} else {
 			RequestContext::getMain()->getStats()->timing( 'media.thumbnail.stream', $streamtime );
-			wfDebugLog( 'thumbnailaccess', time() . ' ' . $thumbPath . ' ' . ob_get_length() . ' Streamed ' );
+
+			LoggerFactory::getInstance( 'thumbnailaccess' )->info( 'Thumbnail streamed',
+				array( 'timestamp' => time(),
+					'thumbpath' => $thumbPath,
+					'filesize' => ob_get_length(),
+					'type' => 'streamed',
+				)
+			);
 		}
 		return;
 	}

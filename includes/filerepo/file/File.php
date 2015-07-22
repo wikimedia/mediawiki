@@ -28,6 +28,8 @@
  * @ingroup FileAbstraction
  */
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * Implements some public methods and some protected utility functions which
  * are required by multiple child classes. Contains stub functionality for
@@ -1149,7 +1151,13 @@ abstract class File implements IDBAccessObject {
 			Hooks::run( 'FileTransformed', array( $this, $thumb, $tmpThumbPath, $thumbPath ) );
 		}
 
-		wfDebugLog( 'thumbnailaccess', time() . ' ' . $thumbPath . ' ' . filesize( $tmpThumbPath ) . ' Generated ' );
+		LoggerFactory::getInstance( 'thumbnailaccess' )->info( 'Thumbnail generated',
+			array( 'timestamp' => time(),
+				'thumbpath' => $thumbPath,
+				'filesize' => filesize( $tmpThumbPath ),
+				'type' => 'generated',
+			)
+		);
 
 		return $thumb;
 	}
