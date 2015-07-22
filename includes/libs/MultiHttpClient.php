@@ -228,7 +228,7 @@ class MultiHttpClient {
 			if ( $errno !== 0 ) {
 				$req['response']['error'] = "(curl error: $errno)";
 
-				if ( version_compare( PHP_VERSION, '5.5.0' ) >= 0 ) {
+				if ( function_exists( 'curl_strerror' ) ) {
 					$req['response']['error'] .= " " . curl_strerror( $errno );
 				}
 			}
