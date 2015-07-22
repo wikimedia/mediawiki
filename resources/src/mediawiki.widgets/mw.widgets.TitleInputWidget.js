@@ -201,7 +201,12 @@
 				imageUrl: OO.getProp( suggestionPage, 'thumbnail', 'source' ),
 				description: OO.getProp( suggestionPage, 'terms', 'description' )
 			};
-			titles.push( suggestionPage.title );
+
+			// Throw away pages from wrong namespaces. This can happen when 'showRedirectTargets' is true
+			// and we encounter a cross-namespace redirect.
+			if ( this.namespace === null || this.namespace === suggestionPage.ns ) {
+				titles.push( suggestionPage.title );
+			}
 
 			redirects = redirectsTo[suggestionPage.title] || [];
 			for ( i = 0, len = redirects.length; i < len; i++ ) {
