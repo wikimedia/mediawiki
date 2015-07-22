@@ -38,7 +38,7 @@
 
 		// Properties
 		this.limit = config.limit || 10;
-		this.namespace = config.namespace || null;
+		this.namespace = config.namespace !== undefined ? config.namespace : null;
 		this.relative = config.relative !== undefined ? config.relative : true;
 		this.showRedirectTargets = config.showRedirectTargets !== false;
 		this.showRedlink = !!config.showRedlink;
