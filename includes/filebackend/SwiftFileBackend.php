@@ -693,6 +693,8 @@ class SwiftFileBackend extends FileBackendStore {
 						'headers' => $this->authTokenHeaders( $auth ) + $objHdrs
 					) );
 					if ( $rcode >= 200 && $rcode <= 299 ) {
+						$this->deleteFileCache( $path );
+
 						return $objHdrs; // success
 					}
 				}
