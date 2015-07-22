@@ -716,6 +716,15 @@ class SwiftFileBackend extends FileBackendStore {
 			return $objHdrs; // failed
 		}
 
+		// Find prior custom HTTP headers
+		$postHeaders = $this->sanitizeHdrs( array( 'headers' => $objHdrs ) );
+		// Find prior metadata headers
+		foreach ( $objHdrs as $name => $value ) {
+			if ( strpos( $name, 'x-object-meta-' ) === 0 ) {
+				$postHeaders[$name] = $value;
+			}
+		}
+
 		$status = Status::newGood();
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scopeLockS = $this->getScopedFileLocks( array( $path ), LockManager::LOCK_UW, $status );
@@ -725,11 +734,13 @@ class SwiftFileBackend extends FileBackendStore {
 				$hash = $tmpFile->getSha1Base36();
 				if ( $hash !== false ) {
 					$objHdrs['x-object-meta-sha1base36'] = $hash;
+					// Merge new SHA1 header into the old ones
+					$postHeaders['x-object-meta-sha1base36'] = $hash;
 					list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $path );
-					list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $this->http->run( array(
+					list( $rcode ) = $this->http->run( array(
 						'method' => 'POST',
 						'url' => $this->storageUrl( $auth, $srcCont, $srcRel ),
-						'headers' => $this->authTokenHeaders( $auth ) + $objHdrs
+						'headers' => $this->authTokenHeaders( $auth ) + $postHeaders
 					) );
 					if ( $rcode >= 200 && $rcode <= 299 ) {
 						$this->deleteFileCache( $path );
