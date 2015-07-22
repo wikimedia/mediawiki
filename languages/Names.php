@@ -257,6 +257,7 @@
 	'lt' => 'lietuvių',	# Lithuanian
 	'ltg' => 'latgaļu', 	# Latgalian
 	'lus' => 'Mizo ţawng', # Mizo/Lushai
+	'luz' => 'لئری جئنوٙڤی', # Southern Luri
 	'lv' => 'latviešu',	# Latvian
 	'lzh' => '文言',	# Literary Chinese, bug 8217
 	'lzz' => 'Lazuri',	# Laz
