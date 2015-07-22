@@ -2361,6 +2361,7 @@
 	"pageinfo-robot-index": "Дазволеная",
 	"pageinfo-robot-noindex": "Не дазволеная",
 	"pageinfo-watchers": "Колькасьць назіральнікаў і назіральніц",
+	"pageinfo-visiting-watchers": "Колькасьць удзельнікаў, якія назіраюць за старонкай і бачылі апошнія зьмены",
 	"pageinfo-few-watchers": "Менш за $1 {{PLURAL:$1|назіральніка|назіральнікі|назіральнікаў}}",
 	"pageinfo-redirects-name": "Перанакіраваньняў на гэтую старонку",
 	"pageinfo-subpages-name": "Колькасьць падстаронак",
