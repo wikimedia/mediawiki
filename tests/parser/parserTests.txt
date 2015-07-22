@@ -15831,7 +15831,7 @@ CSS line continuation 2
 !! wikitext
 <div style="background-image: u\&#13;rl(test.jpg); "></div>
 !! html
-<div style="/* insecure input */"></div>
+<div style="/* invalid control char */"></div>
 
 !! end
 
@@ -18162,6 +18162,38 @@ parsoid=wt2html,wt2wt,html2html
 <p>îî</p>
 !! html/parsoid
 <p><span typeof="mw:Entity">î</span><span typeof="mw:Entity">î</span></p>
+!! end
+
+# See: http://www.w3.org/TR/html5/syntax.html#character-references
+# Note that U+000C (form feed) is not a valid XML character, so
+# it is banned even though allowed in HTML5.
+!! test
+Illegal character references (T106578)
+!! wikitext
+; Null: &#00;
+; FF: &#xC;
+; CR: &#xD;
+; Control (low): &#8;
+; Control (high): &#x7F; &#x9F;
+; Surrogate: &#xD83D;&#xDCA9;
+; This is an okay astral character: &#x1F4A9;
+!! html+tidy
+<dl>
+<dt>Null</dt>
+<dd>&amp;#00;</dd>
+<dt>FF</dt>
+<dd>&amp;#xC;</dd>
+<dt>CR</dt>
+<dd>&amp;#xD;</dd>
+<dt>Control (low)</dt>
+<dd>&amp;#8;</dd>
+<dt>Control (high)</dt>
+<dd>&amp;#x7F; &amp;#x9F;</dd>
+<dt>Surrogate</dt>
+<dd>&amp;#xD83D;&amp;#xDCA9;</dd>
+<dt>This is an okay astral character</dt>
+<dd>💩</dd>
+</dl>
 !! end
 
 !! test
