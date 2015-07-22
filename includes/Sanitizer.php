@@ -1398,15 +1398,19 @@ class Sanitizer {
 	}
 
 	/**
-	 * Returns true if a given Unicode codepoint is a valid character in XML.
+	 * Returns true if a given Unicode codepoint is a valid character in
+	 * both HTML5 and XML.
 	 * @param int $codepoint
 	 * @return bool
 	 */
 	private static function validateCodepoint( $codepoint ) {
+		# U+000C is valid in HTML5 but not allowed in XML.
+		# U+000D is valid in XML but not allowed in HTML5.
+		# U+007F - U+009F are disallowed in HTML5 (control characters).
 		return $codepoint == 0x09
 			|| $codepoint == 0x0a
-			|| $codepoint == 0x0d
-			|| ( $codepoint >= 0x20 && $codepoint <= 0xd7ff )
+			|| ( $codepoint >= 0x20 && $codepoint <= 0x7e )
+			|| ( $codepoint >= 0xa0 && $codepoint <= 0xd7ff )
 			|| ( $codepoint >= 0xe000 && $codepoint <= 0xfffd )
 			|| ( $codepoint >= 0x10000 && $codepoint <= 0x10ffff );
 	}
