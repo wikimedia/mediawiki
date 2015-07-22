@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Subi"
+			"Subi",
+			"Sator"
 		]
 	},
 	"apihelp-block-description": "Blokeatu erabiltzaile bat.",
@@ -35,6 +36,7 @@
 	"apihelp-query+allusers-param-activeusers": "Bakarrik zerrendatu azken {{PLURAL:$1|eguneko|$1 egunetako}} erabiltzaile aktiboak.",
 	"apihelp-query+imageinfo-param-urlheight": "$1urlwidth-en antzekoa.",
 	"apihelp-query+imageusage-example-simple": "Erakutsi [[:File:Albert Einstein Head.jpg]] darabilten orriak",
+	"apihelp-query+langlinks-param-inlanguagecode": "Hizkuntza izenak aurkitzeko hizkuntza kodea.",
 	"apihelp-query+prefixsearch-param-search": "Bilatu katea.",
 	"apihelp-query+protectedtitles-example-simple": "Zerrendatu babestutako izenburuak",
 	"apihelp-query+recentchanges-example-simple": "Zerrendatu aldaketa berriak.",
