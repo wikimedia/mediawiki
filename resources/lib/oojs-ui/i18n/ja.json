@@ -20,5 +20,7 @@
 	"ooui-dialog-process-error": "エラーが発生しました…",
 	"ooui-dialog-process-dismiss": "閉じる",
 	"ooui-dialog-process-retry": "もう一度お試しください",
-	"ooui-dialog-process-continue": "続行"
+	"ooui-dialog-process-continue": "続行",
+	"ooui-selectfile-not-supported": "ファイルの選択はサポートされていません",
+	"ooui-selectfile-placeholder": "ファイルが選択されていません"
 }

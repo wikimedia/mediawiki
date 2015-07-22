@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.12.0
+ * OOjs UI v0.12.1
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
- * Copyright 2011–2015 OOjs Team and other contributors.
+ * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-07-13T23:47:11Z
+ * Date: 2015-07-22T19:37:14Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -345,6 +345,9 @@
 	z-index: 1;
 	width: 100%;
 }
+.oo-ui-pendingElement-pending {
+	background-image: /* @embed */ url(themes/apex/images/textures/pending.gif);
+}
 .oo-ui-bookletLayout-stackLayout.oo-ui-stackLayout-continuous > .oo-ui-panelLayout-scrollable {
 	overflow-y: hidden;
 }
@@ -634,6 +637,9 @@
 .oo-ui-panelLayout-framed {
 	border-radius: 0.5em;
 	box-shadow: 0 0.25em 1em rgba(0, 0, 0, 0.25);
+}
+.oo-ui-panelLayout-padded.oo-ui-panelLayout-framed {
+	margin: 1em 0;
 }
 .oo-ui-stackLayout-continuous > .oo-ui-panelLayout {
 	display: block;
@@ -1676,6 +1682,21 @@
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
 }
+.oo-ui-textInputWidget input[type="search"] {
+	-webkit-appearance: none;
+}
+.oo-ui-textInputWidget input[type="search"]::-ms-clear {
+	display: none;
+}
+.oo-ui-textInputWidget input[type="search"]::-ms-reveal {
+	display: none;
+}
+.oo-ui-textInputWidget input[type="search"]::-webkit-search-decoration,
+.oo-ui-textInputWidget input[type="search"]::-webkit-search-cancel-button,
+.oo-ui-textInputWidget input[type="search"]::-webkit-search-results-button,
+.oo-ui-textInputWidget input[type="search"]::-webkit-search-results-decoration {
+	display: none;
+}
 .oo-ui-textInputWidget > .oo-ui-iconElement-icon,
 .oo-ui-textInputWidget > .oo-ui-indicatorElement-indicator,
 .oo-ui-textInputWidget > .oo-ui-labelElement-label {
@@ -1697,6 +1718,9 @@
 .oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-iconElement-icon,
 .oo-ui-textInputWidget.oo-ui-widget-enabled > .oo-ui-indicatorElement-indicator {
 	cursor: text;
+}
+.oo-ui-textInputWidget.oo-ui-widget-enabled.oo-ui-textInputWidget-type-search > .oo-ui-indicatorElement-indicator {
+	cursor: pointer;
 }
 .oo-ui-textInputWidget.oo-ui-labelElement > .oo-ui-labelElement-label {
 	display: block;
@@ -1734,6 +1758,10 @@
 	     -o-transition: border-color 200ms, box-shadow 200ms;
 	        transition: border-color 200ms, box-shadow 200ms;
 }
+.oo-ui-textInputWidget input.oo-ui-pendingElement-pending,
+.oo-ui-textInputWidget textarea.oo-ui-pendingElement-pending {
+	background-color: transparent;
+}
 .oo-ui-textInputWidget-decorated input,
 .oo-ui-textInputWidget-decorated textarea {
 	padding-left: 2em;
@@ -1769,11 +1797,6 @@
 .oo-ui-textInputWidget.oo-ui-widget-disabled .oo-ui-labelElement-label {
 	color: #dddddd;
 	text-shadow: 0 1px 1px #ffffff;
-}
-.oo-ui-textInputWidget.oo-ui-pendingElement-pending input,
-.oo-ui-textInputWidget.oo-ui-pendingElement-pending textarea {
-	background-color: transparent;
-	background-image: /* @embed */ url(themes/apex/images/textures/pending.gif);
 }
 .oo-ui-textInputWidget.oo-ui-iconElement input,
 .oo-ui-textInputWidget.oo-ui-iconElement textarea {
@@ -2504,9 +2527,6 @@
 }
 .oo-ui-processDialog-content .oo-ui-window-head {
 	height: 3.4em;
-}
-.oo-ui-processDialog-content .oo-ui-window-head.oo-ui-pendingElement-pending {
-	background-image: /* @embed */ url(themes/apex/images/textures/pending.gif);
 }
 .oo-ui-processDialog-content .oo-ui-window-body {
 	top: 3.4em;

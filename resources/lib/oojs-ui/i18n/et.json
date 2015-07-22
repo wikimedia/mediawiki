@@ -18,6 +18,6 @@
 	"ooui-dialog-process-dismiss": "Hülga",
 	"ooui-dialog-process-retry": "Proovi uuesti",
 	"ooui-dialog-process-continue": "Jätka",
-	"ooui-selectfile-not-supported": "Faili valik ei ole toetatud",
+	"ooui-selectfile-not-supported": "Faili valiku tugi puudub",
 	"ooui-selectfile-placeholder": "Faili ei ole valitud"
 }
