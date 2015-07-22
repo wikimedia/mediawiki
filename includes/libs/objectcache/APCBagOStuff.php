@@ -28,26 +28,14 @@
  */
 class APCBagOStuff extends BagOStuff {
 	public function get( $key, &$casToken = null ) {
-		$val = apc_fetch( $key );
-
+		/* HACK! This should only be live long enough for us to restart HHVM. */
+		$val = false;
 		$casToken = $val;
-
-		if ( is_string( $val ) ) {
-			if ( $this->isInteger( $val ) ) {
-				$val = intval( $val );
-			} else {
-				$val = unserialize( $val );
-			}
-		}
 
 		return $val;
 	}
 
 	public function set( $key, $value, $exptime = 0 ) {
-		if ( !$this->isInteger( $value ) ) {
-			$value = serialize( $value );
-		}
-
 		apc_store( $key, $value, $exptime );
 
 		return true;
