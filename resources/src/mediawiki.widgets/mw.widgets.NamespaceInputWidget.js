@@ -25,7 +25,7 @@
 	 */
 	mw.widgets.NamespaceInputWidget = function MwWidgetsNamespaceInputWidget( config ) {
 		// Parent constructor
-		OO.ui.Widget.call( this, config );
+		mw.widgets.NamespaceInputWidget.parent.call( this, config );
 
 		// Properties
 		this.namespace = config.namespace;
@@ -34,20 +34,20 @@
 		this.allValue = config.allValue;
 
 		// Events
-		config.namespace.connect( this, { change: 'updateCheckboxesState' } );
+		this.namespace.connect( this, { change: 'updateCheckboxesState' } );
 
 		// Initialization
 		this.$element
 			.addClass( 'mw-widget-namespaceInputWidget' )
 			.append(
-				config.namespace.$element,
-				config.invert ? config.invert.$element : '',
-				config.associated ? config.associated.$element : ''
+				this.namespace.$element,
+				this.invert ? this.invert.$element : '',
+				this.associated ? this.associated.$element : ''
 			);
 		this.updateCheckboxesState();
 	};
 
-	/* Inheritance */
+	/* Setup */
 
 	OO.inheritClass( mw.widgets.NamespaceInputWidget, OO.ui.Widget );
 

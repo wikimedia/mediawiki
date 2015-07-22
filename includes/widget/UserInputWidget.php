@@ -1,18 +1,17 @@
 <?php
 /**
- * MediaWiki Widgets – UserInputWidget class.
+ * MediaWiki Widgets â€“ UserInputWidget class.
  *
  * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
 namespace MediaWiki\Widget;
 
-use OOUI\TextInputWidget;
-
 /**
  * User input widget.
  */
-class UserInputWidget extends TextInputWidget {
+class UserInputWidget extends \OOUI\TextInputWidget {
+
 	/**
 	 * @param array $config Configuration options
 	 */

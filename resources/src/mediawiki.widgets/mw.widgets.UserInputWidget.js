@@ -5,6 +5,7 @@
  * @license The MIT License (MIT); see LICENSE.txt
  */
 ( function ( $, mw ) {
+
 	/**
 	 * Creates a mw.widgets.UserInputWidget object.
 	 *
@@ -21,7 +22,7 @@
 		config = config || {};
 
 		// Parent constructor
-		OO.ui.TextInputWidget.call( this, $.extend( {}, config, { autocomplete: false } ) );
+		mw.widgets.UserInputWidget.parent.call( this, $.extend( {}, config, { autocomplete: false } ) );
 
 		// Mixin constructors
 		OO.ui.mixin.LookupElement.call( this, config );
@@ -34,10 +35,9 @@
 		this.lookupMenu.$element.addClass( 'mw-widget-userInputWidget-menu' );
 	};
 
-	/* Inheritance */
+	/* Setup */
 
 	OO.inheritClass( mw.widgets.UserInputWidget, OO.ui.TextInputWidget );
-
 	OO.mixinClass( mw.widgets.UserInputWidget, OO.ui.mixin.LookupElement );
 
 	/* Methods */
@@ -62,7 +62,7 @@
 		this.setLookupsDisabled( true );
 
 		// Parent method
-		retval = OO.ui.TextInputWidget.prototype.focus.apply( this, arguments );
+		retval = mw.widgets.UserInputWidget.parent.prototype.focus.apply( this, arguments );
 
 		this.setLookupsDisabled( false );
 
@@ -89,10 +89,10 @@
 	 * Get lookup cache item from server response data.
 	 *
 	 * @method
-	 * @param {Mixed} data Response from server
+	 * @param {Mixed} response Response from server
 	 */
-	mw.widgets.UserInputWidget.prototype.getLookupCacheDataFromResponse = function ( data ) {
-		return data.query || {};
+	mw.widgets.UserInputWidget.prototype.getLookupCacheDataFromResponse = function ( response ) {
+		return response.query.allusers || {};
 	};
 
 	/**
@@ -103,11 +103,10 @@
 	 */
 	mw.widgets.UserInputWidget.prototype.getLookupMenuOptionsFromData = function ( data ) {
 		var len, i, user,
-			users = data.allusers,
 			items = [];
 
-		for ( i = 0, len = users.length; i < len; i++ ) {
-			user = users[i] || {};
+		for ( i = 0, len = data.length; i < len; i++ ) {
+			user = data[i] || {};
 			items.push( new OO.ui.MenuOptionWidget( {
 				label: user.name,
 				data: user.name
