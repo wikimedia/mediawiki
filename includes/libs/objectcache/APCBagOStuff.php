@@ -28,8 +28,7 @@
  */
 class APCBagOStuff extends BagOStuff {
 	public function get( $key, &$casToken = null ) {
-		/* HACK! This should only be live long enough for us to restart HHVM. */
-		$val = false;
+		$val = apc_fetch( $key );
 		$casToken = $val;
 
 		return $val;
