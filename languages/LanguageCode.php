@@ -28,6 +28,20 @@
  */
 class LanguageCode {
 	/**
+	 * Mapping from MediaWiki internal language codes to BCP 47 conform language codes.
+	 *
+	 * @since 1.30
+	 */
+	private static $bcp47Mapping = [
+		'de-formal' => 'de',
+		'en-rtl' => 'en',
+		'es-formal' => 'es',
+		'hu-formal' => 'hu',
+		'nl-informal' => 'nl',
+		'tokipona' => 'art',
+	];
+
+	/**
 	 * Get the normalised IETF language tag
 	 * See unit test for examples.
 	 *
@@ -37,6 +51,13 @@ class LanguageCode {
 	 * @since 1.30
 	 */
 	public static function bcp47( $code ) {
+		// Replace some special internal used language codes to BCP 47 conform language codes.
+		// T106367
+		$code = strtolower( $code );
+		if ( isset( self::$bcp47Mapping[$code] ) ) {
+			return self::$bcp47Mapping[$code];
+		}
+
 		$codeSegment = explode( '-', $code );
 		$codeBCP = [];
 		foreach ( $codeSegment as $segNo => $seg ) {

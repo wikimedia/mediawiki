@@ -128,6 +128,14 @@ class LanguageCodeTest extends PHPUnit_Framework_TestCase {
 			// de-419-DE
 			// a-DE
 			// ar-a-aaa-b-bbb-a-ccc
+
+			// Mapping from LanguageCode::$bcp47Mapping
+			[ 'de-formal', 'de' ],
+			[ 'en-rtl', 'en' ],
+			[ 'es-formal', 'es' ],
+			[ 'hu-formal', 'hu' ],
+			[ 'nl-informal', 'nl' ],
+			[ 'tokipona', 'art' ],
 		];
 	}
 
