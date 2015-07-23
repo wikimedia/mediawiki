@@ -376,23 +376,41 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			$title = $this->getPageTitle();
 		}
 
-		$editLink = '';
+		// always show a "<- Links" link
+		$links = array(
+			'links' => Linker::linkKnown(
+				$title,
+				$text,
+				array(),
+				array( 'target' => $target->getPrefixedText() )
+			),
+		);
+		// if the user can edit the page, add an edit link
 		if ( $this->getUser()->isAllowed( 'edit' ) ) {
-			$editLink = $this->msg( 'pipe-separator' )->escaped() .
-				Linker::linkKnown(
-					$target,
-					$editText,
-					array(),
-					array( 'action' => 'edit' )
-				);
+			$links['edit'] = Linker::linkKnown(
+				$target,
+				$editText,
+				array(),
+				array( 'action' => 'edit' )
+			);
 		}
 
-		return Linker::linkKnown(
-			$title,
-			$text,
-			array(),
-			array( 'target' => $target->getPrefixedText() )
-		) . $editLink;
+		// allow extensions to add/remove elements
+		Hooks::run( 'SpecialWhatLinksHereLinks', array( &$links ) );
+
+		// build the links html
+		$link = '';
+		$sep = $this->msg( 'pipe-separator' )->escaped();
+		$i = 0;
+		foreach ( $links as $html ) {
+			if ( $i !== 0 && $html !== '' ) {
+				$link .= $sep;
+			}
+			$link .= $html;
+			$i++;
+		}
+
+		return  $link;
 	}
 
 	function makeSelfLink( $text, $query ) {
