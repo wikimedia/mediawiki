@@ -604,7 +604,7 @@ abstract class HTMLFormField {
 
 	/**
 	 * Get a FieldLayout (or subclass thereof) to wrap this field in when using OOUI output.
-	 * @return OOUI\FieldLayout|OOUI\ActionFieldLayout
+	 * @return OOUI\\FieldLayout|OOUI\\ActionFieldLayout
 	 */
 	protected function getFieldLayoutOOUI( $inputField, $config ) {
 		if ( isset( $this->mClassWithButton ) ) {
