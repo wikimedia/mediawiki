@@ -385,7 +385,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		$options = [];
 		foreach ( $languages as $code => $name ) {
-			$display = LanguageCode::bcp47( $code ) . ' - ' . $name;
+			$display = $code . ' - ' . $name;
 			$options[$display] = $code;
 		}
 		$defaultPreferences['language'] = [
@@ -427,7 +427,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 					$options = [];
 					foreach ( $variantArray as $code => $name ) {
-						$display = LanguageCode::bcp47( $code ) . ' - ' . $name;
+						$display = $code . ' - ' . $name;
 						$options[$display] = $code;
 					}
 
