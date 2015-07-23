@@ -267,6 +267,15 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		}
 		$prevId = $from;
 
+		// pre-fill LinkCache (by building all titles and execute LinkBatch) for better
+		// performance of editable check in self::wlhLink
+		$titles = array();
+		foreach ( $rows as $row ) {
+			$titles[] = Title::makeTitle( $row->page_namespace, $row->page_title );
+		}
+		$lb = new LinkBatch( $titles );
+		$lb->execute();
+
 		if ( $level == 0 ) {
 			if ( !$this->including() ) {
 				$out->addHTML( $this->whatlinkshereForm() );
@@ -278,8 +287,11 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			}
 		}
 		$out->addHTML( $this->listStart( $level ) );
+		$i = 0;
 		foreach ( $rows as $row ) {
-			$nt = Title::makeTitle( $row->page_namespace, $row->page_title );
+			// get the actual title from pre-created titles
+			$nt = $titles[$i];
+			$i++;
 
 			if ( $row->rd_from && $level < 2 ) {
 				$out->addHTML( $this->listItem( $row, $nt, $target, true ) );
@@ -376,23 +388,44 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			$title = $this->getPageTitle();
 		}
 
-		$editLink = '';
-		if ( $this->getUser()->isAllowed( 'edit' ) ) {
-			$editLink = $this->msg( 'pipe-separator' )->escaped() .
-				Linker::linkKnown(
-					$target,
-					$editText,
-					array(),
-					array( 'action' => 'edit' )
-				);
+		// always show a "<- Links" link
+		$links = array(
+			'links' => Linker::linkKnown(
+				$title,
+				$text,
+				array(),
+				array( 'target' => $target->getPrefixedText() )
+			),
+		);
+
+		// if the page is editable, add an edit link
+		if (
+			// check user permissions
+			$this->getUser()->isAllowed( 'edit' ) &&
+			// check, if the content model is editable through action=edit
+			ContentHandler::getForTitle( $target )->supportsDirectEditing()
+		) {
+			$links['edit'] = Linker::linkKnown(
+				$target,
+				$editText,
+				array(),
+				array( 'action' => 'edit' )
+			);
 		}
 
-		return Linker::linkKnown(
-			$title,
-			$text,
-			array(),
-			array( 'target' => $target->getPrefixedText() )
-		) . $editLink;
+		// build the links html
+		$link = '';
+		$sep = $this->msg( 'pipe-separator' )->escaped();
+		$i = 0;
+		foreach ( $links as $html ) {
+			if ( $i !== 0 && $html !== '' ) {
+				$link .= $sep;
+			}
+			$link .= $html;
+			$i++;
+		}
+
+		return  $link;
 	}
 
 	function makeSelfLink( $text, $query ) {
