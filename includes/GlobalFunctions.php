@@ -1254,12 +1254,16 @@ function wfLogProfilingData() {
 
 	$config = $context->getConfig();
 	if ( $config->get( 'StatsdServer' ) ) {
-		$statsdServer = explode( ':', $config->get( 'StatsdServer' ) );
-		$statsdHost = $statsdServer[0];
-		$statsdPort = isset( $statsdServer[1] ) ? $statsdServer[1] : 8125;
-		$statsdSender = new SocketSender( $statsdHost, $statsdPort );
-		$statsdClient = new StatsdClient( $statsdSender );
-		$statsdClient->send( $context->getStats()->getBuffer() );
+		try {
+			$statsdServer = explode( ':', $config->get( 'StatsdServer' ) );
+			$statsdHost = $statsdServer[0];
+			$statsdPort = isset( $statsdServer[1] ) ? $statsdServer[1] : 8125;
+			$statsdSender = new SocketSender( $statsdHost, $statsdPort );
+			$statsdClient = new StatsdClient( $statsdSender, true, false );
+			$statsdClient->send( $context->getStats()->getBuffer() );
+		} catch ( Exception $ex ) {
+			MWExceptionHandler::logException( $ex );
+		}
 	}
 
 	# Profiling must actually be enabled...
