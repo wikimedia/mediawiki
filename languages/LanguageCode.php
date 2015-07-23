@@ -28,6 +28,33 @@
  */
 class LanguageCode {
 	/**
+	 * Mapping from MediaWiki internal language codes to BCP 47 conform language codes.
+	 *
+	 * @since 1.30
+	 */
+	private static $bcp47Mapping = [
+		'de-formal' => 'de',
+		'en-rtl' => 'en',
+		'es-formal' => 'es',
+		'hu-formal' => 'hu',
+		'nl-informal' => 'nl',
+	];
+
+	/**
+	 * Return a BCP 47 conform language code of a MediaWiki internal language code.
+	 *
+	 * @param string $code MediaWiki internal language code
+	 * @return string BCP 47 conform language code
+	 * @since 1.30
+	 */
+	public static function getBcp47( $code ) {
+		if ( isset( self::$bcp47Mapping[$code] ) ) {
+			return self::$bcp47Mapping[$code];
+		}
+		return $code;
+	}
+
+	/**
 	 * Returns a mapping of deprecated language codes that were used in previous
 	 * versions of MediaWiki to up-to-date, current language codes.
 	 *
