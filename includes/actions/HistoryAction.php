@@ -156,6 +156,10 @@ class HistoryAction extends FormlessAction {
 		 */
 		$year = $request->getInt( 'year' );
 		$month = $request->getInt( 'month' );
+		if ( !$year && !$month ) {
+			$date = $request->getVal( 'date' );
+			list( $year, $month ) = array_map( 'intval', explode( '-', $date ) );
+		}
 		$tagFilter = $request->getVal( 'tagfilter' );
 		$tagSelector = ChangeTags::buildTagFilterSelector( $tagFilter );
 
