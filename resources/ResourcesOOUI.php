@@ -27,11 +27,12 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 // WARNING: OOjs-UI is NOT TESTED with older browsers and is likely to break
 // if loaded in browsers that don't support ES5
 return call_user_func( function () {
-	// Core default themes
-	$themes = array( 'default' => 'mediawiki' );
-	$themes += ExtensionRegistry::getInstance()->getAttribute( 'SkinOOUIThemes' );
-	$modules = array();
+	$themes = ExtensionRegistry::getInstance()->getAttribute( 'SkinOOUIThemes' );
+	// We only use the theme names for file names, and they are lowercase
+	$themes = array_map( 'strtolower', $themes );
+	$themes['default'] = 'mediawiki';
 
+	$modules = array();
 	$modules['oojs-ui'] = array(
 		'scripts' => array(
 			'resources/lib/oojs-ui/oojs-ui.js',
