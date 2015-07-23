@@ -35,5 +35,31 @@ class SpecialBlankpage extends UnlistedSpecialPage {
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->getOutput()->addWikiMsg( 'intentionallyblankpage' );
+
+		$script = <<<EOF
+mw.loader.using( 'mediawiki.widgets' ).done( function () {
+	$( function () {
+		$( '#mw-content-text' ).empty().append(
+			$( '<div>' ).append(
+				$( '<p>' ).text( 'Select date:' ),
+				new mw.widgets.DateInputWidget()
+					.\$element
+			),
+			$( '<div>' ).append(
+				$( '<p>' ).text( 'Select date (custom formats):' ),
+				new mw.widgets.DateInputWidget( { inputFormat: 'DD.MM.YYYY', displayFormat: 'Do [of] MMMM [anno Domini] YYYY' } )
+					.\$element
+			),
+			$( '<div>' ).append(
+				$( '<p>' ).text( 'Select month:' ),
+				new mw.widgets.DateInputWidget( { precision: 'month' } )
+					.\$element
+			)
+		);
+	} );
+} );
+EOF;
+
+		$this->getOutput()->addInlineScript( $script );
 	}
 }
