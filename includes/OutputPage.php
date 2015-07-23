@@ -3952,7 +3952,14 @@ class OutputPage extends ContextSource {
 	 * @since 1.25
 	 */
 	public function enableOOUI() {
-		OOUI\Theme::setSingleton( new OOUI\MediaWikiTheme() );
+		$themes = ExtensionRegistry::getInstance()->getAttribute( 'SkinOOUIThemes' );
+		// Make keys (skin names) lowercase for case-insensitive matching.
+		$themes = array_change_key_case( $themes, CASE_LOWER );
+		$skinName = strtolower( $this->getSkin()->getSkinName() );
+		$theme = isset( $themes[ $skinName ] ) ? $themes[ $skinName ] : 'MediaWiki';
+		// For example, 'OOUI\MediaWikiTheme'. PHP class names are case-insensitive. 
+		$themeClass = "OOUI\\{$theme}Theme";
+		OOUI\Theme::setSingleton( new $themeClass() );
 		OOUI\Element::setDefaultDir( $this->getLanguage()->getDir() );
 		$this->addModuleStyles( array(
 			'oojs-ui.styles',
