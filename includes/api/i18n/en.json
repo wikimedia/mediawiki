@@ -1059,7 +1059,7 @@
 	"apihelp-rsd-description": "Export an RSD (Really Simple Discovery) schema.",
 	"apihelp-rsd-example-simple": "Export the RSD schema.",
 
-	"apihelp-setnotificationtimestamp-description": "Update the notification timestamp for watched pages.\n\nThis affects the highlighting of changed pages in the watchlist and history, and the sending of email when the \"Email me when a page on my watchlist is changed\" preference is enabled.",
+	"apihelp-setnotificationtimestamp-description": "Update the notification timestamp for watched pages.\n\nThis affects the highlighting of changed pages in the watchlist and history, and the sending of email when the \"Email me when a page or a file on my watchlist is changed\" preference is enabled.",
 	"apihelp-setnotificationtimestamp-param-entirewatchlist": "Work on all watched pages.",
 	"apihelp-setnotificationtimestamp-param-timestamp": "Timestamp to which to set the notification timestamp.",
 	"apihelp-setnotificationtimestamp-param-torevid": "Revision to set the notification timestamp to (one page only).",
