@@ -1058,6 +1058,7 @@ $wgAutoloadLocalClasses = array(
 	'SQLiteField' => __DIR__ . '/includes/db/DatabaseSqlite.php',
 	'SVGMetadataExtractor' => __DIR__ . '/includes/media/SVGMetadataExtractor.php',
 	'SVGReader' => __DIR__ . '/includes/media/SVGMetadataExtractor.php',
+	'SamplingStatsdClient' => __DIR__ . '/includes/libs/SamplingStatsdClient.php',
 	'Sanitizer' => __DIR__ . '/includes/Sanitizer.php',
 	'SavepointPostgres' => __DIR__ . '/includes/db/DatabasePostgres.php',
 	'ScopedCallback' => __DIR__ . '/includes/libs/ScopedCallback.php',
