@@ -177,11 +177,9 @@ class Language {
 	 * @return Language
 	 */
 	static function factory( $code ) {
-		global $wgDummyLanguageCodes, $wgLangObjCacheSize;
+		global $wgLangObjCacheSize;
 
-		if ( isset( $wgDummyLanguageCodes[$code] ) ) {
-			$code = $wgDummyLanguageCodes[$code];
-		}
+		$code = self::getLinguisticCode( $code );
 
 		// get the language object to process
 		$langObj = isset( self::$mLangObjCache[$code] )
@@ -405,6 +403,24 @@ class Language {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Return an actual language code.
+	 *
+	 * Historically the software has used several codes that do not match
+	 * official language codes. This normalizes those codes using $wgDummyLanguageCodes.
+	 *
+	 * @param $code string
+	 * @since 1.26
+	 * @return string
+	 */
+	public static function getLinguisticCode( $code ) {
+		global $wgDummyLanguageCodes;
+		if ( isset( $wgDummyLanguageCodes[$code] ) ) {
+			return $wgDummyLanguageCodes[$code];
+		}
+		return $code;
 	}
 
 	/**
