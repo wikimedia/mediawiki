@@ -1185,9 +1185,9 @@ return array(
 		),
 	),
 	'mediawiki.action.history' => array(
-		'position' => 'top',
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.history.js',
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.history.css',
+		'dependencies' => 'mediawiki.widgets',
 	),
 	'mediawiki.action.history.diff' => array(
 		'position' => 'top',
