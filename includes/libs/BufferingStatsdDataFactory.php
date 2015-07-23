@@ -20,6 +20,7 @@
  * @file
  */
 
+use Liuggio\StatsdClient\Entity\StatsdData;
 use Liuggio\StatsdClient\Entity\StatsdDataInterface;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 
@@ -75,6 +76,9 @@ class BufferingStatsdDataFactory extends StatsdDataFactory {
 		return $entity;
 	}
 
+	/**
+	 * @return StatsdData[]
+	 */
 	public function getBuffer() {
 		return $this->buffer;
 	}
