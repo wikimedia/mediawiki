@@ -445,7 +445,7 @@ class AllMessagesTablePager extends TablePager {
 		} elseif ( $field === 'am_title' ) {
 			return array( 'class' => $field );
 		} else {
-			return array( 'lang' => $this->langcode, 'dir' => $this->lang->getDir(), 'class' => $field );
+			return array( 'lang' => wfBCP47( $this->langcode ), 'dir' => $this->lang->getDir(), 'class' => $field );
 		}
 	}
 
