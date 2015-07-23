@@ -35,5 +35,55 @@ class SpecialBlankpage extends UnlistedSpecialPage {
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->getOutput()->addWikiMsg( 'intentionallyblankpage' );
+
+		$script = <<<EOF
+mw.loader.using( 'mediawiki.widgets' ).done( function () {
+	$( function () {
+		$( '#mw-content-text' ).empty().append(
+			new OO.ui.FieldsetLayout( {
+				items: [
+					new OO.ui.FieldLayout(
+						new mw.widgets.DateInputWidget(),
+						{
+							align: 'top',
+							label: 'Select date:'
+						}
+					),
+					new OO.ui.FieldLayout(
+						new mw.widgets.DateInputWidget( { value: '2011-05-07' } ),
+						{
+							align: 'top',
+							label: 'Select date (initially selected):'
+						}
+					),
+					new OO.ui.FieldLayout(
+						new mw.widgets.DateInputWidget( { inputFormat: 'DD.MM.YYYY', displayFormat: 'Do [of] MMMM [anno Domini] YYYY' } ),
+						{
+							align: 'top',
+							label: 'Select date (custom formats):'
+						}
+					),
+					new OO.ui.FieldLayout(
+						new mw.widgets.DateInputWidget( { disabled: true } ),
+						{
+							align: 'top',
+							label: 'Select date (disabled):'
+						}
+					),
+					new OO.ui.FieldLayout(
+						new mw.widgets.DateInputWidget( { precision: 'month' } ),
+						{
+							align: 'top',
+							label: 'Select month:'
+						}
+					)
+				]
+			} ).\$element
+		);
+	} );
+} );
+EOF;
+
+		$this->getOutput()->addInlineScript( $script );
 	}
 }
