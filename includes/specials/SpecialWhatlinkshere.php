@@ -267,6 +267,14 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		}
 		$prevId = $from;
 
+		// use LinkBatch to make sure, that all required data (associated with Titles)
+		// is loaded in one query
+		$lb = new LinkBatch();
+		foreach ( $rows as $row ) {
+			$lb->add( $row->page_namespace, $row->page_title );
+		}
+		$lb->execute();
+
 		if ( $level == 0 ) {
 			if ( !$this->including() ) {
 				$out->addHTML( $this->whatlinkshereForm() );
@@ -376,23 +384,33 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			$title = $this->getPageTitle();
 		}
 
-		$editLink = '';
-		if ( $this->getUser()->isAllowed( 'edit' ) ) {
-			$editLink = $this->msg( 'pipe-separator' )->escaped() .
-				Linker::linkKnown(
-					$target,
-					$editText,
-					array(),
-					array( 'action' => 'edit' )
-				);
+		// always show a "<- Links" link
+		$links = array(
+			'links' => Linker::linkKnown(
+				$title,
+				$text,
+				array(),
+				array( 'target' => $target->getPrefixedText() )
+			),
+		);
+
+		// if the page is editable, add an edit link
+		if (
+			// check user permissions
+			$this->getUser()->isAllowed( 'edit' ) &&
+			// check, if the content model is editable through action=edit
+			ContentHandler::getForTitle( $target )->supportsDirectEditing()
+		) {
+			$links['edit'] = Linker::linkKnown(
+				$target,
+				$editText,
+				array(),
+				array( 'action' => 'edit' )
+			);
 		}
 
-		return Linker::linkKnown(
-			$title,
-			$text,
-			array(),
-			array( 'target' => $target->getPrefixedText() )
-		) . $editLink;
+		// build the links html
+		return $this->getLanguage()->pipeList( $links );
 	}
 
 	function makeSelfLink( $text, $query ) {
