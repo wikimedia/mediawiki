@@ -65,7 +65,7 @@ class OOUIHTMLForm extends HTMLForm {
 			$attribs['type'] = 'submit';
 			$attribs['label'] = $this->getSubmitText();
 			$attribs['value'] = $this->getSubmitText();
-			$attribs['flags'] = array( $this->mSubmitFlag );
+			$attribs['flags'] = $this->mSubmitFlags;
 
 			$buttons .= new OOUI\ButtonInputWidget( $attribs );
 		}
