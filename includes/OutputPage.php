@@ -3433,11 +3433,11 @@ class OutputPage extends ContextSource {
 			$lang = $this->getTitle()->getPageLanguage();
 			if ( $lang->hasVariants() ) {
 				$variants = $lang->getVariants();
-				foreach ( $variants as $_v ) {
-					$tags["variant-$_v"] = Html::element( 'link', array(
+				foreach ( $variants as $variant ) {
+					$tags["variant-$variant"] = Html::element( 'link', array(
 						'rel' => 'alternate',
-						'hreflang' => wfBCP47( $_v ),
-						'href' => $this->getTitle()->getLocalURL( array( 'variant' => $_v ) ) )
+						'hreflang' => wfBCP47( $variant ),
+						'href' => $this->getTitle()->getLocalURL( array( 'variant' => $variant ) ) )
 					);
 				}
 				# x-default link per https://support.google.com/webmasters/answer/189077?hl=en
