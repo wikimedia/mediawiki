@@ -3689,7 +3689,7 @@ class User implements IDBAccessObject {
 			$from = ( $this->queryFlagsUsed & self::READ_LATEST ) ? 'master' : 'slave';
 			throw new MWException(
 				"CAS update failed on user_touched for user ID '{$this->mId}' (read from $from);" .
-				"the version of the user to be saved is older than the current version."
+				" the version of the user to be saved is older than the current version."
 			);
 		}
 
