@@ -7,6 +7,6 @@
  * @file
  */
 
-$fallback = 'fa';
+$fallback = 'lrc, fa';
 $rtl = true;
 
