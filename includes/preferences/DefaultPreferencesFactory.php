@@ -32,7 +32,6 @@ use HTMLForm;
 use HTMLFormField;
 use IContextSource;
 use Language;
-use LanguageCode;
 use LanguageConverter;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\PasswordAuthenticationRequest;
@@ -385,7 +384,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		$options = [];
 		foreach ( $languages as $code => $name ) {
-			$display = LanguageCode::bcp47( $code ) . ' - ' . $name;
+			$display = $code . ' - ' . $name;
 			$options[$display] = $code;
 		}
 		$defaultPreferences['language'] = [
@@ -427,7 +426,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 					$options = [];
 					foreach ( $variantArray as $code => $name ) {
-						$display = LanguageCode::bcp47( $code ) . ' - ' . $name;
+						$display = $code . ' - ' . $name;
 						$options[$display] = $code;
 					}
 
