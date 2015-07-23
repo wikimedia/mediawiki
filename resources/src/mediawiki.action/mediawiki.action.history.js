@@ -109,4 +109,12 @@ jQuery( function ( $ ) {
 		// Continue natural browser handling other wise
 		return true;
 	} );
+
+	var date = $( '#year' ).val() + '-' + $( '#month' ).val();
+	var widget = new mw.widgets.DateInputWidget( { value: date, name: 'date', id: 'date', precision: 'month' } );
+	$( '#mw-history-search' ).find( '#year, #month, [for=month]' )
+		.wrapAll( '<span>' ).parent()
+		.replaceWith( widget.$element );
+	$( '#mw-history-search' ).find( '[for=year]' )
+		.attr( 'for', 'date' );
 } );
