@@ -47,13 +47,4 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 		}
 		return $pages;
 	}
-
-	/**
-	 * Get group name
-	 *
-	 * @return string
-	 */
-	public function getGroup() {
-		return 'site';
-	}
 }
