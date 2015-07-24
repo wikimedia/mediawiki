@@ -2286,9 +2286,10 @@ class OutputPage extends ContextSource {
 			// add skin specific modules
 			$modules = $sk->getDefaultModules();
 
-			// enforce various default modules for all skins
+			// Enforce various default modules for all skins
 			$coreModules = array(
-				// keep this list as small as possible
+				// Keep this list as small as possible
+				'site',
 				'mediawiki.page.startup',
 				'mediawiki.user',
 			);
@@ -3004,7 +3005,8 @@ class OutputPage extends ContextSource {
 		// Separate user.tokens as otherwise caching will be allowed (T84960)
 		$links[] = $this->makeResourceLoaderLink( 'user.tokens', ResourceLoaderModule::TYPE_COMBINED );
 
-		// Scripts and messages "only" requests marked for top inclusion
+		// "Scripts only" modules marked for top inclusion
+		$styleModules = $this->getModuleScripts( true, 'top' );
 		$links[] = $this->makeResourceLoaderLink(
 			$this->getModuleScripts( true, 'top' ),
 			ResourceLoaderModule::TYPE_SCRIPTS
@@ -3063,11 +3065,6 @@ class OutputPage extends ContextSource {
 
 		// Legacy Scripts
 		$links[] = "\n" . $this->mScripts;
-
-		// Add site JS if enabled
-		$links[] = $this->makeResourceLoaderLink( 'site', ResourceLoaderModule::TYPE_SCRIPTS,
-			/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
-		);
 
 		// Add user JS if enabled
 		if ( $this->getConfig()->get( 'AllowUserJs' )
@@ -3683,9 +3680,17 @@ class OutputPage extends ContextSource {
 			if ( !$module ) {
 				continue;
 			}
+			if ( $name === 'site' ) {
+				// HACK: The site module shouldn't be fragmented with a cache group and
+				// http request. But in order to ensure its styles are separated and after the
+				// ResourceLoaderDynamicStyles marker, pretend it is in a group called 'site'.
+				// The scripts remain ungrouped and rides the bottom queue.
+				$styles['site'][] = $name;
+				continue;
+			}
 			$group = $module->getGroup();
-			// Modules in groups different than the ones listed on top (see $styles assignment)
-			// will be placed in the "other" group
+			// Modules in groups other than the ones needing special treatment (see $styles assignment)
+			// will be placed in the "other" style category.
 			$styles[isset( $styles[$group] ) ? $group : 'other'][] = $name;
 		}
 
@@ -3704,7 +3709,7 @@ class OutputPage extends ContextSource {
 			array( 'name' => 'ResourceLoaderDynamicStyles', 'content' => '' )
 		) . "\n";
 
-		// Add site, private and user styles
+		// Add site-specific and user-specific styles
 		// 'private' at present only contains user.options, so put that before 'user'
 		// Any future private modules will likely have a similar user-specific character
 		foreach ( array( 'site', 'noscript', 'private', 'user' ) as $group ) {
