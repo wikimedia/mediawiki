@@ -3120,7 +3120,7 @@
 	"specialpages-group-spam": "Herramientas anti-SPAM",
 	"specialpages-group-developer": "Herramientas para desarrolladores",
 	"blankpage": "Página vacía",
-	"intentionallyblankpage": "Esta pagina está en blanco de manera intencionada.",
+	"intentionallyblankpage": "Esta página está en blanco de manera intencionada.",
 	"external_image_whitelist": " #Deja esta línea exactamente como está<pre>\n#Colocar fragmentos de expresiones regulares (sólo la parte que va entre los //) debajo\n#Estos coincidirán con los URLs de las imágenes externas (hotlinked)\n#Aquellos que coincidan serán mostrados como imágenes, de lo contrario solamente un vínculo a la imagen será mostrada\n#Las líneas que empiezan por «#» se consideran comentarios\n#Esta es insensible a las mayúsculas\n\n#Colocar todos los fragmentos regex arriba de esta línea. Deja esta línea exactamente como está</pre>",
 	"tags": "Etiquetas de cambios",
 	"tag-filter": "Filtro de [[Special:Tags|etiquetas]]:",

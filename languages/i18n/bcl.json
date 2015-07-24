@@ -1544,7 +1544,7 @@
 	"linksearch-pat": "Pangarugan sa paghahanap:",
 	"linksearch-ns": "Espasyong-ngaran:",
 	"linksearch-ok": "Hanápon",
-	"linksearch-text": "Mga tsambang baraha arog baka kan \"*.wikipedia.org\" na puwedeng paggamiton.\nMinakaipo kisera halangkaw na kamugtakan nin kinasakupan, halimbawa \"*.org\".<br />\nSuportadong {{PLURAL:$2|protokol|mga protokol}}: $1 (defaults to http:// kun mayong protokol na pinagkaag).",
+	"linksearch-text": "Mga tsambang baraha arog baka kan \"*.wikipedia.org\" na puwedeng paggamiton.\nMinakaipo nin kisera halangkaw na kamugtakan nin kinasakupan, halimbawa \"*.org\".<br />\nSuportadong {{PLURAL:$2|protokol|mga protokol}}: $1 (defaults to http:// kun mayong protokol na pinagkaag).",
 	"linksearch-line": "$1 isinugpon gikan sa $2",
 	"linksearch-error": "Mga pantsambang baraha mapuwedeng magluwas sana sa poon kan hostname.",
 	"listusersfrom": "Ipahiling an mga paragamit poon sa:",

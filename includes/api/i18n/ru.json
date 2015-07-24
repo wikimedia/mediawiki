@@ -7,7 +7,8 @@
 			"Kaganer",
 			"Mariya",
 			"Дмитрий",
-			"WindEwriX"
+			"WindEwriX",
+			"Ochilov"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Документация]]\n* [[mw:API:FAQ|ЧаВО]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Почтовая рассылка]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> Все отображаемые на этой странице функции должны работать, однако API находится в статусе активной разработки, и может измениться в любой момент. Подпишитесь на  [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом \"MediaWiki-API-Error\", после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:API:Errors_and_warnings|API: Ошибки и предупреждения]].",
@@ -26,6 +27,7 @@
 	"apihelp-block-param-anononly": "Блокировать только анонимных пользователей (т. е. запретить анонимные правки для этого IP-адреса).",
 	"apihelp-block-param-nocreate": "Запретить создание учётных записей.",
 	"apihelp-block-param-watchuser": "Следить за страницей пользователя или IP-участника и страницей обсуждения.",
+	"apihelp-checktoken-param-type": "Тип маркера проходит тестирование.",
 	"apihelp-checktoken-param-token": "токен для проверки",
 	"apihelp-checktoken-param-maxtokenage": "Максимально допустимый возраст токена (в секундах).",
 	"apihelp-checktoken-example-simple": "Проверить годность <kbd>csrf</kbd>-токена.",
@@ -78,6 +80,8 @@
 	"apihelp-emailuser-example-email": "Отправить письмо пользователю <kbd>WikiSysop</kbd> с текстом <kbd>контентом</kbd>.",
 	"apihelp-expandtemplates-description": "Разворачивает все шаблоны в wikitext.",
 	"apihelp-expandtemplates-param-title": "Заголовок страницы.",
+	"apihelp-expandtemplates-param-text": "Викитекст для конвертирования",
+	"apihelp-expandtemplates-paramvalue-prop-wikitext": "Расширенный викитекст",
 	"apihelp-expandtemplates-paramvalue-prop-parsetree": "Дерево разбора XML входных данных.",
 	"apihelp-feedcontributions-param-year": "От года (и ранее).",
 	"apihelp-feedcontributions-param-month": "От месяца (и ранее).",

@@ -86,7 +86,8 @@
 			"Alexmar983",
 			"Federico Mugnaini",
 			"Fpugliajno",
-			"Fringio"
+			"Fringio",
+			"Aquatech"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -805,7 +806,7 @@
 	"history-feed-description": "Cronologia della pagina su questo sito",
 	"history-feed-item-nocomment": "$1 il $2",
 	"history-feed-empty": "La pagina richiesta non esiste; potrebbe essere stata cancellata dal sito o rinominata. Verificare con la [[Special:Search|pagina di ricerca]] se vi sono nuove pagine.",
-	"history-edit-tags": "Modifica le etichette delle versioni selezioniate",
+	"history-edit-tags": "Modifica le etichette delle versioni selezionate",
 	"rev-deleted-comment": "(Oggetto della modifica rimosso)",
 	"rev-deleted-user": "(nome utente rimosso)",
 	"rev-deleted-event": "(dettagli del registro rimossi)",
@@ -3210,6 +3211,8 @@
 	"htmlform-title-badnamespace": "[[:$1]] non si trova nel namespace \"{{ns:$2}}\".",
 	"htmlform-title-not-creatable": "\"$1\" è il titolo di una pagina non creabile",
 	"htmlform-title-not-exists": "[[:$1]] non esiste.",
+	"htmlform-user-not-exists": "<strong>$1</strong> non esiste.",
+	"htmlform-user-not-valid": "<strong>$1</strong> non è un nome utente valido.",
 	"sqlite-has-fts": "$1 con la possibilità di ricerca completa nel testo",
 	"sqlite-no-fts": "$1 senza la possibilità di ricerca completa nel testo",
 	"logentry-delete-delete": "$1 {{GENDER:$2|ha cancellato}} la pagina $3",
