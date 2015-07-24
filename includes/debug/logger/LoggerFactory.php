@@ -25,7 +25,7 @@ use ObjectFactory;
 /**
  * PSR-3 logger instance factory.
  *
- * Creation of \Psr\Log\LoggerInterface instances is managed via the
+ * Creation of \\Psr\\Log\\LoggerInterface instances is managed via the
  * LoggerFactory::getInstance() static method which in turn delegates to the
  * currently registered service provider.
  *
@@ -38,7 +38,7 @@ use ObjectFactory;
  * $wgMWLoggerDefaultSpi is expected to be an array usable by
  * ObjectFactory::getObjectFromSpec() to create a class.
  *
- * @see \MediaWiki\Logger\Spi
+ * @see \\MediaWiki\\Logger\\Spi
  * @since 1.25
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2014 Bryan Davis and Wikimedia Foundation.
@@ -53,10 +53,10 @@ class LoggerFactory {
 
 
 	/**
-	 * Register a service provider to create new \Psr\Log\LoggerInterface
+	 * Register a service provider to create new \\Psr\\Log\\LoggerInterface
 	 * instances.
 	 *
-	 * @param \MediaWiki\Logger\Spi $provider Provider to register
+	 * @param \\MediaWiki\\Logger\\Spi $provider Provider to register
 	 */
 	public static function registerProvider( Spi $provider ) {
 		self::$spi = $provider;
@@ -71,7 +71,7 @@ class LoggerFactory {
 	 * Spi registration. $wgMWLoggerDefaultSpi is expected to be an
 	 * array usable by ObjectFactory::getObjectFromSpec() to create a class.
 	 *
-	 * @return \MediaWiki\Logger\Spi
+	 * @return \\MediaWiki\\Logger\\Spi
 	 * @see registerProvider()
 	 * @see ObjectFactory::getObjectFromSpec()
 	 */
@@ -91,7 +91,7 @@ class LoggerFactory {
 	 * Get a named logger instance from the currently configured logger factory.
 	 *
 	 * @param string $channel Logger channel (name)
-	 * @return \Psr\Log\LoggerInterface
+	 * @return \\Psr\\Log\\LoggerInterface
 	 */
 	public static function getInstance( $channel ) {
 		if ( !interface_exists( '\Psr\Log\LoggerInterface' ) ) {
