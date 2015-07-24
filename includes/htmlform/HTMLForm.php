@@ -167,7 +167,7 @@ class HTMLForm extends ContextSource {
 	protected $mFieldTree;
 	protected $mShowReset = false;
 	protected $mShowSubmit = true;
-	protected $mSubmitFlag = 'constructive';
+	protected $mSubmitFlags = array( 'constructive', 'primary' );
 
 	protected $mSubmitCallback;
 	protected $mValidationErrorMessage;
@@ -975,7 +975,10 @@ class HTMLForm extends ContextSource {
 			$attribs['class'] = array( 'mw-htmlform-submit' );
 
 			if ( $useMediaWikiUIEverywhere ) {
-				array_push( $attribs['class'], 'mw-ui-button', 'mw-ui-' . $this->mSubmitFlag );
+				foreach ( $this->mSubmitFlags as $flag ) {
+					array_push( $attribs['class'], 'mw-ui-' . $flag );
+				}
+				array_push( $attribs['class'], 'mw-ui-button' );
 			}
 
 			$buttons .= Xml::submitButton( $this->getSubmitText(), $attribs ) . "\n";
@@ -1102,7 +1105,7 @@ class HTMLForm extends ContextSource {
 	 * @since 1.24
 	 */
 	public function setSubmitDestructive() {
-		$this->mSubmitFlag = 'destructive';
+		$this->mSubmitFlags = array( 'destructive', 'primary' );
 	}
 
 	/**
@@ -1110,7 +1113,7 @@ class HTMLForm extends ContextSource {
 	 * @since 1.25
 	 */
 	public function setSubmitProgressive() {
-		$this->mSubmitFlag = 'progressive';
+		$this->mSubmitFlags = array( 'progressive', 'primary' );
 	}
 
 	/**

@@ -95,8 +95,10 @@ class VFormHTMLForm extends HTMLForm {
 			$attribs['class'] = array(
 				'mw-htmlform-submit',
 				'mw-ui-button mw-ui-big mw-ui-block',
-				'mw-ui-' . $this->mSubmitFlag,
 			);
+			foreach ( $this->mSubmitFlags as $flag ) {
+				$attribs['class'][] = 'mw-ui-' . $flag;
+			}
 
 			$buttons .= Xml::submitButton( $this->getSubmitText(), $attribs ) . "\n";
 		}
