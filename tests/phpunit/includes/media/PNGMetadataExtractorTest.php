@@ -152,4 +152,16 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 			'greyscale-na-png.png' );
 		$this->assertEquals( 'greyscale', $meta['colorType'] );
 	}
+
+	public function testPngGamma() {
+		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
+			'grey-gamma.png' );
+		$this->assertEquals( 25, $meta['gamma'] );
+	}
+
+	public function testPngGammaNotPresetn() {
+		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
+			'xmp.png' );
+		$this->assertEquals( false, $meta['gamma'] );
+	}
 }

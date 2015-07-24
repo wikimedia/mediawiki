@@ -136,6 +136,22 @@ class BitmapHandler extends TransformationalImageHandler {
 			}
 		}
 
+		if ( $params['mimeType'] === 'image/png' ) {
+			// Work-around T106516 (Wrong default gamma on greyscale png images w/o gAMA chunk)
+			MediaWiki\suppressWarnings();
+			$pngMeta = unserialize( $image->getMetadata() );
+			MediaWiki\restoreWarnings();
+			if ( $pngMeta && isset( $pngMeta['gamma'] )
+				&& $pngMeta['gamma'] === false
+				&& ( $pngMeta['colorType'] === 'greyscale-alpha' || $pngMeta['colorType'] === 'greyscale' )
+				&& !isset( $pngMeta['metadata']['ColorSpace'] )
+				&& version_compare( $this->getMagickVersion(), "6.9.0-1" ) < 0
+			) {
+				$animation_pre[] = '+gamma';
+				$animation_pre[] = '.45455';
+			}
+		}
+
 		// Use one thread only, to avoid deadlock bugs on OOM
 		$env = array( 'OMP_NUM_THREADS' => 1 );
 		if ( strval( $wgImageMagickTempDir ) !== '' ) {
