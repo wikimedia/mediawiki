@@ -136,6 +136,8 @@ class BitmapHandler extends TransformationalImageHandler {
 			}
 		}
 
+		$animation_pre = array_merge( $animation_pre, $this->getAnimationPreIMArgs( $image, $params ) );
+
 		// Use one thread only, to avoid deadlock bugs on OOM
 		$env = array( 'OMP_NUM_THREADS' => 1 );
 		if ( strval( $wgImageMagickTempDir ) !== '' ) {
@@ -179,6 +181,22 @@ class BitmapHandler extends TransformationalImageHandler {
 		}
 
 		return false; # No error
+	}
+
+	/**
+	 * Allow subclasses to add extra arguments to image magick.
+	 *
+	 * The returned array will be merged with the $animation_pre
+	 * array in BitmapHandler::transformImageMagick, where they
+	 * will be escaped for shell, and added directly after the
+	 * input filename.
+	 *
+	 * @param $image File The image where are converting
+	 * @param $params array Scalar parameters
+	 * @return Array Extra arguments for image magick
+	 */
+	protected function getAnimationPreIMArgs( $image, $params ) {
+		return array();
 	}
 
 	/**

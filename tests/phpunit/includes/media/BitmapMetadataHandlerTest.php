@@ -140,8 +140,10 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 			'colorType' => 'index-coloured',
 			'metadata' => array(
 				'SerialNumber' => '123456789',
+				'ColorSpace' => 1,
 				'_MW_PNG_VERSION' => 1,
 			),
+			'gamma' => false,
 		);
 		$this->assertEquals( $expected, $result );
 	}

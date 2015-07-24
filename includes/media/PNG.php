@@ -181,4 +181,34 @@ class PNGHandler extends BitmapHandler {
 	public function supportsBucketing() {
 		return false;
 	}
+
+	/**
+	 * Add extra args to the image magick invocation
+	 *
+	 * The returned array will be merged with the $animation_pre
+	 * array in BitmapHandler::transformImageMagick, where they
+	 * will be escaped for shell, and added directly after the
+	 * input filename.
+	 *
+	 * @param $image File The image where are converting
+	 * @param $params array Scalar parameters
+	 * @return Array Extra args for image magick
+	 */
+	protected function getAnimationPreIMArgs( $image, $pre ) {
+		// Work-around T106516 (Wrong default gamma on greyscale png images w/o gAMA chunk)
+		$animation_pre = array();
+		MediaWiki\suppressWarnings();
+		$pngMeta = unserialize( $image->getMetadata() );
+		MediaWiki\restoreWarnings();
+		if ( $pngMeta && isset( $pngMeta['gamma'] )
+			&& $pngMeta['gamma'] === false
+			&& ( $pngMeta['colorType'] === 'greyscale-alpha' || $pngMeta['colorType'] === 'greyscale' )
+			&& !isset( $pngMeta['metadata']['ColorSpace'] )
+				&& version_compare( $this->getMagickVersion(), "6.9.0-1" ) < 0
+		) {
+			$animation_pre[] = '+gamma';
+			$animation_pre[] = '.45455';
+		}
+		return $animation_pre;
+	}
 }

@@ -100,8 +100,8 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 	public static function provideGetMetadata() {
 		return array(
 			// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong
-			array( 'rgb-na-png.png', 'a:6:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:8;s:9:"colorType";s:10:"truecolour";s:8:"metadata";a:1:{s:15:"_MW_PNG_VERSION";i:1;}}' ),
-			array( 'xmp.png', 'a:6:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:1;s:9:"colorType";s:14:"index-coloured";s:8:"metadata";a:2:{s:12:"SerialNumber";s:9:"123456789";s:15:"_MW_PNG_VERSION";i:1;}}' ),
+			array( 'rgb-na-png.png', 'a:7:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:8;s:9:"colorType";s:10:"truecolour";s:5:"gamma";b:0;s:8:"metadata";a:2:{s:10:"ColorSpace";i:1;s:15:"_MW_PNG_VERSION";i:1;}}' ),
+			array( 'xmp.png', 'a:7:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:1;s:9:"colorType";s:14:"index-coloured";s:5:"gamma";b:0;s:8:"metadata";a:3:{s:12:"SerialNumber";s:9:"123456789";s:10:"ColorSpace";i:1;s:15:"_MW_PNG_VERSION";i:1;}}' ),
 			// @codingStandardsIgnoreEnd
 		);
 	}
@@ -120,10 +120,11 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 
 	public static function provideGetIndependentMetaArray() {
 		return array(
-			array( 'rgb-na-png.png', array() ),
+			array( 'rgb-na-png.png', array( 'ColorSpace' => 1 ) ),
 			array( 'xmp.png',
 				array(
 					'SerialNumber' => '123456789',
+					'ColorSpace' => 1,
 				)
 			),
 		);
