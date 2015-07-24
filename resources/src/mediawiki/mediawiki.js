@@ -1158,11 +1158,14 @@
 
 				if ( !hasOwn.call( registry, module ) ) {
 					throw new Error( 'Module has not been registered yet: ' + module );
-				} else if ( registry[module].state === 'registered' ) {
+				}
+				if ( registry[module].state === 'registered' ) {
 					throw new Error( 'Module has not been requested from the server yet: ' + module );
-				} else if ( registry[module].state === 'loading' ) {
+				}
+				if ( registry[module].state === 'loading' ) {
 					throw new Error( 'Module has not completed loading yet: ' + module );
-				} else if ( registry[module].state === 'ready' ) {
+				}
+				if ( registry[module].state === 'ready' ) {
 					throw new Error( 'Module has already been executed: ' + module );
 				}
 
@@ -1210,10 +1213,17 @@
 						if ( $.isArray( script ) ) {
 							nestedAddScript( script, markModuleReady, registry[module].async, 0 );
 						} else if ( $.isFunction( script ) ) {
-							registry[module].state = 'ready';
 							// Pass jQuery twice so that the signature of the closure which wraps
 							// the script can bind both '$' and 'jQuery'.
+							registry[module].state = 'ready';
 							script( $, $ );
+							handlePending( module );
+						} else if ( typeof script === 'string' ) {
+							// Site module is a legacy script that runs in the global scope. This is transported
+							// as a string instead of a function to avoid needing to use string manipulation to
+							// undo the function wrapper.
+							registry[module].state = 'ready';
+							$.globalEval( script );
 							handlePending( module );
 						}
 					} catch ( e ) {
@@ -1773,8 +1783,8 @@
 					if ( typeof module !== 'string' ) {
 						throw new Error( 'module must be of type string, not ' + typeof module );
 					}
-					if ( script && !$.isFunction( script ) && !$.isArray( script ) ) {
-						throw new Error( 'script must be of type function or array, not ' + typeof script );
+					if ( script && !$.isFunction( script ) && !$.isArray( script ) && typeof script !== 'string' ) {
+						throw new Error( 'script must be of type function, array, or script; not ' + typeof script );
 					}
 					if ( style && !$.isPlainObject( style ) ) {
 						throw new Error( 'style must be of type object, not ' + typeof style );
@@ -2172,7 +2182,7 @@
 							// Module failed to load
 							descriptor.state !== 'ready' ||
 							// Unversioned, private, or site-/user-specific
-							( !descriptor.version || $.inArray( descriptor.group, [ 'private', 'user', 'site' ] ) !== -1 ) ||
+							( !descriptor.version || $.inArray( descriptor.group, [ 'private', 'user' ] ) !== -1 ) ||
 							// Partial descriptor
 							$.inArray( undefined, [ descriptor.script, descriptor.style,
 									descriptor.messages, descriptor.templates ] ) !== -1
