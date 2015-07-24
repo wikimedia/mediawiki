@@ -2289,6 +2289,7 @@ class OutputPage extends ContextSource {
 			// enforce various default modules for all skins
 			$coreModules = array(
 				// keep this list as small as possible
+				'site',
 				'mediawiki.page.startup',
 				'mediawiki.user',
 			);
@@ -3064,11 +3065,6 @@ class OutputPage extends ContextSource {
 		// Legacy Scripts
 		$links[] = "\n" . $this->mScripts;
 
-		// Add site JS if enabled
-		$links[] = $this->makeResourceLoaderLink( 'site', ResourceLoaderModule::TYPE_SCRIPTS,
-			/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
-		);
-
 		// Add user JS if enabled
 		if ( $this->getConfig()->get( 'AllowUserJs' )
 			&& $this->getUser()->isLoggedIn()
@@ -3636,7 +3632,6 @@ class OutputPage extends ContextSource {
 		$styles = array(
 			'other' => array(),
 			'user' => array(),
-			'site' => array(),
 			'private' => array(),
 			'noscript' => array()
 		);
@@ -3647,7 +3642,6 @@ class OutputPage extends ContextSource {
 		$moduleStyles = $this->getModuleStyles( true, 'top' );
 
 		// Per-site custom styles
-		$moduleStyles[] = 'site';
 		$moduleStyles[] = 'noscript';
 		$moduleStyles[] = 'user.groups';
 
@@ -3707,7 +3701,7 @@ class OutputPage extends ContextSource {
 		// Add site, private and user styles
 		// 'private' at present only contains user.options, so put that before 'user'
 		// Any future private modules will likely have a similar user-specific character
-		foreach ( array( 'site', 'noscript', 'private', 'user' ) as $group ) {
+		foreach ( array( 'noscript', 'private', 'user' ) as $group ) {
 			$links[] = $this->makeResourceLoaderLink( $styles[$group],
 				ResourceLoaderModule::TYPE_STYLES
 			);

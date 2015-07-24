@@ -1158,11 +1158,14 @@
 
 				if ( !hasOwn.call( registry, module ) ) {
 					throw new Error( 'Module has not been registered yet: ' + module );
-				} else if ( registry[module].state === 'registered' ) {
+				}
+				if ( registry[module].state === 'registered' ) {
 					throw new Error( 'Module has not been requested from the server yet: ' + module );
-				} else if ( registry[module].state === 'loading' ) {
+				}
+				if ( registry[module].state === 'loading' ) {
 					throw new Error( 'Module has not completed loading yet: ' + module );
-				} else if ( registry[module].state === 'ready' ) {
+				}
+				if ( registry[module].state === 'ready' ) {
 					throw new Error( 'Module has already been executed: ' + module );
 				}
 
@@ -1211,9 +1214,19 @@
 							nestedAddScript( script, markModuleReady, registry[module].async, 0 );
 						} else if ( $.isFunction( script ) ) {
 							registry[module].state = 'ready';
-							// Pass jQuery twice so that the signature of the closure which wraps
-							// the script can bind both '$' and 'jQuery'.
-							script( $, $ );
+							if ( module === 'site' ) {
+								// Site module is a legacy script that runs in the global scope. The body extraction is needed
+								// because 'script' is wrapped in a function by load.php. This regex is not generic for any
+								// function but good enough for the simple "function ($,jQuery) {..}" done by load.php.
+								// Tested in: Chrome 46, Firefox 3–38, Opera 10–12, Safari 4–8, IE 6–8, Edge 12
+								script = script.toString();
+								script = script.slice( script.indexOf( '{' ) + 1, -1 );
+								$.globalEval( script );
+							} else {
+								// Pass jQuery twice so that the signature of the closure which wraps
+								// the script can bind both '$' and 'jQuery'.
+								script( $, $ );
+							}
 							handlePending( module );
 						}
 					} catch ( e ) {
@@ -2172,7 +2185,7 @@
 							// Module failed to load
 							descriptor.state !== 'ready' ||
 							// Unversioned, private, or site-/user-specific
-							( !descriptor.version || $.inArray( descriptor.group, [ 'private', 'user', 'site' ] ) !== -1 ) ||
+							( !descriptor.version || $.inArray( descriptor.group, [ 'private', 'user' ] ) !== -1 ) ||
 							// Partial descriptor
 							$.inArray( undefined, [ descriptor.script, descriptor.style,
 									descriptor.messages, descriptor.templates ] ) !== -1
