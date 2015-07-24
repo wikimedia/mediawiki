@@ -1021,7 +1021,7 @@ $wgSVGConverterPath = '';
 /**
  * Don't scale a SVG larger than this
  */
-$wgSVGMaxSize = 2048;
+$wgSVGMaxSize = 5120;
 
 /**
  * Don't read SVG metadata beyond this point.
