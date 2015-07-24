@@ -28,7 +28,7 @@ class HTMLUserTextField extends HTMLTextField {
 
 		if ( !$user ) {
 			return $this->msg( 'htmlform-user-not-valid', $value )->parse();
-		} else if ( $this->mParams['exists'] && $user->getId() === 0 ) {
+		} elseif ( $this->mParams['exists'] && $user->getId() === 0 ) {
 			return $this->msg( 'htmlform-user-not-exists', $user->getName() )->parse();
 		}
 
