@@ -252,7 +252,7 @@ class MWHttpRequest {
 		$this->parsedUrl = wfParseUrl( $this->url );
 
 		if ( !$this->parsedUrl || !Http::isValidURI( $this->url ) ) {
-			$this->status = Status::newFatal( 'http-invalid-url' );
+			$this->status = Status::newFatal( 'http-invalid-url', $url );
 		} else {
 			$this->status = Status::newGood( 100 ); // continue
 		}
