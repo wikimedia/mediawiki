@@ -80,6 +80,7 @@ class PNGMetadataExtractor {
 		$duration = 0.0;
 		$bitDepth = 0;
 		$colorType = 'unknown';
+		$gamma = false;
 
 		if ( !$filename ) {
 			throw new Exception( __METHOD__ . ": No file name specified" );
@@ -358,6 +359,34 @@ class PNGMetadataExtractor {
 						// 3 = dots per cm (from Exif).
 					}
 				}
+			} elseif ( $chunk_type === 'gAMA' ) {
+				if ( $chunk_size !== 4 ) {
+					throw new Exception( __METHOD__ . ": gAMA wrong size" );
+				}
+				$buf = self::read( $fh, $chunk_size );
+				$res = unpack( "Nvalue", $buf );
+				$gamma = 100000/$res['value'];
+			} elseif ( $chunk_type === 'sRGB' ) {
+				if ( $chunk_size !== 1 ) {
+					throw new Exception( __METHOD__ . ": sRGB wrong size" );
+				}
+				$buf = self::read( $fh, $chunk_size );
+				$res = unpack( "Cvalue", $buf );
+				// 1 for consistency with how Exif identifies sRGB
+				$text['ColorSpace'] = 1;
+			} elseif ( $chunk_type === 'iCCP' ) {
+				$profileNameRead = max( $chunk_size, 80 );
+				$buf = self::read( $fh, max( $chunk_size, 80 ) );
+				$cutoff = strpos( $buf, "\0" );
+				if ( $cutoff === false ) {
+					throw new Exception( __METHOD__ . ": iCCP profile name not null terminated" );
+				}
+				$res = trim( substr( $buf, 0, $cutoff ) );
+				MediaWiki\suppressWarnings();
+				$text['ColorSpace'] = iconv( 'ISO-8859-1', 'UTF-8', $res );
+				MediaWiki\restoreWarnings();
+
+				fseek( $fh, $chunk_size - $profileNameRead, SEEK_CUR );
 			} elseif ( $chunk_type == "IEND" ) {
 				break;
 			} else {
@@ -405,6 +434,7 @@ class PNGMetadataExtractor {
 			'text' => $text,
 			'bitDepth' => $bitDepth,
 			'colorType' => $colorType,
+			'gamma' => $gamma,
 		);
 	}
 
