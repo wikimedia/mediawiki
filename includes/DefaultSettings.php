@@ -2748,6 +2748,16 @@ $wgDummyLanguageCodes = array(
 );
 
 /**
+ * List of language codes for a mapping from the internal language codes to
+ * BCP 47 conform language codes.
+ */
+$wgBCP47LanguageCodes = array(
+	'de-formal' => 'de',
+	'en-rtl' => 'en',
+	'nl-informal' => 'nl',
+);
+
+/**
  * Character set for use in the article edit box. Language-specific encodings
  * may be defined.
  *

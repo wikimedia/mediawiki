@@ -408,6 +408,24 @@ class Language {
 	}
 
 	/**
+	 * Return an actual language code.
+	 *
+	 * Historically the software has used several codes that do not match
+	 * official language codes. This normalizes those codes using $wgDummyLanguageCodes.
+	 *
+	 * @param $code string
+	 * @since 1.26
+	 * @return string
+	 */
+	public static function getLinguisticCode( $code ) {
+		global $wgDummyLanguageCodes;
+		if ( isset( $wgDummyLanguageCodes[$code] ) ) {
+			return $wgDummyLanguageCodes[$code];
+		}
+		return $code;
+	}
+
+	/**
 	 * @param string $code
 	 * @return string Name of the language class
 	 */
