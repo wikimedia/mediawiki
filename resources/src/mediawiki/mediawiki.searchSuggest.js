@@ -159,6 +159,9 @@
 		searchboxesSelectors = [
 			// Primary searchbox on every page in standard skins
 			'#searchInput',
+			// Special:Search
+			'#powerSearchText',
+			'#searchText',
 			// Generic selector for skins with multiple searchboxes (used by CologneBlue)
 			// and for MediaWiki itself (special pages with page title inputs)
 			'.mw-searchInput'
