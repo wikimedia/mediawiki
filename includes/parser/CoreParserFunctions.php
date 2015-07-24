@@ -88,9 +88,13 @@ class CoreParserFunctions {
 		if ( strval( $part1 ) !== '' ) {
 			$args = array_slice( func_get_args(), 2 );
 			$message = wfMessage( $part1, $args )
-				->inLanguage( $parser->getOptions()->getUserLangObj() )->plain();
-
-			return array( $message, 'noparse' => false );
+				->inLanguage( $parser->getOptions()->getUserLangObj() );
+			if ( !$message->exists() ) {
+				// When message does not exists, the message name is surrounded by angle
+				// and can result in a tag, therefore escape the angles
+				return $message->escaped();
+			}
+			return array( $message->plain(), 'noparse' => false );
 		} else {
 			return array( 'found' => false );
 		}
