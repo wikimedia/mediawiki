@@ -395,7 +395,7 @@ class DeletedContributionsPage extends SpecialPage {
 			if ( ( $id !== null ) || ( $id === null && IP::isIPAddress( $nt->getText() ) ) ) {
 				# Block / Change block / Unblock links
 				if ( $this->getUser()->isAllowed( 'block' ) ) {
-					if ( $userObj->isBlocked() ) {
+					if ( $userObj->isBlocked() && $userObj->getBlock()->getType() !== Block::TYPE_AUTO ) {
 						$tools[] = Linker::linkKnown( # Change block link
 							SpecialPage::getTitleFor( 'Block', $nt->getDBkey() ),
 							$this->msg( 'change-blocklink' )->escaped()
