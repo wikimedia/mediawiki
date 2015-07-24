@@ -1585,6 +1585,7 @@
 	"statistics-header-users": "User statistics",
 	"statistics-header-hooks": "Other statistics",
 	"statistics-articles": "Content pages",
+	"statistics-articles-desc": "",
 	"statistics-pages": "Pages",
 	"statistics-pages-desc": "All pages in the wiki, including talk pages, redirects, etc.",
 	"statistics-files": "Uploaded files",
