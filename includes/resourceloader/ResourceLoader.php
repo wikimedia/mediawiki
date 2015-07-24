@@ -1105,7 +1105,11 @@ MESSAGE;
 		$name, $scripts, $styles, $messages, $templates
 	) {
 		if ( is_string( $scripts ) ) {
-			$scripts = new XmlJsCode( "function ( $, jQuery ) {\n{$scripts}\n}" );
+			// Site module is a legacy script that runs in the global scope (no closure).
+			// Transportation as string instructs mw.loader.implement to use globalEval.
+			if ( $name !== 'site' ) {
+				$scripts = new XmlJsCode( "function ( $, jQuery ) {\n{$scripts}\n}" );
+			}
 		} elseif ( !is_array( $scripts ) ) {
 			throw new MWException( 'Invalid scripts error. Array of URLs or string of code expected.' );
 		}

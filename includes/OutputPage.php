@@ -2286,9 +2286,10 @@ class OutputPage extends ContextSource {
 			// add skin specific modules
 			$modules = $sk->getDefaultModules();
 
-			// enforce various default modules for all skins
+			// Enforce various default modules for all skins
 			$coreModules = array(
-				// keep this list as small as possible
+				// Keep this list as small as possible
+				'site',
 				'mediawiki.page.startup',
 				'mediawiki.user',
 			);
@@ -2791,6 +2792,13 @@ class OutputPage extends ContextSource {
 			// Sort module names so requests are more uniform
 			sort( $modules );
 
+			// HACK: Re-sort to ensure 'site' is the last in in the last.
+			$siteIdx = array_search( 'site', $modules );
+			if ( $siteIdx !== false ) {
+				array_splice( $modules, $siteIdx, 1 );
+				array_push( $modules, 'site' );
+			}
+
 			if ( ResourceLoader::inDebugMode() ) {
 				// Recursively call us for every item
 				foreach ( $modules as $name ) {
@@ -3004,7 +3012,8 @@ class OutputPage extends ContextSource {
 		// Separate user.tokens as otherwise caching will be allowed (T84960)
 		$links[] = $this->makeResourceLoaderLink( 'user.tokens', ResourceLoaderModule::TYPE_COMBINED );
 
-		// Scripts and messages "only" requests marked for top inclusion
+		// "Scripts only" modules marked for top inclusion
+		$styleModules = $this->getModuleScripts( true, 'top' );
 		$links[] = $this->makeResourceLoaderLink(
 			$this->getModuleScripts( true, 'top' ),
 			ResourceLoaderModule::TYPE_SCRIPTS
@@ -3063,11 +3072,6 @@ class OutputPage extends ContextSource {
 
 		// Legacy Scripts
 		$links[] = "\n" . $this->mScripts;
-
-		// Add site JS if enabled
-		$links[] = $this->makeResourceLoaderLink( 'site', ResourceLoaderModule::TYPE_SCRIPTS,
-			/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
-		);
 
 		// Add user JS if enabled
 		if ( $this->getConfig()->get( 'AllowUserJs' )
@@ -3636,7 +3640,6 @@ class OutputPage extends ContextSource {
 		$styles = array(
 			'other' => array(),
 			'user' => array(),
-			'site' => array(),
 			'private' => array(),
 			'noscript' => array()
 		);
@@ -3707,7 +3710,7 @@ class OutputPage extends ContextSource {
 		// Add site, private and user styles
 		// 'private' at present only contains user.options, so put that before 'user'
 		// Any future private modules will likely have a similar user-specific character
-		foreach ( array( 'site', 'noscript', 'private', 'user' ) as $group ) {
+		foreach ( array( 'noscript', 'private', 'user' ) as $group ) {
 			$links[] = $this->makeResourceLoaderLink( $styles[$group],
 				ResourceLoaderModule::TYPE_STYLES
 			);
