@@ -733,7 +733,10 @@ return array(
 	/* Moment.js */
 
 	'moment' => array(
-		'scripts' => 'resources/lib/moment/moment.js',
+		'scripts' => array(
+			'resources/lib/moment/moment.js',
+			'resources/src/moment-local-dmy.js',
+		),
 		'languageScripts' => array(
 			'af' => 'resources/lib/moment/locale/af.js',
 			'ar' => 'resources/lib/moment/locale/ar.js',
