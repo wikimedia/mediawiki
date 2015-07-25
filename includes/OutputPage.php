@@ -1817,6 +1817,11 @@ class OutputPage extends ContextSource {
 			}
 		}
 
+		// enable OOUI if requested via ParserOutput
+		if ( $parserOutput->getEnableOOUI() ) {
+			$this->enableOOUI();
+		}
+
 		// Link flags are ignored for now, but may in the future be
 		// used to mark individual language links.
 		$linkFlags = array();
@@ -3946,21 +3951,34 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Helper function to setup the PHP implementation of OOUI to use in this request.
+	 *
+	 * @since 1.26
+	 * @param String $skinName The Skin name to determine the correct OOUI theme
+	 * @param String $dir Language direction
+	 */
+	public static function setupOOUI( $skinName = '', $dir = 'ltr' ) {
+		$themes = ExtensionRegistry::getInstance()->getAttribute( 'SkinOOUIThemes' );
+		// Make keys (skin names) lowercase for case-insensitive matching.
+		$themes = array_change_key_case( $themes, CASE_LOWER );
+		$theme = isset( $themes[ $skinName ] ) ? $themes[ $skinName ] : 'MediaWiki';
+		// For example, 'OOUI\MediaWikiTheme'.
+		$themeClass = "OOUI\\{$theme}Theme";
+		OOUI\Theme::setSingleton( new $themeClass() );
+		OOUI\Element::setDefaultDir( $dir );
+	}
+
+	/**
 	 * Add ResourceLoader module styles for OOUI and set up the PHP implementation of it for use with
 	 * MediaWiki and this OutputPage instance.
 	 *
 	 * @since 1.25
 	 */
 	public function enableOOUI() {
-		$themes = ExtensionRegistry::getInstance()->getAttribute( 'SkinOOUIThemes' );
-		// Make keys (skin names) lowercase for case-insensitive matching.
-		$themes = array_change_key_case( $themes, CASE_LOWER );
-		$skinName = strtolower( $this->getSkin()->getSkinName() );
-		$theme = isset( $themes[ $skinName ] ) ? $themes[ $skinName ] : 'MediaWiki';
-		// For example, 'OOUI\MediaWikiTheme'.
-		$themeClass = "OOUI\\{$theme}Theme";
-		OOUI\Theme::setSingleton( new $themeClass() );
-		OOUI\Element::setDefaultDir( $this->getLanguage()->getDir() );
+		self::setupOOUI(
+			strtolower( $this->getSkin()->getSkinName() ),
+			$this->getLanguage()->getDir()
+		);
 		$this->addModuleStyles( array(
 			'oojs-ui.styles',
 			'oojs-ui.styles.icons',
