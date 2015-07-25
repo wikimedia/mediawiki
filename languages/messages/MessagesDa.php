@@ -87,7 +87,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'Min_diskussionsside' ),
 	'Newimages'                 => array( 'Nye_filer' ),
 	'Newpages'                  => array( 'Nye_sider' ),
-	'Popularpages'              => array( 'Populære_sider' ),
 	'Preferences'               => array( 'Indstillinger' ),
 	'Prefixindex'               => array( 'Præfiksindeks' ),
 	'Protectedpages'            => array( 'Beskyttede_sider' ),

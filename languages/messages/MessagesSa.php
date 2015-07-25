@@ -132,7 +132,6 @@ $specialPageAliases = array(
 	'Newimages'                 => array( 'नूतनसंचिका', 'नूतनचित्रानि' ),
 	'Newpages'                  => array( 'नूतनपृष्टानि' ),
 	'PasswordReset'             => array( 'सङ्केतशब्दपुन:प्रयु्क्ता' ),
-	'Popularpages'              => array( 'लोकप्रियपृष्टानि' ),
 	'Preferences'               => array( 'इष्टतमानि' ),
 	'Prefixindex'               => array( 'उपसर्गअनुक्रमणी' ),
 	'Protectedpages'            => array( 'सुरक्षितपृष्टानि' ),

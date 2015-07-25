@@ -116,7 +116,6 @@ $specialPageAliases = array(
 	'PagesWithProp'             => array( 'LamanJoProperti', 'Laman_jo_properti' ),
 	'PasswordReset'             => array( 'TukaSandi', 'Tuka_baliak_sandi' ),
 	'PermanentLink'             => array( 'PautanPamanen', 'Pautan_pamanen' ),
-	'Popularpages'              => array( 'LamanPopuler', 'Laman_populer' ),
 	'Preferences'               => array( 'Rujuakan' ),
 	'Prefixindex'               => array( 'DaptaAwalan' ),
 	'Protectedpages'            => array( 'LamanTalinduang', 'Laman_nan_dilinduang' ),

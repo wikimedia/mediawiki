@@ -316,7 +316,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'Talqılawım' ),
 	'Newimages'                 => array( 'Jaña_swretter' ),
 	'Newpages'                  => array( 'Jaña_better' ),
-	'Popularpages'              => array( 'Eñ_köp_qaralğan_better', 'Äýgili_better' ),
 	'Preferences'               => array( 'Baptalımdar', 'Baptaw' ),
 	'Prefixindex'               => array( 'Bastawış_tizimi' ),
 	'Protectedpages'            => array( 'Qorğalğan_better' ),

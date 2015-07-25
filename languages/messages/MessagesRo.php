@@ -243,7 +243,6 @@ $specialPageAliases = array(
 	'Newimages'                 => array( 'Imagini_noi' ),
 	'Newpages'                  => array( 'Pagini_noi' ),
 	'PasswordReset'             => array( 'Resetare_parolă' ),
-	'Popularpages'              => array( 'Pagini_populare' ),
 	'Preferences'               => array( 'Preferințe' ),
 	'Prefixindex'               => array( 'Index' ),
 	'Protectedpages'            => array( 'Pagini_protejate' ),

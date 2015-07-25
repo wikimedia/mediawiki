@@ -194,7 +194,6 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'Новые_страницы' ),
 	'PasswordReset'             => array( 'Сброс_пароля' ),
 	'PermanentLink'             => array( 'Постоянная_ссылка' ),
-	'Popularpages'              => array( 'Популярные_страницы' ),
 	'Preferences'               => array( 'Настройки' ),
 	'Prefixindex'               => array( 'Указатель_по_началу_названия' ),
 	'Protectedpages'            => array( 'Защищённые_страницы' ),

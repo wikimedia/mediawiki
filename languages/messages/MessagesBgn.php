@@ -106,7 +106,6 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( 'وّرق_ئی_زبان' ),
 	'PasswordReset'             => array( 'چیهرگالی_نادینتین' ),
 	'PermanentLink'             => array( 'دایمین_لینک' ),
-	'Popularpages'              => array( 'مشهورین_وّرق_ئان' ),
 	'Preferences'               => array( 'تنزیمات' ),
 	'Prefixindex'               => array( 'دیمۆندین_نمایگ' ),
 	'Protectedpages'            => array( 'قُلپ_بوته_ئین_ورق_ئان' ),

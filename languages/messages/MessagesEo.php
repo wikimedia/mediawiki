@@ -109,7 +109,6 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'Novaj_paĝoj' ),
 	'PasswordReset'             => array( 'Ŝanĝo_de_pasvorto' ),
 	'PermanentLink'             => array( 'Daŭra_ligilo' ),
-	'Popularpages'              => array( 'Popularaj_paĝoj' ),
 	'Preferences'               => array( 'Preferoj' ),
 	'Prefixindex'               => array( 'Indekso_de_prefiksoj' ),
 	'Protectedpages'            => array( 'Protektitaj_paĝoj' ),

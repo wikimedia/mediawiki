@@ -88,7 +88,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'ObrolanKuring' ),
 	'Newimages'                 => array( 'GambarAnyar' ),
 	'Newpages'                  => array( 'KacaAnyar' ),
-	'Popularpages'              => array( 'KacaPayu' ),
 	'Preferences'               => array( 'Preferensi' ),
 	'Prefixindex'               => array( 'IndeksAwalan' ),
 	'Protectedpages'            => array( 'KacaDikonci' ),

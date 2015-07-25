@@ -125,7 +125,6 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( 'Ngôn_ngữ_trang' ),
 	'PasswordReset'             => array( 'Tái_tạo_mật_khẩu', 'Đặt_lại_mật_khẩu' ),
 	'PermanentLink'             => array( 'Liên_kết_thường_trực' ),
-	'Popularpages'              => array( 'Trang_phổ_biến' ),
 	'Preferences'               => array( 'Tùy_chọn', 'Tuỳ_chọn' ),
 	'Prefixindex'               => array( 'Tiền_tố' ),
 	'Protectedpages'            => array( 'Trang_khóa', 'Trang_khoá' ),

@@ -104,7 +104,6 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'Bagong_mga_pahina' ),
 	'PasswordReset'             => array( 'Muling_Pagtatakda_ng_Hudyat' ),
 	'PermanentLink'             => array( 'Pamalagiang_Kawing' ),
-	'Popularpages'              => array( 'Sikat_na_mga_pahina' ),
 	'Preferences'               => array( 'Mga_nais' ),
 	'Prefixindex'               => array( 'Talatuntunan_ng_unlapi' ),
 	'Protectedpages'            => array( 'Mga_pahinang_nakasanggalang' ),

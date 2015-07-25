@@ -125,7 +125,6 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( 'ページ言語' ),
 	'PasswordReset'             => array( 'パスワード再設定', 'パスワードの再設定', 'パスワードのリセット', 'パスワードリセット' ),
 	'PermanentLink'             => array( '固定リンク', 'パーマリンク' ),
-	'Popularpages'              => array( '人気ページ' ),
 	'Preferences'               => array( '個人設定', 'オプション' ),
 	'Prefixindex'               => array( '前方一致ページ一覧', '始点指定ページ一覧' ),
 	'Protectedpages'            => array( '保護されているページ' ),

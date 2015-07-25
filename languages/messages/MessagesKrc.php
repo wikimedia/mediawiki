@@ -87,7 +87,6 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'Джангы_бетле' ),
 	'PasswordReset'             => array( 'Паролну_ийиу' ),
 	'PermanentLink'             => array( 'Дайым_джибериу' ),
-	'Popularpages'              => array( 'Популяр_бетле' ),
 	'Preferences'               => array( 'Джарашдырыула' ),
 	'Protectedpages'            => array( 'Джакъланнган_бетле' ),
 	'Protectedtitles'           => array( 'Джакъланнган_атла' ),

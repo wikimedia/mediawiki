@@ -174,7 +174,6 @@ $specialPageAliases = array(
 	'PagesWithProp'             => array( 'Propriedades_de_página' ),
 	'PasswordReset'             => array( 'Redefinir_autenticação' ),
 	'PermanentLink'             => array( 'Ligação_permanente', 'Link_permanente' ),
-	'Popularpages'              => array( 'Páginas_populares', 'Artigos_populares' ),
 	'Preferences'               => array( 'Preferências' ),
 	'Prefixindex'               => array( 'Índice_por_prefixo', 'Índice_de_prefixo' ),
 	'Protectedpages'            => array( 'Páginas_protegidas', 'Artigos_protegidos' ),

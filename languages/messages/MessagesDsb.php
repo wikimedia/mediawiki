@@ -89,7 +89,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'Mója_diskusija' ),
 	'Newimages'                 => array( 'Nowe_dataje' ),
 	'Newpages'                  => array( 'Nowe_boki' ),
-	'Popularpages'              => array( 'Woblubowane_boki' ),
 	'Preferences'               => array( 'Nastajenja' ),
 	'Prefixindex'               => array( 'Indeks_prefiksow' ),
 	'Protectedpages'            => array( 'Šćitane_boki' ),

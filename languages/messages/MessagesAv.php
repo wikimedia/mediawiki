@@ -72,7 +72,6 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'ЦІиял_гьумерал' ),
 	'PasswordReset'             => array( 'Сброс_пароля' ),
 	'PermanentLink'             => array( 'Даимаб_ссылка' ),
-	'Popularpages'              => array( 'Машгьурал_гьумерал' ),
 	'Preferences'               => array( 'Рекъезабиял' ),
 	'Prefixindex'               => array( 'ЦІаразул_бетІералде_бихьизаби' ),
 	'Protectedpages'            => array( 'ЦІунарал_гьумерал' ),

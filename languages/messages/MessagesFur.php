@@ -64,7 +64,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'MêsDiscussions' ),
 	'Newimages'                 => array( 'GnovisFiguris' ),
 	'Newpages'                  => array( 'GnovisPagjinis' ),
-	'Popularpages'              => array( 'PagjinisPopolârs' ),
 	'Preferences'               => array( 'Preferencis' ),
 	'Prefixindex'               => array( 'Prefìs' ),
 	'Protectedpages'            => array( 'PagjinisProtezudis' ),

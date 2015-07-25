@@ -94,7 +94,6 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'PajNouvo' ),
 	'PasswordReset'             => array( 'ResètMopas2' ),
 	'PermanentLink'             => array( 'LyenPouToutTan' ),
-	'Popularpages'              => array( 'PajPopilè' ),
 	'Preferences'               => array( 'Preferans' ),
 	'Prefixindex'               => array( 'EndèksPrefiks' ),
 	'Protectedpages'            => array( 'PajPwoteje' ),

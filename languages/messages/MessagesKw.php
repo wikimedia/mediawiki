@@ -118,7 +118,6 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'FolennowNowyth' ),
 	'PasswordReset'             => array( 'DassetyaGerTremena' ),
 	'PermanentLink'             => array( 'KevrenFast' ),
-	'Popularpages'              => array( 'FolennowGerysDa' ),
 	'Preferences'               => array( 'Dewisyansow' ),
 	'Prefixindex'               => array( 'MenegvaRagerow' ),
 	'Protectedpages'            => array( 'FolennowDifresys' ),

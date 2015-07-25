@@ -128,7 +128,6 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( 'ਸਫ਼ੇ_ਦੀ_ਭਾਸ਼ਾ' ),
 	'PasswordReset'             => array( 'ਪਾਸਵਰਡ_ਰੀਸੈੱਟ' ),
 	'PermanentLink'             => array( 'ਪੱਕਾ_ਲਿੰਕ', 'ਪੱਕੀ_ਕੜੀ' ),
-	'Popularpages'              => array( 'ਮਸ਼ਹੂਰ_ਸਫ਼ੇ' ),
 	'Preferences'               => array( 'ਪਸੰਦਾਂ' ),
 	'Prefixindex'               => array( 'ਅਗੇਤਰ_ਤਤਕਰਾ' ),
 	'Protectedpages'            => array( 'ਸੁਰੱਖਿਅਤ_ਸਫ਼ੇ' ),

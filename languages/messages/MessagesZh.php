@@ -144,7 +144,6 @@ $specialPageAliases = array(
 	'Newimages'                 => array( '新建文件', '新建檔案' ),
 	'Newpages'                  => array( '最新页面', '最新頁面' ),
 	'PasswordReset'             => array( '重置密码', '重設密碼' ),
-	'Popularpages'              => array( '热点页面', '熱點頁面' ),
 	'Preferences'               => array( '参数设置', '偏好設定', '參數設置' ),
 	'Prefixindex'               => array( '前缀索引', '前綴索引', '字首索引' ),
 	'Protectedpages'            => array( '已保护页面', '已保護頁面' ),

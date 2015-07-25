@@ -100,7 +100,6 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'Новы_сторінкы' ),
 	'PasswordReset'             => array( 'Ресет_гесла' ),
 	'PermanentLink'             => array( 'Тырвалый_одказ' ),
-	'Popularpages'              => array( 'Популарны_сторінкы' ),
 	'Preferences'               => array( 'Наставлїня' ),
 	'Protectedpages'            => array( 'Замкнуты_сторінкы' ),
 	'Protectedtitles'           => array( 'Замкнуты_назвы' ),

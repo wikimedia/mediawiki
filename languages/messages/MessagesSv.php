@@ -156,7 +156,6 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( 'Sidspråk' ),
 	'PasswordReset'             => array( 'Återställ_lösenord' ),
 	'PermanentLink'             => array( 'Permanent_länk' ),
-	'Popularpages'              => array( 'Populära_sidor' ),
 	'Preferences'               => array( 'Inställningar' ),
 	'Protectedpages'            => array( 'Skyddade_sidor' ),
 	'Protectedtitles'           => array( 'Skyddade_titlar' ),

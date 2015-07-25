@@ -110,7 +110,6 @@ $specialPageAliases = array(
 	'Myuploads'                 => array( 'מיינע_ארויפלאדונגען' ),
 	'Newimages'                 => array( 'נייע_בילדער' ),
 	'Newpages'                  => array( 'נייע_בלעטער' ),
-	'Popularpages'              => array( 'פאפולערע_בלעטער' ),
 	'Preferences'               => array( 'פרעפערענצן' ),
 	'Prefixindex'               => array( 'בלעטער_וואס_הייבן_אן_מיט' ),
 	'Protectedpages'            => array( 'געשיצטע_בלעטער' ),

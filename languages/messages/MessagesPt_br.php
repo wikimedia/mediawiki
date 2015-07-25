@@ -177,7 +177,6 @@ $specialPageAliases = array(
 	'Newimages'                 => array( 'Arquivos_novos', 'Imagens_novas', 'Ficheiros_novos' ),
 	'Newpages'                  => array( 'Páginas_novas', 'Artigos_novos' ),
 	'PermanentLink'             => array( 'Ligação_permanente', 'Link_permanente' ),
-	'Popularpages'              => array( 'Páginas_populares', 'Artigos_populares' ),
 	'Preferences'               => array( 'Preferências' ),
 	'Prefixindex'               => array( 'Índice_de_prefixo', 'Índice_por_prefixo' ),
 	'Protectedpages'            => array( 'Páginas_protegidas', 'Artigos_protegidos' ),

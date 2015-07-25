@@ -278,7 +278,6 @@ $specialPageAliases = array(
 	'PagesWithProp'             => array( 'Ziejen_mit_eigenschap' ),
 	'PasswordReset'             => array( 'Wachtwoord_opniej_instellen' ),
 	'PermanentLink'             => array( 'Vaste_verwiezing' ),
-	'Popularpages'              => array( 'Populaere_artikels' ),
 	'Preferences'               => array( 'Veurkeuren' ),
 	'Prefixindex'               => array( 'Veurvoegselindex' ),
 	'Protectedpages'            => array( 'Beveiligden_ziejen' ),

@@ -62,7 +62,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'JinafaPrilara' ),
 	'Newimages'                 => array( 'WarzafEwaveem' ),
 	'Newpages'                  => array( 'WarzafBueem' ),
-	'Popularpages'              => array( 'LorupenBueem' ),
 	'Preferences'               => array( 'Lodamaceem' ),
 	'Protectedpages'            => array( 'NendanBueem' ),
 	'Protectedtitles'           => array( 'NendanVergumvelteem' ),

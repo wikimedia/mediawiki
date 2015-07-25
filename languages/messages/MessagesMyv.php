@@ -79,7 +79,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'МоньКортамом' ),
 	'Newimages'                 => array( 'ОдАртовкст' ),
 	'Newpages'                  => array( 'ОдЛопат' ),
-	'Popularpages'              => array( 'ЛисийСовийМартоЛопат' ),
 	'Protectedpages'            => array( 'ВанстоньЛопат' ),
 	'Protectedtitles'           => array( 'ВанстоньКонякст' ),
 	'Randompage'                => array( 'КодамоПонгсьЛопа' ),

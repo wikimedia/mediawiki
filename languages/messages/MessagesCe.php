@@ -126,7 +126,6 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'Керла_агӀонаш' ),
 	'PasswordReset'             => array( 'Пароль_кхоссар' ),
 	'PermanentLink'             => array( 'Гуттарлера_хьажорг' ),
-	'Popularpages'              => array( 'ГӀараяьлла_агӀонаш' ),
 	'Preferences'               => array( 'ГӀирсаш' ),
 	'Prefixindex'               => array( 'Хьалха_агӀонийн_цӀераш_хӀотто_еза' ),
 	'Protectedpages'            => array( 'ГӀаролла_дина_агӀонаш' ),
