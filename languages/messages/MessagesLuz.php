@@ -1,5 +1,5 @@
 <?php
-/** Southern Luri (لئری جئنوٙڤی)
+/** Southern Luri (لئری دوٙمینی)
  *
  * To improve a translation please visit https://translatewiki.net
  *
@@ -7,6 +7,5 @@
  * @file
  */
 
-$fallback = 'lrc, fa';
+$fallback = 'fa';
 $rtl = true;
-
