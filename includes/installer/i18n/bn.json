@@ -12,7 +12,7 @@
 	"config-desc": "মিডিয়াউইকির জন্য ইন্সটলার",
 	"config-title": "মিডিয়াউইকি $1 ইন্সটলেশন",
 	"config-information": "তথ্য",
-	"config-localsettings-upgrade": "A <code>LocalSettings.php</code> ফাইলটি মুছে ফেলা হয়েছে। এ ইন্সটলেশনটি আরো উন্নত করতে দয়া করে <code>$wgUpgradeKey</code> কোডটি বক্সে দিন। আপনি এটি পাবেন এখানে <code>LocalSettings.php</code>.",
+	"config-localsettings-upgrade": "<code>LocalSettings.php</code> ফাইলটি মুছে ফেলা হয়েছে। এই ইন্সটলেশনটি আরো উন্নত করতে দয়া করে <code>$wgUpgradeKey</code> কোডটি বক্সে দিন। আপনি এটি <code>LocalSettings.php</code> -এ পাবেন।",
 	"config-localsettings-key": "হালনাগাদ কি",
 	"config-localsettings-badkey": "আপনি যেই চাবিটি দিয়েছেন তা সঠিক নয়।",
 	"config-session-error": "সেশন শুরুতে ত্রুটি: $1",
