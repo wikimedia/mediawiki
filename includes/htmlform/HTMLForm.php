@@ -1302,11 +1302,14 @@ class HTMLForm extends ContextSource {
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	public function setMethod( $method = 'post' ) {
-		$this->mMethod = $method;
+		$this->mMethod = strtolower( $method );
 
 		return $this;
 	}
 
+	/**
+	 * @return string Always lowercase
+	 */
 	public function getMethod() {
 		return $this->mMethod;
 	}
