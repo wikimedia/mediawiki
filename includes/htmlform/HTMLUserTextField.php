@@ -17,6 +17,7 @@ class HTMLUserTextField extends HTMLTextField {
 	public function __construct( $params ) {
 		$params += array(
 			'exists' => false,
+			'ipallowed' => false,
 		);
 
 		parent::__construct( $params );
@@ -24,11 +25,14 @@ class HTMLUserTextField extends HTMLTextField {
 
 	public function validate( $value, $alldata ) {
 		// check, if a user exists with the given username
-		$user = User::newFromName( $value );
+		$user = User::newFromName( $value, false );
 
 		if ( !$user ) {
 			return $this->msg( 'htmlform-user-not-valid', $value )->parse();
-		} elseif ( $this->mParams['exists'] && $user->getId() === 0 ) {
+		} elseif (
+			( $this->mParams['exists'] && $user->getId() === 0 ) &&
+			!( $this->mParams['ipallowed'] && User::isIP( $value ) )
+		) {
 			return $this->msg( 'htmlform-user-not-exists', $user->getName() )->parse();
 		}
 
