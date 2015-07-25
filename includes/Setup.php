@@ -432,6 +432,9 @@ if ( !$wgHtml5Version && $wgAllowRdfaAttributes ) {
 $wgFileExtensions = array_values( array_diff( $wgFileExtensions, $wgFileBlacklist ) );
 
 if ( $wgInvalidateCacheOnLocalSettingsChange ) {
+	if ( !function_exists( 'MediaWiki\suppressWarnings') ) {
+		die( "Have you run composer update?");
+	}
 	MediaWiki\suppressWarnings();
 	$wgCacheEpoch = max( $wgCacheEpoch, gmdate( 'YmdHis', filemtime( "$IP/LocalSettings.php" ) ) );
 	MediaWiki\restoreWarnings();
@@ -709,4 +712,3 @@ $wgFullyInitialised = true;
 
 Profiler::instance()->scopedProfileOut( $ps_extensions );
 Profiler::instance()->scopedProfileOut( $ps_setup );
-
