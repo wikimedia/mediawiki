@@ -491,7 +491,8 @@ class ApiQueryContributions extends ApiQueryBase {
 					'flags',
 					'patrolled',
 					'tags'
-				)
+				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'show' => array(
 				ApiBase::PARAM_ISMULTI => true,
