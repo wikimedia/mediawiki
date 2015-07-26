@@ -728,7 +728,7 @@
 	"apihelp-query+info-paramvalue-prop-url": "Gives a full URL, an edit URL, and the canonical URL for each page.",
 	"apihelp-query+info-paramvalue-prop-readable": "Whether the user can read this page.",
 	"apihelp-query+info-paramvalue-prop-preload": "Gives the text returned by EditFormPreloadText.",
-	"apihelp-query+info-paramvalue-prop-displaytitle": "Gives the way the page title is actually displayed.",
+	"apihelp-query+info-paramvalue-prop-displaytitle": "Gives the form in which the page title is actually displayed.",
 	"apihelp-query+info-param-testactions": "Test whether the current user can perform certain actions on the page.",
 	"apihelp-query+info-param-token": "Use [[Special:ApiHelp/query+tokens|action=query&meta=tokens]] instead.",
 	"apihelp-query+info-example-simple": "Get information about the page <kbd>Main Page</kbd>.",
