@@ -44,22 +44,10 @@ class SpecialChangeContentModel extends FormSpecialPage {
 			// No form input yet
 			return true;
 		}
-		try {
-			$titleObj = Title::newFromTextThrow( $title );
-		} catch ( MalformedTitleException $e ) {
-			$msg = $this->msg( $e->getErrorMessage() );
-			$params = $e->getErrorMessageParameters();
-			if ( $params ) {
-				$msg->params( $params );
-			}
-			return $msg->parse();
-		}
-		if ( !$titleObj->canExist() ) {
-			return $this->msg(
-				'changecontentmodel-title-cantexist',
-				$titleObj->getPrefixedText()
-			)->escaped();
-		}
+
+		// Already validated by HTMLForm, but if not, throw
+		// and exception instead of a fatal
+		$titleObj = Title::newFromTextThrow( $title );
 
 		$this->oldRevision = Revision::newFromTitle( $titleObj ) ?: false;
 
@@ -79,7 +67,8 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		$that = $this;
 		$fields = array(
 			'pagetitle' => array(
-				'type' => 'text',
+				'type' => 'title',
+				'creatable' => true,
 				'name' => 'pagetitle',
 				'default' => $this->par,
 				'label-message' => 'changecontentmodel-title-label',

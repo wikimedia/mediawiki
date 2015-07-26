@@ -2121,7 +2121,6 @@
 	"changecontentmodel-success-title": "Title of the success page of the change content model special page",
 	"changecontentmodel-success-text": "Message telling user that their change has been successfully done.\n* $1 - Target page title",
 	"changecontentmodel-cannot-convert": "Error message shown if the content model cannot be changed to the specified type. $1 is the page title, $2 is the localized content model name.",
-	"changecontentmodel-title-cantexist": "Error message shown if the page the user provided is a special page.\n\nParameters:\n* $1 - the page title which cannot exist",
 	"changecontentmodel-nodirectediting": "Error message shown if the content model does not allow for direct editing. $1 is the localized name of the content model.",
 	"log-name-contentmodel": "{{doc-logpage}}\n\nTitle of [[Special:Log/contentmodel]].",
 	"log-description-contentmodel": "Text in [[Special:Log/contentmodel]].",
