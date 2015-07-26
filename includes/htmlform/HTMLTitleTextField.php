@@ -11,6 +11,7 @@ use MediaWiki\Widget\TitleInputWidget;
  *
  * Optional parameters:
  * 'namespace' - Namespace the page must be in
+ * 'relative' - If true and 'namespace' given, strip/add the namespace from/to the title as needed
  * 'creatable' - Whether to validate the title is creatable (not a special page)
  * 'exists' - Whether to validate that the title already exists
  *
@@ -20,6 +21,7 @@ class HTMLTitleTextField extends HTMLTextField {
 	public function __construct( $params ) {
 		$params += array(
 			'namespace' => false,
+			'relative' => false,
 			'creatable' => false,
 			'exists' => false,
 		);
@@ -29,7 +31,14 @@ class HTMLTitleTextField extends HTMLTextField {
 
 	public function validate( $value, $alldata ) {
 		try {
-			$title = Title::newFromTextThrow( $value );
+			if ( !$this->mParams['relative'] ) {
+				$title = Title::newFromTextThrow( $value );
+			} else {
+				// Can't use Title::makeTitleSafe(), because it doesn't throw useful exceptions
+				global $wgContLang;
+				$namespaceName = $wgContLang->getNsText( $this->mParams['namespace'] );
+				$title = Title::newFromTextThrow( $namespaceName . ':' . $value );
+			}
 		} catch ( MalformedTitleException $e ) {
 			$msg = $this->msg( $e->getErrorMessage() );
 			$params = $e->getErrorMessageParameters();
@@ -60,7 +69,7 @@ class HTMLTitleTextField extends HTMLTextField {
 		if ( $this->mParams['namespace'] !== false ) {
 			$params['namespace'] = $this->mParams['namespace'];
 		}
-		$params['relative'] = false;
+		$params['relative'] = $this->mParams['relative'];
 		return new TitleInputWidget( $params );
 	}
 }
