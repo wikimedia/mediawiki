@@ -521,7 +521,7 @@
 	"apihelp-query+backlinks-param-namespace": "The namespace to enumerate.",
 	"apihelp-query+backlinks-param-dir": "The direction in which to list.",
 	"apihelp-query+backlinks-param-filterredir": "How to filter for redirects. If set to <kbd>nonredirects</kbd> when <var>$1redirect</var> is enabled, this is only applied to the second level.",
-	"apihelp-query+backlinks-param-limit": "How many total pages to return. If <var>$1redirect</var> is enabled, limit applies to each level separately (which means up to 2 * <var>$1limit</var> results may be returned).",
+	"apihelp-query+backlinks-param-limit": "How many total pages to return. If <var>$1redirect</var> is enabled, the limit applies to each level separately (which means up to 2 * <var>$1limit</var> results may be returned).",
 	"apihelp-query+backlinks-param-redirect": "If linking page is a redirect, find all pages that link to that redirect as well. Maximum limit is halved.",
 	"apihelp-query+backlinks-example-simple": "Show links to <kbd>Main page<kbd>.",
 	"apihelp-query+backlinks-example-generator": "Get information about pages linking to <kbd>Main page<kbd>.",
