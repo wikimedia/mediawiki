@@ -562,7 +562,7 @@
 	"apihelp-query+categorymembers-param-start": "Timestamp to start listing from. Can only be used with <kbd>$1sort=timestamp</kbd>.",
 	"apihelp-query+categorymembers-param-end": "Timestamp to end listing at. Can only be used with <kbd>$1sort=timestamp</kbd>.",
 	"apihelp-query+categorymembers-param-starthexsortkey": "Sortkey to start listing from, as returned by <kbd>$1prop=sortkey</kbd>. Can only be used with <kbd>$1sort=sortkey</kbd>.",
-	"apihelp-query+categorymembers-param-endhexsortkey": "Sortkey to end listing from, as returned by <kbd>$1prop=sortkey</kbd>. Can only be used with <kbd>$1sort=sortkey</kbd>.",
+	"apihelp-query+categorymembers-param-endhexsortkey": "Sortkey to end listing at, as returned by <kbd>$1prop=sortkey</kbd>. Can only be used with <kbd>$1sort=sortkey</kbd>.",
 	"apihelp-query+categorymembers-param-startsortkeyprefix": "Sortkey prefix to start listing from. Can only be used with <kbd>$1sort=sortkey</kbd>. Overrides <var>$1starthexsortkey</var>.",
 	"apihelp-query+categorymembers-param-endsortkeyprefix": "Sortkey prefix to end listing BEFORE (not at, if this value occurs it will not be included!). Can only be used with $1sort=sortkey. Overrides $1endhexsortkey.",
 	"apihelp-query+categorymembers-param-startsortkey": "Use $1starthexsortkey instead.",
