@@ -95,7 +95,6 @@ class SpecialBlock extends FormSpecialPage {
 	 * @param HTMLForm $form
 	 */
 	protected function alterForm( HTMLForm $form ) {
-		$form->setWrapperLegendMsg( 'blockip-legend' );
 		$form->setHeaderText( '' );
 		$form->setSubmitCallback( array( __CLASS__, 'processUIForm' ) );
 		$form->setSubmitDestructive();
@@ -118,6 +117,10 @@ class SpecialBlock extends FormSpecialPage {
 		}
 	}
 
+	protected function getDisplayFormat() {
+		return 'ooui';
+	}
+
 	/**
 	 * Get the HTMLForm descriptor array for the block form
 	 * @return array
@@ -131,14 +134,14 @@ class SpecialBlock extends FormSpecialPage {
 
 		$a = array(
 			'Target' => array(
-				'type' => 'text',
+				'type' => 'user',
+				'ipallowed' => true,
 				'label-message' => 'ipaddressorusername',
 				'id' => 'mw-bi-target',
 				'size' => '45',
 				'autofocus' => true,
 				'required' => true,
 				'validation-callback' => array( __CLASS__, 'validateTargetField' ),
-				'cssclass' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
 			),
 			'Expiry' => array(
 				'type' => !count( $suggestedDurations ) ? 'text' : 'selectorother',
@@ -320,7 +323,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return string
 	 */
 	protected function preText() {
-		$this->getOutput()->addModules( array( 'mediawiki.special.block', 'mediawiki.userSuggest' ) );
+		$this->getOutput()->addModules( array( 'mediawiki.special.block' ) );
 
 		$text = $this->msg( 'blockiptext' )->parse();
 
