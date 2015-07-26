@@ -3270,6 +3270,8 @@
 	"htmlform-title-badnamespace": "[[:$1]] находится не в пространстве имён «{{ns:$2}}».",
 	"htmlform-title-not-creatable": "«$1» не является создаваемым заголовком страницы",
 	"htmlform-title-not-exists": "[[:$1]] не существует.",
+	"htmlform-user-not-exists": "<strong>$1</strong> не существует.",
+	"htmlform-user-not-valid": "<strong>$1</strong> не является допустимым именем пользователя.",
 	"sqlite-has-fts": "$1 с поддержкой полнотекстового поиска",
 	"sqlite-no-fts": "$1 без поддержки полнотекстового поиска",
 	"logentry-delete-delete": "$1 {{GENDER:$2|удалил|удалила}} страницу $3",
