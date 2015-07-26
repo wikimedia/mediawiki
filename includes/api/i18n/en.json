@@ -254,7 +254,7 @@
 	"apihelp-opensearch-param-warningsaserror": "If warnings are raised with <kbd>format=json</kbd>, return an API error instead of ignoring them.",
 	"apihelp-opensearch-example-te": "Find pages beginning with <kbd>Te</kbd>.",
 
-	"apihelp-options-description": "Change preferences of the current user.\n\nOnly options which are registered in core or in one of installed extensions, or options with keys prefixed with \"userjs-\" (intended to be used by user scripts), can be set.",
+	"apihelp-options-description": "Change preferences of the current user.\n\nOnly options which are registered in core or in one of installed extensions, or options with keys prefixed with \"<kbd>userjs-</kbd>\" (intended to be used by user scripts), can be set.",
 	"apihelp-options-param-reset": "Resets preferences to the site defaults.",
 	"apihelp-options-param-resetkinds": "List of types of options to reset when the <var>$1reset</var> option is set.",
 	"apihelp-options-param-change": "List of changes, formatted name=value (e.g. skin=vector). Value cannot contain pipe characters. If no value is given (not even an equals sign), e.g., optionname|otheroption|..., the option will be reset to its default value.",
