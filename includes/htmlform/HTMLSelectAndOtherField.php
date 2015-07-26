@@ -64,6 +64,10 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 		return "$select<br />\n$textbox";
 	}
 
+	function getInputOOUI( $value ) {
+		return false;
+	}
+
 	/**
 	 * @param WebRequest $request
 	 *
