@@ -97,7 +97,6 @@ class SpecialBlock extends FormSpecialPage {
 	protected function alterForm( HTMLForm $form ) {
 		$form->setWrapperLegendMsg( 'blockip-legend' );
 		$form->setHeaderText( '' );
-		$form->setSubmitCallback( array( __CLASS__, 'processUIForm' ) );
 		$form->setSubmitDestructive();
 
 		$msg = $this->alreadyBlocked ? 'ipb-change-block' : 'ipbsubmit';
@@ -597,25 +596,15 @@ class SpecialBlock extends FormSpecialPage {
 	}
 
 	/**
-	 * Submit callback for an HTMLForm object, will simply pass
+	 * Process the form on POST submission.
 	 * @param array $data
 	 * @param HTMLForm $form
-	 * @return bool|string
+	 * @return bool|array True for success, false for didn't-try, array of errors on failure
 	 */
-	public static function processUIForm( array $data, HTMLForm $form ) {
-		return self::processForm( $data, $form->getContext() );
-	}
-
-	/**
-	 * Given the form data, actually implement a block
-	 * @param array $data
-	 * @param IContextSource $context
-	 * @return bool|string
-	 */
-	public static function processForm( array $data, IContextSource $context ) {
+	public function onSubmit( array $data, HTMLForm $form = null ) {
 		global $wgBlockAllowsUTEdit, $wgHideUserContribLimit, $wgContLang;
 
-		$performer = $context->getUser();
+		$performer = $form->getContext()->getUser();
 
 		// Handled by field validator callback
 		// self::validateTargetField( $data['Target'] );
@@ -957,16 +946,6 @@ class SpecialBlock extends FormSpecialPage {
 		}
 
 		return implode( ',', $flags );
-	}
-
-	/**
-	 * Process the form on POST submission.
-	 * @param array $data
-	 * @return bool|array True for success, false for didn't-try, array of errors on failure
-	 */
-	public function onSubmit( array $data ) {
-		// This isn't used since we need that HTMLForm that's passed in the
-		// second parameter. See alterForm for the real function
 	}
 
 	/**
