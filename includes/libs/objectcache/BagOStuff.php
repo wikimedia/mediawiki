@@ -206,10 +206,12 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	/**
 	 * @param string $key
 	 * @param int $timeout Lock wait timeout; 0 for non-blocking [optional]
-	 * @param int $expiry Lock expiry [optional]
+	 * @param int $expiry Lock expiry [optional]; 1 day maximum
 	 * @return bool Success
 	 */
 	public function lock( $key, $timeout = 6, $expiry = 6 ) {
+		$expiry = min( $expiry ?: INF, 86400 );
+
 		$this->clearLastError();
 		$timestamp = microtime( true ); // starting UNIX timestamp
 		if ( $this->add( "{$key}:lock", 1, $expiry ) ) {
@@ -221,7 +223,6 @@ abstract class BagOStuff implements LoggerAwareInterface {
 		$uRTT = ceil( 1e6 * ( microtime( true ) - $timestamp ) ); // estimate RTT (us)
 		$sleep = 2 * $uRTT; // rough time to do get()+set()
 
-		$locked = false; // lock acquired
 		$attempts = 0; // failed attempts
 		do {
 			if ( ++$attempts >= 3 && $sleep <= 5e5 ) {
@@ -246,6 +247,41 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	 */
 	public function unlock( $key ) {
 		return $this->delete( "{$key}:lock" );
+	}
+
+	/**
+	 * Get a lightweight exclusive self-unlocking lock
+	 *
+	 * Note that the same lock cannot be acquired twice.
+	 *
+	 * This is useful for task de-duplication or to avoid obtrusive
+	 * (though non-corrupting) DB errors like INSERT key conflicts
+	 * or deadlocks when using LOCK IN SHARE MODE.
+	 *
+	 * @param string $key
+	 * @param int $timeout Lock wait timeout; 0 for non-blocking [optional]
+	 * @param int $expiry Lock expiry [optional]; 1 day maximum
+	 * @return ScopedLock|null Returns null on failure
+	 * @since 1.26
+	 */
+	final public function getScopedLock( $key, $timeout = 6, $expiry = 30 ) {
+		$expiry = min( $expiry ?: INF, 86400 );
+
+		if ( !$this->lock( $key, $timeout, $expiry ) ) {
+			return null;
+		}
+
+		$lSince = microtime( true ); // lock timestamp
+		$that = $this;
+
+		return new ScopedCallback( function() use ( $that, $key, $lSince, $expiry ) {
+			$latency = .050; // latency skew (err towards keeping lock present)
+			$age = ( microtime( true ) - $lSince + $latency );
+			if ( ( $age + $latency ) >= $expiry ) {
+				return; // expired; it's not "safe" to delete the key
+			}
+			$that->unlock( $key );
+		} );
 	}
 
 	/**
