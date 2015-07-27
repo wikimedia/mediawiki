@@ -1488,12 +1488,23 @@ abstract class Installer {
 		$hooksWeWant = isset( $wgHooks['LoadExtensionSchemaUpdates'] ) ?
 			$wgHooks['LoadExtensionSchemaUpdates'] : [];
 
+		$hooksWeWant = isset( $GLOBALS['wgHooks']['LoadExtensionSchemaUpdates'] ) ?
+			$GLOBALS['wgHooks']['LoadExtensionSchemaUpdates'] : [];
+
 		if ( isset( $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
 			$hooksWeWant = array_merge_recursive(
 				$hooksWeWant,
 				$data['globals']['wgHooks']['LoadExtensionSchemaUpdates']
 			);
 		}
+
+		if ( isset( $GLOBALS['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
+			$hooksWeWant = array_merge_recursive(
+				$hooksWeWant,
+				$GLOBALS['wgHooks']['LoadExtensionSchemaUpdates']
+			);
+		}
+
 		// Unset everyone else's hooks. Lord knows what someone might be doing
 		// in ParserFirstCallInit (see bug 27171)
 		$GLOBALS['wgHooks'] = [ 'LoadExtensionSchemaUpdates' => $hooksWeWant ];
