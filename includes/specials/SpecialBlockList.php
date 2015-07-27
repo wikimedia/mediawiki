@@ -46,8 +46,7 @@ class SpecialBlockList extends SpecialPage {
 		$out = $this->getOutput();
 		$lang = $this->getLanguage();
 		$out->setPageTitle( $this->msg( 'ipblocklist' ) );
-		$out->addModuleStyles( 'mediawiki.special' );
-		$out->addModules( 'mediawiki.userSuggest' );
+		$out->addModuleStyles( array( 'mediawiki.special', 'mediawiki.special.blocklist' ) );
 
 		$request = $this->getRequest();
 		$par = $request->getVal( 'ip', $par );
@@ -71,12 +70,11 @@ class SpecialBlockList extends SpecialPage {
 		# Just show the block list
 		$fields = array(
 			'Target' => array(
-				'type' => 'text',
+				'type' => 'user',
 				'label-message' => 'ipaddressorusername',
 				'tabindex' => '1',
 				'size' => '45',
 				'default' => $this->target,
-				'cssclass' => 'mw-autocomplete-user', // used by mediawiki.userSuggest
 			),
 			'Options' => array(
 				'type' => 'multiselect',
@@ -104,7 +102,7 @@ class SpecialBlockList extends SpecialPage {
 		);
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setTitle( $this->getPageTitle() ); // Remove subpage
-		$form = new HTMLForm( $fields, $context );
+		$form = HTMLForm::factory( 'ooui', $fields, $context );
 		$form->setMethod( 'get' );
 		$form->setWrapperLegendMsg( 'ipblocklist-legend' );
 		$form->setSubmitTextMsg( 'ipblocklist-submit' );
