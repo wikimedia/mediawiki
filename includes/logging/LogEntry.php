@@ -575,40 +575,54 @@ class ManualLogEntry extends LogEntryBase {
 	/**
 	 * Get a RecentChanges object for the log entry
 	 * @param int $newId
+	 * @param bool $isRestricted Is this a restricted change?
 	 * @return RecentChange
 	 * @since 1.23
 	 */
-	public function getRecentChange( $newId = 0 ) {
+	public function getRecentChange( $newId = 0, $isRestricted = false ) {
 		$formatter = LogFormatter::newFromEntry( $this );
 		$context = RequestContext::newExtraneousContext( $this->getTarget() );
 		$formatter->setContext( $context );
-
 		$logpage = SpecialPage::getTitleFor( 'Log', $this->getType() );
-		$user = $this->getPerformer();
-		$ip = "";
-		if ( $user->isAnon() ) {
-			/*
-			 * "MediaWiki default" and friends may have
-			 * no IP address in their name
-			 */
-			if ( IP::isIPAddress( $user->getName() ) ) {
-				$ip = $user->getName();
+
+		if ( !$isRestricted ) {
+			$user = $this->getPerformer();
+			$ip = "";
+			if ( $user->isAnon() ) {
+				/*
+			 	* "MediaWiki default" and friends may have
+			 	* no IP address in their name
+			 	*/
+				if ( IP::isIPAddress( $user->getName() ) ) {
+					$ip = $user->getName();
+				}
 			}
+		} else {
+			// Restricted changes only have page ID in RC but other information is hidden
+			$row = array(
+					'page_id' => $this->getTarget()->getArticleID(),
+					'page_title' => 'Special:Redirect/page/' . $this->getTarget()->getArticleID(),
+					'page_namespace' => $this->getTarget()->getNamespace()
+			);
+			$nullpage = Title::newFromRow( (object)$row );
+			$user = new User();
+			$user->setName( '0.0.0.0' );
+			$ip = '0.0.0.0';
 		}
 
 		return RecentChange::newLogEntry(
 			$this->getTimestamp(),
 			$logpage,
 			$user,
-			$formatter->getPlainActionText(),
+			$isRestricted ? '' : $formatter->getPlainActionText(),
 			$ip,
 			$this->getType(),
 			$this->getSubtype(),
-			$this->getTarget(),
-			$this->getComment(),
-			LogEntryBase::makeParamBlob( $this->getParameters() ),
+			$isRestricted ? $nullpage : $this->getTarget(),
+			$isRestricted ? '' : $this->getComment(),
+			$isRestricted ? '' : LogEntryBase::makeParamBlob( $this->getParameters() ),
 			$newId,
-			$formatter->getIRCActionComment() // Used for IRC feeds
+			$isRestricted ? '' : $formatter->getIRCActionComment() // Used for IRC feeds
 		);
 	}
 
@@ -619,11 +633,8 @@ class ManualLogEntry extends LogEntryBase {
 	 */
 	public function publish( $newId, $to = 'rcandudp' ) {
 		$log = new LogPage( $this->getType() );
-		if ( $log->isRestricted() ) {
-			return;
-		}
 
-		$rc = $this->getRecentChange( $newId );
+		$rc = $this->getRecentChange( $newId, $log->isRestricted() );
 
 		if ( $to === 'rc' || $to === 'rcandudp' ) {
 			$rc->save( 'pleasedontudp' );
