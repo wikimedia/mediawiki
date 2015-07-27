@@ -28,6 +28,13 @@ require_once __DIR__ . '/Maintenance.php';
  *  populateContentModel.php --ns=1 --table=page
  */
 class PopulateContentModel extends Maintenance {
+
+	/**
+	 * Clear the LinkCache after processing this many rows
+	 * to avoid OOMs (T106998)
+	 */
+	const CLEAR_LINK_CACHE = 500;
+
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = 'Populate the various content_* fields';
@@ -74,6 +81,7 @@ class PopulateContentModel extends Maintenance {
 		$toSave = array();
 		$lastId = 0;
 		$nsCondition = $ns === 'all' ? array() : array( 'page_namespace' => $ns );
+		$count = 0;
 		do {
 			$rows = $dbw->select(
 				'page',
@@ -95,6 +103,10 @@ class PopulateContentModel extends Maintenance {
 					unset( $toSave[$model] );
 				}
 				$lastId = $row->page_id;
+				$count++;
+				if ( $count >= self::CLEAR_LINK_CACHE ) {
+					LinkCache::singleton()->clear();
+				}
 			}
 		} while ( $rows->numRows() >= $this->mBatchSize );
 		foreach ( $toSave as $model => $pages ) {
@@ -139,6 +151,7 @@ class PopulateContentModel extends Maintenance {
 
 		$toSave = array();
 		$lastId = 0;
+		$count = 0;
 		do {
 			$rows = $dbw->select(
 				$selectTables,
@@ -161,6 +174,7 @@ class PopulateContentModel extends Maintenance {
 				}
 				$lastId = $row->{$key};
 				try {
+					// FIXME this should use ContentHandler::getDefaultModelFor()
 					$handler = ContentHandler::getForTitle( $title );
 				} catch ( MWException $e ) {
 					$this->error( "Invalid content model for $title" );
@@ -194,6 +208,11 @@ class PopulateContentModel extends Maintenance {
 				if ( count( $toSave[$defaultModel] ) >= $this->mBatchSize ) {
 					$this->updateRevisionOrArchiveRows( $dbw, $toSave[$defaultModel], $defaultModel, $table );
 					unset( $toSave[$defaultModel] );
+				}
+
+				$count++;
+				if ( $count > self::CLEAR_LINK_CACHE ) {
+					LinkCache::singleton()->clear();
 				}
 			}
 		} while ( $rows->numRows() >= $this->mBatchSize );
