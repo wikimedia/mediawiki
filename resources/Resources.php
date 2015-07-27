@@ -1513,7 +1513,6 @@ return array(
 		'position' => 'top',
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.search.js',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.search.css',
-		'dependencies' => 'mediawiki.widgets',
 		'messages' => array(
 			'powersearch-togglelabel',
 			'powersearch-toggleall',
