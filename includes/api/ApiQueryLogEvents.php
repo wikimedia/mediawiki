@@ -117,7 +117,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			} else {
 				$logActions = array_flip( $this->getAllowedLogActions() );
 				list( $type, $action ) = explode( '/', $logAction, 2 );
-				$valid = isset( $logActions[$logAction] ) || isset( $logActions[$type . '/*'] );
+				$valid = ( $logAction !== $type . '/*' )
+					&& ( isset( $logActions[$logAction] ) || isset( $logActions[$type . '/*'] ) );
 			}
 
 			if ( !$valid ) {
