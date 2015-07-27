@@ -1802,7 +1802,6 @@
 	"changecontentmodel-success-title": "Модел садржаја је промењен",
 	"changecontentmodel-success-text": "Модел садржаја странице [[:$1]] је промењен.",
 	"changecontentmodel-cannot-convert": "Модел садржаја странице [[:$1]] се не може претворити у врсту $2.",
-	"changecontentmodel-title-cantexist": "Не може постојати страница на $1.",
 	"changecontentmodel-nodirectediting": "Модел садржаја $1 не подржава изравно уређивање",
 	"log-name-contentmodel": "Дневник промене модела садржаја",
 	"log-description-contentmodel": "Догађаји који имају везу са моделима садржаја страница",

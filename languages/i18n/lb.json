@@ -1791,7 +1791,6 @@
 	"changecontentmodel-reason-label": "Grond:",
 	"changecontentmodel-success-title": "De Modell vum Inhalt gouf geännert",
 	"changecontentmodel-success-text": "Den Typ vum Inhalt vu(n) [[:$1]] gouf geännert.",
-	"changecontentmodel-title-cantexist": "Et ass net méiglech enger Säit den Numm $1 ze ginn.",
 	"logentry-contentmodel-change-revertlink": "zrécksetzen",
 	"logentry-contentmodel-change-revert": "zrécksetzen",
 	"protectlogpage": "Protektiounslogbuch",

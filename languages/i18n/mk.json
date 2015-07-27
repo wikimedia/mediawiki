@@ -1841,7 +1841,6 @@
 	"changecontentmodel-success-title": "Содржинскиот модел е изменет",
 	"changecontentmodel-success-text": "Содржинскиот тип [[:$1]] е изменет.",
 	"changecontentmodel-cannot-convert": "Содржината на [[:$1]] не може да се претвори во типот $2.",
-	"changecontentmodel-title-cantexist": "Не е возможно да се направи страница на $1.",
 	"changecontentmodel-nodirectediting": "Содржинскиот модел $1 не поддржува непосредно уредување",
 	"log-name-contentmodel": "Дневник на измени во содржинските модели",
 	"log-description-contentmodel": "Настани поврзани со содржинските модели на една страница",

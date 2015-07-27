@@ -1819,7 +1819,6 @@
 	"changecontentmodel-success-title": "'O mudello 'e cuntenuto fuje cagnato",
 	"changecontentmodel-success-text": "'O tipo 'e cuntenut 'e [[:$1]] è stato cagnato.",
 	"changecontentmodel-cannot-convert": "'E cuntenute dint'a [[:$1]] nun se ponno scagnà a nu tipo 'e $2.",
-	"changecontentmodel-title-cantexist": "Nun è pussibbele 'e n'avé na paggena dint'a $1.",
 	"changecontentmodel-nodirectediting": "'O mudello 'e cuntenute $1 nun suppurtasse 'o cagnamiento diretto",
 	"log-name-contentmodel": "Riggistro 'e cagnamiente d' 'o mudello 'e cuntenute",
 	"log-description-contentmodel": "Evvente azzeccate c' 'o mudello 'e cuntenute 'e na paggena",

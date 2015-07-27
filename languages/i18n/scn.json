@@ -1827,7 +1827,6 @@
 	"changecontentmodel-success-title": "Lu mudellu dû cuntinutu fu’ canciatu",
 	"changecontentmodel-success-text": "Lu tipu dû cuntinutu di [[:$1]] fu’ canciatu.",
 	"changecontentmodel-cannot-convert": "Nun si po’ cunvèrtiri lu cuntinutu di [[:$1]] ntô tipu $2.",
-	"changecontentmodel-title-cantexist": "Nun si po’ mèttiri na pàggina nta $1.",
 	"changecontentmodel-nodirectediting": "Lu mudellu dû cuntinutu $1 nun cunsenti lu canciamentu direttu.",
 	"log-name-contentmodel": "Riggistru dî canciamenti ô mudellu dû cuntinutu",
 	"log-description-contentmodel": "Eventi ca riguàrdunu lu mudellu dû cuntinutu di na pàggina",

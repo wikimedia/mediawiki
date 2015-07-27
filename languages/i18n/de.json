@@ -1899,7 +1899,6 @@
 	"changecontentmodel-success-title": "Das Inhaltsmodell wurde geändert",
 	"changecontentmodel-success-text": "Der Inhaltstyp von [[:$1]] wurde geändert.",
 	"changecontentmodel-cannot-convert": "Der Inhalt von [[:$1]] kann nicht zum Typ $2 konvertiert werden.",
-	"changecontentmodel-title-cantexist": "Auf $1 ist keine Seite möglich.",
 	"changecontentmodel-nodirectediting": "Das Inhaltsmodell „$1“ unterstützt keine direkten Bearbeitungen",
 	"log-name-contentmodel": "Inhaltsmodell-Änderungs-Logbuch",
 	"log-description-contentmodel": "Ereignisse bezüglich den Inhaltsmodellen einer Seite",

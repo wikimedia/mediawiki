@@ -1867,7 +1867,6 @@
 	"changecontentmodel-success-title": "S'ha canviat el model de contingut",
 	"changecontentmodel-success-text": "S'ha canviat el tipus de contingut de [[:$1]].",
 	"changecontentmodel-cannot-convert": "El contingut a [[:$1]] no es pot convertir a un tipus de $2.",
-	"changecontentmodel-title-cantexist": "No és possible tenir una pàgina a $1.",
 	"changecontentmodel-nodirectediting": "El model de contingut $1 no permet l'edició directa",
 	"log-name-contentmodel": "Registre de canvis del model de contingut",
 	"log-description-contentmodel": "Esdeveniments relacionats amb els models de contingut d'una pàgina",

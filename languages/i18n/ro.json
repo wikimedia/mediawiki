@@ -1841,7 +1841,6 @@
 	"changecontentmodel-success-title": "Modelul de conținut a fost modificat",
 	"changecontentmodel-success-text": "Tipul de conținut al paginii [[:$1]] a fost modificat.",
 	"changecontentmodel-cannot-convert": "Conținutul paginii [[:$1]] nu poate fi convertit în tipul $2.",
-	"changecontentmodel-title-cantexist": "Nu se poate utiliza titlul de pagină: $1.",
 	"changecontentmodel-nodirectediting": "Modelul de conținut $1 nu acceptă editarea directă",
 	"log-name-contentmodel": "Jurnal modificări model de conținut",
 	"log-description-contentmodel": "Evenimente referitoare la modelele de conținut ale paginilor",

@@ -1876,7 +1876,6 @@
 	"changecontentmodel-success-title": "已變更內容模型",
 	"changecontentmodel-success-text": "已變更 [[:$1]] 的內容類型。",
 	"changecontentmodel-cannot-convert": "[[:$1]] 的內容無法轉換為 $2 類型。",
-	"changecontentmodel-title-cantexist": "無法於 $1 建立頁面。",
 	"changecontentmodel-nodirectediting": "$1 的內容模型不支援直接編輯",
 	"log-name-contentmodel": "內容模型變更日誌",
 	"log-description-contentmodel": "與頁面內容模型相關的事件",

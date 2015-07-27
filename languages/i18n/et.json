@@ -1839,7 +1839,6 @@
 	"changecontentmodel-success-title": "Sisumudel on muudetud",
 	"changecontentmodel-success-text": "Lehekülje [[:$1]] sisumudel on muudetud.",
 	"changecontentmodel-cannot-convert": "Lehekülje [[:$1]] sisumudelit ei saa teisendada tüübiks $2.",
-	"changecontentmodel-title-cantexist": "Lehekülg ei saa olla pealkirja \"$1\" all.",
 	"changecontentmodel-nodirectediting": "Sisumudel $1 ei võimalda otseredigeerimist.",
 	"log-name-contentmodel": "Sisumudeli muutmislogi",
 	"log-description-contentmodel": "Lehekülje sisumudelite muutmisega seotud sündmused",

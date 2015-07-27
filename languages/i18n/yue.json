@@ -1758,7 +1758,6 @@
 	"changecontentmodel-success-title": "目錄類已經改咗",
 	"changecontentmodel-success-text": "[[:$1]]目錄類已經改變咗",
 	"changecontentmodel-cannot-convert": "唔可以喺[[:$1]]嘅目錄轉成$2嘅類。",
-	"changecontentmodel-title-cantexist": "$1冇呢頁，可能係刪咗或未開。",
 	"logentry-contentmodel-change-revertlink": "反轉",
 	"logentry-contentmodel-change-revert": "反轉",
 	"protectlogpage": "保護日誌",

@@ -1882,7 +1882,6 @@
 	"changecontentmodel-success-title": "Innehållsmodellen ändrades",
 	"changecontentmodel-success-text": "Innehållstypen för [[:$1]] har ändrats.",
 	"changecontentmodel-cannot-convert": "Innehållet på [[:$1]] kan inte konverteras till typen $2.",
-	"changecontentmodel-title-cantexist": "Det går inte att ha en sida på $1.",
 	"changecontentmodel-nodirectediting": "Innehållsmodellen $1 stöder inte direkt redigering",
 	"log-name-contentmodel": "Ändringslogg för innehållsmodellen",
 	"log-description-contentmodel": "Händelser som är relaterade till en sidas innehållsmodeller",

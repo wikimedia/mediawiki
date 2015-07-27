@@ -1843,7 +1843,6 @@
 	"changecontentmodel-success-title": "Model obsahu byl změněn",
 	"changecontentmodel-success-text": "Model obsahu stránky [[:$1]] byl změněn.",
 	"changecontentmodel-cannot-convert": "Obsah stránky [[:$1]] nelze zkonvertovat na typ $2.",
-	"changecontentmodel-title-cantexist": "Pod názvem $1 nemůže být stránka.",
 	"changecontentmodel-nodirectediting": "Model obsahu $1 nepodporuje přímou editaci",
 	"log-name-contentmodel": "Kniha změny modelů obsahu",
 	"log-description-contentmodel": "Události týkající se modelů obsahu stránek",

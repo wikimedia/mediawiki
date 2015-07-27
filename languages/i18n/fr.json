@@ -1948,7 +1948,6 @@
 	"changecontentmodel-success-title": "Le modèle de contenu a été modifié",
 	"changecontentmodel-success-text": "Le modèle de contenu de [[:$1]] a été modifié.",
 	"changecontentmodel-cannot-convert": "Le contenu sur [[:$1]] n’a pas pu être converti en un type de $2.",
-	"changecontentmodel-title-cantexist": "Impossible d’avoir une page à $1.",
 	"changecontentmodel-nodirectediting": "Le modèle de contenu $1 ne permet pas la modification directe",
 	"log-name-contentmodel": "Journal de modification de modèle de contenu",
 	"log-description-contentmodel": "Événements relatifs aux modèles de contenu d’une page",

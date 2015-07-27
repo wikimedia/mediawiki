@@ -1904,7 +1904,6 @@
 	"changecontentmodel-success-title": "内容模型已更改",
 	"changecontentmodel-success-text": "[[:$1]]的内容类型被更改。",
 	"changecontentmodel-cannot-convert": "[[:$1]]上的内容不能转换为$2的一个类型。",
-	"changecontentmodel-title-cantexist": "在$1尚不能有一个页面。",
 	"changecontentmodel-nodirectediting": "$1内容模型不支持直接编辑",
 	"log-name-contentmodel": "内容模型更改日志",
 	"log-description-contentmodel": "与一个页面的内容模型相关的活动",

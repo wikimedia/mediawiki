@@ -2378,6 +2378,7 @@
 	"pageinfo-robot-index": "مسموحة",
 	"pageinfo-robot-noindex": "غير مسموحة",
 	"pageinfo-watchers": "عدد المراقبين",
+	"pageinfo-visiting-watchers": "عدد مراقبي الصفحة الذين زاروا التعديلات الأخيرة",
 	"pageinfo-few-watchers": "أقل من {{PLURAL:$1||مراقب واحد|مراقبين اثنين|$1 مراقبين|$1 مراقباً|$1 مراقب}}",
 	"pageinfo-redirects-name": "عدد التحويلات إلى هذه الصفحة",
 	"pageinfo-subpages-name": "الصفحات الفرعية لهذه الصفحة",

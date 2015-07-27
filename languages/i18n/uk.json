@@ -1892,7 +1892,6 @@
 	"changecontentmodel-success-title": "Модель вмісту було змінено",
 	"changecontentmodel-success-text": "Тип вмісту сторінки [[:$1]] було змінено.",
 	"changecontentmodel-cannot-convert": "Вміст сторінки [[:$1]] не можна перетворити на вміст типу $2.",
-	"changecontentmodel-title-cantexist": "Сторінка з назвою $1 не можлива.",
 	"changecontentmodel-nodirectediting": "Модель вмісту $1 не підтримує пряме редагування",
 	"log-name-contentmodel": "Журнал змін моделі вмісту",
 	"log-description-contentmodel": "Події, пов'язані з моделями вмісту сторінки",

@@ -1844,7 +1844,6 @@
 	"changecontentmodel-success-title": "Turinio modelis buvo atnaujintas",
 	"changecontentmodel-success-text": "Turinys, kurio tipas [[:$1]], buvo atnaujintas.",
 	"changecontentmodel-cannot-convert": "Turinys [[:$1]] negali būti konvertuotas į $2 tipą.",
-	"changecontentmodel-title-cantexist": "Negalima turėti puslapio $1.",
 	"changecontentmodel-nodirectediting": "$1 turinio modelis nepalaiko tiesioginio redagavimo",
 	"log-name-contentmodel": "Turinio modelio kaitos istorija",
 	"log-description-contentmodel": "Įvykiai susiję su puslapio turinio modeliu",

@@ -1865,7 +1865,6 @@
 	"changecontentmodel-success-title": "نمونه محتوی تغییر یافت",
 	"changecontentmodel-success-text": "نوع محتوی [[:$1]]  تغییر یافت",
 	"changecontentmodel-cannot-convert": "محتوی در [[:$1]] نمی‌تواند به گونه‌ای از $2 تبدیل شود.",
-	"changecontentmodel-title-cantexist": "امکان داشتن صفحه در $1 نیست.",
 	"changecontentmodel-nodirectediting": "نمونه محتوی $1 امکان ویرایش مستقیم را پشتیبانی نمی‌کند",
 	"log-name-contentmodel": "سیاهه تغییر نمونه محتوی",
 	"log-description-contentmodel": "رویدادهای مرتبط با نمونه محتوی‌های یک صفحه",

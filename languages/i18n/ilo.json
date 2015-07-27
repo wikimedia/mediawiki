@@ -1807,7 +1807,6 @@
 	"changecontentmodel-success-title": "Nabaliwan ti modelo ti linaon",
 	"changecontentmodel-success-text": "Nabaliwanen ti kita ti linaon ti [[:$1]].",
 	"changecontentmodel-cannot-convert": "Ti linaon iti [[:$1]] ket saan a mabaliwan iti kita ti $2.",
-	"changecontentmodel-title-cantexist": "Saan a mabalin nga addaan iti panid iti $1.",
 	"changecontentmodel-nodirectediting": "Ti modelo ti linaon ti $1 ket saan a mangsuporta ti dagus a panagurnos",
 	"log-name-contentmodel": "Listaan ti panagbaliw ti modelo ti linaon",
 	"log-description-contentmodel": "Dagiti pasamak a mainaig kadagiti modelo ti linaon ti panid",

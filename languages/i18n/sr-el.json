@@ -1792,7 +1792,6 @@
 	"changecontentmodel-success-title": "Model sadržaja je promenjen",
 	"changecontentmodel-success-text": "Model sadržaja stranice [[:$1]] je promenjen.",
 	"changecontentmodel-cannot-convert": "Model sadržaja stranice [[:$1]] se ne može pretvoriti u vrstu $2.",
-	"changecontentmodel-title-cantexist": "Ne može postojati stranica na $1.",
 	"changecontentmodel-nodirectediting": "Model sadržaja $1 ne podržava izravno uređivanje",
 	"log-name-contentmodel": "Dnevnik promene modela sadržaja",
 	"log-description-contentmodel": "Događaji koji imaju vezu sa modelima sadržaja stranica",

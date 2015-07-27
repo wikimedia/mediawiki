@@ -1826,7 +1826,6 @@
 	"changecontentmodel-success-title": "Spremenili smo model vsebine",
 	"changecontentmodel-success-text": "Spremenili smo vrsto vsebine [[:$1]].",
 	"changecontentmodel-cannot-convert": "Vsebine na [[:$1]] ni mogoče pretvoriti v vrsto $2.",
-	"changecontentmodel-title-cantexist": "Na $1 ni mogoče imeti strani.",
 	"changecontentmodel-nodirectediting": "Model vsebine $1 ne podpira neposrednega urejanja",
 	"log-name-contentmodel": "Dnevnik sprememb modela vsebine",
 	"log-description-contentmodel": "Dogodki, povezani z modeli vsebin strani",

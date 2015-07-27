@@ -1846,7 +1846,6 @@
 	"changecontentmodel-success-title": "מודל התוכן שוּנה",
 	"changecontentmodel-success-text": "מודל התוכן של [[:$1]] שוּנה.",
 	"changecontentmodel-cannot-convert": "התוכן בדף [[:$1]] אינו יכול להיות מומר לסוג של $2.",
-	"changecontentmodel-title-cantexist": "לא יכול להיות דף בשם $1.",
 	"changecontentmodel-nodirectediting": "מודל התוכן $1 אינו תומך בעריכה ישירה",
 	"log-name-contentmodel": "יומן שינויי מודל תוכן",
 	"log-description-contentmodel": "אירועים שקשורים למודל תוכן של דפים",

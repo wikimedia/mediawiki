@@ -1826,7 +1826,6 @@
 	"changecontentmodel-success-title": "Cambióse'l modelu de conteníu",
 	"changecontentmodel-success-text": "Cambióse'l tipu de conteníu de [[:$1]].",
 	"changecontentmodel-cannot-convert": "El conteníu de [[:$1]] nun puede convertise a un tipu de $2.",
-	"changecontentmodel-title-cantexist": "Nun ye posible tener una páxina en $1.",
 	"changecontentmodel-nodirectediting": "El modelu de conteníu $1 nun tien encontu pa edición direuta",
 	"log-name-contentmodel": "Rexistru de cambios del modelu de conteníu",
 	"log-description-contentmodel": "Socesos rellacionaos colos modelos de conteníu d'una páxina",

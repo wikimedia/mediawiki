@@ -1900,7 +1900,6 @@
 	"changecontentmodel-success-title": "Модель содержимого была изменена",
 	"changecontentmodel-success-text": "Модель содержимого [[:$1]] была изменена.",
 	"changecontentmodel-cannot-convert": "Содержимое [[:$1]] не может быть преобразовано к типу $2.",
-	"changecontentmodel-title-cantexist": "Невозможно иметь страницу в $1.",
 	"changecontentmodel-nodirectediting": "Модель содержимого $1 не поддерживает прямое редактирование",
 	"log-name-contentmodel": "Журнал изменения моделей содержимого",
 	"log-description-contentmodel": "События, связанные с моделями содержимого страниц",

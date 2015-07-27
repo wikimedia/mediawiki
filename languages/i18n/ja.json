@@ -1883,7 +1883,6 @@
 	"changecontentmodel-success-title": "コンテント・モデルは変更されました",
 	"changecontentmodel-success-text": "[[:$1]]のコンテント・タイプは変更されています。",
 	"changecontentmodel-cannot-convert": "[[:$1]]上のコンテントは$2の型には変換できません。",
-	"changecontentmodel-title-cantexist": "$1 でページを持つことは不可能です。",
 	"changecontentmodel-nodirectediting": "$1 コンテント・モデルは、ダイレクト編集をサポートしていません。",
 	"log-name-contentmodel": "コンテント・モデル変更ログ",
 	"log-description-contentmodel": "ページのコンテント・モデルに関連するイベント",
