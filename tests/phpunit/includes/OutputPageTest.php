@@ -141,9 +141,9 @@ class OutputPageTest extends MediaWikiTestCase {
 			// Load module script only
 			array(
 				array( 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS ),
-				'<script>if(window.mw){
-document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=test.foo\u0026amp;only=scripts\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");
-}</script>
+				'<script>var RLQ=RLQ||[];RLQ.push(function(){'
+					. 'document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=test.foo\u0026amp;only=scripts\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");'
+					. '});</script>
 '
 			),
 			array(
@@ -162,19 +162,19 @@ document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\
 			// Load private module (only=scripts)
 			array(
 				array( 'test.quux', ResourceLoaderModule::TYPE_SCRIPTS ),
-				'<script>if(window.mw){
-mw.test.baz({token:123});mw.loader.state({"test.quux":"ready"});
-
-}</script>
+				'<script>var RLQ=RLQ||[];RLQ.push(function(){'
+					. 'mw.test.baz({token:123});mw.loader.state({"test.quux":"ready"});'
+					. '
+});</script>
 '
 			),
 			// Load private module (combined)
 			array(
 				array( 'test.quux', ResourceLoaderModule::TYPE_COMBINED ),
-				'<script>if(window.mw){
-mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"css":[".mw-icon{transition:none}\n"]});
-
-}</script>
+				'<script>var RLQ=RLQ||[];RLQ.push(function(){'
+					. 'mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"css":[".mw-icon{transition:none}\n"]});'
+					. '
+});</script>
 '
 			),
 			// Load module script with ESI
@@ -203,12 +203,12 @@ mw.loader.implement("test.quux",function($,jQuery){mw.test.baz({token:123});},{"
 			// Load two modules in separate groups
 			array(
 				array( array( 'test.group.foo', 'test.group.bar' ), ResourceLoaderModule::TYPE_COMBINED ),
-				'<script>if(window.mw){
-document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=test.group.bar\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");
-}</script>
-<script>if(window.mw){
-document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=test.group.foo\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");
-}</script>
+				'<script>var RLQ=RLQ||[];RLQ.push(function(){'
+					. 'document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=test.group.bar\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");'
+					. '});</script>
+<script>var RLQ=RLQ||[];RLQ.push(function(){'
+					. 'document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=test.group.foo\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");'
+					. '});</script>
 '
 			),
 		);
@@ -303,4 +303,3 @@ class NullMessageBlobStore extends MessageBlobStore {
 	public function clear() {
 	}
 }
-
