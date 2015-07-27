@@ -160,8 +160,12 @@ abstract class DatabaseUpdater {
 		if ( $vars && isset( $vars['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
 			$hooks = array_merge_recursive( $hooks, $vars['wgHooks']['LoadExtensionSchemaUpdates'] );
 		}
+		if ( $GLOBALS['wgHooks']['LoadExtensionSchemaUpdates'] ) {
+			$globalhooks = array_merge_recursive( $hooks, $GLOBALS['wgHooks']['LoadExtensionSchemaUpdates'] );
+		}
 		global $wgHooks, $wgAutoloadClasses;
 		$wgHooks['LoadExtensionSchemaUpdates'] = $hooks;
+		$GLOBALS['wgHooks']['LoadExtensionSchemaUpdates'] = $globalhooks;
 		if ( $vars && isset( $vars['wgAutoloadClasses'] ) ) {
 			$wgAutoloadClasses += $vars['wgAutoloadClasses'];
 		}
