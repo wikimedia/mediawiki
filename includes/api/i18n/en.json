@@ -906,7 +906,7 @@
 	"apihelp-query+revisions+base-param-parse": "Parse revision content (requires $1prop=content). For performance reasons, if this option is used, $1limit is enforced to 1.",
 	"apihelp-query+revisions+base-param-section": "Only retrieve the content of this section number.",
 	"apihelp-query+revisions+base-param-diffto": "Revision ID to diff each revision to. Use <kbd>prev</kbd>, <kbd>next</kbd> and <kbd>cur</kbd> for the previous, next and current revision respectively.",
-	"apihelp-query+revisions+base-param-difftotext": "Text to diff each revision to. Only diffs a limited number of revisions. Overrides <var>$1diffto</var>. If <var>$1section</var> is set, only that section will be diffed against this text",
+	"apihelp-query+revisions+base-param-difftotext": "Text to diff each revision to. Only diffs a limited number of revisions. Overrides <var>$1diffto</var>. If <var>$1section</var> is set, only that section will be diffed against this text.",
 	"apihelp-query+revisions+base-param-contentformat": "Serialization format used for <var>$1difftotext</var> and expected for output of content.",
 
 	"apihelp-query+search-description": "Perform a full text search.",
