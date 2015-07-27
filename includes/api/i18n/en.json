@@ -115,7 +115,7 @@
 	"apihelp-emailuser-param-subject": "Subject header.",
 	"apihelp-emailuser-param-text": "Mail body.",
 	"apihelp-emailuser-param-ccme": "Send a copy of this mail to me.",
-	"apihelp-emailuser-example-email": "Send an email to the User <kbd>WikiSysop</kbd> with the text <kbd>Content</kbd>.",
+	"apihelp-emailuser-example-email": "Send an email to user <kbd>WikiSysop</kbd> with the text <kbd>Content</kbd>.",
 
 	"apihelp-expandtemplates-description": "Expands all templates in wikitext.",
 	"apihelp-expandtemplates-param-title": "Title of page.",
