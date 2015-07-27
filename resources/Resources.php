@@ -1694,6 +1694,10 @@ return array(
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.block.css',
 		'dependencies' => 'mediawiki.util',
 	),
+	'mediawiki.special.blocklist' => array(
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.blocklist.css',
+		'position' => 'top',
+	),
 	'mediawiki.special.changeslist' => array(
 		'position' => 'top',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.changeslist.css',

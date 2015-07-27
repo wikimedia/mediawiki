@@ -1,0 +1,4 @@
+.mw-htmlform-flatlist-item {
+	/* FIXME: There should be an option in OOUI to do that */
+	display: inline-block !important;
+}
