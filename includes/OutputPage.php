@@ -3005,13 +3005,6 @@ class OutputPage extends ContextSource {
 		// Separate user.tokens as otherwise caching will be allowed (T84960)
 		$links[] = $this->makeResourceLoaderLink( 'user.tokens', ResourceLoaderModule::TYPE_COMBINED );
 
-		// "Scripts only" modules marked for top inclusion
-		$styleModules = $this->getModuleScripts( true, 'top' );
-		$links[] = $this->makeResourceLoaderLink(
-			$this->getModuleScripts( true, 'top' ),
-			ResourceLoaderModule::TYPE_SCRIPTS
-		);
-
 		// Modules requests - let the client calculate dependencies and batch requests as it likes
 		// Only load modules that have marked themselves for loading at the top
 		$modules = $this->getModules( true, 'top' );
@@ -3020,6 +3013,12 @@ class OutputPage extends ContextSource {
 				Xml::encodeJsCall( 'mw.loader.load', array( $modules ) )
 			);
 		}
+
+		// "Scripts only" modules marked for top inclusion
+		$links[] = $this->makeResourceLoaderLink(
+			$this->getModuleScripts( true, 'top' ),
+			ResourceLoaderModule::TYPE_SCRIPTS
+		);
 
 		if ( $this->getConfig()->get( 'ResourceLoaderExperimentalAsyncLoading' ) ) {
 			$links[] = $this->getScriptsForBottomQueue( true );

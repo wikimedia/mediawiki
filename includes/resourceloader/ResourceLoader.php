@@ -1372,7 +1372,7 @@ MESSAGE;
 	 * @return string
 	 */
 	public static function makeLoaderConditionalScript( $script ) {
-		return "if(window.mw){\n" . trim( $script ) . "\n}";
+		return "var RLQ = RLQ || []; RLQ.push( function () {\n" . trim( $script ) . "\n} );";
 	}
 
 	/**
