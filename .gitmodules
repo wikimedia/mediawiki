@@ -30,3 +30,91 @@
 	path = skins/MonoBook
 	url = https://github.com/wikimedia/mediawiki-skins-MonoBook
 	branch = REL1_25
+[submodule "extensions/AntiSpoof"]
+	path = extensions/AntiSpoof
+	url = https://github.com/wikimedia/mediawiki-extensions-AntiSpoof
+	branch = REL1_25
+[submodule "extensions/Babel"]
+	path = extensions/Babel
+	url = https://github.com/wikimedia/mediawiki-extensions-Babel
+	branch = REL1_25
+[submodule "extensions/Cite"]
+	path = extensions/Cite
+	url = https://github.com/wikimedia/mediawiki-extensions-Cite
+	branch = REL1_25
+[submodule "extensions/CodeEditor"]
+	path = extensions/CodeEditor
+	url = https://github.com/wikimedia/mediawiki-extensions-CodeEditor
+	branch = REL1_25
+[submodule "extensions/ConfirmEdit"]
+	path = extensions/ConfirmEdit
+	url = https://github.com/wikimedia/mediawiki-extensions-ConfirmEdit
+	branch = REL1_25
+[submodule "extensions/Echo"]
+	path = extensions/Echo
+	url = https://github.com/wikimedia/mediawiki-extensions-Echo
+	branch = REL1_25
+[submodule "extensions/Gadgets"]
+	path = extensions/Gadgets
+	url = https://github.com/wikimedia/mediawiki-extensions-Gadgets
+	branch = REL1_25
+[submodule "extensions/GlobalBlocking"]
+	path = extensions/GlobalBlocking
+	url = https://github.com/wikimedia/mediawiki-extensions-GlobalBlocking
+	branch = REL1_25
+[submodule "extensions/Interwiki"]
+	path = extensions/Interwiki
+	url = https://github.com/wikimedia/mediawiki-extensions-Interwiki
+	branch = REL1_25
+[submodule "extensions/MassMessage"]
+	path = extensions/MassMessage
+	url = https://github.com/wikimedia/mediawiki-extensions-MassMessage
+	branch = REL1_25
+[submodule "extensions/MobileFrontend"]
+	path = extensions/MobileFrontend
+	url = https://github.com/wikimedia/mediawiki-extensions-MobileFrontend
+	branch = REL1_25
+[submodule "extensions/Nuke"]
+	path = extensions/Nuke
+	url = https://github.com/wikimedia/mediawiki-extensions-Nuke
+	branch = REL1_25
+[submodule "extensions/OAuth"]
+	path = extensions/OAuth
+	url = https://github.com/wikimedia/mediawiki-extensions-OAuth
+	branch = REL1_25
+[submodule "extensions/Renameuser"]
+	path = extensions/Renameuser
+	url = https://github.com/wikimedia/mediawiki-extensions-Renameuser
+	branch = REL1_25
+[submodule "extensions/SiteMatrix"]
+	path = extensions/SiteMatrix
+	url = https://github.com/wikimedia/mediawiki-extensions-SiteMatrix
+	branch = REL1_25
+[submodule "extensions/Thanks"]
+	path = extensions/Thanks
+	url = https://github.com/wikimedia/mediawiki-extensions-Thanks
+	branch = REL1_25
+[submodule "extensions/Translate"]
+	path = extensions/Translate
+	url = https://github.com/wikimedia/mediawiki-extensions-Translate
+	branch = REL1_25
+[submodule "extensions/UniversalLanguageSelector"]
+	path = extensions/UniversalLanguageSelector
+	url = https://github.com/wikimedia/mediawiki-extensions-UniversalLanguageSelector
+	branch = REL1_25
+[submodule "extensions/UrlShortener"]
+	path = extensions/UrlShortener
+	url = https://github.com/wikimedia/mediawiki-extensions-UrlShortener
+	branch = REL1_25
+[submodule "extensions/cldr"]
+	path = extensions/cldr
+	url = https://github.com/wikimedia/mediawiki-extensions-cldr
+	branch = REL1_25
+[submodule "skins/CologneBlue"]
+	path = skins/CologneBlue
+	url = https://github.com/wikimedia/mediawiki-skins-CologneBlue
+	branch = REL1_25
+[submodule "skins/Modern"]
+	path = skins/Modern
+	url = https://github.com/wikimedia/mediawiki-skins-Modern
+	branch = REL1_25
