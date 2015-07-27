@@ -1466,6 +1466,10 @@ return array(
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.block.css',
 		'dependencies' => 'mediawiki.util',
 	),
+	'mediawiki.special.blocklist' => array(
+		'styles' => 'resources/src/mediawiki.special/mediawiki.special.blocklist.css',
+		'position' => 'top',
+	),
 	'mediawiki.special.changeemail' => array(
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.changeemail.js',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.changeemail.css',
