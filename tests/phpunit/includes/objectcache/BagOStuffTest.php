@@ -3,6 +3,7 @@
  * @author Matthias Mullie <mmullie@wikimedia.org>
  */
 class BagOStuffTest extends MediaWikiTestCase {
+	/** @var BagOStuff */
 	private $cache;
 
 	protected function setUp() {
@@ -151,5 +152,22 @@ class BagOStuffTest extends MediaWikiTestCase {
 		// cleanup
 		$this->cache->delete( $key1 );
 		$this->cache->delete( $key2 );
+	}
+
+	/**
+	 * @covers BagOStuff::getScopedLock
+	 */
+	public function testGetScopedLock() {
+		$key = wfMemcKey( 'test' );
+		$value1 = $this->cache->getScopedLock( $key, 0 );
+		$value2 = $this->cache->getScopedLock( $key, 0 );
+
+		$this->assertType( 'ScopedCallback', $value1, 'First call returned lock' );
+		$this->assertNull( $value2, 'Duplicate call returned no lock' );
+
+		unset( $value1 );
+
+		$value3 = $this->cache->getScopedLock( $key, 0 );
+		$this->assertType( 'ScopedCallback', $value3, 'Lock returned callback after release' );
 	}
 }
