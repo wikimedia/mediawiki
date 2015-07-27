@@ -1054,8 +1054,8 @@ abstract class HTMLFormField {
 
 		foreach ( $oldoptions as $text => $data ) {
 			$options[] = array(
-				'data' => $data,
-				'label' => $text,
+				'data' => (string)$data,
+				'label' => (string)$text,
 			);
 		}
 
