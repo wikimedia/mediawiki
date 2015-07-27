@@ -268,7 +268,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		}
 
 		// Register modules
-		$out .= ResourceLoader::makeLoaderRegisterScript( $registrations );
+		$out .= "\n" . ResourceLoader::makeLoaderRegisterScript( $registrations );
 
 		return $out;
 	}
@@ -321,40 +321,25 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		global $IP;
-
-		$out = file_get_contents( "$IP/resources/src/startup.js" );
-		if ( $context->getOnly() === 'scripts' ) {
-
-			// Startup function
-			$configuration = $this->getConfigSettings( $context );
-			$registrations = $this->getModuleRegistrations( $context );
-			// Fix indentation
-			$registrations = str_replace( "\n", "\n\t", trim( $registrations ) );
-			$mwMapJsCall = Xml::encodeJsCall(
-				'mw.Map',
-				array( $this->getConfig()->get( 'LegacyJavaScriptGlobals' ) )
-			);
-			$mwConfigSetJsCall = Xml::encodeJsCall(
-				'mw.config.set',
-				array( $configuration ),
-				ResourceLoader::inDebugMode()
-			);
-
-			$out .= "var startUp = function () {\n" .
-				"\tmw.config = new " .
-				$mwMapJsCall . "\n" .
-				"\t$registrations\n" .
-				"\t" . $mwConfigSetJsCall .
-				"};\n";
-
-			// Conditional script injection
-			$scriptTag = Html::linkedScript( self::getStartupModulesUrl( $context ) );
-			$out .= "if ( isCompatible() ) {\n" .
-				"\t" . Xml::encodeJsCall( 'document.write', array( $scriptTag ) ) .
-				"\n}";
+		if ( $context->getOnly() !== 'scripts' ) {
+			return '/* Requires only=script */';
 		}
 
-		return $out;
+		$out = file_get_contents( "$IP/resources/src/startup.js" );
+
+		$pairs = array_map( function ( $value ) {
+			$value = FormatJson::encode( $value, ResourceLoader::inDebugMode(), FormatJson::ALL_OK );
+			// Fix indentation
+			$value = str_replace( "\n", "\n\t", $value  );
+			return $value;
+		}, array(
+			'$VARS.wgLegacyJavaScriptGlobals' => $this->getConfig()->get( 'LegacyJavaScriptGlobals' ),
+			'$VARS.configuration' => $this->getConfigSettings( $context ),
+			'$VARS.baseModulesScript' => Html::linkedScript( self::getStartupModulesUrl( $context ) ),
+		) );
+		$pairs['$CODE.registrations'] = str_replace( "\n", "\n\t", trim( $this->getModuleRegistrations( $context ) ) );
+
+		return strtr( $out, $pairs );
 	}
 
 	/**
