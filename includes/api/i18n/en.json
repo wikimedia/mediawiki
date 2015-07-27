@@ -791,7 +791,7 @@
 	"apihelp-query+logevents-description": "Get events from logs.",
 	"apihelp-query+logevents-param-prop": "Which properties to get:\n;ids:Adds the ID of the log event.\n;title:Adds the title of the page for the log event.\n;type:Adds the type of log event.\n;user:Adds the user responsible for the log event.\n;userid:Adds the user ID who was responsible for the log event.\n;timestamp:Adds the timestamp for the event.\n;comment:Adds the comment of the event.\n;parsedcomment:Adds the parsed comment of the event.\n;details:Lists additional details about the event.\n;tags:Lists tags for the event.",
 	"apihelp-query+logevents-param-type": "Filter log entries to only this type.",
-	"apihelp-query+logevents-param-action": "Filter log actions to only this action. Overrides <var>$1type</var>. Wildcard actions like <kbd>action/*</kbd> allows to specify any string for the asterisk.",
+	"apihelp-query+logevents-param-action": "Filter log actions to only this action. Overrides <var>$1type</var>. The asterisk wildcard can be used to specify any string, for example <kbd>action/*</kbd>.",
 	"apihelp-query+logevents-param-start": "The timestamp to start enumerating from.",
 	"apihelp-query+logevents-param-end": "The timestamp to end enumerating.",
 	"apihelp-query+logevents-param-user": "Filter entries to those made by the given user.",
