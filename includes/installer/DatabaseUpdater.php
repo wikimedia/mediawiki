@@ -148,11 +148,12 @@ abstract class DatabaseUpdater {
 		if ( !$vars ) {
 			return; // no LocalSettings found
 		}
-		if ( !isset( $vars['wgHooks'] ) || !isset( $vars['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
+		if ( !isset( $vars['wgHooks'] ) || !isset( $vars['wgHooks']['LoadExtensionSchemaUpdates'] ) || $GLOBALS['wgHooks']['LoadExtensionSchemaUpdates'] ) {
 			return;
 		}
 		global $wgHooks, $wgAutoloadClasses;
 		$wgHooks['LoadExtensionSchemaUpdates'] = $vars['wgHooks']['LoadExtensionSchemaUpdates'];
+		$GLOBALS['wgHooks']['LoadExtensionSchemaUpdates'] = $GLOBALS['wgHooks']['LoadExtensionSchemaUpdates'];
 		$wgAutoloadClasses = $wgAutoloadClasses + $vars['wgAutoloadClasses'];
 	}
 
