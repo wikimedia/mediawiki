@@ -118,3 +118,7 @@
 	path = skins/Modern
 	url = https://github.com/wikimedia/mediawiki-skins-Modern
 	branch = REL1_25
+[submodule "extensions/WikiEditor"]
+	path = extensions/WikiEditor
+	url = https://github.com/wikimedia/mediawiki-extensions-WikiEditor
+	branch = REL1_25
