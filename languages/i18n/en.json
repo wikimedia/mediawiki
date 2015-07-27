@@ -449,6 +449,7 @@
 	"createacct-benefit-head3": "{{NUMBEROFACTIVEUSERS}}",
 	"createacct-benefit-body3": "recent {{PLURAL:$1|contributor|contributors}}",
 	"badretype": "The passwords you entered do not match.",
+    "userinprogress": "An account creation for this user is already in progress.\nPlease wait.",
 	"userexists": "Username entered already in use.\nPlease choose a different name.",
 	"loginerror": "Login error",
 	"createacct-error": "Account creation error",
