@@ -97,7 +97,6 @@ class SpecialBlock extends FormSpecialPage {
 	protected function alterForm( HTMLForm $form ) {
 		$form->setWrapperLegendMsg( 'blockip-legend' );
 		$form->setHeaderText( '' );
-		$form->setSubmitCallback( array( __CLASS__, 'processUIForm' ) );
 		$form->setSubmitDestructive();
 
 		$msg = $this->alreadyBlocked ? 'ipb-change-block' : 'ipbsubmit';
@@ -597,17 +596,8 @@ class SpecialBlock extends FormSpecialPage {
 	}
 
 	/**
-	 * Submit callback for an HTMLForm object, will simply pass
-	 * @param array $data
-	 * @param HTMLForm $form
-	 * @return bool|string
-	 */
-	public static function processUIForm( array $data, HTMLForm $form ) {
-		return self::processForm( $data, $form->getContext() );
-	}
-
-	/**
-	 * Given the form data, actually implement a block
+	 * Given the form data, actually implement a block. This is also called from ApiBlock.
+	 *
 	 * @param array $data
 	 * @param IContextSource $context
 	 * @return bool|string
@@ -962,11 +952,11 @@ class SpecialBlock extends FormSpecialPage {
 	/**
 	 * Process the form on POST submission.
 	 * @param array $data
+	 * @param HTMLForm $form
 	 * @return bool|array True for success, false for didn't-try, array of errors on failure
 	 */
-	public function onSubmit( array $data ) {
-		// This isn't used since we need that HTMLForm that's passed in the
-		// second parameter. See alterForm for the real function
+	public function onSubmit( array $data, HTMLForm $form = null ) {
+		return self::processForm( $data, $form->getContext() );
 	}
 
 	/**
