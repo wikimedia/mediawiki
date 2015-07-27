@@ -1368,7 +1368,9 @@ MESSAGE;
 	 * @return string
 	 */
 	public static function makeLoaderConditionalScript( $script ) {
-		return "if(window.mw){\n" . trim( $script ) . "\n}";
+		return ResourceLoader::inDebugMode()
+			? "var RLQ = RLQ || []; RLQ.push( function () {\n" . trim( $script ) . "\n} );"
+			: 'var RLQ=RLQ||[];RLQ.push(function(){' . trim( $script ) . '});';
 	}
 
 	/**
