@@ -869,7 +869,7 @@
 	"apihelp-query+logevents-paramvalue-prop-details": "Lists additional details about the log event.",
 	"apihelp-query+logevents-paramvalue-prop-tags": "Lists tags for the log event.",
 	"apihelp-query+logevents-param-type": "Filter log entries to only this type.",
-	"apihelp-query+logevents-param-action": "Filter log actions to only this action. Overrides <var>$1type</var>. Wildcard actions like <kbd>action/*</kbd> allows to specify any string for the asterisk.",
+	"apihelp-query+logevents-param-action": "Filter log actions to only this action. Overrides <var>$1type</var>. The asterisk wildcard can be used to specify any string, for example <kbd>action/*</kbd>.",
 	"apihelp-query+logevents-param-start": "The timestamp to start enumerating from.",
 	"apihelp-query+logevents-param-end": "The timestamp to end enumerating.",
 	"apihelp-query+logevents-param-user": "Filter entries to those made by the given user.",
