@@ -1076,7 +1076,7 @@
 	"apihelp-tag-param-add": "Tags to add. Only manually defined tags can be added.",
 	"apihelp-tag-param-remove": "Tags to remove. Only tags that are either manually defined or completely undefined can be removed.",
 	"apihelp-tag-param-reason": "Reason for the change.",
-	"apihelp-tag-example-rev": "Add the <kbd>vandalism</kbd> tag from revision ID 123 without specifying a reason",
+	"apihelp-tag-example-rev": "Add the <kbd>vandalism</kbd> tag to revision ID 123 without specifying a reason",
 	"apihelp-tag-example-log": "Remove the <kbd>spam</kbd> tag from log entry ID 123 with the reason <kbd>Wrongly applied</kbd>",
 
 	"apihelp-tokens-description": "Get tokens for data-modifying actions.\n\nThis module is deprecated in favor of [[Special:ApiHelp/query+tokens|action=query&meta=tokens]].",
