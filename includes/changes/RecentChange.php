@@ -681,7 +681,7 @@ class RecentChange {
 	 * @param string $actionCommentIRC
 	 * @return RecentChange
 	 */
-	public static function newLogEntry( $timestamp, &$title, &$user, $actionComment, $ip,
+	public static function newLogEntry( $timestamp, $title, $user, $actionComment, $ip,
 		$type, $action, $target, $logComment, $params, $newId = 0, $actionCommentIRC = '' ) {
 		global $wgRequest;
 
