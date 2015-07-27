@@ -25,7 +25,8 @@ performance.mark( 'mediaWikiStartUp' );
  * - https://jquery.com/browser-support/
  */
 
-/*jshint unused: false */
+/*jshint unused: false, evil: true */
+/*globals mw, $VARS, $CODE */
 function isCompatible( ua ) {
 	if ( ua === undefined ) {
 		ua = navigator.userAgent;
@@ -68,5 +69,17 @@ function isCompatible( ua ) {
 }
 
 /**
- * The startUp() function will be auto-generated and added below.
+ * The $CODE and $VARS placeholders are substituted in ResourceLoaderStartUpModule.php.
  */
+function startUp() {
+	mw.config = new mw.Map( $VARS.wgLegacyJavaScriptGlobals );
+
+	$CODE.registrations();
+
+	mw.config.set( $VARS.configuration );
+}
+
+// Conditional script injection
+if ( isCompatible() ) {
+	document.write( $VARS.baseModulesScript );
+}
