@@ -26,7 +26,7 @@ performance.mark( 'mediaWikiStartUp' );
  */
 
 /*jshint unused: false, evil: true */
-/*globals mw, $VARS, $CODE */
+/*globals mw, RLQ: true, $VARS, $CODE */
 function isCompatible( ua ) {
 	if ( ua === undefined ) {
 		ua = navigator.userAgent;
@@ -75,6 +75,16 @@ function startUp() {
 	mw.config = new mw.Map( $VARS.wgLegacyJavaScriptGlobals );
 
 	$CODE.registrations();
+
+	window.RLQ = window.RLQ || [];
+	while ( RLQ.length ) {
+		RLQ.shift()();
+	}
+	RLQ = {
+		push: function ( fn ) {
+			fn();
+		}
+	};
 
 	mw.config.set( $VARS.configuration );
 }
