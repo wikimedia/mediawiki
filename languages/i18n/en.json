@@ -914,6 +914,7 @@
 	"search-category": "(category $1)",
 	"search-file-match": "(matches file content)",
 	"search-suggest": "Did you mean: $1",
+	"search-rewritten": "Showing results for $1. Search instead for $2.",
 	"search-interwiki-caption": "Sister projects",
 	"search-interwiki-default": "Results from $1:",
 	"search-interwiki-custom": "",
