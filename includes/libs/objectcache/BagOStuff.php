@@ -248,20 +248,6 @@ abstract class BagOStuff implements LoggerAwareInterface {
 		return $this->delete( "{$key}:lock" );
 	}
 
-	/**
-	 * Delete all objects expiring before a certain date.
-	 * @param string $date The reference date in MW format
-	 * @param callable|bool $progressCallback Optional, a function which will be called
-	 *     regularly during long-running operations with the percentage progress
-	 *     as the first parameter.
-	 *
-	 * @return bool Success, false if unimplemented
-	 */
-	public function deleteObjectsExpiringBefore( $date, $progressCallback = false ) {
-		// stub
-		return false;
-	}
-
 	/* *** Emulated functions *** */
 
 	/**
