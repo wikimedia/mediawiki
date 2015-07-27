@@ -154,14 +154,18 @@ abstract class DatabaseUpdater {
 		// This will automatically add "AutoloadClasses" to $wgAutoloadClasses
 		$data = $registry->readFromQueue( $queue );
 		$hooks = array( 'wgHooks' => array( 'LoadExtensionSchemaUpdates' => array() ) );
-		if ( isset( $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
+		if ( isset( $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'] ) || $GLOBALS['wgHooks']['LoadExtensionSchemaUpdates'] ) {
 			$hooks = $data['globals']['wgHooks']['LoadExtensionSchemaUpdates'];
 		}
-		if ( $vars && isset( $vars['wgHooks']['LoadExtensionSchemaUpdates'] ) ) {
+		if ( $vars && isset( $vars['wgHooks']['LoadExtensionSchemaUpdates'] ) || $GLOBALS['wgHooks']['LoadExtensionSchemaUpdates'] ) {
 			$hooks = array_merge_recursive( $hooks, $vars['wgHooks']['LoadExtensionSchemaUpdates'] );
+		}
+		if ( $GLOBALS['wgHooks']['LoadExtensionSchemaUpdates'] ) {
+			return;
 		}
 		global $wgHooks, $wgAutoloadClasses;
 		$wgHooks['LoadExtensionSchemaUpdates'] = $hooks;
+		$GLOBALS['wgHooks']['LoadExtensionSchemaUpdates'] = $GLOBALS['wgHooks']['LoadExtensionSchemaUpdates'];
 		if ( $vars && isset( $vars['wgAutoloadClasses'] ) ) {
 			$wgAutoloadClasses += $vars['wgAutoloadClasses'];
 		}
