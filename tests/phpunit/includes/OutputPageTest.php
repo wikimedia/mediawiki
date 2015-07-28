@@ -142,15 +142,13 @@ class OutputPageTest extends MediaWikiTestCase {
 			array(
 				array( 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS ),
 				"<script>var RLQ = RLQ || []; RLQ.push( function () {\n"
-					. 'document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?'
-					. 'debug=false\u0026amp;lang=en\u0026amp;modules=test.foo\u0026amp;only'
-					. '=scripts\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");'
+					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026lang=en\u0026modules=test.foo\u0026only=scripts\u0026skin=fallback\u0026*");'
 					. "\n} );</script>"
 			),
 			array(
 				// Don't condition wrap raw modules (like the startup module)
 				array( 'test.raw', ResourceLoaderModule::TYPE_SCRIPTS ),
-				'<script src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.raw&amp;only=scripts&amp;skin=fallback&amp;*"></script>'
+				'<script async src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.raw&amp;only=scripts&amp;skin=fallback&amp;*"></script>'
 			),
 			// Load module styles only
 			// This also tests the order the modules are put into the url
@@ -188,10 +186,10 @@ class OutputPageTest extends MediaWikiTestCase {
 			array(
 				array( array( 'test.group.foo', 'test.group.bar' ), ResourceLoaderModule::TYPE_COMBINED ),
 				"<script>var RLQ = RLQ || []; RLQ.push( function () {\n"
-					. 'document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=test.group.bar\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");'
+					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026lang=en\u0026modules=test.group.bar\u0026skin=fallback\u0026*");'
 					. "\n} );</script>\n"
 					. "<script>var RLQ = RLQ || []; RLQ.push( function () {\n"
-					. 'document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=test.group.foo\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");'
+					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?debug=false\u0026lang=en\u0026modules=test.group.foo\u0026skin=fallback\u0026*");'
 					. "\n} );</script>"
 			),
 		);

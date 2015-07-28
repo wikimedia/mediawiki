@@ -2,12 +2,6 @@
 
 	mw.page = {};
 
-	// Client profile classes for <html>
-	// Allows for easy hiding/showing of JS or no-JS-specific UI elements
-	$( document.documentElement )
-		.addClass( 'client-js' )
-		.removeClass( 'client-nojs' );
-
 	$( function () {
 		mw.util.init();
 
