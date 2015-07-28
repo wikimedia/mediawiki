@@ -2535,8 +2535,15 @@ function wfShellExecWithStderr( $cmd, &$retval = null, $environ = [], $limits = 
 }
 
 /**
- * Workaround for https://bugs.php.net/bug.php?id=45132
- * escapeshellarg() destroys non-ASCII characters if LANG is not a UTF-8 locale
+ * Set the locale for locale-sensitive operations
+ *
+ * Sets LC_ALL to a known value to work around issues like the following:
+ * - https://bugs.php.net/bug.php?id=45132 escapeshellarg() destroys non-ASCII
+ *   characters if LANG is not a UTF-8 locale
+ * - T107128 Scribunto string comparison works case insensitive while the
+ *   standard Lua case sensitive
+ *
+ * @see $wgShellLocale
  */
 function wfInitShellLocale() {
 	static $done = false;
@@ -2545,8 +2552,8 @@ function wfInitShellLocale() {
 	}
 	$done = true;
 	global $wgShellLocale;
-	putenv( "LC_CTYPE=$wgShellLocale" );
-	setlocale( LC_CTYPE, $wgShellLocale );
+	putenv( "LC_ALL=$wgShellLocale" );
+	setlocale( LC_ALL, $wgShellLocale );
 }
 
 /**

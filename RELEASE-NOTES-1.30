@@ -6,7 +6,12 @@ MediaWiki 1.30 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.30 ===
-* …
+* The C.UTF-8 locale should be used for $wgShellLocale, if available, to avoid
+  unexpected behavior when things use local-sensitive string comparisons. For
+  example, Scribunto considers "bar" < "Foo" in most locales since it ignores
+  case.
+* $wgShellLocale now affects LC_ALL rather than only LC_CTYPE. See
+  documentation of $wgShellLocale for details.
 
 === New features in 1.30 ===
 * …
