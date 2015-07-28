@@ -55,11 +55,10 @@ class ThumbnailRenderJob extends Job {
 
 				wfDebug( __METHOD__ . ": received status {$status}\n" );
 
-				if ( $status === 200 || $status === 301 || $status === 302 ) {
+				// 400 happens when requesting a size greater or equal than the original
+				if ( $status === 200 || $status === 301 || $status === 302 || $status === 400 ) {
 					return true;
 				} elseif ( $status ) {
-					// Note that this currently happens (500) when requesting sizes larger then or
-					// equal to the original, which is harmless.
 					$this->setLastError( __METHOD__ . ': incorrect HTTP status ' . $status . ' when hitting ' . $thumbUrl );
 					return false;
 				} else {
