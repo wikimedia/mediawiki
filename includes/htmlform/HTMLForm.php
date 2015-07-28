@@ -76,10 +76,10 @@
  *    'size'                -- the length of text fields
  *    'filter-callback      -- a function name to give you the chance to
  *                             massage the inputted value before it's processed.
- *                             @see HTMLForm::filter()
+ *                             @see HTMLFormField::filter()
  *    'validation-callback' -- a function name to give you the chance
  *                             to impose extra validation on the field input.
- *                             @see HTMLForm::validate()
+ *                             @see HTMLFormField::validate()
  *    'name'                -- By default, the 'name' attribute of the input field
  *                             is "wp{$fieldname}".  If you want a different name
  *                             (eg one without the "wp" prefix), specify it here and
