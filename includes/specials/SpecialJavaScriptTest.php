@@ -232,11 +232,8 @@ HTML;
 		header( 'Pragma: no-cache' );
 		echo $startup;
 		echo "\n";
-		// Note: The following has to be wrapped in a script tag because the startup module also
-		// writes a script tag (the one loading mediawiki.js). Script tags are synchronous, block
-		// each other, and run in order. But they don't nest. The code appended after the startup
-		// module runs before the added script tag is parsed and executed.
-		echo Xml::encodeJsCall( 'document.write', array( Html::inlineScript( $code ) ) );
+		// The following has to be deferred via RLQ because the startup module is asynchronous.
+		echo ResourceLoader::makeLoaderConditionalScript( $code );
 	}
 
 	private function plainQUnit() {
