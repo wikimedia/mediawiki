@@ -133,6 +133,15 @@ class OOUIHTMLForm extends HTMLForm {
 		return '';
 	}
 
+	function getHeaderText( $section = null ) {
+		if ( is_null( $section ) ) {
+			// We handle $this->mHeader elsewhere, in getBody()
+			return '';
+		} else {
+			return parent::getHeaderText( $section );
+		}
+	}
+
 	function getBody() {
 		$fieldset = parent::getBody();
 		// FIXME This only works for forms with no subsections
