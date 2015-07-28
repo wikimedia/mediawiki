@@ -1121,39 +1121,24 @@
 			}
 
 			/**
-			 * Adds a script tag to the DOM, either using document.write or low-level DOM manipulation,
-			 * depending on whether document-ready has occurred yet and whether we are in async mode.
+			 * Load and execute a script with callback.
 			 *
 			 * @private
 			 * @param {string} src URL to script, will be used as the src attribute in the script tag
 			 * @param {Function} [callback] Callback which will be run when the script is done
-			 * @param {boolean} [async=false] Whether to load modules asynchronously.
-			 *  Ignored (and defaulted to `true`) if the document-ready event has already occurred.
 			 */
-			function addScript( src, callback, async ) {
-				// Using isReady directly instead of storing it locally from a $().ready callback (bug 31895)
-				if ( $.isReady || async ) {
-					$.ajax( {
-						url: src,
-						dataType: 'script',
-						// Force jQuery behaviour to be for crossDomain. Otherwise jQuery would use
-						// XHR for a same domain request instead of <script>, which changes the request
-						// headers (potentially missing a cache hit), and reduces caching in general
-						// since browsers cache XHR much less (if at all). And XHR means we retreive
-						// text, so we'd need to $.globalEval, which then messes up line numbers.
-						crossDomain: true,
-						cache: true,
-						async: true
-					} ).always( callback );
-				} else {
-					/*jshint evil:true */
-					docWrite( mw.html.element( 'script', { 'src': src }, '' ) );
-					if ( callback ) {
-						// Document.write is synchronous, so this is called when it's done.
-						// FIXME: That's a lie. doc.write isn't actually synchronous.
-						callback();
-					}
-				}
+			function addScript( src, callback ) {
+				$.ajax( {
+					url: src,
+					dataType: 'script',
+					// Force jQuery behaviour to be for crossDomain. Otherwise jQuery would use
+					// XHR for a same domain request instead of <script>, which changes the request
+					// headers (potentially missing a cache hit), and reduces caching in general
+					// since browsers cache XHR much less (if at all). And XHR means we retreive
+					// text, so we'd need to $.globalEval, which then messes up line numbers.
+					crossDomain: true,
+					cache: true
+				} ).always( callback );
 			}
 
 			/**
@@ -1209,7 +1194,7 @@
 							registry[module].state = 'ready';
 							handlePending( module );
 						};
-						nestedAddScript = function ( arr, callback, async, i ) {
+						nestedAddScript = function ( arr, callback, i ) {
 							// Recursively call addScript() in its own callback
 							// for each element of arr.
 							if ( i >= arr.length ) {
@@ -1219,8 +1204,8 @@
 							}
 
 							addScript( arr[i], function () {
-								nestedAddScript( arr, callback, async, i + 1 );
-							}, async );
+								nestedAddScript( arr, callback, i + 1 );
+							} );
 						};
 
 						legacyWait = ( $.inArray( module, legacyModules ) !== -1 )
@@ -1229,7 +1214,7 @@
 
 						legacyWait.always( function () {
 							if ( $.isArray( script ) ) {
-								nestedAddScript( script, markModuleReady, registry[module].async, 0 );
+								nestedAddScript( script, markModuleReady, 0 );
 							} else if ( $.isFunction( script ) ) {
 								// Pass jQuery twice so that the signature of the closure which wraps
 								// the script can bind both '$' and 'jQuery'.
@@ -1280,37 +1265,29 @@
 					mw.templates.set( module, registry[module].templates );
 				}
 
-				if ( $.isReady || registry[module].async ) {
-					// Make sure we don't run the scripts until all (potentially asynchronous)
-					// stylesheet insertions have completed.
-					( function () {
-						var pending = 0;
-						checkCssHandles = function () {
-							// cssHandlesRegistered ensures we don't take off too soon, e.g. when
-							// one of the cssHandles is fired while we're still creating more handles.
-							if ( cssHandlesRegistered && pending === 0 && runScript ) {
-								runScript();
-								runScript = undefined; // Revoke
+				// Make sure we don't run the scripts until all stylesheet insertions have completed.
+				( function () {
+					var pending = 0;
+					checkCssHandles = function () {
+						// cssHandlesRegistered ensures we don't take off too soon, e.g. when
+						// one of the cssHandles is fired while we're still creating more handles.
+						if ( cssHandlesRegistered && pending === 0 && runScript ) {
+							runScript();
+							runScript = undefined; // Revoke
+						}
+					};
+					cssHandle = function () {
+						var check = checkCssHandles;
+						pending++;
+						return function () {
+							if ( check ) {
+								pending--;
+								check();
+								check = undefined; // Revoke
 							}
 						};
-						cssHandle = function () {
-							var check = checkCssHandles;
-							pending++;
-							return function () {
-								if ( check ) {
-									pending--;
-									check();
-									check = undefined; // Revoke
-								}
-							};
-						};
-					}() );
-				} else {
-					// We are in blocking mode, and so we can't afford to wait for CSS
-					cssHandle = function () {};
-					// Run immediately
-					checkCssHandles = runScript;
-				}
+					};
+				}() );
 
 				// Process styles (see also mw.loader.implement)
 				// * back-compat: { <media>: css }
@@ -1377,10 +1354,8 @@
 			 * @param {string|string[]} dependencies Module name or array of string module names
 			 * @param {Function} [ready] Callback to execute when all dependencies are ready
 			 * @param {Function} [error] Callback to execute when any dependency fails
-			 * @param {boolean} [async=false] Whether to load modules asynchronously.
-			 *  Ignored (and defaulted to `true`) if the document-ready event has already occurred.
 			 */
-			function request( dependencies, ready, error, async ) {
+			function request( dependencies, ready, error ) {
 				// Allow calling by single module name
 				if ( typeof dependencies === 'string' ) {
 					dependencies = [dependencies];
@@ -1411,9 +1386,6 @@
 							return;
 						}
 						queue.push( module );
-						if ( async ) {
-							registry[module].async = true;
-						}
 					}
 				} );
 
@@ -1454,25 +1426,22 @@
 			}
 
 			/**
-			 * Asynchronously append a script tag to the end of the body
-			 * that invokes load.php
+			 * Load modules from load.php
 			 * @private
 			 * @param {Object} moduleMap Module map, see #buildModulesString
 			 * @param {Object} currReqBase Object with other parameters (other than 'modules') to use in the request
 			 * @param {string} sourceLoadScript URL of load.php
-			 * @param {boolean} async Whether to load modules asynchronously.
-			 *  Ignored (and defaulted to `true`) if the document-ready event has already occurred.
 			 */
-			function doRequest( moduleMap, currReqBase, sourceLoadScript, async ) {
+			function doRequest( moduleMap, currReqBase, sourceLoadScript ) {
 				var request = $.extend(
 					{ modules: buildModulesString( moduleMap ) },
 					currReqBase
 				);
 				request = sortQuery( request );
 				// Support: IE6
-				// Append &* to satisfy load.php's WebRequest::checkUrlExtension test. This script
-				// isn't actually used in IE6, but MediaWiki enforces it in general.
-				addScript( sourceLoadScript + '?' + $.param( request ) + '&*', null, async );
+				// Append &* to satisfy load.php's WebRequest::checkUrlExtension test.
+				// This script isn't actually used in IE6, but MediaWiki enforces it in general.
+				addScript( sourceLoadScript + '?' + $.param( request ) + '&*' );
 			}
 
 			/**
@@ -1521,7 +1490,7 @@
 					var	reqBase, splits, maxQueryLength, q, b, bSource, bGroup, bSourceGroup,
 						source, concatSource, origBatch, group, i, modules, sourceLoadScript,
 						currReqBase, currReqBaseLength, moduleMap, l,
-						lastDotIndex, prefix, suffix, bytesAdded, async;
+						lastDotIndex, prefix, suffix, bytesAdded;
 
 					// Build a list of request parameters common to all requests.
 					reqBase = {
@@ -1634,7 +1603,6 @@
 								currReqBase.user = mw.config.get( 'wgUserName' );
 							}
 							currReqBaseLength = $.param( currReqBase ).length;
-							async = true;
 							// We may need to split up the request to honor the query string length limit,
 							// so build it piece by piece.
 							l = currReqBaseLength + 9; // '&modules='.length == 9
@@ -1658,9 +1626,8 @@
 								if ( maxQueryLength > 0 && !$.isEmptyObject( moduleMap ) && l + bytesAdded > maxQueryLength ) {
 									// This request would become too long, create a new one
 									// and fire off the old one
-									doRequest( moduleMap, currReqBase, sourceLoadScript, async );
+									doRequest( moduleMap, currReqBase, sourceLoadScript );
 									moduleMap = {};
-									async = true;
 									l = currReqBaseLength + 9;
 									mw.track( 'resourceloader.splitRequest', { maxQueryLength: maxQueryLength } );
 								}
@@ -1668,17 +1635,11 @@
 									moduleMap[prefix] = [];
 								}
 								moduleMap[prefix].push( suffix );
-								if ( !registry[modules[i]].async ) {
-									// If this module is blocking, make the entire request blocking
-									// This is slightly suboptimal, but in practice mixing of blocking
-									// and async modules will only occur in debug mode.
-									async = false;
-								}
 								l += bytesAdded;
 							}
 							// If there's anything left in moduleMap, request that too
 							if ( !$.isEmptyObject( moduleMap ) ) {
-								doRequest( moduleMap, currReqBase, sourceLoadScript, async );
+								doRequest( moduleMap, currReqBase, sourceLoadScript );
 							}
 						}
 					}
@@ -1907,11 +1868,8 @@
 				 * @param {string} [type='text/javascript'] MIME type to use if calling with a URL of an
 				 *  external script or style; acceptable values are "text/css" and
 				 *  "text/javascript"; if no type is provided, text/javascript is assumed.
-				 * @param {boolean} [async] Whether to load modules asynchronously.
-				 *  Ignored (and defaulted to `true`) if the document-ready event has already occurred.
-				 *  Defaults to `true` if loading a URL, `false` otherwise.
 				 */
-				load: function ( modules, type, async ) {
+				load: function ( modules, type ) {
 					var filtered, l;
 
 					// Validate input
@@ -1921,10 +1879,6 @@
 					// Allow calling with an external url or single dependency as a string
 					if ( typeof modules === 'string' ) {
 						if ( /^(https?:)?\/\//.test( modules ) ) {
-							if ( async === undefined ) {
-								// Assume async for bug 34542
-								async = true;
-							}
 							if ( type === 'text/css' ) {
 								// Support: IE 7-8
 								// Use properties instead of attributes as IE throws security
@@ -1937,7 +1891,7 @@
 								return;
 							}
 							if ( type === 'text/javascript' || type === undefined ) {
-								addScript( modules, null, async );
+								addScript( modules );
 								return;
 							}
 							// Unknown type
@@ -1967,7 +1921,7 @@
 						return;
 					}
 					// Since some modules are not yet ready, queue up a request.
-					request( filtered, undefined, undefined, async );
+					request( filtered, undefined, undefined );
 				},
 
 				/**

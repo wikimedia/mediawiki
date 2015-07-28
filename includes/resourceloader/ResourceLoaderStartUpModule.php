@@ -350,7 +350,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		}, array(
 			'$VARS.wgLegacyJavaScriptGlobals' => $this->getConfig()->get( 'LegacyJavaScriptGlobals' ),
 			'$VARS.configuration' => $this->getConfigSettings( $context ),
-			'$VARS.baseModulesScript' => Html::linkedScript( self::getStartupModulesUrl( $context ) ),
+			'$VARS.baseModulesUri' => self::getStartupModulesUrl( $context ),
 		) );
 		$pairs['$CODE.registrations()'] = str_replace( "\n", "\n\t", trim( $this->getModuleRegistrations( $context ) ) );
 
