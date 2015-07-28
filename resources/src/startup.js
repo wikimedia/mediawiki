@@ -91,5 +91,9 @@ function startUp() {
 
 // Conditional script injection
 if ( isCompatible() ) {
-	document.write( $VARS.baseModulesScript );
+	( function () {
+		var script = document.createElement( 'script' );
+		script.src = $VARS.baseModulesUri;
+		document.getElementsByTagName( 'head' )[0].appendChild( script );
+	}() );
 }
