@@ -670,10 +670,10 @@ class SwiftFileBackend extends FileBackendStore {
 		$ps = Profiler::instance()->scopedProfileIn( __METHOD__ . "-{$this->name}" );
 		wfDebugLog( 'SwiftBackend', __METHOD__ . ": $path was not stored with SHA-1 metadata." );
 
+		$objHdrs['x-object-meta-sha1base36'] = false;
+
 		$auth = $this->getAuthentication();
 		if ( !$auth ) {
-			$objHdrs['x-object-meta-sha1base36'] = false;
-
 			return $objHdrs; // failed
 		}
 
@@ -700,7 +700,6 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		wfDebugLog( 'SwiftBackend', __METHOD__ . ": unable to set SHA-1 metadata for $path" );
-		$objHdrs['x-object-meta-sha1base36'] = false;
 
 		return $objHdrs; // failed
 	}
