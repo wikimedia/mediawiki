@@ -372,31 +372,30 @@ class RedisBagOStuff extends BagOStuff {
 			}
 		}
 
-		foreach ( $candidates as $tag ) {
+		while ( ( $tag = array_shift( $candidates ) ) !== false ) {
 			$server = $this->serverTagMap[$tag];
-
 			$conn = $this->redisPool->getConnection( $server );
 			if ( !$conn ) {
 				continue;
 			}
 
-			try {
-				$info = $conn->info();
-				// Check if this server has an unreachable redis master
-				if ( $info['role'] === 'slave'
-					&& $info['master_link_status'] === 'down'
-					&& $this->automaticFailover
-				) {
-					// If the master cannot be reached, fail-over to the next server.
-					// If masters are in data-center A, and slaves in data-center B,
-					// this helps avoid the case were fail-over happens in A but not
-					// to the corresponding server in B (e.g. read/write mismatch).
+			// If automatic failover is enabled, check that the server's link
+			// to its master (if any) is up -- but only if there are other
+			// viable candidates left to consider.
+			if ( $this->automaticFailover && $candidates ) {
+				try {
+					if ( $this->getMasterLinkStatus( $conn ) === 'down' ) {
+						// If the master cannot be reached, fail-over to the next server.
+						// If masters are in data-center A, and slaves in data-center B,
+						// this helps avoid the case were fail-over happens in A but not
+						// to the corresponding server in B (e.g. read/write mismatch).
+						continue;
+					}
+				} catch ( RedisException $e ) {
+					// Server is not accepting commands
+					$this->handleException( $conn, $e );
 					continue;
 				}
-			} catch ( RedisException $e ) {
-				// Server is not accepting commands
-				$this->handleException( $conn, $e );
-				continue;
 			}
 
 			return array( $server, $conn );
@@ -405,6 +404,19 @@ class RedisBagOStuff extends BagOStuff {
 		$this->setLastError( BagOStuff::ERR_UNREACHABLE );
 
 		return array( false, false );
+	}
+
+	/**
+	 * Check the master link status of a Redis server that is configured as a slave.
+	 * @param RedisConnRef $conn
+	 * @return string|null Master link status (either 'up' or 'down'), or null
+	 *  if the server is not a slave.
+	 */
+	protected function getMasterLinkStatus( RedisConnRef $conn ) {
+		$info = $conn->info();
+		return isset( $info['master_link_status'] )
+			? $info['master_link_status']
+			: null;
 	}
 
 	/**
