@@ -104,6 +104,15 @@ class OOUIHTMLForm extends HTMLForm {
 		return $html;
 	}
 
+	/**
+	 * @param string|array|Status $errors
+	 * @return string
+	 */
+	function getErrors( $errors ) {
+		// TODO Write me!
+		return '';
+	}
+
 	function getBody() {
 		$fieldset = parent::getBody();
 		// FIXME This only works for forms with no subsections
