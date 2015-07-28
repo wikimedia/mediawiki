@@ -3012,7 +3012,9 @@ function wfInitShellLocale() {
 	global $wgShellLocale;
 	if ( !wfIniGetBool( 'safe_mode' ) ) {
 		putenv( "LC_CTYPE=$wgShellLocale" );
+		putenv( "LC_ALL=$wgShellLocale" );
 		setlocale( LC_CTYPE, $wgShellLocale );
+		setlocale( LC_ALL, $wgShellLocale );
 	}
 }
 

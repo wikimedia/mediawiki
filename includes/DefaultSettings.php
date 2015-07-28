@@ -7462,11 +7462,11 @@ $wgShellCgroup = false;
 $wgPhpCli = '/usr/bin/php';
 
 /**
- * Locale for LC_CTYPE, to work around http://bugs.php.net/bug.php?id=45132
+ * Locale, to work around http://bugs.php.net/bug.php?id=45132
  * For Unix-like operating systems, set this to to a locale that has a UTF-8
  * character set. Only the character set is relevant.
  */
-$wgShellLocale = 'en_US.utf8';
+$wgShellLocale = 'C.UTF-8';
 
 /** @} */ # End shell }
 

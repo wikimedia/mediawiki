@@ -46,6 +46,7 @@ production.
 * $wgMaxSquidPurgeTitles was removed.
 * $wgAjaxWatch was removed. This is now enabled by default.
 * (T27397) WebP is enabled by default as an uploadable filetype
+* The C.UTF-8 locale should be used, if available, to avoid issues such as T107128.
 
 === New features in 1.27 ===
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as
