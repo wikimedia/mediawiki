@@ -216,6 +216,7 @@ class SpecialSearch extends SpecialPage {
 		global $wgContLang;
 
 		$search = $this->getSearchEngine();
+		$search->setFeatureData( 'disableRewrites', !$this->runSuggestion );
 		$search->setLimitOffset( $this->limit, $this->offset );
 		$search->setNamespaces( $this->namespaces );
 		$search->prefix = $this->mPrefix;
@@ -272,12 +273,8 @@ class SpecialSearch extends SpecialPage {
 		// did you mean... suggestions
 		$didYouMeanHtml = '';
 		if ( $showSuggestion && $textMatches && !$textStatus ) {
-			if ( $this->shouldRunSuggestedQuery( $textMatches ) ) {
-				$newMatches = $search->searchText( $textMatches->getSuggestionQuery() );
-				if ( $newMatches instanceof SearchResultSet && $newMatches->numRows() > 0 ) {
-					$didYouMeanHtml = $this->getDidYouMeanRewrittenHtml( $term, $textMatches );
-					$textMatches = $newMatches;
-				}
+			if ( $textMatches->hasRewrittenQuery() ) {
+				$didYouMeanHtml = $this->getDidYouMeanRewrittenHtml( $term, $textMatches );
 			} elseif ( $textMatches->hasSuggestion() ) {
 				$didYouMeanHtml = $this->getDidYouMeanHtml( $textMatches );
 			}
@@ -401,30 +398,6 @@ class SpecialSearch extends SpecialPage {
 	}
 
 	/**
-	 * Decide if the suggested query should be run, and it's results returned
-	 * instead of the provided $textMatches
-	 *
-	 * @param SearchResultSet $textMatches The results of a users query
-	 * @return bool
-	 */
-	protected function shouldRunSuggestedQuery( SearchResultSet $textMatches ) {
-		global $wgSearchRunSuggestedQueryPercent;
-
-		if ( !$this->runSuggestion ||
-			!$textMatches->hasSuggestion() ||
-			$textMatches->numRows() > 0 ||
-			$textMatches->searchContainedSyntax()
-		) {
-			return false;
-		}
-
-		// Generate a random number between 0 and 1. If the
-		// number is less than the desired percentages run it.
-		$rand = rand( 0, getrandmax() ) / getrandmax();
-		return $wgSearchRunSuggestedQueryPercent > $rand;
-	}
-
-	/**
 	 * Generates HTML shown to the user when we have a suggestion about a query
 	 * that might give more results than their current query.
 	 */
@@ -464,7 +437,7 @@ class SpecialSearch extends SpecialPage {
 		// Showing results for '$rewritten'
 		// Search instead for '$orig'
 
-		$params = array( 'search' => $textMatches->getSuggestionQuery() );
+		$params = array( 'search' => $textMatches->getQueryAfterRewrite() );
 		if ( $this->fulltext != null ) {
 			$params['fulltext'] = $this->fulltext;
 		}
@@ -472,7 +445,7 @@ class SpecialSearch extends SpecialPage {
 
 		$rewritten = Linker::linkKnown(
 			$this->getPageTitle(),
-			$textMatches->getSuggestionSnippet() ?: null,
+			$textMatches->getQueryAfterRewriteSnippet() ?: null,
 			array(),
 			$stParams
 		);
