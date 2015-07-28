@@ -1757,6 +1757,7 @@
 	"statistics-header-users": "Used in [[Special:Statistics]].\n{{Identical|User statistics}}",
 	"statistics-header-hooks": "Header of a section on [[Special:Statistics]] containing data provided by MediaWiki extensions",
 	"statistics-articles": "Used in [[Special:Statistics]].\n\nA 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [[mw:Manual:Using_custom_namespaces#Content_namespaces|MediaWiki]].\n\nPossible alternatives to the word 'content' are 'subject matter' or 'wiki subject' or 'wiki purpose'.\n\n{{Identical|Content page}}",
+	"statistics-articles-desc": "Caption shown below ''Content pages'' on [[Special:Statistics]]",
 	"statistics-pages": "Used in [[Special:Statistics]]\n{{Identical|Page}}",
 	"statistics-pages-desc": "Tooltip shown over ''Pages'' (or as a note below it) in [[Special:Statistics]]",
 	"statistics-files": "Used in [[Special:Statistics]].\n{{Identical|Uploaded file}}",
