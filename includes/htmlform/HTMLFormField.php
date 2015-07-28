@@ -558,23 +558,25 @@ abstract class HTMLFormField {
 	 *
 	 * @param string $value The value to set the input to.
 	 *
-	 * @return string
+	 * @return OOUI\\FieldLayout|OOUI\\ActionFieldLayout
 	 */
 	public function getOOUI( $value ) {
-		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
-
 		$inputField = $this->getInputOOUI( $value );
 
 		if ( !$inputField ) {
-			// This field doesn't have an OOUI implementation yet at all.
-			// OK, use this trick:
-			return $this->getDiv( $value );
+			// This field doesn't have an OOUI implementation yet at all. Fall back to getDiv() to
+			// generate the whole field, label and errors and all, then wrap it in a Widget.
+			// It might look weird, but it'll work OK.
+			return $this->getFieldLayoutOOUI(
+				new OOUI\Widget( array( 'content' => new OOUI\HtmlSnippet( $this->getDiv( $value ) ) ) ),
+				array( 'infusable' => false )
+			);
 		}
 
 		$infusable = true;
 		if ( is_string( $inputField ) ) {
-			// Mmm… We have an OOUI implementation, but it's not complete, and we got a load of HTML.
-			// Cheat a little and wrap it in a widget! It won't be infusable, though, since client-side
+			// We have an OOUI implementation, but it's not proper, and we got a load of HTML.
+			// Cheat a little and wrap it in a widget. It won't be infusable, though, since client-side
 			// JavaScript doesn't know how to rebuilt the contents.
 			$inputField = new OOUI\Widget( array( 'content' => new OOUI\HtmlSnippet( $inputField ) ) );
 			$infusable = false;
@@ -582,16 +584,21 @@ abstract class HTMLFormField {
 
 		$fieldType = get_class( $this );
 		$helpText = $this->getHelpText();
+		$errors = $this->getErrorsRaw( $value );
+		foreach ( $errors as &$error ) {
+			$error = new OOUI\HtmlSnippet( $error );
+		}
+
 		$config = array(
-			'classes' => array( "mw-htmlform-field-$fieldType", $this->mClass, $errorClass ),
+			'classes' => array( "mw-htmlform-field-$fieldType", $this->mClass ),
 			'align' => $this->getLabelAlignOOUI(),
 			'label' => $this->getLabel(),
 			'help' => $helpText !== null ? new OOUI\HtmlSnippet( $helpText ) : null,
+			'errors' => $errors,
 			'infusable' => $infusable,
 		);
-		$field = $this->getFieldLayoutOOUI( $inputField, $config );
 
-		return $field . $errors;
+		return $this->getFieldLayoutOOUI( $inputField, $config );
 	}
 
 	/**
@@ -778,7 +785,7 @@ abstract class HTMLFormField {
 	 * @since 1.20
 	 *
 	 * @param string $value The value of the input
-	 * @return array
+	 * @return array array( $errors, $errorClass )
 	 */
 	public function getErrorsAndErrorClass( $value ) {
 		$errors = $this->validate( $value, $this->mParent->mFieldData );
@@ -792,6 +799,32 @@ abstract class HTMLFormField {
 		}
 
 		return array( $errors, $errorClass );
+	}
+
+	/**
+	 * Determine form errors to display, returning them in an array.
+	 *
+	 * @since 1.26
+	 * @param string $value The value of the input
+	 * @return string[] Array of error HTML strings
+	 */
+	public function getErrorsRaw( $value ) {
+		$errors = $this->validate( $value, $this->mParent->mFieldData );
+
+		if ( is_bool( $errors ) || !$this->mParent->wasSubmitted() ) {
+			$errors = array();
+		}
+
+		if ( !is_array( $errors ) ) {
+			$errors = array( $errors );
+		}
+		foreach ( $errors as &$error ) {
+			if ( $error instanceof Message ) {
+				$error = $error->parse();
+			}
+		}
+
+		return $errors;
 	}
 
 	/**
