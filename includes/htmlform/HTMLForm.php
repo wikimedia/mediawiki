@@ -711,6 +711,21 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
+	 * Get header text.
+	 *
+	 * @param string|null $section The section to get the header text for
+	 * @since 1.26
+	 * @return string
+	 */
+	function getHeaderText( $section = null ) {
+		if ( is_null( $section ) ) {
+			return $this->mHeader;
+		} else {
+			return isset( $this->mSectionHeaders[$section] ) ? $this->mSectionHeaders[$section] : '';
+		}
+	}
+
+	/**
 	 * Add footer text, inside the form.
 	 *
 	 * @param string $msg Complete text of message to display
@@ -748,6 +763,21 @@ class HTMLForm extends ContextSource {
 		}
 
 		return $this;
+	}
+
+	/**
+	 * Get footer text.
+	 *
+	 * @param string|null $section The section to get the footer text for
+	 * @since 1.26
+	 * @return string
+	 */
+	function getFooterText( $section = null ) {
+		if ( is_null( $section ) ) {
+			return $this->mFooter;
+		} else {
+			return isset( $this->mSectionFooters[$section] ) ? $this->mSectionFooters[$section] : '';
+		}
 	}
 
 	/**
@@ -871,12 +901,11 @@ class HTMLForm extends ContextSource {
 
 		$html = ''
 			. $this->getErrors( $submitResult )
-			// In OOUI forms, we handle mHeader elsewhere. FIXME This is horrible.
-			. ( $this->getDisplayFormat() === 'ooui' ? '' : $this->mHeader )
+			. $this->getHeaderText()
 			. $this->getBody()
 			. $this->getHiddenFields()
 			. $this->getButtons()
-			. $this->mFooter;
+			. $this->getFooterText();
 
 		$html = $this->wrapForm( $html );
 
@@ -1372,12 +1401,7 @@ class HTMLForm extends ContextSource {
 
 					$legend = $this->getLegend( $key );
 
-					if ( isset( $this->mSectionHeaders[$key] ) ) {
-						$section = $this->mSectionHeaders[$key] . $section;
-					}
-					if ( isset( $this->mSectionFooters[$key] ) ) {
-						$section .= $this->mSectionFooters[$key];
-					}
+					$section = $this->getHeaderText( $key ) . $section . $this->getFooterText( $key );
 
 					$attributes = array();
 					if ( $fieldsetIDPrefix ) {
