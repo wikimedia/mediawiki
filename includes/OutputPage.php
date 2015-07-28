@@ -2702,9 +2702,7 @@ class OutputPage extends ContextSource {
 			$ret .= $item . "\n";
 		}
 
-		// No newline after buildCssLinks since makeResourceLoaderLink did that already
-		$ret .= $this->buildCssLinks();
-
+		$ret .= $this->buildCssLinks() . "\n";
 		$ret .= $this->getHeadScripts() . "\n";
 
 		foreach ( $this->mHeadItems as $item ) {
@@ -2763,18 +2761,16 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * @todo Document
+	 * Construct neccecary html and loader preset states to load modules on a page.
+	 *
+	 * Use getHtmlFromLoaderLinks() to convert this array to HTML.
+	 *
 	 * @param array|string $modules One or more module names
 	 * @param string $only ResourceLoaderModule TYPE_ class constant
-	 * @param array $extraQuery Array with extra query parameters to add to each
-	 *   request. array( param => value ).
-	 * @param bool $loadCall If true, output an (asynchronous) mw.loader.load()
-	 *   call rather than a "<script src='...'>" tag.
-	 * @return string The html "<script>", "<link>" and "<style>" tags
+	 * @param array $extraQuery [optional] Array with extra query parameters for the request
+	 * @return array A list of HTML strings and array of client loader preset states
 	 */
-	public function makeResourceLoaderLink( $modules, $only, array $extraQuery = array(),
-		$loadCall = false
-	) {
+	public function makeResourceLoaderLink( $modules, $only, array $extraQuery = array() ) {
 		$modules = (array)$modules;
 
 		$links = array(
@@ -2909,29 +2905,14 @@ class OutputPage extends ContextSource {
 				// Automatically select style/script elements
 				if ( $only === ResourceLoaderModule::TYPE_STYLES ) {
 					$link = Html::linkedStyle( $url );
-				} elseif ( $loadCall ) {
-					$link = ResourceLoader::makeInlineScript(
-						Xml::encodeJsCall( 'mw.loader.load', array( $url, 'text/javascript', true ) )
-					);
 				} else {
-					$link = Html::linkedScript( $url );
-					if ( !$context->getRaw() && !$isRaw ) {
-						// Wrap only=script / only=combined requests in a conditional as
-						// browsers not supported by the startup module would unconditionally
-						// execute this module. Otherwise users will get "ReferenceError: mw is
-						// undefined" or "jQuery is undefined" from e.g. a "site" module.
+					if ( $context->getRaw() || $isRaw ) {
+						// Startup module can't load itself
+						$link = Html::element( 'script', array( 'async' => true, 'src' => $url ) );
+					} else {
 						$link = ResourceLoader::makeInlineScript(
-							Xml::encodeJsCall( 'document.write', array( $link ) )
+							Xml::encodeJsCall( 'mw.loader.load', array( $url ) )
 						);
-					}
-
-					// For modules requested directly in the html via <link> or <script>,
-					// tell mw.loader they are being loading to prevent duplicate requests.
-					foreach ( $grpModules as $key => $module ) {
-						// Don't output state=loading for the startup module..
-						if ( $key !== 'startup' ) {
-							$links['states'][$key] = 'loading';
-						}
 					}
 				}
 
@@ -2981,8 +2962,20 @@ class OutputPage extends ContextSource {
 	 * @return string HTML fragment
 	 */
 	function getHeadScripts() {
-		// Startup - this will immediately load jquery and mediawiki modules
 		$links = array();
+
+		// Client profile classes for <html>. Allows for easy hiding/showing of UI components.
+		// Must be done synchronously on every page to avoid flashes of wrong content.
+		// Note: This class distinguishes MediaWiki-supported JavaScript from the rest.
+		// The "rest" includes browsers that support JavaScript but not supported by our runtime.
+		// For the performance benefit of the majority, this is added unconditionally here and is
+		// then fixed up by the startup module for unsupported browsers.
+		$links[] = Html::inlineScript(
+			'document.documentElement.className = document.documentElement.className'
+			. '.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );'
+		);
+
+		// Startup - this provides the client with the module manifest and loads jquery and mediawiki base modules
 		$links[] = $this->makeResourceLoaderLink( 'startup', ResourceLoaderModule::TYPE_SCRIPTS );
 
 		// Load config before anything else
@@ -3014,7 +3007,7 @@ class OutputPage extends ContextSource {
 		);
 
 		if ( $this->getConfig()->get( 'ResourceLoaderExperimentalAsyncLoading' ) ) {
-			$links[] = $this->getScriptsForBottomQueue( true );
+			$links[] = $this->getScriptsForBottomQueue();
 		}
 
 		return self::getHtmlFromLoaderLinks( $links );
@@ -3027,23 +3020,21 @@ class OutputPage extends ContextSource {
 	 * 'bottom', legacy scripts ($this->mScripts), user preferences, site JS
 	 * and user JS.
 	 *
-	 * @param bool $inHead If true, this HTML goes into the "<head>",
-	 *   if false it goes into the "<body>".
+	 * @param bool $unused Previously used to let this method change its output based
+	 *  on whether it was called by getHeadScripts() or getBottomScripts().
 	 * @return string
 	 */
-	function getScriptsForBottomQueue( $inHead ) {
+	function getScriptsForBottomQueue( $unused = null ) {
 		// Scripts "only" requests marked for bottom inclusion
 		// If we're in the <head>, use load() calls rather than <script src="..."> tags
 		$links = array();
 
 		$links[] = $this->makeResourceLoaderLink( $this->getModuleScripts( true, 'bottom' ),
-			ResourceLoaderModule::TYPE_SCRIPTS, /* $extraQuery = */ array(),
-			/* $loadCall = */ $inHead
+			ResourceLoaderModule::TYPE_SCRIPTS
 		);
 
 		$links[] = $this->makeResourceLoaderLink( $this->getModuleStyles( true, 'bottom' ),
-			ResourceLoaderModule::TYPE_STYLES, /* $extraQuery = */ array(),
-			/* $loadCall = */ $inHead
+			ResourceLoaderModule::TYPE_STYLES
 		);
 
 		// Modules requests - let the client calculate dependencies and batch requests as it likes
@@ -3051,7 +3042,7 @@ class OutputPage extends ContextSource {
 		$modules = $this->getModules( true, 'bottom' );
 		if ( $modules ) {
 			$links[] = ResourceLoader::makeInlineScript(
-				Xml::encodeJsCall( 'mw.loader.load', array( $modules, null, true ) )
+				Xml::encodeJsCall( 'mw.loader.load', array( $modules ) )
 			);
 		}
 
@@ -3070,7 +3061,7 @@ class OutputPage extends ContextSource {
 			// We're on a preview of a JS subpage. Exclude this page from the user module (T28283)
 			// and include the draft contents as a raw script instead.
 			$links[] = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_COMBINED,
-				array( 'excludepage' => $this->getTitle()->getPrefixedDBkey() ), $inHead
+				array( 'excludepage' => $this->getTitle()->getPrefixedDBkey() )
 			);
 			// Load the previewed JS
 			$links[] = ResourceLoader::makeInlineScript(
@@ -3094,15 +3085,11 @@ class OutputPage extends ContextSource {
 			// the excluded subpage.
 		} else {
 			// Include the user module normally, i.e., raw to avoid it being wrapped in a closure.
-			$links[] = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_COMBINED,
-				/* $extraQuery = */ array(), /* $loadCall = */ $inHead
-			);
+			$links[] = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_COMBINED );
 		}
 
 		// Group JS is only enabled if site JS is enabled.
-		$links[] = $this->makeResourceLoaderLink( 'user.groups', ResourceLoaderModule::TYPE_COMBINED,
-			/* $extraQuery = */ array(), /* $loadCall = */ $inHead
-		);
+		$links[] = $this->makeResourceLoaderLink( 'user.groups', ResourceLoaderModule::TYPE_COMBINED );
 
 		return self::getHtmlFromLoaderLinks( $links );
 	}
@@ -3115,17 +3102,11 @@ class OutputPage extends ContextSource {
 		// In case the skin wants to add bottom CSS
 		$this->getSkin()->setupSkinUserCss( $this );
 
-		// Optimise jQuery ready event cross-browser.
-		// This also enforces $.isReady to be true at </body> which fixes the
-		// mw.loader bug in Firefox with using document.write between </body>
-		// and the DOMContentReady event (bug 47457).
-		$html = Html::inlineScript( 'if(window.jQuery)jQuery.ready();' );
-
-		if ( !$this->getConfig()->get( 'ResourceLoaderExperimentalAsyncLoading' ) ) {
-			$html .= $this->getScriptsForBottomQueue( false );
+		if ( $this->getConfig()->get( 'ResourceLoaderExperimentalAsyncLoading' ) ) {
+			// Already handled by getHeadScripts()
+			return '';
 		}
-
-		return $html;
+		return  $this->getScriptsForBottomQueue();
 	}
 
 	/**
