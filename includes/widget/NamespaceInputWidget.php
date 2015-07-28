@@ -49,6 +49,9 @@ class NamespaceInputWidget extends \OOUI\Widget {
 				'valueNamespace' => null,
 				'valueInvert' => false,
 				'valueAssociated' => false,
+				'titleNamespace' => null,
+				'titleAssociated' => null,
+				'titleInvert' => null,
 			),
 			$config
 		);
@@ -63,6 +66,11 @@ class NamespaceInputWidget extends \OOUI\Widget {
 			'value' => $config['valueNamespace'],
 			'options' => $this->getNamespaceDropdownOptions( $config ),
 		) );
+
+		// Mixins
+		$this->namespace->mixin( new \OOUI\TitledElement( $this->namespace,
+			array_merge( $config, array( 'titled' => $this->namespace, 'title' => $config['titleNamespace'] ) ) ) );
+
 		if ( $config['nameAssociated'] !== null ) {
 			// FIXME Should use a LabelWidget? But they don't work like HTML <label>s yet
 			$this->associated = new \OOUI\FieldLayout(
@@ -76,6 +84,9 @@ class NamespaceInputWidget extends \OOUI\Widget {
 					'label' => $config['labelAssociated'],
 				)
 			);
+			// Mixins
+			$this->associated->mixin( new \OOUI\TitledElement( $this->associated,
+				array_merge( $config, array( 'titled' => $this->associated, 'title' => $config['titleAssociated'] ) ) ) );
 		}
 		if ( $config['nameInvert'] !== null ) {
 			$this->invert = new \OOUI\FieldLayout(
@@ -89,6 +100,9 @@ class NamespaceInputWidget extends \OOUI\Widget {
 					'label' => $config['labelInvert'],
 				)
 			);
+			// Mixins
+			$this->invert->mixin( new \OOUI\TitledElement( $this->invert,
+				array_merge( $config, array( 'titled' => $this->invert, 'title' => $config['titleInvert'] ) ) ) );
 		}
 
 		// Initialization
