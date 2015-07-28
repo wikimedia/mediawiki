@@ -918,6 +918,7 @@
 	"apihelp-query+search-param-limit": "How many total pages to return.",
 	"apihelp-query+search-param-interwiki": "Include interwiki results in the search, if available.",
 	"apihelp-query+search-param-backend": "Which search backend to use, if not the default.",
+	"apihelp-query+search-param-disablerewrite": "Disable internal query rewriting. Some search engines can rewrite the query into something its thinks gives better results, such as correcting spelling errors.",
 	"apihelp-query+search-example-simple": "Search for <kbd>meaning</kbd>.",
 	"apihelp-query+search-example-text": "Search texts for <kbd>meaning</kbd>.",
 	"apihelp-query+search-example-generator": "Get page info about the pages returned for a search for <kbd>meaning</kbd>.",

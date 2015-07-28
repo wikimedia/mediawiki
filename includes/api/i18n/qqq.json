@@ -849,6 +849,7 @@
 	"apihelp-query+search-param-limit": "{{doc-apihelp-param|query+search|limit}}",
 	"apihelp-query+search-param-interwiki": "{{doc-apihelp-param|query+search|interwiki}}",
 	"apihelp-query+search-param-backend": "{{doc-apihelp-param|query+search|backend}}",
+	"apihelp-query+search-param-disablerewrites": "{{doc-apihelp-param|query+search|disablerewrites}}",
 	"apihelp-query+search-example-simple": "{{doc-apihelp-example|query+search}}",
 	"apihelp-query+search-example-text": "{{doc-apihelp-example|query+search}}",
 	"apihelp-query+search-example-generator": "{{doc-apihelp-example|query+search}}",
