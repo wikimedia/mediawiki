@@ -82,6 +82,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			SearchEngine::create( $params['backend'] ) : SearchEngine::create();
 		$search->setLimitOffset( $limit + 1, $params['offset'] );
 		$search->setNamespaces( $params['namespace'] );
+		$search->setFeatureData( 'rewrite', (bool)$params['enablerewrites'] );
 
 		$query = $search->transformSearchTerm( $query );
 		$query = $search->replacePrefixes( $query );
@@ -133,6 +134,12 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 					'suggestion', $matches->getSuggestionQuery() );
 				$apiResult->addValue( array( 'query', 'searchinfo' ),
 					'suggestionsnippet', $matches->getSuggestionSnippet() );
+			}
+			if ( isset( $prop['rewrittenquery'] ) && $result->hasRewrittenQuery() ) {
+				$apiResult->addValue( array( 'query', 'searchinfo' ),
+					'rewrittenquery', $matches->getQueryAfterRewrite() );
+				$apiResult->addValue( array( 'query', 'searchinfo' ),
+					'rewrittenquerysnippet', $matches->getQueryAfterRewriteSnippet() );
 			}
 		}
 
@@ -303,10 +310,11 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				)
 			),
 			'info' => array(
-				ApiBase::PARAM_DFLT => 'totalhits|suggestion',
+				ApiBase::PARAM_DFLT => 'totalhits|suggestion|rewrittenquery',
 				ApiBase::PARAM_TYPE => array(
 					'totalhits',
 					'suggestion',
+					'rewrittenquery',
 				),
 				ApiBase::PARAM_ISMULTI => true,
 			),
@@ -341,6 +349,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_SML2
 			),
 			'interwiki' => false,
+			'enablerewrites' => false,
 		);
 
 		$alternatives = SearchEngine::getSearchTypes();
