@@ -198,6 +198,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				if ( isset( $prop['isfilematch'] ) ) {
 					$vals['isfilematch'] = $result->isFileMatch();
 				}
+				if ( isset( $prop['rewrittenquery'] ) ) {
+					$vals['rewrittenquery'] = $result->getRewrittenQuery();
+				}
 
 				// Add item to results and see whether it fits
 				$fit = $apiResult->addValue( array( 'query', $this->getModuleName() ),
@@ -311,7 +314,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_ISMULTI => true,
 			),
 			'prop' => array(
-				ApiBase::PARAM_DFLT => 'size|wordcount|timestamp|snippet',
+				ApiBase::PARAM_DFLT => 'size|wordcount|timestamp|snippet|rewrittenquery',
 				ApiBase::PARAM_TYPE => array(
 					'size',
 					'wordcount',
@@ -326,6 +329,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 					'hasrelated',
 					'isfilematch',
 					'categorysnippet',
+					'rewrittenquery',
 				),
 				ApiBase::PARAM_ISMULTI => true,
 			),
