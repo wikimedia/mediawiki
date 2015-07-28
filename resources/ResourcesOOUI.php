@@ -86,6 +86,7 @@ return call_user_func( function () {
 		'icons', // oojs-ui.styles.icons
 		'indicators', // oojs-ui.styles.indicators
 		'textures', // oojs-ui.styles.textures
+		'icons-accessibility', // oojs-ui.styles.icons-accessibility
 		'icons-alerts', // oojs-ui.styles.icons-alerts
 		'icons-content', // oojs-ui.styles.icons-content
 		'icons-editing-advanced', // oojs-ui.styles.icons-editing-advanced
@@ -113,7 +114,7 @@ return call_user_func( function () {
 
 		if ( substr( $name, 0, 5 ) === 'icons' ) {
 			$module['selectorWithoutVariant'] = '.oo-ui-icon-{name}, .mw-ui-icon-{name}:before';
-			$module['selectorWithVariant'] = '.oo-ui-image-{variant} .oo-ui-icon-{name}, 
+			$module['selectorWithVariant'] = '.oo-ui-image-{variant} .oo-ui-icon-{name},
 				.oo-ui-image-{variant}.oo-ui-icon-{name}, .mw-ui-icon-{name}-{variant}:before,
 				.mw-ui-hovericon:hover .mw-ui-icon-{name}-{variant}-hover:before,
 				.mw-ui-hovericon.mw-ui-icon-{name}-{variant}-hover:hover:before';

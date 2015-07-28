@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.12.1
+ * OOjs UI v0.12.2
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-07-22T19:37:07Z
+ * Date: 2015-07-28T23:01:32Z
  */
 ( function ( OO ) {
 
@@ -16109,7 +16109,7 @@ OO.ui.SearchWidget.prototype.getResults = function () {
  * @abstract
  * @class
  * @extends OO.ui.Widget
- * @mixins OO.ui.mixin.GroupElement
+ * @mixins OO.ui.mixin.GroupWidget
  *
  * @constructor
  * @param {Object} [config] Configuration options
