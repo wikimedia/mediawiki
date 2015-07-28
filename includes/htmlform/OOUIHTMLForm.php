@@ -132,6 +132,22 @@ class OOUIHTMLForm extends HTMLForm {
 		// TODO Write me!
 	}
 
+	/**
+	 * Get header text.
+	 *
+	 * @param string|null $section The section to get the header text for
+	 * @since 1.26
+	 * @return string
+	 */
+	function getHeaderText( $section = null ) {
+		if ( is_null( $section ) ) {
+			// We handle $this->mHeader elsewhere, in getBody()
+			return '';
+		} else {
+			return parent::getHeaderText( $section );
+		}
+	}
+
 	function getBody() {
 		$fieldset = parent::getBody();
 		// FIXME This only works for forms with no subsections
