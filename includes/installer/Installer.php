@@ -539,7 +539,7 @@ abstract class Installer {
 		$wgAutoloadClasses = array();
 
 		// LocalSettings.php should not call functions, except wfLoadSkin/wfLoadExtensions
-		// Define the requiered globals here, to ensure, the functions can do it work correctly.
+		// Define the required globals here, to ensure, the functions can do it work correctly.
 		global $wgExtensionDirectory, $wgStyleDirectory;
 
 		MediaWiki\suppressWarnings();
