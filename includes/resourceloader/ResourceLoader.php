@@ -810,7 +810,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			header( 'Cache-Control: private, no-cache, must-revalidate' );
 			header( 'Pragma: no-cache' );
 		} else {
-			header( "Cache-Control: public, max-age=$maxage, s-maxage=$smaxage" );
+			header( "Cache-Control: public, must-revalidate, max-age=$maxage, s-maxage=$smaxage" );
 			$exp = min( $maxage, $smaxage );
 			header( 'Expires: ' . wfTimestamp( TS_RFC2822, $exp + time() ) );
 		}
