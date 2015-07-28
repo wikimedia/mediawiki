@@ -216,6 +216,7 @@ class SpecialSearch extends SpecialPage {
 		global $wgContLang;
 
 		$search = $this->getSearchEngine();
+		$search->setFeatureData( 'rewrite', $this->runSuggestion );
 		$search->setLimitOffset( $this->limit, $this->offset );
 		$search->setNamespaces( $this->namespaces );
 		$search->prefix = $this->mPrefix;
@@ -272,12 +273,8 @@ class SpecialSearch extends SpecialPage {
 		// did you mean... suggestions
 		$didYouMeanHtml = '';
 		if ( $showSuggestion && $textMatches && !$textStatus ) {
-			if ( $this->shouldRunSuggestedQuery( $textMatches ) ) {
-				$newMatches = $search->searchText( $textMatches->getSuggestionQuery() );
-				if ( $newMatches instanceof SearchResultSet && $newMatches->numRows() > 0 ) {
-					$didYouMeanHtml = $this->getDidYouMeanRewrittenHtml( $term, $textMatches );
-					$textMatches = $newMatches;
-				}
+			if ( $textMatches->hasRewrittenQuery() ) {
+				$didYouMeanHtml = $this->getDidYouMeanRewrittenHtml( $term, $textMatches );
 			} elseif ( $textMatches->hasSuggestion() ) {
 				$didYouMeanHtml = $this->getDidYouMeanHtml( $textMatches );
 			}
@@ -463,7 +460,7 @@ class SpecialSearch extends SpecialPage {
 		// Showing results for '$rewritten'
 		// Search instead for '$orig'
 
-		$params = array( 'search' => $textMatches->getSuggestionQuery() );
+		$params = array( 'search' => $textMatches->getQueryAfterRewrite() );
 		if ( $this->fulltext != null ) {
 			$params['fulltext'] = $this->fulltext;
 		}
@@ -471,7 +468,7 @@ class SpecialSearch extends SpecialPage {
 
 		$rewritten = Linker::linkKnown(
 			$this->getPageTitle(),
-			$textMatches->getSuggestionSnippet() ?: null,
+			$textMatches->getQueryAfterRewriteSnippet() ?: null,
 			array(),
 			$stParams
 		);
