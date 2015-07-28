@@ -681,6 +681,7 @@
 	"content-model-javascript": "јаваскрипт",
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Празан објекат",
+	"duplicate-args-warning": "<strong>Упозорење:</strong> [[:$1]] позива [[:$2]] са више вредности за параметар „$3“. Само последња наведена вредност ће бити коришћена.",
 	"expensive-parserfunction-warning": "'''Упозорење:''' ова страница садржи превише позива за рашчлањивање.\n\nТребало би да има мање од $2 {{PLURAL:$2|позив|позива|позива}}, а сада има $1.",
 	"expensive-parserfunction-category": "Странице с превише позива за рашчлањивање",
 	"post-expand-template-inclusion-warning": "'''Упозорење:''' величина укљученог шаблона је превелика.\nНеки шаблони неће бити укључени.",

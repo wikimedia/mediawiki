@@ -27,6 +27,7 @@
 	"apihelp-edit-param-bot": "Dës Ännerung als Bot-Ännerung markéieren.",
 	"apihelp-edit-param-watch": "D'Säit op dem aktuelle Benotzer seng Iwwerwaachungslëscht dobäisetzen.",
 	"apihelp-edit-example-edit": "Eng Säit änneren",
+	"apihelp-emailuser-example-email": "Dem Benotzer <kbd>WikiSysop</kbd> eng E-Mail mam Text <kbd>Inhalt</kbd> schécken.",
 	"apihelp-expandtemplates-param-title": "Titel vun der Säit.",
 	"apihelp-expandtemplates-paramvalue-prop-ttl": "D'Maximalzäit no där den Tëschespäicher vum Resultat net méi valabel si soll.",
 	"apihelp-feedcontributions-param-year": "Vum Joer (a virdrun).",

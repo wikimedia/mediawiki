@@ -886,7 +886,7 @@
 	"apihelp-tag-param-add": "要添加的标签。只有手动定义的标签可以添加。",
 	"apihelp-tag-param-remove": "要移除的标签。只有手动定义或完全不明确的标签可以被移除。",
 	"apihelp-tag-param-reason": "更改原因。",
-	"apihelp-tag-example-rev": "从修订ID 123添加<kbd>vandalism</kbd>标签，而不指定原因",
+	"apihelp-tag-example-rev": "将<kbd>vandalism</kbd>标签添加至修订ID 123，而不指定原因",
 	"apihelp-tag-example-log": "从日志记录ID 123移除<kbd>spam</kbd>标签，原因为<kbd>Wrongly applied</kbd>",
 	"apihelp-tokens-description": "获取可修改数据的操作的令牌。\n\n此模块被弃用以有利于[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]。",
 	"apihelp-tokens-param-type": "要请求的令牌类型。",

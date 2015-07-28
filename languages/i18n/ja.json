@@ -66,7 +66,8 @@
 			"朝彦",
 			"Otokoume",
 			"赤城。",
-			"Sujiniku"
+			"Sujiniku",
+			"Azeha"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -1884,7 +1885,7 @@
 	"changecontentmodel-success-text": "[[:$1]]のコンテント・タイプは変更されています。",
 	"changecontentmodel-cannot-convert": "[[:$1]]上のコンテントは$2の型には変換できません。",
 	"changecontentmodel-nodirectediting": "$1 コンテント・モデルは、ダイレクト編集をサポートしていません。",
-	"log-name-contentmodel": "コンテント・モデル変更ログ",
+	"log-name-contentmodel": "コンテント・モデル変更記録",
 	"log-description-contentmodel": "ページのコンテント・モデルに関連するイベント",
 	"logentry-contentmodel-change": "$1 がページ $3 のコンテント・モデルを \"$4\" から \"$5\" に{{GENDER:$2|変更しました}}",
 	"logentry-contentmodel-change-revertlink": "差し戻し",
@@ -3308,7 +3309,7 @@
 	"revdelete-uname-unhid": "利用者名の可視化",
 	"revdelete-restricted": "管理者に対する制限の適用",
 	"revdelete-unrestricted": "管理者に対する制限の除去",
-	"logentry-block-block": "$1 が {{GENDER:$4|$3}} を$5で{{GENDER:$2|ブロックしました}} $6",
+	"logentry-block-block": "$1 が {{GENDER:$4|$3}} を$5{{GENDER:$2|ブロックしました}} $6",
 	"logentry-block-unblock": "$1 が {{GENDER:$4|$3}} の{{GENDER:$2|ブロックを解除しました}}",
 	"logentry-block-reblock": "$1 が {{GENDER:$4|$3}} のブロックの期限を$5に{{GENDER:$2|変更しました}} $6",
 	"logentry-suppress-block": "$1 が {{GENDER:$4|$3}} を$5で{{GENDER:$2|ブロックしました}} $6",

@@ -17,7 +17,8 @@
 			"Lucky",
 			"Freak2fast4u",
 			"Urhixidur",
-			"Wladek92"
+			"Wladek92",
+			"Ash Crow"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentation]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Liste de diffusion]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annonces de l’API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bogues et demandes]\n</div>\n<strong>État :</strong> Toutes les fonctionnalités affichées sur cette page devraient fonctionner, mais l’API est encore en cours de développement et peut changer à tout moment. Inscrivez-vous à [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la liste de diffusion mediawiki-api-announce] pour être informé des mises à jour.\n\n<strong>Requêtes erronées :</strong> Si des requêtes erronées sont envoyées à l’API, un en-tête HTTP sera renvoyé avec la clé « MediaWiki-API-Error ». La valeur de cet en-tête et le code d’erreur renvoyé prendront la même valeur. Pour plus d’information, voyez [[mw:API:Errors_and_warnings|API: Errors and warnings]].",
@@ -534,7 +535,7 @@
 	"apihelp-query+categorymembers-param-starthexsortkey": "Clé de tri à laquelle démarrer le listage, telle que renvoyée par <kbd>$1prop=sortkey</kbd>. Utilisable uniquement avec <kbd>$1sort=sortkey</kbd>.",
 	"apihelp-query+categorymembers-param-endhexsortkey": "Clé de tri à laquelle arrêter le listage, telle que renvoyée par <kbd>$1prop=sortkey</kbd>. Utilisable uniquement avec <kbd>$1sort=sortkey</kbd>.",
 	"apihelp-query+categorymembers-param-startsortkeyprefix": "Préfixe de la clé de tri à laquelle démarrer le listage. Utilisable uniquement avec <kbd>$1sort=sortkey</kbd>. Écrase <var>$1starthexsortkey</var>.",
-	"apihelp-query+categorymembers-param-endsortkeyprefix": "Préfixe de la clé de tri AVANT laquelle se termine le listage (et non pas à, si cette valeur existe elle ne sera pas incluse !). Utilisable uniquement avec $1sort=sortkey. Écrase $1endhexsortkey.",
+	"apihelp-query+categorymembers-param-endsortkeyprefix": "Préfixe de la clé de tri <strong>avant</strong> laquelle se termine le listage (et non pas <strong>à</strong>, si cette valeur existe elle ne sera pas incluse !). Utilisable uniquement avec $1sort=sortkey. Écrase $1endhexsortkey.",
 	"apihelp-query+categorymembers-param-startsortkey": "Utiliser plutôt $1starthexsortkey.",
 	"apihelp-query+categorymembers-param-endsortkey": "Utiliser plutôt $1endhexsortkey.",
 	"apihelp-query+categorymembers-example-simple": "Obtenir les 10 premières pages de <kbd>Category:Physics</kbd>.",
