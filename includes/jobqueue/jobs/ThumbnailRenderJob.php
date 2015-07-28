@@ -50,7 +50,8 @@ class ThumbnailRenderJob extends Job {
 					return false;
 				}
 			} elseif ( $wgUploadThumbnailRenderMethod === 'http' ) {
-				$status = $this->hitThumbUrl( $file, $transformParams );
+				$thumbUrl = '';
+				$status = $this->hitThumbUrl( $file, $transformParams, $thumbUrl );
 
 				wfDebug( __METHOD__ . ": received status {$status}\n" );
 
@@ -59,7 +60,7 @@ class ThumbnailRenderJob extends Job {
 				} elseif ( $status ) {
 					// Note that this currently happens (500) when requesting sizes larger then or
 					// equal to the original, which is harmless.
-					$this->setLastError( __METHOD__ . ': incorrect HTTP status ' . $status );
+					$this->setLastError( __METHOD__ . ': incorrect HTTP status ' . $status . ' when hitting ' . $thumbUrl );
 					return false;
 				} else {
 					$this->setLastError( __METHOD__ . ': HTTP request failure' );
@@ -75,7 +76,7 @@ class ThumbnailRenderJob extends Job {
 		}
 	}
 
-	protected function hitThumbUrl( $file, $transformParams ) {
+	protected function hitThumbUrl( $file, $transformParams, &$thumbUrl ) {
 		global $wgUploadThumbnailRenderHttpCustomHost, $wgUploadThumbnailRenderHttpCustomDomain;
 
 		$thumbName = $file->thumbName( $transformParams );
