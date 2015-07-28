@@ -105,6 +105,26 @@ class OOUIHTMLForm extends HTMLForm {
 	}
 
 	/**
+	 * Put a form section together from the individual fields' HTML, merging it and wrapping.
+	 * @param OOUI\\FieldLayout[] $fieldsHtml
+	 * @param string $sectionName
+	 * @param bool $anyFieldHasLabel Unused
+	 * @return string HTML
+	 */
+	protected function formatSection( array $fieldsHtml, $sectionName, $anyFieldHasLabel ) {
+		$config = array(
+			'items' => $fieldsHtml,
+		);
+		if ( $sectionName ) {
+			$config['id'] = Sanitizer::escapeId( $sectionName );
+		}
+		if ( is_string( $this->mWrapperLegend ) ) {
+			$config['label'] = $this->mWrapperLegend;
+		}
+		return new OOUI\FieldsetLayout( $config );
+	}
+
+	/**
 	 * @param string|array|Status $errors
 	 * @return string
 	 */
