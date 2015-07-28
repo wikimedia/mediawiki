@@ -1333,7 +1333,7 @@ class HTMLForm extends ContextSource {
 		&$hasUserVisibleFields = false ) {
 		$displayFormat = $this->getDisplayFormat();
 
-		$html = '';
+		$html = array();
 		$subsectionHtml = '';
 		$hasLabel = false;
 
@@ -1345,7 +1345,7 @@ class HTMLForm extends ContextSource {
 				$v = empty( $value->mParams['nodata'] )
 					? $this->mFieldData[$key]
 					: $value->getDefault();
-				$html .= $value->$getFieldHtmlMethod( $v );
+				$html[] = $value->$getFieldHtmlMethod( $v );
 
 				$labelValue = trim( $value->getLabel() );
 				if ( $labelValue != '&#160;' && $labelValue !== '' ) {
@@ -1391,45 +1391,7 @@ class HTMLForm extends ContextSource {
 			}
 		}
 
-		if ( $displayFormat !== 'raw' ) {
-			$classes = array();
-
-			if ( !$hasLabel ) { // Avoid strange spacing when no labels exist
-				$classes[] = 'mw-htmlform-nolabel';
-			}
-
-			$attribs = array(
-				'class' => implode( ' ', $classes ),
-			);
-
-			if ( $sectionName ) {
-				$attribs['id'] = Sanitizer::escapeId( $sectionName );
-			}
-
-			if ( $displayFormat === 'table' ) {
-				$html = Html::rawElement( 'table',
-						$attribs,
-						Html::rawElement( 'tbody', array(), "\n$html\n" ) ) . "\n";
-			} elseif ( $displayFormat === 'inline' ) {
-				$html = Html::rawElement( 'span', $attribs, "\n$html\n" );
-			} elseif ( $displayFormat === 'ooui' ) {
-				$config = array(
-					'classes' => $classes,
-				);
-				if ( $sectionName ) {
-					$config['id'] = Sanitizer::escapeId( $sectionName );
-				}
-				if ( is_string( $this->mWrapperLegend ) ) {
-					$config['label'] = $this->mWrapperLegend;
-				}
-				$fieldset = new OOUI\FieldsetLayout( $config );
-				// Ewww. We should pass this as $config['items'], but there might be string snippets.
-				$fieldset->group->appendContent( new OOUI\HtmlSnippet( $html ) );
-				$html = $fieldset;
-			} else {
-				$html = Html::rawElement( 'div', $attribs, "\n$html\n" );
-			}
-		}
+		$html = $this->formatSection( $html, $sectionName, $hasLabel );
 
 		if ( $subsectionHtml ) {
 			if ( $this->mSubSectionBeforeFields ) {
@@ -1439,6 +1401,46 @@ class HTMLForm extends ContextSource {
 			}
 		} else {
 			return $html;
+		}
+	}
+
+	/**
+	 * Put a form section together from the individual fields' HTML, merging it and wrapping.
+	 * @param array $fieldsHtml
+	 * @param string $sectionName
+	 * @param bool $anyFieldHasLabel
+	 * @return string HTML
+	 */
+	protected function formatSection( array $fieldsHtml, $sectionName, $anyFieldHasLabel ) {
+		$displayFormat = $this->getDisplayFormat();
+		$html = implode( '', $fieldsHtml );
+
+		if ( $displayFormat === 'raw' ) {
+			return $html;
+		}
+
+		$classes = array();
+
+		if ( !$anyFieldHasLabel ) { // Avoid strange spacing when no labels exist
+			$classes[] = 'mw-htmlform-nolabel';
+		}
+
+		$attribs = array(
+			'class' => implode( ' ', $classes ),
+		);
+
+		if ( $sectionName ) {
+			$attribs['id'] = Sanitizer::escapeId( $sectionName );
+		}
+
+		if ( $displayFormat === 'table' ) {
+			return Html::rawElement( 'table',
+					$attribs,
+					Html::rawElement( 'tbody', array(), "\n$html\n" ) ) . "\n";
+		} elseif ( $displayFormat === 'inline' ) {
+			return Html::rawElement( 'span', $attribs, "\n$html\n" );
+		} else {
+			return Html::rawElement( 'div', $attribs, "\n$html\n" );
 		}
 	}
 
