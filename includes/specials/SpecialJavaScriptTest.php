@@ -210,7 +210,20 @@ HTML;
 		$query['only'] = 'scripts';
 		$startupContext = new ResourceLoaderContext( $rl, new FauxRequest( $query ) );
 
+		$query['raw'] = true;
+
 		$modules = $rl->getTestModuleNames( 'qunit' );
+
+		// Disable autostart because we load modules asynchronously. By default, QUnit would start
+		// at domready when there are no tests loaded and also fire 'QUnit.done' which then instructs
+		// Karma to end the run before the tests even started.
+		$qunitConfig = 'QUnit.config.autostart = false;'
+			. 'if (window.__karma__) {'
+			// karma-qunit's use of autostart=false and QUnit.start conflicts with ours.
+			// Hack around this by replacing 'karma.loaded' with a no-op and call it ourselves later.
+			// See <https://github.com/karma-runner/karma-qunit/issues/27>.
+			. 'window.__karma__.loaded = function () {};'
+			. '}';
 
 		// The below is essentially a pure-javascript version of OutputPage::getHeadScripts.
 		$startup = $rl->makeModuleResponse( $startupContext, array(
@@ -225,35 +238,39 @@ HTML;
 			'user.options' => $rl->getModule( 'user.options' ),
 			'user.tokens' => $rl->getModule( 'user.tokens' ),
 		) );
-		$code .= Xml::encodeJsCall( 'mw.loader.load', array( $modules ) );
+		// Catch exceptions (such as "dependency missing" or "unknown module") so that we
+		// always start QUnit. Re-throw so that they are caught and reported as global exceptions
+		// by QUnit and Karma.
+		$code .= '(function () {'
+			. 'var start = window.__karma__ ? window.__karma__.start : QUnit.start;'
+			. 'try {'
+			. 'mw.loader.using( ' . Xml::encodeJsVar( $modules ) . ' ).always( start );'
+			. '} catch ( e ) { start(); throw e; }'
+			. '}());';
 
 		header( 'Content-Type: text/javascript; charset=utf-8' );
 		header( 'Cache-Control: private, no-cache, must-revalidate' );
 		header( 'Pragma: no-cache' );
+		echo $qunitConfig;
 		echo $startup;
-		echo "\n";
-		// Note: The following has to be wrapped in a script tag because the startup module also
-		// writes a script tag (the one loading mediawiki.js). Script tags are synchronous, block
-		// each other, and run in order. But they don't nest. The code appended after the startup
-		// module runs before the added script tag is parsed and executed.
-		echo Xml::encodeJsCall( 'document.write', array( Html::inlineScript( $code ) ) );
+		// The following has to be deferred via RLQ because the startup module is asynchronous.
+		echo ResourceLoader::makeLoaderConditionalScript( $code );
 	}
 
 	private function plainQUnit() {
 		$out = $this->getOutput();
 		$out->disable();
 
-		$url = $this->getPageTitle( 'qunit/export' )->getFullURL( array(
-			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
-		) );
-
 		$styles = $out->makeResourceLoaderLink( 'jquery.qunit',
 			ResourceLoaderModule::TYPE_STYLES
 		);
-		// Use 'raw' since this is a plain HTML page without ResourceLoader
+
+		// Use 'raw' because QUnit loads before ResourceLoader initialises (omit mw.loader.state call)
+		// Use 'test' to ensure OutputPage doesn't use the "async" attribute because QUnit must
+		// load before qunit/export.
 		$scripts = $out->makeResourceLoaderLink( 'jquery.qunit',
 			ResourceLoaderModule::TYPE_SCRIPTS,
-			array( 'raw' => 'true' )
+			array( 'raw' => true, 'sync' => true )
 		);
 
 		$head = implode( "\n", array_merge( $styles['html'], $scripts['html'] ) );
@@ -265,6 +282,10 @@ $head
 $summary
 <div id="qunit"></div>
 HTML;
+
+		$url = $this->getPageTitle( 'qunit/export' )->getFullURL( array(
+			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
+		) );
 		$html .= "\n" . Html::linkedScript( $url );
 
 		header( 'Content-Type: text/html; charset=utf-8' );

@@ -76,6 +76,10 @@ function startUp() {
 
 	$CODE.registrations();
 
+	mw.config.set( $VARS.configuration );
+
+	// Must be after mw.config.set as these callbacks may call mw.loader which
+	// needs to have 'skin', 'debug' etc.
 	window.RLQ = window.RLQ || [];
 	while ( RLQ.length ) {
 		RLQ.shift()();
@@ -85,11 +89,18 @@ function startUp() {
 			fn();
 		}
 	};
-
-	mw.config.set( $VARS.configuration );
 }
 
 // Conditional script injection
 if ( isCompatible() ) {
-	document.write( $VARS.baseModulesScript );
+	( function () {
+		var script = document.createElement( 'script' );
+		script.src = $VARS.baseModulesUri;
+		document.getElementsByTagName( 'head' )[0].appendChild( script );
+	}() );
+} else {
+	// Undo class swapping in case of an unsupported browser.
+	// See OutputPage::getHeadScripts().
+	document.documentElement.className = document.documentElement.className
+		.replace( /(^|\s)client-js(\s|$)/, '$1client-nojs$2' );
 }
