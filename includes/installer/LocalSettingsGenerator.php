@@ -240,7 +240,7 @@ class LocalSettingsGenerator {
 		}
 
 		if ( !$this->values['wgShellLocale'] ) {
-			$this->values['wgShellLocale'] = 'en_US.UTF-8';
+			$this->values['wgShellLocale'] = 'C.UTF-8';
 			$locale = '#';
 		} else {
 			$locale = '';

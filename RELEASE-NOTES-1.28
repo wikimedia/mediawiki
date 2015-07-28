@@ -11,6 +11,12 @@ production.
   user's language. If such access is attempted, an exception will be thrown.
 * The number of internal PBKDF2 iterations used to derive the session secret
   is configurable via $wgSessionPbkdf2Iterations.
+* The C.UTF-8 locale should be used for $wgShellLocale, if available, to avoid
+  unexpected behavior when things use local-sensitive string comparisons. For
+  example, Scribunto considers "bar" < "Foo" in most locales since it ignores
+  case.
+* $wgShellLocale now affects LC_ALL rather than only LC_CTYPE. See
+  documentation of $wgShellLocale for details.
 
 === New features in 1.28 ===
 * User::isBot() method for checking if an account is a bot role account.

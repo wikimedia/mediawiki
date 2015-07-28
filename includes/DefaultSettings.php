@@ -7980,11 +7980,41 @@ $wgShellCgroup = false;
 $wgPhpCli = '/usr/bin/php';
 
 /**
- * Locale for LC_CTYPE, to work around http://bugs.php.net/bug.php?id=45132
- * For Unix-like operating systems, set this to to a locale that has a UTF-8
- * character set. Only the character set is relevant.
+ * Locale for LC_ALL, to provide a known environment for locale-sensitive operations
+ *
+ * For Unix-like operating systems, this should be set to C.UTF-8 or an
+ * equivalent to provide the most consistent behavior for locale-sensitive
+ * C library operations across different-language wikis. If that locale is not
+ * available, use another locale that has a UTF-8 character set.
+ *
+ * This setting mainly affects the behavior of C library functions, including:
+ *  - String collation (order when sorting using locale-sensitive comparison)
+ *    - For example, whether "Å" and "A" are considered to be the same letter or
+ *      different letters and if different whether it comes after "A" or after
+ *      "Z", and whether sorting is case sensitive.
+ *  - String character set (how characters beyond basic ASCII are represented)
+ *    - We need this to be a UTF-8 character set to work around
+ *      http://bugs.php.net/bug.php?id=45132
+ *  - Language used for low-level error messages.
+ *  - Formatting of date/time and numeric values (e.g. '.' versus ',' as the
+ *    decimal separator)
+ *
+ * MediaWiki provides its own methods and classes to perform many
+ * locale-sensitive operations, which are designed to be able to vary locale
+ * based on wiki language or user preference:
+ *  - MediaWiki's Collation class should generally be used instead of the C
+ *    library collation functions when locale-sensitive sorting is needed.
+ *  - MediaWiki's Message class should be used for localization of messages
+ *    displayed to the user.
+ *  - MediaWiki's Language class should be used for formatting numeric and
+ *    date/time values.
+ *
+ * @note If multiple wikis are being served from the same process (e.g. the
+ *  same fastCGI or Apache server), this setting must be the same on all those
+ *  wikis.
+ * @see wfInitShellLocale()
  */
-$wgShellLocale = 'en_US.utf8';
+$wgShellLocale = 'C.UTF-8';
 
 /** @} */ # End shell }
 

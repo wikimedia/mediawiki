@@ -1051,7 +1051,7 @@ abstract class Installer {
 		}
 
 		# Try the most common ones.
-		$commonLocales = [ 'en_US.UTF-8', 'en_US.utf8', 'de_DE.UTF-8', 'de_DE.utf8' ];
+		$commonLocales = [ 'C.UTF-8', 'en_US.UTF-8', 'en_US.utf8', 'de_DE.UTF-8', 'de_DE.utf8' ];
 		foreach ( $commonLocales as $commonLocale ) {
 			if ( isset( $candidatesByLocale[$commonLocale] ) ) {
 				$this->setVar( 'wgShellLocale', $commonLocale );
