@@ -39,7 +39,7 @@ use Psr\Log\LoggerInterface;
  * @ingroup Redis
  * @since 1.21
  */
-class RedisConnectionPool {
+class RedisConnectionPool implements LoggerAwareInterface {
 	/**
 	 * @name Pool settings.
 	 * Settings there are shared for any connection made in this pool.
