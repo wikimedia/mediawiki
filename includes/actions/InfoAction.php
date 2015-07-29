@@ -62,13 +62,17 @@ class InfoAction extends FormlessAction {
 	 *
 	 * @since 1.22
 	 * @param Title $title Title to clear cache for
+	 * @param int|null $revid Revision id to clear
 	 */
-	public static function invalidateCache( Title $title ) {
+	public static function invalidateCache( Title $title, $revid = null ) {
 		$cache = ObjectCache::getMainWANInstance();
 
-		$revision = Revision::newFromTitle( $title, 0, Revision::READ_LATEST );
-		if ( $revision !== null ) {
-			$key = wfMemcKey( 'infoaction', sha1( $title->getPrefixedText() ), $revision->getId() );
+		if ( !$revid ) {
+			$revision = Revision::newFromTitle( $title, 0, Revision::READ_LATEST );
+			$revid = $revision ? $revision->getId() : null;
+		}
+		if ( $revid !== null ) {
+			$key = wfMemcKey( 'infoaction', sha1( $title->getPrefixedText() ), $revid );
 			$cache->delete( $key );
 		}
 	}

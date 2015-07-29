@@ -2257,7 +2257,7 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $options['created'] ) {
 			self::onArticleCreate( $this->mTitle );
 		} elseif ( $options['changed'] ) { // bug 50785
-			self::onArticleEdit( $this->mTitle );
+			self::onArticleEdit( $this->mTitle, $revision );
 		}
 	}
 
@@ -3213,8 +3213,9 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Purge caches on page update etc
 	 *
 	 * @param Title $title
+	 * @param Revision|null $revision Revision that was just saved, may be null
 	 */
-	public static function onArticleEdit( Title $title ) {
+	public static function onArticleEdit( Title $title, Revision $revision = null ) {
 		// Invalidate caches of articles which include this page
 		DeferredUpdates::addHTMLCacheUpdate( $title, 'templatelinks' );
 
@@ -3224,10 +3225,11 @@ class WikiPage implements Page, IDBAccessObject {
 		// Purge squid for this page only
 		$title->purgeSquid();
 
+		$revid = $revision ? $revision->getId() : null;
 		// Clear file cache for this page only
 		HTMLFileCache::clearFileCache( $title );
-		DeferredUpdates::addCallableUpdate( function() use ( $title ) {
-			InfoAction::invalidateCache( $title );
+		DeferredUpdates::addCallableUpdate( function() use ( $title, $revid ) {
+			InfoAction::invalidateCache( $title, $revid );
 		} );
 	}
 
