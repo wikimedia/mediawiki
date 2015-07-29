@@ -274,6 +274,7 @@
 	"apihelp-parse-paramvalue-prop-externallinks": "{{doc-apihelp-paramvalue|parse|prop|externallinks}}",
 	"apihelp-parse-paramvalue-prop-sections": "{{doc-apihelp-paramvalue|parse|prop|sections}}",
 	"apihelp-parse-paramvalue-prop-revid": "{{doc-apihelp-paramvalue|parse|prop|revid}}",
+	"apihelp-parse-paramvalue-prop-pageid": "{{doc-apihelp-paramvalue|parse|prop|pageid}}",
 	"apihelp-parse-paramvalue-prop-displaytitle": "{{doc-apihelp-paramvalue|parse|prop|displaytitle}}",
 	"apihelp-parse-paramvalue-prop-headitems": "{{doc-apihelp-paramvalue|parse|prop|headitems}}",
 	"apihelp-parse-paramvalue-prop-headhtml": "{{doc-apihelp-paramvalue|parse|prop|headhtml}}",
