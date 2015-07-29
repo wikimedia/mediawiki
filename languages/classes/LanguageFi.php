@@ -19,6 +19,7 @@
  *
  * @file
  * @author Niklas Laxström
+ * @author Jack Phoenix <jack@countervandalism.net>
  * @ingroup Language
  */
 
@@ -78,6 +79,43 @@ class LanguageFi extends Language {
 				break;
 			case 'inessive':
 				$word .= ( $aou ? 'ssa' : 'ssä' );
+				break;
+			case 'allative':
+				// Check for double consonants
+				// Regex borrowed from http://tartarus.org/martin/PorterStemmer/php.txt
+				// Needed to handle "special" cases like "Matti", "Pekka", etc.
+				// which need to become Matille and Pekalle, respectively, in
+				// allative
+				$lastFiveCharacters = substr( $word, -5 );
+				$lastFourCharacters = substr( $word, -4 );
+				if ( preg_match( '/[bcdfghjklmnpqrstvwxz]/', $lastFiveCharacters, $matches ) ) {
+					if ( isset( $matches[0] ) ) {
+						// @see http://stackoverflow.com/questions/801545/how-to-replace-double-more-letters-to-a-single-letter/801571#801571
+						// Get the last five characters instead of the whole $word
+						// to avoid fucking up compound words, since usually you
+						// should apply transformation only on the last word of
+						// a compound word.
+						// This is sorta stupid because this str_replace() runs
+						// even if $lastFiveCharacters does *not* contain two
+						// consecutive instances of $matches[0], but eh.
+						$newLastFiveCharacters = str_replace( $matches[0] . $matches[0], $matches[0], $lastFiveCharacters );
+						$word = str_replace( $lastFiveCharacters, $newLastFiveCharacters, $word );
+					}
+				}
+				if ( $lastFourCharacters === 'neni' ) {
+					// Many Finnish surnames end in -nen, and they are handled
+					// a bit differently...
+					// The superfluous "i" comes from the vowel harmony flag stuff
+					// above
+					// This transforms "Matti Meikäläinen" into "Matti Meikäläiselle"
+					$word = str_replace( $lastFourCharacters, 'se', $word );
+				}
+				// If $word is something like "Test1234" or whatever (last
+				// characters being numbers), the allative form needs to contain
+				// the colon before the "lle" suffix.
+				// @see http://stackoverflow.com/questions/4114609/check-if-a-string-ends-with-a-number-in-php/4114619#4114619
+				$lastCharacterIsNumeric = (bool)is_numeric( substr( $word, -1, 1 ) );
+				$word .= ( $lastCharacterIsNumeric ? ':' : '' ) . 'lle';
 				break;
 		}
 		return $word;
