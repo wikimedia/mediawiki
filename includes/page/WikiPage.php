@@ -3226,7 +3226,9 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Clear file cache for this page only
 		HTMLFileCache::clearFileCache( $title );
-		InfoAction::invalidateCache( $title );
+		DeferredUpdates::addCallableUpdate( function() use ( $title ) {
+			InfoAction::invalidateCache( $title );
+		} );
 	}
 
 	/**#@-*/
