@@ -208,6 +208,30 @@
 				grammarForm: 'inessive',
 				expected: 'linuxissa',
 				description: 'Grammar test for inessive case'
+			},
+			{
+				word: 'Matti',
+				grammarForm: 'allative',
+				expected: 'Matille',
+				description: 'Grammar test for allative case'
+			},
+			{
+				word: 'Matti Meikäläinen',
+				grammarForm: 'allative',
+				expected: 'Matti Meikäläiselle',
+				description: 'Grammar test for allative case'
+			},
+			{
+				word: 'Pekka',
+				grammarForm: 'allative',
+				expected: 'Pekalle',
+				description: 'Grammar test for allative case'
+			},
+			{
+				word: 'Test1234',
+				grammarForm: 'allative',
+				expected: 'Test1234:lle',
+				description: 'Grammar test for allative case'
 			}
 		],
 
