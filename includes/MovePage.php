@@ -416,6 +416,13 @@ class MovePage {
 			$redirectContent = null;
 		}
 
+		// Figure out whether the content model is no longer the default
+		$oldDefault = ContentHandler::getDefaultModelFor( $this->oldTitle );
+		$contentModel = $this->oldTitle->getContentModel();
+		$newDefault = ContentHandler::getDefaultModelFor( $nt );
+		$defaultContentModelChanging = ( $oldDefault !== $newDefault
+			&& $oldDefault === $contentModel );
+
 		// bug 57084: log_page should be the ID of the *moved* page
 		$oldid = $this->oldTitle->getArticleID();
 		$logTitle = clone $this->oldTitle;
@@ -492,6 +499,16 @@ class MovePage {
 
 		$newpage->doEditUpdates( $nullRevision, $user,
 			array( 'changed' => false, 'moved' => true, 'oldcountable' => $oldcountable ) );
+
+		// If the default content model changes, we need to populate rev_content_model
+		if ( $defaultContentModelChanging ) {
+			$dbw->update(
+				'revision',
+				array( 'rev_content_model' => $contentModel ),
+				array( 'rev_page' => $nt->getArticleID(), 'rev_content_model IS NULL' ),
+				__METHOD__
+			);
+		}
 
 		if ( !$moveOverRedirect ) {
 			WikiPage::onArticleCreate( $nt );
