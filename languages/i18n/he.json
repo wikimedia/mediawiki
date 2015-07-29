@@ -884,7 +884,7 @@
 	"search-category": "(קטגוריה $1)",
 	"search-file-match": "(התאמה בתוכן הקובץ)",
 	"search-suggest": "האם התכוונת ל: $1",
-	"search-rewritten": "מוצגות תוצאות עבור $1. לחפש $2 במקום.",
+	"search-rewritten": "מוצגות התוצאות עבור $1. ניתן לחפש $2 במקום זאת.",
 	"search-interwiki-caption": "מיזמי אחות",
 	"search-interwiki-default": "תוצאות מ{{GRAMMAR:תחילית|$1}}:",
 	"search-interwiki-more": "(עוד)",

@@ -78,7 +78,8 @@
 			"Brackenheim",
 			"Robby",
 			"Andreasburmeister",
-			"Tiin"
+			"Tiin",
+			"Freddy2001"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -1849,7 +1850,7 @@
 	"enotif_body_intro_restored": "Die {{SITENAME}}-Seite $1 wurde am $PAGEEDITDATE von {{GENDER:$2|$2}} wiederhergestellt. Siehe $3 für deren aktuelle Version.",
 	"enotif_body_intro_changed": "Die {{SITENAME}}-Seite $1 wurde am $PAGEEDITDATE von {{GENDER:$2|$2}} geändert. Siehe $3 für deren aktuelle Version.",
 	"enotif_lastvisited": "Alle Änderungen auf einen Blick: $1",
-	"enotif_lastdiff": "Siehe $1 nach dieser Änderung.",
+	"enotif_lastdiff": "Siehe $1 für diese Änderung.",
 	"enotif_anon_editor": "Anonymer Benutzer $1",
 	"enotif_body": "Hallo $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nZusammenfassung des Bearbeiters: $PAGESUMMARY $PAGEMINOREDIT\n\nKontakt zum Bearbeiter:\nE-Mail: $PAGEEDITOR_EMAIL\nWiki: $PAGEEDITOR_WIKI\n\nBei weiterer Aktivität auf der Seite werden dir so lange keine weiteren Benachrichtigungs-E-Mails gesendet, bis du die Seite wieder angemeldet besucht hast. Auf deiner Beobachtungsliste kannst du alle Benachrichtigungsmarkierungen zusammen zurücksetzen.\n\nDein freundliches {{SITENAME}}-Benachrichtigungssystem\n\n--\nUm die Einstellungen der E-Mail-Benachrichtigung anzupassen, besuche {{canonicalurl:{{#special:Preferences}}}}.\n\nUm die Einstellungen deiner Beobachtungsliste anzupassen, besuche {{canonicalurl:{{#special:EditWatchlist}}}}.\n\nUm die Seite von deiner Beobachtungsliste herunterzunehmen, besuche $UNWATCHURL.\n\nRückmeldungen und weitere Hilfe: $HELPPAGE",
 	"created": "erstellt",

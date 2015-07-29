@@ -18,7 +18,8 @@
 			"Freak2fast4u",
 			"Urhixidur",
 			"Wladek92",
-			"Ash Crow"
+			"Ash Crow",
+			"L"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentation]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Liste de diffusion]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annonces de l’API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bogues et demandes]\n</div>\n<strong>État :</strong> Toutes les fonctionnalités affichées sur cette page devraient fonctionner, mais l’API est encore en cours de développement et peut changer à tout moment. Inscrivez-vous à [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la liste de diffusion mediawiki-api-announce] pour être informé des mises à jour.\n\n<strong>Requêtes erronées :</strong> Si des requêtes erronées sont envoyées à l’API, un en-tête HTTP sera renvoyé avec la clé « MediaWiki-API-Error ». La valeur de cet en-tête et le code d’erreur renvoyé prendront la même valeur. Pour plus d’information, voyez [[mw:API:Errors_and_warnings|API: Errors and warnings]].",
@@ -246,7 +247,7 @@
 	"apihelp-opensearch-param-format": "Le format de sortie.",
 	"apihelp-opensearch-param-warningsaserror": "Si des avertissements sont levés avec <kbd>format=json</kbd>, renvoyer une erreur d’API au lieu de les ignorer.",
 	"apihelp-opensearch-example-te": "Trouver les pages commençant par <kbd>Te</kbd>.",
-	"apihelp-options-description": "Modifier les préférences de l’utilisateur courant.\n\nSeules les options enregistrées dans le cœur ou dans l’une des extensions installées, ou les options avec une clé préfixée par « userjs- » (devant être utilisées dans les scripts utilisateur), peuvent être définies.",
+	"apihelp-options-description": "Modifier les préférences de l’utilisateur courant.\n\nSeules les options enregistrées dans le cœur ou dans l’une des extensions installées, ou les options avec des clés préfixées par <code>userjs-</code> (devant être utilisées dans les scripts utilisateur), peuvent être définies.",
 	"apihelp-options-param-reset": "Réinitialise les préférences aux valeurs par défaut du site.",
 	"apihelp-options-param-resetkinds": "Liste des types d’option à réinitialiser quand l’option <var>$1reset</var> est définie.",
 	"apihelp-options-param-change": "Liste des modifications, au format nom=valeur (par ex. skin=vector). La valeur ne peut pas contenir de caractère barre verticale. Si aucune valeur n’est fournie (pas même un signe égal), par ex., nomoption|autreoption|…, l’option sera réinitialisée à sa valeur par défaut.",
@@ -982,7 +983,7 @@
 	"apihelp-rollback-example-summary": "Annuler les dernières modifications de la page <kbd>Main Page</kbd> par l’utilisateur à l’adresse IP <kbd>192.0.2.5</kbd> avec le résumé <kbd>Annulation de vandalisme<kbd>, et marquer ces modifications et l’annulation comme modifications de robots.",
 	"apihelp-rsd-description": "Exporter un schéma RSD (Découverte Très Simple).",
 	"apihelp-rsd-example-simple": "Exporter le schéma RSD",
-	"apihelp-setnotificationtimestamp-description": "Mettre à jour l’horodatage de notification pour les pages suivies.\n\nCela affecte la mise en évidence des pages modifiées dans la liste de suivi et l’historique, et l’envoi de courriel quand la préférence « M’envoyer un courriel quand une page de ma liste de suivi est modifiée » est activée.",
+	"apihelp-setnotificationtimestamp-description": "Mettre à jour l’horodatage de notification pour les pages suivies.\n\nCela affecte la mise en évidence des pages modifiées dans la liste de suivi et l’historique, et l’envoi de courriel quand la préférence « {{int:tog-enotifwatchlistpages}} » est activée.",
 	"apihelp-setnotificationtimestamp-param-entirewatchlist": "Travailler sur toutes les pages suivies.",
 	"apihelp-setnotificationtimestamp-param-timestamp": "Horodatage auquel dater la notification.",
 	"apihelp-setnotificationtimestamp-param-torevid": "Révision pour laquelle fixer l’horodatage de notification (une page uniquement).",

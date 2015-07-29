@@ -236,7 +236,7 @@
 	"apihelp-opensearch-param-format": "תסדיר הפלט.",
 	"apihelp-opensearch-param-warningsaserror": "אם אזהרות מוּעלות עם <kbd>format=json</kbd>, להחזיר שגיאת API במקום להתעלם מהן.",
 	"apihelp-opensearch-example-te": "חיפוש דפים שמתחילים ב־<kbd>Te</kbd>.",
-	"apihelp-options-description": "שינוי העדפות של המשתמש הנוכחי.\n\nרק אפשרויות שמוגדרות בליבה או באחת מההרחבות המותקנות, או אפשרויות עם מפתחות עם התחילית \"<span dir=\"ltr\">userjs-</span>\" (שמיועדות לשימוש תסריטי משתמשים) יכולות להיות מוגדרות.",
+	"apihelp-options-description": "שינוי העדפות של המשתמש הנוכחי.\n\nרק אפשרויות שמוגדרות בליבה או באחת מההרחבות המותקנות, או אפשרויות עם מפתחות עם התחילית \"<code dir=\"ltr\">userjs-</code>\" (שמיועדות לשימוש תסריטי משתמשים) יכולות להיות מוגדרות.",
 	"apihelp-options-param-reset": "אתחול ההעדפות לבררות המחדל של האתר.",
 	"apihelp-options-param-resetkinds": "רשימת סוגי אפשרויות לאתחל כאשר מוגדרת האפשרות <var>$1reset</var>.",
 	"apihelp-options-param-change": "רשימת שינויים, בתסדיר name=value (למשל skin=vector). הערך אינו יכול להכיל תווי מקל (|). אם לא ניתן ערך, אפילו לא סימן שווה, למשל optionname|otheroption|...‎, האפשרות תאופס לערך בררת המחדל שלה.",

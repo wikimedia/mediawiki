@@ -704,7 +704,7 @@
 	"readonlywarning": "'''Uwaga! Baza danych została zablokowana do celów administracyjnych. W tej chwili nie można zapisać nowej wersji strony. Jeśli chcesz, może skopiować ją do pliku, aby móc zapisać ją później.'''\n\nAdministrator, który zablokował bazę, podał następujące wyjaśnienie: $1",
 	"protectedpagewarning": "'''Uwaga! Możliwość modyfikacji tej strony została zabezpieczona. Mogą ją edytować jedynie użytkownicy z uprawnieniami administratora.'''\nOstatni wpis z rejestru jest pokazany poniżej.",
 	"semiprotectedpagewarning": "'''Uwaga!''' Ta strona została zabezpieczona i tylko zarejestrowani użytkownicy mogą ją edytować.\nOstatni wpis z rejestru jest pokazany poniżej.",
-	"cascadeprotectedwarning": "<strong>Uwaga:<strong> Ta strona została zabezpieczona i tylko użytkownicy z uprawnieniami administratora mogą ją edytować. Została ona osadzona w {{PLURAL:$1|następującej stronie, która została zabezpieczona|następujących stronach, które zostały zabezpieczone}} z włączoną opcją dziedziczenia:",
+	"cascadeprotectedwarning": "<strong>Uwaga:</strong> Ta strona została zabezpieczona i tylko użytkownicy z uprawnieniami administratora mogą ją edytować. Została ona osadzona w {{PLURAL:$1|następującej stronie, która została zabezpieczona|następujących stronach, które zostały zabezpieczone}} z włączoną opcją dziedziczenia:",
 	"titleprotectedwarning": "'''Uwaga! Utworzenie strony o tej nazwie zostało zabezpieczone. Do jej utworzenia wymagane są [[Special:ListGroupRights|specyficzne uprawnienia]].'''\nOstatni wpis z rejestru jest pokazany poniżej.",
 	"templatesused": "{{PLURAL:$1|Szablon użyty|Szablony użyte}} w tym artykule:",
 	"templatesusedpreview": "{{PLURAL:$1|Szablon użyty|Szablony użyte}} w tym podglądzie:",

@@ -243,7 +243,7 @@
 	"apihelp-options-param-resetkinds": "当<var>$1reset</var>选项被设置时，要重置的选项类型列表。",
 	"apihelp-options-param-change": "更改列表，以name=value格式化（例如skin=vector）。值不能包含管道字符。如果没提供值（甚至没有等号），例如optionname|otheroption|...，选项将重置为默认值。",
 	"apihelp-options-param-optionname": "应设置为由<var>$1optionvalue</var>提供值的选项名称。",
-	"apihelp-options-param-optionvalue": "使用<var>$1选项名</var>指定的选项值中，可以包含管道字符。",
+	"apihelp-options-param-optionvalue": "用于由<var>$1optionname</var>指定的选项的值，可以包含管道字符。",
 	"apihelp-options-example-reset": "重置所有用户设置。",
 	"apihelp-options-example-change": "更改<kbd>skin</kbd>和<kbd>hideminor</kbd>设置。",
 	"apihelp-options-example-complex": "重置所有设置，然后设置<kbd>skin</kbd>和<kbd>nickname</kbd>。",
