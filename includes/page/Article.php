@@ -1121,8 +1121,7 @@ class Article implements Page {
 					'rc_new' => 1,
 					'rc_timestamp' => $oldestRevisionTimestamp,
 					'rc_namespace' => $this->getTitle()->getNamespace(),
-					'rc_cur_id' => $this->getTitle()->getArticleID(),
-					'rc_patrolled' => 0
+					'rc_cur_id' => $this->getTitle()->getArticleID()
 				),
 				__METHOD__,
 				array( 'USE INDEX' => 'new_name_timestamp' )
@@ -1130,7 +1129,14 @@ class Article implements Page {
 		}
 
 		if ( !$rc ) {
-			// No RC entry around
+			// Don't cache: This can be hit if the page gets accessed very fast after
+			// its creation or in case we have high slave lag. In case the revision is
+			// too old, we will already return above.
+			return false;
+		}
+
+		if ( $rc->getAttribute( 'rc_patrolled' ) ) {
+			// Patrolled RC entry around
 
 			// Cache the information we gathered above in case we can't patrol
 			// Don't cache in case we can patrol as this could change
