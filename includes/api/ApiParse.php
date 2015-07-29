@@ -261,6 +261,10 @@ class ApiParse extends ApiBase {
 
 		$result_array['title'] = $titleObj->getPrefixedText();
 
+		if ( isset( $prop['pageid'] ) ) {
+			$result_array['pageid'] = $pageid ? $pageid : $pageObj->getId();
+		}
+
 		if ( !is_null( $oldid ) ) {
 			$result_array['revid'] = intval( $oldid );
 		}
@@ -723,7 +727,7 @@ class ApiParse extends ApiBase {
 			),
 			'prop' => array(
 				ApiBase::PARAM_DFLT => 'text|langlinks|categories|links|templates|' .
-					'images|externallinks|sections|revid|displaytitle|iwlinks|properties',
+					'images|externallinks|sections|revid|pageid|displaytitle|iwlinks|properties',
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => array(
 					'text',
@@ -736,6 +740,7 @@ class ApiParse extends ApiBase {
 					'externallinks',
 					'sections',
 					'revid',
+					'pageid',
 					'displaytitle',
 					'headitems',
 					'headhtml',

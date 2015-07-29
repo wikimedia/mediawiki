@@ -292,6 +292,7 @@
 	"apihelp-parse-paramvalue-prop-externallinks": "Gives the external links in the parsed wikitext.",
 	"apihelp-parse-paramvalue-prop-sections": "Gives the sections in the parsed wikitext.",
 	"apihelp-parse-paramvalue-prop-revid": "Adds the revision ID of the parsed page.",
+	"apihelp-parse-paramvalue-prop-pageid": "Adds the page ID of the parsed page.",
 	"apihelp-parse-paramvalue-prop-displaytitle": "Adds the title of the parsed wikitext.",
 	"apihelp-parse-paramvalue-prop-headitems": "Gives items to put in the <code>&lt;head&gt;</code> of the page.",
 	"apihelp-parse-paramvalue-prop-headhtml": "Gives parsed <code>&lt;head&gt;</code> of the page.",
