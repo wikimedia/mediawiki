@@ -1129,8 +1129,11 @@ class Article implements Page {
 			);
 		}
 
-		if ( !$rc ) {
-			// No RC entry around
+		$lagArray = wfGetLB()->getMaxLag();
+		$revisionAge = time() - wfTimestamp( TS_UNIX, $oldestRevisionTimestamp );
+
+		if ( !$rc && $revisionAge > $lagArray[1] && $revisionAge > 1 ) {
+			// No RC entry around, and we can be sure that the miss above wasn't caused by slave lag.
 
 			// Cache the information we gathered above in case we can't patrol
 			// Don't cache in case we can patrol as this could change
