@@ -5,7 +5,6 @@
  * @license The MIT License (MIT); see LICENSE.txt
  */
 /*global moment */
-/*jshint es3: false */
 ( function ( $, mw ) {
 
 	/**
@@ -474,7 +473,9 @@
 	 */
 	mw.widgets.CalendarWidget.prototype.onKeyDown = function ( e ) {
 		var
+			/*jshint -W024*/
 			dir = OO.ui.Element.static.getDir( this.$element ),
+			/*jshint +W024*/
 			nextDirectionKey = dir === 'ltr' ? OO.ui.Keys.RIGHT : OO.ui.Keys.LEFT,
 			prevDirectionKey = dir === 'ltr' ? OO.ui.Keys.LEFT : OO.ui.Keys.RIGHT,
 			updateInDirection = null;
