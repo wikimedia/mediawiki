@@ -155,7 +155,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			$conds['pagelinks'][] = 'rd_from is NOT NULL';
 		}
 
-		$queryFunc = function ( $dbr, $table, $fromCol ) use (
+		$queryFunc = function ( IDatabase $dbr, $table, $fromCol ) use (
 			$conds, $target, $limit, $useLinkNamespaceDBFields
 		) {
 			// Read an extra row as an at-end check
@@ -174,7 +174,8 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 				array( $fromCol, 'rd_from' ),
 				$conds[$table],
 				__CLASS__ . '::showIndirectLinks',
-				array( 'ORDER BY' => $fromCol, 'LIMIT' => 2 * $queryLimit ),
+				// Force JOIN order per T106682 to avoid large filesorts
+				array( 'ORDER BY' => $fromCol, 'LIMIT' => 2 * $queryLimit, 'STRAIGHT_JOIN' ),
 				array(
 					'page' => array( 'INNER JOIN', "$fromCol = page_id" ),
 					'redirect' => array( 'LEFT JOIN', $on )
