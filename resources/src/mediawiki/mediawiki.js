@@ -1219,12 +1219,22 @@
 							script( $, $ );
 							handlePending( module );
 						} else if ( typeof script === 'string' ) {
-							// Site module is a legacy script that runs in the global scope. This is transported
-							// as a string instead of a function to avoid needing to use string manipulation to
-							// undo the function wrapper.
-							registry[module].state = 'ready';
-							$.globalEval( script );
-							handlePending( module );
+							// Site and user modules are a legacy scripts that run in the global scope.
+							// This is transported as a string instead of a function to avoid needing
+							// to use string manipulation to undo the function wrapper.
+							if ( module === 'user' ) {
+								// Implicit dependency on the site module. Not real dependency because
+								// it should run after 'site' regardless of whether it succeeds or fails.
+								mw.loader.using( 'site' ).always( function () {
+									registry[module].state = 'ready';
+									$.globalEval( script );
+									handlePending( module );
+								} );
+							} else {
+								registry[module].state = 'ready';
+								$.globalEval( script );
+								handlePending( module );
+							}
 						}
 					} catch ( e ) {
 						// This needs to NOT use mw.log because these errors are common in production mode

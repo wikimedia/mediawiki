@@ -1105,9 +1105,9 @@ MESSAGE;
 		$name, $scripts, $styles, $messages, $templates
 	) {
 		if ( is_string( $scripts ) ) {
-			// Site module is a legacy script that runs in the global scope (no closure).
+			// Site and user module are a legacy scripts that run in the global scope (no closure).
 			// Transportation as string instructs mw.loader.implement to use globalEval.
-			if ( $name !== 'site' ) {
+			if ( $name !== 'site' && $name !== 'user' ) {
 				$scripts = new XmlJsCode( "function ( $, jQuery ) {\n{$scripts}\n}" );
 			}
 		} elseif ( !is_array( $scripts ) ) {

@@ -3067,28 +3067,42 @@ class OutputPage extends ContextSource {
 		$links[] = "\n" . $this->mScripts;
 
 		// Add user JS if enabled
+		// This must use TYPE_COMBINED instead of only=scripts so that its request is handled by
+		// mw.loader.implement() which ensures that execution is scheduled after the "site" module.
 		if ( $this->getConfig()->get( 'AllowUserJs' )
 			&& $this->getUser()->isLoggedIn()
 			&& $this->getTitle()
 			&& $this->getTitle()->isJsSubpage()
 			&& $this->userCanPreview()
 		) {
-			# XXX: additional security check/prompt?
-			// We're on a preview of a JS subpage
-			// Exclude this page from the user module in case it's in there (bug 26283)
-			$links[] = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_SCRIPTS, false,
+			// We're on a preview of a JS subpage. Exclude this page from the user module (T28283)
+			// and include the draft contents as a raw script instead.
+			$links[] = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_COMBINED, false,
 				array( 'excludepage' => $this->getTitle()->getPrefixedDBkey() ), $inHead
 			);
 			// Load the previewed JS
-			$links[] = Html::inlineScript( "\n"
-					. $this->getRequest()->getText( 'wpTextbox1' ) . "\n" ) . "\n";
+			$links[] = ResourceLoader::makeInlineScript(
+				Xml::encodeJsCall( 'mw.loader.using', array(
+					array( 'user', 'site' ),
+					new XmlJsCode(
+						'function () {'
+							. Xml::encodeJsCall( '$.globalEval', array(
+								$this->getRequest()->getText( 'wpTextbox1' )
+							) )
+							. '}'
+					)
+				) )
+			);
 
 			// FIXME: If the user is previewing, say, ./vector.js, his ./common.js will be loaded
 			// asynchronously and may arrive *after* the inline script here. So the previewed code
-			// may execute before ./common.js runs. Normally, ./common.js runs before ./vector.js...
+			// may execute before ./common.js runs. Normally, ./common.js runs before ./vector.js.
+			// Similarly, when previewing ./common.js and the user module does arrive first, it will
+			// arrive without common.js and the inline script runs after. Thus running common after
+			// the excluded subpage.
 		} else {
 			// Include the user module normally, i.e., raw to avoid it being wrapped in a closure.
-			$links[] = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_SCRIPTS,
+			$links[] = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_COMBINED,
 				/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
 			);
 		}
