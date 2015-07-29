@@ -204,7 +204,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		}
 
 		if ( !$options['cache'] ) {
-			$result = $this->applyFilter( $filter, $data );
+			$result = self::applyFilter( $filter, $data, $this->config );
 		} else {
 			$key = wfGlobalCacheKey( 'resourceloader', 'filter', $filter, self::$filterCacheVersion, md5( $data ) );
 			$cache = wfGetCache( wfIsHHVM() ? CACHE_ACCEL : CACHE_ANYTHING );
@@ -218,7 +218,7 @@ class ResourceLoader implements LoggerAwareInterface {
 				$stats = RequestContext::getMain()->getStats();
 				$statStart = microtime( true );
 
-				$result = $this->applyFilter( $filter, $data );
+				$result = self::applyFilter( $filter, $data, $this->config );
 
 				$stats->timing( "resourceloader_cache.$filter.miss", microtime( true ) - $statStart );
 				if ( $options['cacheReport'] ) {
@@ -238,12 +238,12 @@ class ResourceLoader implements LoggerAwareInterface {
 		return $result;
 	}
 
-	private function applyFilter( $filter, $data ) {
+	private static function applyFilter( $filter, $data, Config $config ) {
 		switch ( $filter ) {
 			case 'minify-js':
 				return JavaScriptMinifier::minify( $data,
-					$this->config->get( 'ResourceLoaderMinifierStatementsOnOwnLine' ),
-					$this->config->get( 'ResourceLoaderMinifierMaxLineLength' )
+					$config->get( 'ResourceLoaderMinifierStatementsOnOwnLine' ),
+					$config->get( 'ResourceLoaderMinifierMaxLineLength' )
 				);
 			case 'minify-css':
 				return CSSMin::minify( $data );
@@ -1107,7 +1107,14 @@ MESSAGE;
 		if ( is_string( $scripts ) ) {
 			// Site and user module are a legacy scripts that run in the global scope (no closure).
 			// Transportation as string instructs mw.loader.implement to use globalEval.
-			if ( $name !== 'site' && $name !== 'user' ) {
+			if ( $name === 'site' || $name === 'user' ) {
+				// Minify manually because the general makeModuleResponse() minification won't be
+				// effective here due to the script being a string instead of a function. (T107377)
+				if ( !ResourceLoader::inDebugMode() ) {
+					$scripts = self::applyFilter( 'minify-js', $scripts,
+						ConfigFactory::getDefaultInstance()->makeConfig( 'main' ) );
+				}
+			} else {
 				$scripts = new XmlJsCode( "function ( $, jQuery ) {\n{$scripts}\n}" );
 			}
 		} elseif ( !is_array( $scripts ) ) {
