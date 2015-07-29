@@ -213,6 +213,7 @@ function wfStreamThumb( array $params ) {
 			if ( count( $varyHeader ) ) {
 				$response->header( 'Vary: ' . implode( ', ', $varyHeader ) );
 			}
+			$response->header( 'Content-Length: 0');
 			return;
 		}
 
