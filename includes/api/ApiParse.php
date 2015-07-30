@@ -260,6 +260,7 @@ class ApiParse extends ApiBase {
 		$result_array = array();
 
 		$result_array['title'] = $titleObj->getPrefixedText();
+		$result_array['pageid'] = $pageid ? $pageid : $pageObj->getId();
 
 		if ( !is_null( $oldid ) ) {
 			$result_array['revid'] = intval( $oldid );
