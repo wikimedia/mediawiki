@@ -396,8 +396,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 */
 	public function doHeader( $opts, $numRows ) {
 		$user = $this->getUser();
-		$out = $this->getOutput();
-		$out->addModules( 'mediawiki.special.watchlist' );
 
 		$this->getOutput()->addSubtitle(
 			$this->msg( 'watchlistfor2', $user->getName() )
@@ -452,34 +450,39 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$form .= $wlInfo;
 		$form .= $cutofflinks;
 		$form .= $lang->pipeList( $links ) . "\n";
-		$form .= "<hr />\n";
-		$out->addHtml( $form );
-
-		$formDescriptor = array(
-			'namespace' => array(
-				'class' => 'HTMLAdvancedSelectNamespaceWithButton',
-				'label-message' => 'namespace',
-				'default' => $opts['namespace'],
+		$form .= "<hr />\n<p>";
+		$form .= Html::namespaceSelector(
+			array(
+				'selected' => $opts['namespace'],
+				'all' => '',
+				'label' => $this->msg( 'namespace' )->text()
+			), array(
 				'name' => 'namespace',
 				'id' => 'namespace',
-				'invertdefault' => $opts['invert'],
-				'invertname' => 'invert',
-				'invertid' => 'nsinvert',
-				'associateddefault' => $opts['associated'],
-				'associatedname' => 'associated',
-				'associatedid' => 'nsassociated',
-				'buttondefault' => $this->msg( 'allpagessubmit' )->text(),
-			),
-		);
-		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
-		$htmlForm->suppressDefaultSubmit();
-		$htmlForm->addHiddenFields( $hiddenFields );
-		$htmlForm->prepareForm()->displayForm( false );
-
-		$form = '';
+				'class' => 'namespaceselector',
+			)
+		) . '&#160;';
+		$form .= Xml::checkLabel(
+			$this->msg( 'invert' )->text(),
+			'invert',
+			'nsinvert',
+			$opts['invert'],
+			array( 'title' => $this->msg( 'tooltip-invert' )->text() )
+		) . '&#160;';
+		$form .= Xml::checkLabel(
+			$this->msg( 'namespace_association' )->text(),
+			'associated',
+			'nsassociated',
+			$opts['associated'],
+			array( 'title' => $this->msg( 'tooltip-namespace_association' )->text() )
+		) . '&#160;';
+		$form .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "</p>\n";
+		foreach ( $hiddenFields as $key => $value ) {
+			$form .= Html::hidden( $key, $value ) . "\n";
+		}
 		$form .= Xml::closeElement( 'fieldset' ) . "\n";
 		$form .= Xml::closeElement( 'form' ) . "\n";
-		$out->addHtml( $form );
+		$this->getOutput()->addHTML( $form );
 
 		$this->setBottomText( $opts );
 	}
@@ -488,7 +491,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$nondefaults = $opts->getChangedValues();
 		$form = "";
 		$user = $this->getUser();
-		$out = $this->getOutput();
 
 		$dbr = $this->getDB();
 		$numItems = $this->countItems( $dbr );
@@ -511,25 +513,19 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		}
 		$form .= "</p>";
 
-		$out->addHTML( $form );
-
 		if ( $numItems > 0 && $showUpdatedMarker ) {
-			$formDescriptor = array(
-				'resetbutton' => array(
-					'type' => 'submit',
-					'name' => 'dummy',
-					'default' => $this->msg( 'enotif_reset' )->text(),
-				),
-			);
-			$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
-			$htmlForm->suppressDefaultSubmit();
-			$htmlForm->setId( 'mw-watchlist-resetbutton' );
-			$nondefaults['reset'] = 'all';
-			$htmlForm->addHiddenFields( $nondefaults );
-			$htmlForm->prepareForm()->displayForm( false );
+			$form .= Xml::openElement( 'form', array( 'method' => 'post',
+				'action' => $this->getPageTitle()->getLocalURL(),
+				'id' => 'mw-watchlist-resetbutton' ) ) . "\n" .
+			Xml::submitButton( $this->msg( 'enotif_reset' )->text(), array( 'name' => 'dummy' ) ) . "\n" .
+			Html::hidden( 'reset', 'all' ) . "\n";
+			foreach ( $nondefaults as $key => $value ) {
+				$form .= Html::hidden( $key, $value ) . "\n";
+			}
+			$form .= Xml::closeElement( 'form' ) . "\n";
 		}
 
-		$form = Xml::openElement( 'form', array(
+		$form .= Xml::openElement( 'form', array(
 			'method' => 'post',
 			'action' => $this->getPageTitle()->getLocalURL(),
 			'id' => 'mw-watchlist-form'
@@ -542,7 +538,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		$form .= SpecialRecentChanges::makeLegend( $this->getContext() );
 
-		$out->addHTML( $form );
+		$this->getOutput()->addHTML( $form );
 	}
 
 	protected function showHideLink( $options, $message, $name, $value ) {
