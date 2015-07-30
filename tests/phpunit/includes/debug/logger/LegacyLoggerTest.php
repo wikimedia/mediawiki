@@ -85,6 +85,13 @@ class LegacyLoggerTest extends MediaWikiTestCase {
 				'true',
 			),
 			array(
+				'{float}',
+				array(
+					'float' => 1.23,
+				),
+				'1.23',
+			),
+			array(
 				'{array}',
 				array(
 					'array' => array( 1, 2, 3 ),
