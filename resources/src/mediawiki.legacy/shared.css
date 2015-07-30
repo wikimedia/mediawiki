@@ -944,6 +944,7 @@ h2:lang(te), h3:lang(te), h4:lang(te), h5:lang(te), h6:lang(te) {
 }
 
 /* Localised ordered list numbering for some languages */
+ol:lang(azb) li,
 ol:lang(bcc) li,
 ol:lang(bgn) li,
 ol:lang(bqi) li,
