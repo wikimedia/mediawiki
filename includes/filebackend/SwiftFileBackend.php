@@ -197,6 +197,7 @@ class SwiftFileBackend extends FileBackendStore {
 		// By default, Swift has annoyingly low maximum header value limits
 		if ( isset( $headers['content-disposition'] ) ) {
 			$disposition = '';
+			// @note: assume FileBackend::makeContentDisposition() already used
 			foreach ( explode( ';', $headers['content-disposition'] ) as $part ) {
 				$part = trim( $part );
 				$new = ( $disposition === '' ) ? $part : "{$disposition};{$part}";
