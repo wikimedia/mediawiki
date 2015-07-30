@@ -48,10 +48,6 @@ class LessFileCompilationTest extends ResourceLoaderTestCase {
 		$this->assertNotNull( $compiler->compileFile( $this->file ) );
 	}
 
-	public function getName( $withDataSet = true ) {
-		return $this->toString();
-	}
-
 	public function toString() {
 		$moduleName = $this->module->getName();
 
