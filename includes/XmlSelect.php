@@ -1,6 +1,6 @@
 <?php
 /**
- * Class to generate XML <select>.
+ * Class for generating HTML <select> elements.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
  */
 
 /**
- * Module of static functions for generating XML <select> elements
+ * Class for generating HTML <select> elements.
  */
 class XmlSelect {
 	protected $options = array();
@@ -51,7 +51,7 @@ class XmlSelect {
 
 	/**
 	 * @param string $name
-	 * @param array $value
+	 * @param string $value
 	 */
 	public function setAttribute( $name, $value ) {
 		$this->attributes[$name] = $value;
@@ -59,7 +59,7 @@ class XmlSelect {
 
 	/**
 	 * @param string $name
-	 * @return array|null
+	 * @return string|null
 	 */
 	public function getAttribute( $name ) {
 		if ( isset( $this->attributes[$name] ) ) {
@@ -70,14 +70,12 @@ class XmlSelect {
 	}
 
 	/**
-	 * @param string $name
-	 * @param bool $value
+	 * @param string $label
+	 * @param string $value If not given, assumed equal to $label
 	 */
-	public function addOption( $name, $value = false ) {
-		// Stab stab stab
-		$value = $value !== false ? $value : $name;
-
-		$this->options[] = array( $name => $value );
+	public function addOption( $label, $value = false ) {
+		$value = $value !== false ? $value : $label;
+		$this->options[] = array( $label => $value );
 	}
 
 	/**
@@ -92,12 +90,12 @@ class XmlSelect {
 	}
 
 	/**
-	 * This accepts an array of form
+	 * This accepts an array of form:
 	 * label => value
 	 * label => ( label => value, label => value )
 	 *
 	 * @param array $options
-	 * @param bool $default
+	 * @param string $default
 	 * @return string
 	 */
 	static function formatOptions( $options, $default = false ) {
