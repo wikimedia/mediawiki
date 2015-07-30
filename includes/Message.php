@@ -251,6 +251,11 @@ class Message implements MessageSpecifier, Serializable {
 			throw new InvalidArgumentException( '$key must be a string or an array' );
 		}
 
+		// Debug logging for T102199. --OL, 29-Jul-2015
+		if ( $key === 'session_fail_preview_html' || $key === 'session_fail_preview' ) {
+			wfDebugLog( 'redis',  wfHostname() . ' session fail' );
+		}
+
 		$this->keysToTry = (array)$key;
 
 		if ( empty( $this->keysToTry ) ) {
