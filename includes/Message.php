@@ -253,7 +253,10 @@ class Message implements MessageSpecifier, Serializable {
 
 		// Debug logging for T102199. --OL, 29-Jul-2015
 		if ( $key === 'session_fail_preview_html' || $key === 'session_fail_preview' ) {
-			wfDebugLog( 'redis',  wfHostname() . ' session fail' );
+			global $wgUser;
+			$user = $wgUser ? $wgUser->getName() : 'n/a';
+			$url = isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : 'n/a';
+			wfDebugLog( 'T102199', "Session fail: key={$key}; user={$user}; url={$url}" );
 		}
 
 		$this->keysToTry = (array)$key;
