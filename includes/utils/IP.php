@@ -240,7 +240,7 @@ class IP {
 	 * A bare IPv6 address is accepted despite the lack of square brackets.
 	 *
 	 * @param string $both The string with the host and port
-	 * @return array
+	 * @return array|false Array normally, false on certain failures
 	 */
 	public static function splitHostAndPort( $both ) {
 		if ( substr( $both, 0, 1 ) === '[' ) {
