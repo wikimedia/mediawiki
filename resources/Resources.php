@@ -1809,6 +1809,7 @@ return array(
 			'oojs-ui',
 		),
 		'messages' => array(
+			'mw-widgets-dateinput-no-date',
 			'mw-widgets-titleinput-description-new-page',
 			'mw-widgets-titleinput-description-redirect',
 		),

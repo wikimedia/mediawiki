@@ -39,7 +39,7 @@
 		.oo-ui-box-sizing(border-box);
 	}
 
-	&.oo-ui-widget-disabled .oo-ui-dropdownWidget-handle {
+	&.oo-ui-widget-disabled .mw-widget-dateInputWidget-handle {
 		cursor: default;
 	}
 
@@ -59,10 +59,6 @@
 		border: 1px solid #ccc;
 		border-radius: 0.1em;
 		line-height: 1.275em;
-
-		&:hover {
-			border-color: #347bff;
-		}
 	}
 
 	> .oo-ui-textInputWidget input {
@@ -92,16 +88,24 @@
 		}
 	}
 
-	&:hover .oo-ui-dropdownWidget-handle {
-		border-color: #aaa;
+	&.oo-ui-widget-enabled {
+		.mw-widget-dateInputWidget-handle:hover {
+			border-color: #347bff;
+		}
 	}
 
 	&.oo-ui-widget-disabled {
-		.oo-ui-dropdownWidget-handle {
+		.mw-widget-dateInputWidget-handle {
 			color: #ccc;
 			text-shadow: 0 1px 1px #fff;
 			border-color: #ddd;
 			background-color: #f3f3f3;
+		}
+	}
+
+	&-empty {
+		.mw-widget-dateInputWidget-handle {
+			color: #ccc;
 		}
 	}
 }
