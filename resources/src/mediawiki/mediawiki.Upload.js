@@ -21,6 +21,8 @@
 		this.filename = null;
 		this.file = null;
 		this.state = Upload.State.NEW;
+
+		this.imageinfo = undefined;
 	}
 
 	UP = Upload.prototype;
@@ -147,6 +149,16 @@
 	};
 
 	/**
+	 * Get the imageinfo object for the finished upload.
+	 * Only available once the upload is finished! Don't try to get it
+	 * beforehand.
+	 * @return {object|undefined}
+	 */
+	UP.getImageInfo = function () {
+		return this.imageinfo;
+	};
+
+	/**
 	 * Upload the file directly.
 	 * @return {jQuery.Promise}
 	 */
@@ -170,6 +182,7 @@
 			text: this.text
 		} ).then( function ( result ) {
 			upload.state = Upload.State.UPLOADED;
+			upload.imageinfo = result.upload.imageinfo;
 			return result;
 		}, function () {
 			upload.state = Upload.State.ERROR;
