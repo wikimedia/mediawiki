@@ -217,7 +217,6 @@ production.
   for non-inclusion in ApiQueryQueryPages.
 * (bug 50870) mediawiki.notification: Notification area should remain visible
   when scrolled down.
-* (bug 13438) Special:MIMESearch no longer an expensive special page.
 
 === API changes in 1.22 ===
 * (bug 25553) The JSON output formatter now leaves forward slashes unescaped
