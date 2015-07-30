@@ -3805,6 +3805,7 @@
 	"special-characters-title-endash": "en dash",
 	"special-characters-title-emdash": "em dash",
 	"special-characters-title-minus": "minus sign",
+	"mw-widgets-dateinput-no-date": "No date selected",
 	"mw-widgets-titleinput-description-new-page": "page does not exist yet",
 	"mw-widgets-titleinput-description-redirect": "redirect to $1"
 }
