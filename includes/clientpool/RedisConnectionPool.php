@@ -218,7 +218,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 		} else {
 			// TCP connection
 			$hostPort = IP::splitHostAndPort( $server );
-			if ( !$hostPort ) {
+			if ( !$server || !$hostPort ) {
 				throw new MWException( __CLASS__ . ": invalid configured server \"$server\"" );
 			}
 			list( $host, $port ) = $hostPort;
