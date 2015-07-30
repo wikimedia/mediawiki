@@ -447,7 +447,7 @@ class SpecialSearch extends SpecialPage {
 		return Html::rawElement(
 			'div',
 			array( 'class' => 'searchdidyoumean' ),
-			$this->msg( 'search-suggest' )->rawParams( $suggest )->escaped()
+			$this->msg( 'search-suggest' )->rawParams( $suggest )->parse()
 		);
 	}
 
