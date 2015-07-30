@@ -866,7 +866,7 @@
 	"search-category": "(категорија $1)",
 	"search-file-match": "(подудара се садржај датотеке)",
 	"search-suggest": "Да ли сте мислили на: $1",
-	"search-rewritten": "Приказујем резултате за $1. Ипак претражи $2.",
+	"search-rewritten": "Приказани резултати за $1. Ипак претражи $2.",
 	"search-interwiki-caption": "Братски пројекти",
 	"search-interwiki-default": "Резултати са $1:",
 	"search-interwiki-more": "(више)",

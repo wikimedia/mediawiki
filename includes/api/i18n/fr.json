@@ -536,7 +536,7 @@
 	"apihelp-query+categorymembers-param-starthexsortkey": "Clé de tri à laquelle démarrer le listage, telle que renvoyée par <kbd>$1prop=sortkey</kbd>. Utilisable uniquement avec <kbd>$1sort=sortkey</kbd>.",
 	"apihelp-query+categorymembers-param-endhexsortkey": "Clé de tri à laquelle arrêter le listage, telle que renvoyée par <kbd>$1prop=sortkey</kbd>. Utilisable uniquement avec <kbd>$1sort=sortkey</kbd>.",
 	"apihelp-query+categorymembers-param-startsortkeyprefix": "Préfixe de la clé de tri à laquelle démarrer le listage. Utilisable uniquement avec <kbd>$1sort=sortkey</kbd>. Écrase <var>$1starthexsortkey</var>.",
-	"apihelp-query+categorymembers-param-endsortkeyprefix": "Préfixe de la clé de tri <strong>avant</strong> laquelle se termine le listage (et non pas <strong>à</strong>, si cette valeur existe elle ne sera pas incluse !). Utilisable uniquement avec $1sort=sortkey. Écrase $1endhexsortkey.",
+	"apihelp-query+categorymembers-param-endsortkeyprefix": "Préfixe de la clé de tri <strong>avant</strong> laquelle se termine le listage (et non pas <strong>à</strong> ;  si cette valeur existe elle ne sera pas incluse !). Utilisable uniquement avec $1sort=sortkey. Écrase $1endhexsortkey.",
 	"apihelp-query+categorymembers-param-startsortkey": "Utiliser plutôt $1starthexsortkey.",
 	"apihelp-query+categorymembers-param-endsortkey": "Utiliser plutôt $1endhexsortkey.",
 	"apihelp-query+categorymembers-example-simple": "Obtenir les 10 premières pages de <kbd>Category:Physics</kbd>.",

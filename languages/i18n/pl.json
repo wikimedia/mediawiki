@@ -1801,7 +1801,7 @@
 	"addedwatchtext": "Strona „[[:$1|$1]]” wraz ze swoją stroną dyskusji została dodana do Twojej [[Special:Watchlist|listy obserwowanych]].",
 	"addedwatchtext-short": "Strona „$1” została dodana do twojej listy obserwowanych.",
 	"removewatch": "Usuń z listy obserwowanych",
-	"removedwatchtext": "Strona „[[:$1]]” została usunięta z Twojej [[Special:Watchlist|listy obserwowanych]].",
+	"removedwatchtext": "Strona „[[:$1|$1]]” wraz ze swoją stroną dyskusji została usunięta z Twojej [[Special:Watchlist|listy obserwowanych]].",
 	"removedwatchtext-short": "Strona „$1” została usunięta z twojej listy obserwowanych.",
 	"watch": "Obserwuj",
 	"watchthispage": "Obserwuj",
