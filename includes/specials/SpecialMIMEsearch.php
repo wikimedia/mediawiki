@@ -35,7 +35,7 @@ class MIMEsearchPage extends QueryPage {
 	}
 
 	function isExpensive() {
-		return false;
+		return true;
 	}
 
 	function isSyndicated() {
