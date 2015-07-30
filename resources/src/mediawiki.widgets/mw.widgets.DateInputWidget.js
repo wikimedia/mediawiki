@@ -16,8 +16,8 @@
 	 * @constructor
 	 * @param {Object} [config] Configuration options
 	 * @cfg {string} [precision='day'] Date precision to use, 'day' or 'month'
-	 * @cfg {string|null} [date=null] Day or month date (depending on `precision`), in the
-	 *     format 'YYYY-MM-DD' or 'YYYY-MM'. When null, defaults to current date.
+	 * @cfg {string} [value] Day or month date (depending on `precision`), in the format 'YYYY-MM-DD'
+	 *     or 'YYYY-MM'. If not given or empty string, no date is selected.
 	 * @cfg {string} [inputFormat] Date format string to use for the textual input field. Displayed
 	 *     while the widget is active, and the user can type in a date in this format. Should be short
 	 *     and easy to type. When not given, defaults to 'YYYY-MM-DD' or 'YYYY-MM', depending on
@@ -75,6 +75,7 @@
 			.addClass( 'mw-widget-dateInputWidget' )
 			.append( this.handle.$element, this.textInput.$element, this.calendar.$element );
 		// Set handle label and hide stuff
+		this.updateUI();
 		this.deactivate();
 	};
 
@@ -118,7 +119,10 @@
 			value = this.textInput.getValue();
 		this.inTextInput++;
 		this.textInput.isValid().done( function ( valid ) {
-			if ( valid ) {
+			if ( value === '' ) {
+				// No date selected
+				widget.setValue( '' );
+			} else if ( valid ) {
 				// Well-formed date value, parse and set it
 				var mom = moment( value, widget.getInputFormat() );
 				// Use English locale to avoid number formatting
@@ -141,22 +145,12 @@
 	 * @inheritdoc
 	 */
 	mw.widgets.DateInputWidget.prototype.setValue = function ( value ) {
-		if ( value === undefined || value === null ) {
-			// Default to today
-			value = this.calendar.getDate();
-		}
-
 		var oldValue = this.value;
 
 		mw.widgets.DateInputWidget.parent.prototype.setValue.call( this, value );
 
 		if ( this.value !== oldValue ) {
-			if ( !this.inCalendar ) {
-				this.calendar.setDate( this.getValue() );
-			}
-			if ( !this.inTextInput ) {
-				this.textInput.setValue( this.getMoment().format( this.getInputFormat() ) );
-			}
+			this.updateUI();
 		}
 
 		return this;
@@ -179,15 +173,34 @@
 	};
 
 	/**
-	 * Deactivate this input field for data entry. Opens the calendar and shows the text field.
+	 * Update the contents of the label, text input and status of calendar to reflect selected value.
+	 *
+	 * @private
+	 */
+	mw.widgets.DateInputWidget.prototype.updateUI = function () {
+		if ( this.getValue() === '' ) {
+			this.textInput.setValue( '' );
+			this.calendar.setDate( null );
+			this.handle.setLabel( mw.msg( 'mw-widgets-dateinput-no-date' ) );
+			this.$element.addClass( 'mw-widget-dateInputWidget-empty' );
+		} else {
+			if ( !this.inTextInput ) {
+				this.textInput.setValue( this.getMoment().format( this.getInputFormat() ) );
+			}
+			if ( !this.inCalendar ) {
+				this.calendar.setDate( this.getValue() );
+			}
+			this.handle.setLabel( this.getMoment().format( this.getDisplayFormat() ) );
+			this.$element.removeClass( 'mw-widget-dateInputWidget-empty' );
+		}
+	};
+
+	/**
+	 * Deactivate this input field for data entry. Closes the calendar and hides the text field.
 	 *
 	 * @private
 	 */
 	mw.widgets.DateInputWidget.prototype.deactivate = function () {
-		this.textInput.setValue( this.getMoment().format( this.getInputFormat() ) );
-		this.calendar.setDate( this.getValue() );
-		this.handle.setLabel( this.getMoment().format( this.getDisplayFormat() ) );
-
 		this.$element.removeClass( 'mw-widget-dateInputWidget-active' );
 		this.handle.toggle( true );
 		this.textInput.toggle( false );
@@ -195,12 +208,19 @@
 	};
 
 	/**
-	 * Activate this input field for data entry. Closes the calendar and hides the text field.
+	 * Activate this input field for data entry. Opens the calendar and shows the text field.
 	 *
 	 * @private
 	 */
 	mw.widgets.DateInputWidget.prototype.activate = function () {
-		this.setValue( this.getValue() );
+		if ( this.getValue() === '' ) {
+			// Setting today's date is probably more helpful than leaving the widget empty? We could just
+			// display the placeholder and leave it there, but it's likely that at least the year will be
+			// the same as today's.
+
+			// Use English locale to avoid number formatting
+			this.setValue( moment().locale( 'en' ).format( this.getInternalFormat() ) );
+		}
 
 		this.$element.addClass( 'mw-widget-dateInputWidget-active' );
 		this.handle.toggle( false );
@@ -339,9 +359,14 @@
 
 	/**
 	 * @private
-	 * @param {string} date Date string, must be in 'YYYY-MM-DD' or 'YYYY-MM' format to be valid
+	 * @param {string} date Date string, to be valid, must be empty (no date selected) or in
+	 *     'YYYY-MM-DD' or 'YYYY-MM' format to be valid
 	 */
 	mw.widgets.DateInputWidget.prototype.validateDate = function ( date ) {
+		if ( date === '' ) {
+			return true;
+		}
+
 		// "Half-strict mode": for example, for the format 'YYYY-MM-DD', 2015-1-3 instead of 2015-01-03
 		// is okay, but 2015-01 isn't, and neither is 2015-01-foo. Use Moment's "fuzzy" mode and check
 		// parsing flags for the details (stoled from implementation of #isValid).
