@@ -173,25 +173,34 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/**
 	 * Sanitize and filter the custom headers from a $params array.
-	 * We only allow certain Content- and X-Content- headers.
+	 * Only allows certain "standard" Content- and X-Content- headers.
 	 *
 	 * @param array $params
 	 * @return array Sanitized value of 'headers' field in $params
 	 */
 	protected function sanitizeHdrs( array $params ) {
+		return ( isset( $params['headers'] ) )
+			? $this->getCustomHeaders( $params['headers'] )
+			: array();
+
+	}
+
+	/**
+	 * @param array $rawHeaders
+	 * @return array Custom non-metadata HTTP headers
+	 */
+	protected function getCustomHeaders( array $rawHeaders ) {
 		$headers = array();
 
 		// Normalize casing, and strip out illegal headers
-		if ( isset( $params['headers'] ) ) {
-			foreach ( $params['headers'] as $name => $value ) {
-				$name = strtolower( $name );
-				if ( preg_match( '/^content-(type|length)$/', $name ) ) {
-					continue; // blacklisted
-				} elseif ( preg_match( '/^(x-)?content-/', $name ) ) {
-					$headers[$name] = $value; // allowed
-				} elseif ( preg_match( '/^content-(disposition)/', $name ) ) {
-					$headers[$name] = $value; // allowed
-				}
+		foreach ( $rawHeaders as $name => $value ) {
+			$name = strtolower( $name );
+			if ( preg_match( '/^content-(type|length)$/', $name ) ) {
+				continue; // blacklisted
+			} elseif ( preg_match( '/^(x-)?content-/', $name ) ) {
+				$headers[$name] = $value; // allowed
+			} elseif ( preg_match( '/^content-(disposition)/', $name ) ) {
+				$headers[$name] = $value; // allowed
 			}
 		}
 		// By default, Swift has annoyingly low maximum header value limits
@@ -211,6 +220,35 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		return $headers;
+	}
+
+	/**
+	 * @param array $rawHeaders
+	 * @return array Custom metadata headers
+	 */
+	protected function getMetadataHeaders( array $rawHeaders ) {
+		$headers = array();
+		foreach ( $rawHeaders as $name => $value ) {
+			$name = strtolower( $name );
+			if ( strpos( $name, 'x-object-meta-' ) === 0 ) {
+				$headers[$name] = $value;
+			}
+		}
+
+		return $headers;
+	}
+
+	/**
+	 * @param array $rawHeaders
+	 * @return array Custom metadata headers with prefix removed
+	 */
+	protected function getMetadata( array $rawHeaders ) {
+		$metadata = array();
+		foreach ( $this->getMetadataHeaders( $rawHeaders ) as $name => $value ) {
+			$metadata[substr( $name, strlen( 'x-object-meta-' ) )] = $value;
+		}
+
+		return $metadata;
 	}
 
 	protected function doCreateInternal( array $params ) {
@@ -1551,22 +1589,16 @@ class SwiftFileBackend extends FileBackendStore {
 	 */
 	protected function getStatFromHeaders( array $rhdrs ) {
 		// Fetch all of the custom metadata headers
-		$metadata = array();
-		foreach ( $rhdrs as $name => $value ) {
-			if ( strpos( $name, 'x-object-meta-' ) === 0 ) {
-				$metadata[substr( $name, strlen( 'x-object-meta-' ) )] = $value;
-			}
-		}
+		$metadata = $this->getMetadata( $rhdrs );
 		// Fetch all of the custom raw HTTP headers
 		$headers = $this->sanitizeHdrs( array( 'headers' => $rhdrs ) );
+
 		return array(
 			// Convert various random Swift dates to TS_MW
 			'mtime' => $this->convertSwiftDate( $rhdrs['last-modified'], TS_MW ),
 			// Empty objects actually return no content-length header in Ceph
 			'size'  => isset( $rhdrs['content-length'] ) ? (int)$rhdrs['content-length'] : 0,
-			'sha1'  => isset( $rhdrs['x-object-meta-sha1base36'] )
-				? $rhdrs['x-object-meta-sha1base36']
-				: null,
+			'sha1'  => isset( $metadata['sha1base36'] ) ? $metadata['sha1base36'] : null,
 			// Note: manifiest ETags are not an MD5 of the file
 			'md5'   => ctype_xdigit( $rhdrs['etag'] ) ? $rhdrs['etag'] : null,
 			'xattr' => array( 'metadata' => $metadata, 'headers' => $headers )
