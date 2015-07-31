@@ -247,12 +247,13 @@ HTML;
 			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
 		) );
 
-		$styles = $out->makeResourceLoaderLink(
-			'jquery.qunit', ResourceLoaderModule::TYPE_STYLES, false
+		$styles = $out->makeResourceLoaderLink( 'jquery.qunit',
+			ResourceLoaderModule::TYPE_STYLES
 		);
 		// Use 'raw' since this is a plain HTML page without ResourceLoader
-		$scripts = $out->makeResourceLoaderLink(
-			'jquery.qunit', ResourceLoaderModule::TYPE_SCRIPTS, false, array( 'raw' => 'true' )
+		$scripts = $out->makeResourceLoaderLink( 'jquery.qunit',
+			ResourceLoaderModule::TYPE_SCRIPTS,
+			array( 'raw' => 'true' )
 		);
 
 		$head = trim( $styles['html'] . $scripts['html'] );

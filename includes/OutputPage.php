@@ -2766,15 +2766,14 @@ class OutputPage extends ContextSource {
 	 * @todo Document
 	 * @param array|string $modules One or more module names
 	 * @param string $only ResourceLoaderModule TYPE_ class constant
-	 * @param bool $useESI
 	 * @param array $extraQuery Array with extra query parameters to add to each
 	 *   request. array( param => value ).
 	 * @param bool $loadCall If true, output an (asynchronous) mw.loader.load()
 	 *   call rather than a "<script src='...'>" tag.
 	 * @return string The html "<script>", "<link>" and "<style>" tags
 	 */
-	public function makeResourceLoaderLink( $modules, $only, $useESI = false,
-		array $extraQuery = array(), $loadCall = false
+	protected function makeResourceLoaderLink( $modules, $only, array $extraQuery = array(),
+		$loadCall = false
 	) {
 		$modules = (array)$modules;
 
@@ -2798,7 +2797,7 @@ class OutputPage extends ContextSource {
 			if ( ResourceLoader::inDebugMode() ) {
 				// Recursively call us for every item
 				foreach ( $modules as $name ) {
-					$link = $this->makeResourceLoaderLink( $name, $only, $useESI );
+					$link = $this->makeResourceLoaderLink( $name, $only );
 					$links['html'] = array_merge( $links['html'], $link['html'] );
 					$links['states'] += $link['states'];
 				}
@@ -2813,7 +2812,6 @@ class OutputPage extends ContextSource {
 		// Create keyed-by-source and then keyed-by-group list of module objects from modules list
 		$sortedModules = array();
 		$resourceLoader = $this->getResourceLoader();
-		$resourceLoaderUseESI = $this->getConfig()->get( 'ResourceLoaderUseESI' );
 		foreach ( $modules as $name ) {
 			$module = $resourceLoader->getModule( $name );
 			# Check that we're allowed to include this module on this page
@@ -2908,40 +2906,31 @@ class OutputPage extends ContextSource {
 				$moduleContext = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
 				$url = $resourceLoader->createLoaderURL( $source, $moduleContext, $extraQuery );
 
-				if ( $useESI && $resourceLoaderUseESI ) {
-					$esi = Xml::element( 'esi:include', array( 'src' => $url ) );
-					if ( $only == ResourceLoaderModule::TYPE_STYLES ) {
-						$link = Html::inlineStyle( $esi );
-					} else {
-						$link = Html::inlineScript( $esi );
-					}
+				// Automatically select style/script elements
+				if ( $only === ResourceLoaderModule::TYPE_STYLES ) {
+					$link = Html::linkedStyle( $url );
+				} elseif ( $loadCall ) {
+					$link = ResourceLoader::makeInlineScript(
+						Xml::encodeJsCall( 'mw.loader.load', array( $url, 'text/javascript', true ) )
+					);
 				} else {
-					// Automatically select style/script elements
-					if ( $only === ResourceLoaderModule::TYPE_STYLES ) {
-						$link = Html::linkedStyle( $url );
-					} elseif ( $loadCall ) {
+					$link = Html::linkedScript( $url );
+					if ( !$context->getRaw() && !$isRaw ) {
+						// Wrap only=script / only=combined requests in a conditional as
+						// browsers not supported by the startup module would unconditionally
+						// execute this module. Otherwise users will get "ReferenceError: mw is
+						// undefined" or "jQuery is undefined" from e.g. a "site" module.
 						$link = ResourceLoader::makeInlineScript(
-							Xml::encodeJsCall( 'mw.loader.load', array( $url, 'text/javascript', true ) )
+							Xml::encodeJsCall( 'document.write', array( $link ) )
 						);
-					} else {
-						$link = Html::linkedScript( $url );
-						if ( !$context->getRaw() && !$isRaw ) {
-							// Wrap only=script / only=combined requests in a conditional as
-							// browsers not supported by the startup module would unconditionally
-							// execute this module. Otherwise users will get "ReferenceError: mw is
-							// undefined" or "jQuery is undefined" from e.g. a "site" module.
-							$link = ResourceLoader::makeInlineScript(
-								Xml::encodeJsCall( 'document.write', array( $link ) )
-							);
-						}
+					}
 
-						// For modules requested directly in the html via <link> or <script>,
-						// tell mw.loader they are being loading to prevent duplicate requests.
-						foreach ( $grpModules as $key => $module ) {
-							// Don't output state=loading for the startup module..
-							if ( $key !== 'startup' ) {
-								$links['states'][$key] = 'loading';
-							}
+					// For modules requested directly in the html via <link> or <script>,
+					// tell mw.loader they are being loading to prevent duplicate requests.
+					foreach ( $grpModules as $key => $module ) {
+						// Don't output state=loading for the startup module..
+						if ( $key !== 'startup' ) {
+							$links['states'][$key] = 'loading';
 						}
 					}
 				}
@@ -2994,7 +2983,7 @@ class OutputPage extends ContextSource {
 	function getHeadScripts() {
 		// Startup - this will immediately load jquery and mediawiki modules
 		$links = array();
-		$links[] = $this->makeResourceLoaderLink( 'startup', ResourceLoaderModule::TYPE_SCRIPTS, true );
+		$links[] = $this->makeResourceLoaderLink( 'startup', ResourceLoaderModule::TYPE_SCRIPTS );
 
 		// Load config before anything else
 		$links[] = ResourceLoader::makeInlineScript(
@@ -3048,12 +3037,12 @@ class OutputPage extends ContextSource {
 		$links = array();
 
 		$links[] = $this->makeResourceLoaderLink( $this->getModuleScripts( true, 'bottom' ),
-			ResourceLoaderModule::TYPE_SCRIPTS, /* $useESI = */ false, /* $extraQuery = */ array(),
+			ResourceLoaderModule::TYPE_SCRIPTS, /* $extraQuery = */ array(),
 			/* $loadCall = */ $inHead
 		);
 
 		$links[] = $this->makeResourceLoaderLink( $this->getModuleStyles( true, 'bottom' ),
-			ResourceLoaderModule::TYPE_STYLES, /* $useESI = */ false, /* $extraQuery = */ array(),
+			ResourceLoaderModule::TYPE_STYLES, /* $extraQuery = */ array(),
 			/* $loadCall = */ $inHead
 		);
 
@@ -3080,7 +3069,7 @@ class OutputPage extends ContextSource {
 		) {
 			// We're on a preview of a JS subpage. Exclude this page from the user module (T28283)
 			// and include the draft contents as a raw script instead.
-			$links[] = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_COMBINED, false,
+			$links[] = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_COMBINED,
 				array( 'excludepage' => $this->getTitle()->getPrefixedDBkey() ), $inHead
 			);
 			// Load the previewed JS
@@ -3106,13 +3095,13 @@ class OutputPage extends ContextSource {
 		} else {
 			// Include the user module normally, i.e., raw to avoid it being wrapped in a closure.
 			$links[] = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_COMBINED,
-				/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
+				/* $extraQuery = */ array(), /* $loadCall = */ $inHead
 			);
 		}
 
 		// Group JS is only enabled if site JS is enabled.
 		$links[] = $this->makeResourceLoaderLink( 'user.groups', ResourceLoaderModule::TYPE_COMBINED,
-			/* $useESI = */ false, /* $extraQuery = */ array(), /* $loadCall = */ $inHead
+			/* $extraQuery = */ array(), /* $loadCall = */ $inHead
 		);
 
 		return self::getHtmlFromLoaderLinks( $links );
@@ -3671,7 +3660,7 @@ class OutputPage extends ContextSource {
 		) {
 			// We're on a preview of a CSS subpage
 			// Exclude this page from the user module in case it's in there (bug 26283)
-			$link = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_STYLES, false,
+			$link = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_STYLES,
 				array( 'excludepage' => $this->getTitle()->getPrefixedDBkey() )
 			);
 			$otherTags = array_merge( $otherTags, $link['html'] );
