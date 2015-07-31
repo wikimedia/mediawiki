@@ -28,9 +28,6 @@
  * @ingroup Cache
  */
 class ObjectCacheSessionHandler {
-	/** @var array Map of (session ID => SHA-1 of the data) */
-	protected static $hashCache = array();
-
 	/**
 	 * Install a session handler for the current web request
 	 */
@@ -54,9 +51,8 @@ class ObjectCacheSessionHandler {
 	 * Get the cache storage object to use for session storage
 	 * @return BagOStuff
 	 */
-	protected static function getCache() {
+	static function getCache() {
 		global $wgSessionCacheType;
-
 		return ObjectCache::getInstance( $wgSessionCacheType );
 	}
 
@@ -66,16 +62,8 @@ class ObjectCacheSessionHandler {
 	 * @param string $id Session id
 	 * @return string Cache key
 	 */
-	protected static function getKey( $id ) {
+	static function getKey( $id ) {
 		return wfMemcKey( 'session', $id );
-	}
-
-	/**
-	 * @param mixed $data
-	 * @return string
-	 */
-	protected static function getHash( $data ) {
-		return sha1( serialize( $data ) );
 	}
 
 	/**
@@ -107,10 +95,10 @@ class ObjectCacheSessionHandler {
 	 */
 	static function read( $id ) {
 		$data = self::getCache()->get( self::getKey( $id ) );
-
-		self::$hashCache = array( $id => self::getHash( $data ) );
-
-		return ( $data === false ) ? '' : $data;
+		if ( $data === false ) {
+			return '';
+		}
+		return $data;
 	}
 
 	/**
@@ -122,14 +110,7 @@ class ObjectCacheSessionHandler {
 	 */
 	static function write( $id, $data ) {
 		global $wgObjectCacheSessionExpiry;
-
-		// Only issue a write if anything changed (PHP 5.6 already does this)
-		if ( !isset( self::$hashCache[$id] )
-			|| self::getHash( $data ) !== self::$hashCache[$id]
-		) {
-			self::getCache()->set( self::getKey( $id ), $data, $wgObjectCacheSessionExpiry );
-		}
-
+		self::getCache()->set( self::getKey( $id ), $data, $wgObjectCacheSessionExpiry );
 		return true;
 	}
 
@@ -141,7 +122,6 @@ class ObjectCacheSessionHandler {
 	 */
 	static function destroy( $id ) {
 		self::getCache()->delete( self::getKey( $id ) );
-
 		return true;
 	}
 
