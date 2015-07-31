@@ -174,16 +174,6 @@ class OutputPageTest extends MediaWikiTestCase {
 					. "mw.test.baz({token:123});},{\"css\":[\".mw-icon{transition:none}\\n"
 					. "\"]});\n\n} );</script>"
 			),
-			// Load module script with ESI
-			array(
-				array( 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS, true ),
-				'<script><esi:include src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.foo&amp;only=scripts&amp;skin=fallback&amp;*" /></script>'
-			),
-			// Load module styles with ESI
-			array(
-				array( 'test.foo', ResourceLoaderModule::TYPE_STYLES, true ),
-				'<style><esi:include src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.foo&amp;only=styles&amp;skin=fallback&amp;*" /></style>',
-			),
 			// Load no modules
 			array(
 				array( array(), ResourceLoaderModule::TYPE_COMBINED ),
@@ -219,7 +209,6 @@ class OutputPageTest extends MediaWikiTestCase {
 	public function testMakeResourceLoaderLink( $args, $expectedHtml ) {
 		$this->setMwGlobals( array(
 			'wgResourceLoaderDebug' => false,
-			'wgResourceLoaderUseESI' => true,
 			'wgLoadScript' => 'http://127.0.0.1:8080/w/load.php',
 			// Affects whether CDATA is inserted
 			'wgWellFormedXml' => false,

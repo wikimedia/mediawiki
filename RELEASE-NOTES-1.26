@@ -16,6 +16,8 @@ production.
   use the 'rawcontinue' parameter to receive raw query-continue data, but the
   new style is encouraged as it's harder to implement incorrectly.
 * Deprecated API formats dump and wddx have been completely removed.
+* $wgResourceLoaderUseESI was deprecated and removed. This was an experimental
+  feature that never made it to production.
 
 === New features in 1.26 ===
 * (T51506) Now action=info gives estimates of actual watchers for a page.
