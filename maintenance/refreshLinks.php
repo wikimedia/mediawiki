@@ -344,17 +344,15 @@ class RefreshLinks extends Maintenance {
 				$numIds = count( $ids );
 				if ( $numIds ) {
 					$counter += $numIds;
-					wfWaitForSlaves();
 					$dbw->delete( $table, array( $field => $ids ), __METHOD__ );
 					$this->output( ", $counter" );
 					$tableStart = $ids[$numIds - 1] + 1;
+					wfWaitForSlaves();
 				}
 
 			} while ( $numIds >= $batchSize && ( $end === null || $tableStart <= $end ) );
 
 			$this->output( " deleted.\n" );
-
-			wfWaitForSlaves();
 		}
 	}
 
