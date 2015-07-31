@@ -28,6 +28,7 @@
 		"wikimedia/assert": "0.2.2",
 		"wikimedia/composer-merge-plugin": "1.2.1",
 		"wikimedia/utfnormal": "1.0.2",
+		"wikimedia/wrappedstring": "2.0.0",
 		"zordius/lightncandy": "0.21"
 	},
 	"require-dev": {
