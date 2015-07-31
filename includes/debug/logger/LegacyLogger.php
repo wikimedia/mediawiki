@@ -222,7 +222,7 @@ class LegacyLogger extends AbstractLogger {
 			$context['exception'] instanceof Exception
 		) {
 			$text .= MWExceptionHandler::getRedactedTraceAsString(
-				$context['exception']->getTraceAsString()
+				$context['exception']
 			) . "\n";
 		}
 
