@@ -756,7 +756,7 @@
 	"monthsall": "सगळे",
 	"watchlisttools-view": "प्रस्तूत बदल पळयात.",
 	"watchlisttools-edit": "लक्ष वळेंरी पळय आनी संपादीत करात",
-	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|उलोयात]])",
+	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|उलयात]])",
 	"specialpages": "खाशेलीं पानां",
 	"tag-filter": "[[Special:Tags|कुर्वेचीट]] गाळणो:",
 	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|कुरवेचीट|कुरवेचीटी}}]]: $2)",

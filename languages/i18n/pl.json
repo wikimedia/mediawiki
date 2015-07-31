@@ -420,7 +420,7 @@
 	"actionthrottledtext": "Mechanizm obrony przed spamem ogranicza liczbę wykonań tej czynności w jednostce czasu. Usiłowałeś przekroczyć to ograniczenie. Spróbuj jeszcze raz za kilka minut.",
 	"protectedpagetext": "Wyłączono możliwość edycji tej strony.",
 	"viewsourcetext": "Tekst źródłowy strony można podejrzeć i skopiować.",
-	"viewyourtext": "Tekst źródłowy '''zmodyfikowanej przez Ciebie''' strony możesz podejrzeć i skopiować.",
+	"viewyourtext": "Tekst źródłowy <strong>zmodyfikowanej przez Ciebie</strong> strony możesz podejrzeć i skopiować.",
 	"protectedinterface": "Ta strona zawiera tekst interfejsu oprogramowania wiki i jest zabezpieczona przed nadużyciami.\nBy dodać lub zmienić tłumaczenia wszystkich serwisów wiki, użyj [//translatewiki.net/ translatewiki.net], projektu lokalizacji MediaWiki.",
 	"editinginterface": "<strong>Ostrzeżenie:</strong> Edytujesz stronę, która zawiera tekst interfejsu oprogramowania.\nZmiany na tej stronie zmienią wygląd interfejsu dla innych użytkowników tej wiki.",
 	"translateinterface": "Aby dodać lub zmienić tłumaczenia wszystkich wiki, użyj [//translatewiki.net/ translatewiki.net], projekt lokalizacji oprogramowania MediaWiki.",

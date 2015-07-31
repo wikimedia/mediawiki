@@ -3,7 +3,8 @@
 		"authors": [
 			"Ата",
 			"A1",
-			"Ahonc"
+			"Ahonc",
+			"Base"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Документація]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Список розсилки]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Оголошення API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Баґи і запити]\n</div>\n<strong>Статус:</strong> Усі функції, вказані на цій сторінці, мають працювати, але API далі перебуває в активній розробці і може змінитися у будь-який момент. Підпишіться на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ список розсилки mediawiki-api-announce], щоб помічати оновлення.\n\n<strong>Хибні запити:</strong> Коли до API надсилаються хибні запити, буде відіслано HTTP-шапку з ключем «MediaWiki-API-Error», а тоді і значення шапки, і код помилки, надіслані назад, будуть встановлені з тим же значенням. Більше інформації див. на [[mw:API:Errors_and_warnings|API: Errors and warnings]].",
@@ -603,7 +604,7 @@
 	"apihelp-query+filerepoinfo-example-simple": "Отримати інформацію про репозиторії файлів.",
 	"apihelp-query+fileusage-description": "Знайти всі сторінки, що використовують дані файли.",
 	"apihelp-query+fileusage-param-prop": "Які властивості отримати:\n;pageid:ID кожної сторінки.\n;title:Назва кожної сторінки.\n;redirect:Помітка, якщо сторінка є перенаправленням.",
-	"apihelp-query+fileusage-param-namespace": "Включати сторінки лише в цьому просторі назв.",
+	"apihelp-query+fileusage-param-namespace": "Включати сторінки лише в цих просторах назв.",
 	"apihelp-query+fileusage-param-limit": "Скільки результатів виводити.",
 	"apihelp-query+fileusage-param-show": "Показати лише елементи, що відповідають цим критеріям:\n;redirect:Показати лише перенаправлення.\n;!redirect:Показати лише не перенаправлення.",
 	"apihelp-query+fileusage-example-simple": "Отримати список сторінок, які використовують [[:File:Example.jpg]].",
@@ -717,7 +718,7 @@
 	"apihelp-query+links-example-namespaces": "Отримати посилання зі сторінки <kbd>Main Page</kbd> у просторах назв {{ns:user}} і {{ns:template}}.",
 	"apihelp-query+linkshere-description": "Знайти усі сторінки, що посилаються на подані сторінки.",
 	"apihelp-query+linkshere-param-prop": "Які властивості отримати:\n;pageid:ID кожної сторінки.\n;title:Назва кожної сторінки.\n;redirect:Помітка, якщо сторінка є перенаправленням.",
-	"apihelp-query+linkshere-param-namespace": "Включати сторінки лише в цьому просторі назв.",
+	"apihelp-query+linkshere-param-namespace": "Включати сторінки лише в цих просторах назв.",
 	"apihelp-query+linkshere-param-limit": "Скільки результатів виводити.",
 	"apihelp-query+linkshere-param-show": "Показати лише елементи, що відповідають цим критеріям:\n;redirect:Показати лише перенаправлення.\n;!redirect:Показати лише не перенаправлення.",
 	"apihelp-query+linkshere-example-simple": "Отримати список сторінок, що посилаються на [[Main Page]].",
@@ -755,7 +756,7 @@
 	"apihelp-query+prefixsearch-param-offset": "Кількість результатів, які пропустити.",
 	"apihelp-query+prefixsearch-example-simple": "Шукати назви сторінок, які починаються з <kbd>meaning</kbd>.",
 	"apihelp-query+protectedtitles-description": "Вивести список усіх назв, захищених від створення.",
-	"apihelp-query+protectedtitles-param-namespace": "Перерахувати назви лише в цьому просторі назв.",
+	"apihelp-query+protectedtitles-param-namespace": "Перерахувати назви лише в цих просторах назв.",
 	"apihelp-query+protectedtitles-param-level": "Перерахувати лише назви з цими рівням захисту.",
 	"apihelp-query+protectedtitles-param-limit": "Скільки всього сторінок виводити.",
 	"apihelp-query+protectedtitles-param-start": "Почати список з цієї часової мітки захисту.",
@@ -781,5 +782,16 @@
 	"apihelp-query+recentchanges-param-excludeuser": "Не перераховувати зміни, зроблені цим користувачем.",
 	"apihelp-query+recentchanges-param-tag": "Перерахувати лише зміни, помічені цим теґом.",
 	"apihelp-query+recentchanges-param-prop": "Включити додаткові відомості:\n;user:Додає користувача, відповідального за редагування і мітки, якщо він IP.\n;userid:Додає ID користувача, відповідального за редагування.\n;comment:Додає коментар редагування.\n;parsedcomment:Додає проаналізований коментар редагування.\n;flags:Додає прапорці редагування.\n;timestamp:Додає часову мітку редагування.\n;title:Додає назву сторінки, де було редагування.\n;ids:Додає ID сторінки, ID нещодавніх змін, а також ID нової і старої версій.\n;sizes:Додає нову і стару довжину сторінки в байтах.\n;redirect:Помічає редагування, якщо сторінка є перенаправленням.\n;patrolled:Помічає редагування як відпатрульвані чи невідпатрульовані.\n;loginfo:Додає інформацію журналу (ID журналу, тип журналу тощо) до записів журналу.\n;tags:Виводить мітки запису.\n;sha1:Додає контрольну суму вмісту для записів, пов'язаних з версією.",
+	"apihelp-query+recentchanges-param-token": "Використати натомість <kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd>.",
+	"apihelp-query+recentchanges-param-show": "Показати лише елементи, що задовільняють ці критерії. Наприклад, для перегляду лише незначних змін, здійснених користувачами, що увійшли до системи, вкажіть $1show=minor|!anon.",
+	"apihelp-query+recentchanges-param-limit": "Скільки всього змін виводити.",
+	"apihelp-query+recentchanges-param-type": "Які типи змін показувати.",
+	"apihelp-query+recentchanges-param-toponly": "Виводити лише зміни, які є останньою версією.",
+	"apihelp-query+recentchanges-example-simple": "Вивести нещодавні зміни.",
+	"apihelp-query+recentchanges-example-generator": "Отримати інформацію про сторінки з недавніми невідпатрульованими змінами.",
+	"apihelp-query+redirects-description": "Видає усі перенаправлення на дані сторінки.",
+	"apihelp-query+redirects-param-prop": "Які властивості отримати:\n;pageid:Ідентифікатор сторінки кожного перенаправлення.\n;title:Назва кожного перенаправлення.\n;fragment:Фрагмент кожного перенаправлення, якщо є.",
+	"apihelp-query+redirects-param-namespace": "Включити сторінки лише у цих просторах назв.",
+	"apihelp-query+redirects-param-limit": "Скільки перенаправлень повернути.",
 	"api-help-datatypes-header": "Типи даних"
 }
