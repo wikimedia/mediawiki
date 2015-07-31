@@ -3450,11 +3450,6 @@ class OutputPage extends ContextSource {
 						'href' => $this->getTitle()->getLocalURL( array( 'variant' => $variant ) ) )
 					);
 				}
-				# x-default link per https://support.google.com/webmasters/answer/189077?hl=en
-				$tags["variant-x-default"] = Html::element( 'link', array(
-					'rel' => 'alternate',
-					'hreflang' => 'x-default',
-					'href' => $this->getTitle()->getLocalURL() ) );
 			}
 		}
 
