@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use WrappedString\WrappedString;
 
 /**
  * This class should be covered by a general architecture document which does
@@ -2778,7 +2779,9 @@ class OutputPage extends ContextSource {
 		$modules = (array)$modules;
 
 		$links = array(
-			'html' => '',
+			// List of html strings
+			'html' => array(),
+			// Associative array of module names and their states
 			'states' => array(),
 		);
 
@@ -2796,7 +2799,7 @@ class OutputPage extends ContextSource {
 				// Recursively call us for every item
 				foreach ( $modules as $name ) {
 					$link = $this->makeResourceLoaderLink( $name, $only, $useESI );
-					$links['html'] .= $link['html'];
+					$links['html'] = array_merge( $links['html'], $link['html'] );
 					$links['states'] += $link['states'];
 				}
 				return $links;
@@ -2880,15 +2883,14 @@ class OutputPage extends ContextSource {
 				// properly use them as dependencies (bug 30914)
 				if ( $group === 'private' ) {
 					if ( $only == ResourceLoaderModule::TYPE_STYLES ) {
-						$links['html'] .= Html::inlineStyle(
+						$links['html'][] = Html::inlineStyle(
 							$resourceLoader->makeModuleResponse( $context, $grpModules )
 						);
 					} else {
-						$links['html'] .= ResourceLoader::makeInlineScript(
+						$links['html'][] = ResourceLoader::makeInlineScript(
 							$resourceLoader->makeModuleResponse( $context, $grpModules )
 						);
 					}
-					$links['html'] .= "\n";
 					continue;
 				}
 
@@ -2945,9 +2947,9 @@ class OutputPage extends ContextSource {
 				}
 
 				if ( $group == 'noscript' ) {
-					$links['html'] .= Html::rawElement( 'noscript', array(), $link ) . "\n";
+					$links['html'][] = Html::rawElement( 'noscript', array(), $link );
 				} else {
-					$links['html'] .= $link . "\n";
+					$links['html'][] = $link;
 				}
 			}
 		}
@@ -2961,24 +2963,26 @@ class OutputPage extends ContextSource {
 	 * @return string HTML
 	 */
 	protected static function getHtmlFromLoaderLinks( array $links ) {
-		$html = '';
+		$html = array();
 		$states = array();
 		foreach ( $links as $link ) {
 			if ( !is_array( $link ) ) {
-				$html .= $link;
+				$html[] = $link;
 			} else {
-				$html .= $link['html'];
+				$html = array_merge( $html, $link['html'] );
 				$states += $link['states'];
 			}
 		}
+		// Filter out empty values
+		$html = array_filter( $html, 'strlen' );
 
 		if ( count( $states ) ) {
-			$html = ResourceLoader::makeInlineScript(
+			array_unshift( $html, ResourceLoader::makeInlineScript(
 				ResourceLoader::makeLoaderStateScript( $states )
-			) . "\n" . $html;
+			) );
 		}
 
-		return $html;
+		return WrappedString::join( "\n", $html );
 	}
 
 	/**
@@ -3063,7 +3067,7 @@ class OutputPage extends ContextSource {
 		}
 
 		// Legacy Scripts
-		$links[] = "\n" . $this->mScripts;
+		$links[] = $this->mScripts;
 
 		// Add user JS if enabled
 		// This must use TYPE_COMBINED instead of only=scripts so that its request is handled by
@@ -3651,7 +3655,7 @@ class OutputPage extends ContextSource {
 			'noscript' => array()
 		);
 		$links = array();
-		$otherTags = ''; // Tags to append after the normal <link> tags
+		$otherTags = array(); // Tags to append after the normal <link> tags
 		$resourceLoader = $this->getResourceLoader();
 
 		$moduleStyles = $this->getModuleStyles( true, 'top' );
@@ -3670,7 +3674,7 @@ class OutputPage extends ContextSource {
 			$link = $this->makeResourceLoaderLink( 'user', ResourceLoaderModule::TYPE_STYLES, false,
 				array( 'excludepage' => $this->getTitle()->getPrefixedDBkey() )
 			);
-			$otherTags .= $link['html'];
+			$otherTags = array_merge( $otherTags, $link['html'] );
 
 			// Load the previewed CSS
 			// If needed, Janus it first. This is user-supplied CSS, so it's
@@ -3679,7 +3683,7 @@ class OutputPage extends ContextSource {
 			if ( $this->getLanguage()->getDir() !== $wgContLang->getDir() ) {
 				$previewedCSS = CSSJanus::transform( $previewedCSS, true, false );
 			}
-			$otherTags .= Html::inlineStyle( $previewedCSS ) . "\n";
+			$otherTags[] = Html::inlineStyle( $previewedCSS ) . "\n";
 		} else {
 			// Load the user styles normally
 			$moduleStyles[] = 'user';
@@ -3720,7 +3724,7 @@ class OutputPage extends ContextSource {
 		$links[] = Html::element(
 			'meta',
 			array( 'name' => 'ResourceLoaderDynamicStyles', 'content' => '' )
-		) . "\n";
+		);
 
 		// Add site-specific and user-specific styles
 		// 'private' at present only contains user.options, so put that before 'user'
@@ -3732,7 +3736,7 @@ class OutputPage extends ContextSource {
 		}
 
 		// Add stuff in $otherTags (previewed user CSS if applicable)
-		return self::getHtmlFromLoaderLinks( $links ) . $otherTags;
+		return self::getHtmlFromLoaderLinks( $links ) . implode( '', $otherTags );
 	}
 
 	/**

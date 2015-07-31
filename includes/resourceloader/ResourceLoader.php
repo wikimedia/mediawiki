@@ -25,6 +25,7 @@
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use WrappedString\WrappedString;
 
 /**
  * Dynamic JavaScript and CSS resource loading system.
@@ -1389,11 +1390,15 @@ MESSAGE;
 	 * only if the client has adequate support for MediaWiki JavaScript code.
 	 *
 	 * @param string $script JavaScript code
-	 * @return string HTML
+	 * @return WrappedString HTML
 	 */
 	public static function makeInlineScript( $script ) {
 		$js = self::makeLoaderConditionalScript( $script );
-		return Html::inlineScript( $js );
+		return new WrappedString(
+			Html::inlineScript( $js ),
+			"<script>var RLQ = RLQ || []; RLQ.push( function () {\n",
+			"\n} );</script>"
+		);
 	}
 
 	/**
