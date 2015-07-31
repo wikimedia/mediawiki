@@ -1475,7 +1475,7 @@ MESSAGE;
 	 * @param string $source Name of the ResourceLoader source
 	 * @param ResourceLoaderContext $context
 	 * @param array $extraQuery
-	 * @return string URL to load.php. May be protocol-relative (if $wgLoadScript is procol-relative)
+	 * @return string URL to load.php. May be protocol-relative if $wgLoadScript is, too.
 	 */
 	public function createLoaderURL( $source, ResourceLoaderContext $context,
 		$extraQuery = array()
@@ -1501,7 +1501,7 @@ MESSAGE;
 	 * @param bool $printable Printable mode
 	 * @param bool $handheld Handheld mode
 	 * @param array $extraQuery Extra query parameters to add
-	 * @return string URL to load.php. May be protocol-relative (if $wgLoadScript is procol-relative)
+	 * @return string URL to load.php. May be protocol-relative if $wgLoadScript is, too.
 	 */
 	public static function makeLoaderURL( $modules, $lang, $skin, $user = null,
 		$version = null, $debug = false, $only = null, $printable = false,
