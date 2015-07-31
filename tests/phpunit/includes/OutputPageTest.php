@@ -145,28 +145,26 @@ class OutputPageTest extends MediaWikiTestCase {
 					. 'document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?'
 					. 'debug=false\u0026amp;lang=en\u0026amp;modules=test.foo\u0026amp;only'
 					. '=scripts\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");'
-					. "\n} );</script>\n"
+					. "\n} );</script>"
 			),
 			array(
 				// Don't condition wrap raw modules (like the startup module)
 				array( 'test.raw', ResourceLoaderModule::TYPE_SCRIPTS ),
-				'<script src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.raw&amp;only=scripts&amp;skin=fallback&amp;*"></script>
-'
+				'<script src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.raw&amp;only=scripts&amp;skin=fallback&amp;*"></script>'
 			),
 			// Load module styles only
 			// This also tests the order the modules are put into the url
 			array(
 				array( array( 'test.baz', 'test.foo', 'test.bar' ), ResourceLoaderModule::TYPE_STYLES ),
 
-				'<link rel=stylesheet href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.bar%2Cbaz%2Cfoo&amp;only=styles&amp;skin=fallback&amp;*">
-'
+				'<link rel=stylesheet href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.bar%2Cbaz%2Cfoo&amp;only=styles&amp;skin=fallback&amp;*">'
 			),
 			// Load private module (only=scripts)
 			array(
 				array( 'test.quux', ResourceLoaderModule::TYPE_SCRIPTS ),
 				"<script>var RLQ = RLQ || []; RLQ.push( function () {\n"
 					. "mw.test.baz({token:123});mw.loader.state({\"test.quux\":\"ready\"});\n"
-					. "\n} );</script>\n"
+					. "\n} );</script>"
 			),
 			// Load private module (combined)
 			array(
@@ -174,19 +172,17 @@ class OutputPageTest extends MediaWikiTestCase {
 				"<script>var RLQ = RLQ || []; RLQ.push( function () {\n"
 					. "mw.loader.implement(\"test.quux\",function($,jQuery){"
 					. "mw.test.baz({token:123});},{\"css\":[\".mw-icon{transition:none}\\n"
-					. "\"]});\n\n} );</script>\n"
+					. "\"]});\n\n} );</script>"
 			),
 			// Load module script with ESI
 			array(
 				array( 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS, true ),
-				'<script><esi:include src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.foo&amp;only=scripts&amp;skin=fallback&amp;*" /></script>
-'
+				'<script><esi:include src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.foo&amp;only=scripts&amp;skin=fallback&amp;*" /></script>'
 			),
 			// Load module styles with ESI
 			array(
 				array( 'test.foo', ResourceLoaderModule::TYPE_STYLES, true ),
-				'<style><esi:include src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.foo&amp;only=styles&amp;skin=fallback&amp;*" /></style>
-',
+				'<style><esi:include src="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.foo&amp;only=styles&amp;skin=fallback&amp;*" /></style>',
 			),
 			// Load no modules
 			array(
@@ -196,8 +192,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			// noscript group
 			array(
 				array( 'test.noscript', ResourceLoaderModule::TYPE_STYLES ),
-				'<noscript><link rel=stylesheet href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.noscript&amp;only=styles&amp;skin=fallback&amp;*"></noscript>
-'
+				'<noscript><link rel=stylesheet href="http://127.0.0.1:8080/w/load.php?debug=false&amp;lang=en&amp;modules=test.noscript&amp;only=styles&amp;skin=fallback&amp;*"></noscript>'
 			),
 			// Load two modules in separate groups
 			array(
@@ -207,7 +202,7 @@ class OutputPageTest extends MediaWikiTestCase {
 					. "\n} );</script>\n"
 					. "<script>var RLQ = RLQ || []; RLQ.push( function () {\n"
 					. 'document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=test.group.foo\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");'
-					. "\n} );</script>\n"
+					. "\n} );</script>"
 			),
 		);
 	}
@@ -275,7 +270,7 @@ class OutputPageTest extends MediaWikiTestCase {
 		) );
 		$links = $method->invokeArgs( $out, $args );
 		// Strip comments to avoid variation due to wgDBname in WikiID and cache key
-		$actualHtml = preg_replace( '#/\*[^*]+\*/#', '', $links['html'] );
+		$actualHtml = preg_replace( '#/\*[^*]+\*/#', '', implode( "\n", $links['html'] ) );
 		$this->assertEquals( $expectedHtml, $actualHtml );
 	}
 }
