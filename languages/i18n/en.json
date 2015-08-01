@@ -2497,7 +2497,7 @@
 	"tooltip-ca-watch": "Add this page to your watchlist",
 	"tooltip-ca-unwatch": "Remove this page from your watchlist",
 	"tooltip-search": "Search {{SITENAME}}",
-	"tooltip-search-go": "Go to a page with this exact name if exists",
+	"tooltip-search-go": "Go to a page with this exact name if it exists",
 	"tooltip-search-fulltext": "Search the pages for this text",
 	"tooltip-p-logo": "Visit the main page",
 	"tooltip-n-mainpage": "Visit the main page",
