@@ -2946,7 +2946,7 @@
 	"scarytranscludefailed": "[提取$1失败]",
 	"scarytranscludefailed-httpstatus": "[模板$1读取失败：HTTP $2]",
 	"scarytranscludetoolong": "[URL过长]",
-	"deletedwhileediting": "'''警告'''：此页在您开始编辑之后已经被删除！",
+	"deletedwhileediting": "<strong>警告：</strong>此页在您开始编辑之后已经被删除！",
 	"confirmrecreate": "在您开始编辑这个页面后，用户[[User:$1|$1]] （[[User talk:$1|讨论]]）以下列原因删除了这个页面：\n: ''$2''\n请确认在您重新创建页面前三思。",
 	"confirmrecreate-noreason": "用户 [[User:$1|$1]]（[[User talk:$1|talk]]） 在您开始编辑之后删除此页面。请确认您确实要重新创建此页面。",
 	"recreate": "重新创建",

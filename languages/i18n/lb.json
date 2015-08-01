@@ -860,6 +860,7 @@
 	"search-category": "(Kategorie $1)",
 	"search-file-match": "(Inhalt vum Fichier passt)",
 	"search-suggest": "Mengt Dir: $1",
+	"search-rewritten": "D'Resultater fir $1 gi gewisen. Amplaz no $2 sichen.",
 	"search-interwiki-caption": "Schwësterprojeten",
 	"search-interwiki-default": "Resultater vu(n) $1:",
 	"search-interwiki-more": "(méi)",
