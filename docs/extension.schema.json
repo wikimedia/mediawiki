@@ -477,6 +477,10 @@
 					"protection": {
 						"type": ["string", "array"],
 						"description": "Userright(s) required to edit in this namespace"
+					},
+					"capitallinkoverride": {
+						"type": "boolean",
+						"description": "Set $wgCapitalLinks on a per-namespace basis"
 					}
 				},
 				"required": ["id", "constant", "name"]
