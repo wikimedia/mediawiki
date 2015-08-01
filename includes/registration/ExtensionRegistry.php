@@ -187,7 +187,7 @@ class ExtensionRegistry {
 				// Special case $wgHooks and $wgExtensionCredits, which require a recursive merge.
 				// Ideally it would have been taken care of in the first if block though.
 				$GLOBALS[$key] = array_merge_recursive( $GLOBALS[$key], $val );
-			} elseif ( $key === 'wgGroupPermissions' ) {
+			} elseif ( $key === 'wgGroupPermissions' || $key === 'wgRevokePermissions' ) {
 				// First merge individual groups
 				foreach ( $GLOBALS[$key] as $name => &$groupVal ) {
 					if ( isset( $val[$name] ) ) {
