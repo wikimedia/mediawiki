@@ -473,6 +473,10 @@
 					},
 					"defaultcontentmodel": {
 						"type": "string"
+					},
+					"protection": {
+						"type": ["string", "array"],
+						"description": "Userright(s) required to edit in this namespace"
 					}
 				},
 				"required": ["id", "constant", "name"]
