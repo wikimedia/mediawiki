@@ -2,6 +2,8 @@
 
 class ExtensionProcessor implements Processor {
 
+	const MERGE_STRATEGY = ExtensionRegistry::MERGE_STRATEGY;
+
 	/**
 	 * Keys that should be set to $GLOBALS
 	 *
@@ -44,6 +46,24 @@ class ExtensionProcessor implements Processor {
 		'APIPropModules',
 		'APIListModules',
 		'ValidSkinNames',
+	);
+
+	/**
+	 * Mapping of global settings to their specific merge strategies.
+	 *
+	 * @see ExtensionRegistry:;exportExtractedData
+	 * @see getExtractedInfo
+	 * @var array
+	 */
+	protected static $mergeStrategies = array(
+		'wgGroupPermissions' => 'group_permissions',
+		'wgRevokePermissions' => 'group_permissions',
+		'wgHooks' => 'array_merge_recursive',
+		'wgExtensionCredits' => 'array_merge_recursive',
+		'wgExtraNamespaces' => 'array_plus',
+		'wgExtraGenderNamespaces' => 'array_plus',
+		'wgNamespacesWithSubpages' => 'array_plus',
+		'wgNamespaceContentModels' => 'array_plus',
 	);
 
 	/**
@@ -156,6 +176,13 @@ class ExtensionProcessor implements Processor {
 	}
 
 	public function getExtractedInfo() {
+		// Make sure the merge strategies are set
+		foreach ( $this->globals as $key => $val ) {
+			if ( isset( self::$mergeStrategies[$key] ) ) {
+				$this->globals[$key][self::MERGE_STRATEGY] = self::$mergeStrategies[$key];
+			}
+		}
+
 		return array(
 			'globals' => $this->globals,
 			'defines' => $this->defines,
