@@ -64,6 +64,7 @@ class ExtensionProcessor implements Processor {
 		'wgExtraGenderNamespaces' => 'array_plus',
 		'wgNamespacesWithSubpages' => 'array_plus',
 		'wgNamespaceContentModels' => 'array_plus',
+		'wgNamespaceProtection' => 'array_plus',
 	);
 
 	/**
@@ -224,6 +225,9 @@ class ExtensionProcessor implements Processor {
 				}
 				if ( isset( $ns['defaultcontentmodel'] ) ) {
 					$this->globals['wgNamespaceContentModels'][$id] = $ns['defaultcontentmodel'];
+				}
+				if ( isset( $ns['protection'] ) ) {
+					$this->globals['wgNamespaceProtection'][$id] = $ns['protection'];
 				}
 			}
 		}
