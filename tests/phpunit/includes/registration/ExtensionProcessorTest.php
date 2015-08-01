@@ -38,6 +38,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 	}
 
 	public static function provideRegisterHooks() {
+		$merge = array( ExtensionRegistry::MERGE_STRATEGY => 'array_merge_recursive' );
 		// Format:
 		// Current $wgHooks
 		// Content in extension.json
@@ -47,19 +48,19 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 			array(
 				array(),
 				self::$default,
-				array(),
+				array()  + $merge,
 			),
 			// No current hooks, adding one for "FooBaz"
 			array(
 				array(),
 				array( 'Hooks' => array( 'FooBaz' => 'FooBazCallback' ) ) + self::$default,
-				array( 'FooBaz' => array( 'FooBazCallback' ) ),
+				array( 'FooBaz' => array( 'FooBazCallback' ) ) + $merge,
 			),
 			// Hook for "FooBaz", adding another one
 			array(
 				array( 'FooBaz' => array( 'PriorCallback' ) ),
 				array( 'Hooks' => array( 'FooBaz' => 'FooBazCallback' ) ) + self::$default,
-				array( 'FooBaz' => array( 'PriorCallback', 'FooBazCallback' ) ),
+				array( 'FooBaz' => array( 'PriorCallback', 'FooBazCallback' ) ) + $merge,
 			),
 			// Hook for "BarBaz", adding one for "FooBaz"
 			array(
@@ -68,7 +69,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 				array(
 					'BarBaz' => array( 'BarBazCallback' ),
 					'FooBaz' => array( 'FooBazCallback' ),
-				),
+				) + $merge,
 			),
 			// Callbacks for FooBaz wrapped in an array
 			array(
@@ -76,7 +77,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 				array( 'Hooks' => array( 'FooBaz' => array( 'Callback1' ) ) ) + self::$default,
 				array(
 					'FooBaz' => array( 'Callback1' ),
-				),
+				) + $merge,
 			),
 			// Multiple callbacks for FooBaz hook
 			array(
@@ -84,7 +85,7 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 				array( 'Hooks' => array( 'FooBaz' => array( 'Callback1', 'Callback2' ) ) ) + self::$default,
 				array(
 					'FooBaz' => array( 'Callback1', 'Callback2' ),
-				),
+				) + $merge,
 			),
 		);
 	}
