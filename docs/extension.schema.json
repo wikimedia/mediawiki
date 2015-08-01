@@ -438,40 +438,44 @@
 			"description": "Registry of factory functions to create Config objects"
 		},
 		"namespaces": {
-			"type": "object",
+			"type": "array",
 			"description": "Method to add extra namespaces",
-			"properties": {
-				"id": {
-					"type": "integer"
-				},
-				"constant": {
-					"type": "string"
-				},
-				"name": {
-					"type": "string"
-				},
-				"gender": {
-					"type": "object",
-					"properties": {
-						"male": {
-							"type": "string"
-						},
-						"female": {
-							"type": "string"
+			"items": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"constant": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"gender": {
+						"type": "object",
+						"properties": {
+							"male": {
+								"type": "string"
+							},
+							"female": {
+								"type": "string"
+							}
 						}
+					},
+					"subpages": {
+						"type": "boolean",
+						"default": false
+					},
+					"content": {
+						"type": "boolean",
+						"default": false
+					},
+					"defaultcontentmodel": {
+						"type": "string"
 					}
 				},
-				"subpages": {
-					"type": "boolean",
-					"default": false
-				},
-				"content": {
-					"type": "boolean",
-					"default": false
-				},
-				"defaultcontentmodel": {
-					"type": "string"
-				}
+				"required": ["id", "constant", "name"]
 			}
 		},
 		"TrackingCategories": {
