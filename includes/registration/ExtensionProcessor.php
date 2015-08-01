@@ -65,6 +65,7 @@ class ExtensionProcessor implements Processor {
 		'wgNamespacesWithSubpages' => 'array_plus',
 		'wgNamespaceContentModels' => 'array_plus',
 		'wgNamespaceProtection' => 'array_plus',
+		'wgCapitalLinkOverrides' => 'array_plus',
 	);
 
 	/**
@@ -228,6 +229,9 @@ class ExtensionProcessor implements Processor {
 				}
 				if ( isset( $ns['protection'] ) ) {
 					$this->globals['wgNamespaceProtection'][$id] = $ns['protection'];
+				}
+				if ( isset( $ns['capitallinkoverride'] ) ) {
+					$this->globals['wgCapitalLinkOverrides'][$id] = $ns['capitallinkoverride'];
 				}
 			}
 		}
