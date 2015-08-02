@@ -1270,7 +1270,13 @@ class Article implements Page {
 				$text = wfMessage( 'noarticletext-nopermission' )->plain();
 			}
 
-			$outputPage->addWikiText( "<div class='noarticletext'>\n$text\n</div>" );
+			$dir = $this->getContext()->getLanguage()->getDir();
+			$lang = $this->getContext()->getLanguage()->getCode();
+			$outputPage->addWikiText( Xml::openElement( 'div', array(
+				'class' => "noarticletext mw-content-$dir",
+				'dir' => $dir,
+				'lang' => $lang,
+			) ) . "\n$text\n</div>" );
 		}
 	}
 
