@@ -49,13 +49,13 @@ class SpecialPreferences extends SpecialPage {
 		$out->addModules( 'mediawiki.special.preferences' );
 
 		if ( $this->getRequest()->getCheck( 'success' ) ) {
-			$out->wrapWikiMsg(
-				Xml::tags(
-					'div',
-					array( 'class' => 'successbox', 'id' => 'mw-preferences-success' ),
-					'$1'
+			$out->addElement(
+				'div',
+				array(
+					'class' => 'mw-preferences-messagebox successbox',
+					'id' => 'mw-preferences-success'
 				),
-				'savedprefs'
+				wfMessage( 'savedprefs' )->text()
 			);
 		}
 
