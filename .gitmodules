@@ -122,3 +122,7 @@
 	path = extensions/WikiEditor
 	url = https://github.com/wikimedia/mediawiki-extensions-WikiEditor
 	branch = REL1_25
+[submodule "extensions/CreateWiki"]
+	path = extensions/CreateWiki
+	url = https://github.com/Miraheze/CreateWiki.git
+	branch = master
