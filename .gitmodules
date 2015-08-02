@@ -126,3 +126,11 @@
 	path = extensions/CreateWiki
 	url = https://github.com/Miraheze/CreateWiki.git
 	branch = master
+[submodule "extensions/Flow"]
+	path = extensions/Flow
+	url = https://github.com/wikimedia/mediawiki-extensions-Flow
+	branch = REL1_25
+[submodule "extensions/VisualEditor"]
+	path = extensions/VisualEditor
+	url = https://github.com/wikimedia/mediawiki-extensions-VisualEditor
+	branch = REL1_25
