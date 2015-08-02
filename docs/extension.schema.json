@@ -408,6 +408,10 @@
 								"bottom",
 								"top"
 							]
+						},
+						"templates": {
+							"type": "object",
+							"description": "Templates to be loaded for client-side usage"
 						}
 					}
 				}
