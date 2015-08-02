@@ -52,6 +52,7 @@
 	"apihelp-move-param-movetalk": "D'Diskussiounssäit ëmbenennen, wann et se gëtt.",
 	"apihelp-move-param-ignorewarnings": "All Warnungen ignoréieren.",
 	"apihelp-options-description": "Astellunge fir den aktuelle Benotzer änneren.\n\nNëmmen Optiounen aus dem Haaptdeel (core) oder aus enger vun den installéierten Erweiderunge, oder Optioune mat Schlësselen déi viragestallt si mat <code>userjs-</code> (geduecht fir mat Benotzer-Scripte benotzt ze ginn), kënnen agestallt ginn.",
+	"apihelp-options-param-optionname": "Den Numm vun der Optioun deen op de Wäert vun <var>$1optionvalue</var> gesat gi muss",
 	"apihelp-options-example-reset": "All Astellungen zrécksetzen",
 	"apihelp-patrol-example-rcid": "Eng rezent Ännerung nokucken.",
 	"apihelp-patrol-example-revid": "Eng Versioun nokucken.",

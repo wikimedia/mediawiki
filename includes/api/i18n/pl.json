@@ -144,6 +144,8 @@
 	"apihelp-opensearch-param-format": "Format danych wyjściowych.",
 	"apihelp-opensearch-example-te": "Znajdź strony zaczynające się od <kbd>Te</kbd>.",
 	"apihelp-options-param-reset": "Resetuj preferencje do domyślnych.",
+	"apihelp-options-param-optionname": "Nazwa opcji, która powinna być ustawiona na wartość <var>$1optionvalue</var>.",
+	"apihelp-options-param-optionvalue": "Wartość opcji, określona w <var>$1optionname</var>, może zawierać znaki pionowej kreski.",
 	"apihelp-options-example-reset": "Resetuj wszystkie preferencje.",
 	"apihelp-paraminfo-description": "Zdobądź informacje o modułach API.",
 	"apihelp-paraminfo-param-helpformat": "Format tekstów pomocnicznych.",

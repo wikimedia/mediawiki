@@ -869,6 +869,7 @@
 	"search-category": "(קאטעגאריע $1)",
 	"search-file-match": "(פאסט צו טעקע אינהאלט)",
 	"search-suggest": "צי האט איר געמיינט: $1",
+	"search-rewritten": "רעזולטאטן וועגן $1 ווערן געוויזן. איר קענט אויך זוכן $2.",
 	"search-interwiki-caption": "שוועסטער פראיעקטן",
 	"search-interwiki-default": "רעזולטאטן פון $1:",
 	"search-interwiki-more": "(נאך)",

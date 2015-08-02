@@ -3229,7 +3229,7 @@
 	"logentry-move-move_redir": "$1, $3 sayfasını $4 sayfasına yönlendirme üzerinden {{GENDER:$2|taşıdı}}",
 	"logentry-move-move_redir-noredirect": "$1, $3 sayfasını bir yönlendirme üzerine yönlendirme bırakmadan $4 olarak {{GENDER:$2|taşıdı}}",
 	"logentry-patrol-patrol": "$1, $3 sayfasının $4 revizyonunu kontrol edildi olarak {{GENDER:$2|işaretledi}}",
-	"logentry-patrol-patrol-auto": "$1, $3 sayfasının $4 sürümümü otomatik olarak {{GENDER:$2|kontrol etti}}",
+	"logentry-patrol-patrol-auto": "$1, $3 sayfasının $4 sürümünü otomatik olarak {{GENDER:$2|kontrol etti}}",
 	"logentry-newusers-newusers": "Kullanıcı hesabı $1 {{GENDER:$2|oluşturuldu}}",
 	"logentry-newusers-create": "Kullanıcı hesabı $1 {{GENDER:$2|oluşturuldu}}",
 	"logentry-newusers-create2": "$3 kullanıcı hesabı $1 tarafından {{GENDER:$2|oluşturuldu}}",

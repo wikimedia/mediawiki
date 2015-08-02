@@ -3366,6 +3366,7 @@
 	"special-characters-title-endash": "linie de pauză (en dash)",
 	"special-characters-title-emdash": "linie de pauză (em dash)",
 	"special-characters-title-minus": "semnul minus",
+	"mw-widgets-dateinput-no-date": "Nicio dată selectată",
 	"mw-widgets-titleinput-description-new-page": "pagina nu există încă",
 	"mw-widgets-titleinput-description-redirect": "redirecționare către $1"
 }

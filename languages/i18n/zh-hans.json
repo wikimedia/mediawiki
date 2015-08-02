@@ -3465,6 +3465,7 @@
 	"special-characters-title-endash": "短划线",
 	"special-characters-title-emdash": "长划线",
 	"special-characters-title-minus": "减号",
+	"mw-widgets-dateinput-no-date": "没有选定日期",
 	"mw-widgets-titleinput-description-new-page": "页面不存在",
 	"mw-widgets-titleinput-description-redirect": "重定向至$1"
 }

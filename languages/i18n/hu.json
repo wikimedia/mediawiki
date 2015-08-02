@@ -789,7 +789,7 @@
 	"logdelete-selected": "{{PLURAL:$1|Kiválasztott naplóesemény|Kiválasztott naplóesemények}}:",
 	"revdelete-text-text": "A törölt változatok megmaradnak a laptörténetben, de a tartalmuk a nyilvánosan nem elérhető.",
 	"revdelete-text-file": "A törölt változatok megmaradnak a fájl történetben, de a tartalmuk egy része nyilvánosan nem elérhető.",
-	"logdelete-text": "A törölt napló események megmaradnak a naplóban, de a tartalmuk nyilvánosan nem elérhető.",
+	"logdelete-text": "A törölt naplóesemények megmaradnak a naplóban, de a tartalmuk nyilvánosan nem elérhető.",
 	"revdelete-text-others": "Más adminisztrátorok elérhetik az elrejtett tartalmat és visszaállíthatják, hacsak további korlátozások nem kerültek bevezetésre.",
 	"revdelete-confirm": "Kérlek erősítsd meg, hogy valóban ezt szeretnéd tenni; megértetted a következményeket, és amit teszel, az összhangban van [[{{MediaWiki:Policy-url}}|az irányelvekkel]].",
 	"revdelete-suppress-text": "Az elrejtés '''csak''' a következő esetekben használható:\n* Illetlen személyes információk\n*: ''otthoni cím, telefonszámok, társadalombiztosítási számok stb.''",
@@ -1320,6 +1320,9 @@
 	"uploaded-href-attribute-svg": "Az alábbi nem lokális célra (pl. http://, javascript, stb.) mutató href attribútum nem megengedett az SVG fájlokban: <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-href-unsafe-target-svg": "Nem biztonságos célra mutató href-et találtam a feltöltött SVG fájlban: <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploaded-animate-svg": "A feltöltött SVG fájlban \"animate\" taget találtam, ami az alábbi \"from\" attribútumával megváltoztathat egy href-et: <code>&lt;$1 $2=\"$3\"&gt;</code>.",
+	"uploaded-setting-handler-svg": "Az SVG kódok, amelyek a \"handler\" attribútumot távolra/adatra/szkriptre állítják, le vannak tiltva. A feltöltött SVG fájlban a következőt találtam: <code>$1=\"$2\"</code>.",
+	"uploaded-remote-url-svg": "Az SVG kódok, amelyek bármely stílus-attribútumot távoli URL-ra állítják, le vannak tiltva. A feltöltött SVG fájlban a következőt találtam: <code>$1=\"$2\"</code>.",
+	"uploaded-image-filter-svg": "A feltöltött SVG fájl URL-t tartalmazó képfiltert tartalmaz: <code>&lt;$1 $2=\"$3\"&gt;</code>.",
 	"uploadscriptednamespace": "Ez az SVG fájl érvénytelen névteret (\"$1\") tartalmaz.",
 	"uploadinvalidxml": "A feltöltött XML fájlt nem lehet feldolgozni.",
 	"uploadvirus": "Ez a fájl vírust tartalmaz! A részletek: $1",
@@ -3379,6 +3382,7 @@
 	"special-characters-title-endash": "kötőjel",
 	"special-characters-title-emdash": "hosszú kötőjel",
 	"special-characters-title-minus": "minusz jel",
+	"mw-widgets-dateinput-no-date": "Nincs kiválasztott dátum",
 	"mw-widgets-titleinput-description-new-page": "a lap még nem létezik",
 	"mw-widgets-titleinput-description-redirect": "átirányítás ide: $1"
 }

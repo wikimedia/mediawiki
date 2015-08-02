@@ -3444,6 +3444,7 @@
 	"special-characters-title-endash": "półpauza",
 	"special-characters-title-emdash": "pauza",
 	"special-characters-title-minus": "minus",
+	"mw-widgets-dateinput-no-date": "Nie wybrano daty",
 	"mw-widgets-titleinput-description-new-page": "strona jeszcze nie istnieje",
 	"mw-widgets-titleinput-description-redirect": "przekierowanie do $1"
 }
