@@ -61,7 +61,6 @@
 		"pre-install-cmd": "ComposerHookHandler::onPreInstall"
 	},
 	"config": {
-		"classmap-authoritative": true,
 		"prepend-autoloader": false,
 		"optimize-autoloader": true
 	},
