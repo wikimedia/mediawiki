@@ -292,128 +292,185 @@
 		"ResourceModules": {
 			"type": "object",
 			"description": "ResourceLoader modules to register",
-			"additionalProperties": false,
 			"patternProperties": {
 				"^[a-zA-Z0-9-\\.]+$": {
 					"type": "object",
-					"description": "A single ResourceLoader module descriptor",
-					"properties": {
-						"localBasePath": {
-							"type": "string",
-							"description": "Base path to prepend to all local paths in $options. Defaults to $IP"
-						},
-						"remoteBasePath": {
-							"type": "string",
-							"description": "Base path to prepend to all remote paths in $options. Defaults to $wgScriptPath"
-						},
-						"remoteExtPath": {
-							"type": "string",
-							"description": "Equivalent of remoteBasePath, but relative to $wgExtensionAssetsPath"
-						},
-						"scripts": {
-							"type": ["string", "array"],
-							"description": "Scripts to always include (array of file paths)",
-							"items": {
-								"type": "string"
-							}
-						},
-						"languageScripts": {
-							"type": "object",
-							"description": "Scripts to include in specific language contexts (mapping of language code to file path(s))",
-							"patternProperties": {
-								"^[a-zA-Z0-9-]{2,}$": {
-									"type": [
-										"string",
-										"array"
-									],
+					"anyOf": [
+						{
+							"description": "A ResourceLoaderFileModule definition",
+							"additionalProperties": false,
+							"properties": {
+								"localBasePath": {
+									"type": "string",
+									"description": "Base path to prepend to all local paths in $options. Defaults to $IP"
+								},
+								"remoteBasePath": {
+									"type": "string",
+									"description": "Base path to prepend to all remote paths in $options. Defaults to $wgScriptPath"
+								},
+								"remoteExtPath": {
+									"type": "string",
+									"description": "Equivalent of remoteBasePath, but relative to $wgExtensionAssetsPath"
+								},
+								"scripts": {
+									"type": ["string", "array"],
+									"description": "Scripts to always include (array of file paths)",
+									"items": {
+										"type": "string"
+									}
+								},
+								"languageScripts": {
+									"type": "object",
+									"description": "Scripts to include in specific language contexts (mapping of language code to file path(s))",
+									"patternProperties": {
+										"^[a-zA-Z0-9-]{2,}$": {
+											"type": [
+												"string",
+												"array"
+											],
+											"items": {
+												"type": "string"
+											}
+										}
+									}
+								},
+								"skinScripts": {
+									"type": "object",
+									"description": "Scripts to include in specific skin contexts (mapping of skin name to script(s)",
+									"patternProperties": {
+										".+": {
+											"type": [
+												"string",
+												"array"
+											],
+											"items": {
+												"type": "string"
+											}
+										}
+									}
+								},
+								"debugScripts": {
+									"type": ["string", "array"],
+									"description": "Scripts to include in debug contexts",
+									"items": {
+										"type": "string"
+									}
+								},
+								"loaderScripts": {
+									"type": ["string", "array"],
+									"description": "Scripts to include in the startup module",
+									"items": {
+										"type": "string"
+									}
+								},
+								"dependencies": {
+									"type": ["string", "array"],
+									"description": "Modules which must be loaded before this module",
+									"items": {
+										"type": "string"
+									}
+								},
+								"styles": {
+									"type": ["string", "array", "object"],
+									"description": "Styles to always load",
+									"items": {
+										"type": "string"
+									}
+								},
+								"skinStyles": {
+									"type": "object",
+									"description": "Styles to include in specific skin contexts (mapping of skin name to style(s))",
+									"patternProperties": {
+										".+": {
+											"type": [
+												"string",
+												"array"
+											],
+											"items": {
+												"type": "string"
+											}
+										}
+									}
+								},
+								"messages": {
+									"type": ["string", "array"],
+									"description": "Messages to always load",
+									"items": {
+										"type": "string"
+									}
+								},
+								"group": {
+									"type": "string",
+									"description": "Group which this module should be loaded together with"
+								},
+								"position": {
+									"type": "string",
+									"description": "Position on the page to load this module at",
+									"enum": [
+										"bottom",
+										"top"
+									]
+								},
+								"templates": {
+									"type": "object",
+									"description": "Templates to be loaded for client-side usage"
+								},
+								"targets": {
+									"type": ["string", "array"],
+									"description": "ResourceLoader target the module can run on",
 									"items": {
 										"type": "string"
 									}
 								}
 							}
 						},
-						"skinScripts": {
-							"type": "object",
-							"description": "Scripts to include in specific skin contexts (mapping of skin name to script(s)",
-							"patternProperties": {
-								".+": {
-									"type": [
-										"string",
-										"array"
-									],
-									"items": {
-										"type": "string"
-									}
+						{
+							"description": "A ResourceLoaderImageModule definition",
+							"additionalProperties": false,
+							"properties": {
+								"class": {
+									"enum": ["ResourceLoaderImageModule"]
+								},
+								"data": {
+									"type": "string"
+								},
+								"prefix": {
+									"type": "string"
+								},
+								"selector": {
+									"type": "string"
+								},
+								"selectorWithoutVariant": {
+									"type": "string"
+								},
+								"selectorWithVariant": {
+									"type": "string"
+								},
+								"variants": {
+									"type": "object"
+								},
+								"images": {
+									"type": "object"
+								},
+								"position": {
+									"enum": [
+										"top",
+										"bottom"
+									]
 								}
 							}
 						},
-						"debugScripts": {
-							"type": ["string", "array"],
-							"description": "Scripts to include in debug contexts",
-							"items": {
-								"type": "string"
-							}
-						},
-						"loaderScripts": {
-							"type": ["string", "array"],
-							"description": "Scripts to include in the startup module",
-							"items": {
-								"type": "string"
-							}
-						},
-						"dependencies": {
-							"type": ["string", "array"],
-							"description": "Modules which must be loaded before this module",
-							"items": {
-								"type": "string"
-							}
-						},
-						"styles": {
-							"type": ["string", "array", "object"],
-							"description": "Styles to always load",
-							"items": {
-								"type": "string"
-							}
-						},
-						"skinStyles": {
-							"type": "object",
-							"description": "Styles to include in specific skin contexts (mapping of skin name to style(s))",
-							"patternProperties": {
-								".+": {
-									"type": [
-										"string",
-										"array"
-									],
-									"items": {
-										"type": "string"
-									}
+						{
+							"description": "An arbitrary ResourceLoaderModule definition",
+							"properties": {
+								"class": {
+									"type": "string",
+									"pattern": "^((?!ResourceLoader(File|Image)Module).)*$"
 								}
-							}
-						},
-						"messages": {
-							"type": ["string", "array"],
-							"description": "Messages to always load",
-							"items": {
-								"type": "string"
-							}
-						},
-						"group": {
-							"type": "string",
-							"description": "Group which this module should be loaded together with"
-						},
-						"position": {
-							"type": "string",
-							"description": "Position on the page to load this module at",
-							"enum": [
-								"bottom",
-								"top"
-							]
-						},
-						"templates": {
-							"type": "object",
-							"description": "Templates to be loaded for client-side usage"
+							},
+							"required": ["class"]
 						}
-					}
+					]
 				}
 			}
 		},
