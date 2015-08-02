@@ -1,4 +1,3 @@
-
 /*!
  * JavaScript for Special:Preferences
  */
@@ -86,18 +85,21 @@ jQuery( function ( $ ) {
 		}
 	}
 
-	// If there is a #mw-preferences-success box and javascript is enabled, use a slick notification instead!
-	if ( $( '#mw-preferences-success' ).length ) {
-		notif = mediaWiki.notification.notify( mediaWiki.message( 'savedprefs' ), { autoHide: false } );
-		$( '#preftoc, .prefsection' ).one( 'change keydown mousedown', function () { // 'change' event not reliable!
-			if ( notif ) {
-				notif.close();
-			}
-		} );
+	// Check for messageboxes (.successbox, .warningbox, .errorbox) to replace with notifications
+	if ( $( '.mw-preferences-messagebox' ).length ) {
+		// If there is a #mw-preferences-success box and javascript is enabled, use a slick notification instead!
+		if ( $( '#mw-preferences-success' ).length ) {
+			notif = mediaWiki.notification.notify( mediaWiki.message( 'savedprefs' ), { autoHide: false } );
+			$( '#preftoc, .prefsection' ).one( 'change keydown mousedown', function () { // 'change' event not reliable!
+				if ( notif ) {
+					notif.close();
+				}
+			} );
 
-		// Remove now-unnecessary success=1 querystring to prevent reappearance of notification on reload
-		if ( history.replaceState ) {
-			history.replaceState( {}, document.title, document.URL.replace( /&?success=1/, '' ) );
+			// Remove now-unnecessary success=1 querystring to prevent reappearance of notification on reload
+			if ( history.replaceState ) {
+				history.replaceState( {}, document.title, document.location.href.replace( /&?success=1/, '' ) );
+			}
 		}
 	}
 

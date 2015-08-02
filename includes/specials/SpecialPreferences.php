@@ -50,9 +50,10 @@ class SpecialPreferences extends SpecialPage {
 
 		if ( $this->getRequest()->getCheck( 'success' ) ) {
 			$out->wrapWikiMsg(
-				Xml::tags(
+				Html::rawElement(
 					'div',
-					array( 'class' => 'successbox', 'id' => 'mw-preferences-success' ),
+					array( 'class' => 'mw-preferences-messagebox successbox',
+						'id' => 'mw-preferences-success' ),
 					'$1'
 				),
 				'savedprefs'
