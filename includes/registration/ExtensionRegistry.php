@@ -22,6 +22,11 @@ class ExtensionRegistry {
 	const OLDEST_MANIFEST_VERSION = 1;
 
 	/**
+	 * Bump whenever the registration cache needs resetting
+	 */
+	const CACHE_VERSION = 1;
+
+	/**
 	 * Special key that defines the merge strategy
 	 *
 	 * @since 1.26
@@ -109,7 +114,7 @@ class ExtensionRegistry {
 		}
 
 		// See if this queue is in APC
-		$key = wfMemcKey( 'registration', md5( json_encode( $this->queued ) ) );
+		$key = wfMemcKey( 'registration', md5( json_encode( $this->queued ) ), self::CACHE_VERSION );
 		$data = $this->cache->get( $key );
 		if ( $data ) {
 			$this->exportExtractedData( $data );
@@ -182,6 +187,7 @@ class ExtensionRegistry {
 		foreach ( $data['credits'] as $credit ) {
 			$data['globals']['wgExtensionCredits'][$credit['type']][] = $credit;
 		}
+		$data['globals']['wgExtensionCredits'][self::MERGE_STRATEGY] = 'array_merge_recursive';
 		$data['autoload'] = $autoloadClasses;
 		return $data;
 	}
