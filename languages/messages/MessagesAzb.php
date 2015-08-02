@@ -1,5 +1,5 @@
 <?php
-/** South Azerbaijani (تورکجه)
+/** South Azerbaijani (تۆرکجه)
  *
  * To improve a translation please visit https://translatewiki.net
  *
