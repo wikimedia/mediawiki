@@ -71,7 +71,10 @@ final class EnqueueJob extends Job {
 			}
 		}
 
-		return new self( Title::newMainPage(), array( 'jobsByWiki' => $jobMapsByWiki ) );
+		return new self(
+			Title::makeTitle( NS_SPECIAL, 'Badtitle/' . __CLASS__ ),
+			array( 'jobsByWiki' => $jobMapsByWiki )
+		);
 	}
 
 	public function run() {
