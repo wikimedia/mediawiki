@@ -9,7 +9,6 @@ $wgAutoloadLocalClasses = array(
 	'Action' => __DIR__ . '/includes/actions/Action.php',
 	'ActiveUsersPager' => __DIR__ . '/includes/specials/SpecialActiveusers.php',
 	'ActivityUpdateJob' => __DIR__ . '/includes/jobqueue/jobs/ActivityUpdateJob.php',
-	'AjaxDispatcher' => __DIR__ . '/includes/AjaxDispatcher.php',
 	'AjaxResponse' => __DIR__ . '/includes/AjaxResponse.php',
 	'AllMessagesTablePager' => __DIR__ . '/includes/specials/SpecialAllMessages.php',
 	'AllTrans' => __DIR__ . '/maintenance/language/alltrans.php',

@@ -180,8 +180,8 @@ abstract class Skin extends ContextSource {
 	 * @return array Array of modules with helper keys for easy overriding
 	 */
 	public function getDefaultModules() {
-		global $wgIncludeLegacyJavaScript, $wgPreloadJavaScriptMwUtil, $wgUseAjax,
-			$wgAjaxWatch, $wgEnableAPI, $wgEnableWriteAPI;
+		global $wgIncludeLegacyJavaScript, $wgPreloadJavaScriptMwUtil,
+			$wgEnableAPI, $wgEnableWriteAPI;
 
 		$out = $this->getOutput();
 		$user = $out->getUser();
@@ -208,18 +208,11 @@ abstract class Skin extends ContextSource {
 		}
 
 		// Add various resources if required
-		if ( $wgUseAjax ) {
-			$modules['legacy'][] = 'mediawiki.legacy.ajax';
-
-			if ( $wgEnableAPI ) {
-				if ( $wgEnableWriteAPI && $wgAjaxWatch && $user->isLoggedIn()
-					&& $user->isAllowed( 'writeapi' )
-				) {
-					$modules['watch'][] = 'mediawiki.page.watch.ajax';
-				}
-
-				$modules['search'][] = 'mediawiki.searchSuggest';
+		if ( $wgEnableAPI ) {
+			if ( $wgEnableWriteAPI && $user->isLoggedIn() && $user->isAllowed( 'writeapi' ) ) {
+				$modules['watch'][] = 'mediawiki.page.watch.ajax';
 			}
+			$modules['search'][] = 'mediawiki.searchSuggest';
 		}
 
 		if ( $user->getBoolOption( 'editsectiononrightclick' ) ) {
