@@ -21,6 +21,8 @@
  * @ingroup Cache
  */
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * Session storage in object cache.
  * Used if $wgSessionsInObjectCache is true.
@@ -28,9 +30,6 @@
  * @ingroup Cache
  */
 class ObjectCacheSessionHandler {
-
-	const TTL_REFRESH_WINDOW = 600; // refresh if expiring in 10 minutes
-
 	/**
 	 * Install a session handler for the current web request
 	 */
@@ -145,20 +144,33 @@ class ObjectCacheSessionHandler {
 	 * See the comment inside ObjectCacheSessionHandler::install for rationale.
 	 */
 	static function handleShutdown() {
+		session_write_close();
+	}
+
+	/**
+	 * Pre-emptive session renewal function
+	 */
+	static function renewCurrentSession() {
 		global $wgObjectCacheSessionExpiry;
+
+		// Once a session is at half TTL, renew it
+		$window = $wgObjectCacheSessionExpiry / 2;
+		$logger = LoggerFactory::getInstance( 'SessionHandler' );
 
 		$now = microtime( true );
 		// Session are only written in object stores when $_SESSION changes,
 		// which also renews the TTL ($wgObjectCacheSessionExpiry). If a user
 		// is active but not causing session data changes, it may suddenly
-		// as they view a form, blocking the first submission.
+		// expire as they view a form, blocking the first submission.
 		// Make a dummy change every so often to avoid this.
-		if ( !isset( $_SESSION['wsExpiresUnix'] )
-			|| ( $now + self::TTL_REFRESH_WINDOW ) > isset( $_SESSION['wsExpiresUnix'] )
-		) {
+		if ( !isset( $_SESSION['wsExpiresUnix'] ) ) {
 			$_SESSION['wsExpiresUnix'] = $now + $wgObjectCacheSessionExpiry;
-		}
 
-		session_write_close();
+			$logger->info( "Set expiry for session " . session_id(), array() );
+		} elseif ( ( $now + $window ) > $_SESSION['wsExpiresUnix'] ) {
+			$_SESSION['wsExpiresUnix'] = $now + $wgObjectCacheSessionExpiry;
+
+			$logger->info( "Renewed session " . session_id(), array() );
+		}
 	}
 }

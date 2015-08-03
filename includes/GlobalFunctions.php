@@ -3461,8 +3461,9 @@ function wfResetSessionID() {
  * @param bool $sessionId
  */
 function wfSetupSession( $sessionId = false ) {
-	global $wgSessionsInMemcached, $wgSessionsInObjectCache, $wgCookiePath, $wgCookieDomain,
-			$wgCookieSecure, $wgCookieHttpOnly, $wgSessionHandler;
+	global $wgSessionsInMemcached, $wgSessionsInObjectCache, $wgSessionHandler;
+	global $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookieHttpOnly;
+
 	if ( $wgSessionsInObjectCache || $wgSessionsInMemcached ) {
 		ObjectCacheSessionHandler::install();
 	} elseif ( $wgSessionHandler && $wgSessionHandler != ini_get( 'session.save_handler' ) ) {
@@ -3470,6 +3471,7 @@ function wfSetupSession( $sessionId = false ) {
 		# hasn't already been set to the desired value (that causes errors)
 		ini_set( 'session.save_handler', $wgSessionHandler );
 	}
+
 	session_set_cookie_params(
 		0, $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookieHttpOnly );
 	session_cache_limiter( 'private, must-revalidate' );
@@ -3478,9 +3480,14 @@ function wfSetupSession( $sessionId = false ) {
 	} else {
 		wfFixSessionID();
 	}
+
 	MediaWiki\suppressWarnings();
 	session_start();
 	MediaWiki\restoreWarnings();
+
+	if ( $wgSessionsInObjectCache || $wgSessionsInMemcached ) {
+		ObjectCacheSessionHandler::renewCurrentSession();
+	}
 }
 
 /**
