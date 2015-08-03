@@ -7280,23 +7280,6 @@ $wgAPIUselessQueryPages = array(
 );
 
 /**
- * Enable AJAX framework
- */
-$wgUseAjax = true;
-
-/**
- * List of Ajax-callable functions.
- * Extensions acting as Ajax callbacks must register here
- */
-$wgAjaxExportList = array();
-
-/**
- * Enable watching/unwatching pages using AJAX.
- * Requires $wgUseAjax to be true too.
- */
-$wgAjaxWatch = true;
-
-/**
  * Enable AJAX check for file overwrite, pre-upload
  */
 $wgAjaxUploadDestCheck = true;
