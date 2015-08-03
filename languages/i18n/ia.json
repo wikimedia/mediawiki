@@ -3028,6 +3028,7 @@
 	"tags-create-warnings-below": "Vole tu continuar a crear le etiquetta?",
 	"tags-delete-title": "Deler etiquetta",
 	"tags-delete-explanation-initial": "Tu es sur le puncto de deler le etiquetta \"$1\" del base de datos.",
+	"tags-delete-explanation-in-use": "Illo essera removite ab {{PLURAL:$2|$2 version o entrata de registro al qual|tote le $2 versiones e/o entratas de registro al quales}} illo es actualmente applicate.",
 	"tags-delete-reason": "Motivo:",
 	"comparepages": "Comparar paginas",
 	"compare-page1": "Pagina 1",

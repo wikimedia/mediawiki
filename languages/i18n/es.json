@@ -1686,7 +1686,7 @@
 	"mostrevisions": "Artículos con más ediciones",
 	"prefixindex": "Todas las páginas con prefijo",
 	"prefixindex-namespace": "Todas las páginas con el prefijo (espacio de nombres $1)",
-	"prefixindex-strip": "Prefijo de la hilera en la lista",
+	"prefixindex-strip": "Quitar prefijos en la lista",
 	"shortpages": "Páginas cortas",
 	"longpages": "Páginas largas",
 	"deadendpages": "Páginas sin salida",
@@ -3484,6 +3484,7 @@
 	"special-characters-title-endash": "semirraya",
 	"special-characters-title-emdash": "raya",
 	"special-characters-title-minus": "signo de resta",
+	"mw-widgets-dateinput-no-date": "Ninguna fecha seleccionada",
 	"mw-widgets-titleinput-description-new-page": "la página aún no existe",
 	"mw-widgets-titleinput-description-redirect": "redirigir a $1"
 }

@@ -924,6 +924,7 @@
 	"search-category": "(categorie $1)",
 	"search-file-match": "(komt overeen met de inhoud van het bestand)",
 	"search-suggest": "Bedoelde u: $1",
+	"search-rewritten": "Resultaten voor $1 getoond. Zoek in plaats daarvan naar $2.",
 	"search-interwiki-caption": "Zusterprojecten",
 	"search-interwiki-default": "Resultaten van $1:",
 	"search-interwiki-more": "(meer)",

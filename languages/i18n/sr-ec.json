@@ -946,7 +946,7 @@
 	"stub-threshold": "Праг за обликовање <a href=\"#\" class=\"stub\">везе као клице</a> (у бајтовима):",
 	"stub-threshold-disabled": "Онемогућено",
 	"recentchangesdays": "Број дана у скорашњим изменама:",
-	"recentchangesdays-max": "(највише $1 {{PLURAL:$1|дан|дана|дана}})",
+	"recentchangesdays-max": "Највише $1 {{PLURAL:$1|дан|дана}}",
 	"recentchangescount": "Број измена за приказ:",
 	"prefs-help-recentchangescount": "Подразумева скорашње измене, историје страница и дневнике.",
 	"prefs-help-watchlist-token2": "Ово је тајни кључ за веб довод вашег списка надгледања.\nСвако ко зна овај кључ биће у могућности да види ваша надгледања стога немојте га одавати никоме.\nАко је потребно можете га [[Special:ResetTokens|ресетовати]].",

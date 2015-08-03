@@ -2503,7 +2503,7 @@
 	"saturday-at": "$1 (szombat)",
 	"sunday-at": "$1 (vasárnap)",
 	"yesterday-at": "Tegnap $1",
-	"bad_image_list": "A formátum a következő:\n\nCsak a listatételek (csillaggal * kezdődő tételek) vannak figyelembe véve. Egy sor első hivatkozásának egy rossz képre mutató hivatkozásnak kell lennie.\nUgyanazon sor további hivatkozásai kivételnek tekintettek, pl. a szócikkek, ahol a kép bennük fordulhat elő.",
+	"bad_image_list": "A formátum a következő:\n\nCsak a listatételek (csillaggal * kezdődő sorok) vannak figyelembe véve.\nEgy sor első hivatkozásának egy rossz képre mutató hivatkozásnak kell lennie.\nUgyanazon sor további hivatkozásai kivételnek tekintettek: szócikkek, amikben a kép előfordulhat.",
 	"metadata": "Metaadatok",
 	"metadata-help": "Ez a kép járulékos adatokat tartalmaz, amelyek feltehetően a kép létrehozásához használt digitális fényképezőgép vagy lapolvasó beállításairól adnak tájékoztatást.  Ha a képet az eredetihez képest módosították, ezen adatok eltérhetnek a kép tényleges jellemzőitől.",
 	"metadata-expand": "További képadatok",

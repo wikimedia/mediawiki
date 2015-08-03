@@ -1214,7 +1214,7 @@
 	"unpatrolledletter": "!",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|utende|utinde}} ca condrollene]",
 	"rc_categories": "Limite de le categorije (separate cu \"|\")",
-	"rc_categories_any": "Tutte",
+	"rc_categories_any": "Qualsiasi de le scacchiate",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|byte}} apprisse 'u cangiamende",
 	"newsectionsummary": "/* $1 */ seziona nove",

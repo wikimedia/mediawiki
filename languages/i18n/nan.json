@@ -614,7 +614,7 @@
 	"group-sysop": "koán-lí jîn-oân",
 	"group-bureaucrat": "Koaⁿ-liâu",
 	"group-bot-member": "{{GENDER:$1|Ke-khì-lâng}}",
-	"group-sysop-member": "{{GENDER:$1|goán-lí jîn-oân}}",
+	"group-sysop-member": "{{GENDER:$1|koán-lí jîn-oân}}",
 	"group-bureaucrat-member": "{{GENDER:$1|Koaⁿ-liâu}}",
 	"grouppage-sysop": "{{ns:project}}:Hêng-chèng jîn-oân",
 	"grouppage-bureaucrat": "{{ns:project}}:Koaⁿ-liâu",

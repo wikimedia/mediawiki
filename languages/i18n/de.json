@@ -1277,7 +1277,7 @@
 	"boteditletter": "B",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|beobachtender|beobachtende}} Benutzer]",
 	"rc_categories": "Nur Seiten aus den Kategorien (getrennt mit „|“):",
-	"rc_categories_any": "Alle",
+	"rc_categories_any": "Beliebige der ausgewählten",
 	"rc-change-size": "$1 {{PLURAL:$1|Byte|Bytes}}",
 	"rc-change-size-new": "$1 {{PLURAL:$1|Byte|Bytes}} nach der Änderung",
 	"newsectionsummary": "Neuer Abschnitt /* $1 */",

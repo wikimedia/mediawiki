@@ -868,6 +868,7 @@
 	"apihelp-query+watchlistraw-param-totitle": "要列举的最终标题（带名字空间前缀）。",
 	"apihelp-query+watchlistraw-example-simple": "列出当前用户的监视列表中的页面。",
 	"apihelp-revisiondelete-description": "删除和恢复修订版本。",
+	"apihelp-revisiondelete-param-ids": "用于将被删除的修订的标识符。",
 	"apihelp-revisiondelete-param-hide": "每次修订要隐藏的东西。",
 	"apihelp-revisiondelete-param-show": "每次修订要恢复显示的东西。",
 	"apihelp-revisiondelete-param-reason": "删除或恢复的原因。",
