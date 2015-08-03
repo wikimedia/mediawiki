@@ -1146,9 +1146,8 @@ class UploadForm extends HTMLForm {
 	protected function addUploadJS() {
 		$config = $this->getConfig();
 
-		$useAjaxDestCheck = $config->get( 'UseAjax' ) && $config->get( 'AjaxUploadDestCheck' );
-		$useAjaxLicensePreview = $config->get( 'UseAjax' ) &&
-			$config->get( 'AjaxLicensePreview' ) && $config->get( 'EnableAPI' );
+		$useAjaxDestCheck = $config->get( 'AjaxUploadDestCheck' );
+		$useAjaxLicensePreview = $config->get( 'AjaxLicensePreview' ) && $config->get( 'EnableAPI' );
 		$this->mMaxUploadSize['*'] = UploadBase::getMaxUploadSize();
 
 		$scriptVars = array(
