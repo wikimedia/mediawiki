@@ -8,6 +8,7 @@ THIS IS NOT YET A RELEASE!
 === Changes since 1.25.2 ===
 
 * (T98975) Fix having multiple callbacks for a single hook.
+* (T105896) Confirmation emails would sometimes contain invalid codes.
 
 == MediaWiki 1.25.2 ==
 
