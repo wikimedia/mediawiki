@@ -279,6 +279,7 @@ $wgAutoloadLocalClasses = array(
 	'CurlHttpRequest' => __DIR__ . '/includes/HttpFunctions.php',
 	'DBAccessBase' => __DIR__ . '/includes/dao/DBAccessBase.php',
 	'DBAccessError' => __DIR__ . '/includes/db/LBFactory.php',
+	'DBAccessObjectUtils' => __DIR__ . '/includes/dao/DBAccessObjectUtils.php',
 	'DBConnRef' => __DIR__ . '/includes/db/DBConnRef.php',
 	'DBConnectionError' => __DIR__ . '/includes/db/DatabaseError.php',
 	'DBError' => __DIR__ . '/includes/db/DatabaseError.php',

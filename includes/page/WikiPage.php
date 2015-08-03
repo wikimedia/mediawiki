@@ -361,18 +361,18 @@ class WikiPage implements Page, IDBAccessObject {
 			return;
 		}
 
-		if ( $from === self::READ_LOCKING ) {
-			$data = $this->pageDataFromTitle( wfGetDB( DB_MASTER ), $this->mTitle, array( 'FOR UPDATE' ) );
-		} elseif ( $from === self::READ_LATEST ) {
-			$data = $this->pageDataFromTitle( wfGetDB( DB_MASTER ), $this->mTitle );
-		} elseif ( $from === self::READ_NORMAL ) {
-			$data = $this->pageDataFromTitle( wfGetDB( DB_SLAVE ), $this->mTitle );
+		if ( is_int( $from ) ) {
+			list( $index, $opts ) = DBAccessObjectUtils::getDBOptions( $from );
+			$data = $this->pageDataFromTitle( wfGetDB( $index ), $this->mTitle, $opts );
+
 			if ( !$data
+				&& $index == DB_SLAVE
 				&& wfGetLB()->getServerCount() > 1
 				&& wfGetLB()->hasOrMadeRecentMasterChanges()
 			) {
 				$from = self::READ_LATEST;
-				$data = $this->pageDataFromTitle( wfGetDB( DB_MASTER ), $this->mTitle );
+				list( $index, $opts ) = DBAccessObjectUtils::getDBOptions( $from );
+				$data = $this->pageDataFromTitle( wfGetDB( $index ), $this->mTitle, $opts );
 			}
 		} else {
 			// No idea from where the caller got this data, assume slave database.
