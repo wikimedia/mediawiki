@@ -209,8 +209,6 @@ abstract class Skin extends ContextSource {
 
 		// Add various resources if required
 		if ( $wgUseAjax ) {
-			$modules['legacy'][] = 'mediawiki.legacy.ajax';
-
 			if ( $wgEnableAPI ) {
 				if ( $wgEnableWriteAPI && $wgAjaxWatch && $user->isLoggedIn()
 					&& $user->isAllowed( 'writeapi' )

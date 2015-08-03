@@ -18,6 +18,8 @@ production.
 * Deprecated API formats dump and wddx have been completely removed.
 * $wgResourceLoaderUseESI was deprecated and removed. This was an experimental
   feature that was never enabled by default.
+* mediawiki.legacy.ajax has been removed, following a lengthy deprecation period.
+
 
 === New features in 1.26 ===
 * (T51506) Now action=info gives estimates of actual watchers for a page.
