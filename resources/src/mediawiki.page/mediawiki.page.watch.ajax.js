@@ -170,7 +170,10 @@
 					msg = mw.message( 'watcherrortext', link );
 
 					// Report to user about the error
-					mw.notify( msg, { tag: 'watch-self' } );
+					mw.notify( msg, {
+						tag: 'watch-self',
+						type: 'error'
+					} );
 				} );
 		} );
 	} );
