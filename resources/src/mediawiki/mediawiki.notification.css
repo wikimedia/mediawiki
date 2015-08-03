@@ -20,3 +20,13 @@
 .mw-notification-title {
 	font-weight: bold;
 }
+
+.mw-notification-type-warn {
+	border-color: #F5BE00; /* yellow */
+	background-color: #FFFFE8;
+}
+
+.mw-notification-type-error {
+	border-color: #EB3941; /* red */
+	background-color: #FFF8F8;
+}

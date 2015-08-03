@@ -28,7 +28,7 @@
 					mw.notify( mw.msg( 'addedwatchtext-short', title ) );
 				} ).fail( function () {
 					$link.text( mw.msg( 'watch' ) );
-					mw.notify( mw.msg( 'watcherrortext', title ) );
+					mw.notify( mw.msg( 'watcherrortext', title ), { type: 'error' } );
 				} );
 			} else {
 				$link.text( mw.msg( 'unwatching' ) );
@@ -38,7 +38,7 @@
 					mw.notify( mw.msg( 'removedwatchtext-short', title ) );
 				} ).fail( function () {
 					$link.text( mw.msg( 'unwatch' ) );
-					mw.notify( mw.msg( 'watcherrortext', title ) );
+					mw.notify( mw.msg( 'watcherrortext', title ), { type: 'error' } );
 				} );
 			}
 
