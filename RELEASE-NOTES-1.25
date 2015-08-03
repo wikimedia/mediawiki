@@ -15,6 +15,7 @@ THIS IS NOT YET A RELEASE!
 * (T62174) Provide fallbacks for use of mb_convert_encoding() in
   HtmlFormatter. It was causing an error when accessing the api help page
   if the mbstring PHP extension was not installed.
+* (T105896) Confirmation emails would sometimes contain invalid codes.
 
 == MediaWiki 1.25.2 ==
 
