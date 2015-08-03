@@ -1823,6 +1823,16 @@ return array(
 		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'mediawiki.dialogs.Upload' => array(
+		'scripts' => array(
+			'resources/src/mediawiki.dialogs/mw.dialogs.js',
+			'resources/src/mediawiki.dialogs/mw.dialogs.Upload.js'
+		),
+		'dependencies' => array(
+			'oojs-ui',
+			'mediawiki.Upload',
+		),
+	),
 
 	/* es5-shim */
 	'es5-shim' => array(
