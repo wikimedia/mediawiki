@@ -20,6 +20,7 @@
 		"resources/src/mediawiki.special",
 		"resources/src/mediawiki.toolbar",
 		"resources/src/mediawiki.widgets",
+		"resources/src/mediawiki.dialogs",
 		"resources/src/jquery/jquery.accessKeyLabel.js",
 		"resources/src/jquery/jquery.arrowSteps.js",
 		"resources/src/jquery/jquery.autoEllipsis.js",

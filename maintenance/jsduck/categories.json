@@ -70,6 +70,12 @@
 				]
 			},
 			{
+				"name": "Dialogs",
+				"classes": [
+					"mw.dialogs*"
+				]
+			},
+			{
 				"name": "Special",
 				"classes": [
 					"mw.special*"
