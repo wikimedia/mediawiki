@@ -1107,6 +1107,28 @@ return array(
 			'mediawiki.api.upload',
 		),
 	),
+	'mediawiki.Upload.Dialog' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.Upload.Dialog.js',
+		'dependencies' => array(
+			'oojs-ui',
+			'mediawiki.Upload',
+		),
+		'messages' => array(
+			'upload-dialog-title',
+			'upload-dialog-error',
+			'upload-dialog-warning',
+			'upload-dialog-button-cancel',
+			'upload-dialog-button-done',
+			'upload-dialog-button-save',
+			'upload-dialog-button-upload',
+			'upload-dialog-label-select-file',
+			'upload-dialog-label-infoform-title',
+			'upload-dialog-label-infoform-name',
+			'upload-dialog-label-infoform-description',
+			'upload-dialog-label-usage-title',
+			'upload-dialog-label-usage-filename',
+		),
+	),
 	'mediawiki.toc' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.toc.js',
 		'dependencies' => 'mediawiki.cookie',
