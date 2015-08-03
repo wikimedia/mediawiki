@@ -74,7 +74,10 @@ final class EnqueueJob extends Job {
 			}
 		}
 
-		$eJob = new self( Title::newMainPage(), array( 'jobsByWiki' => $jobMapsByWiki ) );
+		$eJob = new self(
+			Title::makeTitle( NS_SPECIAL, 'Badtitle/' . __CLASS__ ),
+			array( 'jobsByWiki' => $jobMapsByWiki )
+		);
 		// If *all* jobs to be pushed are to be de-duplicated (a common case), then
 		// de-duplicate this whole job itself to avoid build up in high traffic cases
 		$eJob->removeDuplicates = $deduplicate;
