@@ -323,7 +323,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		static $msgcache = null;
 		if ( $msgcache === null ) {
 			static $msgs = array( 'isredirect', 'istemplate', 'semicolon-separator',
-				'whatlinkshere-links', 'isimage', 'edit' );
+				'whatlinkshere-links', 'isimage', 'editlink' );
 			$msgcache = array();
 			foreach ( $msgs as $msg ) {
 				$msgcache[$msg] = $this->msg( $msg )->escaped();
@@ -364,7 +364,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		}
 
 		# Space for utilities links, with a what-links-here link provided
-		$wlhLink = $this->wlhLink( $nt, $msgcache['whatlinkshere-links'], $msgcache['edit'] );
+		$wlhLink = $this->wlhLink( $nt, $msgcache['whatlinkshere-links'], $msgcache['editlink'] );
 		$wlh = Xml::wrapClass(
 			$this->msg( 'parentheses' )->rawParams( $wlhLink )->escaped(),
 			'mw-whatlinkshere-tools'
