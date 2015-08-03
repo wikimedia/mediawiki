@@ -1107,6 +1107,13 @@ return array(
 			'mediawiki.api.upload',
 		),
 	),
+	'mediawiki.Upload.Dialog' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.Upload.Dialog.js',
+		'dependencies' => array(
+			'oojs-ui',
+			'mediawiki.Upload',
+		),
+	),
 	'mediawiki.toc' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.toc.js',
 		'dependencies' => 'mediawiki.cookie',
