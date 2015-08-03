@@ -2702,8 +2702,7 @@ class OutputPage extends ContextSource {
 			$ret .= $item . "\n";
 		}
 
-		// No newline after buildCssLinks since makeResourceLoaderLink did that already
-		$ret .= $this->buildCssLinks();
+		$ret .= $this->buildCssLinks() . "\n";
 
 		$ret .= $this->getHeadScripts() . "\n";
 
