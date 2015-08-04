@@ -10,6 +10,8 @@
 	/**
 	 * Creates an mw.widgets.CalendarWidget object.
 	 *
+	 * You will most likely want to use mw.widgets.DateInputWidget instead of CalendarWidget directly.
+	 *
 	 * @class
 	 * @extends OO.ui.Widget
 	 * @mixins OO.ui.mixin.TabIndexedElement

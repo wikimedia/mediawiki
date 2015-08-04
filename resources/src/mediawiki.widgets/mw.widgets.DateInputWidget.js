@@ -10,6 +10,51 @@
 	/**
 	 * Creates an mw.widgets.DateInputWidget object.
 	 *
+	 *     @example
+	 *     // Date input widget showcase
+	 *     var fieldset = new OO.ui.FieldsetLayout( {
+	 *       items: [
+	 *         new OO.ui.FieldLayout(
+	 *           new mw.widgets.DateInputWidget(),
+	 *           {
+	 *             align: 'top',
+	 *             label: 'Select date'
+	 *           }
+	 *         ),
+	 *         new OO.ui.FieldLayout(
+	 *           new mw.widgets.DateInputWidget( { precision: 'month' } ),
+	 *           {
+	 *             align: 'top',
+	 *             label: 'Select month'
+	 *           }
+	 *         ),
+	 *         new OO.ui.FieldLayout(
+	 *           new mw.widgets.DateInputWidget( {
+	 *             inputFormat: 'DD.MM.YYYY',
+	 *             displayFormat: 'Do [of] MMMM [anno Domini] YYYY'
+	 *           } ),
+	 *           {
+	 *             align: 'top',
+	 *             label: 'Select date (custom formats)'
+	 *           }
+	 *         )
+	 *       ]
+	 *     } );
+	 *     $( 'body' ).append( fieldset.$element );
+	 *
+	 * The value is stored in 'YYYY-MM-DD' or 'YYYY-MM' format:
+	 *
+	 *     @example
+	 *     // Accessing values in a date input widget
+	 *     var dateInput = new mw.widgets.DateInputWidget();
+	 *     var $label = $( '<p>' );
+	 *     $( 'body' ).append( $label, dateInput.$element );
+	 *     dateInput.on( 'change', function () {
+	 *       // The value will always be a valid date or empty string, malformed input is ignored
+	 *       var date = dateInput.getValue();
+	 *       $label.text( 'Selected date: ' + ( date || '(none)' ) );
+	 *     } );
+	 *
 	 * @class
 	 * @extends OO.ui.InputWidget
 	 *
