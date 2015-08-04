@@ -16,6 +16,8 @@
 		"wiki": "https://www.mediawiki.org/"
 	},
 	"require": {
+		"nmred/kafka-php": "dev-master",
+		"apache/avro": "1.7.7",
 		"cssjanus/cssjanus": "1.1.1",
 		"ext-iconv": "*",
 		"leafo/lessphp": "0.5.0",
@@ -70,5 +72,22 @@
 				"composer.local.json"
 			]
 		}
-	}
+	},
+	"repositories": [
+		{
+			"type": "package",
+			"package": {
+				"name": "apache/avro",
+				"version": "1.7.7",
+				"source": {
+					"url": "http://svn.apache.org/repos/asf/avro/",
+					"type": "svn",
+					"reference": "tags/release-1.7.7/lang/php"
+				},
+				"autoload": {
+					"classmap": ["lib/"]
+				}
+			}
+		}
+	]
 }
