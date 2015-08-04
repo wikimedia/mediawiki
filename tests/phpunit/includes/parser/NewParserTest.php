@@ -18,7 +18,6 @@ class NewParserTest extends MediaWikiTestCase {
 
 	public $keepUploads = false;
 	public $runDisabled = false;
-	public $runParsoid = false;
 	public $regex = '';
 	public $showProgress = true;
 	public $savedWeirdGlobals = array();

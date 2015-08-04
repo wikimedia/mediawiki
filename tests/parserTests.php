@@ -25,7 +25,7 @@
  */
 
 $otions = array( 'quick', 'color', 'quiet', 'help', 'show-output',
-	'record', 'run-disabled', 'run-parsoid' );
+	'record', 'run-disabled' );
 $optionsWithArgs = array( 'regex', 'filter', 'seed', 'setversion' );
 
 require_once __DIR__ . '/../maintenance/commandLine.inc';
@@ -54,7 +54,6 @@ Options:
   --seed <n>       Start the fuzz test from the specified seed
   --help           Show this help message
   --run-disabled   run disabled tests
-  --run-parsoid    run parsoid tests (normally disabled)
 
 ENDS;
 	exit( 0 );

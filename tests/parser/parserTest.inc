@@ -139,7 +139,6 @@ class ParserTest {
 		}
 
 		$this->runDisabled = isset( $options['run-disabled'] );
-		$this->runParsoid = isset( $options['run-parsoid'] );
 
 		$this->djVuSupport = new DjVuSupport();
 		$this->tidySupport = new TidySupport();
