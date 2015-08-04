@@ -161,6 +161,22 @@ Template:table_attribs_5
 !! endarticle
 
 !! article
+Template:table_attribs_6
+!! text
+style="background: <nowiki>
+
+
+red;</nowiki>" |
+!! endarticle
+
+!! article
+Template:table_attribs_7
+!! text
+<noinclude>
+|</noinclude>style{{=}}"background:&#35;f9f9f9;"|Foo<ref>foo</ref>
+!! endarticle
+
+!! article
 Template:table_header_cells
 !! text
 {{table_attribs}}!!style='color:red;'|''Bar''||style='color:brown;'|''Foo'' and Baz
@@ -1314,7 +1330,7 @@ Non-word characters don't terminate tag names + tidy
 Non-word characters are valid in extension tags (T19663)
 !! wikitext
 <tåg>tåg</tåg>
-!! html
+!! html/php
 <pre>
 'tåg'
 array (
@@ -1325,11 +1341,15 @@ array (
 
 !! test
 Isolated close tags should be treated as literal text (bug 52760)
+!! options
+parsoid=wt2html
 !! wikitext
 </b>
 
 <s.foo>s</s>
-!! html+tidy
+!! html/php+tidy
+<p>&lt;s.foo&gt;s</p>
+!! html/parsoid
 <p>&lt;s.foo&gt;s</p>
 !! end
 
@@ -1363,9 +1383,11 @@ Bare pipe character from a template (bug 52363)
 <nowiki> unordered list
 !! wikitext
 <nowiki>* This is not an unordered list item.</nowiki>
-!! html
+!! html/php
 <p>* This is not an unordered list item.
 </p>
+!! html/parsoid
+<p><span typeof="mw:Nowiki">* This is not an unordered list item.</span></p>
 !! end
 
 !! test
@@ -1378,7 +1400,7 @@ sed abit.
 
 :and a colon
 </nowiki>
-!! html
+!! html/php
 <p>Lorem ipsum dolor
 
 sed abit.
@@ -1387,6 +1409,14 @@ sed abit.
 :and a colon
 
 </p>
+!! html/parsoid
+<p><span typeof="mw:Nowiki">Lorem ipsum dolor
+
+sed abit.
+  sed nullum.
+
+:and a colon
+</span></p>
 !! end
 
 !! test
@@ -1400,7 +1430,7 @@ nowiki 3
 
 *There is not nowiki.
 *There is <nowiki>nowiki</nowiki>.
-!! html
+!! html/php
 <dl><dd>There is not nowiki.</dd>
 <dd>There is nowiki.</dd></dl>
 <ol><li>There is not nowiki.</li>
@@ -1408,6 +1438,15 @@ nowiki 3
 <ul><li>There is not nowiki.</li>
 <li>There is nowiki.</li></ul>
 
+!! html/parsoid
+<dl><dd data-parsoid='{}'>There is not nowiki.</dd>
+<dd data-parsoid='{}'>There is <span typeof="mw:Nowiki">nowiki</span>.</dd></dl>
+
+<ol><li data-parsoid='{}'>There is not nowiki.</li>
+<li data-parsoid='{}'>There is <span typeof="mw:Nowiki">nowiki</span>.</li></ol>
+
+<ul><li data-parsoid='{}'>There is not nowiki.</li>
+<li data-parsoid='{}'>There is <span typeof="mw:Nowiki">nowiki</span>.</li></ul>
 !! end
 
 !! test
@@ -1436,7 +1475,7 @@ parsoid=html2wt
 !! html
 <p>* &lt;/nowiki&gt; tag</p>
 !! wikitext
-<nowiki>* &lt;/nowiki&gt;</nowiki> tag
+<nowiki>*</nowiki> <nowiki>&lt;/nowiki&gt;</nowiki> tag
 !! end
 
 !! test
@@ -2223,7 +2262,7 @@ Entities inside <pre>
 </nowiki>
 </pre>
 
-!! html
+!! html/php
 <pre>
 &lt;nowiki&gt;
 </pre>
@@ -2236,6 +2275,18 @@ Entities inside <pre>
 
 &lt;/pre&gt;
 </p>
+!! html/parsoid
+<pre data-parsoid='{"stx":"html","strippedNL":true}'>&lt;nowiki>
+</pre>
+<p><span typeof="mw:Placeholder" data-parsoid='{"src":"&lt;/nowiki>"}'>&lt;/nowiki></span>
+&lt;/pre></p>
+
+<p><span typeof="mw:Nowiki">
+&lt;pre>
+&lt;nowiki>
+&lt;/pre>
+</span>
+&lt;/pre></p>
 !! end
 
 !! test
@@ -3397,7 +3448,7 @@ HTML-pre: 3: other wikitext
 '' no-italic ''
 [[ NoLink ]]
 </pre>
-!! html
+!! html/php
 <pre>
 * foo
 # bar
@@ -3406,6 +3457,13 @@ HTML-pre: 3: other wikitext
 [[ NoLink ]]
 </pre>
 
+!! html/parsoid
+<pre data-parsoid='{"stx":"html","strippedNL":true}'>* foo
+# bar
+= no-h =
+'' no-italic ''
+[[ NoLink ]]
+</pre>
 !!end
 
 ###
@@ -4236,6 +4294,17 @@ Definition Lists: colons occurring in tags
 </dl>
 </dd>
 </dl>
+!! html/parsoid
+<dl><dt>a</dt><dd data-parsoid='{"stx":"row"}'>b</dd>
+<dt><b>a:b</b></dt>
+<dt><i data-parsoid='{"stx":"html"}'>a:b</i></dt>
+<dt><span data-parsoid='{"stx":"html"}'>a:b</span></dt>
+<dt><div data-parsoid='{"stx":"html"}'>a:b</div></dt>
+<dt><div data-parsoid='{"stx":"html","autoInsertedEnd":true}'>a</div></dt>
+<dd>b</dd>
+<dt><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1","spc":["","","",""]}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"a:b"}},"i":0}}]}'>a:b</span></dt>
+<dt><i about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1","spc":["","","",""]}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"&#39;&#39;a:b&#39;&#39;"}},"i":0}}]}'>a:b</i>
+<dl><dt><dl><dt><i>a:b</i></dt></dl></dt></dl></dt></dl>
 !! end
 
 !! test
@@ -6161,6 +6230,21 @@ Indented table markup mixed with indented pre content (proposed in bug 6200)
 <tr>
 <td align="center" style="color:red;">Foo</td><td style="color:red;"><i>Bar</i></td><td style="color:brown;"><i>Foo</i> and Baz</td></tr>
 </tbody></table>
+!! end
+
+## Edge case fix to prevent future regressions
+!! test
+T107652: <ref>s in templates that also generate table cell attributes should be rendered properly
+!! wikitext
+{|
+|{{table_attribs_7}}
+|}
+<references />
+!! html/parsoid
+<table>
+<tbody><tr><td style="background:#f9f9f9;" typeof="mw:Transclusion" about="#mwt1" data-mw='{"parts":["|",{"template":{"target":{"wt":"table_attribs_7","href":"./Template:Table_attribs_7"},"params":{},"i":0}}]}'>Foo<span class="mw-ref" id="cite_ref-1" rel="dc:references" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1" style="counter-reset: mw-Ref 1;"><span class="mw-reflink-text">[1]</span></a></span></td></tr>
+</tbody></table>
+<ol class="mw-references" typeof="mw:Extension/references" about="#mwt5" data-mw='{"name":"references","attrs":{}}'><li about="#cite_note-1" id="cite_note-1"><a href="#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">foo</span></li></ol>
 !! end
 
 !! test
@@ -9632,6 +9716,15 @@ __NOEDITSECTION__
 <meta property="mw:PageProp/noeditsection" data-parsoid='{"magicSrc":"__NOEDITSECTION__"}'/>
 !! end
 
+!!test
+__proto__ is treated as normal wikitext (T105997)
+!!wikitext
+__proto__
+!!html
+<p>__proto__
+</p>
+!!end
+
 ###
 ### Magic links
 ###
@@ -10216,7 +10309,7 @@ File:Foobar.jpg
 msgnw keyword
 !! wikitext
 {{msgnw:MSGNW test}}
-!! html
+!! html/php
 <p>&#39;&#39;None&#39;&#39; of &#39;&#39;&#39;this&#39;&#39;&#39; should be 
 &#42; interpreted
 &#32;but rather passed unmodified
@@ -11004,6 +11097,25 @@ Templates: Support for templates generating attributes and content
 </tbody></table>
 !! end
 
+# T107622
+!! test
+4. Entities and nowikis inside templated attributes should be handled correctly inside templated tables
+!! wikitext
+{|
+| {{table_attribs_6}} hi
+|}
+!! html/php
+<table>
+<tr>
+<td style="background: red;"> hi
+</td></tr></table>
+
+!! html/parsoid
+<table>
+<tbody><tr><td style="background:  red;" typeof="mw:Transclusion" about="#mwt1" data-parsoid='{"autoInsertedEnd":true,"pi":[[]]}' data-mw='{"parts":["| ",{"template":{"target":{"wt":"table_attribs_6","href":"./Template:Table_attribs_6"},"params":{},"i":0}}," hi"]}'> hi</td></tr>
+</tbody></table>
+!! end
+
 !!test
 Templates: HTML Tables: 1. Generating start of a HTML table
 !! wikitext
@@ -11468,41 +11580,40 @@ Parser Functions: 2. Nested use (only outermost should be marked up)
 !! test
 pre-save transform: subst:
 !! options
-PST
+pst
 !! wikitext
 {{subst:test}}
-!! html
+!! html/php
 This is a test template
 !! end
 
 !! test
 pre-save transform: normal template
 !! options
-PST
+pst
 !! wikitext
 {{test}}
-!! html
+!! html/php
 {{test}}
 !! end
 
 !! test
 pre-save transform: nonexistent template
 !! options
-PST
+pst
 !! wikitext
 {{thistemplatedoesnotexist}}
-!! html
+!! html/php
 {{thistemplatedoesnotexist}}
 !! end
-
 
 !! test
 pre-save transform: subst magic variables
 !! options
-PST
+pst
 !! wikitext
 {{subst:SITENAME}}
-!! html
+!! html/php
 MediaWiki
 !! end
 
@@ -11513,7 +11624,7 @@ pre-save transform: subst: templates with parameters
 pst
 !! wikitext
 {{subst:paramtest|param="something else"}}
-!! html
+!! html/php
 This is a test template with parameter "something else"
 !! end
 
@@ -11529,10 +11640,9 @@ pre-save transform: nowiki in subst (bug 1188)
 pst
 !! wikitext
 {{subst:nowikitest}}
-!! html
+!! html/php
 <nowiki>'''not wiki'''</nowiki>
 !! end
-
 
 !! article
 Template:commenttest
@@ -11546,7 +11656,7 @@ pre-save transform: comment in subst (bug 1936)
 pst
 !! wikitext
 {{subst:commenttest}}
-!! html
+!! html/php
 This template has <!-- a comment --> in it.
 !! end
 
@@ -11556,7 +11666,7 @@ pre-save transform: unclosed tag
 pst noxml
 !! wikitext
 <nowiki>'''not wiki'''
-!! html
+!! html/php
 <nowiki>'''not wiki'''
 !! end
 
@@ -11566,7 +11676,7 @@ pre-save transform: mixed tag case
 pst noxml
 !! wikitext
 <NOwiki>'''not wiki'''</noWIKI>
-!! html
+!! html/php
 <NOwiki>'''not wiki'''</noWIKI>
 !! end
 
@@ -11576,7 +11686,7 @@ pre-save transform: unclosed comment in <nowiki>
 pst noxml
 !! wikitext
 wiki<nowiki>nowiki<!--nowiki</nowiki>wiki
-!! html
+!! html/php
 wiki<nowiki>nowiki<!--nowiki</nowiki>wiki
 !!end
 
@@ -11604,7 +11714,7 @@ pre-save transform: comment containing gallery (bug 5024)
 pst
 !! wikitext
 <!-- <gallery>data</gallery> -->
-!! html
+!! html/php
 <!-- <gallery>data</gallery> -->
 !!end
 
@@ -11614,7 +11724,7 @@ pre-save transform: comment containing extension
 pst
 !! wikitext
 <!-- <tag>data</tag> -->
-!! html
+!! html/php
 <!-- <tag>data</tag> -->
 !!end
 
@@ -11624,7 +11734,7 @@ pre-save transform: comment containing nowiki
 pst
 !! wikitext
 <!-- <nowiki>data</nowiki> -->
-!! html
+!! html/php
 <!-- <nowiki>data</nowiki> -->
 !!end
 
@@ -11634,7 +11744,7 @@ pre-save transform: <noinclude> in subst (bug 3298)
 pst
 !! wikitext
 {{subst:Includes}}
-!! html
+!! html/php
 Foobar
 !! end
 
@@ -11644,7 +11754,7 @@ pre-save transform: <onlyinclude> in subst (bug 3298)
 pst
 !! wikitext
 {{subst:Includes2}}
-!! html
+!! html/php
 Foo
 !! end
 
@@ -11666,7 +11776,7 @@ bug 22297: safesubst: works during PST
 pst
 !! wikitext
 {{subst:SafeSubstTest}}{{safesubst:SubstTest}}
-!! html
+!! html/php
 FoobarFoobar
 !! end
 
@@ -11702,7 +11812,7 @@ pst
 [[|Article (context)]]
 [[Bar:X (Y) Z|]]
 [[:Bar:X (Y) Z|]]
-!! html
+!! html/php
 [[Article (context)|Article]]
 [[Bar:Article|Article]]
 [[:Bar:Article|Article]]
@@ -11723,7 +11833,7 @@ pst
 [[:interwiki:Article|]]
 [[interwiki:Bar:Article|]]
 [[:interwiki:Bar:Article|]]
-!! html
+!! html/php
 [[interwiki:Article|Article]]
 [[:interwiki:Article|Article]]
 [[interwiki:Bar:Article|Bar:Article]]
@@ -11736,7 +11846,7 @@ pre-save transform: context links ("pipe trick") with parens in title
 pst title=[[Somearticle (context)]]
 !! wikitext
 [[|Article]]
-!! html
+!! html/php
 [[Article (context)|Article]]
 !! end
 
@@ -11748,7 +11858,7 @@ pst title=[[Someplace, Somewhere]]
 [[|Otherplace]]
 [[Otherplace, Elsewhere|]]
 [[Otherplace, Elsewhere, Anywhere|]]
-!! html
+!! html/php
 [[Otherplace, Somewhere|Otherplace]]
 [[Otherplace, Elsewhere|Otherplace]]
 [[Otherplace, Elsewhere, Anywhere|Otherplace]]
@@ -11761,7 +11871,7 @@ pst title=[[Someplace (IGNORED), Somewhere]]
 !! wikitext
 [[|Otherplace]]
 [[Otherplace (place), Elsewhere|]]
-!! html
+!! html/php
 [[Otherplace, Somewhere|Otherplace]]
 [[Otherplace (place), Elsewhere|Otherplace]]
 !! end
@@ -11773,7 +11883,7 @@ pst title=[[Who, me? (context)]]
 !! wikitext
 [[|Yes, you.]]
 [[Me, Myself, and I (1937 song)|]]
-!! html
+!! html/php
 [[Yes, you. (context)|Yes, you.]]
 [[Me, Myself, and I (1937 song)|Me, Myself, and I]]
 !! end
@@ -11784,7 +11894,7 @@ pre-save transform: context links ("pipe trick") with namespace
 pst title=[[Ns:Somearticle]]
 !! wikitext
 [[|Article]]
-!! html
+!! html/php
 [[Ns:Article|Article]]
 !! end
 
@@ -11794,7 +11904,7 @@ pre-save transform: context links ("pipe trick") with namespace and parens
 pst title=[[Ns:Somearticle (context)]]
 !! wikitext
 [[|Article]]
-!! html
+!! html/php
 [[Ns:Article (context)|Article]]
 !! end
 
@@ -11804,7 +11914,7 @@ pre-save transform: context links ("pipe trick") with namespace and comma
 pst title=[[Ns:Somearticle, Context, Whatever]]
 !! wikitext
 [[|Article]]
-!! html
+!! html/php
 [[Ns:Article, Context, Whatever|Article]]
 !! end
 
@@ -11814,7 +11924,7 @@ pre-save transform: context links ("pipe trick") with namespace, comma and paren
 pst title=[[Ns:Somearticle, Context (context)]]
 !! wikitext
 [[|Article]]
-!! html
+!! html/php
 [[Ns:Article (context)|Article]]
 !! end
 
@@ -11824,7 +11934,7 @@ pre-save transform: context links ("pipe trick") with namespace, parens and comm
 pst title=[[Ns:Somearticle (IGNORED), Context]]
 !! wikitext
 [[|Article]]
-!! html
+!! html/php
 [[Ns:Article, Context|Article]]
 !! end
 
@@ -11839,7 +11949,7 @@ pst
 [[|Article（context）]]
 [[Bar:X（Y）Z|]]
 [[:Bar:X（Y）Z|]]
-!! html
+!! html/php
 [[Article（context）|Article]]
 [[Bar:Article（context）|Article]]
 [[:Bar:Article（context）|Article]]
@@ -11859,7 +11969,7 @@ pst
 [[|Article （context）]]
 [[Bar:X （Y） Z|]]
 [[:Bar:X （Y） Z|]]
-!! html
+!! html/php
 [[Article （context）|Article]]
 [[Bar:Article （context）|Article]]
 [[:Bar:Article （context）|Article]]
@@ -11879,7 +11989,7 @@ pst
 [[|Article(context)]]
 [[Bar:X(Y)Z|]]
 [[:Bar:X(Y)Z|]]
-!! html
+!! html/php
 [[Article(context)|Article]]
 [[Bar:Article(context)|Article]]
 [[:Bar:Article(context)|Article]]
@@ -11899,7 +12009,7 @@ pst
 [[Bar:Article (context)，context|]]
 [[:Bar:Article (context), context|]]
 [[:Bar:Article (context)，context|]]
-!! html
+!! html/php
 [[Article (context), context|Article]]
 [[Article (context)，context|Article]]
 [[Bar:Article (context), context|Article]]
@@ -11918,7 +12028,7 @@ Empty lines are trimmed
 
 
 
-!! html
+!! html/php
 Empty lines are trimmed
 !! end
 
@@ -11931,7 +12041,7 @@ pst
 * <noinclude>~~~</noinclude>
 * <includeonly>~~~</includeonly>
 * <onlyinclude>~~~</onlyinclude>
-!! html
+!! html/php
 * [[Special:Contributions/127.0.0.1|127.0.0.1]]
 * <noinclude>[[Special:Contributions/127.0.0.1|127.0.0.1]]</noinclude>
 * <includeonly>[[Special:Contributions/127.0.0.1|127.0.0.1]]</includeonly>
@@ -11962,7 +12072,7 @@ As well as inside noinclude/onlyinclude
 
 But not inside includeonly
 <includeonly>{{subst:Foo}}</includeonly>
-!! html
+!! html/php
 Shall not expand:
 
 <nowiki>~~~~</nowiki>
@@ -15612,7 +15722,7 @@ evil <math>-wiki-tags without Extension:Math enabled
 Parser hook: empty input
 !! wikitext
 <tag></tag>
-!! html
+!! html/php
 <pre>
 ''
 array (
@@ -15625,7 +15735,7 @@ array (
 Parser hook: empty input using terminated empty elements
 !! wikitext
 <tag/>
-!! html
+!! html/php
 <pre>
 NULL
 array (
@@ -15638,7 +15748,7 @@ array (
 Parser hook: empty input using terminated empty elements (space before)
 !! wikitext
 <tag />
-!! html
+!! html/php
 <pre>
 NULL
 array (
@@ -15651,7 +15761,7 @@ array (
 Parser hook: basic input
 !! wikitext
 <tag>input</tag>
-!! html
+!! html/php
 <pre>
 'input'
 array (
@@ -15665,7 +15775,7 @@ array (
 Parser hook: case insensitive
 !! wikitext
 <TAG>input</TAG>
-!! html
+!! html/php
 <pre>
 'input'
 array (
@@ -15679,7 +15789,7 @@ array (
 Parser hook: case insensitive, redux
 !! wikitext
 <TaG>input</TAg>
-!! html
+!! html/php
 <pre>
 'input'
 array (
@@ -15694,7 +15804,7 @@ Parser hook: nested tags
 noxml
 !! wikitext
 <tag><tag></tag></tag>
-!! html
+!! html/php
 <pre>
 '<tag>'
 array (
@@ -15707,7 +15817,7 @@ array (
 Parser hook: basic arguments
 !! wikitext
 <tag width=200 height = "100" depth = '50' square></tag>
-!! html
+!! html/php
 <pre>
 ''
 array (
@@ -15724,7 +15834,7 @@ array (
 Parser hook: argument containing a forward slash (bug 5344)
 !! wikitext
 <tag filename='/tmp/bla'></tag>
-!! html
+!! html/php
 <pre>
 ''
 array (
@@ -15738,7 +15848,7 @@ array (
 Parser hook: empty input using terminated empty elements (bug 2374)
 !! wikitext
 <tag foo=bar/>text
-!! html
+!! html/php
 <pre>
 NULL
 array (
@@ -15755,7 +15865,7 @@ Parser hook: basic arguments using terminated empty elements (bug 2374)
 <tag width=200 height = "100" depth = '50' square/>
 other stuff
 </tag>
-!! html
+!! html/php
 <pre>
 NULL
 array (
@@ -15779,7 +15889,7 @@ Parser hook: static parser hook not inside a comment
 !! wikitext
 <statictag>hello, world</statictag>
 <statictag action=flush/>
-!! html
+!! html/php
 <p>hello, world
 </p>
 !! end
@@ -15790,7 +15900,7 @@ Parser hook: static parser hook inside a comment
 !! wikitext
 <!-- <statictag>hello, world</statictag> -->
 <statictag action=flush/>
-!! html
+!! html/php
 <p><br />
 </p>
 !! end
@@ -15849,20 +15959,24 @@ Sanitizer: Closing of open but not closed tags
 
 !! test
 Sanitizer: Closing of closed but not open tags
+!! options
+parsoid=wt2html
 !! wikitext
 </s>
-!! html
-<p>&lt;/s&gt;
-</p>
+!! html/php+tidy
+!! html/parsoid
 !! end
 
 !! test
 Sanitizer: Closing of closed but not open table tags
+!! options
+parsoid=wt2html
 !! wikitext
 Table not started</td></tr></table>
-!! html
-<p>Table not started&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-</p>
+!! html/php+tidy
+<p>Table not started</p>
+!! html/parsoid
+<p>Table not started</p>
 !! end
 
 !! test
@@ -16661,7 +16775,7 @@ start
 ===bc===
 ==c==
 ===ca===
-!! html
+!! html/php
 start
 !! end
 
@@ -16681,7 +16795,7 @@ start
 ===bc===
 ==c==
 ===ca===
-!! html
+!! html/php
 ==a==
 ===aa===
 ====aaa====
@@ -16703,7 +16817,7 @@ start
 ===bc===
 ==c==
 ===ca===
-!! html
+!! html/php
 ===aa===
 ====aaa====
 !! end
@@ -16724,7 +16838,7 @@ start
 ===bc===
 ==c==
 ===ca===
-!! html
+!! html/php
 ====aaa====
 !! end
 
@@ -16744,7 +16858,7 @@ start
 ===bc===
 ==c==
 ===ca===
-!! html
+!! html/php
 ==b==
 ===ba===
 ===bb===
@@ -16768,7 +16882,7 @@ start
 ===bc===
 ==c==
 ===ca===
-!! html
+!! html/php
 ===ba===
 !! end
 
@@ -16788,7 +16902,7 @@ start
 ===bc===
 ==c==
 ===ca===
-!! html
+!! html/php
 ===bb===
 ====bba====
 !! end
@@ -16809,7 +16923,7 @@ start
 ===bc===
 ==c==
 ===ca===
-!! html
+!! html/php
 ====bba====
 !! end
 
@@ -16829,7 +16943,7 @@ start
 ===bc===
 ==c==
 ===ca===
-!! html
+!! html/php
 ===bc===
 !! end
 
@@ -16849,7 +16963,7 @@ start
 ===bc===
 ==c==
 ===ca===
-!! html
+!! html/php
 ==c==
 ===ca===
 !! end
@@ -16870,7 +16984,7 @@ start
 ===bc===
 ==c==
 ===ca===
-!! html
+!! html/php
 ===ca===
 !! end
 
@@ -16890,7 +17004,7 @@ start
 ===bc===
 ==c==
 ===ca===
-!! html
+!! html/php
 !! end
 
 !! test
@@ -16901,7 +17015,7 @@ section=1
 ==a==
 ==bogus== not a legal section
 ==b==
-!! html
+!! html/php
 ==a==
 ==bogus== not a legal section
 !! end
@@ -16914,7 +17028,7 @@ section=2
 ==a==
 ==bogus== not a legal section
 ==b==
-!! html
+!! html/php
 ==b==
 !! end
 
@@ -16926,7 +17040,7 @@ section=1
 ==a==
 ==b== <!-- -->
 ==c==
-!! html
+!! html/php
 ==a==
 !! end
 
@@ -16938,7 +17052,7 @@ section=2
 ==a==
 ==b== <!-- -->
 ==c==
-!! html
+!! html/php
 ==b== <!-- -->
 !! end
 
@@ -16950,7 +17064,7 @@ section=1
 ==a==
 ==bogus== <nowiki>not a legal section</nowiki>
 ==b==
-!! html
+!! html/php
 ==a==
 ==bogus== <nowiki>not a legal section</nowiki>
 !! end
@@ -16963,10 +17077,9 @@ section=2
 ==a==
 ==bogus== <nowiki>not a legal section</nowiki>
 ==b==
-!! html
+!! html/php
 ==b==
 !! end
-
 
 # Formerly testing for bug 2587, now resolved by the use of unmarked sections
 # instead of respecting commented sections
@@ -16977,7 +17090,7 @@ section=1
 !! wikitext
 <!-- -->==sec1==
 ==sec2==
-!! html
+!! html/php
 ==sec2==
 !!end
 
@@ -16988,10 +17101,9 @@ section=2
 !! wikitext
 <!-- -->==sec1==
 ==sec2==
-!! html
+!! html/php
 
 !!end
-
 
 # Formerly testing for bug 2607, now resolved by the use of unmarked sections
 # instead of respecting HTML-style headings
@@ -17006,7 +17118,7 @@ unmarked
 one
 ==2==
 two
-!! html
+!! html/php
 ==1==
 one
 !! end
@@ -17022,7 +17134,7 @@ unmarked
 one
 ==2==
 two
-!! html
+!! html/php
 ==2==
 two
 !! end
@@ -17036,7 +17148,7 @@ section=1
 !! wikitext
 <noinclude>==unmarked==</noinclude>
 ==marked==
-!! html
+!! html/php
 ==marked==
 !!end
 
@@ -17051,7 +17163,7 @@ The line above must have a trailing space
 === <!--
 --> <!-- -->
 But just in case it doesn't...
-!! html
+!! html/php
 === <!--
 --> <!-- -->
 But just in case it doesn't...
@@ -17073,7 +17185,7 @@ start
 ===bc===
 ==c==
 ===ca===
-!! html
+!! html/php
 xxx
 
 ==a==
@@ -17104,7 +17216,7 @@ start
 ===bc===
 ==c==
 ===ca===
-!! html
+!! html/php
 start
 xxx
 
@@ -17133,7 +17245,7 @@ start
 ===bc===
 ==c==
 ===ca===
-!! html
+!! html/php
 start
 ==a==
 xxx
@@ -17163,7 +17275,7 @@ start
 ===bc===
 ==c==
 ===ca===
-!! html
+!! html/php
 start
 ==a==
 ===aa===
@@ -17194,7 +17306,7 @@ start
 ===bc===
 ==c==
 ===ca===
-!! html
+!! html/php
 start
 ==a==
 ===aa===
@@ -17221,7 +17333,7 @@ start
 ===bc===
 ==c==
 ===ca===
-!! html
+!! html/php
 start
 ==a==
 ===aa===
@@ -17252,7 +17364,7 @@ start
 ===bc===
 ==c==
 ===ca===
-!! html
+!! html/php
 start
 ==a==
 ===aa===
@@ -17282,7 +17394,7 @@ start
 ===bc===
 ==c==
 ===ca===
-!! html
+!! html/php
 start
 ==a==
 ===aa===
@@ -17313,7 +17425,7 @@ start
 ===bc===
 ==c==
 ===ca===
-!! html
+!! html/php
 start
 ==a==
 ===aa===
@@ -17344,7 +17456,7 @@ start
 ===bc===
 ==c==
 ===ca===
-!! html
+!! html/php
 start
 ==a==
 ===aa===
@@ -17373,7 +17485,7 @@ start
 ===bc===
 ==c==
 ===ca===
-!! html
+!! html/php
 start
 ==a==
 ===aa===
@@ -17395,7 +17507,7 @@ replace=2,"xxx"
  Preformatted initial line
 ==a==
 ===a===
-!! html
+!! html/php
  Preformatted initial line
 ==a==
 xxx
@@ -17409,7 +17521,7 @@ section=1
 !! wikitext
 ==a==
                     a
-!! html
+!! html/php
 ==a==
                     a
 !! end
@@ -17421,7 +17533,7 @@ section=1
 !! wikitext
 ==a==
                    a
-!! html
+!! html/php
 ==a==
                    a
 !! end
@@ -17439,7 +17551,7 @@ noxml section=2
 
 == Section Two ==
 stuff
-!! html
+!! html/php
 == Section Two ==
 stuff
 !! end
@@ -17456,7 +17568,7 @@ noxml replace=2,"xxx"
 
 == Section Two ==
 stuff
-!! html
+!! html/php
 == Section One ==
 <pre>
 =======
@@ -17464,7 +17576,6 @@ stuff
 
 xxx
 !! end
-
 
 
 !! test
@@ -18253,7 +18364,7 @@ Don't fall for the self-closing div
 MSGNW magic word
 !! wikitext
 {{MSGNW:msg}}
-!! html
+!! html/php
 <p>&#91;&#91;:Template:Msg&#93;&#93;
 </p>
 !! end
@@ -19686,7 +19797,7 @@ wgAllowDisplayTitle=true
 wgRestrictDisplayTitle=false
 !! wikitext
 this is not the the title
-!! html
+!! html/php
 Parser test
 <p>this is not the the title
 </p>
@@ -19703,7 +19814,7 @@ wgRestrictDisplayTitle=false
 !! wikitext
 this is not the the title
 {{DISPLAYTITLE:whatever}}
-!! html
+!! html/php
 whatever
 <p>this is not the the title
 </p>
@@ -19720,7 +19831,7 @@ wgRestrictDisplayTitle=true
 !! wikitext
 this is not the the title
 {{DISPLAYTITLE:whatever}}
-!! html
+!! html/php
 Screen
 <p>this is not the the title
 </p>
@@ -19737,7 +19848,7 @@ wgRestrictDisplayTitle=true
 !! wikitext
 this is not the the title
 {{DISPLAYTITLE:screen}}
-!! html
+!! html/php
 screen
 <p>this is not the the title
 </p>
@@ -19753,7 +19864,7 @@ wgAllowDisplayTitle=false
 !! wikitext
 this is not the the title
 {{DISPLAYTITLE:screen}}
-!! html
+!! html/php
 Screen
 <p>this is not the the title
 <a href="/index.php?title=Template:DISPLAYTITLE:screen&amp;action=edit&amp;redlink=1" class="new" title="Template:DISPLAYTITLE:screen (page does not exist)">Template:DISPLAYTITLE:screen</a>
@@ -19769,7 +19880,7 @@ title=[[Screen]]
 wgAllowDisplayTitle=false
 !! wikitext
 this is not the the title
-!! html
+!! html/php
 Screen
 <p>this is not the the title
 </p>
@@ -19786,7 +19897,7 @@ wgRestrictDisplayTitle=true
 !! wikitext
 this is not the the title
 {{DISPLAYTITLE:<span style="display: none;">s</span>creen}}
-!! html
+!! html/php
 <span style="/* attempt to bypass $wgRestrictDisplayTitle */">s</span>creen
 <p>this is not the the title
 </p>
@@ -19803,7 +19914,7 @@ wgRestrictDisplayTitle=true
 !! wikitext
 this is not the the title
 {{DISPLAYTITLE:<span style="color: red;">s</span>creen}}
-!! html
+!! html/php
 <span style="color: red;">s</span>creen
 <p>this is not the the title
 </p>
@@ -19891,7 +20002,7 @@ preload: check <noinclude> and <includeonly>
 preload
 !! wikitext
 Hello <noinclude>cruel</noinclude><includeonly>kind</includeonly> world.
-!! html
+!! html/php
 Hello kind world.
 !! end
 
@@ -19901,7 +20012,7 @@ preload: check <onlyinclude>
 preload
 !! wikitext
 Goodbye <onlyinclude>Hello world</onlyinclude>
-!! html
+!! html/php
 Hello world
 !! end
 
@@ -19911,7 +20022,7 @@ preload: can pass tags through if we want to
 preload
 !! wikitext
 <includeonly><</includeonly>includeonly>Hello world<includeonly><</includeonly>/includeonly>
-!! html
+!! html/php
 <includeonly>Hello world</includeonly>
 !! end
 
@@ -19921,7 +20032,7 @@ preload: check that it doesn't try to do tricks
 preload
 !! wikitext
 * <!-- Hello --> ''{{world}}'' {{<includeonly>subst:</includeonly>How are you}}{{ {{{|safesubst:}}} #if:1|2|3}}
-!! html
+!! html/php
 * <!-- Hello --> ''{{world}}'' {{subst:How are you}}{{ {{{|safesubst:}}} #if:1|2|3}}
 !! end
 
@@ -20751,6 +20862,30 @@ parsoid=wt2html,wt2wt
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption><b>caption</b></figcaption></figure>
 <p><b>bar</b></p>
 <small><figure class="mw-halign-right" typeof="mw:Image"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="34" width="300"/></a></figure></small>
+!! end
+
+!! test
+3. Bad treebuilder fixup of formatting elt is cleaned up
+!! options
+parsoid=wt2html,wt2wt
+!! wikitext
+<small>'''foo[[File:Foobar.jpg|thumb|caption]]bar'''</small>
+!! html/parsoid
+<p><small><b>foo</b></small></p>
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption><small><b>caption</b></small></figcaption></figure>
+<p><small><b>bar</b></small></p>
+!! end
+
+!! test
+4. Bad treebuilder fixup of formatting elt is cleaned up: formatting tags around captionless images are ignored
+!! options
+parsoid=wt2html,wt2wt
+!! wikitext
+'''<small>[[Image:Foobar.jpg|right|300px]]</small>'''
+!! html/parsoid
+<p><b><small></small></b></p>
+<figure class="mw-halign-right" typeof="mw:Image"><a href="File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/300px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="34" width="300"/></a></figure>
+<p></p>
 !! end
 
 #### ----------------------------------------------------------------
@@ -21606,8 +21741,6 @@ Headings: 5. Empty headings
 
 !! test
 Headings: 6a. Heading chars in SOL context (with trailing spaces)
-!! options
-parsoid
 !! wikitext
 <nowiki>=a=</nowiki>
 
@@ -21616,17 +21749,24 @@ parsoid
 <nowiki>=a=</nowiki>	
 
 <nowiki>=a=</nowiki> 	
-!! html
-<p>=a=</p>
-<p>=a= </p>
-<p>=a=	</p>
-<p>=a= 	</p>
+!! html/php
+<p>=a=
+</p><p>=a= 
+</p><p>=a=	
+</p><p>=a= 	
+</p>
+!! html/parsoid
+<p><span typeof="mw:Nowiki">=a=</span></p>
+
+<p><span typeof="mw:Nowiki">=a=</span></p> 
+
+<p><span typeof="mw:Nowiki">=a=</span></p>	
+
+<p><span typeof="mw:Nowiki">=a=</span></p> 	
 !!end
 
 !! test
 Headings: 6b. Heading chars in SOL context (with trailing newlines)
-!! options
-parsoid
 !! wikitext
 <nowiki>=a=
 b</nowiki>
@@ -21639,48 +21779,65 @@ b</nowiki>
 
 <nowiki>=a=	 
 b</nowiki>
-!! html
+!! html/php
 <p>=a=
-b</p>
-<p>=a= 
-b</p>
-<p>=a=	
-b</p>
-<p>=a=	 
-b</p>
+b
+</p><p>=a= 
+b
+</p><p>=a=	
+b
+</p><p>=a=	 
+b
 </p>
+!! html/parsoid
+<p><span typeof="mw:Nowiki">=a=
+b</span></p>
+
+<p><span typeof="mw:Nowiki">=a= 
+b</span></p>
+
+<p><span typeof="mw:Nowiki">=a=	
+b</span></p>
+
+<p><span typeof="mw:Nowiki">=a=	 
+b</span></p>
 !!end
 
 !! test
 Headings: 6c. Heading chars in SOL context (leading newline break)
-!! options
-parsoid
 !! wikitext
 a
 <nowiki>=b=</nowiki>
-!! html
+!! html/php
 <p>a
-=b=</p>
+=b=
+</p>
+!! html/parsoid
+<p>a
+<span typeof="mw:Nowiki">=b=</span>
 !!end
 
 !! test
 Headings: 6d. Heading chars in SOL context (with interspersed comments)
-!! options
-parsoid
 !! wikitext
 <!--c0--><nowiki>=a=</nowiki>
 
 <!--c1--><nowiki>=a=</nowiki> <!--c2-->	 <!--c3-->
-!! html
-<p><!--c0-->=a=</p>
-<p><!--c1-->=a= <!--c2-->	 <!--c3--></p>
+!! html/php
+<p>=a=
+</p><p>=a= 	 
+</p>
+!! html/parsoid
+<!--c0--><p><span typeof="mw:Nowiki">=a=</span></p>
+
+<!--c1--><p><span typeof="mw:Nowiki">=a=</span></p> <!--c2-->	 <!--c3-->
 !!end
 
 !! test
 Headings: 6d. Heading chars in SOL context (No escaping needed)
 !! options
 parsoid=html2wt
-!! html
+!! html/parsoid
 =a=<div>b</div>
 !! wikitext
 =a=<div>b</div>
@@ -21690,11 +21847,11 @@ parsoid=html2wt
 Headings: 7. Insert a newline between new content and headings
 !! options
 parsoid=html2wt
-!! html
+!! html/parsoid
 <h2>NEW</h2>
 <p>new</p>
-<h2 data-parsoid='{"dsr":[0,5,2,2]}'>A</h2>
-<p data-parsoid='{"dsr":[6,7,0,0]}'>a</p>
+<h2 data-parsoid='{}'>A</h2>
+<p data-parsoid='{}'>a</p>
 !! wikitext
 == NEW ==
 new
@@ -21723,11 +21880,17 @@ Lists: 0. Outside nests
 <nowiki>#</nowiki>foo
 
 <nowiki>;Foo:</nowiki>bar
-!! html
+!! html/php
 <p>*foo
 </p><p>#foo
 </p><p>;Foo:bar
 </p>
+!! html/parsoid
+<p><span typeof="mw:Nowiki">*</span>foo</p>
+
+<p><span typeof="mw:Nowiki">#</span>foo</p>
+
+<p><span typeof="mw:Nowiki">;Foo:</span>bar</p>
 !!end
 
 !! test
@@ -23398,9 +23561,9 @@ Improperly nested inline or quotes tags with whitespace in between
 !!test
 Encapsulate protected attributes from wt
 !! wikitext
-<div typeof="mw:placeholder stuff" data-parsoid="weird" data-parsoid-other="no" about="time" rel="mw:true">foo</div>
+<div typeof="mw:placeholder stuff" data-mw="whoo" data-parsoid="weird" data-parsoid-other="no" about="time" rel="mw:true">foo</div>
 !! html/parsoid
-<body><div data-x-typeof="mw:placeholder stuff" data-x-data-parsoid="weird" data-x-data-parsoid-other="no" data-x-about="time" data-x-rel="mw:true">foo</div>
+<body><div data-x-typeof="mw:placeholder stuff" data-x-data-mw="whoo" data-x-data-parsoid="weird" data-x-data-parsoid-other="no" data-x-about="time" data-x-rel="mw:true">foo</div>
 </body>
 !!end
 
@@ -24115,9 +24278,43 @@ parsoid=html2wt
 !! end
 
 !! test
-Headings: Force sol-transparent links and behavior switches to serialize before/after
+1. Headings: Force sol-transparent links and behavior switches to serialize before/after
 !! options
-parsoid=html2wt
+parsoid={
+  "modes": ["html2wt"],
+  "scrubWikitext": false
+}
+!! html
+<h2>hello there<link href="Category:A1" rel="mw:PageProp/Category" /></h2>
+<h2><link href="Category:A2" rel="mw:PageProp/Category" />hi pal</h2>
+
+<h2><!--foo-->  <link href="Category:A3" rel="mw:PageProp/Category" />   how goes it</h2>
+<h2>it goes well   <link href="Category:A4" rel="mw:PageProp/Category" />  <!--bar--></h2>
+
+<h2 data-parsoid='{}'>howdy<link href="Category:A5" rel="mw:PageProp/Category" /></h2>
+
+<h2><meta property="mw:PageProp/toc" /> ok</h2>
+!! wikitext
+== hello there [[Category:A1]]  ==
+
+==  [[Category:A2]] hi pal ==
+
+== <!--foo-->   [[Category:A3]]    how goes it ==
+
+== it goes well    [[Category:A4]]  <!--bar-->  ==
+
+==howdy [[Category:A5]] ==
+
+==  __TOC__  ok ==
+!! end
+
+!! test
+2. Headings: Force sol-transparent links and behavior switches to serialize before/after
+!! options
+parsoid={
+  "modes": ["html2wt"],
+  "scrubWikitext": true
+}
 !! html
 <h2>hello there<link href="Category:A1" rel="mw:PageProp/Category" /></h2>
 <h2><link href="Category:A2" rel="mw:PageProp/Category" />hi pal</h2>
@@ -24152,7 +24349,10 @@ __TOC__
 !! test
 Headings: Don't hoist metas that come from templates
 !! options
-parsoid=html2wt
+parsoid={
+  "modes": ["html2wt"],
+  "scrubWikitext": true
+}
 !! html
 <h2><span about="#mwt1" typeof="mw:Transclusion" data-parsoid="{}" data-mw='{"parts":[{"template":{"target":{"wt":"echo","href":"./Template:Echo"},"params":{"1":{"wt":"foo [[Category:Foo]]"}},"i":0}}]}'>foo </span><link rel="mw:PageProp/Category" href="./Category:Foo" about="#mwt1" data-parsoid="{}" /></h2>
 !! wikitext
@@ -24162,7 +24362,10 @@ parsoid=html2wt
 !! test
 Headings: Category in ref isn't hoisted
 !! options
-parsoid=html2wt
+parsoid={
+  "modes": ["html2wt"],
+  "scrubWikitext": true
+}
 !! html
 <h2> foo <span about="#mwt2" class="reference" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="#cite_note-1">[1]</a></span> </h2>
 
@@ -24267,6 +24470,16 @@ bar
 baz</li>
 <li>foo <b>bar</b>
 baz</li></ul>
+
+<dl><dt>hi
+ho </dt><dd data-parsoid='{"stx":"row"}'> hi
+ho</dd></dl>
+
+<dl><dd> <table>
+<tbody><tr><td> ha
+ha
+ha</td></tr>
+</tbody></table></dd></dl>
 !! wikitext
 == testing 123 ==
 
@@ -24282,6 +24495,14 @@ there</ref> ==
 
 * foo bar baz
 * foo '''bar''' baz
+
+; hi ho : hi ho
+
+: {|
+| ha
+ha
+ha
+|}
 !! end
 
 !! test
@@ -24610,6 +24831,31 @@ x<nowiki/>http://cscott.net<nowiki/>x
 !! end
 
 !! test
+WTS of edited autolink-like text (T103364)
+!! options
+parsoid={
+  "modes": ["wt2wt"],
+  "changes": [
+    [ "span[typeof]", "removeAttr", "typeof" ]
+  ]
+}
+!! wikitext
+Not a link: <nowiki>http://example.com</nowiki>.
+!! wikitext/edited
+Not a link: <span><nowiki>http://example.com</nowiki></span>.
+!! end
+
+!! test
+WTS of newly-authored autolink-like text (T103364)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>http://example.com is not a link.</p>
+!! wikitext
+<nowiki>http://example.com is not a link.</nowiki>
+!! end
+
+!! test
 Edited Redirect link should emit a non-piped wikitext link
 !! options
 parsoid=html2wt
@@ -24767,7 +25013,7 @@ parsoid=html2wt
 !! end
 
 !! test
-Headings: Add space before/after == (T53744)
+1. Headings: Add space before/after == (T53744)
 !! options
 parsoid=html2wt
 !! html
@@ -24775,9 +25021,6 @@ parsoid=html2wt
 <h2> bar</h2>
 <h2>baz </h2>
 <h2><span> baz</span></h2>
-
-<!-- Even after hoisted content -->
-<h2> <link href="Category:A2" rel="mw:PageProp/Category" />ok</h2>
 !! wikitext
 == foo ==
 
@@ -24786,8 +25029,18 @@ parsoid=html2wt
 == baz ==
 
 == <span> baz</span> ==
+!! end
 
-<!-- Even after hoisted content -->
+!! test
+2. Headings: Add space before/after == even after hoisted content
+!! options
+parsoid={
+  "modes": ["html2wt"],
+  "scrubWikitext": true
+}
+!! html
+<h2> <link href="Category:A2" rel="mw:PageProp/Category" />ok</h2>
+!! wikitext
  [[Category:A2]]
 
 == ok ==
@@ -24859,8 +25112,11 @@ parsoid={
 }
 !! html
 <p> hi</p>
+<p>    hello</p>
 !! wikitext
 hi
+
+hello
 !! end
 
 !! test
@@ -24869,8 +25125,99 @@ hi
 parsoid=html2wt
 !! html
 <p> hi</p>
+<p>    hello</p>
 !! wikitext
 <nowiki> </nowiki>hi
+
+<nowiki> </nowiki>   hello
+!! end
+
+!! test
+3. Indent Pre Nowiki: suppress whitespace after newlines in new paragraph or table cell
+!! options
+parsoid={
+  "modes": ["html2wt"],
+  "scrubWikitext": true
+}
+!! html/parsoid
+<p>Foo
+ bar
+baz</p>
+
+<table><tr><td>Foo
+ bar
+ baz bang</td></tr></table>
+
+<p><!--boo--> foo
+ bar</p>
+
+<p> foo
+ bar<span>boo</span></p>
+!! wikitext
+Foo
+bar
+baz
+
+{|
+|Foo
+bar
+baz bang
+|}
+
+<!--boo-->foo
+bar
+
+foo
+bar<span>boo</span>
+!! end
+
+!! test
+1. New links that end in spaces
+!! options
+parsoid={
+  "modes": ["html2wt"],
+  "scrubWikitext": false
+}
+!! html
+<p><a rel="mw:WikiLink" href="./Berlin" title="Berlin">Berlin </a>is the capital of Germany.</p>
+<p><a rel="mw:WikiLink" href="./Foo" title="Foo">Foo </a><b>bar</b></p>
+!! wikitext
+[[Berlin ]]<nowiki/>is the capital of Germany.
+
+[[Foo ]]'''bar'''
+!! end
+
+!! test
+2. New links that end in spaces
+!! options
+parsoid={
+  "modes": ["html2wt"],
+  "scrubWikitext": true
+}
+!! html
+<p><a rel="mw:WikiLink" href="./Berlin" title="Berlin">Berlin </a>is the capital of Germany.</p>
+<p><a rel="mw:WikiLink" href="./Foo" title="Foo">Foo </a><b>bar</b></p>
+!! wikitext
+[[Berlin]] is the capital of Germany.
+
+[[Foo]] '''bar'''
+!! end
+
+!! test
+3. Existing links that end in spaces
+!! options
+parsoid={
+  "modes": ["html2wt"],
+  "scrubWikitext": true
+}
+!! html
+<p><a rel="mw:WikiLink" href="./Berlin" title="Berlin" data-parsoid='{"stx":"simple","a":{"href":"./Berlin"},"sa":{"href":"Berlin "}}'>Berlin </a>is the capital of Germany.</p>
+
+<p><a rel="mw:WikiLink" href="./Foo" title="Foo" data-parsoid='{"stx":"simple","a":{"href":"./Foo"},"sa":{"href":"Foo "}}'>Foo </a><b>bar</b></p>
+!! wikitext
+[[Berlin ]]<nowiki/>is the capital of Germany.
+
+[[Foo ]]'''bar'''
 !! end
 
 # ---------------------------------------------------
