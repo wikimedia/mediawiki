@@ -31,6 +31,7 @@ production.
   have been removed, after being deprecated in 1.24.
 
 === New features in 1.26 ===
+* Now users can login with their email.
 * (T51506) Now action=info gives estimates of actual watchers for a page.
   See $wgRCMaxAge, $wgWatchersMaxAge and $wgUnwatchedPageSecret
   to learn how to configure if needed.
@@ -110,6 +111,8 @@ production.
   rnfilterredir parameter that also allows for listing both redirects and
   non-redirects.
 * list=random now supports continuation.
+* Login api will not return 'NotExists' and 'WrongPass' anymore.
+  It will return 'WrongInput' in both case.
 
 === Action API internal changes in 1.26 ===
 * New metadata item ApiResult::META_KVP_MERGE to allow for merging the KVP key
