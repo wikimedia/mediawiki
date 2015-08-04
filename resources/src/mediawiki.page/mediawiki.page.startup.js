@@ -3,7 +3,7 @@
 	// Support: MediaWiki < 1.26
 	// Cached HTML will not yet have this from OutputPage::getHeadScripts.
 	document.documentElement.className = document.documentElement.className
-		.replace( /(^|\s)client-nojs(\s|$)/, '$1client-js$2' );
+		.replace( '-nojs', '-js' );
 
 	mw.page = {};
 

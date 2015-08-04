@@ -2976,7 +2976,7 @@ class OutputPage extends ContextSource {
 		// then fixed up by the startup module for unsupported browsers.
 		$links[] = Html::inlineScript(
 			'document.documentElement.className = document.documentElement.className'
-			. '.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );'
+			. ".replace( '-nojs', '-js' );"
 		);
 
 		// Startup - this provides the client with the module manifest and loads jquery and mediawiki base modules
