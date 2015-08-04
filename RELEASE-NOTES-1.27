@@ -9,6 +9,8 @@ MediaWiki 1.27 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.27 ===
+* $wgEnableEmailLogin is added. The default value is true. This option can be
+  configured during the installation process.
 * Removed $wgUseLinkNamespaceDBFields
 * Deprecated $wgResourceLoaderMinifierStatementsOnOwnLine and
   $wgResourceLoaderMinifierMaxLineLength, because there was little value in
@@ -16,6 +18,8 @@ production.
   1000 for the latter) are now hard-coded.
 
 === New features in 1.27 ===
+* Now users can login with their email if $wgEmailAuthentication and
+  $wgEnableEmailLogin is true.
 * $wgDataCenterId and $wgDataCenterRoles where added, which will serve as
   basic configuration settings needed for multi-datacenter setups.
   $wgDataCenterUpdateStickTTL was also added.
@@ -25,6 +29,8 @@ production.
 === Bug fixes in 1.27 ===
 
 === Action API changes in 1.27 ===
+* Login api will not return 'NotExists' and 'WrongPass' anymore.
+  It will return 'WrongInput' in both case.
 
 === Action API internal changes in 1.27 ===
 
@@ -36,7 +42,6 @@ changes to languages because of Bugzilla reports.
 
 
 === Other changes in 1.27 ===
-
 
 == Compatibility ==
 

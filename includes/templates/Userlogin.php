@@ -25,8 +25,12 @@
 class UserloginTemplate extends BaseTemplate {
 
 	function execute() {
-		global $wgCookieExpiration;
+		global $wgCookieExpiration, $wgEnableEmailLogin;
 		$expirationDays = ceil( $wgCookieExpiration / ( 3600 * 24 ) );
+		$nameLabel = 'userlogin-yourname';
+		if ( $wgEnableEmailLogin ) {
+			$nameLabel .= '-youremail';
+		}
 ?>
 <div class="mw-ui-container">
 	<div id="userloginprompt"><?php $this->msgWiki('loginprompt') ?></div>
@@ -64,7 +68,7 @@ class UserloginTemplate extends BaseTemplate {
 			<div class="mw-ui-vform-field">
 				<label for='wpName1'>
 					<?php
-					$this->msg( 'userlogin-yourname' );
+					$this->msg( $nameLabel );
 
 					if ( $this->data['secureLoginUrl'] ) {
 						echo Html::element( 'a', array(
@@ -84,7 +88,7 @@ class UserloginTemplate extends BaseTemplate {
 					'required' => true,
 					// Set focus to this field if it's blank.
 					'autofocus' => !$this->data['name'],
-					'placeholder' => $this->getMsg( 'userlogin-yourname-ph' )->text()
+					'placeholder' => $this->getMsg( $nameLabel . '-ph' )->text()
 				) );
 				?>
 			</div>
