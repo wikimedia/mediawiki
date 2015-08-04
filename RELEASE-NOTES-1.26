@@ -9,6 +9,8 @@ MediaWiki 1.26 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.26 ===
+* $wgEnableEmailLogin is added. The default value is true. This option can be
+  configured during the installation process.
 * $wgPasswordResetRoutes['email'] = true by default.
 * $wgEnableParserCache was deprecated, set $wgParserCacheType to CACHE_NONE
   instead if you want to disable the parser cache.
@@ -47,6 +49,9 @@ production.
 * CLDRPluralRule* classes have been replaced with wikimedia/cldr-plural-rule-parser.
 
 === New features in 1.26 ===
+* Now users can login with their email if $wgEmailAuthentication and
+  $wgEnableEmailLogin is true.
+* Every email addresses are now lowercase.
 * (T51506) Now action=info gives estimates of actual watchers for a page.
   See $wgRCMaxAge, $wgWatchersMaxAge and $wgUnwatchedPageSecret
   to learn how to configure if needed.
@@ -127,6 +132,8 @@ production.
   value if set to an empty string.
 
 === Action API changes in 1.26 ===
+* Login api will not return 'NotExists' and 'WrongPass' anymore.
+  It will return 'WrongInput' in both case.
 * New-style continuation is now the default for action=continue. Clients may
   use the 'rawcontinue' parameter to receive raw query-continue data, but the
   new style is encouraged as it's harder to implement incorrectly.
@@ -176,6 +183,8 @@ changes to languages because of Phabricator reports.
    Ilja.mos, and Mashoi7
 
 === Other changes in 1.26 ===
+* New maintenance script normaliseEmailAddress.php for normalising email
+  addresses into lowercase.
 * ChangeTags::tagDescription() will return false if the interface message
   for the tag is disabled.
 * Added PageHistoryPager::doBatchLookups hook.

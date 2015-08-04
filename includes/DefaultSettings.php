@@ -1493,6 +1493,11 @@ $wgNoReplyAddress = 'reply@not.possible';
 $wgEnableEmail = true;
 
 /**
+ * Set to true to enable the login via e-mail address feature.
+ */
+$wgEnableEmailLogin = true;
+
+/**
  * Set to true to enable user-to-user e-mail.
  * This can potentially be abused, as it's hard to track.
  */
