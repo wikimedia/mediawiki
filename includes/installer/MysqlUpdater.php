@@ -272,6 +272,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'modifyField', 'recentchanges', 'rc_comment', 'patch-editsummary-length.sql' ),
 
 			// 1.26
+			array( 'doEmailAddressNormalisation' ),
 			array( 'dropTable', 'hitcounter' ),
 			array( 'dropField', 'site_stats', 'ss_total_views', 'patch-drop-ss_total_views.sql' ),
 			array( 'dropField', 'page', 'page_counter', 'patch-drop-page_counter.sql' ),
@@ -1088,5 +1089,17 @@ class MysqlUpdater extends DatabaseUpdater {
 			false,
 			'Making user_id unsigned int'
 		);
+	}
+
+	protected function doEmailAddressNormalisation() {
+		if ( !$this->updateRowExists( 'normalise email address' ) ) {
+			$this->output(
+				"Normalising email address. For large databases,\n" .
+				"you may want to hit Ctrl-C and do this manually with\n" .
+				"maintenance/normaliseEmailAddress.php.\n" );
+
+			$task = $this->maintenance->runChild( 'NormaliseEmailAddress' );
+			$task->execute();
+		}
 	}
 }
