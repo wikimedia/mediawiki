@@ -17,8 +17,9 @@
 	 * @constructor
 	 * @param {Object} [config] Configuration options
 	 * @cfg {string} [precision='day'] Date precision to use, 'day' or 'month'
-	 * @cfg {string|null} [date=null] Day or month date (depending on `precision`), in the
-	 *     format 'YYYY-MM-DD' or 'YYYY-MM'. When null, defaults to current date.
+	 * @cfg {string|null} [date=null] Day or month date (depending on `precision`), in the format
+	 *     'YYYY-MM-DD' or 'YYYY-MM'. When null, the calendar will show today's date, but not select
+	 *     it.
 	 */
 	mw.widgets.CalendarWidget = function MWWCalendarWidget( config ) {
 		// Config initialization
@@ -156,6 +157,7 @@
 
 		if (
 			this.displayLayer === this.previousDisplayLayer &&
+			this.date === this.previousDate &&
 			this.previousMoment &&
 			this.previousMoment.isSame( this.moment, this.precision === 'month' ? 'month' : 'day' )
 		) {
@@ -299,6 +301,7 @@
 
 		this.previousMoment = moment( this.moment );
 		this.previousDisplayLayer = this.displayLayer;
+		this.previousDate = this.date;
 
 		this.$body.on( 'click', this.onBodyClick.bind( this ) );
 	};
@@ -396,13 +399,19 @@
 	 * Set the date.
 	 *
 	 * @param {string|null} [date=null] Day or month date, in the format 'YYYY-MM-DD' or 'YYYY-MM'.
-	 *     When null, defaults to current date. When invalid, the date is not changed.
+	 *     When null, the calendar will show today's date, but not select it. When invalid, the date
+	 *     is not changed.
 	 */
 	mw.widgets.CalendarWidget.prototype.setDate = function ( date ) {
 		var mom = date !== null ? moment( date, this.getDateFormat() ) : moment();
 		if ( mom.isValid() ) {
 			this.moment = mom;
-			this.setDateFromMoment();
+			if ( date !== null ) {
+				this.setDateFromMoment();
+			} else if ( this.date !== null ) {
+				this.date = null;
+				this.emit( 'change', this.date );
+			}
 			this.displayLayer = this.getDisplayLayers()[ 0 ];
 			this.updateUI();
 		}
@@ -436,7 +445,7 @@
 	 * Get current date, in the format 'YYYY-MM-DD' or 'YYYY-MM', depending on precision. Digits will
 	 * not be localised.
 	 *
-	 * @returns {string} Date string
+	 * @returns {string|null} Date string
 	 */
 	mw.widgets.CalendarWidget.prototype.getDate = function () {
 		return this.date;
