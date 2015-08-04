@@ -233,15 +233,6 @@
 	 * @private
 	 */
 	mw.widgets.DateInputWidget.prototype.activate = function () {
-		if ( this.getValue() === '' ) {
-			// Setting today's date is probably more helpful than leaving the widget empty? We could just
-			// display the placeholder and leave it there, but it's likely that at least the year will be
-			// the same as today's.
-
-			// Use English locale to avoid number formatting
-			this.setValue( moment().locale( 'en' ).format( this.getInternalFormat() ) );
-		}
-
 		this.$element.addClass( 'mw-widget-dateInputWidget-active' );
 		this.handle.toggle( false );
 		this.textInput.toggle( true );
