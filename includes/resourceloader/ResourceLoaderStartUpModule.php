@@ -88,6 +88,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgContentNamespaces' => MWNamespace::getContentNamespaces(),
 			'wgSiteName' => $conf->get( 'Sitename' ),
 			'wgDBname' => $conf->get( 'DBname' ),
+			'wgExtraSignatureNamespaces' => $conf->get( 'ExtraSignatureNamespaces' ),
 			'wgAvailableSkins' => Skin::getSkinNames(),
 			'wgExtensionAssetsPath' => $conf->get( 'ExtensionAssetsPath' ),
 			// MediaWiki sets cookies to have this prefix by default
