@@ -735,6 +735,19 @@ class LoginForm extends SpecialPage {
 			return self::ILLEGAL;
 		}
 
+		// Try with email (T30085)
+		if ( $u->getID() === 0 ) {
+			$us = User::newFromEmail( $this->mUsername );
+			if ( $us !== false ) {
+				$aus = array_filter( $us, function( $user ) {
+					return $user->isEmailConfirmed();
+				} );
+				if ( count( $aus ) === 1 ) {
+					$u = $aus[0];
+				}
+			}
+		}
+
 		$isAutoCreated = false;
 		if ( $u->getID() == 0 ) {
 			$status = $this->attemptAutoCreate( $u );
