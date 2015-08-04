@@ -71,14 +71,30 @@
 	 *     while the widget is inactive. Should be as unambiguous as possible (for example, prefer to
 	 *     spell out the month, rather than rely on the order), even if that makes it longer. When not
 	 *     given, the default is language-specific.
+	 * @cfg {string} [placeholder] User-visible date format string displayed in the textual input
+	 *     field when it's empty. Should be the same as `inputFormat`, but translated to the user's
+	 *     language. When not given, defaults to a translated version of 'YYYY-MM-DD' or 'YYYY-MM',
+	 *     depending on `precision`.
 	 */
 	mw.widgets.DateInputWidget = function MWWDateInputWidget( config ) {
 		// Config initialization
-		config = config || {};
+		config = $.extend( { precision: 'day' }, config );
+
+		var placeholder;
+		if ( config.placeholder ) {
+			placeholder = config.placeholder;
+		} else if ( config.inputFormat ) {
+			// We have no way to display a translated placeholder for custom formats
+			placeholder = '';
+		} else {
+			// Messages: mw-widgets-dateinput-placeholder-day, mw-widgets-dateinput-placeholder-month
+			placeholder = mw.msg( 'mw-widgets-dateinput-placeholder-' + config.precision );
+		}
 
 		// Properties (must be set before parent constructor, which calls #setValue)
 		this.handle = new OO.ui.LabelWidget();
 		this.textInput = new OO.ui.TextInputWidget( {
+			placeholder: placeholder,
 			validate: this.validateDate.bind( this )
 		} );
 		this.calendar = new mw.widgets.CalendarWidget( {

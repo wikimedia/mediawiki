@@ -1804,6 +1804,8 @@ return array(
 		),
 		'messages' => array(
 			'mw-widgets-dateinput-no-date',
+			'mw-widgets-dateinput-placeholder-day',
+			'mw-widgets-dateinput-placeholder-month',
 			'mw-widgets-titleinput-description-new-page',
 			'mw-widgets-titleinput-description-redirect',
 		),

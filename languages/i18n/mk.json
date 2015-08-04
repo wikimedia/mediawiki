@@ -3513,6 +3513,8 @@
 	"special-characters-title-emdash": "тире",
 	"special-characters-title-minus": "минус",
 	"mw-widgets-dateinput-no-date": "Немате одбрано датум",
+	"mw-widgets-dateinput-placeholder-day": "ГГГГ-ММ-ДД",
+	"mw-widgets-dateinput-placeholder-month": "ГГГГ-ММ",
 	"mw-widgets-titleinput-description-new-page": "страницата сè уште не постои",
 	"mw-widgets-titleinput-description-redirect": "пренасочување кон $1"
 }

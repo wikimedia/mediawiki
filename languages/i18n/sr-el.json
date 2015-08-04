@@ -3338,6 +3338,8 @@
 	"special-characters-group-thai": "tajlandski",
 	"special-characters-group-lao": "laoski",
 	"special-characters-group-khmer": "kmerski",
+	"mw-widgets-dateinput-placeholder-day": "GGGG-MM-DD",
+	"mw-widgets-dateinput-placeholder-month": "GGGG-MM",
 	"mw-widgets-titleinput-description-new-page": "stranica još uvek ne postoji",
 	"mw-widgets-titleinput-description-redirect": "preusmerava na $1"
 }

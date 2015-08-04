@@ -3208,5 +3208,7 @@
 	"special-characters-group-khmer": "Khmer",
 	"special-characters-title-endash": "tankestreg",
 	"special-characters-title-emdash": "lang tankestreg",
-	"special-characters-title-minus": "minustegn"
+	"special-characters-title-minus": "minustegn",
+	"mw-widgets-dateinput-placeholder-day": "ÅÅÅÅ-MM-DD",
+	"mw-widgets-dateinput-placeholder-month": "ÅÅÅÅ-MM"
 }

@@ -2958,5 +2958,7 @@
 	"expand_templates_remove_comments": "Tanggalon an mga komento",
 	"expand_templates_remove_nowiki": "Pugulan an mga taktak na <nowiki> sa resulta",
 	"expand_templates_generate_xml": "Ipahiling an panlunhay na kahoy nin XML",
-	"expand_templates_preview": "Patânaw"
+	"expand_templates_preview": "Patânaw",
+	"mw-widgets-dateinput-placeholder-day": "TTTT-BB-AA",
+	"mw-widgets-dateinput-placeholder-month": "TTTT-BB"
 }

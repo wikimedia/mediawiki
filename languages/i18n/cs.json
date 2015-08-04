@@ -3432,6 +3432,8 @@
 	"special-characters-title-endash": "krátká pomlčka",
 	"special-characters-title-emdash": "dlouhá pomlčka",
 	"special-characters-title-minus": "znaménko minus",
+	"mw-widgets-dateinput-placeholder-day": "RRRR-MM-DD",
+	"mw-widgets-dateinput-placeholder-month": "RRRR-MM",
 	"mw-widgets-titleinput-description-new-page": "stránka zatím neexistuje",
 	"mw-widgets-titleinput-description-redirect": "přesměrování na $1"
 }

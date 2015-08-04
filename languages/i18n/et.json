@@ -3377,6 +3377,8 @@
 	"special-characters-title-endash": "mõttekriips",
 	"special-characters-title-emdash": "pikk mõttekriips",
 	"special-characters-title-minus": "miinusmärk",
+	"mw-widgets-dateinput-placeholder-day": "AAAA-KK-PP",
+	"mw-widgets-dateinput-placeholder-month": "AAAA-KK",
 	"mw-widgets-titleinput-description-new-page": "lehekülge pole veel",
 	"mw-widgets-titleinput-description-redirect": "ümbersuunamine leheküljele \"$1\""
 }

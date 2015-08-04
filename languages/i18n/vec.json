@@ -2890,5 +2890,7 @@
 	"special-characters-group-khmer": "Khmer",
 	"special-characters-title-endash": "lineeta ene",
 	"special-characters-title-emdash": "lineeta eme",
-	"special-characters-title-minus": "segno meno"
+	"special-characters-title-minus": "segno meno",
+	"mw-widgets-dateinput-placeholder-day": "AAAA-MM-GG",
+	"mw-widgets-dateinput-placeholder-month": "AAAA-MM"
 }

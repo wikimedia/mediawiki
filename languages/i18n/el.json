@@ -3295,5 +3295,7 @@
 	"special-characters-group-khmer": "καμποτζιανά",
 	"special-characters-title-endash": "παύλα",
 	"special-characters-title-emdash": "διπλή παύλα",
-	"special-characters-title-minus": "σύμβολο πλην"
+	"special-characters-title-minus": "σύμβολο πλην",
+	"mw-widgets-dateinput-placeholder-day": "ΕΕΕΕ-ΜΜ-ΗΗ",
+	"mw-widgets-dateinput-placeholder-month": "ΕΕΕΕ-ΜΜ"
 }

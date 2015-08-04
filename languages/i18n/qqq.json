@@ -3977,6 +3977,8 @@
 	"special-characters-title-emdash": "Title tooltip for the em dash character (—); See https://en.wikipedia.org/wiki/Dash",
 	"special-characters-title-minus": "Title tooltip for the minus sign character (−), not to be confused with a hyphen",
 	"mw-widgets-dateinput-no-date": "Label of a date input field when no date has been selected.",
+	"mw-widgets-dateinput-placeholder-day": "[[File:DateInputWidget active, empty.png|frame|Screenshot]]\nPlaceholder displayed in a date input field when it's empty, representing a date format with 4 digits for year, 2 digits for month, and 2 digits for day, separated with hyphens. This should be uppercase, if possible, and must not include any additional explanations. If there is no good way to translate it, make this message blank.",
+	"mw-widgets-dateinput-placeholder-month": "Placeholder displayed in a date input field when it's empty, representing a date format with 4 digits for year and 2 digits for month, separated with hyphens (without a day). This should be uppercase, if possible, and must not include any additional explanations. If there is no good way to translate it, make this message blank.",
 	"mw-widgets-titleinput-description-new-page": "Description label for a new page in the title input widget.",
 	"mw-widgets-titleinput-description-redirect": "Description label for a redirect in the title input widget."
 }

@@ -3389,6 +3389,8 @@
 	"special-characters-group-thai": "тајландски",
 	"special-characters-group-lao": "лаоски",
 	"special-characters-group-khmer": "кмерски",
+	"mw-widgets-dateinput-placeholder-day": "ГГГГ-ММ-ДД",
+	"mw-widgets-dateinput-placeholder-month": "ГГГГ-ММ",
 	"mw-widgets-titleinput-description-new-page": "страница још увек не постоји",
 	"mw-widgets-titleinput-description-redirect": "преусмерава на $1"
 }

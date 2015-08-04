@@ -3445,6 +3445,8 @@
 	"special-characters-title-emdash": "pauza",
 	"special-characters-title-minus": "minus",
 	"mw-widgets-dateinput-no-date": "Nie wybrano daty",
+	"mw-widgets-dateinput-placeholder-day": "RRRR-MM-DD",
+	"mw-widgets-dateinput-placeholder-month": "RRRR-MM",
 	"mw-widgets-titleinput-description-new-page": "strona jeszcze nie istnieje",
 	"mw-widgets-titleinput-description-redirect": "przekierowanie do $1"
 }
