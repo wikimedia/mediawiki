@@ -84,7 +84,7 @@ function startUp() {
 	while ( RLQ.length ) {
 		RLQ.shift()();
 	}
-	RLQ = {
+	window.RLQ = {
 		push: function ( fn ) {
 			fn();
 		}
