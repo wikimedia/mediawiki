@@ -57,7 +57,7 @@ class ApiLoginTest extends ApiTestCase {
 		$this->assertNotInternalType( "bool", $result );
 		$a = $result["login"]["result"];
 
-		$this->assertEquals( "WrongPass", $a );
+		$this->assertEquals( "WrongInput", $a );
 	}
 
 	public function testApiLoginGoodPass() {
