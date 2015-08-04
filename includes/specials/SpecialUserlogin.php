@@ -43,6 +43,7 @@ class LoginForm extends SpecialPage {
 	const NEED_TOKEN = 12;
 	const WRONG_TOKEN = 13;
 	const USER_MIGRATED = 14;
+	const WRONG_INPUT = 15;
 
 	/**
 	 * Valid error and warning messages
@@ -735,6 +736,26 @@ class LoginForm extends SpecialPage {
 			return self::ILLEGAL;
 		}
 
+		// Try with email (T30085)
+		if ( $u->getId() === 0 ) {
+			$us = User::newFromEmail( $this->mUsername );
+			if ( $us !== false ) {
+				$aus = array_filter( $us, function( $user ) {
+					return $user->isEmailConfirmed();
+				} );
+				if ( count( $aus ) === 1 ) {
+					$u = $aus[0];
+				}
+			}
+		}
+
+		// Check password every time even user doesn't exists to mitigate timing attacks about emails (T30085)
+		$password = $u->checkPassword( $this->mPassword );
+		if ( !$password && ( $u->getId() === 0 ) ) {
+			// PasswordFactory::newFromPlainText() costs the (almost) same time as User::checkPassword()
+			User::getPasswordFactory()->newFromPlainText( 'dummy' );
+		}
+
 		$isAutoCreated = false;
 		if ( $u->getID() == 0 ) {
 			$status = $this->attemptAutoCreate( $u );
@@ -756,7 +777,7 @@ class LoginForm extends SpecialPage {
 		}
 
 		global $wgBlockDisablesLogin;
-		if ( !$u->checkPassword( $this->mPassword ) ) {
+		if ( !$password ) {
 			if ( $u->checkTemporaryPassword( $this->mPassword ) ) {
 				// The e-mailed temporary password should not be used for actu-
 				// al logins; that's a very sloppy habit, and insecure if an
@@ -786,7 +807,7 @@ class LoginForm extends SpecialPage {
 				$this->mTempPasswordUsed = true;
 				$retval = self::RESET_PASS;
 			} else {
-				$retval = ( $this->mPassword == '' ) ? self::EMPTY_PASS : self::WRONG_PASS;
+				$retval = self::WRONG_INPUT;
 			}
 		} elseif ( $wgBlockDisablesLogin && $u->isBlocked() ) {
 			// If we've enabled it, make it so that a blocked user cannot login
@@ -880,13 +901,13 @@ class LoginForm extends SpecialPage {
 		}
 
 		if ( !$wgAuth->autoCreate() ) {
-			return self::NOT_EXISTS;
+			return self::WRONG_INPUT;
 		}
 
 		if ( !$wgAuth->userExists( $user->getName() ) ) {
 			wfDebug( __METHOD__ . ": user does not exist\n" );
 
-			return self::NOT_EXISTS;
+			return self::WRONG_INPUT;
 		}
 
 		if ( !$wgAuth->authenticate( $user->getName(), $this->mPassword ) ) {
@@ -1041,6 +1062,14 @@ class LoginForm extends SpecialPage {
 					$params = $this->mAbortLoginErrorMsg;
 				}
 				$this->mainLoginForm( $this->msg( $error, $params )->text() );
+				break;
+			case self::WRONG_INPUT:
+				$msg = $this->msg( $this->mAbortLoginErrorMsg ?: 'loginfail-wronginput' )->text();
+				if ( $this->getUser()->isAllowed( 'createaccount' ) ) {
+					$msg .= ' ';
+					$msg .= $this->msg( 'loginfail-createaccount' )->parse();
+				}
+				$this->mainLoginForm( $msg );
 				break;
 			default:
 				throw new MWException( 'Unhandled case value' );
