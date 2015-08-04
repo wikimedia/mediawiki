@@ -24,6 +24,7 @@ production.
   feature that was never enabled by default.
 
 === New features in 1.26 ===
+* Now users can login with their email.
 * (T51506) Now action=info gives estimates of actual watchers for a page.
   See $wgRCMaxAge, $wgWatchersMaxAge and $wgUnwatchedPageSecret
   to learn how to configure if needed.
@@ -83,6 +84,8 @@ production.
   sometimes being numerically-indexed objects with formatversion=2.
 * When errors about users being blocked are returned, they now include
   information about the relevant block.
+* Login api will not return 'NotExists' and 'WrongPass' anymore.
+  It will return 'WrongInput' in both case.
 
 === Action API internal changes in 1.26 ===
 

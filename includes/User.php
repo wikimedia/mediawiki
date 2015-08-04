@@ -512,6 +512,29 @@ class User implements IDBAccessObject {
 	}
 
 	/**
+	 * Static factory method for creation from email.
+	 *
+	 * This is slightly less efficient than newFromId(), so use newFromID() if
+	 * you have both an ID and a email handy.
+	 *
+	 * @param string $email Email
+	 *
+	 * @return array|null The array of corresponding User objects or null
+	 * if nothing has presented.
+	 */
+	public static function newFromEmail( $email ) {
+		$dbr = wfGetDB( DB_SLAVE );
+		$ids = $dbr->selectFieldValues( 'user', 'user_id', array(
+			'user_email' => $email,
+			) );
+		if ( $ids !== false ) {
+			return array_map( 'User::newFromId', $ids );
+		} else {
+			return false;
+		}
+	}
+
+	/**
 	 * Factory method to fetch whichever user has a given email confirmation code.
 	 * This code is generated when an account is created or its e-mail address
 	 * has changed.
