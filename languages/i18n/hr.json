@@ -3102,5 +3102,7 @@
 	"special-characters-group-thai": "Tajlandski (tajski) znakovi",
 	"special-characters-group-lao": "laoski znakovi",
 	"special-characters-group-khmer": "kmerski",
+	"mw-widgets-dateinput-placeholder-day": "GGGG-MM-DD",
+	"mw-widgets-dateinput-placeholder-month": "GGGG-MM",
 	"mw-widgets-titleinput-description-redirect": "preusmjeravanje na $1"
 }

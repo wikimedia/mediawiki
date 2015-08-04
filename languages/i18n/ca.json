@@ -3409,6 +3409,8 @@
 	"special-characters-title-endash": "guió curt",
 	"special-characters-title-emdash": "guió llarg",
 	"special-characters-title-minus": "signe menys",
+	"mw-widgets-dateinput-placeholder-day": "AAAA-MM-DD",
+	"mw-widgets-dateinput-placeholder-month": "AAAA-MM",
 	"mw-widgets-titleinput-description-new-page": "la pàgina no existeix encara",
 	"mw-widgets-titleinput-description-redirect": "redirigeix a $1"
 }

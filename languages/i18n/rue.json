@@ -2945,5 +2945,7 @@
 	"special-characters-group-gujarati": "Ґуджараті",
 	"special-characters-group-thai": "Тайськы",
 	"special-characters-group-lao": "Лаоськы",
-	"special-characters-group-khmer": "Кгмерськы"
+	"special-characters-group-khmer": "Кгмерськы",
+	"mw-widgets-dateinput-placeholder-day": "РРРР-ММ-ДД",
+	"mw-widgets-dateinput-placeholder-month": "РРРР-ММ"
 }

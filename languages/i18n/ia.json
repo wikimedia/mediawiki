@@ -3264,5 +3264,7 @@
 	"special-characters-group-thai": "Thailandese",
 	"special-characters-group-lao": "Laotiano",
 	"special-characters-group-khmer": "Cambodgiano",
-	"special-characters-title-minus": "signo minus"
+	"special-characters-title-minus": "signo minus",
+	"mw-widgets-dateinput-placeholder-day": "AAAA-MM-DD",
+	"mw-widgets-dateinput-placeholder-month": "AAAA-MM"
 }

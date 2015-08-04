@@ -3192,5 +3192,7 @@
 	"special-characters-group-khmer": "Khmer",
 	"special-characters-title-endash": "tira kılme",
 	"special-characters-title-emdash": "tira derge",
-	"special-characters-title-minus": "işaretê kemiye"
+	"special-characters-title-minus": "işaretê kemiye",
+	"mw-widgets-dateinput-placeholder-day": "SSSS-AA-RR",
+	"mw-widgets-dateinput-placeholder-month": "SSSS-AA"
 }

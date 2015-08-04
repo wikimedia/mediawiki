@@ -3361,6 +3361,8 @@
 	"special-characters-title-endash": "guión curtiu",
 	"special-characters-title-emdash": "guión llargu",
 	"special-characters-title-minus": "signu menos",
+	"mw-widgets-dateinput-placeholder-day": "AAAA-MM-DD",
+	"mw-widgets-dateinput-placeholder-month": "AAAA-MM",
 	"mw-widgets-titleinput-description-new-page": "la páxina inda nun esiste",
 	"mw-widgets-titleinput-description-redirect": "redirixir a $1"
 }

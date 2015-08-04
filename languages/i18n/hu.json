@@ -3383,6 +3383,8 @@
 	"special-characters-title-emdash": "hosszú kötőjel",
 	"special-characters-title-minus": "minusz jel",
 	"mw-widgets-dateinput-no-date": "Nincs kiválasztott dátum",
+	"mw-widgets-dateinput-placeholder-day": "ÉÉÉÉ-HH-NN",
+	"mw-widgets-dateinput-placeholder-month": "ÉÉÉÉ-HH",
 	"mw-widgets-titleinput-description-new-page": "a lap még nem létezik",
 	"mw-widgets-titleinput-description-redirect": "átirányítás ide: $1"
 }

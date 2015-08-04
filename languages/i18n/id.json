@@ -3332,5 +3332,7 @@
 	"special-characters-group-khmer": "Khmer",
 	"special-characters-title-endash": "en dash",
 	"special-characters-title-emdash": "em dash",
-	"special-characters-title-minus": "tanda kurang"
+	"special-characters-title-minus": "tanda kurang",
+	"mw-widgets-dateinput-placeholder-day": "TTTT-BB-HH",
+	"mw-widgets-dateinput-placeholder-month": "TTTT-BB"
 }

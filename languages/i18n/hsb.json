@@ -3205,5 +3205,7 @@
 	"special-characters-group-khmer": "Khmeršćina",
 	"special-characters-title-endash": "krótka ležaca smužka",
 	"special-characters-title-emdash": "dołha ležaca smužka",
-	"special-characters-title-minus": "minusowe znamješko"
+	"special-characters-title-minus": "minusowe znamješko",
+	"mw-widgets-dateinput-placeholder-day": "JJJJ-MM-TT",
+	"mw-widgets-dateinput-placeholder-month": "JJJJ-MM"
 }

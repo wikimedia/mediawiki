@@ -2885,5 +2885,7 @@
 	"special-characters-group-khmer": "C’mère",
 	"special-characters-title-endash": "terèt anglès",
 	"special-characters-title-emdash": "terèt èm",
-	"special-characters-title-minus": "segno muens"
+	"special-characters-title-minus": "segno muens",
+	"mw-widgets-dateinput-placeholder-day": "AAAA-MM-JJ",
+	"mw-widgets-dateinput-placeholder-month": "AAAA-MM"
 }

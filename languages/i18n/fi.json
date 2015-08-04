@@ -3413,6 +3413,8 @@
 	"special-characters-title-endash": "ajatusviiva",
 	"special-characters-title-emdash": "pitkä ajatusviiva",
 	"special-characters-title-minus": "miinusmerkki",
+	"mw-widgets-dateinput-placeholder-day": "VVVV-KK-PP",
+	"mw-widgets-dateinput-placeholder-month": "VVVV-KK",
 	"mw-widgets-titleinput-description-new-page": "sivua ei ole olemassa vielä",
 	"mw-widgets-titleinput-description-redirect": "ohjaus kohteeseen $1"
 }

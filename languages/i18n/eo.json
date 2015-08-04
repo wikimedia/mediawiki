@@ -3402,5 +3402,7 @@
 	"special-characters-group-khmer": "kmera",
 	"special-characters-title-endash": "mallonga streketo",
 	"special-characters-title-emdash": "longa streketo",
-	"special-characters-title-minus": "minus-signo"
+	"special-characters-title-minus": "minus-signo",
+	"mw-widgets-dateinput-placeholder-day": "JJJJ-MM-TT",
+	"mw-widgets-dateinput-placeholder-month": "JJJJ-MM"
 }

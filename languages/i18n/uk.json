@@ -3562,6 +3562,8 @@
 	"special-characters-title-emdash": "довге тире",
 	"special-characters-title-minus": "мінус",
 	"mw-widgets-dateinput-no-date": "Дати не вибрано",
+	"mw-widgets-dateinput-placeholder-day": "РРРР-ММ-ДД",
+	"mw-widgets-dateinput-placeholder-month": "РРРР-ММ",
 	"mw-widgets-titleinput-description-new-page": "сторінка ще не існує",
 	"mw-widgets-titleinput-description-redirect": "перенаправлення на $1"
 }

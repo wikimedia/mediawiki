@@ -2387,5 +2387,7 @@
 	"duration-centuries": "$1 {{PLURAL:$1|øld|øldir}}",
 	"expand_templates_output": "Úrslit",
 	"expand_templates_ok": "Í lagi",
-	"expand_templates_preview": "Forskoðan"
+	"expand_templates_preview": "Forskoðan",
+	"mw-widgets-dateinput-placeholder-day": "ÁÁÁÁ-MM-DD",
+	"mw-widgets-dateinput-placeholder-month": "ÁÁÁÁ-MM"
 }

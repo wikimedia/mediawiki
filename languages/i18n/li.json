@@ -2667,5 +2667,7 @@
 	"special-characters-group-devanagari": "Devanagari",
 	"special-characters-group-thai": "Thai",
 	"special-characters-group-lao": "Lao",
-	"special-characters-group-khmer": "Cambodzjaans"
+	"special-characters-group-khmer": "Cambodzjaans",
+	"mw-widgets-dateinput-placeholder-day": "JJJJ-MM-DD",
+	"mw-widgets-dateinput-placeholder-month": "JJJJ-MM"
 }

@@ -2767,5 +2767,7 @@
 	"special-characters-group-gujarati": "Guxharati",
 	"special-characters-group-thai": "Thai",
 	"special-characters-group-lao": "Lao",
-	"special-characters-group-khmer": "Khmer"
+	"special-characters-group-khmer": "Khmer",
+	"mw-widgets-dateinput-placeholder-day": "VVVV-MM-DD",
+	"mw-widgets-dateinput-placeholder-month": "VVVV-MM"
 }
