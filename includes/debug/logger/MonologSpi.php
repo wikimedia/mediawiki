@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Logger;
 
+use Monolog\Handler\BufferHandler;
 use Monolog\Logger;
 use ObjectFactory;
 
@@ -84,6 +85,7 @@ use ObjectFactory;
  *                   'logstash'
  *               ),
  *               'formatter' => 'logstash',
+ *               'buffer' => true,
  *           ),
  *           'udp2log' => array(
  *               'class' => '\\MediaWiki\\Logger\\Monolog\\LegacyHandler',
@@ -246,6 +248,9 @@ class MonologSpi implements Spi {
 				$handler->setFormatter(
 					$this->getFormatter( $spec['formatter'] )
 				);
+			}
+			if ( isset( $spec['buffer'] ) && $spec['buffer'] ) {
+				$handler = new BufferHandler( $handler );
 			}
 			$this->singletons['handlers'][$name] = $handler;
 		}
