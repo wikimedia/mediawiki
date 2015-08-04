@@ -827,6 +827,7 @@ $wgAutoloadLocalClasses = array(
 	'NewPagesPager' => __DIR__ . '/includes/specials/SpecialNewpages.php',
 	'NewUsersLogFormatter' => __DIR__ . '/includes/logging/NewUsersLogFormatter.php',
 	'NolinesImageGallery' => __DIR__ . '/includes/gallery/NolinesImageGallery.php',
+	'NormaliseEmailAddress' => __DIR__ . '/maintenance/normaliseEmailAddress.php',
 	'NotRecursiveIterator' => __DIR__ . '/includes/utils/iterators/NotRecursiveIterator.php',
 	'NukeNS' => __DIR__ . '/maintenance/nukeNS.php',
 	'NukePage' => __DIR__ . '/maintenance/nukePage.php',
