@@ -137,6 +137,8 @@ changes to languages because of Phabricator reports.
 * SpecialPageFactory::setGroup was removed (deprecated in 1.21).
 * SpecialPageFactory::getGroup was removed (deprecated in 1.21).
 * DatabaseBase::ignoreErrors() is now protected.
+* BREAKING CHANGE: mediawiki.legacy.ajax has been removed, following
+  a lengthy deprecation period.
 
 == Compatibility ==
 
