@@ -120,7 +120,7 @@ class EmailConfirmation extends UnlistedSpecialPage {
 	 * @param string $code Confirmation code
 	 */
 	function attemptConfirm( $code ) {
-		$user = User::newFromConfirmationCode( $code );
+		$user = User::newFromConfirmationCode( $code, User::READ_LATEST );
 		if ( !is_object( $user ) ) {
 			$this->getOutput()->addWikiMsg( 'confirmemail_invalid' );
 
@@ -164,7 +164,7 @@ class EmailInvalidation extends UnlistedSpecialPage {
 	 * @param string $code Confirmation code
 	 */
 	function attemptInvalidate( $code ) {
-		$user = User::newFromConfirmationCode( $code );
+		$user = User::newFromConfirmationCode( $code, User::READ_LATEST );
 		if ( !is_object( $user ) ) {
 			$this->getOutput()->addWikiMsg( 'confirmemail_invalid' );
 

@@ -519,19 +519,24 @@ class User implements IDBAccessObject {
 	 * If the code is invalid or has expired, returns NULL.
 	 *
 	 * @param string $code Confirmation code
+	 * @param int $flags User::READ_* bitfield
 	 * @return User|null
 	 */
-	public static function newFromConfirmationCode( $code ) {
-		$dbr = wfGetDB( DB_SLAVE );
-		$id = $dbr->selectField( 'user', 'user_id', array(
-			'user_email_token' => md5( $code ),
-			'user_email_token_expires > ' . $dbr->addQuotes( $dbr->timestamp() ),
-			) );
-		if ( $id !== false ) {
-			return User::newFromId( $id );
-		} else {
-			return null;
-		}
+	public static function newFromConfirmationCode( $code, $flags = 0 ) {
+		$db = ( $flags & self::READ_LATEST ) == self::READ_LATEST
+			? wfGetDB( DB_MASTER )
+			: wfGetDB( DB_SLAVE );
+
+		$id = $db->selectField(
+			'user',
+			'user_id',
+			array(
+				'user_email_token' => md5( $code ),
+				'user_email_token_expires > ' . $db->addQuotes( $db->timestamp() ),
+			)
+		);
+
+		return $id ? User::newFromId( $id ) : null;
 	}
 
 	/**
