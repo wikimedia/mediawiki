@@ -5,3 +5,8 @@ body > .oo-ui-windowManager {
 	font-size: 12.8px;
 	font-size: 0.8rem;
 }
+
+.skin-vector .oo-ui-windowManager-modal {
+	z-index: 101;
+	position: relative;
+}
