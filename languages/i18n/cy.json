@@ -3144,5 +3144,7 @@
 	"special-characters-group-khmer": "Chmereg",
 	"special-characters-title-endash": "heiffen en",
 	"special-characters-title-emdash": "heiffen em",
-	"special-characters-title-minus": "arwydd minws"
+	"special-characters-title-minus": "arwydd minws",
+	"mw-widgets-dateinput-placeholder-day": "BBBB-MM-DD",
+	"mw-widgets-dateinput-placeholder-month": "BBBB-MM"
 }

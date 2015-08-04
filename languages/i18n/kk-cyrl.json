@@ -3361,6 +3361,8 @@
 	"special-characters-title-endash": "дефис",
 	"special-characters-title-emdash": "сызықша",
 	"special-characters-title-minus": "минус белгісі",
+	"mw-widgets-dateinput-placeholder-day": "ЖЖЖЖ-АА-КК",
+	"mw-widgets-dateinput-placeholder-month": "ЖЖЖЖ-АА",
 	"mw-widgets-titleinput-description-new-page": "бет жоқ екен",
 	"mw-widgets-titleinput-description-redirect": "$1 дегенге бағыттату"
 }

@@ -3485,6 +3485,8 @@
 	"special-characters-title-emdash": "raya",
 	"special-characters-title-minus": "signo de resta",
 	"mw-widgets-dateinput-no-date": "Ninguna fecha seleccionada",
+	"mw-widgets-dateinput-placeholder-day": "AAAA-MM-DD",
+	"mw-widgets-dateinput-placeholder-month": "AAAA-MM",
 	"mw-widgets-titleinput-description-new-page": "la página aún no existe",
 	"mw-widgets-titleinput-description-redirect": "redirigir a $1"
 }

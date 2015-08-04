@@ -3449,6 +3449,8 @@
 	"special-characters-title-endash": "lineetta enne",
 	"special-characters-title-emdash": "lineetta emme",
 	"special-characters-title-minus": "segno meno",
+	"mw-widgets-dateinput-placeholder-day": "AAAA-MM-GG",
+	"mw-widgets-dateinput-placeholder-month": "AAAA-MM",
 	"mw-widgets-titleinput-description-new-page": "questa pagina non esiste ancora",
 	"mw-widgets-titleinput-description-redirect": "reindirizzamento a $1"
 }

@@ -1459,5 +1459,7 @@
 	"feedback-message": "Thu",
 	"feedback-cancel": "Sûtna",
 	"searchsuggest-search": "Zawnna",
-	"searchsuggest-containing": "hemi thu telna hi..."
+	"searchsuggest-containing": "hemi thu telna hi...",
+	"mw-widgets-dateinput-placeholder-day": "KKKK-TT-NN",
+	"mw-widgets-dateinput-placeholder-month": "KKKK-TT"
 }

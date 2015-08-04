@@ -3422,6 +3422,8 @@
 	"special-characters-title-emdash": "långt tankstreck",
 	"special-characters-title-minus": "minustecken",
 	"mw-widgets-dateinput-no-date": "Inget valt datum",
+	"mw-widgets-dateinput-placeholder-day": "ÅÅÅÅ-MM-DD",
+	"mw-widgets-dateinput-placeholder-month": "ÅÅÅÅ-MM",
 	"mw-widgets-titleinput-description-new-page": "sidan existerar inte ännu",
 	"mw-widgets-titleinput-description-redirect": "omdirigerar till $1"
 }

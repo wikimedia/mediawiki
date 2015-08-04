@@ -3333,5 +3333,7 @@
 	"special-characters-title-endash": "кароткі працяжнік",
 	"special-characters-title-emdash": "доўгі працяжнік",
 	"special-characters-title-minus": "мінус",
+	"mw-widgets-dateinput-placeholder-day": "ГГГГ-ММ-ДД",
+	"mw-widgets-dateinput-placeholder-month": "ГГГГ-ММ",
 	"mw-widgets-titleinput-description-new-page": "старонка яшчэ не існуе"
 }

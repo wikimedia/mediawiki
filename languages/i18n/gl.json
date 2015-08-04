@@ -3371,6 +3371,8 @@
 	"special-characters-title-endash": "guión",
 	"special-characters-title-emdash": "raia",
 	"special-characters-title-minus": "signo menos",
+	"mw-widgets-dateinput-placeholder-day": "AAAA-MM-DD",
+	"mw-widgets-dateinput-placeholder-month": "AAAA-MM",
 	"mw-widgets-titleinput-description-new-page": "a páxina aínda non existe",
 	"mw-widgets-titleinput-description-redirect": "redirección cara a $1"
 }

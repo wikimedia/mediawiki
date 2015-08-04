@@ -3575,6 +3575,8 @@
 	"special-characters-title-endash": "tiret demi-cadratin",
 	"special-characters-title-emdash": "tiret cadratin",
 	"special-characters-title-minus": "signe moins",
+	"mw-widgets-dateinput-placeholder-day": "AAAA-MM-JJ",
+	"mw-widgets-dateinput-placeholder-month": "AAAA-MM",
 	"mw-widgets-titleinput-description-new-page": "la page n’existe pas encore",
 	"mw-widgets-titleinput-description-redirect": "redirection vers $1"
 }

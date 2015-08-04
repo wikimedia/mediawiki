@@ -3430,6 +3430,8 @@
 	"special-characters-title-endash": "liggend streepje",
 	"special-characters-title-emdash": "gedachtenstreepje",
 	"special-characters-title-minus": "minteken",
+	"mw-widgets-dateinput-placeholder-day": "JJJJ-MM-DD",
+	"mw-widgets-dateinput-placeholder-month": "JJJJ-MM",
 	"mw-widgets-titleinput-description-new-page": "pagina bestaat nog niet",
 	"mw-widgets-titleinput-description-redirect": "doorverwijzing naar $1"
 }

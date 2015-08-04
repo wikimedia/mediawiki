@@ -3047,5 +3047,7 @@
 	"special-characters-group-bangla": "Bengali",
 	"special-characters-group-telugu": "Telugu",
 	"special-characters-group-sinhala": "Singalesisk",
-	"special-characters-group-gujarati": "Gujarati"
+	"special-characters-group-gujarati": "Gujarati",
+	"mw-widgets-dateinput-placeholder-day": "ÅÅÅÅ-MM-DD",
+	"mw-widgets-dateinput-placeholder-month": "ÅÅÅÅ-MM"
 }

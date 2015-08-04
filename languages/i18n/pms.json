@@ -3344,5 +3344,7 @@
 	"special-characters-group-khmer": "Khmer",
 	"special-characters-title-endash": "tratin en",
 	"special-characters-title-emdash": "tratin em",
-	"special-characters-title-minus": "segn meno"
+	"special-characters-title-minus": "segn meno",
+	"mw-widgets-dateinput-placeholder-day": "AAAA-MM-DD",
+	"mw-widgets-dateinput-placeholder-month": "AAAA-MM"
 }

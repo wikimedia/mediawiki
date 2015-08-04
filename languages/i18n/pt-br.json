@@ -3386,5 +3386,7 @@
 	"special-characters-group-khmer": "Cambojano",
 	"special-characters-title-endash": "traço",
 	"special-characters-title-emdash": "travessão",
-	"special-characters-title-minus": "sinal de menos"
+	"special-characters-title-minus": "sinal de menos",
+	"mw-widgets-dateinput-placeholder-day": "AAAA-MM-DD",
+	"mw-widgets-dateinput-placeholder-month": "AAAA-MM"
 }
