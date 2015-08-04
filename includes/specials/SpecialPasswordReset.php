@@ -160,6 +160,8 @@ class SpecialPasswordReset extends FormSpecialPage {
 		 * @var $users User[]
 		 */
 
+		$data['Email'] = strtolower( $data['Email'] );
+
 		if ( isset( $data['Username'] ) && $data['Username'] !== '' ) {
 			$method = 'username';
 			$users = array( User::newFromName( $data['Username'] ) );
