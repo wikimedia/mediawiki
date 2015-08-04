@@ -45,9 +45,11 @@
 		"ext-wikidiff2": "Diff accelerator",
 		"ext-apc": "Local data and opcode cache",
 		"monolog/monolog": "Flexible debug logging system",
+		"nmred/kafka-php": "Send debug log events to kafka",
 		"pear/mail": "Mail sending support",
 		"pear/mail_mime": "Mail sending support",
-		"pear/mail_mime-decode": "Mail sending support"
+		"pear/mail_mime-decode": "Mail sending support",
+		"wikimedia/avro": "Binary serialization format used with kafka"
 	},
 	"autoload": {
 		"psr-0": {
