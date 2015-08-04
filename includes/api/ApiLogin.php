@@ -170,6 +170,11 @@ class ApiLogin extends ApiBase {
 				$result['reason'] = $loginForm->mAbortLoginErrorMsg;
 				break;
 
+			case LoginForm::WRONG_INPUT:
+				$result['result'] = 'WrongInput';
+				$result['reason'] = 'The username, the email, or the password was wrong';
+				break;
+
 			default:
 				ApiBase::dieDebug( __METHOD__, "Unhandled case value: {$authRes}" );
 		}
@@ -208,6 +213,8 @@ class ApiLogin extends ApiBase {
 				=> 'apihelp-login-example-gettoken',
 			'action=login&lgname=user&lgpassword=password&lgtoken=123ABC'
 				=> 'apihelp-login-example-login',
+			'action=login&lgname=user@example.com&lgpassword=password&lgtoken=123ABC'
+				=> 'apihelp-login-example-login-with-email',
 		);
 	}
 
