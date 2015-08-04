@@ -208,6 +208,8 @@ class ApiLogin extends ApiBase {
 				=> 'apihelp-login-example-gettoken',
 			'action=login&lgname=user&lgpassword=password&lgtoken=123ABC'
 				=> 'apihelp-login-example-login',
+			'action=login&lgname=user@example.com&lgpassword=password&lgtoken=123ABC'
+				=> 'apihelp-login-example-login-with-email',
 		);
 	}
 
