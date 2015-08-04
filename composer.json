@@ -43,7 +43,9 @@
 		"ext-mbstring": "*",
 		"ext-wikidiff2": "*",
 		"ext-apc": "*",
-		"monolog/monolog": "*"
+		"monolog/monolog": "*",
+		"apache/avro": "*",
+		"nmred/kafka-php": "dev-master"
 	},
 	"autoload": {
 		"psr-0": {
@@ -70,5 +72,22 @@
 				"composer.local.json"
 			]
 		}
-	}
+	},
+	"repositories": [
+		{
+			"type": "package",
+			"package": {
+				"name": "apache/avro",
+				"version": "1.7.7",
+				"source": {
+					"url": "http://svn.apache.org/repos/asf/avro/",
+					"type": "svn",
+					"reference": "tags/release-1.7.7/lang/php"
+				},
+				"autoload": {
+					"classmap": ["lib/"]
+				}
+			}
+		}
+	]
 }
