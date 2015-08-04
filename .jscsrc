@@ -4,6 +4,9 @@
 	"disallowQuotedKeysInObjects": null,
 	"requireSpacesInsideParentheses": null,
 	"requireSpacesInsideArrayBrackets": null,
+	"requireVarDeclFirst": null,
+	"requireSpacesInsideBrackets": null,
+	"jsDoc": null,
 
 	"excludeFiles": [
 		"docs/**",
