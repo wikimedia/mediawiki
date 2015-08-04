@@ -16,6 +16,8 @@
 		"wiki": "https://www.mediawiki.org/"
 	},
 	"require": {
+		"ebernhardson/kafka-php": "0.0.1",
+		"apache/avro": "1.7.7",
 		"cssjanus/cssjanus": "1.1.1",
 		"ext-iconv": "*",
 		"leafo/lessphp": "0.5.0",
@@ -70,5 +72,37 @@
 				"composer.local.json"
 			]
 		}
-	}
+	},
+	"repositories": [
+		{
+			"type": "package",
+			"package": {
+				"name": "apache/avro",
+				"version": "1.7.7",
+				"source": {
+					"url": "http://svn.apache.org/repos/asf/avro/",
+					"type": "svn",
+					"reference": "tags/release-1.7.7/lang/php"
+				},
+				"autoload": {
+					"classmap": ["lib/"]
+				}
+			}
+		},
+		{
+			"type": "package",
+			"package": {
+				"name": "ebernhardson/kafka-php",
+				"version": "0.0.1",
+				"source": {
+					"url": "https://github.com/ebernhardson/kafka-php.git",
+					"type": "git",
+					"reference": "no-zookeeper"
+				},
+				"autoload": {
+					"classmap": ["src/"]
+				}
+			}
+		}
+	]
 }
