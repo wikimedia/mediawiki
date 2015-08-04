@@ -60,6 +60,49 @@ class ApiLoginTest extends ApiTestCase {
 		$this->assertEquals( "WrongPass", $a );
 	}
 
+	public function testApiLoginWithEmail() {
+		global $wgServer;
+
+		if ( !isset( $wgServer ) ) {
+			$this->markTestIncomplete( 'This test needs $wgServer to be set in LocalSettings.php' );
+		}
+
+		$user = self::$users['sysop'];
+		$user->user->logOut();
+
+		$ret = $this->doApiRequest( array(
+				"action" => "login",
+				"lgname" => $user->email,
+				"lgpassword" => $user->password,
+			)
+		);
+
+		$result = $ret[0];
+		$this->assertNotInternalType( "bool", $result );
+		$this->assertNotInternalType( "null", $result["login"] );
+
+		$a = $result["login"]["result"];
+		$this->assertEquals( "NeedToken", $a );
+		$token = $result["login"]["token"];
+
+		$ret = $this->doApiRequest(
+			array(
+				"action" => "login",
+				"lgtoken" => $token,
+				"lgname" => $user->username,
+				"lgpassword" => $user->password,
+			),
+			$ret[2]
+		);
+
+		$result = $ret[0];
+
+		$this->assertNotInternalType( "bool", $result );
+		$a = $result["login"]["result"];
+
+		$this->assertEquals( "Success", $a );
+	}
+
 	public function testApiLoginGoodPass() {
 		global $wgServer;
 
