@@ -220,9 +220,8 @@
 }
 
 .mw-widget-calendarWidget-day-today {
-	border: 1px solid #3787fb;
+	box-shadow: inset 0 0 0 1px #3787fb;
 	border-radius: ((@calendarHeight / 7) / 2);
-	margin: -1px;
 }
 
 .mw-widget-calendarWidget-item-selected {
@@ -250,8 +249,7 @@
 	&.mw-widget-calendarWidget-day-heading {
 		border-radius: ((@calendarHeight / 7) / 4);
 		// Hide the border from .mw-widget-calendarWidget-day-today
-		border: 0;
-		margin: 0;
+		box-shadow: none;
 	}
 
 	&.mw-widget-calendarWidget-month {
