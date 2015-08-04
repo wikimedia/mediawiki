@@ -1029,6 +1029,11 @@ class WebInstallerOptions extends WebInstallerPage {
 				'label' => 'config-email-auth',
 			) ) .
 			$this->parent->getHelpBox( 'config-email-auth-help' ) .
+			$this->parent->getCheckBox( array(
+				'var' => 'wgEnableEmailLogin',
+				'label' => 'config-email-login',
+			) ) .
+			$this->parent->getHelpBox( 'config-email-login-help' ).
 			"</div>" .
 			$this->getFieldSetEnd()
 		);
@@ -1289,7 +1294,7 @@ class WebInstallerOptions extends WebInstallerPage {
 			'wgEnableEmail', 'wgPasswordSender', 'wgEnableUploads', 'wgLogo',
 			'wgEnableUserEmail', 'wgEnotifUserTalk', 'wgEnotifWatchlist',
 			'wgEmailAuthentication', 'wgMainCacheType', '_MemCachedServers',
-			'wgUseInstantCommons', 'wgDefaultSkin' ) );
+			'wgUseInstantCommons', 'wgDefaultSkin', 'wgEnableEmailLogin' ) );
 
 		$retVal = true;
 
