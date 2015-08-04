@@ -61,7 +61,6 @@ class ParserTestsMaintenance extends Maintenance {
 			'conjunction with --keep-uploads. Causes a real (non-mock) file backend to ' .
 			'be used.', false, true );
 		$this->addOption( 'run-disabled', 'run disabled tests' );
-		$this->addOption( 'run-parsoid', 'run parsoid tests (normally disabled)' );
 		$this->addOption( 'disable-save-parse', 'Don\'t run the parser when ' .
 			'inserting articles into the database' );
 		$this->addOption( 'dwdiff', 'Use dwdiff to display diff output' );
@@ -181,7 +180,6 @@ class ParserTestsMaintenance extends Maintenance {
 			'regex' => $regex,
 			'keep-uploads' => $this->hasOption( 'keep-uploads' ),
 			'run-disabled' => $this->hasOption( 'run-disabled' ),
-			'run-parsoid' => $this->hasOption( 'run-parsoid' ),
 			'disable-save-parse' => $this->hasOption( 'disable-save-parse' ),
 			'use-tidy-config' => $this->hasOption( 'use-tidy-config' ),
 			'file-backend' => $this->getOption( 'file-backend' ),
