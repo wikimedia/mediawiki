@@ -76,6 +76,10 @@ function startUp() {
 
 	$CODE.registrations();
 
+	mw.config.set( $VARS.configuration );
+
+	// Must be after mw.config.set because these callbacks may use mw.loader which
+	// needs to have values 'skin', 'debug' etc. from mw.config.
 	window.RLQ = window.RLQ || [];
 	while ( RLQ.length ) {
 		RLQ.shift()();
@@ -85,8 +89,6 @@ function startUp() {
 			fn();
 		}
 	};
-
-	mw.config.set( $VARS.configuration );
 }
 
 // Conditional script injection
