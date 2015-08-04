@@ -64,7 +64,7 @@ class UserloginTemplate extends BaseTemplate {
 			<div class="mw-ui-vform-field">
 				<label for='wpName1'>
 					<?php
-					$this->msg( 'userlogin-yourname' );
+					$this->msg( 'userlogin-yourname-youremail' );
 
 					if ( $this->data['secureLoginUrl'] ) {
 						echo Html::element( 'a', array(
@@ -84,7 +84,7 @@ class UserloginTemplate extends BaseTemplate {
 					'required' => true,
 					// Set focus to this field if it's blank.
 					'autofocus' => !$this->data['name'],
-					'placeholder' => $this->getMsg( 'userlogin-yourname-ph' )->text()
+					'placeholder' => $this->getMsg( 'userlogin-yourname-youremail-ph' )->text()
 				) );
 				?>
 			</div>
