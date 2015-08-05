@@ -1439,7 +1439,7 @@
 	"unpatrolledletter": "{{optional}}\n\nUsed in {{msg-mw|Recentchanges-label-legend}}, meaning \"unpatrolled\".",
 	"number_of_watching_users_RCview": "{{notranslate}}\nParameters:\n* $1 - number of users who are watching",
 	"number_of_watching_users_pageview": "Used if <code>$wgPageShowWatchingUsers</code> is true.\n* $1 - number of watching user(s)",
-	"rc_categories": "A label of an input box. Appears on Special:RecentChanges if filtering recent changes by category is enable (that is, $wgAllowCategorizedRecentChanges is set to true).",
+	"rc_categories": "A label of an input box. Appears on Special:RecentChanges if filtering recent changes by category is enabled (that is, $wgAllowCategorizedRecentChanges is set to true).",
 	"rc_categories_any": "Appears ''after'' the input box the label of which is {{msg-mw|rc_categories}}, which appears on [[Special:RecentChanges]], if <code>$wgAllowCategorizedRecentChanges</code> is true. \"Chosen\" refers to categories.",
 	"rc-change-size": "{{optional}}\nDoes not work under $wgMiserMode ([[mwr:48986|r48986]]).\n\nParameters:\n* $1 - size of diff",
 	"rc-change-size-new": "Tooltip when hovering a change list diff size. Parameters:\n* $1 - the resulting new size (in bytes)",

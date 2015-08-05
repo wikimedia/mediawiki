@@ -266,7 +266,7 @@
 	"pool-queuefull": "풀 대기열이 가득 찼습니다",
 	"pool-errorunknown": "알 수 없는 오류",
 	"pool-servererror": "풀 카운터 서비스는 사용할 수 없습니다 ($1).",
-	"poolcounter-usage-error": "어법 에러: $1",
+	"poolcounter-usage-error": "사용법 오류: $1",
 	"aboutsite": "{{SITENAME}} 소개",
 	"aboutpage": "Project:소개",
 	"copyright": "내용은 별도로 명시하지 않을 경우 $1에 따라 사용할 수 있습니다.",

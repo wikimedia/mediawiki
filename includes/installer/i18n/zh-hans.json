@@ -120,8 +120,6 @@
 	"config-db-install-account": "用于安装的用户帐号",
 	"config-db-username": "数据库用户名：",
 	"config-db-password": "数据库密码：",
-	"config-db-password-empty": "请为新数据库用户$1输入密码。尽管您可以创建不使用密码的用户，但这样做并不安全。",
-	"config-db-username-empty": "您必须输入用于“{{int:config-db-username}}”的值。",
 	"config-db-install-username": "请输入在安装过程中用于连接数据库的用户名。请勿输入MediaWiki帐号的用户名，请输入您数据库的用户名。",
 	"config-db-install-password": "请输入在安装过程中用于连接数据库的密码。请勿输入MediaWiki帐号的密码，请输入您数据库的密码。",
 	"config-db-install-help": "请输入在安装过程中用于连接数据库的用户名和密码。",

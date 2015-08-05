@@ -6,6 +6,7 @@
 		]
 	},
 	"apihelp-block-description": "Blokeatu erabiltzaile bat.",
+	"apihelp-block-param-reason": "Blokeatzeko arrazoia.",
 	"apihelp-createaccount-description": "Erabiltzaile kontu berria sortu.",
 	"apihelp-createaccount-param-email": "Erabiltzailearen helbide elektronikoa (aukerakoa).",
 	"apihelp-createaccount-param-realname": "Erabiltzailearen benetako izena (aukerakoa).",
@@ -30,6 +31,7 @@
 	"apihelp-login-param-domain": "Domeinua (hautazkoa).",
 	"apihelp-login-example-login": "Saioa hasi",
 	"apihelp-move-description": "Orrialde bat mugitu",
+	"apihelp-move-param-reason": "Berrizenpenaren arrazoia.",
 	"apihelp-options-example-reset": "Berrezarri hobespen guztiak.",
 	"apihelp-protect-example-protect": "Orrialde bat babestu",
 	"apihelp-query+allusers-param-witheditsonly": "Bakarrik zerrendatu aldaketak egin dituzten erabiltzaileak.",

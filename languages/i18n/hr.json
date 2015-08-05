@@ -667,6 +667,7 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Prazan objekt",
 	"content-json-empty-array": "Prazno polje",
+	"duplicate-args-warning": "<strong>Upozorenje:</strong> [[:$1]] poziva na [[:$2]] s više od jedne vrijednosti za parametar \"$3\". Rabit će se samo posljednja navedena vrijenost.",
 	"expensive-parserfunction-warning": "Upozorenje: Ova stranica sadrži previše opterećujućih poziva parserskih funkcija\n\nTrebala bi imati manje od $2 {{PLURAL:$2|poziva|poziva}}, sada ima {{PLURAL:$1|$1 poziv|$1 poziva}}.",
 	"expensive-parserfunction-category": "Stranice s previše poziva opterećujućih parserskih funkcija",
 	"post-expand-template-inclusion-warning": "Upozorenje: Veličina uključenih predložaka je prevelika.\nNeki predlošci neće biti uključeni.",

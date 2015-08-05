@@ -552,7 +552,7 @@
 	"preview": "Aurrebista erakutsi",
 	"showpreview": "Aurrebista erakutsi",
 	"showdiff": "Aldaketak erakutsi",
-	"anoneditwarning": "'''Oharra:''' Ez duzu saioa hasi. Zure IP helbidea orrialde honetako historian gordeko da.",
+	"anoneditwarning": "'''Oharra:''' Ez duzu saioa hasi. Aldaketak egiten badituzu, zure IP helbidea ikusgai geratuko da.  <strong>[$1 Saioa hasi]</strong> edo <strong>[$2 kontu bat sortzen]</strong> baduzu, zure aldaketak lankide izenari egotziko zaizkio, eta beste abantaila batzuk ere izango dituzu.",
 	"anonpreviewwarning": "''Ez duzu saioa hasi. Gordez gero, zure IP helbidea grabatuko da orri honen edizio historian.''",
 	"missingsummary": "'''Gogorarazpena:''' Ez duzu aldaketa laburpen bat zehaztu. Berriz ere gordetzeko aukeratzen baduzu, laburpen mezurik gordeko da.",
 	"missingcommenttext": "Mesedez, iruzkin bat idatzi jarraian.",

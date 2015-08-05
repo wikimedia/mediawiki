@@ -489,7 +489,6 @@
 	"passwordreset": "Nullstilla loyniorðið",
 	"passwordreset-text-one": "Útfyll henda teigin fyri at nullstilla títt loyniorð.",
 	"passwordreset-text-many": "{{PLURAL:$1|Útfyll í ein av teigunum fyri at móttaka eitt fyribils loyniorð við telduposti.}}",
-	"passwordreset-legend": "Nulstilla loyniorðið",
 	"passwordreset-disabled": "Tað ber ikki til at nullstilla loyniorðið á hesi wiki.",
 	"passwordreset-emaildisabled": "Teldupost funksjónir eru óvirknar á hesi wiki.",
 	"passwordreset-username": "Brúkaranavn:",
@@ -516,7 +515,6 @@
 	"resettokens": "Nullstilla lyklar",
 	"resettokens-text": "Tú kanst nullstilla lyklar sum geva atgongd til ávís privat dáta sum eru knýtt at tínari konto her.\n\nTú eigur at gera tað um tú av óvart hevur deilt lyklarnar við onkran, ella um tín konta hevur verið útsett fyri vandastøðu.",
 	"resettokens-no-tokens": "Tað eru ongir lyklar at nullstilla.",
-	"resettokens-legend": "Nullstilla lyklar",
 	"resettokens-tokens": "Lyklar:",
 	"resettokens-token-label": "$1 (dagsins virði: $2)",
 	"resettokens-done": "Nullstilla lyklar.",
@@ -1397,7 +1395,6 @@
 	"nlinks": "$1 {{PLURAL:$1|slóð|slóðir}}",
 	"nmembers": "$1 {{PLURAL:$1|limur|limir}}",
 	"nrevisions": "$1 {{PLURAL:$1|versjón|versjónir}}",
-	"nviews": "$1 {{PLURAL:$1|skoðan|skoðanir}}",
 	"nimagelinks": "Brúkt á $1 {{PLURAL:$1|síðu|síðum}}",
 	"ntransclusions": "brúkt á $1 {{PLURAL:$1|síðu|síðum}}",
 	"specialpage-empty": "Tað eru ongi úrslit fyri hesa rapportina.",
@@ -2389,5 +2386,6 @@
 	"expand_templates_ok": "Í lagi",
 	"expand_templates_preview": "Forskoðan",
 	"mw-widgets-dateinput-placeholder-day": "ÁÁÁÁ-MM-DD",
-	"mw-widgets-dateinput-placeholder-month": "ÁÁÁÁ-MM"
+	"mw-widgets-dateinput-placeholder-month": "ÁÁÁÁ-MM",
+	"mw-widgets-titleinput-description-new-page": "síðan er ikki til enn"
 }

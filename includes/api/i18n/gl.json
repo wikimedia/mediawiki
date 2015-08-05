@@ -6,7 +6,8 @@
 			"Chairego apc",
 			"VaiPolaSombra",
 			"Banjo",
-			"Fisterraeomar"
+			"Fisterraeomar",
+			"Toliño"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentación]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de discusión]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anuncios da API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Erros e solicitudes]\n</div>\n<strong>Estado:</strong> Tódalas funcionalidades mostradas nesta páxina deberían estar funcionanado, pero a API aínda está desenrolo, e pode ser modificada en calquera momento. Apúntese na [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ lista de discusión mediawiki-api-announce] para estar informado acerca das actualizacións.\n\n<strong>Solicitudes incorrectas:</strong> Cando se envían solicitudes incorrectas á API, envíase unha cabeceira HTTP coa chave \"MediaWiki-API-Error\" e, a seguir, tanto o valor da cabeceira como o código de erro retornado serán definidos co mesmo valor. Para máis información, consulte [[mw:API:Errors_and_warnings|API: Erros e avisos]].",
@@ -234,8 +235,8 @@
 	"apihelp-opensearch-param-format": "O formato de saída.",
 	"apihelp-opensearch-param-warningsaserror": "Se os avisos son recibidos con <kbd>format=json</kbd>, devolver un erro de API no canto de ignoralos.",
 	"apihelp-opensearch-example-te": "Atopar páxinas que comezan por <kbd>Te</kbd>.",
-	"apihelp-options-description": "Cambiar as preferencias do usuario actual.\n\nSó se poden cambiar opcións que estean rexistradas no núcleo ou nunha das extensións instaladas, ou opcións con claves prefixadas con \"userjs-\" (previstas para ser usadas por scripts de usuario).",
-	"apihelp-options-param-reset": "Reiniciar preferencias ás iniciais do sitio.",
+	"apihelp-options-description": "Cambiar as preferencias do usuario actual.\n\nSó se poden cambiar opcións que estean rexistradas no núcleo ou nunha das extensións instaladas, ou aquelas opcións con claves prefixadas con <code>userjs-</code> (previstas para ser usadas por escrituras de usuario).",
+	"apihelp-options-param-reset": "Reinicia as preferencias ás iniciais do sitio.",
 	"apihelp-options-param-resetkinds": "Lista de tipos de opcións a reinicializar cando a opción <var>$1reset</var> está definida.",
 	"apihelp-options-param-change": "Lista de cambios, con formato nome=valor (p. ex. skin=vector). O valor non pode ter caracteres de barra vertical. Se non se indica un valor (sen u signo igual), p. ex. nomeopcion|outraopcion|..., a opción será gardada co seu valor por defecto.",
 	"apihelp-options-param-optionname": "Nome dunha opción que debe ser fixado ó valor dado por <var>$1optionvalue</var>.",
@@ -311,7 +312,7 @@
 	"apihelp-protect-param-protections": "Lista dos niveis de protección, con formato <kbd>action=level</kbd> (p.ex. <kbd>edit=sysop</kbd>).\n\n<strong>Nota:</strong> Todas as accións que non estean listadas terán restriccións para ser eliminadas.",
 	"apihelp-protect-param-expiry": "Selos de tempo de caducidade. Se só se indica un selo de tempo, usarase para todas as proteccións. Use <kbd>infinite</kbd>, <kbd>indefinite</kbd>, <kbd>infinity</kbd>, ou <kbd>never</kbd>, para unha protección sen caducidade.",
 	"apihelp-protect-param-reason": "Razón para (des)protexer.",
-	"apihelp-protect-param-cascade": "Activar protección en cascada (p. ex. protexer modelos transcluídos e imaxes usadas nesta páxina). Ignorado se ningún dos niveis de protección proporcionados soportan o uso en cascada.",
+	"apihelp-protect-param-cascade": "Activar a protección en cascada (por exemplo, protexer os modelos transcluídos e as imaxes usadas nesta páxina). Ignórase se ningún dos niveis de protección soporta a protección en cascada.",
 	"apihelp-protect-param-watch": "Se se define este parámetro, engadir a páxina que se (des)protexe á lista de vixilancia do usuario actual.",
 	"apihelp-protect-param-watchlist": "Engadir ou eliminar sen condicións a páxina da lista de vixiancia do usuario actual, use as preferencias ou non cambie a vixiancia.",
 	"apihelp-protect-example-protect": "Protexer unha páxina",

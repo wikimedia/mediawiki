@@ -1222,7 +1222,7 @@
 	"newpageletter": "ח",
 	"boteditletter": "ב",
 	"number_of_watching_users_pageview": "[{{PLURAL:$1|משתמש אחד עוקב|$1 משתמשים עוקבים}} אחרי הדף]",
-	"rc_categories": "הגבלה לקטגוריות (מופרדוד בתו \"|\"):",
+	"rc_categories": "הגבלה לקטגוריות (מופרדות בתו \"|\"):",
 	"rc_categories_any": "כל אחת מהנבחרות",
 	"rc-change-size-new": "{{PLURAL:$1|בית אחד|$1 בתים}} לאחר השינוי",
 	"newsectionsummary": "/* $1 */ פסקה חדשה",
