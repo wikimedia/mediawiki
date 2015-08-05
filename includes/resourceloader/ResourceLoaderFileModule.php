@@ -526,19 +526,16 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Helper method to gather file mtimes for getDefinitionSummary.
+	 * Helper method to gather file hashes for getDefinitionSummary.
 	 *
-	 * Last modified timestamps are calculated from the highest last modified
-	 * timestamp of this module's constituent files as well as the files it
-	 * depends on. This function is context-sensitive, only performing
-	 * calculations on files relevant to the given language, skin and debug
-	 * mode.
+	 * This function is context-sensitive, only computing hashes of files relevant to the
+	 * given language, skin, etc.
 	 *
 	 * @see ResourceLoaderModule::getFileDependencies
 	 * @param ResourceLoaderContext $context
 	 * @return array
 	 */
-	protected function getFileMtimes( ResourceLoaderContext $context ) {
+	protected function getFileHashes( ResourceLoaderContext $context ) {
 		$files = array();
 
 		// Flatten style files into $files
@@ -577,13 +574,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		// entry point Less file we already know about.
 		$files = array_values( array_unique( $files ) );
 
-		// Don't max() because older files are significant.
-		// While the associated file names are significant, that is already taken care of by the
-		// definition summary. Avoid creating an array keyed by file path here because those are
-		// absolute file paths. Including that would needlessly cause global cache invalidation
-		// when the MediaWiki installation path changes (which is quite common in cases like
-		// Wikimedia where the installation path reflects the MediaWiki branch name).
-		return array_map( array( __CLASS__, 'safeFilemtime' ), $files );
+		// Don't include keys or file paths here, only the hashes. Including that would needlessly
+		// cause global cache invalidation when files move or if e.g. the MediaWiki path changes.
+		// Any significant ordering is already detected by the definition summary.
+		return array_map( array( __CLASS__, 'safeFileHash' ), $files );
 	}
 
 	/**
@@ -597,6 +591,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 		$options = array();
 		foreach ( array(
+			// T104950: Do not include localBasePath! That path may vary over time and needlessly
+			// invalidate cache. If the path changes in a way that makes relative file paths point
+			// to something else, getFileHashes() will incorporate that already.
 			'scripts',
 			'debugScripts',
 			'loaderScripts',
@@ -611,9 +608,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			'group',
 			'position',
 			'skipFunction',
-			// FIXME: localBasePath includes the MediaWiki installation path and
-			// needlessly causes cache invalidation.
-			'localBasePath',
 			'remoteBasePath',
 			'debugRaw',
 			'raw',
@@ -623,7 +617,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 		$summary[] = array(
 			'options' => $options,
-			'fileMtimes' => $this->getFileMTimes( $context ),
+			'fileHashes' => $this->getFileHashes( $context ),
 			'msgBlobMtime' => $this->getMsgBlobMtime( $context->getLanguage() ),
 		);
 		return $summary;
