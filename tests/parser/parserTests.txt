@@ -6714,33 +6714,32 @@ parsoid=wt2html,wt2wt
 </tbody></table>
 !! end
 
-
-# PHP throws away the (semi-broken) "foo" class here; Parsoid
-# preserves it.
-!!test
+!! test
 Parsoid: Recover better from broken table attributes
 !!options
 parsoid=wt2html
-!!wikitext
+!! wikitext
 {| class="foo
 | class="bar" |
 foo
 |}
-!!html/php+tidy
-<table>
+!! html/php+tidy
+<table class="foo">
 <tr>
 <td class="bar">
 <p>foo</p>
 </td>
 </tr>
 </table>
-!!html/parsoid
+!! html/parsoid
 <table class="foo">
 <tr>
 <td class="bar">
-<p>foo</p></td></tr>
-</tbody></table>
-!!end
+<p>foo</p>
+</td>
+</tr>
+</table>
+!! end
 
 !! test
 Strip unsupported table tags
@@ -14872,12 +14871,8 @@ div with illegal double attributes
 
 !!end
 
-# FIXME: produce empty string instead of "class" in the PHP parser, following
-# the HTML5 spec.
 !! test
 div with empty attribute value, space before equals
-!! options
-parsoid
 !! wikitext
 <div class =>HTML rocks</div>
 !! html
@@ -14885,26 +14880,36 @@ parsoid
 
 !! end
 
+# FIXME: Parsoid doesn't match the html5 spec
 !! test
 div with multiple empty attribute values
 !! options
-parsoid
+parsoid=wt2html,html2html
 !! wikitext
 <div id= title=>HTML rocks</div>
-!! html
-<div id="" title="">HTML rocks</div>
+!! html/php
+<div id="title.3D">HTML rocks</div>
 
+!! html/parsoid
+<div id="" title="">HTML rocks</div>
 !! end
 
+# FIXME: Parsoid doesn't match the html5 spec
 !! test
 table with multiple empty attribute values
 !! options
-parsoid
+parsoid=wt2html,html2html
 !! wikitext
 {| title= id=
 | hi
 |}
-!! html
+!! html/php
+<table title="id=">
+<tr>
+<td> hi
+</td></tr></table>
+
+!! html/parsoid
 <table title="" id="">
 <tbody><tr><td> hi</td></tr>
 </tbody></table>
@@ -14921,13 +14926,6 @@ div with braces in attribute value
 <div title="{}">Foo</div>
 !! end
 
-# This it very inconsistent in the PHP parser: it returns 
-# class="class" if there is a space between the name and the equal sign (see
-# 'div with empty attribute value, space before equals'), but strips the
-# attribute completely if the space is missing. We hope that not much content
-# depends on this, so are implementing the behavior below in Parsoid for
-# consistencies' sake.
-# FIXME: fix this behavior in the PHP parser?
 !! test
 div with empty attribute value, no space before equals
 !! options
@@ -14935,7 +14933,7 @@ parsoid=wt2html,html2html
 !! wikitext
 <div class=>HTML rocks</div>
 !! html/php
-<div>HTML rocks</div>
+<div class="">HTML rocks</div>
 
 !! html/parsoid
 <div class="">HTML rocks</div>
@@ -15259,7 +15257,7 @@ Attribute test: equals, then nothing
 !! wikitext
 <font color=>foo</font>
 !! html
-<p><font>foo</font>
+<p><font color="">foo</font>
 </p>
 !! end
 
@@ -20387,7 +20385,7 @@ __TOC__
 </div>
 
 <h2><span class="mw-headline" id="Hello"><sup class="in-h2">Hello</sup></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Hello">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-<h2><span class="mw-headline" id="b.22.3EEvilbye"><sup> b"&gt;Evilbye</sup></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: b&quot;&gt;Evilbye">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<h2><span class="mw-headline" id="b.22.3EEvilbye"><sup class="a"> b"&gt;Evilbye</sup></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: b&quot;&gt;Evilbye">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
 !! end
 
@@ -23175,29 +23173,21 @@ HTML tag with 'unnecessary' entity encoding in attributes
 
 !! test
 HTML tag with broken attribute value quoting
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 <span title="Hello world>Foo</span>
 !! html/php
-<p><span>Foo</span>
+<p><span title="Hello world">Foo</span>
 </p>
 !! html/parsoid
-<p><span title="Hello world">Foo</span>
-</p>
-!! end
-
-!! test
-Parsoid-only: HTML tag with broken attribute value quoting
-!! options
-parsoid
-!! wikitext
-<span title="Hello world>Foo</span>
-!! html
-<p><span title="Hello world">Foo</span>
-</p>
+<p><span title="Hello world">Foo</span></p>
 !! end
 
 !! test
 Table with broken attribute value quoting
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 {|
 | title="Hello world|Foo
@@ -23205,7 +23195,7 @@ Table with broken attribute value quoting
 !! html/php
 <table>
 <tr>
-<td>Foo
+<td title="Hello world">Foo
 </td></tr></table>
 
 !! html/parsoid
@@ -23218,6 +23208,8 @@ Table with broken attribute value quoting
 
 !! test
 Table with broken attribute value quoting on consecutive lines
+!! options
+parsoid=wt2html,html2html
 !! wikitext
 {|
 | title="Hello world|Foo
@@ -23226,9 +23218,9 @@ Table with broken attribute value quoting on consecutive lines
 !! html/php
 <table>
 <tr>
-<td>Foo
+<td title="Hello world">Foo
 </td>
-<td>Bar
+<td style="color:red">Bar
 </td></tr></table>
 
 !! html/parsoid
