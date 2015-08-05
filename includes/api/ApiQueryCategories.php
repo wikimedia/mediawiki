@@ -184,7 +184,8 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 					'sortkey',
 					'timestamp',
 					'hidden',
-				)
+				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'show' => array(
 				ApiBase::PARAM_ISMULTI => true,
