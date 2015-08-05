@@ -246,7 +246,7 @@
 				},
 
 				teardown: function () {
-					var timers, active;
+					var timers, pending, $activeLen;
 
 					localEnv.teardown.call( this );
 
@@ -278,21 +278,22 @@
 					}
 
 					// Test should use fake XHR, wait for requests, or call abort()
-					if ( $.active !== undefined && $.active !== 0 ) {
-						active = $.grep( ajaxRequests, function ( ajax ) {
+					$activeLen = $.active;
+					if ( $activeLen !== undefined && $activeLen !== 0 ) {
+						pending = $.grep( ajaxRequests, function ( ajax ) {
 							return ajax.xhr.state() === 'pending';
 						} );
-						if ( active.length !== $.active ) {
+						if ( pending.length !== $activeLen ) {
 							mw.log.warn( 'Pending requests does not match jQuery.active count' );
 						}
 						// Force requests to stop to give the next test a clean start
-						$.each( active, function ( i, ajax ) {
-							mw.log.warn( 'Unfinished AJAX request #' + i, ajax.options );
+						$.each( pending, function ( i, ajax ) {
+							mw.log.warn( 'Pending AJAX request #' + i, ajax.options );
 							ajax.xhr.abort();
 						} );
 						ajaxRequests = [];
 
-						throw new Error( 'Unfinished AJAX requests: ' + active.length );
+						throw new Error( 'Pending AJAX requests: ' + pending.length + ' (active: ' + $activeLen + ')' );
 					}
 				}
 			};
