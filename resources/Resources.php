@@ -822,7 +822,7 @@ return array(
 
 	'mediawiki' => array(
 		'class' => 'ResourceLoaderRawFileModule',
-		// Keep maintenance/jsduck/eg-iframe.html in sync
+		// Keep in sync with maintenance/jsduck/eg-iframe.html
 		'scripts' => array(
 			'resources/lib/phpjs-sha1/sha1.js',
 			'resources/src/mediawiki/mediawiki.js',
