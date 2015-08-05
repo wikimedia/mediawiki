@@ -14872,12 +14872,8 @@ div with illegal double attributes
 
 !!end
 
-# FIXME: produce empty string instead of "class" in the PHP parser, following
-# the HTML5 spec.
 !! test
 div with empty attribute value, space before equals
-!! options
-parsoid
 !! wikitext
 <div class =>HTML rocks</div>
 !! html
@@ -14887,8 +14883,6 @@ parsoid
 
 !! test
 div with multiple empty attribute values
-!! options
-parsoid
 !! wikitext
 <div id= title=>HTML rocks</div>
 !! html
@@ -14898,13 +14892,17 @@ parsoid
 
 !! test
 table with multiple empty attribute values
-!! options
-parsoid
 !! wikitext
 {| title= id=
 | hi
 |}
-!! html
+!! html/php
+<table title="" id="">
+<tr>
+<td> hi
+</td></tr></table>
+
+!! html/parsoid
 <table title="" id="">
 <tbody><tr><td> hi</td></tr>
 </tbody></table>
@@ -14921,13 +14919,6 @@ div with braces in attribute value
 <div title="{}">Foo</div>
 !! end
 
-# This it very inconsistent in the PHP parser: it returns 
-# class="class" if there is a space between the name and the equal sign (see
-# 'div with empty attribute value, space before equals'), but strips the
-# attribute completely if the space is missing. We hope that not much content
-# depends on this, so are implementing the behavior below in Parsoid for
-# consistencies' sake.
-# FIXME: fix this behavior in the PHP parser?
 !! test
 div with empty attribute value, no space before equals
 !! options
@@ -14935,7 +14926,7 @@ parsoid=wt2html,html2html
 !! wikitext
 <div class=>HTML rocks</div>
 !! html/php
-<div>HTML rocks</div>
+<div class="">HTML rocks</div>
 
 !! html/parsoid
 <div class="">HTML rocks</div>
@@ -15259,7 +15250,7 @@ Attribute test: equals, then nothing
 !! wikitext
 <font color=>foo</font>
 !! html
-<p><font>foo</font>
+<p><font color="">foo</font>
 </p>
 !! end
 
