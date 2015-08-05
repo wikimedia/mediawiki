@@ -274,6 +274,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 					'bitdepth',
 					'archivename',
 				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
