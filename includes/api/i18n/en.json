@@ -1232,5 +1232,5 @@
 	"api-help-right-apihighlimits": "Use higher limits in API queries (slow queries: $1; fast queries: $2). The limits for slow queries also apply to multivalue parameters.",
 
 	"api-credits-header": "Credits",
-	"api-credits": "API developers:\n* Roan Kattouw (lead developer Sep 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (creator, lead developer Sep 2006–Sep 2007)\n* Brad Jorsch (lead developer 2013–present)\n\nPlease send your comments, suggestions and questions to mediawiki-api@lists.wikimedia.org\nor file a bug report at https://phabricator.wikimedia.org/."
+	"api-credits": "API developers:\n* Yuri Astrakhan (creator, lead developer Sep 2006–Sep 2007)\n* Roan Kattouw (lead developer Sep 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (lead developer 2013–present)\n\nPlease send your comments, suggestions and questions to mediawiki-api@lists.wikimedia.org\nor file a bug report at https://phabricator.wikimedia.org/."
 }
