@@ -349,9 +349,6 @@ class Sanitizer {
 					  \"([^<\"]*)\"
 					 | '([^<']*)'
 					 |  ([a-zA-Z0-9!#$%&()*,\\-.\\/:;<>?@[\\]^_`{|}~]+)
-					 |  (\#[0-9a-fA-F]+) # Technically wrong, but lots of
-										 # colors are specified like this.
-										 # We'll be normalizing it.
 					)
 				)?(?=$space|\$)/sx";
 		}
@@ -1263,10 +1260,7 @@ class Sanitizer {
 	 * @return string
 	 */
 	private static function getTagAttributeCallback( $set ) {
-		if ( isset( $set[6] ) ) {
-			# Illegal #XXXXXX color with no quotes.
-			return $set[6];
-		} elseif ( isset( $set[5] ) ) {
+		if ( isset( $set[5] ) ) {
 			# No quotes.
 			return $set[5];
 		} elseif ( isset( $set[4] ) ) {
