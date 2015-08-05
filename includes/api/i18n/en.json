@@ -368,7 +368,9 @@
 	"apihelp-query+allcategories-param-min": "Only return categories with at least this many members.",
 	"apihelp-query+allcategories-param-max": "Only return categories with at most this many members.",
 	"apihelp-query+allcategories-param-limit": "How many categories to return.",
-	"apihelp-query+allcategories-param-prop": "Which properties to get:\n;size:Adds number of pages in the category.\n;hidden:Tags categories that are hidden with _&#95;HIDDENCAT_&#95;.",
+	"apihelp-query+allcategories-param-prop": "Which properties to get:",
+	"apihelp-query+allcategories-paramvalue-prop-size": "Adds number of pages in the category.",
+	"apihelp-query+allcategories-paramvalue-prop-hidden": "Tags categories that are hidden with _&#95;HIDDENCAT_&#95;.",
 	"apihelp-query+allcategories-example-size": "List categories with information on the number of pages in each.",
 	"apihelp-query+allcategories-example-generator": "Retrieve info about the category page itself for categories beginning <kbd>List</kbd>.",
 
