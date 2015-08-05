@@ -340,15 +340,15 @@ class Sanitizer {
 		if ( self::$attribsRegex === null ) {
 			$attribFirst = '[:A-Z_a-z0-9]';
 			$attrib = '[:A-Z_a-z-.0-9]';
-			$space = '[\x09\x0a\x0d\x20]';
+			$space = '[\x09\x0a\x0c\x20]';
 			self::$attribsRegex =
 				"/(?:^|$space)({$attribFirst}{$attrib}*)
 				  ($space*=$space*
 					(?:
 					 # The attribute value: quoted or alone
-					  \"([^<\"]*)\"
-					 | '([^<']*)'
-					 |  ([a-zA-Z0-9!#$%&()*,\\-.\\/:;<>?@[\\]^_`{|}~]+)
+					  \"([^\"]*)(?:\"|\$)
+					 | '([^']*)(?:'|\$)
+					 |  (((?!$space|>).)*)
 					)
 				)?(?=$space|\$)/sx";
 		}
