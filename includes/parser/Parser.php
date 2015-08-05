@@ -1382,16 +1382,18 @@ class Parser {
 		$spdash = "(?:-|$space)"; # a dash or a non-newline space
 		$spaces = "$space++"; # possessive match of 1 or more spaces
 		$text = preg_replace_callback(
-			'!(?:                           # Start cases
-				(<a[ \t\r\n>].*?</a>) |     # m[1]: Skip link text
-				(<.*?>) |                   # m[2]: Skip stuff inside HTML elements' . "
-				(\b(?i:$prots)$urlChar+) |  # m[3]: Free external links
-				\b(?:RFC|PMID) $spaces      # m[4]: RFC or PMID, capture number
+			'!(?:                            # Start cases
+				(<a[ \t\r\n>].*?</a>) |      # m[1]: Skip link text
+				(<.*?>) |                    # m[2]: Skip stuff inside
+				                             #       HTML elements' . "
+				(\b(?i:$prots)($urlChar+)) | # m[3]: Free external links
+				                             # m[4]: Post-protocol path
+				\b(?:RFC|PMID) $spaces       # m[5]: RFC or PMID, capture number
 					([0-9]+)\b |
-				\bISBN $spaces (            # m[5]: ISBN, capture number
-					(?: 97[89] $spdash? )?   # optional 13-digit ISBN prefix
-					(?: [0-9]  $spdash? ){9} # 9 digits with opt. delimiters
-					[0-9Xx]                 # check digit
+				\bISBN $spaces (             # m[6]: ISBN, capture number
+					(?: 97[89] $spdash? )?   #  optional 13-digit ISBN prefix
+					(?: [0-9]  $spdash? ){9} #  9 digits with opt. delimiters
+					[0-9Xx]                  #  check digit
 				)\b
 			)!xu", array( &$this, 'magicLinkCallback' ), $text );
 		return $text;
@@ -1411,28 +1413,28 @@ class Parser {
 			return $m[0];
 		} elseif ( isset( $m[3] ) && $m[3] !== '' ) {
 			# Free external link
-			return $this->makeFreeExternalLink( $m[0] );
-		} elseif ( isset( $m[4] ) && $m[4] !== '' ) {
+			return $this->makeFreeExternalLink( $m[0], strlen( $m[4] ) );
+		} elseif ( isset( $m[5] ) && $m[5] !== '' ) {
 			# RFC or PMID
 			if ( substr( $m[0], 0, 3 ) === 'RFC' ) {
 				$keyword = 'RFC';
 				$urlmsg = 'rfcurl';
 				$cssClass = 'mw-magiclink-rfc';
-				$id = $m[4];
+				$id = $m[5];
 			} elseif ( substr( $m[0], 0, 4 ) === 'PMID' ) {
 				$keyword = 'PMID';
 				$urlmsg = 'pubmedurl';
 				$cssClass = 'mw-magiclink-pmid';
-				$id = $m[4];
+				$id = $m[5];
 			} else {
 				throw new MWException( __METHOD__ . ': unrecognised match type "' .
 					substr( $m[0], 0, 20 ) . '"' );
 			}
 			$url = wfMessage( $urlmsg, $id )->inContentLanguage()->text();
 			return Linker::makeExternalLink( $url, "{$keyword} {$id}", true, $cssClass );
-		} elseif ( isset( $m[5] ) && $m[5] !== '' ) {
+		} elseif ( isset( $m[6] ) && $m[6] !== '' ) {
 			# ISBN
-			$isbn = $m[5];
+			$isbn = $m[6];
 			$space = self::SPACE_NOT_NL; #  non-newline space
 			$isbn = preg_replace( "/$space/", ' ', $isbn );
 			$num = strtr( $isbn, array(
@@ -1453,11 +1455,12 @@ class Parser {
 	 * Make a free external link, given a user-supplied URL
 	 *
 	 * @param string $url
-	 *
+	 * @param int $numPostProto
+	 *   The number of characters after the protocol.
 	 * @return string HTML
 	 * @private
 	 */
-	public function makeFreeExternalLink( $url ) {
+	public function makeFreeExternalLink( $url, $numPostProto ) {
 
 		$trail = '';
 
@@ -1497,6 +1500,12 @@ class Parser {
 		}
 
 		$url = Sanitizer::cleanUrl( $url );
+
+		# Verify that we still have a real URL after trail removal, and
+		# not just lone protocol
+		if ( strlen( $trail ) >= $numPostProto ) {
+			return $url . $trail;
+		}
 
 		# Is this an external image?
 		$text = $this->maybeMakeExternalImage( $url );
