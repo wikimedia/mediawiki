@@ -303,7 +303,8 @@ class ApiQueryBlocks extends ApiQueryBase {
 					'range',
 					'flags'
 				),
-				ApiBase::PARAM_ISMULTI => true
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'show' => array(
 				ApiBase::PARAM_TYPE => array(
