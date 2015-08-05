@@ -314,7 +314,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					'sortkeyprefix',
 					'type',
 					'timestamp',
-				)
+				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'namespace' => array(
 				ApiBase::PARAM_ISMULTI => true,
