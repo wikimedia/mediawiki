@@ -78,6 +78,14 @@ abbr[title],
 	cursor: help;
 }
 
+@supports (text-decoration: underline dotted) {
+	abbr[title],
+	.explain[title] {
+		border-bottom: initial;
+		text-decoration: underline dotted;
+	}
+}
+
 /* Colored watchlist and recent changes numbers */
 .mw-plusminus-pos {
 	color: #006400; /* dark green */
