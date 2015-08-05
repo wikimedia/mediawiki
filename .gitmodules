@@ -134,3 +134,7 @@
 	path = extensions/VisualEditor
 	url = https://github.com/wikimedia/mediawiki-extensions-VisualEditor
 	branch = REL1_25
+[submodule "extensions/InputBox"]
+	path = extensions/InputBox
+	url = https://github.com/wikimedia/mediawiki-extensions-InputBox
+	branch = REL1_25
