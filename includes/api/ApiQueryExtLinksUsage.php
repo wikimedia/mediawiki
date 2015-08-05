@@ -155,7 +155,8 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 					'ids',
 					'title',
 					'url'
-				)
+				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'offset' => array(
 				ApiBase::PARAM_TYPE => 'integer',
