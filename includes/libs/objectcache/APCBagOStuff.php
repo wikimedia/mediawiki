@@ -27,7 +27,6 @@
  * @ingroup Cache
  */
 class APCBagOStuff extends BagOStuff {
-
 	/**
 	 * @var string String to append to each APC key. This may be changed
 	 *  whenever the handling of values is changed, to prevent existing code
@@ -35,7 +34,7 @@ class APCBagOStuff extends BagOStuff {
 	 **/
 	const KEY_SUFFIX = ':1';
 
-	public function get( $key, &$casToken = null ) {
+	public function get( $key, &$casToken = null, $flags = 0 ) {
 		$val = apc_fetch( $key . self::KEY_SUFFIX );
 
 		$casToken = $val;
