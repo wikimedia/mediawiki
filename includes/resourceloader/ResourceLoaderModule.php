@@ -835,16 +835,30 @@ abstract class ResourceLoaderModule {
 	}
 
 	/**
-	 * Safe version of filemtime(), which doesn't throw a PHP warning if the file doesn't exist
-	 * but returns 1 instead.
-	 * @param string $filename File name
+	 * Safe version of filemtime(), which doesn't throw a PHP warning if the file doesn't exist.
+	 * Defaults to 1.
+	 *
+	 * @param string $filePath File path
 	 * @return int UNIX timestamp
 	 */
-	protected static function safeFilemtime( $filename ) {
+	protected static function safeFilemtime( $filePath ) {
 		MediaWiki\suppressWarnings();
-		$mtime = filemtime( $filename ) ?: 1;
+		$mtime = filemtime( $filePath ) ?: 1;
 		MediaWiki\restoreWarnings();
-
 		return $mtime;
+	}
+
+	/**
+	 * Safe version of sha1_file(), which doesn't throw a PHP warning if the file doesn't exist.
+	 * Defaults to empty string.
+	 *
+	 * @param string $filePath File path
+	 * @return string Hash
+	 */
+	protected static function safeFileHash( $filePath ) {
+		MediaWiki\suppressWarnings();
+		$hash = sha1_file( $filename ) ?: '';
+		MediaWiki\restoreWarnings();
+		return $hash;
 	}
 }
