@@ -3524,28 +3524,27 @@ $wgResourceLoaderMinifierStatementsOnOwnLine = false;
 $wgResourceLoaderMinifierMaxLineLength = 1000;
 
 /**
- * Whether to include the mediawiki.legacy JS library (old wikibits.js), and its
- * dependencies.
+ * Whether to ensure the mediawiki.legacy library is loaded before other modules.
+ *
+ * @deprecated since 1.26: Always declare dependencies.
  */
 $wgIncludeLegacyJavaScript = true;
 
 /**
- * Whether to preload the mediawiki.util module as blocking module in the top
- * queue.
+ * Whether to ensure the mediawiki.util is loaded before other modules.
  *
- * Before MediaWiki 1.19, modules used to load slower/less asynchronous which
- * allowed modules to lack dependencies on 'popular' modules that were likely
- * loaded already.
+ * Before MediaWiki 1.19, modules used to load less asynchronous which allowed
+ * modules to lack dependencies on 'popular' modules that were likely loaded already.
  *
  * This setting is to aid scripts during migration by providing mediawiki.util
- * unconditionally (which was the most commonly missed dependency).
- * It doesn't cover all missing dependencies obviously but should fix most of
- * them.
+ * unconditionally (which was the most commonly missed dependency). It doesn't
+ * cover all missing dependencies obviously but should fix most of them.
  *
  * This should be removed at some point after site/user scripts have been fixed.
  * Enable this if your wiki has a large amount of user/site scripts that are
  * lacking dependencies.
- * @todo Deprecate
+ *
+ * @deprecated since 1.26: Always declare dependencies.
  */
 $wgPreloadJavaScriptMwUtil = false;
 
