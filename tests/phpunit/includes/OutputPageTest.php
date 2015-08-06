@@ -142,7 +142,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			array(
 				array( 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS ),
 				"<script>var RLQ = RLQ || []; RLQ.push( function () {\n"
-					. 'document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?'
+					. 'mw.docWrite("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?'
 					. 'debug=false\u0026amp;lang=en\u0026amp;modules=test.foo\u0026amp;only'
 					. '=scripts\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");'
 					. "\n} );</script>"
@@ -188,10 +188,10 @@ class OutputPageTest extends MediaWikiTestCase {
 			array(
 				array( array( 'test.group.foo', 'test.group.bar' ), ResourceLoaderModule::TYPE_COMBINED ),
 				"<script>var RLQ = RLQ || []; RLQ.push( function () {\n"
-					. 'document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=test.group.bar\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");'
+					. 'mw.docWrite("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=test.group.bar\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");'
 					. "\n} );</script>\n"
 					. "<script>var RLQ = RLQ || []; RLQ.push( function () {\n"
-					. 'document.write("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=test.group.foo\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");'
+					. 'mw.docWrite("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=test.group.foo\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");'
 					. "\n} );</script>"
 			),
 		);
