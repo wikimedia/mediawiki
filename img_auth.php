@@ -55,7 +55,10 @@ function wfImageAuthMain() {
 
 	$request = RequestContext::getMain()->getRequest();
 	$publicWiki = in_array( 'read', User::getGroupPermissions( array( '*' ) ), true );
-
+	// Workaround for NSFileRepo
+	$publicWiki = False;
+	// Workaround for NSFileRepo
+	
 	// Get the requested file path (source file or thumbnail)
 	$matches = WebRequest::getPathInfo();
 	if ( !isset( $matches['title'] ) ) {
@@ -105,12 +108,30 @@ function wfImageAuthMain() {
 	$repo = RepoGroup::singleton()->getRepo( 'local' );
 	$zone = strstr( ltrim( $path, '/' ), '/', true );
 
+	// Dirty workaround for NSFileRepo for MW > 1.23
+ 	$bits_path = explode( '/',$path );
+        $file_namespace_name = "";
+        $bit_namespace=1; $count_thumb=0;
+        if ($bits_path[1] == "thumb") { $bit_namespace=2; $count_thumb=1; }
+        $num_bits = count($bits_path);
+
+        if ( ($num_bits - $bit_namespace - $count_thumb == 4) ) {
+                $file_namespace_num = $bits_path[$bit_namespace];
+                $file_namespace_name = MWNamespace::getCanonicalName( $file_namespace_num );
+        }	
+	// End of dirty workaround
+
 	// Get the full file storage path and extract the source file name.
 	// (e.g. 120px-Foo.png => Foo.png or page2-120px-Foo.png => Foo.png).
 	// This only applies to thumbnails/transcoded, and each of them should
 	// be under a folder that has the source file name.
 	if ( $zone === 'thumb' || $zone === 'transcoded' ) {
 		$name = wfBaseName( dirname( $path ) );
+		// Dirty workaround for NSFileRepo for MW > 1.23
+			if ( $file_namespace_name != "" ) { 
+                                $name = $file_namespace_name.":".$name;
+                        }
+		// End of dirty workaround
 		$filename = $repo->getZonePath( $zone ) . substr( $path, strlen( "/" . $zone ) );
 		// Check to see if the file exists
 		if ( !$repo->fileExists( $filename ) ) {
@@ -125,6 +146,11 @@ function wfImageAuthMain() {
 		if ( substr( $path, 0, 9 ) === '/archive/' && count( $bits ) == 2 ) {
 			$file = $repo->newFromArchiveName( $bits[1], $name );
 		} else {
+			// Dirty workaround for NSFileRepo for MW > 1.23
+			if ( $file_namespace_name != "" ) { 
+                                $name = $file_namespace_name.":".$name;
+                        }
+			// End of dirty workaround
 			$file = $repo->newFile( $name );
 		}
 		if ( !$file->exists() || $file->isDeleted( File::DELETED_FILE ) ) {
