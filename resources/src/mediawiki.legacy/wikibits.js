@@ -215,4 +215,10 @@
 	win.importScript = importScript;
 	win.importStylesheet = importStylesheet;
 
+	// Replace document.write with basic html parsing that appends
+	// to the <body> to avoid blanking pages. Added JavaScript will not run.
+	mw.log.deprecate( document, 'write', function ( html ) {
+		$( 'body' ).append( $.parseHTML( html ) );
+	}, 'Use jQuery or mw.loader.load instead.' );
+
 }( mediaWiki, jQuery ) );
