@@ -1055,6 +1055,10 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 			( $this->lastErrno() == 1290 && strpos( $this->lastError(), '--read-only' ) !== false );
 	}
 
+	function wasConnectionError( $ernno ) {
+		return $ernno == 2013 || $ernno == 2006;
+	}
+
 	/**
 	 * Get the underlying binding handle, mConn
 	 *
