@@ -25,6 +25,8 @@
  * Compact stacked vertical format for forms, implemented using OOUI widgets.
  */
 class OOUIHTMLForm extends HTMLForm {
+	private $oouiErrors;
+
 	public function __construct( $descriptor, $context = null, $messagePrefix = '' ) {
 		parent::__construct( $descriptor, $context, $messagePrefix );
 		$this->getOutput()->enableOOUI();
@@ -125,11 +127,41 @@ class OOUIHTMLForm extends HTMLForm {
 	}
 
 	/**
-	 * @param string|array|Status $errors
+	 * @param string|array|Status $err
 	 * @return string
 	 */
-	function getErrors( $errors ) {
-		// TODO Write me!
+	function getErrors( $err ) {
+		if ( !$err ) {
+			$errors = array();
+		} else if ( $err instanceof Status ) {
+			if ( $err->isOK() ) {
+				$errors = array();
+			} else {
+				$errors = $err->getErrorsByType( 'error' );
+				foreach ( $errors as &$error ) {
+					$error = array( $error['message'], $error['params'] );
+				}
+			}
+		} else {
+			$errors = $err;
+			if ( !is_array( $errors ) ) {
+				$errors = array( $errors );
+			}
+		}
+
+		foreach ( $errors as &$error ) {
+			if ( is_array( $error ) ) {
+				$msg = array_shift( $error );
+			} else {
+				$msg = $error;
+				$error = array();
+			}
+			$error = $this->msg( $msg, $error )->parse();
+			$error = new OOUI\HtmlSnippet( $error );
+		}
+
+		// Used in getBody()
+		$this->oouiErrors = $errors;
 		return '';
 	}
 
@@ -153,7 +185,23 @@ class OOUIHTMLForm extends HTMLForm {
 		$fieldset = parent::getBody();
 		// FIXME This only works for forms with no subsections
 		if ( $fieldset instanceof OOUI\FieldsetLayout ) {
-			$fieldset->group->prependContent( new OOUI\HtmlSnippet( $this->mHeader ) );
+			$classes = array( 'mw-htmlform-ooui-header' );
+			if ( !$this->mHeader ) {
+				$classes[] = 'mw-htmlform-ooui-header-empty';
+			}
+			if ( $this->oouiErrors ) {
+				$classes[] = 'mw-htmlform-ooui-header-errors';
+			}
+			$fieldset->addItems( array(
+				new OOUI\FieldLayout(
+					new OOUI\LabelWidget( array( 'label' => new OOUI\HtmlSnippet( $this->mHeader ) ) ),
+					array(
+						'align' => 'top',
+						'errors' => $this->oouiErrors,
+						'classes' => $classes,
+					)
+				)
+			), 0 );
 		}
 		return $fieldset;
 	}
