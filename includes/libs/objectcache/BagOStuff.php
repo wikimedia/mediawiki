@@ -142,11 +142,17 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	 */
 	protected function mergeViaCas( $key, $callback, $exptime = 0, $attempts = 10 ) {
 		do {
+			$this->clearLastError();
 			$casToken = null; // passed by reference
 			$currentValue = $this->get( $key, $casToken );
+			if ( $this->getLastError() ) {
+				return false; // don't spam retries (retry only on races)
+			}
+
 			// Derive the new value from the old value
 			$value = call_user_func( $callback, $this, $key, $currentValue );
 
+			$this->clearLastError();
 			if ( $value === false ) {
 				$success = true; // do nothing
 			} elseif ( $currentValue === false ) {
@@ -155,6 +161,9 @@ abstract class BagOStuff implements LoggerAwareInterface {
 			} else {
 				// Try to update the key, failing if it gets changed in the meantime
 				$success = $this->cas( $casToken, $key, $value, $exptime );
+			}
+			if ( $this->getLastError() ) {
+				return false; // IO error; don't spam retries
 			}
 		} while ( !$success && --$attempts );
 
@@ -189,7 +198,12 @@ abstract class BagOStuff implements LoggerAwareInterface {
 			return false;
 		}
 
+		$this->clearLastError();
 		$currentValue = $this->get( $key );
+		if ( $this->getLastError() ) {
+			return false; // IO error; don't spam retries
+		}
+
 		// Derive the new value from the old value
 		$value = call_user_func( $callback, $this, $key, $currentValue );
 
