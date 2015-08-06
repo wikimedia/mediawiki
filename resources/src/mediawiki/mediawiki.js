@@ -16,7 +16,9 @@
 		slice = Array.prototype.slice,
 		trackCallbacks = $.Callbacks( 'memory' ),
 		trackHandlers = [],
-		trackQueue = [];
+		trackQueue = [],
+		// jshint evil:true
+		docWrite = $.proxy( document.write, document );
 
 	/**
 	 * Create an object that can be read from or written to from methods that allow
@@ -535,6 +537,14 @@
 		 * @property
 		 */
 		legacy: {},
+
+		/**
+		 * PATCH: Temporary hack to allow us to override document.write() to the public in
+		 * wikibits.js for user scripts (T108139), whilst also still the original to load the
+		 * user script itself. Once rl-async is deployed (T107399) this be obsolete.
+		 * @method
+		 */
+		docWrite: docWrite,
 
 		/**
 		 * Store for messages.
@@ -1137,7 +1147,7 @@
 					} ).always( callback );
 				} else {
 					/*jshint evil:true */
-					document.write( mw.html.element( 'script', { 'src': src }, '' ) );
+					docWrite( mw.html.element( 'script', { 'src': src }, '' ) );
 					if ( callback ) {
 						// Document.write is synchronous, so this is called when it's done.
 						// FIXME: That's a lie. doc.write isn't actually synchronous.

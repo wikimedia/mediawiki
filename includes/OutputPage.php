@@ -2920,7 +2920,7 @@ class OutputPage extends ContextSource {
 						// execute this module. Otherwise users will get "ReferenceError: mw is
 						// undefined" or "jQuery is undefined" from e.g. a "site" module.
 						$link = ResourceLoader::makeInlineScript(
-							Xml::encodeJsCall( 'document.write', array( $link ) )
+							Xml::encodeJsCall( 'mw.docWrite', array( $link ) )
 						);
 					}
 
