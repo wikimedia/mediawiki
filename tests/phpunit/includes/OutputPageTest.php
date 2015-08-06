@@ -141,7 +141,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			// Load module script only
 			array(
 				array( 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS ),
-				"<script>var RLQ = RLQ || []; RLQ.push( function () {\n"
+				"<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {\n"
 					. 'mw.docWrite("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?'
 					. 'debug=false\u0026amp;lang=en\u0026amp;modules=test.foo\u0026amp;only'
 					. '=scripts\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");'
@@ -162,14 +162,14 @@ class OutputPageTest extends MediaWikiTestCase {
 			// Load private module (only=scripts)
 			array(
 				array( 'test.quux', ResourceLoaderModule::TYPE_SCRIPTS ),
-				"<script>var RLQ = RLQ || []; RLQ.push( function () {\n"
+				"<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {\n"
 					. "mw.test.baz({token:123});mw.loader.state({\"test.quux\":\"ready\"});\n"
 					. "\n} );</script>"
 			),
 			// Load private module (combined)
 			array(
 				array( 'test.quux', ResourceLoaderModule::TYPE_COMBINED ),
-				"<script>var RLQ = RLQ || []; RLQ.push( function () {\n"
+				"<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {\n"
 					. "mw.loader.implement(\"test.quux\",function($,jQuery){"
 					. "mw.test.baz({token:123});},{\"css\":[\".mw-icon{transition:none}\\n"
 					. "\"]});\n\n} );</script>"
@@ -187,10 +187,10 @@ class OutputPageTest extends MediaWikiTestCase {
 			// Load two modules in separate groups
 			array(
 				array( array( 'test.group.foo', 'test.group.bar' ), ResourceLoaderModule::TYPE_COMBINED ),
-				"<script>var RLQ = RLQ || []; RLQ.push( function () {\n"
+				"<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {\n"
 					. 'mw.docWrite("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=test.group.bar\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");'
 					. "\n} );</script>\n"
-					. "<script>var RLQ = RLQ || []; RLQ.push( function () {\n"
+					. "<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {\n"
 					. 'mw.docWrite("\u003Cscript src=\"http://127.0.0.1:8080/w/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=test.group.foo\u0026amp;skin=fallback\u0026amp;*\"\u003E\u003C/script\u003E");'
 					. "\n} );</script>"
 			),
