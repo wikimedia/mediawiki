@@ -3190,6 +3190,17 @@ abstract class DatabaseBase implements IDatabase {
 	}
 
 	/**
+	 * Determines if the given query error was a connection drop
+	 * STUB
+	 *
+	 * @param integer|string $errno
+	 * @return bool
+	 */
+	public function wasConnectionError( $errno ) {
+		return false;
+	}
+
+	/**
 	 * Perform a deadlock-prone transaction.
 	 *
 	 * This function invokes a callback function to perform a set of write
