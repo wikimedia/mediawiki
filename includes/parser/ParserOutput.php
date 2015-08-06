@@ -49,7 +49,8 @@ class ParserOutput extends CacheTime {
 		$mProperties = array(),       # Name/value pairs to be cached in the DB
 		$mTOCHTML = '',               # HTML of the TOC
 		$mTimestamp,                  # Timestamp of the revision
-		$mTOCEnabled = true;          # Whether TOC should be shown, can't override __NOTOC__
+		$mTOCEnabled = true,          # Whether TOC should be shown, can't override __NOTOC__
+		$mEnableOOUI = false;         # Whether OOUI should be enabled
 	private $mIndexPolicy = '';       # 'index' or 'noindex'?  Any other value will result in no change.
 	private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
 	private $mExtensionData = array(); # extra data used by extensions
@@ -232,6 +233,10 @@ class ParserOutput extends CacheTime {
 		return $this->mTOCEnabled;
 	}
 
+	public function getEnableOOUI() {
+		return $this->mEnableOOUI;
+	}
+
 	public function setText( $text ) {
 		return wfSetVar( $this->mText, $text );
 	}
@@ -281,6 +286,17 @@ class ParserOutput extends CacheTime {
 	 */
 	public function setIndicator( $id, $content ) {
 		$this->mIndicators[$id] = $content;
+	}
+
+	/**
+	 * Enables OOUI, if true, in any OutputPage instance this ParserOutput
+	 * object is added to.
+	 *
+	 * @since 1.26
+	 * @param bool $enable If OOUI should be enabled or not
+	 */
+	public function setEnableOOUI( $enable = false ) {
+		$this->mEnableOOUI = $enable;
 	}
 
 	public function addLanguageLink( $t ) {

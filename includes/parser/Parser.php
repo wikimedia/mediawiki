@@ -6444,4 +6444,15 @@ class Parser {
 			return $this;
 		}
 	}
+
+	/**
+	 * Set's up the PHP implementation of OOUI for use in this request
+	 * and instructs OutputPage to enable OOUI for itself.
+	 *
+	 * @since 1.26
+	 */
+	public function enableOOUI() {
+		OutputPage::setupOOUI();
+		$this->mOutput->setEnableOOUI( true );
+	}
 }
