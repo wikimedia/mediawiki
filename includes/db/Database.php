@@ -3205,7 +3205,8 @@ abstract class DatabaseBase implements IDatabase {
 	 * iteration, or false on error, for example if the retry limit was
 	 * reached.
 	 *
-	 * @return bool
+	 * @return mixed
+	 * @throws DBQueryError
 	 */
 	public function deadlockLoop() {
 		$args = func_get_args();
@@ -3219,6 +3220,7 @@ abstract class DatabaseBase implements IDatabase {
 
 		$this->begin( __METHOD__ );
 
+		$retVal = null;
 		$e = null;
 		do {
 			try {
