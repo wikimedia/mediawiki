@@ -268,10 +268,12 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'registrationdate',
 					'unreadcount',
 				),
-				ApiBase::PARAM_HELP_MSG => array(
-					'apihelp-query+userinfo-param-prop',
-					self::WL_UNREAD_LIMIT - 1,
-					self::WL_UNREAD_LIMIT . '+',
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(
+					'unreadcount' => array(
+						'apihelp-query+userinfo-paramvalue-prop-unreadcount',
+						self::WL_UNREAD_LIMIT - 1,
+						self::WL_UNREAD_LIMIT . '+',
+					),
 				),
 			)
 		);
