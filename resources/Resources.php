@@ -1705,6 +1705,7 @@ return array(
 		'scripts' => 'resources/src/mediawiki.legacy/wikibits.js',
 		'dependencies' => 'mediawiki.util',
 		'position' => 'top',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 
 	/* MediaWiki UI */
