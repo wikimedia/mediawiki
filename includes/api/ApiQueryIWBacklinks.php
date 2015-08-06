@@ -186,6 +186,7 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 					'iwprefix',
 					'iwtitle',
 				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'dir' => array(
 				ApiBase::PARAM_DFLT => 'ascending',
