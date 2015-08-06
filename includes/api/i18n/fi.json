@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Nike",
-			"MrTapsa"
+			"MrTapsa",
+			"Pitke"
 		]
 	},
 	"apihelp-query+linkshere-param-show": "Näytä vain kohteet, jotka täyttävät nämä kriteerit:\n;redirect:Näytä vain uudelleenohjaukset.\n;!redirect:Näytä vain ei-uudelleenohjaukset",
+	"apihelp-tag-example-rev": "Lisää tunniste <kbd>vandalism</kbd> versioon 123 antamatta perustelua.",
 	"apihelp-upload-param-stash": "Mikäli valittu, palvelin säilöö tiedoston väliaikaisesti tallentamisen sijaan."
 }

@@ -1612,7 +1612,7 @@
 	"unusedimages": "Nieużywane pliki",
 	"wantedcategories": "Brakujące kategorie",
 	"wantedpages": "Najpotrzebniejsze strony",
-	"wantedpages-summary": "Lista najczęściej linkowanych, nieistniejących stron, z wyłączeniem stron, do których linkują wyłącznie przekierowania. By zobaczyć listę nieistniejących stron, do których linkują przekierowania, zobacz [[{{#special:BrokenRedirects}}|listę zerwanych przekierowań]].",
+	"wantedpages-summary": "Lista najczęściej linkowanych, nieistniejących stron, z wyłączeniem takich stron, do których linkują wyłącznie przekierowania. By zobaczyć listę nieistniejących stron, do których linkują przekierowania, zobacz [[{{#special:BrokenRedirects}}|listę zerwanych przekierowań]].",
 	"wantedpages-badtitle": "Nieprawidłowy tytuł wśród wyników – $1",
 	"wantedfiles": "Potrzebne pliki",
 	"wantedfiletext-cat": "Następujące pliki są używane, ale nie istnieją. Pliki z obcych repozytoriów mogą być wymienione pomimo istnienia. Takie fałszywe wyniki zostaną <del>przekreślone</del>. Ponadto strony, które osadzają pliki, które nie istnieją, są wymienione w [[:$1]].",

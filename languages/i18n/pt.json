@@ -725,6 +725,7 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Objeto vazio",
 	"content-json-empty-array": "Matriz vazia",
+	"duplicate-args-warning": "<strong>Aviso:</strong> [[:$1]] chama [[:$2]] com mais de um valor para o parâmetro \"$3\". Somente o último valor fornecido será utilizado.",
 	"duplicate-args-category": "Páginas que utilizam argumentos duplicados ao chamar predefinições",
 	"duplicate-args-category-desc": "A página contém campos de predefinições que utilizam duplicatas de argumentos, tais como <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> ou <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "'''Aviso:''' Esta página contém demasiadas chamadas de funções exigentes do analisador sintático.\n\nDevia ter menos de $2 {{PLURAL:$2|chamada|chamadas}}. Neste momento tem $1 {{PLURAL:$1|chamada|chamadas}}.",

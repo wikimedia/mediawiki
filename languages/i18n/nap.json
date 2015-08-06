@@ -3337,6 +3337,7 @@
 	"special-characters-title-endash": "trattino enne",
 	"special-characters-title-emdash": "trattino emme",
 	"special-characters-title-minus": "segno meno",
+	"mw-widgets-dateinput-no-date": "Nisciuna data scigliuta",
 	"mw-widgets-titleinput-description-new-page": "'a pàggene nun esiste ancore",
 	"mw-widgets-titleinput-description-redirect": "redirezionate ncopp' a $1"
 }
