@@ -105,6 +105,15 @@ function wfImageAuthMain() {
 	$repo = RepoGroup::singleton()->getRepo( 'local' );
 	$zone = strstr( ltrim( $path, '/' ), '/', true );
 
+	// Dirty workaround for NSFileRepo for MW > 1.23
+	$bits_path = explode( '/',$path );
+        $file_namespace_name = "";
+        if ( count($bits_path) == 5 ) {
+                $file_namespace_num = $bits_path[1];
+                $file_namespace_name = MWNamespace::getCanonicalName( $file_namespace_num );
+        }
+	// End of dirty workaround
+
 	// Get the full file storage path and extract the source file name.
 	// (e.g. 120px-Foo.png => Foo.png or page2-120px-Foo.png => Foo.png).
 	// This only applies to thumbnails/transcoded, and each of them should
@@ -125,6 +134,11 @@ function wfImageAuthMain() {
 		if ( substr( $path, 0, 9 ) === '/archive/' && count( $bits ) == 2 ) {
 			$file = $repo->newFromArchiveName( $bits[1], $name );
 		} else {
+			// Dirty workaround for NSFileRepo for MW > 1.23
+			if ( $file_namespace_name != "" ) { 
+                                $name = $file_namespace_name.":".$name;
+                        }
+			// End of dirty workaround
 			$file = $repo->newFile( $name );
 		}
 		if ( !$file->exists() || $file->isDeleted( File::DELETED_FILE ) ) {
