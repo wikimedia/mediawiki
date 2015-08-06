@@ -857,7 +857,7 @@ abstract class ResourceLoaderModule {
 	 */
 	protected static function safeFileHash( $filePath ) {
 		MediaWiki\suppressWarnings();
-		$hash = sha1_file( $filename ) ?: '';
+		$hash = sha1_file( $filePath ) ?: '';
 		MediaWiki\restoreWarnings();
 		return $hash;
 	}
