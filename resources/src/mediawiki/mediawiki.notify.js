@@ -6,8 +6,9 @@
 
 	/**
 	 * @see mw.notification#notify
-	 * @param message
-	 * @param options
+	 * @see mw.notification#defaults
+	 * @param {HTMLElement|HTMLElement[]|jQuery|mw.Message|string} message
+	 * @param {Object} options See mw.notification#defaults for details.
 	 * @return {jQuery.Promise}
 	 */
 	mw.notify = function ( message, options ) {
