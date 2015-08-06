@@ -305,7 +305,8 @@ class ApiQueryUsers extends ApiQueryBase {
 					'registration',
 					'emailable',
 					'gender',
-				)
+				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'users' => array(
 				ApiBase::PARAM_ISMULTI => true
