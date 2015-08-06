@@ -316,18 +316,19 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 					'size',
 					'wordcount',
 					'timestamp',
-					'score',
 					'snippet',
 					'titlesnippet',
 					'redirecttitle',
 					'redirectsnippet',
 					'sectiontitle',
 					'sectionsnippet',
-					'hasrelated',
 					'isfilematch',
 					'categorysnippet',
+					'score', // deprecated
+					'hasrelated', // deprecated
 				),
 				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'offset' => array(
 				ApiBase::PARAM_DFLT => 0,
