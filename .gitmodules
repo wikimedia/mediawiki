@@ -97,7 +97,7 @@
 [submodule "extensions/Translate"]
 	path = extensions/Translate
 	url = https://github.com/wikimedia/mediawiki-extensions-Translate
-	branch = REL1_25
+	branch = master
 [submodule "extensions/UniversalLanguageSelector"]
 	path = extensions/UniversalLanguageSelector
 	url = https://github.com/wikimedia/mediawiki-extensions-UniversalLanguageSelector
