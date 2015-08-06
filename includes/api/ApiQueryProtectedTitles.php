@@ -216,7 +216,8 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 					'parsedcomment',
 					'expiry',
 					'level'
-				)
+				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'continue' => array(
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
