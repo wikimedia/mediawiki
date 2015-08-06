@@ -812,7 +812,10 @@
 
 	"apihelp-query+pageswithprop-description": "List all pages using a given page property.",
 	"apihelp-query+pageswithprop-param-propname": "Page prop for which to enumerate pages.",
-	"apihelp-query+pageswithprop-param-prop": "Which pieces of information to include:\n;ids:Adds the page ID.\n;title:Adds the title and namespace ID of the page.\n;value:Adds the value of the page prop.",
+	"apihelp-query+pageswithprop-param-prop": "Which pieces of information to include:",
+	"apihelp-query+pageswithprop-paramvalue-prop-ids": "Adds the page ID.",
+	"apihelp-query+pageswithprop-paramvalue-prop-title": "Adds the title and namespace ID of the page.",
+	"apihelp-query+pageswithprop-paramvalue-prop-value": "Adds the value of the page prop.",
 	"apihelp-query+pageswithprop-param-limit": "The maximum number of pages to return.",
 	"apihelp-query+pageswithprop-param-dir": "In which direction to sort.",
 	"apihelp-query+pageswithprop-example-simple": "List the first 10 pages using <code>&#123;&#123;DISPLAYTITLE:&#125;&#125;</code>.",

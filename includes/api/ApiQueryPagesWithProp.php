@@ -140,7 +140,8 @@ class ApiQueryPagesWithProp extends ApiQueryGeneratorBase {
 					'ids',
 					'title',
 					'value',
-				)
+				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'continue' => array(
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
