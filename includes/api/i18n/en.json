@@ -745,7 +745,8 @@
 
 	"apihelp-query+iwlinks-description": "Returns all interwiki links from the given pages.",
 	"apihelp-query+iwlinks-param-url": "Whether to get the full URL (cannot be used with $1prop).",
-	"apihelp-query+iwlinks-param-prop": "Which additional properties to get for each interlanguage link:\n;url:Adds the full URL.",
+	"apihelp-query+iwlinks-param-prop": "Which additional properties to get for each interlanguage link:",
+	"apihelp-query+iwlinks-paramvalue-prop-url": "Adds the full URL.",
 	"apihelp-query+iwlinks-param-limit": "How many interwiki links to return.",
 	"apihelp-query+iwlinks-param-prefix": "Only return interwiki links with this prefix.",
 	"apihelp-query+iwlinks-param-title": "Interwiki link to search for. Must be used with <var>$1prefix</var>.",
