@@ -854,7 +854,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					'variables',
 					'protocols',
 					'defaultoptions',
-				)
+				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'filteriw' => array(
 				ApiBase::PARAM_TYPE => array(
