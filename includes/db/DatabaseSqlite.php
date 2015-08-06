@@ -964,7 +964,35 @@ class DatabaseSqlite extends DatabaseBase {
 			}
 		}
 
-		return $this->query( $sql, $fname );
+		$res = $this->query( $sql, $fname );
+
+		// Take over indexes
+		$indexList = $this->query( 'PRAGMA INDEX_LIST(' . $this->addQuotes( $oldName ) . ')' );
+		foreach( $indexList as $index ) {
+			if ( strpos( $index->name, 'sqlite_autoindex' ) === 0 ) {
+				continue;
+			}
+
+			if ( $index->unique ) {
+				$sql = 'CREATE UNIQUE INDEX';
+			} else {
+				$sql = 'CREATE INDEX';
+			}
+			$sql .= ' ' . $this->indexName( $index->name ) . ' ON ' . $newName;
+
+			$indexInfo = $this->query( 'PRAGMA INDEX_INFO(' . $this->addQuotes( $index->name ) . ')' );
+			$fields = array();
+			foreach ( $indexInfo as $indexInfoRow ) {
+				$fields[ $indexInfoRow->seqno ] = $indexInfoRow->name;
+			}
+
+			$sql .= '(' . implode( ',', $fields ) . ')';
+			$sql = $this->replaceVars( $sql );
+
+			$this->query( $sql );
+		}
+
+		return $res;
 	}
 
 	/**
