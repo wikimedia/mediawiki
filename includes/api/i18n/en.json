@@ -824,6 +824,7 @@
 	"apihelp-query+prefixsearch-param-limit": "Maximum number of results to return.",
 	"apihelp-query+prefixsearch-param-offset": "Number of results to skip.",
 	"apihelp-query+prefixsearch-example-simple": "Search for page titles beginning with <kbd>meaning</kbd>.",
+
 	"apihelp-query+protectedtitles-description": "List all titles protected from creation.",
 	"apihelp-query+protectedtitles-param-namespace": "Only list titles in these namespaces.",
 	"apihelp-query+protectedtitles-param-level": "Only list titles with these protection levels.",
@@ -886,6 +887,7 @@
 	"apihelp-query+revisions-example-first5-after": "Get first 5 revisions of the <kbd>Main Page</kbd> made after 2006-05-01.",
 	"apihelp-query+revisions-example-first5-not-localhost": "Get first 5 revisions of the <kbd>Main Page</kbd> that were not made by anonymous user <kbd>127.0.0.1</kbd>.",
 	"apihelp-query+revisions-example-first5-user": "Get first 5 revisions of the <kbd>Main Page</kbd> that were made by the user <kbd>MediaWiki default</kbd>.",
+
 	"apihelp-query+revisions+base-param-prop": "Which properties to get for each revision:",
 	"apihelp-query+revisions+base-paramvalue-prop-ids": "The ID of the revision.",
 	"apihelp-query+revisions+base-paramvalue-prop-flags": "Revision flags (minor).",
@@ -1011,7 +1013,6 @@
 	"apihelp-query+watchlist-paramvalue-prop-sizes": "Adds the old and new lengths of the page.",
 	"apihelp-query+watchlist-paramvalue-prop-notificationtimestamp": "Adds timestamp of when the user was last notified about the edit.",
 	"apihelp-query+watchlist-paramvalue-prop-loginfo": "Adds log information where appropriate.",
-
 	"apihelp-query+watchlist-param-show": "Show only items that meet these criteria. For example, to see only minor edits done by logged-in users, set $1show=minor|!anon.",
 	"apihelp-query+watchlist-param-type": "Which types of changes to show:\n;edit:Regular page edits.\n;external:External changes.\n;new:Page creations.\n;log:Log entries.",
 	"apihelp-query+watchlist-param-owner": "Used along with $1token to access a different user's watchlist.",
