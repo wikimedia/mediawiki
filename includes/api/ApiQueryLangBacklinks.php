@@ -185,6 +185,7 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 					'lllang',
 					'lltitle',
 				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'dir' => array(
 				ApiBase::PARAM_DFLT => 'ascending',
