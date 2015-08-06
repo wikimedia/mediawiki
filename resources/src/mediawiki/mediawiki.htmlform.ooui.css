@@ -5,6 +5,16 @@
 	margin: 1em 0;
 }
 
+.oo-ui-fieldLayout.mw-htmlform-ooui-header-empty,
+.oo-ui-fieldLayout.mw-htmlform-ooui-header-empty .oo-ui-fieldLayout-body {
+	display: none;
+}
+
+.oo-ui-fieldLayout.mw-htmlform-ooui-header-errors {
+	/* Override 'display: none' from above */
+	display: block;
+}
+
 .mw-htmlform-ooui .mw-htmlform-submit-buttons {
 	margin-top: 1em;
 }
