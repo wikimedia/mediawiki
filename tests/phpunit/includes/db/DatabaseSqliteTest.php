@@ -189,12 +189,15 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 	public function testDuplicateTableStructure() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$db->query( 'CREATE TABLE foo(foo, barfoo)' );
+		$db->query( 'CREATE INDEX index1 ON foo(foo)' );
+		$db->query( 'CREATE UNIQUE INDEX index2 ON foo(barfoo)' );
 
 		$db->duplicateTableStructure( 'foo', 'bar' );
 		$this->assertEquals( 'CREATE TABLE "bar"(foo, barfoo)',
 			$db->selectField( 'sqlite_master', 'sql', array( 'name' => 'bar' ) ),
 			'Normal table duplication'
 		);
+		//TODO assert indexes
 
 		$db->duplicateTableStructure( 'foo', 'baz', true );
 		$this->assertEquals( 'CREATE TABLE "baz"(foo, barfoo)',
