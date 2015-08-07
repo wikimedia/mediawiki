@@ -1343,7 +1343,7 @@
 	"uploaddisabledtext": "Het uploaden van bestanden is uitgeschakeld.",
 	"php-uploaddisabledtext": "Het uploaden van bestanden is uitgeschakeld in PHP.\nControleer de instelling \"file_uploads\".",
 	"uploadscripted": "Dit bestand bevat HTML- of scriptcode die foutief door uw browser kan worden weergegeven.",
-	"upload-scripted-pi-callback": "Kan geen bestand met XML-stylesheet-processing-instructies uploaden.",
+	"upload-scripted-pi-callback": "Het uploaden van een bestand met instructies voor de verwerking van XML-stijlbladen is niet mogelijk.",
 	"uploaded-script-svg": "Gevonden scriptable element \"$1\" in het geüploade SVG-bestand.",
 	"uploaded-hostile-svg": "Gevonden onveilige CSS in de stijl element van het geüploade SVG-bestand .",
 	"uploaded-event-handler-on-svg": "Het instellen van de event-handler attributen <code>$1=\"$2\"</code> is niet toegestaan in SVG-bestanden.",

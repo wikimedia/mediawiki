@@ -60,7 +60,7 @@
 	"config-magic-quotes-sybase": "'''Fatal: [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase] es active!'''\nIste option corrumpe le entrata de datos imprevisibilemente.\nTu non pote installar o usar MediaWiki si iste option non es disactivate.",
 	"config-mbstring": "'''Fatal: [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] es active!'''\nIste option causa errores e pote corrumper datos imprevisibilemente.\nTu non pote installar o usar MediaWiki si iste option non es disactivate.",
 	"config-safe-mode": "'''Aviso:''' Le [http://www.php.net/features.safe-mode modo secur] de PHP es active.\nIsto pote causar problemas, particularmente si es usate le incargamento de files e le supporto de <code>math</code>.",
-	"config-xml-bad": "Le modulo XML de PHP es mancante.\nMediaWiki require functiones de iste modulo e non functionara in iste configuration.\nSi tu usa Mandrake, installa le pacchetto php-xml.",
+	"config-xml-bad": "Le modulo XML de PHP es mancante.\nMediaWiki require functiones de iste modulo e non functionara in iste configuration.\nEs possibile que tu debe installar le pacchetto RPM php-xml.",
 	"config-pcre-old": "<strong>Fatal:</strong> PCRE $1 o plus tarde es necessari.\nTu binario de PHP binary es ligate con PCRE $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Plus information].",
 	"config-pcre-no-utf8": "'''Fatal''': Le modulo PCRE de PHP pare haber essite compilate sin supporto de PCRE_UTF8.\nMediaWiki require supporto de UTF-8 pro functionar correctemente.",
 	"config-memory-raised": "Le <code>memory_limit</code> de PHP es $1, elevate a $2.",

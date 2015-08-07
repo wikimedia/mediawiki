@@ -28,7 +28,8 @@
 			"Ævar Arnfjörð Bjarmason <avarab@gmail.com>",
 			"לערי ריינהארט",
 			"아라",
-			"Viswaprabha"
+			"Viswaprabha",
+			"Nesi"
 		]
 	},
 	"tog-underline": "കണ്ണികൾക്ക് അടിവരയിടുക:",
@@ -1219,7 +1220,7 @@
 	"unpatrolledletter": "(!)",
 	"number_of_watching_users_pageview": "[{{PLURAL:$1|ഒരു ഉപയോക്താവ്|$1 ഉപയോക്താക്കൾ}} ഈ താൾ ശ്രദ്ധിക്കുന്നുണ്ട്]",
 	"rc_categories": "വർഗ്ഗങ്ങളുടെ പരിധി (\"|\" ഉപയോഗിച്ച് പിരിക്കുക)",
-	"rc_categories_any": "ഏതും",
+	"rc_categories_any": "തിരഞ്ഞെടുത്തതിൽ ഏതും",
 	"rc-change-size-new": "മാറ്റത്തിനു ശേഷം {{PLURAL:$1|ഒരു ബൈറ്റ്|$1 ബൈറ്റുകൾ}}",
 	"newsectionsummary": "/* $1 */ പുതിയ ഉപവിഭാഗം",
 	"rc-enhanced-expand": "അധികവിവരങ്ങൾ പ്രദർശിപ്പിക്കുക",
