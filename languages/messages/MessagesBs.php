@@ -258,6 +258,51 @@ $magicWords = array(
 	'url_query'                 => array( '0', 'UPIT', 'QUERY' ),
 );
 
+$datePreferences = array(
+	'default',
+	'h:mm d. month y.',
+	'h:mm d month y',
+	'h:mm dd. mm. yyyy',
+	'h:mm d. m. yyyy',
+	'h:mm d. mon y.',
+	'h:mm d mon y',
+);
+
+$defaultDateFormat = 'h:mm d. month y.';
+
+$dateFormats = array(
+	/*
+	'Nije bitno',
+	'6:12, 5. januar 2001.',
+	'6:12, 5 januar 2001',
+	'6:12, 05. 01. 2001.',
+	'6:12, 5. 1. 2001.',
+	'6:12, 5. jan 2001.',
+	'6:12, 5 jan 2001',
+	 */
+
+	'h:mm d. month y. time'     => 'G:i',
+	'h:mm d month y time'       => 'G:i',
+	'h:mm dd. mm. yyyy time'    => 'G:i',
+	'h:mm d. m. yyyy time'      => 'G:i',
+	'h:mm d. mon y. time'       => 'G:i',
+	'h:mm d mon y time'         => 'G:i',
+
+	'h:mm d. month y. date'     => 'j. F Y.',
+	'h:mm d month y date'       => 'j F Y',
+	'h:mm dd. mm. yyyy date'    => 'd. m. Y',
+	'h:mm d. m. yyyy date'      => 'j. n. Y',
+	'h:mm d. mon y. date'       => 'j. M Y.',
+	'h:mm d mon y date'         => 'j M Y',
+
+	'h:mm d. month y. both'     => 'G:i, j. F Y.',
+	'h:mm d month y both'       => 'G:i, j F Y',
+	'h:mm dd. mm. yyyy both'    => 'G:i, d. m. Y',
+	'h:mm d. m. yyyy both'      => 'G:i, j. n. Y',
+	'h:mm d. mon y. both'       => 'G:i, j. M Y.',
+	'h:mm d mon y both'         => 'G:i, j M Y',
+);
+
 $fallback8bitEncoding = "iso-8859-2";
 $separatorTransformTable = array( ',' => '.', '.' => ',' );
 $linkTrail = '/^([a-zćčžšđž]+)(.*)$/sDu';
