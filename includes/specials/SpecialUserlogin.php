@@ -44,6 +44,24 @@ class LoginForm extends SpecialPage {
 	const WRONG_TOKEN = 13;
 	const USER_MIGRATED = 14;
 
+	public static $statusCodes = array(
+		self::SUCCESS => 'success',
+		self::NO_NAME => 'no_name',
+		self::ILLEGAL => 'illegal',
+		self::WRONG_PLUGIN_PASS => 'wrong_plugin_pass',
+		self::NOT_EXISTS => 'not_exists',
+		self::WRONG_PASS => 'wrong_pass',
+		self::EMPTY_PASS => 'empty_pass',
+		self::RESET_PASS => 'reset_pass',
+		self::ABORTED => 'aborted',
+		self::CREATE_BLOCKED => 'create_blocked',
+		self::THROTTLED => 'throttled',
+		self::USER_BLOCKED => 'user_blocked',
+		self::NEED_TOKEN => 'need_token',
+		self::WRONG_TOKEN => 'wrong_token',
+		self::USER_MIGRATED => 'user_migrated',
+	);
+
 	/**
 	 * Valid error and warning messages
 	 *
@@ -1049,7 +1067,7 @@ class LoginForm extends SpecialPage {
 		LoggerFactory::getInstance( 'authmanager' )->info( 'Login attempt', array(
 			'event' => 'login',
 			'successful' => $status === self::SUCCESS,
-			'status' => $status,
+			'status' => LoginForm::$statusCodes[$status],
 		) );
 	}
 

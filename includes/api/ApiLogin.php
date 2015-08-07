@@ -179,7 +179,7 @@ class ApiLogin extends ApiBase {
 		LoggerFactory::getInstance( 'authmanager' )->info( 'Login attempt', array(
 			'event' => 'login',
 			'successful' => $authRes === LoginForm::SUCCESS,
-			'status' => $authRes,
+			'status' => LoginForm::$statusCodes[$authRes],
 		) );
 	}
 
