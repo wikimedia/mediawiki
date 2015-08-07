@@ -541,6 +541,10 @@ class SpecialVersion extends SpecialPage {
 				return $arr['name'];
 			}, $info['authors'] );
 			$authors = $this->listAuthors( $authors, false, "$IP/vendor/$name" );
+
+			// We can safely assume that the libraries' names and descriptions
+			// are written in English and aren't going to be translated,
+			// so set appropriate lang and dir attributes
 			$out .= Html::openElement( 'tr' )
 				. Html::rawElement(
 					'td',
@@ -551,9 +555,9 @@ class SpecialVersion extends SpecialPage {
 						array( 'class' => 'mw-version-library-name' )
 					)
 				)
-				. Html::element( 'td', array(), $info['version'] )
-				. Html::element( 'td', array(), $this->listToText( $info['licenses'] ) )
-				. Html::element( 'td', array(), $info['description'] )
+				. Html::element( 'td', array( 'dir' => 'auto' ), $info['version'] )
+				. Html::element( 'td', array( 'dir' => 'auto' ), $this->listToText( $info['licenses'] ) )
+				. Html::element( 'td', array( 'lang' => 'en', 'dir' => 'ltr' ), $info['description'] )
 				. Html::rawElement( 'td', array(), $authors )
 				. Html::closeElement( 'tr' );
 		}
