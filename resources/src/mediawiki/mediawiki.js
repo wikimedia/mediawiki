@@ -807,6 +807,19 @@
 			}
 
 			/**
+			 * Execute a string of JavaScript source code by injecting a script tag
+			 * into <head> and setting the code as its content.
+			 *
+			 * @private
+			 * @param {string} source JavaScript code
+			 */
+			function newScriptTag( source ) {
+				var script = document.createElement( 'script' );
+				script.textContent = source;
+				( document.head || document.documentElement ).appendChild( script );
+			}
+
+			/**
 			 * Add a bit of CSS text to the current browser page.
 			 *
 			 * The CSS will be appended to an existing ResourceLoader-created `<style>` tag
@@ -1517,29 +1530,7 @@
 							}
 							return true;
 						} );
-						try {
-							$.globalEval( concatSource.join( ';' ) );
-						} catch ( err ) {
-							// Not good, the cached mw.loader.implement calls failed! This should
-							// never happen, barring ResourceLoader bugs, browser bugs and PEBKACs.
-							// Depending on how corrupt the string is, it is likely that some
-							// modules' implement() succeeded while the ones after the error will
-							// never run and leave their modules in the 'loading' state forever.
-
-							// Since this is an error not caused by an individual module but by
-							// something that infected the implement call itself, don't take any
-							// risks and clear everything in this cache.
-							mw.loader.store.clear();
-							// Re-add the ones still pending back to the batch and let the server
-							// repopulate these modules to the cache.
-							// This means that at most one module will be useless (the one that had
-							// the error) instead of all of them.
-							mw.track( 'resourceloader.exception', { exception: err, source: 'store-eval' } );
-							origBatch = $.grep( origBatch, function ( module ) {
-								return registry[module].state === 'loading';
-							} );
-							batch = batch.concat( origBatch );
-						}
+						newScriptTag( concatSource.join( ';' ) );
 					}
 
 					// Early exit if there's nothing to load...
