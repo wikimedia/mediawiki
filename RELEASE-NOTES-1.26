@@ -143,6 +143,7 @@ changes to languages because of Phabricator reports.
 * DatabaseBase::ignoreErrors() is now protected.
 * BREAKING CHANGE: mediawiki.legacy.ajax has been removed, following
   a lengthy deprecation period.
+* The ScopedPHPTimeout class was removed.
 
 == Compatibility ==
 
