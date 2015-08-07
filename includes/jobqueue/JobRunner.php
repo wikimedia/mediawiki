@@ -263,7 +263,10 @@ class JobRunner implements LoggerAwareInterface {
 				}
 
 				// Bail if near-OOM instead of in a job
-				$this->assertMemoryOK();
+				if ( !$this->checkMemoryOK() ) {
+					$response['reached'] = 'memory-limit';
+					break;
+				}
 			}
 		} while ( $job ); // stop when there are no jobs
 
@@ -392,9 +395,9 @@ class JobRunner implements LoggerAwareInterface {
 	/**
 	 * Make sure that this script is not too close to the memory usage limit.
 	 * It is better to die in between jobs than OOM right in the middle of one.
-	 * @throws MWException
+	 * @return bool
 	 */
-	private function assertMemoryOK() {
+	private function checkMemoryOK() {
 		static $maxBytes = null;
 		if ( $maxBytes === null ) {
 			$m = array();
@@ -408,8 +411,14 @@ class JobRunner implements LoggerAwareInterface {
 		}
 		$usedBytes = memory_get_usage();
 		if ( $maxBytes && $usedBytes >= 0.95 * $maxBytes ) {
-			throw new MWException( "Detected excessive memory usage ($usedBytes/$maxBytes)." );
+			$msg = "Detected excessive memory usage ($usedBytes/$maxBytes).";
+			$this->debugCallback( $msg );
+			$this->logger->error( $msg );
+
+			return false;
 		}
+
+		return true;
 	}
 
 	/**
