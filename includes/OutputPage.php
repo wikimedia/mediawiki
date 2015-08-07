@@ -2918,6 +2918,15 @@ class OutputPage extends ContextSource {
 							Xml::encodeJsCall( 'mw.loader.load', array( $url ) )
 						);
 					}
+
+					// For modules requested directly in the html via <script> or mw.loader.load
+					// tell mw.loader they are being loading to prevent duplicate requests.
+					foreach ( $grpModules as $key => $module ) {
+						// Don't output state=loading for the startup module.
+						if ( $key !== 'startup' ) {
+							$links['states'][$key] = 'loading';
+						}
+					}
 				}
 
 				if ( $group == 'noscript' ) {
