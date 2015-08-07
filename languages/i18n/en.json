@@ -548,7 +548,7 @@
 	"passwordreset-emailtitle": "Account details on {{SITENAME}}",
 	"passwordreset-emailtext-ip": "Someone (probably you, from IP address $1) requested a reset of your\npassword for {{SITENAME}} ($4). The following user {{PLURAL:$3|account is|accounts are}}\nassociated with this email address:\n\n$2\n\n{{PLURAL:$3|This temporary password|These temporary passwords}} will expire in {{PLURAL:$5|one day|$5 days}}.\nYou should log in and choose a new password now. If someone else made this\nrequest, or if you have remembered your original password, and you no longer\nwish to change it, you may ignore this message and continue using your old\npassword.",
 	"passwordreset-emailtext-user": "User $1 on {{SITENAME}} requested a reset of your password for {{SITENAME}}\n($4). The following user {{PLURAL:$3|account is|accounts are}} associated with this email address:\n\n$2\n\n{{PLURAL:$3|This temporary password|These temporary passwords}} will expire in {{PLURAL:$5|one day|$5 days}}.\nYou should log in and choose a new password now. If someone else made this\nrequest, or if you have remembered your original password, and you no longer\nwish to change it, you may ignore this message and continue using your old\npassword.",
-	"passwordreset-emailelement": "Username: $1\nTemporary password: $2",
+	"passwordreset-emailelement": "Username:\n$1\nTemporary password:\n$2",
 	"passwordreset-emailsent": "A password reset email has been sent.",
 	"passwordreset-emailsent-capture": "A password reset email has been sent, which is shown below.",
 	"passwordreset-emailerror-capture": "A password reset email was generated, which is shown below, but sending it to the {{GENDER:$2|user}} failed: $1",
