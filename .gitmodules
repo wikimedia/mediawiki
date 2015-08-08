@@ -138,3 +138,7 @@
 	path = extensions/InputBox
 	url = https://github.com/wikimedia/mediawiki-extensions-InputBox
 	branch = REL1_25
+[submodule "extensions/Scribunto"]
+	path = extensions/Scribunto
+	url = https://github.com/wikimedia/mediawiki-extensions-Scribunto
+	branch = REL1_25
