@@ -49,6 +49,8 @@ class ApiImageRotate extends ApiBase {
 	}
 
 	public function execute() {
+		$this->useTransactionalTimeLimit();
+
 		$params = $this->extractRequestParams();
 		$rotation = $params['rotation'];
 
