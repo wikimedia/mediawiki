@@ -36,6 +36,9 @@ class RollbackAction extends FormlessAction {
 	}
 
 	public function onView() {
+		// TODO: use $this->useTransactionalTimeLimit(); when POST only
+		wfTransactionalTimeLimit();
+
 		$details = null;
 
 		$request = $this->getRequest();
