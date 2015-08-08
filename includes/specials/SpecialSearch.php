@@ -408,8 +408,6 @@ class SpecialSearch extends SpecialPage {
 	 * @return bool
 	 */
 	protected function shouldRunSuggestedQuery( SearchResultSet $textMatches ) {
-		global $wgSearchRunSuggestedQueryPercent;
-
 		if ( !$this->runSuggestion ||
 			!$textMatches->hasSuggestion() ||
 			$textMatches->numRows() > 0 ||
@@ -421,7 +419,7 @@ class SpecialSearch extends SpecialPage {
 		// Generate a random number between 0 and 1. If the
 		// number is less than the desired percentages run it.
 		$rand = rand( 0, getrandmax() ) / getrandmax();
-		return $wgSearchRunSuggestedQueryPercent > $rand;
+		return $this->getConfig()->get( 'SearchRunSuggestedQueryPercent' ) > $rand;
 	}
 
 	/**
