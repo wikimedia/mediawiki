@@ -218,8 +218,8 @@
 	// Replace document.write/writeln with basic html parsing that appends
 	// to the <body> to avoid blanking pages. Added JavaScript will not run.
 	$.each( [ 'write', 'writeln' ], function ( idx, method ) {
-		mw.log.deprecate( document, method, function ( html ) {
-			$( 'body' ).append( $.parseHTML( html ) );
+		mw.log.deprecate( document, method, function () {
+			$( 'body' ).append( $.parseHTML( Array.prototype.join.call( arguments, '' ) ) );
 		}, 'Use jQuery or mw.loader.load instead.' );
 	} );
 
