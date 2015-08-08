@@ -81,7 +81,7 @@ abbr[title],
 @supports (text-decoration: underline dotted) {
 	abbr[title],
 	.explain[title] {
-		border-bottom: initial;
+		border-bottom: none;
 		text-decoration: underline dotted;
 	}
 }
