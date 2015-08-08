@@ -2078,6 +2078,14 @@ $wgMaxArticleSize = 2048;
  */
 $wgMemoryLimit = "50M";
 
+/**
+ * The minimum amount of time that MediaWiki needs for "slow" write request,
+ * particularly ones with multiple non-atomic writes that *should* be as
+ * transactional as possible; MediaWiki will call set_time_limit() if needed.
+ * @since 1.26
+ */
+$wgTransactionalTimeLimit = 120;
+
 /** @} */ # end performance hacks }
 
 /************************************************************************//**

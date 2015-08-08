@@ -107,6 +107,8 @@ class RevertAction extends FormAction {
 	}
 
 	public function onSubmit( $data ) {
+		$this->useTransactionalTimeLimit();
+
 		$source = $this->page->getFile()->getArchiveVirtualUrl(
 			$this->getRequest()->getText( 'oldimage' )
 		);
