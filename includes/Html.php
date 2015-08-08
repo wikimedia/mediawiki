@@ -359,12 +359,8 @@ class Html {
 			'keygen' => array( 'keytype' => 'rsa' ),
 			'link' => array( 'media' => 'all' ),
 			'menu' => array( 'type' => 'list' ),
-			// Note: the use of text/javascript here instead of other JavaScript
-			// MIME types follows the HTML5 spec.
-			'script' => array( 'type' => 'text/javascript' ),
 			'style' => array(
 				'media' => 'all',
-				'type' => 'text/css',
 			),
 			'textarea' => array( 'wrap' => 'soft' ),
 		);
@@ -675,7 +671,6 @@ class Html {
 		}
 
 		return self::rawElement( 'style', array(
-			'type' => 'text/css',
 			'media' => $media,
 		), $contents );
 	}
@@ -692,7 +687,6 @@ class Html {
 		return self::element( 'link', array(
 			'rel' => 'stylesheet',
 			'href' => $url,
-			'type' => 'text/css',
 			'media' => $media,
 		) );
 	}

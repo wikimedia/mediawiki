@@ -587,15 +587,8 @@ class HtmlTest extends MediaWikiTestCase {
 			'menu', array( 'type' => 'list' )
 		);
 
-		$cases[] = array( '<script></script>',
-			'script', array( 'type' => 'text/javascript' )
-		);
-
 		$cases[] = array( '<style></style>',
 			'style', array( 'media' => 'all' )
-		);
-		$cases[] = array( '<style></style>',
-			'style', array( 'type' => 'text/css' )
 		);
 
 		$cases[] = array( '<textarea></textarea>',
@@ -603,11 +596,6 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 
 		### SPECIFIC CASES
-
-		# <link type="text/css">
-		$cases[] = array( '<link>',
-			'link', array( 'type' => 'text/css' )
-		);
 
 		# <input> specific handling
 		$cases[] = array( '<input type=checkbox>',

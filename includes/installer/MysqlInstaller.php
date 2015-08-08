@@ -354,7 +354,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		$s .= Xml::closeElement( 'div' );
 
 		if ( $this->getVar( '_MysqlEngine' ) != 'MyISAM' ) {
-			$s .= Xml::openElement( 'script', array( 'type' => 'text/javascript' ) );
+			$s .= Xml::openElement( 'script' );
 			$s .= '$(\'#dbMyisamWarning\').hide();';
 			$s .= Xml::closeElement( 'script' );
 		}
