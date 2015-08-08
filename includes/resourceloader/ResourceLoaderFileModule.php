@@ -922,7 +922,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			CSSMin::getLocalFileReferences( $style, $localDir )
 		);
 		return CSSMin::remap(
-			$style, $localDir, $remoteDir, true
+			$style, $localDir, $remoteDir, false
 		);
 	}
 
