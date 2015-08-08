@@ -972,7 +972,7 @@
 	"rows": "Rows:",
 	"columns": "Columns:",
 	"searchresultshead": "Search",
-	"stub-threshold": "Threshold for <a href=\"#\" class=\"stub\">stub link</a> formatting (bytes):",
+	"stub-threshold": "Threshold in bytes for stub link rendering <a href=\"#\" class=\"stub\">sample</a>",
 	"stub-threshold-disabled": "Disabled",
 	"recentchangesdays": "Days to show in recent changes:",
 	"recentchangesdays-max": "Maximum $1 {{PLURAL:$1|day|days}}",
