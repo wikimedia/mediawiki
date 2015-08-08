@@ -39,6 +39,8 @@ class ApiDelete extends ApiBase {
 	 * result object.
 	 */
 	public function execute() {
+		$this->useTransactionalTimeLimit();
+
 		$params = $this->extractRequestParams();
 
 		$pageObj = $this->getTitleOrPageId( $params, 'fromdbmaster' );

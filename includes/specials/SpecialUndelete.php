@@ -771,6 +771,8 @@ class SpecialUndelete extends SpecialPage {
 	}
 
 	function execute( $par ) {
+		$this->useTransactionalTimeLimit();
+
 		$user = $this->getUser();
 
 		$this->setHeaders();
