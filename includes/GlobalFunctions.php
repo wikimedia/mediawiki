@@ -3848,9 +3848,9 @@ function wfStripIllegalFilenameChars( $name ) {
 }
 
 /**
- * Set PHP's memory limit to the larger of php.ini or $wgMemoryLimit;
+ * Set PHP's memory limit to the larger of php.ini or $wgMemoryLimit
  *
- * @return int Value the memory limit was set to.
+ * @return int Prior memory limit
  */
 function wfMemoryLimit() {
 	global $wgMemoryLimit;
@@ -3872,6 +3872,26 @@ function wfMemoryLimit() {
 		}
 	}
 	return $memlimit;
+}
+
+/**
+ * Set PHP's time limit to the larger of php.ini or $wgTransactionalTimeLimit
+ *
+ * @return int Prior time limit
+ * @since 1.26
+ */
+function wfTransactionalTimeLimit() {
+	global $wgTransactionalTimeLimit;
+
+	$timeLimit = ini_get( 'max_execution_time' );
+	// Note that CLI scripts use 0
+	if ( $timeLimit > 0 && $wgTransactionalTimeLimit > $timeLimit ) {
+		set_time_limit( $wgTransactionalTimeLimit );
+	}
+
+	ignore_user_abort( true ); // ignore client disconnects
+
+	return $timeLimit;
 }
 
 /**

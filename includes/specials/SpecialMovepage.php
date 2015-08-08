@@ -64,6 +64,8 @@ class MovePageForm extends UnlistedSpecialPage {
 	}
 
 	public function execute( $par ) {
+		$this->useTransactionalTimeLimit();
+
 		$this->checkReadOnly();
 
 		$this->setHeaders();

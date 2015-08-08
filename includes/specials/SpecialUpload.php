@@ -152,6 +152,8 @@ class SpecialUpload extends SpecialPage {
 	 * @throws UserBlockedError
 	 */
 	public function execute( $par ) {
+		$this->useTransactionalTimeLimit();
+
 		$this->setHeaders();
 		$this->outputHeader();
 

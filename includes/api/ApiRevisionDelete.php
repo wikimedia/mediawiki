@@ -32,6 +32,8 @@
 class ApiRevisionDelete extends ApiBase {
 
 	public function execute() {
+		$this->useTransactionalTimeLimit();
+
 		$params = $this->extractRequestParams();
 		$user = $this->getUser();
 

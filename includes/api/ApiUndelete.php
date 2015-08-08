@@ -30,6 +30,8 @@
 class ApiUndelete extends ApiBase {
 
 	public function execute() {
+		$this->useTransactionalTimeLimit();
+
 		$params = $this->extractRequestParams();
 
 		if ( !$this->getUser()->isAllowed( 'undelete' ) ) {
