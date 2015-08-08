@@ -39,7 +39,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			return $this->configVars[$hash];
 		}
 
-		global $wgContLang;
+		global $wgContLang, $wgRCStreamHost;
 
 		$mainPage = Title::newMainPage();
 
@@ -102,6 +102,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgResourceLoaderStorageVersion' => $conf->get( 'ResourceLoaderStorageVersion' ),
 			'wgResourceLoaderStorageEnabled' => $conf->get( 'ResourceLoaderStorageEnabled' ),
 			'wgResourceLoaderLegacyModules' => self::getLegacyModules(),
+			'wgRCStreamHost' => $wgRCStreamHost,
 		);
 
 		Hooks::run( 'ResourceLoaderGetConfigVars', array( &$vars ) );

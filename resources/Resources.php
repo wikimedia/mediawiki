@@ -818,6 +818,11 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 
+	/* socket.io */
+	'socket.io' => array(
+		'scripts' => 'resources/lib/socket.io/socket.io.js',
+	),
+
 	/* MediaWiki */
 
 	'mediawiki' => array(
@@ -1062,6 +1067,12 @@ return array(
 	'mediawiki.notify' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.notify.js',
 		'targets' => array( 'desktop', 'mobile' ),
+	),
+	'mediawiki.rcstream' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.rcstream.js',
+		'dependencies' => array(
+			'socket.io',
+		),
 	),
 	'mediawiki.RegExp' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.RegExp.js',

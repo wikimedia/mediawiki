@@ -6133,6 +6133,12 @@ $wgRCEngines = array(
 );
 
 /**
+ * URL pointing to your instance of RCStream, value will be exposed client-side
+ * @since 1.26
+ */
+$wgRCStreamHost = '';
+
+/**
  * Use RC Patrolling to check for vandalism
  */
 $wgUseRCPatrol = true;
