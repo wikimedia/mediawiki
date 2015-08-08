@@ -1105,6 +1105,7 @@
 	"api-help-param-integer-min": "{{PLURAL:$1|1=Значення має бути|2=Значення мають бути}} не менше $2.",
 	"api-help-param-integer-max": "{{PLURAL:$1|1=Значення має бути|2=Значення мають бути}} не більше $3.",
 	"api-help-param-integer-minmax": "{{PLURAL:$1|1=Значення має бути|2=Значення мають бути}} між $2 і $3.",
+	"api-help-param-upload": "Повинно бути надіслано у формі надсилання файлу використовуючи multipart/form-data.",
 	"api-help-param-multi-separate": "Розділіть значення з допомогою <kbd>|</kbd>.",
 	"api-help-param-multi-max": "Максимальна кількість значень — {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} для ботів).",
 	"api-help-param-default": "За замовчуванням: $1",
