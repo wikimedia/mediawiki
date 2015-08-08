@@ -58,6 +58,8 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * @return bool Success
 	 */
 	public function execute( $subPage ) {
+		$this->useTransactionalTimeLimit();
+
 		$this->stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash( $this->getUser() );
 		$this->checkPermissions();
 

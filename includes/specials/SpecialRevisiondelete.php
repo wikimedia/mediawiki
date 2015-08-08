@@ -110,6 +110,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	}
 
 	public function execute( $par ) {
+		$this->useTransactionalTimeLimit();
+
 		$this->checkPermissions();
 		$this->checkReadOnly();
 

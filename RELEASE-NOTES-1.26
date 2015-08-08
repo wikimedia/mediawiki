@@ -53,6 +53,8 @@ production.
   the $wgMainCacheType settings.
 * Callers needing fast light-weight data stores use $wgMainStash to select
   the store type from $wgObjectCaches. The default is the local database.
+* $wgTransactionalTimeLimit was added, which controls the request time limit
+  for potentially slow POST requests that need to be as atomic as possible.
 
 ==== External libraries ====
 * Update es5-shim from v4.0.0 to v4.1.5.

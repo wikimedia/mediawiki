@@ -32,6 +32,8 @@
 class ApiImport extends ApiBase {
 
 	public function execute() {
+		$this->useTransactionalTimeLimit();
+
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
