@@ -1290,17 +1290,28 @@ class EditPage {
 	 * since the post-edit state should only apply to the load right after the save.
 	 *
 	 * @param int $statusValue The status value (to check for new article status)
+	 * @param array $resultDetails The resultDetails (to check for null edits and
+	 *    edit conflicts)
 	 */
-	protected function setPostEditCookie( $statusValue ) {
+	protected function setPostEditCookie( $statusValue, $resultDetails ) {
+		$val = false;
+		if ( !$resultDetails['nullEdit'] ) {
+			$val = 'saved';
+			if ( $resultDetails['editConflictResolved'] ) {
+				$val = 'resolved';
+			} elseif ( $statusValue == self::AS_SUCCESS_NEW_ARTICLE ) {
+				$val = 'created';
+			} elseif ( $this->oldid ) {
+				$val = 'restored';
+			}
+		}
+
+		if ( !$val ) {
+			return;
+		}
+
 		$revisionId = $this->mArticle->getLatest();
 		$postEditKey = self::POST_EDIT_COOKIE_KEY_PREFIX . $revisionId;
-
-		$val = 'saved';
-		if ( $statusValue == self::AS_SUCCESS_NEW_ARTICLE ) {
-			$val = 'created';
-		} elseif ( $this->oldid ) {
-			$val = 'restored';
-		}
 
 		$response = RequestContext::getMain()->getRequest()->response();
 		$response->setcookie( $postEditKey, $val, time() + self::POST_EDIT_COOKIE_DURATION, array(
@@ -1346,9 +1357,7 @@ class EditPage {
 			|| $status->value == self::AS_SUCCESS_NEW_ARTICLE
 		) {
 			$this->didSave = true;
-			if ( !$resultDetails['nullEdit'] ) {
-				$this->setPostEditCookie( $status->value );
-			}
+			$this->setPostEditCookie( $status->value, $resultDetails );
 		}
 
 		switch ( $status->value ) {
@@ -1536,6 +1545,8 @@ class EditPage {
 	 *     false otherwise.
 	 *   - redirect (bool): Set if doEditContent is OK. True if resulting
 	 *     revision is a redirect.
+	 *   - editConflictResolved (boolean): Set if doEditContent is OK. True if
+	 *     an edit conflict was resolved, false otherwise.
 	 * @param bool $bot True if edit is being made under the bot right.
 	 *
 	 * @return Status Status object, possibly with a message, but always with
@@ -1717,6 +1728,7 @@ class EditPage {
 		# we detect it by using page_latest like a token in a 1 try compare-and-swap.
 		$this->mArticle->loadPageData( 'fromdbmaster' );
 		$new = !$this->mArticle->exists();
+		$editConflictResolved = false;
 
 		if ( $new ) {
 			// Late check for create permission, just in case *PARANOIA*
@@ -1837,8 +1849,9 @@ class EditPage {
 			} elseif ( $this->isConflict ) {
 				# Attempt merge
 				if ( $this->mergeChangesIntoContent( $content ) ) {
-					// Successful merge! Maybe we should tell the user the good news?
+					// Successful merge! Remember it, so we can tell the user the good news.
 					$this->isConflict = false;
+					$editConflictResolved = true;
 					wfDebug( __METHOD__ . ": Suppressing edit conflict, successful merge.\n" );
 				} else {
 					$this->section = '';
@@ -1968,6 +1981,7 @@ class EditPage {
 			$wgUser->pingLimiter( 'linkpurge' );
 		}
 		$result['redirect'] = $content->isRedirect();
+		$result['editConflictResolved'] = $editConflictResolved;
 
 		$this->updateWatchlist();
 

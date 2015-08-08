@@ -696,6 +696,7 @@
 	"edit-conflict": "Edit conflict.",
 	"edit-no-change": "Your edit was ignored because no change was made to the text.",
 	"postedit-confirmation-created": "The page has been created.",
+	"postedit-confirmation-resolved": "Another user saved the page while you edited it, but your edit was saved, too.",
 	"postedit-confirmation-restored": "The page has been restored.",
 	"postedit-confirmation-saved": "Your edit was saved.",
 	"edit-already-exists": "Could not create a new page.\nIt already exists.",

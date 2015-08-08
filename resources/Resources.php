@@ -1264,6 +1264,7 @@ return array(
 		),
 		'messages' => array(
 			'postedit-confirmation-created',
+			'postedit-confirmation-resolved',
 			'postedit-confirmation-restored',
 			'postedit-confirmation-saved',
 		),

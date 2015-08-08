@@ -68,6 +68,7 @@
 			// postedit-confirmation-saved
 			// postedit-confirmation-created
 			// postedit-confirmation-restored
+			// postEdit-confirmation-resolved
 			'message': mw.msg(
 				'postedit-confirmation-' + cookieVal,
 				mw.user
