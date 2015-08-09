@@ -25,7 +25,7 @@ class ApiUnblockTest extends ApiTestCase {
 			),
 			null,
 			false,
-			self::$users['sysop']->user
+			self::$users['sysop']->getUser()
 		);
 	}
 }
