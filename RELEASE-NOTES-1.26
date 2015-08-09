@@ -49,6 +49,8 @@ production.
   the $wgMainCacheType settings.
 * Callers needing fast light-weight data stores use $wgMainStash to select
   the store type from $wgObjectCaches. The default is the local database.
+* Interface message overrides in the MediaWiki namespace will now be cached in
+  memcached and APC (if available), rather than memcached and local files.
 
 ==== External libraries ====
 * Update es5-shim from v4.0.0 to v4.1.5.
