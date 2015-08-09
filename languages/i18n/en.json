@@ -2577,7 +2577,7 @@
 	"spam_reverting": "Reverting to last revision not containing links to $1",
 	"spam_blanking": "All revisions contained links to $1, blanking",
 	"spam_deleting": "All revisions contained links to $1, deleting",
-	"simpleantispam-label": "Anti-spam check.\nDo <strong>NOT</strong> fill this in!",
+	"simpleantispam-label": "Anti-spam check.\nDo <strong>not</strong> fill this in!",
 	"pageinfo-header": "-",
 	"pageinfo-title": "Information for \"$1\"",
 	"pageinfo-not-current": "Sorry, it's impossible to provide this information for old revisions.",
