@@ -2376,7 +2376,7 @@
 	"spam_reverting": "שחזור לגרסה אחרונה שלא כוללת קישורים ל־$1",
 	"spam_blanking": "כל הגרסאות כוללות קישורים ל־$1, מרוקן את הדף",
 	"spam_deleting": "כל הגרסאות כוללות קישורים ל־$1, מוחק את הדף",
-	"simpleantispam-label": "בדיקת אנטי־ספאם.\n'''אל''' תמלאו שדה זה!",
+	"simpleantispam-label": "בדיקת אנטי־ספאם.\n<strong>אל</strong> תמלאו שדה זה!",
 	"pageinfo-title": "מידע על \"$1\"",
 	"pageinfo-not-current": "מצטערים, לא ניתן להציג את המידע הזה לגרסאות ישנות.",
 	"pageinfo-header-basic": "מידע בסיסי",

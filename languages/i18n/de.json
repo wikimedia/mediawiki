@@ -2432,7 +2432,7 @@
 	"spam_reverting": "Letzte Version ohne Links zu $1 wiederhergestellt.",
 	"spam_blanking": "Alle Versionen mit einem Link zu $1 wurden bereinigt.",
 	"spam_deleting": "Alle Versionen mit einem Link zu $1 wurden gelöscht.",
-	"simpleantispam-label": "Spamschutzprüfung.\nHier <strong>NICHTS</strong> eintragen!",
+	"simpleantispam-label": "Spamschutzprüfung.\nHier <strong>nichts</strong> eintragen!",
 	"pageinfo-title": "Informationen zu „$1“",
 	"pageinfo-not-current": "Diese Information kann leider nicht für alte Versionen zur Verfügung gestellt werden.",
 	"pageinfo-header-basic": "Basisinformationen",

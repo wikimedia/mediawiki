@@ -259,6 +259,17 @@
 	"config-install-pg-commit": "Mannann' 'e cagnamiente",
 	"config-install-pg-plpgsql": "Cuntrollo p' 'o lenguaggio PL/pgSQL",
 	"config-install-user": "Crianno utente 'e database",
+	"config-install-stats": "Inizializzaziona d' 'e statistiche",
+	"config-install-keys": "Generaziona d' 'e chiave segrete",
 	"config-install-updates": "Mpiccià ll'agghiurnamiente ca nun fossero necessarie",
-	"config-help": "ajùto"
+	"config-install-sysop": "Crianno nu cunto utente ammenistratore",
+	"config-install-subscribe-fail": "Nun se pò sottoscrivere mediawiki-announce: $1",
+	"config-install-mainpage": "Crianno 'a paggena prencepale ch' 'e cuntenute predefinite",
+	"config-install-extension-tables": "Crianno tabelle pe' estenziune appicciate",
+	"config-install-mainpage-failed": "Nun se pò nzertà 'a paggena prencepale: $1",
+	"config-download-localsettings": "Scarreca <code>LocalSettings.php</code>",
+	"config-help": "ajùto",
+	"config-help-tooltip": "cliccà pe' 'o spannere",
+	"config-nofile": "'O file \"$1\" nun se trova. Forse è stato scancellato?",
+	"mainpagetext": "<strong>MediaWiki è stato nstallato.</strong>"
 }

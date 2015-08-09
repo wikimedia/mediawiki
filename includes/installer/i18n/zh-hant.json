@@ -188,7 +188,7 @@
 	"config-mysql-charset": "資料庫字元集：",
 	"config-mysql-binary": "二進制",
 	"config-mysql-utf8": "UTF-8",
-	"config-mysql-charset-help": "在 <strong>二進制模式</strong> 下，MediaWiki 將 UTF-8 的文字儲存在二進位型態的欄位。\n這個模式比 MySQL 的 UTF-8 模式還要更有效，並且可以讓您使用完整的 Unicode 字元集。\n\n在 <storng>UTF-8 模式</strong> 下，MySQL 可以知道您的資料使用何種編碼儲存，您可以正常的取得與轉換內容，但此個模式只支援到 Unicode 中的  [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes 基本多文種平面] 字元。",
+	"config-mysql-charset-help": "在 <strong>二進制模式</strong> 下，MediaWiki 將 UTF-8 的文字儲存在二進位型態的欄位。\n這個模式比 MySQL 的 UTF-8 模式還要更有效，並且可以讓您使用完整的 Unicode 字元集。\n\n在 <strong>UTF-8 模式</strong> 下，MySQL 可以知道您的資料使用何種編碼儲存，您可以正常的取得與轉換內容，但此個模式只支援到 Unicode 中的  [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes 基本多文種平面] 字元。",
 	"config-mssql-auth": "身份驗證類型：",
 	"config-mssql-install-auth": "請選擇安裝程序中要用來連線資料庫使用的身份驗證類型。\n若您選擇 \"{{int:config-mssql-windowsauth}}\"，不論網頁伺服器是使用何種身份執行都會使用這組驗證資料。",
 	"config-mssql-web-auth": "請選擇一般操作中要用來連線資料庫使用的身份驗證類型。\n若您選擇 \"{{int:config-mssql-windowsauth}}\"，不論網頁伺服器是使用何種身份執行都會使用這組驗證資料。",

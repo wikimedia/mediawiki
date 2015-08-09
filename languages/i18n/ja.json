@@ -1170,7 +1170,7 @@
 	"right-sendemail": "他の利用者にメールを送信",
 	"right-passwordreset": "パスワード再設定メールを閲覧",
 	"right-managechangetags": "[[Special:Tags|タグ]]のデータベースにおける作成および削除",
-	"right-applychangetags": "その変化に伴って[[Special:Tags|タグ]]を適用",
+	"right-applychangetags": "自分の編集に[[Special:Tags|タグ]]を適用する",
 	"right-changetags": "個々の版とログエントリの任意の[[Special:Tags|タグ]]の追加と削除",
 	"newuserlogpage": "アカウント作成記録",
 	"newuserlogpagetext": "以下はアカウント作成の記録です。",
