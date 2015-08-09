@@ -142,3 +142,7 @@
 	path = extensions/Scribunto
 	url = https://github.com/wikimedia/mediawiki-extensions-Scribunto
 	branch = REL1_25
+[submodule "extensions/Math"]
+	path = extensions/Math
+	url = https://github.com/wikimedia/mediawiki-extensions-Math.git
+	branch = REL1_25
