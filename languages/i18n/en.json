@@ -2530,7 +2530,7 @@
 	"tooltip-ca-nstab-category": "View the category page",
 	"tooltip-minoredit": "Mark this as a minor edit",
 	"tooltip-save": "Save your changes",
-	"tooltip-preview": "Preview your changes, please use this before saving!",
+	"tooltip-preview": "Preview your changes. Please use this before saving.",
 	"tooltip-diff": "Show which changes you made to the text",
 	"tooltip-compareselectedversions": "See the differences between the two selected revisions of this page",
 	"tooltip-watch": "Add this page to your watchlist",
