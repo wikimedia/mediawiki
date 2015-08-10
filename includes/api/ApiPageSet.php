@@ -61,6 +61,7 @@ class ApiPageSet extends ApiBase {
 	private $mInvalidTitles = array(); // [fake_page_id] => array( 'title' => $title, 'invalidreason' => $reason )
 	private $mMissingPageIDs = array();
 	private $mRedirectTitles = array();
+	private $mRedirectIDs = array();
 	private $mSpecialTitles = array();
 	private $mNormalizedTitles = array();
 	private $mInterwikiTitles = array();
@@ -1037,6 +1038,7 @@ class ApiPageSet extends ApiBase {
 				$lb->add( $row->rd_namespace, $row->rd_title );
 			}
 			$this->mRedirectTitles[$from] = $to;
+			$this->mRedirectIDs[$rdfrom] = $to;
 		}
 
 		if ( $this->mPendingRedirectIDs ) {
@@ -1239,6 +1241,17 @@ class ApiPageSet extends ApiBase {
 					continue;
 				}
 				$pageId = $pages[$dbkey];
+
+				// Check if it's a resolved redirect
+				if ( isset( $this->mRedirectIDs[$pageId] ) ) {
+					// If it's a redirect and resolvePendingRedirects has been called,
+					// we should switch to the redirected pageId.
+					// Otherwise we'll loose some info from the backend. (Bug: T108554)
+					$redirTo = $this->mRedirectIDs[$pageId];
+					if ( isset ( $pages[$redirTo->getDBkey()] ) ) {
+						$pageId = $pages[$redirTo->getDBkey()];
+					}
+				}
 				if ( !isset( $data[$pageId] ) ) {
 					// $pageId didn't make it into the result. Ignore it.
 					continue;
