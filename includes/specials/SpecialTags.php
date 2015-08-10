@@ -216,15 +216,17 @@ class SpecialTags extends SpecialPage {
 		$newRow .= Xml::tags( 'td', null, $this->msg( $activeMsg )->escaped() );
 
 		$hitcountLabel = $this->msg( 'tags-hitcount' )->numParams( $hitcount )->escaped();
-		$hitcountLink = Linker::link(
-			SpecialPage::getTitleFor( 'Recentchanges' ),
-			$hitcountLabel,
-			array(),
-			array( 'tagfilter' => $tag )
-		);
+		if ( $this->getConfig()->get( 'UseTagFilter' ) ) {
+			$hitcountLabel = Linker::link(
+				SpecialPage::getTitleFor( 'Recentchanges' ),
+				$hitcountLabel,
+				array(),
+				array( 'tagfilter' => $tag )
+			);
+		}
 
 		// add raw $hitcount for sorting, because tags-hitcount contains numbers and letters
-		$newRow .= Xml::tags( 'td', array( 'data-sort-value' => $hitcount ), $hitcountLink );
+		$newRow .= Xml::tags( 'td', array( 'data-sort-value' => $hitcount ), $hitcountLabel );
 
 		// actions
 		if ( $showActions ) { // we've already checked that the user had the requisite userright
