@@ -82,6 +82,11 @@ class ApiDelete extends ApiBase {
 		}
 		$this->setWatch( $watch, $titleObj, 'watchdeletion' );
 
+		// Apply change tags to the log entry, if requested
+		if ( count( $params['tags'] ) ) {
+			$this->applyTags( $params['tags'], $status->value, $user );
+		}
+
 		$r = array(
 			'title' => $titleObj->getPrefixedText(),
 			'reason' => $reason,
@@ -174,6 +179,25 @@ class ApiDelete extends ApiBase {
 		return FileDeleteForm::doDelete( $title, $file, $oldimage, $reason, $suppress, $user );
 	}
 
+	/**
+	 * Applies tags to the deletion log entry, if the user has relevant rights.
+	 *
+	 * @param array $tags Tags to apply
+	 * @param int $logid Log ID to apply tags to
+	 * @param User $user User doing the work
+	 */
+	public function applyTags( array $tags, $logid, User $user ) {
+		if ( $user->isAllowed( 'applychangetags' ) ) {
+			$changeTagsStatus = ChangeTags::canAddTagsAccompanyingChange( $tags, $user );
+			if ( !$changeTagsStatus->isOK() ) {
+				$this->dieStatus( $changeTagsStatus );
+			}
+			ChangeTags::addTags( $tags, null, null, $logid );
+		} else {
+			$this->dieUsage( 'You don\'t have permission to set change tags.', 'taggingnotallowed' );
+		}
+	}
+
 	public function mustBePosted() {
 		return true;
 	}
@@ -189,6 +213,10 @@ class ApiDelete extends ApiBase {
 				ApiBase::PARAM_TYPE => 'integer'
 			),
 			'reason' => null,
+			'tags' => array(
+				ApiBase::PARAM_TYPE => ChangeTags::listExplicitlyDefinedTags(),
+				ApiBase::PARAM_ISMULTI => true,
+			),
 			'watch' => array(
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_DEPRECATED => true,
