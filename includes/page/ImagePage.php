@@ -266,7 +266,7 @@ class ImagePage extends Article {
 		foreach ( $metadata as $type => $stuff ) {
 			foreach ( $stuff as $v ) {
 				# @todo FIXME: Why is this using escapeId for a class?!
-				$class = Sanitizer::escapeId( $v['id'] );
+				$class = Sanitizer::escapeId( $v['id'], 'noentities' );
 				if ( $type == 'collapsed' ) {
 					// Handled by mediawiki.action.view.metadata module.
 					$class .= ' collapsable';

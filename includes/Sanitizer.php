@@ -1121,13 +1121,16 @@ class Sanitizer {
 	 *   'legacy': Behave the way the old HTML 4-based ID escaping worked even
 	 *       if $wgExperimentalHtmlIds is used, so we can generate extra
 	 *       anchors and links won't break.
+	 *   'noentities': Do not decode HTML entities.
 	 * @return string
 	 */
 	static function escapeId( $id, $options = array() ) {
 		global $wgExperimentalHtmlIds;
 		$options = (array)$options;
 
-		$id = Sanitizer::decodeCharReferences( $id );
+		if ( !in_array( 'noentities', $options ) ) {
+			$id = Sanitizer::decodeCharReferences( $id );
+		}
 
 		if ( $wgExperimentalHtmlIds && !in_array( 'legacy', $options ) ) {
 			$id = preg_replace( '/[ \t\n\r\f_\'"&#%]+/', '_', $id );
