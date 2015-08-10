@@ -3,10 +3,14 @@ turn it off. MediaWiki will no longer work with it enabled.
 
 == MediaWiki 1.24.3 ==
 
-This is a not yet released security and maintenance release of the MediaWiki 1.24 branch.
+This is a security and maintenance release of the MediaWiki 1.24 branch.
 
 == Changes since 1.24.2 ==
 
+* (T94116) SECURITY: Compare API watchlist token in constant time
+* (T97391) SECURITY: Escape error message strings in thumb.php
+* (T106893) SECURITY: Don't leak autoblocked IP addresses on
+  Special:DeletedContributions
 * Update jQuery from v1.11.2 to v1.11.3.
 * (T102562) Fix InstantCommons parameters to handle the new HTTPS-only
   policy of Wikimedia Commons.
