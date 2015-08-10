@@ -1682,6 +1682,7 @@ return array(
 		'styles' => array(
 			'resources/src/mediawiki.legacy/commonPrint.css' => array( 'media' => 'print' )
 		),
+		'group' => 'print',
 	),
 	'mediawiki.legacy.protect' => array(
 		'scripts' => 'resources/src/mediawiki.legacy/protect.js',
