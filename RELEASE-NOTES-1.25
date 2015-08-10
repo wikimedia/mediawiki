@@ -3,10 +3,14 @@ turn it off. MediaWiki will not work with it enabled.
 
 == MediaWiki 1.25.2 ==
 
-THIS IS NOT YET A RELEASE!
+This is a security and maintenance release of the MediaWiki 1.25 branch.
 
 === Changes since 1.25.1 ===
 
+* (T94116) SECURITY: Compare API watchlist token in constant time
+* (T97391) SECURITY: Escape error message strings in thumb.php
+* (T106893) SECURITY: Don't leak autoblocked IP addresses on
+  Special:DeletedContributions
 * (T102562) Fix InstantCommons parameters to handle the new HTTPS-only
   policy of Wikimedia Commons.
 * (T100767) Setting a configuration setting for skin or extension to
