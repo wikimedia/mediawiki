@@ -2348,7 +2348,7 @@
 	"spam_reverting": "Revertite al ultime version que non contine ligamines a $1",
 	"spam_blanking": "Tote le versiones contineva ligamines a $1. Le pagina es vacuate.",
 	"spam_deleting": "Tote le versiones contineva ligamines a $1. Le pagina es delite.",
-	"simpleantispam-label": "Verification anti-spam.\n'''NON''' completa isto!",
+	"simpleantispam-label": "Verification anti-spam.\n<strong>Non</strong> completa isto!",
 	"pageinfo-title": "Information sur \"$1\"",
 	"pageinfo-not-current": "Regrettabilemente, il es impossibile fornir iste information pro versiones ancian.",
 	"pageinfo-header-basic": "Information de base",

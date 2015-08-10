@@ -2343,7 +2343,7 @@
 	"spam_reverting": "Vračanje na zadnjo redakcijo brez povezav na $1",
 	"spam_blanking": "Vse redakcije so vsebovale povezave na $1, izpraznjujem",
 	"spam_deleting": "Vse redakcije so vsebovale povezave na $1, brišem",
-	"simpleantispam-label": "Preverjanje proti smetju.\n'''NE''' izpolnite tega!",
+	"simpleantispam-label": "Preverjanje proti smetju.\n<strong>Ne</strong> izpolnite tega!",
 	"pageinfo-title": "Informacije o »$1«",
 	"pageinfo-not-current": "Oprostite, vendar ne moremo nuditi podatkov starejših redakcij.",
 	"pageinfo-header-basic": "Osnovni podatki",

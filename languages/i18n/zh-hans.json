@@ -2392,7 +2392,7 @@
 	"tooltip-ca-nstab-category": "查看分类页面",
 	"tooltip-minoredit": "标记本编辑为小编辑",
 	"tooltip-save": "保存你的更改",
-	"tooltip-preview": "预览您的更改，请在保存前使用此功能！",
+	"tooltip-preview": "预览您的更改。请在保存前使用此功能。",
 	"tooltip-diff": "显示您对该文字所做的更改",
 	"tooltip-compareselectedversions": "查看该页面两个选定的版本之间的差异。",
 	"tooltip-watch": "添加本页面至你的监视列表",

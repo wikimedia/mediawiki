@@ -726,7 +726,7 @@
 	"rev-deleted-text-view": "Ova izmjena je '''izbrisana'''.\nMožete ju vidjeti; detalji se nalaze u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja].",
 	"rev-suppressed-text-view": "Ova izmjena stranice je '''skrivena'''.\nMožete ju pregledati; više podataka možete vidjeti u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} evidenciji skrivanja].",
 	"rev-deleted-no-diff": "Ne možete vidjeti ovu inačicu zbog toga što je jedna od izmjena '''izbrisana'''.\nMožda postoji više informacija u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja].",
-	"rev-suppressed-no-diff": "Ne možete vidjeti ove razlike jer je jedna od revizija '''obrisana'''.",
+	"rev-suppressed-no-diff": "Ne možete vidjeti ove razlike jer je jedna od izmjena '''obrisana'''.",
 	"rev-deleted-unhide-diff": "Jedna od inačica ove izmjene je '''izbrisana'''.\nDetalji se nalaze u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja].\nMožete i dalje [$1 vidjeti ovu izmjenu] ukoliko želite nastaviti.",
 	"rev-suppressed-unhide-diff": "Jedna od revizija ove razlike je '''sakrivena'''.\nViše podataka možete vidjeti u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} evidenciji sakrivanja].\nMožete [$1 vidjeti ove razlike] ako želite nastaviti.",
 	"rev-deleted-diff-view": "Jedna od izmjena je '''izbrisana'''.\nMožete ju vidjeti; detalji se nalaze u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja].",

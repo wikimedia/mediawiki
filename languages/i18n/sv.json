@@ -2413,7 +2413,7 @@
 	"spam_reverting": "Återställer till den senaste versionen som inte innehåller länkar till $1",
 	"spam_blanking": "Alla versioner innehöll en länk till $1, blankar",
 	"spam_deleting": "Alla ändringar innehöll länkar till $1, raderar",
-	"simpleantispam-label": "Anti-spamkontroll.\nFyll '''INTE''' i den här!",
+	"simpleantispam-label": "Anti-spamkontroll.\nFyll <strong>INTE</strong> i den här!",
 	"pageinfo-title": "Information om \"$1\"",
 	"pageinfo-not-current": "Informationen kan endast visas för den aktuella versionen.",
 	"pageinfo-header-basic": "Grundläggande information",

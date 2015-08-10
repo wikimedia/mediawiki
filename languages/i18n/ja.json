@@ -2416,7 +2416,7 @@
 	"spam_reverting": "$1へのリンクを含まない最新の版に差し戻し",
 	"spam_blanking": "すべての版が$1へのリンクを含んでいます。白紙化します。",
 	"spam_deleting": "すべての版が$1へのリンクを含んでいます。削除します。",
-	"simpleantispam-label": "スパム攻撃防止用のチェックです。\nここに値を決して入力<strong>しない</strong>でください。",
+	"simpleantispam-label": "スパム攻撃防止用のチェックです。\nけっして、ここには、値の入力は<strong>しない</strong>でください！",
 	"pageinfo-title": "「$1」の情報",
 	"pageinfo-not-current": "申し訳ありませんが、過去の版の情報は表示できません。",
 	"pageinfo-header-basic": "基本情報",

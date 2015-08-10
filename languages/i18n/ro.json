@@ -2361,7 +2361,7 @@
 	"spam_reverting": "Revenire la ultima versiune care nu conține legături către $1",
 	"spam_blanking": "Toate versiunile conținând legături către $1 au fost golite",
 	"spam_deleting": "Toate versiunile conținând legături către $1 au fost șterse",
-	"simpleantispam-label": "Verificare antispam.\n'''NU''' completați!",
+	"simpleantispam-label": "Verificare antispam.\n<strong>Nu</strong> completați!",
 	"pageinfo-title": "Informații pentru „$1”",
 	"pageinfo-not-current": "Ne cerem scuze, dar este imposibilă furnizarea acestor informații pentru versiunile mai vechi ale paginii.",
 	"pageinfo-header-basic": "Informații de bază",

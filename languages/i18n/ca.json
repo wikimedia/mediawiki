@@ -1256,7 +1256,7 @@
 	"unpatrolledletter": "!",
 	"number_of_watching_users_pageview": "[{{PLURAL:$1|Un usuari vigila|$1 usuaris vigilen}} aquesta pàgina]",
 	"rc_categories": "Limita a les categories (separades amb \"|\")",
-	"rc_categories_any": "Qualsevol",
+	"rc_categories_any": "Qualsevol de les triades",
 	"rc-change-size": "$1",
 	"rc-change-size-new": "$1 {{PLURAL:$1|byte|bytes}} després del canvi",
 	"newsectionsummary": "/* $1 */ secció nova",

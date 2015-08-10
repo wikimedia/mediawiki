@@ -698,7 +698,7 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Празан објекат",
 	"content-json-empty-array": "Празан низ",
-	"duplicate-args-warning": "<strong>Упозорење:</strong> [[:$1]] позива [[:$2]] са више вредности за параметар „$3“. Само последња наведена вредност ће бити коришћена.",
+	"duplicate-args-warning": "<strong>Упозорење:</strong> [[:$1]] позива [[:$2]] са више од једне вредности за параметар „$3“. Само последња наведена вредност ће бити коришћена.",
 	"duplicate-args-category": "Странице с дуплираним аргументима код позива шаблона",
 	"duplicate-args-category-desc": "Страница садржи позиве шаблона који користе двоструке аргументе, као што су <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> или <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "'''Упозорење:''' ова страница садржи превише позива за рашчлањивање.\n\nТребало би да има мање од $2 {{PLURAL:$2|позив|позива|позива}}, а сада има $1.",

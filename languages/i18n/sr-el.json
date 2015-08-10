@@ -671,7 +671,7 @@
 	"content-model-text": "čist tekst",
 	"content-model-javascript": "javaskript",
 	"content-model-css": "CSS",
-	"duplicate-args-warning": "<strong>Upozorenje:</strong> [[:$1]] poziva [[:$2]] sa više vrednosti za parametar „$3“. Samo poslednja navedena vrednost će biti korišćena.",
+	"duplicate-args-warning": "<strong>Upozorenje:</strong> [[:$1]] poziva [[:$2]] sa više od jedne vrednosti za parametar „$3“. Samo poslednja navedena vrednost će biti korišćena.",
 	"expensive-parserfunction-warning": "'''Upozorenje:''' ova stranica sadrži previše poziva za raščlanjivanje.\n\nTrebalo bi da ima manje od $2 {{PLURAL:$2|poziv|poziva|poziva}}, a sada ima $1.",
 	"expensive-parserfunction-category": "Stranice s previše poziva za raščlanjivanje",
 	"post-expand-template-inclusion-warning": "'''Upozorenje:''' veličina uključenog šablona je prevelika.\nNeki šabloni neće biti uključeni.",
