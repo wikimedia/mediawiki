@@ -329,12 +329,19 @@ class DBQueryError extends DBExpectedError {
 	 * @param string $fname
 	 */
 	function __construct( DatabaseBase $db, $error, $errno, $sql, $fname ) {
-		$message = "A database error has occurred. Did you forget to run " .
-			"maintenance/update.php after upgrading?  See: " .
-			"https://www.mediawiki.org/wiki/Manual:Upgrading#Run_the_update_script\n" .
-			"Query: $sql\n" .
-			"Function: $fname\n" .
-			"Error: $errno $error\n";
+		if ( $db->wasConnectionError( $errno ) ) {
+			$message = "A connection error occured. \n" .
+				"Query: $sql\n" .
+				"Function: $fname\n" .
+				"Error: $errno $error\n";
+		} else {
+			$message = "A database error has occurred. Did you forget to run " .
+				"maintenance/update.php after upgrading?  See: " .
+				"https://www.mediawiki.org/wiki/Manual:Upgrading#Run_the_update_script\n" .
+				"Query: $sql\n" .
+				"Function: $fname\n" .
+				"Error: $errno $error\n";
+		}
 		parent::__construct( $db, $message );
 
 		$this->error = $error;
