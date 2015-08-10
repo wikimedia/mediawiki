@@ -96,10 +96,16 @@ class ObjectCacheSessionHandler {
 	 * @return mixed Session data
 	 */
 	static function read( $id ) {
+		$stime = microtime( true );
 		$data = self::getCache()->get( self::getKey( $id ) );
+		$real = microtime( true ) - $stime;
+
+		RequestContext::getMain()->getStats()->timing( "session.read", $real );
+
 		if ( $data === false ) {
 			return '';
 		}
+
 		return $data;
 	}
 
@@ -112,7 +118,13 @@ class ObjectCacheSessionHandler {
 	 */
 	static function write( $id, $data ) {
 		global $wgObjectCacheSessionExpiry;
+
+		$stime = microtime( true );
 		self::getCache()->set( self::getKey( $id ), $data, $wgObjectCacheSessionExpiry );
+		$real = microtime( true ) - $stime;
+
+		RequestContext::getMain()->getStats()->timing( "session.write", $real );
+
 		return true;
 	}
 
@@ -123,7 +135,11 @@ class ObjectCacheSessionHandler {
 	 * @return bool Success
 	 */
 	static function destroy( $id ) {
+		$stime = microtime( true );
 		self::getCache()->delete( self::getKey( $id ) );
+		$real = microtime( true ) - $stime;
+
+		RequestContext::getMain()->getStats()->timing( "session.destroy", $real );
 
 		return true;
 	}
