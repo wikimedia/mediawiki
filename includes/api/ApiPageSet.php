@@ -66,6 +66,7 @@ class ApiPageSet extends ApiBase {
 	private $mInterwikiTitles = array();
 	/** @var Title[] */
 	private $mPendingRedirectIDs = array();
+	private $mResolvedRedirectTitles = array();
 	private $mConvertedTitles = array();
 	private $mGoodRevIDs = array();
 	private $mLiveRevIDs = array();
@@ -434,7 +435,7 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Get a list of redirect resolutions - maps a title to its redirect
-	 * target.
+	 * target. Includes generator data for redirect source when available.
 	 * @param ApiResult $result
 	 * @return array Array of prefixed_title (string) => Title object
 	 * @since 1.21
@@ -452,6 +453,15 @@ class ApiPageSet extends ApiBase {
 			if ( $titleTo->isExternal() ) {
 				$r['tointerwiki'] = $titleTo->getInterwiki();
 			}
+			if ( isset( $this->mResolvedRedirectTitles[$titleStrFrom] ) ) {
+				$titleFrom = $this->mResolvedRedirectTitles[$titleStrFrom];
+				$ns = $titleFrom->getNamespace();
+				$dbkey = $titleFrom->getDBkey();
+				if ( isset( $this->mGeneratorData[$ns][$dbkey] ) ) {
+					$r = array_merge( $this->mGeneratorData[$ns][$dbkey], $r );
+				}
+			}
+
 			$values[] = $r;
 		}
 		if ( !empty( $values ) && $result ) {
@@ -1030,6 +1040,7 @@ class ApiPageSet extends ApiBase {
 				$row->rd_fragment,
 				$row->rd_interwiki
 			);
+			$this->mResolvedRedirectTitles[$from] = $this->mPendingRedirectIDs[$rdfrom];
 			unset( $this->mPendingRedirectIDs[$rdfrom] );
 			if ( $to->isExternal() ) {
 				$this->mInterwikiTitles[$to->getPrefixedText()] = $to->getInterwiki();
@@ -1050,7 +1061,9 @@ class ApiPageSet extends ApiBase {
 					continue;
 				}
 				$lb->addObj( $rt );
-				$this->mRedirectTitles[$title->getPrefixedText()] = $rt;
+				$from = $title->getPrefixedText();
+				$this->mResolvedRedirectTitles[$from] = $title;
+				$this->mRedirectTitles[$from] = $rt;
 				unset( $this->mPendingRedirectIDs[$id] );
 			}
 		}
