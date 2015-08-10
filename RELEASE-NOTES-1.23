@@ -7,6 +7,10 @@ This is a security and maintenance release of the MediaWiki 1.23 branch.
 
 == Changes since 1.23.9 ==
 
+* (T94116) SECURITY: Compare API watchlist token in constant time
+* (T97391) SECURITY: Escape error message strings in thumb.php
+* (T106893) SECURITY: Don't leak autoblocked IP addresses on
+  Special:DeletedContributions
 * (bug 67644) Make AutoLoaderTest handle namespaces
 * (T91653) Minimal PSR-3 debug logger to support backports from 1.25+.
 * (T102562) Fix InstantCommons parameters to handle the new HTTPS-only
