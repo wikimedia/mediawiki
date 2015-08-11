@@ -63,7 +63,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 
 	public function get( $key, &$casToken = null, $flags = 0 ) {
 		foreach ( $this->caches as $cache ) {
-			$value = $cache->get( $key, null, $flags = 0 );
+			$value = $cache->get( $key, $casToken, $flags );
 			if ( $value !== false ) {
 				return $value;
 			}
