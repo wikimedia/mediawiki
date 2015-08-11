@@ -4,7 +4,8 @@
 			"Airon90",
 			"Yekrats",
 			"KuboF",
-			"Fitoschido"
+			"Fitoschido",
+			"Ochilov"
 		]
 	},
 	"config-desc": "Instalilo de MediaWiki",
@@ -43,6 +44,10 @@
 	"config-db-name": "Nomo de datumbazo:",
 	"config-charset-mysql5": "MySQL 4.1/5.0 UTF-8",
 	"config-type-mysql": "MySQL (aŭ kongrua)",
+	"config-mysql-utf8": "UTF-8",
+	"config-site-name": "Nomo de viki:",
+	"config-ns-generic": "Projekto",
+	"config-admin-name": "Via uzantonomo:",
 	"config-admin-password": "Pasvorto:",
 	"config-admin-password-confirm": "Retajpu pasvorton:",
 	"config-admin-name-blank": "Enigu salutnomon de administranto.",

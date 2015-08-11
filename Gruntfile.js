@@ -19,34 +19,16 @@ module.exports = function ( grunt ) {
 			options: {
 				jshintrc: true
 			},
-			all: [
-				'*.js',
-				'{includes,languages,resources,tests}/**/*.js'
-			]
+			all: '.'
 		},
 		jscs: {
-			all: [
-				'<%= jshint.all %>',
-				// Auto-generated file with JSON (double quotes)
-				'!tests/qunit/data/mediawiki.jqueryMsg.data.js',
-				// Skip functions are stored as script files but wrapped in a function when
-				// executed. node-jscs trips on the would-be "Illegal return statement".
-				'!resources/src/*-skip.js'
-
-			// Exclude all files ignored by jshint
-			].concat( grunt.file.read( '.jshintignore' ).split( '\n' ).reduce( function ( patterns, pattern ) {
-				// Filter out empty lines
-				if ( pattern.length && pattern[0] !== '#' ) {
-					patterns.push( '!' + pattern );
-				}
-				return patterns;
-			}, [] ) )
+			all: '.'
 		},
 		jsonlint: {
 			all: [
 				'.jscsrc',
-				'{languages,maintenance,resources}/**/*.json',
-				'package.json'
+				'**/*.json',
+				'!{docs/js,extensions,node_modules,skins,vendor}/**'
 			]
 		},
 		banana: {
@@ -56,10 +38,9 @@ module.exports = function ( grunt ) {
 		},
 		watch: {
 			files: [
-				'<%= jscs.all %>',
-				'<%= jsonlint.all %>',
-				'.jshintignore',
-				'.jshintrc'
+				'.js*',
+				'**/*',
+				'!{docs,extensions,node_modules,skins,vendor}/**'
 			],
 			tasks: 'test'
 		},

@@ -408,6 +408,10 @@
 								"bottom",
 								"top"
 							]
+						},
+						"templates": {
+							"type": "object",
+							"description": "Templates to be loaded for client-side usage"
 						}
 					}
 				}
@@ -438,40 +442,52 @@
 			"description": "Registry of factory functions to create Config objects"
 		},
 		"namespaces": {
-			"type": "object",
+			"type": "array",
 			"description": "Method to add extra namespaces",
-			"properties": {
-				"id": {
-					"type": "integer"
-				},
-				"constant": {
-					"type": "string"
-				},
-				"name": {
-					"type": "string"
-				},
-				"gender": {
-					"type": "object",
-					"properties": {
-						"male": {
-							"type": "string"
-						},
-						"female": {
-							"type": "string"
+			"items": {
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"constant": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"gender": {
+						"type": "object",
+						"properties": {
+							"male": {
+								"type": "string"
+							},
+							"female": {
+								"type": "string"
+							}
 						}
+					},
+					"subpages": {
+						"type": "boolean",
+						"default": false
+					},
+					"content": {
+						"type": "boolean",
+						"default": false
+					},
+					"defaultcontentmodel": {
+						"type": "string"
+					},
+					"protection": {
+						"type": ["string", "array"],
+						"description": "Userright(s) required to edit in this namespace"
+					},
+					"capitallinkoverride": {
+						"type": "boolean",
+						"description": "Set $wgCapitalLinks on a per-namespace basis"
 					}
 				},
-				"subpages": {
-					"type": "boolean",
-					"default": false
-				},
-				"content": {
-					"type": "boolean",
-					"default": false
-				},
-				"defaultcontentmodel": {
-					"type": "string"
-				}
+				"required": ["id", "constant", "name"]
 			}
 		},
 		"TrackingCategories": {
@@ -622,7 +638,24 @@
 		},
 		"config": {
 			"type": "object",
-			"description": "Configuration options for this extension"
+			"description": "Configuration options for this extension",
+			"patternProperties": {
+				"^[a-zA-Z_\u007f-\u00ff][a-zA-Z0-9_\u007f-\u00ff]*$": {
+					"type": ["object", "array", "string", "integer", "null", "boolean"],
+					"properties": {
+						"_merge_strategy": {
+							"type": "string",
+							"enum": [
+								"array_merge_recursive",
+								"array_plus_2d",
+								"array_plus",
+								"array_merge"
+							],
+							"default": "array_merge"
+						}
+					}
+				}
+			}
 		},
 		"ParserTestFiles": {
 			"type": "array",

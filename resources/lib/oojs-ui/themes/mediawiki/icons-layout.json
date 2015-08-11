@@ -37,7 +37,6 @@
 		"viewDetails": { "file": {
 			"ltr": "images/icons/viewDetails-ltr.svg",
 			"rtl": "images/icons/viewDetails-rtl.svg"
-		} },
-		"visionSimulator": { "file": "images/icons/visionSimulator.svg" }
+		} }
 	}
 }

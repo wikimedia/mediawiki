@@ -407,6 +407,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgField', 'mwuser', 'user_password_expires', 'TIMESTAMPTZ NULL' ),
 			array( 'changeFieldPurgeTable', 'l10n_cache', 'lc_value', 'bytea',
 				"replace(lc_value,'\','\\\\')::bytea" ),
+			// 1.23.9
+			array( 'rebuildTextSearch'),
 
 			// 1.24
 			array( 'addPgField', 'page_props', 'pp_sortkey', 'float NULL' ),
@@ -946,5 +948,13 @@ END;
 		if ( $this->db->getServerVersion() >= 8.3 ) {
 			$this->applyPatch( 'patch-tsearch2funcs.sql', false, "Rewriting tsearch2 triggers" );
 		}
+	}
+
+	protected function rebuildTextSearch() {
+		if ( $this->updateRowExists( 'patch-textsearch_bug66650.sql' ) ) {
+			$this->output( "...bug 66650 already fixed or not applicable.\n" );
+			return true;
+		};
+		$this->applyPatch( 'patch-textsearch_bug66650.sql', false, "Rebuilding text search for bug 66650" );
 	}
 }

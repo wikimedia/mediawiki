@@ -30,7 +30,7 @@ namespace MediaWiki\Logger;
  * );
  * @endcode
  *
- * @see \MediaWiki\Logger\LoggerFactory
+ * @see \\MediaWiki\\Logger\\LoggerFactory
  * @since 1.25
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2014 Bryan Davis and Wikimedia Foundation.
@@ -47,7 +47,7 @@ class LegacySpi implements Spi {
 	 * Get a logger instance.
 	 *
 	 * @param string $channel Logging channel
-	 * @return \Psr\Log\LoggerInterface Logger instance
+	 * @return \\Psr\\Log\\LoggerInterface Logger instance
 	 */
 	public function getLogger( $channel ) {
 		if ( !isset( $this->singletons[$channel] ) ) {

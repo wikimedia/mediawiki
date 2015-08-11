@@ -15,7 +15,8 @@
 			"아라",
 			"Serwan",
 			"Ebraminio",
-			"Macofe"
+			"Macofe",
+			"Pirehelokan"
 		]
 	},
 	"tog-underline": "ھێڵ ھێنان بەژێر بەستەرەکان:",
@@ -2043,6 +2044,7 @@
 	"pageinfo-robot-index": "ڕێ پێدراو",
 	"pageinfo-robot-noindex": "ڕێ پێنەدراوه",
 	"pageinfo-watchers": "ژمارەی چاودێرانی پەڕە",
+	"pageinfo-visiting-watchers": "ژمارەی ئەو بینەرانە کە دوایین دەستکارییەکانیان چاو پێکەوتووە.",
 	"pageinfo-few-watchers": "کەمتر لە $1 {{PLURAL:$1|چاودێر}}",
 	"pageinfo-redirects-name": "ژمارەی ڕەوانەکەرەکان بۆ ئەم پەڕەیە",
 	"pageinfo-subpages-name": "ژێرپەڕەکانی ئەم پەڕەیە",
@@ -2453,6 +2455,9 @@
 	"version-software-product": "بەرهەم",
 	"version-software-version": "وەشان",
 	"version-entrypoints-header-url": "ناونیشانی ئینتەرنێتی",
+	"version-libraries-license": "مۆڵەت",
+	"version-libraries-description": "وەسف",
+	"version-libraries-authors": "نووسەر",
 	"redirect": "ڕەوانەکەر بە پێی پەڕگە، بەکارھێنەر، پەڕە یان پێناسەی پێداچوونەوە",
 	"redirect-legend": "ڕەوانەکەر بۆ پەڕگە یان پەڕەیەک",
 	"redirect-summary": "ئەم پەڕە تایبەتە ڕەوانە دەکرێ بۆ پەڕگەیەک (ناوی پەڕگەکە)، پەڕەیەک (پێناسەی پێداچوونەوەیەک یان پێناسەی پەڕە) یان پەڕەیەکی بەکارھێنەر (پێناسەیەکی  ژمارەیی بەکارھێنەر). بەکارھێنان: [[{{#Special:Redirect}}/file/Example.jpg]]، [[{{#Special:Redirect}}/page/64308]]، [[{{#Special:Redirect}}/revision/328429]] یان [[{{#Special:Redirect}}/user/101]].",
@@ -2527,6 +2532,8 @@
 	"htmlform-selectorother-other": "دیکە",
 	"htmlform-no": "نا",
 	"htmlform-yes": "بەڵێ",
+	"htmlform-title-not-creatable": "پەڕە بە سەردێڕی \"$1\" دروست ناکرێت",
+	"htmlform-title-not-exists": "[[$1]] بوونی نیە.",
 	"logentry-delete-delete": "$1 پەڕەی $3ی {{GENDER:$2|سڕییەوە}}",
 	"logentry-delete-restore": "$1 پەڕەی $3ی {{GENDER:$2|ھێنایەوە}}",
 	"logentry-delete-revision": "$1 دەرکەوتنی {{PLURAL:$5|پێداچوونەوەیەکی|$5 پێداچوونەوەی}} پەڕەی $3ی {{GENDER:$2|گۆڕیی}}: $4",

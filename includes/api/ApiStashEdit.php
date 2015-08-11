@@ -112,6 +112,7 @@ class ApiStashEdit extends ApiBase {
 		if ( $user->pingLimiter( 'stashedit' ) ) {
 			$status = 'ratelimited';
 		} elseif ( $wgMemc->lock( $key, 0, 30 ) ) {
+			/** @noinspection PhpUnusedLocalVariableInspection */
 			$unlocker = new ScopedCallback( function() use ( $key ) {
 				global $wgMemc;
 				$wgMemc->unlock( $key );

@@ -156,7 +156,7 @@
  *
  * @since 1.17
  */
-class Message implements MessageSpecifier {
+class Message implements MessageSpecifier, Serializable {
 
 	/**
 	 * In which language to get this message. True, which is the default,
@@ -226,8 +226,9 @@ class Message implements MessageSpecifier {
 	/**
 	 * @since 1.17
 	 *
-	 * @param string|string[] $key Message key or array of message keys to try and use the first
-	 * non-empty message for.
+	 * @param string|string[]|MessageSpecifier $key Message key, or array of
+	 * message keys to try and use the first non-empty message for, or a
+	 * MessageSpecifier to copy from.
 	 * @param array $params Message parameters.
 	 * @param Language $language Optional language of the message, defaults to $wgLang.
 	 *
@@ -235,6 +236,16 @@ class Message implements MessageSpecifier {
 	 */
 	public function __construct( $key, $params = array(), Language $language = null ) {
 		global $wgLang;
+
+		if ( $key instanceof MessageSpecifier ) {
+			if ( $params ) {
+				throw new InvalidArgumentException(
+					'$params must be empty if $key is a MessageSpecifier'
+				);
+			}
+			$params = $key->getParams();
+			$key = $key->getKey();
+		}
 
 		if ( !is_string( $key ) && !is_array( $key ) ) {
 			throw new InvalidArgumentException( '$key must be a string or an array' );
@@ -250,6 +261,41 @@ class Message implements MessageSpecifier {
 
 		$this->parameters = array_values( $params );
 		$this->language = $language ?: $wgLang;
+	}
+
+	/**
+	 * @see Serializable::serialize()
+	 * @since 1.26
+	 * @return string
+	 */
+	public function serialize() {
+		return serialize( array(
+			'interface' => $this->interface,
+			'language' => $this->language->getCode(),
+			'key' => $this->key,
+			'keysToTry' => $this->keysToTry,
+			'parameters' => $this->parameters,
+			'format' => $this->format,
+			'useDatabase' => $this->useDatabase,
+			'title' => $this->title,
+		) );
+	}
+
+	/**
+	 * @see Serializable::unserialize()
+	 * @since 1.26
+	 * @param string $serialized
+	 */
+	public function unserialize( $serialized ) {
+		$data = unserialize( $serialized );
+		$this->interface = $data['interface'];
+		$this->key = $data['key'];
+		$this->keysToTry = $data['keysToTry'];
+		$this->parameters = $data['parameters'];
+		$this->format = $data['format'];
+		$this->useDatabase = $data['useDatabase'];
+		$this->language = Language::factory( $data['language'] );
+		$this->title = $data['title'];
 	}
 
 	/**
@@ -327,7 +373,7 @@ class Message implements MessageSpecifier {
 	 *
 	 * @since 1.17
 	 *
-	 * @param string|string[] $key Message key or array of keys.
+	 * @param string|string[]|MessageSpecifier $key
 	 * @param mixed $param,... Parameters as strings.
 	 *
 	 * @return Message

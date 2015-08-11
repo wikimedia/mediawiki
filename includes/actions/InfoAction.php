@@ -62,13 +62,17 @@ class InfoAction extends FormlessAction {
 	 *
 	 * @since 1.22
 	 * @param Title $title Title to clear cache for
+	 * @param int|null $revid Revision id to clear
 	 */
-	public static function invalidateCache( Title $title ) {
+	public static function invalidateCache( Title $title, $revid = null ) {
 		$cache = ObjectCache::getMainWANInstance();
 
-		$revision = Revision::newFromTitle( $title, 0, Revision::READ_LATEST );
-		if ( $revision !== null ) {
-			$key = wfMemcKey( 'infoaction', sha1( $title->getPrefixedText() ), $revision->getId() );
+		if ( !$revid ) {
+			$revision = Revision::newFromTitle( $title, 0, Revision::READ_LATEST );
+			$revid = $revision ? $revision->getId() : null;
+		}
+		if ( $revid !== null ) {
+			$key = wfMemcKey( 'infoaction', sha1( $title->getPrefixedText() ), $revid );
 			$cache->delete( $key );
 		}
 	}
@@ -675,11 +679,11 @@ class InfoAction extends FormlessAction {
 		$id = $title->getArticleID();
 		$config = $this->context->getConfig();
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbrWatchlist = wfGetDB( DB_SLAVE, 'watchlist' );
 		$result = array();
 
 		// Number of page watchers
-		$watchers = (int)$dbr->selectField(
+		$watchers = (int)$dbrWatchlist->selectField(
 			'watchlist',
 			'COUNT(*)',
 			array(
@@ -694,15 +698,15 @@ class InfoAction extends FormlessAction {
 			// Threshold: last visited about 26 weeks before latest edit
 			$updated = wfTimestamp( TS_UNIX, $this->page->getTimestamp() );
 			$age = $config->get( 'WatchersMaxAge' );
-			$threshold = $dbr->timestamp( $updated - $age );
+			$threshold = $dbrWatchlist->timestamp( $updated - $age );
 			// Number of page watchers who also visited a "recent" edit
-			$visitingWatchers = (int)$dbr->selectField(
+			$visitingWatchers = (int)$dbrWatchlist->selectField(
 				'watchlist',
 				'COUNT(*)',
 				array(
 					'wl_namespace' => $title->getNamespace(),
 					'wl_title' => $title->getDBkey(),
-					'wl_notificationtimestamp >= ' . $dbr->addQuotes( $threshold ) .
+					'wl_notificationtimestamp >= ' . $dbrWatchlist->addQuotes( $threshold ) .
 					' OR wl_notificationtimestamp IS NULL'
 				),
 				__METHOD__
@@ -710,6 +714,7 @@ class InfoAction extends FormlessAction {
 			$result['visitingWatchers'] = $visitingWatchers;
 		}
 
+		$dbr = wfGetDB( DB_SLAVE );
 		// Total number of edits
 		$edits = (int)$dbr->selectField(
 			'revision',

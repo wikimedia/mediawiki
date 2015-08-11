@@ -3177,5 +3177,7 @@
 	"special-characters-group-khmer": "Khmer",
 	"special-characters-title-endash": "pomlčka",
 	"special-characters-title-emdash": "dlhá pomlčka",
-	"special-characters-title-minus": "mínus"
+	"special-characters-title-minus": "mínus",
+	"mw-widgets-dateinput-placeholder-day": "RRRR-MM-DD",
+	"mw-widgets-dateinput-placeholder-month": "RRRR-MM"
 }

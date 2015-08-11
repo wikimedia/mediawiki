@@ -236,6 +236,7 @@
 	"pool-timeout": "Tidsavbrot under venting på låsing.",
 	"pool-queuefull": "Køen er full.",
 	"pool-errorunknown": "Ukjend feil",
+	"poolcounter-usage-error": "Bruksfeil: $1",
 	"aboutsite": "Om {{SITENAME}}",
 	"aboutpage": "Project:Om",
 	"copyright": "Innhaldet er utgjeve under $1 minder anna er oppgjeve.",
@@ -1329,7 +1330,7 @@
 	"filehist-help": "Klikk på dato/klokkeslett for å sjå fila slik ho var på det tidspunktet.",
 	"filehist-deleteall": "slett alle",
 	"filehist-deleteone": "slett",
-	"filehist-revert": "rulla attende",
+	"filehist-revert": "rull attende",
 	"filehist-current": "gjeldande",
 	"filehist-datetime": "Dato/klokkeslett",
 	"filehist-thumb": "Miniatyrbilete",
@@ -2699,7 +2700,7 @@
 	"imgmultipageprev": "← førre sida",
 	"imgmultipagenext": "neste side →",
 	"imgmultigo": "Gå!",
-	"imgmultigoto": "Gå til sida $1",
+	"imgmultigoto": "Gå til side $1",
 	"img-lang-default": "(standardspråk)",
 	"img-lang-info": "Teikn biletet på $1. $2",
 	"img-lang-go": "Gjer det",
@@ -2905,6 +2906,7 @@
 	"revdelete-uname-unhid": "brukarnamn gjort synleg",
 	"revdelete-restricted": "la til avgrensingar for administratorar",
 	"revdelete-unrestricted": "fjerna avgrensingar for administratorar",
+	"logentry-suppress-reblock": "$1 {{GENDER:$2|endra}} blokkeringsinnstillingar for {{GENDER:$4|$3}} med opphøyrstid $5 $6",
 	"logentry-move-move": "$1 {{GENDER:$2|flytte}} sida $3 til $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|flytte}} sida $3 til $4 utan å lata etter ei omdirigering",
 	"logentry-move-move_redir": "$1 {{GENDER:$2|flytte}} sida $3 til $4 over ei omdirigering",
@@ -3045,5 +3047,7 @@
 	"special-characters-group-bangla": "Bengali",
 	"special-characters-group-telugu": "Telugu",
 	"special-characters-group-sinhala": "Singalesisk",
-	"special-characters-group-gujarati": "Gujarati"
+	"special-characters-group-gujarati": "Gujarati",
+	"mw-widgets-dateinput-placeholder-day": "ÅÅÅÅ-MM-DD",
+	"mw-widgets-dateinput-placeholder-month": "ÅÅÅÅ-MM"
 }

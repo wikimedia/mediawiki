@@ -285,13 +285,14 @@ class UsersPager extends AlphabeticPager {
 			) . ' ';
 
 		# Group drop-down list
-		$out .= Xml::label( $this->msg( 'group' )->text(), 'group' ) . ' ' .
-			Xml::openElement( 'select', array( 'name' => 'group', 'id' => 'group' ) ) .
-			Xml::option( $this->msg( 'group-all' )->text(), '' );
+		$sel = new XmlSelect( 'group', 'group', $this->requestedGroup );
+		$sel->addOption( $this->msg( 'group-all' )->text(), '' );
 		foreach ( $this->getAllGroups() as $group => $groupText ) {
-			$out .= Xml::option( $groupText, $group, $group == $this->requestedGroup );
+			$sel->addOption( $groupText, $group );
 		}
-		$out .= Xml::closeElement( 'select' ) . '<br />';
+
+		$out .= Xml::label( $this->msg( 'group' )->text(), 'group' ) . ' ';
+		$out .= $sel->getHTML() . '<br />';
 		$out .= Xml::checkLabel(
 			$this->msg( 'listusers-editsonly' )->text(),
 			'editsOnly',

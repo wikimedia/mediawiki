@@ -14,7 +14,8 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
-	 * @cfg {string} [data] Page title
+	 * @cfg {string} [data] Label to display
+	 * @cfg {mw.Title} [title] Page title object
 	 * @cfg {string} [imageUrl] Thumbnail image URL with URL encoding
 	 * @cfg {string} [description] Page description
 	 * @cfg {boolean} [missing] Page doesn't exist
@@ -23,7 +24,7 @@
 	 * @cfg {string} [query] Matching query string
 	 */
 	mw.widgets.TitleOptionWidget = function MwWidgetsTitleOptionWidget( config ) {
-		var icon, title = config.data;
+		var icon;
 
 		if ( config.missing ) {
 			icon = 'page-not-found';
@@ -38,15 +39,15 @@
 		// Config initialization
 		config = $.extend( {
 			icon: icon,
-			label: title,
-			href: mw.util.getUrl( title ),
+			label: config.data,
+			href: config.title.getUrl(),
 			autoFitLabel: false
 		}, config );
 
 		// Parent constructor
-		OO.ui.MenuOptionWidget.call( this, config );
+		mw.widgets.TitleOptionWidget.parent.call( this, config );
 
-		// Intialization
+		// Initialization
 		this.$label.wrap( '<a>' );
 		this.$link = this.$label.parent();
 		this.$link.attr( 'href', config.href );
@@ -74,7 +75,7 @@
 		}
 	};
 
-	/* Inheritance */
+	/* Setup */
 
 	OO.inheritClass( mw.widgets.TitleOptionWidget, OO.ui.MenuOptionWidget );
 

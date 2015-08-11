@@ -180,8 +180,7 @@ abstract class Skin extends ContextSource {
 	 * @return array Array of modules with helper keys for easy overriding
 	 */
 	public function getDefaultModules() {
-		global $wgIncludeLegacyJavaScript, $wgPreloadJavaScriptMwUtil, $wgUseAjax,
-			$wgAjaxWatch, $wgEnableAPI, $wgEnableWriteAPI;
+		global $wgUseAjax, $wgAjaxWatch, $wgEnableAPI, $wgEnableWriteAPI;
 
 		$out = $this->getOutput();
 		$user = $out->getUser();
@@ -191,7 +190,7 @@ abstract class Skin extends ContextSource {
 				'mediawiki.page.ready',
 			),
 			// modules that exist for legacy reasons
-			'legacy' => array(),
+			'legacy' => ResourceLoaderStartUpModule::getLegacyModules(),
 			// modules relating to search functionality
 			'search' => array(),
 			// modules relating to functionality relating to watching an article
@@ -199,18 +198,9 @@ abstract class Skin extends ContextSource {
 			// modules which relate to the current users preferences
 			'user' => array(),
 		);
-		if ( $wgIncludeLegacyJavaScript ) {
-			$modules['legacy'][] = 'mediawiki.legacy.wikibits';
-		}
-
-		if ( $wgPreloadJavaScriptMwUtil ) {
-			$modules['legacy'][] = 'mediawiki.util';
-		}
 
 		// Add various resources if required
 		if ( $wgUseAjax ) {
-			$modules['legacy'][] = 'mediawiki.legacy.ajax';
-
 			if ( $wgEnableAPI ) {
 				if ( $wgEnableWriteAPI && $wgAjaxWatch && $user->isLoggedIn()
 					&& $user->isAllowed( 'writeapi' )

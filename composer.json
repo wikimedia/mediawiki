@@ -19,15 +19,16 @@
 		"cssjanus/cssjanus": "1.1.1",
 		"ext-iconv": "*",
 		"leafo/lessphp": "0.5.0",
-		"liuggio/statsd-php-client": "1.0.12",
+		"liuggio/statsd-php-client": "1.0.16",
 		"mediawiki/at-ease": "1.0.0",
-		"oojs/oojs-ui": "0.12.0",
+		"oojs/oojs-ui": "0.12.2",
 		"php": ">=5.3.3",
 		"psr/log": "1.0.0",
 		"wikimedia/cdb": "1.0.1",
 		"wikimedia/assert": "0.2.2",
 		"wikimedia/composer-merge-plugin": "1.2.1",
 		"wikimedia/utfnormal": "1.0.2",
+		"wikimedia/wrappedstring": "2.0.0",
 		"zordius/lightncandy": "0.21"
 	},
 	"require-dev": {
@@ -60,7 +61,6 @@
 		"pre-install-cmd": "ComposerHookHandler::onPreInstall"
 	},
 	"config": {
-		"classmap-authoritative": true,
 		"prepend-autoloader": false,
 		"optimize-autoloader": true
 	},

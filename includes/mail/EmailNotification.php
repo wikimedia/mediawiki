@@ -478,7 +478,9 @@ class EmailNotification {
 				$wgContLang->userTime( $this->timestamp, $watchingUser ) ),
 			$this->body );
 
-		return UserMailer::send( $to, $this->from, $this->subject, $body, $this->replyto );
+		return UserMailer::send( $to, $this->from, $this->subject, $body, array(
+			'replyTo' => $this->replyto,
+		) );
 	}
 
 	/**
@@ -503,7 +505,9 @@ class EmailNotification {
 				$wgContLang->time( $this->timestamp, false, false ) ),
 			$this->body );
 
-		return UserMailer::send( $addresses, $this->from, $this->subject, $body, $this->replyto );
+		return UserMailer::send( $addresses, $this->from, $this->subject, $body, array(
+			'replyTo' => $this->replyto,
+		) );
 	}
 
 }

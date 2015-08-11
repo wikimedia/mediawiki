@@ -287,10 +287,10 @@ class WebInstallerLanguage extends WebInstallerPage {
 	public function getLanguageSelector( $name, $label, $selectedCode, $helpHtml = '' ) {
 		global $wgDummyLanguageCodes;
 
-		$s = $helpHtml;
+		$output = $helpHtml;
 
-		$s .= Html::openElement( 'select', array( 'id' => $name, 'name' => $name,
-				'tabindex' => $this->parent->nextTabIndex() ) ) . "\n";
+		$select = new XmlSelect( $name, $name, $selectedCode );
+		$select->setAttribute( 'tabindex', $this->parent->nextTabIndex() );
 
 		$languages = Language::fetchLanguageNames();
 		ksort( $languages );
@@ -298,11 +298,11 @@ class WebInstallerLanguage extends WebInstallerPage {
 			if ( isset( $wgDummyLanguageCodes[$code] ) ) {
 				continue;
 			}
-			$s .= "\n" . Xml::option( "$code - $lang", $code, $code == $selectedCode );
+			$select->addOption( "$code - $lang", $code );
 		}
-		$s .= "\n</select>\n";
 
-		return $this->parent->label( $label, $name, $s );
+		$output .= $select->getHTML();
+		return $this->parent->label( $label, $name, $output );
 	}
 
 }

@@ -206,7 +206,7 @@ class AllMessagesTablePager extends TablePager {
 			Xml::label( $this->msg( 'table_pager_limit_label' )->text(), 'mw-table_pager_limit_label' ) .
 			'</td>
 			<td class="mw-input">' .
-			$this->getLimitSelect() .
+			$this->getLimitSelect( array( 'id' => 'mw-table_pager_limit_label' ) ) .
 			'</td>
 			<tr>
 				<td></td>
@@ -445,7 +445,7 @@ class AllMessagesTablePager extends TablePager {
 		} elseif ( $field === 'am_title' ) {
 			return array( 'class' => $field );
 		} else {
-			return array( 'lang' => $this->langcode, 'dir' => $this->lang->getDir(), 'class' => $field );
+			return array( 'lang' => wfBCP47( $this->langcode ), 'dir' => $this->lang->getDir(), 'class' => $field );
 		}
 	}
 

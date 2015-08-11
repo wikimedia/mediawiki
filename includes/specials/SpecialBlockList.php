@@ -65,6 +65,9 @@ class SpecialBlockList extends SpecialPage {
 			return;
 		}
 
+		# setup BlockListPager here to get the actual default Limit
+		$pager = $this->getBlockListPager();
+
 		# Just show the block list
 		$fields = array(
 			'Target' => array(
@@ -77,11 +80,11 @@ class SpecialBlockList extends SpecialPage {
 			),
 			'Options' => array(
 				'type' => 'multiselect',
-				'options' => array(
-					$this->msg( 'blocklist-userblocks' )->text() => 'userblocks',
-					$this->msg( 'blocklist-tempblocks' )->text() => 'tempblocks',
-					$this->msg( 'blocklist-addressblocks' )->text() => 'addressblocks',
-					$this->msg( 'blocklist-rangeblocks' )->text() => 'rangeblocks',
+				'options-messages' => array(
+					'blocklist-userblocks' => 'userblocks',
+					'blocklist-tempblocks' => 'tempblocks',
+					'blocklist-addressblocks' => 'addressblocks',
+					'blocklist-rangeblocks' => 'rangeblocks',
 				),
 				'flatlist' => true,
 			),
@@ -96,7 +99,7 @@ class SpecialBlockList extends SpecialPage {
 					$lang->formatNum( 500 ) => 500,
 				),
 				'name' => 'limit',
-				'default' => 50,
+				'default' => $pager->getLimit(),
 			),
 		);
 		$context = new DerivativeContext( $this->getContext() );
@@ -109,10 +112,14 @@ class SpecialBlockList extends SpecialPage {
 		$form->prepareForm();
 
 		$form->displayForm( '' );
-		$this->showList();
+		$this->showList( $pager );
 	}
 
-	function showList() {
+	/**
+	 * Setup a new BlockListPager instance.
+	 * @return BlockListPager
+	 */
+	protected function getBlockListPager() {
 		$conds = array();
 		# Is the user allowed to see hidden blocks?
 		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
@@ -163,11 +170,19 @@ class SpecialBlockList extends SpecialPage {
 			$conds[] = "ipb_range_end = ipb_range_start";
 		}
 
+		return new BlockListPager( $this, $conds );
+	}
+
+	/**
+	 * Show the list of blocked accounts matching the actual filter.
+	 * @param BlockListPager $pager The BlockListPager instance for this page
+	 */
+	protected function showList( BlockListPager $pager ) {
+		$out = $this->getOutput();
+
 		# Check for other blocks, i.e. global/tor blocks
 		$otherBlockLink = array();
 		Hooks::run( 'OtherBlockLogLink', array( &$otherBlockLink, $this->target ) );
-
-		$out = $this->getOutput();
 
 		# Show additional header for the local block only when other blocks exists.
 		# Not necessary in a standard installation without such extensions enabled
@@ -177,7 +192,6 @@ class SpecialBlockList extends SpecialPage {
 			);
 		}
 
-		$pager = new BlockListPager( $this, $conds );
 		if ( $pager->getNumRows() ) {
 			$out->addParserOutputContent( $pager->getFullOutput() );
 		} elseif ( $this->target ) {
@@ -249,7 +263,7 @@ class BlockListPager extends TablePager {
 	function formatValue( $name, $value ) {
 		static $msg = null;
 		if ( $msg === null ) {
-			$msg = array(
+			$keys = array(
 				'anononlyblock',
 				'createaccountblock',
 				'noautoblockblock',
@@ -258,17 +272,22 @@ class BlockListPager extends TablePager {
 				'unblocklink',
 				'change-blocklink',
 			);
-			$msg = array_combine( $msg, array_map( array( $this, 'msg' ), $msg ) );
+
+			foreach ( $keys as $key ) {
+				$msg[$key] = $this->msg( $key )->escaped();
+			}
 		}
 
 		/** @var $row object */
 		$row = $this->mCurrentRow;
 
+		$language = $this->getLanguage();
+
 		$formatted = '';
 
 		switch ( $name ) {
 			case 'ipb_timestamp':
-				$formatted = $this->getLanguage()->userTimeAndDate( $value, $this->getUser() );
+				$formatted = htmlspecialchars( $language->userTimeAndDate( $value, $this->getUser() ) );
 				break;
 
 			case 'ipb_target':
@@ -294,7 +313,10 @@ class BlockListPager extends TablePager {
 				break;
 
 			case 'ipb_expiry':
-				$formatted = $this->getLanguage()->formatExpiry( $value, /* User preference timezone */true );
+				$formatted = htmlspecialchars( $language->formatExpiry(
+					$value,
+					/* User preference timezone */true
+				) );
 				if ( $this->getUser()->isAllowed( 'block' ) ) {
 					if ( $row->ipb_auto ) {
 						$links[] = Linker::linkKnown(
@@ -317,7 +339,7 @@ class BlockListPager extends TablePager {
 						'span',
 						array( 'class' => 'mw-blocklist-actions' ),
 						$this->msg( 'parentheses' )->rawParams(
-							$this->getLanguage()->pipeList( $links ) )->escaped()
+							$language->pipeList( $links ) )->escaped()
 					);
 				}
 				break;
@@ -355,7 +377,7 @@ class BlockListPager extends TablePager {
 					$properties[] = $msg['blocklist-nousertalk'];
 				}
 
-				$formatted = $this->getLanguage()->commaList( $properties );
+				$formatted = $language->commaList( $properties );
 				break;
 
 			default:

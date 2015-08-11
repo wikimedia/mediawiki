@@ -4,7 +4,8 @@
 			"CERminator",
 			"Palapa",
 			"Emir Mujadzic",
-			"Semso98"
+			"Semso98",
+			"Srdjan m"
 		]
 	},
 	"config-desc": "Instalacija za MediaWiki",
@@ -74,12 +75,13 @@
 	"config-admin-name": "Vaše korisničko ime:",
 	"config-admin-password": "Lozinka:",
 	"config-admin-password-confirm": "Ponovno unesite lozinku:",
-	"config-admin-email": "E-mail adresa:",
+	"config-admin-email": "Adresa e-pošte:",
 	"config-profile-wiki": "Otvori wiki",
 	"config-profile-private": "Privatna wiki",
 	"config-license-pd": "Javno vlasništvo",
 	"config-logo": "Logo URL:",
 	"config-cc-again": "Odaberi ponovno...",
+	"config-skins": "Teme",
 	"config-install-step-done": "završeno",
 	"config-install-step-failed": "neuspješno",
 	"config-install-extensions": "Uključujući ekstenzije",

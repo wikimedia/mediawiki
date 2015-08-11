@@ -25,6 +25,8 @@
  * @defgroup HTTP HTTP
  */
 
+use MediaWiki\Logger\LoggerFactory;
+
 /**
  * Various HTTP related functions
  * @ingroup HTTP
@@ -73,11 +75,14 @@ class Http {
 		$req = MWHttpRequest::factory( $url, $options, $caller );
 		$status = $req->execute();
 
-		$content = false;
 		if ( $status->isOK() ) {
-			$content = $req->getContent();
+			return $req->getContent();
+		} else {
+			$errors = $status->getErrorsByType( 'error' );
+			$logger = LoggerFactory::getInstance( 'http' );
+			$logger->warning( $status->getWikiText(), array( 'caller' => $caller ) );
+			return false;
 		}
-		return $content;
 	}
 
 	/**
@@ -252,7 +257,7 @@ class MWHttpRequest {
 		$this->parsedUrl = wfParseUrl( $this->url );
 
 		if ( !$this->parsedUrl || !Http::isValidURI( $this->url ) ) {
-			$this->status = Status::newFatal( 'http-invalid-url' );
+			$this->status = Status::newFatal( 'http-invalid-url', $url );
 		} else {
 			$this->status = Status::newGood( 100 ); // continue
 		}

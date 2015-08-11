@@ -421,7 +421,10 @@ abstract class File implements IDBAccessObject {
 	public function getLocalRefPath() {
 		$this->assertRepoDefined();
 		if ( !isset( $this->fsFile ) ) {
+			$starttime = microtime( true );
 			$this->fsFile = $this->repo->getLocalReference( $this->getPath() );
+			RequestContext::getMain()->getStats()->timing( 'media.thumbnail.generate.fetchoriginal', microtime( true ) - $starttime );
+
 			if ( !$this->fsFile ) {
 				$this->fsFile = false; // null => false; cache negative hits
 			}
@@ -1092,7 +1095,9 @@ abstract class File implements IDBAccessObject {
 	 * @return bool|MediaTransformOutput
 	 */
 	public function generateAndSaveThumb( $tmpFile, $transformParams, $flags ) {
-		global $wgUseSquid, $wgIgnoreImageErrors;
+		global $wgIgnoreImageErrors;
+
+		$stats = RequestContext::getMain()->getStats();
 
 		$handler = $this->getHandler();
 
@@ -1109,9 +1114,13 @@ abstract class File implements IDBAccessObject {
 			$this->generateBucketsIfNeeded( $normalisedParams, $flags );
 		}
 
+		$starttime = microtime( true );
+
 		// Actually render the thumbnail...
 		$thumb = $handler->doTransform( $this, $tmpThumbPath, $thumbUrl, $transformParams );
 		$tmpFile->bind( $thumb ); // keep alive with $thumb
+
+		$stats->timing( 'media.thumbnail.generate.transform', microtime( true ) - $starttime );
 
 		if ( !$thumb ) { // bad params?
 			$thumb = false;
@@ -1123,6 +1132,9 @@ abstract class File implements IDBAccessObject {
 			}
 		} elseif ( $this->repo && $thumb->hasFile() && !$thumb->fileIsSource() ) {
 			// Copy the thumbnail from the file system into storage...
+
+			$starttime = microtime( true );
+
 			$disposition = $this->getThumbDisposition( $thumbName );
 			$status = $this->repo->quickImport( $tmpThumbPath, $thumbPath, $disposition );
 			if ( $status->isOK() ) {
@@ -1130,17 +1142,11 @@ abstract class File implements IDBAccessObject {
 			} else {
 				$thumb = $this->transformErrorOutput( $thumbPath, $thumbUrl, $transformParams, $flags );
 			}
+
+			$stats->timing( 'media.thumbnail.generate.store', microtime( true ) - $starttime );
+
 			// Give extensions a chance to do something with this thumbnail...
 			Hooks::run( 'FileTransformed', array( $this, $thumb, $tmpThumbPath, $thumbPath ) );
-		}
-
-		// Purge. Useful in the event of Core -> Squid connection failure or squid
-		// purge collisions from elsewhere during failure. Don't keep triggering for
-		// "thumbs" which have the main image URL though (bug 13776)
-		if ( $wgUseSquid ) {
-			if ( !$thumb || $thumb->isError() || $thumb->getUrl() != $this->getURL() ) {
-				SquidUpdate::purge( array( $thumbUrl ) );
-			}
 		}
 
 		return $thumb;
@@ -1167,6 +1173,8 @@ abstract class File implements IDBAccessObject {
 			return false;
 		}
 
+		$starttime = microtime( true );
+
 		$params['physicalWidth'] = $bucket;
 		$params['width'] = $bucket;
 
@@ -1182,6 +1190,8 @@ abstract class File implements IDBAccessObject {
 
 		$thumb = $this->generateAndSaveThumb( $tmpFile, $params, $flags );
 
+		$buckettime = microtime( true ) - $starttime;
+
 		if ( !$thumb || $thumb->isError() ) {
 			return false;
 		}
@@ -1190,6 +1200,8 @@ abstract class File implements IDBAccessObject {
 		// For the caching to work, we need to make the tmp file survive as long as
 		// this object exists
 		$tmpFile->bind( $this );
+
+		RequestContext::getMain()->getStats()->timing( 'media.thumbnail.generate.bucket', $buckettime );
 
 		return true;
 	}

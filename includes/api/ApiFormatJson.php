@@ -35,6 +35,15 @@ class ApiFormatJson extends ApiFormatBase {
 	public function __construct( ApiMain $main, $format ) {
 		parent::__construct( $main, $format );
 		$this->isRaw = ( $format === 'rawfm' );
+
+		if ( $this->getMain()->getCheck( 'callback' ) ) {
+			# T94015: jQuery appends a useless '_' parameter in jsonp mode.
+			# Mark the parameter as used in that case to avoid a warning that's
+			# outside the control of the end user.
+			# (and do it here because ApiMain::reportUnusedParams() gets called
+			# before our ::execute())
+			$this->getMain()->getCheck( '_' );
+		}
 	}
 
 	public function getMimeType() {

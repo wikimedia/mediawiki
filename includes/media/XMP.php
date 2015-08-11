@@ -525,6 +525,7 @@ class XMPReader implements LoggerAwareInterface {
 		);
 
 		$oldDisable = libxml_disable_entity_loader( true );
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$reset = new ScopedCallback(
 			'libxml_disable_entity_loader',
 			array( $oldDisable )

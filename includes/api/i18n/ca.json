@@ -3,7 +3,8 @@
 		"authors": [
 			"Toniher",
 			"Macofe",
-			"Xavier Dengra"
+			"Xavier Dengra",
+			"F3RaN"
 		]
 	},
 	"apihelp-main-param-format": "El format de la sortida.",
@@ -41,5 +42,14 @@
 	"apihelp-import-param-rootpage": "Importa com a subpàgina d'aquesta pàgina.",
 	"apihelp-login-param-name": "Nom d'usuari.",
 	"apihelp-login-param-password": "Contrasenya.",
-	"apihelp-login-example-login": "Inicia sessió."
+	"apihelp-login-example-login": "Inicia sessió.",
+	"apihelp-protect-param-cascade": "Activa la protecció en cascada (és a dir, protegeix les plantilles i imatges utilitzades en aquesta pàgina). S'ignora si cap dels nivells de protecció suporta la protecció en cascada.",
+	"apihelp-query+pageswithprop-example-generator": "Obtenir informació addicional sobre les 10 primeres pàgines utilitzant <code>__NOTOC__</code>.",
+	"apihelp-query+watchlist-paramvalue-prop-title": "Afegeix el títol de la pàgina.",
+	"apihelp-query+watchlist-paramvalue-prop-user": "Afegeix l'usuari que ha fet l'edició.",
+	"apihelp-query+watchlist-paramvalue-prop-userid": "Afegeix l'identificador d'usuari que ha fet l'edició.",
+	"apihelp-query+watchlist-paramvalue-prop-comment": "Afegeix comentari de l'edició.",
+	"apihelp-query+watchlist-paramvalue-prop-timestamp": "Afegeix timestamp de l'edició.",
+	"apihelp-query+watchlist-paramvalue-prop-patrol": "Etiqueta les modificacions que són vigilades.",
+	"apihelp-query+watchlist-paramvalue-prop-loginfo": "Afegeix informació de registre, si s'escau."
 }

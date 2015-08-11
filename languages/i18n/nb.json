@@ -3136,6 +3136,7 @@
 	"htmlform-cloner-create": "Legg til mer",
 	"htmlform-cloner-delete": "Fjern",
 	"htmlform-cloner-required": "Minst én verdi kreves.",
+	"htmlform-title-not-exists": "[[:$1]] forefinnes ikke.",
 	"sqlite-has-fts": "$1 med støtte for fulltekstsøk",
 	"sqlite-no-fts": "$1 uten støtte for fulltekstsøk",
 	"logentry-delete-delete": "$1 {{GENDER:$2|slettet}} siden $3",
@@ -3372,5 +3373,7 @@
 	"special-characters-group-khmer": "Khmer",
 	"special-characters-title-endash": "tankestrek",
 	"special-characters-title-emdash": "lang tankestrek",
-	"special-characters-title-minus": "minustegn"
+	"special-characters-title-minus": "minustegn",
+	"mw-widgets-dateinput-placeholder-day": "ÅÅÅÅ-MM-DD",
+	"mw-widgets-dateinput-placeholder-month": "ÅÅÅÅ-MM"
 }

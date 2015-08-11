@@ -59,6 +59,8 @@ final class EnqueueJob extends Job {
 	 * @return EnqueueJob
 	 */
 	public static function newFromJobsByWiki( array $jobsByWiki ) {
+		$deduplicate = true;
+
 		$jobMapsByWiki = array();
 		foreach ( $jobsByWiki as $wiki => $jobs ) {
 			$jobMapsByWiki[$wiki] = array();
@@ -68,10 +70,19 @@ final class EnqueueJob extends Job {
 				} else {
 					throw new InvalidArgumentException( "Jobs must be of type JobSpecification." );
 				}
+				$deduplicate = $deduplicate && $job->ignoreDuplicates();
 			}
 		}
 
-		return new self( Title::newMainPage(), array( 'jobsByWiki' => $jobMapsByWiki ) );
+		$eJob = new self(
+			Title::makeTitle( NS_SPECIAL, 'Badtitle/' . __CLASS__ ),
+			array( 'jobsByWiki' => $jobMapsByWiki )
+		);
+		// If *all* jobs to be pushed are to be de-duplicated (a common case), then
+		// de-duplicate this whole job itself to avoid build up in high traffic cases
+		$eJob->removeDuplicates = $deduplicate;
+
+		return $eJob;
 	}
 
 	public function run() {

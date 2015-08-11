@@ -519,19 +519,24 @@ class User implements IDBAccessObject {
 	 * If the code is invalid or has expired, returns NULL.
 	 *
 	 * @param string $code Confirmation code
+	 * @param int $flags User::READ_* bitfield
 	 * @return User|null
 	 */
-	public static function newFromConfirmationCode( $code ) {
-		$dbr = wfGetDB( DB_SLAVE );
-		$id = $dbr->selectField( 'user', 'user_id', array(
-			'user_email_token' => md5( $code ),
-			'user_email_token_expires > ' . $dbr->addQuotes( $dbr->timestamp() ),
-			) );
-		if ( $id !== false ) {
-			return User::newFromId( $id );
-		} else {
-			return null;
-		}
+	public static function newFromConfirmationCode( $code, $flags = 0 ) {
+		$db = ( $flags & self::READ_LATEST ) == self::READ_LATEST
+			? wfGetDB( DB_MASTER )
+			: wfGetDB( DB_SLAVE );
+
+		$id = $db->selectField(
+			'user',
+			'user_id',
+			array(
+				'user_email_token' => md5( $code ),
+				'user_email_token_expires > ' . $db->addQuotes( $db->timestamp() ),
+			)
+		);
+
+		return $id ? User::newFromId( $id ) : null;
 	}
 
 	/**
@@ -3385,19 +3390,24 @@ class User implements IDBAccessObject {
 				return;
 			}
 
-			$nextid = $oldid ? $title->getNextRevisionID( $oldid ) : null;
-
-			if ( !$oldid || !$nextid ) {
-				// If we're looking at the latest revision, we should definitely clear it
-				$this->setNewtalk( false );
-			} else {
-				// Otherwise we should update its revision, if it's present
-				if ( $this->getNewtalk() ) {
-					// Naturally the other one won't clear by itself
-					$this->setNewtalk( false );
-					$this->setNewtalk( true, Revision::newFromId( $nextid ) );
+			$that = $this;
+			// Try to update the DB post-send and only if needed...
+			DeferredUpdates::addCallableUpdate( function() use ( $that, $title, $oldid ) {
+				if ( !$that->getNewtalk() ) {
+					return; // no notifications to clear
 				}
-			}
+
+				// Delete the last notifications (they stack up)
+				$that->setNewtalk( false );
+
+				// If there is a new, unseen, revision, use its timestamp
+				$nextid = $oldid
+					? $title->getNextRevisionID( $oldid, Title::GAID_FOR_UPDATE )
+					: null;
+				if ( $nextid ) {
+					$that->setNewtalk( true, Revision::newFromId( $nextid ) );
+				}
+			} );
 		}
 
 		if ( !$wgUseEnotif && !$wgShowUpdatedMarker ) {
@@ -3684,7 +3694,7 @@ class User implements IDBAccessObject {
 			$from = ( $this->queryFlagsUsed & self::READ_LATEST ) ? 'master' : 'slave';
 			throw new MWException(
 				"CAS update failed on user_touched for user ID '{$this->mId}' (read from $from);" .
-				"the version of the user to be saved is older than the current version."
+				" the version of the user to be saved is older than the current version."
 			);
 		}
 
@@ -3721,15 +3731,13 @@ class User implements IDBAccessObject {
 			: wfGetDB( DB_SLAVE );
 
 		$options = ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING )
-			? array( 'FOR UPDATE' )
+			? array( 'LOCK IN SHARE MODE' )
 			: array();
 
-		$id = $db->selectField( 'user', 'user_id', array( 'user_name' => $s ), __METHOD__, $options );
-		if ( $id === false ) {
-			$id = 0;
-		}
+		$id = $db->selectField( 'user',
+			'user_id', array( 'user_name' => $s ), __METHOD__, $options );
 
-		return $id;
+		return (int)$id;
 	}
 
 	/**
@@ -4249,7 +4257,9 @@ class User implements IDBAccessObject {
 		}
 		$to = MailAddress::newFromUser( $this );
 
-		return UserMailer::send( $to, $sender, $subject, $body, $replyto );
+		return UserMailer::send( $to, $sender, $subject, $body, array(
+			'replyTo' => $replyto,
+		) );
 	}
 
 	/**

@@ -22,6 +22,7 @@
 		"mediaWiki": true,
 		"JSON": true,
 		"OO": true,
+		"performance": true,
 		"jQuery": false,
 		"QUnit": false,
 		"sinon": false

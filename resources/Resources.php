@@ -247,11 +247,43 @@ return array(
 	),
 	'jquery.highlightText' => array(
 		'scripts' => 'resources/src/jquery/jquery.highlightText.js',
-		'dependencies' => 'mediawiki.RegExp',
+		'dependencies' => array(
+			'mediawiki.RegExp',
+			'dom-level2-shim',
+		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.hoverIntent' => array(
 		'scripts' => 'resources/lib/jquery/jquery.hoverIntent.js',
+	),
+	'jquery.i18n' => array(
+		'scripts' => array(
+			'resources/lib/jquery.i18n/src/jquery.i18n.js',
+			'resources/lib/jquery.i18n/src/jquery.i18n.messagestore.js',
+			'resources/lib/jquery.i18n/src/jquery.i18n.parser.js',
+			'resources/lib/jquery.i18n/src/jquery.i18n.emitter.js',
+			'resources/lib/jquery.i18n/src/jquery.i18n.emitter.bidi.js',
+			'resources/lib/jquery.i18n/src/jquery.i18n.language.js',
+			'resources/lib/jquery.i18n/src/jquery.i18n.fallbacks.js',
+		),
+		'dependencies' => 'mediawiki.libs.pluralruleparser',
+		'languageScripts' => array(
+			'bs' => 'resources/lib/jquery.i18n/src/languages/bs.js',
+			'dsb' => 'resources/lib/jquery.i18n/src/languages/dsb.js',
+			'fi' => 'resources/lib/jquery.i18n/src/languages/fi.js',
+			'ga' => 'resources/lib/jquery.i18n/src/languages/ga.js',
+			'he' => 'resources/lib/jquery.i18n/src/languages/he.js',
+			'hsb' => 'resources/lib/jquery.i18n/src/languages/hsb.js',
+			'hu' => 'resources/lib/jquery.i18n/src/languages/hu.js',
+			'hy' => 'resources/lib/jquery.i18n/src/languages/hy.js',
+			'la' => 'resources/lib/jquery.i18n/src/languages/la.js',
+			'ml' => 'resources/lib/jquery.i18n/src/languages/ml.js',
+			'os' => 'resources/lib/jquery.i18n/src/languages/os.js',
+			'ru' => 'resources/lib/jquery.i18n/src/languages/ru.js',
+			'sl' => 'resources/lib/jquery.i18n/src/languages/sl.js',
+			'uk' => 'resources/lib/jquery.i18n/src/languages/uk.js',
+		),
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.localize' => array(
 		'scripts' => 'resources/src/jquery/jquery.localize.js',
@@ -309,6 +341,7 @@ return array(
 		'styles' => 'resources/src/jquery/jquery.tablesorter.css',
 		'messages' => array( 'sort-descending', 'sort-ascending' ),
 		'dependencies' => array(
+			'dom-level2-shim',
 			'mediawiki.RegExp',
 			'mediawiki.language.months',
 		),
@@ -700,7 +733,10 @@ return array(
 	/* Moment.js */
 
 	'moment' => array(
-		'scripts' => 'resources/lib/moment/moment.js',
+		'scripts' => array(
+			'resources/lib/moment/moment.js',
+			'resources/src/moment-local-dmy.js',
+		),
 		'languageScripts' => array(
 			'af' => 'resources/lib/moment/locale/af.js',
 			'ar' => 'resources/lib/moment/locale/ar.js',
@@ -786,7 +822,7 @@ return array(
 
 	'mediawiki' => array(
 		'class' => 'ResourceLoaderRawFileModule',
-		// Keep maintenance/jsduck/eg-iframe.html in sync
+		// Keep in sync with maintenance/jsduck/eg-iframe.html
 		'scripts' => array(
 			'resources/lib/phpjs-sha1/sha1.js',
 			'resources/src/mediawiki/mediawiki.js',
@@ -857,7 +893,12 @@ return array(
 	),
 	'mediawiki.api.upload' => array(
 		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.upload.js',
-		'dependencies' => array( 'mediawiki.api', 'mediawiki.api.edit', 'json' ),
+		'dependencies' => array(
+			'dom-level2-shim',
+			'mediawiki.api',
+			'mediawiki.api.edit',
+			'json',
+		),
 	),
 	'mediawiki.api.watch' => array(
 		'scripts' => 'resources/src/mediawiki.api/mediawiki.api.watch.js',
@@ -1489,10 +1530,12 @@ return array(
 			'prefs-tabs-navigation-hint',
 			'prefswarning-warning',
 			'saveprefs',
+			'savedprefs',
 		),
 		'dependencies' => array(
 			'mediawiki.language',
 			'mediawiki.confirmCloseWindow',
+			'mediawiki.notification',
 		),
 	),
 	'mediawiki.special.recentchanges' => array(
@@ -1504,7 +1547,6 @@ return array(
 		'position' => 'top',
 		'scripts' => 'resources/src/mediawiki.special/mediawiki.special.search.js',
 		'styles' => 'resources/src/mediawiki.special/mediawiki.special.search.css',
-		'dependencies' => 'mediawiki.widgets',
 		'messages' => array(
 			'powersearch-togglelabel',
 			'powersearch-toggleall',
@@ -1627,19 +1669,12 @@ return array(
 
 	/* MediaWiki Legacy */
 
-	'mediawiki.legacy.ajax' => array(
-		'scripts' => 'resources/src/mediawiki.legacy/ajax.js',
-		'dependencies' => array(
-			'mediawiki.util',
-			'mediawiki.legacy.wikibits',
-		),
-		'position' => 'top',
-	),
 	'mediawiki.legacy.commonPrint' => array(
 		'position' => 'top',
 		'styles' => array(
 			'resources/src/mediawiki.legacy/commonPrint.css' => array( 'media' => 'print' )
 		),
+		'group' => 'print',
 	),
 	'mediawiki.legacy.protect' => array(
 		'scripts' => 'resources/src/mediawiki.legacy/protect.js',
@@ -1663,6 +1698,7 @@ return array(
 		'scripts' => 'resources/src/mediawiki.legacy/wikibits.js',
 		'dependencies' => 'mediawiki.util',
 		'position' => 'top',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 
 	/* MediaWiki UI */
@@ -1746,22 +1782,44 @@ return array(
 	'mediawiki.widgets' => array(
 		'scripts' => array(
 			'resources/src/mediawiki.widgets/mw.widgets.js',
+			'resources/src/mediawiki.widgets/mw.widgets.CalendarWidget.js',
+			'resources/src/mediawiki.widgets/mw.widgets.DateInputWidget.js',
+			'resources/src/mediawiki.widgets/mw.widgets.NamespaceInputWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.TitleOptionWidget.js',
+			'resources/src/mediawiki.widgets/mw.widgets.UserInputWidget.js',
 		),
 		'skinStyles' => array(
-			'default' => 'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.css',
+			'default' => array(
+				'resources/src/mediawiki.widgets/mw.widgets.CalendarWidget.less',
+				'resources/src/mediawiki.widgets/mw.widgets.DateInputWidget.less',
+				'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.css',
+			),
 		),
 		'dependencies' => array(
+			'mediawiki.widgets.styles',
 			'jquery.autoEllipsis',
 			'mediawiki.Title',
 			'mediawiki.api',
+			'moment',
 			'oojs-ui',
 		),
 		'messages' => array(
+			'mw-widgets-dateinput-no-date',
+			'mw-widgets-dateinput-placeholder-day',
+			'mw-widgets-dateinput-placeholder-month',
 			'mw-widgets-titleinput-description-new-page',
 			'mw-widgets-titleinput-description-redirect',
 		),
+		'targets' => array( 'desktop', 'mobile' ),
+	),
+	'mediawiki.widgets.styles' => array(
+		'skinStyles' => array(
+			'default' => array(
+				'resources/src/mediawiki.widgets/mw.widgets.NamespaceInputWidget.base.css',
+			),
+		),
+		'position' => 'top',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 

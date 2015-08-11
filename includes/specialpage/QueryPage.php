@@ -141,7 +141,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @return array
 	 * @since 1.18
 	 */
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return null;
 	}
 
@@ -178,7 +178,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @return bool
 	 * @since 1.18
 	 */
-	function usesTimestamps() {
+	public function usesTimestamps() {
 		return false;
 	}
 
@@ -198,7 +198,7 @@ abstract class QueryPage extends SpecialPage {
 	 *
 	 * @return bool
 	 */
-	function isExpensive() {
+	public function isExpensive() {
 		return $this->getConfig()->get( 'DisableQueryPages' );
 	}
 
@@ -219,7 +219,7 @@ abstract class QueryPage extends SpecialPage {
 	 *
 	 * @return bool
 	 */
-	function isCached() {
+	public function isCached() {
 		return $this->isExpensive() && $this->getConfig()->get( 'MiserMode' );
 	}
 
@@ -294,7 +294,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @throws DBError|Exception
 	 * @return bool|int
 	 */
-	function recache( $limit, $ignoreErrors = true ) {
+	public function recache( $limit, $ignoreErrors = true ) {
 		if ( !$this->isCacheable() ) {
 			return 0;
 		}
@@ -370,7 +370,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @return ResultWrapper
 	 * @since 1.18
 	 */
-	function reallyDoQuery( $limit, $offset = false ) {
+	public function reallyDoQuery( $limit, $offset = false ) {
 		$fname = get_class( $this ) . "::reallyDoQuery";
 		$dbr = $this->getRecacheDB();
 		$query = $this->getQueryInfo();
@@ -421,7 +421,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @param int|bool $limit
 	 * @return ResultWrapper
 	 */
-	function doQuery( $offset = false, $limit = false ) {
+	public function doQuery( $offset = false, $limit = false ) {
 		if ( $this->isCached() && $this->isCacheable() ) {
 			return $this->fetchFromCache( $limit, $offset );
 		} else {
@@ -436,7 +436,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @return ResultWrapper
 	 * @since 1.18
 	 */
-	function fetchFromCache( $limit, $offset = false ) {
+	public function fetchFromCache( $limit, $offset = false ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$options = array();
 		if ( $limit !== false ) {
@@ -487,7 +487,7 @@ abstract class QueryPage extends SpecialPage {
 	 * real, honest-to-gosh query page.
 	 * @param string $par
 	 */
-	function execute( $par ) {
+	public function execute( $par ) {
 		$user = $this->getUser();
 		if ( !$this->userCanExecute( $user ) ) {
 			$this->displayRestrictionError();

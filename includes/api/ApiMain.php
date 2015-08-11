@@ -1089,8 +1089,14 @@ class ApiMain extends ApiBase {
 
 		$this->checkAsserts( $params );
 
+		$stats = $this->getContext()->getStats();
+		$statsPath = 'api.modules.' . strtr( $module->getModulePath(), '+', '.' );
+		$metric = $stats->increment( $statsPath );
+		$metric->setSampleRate( 0.001 );
+
 		// Execute
 		$module->execute();
+
 		Hooks::run( 'APIAfterExecute', array( &$module ) );
 
 		$this->reportUnusedParams();

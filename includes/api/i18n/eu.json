@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Subi"
+			"Subi",
+			"Sator"
 		]
 	},
 	"apihelp-block-description": "Blokeatu erabiltzaile bat.",
+	"apihelp-block-param-reason": "Blokeatzeko arrazoia.",
 	"apihelp-createaccount-description": "Erabiltzaile kontu berria sortu.",
 	"apihelp-createaccount-param-email": "Erabiltzailearen helbide elektronikoa (aukerakoa).",
 	"apihelp-createaccount-param-realname": "Erabiltzailearen benetako izena (aukerakoa).",
@@ -29,12 +31,14 @@
 	"apihelp-login-param-domain": "Domeinua (hautazkoa).",
 	"apihelp-login-example-login": "Saioa hasi",
 	"apihelp-move-description": "Orrialde bat mugitu",
+	"apihelp-move-param-reason": "Berrizenpenaren arrazoia.",
 	"apihelp-options-example-reset": "Berrezarri hobespen guztiak.",
 	"apihelp-protect-example-protect": "Orrialde bat babestu",
 	"apihelp-query+allusers-param-witheditsonly": "Bakarrik zerrendatu aldaketak egin dituzten erabiltzaileak.",
 	"apihelp-query+allusers-param-activeusers": "Bakarrik zerrendatu azken {{PLURAL:$1|eguneko|$1 egunetako}} erabiltzaile aktiboak.",
 	"apihelp-query+imageinfo-param-urlheight": "$1urlwidth-en antzekoa.",
 	"apihelp-query+imageusage-example-simple": "Erakutsi [[:File:Albert Einstein Head.jpg]] darabilten orriak",
+	"apihelp-query+langlinks-param-inlanguagecode": "Hizkuntza izenak aurkitzeko hizkuntza kodea.",
 	"apihelp-query+prefixsearch-param-search": "Bilatu katea.",
 	"apihelp-query+protectedtitles-example-simple": "Zerrendatu babestutako izenburuak",
 	"apihelp-query+recentchanges-example-simple": "Zerrendatu aldaketa berriak.",

@@ -28,14 +28,7 @@
  * @ingroup Cache
  */
 class XCacheBagOStuff extends BagOStuff {
-	/**
-	 * Get a value from the XCache object cache
-	 *
-	 * @param string $key Cache key
-	 * @param mixed $casToken Cas token
-	 * @return mixed
-	 */
-	public function get( $key, &$casToken = null ) {
+	public function get( $key, &$casToken = null, $flags = 0 ) {
 		$val = xcache_get( $key );
 
 		if ( is_string( $val ) ) {
@@ -51,14 +44,6 @@ class XCacheBagOStuff extends BagOStuff {
 		return $val;
 	}
 
-	/**
-	 * Store a value in the XCache object cache
-	 *
-	 * @param string $key Cache key
-	 * @param mixed $value Object to store
-	 * @param int $expire Expiration time
-	 * @return bool
-	 */
 	public function set( $key, $value, $expire = 0 ) {
 		if ( !$this->isInteger( $value ) ) {
 			$value = serialize( $value );
@@ -68,12 +53,6 @@ class XCacheBagOStuff extends BagOStuff {
 		return true;
 	}
 
-	/**
-	 * Remove a value from the XCache object cache
-	 *
-	 * @param string $key Cache key
-	 * @return bool
-	 */
 	public function delete( $key ) {
 		xcache_unset( $key );
 		return true;

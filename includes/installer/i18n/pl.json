@@ -116,8 +116,6 @@
 	"config-db-install-account": "Konto użytkownika dla instalatora",
 	"config-db-username": "Nazwa użytkownika bazy danych:",
 	"config-db-password": "Hasło bazy danych:",
-	"config-db-password-empty": "Wprowadź hasło dla nowego użytkownika bazy danych: $1.\nChoć istnieje możliwość tworzenia użytkowników bez hasła, nie jest to bezpieczne.",
-	"config-db-username-empty": "Należy podać wartość parametru \"{{int:config-db-username}}\".",
 	"config-db-install-username": "Wprowadź nazwę użytkownika, który będzie używany do łączenia się z bazą danych podczas procesu instalacji.\nNie jest to nazwa konta MediaWiki, a użytkownika bazy danych.",
 	"config-db-install-password": "Wprowadź hasło, które będzie wykorzystywane do łączenia się z bazą danych w procesie instalacji.\nTo nie jest hasło konta MediaWiki, lecz hasło do bazy danych.",
 	"config-db-install-help": "Podaj nazwę użytkownika i jego hasło, które zostaną użyte do połączenia z bazą danych w czasie procesu instalacji.",

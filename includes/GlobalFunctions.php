@@ -24,7 +24,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( "This file is part of MediaWiki, it is not a valid entry point" );
 }
 
-use Liuggio\StatsdClient\StatsdClient;
 use Liuggio\StatsdClient\Sender\SocketSender;
 use MediaWiki\Logger\LoggerFactory;
 
@@ -1254,12 +1253,16 @@ function wfLogProfilingData() {
 
 	$config = $context->getConfig();
 	if ( $config->get( 'StatsdServer' ) ) {
-		$statsdServer = explode( ':', $config->get( 'StatsdServer' ) );
-		$statsdHost = $statsdServer[0];
-		$statsdPort = isset( $statsdServer[1] ) ? $statsdServer[1] : 8125;
-		$statsdSender = new SocketSender( $statsdHost, $statsdPort );
-		$statsdClient = new StatsdClient( $statsdSender );
-		$statsdClient->send( $context->getStats()->getBuffer() );
+		try {
+			$statsdServer = explode( ':', $config->get( 'StatsdServer' ) );
+			$statsdHost = $statsdServer[0];
+			$statsdPort = isset( $statsdServer[1] ) ? $statsdServer[1] : 8125;
+			$statsdSender = new SocketSender( $statsdHost, $statsdPort );
+			$statsdClient = new SamplingStatsdClient( $statsdSender, true, false );
+			$statsdClient->send( $context->getStats()->getBuffer() );
+		} catch ( Exception $ex ) {
+			MWExceptionHandler::logException( $ex );
+		}
 	}
 
 	# Profiling must actually be enabled...
@@ -1421,7 +1424,7 @@ function wfGetLangObj( $langcode = false ) {
  *
  * This function replaces all old wfMsg* functions.
  *
- * @param string|string[] $key Message key, or array of keys
+ * @param string|string[]|MessageSpecifier $key Message key, or array of keys, or a MessageSpecifier
  * @param mixed $params,... Normal message parameters
  * @return Message
  *
@@ -3458,8 +3461,9 @@ function wfResetSessionID() {
  * @param bool $sessionId
  */
 function wfSetupSession( $sessionId = false ) {
-	global $wgSessionsInMemcached, $wgSessionsInObjectCache, $wgCookiePath, $wgCookieDomain,
-			$wgCookieSecure, $wgCookieHttpOnly, $wgSessionHandler;
+	global $wgSessionsInMemcached, $wgSessionsInObjectCache, $wgSessionHandler;
+	global $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookieHttpOnly;
+
 	if ( $wgSessionsInObjectCache || $wgSessionsInMemcached ) {
 		ObjectCacheSessionHandler::install();
 	} elseif ( $wgSessionHandler && $wgSessionHandler != ini_get( 'session.save_handler' ) ) {
@@ -3467,6 +3471,7 @@ function wfSetupSession( $sessionId = false ) {
 		# hasn't already been set to the desired value (that causes errors)
 		ini_set( 'session.save_handler', $wgSessionHandler );
 	}
+
 	session_set_cookie_params(
 		0, $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookieHttpOnly );
 	session_cache_limiter( 'private, must-revalidate' );
@@ -3475,9 +3480,14 @@ function wfSetupSession( $sessionId = false ) {
 	} else {
 		wfFixSessionID();
 	}
+
 	MediaWiki\suppressWarnings();
 	session_start();
 	MediaWiki\restoreWarnings();
+
+	if ( $wgSessionsInObjectCache || $wgSessionsInMemcached ) {
+		ObjectCacheSessionHandler::renewCurrentSession();
+	}
 }
 
 /**

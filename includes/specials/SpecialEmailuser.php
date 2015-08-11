@@ -356,7 +356,9 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			$replyTo = null;
 		}
 
-		$status = UserMailer::send( $to, $mailFrom, $subject, $text, $replyTo );
+		$status = UserMailer::send( $to, $mailFrom, $subject, $text, array(
+			'replyTo' => $replyTo,
+		) );
 
 		if ( !$status->isGood() ) {
 			return $status;

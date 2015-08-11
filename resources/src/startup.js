@@ -6,6 +6,14 @@
 
 var mediaWikiLoadStart = ( new Date() ).getTime();
 
+if ( !window.performance ) {
+	window.performance = {};
+}
+if ( !performance.mark ) {
+	performance.mark = function () {};
+}
+performance.mark( 'mediaWikiStartUp' );
+
 /**
  * Returns false for Grade C supported browsers.
  *
@@ -17,7 +25,8 @@ var mediaWikiLoadStart = ( new Date() ).getTime();
  * - https://jquery.com/browser-support/
  */
 
-/*jshint unused: false */
+/*jshint unused: false, evil: true */
+/*globals mw, RLQ: true, $VARS, $CODE */
 function isCompatible( ua ) {
 	if ( ua === undefined ) {
 		ua = navigator.userAgent;
@@ -60,5 +69,38 @@ function isCompatible( ua ) {
 }
 
 /**
- * The startUp() function will be auto-generated and added below.
+ * The $CODE and $VARS placeholders are substituted in ResourceLoaderStartUpModule.php.
  */
+function startUp() {
+	mw.config = new mw.Map( $VARS.wgLegacyJavaScriptGlobals );
+
+	$CODE.registrations();
+
+	mw.config.set( $VARS.configuration );
+
+	// Must be after mw.config.set because these callbacks may use mw.loader which
+	// needs to have values 'skin', 'debug' etc. from mw.config.
+	window.RLQ = window.RLQ || [];
+	while ( RLQ.length ) {
+		RLQ.shift()();
+	}
+	window.RLQ = {
+		push: function ( fn ) {
+			fn();
+		}
+	};
+}
+
+// Conditional script injection
+if ( isCompatible() ) {
+	( function () {
+		var script = document.createElement( 'script' );
+		script.src = $VARS.baseModulesUri;
+		document.getElementsByTagName( 'head' )[0].appendChild( script );
+	}() );
+} else {
+	// Undo class swapping in case of an unsupported browser.
+	// See OutputPage::getHeadScripts().
+	document.documentElement.className = document.documentElement.className
+		.replace( /(^|\s)client-js(\s|$)/, '$1client-nojs$2' );
+}

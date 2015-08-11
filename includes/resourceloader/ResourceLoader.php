@@ -25,6 +25,7 @@
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use WrappedString\WrappedString;
 
 /**
  * Dynamic JavaScript and CSS resource loading system.
@@ -204,7 +205,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		}
 
 		if ( !$options['cache'] ) {
-			$result = $this->applyFilter( $filter, $data );
+			$result = self::applyFilter( $filter, $data, $this->config );
 		} else {
 			$key = wfGlobalCacheKey( 'resourceloader', 'filter', $filter, self::$filterCacheVersion, md5( $data ) );
 			$cache = wfGetCache( wfIsHHVM() ? CACHE_ACCEL : CACHE_ANYTHING );
@@ -218,7 +219,7 @@ class ResourceLoader implements LoggerAwareInterface {
 				$stats = RequestContext::getMain()->getStats();
 				$statStart = microtime( true );
 
-				$result = $this->applyFilter( $filter, $data );
+				$result = self::applyFilter( $filter, $data, $this->config );
 
 				$stats->timing( "resourceloader_cache.$filter.miss", microtime( true ) - $statStart );
 				if ( $options['cacheReport'] ) {
@@ -238,12 +239,12 @@ class ResourceLoader implements LoggerAwareInterface {
 		return $result;
 	}
 
-	private function applyFilter( $filter, $data ) {
+	private static function applyFilter( $filter, $data, Config $config ) {
 		switch ( $filter ) {
 			case 'minify-js':
 				return JavaScriptMinifier::minify( $data,
-					$this->config->get( 'ResourceLoaderMinifierStatementsOnOwnLine' ),
-					$this->config->get( 'ResourceLoaderMinifierMaxLineLength' )
+					$config->get( 'ResourceLoaderMinifierStatementsOnOwnLine' ),
+					$config->get( 'ResourceLoaderMinifierMaxLineLength' )
 				);
 			case 'minify-css':
 				return CSSMin::minify( $data );
@@ -810,7 +811,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			header( 'Cache-Control: private, no-cache, must-revalidate' );
 			header( 'Pragma: no-cache' );
 		} else {
-			header( "Cache-Control: public, max-age=$maxage, s-maxage=$smaxage" );
+			header( "Cache-Control: public, must-revalidate, max-age=$maxage, s-maxage=$smaxage" );
 			$exp = min( $maxage, $smaxage );
 			header( 'Expires: ' . wfTimestamp( TS_RFC2822, $exp + time() ) );
 		}
@@ -1105,7 +1106,18 @@ MESSAGE;
 		$name, $scripts, $styles, $messages, $templates
 	) {
 		if ( is_string( $scripts ) ) {
-			$scripts = new XmlJsCode( "function ( $, jQuery ) {\n{$scripts}\n}" );
+			// Site and user module are a legacy scripts that run in the global scope (no closure).
+			// Transportation as string instructs mw.loader.implement to use globalEval.
+			if ( $name === 'site' || $name === 'user' ) {
+				// Minify manually because the general makeModuleResponse() minification won't be
+				// effective here due to the script being a string instead of a function. (T107377)
+				if ( !ResourceLoader::inDebugMode() ) {
+					$scripts = self::applyFilter( 'minify-js', $scripts,
+						ConfigFactory::getDefaultInstance()->makeConfig( 'main' ) );
+				}
+			} else {
+				$scripts = new XmlJsCode( "function ( $, jQuery ) {\n{$scripts}\n}" );
+			}
 		} elseif ( !is_array( $scripts ) ) {
 			throw new MWException( 'Invalid scripts error. Array of URLs or string of code expected.' );
 		}
@@ -1368,7 +1380,7 @@ MESSAGE;
 	 * @return string
 	 */
 	public static function makeLoaderConditionalScript( $script ) {
-		return "if(window.mw){\n" . trim( $script ) . "\n}";
+		return "window.RLQ = window.RLQ || []; window.RLQ.push( function () {\n" . trim( $script ) . "\n} );";
 	}
 
 	/**
@@ -1378,11 +1390,15 @@ MESSAGE;
 	 * only if the client has adequate support for MediaWiki JavaScript code.
 	 *
 	 * @param string $script JavaScript code
-	 * @return string HTML
+	 * @return WrappedString HTML
 	 */
 	public static function makeInlineScript( $script ) {
 		$js = self::makeLoaderConditionalScript( $script );
-		return Html::inlineScript( $js );
+		return new WrappedString(
+			Html::inlineScript( $js ),
+			"<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {\n",
+			"\n} );</script>"
+		);
 	}
 
 	/**
@@ -1459,7 +1475,7 @@ MESSAGE;
 	 * @param string $source Name of the ResourceLoader source
 	 * @param ResourceLoaderContext $context
 	 * @param array $extraQuery
-	 * @return string URL to load.php. May be protocol-relative (if $wgLoadScript is procol-relative)
+	 * @return string URL to load.php. May be protocol-relative if $wgLoadScript is, too.
 	 */
 	public function createLoaderURL( $source, ResourceLoaderContext $context,
 		$extraQuery = array()
@@ -1485,7 +1501,7 @@ MESSAGE;
 	 * @param bool $printable Printable mode
 	 * @param bool $handheld Handheld mode
 	 * @param array $extraQuery Extra query parameters to add
-	 * @return string URL to load.php. May be protocol-relative (if $wgLoadScript is procol-relative)
+	 * @return string URL to load.php. May be protocol-relative if $wgLoadScript is, too.
 	 */
 	public static function makeLoaderURL( $modules, $lang, $skin, $user = null,
 		$version = null, $debug = false, $only = null, $printable = false,

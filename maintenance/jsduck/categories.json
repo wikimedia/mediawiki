@@ -22,7 +22,6 @@
 				"name": "General",
 				"classes": [
 					"mw.Title",
-					"mw.Upload*",
 					"mw.Uri",
 					"mw.RegExp",
 					"mw.messagePoster.*",
@@ -59,8 +58,8 @@
 			{
 				"name": "Interfaces",
 				"classes": [
-					"mw.Feedback",
-					"mw.Feedback.Dialog"
+					"mw.Feedback*",
+					"mw.Upload*"
 				]
 			},
 			{

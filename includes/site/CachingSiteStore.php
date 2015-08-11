@@ -168,8 +168,10 @@ class CachingSiteStore implements SiteStore {
 	}
 
 	/**
-	 * Purges the internal and external cache of the site list, forcing the list
+	 * Purges the internal and external cache of the site list, forcing the list.
 	 * of sites to be reloaded.
+	 *
+	 * Only use this for testing, as APC is typically used and is per-server
 	 *
 	 * @since 1.25
 	 */
@@ -181,6 +183,8 @@ class CachingSiteStore implements SiteStore {
 
 	/**
 	 * Clears the list of sites stored.
+	 *
+	 * Only use this for testing, as APC is typically used and is per-server.
 	 *
 	 * @see SiteStore::clear()
 	 *

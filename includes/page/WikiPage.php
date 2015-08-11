@@ -361,18 +361,18 @@ class WikiPage implements Page, IDBAccessObject {
 			return;
 		}
 
-		if ( $from === self::READ_LOCKING ) {
-			$data = $this->pageDataFromTitle( wfGetDB( DB_MASTER ), $this->mTitle, array( 'FOR UPDATE' ) );
-		} elseif ( $from === self::READ_LATEST ) {
-			$data = $this->pageDataFromTitle( wfGetDB( DB_MASTER ), $this->mTitle );
-		} elseif ( $from === self::READ_NORMAL ) {
-			$data = $this->pageDataFromTitle( wfGetDB( DB_SLAVE ), $this->mTitle );
+		if ( is_int( $from ) ) {
+			list( $index, $opts ) = DBAccessObjectUtils::getDBOptions( $from );
+			$data = $this->pageDataFromTitle( wfGetDB( $index ), $this->mTitle, $opts );
+
 			if ( !$data
+				&& $index == DB_SLAVE
 				&& wfGetLB()->getServerCount() > 1
 				&& wfGetLB()->hasOrMadeRecentMasterChanges()
 			) {
 				$from = self::READ_LATEST;
-				$data = $this->pageDataFromTitle( wfGetDB( DB_MASTER ), $this->mTitle );
+				list( $index, $opts ) = DBAccessObjectUtils::getDBOptions( $from );
+				$data = $this->pageDataFromTitle( wfGetDB( $index ), $this->mTitle, $opts );
 			}
 		} else {
 			// No idea from where the caller got this data, assume slave database.
@@ -2257,7 +2257,7 @@ class WikiPage implements Page, IDBAccessObject {
 		if ( $options['created'] ) {
 			self::onArticleCreate( $this->mTitle );
 		} elseif ( $options['changed'] ) { // bug 50785
-			self::onArticleEdit( $this->mTitle );
+			self::onArticleEdit( $this->mTitle, $revision );
 		}
 	}
 
@@ -3213,8 +3213,9 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Purge caches on page update etc
 	 *
 	 * @param Title $title
+	 * @param Revision|null $revision Revision that was just saved, may be null
 	 */
-	public static function onArticleEdit( Title $title ) {
+	public static function onArticleEdit( Title $title, Revision $revision = null ) {
 		// Invalidate caches of articles which include this page
 		DeferredUpdates::addHTMLCacheUpdate( $title, 'templatelinks' );
 
@@ -3224,9 +3225,12 @@ class WikiPage implements Page, IDBAccessObject {
 		// Purge squid for this page only
 		$title->purgeSquid();
 
+		$revid = $revision ? $revision->getId() : null;
 		// Clear file cache for this page only
 		HTMLFileCache::clearFileCache( $title );
-		InfoAction::invalidateCache( $title );
+		DeferredUpdates::addCallableUpdate( function() use ( $title, $revid ) {
+			InfoAction::invalidateCache( $title, $revid );
+		} );
 	}
 
 	/**#@-*/

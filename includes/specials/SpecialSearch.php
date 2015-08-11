@@ -68,6 +68,11 @@ class SpecialSearch extends SpecialPage {
 	 */
 	protected $fulltext;
 
+	/**
+	 * @var bool
+	 */
+	protected $runSuggestion = true;
+
 	const NAMESPACES_CURRENT = 'sense';
 
 	public function __construct() {
@@ -169,6 +174,7 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		$this->fulltext = $request->getVal( 'fulltext' );
+		$this->runSuggestion = (bool)$request->getVal( 'runsuggestion', true );
 		$this->profile = $profile;
 	}
 
@@ -214,7 +220,6 @@ class SpecialSearch extends SpecialPage {
 		$search->setNamespaces( $this->namespaces );
 		$search->prefix = $this->mPrefix;
 		$term = $search->transformSearchTerm( $term );
-		$didYouMeanHtml = '';
 
 		Hooks::run( 'SpecialSearchSetupEngine', array( $this, $this->profile, $search ) );
 
@@ -265,37 +270,17 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		// did you mean... suggestions
-		if ( $showSuggestion && $textMatches && !$textStatus && $textMatches->hasSuggestion() ) {
-			# mirror Go/Search behavior of original request ..
-			$didYouMeanParams = array( 'search' => $textMatches->getSuggestionQuery() );
-
-			if ( $this->fulltext != null ) {
-				$didYouMeanParams['fulltext'] = $this->fulltext;
+		$didYouMeanHtml = '';
+		if ( $showSuggestion && $textMatches && !$textStatus ) {
+			if ( $this->shouldRunSuggestedQuery( $textMatches ) ) {
+				$newMatches = $search->searchText( $textMatches->getSuggestionQuery() );
+				if ( $newMatches instanceof SearchResultSet && $newMatches->numRows() > 0 ) {
+					$didYouMeanHtml = $this->getDidYouMeanRewrittenHtml( $term, $textMatches );
+					$textMatches = $newMatches;
+				}
+			} elseif ( $textMatches->hasSuggestion() ) {
+				$didYouMeanHtml = $this->getDidYouMeanHtml( $textMatches );
 			}
-
-			$stParams = array_merge(
-				$didYouMeanParams,
-				$this->powerSearchOptions()
-			);
-
-			$suggestionSnippet = $textMatches->getSuggestionSnippet();
-
-			if ( $suggestionSnippet == '' ) {
-				$suggestionSnippet = null;
-			}
-
-			$suggestLink = Linker::linkKnown(
-				$this->getPageTitle(),
-				$suggestionSnippet,
-				array(),
-				$stParams
-			);
-
-			# html of did you mean... search suggestion link
-			$didYouMeanHtml =
-				Xml::openElement( 'div', array( 'class' => 'searchdidyoumean' ) ) .
-				$this->msg( 'search-suggest' )->rawParams( $suggestLink )->text() .
-				Xml::closeElement( 'div' );
 		}
 
 		if ( !Hooks::run( 'SpecialSearchResultsPrepend', array( $this, $out, $term ) ) ) {
@@ -328,7 +313,6 @@ class SpecialSearch extends SpecialPage {
 		$num = $titleMatchesNum + $textMatchesNum;
 		$totalRes = $numTitleMatches + $numTextMatches;
 
-		$out->enableOOUI();
 		$out->addHtml(
 			# This is an awful awful ID name. It's not a table, but we
 			# named it poorly from when this was a table so now we're
@@ -406,14 +390,106 @@ class SpecialSearch extends SpecialPage {
 				$this->showCreateLink( $title, $num, $titleMatches, $textMatches );
 			}
 		}
-		$out->addHtml( "</div>" );
 
 		if ( $prevnext ) {
 			$out->addHTML( "<p class='mw-search-pager-bottom'>{$prevnext}</p>\n" );
 		}
 
+		$out->addHtml( "</div>" );
+
 		Hooks::run( 'SpecialSearchResultsAppend', array( $this, $out ) );
 
+	}
+
+	/**
+	 * Decide if the suggested query should be run, and it's results returned
+	 * instead of the provided $textMatches
+	 *
+	 * @param SearchResultSet $textMatches The results of a users query
+	 * @return bool
+	 */
+	protected function shouldRunSuggestedQuery( SearchResultSet $textMatches ) {
+		if ( !$this->runSuggestion ||
+			!$textMatches->hasSuggestion() ||
+			$textMatches->numRows() > 0 ||
+			$textMatches->searchContainedSyntax()
+		) {
+			return false;
+		}
+
+		// Generate a random number between 0 and 1. If the
+		// number is less than the desired percentages run it.
+		$rand = rand( 0, getrandmax() ) / getrandmax();
+		return $this->getConfig()->get( 'SearchRunSuggestedQueryPercent' ) > $rand;
+	}
+
+	/**
+	 * Generates HTML shown to the user when we have a suggestion about a query
+	 * that might give more results than their current query.
+	 */
+	protected function getDidYouMeanHtml( SearchResultSet $textMatches ) {
+		# mirror Go/Search behavior of original request ..
+		$params = array( 'search' => $textMatches->getSuggestionQuery() );
+		if ( $this->fulltext != null ) {
+			$params['fulltext'] = $this->fulltext;
+		}
+		$stParams = array_merge( $params, $this->powerSearchOptions() );
+
+		$suggest = Linker::linkKnown(
+			$this->getPageTitle(),
+			$textMatches->getSuggestionSnippet() ?: null,
+			array(),
+			$stParams
+		);
+
+		# html of did you mean... search suggestion link
+		return Html::rawElement(
+			'div',
+			array( 'class' => 'searchdidyoumean' ),
+			$this->msg( 'search-suggest' )->rawParams( $suggest )->parse()
+		);
+	}
+
+	/**
+	 * Generates HTML shown to user when their query has been internally rewritten,
+	 * and the results of the rewritten query are being returned.
+	 *
+	 * @param string $term The users search input
+	 * @param SearchResultSet $textMatches The response to the users initial search request
+	 * @return string HTML linking the user to their original $term query, and the one
+	 *  suggested by $textMatches.
+	 */
+	protected function getDidYouMeanRewrittenHtml( $term, SearchResultSet $textMatches ) {
+		// Showing results for '$rewritten'
+		// Search instead for '$orig'
+
+		$params = array( 'search' => $textMatches->getSuggestionQuery() );
+		if ( $this->fulltext != null ) {
+			$params['fulltext'] = $this->fulltext;
+		}
+		$stParams = array_merge( $params, $this->powerSearchOptions() );
+
+		$rewritten = Linker::linkKnown(
+			$this->getPageTitle(),
+			$textMatches->getSuggestionSnippet() ?: null,
+			array(),
+			$stParams
+		);
+
+		$stParams['search'] = $term;
+		$stParams['runsuggestion'] = 0;
+		$original = Linker::linkKnown(
+			$this->getPageTitle(),
+			htmlspecialchars( $term ),
+			array(),
+			$stParams
+		);
+
+		return Html::rawElement(
+			'div',
+			array( 'class' => 'searchdidyoumean' ),
+			$this->msg( 'search-rewritten')->rawParams( $rewritten, $original )->escaped()
+		);
 	}
 
 	/**
@@ -1079,23 +1155,21 @@ class SpecialSearch extends SpecialPage {
 	 * @return string
 	 */
 	protected function shortDialog( $term, $resultsShown, $totalNum ) {
-		$out =
-			Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) .
-			Html::hidden( 'profile', $this->profile ) .
-			Html::hidden( 'fulltext', 'Search' ) .
-			new MediaWiki\Widget\TitleInputWidget( array(
-				'type' => 'search',
-				'icon' => 'search',
-				'id' => 'searchText',
-				'name' => 'search',
-				'autofocus' => trim( $term ) === '',
-				'value' => $term,
-			) ) .
-			new OOUI\ButtonInputWidget( array(
-				'type' => 'submit',
-				'label' => $this->msg( 'searchbutton' )->text(),
-				'flags' => array( 'progressive', 'primary' ),
-			) );
+		$out = Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
+		$out .= Html::hidden( 'profile', $this->profile ) . "\n";
+		// Term box
+		$out .= Html::input( 'search', $term, 'search', array(
+			'id' => $this->isPowerSearch() ? 'powerSearchText' : 'searchText',
+			'size' => '50',
+			'autofocus' => trim( $term ) === '',
+			'class' => 'mw-ui-input mw-ui-input-inline',
+		) ) . "\n";
+		$out .= Html::hidden( 'fulltext', 'Search' ) . "\n";
+		$out .= Html::submitButton(
+			$this->msg( 'searchbutton' )->text(),
+			array( 'class' => 'mw-ui-button mw-ui-progressive' ),
+			array( 'mw-ui-progressive' )
+		) . "\n";
 
 		// Results-info
 		if ( $totalNum > 0 && $this->offset < $totalNum ) {
