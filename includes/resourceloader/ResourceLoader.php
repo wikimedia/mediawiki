@@ -181,7 +181,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @param string $data Text to filter, such as JavaScript or CSS text
 	 * @param array $options For back-compat, can also be the boolean value for "cacheReport". Keys:
 	 *  - (bool) cache: Whether to allow caching this data. Default: true.
-	 *  - (bool) cacheReport: Whether to include the "cache key" report comment. Default: true.
+	 *  - (bool) cacheReport: Whether to include the "cache key" report comment. Default: false.
 	 * @return string Filtered data, or a comment containing an error message
 	 */
 	public function filter( $filter, $data, $options = array() ) {
@@ -190,7 +190,7 @@ class ResourceLoader implements LoggerAwareInterface {
 			$options = array( 'cacheReport' => $options );
 		}
 		// Defaults
-		$options += array( 'cache' => true, 'cacheReport' => true );
+		$options += array( 'cache' => true, 'cacheReport' => false );
 
 		// Don't filter empty content
 		if ( trim( $data ) === '' ) {
