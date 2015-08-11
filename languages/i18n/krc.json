@@ -2073,7 +2073,7 @@
 	"spambot_username": "Спамны ариулау",
 	"spam_reverting": "$1 бла джибериую болмагъан ахыр версиягъа къайтылады",
 	"spam_blanking": "Бютеу версияла $1 бетге джибериу тутадыла, ариуланадыла",
-	"simpleantispam-label": "Анти-спам сынау.\nМуну '''толтурМА'''!",
+	"simpleantispam-label": "Спамгъа къаршчы сынау.\nМуну толтур<strong>МА</strong>!",
 	"pageinfo-title": "«$1» бетни юсюнден информация",
 	"pageinfo-header-basic": "Баш билгиле",
 	"pageinfo-header-edits": "Тюрлениу тарих",

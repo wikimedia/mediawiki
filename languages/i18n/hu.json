@@ -2141,7 +2141,7 @@
 	"newtitle": "Az új cím:",
 	"move-watch": "Figyeld a lapot",
 	"movepagebtn": "Lap átnevezése",
-	"pagemovedsub": "Átnevezés sikeres",
+	"pagemovedsub": "Az átnevezés sikerült",
 	"movepage-moved": "'''„$1” átnevezve „$2” névre'''",
 	"movepage-moved-redirect": "Átirányítás létrehozva.",
 	"movepage-moved-noredirect": "A régi címről nem készült átirányítás.",

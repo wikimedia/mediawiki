@@ -7,7 +7,8 @@
 			"Malekbr",
 			"아라",
 			"Aħmedbaɛl",
-			"GeekEmad"
+			"GeekEmad",
+			"Nemo bis"
 		]
 	},
 	"tog-usenewrc": ")جمّع التعديلات حسب الصفحة في أحدث التغييرات وقائمة المراقبة (يتطلب جافاسكربت",
@@ -61,6 +62,7 @@
 	"versionrequiredtext": "تلزم النسخة $1 من ميدياويكي لاستعمال هذه الصفحة. انظر [[Special:Version|صفحة النسخة]]",
 	"youhavenewmessages": "توجد لديك $1 ($2).",
 	"youhavenewmessagesmulti": "لديك رسائل جديدة على $1",
+	"viewdeleted": "أأعرض $1؟",
 	"restorelink": "{{PLURAL:$1|$1 تعديل محذوف|تعديلا واحدا محذوفا|تعديلين محذوفين|$1 تعديلات محذوفة|$1 تعديلا محذوفا|$1 تعديلا محذوفا}}",
 	"feedlinks": "التغذية:",
 	"feed-invalid": "نوع اشتراك التلقيم غير صحيح.",
@@ -209,7 +211,6 @@
 	"resetpass-wrong-oldpass": "كلمة سر حالية أو مؤقتة غير صحيحة.\nربما تكون غيرت كلمة السر الخاصة بك بنجاح أو طلبت كلمة سر مؤقتة جديدة.",
 	"resetpass-temp-password": "كلمة سر مؤقتة:",
 	"passwordreset": "إعادة ضبط كلمة السر",
-	"passwordreset-legend": "إعادة تعيين كلمة السر",
 	"passwordreset-disabled": "عُطّلت إعادة تعيين كلمة السر على هذه الويكي.",
 	"passwordreset-username": "اسم المستخدم:",
 	"passwordreset-domain": "النطاق:",

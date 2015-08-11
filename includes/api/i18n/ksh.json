@@ -547,6 +547,7 @@
 	"apihelp-query+info-paramvalue-prop-subjectid": "De Kännong för de övverje'odente Sigg för jehde Klaafsigg.",
 	"apihelp-query+info-paramvalue-prop-url": "Jidd en kumplätte <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Uniform Ressource Locator\">URL</i>, en <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Uniform Ressource Locator\">URL</i> för et Beärbeide, un en kannohnesche <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Uniform Ressource Locator\">URL</i> för jehde Sigg uß.",
 	"apihelp-query+info-paramvalue-prop-readable": "Ov dä Metmaacher heh di Sigg lässe kann.",
+	"apihelp-query+info-paramvalue-prop-displaytitle": "Zeijsch de Maier, wi en Övverschreff vun en Sigg verhaftesch aanjezeijsch weed.",
 	"apihelp-query+iwbacklinks-param-prefix": "De Engerwikki_Vörsaz.",
 	"apihelp-query+iwbacklinks-param-title": "Der Engerwikki_Lengk för noh ze söhke. Moß met „<var lang=\"en\" xml:lang=\"en\" dir=\"ltr\">$1blprefix</var>“ zersamme jebruch wähde.",
 	"apihelp-query+iwbacklinks-param-limit": "Wi vill Sigge ensjesammp zem ußjävve?",

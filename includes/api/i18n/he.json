@@ -674,7 +674,7 @@
 	"apihelp-query+info-paramvalue-prop-url": "נותן URL מלא, URL לעריכה ו־URL קנוני לכל דף.",
 	"apihelp-query+info-paramvalue-prop-readable": "האם המשתמש יכול להציג דף זה.",
 	"apihelp-query+info-paramvalue-prop-preload": "נותן את הטקסט שמוחזר על־ידי EditFormPreloadText.",
-	"apihelp-query+info-paramvalue-prop-displaytitle": "נותן את הדרך שבה שם הדף באמת מוצג.",
+	"apihelp-query+info-paramvalue-prop-displaytitle": "נותן את האופן שבה שם הדף באמת מוצג.",
 	"apihelp-query+info-param-testactions": "בדיקה האם המשתמש הנוכחי יכול לבצע פעולות מסוימות על הדף.",
 	"apihelp-query+info-param-token": "להשתמש ב־[[Special:ApiHelp/query+tokens|action=query&meta=tokens]] במקום.",
 	"apihelp-query+info-example-simple": "קבלת מידע על הדף <kbd>Main Page</kbd>",

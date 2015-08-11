@@ -1140,7 +1140,7 @@
 	"newpageletter": "B",
 	"boteditletter": "b",
 	"number_of_watching_users_pageview": "[$1 {{PLURAL:$1|lankide|lankide}} jarraitzen]",
-	"rc_categories": "Kategorietara mugatu (\"|\" karaktereaz banandu)",
+	"rc_categories": "Kategorietara mugatu (\"|\" karaktereaz banandu):",
 	"rc_categories_any": "Aukeratutako edozein",
 	"rc-change-size-new": "{{PLURAL:$1|Byte 1|$1 byte}} aldaketaren ostean",
 	"newsectionsummary": "/* $1 */ atal berria",
@@ -3019,5 +3019,6 @@
 	"special-characters-group-thai": "Thaiera",
 	"special-characters-group-lao": "Laosera",
 	"special-characters-group-khmer": "Khmerrera",
-	"special-characters-title-minus": "minus zeinua"
+	"special-characters-title-minus": "minus zeinua",
+	"mw-widgets-dateinput-no-date": "Ez duzu datarik aukeratu"
 }
