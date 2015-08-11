@@ -390,11 +390,12 @@ class SpecialSearch extends SpecialPage {
 				$this->showCreateLink( $title, $num, $titleMatches, $textMatches );
 			}
 		}
-		$out->addHtml( "</div>" );
 
 		if ( $prevnext ) {
 			$out->addHTML( "<p class='mw-search-pager-bottom'>{$prevnext}</p>\n" );
 		}
+
+		$out->addHtml( "</div>" );
 
 		Hooks::run( 'SpecialSearchResultsAppend', array( $this, $out ) );
 
