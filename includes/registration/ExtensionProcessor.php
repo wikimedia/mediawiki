@@ -47,6 +47,27 @@ class ExtensionProcessor implements Processor {
 	);
 
 	/**
+	 * Mapping of global settings to their specific merge strategies.
+	 *
+	 * @see ExtensionRegistry::exportExtractedData
+	 * @see getExtractedInfo
+	 * @var array
+	 */
+	protected static $mergeStrategies = array(
+		'wgGroupPermissions' => 'array_plus_2d',
+		'wgRevokePermissions' => 'array_plus_2d',
+		'wgHooks' => 'array_merge_recursive',
+		// credits are handled in the ExtensionRegistry
+		//'wgExtensionCredits' => 'array_merge_recursive',
+		'wgExtraNamespaces' => 'array_plus',
+		'wgExtraGenderNamespaces' => 'array_plus',
+		'wgNamespacesWithSubpages' => 'array_plus',
+		'wgNamespaceContentModels' => 'array_plus',
+		'wgNamespaceProtection' => 'array_plus',
+		'wgCapitalLinkOverrides' => 'array_plus',
+	);
+
+	/**
 	 * Keys that are part of the extension credits
 	 *
 	 * @var array
@@ -156,6 +177,13 @@ class ExtensionProcessor implements Processor {
 	}
 
 	public function getExtractedInfo() {
+		// Make sure the merge strategies are set
+		foreach ( $this->globals as $key => $val ) {
+			if ( isset( self::$mergeStrategies[$key] ) ) {
+				$this->globals[$key][ExtensionRegistry::MERGE_STRATEGY] = self::$mergeStrategies[$key];
+			}
+		}
+
 		return array(
 			'globals' => $this->globals,
 			'defines' => $this->defines,
@@ -197,6 +225,12 @@ class ExtensionProcessor implements Processor {
 				}
 				if ( isset( $ns['defaultcontentmodel'] ) ) {
 					$this->globals['wgNamespaceContentModels'][$id] = $ns['defaultcontentmodel'];
+				}
+				if ( isset( $ns['protection'] ) ) {
+					$this->globals['wgNamespaceProtection'][$id] = $ns['protection'];
+				}
+				if ( isset( $ns['capitallinkoverride'] ) ) {
+					$this->globals['wgCapitalLinkOverrides'][$id] = $ns['capitallinkoverride'];
 				}
 			}
 		}

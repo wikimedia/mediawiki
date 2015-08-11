@@ -20,6 +20,7 @@
  * @file
  * @ingroup SpecialPage
  */
+use MediaWiki\Logger\LoggerFactory;
 
 /**
  * Implements Special:UserLogin
@@ -42,6 +43,24 @@ class LoginForm extends SpecialPage {
 	const NEED_TOKEN = 12;
 	const WRONG_TOKEN = 13;
 	const USER_MIGRATED = 14;
+
+	public static $statusCodes = array(
+		self::SUCCESS => 'success',
+		self::NO_NAME => 'no_name',
+		self::ILLEGAL => 'illegal',
+		self::WRONG_PLUGIN_PASS => 'wrong_plugin_pass',
+		self::NOT_EXISTS => 'not_exists',
+		self::WRONG_PASS => 'wrong_pass',
+		self::EMPTY_PASS => 'empty_pass',
+		self::RESET_PASS => 'reset_pass',
+		self::ABORTED => 'aborted',
+		self::CREATE_BLOCKED => 'create_blocked',
+		self::THROTTLED => 'throttled',
+		self::USER_BLOCKED => 'user_blocked',
+		self::NEED_TOKEN => 'need_token',
+		self::WRONG_TOKEN => 'wrong_token',
+		self::USER_MIGRATED => 'user_migrated',
+	);
 
 	/**
 	 * Valid error and warning messages
@@ -338,6 +357,10 @@ class LoginForm extends SpecialPage {
 		}
 
 		$status = $this->addNewAccountInternal();
+		LoggerFactory::getInstance( 'authmanager' )->info( 'Account creation attempt with mailed password', array(
+			'event' => 'accountcreation',
+			'status' => $status,
+		) );
 		if ( !$status->isGood() ) {
 			$error = $status->getMessage();
 			$this->mainLoginForm( $error->toString() );
@@ -375,6 +398,11 @@ class LoginForm extends SpecialPage {
 
 		# Create the account and abort if there's a problem doing so
 		$status = $this->addNewAccountInternal();
+		LoggerFactory::getInstance( 'authmanager' )->info( 'Account creation attempt', array(
+			'event' => 'accountcreation',
+			'status' => $status,
+		) );
+
 		if ( !$status->isGood() ) {
 			$error = $status->getMessage();
 			$this->mainLoginForm( $error->toString() );
@@ -911,7 +939,8 @@ class LoginForm extends SpecialPage {
 		global $wgMemc, $wgLang, $wgSecureLogin, $wgPasswordAttemptThrottle,
 			$wgInvalidPasswordReset;
 
-		switch ( $this->authenticateUserData() ) {
+		$status = $this->authenticateUserData();
+		switch ( $status ) {
 			case self::SUCCESS:
 				# We've verified now, update the real record
 				$user = $this->getUser();
@@ -1034,6 +1063,12 @@ class LoginForm extends SpecialPage {
 			default:
 				throw new MWException( 'Unhandled case value' );
 		}
+
+		LoggerFactory::getInstance( 'authmanager' )->info( 'Login attempt', array(
+			'event' => 'login',
+			'successful' => $status === self::SUCCESS,
+			'status' => LoginForm::$statusCodes[$status],
+		) );
 	}
 
 	/**
@@ -1390,6 +1425,7 @@ class LoginForm extends SpecialPage {
 			: is_array( $wgPasswordResetRoutes ) && in_array( true, array_values( $wgPasswordResetRoutes ) );
 
 		$template->set( 'header', '' );
+		$template->set( 'formheader', '' );
 		$template->set( 'skin', $this->getSkin() );
 		$template->set( 'name', $this->mUsername );
 		$template->set( 'password', $this->mPassword );

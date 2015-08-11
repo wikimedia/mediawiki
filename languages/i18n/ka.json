@@ -3415,6 +3415,8 @@
 	"special-characters-title-endash": "ტირე",
 	"special-characters-title-emdash": "გრძელი ტირე",
 	"special-characters-title-minus": "მინუსის ნიშანი",
+	"mw-widgets-dateinput-placeholder-day": "წწწწ-თთ-დდ",
+	"mw-widgets-dateinput-placeholder-month": "წწწწ-თთ",
 	"mw-widgets-titleinput-description-new-page": "გვერდი ჯერ არ არსებობს",
 	"mw-widgets-titleinput-description-redirect": "გადამისამართება $1-ზე"
 }

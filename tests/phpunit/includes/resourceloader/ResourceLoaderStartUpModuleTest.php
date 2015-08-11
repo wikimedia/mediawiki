@@ -10,7 +10,8 @@ class ResourceLoaderStartUpModuleTest extends ResourceLoaderTestCase {
 				'out' => '
 mw.loader.addSource( {
     "local": "/w/load.php"
-} );mw.loader.register( [] );'
+} );
+mw.loader.register( [] );'
 			) ),
 			array( array(
 				'msg' => 'Basic registry',
@@ -20,7 +21,8 @@ mw.loader.addSource( {
 				'out' => '
 mw.loader.addSource( {
     "local": "/w/load.php"
-} );mw.loader.register( [
+} );
+mw.loader.register( [
     [
         "test.blank",
         "wvTifjse"
@@ -37,7 +39,8 @@ mw.loader.addSource( {
 				'out' => '
 mw.loader.addSource( {
     "local": "/w/load.php"
-} );mw.loader.register( [
+} );
+mw.loader.register( [
     [
         "test.blank",
         "wvTifjse"
@@ -65,7 +68,8 @@ mw.loader.addSource( {
 				'out' => '
 mw.loader.addSource( {
     "local": "/w/load.php"
-} );mw.loader.register( [
+} );
+mw.loader.register( [
     [
         "test.blank",
         "wvTifjse"
@@ -87,7 +91,8 @@ mw.loader.addSource( {
 mw.loader.addSource( {
     "local": "/w/load.php",
     "example": "http://example.org/w/load.php"
-} );mw.loader.register( [
+} );
+mw.loader.register( [
     [
         "test.blank",
         "wvTifjse",
@@ -123,7 +128,8 @@ mw.loader.addSource( {
 				'out' => '
 mw.loader.addSource( {
     "local": "/w/load.php"
-} );mw.loader.register( [
+} );
+mw.loader.register( [
     [
         "test.x.core",
         "wvTifjse"
@@ -219,7 +225,8 @@ mw.loader.addSource( {
 mw.loader.addSource( {
     "local": "/w/load.php",
     "example": "http://example.org/w/load.php"
-} );mw.loader.register( [
+} );
+mw.loader.register( [
     [
         "test.blank",
         "wvTifjse"
@@ -342,7 +349,7 @@ mw.loader.addSource( {
 		$rl->register( $modules );
 		$module = new ResourceLoaderStartUpModule();
 		$this->assertEquals(
-'mw.loader.addSource({"local":"/w/load.php"});'
+'mw.loader.addSource({"local":"/w/load.php"});' . "\n"
 . 'mw.loader.register(['
 . '["test.blank","wvTifjse"],'
 . '["test.min","wvTifjse",[0],null,null,'
@@ -364,7 +371,8 @@ mw.loader.addSource( {
 		$this->assertEquals(
 'mw.loader.addSource( {
     "local": "/w/load.php"
-} );mw.loader.register( [
+} );
+mw.loader.register( [
     [
         "test.blank",
         "wvTifjse"

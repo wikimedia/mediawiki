@@ -76,10 +76,10 @@
  *    'size'                -- the length of text fields
  *    'filter-callback      -- a function name to give you the chance to
  *                             massage the inputted value before it's processed.
- *                             @see HTMLForm::filter()
+ *                             @see HTMLFormField::filter()
  *    'validation-callback' -- a function name to give you the chance
  *                             to impose extra validation on the field input.
- *                             @see HTMLForm::validate()
+ *                             @see HTMLFormField::validate()
  *    'name'                -- By default, the 'name' attribute of the input field
  *                             is "wp{$fieldname}".  If you want a different name
  *                             (eg one without the "wp" prefix), specify it here and
@@ -153,6 +153,8 @@ class HTMLForm extends ContextSource {
 		'email' => 'HTMLTextField',
 		'password' => 'HTMLTextField',
 		'url' => 'HTMLTextField',
+		'title' => 'HTMLTitleTextField',
+		'user' => 'HTMLUserTextField',
 	);
 
 	public $mFieldData;
@@ -165,7 +167,7 @@ class HTMLForm extends ContextSource {
 	protected $mFieldTree;
 	protected $mShowReset = false;
 	protected $mShowSubmit = true;
-	protected $mSubmitFlag = 'constructive';
+	protected $mSubmitFlags = array( 'constructive', 'primary' );
 
 	protected $mSubmitCallback;
 	protected $mValidationErrorMessage;
@@ -973,7 +975,10 @@ class HTMLForm extends ContextSource {
 			$attribs['class'] = array( 'mw-htmlform-submit' );
 
 			if ( $useMediaWikiUIEverywhere ) {
-				array_push( $attribs['class'], 'mw-ui-button', 'mw-ui-' . $this->mSubmitFlag );
+				foreach ( $this->mSubmitFlags as $flag ) {
+					array_push( $attribs['class'], 'mw-ui-' . $flag );
+				}
+				array_push( $attribs['class'], 'mw-ui-button' );
 			}
 
 			$buttons .= Xml::submitButton( $this->getSubmitText(), $attribs ) . "\n";
@@ -1100,7 +1105,7 @@ class HTMLForm extends ContextSource {
 	 * @since 1.24
 	 */
 	public function setSubmitDestructive() {
-		$this->mSubmitFlag = 'destructive';
+		$this->mSubmitFlags = array( 'destructive', 'primary' );
 	}
 
 	/**
@@ -1108,7 +1113,7 @@ class HTMLForm extends ContextSource {
 	 * @since 1.25
 	 */
 	public function setSubmitProgressive() {
-		$this->mSubmitFlag = 'progressive';
+		$this->mSubmitFlags = array( 'progressive', 'primary' );
 	}
 
 	/**
@@ -1297,11 +1302,14 @@ class HTMLForm extends ContextSource {
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	public function setMethod( $method = 'post' ) {
-		$this->mMethod = $method;
+		$this->mMethod = strtolower( $method );
 
 		return $this;
 	}
 
+	/**
+	 * @return string Always lowercase
+	 */
 	public function getMethod() {
 		return $this->mMethod;
 	}

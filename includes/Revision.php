@@ -1641,8 +1641,9 @@ class Revision implements IDBAccessObject {
 				$row['content_format'] = $current->rev_content_format;
 			}
 
+			$row['title'] = Title::makeTitle( $current->page_namespace, $current->page_title );
+
 			$revision = new Revision( $row );
-			$revision->setTitle( Title::makeTitle( $current->page_namespace, $current->page_title ) );
 		} else {
 			$revision = null;
 		}

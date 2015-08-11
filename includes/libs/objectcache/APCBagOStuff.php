@@ -27,43 +27,38 @@
  * @ingroup Cache
  */
 class APCBagOStuff extends BagOStuff {
-	public function get( $key, &$casToken = null ) {
-		$val = apc_fetch( $key );
+	/**
+	 * @var string String to append to each APC key. This may be changed
+	 *  whenever the handling of values is changed, to prevent existing code
+	 *  from encountering older values which it cannot handle.
+	 **/
+	const KEY_SUFFIX = ':1';
+
+	public function get( $key, &$casToken = null, $flags = 0 ) {
+		$val = apc_fetch( $key . self::KEY_SUFFIX );
 
 		$casToken = $val;
-
-		if ( is_string( $val ) ) {
-			if ( $this->isInteger( $val ) ) {
-				$val = intval( $val );
-			} else {
-				$val = unserialize( $val );
-			}
-		}
 
 		return $val;
 	}
 
 	public function set( $key, $value, $exptime = 0 ) {
-		if ( !$this->isInteger( $value ) ) {
-			$value = serialize( $value );
-		}
-
-		apc_store( $key, $value, $exptime );
+		apc_store( $key . self::KEY_SUFFIX, $value, $exptime );
 
 		return true;
 	}
 
 	public function delete( $key ) {
-		apc_delete( $key );
+		apc_delete( $key . self::KEY_SUFFIX );
 
 		return true;
 	}
 
 	public function incr( $key, $value = 1 ) {
-		return apc_inc( $key, $value );
+		return apc_inc( $key . self::KEY_SUFFIX, $value );
 	}
 
 	public function decr( $key, $value = 1 ) {
-		return apc_dec( $key, $value );
+		return apc_dec( $key . self::KEY_SUFFIX, $value );
 	}
 }

@@ -107,11 +107,11 @@ class SpecialStatistics extends SpecialPage {
 	) {
 		if ( $descMsg ) {
 			$msg = $this->msg( $descMsg, $descMsgParam );
-			if ( $msg->exists() ) {
-				$descriptionText = $this->msg( 'parentheses' )->rawParams( $msg->parse() )
+			if ( !$msg->isDisabled() ) {
+				$descriptionHtml = $this->msg( 'parentheses' )->rawParams( $msg->parse() )
 					->escaped();
-				$text .= "<br />" . Xml::element( 'small', array( 'class' => 'mw-statistic-desc' ),
-					" $descriptionText" );
+				$text .= "<br />" . Html::rawElement( 'small', array( 'class' => 'mw-statistic-desc' ),
+					" $descriptionHtml" );
 			}
 		}
 
@@ -134,7 +134,8 @@ class SpecialStatistics extends SpecialPage {
 				$this->formatRow( Linker::linkKnown( SpecialPage::getTitleFor( 'Allpages' ),
 					$this->msg( 'statistics-articles' )->parse() ),
 					$this->getLanguage()->formatNum( $this->good ),
-					array( 'class' => 'mw-statistics-articles' ) ) .
+					array( 'class' => 'mw-statistics-articles' ),
+					'statistics-articles-desc' ) .
 				$this->formatRow( $this->msg( 'statistics-pages' )->parse(),
 					$this->getLanguage()->formatNum( $this->total ),
 					array( 'class' => 'mw-statistics-pages' ),

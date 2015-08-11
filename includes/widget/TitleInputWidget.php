@@ -7,12 +7,10 @@
  */
 namespace MediaWiki\Widget;
 
-use OOUI\TextInputWidget;
-
 /**
  * Title input widget.
  */
-class TitleInputWidget extends TextInputWidget {
+class TitleInputWidget extends \OOUI\TextInputWidget {
 
 	protected $namespace = null;
 	protected $relative = null;
@@ -20,7 +18,7 @@ class TitleInputWidget extends TextInputWidget {
 	/**
 	 * @param array $config Configuration options
 	 * @param int|null $config['namespace'] Namespace to prepend to queries
-	 * @param bool|null $config['relative'] If a namespace is set, return a title relative to it (default; true)
+	 * @param bool|null $config['relative'] If a namespace is set, return a title relative to it (default: true)
 	 */
 	public function __construct( array $config = array() ) {
 		// Parent constructor

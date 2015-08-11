@@ -16,7 +16,8 @@
 			"Sunpriat",
 			"Yury Katkov",
 			"Умар",
-			"Камалист"
+			"Камалист",
+			"Meshkov.a"
 		]
 	},
 	"ooui-outline-control-move-down": "Переместить элемент вниз",
@@ -31,5 +32,6 @@
 	"ooui-dialog-process-dismiss": "Закрыть",
 	"ooui-dialog-process-retry": "Попробовать ещё раз",
 	"ooui-dialog-process-continue": "Продолжить",
-	"ooui-selectfile-not-supported": "Выбор файла не поддерживается"
+	"ooui-selectfile-not-supported": "Выбор файла не поддерживается",
+	"ooui-selectfile-placeholder": "Не выбран файл"
 }

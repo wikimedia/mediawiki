@@ -72,6 +72,7 @@ class FindHooks extends Maintenance {
 			$IP . '/includes/api/',
 			$IP . '/includes/cache/',
 			$IP . '/includes/changes/',
+			$IP . '/includes/changetags/',
 			$IP . '/includes/clientpool/',
 			$IP . '/includes/content/',
 			$IP . '/includes/context/',
@@ -80,6 +81,7 @@ class FindHooks extends Maintenance {
 			$IP . '/includes/debug/',
 			$IP . '/includes/deferred/',
 			$IP . '/includes/diff/',
+			$IP . '/includes/exception/',
 			$IP . '/includes/externalstore/',
 			$IP . '/includes/filebackend/',
 			$IP . '/includes/filerepo/',
@@ -95,6 +97,7 @@ class FindHooks extends Maintenance {
 			$IP . '/includes/media/',
 			$IP . '/includes/page/',
 			$IP . '/includes/parser/',
+			$IP . '/includes/password/',
 			$IP . '/includes/rcfeed/',
 			$IP . '/includes/resourceloader/',
 			$IP . '/includes/revisiondelete/',
@@ -119,9 +122,9 @@ class FindHooks extends Maintenance {
 		}
 
 		$potential = array_unique( $potential );
-		$bad = array_unique( $bad );
-		$todo = array_diff( $potential, $documented );
-		$deprecated = array_diff( $documented, $potential );
+		$bad = array_diff( array_unique( $bad ), self::$ignore );
+		$todo = array_diff( $potential, $documented, self::$ignore );
+		$deprecated = array_diff( $documented, $potential, self::$ignore );
 
 		// let's show the results:
 		$this->printArray( 'Undocumented', $todo );
@@ -130,6 +133,8 @@ class FindHooks extends Maintenance {
 
 		if ( count( $todo ) == 0 && count( $deprecated ) == 0 && count( $bad ) == 0 ) {
 			$this->output( "Looks good!\n" );
+		} else {
+			$this->error( 'The script finished with errors.', 1 );
 		}
 	}
 
@@ -287,9 +292,7 @@ class FindHooks extends Maintenance {
 		}
 
 		foreach ( $arr as $v ) {
-			if ( !in_array( $v, self::$ignore ) ) {
-				$this->output( "$msg: $v\n" );
-			}
+			$this->output( "$msg: $v\n" );
 		}
 	}
 }

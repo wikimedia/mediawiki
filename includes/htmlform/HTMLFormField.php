@@ -49,7 +49,7 @@ abstract class HTMLFormField {
 	 * Defaults to false, which getOOUI will interpret as "use the HTML version"
 	 *
 	 * @param string $value
-	 * @return OOUI\Widget|false
+	 * @return OOUI\\Widget|false
 	 */
 	function getInputOOUI( $value ) {
 		return false;
@@ -581,13 +581,15 @@ abstract class HTMLFormField {
 		}
 
 		$fieldType = get_class( $this );
-		$field = new OOUI\FieldLayout( $inputField, array(
+		$helpText = $this->getHelpText();
+		$config = array(
 			'classes' => array( "mw-htmlform-field-$fieldType", $this->mClass, $errorClass ),
 			'align' => $this->getLabelAlignOOUI(),
 			'label' => $this->getLabel(),
-			'help' => $this->getHelpText(),
+			'help' => $helpText !== null ? new OOUI\HtmlSnippet( $helpText ) : null,
 			'infusable' => $infusable,
-		) );
+		);
+		$field = $this->getFieldLayoutOOUI( $inputField, $config );
 
 		return $field . $errors;
 	}
@@ -598,6 +600,18 @@ abstract class HTMLFormField {
 	 */
 	protected function getLabelAlignOOUI() {
 		return 'top';
+	}
+
+	/**
+	 * Get a FieldLayout (or subclass thereof) to wrap this field in when using OOUI output.
+	 * @return OOUI\\FieldLayout|OOUI\\ActionFieldLayout
+	 */
+	protected function getFieldLayoutOOUI( $inputField, $config ) {
+		if ( isset( $this->mClassWithButton ) ) {
+			$buttonWidget = $this->mClassWithButton->getInputOOUI( '' );
+			return new OOUI\ActionFieldLayout( $inputField, $buttonWidget, $config );
+		}
+		return new OOUI\FieldLayout( $inputField, $config );
 	}
 
 	/**
@@ -729,7 +743,7 @@ abstract class HTMLFormField {
 	/**
 	 * Determine the help text to display
 	 * @since 1.20
-	 * @return string
+	 * @return string HTML
 	 */
 	public function getHelpText() {
 		$helptext = null;
@@ -873,7 +887,7 @@ abstract class HTMLFormField {
 	 * @return array Attributes
 	 */
 	public function getAttributes( array $list, array $mappings = null ) {
-		static $boolAttribs = array( 'disabled', 'required', 'autofocus', 'multiple', 'readonly' );
+		static $boolAttribs = array( 'disabled', 'required', 'multiple', 'readonly' );
 
 		$ret = array();
 		foreach ( $list as $key ) {

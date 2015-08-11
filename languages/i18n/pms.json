@@ -14,7 +14,8 @@
 			"לערי ריינהארט",
 			"Shirayuki",
 			"아라",
-			"Kolega2357"
+			"Kolega2357",
+			"Purodha"
 		]
 	},
 	"tog-underline": "Anliure con la sotliniadura",
@@ -633,11 +634,12 @@
 	"yourdiff": "Diferense",
 	"copyrightwarning": "Che a ten-a për piasì da ment che tute le contribussion a {{SITENAME}} as consìdero dàite sota a na licensa ëd la sòrt $2 (che a varda $1 për avèj pì 'd detaj).\nSe a veul nen che sò test a peula esse modificà e distribuì da qualsëssìa përson-a sensa gnun-a limitassion ëd gnun-a sòrt, che a lo buta pa ambelessì.<br />\nËn mandand ës test-sì chiel as fa garant sota soa responsabilità che ël test a l'ha scrivusslo despërchiel, ò pura che a l'ha tracopialo da na sorgiss ëd pùblich domini, ò da n'àutra sorgiss dla midema sòrt.\n'''Anserì mai dël material coatà da drit d'autor sensa avèj n'autorisassion për felo!'''",
 	"copyrightwarning2": "Për piasì, che a ten-a da ment che tute le contribussion a {{SITENAME}} a peulo esse modificà ò scancelà da d'àutri contributor. Se a veul nen che lòn che a scriv a ven-a modificà sensa limitassion ëd gnun-a sòrt, che a lo manda nen ambelessì.<br />\nAnt l'istess temp, ën mandand dël material un as pija la responsabilità dë dì che a l'ha scrivusslo daspërchiel, ò pura che a l'ha copialo da na sorgiss ëd domini pùblich, ò pura da 'nt n'àutra sorgiss dla midema sòrt (che a varda $1 për avèj pì d'anformassion).\n'''Che a manda pa dël material coata da drit d'autor sensa avèj avù ël përmess ëd felo!'''",
+	"editpage-cannot-use-custom-model": "Ël model ëd contnù ëd sa pàgina a peul nen esse modificà.",
 	"longpageerror": "'''EROR: Ël test che a l'ha mandà a l'é longh {{PLURAL:$1|un kilobyte|$1 kilobytes}}, che a resta pì che ël lìmit màssim {{PLURAL:$2|d'un kilobyte|ëd $2 kilobyte}}.''' Parèj as peul pa salvesse.",
 	"readonlywarning": "'''Avis: La base ëd dat a l'é stàita blocà për manutension, e donca a podrà pa salvesse soe modìfiche tut sùbit.'''\nA peul esse che a-j ven-a còmod copiesse via sò test e ancoless-lo an n'archivi ëd test e goernelo për pi tard.\n\nL'aministrator che a l'ha fàit ël blocagi a l'ha dàit costa spiegassion: $1",
 	"protectedpagewarning": "'''Avis: costa pàgina-sì a l'é stàita protegiùa an manera che mach j'utent con la qualìfica da aministrator a peulo feje dle modìfiche.'''\nL'ùltima vos dël registr a l'é smonùa sì-sota për arferiment:",
 	"semiprotectedpagewarning": "'''Nòta:''' Costa pàgina-sì a l'é stàita blocà an manera che mach j'utent registrà a peulo modifichela.\nL'ùltima vos dël registr a l'é smonùa sì-sota për arferiment:",
-	"cascadeprotectedwarning": "'''Tension:''' Sta pàgina a l'é stàita blocà an manera che mach j'utent con la qualìfica da aministrator a peulo modifichela, për via che a l'é comprèisa an {{PLURAL:$1|costa pàgina-sì|an coste pàgine-sì}} ch'a l'han ël sistema ëd protession a cascada:",
+	"cascadeprotectedwarning": "<strong>Tension:</strong> Sta pàgina a l'é stàita blocà an manera che mach j'utent con la qualìfica da aministrator a peulo modifichela, për via che a l'é comprèisa an {{PLURAL:$1|costa pàgina-sì|an coste pàgine-sì}} ch'a l'han ël sistema ëd protession a cascada:",
 	"titleprotectedwarning": "'''Avis: sta pàgina-sì a l'é stàita blocà an manera che a-i é dabzògn ëd [[Special:ListGroupRights|drit specìfich]] për creela.'''\nL'ùltima vos dël registr a l'é smonùa sì-sota për arferiment:",
 	"templatesused": "{{PLURAL:$1|Stamp}} dovrà da costa pàgina-sì:",
 	"templatesusedpreview": "{{PLURAL:$1|Stamp}} dovrà an costa preuva:",
@@ -677,6 +679,7 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Oget veuid",
 	"content-json-empty-array": "Tàula veuida",
+	"duplicate-args-warning": "<strong>Atension:</strong> [[:$1]] a arciama [[:$2]] con pe che un valor për ël paràmeter \"$3\". Mach l'ùltim valor fornì a sarà dovrà.",
 	"duplicate-args-category": "Pàgine ch'a deuvro d'argoment dobi ant j'arceste dë stamp",
 	"duplicate-args-category-desc": "La pàgina a conten cj'arceste dë stamp che deuvro ëd duplicà d'argoment, tanme <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> o <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "'''Atension:''' Costa pàgina a l'ha tròpe ciamà costose a le fonsions d'anàlisi sintàtica.\n\nA dovrìa essnie men che {{PLURAL:$2|$2}}, adess a-i na j'é {{PLURAL:$1|$1}}.",
@@ -969,7 +972,7 @@
 	"badsig": "Soa firma a l'é nen giusta, che a controla j'istrussion HTML.",
 	"badsiglength": "Sò stranòm a l'é tròp longh.\nA deuv nen esse pì longh che $1 {{PLURAL:$1|caràter|caràter}}.",
 	"yourgender": "'Me ch'a preferiss esse descrivù?",
-	"gender-unknown": "I preferisso nen dilo",
+	"gender-unknown": "Cand a parlërà ëd chiel, ël programa a dovrërà dle paròle ëd géner neutral, s'a l'é possìbil",
 	"gender-male": "Chiel a modìfica dle pàgine dla wiki",
 	"gender-female": "Chila a modìfica dle pàgine dla wiki",
 	"prefs-help-gender": "Definì coste preferense a l'é opsional.\nËl programa a deuvra sò valor për adressesse a chiel e massionelo a j'àutri an dovrand ël géner gramatical giust.\nCosta anformassion a sarà pùblica.",
@@ -1288,6 +1291,13 @@
 	"uploaddisabledtext": "La possibilità ëd carié dj'archivi a l'é staita disabilità.",
 	"php-uploaddisabledtext": "Ij cariament d'archivi a son disabilità an PHP.\nPër piasì, ch'a controla l'ampostassion file_uploads.",
 	"uploadscripted": "St'archivi-sì a l'ha andrinta chèich-còs (dël còdes HTML ò pura un senari) che a podrìa esse travajà mal da chèich programa ëd navigassion.",
+	"upload-scripted-pi-callback": "Impossìbil carié n'archivi ch'a conten d'anstrussion ëd tratament ëd feuj dë stil XML.",
+	"uploaded-script-svg": "Element ëscrivìbil «$1» trovà ant l'archivi SVG carià.",
+	"uploaded-hostile-svg": "CSS nen sigur trovà ant l'element dë stil ëd n'archivi SVG carià.",
+	"uploaded-event-handler-on-svg": "Fissé dj'atribù ëd gestion d'eveniment <code>$1=\"$2\"</code> a l'é nen përmëttù ant j'archivi SVG.",
+	"uploaded-href-attribute-svg": "J'atribù <code>&lt;$1 $2=\"$3\"&gt;</code> con un bërsaj nen local (për esempi http://, javascript:, e via fòrt) a son nen përmëttù ant j'archivi SVG.",
+	"uploaded-href-unsafe-target-svg": "href ver un bërsaj nen sigur <code>&lt;$1 $2=\"$3\"&gt;</code> trovà ant l'archivi SVG carià.",
+	"uploaded-animate-svg": "Trovà na tichëtta «animate», ch'a podrìa modifiché ël href an dovrand l'atribù «from» <code>&lt;$1 $2=\"$3\"&gt;</code> ant l'archivi SVG carià.",
 	"uploadscriptednamespace": "S'archivi SVG a conten në spassi nominal «$1» nen autorisà",
 	"uploadinvalidxml": "L'XML ant l'archivi carià a l'ha nen podù esse analisà.",
 	"uploadvirus": "St'archivi-sì a l'han andrinta un '''vìrus!''' Detaj: $1",
@@ -3334,5 +3344,7 @@
 	"special-characters-group-khmer": "Khmer",
 	"special-characters-title-endash": "tratin en",
 	"special-characters-title-emdash": "tratin em",
-	"special-characters-title-minus": "segn meno"
+	"special-characters-title-minus": "segn meno",
+	"mw-widgets-dateinput-placeholder-day": "AAAA-MM-DD",
+	"mw-widgets-dateinput-placeholder-month": "AAAA-MM"
 }

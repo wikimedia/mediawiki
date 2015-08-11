@@ -71,13 +71,13 @@
 	'bat-smg' => 'žemaitėška', # Samogitian (deprecated code, 'sgs' in ISO 693-3 since 2010-06-30 )
 	'bbc' => 'Batak Toba', # Batak Toba (falls back to bbc-latn)
 	'bbc-latn' => 'Batak Toba', # Batak Toba
-	'bcc' => 'بلوچی مکرانی', # Southern Balochi
+	'bcc' => 'جهلسری بلوچی', # Southern Balochi
 	'bcl' => 'Bikol Central', # Bikol: Central Bicolano language
 	'be' => 'беларуская',	#  Belarusian normative
 	'be-tarask' => "беларуская (тарашкевіца)\xE2\x80\x8E",	# Belarusian in Taraskievica orthography
 	'be-x-old' => "беларуская (тарашкевіца)\xE2\x80\x8E",	# (be-tarask compat)
 	'bg' => 'български',	# Bulgarian
-	'bgn' => 'بلوچی رخشانی', # Western Balochi
+	'bgn' => 'روچ کپتین بلوچی', # Western Balochi
 	'bh' => 'भोजपुरी',	# Bihari macro language. Falls back to Bhojpuri (bho)
 	'bho' => 'भोजपुरी',	# Bhojpuri
 	'bi' => 'Bislama',		# Bislama
@@ -257,6 +257,7 @@
 	'lt' => 'lietuvių',	# Lithuanian
 	'ltg' => 'latgaļu', 	# Latgalian
 	'lus' => 'Mizo ţawng', # Mizo/Lushai
+	'luz' => 'لئری دوٙمینی', # Southern Luri
 	'lv' => 'latviešu',	# Latvian
 	'lzh' => '文言',	# Literary Chinese, bug 8217
 	'lzz' => 'Lazuri',	# Laz
@@ -349,6 +350,7 @@
 	'sco' => 'Scots',       # Scots
 	'sd' => 'سنڌي',	# Sindhi
 	'sdc' => 'Sassaresu',	# Sassarese
+	'sdh' => 'کوردی خوارگ',	# Southern Kurdish
 	'se' => 'sámegiella',	# Northern Sami
 	'sei' => 'Cmique Itom',	# Seri
 	'ses' => 'Koyraboro Senni',	# Koyraboro Senni

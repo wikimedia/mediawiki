@@ -20,6 +20,7 @@
  * @file
  */
 
+use Liuggio\StatsdClient\Entity\StatsdData;
 use Liuggio\StatsdClient\Entity\StatsdDataInterface;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 
@@ -42,7 +43,7 @@ class BufferingStatsdDataFactory extends StatsdDataFactory {
 	/**
 	 * Normalize a metric key for StatsD
 	 *
-	 * Replace occurences of '::' with dots and any other non-alphabetic
+	 * Replace occurences of '::' with dots and any other non-alphanumeric
 	 * characters with underscores. Combine runs of dots or underscores.
 	 * Then trim leading or trailing dots or underscores.
 	 *
@@ -51,7 +52,7 @@ class BufferingStatsdDataFactory extends StatsdDataFactory {
 	 */
 	private static function normalizeMetricKey( $key ) {
 		$key = preg_replace( '/[:.]+/', '.', $key );
-		$key = preg_replace( '/[^a-z.]+/i', '_', $key );
+		$key = preg_replace( '/[^a-z0-9.]+/i', '_', $key );
 		$key = trim( $key, '_.' );
 		return str_replace( array( '._', '_.' ), '.', $key );
 	}
@@ -75,6 +76,9 @@ class BufferingStatsdDataFactory extends StatsdDataFactory {
 		return $entity;
 	}
 
+	/**
+	 * @return StatsdData[]
+	 */
 	public function getBuffer() {
 		return $this->buffer;
 	}

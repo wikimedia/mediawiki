@@ -22,21 +22,14 @@ class HTMLSelectNamespace extends HTMLFormField {
 	}
 
 	public function getInputOOUI( $value ) {
-		$namespaceOptions = Html::namespaceSelectorOptions( array( 'all' => $this->mAllValue ) );
-
-		$options = array();
-		foreach( $namespaceOptions as $id => $name ) {
-			$options[] = array(
-				'data' => (string)$id,
-				'label' => $name,
-			);
-		};
-
-		return new OOUI\DropdownInputWidget( array(
-			'options' => $options,
-			'value' => $value,
-			'name' => $this->mName,
+		return new MediaWiki\Widget\NamespaceInputWidget( array(
+			'valueNamespace' => $value,
+			'nameNamespace' => $this->mName,
 			'id' => $this->mID,
+			'includeAllValue' => $this->mAllValue,
+			// Disable additional checkboxes
+			'nameInvert' => null,
+			'nameAssociated' => null,
 		) );
 	}
 }

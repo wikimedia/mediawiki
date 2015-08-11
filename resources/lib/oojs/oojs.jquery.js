@@ -1,12 +1,12 @@
 /*!
- * OOjs v1.1.7 optimised for jQuery
+ * OOjs v1.1.8 optimised for jQuery
  * https://www.mediawiki.org/wiki/OOjs
  *
  * Copyright 2011-2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-04-29T01:13:49Z
+ * Date: 2015-07-23T19:16:00Z
  */
 ( function ( global ) {
 
@@ -698,12 +698,9 @@ oo.isPlainObject = $.isPlainObject;
 	/**
 	 * Emit an event.
 	 *
-	 * TODO: Should this be chainable? What is the usefulness of the boolean
-	 * return value here?
-	 *
 	 * @param {string} event Type of event
 	 * @param {Mixed} args First in a list of variadic arguments passed to event handler (optional)
-	 * @return {boolean} If event was handled by at least one listener
+	 * @return {boolean} Whether the event was handled by at least one listener
 	 */
 	oo.EventEmitter.prototype.emit = function ( event ) {
 		var args = [],

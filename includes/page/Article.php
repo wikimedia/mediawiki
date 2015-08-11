@@ -1256,7 +1256,7 @@ class Article implements Page {
 
 		# Show error message
 		$oldid = $this->getOldID();
-		if ( !$oldid && $title->getNamespace() === NS_MEDIAWIKI ) {
+		if ( !$oldid && $title->getNamespace() === NS_MEDIAWIKI && $title->hasSourceText() ) {
 			$outputPage->addParserOutput( $this->getContentObject()->getParserOutput( $title ) );
 		} else {
 			if ( $oldid ) {

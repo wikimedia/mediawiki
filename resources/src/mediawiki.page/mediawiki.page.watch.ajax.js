@@ -116,7 +116,7 @@
 			var action, api, $link;
 
 			// Start preloading the notification module (normally loaded by mw.notify())
-			mw.loader.load( ['mediawiki.notification'], null, true );
+			mw.loader.load( 'mediawiki.notification' );
 
 			action = mwUriGetAction( this.href );
 
@@ -170,7 +170,10 @@
 					msg = mw.message( 'watcherrortext', link );
 
 					// Report to user about the error
-					mw.notify( msg, { tag: 'watch-self' } );
+					mw.notify( msg, {
+						tag: 'watch-self',
+						type: 'error'
+					} );
 				} );
 		} );
 	} );

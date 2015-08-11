@@ -205,6 +205,7 @@ class SvgHandler extends ImageHandler {
 		$tmpDir = wfTempDir() . '/svg_' . wfRandomString( 24 );
 		$lnPath = "$tmpDir/" . basename( $srcPath );
 		$ok = mkdir( $tmpDir, 0771 ) && symlink( $srcPath, $lnPath );
+		/** @noinspection PhpUnusedLocalVariableInspection */
 		$cleaner = new ScopedCallback( function () use ( $tmpDir, $lnPath ) {
 			MediaWiki\suppressWarnings();
 			unlink( $lnPath );

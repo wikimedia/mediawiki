@@ -384,7 +384,12 @@ class ProtectionForm {
 				"mwProtect-$action-expires"
 			);
 
-			$expiryFormOptions = '';
+			$expiryFormOptions = new XmlSelect( "wpProtectExpirySelection-$action", "mwProtectExpirySelection-$action", $this->mExpirySelection[$action] );
+			$expiryFormOptions->setAttribute( 'tabindex', '2' );
+			if ( $this->disabled ) {
+				$expiryFormOptions->setAttribute( 'disabled', 'disabled' );
+			}
+
 			if ( $this->mExistingExpiry[$action] ) {
 				if ( $this->mExistingExpiry[$action] == 'infinity' ) {
 					$existingExpiryMessage = $context->msg( 'protect-existing-expiry-infinity' );
@@ -394,29 +399,17 @@ class ProtectionForm {
 					$t = $lang->userTime( $this->mExistingExpiry[$action], $user );
 					$existingExpiryMessage = $context->msg( 'protect-existing-expiry', $timestamp, $d, $t );
 				}
-				$expiryFormOptions .=
-					Xml::option(
-						$existingExpiryMessage->text(),
-						'existing',
-						$this->mExpirySelection[$action] == 'existing'
-					) . "\n";
+				$expiryFormOptions->addOption( $existingExpiryMessage->text(), 'existing' );
 			}
 
-			$expiryFormOptions .= Xml::option(
-				$context->msg( 'protect-othertime-op' )->text(),
-				"othertime"
-			) . "\n";
+			$expiryFormOptions->addOption( $context->msg( 'protect-othertime-op' )->text(), 'othertime' );
 			foreach ( explode( ',', $scExpiryOptions ) as $option ) {
 				if ( strpos( $option, ":" ) === false ) {
 					$show = $value = $option;
 				} else {
 					list( $show, $value ) = explode( ":", $option );
 				}
-				$expiryFormOptions .= Xml::option(
-					$show,
-					htmlspecialchars( $value ),
-					$this->mExpirySelection[$action] === $value
-				) . "\n";
+				$expiryFormOptions->addOption( $show, htmlspecialchars( $value ) );
 			}
 			# Add expiry dropdown
 			if ( $showProtectOptions && !$this->disabled ) {
@@ -426,12 +419,7 @@ class ProtectionForm {
 							{$mProtectexpiry}
 						</td>
 						<td class='mw-input'>" .
-							Xml::tags( 'select',
-								array(
-									'id' => "mwProtectExpirySelection-$action",
-									'name' => "wpProtectExpirySelection-$action",
-									'tabindex' => '2' ) + $this->disabledAttrib,
-								$expiryFormOptions ) .
+							$expiryFormOptions->getHTML() .
 						"</td>
 					</tr></table>";
 			}
@@ -576,18 +564,18 @@ class ProtectionForm {
 		);
 
 		$id = 'mwProtect-level-' . $action;
-		$attribs = array(
-			'id' => $id,
-			'name' => $id,
-			'size' => count( $levels ),
-		) + $this->disabledAttrib;
 
-		$out = Xml::openElement( 'select', $attribs );
-		foreach ( $levels as $key ) {
-			$out .= Xml::option( $this->getOptionLabel( $key ), $key, $key == $selected );
+		$select = new XmlSelect( $id, $id, $selected );
+		$select->setAttribute( 'size', count( $levels ) );
+		if ( $this->disabled ) {
+			$select->setAttribute( 'disabled', 'disabled' );
 		}
-		$out .= Xml::closeElement( 'select' );
-		return $out;
+
+		foreach ( $levels as $key ) {
+			$select->addOption( $this->getOptionLabel( $key ), $key );
+		}
+
+		return $select->getHTML();
 	}
 
 	/**

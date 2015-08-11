@@ -336,4 +336,22 @@
 		this.clock.tick( 500 );
 	} );
 
+	QUnit.test( 'cloned collapsibles can be made collapsible again', 2, function ( assert ) {
+		var test = this,
+			$collapsible = prepareCollapsible(
+				'<div class="mw-collapsible">' + loremIpsum + '</div>'
+			),
+			$clone = $collapsible.clone() // clone without data and events
+				.appendTo( '#qunit-fixture' ).makeCollapsible(),
+			$content = $clone.find( '.mw-collapsible-content' );
+
+		assert.assertTrue( $content.is( ':visible' ), 'content is visible' );
+
+		$clone.on( 'afterCollapse.mw-collapsible', function () {
+			assert.assertTrue( $content.is( ':hidden' ), 'after collapsing: content is hidden' );
+		} );
+
+		$clone.find( '.mw-collapsible-toggle a' ).trigger( 'click' );
+		test.clock.tick( 500 );
+	} );
 }( mediaWiki, jQuery ) );

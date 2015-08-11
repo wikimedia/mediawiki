@@ -413,7 +413,7 @@
 	"createacct-benefit-heading": "{{SITENAME}} ay nilikha ng mga taong iyong katulad.",
 	"createacct-benefit-body1": "{{PLURAL:$1|pagbabago|mga pagbabago}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|pahina|mga pahina}}",
-	"createacct-benefit-body3": "kamakailang {{PLURAL:$1|nag-ambag|mga nag-ambag}}",
+	"createacct-benefit-body3": "{{PLURAL:$1|kamakailang taga-ambag|mga kamakailang taga-ambag}}",
 	"badretype": "Hindi magkatugma ang ipinasok mong mga password.",
 	"userexists": "May gumagamit na ng ipinasok na bansag.\nPumili po ng ibang pangalan.",
 	"loginerror": "Kamalian sa paglagda",
@@ -664,7 +664,7 @@
 	"currentrev": "Pangkasalukuyang pagbabago",
 	"currentrev-asof": "Pangkasalukuyang pagbabago mula noong $1",
 	"revisionasof": "Pagbabago mula noong $1",
-	"revision-info": "Pagbabago mula noong $1 ni $2",
+	"revision-info": "Pagbabago mula noong $1 ni {{GENDER:$6|$2}}$7",
 	"previousrevision": "← Lumang pagbabago",
 	"nextrevision": "Bagong pagbabago →",
 	"currentrevisionlink": "Pangkasalukuyang pagbabago",
@@ -2053,7 +2053,7 @@
 	"tooltip-pt-logout": "Umalis sa pagkaka-login",
 	"tooltip-pt-createaccount": "Hinihikayat kang lumikha ng kuwenta at lumigda; gayunpaman, hindi ito kinakailangan",
 	"tooltip-ca-talk": "Usapan tungkol sa nilalaman ng pahinang ito",
-	"tooltip-ca-edit": "Maaaring baguhin ang pahinang ito. Paki gamit ang buton ng paunang tingin bago itala.",
+	"tooltip-ca-edit": "Baguhin ang pahinang ito",
 	"tooltip-ca-addsection": "Magsimula ng bagong seksiyon",
 	"tooltip-ca-viewsource": "Nakasanggalang ang pahinang ito.\nMaaari mong tingnan ang batayan nito.",
 	"tooltip-ca-history": "Mga nakaraang bersiyon ng pahinang ito.",
@@ -2923,6 +2923,7 @@
 	"logentry-newusers-create": "{{GENDER:$2|Inilikha}} ang account na $1 ng tagagamit",
 	"logentry-newusers-create2": "Lumikha si $1 ng isang kuwenta ng tagagamit na $3",
 	"logentry-newusers-autocreate": "Automatikong {{GENDER:$2|inilikha}} ang account ng tagagamit na $1",
+	"logentry-upload-upload": "{{GENDER:$2|Ikinarga}} ni $1 ang $3",
 	"rightsnone": "(wala)",
 	"revdelete-summary": "buod ng pagbabago",
 	"feedback-adding": "Idinaragdag ang pakaing-tugon sa pahina...",
@@ -3024,5 +3025,7 @@
 	"special-characters-group-devanagari": "Devanagari",
 	"special-characters-group-thai": "Thai",
 	"special-characters-group-lao": "Lao",
-	"special-characters-group-khmer": "Khmer"
+	"special-characters-group-khmer": "Khmer",
+	"mw-widgets-dateinput-placeholder-day": "TTTT-BB-AA",
+	"mw-widgets-dateinput-placeholder-month": "TTTT-BB"
 }

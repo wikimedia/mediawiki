@@ -38,7 +38,8 @@
 			"Arifin.wijaya",
 			"Ahdan",
 			"Macofe",
-			"Totosunarto"
+			"Totosunarto",
+			"Mirws"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -892,6 +893,7 @@
 	"search-category": "(kategori $1)",
 	"search-file-match": "(cocok dengan isi berkas)",
 	"search-suggest": "Mungkin maksud Anda adalah: $1",
+	"search-rewritten": "Menampilkan hasil untuk $1. Cari bukannya untuk $2.",
 	"search-interwiki-caption": "Proyek lain",
 	"search-interwiki-default": "Hasil dari $1:",
 	"search-interwiki-more": "(selanjutnya)",
@@ -1761,10 +1763,10 @@
 	"watchlistanontext": "Silahkan login untuk melihat atau mengedit item pada daftarjaga anda",
 	"watchnologin": "Belum masuk log",
 	"addwatch": "Tambahkan ke daftar pantauan",
-	"addedwatchtext": "Halaman \"[[:$1]]\" telah ditambahkan ke [[Special:Watchlist|daftar pantauan]] Anda.\nPerubahan-perubahan berikutnya pada halaman tersebut dan halaman pembicaraan terkaitnya akan tercantum di sini.",
+	"addedwatchtext": "\"[[:$1]]\" dan diskusinya telah ditambahkan ke [[Special:Watchlist|watchlist]] Anda.\nPerubahan-perubahan berikutnya pada halaman tersebut dan halaman pembicaraan terkaitnya akan tercantum di sini.",
 	"addedwatchtext-short": "Halaman \"$1\" telah ditambahkan ke daftar pantauan Anda.",
 	"removewatch": "Hapus dari daftar pantauan",
-	"removedwatchtext": "Halaman \"[[:$1]]\" telah dihapus dari [[Special:Watchlist|daftar pantauan]] Anda.",
+	"removedwatchtext": "\"[[:$1]]\" dan diskusinya telah dihapus dari [[Special:Watchlist|watchlist]] Anda.",
 	"removedwatchtext-short": "Halaman \"$1\" telah dihapus dari daftar pantauan Anda.",
 	"watch": "Pantau",
 	"watchthispage": "Pantau halaman ini",
@@ -3330,5 +3332,7 @@
 	"special-characters-group-khmer": "Khmer",
 	"special-characters-title-endash": "en dash",
 	"special-characters-title-emdash": "em dash",
-	"special-characters-title-minus": "tanda kurang"
+	"special-characters-title-minus": "tanda kurang",
+	"mw-widgets-dateinput-placeholder-day": "TTTT-BB-HH",
+	"mw-widgets-dateinput-placeholder-month": "TTTT-BB"
 }

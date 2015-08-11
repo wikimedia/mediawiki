@@ -22,6 +22,18 @@ class ExtensionRegistry {
 	const OLDEST_MANIFEST_VERSION = 1;
 
 	/**
+	 * Bump whenever the registration cache needs resetting
+	 */
+	const CACHE_VERSION = 1;
+
+	/**
+	 * Special key that defines the merge strategy
+	 *
+	 * @since 1.26
+	 */
+	const MERGE_STRATEGY = '_merge_strategy';
+
+	/**
 	 * @var BagOStuff
 	 */
 	protected $cache;
@@ -102,7 +114,7 @@ class ExtensionRegistry {
 		}
 
 		// See if this queue is in APC
-		$key = wfMemcKey( 'registration', md5( json_encode( $this->queued ) ) );
+		$key = wfMemcKey( 'registration', md5( json_encode( $this->queued ) ), self::CACHE_VERSION );
 		$data = $this->cache->get( $key );
 		if ( $data ) {
 			$this->exportExtractedData( $data );
@@ -115,6 +127,24 @@ class ExtensionRegistry {
 			unset( $data['autoload'] );
 			$this->cache->set( $key, $data, 60 * 60 * 24 );
 		}
+		$this->queued = array();
+	}
+
+	/**
+	 * Get the current load queue. Not intended to be used
+	 * outside of the installer.
+	 *
+	 * @return array
+	 */
+	public function getQueue() {
+		return $this->queued;
+	}
+
+	/**
+	 * Clear the current load queue. Not intended to be used
+	 * outside of the installer.
+	 */
+	public function clearQueue() {
 		$this->queued = array();
 	}
 
@@ -157,31 +187,61 @@ class ExtensionRegistry {
 		foreach ( $data['credits'] as $credit ) {
 			$data['globals']['wgExtensionCredits'][$credit['type']][] = $credit;
 		}
+		$data['globals']['wgExtensionCredits'][self::MERGE_STRATEGY] = 'array_merge_recursive';
 		$data['autoload'] = $autoloadClasses;
 		return $data;
 	}
 
 	protected function exportExtractedData( array $info ) {
 		foreach ( $info['globals'] as $key => $val ) {
+			// If a merge strategy is set, read it and remove it from the value
+			// so it doesn't accidentally end up getting set.
+			// Need to check $val is an array for PHP 5.3 which will return
+			// true on isset( 'string'['foo'] ).
+			if ( isset( $val[self::MERGE_STRATEGY] ) && is_array( $val ) ) {
+				$mergeStrategy = $val[self::MERGE_STRATEGY];
+				unset( $val[self::MERGE_STRATEGY] );
+			} else {
+				$mergeStrategy = 'array_merge';
+			}
+
+			// Optimistic: If the global is not set, or is an empty array, replace it entirely.
+			// Will be O(1) performance.
 			if ( !isset( $GLOBALS[$key] ) || ( is_array( $GLOBALS[$key] ) && !$GLOBALS[$key] ) ) {
 				$GLOBALS[$key] = $val;
-			} elseif ( $key === 'wgHooks' || $key === 'wgExtensionCredits' ) {
-				// Special case $wgHooks and $wgExtensionCredits, which require a recursive merge.
-				// Ideally it would have been taken care of in the first if block though.
-				$GLOBALS[$key] = array_merge_recursive( $GLOBALS[$key], $val );
-			} elseif ( $key === 'wgGroupPermissions' ) {
-				// First merge individual groups
-				foreach ( $GLOBALS[$key] as $name => &$groupVal ) {
-					if ( isset( $val[$name] ) ) {
-						$groupVal += $val[$name];
+				continue;
+			}
+
+			if ( !is_array( $GLOBALS[$key] ) || !is_array( $val ) ) {
+				// config setting that has already been overridden, don't set it
+				continue;
+			}
+
+			switch ( $mergeStrategy ) {
+				case 'array_merge_recursive':
+					$GLOBALS[$key] = array_merge_recursive( $GLOBALS[$key], $val );
+					break;
+				case 'array_plus_2d':
+					// First merge items that are in both arrays
+					foreach ( $GLOBALS[$key] as $name => &$groupVal ) {
+						if ( isset( $val[$name] ) ) {
+							$groupVal += $val[$name];
+						}
 					}
-				}
-				// Now merge groups that didn't exist yet
-				$GLOBALS[$key] += $val;
-			} elseif ( is_array( $GLOBALS[$key] ) && is_array( $val ) ) {
-				$GLOBALS[$key] = array_merge( $val, $GLOBALS[$key] );
-			} // else case is a config setting where it has already been overriden, so don't set it
+					// Now add items that didn't exist yet
+					$GLOBALS[$key] += $val;
+					break;
+				case 'array_plus':
+					$GLOBALS[$key] = $val + $GLOBALS[$key];
+					break;
+				case 'array_merge':
+					$GLOBALS[$key] = array_merge( $val, $GLOBALS[$key] );
+					break;
+				default:
+					throw new UnexpectedValueException( "Unknown merge strategy '$mergeStrategy'" );
+			}
 		}
+
 		foreach ( $info['defines'] as $name => $val ) {
 			define( $name, $val );
 		}

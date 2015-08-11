@@ -12,11 +12,12 @@
 			"Seb35",
 			"Nemo bis",
 			"Ricordisamoa",
-			"Fpugliajno"
+			"Fpugliajno",
+			"The Polish"
 		]
 	},
 	"config-desc": "Il programma di installazione per MediaWiki",
-	"config-title": "Installazione MediaWiki $1",
+	"config-title": "Installazione di MediaWiki $1",
 	"config-information": "Informazioni",
 	"config-localsettings-upgrade": "È stato rilevato un file <code>LocalSettings.php</code>.\nPer aggiornare questa installazione, si prega di inserire il valore di <code>$wgUpgradeKey</code> nella casella qui sotto.\nLo potete trovare in <code>LocalSettings.php</code>.",
 	"config-localsettings-cli-upgrade": "È stato rilevato un file <code>LocalSettings.php</code>.\nPer aggiornare questa installazione, eseguire <code>update.php</code>",
@@ -110,8 +111,6 @@
 	"config-db-install-account": "Account utente per l'installazione",
 	"config-db-username": "Nome utente del database:",
 	"config-db-password": "Password del database:",
-	"config-db-password-empty": "Inserire una password per il nuovo utente del database: $1.\nAnche se può essere possibile creare utenti senza password, questo non è sicuro.",
-	"config-db-username-empty": "È necessario immettere un valore per \"{{int:config-db-username}}\"",
 	"config-db-install-username": "Inserisci il nome utente che verrà utilizzato per connettersi al database durante il processo di installazione.\nQuesto non è il nome utente dell'account MediaWiki; ma quello per il tuo database.",
 	"config-db-install-password": "Inserisci la password che verrà utilizzato per connettersi al database durante il processo di installazione.\nQuesta non è la password dell'account MediaWiki; ma quella per il tuo database.",
 	"config-db-install-help": "Inserire il nome utente e la password che verranno usate per la connessione al database durante il processo d'installazione.",

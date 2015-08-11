@@ -611,17 +611,16 @@ class ChangeTags {
 	 * Build a text box to select a change tag
 	 *
 	 * @param string $selected Tag to select by default
-	 * @param bool $fullForm
-	 *        - if false, then it returns an array of (label, form).
-	 *        - if true, it returns an entire form around the selector.
-	 * @param Title $title Title object to send the form to.
-	 *        Used when, and only when $fullForm is true.
+	 * @param bool $fullForm Affects return value, see below
+	 * @param Title $title Title object to send the form to. Used only if $fullForm is true.
+	 * @param bool $ooui Use an OOUI TextInputWidget as selector instead of a non-OOUI input field
+	 *        You need to call OutputPage::enableOOUI() yourself.
 	 * @return string|array
-	 *        - if $fullForm is false: Array with
-	 *        - if $fullForm is true: String, html fragment
+	 *        - if $fullForm is false: an array of (label, selector).
+	 *        - if $fullForm is true: HTML of entire form built around the selector.
 	 */
 	public static function buildTagFilterSelector( $selected = '',
-		$fullForm = false, Title $title = null
+		$fullForm = false, Title $title = null, $ooui = false
 	) {
 		global $wgUseTagFilter;
 
@@ -634,14 +633,24 @@ class ChangeTags {
 				'label',
 				array( 'for' => 'tagfilter' ),
 				wfMessage( 'tag-filter' )->parse()
-			),
-			Xml::input(
+			)
+		);
+
+		if ( $ooui ) {
+			$data[] = new OOUI\TextInputWidget( array(
+				'id' => 'tagfilter',
+				'name' => 'tagfilter',
+				'value' => $selected,
+				'classes' => 'mw-tagfilter-input',
+			) );
+		} else {
+			$data[] = Xml::input(
 				'tagfilter',
 				20,
 				$selected,
 				array( 'class' => 'mw-tagfilter-input mw-ui-input mw-ui-input-inline', 'id' => 'tagfilter' )
-			)
-		);
+			);
+		}
 
 		if ( !$fullForm ) {
 			return $data;

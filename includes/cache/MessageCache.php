@@ -25,7 +25,7 @@
  * MediaWiki message cache structure version.
  * Bump this whenever the message cache format has changed.
  */
-define( 'MSG_CACHE_VERSION', 1 );
+define( 'MSG_CACHE_VERSION', 2 );
 
 /**
  * Memcached timeout when loading a key.
@@ -58,6 +58,7 @@ class MessageCache {
 	 * second level is message key and the values are either message
 	 * content prefixed with space, or !NONEXISTENT for negative
 	 * caching.
+	 * @var array $mCache
 	 */
 	protected $mCache;
 
@@ -131,11 +132,31 @@ class MessageCache {
 	}
 
 	/**
+	 * Normalize message key input
+	 *
+	 * @param string $key Input message key to be normalized
+	 * @return string Normalized message key
+	 */
+	public static function normalizeKey( $key ) {
+		global $wgContLang;
+		$lckey = strtr( $key, ' ', '_' );
+		if ( ord( $lckey ) < 128 ) {
+			$lckey[0] = strtolower( $lckey[0] );
+		} else {
+			$lckey = $wgContLang->lcfirst( $lckey );
+		}
+
+		return $lckey;
+	}
+
+	/**
 	 * @param BagOStuff $memCached A cache instance. If none, fall back to CACHE_NONE.
 	 * @param bool $useDB
 	 * @param int $expiry Lifetime for cache. @see $mExpiry.
 	 */
 	function __construct( $memCached, $useDB, $expiry ) {
+		global $wgUseLocalMessageCache;
+
 		if ( !$memCached ) {
 			$memCached = wfGetCache( CACHE_NONE );
 		}
@@ -143,6 +164,12 @@ class MessageCache {
 		$this->mMemc = $memCached;
 		$this->mDisable = !$useDB;
 		$this->mExpiry = $expiry;
+
+		if ( $wgUseLocalMessageCache ) {
+			$this->localCache = ObjectCache::newAccelerator( array(), CACHE_NONE );
+		} else {
+			$this->localCache = wfGetCache( CACHE_NONE );
+		}
 
 		$this->wanCache = ObjectCache::getMainWANInstance();
 	}
@@ -162,70 +189,25 @@ class MessageCache {
 	}
 
 	/**
-	 * Try to load the cache from a local file.
+	 * Try to load the cache from APC.
 	 *
-	 * @param string $hash The hash of contents, to check validity.
 	 * @param string $code Optional language code, see documenation of load().
-	 * @return array The cache array
+	 * @return array|bool The cache array, or false if not in cache.
 	 */
-	function getLocalCache( $hash, $code ) {
-		global $wgCacheDirectory;
-
-		$filename = "$wgCacheDirectory/messages-" . wfWikiID() . "-$code";
-
-		# Check file existence
-		MediaWiki\suppressWarnings();
-		$file = fopen( $filename, 'r' );
-		MediaWiki\restoreWarnings();
-		if ( !$file ) {
-			return false; // No cache file
-		}
-
-		// Check to see if the file has the hash specified
-		$localHash = fread( $file, 32 );
-		if ( $hash === $localHash ) {
-			// All good, get the rest of it
-			$serialized = '';
-			while ( !feof( $file ) ) {
-				$serialized .= fread( $file, 100000 );
-			}
-			fclose( $file );
-
-			return unserialize( $serialized );
-		} else {
-			fclose( $file );
-
-			return false; // Wrong hash
-		}
+	protected function getLocalCache( $code ) {
+		$cacheKey = wfMemcKey( __CLASS__, $code );
+		return $this->localCache->get( $cacheKey );
 	}
 
 	/**
-	 * Save the cache to a local file.
-	 * @param string $serialized
-	 * @param string $hash
+	 * Save the cache to APC.
+	 *
 	 * @param string $code
+	 * @param array $cache The cache array
 	 */
-	function saveToLocal( $serialized, $hash, $code ) {
-		global $wgCacheDirectory;
-
-		$filename = "$wgCacheDirectory/messages-" . wfWikiID() . "-$code";
-		wfMkdirParents( $wgCacheDirectory, null, __METHOD__ ); // might fail
-
-		MediaWiki\suppressWarnings();
-		$file = fopen( $filename, 'w' );
-		MediaWiki\restoreWarnings();
-
-		if ( !$file ) {
-			wfDebug( "Unable to open local cache file for writing\n" );
-
-			return;
-		}
-
-		fwrite( $file, $hash . $serialized );
-		fclose( $file );
-		MediaWiki\suppressWarnings();
-		chmod( $filename, 0666 );
-		MediaWiki\restoreWarnings();
+	protected function saveToLocalCache( $code, $cache ) {
+		$cacheKey = wfMemcKey( __CLASS__, $code );
+		$this->localCache->set( $cacheKey, $cache );
 	}
 
 	/**
@@ -287,8 +269,8 @@ class MessageCache {
 		if ( $wgUseLocalMessageCache ) {
 			list( $hash, $hashExpired ) = $this->getValidationHash( $code );
 			if ( $hash ) {
-				$cache = $this->getLocalCache( $hash, $code );
-				if ( !$cache ) {
+				$cache = $this->getLocalCache( $code );
+				if ( !$cache || !isset( $cache['HASH'] ) || $cache['HASH'] !== $hash ) {
 					$where[] = 'local cache is empty or has the wrong hash';
 				} elseif ( $this->isCacheExpired( $cache ) ) {
 					$where[] = 'local cache is expired';
@@ -541,6 +523,7 @@ class MessageCache {
 		}
 
 		$cache['VERSION'] = MSG_CACHE_VERSION;
+		$cache['HASH'] = wfRandomString( 8 );
 		$cache['EXPIRY'] = wfTimestamp( TS_MW, time() + $this->mExpiry );
 
 		return $cache;
@@ -650,10 +633,8 @@ class MessageCache {
 
 		# Save to local cache
 		if ( $wgUseLocalMessageCache ) {
-			$serialized = serialize( $cache );
-			$hash = md5( $serialized );
-			$this->setValidationHash( $code, $hash );
-			$this->saveToLocal( $serialized, $hash, $code );
+			$this->setValidationHash( $code, $cache['HASH'] );
+			$this->saveToLocalCache( $code, $cache );
 		}
 
 		return $success;
@@ -784,12 +765,7 @@ class MessageCache {
 		}
 
 		// Normalise title-case input (with some inlining)
-		$lckey = strtr( $key, ' ', '_' );
-		if ( ord( $lckey ) < 128 ) {
-			$lckey[0] = strtolower( $lckey[0] );
-		} else {
-			$lckey = $wgContLang->lcfirst( $lckey );
-		}
+		$lckey = MessageCache::normalizeKey( $key );
 
 		Hooks::run( 'MessageCache::get', array( &$lckey ) );
 

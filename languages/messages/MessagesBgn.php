@@ -1,5 +1,5 @@
 <?php
-/** Western Balochi (بلوچی رخشانی)
+/** Western Balochi (روچ کپتین بلوچی)
  *
  * To improve a translation please visit https://translatewiki.net
  *

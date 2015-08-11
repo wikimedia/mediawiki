@@ -78,6 +78,14 @@ abbr[title],
 	cursor: help;
 }
 
+@supports (text-decoration: underline dotted) {
+	abbr[title],
+	.explain[title] {
+		border-bottom: none;
+		text-decoration: underline dotted;
+	}
+}
+
 /* Colored watchlist and recent changes numbers */
 .mw-plusminus-pos {
 	color: #006400; /* dark green */
@@ -237,7 +245,7 @@ td.mw-submit {
 }
 
 td.mw-label {
-	vertical-align: top;
+	vertical-align: middle;
 }
 
 .prefsection td.mw-label {
@@ -944,6 +952,7 @@ h2:lang(te), h3:lang(te), h4:lang(te), h5:lang(te), h6:lang(te) {
 }
 
 /* Localised ordered list numbering for some languages */
+ol:lang(azb) li,
 ol:lang(bcc) li,
 ol:lang(bgn) li,
 ol:lang(bqi) li,
@@ -951,6 +960,7 @@ ol:lang(fa) li,
 ol:lang(glk) li,
 ol:lang(kk-arab) li,
 ol:lang(lrc) li,
+ol:lang(luz) li,
 ol:lang(mzn) li {
 	list-style-type: -moz-persian;
 	list-style-type: persian;

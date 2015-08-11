@@ -23,7 +23,7 @@ namespace MediaWiki\Logger;
 use Psr\Log\NullLogger;
 
 /**
- * LoggerFactory service provider that creates \Psr\Log\NullLogger
+ * LoggerFactory service provider that creates \\Psr\\Log\\NullLogger
  * instances. A NullLogger silently discards all log events sent to it.
  *
  * Usage:
@@ -33,7 +33,7 @@ use Psr\Log\NullLogger;
  * );
  * @endcode
  *
- * @see \MediaWiki\Logger\LoggerFactory
+ * @see \\MediaWiki\\Logger\\LoggerFactory
  * @since 1.25
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2014 Bryan Davis and Wikimedia Foundation.
@@ -41,7 +41,7 @@ use Psr\Log\NullLogger;
 class NullSpi implements Spi {
 
 	/**
-	 * @var \Psr\Log\NullLogger $singleton
+	 * @var \\Psr\\Log\\NullLogger $singleton
 	 */
 	protected $singleton;
 
@@ -55,7 +55,7 @@ class NullSpi implements Spi {
 	 * Get a logger instance.
 	 *
 	 * @param string $channel Logging channel
-	 * @return \Psr\Log\NullLogger Logger instance
+	 * @return \\Psr\\Log\\NullLogger Logger instance
 	 */
 	public function getLogger( $channel ) {
 		return $this->singleton;

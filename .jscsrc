@@ -3,5 +3,17 @@
 
 	"disallowQuotedKeysInObjects": null,
 	"requireSpacesInsideParentheses": null,
-	"requireSpacesInsideArrayBrackets": null
+	"requireSpacesInsideArrayBrackets": null,
+
+	"excludeFiles": [
+		"docs/**",
+		"extensions/**",
+		"node_modules/**",
+		"resources/lib/**",
+		"resources/src/jquery.tipsy/**",
+		"resources/src/jquery/jquery.farbtastic.js",
+		"resources/src/mediawiki.libs/**",
+		"skins/**",
+		"vendor/**"
+	]
 }

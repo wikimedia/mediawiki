@@ -281,7 +281,7 @@ class Status {
 	 * Otherwise, if its an array, just use the first value as the
 	 * message and the remaining items as the params.
 	 *
-	 * @return string
+	 * @return Message
 	 */
 	protected function getErrorMessage( $error ) {
 		if ( is_array( $error ) ) {
@@ -316,9 +316,9 @@ class Status {
 	}
 
 	/**
-	 * Return an array with the wikitext for each item in the array.
+	 * Return an array with a Message object for each error.
 	 * @param array $errors
-	 * @return array
+	 * @return Message[]
 	 */
 	protected function getErrorMessageArray( $errors ) {
 		return array_map( array( $this, 'getErrorMessage' ), $errors );

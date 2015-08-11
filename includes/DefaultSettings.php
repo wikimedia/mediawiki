@@ -1021,7 +1021,7 @@ $wgSVGConverterPath = '';
 /**
  * Don't scale a SVG larger than this
  */
-$wgSVGMaxSize = 2048;
+$wgSVGMaxSize = 5120;
 
 /**
  * Don't read SVG metadata beyond this point.
@@ -1622,15 +1622,6 @@ $wgEnotifMaxRecips = 500;
  * takes to save a page that a lot of people are watching.
  */
 $wgEnotifUseJobQ = false;
-
-/**
- * Use the job queue for user activity updates like updating "last visited"
- * fields for email notifications of page changes. This should only be enabled
- * if the jobs have a dedicated runner to avoid update lag.
- *
- * @since 1.26
- */
-$wgActivityUpdatesUseJobQueue = false;
 
 /**
  * Use real name instead of username in e-mail "from" field.
@@ -3520,13 +3511,6 @@ $wgResourceLoaderMaxage = array(
 $wgResourceLoaderDebug = false;
 
 /**
- * Enable embedding of certain resources using Edge Side Includes. This will
- * improve performance but only works if there is something in front of the
- * web server (e..g a Squid or Varnish server) configured to process the ESI.
- */
-$wgResourceLoaderUseESI = false;
-
-/**
  * Put each statement on its own line when minifying JavaScript. This makes
  * debugging in non-debug mode a bit easier.
  */
@@ -3540,28 +3524,27 @@ $wgResourceLoaderMinifierStatementsOnOwnLine = false;
 $wgResourceLoaderMinifierMaxLineLength = 1000;
 
 /**
- * Whether to include the mediawiki.legacy JS library (old wikibits.js), and its
- * dependencies.
+ * Whether to ensure the mediawiki.legacy library is loaded before other modules.
+ *
+ * @deprecated since 1.26: Always declare dependencies.
  */
 $wgIncludeLegacyJavaScript = true;
 
 /**
- * Whether to preload the mediawiki.util module as blocking module in the top
- * queue.
+ * Whether to ensure the mediawiki.util is loaded before other modules.
  *
- * Before MediaWiki 1.19, modules used to load slower/less asynchronous which
- * allowed modules to lack dependencies on 'popular' modules that were likely
- * loaded already.
+ * Before MediaWiki 1.19, modules used to load less asynchronous which allowed
+ * modules to lack dependencies on 'popular' modules that were likely loaded already.
  *
  * This setting is to aid scripts during migration by providing mediawiki.util
- * unconditionally (which was the most commonly missed dependency).
- * It doesn't cover all missing dependencies obviously but should fix most of
- * them.
+ * unconditionally (which was the most commonly missed dependency). It doesn't
+ * cover all missing dependencies obviously but should fix most of them.
  *
  * This should be removed at some point after site/user scripts have been fixed.
  * Enable this if your wiki has a large amount of user/site scripts that are
  * lacking dependencies.
- * @todo Deprecate
+ *
+ * @deprecated since 1.26: Always declare dependencies.
  */
 $wgPreloadJavaScriptMwUtil = false;
 
@@ -3977,6 +3960,15 @@ $wgTrackingCategories = array();
  * number of articles in the wiki.
  */
 $wgContentNamespaces = array( NS_MAIN );
+
+/**
+ * Array of namespaces, in addition to the talk namespaces, where signatures
+ * (~~~~) are likely to be used. This determines whether to display the
+ * Signature button on the edit toolbar, and may also be used by extensions.
+ * For example, "traditional" style wikis, where content and discussion are
+ * intermixed, could place NS_MAIN and NS_PROJECT namespaces in this array.
+ */
+$wgExtraSignatureNamespaces = array();
 
 /**
  * Max number of redirects to follow when resolving redirects.
@@ -4448,7 +4440,7 @@ $wgPasswordConfig = array(
  */
 $wgPasswordResetRoutes = array(
 	'username' => true,
-	'email' => false,
+	'email' => true,
 );
 
 /**
@@ -7720,6 +7712,16 @@ $wgVirtualRestConfig = array(
 		'HTTPProxy' => null
 	)
 );
+
+/**
+ * Controls the percentage of zero-result search queries with suggestions that
+ * run the suggestion automatically. Must be a number between 0 and 1.  This
+ * can be lowered to reduce query volume at the expense of result quality.
+ *
+ * @var float
+ * @since 1.26
+ */
+$wgSearchRunSuggestedQueryPercent = 1;
 
 /**
  * For really cool vim folding this needs to be at the end:

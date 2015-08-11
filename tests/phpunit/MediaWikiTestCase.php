@@ -204,9 +204,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			while ( $this->db->trxLevel() > 0 ) {
 				$this->db->rollback();
 			}
-
-			// don't ignore DB errors
-			$this->db->ignoreErrors( false );
 		}
 
 		DeferredUpdates::clearPendingUpdates();
@@ -233,9 +230,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			while ( $this->db->trxLevel() > 0 ) {
 				$this->db->rollback();
 			}
-
-			// don't ignore DB errors
-			$this->db->ignoreErrors( false );
 		}
 
 		// Restore mw globals

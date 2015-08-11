@@ -81,7 +81,8 @@
 			"RosaMafalda17",
 			"Macofe",
 			"TheEduGobi",
-			"Araceletorres"
+			"Araceletorres",
+			"L"
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -92,9 +93,9 @@
 	"tog-usenewrc": "Agrupar alterações por páginas nas mudanças recentes e nas páginas vigiadas",
 	"tog-numberheadings": "Auto-numerar cabeçalhos",
 	"tog-showtoolbar": "Mostrar barra de ferramentas de edição",
-	"tog-editondblclick": "Editar páginas quando houver clique duplo",
+	"tog-editondblclick": "Editar páginas no clique duplo",
 	"tog-editsectiononrightclick": "Habilitar edição de seção por clique com o botão direito no título da seção (requer JavaScript)",
-	"tog-watchcreations": "Adicionar as páginas e arquivos que eu criar à minha lista de páginas vigiadas",
+	"tog-watchcreations": "Adicionar as páginas e arquivos que \neu criar à minha lista de páginas vigiadas",
 	"tog-watchdefault": "Adicionar as páginas e arquivos que eu editar à minha lista de páginas vigiadas",
 	"tog-watchmoves": "Adicionar as páginas e arquivos que eu mover à minha lista de páginas vigiadas",
 	"tog-watchdeletion": "Adicionar as páginas e arquivos que eu eliminar à minha lista de páginas vigiadas",
@@ -1615,7 +1616,7 @@
 	"unusedimages": "Arquivos não utilizados",
 	"wantedcategories": "Categorias pedidas",
 	"wantedpages": "Páginas pedidas",
-	"wantedpages-summary": "Lista de páginas não-existentes com mais links para elas, excluindo páginas que apenas têm redirecionamentos linkando para elas. Para obter uma lista de páginas inexistentes que redireciona links para elas, veja [[{{#special: Brokenredirects}}]].",
+	"wantedpages-summary": "Lista de páginas não-existentes com mais links para elas, excluindo páginas que apenas têm redirecionamentos para elas. Para obter uma lista de páginas inexistentes com redirecionamentos para elas, veja [[{{#special: Brokenredirects}}]].",
 	"wantedpages-badtitle": "Título inválido no conjunto de resultados: $1",
 	"wantedfiles": "Arquivos pedidos",
 	"wantedfiletext-cat": "Os seguintes arquivos são usados, mas não existem. Arquivos de repositórios externos podem acabar sendo listados apesar de existirem. Esses falsos positivos aparecerão <del>riscados</del>. As páginas que incluem arquivos inexistentes são listadas em [[:$1]].",
@@ -1801,10 +1802,10 @@
 	"watchlistanontext": "Por favor, faça login para ver ou editar os itens na sua lista de páginas vigiadas.",
 	"watchnologin": "Não está autenticado",
 	"addwatch": "Adicionar às páginas vigiadas",
-	"addedwatchtext": "A página \"[[:$1]]\" foi adicionada à sua [[Special:Watchlist|lista de páginas vigiadas]].\nFuturas modificações em tal página e páginas de discussão relacionadas serão listadas lá.",
+	"addedwatchtext": "A página \"[[:$1]]\" e sua página de discussão foram adicionadas à sua [[Special:Watchlist|lista de páginas vigiadas]].",
 	"addedwatchtext-short": "A página \"$1\" foi adicionada à sua lista de páginas vigiadas.",
 	"removewatch": "Remover das páginas vigiadas",
-	"removedwatchtext": "A página \"[[:$1]]\" foi removida de sua [[Special:Watchlist|lista de páginas vigiadas]].",
+	"removedwatchtext": "A página \"[[:$1]]\" e sua página de discussão foram removidas de sua [[Special:Watchlist|lista de páginas vigiadas]].",
 	"removedwatchtext-short": "A página \"$1\" foi removida de sua lista de páginas vigiadas.",
 	"watch": "Vigiar",
 	"watchthispage": "Vigiar esta página",
@@ -3385,5 +3386,7 @@
 	"special-characters-group-khmer": "Cambojano",
 	"special-characters-title-endash": "traço",
 	"special-characters-title-emdash": "travessão",
-	"special-characters-title-minus": "sinal de menos"
+	"special-characters-title-minus": "sinal de menos",
+	"mw-widgets-dateinput-placeholder-day": "AAAA-MM-DD",
+	"mw-widgets-dateinput-placeholder-month": "AAAA-MM"
 }

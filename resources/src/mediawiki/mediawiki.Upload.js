@@ -9,6 +9,40 @@
 	 * but this model class will tie it together as well as let you perform
 	 * actions in a logical way.
 	 *
+	 * A simple example:
+	 *
+	 *      var file = new OO.ui.SelectFileWidget(),
+	 *      	button = new OO.ui.ButtonWidget( { label: 'Save' } ),
+	 *      	upload = new mw.Upload;
+	 *
+	 *      button.on( 'click', function () {
+	 *      	upload.setFile( file.getValue() );
+	 *      	upload.setFilename( file.getValue().name );
+	 *      	upload.upload();
+	 *      } );
+	 *
+	 *      $( 'body' ).append( file.$element, button.$element );
+	 *
+	 * You can also choose to {@link #uploadToStash stash the upload} and
+	 * {@link #finishStashUpload finalize} it later:
+	 *
+	 *      var file, // Some file object
+	 *      	upload = new mw.Upload,
+	 *      	stashPromise = $.Deferred();
+	 *
+	 *      upload.setFile( file );
+	 *      upload.uploadToStash().then( function () {
+	 *      	stashPromise.resolve();
+	 *      } );
+	 *
+	 *      stashPromise.then( function () {
+	 *      	upload.setFilename( 'foo' );
+	 *      	upload.setText( 'bar' );
+	 *      	upload.finishStashUpload().then( function () {
+	 *      		console.log( 'Done!' );
+	 *      	} );
+	 *      } );
+	 *
 	 * @constructor
 	 * @param {Object} apiconfig Passed to the constructor of mw.Api.
 	 */
@@ -21,6 +55,8 @@
 		this.filename = null;
 		this.file = null;
 		this.state = Upload.State.NEW;
+
+		this.imageinfo = undefined;
 	}
 
 	UP = Upload.prototype;
@@ -147,6 +183,16 @@
 	};
 
 	/**
+	 * Get the imageinfo object for the finished upload.
+	 * Only available once the upload is finished! Don't try to get it
+	 * beforehand.
+	 * @return {Object|undefined}
+	 */
+	UP.getImageInfo = function () {
+		return this.imageinfo;
+	};
+
+	/**
 	 * Upload the file directly.
 	 * @return {jQuery.Promise}
 	 */
@@ -170,6 +216,7 @@
 			text: this.text
 		} ).then( function ( result ) {
 			upload.state = Upload.State.UPLOADED;
+			upload.imageinfo = result.upload.imageinfo;
 			return result;
 		}, function () {
 			upload.state = Upload.State.ERROR;

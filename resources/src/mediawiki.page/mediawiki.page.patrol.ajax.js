@@ -17,7 +17,7 @@
 			var $spinner, href, rcid, apiRequest;
 
 			// Start preloading the notification module (normally loaded by mw.notify())
-			mw.loader.load( ['mediawiki.notification'], null, true );
+			mw.loader.load( 'mediawiki.notification' );
 
 			// Hide the link and create a spinner to show it inside the brackets.
 			$spinner = $.createSpinner( {
@@ -43,7 +43,7 @@
 					mw.notify( mw.msg( 'markedaspatrollednotify', title.toText() ) );
 				} else {
 					// This should never happen as errors should trigger fail
-					mw.notify( mw.msg( 'markedaspatrollederrornotify' ) );
+					mw.notify( mw.msg( 'markedaspatrollederrornotify' ), { type: 'error' } );
 				}
 			} )
 			.fail( function ( error ) {
@@ -53,9 +53,9 @@
 				$patrolLinks.show();
 				if ( error === 'noautopatrol' ) {
 					// Can't patrol own
-					mw.notify( mw.msg( 'markedaspatrollederror-noautopatrol' ) );
+					mw.notify( mw.msg( 'markedaspatrollederror-noautopatrol' ), { type: 'warn' } );
 				} else {
-					mw.notify( mw.msg( 'markedaspatrollederrornotify' ) );
+					mw.notify( mw.msg( 'markedaspatrollederrornotify' ), { type: 'error' } );
 				}
 			} );
 

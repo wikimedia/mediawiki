@@ -72,7 +72,9 @@ class MultiHttpClient {
 				throw new Exception( "Cannot find CA bundle: " . $this->caBundlePath );
 			}
 		}
-		static $opts = array( 'connTimeout', 'reqTimeout', 'usePipelining', 'maxConnsPerHost', 'proxy' );
+		static $opts = array(
+			'connTimeout', 'reqTimeout', 'usePipelining', 'maxConnsPerHost', 'proxy'
+		);
 		foreach ( $opts as $key ) {
 			if ( isset( $options[$key] ) ) {
 				$this->$key = $options[$key];
@@ -222,15 +224,17 @@ class MultiHttpClient {
 			$ch = $handles[$index];
 			curl_multi_remove_handle( $chm, $ch );
 
-			$info = $infos[(int)$ch];
-
-			$errno = $info['result'];
-			if ( $errno !== 0 ) {
-				$req['response']['error'] = "(curl error: $errno)";
-
-				if ( version_compare( PHP_VERSION, '5.5.0' ) >= 0 ) {
-					$req['response']['error'] .= " " . curl_strerror( $errno );
+			if ( isset( $infos[(int)$ch] ) ) {
+				$info = $infos[(int)$ch];
+				$errno = $info['result'];
+				if ( $errno !== 0 ) {
+					$req['response']['error'] = "(curl error: $errno)";
+					if ( function_exists( 'curl_strerror' ) ) {
+						$req['response']['error'] .= " " . curl_strerror( $errno );
+					}
 				}
+			} else {
+				$req['response']['error'] = "(curl error: no status set)";
 			}
 
 			// For convenience with the list() operator

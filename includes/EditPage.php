@@ -2545,7 +2545,7 @@ class EditPage {
 		$wgOut->addHTML( $this->editFormTextBeforeContent );
 
 		if ( !$this->isCssJsSubpage && $showToolbar && $wgUser->getOption( 'showtoolbar' ) ) {
-			$wgOut->addHTML( EditPage::getEditToolbar() );
+			$wgOut->addHTML( EditPage::getEditToolbar( $this->mTitle ) );
 		}
 
 		if ( $this->blankArticle ) {
@@ -3445,7 +3445,7 @@ HTML
 
 		$this->deletedSinceEdit = false;
 
-		if ( $this->mTitle->isDeletedQuick() ) {
+		if ( !$this->mTitle->exists() && $this->mTitle->isDeletedQuick() ) {
 			$this->lastDelete = $this->getLastDelete();
 			if ( $this->lastDelete ) {
 				$deleteTime = wfTimestamp( TS_MW, $this->lastDelete->log_timestamp );
@@ -3686,13 +3686,18 @@ HTML
 	 * Shows a bulletin board style toolbar for common editing functions.
 	 * It can be disabled in the user preferences.
 	 *
+	 * @param $title Title object for the page being edited (optional)
 	 * @return string
 	 */
-	static function getEditToolbar() {
+	static function getEditToolbar( $title = null ) {
 		global $wgContLang, $wgOut;
 		global $wgEnableUploads, $wgForeignFileRepos;
 
 		$imagesAvailable = $wgEnableUploads || count( $wgForeignFileRepos );
+		$showSignature = true;
+		if ( $title ) {
+			 $showSignature = MWNamespace::wantSignatures( $title->getNamespace() );
+		}
 
 		/**
 		 * $toolarray is an array of arrays each of which includes the
@@ -3760,13 +3765,13 @@ HTML
 				'sample' => wfMessage( 'nowiki_sample' )->text(),
 				'tip'    => wfMessage( 'nowiki_tip' )->text(),
 			),
-			array(
+			$showSignature ? array(
 				'id'     => 'mw-editbutton-signature',
 				'open'   => '--~~~~',
 				'close'  => '',
 				'sample' => '',
 				'tip'    => wfMessage( 'sig_tip' )->text(),
-			),
+			) : false,
 			array(
 				'id'     => 'mw-editbutton-hr',
 				'open'   => "\n----\n",

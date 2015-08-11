@@ -102,8 +102,6 @@
 	"config-db-install-account": "Conta de usuario para a instalación",
 	"config-db-username": "Nome de usuario da base de datos:",
 	"config-db-password": "Contrasinal da base de datos:",
-	"config-db-password-empty": "Introduza un contrasinal para o novo usuario da base de datos: $1.\nMalia que é posible crear usuarios sen contrasinal, esta práctica non é segura.",
-	"config-db-username-empty": "Debe introducir un valor para \"{{int:config-db-username}}\"",
 	"config-db-install-username": "Escriba o nome de usuario que empregará para conectarse á base de datos durante o proceso de instalación. Este non é o nome de usuario da conta de MediaWiki, trátase do nome de usuario para a súa base de datos.",
 	"config-db-install-password": "Escriba o contrasinal que empregará para conectarse á base de datos durante o proceso de instalación. Este non é o contrasinal da conta de MediaWiki, trátase do contrasinal para a súa base de datos.",
 	"config-db-install-help": "Introduza o nome de usuario e contrasinal que se usará para conectar á base de datos durante o proceso de instalación.",

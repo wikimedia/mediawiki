@@ -4,7 +4,8 @@
 			"Ashok modhvadia",
 			"KartikMistry",
 			"The Discoverer",
-			"NehalDaveND"
+			"NehalDaveND",
+			"Dsvyas"
 		]
 	},
 	"ooui-outline-control-move-down": "વસ્તુ નીચે ખસેડો",
@@ -12,9 +13,13 @@
 	"ooui-outline-control-remove": "વસ્તુ હટાવો",
 	"ooui-toolbar-more": "વધુ",
 	"ooui-toolgroup-expand": "વધુ",
+	"ooui-toolgroup-collapse": "ઓછા",
 	"ooui-dialog-message-accept": "બરાબર",
 	"ooui-dialog-message-reject": "રદ કરો",
 	"ooui-dialog-process-error": "કંઇક ગરબડ થઇ",
+	"ooui-dialog-process-dismiss": "વિસર્જન",
 	"ooui-dialog-process-retry": "ફરી પ્રયત્ન કરો",
-	"ooui-dialog-process-continue": "ચાલુ રાખો"
+	"ooui-dialog-process-continue": "ચાલુ રાખો",
+	"ooui-selectfile-not-supported": "ફાઇલ પસંદગીની જોગવાઈ નથી",
+	"ooui-selectfile-placeholder": "કોઇ ફાઇલ પસંદ નથી કરાઈ"
 }

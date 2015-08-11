@@ -296,7 +296,7 @@ class ImagePage extends Article {
 	}
 
 	protected function openShowImage() {
-		global $wgEnableUploads, $wgSend404Code;
+		global $wgEnableUploads, $wgSend404Code, $wgSVGMaxSize;
 
 		$this->loadFile();
 		$out = $this->getContext()->getOutput();
@@ -351,7 +351,7 @@ class ImagePage extends Article {
 					);
 					$linktext = $this->getContext()->msg( 'show-big-image' )->escaped();
 
-					$thumbSizes = $this->getThumbSizes( $width, $height, $width_orig, $height_orig );
+					$thumbSizes = $this->getThumbSizes( $width_orig, $height_orig );
 					# Generate thumbnails or thumbnail links as needed...
 					$otherSizes = array();
 					foreach ( $thumbSizes as $size ) {
@@ -361,10 +361,12 @@ class ImagePage extends Article {
 						// the current thumbnail's size ($width/$height)
 						// since that is added to the message separately, so
 						// it can be denoted as the current size being shown.
-						// Vectorized images are "infinitely" big, so all thumb
-						// sizes are shown.
+						// Vectorized images are limited by $wgSVGMaxSize big,
+						// so all thumbs less than or equal that are shown.
 						if ( ( ( $size[0] <= $width_orig && $size[1] <= $height_orig )
-								|| $this->displayImg->isVectorized() )
+								|| ( $this->displayImg->isVectorized()
+									&& max( $size[0], $size[1] ) <= $wgSVGMaxSize )
+							)
 							&& $size[0] != $width && $size[1] != $height
 						) {
 							$sizeLink = $this->makeSizeLink( $params, $size[0], $size[1] );

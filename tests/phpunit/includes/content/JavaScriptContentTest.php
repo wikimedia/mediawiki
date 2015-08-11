@@ -251,16 +251,31 @@ class JavaScriptContentTest extends TextContentTest {
 
 	/**
 	 * @covers JavaScriptContent::updateRedirect
+	 * @dataProvider provideUpdateRedirect
 	 */
-	public function testUpdateRedirect() {
+	public function testUpdateRedirect( $oldText, $expectedText) {
+		$this->setMwGlobals( array(
+			'wgServer' => '//example.org',
+			'wgScriptPath' => '/w/index.php',
+		) );
 		$target = Title::newFromText( "testUpdateRedirect_target" );
 
-		$content = $this->newContent( "#REDIRECT [[Someplace]]" );
+		$content = new JavaScriptContent( $oldText );
 		$newContent = $content->updateRedirect( $target );
 
-		$this->assertTrue(
-			$content->equals( $newContent ),
-			"content should be unchanged since it's not wikitext"
+		$this->assertEquals( $expectedText, $newContent->getNativeData() );
+	}
+
+	public static function provideUpdateRedirect() {
+		return array(
+			array(
+				'#REDIRECT [[Someplace]]',
+				'#REDIRECT [[Someplace]]',
+			),
+			array(
+				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=MediaWiki:MonoBook.js\u0026action=raw\u0026ctype=text/javascript");',
+				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=TestUpdateRedirect_target\u0026action=raw\u0026ctype=text/javascript");'
+			)
 		);
 	}
 
@@ -288,6 +303,34 @@ class JavaScriptContentTest extends TextContentTest {
 			array( new JavaScriptContent( "hallo" ), new JavaScriptContent( "hallo" ), true ),
 			array( new JavaScriptContent( "hallo" ), new CssContent( "hallo" ), false ),
 			array( new JavaScriptContent( "hallo" ), new JavaScriptContent( "HALLO" ), false ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideGetRedirectTarget
+	 */
+	public function testGetRedirectTarget( $title, $text ) {
+		$this->setMwGlobals( array(
+			'wgServer' => '//example.org',
+			'wgScriptPath' => '/w/index.php',
+		) );
+		$content = new JavaScriptContent( $text );
+		$target = $content->getRedirectTarget();
+		$this->assertEquals( $title, $target ? $target->getPrefixedText() : null );
+	}
+
+	/**
+	 * Keep this in sync with JavaScriptContentHandlerTest::provideMakeRedirectContent()
+	 */
+	public static function provideGetRedirectTarget() {
+		return array(
+			array( 'MediaWiki:MonoBook.js', '/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=MediaWiki:MonoBook.js\u0026action=raw\u0026ctype=text/javascript");' ),
+			array( 'User:FooBar/common.js', '/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=User:FooBar/common.js\u0026action=raw\u0026ctype=text/javascript");' ),
+			array( 'Gadget:FooBaz.js', '/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=Gadget:FooBaz.js\u0026action=raw\u0026ctype=text/javascript");' ),
+			// No #REDIRECT comment
+			array( null, 'mw.loader.load("//example.org/w/index.php?title=MediaWiki:NoRedirect.js\u0026action=raw\u0026ctype=text/javascript");' ),
+			// Different domain
+			array( null, '/* #REDIRECT */mw.loader.load("//example.com/w/index.php?title=MediaWiki:OtherWiki.js\u0026action=raw\u0026ctype=text/javascript");' ),
 		);
 	}
 }

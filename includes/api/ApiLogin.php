@@ -24,6 +24,7 @@
  *
  * @file
  */
+use MediaWiki\Logger\LoggerFactory;
 
 /**
  * Unit to authenticate log-in attempts to the current wiki.
@@ -174,6 +175,12 @@ class ApiLogin extends ApiBase {
 		}
 
 		$this->getResult()->addValue( null, 'login', $result );
+
+		LoggerFactory::getInstance( 'authmanager' )->info( 'Login attempt', array(
+			'event' => 'login',
+			'successful' => $authRes === LoginForm::SUCCESS,
+			'status' => LoginForm::$statusCodes[$authRes],
+		) );
 	}
 
 	public function mustBePosted() {

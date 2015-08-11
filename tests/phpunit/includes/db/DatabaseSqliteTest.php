@@ -189,18 +189,34 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 	public function testDuplicateTableStructure() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$db->query( 'CREATE TABLE foo(foo, barfoo)' );
+		$db->query( 'CREATE INDEX index1 ON foo(foo)' );
+		$db->query( 'CREATE UNIQUE INDEX index2 ON foo(barfoo)' );
 
 		$db->duplicateTableStructure( 'foo', 'bar' );
 		$this->assertEquals( 'CREATE TABLE "bar"(foo, barfoo)',
 			$db->selectField( 'sqlite_master', 'sql', array( 'name' => 'bar' ) ),
 			'Normal table duplication'
 		);
+		$indexList = $db->query( 'PRAGMA INDEX_LIST("bar")' );
+		$index = $indexList->next();
+		$this->assertEquals( 'bar_index1', $index->name );
+		$this->assertEquals( '0', $index->unique );
+		$index = $indexList->next();
+		$this->assertEquals( 'bar_index2', $index->name );
+		$this->assertEquals( '1', $index->unique );
 
 		$db->duplicateTableStructure( 'foo', 'baz', true );
 		$this->assertEquals( 'CREATE TABLE "baz"(foo, barfoo)',
 			$db->selectField( 'sqlite_temp_master', 'sql', array( 'name' => 'baz' ) ),
 			'Creation of temporary duplicate'
 		);
+		$indexList = $db->query( 'PRAGMA INDEX_LIST("baz")' );
+		$index = $indexList->next();
+		$this->assertEquals( 'baz_index1', $index->name );
+		$this->assertEquals( '0', $index->unique );
+		$index = $indexList->next();
+		$this->assertEquals( 'baz_index2', $index->name );
+		$this->assertEquals( '1', $index->unique );
 		$this->assertEquals( 0,
 			$db->selectField( 'sqlite_master', 'COUNT(*)', array( 'name' => 'baz' ) ),
 			'Create a temporary duplicate only'

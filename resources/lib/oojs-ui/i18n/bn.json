@@ -8,7 +8,8 @@
 			"Runab",
 			"Sayak Sarkar",
 			"Aftabuzzaman",
-			"RYasmeen (WMF)"
+			"RYasmeen (WMF)",
+			"NahidSultan"
 		]
 	},
 	"ooui-outline-control-move-down": "আইটেম নিচে স্থানান্তর",
@@ -22,5 +23,7 @@
 	"ooui-dialog-process-error": "কিছু একটায় ত্রুটি হয়েছে",
 	"ooui-dialog-process-dismiss": "বাতিল করুন",
 	"ooui-dialog-process-retry": "আবার চেষ্টা করুন",
-	"ooui-dialog-process-continue": "অগ্রসর হোন"
+	"ooui-dialog-process-continue": "অগ্রসর হোন",
+	"ooui-selectfile-not-supported": "চিত্র নির্বাচন সমর্থন করছে না।",
+	"ooui-selectfile-placeholder": " কোন চিত্র নির্বাচিত হয়নি।"
 }

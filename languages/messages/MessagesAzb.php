@@ -1,5 +1,5 @@
 <?php
-/** South Azerbaijani (تورکجه)
+/** South Azerbaijani (تۆرکجه)
  *
  * To improve a translation please visit https://translatewiki.net
  *
@@ -8,6 +8,7 @@
  *
  * @author Arjanizary
  * @author E THP
+ * @author Koroğlu
  * @author Mjbmr
  */
 
@@ -15,45 +16,45 @@ $fallback = 'fa';
 $rtl = true;
 
 $namespaceNames = array(
-	NS_MEDIA            => 'مئدیا',
+	NS_MEDIA            => 'مدیا',
 	NS_SPECIAL          => 'اؤزل',
 	NS_TALK             => 'دانیشیق',
-	NS_USER             => 'ایستیفاده‌چی',
-	NS_USER_TALK        => 'ایستیفاده‌چی_دانیشیغی',
+	NS_USER             => 'ایشلدن',
+	NS_USER_TALK        => 'ایشلدن_دانیشیغی',
 	NS_PROJECT_TALK     => '$1_دانیشیغی',
 	NS_FILE             => 'فایل',
 	NS_FILE_TALK        => 'فایل_دانیشیغی',
-	NS_MEDIAWIKI        => 'مئدیا‌ویکی',
-	NS_MEDIAWIKI_TALK   => 'مئدیا‌ویکی_دانیشیغی',
+	NS_MEDIAWIKI        => 'مدیا‌ویکی',
+	NS_MEDIAWIKI_TALK   => 'مدیا‌ویکی_دانیشیغی',
 	NS_TEMPLATE         => 'شابلون',
 	NS_TEMPLATE_TALK    => 'شابلون_دانیشیغی',
-	NS_HELP             => 'یاردیم',
-	NS_HELP_TALK        => 'یاردیم_دانیشیغی',
+	NS_HELP             => 'کؤمک',
+	NS_HELP_TALK        => 'کؤمک_دانیشیغی',
 	NS_CATEGORY         => 'بؤلمه',
 	NS_CATEGORY_TALK    => 'بؤلمه_دانیشیغی',
 );
 
 $specialPageAliases = array(
-	'Activeusers'               => array( 'چالیشقان_ایستسفاده‌چیلر' ),
+	'Activeusers'               => array( 'چالیشقان_ایشلدن‌لر' ),
 	'Allmessages'               => array( 'بوتون_مئساژلار' ),
-	'Allpages'                  => array( 'بوتون_صحیفه‌لر' ),
-	'Ancientpages'              => array( 'اسکی_صحیفه‌لر' ),
+	'Allpages'                  => array( 'بوتون_صفحه‌لر' ),
+	'Ancientpages'              => array( 'اسکی_صفحه‌لر' ),
 	'Badtitle'                  => array( 'پیس_آد' ),
-	'Blankpage'                 => array( 'بوش_صحیفه' ),
+	'Blankpage'                 => array( 'بوش_صفحه' ),
 	'ChangePassword'            => array( 'رمزی_دَییش' ),
 	'CreateAccount'             => array( 'حساب_یارات' ),
 	'Mycontributions'           => array( 'چالیشمالاریم' ),
-	'Mypage'                    => array( 'صحیفه‌م' ),
+	'Mypage'                    => array( 'صفحه‌م' ),
 	'Mytalk'                    => array( 'دانیشیغیم' ),
 	'Myuploads'                 => array( 'یوکله‌دیکلریم' ),
 	'Newimages'                 => array( 'یئنی_فایل‌لار' ),
-	'Newpages'                  => array( 'یئنی_صحیفه‌لر' ),
+	'Newpages'                  => array( 'یئنی_صفحه‌لر' ),
 	'PasswordReset'             => array( 'رمز_دَییشمه‌' ),
 	'Randompage'                => array( 'راست‌گله' ),
 	'Recentchanges'             => array( 'سون_دَییشیکلر' ),
 	'Search'                    => array( 'آختار' ),
-	'Shortpages'                => array( 'قیسسا_صحیفه‌لر' ),
-	'Specialpages'              => array( 'اؤزل_صحیفه‌لر' ),
+	'Shortpages'                => array( 'قیسسا_صفحه‌لر' ),
+	'Specialpages'              => array( 'اؤزل_صفحه‌لر' ),
 	'Statistics'                => array( 'آمار' ),
 	'Unusedcategories'          => array( 'ایشلنممیش_بؤلمه‌لر' ),
 	'Unusedimages'              => array( 'ایشلنممیش_فایل‌لار' ),
@@ -65,13 +66,13 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
-	'numberofpages'             => array( '1', 'صحیفه‌لر_ساییسی', 'تعدادصفحه‌ها', 'NUMBEROFPAGES' ),
+	'numberofpages'             => array( '1', 'صفحه‌لر_ساییسی', 'تعدادصفحه‌ها', 'NUMBEROFPAGES' ),
 	'numberofarticles'          => array( '1', 'مقاله‌لر_ساییسی', 'تعدادمقاله‌ها', 'NUMBEROFARTICLES' ),
 	'numberoffiles'             => array( '1', 'قایل‌لار_ساییسی', 'تعدادپرونده‌ها', 'NUMBEROFFILES' ),
-	'numberofusers'             => array( '1', 'ایستیفاده‌چیلر_ساییسی', 'تعدادکاربران', 'NUMBEROFUSERS' ),
-	'numberofactiveusers'       => array( '1', 'چالیشقان_ایستیفاده‌چیلر', 'کاربران‌فعال', 'کاربران_فعال', 'NUMBEROFACTIVEUSERS' ),
+	'numberofusers'             => array( '1', 'یشلدن‌لر_ساییسی', 'تعدادکاربران', 'NUMBEROFUSERS' ),
+	'numberofactiveusers'       => array( '1', 'چالیشقان_ایشلدن‌لر', 'کاربران‌فعال', 'کاربران_فعال', 'NUMBEROFACTIVEUSERS' ),
 	'numberofedits'             => array( '1', 'دَییشدیرمه_ساییسی', 'تعدادویرایش‌ها', 'NUMBEROFEDITS' ),
-	'pagename'                  => array( '1', 'صحیفه‌نین_آدی', 'نام‌صفحه', 'نام_صفحه', 'PAGENAME' ),
+	'pagename'                  => array( '1', 'صفحه‌نین_آدی', 'نام‌صفحه', 'نام_صفحه', 'PAGENAME' ),
 	'img_right'                 => array( '1', 'ساغ', 'راست', 'right' ),
 	'img_left'                  => array( '1', 'سول', 'چپ', 'left' ),
 	'img_none'                  => array( '1', 'هئچ', 'هیچ', 'none' ),

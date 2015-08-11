@@ -44,6 +44,11 @@ class SpecialJavaScriptTest extends SpecialPage {
 
 		if ( $par === null ) {
 			// No framework specified
+			// If only one framework is configured, redirect to it. Otherwise display a list.
+			if ( count( self::$frameworks ) === 1 ) {
+				$out->redirect( $this->getPageTitle( self::$frameworks[0] . '/plain' )->getLocalURL() );
+				return;
+			}
 			$out->setStatusCode( 404 );
 			$out->setPageTitle( $this->msg( 'javascripttest' ) );
 			$out->addHTML(
@@ -74,10 +79,14 @@ class SpecialJavaScriptTest extends SpecialPage {
 		// no sensitive data. In order to allow TestSwarm to embed it into a test client window,
 		// we need to allow iframing of this page.
 		$out->allowClickjacking();
-		$out->setSubtitle(
-			$this->msg( 'javascripttest-backlink' )
-				->rawParams( Linker::linkKnown( $this->getPageTitle() ) )
-		);
+		if ( count( self::$frameworks ) !== 1 ) {
+			// If there's only one framework, don't set the subtitle since it
+			// is going to redirect back to this page
+			$out->setSubtitle(
+				$this->msg( 'javascripttest-backlink' )
+					->rawParams( Linker::linkKnown( $this->getPageTitle() ) )
+			);
+		}
 
 		// Custom actions
 		if ( isset( $pars[1] ) ) {
@@ -134,13 +143,15 @@ class SpecialJavaScriptTest extends SpecialPage {
 	}
 
 	/**
-	 * Wrap HTML contents in a summary container.
+	 * Get summary text wrapped in a container
 	 *
-	 * @param string $html HTML contents to be wrapped
 	 * @return string HTML
 	 */
-	private function wrapSummaryHtml( $html ) {
-		return "<div id=\"mw-javascripttest-summary\">$html</div>";
+	private function getSummaryHtml() {
+		$summary = $this->msg( 'javascripttest-qunit-intro' )
+			->params( 'https://www.mediawiki.org/wiki/Manual:JavaScript_unit_testing' )
+			->parseAsBlock();
+		return "<div id=\"mw-javascripttest-summary\">$summary</div>";
 	}
 
 	/**
@@ -153,17 +164,13 @@ class SpecialJavaScriptTest extends SpecialPage {
 
 		$modules = $out->getResourceLoader()->getTestModuleNames( 'qunit' );
 
-		$summary = $this->msg( 'javascripttest-qunit-intro' )
-			->params( 'https://www.mediawiki.org/wiki/Manual:JavaScript_unit_testing' )
-			->parseAsBlock();
-
 		$baseHtml = <<<HTML
 <div class="mw-content-ltr">
 <div id="qunit"></div>
 </div>
 HTML;
 
-		$out->addHtml( $this->wrapSummaryHtml( $summary ) . $baseHtml );
+		$out->addHtml( $this->getSummaryHtml() . $baseHtml );
 
 		// The testrunner configures QUnit and essentially depends on it. However, test suites
 		// are reusable in environments that preload QUnit (or a compatibility interface to
@@ -198,12 +205,26 @@ HTML;
 			'lang' => $this->getLanguage()->getCode(),
 			'skin' => $this->getSkin()->getSkinName(),
 			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
+			'target' => 'test',
 		);
 		$embedContext = new ResourceLoaderContext( $rl, new FauxRequest( $query ) );
 		$query['only'] = 'scripts';
 		$startupContext = new ResourceLoaderContext( $rl, new FauxRequest( $query ) );
 
+		$query['raw'] = true;
+
 		$modules = $rl->getTestModuleNames( 'qunit' );
+
+		// Disable autostart because we load modules asynchronously. By default, QUnit would start
+		// at domready when there are no tests loaded and also fire 'QUnit.done' which then instructs
+		// Karma to end the run before the tests even started.
+		$qunitConfig = 'QUnit.config.autostart = false;'
+			. 'if (window.__karma__) {'
+			// karma-qunit's use of autostart=false and QUnit.start conflicts with ours.
+			// Hack around this by replacing 'karma.loaded' with a no-op and call it ourselves later.
+			// See <https://github.com/karma-runner/karma-qunit/issues/27>.
+			. 'window.__karma__.loaded = function () {};'
+			. '}';
 
 		// The below is essentially a pure-javascript version of OutputPage::getHeadScripts.
 		$startup = $rl->makeModuleResponse( $startupContext, array(
@@ -218,43 +239,54 @@ HTML;
 			'user.options' => $rl->getModule( 'user.options' ),
 			'user.tokens' => $rl->getModule( 'user.tokens' ),
 		) );
-		$code .= Xml::encodeJsCall( 'mw.loader.load', array( $modules ) );
+		// Catch exceptions (such as "dependency missing" or "unknown module") so that we
+		// always start QUnit. Re-throw so that they are caught and reported as global exceptions
+		// by QUnit and Karma.
+		$code .= '(function () {'
+			. 'var start = window.__karma__ ? window.__karma__.start : QUnit.start;'
+			. 'try {'
+			. 'mw.loader.using( ' . Xml::encodeJsVar( $modules ) . ' ).always( start );'
+			. '} catch ( e ) { start(); throw e; }'
+			. '}());';
 
 		header( 'Content-Type: text/javascript; charset=utf-8' );
 		header( 'Cache-Control: private, no-cache, must-revalidate' );
 		header( 'Pragma: no-cache' );
+		echo $qunitConfig;
 		echo $startup;
-		echo "\n";
-		// Note: The following has to be wrapped in a script tag because the startup module also
-		// writes a script tag (the one loading mediawiki.js). Script tags are synchronous, block
-		// each other, and run in order. But they don't nest. The code appended after the startup
-		// module runs before the added script tag is parsed and executed.
-		echo Xml::encodeJsCall( 'document.write', array( Html::inlineScript( $code ) ) );
+		// The following has to be deferred via RLQ because the startup module is asynchronous.
+		echo ResourceLoader::makeLoaderConditionalScript( $code );
 	}
 
 	private function plainQUnit() {
 		$out = $this->getOutput();
 		$out->disable();
 
-		$url = $this->getPageTitle( 'qunit/export' )->getFullURL( array(
-			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
-		) );
-
-		$styles = $out->makeResourceLoaderLink(
-			'jquery.qunit', ResourceLoaderModule::TYPE_STYLES, false
-		);
-		// Use 'raw' since this is a plain HTML page without ResourceLoader
-		$scripts = $out->makeResourceLoaderLink(
-			'jquery.qunit', ResourceLoaderModule::TYPE_SCRIPTS, false, array( 'raw' => 'true' )
+		$styles = $out->makeResourceLoaderLink( 'jquery.qunit',
+			ResourceLoaderModule::TYPE_STYLES
 		);
 
-		$head = trim( $styles['html'] . $scripts['html'] );
+		// Use 'raw' because QUnit loads before ResourceLoader initialises (omit mw.loader.state call)
+		// Use 'test' to ensure OutputPage doesn't use the "async" attribute because QUnit must
+		// load before qunit/export.
+		$scripts = $out->makeResourceLoaderLink( 'jquery.qunit',
+			ResourceLoaderModule::TYPE_SCRIPTS,
+			array( 'raw' => true, 'sync' => true )
+		);
+
+		$head = implode( "\n", array_merge( $styles['html'], $scripts['html'] ) );
+		$summary = $this->getSummaryHtml();
 		$html = <<<HTML
 <!DOCTYPE html>
 <title>QUnit</title>
 $head
+$summary
 <div id="qunit"></div>
 HTML;
+
+		$url = $this->getPageTitle( 'qunit/export' )->getFullURL( array(
+			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
+		) );
 		$html .= "\n" . Html::linkedScript( $url );
 
 		header( 'Content-Type: text/html; charset=utf-8' );

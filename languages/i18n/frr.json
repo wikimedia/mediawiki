@@ -7,7 +7,8 @@
 			"Merlissimo",
 			"Murma174",
 			"Pyt",
-			"아라"
+			"아라",
+			"Purodha"
 		]
 	},
 	"tog-underline": "Ferwisangen onerstrik:",
@@ -482,7 +483,7 @@
 	"pt-userlogout": "Ufmelde",
 	"php-mail-error-unknown": "Ünbekäänd feeler mä det funktjuun mail() faan PHP.",
 	"user-mail-no-addy": "Küd nian e-mail schüür saner e-mail-adres.",
-	"user-mail-no-body": "Dü wulst en e-mail saner tekst wechsjüür.",
+	"user-mail-no-body": "Dü wulst en e-mail saner tekst wechschüür.",
 	"changepassword": "Paaswurd feranre",
 	"resetpass_announce": "Am det uunmeldin uftuslütjen, skel dü en nei paaswurd iindu.",
 	"resetpass_header": "Paaswurd feranre",
@@ -1696,7 +1697,7 @@
 	"emailccme": "Schüür mi en kopii faan det e-mail.",
 	"emailccsubject": "Kopii faan din mädialang tu $1: $2",
 	"emailsent": "E-mail as wechschüürd wurden",
-	"emailsenttext": "Din e-mail as wechsjüürd wurden.",
+	"emailsenttext": "Din e-mail as wechschüürd wurden.",
 	"emailuserfooter": "Detdiar e-mail as faan „$1“ tu „$2“ auer det funktjuun „{{int:emailpage}}“ bi {{SITENAME}} schüürd wurden.",
 	"usermessage-summary": "Süsteemnooracht seekert.",
 	"usermessage-editor": "Süsteemnoorachten siinst",
