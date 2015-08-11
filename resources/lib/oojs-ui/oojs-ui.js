@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.12.2
+ * OOjs UI v0.12.3
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-07-28T23:01:32Z
+ * Date: 2015-08-11T22:34:00Z
  */
 ( function ( OO ) {
 
@@ -84,11 +84,12 @@ OO.ui.isFocusableElement = function ( $element ) {
 			!$element.parents().addBack().filter( function () {
 				return $.css( this, 'visibility' ) === 'hidden';
 			} ).length
-		);
+		),
+		isTabOk = isNaN( $element.attr( 'tabindex' ) ) || +$element.attr( 'tabindex' ) >= 0;
 
 	return (
 		( isInElementGroup ? !node.disabled : isOtherElement ) &&
-		isVisible
+		isVisible && isTabOk
 	);
 };
 
@@ -316,6 +317,34 @@ OO.ui.infuse = function ( idOrNode ) {
 			return msg();
 		}
 		return msg;
+	};
+
+	/**
+	 * @param {string} url
+	 * @return {boolean}
+	 */
+	OO.ui.isSafeUrl = function ( url ) {
+		var protocol,
+			// Keep in sync with php/Tag.php
+			whitelist = [
+				'bitcoin:', 'ftp:', 'ftps:', 'geo:', 'git:', 'gopher:', 'http:', 'https:', 'irc:', 'ircs:',
+				'magnet:', 'mailto:', 'mms:', 'news:', 'nntp:', 'redis:', 'sftp:', 'sip:', 'sips:', 'sms:', 'ssh:',
+				'svn:', 'tel:', 'telnet:', 'urn:', 'worldwind:', 'xmpp:'
+			];
+
+		if ( url.indexOf( ':' ) === -1 ) {
+			// No protocol, safe
+			return true;
+		}
+
+		protocol = url.split( ':', 1 )[0] + ':';
+		if ( !protocol.match( /^([A-za-z0-9\+\.\-])+:/ ) ) {
+			// Not a valid protocol, safe
+			return true;
+		}
+
+		// Safe if in the whitelist
+		return $.inArray( protocol, whitelist ) !== -1;
 	};
 
 } )();
@@ -1076,7 +1105,7 @@ OO.ui.Element.static.tagName = 'div';
  *   DOM node.
  */
 OO.ui.Element.static.infuse = function ( idOrNode ) {
-	var obj = OO.ui.Element.static.unsafeInfuse( idOrNode, true );
+	var obj = OO.ui.Element.static.unsafeInfuse( idOrNode, false );
 	// Verify that the type matches up.
 	// FIXME: uncomment after T89721 is fixed (see T90929)
 	/*
@@ -1092,12 +1121,14 @@ OO.ui.Element.static.infuse = function ( idOrNode ) {
  * extra property so that only the top-level invocation touches the DOM.
  * @private
  * @param {string|HTMLElement|jQuery} idOrNode
- * @param {boolean} top True only for top-level invocation.
+ * @param {jQuery.Promise|boolean} domPromise A promise that will be resolved
+ *     when the top-level widget of this infusion is inserted into DOM,
+ *     replacing the original node; or false for top-level invocation.
  * @return {OO.ui.Element}
  */
-OO.ui.Element.static.unsafeInfuse = function ( idOrNode, top ) {
+OO.ui.Element.static.unsafeInfuse = function ( idOrNode, domPromise ) {
 	// look for a cached result of a previous infusion.
-	var id, $elem, data, cls, parts, parent, obj;
+	var id, $elem, data, cls, parts, parent, obj, top, state;
 	if ( typeof idOrNode === 'string' ) {
 		id = idOrNode;
 		$elem = $( document.getElementById( id ) );
@@ -1105,16 +1136,16 @@ OO.ui.Element.static.unsafeInfuse = function ( idOrNode, top ) {
 		$elem = $( idOrNode );
 		id = $elem.attr( 'id' );
 	}
-	data = $elem.data( 'ooui-infused' );
+	if ( !$elem.length ) {
+		throw new Error( 'Widget not found: ' + id );
+	}
+	data = $elem.data( 'ooui-infused' ) || $elem[0].oouiInfused;
 	if ( data ) {
 		// cached!
 		if ( data === true ) {
 			throw new Error( 'Circular dependency! ' + id );
 		}
 		return data;
-	}
-	if ( !$elem.length ) {
-		throw new Error( 'Widget not found: ' + id );
 	}
 	data = $elem.attr( 'data-ooui' );
 	if ( !data ) {
@@ -1159,12 +1190,16 @@ OO.ui.Element.static.unsafeInfuse = function ( idOrNode, top ) {
 		throw new Error( 'Unknown widget type: id: ' + id + ', class: ' + data._ );
 	}
 
+	if ( domPromise === false ) {
+		top = $.Deferred();
+		domPromise = top.promise();
+	}
 	$elem.data( 'ooui-infused', true ); // prevent loops
 	data.id = id; // implicit
 	data = OO.copy( data, null, function deserialize( value ) {
 		if ( OO.isPlainObject( value ) ) {
 			if ( value.tag ) {
-				return OO.ui.Element.static.unsafeInfuse( value.tag, false );
+				return OO.ui.Element.static.unsafeInfuse( value.tag, domPromise );
 			}
 			if ( value.html ) {
 				return new OO.ui.HtmlSnippet( value.html );
@@ -1173,13 +1208,22 @@ OO.ui.Element.static.unsafeInfuse = function ( idOrNode, top ) {
 	} );
 	// jscs:disable requireCapitalizedConstructors
 	obj = new cls( data ); // rebuild widget
+	// pick up dynamic state, like focus, value of form inputs, scroll position, etc.
+	state = obj.gatherPreInfuseState( $elem );
 	// now replace old DOM with this new DOM.
 	if ( top ) {
 		$elem.replaceWith( obj.$element );
+		// This element is now gone from the DOM, but if anyone is holding a reference to it,
+		// let's allow them to OO.ui.infuse() it and do what they expect (T105828).
+		// Do not use jQuery.data(), as using it on detached nodes leaks memory in 1.x line by design.
+		$elem[0].oouiInfused = obj;
+		top.resolve();
 	}
 	obj.$element.data( 'ooui-infused', obj );
 	// set the 'data-ooui' attribute so we can identify infused widgets
 	obj.$element.attr( 'data-ooui', '' );
+	// restore dynamic state after the new element is inserted into DOM
+	domPromise.done( obj.restorePreInfuseState.bind( obj, state ) );
 	return obj;
 };
 
@@ -1754,11 +1798,40 @@ OO.ui.Element.prototype.scrollElementIntoView = function ( config ) {
 };
 
 /**
+ * Gather the dynamic state (focus, value of form inputs, scroll position, etc.) of a HTML DOM node
+ * (and its children) that represent an Element of the same type and configuration as the current
+ * one, generated by the PHP implementation.
+ *
+ * This method is called just before `node` is detached from the DOM. The return value of this
+ * function will be passed to #restorePreInfuseState after this widget's #$element is inserted into
+ * DOM to replace `node`.
+ *
+ * @protected
+ * @param {HTMLElement} node
+ * @return {Object}
+ */
+OO.ui.Element.prototype.gatherPreInfuseState = function () {
+	return {};
+};
+
+/**
+ * Restore the pre-infusion dynamic state for this widget.
+ *
+ * This method is called after #$element has been inserted into DOM. The parameter is the return
+ * value of #gatherPreInfuseState.
+ *
+ * @protected
+ * @param {Object} state
+ */
+OO.ui.Element.prototype.restorePreInfuseState = function () {
+};
+
+/**
  * Layouts are containers for elements and are used to arrange other widgets of arbitrary type in a way
  * that is centrally controlled and can be updated dynamically. Layouts can be, and usually are, combined.
  * See {@link OO.ui.FieldsetLayout FieldsetLayout}, {@link OO.ui.FieldLayout FieldLayout}, {@link OO.ui.FormLayout FormLayout},
  * {@link OO.ui.PanelLayout PanelLayout}, {@link OO.ui.StackLayout StackLayout}, {@link OO.ui.PageLayout PageLayout},
- * and {@link OO.ui.BookletLayout BookletLayout} for more information and examples.
+ * {@link OO.ui.HorizontalLayout HorizontalLayout}, and {@link OO.ui.BookletLayout BookletLayout} for more information and examples.
  *
  * @abstract
  * @class
@@ -2090,7 +2163,27 @@ OO.ui.Window.prototype.getManager = function () {
  * @return {string} Symbolic name of the size: `small`, `medium`, `large`, `larger`, `full`
  */
 OO.ui.Window.prototype.getSize = function () {
-	return this.size;
+	var viewport = OO.ui.Element.static.getDimensions( this.getElementWindow() ),
+		sizes = this.manager.constructor.static.sizes,
+		size = this.size;
+
+	if ( !sizes[ size ] ) {
+		size = this.manager.constructor.static.defaultSize;
+	}
+	if ( size !== 'full' && viewport.rect.right - viewport.rect.left < sizes[ size ].width ) {
+		size = 'full';
+	}
+
+	return size;
+};
+
+/**
+ * Get the size properties associated with the current window size
+ *
+ * @return {Object} Size properties
+ */
+OO.ui.Window.prototype.getSizeProperties = function () {
+	return this.manager.constructor.static.sizes[ this.getSize() ];
 };
 
 /**
@@ -3423,20 +3516,11 @@ OO.ui.WindowManager.prototype.updateWindowSize = function ( win ) {
 		return;
 	}
 
-	var viewport = OO.ui.Element.static.getDimensions( win.getElementWindow() ),
-		sizes = this.constructor.static.sizes,
-		size = win.getSize();
+	var isFullscreen = win.getSize() === 'full';
 
-	if ( !sizes[ size ] ) {
-		size = this.constructor.static.defaultSize;
-	}
-	if ( size !== 'full' && viewport.rect.right - viewport.rect.left < sizes[ size ].width ) {
-		size = 'full';
-	}
-
-	this.$element.toggleClass( 'oo-ui-windowManager-fullscreen', size === 'full' );
-	this.$element.toggleClass( 'oo-ui-windowManager-floating', size !== 'full' );
-	win.setDimensions( sizes[ size ] );
+	this.$element.toggleClass( 'oo-ui-windowManager-fullscreen', isFullscreen );
+	this.$element.toggleClass( 'oo-ui-windowManager-floating', !isFullscreen );
+	win.setDimensions( win.getSizeProperties() );
 
 	this.emit( 'resize', win );
 
@@ -6174,7 +6258,8 @@ OO.ui.mixin.FlaggedElement.prototype.setFlaggedElement = function ( $flagged ) {
  * @return {boolean} The flag is set
  */
 OO.ui.mixin.FlaggedElement.prototype.hasFlag = function ( flag ) {
-	return flag in this.flags;
+	// This may be called before the constructor, thus before this.flags is set
+	return this.flags && ( flag in this.flags );
 };
 
 /**
@@ -6183,7 +6268,8 @@ OO.ui.mixin.FlaggedElement.prototype.hasFlag = function ( flag ) {
  * @return {string[]} Flag names
  */
 OO.ui.mixin.FlaggedElement.prototype.getFlags = function () {
-	return Object.keys( this.flags );
+	// This may be called before the constructor, thus before this.flags is set
+	return Object.keys( this.flags || {} );
 };
 
 /**
@@ -8169,6 +8255,9 @@ OO.ui.ProcessDialog = function OoUiProcessDialog( config ) {
 	// Parent constructor
 	OO.ui.ProcessDialog.parent.call( this, config );
 
+	// Properties
+	this.fitOnOpen = false;
+
 	// Initialization
 	this.$element.addClass( 'oo-ui-processDialog' );
 };
@@ -8311,21 +8400,47 @@ OO.ui.ProcessDialog.prototype.executeAction = function ( action ) {
 };
 
 /**
+ * @inheritdoc
+ */
+OO.ui.ProcessDialog.prototype.setDimensions = function () {
+	// Parent method
+	OO.ui.ProcessDialog.parent.prototype.setDimensions.apply( this, arguments );
+
+	this.fitLabel();
+};
+
+/**
  * Fit label between actions.
  *
  * @private
  * @chainable
  */
 OO.ui.ProcessDialog.prototype.fitLabel = function () {
-	var safeWidth, primaryWidth, biggerWidth, labelWidth, navigationWidth, leftWidth, rightWidth;
+	var safeWidth, primaryWidth, biggerWidth, labelWidth, navigationWidth, leftWidth, rightWidth,
+		size = this.getSizeProperties();
+
+	if ( typeof size.width !== 'number' ) {
+		if ( this.isOpened() ) {
+			navigationWidth = this.$head.width() - 20;
+		} else if ( this.isOpening() ) {
+			if ( !this.fitOnOpen ) {
+				// Size is relative and the dialog isn't open yet, so wait.
+				this.manager.opening.done( this.fitLabel.bind( this ) );
+				this.fitOnOpen = true;
+			}
+			return;
+		} else {
+			return;
+		}
+	} else {
+		navigationWidth = size.width - 20;
+	}
 
 	safeWidth = this.$safeActions.is( ':visible' ) ? this.$safeActions.width() : 0;
 	primaryWidth = this.$primaryActions.is( ':visible' ) ? this.$primaryActions.width() : 0;
 	biggerWidth = Math.max( safeWidth, primaryWidth );
 
 	labelWidth = this.title.$element.width();
-	// Is there a better way to calculate this?
-	navigationWidth = OO.ui.WindowManager.static.sizes[ this.getSize() ].width - 20;
 
 	if ( 2 * biggerWidth + labelWidth < navigationWidth ) {
 		// We have enough space to center the label
@@ -8419,6 +8534,7 @@ OO.ui.ProcessDialog.prototype.getTeardownProcess = function ( data ) {
 		.first( function () {
 			// Make sure to hide errors
 			this.hideErrors();
+			this.fitOnOpen = false;
 		}, this );
 };
 
@@ -8445,13 +8561,19 @@ OO.ui.ProcessDialog.prototype.getTeardownProcess = function ( data ) {
  * @class
  * @extends OO.ui.Layout
  * @mixins OO.ui.mixin.LabelElement
+ * @mixins OO.ui.mixin.TitledElement
  *
  * @constructor
  * @param {OO.ui.Widget} fieldWidget Field widget
  * @param {Object} [config] Configuration options
  * @cfg {string} [align='left'] Alignment of the label: 'left', 'right', 'top' or 'inline'
- * @cfg {string|OO.ui.HtmlSnippet} [help] Help text. When help text is specified, a help icon will appear
- *  in the upper-right corner of the rendered field.
+ * @cfg {Array} [errors] Error messages about the widget, which will be displayed below the widget.
+ *  The array may contain strings or OO.ui.HtmlSnippet instances.
+ * @cfg {Array} [notices] Notices about the widget, which will be displayed below the widget.
+ *  The array may contain strings or OO.ui.HtmlSnippet instances.
+ * @cfg {string|OO.ui.HtmlSnippet} [help] Help text. When help text is specified, a "help" icon will appear
+ *  in the upper-right corner of the rendered field; clicking it will display the text in a popup.
+ *  For important messages, you are advised to use `notices`, as they are always shown.
  */
 OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	// Allow passing positional parameters inside the config object
@@ -8461,7 +8583,7 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	}
 
 	var hasInputWidget = fieldWidget.constructor.static.supportsSimpleLabel,
-		div;
+		div, i;
 
 	// Configuration initialization
 	config = $.extend( { align: 'left' }, config );
@@ -8471,10 +8593,14 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 
 	// Mixin constructors
 	OO.ui.mixin.LabelElement.call( this, config );
+	OO.ui.mixin.TitledElement.call( this, $.extend( {}, config, { $titled: this.$label } ) );
 
 	// Properties
 	this.fieldWidget = fieldWidget;
+	this.errors = config.errors || [];
+	this.notices = config.notices || [];
 	this.$field = $( '<div>' );
+	this.$messages = $( '<ul>' );
 	this.$body = $( '<' + ( hasInputWidget ? 'label' : 'div' ) + '>' );
 	this.align = null;
 	if ( config.help ) {
@@ -8508,11 +8634,22 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	this.$element
 		.addClass( 'oo-ui-fieldLayout' )
 		.append( this.$help, this.$body );
+	if ( this.errors.length || this.notices.length ) {
+		this.$element.append( this.$messages );
+	}
 	this.$body.addClass( 'oo-ui-fieldLayout-body' );
+	this.$messages.addClass( 'oo-ui-fieldLayout-messages' );
 	this.$field
 		.addClass( 'oo-ui-fieldLayout-field' )
 		.toggleClass( 'oo-ui-fieldLayout-disable', this.fieldWidget.isDisabled() )
 		.append( this.fieldWidget.$element );
+
+	for ( i = 0; i < this.notices.length; i++ ) {
+		this.$messages.append( this.makeMessage( 'notice', this.notices[i] ) );
+	}
+	for ( i = 0; i < this.errors.length; i++ ) {
+		this.$messages.append( this.makeMessage( 'error', this.errors[i] ) );
+	}
 
 	this.setAlignment( config.align );
 };
@@ -8521,6 +8658,7 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 
 OO.inheritClass( OO.ui.FieldLayout, OO.ui.Layout );
 OO.mixinClass( OO.ui.FieldLayout, OO.ui.mixin.LabelElement );
+OO.mixinClass( OO.ui.FieldLayout, OO.ui.mixin.TitledElement );
 
 /* Methods */
 
@@ -8552,6 +8690,28 @@ OO.ui.FieldLayout.prototype.onLabelClick = function () {
  */
 OO.ui.FieldLayout.prototype.getField = function () {
 	return this.fieldWidget;
+};
+
+/**
+ * @param {string} kind 'error' or 'notice'
+ * @param {string|OO.ui.HtmlSnippet} text
+ * @return {jQuery}
+ */
+OO.ui.FieldLayout.prototype.makeMessage = function ( kind, text ) {
+	var $listItem, $icon, message;
+	$listItem = $( '<li>' );
+	if ( kind === 'error' ) {
+		$icon = new OO.ui.IconWidget( { icon: 'alert', flags: [ 'warning' ] } ).$element;
+	} else if ( kind === 'notice' ) {
+		$icon = new OO.ui.IconWidget( { icon: 'info' } ).$element;
+	} else {
+		$icon = '';
+	}
+	message = new OO.ui.LabelWidget( { label: text } );
+	$listItem
+		.append( $icon, message.$element )
+		.addClass( 'oo-ui-fieldLayout-messages-' + kind );
+	return $listItem;
 };
 
 /**
@@ -8828,6 +8988,11 @@ OO.ui.FormLayout = function OoUiFormLayout( config ) {
 
 	// Events
 	this.$element.on( 'submit', this.onFormSubmit.bind( this ) );
+
+	// Make sure the action is safe
+	if ( config.action !== undefined && !OO.ui.isSafeUrl( config.action ) ) {
+		throw new Error( 'Potentially unsafe action provided: ' + config.action );
+	}
 
 	// Initialization
 	this.$element
@@ -10577,6 +10742,53 @@ OO.ui.StackLayout.prototype.updateHiddenState = function ( items, selectedItem )
 };
 
 /**
+ * HorizontalLayout arranges its contents in a single line (using `display: inline-block` for its
+ * items), with small margins between them. Convenient when you need to put a number of block-level
+ * widgets on a single line next to each other.
+ *
+ * Note that inline elements, such as OO.ui.ButtonWidgets, do not need this wrapper.
+ *
+ *     @example
+ *     // HorizontalLayout with a text input and a label
+ *     var layout = new OO.ui.HorizontalLayout( {
+ *       items: [
+ *         new OO.ui.LabelWidget( { label: 'Label' } ),
+ *         new OO.ui.TextInputWidget( { value: 'Text' } )
+ *       ]
+ *     } );
+ *     $( 'body' ).append( layout.$element );
+ *
+ * @class
+ * @extends OO.ui.Layout
+ * @mixins OO.ui.mixin.GroupElement
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ * @cfg {OO.ui.Widget[]|OO.ui.Layout[]} [items] Widgets or other layouts to add to the layout.
+ */
+OO.ui.HorizontalLayout = function OoUiHorizontalLayout( config ) {
+	// Configuration initialization
+	config = config || {};
+
+	// Parent constructor
+	OO.ui.HorizontalLayout.parent.call( this, config );
+
+	// Mixin constructors
+	OO.ui.mixin.GroupElement.call( this, $.extend( {}, config, { $group: this.$element } ) );
+
+	// Initialization
+	this.$element.addClass( 'oo-ui-horizontalLayout' );
+	if ( Array.isArray( config.items ) ) {
+		this.addItems( config.items );
+	}
+};
+
+/* Setup */
+
+OO.inheritClass( OO.ui.HorizontalLayout, OO.ui.Layout );
+OO.mixinClass( OO.ui.HorizontalLayout, OO.ui.mixin.GroupElement );
+
+/**
  * BarToolGroups are one of three types of {@link OO.ui.ToolGroup toolgroups} that are used to
  * create {@link OO.ui.Toolbar toolbars} (the other types of groups are {@link OO.ui.MenuToolGroup MenuToolGroup}
  * and {@link OO.ui.ListToolGroup ListToolGroup}). The {@link OO.ui.Tool tools} in a BarToolGroup are
@@ -10864,6 +11076,7 @@ OO.ui.PopupToolGroup.prototype.onHandleMouseKeyDown = function ( e ) {
  * deactivation.
  */
 OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
+	var containerWidth, containerLeft;
 	value = !!value;
 	if ( this.active !== value ) {
 		this.active = value;
@@ -10871,6 +11084,7 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 			this.getElementDocument().addEventListener( 'mouseup', this.onBlurHandler, true );
 			this.getElementDocument().addEventListener( 'keyup', this.onBlurHandler, true );
 
+			this.$clippable.css( 'left', '' );
 			// Try anchoring the popup to the left first
 			this.$element.addClass( 'oo-ui-popupToolGroup-active oo-ui-popupToolGroup-left' );
 			this.toggleClipping( true );
@@ -10881,6 +11095,19 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 					.removeClass( 'oo-ui-popupToolGroup-left' )
 					.addClass( 'oo-ui-popupToolGroup-right' );
 				this.toggleClipping( true );
+			}
+			if ( this.isClippedHorizontally() ) {
+				// Anchoring to the right also caused the popup to clip, so just make it fill the container
+				containerWidth = this.$clippableContainer.width();
+				containerLeft = this.$clippableContainer.offset().left;
+
+				this.toggleClipping( false );
+				this.$element.removeClass( 'oo-ui-popupToolGroup-right' );
+
+				this.$clippable.css( {
+					left: -( this.$element.offset().left - containerLeft ),
+					width: containerWidth
+				} );
 			}
 		} else {
 			this.getElementDocument().removeEventListener( 'mouseup', this.onBlurHandler, true );
@@ -11978,6 +12205,12 @@ OO.ui.ButtonWidget.prototype.getNoFollow = function () {
  */
 OO.ui.ButtonWidget.prototype.setHref = function ( href ) {
 	href = typeof href === 'string' ? href : null;
+	if ( href !== null ) {
+		if ( !OO.ui.isSafeUrl( href ) ) {
+			throw new Error( 'Potentially unsafe href provided: ' + href );
+		}
+
+	}
 
 	if ( href !== this.href ) {
 		this.href = href;
@@ -12396,6 +12629,651 @@ OO.ui.ToggleButtonWidget.prototype.setButtonElement = function ( $button ) {
 	}
 	OO.ui.mixin.ButtonElement.prototype.setButtonElement.call( this, $button );
 	this.$button.attr( 'aria-pressed', this.value.toString() );
+};
+
+/**
+ * CapsuleMultiSelectWidgets are something like a {@link OO.ui.ComboBoxWidget combo box widget}
+ * that allows for selecting multiple values.
+ *
+ * For more information about menus and options, please see the [OOjs UI documentation on MediaWiki][1].
+ *
+ *     @example
+ *     // Example: A CapsuleMultiSelectWidget.
+ *     var capsule = new OO.ui.CapsuleMultiSelectWidget( {
+ *         label: 'CapsuleMultiSelectWidget',
+ *         selected: [ 'Option 1', 'Option 3' ],
+ *         menu: {
+ *             items: [
+ *                 new OO.ui.MenuOptionWidget( {
+ *                     data: 'Option 1',
+ *                     label: 'Option One'
+ *                 } ),
+ *                 new OO.ui.MenuOptionWidget( {
+ *                     data: 'Option 2',
+ *                     label: 'Option Two'
+ *                 } ),
+ *                 new OO.ui.MenuOptionWidget( {
+ *                     data: 'Option 3',
+ *                     label: 'Option Three'
+ *                 } ),
+ *                 new OO.ui.MenuOptionWidget( {
+ *                     data: 'Option 4',
+ *                     label: 'Option Four'
+ *                 } ),
+ *                 new OO.ui.MenuOptionWidget( {
+ *                     data: 'Option 5',
+ *                     label: 'Option Five'
+ *                 } )
+ *             ]
+ *         }
+ *     } );
+ *     $( 'body' ).append( capsule.$element );
+ *
+ * [1]: https://www.mediawiki.org/wiki/OOjs_UI/Widgets/Selects_and_Options#Menu_selects_and_options
+ *
+ * @class
+ * @extends OO.ui.Widget
+ * @mixins OO.ui.mixin.TabIndexedElement
+ * @mixins OO.ui.mixin.GroupElement
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ * @cfg {boolean} [allowArbitrary=false] Allow data items to be added even if not present in the menu.
+ * @cfg {Object} [menu] Configuration options to pass to the {@link OO.ui.MenuSelectWidget menu select widget}.
+ * @cfg {Object} [popup] Configuration options to pass to the {@link OO.ui.PopupWidget popup widget}.
+ *  If specified, this popup will be shown instead of the menu (but the menu
+ *  will still be used for item labels and allowArbitrary=false). The widgets
+ *  in the popup should use this.addItemsFromData() or this.addItems() as necessary.
+ * @cfg {jQuery} [$overlay] Render the menu or popup into a separate layer.
+ *  This configuration is useful in cases where the expanded menu is larger than
+ *  its containing `<div>`. The specified overlay layer is usually on top of
+ *  the containing `<div>` and has a larger area. By default, the menu uses
+ *  relative positioning.
+ */
+OO.ui.CapsuleMultiSelectWidget = function OoUiCapsuleMultiSelectWidget( config ) {
+	var $tabFocus;
+
+	// Configuration initialization
+	config = config || {};
+
+	// Parent constructor
+	OO.ui.CapsuleMultiSelectWidget.parent.call( this, config );
+
+	// Properties (must be set before mixin constructor calls)
+	this.$input = config.popup ? null : $( '<input>' );
+	this.$handle = $( '<div>' );
+
+	// Mixin constructors
+	OO.ui.mixin.GroupElement.call( this, config );
+	if ( config.popup ) {
+		config.popup = $.extend( {}, config.popup, {
+			align: 'forwards',
+			anchor: false
+		} );
+		OO.ui.mixin.PopupElement.call( this, config );
+		$tabFocus = $( '<span>' );
+		OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, { $tabIndexed: $tabFocus } ) );
+	} else {
+		this.popup = null;
+		$tabFocus = null;
+		OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, { $tabIndexed: this.$input } ) );
+	}
+	OO.ui.mixin.IndicatorElement.call( this, config );
+	OO.ui.mixin.IconElement.call( this, config );
+
+	// Properties
+	this.allowArbitrary = !!config.allowArbitrary;
+	this.$overlay = config.$overlay || this.$element;
+	this.menu = new OO.ui.MenuSelectWidget( $.extend(
+		{
+			widget: this,
+			$input: this.$input,
+			filterFromInput: true,
+			disabled: this.isDisabled()
+		},
+		config.menu
+	) );
+
+	// Events
+	if ( this.popup ) {
+		$tabFocus.on( {
+			focus: this.onFocusForPopup.bind( this )
+		} );
+		this.popup.connect( this, {
+			toggle: function ( visible ) {
+				$tabFocus.toggle( !visible );
+			}
+		} );
+	} else {
+		this.$input.on( {
+			focus: this.onInputFocus.bind( this ),
+			blur: this.onInputBlur.bind( this ),
+			'propertychange change click mouseup keydown keyup input cut paste select': this.onInputChange.bind( this ),
+			keydown: this.onKeyDown.bind( this ),
+			keypress: this.onKeyPress.bind( this )
+		} );
+	}
+	this.menu.connect( this, {
+		choose: 'onMenuChoose',
+		add: 'onMenuItemsChange',
+		remove: 'onMenuItemsChange'
+	} );
+	this.$handle.on( {
+		click: this.onClick.bind( this )
+	} );
+
+	// Initialization
+	if ( this.$input ) {
+		this.$input.prop( 'disabled', this.isDisabled() );
+		this.$input.attr( {
+			role: 'combobox',
+			'aria-autocomplete': 'list'
+		} );
+		this.$input.width( '1em' );
+	}
+	if ( config.data ) {
+		this.setItemsFromData( config.data );
+	}
+	this.$group.addClass( 'oo-ui-capsuleMultiSelectWidget-group' );
+	this.$handle.addClass( 'oo-ui-capsuleMultiSelectWidget-handle' )
+		.append( this.$indicator, this.$icon, this.$group );
+	this.$element.addClass( 'oo-ui-capsuleMultiSelectWidget' )
+		.append( this.$handle );
+	if ( this.popup ) {
+		this.$handle.append( $tabFocus );
+		this.$overlay.append( this.popup.$element );
+	} else {
+		this.$handle.append( this.$input );
+		this.$overlay.append( this.menu.$element );
+	}
+	this.onMenuItemsChange();
+};
+
+/* Setup */
+
+OO.inheritClass( OO.ui.CapsuleMultiSelectWidget, OO.ui.Widget );
+OO.mixinClass( OO.ui.CapsuleMultiSelectWidget, OO.ui.mixin.GroupElement );
+OO.mixinClass( OO.ui.CapsuleMultiSelectWidget, OO.ui.mixin.PopupElement );
+OO.mixinClass( OO.ui.CapsuleMultiSelectWidget, OO.ui.mixin.TabIndexedElement );
+OO.mixinClass( OO.ui.CapsuleMultiSelectWidget, OO.ui.mixin.IndicatorElement );
+OO.mixinClass( OO.ui.CapsuleMultiSelectWidget, OO.ui.mixin.IconElement );
+
+/* Events */
+
+/**
+ * @event change
+ *
+ * A change event is emitted when the set of selected items changes.
+ *
+ * @param {Mixed[]} datas Data of the now-selected items
+ */
+
+/* Methods */
+
+/**
+ * Get the data of the items in the capsule
+ * @return {Mixed[]}
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.getItemsData = function () {
+	return $.map( this.getItems(), function ( e ) { return e.data; } );
+};
+
+/**
+ * Set the items in the capsule by providing data
+ * @chainable
+ * @param {Mixed[]} datas
+ * @return {OO.ui.CapsuleMultiSelectWidget}
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.setItemsFromData = function ( datas ) {
+	var widget = this,
+		menu = this.menu,
+		items = this.getItems();
+
+	$.each( datas, function ( i, data ) {
+		var j, label,
+			item = menu.getItemFromData( data );
+
+		if ( item ) {
+			label = item.label;
+		} else if ( widget.allowArbitrary ) {
+			label = String( data );
+		} else {
+			return;
+		}
+
+		item = null;
+		for ( j = 0; j < items.length; j++ ) {
+			if ( items[j].data === data && items[j].label === label ) {
+				item = items[j];
+				items.splice( j, 1 );
+				break;
+			}
+		}
+		if ( !item ) {
+			item = new OO.ui.CapsuleItemWidget( { data: data, label: label } );
+		}
+		widget.addItems( [ item ], i );
+	} );
+
+	if ( items.length ) {
+		widget.removeItems( items );
+	}
+
+	return this;
+};
+
+/**
+ * Add items to the capsule by providing their data
+ * @chainable
+ * @param {Mixed[]} datas
+ * @return {OO.ui.CapsuleMultiSelectWidget}
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.addItemsFromData = function ( datas ) {
+	var widget = this,
+		menu = this.menu,
+		items = [];
+
+	$.each( datas, function ( i, data ) {
+		var item;
+
+		if ( !widget.getItemFromData( data ) ) {
+			item = menu.getItemFromData( data );
+			if ( item ) {
+				items.push( new OO.ui.CapsuleItemWidget( { data: data, label: item.label } ) );
+			} else if ( widget.allowArbitrary ) {
+				items.push( new OO.ui.CapsuleItemWidget( { data: data, label: String( data ) } ) );
+			}
+		}
+	} );
+
+	if ( items.length ) {
+		this.addItems( items );
+	}
+
+	return this;
+};
+
+/**
+ * Remove items by data
+ * @chainable
+ * @param {Mixed[]} datas
+ * @return {OO.ui.CapsuleMultiSelectWidget}
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.removeItemsFromData = function ( datas ) {
+	var widget = this,
+		items = [];
+
+	$.each( datas, function ( i, data ) {
+		var item = widget.getItemFromData( data );
+		if ( item ) {
+			items.push( item );
+		}
+	} );
+
+	if ( items.length ) {
+		this.removeItems( items );
+	}
+
+	return this;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.addItems = function ( items ) {
+	var same, i, l,
+		oldItems = this.items.slice();
+
+	OO.ui.mixin.GroupElement.prototype.addItems.call( this, items );
+
+	if ( this.items.length !== oldItems.length ) {
+		same = false;
+	} else {
+		same = true;
+		for ( i = 0, l = oldItems.length; same && i < l; i++ ) {
+			same = same && this.items[i] === oldItems[i];
+		}
+	}
+	if ( !same ) {
+		this.emit( 'change', this.getItemsData() );
+	}
+
+	return this;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.removeItems = function ( items ) {
+	var same, i, l,
+		oldItems = this.items.slice();
+
+	OO.ui.mixin.GroupElement.prototype.removeItems.call( this, items );
+
+	if ( this.items.length !== oldItems.length ) {
+		same = false;
+	} else {
+		same = true;
+		for ( i = 0, l = oldItems.length; same && i < l; i++ ) {
+			same = same && this.items[i] === oldItems[i];
+		}
+	}
+	if ( !same ) {
+		this.emit( 'change', this.getItemsData() );
+	}
+
+	return this;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.clearItems = function () {
+	if ( this.items.length ) {
+		OO.ui.mixin.GroupElement.prototype.clearItems.call( this );
+		this.emit( 'change', this.getItemsData() );
+	}
+	return this;
+};
+
+/**
+ * Get the capsule widget's menu.
+ * @return {OO.ui.MenuSelectWidget} Menu widget
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.getMenu = function () {
+	return this.menu;
+};
+
+/**
+ * Handle focus events
+ *
+ * @private
+ * @param {jQuery.Event} event
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.onInputFocus = function () {
+	if ( !this.isDisabled() ) {
+		this.menu.toggle( true );
+	}
+};
+
+/**
+ * Handle blur events
+ *
+ * @private
+ * @param {jQuery.Event} event
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.onInputBlur = function () {
+	this.clearInput();
+};
+
+/**
+ * Handle focus events
+ *
+ * @private
+ * @param {jQuery.Event} event
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.onFocusForPopup = function () {
+	if ( !this.isDisabled() ) {
+		this.popup.setSize( this.$handle.width() );
+		this.popup.toggle( true );
+		this.popup.$element.find( '*' )
+			.filter( function () { return OO.ui.isFocusableElement( $( this ), true ); } )
+			.first()
+			.focus();
+	}
+};
+
+/**
+ * Handle mouse click events.
+ *
+ * @private
+ * @param {jQuery.Event} e Mouse click event
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.onClick = function ( e ) {
+	if ( e.which === 1 ) {
+		this.focus();
+		return false;
+	}
+};
+
+/**
+ * Handle key press events.
+ *
+ * @private
+ * @param {jQuery.Event} e Key press event
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.onKeyPress = function ( e ) {
+	var item;
+
+	if ( !this.isDisabled() ) {
+		if ( e.which === OO.ui.Keys.ESCAPE ) {
+			this.clearInput();
+			return false;
+		}
+
+		if ( !this.popup ) {
+			this.menu.toggle( true );
+			if ( e.which === OO.ui.Keys.ENTER ) {
+				item = this.menu.getItemFromLabel( this.$input.val(), true );
+				if ( item ) {
+					this.addItemsFromData( [ item.data ] );
+					this.clearInput();
+				} else if ( this.allowArbitrary && this.$input.val().trim() !== '' ) {
+					this.addItemsFromData( [ this.$input.val() ] );
+					this.clearInput();
+				}
+				return false;
+			}
+
+			// Make sure the input gets resized.
+			setTimeout( this.onInputChange.bind( this ), 0 );
+		}
+	}
+};
+
+/**
+ * Handle key down events.
+ *
+ * @private
+ * @param {jQuery.Event} e Key down event
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.onKeyDown = function ( e ) {
+	if ( !this.isDisabled() ) {
+		// 'keypress' event is not triggered for Backspace
+		if ( e.keyCode === OO.ui.Keys.BACKSPACE && this.$input.val() === '' ) {
+			if ( this.items.length ) {
+				this.removeItems( this.items.slice( -1 ) );
+			}
+			return false;
+		}
+	}
+};
+
+/**
+ * Handle input change events.
+ *
+ * @private
+ * @param {jQuery.Event} e Event of some sort
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.onInputChange = function () {
+	if ( !this.isDisabled() ) {
+		this.$input.width( this.$input.val().length + 'em' );
+	}
+};
+
+/**
+ * Handle menu choose events.
+ *
+ * @private
+ * @param {OO.ui.OptionWidget} item Chosen item
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.onMenuChoose = function ( item ) {
+	if ( item && item.isVisible() ) {
+		this.addItemsFromData( [ item.getData() ] );
+		this.clearInput();
+	}
+};
+
+/**
+ * Handle menu item change events.
+ *
+ * @private
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.onMenuItemsChange = function () {
+	this.setItemsFromData( this.getItemsData() );
+	this.$element.toggleClass( 'oo-ui-capsuleMultiSelectWidget-empty', this.menu.isEmpty() );
+};
+
+/**
+ * Clear the input field
+ * @private
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.clearInput = function () {
+	if ( this.$input ) {
+		this.$input.val( '' );
+		this.$input.width( '1em' );
+	}
+	if ( this.popup ) {
+		this.popup.toggle( false );
+	}
+	this.menu.toggle( false );
+	this.menu.selectItem();
+	this.menu.highlightItem();
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.setDisabled = function ( disabled ) {
+	var i, len;
+
+	// Parent method
+	OO.ui.CapsuleMultiSelectWidget.parent.prototype.setDisabled.call( this, disabled );
+
+	if ( this.$input ) {
+		this.$input.prop( 'disabled', this.isDisabled() );
+	}
+	if ( this.menu ) {
+		this.menu.setDisabled( this.isDisabled() );
+	}
+	if ( this.popup ) {
+		this.popup.setDisabled( this.isDisabled() );
+	}
+
+	if ( this.items ) {
+		for ( i = 0, len = this.items.length; i < len; i++ ) {
+			this.items[i].updateDisabled();
+		}
+	}
+
+	return this;
+};
+
+/**
+ * Focus the widget
+ * @chainable
+ * @return {OO.ui.CapsuleMultiSelectWidget}
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.focus = function () {
+	if ( !this.isDisabled() ) {
+		if ( this.popup ) {
+			this.popup.setSize( this.$handle.width() );
+			this.popup.toggle( true );
+			this.popup.$element.find( '*' )
+				.filter( function () { return OO.ui.isFocusableElement( $( this ), true ); } )
+				.first()
+				.focus();
+		} else {
+			this.menu.toggle( true );
+			this.$input.focus();
+		}
+	}
+	return this;
+};
+
+/**
+ * CapsuleItemWidgets are used within a {@link OO.ui.CapsuleMultiSelectWidget
+ * CapsuleMultiSelectWidget} to display the selected items.
+ *
+ * @class
+ * @extends OO.ui.Widget
+ * @mixins OO.ui.mixin.ItemWidget
+ * @mixins OO.ui.mixin.IndicatorElement
+ * @mixins OO.ui.mixin.LabelElement
+ * @mixins OO.ui.mixin.FlaggedElement
+ * @mixins OO.ui.mixin.TabIndexedElement
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ */
+OO.ui.CapsuleItemWidget = function OoUiCapsuleItemWidget( config ) {
+	// Configuration initialization
+	config = config || {};
+
+	// Parent constructor
+	OO.ui.CapsuleItemWidget.parent.call( this, config );
+
+	// Properties (must be set before mixin constructor calls)
+	this.$indicator = $( '<span>' );
+
+	// Mixin constructors
+	OO.ui.mixin.ItemWidget.call( this );
+	OO.ui.mixin.IndicatorElement.call( this, $.extend( {}, config, { $indicator: this.$indicator, indicator: 'clear' } ) );
+	OO.ui.mixin.LabelElement.call( this, config );
+	OO.ui.mixin.FlaggedElement.call( this, config );
+	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, { $tabIndexed: this.$indicator } ) );
+
+	// Events
+	this.$indicator.on( {
+		keydown: this.onCloseKeyDown.bind( this ),
+		click: this.onCloseClick.bind( this )
+	} );
+	this.$element.on( 'click', false );
+
+	// Initialization
+	this.$element
+		.addClass( 'oo-ui-capsuleItemWidget' )
+		.append( this.$indicator, this.$label );
+};
+
+/* Setup */
+
+OO.inheritClass( OO.ui.CapsuleItemWidget, OO.ui.Widget );
+OO.mixinClass( OO.ui.CapsuleItemWidget, OO.ui.mixin.ItemWidget );
+OO.mixinClass( OO.ui.CapsuleItemWidget, OO.ui.mixin.IndicatorElement );
+OO.mixinClass( OO.ui.CapsuleItemWidget, OO.ui.mixin.LabelElement );
+OO.mixinClass( OO.ui.CapsuleItemWidget, OO.ui.mixin.FlaggedElement );
+OO.mixinClass( OO.ui.CapsuleItemWidget, OO.ui.mixin.TabIndexedElement );
+
+/* Methods */
+
+/**
+ * Handle close icon clicks
+ * @param {jQuery.Event} event
+ */
+OO.ui.CapsuleItemWidget.prototype.onCloseClick = function () {
+	var element = this.getElementGroup();
+
+	if ( !this.isDisabled() && element && $.isFunction( element.removeItems ) ) {
+		element.removeItems( [ this ] );
+		element.focus();
+	}
+};
+
+/**
+ * Handle close keyboard events
+ * @param {jQuery.Event} event Key down event
+ */
+OO.ui.CapsuleItemWidget.prototype.onCloseKeyDown = function ( e ) {
+	if ( !this.isDisabled() && $.isFunction( this.getElementGroup().removeItems ) ) {
+		switch ( e.which ) {
+			case OO.ui.Keys.ENTER:
+			case OO.ui.Keys.BACKSPACE:
+			case OO.ui.Keys.SPACE:
+				this.getElementGroup().removeItems( [ this ] );
+				return false;
+		}
+	}
 };
 
 /**
@@ -13088,6 +13966,7 @@ OO.ui.InputWidget = function OoUiInputWidget( config ) {
 
 	// Initialization
 	this.$input
+		.addClass( 'oo-ui-inputWidget-input' )
 		.attr( 'name', config.name )
 		.prop( 'disabled', this.isDisabled() );
 	this.$element
@@ -13258,6 +14137,32 @@ OO.ui.InputWidget.prototype.focus = function () {
 OO.ui.InputWidget.prototype.blur = function () {
 	this.$input[ 0 ].blur();
 	return this;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.InputWidget.prototype.gatherPreInfuseState = function ( node ) {
+	var
+		state = OO.ui.InputWidget.parent.prototype.gatherPreInfuseState.call( this, node ),
+		$input = state.$input || $( node ).find( '.oo-ui-inputWidget-input' );
+	state.value = $input.val();
+	// Might be better in TabIndexedElement, but it's awkward to do there because mixins are awkward
+	state.focus = $input.is( ':focus' );
+	return state;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.InputWidget.prototype.restorePreInfuseState = function ( state ) {
+	OO.ui.InputWidget.parent.prototype.restorePreInfuseState.call( this, state );
+	if ( state.value !== undefined && state.value !== this.getValue() ) {
+		this.setValue( state.value );
+	}
+	if ( state.focus ) {
+		this.focus();
+	}
 };
 
 /**
@@ -13507,6 +14412,28 @@ OO.ui.CheckboxInputWidget.prototype.isSelected = function () {
 };
 
 /**
+ * @inheritdoc
+ */
+OO.ui.CheckboxInputWidget.prototype.gatherPreInfuseState = function ( node ) {
+	var
+		state = OO.ui.CheckboxInputWidget.parent.prototype.gatherPreInfuseState.call( this, node ),
+		$input = $( node ).find( '.oo-ui-inputWidget-input' );
+	state.$input = $input; // shortcut for performance, used in InputWidget
+	state.checked = $input.prop( 'checked' );
+	return state;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.CheckboxInputWidget.prototype.restorePreInfuseState = function ( state ) {
+	OO.ui.CheckboxInputWidget.parent.prototype.restorePreInfuseState.call( this, state );
+	if ( state.checked !== undefined && state.checked !== this.isSelected() ) {
+		this.setSelected( state.checked );
+	}
+};
+
+/**
  * DropdownInputWidget is a {@link OO.ui.DropdownWidget DropdownWidget} intended to be used
  * within a HTML form, such as a OO.ui.FormLayout. The selected value is synchronized with the value
  * of a hidden HTML `input` tag. Please see the [OOjs UI documentation on MediaWiki][1] for
@@ -13533,6 +14460,7 @@ OO.ui.CheckboxInputWidget.prototype.isSelected = function () {
  *
  * @class
  * @extends OO.ui.InputWidget
+ * @mixins OO.ui.mixin.TitledElement
  *
  * @constructor
  * @param {Object} [config] Configuration options
@@ -13548,6 +14476,9 @@ OO.ui.DropdownInputWidget = function OoUiDropdownInputWidget( config ) {
 	// Parent constructor
 	OO.ui.DropdownInputWidget.parent.call( this, config );
 
+	// Mixin constructors
+	OO.ui.mixin.TitledElement.call( this, config );
+
 	// Events
 	this.dropdownWidget.getMenu().connect( this, { select: 'onMenuSelect' } );
 
@@ -13561,6 +14492,7 @@ OO.ui.DropdownInputWidget = function OoUiDropdownInputWidget( config ) {
 /* Setup */
 
 OO.inheritClass( OO.ui.DropdownInputWidget, OO.ui.InputWidget );
+OO.mixinClass( OO.ui.DropdownInputWidget, OO.ui.mixin.TitledElement );
 
 /* Methods */
 
@@ -13752,6 +14684,28 @@ OO.ui.RadioInputWidget.prototype.isSelected = function () {
 };
 
 /**
+ * @inheritdoc
+ */
+OO.ui.RadioInputWidget.prototype.gatherPreInfuseState = function ( node ) {
+	var
+		state = OO.ui.RadioInputWidget.parent.prototype.gatherPreInfuseState.call( this, node ),
+		$input = $( node ).find( '.oo-ui-inputWidget-input' );
+	state.$input = $input; // shortcut for performance, used in InputWidget
+	state.checked = $input.prop( 'checked' );
+	return state;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.RadioInputWidget.prototype.restorePreInfuseState = function ( state ) {
+	OO.ui.RadioInputWidget.parent.prototype.restorePreInfuseState.call( this, state );
+	if ( state.checked !== undefined && state.checked !== this.isSelected() ) {
+		this.setSelected( state.checked );
+	}
+};
+
+/**
  * RadioSelectInputWidget is a {@link OO.ui.RadioSelectWidget RadioSelectWidget} intended to be used
  * within a HTML form, such as a OO.ui.FormLayout. The selected value is synchronized with the value
  * of a hidden HTML `input` tag. Please see the [OOjs UI documentation on MediaWiki][1] for
@@ -13883,6 +14837,15 @@ OO.ui.RadioSelectInputWidget.prototype.setOptions = function ( options ) {
 };
 
 /**
+ * @inheritdoc
+ */
+OO.ui.RadioSelectInputWidget.prototype.gatherPreInfuseState = function ( node ) {
+	var state = OO.ui.RadioSelectInputWidget.parent.prototype.gatherPreInfuseState.call( this, node );
+	state.value = $( node ).find( '.oo-ui-radioInputWidget .oo-ui-inputWidget-input:checked' ).val();
+	return state;
+};
+
+/**
  * TextInputWidgets, like HTML text inputs, can be configured with options that customize the
  * size of the field as well as its presentation. In addition, these widgets can be configured
  * with {@link OO.ui.mixin.IconElement icons}, {@link OO.ui.mixin.IndicatorElement indicators}, an optional
@@ -13937,7 +14900,7 @@ OO.ui.RadioSelectInputWidget.prototype.setOptions = function ( options ) {
  *  pattern defined by the class: 'non-empty' (the value cannot be an empty string) or 'integer'
  *  (the value must contain only numbers); when RegExp, a regular expression that must match the
  *  value for it to be considered valid; when Function, a function receiving the value as parameter
- *  that must return true, or promise resolving to true, for it to be considered valid.
+ *  that must return true, or promise that resolves, for it to be considered valid.
  */
 OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	// Configuration initialization
@@ -14383,7 +15346,11 @@ OO.ui.TextInputWidget.prototype.setValidityFlag = function ( isValid ) {
 	if ( isValid !== undefined ) {
 		setFlag( isValid );
 	} else {
-		this.isValid().done( setFlag );
+		this.getValidity().then( function () {
+			setFlag( true );
+		}, function () {
+			setFlag( false );
+		} );
 	}
 };
 
@@ -14393,6 +15360,7 @@ OO.ui.TextInputWidget.prototype.setValidityFlag = function ( isValid ) {
  * This method returns a promise that resolves with a boolean `true` if the current value is
  * considered valid according to the supplied {@link #validate validation pattern}.
  *
+ * @deprecated
  * @return {jQuery.Promise} A promise that resolves to a boolean `true` if the value is valid.
  */
 OO.ui.TextInputWidget.prototype.isValid = function () {
@@ -14405,6 +15373,50 @@ OO.ui.TextInputWidget.prototype.isValid = function () {
 		}
 	} else {
 		return $.Deferred().resolve( !!this.getValue().match( this.validate ) ).promise();
+	}
+};
+
+/**
+ * Get the validity of current value.
+ *
+ * This method returns a promise that resolves if the value is valid and rejects if
+ * it isn't. Uses the {@link #validate validation pattern}  to check for validity.
+ *
+ * @return {jQuery.Promise} A promise that resolves if the value is valid, rejects if not.
+ */
+OO.ui.TextInputWidget.prototype.getValidity = function () {
+	var result, promise;
+
+	function rejectOrResolve( valid ) {
+		if ( valid ) {
+			return $.Deferred().resolve().promise();
+		} else {
+			return $.Deferred().reject().promise();
+		}
+	}
+
+	if ( this.validate instanceof Function ) {
+		result = this.validate( this.getValue() );
+
+		if ( $.isFunction( result.promise ) ) {
+			promise = $.Deferred();
+
+			result.then( function ( valid ) {
+				if ( valid ) {
+					promise.resolve();
+				} else {
+					promise.reject();
+				}
+			}, function () {
+				promise.reject();
+			} );
+
+			return promise.promise();
+		} else {
+			return rejectOrResolve( result );
+		}
+	} else {
+		return rejectOrResolve( this.getValue().match( this.validate ) );
 	}
 };
 
@@ -14443,9 +15455,7 @@ OO.ui.TextInputWidget.prototype.updatePosition = function () {
 		.toggleClass( 'oo-ui-textInputWidget-labelPosition-after', !!this.label && after )
 		.toggleClass( 'oo-ui-textInputWidget-labelPosition-before', !!this.label && !after );
 
-	if ( this.label ) {
-		this.positionLabel();
-	}
+	this.positionLabel();
 
 	return this;
 };
@@ -14493,6 +15503,30 @@ OO.ui.TextInputWidget.prototype.positionLabel = function () {
 	this.$input.css( property, this.$label.outerWidth( true ) );
 
 	return this;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.TextInputWidget.prototype.gatherPreInfuseState = function ( node ) {
+	var
+		state = OO.ui.TextInputWidget.parent.prototype.gatherPreInfuseState.call( this, node ),
+		$input = $( node ).find( '.oo-ui-inputWidget-input' );
+	state.$input = $input; // shortcut for performance, used in InputWidget
+	if ( this.multiline ) {
+		state.scrollTop = $input.scrollTop();
+	}
+	return state;
+};
+
+/**
+ * @inheritdoc
+ */
+OO.ui.TextInputWidget.prototype.restorePreInfuseState = function ( state ) {
+	OO.ui.TextInputWidget.parent.prototype.restorePreInfuseState.call( this, state );
+	if ( state.scrollTop !== undefined ) {
+		this.$input.scrollTop( state.scrollTop );
+	}
 };
 
 /**
@@ -14886,7 +15920,7 @@ OO.ui.OptionWidget.static.scrollIntoViewOnSelect = false;
  * @return {boolean} Item is selectable
  */
 OO.ui.OptionWidget.prototype.isSelectable = function () {
-	return this.constructor.static.selectable && !this.isDisabled();
+	return this.constructor.static.selectable && !this.isDisabled() && this.isVisible();
 };
 
 /**
@@ -14897,7 +15931,7 @@ OO.ui.OptionWidget.prototype.isSelectable = function () {
  * @return {boolean} Item is highlightable
  */
 OO.ui.OptionWidget.prototype.isHighlightable = function () {
-	return this.constructor.static.highlightable && !this.isDisabled();
+	return this.constructor.static.highlightable && !this.isDisabled() && this.isVisible();
 };
 
 /**
@@ -14907,7 +15941,7 @@ OO.ui.OptionWidget.prototype.isHighlightable = function () {
  * @return {boolean} Item is pressable
  */
 OO.ui.OptionWidget.prototype.isPressable = function () {
-	return this.constructor.static.pressable && !this.isDisabled();
+	return this.constructor.static.pressable && !this.isDisabled() && this.isVisible();
 };
 
 /**
@@ -15072,14 +16106,17 @@ OO.mixinClass( OO.ui.DecoratedOptionWidget, OO.ui.mixin.IndicatorElement );
  */
 OO.ui.ButtonOptionWidget = function OoUiButtonOptionWidget( config ) {
 	// Configuration initialization
-	config = $.extend( { tabIndex: -1 }, config );
+	config = config || {};
 
 	// Parent constructor
 	OO.ui.ButtonOptionWidget.parent.call( this, config );
 
 	// Mixin constructors
 	OO.ui.mixin.ButtonElement.call( this, config );
-	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, { $tabIndexed: this.$button } ) );
+	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, {
+		$tabIndexed: this.$button,
+		tabIndex: -1
+	} ) );
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-buttonOptionWidget' );
@@ -15538,6 +16575,10 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 
 	// Events
 	this.closeButton.connect( this, { click: 'onCloseButtonClick' } );
+	this.$element.on( 'focusout', this.onFocusOut.bind( this ) );
+	if ( this.$autoCloseIgnore ) {
+		this.$autoCloseIgnore.on( 'focusout', this.onFocusOut.bind( this ) );
+	}
 
 	// Initialization
 	this.toggleAnchor( config.anchor === undefined || config.anchor );
@@ -15577,6 +16618,26 @@ OO.mixinClass( OO.ui.PopupWidget, OO.ui.mixin.LabelElement );
 OO.mixinClass( OO.ui.PopupWidget, OO.ui.mixin.ClippableElement );
 
 /* Methods */
+
+/**
+ * Handles focus out events.
+ *
+ * @private
+ * @param {Event} e Focus out event
+ */
+OO.ui.PopupWidget.prototype.onFocusOut = function () {
+	var widget = this;
+
+	setTimeout( function () {
+		if (
+			widget.isVisible() &&
+			!OO.ui.contains( widget.$element, document.activeElement, true ) &&
+			( !widget.$autoCloseIgnore || !widget.$autoCloseIgnore.has( document.activeElement ).length )
+		) {
+			widget.toggle( false );
+		}
+	} );
+};
 
 /**
  * Handles mouse down events.
@@ -16468,7 +17529,7 @@ OO.ui.SelectWidget.prototype.onKeyPress = function ( e ) {
 		this.keyPressBuffer += c;
 	}
 
-	filter = this.getItemMatcher( this.keyPressBuffer );
+	filter = this.getItemMatcher( this.keyPressBuffer, false );
 	if ( !item || !filter( item ) ) {
 		item = this.getRelativeSelectableItem( item, 1, filter );
 	}
@@ -16489,15 +17550,21 @@ OO.ui.SelectWidget.prototype.onKeyPress = function ( e ) {
  *
  * @protected
  * @param {string} s String to match against items
+ * @param {boolean} [exact=false] Only accept exact matches
  * @return {Function} function ( OO.ui.OptionItem ) => boolean
  */
-OO.ui.SelectWidget.prototype.getItemMatcher = function ( s ) {
+OO.ui.SelectWidget.prototype.getItemMatcher = function ( s, exact ) {
 	var re;
 
 	if ( s.normalize ) {
 		s = s.normalize();
 	}
-	re = new RegExp( '^\\s*' + s.replace( /([\\{}()|.?*+\-\^$\[\]])/g, '\\$1' ).replace( /\s+/g, '\\s+' ), 'i' );
+	s = exact ? s.trim() : s.replace( /^\s+/, '' );
+	re = '^\\s*' + s.replace( /([\\{}()|.?*+\-\^$\[\]])/g, '\\$1' ).replace( /\s+/g, '\\s+' );
+	if ( exact ) {
+		re += '\\s*$';
+	}
+	re = new RegExp( re, 'i' );
 	return function ( item ) {
 		var l = item.getLabel();
 		if ( typeof l !== 'string' ) {
@@ -16632,6 +17699,62 @@ OO.ui.SelectWidget.prototype.highlightItem = function ( item ) {
 	}
 
 	return this;
+};
+
+/**
+ * Fetch an item by its label.
+ *
+ * @param {string} label Label of the item to select.
+ * @param {boolean} [prefix=false] Allow a prefix match, if only a single item matches
+ * @return {OO.ui.Element|null} Item with equivalent label, `null` if none exists
+ */
+OO.ui.SelectWidget.prototype.getItemFromLabel = function ( label, prefix ) {
+	var i, item, found,
+		len = this.items.length,
+		filter = this.getItemMatcher( label, true );
+
+	for ( i = 0; i < len; i++ ) {
+		item = this.items[i];
+		if ( item instanceof OO.ui.OptionWidget && item.isSelectable() && filter( item ) ) {
+			return item;
+		}
+	}
+
+	if ( prefix ) {
+		found = null;
+		filter = this.getItemMatcher( label, false );
+		for ( i = 0; i < len; i++ ) {
+			item = this.items[i];
+			if ( item instanceof OO.ui.OptionWidget && item.isSelectable() && filter( item ) ) {
+				if ( found ) {
+					return null;
+				}
+				found = item;
+			}
+		}
+		if ( found ) {
+			return found;
+		}
+	}
+
+	return null;
+};
+
+/**
+ * Programmatically select an option by its label. If the item does not exist,
+ * all options will be deselected.
+ *
+ * @param {string} [label] Label of the item to select.
+ * @param {boolean} [prefix=false] Allow a prefix match, if only a single item matches
+ * @fires select
+ * @chainable
+ */
+OO.ui.SelectWidget.prototype.selectItemByLabel = function ( label, prefix ) {
+	var itemFromLabel = this.getItemFromLabel( label, !!prefix );
+	if ( label === undefined || !itemFromLabel ) {
+		return this.selectItem();
+	}
+	return this.selectItem( itemFromLabel );
 };
 
 /**
@@ -17011,11 +18134,14 @@ OO.mixinClass( OO.ui.RadioSelectWidget, OO.ui.mixin.TabIndexedElement );
  * @cfg {OO.ui.TextInputWidget} [input] Text input used to implement option highlighting for menu items that match
  *  the text the user types. This config is used by {@link OO.ui.ComboBoxWidget ComboBoxWidget}
  *  and {@link OO.ui.mixin.LookupElement LookupElement}
+ * @cfg {jQuery} [$input] Text input used to implement option highlighting for menu items that match
+ *  the text the user types. This config is used by {@link OO.ui.CapsuleMultiSelectWidget CapsuleMultiSelectWidget}
  * @cfg {OO.ui.Widget} [widget] Widget associated with the menu's active state. If the user clicks the mouse
  *  anywhere on the page outside of this widget, the menu is hidden. For example, if there is a button
  *  that toggles the menu's visibility on click, the menu will be hidden then re-shown when the user clicks
  *  that button, unless the button (or its parent widget) is passed in here.
  * @cfg {boolean} [autoHide=true] Hide the menu when the mouse is pressed outside the menu.
+ * @cfg {boolean} [filterFromInput=false] Filter the displayed options from the input
  */
 OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
 	// Configuration initialization
@@ -17030,9 +18156,11 @@ OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
 	// Properties
 	this.newItems = null;
 	this.autoHide = config.autoHide === undefined || !!config.autoHide;
-	this.$input = config.input ? config.input.$input : null;
+	this.filterFromInput = !!config.filterFromInput;
+	this.$input = config.$input ? config.$input : config.input ? config.input.$input : null;
 	this.$widget = config.widget ? config.widget.$element : null;
 	this.onDocumentMouseDownHandler = this.onDocumentMouseDown.bind( this );
+	this.onInputKeyPressHandler = OO.ui.debounce( this.updateItemVisibility.bind( this ), 100 );
 
 	// Initialization
 	this.$element
@@ -17103,6 +18231,27 @@ OO.ui.MenuSelectWidget.prototype.onKeyDown = function ( e ) {
 };
 
 /**
+ * Update menu item visibility after input key press
+ * @protected
+ */
+OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
+	var i, item,
+		len = this.items.length,
+		showAll = !this.isVisible(),
+		filter = showAll ? null : this.getItemMatcher( this.$input.val() );
+
+	for ( i = 0; i < len; i++ ) {
+		item = this.items[i];
+		if ( item instanceof OO.ui.OptionWidget ) {
+			item.toggle( showAll || filter( item ) );
+		}
+	}
+
+	// Reevaluate clipping
+	this.clip();
+};
+
+/**
  * @inheritdoc
  */
 OO.ui.MenuSelectWidget.prototype.bindKeyDownListener = function () {
@@ -17128,7 +18277,11 @@ OO.ui.MenuSelectWidget.prototype.unbindKeyDownListener = function () {
  * @inheritdoc
  */
 OO.ui.MenuSelectWidget.prototype.bindKeyPressListener = function () {
-	if ( !this.$input ) {
+	if ( this.$input ) {
+		if ( this.filterFromInput ) {
+			this.$input.on( 'keypress', this.onInputKeyPressHandler );
+		}
+	} else {
 		OO.ui.MenuSelectWidget.parent.prototype.bindKeyPressListener.call( this );
 	}
 };
@@ -17138,7 +18291,10 @@ OO.ui.MenuSelectWidget.prototype.bindKeyPressListener = function () {
  */
 OO.ui.MenuSelectWidget.prototype.unbindKeyPressListener = function () {
 	if ( this.$input ) {
-		this.clearKeyPressBuffer();
+		if ( this.filterFromInput ) {
+			this.$input.off( 'keypress', this.onInputKeyPressHandler );
+			this.updateItemVisibility();
+		}
 	} else {
 		OO.ui.MenuSelectWidget.parent.prototype.unbindKeyPressListener.call( this );
 	}
