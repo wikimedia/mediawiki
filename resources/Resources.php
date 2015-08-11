@@ -1813,6 +1813,7 @@ return array(
 			'resources/src/mediawiki.widgets/mw.widgets.CalendarWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.DateInputWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.NamespaceInputWidget.js',
+			'resources/src/mediawiki.widgets/mw.widgets.ComplexNamespaceInputWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.TitleInputWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.TitleOptionWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.UserInputWidget.js',
@@ -1833,9 +1834,14 @@ return array(
 			'oojs-ui',
 		),
 		'messages' => array(
+			// DateInputWidget
 			'mw-widgets-dateinput-no-date',
 			'mw-widgets-dateinput-placeholder-day',
 			'mw-widgets-dateinput-placeholder-month',
+			// NamespaceInputWidget
+			'blanknamespace',
+			'namespacesall',
+			// TitleInputWidget
 			'mw-widgets-titleinput-description-new-page',
 			'mw-widgets-titleinput-description-redirect',
 		),
@@ -1844,7 +1850,7 @@ return array(
 	'mediawiki.widgets.styles' => array(
 		'skinStyles' => array(
 			'default' => array(
-				'resources/src/mediawiki.widgets/mw.widgets.NamespaceInputWidget.base.css',
+				'resources/src/mediawiki.widgets/mw.widgets.ComplexNamespaceInputWidget.base.css',
 			),
 		),
 		'position' => 'top',
