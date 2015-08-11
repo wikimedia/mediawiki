@@ -14,7 +14,9 @@
 	$( function () {
 		var $patrolLinks = $( '.patrollink a' );
 		$patrolLinks.on( 'click', function ( e ) {
-			var $spinner, href, rcid, apiRequest;
+			var $spinner, href, rcid, apiRequest,
+				i = 0,
+				rcids = [];
 
 			// Start preloading the notification module (normally loaded by mw.notify())
 			mw.loader.load( 'mediawiki.notification' );
@@ -26,21 +28,30 @@
 			} );
 			$( this ).hide().after( $spinner );
 
-			href = $( this ).attr( 'href' );
-			rcid = mw.util.getParamValue( 'rcid', href );
+			href = new mw.Uri( $( this ).attr( 'href' ) );
+			while ( true ) {
+				rcid = href.query['rcid[' + i + ']'];
+				if ( rcid === undefined ) {
+					break;
+				}
+				rcids.push( rcid );
+				i++;
+			}
 			apiRequest = new mw.Api();
 
 			apiRequest.postWithToken( 'patrol', {
 				action: 'patrol',
-				rcid: rcid
+				rcid: rcids.join( '|' )
 			} )
 			.done( function ( data ) {
 				// Remove all patrollinks from the page (including any spinners inside).
 				$patrolLinks.closest( '.patrollink' ).remove();
 				if ( data.patrol !== undefined ) {
 					// Success
-					var title = new mw.Title( data.patrol.title );
-					mw.notify( mw.msg( 'markedaspatrollednotify', title.toText() ) );
+					var title = new mw.Title( data.patrol[0].title );
+					mw.notify( mw.msg(
+						'markedaspatrollednotify', title.toText(), data.patrol.length
+					) );
 				} else {
 					// This should never happen as errors should trigger fail
 					mw.notify( mw.msg( 'markedaspatrollederrornotify' ), { type: 'error' } );
