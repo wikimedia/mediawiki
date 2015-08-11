@@ -458,6 +458,101 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
+	 * Get a link to mark one or more changes as patrolled, or '' if there are
+	 * either no revisions to patrol or the user is not allowed to to it.
+	 * Side effect: When the patrol link is build, this method will call
+	 * OutputPage::preventClickjacking() and load mediawiki.page.patrol.ajax.
+	 *
+	 * @param bool $multi If true, the returned link will mark all changes
+	 *        between the older one (not included) and the newer one (included)
+	 *        as patrolled; otherwise, only the newer change will be affected.
+	 *
+	 * @return string
+	 */
+	protected function getMarkPatrolledLink( $multi = false ) {
+		global $wgUseRCPatrol, $wgEnableAPI, $wgEnableWriteAPI;
+		$user = $this->getUser();
+
+		if (
+			// Is patrolling enabled and the user allowed to?
+			$wgUseRCPatrol && $this->mNewPage->quickUserCan( 'patrol', $user ) &&
+			// Only do this if the revision isn't more than 6 hours older
+			// than the Max RC age (6h because the RC might not be cleaned out regularly)
+			RecentChange::isInRCLifespan( $this->mNewRev->getTimestamp(), 21600 )
+		) {
+			// Look for an unpatrolled change corresponding to this diff
+
+			$conds = array( 'rc_patrolled' => 0 );
+			$options = array( 'USE INDEX' => 'rc_timestamp' );
+			$db = wfGetDB( DB_SLAVE );
+			if ( $multi ) {
+				$conds[] = 'rc_timestamp > ' . $db->timestamp( $this->mOldRev->getTimestamp() );
+				$conds[] = 'rc_timestamp <= ' . $db->timestamp( $this->mNewRev->getTimestamp() );
+				$conds[] = 'rc_this_oldid > ' . $this->mOldid;
+				$conds[] = 'rc_this_oldid <= ' . $this->mNewid;
+			} else {
+				$conds['rc_timestamp'] = $db->timestamp( $this->mNewRev->getTimestamp() );
+				$conds['rc_this_oldid'] = $this->mNewid;
+				$options['LIMIT'] = 1;
+			}
+
+			$res = $db->select(
+				'recentchanges',
+				RecentChange::selectFields(),
+				$conds,
+				__METHOD__,
+				$options
+			);
+			if ( $multi && $res->numRows() < 2 ) {
+				// "Mark all as patrolled" wouldn't make sense.
+				// We check for that later, but let's skip the RecentChange
+				// initialization altogether if we can.
+				return '';
+			}
+			$rcids = array();
+			foreach ( $res as $row ) {
+				if ( $row !== false ) {
+					$change = RecentChange::newFromRow( $row );
+					if (
+						$change && !$change->getPerformer()->equals( $user ) &&
+						( !$multi || $change->getTitle()->equals( $this->mNewPage ) ) // 'normal' mode or same title
+					) {
+						$rcids[] = $change->getAttribute( 'rc_id' );
+					}
+				}
+			}
+
+			// Build the link
+			if ( $rcids ) {
+				if ( $multi && count( $rcids ) < 2 ) {
+					// Final check against nonsense "Mark all as patrolled"
+					return '';
+				}
+				$this->getOutput()->preventClickjacking();
+				if ( $wgEnableAPI && $wgEnableWriteAPI
+					&& $user->isAllowed( 'writeapi' )
+				) {
+					$this->getOutput()->addModules( 'mediawiki.page.patrol.ajax' );
+				}
+
+				$token = $user->getEditToken( $rcids[0] );
+				return ' <span class="patrollink">[' . Linker::linkKnown(
+					$this->mNewPage,
+					$this->msg( $multi ? 'markaspatrolleddiffmulti' : 'markaspatrolleddiff' )->escaped(),
+					array(),
+					array(
+						'action' => 'markpatrolled',
+						'rcid' => $rcids,
+						'token' => $token,
+					)
+				) . ']</span>';
+			}
+		}
+
+		return '';
+	}
+
+	/**
 	 * Get a link to mark the change as patrolled, or '' if there's either no
 	 * revision to patrol or the user is not allowed to to it.
 	 * Side effect: When the patrol link is build, this method will call
@@ -466,64 +561,9 @@ class DifferenceEngine extends ContextSource {
 	 * @return string
 	 */
 	protected function markPatrolledLink() {
-		global $wgUseRCPatrol, $wgEnableAPI, $wgEnableWriteAPI;
-		$user = $this->getUser();
-
 		if ( $this->mMarkPatrolledLink === null ) {
 			// Prepare a change patrol link, if applicable
-			if (
-				// Is patrolling enabled and the user allowed to?
-				$wgUseRCPatrol && $this->mNewPage->quickUserCan( 'patrol', $user ) &&
-				// Only do this if the revision isn't more than 6 hours older
-				// than the Max RC age (6h because the RC might not be cleaned out regularly)
-				RecentChange::isInRCLifespan( $this->mNewRev->getTimestamp(), 21600 )
-			) {
-				// Look for an unpatrolled change corresponding to this diff
-
-				$db = wfGetDB( DB_SLAVE );
-				$change = RecentChange::newFromConds(
-					array(
-						'rc_timestamp' => $db->timestamp( $this->mNewRev->getTimestamp() ),
-						'rc_this_oldid' => $this->mNewid,
-						'rc_patrolled' => 0
-					),
-					__METHOD__,
-					array( 'USE INDEX' => 'rc_timestamp' )
-				);
-
-				if ( $change && !$change->getPerformer()->equals( $user ) ) {
-					$rcid = $change->getAttribute( 'rc_id' );
-				} else {
-					// None found or the page has been created by the current user.
-					// If the user could patrol this it already would be patrolled
-					$rcid = 0;
-				}
-				// Build the link
-				if ( $rcid ) {
-					$this->getOutput()->preventClickjacking();
-					if ( $wgEnableAPI && $wgEnableWriteAPI
-						&& $user->isAllowed( 'writeapi' )
-					) {
-						$this->getOutput()->addModules( 'mediawiki.page.patrol.ajax' );
-					}
-
-					$token = $user->getEditToken( $rcid );
-					$this->mMarkPatrolledLink = ' <span class="patrollink">[' . Linker::linkKnown(
-						$this->mNewPage,
-						$this->msg( 'markaspatrolleddiff' )->escaped(),
-						array(),
-						array(
-							'action' => 'markpatrolled',
-							'rcid' => $rcid,
-							'token' => $token,
-						)
-					) . ']</span>';
-				} else {
-					$this->mMarkPatrolledLink = '';
-				}
-			} else {
-				$this->mMarkPatrolledLink = '';
-			}
+			$this->mMarkPatrolledLink = $this->getMarkPatrolledLink();
 		}
 
 		return $this->mMarkPatrolledLink;
@@ -963,7 +1003,10 @@ class DifferenceEngine extends ContextSource {
 				$numUsers = 0; // special case to say "by the same user" instead of "by one other user"
 			}
 
-			return self::intermediateEditsMsg( $nEdits, $numUsers, $limit );
+			$markPatrolledLink = $this->getMarkPatrolledLink( true );
+
+			return self::intermediateEditsMsg( $nEdits, $numUsers, $limit ) .
+				( $markPatrolledLink === '' ? '' : '<br/>' . $markPatrolledLink );
 		}
 
 		return ''; // nothing
