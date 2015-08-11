@@ -34,6 +34,34 @@ class SpecialBlankpage extends UnlistedSpecialPage {
 
 	public function execute( $par ) {
 		$this->setHeaders();
-		$this->getOutput()->addWikiMsg( 'intentionallyblankpage' );
+		$this->getOutput()->enableOOUI();
+		$this->getOutput()->addHTML( new MediaWiki\Widget\NamespaceInputWidget( array(
+			'infusable' => true,
+			'value' => 6,
+			'name' => 'ns',
+			'id' => 'ns-id',
+			'includeAllValue' => 'foo',
+		) ) );
+		$this->getOutput()->addHTML( new MediaWiki\Widget\ComplexNamespaceInputWidget( array(
+			'infusable' => true,
+			'namespace' => array(
+				'value' => 6,
+				'name' => 'ns',
+				'id' => 'ns-id',
+				'includeAllValue' => 'foo',
+			),
+			'invert' => array(
+				'name' => 'invert',
+			),
+			'invertLabel' => array(
+				'label' => 'Invert!',
+			),
+			'associated' => array(
+				'name' => 'associated',
+			),
+			'associatedLabel' => array(
+				'label' => 'With associated!',
+			),
+		) ) );
 	}
 }
