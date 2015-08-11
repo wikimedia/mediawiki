@@ -2642,6 +2642,7 @@
 	"pageinfo-category-subcats": "Number of subcategories",
 	"pageinfo-category-files": "Number of files",
 	"markaspatrolleddiff": "Mark as patrolled",
+	"markaspatrolleddiffmulti": "Mark all as patrolled",
 	"markaspatrolledlink": "[$1]",
 	"markaspatrolledtext": "Mark this page as patrolled",
 	"markedaspatrolled": "Marked as patrolled",
