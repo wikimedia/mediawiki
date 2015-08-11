@@ -24,7 +24,7 @@ class TitleInputWidget extends \OOUI\TextInputWidget {
 	 */
 	public function __construct( array $config = array() ) {
 		// Parent constructor
-		parent::__construct( array_merge( $config, array( 'infusable' => true ) ) );
+		parent::__construct( array_merge( array( 'infusable' => true ), $config ) );
 
 		// Properties, which are ignored in PHP and just shipped back to JS
 		if ( isset( $config['namespace'] ) ) {
