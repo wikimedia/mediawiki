@@ -18,6 +18,7 @@
 	 * @cfg {number} [limit=10] Number of results to show
 	 * @cfg {number} [namespace] Namespace to prepend to queries
 	 * @cfg {boolean} [relative=true] If a namespace is set, return a title relative to it
+	 * @cfg {boolean} [suggestions=true] Display search suggestions
 	 * @cfg {boolean} [showRedirectTargets=true] Show the targets of redirects
 	 * @cfg {boolean} [showRedlink] Show red link to exact match if it doesn't exist
 	 * @cfg {boolean} [showImages] Show page images
@@ -40,6 +41,7 @@
 		this.limit = config.limit || 10;
 		this.namespace = config.namespace !== undefined ? config.namespace : null;
 		this.relative = config.relative !== undefined ? config.relative : true;
+		this.suggestions = config.suggestions !== undefined ? config.suggestions : true;
 		this.showRedirectTargets = config.showRedirectTargets !== false;
 		this.showRedlink = !!config.showRedlink;
 		this.showImages = !!config.showImages;
@@ -55,6 +57,7 @@
 		if ( this.showDescriptions ) {
 			this.lookupMenu.$element.addClass( 'mw-widget-titleInputWidget-menu-withDescriptions' );
 		}
+		this.setLookupsDisabled( !this.suggestions );
 
 		this.interwikiPrefixes = [];
 		this.interwikiPrefixesPromise = new mw.Api().get( {
@@ -82,7 +85,7 @@
 		this.closeLookupMenu();
 		this.setLookupsDisabled( true );
 		this.setValue( item.getData() );
-		this.setLookupsDisabled( false );
+		this.setLookupsDisabled( !this.suggestions );
 	};
 
 	/**
@@ -97,7 +100,7 @@
 		// Parent method
 		retval = mw.widgets.TitleInputWidget.parent.prototype.focus.apply( this, arguments );
 
-		this.setLookupsDisabled( false );
+		this.setLookupsDisabled( !this.suggestions );
 
 		return retval;
 	};

@@ -14,11 +14,13 @@ class TitleInputWidget extends \OOUI\TextInputWidget {
 
 	protected $namespace = null;
 	protected $relative = null;
+	protected $suggestions = null;
 
 	/**
 	 * @param array $config Configuration options
 	 * @param int|null $config['namespace'] Namespace to prepend to queries
 	 * @param bool|null $config['relative'] If a namespace is set, return a title relative to it (default: true)
+	 * @param bool|null $config['suggestions'] Display search suggestions (default: true)
 	 */
 	public function __construct( array $config = array() ) {
 		// Parent constructor
@@ -28,9 +30,11 @@ class TitleInputWidget extends \OOUI\TextInputWidget {
 		if ( isset( $config['namespace'] ) ) {
 			$this->namespace = $config['namespace'];
 		}
-
 		if ( isset( $config['relative'] ) ) {
 			$this->relative = $config['relative'];
+		}
+		if ( isset( $config['suggestions'] ) ) {
+			$this->suggestions = $config['suggestions'];
 		}
 
 		// Initialization
@@ -47,6 +51,9 @@ class TitleInputWidget extends \OOUI\TextInputWidget {
 		}
 		if ( $this->relative !== null ) {
 			$config['relative'] = $this->relative;
+		}
+		if ( $this->suggestions !== null ) {
+			$config['suggestions'] = $this->suggestions;
 		}
 		return parent::getConfig( $config );
 	}
