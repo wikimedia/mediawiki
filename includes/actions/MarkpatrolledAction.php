@@ -40,18 +40,27 @@ class MarkpatrolledAction extends FormlessAction {
 	public function onView() {
 		$request = $this->getRequest();
 
-		$rcId = $request->getInt( 'rcid' );
-		$rc = RecentChange::newFromId( $rcId );
-		if ( is_null( $rc ) ) {
-			throw new ErrorPageError( 'markedaspatrollederror', 'markedaspatrollederrortext' );
+		$rcIds = $request->getIntArray( 'rcid' );
+		$rcs = array();
+		foreach ( $rcIds as $rcId ) {
+			$rc = RecentChange::newFromId( $rcId );
+			if ( is_null( $rc ) ) {
+				throw new ErrorPageError( 'markedaspatrollederror', 'markedaspatrollederrortext' );
+			}
+			$rcs[] = $rc;
 		}
 
 		$user = $this->getUser();
-		if ( !$user->matchEditToken( $request->getVal( 'token' ), $rcId ) ) {
+		if ( !$user->matchEditToken( $request->getVal( 'token' ), $rcIds[0] ) ) {
 			throw new ErrorPageError( 'sessionfailure-title', 'sessionfailure' );
 		}
 
-		$errors = $rc->doMarkPatrolled( $user );
+		foreach ( $rcs as $rc ) {
+			$errors = $rc->doMarkPatrolled( $user );
+			if ( $errors ) {
+				break;
+			}
+		}
 
 		if ( in_array( array( 'rcpatroldisabled' ), $errors ) ) {
 			throw new ErrorPageError( 'rcpatroldisabled', 'rcpatroldisabledtext' );
