@@ -40,18 +40,27 @@ class MarkpatrolledAction extends FormlessAction {
 	public function onView() {
 		$request = $this->getRequest();
 
-		$rcId = $request->getInt( 'rcid' );
-		$rc = RecentChange::newFromId( $rcId );
-		if ( is_null( $rc ) ) {
-			throw new ErrorPageError( 'markedaspatrollederror', 'markedaspatrollederrortext' );
+		$rcIds = $request->getIntArray( 'rcid' );
+		$rcs = array();
+		foreach ( $rcIds as $rcId ) {
+			$rc = RecentChange::newFromId( $rcId );
+			if ( is_null( $rc ) ) {
+				throw new ErrorPageError( 'markedaspatrollederror', 'markedaspatrollederrortext' );
+			}
+			$rcs[] = $rc;
 		}
 
 		$user = $this->getUser();
-		if ( !$user->matchEditToken( $request->getVal( 'token' ), $rcId ) ) {
+		if ( !$user->matchEditToken( $request->getVal( 'token' ), $rcIds[0] ) ) {
 			throw new ErrorPageError( 'sessionfailure-title', 'sessionfailure' );
 		}
 
-		$errors = $rc->doMarkPatrolled( $user );
+		foreach ( $rcs as $rc ) {
+			$errors = $rc->doMarkPatrolled( $user );
+			if ( $errors ) {
+				break;
+			}
+		}
 
 		if ( in_array( array( 'rcpatroldisabled' ), $errors ) ) {
 			throw new ErrorPageError( 'rcpatroldisabled', 'rcpatroldisabledtext' );
@@ -63,7 +72,7 @@ class MarkpatrolledAction extends FormlessAction {
 		}
 
 		# It would be nice to see where the user had actually come from, but for now just guess
-		$returnto = $rc->getAttribute( 'rc_type' ) == RC_NEW ? 'Newpages' : 'Recentchanges';
+		$returnto = $rcs[0]->getAttribute( 'rc_type' ) == RC_NEW ? 'Newpages' : 'Recentchanges';
 		$return = SpecialPage::getTitleFor( $returnto );
 
 		if ( in_array( array( 'markedaspatrollederror-noautopatrol' ), $errors ) ) {
@@ -80,7 +89,8 @@ class MarkpatrolledAction extends FormlessAction {
 
 		# Inform the user
 		$this->getOutput()->setPageTitle( $this->msg( 'markedaspatrolled' ) );
-		$this->getOutput()->addWikiMsg( 'markedaspatrolledtext', $rc->getTitle()->getPrefixedText() );
+		$this->getOutput()->addWikiMsg(
+			'markedaspatrolledtext', $rcs[0]->getTitle()->getPrefixedText(), count( $rcs ) );
 		$this->getOutput()->returnToMain( null, $return );
 	}
 }
