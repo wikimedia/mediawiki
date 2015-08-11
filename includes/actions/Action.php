@@ -108,22 +108,21 @@ abstract class Action {
 	}
 
 	/**
-	 * Get the action that will be executed, not necessarily the one passed
-	 * passed through the "action" request parameter. Actions disabled in
-	 * $wgActions will be replaced by "nosuchaction".
+	 * Helper function for self::getActionName. Checks $wgActions, if the requested action
+	 * exists and if it is disabled or not. Does no other checks for the given action.
 	 *
-	 * @since 1.19
+	 * @since 1.26
 	 * @param IContextSource $context
 	 * @return string Action name
 	 */
-	final public static function getActionName( IContextSource $context ) {
-		global $wgActions;
+	final public static function getActionNameRaw( IContextSource $context ) {
+		$actions = $context->getConfig()->get( 'Actions' );
 
 		$request = $context->getRequest();
 		$actionName = $request->getVal( 'action', 'view' );
 
 		// Check for disabled actions
-		if ( isset( $wgActions[$actionName] ) && $wgActions[$actionName] === false ) {
+		if ( isset( $actions[$actionName] ) && $actions[$actionName] === false ) {
 			$actionName = 'nosuchaction';
 		}
 
@@ -141,12 +140,27 @@ abstract class Action {
 			$actionName = 'edit';
 		}
 
+		return $actionName;
+	}
+
+	/**
+	 * Get the action that will be executed, not necessarily the one passed
+	 * passed through the "action" request parameter. Actions disabled in
+	 * $wgActions will be replaced by "nosuchaction".
+	 *
+	 * @since 1.19
+	 * @param IContextSource $context
+	 * @return string Action name
+	 */
+	final public static function getActionName( IContextSource $context ) {
 		// Trying to get a WikiPage for NS_SPECIAL etc. will result
 		// in WikiPage::factory throwing "Invalid or virtual namespace -1 given."
 		// For SpecialPages et al, default to action=view.
 		if ( !$context->canUseWikiPage() ) {
 			return 'view';
 		}
+
+		$actionName = self::getActionNameRaw( $context );
 
 		$action = Action::factory( $actionName, $context->getWikiPage(), $context );
 		if ( $action instanceof Action ) {
