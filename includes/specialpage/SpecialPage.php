@@ -686,4 +686,20 @@ class SpecialPage {
 	protected function getGroupName() {
 		return 'other';
 	}
+
+	/**
+	 * Handler for action=render
+	 *
+	 * @since 1.26
+	 *
+	 * @param string|null $par
+	 */
+	public function render( $par ) {
+		$out = $this->getOutput();
+
+		$this->getRequest()->response()->header( 'X-Robots-Tag: noindex' );
+		$out->setArticleBodyOnly( true );
+		$out->enableSectionEditLinks( false );
+		$this->run( $par );
+	}
 }
