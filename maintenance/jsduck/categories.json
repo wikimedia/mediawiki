@@ -27,6 +27,7 @@
 					"mw.messagePoster.*",
 					"mw.notification",
 					"mw.Notification_",
+					"mw.storage",
 					"mw.user",
 					"mw.util",
 					"mw.plugin.*",
