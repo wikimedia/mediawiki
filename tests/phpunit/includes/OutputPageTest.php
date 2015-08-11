@@ -162,15 +162,15 @@ class OutputPageTest extends MediaWikiTestCase {
 				array( 'test.quux', ResourceLoaderModule::TYPE_SCRIPTS ),
 				"<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {\n"
 					. "mw.test.baz({token:123});mw.loader.state({\"test.quux\":\"ready\"});\n"
-					. "\n} );</script>"
+					. "} );</script>"
 			),
 			// Load private module (combined)
 			array(
 				array( 'test.quux', ResourceLoaderModule::TYPE_COMBINED ),
 				"<script>window.RLQ = window.RLQ || []; window.RLQ.push( function () {\n"
 					. "mw.loader.implement(\"test.quux\",function($,jQuery){"
-					. "mw.test.baz({token:123});},{\"css\":[\".mw-icon{transition:none}\\n"
-					. "\"]});\n\n} );</script>"
+					. "mw.test.baz({token:123});},{\"css\":[\".mw-icon{transition:none}"
+					. "\"]});\n} );</script>"
 			),
 			// Load no modules
 			array(
