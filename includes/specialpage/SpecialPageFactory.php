@@ -180,6 +180,24 @@ class SpecialPageFactory {
 	private static $aliases;
 
 	/**
+	 * Holds an array of valid actions a special page can executed with. It
+	 * also maps the action to a specific function that must be implemented
+	 * in SpecialPage.
+	 */
+	private static $whitelistedActions = array(
+		'render' => 'render'
+	);
+
+	/**
+	 * Get whitelisted actions, that can be used with special pages.
+	 * @since 1.26
+	 * @return array
+	 */
+	public static function getWhitelistedActions() {
+		return self::$whitelistedActions;
+	}
+
+	/**
 	 * Reset the internal list of special pages. Useful when changing $wgSpecialPages after
 	 * the internal list has already been initialized, e.g. during testing.
 	 */
@@ -549,8 +567,20 @@ class SpecialPageFactory {
 
 		$page->including( $including );
 
-		// Execute special page
-		$page->run( $par );
+		// check, if a given action is whitelisted
+		$action = Action::getActionNameRaw( $context );
+		$actions = self::getWhitelistedActions();
+		if ( array_key_exists( $action, $actions ) ) {
+			// the function for this action needs to be callable for the special page
+			if ( !is_callable( array( $page, $actions[$action] ) ) ) {
+				throw new InvalidArgumentException( 'Invalid callback for action ' . $action );
+			}
+			// execute the function given for the action
+			call_user_func_array( array( $page, $actions[$action] ), array( $par ) );
+		} else {
+			// Execute special page "normally"
+			$page->run( $par );
+		}
 
 		return true;
 	}
