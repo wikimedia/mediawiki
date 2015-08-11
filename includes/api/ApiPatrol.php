@@ -37,22 +37,32 @@ class ApiPatrol extends ApiBase {
 		$params = $this->extractRequestParams();
 		$this->requireOnlyOneParameter( $params, 'rcid', 'revid' );
 
+		$multi = false;
+		$rcs = array();
 		if ( isset( $params['rcid'] ) ) {
-			$rc = RecentChange::newFromId( $params['rcid'] );
-			if ( !$rc ) {
-				$this->dieUsageMsg( [ 'nosuchrcid', $params['rcid'] ] );
+			$multi = count( $params['rcid'] ) > 1;
+			foreach ( $params['rcid'] as $rcid ) {
+				$rc = RecentChange::newFromId( $rcid );
+				if ( !$rc ) {
+					$this->dieUsageMsg( array( 'nosuchrcid', $params['rcid'] ) );
+				}
+				$rcs[] = $rc;
 			}
 		} else {
-			$rev = Revision::newFromId( $params['revid'] );
-			if ( !$rev ) {
-				$this->dieUsageMsg( [ 'nosuchrevid', $params['revid'] ] );
-			}
-			$rc = $rev->getRecentChange();
-			if ( !$rc ) {
-				$this->dieUsage(
-					'The revision ' . $params['revid'] . " can't be patrolled as it's too old",
-					'notpatrollable'
-				);
+			$multi = count( $params['revid'] ) > 1;
+			foreach ( $params['revid'] as $revid ) {
+				$rev = Revision::newFromId( $revid );
+				if ( !$rev ) {
+					$this->dieUsageMsg( array( 'nosuchrevid', $revid ) );
+				}
+				$rc = $rev->getRecentChange();
+				if ( !$rc ) {
+					$this->dieUsage(
+						'The revision ' . $revid . " can't be patrolled as it's too old",
+						'notpatrollable'
+					);
+				}
+				$rcs[] = $rc;
 			}
 		}
 
@@ -67,15 +77,23 @@ class ApiPatrol extends ApiBase {
 			}
 		}
 
-		$retval = $rc->doMarkPatrolled( $user, false, $tags );
-
-		if ( $retval ) {
-			$this->dieUsageMsg( reset( $retval ) );
+		$res = array();
+		foreach ( $rcs as $rc ) {
+			$retval = $rc->doMarkPatrolled( $user, false, $tags );
+			if ( $retval ) {
+				$this->dieUsageMsg( reset( $retval ) );
+			}
+			$result = array( 'rcid' => intval( $rc->getAttribute( 'rc_id' ) ) );
+			ApiQueryBase::addTitleInfo( $result, $rc->getTitle() );
+			$res[] = $result;
 		}
 
-		$result = [ 'rcid' => intval( $rc->getAttribute( 'rc_id' ) ) ];
-		ApiQueryBase::addTitleInfo( $result, $rc->getTitle() );
-		$this->getResult()->addValue( null, $this->getModuleName(), $result );
+		if ( !$multi && count( $res ) === 1 ) {
+			// Single return value for backwards compatibility
+			$res = $res[0];
+		}
+
+		$this->getResult()->addValue( null, $this->getModuleName(), $res );
 	}
 
 	public function mustBePosted() {
@@ -89,10 +107,12 @@ class ApiPatrol extends ApiBase {
 	public function getAllowedParams() {
 		return [
 			'rcid' => [
-				ApiBase::PARAM_TYPE => 'integer'
+				ApiBase::PARAM_TYPE => 'integer',
+				ApiBase::PARAM_ISMULTI => true
 			],
 			'revid' => [
-				ApiBase::PARAM_TYPE => 'integer'
+				ApiBase::PARAM_TYPE => 'integer',
+				ApiBase::PARAM_ISMULTI => true
 			],
 			'tags' => [
 				ApiBase::PARAM_TYPE => 'tags',
