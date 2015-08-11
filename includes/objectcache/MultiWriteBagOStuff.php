@@ -29,7 +29,7 @@
  * @ingroup Cache
  */
 class MultiWriteBagOStuff extends BagOStuff {
-	/** @var array BagOStuff[] */
+	/** @var BagOStuff[] */
 	protected $caches;
 
 	/**
