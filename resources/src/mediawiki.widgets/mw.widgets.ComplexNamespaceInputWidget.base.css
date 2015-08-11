@@ -1,0 +1,26 @@
+/*!
+ * MediaWiki Widgets - base ComplexNamespaceInputWidget styles.
+ *
+ * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
+ * @license The MIT License (MIT); see LICENSE.txt
+ */
+
+.mw-widget-complexNamespaceInputWidget .mw-widget-namespaceInputWidget,
+.mw-widget-complexNamespaceInputWidget .oo-ui-fieldLayout {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+/* TODO FieldLayout is not supposed to be used the way we use it here */
+.mw-widget-complexNamespaceInputWidget .oo-ui-fieldLayout {
+	vertical-align: middle;
+	margin-bottom: 0;
+}
+
+.mw-widget-complexNamespaceInputWidget .oo-ui-fieldLayout.oo-ui-fieldLayout-align-inline.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-labelElement-label {
+	padding-left: 0.5em;
+}
+
+.mw-widget-complexNamespaceInputWidget .mw-widget-namespaceInputWidget {
+	max-width: 20em;
+}
