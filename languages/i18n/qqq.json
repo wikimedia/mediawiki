@@ -2813,6 +2813,7 @@
 	"pageinfo-category-subcats": "See also:\n* {{msg-mw|Pageinfo-category-pages}}\n* {{msg-mw|Pageinfo-category-files}}",
 	"pageinfo-category-files": "See also:\n* {{msg-mw|Pageinfo-category-pages}}\n* {{msg-mw|Pageinfo-category-subcats}}",
 	"markaspatrolleddiff": "{{doc-actionlink}}\nSee also:\n* {{msg-mw|Markaspatrolledtext}}\n{{Identical|Mark as patrolled}}",
+	"markaspatrolleddiffmulti": "{{doc-actionlink}}\nSee also:\n* {{msg-mw|Markaspatrolleddiff}}",
 	"markaspatrolledlink": "{{notranslate}}\nParameters:\n* $1 - link which has text {{msg-mw|Markaspatrolledtext}}",
 	"markaspatrolledtext": "{{doc-actionlink}}\nSee also:\n* {{msg-mw|Markaspatrolleddiff}}",
 	"markedaspatrolled": "Used as title of the message {{msg-mw|Markedaspatrolledtext}}, when marking a change as patrolled.\n{{Related|Markedaspatrolled}}",

@@ -1437,6 +1437,7 @@ return array(
 			'mediawiki.api',
 			'mediawiki.util',
 			'mediawiki.Title',
+			'mediawiki.Uri',
 			'mediawiki.notify',
 			'jquery.spinner',
 			'user.tokens'
