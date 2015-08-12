@@ -1,5 +1,5 @@
 <?php
-/** Goan Konkani - Devanagari script (गोवा कोंकणी)
+/** Goan Konkani - Devanagari script (कोंकणी)
  *
  * To improve a translation please visit https://translatewiki.net
  *

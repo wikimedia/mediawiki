@@ -1,5 +1,5 @@
 <?php
-/** Goan Konkani (गोवा कोंकणी / Gova Konknni)
+/** Goan Konkani (कोंकणी / Konknni)
  *
  * To improve a translation please visit https://translatewiki.net
  *
