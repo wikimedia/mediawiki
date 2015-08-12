@@ -29,7 +29,7 @@
 		var widget = this;
 
 		// Config initialization
-		config = config || {};
+		config = $.extend( { maxLength: 255 }, config );
 
 		// Parent constructor
 		mw.widgets.TitleInputWidget.parent.call( this, $.extend( {}, config, { autocomplete: false } ) );
@@ -39,6 +39,7 @@
 
 		// Properties
 		this.limit = config.limit || 10;
+		this.maxLength = config.maxLength;
 		this.namespace = config.namespace !== undefined ? config.namespace : null;
 		this.relative = config.relative !== undefined ? config.relative : true;
 		this.suggestions = config.suggestions !== undefined ? config.suggestions : true;
@@ -282,16 +283,29 @@
 	};
 
 	/**
-	 * Get title object corresponding to #getValue
+	 * Get title object corresponding to given value, or #getValue if not given.
 	 *
+	 * @param {string} [value] Value to get a title for
 	 * @returns {mw.Title|null} Title object, or null if value is invalid
 	 */
-	mw.widgets.TitleInputWidget.prototype.getTitle = function () {
-		var title = this.getValue(),
+	mw.widgets.TitleInputWidget.prototype.getTitle = function ( value ) {
+		var title = value !== undefined ? value : this.getValue(),
 			// mw.Title doesn't handle null well
 			titleObj = mw.Title.newFromText( title, this.namespace !== null ? this.namespace : undefined );
 
 		return titleObj;
+	};
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.widgets.TitleInputWidget.prototype.cleanUpValue = function ( value ) {
+		var widget = this;
+		value = mw.widgets.TitleInputWidget.parent.prototype.cleanUpValue.call( this, value );
+		return $.fn.byteLimit.trimValueForByteLength( this.value, value, this.maxLength, function ( value ) {
+			var title = widget.getTitle( value );
+			return title ? title.getMain() : value;
+		} ).newVal;
 	};
 
 	/**
