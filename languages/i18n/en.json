@@ -2035,7 +2035,7 @@
 	"undeletepagetext": "The following {{PLURAL:$1|page has been deleted but is|$1 pages have been deleted but are}} still in the archive and can be restored.\nThe archive may be periodically cleaned out.",
 	"undelete-fieldset-title": "Restore revisions",
 	"undeleteextrahelp": "To restore the page's entire history, leave all checkboxes deselected and click <strong><em>{{int:undeletebtn}}</em></strong>.\nTo perform a selective restoration, check the boxes corresponding to the revisions to be restored, and click <strong><em>{{int:undeletebtn}}</em></strong>.",
-	"undeleterevisions": "$1 {{PLURAL:$1|revision|revisions}} archived",
+	"undeleterevisions": "$1 {{PLURAL:$1|revision|revisions}} deleted",
 	"undeletehistory": "If you restore the page, all revisions will be restored to the history.\nIf a new page with the same name has been created since the deletion, the restored revisions will appear in the prior history.",
 	"undeleterevdel": "Undeletion will not be performed if it will result in the top page or file revision being partially deleted.\nIn such cases, you must uncheck or unhide the newest deleted revision.",
 	"undeletehistorynoadmin": "This page has been deleted.\nThe reason for deletion is shown in the summary below, along with details of the users who had edited this page before deletion.\nThe actual text of these deleted revisions is only available to administrators.",
