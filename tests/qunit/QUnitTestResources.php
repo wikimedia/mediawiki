@@ -86,6 +86,7 @@ return array(
 			'tests/qunit/suites/resources/mediawiki/mediawiki.language.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.cldr.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.cookie.test.js',
+			'tests/qunit/suites/resources/mediawiki/mediawiki.experiments.test.js',
 		),
 		'dependencies' => array(
 			'jquery.accessKeyLabel',
@@ -123,6 +124,7 @@ return array(
 			'mediawiki.language',
 			'mediawiki.cldr',
 			'mediawiki.cookie',
+			'mediawiki.experiments',
 			'test.mediawiki.qunit.testrunner',
 		),
 	)
