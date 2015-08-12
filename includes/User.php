@@ -3459,7 +3459,7 @@ class User implements IDBAccessObject {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->update( 'watchlist',
 				array( /* SET */ 'wl_notificationtimestamp' => null ),
-				array( /* WHERE */ 'wl_user' => $id ),
+				array( /* WHERE */ 'wl_user' => $id, 'wl_notificationtimestamp IS NOT NULL' ),
 				__METHOD__
 			);
 			// We also need to clear here the "you have new message" notification for the own user_talk page;

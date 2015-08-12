@@ -102,7 +102,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 			case self::EDIT_NORMAL:
 			default:
-			$this->executeViewEditWatchlist();
+				$this->executeViewEditWatchlist();
 				break;
 		}
 	}
