@@ -645,3 +645,6 @@
 	path = vendor
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/vendor.git
 	branch = wmf/1.26wmf17
+[submodule "extensions/WikidataPageBanner"]
+	path = extensions/WikidataPageBanner
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/WikidataPageBanner.git
