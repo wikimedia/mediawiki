@@ -1820,12 +1820,16 @@ return array(
 			),
 		),
 		'dependencies' => array(
+			'oojs-ui',
 			'mediawiki.widgets.styles',
-			'jquery.autoEllipsis',
+			// DateInputWidget
+			'moment',
+			// TitleInputWidget
 			'mediawiki.Title',
 			'mediawiki.api',
-			'moment',
-			'oojs-ui',
+			'jquery.byteLimit',
+			// TitleOptionWidget
+			'jquery.autoEllipsis',
 		),
 		'messages' => array(
 			// DateInputWidget
