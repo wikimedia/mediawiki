@@ -260,29 +260,30 @@ class MessageCache {
 		# Loading code starts
 		$success = false; # Keep track of success
 		$staleCache = false; # a cache array with expired data, or false if none has been loaded
-		$hashExpired = false; # whether the cluster-local validation hash is stale
 		$where = array(); # Debug info, delayed to avoid spamming debug log too much
 
-		# Local cache
-		# Hash of the contents is stored in memcache, to detect if local cache goes
-		# out of date (e.g. due to replace() on some other server)
-		if ( $wgUseLocalMessageCache ) {
-			list( $hash, $hashExpired ) = $this->getValidationHash( $code );
-			if ( $hash ) {
-				$cache = $this->getLocalCache( $code );
-				if ( !$cache || !isset( $cache['HASH'] ) || $cache['HASH'] !== $hash ) {
-					$where[] = 'local cache is empty or has the wrong hash';
-				} elseif ( $this->isCacheExpired( $cache ) ) {
-					$where[] = 'local cache is expired';
-					$staleCache = $cache;
-				} elseif ( $hashExpired ) {
-					$where[] = 'local cache validation key is expired';
-					$staleCache = $cache;
-				} else {
-					$where[] = 'got from local cache';
-					$success = true;
-					$this->mCache[$code] = $cache;
-				}
+		# Hash of the contents is stored in memcache, to detect if data-center cache
+		# or local cache goes out of date (e.g. due to replace() on some other server)
+		list( $hash, $hashVolatile ) = $this->getValidationHash( $code );
+
+		if ( $wgUseLocalMessageCache && $hash ) {
+			# Try the local cache and check against the cluster hash key...
+			$cache = $this->getLocalCache( $code );
+			if ( !$cache ) {
+				$where[] = 'local cache is empty';
+			} elseif ( !isset( $cache['HASH'] ) || $cache['HASH'] !== $hash ) {
+				$where[] = 'local cache has the wrong hash';
+				$staleCache = $cache;
+			} elseif ( $this->isCacheExpired( $cache ) ) {
+				$where[] = 'local cache is expired';
+				$staleCache = $cache;
+			} elseif ( $hashVolatile ) {
+				$where[] = 'local cache validation key is expired/volatile';
+				$staleCache = $cache;
+			} else {
+				$where[] = 'got from local cache';
+				$success = true;
+				$this->mCache[$code] = $cache;
 			}
 		}
 
@@ -292,7 +293,7 @@ class MessageCache {
 			# the lock can't be acquired, wait for the other thread to finish
 			# and then try the global cache a second time.
 			for ( $failedAttempts = 0; $failedAttempts < 2; $failedAttempts++ ) {
-				if ( $hashExpired && $staleCache ) {
+				if ( $hashVolatile && $staleCache ) {
 					# Do not bother fetching the whole cache blob to avoid I/O.
 					# Instead, just try to get the non-blocking $statusKey lock
 					# below, and use the local stale value if it was not acquired.
@@ -303,6 +304,12 @@ class MessageCache {
 						$where[] = 'global cache is empty';
 					} elseif ( $this->isCacheExpired( $cache ) ) {
 						$where[] = 'global cache is expired';
+						$staleCache = $cache;
+					} elseif ( $hashVolatile ) {
+						# DB results are slave lag prone until the holdoff TTL passes.
+						# By then, updates should be reflected in loadFromDBWithLock().
+						# One thread renerates the cache while others use old values.
+						$where[] = 'global cache is expired/volatile';
 						$staleCache = $cache;
 					} else {
 						$where[] = 'got from global cache';
@@ -319,8 +326,8 @@ class MessageCache {
 
 				# We need to call loadFromDB. Limit the concurrency to one process.
 				# This prevents the site from going down when the cache expires.
+				# Note that the slam-protection lock here is non-blocking.
 				if ( $this->loadFromDBWithLock( $code, $where ) ) {
-					# Load from DB complete, no need to retry
 					$success = true;
 					break;
 				} elseif ( $staleCache ) {
@@ -644,7 +651,7 @@ class MessageCache {
 	 * Get the md5 used to validate the local disk cache
 	 *
 	 * @param string $code
-	 * @return array (hash or false, bool expiry status)
+	 * @return array (hash or false, bool expiry/volatility status)
 	 */
 	protected function getValidationHash( $code ) {
 		$curTTL = null;
