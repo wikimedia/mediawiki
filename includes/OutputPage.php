@@ -2698,11 +2698,12 @@ class OutputPage extends ContextSource {
 
 		$ret .= Html::element( 'title', null, $this->getHTMLTitle() ) . "\n";
 
+		$ret .= $this->buildCssLinks() . "\n";
+
 		foreach ( $this->getHeadLinksArray() as $item ) {
 			$ret .= $item . "\n";
 		}
 
-		$ret .= $this->buildCssLinks() . "\n";
 		$ret .= $this->getHeadScripts() . "\n";
 
 		foreach ( $this->mHeadItems as $item ) {
