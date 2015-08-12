@@ -31,7 +31,8 @@
 					"mw.user",
 					"mw.util",
 					"mw.plugin.*",
-					"mw.cookie"
+					"mw.cookie",
+					"mw.experiments"
 				]
 			},
 			{

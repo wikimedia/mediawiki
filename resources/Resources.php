@@ -1196,6 +1196,10 @@ return array(
 		'styles' => 'resources/src/mediawiki.toolbar/toolbar.less',
 		'position' => 'top',
 	),
+	'mediawiki.experiments' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.experiments.js',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 
 	/* MediaWiki Action */
 
