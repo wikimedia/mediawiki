@@ -118,7 +118,7 @@
 	"apihelp-expandtemplates-param-includecomments": "Ov Aanmärkonge em <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"HyperText Markup Language\">HTML</i>-Fommaht med ußjejovve wähde sulle.",
 	"apihelp-expandtemplates-param-generatexml": "Donn ene Boum vum <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Extensible Markup Language\">XML</i>-Paaser opboue. Es dorsch „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">$1prop=parsetree</code>“ ässäz.",
 	"apihelp-expandtemplates-example-simple": "Donn dä Wikkitäx <kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\"><nowiki>{{Project:Sandbox}}</nowiki></kbd> en Täx wandelle.",
-	"apihelp-feedcontributions-description": "Jidd ene Kannahl met de Beidrähsch vun enem Metmaacher uß.",
+	"apihelp-feedcontributions-description": "Jidd ene Kannahl met de Beijdrähsch vun enem Metmaacher uß.",
 	"apihelp-feedcontributions-param-feedformat": "Däm Kannahl sing Fommaht.",
 	"apihelp-feedcontributions-param-user": "De Beijdrähsch för wat för en Metmaacher holle.",
 	"apihelp-feedcontributions-param-namespace": "Wat för ene Appachtemang för de Beijdrähsch ußjeschloße wähde sull.",

@@ -1328,6 +1328,7 @@
 	"upload-too-many-redirects": "URL-адрас утрымлівае зашмат перанакіраваньняў",
 	"upload-http-error": "Узьнікла памылка HTTP: $1",
 	"upload-copy-upload-invalid-domain": "Капіяваньне загрузак не дазволенае ў гэтым дамэне.",
+	"upload-dialog-title": "Загрузка файла",
 	"backend-fail-stream": "Немагчыма накіраваць файл $1.",
 	"backend-fail-backup": "Немагчыма зрабіць рэзэрвовую копію файла $1.",
 	"backend-fail-notexists": "Файл $1 не існуе.",

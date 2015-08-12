@@ -1403,6 +1403,7 @@
 	"upload-copy-upload-invalid-domain": "Non è consentito il caricamento di copie da questo dominio.",
 	"upload-dialog-title": "Carica file",
 	"upload-dialog-error": "Si è verificato un errore",
+	"upload-dialog-warning": "Si è verificato un avviso",
 	"upload-dialog-button-cancel": "Annulla",
 	"upload-dialog-button-done": "Fatto",
 	"upload-dialog-button-save": "Salva",

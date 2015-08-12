@@ -453,6 +453,7 @@
 	"apihelp-query+info-paramvalue-prop-protection": "Listar el nivel de protección de cada página.",
 	"apihelp-query+info-paramvalue-prop-subjectid": "La ID de página de la página principal de cada página de discusión.",
 	"apihelp-query+info-paramvalue-prop-readable": "Si el usuario puede leer esta página.",
+	"apihelp-query+info-paramvalue-prop-displaytitle": "Proporciona la manera en que se muestra realmente el título de la página",
 	"apihelp-query+info-param-token": "Usa [[Special:ApiHelp/query+tokens|action=query&meta=tokens]] en su lugar.",
 	"apihelp-query+info-example-simple": "Obtener información acerca de la página <kbd>Main Page</kbd>.",
 	"apihelp-query+info-example-protection": "Obtén información general y protección acerca de la página <kb>Página principal</kbd>.",

@@ -1061,6 +1061,7 @@
 	"upload-file-error-text": "Der wie in ynterne fout doe't in tydlike triem op'e server oanmakke waard.\nNim kontakt op mei in [[Special:ListUsers/sysop|behearder]].",
 	"upload-misc-error": "Unbekende oanbiedflater",
 	"upload-misc-error-text": "Der is by it oanbieden in ûnbekende fout optreden.\nKontrolearje of de URL krekt en beskikber is en besykje it nochris.\nAs it probleem oanhâldt, nim dan kontakt op mei in\n[[Special:ListUsers/sysop|behearder]].",
+	"upload-dialog-button-done": "Klear",
 	"http-read-error": "HTTP-lêsflater.",
 	"upload-curl-error6": "Koe de URL net berikke",
 	"upload-curl-error6-text": "De opjûne URL is net berikber.\nKontrolearje oft de URL krekt is en oft de webside beskikber is.",

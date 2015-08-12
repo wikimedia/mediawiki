@@ -1982,7 +1982,7 @@
 	"undeletepagetext": "Die {{PLURAL:$1|folgende Seite wurde gelöscht und kann|folgenden $1 Seiten wurden gelöscht und können}} von Administratoren wiederhergestellt werden:",
 	"undelete-fieldset-title": "Wiederherstellen",
 	"undeleteextrahelp": "* Um die Seite mitsamt aller Versionen wiederherzustellen, wähle keine Version aus, gib eine Begründung an und klicke dann auf „{{int:undeletebtn}}“.\n* Um lediglich bestimmte Versionen der Seite wiederherzustellen, wähle die betreffenden Versionen einzeln aus, gib eine Begründung an und klicke dann auf „{{int:undeletebtn}}“.",
-	"undeleterevisions": "{{PLURAL:$1|1 Version|$1 Versionen}} archiviert",
+	"undeleterevisions": "{{PLURAL:$1|Eine Version|$1 Versionen}} gelöscht",
 	"undeletehistory": "Wenn du diese Seite wiederherstellst, werden auch alle alten Versionen wiederhergestellt.\nWenn seit der Löschung eine neue Seite gleichen Namens erstellt wurde, werden die wiederhergestellten Versionen chronologisch in die Versionsgeschichte eingeordnet.",
 	"undeleterevdel": "Die Wiederherstellung wird nicht durchgeführt, wenn die aktuellste Version versteckt ist oder versteckte Teile enthält.\nIn diesem Fall darf die aktuellste Version nicht markiert werden oder ihr Status muss auf den einer normalen Version geändert werden.",
 	"undeletehistorynoadmin": "Diese Seite wurde gelöscht. Der Löschgrund ist in der Zusammenfassung angegeben,\ngenauso wie Details zum letzten Benutzer, der diese Seite vor der Löschung bearbeitet hat.\nDer aktuelle Text der gelöschten Seite ist nur Administratoren zugänglich.",

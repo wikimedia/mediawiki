@@ -4,7 +4,8 @@
 			"Toniher",
 			"Macofe",
 			"Xavier Dengra",
-			"F3RaN"
+			"F3RaN",
+			"Eduardo Martinez"
 		]
 	},
 	"apihelp-main-param-format": "El format de la sortida.",
@@ -47,7 +48,7 @@
 	"apihelp-query+pageswithprop-example-generator": "Obtenir informació addicional sobre les 10 primeres pàgines utilitzant <code>__NOTOC__</code>.",
 	"apihelp-query+watchlist-paramvalue-prop-title": "Afegeix el títol de la pàgina.",
 	"apihelp-query+watchlist-paramvalue-prop-user": "Afegeix l'usuari que ha fet l'edició.",
-	"apihelp-query+watchlist-paramvalue-prop-userid": "Afegeix l'identificador d'usuari que ha fet l'edició.",
+	"apihelp-query+watchlist-paramvalue-prop-userid": "Afegeix l'IDentificador de l'usuari que ha fet l'edició.",
 	"apihelp-query+watchlist-paramvalue-prop-comment": "Afegeix comentari de l'edició.",
 	"apihelp-query+watchlist-paramvalue-prop-timestamp": "Afegeix timestamp de l'edició.",
 	"apihelp-query+watchlist-paramvalue-prop-patrol": "Etiqueta les modificacions que són vigilades.",
