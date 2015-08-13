@@ -55,6 +55,8 @@ production.
   the store type from $wgObjectCaches. The default is the local database.
 * Interface message overrides in the MediaWiki namespace will now be cached in
   memcached and APC (if available), rather than memcached and local files.
+* Added a new hook, 'RandomPageQuery', to allow modification of the query used
+  by Special:Random to select random pages.
 * $wgTransactionalTimeLimit was added, which controls the request time limit
   for potentially slow POST requests that need to be as atomic as possible.
 
