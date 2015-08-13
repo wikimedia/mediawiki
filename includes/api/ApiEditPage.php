@@ -100,7 +100,10 @@ class ApiEditPage extends ApiBase {
 
 		$name = $titleObj->getPrefixedDBkey();
 		$model = $contentHandler->getModelID();
-		if ( $contentHandler->supportsDirectApiEditing() === false ) {
+
+		if ( $params['undo'] > 0 ) {
+			// allow undo via api
+		} else if ( $contentHandler->supportsDirectApiEditing() === false ) {
 			$this->dieUsage(
 				"Direct editing via API is not supported for content model $model used by $name",
 				'no-direct-editing'
