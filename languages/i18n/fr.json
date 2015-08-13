@@ -2032,7 +2032,7 @@
 	"undeletepagetext": "{{PLURAL:$1|La page suivante a été supprimée et se trouve|Les pages suivantes ont été supprimées et se trouvent}} dans la base de données archive, d’où {{PLURAL:$1|elle peut|elles peuvent}} encore être restaurée{{PLURAL:$1||s}}.\nL’archive peut être nettoyée périodiquement.",
 	"undelete-fieldset-title": "Restaurer les versions",
 	"undeleteextrahelp": "Pour restaurer l’historique complet de cette page, laissez toutes les cases décochées et cliquez sur '''''Restaurer'''''.\nPour effectuer une restauration partielle, cochez les cases correspondant aux versions à rétablir, puis cliquez sur '''''Restaurer'''''.",
-	"undeleterevisions": "$1 {{PLURAL:$1|version archivée|versions archivées}}",
+	"undeleterevisions": "$1 {{PLURAL:$1|révision supprimée|révisions supprimées}}",
 	"undeletehistory": "Si vous restaurez la page, toutes les versions seront replacées dans l’historique.\nSi une nouvelle page avec le même nom a été créée depuis la suppression, les versions restaurées apparaîtront dans l’historique antérieur et la version courante ne sera pas automatiquement remplacée.",
 	"undeleterevdel": "La restauration ne sera pas effectuée si, au final, la version la plus récente de la page ou du fichier reste partiellement supprimée.\nDans de tels cas, vous devez décocher ou démasquer les versions effacées les plus récentes (en tête de liste).",
 	"undeletehistorynoadmin": "Cette page a été supprimée.\nLe motif de la suppression est indiqué dans le résumé ci-dessous, avec les détails des utilisateurs qui ont modifié la page avant sa suppression.\nLe contenu effectif de ces versions supprimées n’est accessible qu’aux administrateurs.",

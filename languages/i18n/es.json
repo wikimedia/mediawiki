@@ -2020,7 +2020,7 @@
 	"undeletepagetext": "{{PLURAL:$1|La siguiente página ha sido borrada, pero aún está en el archivo y puede ser restaurada.|Las siguientes $1 páginas han sido borradas, pero aún están en el archivo y pueden ser restauradas.}}\nPuede que el archivo se limpie periódicamente.",
 	"undelete-fieldset-title": "Restaurar revisiones",
 	"undeleteextrahelp": "Para restaurar todo el historial de la página, deja todas las casillas sin seleccionar y pulsa en <strong><em>{{int:undeletebtn}}</em></strong>.\nPara realizar una restauración selectiva, marca las revisiones que deban restaurarse y pulsa en <strong><em>{{int:undeletebtn}}</em></strong>.",
-	"undeleterevisions": "$1 {{PLURAL:$1|revisión archivada|revisiones archivadas}}",
+	"undeleterevisions": "$1 {{PLURAL:$1|revisión eliminada|revisiones eliminadas}}",
 	"undeletehistory": "Si restauras la página, todas sus revisiones se restaurarán en el historial.\nSi una nueva página con el mismo nombre se ha creado desde que se borró la original, las versiones restauradas aparecerán en el historial previo.",
 	"undeleterevdel": "No se deshará el borrado si éste resulta en el borrado parcial de la última revisión de la página. En tal caso, desmarque o muestre las revisiones borradas más recientes. Las revisiones de archivos que no tiene permitido ver no se restaurarán.",
 	"undeletehistorynoadmin": "El artículo ha sido borrado. La razón de su eliminación se indica abajo en el resumen, así como los detalles de las ediciones realizadas antes del borrado. El texto completo del artículo está disponible sólo para usuarios con permisos de administrador.",

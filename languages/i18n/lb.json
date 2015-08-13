@@ -1305,6 +1305,7 @@
 	"upload-copy-upload-invalid-domain": "Vun dësem Domain ass d'Eropluede vu Kopien net méiglech.",
 	"upload-dialog-title": "Fichier eroplueden",
 	"upload-dialog-error": "Et ass e Feeler geschitt",
+	"upload-dialog-warning": "Eng Warnung gouf ausgeschwat",
 	"upload-dialog-button-cancel": "Ofbriechen",
 	"upload-dialog-button-done": "Fäerdeg",
 	"upload-dialog-button-save": "Späicheren",
