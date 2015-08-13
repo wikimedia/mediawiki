@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.12.3
+ * OOjs UI v0.12.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-08-11T22:34:09Z
+ * Date: 2015-08-13T21:01:12Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -2283,7 +2283,7 @@
 .oo-ui-capsuleMultiSelectWidget-handle {
 	background: #ffffff;
 	cursor: text;
-	min-height: 2.35em;
+	min-height: 2.4em;
 	margin-right: 0.5em;
 	padding: 0.25em 0;
 	border: 1px solid rgba(0, 0, 0, 0.1);
@@ -2368,9 +2368,10 @@
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
 	vertical-align: middle;
-	padding: 0.2em;
+	padding: 0 0.4em;
 	margin: 0 0.1em;
-	height: 1.675em;
+	height: 1.7em;
+	line-height: 1.7em;
 	background: #eeeeee;
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#ffffff', endColorstr='#dddddd');
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #ffffff), color-stop(100%, #dddddd));
@@ -2380,7 +2381,7 @@
 	background-image:         linear-gradient(to bottom, #ffffff 0%, #dddddd 100%);
 	border: 1px solid #cccccc;
 	color: #555555;
-	border-radius: 0.5em;
+	border-radius: 0.25em;
 }
 .oo-ui-capsuleItemWidget > .oo-ui-iconElement-icon {
 	cursor: pointer;
@@ -2398,11 +2399,14 @@
 }
 .oo-ui-capsuleItemWidget.oo-ui-indicatorElement > .oo-ui-indicatorElement-indicator {
 	position: absolute;
-	right: 0.2em;
+	right: 0.4em;
 	top: 0;
 	width: 0.9375em;
 	height: 100%;
 	background-repeat: no-repeat;
+}
+.oo-ui-capsuleItemWidget.oo-ui-indicatorElement > .oo-ui-indicator-clear {
+	cursor: pointer;
 }
 .oo-ui-capsuleItemWidget.oo-ui-widget-disabled {
 	opacity: 0.5;

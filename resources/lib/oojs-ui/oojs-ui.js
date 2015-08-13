@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.12.3
+ * OOjs UI v0.12.4
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-08-11T22:34:00Z
+ * Date: 2015-08-13T21:01:04Z
  */
 ( function ( OO ) {
 
@@ -12739,6 +12739,10 @@ OO.ui.CapsuleMultiSelectWidget = function OoUiCapsuleMultiSelectWidget( config )
 		$tabFocus.on( {
 			focus: this.onFocusForPopup.bind( this )
 		} );
+		this.popup.$element.on( 'focusout', this.onPopupFocusOut.bind( this ) );
+		if ( this.popup.$autoCloseIgnore ) {
+			this.popup.$autoCloseIgnore.on( 'focusout', this.onPopupFocusOut.bind( this ) );
+		}
 		this.popup.connect( this, {
 			toggle: function ( visible ) {
 				$tabFocus.toggle( !visible );
@@ -13021,6 +13025,26 @@ OO.ui.CapsuleMultiSelectWidget.prototype.onFocusForPopup = function () {
 			.first()
 			.focus();
 	}
+};
+
+/**
+ * Handles popup focus out events.
+ *
+ * @private
+ * @param {Event} e Focus out event
+ */
+OO.ui.CapsuleMultiSelectWidget.prototype.onPopupFocusOut = function () {
+	var widget = this.popup;
+
+	setTimeout( function () {
+		if (
+			widget.isVisible() &&
+			!OO.ui.contains( widget.$element[0], document.activeElement, true ) &&
+			( !widget.$autoCloseIgnore || !widget.$autoCloseIgnore.has( document.activeElement ).length )
+		) {
+			widget.toggle( false );
+		}
+	} );
 };
 
 /**
@@ -16575,10 +16599,6 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 
 	// Events
 	this.closeButton.connect( this, { click: 'onCloseButtonClick' } );
-	this.$element.on( 'focusout', this.onFocusOut.bind( this ) );
-	if ( this.$autoCloseIgnore ) {
-		this.$autoCloseIgnore.on( 'focusout', this.onFocusOut.bind( this ) );
-	}
 
 	// Initialization
 	this.toggleAnchor( config.anchor === undefined || config.anchor );
@@ -16618,26 +16638,6 @@ OO.mixinClass( OO.ui.PopupWidget, OO.ui.mixin.LabelElement );
 OO.mixinClass( OO.ui.PopupWidget, OO.ui.mixin.ClippableElement );
 
 /* Methods */
-
-/**
- * Handles focus out events.
- *
- * @private
- * @param {Event} e Focus out event
- */
-OO.ui.PopupWidget.prototype.onFocusOut = function () {
-	var widget = this;
-
-	setTimeout( function () {
-		if (
-			widget.isVisible() &&
-			!OO.ui.contains( widget.$element, document.activeElement, true ) &&
-			( !widget.$autoCloseIgnore || !widget.$autoCloseIgnore.has( document.activeElement ).length )
-		) {
-			widget.toggle( false );
-		}
-	} );
-};
 
 /**
  * Handles mouse down events.
@@ -18160,7 +18160,7 @@ OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
 	this.$input = config.$input ? config.$input : config.input ? config.input.$input : null;
 	this.$widget = config.widget ? config.widget.$element : null;
 	this.onDocumentMouseDownHandler = this.onDocumentMouseDown.bind( this );
-	this.onInputKeyPressHandler = OO.ui.debounce( this.updateItemVisibility.bind( this ), 100 );
+	this.onInputEditHandler = OO.ui.debounce( this.updateItemVisibility.bind( this ), 100 );
 
 	// Initialization
 	this.$element
@@ -18231,7 +18231,7 @@ OO.ui.MenuSelectWidget.prototype.onKeyDown = function ( e ) {
 };
 
 /**
- * Update menu item visibility after input key press
+ * Update menu item visibility after input changes.
  * @protected
  */
 OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
@@ -18279,7 +18279,7 @@ OO.ui.MenuSelectWidget.prototype.unbindKeyDownListener = function () {
 OO.ui.MenuSelectWidget.prototype.bindKeyPressListener = function () {
 	if ( this.$input ) {
 		if ( this.filterFromInput ) {
-			this.$input.on( 'keypress', this.onInputKeyPressHandler );
+			this.$input.on( 'keydown mouseup cut paste change input select', this.onInputEditHandler );
 		}
 	} else {
 		OO.ui.MenuSelectWidget.parent.prototype.bindKeyPressListener.call( this );
@@ -18292,7 +18292,7 @@ OO.ui.MenuSelectWidget.prototype.bindKeyPressListener = function () {
 OO.ui.MenuSelectWidget.prototype.unbindKeyPressListener = function () {
 	if ( this.$input ) {
 		if ( this.filterFromInput ) {
-			this.$input.off( 'keypress', this.onInputKeyPressHandler );
+			this.$input.off( 'keydown mouseup cut paste change input select', this.onInputEditHandler );
 			this.updateItemVisibility();
 		}
 	} else {
