@@ -201,6 +201,12 @@ class SpecialSearch extends SpecialPage {
 
 			return;
 		}
+
+		# Workaround for using Mozilla Firefox smart keywords as bookmark T59318
+		if ( $term == '%s' ) {
+			$this->getOutput()->redirect( Title::newMainPage()->getFullURL() );
+			return;
+		}
 		# No match, generate an edit URL
 		$title = Title::newFromText( $term );
 		if ( !is_null( $title ) ) {
