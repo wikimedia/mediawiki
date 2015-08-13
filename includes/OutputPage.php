@@ -2702,14 +2702,13 @@ class OutputPage extends ContextSource {
 		}
 
 		$ret .= Html::element( 'title', null, $this->getHTMLTitle() ) . "\n";
-
+		$ret .= $this->getInlineHeadScripts() . "\n";
 		$ret .= $this->buildCssLinks() . "\n";
+		$ret .= $this->getExternalHeadScripts() . "\n";
 
 		foreach ( $this->getHeadLinksArray() as $item ) {
 			$ret .= $item . "\n";
 		}
-
-		$ret .= $this->getHeadScripts() . "\n";
 
 		foreach ( $this->mHeadItems as $item ) {
 			$ret .= $item . "\n";
@@ -2879,7 +2878,7 @@ class OutputPage extends ContextSource {
 
 				// Inline private modules. These can't be loaded through load.php for security
 				// reasons, see bug 34907. Note that these modules should be loaded from
-				// getHeadScripts() before the first loader call. Otherwise other modules can't
+				// getExternalHeadScripts() before the first loader call. Otherwise other modules can't
 				// properly use them as dependencies (bug 30914)
 				if ( $group === 'private' ) {
 					if ( $only == ResourceLoaderModule::TYPE_STYLES ) {
@@ -2982,6 +2981,34 @@ class OutputPage extends ContextSource {
 	 * @return string HTML fragment
 	 */
 	function getHeadScripts() {
+		return $this->getInlineHeadScripts() . "\n" . $this->getExternalHeadScripts();
+	}
+
+	/**
+	 * <script src="..."> tags for "<head>". This is the startup module
+	 * and other modules marked with position 'top'.
+	 *
+	 * @return string HTML fragment
+	 */
+	function getExternalHeadScripts() {
+		$links = array();
+
+		// Startup - this provides the client with the module manifest and loads jquery and mediawiki base modules
+		$links[] = $this->makeResourceLoaderLink( 'startup', ResourceLoaderModule::TYPE_SCRIPTS );
+
+		if ( $this->getConfig()->get( 'ResourceLoaderExperimentalAsyncLoading' ) ) {
+			$links[] = $this->getScriptsForBottomQueue();
+		}
+
+		return self::getHtmlFromLoaderLinks( $links );
+	}
+
+	/**
+	 * <script>...</script> tags to put in "<head>".
+	 *
+	 * @return string HTML fragment
+	 */
+	function getInlineHeadScripts() {
 		$links = array();
 
 		// Client profile classes for <html>. Allows for easy hiding/showing of UI components.
@@ -2994,9 +3021,6 @@ class OutputPage extends ContextSource {
 			'document.documentElement.className = document.documentElement.className'
 			. '.replace( /(^|\s)client-nojs(\s|$)/, "$1client-js$2" );'
 		);
-
-		// Startup - this provides the client with the module manifest and loads jquery and mediawiki base modules
-		$links[] = $this->makeResourceLoaderLink( 'startup', ResourceLoaderModule::TYPE_SCRIPTS );
 
 		// Load config before anything else
 		$links[] = ResourceLoader::makeInlineScript(
@@ -3041,7 +3065,7 @@ class OutputPage extends ContextSource {
 	 * and user JS.
 	 *
 	 * @param bool $unused Previously used to let this method change its output based
-	 *  on whether it was called by getHeadScripts() or getBottomScripts().
+	 *  on whether it was called by getExternalHeadScripts() or getBottomScripts().
 	 * @return string
 	 */
 	function getScriptsForBottomQueue( $unused = null ) {
@@ -3123,7 +3147,7 @@ class OutputPage extends ContextSource {
 		$this->getSkin()->setupSkinUserCss( $this );
 
 		if ( $this->getConfig()->get( 'ResourceLoaderExperimentalAsyncLoading' ) ) {
-			// Already handled by getHeadScripts()
+			// Already handled by getExternalHeadScripts()
 			return '';
 		}
 		return  $this->getScriptsForBottomQueue();
