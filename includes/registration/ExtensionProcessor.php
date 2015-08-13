@@ -165,13 +165,17 @@ class ExtensionProcessor implements Processor {
 
 		$this->extractCredits( $path, $info );
 		foreach ( $info as $key => $val ) {
-			if ( in_array( $key, self::$globalSettings ) ) {
-				$this->storeToArray( "wg$key", $val, $this->globals );
-			// Ignore anything that starts with a @
+			global $wgDisableWg;
+			if ( in_array( $key, self::$globalSettings ) && $wgDisableWg ) {
+				$this->storeToArray( "$key", $val, $this->globals );
+			// Ignore anything that starts with a @ 
 			} elseif ( $key[0] !== '@' && !in_array( $key, self::$notAttributes )
 				&& !in_array( $key, self::$creditsAttributes )
 			) {
 				$this->storeToArray( $key, $val, $this->attributes );
+			} else {
+				$this->storeToArray( "wg$key", $val, $this->globals );
+			// Ignore anything that starts with a @
 			}
 		}
 	}
@@ -305,9 +309,12 @@ class ExtensionProcessor implements Processor {
 	 * @param array $info
 	 */
 	protected function extractConfig( array $info ) {
+		global $wgDisableWg;
 		if ( isset( $info['config'] ) ) {
 			foreach ( $info['config'] as $key => $val ) {
-				if ( $key[0] !== '@' ) {
+				if ( $key[0] !== '@' && $wgDisableWg) {
+					$this->globals["$key"] = $val;
+				} else {
 					$this->globals["wg$key"] = $val;
 				}
 			}
