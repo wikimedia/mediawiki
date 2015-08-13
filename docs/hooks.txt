@@ -2407,6 +2407,12 @@ shown.
 $article: the page the form is shown for
 $out: OutputPage object
 
+'RandomPageQuery': Lets you modify the query used by Special:Random to select
+random pages.
+&$tables: Database tables to be used in the query
+&$conds: Conditions to be applied in the query
+&$joinConds: Join conditions to be applied in the query
+
 'RawPageViewBeforeOutput': Right before the text is blown out in action=raw.
 &$obj: RawAction object
 &$text: The text that's going to be the output
