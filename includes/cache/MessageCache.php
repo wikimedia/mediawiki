@@ -530,7 +530,8 @@ class MessageCache {
 		}
 
 		$cache['VERSION'] = MSG_CACHE_VERSION;
-		$cache['HASH'] = wfRandomString( 8 );
+		ksort( $cache );
+		$cache['HASH'] = md5( serialize( $cache ) );
 		$cache['EXPIRY'] = wfTimestamp( TS_MW, time() + $this->mExpiry );
 
 		return $cache;
