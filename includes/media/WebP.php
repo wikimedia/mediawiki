@@ -219,8 +219,8 @@ class WebPHandler extends BitmapHandler {
 
 		return array(
 			'compression' => 'unknown',
-			'animated' => ($flags[1] & self::VP8X_ANIM) == self::VP8X_ANIM,
-			'transparency' => ($flags[1] & self::VP8X_ALPHA) == self::VP8X_ALPHA,
+			'animated' => ( $flags[1] & self::VP8X_ANIM ) == self::VP8X_ANIM,
+			'transparency' => ( $flags[1] & self::VP8X_ALPHA ) == self::VP8X_ALPHA,
 			'width' => ( $width[1] & 0xFFFFFF ) + 1,
 			'height' => ( $height[1] & 0xFFFFFF ) + 1
 		);
@@ -271,7 +271,7 @@ class WebPHandler extends BitmapHandler {
 		$ser = $image->getMetadata();
 		if ( $ser ) {
 			$metadata = unserialize( $ser );
-			if ( isset($metadata['animated']) && $metadata['animated'] === true ) {
+			if ( isset( $metadata['animated'] ) && $metadata['animated'] === true ) {
 				return true;
 			}
 		}

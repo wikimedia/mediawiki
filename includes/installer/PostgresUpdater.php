@@ -408,7 +408,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'changeFieldPurgeTable', 'l10n_cache', 'lc_value', 'bytea',
 				"replace(lc_value,'\','\\\\')::bytea" ),
 			// 1.23.9
-			array( 'rebuildTextSearch'),
+			array( 'rebuildTextSearch' ),
 
 			// 1.24
 			array( 'addPgField', 'page_props', 'pp_sortkey', 'float NULL' ),
