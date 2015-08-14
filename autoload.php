@@ -200,6 +200,7 @@ $wgAutoloadLocalClasses = array(
 	'CapsCleanup' => __DIR__ . '/maintenance/cleanupCaps.php',
 	'Category' => __DIR__ . '/includes/Category.php',
 	'CategoryFinder' => __DIR__ . '/includes/CategoryFinder.php',
+	'CategoryMembershipChange' => __DIR__ . '/includes/changes/CategoryMembershipChange.php',
 	'CategoryPage' => __DIR__ . '/includes/page/CategoryPage.php',
 	'CategoryPager' => __DIR__ . '/includes/specials/SpecialCategories.php',
 	'CategoryViewer' => __DIR__ . '/includes/CategoryViewer.php',

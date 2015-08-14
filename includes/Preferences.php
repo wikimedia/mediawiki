@@ -888,6 +888,12 @@ class Preferences {
 			'section' => 'rc/advancedrc',
 		);
 
+		$defaultPreferences['hidecategorization'] = array(
+			'type' => 'toggle',
+			'label-message' => 'tog-hidecategorization',
+			'section' => 'rc/advancedrc',
+		);
+
 		if ( $user->useRCPatrol() ) {
 			$defaultPreferences['hidepatrolled'] = array(
 				'type' => 'toggle',
@@ -993,6 +999,12 @@ class Preferences {
 			'type' => 'toggle',
 			'section' => 'watchlist/advancedwatchlist',
 			'label-message' => 'tog-watchlisthideliu',
+		);
+
+		$defaultPreferences['watchlisthidecategorization'] = array(
+			'type' => 'toggle',
+			'section' => 'watchlist/advancedwatchlist',
+			'label-message' => 'tog-watchlisthidecategorization',
 		);
 
 		if ( $user->useRCPatrol() ) {
