@@ -40,7 +40,7 @@
 			},
 			{
 				"name": "API",
-				"classes": ["mw.Api*"]
+				"classes": ["mw.Api*", "mw.ForeignApi*"]
 			},
 			{
 				"name": "Language",
