@@ -1409,11 +1409,13 @@ MESSAGE;
 	 * @return string
 	 */
 	public static function makeConfigSetScript( array $configuration ) {
-		return Xml::encodeJsCall(
-			'mw.config.set',
-			array( $configuration ),
-			ResourceLoader::inDebugMode()
-		);
+		if ( ResourceLoader::inDebugMode() ) {
+			return Xml::encodeJsCall( 'mw.config.set', array( $configuration ), true );
+		}
+
+		$config = RequestContext::getMain()->getConfig();
+		$js = Xml::encodeJsCall( 'mw.config.set', array( $configuration ), false );
+		return self::applyFilter( 'minify-js', $js, $config );
 	}
 
 	/**
