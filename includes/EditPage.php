@@ -2540,6 +2540,9 @@ class EditPage {
 		$wgOut->addHTML( Html::hidden( 'format', $this->contentFormat ) );
 		$wgOut->addHTML( Html::hidden( 'model', $this->contentModel ) );
 
+		// following functions will need OOUI, enable it only once; here.
+		$wgOut->enableOOUI();
+
 		if ( $this->section == 'new' ) {
 			$this->showSummaryInput( true, $this->summary );
 			$wgOut->addHTML( $this->getSummaryPreview( true, $this->summary ) );
@@ -2878,12 +2881,10 @@ class EditPage {
 			'size' => 60,
 			'spellcheck' => 'true',
 		) + Linker::tooltipAndAccesskeyAttribs( 'summary' );
-
 		$spanLabelAttrs = ( is_array( $spanLabelAttrs ) ? $spanLabelAttrs : array() ) + array(
 			'class' => $this->missingSummary ? 'mw-summarymissed' : 'mw-summary',
 			'id' => "wpSummaryLabel"
 		);
-
 		$label = null;
 		if ( $labelText ) {
 			$label = Xml::tags(
@@ -2893,10 +2894,43 @@ class EditPage {
 			);
 			$label = Xml::tags( 'span', $spanLabelAttrs, $label );
 		}
-
 		$input = Html::input( 'wpSummary', $summary, 'text', $inputAttrs );
-
 		return array( $label, $input );
+	}
+
+	/**
+	 * Same as self::getSummaryInput, but uses OOUI, instead of plain HTML.
+	 * Builds a standard summary input with a label.
+	 *
+	 * @param string $summary The value of the summary input
+	 * @param string $labelText The html to place inside the label
+	 * @param array $inputAttrs Array of attrs to use on the input
+	 *
+	 * @return OOUI\\FieldLayout OOUI FieldLayout with Label and Input
+	 */
+	function getSummaryInputOOUI( $summary = "", $labelText = null, $inputAttrs = null ) {
+		// Note: the maxlength is overridden in JS to 255 and to make it use UTF-8 bytes, not characters.
+		$inputAttrs = ( is_array( $inputAttrs ) ? $inputAttrs : array() ) + array(
+			'id' => 'wpSummary',
+			'maxLength' => '200',
+			'tabIndex' => '1',
+			'spellcheck' => 'true',
+		) + Linker::tooltipAndAccesskeyAttribs( 'summary' );
+
+		// OOUI takes accessKey instead of accesskey
+		$inputAttrs['accessKey'] = $inputAttrs['accesskey'];
+		unset($inputAttrs['accesskey']);
+
+		return new OOUI\FieldLayout( new OOUI\TextInputWidget( array(
+				'value' => $summary
+			) + $inputAttrs ),
+			array(
+				'label' => $labelText,
+				'align' => 'top',
+				'id' => 'wpSummaryLabel',
+				'classes' => array( $this->missingSummary ? 'mw-summarymissed' : 'mw-summary' ),
+			)
+		);
 	}
 
 	/**
@@ -2907,6 +2941,7 @@ class EditPage {
 	 */
 	protected function showSummaryInput( $isSubjectPreview, $summary = "" ) {
 		global $wgOut, $wgContLang;
+
 		# Add a class if 'missingsummary' is triggered to allow styling of the summary line
 		$summaryClass = $this->missingSummary ? 'mw-summarymissed' : 'mw-summary';
 		if ( $isSubjectPreview ) {
@@ -2918,15 +2953,15 @@ class EditPage {
 				return;
 			}
 		}
+
 		$summary = $wgContLang->recodeForEdit( $summary );
 		$labelText = wfMessage( $isSubjectPreview ? 'subject' : 'summary' )->parse();
-		list( $label, $input ) = $this->getSummaryInput(
-			$summary,
-			$labelText,
-			array( 'class' => $summaryClass ),
-			array()
+		$wgOut->addHTML( $this->getSummaryInputOOUI(
+				$summary,
+				$labelText,
+				array( 'class' => $summaryClass )
+			)
 		);
-		$wgOut->addHTML( "{$label} {$input}" );
 	}
 
 	/**
@@ -3341,7 +3376,7 @@ HTML
 
 		$checkboxes = $this->getCheckboxes( $tabindex,
 			array( 'minor' => $this->minoredit, 'watch' => $this->watchthis ) );
-		$wgOut->addHTML( "<div class='editCheckboxes'>" . implode( $checkboxes, "\n" ) . "</div>\n" );
+		$wgOut->addHTML( "<div class='editCheckboxes'>" . $checkboxes . "</div>\n" );
 
 		// Show copyright warning.
 		$wgOut->addWikiText( $this->getCopywarn() );
@@ -3359,12 +3394,12 @@ HTML
 
 		$message = wfMessage( 'edithelppage' )->inContentLanguage()->text();
 		$edithelpurl = Skin::makeInternalOrExternalUrl( $message );
-		$attrs = array(
-			'target' => 'helpwindow',
-			'href' => $edithelpurl,
-		);
-		$edithelp = Html::linkButton( wfMessage( 'edithelp' )->text(),
-			$attrs, array( 'mw-ui-quiet' ) ) .
+		$edithelp = new OOUI\ButtonWidget( array(
+				'label' => wfMessage( 'edithelp' )->text(),
+				'href' => $edithelpurl,
+				'target' => 'helpwindow',
+				'framed' => false,
+			) ) .
 			wfMessage( 'word-separator' )->escaped() .
 			wfMessage( 'newwindow' )->parse();
 
@@ -3406,19 +3441,17 @@ HTML
 	/**
 	 * @return string
 	 */
-	public function getCancelLink() {
+	private function getCancelLink() {
 		$cancelParams = array();
 		if ( !$this->isConflict && $this->oldid > 0 ) {
 			$cancelParams['oldid'] = $this->oldid;
 		}
-		$attrs = array( 'id' => 'mw-editform-cancel' );
 
-		return Linker::linkKnown(
-			$this->getContextTitle(),
-			wfMessage( 'cancel' )->parse(),
-			Html::buttonAttributes( $attrs, array( 'mw-ui-quiet' ) ),
-			$cancelParams
-		);
+		return new OOUI\ButtonWidget( array(
+			'href' => $this->getContextTitle()->getLinkUrl( $cancelParams ),
+			'label' => wfMessage( 'cancel' )->parse(),
+			'framed' => false,
+		) );
 	}
 
 	/**
@@ -3831,60 +3864,71 @@ HTML
 	 *
 	 * @return array
 	 */
-	public function getCheckboxes( &$tabindex, $checked ) {
+	private function getCheckboxes( &$tabindex, $checked ) {
 		global $wgUser, $wgUseMediaWikiUIEverywhere;
 
 		$checkboxes = array();
+		$checkboxesOOUI = array();
 
 		// don't show the minor edit checkbox if it's a new page or section
 		if ( !$this->isNew ) {
 			$checkboxes['minor'] = '';
 			$minorLabel = wfMessage( 'minoredit' )->parse();
 			if ( $wgUser->isAllowed( 'minoredit' ) ) {
-				$attribs = array(
-					'tabindex' => ++$tabindex,
-					'accesskey' => wfMessage( 'accesskey-minoredit' )->text(),
-					'id' => 'wpMinoredit',
+				$checkboxesOOUI[] = new OOUI\FieldLayout(
+					new OOUI\CheckboxInputWidget( array(
+						'tabIndex' => ++$tabindex,
+						'accessKey' => wfMessage( 'accesskey-minoredit' )->text(),
+						'id' => 'wpMinoredit',
+						'name' => 'wpMinoredit',
+						'title' => Linker::titleAttrib( 'minoredit', 'withaccess' ),
+					) ),
+					array(
+						'align' => 'inline',
+						'label' => $minorLabel,
+						'id' => 'mw-editpage-minoredit',
+					)
 				);
-				$minorEditHtml =
-					Xml::check( 'wpMinoredit', $checked['minor'], $attribs ) .
-					"&#160;<label for='wpMinoredit' id='mw-editpage-minoredit'" .
-					Xml::expandAttributes( array( 'title' => Linker::titleAttrib( 'minoredit', 'withaccess' ) ) ) .
-					">{$minorLabel}</label>";
 
-				if ( $wgUseMediaWikiUIEverywhere ) {
-					$checkboxes['minor'] = Html::openElement( 'div', array( 'class' => 'mw-ui-checkbox' ) ) .
-						$minorEditHtml .
-					Html::closeElement( 'div' );
-				} else {
-					$checkboxes['minor'] = $minorEditHtml;
-				}
+				// if something in the hook called later checks, if the minor checkbox is present, it should get
+				// true, instead of false for bc, even, if the hook can't change it anymore.
+				$checkboxes['minor'] = '*';
 			}
 		}
 
-		$watchLabel = wfMessage( 'watchthis' )->parse();
-		$checkboxes['watch'] = '';
 		if ( $wgUser->isLoggedIn() ) {
-			$attribs = array(
-				'tabindex' => ++$tabindex,
-				'accesskey' => wfMessage( 'accesskey-watch' )->text(),
-				'id' => 'wpWatchthis',
+			$checkboxes['watch'] = '';
+			$watchLabel = wfMessage( 'watchthis' )->parse();
+			$checkboxesOOUI[] = new OOUI\FieldLayout(
+				new OOUI\CheckboxInputWidget( array(
+					'tabIndex' => ++$tabindex,
+					'accessKey' => wfMessage( 'accesskey-watch' )->text(),
+					'id' => 'wpWatchthis',
+					'name' => 'wpWatchthis',
+					'title' => Linker::titleAttrib( 'watch', 'withaccess' ),
+				) ),
+				array(
+					'align' => 'inline',
+					'label' => $watchLabel,
+					'id' => 'mw-editpage-watch',
+				)
 			);
-			$watchThisHtml =
-				Xml::check( 'wpWatchthis', $checked['watch'], $attribs ) .
-				"&#160;<label for='wpWatchthis' id='mw-editpage-watch'" .
-				Xml::expandAttributes( array( 'title' => Linker::titleAttrib( 'watch', 'withaccess' ) ) ) .
-				">{$watchLabel}</label>";
-			if ( $wgUseMediaWikiUIEverywhere ) {
-				$checkboxes['watch'] = Html::openElement( 'div', array( 'class' => 'mw-ui-checkbox' ) ) .
-					$watchThisHtml .
-					Html::closeElement( 'div' );
-			} else {
-				$checkboxes['watch'] = $watchThisHtml;
-			}
+
+			// see comment on $checkboxes['minor']
+			$checkboxes['watch'] = '*';
 		}
 		Hooks::run( 'EditPageBeforeEditChecks', array( &$this, &$checkboxes, &$tabindex ) );
-		return $checkboxes;
+		// remove any checkbox with * as content (usually only our placeholder checkboxes)
+		$cb = array_flip( $checkboxes );
+		unset( $cb['*'] );
+		$checkboxes = array_flip( $cb );
+
+		$checkboxesOOUI = new OOUI\HorizontalLayout(array( 'items' => $checkboxesOOUI ) );
+
+		// BC, add the checkboxes added by the hook to the set of core checkboxes
+		$checkboxesOOUI .= implode( $checkboxes, "\n" );
+
+		return $checkboxesOOUI;
 	}
 
 	/**
@@ -3897,34 +3941,53 @@ HTML
 	 */
 	public function getEditButtons( &$tabindex ) {
 		$buttons = array();
+		$oouiButtons = array();
 
-		$attribs = array(
+		$attribs = Linker::tooltipAndAccesskeyAttribs( 'save' );
+		// FIXME: This shouldn't be needed :(
+		$attribs['accessKey'] = $attribs['accesskey'];
+		unset( $attribs['accesskey'] );
+
+		$buttons['save'] = new OOUI\ButtonInputWidget( array(
+			'flags' => array( 'constructive' ),
+			'label' => wfMessage( 'savearticle' )->text(),
+			'tabIndex' => ++$tabindex,
 			'id' => 'wpSave',
 			'name' => 'wpSave',
-			'tabindex' => ++$tabindex,
-		) + Linker::tooltipAndAccesskeyAttribs( 'save' );
-		$buttons['save'] = Html::submitButton( wfMessage( 'savearticle' )->text(),
-			$attribs, array( 'mw-ui-constructive' ) );
+			'type' => 'submit',
+		) + $attribs );
 
 		++$tabindex; // use the same for preview and live preview
-		$attribs = array(
+		$attribs = Linker::tooltipAndAccesskeyAttribs( 'preview' );
+		// FIXME: This shouldn't be needed :(
+		$attribs['accessKey'] = $attribs['accesskey'];
+		unset( $attribs['accesskey'] );
+
+		$buttons['preview'] = new OOUI\ButtonInputWidget( array(
+			'label' => wfMessage( 'showpreview' )->text(),
 			'id' => 'wpPreview',
 			'name' => 'wpPreview',
-			'tabindex' => $tabindex,
-		) + Linker::tooltipAndAccesskeyAttribs( 'preview' );
-		$buttons['preview'] = Html::submitButton( wfMessage( 'showpreview' )->text(),
-			$attribs );
+			'tabIndex' => $tabindex,
+			'type' => 'submit',
+		) + $attribs );
+
 		$buttons['live'] = '';
 
-		$attribs = array(
+		$attribs = Linker::tooltipAndAccesskeyAttribs( 'diff' );
+		// FIXME: This shouldn't be needed :(
+		$attribs['accessKey'] = $attribs['accesskey'];
+		unset( $attribs['accesskey'] );
+
+		$buttons['diff'] = new OOUI\ButtonInputWidget( array(
+			'label' => wfMessage( 'showdiff' )->text(),
 			'id' => 'wpDiff',
 			'name' => 'wpDiff',
-			'tabindex' => ++$tabindex,
-		) + Linker::tooltipAndAccesskeyAttribs( 'diff' );
-		$buttons['diff'] = Html::submitButton( wfMessage( 'showdiff' )->text(),
-			$attribs );
+			'tabIndex' => ++$tabindex,
+			'type' => 'submit',
+		) + $attribs );
 
 		Hooks::run( 'EditPageBeforeEditButtons', array( &$this, &$buttons, &$tabindex ) );
+
 		return $buttons;
 	}
 
