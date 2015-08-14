@@ -565,6 +565,11 @@ class JavaScriptMinifier {
 				$out .= ' ';
 				$lineLength++;
 			}
+			if( $token === 'true ' ) {
+				$token = '!0';
+			} elseif( $token === 'false' ) {
+				$token = '!1';
+			}
 
 			$out .= $token;
 			$lineLength += $end - $pos; // += strlen( $token )
