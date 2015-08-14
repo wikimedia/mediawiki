@@ -1893,6 +1893,7 @@
 	"revdelete-content-hid": "sulod nakatago",
 	"revdelete-summary-hid": "An halipotay nga masisiring hiton pagliwat in nakatago",
 	"revdelete-uname-hid": "nakatago an agnay-hit-gumaramit",
+	"logentry-move-move": "$1 {{GENDER:$2|ginbalhin}} an pakli nga $3 ngadto ha $4",
 	"logentry-newusers-newusers": "An gumaramit nga akawnt nga $1 {{GENDER:$2|ginhimo}}",
 	"logentry-newusers-create": "An gumaramit nga akawnt nga $1 {{GENDER:$2|ginhimo}}",
 	"logentry-newusers-create2": "An gumaramit nga akawnt nga $3 {{GENDER:$2|ginhimo}} ni $1",

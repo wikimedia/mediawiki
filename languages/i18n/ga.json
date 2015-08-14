@@ -17,7 +17,8 @@
 			"Urhixidur",
 			"לערי ריינהארט",
 			"පසිඳු කාවින්ද",
-			"아라"
+			"아라",
+			"SeoMac"
 		]
 	},
 	"tog-underline": "Folínte faoi naisc:",
@@ -444,7 +445,7 @@
 	"userinvalidcssjstitle": "'''Rabhadh:''' Níl an craiceann \"$1\" ann.\nCuimhnigh go n-úsáideann leathanaigh shaincheaptha .css agus .js teideal i gcás íochtar, m.sh. {{ns:user}}:Foo/vector.css i leapa {{ns:user}}:Foo/Vector.css.",
 	"updated": "(Leasaithe)",
 	"note": "'''Tabhair faoi deara:'''",
-	"previewnote": "'''Cuimhnigh nach bhfuil ach réamhamharc sa leathanach seo.'''\nNíl do chuid athruithe shábháilte fós!",
+	"previewnote": "'''Cuimhnigh nach bhfuil ach réamhamharc sa leathanach seo.'''\nNíl do chuid athruithe sábháilte fós!",
 	"previewconflict": "San réamhamharc seo, feachann tú an téacs dé réir an eagarbhosca\nthuas mar a taispeáinfear é má sábháilfear é.",
 	"editing": "Ag athrú $1",
 	"editingsection": "Ag athrú $1 (mir)",
@@ -781,6 +782,7 @@
 	"unusedtemplateswlh": "naisc eile",
 	"randompage": "Leathanach fánach",
 	"randompage-nopages": "Níl aon leathanaigh san ainmspás \"$1\".",
+	"randomincategory-submit": "Gabh",
 	"randomredirect": "Atreorú randamach",
 	"statistics": "Staidrimh",
 	"statistics-header-users": "Staidreamh úsáideora",
@@ -800,7 +802,6 @@
 	"nlinks": "{{PLURAL:$1|nasc amháin|$1 naisc}}",
 	"nmembers": "{{PLURAL:$1|ball amháin|$1 baill}}",
 	"nrevisions": "{{PLURAL:$1|Leagan amháin|$1 leagain}}",
-	"nviews": "{{PLURAL:$1|radharc amháin|$1 radhairc}}",
 	"lonelypages": "Leathanaigh aonair",
 	"uncategorizedpages": "Leathanaigh gan chatagóir",
 	"uncategorizedcategories": "Catagóirí gan chatagórú",

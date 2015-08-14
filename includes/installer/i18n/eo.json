@@ -5,7 +5,8 @@
 			"Yekrats",
 			"KuboF",
 			"Fitoschido",
-			"Ochilov"
+			"Ochilov",
+			"Tlustulimu"
 		]
 	},
 	"config-desc": "Instalilo de MediaWiki",
@@ -45,7 +46,7 @@
 	"config-charset-mysql5": "MySQL 4.1/5.0 UTF-8",
 	"config-type-mysql": "MySQL (aŭ kongrua)",
 	"config-mysql-utf8": "UTF-8",
-	"config-site-name": "Nomo de viki:",
+	"config-site-name": "Nomo de vikio:",
 	"config-ns-generic": "Projekto",
 	"config-admin-name": "Via uzantonomo:",
 	"config-admin-password": "Pasvorto:",

@@ -6,7 +6,8 @@
 			"아라",
 			"LiteHell",
 			"Ysjbserver",
-			"Alex00728"
+			"Alex00728",
+			"Hwangjy9"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [https://www.mediawiki.org/wiki/API:Main_page 설명문서]\n* [https://www.mediawiki.org/wiki/API:FAQ FAQ]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 메일링 리스트]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API 공지 사항] * [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 버그 및 요청] </div>\n<strong>상태:</strong> 이 페이지에 표시된 모든 기능은 정상 작동할 것이지만, API는 여전히 활발하게 개발되고 있으며, 언제든지 바뀔 수 있습니다. 업데이트 정보를 받아보려면 [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce 메일링 리스트]를 구독하십시오.\n\n<strong>잘못된 요청:</strong> API에 잘못된 요청이 전송되면 HTTP 헤더에서 \"MediaWiki-API-Error\" 키를 보내고, 헤더 값과 오류 코드가 같게 설정됩니다. 자세한 정보에 대해서는 https://www.mediawiki.org/wiki/API:Errors_and_warnings 를 참고하십시오.",
@@ -28,6 +29,8 @@
 	"apihelp-block-example-user-complex": "사용자 <kbd>Vandal</kbd>을 <kbd>Vandalism</kbd>이라는 이유로 무기한 차단하며 계정 생성 및 이메일 발송을 막기",
 	"apihelp-createaccount-description": "새 사용자 계정을 만듭니다.",
 	"apihelp-createaccount-param-name": "사용자 이름",
+	"apihelp-createaccount-param-email": "사용자 이메일 주소 (선택).",
+	"apihelp-createaccount-param-realname": "사용자 실명 (선택).",
 	"apihelp-delete-description": "문서 삭제",
 	"apihelp-delete-example-simple": "<kbd>Main Page</kbd>를 삭제합니다.",
 	"apihelp-disabled-description": "이 모듈은 해제되었습니다.",
@@ -38,6 +41,7 @@
 	"apihelp-edit-param-minor": "사소한 편집.",
 	"apihelp-edit-param-notminor": "사소하지 않은 편집.",
 	"apihelp-edit-param-bot": "이 편집을 봇으로 표시.",
+	"apihelp-edit-param-unwatch": "문서를 현재 사용자의 주시문서 목록에서 제거합니다.",
 	"apihelp-edit-example-edit": "문서 편집",
 	"apihelp-expandtemplates-param-title": "문서 제목",
 	"apihelp-feedrecentchanges-param-tagfilter": "태그로 분류",

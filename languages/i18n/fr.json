@@ -3396,7 +3396,7 @@
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|a modifié}} l'appartenance au groupe pour $3",
 	"logentry-rights-autopromote": "$1 {{GENDER:$2|a été promu}} automatiquement de $4 à $5",
 	"logentry-upload-upload": "$1 {{GENDER:$2|a téléchargé}} $3",
-	"logentry-upload-overwrite": "$1 {{GENDER:$2|a téléversé}} une nouvelle version de $3",
+	"logentry-upload-overwrite": "$1 {{GENDER:$2|a téléchargé}} une nouvelle version de $3",
 	"logentry-upload-revert": "$1 {{GENDER:$2|a téléchargé}} $3",
 	"log-name-managetags": "Journal des modifications de balises",
 	"log-description-managetags": "Cette page recense les tâches de maintenance liées aux [[Special:Tags|balises]]. Le journal contient uniquement les actions faites manuellement par un administrateur ; les balises peuvent être créées ou supprimées par le logiciel wiki sans que cette action ne soit inscrite dans ce journal.",
