@@ -365,6 +365,7 @@ LUA;
 			throw new UnexpectedValueException( "Job of type '{$job->getType()}' has no UUID." );
 		}
 
+		$uuid = $job->metadata['uuid'];
 		$conn = $this->getConnection();
 		try {
 			static $script =
@@ -381,13 +382,13 @@ LUA;
 					$this->getQueueKey( 'z-claimed' ), # KEYS[1]
 					$this->getQueueKey( 'h-attempts' ), # KEYS[2]
 					$this->getQueueKey( 'h-data' ), # KEYS[3]
-					$job->metadata['uuid'] # ARGV[1]
+					$uuid # ARGV[1]
 				),
 				3 # number of first argument(s) that are keys
 			);
 
 			if ( !$res ) {
-				wfDebugLog( 'JobQueueRedis', "Could not acknowledge {$this->type} job." );
+				wfDebugLog( 'JobQueueRedis', "Could not acknowledge {$this->type} job $uuid." );
 
 				return false;
 			}
