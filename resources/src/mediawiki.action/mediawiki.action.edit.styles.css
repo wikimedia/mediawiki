@@ -14,7 +14,7 @@
 
 /* Adjustments to edit form elements */
 .editCheckboxes {
-	margin-bottom: 1em;
+	margin-bottom: 0;
 }
 
 .editCheckboxes input:first-child {
@@ -27,6 +27,11 @@
 
 #editpage-copywarn {
 	font-size: 0.9em;
+	line-height: 1.26;
+}
+
+#wpSummaryLabel {
+	margin-bottom: 0;
 }
 
 input#wpSummary {
@@ -64,4 +69,17 @@ input#wpSummary:active {
  */
 #wikiPreview.ontop {
 	margin-bottom: 1em;
+}
+
+#mw-editpage-watch {
+	padding-left: 0.5em;
+}
+
+.editHelp > a[target='helpwindow'] {
+	font-weight: bold;
+	padding-left: 0.6em;
+}
+
+.editOptions {
+	border-radius: 0 0 2px 2px;
 }
