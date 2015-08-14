@@ -3146,7 +3146,7 @@ class OutputPage extends ContextSource {
 			// Already handled by getExternalHeadScripts()
 			return '';
 		}
-		return  $this->getScriptsForBottomQueue();
+		return $this->getScriptsForBottomQueue();
 	}
 
 	/**

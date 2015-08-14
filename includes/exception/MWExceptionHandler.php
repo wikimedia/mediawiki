@@ -562,7 +562,7 @@ TXT;
 		$json = self::jsonSerializeException( $e, false, FormatJson::ALL_OK );
 		if ( $json !== false ) {
 			$logger = LoggerFactory::getInstance( "{$channel}-json" );
-			$logger->error( $json, array( 'private' => true )  );
+			$logger->error( $json, array( 'private' => true ) );
 		}
 
 		Hooks::run( 'LogException', array( $e, $suppressed ) );

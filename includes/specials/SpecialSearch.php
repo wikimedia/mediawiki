@@ -488,7 +488,7 @@ class SpecialSearch extends SpecialPage {
 		return Html::rawElement(
 			'div',
 			array( 'class' => 'searchdidyoumean' ),
-			$this->msg( 'search-rewritten')->rawParams( $rewritten, $original )->escaped()
+			$this->msg( 'search-rewritten' )->rawParams( $rewritten, $original )->escaped()
 		);
 	}
 

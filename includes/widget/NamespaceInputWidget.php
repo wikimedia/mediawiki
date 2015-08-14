@@ -103,7 +103,7 @@ class NamespaceInputWidget extends \OOUI\Widget {
 		$namespaceOptions = \Html::namespaceSelectorOptions( $namespaceOptionsParams );
 
 		$options = array();
-		foreach( $namespaceOptions as $id => $name ) {
+		foreach ( $namespaceOptions as $id => $name ) {
 			$options[] = array(
 				'data' => (string)$id,
 				'label' => $name,

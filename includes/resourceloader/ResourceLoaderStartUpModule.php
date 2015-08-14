@@ -349,7 +349,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		$pairs = array_map( function ( $value ) {
 			$value = FormatJson::encode( $value, ResourceLoader::inDebugMode(), FormatJson::ALL_OK );
 			// Fix indentation
-			$value = str_replace( "\n", "\n\t", $value  );
+			$value = str_replace( "\n", "\n\t", $value );
 			return $value;
 		}, array(
 			'$VARS.wgLegacyJavaScriptGlobals' => $this->getConfig()->get( 'LegacyJavaScriptGlobals' ),

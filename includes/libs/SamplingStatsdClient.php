@@ -43,7 +43,7 @@ class SamplingStatsdClient extends StatsdClient {
 				if ( $item->getSampleRate() === 1 ) {
 					$item->setSampleRate( $sampleRate );
 				}
-			});
+			} );
 		}
 
 		return $data;
