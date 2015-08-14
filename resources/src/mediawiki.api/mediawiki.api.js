@@ -1,22 +1,24 @@
 ( function ( mw, $ ) {
 
-	// We allow people to omit these default parameters from API requests
-	// there is very customizable error handling here, on a per-call basis
-	// wondering, would it be simpler to make it easy to clone the api object,
-	// change error handling, and use that instead?
+	/**
+	 * @class mw.Api
+	 */
+
+	/**
+	 * @property {Object} defaultOptions Default options for #ajax calls. Can be overridden by passing
+	 *     `options` to mw.Api constructor.
+	 * @property {Object} defaultOptions.parameters Default query parameters for API requests.
+	 * @property {Object} defaultOptions.ajax Default options for jQuery#ajax.
+	 * @private
+	 */
 	var defaultOptions = {
-			// Query parameters for API requests
 			parameters: {
 				action: 'query',
 				format: 'json'
 			},
-
-			// Ajax options for jQuery.ajax()
 			ajax: {
 				url: mw.util.wikiScript( 'api' ),
-
 				timeout: 30 * 1000, // 30 seconds
-
 				dataType: 'json'
 			}
 		},
@@ -39,13 +41,11 @@
 	 * Constructor to create an object to interact with the API of a particular MediaWiki server.
 	 * mw.Api objects represent the API of a particular MediaWiki server.
 	 *
-	 * TODO: Share API objects with exact same config.
-	 *
 	 *     var api = new mw.Api();
 	 *     api.get( {
 	 *         action: 'query',
 	 *         meta: 'userinfo'
-	 *     } ).done ( function ( data ) {
+	 *     } ).done( function ( data ) {
 	 *         console.log( data );
 	 *     } );
 	 *
@@ -55,21 +55,17 @@
 	 *     api.get( {
 	 *         action: 'query',
 	 *         meta: [ 'userinfo', 'siteinfo' ] // same effect as 'userinfo|siteinfo'
-	 *     } ).done ( function ( data ) {
+	 *     } ).done( function ( data ) {
 	 *         console.log( data );
 	 *     } );
 	 *
-	 * @class
-	 *
 	 * @constructor
-	 * @param {Object} options See defaultOptions documentation above. Ajax options can also be
-	 *  overridden for each individual request to {@link jQuery#ajax} later on.
+	 * @param {Object} [options] See #defaultOptions documentation above. Can also be overridden for
+	 *  each individual request by passing them to #get or #post (or directly #ajax) later on.
 	 */
 	mw.Api = function ( options ) {
-
-		if ( options === undefined ) {
-			options = {};
-		}
+		// TODO: Share API objects with exact same config.
+		options = options || {};
 
 		// Force a string if we got a mw.Uri object
 		if ( options.ajax && options.ajax.url !== undefined ) {
