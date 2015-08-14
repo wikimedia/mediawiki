@@ -1943,7 +1943,7 @@ class EditPage {
 			$this->summary,
 			$flags,
 			false,
-			null,
+			$wgUser,
 			$content->getDefaultFormat()
 		);
 
