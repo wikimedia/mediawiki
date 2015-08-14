@@ -5301,16 +5301,16 @@ Examples from RFC2373, section 2.2:
 * http://[FF01::101]/multicast
 * http://[::1]/loopback
 * http://[::]/unspecified
-* http://[::13.1.68.3]/ipv4compat
-* http://[::FFFF:129.144.52.38]/ipv4compat
+* http://[::13.1.68.3]/ipv4compat (rejected)
+* http://[::FFFF:129.144.52.38]/ipv4compat (rejected)
 
 Examples from RFC 2732, section 2:
 * http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html
 * http://[1080:0:0:0:8:800:200C:417A]/index.html
 * http://[3ffe:2a00:100:7031::1]
 * http://[1080::8:800:200C:417A]/foo
-* http://[::192.9.5.5]/ipng
-* http://[::FFFF:129.144.52.38]:80/index.html
+* http://[::192.9.5.5]/ipng (rejected)
+* http://[::FFFF:129.144.52.38]:80/index.html (rejected)
 * http://[2010:836B:4179::836B:4179]
 
 !! html
@@ -5321,16 +5321,16 @@ Examples from RFC 2732, section 2:
 <li> <a rel="nofollow" class="external free" href="http://[FF01::101]/multicast">http://[FF01::101]/multicast</a></li>
 <li> <a rel="nofollow" class="external free" href="http://[::1]/loopback">http://[::1]/loopback</a></li>
 <li> <a rel="nofollow" class="external free" href="http://[::]/unspecified">http://[::]/unspecified</a></li>
-<li> <a rel="nofollow" class="external free" href="http://[::13.1.68.3]/ipv4compat">http://[::13.1.68.3]/ipv4compat</a></li>
-<li> <a rel="nofollow" class="external free" href="http://[::FFFF:129.144.52.38]/ipv4compat">http://[::FFFF:129.144.52.38]/ipv4compat</a></li></ul>
+<li> http://[::13.1.68.3]/ipv4compat (rejected)</li>
+<li> http://[::FFFF:129.144.52.38]/ipv4compat (rejected)</li></ul>
 <p>Examples from <a class="external mw-magiclink-rfc" rel="nofollow" href="//tools.ietf.org/html/rfc2732">RFC 2732</a>, section 2:
 </p>
 <ul><li> <a rel="nofollow" class="external free" href="http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html">http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html</a></li>
 <li> <a rel="nofollow" class="external free" href="http://[1080:0:0:0:8:800:200C:417A]/index.html">http://[1080:0:0:0:8:800:200C:417A]/index.html</a></li>
 <li> <a rel="nofollow" class="external free" href="http://[3ffe:2a00:100:7031::1]">http://[3ffe:2a00:100:7031::1]</a></li>
 <li> <a rel="nofollow" class="external free" href="http://[1080::8:800:200C:417A]/foo">http://[1080::8:800:200C:417A]/foo</a></li>
-<li> <a rel="nofollow" class="external free" href="http://[::192.9.5.5]/ipng">http://[::192.9.5.5]/ipng</a></li>
-<li> <a rel="nofollow" class="external free" href="http://[::FFFF:129.144.52.38]:80/index.html">http://[::FFFF:129.144.52.38]:80/index.html</a></li>
+<li> http://[::192.9.5.5]/ipng (rejected)</li>
+<li> http://[::FFFF:129.144.52.38]:80/index.html (rejected)</li>
 <li> <a rel="nofollow" class="external free" href="http://[2010:836B:4179::836B:4179]">http://[2010:836B:4179::836B:4179]</a></li></ul>
 
 !! end

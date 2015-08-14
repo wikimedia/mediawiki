@@ -1468,6 +1468,7 @@ class Parser {
 	 */
 	public function makeFreeExternalLink( $url, $numPostProto ) {
 
+		$numProto = strlen( $url ) - $numPostProto;
 		$trail = '';
 
 		# The characters '<' and '>' (which were escaped by
@@ -1509,6 +1510,15 @@ class Parser {
 		# not just lone protocol
 		if ( strlen( $trail ) >= $numPostProto ) {
 			return $url . $trail;
+		}
+
+		# Validate IPv6 addresses
+		if ( $url[$numProto] == '[' ) {
+			$endbrack = strpos( $url, ']', $numProto ) ?: strlen( $url );
+			$ipaddr = substr( $url, $numProto + 1, $endbrack - $numProto - 1 );
+			if ( !IP::isValid( $ipaddr ) ) {
+				return $url . $trail;
+			}
 		}
 
 		$url = Sanitizer::cleanUrl( $url );
