@@ -446,6 +446,7 @@ LUA;
 			// Get the last time this root job was enqueued
 			$timestamp = $conn->get( $this->getRootJobCacheKey( $params['rootJobSignature'] ) );
 		} catch ( RedisException $e ) {
+			$timestamp = false;
 			$this->throwRedisException( $conn, $e );
 		}
 
