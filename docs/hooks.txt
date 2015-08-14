@@ -2448,6 +2448,13 @@ $user: The user having their password expiration reset
 $oldSessionID: old session id
 $newSessionID: new session id
 
+'ResourceLoaderForeignApiModules': Called from ResourceLoaderForeignApiModule.
+Use this to add dependencies to 'mediawiki.ForeignApi' module when you wish
+to override its behavior. See the module docs for more information.
+&$dependencies: string[] List of modules that 'mediawiki.ForeignApi' should
+depend on
+$context: ResourceLoaderContext|null
+
 'ResourceLoaderGetConfigVars': Called at the end of
 ResourceLoaderStartUpModule::getConfigSettings(). Use this to export static
 configuration variables to JavaScript. Things that depend on the current page
