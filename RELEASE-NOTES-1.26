@@ -24,6 +24,8 @@ production.
   feature that was never enabled by default.
 
 === New features in 1.26 ===
+* (T9148) Changes to category membership are now shown in watchlists and recent
+  changes. This can be configured in user preferences.
 * (T51506) Now action=info gives estimates of actual watchers for a page.
   See $wgRCMaxAge, $wgWatchersMaxAge and $wgUnwatchedPageSecret
   to learn how to configure if needed.
