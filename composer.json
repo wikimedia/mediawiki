@@ -45,7 +45,8 @@
 		"ext-apc": "Local data and opcode cache",
 		"monolog/monolog": "Flexible debug logging system",
 		"pear/mail": "Mail sending support",
-		"pear/mail_mime": "Mail sending support"
+		"pear/mail_mime": "Mail sending support",
+		"pear/mail_mime-decode": "Mail sending support"
 	},
 	"autoload": {
 		"psr-0": {
