@@ -783,4 +783,17 @@ class CookieSessionProviderTest extends MediaWikiTestCase {
 		$this->assertNull( $provider->getCookie( $request, 'Baz', 'x' ) );
 	}
 
+	public function testGetLoginCookieExpiration() {
+		$this->setMwGlobals( [
+			'wgCookieExpiration' => 123,
+			'$wgExtendedLoginCookieExpiration' => 45,
+		] );
+		$this->assertSame( 45, CookieSessionProvider::getLoginCookieExpiration() );
+
+		$this->setMwGlobals( [
+			'wgCookieExpiration' => 123,
+			'$wgExtendedLoginCookieExpiration' => null,
+		] );
+		$this->assertSame( 123, CookieSessionProvider::getLoginCookieExpiration() );
+	}
 }

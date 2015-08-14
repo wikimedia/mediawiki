@@ -24,9 +24,9 @@
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
-use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Auth\Throttler;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Session\CookieSessionProvider;
 use MediaWiki\Session\SessionManager;
 use Psr\Log\LogLevel;
 
@@ -884,9 +884,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		$template->set( 'emailothers', $wgEnableUserEmail );
 		$template->set( 'canreset', $wgAuth->allowPasswordChange() );
 		$template->set( 'resetlink', $resetLink );
-		$template->set( 'canremember', $wgExtendedLoginCookieExpiration === null ?
-			( $wgCookieExpiration > 0 ) :
-			( $wgExtendedLoginCookieExpiration > 0 ) );
+		$template->set( 'canremember', CookieSessionProvider::getLoginCookieExpiration() > 0 );
 		$template->set( 'usereason', $user->isLoggedIn() );
 		$template->set( 'cansecurelogin', ( $wgSecureLogin ) );
 		$template->set( 'stickhttps', (int)$this->mStickHTTPS );
@@ -953,13 +951,12 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 * @return array
 	 */
 	protected function getFieldDefinitions( $template ) {
-		global $wgEmailConfirmToEdit, $wgCookieExpiration, $wgExtendedLoginCookieExpiration,
-			$wgHiddenPrefs, $wgEnableEmail;
+		global $wgEmailConfirmToEdit, $wgHiddenPrefs, $wgEnableEmail;
 
 		$isLoggedIn = $this->getUser()->isLoggedIn();
 		$continuePart = $this->isContinued() ? 'continue-' : '';
 		$anotherPart = $isLoggedIn ? 'another-' : '';
-		$expirationDays = ceil( $wgCookieExpiration / ( 3600 * 24 ) );
+		$expirationDays = ceil( CookieSessionProvider::getLoginCookieExpiration() / ( 3600 * 24 ) );
 		$secureLoginLink = '';
 		if ( $this->mSecureLoginUrl ) {
 			$secureLoginLink = Html::element( 'a', [
@@ -1126,8 +1123,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		];
 
 		// FIXME this is provider business
-		$canRemember = $wgExtendedLoginCookieExpiration === null ? ( $wgCookieExpiration > 0 )
-			: ( $wgExtendedLoginCookieExpiration > 0 );
+		$canRemember = CookieSessionProvider::getLoginCookieExpiration() > 0;
 		$createEmail = $wgEnableEmail && $isLoggedIn;
 		$useRealName = !in_array( 'realname', $wgHiddenPrefs, true );
 		if ( !$canRemember ) {
