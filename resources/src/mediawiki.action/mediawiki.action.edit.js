@@ -20,7 +20,7 @@
 		var editBox, scrollTop, $editForm;
 
 		// Make sure edit summary does not exceed byte limit
-		$( '#wpSummary' ).byteLimit( 255 );
+		$( '#wpSummary > input' ).byteLimit( 255 );
 
 		// Restore the edit box scroll state following a preview operation,
 		// and set up a form submission handler to remember this state.

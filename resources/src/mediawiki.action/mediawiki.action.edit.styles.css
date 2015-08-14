@@ -10,7 +10,7 @@
 
 /* Adjustments to edit form elements */
 .editCheckboxes {
-	margin-bottom: 1em;
+	margin-bottom: 0;
 }
 
 .editCheckboxes input:first-child {
@@ -23,6 +23,11 @@
 
 #editpage-copywarn {
 	font-size: 0.9em;
+	line-height: 1.26;
+}
+
+#wpSummaryLabel {
+	margin-bottom: 0;
 }
 
 #wpSummary {
