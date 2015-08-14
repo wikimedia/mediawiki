@@ -3217,6 +3217,14 @@ $wgHTMLFormAllowTableFormat = true;
 $wgUseMediaWikiUIEverywhere = false;
 
 /**
+ * Temporary variable that determines either the EditPage class should use OOjs UI or not.
+ * This will be removed later and OOjs UI become the only option.
+ *
+ * @since 1.29
+ */
+$wgOOUIEditPage = true;
+
+/**
  * Whether to label the store-to-database-and-show-to-others button in the editor
  * as "Save page"/"Save changes" if false (the default) or, if true, instead as
  * "Publish page"/"Publish changes".
