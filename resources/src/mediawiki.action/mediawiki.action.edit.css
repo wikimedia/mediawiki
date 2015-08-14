@@ -13,3 +13,8 @@
 	zoom: 1;
 	*display: inline;
 }
+
+/** Don't show a margin after field layouts, it's too much space */
+.oo-ui-fieldLayout {
+	margin-bottom: 0;
+}
