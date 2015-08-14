@@ -38,14 +38,14 @@
 		"mediawiki/mediawiki-codesniffer": "0.3.0"
 	},
 	"suggest": {
-		"ext-fileinfo": "*",
-		"ext-intl": "*",
-		"ext-mbstring": "*",
-		"ext-wikidiff2": "*",
-		"ext-apc": "*",
-		"monolog/monolog": "*",
-		"pear/mail": "*",
-		"pear/mail_mime": "*"
+		"ext-fileinfo": "Improved mime magic detection",
+		"ext-intl": "ICU integration",
+		"ext-mbstring": "Multibyte string support",
+		"ext-wikidiff2": "Diff accelerator",
+		"ext-apc": "Local data and opcode cache",
+		"monolog/monolog": "Flexible debug logging system",
+		"pear/mail": "Mail sending support",
+		"pear/mail_mime": "Mail sending support"
 	},
 	"autoload": {
 		"psr-0": {
