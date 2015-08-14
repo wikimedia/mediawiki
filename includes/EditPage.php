@@ -2875,12 +2875,10 @@ class EditPage {
 			'size' => 60,
 			'spellcheck' => 'true',
 		) + Linker::tooltipAndAccesskeyAttribs( 'summary' );
-
 		$spanLabelAttrs = ( is_array( $spanLabelAttrs ) ? $spanLabelAttrs : array() ) + array(
 			'class' => $this->missingSummary ? 'mw-summarymissed' : 'mw-summary',
 			'id' => "wpSummaryLabel"
 		);
-
 		$label = null;
 		if ( $labelText ) {
 			$label = Xml::tags(
@@ -2890,10 +2888,43 @@ class EditPage {
 			);
 			$label = Xml::tags( 'span', $spanLabelAttrs, $label );
 		}
-
 		$input = Html::input( 'wpSummary', $summary, 'text', $inputAttrs );
-
 		return array( $label, $input );
+	}
+
+	/**
+	 * Same as self::getSummaryInput, but uses OOUI, instead of plain HTML.
+	 * Builds a standard summary input with a label.
+	 *
+	 * @param string $summary The value of the summary input
+	 * @param string $labelText The html to place inside the label
+	 * @param array $inputAttrs Array of attrs to use on the input
+	 *
+	 * @return OOUI\\FieldLayout OOUI FieldLayout with Label and Input
+	 */
+	function getSummaryInputOOUI( $summary = "", $labelText = null, $inputAttrs = null ) {
+		// Note: the maxlength is overridden in JS to 255 and to make it use UTF-8 bytes, not characters.
+		$inputAttrs = ( is_array( $inputAttrs ) ? $inputAttrs : array() ) + array(
+			'id' => 'wpSummary',
+			'maxLength' => '200',
+			'tabIndex' => '1',
+			'spellcheck' => 'true',
+		) + Linker::tooltipAndAccesskeyAttribs( 'summary' );
+
+		// OOUI takes accessKey instead of accesskey
+		$inputAttrs['accessKey'] = $inputAttrs['accesskey'];
+		unset($inputAttrs['accesskey']);
+
+		return new OOUI\FieldLayout( new OOUI\TextInputWidget( array(
+				'value' => $summary
+			) + $inputAttrs ),
+			array(
+				'label' => $labelText,
+				'align' => 'top',
+				'id' => 'wpSummaryLabel',
+				'classes' => array( $this->missingSummary ? 'mw-summarymissed' : 'mw-summary' ),
+			)
+		);
 	}
 
 	/**
@@ -2904,6 +2935,7 @@ class EditPage {
 	 */
 	protected function showSummaryInput( $isSubjectPreview, $summary = "" ) {
 		global $wgOut, $wgContLang;
+
 		# Add a class if 'missingsummary' is triggered to allow styling of the summary line
 		$summaryClass = $this->missingSummary ? 'mw-summarymissed' : 'mw-summary';
 		if ( $isSubjectPreview ) {
@@ -2915,15 +2947,17 @@ class EditPage {
 				return;
 			}
 		}
+		// enable OOUI to work with it
+		$wgOut->enableOOUI();
+
 		$summary = $wgContLang->recodeForEdit( $summary );
 		$labelText = wfMessage( $isSubjectPreview ? 'subject' : 'summary' )->parse();
-		list( $label, $input ) = $this->getSummaryInput(
-			$summary,
-			$labelText,
-			array( 'class' => $summaryClass ),
-			array()
+		$wgOut->addHTML( $this->getSummaryInputOOUI(
+				$summary,
+				$labelText,
+				array( 'class' => $summaryClass )
+			)
 		);
-		$wgOut->addHTML( "{$label} {$input}" );
 	}
 
 	/**
