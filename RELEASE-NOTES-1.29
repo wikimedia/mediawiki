@@ -60,6 +60,13 @@ production.
 * Completely new user interface for the RecentChanges page, which
   structures filters into user-friendly groups.  This has corresponding
   changes to how filters are registered by core and extensions.
+* The edit form now uses pretty OOjs UI buttons, checkboxes and summary input.
+  Because this change can cause problems for extensions and on-wiki
+  scripts depending on the exact HTML, the old version is still available
+  and can be used by setting $wgOOUIEditPage = false; in LocalSettings.php.
+  This will be removed later and OOjs UI will become the only option.
+  To make testing easier, users can also force either mode by adding
+  &ooui=true or &ooui=false to the action=edit URL.
 
 === External library changes in 1.29 ===
 
