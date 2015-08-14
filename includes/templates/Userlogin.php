@@ -25,8 +25,8 @@
 class UserloginTemplate extends BaseTemplate {
 
 	function execute() {
-		global $wgCookieExpiration;
-		$expirationDays = ceil( $wgCookieExpiration / ( 3600 * 24 ) );
+		$rememberMeExpiration = User::getExtendedLoginCookieExpiration();
+		$expirationDays = ceil( $rememberMeExpiration / ( 3600 * 24 ) );
 ?>
 <div class="mw-ui-container">
 	<div id="userloginprompt"><?php $this->msgWiki('loginprompt') ?></div>

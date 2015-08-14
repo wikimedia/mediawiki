@@ -1446,7 +1446,7 @@ class LoginForm extends SpecialPage {
 		$template->set( 'emailothers', $wgEnableUserEmail );
 		$template->set( 'canreset', $wgAuth->allowPasswordChange() );
 		$template->set( 'resetlink', $resetLink );
-		$template->set( 'canremember', $wgExtendedLoginCookieExpiration === null ? ( $wgCookieExpiration > 0 ) : ( $wgExtendedLoginCookieExpiration > 0 ) );
+		$template->set( 'canremember', User::getExtendedLoginCookieExpiration() > 0 );
 		$template->set( 'usereason', $user->isLoggedIn() );
 		$template->set( 'remember', $this->mRemember );
 		$template->set( 'cansecurelogin', ( $wgSecureLogin === true ) );
