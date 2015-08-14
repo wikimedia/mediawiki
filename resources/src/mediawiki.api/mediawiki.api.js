@@ -14,9 +14,7 @@
 			// Ajax options for jQuery.ajax()
 			ajax: {
 				url: mw.util.wikiScript( 'api' ),
-
 				timeout: 30 * 1000, // 30 seconds
-
 				dataType: 'json'
 			}
 		},
@@ -39,13 +37,11 @@
 	 * Constructor to create an object to interact with the API of a particular MediaWiki server.
 	 * mw.Api objects represent the API of a particular MediaWiki server.
 	 *
-	 * TODO: Share API objects with exact same config.
-	 *
 	 *     var api = new mw.Api();
 	 *     api.get( {
 	 *         action: 'query',
 	 *         meta: 'userinfo'
-	 *     } ).done ( function ( data ) {
+	 *     } ).done( function ( data ) {
 	 *         console.log( data );
 	 *     } );
 	 *
@@ -55,21 +51,19 @@
 	 *     api.get( {
 	 *         action: 'query',
 	 *         meta: [ 'userinfo', 'siteinfo' ] // same effect as 'userinfo|siteinfo'
-	 *     } ).done ( function ( data ) {
+	 *     } ).done( function ( data ) {
 	 *         console.log( data );
 	 *     } );
 	 *
 	 * @class
 	 *
 	 * @constructor
-	 * @param {Object} options See defaultOptions documentation above. Ajax options can also be
+	 * @param {Object} [options] See defaultOptions documentation above. Ajax options can also be
 	 *  overridden for each individual request to {@link jQuery#ajax} later on.
 	 */
 	mw.Api = function ( options ) {
-
-		if ( options === undefined ) {
-			options = {};
-		}
+		// TODO: Share API objects with exact same config.
+		options = options || {};
 
 		// Force a string if we got a mw.Uri object
 		if ( options.ajax && options.ajax.url !== undefined ) {
