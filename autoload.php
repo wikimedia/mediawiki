@@ -1012,6 +1012,7 @@ $wgAutoloadLocalClasses = array(
 	'ResourceLoaderEditToolbarModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderEditToolbarModule.php',
 	'ResourceLoaderFileModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderFileModule.php',
 	'ResourceLoaderFilePath' => __DIR__ . '/includes/resourceloader/ResourceLoaderFilePath.php',
+	'ResourceLoaderForeignApiModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderForeignApiModule.php',
 	'ResourceLoaderImage' => __DIR__ . '/includes/resourceloader/ResourceLoaderImage.php',
 	'ResourceLoaderImageModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderImageModule.php',
 	'ResourceLoaderJqueryMsgModule' => __DIR__ . '/includes/resourceloader/ResourceLoaderJqueryMsgModule.php',
