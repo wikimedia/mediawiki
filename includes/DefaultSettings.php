@@ -8599,6 +8599,12 @@ $wgExperiencedUserMemberSince = 30; # days
 $wgInterwikiPrefixDisplayTypes = [];
 
 /**
+ * Either the EditPage class should use OOjs UI or not
+ * This will be removed later and OOjs UI become the only option
+ */
+$wgOOUIEditPage = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
