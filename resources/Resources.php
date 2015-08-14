@@ -979,6 +979,19 @@ return array(
 		),
 	),
 
+	'mediawiki.ForeignApi' => array(
+		'class' => 'ResourceLoaderForeignApiModule',
+		// Additional dependencies generated dynamically
+		'dependencies' => 'mediawiki.ForeignApi.core',
+	),
+	'mediawiki.ForeignApi.core' => array(
+		'scripts' => 'resources/src/mediawiki.api/mediawiki.ForeignApi.js',
+		'dependencies' => array(
+			'mediawiki.api',
+			'oojs',
+		),
+	),
+
 	'mediawiki.helplink' => array(
 		'position' => 'top',
 		'styles' => array(
