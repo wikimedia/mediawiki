@@ -218,14 +218,14 @@ class CookieSessionProvider extends SessionProvider {
 		);
 
 		$extendedCookies = $this->config->get( 'ExtendedLoginCookies' );
-		$extendedExpiry = $this->config->get( 'ExtendedLoginCookieExpiration' );
+		$cookieDuration = static::getLoginCookieExpiration();
 
 		foreach ( $cookies as $key => $value ) {
 			if ( $value === false ) {
 				$response->clearCookie( $key, $options );
 			} else {
-				if ( $extendedExpiry !== null && in_array( $key, $extendedCookies ) ) {
-					$expiry = time() + (int)$extendedExpiry;
+				if ( $cookieDuration !== null && in_array( $key, $extendedCookies ) ) {
+					$expiry = ( $cookieDuration === 0 ) ? null : time() + (int)$cookieDuration;
 				} else {
 					$expiry = 0; // Default cookie expiration
 				}
@@ -396,4 +396,14 @@ class CookieSessionProvider extends SessionProvider {
 		return wfMessage( 'sessionprovider-nocookies' );
 	}
 
+	/**
+	 * Returns the lifespan of the login cookie, in seconds. 0 means current session.
+	 * @return int|null
+	 */
+	public static function getLoginCookieExpiration() {
+		global $wgCookieExpiration, $wgExtendedLoginCookieExpiration;
+		return ( $wgExtendedLoginCookieExpiration !== null )
+			? $wgExtendedLoginCookieExpiration
+			: $wgCookieExpiration;
+	}
 }
