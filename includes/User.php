@@ -3520,14 +3520,28 @@ class User implements IDBAccessObject {
 	 *  null (default): Use the default ($wgCookieSecure) to set the secure attribute
 	 */
 	protected function setExtendedLoginCookie( $name, $value, $secure ) {
-		global $wgExtendedLoginCookieExpiration, $wgCookieExpiration;
+		$expirationDuration = self::getExtendedLoginCookieExpiration();
 
-		$exp = time();
-		$exp += $wgExtendedLoginCookieExpiration !== null
-			? $wgExtendedLoginCookieExpiration
-			: $wgCookieExpiration;
+		if ( $expirationDuration !== 0 ) {
+			$exp += time() + $expirationDuration;
+		} else {
+			$exp = null;
+		}
 
 		$this->setCookie( $name, $value, $exp, $secure );
+	}
+
+	/**
+	 * Gets the cookie duration used for extended cookies ("keep me logged in")
+	 *
+	 * @return Expiration time, in seconds, except that 0 means 'browser session'.
+	 */
+	public static function getExtendedLoginCookieExpiration() {
+		global $wgExtendedLoginCookieExpiration, $wgCookieExpiration;
+
+		return $wgExtendedLoginCookieExpiration !== null
+			? $wgExtendedLoginCookieExpiration
+			: $wgCookieExpiration;
 	}
 
 	/**
