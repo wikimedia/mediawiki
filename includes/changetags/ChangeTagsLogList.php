@@ -42,7 +42,8 @@ class ChangeTagsLogList extends ChangeTagsList {
 			$queryInfo['fields'],
 			$queryInfo['conds'],
 			$queryInfo['join_conds'],
-			$queryInfo['options']
+			$queryInfo['options'],
+			''
 		);
 		return $db->select(
 			$queryInfo['tables'],
