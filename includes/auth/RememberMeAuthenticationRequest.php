@@ -20,6 +20,7 @@
  */
 
 namespace MediaWiki\Auth;
+use MediaWiki\Session\CookieSessionProvider;
 
 /**
  * This is an authentication request added by AuthManager to show a "remember
@@ -35,8 +36,8 @@ class RememberMeAuthenticationRequest extends AuthenticationRequest {
 	public $rememberMe = false;
 
 	public function getFieldInfo() {
-		global $wgCookieExpiration;
-		$expirationDays = ceil( $wgCookieExpiration / ( 3600 * 24 ) );
+		$expiration = CookieSessionProvider::getLoginCookieExpiration();
+		$expirationDays = ceil( $expiration / ( 3600 * 24 ) );
 
 		return [
 			'rememberMe' => [
