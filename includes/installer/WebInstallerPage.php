@@ -833,8 +833,6 @@ class WebInstallerName extends WebInstallerPage {
 	 * @return bool
 	 */
 	public function submit() {
-		global $wgPasswordPolicy;
-
 		$retVal = true;
 		$this->parent->setVarsFromRequest( array( 'wgSitename', '_NamespaceType',
 			'_AdminName', '_AdminPassword', '_AdminPasswordConfirm', '_AdminEmail',

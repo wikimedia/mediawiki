@@ -522,8 +522,6 @@ TXT;
 	 * @param Exception $e
 	 */
 	public static function logException( Exception $e ) {
-		global $wgLogExceptionBacktrace;
-
 		if ( !( $e instanceof MWException ) || $e->isLoggable() ) {
 			$logger = LoggerFactory::getInstance( 'exception' );
 			$logger->error(
@@ -549,8 +547,6 @@ TXT;
 	 * @param string $channel
 	*/
 	protected static function logError( ErrorException $e, $channel ) {
-		global $wgLogExceptionBacktrace;
-
 		// The set_error_handler callback is independent from error_reporting.
 		// Filter out unwanted errors manually (e.g. when MediaWiki\suppressWarnings is active).
 		$suppressed = ( error_reporting() & $e->getSeverity() ) === 0;
