@@ -43,7 +43,7 @@ class UserMailer {
 	protected static function sendWithPear( $mailer, $dest, $headers, $body ) {
 		$mailResult = $mailer->send( $dest, $headers, $body );
 
-		# Based on the result return an error string,
+		// Based on the result return an error string,
 		if ( PEAR::isError( $mailResult ) ) {
 			wfDebug( "PEAR::Mail failed: " . $mailResult->getMessage() . "\n" );
 			return Status::newFatal( 'pear-mail-error', $mailResult->getMessage() );
@@ -163,7 +163,7 @@ class UserMailer {
 
 		wfDebug( __METHOD__ . ': sending mail to ' . implode( ', ', $to ) . "\n" );
 
-		# Make sure we have at least one address
+		// Make sure we have at least one address
 		$has_address = false;
 		foreach ( $to as $u ) {
 			if ( $u->address ) {
@@ -175,32 +175,32 @@ class UserMailer {
 			return Status::newFatal( 'user-mail-no-addy' );
 		}
 
-		# Forge email headers
-		# -------------------
-		#
-		# WARNING
-		#
-		# DO NOT add To: or Subject: headers at this step. They need to be
-		# handled differently depending upon the mailer we are going to use.
-		#
-		# To:
-		#  PHP mail() first argument is the mail receiver. The argument is
-		#  used as a recipient destination and as a To header.
-		#
-		#  PEAR mailer has a recipient argument which is only used to
-		#  send the mail. If no To header is given, PEAR will set it to
-		#  to 'undisclosed-recipients:'.
-		#
-		#  NOTE: To: is for presentation, the actual recipient is specified
-		#  by the mailer using the Rcpt-To: header.
-		#
-		# Subject:
-		#  PHP mail() second argument to pass the subject, passing a Subject
-		#  as an additional header will result in a duplicate header.
-		#
-		#  PEAR mailer should be passed a Subject header.
-		#
-		# -- hashar 20120218
+		// Forge email headers
+		// -------------------
+		//
+		// WARNING
+		//
+		// DO NOT add To: or Subject: headers at this step. They need to be
+		// handled differently depending upon the mailer we are going to use.
+		//
+		// To:
+		//  PHP mail() first argument is the mail receiver. The argument is
+		//  used as a recipient destination and as a To header.
+		//
+		//  PEAR mailer has a recipient argument which is only used to
+		//  send the mail. If no To header is given, PEAR will set it to
+		//  to 'undisclosed-recipients:'.
+		//
+		//  NOTE: To: is for presentation, the actual recipient is specified
+		//  by the mailer using the Rcpt-To: header.
+		//
+		// Subject:
+		//  PHP mail() second argument to pass the subject, passing a Subject
+		//  as an additional header will result in a duplicate header.
+		//
+		//  PEAR mailer should be passed a Subject header.
+		//
+		// -- hashar 20120218
 
 		$headers['From'] = $from->toString();
 		$returnPath = $from->address;
@@ -208,9 +208,9 @@ class UserMailer {
 
 		// Hook to generate custom VERP address for 'Return-Path'
 		Hooks::run( 'UserMailerChangeReturnPath', array( $to, &$returnPath ) );
-		# Add the envelope sender address using the -f command line option when PHP mail() is used.
-		# Will default to the $from->address when the UserMailerChangeReturnPath hook fails and the
-		# generated VERP address when the hook runs effectively.
+		// Add the envelope sender address using the -f command line option when PHP mail() is used.
+		// Will default to the $from->address when the UserMailerChangeReturnPath hook fails and the
+		// generated VERP address when the hook runs effectively.
 		$extraParams .= ' -f ' . $returnPath;
 
 		$headers['Return-Path'] = $returnPath;
@@ -225,8 +225,8 @@ class UserMailer {
 		$headers['List-Unsubscribe'] = '<' . SpecialPage::getTitleFor( 'Preferences' )
 			->getFullURL( '', false, PROTO_CANONICAL ) . '>';
 
-		# Line endings need to be different on Unix and Windows due to
-		# the bug described at http://trac.wordpress.org/ticket/2603
+		// Line endings need to be different on Unix and Windows due to
+		// the bug described at http://trac.wordpress.org/ticket/2603
 		if ( wfIsWindows() ) {
 			$endl = "\r\n";
 		} else {
@@ -241,7 +241,7 @@ class UserMailer {
 				// remove the html body for text email fall back
 				$body = $body['text'];
 			} else {
-				# Check if pear/mail_mime is already loaded (via composer)
+				// Check if pear/mail_mime is already loaded (via composer)
 				if ( !class_exists( 'Mail_mime' ) ) {
 					require_once 'Mail/mime.php';
 				}
@@ -281,9 +281,9 @@ class UserMailer {
 		}
 
 		if ( is_array( $wgSMTP ) ) {
-			# Check if pear/mail is already loaded (via composer)
+			// Check if pear/mail is already loaded (via composer)
 			if ( !class_exists( 'Mail' ) ) {
-				# PEAR MAILER
+				// PEAR MAILER
 				if ( !stream_resolve_include_path( 'Mail.php' ) ) {
 					throw new MWException( 'PEAR mail package is not installed' );
 				}
@@ -304,17 +304,17 @@ class UserMailer {
 
 			$headers['Subject'] = self::quotedPrintable( $subject );
 
-			# When sending only to one recipient, shows it its email using To:
+			// When sending only to one recipient, shows it its email using To:
 			if ( count( $to ) == 1 ) {
 				$headers['To'] = $to[0]->toString();
 			}
 
-			# Split jobs since SMTP servers tends to limit the maximum
-			# number of possible recipients.
+			// Split jobs since SMTP servers tends to limit the maximum
+			// number of possible recipients.
 			$chunks = array_chunk( $to, $wgEnotifMaxRecips );
 			foreach ( $chunks as $chunk ) {
 				$status = self::sendWithPear( $mail_object, $chunk, $headers, $body );
-				# FIXME : some chunks might be sent while others are not!
+				// FIXME : some chunks might be sent while others are not!
 				if ( !$status->isOK() ) {
 					MediaWiki\restoreWarnings();
 					return $status;
@@ -323,9 +323,9 @@ class UserMailer {
 			MediaWiki\restoreWarnings();
 			return Status::newGood();
 		} else {
-			#
-			# PHP mail()
-			#
+			//
+			// PHP mail()
+			//
 			if ( count( $to ) > 1 ) {
 				$headers['To'] = 'undisclosed-recipients:;';
 			}
@@ -421,7 +421,7 @@ class UserMailer {
 	 * @return string
 	 */
 	public static function quotedPrintable( $string, $charset = '' ) {
-		# Probably incomplete; see RFC 2045
+		// Probably incomplete; see RFC 2045
 		if ( empty( $charset ) ) {
 			$charset = 'UTF-8';
 		}
