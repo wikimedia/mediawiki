@@ -13,15 +13,15 @@
 }
 
 /* Adjustments to edit form elements */
-.editCheckboxes {
+.mw-editform-legacy .editCheckboxes {
 	margin-bottom: 1em;
 }
 
-.editCheckboxes input:first-child {
+.mw-editform-legacy .editCheckboxes input:first-child {
 	margin-left: 0;
 }
 
-.cancelLink {
+.mw-editform-legacy .cancelLink {
 	margin-left: 0.5em;
 }
 
@@ -29,13 +29,24 @@
 	font-size: 0.9em;
 }
 
-input#wpSummary {
+.mw-editform-ooui #editpage-copywarn {
+	line-height: 1.26;
+}
+
+#wpSummary {
 	display: block;
+	width: 80%;
+	margin-bottom: 1em;
+}
+
+.mw-editform-ooui #wpSummary {
+	max-width: none;
+}
+
+.mw-editform-legacy input#wpSummary {
 	background-color: #fff;
 	color: #000;
-	width: 80%;
 	margin-top: 0;
-	margin-bottom: 1em;
 	padding: 0.625em 0.546875em 0.546875em;
 	border: 1px solid #a2a9b1;
 	border-radius: 2px;
@@ -47,14 +58,14 @@ input#wpSummary {
 	transition: border-color 200ms cubic-bezier( 0.39, 0.575, 0.565, 1 ), box-shadow 200ms cubic-bezier( 0.39, 0.575, 0.565, 1 );
 }
 
-input#wpSummary:focus,
-input#wpSummary:active {
+.mw-editform-legacy input#wpSummary:focus,
+.mw-editform-legacy input#wpSummary:active {
 	outline: 0;
 	border-color: #36c;
 	box-shadow: inset 0 0 0 1px #36c;
 }
 
-.editButtons input:first-child {
+.mw-editform-legacy .editButtons input:first-child {
 	margin-left: 0.1em;
 }
 
@@ -64,4 +75,20 @@ input#wpSummary:active {
  */
 #wikiPreview.ontop {
 	margin-bottom: 1em;
+}
+
+.mw-editform-ooui .editCheckboxes .oo-ui-fieldLayout {
+	margin-right: 1em;
+}
+
+.mw-editform-ooui .editHelp {
+	margin-left: 0.5em;
+}
+
+.mw-editform-ooui .editHelp a {
+	font-weight: bold;
+}
+
+.mw-editform-ooui .editOptions {
+	border-radius: 0 0 2px 2px;
 }
