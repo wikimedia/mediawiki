@@ -414,9 +414,16 @@ class EditPage {
 	private $isOldRev = false;
 
 	/**
+	 * @var bool Whether OOUI should be enabled here
+	 */
+	private $oouiEnabled = false;
+
+	/**
 	 * @param Article $article
 	 */
 	public function __construct( Article $article ) {
+		global $wgOOUIEditPage;
+
 		$this->mArticle = $article;
 		$this->page = $article->getPage(); // model object
 		$this->mTitle = $article->getTitle();
@@ -426,6 +433,8 @@ class EditPage {
 
 		$handler = ContentHandler::getForModelID( $this->contentModel );
 		$this->contentFormat = $handler->getDefaultFormat();
+
+		$this->oouiEnabled = $wgOOUIEditPage;
 	}
 
 	/**
@@ -842,6 +851,9 @@ class EditPage {
 	 */
 	public function importFormData( &$request ) {
 		global $wgContLang, $wgUser;
+
+		# Allow users to change the mode for testing
+		$this->oouiEnabled = $request->getFuzzyBool( 'ooui', $this->oouiEnabled );
 
 		# Section edit can come from either the form or a link
 		$this->section = $request->getVal( 'wpSection', $request->getVal( 'section' ) );
@@ -2634,6 +2646,7 @@ class EditPage {
 		$wgOut->addHTML( Html::openElement(
 			'form',
 			[
+				'class' => $this->oouiEnabled ? 'mw-editform-ooui' : 'mw-editform-legacy',
 				'id' => self::EDITFORM_ID,
 				'name' => self::EDITFORM_ID,
 				'method' => 'post',
@@ -2732,6 +2745,11 @@ class EditPage {
 
 		$wgOut->addHTML( Html::hidden( 'format', $this->contentFormat ) );
 		$wgOut->addHTML( Html::hidden( 'model', $this->contentModel ) );
+
+		// following functions will need OOUI, enable it only once; here.
+		if ( $this->oouiEnabled === true ) {
+			$wgOut->enableOOUI();
+		}
 
 		if ( $this->section == 'new' ) {
 			$this->showSummaryInput( true, $this->summary );
@@ -3005,6 +3023,24 @@ class EditPage {
 	}
 
 	/**
+	 * Helper function for summary input functions, which returns the neccessary
+	 * attributes for the input.
+	 *
+	 * @param array|null $inputAttrs Array of attrs to use on the input
+	 * @return array
+	 */
+	private function getSummaryInputAttributes( array $inputAttrs = null ) {
+		// Note: the maxlength is overridden in JS to 255 and to make it use UTF-8 bytes, not characters.
+		return ( is_array( $inputAttrs ) ? $inputAttrs : [] ) + [
+			'id' => 'wpSummary',
+			'maxlength' => '200',
+			'tabindex' => '1',
+			'size' => 60,
+			'spellcheck' => 'true',
+		] + Linker::tooltipAndAccesskeyAttribs( 'summary' );
+	}
+
+	/**
 	 * Standard summary input and label (wgSummary), abstracted so EditPage
 	 * subclasses may reorganize the form.
 	 * Note that you do not need to worry about the label's for=, it will be
@@ -3021,14 +3057,7 @@ class EditPage {
 	public function getSummaryInput( $summary = "", $labelText = null,
 		$inputAttrs = null, $spanLabelAttrs = null
 	) {
-		// Note: the maxlength is overridden in JS to 255 and to make it use UTF-8 bytes, not characters.
-		$inputAttrs = ( is_array( $inputAttrs ) ? $inputAttrs : [] ) + [
-			'id' => 'wpSummary',
-			'maxlength' => '200',
-			'tabindex' => '1',
-			'size' => 60,
-			'spellcheck' => 'true',
-		] + Linker::tooltipAndAccesskeyAttribs( 'summary' );
+		$inputAttrs = $this->getSummaryInputAttributes( $inputAttrs );
 
 		$spanLabelAttrs = ( is_array( $spanLabelAttrs ) ? $spanLabelAttrs : [] ) + [
 			'class' => $this->missingSummary ? 'mw-summarymissed' : 'mw-summary',
@@ -3051,6 +3080,34 @@ class EditPage {
 	}
 
 	/**
+	 * Same as self::getSummaryInput, but uses OOUI, instead of plain HTML.
+	 * Builds a standard summary input with a label.
+	 *
+	 * @param string $summary The value of the summary input
+	 * @param string $labelText The html to place inside the label
+	 * @param array $inputAttrs Array of attrs to use on the input
+	 *
+	 * @return OOUI\FieldLayout OOUI FieldLayout with Label and Input
+	 */
+	function getSummaryInputOOUI( $summary = "", $labelText = null, $inputAttrs = null ) {
+		$inputAttrs = OOUI\Element::configFromHtmlAttributes(
+			$this->getSummaryInputAttributes( $inputAttrs )
+		);
+
+		return new OOUI\FieldLayout(
+			new OOUI\TextInputWidget( [
+				'value' => $summary,
+			] + $inputAttrs ),
+			[
+				'label' => new OOUI\HtmlSnippet( $labelText ),
+				'align' => 'top',
+				'id' => 'wpSummaryLabel',
+				'classes' => [ $this->missingSummary ? 'mw-summarymissed' : 'mw-summary' ],
+			]
+		);
+	}
+
+	/**
 	 * @param bool $isSubjectPreview True if this is the section subject/title
 	 *   up top, or false if this is the comment summary
 	 *   down below the textarea
@@ -3070,14 +3127,23 @@ class EditPage {
 				return;
 			}
 		}
+
 		$labelText = $this->context->msg( $isSubjectPreview ? 'subject' : 'summary' )->parse();
-		list( $label, $input ) = $this->getSummaryInput(
-			$summary,
-			$labelText,
-			[ 'class' => $summaryClass ],
-			[]
-		);
-		$wgOut->addHTML( "{$label} {$input}" );
+		if ( $this->oouiEnabled === true ) {
+			$wgOut->addHTML( $this->getSummaryInputOOUI(
+				$summary,
+				$labelText,
+				[ 'class' => $summaryClass ]
+			) );
+		} else {
+			list( $label, $input ) = $this->getSummaryInput(
+				$summary,
+				$labelText,
+				[ 'class' => $summaryClass ]
+			);
+			$wgOut->addHTML( "{$label} {$input}" );
+		}
+
 	}
 
 	/**
@@ -3487,9 +3553,21 @@ HTML
 			$wgOut->addHTML( $this->getSummaryPreview( false, $this->summary ) );
 		}
 
-		$checkboxes = $this->getCheckboxes( $tabindex,
-			[ 'minor' => $this->minoredit, 'watch' => $this->watchthis ] );
-		$wgOut->addHTML( "<div class='editCheckboxes'>" . implode( $checkboxes, "\n" ) . "</div>\n" );
+		if ( $this->oouiEnabled === true ) {
+			$checkboxes = $this->getCheckboxesOOUI(
+				$tabindex,
+				[ 'minor' => $this->minoredit, 'watch' => $this->watchthis ]
+			);
+			$checkboxesHTML = new OOUI\HorizontalLayout( [ 'items' => $checkboxes ] );
+		} else {
+			$checkboxes = $this->getCheckboxes(
+				$tabindex,
+				[ 'minor' => $this->minoredit, 'watch' => $this->watchthis ]
+			);
+			$checkboxesHTML = implode( $checkboxes, "\n" );
+		}
+
+		$wgOut->addHTML( "<div class='editCheckboxes'>" . $checkboxesHTML . "</div>\n" );
 
 		// Show copyright warning.
 		$wgOut->addWikiText( $this->getCopywarn() );
@@ -3577,13 +3655,22 @@ HTML
 		} elseif ( $this->getContextTitle()->isRedirect() ) {
 			$cancelParams['redirect'] = 'no';
 		}
-
-		return MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
-			$this->getContextTitle(),
-			new HtmlArmor( $this->context->msg( 'cancel' )->parse() ),
-			Html::buttonAttributes( [ 'id' => 'mw-editform-cancel' ], [ 'mw-ui-quiet' ] ),
-			$cancelParams
-		);
+		if ( $this->oouiEnabled === true ) {
+			return new OOUI\ButtonWidget( [
+				'id' => 'mw-editform-cancel',
+				'href' => $this->getContextTitle()->getLinkUrl( $cancelParams ),
+				'label' => new OOUI\HtmlSnippet( $this->context->msg( 'cancel' )->parse() ),
+				'framed' => false,
+				'flags' => 'destructive',
+			] );
+		} else {
+			return MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
+				$this->getContextTitle(),
+				new HtmlArmor( $this->context->msg( 'cancel' )->parse() ),
+				Html::buttonAttributes( [ 'id' => 'mw-editform-cancel' ], [ 'mw-ui-quiet' ] ),
+				$cancelParams
+			);
+		}
 	}
 
 	/**
@@ -4055,7 +4142,7 @@ HTML
 	}
 
 	/**
-	 * Returns an array of html code of the following checkboxes:
+	 * Returns an array of html code of the following checkboxes old style:
 	 * minor and watch
 	 *
 	 * @param int $tabindex Current tabindex
@@ -4115,6 +4202,68 @@ HTML
 	}
 
 	/**
+	 * Returns an array of html code of the following checkboxes:
+	 * minor and watch
+	 *
+	 * @param int $tabindex Current tabindex
+	 * @param array $checked Array of checkbox => bool, where bool indicates the checked
+	 *                 status of the checkbox
+	 *
+	 * @return array
+	 */
+	public function getCheckboxesOOUI( &$tabindex, $checked ) {
+		$checkboxes = [];
+		$checkboxesDef = $this->getCheckboxesDefinition();
+
+		$origTabindex = $tabindex;
+
+		foreach ( $checkboxesDef as $name => $options ) {
+			$legacyName = isset( $options['legacy-name'] ) ? $options['legacy-name'] : $name;
+
+			$title = null;
+			$accesskey = null;
+			if ( isset( $options['tooltip'] ) ) {
+				$accesskey = $this->context->msg( "accesskey-{$options['tooltip']}" )->text();
+				$title = Linker::titleAttrib( $options['tooltip'], 'withaccess' );
+			}
+			if ( isset( $options['title'] ) ) {
+				$title = $options['title'];
+			}
+			if ( isset( $options['label-id'] ) ) {
+				$labelAttribs['id'] = $options['label-id'];
+			}
+
+			$checkboxes[ $legacyName ] = new OOUI\FieldLayout(
+				new OOUI\CheckboxInputWidget( [
+					'tabIndex' => ++$tabindex,
+					'accessKey' => $accesskey,
+					'id' => $options['id'],
+					'name' => $name,
+					'selected' => $checked[ $legacyName ],
+				] ),
+				[
+					'align' => 'inline',
+					'label' => new OOUI\HtmlSnippet( $this->context->msg( $options['label-message'] )->parse() ),
+					'title' => $title,
+					'id' => isset( $options['label-id'] ) ? $options['label-id'] : null,
+				]
+			);
+		}
+
+		// Backwards-compatibility hack to run the EditPageBeforeEditChecks hook. It's important,
+		// people have used it for the weirdest things completely unrelated to checkboxes...
+		// And if we're gonna run it, might as well allow its legacy checkboxes to be shown.
+		$legacyCheckboxes = $this->getCheckboxes( $origTabindex, $checked );
+		foreach ( $legacyCheckboxes as $name => $html ) {
+			if ( !isset( $checkboxes[$name] ) ) {
+				$checkboxes[$name] = new OOUI\Widget( [ 'content' => new OOUI\HtmlSnippet( $html ) ] );
+			}
+		}
+
+		return $checkboxes;
+	}
+
+	/**
 	 * Returns an array of html code of the following buttons:
 	 * save, diff and preview
 	 *
@@ -4139,31 +4288,56 @@ HTML
 			'name' => 'wpSave',
 			'tabindex' => ++$tabindex,
 		] + Linker::tooltipAndAccesskeyAttribs( 'save' );
-		$buttons['save'] = Html::submitButton(
-			$this->context->msg( $buttonLabelKey )->text(),
-			$attribs,
-			[ 'mw-ui-progressive' ]
-		);
+
+		if ( $this->oouiEnabled ) {
+			$saveConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
+			$buttons['save'] = new OOUI\ButtonInputWidget( [
+				'flags' => [ 'constructive', 'primary' ],
+				'label' => $this->context->msg( $buttonLabelKey )->text(),
+				'type' => 'submit',
+			] + $saveConfig );
+		} else {
+			$buttons['save'] = Html::submitButton(
+				$this->context->msg( $buttonLabelKey )->text(),
+				$attribs,
+				[ 'mw-ui-progressive' ]
+			);
+		}
 
 		$attribs = [
 			'id' => 'wpPreview',
 			'name' => 'wpPreview',
 			'tabindex' => ++$tabindex,
 		] + Linker::tooltipAndAccesskeyAttribs( 'preview' );
-		$buttons['preview'] = Html::submitButton(
-			$this->context->msg( 'showpreview' )->text(),
-			$attribs
-		);
-
+		if ( $this->oouiEnabled ) {
+			$previewConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
+			$buttons['preview'] = new OOUI\ButtonInputWidget( [
+				'label' => $this->context->msg( 'showpreview' )->text(),
+				'type' => 'submit'
+			] + $previewConfig );
+		} else {
+			$buttons['preview'] = Html::submitButton(
+				$this->context->msg( 'showpreview' )->text(),
+				$attribs
+			);
+		}
 		$attribs = [
 			'id' => 'wpDiff',
 			'name' => 'wpDiff',
 			'tabindex' => ++$tabindex,
 		] + Linker::tooltipAndAccesskeyAttribs( 'diff' );
-		$buttons['diff'] = Html::submitButton(
-			$this->context->msg( 'showdiff' )->text(),
-			$attribs
-		);
+		if ( $this->oouiEnabled ) {
+			$diffConfig = OOUI\Element::configFromHtmlAttributes( $attribs );
+			$buttons['diff'] = new OOUI\ButtonInputWidget( [
+				'label' => $this->context->msg( 'showdiff' )->text(),
+				'type' => 'submit',
+			] + $diffConfig );
+		} else {
+			$buttons['diff'] = Html::submitButton(
+				$this->context->msg( 'showdiff' )->text(),
+				$attribs
+			);
+		}
 
 		// Avoid PHP 7.1 warning of passing $this by reference
 		$editPage = $this;
