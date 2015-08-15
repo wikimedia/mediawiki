@@ -565,7 +565,9 @@ class JavaScriptMinifier {
 				$out .= ' ';
 				$lineLength++;
 			}
-			if( $type === self::TYPE_LITERAL && ( $token === 'true' || $token === 'false' ) ) {
+			if( $type === self::TYPE_LITERAL && $state === self::EXPRESSION && $last !== '.' &&
+				( $token === 'true' || $token === 'false' ) )
+			{
 				$token = ( $token === 'true' ) ? '!0' : '!1';
 			}
 
