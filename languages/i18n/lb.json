@@ -1183,6 +1183,8 @@
 	"rcshowhidemine": "Meng Ännerunge $1",
 	"rcshowhidemine-show": "Weisen",
 	"rcshowhidemine-hide": "Verstoppen",
+	"rcshowhidecategorization-show": "Weisen",
+	"rcshowhidecategorization-hide": "Verstoppen",
 	"rclinks": "Déi lescht $1 Ännerunge vun de leschten $2 Deeg weisen.<br />$3",
 	"diff": "Ënnerscheed",
 	"hist": "Versiounen",

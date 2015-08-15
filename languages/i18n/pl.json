@@ -935,6 +935,7 @@
 	"search-category": "(kategoria $1)",
 	"search-file-match": "(odpowiada zawartości pliku)",
 	"search-suggest": "Czy chodziło Ci o: $1",
+	"search-rewritten": "Wyświetlone wyniki dla $1. zamiast tego wyszukaj $2.",
 	"search-interwiki-caption": "Projekty siostrzane",
 	"search-interwiki-default": "Wyniki od $1:",
 	"search-interwiki-more": "(więcej)",
