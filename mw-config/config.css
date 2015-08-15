@@ -172,3 +172,32 @@
 	overflow: hidden;
 	min-width: 20em;
 }
+
+/* tooltip styles */
+.config-help-field-hint {
+	display: none;
+	margin-left: 2px;
+	margin-bottom: -8px;
+	padding: 0 0 0 15px;
+	/* @embed */
+	background-image: url(images/help-question.gif);
+	background-position: left center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	font-size: .8em;
+	text-decoration: underline;
+	color: #0645ad;
+}
+
+.config-help-field-hint:hover {
+	/* @embed */
+	background-image: url(images/help-question-hover.gif);
+}
+
+.config-help-field-data {
+	display: block;
+	background-color: #d6f3ff;
+	padding: 5px 8px 4px 8px;
+	border: 1px solid #5dc9f4;
+	margin-left: 20px;
+}
