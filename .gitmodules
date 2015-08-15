@@ -146,3 +146,7 @@
 	path = extensions/Math
 	url = https://github.com/wikimedia/mediawiki-extensions-Math.git
 	branch = REL1_25
+[submodule "extensions/MirahezeMessages"]
+	path = extensions/MirahezeMessages
+	url = https://github.com/miraheze/MirahezeMessages
+	branch = master
