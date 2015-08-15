@@ -565,10 +565,10 @@ class JavaScriptMinifier {
 				$out .= ' ';
 				$lineLength++;
 			}
-			if( $token === 'true' ) {
-				$token = '!0';
-			} elseif( $token === 'false' ) {
-				$token = '!1';
+			if( $type === self::TYPE_LITERAL && $state === self::EXPRESSION && $last !== '.' &&
+				( $token === 'true' || $token === 'false' ) )
+			{
+				$token = ( $token === 'true' ) ? '!0' : '!1';
 			}
 
 			$out .= $token;
