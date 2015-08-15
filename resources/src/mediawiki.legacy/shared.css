@@ -265,9 +265,7 @@ td.mw-label {
 	 * compatibility (browsers able to understand gradient syntax support also SVG).
 	 * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique */
 	background-image: url(images/question.png);
-	/* @embed */
 	background-image: -webkit-linear-gradient(transparent, transparent), url(images/question.svg);
-	/* @embed */
 	background-image: linear-gradient(transparent, transparent), url(images/question.svg);
 	background-repeat: no-repeat;
 	background-size: 13px 13px;
@@ -495,9 +493,7 @@ a.feedlink {
 	 * compatibility (browsers able to understand gradient syntax support also SVG).
 	 * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique */
 	background-image: url(images/feed-icon.png);
-	/* @embed */
 	background-image: -webkit-linear-gradient(transparent, transparent), url(images/feed-icon.svg);
-	/* @embed */
 	background-image: linear-gradient(transparent, transparent), url(images/feed-icon.svg);
 	background-position: center left;
 	background-repeat: no-repeat;
@@ -883,7 +879,6 @@ ul.mw-gallery-packed {
 }
 
 .mw-ajax-loader {
-	/* @embed */
 	background-image: url(images/ajax-loader.gif);
 	background-position: center center;
 	background-repeat: no-repeat;
@@ -895,7 +890,6 @@ ul.mw-gallery-packed {
 .mw-small-spinner {
 	padding: 10px !important;
 	margin-right: 0.6em;
-	/* @embed */
 	background-image: url(images/spinner.gif);
 	background-position: center center;
 	background-repeat: no-repeat;
@@ -1035,7 +1029,6 @@ ol:lang(or) li {
 	margin-left: 2px;
 	margin-bottom: -8px;
 	padding: 0 0 0 15px;
-	/* @embed */
 	background-image: url(images/help-question.gif);
 	background-position: left center;
 	background-repeat: no-repeat;
@@ -1046,7 +1039,6 @@ ol:lang(or) li {
 }
 
 .mw-help-field-hint:hover {
-	/* @embed */
 	background-image: url(images/help-question-hover.gif);
 }
 
