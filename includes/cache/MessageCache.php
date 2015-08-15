@@ -639,9 +639,10 @@ class MessageCache {
 			$success = true;
 		}
 
+		$this->setValidationHash( $code, $cache['HASH'] );
+
 		# Save to local cache
 		if ( $wgUseLocalMessageCache ) {
-			$this->setValidationHash( $code, $cache['HASH'] );
 			$this->saveToLocalCache( $code, $cache );
 		}
 
