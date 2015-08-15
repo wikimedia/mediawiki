@@ -140,6 +140,13 @@ class JavaScriptMinifierTest extends PHPUnit_Framework_TestCase {
 			array( "5..toString();", "5..toString();" ),
 			array( "5...toString();", false ),
 			array( "5.\n.toString();", '5..toString();' ),
+
+			// Boolean minification (!0 / !1)
+			array( "var a = { b: true };", "var a={b:!0};" ),
+			array( "var a = { true: 12 };", "var a={true:12};", false ),
+			array( "a.true = 12;", "a.true=12;", false ),
+			array( "a.foo = true;", "a.foo=!0;" ),
+			array( "a.foo = false;", "a.foo=!1;" ),
 		);
 	}
 
@@ -147,15 +154,17 @@ class JavaScriptMinifierTest extends PHPUnit_Framework_TestCase {
 	 * @dataProvider provideCases
 	 * @covers JavaScriptMinifier::minify
 	 */
-	public function testJavaScriptMinifierOutput( $code, $expectedOutput ) {
+	public function testJavaScriptMinifierOutput( $code, $expectedOutput, $expectedValid = true ) {
 		$minified = JavaScriptMinifier::minify( $code );
 
 		// JSMin+'s parser will throw an exception if output is not valid JS.
 		// suppression of warnings needed for stupid crap
-		MediaWiki\suppressWarnings();
-		$parser = new JSParser();
-		MediaWiki\restoreWarnings();
-		$parser->parse( $minified, 'minify-test.js', 1 );
+		if ( $expectedValid ) {
+			MediaWiki\suppressWarnings();
+			$parser = new JSParser();
+			MediaWiki\restoreWarnings();
+			$parser->parse( $minified, 'minify-test.js', 1 );
+		}
 
 		$this->assertEquals(
 			$expectedOutput,
