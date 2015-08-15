@@ -696,11 +696,11 @@ class WebInstaller extends Installer {
 		$text = wfMessage( $msg, $args )->useDatabase( false )->plain();
 		$html = $this->parse( $text, true );
 
-		return "<div class=\"mw-help-field-container\">\n" .
-			"<span class=\"mw-help-field-hint\" title=\"" .
+		return "<div class=\"config-help-field-container\">\n" .
+			"<span class=\"config-help-field-hint\" title=\"" .
 			wfMessage( 'config-help-tooltip' )->escaped() . "\">" .
 			wfMessage( 'config-help' )->escaped() . "</span>\n" .
-			"<span class=\"mw-help-field-data\">" . $html . "</span>\n" .
+			"<span class=\"config-help-field-data\">" . $html . "</span>\n" .
 			"</div>\n";
 	}
 

@@ -970,7 +970,10 @@ return array(
 			'feedback-useragent'
 		),
 	),
-
+	'mediawiki.feedlink' => array(
+		'position' => 'top',
+		'styles' => 'resources/src/mediawiki/mediawiki.feedlink.css',
+	),
 	'mediawiki.filewarning' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.filewarning.js',
 		'styles' => 'resources/src/mediawiki/mediawiki.filewarning.less',
@@ -978,7 +981,6 @@ return array(
 			'oojs-ui',
 		),
 	),
-
 	'mediawiki.helplink' => array(
 		'position' => 'top',
 		'styles' => array(
