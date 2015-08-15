@@ -51,12 +51,16 @@ class SkinTemplate extends Skin {
 	 * @param OutputPage $out
 	 */
 	function setupSkinUserCss( OutputPage $out ) {
-		$out->addModuleStyles( array(
+		$moduleStyles = array(
 			'mediawiki.legacy.shared',
 			'mediawiki.legacy.commonPrint',
 			'mediawiki.ui.button',
 			'mediawiki.sectionAnchor'
-		) );
+		);
+		if ( $out->isSyndicated() ) {
+			$moduleStyles[] = 'mediawiki.legacy.feeds';
+		}
+		$out->addModuleStyles( $moduleStyles );
 	}
 
 	/**

@@ -1695,6 +1695,10 @@ return array(
 
 	/* MediaWiki Legacy */
 
+	'mediawiki.legacy.feeds' => array(
+		'position' => 'top',
+		'styles' => 'resources/src/mediawiki.legacy/feeds.css',
+	),
 	'mediawiki.legacy.commonPrint' => array(
 		'position' => 'top',
 		'styles' => array(
