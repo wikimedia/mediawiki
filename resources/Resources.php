@@ -970,7 +970,10 @@ return array(
 			'feedback-useragent'
 		),
 	),
-
+	'mediawiki.feedlink' => array(
+		'position' => 'top',
+		'styles' => 'resources/src/mediawiki/mediawiki.feedlink.css',
+	),
 	'mediawiki.filewarning' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.filewarning.js',
 		'styles' => 'resources/src/mediawiki/mediawiki.filewarning.less',
@@ -978,7 +981,6 @@ return array(
 			'oojs-ui',
 		),
 	),
-
 	'mediawiki.helplink' => array(
 		'position' => 'top',
 		'styles' => array(
@@ -1695,10 +1697,6 @@ return array(
 
 	/* MediaWiki Legacy */
 
-	'mediawiki.legacy.feeds' => array(
-		'position' => 'top',
-		'styles' => 'resources/src/mediawiki.legacy/feeds.css',
-	),
 	'mediawiki.legacy.commonPrint' => array(
 		'position' => 'top',
 		'styles' => array(

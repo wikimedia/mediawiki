@@ -1,5 +1,7 @@
-/* Extracted from mediawiki.legacy.shared, which no longer @embeds the
- * background image. The selector below must be more specific. */
+/* Styles for links to RSS/Atom feeds in sidebar */
+
+/* Until the copy of this code in mediawiki.legacy.shared is removed, which no longer @embeds the
+ * background image, the selector below must be kept more specific. */
 #feedlinks a.feedlink {
 	/* SVG support using a transparent gradient to guarantee cross-browser
 	 * compatibility (browsers able to understand gradient syntax support also SVG).
