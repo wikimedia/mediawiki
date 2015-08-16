@@ -399,7 +399,7 @@ class CSSMin {
 
 		if ( $local === false ) {
 			// Assume that all paths are relative to $remote, and make them absolute
-			return $remote . '/' . $url;
+			$url = $remote . '/' . $url;
 		} else {
 			// We drop the query part here and instead make the path relative to $remote
 			$url = "{$remote}/{$file}";
@@ -418,8 +418,11 @@ class CSSMin {
 			}
 			// If any of these conditions failed (file missing, we don't want to embed it
 			// or it's not embeddable), return the URL (possibly with ?timestamp part)
-			return $url;
 		}
+		if ( function_exists( 'wfRemoveDotSegments' ) ) {
+			$url = wfRemoveDotSegments( $url );
+		}
+		return $url;
 	}
 
 	/**
