@@ -253,18 +253,6 @@ td.mw-label {
 	vertical-align: middle;
 }
 
-.prefsection td.mw-label {
-	width: 20%;
-}
-
-.prefsection table {
-	width: 100%;
-}
-
-.prefsection table.mw-htmlform-matrix {
-	width: auto;
-}
-
 .mw-icon-question {
 	/* SVG support using a transparent gradient to guarantee cross-browser
 	 * compatibility (browsers able to understand gradient syntax support also SVG).
