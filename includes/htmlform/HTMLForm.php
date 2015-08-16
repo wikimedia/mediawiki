@@ -868,6 +868,7 @@ class HTMLForm extends ContextSource {
 		# For good measure (it is the default)
 		$this->getOutput()->preventClickjacking();
 		$this->getOutput()->addModules( 'mediawiki.htmlform' );
+		$this->getOutput()->addModuleStyles( 'mediawiki.htmlform.styles' );
 
 		$html = ''
 			. $this->getErrors( $submitResult )
