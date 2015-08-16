@@ -186,7 +186,7 @@ class UsercreateTemplate extends BaseTemplate {
 					<input type='text' class='mw-ui-input loginText' name="wpRealName" id="wpRealName"
 						tabindex="7"
 						value="<?php $this->text( 'realname' ); ?>" size='20' />
-					<div class="prefsectiontip">
+					<div>
 						<?php $this->msgWiki( $this->data['loggedin'] ? 'createacct-another-realname-tip' : 'prefs-help-realname' ); ?>
 					</div>
 				</div>
@@ -247,7 +247,7 @@ class UsercreateTemplate extends BaseTemplate {
 							/>
 						<?php } ?>
 						<?php if ( $inputItem['helptext'] !== false ) { ?>
-							<div class="prefsectiontip">
+							<div>
 								<?php $this->msgWiki( $inputItem['helptext'] ); ?>
 							</div>
 						<?php } ?>
