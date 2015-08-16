@@ -1603,7 +1603,7 @@
 	"alllogstext": "Skupni prikaz svih dostupnih istorija ovog vikija.\nMožete suziti prikaz odabirući vrstu istorije, korisničkog imena ili tražene stranice.",
 	"logempty": "Nema pronađenih stavki u istoriji.",
 	"log-title-wildcard": "Traži naslove koji počinju s ovim tekstom",
-	"showhideselectedlogentries": "Prikaži/sakrij izabrane zapise",
+	"showhideselectedlogentries": "Prikaži/sakrij izabrane događaje",
 	"allpages": "Sve stranice",
 	"nextpage": "Sledeća stranica ($1)",
 	"prevpage": "Prethodna stranica ($1)",

@@ -997,7 +997,7 @@
 	"userrights-lookup-user": "Қатысушы топтарын реттеу",
 	"userrights-user-editname": "Қатысушы атын енгізіңіз:",
 	"editusergroup": "Қатысушы топтарын өңдеу",
-	"editinguser": "<strong>[[User:$1|$1]]</strong> $2 {{GENDER:$1|user}}есімді қатысушының құқықтарын өзгерту",
+	"editinguser": "<strong>[[User:$1|$1]]</strong> $2 {{GENDER:$1|есімді қатысушының}} қатысушы құқықтарын өзгерту",
 	"userrights-editusergroup": "Қатысушы топтарын өңдеу",
 	"saveusergroups": "Қатысушы топтарын сақтау",
 	"userrights-groupsmember": "Мүшелігі:",
