@@ -1067,7 +1067,7 @@ class LoginForm extends SpecialPage {
 		LoggerFactory::getInstance( 'authmanager' )->info( 'Login attempt', array(
 			'event' => 'login',
 			'successful' => $status === self::SUCCESS,
-			'status' => LoginForm::$statusCodes[$status],
+			'status' => LoginForm::$statusCodes[(int)$status],
 		) );
 	}
 
