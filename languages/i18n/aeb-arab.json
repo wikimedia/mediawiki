@@ -8,7 +8,8 @@
 			"아라",
 			"Aħmedbaɛl",
 			"GeekEmad",
-			"Nemo bis"
+			"Nemo bis",
+			"Shbib Al-Subaie"
 		]
 	},
 	"tog-usenewrc": ")جمّع التعديلات حسب الصفحة في أحدث التغييرات وقائمة المراقبة (يتطلب جافاسكربت",
@@ -585,7 +586,7 @@
 	"isredirect": "صفحة تحويل",
 	"istemplate": "مضمن",
 	"isimage": "وصلة ملف",
-	"whatlinkshere-next": "{{PLURAL:$1|القادمة|ال$1 القادمة}}",
+	"whatlinkshere-next": "{{PLURAL:$1|التالية|ال$1 التالية}}",
 	"whatlinkshere-links": "← وصلات",
 	"whatlinkshere-hideredirs": "$1 التحويلات",
 	"whatlinkshere-hidetrans": "$1 التضمينات",

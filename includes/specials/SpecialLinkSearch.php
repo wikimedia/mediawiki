@@ -80,7 +80,7 @@ class LinkSearchPage extends QueryPage {
 		return false;
 	}
 
-	function execute( $par ) {
+	public function execute( $par ) {
 		$this->initServices();
 
 		$this->setHeaders();
@@ -218,7 +218,7 @@ class LinkSearchPage extends QueryPage {
 		return $params;
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		$dbr = wfGetDB( DB_SLAVE );
 		// strip everything past first wildcard, so that
 		// index-based-only lookup would be done

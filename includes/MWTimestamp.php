@@ -56,7 +56,7 @@ class MWTimestamp {
 	 *
 	 * @since 1.20
 	 *
-	 * @param bool|string $timestamp Timestamp to set, or false for current time
+	 * @param bool|string|int|float $timestamp Timestamp to set, or false for current time
 	 */
 	public function __construct( $timestamp = false ) {
 		$this->setTimestamp( $timestamp );
@@ -74,6 +74,7 @@ class MWTimestamp {
 	 * @throws TimestampException
 	 */
 	public function setTimestamp( $ts = false ) {
+		$m = array();
 		$da = array();
 		$strtime = '';
 
@@ -87,9 +88,9 @@ class MWTimestamp {
 			# TS_EXIF
 		} elseif ( preg_match( '/^(\d{4})(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)$/D', $ts, $da ) ) {
 			# TS_MW
-		} elseif ( preg_match( '/^-?\d{1,13}$/D', $ts ) ) {
+		} elseif ( preg_match( '/^(-?\d{1,13})(\.\d+)?$/D', $ts, $m ) ) {
 			# TS_UNIX
-			$strtime = "@$ts"; // http://php.net/manual/en/datetime.formats.compound.php
+			$strtime = "@{$m[1]}"; // http://php.net/manual/en/datetime.formats.compound.php
 		} elseif ( preg_match( '/^\d{2}-\d{2}-\d{4} \d{2}:\d{2}:\d{2}.\d{6}$/', $ts ) ) {
 			# TS_ORACLE // session altered to DD-MM-YYYY HH24:MI:SS.FF6
 			$strtime = preg_replace( '/(\d\d)\.(\d\d)\.(\d\d)(\.(\d+))?/', "$1:$2:$3",

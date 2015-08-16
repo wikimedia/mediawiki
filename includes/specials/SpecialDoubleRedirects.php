@@ -32,7 +32,7 @@ class DoubleRedirectsPage extends QueryPage {
 		parent::__construct( $name );
 	}
 
-	function isExpensive() {
+	public function isExpensive() {
 		return true;
 	}
 
@@ -99,7 +99,7 @@ class DoubleRedirectsPage extends QueryPage {
 		return $retval;
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return $this->reallyGetQueryInfo();
 	}
 

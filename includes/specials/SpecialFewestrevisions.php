@@ -32,7 +32,7 @@ class FewestrevisionsPage extends QueryPage {
 		parent::__construct( $name );
 	}
 
-	function isExpensive() {
+	public function isExpensive() {
 		return true;
 	}
 
@@ -40,7 +40,7 @@ class FewestrevisionsPage extends QueryPage {
 		return false;
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return array(
 			'tables' => array( 'revision', 'page' ),
 			'fields' => array(

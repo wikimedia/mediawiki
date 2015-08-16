@@ -40,7 +40,7 @@ class SpecialPagesWithProp extends QueryPage {
 		return false;
 	}
 
-	function execute( $par ) {
+	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->getOutput()->addModuleStyles( 'mediawiki.special.pagesWithProp' );
@@ -100,7 +100,7 @@ class SpecialPagesWithProp extends QueryPage {
 		return false;
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return array(
 			'tables' => array( 'page_props', 'page' ),
 			'fields' => array(

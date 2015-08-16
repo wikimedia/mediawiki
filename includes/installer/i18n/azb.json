@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mousa"
+			"Mousa",
+			"Koroğlu"
 		]
 	},
 	"config-desc": "مئدیاویکی قوروجوسو",
@@ -21,7 +22,7 @@
 	"config-page-readme": "منی اوخو",
 	"config-env-php": "PHP $1 قورولوبدور.",
 	"config-env-hhvm": "HHVM $1 قورولوبدور.",
-	"config-help": "یاردیم",
+	"config-help": "کؤمک",
 	"config-help-tooltip": "گئنیشلتمک اوچون کلیک ائدین",
 	"config-nofile": "«$1» فایلی تاپیلانمادی. سیلینیبدیرمی؟"
 }

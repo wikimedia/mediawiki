@@ -32,7 +32,7 @@ class AncientPagesPage extends QueryPage {
 		parent::__construct( $name );
 	}
 
-	function isExpensive() {
+	public function isExpensive() {
 		return true;
 	}
 
@@ -40,7 +40,7 @@ class AncientPagesPage extends QueryPage {
 		return false;
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return array(
 			'tables' => array( 'page', 'revision' ),
 			'fields' => array(
@@ -56,7 +56,7 @@ class AncientPagesPage extends QueryPage {
 		);
 	}
 
-	function usesTimestamps() {
+	public function usesTimestamps() {
 		return true;
 	}
 

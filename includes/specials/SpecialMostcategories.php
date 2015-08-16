@@ -34,7 +34,7 @@ class MostcategoriesPage extends QueryPage {
 		parent::__construct( $name );
 	}
 
-	function isExpensive() {
+	public function isExpensive() {
 		return true;
 	}
 
@@ -42,7 +42,7 @@ class MostcategoriesPage extends QueryPage {
 		return false;
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return array(
 			'tables' => array( 'categorylinks', 'page' ),
 			'fields' => array(

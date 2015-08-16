@@ -37,7 +37,7 @@ class ShortPagesPage extends QueryPage {
 		return false;
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return array(
 			'tables' => array( 'page' ),
 			'fields' => array(

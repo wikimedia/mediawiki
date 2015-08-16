@@ -76,7 +76,8 @@
 			"Ömer Berkay",
 			"Demircimehmed",
 			"Uğurkent",
-			"Kincki"
+			"Kincki",
+			"McAang"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çiz:",
@@ -1266,8 +1267,6 @@
 	"rcshowhidemine": "Benim değişikliklerimi $1",
 	"rcshowhidemine-show": "göster",
 	"rcshowhidemine-hide": "gizle",
-	"rcshowhidecategorization-show": "Göster",
-	"rcshowhidecategorization-hide": "Gizle",
 	"rclinks": "Son $2 günde yapılan son $1 değişikliği göster;<br /> $3",
 	"diff": "fark",
 	"hist": "geçmiş",
@@ -1291,7 +1290,6 @@
 	"recentchangeslinked-summary": "Aşağıdaki liste, belirtilen sayfaya (ya da belirtilen kategorinin üyelerine) bağlantı veren sayfalarda yapılan son değişikliklerin listesidir.\n[[Special:Watchlist|İzleme listenizdeki]] sayfalar '''kalın''' olarak belirtilmiştir.",
 	"recentchangeslinked-page": "Sayfa adı:",
 	"recentchangeslinked-to": "Belirtilen sayfadan verilenler yerine, sayfaya verilen bağlantıları göster.",
-	"recentchanges-page-added-to-category": "[[:$1]] kategoriye eklendi",
 	"upload": "Dosya yükle",
 	"uploadbtn": "Dosya yükle",
 	"reuploaddesc": "Yükleme formuna geri dön.",
@@ -1782,7 +1780,6 @@
 	"emailuser": "Bu kullanıcıya e-posta gönder",
 	"emailuser-title-target": "Bu {{GENDER:$1|kullanıcıya}} e-posta gönder",
 	"emailuser-title-notarget": "Kullanıcı e-posta",
-	"emailpage": "Kullanıcıya e-posta gönder",
 	"emailpagetext": "Bu {{GENDER:$1|kullanıcıya}} e-posta iletisi göndermek için aşağıdaki formu kullanabilirsiniz.\n[[Special:Preferences|Kullanıcı tercihlerinizde]] girdiğiniz e-posta adresiniz, e-postanın \"From (Kimden)\" adresinde görünecektir, bu yüzden alıcı size doğrudan yanıt verebilecektir.",
 	"defemailsubject": "\"$1\" kullanıcısından {{SITENAME}} e-postası",
 	"usermaildisabled": "Kullanıcı e-postası devre dışı",
@@ -1804,7 +1801,7 @@
 	"emailccsubject": "$1'e gönderdiğiniz mesajın kopyası: $2",
 	"emailsent": "E-posta gönderildi",
 	"emailsenttext": "E-postanız gönderildi.",
-	"emailuserfooter": "Bu e-posta $1 tarafından $2 kullanıcısına, {{SITENAME}} sitesindeki \"Kullanıcıya e-posta gönder\" (\"{{int:emailpage}}\") fonksiyonu ile gönderilmiştir.",
+	"emailuserfooter": "Bu e-posta $1 tarafından $2 kullanıcısına, {{SITENAME}} sitesindeki \"Kullanıcıya e-posta gönder\" (\"{{int:emailuser}}\") fonksiyonu ile gönderilmiştir.",
 	"usermessage-summary": "Sistem mesajı bırakın.",
 	"usermessage-editor": "Sistem habercisi",
 	"watchlist": "İzleme listesi",

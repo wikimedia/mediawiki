@@ -102,12 +102,12 @@ class CSSMinTest extends MediaWikiTestCase {
 			array(
 				'Without trailing slash',
 				array( 'foo { prop: url(../bar.png); }', false, 'http://example.org/quux', false ),
-				'foo { prop: url(http://example.org/quux/../bar.png); }',
+				'foo { prop: url(http://example.org/bar.png); }',
 			),
 			array(
 				'With trailing slash on remote (bug 27052)',
 				array( 'foo { prop: url(../bar.png); }', false, 'http://example.org/quux/', false ),
-				'foo { prop: url(http://example.org/quux/../bar.png); }',
+				'foo { prop: url(http://example.org/bar.png); }',
 			),
 			array(
 				'Guard against stripping double slashes from query',

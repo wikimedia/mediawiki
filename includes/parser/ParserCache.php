@@ -26,7 +26,7 @@
  * @todo document
  */
 class ParserCache {
-	/** @var MWMemcached */
+	/** @var BagOStuff */
 	private $mMemc;
 	/**
 	 * Get an instance of this object
@@ -46,7 +46,7 @@ class ParserCache {
 	 * Setup a cache pathway with a given back-end storage mechanism.
 	 * May be a memcached client or a BagOStuff derivative.
 	 *
-	 * @param MWMemcached $memCached
+	 * @param BagOStuff $memCached
 	 * @throws MWException
 	 */
 	protected function __construct( $memCached ) {

@@ -52,7 +52,8 @@
 			"Emara",
 			"Macofe",
 			"Yahya Sakhnini",
-			"Mervat Salman"
+			"Mervat Salman",
+			"Shbib Al-Subaie"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -1731,7 +1732,6 @@
 	"emailuser": "مراسلة المستخدم",
 	"emailuser-title-target": "راسل بالبريد الإلكتروني هذا  {{GENDER:$1| المستخدم}}",
 	"emailuser-title-notarget": "مراسلة المستخدم",
-	"emailpage": "إرسال رسالة للمستخدم",
 	"emailpagetext": "يمكنك استخدام الاستمارة بالأسفل لإرسال رسالة بريد إلكتروني إلى {{GENDER:$1|هذا المستخدم|هذه المستخدمة}}.\n'''يمكن أن يرى المرسل إليه عنوان بريدك الإلكتروني''' الذي أدخلته في [[Special:Preferences|تفضيلاتك]] كعنوان المرسل في البريد الإلكتروني، كي يستطيع المتلقي الرد عليك مباشرة.",
 	"defemailsubject": "رسالة {{SITENAME}} من المستخدم \"$1\"",
 	"usermaildisabled": "بريد المستخدم الإلكتروني معطل",
@@ -1753,7 +1753,7 @@
 	"emailccsubject": "نسخة من رسالتك إلى $1: $2",
 	"emailsent": "أُرسل البريد الإلكتروني",
 	"emailsenttext": "أُرسلت رسالتك الإلكترونية.",
-	"emailuserfooter": "هذا البريد الإلكتروني تم إرساله بواسطة $1 إلى $2 بواسطة وظيفة \"{{int:emailpage}}\" في {{SITENAME}}.",
+	"emailuserfooter": "هذا البريد الإلكتروني تم إرساله بواسطة $1 إلى $2 بواسطة وظيفة \"{{int:emailuser}}\" في {{SITENAME}}.",
 	"usermessage-summary": "ترك رسالة نظام.",
 	"usermessage-editor": "مراسل النظام",
 	"watchlist": "قائمة مراقبتي",
@@ -1989,7 +1989,7 @@
 	"istemplate": "مضمن",
 	"isimage": "وصلة ملف",
 	"whatlinkshere-prev": "{{PLURAL:$1|السابق|ال$1 السابقة}}",
-	"whatlinkshere-next": "{{PLURAL:$1|القادمة|ال$1 القادمة}}",
+	"whatlinkshere-next": "{{PLURAL:$1|التالية|ال$1 التالية}}",
 	"whatlinkshere-links": "وصلات",
 	"whatlinkshere-hideredirs": "$1 التحويلات",
 	"whatlinkshere-hidetrans": "$1 التضمينات",

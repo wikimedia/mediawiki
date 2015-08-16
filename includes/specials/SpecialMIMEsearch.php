@@ -34,7 +34,7 @@ class MIMEsearchPage extends QueryPage {
 		parent::__construct( $name );
 	}
 
-	function isExpensive() {
+	public function isExpensive() {
 		return true;
 	}
 
@@ -123,7 +123,7 @@ class MIMEsearchPage extends QueryPage {
 					Xml::closeElement( 'form' );
 	}
 
-	function execute( $par ) {
+	public function execute( $par ) {
 		$this->mime = $par ? $par : $this->getRequest()->getText( 'mime' );
 		$this->mime = trim( $this->mime );
 		list( $this->major, $this->minor ) = File::splitMime( $this->mime );
