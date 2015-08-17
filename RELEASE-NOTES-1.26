@@ -92,8 +92,15 @@ production.
   sometimes being numerically-indexed objects with formatversion=2.
 * When errors about users being blocked are returned, they now include
   information about the relevant block.
+* API responses to GET requests may now include ETag and Last-Modified headers,
+  and will honor corresponding If-None-Match and If-Modified-Since on such
+  requests.
 
 === Action API internal changes in 1.26 ===
+* API action modules may now provide values for the RFC 7232 ETag and
+  Last-Modified headers. The API will check these against If-None-Match and
+  If-Modified-Since request headers on GET requests and avoid executing the
+  module when appropriate.
 
 === Languages updated in 1.26 ===
 
