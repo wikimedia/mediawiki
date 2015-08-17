@@ -430,8 +430,10 @@ class ApiMain extends ApiBase {
 		$t = microtime( true );
 		try {
 			$this->executeAction();
+			$isError = false;
 		} catch ( Exception $e ) {
 			$this->handleException( $e );
+			$isError = true;
 		}
 
 		// Log the request whether or not there was an error
@@ -439,7 +441,7 @@ class ApiMain extends ApiBase {
 
 		// Send cache headers after any code which might generate an error, to
 		// avoid sending public cache headers for errors.
-		$this->sendCacheHeaders();
+		$this->sendCacheHeaders( $isError );
 
 		ob_end_flush();
 	}
@@ -532,7 +534,7 @@ class ApiMain extends ApiBase {
 
 		// Log the request and reset cache headers
 		$main->logRequest( 0 );
-		$main->sendCacheHeaders();
+		$main->sendCacheHeaders( true );
 
 		ob_end_flush();
 	}
@@ -701,7 +703,12 @@ class ApiMain extends ApiBase {
 		return "/^https?:\/\/$wildcard$/";
 	}
 
-	protected function sendCacheHeaders() {
+	/**
+	 * Send caching headers
+	 * @param boolean $isError Whether an error response is being output
+	 * @since 1.26 added $isError parameter
+	 */
+	protected function sendCacheHeaders( $isError ) {
 		$response = $this->getRequest()->response();
 		$out = $this->getOutput();
 
@@ -709,6 +716,19 @@ class ApiMain extends ApiBase {
 
 		if ( $config->get( 'VaryOnXFP' ) ) {
 			$out->addVaryHeader( 'X-Forwarded-Proto' );
+		}
+
+		if ( !$isError && $this->mModule &&
+			( $this->getRequest()->getMethod() === 'GET' || $this->getRequest()->getMethod() === 'HEAD' )
+		) {
+			$etag = $this->mModule->getConditionalRequestData( 'etag' );
+			if ( $etag !== null ) {
+				$response->header( "ETag: $etag" );
+			}
+			$lastMod = $this->mModule->getConditionalRequestData( 'last-modified' );
+			if ( $lastMod !== null ) {
+				$response->header( 'Last-Modified: ' . wfTimestamp( TS_RFC2822, $lastMod ) );
+			}
 		}
 
 		// The logic should be:
@@ -994,6 +1014,122 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
+	 * Check selected RFC 7232 precondition headers
+	 *
+	 * RFC 7232 envisions a particular model where you send your request to "a
+	 * resource", and for write requests that you can read "the resource" by
+	 * changing the method to GET. When the API receives a GET request, it
+	 * works out even though "the resource" from RFC 7232's perspective might
+	 * be many resources from MediaWiki's perspective. But it totally fails for
+	 * a POST, since what HTTP sees as "the resource" is probably just
+	 * "/api.php" with all the interesting bits in the body.
+	 *
+	 * Therefore, we only support RFC 7232 precondition headers for GET. That
+	 * means we don't need to bother with If-Match and If-Unmodified-Since
+	 * since they only apply to modification requests.
+	 *
+	 * And since we don't support Range, If-Range is ignored too.
+	 *
+	 * @since 1.26
+	 * @param ApiBase $module Api module being used
+	 * @return bool True on success, false should exit immediately
+	 */
+	protected function checkConditionalRequestHeaders( $module ) {
+		if ( $this->mInternalMode ) {
+			// No headers to check in internal mode
+			return true;
+		}
+
+		if ( $this->getRequest()->getMethod() !== 'GET' && $this->getRequest()->getMethod() !== 'HEAD' ) {
+			// Don't check POSTs
+			return true;
+		}
+
+		$response = $this->getRequest()->response();
+		$return304 = false;
+
+		$ifNoneMatch = array_diff(
+			$this->getRequest()->getHeader( 'If-None-Match', WebRequest::GETHEADER_LIST ) ?: array(),
+			array( '' )
+		);
+		if ( $ifNoneMatch ) {
+			if ( $ifNoneMatch === array( '*' ) ) {
+				// API responses always "exist"
+				$etag = $test = '*';
+			} else {
+				$etag = $module->getConditionalRequestData( 'etag' );
+				$test = substr( $etag, 0, 2 ) === 'W/' ? substr( $etag, 2 ) : $etag;
+			}
+		}
+		if ( $ifNoneMatch && $etag !== null ) {
+			$match = array_map( function ( $s ) {
+				return substr( $s, 0, 2 ) === 'W/' ? substr( $s, 2 ) : $s;
+			}, $ifNoneMatch );
+			$return304 = in_array( $test, $match, true );
+		} else {
+			$value = trim( $this->getRequest()->getHeader( 'If-Modified-Since' ) );
+
+			// Some old browsers sends sizes after the date, like this:
+			//  Wed, 20 Aug 2003 06:51:19 GMT; length=5202
+			// Ignore that.
+			$i = strpos( $value, ';' );
+			if ( $i !== false ) {
+				$value = trim( substr( $value, 0, $i ) );
+			}
+
+			if ( $value !== '' ) {
+				try {
+					$ts = new MWTimestamp( $value );
+					if (
+						// RFC 7231 IMF-fixdate
+						$ts->getTimestamp( TS_RFC2822 ) === $value ||
+						// RFC 850
+						$ts->format( 'l, d-M-y H:i:s') . ' GMT' === $value ||
+						// asctime (with and without space-padded day)
+						$ts->format( 'D M j H:i:s Y') === $value ||
+						$ts->format( 'D M  j H:i:s Y') === $value
+					) {
+						$lastMod = $module->getConditionalRequestData( 'last-modified' );
+						if ( $lastMod !== null ) {
+							// Mix in some MediaWiki modification times
+							$modifiedTimes = array(
+								'page' => $lastMod,
+								'user' => $this->getUser()->getTouched(),
+								'epoch' => $this->getConfig()->get( 'CacheEpoch' ),
+							);
+							if ( $this->getConfig()->get( 'UseSquid' ) ) {
+								// bug 44570: the core page itself may not change, but resources might
+								$modifiedTimes['sepoch'] = wfTimestamp(
+									TS_MW, time() - $this->getConfig()->get( 'SquidMaxage' )
+								);
+							}
+							Hooks::run( 'OutputPageCheckLastModified', array( &$modifiedTimes ) );
+							$lastMod = max( $modifiedTimes );
+							$return304 = wfTimestamp( TS_MW, $lastMod ) < $ts->getTimestamp( TS_MW );
+						}
+					}
+				} catch ( TimestampException $e ) {
+					// Invalid timestamp, ignore it
+				}
+			}
+		}
+
+		if ( $return304 ) {
+			$response->statusHeader( 304 );
+
+			// Avoid outputting the compressed representation of a zero-length body
+			MediaWiki\suppressWarnings();
+			ini_set( 'zlib.output_compression', 0 );
+			MediaWiki\restoreWarnings();
+			wfClearOutputBuffers();
+
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
 	 * Check for sufficient permissions to execute
 	 * @param ApiBase $module An Api module
 	 */
@@ -1080,6 +1216,10 @@ class ApiMain extends ApiBase {
 		$this->checkExecutePermissions( $module );
 
 		if ( !$this->checkMaxLag( $module, $params ) ) {
+			return;
+		}
+
+		if ( !$this->checkConditionalRequestHeaders( $module ) ) {
 			return;
 		}
 
