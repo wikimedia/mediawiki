@@ -146,7 +146,8 @@ class ApiQueryLangLinks extends ApiQueryBase {
 					'url',
 					'langname',
 					'autonym',
-				)
+				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'lang' => null,
 			'title' => null,
