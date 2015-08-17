@@ -1613,12 +1613,10 @@ class Parser {
 							$firstspace = $i;
 						}
 					} elseif ( $x2 === ' ' ) {
-						if ( $firstsingleletterword == -1 ) {
-							$firstsingleletterword = $i;
-							// if $firstsingleletterword is set, we don't
-							// look at the other options, so we can bail early.
-							break;
-						}
+						$firstsingleletterword = $i;
+						// if $firstsingleletterword is set, we don't
+						// look at the other options, so we can bail early.
+						break;
 					} else {
 						if ( $firstmultiletterword == -1 ) {
 							$firstmultiletterword = $i;
