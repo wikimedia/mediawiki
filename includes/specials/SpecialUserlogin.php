@@ -939,8 +939,8 @@ class LoginForm extends SpecialPage {
 		global $wgMemc, $wgLang, $wgSecureLogin, $wgPasswordAttemptThrottle,
 			$wgInvalidPasswordReset;
 
-		$status = $this->authenticateUserData();
-		switch ( $status ) {
+		$authRes = $this->authenticateUserData();
+		switch ( $authRes ) {
 			case self::SUCCESS:
 				# We've verified now, update the real record
 				$user = $this->getUser();
@@ -1066,8 +1066,8 @@ class LoginForm extends SpecialPage {
 
 		LoggerFactory::getInstance( 'authmanager' )->info( 'Login attempt', array(
 			'event' => 'login',
-			'successful' => $status === self::SUCCESS,
-			'status' => LoginForm::$statusCodes[$status],
+			'successful' => $authRes === self::SUCCESS,
+			'status' => LoginForm::$statusCodes[$authRes],
 		) );
 	}
 
