@@ -540,7 +540,10 @@
 	"apihelp-query+blocks-example-users": "List blocks of users <kbd>Alice</kbd> and <kbd>Bob</kbd>.",
 
 	"apihelp-query+categories-description": "List all categories the pages belong to.",
-	"apihelp-query+categories-param-prop": "Which additional properties to get for each category:\n;sortkey:Adds the sortkey (hexadecimal string) and sortkey prefix (human-readable part) for the category.\n;timestamp:Adds timestamp of when the category was added.\n;hidden:Tags categories that are hidden with _&#95;HIDDENCAT_&#95;.",
+	"apihelp-query+categories-param-prop": "Which additional properties to get for each category:",
+	"apihelp-query+categories-paramvalue-prop-sortkey": "Adds the sortkey (hexadecimal string) and sortkey prefix (human-readable part) for the category.",
+	"apihelp-query+categories-paramvalue-prop-timestamp": "Adds timestamp of when the category was added.",
+	"apihelp-query+categories-paramvalue-prop-hidden": "Tags categories that are hidden with <code>_&#95;HIDDENCAT_&#95;</code>.",
 	"apihelp-query+categories-param-show": "Which kind of categories to show.",
 	"apihelp-query+categories-param-limit": "How many categories to return.",
 	"apihelp-query+categories-param-categories": "Only list these categories. Useful for checking whether a certain page is in a certain category.",
