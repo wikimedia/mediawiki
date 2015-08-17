@@ -59,6 +59,7 @@
 	'ary' => 'Maġribi',	# Moroccan Spoken Arabic
 	'arz' => 'مصرى',	# Egyptian Spoken Arabic
 	'as' => 'অসমীয়া',	# Assamese
+	'ase' => 'American sign language',	# American sign language
 	'ast' => 'asturianu',	# Asturian
 	'av' => 'авар',	# Avar
 	'avk' => 'Kotava', # Kotava
