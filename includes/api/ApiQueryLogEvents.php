@@ -401,7 +401,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 					'parsedcomment',
 					'details',
 					'tags'
-				)
+				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'type' => array(
 				ApiBase::PARAM_TYPE => $config->get( 'LogTypes' )
