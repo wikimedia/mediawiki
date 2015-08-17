@@ -199,7 +199,7 @@
 	 */
 	mw.Feedback.Dialog = function mwFeedbackDialog( config ) {
 		// Parent constructor
-		mw.Feedback.Dialog.super.call( this, config );
+		mw.Feedback.Dialog.parent.call( this, config );
 
 		this.status = '';
 		this.feedbackPageTitle = null;
@@ -239,7 +239,7 @@
 			feedbackFieldsetLayout, termsOfUseLabel;
 
 		// Parent method
-		mw.Feedback.Dialog.super.prototype.initialize.call( this );
+		mw.Feedback.Dialog.parent.prototype.initialize.call( this );
 
 		this.feedbackPanel = new OO.ui.PanelLayout( {
 			scrollable: false,
@@ -329,7 +329,7 @@
 	 * @inheritdoc
 	 */
 	mw.Feedback.Dialog.prototype.getSetupProcess = function ( data ) {
-		return mw.Feedback.Dialog.super.prototype.getSetupProcess.call( this, data )
+		return mw.Feedback.Dialog.parent.prototype.getSetupProcess.call( this, data )
 			.next( function () {
 				var plainMsg, parsedMsg,
 					settings = data.settings;
@@ -381,7 +381,7 @@
 	 * @inheritdoc
 	 */
 	mw.Feedback.Dialog.prototype.getReadyProcess = function ( data ) {
-		return mw.Feedback.Dialog.super.prototype.getReadyProcess.call( this, data )
+		return mw.Feedback.Dialog.parent.prototype.getReadyProcess.call( this, data )
 			.next( function () {
 				this.feedbackSubjectInput.focus();
 			}, this );
@@ -431,7 +431,7 @@
 			}, this );
 		}
 		// Fallback to parent handler
-		return mw.Feedback.Dialog.super.prototype.getActionProcess.call( this, action );
+		return mw.Feedback.Dialog.parent.prototype.getActionProcess.call( this, action );
 	};
 
 	/**
@@ -472,7 +472,7 @@
 	 * @inheritdoc
 	 */
 	mw.Feedback.Dialog.prototype.getTeardownProcess = function ( data ) {
-		return mw.Feedback.Dialog.super.prototype.getTeardownProcess.call( this, data )
+		return mw.Feedback.Dialog.parent.prototype.getTeardownProcess.call( this, data )
 			.first( function () {
 				this.emit( 'submit', this.status, this.feedbackPageName, this.feedbackPageUrl );
 				// Cleanup
