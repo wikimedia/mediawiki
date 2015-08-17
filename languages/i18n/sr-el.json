@@ -3206,7 +3206,7 @@
 	"logentry-upload-overwrite": "$1 je {{GENDER:$2|poslao|poslala}} novu verziju $3",
 	"logentry-upload-revert": "$1 je {{GENDER:$2|poslao|poslala}} $3",
 	"log-name-managetags": "Dnevnik oznaka",
-	"log-description-managetags": "Ovaj dnevnik sadrži spisak izmena u vezi [[Special:Tags|oznaka]]. Dnevnik sadrži samo radnje izvršene od strane administratora; unosi za oznake napravljene ili obrisane od strane viki softvera se ne nalaze u ovom dnevniku.",
+	"log-description-managetags": "Ovaj dnevnik sadrži spisak izmena u vezi [[Special:Tags|oznaka]]. Dnevnik sadrži samo radnje izvršene od strane administratora, unosi za oznake napravljene ili obrisane od strane viki softvera se ne nalaze u ovom dnevniku.",
 	"logentry-managetags-create": "$1 je {{GENDER:$2|napravio|napravila}} oznaku „$4“",
 	"logentry-managetags-delete": "$1 je {{GENDER:$2|obrisao|obrisala}} oznaku „$4“ (uklonjena je iz $5 {{PLURAL:$5|izmene ili dnevnika|izmena i/ili dnevnika}})",
 	"logentry-managetags-activate": "$1 je {{GENDER:$2|aktivirao|aktivirala}} oznaku „$4“ za upotrebu od strane korisnika i botova",

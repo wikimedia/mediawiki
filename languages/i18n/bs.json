@@ -2433,7 +2433,7 @@
 	"file-info-size": "$1 × $2 piksela, veličina datoteke: $3, MIME tip: $4",
 	"file-info-size-pages": "$1 × $2 piksela, veličina datoteke: $3, MIME vrsta: $4, $5 {{PLURAL:$5|stranica|stranice|stranica}}",
 	"file-nohires": "Veća rezolucija nije dostupna.",
-	"svg-long-desc": "SVG fajl, dozvoljeno $1 × $2 piksela, veličina fajla: $3",
+	"svg-long-desc": "SVG datoteka, nominalno $1 × $2 piksela, veličina datoteke: $3",
 	"svg-long-desc-animated": "Animirana SVG datoteka, nominalno: $1 × $2 piksela, veličina datoteke: $3",
 	"svg-long-error": "Nevaljana SVG datoteka: $1",
 	"show-big-image": "Izvorna datoteka",

@@ -1411,6 +1411,7 @@
 	"upload-copy-upload-invalid-domain": "Копирование загрузок не доступно в этом домене.",
 	"upload-dialog-title": "Загрузить файл",
 	"upload-dialog-error": "Произошла ошибка",
+	"upload-dialog-warning": "Появилось предупреждение",
 	"upload-dialog-button-cancel": "Отменить",
 	"upload-dialog-button-done": "Готово",
 	"upload-dialog-button-save": "Сохранить",

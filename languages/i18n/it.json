@@ -88,7 +88,8 @@
 			"Fpugliajno",
 			"Fringio",
 			"Aquatech",
-			"Statix64"
+			"Statix64",
+			"CassiodoroVicinetti"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -754,7 +755,7 @@
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Oggetto vuoto",
 	"content-json-empty-array": "Array vuoto",
-	"duplicate-args-warning": "<strong>Avvertenza:</strong> [[:$1]] è chiamata [[:$2]] con più di un valore per il parametro \"$3\". Solo l'ultimo valore fornito sarà utilizzati.",
+	"duplicate-args-warning": "<strong>Avvertenza:</strong> [[:$1]] chiama [[:$2]] con più di un valore per il parametro \"$3\". Verrà utilizzato solo l'ultimo valore fornito.",
 	"duplicate-args-category": "Pagine contenenti chiamate a template con parametri duplicati",
 	"duplicate-args-category-desc": "La pagina contiene chiamate a template che utilizzano argomenti duplicati, come ad esempio <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> o <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "'''Attenzione:''' Questa pagina contiene troppe chiamate alle parser functions.\n\nDovrebbe averne meno di $2, al momento ce {{PLURAL:$1|n'è $1|ne sono $1}}.",
@@ -1301,9 +1302,9 @@
 	"recentchangeslinked-page": "Nome della pagina:",
 	"recentchangeslinked-to": "Mostra solo le modifiche alle pagine collegate a quella specificata",
 	"recentchanges-page-added-to-category": "[[:$1]] aggiunto alla categoria",
-	"recentchanges-page-added-to-category-bundled": "[[:$1]] e {{PLURAL:$2|one page|$2 pages}} aggiunte alla categoria",
+	"recentchanges-page-added-to-category-bundled": "[[:$1]] e {{PLURAL:$2|una pagina è aggiunta|$2 pagine sono aggiunte}} alla categoria",
 	"recentchanges-page-removed-from-category": "[[:$1]] rimosso dalla categoria",
-	"recentchanges-page-removed-from-category-bundled": "[[:$1]] e {{PLURAL:$2|one page|$2 pages}} rimosse dalla categoria",
+	"recentchanges-page-removed-from-category-bundled": "[[:$1]] e {{PLURAL:$2|una pagina è rimossa|$2 pagine sono rimosse}} dalla categoria",
 	"upload": "Carica un file",
 	"uploadbtn": "Carica",
 	"reuploaddesc": "Torna al modulo per il caricamento.",
