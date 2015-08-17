@@ -406,9 +406,9 @@ class CSSMin {
 			// Path to the actual file on the filesystem
 			$localFile = "{$local}/{$file}";
 			if ( file_exists( $localFile ) ) {
-				// Add version parameter as a time-stamp in ISO 8601 format,
-				// using Z for the timezone, meaning GMT
-				$url .= '?' . gmdate( 'Y-m-d\TH:i:s\Z', round( filemtime( $localFile ), -2 ) );
+				// Add version parameter as the first five hex digits
+				// of the MD5 hash of the file's contents.
+				$url .= '?' . substr( md5_file( $localFile ), 0, 5 );
 				if ( $embed ) {
 					$data = self::encodeImageAsDataURI( $localFile );
 					if ( $data !== false ) {
