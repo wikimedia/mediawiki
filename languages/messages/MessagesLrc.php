@@ -34,6 +34,8 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
+	'پوروجە' => NS_PROJECT,
+	'چأک_چئنە_پوروجە' => NS_PROJECT_TALK,
 	'أسگ' => NS_FILE,
 	'چأک_چئنە_أسگ' => NS_FILE_TALK,
 );
