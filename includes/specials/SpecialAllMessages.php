@@ -362,9 +362,8 @@ class AllMessagesTablePager extends TablePager {
 						'title' => 'Special:SearchTranslations',
 						'group' => 'mediawiki',
 						'grouppath' => 'mediawiki',
-						'query' => 'language:' . $this->getLanguage()->getCode() . '^25 ' .
-							'messageid:"MediaWiki:' . $value . '"^10 "' .
-							$this->msg( $value )->inLanguage( 'en' )->plain() . '"'
+						'language' => $this->getLanguage()->getCode(),
+						'query' => $value . ' ' . $this->msg( $value )->plain()
 					) ),
 					$this->msg( 'allmessages-filter-translate' )->text()
 				);
