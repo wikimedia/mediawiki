@@ -3850,7 +3850,7 @@ function wfStripIllegalFilenameChars( $name ) {
 /**
  * Set PHP's memory limit to the larger of php.ini or $wgMemoryLimit
  *
- * @return int Prior memory limit
+ * @return int Resulting value of the memory limit.
  */
 function wfMemoryLimit() {
 	global $wgMemoryLimit;
