@@ -25,7 +25,8 @@ require_once __DIR__ . '/../Maintenance.php';
 
 /**
  * Generates the normalizer data file for Arabic.
- * For NFC see includes/compat/normal.
+ *
+ * This data file is used after normalizing to NFC.
  *
  * @ingroup MaintenanceLanguage
  */
