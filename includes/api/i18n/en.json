@@ -948,7 +948,14 @@
 
 	"apihelp-query+tags-description": "List change tags.",
 	"apihelp-query+tags-param-limit": "The maximum number of tags to list.",
-	"apihelp-query+tags-param-prop": "Which properties to get:\n;name:Adds name of tag.\n;displayname:Adds system message for the tag.\n;description:Adds description of the tag.\n;hitcount:Adds the number of revisions and log entries that have this tag.\n;defined:Indicate whether the tag is defined.\n;source:Gets the sources of the tag, which may include <samp>extension</samp> for extension-defined tags and <samp>manual</samp> for tags that may be applied manually by users.\n;active:Whether the tag is still being applied.",
+	"apihelp-query+tags-param-prop": "Which properties to get:",
+	"apihelp-query+tags-paramvalue-prop-name": "Adds name of tag.",
+	"apihelp-query+tags-paramvalue-prop-displayname": "Adds system message for the tag.",
+	"apihelp-query+tags-paramvalue-prop-description": "Adds description of the tag.",
+	"apihelp-query+tags-paramvalue-prop-hitcount": "Adds the number of revisions and log entries that have this tag.",
+	"apihelp-query+tags-paramvalue-prop-defined": "Indicate whether the tag is defined.",
+	"apihelp-query+tags-paramvalue-prop-source": "Gets the sources of the tag, which may include <samp>extension</samp> for extension-defined tags and <samp>manual</samp> for tags that may be applied manually by users.",
+	"apihelp-query+tags-paramvalue-prop-active": "Whether the tag is still being applied.",
 	"apihelp-query+tags-example-simple": "List available tags.",
 
 	"apihelp-query+templates-description": "Returns all pages transcluded on the given pages.",
