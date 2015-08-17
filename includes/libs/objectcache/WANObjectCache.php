@@ -128,9 +128,9 @@ class WANObjectCache {
 	 * Fetch the value of a key from cache
 	 *
 	 * If passed in, $curTTL is set to the remaining TTL (current time left):
-	 *   - a) INF; if the key exists and has no TTL
-	 *   - b) float (>=0); if the key exists and has a TTL
-	 *   - c) float (<0); if the key is tombstoned or expired by $checkKeys
+	 *   - a) INF; if the key exists, has no TTL, and is not expired by $checkKeys
+	 *   - b) float (>=0); if the key exists, has a TTL, and is not expired by $checkKeys
+	 *   - c) float (<0); if the key is tombstoned or existing but expired by $checkKeys
 	 *   - d) null; if the key does not exist and is not tombstoned
 	 *
 	 * If a key is tombstoned, $curTTL will reflect the time since delete().
