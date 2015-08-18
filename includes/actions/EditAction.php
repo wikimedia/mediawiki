@@ -41,6 +41,8 @@ class EditAction extends FormlessAction {
 	}
 
 	public function show() {
+		$this->useTransactionalTimeLimit();
+
 		if ( $this->getContext()->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
 			$out = $this->getOutput();
 			$out->addModuleStyles( array(

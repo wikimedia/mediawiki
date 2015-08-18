@@ -57,6 +57,8 @@ class SpecialImport extends SpecialPage {
 	 * @throws ReadOnlyError
 	 */
 	function execute( $par ) {
+		$this->useTransactionalTimeLimit();
+
 		$this->setHeaders();
 		$this->outputHeader();
 

@@ -686,4 +686,14 @@ class SpecialPage {
 	protected function getGroupName() {
 		return 'other';
 	}
+
+	/**
+	 * Call wfTransactionalTimeLimit() if this request was POSTed
+	 * @since 1.26
+	 */
+	protected function useTransactionalTimeLimit() {
+		if ( $this->getRequest()->wasPosted() ) {
+			wfTransactionalTimeLimit();
+		}
+	}
 }
