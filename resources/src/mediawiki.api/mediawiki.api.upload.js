@@ -235,6 +235,11 @@
 
 			$( 'body' ).append( $form, $iframe );
 
+			deferred.always( function () {
+				$form.remove();
+				$iframe.remove();
+			} );
+
 			return deferred.promise();
 		},
 
