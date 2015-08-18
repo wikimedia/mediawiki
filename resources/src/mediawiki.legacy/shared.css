@@ -417,6 +417,11 @@ p.mw-upload-editlicenses {
 /* The auto-generated edit comments */
 .autocomment {
 	color: gray;
+	/* In RTL wikis, Latin heading sections can get jumbled with comments that
+	   begin with Latin letters or numbers */
+	unicode-bidi: -moz-isolate;
+	unicode-bidi: -webkit-isolate;
+	unicode-bidi: isolate;
 }
 
 #pagehistory .history-user {
