@@ -164,13 +164,8 @@
 				iframe = getNewIframe( id ),
 				$iframe = $( iframe );
 
+			data = $.extend( {}, this.defaults.parameters, { action: 'upload' }, data );
 			$form.addClass( 'mw-api-upload-form' );
-
-			$form.append(
-				getHiddenInput( 'action', 'upload' ),
-				getHiddenInput( 'format', 'json' ),
-				file
-			);
 
 			$form.css( 'display', 'none' )
 				.attr( {
@@ -255,8 +250,7 @@
 				deferred = $.Deferred(),
 				filenameFound = false;
 
-			formData.append( 'action', 'upload' );
-			formData.append( 'format', 'json' );
+			data = $.extend( {}, this.defaults.parameters, { action: 'upload' }, data );
 
 			$.each( data, function ( key, val ) {
 				if ( key === 'filename' ) {
