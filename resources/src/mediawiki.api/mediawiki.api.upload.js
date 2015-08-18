@@ -154,9 +154,9 @@
 		 * @return {jQuery.Promise}
 		 */
 		uploadWithIframe: function ( file, data ) {
-			var tokenPromise = $.Deferred(),
+			var key,
+				tokenPromise = $.Deferred(),
 				api = this,
-				filenameFound = false,
 				deferred = $.Deferred(),
 				nonce = getNonce(),
 				id = 'uploadframe-' + nonce,
@@ -164,13 +164,14 @@
 				iframe = getNewIframe( id ),
 				$iframe = $( iframe );
 
-			$form.addClass( 'mw-api-upload-form' );
+			for ( key in data ) {
+				if ( !fieldsAllowed[key] ) {
+					delete data[key];
+				}
+			}
 
-			$form.append(
-				getHiddenInput( 'action', 'upload' ),
-				getHiddenInput( 'format', 'json' ),
-				file
-			);
+			data = $.extend( {}, this.defaults.parameters, { action: 'upload' }, data );
+			$form.addClass( 'mw-api-upload-form' );
 
 			$form.css( 'display', 'none' )
 				.attr( {
@@ -211,16 +212,10 @@
 			file.name = 'file';
 
 			$.each( data, function ( key, val ) {
-				if ( key === 'filename' ) {
-					filenameFound = true;
-				}
-
-				if ( fieldsAllowed[key] === true ) {
-					$form.append( getHiddenInput( key, val ) );
-				}
+				$form.append( getHiddenInput( key, val ) );
 			} );
 
-			if ( !filenameFound && !data.stash ) {
+			if ( !data.filename && !data.stash ) {
 				return $.Deferred().reject( 'Filename not included in file data.' );
 			}
 
@@ -249,26 +244,24 @@
 		 * @param {Object} data
 		 */
 		uploadWithFormData: function ( file, data ) {
-			var xhr,
+			var key, xhr,
 				api = this,
 				formData = new FormData(),
-				deferred = $.Deferred(),
-				filenameFound = false;
+				deferred = $.Deferred();
 
-			formData.append( 'action', 'upload' );
-			formData.append( 'format', 'json' );
+			for ( key in data ) {
+				if ( !fieldsAllowed[key] ) {
+					delete data[key];
+				}
+			}
+
+			data = $.extend( {}, this.defaults.parameters, { action: 'upload' }, data );
 
 			$.each( data, function ( key, val ) {
-				if ( key === 'filename' ) {
-					filenameFound = true;
-				}
-
-				if ( fieldsAllowed[key] === true ) {
-					formData.append( key, val );
-				}
+				formData.append( key, val );
 			} );
 
-			if ( !filenameFound && !data.stash ) {
+			if ( !data.filename && !data.stash ) {
 				return $.Deferred().reject( 'Filename not included in file data.' );
 			}
 
