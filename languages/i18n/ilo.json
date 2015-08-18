@@ -131,7 +131,7 @@
 	"hidden-category-category": "Nailemmeng a katkategoria",
 	"category-subcat-count": "{{PLURAL:$2|Daytoy a kategoria ket addaan laeng iti sumaganad a subkategoria.|Daytoy a kategoria ket addaan {{PLURAL:$1|iti sumaganad a  subkategoria|kadagiti sumaganad a $1 a subkategoria}}, manipud iti $2 a dagup.}}",
 	"category-subcat-count-limited": "Daytoy a kategoria ket addaan {{PLURAL:$1|iti sumaganad a subkategoria|kadagiti sumaganad a $1 a subkategoria}}.",
-	"category-article-count": "{{PLURAL:$2|Daytoy a kategoria ket aglaon laeng iti sumaganad a panid.|{{PLURAL:$1|Ti sumaganad a panid|Dagiti sumaganad a $1 a panid}} ket adda iti daytoy a kategoria, manipud iti $2 a dagup.}}",
+	"category-article-count": "{{PLURAL:$2|Daytoy a kategoria ket aglaon laeng iti sumaganad a panid.|{{PLURAL:$1|Ti sumaganad a panid|Dagiti sumaganad a $1 a panid}} ket adda iti daytoy a kategoria, manipud ti $2 a dagup.}}",
 	"category-article-count-limited": "{{PLURAL:$1|Ti sumaganad a panid|Dagiti sumaganad a $1 a panid}} ket adda iti agdama a kategoria.",
 	"category-file-count": "{{PLURAL:$2|Daytoy a kategoria ket aglaon laeng iti sumaganad a papeles.|{{PLURAL:$1|Ti sumaganad a papeles|Dagiti sumaganad a $1 a papeles}} ket adda iti daytoy a kategoria, iti $2 a dagup.}}",
 	"category-file-count-limited": "{{PLURAL:$1|Ti sumaganad a papeles|Dagiti sumaganad a $1 a papeles}} ket adda iti agdama a kategoria.",

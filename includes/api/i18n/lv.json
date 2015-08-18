@@ -8,6 +8,5 @@
 	"apihelp-block-description": "Bloķēt lietotāju",
 	"apihelp-block-param-reason": "Bloķēšanas iemesls:",
 	"apihelp-delete-description": "Dzēst lapas",
-	"apihelp-emailuser-description": "Sūtīt e-pastu lietotājam",
 	"apihelp-userrights-param-userid": "Lietotāja ID:"
 }

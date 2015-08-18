@@ -623,6 +623,7 @@
 	"createacct-benefit-body3": "In vertical-layout create account form, the text for the third benefit.\n\nPreceded by the message {{msg-mw|Createacct-benefit-head3}} (number of contributors).\n\nSee example: [{{canonicalurl:Special:UserLogin|type=signup}} Special:UserLogin?type=signup]\n\nParameters:\n* $1 - number of contributors (users)",
 	"badretype": "Used as error message when the new password and its retype do not match.",
 	"userexists": "Used as error message in creating a user account.",
+	"usernameinprogress": "Used as error message in creating a user account.",
 	"loginerror": "Used as title of error message.\n{{Identical|Login error}}",
 	"createacct-error": "Used as heading for the error message.",
 	"createaccounterror": "Parameters:\n* $1 - an error message",

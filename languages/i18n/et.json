@@ -883,7 +883,7 @@
 	"search-category": "(kategooria \"$1\")",
 	"search-file-match": "(vastab faili sisule)",
 	"search-suggest": "Kas mõtlesid: $1",
-	"search-rewritten": "Vasted otsingule $1. Otsi selle asemel teksti $2.",
+	"search-rewritten": "Vasted otsingule $1. Otsi hoopis teksti $2.",
 	"search-interwiki-caption": "Sõsarprojektid",
 	"search-interwiki-default": "Tulemused asukohast $1:",
 	"search-interwiki-more": "(veel)",

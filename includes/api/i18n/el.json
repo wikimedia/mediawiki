@@ -2,21 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Glavkos",
-			"Protnet",
-			"Stam.nikos"
+			"Protnet"
 		]
 	},
-	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Τεκμηρίωση]]\n* [[mw:API:FAQ|Συχνές ερωτήσεις]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Λίστα αλληλογραφίας]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Ανακοινώσεις API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Σφάλματα & αιτήματα]\n</div>\n<strong>Κατάσταση:</strong> Όλα τα χαρακτηριστικά που εμφανίζονται σε αυτή τη σελίδα πρέπει να λειτουργούν, αλλά το API είναι ακόμα σε ενεργό ανάπτυξη, και μπορεί να αλλάξει ανά πάσα στιγμή. Εγγραφείτε στη [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce λίστα αλληλογραφίας] για να ειδοποιείστε για ενημερώσεις.\n\n<strong>Εσφαλμένα αιτήματα:</strong> Όταν στέλνονται εσφαλμένα αιτήματα στο API, επιστρέφεται μία κεφαλίδα HTTP (header) με το κλειδί \"MediaWiki-API-Error\" κι έπειτα η τιμή της κεφαλίδας και ο κωδικός σφάλματος που επιστρέφονται ορίζονται στην ίδια τιμή. Για περισσότερες πληροφορίες, δείτε [[mw:API:Errors_and_warnings|API: Σφάλματα και προειδοποιήσεις]].",
-	"apihelp-main-param-action": "Ποια ενέργει να εκτελεστεί.",
 	"apihelp-main-param-format": "Η μορφή των δεδομένων εξόδου.",
-	"apihelp-main-param-uselang": "Γλώσσα για τις μεταφράσεις μηνυμάτων. Μία λίστα κωδικών μπορεί να αντληθεί από το <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> με το <kbd>siprop=languages</kbd>, ή καθορίστε <kbd>user</kbd> για να χρησιμοποιήσετε την προτίμηση γλώσσας του τρέχοντα χρήστη, ή καθορίστε <kbd>content</kbd> για να χρησιμοποιήσετε τη γλώσσα περιεχομένου αυτού του wiki.",
 	"apihelp-block-description": "Φραγή χρήστη",
 	"apihelp-block-param-user": "Όνομα χρήστη, διεύθυνση IP ή εύρος διευθύνσεων IP που θέλετε να επιβάλετε φραγή.",
-	"apihelp-block-param-expiry": "Ώρα λήξης. Μπορεί να είναι σχετική (π.χ. <kbd>σε 5 μήνες</kbd> ή <kbd>σε 2 εβδομάδες</kbd>) ή απόλυτη (π.χ. <kbd>2014-09-18T12:34:56Z</kbd>). Αν οριστεί σε <kbd>άπειρη</kbd>, <kbd>απεριόριστη</kbd>, ή <kbd>ποτέ</kbd>, ο αποκλεισμός δεν θα λήξει ποτέ.",
 	"apihelp-block-param-reason": "Λόγος φραγής.",
-	"apihelp-block-param-anononly": "Αποκλείστε ανώνυμους χρήστες μόνο (δηλ. απενεργοποιήστε ανώνυμες επεξεργασίες για αυτή τη διεύθυνση IP).",
 	"apihelp-block-param-nocreate": "Αποτροπή δημιουργίας λογαριασμού.",
-	"apihelp-block-param-autoblock": "Αποκλείστε αυτόματα την τελευταία χρησιμοποιημένη διεύθυνση IP και κάθε συνακόλουθη διεύθυνση IP από την οποία γίνεται προσπάθεια σύνδεσης.",
 	"apihelp-createaccount-param-name": "Όνομα χρήστη.",
 	"apihelp-createaccount-param-email": "Διεύθυνση ηλεκτρονικού ταχυδρομείου χρήστη (προαιρετικό).",
 	"apihelp-createaccount-param-realname": "Πραγματικό όνομα χρήστη (προαιρετικό).",
@@ -86,8 +79,5 @@
 	"apihelp-options-example-reset": "Επαναφορά όλων των προτιμήσεων.",
 	"apihelp-paraminfo-param-helpformat": "Μορφή των συμβολοσειρών βοήθειας.",
 	"apihelp-patrol-example-revid": "Περιπολία αναθεώρησης.",
-	"apihelp-protect-example-protect": "Προστασία σελίδας.",
-	"api-help-param-type-limit": "Τύπος: ακέραιος ή <kbd>max</kbd>",
-	"api-help-param-type-boolean": "Τύπος: boolean ([[Special:ApiHelp/main#main/datatypes|λεπτομέρειες]])",
-	"api-help-param-type-user": "Τύπος: {{PLURAL:$1|1=όνομα χρήστη|2=λίστα με ονόματα χρήστη}}"
+	"apihelp-protect-example-protect": "Προστασία σελίδας."
 }
