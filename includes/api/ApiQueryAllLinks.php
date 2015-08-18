@@ -255,6 +255,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_TYPE => array_merge(
 					array( 'ids', 'title' ), array_keys( $this->props )
 				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'namespace' => array(
 				ApiBase::PARAM_DFLT => $this->dfltNamespace,
