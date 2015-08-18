@@ -48,29 +48,6 @@
 	}
 
 	/**
-	 * Parse response from an XHR to the server.
-	 * @private
-	 * @param {Event} e
-	 * @return {Object}
-	 */
-	function parseXHRResponse( e ) {
-		var response;
-
-		try {
-			response = $.parseJSON( e.target.responseText );
-		} catch ( error ) {
-			response = {
-				error: {
-					code: e.target.code,
-					info: e.target.responseText
-				}
-			};
-		}
-
-		return response;
-	}
-
-	/**
 	 * Process the result of the form submission, returned to an iframe.
 	 * This is the iframe's onload event.
 	 *
@@ -116,20 +93,25 @@
 		 * @return {jQuery.Promise}
 		 */
 		upload: function ( file, data ) {
-			var iframe, formData;
+			var isFileInput, canUseFormData;
+
+			isFileInput = file.nodeType === Node.ELEMENT_NODE;
+
+			if ( formDataAvailable() && isFileInput && file.files ) {
+				file = file.files[0];
+			}
 
 			if ( !file ) {
 				return $.Deferred().reject( 'No file' );
 			}
 
-			iframe = file.nodeType && file.nodeType === Node.ELEMENT_NODE;
-			formData = formDataAvailable() && file instanceof window.File;
+			canUseFormData = formDataAvailable() && file instanceof window.File;
 
-			if ( !iframe && !formData ) {
+			if ( !isFileInput && !canUseFormData ) {
 				return $.Deferred().reject( 'Unsupported argument type passed to mw.Api.upload' );
 			}
 
-			if ( formData ) {
+			if ( canUseFormData ) {
 				return this.uploadWithFormData( file, data );
 			}
 
@@ -242,11 +224,10 @@
 		 * Uploads a file using the FormData API.
 		 * @param {File} file
 		 * @param {Object} data
+		 * @return {jQuery.Promise}
 		 */
 		uploadWithFormData: function ( file, data ) {
-			var key, xhr,
-				api = this,
-				formData = new FormData(),
+			var key,
 				deferred = $.Deferred();
 
 			for ( key in data ) {
@@ -256,58 +237,42 @@
 			}
 
 			data = $.extend( {}, this.defaults.parameters, { action: 'upload' }, data );
-
-			$.each( data, function ( key, val ) {
-				formData.append( key, val );
-			} );
+			data.file = file;
 
 			if ( !data.filename && !data.stash ) {
 				return $.Deferred().reject( 'Filename not included in file data.' );
 			}
 
-			formData.append( 'file', file );
-
-			xhr = new XMLHttpRequest();
-
-			xhr.upload.addEventListener( 'progress', function ( e ) {
-				if ( e.lengthComputable ) {
-					deferred.notify( e.loaded / e.total );
-				}
-			}, false );
-
-			xhr.addEventListener( 'abort', function ( e ) {
-				deferred.reject( parseXHRResponse( e ) );
-			}, false );
-
-			xhr.addEventListener( 'load', function ( e ) {
-				var result = parseXHRResponse( e );
-
-				if ( result.error || result.warnings ) {
-					if ( result.error && result.error.code === 'badtoken' ) {
-						api.badToken( 'edit' );
+			// Use this.postWithEditToken() or this.post()
+			this[ this.needToken() ? 'postWithEditToken' : 'post' ]( data, {
+				// Use FormData (if we got here, we know that it's available)
+				contentType: 'multipart/form-data',
+				// Provide upload progress notifications
+				xhr: function () {
+					var xhr = $.ajaxSettings.xhr();
+					if ( xhr.upload ) {
+						// need to bind this event before we open the connection (see note at
+						// https://developer.mozilla.org/en-US/docs/DOM/XMLHttpRequest/Using_XMLHttpRequest#Monitoring_progress)
+						xhr.upload.addEventListener( 'progress', function ( ev ) {
+							if ( ev.lengthComputable ) {
+								deferred.notify( ev.loaded / ev.total );
+							}
+						} );
 					}
-
-					deferred.reject( result.error || result.warnings );
-				} else {
-					deferred.notify( 1 );
-					deferred.resolve( result );
+					return xhr;
 				}
-			}, false );
-
-			xhr.addEventListener( 'error', function ( e ) {
-				deferred.reject( parseXHRResponse( e ) );
-			}, false );
-
-			xhr.open( 'POST', this.defaults.ajax.url, true );
-
-			if ( this.needToken() ) {
-				this.getEditToken().then( function ( token ) {
-					formData.append( 'token', token );
-					xhr.send( formData );
+			} )
+				.done( function ( result ) {
+					if ( result.error || result.warnings ) {
+						deferred.reject( result.error || result.warnings );
+					} else {
+						deferred.notify( 1 );
+						deferred.resolve( result );
+					}
+				} )
+				.fail( function ( result ) {
+					deferred.reject( result );
 				} );
-			} else {
-				xhr.send( formData );
-			}
 
 			return deferred.promise();
 		},
