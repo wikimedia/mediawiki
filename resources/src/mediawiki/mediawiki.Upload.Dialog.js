@@ -10,13 +10,12 @@
 	 *
 	 * ## Structure
 	 *
-	 * The {@link OO.ui.ProcessDialog dialog} has three steps-
+	 * The {@link OO.ui.ProcessDialog dialog} has three steps:
 	 *
-	 *  - **Upload**: Has a {@link OO.ui.SelectFileWidget field} to get the
-	 * file object.
+	 *  - **Upload**: Has a {@link OO.ui.SelectFileWidget field} to get the file object.
 	 *
-	 * - **Information**: Has a {@link OO.ui.FormLayout form} to
-         *  collect metadata. This can be extended.
+	 * - **Information**: Has a {@link OO.ui.FormLayout form} to collect metadata. This can be
+	 *   extended.
 	 *
 	 * - **Insert**: Has details on how to use the file that was uploaded.
 	 *
@@ -33,7 +32,7 @@
 	 * ## Usage
 	 *
 	 * To use, setup a {@link OO.ui.WindowManager window manager} like for normal
-	 * dialogs-
+	 * dialogs:
 	 *
 	 *     var uploadDialog = new mw.Upload.Dialog( { size: 'small' } );
 	 *     var windowManager = new OO.ui.WindowManager();
@@ -44,7 +43,7 @@
 	 * The dialog's closing promise,
 	 * {@link mw.Upload.Dialog#event-fileUploaded fileUploaded},
 	 * and {@link mw.Upload.Dialog#event-fileSaved fileSaved} events can
-	 * be used to get details of the upload
+	 * be used to get details of the upload.
 	 *
 	 * ## Extending
 	 *

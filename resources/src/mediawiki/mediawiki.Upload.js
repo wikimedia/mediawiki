@@ -11,37 +11,37 @@
 	 *
 	 * A simple example:
 	 *
-	 *      var file = new OO.ui.SelectFileWidget(),
-	 *      	button = new OO.ui.ButtonWidget( { label: 'Save' } ),
-	 *      	upload = new mw.Upload;
+	 *     var file = new OO.ui.SelectFileWidget(),
+	 *       button = new OO.ui.ButtonWidget( { label: 'Save' } ),
+	 *       upload = new mw.Upload;
 	 *
-	 *      button.on( 'click', function () {
-	 *      	upload.setFile( file.getValue() );
-	 *      	upload.setFilename( file.getValue().name );
-	 *      	upload.upload();
-	 *      } );
+	 *     button.on( 'click', function () {
+	 *       upload.setFile( file.getValue() );
+	 *       upload.setFilename( file.getValue().name );
+	 *       upload.upload();
+	 *     } );
 	 *
-	 *      $( 'body' ).append( file.$element, button.$element );
+	 *     $( 'body' ).append( file.$element, button.$element );
 	 *
 	 * You can also choose to {@link #uploadToStash stash the upload} and
 	 * {@link #finishStashUpload finalize} it later:
 	 *
-	 *      var file, // Some file object
-	 *      	upload = new mw.Upload,
-	 *      	stashPromise = $.Deferred();
+	 *     var file, // Some file object
+	 *       upload = new mw.Upload,
+	 *       stashPromise = $.Deferred();
 	 *
-	 *      upload.setFile( file );
-	 *      upload.uploadToStash().then( function () {
-	 *      	stashPromise.resolve();
-	 *      } );
+	 *     upload.setFile( file );
+	 *     upload.uploadToStash().then( function () {
+	 *       stashPromise.resolve();
+	 *     } );
 	 *
-	 *      stashPromise.then( function () {
-	 *      	upload.setFilename( 'foo' );
-	 *      	upload.setText( 'bar' );
-	 *      	upload.finishStashUpload().then( function () {
-	 *      		console.log( 'Done!' );
-	 *      	} );
-	 *      } );
+	 *     stashPromise.then( function () {
+	 *       upload.setFilename( 'foo' );
+	 *       upload.setText( 'bar' );
+	 *       upload.finishStashUpload().then( function () {
+	 *         console.log( 'Done!' );
+	 *       } );
+	 *     } );
 	 *
 	 * @constructor
 	 * @param {Object} apiconfig Passed to the constructor of mw.Api.
