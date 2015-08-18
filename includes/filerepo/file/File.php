@@ -423,7 +423,10 @@ abstract class File implements IDBAccessObject {
 		if ( !isset( $this->fsFile ) ) {
 			$starttime = microtime( true );
 			$this->fsFile = $this->repo->getLocalReference( $this->getPath() );
-			RequestContext::getMain()->getStats()->timing( 'media.thumbnail.generate.fetchoriginal', microtime( true ) - $starttime );
+
+			$statTiming = microtime( true ) - $starttime;
+			RequestContext::getMain()->getStats()->timing(
+				'media.thumbnail.generate.fetchoriginal', 1000 * $statTiming );
 
 			if ( !$this->fsFile ) {
 				$this->fsFile = false; // null => false; cache negative hits
@@ -1120,7 +1123,8 @@ abstract class File implements IDBAccessObject {
 		$thumb = $handler->doTransform( $this, $tmpThumbPath, $thumbUrl, $transformParams );
 		$tmpFile->bind( $thumb ); // keep alive with $thumb
 
-		$stats->timing( 'media.thumbnail.generate.transform', microtime( true ) - $starttime );
+		$statTiming = microtime( true ) - $starttime;
+		$stats->timing( 'media.thumbnail.generate.transform', 1000 * $statTiming );
 
 		if ( !$thumb ) { // bad params?
 			$thumb = false;
@@ -1143,7 +1147,8 @@ abstract class File implements IDBAccessObject {
 				$thumb = $this->transformErrorOutput( $thumbPath, $thumbUrl, $transformParams, $flags );
 			}
 
-			$stats->timing( 'media.thumbnail.generate.store', microtime( true ) - $starttime );
+			$statTiming = microtime( true ) - $starttime;
+			$stats->timing( 'media.thumbnail.generate.store', 1000 * $statTiming );
 
 			// Give extensions a chance to do something with this thumbnail...
 			Hooks::run( 'FileTransformed', array( $this, $thumb, $tmpThumbPath, $thumbPath ) );
@@ -1180,8 +1185,6 @@ abstract class File implements IDBAccessObject {
 
 		$params = $this->getHandler()->sanitizeParamsForBucketing( $params );
 
-		$bucketName = $this->getBucketThumbName( $bucket );
-
 		$tmpFile = $this->makeTransformTmpFile( $bucketPath );
 
 		if ( !$tmpFile ) {
@@ -1201,7 +1204,8 @@ abstract class File implements IDBAccessObject {
 		// this object exists
 		$tmpFile->bind( $this );
 
-		RequestContext::getMain()->getStats()->timing( 'media.thumbnail.generate.bucket', $buckettime );
+		RequestContext::getMain()->getStats()->timing(
+			'media.thumbnail.generate.bucket', 1000 * $buckettime );
 
 		return true;
 	}
