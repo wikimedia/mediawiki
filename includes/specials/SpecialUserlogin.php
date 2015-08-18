@@ -559,7 +559,13 @@ class LoginForm extends SpecialPage {
 		$u = User::newFromName( $this->mUsername, 'creatable' );
 		if ( !$u ) {
 			return Status::newFatal( 'noname' );
-		} elseif ( 0 != $u->idForName( User::READ_LOCKING ) ) {
+		}
+
+		# Make sure the user does not exist already
+		$lock = $wgMemc->getScopedLock( wfGlobalCacheKey( 'account', md5( $this->mUsername ) ) );
+		if ( !$lock ) {
+			return Status::newFatal( 'usernameinprogress' );
+		} elseif ( $u->idForName( User::READ_LOCKING ) ) {
 			return Status::newFatal( 'userexists' );
 		}
 
