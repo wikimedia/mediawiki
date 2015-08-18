@@ -3073,10 +3073,6 @@ class OutputPage extends ContextSource {
 			ResourceLoaderModule::TYPE_SCRIPTS
 		);
 
-		$links[] = $this->makeResourceLoaderLink( $this->getModuleStyles( true, 'bottom' ),
-			ResourceLoaderModule::TYPE_STYLES
-		);
-
 		// Modules requests - let the client calculate dependencies and batch requests as it likes
 		// Only load modules that have marked themselves for loading at the bottom
 		$modules = $this->getModules( true, 'bottom' );
@@ -3668,7 +3664,7 @@ class OutputPage extends ContextSource {
 		$otherTags = array(); // Tags to append after the normal <link> tags
 		$resourceLoader = $this->getResourceLoader();
 
-		$moduleStyles = $this->getModuleStyles( true, 'top' );
+		$moduleStyles = $this->getModuleStyles( true );
 
 		// Per-site custom styles
 		$moduleStyles[] = 'site';
