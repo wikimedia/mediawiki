@@ -639,7 +639,10 @@
 	"apihelp-query+extlinks-example-simple": "Get a list of external links on <kbd>Main Page<kbd>.",
 
 	"apihelp-query+exturlusage-description": "Enumerate pages that contain a given URL.",
-	"apihelp-query+exturlusage-param-prop": "Which pieces of information to include:\n;ids:Adds the ID of page.\n;title:Adds the title and namespace ID of the page.\n;url:Adds the URL used in the page.",
+	"apihelp-query+exturlusage-param-prop": "Which pieces of information to include:",
+	"apihelp-query+exturlusage-paramvalue-prop-ids": "Adds the ID of page.",
+	"apihelp-query+exturlusage-paramvalue-prop-title": "Adds the title and namespace ID of the page.",
+	"apihelp-query+exturlusage-paramvalue-prop-url": "Adds the URL used in the page.",
 	"apihelp-query+exturlusage-param-protocol": "Protocol of the URL. If empty and <var>$1query</var> is set, the protocol is <kbd>http</kbd>. Leave both this and <var>$1query</var> empty to list all external links.",
 	"apihelp-query+exturlusage-param-query": "Search string without protocol. See [[Special:LinkSearch]]. Leave empty to list all external links.",
 	"apihelp-query+exturlusage-param-namespace": "The page namespaces to enumerate.",
