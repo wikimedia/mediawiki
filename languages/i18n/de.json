@@ -502,6 +502,7 @@
 	"createacct-benefit-body2": "{{PLURAL:$1|Seite|Seiten}}",
 	"createacct-benefit-body3": "{{PLURAL:$1|aktiver Autor|aktive Autoren}}",
 	"badretype": "Die beiden Passwörter stimmen nicht überein.",
+	"usernameinprogress": "Eine Benutzerkontenerstellung für diesen Benutzernamen ist bereits in Bearbeitung.\nBitte warten.",
 	"userexists": "Dieser Benutzername ist schon vergeben.\nBitte wähle einen anderen.",
 	"loginerror": "Fehler bei der Anmeldung",
 	"createacct-error": "Fehler beim Erstellen des Benutzerkontos",

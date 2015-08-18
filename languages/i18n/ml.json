@@ -1859,6 +1859,7 @@
 	"changecontentmodel-reason-label": "കാരണം:",
 	"changecontentmodel-success-title": "ഉള്ളടക്കരീതി മാറിയിരിക്കുന്നു",
 	"changecontentmodel-success-text": "[[:$1]] എന്നതിന്റെ ഉള്ളടക്കരീതി മാറിയിട്ടുണ്ട്.",
+	"changecontentmodel-cannot-convert": "[[:$1]] താളിലെ ഉള്ളടക്കം $2 തരത്തിലേക്ക് മാറ്റാനാവില്ല.",
 	"logentry-contentmodel-change-revertlink": "പൂർവ്വസ്ഥിതിയിലാക്കുക",
 	"logentry-contentmodel-change-revert": "പൂർവ്വസ്ഥിതിയിലാക്കുക",
 	"protectlogpage": "സംരക്ഷണ പ്രവർത്തനരേഖ",
