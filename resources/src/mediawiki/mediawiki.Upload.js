@@ -44,10 +44,11 @@
 	 *     } );
 	 *
 	 * @constructor
-	 * @param {Object} apiconfig Passed to the constructor of mw.Api.
+	 * @param {Object|mw.Api} [apiconfig] A mw.Api object (or subclass), or configuration
+	 *     to pass to the constructor of mw.Api.
 	 */
 	function Upload( apiconfig ) {
-		this.api = new mw.Api( apiconfig );
+		this.api = ( apiconfig instanceof mw.Api ) ? apiconfig : new mw.Api( apiconfig );
 
 		this.watchlist = false;
 		this.text = '';
