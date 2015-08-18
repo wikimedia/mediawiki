@@ -221,7 +221,8 @@ class ResourceLoader implements LoggerAwareInterface {
 
 				$result = self::applyFilter( $filter, $data, $this->config );
 
-				$stats->timing( "resourceloader_cache.$filter.miss", microtime( true ) - $statStart );
+				$statTiming = microtime( true ) - $statStart;
+				$stats->timing( "resourceloader_cache.$filter.miss", 1000 * $statTiming );
 				if ( $options['cacheReport'] ) {
 					$result .= "\n/* cache key: $key */";
 				}
