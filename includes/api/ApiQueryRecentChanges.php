@@ -636,7 +636,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					'loginfo',
 					'tags',
 					'sha1',
-				)
+				),
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => array(),
 			),
 			'token' => array(
 				ApiBase::PARAM_DEPRECATED => true,
