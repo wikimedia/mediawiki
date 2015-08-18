@@ -273,6 +273,10 @@ class LogFormatter {
 						$text = wfMessage( 'modifiedarticleprotection' )
 							->rawParams( $target . ' ' . $parameters[0] )->inContentLanguage()->escaped();
 						break;
+					case 'move_prot':
+						$text = wfMessage( 'movedarticleprotection' )
+							->rawParams( $target, $parameters['4::oldtitle'] )->inContentLanguage()->escaped();
+						break;
 				}
 				break;
 

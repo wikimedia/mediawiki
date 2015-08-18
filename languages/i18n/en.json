@@ -3604,6 +3604,7 @@
 	"logentry-newusers-create2": "User account $3 was {{GENDER:$2|created}} by $1",
 	"logentry-newusers-byemail": "User account $3 was {{GENDER:$2|created}} by $1 and password was sent by email",
 	"logentry-newusers-autocreate": "User account $1 was {{GENDER:$2|created}} automatically",
+	"logentry-protect-move_prot": "$1 {{GENDER:$2|moved}} protection settings from $4 to $3",
 	"logentry-rights-rights": "$1 {{GENDER:$2|changed}} group membership for $3 from $4 to $5",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|changed}} group membership for $3",
 	"logentry-rights-autopromote": "$1 was automatically {{GENDER:$2|promoted}} from $4 to $5",

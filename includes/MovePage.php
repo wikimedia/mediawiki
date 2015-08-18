@@ -305,8 +305,8 @@ class MovePage {
 				__METHOD__,
 				array( 'IGNORE' )
 			);
-			# Update the protection log
-			$log = new LogPage( 'protect' );
+
+			// Build comment for log
 			$comment = wfMessage(
 				'prot_1movedto2',
 				$this->oldTitle->getPrefixedText(),
@@ -315,14 +315,6 @@ class MovePage {
 			if ( $reason ) {
 				$comment .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $reason;
 			}
-			// @todo FIXME: $params?
-			$logId = $log->addEntry(
-				'move_prot',
-				$this->newTitle,
-				$comment,
-				array( $this->oldTitle->getPrefixedText() ),
-				$user
-			);
 
 			// reread inserted pr_ids for log relation
 			$insertedPrIds = $dbw->select(
@@ -335,7 +327,18 @@ class MovePage {
 			foreach ( $insertedPrIds as $prid ) {
 				$logRelationsValues[] = $prid->pr_id;
 			}
-			$log->addRelations( 'pr_id', $logRelationsValues, $logId );
+
+			// Update the protection log
+			$logEntry = new ManualLogEntry( 'protect', 'move_prot' );
+			$logEntry->setTarget( $this->newTitle );
+			$logEntry->setComment( $comment );
+			$logEntry->setPerformer( $user );
+			$logEntry->setParameters( array(
+				'4::oldtitle' => $this->oldTitle->getPrefixedText(),
+			) );
+			$logEntry->setRelations( array( 'pr_id' => $logRelationsValues ) );
+			$logId = $logEntry->insert();
+			$logEntry->publish( $logId );
 		}
 
 		// Update *_from_namespace fields as needed
