@@ -150,3 +150,7 @@
 	path = extensions/MirahezeMagic
 	url = https://github.com/miraheze/MirahezeMagic
 	branch = master
+[submodule "extensions/MultiUpload"]
+	path = extensions/MultiUpload
+	url = https://github.com/wikimedia/mediawiki-extensions-MultiUpload
+	branch = REL1_25
