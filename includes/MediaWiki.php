@@ -504,6 +504,13 @@ class MediaWiki {
 		$factory->shutdown();
 
 		wfDebug( __METHOD__ . ' completed; all transactions committed' );
+
+		// Set a cookie to tell all CDN edge nodes to "stick" the user to the
+		// DC that handles this POST request (e.g. the "master" data center)
+		$request = $this->context->getRequest();
+		if ( $request->wasPosted() && $factory->hasOrMadeRecentMasterChanges() ) {
+			$request->response()->setCookie( 'UseDC', wfDataCenter(), time() + 10 );
+		}
 	}
 
 	/**
