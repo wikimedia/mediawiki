@@ -3592,6 +3592,17 @@ function wfSplitWikiID( $wiki ) {
 }
 
 /**
+ * @see $wgDataCenterRoles
+ * @return string The current cluster role; one of (master/slave)
+ * @since 1.26
+ */
+function wfDataCenterRole() {
+	global $wgDataCenterId, $wgDataCenterRoles;
+
+	return $wgDataCenterRoles[$wgDataCenterId];
+}
+
+/**
  * Get a Database object.
  *
  * @param int $db Index of the connection to get. May be DB_MASTER for the

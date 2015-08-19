@@ -61,6 +61,8 @@ production.
   by Special:Random to select random pages.
 * $wgTransactionalTimeLimit was added, which controls the request time limit
   for potentially slow POST requests that need to be as atomic as possible.
+* $wgDataCenterId and $wgDataCenterRoles where added, which will serve as
+  basic configuration settings needed for multi-datacenter setups.
 
 ==== External libraries ====
 * Update es5-shim from v4.0.0 to v4.1.5.

@@ -1867,6 +1867,24 @@ $wgLBFactoryConf = array( 'class' => 'LBFactorySimple' );
 $wgMasterWaitTimeout = 10;
 
 /**
+ * The ID of the current data center
+ * @since 1.26
+ */
+$wgDataCenterId = 'default';
+
+/**
+ * Map of data center IDs to their role ("master" or "slave")
+ *
+ * Multiple data centers can be setup to handle MediaWiki, with HTTP
+ * POSTs routed to the master data center and GET/HEAD/OPTION routed to
+ * any data center (usually the closest to the end user). In such setups,
+ * this setting should be set to the appropriate value in the site
+ * config for each data center.
+ * @since 1.26
+ */
+$wgDataCenterRoles = array( 'default' => 'master' );
+
+/**
  * File to log database errors to
  */
 $wgDBerrorLog = false;

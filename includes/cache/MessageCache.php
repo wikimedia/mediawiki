@@ -656,11 +656,19 @@ class MessageCache {
 	 * @return array (hash or false, bool expiry/volatility status)
 	 */
 	protected function getValidationHash( $code ) {
+		if ( wfDataCenterRole() === 'master' ) {
+			// Ignore volatility check and rely on in-place replace() updates
+			$checkKeys = array();
+		} else {
+			// Check if the cache is expired/volatile to do regenerations
+			$checkKeys = array( wfMemcKey( 'messages', $code ) );
+		}
+
 		$curTTL = null;
 		$value = $this->wanCache->get(
 			wfMemcKey( 'messages', $code, 'hash' ),
 			$curTTL,
-			array( wfMemcKey( 'messages', $code ) )
+			$checkKeys
 		);
 		$expired = ( $curTTL === null || $curTTL < 0 );
 
@@ -1131,6 +1139,7 @@ class MessageCache {
 		$langs = Language::fetchLanguageNames( null, 'mw' );
 		foreach ( array_keys( $langs ) as $code ) {
 			# Global and local caches
+			$this->wanCache->delete( wfMemcKey( 'messages', $code ), 1 );
 			$this->wanCache->touchCheckKey( wfMemcKey( 'messages', $code ) );
 		}
 
