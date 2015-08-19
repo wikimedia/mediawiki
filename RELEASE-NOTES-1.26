@@ -94,6 +94,8 @@ production.
 * If search returns zero results and current search engine has a "did you mean"
   suggestion, results for suggestion will be shown. Can be disabled by setting
   $wgSearchRunSuggestedQuery to false.
+* $wgDataCenterId and $wgDataCenterRoles where added, which will serve as
+  basic configuration settings needed for multi-datacenter setups.
 
 == External libraries ==
 === Upgraded external libraries ===
