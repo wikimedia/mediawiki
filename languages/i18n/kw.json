@@ -764,7 +764,7 @@
 	"activeusers-hidesysops": "Kudha menystroryon",
 	"listgrouprights-members": "(rol eseli)",
 	"emailuser": "Ebostya an devnydhyer-ma",
-	"emailpage": "Ebostya devnydhyer",
+	"emailuser-title-notarget": "Ebostya devnydhyer",
 	"defemailsubject": "Ebost danvenys dre {{SITENAME}} gans an devnydhyer \"$1\"",
 	"emailfrom": "Dhyworth:",
 	"emailto": "Dhe:",

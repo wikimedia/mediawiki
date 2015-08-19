@@ -884,7 +884,7 @@
 	"listgrouprights-removegroup-self-all": "ܠܚܝ ܟܠ ܟܢܘܫܬ̈ܐ ܡܢ ܚܘܫܒܢܗ ܕܝܠܢܝܐ",
 	"mailnologin": "ܠܝܬ ܡܘܢܥܐ ܠܫܘܕܪܐ",
 	"emailuser": "ܫܕܪ ܐܓܪܬܐ ܠܗܢܐ ܡܦܠܚܢܐ",
-	"emailpage": "ܫܕܪ ܐܓܪܬܐ ܒܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ ܠܡܦܠܚܢܐ",
+	"emailuser-title-notarget": "ܫܕܪ ܐܓܪܬܐ ܒܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ ܠܡܦܠܚܢܐ",
 	"defemailsubject": "ܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ  ܡܢ ܡܦܠܚܢܐ \"$1\"",
 	"noemailtitle": "ܠܝܬ ܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ",
 	"emailusername": "ܫܡܐ ܕܡܦܠܚܢܐ:",

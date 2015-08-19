@@ -610,7 +610,7 @@
 	"listusers-noresult": "No masyin dyaso.",
 	"mailnologin": "No stiradresi",
 	"emailuser": "E-mail a kebroikiman disi",
-	"emailpage": "Mayin e-mail",
+	"emailuser-title-notarget": "Mayin e-mail",
 	"defemailsubject": "E-mail fu {{SITENAME}}",
 	"noemailtitle": "Disi masyin abi no e-mailadresi",
 	"emailfrom": "Fu",

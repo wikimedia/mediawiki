@@ -183,7 +183,7 @@
 	"cachedspecial-viewing-cached-ttl": "Je bekijkt een cacheversie van deze pagina, die maximaal $1 oud is.",
 	"cachedspecial-viewing-cached-ts": "Je bekijkt een cacheversie van deze pagina, die mogelijk niet volledig is bijgewerkt.",
 	"mailnologintext": "Je moet [[Special:UserLogin|aangemeld]] zijn en een geldig e-mailadres in je [[Special:Preferences|voorkeuren]] vermelden om andere gebruikers te kunnen e-mailen.",
-	"emailpagetext": "Via dit formulier kan je een e-mail aan {{GENDER:$1|deze gebruiker}} verzenden.\nHet e-mailadres dat je hebt opgegeven bij [[Special:Preferences|je voorkeuren]] wordt als afzender gebruikt.\nDe ontvanger kan dus direct naar je reageren.",
+	"emailuser-title-notargettext": "Via dit formulier kan je een e-mail aan {{GENDER:$1|deze gebruiker}} verzenden.\nHet e-mailadres dat je hebt opgegeven bij [[Special:Preferences|je voorkeuren]] wordt als afzender gebruikt.\nDe ontvanger kan dus direct naar je reageren.",
 	"usermaildisabledtext": "Je kunt geen e-mail verzenden naar andere gebruikers op deze wiki",
 	"emailccsubject": "Kopie van je bericht aan $1: $2",
 	"emailsenttext": "Je e-mail is verzonden.",

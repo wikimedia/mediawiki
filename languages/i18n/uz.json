@@ -984,7 +984,7 @@
 	"emailuser": "Foydalanuvchiga maktub",
 	"emailuser-title-target": "Ushbu {{GENDER:$1|foydalanuvchi}}ga maktub joʻnatish",
 	"emailuser-title-notarget": "Foydalanuvchiga elektron maktub yozish",
-	"emailpage": "Foydalanuvchiga maktub",
+	"emailuser-title-notarget": "Foydalanuvchiga maktub",
 	"defemailsubject": "{{SITENAME}} — $1 tomonidan maktub",
 	"usermaildisabled": "Foydalanuvchi elektron pochtasi o‘chirilgan",
 	"noemailtitle": "Elektron pochta manzili mavjud emas",

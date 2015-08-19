@@ -965,7 +965,7 @@
 	"emailuser": "Surat-e ureuëng ngui",
 	"emailuser-title-target": "Peu'ét surat-e keu {{GENDER:$1|ureuëng ngui}} nyoë",
 	"emailuser-title-notarget": "Peu'ét surat-e",
-	"emailpage": "Peu'ét surat-e keu ureuëng ngui",
+	"emailuser-title-notarget": "Peu'ét surat-e keu ureuëng ngui",
 	"emailusername": "Ureueng ngui:",
 	"emailusernamesubmit": "Kirém",
 	"email-legend": "Kirém surat-e keu ureueng ngui {{SITENAME}} la'én",

@@ -732,7 +732,7 @@
 	"emailuser": "Emailer cet useur",
 	"emailuser-title-target": "Emailer {{GENDER:$1|cet useur|cette useuse}}",
 	"emailuser-title-notarget": "Emailer useur",
-	"emailpage": "Emailer useur",
+	"emailuser-title-notarget": "Emailer useur",
 	"noemailtitle": "Aucune adresse d'email",
 	"emailusername": "Nom d'useur:",
 	"emailfrom": "De:",

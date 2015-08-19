@@ -1258,7 +1258,7 @@
 	"emailuser": "Ig-e-mail ini nga gumaramit",
 	"emailuser-title-target": "Ig-E-mail ini nga {{HENERO:$1|gumaramit}}",
 	"emailuser-title-notarget": "Gumaramit han e-mail",
-	"emailpage": "Gumaramit han e-mail",
+	"emailuser-title-notarget": "Gumaramit han e-mail",
 	"defemailsubject": "{{SITENAME}} e-mail tikang kan gumaramit na hi \"$1\"",
 	"usermaildisabled": "Waray ginpagana an e-mail han gumaramit",
 	"usermaildisabledtext": "Diri ka makakapadangat hin e-mail ha iba nga mga gumaramit ha dinhi nga wiki",

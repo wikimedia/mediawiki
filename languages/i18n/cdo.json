@@ -771,7 +771,7 @@
 	"linksearch-ok": "尋討",
 	"linksearch-line": "$1是趁$2𡅏鏈接過其",
 	"emailuser": "寄電批乞茲隻用戶",
-	"emailpage": "寄電子郵件乞用戶",
+	"emailuser-title-notarget": "寄電子郵件乞用戶",
 	"defemailsubject": "{{SITENAME}}其用戶「$1」寄來其批",
 	"noemailtitle": "無電批地址",
 	"emailfrom": "趁：",

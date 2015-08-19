@@ -1370,12 +1370,12 @@ Message
 &lt;/td&gt;&lt;td&gt;
 <template lineStart="1"><title>int:Emailmessage</title></template>
 &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;
-[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Emailpage&amp;action=edit emailpage]&lt;br&gt;
-[[MediaWiki_talk:Emailpage|Talk]]
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Emailuser-title-notarget&amp;action=edit emailuser-title-notarget]&lt;br&gt;
+[[MediaWiki_talk:Emailuser-title-notarget|Talk]]
 &lt;/td&gt;&lt;td&gt;
 E-mail user
 &lt;/td&gt;&lt;td&gt;
-<template lineStart="1"><title>int:Emailpage</title></template>
+<template lineStart="1"><title>int:Emailuser-title-notarget</title></template>
 &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;
 [http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Emailpagetext&amp;action=edit emailpagetext]&lt;br&gt;
 [[MediaWiki_talk:Emailpagetext|Talk]]

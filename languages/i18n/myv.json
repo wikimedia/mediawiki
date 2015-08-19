@@ -1030,7 +1030,7 @@
 	"listgrouprights-removegroup-all": "Весе куротнень нардамс",
 	"mailnologin": "Кучомс сёрма парго арась",
 	"emailuser": "Кучомс е-сёрма те теицянтень",
-	"emailpage": "Кучт э-сёрма теицянтень",
+	"emailuser-title-notarget": "Кучт э-сёрма теицянтень",
 	"defemailsubject": "{{SITENAME}} е-сёрма \"$1\"-нь пельде",
 	"usermaildisabled": "Теицянь е-сёрмась пекстазь",
 	"noemailtitle": "Е-сёрма парго арась",

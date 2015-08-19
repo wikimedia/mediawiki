@@ -803,7 +803,7 @@
 	"listgrouprights-addgroup-all": "Heme grubu ilawe ke",
 	"listgrouprights-removegroup-all": "Heme grubu wedare",
 	"emailuser": "Nê karberi rê e-poste bırusne",
-	"emailpage": "Karberi rê e-poste bırusne",
+	"emailuser-title-notarget": "Karberi rê e-poste bırusne",
 	"emailfrom": "Kami ra:",
 	"emailto": "Kami rê:",
 	"emailsubject": "Mewzu:",

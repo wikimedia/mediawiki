@@ -849,7 +849,7 @@
 	"listgrouprights-rights": "Dirits",
 	"listgrouprights-members": "(liste dai membris)",
 	"emailuser": "Messaç di pueste a chest utent",
-	"emailpage": "Mande un messaç di pueste eletroniche al utent",
+	"emailuser-title-notarget": "Mande un messaç di pueste eletroniche al utent",
 	"defemailsubject": "Messaç di {{SITENAME}}",
 	"noemailtitle": "Nissune direzion email",
 	"noemailtext": "Chest utent nol à specificât une direzion di pueste valide.",

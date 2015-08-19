@@ -230,7 +230,7 @@
 	"cachedspecial-viewing-cached-ttl": "Sie sehen die gecachte Version dieser Seite, die bis zu $1 alt sein kann.",
 	"cachedspecial-viewing-cached-ts": "Sie sehen die gecachte Version dieser Seite, die möglicherweise nicht aktuell ist.",
 	"mailnologintext": "Sie müssen [[Special:UserLogin|angemeldet sein]] und eine bestätigte E-Mail-Adresse in Ihren [[Special:Preferences|Einstellungen]] eingetragen haben, um anderen Benutzern E-Mails schicken zu können.",
-	"emailpagetext": "Sie können {{GENDER:$1|dem Benutzer|der Benutzerin}} mit dem unten stehenden Formular eine E-Mail senden.\nAls Absender wird die E-Mail-Adresse aus Ihren [[Special:Preferences|Einstellungen]] eingetragen, damit {{GENDER:$1|der Benutzer|die Benutzerin}} Ihnen direkt antworten kann.",
+	"emailuser-title-notargettext": "Sie können {{GENDER:$1|dem Benutzer|der Benutzerin}} mit dem unten stehenden Formular eine E-Mail senden.\nAls Absender wird die E-Mail-Adresse aus Ihren [[Special:Preferences|Einstellungen]] eingetragen, damit {{GENDER:$1|der Benutzer|die Benutzerin}} Ihnen direkt antworten kann.",
 	"emailccsubject": "Kopie Ihrer Nachricht an $1: $2",
 	"emailsenttext": "Ihre E-Mail wurde verschickt.",
 	"nowatchlist": "Es befinden sich keine Einträge auf Ihrer Beobachtungsliste.",

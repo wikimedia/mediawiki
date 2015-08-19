@@ -1509,7 +1509,7 @@
 	"emailuser": "ای کار زوروکئ ایمیل",
 	"emailuser-title-target": "ایمیل په {{GENDER:$1|کار زوروکا}}",
 	"emailuser-title-notarget": "کار زوروکی ایمیل",
-	"emailpage": "کار زوروکی ایمیل",
+	"emailuser-title-notarget": "کار زوروکی ایمیل",
 	"defemailsubject": "{{SITENAME}} ایمیل شه کار زوروکئ نیمگا «$1»",
 	"usermaildisabled": "کار زوروکئ ایمیل غیر پئال اینت",
 	"usermaildisabledtext": "شما نه توانیت ای ویکی تا په دیگه رین کارزوروکان ایمیل دیم دهیت.",

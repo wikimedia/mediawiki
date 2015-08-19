@@ -1152,7 +1152,7 @@
 	"mailnologintext": "Te gireke xwe [[Special:UserLogin|qeydbikê]] û adrêsa e-nameyan di [[Special:Preferences|tercihên xwe]] da nivîsandibe ji bo şandina e-nameyan ji bikarhênerên din ra.",
 	"emailuser": "Ji bikarhêner re e-name bişîne",
 	"emailuser-title-notarget": "E-nameyekê ji bikarhêner re bişîne",
-	"emailpage": "E-nameya bikarhêner",
+	"emailuser-title-notarget": "E-nameya bikarhêner",
 	"defemailsubject": "{{SITENAME}} e-name",
 	"noemailtitle": "Navnîşana e-name tune",
 	"emailusername": "Navê bikarhêner:",

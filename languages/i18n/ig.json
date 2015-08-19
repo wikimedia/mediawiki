@@ -780,7 +780,7 @@
 	"listgrouprights-addgroup": "Gbàkọ {{PLURAL:$2|ọtú|ọtú}}: $1",
 	"listgrouprights-addgroup-all": "Tìnyé ọtú nílé",
 	"emailuser": "Zi onye á ózí-nsónùsòrò",
-	"emailpage": "Mé ọ'bànifé e-mailù",
+	"emailuser-title-notarget": "Mé ọ'bànifé e-mailù",
 	"defemailsubject": "e-mail {{SITENAME}}",
 	"emailfrom": "Onye banyere ya:",
 	"emailto": "Onye o gi ru:",

@@ -931,7 +931,7 @@
 	"mailnologin": "Nişonae az firistanda vuçud nadorad",
 	"mailnologintext": "Baroi firistodani poctai elektronī baroi korbaroni digar bojad [[Special:UserLogin|ba sistem vorid şaved]] va nişonai poctai elektroniji mū'tabar dar [[Special:Preferences|tarçihoti]] xud doşta boşed.",
 	"emailuser": "Firistodani email ba in korbar",
-	"emailpage": "Poctai elektronī ba korbar",
+	"emailuser-title-notarget": "Poctai elektronī ba korbar",
 	"defemailsubject": "Vikipedia e-mail",
 	"noemailtitle": "Nişonai poctai elektronī mavçud nest",
 	"emailfrom": "Az:",

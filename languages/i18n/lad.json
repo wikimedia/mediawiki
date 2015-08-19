@@ -781,7 +781,7 @@
 	"emailuser": "Embia korreo elektroniko a este usuario",
 	"emailuser-title-target": "Embiar un korreo elektroniko a {{Gender:$1|este usuario|esta usuaria}}",
 	"emailuser-title-notarget": "Embiar un korreo elektroniko a un usuario",
-	"emailpage": "Embiar un korreo elektroniko a un usuario",
+	"emailuser-title-notarget": "Embiar un korreo elektroniko a un usuario",
 	"defemailsubject": "Korreo elektroniko del usuario \"$1\" de {{SITENAME}}",
 	"emailusername": "Nombre de usuario:",
 	"emailfrom": "De:",

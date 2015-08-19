@@ -838,7 +838,7 @@
 	"mailnologin": "Ma'jiro cinwaan wax lagu diro",
 	"mailnologintext": "Waa in aad [[Special:UserLogin|gudaha ku jirtaa]]\nkuna haysatid E-boosto sax ah [[Special:Preferences|dooqyadaada]],\nsi aad ugu dirto E-boosto isticmaalayaasha kale.",
 	"emailuser": "E-mail u dir isticmaalahaan",
-	"emailpage": "Isticmaalaha e-mailka",
+	"emailuser-title-notarget": "Isticmaalaha e-mailka",
 	"noemailtitle": "Malahan cinwaan E-mail",
 	"emailfrom": "Ka socoto:",
 	"emailto": "Ku:",

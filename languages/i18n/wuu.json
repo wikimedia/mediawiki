@@ -1094,7 +1094,7 @@
 	"listgrouprights-members": "（成员列表）",
 	"emailuser": "发电子信畀箇个用户",
 	"emailuser-title-notarget": "郵箱用戶",
-	"emailpage": "郵箱用戶",
+	"emailuser-title-notarget": "郵箱用戶",
 	"emailfrom": "從",
 	"emailto": "發畀",
 	"emailsubject": "主題",

@@ -517,7 +517,7 @@
 	"listusers-submit": "Kamukile",
 	"listusers-noresult": "Ni-di sebelu.",
 	"emailuser": "Imeli bye sebelu",
-	"emailpage": "Imeli sebelu",
+	"emailuser-title-notarget": "Imeli sebelu",
 	"defemailsubject": "{{SITENAME}} meli",
 	"noemailtitle": "Ni meli adresi",
 	"noemailtext": "Bye sebelu ni sa meli adresi,\ndicon sa sosize ni sa meli di kupo sebelu.",

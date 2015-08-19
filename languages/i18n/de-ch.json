@@ -173,7 +173,7 @@
 	"post-expand-template-inclusion-category-desc": "Nach dem Expandieren aller Vorlagen ist die Seitengrösse grösser als <code>$wgMaxArticleSize</code>, sodass einige Vorlagen nicht expandiert werden.",
 	"post-expand-template-argument-category-desc": "Nach dem Expandieren eines Vorlagenargumentes (etwas in dreifach geschweiften Klammern, z.&nbsp;B. <code>{{{Foo}}})</code> ist die Seite grösser als <code>$wgMaxArticleSize</code>.",
 	"hidden-category-category-desc": "Dies ist eine Kategorie mit <code><nowiki>__HIDDENCAT__</nowiki></code>, die standardmässig nicht auf Seiten im Kategorienbereich angezeigt wird.",
-	"emailpagetext": "Du kannst {{GENDER:$1|dem Benutzer|der Benutzerin}} mit dem unten stehenden Formular ein E-Mail senden.\nAls Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellungen]] eingetragen, damit {{GENDER:$1|der Benutzer|die Benutzerin}} dir direkt antworten kann.",
+	"emailuser-title-notargettext": "Du kannst {{GENDER:$1|dem Benutzer|der Benutzerin}} mit dem unten stehenden Formular ein E-Mail senden.\nAls Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellungen]] eingetragen, damit {{GENDER:$1|der Benutzer|die Benutzerin}} dir direkt antworten kann.",
 	"defemailsubject": "{{SITENAME}} - E-Mail von Benutzer «$1»",
 	"emailnotarget": "Nicht vorhandener oder ungültiger Benutzername für den Empfang eines E-Mails.",
 	"emailccme": "Sende eine Kopie des E-Mails an mich",

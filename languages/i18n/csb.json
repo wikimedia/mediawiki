@@ -632,7 +632,7 @@
 	"linksearch": "Bùtnowé lënczi",
 	"listgrouprights-members": "(lësta nôlëżników karna)",
 	"emailuser": "Wëslë e-maila do negò brëkòwnika",
-	"emailpage": "Sélajë e-mail do brëkòwnika",
+	"emailuser-title-notarget": "Sélajë e-mail do brëkòwnika",
 	"defemailsubject": "E-mail òd {{SITENAME}}",
 	"noemailtitle": "Felënk email-adresë",
 	"emailfrom": "Òd:",

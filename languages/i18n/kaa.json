@@ -926,7 +926,7 @@
 	"listgrouprights-removegroup-all": "Barlıq toparlardı o'shiriwi mu'mkin",
 	"mailnologin": "Jiberiwge adres tabılmadı",
 	"emailuser": "Xat jiberiw",
-	"emailpage": "Paydalanıwshıg'a e-mail jiberiw",
+	"emailuser-title-notarget": "Paydalanıwshıg'a e-mail jiberiw",
 	"defemailsubject": "{{SITENAME}} e-mail",
 	"noemailtitle": "E-mail adresi joq",
 	"email-legend": "Basqa {{SITENAME}} paydalanıwshısına xat jiberiw",
