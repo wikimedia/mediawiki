@@ -202,14 +202,27 @@ abstract class LBFactory {
 	}
 
 	/**
-	 * Detemine if any master connection has pending changes.
-	 * @since 1.23
+	 * Determine if any master connection has pending changes
 	 * @return bool
+	 * @since 1.23
 	 */
 	public function hasMasterChanges() {
 		$ret = false;
 		$this->forEachLB( function ( LoadBalancer $lb ) use ( &$ret ) {
 			$ret = $ret || $lb->hasMasterChanges();
+		} );
+		return $ret;
+	}
+
+	/**
+	 * Determine if any master connection has pending/written changes from this request
+	 * @return bool
+	 * @since 1.26
+	 */
+	public function hasOrMadeRecentMasterChanges() {
+		$ret = false;
+		$this->forEachLB( function ( LoadBalancer $lb ) use ( &$ret ) {
+			$ret = $ret || $lb->hasOrMadeRecentMasterChanges();
 		} );
 		return $ret;
 	}
