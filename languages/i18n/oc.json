@@ -1652,7 +1652,6 @@
 	"emailuser": "Mandar un messatge a aqueste utilizaire",
 	"emailuser-title-target": "Mandar un corrièl a {{GENDER:$1|aqueste utilizaire|aquesta utilizaira}}",
 	"emailuser-title-notarget": "Mandar un corrièr electronic a l’utilizaire",
-	"emailpage": "Mandar un corrièr electronic a l’utilizaire",
 	"emailpagetext": "Podètz utilizar lo formulari çaijós per mandar un corrièr electronic a {{GENDER:$1|aqueste utilizaire|aquesta utilizaira}}.\nL'adreça electronica qu'avètz indicada dins [[Special:Preferences|vòstras preferéncias]] apareisserà dins lo camp « Expeditor » de vòstre messatge. E mai, lo destinatari vos poirà respondre dirèctament.",
 	"defemailsubject": "{{SITENAME}} Corrièl de l'utilizaire « $1 »",
 	"usermaildisabled": "Lo mandadís de corrièrs electronics entre utilizairers es desactivat",

@@ -1229,7 +1229,6 @@
 	"emailuser": "E-Mail an dissen Bruker",
 	"emailuser-title-target": "Email düss {{GENDER:$1|user}}",
 	"emailuser-title-notarget": "E-Mail an Bruker",
-	"emailpage": "E-Mail an Bruker",
 	"emailpagetext": "Du kannst dissen Bruker mit dit Formular en E-Mail tostüren. As Afsenner warrt de E-Mail-Adress ut dien [[Special:Preferences|Instellen]] indragen, dat de Bruker di antern kann.",
 	"defemailsubject": "{{SITENAME}} E-Mail",
 	"usermaildisabled": "E-Mails an Brukers utstellt",

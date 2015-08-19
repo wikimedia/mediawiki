@@ -1020,7 +1020,6 @@
 	"mailnologin": "Meke mane",
 	"mailnologintext": "Rin gotil [[Special:UserLogin|dogluyarakiraf]]\nis bazeyes va wadafe internetmane ko rinaf [[Special:Preferences|lodamaceem]]\nta da pu ar favesik rostaksal.",
 	"emailuser": "Staksara va bat favesik",
-	"emailpage": "E-mail staksara va tel favesik",
 	"emailpagetext": "Si cet utilisateur a indiqué une adresse électronique valide dans ses préférences, le formulaire ci-dessous lui enverra un message.\nL'adresse électronique que vous avez indiquée dans vos préférences apparaîtra dans le champ « Expéditeur » de votre message afin que le destinataire puisse vous répondre.",
 	"defemailsubject": "internettwa staksayana mal {{SITENAME}}",
 	"noemailtitle": "Me internetmane",

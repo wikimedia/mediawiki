@@ -1061,7 +1061,6 @@
 	"mailnologin": "Olõ-i saatja aadrõssit",
 	"mailnologintext": "Sa piät olõma [[Special:UserLogin|nimega sisse lännüq]]\nja sul piät umin [[Special:Preferences|säädmiisin]] olõma e-postiaadrõs, et sa saasiq tõisilõ pruukjilõ e-kirjo saataq.",
 	"emailuser": "Kirodaq taalõ pruukjalõ e-kiri",
-	"emailpage": "Kirodaq pruukjalõ e-kiri",
 	"emailpagetext": "Ku taa pruukja om ummi säädmiisihe pandnuq uma tüütävä e-postiaadrõsi, saa taa vormi abiga tälle saataq üte kirä. Kirän jääs nätäq saatja aadrõs, et kirä saaja saanuq kiräle vastadaq.",
 	"defemailsubject": "{{SITENAME}} e-post",
 	"noemailtitle": "Olõ-i e-postiaadrõssit",

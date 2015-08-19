@@ -1666,7 +1666,6 @@
 	"emailuser": "Hantum goykaa woo se",
 	"emailuser-title-target": "Hantum {GENDER:$1|user}} woo se",
 	"emailuser-title-notarget": "Bataga goykaw",
-	"emailpage": "Bataga goykaw",
 	"emailpagetext": "War ga hin ka ganda takaddaa zaa ka bataga sanba {{GENDER:$1|goykaw}} se.\nBataga aderesoo kaŋ war n'a dam [[Special:Preferences|your user preferences]] ra mma bangay sanda \"From\" bataga aderesu, adiši duukaa ga hin ka war zaabi nga boŋ se.",
 	"defemailsubject": "{{SITENAME}} bataga kan hun \"$1\" do",
 	"usermaildisabled": "Goykaw bataga ši koy",

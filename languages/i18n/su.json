@@ -1494,7 +1494,6 @@
 	"mailnologin": "Euweuh alamat ngirim",
 	"mailnologintext": "Anjeun kudu '''[[Special:UserLogin|asup log]]''' sarta boga alamat surélék nu sah na [[Special:Preferences|préferénsi]] anjeun sangkan bisa nyurélékan pamaké séjén.",
 	"emailuser": "Surélékan pamaké ieu",
-	"emailpage": "Surélékan pamaké",
 	"emailpagetext": "Anjeun bisa maké formulir di handap pikeun ngirim surélék ka ieu pamaké.\nAlamat surélék nu diasupkeun kana [[Special:Preferences|préferénsi pamaké anjeun]] bakal katémbong salaku alamat \"Ti\" dina surélékna, sahingga nu dituju bisa males langsung.",
 	"defemailsubject": "Surélék {{SITENAME}} ti pamaké \"$1\"",
 	"usermaildisabled": "Surélék kontributor ditumpurkeun",

@@ -1845,7 +1845,6 @@
 	"emailuser": "Enviar un mensaje de correo a {{GENDER:{{BASEPAGENAME}}|este usuario|esta usuaria}}",
 	"emailuser-title-target": "Enviar un mensaje a {{GENDER:$1|este usuario|esta usuaria}}",
 	"emailuser-title-notarget": "Enviar un correo electrónico al usuario",
-	"emailpage": "Enviar mensaje al usuario",
 	"emailpagetext": "Puedes usar el formulario de abajo para enviar un correo electrónico a {{GENDER:$1|este usuario|esta usuaria}}.\nLa dirección de correo electrónico que indicaste en [[Special:Preferences|tus preferencias de usuario]] aparecerá en el campo \"Remitente\" o \"De\" para que el destinatario pueda responderte.",
 	"defemailsubject": "Correo electrónico enviado por el usuario «$1» desde {{SITENAME}}",
 	"usermaildisabled": "Correo electrónico del usuario desactivado",

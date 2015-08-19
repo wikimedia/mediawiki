@@ -1628,7 +1628,6 @@
 	"emailuser": "Andefaso imailaka io mpikambana io",
 	"emailuser-title-target": "Handefa mailaka any amin'ity mpikambana ity{{GENDER:$1}}",
 	"emailuser-title-notarget": "Handefa imailaka an'ilay mpikambana",
-	"emailpage": "Andefaso imailaka io mpikambana io",
 	"emailpagetext": "Azonao ampiasaina io fôrmiolera eo ambany io mba handefa mailaka mankany amin'ny mpikambana $1. Ho ao amin'ny saha \"Mpandefa\" (Expéditeur) ny adiresy mailakao ka ho afaka hamaly anao avy hatrany ilay mpandray ny hafatra.",
 	"defemailsubject": "{{SITENAME}} Mailaky ny mpikambana \"$1\"",
 	"usermaildisabled": "Tsy azo mifandefa imailaka ny mpikambana",

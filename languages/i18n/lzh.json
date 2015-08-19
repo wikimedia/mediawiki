@@ -1388,7 +1388,6 @@
 	"mailnologin": "無驛",
 	"mailnologintext": "[[Special:UserLogin|登簿]]置郵，方可捎書。",
 	"emailuser": "捎君",
-	"emailpage": "捎書",
 	"emailpagetext": "表下捎焉，以郵制君。\n署[[Special:Preferences|子簿郵]]以候往返。",
 	"defemailsubject": "{{SITENAME}}來書",
 	"usermaildisabled": "無他人之郵",

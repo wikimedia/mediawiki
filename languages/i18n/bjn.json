@@ -1392,7 +1392,6 @@
 	"mailnologin": "Kadada alamat kirim",
 	"mailnologintext": "Pian musti [[Special:UserLogin|babuat log]] wan baisi sabuah alamat suril sah di [[Special:Preferences|kakatujuan]] Pian hagan mangirim suril ka papamuruk lain.",
 	"emailuser": "Suril pamakai",
-	"emailpage": "Surili pamakai",
 	"emailpagetext": "Pian kawa mamuruk purmulir di bawah hagan mangirim sabuah suril ka pamuruk ngini.\nAlamat sril Pian pintang [[Special:Preferences|kakatujuan pamuruk Pian]] akan cungul  sawagai \"Matan\" alamat suril, lalu-ai panarima akan kawa langsung mambalas ka Pian.",
 	"defemailsubject": "Suril {{SITENAME}} matan pamuruk \"$1\"",
 	"usermaildisabled": "Suril pamuruk dipajahakan",

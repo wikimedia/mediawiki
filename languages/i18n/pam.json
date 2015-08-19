@@ -972,7 +972,6 @@
 	"mailnologin": "Alang piparalan (no send address)",
 	"mailnologintext": "Kailangan [[Special:UserLogin|maka-login]] ka at maki gaganang e-mail address kareng kekang  [[Special:Preferences|pinili]] ba kang makaparalang e-mail kareng aliwang talagamit.",
 	"emailuser": "E-mail me ing talagamit a ini",
-	"emailpage": "E-mail talagamit",
 	"emailpagetext": "Nung atin yang gaganang e-mail address ketang kayang pinili ning talagamit (user preferences) ing talagamit a ini, magparla yang metung a mensahi ing form king lalam. Lunto ya ing e-mail address a sinulat mu ketang kekang pinili ning talagamit ketang  \"From\" address (\"ibat kang\") ning sulat, ba yang makapakibat itang miparalan.",
 	"defemailsubject": "e-mail ning {{SITENAME}}",
 	"noemailtitle": "Alang e-mail address",

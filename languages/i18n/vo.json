@@ -1236,7 +1236,6 @@
 	"mailnologin": "Ladet nonik ad sedön",
 	"mailnologintext": "Mutol [[Special:UserLogin|nunädön oli]] e labön ladeti leäktronik lonöföl pö [[Special:Preferences|buükams olik]] ad dalön sedön poti leäktronik gebanes votik.",
 	"emailuser": "Penön gebane at",
-	"emailpage": "Penön gebane",
 	"emailpagetext": "Kanol gebön fometi dono ad sedön penedi leäktronik gebane at. Ladet leäktronik in [[Special:Preferences|gebanabüukams olik]] opubon as fonät (el \"De:\") peneda, dat getan okanon gepenön ole.",
 	"defemailsubject": "Ladet leäktronik ela {{SITENAME}} de geban: \"$1\"",
 	"noemailtitle": "Ladet no dabinon",

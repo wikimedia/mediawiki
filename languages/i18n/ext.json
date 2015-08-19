@@ -989,7 +989,6 @@
 	"mailnologin": "Nu envial direción",
 	"mailnologintext": "Ebis estal [[Special:UserLogin|rutrau]]\ni tenel una direción d´email correta enas tus [[Special:Preferences|preferéncias]]\npa envial correus a otrus usuárius.",
 	"emailuser": "Envial un email a esti usuáriu",
-	"emailpage": "E-mail el usuáriu",
 	"emailpagetext": "Si esti usuáriu á escrebiu una direción email enas sus preferéncias, con el hormulariu d'embahu se l'enviará un mensahi.\nLa direción email qu'aigas escrebiu enas tus preferéncias apaicirá cumu remitenti el mensahi, d'esta horma, el destinatariu pudrá contestalti.",
 	"defemailsubject": "E-mail de {{SITENAME}}",
 	"noemailtitle": "Nu ai direción d´e-mail",

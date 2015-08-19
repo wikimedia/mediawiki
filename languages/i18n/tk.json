@@ -1270,7 +1270,6 @@
 	"mailnologin": "Iberer ýaly adres ýok",
 	"mailnologintext": "Başga ulanyjylara e-poçta ibermek üçin [[Special:UserLogin|sessiýaňyz açyk bolmaly]] hem-de [[Special:Preferences|ileri tutmalarda]] dogry bir e-poçta adresiňiz bolmalydyr.",
 	"emailuser": "Bu ulanyja e-poçta iber",
-	"emailpage": "Ulanyja e-poçta iber",
 	"emailpagetext": "Bu ulanyja e-poçta habarlaşygy ibermek üçin aşakdaky formdan peýdalanyp bilersiňiz.\n[[Special:Preferences|Ulanyjy ileri tutmalaryňyzda]] görkezen e-poçta adresiňiz e-poçtanyň \"Kimden\" adresinde peýda bolar, şeýlelikde kabul ediji size gönüden-göni jogap berip biler.",
 	"defemailsubject": "{{SITENAME}} e-poçtasy",
 	"usermaildisabled": "Ulanyjy e-poçtasy ýapyk",

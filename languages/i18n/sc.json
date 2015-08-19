@@ -1072,7 +1072,6 @@
 	"mailnologintext": "Depes èsser [[Special:UserLogin|identificadu (login)]] e àere registradu un'indiritzu email vàlidu in is [[Special:Preferences|preferèntzias tuas]] pro imbiare email a àteros impitadores.",
 	"emailuser": "Imbia una email a custu impitadore",
 	"emailuser-title-notarget": "Ispedi una email a s'impitadore",
-	"emailpage": "Ispedi una email a s'impitadore",
 	"emailpagetext": "Imprea su mòdulu a suta pro ispedire una email a custu impitadore.\nS'indiritzu chi as insertadu in is [[Special:Preferences|preferèntzias impitadore tuas]] at a pàrrere comente su chi at ispedidu sa e-mail, pro fàghere sa manera chi su destinatàriu ti respundat deretu.",
 	"defemailsubject": "Missada dae \"$1\", impitadore de {{SITENAME}}",
 	"noemailtitle": "Perunu indiritzu e-mail",

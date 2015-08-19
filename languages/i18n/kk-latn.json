@@ -934,7 +934,6 @@
 	"mailnologin": "Eş mekenjaý jöneltilgen joq",
 	"mailnologintext": "Basqa qatıswşığa xat jöneltw üşin [[Special:UserLogin|kirwiñiz]] kerek, jäne [[Special:Preferences|baptawıñızda]] jaramdı e-poşta jaýı bolwı jön.",
 	"emailuser": "Qatıswşığa xat jazw",
-	"emailpage": "Qatıswşığa xat jazw",
 	"emailpagetext": "Eger bul qatıswşı baptawlarında jaramdı e-poşta mekenjaýın engizse, tömendegi pişin arqılı buğan jalğız e-poşta xatın jöneltwge boladı.\nQatıswşı baptawıñızda engizgen e-poşta mekenjaýıñız «Kimnen» degen bas jolağında körinedi, sondıqtan xat alwşısı twra jawap bere aladı.",
 	"defemailsubject": "{{SITENAME}} e-poştasınıñ xatı",
 	"noemailtitle": "Eş e-poşta mekenjaýı joq",

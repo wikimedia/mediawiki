@@ -1578,7 +1578,6 @@
 	"emailuser": "E-suratan ining paragamit",
 	"emailuser-title-target": "E-surat kaining {{GENDER:$1|paragamit}}",
 	"emailuser-title-notarget": "E-surat na paragamit",
-	"emailpage": "E-suratan an parágamit",
 	"emailpagetext": "Ika makakagamit kan porma na yaon sa ibaba sa pagpadara nin mensahe na e-surat sa {{GENDER:$1|paragamit}}.\nAn e-surat na estada sa saimong pinaglaog sa [[Special:Preferences|saimong paragamit na mga kamuyahan]] ipapahiling bilang iyo an \"Gikan sa\" estada kan e-surat, kaya an resipiyente makakapagsimbag direkta mismo saimo.",
 	"defemailsubject": "{{SITENAME}} e-surat gikan sa paragamit \"$1\"",
 	"usermaildisabled": "Paragamit na e-surat pinagpundo",

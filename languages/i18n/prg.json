@@ -1118,7 +1118,6 @@
 	"mailnologin": "Ni ast adressi",
 	"mailnologintext": "Tu turri [[Special:UserLogin|enēitwei]] be turītun aktuālin e-mail adressin en twajamans [[Special:Preferences|pirminiskwans]] kāi tengīnlai e-mailins kitēimans tērpautajans.",
 	"emailuser": "Tenginnais e-mailin šismu tērpautajan",
-	"emailpage": "Tenginnais e-mailin tērpautaju",
 	"emailpagetext": "Tu mazzi tērpautun zemmaisin fōrmularan kāi tengīntun e-mail waīstin šismu tērpautaju.\nE-mail adressi kawīdan tū enpeisāi en [[Special:Preferences|twajjans pirminiskwans]] wīrst tikkusi en \"Ezze\" lāuku be gauwiks wīrst mazīwuns ti etrātwei entikriskai.",
 	"defemailsubject": "e-mail waīstis ezze {{SITENAME}}",
 	"noemailtitle": "Ni ast e-mail adressi",

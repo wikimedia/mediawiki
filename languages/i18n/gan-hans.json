@@ -912,7 +912,6 @@
 	"mailnologin": "冇email地址",
 	"mailnologintext": "倷要[[Special:UserLogin|登入]] 起同到倷𠮶[[Special:Preferences|参数设置]] 有只有效𠮶email才发得正email到别𠮶用户。",
 	"emailuser": "发email到个只用户",
-	"emailpage": "发email到用户",
 	"emailpagetext": "要系个只用户到佢𠮶参数设置页填哩有效𠮶email位置，下底𠮶表格会寄只信息到个只用户。\n倷到倷参数设置填𠮶email位置会显到email𠮶“发信人”个栏，咁样个只用户就回得正倷啰。",
 	"defemailsubject": "{{SITENAME}} 电子邮件",
 	"noemailtitle": "冇电子邮件地址",

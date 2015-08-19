@@ -355,7 +355,6 @@
     "mailnologin": "無E-mail地址",
     "mailnologintext": "您必須先[[Special:UserLogin|登入]]\n並在[[Special:Preferences|偏好設定]]\n中有一個有效的e-mail地址才可以E-mail其他使用者。",
     "emailuser": "E-mail該使用者",
-    "emailpage": "E-mail使用者",
     "emailpagetext": "如果該使用者已經在他或她的偏好設定頁中輸入了有效的e-mail地址，以下的表格將寄一個訊息給該使用者。您在您偏好設定中所輸入的e-mail地址將出現在郵件「發件人」一欄中，這樣該使用者就可以回覆您。",
     "noemailtext": "該使用者還沒有指定一個有效的e-mail地址，\n或者選擇不接受來自其他使用者的e-mail。",
     "emailfrom": "發件人",

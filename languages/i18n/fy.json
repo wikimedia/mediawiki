@@ -1298,7 +1298,6 @@
 	"mailnologintext": "Jo moatte [[Special:UserLogin|oanmelden]] wêze, en in jildich e-postadres [[Special:Preferences|ynsteld]] hawwe, om oan oare meidoggers e-post stjoere te kinnen.",
 	"emailuser": "E-mail meidogger",
 	"emailuser-title-notarget": "E-mail nei meidogger",
-	"emailpage": "E-mail nei meidogger",
 	"emailpagetext": "Fia dit berjocht kinne jo in e-mail oan dizze brûker ferstjoere.\nIt e-mailadres dat jo opjûn hawwe by [[Special:Preferences|jo foarkarren]] wurdt as ôfstjoerder  brûkt.\nDe ûntfanger kin dus daliks nei jo reagearje.",
 	"defemailsubject": "E-mail fan {{SITENAME}}-brûker \"$1\"",
 	"noemailtitle": "Gjin e-postadres",
