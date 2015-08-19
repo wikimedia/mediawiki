@@ -231,7 +231,7 @@ class MessageCache {
 	 * @throws MWException
 	 * @return bool
 	 */
-	function load( $code = false, $mode = null ) {
+	function load( $code = false, $mode = null, $locked = false ) {
 		global $wgUseLocalMessageCache;
 
 		if ( !is_string( $code ) ) {
@@ -327,7 +327,7 @@ class MessageCache {
 				# We need to call loadFromDB. Limit the concurrency to one process.
 				# This prevents the site from going down when the cache expires.
 				# Note that the slam-protection lock here is non-blocking.
-				if ( $this->loadFromDBWithLock( $code, $where ) ) {
+				if ( $locked ? $this->loadFromDB( $code ) : $this->loadFromDBWithLock( $code, $where ) ) {
 					$success = true;
 					break;
 				} elseif ( $staleCache ) {
@@ -345,7 +345,7 @@ class MessageCache {
 				} else {
 					$statusKey = wfMemcKey( 'messages', $code, 'status' );
 					$status = $this->mMemc->get( $statusKey );
-					if ( $status === 'error' ) {
+					if ( $status === 'error' || $locked ) {
 						# Disable cache
 						break;
 					} else {
@@ -558,7 +558,7 @@ class MessageCache {
 
 		$cacheKey = wfMemcKey( 'messages', $code );
 		$this->lock( $cacheKey );
-		$this->load( $code, self::FOR_UPDATE );
+		$this->load( $code, self::FOR_UPDATE, true );
 
 		$titleKey = wfMemcKey( 'messages', 'individual', $title );
 
