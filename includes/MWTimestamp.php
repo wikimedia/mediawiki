@@ -56,9 +56,12 @@ class MWTimestamp {
 	 *
 	 * @since 1.20
 	 *
-	 * @param bool|string $timestamp Timestamp to set, or false for current time
+	 * @param bool|string|int|float $timestamp Timestamp to set, or false for current time
 	 */
 	public function __construct( $timestamp = false ) {
+		if ( is_float( $timestamp ) ) {
+			$timestamp = (int)$timestamp;
+		}
 		$this->setTimestamp( $timestamp );
 	}
 
