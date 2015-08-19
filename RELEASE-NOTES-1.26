@@ -154,6 +154,7 @@ changes to languages because of Phabricator reports.
 * BREAKING CHANGE: mediawiki.legacy.ajax has been removed, following
   a lengthy deprecation period.
 * The ScopedPHPTimeout class was removed.
+* Removed maintenance script fixSlaveDesync.php.
 
 == Compatibility ==
 
