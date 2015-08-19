@@ -21,6 +21,7 @@ class WfTimestampTest extends MediaWikiTestCase {
 			array( -30281104, TS_MW, '19690115123456', 'Negative TS_UNIX to TS_MW' ),
 			array( $t, TS_UNIX, 979562096, 'TS_UNIX to TS_UNIX' ),
 			array( $t, TS_DB, '2001-01-15 12:34:56', 'TS_UNIX to TS_DB' ),
+			array( $t + .01, TS_MW, '20010115123456', 'TS_UNIX float to TS_MW' ),
 
 			array( $t, TS_ISO_8601_BASIC, '20010115T123456Z', 'TS_ISO_8601_BASIC to TS_DB' ),
 
