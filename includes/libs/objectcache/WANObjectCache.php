@@ -272,6 +272,8 @@ class WANObjectCache {
 	 */
 	final public function delete( $key, $ttl = self::HOLDOFF_TTL ) {
 		$key = self::VALUE_KEY_PREFIX . $key;
+		// Avoid indefinite key salting for sanity
+		$ttl = max( $ttl, 1 );
 		// Update the local cluster immediately
 		$ok = $this->cache->set( $key, self::PURGE_VAL_PREFIX . microtime( true ), $ttl );
 		// Publish the purge to all clusters
