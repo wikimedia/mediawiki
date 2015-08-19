@@ -1595,7 +1595,6 @@
 	"emailuser": "Kay ruraqman e-chaskita kachay",
 	"emailuser-title-target": "Kay {{GENDER:$1|ruraqman}} e-chaskita kachay",
 	"emailuser-title-notarget": "E-chaski kay ruraqman:",
-	"emailpage": "E-chaski kay ruraqman:",
 	"emailpagetext": "Kay uranpi kaq hunt'ana p'anqatam llamk'achiyta atinki kay {{GENDER:$1|ruraqman}} e-chaskita kachanaykipaq.\nQampa [[Special:Preferences|allinkachinaykikunapi]] qillqakamachisqayki imamaytaqa paqarinqa kachasqayki e-chaskipi chaskiqpa kutichisunaykita atinanpaq.",
 	"defemailsubject": "{{SITENAME}} p'anqamanta chaski \"$1\" sutiyuq ruraqmanta",
 	"usermaildisabled": "Ruraqpa e-chaskinqa hark'asqam",

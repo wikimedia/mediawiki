@@ -1157,7 +1157,6 @@
 	"emailuser": "ለዚህ/ች ሰው ኢሜል መላክ",
 	"emailuser-title-target": "{{GENDER:$1|ለዚህ|ለዚች}} አባል ኢ-ሜል መላክ",
 	"emailuser-title-notarget": "ወደ አባል ኢ-ሜል ለመላክ",
-	"emailpage": "ወደዚህ/ች አባል ኢ-ሜል ለመላክ",
 	"emailpagetext": "አባሉ በሳቸው «ምርጫዎች» ክፍል ተግባራዊ ኢ-ሜል አድራሻ ያስገቡ እንደሆነ፣ ከታች ያለው ማመልከቻ አንድን ደብዳቤ በቀጥታ ይልካቸዋል።\n\nተቀባዩም መልስ በቀጥታ ሊሰጡዎ እንዲችሉ፣ በእርስዎ «ምርጫዎች» ክፍል ያስገቡት ኢ-ሜል አድራሻ በደብዳቤዎ «From:» መስመር ይታይላቸዋል።",
 	"defemailsubject": "{{SITENAME}} Email / ኢ-ሜል",
 	"usermaildisabledtext": "በዚሁ ዊኪ ኢ-ሜል ለአባላት መላክ አይችሉም።",

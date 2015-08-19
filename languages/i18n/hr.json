@@ -1624,7 +1624,6 @@
 	"emailuser": "Pošalji mu e-poruku",
 	"emailuser-title-target": "Pošalji poruku {{GENDER:$1|suradniku|suradnici|suradniku}}",
 	"emailuser-title-notarget": "Pošalji e-poštu suradniku",
-	"emailpage": "Pošalji e-poštu suradniku",
 	"emailpagetext": "Možete koristiti ovaj obrazac za slanje elektroničke pošte {{GENDER:$1|suradniku|suradnici}}.\nE-mail adresa iz Vaših [[Special:Preferences|postavki]] nalazit će se u \"From\" polju poruke i primatelj će Vam moći izravno odgovoriti.",
 	"defemailsubject": "{{SITENAME}} e-mail od suradnika \"$1\"",
 	"usermaildisabled": "Suradnička e-pošta je onemogućena",

@@ -1585,7 +1585,6 @@
 	"emailuser": "n Bericht sturen",
 	"emailuser-title-target": "Disse {{GENDER:$1|gebruker}} n bericht sturen",
 	"emailuser-title-notarget": "Gebruker n bericht sturen",
-	"emailpage": "Gebruker n bericht sturen",
 	"emailpagetext": "Deur middel van dit formulier ku'j n bericht sturen naor disse {{GENDER:$1|gebruker}}.\nt Adres da'j op-egeven hebben bie [[Special:Preferences|joew veurkeuren]] zal as aofzender gebruukt wörden.\nDe ontvanger kan dus drek beantwoorden.",
 	"defemailsubject": "Bericht van {{SITENAME}}-gebruker \"$1\"",
 	"usermaildisabled": "n Persoonlik berichjen sturen geet niet.",

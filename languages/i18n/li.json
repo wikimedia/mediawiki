@@ -1409,7 +1409,6 @@
 	"mailnologin": "Gein e-mailadres bekènd veur deze gebroeker",
 	"mailnologintext": "De mos zien [[Special:UserLogin|aangemèld]] en 'n gèldig e-mailadres in bie dien [[Special:Preferences|veurkäöre]] höbbe ingevuld om mail nao anger gebroekers te sjture.",
 	"emailuser": "Sjik deze gebroeker 'nen e-mail",
-	"emailpage": "Sjik gebroeker 'nen e-mail",
 	"emailpagetext": "Es deze gebroeker e geljig e-mailadres haet opgegaeve den kint g'r via dit formuleer e berich sjikke. 't E-mailadres wat geer heet opgegeve bie eur [[Special:Preferences|veurkäöre]] zal es versjikker aangegaeve waere.\nDae kin dös drek reazjere.",
 	"defemailsubject": "E-mail van {{SITENAME}}-gebroeker \"$1\"",
 	"usermaildisabled": "Gebroeker e-mail oetgezatj.",

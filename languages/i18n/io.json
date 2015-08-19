@@ -720,7 +720,6 @@
 	"mailnologin": "Ne sendar adreso",
 	"mailnologintext": "Vu mustas [[Special:UserLogin|enirir]] e havar valida e-adreso en vua [[Special:Preferences|preferaji]] por sendar e-posto ad altra uzanti.",
 	"emailuser": "Sendar e-posto a ca uzanto",
-	"emailpage": "E-posto ad uzanto",
 	"defemailsubject": "E-posto di {{SITENAME}}",
 	"noemailtitle": "Ne esas e-adreso",
 	"emailfrom": "De:",

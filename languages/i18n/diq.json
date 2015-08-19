@@ -1626,7 +1626,6 @@
 	"emailuser": "Ena karberi rê mesac bırse",
 	"emailuser-title-target": "Na E-postaya {{GENDER:$1|karberi}}ya",
 	"emailuser-title-notarget": "E-postaya karberi",
-	"emailpage": "karberi re e-posta bırışê",
 	"emailpagetext": "Şıma şenê nê formê cêrêni nê {{GENDER:$1|karber}}i rê e-poste rıştış de bıgurenê.\n[[Special:Preferences|Tercihanê şımayê karberi]] de adresa e-posteya ke şıma daya, na adrese qısmê adresa e-postey de \"kami ra\" asena, no sebeb ra gırewtoğ şeno direkt cewab bıdero şıma.",
 	"defemailsubject": "\"$1\" ra e-postay {{SITENAME}} amê",
 	"usermaildisabled": "E-mailê karberani kafiliyeya",

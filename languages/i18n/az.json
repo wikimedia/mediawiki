@@ -1346,7 +1346,6 @@
 	"listgrouprights-removegroup-self-all": "Bütün qrupları öz hesabından çıxara bilər",
 	"mailnologin": "Ünvan yoxdur",
 	"emailuser": "İstifadəçiyə e-məktub göndər",
-	"emailpage": "İstifadəçiyə e-məktub yolla",
 	"defemailsubject": "\"$1\" adlı istifadəçidən {{SITENAME}} e-məktubu",
 	"usermaildisabled": "İstifadəçi e-maili işləmir",
 	"noemailtitle": "E-məktub ünvanı yoxdur",

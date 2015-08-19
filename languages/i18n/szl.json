@@ -1308,7 +1308,6 @@
 	"mailnologin": "Brak adresu",
 	"mailnologintext": "Muśyš śe [[Special:UserLogin|zalůgować]] i mjeć wpisany aktualny adres e-brif w swojich [[Special:Preferences|preferyncyjach]], coby můc wysuać e-brif do inkšygo užytkowńika.",
 	"emailuser": "Poślij tymu używoczowi e-brif",
-	"emailpage": "Wyślij e-brif do užytkowńika",
 	"emailpagetext": "Możesz użyć půńiższygo formularza, coby wysłać wjadůmość e-brif do tygo użytkowńika.\nAdres e-brifa, kery zostoł bez Ćebje wkludzůny we [[Special:Preferences|Twojich sztalowańach]], pojawi śe we polu „Uod”, bez cůż uodbjorca bydźe můg Ći uodpedźeć.",
 	"defemailsubject": "{{SITENAME}} - e-brif uod używacza \"$1\"",
 	"usermaildisabled": "E-brif używacza ńy załůnczony",

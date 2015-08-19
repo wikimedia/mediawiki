@@ -1468,7 +1468,6 @@
 	"emailuser": "Trametter in e-mail a quest utilisader",
 	"emailuser-title-target": "Trametta in e-mail a {{GENDER:$1|quest utilisader|questa utilisadra}}",
 	"emailuser-title-notarget": "Trametter in e-mail a l'utilisader",
-	"emailpage": "Trametter in e-mail a l'utilisader",
 	"emailpagetext": "Ti pos utilisar il formular sutvart per trametter in'e-mail a {{GENDER:$1|quest utilisader|questa utilisadra}}.\nL'adressa dad e-mail che ti has endatà en [[Special:Preferences|tias preferenzas]] vegn inditgada sco speditur da l'e-mail, uschia {{GENDER:$1|ch'il retschavider|che la retschavidra}} po rispunder directamain a tai.",
 	"defemailsubject": "{{SITENAME}} e-mail da l'utilisader \"$1\"",
 	"usermaildisabled": "Trametter e-mails è deactivà",

@@ -1456,7 +1456,6 @@
 	"emailuser": "Sūtīt e-pastu šim lietotājam",
 	"emailuser-title-target": "Nosūtīt e-pastu {{GENDER:$1|šim lietotājam|šai lietotājai}}",
 	"emailuser-title-notarget": "Sūtīt e-pastu lietotājam",
-	"emailpage": "Sūtīt e-pastu lietotājam",
 	"emailpagetext": "Ar šo veidni ir iespējams nosūtīt e-pastu šim {{GENDER:$1|lietotājam}}.\nTā e-pasta adrese, kuru tu esi norādījis [[Special:Preferences|savā izvēļu lapā]], parādīsies e-pasta \"From\" lauciņā, tādejādi saņēmējs varēs tev atbildēt.",
 	"defemailsubject": "{{SITENAME}} e-pasts no lietotāja \"$1\"",
 	"usermaildisabled": "Lietotāja e-pasts atslēgts",

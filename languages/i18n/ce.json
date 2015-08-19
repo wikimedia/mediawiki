@@ -1534,7 +1534,6 @@
 	"emailuser": "Декъашхочун хааман кехат",
 	"emailuser-title-target": "{{GENDER:$1|декъашхочунга}} электронан хаам базбар",
 	"emailuser-title-notarget": "Декъашхочунга кехат яздар",
-	"emailpage": "Декъашхочунга кехат яздар",
 	"emailpagetext": "ХӀокху агӀона гӀоьнца йиш ю {{GENDER:$1|декъашхочун}} электронан почте хаам бахьийта.\nХьоьга жоп лур ду ахьа [[Special:Preferences|хьайн гӀирса чу]] дӀаяздина долу адрес тӀе.",
 	"defemailsubject": "Хаам {{grammar:genitive|{{SITENAME}}}} чура бу",
 	"usermaildisabled": "Декъашхочун электронан пошт дӀаяйина ю",

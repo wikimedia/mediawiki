@@ -1216,7 +1216,6 @@
 	"emailuser": "Surel pangguno",
 	"emailuser-title-target": "Kirim surel ka {{GENDER:$1|panggun}} ko",
 	"emailuser-title-notarget": "Kirim surel",
-	"emailpage": "Kirim surel ka pangguno ko",
 	"emailpagetext": "Sanak dapek manggunoan formulir di bawah ko untuak mangirimkan surel ka {{GENDER:$1|pangguna}} ko.\nAlamaik surel nan Sanak masuakkan di [[Special:Preferences|pangaturan akun]] akan kalua sabagai alamaik \"Dari\" pado surel tasabuik, jadi panarimo dapek langsuang mambalehnyo.",
 	"usermaildisabled": "Surel pangguno non-aktif",
 	"emailtarget": "Masuakan namo pangguno nan ka manarimo surel",

@@ -993,7 +993,6 @@
 	"listgrouprights-removegroup-self-all": "မိမိ၏အကောင့်မှ အုပ်စုအားလုံးကို ဖယ်ရှားရန်",
 	"mailnologin": "ပို့ရန်လိပ်စာ မရှိပါ",
 	"emailuser": "ဤ​အ​သုံး​ပြု​သူ​အား​အီး​မေး​ပို့​ပါ​",
-	"emailpage": "အီးမေးအသုံးပြုသူ",
 	"defemailsubject": "{{SITENAME}} အီးမေး",
 	"usermaildisabled": "အသုံးပြုသူအီးမေးကို ပိတ်ထားသည်",
 	"noemailtitle": "အီးမေးလိပ်စာ မရှိပါ",

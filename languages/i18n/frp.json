@@ -1507,7 +1507,6 @@
 	"emailuser": "Lui mandar un mèssâjo",
 	"emailuser-title-target": "Mandar un mèssâjo a cet’utilisat{{GENDER:$1|or|rice}}",
 	"emailuser-title-notarget": "Mandar un mèssâjo a l’utilisator",
-	"emailpage": "Mandar un mèssâjo a l’utilisator",
 	"emailpagetext": "Vos pouede empleyér lo formulèro ce-desot por mandar un mèssâjo a cet’utilisat{{GENDER:$1|or|rice}}.\nL’adrèce èlèctronica que vos éd buchiêe dens voutres [[Special:Preferences|prèferences]] aparêtrat dedens lo champ « Èxpèdior » de voutron mèssâjo ; d’ense, lo dèstinatèro vos porrat rèpondre tot drêt.",
 	"defemailsubject": "Mèssâjo de {{SITENAME}} de l’utilisator « $1 »",
 	"usermaildisabled": "L’èxpèdicion de mèssâjos entre utilisators est dèsactivâye",

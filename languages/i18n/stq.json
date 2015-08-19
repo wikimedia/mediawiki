@@ -1322,7 +1322,6 @@
 	"mailnologin": "Du bäst nit anmälded.",
 	"mailnologintext": "Du moast [[Special:UserLogin|anmälded weese]] un sälwen ne [[Special:Preferences|gultige E-Mail-Adrässe]] anroat hääbe, uum uur Benutsere ne E-Mail tou seenden.",
 	"emailuser": "Seende E-Mail an dissen Benutser",
-	"emailpage": "E-mail an Benutser",
 	"emailpagetext": "Du koast dän Benutser mäd dän unner stoundene Formular ne E-Mail seende.\nAs Ouseender wäd ju E-Mail-Adresse uut dien [[Special:Preferences|Ienstaalengen]] iendrain, deermäd die Benutser die oantwoudje kon.",
 	"defemailsubject": "{{SITENAME}}-E-Mail",
 	"usermaildisabled": "E-Mail-Ämfangst deaktivierd",

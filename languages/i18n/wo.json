@@ -1114,7 +1114,6 @@
 	"mailnologin": "Amul benn mákkaan boo man a yónne bataaxal bi",
 	"mailnologintext": "Ngir man a yónney bataaxal laaj na nga [[Special:UserLogin|dugg]] te it am ab màkkaanub m-bataaxal bu baax ci say [[Special:Preferences|tànneef]].",
 	"emailuser": "Bind bii jëfandikukat",
-	"emailpage": "Yónne ab m-bataaxal bii jëfandikukat",
 	"defemailsubject": "M-bataaxalu {{SITENAME}}",
 	"noemailtitle": "Amul mákkaanub m-bataaxal",
 	"noemailtext": "Bii jëfandikukat joxewul ab màkkaanub m-bataaxal bu baax.",

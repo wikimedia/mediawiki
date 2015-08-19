@@ -1008,7 +1008,6 @@
 	"mailnologintext": "دیگر ارکان کو برقی خط ارسال کرنے کیلیۓ لازم ہے کہ آپ [[Special:UserLogin|داخل شدہ]] حالت میں ہوں اور آپ کی [[Special:Preferences|ترجیحات]] ایک درست برقی خط کا پتا درج ہو۔",
 	"emailuser": "صارف کو برقی خط لکھیں",
 	"emailuser-title-notarget": "ای میل صارف",
-	"emailpage": "صارف کو برقی خط لکھیں",
 	"defemailsubject": "{{SITENAME}} سے برقی خط",
 	"noemailtext": "اس صارف نے برقی خط کے لیے پتہ فراہم نہیں کیا، یا یہ چاہتا ہے کا اس سے کوئی صارف رابطہ نہ کرے۔",
 	"emailusername": "صارف نام:",

@@ -1500,7 +1500,6 @@
 	"emailuser": "Ẹ fi e-mail ránṣẹ́ sí oníṣe yìí",
 	"emailuser-title-target": "E-mail sí {{GENDER:$1|oníṣe}} yìí",
 	"emailuser-title-notarget": "E-mail sí oníṣe",
-	"emailpage": "E-mail sí oníṣe",
 	"emailpagetext": "Ẹ le lo fọ́ọ̀mù ìsàlẹ̀ yìí láti fi e-mail ránṣẹ́ sí {{GENDER:$1|oníṣe}} yìí.\nÀdírẹ́ẹ̀sì e-mail tí ẹ tìbọ sínú [[Special:Preferences|àwọn ìfẹ́ràn oníṣe yín]] yíò hàn bíi \"Láti\" àdírẹ́ẹ̀sì e-mail náà, kí agbaìránṣẹ́ ó le baà fi ìdáhùn ránṣẹ́ tààrà sí yín.",
 	"defemailsubject": "E-mail {{SITENAME}} látọwọ́ oníṣe \"$1\"",
 	"usermaildisabled": "Àdálẹ́kun e-mail oníṣe",

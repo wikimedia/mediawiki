@@ -1291,7 +1291,6 @@
 	"listgrouprights-removegroup-self-all": "Sab heitta poiš kaik gruppad ičeze sistemkirjutandaspäi",
 	"mailnologin": "Ei ole adresan oigendamižen täht",
 	"emailuser": "Oigeta e-kirjeine necile kävutajale",
-	"emailpage": "Kirjeine kävutajale",
 	"defemailsubject": "$1-kävutajan počt {{SITENAME}}-saitalpäi",
 	"usermaildisabled": "Kävutajan e-počt ei ole kävutamižes",
 	"noemailtitle": "Ei ole e-počtan adresad",
