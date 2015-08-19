@@ -377,6 +377,13 @@ class RecentChange {
 			/** @var $formatter RCFeedFormatter */
 			$formatter = is_object( $feed['formatter'] ) ? $feed['formatter'] : new $feed['formatter']();
 			$line = $formatter->getLine( $feed, $this, $actionComment );
+			if ( !$line ) {
+				// T109544
+				// If a feed formatter returns null, this will otherwise cause an
+				// error in at least RedisPubSubFeedEngine.
+				// Not sure where/how this should best be handled.
+				continue;
+			}
 
 			$engine->send( $feed, $line );
 		}
