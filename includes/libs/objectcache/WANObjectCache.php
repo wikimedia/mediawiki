@@ -258,7 +258,9 @@ class WANObjectCache {
 	 *
 	 * This instantiates a hold-off period where the key cannot be
 	 * written to avoid race conditions where dependent keys get updated
-	 * with a stale value (e.g. from a DB slave).
+	 * with a stale value (e.g. from a DB slave). This is implemented by
+	 * storing a special "tombstone" value at the cache key that this
+	 * class recognizes; get() calls will return false for the key.
 	 *
 	 * This should only be called when the underlying data (being cached)
 	 * changes in a significant way. If called twice on the same key, then
