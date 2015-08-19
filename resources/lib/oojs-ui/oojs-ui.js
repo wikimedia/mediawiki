@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.12.4
+ * OOjs UI v0.12.5
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-08-13T21:01:04Z
+ * Date: 2015-08-19T02:10:17Z
  */
 ( function ( OO ) {
 
@@ -196,6 +196,38 @@ OO.ui.debounce = function ( func, wait, immediate ) {
 		clearTimeout( timeout );
 		timeout = setTimeout( later, wait );
 	};
+};
+
+/**
+ * Proxy for `node.addEventListener( eventName, handler, true )`, if the browser supports it.
+ * Otherwise falls back to non-capturing event listeners.
+ *
+ * @param {HTMLElement} node
+ * @param {string} eventName
+ * @param {Function} handler
+ */
+OO.ui.addCaptureEventListener = function ( node, eventName, handler ) {
+	if ( node.addEventListener ) {
+		node.addEventListener( eventName, handler, true );
+	} else {
+		node.attachEvent( 'on' + eventName, handler );
+	}
+};
+
+/**
+ * Proxy for `node.removeEventListener( eventName, handler, true )`, if the browser supports it.
+ * Otherwise falls back to non-capturing event listeners.
+ *
+ * @param {HTMLElement} node
+ * @param {string} eventName
+ * @param {Function} handler
+ */
+OO.ui.removeCaptureEventListener = function ( node, eventName, handler ) {
+	if ( node.addEventListener ) {
+		node.removeEventListener( eventName, handler, true );
+	} else {
+		node.detachEvent( 'on' + eventName, handler );
+	}
 };
 
 /**
@@ -4389,7 +4421,7 @@ OO.ui.mixin.ButtonElement.prototype.onMouseDown = function ( e ) {
 	this.$element.addClass( 'oo-ui-buttonElement-pressed' );
 	// Run the mouseup handler no matter where the mouse is when the button is let go, so we can
 	// reliably remove the pressed class
-	this.getElementDocument().addEventListener( 'mouseup', this.onMouseUpHandler, true );
+	OO.ui.addCaptureEventListener( this.getElementDocument(), 'mouseup', this.onMouseUpHandler );
 	// Prevent change of focus unless specifically configured otherwise
 	if ( this.constructor.static.cancelButtonMouseDownEvents ) {
 		return false;
@@ -4408,7 +4440,7 @@ OO.ui.mixin.ButtonElement.prototype.onMouseUp = function ( e ) {
 	}
 	this.$element.removeClass( 'oo-ui-buttonElement-pressed' );
 	// Stop listening for mouseup, since we only needed this once
-	this.getElementDocument().removeEventListener( 'mouseup', this.onMouseUpHandler, true );
+	OO.ui.removeCaptureEventListener( this.getElementDocument(), 'mouseup', this.onMouseUpHandler );
 };
 
 /**
@@ -4439,7 +4471,7 @@ OO.ui.mixin.ButtonElement.prototype.onKeyDown = function ( e ) {
 	this.$element.addClass( 'oo-ui-buttonElement-pressed' );
 	// Run the keyup handler no matter where the key is when the button is let go, so we can
 	// reliably remove the pressed class
-	this.getElementDocument().addEventListener( 'keyup', this.onKeyUpHandler, true );
+	OO.ui.addCaptureEventListener( this.getElementDocument(), 'keyup', this.onKeyUpHandler );
 };
 
 /**
@@ -4454,7 +4486,7 @@ OO.ui.mixin.ButtonElement.prototype.onKeyUp = function ( e ) {
 	}
 	this.$element.removeClass( 'oo-ui-buttonElement-pressed' );
 	// Stop listening for keyup, since we only needed this once
-	this.getElementDocument().removeEventListener( 'keyup', this.onKeyUpHandler, true );
+	OO.ui.removeCaptureEventListener( this.getElementDocument(), 'keyup', this.onKeyUpHandler );
 };
 
 /**
@@ -5745,7 +5777,7 @@ OO.ui.mixin.LabelElement.prototype.setLabelContent = function ( label ) {
 };
 
 /**
- * LookupElement is a mixin that creates a {@link OO.ui.TextInputMenuSelectWidget menu} of suggested values for
+ * LookupElement is a mixin that creates a {@link OO.ui.FloatingMenuSelectWidget menu} of suggested values for
  * a {@link OO.ui.TextInputWidget text input widget}. Suggested values are based on the characters the user types
  * into the text input field and, in general, the menu is only displayed when the user types. If a suggested value is chosen
  * from the lookup menu, that value becomes the value of the input field.
@@ -5774,10 +5806,10 @@ OO.ui.mixin.LookupElement = function OoUiMixinLookupElement( config ) {
 
 	// Properties
 	this.$overlay = config.$overlay || this.$element;
-	this.lookupMenu = new OO.ui.TextInputMenuSelectWidget( this, {
+	this.lookupMenu = new OO.ui.FloatingMenuSelectWidget( {
 		widget: this,
 		input: this,
-		$container: config.$container
+		$container: config.$container || this.$element
 	} );
 
 	this.allowSuggestionsWhenEmpty = config.allowSuggestionsWhenEmpty || false;
@@ -5888,7 +5920,7 @@ OO.ui.mixin.LookupElement.prototype.onLookupMenuItemChoose = function ( item ) {
  * Get lookup menu.
  *
  * @private
- * @return {OO.ui.TextInputMenuSelectWidget}
+ * @return {OO.ui.FloatingMenuSelectWidget}
  */
 OO.ui.mixin.LookupElement.prototype.getLookupMenu = function () {
 	return this.lookupMenu;
@@ -7674,8 +7706,8 @@ OO.ui.ToolGroup.prototype.onMouseKeyDown = function ( e ) {
 		this.pressed = this.getTargetTool( e );
 		if ( this.pressed ) {
 			this.pressed.setActive( true );
-			this.getElementDocument().addEventListener( 'mouseup', this.onCapturedMouseKeyUpHandler, true );
-			this.getElementDocument().addEventListener( 'keyup', this.onCapturedMouseKeyUpHandler, true );
+			OO.ui.addCaptureEventListener( this.getElementDocument(), 'mouseup', this.onCapturedMouseKeyUpHandler );
+			OO.ui.addCaptureEventListener( this.getElementDocument(), 'keyup', this.onCapturedMouseKeyUpHandler );
 		}
 		return false;
 	}
@@ -7688,8 +7720,8 @@ OO.ui.ToolGroup.prototype.onMouseKeyDown = function ( e ) {
  * @param {Event} e Mouse up or key up event
  */
 OO.ui.ToolGroup.prototype.onCapturedMouseKeyUp = function ( e ) {
-	this.getElementDocument().removeEventListener( 'mouseup', this.onCapturedMouseKeyUpHandler, true );
-	this.getElementDocument().removeEventListener( 'keyup', this.onCapturedMouseKeyUpHandler, true );
+	OO.ui.removeCaptureEventListener( this.getElementDocument(), 'mouseup', this.onCapturedMouseKeyUpHandler );
+	OO.ui.removeCaptureEventListener( this.getElementDocument(), 'keyup', this.onCapturedMouseKeyUpHandler );
 	// onMouseKeyUp may be called a second time, depending on where the mouse is when the button is
 	// released, but since `this.pressed` will no longer be true, the second call will be ignored.
 	this.onMouseKeyUp( e );
@@ -8061,6 +8093,26 @@ OO.ui.MessageDialog.prototype.getSetupProcess = function ( data ) {
 /**
  * @inheritdoc
  */
+OO.ui.MessageDialog.prototype.getReadyProcess = function ( data ) {
+	data = data || {};
+
+	// Parent method
+	return OO.ui.MessageDialog.parent.prototype.getReadyProcess.call( this, data )
+		.next( function () {
+			// Focus the primary action button
+			var actions = this.actions.get();
+			actions = actions.filter( function ( action ) {
+				return action.getFlags().indexOf( 'primary' ) > -1;
+			} );
+			if ( actions.length > 0 ) {
+				actions[0].$button.focus();
+			}
+		}, this );
+};
+
+/**
+ * @inheritdoc
+ */
 OO.ui.MessageDialog.prototype.getBodyHeight = function () {
 	var bodyHeight, oldOverflow,
 		$scrollable = this.container.$element;
@@ -8137,6 +8189,7 @@ OO.ui.MessageDialog.prototype.attachActions = function () {
 
 	special = this.actions.getSpecial();
 	others = this.actions.getOthers();
+
 	if ( special.safe ) {
 		this.$actions.append( special.safe.$element );
 		special.safe.toggleFramed( false );
@@ -8574,12 +8627,19 @@ OO.ui.ProcessDialog.prototype.getTeardownProcess = function ( data ) {
  * @cfg {string|OO.ui.HtmlSnippet} [help] Help text. When help text is specified, a "help" icon will appear
  *  in the upper-right corner of the rendered field; clicking it will display the text in a popup.
  *  For important messages, you are advised to use `notices`, as they are always shown.
+ *
+ * @throws {Error} An error is thrown if no widget is specified
  */
 OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	// Allow passing positional parameters inside the config object
 	if ( OO.isPlainObject( fieldWidget ) && config === undefined ) {
 		config = fieldWidget;
 		fieldWidget = config.fieldWidget;
+	}
+
+	// Make sure we have required constructor arguments
+	if ( fieldWidget === undefined ) {
+		throw new Error( 'Widget not found' );
 	}
 
 	var hasInputWidget = fieldWidget.constructor.static.supportsSimpleLabel,
@@ -11081,8 +11141,8 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 	if ( this.active !== value ) {
 		this.active = value;
 		if ( value ) {
-			this.getElementDocument().addEventListener( 'mouseup', this.onBlurHandler, true );
-			this.getElementDocument().addEventListener( 'keyup', this.onBlurHandler, true );
+			OO.ui.addCaptureEventListener( this.getElementDocument(), 'mouseup', this.onBlurHandler );
+			OO.ui.addCaptureEventListener( this.getElementDocument(), 'keyup', this.onBlurHandler );
 
 			this.$clippable.css( 'left', '' );
 			// Try anchoring the popup to the left first
@@ -11110,8 +11170,8 @@ OO.ui.PopupToolGroup.prototype.setActive = function ( value ) {
 				} );
 			}
 		} else {
-			this.getElementDocument().removeEventListener( 'mouseup', this.onBlurHandler, true );
-			this.getElementDocument().removeEventListener( 'keyup', this.onBlurHandler, true );
+			OO.ui.removeCaptureEventListener( this.getElementDocument(), 'mouseup', this.onBlurHandler );
+			OO.ui.removeCaptureEventListener( this.getElementDocument(), 'keyup', this.onBlurHandler );
 			this.$element.removeClass(
 				'oo-ui-popupToolGroup-active oo-ui-popupToolGroup-left  oo-ui-popupToolGroup-right'
 			);
@@ -12724,10 +12784,11 @@ OO.ui.CapsuleMultiSelectWidget = function OoUiCapsuleMultiSelectWidget( config )
 	// Properties
 	this.allowArbitrary = !!config.allowArbitrary;
 	this.$overlay = config.$overlay || this.$element;
-	this.menu = new OO.ui.MenuSelectWidget( $.extend(
+	this.menu = new OO.ui.FloatingMenuSelectWidget( $.extend(
 		{
 			widget: this,
 			$input: this.$input,
+			$container: this.$element,
 			filterFromInput: true,
 			disabled: this.isDisabled()
 		},
@@ -13346,7 +13407,10 @@ OO.ui.CapsuleItemWidget.prototype.onCloseKeyDown = function ( e ) {
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {Object} [menu] Configuration options to pass to menu widget
+ * @cfg {Object} [menu] Configuration options to pass to {@link OO.ui.FloatingMenuSelectWidget menu select widget}
+ * @cfg {jQuery} [$overlay] Render the menu into a separate layer. This configuration is useful in cases where
+ *  the expanded menu is larger than its containing `<div>`. The specified overlay layer is usually on top of the
+ *  containing `<div>` and has a larger area. By default, the menu uses relative positioning.
  */
 OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 	// Configuration initialization
@@ -13357,6 +13421,7 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 
 	// Properties (must be set before TabIndexedElement constructor call)
 	this.$handle = this.$( '<span>' );
+	this.$overlay = config.$overlay || this.$element;
 
 	// Mixin constructors
 	OO.ui.mixin.IconElement.call( this, config );
@@ -13366,7 +13431,10 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 	OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, { $tabIndexed: this.$handle } ) );
 
 	// Properties
-	this.menu = new OO.ui.MenuSelectWidget( $.extend( { widget: this }, config.menu ) );
+	this.menu = new OO.ui.FloatingMenuSelectWidget( $.extend( {
+		widget: this,
+		$container: this.$element
+	}, config.menu ) );
 
 	// Events
 	this.$handle.on( {
@@ -13381,7 +13449,8 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 		.append( this.$icon, this.$label, this.$indicator );
 	this.$element
 		.addClass( 'oo-ui-dropdownWidget' )
-		.append( this.$handle, this.menu.$element );
+		.append( this.$handle );
+	this.$overlay.append( this.menu.$element );
 };
 
 /* Setup */
@@ -14924,7 +14993,7 @@ OO.ui.RadioSelectInputWidget.prototype.gatherPreInfuseState = function ( node ) 
  *  pattern defined by the class: 'non-empty' (the value cannot be an empty string) or 'integer'
  *  (the value must contain only numbers); when RegExp, a regular expression that must match the
  *  value for it to be considered valid; when Function, a function receiving the value as parameter
- *  that must return true, or promise that resolves, for it to be considered valid.
+ *  that must return true, or promise resolving to true, for it to be considered valid.
  */
 OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	// Configuration initialization
@@ -15605,7 +15674,7 @@ OO.ui.TextInputWidget.prototype.restorePreInfuseState = function ( state ) {
  *
  * @constructor
  * @param {Object} [config] Configuration options
- * @cfg {Object} [menu] Configuration options to pass to the {@link OO.ui.MenuSelectWidget menu select widget}.
+ * @cfg {Object} [menu] Configuration options to pass to the {@link OO.ui.FloatingMenuSelectWidget menu select widget}.
  * @cfg {Object} [input] Configuration options to pass to the {@link OO.ui.TextInputWidget text input widget}.
  * @cfg {jQuery} [$overlay] Render the menu into a separate layer. This configuration is useful in cases where
  *  the expanded menu is larger than its containing `<div>`. The specified overlay layer is usually on top of the
@@ -15638,10 +15707,11 @@ OO.ui.ComboBoxWidget = function OoUiComboBoxWidget( config ) {
 		role: 'combobox',
 		'aria-autocomplete': 'list'
 	} );
-	this.menu = new OO.ui.TextInputMenuSelectWidget( this.input, $.extend(
+	this.menu = new OO.ui.FloatingMenuSelectWidget( $.extend(
 		{
 			widget: this,
 			input: this.input,
+			$container: this.input.$element,
 			disabled: this.isDisabled()
 		},
 		config.menu
@@ -15677,7 +15747,7 @@ OO.mixinClass( OO.ui.ComboBoxWidget, OO.ui.mixin.TabIndexedElement );
 
 /**
  * Get the combobox's menu.
- * @return {OO.ui.TextInputMenuSelectWidget} Menu widget
+ * @return {OO.ui.FloatingMenuSelectWidget} Menu widget
  */
 OO.ui.ComboBoxWidget.prototype.getMenu = function () {
 	return this.menu;
@@ -16662,7 +16732,7 @@ OO.ui.PopupWidget.prototype.onMouseDown = function ( e ) {
  */
 OO.ui.PopupWidget.prototype.bindMouseDownListener = function () {
 	// Capture clicks outside popup
-	this.getElementWindow().addEventListener( 'mousedown', this.onMouseDownHandler, true );
+	OO.ui.addCaptureEventListener( this.getElementWindow(), 'mousedown', this.onMouseDownHandler );
 };
 
 /**
@@ -16682,7 +16752,7 @@ OO.ui.PopupWidget.prototype.onCloseButtonClick = function () {
  * @private
  */
 OO.ui.PopupWidget.prototype.unbindMouseDownListener = function () {
-	this.getElementWindow().removeEventListener( 'mousedown', this.onMouseDownHandler, true );
+	OO.ui.removeCaptureEventListener( this.getElementWindow(), 'mousedown', this.onMouseDownHandler );
 };
 
 /**
@@ -16708,7 +16778,7 @@ OO.ui.PopupWidget.prototype.onDocumentKeyDown = function ( e ) {
  * @private
  */
 OO.ui.PopupWidget.prototype.bindKeyDownListener = function () {
-	this.getElementWindow().addEventListener( 'keydown', this.onDocumentKeyDownHandler, true );
+	OO.ui.addCaptureEventListener( this.getElementWindow(), 'keydown', this.onDocumentKeyDownHandler );
 };
 
 /**
@@ -16717,7 +16787,7 @@ OO.ui.PopupWidget.prototype.bindKeyDownListener = function () {
  * @private
  */
 OO.ui.PopupWidget.prototype.unbindKeyDownListener = function () {
-	this.getElementWindow().removeEventListener( 'keydown', this.onDocumentKeyDownHandler, true );
+	OO.ui.removeCaptureEventListener( this.getElementWindow(), 'keydown', this.onDocumentKeyDownHandler );
 };
 
 /**
@@ -17011,7 +17081,7 @@ OO.ui.ProgressBarWidget.prototype.setProgress = function ( progress ) {
 
 /**
  * SearchWidgets combine a {@link OO.ui.TextInputWidget text input field}, where users can type a search query,
- * and a {@link OO.ui.TextInputMenuSelectWidget menu} of search results, which is displayed beneath the query
+ * and a menu of search results, which is displayed beneath the query
  * field. Unlike {@link OO.ui.mixin.LookupElement lookup menus}, search result menus are always visible to the user.
  * Users can choose an item from the menu or type a query into the text field to search for a matching result item.
  * In general, search widgets are used inside a separate {@link OO.ui.Dialog dialog} window.
@@ -17299,15 +17369,15 @@ OO.ui.SelectWidget.prototype.onMouseDown = function ( e ) {
 		if ( item && item.isSelectable() ) {
 			this.pressItem( item );
 			this.selecting = item;
-			this.getElementDocument().addEventListener(
+			OO.ui.addCaptureEventListener(
+				this.getElementDocument(),
 				'mouseup',
-				this.onMouseUpHandler,
-				true
+				this.onMouseUpHandler
 			);
-			this.getElementDocument().addEventListener(
+			OO.ui.addCaptureEventListener(
+				this.getElementDocument(),
 				'mousemove',
-				this.onMouseMoveHandler,
-				true
+				this.onMouseMoveHandler
 			);
 		}
 	}
@@ -17336,16 +17406,10 @@ OO.ui.SelectWidget.prototype.onMouseUp = function ( e ) {
 		this.selecting = null;
 	}
 
-	this.getElementDocument().removeEventListener(
-		'mouseup',
-		this.onMouseUpHandler,
-		true
-	);
-	this.getElementDocument().removeEventListener(
-		'mousemove',
-		this.onMouseMoveHandler,
-		true
-	);
+	OO.ui.removeCaptureEventListener( this.getElementDocument(), 'mouseup',
+		this.onMouseUpHandler );
+	OO.ui.removeCaptureEventListener( this.getElementDocument(), 'mousemove',
+		this.onMouseMoveHandler );
 
 	return false;
 };
@@ -17465,7 +17529,7 @@ OO.ui.SelectWidget.prototype.onKeyDown = function ( e ) {
  * @protected
  */
 OO.ui.SelectWidget.prototype.bindKeyDownListener = function () {
-	this.getElementWindow().addEventListener( 'keydown', this.onKeyDownHandler, true );
+	OO.ui.addCaptureEventListener( this.getElementWindow(), 'keydown', this.onKeyDownHandler );
 };
 
 /**
@@ -17474,7 +17538,7 @@ OO.ui.SelectWidget.prototype.bindKeyDownListener = function () {
  * @protected
  */
 OO.ui.SelectWidget.prototype.unbindKeyDownListener = function () {
-	this.getElementWindow().removeEventListener( 'keydown', this.onKeyDownHandler, true );
+	OO.ui.removeCaptureEventListener( this.getElementWindow(), 'keydown', this.onKeyDownHandler );
 };
 
 /**
@@ -17583,7 +17647,7 @@ OO.ui.SelectWidget.prototype.getItemMatcher = function ( s, exact ) {
  * @protected
  */
 OO.ui.SelectWidget.prototype.bindKeyPressListener = function () {
-	this.getElementWindow().addEventListener( 'keypress', this.onKeyPressHandler, true );
+	OO.ui.addCaptureEventListener( this.getElementWindow(), 'keypress', this.onKeyPressHandler );
 };
 
 /**
@@ -17595,7 +17659,7 @@ OO.ui.SelectWidget.prototype.bindKeyPressListener = function () {
  * @protected
  */
 OO.ui.SelectWidget.prototype.unbindKeyPressListener = function () {
-	this.getElementWindow().removeEventListener( 'keypress', this.onKeyPressHandler, true );
+	OO.ui.removeCaptureEventListener( this.getElementWindow(), 'keypress', this.onKeyPressHandler );
 	this.clearKeyPressBuffer();
 };
 
@@ -18399,16 +18463,12 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 
 			// Auto-hide
 			if ( this.autoHide ) {
-				this.getElementDocument().addEventListener(
-					'mousedown', this.onDocumentMouseDownHandler, true
-				);
+				OO.ui.addCaptureEventListener( this.getElementDocument(), 'mousedown', this.onDocumentMouseDownHandler );
 			}
 		} else {
 			this.unbindKeyDownListener();
 			this.unbindKeyPressListener();
-			this.getElementDocument().removeEventListener(
-				'mousedown', this.onDocumentMouseDownHandler, true
-			);
+			OO.ui.removeCaptureEventListener( this.getElementDocument(), 'mousedown', this.onDocumentMouseDownHandler );
 			this.toggleClipping( false );
 		}
 	}
@@ -18417,21 +18477,27 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 };
 
 /**
- * TextInputMenuSelectWidget is a menu that is specially designed to be positioned beneath
- * a {@link OO.ui.TextInputWidget text input} field. The menu's position is automatically
- * calculated and maintained when the menu is toggled or the window is resized.
+ * FloatingMenuSelectWidget is a menu that will stick under a specified
+ * container, even when it is inserted elsewhere in the document (for example,
+ * in a OO.ui.Window's $overlay). This is sometimes necessary to prevent the
+ * menu from being clipped too aggresively.
+ *
+ * The menu's position is automatically calculated and maintained when the menu
+ * is toggled or the window is resized.
+ *
  * See OO.ui.ComboBoxWidget for an example of a widget that uses this class.
  *
  * @class
  * @extends OO.ui.MenuSelectWidget
  *
  * @constructor
- * @param {OO.ui.TextInputWidget} inputWidget Text input widget to provide menu for
+ * @param {OO.ui.Widget} [inputWidget] Widget to provide the menu for.
+ *   Deprecated, omit this parameter and specify `$container` instead.
  * @param {Object} [config] Configuration options
- * @cfg {jQuery} [$container=input.$element] Element to render menu under
+ * @cfg {jQuery} [$container=inputWidget.$element] Element to render menu under
  */
-OO.ui.TextInputMenuSelectWidget = function OoUiTextInputMenuSelectWidget( inputWidget, config ) {
-	// Allow passing positional parameters inside the config object
+OO.ui.FloatingMenuSelectWidget = function OoUiFloatingMenuSelectWidget( inputWidget, config ) {
+	// Allow 'inputWidget' parameter and config for backwards compatibility
 	if ( OO.isPlainObject( inputWidget ) && config === undefined ) {
 		config = inputWidget;
 		inputWidget = config.inputWidget;
@@ -18441,20 +18507,25 @@ OO.ui.TextInputMenuSelectWidget = function OoUiTextInputMenuSelectWidget( inputW
 	config = config || {};
 
 	// Parent constructor
-	OO.ui.TextInputMenuSelectWidget.parent.call( this, config );
+	OO.ui.FloatingMenuSelectWidget.parent.call( this, config );
 
 	// Properties
-	this.inputWidget = inputWidget;
+	this.inputWidget = inputWidget; // For backwards compatibility
 	this.$container = config.$container || this.inputWidget.$element;
 	this.onWindowResizeHandler = this.onWindowResize.bind( this );
 
 	// Initialization
+	this.$element.addClass( 'oo-ui-floatingMenuSelectWidget' );
+	// For backwards compatibility
 	this.$element.addClass( 'oo-ui-textInputMenuSelectWidget' );
 };
 
 /* Setup */
 
-OO.inheritClass( OO.ui.TextInputMenuSelectWidget, OO.ui.MenuSelectWidget );
+OO.inheritClass( OO.ui.FloatingMenuSelectWidget, OO.ui.MenuSelectWidget );
+
+// For backwards compatibility
+OO.ui.TextInputMenuSelectWidget = OO.ui.FloatingMenuSelectWidget;
 
 /* Methods */
 
@@ -18464,14 +18535,14 @@ OO.inheritClass( OO.ui.TextInputMenuSelectWidget, OO.ui.MenuSelectWidget );
  * @private
  * @param {jQuery.Event} e Window resize event
  */
-OO.ui.TextInputMenuSelectWidget.prototype.onWindowResize = function () {
+OO.ui.FloatingMenuSelectWidget.prototype.onWindowResize = function () {
 	this.position();
 };
 
 /**
  * @inheritdoc
  */
-OO.ui.TextInputMenuSelectWidget.prototype.toggle = function ( visible ) {
+OO.ui.FloatingMenuSelectWidget.prototype.toggle = function ( visible ) {
 	visible = visible === undefined ? !this.isVisible() : !!visible;
 
 	var change = visible !== this.isVisible();
@@ -18484,7 +18555,7 @@ OO.ui.TextInputMenuSelectWidget.prototype.toggle = function ( visible ) {
 	}
 
 	// Parent method
-	OO.ui.TextInputMenuSelectWidget.parent.prototype.toggle.call( this, visible );
+	OO.ui.FloatingMenuSelectWidget.parent.prototype.toggle.call( this, visible );
 
 	if ( change ) {
 		if ( this.isVisible() ) {
@@ -18504,7 +18575,7 @@ OO.ui.TextInputMenuSelectWidget.prototype.toggle = function ( visible ) {
  * @private
  * @chainable
  */
-OO.ui.TextInputMenuSelectWidget.prototype.position = function () {
+OO.ui.FloatingMenuSelectWidget.prototype.position = function () {
 	var $container = this.$container,
 		pos = OO.ui.Element.static.getRelativePosition( $container, this.$element.offsetParent() );
 
