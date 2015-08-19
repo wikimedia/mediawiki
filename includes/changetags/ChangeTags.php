@@ -153,8 +153,10 @@ class ChangeTags {
 	 *
 	 * @since 1.25
 	 */
-	public static function updateTags( $tagsToAdd, $tagsToRemove, &$rc_id = null,
-		&$rev_id = null, &$log_id = null, $params = null ) {
+	public static function updateTags(
+		$tagsToAdd, $tagsToRemove,
+		&$rc_id = null, &$rev_id = null, &$log_id = null, $params = null
+	) {
 
 		$tagsToAdd = array_filter( (array)$tagsToAdd ); // Make sure we're submitting all tags...
 		$tagsToRemove = array_filter( (array)$tagsToRemove );
@@ -169,18 +171,28 @@ class ChangeTags {
 		// Might as well look for rcids and so on.
 		if ( !$rc_id ) {
 			// Info might be out of date, somewhat fractionally, on slave.
+			// LogEntry/LogPage and WikiPage match rev/log/rc timestamps,
+			// so use that relation to avoid full table scans.
 			if ( $log_id ) {
 				$rc_id = $dbw->selectField(
-					'recentchanges',
+					array( 'logging', 'recentchanges' ),
 					'rc_id',
-					array( 'rc_logid' => $log_id ),
+					array(
+						'log_id' => $log_id,
+						'rc_timestamp = log_timestamp',
+						'rc_logid = log_id'
+					),
 					__METHOD__
 				);
 			} elseif ( $rev_id ) {
 				$rc_id = $dbw->selectField(
-					'recentchanges',
+					array( 'revision', 'recentchanges' ),
 					'rc_id',
-					array( 'rc_this_oldid' => $rev_id ),
+					array(
+						'rev_id' => $rev_id,
+						'rc_timestamp = rev_timestamp',
+						'rc_this_oldid = rev_id'
+					),
 					__METHOD__
 				);
 			}
