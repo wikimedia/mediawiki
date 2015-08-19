@@ -277,7 +277,7 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	 * @param string $key
 	 * @param int $timeout Lock wait timeout; 0 for non-blocking [optional]
 	 * @param int $expiry Lock expiry [optional]; 1 day maximum
-	 * @return ScopedLock|null Returns null on failure
+	 * @return ScopedCallback|null Returns null on failure
 	 * @since 1.26
 	 */
 	final public function getScopedLock( $key, $timeout = 6, $expiry = 30 ) {
