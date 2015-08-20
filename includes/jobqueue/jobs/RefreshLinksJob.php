@@ -83,7 +83,6 @@ class RefreshLinksJob extends Job {
 			} else {
 				$extraParams['masterPos'] = false;
 			}
-			$extraParams['triggeredRecursive'] = true;
 			// Convert this into no more than $wgUpdateRowsPerJob RefreshLinks per-title
 			// jobs and possibly a recursive RefreshLinks job for the rest of the backlinks
 			$jobs = BacklinkJobUtils::partitionBacklinkJob(
@@ -197,12 +196,6 @@ class RefreshLinksJob extends Job {
 		}
 
 		$updates = $content->getSecondaryDataUpdates( $title, null, false, $parserOutput );
-		foreach ( $updates as $key => $update ) {
-			if ( $update instanceof LinksUpdate && isset( $this->params['triggeredRecursive'] ) ) {
-				$update->setTriggeredRecursive();
-			}
-		}
-
 		DataUpdate::runUpdates( $updates );
 
 		InfoAction::invalidateCache( $title );
