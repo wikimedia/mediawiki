@@ -388,7 +388,7 @@
 			'Bar in anchor'
 		);
 
-		expectedSpecialCharacters = '<a title="&quot;Who&quot; wants to be a millionaire &amp; live on &#039;Exotic Island&#039;?" href="/wiki/%22Who%22_wants_to_be_a_millionaire_%26_live_on_%27Exotic_Island%27%3F">&quot;Who&quot; wants to be a millionaire &amp; live on &#039;Exotic Island&#039;?</a>';
+		expectedSpecialCharacters = '<a title="&quot;Who&quot; wants to be a millionaire &amp; live on &#039;Exotic Island&#039;?" href="/wiki/%22Who%22_wants_to_be_a_millionaire_%26_live_on_&#039;Exotic_Island&#039;%3F">&quot;Who&quot; wants to be a millionaire &amp; live on &#039;Exotic Island&#039;?</a>';
 
 		mw.messages.set( 'special-characters', '[[' + specialCharactersPageName + ']]' );
 		assert.htmlEqual(
