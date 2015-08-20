@@ -3280,9 +3280,7 @@ class OutputPage extends ContextSource {
 			$vars['wgRestriction' . ucfirst( $type )] = $title->getRestrictions( $type );
 		}
 
-		if ( $title->isMainPage() ) {
-			$vars['wgIsMainPage'] = true;
-		}
+		$vars['wgIsMainPage'] = $vars['wgIsMainPage'] ? true : false;
 
 		if ( $this->mRedirectedFrom ) {
 			$vars['wgRedirectedFrom'] = $this->mRedirectedFrom->getPrefixedDBkey();
