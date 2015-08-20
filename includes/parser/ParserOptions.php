@@ -260,8 +260,23 @@ class ParserOptions {
 		return $this->mInterfaceMessage;
 	}
 
-	public function getTargetLanguage() {
-		return $this->mTargetLanguage;
+	/**
+	 * @param Title $title Optional, for backwards compatibility.
+	 *
+	 * @return Language|null Returns null if $title is not provided, for backwards compatibility.
+	 */
+	public function getTargetLanguage( Title $title = null ) {
+		if ( $this->mTargetLanguage !== null ) {
+			return $this->mTargetLanguage;
+		} elseif ( $this->getInterfaceMessage() ) {
+			return $this->getUserLangObj();
+		}
+
+		if ( $title === null ) {
+			return null;
+		}
+
+		return $title->getPageLanguage();
 	}
 
 	public function getMaxIncludeSize() {
@@ -390,8 +405,17 @@ class ParserOptions {
 	 * @since 1.19
 	 */
 	public function getUserLangObj() {
-		$this->optionUsed( 'userlang' );
+		$this->setUserLanguageOptions();
+
 		return $this->mUserLang;
+	}
+
+	/**
+	 * Set user language as target language and record option.
+	 */
+	private function setUserLanguageOptions() {
+		$this->optionUsed( 'userlang' );
+		$this->setTargetLanguage( $this->mUserLang );
 	}
 
 	/**
