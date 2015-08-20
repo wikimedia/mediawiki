@@ -105,8 +105,8 @@ class WfUrlencodeTest extends MediaWikiTestCase {
 
 			// remaining chars do not need encoding
 			array(
-				';@$-_.!*',
-				';@$-_.!*',
+				';@$-_.!*\'',
+				';@$-_.!*\'',
 			),
 
 			### Other tests
