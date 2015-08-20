@@ -155,7 +155,6 @@ class ApiFeedRecentChanges extends ApiBase {
 			'hideliu' => false,
 			'hidepatrolled' => false,
 			'hidemyself' => false,
-			'hidecategorization' => false,
 
 			'tagfilter' => array(
 				ApiBase::PARAM_TYPE => 'string',

@@ -2180,9 +2180,6 @@ class WikiPage implements Page, IDBAccessObject {
 			$updates = $content->getSecondaryDataUpdates(
 				$this->getTitle(), null, $recursive, $editInfo->output );
 			foreach ( $updates as $update ) {
-				if ( $update instanceof LinksUpdate ) {
-					$update->setRevision( $revision );
-				}
 				DeferredUpdates::addUpdate( $update );
 			}
 		}

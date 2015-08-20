@@ -667,9 +667,14 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
 			'type' => array(
-				ApiBase::PARAM_DFLT => 'edit|new|log|categorize',
+				ApiBase::PARAM_DFLT => 'edit|new|log',
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => RecentChange::getChangeTypes()
+				ApiBase::PARAM_TYPE => array(
+					'edit',
+					'external',
+					'new',
+					'log'
+				)
 			),
 			'toponly' => false,
 			'continue' => array(
