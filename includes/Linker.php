@@ -939,7 +939,10 @@ class Linker {
 
 			$href = self::getUploadUrl( $title, $query );
 
-			return '<a href="' . htmlspecialchars( $href ) . '" class="new" title="' .
+			// FIXME If we fail to escape apostrophes here (=don't use ENT_QUOTES for href),
+			// double apostrophes will be parsed as italics somewhere very much later in the parser
+			// and break everything horribly
+			return '<a href="' . htmlspecialchars( $href, ENT_QUOTES ) . '" class="new" title="' .
 				htmlspecialchars( $title->getPrefixedText(), ENT_QUOTES ) . '">' .
 				$encLabel . '</a>';
 		}
