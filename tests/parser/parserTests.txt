@@ -5661,7 +5661,7 @@ Plain ''italic'''s plain
 ###
 ### Tables
 ###
-### some content taken from http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide:_Using_tables
+### some content taken from http://meta.wikimedia.org/wiki/MediaWiki_User's_Guide:_Using_tables
 ###
 
 # This should not produce <table></table> as <table><tr><td></td></tr></table>
@@ -7321,7 +7321,7 @@ Link containing double-single-quotes '' (bug 4598)
 !! wikitext
 [[Lista d''e paise d''o munno]]
 !! html/php
-<p><a href="/index.php?title=Lista_d%27%27e_paise_d%27%27o_munno&amp;action=edit&amp;redlink=1" class="new" title="Lista d''e paise d''o munno (page does not exist)">Lista d''e paise d''o munno</a>
+<p><a href="/index.php?title=Lista_d'e_paise_d'o_munno&amp;action=edit&amp;redlink=1" class="new" title="Lista d''e paise d''o munno (page does not exist)">Lista d''e paise d''o munno</a>
 </p>
 !! html/parsoid
 <p><a rel="mw:WikiLink" href="./Lista_d''e_paise_d''o_munno" title="Lista d''e paise d''o munno">Lista d''e paise d''o munno</a></p>
@@ -7358,10 +7358,10 @@ Link with double quotes in title part (literal) and alternate part (interpreted)
 
 [[''Pentecoste''|''Pentecoste'']]
 !! html/php
-<p><a href="/index.php?title=Special:Upload&amp;wpDestFile=Denys_Savchenko_%27%27Pentecoste%27%27.jpg" class="new" title="File:Denys Savchenko &#39;&#39;Pentecoste&#39;&#39;.jpg">File:Denys Savchenko <i>Pentecoste</i>.jpg</a>
-</p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="''Pentecoste'' (page does not exist)">''Pentecoste''</a>
-</p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="''Pentecoste'' (page does not exist)">Pentecoste</a>
-</p><p><a href="/index.php?title=%27%27Pentecoste%27%27&amp;action=edit&amp;redlink=1" class="new" title="''Pentecoste'' (page does not exist)"><i>Pentecoste</i></a>
+<p><a href="/index.php?title=Special:Upload&amp;wpDestFile=Denys_Savchenko_'Pentecoste'.jpg" class="new" title="File:Denys Savchenko &#39;&#39;Pentecoste&#39;&#39;.jpg">File:Denys Savchenko <i>Pentecoste</i>.jpg</a>
+</p><p><a href="/index.php?title='Pentecoste'&amp;action=edit&amp;redlink=1" class="new" title="''Pentecoste'' (page does not exist)">''Pentecoste''</a>
+</p><p><a href="/index.php?title='Pentecoste'&amp;action=edit&amp;redlink=1" class="new" title="''Pentecoste'' (page does not exist)">Pentecoste</a>
+</p><p><a href="/index.php?title='Pentecoste'&amp;action=edit&amp;redlink=1" class="new" title="''Pentecoste'' (page does not exist)"><i>Pentecoste</i></a>
 </p>
 !! html/parsoid
 <p><span class="mw-default-size" typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"missing-image","message":"This image does not exist."}]}'><a href="./File:Denys_Savchenko_''Pentecoste''.jpg"><img resource="./File:Denys_Savchenko_''Pentecoste''.jpg" src="./Special:FilePath/Denys_Savchenko_''Pentecoste''.jpg" height="220" width="220"/></a></span></p>
@@ -13960,7 +13960,7 @@ Link to category
 !! wikitext
 [[:Category:MediaWiki User's Guide]]
 !! html
-<p><a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User's Guide">Category:MediaWiki User's Guide</a>
+<p><a href="/wiki/Category:MediaWiki_User's_Guide" title="Category:MediaWiki User's Guide">Category:MediaWiki User's Guide</a>
 </p>
 !! end
 
@@ -13971,7 +13971,7 @@ cat
 !! wikitext
 [[Category:MediaWiki User's Guide]]
 !! html
-<a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User's Guide">MediaWiki User's Guide</a>
+<a href="/wiki/Category:MediaWiki_User's_Guide" title="Category:MediaWiki User's Guide">MediaWiki User's Guide</a>
 !! end
 
 !! test
@@ -13990,7 +13990,7 @@ cat
 !! wikitext
 [[Category:MediaWiki User's Guide|Foo]]
 !! html
-<a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User's Guide">MediaWiki User's Guide</a>
+<a href="/wiki/Category:MediaWiki_User's_Guide" title="Category:MediaWiki User's Guide">MediaWiki User's Guide</a>
 !! end
 
 !! test
@@ -14000,7 +14000,7 @@ cat
 !! wikitext
 [[Category:MediaWiki User's Guide|MediaWiki User's Guide]]
 !! html
-<a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User's Guide">MediaWiki User's Guide</a>
+<a href="/wiki/Category:MediaWiki_User's_Guide" title="Category:MediaWiki User's Guide">MediaWiki User's Guide</a>
 !! end
 
 !! test
@@ -18952,7 +18952,7 @@ language=sr cat
 !! wikitext
 [[Category:МедиаWики Усер'с Гуиде]]
 !! html
-<a href="/wiki/%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%98%D0%B0:MediaWiki_User%27s_Guide" title="Категорија:MediaWiki User's Guide">MediaWiki User's Guide</a>
+<a href="/wiki/%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%98%D0%B0:MediaWiki_User's_Guide" title="Категорија:MediaWiki User's Guide">MediaWiki User's Guide</a>
 !! end
 
 
@@ -20908,7 +20908,7 @@ File:foobar.jpg|caption|alt=galleryalt|link=" onclick="alert('malicious javascri
 !! html
 <ul class="gallery mw-gallery-traditional">
 		<li class="gallerybox" style="width: 155px"><div style="width: 155px">
-			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/%22_onclick%3D%22alert(%27malicious_javascript_code!%27);"><img alt="galleryalt" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" width="120" height="14" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" /></a></div></div>
+			<div class="thumb" style="width: 150px;"><div style="margin:68px auto;"><a href="/wiki/%22_onclick%3D%22alert('malicious_javascript_code!');"><img alt="galleryalt" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" width="120" height="14" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" /></a></div></div>
 			<div class="gallerytext">
 <p>caption
 </p>
