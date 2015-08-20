@@ -1370,12 +1370,12 @@ Message
 </td><td>
 {{int:Emailmessage}}
 </td></tr><tr><td>
-[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Emailpage&action=edit emailpage]<br>
-[[MediaWiki_talk:Emailpage|Talk]]
+[http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Emailuser&action=edit emailuser]<br>
+[[MediaWiki_talk:Emailuser|Talk]]
 </td><td>
 E-mail user
 </td><td>
-{{int:Emailpage}}
+{{int:Emailuser}}
 </td></tr><tr><td>
 [http://tl.wiktionary.org/w/wiki.phtml?title=MediaWiki:Emailpagetext&action=edit emailpagetext]<br>
 [[MediaWiki_talk:Emailpagetext|Talk]]
