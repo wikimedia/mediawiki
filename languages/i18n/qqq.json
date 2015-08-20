@@ -2041,6 +2041,8 @@
 	"pageswithprop-legend": "Legend for the input form on [[Special:PagesWithProp]].\n{{Identical|Page with page property}}",
 	"pageswithprop-text": "Introductory text for the input form on [[Special:PagesWithProp]]",
 	"pageswithprop-prop": "Label for the property name input field on [[Special:PagesWithProp]].\n{{Identical|Property name}}",
+	"pageswithprop-reverse": "Label for the reverse checkmark field on [[Special:PagesWithProp]].",
+	"pageswithprop-sortbyvalue": "Label for the sort by value checkmark field on [[Special:PagesWithProp]].",
 	"pageswithprop-submit": "Label for the submit button on [[Special:PagesWithProp]].\n{{Identical|Go}}",
 	"pageswithprop-prophidden-long": "Information shown on [[Special:PagesWithProp]] when property value is longer than 1 kilobyte.\n\nParameters:\n* $1 - size of property value in kilobytes\nSee also:\n* {{msg-mw|pageswithprop-prophidden-binary}}",
 	"pageswithprop-prophidden-binary": "Information shown on [[Special:PagesWithProp]] when property value contains binary data.\n\nParameters:\n* $1 - size of property value in kilobytes\nSee also:\n* {{msg-mw|pageswithprop-prophidden-long}}",
