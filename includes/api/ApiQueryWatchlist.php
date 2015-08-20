@@ -483,9 +483,14 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				)
 			),
 			'type' => array(
-				ApiBase::PARAM_DFLT => 'edit|new|log|categorize',
+				ApiBase::PARAM_DFLT => 'edit|new|log',
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => RecentChange::getChangeTypes()
+				ApiBase::PARAM_TYPE => array(
+					'edit',
+					'external',
+					'new',
+					'log',
+				)
 			),
 			'owner' => array(
 				ApiBase::PARAM_TYPE => 'user'

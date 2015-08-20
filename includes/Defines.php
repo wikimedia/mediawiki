@@ -170,7 +170,6 @@ define( 'RC_EDIT', 0 );
 define( 'RC_NEW', 1 );
 define( 'RC_LOG', 3 );
 define( 'RC_EXTERNAL', 5 );
-define( 'RC_CATEGORIZE', 6 );
 /**@}*/
 
 /**@{
