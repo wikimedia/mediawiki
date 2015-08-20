@@ -867,7 +867,6 @@
 	"mailnologin": "Níl aon seoladh maith ann",
 	"mailnologintext": "Ní mór duit bheith  [[Special:UserLogin|logáilte isteach]]\nagus bheith le seoladh ríomhphoist bhailí i do chuid [[Special:Preferences|sainroghanna]]\nmás mian leat ríomhphost a sheoladh chuig úsáideoirí eile.",
 	"emailuser": "Cuir ríomhphost chuig an úsáideoir seo",
-	"emailpage": "Seol ríomhphost",
 	"emailpagetext": "Má d'iontráil an úsáideoir seo seoladh ríomhphoist bhailí ina chuid sainroghanna úsáideora, cuirfidh an foirm anseo thíos teachtaireacht amháin do.\nBeidh do seoladh ríomhphoist a d'iontráil tú i [[Special:Preferences|do chuid sainroghanna úsáideora]] sa bhosca \"Seoltóir\" an riomhphoist, agus mar sin ba féidir léis an faighteoir ríomhphost eile a chur leatsa.",
 	"defemailsubject": "Ríomhphost {{GRAMMAR:genitive|{{SITENAME}}}}",
 	"noemailtitle": "Níl aon seoladh ríomhphoist ann",

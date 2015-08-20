@@ -454,7 +454,7 @@
 	"apihelp-query+allredirects-param-to": "{{doc-apihelp-param|query+allredirects|to}}",
 	"apihelp-query+allredirects-param-prefix": "{{doc-apihelp-param|query+allredirects|prefix}}",
 	"apihelp-query+allredirects-param-unique": "{{doc-apihelp-param|query+allredirects|unique}}",
-	"apihelp-query+allredirects-param-prop": "{{doc-apihelp-param|query+allredirects|prop|paramvalue=1}}",
+	"apihelp-query+allredirects-param-prop": "{{doc-apihelp-param|query+allredirects|prop|paramvalues=1}}",
 	"apihelp-query+allredirects-paramvalue-prop-ids": "{{doc-apihelp-param|query+allredirects|prop|ids}}",
 	"apihelp-query+allredirects-paramvalue-prop-title": "{{doc-apihelp-param|query+allredirects|prop|title}}",
 	"apihelp-query+allredirects-paramvalue-prop-fragment": "{{doc-apihelp-param|query+allredirects|prop|fragment}}",

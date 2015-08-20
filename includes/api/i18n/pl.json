@@ -264,6 +264,7 @@
 	"apihelp-query+search-param-limit": "Łączna liczba stron do zwrócenia.",
 	"apihelp-query+search-param-interwiki": "Dołączaj wyniki wyszukiwań interwiki w wyszukiwarce, jeśli możliwe.",
 	"apihelp-query+search-example-simple": "Szukaj <kbd>meaning</kbd>.",
+	"apihelp-query+siteinfo-paramvalue-prop-namespacealiases": "Lista zarejestrowanych aliasów przestrzeni nazw.",
 	"apihelp-query+siteinfo-example-simple": "Pobierz informacje o stronie.",
 	"apihelp-query+tags-description": "Lista zmian tagów.",
 	"apihelp-query+tags-param-limit": "Maksymalna liczba tagów do wyświetlenia.",
