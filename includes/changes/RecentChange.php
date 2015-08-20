@@ -823,6 +823,7 @@ class RecentChange {
 		$this->mAttribs = get_object_vars( $row );
 		$this->mAttribs['rc_timestamp'] = wfTimestamp( TS_MW, $this->mAttribs['rc_timestamp'] );
 		$this->mAttribs['rc_deleted'] = $row->rc_deleted; // MUST be set
+		$this->mAttribs['rc_bot'] = $row->rc_bot; // MUST be set
 	}
 
 	/**
