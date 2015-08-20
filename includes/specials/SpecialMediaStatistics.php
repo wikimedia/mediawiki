@@ -36,7 +36,7 @@ class MediaStatisticsPage extends QueryPage {
 		$this->shownavigation = false;
 	}
 
-	function isExpensive() {
+	public function isExpensive() {
 		return true;
 	}
 

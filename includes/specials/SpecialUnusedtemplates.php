@@ -34,7 +34,7 @@ class UnusedtemplatesPage extends QueryPage {
 		parent::__construct( $name );
 	}
 
-	function isExpensive() {
+	public function isExpensive() {
 		return true;
 	}
 
@@ -46,7 +46,7 @@ class UnusedtemplatesPage extends QueryPage {
 		return false;
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return array(
 			'tables' => array( 'page', 'templatelinks' ),
 			'fields' => array(
