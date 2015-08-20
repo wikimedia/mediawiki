@@ -112,7 +112,6 @@ class TestRecentChangesHelper {
 		$attribs = array_merge(
 			$this->getDefaultAttributes( $titleText, $timestamp ),
 			array(
-				'rc_type' => RC_CATEGORIZE,
 				'rc_user' => $user->getId(),
 				'rc_user_text' => $user->getName(),
 				'rc_this_oldid' => $thisid,
@@ -141,7 +140,7 @@ class TestRecentChangesHelper {
 			'rc_comment' => '',
 			'rc_minor' => 0,
 			'rc_bot' => 0,
-			'rc_type' => 0,
+			'rc_type' => RC_CATEGORIZE,
 			'rc_patrolled' => 1,
 			'rc_deleted' => 0,
 			'rc_logid' => 0,
