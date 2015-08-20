@@ -264,6 +264,35 @@ class ParserOptions {
 		return $this->mTargetLanguage;
 	}
 
+	/**
+	 * Get language used for parsing, which normally is the content language
+	 * but might be the user language if the page is in MediaWiki namespace, is
+	 * an interface message, or possibly if the userlang parser option is used.
+	 * If setTargetLanguage is called, then target language is that language.
+	 *
+	 * @since 1.26
+	 *
+	 * @param Title $title Optional, for backwards compatibility.
+	 *
+	 * @throws MWException If title is not given and target language is not set or not
+	 *                     an interface language.
+	 * @return Language
+	 */
+	public function getParserTargetLanguage( Title $title = null ) {
+		if ( $this->mTargetLanguage !== null ) {
+			return $this->mTargetLanguage;
+		} elseif ( $this->getInterfaceMessage() ) {
+			return $this->getUserLangObj();
+		}
+
+		if ( $title === null ) {
+			throw new MWException( __METHOD__ . ': $this->mTitle is null, cannot find '
+				. 'default target language for the page title.' );
+		}
+
+		return $title->getPageLanguage();
+	}
+
 	public function getMaxIncludeSize() {
 		return $this->mMaxIncludeSize;
 	}
