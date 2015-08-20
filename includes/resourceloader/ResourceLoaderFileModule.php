@@ -591,9 +591,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 		$options = array();
 		foreach ( array(
-			// T104950: Do not include localBasePath! That path may vary over time and needlessly
-			// invalidate cache. If the path changes in a way that makes relative file paths point
-			// to something else, getFileHashes() will incorporate that already.
+			// T104950: Do not include localBasePath or remoteBasePath!
+			// Those paths may vary over time and needlessly invalidate cache. If the path changes
+			// in a way that makes relative file paths point to something else, getFileHashes() will
+			// account for that already.
 			'scripts',
 			'debugScripts',
 			'loaderScripts',
@@ -608,7 +609,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			'group',
 			'position',
 			'skipFunction',
-			'remoteBasePath',
 			'debugRaw',
 			'raw',
 		) as $member ) {
