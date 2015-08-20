@@ -843,17 +843,7 @@ class Parser {
 	 * @return Language
 	 */
 	public function getTargetLanguage() {
-		$target = $this->mOptions->getTargetLanguage();
-
-		if ( $target !== null ) {
-			return $target;
-		} elseif ( $this->mOptions->getInterfaceMessage() ) {
-			return $this->mOptions->getUserLangObj();
-		} elseif ( is_null( $this->mTitle ) ) {
-			throw new MWException( __METHOD__ . ': $this->mTitle is null' );
-		}
-
-		return $this->mTitle->getPageLanguage();
+		return $this->mOptions->getParserTargetLanguage( $this->mTitle );
 	}
 
 	/**
