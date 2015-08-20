@@ -372,13 +372,15 @@ class ParserOptions {
 	}
 
 	/**
-	 * Get the user language used by the parser for this page.
+	 * Get the user language used by the parser for this page and set userlang
+	 * option, which splits parser cache.
 	 *
 	 * You shouldn't use this. Really. $parser->getFunctionLang() is all you need.
 	 *
 	 * To avoid side-effects where the page will be rendered based on the language
 	 * of the user who last saved, this function will triger a cache fragmentation.
-	 * Usage of this method is discouraged for that reason.
+	 * For that reason, usage of this method is discouraged unless it is desired to
+	 * split caches based on user language, such as for multilingual content.
 	 *
 	 * When saving, this will return the default language instead of the user's.
 	 *
