@@ -419,8 +419,17 @@ class ParserOptions {
 	 * @since 1.19
 	 */
 	public function getUserLangObj() {
-		$this->optionUsed( 'userlang' );
+		$this->setUserLanguageOptions();
+
 		return $this->mUserLang;
+	}
+
+	/**
+	 * Set user language as target language and record option.
+	 */
+	private function setUserLanguageOptions() {
+		$this->optionUsed( 'userlang' );
+		$this->setTargetLanguage( $this->mUserLang );
 	}
 
 	/**
