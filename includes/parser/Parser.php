@@ -843,17 +843,19 @@ class Parser {
 	 * @return Language
 	 */
 	public function getTargetLanguage() {
-		$target = $this->mOptions->getTargetLanguage();
+		$target = $this->mOptions->getTargetLanguage( $this->mTitle );
 
-		if ( $target !== null ) {
-			return $target;
-		} elseif ( $this->mOptions->getInterfaceMessage() ) {
-			return $this->mOptions->getUserLangObj();
-		} elseif ( is_null( $this->mTitle ) ) {
-			throw new MWException( __METHOD__ . ': $this->mTitle is null' );
+		// If title is not set and target language is not explicitly set in ParserOptions,
+		// then the default $title->pageLanguage cannot be found.
+		//
+		// Title is an optional parameter in ParserOptions::getTargetLanguage,
+		// for backwards compatibility but throws an exception here..
+		if ( !$target instanceof Language ) {
+			throw new MWException( __METHOD__ . ': $this->mTitle is null, cannot find '
+				. 'default target language for the page title.' );
 		}
 
-		return $this->mTitle->getPageLanguage();
+		return $target;
 	}
 
 	/**
