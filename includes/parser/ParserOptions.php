@@ -264,6 +264,28 @@ class ParserOptions {
 		return $this->mTargetLanguage;
 	}
 
+	/**
+	 * @param Title $title Optional, for backwards compatibility.
+	 *
+	 * @throws MWException If title is not given and target language is not set or not
+	 *                     an interface language.
+	 * @return Language
+	 */
+	public function getParserTargetLanguage( Title $title = null ) {
+		if ( $this->mTargetLanguage !== null ) {
+			return $this->mTargetLanguage;
+		} elseif ( $this->getInterfaceMessage() ) {
+			return $this->getUserLangObj();
+		}
+
+		if ( $title === null ) {
+			throw new MWException( __METHOD__ . ': $this->mTitle is null, cannot find '
+				. 'default target language for the page title.' );
+		}
+
+		return $title->getPageLanguage();
+	}
+
 	public function getMaxIncludeSize() {
 		return $this->mMaxIncludeSize;
 	}
@@ -390,8 +412,17 @@ class ParserOptions {
 	 * @since 1.19
 	 */
 	public function getUserLangObj() {
-		$this->optionUsed( 'userlang' );
+		$this->setUserLanguageOptions();
+
 		return $this->mUserLang;
+	}
+
+	/**
+	 * Set user language as target language and record option.
+	 */
+	private function setUserLanguageOptions() {
+		$this->optionUsed( 'userlang' );
+		$this->setTargetLanguage( $this->mUserLang );
 	}
 
 	/**
