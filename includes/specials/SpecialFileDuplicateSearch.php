@@ -48,7 +48,7 @@ class FileDuplicateSearchPage extends QueryPage {
 		return false;
 	}
 
-	function isCached() {
+	public function isCached() {
 		return false;
 	}
 
@@ -82,7 +82,7 @@ class FileDuplicateSearchPage extends QueryPage {
 		$this->getOutput()->addHtml( implode( "\n", $html ) );
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return array(
 			'tables' => array( 'image' ),
 			'fields' => array(
@@ -95,7 +95,7 @@ class FileDuplicateSearchPage extends QueryPage {
 		);
 	}
 
-	function execute( $par ) {
+	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
 

@@ -35,7 +35,7 @@ class UnwatchedpagesPage extends QueryPage {
 		parent::__construct( $name, 'unwatchedpages' );
 	}
 
-	function isExpensive() {
+	public function isExpensive() {
 		return true;
 	}
 
@@ -43,7 +43,7 @@ class UnwatchedpagesPage extends QueryPage {
 		return false;
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return array(
 			'tables' => array( 'page', 'watchlist' ),
 			'fields' => array(

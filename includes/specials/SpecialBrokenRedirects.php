@@ -32,7 +32,7 @@ class BrokenRedirectsPage extends QueryPage {
 		parent::__construct( $name );
 	}
 
-	function isExpensive() {
+	public function isExpensive() {
 		return true;
 	}
 
@@ -48,7 +48,7 @@ class BrokenRedirectsPage extends QueryPage {
 		return $this->msg( 'brokenredirectstext' )->parseAsBlock();
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		$dbr = wfGetDB( DB_SLAVE );
 
 		return array(

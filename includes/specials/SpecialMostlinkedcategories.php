@@ -38,7 +38,7 @@ class MostlinkedCategoriesPage extends QueryPage {
 		return false;
 	}
 
-	function getQueryInfo() {
+	public function getQueryInfo() {
 		return array(
 			'tables' => array( 'category' ),
 			'fields' => array( 'title' => 'cat_title',
