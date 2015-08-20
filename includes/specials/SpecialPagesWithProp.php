@@ -31,6 +31,8 @@
 class SpecialPagesWithProp extends QueryPage {
 	private $propName = null;
 	private $existingPropNames = null;
+	private $reverse = false;
+	private $sortByValue = false;
 
 	function __construct( $name = 'PagesWithProp' ) {
 		parent::__construct( $name );
@@ -47,6 +49,8 @@ class SpecialPagesWithProp extends QueryPage {
 
 		$request = $this->getRequest();
 		$propname = $request->getVal( 'propname', $par );
+		$this->reverse = $request->getBool( 'reverse' );
+		$this->sortByValue = $request->getBool( 'sortbyvalue' );
 
 		$propnames = $this->getExistingPropNames();
 
@@ -121,7 +125,15 @@ class SpecialPagesWithProp extends QueryPage {
 	}
 
 	function getOrderFields() {
-		return array( 'page_id' );
+		$sort = array( 'page_id' );
+		if ( $this->sortByValue ) {
+			array_unshift( $sort, 'pp_sortkey' );
+		}
+		return $sort;
+	}
+
+	public function sortDescending() {
+		return !$this->reverse;
 	}
 
 	/**
