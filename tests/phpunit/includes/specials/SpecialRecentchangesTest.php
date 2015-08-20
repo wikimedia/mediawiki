@@ -81,6 +81,7 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 		$this->assertConditions(
 			array( # expected
 				'rc_bot' => 0,
+				'rc_type' => RC_CATEGORIZE,
 				0 => sprintf( "(rc_namespace = '%s' OR rc_namespace = '%s')", $ns1, $ns2 ),
 			),
 			array(
@@ -99,6 +100,7 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 		$this->assertConditions(
 			array( # expected
 				'rc_bot' => 0,
+				'rc_type' => RC_CATEGORIZE,
 				0 => sprintf( "(rc_namespace != '%s' AND rc_namespace != '%s')", $ns1, $ns2 ),
 			),
 			array(
