@@ -128,7 +128,7 @@ class CategoryMembershipChange {
 			$categoryTitle,
 			$this->user,
 			$this->getChangeMessage( $type, array(
-				'prefixedUrl' => $this->page->getTitle()->getPrefixedURL(),
+				'prefixedUrl' => $this->page->getTitle()->getPrefixedText(),
 				'numTemplateLinks' => $this->numTemplateLinks
 			) ),
 			$this->pageTitle,
