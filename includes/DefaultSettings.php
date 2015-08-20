@@ -1861,12 +1861,6 @@ $wgDBservers = false;
 $wgLBFactoryConf = array( 'class' => 'LBFactorySimple' );
 
 /**
- * How long to wait for a slave to catch up to the master
- * @deprecated since 1.24
- */
-$wgMasterWaitTimeout = 10;
-
-/**
  * File to log database errors to
  */
 $wgDBerrorLog = false;

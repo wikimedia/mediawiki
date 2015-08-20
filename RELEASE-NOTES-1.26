@@ -22,6 +22,7 @@ production.
   the "Signature" button on the edit toolbar will be displayed.
 * $wgResourceLoaderUseESI was deprecated and removed. This was an experimental
   feature that was never enabled by default.
+* $wgMasterWaitTimeout was removed.
 
 === New features in 1.26 ===
 * (T9148) Changes to category membership are now shown in watchlists and recent
