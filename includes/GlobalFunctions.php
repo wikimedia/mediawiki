@@ -2193,6 +2193,10 @@ function wfResetOutputBuffers( $resetGzipEncoding = true ) {
 			// output behavior.
 			break;
 		}
+		if ( $status['name'] === 'MediaWikiTestCase::wfResetOutputBuffersBarrier' ) {
+			// Unit testing barrier to prevent this function from breaking PHPUnit.
+			break;
+		}
 		if ( !ob_end_clean() ) {
 			// Could not remove output buffer handler; abort now
 			// to avoid getting in some kind of infinite loop.

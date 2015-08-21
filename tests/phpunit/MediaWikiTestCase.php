@@ -208,6 +208,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		DeferredUpdates::clearPendingUpdates();
 
+		ob_start( 'MediaWikiTestCase::wfResetOutputBuffersBarrier' );
 	}
 
 	protected function addTmpFiles( $files ) {
@@ -215,6 +216,11 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	protected function tearDown() {
+		$status = ob_get_status();
+		if ( isset( $status['name'] ) && $status['name'] === 'MediaWikiTestCase::wfResetOutputBuffersBarrier' ) {
+			ob_end_flush();
+		}
+
 		$this->called['tearDown'] = true;
 		// Cleaning up temporary files
 		foreach ( $this->tmpFiles as $fileName ) {
@@ -1173,5 +1179,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		//trigger_error(__METHOD__ . ' is deprecated', E_USER_DEPRECATED);
 
 		self::assertFalse( self::tagMatch( $matcher, $actual, $isHtml ), $message );
+	}
+
+	/**
+	 * Used as a marker to prevent wfResetOutputBuffers from breaking PHPUnit.
+	 * @return string
+	 */
+	public static function wfResetOutputBuffersBarrier( $buffer ) {
+		return $buffer;
 	}
 }
