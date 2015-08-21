@@ -613,6 +613,8 @@ LUA;
 			$job = Job::factory( $item['type'], $title, $item['params'] );
 			$job->metadata['uuid'] = $item['uuid'];
 			$job->metadata['timestamp'] = $item['timestamp'];
+			// Add in attempt count for debugging at showJobs.php
+			$job->metadata['attempts'] = $conn->hGet( $this->getQueueKey( 'h-attempts' ), $uid );
 
 			return $job;
 		} catch ( RedisException $e ) {
