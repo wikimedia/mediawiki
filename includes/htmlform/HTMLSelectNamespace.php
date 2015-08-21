@@ -23,13 +23,10 @@ class HTMLSelectNamespace extends HTMLFormField {
 
 	public function getInputOOUI( $value ) {
 		return new MediaWiki\Widget\NamespaceInputWidget( array(
-			'valueNamespace' => $value,
-			'nameNamespace' => $this->mName,
+			'value' => $value,
+			'name' => $this->mName,
 			'id' => $this->mID,
 			'includeAllValue' => $this->mAllValue,
-			// Disable additional checkboxes
-			'nameInvert' => null,
-			'nameAssociated' => null,
 		) );
 	}
 }
