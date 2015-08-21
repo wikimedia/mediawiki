@@ -77,7 +77,8 @@
 			"Demircimehmed",
 			"Uğurkent",
 			"Kincki",
-			"McAang"
+			"McAang",
+			"Captantrips"
 		]
 	},
 	"tog-underline": "Bağlantıların altını çiz:",
@@ -1395,7 +1396,14 @@
 	"upload-http-error": "Bir HTTP hatası oluştu: $1",
 	"upload-copy-upload-invalid-domain": "Kopya yüklemeler bu etki alanında mevcut değil.",
 	"upload-dialog-button-cancel": "İptal",
+	"upload-dialog-button-save": "Kaydet",
+	"upload-dialog-button-upload": "Yükle",
+	"upload-dialog-label-select-file": "Dosya seç",
+	"upload-dialog-label-infoform-title": "Ayrıntılar",
+	"upload-dialog-label-infoform-name": "Ad",
+	"upload-dialog-label-infoform-description": "Açıklama",
 	"upload-dialog-label-usage-title": "Kullanımı",
+	"upload-dialog-label-usage-filename": "Dosya adı",
 	"backend-fail-stream": "$1 dosyası okunamadı.",
 	"backend-fail-backup": "\"$1\" dosyası yedeklenemedi.",
 	"backend-fail-notexists": "$1 dosyası mevcut değil.",
