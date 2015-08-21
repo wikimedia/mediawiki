@@ -20,7 +20,7 @@
 	 * @return {string} return.newVal
 	 * @return {boolean} return.trimmed
 	 */
-	function trimValForByteLength( safeVal, newVal, byteLimit, fn ) {
+	function trimValueForByteLength( safeVal, newVal, byteLimit, fn ) {
 		var startMatches, endMatches, matchesLen, inpParts,
 			oldVal = safeVal;
 
@@ -206,7 +206,7 @@
 			// See http://www.w3.org/TR/DOM-Level-3-Events/#events-keyboard-event-order for
 			// the order and characteristics of the key events.
 			$el.on( eventKeys, function () {
-				var res = trimValForByteLength(
+				var res = trimValueForByteLength(
 					prevSafeVal,
 					this.value,
 					elLimit,
@@ -221,12 +221,14 @@
 					this.value = res.newVal;
 				}
 				// Always adjust prevSafeVal to reflect the input value. Not doing this could cause
-				// trimValForByteLength to compare the new value to an empty string instead of the
+				// trimValueForByteLength to compare the new value to an empty string instead of the
 				// old value, resulting in trimming always from the end (bug 40850).
 				prevSafeVal = res.newVal;
 			} );
 		} );
 	};
+
+	$.fn.byteLimit.trimValueForByteLength = trimValueForByteLength;
 
 	/**
 	 * @class jQuery
