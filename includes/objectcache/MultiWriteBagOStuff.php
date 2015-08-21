@@ -31,26 +31,52 @@
 class MultiWriteBagOStuff extends BagOStuff {
 	/** @var BagOStuff[] */
 	protected $caches;
+	/** @var bool Use async secondary writes */
+	protected $asyncReplication = false;
+	/** @var array[] */
+	protected $asyncWrites = array();
 
 	/**
-	 * Constructor. Parameters are:
-	 *
-	 *   - caches:   This should have a numbered array of cache parameter
-	 *               structures, in the style required by $wgObjectCaches. See
-	 *               the documentation of $wgObjectCaches for more detail.
+	 * $params include:
+	 *   - caches:      This should have a numbered array of cache parameter
+	 *                  structures, in the style required by $wgObjectCaches. See
+	 *                  the documentation of $wgObjectCaches for more detail.
+	 *                  The first cache is the primary one, being the first to
+	 *                  be read in the fallback chain. Writes happen to all stores
+	 *                  in the order they are defined. However, lock()/unlock() calls
+	 *                  only use the primary store.
+	 *   - replication: Either 'sync' or 'async'. This controls whether writes to
+	 *                  secondary stores are deferred when possible. Async writes
+	 *                  require the HHVM register_postsend_function() function.
+	 *                  Async writes can increase the chance of some race conditions
+	 *                  or cause keys to expire seconds later than expected. It is
+	 *                  safe to use for modules when cached values: are immutable,
+	 *                  invalidation uses logical TTLs, invalidation uses etag/timestamp
+	 *                  validation against the DB, or merge() is used to handle races.
 	 *
 	 * @param array $params
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct( $params ) {
 		parent::__construct( $params );
+
 		if ( !isset( $params['caches'] ) ) {
-			throw new InvalidArgumentException( __METHOD__ . ': the caches parameter is required' );
+			throw new InvalidArgumentException( __METHOD__ . ': "caches" parameter required' );
 		}
 
 		$this->caches = array();
 		foreach ( $params['caches'] as $cacheInfo ) {
 			$this->caches[] = ObjectCache::newFromParams( $cacheInfo );
+		}
+
+		if (
+			isset( $params['replication'] ) &&
+			$params['replication'] === 'async' &&
+			PHP_SAPI !== 'cli' &&
+			function_exists( 'register_postsend_function' )
+		) {
+			$this->asyncReplication = true;
+			register_postsend_function( array( $this, 'doAsyncWritesInternal' ) );
 		}
 	}
 
@@ -175,11 +201,18 @@ class MultiWriteBagOStuff extends BagOStuff {
 		$args = func_get_args();
 		array_shift( $args );
 
-		foreach ( $this->caches as $cache ) {
-			if ( !call_user_func_array( array( $cache, $method ), $args ) ) {
-				$ret = false;
+		foreach ( $this->caches as $i => $cache ) {
+			if ( $i == 0 || !$this->asyncReplication ) {
+				// First store or in sync mode: write now and get result
+				if ( !call_user_func_array( array( $cache, $method ), $args ) ) {
+					$ret = false;
+				}
+			} else {
+				// Secondary write in async mode: do not block this HTTP request
+				$this->asyncWrites[] = array( $cache, $method, $args );
 			}
 		}
+
 		return $ret;
 	}
 
@@ -199,5 +232,19 @@ class MultiWriteBagOStuff extends BagOStuff {
 			}
 		}
 		return $ret;
+	}
+
+	/**
+	 * Execute all async writes still pending in FIFO order
+	 */
+	public function doAsyncWritesInternal() {
+		foreach ( $this->asyncWrites as $write ) {
+			list( $cache, $method, $args ) = $write;
+			if ( !call_user_func_array( array( $cache, $method ), $args ) ) {
+				$this->logger->warning( "Async $method op failed" );
+			}
+		}
+
+		$this->asyncWrites = array();
 	}
 }
