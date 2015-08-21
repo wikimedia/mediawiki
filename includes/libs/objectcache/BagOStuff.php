@@ -200,10 +200,11 @@ abstract class BagOStuff implements LoggerAwareInterface {
 
 		$this->clearLastError();
 		$currentValue = $this->get( $key );
-		if ( !$this->getLastError() ) {
+		if ( $this->getLastError() ) {
+			$success = false;
+		} else {
 			// Derive the new value from the old value
 			$value = call_user_func( $callback, $this, $key, $currentValue );
-
 			if ( $value === false ) {
 				$success = true; // do nothing
 			} else {
