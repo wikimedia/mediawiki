@@ -68,10 +68,6 @@ class HashBagOStuff extends BagOStuff {
 	}
 
 	function delete( $key ) {
-		if ( !isset( $this->bag[$key] ) ) {
-			return false;
-		}
-
 		unset( $this->bag[$key] );
 
 		return true;

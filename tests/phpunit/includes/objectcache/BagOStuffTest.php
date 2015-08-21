@@ -1,6 +1,7 @@
 <?php
 /**
  * @author Matthias Mullie <mmullie@wikimedia.org>
+ * @group BagOStuff
  */
 class BagOStuffTest extends MediaWikiTestCase {
 	/** @var BagOStuff */
@@ -169,5 +170,12 @@ class BagOStuffTest extends MediaWikiTestCase {
 
 		$value3 = $this->cache->getScopedLock( $key, 0 );
 		$this->assertType( 'ScopedCallback', $value3, 'Lock returned callback after release' );
+		unset( $value3 );
+
+		$value1 = $this->cache->getScopedLock( $key, 0, 5, 'reentry' );
+		$value2 = $this->cache->getScopedLock( $key, 0, 5, 'reentry' );
+
+		$this->assertType( 'ScopedCallback', $value1, 'First reentrant call returned lock' );
+		$this->assertType( 'ScopedCallback', $value1, 'Second reentrant call returned lock' );
 	}
 }
