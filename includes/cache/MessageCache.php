@@ -346,7 +346,7 @@ class MessageCache {
 						# Wait for the other thread to finish, then retry. Normally,
 						# the memcached get() will then yeild the other thread's result.
 						$where[] = 'waited for other thread to complete';
-						$this->mMemc->getScopedLock( $cacheKey, self::WAIT_SEC, self::LOCK_TTL );
+						$this->getReentrantScopedLock( $cacheKey );
 					}
 				}
 			}
@@ -400,7 +400,7 @@ class MessageCache {
 		# If this lock fails, it doesn't really matter, it just means the
 		# write is potentially non-atomic, e.g. the results of a replace()
 		# may be discarded.
-		$mainUnlocker = $memCache->getScopedLock( $cacheKey, self::WAIT_SEC, self::LOCK_TTL );
+		$mainUnlocker = $this->getReentrantScopedLock( $cacheKey );
 		if ( !$mainUnlocker ) {
 			$where[] = 'could not acquire main lock';
 		}
@@ -548,8 +548,13 @@ class MessageCache {
 			return;
 		}
 
+		# Note that if the cache is volatile, load() may trigger a DB fetch.
+		# In that case we reenter/reuse the existing cache key lock to avoid
+		# a self-deadlock. This is safe as no reads happen *directly* in this
+		# method between getReentrantScopedLock() and load() below. There is
+		# no risk of data "changing under our feet" for replace().
 		$cacheKey = wfMemcKey( 'messages', $code );
-		$scopedLock = $this->mMemc->getScopedLock( $cacheKey, self::WAIT_SEC, self::LOCK_TTL );
+		$scopedLock = $this->getReentrantScopedLock( $cacheKey );
 		$this->load( $code, self::FOR_UPDATE );
 
 		$titleKey = wfMemcKey( 'messages', 'individual', $title );
@@ -671,6 +676,14 @@ class MessageCache {
 			$hash,
 			WANObjectCache::TTL_NONE
 		);
+	}
+
+	/**
+	 * @param string $key A language message cache key that stores blobs
+	 * @return null|ScopedCallback
+	 */
+	protected function getReentrantScopedLock( $key ) {
+		return $this->mMemc->getScopedLock( $key, self::WAIT_SEC, self::LOCK_TTL, __METHOD__ );
 	}
 
 	/**
