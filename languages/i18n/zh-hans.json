@@ -85,7 +85,8 @@
 			"LNDDYL",
 			"Jiang123aa",
 			"Cdz",
-			"凡人丶"
+			"凡人丶",
+			"Nbdd0121"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -94,10 +95,10 @@
 	"tog-newpageshidepatrolled": "隐藏新页面列表中的已巡查页面",
 	"tog-extendwatchlist": "扩展监视列表以显示所有更改，而不仅是最近的更改",
 	"tog-usenewrc": "按页面合并最近更改和监视列表中的更改",
-	"tog-numberheadings": "自动编号标题",
+	"tog-numberheadings": "自动将标题编号",
 	"tog-showtoolbar": "显示编辑工具栏",
 	"tog-editondblclick": "双击编辑页面",
-	"tog-editsectiononrightclick": "右击段落标题启用编辑段落",
+	"tog-editsectiononrightclick": "启用右击段落标题编辑段落",
 	"tog-watchcreations": "添加我创建的页面和我上传的文件至我的监视列表",
 	"tog-watchdefault": "添加我编辑的页面和文件至我的监视列表",
 	"tog-watchmoves": "添加我移动的页面和文件至我的监视列表",
@@ -3028,7 +3029,7 @@
 	"watchlisttools-edit": "查看并编辑监视列表",
 	"watchlisttools-raw": "编辑原始监视列表",
 	"signature": "[[{{ns:user}}:$1|$2]]（[[{{ns:user_talk}}:$1|讨论]]）",
-	"duplicate-defaultsort": "'''警告：'''默认排序关键词“$2”覆盖了之前的默认排序关键词“$1”。",
+	"duplicate-defaultsort": "<strong>警告：</strong>默认排序关键词“$2”覆盖了之前的默认排序关键词“$1”。",
 	"duplicate-displaytitle": "<strong>警告：</strong>显示的标题“$2”重写了此前显示的标题“$1”。",
 	"invalid-indicator-name": "<strong>错误：</strong>页面状态指示器的<code>name</code>属性必须不为空。",
 	"version": "版本",

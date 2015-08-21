@@ -489,6 +489,7 @@
 	"createacct-benefit-body2": "{{PLURAL:$1|ページ}}",
 	"createacct-benefit-body3": "最近の{{PLURAL:$1|投稿者数}}",
 	"badretype": "入力したパスワードが一致しません。",
+	"usernameinprogress": "この利用者名のためのアカウント作成は、すでに進行中です。お待ちください。",
 	"userexists": "入力した利用者名は既に使用されています。\n別の利用者名を指定してください。",
 	"loginerror": "ログインのエラー",
 	"createacct-error": "アカウント作成エラー",
