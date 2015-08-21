@@ -2996,10 +2996,6 @@ class OutputPage extends ContextSource {
 		// Startup - this provides the client with the module manifest and loads jquery and mediawiki base modules
 		$links[] = $this->makeResourceLoaderLink( 'startup', ResourceLoaderModule::TYPE_SCRIPTS );
 
-		if ( $this->getConfig()->get( 'ResourceLoaderExperimentalAsyncLoading' ) ) {
-			$links[] = $this->getScriptsForBottomQueue();
-		}
-
 		return self::getHtmlFromLoaderLinks( $links );
 	}
 
@@ -3054,11 +3050,9 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * JS stuff to put at the 'bottom', which can either be the bottom of the
-	 * "<body>" or the bottom of the "<head>" depending on
-	 * $wgResourceLoaderExperimentalAsyncLoading: modules marked with position
-	 * 'bottom', legacy scripts ($this->mScripts), user preferences, site JS
-	 * and user JS.
+	 * JS stuff to put at the 'bottom', which goes at the bottom of the `<body>`.
+	 * These are modules marked with position 'bottom', legacy scripts ($this->mScripts),
+	 * site JS, and user JS.
 	 *
 	 * @param bool $unused Previously used to let this method change its output based
 	 *  on whether it was called by getExternalHeadScripts() or getBottomScripts().
@@ -3142,10 +3136,6 @@ class OutputPage extends ContextSource {
 		// In case the skin wants to add bottom CSS
 		$this->getSkin()->setupSkinUserCss( $this );
 
-		if ( $this->getConfig()->get( 'ResourceLoaderExperimentalAsyncLoading' ) ) {
-			// Already handled by getExternalHeadScripts()
-			return '';
-		}
 		return $this->getScriptsForBottomQueue();
 	}
 
