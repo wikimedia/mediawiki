@@ -1419,6 +1419,11 @@ return array(
 			'jquery.throttle-debounce',
 		)
 	),
+	'mediawiki.page.gallery.styles' => array(
+		'styles' => 'resources/src/mediawiki.page/gallery.less',
+		'position' => 'top',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 	'mediawiki.page.ready' => array(
 		'scripts' => 'resources/src/mediawiki.page/mediawiki.page.ready.js',
 		'dependencies' => array(
@@ -1713,7 +1718,7 @@ return array(
 	'mediawiki.legacy.shared' => array(
 		'position' => 'top',
 		'styles' => array(
-			'resources/src/mediawiki.legacy/shared.css' => array( 'media' => 'screen' )
+			'resources/src/mediawiki.legacy/shared.less' => array( 'media' => 'screen' )
 		),
 	),
 	'mediawiki.legacy.oldshared' => array(
