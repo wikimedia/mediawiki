@@ -43,15 +43,16 @@ use Psr\Log\NullLogger;
  * @ingroup Cache
  */
 abstract class BagOStuff implements LoggerAwareInterface {
-	private $debugMode = false;
-
+	/** @var array[] Lock tracking */
+	protected $locks = array();
 	/** @var integer */
 	protected $lastError = self::ERR_NONE;
 
-	/**
-	 * @var LoggerInterface
-	 */
+	/** @var LoggerInterface */
 	protected $logger;
+
+	/** @var bool */
+	private $debugMode = false;
 
 	/** Possible values for getLastError() */
 	const ERR_NONE = 0; // no error
@@ -221,49 +222,77 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Acquire an advisory lock on a key string
+	 *
+	 * Note that if reentry is enabled, duplicate calls ignore $expiry
+	 *
 	 * @param string $key
 	 * @param int $timeout Lock wait timeout; 0 for non-blocking [optional]
 	 * @param int $expiry Lock expiry [optional]; 1 day maximum
+	 * @param string $rclass Allow reentry if set and the current lock used this value
 	 * @return bool Success
 	 */
-	public function lock( $key, $timeout = 6, $expiry = 6 ) {
+	public function lock( $key, $timeout = 6, $expiry = 6, $rclass = '' ) {
+		// Avoid deadlocks and allow lock reentry if specified
+		if ( isset( $this->locks[$key] ) ) {
+			if ( $rclass != '' && $this->locks[$key]['class'] === $rclass ) {
+				++$this->locks[$key]['depth'];
+				return true;
+			} else {
+				return false;
+			}
+		}
+
 		$expiry = min( $expiry ?: INF, 86400 );
 
 		$this->clearLastError();
 		$timestamp = microtime( true ); // starting UNIX timestamp
 		if ( $this->add( "{$key}:lock", 1, $expiry ) ) {
-			return true;
+			$locked = true;
 		} elseif ( $this->getLastError() || $timeout <= 0 ) {
-			return false; // network partition or non-blocking
+			$locked = false; // network partition or non-blocking
+		} else {
+			$uRTT = ceil( 1e6 * ( microtime( true ) - $timestamp ) ); // estimate RTT (us)
+			$sleep = 2 * $uRTT; // rough time to do get()+set()
+
+			$attempts = 0; // failed attempts
+			do {
+				if ( ++$attempts >= 3 && $sleep <= 5e5 ) {
+					// Exponentially back off after failed attempts to avoid network spam.
+					// About 2*$uRTT*(2^n-1) us of "sleep" happen for the next n attempts.
+					$sleep *= 2;
+				}
+				usleep( $sleep ); // back off
+				$this->clearLastError();
+				$locked = $this->add( "{$key}:lock", 1, $expiry );
+				if ( $this->getLastError() ) {
+					$locked = false; // network partition
+					break;
+				}
+			} while ( !$locked && ( microtime( true ) - $timestamp ) < $timeout );
 		}
 
-		$uRTT = ceil( 1e6 * ( microtime( true ) - $timestamp ) ); // estimate RTT (us)
-		$sleep = 2 * $uRTT; // rough time to do get()+set()
-
-		$attempts = 0; // failed attempts
-		do {
-			if ( ++$attempts >= 3 && $sleep <= 5e5 ) {
-				// Exponentially back off after failed attempts to avoid network spam.
-				// About 2*$uRTT*(2^n-1) us of "sleep" happen for the next n attempts.
-				$sleep *= 2;
-			}
-			usleep( $sleep ); // back off
-			$this->clearLastError();
-			$locked = $this->add( "{$key}:lock", 1, $expiry );
-			if ( $this->getLastError() ) {
-				return false; // network partition
-			}
-		} while ( !$locked && ( microtime( true ) - $timestamp ) < $timeout );
+		if ( $locked ) {
+			$this->locks[$key] = array( 'class' => $rclass, 'depth' => 1 );
+		}
 
 		return $locked;
 	}
 
 	/**
+	 * Release an advisory lock on a key string
+	 *
 	 * @param string $key
 	 * @return bool Success
 	 */
 	public function unlock( $key ) {
-		return $this->delete( "{$key}:lock" );
+		if ( isset( $this->locks[$key] ) && --$this->locks[$key]['depth'] <= 0 ) {
+			unset( $this->locks[$key] );
+
+			return $this->delete( "{$key}:lock" );
+		}
+
+		return true;
 	}
 
 	/**
@@ -278,13 +307,14 @@ abstract class BagOStuff implements LoggerAwareInterface {
 	 * @param string $key
 	 * @param int $timeout Lock wait timeout; 0 for non-blocking [optional]
 	 * @param int $expiry Lock expiry [optional]; 1 day maximum
+	 * @param string $rclass Allow reentry if set and the current lock used this value
 	 * @return ScopedCallback|null Returns null on failure
 	 * @since 1.26
 	 */
-	final public function getScopedLock( $key, $timeout = 6, $expiry = 30 ) {
+	final public function getScopedLock( $key, $timeout = 6, $expiry = 30, $rclass = '' ) {
 		$expiry = min( $expiry ?: INF, 86400 );
 
-		if ( !$this->lock( $key, $timeout, $expiry ) ) {
+		if ( !$this->lock( $key, $timeout, $expiry, $rclass ) ) {
 			return null;
 		}
 
