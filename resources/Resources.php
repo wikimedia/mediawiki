@@ -1419,6 +1419,11 @@ return array(
 			'jquery.throttle-debounce',
 		)
 	),
+	'mediawiki.page.gallery.styles' => array(
+		'styles' => 'resources/src/mediawiki.page/mediawiki.page.gallery.css',
+		'position' => 'top',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 	'mediawiki.page.ready' => array(
 		'scripts' => 'resources/src/mediawiki.page/mediawiki.page.ready.js',
 		'dependencies' => array(
@@ -1713,6 +1718,8 @@ return array(
 	'mediawiki.legacy.shared' => array(
 		'position' => 'top',
 		'styles' => array(
+			// @todo: Remove when mediawiki.page.gallery in cached html.
+			'resources/src/mediawiki.page/mediawiki.page.gallery.css',
 			'resources/src/mediawiki.legacy/shared.css' => array( 'media' => 'screen' )
 		),
 	),
