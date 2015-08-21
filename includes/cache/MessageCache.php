@@ -34,23 +34,17 @@ define( 'MSG_CACHE_VERSION', 2 );
 define( 'MSG_LOAD_TIMEOUT', 60 );
 
 /**
- * Memcached timeout when locking a key for a writing operation.
- * See MessageCache::lock()
- */
-define( 'MSG_LOCK_TIMEOUT', 30 );
-/**
- * Number of times we will try to acquire a lock from Memcached.
- * This comes in addition to MSG_LOCK_TIMEOUT.
- */
-define( 'MSG_WAIT_TIMEOUT', 30 );
-
-/**
  * Message cache
  * Performs various MediaWiki namespace-related functions
  * @ingroup Cache
  */
 class MessageCache {
 	const FOR_UPDATE = 1; // force message reload
+
+	/** How long memcached locks last */
+	const WAIT_SEC = 30;
+	/** How long to wait for memcached locks */
+	const LOCK_TTL = 30;
 
 	/**
 	 * Process local cache of loaded messages that are defined in
@@ -349,10 +343,10 @@ class MessageCache {
 						# Disable cache
 						break;
 					} else {
-						# Wait for the other thread to finish, then retry
+						# Wait for the other thread to finish, then retry. Normally,
+						# the memcached get() will then yeild the other thread's result.
 						$where[] = 'waited for other thread to complete';
-						$this->lock( $cacheKey );
-						$this->unlock( $cacheKey );
+						$this->mMemc->getScopedLock( $cacheKey, self::WAIT_SEC, self::LOCK_TTL );
 					}
 				}
 			}
@@ -385,6 +379,9 @@ class MessageCache {
 
 		$memCache = $this->mMemc;
 
+		# Get the non-blocking status key lock. This lets the caller quickly know
+		# to use any stale cache lying around. Otherwise, it may do a blocking
+		# lock to try to obtain the messages.
 		$statusKey = wfMemcKey( 'messages', $code, 'status' );
 		if ( !$memCache->add( $statusKey, 'loading', MSG_LOAD_TIMEOUT ) ) {
 			return false; // could not acquire lock
@@ -403,13 +400,8 @@ class MessageCache {
 		# If this lock fails, it doesn't really matter, it just means the
 		# write is potentially non-atomic, e.g. the results of a replace()
 		# may be discarded.
-		if ( $this->lock( $cacheKey ) ) {
-			$that = $this;
-			$mainUnlocker = new ScopedCallback( function () use ( $that, $cacheKey ) {
-				$that->unlock( $cacheKey );
-			} );
-		} else {
-			$mainUnlocker = null;
+		$mainUnlocker = $memCache->getScopedLock( $cacheKey, self::WAIT_SEC, self::LOCK_TTL );
+		if ( !$mainUnlocker ) {
 			$where[] = 'could not acquire main lock';
 		}
 
@@ -557,7 +549,7 @@ class MessageCache {
 		}
 
 		$cacheKey = wfMemcKey( 'messages', $code );
-		$this->lock( $cacheKey );
+		$scopedLock = $this->mMemc->getScopedLock( $cacheKey, self::WAIT_SEC, self::LOCK_TTL );
 		$this->load( $code, self::FOR_UPDATE );
 
 		$titleKey = wfMemcKey( 'messages', 'individual', $title );
@@ -577,7 +569,7 @@ class MessageCache {
 
 		# Update caches
 		$this->saveToCaches( $this->mCache[$code], 'all', $code );
-		$this->unlock( $cacheKey );
+		ScopedCallback::consume( $scopedLock );
 		$this->wanCache->touchCheckKey( wfMemcKey( 'messages', $code ) );
 
 		// Also delete cached sidebar... just in case it is affected
@@ -679,43 +671,6 @@ class MessageCache {
 			$hash,
 			WANObjectCache::TTL_NONE
 		);
-	}
-
-	/**
-	 * Represents a write lock on the messages key.
-	 *
-	 * Will retry MessageCache::MSG_WAIT_TIMEOUT times, each operations having
-	 * a timeout of MessageCache::MSG_LOCK_TIMEOUT.
-	 *
-	 * @param string $key
-	 * @return bool Success
-	 */
-	function lock( $key ) {
-		$lockKey = $key . ':lock';
-		$acquired = false;
-		$testDone = false;
-		for ( $i = 0; $i < MSG_WAIT_TIMEOUT && !$acquired; $i++ ) {
-			$acquired = $this->mMemc->add( $lockKey, 1, MSG_LOCK_TIMEOUT );
-			if ( $acquired ) {
-				break;
-			}
-
-			# Fail fast if memcached is totally down
-			if ( !$testDone ) {
-				$testDone = true;
-				if ( !$this->mMemc->set( wfMemcKey( 'test' ), 'test', 1 ) ) {
-					break;
-				}
-			}
-			sleep( 1 );
-		}
-
-		return $acquired;
-	}
-
-	function unlock( $key ) {
-		$lockKey = $key . ':lock';
-		$this->mMemc->delete( $lockKey );
 	}
 
 	/**
