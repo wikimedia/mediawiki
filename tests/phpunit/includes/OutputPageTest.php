@@ -256,8 +256,7 @@ class OutputPageTest extends MediaWikiTestCase {
 			) ),
 		) );
 		$links = $method->invokeArgs( $out, $args );
-		// Strip comments to avoid variation due to wgDBname in WikiID and cache key
-		$actualHtml = preg_replace( '#/\*[^*]+\*/#', '', implode( "\n", $links['html'] ) );
+		$actualHtml = implode( "\n", $links['html'] );
 		$this->assertEquals( $expectedHtml, $actualHtml );
 	}
 }
