@@ -295,7 +295,7 @@ abstract class BagOStuff implements LoggerAwareInterface {
 			$latency = .050; // latency skew (err towards keeping lock present)
 			$age = ( microtime( true ) - $lSince + $latency );
 			if ( ( $age + $latency ) >= $expiry ) {
-				$this->logger->warning( "Lock for $key held too long ($age sec)." );
+				$that->logger->warning( "Lock for $key held too long ($age sec)." );
 				return; // expired; it's not "safe" to delete the key
 			}
 			$that->unlock( $key );
