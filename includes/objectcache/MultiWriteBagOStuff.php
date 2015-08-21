@@ -121,12 +121,13 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 * @param string $key
 	 * @param int $timeout
 	 * @param int $expiry
+	 * @param string $rclass
 	 * @return bool
 	 */
-	public function lock( $key, $timeout = 6, $expiry = 6 ) {
+	public function lock( $key, $timeout = 6, $expiry = 6, $rclass = '' ) {
 		// Lock only the first cache, to avoid deadlocks
 		if ( isset( $this->caches[0] ) ) {
-			return $this->caches[0]->lock( $key, $timeout, $expiry );
+			return $this->caches[0]->lock( $key, $timeout, $expiry, $rclass );
 		} else {
 			return true;
 		}

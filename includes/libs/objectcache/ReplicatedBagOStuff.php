@@ -104,8 +104,8 @@ class ReplicatedBagOStuff extends BagOStuff {
 		return $this->writeStore->decr( $key, $value );
 	}
 
-	public function lock( $key, $timeout = 6, $expiry = 6 ) {
-		return $this->writeStore->lock( $key, $timeout, $expiry );
+	public function lock( $key, $timeout = 6, $expiry = 6, $rclass = '' ) {
+		return $this->writeStore->lock( $key, $timeout, $expiry, $rclass );
 	}
 
 	public function unlock( $key ) {
