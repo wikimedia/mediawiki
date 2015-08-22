@@ -105,18 +105,25 @@
 		}
 	}
 
-	function detectParserForColumn( table, rows, cellIndex ) {
+	function detectParserForColumn( table, rows, column ) {
 		var l = parsers.length,
+			cellIndex,
 			nodeValue,
 			// Start with 1 because 0 is the fallback parser
 			i = 1,
+			lastRowIndex = -1,
 			rowIndex = 0,
 			concurrent = 0,
+			empty = 0,
 			needed = ( rows.length > 4 ) ? 5 : rows.length;
 
 		while ( i < l ) {
-			if ( rows[rowIndex] && rows[rowIndex].cells[cellIndex] ) {
-				nodeValue = $.trim( getElementSortKey( rows[rowIndex].cells[cellIndex] ) );
+			if ( rows[rowIndex] ) {
+				if ( rowIndex !== lastRowIndex) {
+					lastRowIndex = rowIndex;
+					cellIndex = $(rows[rowIndex]).data( 'columnToCell' )[column];
+					nodeValue = $.trim( getElementSortKey( rows[rowIndex].cells[cellIndex] ) );
+				}
 			} else {
 				nodeValue = '';
 			}
@@ -134,13 +141,22 @@
 					i++;
 					rowIndex = 0;
 					concurrent = 0;
+					empty = 0;
 				}
 			} else {
 				// Empty cell
+				empty++;
 				rowIndex++;
-				if ( rowIndex > rows.length ) {
-					rowIndex = 0;
+				if ( rowIndex >= rows.length ) {
+					if ( concurrent >= rows.length - empty) {
+						//Confirmed the parser for all filled cells
+						return parsers[i];
+					}
+					// Check next parser, reset rows
 					i++;
+					rowIndex = 0;
+					concurrent = 0;
+					empty = 0;
 				}
 			}
 		}
@@ -150,24 +166,23 @@
 	}
 
 	function buildParserCache( table, $headers ) {
-		var sortType, cells, len, i, parser,
+		var sortType, len, j, parser,
 			rows = table.tBodies[0].rows,
+			config = $(table).data( 'tablesorter' ).config,
 			parsers = [];
 
 		if ( rows[0] ) {
 
-			cells = rows[0].cells;
-			len = cells.length;
-
-			for ( i = 0; i < len; i++ ) {
+			len = config.columns;
+			for ( j = 0; j < len; j++ ) {
 				parser = false;
-				sortType = $headers.eq( i ).data( 'sortType' );
+				sortType = $headers.eq( config.columnToHeader[j] ).data( 'sortType' );
 				if ( sortType !== undefined ) {
 					parser = getParserById( sortType );
 				}
 
 				if ( parser === false ) {
-					parser = detectParserForColumn( table, rows, i );
+					parser = detectParserForColumn( table, rows, j );
 				}
 
 				parsers.push( parser );
@@ -181,15 +196,16 @@
 	function buildCache( table ) {
 		var i, j, $row, cols,
 			totalRows = ( table.tBodies[0] && table.tBodies[0].rows.length ) || 0,
-			totalCells = ( table.tBodies[0].rows[0] && table.tBodies[0].rows[0].cells.length ) || 0,
 			config = $( table ).data( 'tablesorter' ).config,
 			parsers = config.parsers,
+			len = parsers.length,
+			cellIndex,
 			cache = {
 				row: [],
 				normalized: []
 			};
 
-		for ( i = 0; i < totalRows; ++i ) {
+		for ( i = 0; i < totalRows; i++ ) {
 
 			// Add the table data to main data array
 			$row = $( table.tBodies[0].rows[i] );
@@ -205,8 +221,9 @@
 
 			cache.row.push( $row );
 
-			for ( j = 0; j < totalCells; ++j ) {
-				cols.push( parsers[j].format( getElementSortKey( $row[0].cells[j] ), table, $row[0].cells[j] ) );
+			for ( j = 0; j < len; j++ ) {
+				cellIndex = $row.data( 'columnToCell' )[j];
+				cols.push( parsers[j].format( getElementSortKey( $row[0].cells[cellIndex] ) ) );
 			}
 
 			cols.push( cache.normalized.length ); // add position for rowCache
@@ -283,12 +300,13 @@
 			maxSeen = 0,
 			colspanOffset = 0,
 			columns,
-			i,
+			k,
 			$cell,
 			rowspan,
 			colspan,
 			headerCount,
 			longestTR,
+			headerIndex,
 			exploded,
 			$tableHeaders = $( [] ),
 			$tableRows = $( 'thead:eq(0) > tr', table );
@@ -337,29 +355,20 @@
 
 		// as each header can span over multiple columns (using colspan=N),
 		// we have to bidirectionally map headers to their columns and columns to their headers
-		$tableHeaders.each( function ( headerIndex ) {
+		config.columnToHeader = [];
+		config.headerToColumns = [];
+		config.headerList = [];
+		headerIndex = 0;
+		$tableHeaders.each( function () {
 			$cell = $( this );
 			columns = [];
 
-			for ( i = 0; i < this.colSpan; i++ ) {
-				config.columnToHeader[ colspanOffset + i ] = headerIndex;
-				columns.push( colspanOffset + i );
-			}
-
-			config.headerToColumns[ headerIndex ] = columns;
-			colspanOffset += this.colSpan;
-
-			$cell.data( {
-				headerIndex: headerIndex,
-				order: 0,
-				count: 0
-			} );
-
+			//this data is not used, delete it?
 			if ( $cell.hasClass( config.unsortableClass ) ) {
 				$cell.data( 'sortDisabled', true );
 			}
 
-			if ( !$cell.data( 'sortDisabled' ) ) {
+			if ( !$cell.hasClass( config.unsortableClass ) ) {
 				$cell
 					.addClass( config.cssHeader )
 					.prop( 'tabIndex', 0 )
@@ -367,14 +376,32 @@
 						role: 'columnheader button',
 						title: msg[1]
 					} );
+
+				for ( k = 0; k < this.colSpan; k++ ) {
+					config.columnToHeader[ colspanOffset + k ] = headerIndex;
+					columns.push( colspanOffset + k );
+				}
+
+				config.headerToColumns[ headerIndex ] = columns;
+
+				$cell.data( {
+					headerIndex: headerIndex,
+					order: 0,
+					count: 0
+				} );
+
+				// add only sortable cells to headerList //MK
+				config.headerList[ headerIndex ] = this;
+				headerIndex++;
 			}
-
-			// add cell to headerList
-			config.headerList[headerIndex] = this;
+			
+			colspanOffset += this.colSpan;
 		} );
+		/*number of columns with extended colspan, inclusive unsortable
+		  parsers[j], cache[][j], columnToHeader[j], columnToCell[j] have so many elements */
+		config.columns = colspanOffset; //MK
 
-		return $tableHeaders;
-
+		return $tableHeaders.not( '.' + config.unsortableClass );
 	}
 
 	/**
@@ -551,6 +578,7 @@
 		var spanningRealCellIndex, rowSpan, colSpan,
 			cell, cellData, i, $tds, $clone, $nextRows,
 			rowspanCells = $table.find( '> tbody > tr > [rowspan]' ).get();
+			//rowspanCells = $table.find( '> tbody > tr >' ).not( '[rowspan="1"]' ).get(); //better?
 
 		// Short circuit
 		if ( !rowspanCells.length ) {
@@ -637,6 +665,48 @@
 		}
 	}
 
+	/**
+	 * Colspanned cells in the body would not cloned,
+	 * only the cell index is multipe set in a array for every row,
+	 * columnToCell[collumnIndex] point at the real cell in this row.
+	 * 
+	 * @param $table jQuery object for a <table>
+	 */
+function manageColspans( $table ) {
+	var i, j, k, $row,
+		$rows = $table.find( '> tbody > tr' ),
+		totalRows = $rows.length || 0 ,
+		config = $table.data( 'tablesorter' ).config,
+		columns = config.columns,
+		columnToCell, cellsInRow, index;
+		
+		for ( i = 0; i < totalRows; i++ ) {
+
+			$row = $rows.eq(i);
+			// if this is a child row, continue to the next row (as buildCache())
+			if ( $row.hasClass( config.cssChildRow ) ) {
+				// go to the next for loop
+				continue;
+			}
+
+			columnToCell = [];
+			cellsInRow = ( $row[0].cells.length ) || 0;  //all cells in this row
+			index = 0; //real cell index in this row
+			for ( j = 0; j < columns; index++) {
+				if ( index === cellsInRow) {
+					//row with cells less than columns: add empty cell
+					$row.append( '<td></td>' );
+					cellsInRow++;
+				}
+				for (k = 0; k < $row[0].cells[index].colSpan; k++ ) {
+					columnToCell[j++] = index;
+				}
+			}
+			//Store it in $row
+			$row.data( 'columnToCell', columnToCell );
+		}
+	}
+
 	function buildCollationTable() {
 		ts.collationTable = mw.config.get( 'tableSorterCollation' );
 		ts.collationRegex = null;
@@ -714,12 +784,13 @@
 				cssChildRow: 'expand-child',
 				sortMultiSortKey: 'shiftKey',
 				unsortableClass: 'unsortable',
-				parsers: {},
+				parsers: [],
 				cancelSelection: true,
 				sortList: [],
 				headerList: [],
 				headerToColumns: [],
-				columnToHeader: []
+				columnToHeader: [],
+				columns: 0
 			},
 
 			dateRegex: [],
@@ -797,6 +868,7 @@
 						}
 
 						explodeRowspans( $table );
+						manageColspans( $table );
 
 						// Try to auto detect column type, and store in tables config
 						config.parsers = buildParserCache( table, $headers );
@@ -804,7 +876,7 @@
 
 					// Apply event handling to headers
 					// this is too big, perhaps break it out?
-					$headers.not( '.' + config.unsortableClass ).on( 'keypress click', function ( e ) {
+					$headers.on( 'keypress click', function ( e ) {
 						var cell, $cell, columns, newSortList, i,
 							totalRows,
 							j, s, o;
@@ -866,7 +938,7 @@
 									// Reverse the sorting direction for all tables.
 									for ( j = 0; j < config.sortList.length; j++ ) {
 										s = config.sortList[j];
-										o = config.headerList[s[0]];
+										o = config.headerList[config.columnToHeader[s[0]]];
 										if ( isValueInArray( s[0], newSortList ) ) {
 											$( o ).data( 'count', s[1] + 1 );
 											s[1] = $( o ).data( 'count' ) % 2;
@@ -937,7 +1009,7 @@
 
 					// sort initially
 					if ( config.sortList.length > 0 ) {
-						setupForFirstSort();
+						//setupForFirstSort(); is in sort()
 						config.sortList = convertSortList( config.sortList );
 						$table.data( 'tablesorter' ).sort();
 					}
@@ -998,6 +1070,10 @@
 				buildCollationTable();
 
 				return getParserById( id );
+			},
+
+			getParsers: function () {  //for table diagnosis
+				return parsers;
 			}
 		};
 
