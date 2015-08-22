@@ -41,6 +41,8 @@
 	'aa' => 'Qafár af',	# Afar
 	'ab' => 'Аҧсшәа',	# Abkhaz
 	'ace' => 'Acèh',	# Aceh
+	'ady' => 'адыгабзэ',	# Adyghe
+	'ady-cyrl' => 'адыгабзэ',	# Adyghe
 	'aeb' => 'تونسي/Tûnsî',	# Tunisian Arabic (multiple scripts - defaults to Arabic)
 	'aeb-arab' => 'تونسي',	# Tunisian Arabic (Arabic Script)
 	'aeb-latn' => 'Tûnsî',	# Tunisian Arabic (Latin Script)
