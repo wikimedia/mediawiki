@@ -2407,6 +2407,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$logRelationsValues = array();
 		$logRelationsField = null;
+		$logParamsDetails = array();
 
 		if ( $id ) { // Protection of existing page
 			if ( !Hooks::run( 'ArticleProtect', array( &$this, &$user, $limit, $reason ) ) ) {
@@ -2465,6 +2466,7 @@ class WikiPage implements Page, IDBAccessObject {
 					__METHOD__
 				);
 				if ( $restrictions != '' ) {
+					$cascadeValue = ( $cascade && $action == 'edit' ) ? 1 : 0;
 					$dbw->insert(
 						'page_restrictions',
 						array(
@@ -2472,12 +2474,18 @@ class WikiPage implements Page, IDBAccessObject {
 							'pr_page' => $id,
 							'pr_type' => $action,
 							'pr_level' => $restrictions,
-							'pr_cascade' => ( $cascade && $action == 'edit' ) ? 1 : 0,
+							'pr_cascade' => $cascadeValue,
 							'pr_expiry' => $dbw->encodeExpiry( $expiry[$action] )
 						),
 						__METHOD__
 					);
 					$logRelationsValues[] = $dbw->insertId();
+					$logParamsDetails[] = array(
+						'type' => $action,
+						'level' => $restrictions,
+						'expiry' => $expiry[$action],
+						'cascade' => (bool)$cascadeValue,
+					);
 				}
 			}
 
@@ -2508,6 +2516,11 @@ class WikiPage implements Page, IDBAccessObject {
 						'pt_reason' => $reason,
 					), __METHOD__
 				);
+				$logParamsDetails[] = array(
+					'type' => 'create',
+					'level' => $limit['create'],
+					'expiry' => $expiry['create'],
+				);
 			} else {
 				$dbw->delete( 'protected_titles',
 					array(
@@ -2525,15 +2538,24 @@ class WikiPage implements Page, IDBAccessObject {
 			$params = array();
 		} else {
 			$protectDescriptionLog = $this->protectDescriptionLog( $limit, $expiry );
-			$params = array( $protectDescriptionLog, $cascade ? 'cascade' : '' );
+			$params = array(
+				'4::description' => $protectDescriptionLog, // parameter for IRC
+				'5:bool:cascade' => $cascade,
+				'details' => $logParamsDetails, // parameter for localize and api
+			);
 		}
 
 		// Update the protection log
-		$log = new LogPage( 'protect' );
-		$logId = $log->addEntry( $logAction, $this->mTitle, $reason, $params, $user );
+		$logEntry = new ManualLogEntry( 'protect', $logAction );
+		$logEntry->setTarget( $this->mTitle );
+		$logEntry->setComment( $reason );
+		$logEntry->setPerformer( $user );
+		$logEntry->setParameters( $params );
 		if ( $logRelationsField !== null && count( $logRelationsValues ) ) {
-			$log->addRelations( $logRelationsField, $logRelationsValues, $logId );
+			$logEntry->setRelations( array( $logRelationsField => $logRelationsValues ) );
 		}
+		$logId = $logEntry->insert();
+		$logEntry->publish( $logId );
 
 		return Status::newGood();
 	}
