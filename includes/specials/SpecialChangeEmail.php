@@ -77,6 +77,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 
 	protected function getFormFields() {
 		$user = $this->getUser();
+		$that = $this;
 
 		$fields = array(
 			'Name' => array(
@@ -92,7 +93,13 @@ class SpecialChangeEmail extends FormSpecialPage {
 			'NewEmail' => array(
 				'type' => 'email',
 				'label-message' => 'changeemail-newemail',
-				'autofocus' => true
+				'autofocus' => true,
+				'validation-callback' => function ( $val ) use ( $that, $user ) {
+						if ( $val === $user->getEmail() ) {
+							return $that->msg( 'changeemail-nochange' )->parse();
+						}
+						return true;
+					},
 			),
 		);
 
