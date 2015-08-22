@@ -451,7 +451,7 @@
 	"createacct-benefit-body2": "{{PLURAL:$1|דף|דפים}}",
 	"createacct-benefit-body3": "{{PLURAL:$1|תורם|תורמים}} לאחרונה",
 	"badretype": "הסיסמאות שהזנת אינן מתאימות.",
-	"usernameinprogress": "יצירת חשבון למשתמש הזה כבר התחילה.\nנא להמתין.",
+	"usernameinprogress": "יצירת חשבון עבור שם המשתמש הזה כבר התחילה.\nנא להמתין.",
 	"userexists": "שם המשתמש שבחרתם כבר נמצא בשימוש.\nאנא בחרו שם אחר.",
 	"loginerror": "שגיאה בכניסה לאתר",
 	"createacct-error": "שגיאה ביצירת חשבון",

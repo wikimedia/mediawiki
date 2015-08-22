@@ -295,7 +295,7 @@
 	"apihelp-query+allcategories-param-limit": "Wie viele Kategorien zurückgegeben werden sollen.",
 	"apihelp-query+allcategories-param-prop": "Zurückzugebende Eigenschaften:",
 	"apihelp-query+allcategories-paramvalue-prop-size": "Ergänzt die Anzahl der Einträge in der Antwort.",
-	"apihelp-query+allcategories-paramvalue-prop-hidden": "Markiert über _&#95;HIDDENCAT_&#95; versteckte Kategorien.",
+	"apihelp-query+allcategories-paramvalue-prop-hidden": "Markiert über <code>_&#95;HIDDENCAT_&#95;</code> versteckte Kategorien.",
 	"apihelp-query+allcategories-example-size": "Listet Kategorien mit der Anzahl ihrer Einträge auf.",
 	"apihelp-query+allcategories-example-generator": "Bezieht Informationen über die Kategorieseite selbst für Kategorien, die mit <kbd>List</kbd> beginnen.",
 	"apihelp-query+alldeletedrevisions-description": "Bezieht alle gelöschten Versionen eines Benutzers oder eines Namensraumes.",

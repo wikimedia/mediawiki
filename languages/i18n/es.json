@@ -2200,7 +2200,7 @@
 	"ip_range_invalid": "El rango de IP no es válido.",
 	"ip_range_toolarge": "Los bloqueos de rango superiores a /$1 no están permitidos.",
 	"proxyblocker": "Bloqueador de proxies",
-	"proxyblockreason": "Su dirección IP ha sido bloqueada porque es un proxy abierto. Por favor, contacte con su proveedor de servicios de Internet o con su servicio de asistencia técnica e infórmeles de este grave problema de seguridad.",
+	"proxyblockreason": "Tu dirección IP ha sido bloqueada porque es un proxy abierto.\nContacta con tu proveedor de servicios de Internet o con tu servicio de asistencia técnica e infórmales de este grave problema de seguridad.",
 	"sorbsreason": "Su dirección IP está listada como proxy abierto en DNSBL.",
 	"sorbs_create_account_reason": "Su dirección IP está listada como proxy abierto en DNSBL. No puede crear una cuenta",
 	"xffblockreason": "Una dirección IP presente en la cabecera X-Forwarded-For, tuya o del servidor proxy que estás usando, ha sido bloqueada. El motivo original del bloqueo fue: $1",
