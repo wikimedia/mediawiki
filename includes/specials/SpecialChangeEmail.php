@@ -92,7 +92,13 @@ class SpecialChangeEmail extends FormSpecialPage {
 			'NewEmail' => array(
 				'type' => 'email',
 				'label-message' => 'changeemail-newemail',
-				'autofocus' => true
+				'autofocus' => true,
+				'validation-callback' => function ( $val ) use ( $user ) {
+						if ( $val === $user->getEmail() ) {
+							return $this->msg( 'changeemail-nochange' )->parse();
+						}
+						return true;
+					},
 			),
 		);
 
