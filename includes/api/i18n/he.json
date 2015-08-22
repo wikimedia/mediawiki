@@ -8,7 +8,8 @@
 			"YaronSh",
 			"ערן",
 			"LaG roiL",
-			"Elyashiv"
+			"Elyashiv",
+			"Umherirrender"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|תיעוד]]\n* [[mw:API:FAQ|שו\"ת]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api רשימת דיוור]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce הודעות על API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R באגים ובקשות]\n</div>\n<strong>מצב:</strong> כל האפשרויות שמוצגות בדף הזה אמורות לעבוד, אבל ה־API עדיין בפיתוח פעיל, ויכול להשתנות בכל זמן. עשו מינוי ל [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ רשימת הדיוור mediawiki-api-announce] להודעות על עדכונים.\n\n<strong>בקשות שגויות:</strong> כשבקשות שגויות נשלחות ל־API, תישלח כותרת HTTP עם המפתח \"MediaWiki-API-Error\" ואז גם הערך של הכותרת וגם קוד השגיאה יוגדרו לאותו ערך. למידע נוסף ר' [[mw:API:Errors_and_warnings|API: שגיאות ואזהרות]].",
@@ -345,7 +346,7 @@
 	"apihelp-query+allcategories-param-limit": "כמה קטגוריות להחזיר.",
 	"apihelp-query+allcategories-param-prop": "אילו מאפיינים לקבל:",
 	"apihelp-query+allcategories-paramvalue-prop-size": "הוספת מספר הדפים בקטגוריה.",
-	"apihelp-query+allcategories-paramvalue-prop-hidden": "מתייג קטגוריות מוסתרות עם _&#95;HIDDENCAT_&#95;.",
+	"apihelp-query+allcategories-paramvalue-prop-hidden": "מתייג קטגוריות מוסתרות עם <code>_&#95;HIDDENCAT_&#95;</code>.",
 	"apihelp-query+allcategories-example-size": "רשימת קטגוריות עם מידע על מספר הדפים בכל אחת מהן.",
 	"apihelp-query+allcategories-example-generator": "אחזור מידע על דף הקטגוריה עצמו עבור קטגוריות שמתחילות ב־<kbd>List</kbd>.",
 	"apihelp-query+alldeletedrevisions-description": "רשימת כל הגרסאות המחוקות על־ידי משתמש או במרחב.",
@@ -533,7 +534,7 @@
 	"apihelp-query+categories-param-prop": "אילו מאפיינים נוספים לקבל עבור כל קטגוריה:",
 	"apihelp-query+categories-paramvalue-prop-sortkey": "הוספת מפתח מיון (מחרוזת הקסדצימלית) ותחילית מפתח מיון (החלק הקריא) עבור קטגוריה.",
 	"apihelp-query+categories-paramvalue-prop-timestamp": "הוספת חותם־הזמן של יצירת הקטגוריה.",
-	"apihelp-query+categories-paramvalue-prop-hidden": "תיוג קטגוריות שהוסתרו באמצעות _&#95;HIDDENCAT_&#95;.",
+	"apihelp-query+categories-paramvalue-prop-hidden": "תיוג קטגוריות שהוסתרו באמצעות <code>_&#95;HIDDENCAT_&#95;</code>.",
 	"apihelp-query+categories-param-show": "איזה סוג של קטגוריות להציג.",
 	"apihelp-query+categories-param-limit": "כמה קטגוריות להחזיר.",
 	"apihelp-query+categories-param-categories": "לרשום רק את הקטגוריות האלו. שימושי לבדיקה עם דף מסוים נמצא בקטגוריה מסוימת.",

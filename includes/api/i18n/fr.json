@@ -19,7 +19,8 @@
 			"Urhixidur",
 			"Wladek92",
 			"Ash Crow",
-			"L"
+			"L",
+			"Umherirrender"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentation]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Liste de diffusion]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annonces de l’API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bogues et demandes]\n</div>\n<strong>État :</strong> Toutes les fonctionnalités affichées sur cette page devraient fonctionner, mais l’API est encore en cours de développement et peut changer à tout moment. Inscrivez-vous à [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la liste de diffusion mediawiki-api-announce] pour être informé des mises à jour.\n\n<strong>Requêtes erronées :</strong> Si des requêtes erronées sont envoyées à l’API, un en-tête HTTP sera renvoyé avec la clé « MediaWiki-API-Error ». La valeur de cet en-tête et le code d’erreur renvoyé prendront la même valeur. Pour plus d’information, voyez [[mw:API:Errors_and_warnings|API: Errors and warnings]].",
@@ -544,7 +545,7 @@
 	"apihelp-query+categories-param-prop": "Quelles propriétés supplémentaires obtenir de chaque catégorie :",
 	"apihelp-query+categories-paramvalue-prop-sortkey": "Ajoute la clé de tri (chaîne hexadécimale) et son préfixe (partie lisible) de la catégorie.",
 	"apihelp-query+categories-paramvalue-prop-timestamp": "Ajoute l’horodatage de l’ajout de la catégorie.",
-	"apihelp-query+categories-paramvalue-prop-hidden": "Marque les catégories cachées avec _&#95;HIDDENCAT_&#95;.",
+	"apihelp-query+categories-paramvalue-prop-hidden": "Marque les catégories cachées avec <code>_&#95;HIDDENCAT_&#95;</code>.",
 	"apihelp-query+categories-param-show": "Quelle sorte de catégories afficher.",
 	"apihelp-query+categories-param-limit": "Combien de catégories renvoyer.",
 	"apihelp-query+categories-param-categories": "Lister uniquement ces catégories. Utile pour vérifier si une certaine page est dans une certaine catégorie.",

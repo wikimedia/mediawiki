@@ -1179,7 +1179,7 @@
 	"right-override-export-depth": "экспортирование страниц, включая связанные страницы с глубиной до 5",
 	"right-sendemail": "отправка электронной почты другим участникам",
 	"right-passwordreset": "просмотр электронных писем с изменением пароля",
-	"right-managechangetags": "Создавать и удалять [[Special:Tags|метки]] из базы данных",
+	"right-managechangetags": "создание и удаление [[Special:Tags|меток]] из базы данных",
 	"right-applychangetags": "Применить [[Special:Tags|tags]] наряду с Вашими изменениями",
 	"right-changetags": "Добавлять и удалять произвольные  [[Special:Tags|tags]] на отдельных изменениях и записях в журнале",
 	"newuserlogpage": "Журнал регистрации участников",

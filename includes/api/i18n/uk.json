@@ -5,7 +5,8 @@
 			"A1",
 			"Ahonc",
 			"Base",
-			"Dars"
+			"Dars",
+			"Umherirrender"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Документація]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Список розсилки]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Оголошення API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Баґи і запити]\n</div>\n<strong>Статус:</strong> Усі функції, вказані на цій сторінці, мають працювати, але API далі перебуває в активній розробці і може змінитися у будь-який момент. Підпишіться на [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ список розсилки mediawiki-api-announce], щоб помічати оновлення.\n\n<strong>Хибні запити:</strong> Коли до API надсилаються хибні запити, буде відіслано HTTP-шапку з ключем «MediaWiki-API-Error», а тоді і значення шапки, і код помилки, надіслані назад, будуть встановлені з тим же значенням. Більше інформації див. на [[mw:API:Errors_and_warnings|API: Errors and warnings]].",
@@ -342,7 +343,7 @@
 	"apihelp-query+allcategories-param-limit": "Скільки категорій видати.",
 	"apihelp-query+allcategories-param-prop": "Які властивості отримати:",
 	"apihelp-query+allcategories-paramvalue-prop-size": "Додає номер сторінок у категорії.",
-	"apihelp-query+allcategories-paramvalue-prop-hidden": "Теґує категорії, приховані з _&#95;HIDDENCAT_&#95;.",
+	"apihelp-query+allcategories-paramvalue-prop-hidden": "Теґує категорії, приховані з <code>_&#95;HIDDENCAT_&#95;</code>.",
 	"apihelp-query+allcategories-example-size": "Перерахувати категорії з інформацією про кількість сторінок у кожній.",
 	"apihelp-query+allcategories-example-generator": "Отримати інформацію про саму сторінку категорії для категорій, що починаються з <kbd>List</kbd>.",
 	"apihelp-query+alldeletedrevisions-description": "Перерахувати усі вилучені версії за користувачем або у просторі назв.",
@@ -530,7 +531,7 @@
 	"apihelp-query+categories-param-prop": "Які додаткові властивості отримати для кожної категорії:",
 	"apihelp-query+categories-paramvalue-prop-sortkey": "Додає ключ сортування (шістнадцятковий рядок) і префікс ключа сортування (людиночитна частина) для категорії.",
 	"apihelp-query+categories-paramvalue-prop-timestamp": "Додає мітку часу, коли категорію було додано.",
-	"apihelp-query+categories-paramvalue-prop-hidden": "Тегує приховані категорії з допомогою _&#95;HIDDENCAT_&#95;.",
+	"apihelp-query+categories-paramvalue-prop-hidden": "Тегує приховані категорії з допомогою <code>_&#95;HIDDENCAT_&#95;</code>.",
 	"apihelp-query+categories-param-show": "Який тип категорій показувати.",
 	"apihelp-query+categories-param-limit": "Скільки категорій видати.",
 	"apihelp-query+categories-param-categories": "Перерахувати лише ці категорії. Корисно для перевірки, чи певна сторінка є в певній категорії.",
