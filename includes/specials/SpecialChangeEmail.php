@@ -92,7 +92,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 			'NewEmail' => array(
 				'type' => 'email',
 				'label-message' => 'changeemail-newemail',
-				'autofocus' => true
+				'autofocus' => true,
 			),
 		);
 
@@ -158,6 +158,10 @@ class SpecialChangeEmail extends FormSpecialPage {
 
 		if ( $newaddr != '' && !Sanitizer::validateEmail( $newaddr ) ) {
 			return Status::newFatal( 'invalidemailaddress' );
+		}
+
+		if ( $newaddr === $user->getEmail() ) {
+			return Status::newFatal( 'changeemail-nochange' );
 		}
 
 		$throttleCount = LoginForm::incLoginThrottle( $user->getName() );
