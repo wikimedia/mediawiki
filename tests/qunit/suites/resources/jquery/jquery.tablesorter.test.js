@@ -1,24 +1,5 @@
 ( function ( $, mw ) {
-	var header,
-
-		// Data set "simple"
-		a1 = [ 'A', '1' ],
-		a2 = [ 'A', '2' ],
-		a3 = [ 'A', '3' ],
-		b1 = [ 'B', '1' ],
-		b2 = [ 'B', '2' ],
-		b3 = [ 'B', '3' ],
-		simple = [a2, b3, a1, a3, b2, b1],
-		simpleAsc = [a1, a2, a3, b1, b2, b3],
-		simpleDescasc = [b1, b2, b3, a1, a2, a3],
-
-		// Data set "colspan"
-		aaa1 = [ 'A', 'A', 'A', '1' ],
-		aab5 = [ 'A', 'A', 'B', '5' ],
-		abc3 = [ 'A', 'B', 'C', '3' ],
-		bbc2 = [ 'B', 'B', 'C', '2' ],
-		caa4 = [ 'C', 'A', 'A', '4' ],
-		colspanInitial = [ aab5, aaa1, abc3, bbc2, caa4 ],
+	var header = [ 'Planet', 'Radius (km)'],
 
 		// Data set "planets"
 		mercury = [ 'Mercury', '2439.7' ],
@@ -33,6 +14,26 @@
 		planetsRowspan,
 		planetsRowspanII,
 		planetsAscNameLegacy,
+
+		// Data set "simple"
+		a1 = [ 'A', '1' ],
+		a2 = [ 'A', '2' ],
+		a3 = [ 'A', '3' ],
+		b1 = [ 'B', '1' ],
+		b2 = [ 'B', '2' ],
+		b3 = [ 'B', '3' ],
+		simple = [a2, b3, a1, a3, b2, b1],
+		simpleAsc = [a1, a2, a3, b1, b2, b3],
+		simpleDescasc = [b1, b2, b3, a1, a2, a3],
+
+		// Data set "colspan"
+		header4 = [ 'column1a', 'column1b', 'column1c', 'column2' ];
+		aaa1 = [ 'A', 'A', 'A', '1' ],
+		aab5 = [ 'A', 'A', 'B', '5' ],
+		abc3 = [ 'A', 'B', 'C', '3' ],
+		bbc2 = [ 'B', 'B', 'C', '2' ],
+		caa4 = [ 'C', 'A', 'A', '4' ],
+		colspanInitial = [ aab5, aaa1, abc3, bbc2, caa4 ],
 
 		// Data set "ipv4"
 		ipv4 = [
@@ -302,7 +303,6 @@
 	}
 
 	// Sample data set using planets named and their radius
-	header = [ 'Planet', 'Radius (km)'];
 
 	tableTest(
 		'Basic planet table: sorting initially - ascending by name',
@@ -388,9 +388,6 @@
 			$table.find( '.headerSort:eq(1)' ).click().click();
 		}
 	);
-
-	header = [ 'column1', 'column2' ];
-
 	tableTest(
 		'Sorting multiple columns by passing sort list',
 		header,
@@ -500,10 +497,9 @@
 	} );
 
 	// Sorting with colspans
-	header = [ 'column1a', 'column1b', 'column1c', 'column2' ];
 
 	tableTest( 'Sorting with colspanned headers: spanned column',
-		header,
+		header4,
 		colspanInitial,
 		[ aaa1, aab5, abc3, bbc2, caa4 ],
 		function ( $table ) {
@@ -516,7 +512,7 @@
 		}
 	);
 	tableTest( 'Sorting with colspanned headers: sort spanned column twice',
-		header,
+		header4,
 		colspanInitial,
 		[ caa4, bbc2, abc3, aab5, aaa1 ],
 		function ( $table ) {
@@ -530,7 +526,7 @@
 		}
 	);
 	tableTest( 'Sorting with colspanned headers: subsequent column',
-		header,
+		header4,
 		colspanInitial,
 		[ aaa1, bbc2, abc3, caa4, aab5 ],
 		function ( $table ) {
@@ -543,7 +539,7 @@
 		}
 	);
 	tableTest( 'Sorting with colspanned headers: sort subsequent column twice',
-		header,
+		header4,
 		colspanInitial,
 		[ aab5, caa4, abc3, bbc2, aaa1 ],
 		function ( $table ) {
@@ -557,18 +553,36 @@
 		}
 	);
 
-	tableTest(
-		'Basic planet table: one unsortable column',
-		header,
-		planets,
-		planets,
-		function ( $table ) {
-			$table.find( 'tr:eq(0) > th:eq(0)' ).addClass( 'unsortable' );
+	QUnit.test( 'Basic planet table: one unsortable column', 3, function ( assert ) {
+		var $table = tableCreate( header, planets ),
+			$cell;
+		$table.find( 'tr:eq(0) > th:eq(0)' ).addClass( 'unsortable' );
 
-			$table.tablesorter();
-			$table.find( 'tr:eq(0) > th:eq(0)' ).click();
-		}
-	);
+		$table.tablesorter();
+		$table.find( 'tr:eq(0) > th:eq(0)' ).click();
+
+		assert.deepEqual(
+			tableExtract( $table ),
+			planets,
+			'table not sorted'
+		);
+
+		$cell = $table.find( 'tr:eq(0) > th:eq(0)' );
+		$table.find( 'tr:eq(0) > th:eq(1)' ).click();
+
+		assert.equal(
+			$cell.hasClass('headerSortUp') || $cell.hasClass('headerSortDown'),
+			false,
+			'after sort: no class headerSortUp or headerSortDown'
+		);
+
+		assert.equal(
+			$cell.attr('title'),
+			undefined,
+			'after sort: no title tag added'
+		);
+
+	} );
 
 	// Regression tests!
 	tableTest(
@@ -1262,14 +1276,14 @@
 	tableTestHTML(
 		'Rowspan exploding with colspanned cells (2)',
 		'<table class="sortable">' +
-			'<thead><tr><th id="sortme">n</th><th>foo</th><th>bar</th><th>baz</th><th>quux</th></tr></thead>' +
+			'<thead><tr><th>n</th><th>foo</th><th>bar</th><th>baz</th><th id="sortme">n2</th></tr></thead>' +
 			'<tbody>' +
-			'<tr><td>1</td><td>foo</td><td>bar</td><td rowspan="2">baz</td><td>quux</td></tr>' +
-			'<tr><td>2</td><td colspan="2">foobar</td><td>quux</td></tr>' +
+			'<tr><td>1</td><td>foo</td><td>bar</td><td rowspan="2">baz</td><td>2</td></tr>' +
+			'<tr><td>2</td><td colspan="2">foobar</td><td>1</td></tr>' +
 			'</tbody></table>',
 		[
-			[ '1', 'foo', 'bar', 'baz', 'quux' ],
-			[ '2', 'foobar', 'baz', 'quux' ]
+			[ '2', 'foobar', 'baz', '1' ],
+			[ '1', 'foo', 'bar', 'baz', '2' ]
 		]
 	);
 
@@ -1345,4 +1359,39 @@
 		]
 	);
 
+	QUnit.test( 'bug 105731 - incomplete rows in table body', 3, function ( assert ) {
+		var $table, parsers;
+		$table = $(
+			'<table class="sortable">' +
+				'<tr><th>A</th><th>B</th></tr>' +
+				'<tr><td>3</td></tr>' +
+				'<tr><td>1</td><td>2</td></tr>' +
+				'</table>'
+		);
+		$table.tablesorter();
+		$table.find( '.headerSort:eq(0)' ).click();
+		//now the first row have 2 columns
+		$table.find( '.headerSort:eq(1)' ).click();
+		
+		parsers = $table.data( 'tablesorter' ).config.parsers;
+		
+		assert.equal(
+			parsers.length,
+			2,
+			'detectParserForColumn() detect 2 parsers'
+		);
+		
+		assert.equal(
+			parsers[1].id,
+			'number',
+			'detectParserForColumn() detect parser.id "number" for second column'
+		);
+		
+		assert.equal(
+			parsers[1].format( $table.find( 'tbody > tr > td:eq(1)' ).text() ),
+			0,
+			'empty cell is sorted as number 0'
+		);
+
+	} );
 }( jQuery, mediaWiki ) );
