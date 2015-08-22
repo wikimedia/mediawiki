@@ -462,14 +462,14 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 	 */
 	public function testIrcMsgForLogTypeProtect() {
 		$protectParams = array(
-			'[edit=sysop] (indefinite) ‎[move=sysop] (indefinite)'
+			'4::description' => '[edit=sysop] (indefinite) ‎[move=sysop] (indefinite)'
 		);
 		$sep = $this->context->msg( 'colon-separator' )->text();
 
 		# protect/protect
 		$this->assertIRCComment(
-			$this->context->msg( 'protectedarticle', 'SomeTitle ' . $protectParams[0] )
-				->plain() . $sep . $this->user_comment,
+			$this->context->msg( 'protectedarticle', 'SomeTitle ' . $protectParams['4::description'] )
+					->plain() . $sep . $this->user_comment,
 			'protect', 'protect',
 			$protectParams,
 			$this->user_comment
@@ -485,7 +485,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 
 		# protect/modify
 		$this->assertIRCComment(
-			$this->context->msg( 'modifiedarticleprotection', 'SomeTitle ' . $protectParams[0] )
+			$this->context->msg( 'modifiedarticleprotection', 'SomeTitle ' . $protectParams['4::description'] )
 				->plain() . $sep . $this->user_comment,
 			'protect', 'modify',
 			$protectParams,
