@@ -160,6 +160,10 @@ class SpecialChangeEmail extends FormSpecialPage {
 			return Status::newFatal( 'invalidemailaddress' );
 		}
 
+		if ( $newaddr === $user->getEmail() ) {
+			return Status::newFatal( 'changeemail-nochange' );
+		}
+
 		$throttleCount = LoginForm::incLoginThrottle( $user->getName() );
 		if ( $throttleCount === true ) {
 			$lang = $this->getLanguage();
