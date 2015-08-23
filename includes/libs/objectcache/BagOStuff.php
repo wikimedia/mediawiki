@@ -289,13 +289,15 @@ abstract class BagOStuff implements LoggerAwareInterface {
 		}
 
 		$lSince = microtime( true ); // lock timestamp
+		// PHP 5.3: Can't use $this in a closure
 		$that = $this;
+		$logger = $this->logger;
 
-		return new ScopedCallback( function() use ( $that, $key, $lSince, $expiry ) {
+		return new ScopedCallback( function() use ( $that, $logger, $key, $lSince, $expiry ) {
 			$latency = .050; // latency skew (err towards keeping lock present)
 			$age = ( microtime( true ) - $lSince + $latency );
 			if ( ( $age + $latency ) >= $expiry ) {
-				$that->logger->warning( "Lock for $key held too long ($age sec)." );
+				$logger->warning( "Lock for $key held too long ($age sec)." );
 				return; // expired; it's not "safe" to delete the key
 			}
 			$that->unlock( $key );
