@@ -2748,24 +2748,64 @@ class Title {
 			return array( $this->mHasCascadingRestrictions, $pagerestrictions );
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
-
-		if ( $this->getNamespace() == NS_FILE ) {
-			$tables = array( 'imagelinks', 'page_restrictions' );
-			$where_clauses = array(
-				'il_to' => $this->getDBkey(),
-				'il_from=pr_page',
-				'pr_cascade' => 1
-			);
-		} else {
-			$tables = array( 'templatelinks', 'page_restrictions' );
-			$where_clauses = array(
+		$sources = $this->getCascadeProtectionSourcesInternal(
+			$getPages,
+			$pagerestrictions,
+			array( 'templatelinks' ),
+			array(
 				'tl_namespace' => $this->getNamespace(),
 				'tl_title' => $this->getDBkey(),
 				'tl_from=pr_page',
-				'pr_cascade' => 1
-			);
+			)
+		);
+
+		# For upload protections
+		if ( $this->getNamespace() == NS_FILE ) {
+			$sources = array_merge( $sources, $this->getCascadeProtectionSourcesInternal(
+				$getPages,
+				$pagerestrictions,
+				array( 'imagelinks' ),
+				array(
+					'il_to' => $this->getDBkey(),
+					'il_from=pr_page',
+					'pr_cascade' => 1
+				),
+				array( 'edit' => 'upload' )
+			) );
 		}
+
+		if ( $getPages ) {
+			$this->mCascadeSources = $sources;
+			$this->mCascadingRestrictions = $pagerestrictions;
+		} else {
+			$this->mHasCascadingRestrictions = $sources;
+		}
+
+		return array( $sources, $pagerestrictions );
+	}
+
+	/**
+	 * Cascading protection: Query database for cascading restrictions for different link types.
+	 *
+	 * @param bool $getPages Whether or not to retrieve the actual pages
+	 *        that the restrictions have come from and the actual restrictions
+	 *        themselves.
+	 * @param array &$pagerestrictions array like that returned by Title::getAllRestrictions()
+	 * @param array $tables Additional tables for the query.
+	 * @param array $where_clauses Additional where clauses for the query
+	 * @param array $rewrites Rewrites for the key (action) for $pagerestrictions
+	 *        (Eg. 'edit' => 'upload' for image links)
+	 * @return array Title objects of the pages from which cascading restrictions
+	 *        have come, false for none, or true if such restrictions exist but
+	 *        $getPages was not set.
+	 */
+	protected function getCascadeProtectionSourcesInternal( $getPages, &$pagerestrictions,
+		$tables, $where_clauses, $rewrites = array()
+	) {
+		$dbr = wfGetDB( DB_SLAVE );
+
+		$tables[] = 'page_restrictions';
+		$where_clauses['pr_cascade'] = 1;
 
 		if ( $getPages ) {
 			$cols = array( 'pr_page', 'page_namespace', 'page_title',
@@ -2792,15 +2832,20 @@ class Title {
 					# Add groups needed for each restriction type if its not already there
 					# Make sure this restriction type still exists
 
-					if ( !isset( $pagerestrictions[$row->pr_type] ) ) {
-						$pagerestrictions[$row->pr_type] = array();
+					$type = $row->pr_type;
+					if ( isset( $rewrites[$type] ) ) {
+						$type = $rewrites[$type];
+					}
+
+					if ( !isset( $pagerestrictions[$type] ) ) {
+						$pagerestrictions[$type] = array();
 					}
 
 					if (
-						isset( $pagerestrictions[$row->pr_type] )
-						&& !in_array( $row->pr_level, $pagerestrictions[$row->pr_type] )
+							isset( $pagerestrictions[$type] )
+							&& !in_array( $row->pr_level, $pagerestrictions[$type] )
 					) {
-						$pagerestrictions[$row->pr_type][] = $row->pr_level;
+						$pagerestrictions[$type][] = $row->pr_level;
 					}
 				} else {
 					$sources = true;
@@ -2808,14 +2853,7 @@ class Title {
 			}
 		}
 
-		if ( $getPages ) {
-			$this->mCascadeSources = $sources;
-			$this->mCascadingRestrictions = $pagerestrictions;
-		} else {
-			$this->mHasCascadingRestrictions = $sources;
-		}
-
-		return array( $sources, $pagerestrictions );
+		return $sources;
 	}
 
 	/**
