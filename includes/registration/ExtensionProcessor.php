@@ -305,9 +305,15 @@ class ExtensionProcessor implements Processor {
 	 */
 	protected function extractConfig( array $info ) {
 		if ( isset( $info['config'] ) ) {
+			if ( isset( $info['config']['_prefix'] ) ) {
+				$prefix = $info['config']['_prefix'];
+				unset( $info['config']['_prefix'] );
+			} else {
+				$prefix = 'wg';
+			}
 			foreach ( $info['config'] as $key => $val ) {
 				if ( $key[0] !== '@' ) {
-					$this->globals["wg$key"] = $val;
+					$this->globals["$prefix$key"] = $val;
 				}
 			}
 		}
