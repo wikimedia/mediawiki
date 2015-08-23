@@ -113,11 +113,20 @@ class ExtensionProcessorTest extends MediaWikiTestCase {
 				'@IGNORED' => 'yes',
 			),
 		) + self::$default;
+		$info2 = array(
+			'config' => array(
+				'_prefix' => 'eg',
+				'Bar' => 'somevalue'
+			),
+		) + self::$default;
 		$processor->extractInfo( $this->dir, $info, 1 );
+		$processor->extractInfo( $this->dir, $info2, 1 );
 		$extracted = $processor->getExtractedInfo();
 		$this->assertEquals( 'somevalue', $extracted['globals']['wgBar'] );
 		$this->assertEquals( 10, $extracted['globals']['wgFoo'] );
 		$this->assertArrayNotHasKey( 'wg@IGNORED', $extracted['globals'] );
+		// Custom prefix:
+		$this->assertEquals( 'somevalue', $extracted['globals']['egBar'] );
 	}
 
 	public static function provideExtracttExtensionMessagesFiles() {
