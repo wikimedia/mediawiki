@@ -591,10 +591,14 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 
 		$options = array();
 		foreach ( array(
-			// T104950: Do not include localBasePath or remoteBasePath!
-			// Those paths may vary over time and needlessly invalidate cache. If the path changes
-			// in a way that makes relative file paths point to something else, getFileHashes() will
-			// account for that already.
+			// The following properties are omitted because they don't affect the module reponse:
+			// - localBasePath (Per T104950; Changes when absolute directory name changes. If
+			//    this affects 'scripts' and other file paths, getFileHashes accounts for that.)
+			// - remoteBasePath (Per T104950)
+			// - dependencies (provided via startup module)
+			// - targets
+			// - group (provided via startup module)
+			// - position (only used by OutputPage)
 			'scripts',
 			'debugScripts',
 			'loaderScripts',
@@ -602,12 +606,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			'languageScripts',
 			'skinScripts',
 			'skinStyles',
-			'dependencies',
 			'messages',
-			'targets',
 			'templates',
-			'group',
-			'position',
 			'skipFunction',
 			'debugRaw',
 			'raw',
