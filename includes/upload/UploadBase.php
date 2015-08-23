@@ -752,14 +752,15 @@ abstract class UploadBase {
 		if ( $this->mTitle !== false ) {
 			return $this->mTitle;
 		}
+		$this->mFilteredName = $this->mDesiredDestName;
 		/* Assume that if a user specified File:Something.jpg, this is an error
 		 * and that the namespace prefix needs to be stripped of.
 		 */
-		$title = Title::newFromText( $this->mDesiredDestName );
-		if ( $title && $title->getNamespace() == NS_FILE ) {
-			$this->mFilteredName = $title->getDBkey();
-		} else {
-			$this->mFilteredName = $this->mDesiredDestName;
+		if ( is_string( $this->mDesiredDestName ) ) {
+			$title = Title::newFromText( $this->mDesiredDestName );
+			if ( $title && $title->getNamespace() == NS_FILE ) {
+				$this->mFilteredName = $title->getDBkey();
+			}
 		}
 
 		# oi_archive_name is max 255 bytes, which include a timestamp and an
