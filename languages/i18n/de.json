@@ -79,7 +79,8 @@
 			"Robby",
 			"Andreasburmeister",
 			"Tiin",
-			"Freddy2001"
+			"Freddy2001",
+			"Luke081515"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -522,7 +523,7 @@
 	"password-name-match": "Dein Passwort muss sich von deinem Benutzernamen unterscheiden.",
 	"password-login-forbidden": "Die Verwendung dieses Benutzernamens und Passwortes ist nicht erlaubt.",
 	"mailmypassword": "Passwort zurücksetzen",
-	"passwordremindertitle": "Neues Passwort für dein {{SITENAME}}-Benutzerkonto",
+	"passwordremindertitle": "Neues temporäres Passwort für dein {{SITENAME}}-Benutzerkonto",
 	"passwordremindertext": "Jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat ein neues Passwort für die Anmeldung bei {{SITENAME}} ($4) angefordert.\n\nDas automatisch generierte Passwort für Benutzer „$2“ lautet nun: $3\n\nFalls du dies wirklich gewünscht hast, solltest du dich jetzt anmelden und das Passwort ändern.\nDas neue Passwort ist {{PLURAL:$5|1 Tag|$5 Tage}} gültig.\n\nBitte ignoriere diese E-Mail, falls du sie nicht selbst angefordert hast. Das alte Passwort bleibt weiterhin gültig.",
 	"noemail": "{{GENDER:$1|Benutzer|Benutzerin|Benutzer}} „$1“ hat keine E-Mail-Adresse angegeben.",
 	"noemailcreate": "Du musst eine gültige E-Mail-Adresse angeben.",
@@ -579,7 +580,7 @@
 	"resetpass-expired-soft": "Dein Passwort ist abgelaufen und muss zurückgesetzt werden. Bitte wähle jetzt ein neues Passwort aus oder klicke auf „{{int:resetpass-submit-cancel}}“, um es später zurückzusetzen.",
 	"resetpass-validity-soft": "Dein Passwort ist nicht gültig: $1\n\nBitte wähle jetzt ein neues Passwort oder klicke auf „{{int:resetpass-submit-cancel}}“, um es später zurückzusetzen.",
 	"passwordreset": "Passwort zurücksetzen",
-	"passwordreset-text-one": "Fülle dieses Formular aus, um dein Passwort zurückzusetzen.",
+	"passwordreset-text-one": "Fülle dieses Formular aus, um ein temporäres Passwort per E-Mail zu erhalten.",
 	"passwordreset-text-many": "{{PLURAL:$1|Füll eines der Felder aus, um ein temporäres Passwort per E-Mail zugesandt zu bekommen.}}",
 	"passwordreset-disabled": "Das Zurücksetzen von Passwörtern wurde in diesem Wiki deaktiviert.",
 	"passwordreset-emaildisabled": "Die E-Mail-Funktionen wurden auf diesem Wiki deaktiviert.",
@@ -643,7 +644,7 @@
 	"anonpreviewwarning": "''Du bist nicht angemeldet. Beim Speichern wird deine IP-Adresse in der Versionsgeschichte aufgezeichnet.''",
 	"missingsummary": "'''Hinweis:''' Du hast keine Zusammenfassung angegeben. Wenn du erneut auf „{{int:savearticle}}“ klickst, wird deine Änderung ohne Zusammenfassung übernommen.",
 	"selfredirect": "<strong>Warnung:</strong> Du leitest auf diese Seite selbst weiter.\nDu hast vermutlich das falsche Weiterleitungsziel angegeben oder du bearbeitest die falsche Seite.\nWenn du erneut auf „{{int:savearticle}}“ klickst, wird die Weiterleitung dennoch erstellt.",
-	"missingcommenttext": "Dein Abschnitt enthält keinen Text.",
+	"missingcommenttext": "Bitte gib unten einen Kommentar ein.",
 	"missingcommentheader": "'''Achtung:''' Du hast kein Betreff/Überschrift eingegeben. Wenn du erneut auf „{{int:savearticle}}“ klickst, wird deine Bearbeitung ohne Überschrift gespeichert.",
 	"summary-preview": "Vorschau der Zusammenfassungszeile:",
 	"subject-preview": "Vorschau der Zusammenfassungszeile:",

@@ -130,7 +130,7 @@
 	"apihelp-move-param-to": "將本頁面的標題重新命名為",
 	"apihelp-move-param-reason": "重新命名的原因。",
 	"apihelp-move-param-movesubpages": "如果適用，則重新命名子頁面。",
-	"apihelp-move-param-noredirect": "不要建立重定向。",
+	"apihelp-move-param-noredirect": "不要建立重新導向。",
 	"apihelp-move-param-ignorewarnings": "忽略所有警告。",
 	"apihelp-opensearch-description": "使用 OpenSearch 協定搜尋本 wiki。",
 	"apihelp-opensearch-param-search": "搜尋字串。",

@@ -1332,6 +1332,8 @@
 	"upload-dialog-title": "Загрузка файла",
 	"upload-dialog-error": "Адбылася памылка",
 	"upload-dialog-warning": "Зьявілася папярэджаньне",
+	"upload-dialog-button-cancel": "Адмяніць",
+	"upload-dialog-button-done": "Зроблена",
 	"backend-fail-stream": "Немагчыма накіраваць файл $1.",
 	"backend-fail-backup": "Немагчыма зрабіць рэзэрвовую копію файла $1.",
 	"backend-fail-notexists": "Файл $1 не існуе.",

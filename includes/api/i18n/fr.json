@@ -1124,7 +1124,7 @@
 	"apihelp-query+watchlist-paramvalue-prop-notificationtimestamp": "Ajoute l’horodatage de la dernière notification de la modification à l’utilisateur.",
 	"apihelp-query+watchlist-paramvalue-prop-loginfo": "Ajoute l’information de trace le cas échéant.",
 	"apihelp-query+watchlist-param-show": "Afficher uniquement les éléments qui correspondent à ces critères. Par exemple, pour voir uniquement les modifications mineures faites par des utilisateurs connectés, mettre $1show=minor|!anon.",
-	"apihelp-query+watchlist-param-type": "Quels types de modification afficher :\n;edit:Modifications ordinaires de page.\n;external:Modifications externes.\n;new:Créations de page.\n;log:Entrées du journal.\n;categorize:changements dans la catégorie d'appartenance.",
+	"apihelp-query+watchlist-param-type": "Quels types de modification afficher :\n;edit:Modifications ordinaires de page.\n;external:Modifications externes.\n;new:Créations de page.\n;log:Entrées du journal.",
 	"apihelp-query+watchlist-param-owner": "Utilisé avec $1token pour accéder à la liste de suivi d’un autre utilisateur.",
 	"apihelp-query+watchlist-param-token": "Un jeton de sécurité (disponible dans les [[Special:Preferences#mw-prefsection-watchlist|préférences]] de l’utilsiateur) pour autoriser l’accès à la liste de suivi d&un autre utilisateur.",
 	"apihelp-query+watchlist-example-simple": "Lister la révision de tête des pages récemment modifiées dans la liste de suivi de l’utilisateur actuel",

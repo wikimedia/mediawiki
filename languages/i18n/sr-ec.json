@@ -1908,7 +1908,7 @@
 	"pagesize": "(бајтови)",
 	"restriction-edit": "уређивање",
 	"restriction-move": "премештање",
-	"restriction-create": "стварање",
+	"restriction-create": "Прављење",
 	"restriction-upload": "слање",
 	"restriction-level-sysop": "потпуно заштићено",
 	"restriction-level-autoconfirmed": "полузаштићено",

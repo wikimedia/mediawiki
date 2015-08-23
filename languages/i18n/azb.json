@@ -15,7 +15,8 @@
 			"Koroğlu",
 			"Baloch Afghanistan",
 			"Macofe",
-			"Sadiqr"
+			"Sadiqr",
+			"Mjbmr"
 		]
 	},
 	"tog-underline": "باغلانتی‌لارین آلتینی خطله:",
@@ -1855,7 +1856,7 @@
 	"undeleteviewlink": "باخ",
 	"undeleteinvert": "سئچیلنی دؤندر",
 	"undeletecomment": "ندن:",
-	"undeletedrevisions": "جمعی {{PLURAL:$1|1 دییش|$1 دییشدیر}} گئری قایتاریلدی.",
+	"undeletedrevisions": "جمعی {{PLURAL:$1|بیر دییش|$1 دییشدیر}} گئری قایتاریلدی.",
 	"undeletedrevisions-files": "{{PLURAL:$1|1 نوسخه|$1 نوسخه}} و {{PLURAL:$2|1 فایل|$2 فایل}} برپا ائدیلدی",
 	"undeletedfiles": "{{PLURAL:$1|1 فایل|$1 فایل}} برپا اولوندو",
 	"cannotundelete": "برپا ائدیلمه اولمادی\n\n$1",

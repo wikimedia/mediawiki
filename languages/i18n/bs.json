@@ -663,7 +663,7 @@
 	"permissionserrorstext": "Nemate dopuštenje da to uradite, iz {{PLURAL:$1|slijedećeg razloga|slijedećih razloga}}:",
 	"permissionserrorstext-withaction": "Nemate dopuštenje da $2, iz {{PLURAL:$1|slijedećeg|slijedećih}} razloga:",
 	"recreate-moveddeleted-warn": "'''Upozorenje: Postavljate stranicu koja je prethodno brisana.'''\n\nRazmotrite da li je nastavljanje uređivanja ove stranice u skladu s pravilima.\nOvdje je naveden zapisnik brisanja i premještanja s obrazloženjem:",
-	"moveddeleted-notice": "Ova stranica je obrisana.\nZapis brisanja i pomjeranja stranice je prikazan ispod kao referenca.",
+	"moveddeleted-notice": "Ova stranica je obrisana.\nZapisnik brisanja i premještanja stranice je prikazan ispod kao referenca.",
 	"log-fulllog": "Vidi potpuni zapisnik",
 	"edit-hook-aborted": "Izmjena je poništena putem interfejsa.\nNije ponuđeno nikakvo objašnjenje.",
 	"edit-gone-missing": "Stranica se nije mogla osvježiti.\nIzgleda da je obrisana.",

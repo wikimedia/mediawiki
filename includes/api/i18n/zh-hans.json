@@ -771,6 +771,7 @@
 	"apihelp-query+logevents-paramvalue-prop-timestamp": "为日志活动添加时间戳。",
 	"apihelp-query+logevents-paramvalue-prop-comment": "添加日志活动的摘要。",
 	"apihelp-query+logevents-paramvalue-prop-parsedcomment": "添加被解析的日志活动的摘要。",
+	"apihelp-query+logevents-paramvalue-prop-details": "列举有关日志事件的额外详细信息。",
 	"apihelp-query+logevents-paramvalue-prop-tags": "列举用于日志活动的标签。",
 	"apihelp-query+logevents-param-type": "过滤日志记录至仅限此类型。",
 	"apihelp-query+logevents-param-action": "过滤日志操作为仅限此操作。覆盖<var>$1type</var>。类似<kbd>action/*</kbd>的通配符操作允许指定用于星号的任意字符串。",
