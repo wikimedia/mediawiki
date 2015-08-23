@@ -120,13 +120,7 @@ abstract class UploadBase {
 	 * @return bool|string
 	 */
 	public static function isAllowed( $user ) {
-		foreach ( [ 'upload', 'edit' ] as $permission ) {
-			if ( !$user->isAllowed( $permission ) ) {
-				return $permission;
-			}
-		}
-
-		return true;
+		return $user->isAllowed( 'upload' );
 	}
 
 	/**
@@ -598,15 +592,16 @@ abstract class UploadBase {
 		if ( is_null( $nt ) ) {
 			return true;
 		}
-		$permErrors = $nt->getUserPermissionsErrors( 'edit', $user );
-		$permErrorsUpload = $nt->getUserPermissionsErrors( 'upload', $user );
+		$permErrors = $nt->getUserPermissionsErrors( 'upload', $user );
 		if ( !$nt->exists() ) {
+			$permErrorsEdit = $nt->getUserPermissionsErrors( 'edit', $user );
 			$permErrorsCreate = $nt->getUserPermissionsErrors( 'create', $user );
 		} else {
+			$permErrorsEdit = [];
 			$permErrorsCreate = [];
 		}
-		if ( $permErrors || $permErrorsUpload || $permErrorsCreate ) {
-			$permErrors = array_merge( $permErrors, wfArrayDiff2( $permErrorsUpload, $permErrors ) );
+		if ( $permErrors || $permErrorsEdit || $permErrorsCreate ) {
+			$permErrors = array_merge( $permErrors, wfArrayDiff2( $permErrorsEdit, $permErrors ) );
 			$permErrors = array_merge( $permErrors, wfArrayDiff2( $permErrorsCreate, $permErrors ) );
 
 			return $permErrors;
