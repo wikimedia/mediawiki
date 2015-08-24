@@ -1199,10 +1199,9 @@ class WikiPage implements Page, IDBAccessObject {
 	 * Best if all done inside a transaction.
 	 *
 	 * @param DatabaseBase $dbw
-	 * @return int The newly created page_id key, or false if the title already existed
+	 * @return int|bool The newly created page_id key; false if the title already existed
 	 */
 	public function insertOn( $dbw ) {
-
 		$page_id = $dbw->nextSequenceValue( 'page_page_id_seq' );
 		$dbw->insert( 'page', array(
 			'page_id'           => $page_id,
@@ -1223,9 +1222,11 @@ class WikiPage implements Page, IDBAccessObject {
 			$newid = $dbw->insertId();
 			$this->mId = $newid;
 			$this->mTitle->resetArticleID( $newid );
-		}
 
-		return $affected ? $newid : false;
+			return $newid;
+		} else {
+			return false;
+		}
 	}
 
 	/**
