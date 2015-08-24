@@ -364,20 +364,23 @@ TXT;
 	 * by getRedactedTrace().
 	 *
 	 * @param array $trace
+	 * @param string $indent Constant indent to add to each line
 	 * @return string
 	 * @since 1.26
 	 */
-	public static function prettyPrintRedactedTrace( array $trace ) {
+	public static function prettyPrintRedactedTrace(
+		array $trace, $indent = ''
+	) {
 		$text = '';
 
 		foreach ( $trace as $level => $frame ) {
 			if ( isset( $frame['file'] ) && isset( $frame['line'] ) ) {
-				$text .= "#{$level} {$frame['file']}({$frame['line']}): ";
+				$text .= "{$indent}#{$level} {$frame['file']}({$frame['line']}): ";
 			} else {
 				// 'file' and 'line' are unset for calls via call_user_func (bug 55634)
 				// This matches behaviour of Exception::getTraceAsString to instead
 				// display "[internal function]".
-				$text .= "#{$level} [internal function]: ";
+				$text .= "{$indent}#{$level} [internal function]: ";
 			}
 
 			if ( isset( $frame['class'] ) ) {
@@ -394,7 +397,7 @@ TXT;
 		}
 
 		$level = $level + 1;
-		$text .= "#{$level} {main}";
+		$text .= "{$indent}#{$level} {main}";
 
 		return $text;
 	}
