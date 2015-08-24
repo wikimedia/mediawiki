@@ -72,6 +72,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	public function getDefaultOptions() {
 		$opts = parent::getDefaultOptions();
 		$user = $this->getUser();
+		$config = $this->getConfig();
 
 		$opts->add( 'days', $user->getIntOption( 'rcdays' ) );
 		$opts->add( 'limit', $user->getIntOption( 'rclimit' ) );
@@ -83,6 +84,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$opts->add( 'hideliu', false );
 		$opts->add( 'hidepatrolled', $user->getBoolOption( 'hidepatrolled' ) );
 		$opts->add( 'hidemyself', false );
+
+		if ( $config->get( 'RCWatchCategoryMembership' ) ) {
+			$opts->add( 'hidecategorization', $user->getBoolOption( 'hidecategorization' ) );
+		}
 
 		$opts->add( 'categories', '' );
 		$opts->add( 'categories_any', false );
@@ -137,6 +142,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			}
 			if ( 'hidemyself' === $bit ) {
 				$opts['hidemyself'] = true;
+			}
+			if ( 'hidecategorization' === $bit ) {
+				$opts['hidecategorization'] = true;
 			}
 
 			if ( is_numeric( $bit ) ) {
@@ -677,6 +685,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		$lang = $this->getLanguage();
 		$user = $this->getUser();
+		$config = $this->getConfig();
 		if ( $options['from'] ) {
 			$note .= $this->msg( 'rcnotefrom' )
 				->numParams( $options['limit'] )
@@ -690,12 +699,12 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		}
 
 		# Sort data for display and make sure it's unique after we've added user data.
-		$linkLimits = $this->getConfig()->get( 'RCLinkLimits' );
+		$linkLimits = $config->get( 'RCLinkLimits' );
 		$linkLimits[] = $options['limit'];
 		sort( $linkLimits );
 		$linkLimits = array_unique( $linkLimits );
 
-		$linkDays = $this->getConfig()->get( 'RCLinkDays' );
+		$linkDays = $config->get( 'RCLinkDays' );
 		$linkDays[] = $options['days'];
 		sort( $linkDays );
 		$linkDays = array_unique( $linkDays );
@@ -726,6 +735,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			'hidemyself' => 'rcshowhidemine'
 		);
 
+		if ( $config->get( 'RCWatchCategoryMembership' ) ) {
+			$filters['hidecategorization'] = 'rcshowhidecategorization';
+		}
+
 		$showhide = array( 'show', 'hide' );
 
 		foreach ( $this->getCustomFilters() as $key => $params ) {
@@ -741,7 +754,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			// The following messages are used here:
 			// rcshowhideminor-show, rcshowhideminor-hide, rcshowhidebots-show, rcshowhidebots-hide,
 			// rcshowhideanons-show, rcshowhideanons-hide, rcshowhideliu-show, rcshowhideliu-hide,
-			// rcshowhidepatr-show, rcshowhidepatr-hide, rcshowhidemine-show, rcshowhidemine-hide.
+			// rcshowhidepatr-show, rcshowhidepatr-hide, rcshowhidemine-show, rcshowhidemine-hide,
+			// rcshowhidecategorization-show, rcshowhidecategorization-hide.
 			$linkMessage = $this->msg( $msg . '-' . $showhide[1 - $options[$key]] );
 			// Extensions can define additional filters, but don't need to define the corresponding
 			// messages. If they don't exist, just fall back to 'show' and 'hide'.
