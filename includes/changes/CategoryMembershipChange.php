@@ -203,19 +203,7 @@ class CategoryMembershipChange {
 		$deleted = 0
 	) {
 		if ( $this->notifyCategorizationCallback === null ) {
-			RecentChange::notifyCategorization(
-				$timestamp,
-				$categoryTitle,
-				$user,
-				$comment,
-				$pageTitle,
-				$oldRevId,
-				$newRevId,
-				$lastTimestamp,
-				$bot,
-				$ip,
-				$deleted
-			);
+			throw new MWException( 'Not yet implemented' );
 		} else {
 			call_user_func_array(
 				$this->notifyCategorizationCallback,
