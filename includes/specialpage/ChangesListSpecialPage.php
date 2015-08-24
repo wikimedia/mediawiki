@@ -136,6 +136,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @return FormOptions
 	 */
 	public function getDefaultOptions() {
+		global $wgRCWatchCategoryMembership;
+
 		$opts = new FormOptions();
 
 		$opts->add( 'hideminor', false );
@@ -144,6 +146,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$opts->add( 'hideliu', false );
 		$opts->add( 'hidepatrolled', false );
 		$opts->add( 'hidemyself', false );
+
+		if( $wgRCWatchCategoryMembership ) {
+			$opts->add( 'hidecategorization', false );
+		}
 
 		$opts->add( 'namespace', '', FormOptions::INTNULL );
 		$opts->add( 'invert', false );
@@ -248,6 +254,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			} else {
 				$conds[] = 'rc_user_text != ' . $dbr->addQuotes( $user->getName() );
 			}
+		}
+		if ( $opts['hidecategorization'] === true ) {
+			$conds[] = 'rc_type != ' . $dbr->addQuotes( RC_CATEGORIZE );
 		}
 
 		// Namespace filtering

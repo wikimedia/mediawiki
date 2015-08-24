@@ -863,6 +863,8 @@ class Preferences {
 	 * @param array $defaultPreferences
 	 */
 	static function rcPreferences( $user, IContextSource $context, &$defaultPreferences ) {
+		global $wgRCWatchCategoryMembership;
+
 		$config = $context->getConfig();
 		$rcMaxAge = $config->get( 'RCMaxAge' );
 		## RecentChanges #####################################
@@ -891,6 +893,14 @@ class Preferences {
 			'label-message' => 'tog-hideminor',
 			'section' => 'rc/advancedrc',
 		);
+
+		if ( $wgRCWatchCategoryMembership ) {
+			$defaultPreferences['hidecategorization'] = array(
+				'type' => 'toggle',
+				'label-message' => 'tog-hidecategorization',
+				'section' => 'rc/advancedrc',
+			);
+		}
 
 		if ( $user->useRCPatrol() ) {
 			$defaultPreferences['hidepatrolled'] = array(
@@ -923,6 +933,8 @@ class Preferences {
 	 * @param array $defaultPreferences
 	 */
 	static function watchlistPreferences( $user, IContextSource $context, &$defaultPreferences ) {
+		global $wgRCWatchCategoryMembership;
+
 		$config = $context->getConfig();
 		$watchlistdaysMax = ceil( $config->get( 'RCMaxAge' ) / ( 3600 * 24 ) );
 
@@ -998,6 +1010,14 @@ class Preferences {
 			'section' => 'watchlist/advancedwatchlist',
 			'label-message' => 'tog-watchlisthideliu',
 		);
+
+		if ( $wgRCWatchCategoryMembership ) {
+			$defaultPreferences['watchlisthidecategorization'] = array(
+				'type' => 'toggle',
+				'section' => 'watchlist/advancedwatchlist',
+				'label-message' => 'tog-watchlisthidecategorization',
+			);
+		}
 
 		if ( $user->useRCPatrol() ) {
 			$defaultPreferences['watchlisthidepatrolled'] = array(
