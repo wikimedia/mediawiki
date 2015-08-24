@@ -111,6 +111,10 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$opts->add( 'hidepatrolled', $user->getBoolOption( 'watchlisthidepatrolled' ) );
 		$opts->add( 'hidemyself', $user->getBoolOption( 'watchlisthideown' ) );
 
+		if ( $this->getConfig()->get( 'RCWatchCategoryMembership' ) ) {
+			$opts->add( 'hidecategorization', $user->getBoolOption( 'watchlisthidecategorization' ) );
+		}
+
 		$opts->add( 'extended', $user->getBoolOption( 'extendwatchlist' ) );
 
 		return $opts;
@@ -425,6 +429,11 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			'hidemyself' => 'rcshowhidemine',
 			'hidepatrolled' => 'rcshowhidepatr'
 		);
+
+		if ( $this->getConfig()->get( 'RCWatchCategoryMembership' ) ) {
+			$filters['hidecategorization'] = 'rcshowhidecategorization';
+		}
+
 		foreach ( $this->getCustomFilters() as $key => $params ) {
 			$filters[$key] = $params['msg'];
 		}
