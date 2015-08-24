@@ -47,7 +47,8 @@ class CategoryMembershipChange {
 
 	/**
 	 * @var int
-	 * Number of pages this WikiPage is embedded by; set by CategoryMembershipChange::setRecursive()
+	 * Number of pages this WikiPage is embedded by
+	 * Set by CategoryMembershipChange::checkTemplateLinks()
 	 */
 	private $numTemplateLinks = 0;
 
@@ -239,7 +240,7 @@ class CategoryMembershipChange {
 	 * @param int $type may be CategoryMembershipChange::CATEGORY_ADDITION
 	 * or CategoryMembershipChange::CATEGORY_REMOVAL
 	 * @param array $params
-	 * - prefixedUrl: result of Title::->getPrefixedURL()
+	 * - prefixedText: result of Title::->getPrefixedText()
 	 *
 	 * @return string
 	 */
