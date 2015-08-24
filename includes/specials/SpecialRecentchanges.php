@@ -70,6 +70,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @return FormOptions
 	 */
 	public function getDefaultOptions() {
+		global $wgRCWatchCategoryMembership;
+
 		$opts = parent::getDefaultOptions();
 		$user = $this->getUser();
 
@@ -83,6 +85,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$opts->add( 'hideliu', false );
 		$opts->add( 'hidepatrolled', $user->getBoolOption( 'hidepatrolled' ) );
 		$opts->add( 'hidemyself', false );
+
+		if ( $wgRCWatchCategoryMembership ) {
+			$opts->add( 'hidecategorization', $user->getBoolOption( 'hidecategorization' ) );
+		}
 
 		$opts->add( 'categories', '' );
 		$opts->add( 'categories_any', false );
@@ -137,6 +143,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			}
 			if ( 'hidemyself' === $bit ) {
 				$opts['hidemyself'] = true;
+			}
+			if ( 'hidecategorization' === $bit ) {
+				$opts['hidecategorization'] = true;
 			}
 
 			if ( is_numeric( $bit ) ) {
@@ -667,6 +676,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @return string
 	 */
 	function optionsPanel( $defaults, $nondefaults, $numRows ) {
+		global $wgRCWatchCategoryMembership;
+
 		$options = $nondefaults + $defaults;
 
 		$note = '';
@@ -726,6 +737,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			'hidemyself' => 'rcshowhidemine'
 		);
 
+		if ( $wgRCWatchCategoryMembership ) {
+			$filters['hidecategorization'] = 'rcshowhidecategorization';
+		}
+
 		$showhide = array( 'show', 'hide' );
 
 		foreach ( $this->getCustomFilters() as $key => $params ) {
@@ -741,7 +756,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			// The following messages are used here:
 			// rcshowhideminor-show, rcshowhideminor-hide, rcshowhidebots-show, rcshowhidebots-hide,
 			// rcshowhideanons-show, rcshowhideanons-hide, rcshowhideliu-show, rcshowhideliu-hide,
-			// rcshowhidepatr-show, rcshowhidepatr-hide, rcshowhidemine-show, rcshowhidemine-hide.
+			// rcshowhidepatr-show, rcshowhidepatr-hide, rcshowhidemine-show, rcshowhidemine-hide,
+			// rcshowhidecategorization-show, rcshowhidecategorization-hide.
 			$linkMessage = $this->msg( $msg . '-' . $showhide[1 - $options[$key]] );
 			// Extensions can define additional filters, but don't need to define the corresponding
 			// messages. If they don't exist, just fall back to 'show' and 'hide'.
