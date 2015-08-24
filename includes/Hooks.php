@@ -193,7 +193,9 @@ class Hooks {
 			$badhookmsg = null;
 			$hook_args = array_merge( $hook, $args );
 
-			set_error_handler( 'Hooks::hookErrorHandler' );
+			$pop = ErrorHandlerStack::getStack()->pushScoped(
+				'Hooks::hookErrorHandler'
+			);
 
 			// mark hook as deprecated, if deprecation version is specified
 			if ( $deprecatedVersion !== null ) {
@@ -204,12 +206,7 @@ class Hooks {
 				$retval = call_user_func_array( $callback, $hook_args );
 			} catch ( MWHookException $e ) {
 				$badhookmsg = $e->getMessage();
-			} catch ( Exception $e ) {
-				restore_error_handler();
-				throw $e;
 			}
-
-			restore_error_handler();
 
 			// Process the return value.
 			if ( is_string( $retval ) ) {

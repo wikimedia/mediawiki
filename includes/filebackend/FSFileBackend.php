@@ -763,7 +763,7 @@ class FSFileBackend extends FileBackendStore {
 	 */
 	protected function trapWarnings() {
 		$this->hadWarningErrors[] = false; // push to stack
-		set_error_handler( array( $this, 'handleWarning' ), E_WARNING );
+		ErrorHandlerStack::getStack()->push( array( $this, 'handleWarning' ) );
 	}
 
 	/**
@@ -772,7 +772,7 @@ class FSFileBackend extends FileBackendStore {
 	 * @return bool
 	 */
 	protected function untrapWarnings() {
-		restore_error_handler(); // restore previous handler
+		ErrorHandlerStack::getStack()->pop();
 		return array_pop( $this->hadWarningErrors ); // pop from stack
 	}
 
@@ -783,6 +783,10 @@ class FSFileBackend extends FileBackendStore {
 	 * @access private
 	 */
 	public function handleWarning( $errno, $errstr ) {
+		if ( $errno !== E_WARNING ) {
+			// Only interested in E_WARNING events
+			return false;
+		}
 		wfDebugLog( 'FSFileBackend', $errstr ); // more detailed error logging
 		$this->hadWarningErrors[count( $this->hadWarningErrors ) - 1] = true;
 

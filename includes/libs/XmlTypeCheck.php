@@ -165,14 +165,16 @@ class XmlTypeCheck {
 	}
 
 	private function readNext( XMLReader $reader ) {
-		set_error_handler( array( $this, 'XmlErrorHandler' ) );
+		$pop = ErrorHandlerStack::getStack()->pushScoped( array(
+			$this, 'XmlErrorHandler'
+		) );
 		$ret = $reader->read();
-		restore_error_handler();
 		return $ret;
 	}
 
 	public function XmlErrorHandler( $errno, $errstr ) {
 		$this->wellFormed = false;
+		return false;
 	}
 
 	private function validate( $reader ) {
