@@ -127,7 +127,7 @@
 	"apihelp-paraminfo-param-helpformat": "Định dạng chuỗi trợ giúp.",
 	"apihelp-parse-param-summary": "Lời tóm lược để phân tích.",
 	"apihelp-parse-param-section": "Chỉ truy xuất nội dung của số phần này; nếu có <kbd>new</kbd> thì tạo phần mới.\n\nPhần <kbd>new</kbd> chỉ được chấp nhận khi định rõ <var>text</var>.",
-	"apihelp-parse-param-disablepp": "Bỏ qua thông báo bộ tiền xử lý (“NewPP limit report”) khi cho ra kết quả bộ xử lý.",
+	"apihelp-parse-param-disablelimitreport": "Bỏ qua thông báo bộ tiền xử lý (“NewPP limit report”) khi cho ra kết quả bộ xử lý.",
 	"apihelp-parse-example-page": "Phân tích trang.",
 	"apihelp-parse-example-text": "Phân tích văn bản wiki.",
 	"apihelp-parse-example-texttitle": "Phân tích văn bản wiki theo tên trang.",

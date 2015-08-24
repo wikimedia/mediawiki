@@ -155,7 +155,7 @@
 	"apihelp-parse-paramvalue-prop-iwlinks": "Fornece links interwiki no wikitexto analisado.",
 	"apihelp-parse-paramvalue-prop-wikitext": "Fornece o wikitexto original que foi analisado.",
 	"apihelp-parse-paramvalue-prop-properties": "Fornece várias propriedades definidas no wikitexto analisado.",
-	"apihelp-parse-paramvalue-prop-limitreportdata": "Fornece o relatório limite de uma forma estruturada. Não informa dado, quando<var>$1disablepp</var> se definido.",
+	"apihelp-parse-paramvalue-prop-limitreportdata": "Fornece o relatório limite de uma forma estruturada. Não informa dado, quando<var>$1disablelimitreport</var> se definido.",
 	"apihelp-parse-example-page": "Analisa uma página.",
 	"apihelp-parse-example-text": "Analisa wikitexto.",
 	"apihelp-parse-example-texttitle": "Analisa wikitexto, especificando o título da página.",
