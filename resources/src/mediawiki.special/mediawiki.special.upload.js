@@ -369,7 +369,7 @@
 					ctx.clearRect( 0, 0, 180, 180 );
 					ctx.rotate( rotation / 180 * Math.PI );
 					ctx.drawImage( img, x, y, width, height );
-					thumb.find( '.mw-small-spinner' ).replaceWith( $canvas );
+					thumb.find( '.mw-spinner-small' ).replaceWith( $canvas );
 
 					// Image size
 					info = mw.msg( 'widthheight', logicalWidth, logicalHeight ) +
