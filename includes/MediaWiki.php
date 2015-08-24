@@ -502,29 +502,26 @@ class MediaWiki {
 	 * This function does work that can be done *after* the
 	 * user gets the HTTP response so they don't block on it
 	 *
+	 * This manages deferred updates, job insertion,
+	 * final commit, and the logging of profiling data
+	 *
 	 * @param string $mode Use 'fast' to always skip job running
 	 * @since 1.26
 	 */
 	public function doPostOutputShutdown( $mode = 'normal' ) {
-		// Show profiling data if enabled
+		// Show visible profiling data if enabled (which cannot be post-send)
 		Profiler::instance()->logDataPageOutputOnly();
 
 		$that = $this;
 		$callback = function () use ( $that, $mode ) {
 			try {
-				// Assure deferred updates are not in the main transaction
-				wfGetLBFactory()->commitMasterChanges();
-				// Run jobs occasionally, if enabled
-				if ( $mode === 'normal' ) {
-					$that->triggerJobs();
-				}
-				// Do deferred updates and job insertion and final commit
-				$that->restInPeace();
+				$that->restInPeace( $mode );
 			} catch ( Exception $e ) {
 				MWExceptionHandler::handleException( $e );
 			}
 		};
 
+		// Defer everything else...
 		if ( function_exists( 'register_postsend_function' ) ) {
 			// https://github.com/facebook/hhvm/issues/1230
 			register_postsend_function( $callback );
@@ -687,8 +684,12 @@ class MediaWiki {
 
 	/**
 	 * Ends this task peacefully
+	 * @param string $mode Use 'fast' to always skip job running
 	 */
-	public function restInPeace() {
+	public function restInPeace( $mode = 'fast' ) {
+		// Assure deferred updates are not in the main transaction
+		wfGetLBFactory()->commitMasterChanges();
+
 		// Ignore things like master queries/connections on GET requests
 		// as long as they are in deferred updates (which catch errors).
 		Profiler::instance()->getTransactionProfiler()->resetExpectations();
@@ -698,6 +699,12 @@ class MediaWiki {
 
 		// Make sure any lazy jobs are pushed
 		JobQueueGroup::pushLazyJobs();
+
+		// Now that everything specific to this request is done,
+		// try to occasionally run jobs (if enabled) from the queues
+		if ( $mode === 'normal' ) {
+			$this->triggerJobs();
+		}
 
 		// Log profiling data, e.g. in the database or UDP
 		wfLogProfilingData();
