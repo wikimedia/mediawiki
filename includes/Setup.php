@@ -477,6 +477,12 @@ if ( $wgMaximalPasswordLength !== false ) {
 	$wgPasswordPolicy['policies']['default']['MaximalPasswordLength'] = $wgMaximalPasswordLength;
 }
 
+// Backwards compatibility with deprecated alias
+// Must be before call to wfSetupSession()
+if ( $wgSessionsInMemcached ) {
+	$wgSessionsInObjectCache = true;
+}
+
 Profiler::instance()->scopedProfileOut( $ps_default );
 
 // Disable MWDebug for command line mode, this prevents MWDebug from eating up
