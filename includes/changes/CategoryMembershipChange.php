@@ -47,7 +47,7 @@ class CategoryMembershipChange {
 
 	/**
 	 * @var int
-	 * Number of pages this WikiPage is embedded by; set by CategoryMembershipChange::setRecursive()
+	 * Number of pages this WikiPage is embedded by; set by CategoryMembershipChange::checkTemplateLinks()
 	 */
 	private $numTemplateLinks = 0;
 
@@ -123,7 +123,7 @@ class CategoryMembershipChange {
 			$categoryTitle,
 			$this->getUser(),
 			$this->getChangeMessageText( $type, array(
-				'prefixedText' => $this->pageTitle->getPrefixedText(),
+				'prefixedUrl' => $this->pageTitle->getPrefixedURL(),
 				'numTemplateLinks' => $this->numTemplateLinks
 			) ),
 			$this->pageTitle,

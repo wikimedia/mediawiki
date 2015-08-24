@@ -305,7 +305,11 @@ class ChangesList extends ContextSource {
 	 */
 	public function insertDiffHist( &$s, &$rc, $unpatrolled ) {
 		# Diff link
-		if ( $rc->mAttribs['rc_type'] == RC_NEW || $rc->mAttribs['rc_type'] == RC_LOG ) {
+		if (
+			$rc->mAttribs['rc_type'] == RC_NEW ||
+			$rc->mAttribs['rc_type'] == RC_LOG ||
+			$rc->mAttribs['rc_type'] == RC_CATEGORIZE
+		) {
 			$diffLink = $this->message['diff'];
 		} elseif ( !self::userCan( $rc, Revision::DELETED_TEXT, $this->getUser() ) ) {
 			$diffLink = $this->message['diff'];
@@ -323,17 +327,22 @@ class ChangesList extends ContextSource {
 				$query
 			);
 		}
-		$diffhist = $diffLink . $this->message['pipe-separator'];
-		# History link
-		$diffhist .= Linker::linkKnown(
-			$rc->getTitle(),
-			$this->message['hist'],
-			array(),
-			array(
-				'curid' => $rc->mAttribs['rc_cur_id'],
-				'action' => 'history'
-			)
-		);
+		if ( $rc->mAttribs['rc_type'] == RC_CATEGORIZE ) {
+			$diffhist = $diffLink . $this->message['pipe-separator'] . $this->message['hist'];
+		} else {
+			$diffhist = $diffLink . $this->message['pipe-separator'];
+			# History link
+			$diffhist .= Linker::linkKnown(
+				$rc->getTitle(),
+				$this->message['hist'],
+				array(),
+				array(
+					'curid' => $rc->mAttribs['rc_cur_id'],
+					'action' => 'history'
+				)
+			);
+		}
+
 		// @todo FIXME: Hard coded ". .". Is there a message for this? Should there be?
 		$s .= $this->msg( 'parentheses' )->rawParams( $diffhist )->escaped() .
 			' <span class="mw-changeslist-separator">. .</span> ';
@@ -454,6 +463,28 @@ class ChangesList extends ContextSource {
 		} else {
 			return Linker::commentBlock( $rc->mAttribs['rc_comment'], $rc->getTitle() );
 		}
+	}
+
+	/**
+	 * @param RCCacheEntry $rc
+	 * @param array $query array of key/value pairs to append as a query string
+	 * @return string
+	 * @since 1.27
+	 */
+	public function getDiffHistLinks( RCCacheEntry $rc, array $query ) {
+		$pageTitle = $rc->getTitle();
+		if ( intval( $rc->getAttribute( 'rc_type' ) ) === RC_CATEGORIZE ) {
+			$pageTitle = Title::newFromID( $rc->getAttribute( 'rc_cur_id' ) );
+		}
+
+		$retVal = ' ' . $this->msg( 'parentheses' )
+			->rawParams( $rc->difflink . $this->message['pipe-separator'] . Linker::linkKnown(
+				$pageTitle,
+				$this->message['hist'],
+				array(),
+				$query
+			) )->escaped();
+		return $retVal;
 	}
 
 	/**
@@ -630,4 +661,19 @@ class ChangesList extends ContextSource {
 
 		return false;
 	}
+
+	/**
+	 * Determines whether a revision is linked to this change; this may not be the case
+	 * when the categorization wasn't done by an edit but a conditional parser function
+	 *
+	 * @since 1.27
+	 *
+	 * @param RecentChange|RCCacheEntry $rcObj
+	 * @return bool
+	 */
+	protected function isCategorizationWithoutRevision( $rcObj ) {
+		return intval( $rcObj->getAttribute( 'rc_type' ) ) === RC_CATEGORIZE
+			&& intval( $rcObj->getAttribute( 'rc_this_oldid' ) ) === 0;
+	}
+
 }
