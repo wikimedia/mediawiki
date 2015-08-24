@@ -291,12 +291,16 @@
 				ctx,
 				meta,
 				previewSize = 180,
+				$spinner = $.createSpinner( { size: 'small', type: 'block' } )
+					.css( { width: previewSize, height: previewSize } ),
 				thumb = mw.template.get( 'mediawiki.special.upload', 'thumbnail.html' ).render();
 
-			thumb.find( '.filename' ).text( file.name ).end()
-				.find( '.fileinfo' ).text( prettySize( file.size ) ).end();
+			thumb
+				.find( '.filename' ).text( file.name ).end()
+				.find( '.fileinfo' ).text( prettySize( file.size ) ).end()
+				.find( '.thumbinner' ).prepend( $spinner ).end();
 
-			$canvas = $( '<canvas width="' + previewSize + '" height="' + previewSize + '" ></canvas>' );
+			$canvas = $( '<canvas>' ).attr( { width: previewSize, height: previewSize } );
 			ctx = $canvas[0].getContext( '2d' );
 			$( '#mw-htmlform-source' ).parent().prepend( thumb );
 
@@ -369,7 +373,7 @@
 					ctx.clearRect( 0, 0, 180, 180 );
 					ctx.rotate( rotation / 180 * Math.PI );
 					ctx.drawImage( img, x, y, width, height );
-					thumb.find( '.mw-spinner-small' ).replaceWith( $canvas );
+					$spinner.replaceWith( $canvas );
 
 					// Image size
 					info = mw.msg( 'widthheight', logicalWidth, logicalHeight ) +
