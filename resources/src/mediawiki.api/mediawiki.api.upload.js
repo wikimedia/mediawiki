@@ -88,7 +88,17 @@
 	$.extend( mw.Api.prototype, {
 		/**
 		 * Upload a file to MediaWiki.
-		 * @param {HTMLInputElement|File} file HTML input type=file element with a file already inside of it, or a File object.
+		 *
+		 * The file will be uploaded using AJAX and FormData, if the browser supports it, or via an
+		 * iframe if it doesn't.
+		 *
+		 * Caveats of iframe upload:
+		 * - The returned jQuery.Promise will not receive `progress` notifications during the upload
+		 * - It is incompatible with uploads to a foreign wiki using mw.ForeignApi
+		 * - You must pass a HTMLInputElement and not a File for it to be possible
+		 *
+		 * @param {HTMLInputElement|File} file HTML input type=file element with a file already inside
+		 *     of it, or a File object.
 		 * @param {Object} data Other upload options, see action=upload API docs for more
 		 * @return {jQuery.Promise}
 		 */
@@ -125,12 +135,14 @@
 		 * APIs, and continues to work in browsers with those APIs.
 		 *
 		 * The rough sketch of how this method works is as follows:
-		 * * An iframe is loaded with no content.
-		 * * A form is submitted with the passed-in file input and some extras.
-		 * * The MediaWiki API receives that form data, and sends back a response.
-		 * * The response is sent to the iframe, because we set target=(iframe id)
-		 * * The response is parsed out of the iframe's document, and passed back
-		 *   through the promise.
+		 * 1. An iframe is loaded with no content.
+		 * 2. A form is submitted with the passed-in file input and some extras.
+		 * 3. The MediaWiki API receives that form data, and sends back a response.
+		 * 4. The response is sent to the iframe, because we set target=(iframe id)
+		 * 5. The response is parsed out of the iframe's document, and passed back
+		 *    through the promise.
+		 *
+		 * @private
 		 * @param {HTMLInputElement} file The file input with a file in it.
 		 * @param {Object} data Other upload options, see action=upload API docs for more
 		 * @return {jQuery.Promise}
@@ -222,8 +234,10 @@
 
 		/**
 		 * Uploads a file using the FormData API.
+		 *
+		 * @private
 		 * @param {File} file
-		 * @param {Object} data
+		 * @param {Object} data Other upload options, see action=upload API docs for more
 		 * @return {jQuery.Promise}
 		 */
 		uploadWithFormData: function ( file, data ) {
