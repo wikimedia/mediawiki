@@ -3954,13 +3954,13 @@ function wfBCP47( $code ) {
 }
 
 /**
- * Get a cache object.
+ * Get a specific cache object.
  *
- * @param int $inputType Cache type, one of the CACHE_* constants.
+ * @param int|string $cacheType A CACHE_* constants, or other key $wgObjectCaches
  * @return BagOStuff
  */
-function wfGetCache( $inputType ) {
-	return ObjectCache::getInstance( $inputType );
+function wfGetCache( $cacheType ) {
+	return ObjectCache::getInstance( $cacheType );
 }
 
 /**
