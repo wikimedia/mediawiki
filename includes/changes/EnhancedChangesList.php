@@ -364,6 +364,8 @@ class EnhancedChangesList extends ChangesList {
 
 			if ( $rcObj->mAttribs['rc_type'] == RC_LOG ) {
 				$data['logEntry'] = $this->insertLogEntry( $rcObj );
+			} elseif ( $this->isCategorizationWithoutRevision( $rcObj ) ) {
+				$data['comment'] = $this->insertComment( $rcObj );
 			} else {
 				# User links
 				$data['userLink'] = $rcObj->userlink;
@@ -458,7 +460,7 @@ class EnhancedChangesList extends ChangesList {
 		/** @var $block0 RecentChange */
 		$block0 = $block[0];
 		$last = $block[count( $block ) - 1];
-		if ( !$allLogs ) {
+		if ( !$allLogs && $rcObj->mAttribs['rc_type'] != RC_CATEGORIZE ) {
 			if ( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $this->getUser() ) ) {
 				$links['total-changes'] = $nchanges[$n];
 			} elseif ( $isnew ) {
@@ -490,7 +492,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		# History
-		if ( $allLogs ) {
+		if ( $allLogs || $rcObj->mAttribs['rc_type'] == RC_CATEGORIZE ) {
 			// don't show history link for logs
 		} elseif ( $namehidden || !$block0->getTitle()->exists() ) {
 			$links['history'] = $this->message['enhancedrc-history'];
@@ -566,15 +568,9 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		# Diff and hist links
-		if ( $type != RC_LOG ) {
+		if ( intval( $type ) !== RC_LOG && intval( $type ) !== RC_CATEGORIZE ) {
 			$query['action'] = 'history';
-			$data['historyLink'] = ' ' . $this->msg( 'parentheses' )
-				->rawParams( $rcObj->difflink . $this->message['pipe-separator'] . Linker::linkKnown(
-					$rcObj->getTitle(),
-					$this->message['hist'],
-					array(),
-					$query
-				) )->escaped();
+			$data['historyLink'] = $this->getDiffHistLinks( $rcObj, $query );
 		}
 		$data['separatorAfterLinks'] = ' <span class="mw-changeslist-separator">. .</span> ';
 
@@ -589,10 +585,15 @@ class EnhancedChangesList extends ChangesList {
 
 		if ( $type == RC_LOG ) {
 			$data['logEntry'] = $this->insertLogEntry( $rcObj );
+		} elseif ( $this->isCategorizationWithoutRevision( $rcObj ) ) {
+			$data['comment'] = $this->insertComment( $rcObj );
 		} else {
 			$data['userLink'] = $rcObj->userlink;
 			$data['userTalkLink'] = $rcObj->usertalklink;
 			$data['comment'] = $this->insertComment( $rcObj );
+			if ( intval( $type ) === RC_CATEGORIZE ) {
+				$data['historyLink'] = $this->getDiffHistLinks( $rcObj, $query );
+			}
 			$data['rollback'] = $this->getRollback( $rcObj );
 		}
 

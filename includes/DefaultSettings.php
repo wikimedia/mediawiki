@@ -4476,6 +4476,7 @@ $wgReservedUsernames = array(
 	'msg:usermessage-editor', // Default user for leaving user messages
 	'msg:proxyblocker', // For $wgProxyList and Special:Blockme (removed in 1.22)
 	'msg:spambot_username', // Used by cleanupSpam.php
+	'msg:autochange_username', // Used by anon category RC entries (parser functions, Lua & purges)
 );
 
 /**
@@ -4503,6 +4504,7 @@ $wgDefaultUserOptions = array(
 	'gender' => 'unknown',
 	'hideminor' => 0,
 	'hidepatrolled' => 0,
+	'hidecategorization' => 1,
 	'imagesize' => 2,
 	'math' => 1,
 	'minordefault' => 0,
@@ -4534,6 +4536,7 @@ $wgDefaultUserOptions = array(
 	'watchlisthideminor' => 0,
 	'watchlisthideown' => 0,
 	'watchlisthidepatrolled' => 0,
+	'watchlisthidecategorization' => 1,
 	'watchmoves' => 0,
 	'watchrollback' => 0,
 	'wllimit' => 250,
@@ -6139,6 +6142,11 @@ $wgRCEngines = array(
 	'redis' => 'RedisPubSubFeedEngine',
 	'udp' => 'UDPRCFeedEngine',
 );
+
+/**
+ * Treat category membership changes as a RecentChange
+ */
+$wgRCWatchCategoryMembership = true;
 
 /**
  * Use RC Patrolling to check for vandalism
