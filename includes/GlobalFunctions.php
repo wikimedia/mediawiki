@@ -3461,10 +3461,10 @@ function wfResetSessionID() {
  * @param bool $sessionId
  */
 function wfSetupSession( $sessionId = false ) {
-	global $wgSessionsInMemcached, $wgSessionsInObjectCache, $wgSessionHandler;
+	global $$wgSessionsInObjectCache, $wgSessionHandler;
 	global $wgCookiePath, $wgCookieDomain, $wgCookieSecure, $wgCookieHttpOnly;
 
-	if ( $wgSessionsInObjectCache || $wgSessionsInMemcached ) {
+	if ( $wgSessionsInObjectCache ) {
 		ObjectCacheSessionHandler::install();
 	} elseif ( $wgSessionHandler && $wgSessionHandler != ini_get( 'session.save_handler' ) ) {
 		# Only set this if $wgSessionHandler isn't null and session.save_handler
