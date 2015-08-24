@@ -38,7 +38,7 @@ use ObjectFactory;
  * $wgMWLoggerDefaultSpi is expected to be an array usable by
  * ObjectFactory::getObjectFromSpec() to create a class.
  *
- * @see \\MediaWiki\\Logger\\Spi
+ * @see \MediaWiki\Logger\Spi
  * @since 1.25
  * @author Bryan Davis <bd808@wikimedia.org>
  * @copyright © 2014 Bryan Davis and Wikimedia Foundation.
@@ -56,7 +56,7 @@ class LoggerFactory {
 	 * Register a service provider to create new \\Psr\\Log\\LoggerInterface
 	 * instances.
 	 *
-	 * @param \\MediaWiki\\Logger\\Spi $provider Provider to register
+	 * @param \MediaWiki\Logger\Spi $provider Provider to register
 	 */
 	public static function registerProvider( Spi $provider ) {
 		self::$spi = $provider;
@@ -71,13 +71,14 @@ class LoggerFactory {
 	 * Spi registration. $wgMWLoggerDefaultSpi is expected to be an
 	 * array usable by ObjectFactory::getObjectFromSpec() to create a class.
 	 *
-	 * @return \\MediaWiki\\Logger\\Spi
+	 * @return \MediaWiki\Logger\Spi
 	 * @see registerProvider()
 	 * @see ObjectFactory::getObjectFromSpec()
 	 */
 	public static function getProvider() {
 		if ( self::$spi === null ) {
 			global $wgMWLoggerDefaultSpi;
+			/** @var \MediaWiki\Logger\Spi $provider */
 			$provider = ObjectFactory::getObjectFromSpec(
 				$wgMWLoggerDefaultSpi
 			);
