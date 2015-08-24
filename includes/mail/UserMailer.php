@@ -339,30 +339,26 @@ class UserMailer {
 			self::$mErrorString = '';
 			$html_errors = ini_get( 'html_errors' );
 			ini_set( 'html_errors', '0' );
-			set_error_handler( 'UserMailer::errorHandler' );
+			$pop = ErrorHandlerStack::getStack()->pushScoped(
+				'UserMailer::errorHandler'
+			);
 
-			try {
-				$safeMode = wfIniGetBool( 'safe_mode' );
+			$safeMode = wfIniGetBool( 'safe_mode' );
 
-				foreach ( $to as $recip ) {
-					if ( $safeMode ) {
-						$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers );
-					} else {
-						$sent = mail(
-							$recip,
-							self::quotedPrintable( $subject ),
-							$body,
-							$headers,
-							$extraParams
-						);
-					}
+			foreach ( $to as $recip ) {
+				if ( $safeMode ) {
+					$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers );
+				} else {
+					$sent = mail(
+						$recip,
+						self::quotedPrintable( $subject ),
+						$body,
+						$headers,
+						$extraParams
+					);
 				}
-			} catch ( Exception $e ) {
-				restore_error_handler();
-				throw $e;
 			}
 
-			restore_error_handler();
 			ini_set( 'html_errors', $html_errors );
 
 			if ( self::$mErrorString ) {
@@ -383,9 +379,14 @@ class UserMailer {
 	 *
 	 * @param int $code Error number
 	 * @param string $string Error message
+	 * @return bool True to stop error handler stack propagation
 	 */
 	static function errorHandler( $code, $string ) {
-		self::$mErrorString = preg_replace( '/^mail\(\)(\s*\[.*?\])?: /', '', $string );
+		self::$mErrorString = preg_replace(
+			'/^mail\(\)(\s*\[.*?\])?: /', '', $string
+		);
+		// Do not propagate to other error handlers
+		return true;
 	}
 
 	/**
