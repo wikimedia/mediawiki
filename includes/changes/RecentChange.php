@@ -326,15 +326,21 @@ class RecentChange {
 			$editor = $this->getPerformer();
 			$title = $this->getTitle();
 
-			if ( Hooks::run( 'AbortEmailNotification', array( $editor, $title, $this ) ) ) {
-				# @todo FIXME: This would be better as an extension hook
-				$enotif = new EmailNotification();
-				$enotif->notifyOnPageChange( $editor, $title,
-					$this->mAttribs['rc_timestamp'],
-					$this->mAttribs['rc_comment'],
-					$this->mAttribs['rc_minor'],
-					$this->mAttribs['rc_last_oldid'],
-					$this->mExtra['pageStatus'] );
+			// Never send an RC notification email about categorization changes
+			if ( $this->mAttribs['rc_type'] != RC_CATEGORIZE ) {
+				if ( Hooks::run( 'AbortEmailNotification', array( $editor, $title, $this ) ) ) {
+					# @todo FIXME: This would be better as an extension hook
+					$enotif = new EmailNotification();
+					$enotif->notifyOnPageChange(
+						$editor,
+						$title,
+						$this->mAttribs['rc_timestamp'],
+						$this->mAttribs['rc_comment'],
+						$this->mAttribs['rc_minor'],
+						$this->mAttribs['rc_last_oldid'],
+						$this->mExtra['pageStatus']
+					);
+				}
 			}
 		}
 
