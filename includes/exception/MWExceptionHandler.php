@@ -352,32 +352,32 @@ TXT;
 	 *
 	 * @param Exception $e
 	 * @return string
+	 * @see prettyPrintTrace()
 	 */
 	public static function getRedactedTraceAsString( Exception $e ) {
-		return self::prettyPrintRedactedTrace(
-			self::getRedactedTrace( $e )
-		);
+		return self::prettyPrintTrace( self::getRedactedTrace( $e ) );
 	}
 
 	/**
-	 * Generate a string representation of a structured stack trace generated
-	 * by getRedactedTrace().
+	 * Generate a string representation of a stacktrace.
 	 *
 	 * @param array $trace
+	 * @param string $pad Constant padding to add to each line of trace
 	 * @return string
 	 * @since 1.26
 	 */
-	public static function prettyPrintRedactedTrace( array $trace ) {
+	public static function prettyPrintTrace( array $trace, $pad = '' ) {
 		$text = '';
 
 		foreach ( $trace as $level => $frame ) {
 			if ( isset( $frame['file'] ) && isset( $frame['line'] ) ) {
-				$text .= "#{$level} {$frame['file']}({$frame['line']}): ";
+				$text .= "{$pad}#{$level} {$frame['file']}({$frame['line']}): ";
 			} else {
-				// 'file' and 'line' are unset for calls via call_user_func (bug 55634)
-				// This matches behaviour of Exception::getTraceAsString to instead
-				// display "[internal function]".
-				$text .= "#{$level} [internal function]: ";
+				// 'file' and 'line' are unset for calls via call_user_func
+				// (bug 55634) This matches behaviour of
+				// Exception::getTraceAsString to instead display "[internal
+				// function]".
+				$text .= "{$pad}#{$level} [internal function]: ";
 			}
 
 			if ( isset( $frame['class'] ) ) {
@@ -394,7 +394,7 @@ TXT;
 		}
 
 		$level = $level + 1;
-		$text .= "#{$level} {main}";
+		$text .= "{$pad}#{$level} {main}";
 
 		return $text;
 	}
