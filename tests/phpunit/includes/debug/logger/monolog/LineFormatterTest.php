@@ -41,9 +41,9 @@ class LineFormatterTest extends MediaWikiTestCase {
 			)
 		);
 		$out = $fixture->normalizeException( $boom );
-		$this->assertContains( '[Exception InvalidArgumentException]', $out );
-		$this->assertContains( ', [Exception LengthException]', $out );
-		$this->assertContains( ', [Exception LogicException]', $out );
+		$this->assertContains( "\n[Exception InvalidArgumentException]", $out );
+		$this->assertContains( ",\n[Exception LengthException]", $out );
+		$this->assertContains( ",\n[Exception LogicException]", $out );
 		$this->assertNotContains( '[stacktrace]', $out );
 	}
 
@@ -60,9 +60,9 @@ class LineFormatterTest extends MediaWikiTestCase {
 			)
 		);
 		$out = $fixture->normalizeException( $boom );
-		$this->assertContains( '[Exception InvalidArgumentException', $out );
-		$this->assertContains( ', [Exception LengthException]', $out );
-		$this->assertContains( ', [Exception LogicException]', $out );
+		$this->assertContains( "\n[Exception InvalidArgumentException]", $out );
+		$this->assertContains( ",\n[Exception LengthException]", $out );
+		$this->assertContains( ",\n[Exception LogicException]", $out );
 		$this->assertContains( '[stacktrace]', $out );
 	}
 }
