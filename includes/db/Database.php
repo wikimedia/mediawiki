@@ -790,14 +790,16 @@ abstract class DatabaseBase implements IDatabase {
 	protected function installErrorHandler() {
 		$this->mPHPError = false;
 		$this->htmlErrors = ini_set( 'html_errors', '0' );
-		set_error_handler( array( $this, 'connectionErrorHandler' ) );
+		ErrorHandlerStack::getStack()->push( array(
+			$this, 'connectionErrorHandler'
+		) );
 	}
 
 	/**
 	 * @return bool|string
 	 */
 	protected function restoreErrorHandler() {
-		restore_error_handler();
+		ErrorHandlerStack::getStack()->pop();
 		if ( $this->htmlErrors !== false ) {
 			ini_set( 'html_errors', $this->htmlErrors );
 		}
@@ -817,6 +819,7 @@ abstract class DatabaseBase implements IDatabase {
 	 */
 	public function connectionErrorHandler( $errno, $errstr ) {
 		$this->mPHPError = $errstr;
+		return false;
 	}
 
 	/**

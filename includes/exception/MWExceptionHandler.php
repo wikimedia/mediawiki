@@ -37,7 +37,9 @@ class MWExceptionHandler {
 	 */
 	public static function installHandler() {
 		set_exception_handler( array( 'MWExceptionHandler', 'handleException' ) );
-		set_error_handler( array( 'MWExceptionHandler', 'handleError' ) );
+		ErrorHandlerStack::getStack()->push( array(
+			'MWExceptionHandler', 'handleError'
+		) );
 
 		// Reserve 16k of memory so we can report OOM fatals
 		self::$reservedMemory = str_repeat( ' ', 16384 );

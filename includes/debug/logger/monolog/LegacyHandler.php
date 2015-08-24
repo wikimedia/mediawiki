@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Logger\Monolog;
 
+use ErrorHandlerStack;
 use LogicException;
 use MediaWiki\Logger\LegacyLogger;
 use Monolog\Handler\AbstractProcessingHandler;
@@ -114,7 +115,9 @@ class LegacyHandler extends AbstractProcessingHandler {
 				'Missing stream uri, the stream can not be opened.' );
 		}
 		$this->error = null;
-		set_error_handler( array( $this, 'errorTrap' ) );
+		$pop = ErrorHandlerStack::getStack()->push( array(
+			$this, 'errorTrap'
+		) );
 
 		if ( substr( $this->uri, 0, 4 ) == 'udp:' ) {
 			$parsed = parse_url( $this->uri );
@@ -149,7 +152,7 @@ class LegacyHandler extends AbstractProcessingHandler {
 		} else {
 			$this->sink = fopen( $this->uri, 'a' );
 		}
-		restore_error_handler();
+		ErrorHandlerStack::getStack()->pop();
 
 		if ( !is_resource( $this->sink ) ) {
 			$this->sink = null;
@@ -168,6 +171,8 @@ class LegacyHandler extends AbstractProcessingHandler {
 	 */
 	protected function errorTrap( $code, $msg ) {
 		$this->error = $msg;
+		// Do not propagate to other error handlers
+		return true;
 	}
 
 
