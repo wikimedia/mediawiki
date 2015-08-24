@@ -165,14 +165,25 @@ class XmlTypeCheck {
 	}
 
 	private function readNext( XMLReader $reader ) {
-		set_error_handler( array( $this, 'XmlErrorHandler' ) );
+		$pop = ErrorHandlerStack::getStack()->pushScoped( array(
+			$this, 'XmlErrorHandler'
+		) );
 		$ret = $reader->read();
-		restore_error_handler();
 		return $ret;
 	}
 
+	/**
+	 * Handle a set_error_handler() callback by setting $this->wellFormed to
+	 * false.
+	 *
+	 * @param int $errno
+	 * @param string $errstr
+	 * @return bool True to stop error handler stack propagation
+	 */
 	public function XmlErrorHandler( $errno, $errstr ) {
 		$this->wellFormed = false;
+		// Do not propagate to other error handlers
+		return true;
 	}
 
 	private function validate( $reader ) {

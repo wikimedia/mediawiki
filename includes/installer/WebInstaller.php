@@ -341,14 +341,10 @@ class WebInstaller extends Installer {
 		}
 
 		$this->phpErrors = array();
-		set_error_handler( array( $this, 'errorHandler' ) );
-		try {
-			session_start();
-		} catch ( Exception $e ) {
-			restore_error_handler();
-			throw $e;
-		}
-		restore_error_handler();
+		$pop = ErrorHandlerStack::getStack()->pushScoped( array(
+			$this, 'errorHandler'
+		) );
+		session_start();
 
 		if ( $this->phpErrors ) {
 			return false;
@@ -402,9 +398,12 @@ class WebInstaller extends Installer {
 	 *
 	 * @param int $errno Unused
 	 * @param string $errstr
+	 * @return bool True to stop error handler stack propagation
 	 */
 	public function errorHandler( $errno, $errstr ) {
 		$this->phpErrors[] = $errstr;
+		// Do not propagate to other error handlers
+		return true;
 	}
 
 	/**
