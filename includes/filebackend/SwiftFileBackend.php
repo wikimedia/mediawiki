@@ -139,7 +139,7 @@ class SwiftFileBackend extends FileBackendStore {
 				$this->srvCache = wfGetMainCache(); // preferrably memcached
 			} else {
 				try { // look for APC, XCache, WinCache, ect...
-					$this->srvCache = ObjectCache::newAccelerator( array() );
+					$this->srvCache = ObjectCache::newAccelerator();
 				} catch ( Exception $e ) {
 				}
 			}

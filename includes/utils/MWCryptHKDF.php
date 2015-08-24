@@ -177,7 +177,7 @@ class MWCryptHKDF {
 
 		// Setup salt cache. Use APC, or fallback to the main cache if it isn't setup
 		try {
-			$cache = ObjectCache::newAccelerator( array() );
+			$cache = ObjectCache::newAccelerator();
 		} catch ( Exception $e ) {
 			$cache = wfGetMainCache();
 		}

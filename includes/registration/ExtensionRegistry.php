@@ -81,7 +81,7 @@ class ExtensionRegistry {
 		// we don't want to fail here if $wgObjectCaches is not configured
 		// properly for APC setup
 		try {
-			$this->cache = ObjectCache::newAccelerator( array() );
+			$this->cache = ObjectCache::newAccelerator();
 		} catch ( MWException $e ) {
 			$this->cache = new EmptyBagOStuff();
 		}

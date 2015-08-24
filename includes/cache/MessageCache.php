@@ -160,7 +160,7 @@ class MessageCache {
 		$this->mExpiry = $expiry;
 
 		if ( $wgUseLocalMessageCache ) {
-			$this->localCache = ObjectCache::newAccelerator( array(), CACHE_NONE );
+			$this->localCache = ObjectCache::newAccelerator( CACHE_NONE );
 		} else {
 			$this->localCache = wfGetCache( CACHE_NONE );
 		}
