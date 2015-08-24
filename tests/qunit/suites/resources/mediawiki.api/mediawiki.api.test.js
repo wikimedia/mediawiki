@@ -90,6 +90,19 @@
 		api.get( { test: [ 'foo', 'bar', 'baz' ] } );
 	} );
 
+	QUnit.test( 'Omitting false booleans', function ( assert ) {
+		QUnit.expect( 2 );
+		var api = new mw.Api();
+
+		this.server.respond( function ( request ) {
+			assert.ok( !request.url.match( /foo/ ), 'foo query parameter is not present' );
+			assert.ok( request.url.match( /bar=true/ ), 'bar query parameter is present with value true' );
+			request.respond( 200, { 'Content-Type': 'application/json' }, '[]' );
+		} );
+
+		api.get( { foo: false, bar: true } );
+	} );
+
 	QUnit.test( 'getToken() - cached', function ( assert ) {
 		QUnit.expect( 2 );
 		var api = new mw.Api();

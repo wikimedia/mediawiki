@@ -49,7 +49,7 @@
 	 *         console.log( data );
 	 *     } );
 	 *
-	 * Multiple values for a parameter can be specified using an array (since MW 1.25):
+	 * Since MW 1.25, multiple values for a parameter can be specified using an array:
 	 *
 	 *     var api = new mw.Api();
 	 *     api.get( {
@@ -58,6 +58,9 @@
 	 *     } ).done( function ( data ) {
 	 *         console.log( data );
 	 *     } );
+	 *
+	 * Since MW 1.26, boolean values for a parameter can be specified directly. If the value is
+	 * `false` or `undefined`, the parameter will be omitted from the request, as required by the API.
 	 *
 	 * @constructor
 	 * @param {Object} [options] See #defaultOptions documentation above. Can also be overridden for
@@ -109,6 +112,27 @@
 		},
 
 		/**
+		 * Massage parameters from the nice format we accept into a format suitable for the API.
+		 *
+		 * @private
+		 * @param {Object} parameters (modified in-place)
+		 */
+		preprocessParameters: function ( parameters ) {
+			var key;
+			// Handle common MediaWiki API idioms for passing parameters
+			for ( key in parameters ) {
+				// Multiple values are pipe-separated
+				if ( $.isArray( parameters[key] ) ) {
+					parameters[key] = parameters[key].join( '|' );
+				}
+				// Boolean values are only false when not given at all
+				if ( parameters[key] === false || parameters[key] === undefined ) {
+					delete parameters[key];
+				}
+			}
+		},
+
+		/**
 		 * Perform the API call.
 		 *
 		 * @param {Object} parameters
@@ -130,11 +154,7 @@
 				delete parameters.token;
 			}
 
-			for ( key in parameters ) {
-				if ( $.isArray( parameters[key] ) ) {
-					parameters[key] = parameters[key].join( '|' );
-				}
-			}
+			this.preprocessParameters( parameters );
 
 			// If multipart/form-data has been requested and emulation is possible, emulate it
 			if (
