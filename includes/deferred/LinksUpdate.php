@@ -61,6 +61,12 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	/** @var bool Whether to queue jobs for recursive updates */
 	public $mRecursive;
 
+	/** @var bool Whether this job was triggered by a recursive update job */
+	private $mTriggeredRecursive;
+
+	/** @var Revision Revision for which this update has been triggered */
+	private $mRevision;
+
 	/**
 	 * @var null|array Added links if calculated.
 	 */
@@ -147,6 +153,7 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	}
 
 	protected function doIncrementalUpdate() {
+		global $wgRCWatchCategoryMembership;
 
 		# Page links
 		$existing = $this->getExistingLinks();
@@ -199,6 +206,14 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 		$this->invalidateCategories( $categoryUpdates );
 		$this->updateCategoryCounts( $categoryInserts, $categoryDeletes );
 
+		# Category membership changes
+		if (
+			$wgRCWatchCategoryMembership &&
+			!$this->mTriggeredRecursive && ( $categoryInserts || $categoryDeletes )
+		) {
+			$this->triggerCategoryChanges( $categoryInserts, $categoryDeletes );
+		}
+
 		# Page properties
 		$existing = $this->getExistingProperties();
 
@@ -220,6 +235,24 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 			$this->queueRecursiveJobs();
 		}
 
+	}
+
+	private function triggerCategoryChanges( $categoryInserts, $categoryDeletes ) {
+		$catMembChange = new CategoryMembershipChange( $this->mTitle, $this->mRevision );
+
+		if ( $this->mRecursive ) {
+			$catMembChange->checkTemplateLinks();
+		}
+
+		foreach ( $categoryInserts as $categoryName => $value ) {
+			$categoryTitle = Title::newFromText( $categoryName, NS_CATEGORY );
+			$catMembChange->triggerCategoryAddedNotification( $categoryTitle );
+		}
+
+		foreach ( $categoryDeletes as $categoryName => $value ) {
+			$categoryTitle = Title::newFromText( $categoryName, NS_CATEGORY );
+			$catMembChange->triggerCategoryRemovedNotification( $categoryTitle );
+		}
 	}
 
 	/**
@@ -861,6 +894,26 @@ class LinksUpdate extends SqlDataUpdate implements EnqueueableDataUpdate {
 	 */
 	public function getImages() {
 		return $this->mImages;
+	}
+
+	/**
+	 * Set this object as being triggered by a recursive LinksUpdate
+	 *
+	 * @since 1.27
+	 */
+	public function setTriggeredRecursive() {
+		$this->mTriggeredRecursive = true;
+	}
+
+	/**
+	 * Set the revision corresponding to this LinksUpdate
+	 *
+	 * @since 1.27
+	 *
+	 * @param Revision $revision
+	 */
+	public function setRevision( Revision $revision ) {
+		$this->mRevision = $revision;
 	}
 
 	/**
