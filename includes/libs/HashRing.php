@@ -223,8 +223,8 @@ class HashRing {
 	 * @return array List of locations
 	 * @throws UnexpectedValueException
 	 */
-	public function getLiveLocations( $item ) {
-		return $this->getLiveRing()->getLocations( $item );
+	public function getLiveLocations( $item, $limit ) {
+		return $this->getLiveRing()->getLocations( $item, $limit );
 	}
 
 	/**
