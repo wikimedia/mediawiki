@@ -3169,7 +3169,7 @@
 	"logentry-block-reblock": "$1 {{GENDER:$2|사용자가}} {{GENDER:$4|$3}} 사용자의 차단을 $5 $6 설정으로 변경했습니다.",
 	"logentry-suppress-block": "$1 {{GENDER:$2|사용자가}} {{GENDER:$4|$3}} 사용자를 $5 $6 설정으로 차단했습니다.",
 	"logentry-suppress-reblock": "$1 {{GENDER:$2|사용자가}} {{GENDER:$4|$3}} 사용자의 차단을 $5 $6 설정으로 변경했습니다.",
-	"logentry-import-upload": "$1 사용자가 $3을 파일 올리기로 {{GENDER:$2|가져왔습니다}}",
+	"logentry-import-upload": "$1 사용자가 $3 문서를 파일 올리기로 {{GENDER:$2|가져왔습니다}}",
 	"logentry-import-interwiki": "$1 사용자가 $3을 다른 위키에서 {{GENDER:$2|가져왔습니다}}",
 	"logentry-merge-merge": "$1 사용자가 $3 문서를 $4 안에 {{GENDER:$2|병합했습니다}} (판은 $5까지)",
 	"logentry-move-move": "$1 사용자가 $3 문서를 $4 문서로 {{GENDER:$2|옮겼습니다}}",

@@ -32,7 +32,7 @@
 	"apihelp-block-param-nocreate": "מניעת יצירת חשבונות",
 	"apihelp-block-param-autoblock": "חסימה אוטומטית גם של כתובת ה־IP האחרונה שהשתמש בה ושל כל כתובת IP שינסה להשתמש בה בעתיד.",
 	"apihelp-block-param-noemail": "למנוע ממשתמש לשלוח דואר אלקטרוני דרך הוויקי. (דורש את ההרשאה <code>blockemail</code>).",
-	"apihelp-block-param-hidename": "התסרת השם מיומן החסימות. (דורש את ההרשאה <code>hideuser</code>.)",
+	"apihelp-block-param-hidename": "הסרת השם מיומן החסימות. (דורש את ההרשאה <code>hideuser</code>.)",
 	"apihelp-block-param-allowusertalk": "לאפשר למשתמש לערוך את דף השיחה שלו או שלה (תלוי ב־<var>[[mw:Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
 	"apihelp-block-param-reblock": "אם המשתמש כבר חסום, לדרוס את החסימה הנוכחית.",
 	"apihelp-block-param-watchuser": "לעקוב אחרי דף המשתמש ודף השיחה של המשתמש או של כתובת ה־IP.",

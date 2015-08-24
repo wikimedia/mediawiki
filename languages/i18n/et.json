@@ -2144,7 +2144,7 @@
 	"move-watch": "Jälgi lähte- ja sihtlehekülge",
 	"movepagebtn": "Teisalda lehekülg",
 	"pagemovedsub": "Lehekülg on teisaldatud",
-	"movepage-moved": "'''\"$1\" teisaldatud pealkirja \"$2\" alla'''",
+	"movepage-moved": "<strong>\"$1\" on teisaldatud pealkirja \"$2\" alla.</strong>",
 	"movepage-moved-redirect": "Ümbersuunamisleht loodud.",
 	"movepage-moved-noredirect": "Ümbersuunamist ei loodud.",
 	"articleexists": "Sellise pealkirjaga lehekülg on juba olemas või pole valitud pealkiri lubatav.\nPalun vali teistsugune pealkiri.",

@@ -8,7 +8,8 @@
 			"Banjo",
 			"Fisterraeomar",
 			"Toliño",
-			"Umherirrender"
+			"Umherirrender",
+			"Amire80"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentación]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de discusión]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anuncios da API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Erros e solicitudes]\n</div>\n<strong>Estado:</strong> Tódalas funcionalidades mostradas nesta páxina deberían estar funcionanado, pero a API aínda está desenrolo, e pode ser modificada en calquera momento. Apúntese na [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ lista de discusión mediawiki-api-announce] para estar informado acerca das actualizacións.\n\n<strong>Solicitudes incorrectas:</strong> Cando se envían solicitudes incorrectas á API, envíase unha cabeceira HTTP coa chave \"MediaWiki-API-Error\" e, a seguir, tanto o valor da cabeceira como o código de erro retornado serán definidos co mesmo valor. Para máis información, consulte [[mw:API:Errors_and_warnings|API: Erros e avisos]].",
@@ -1112,7 +1113,7 @@
 	"apihelp-query+watchlist-paramvalue-prop-notificationtimestamp": "Engade o selo de tempo da última vez en que o usuario foi avisado da modificación.",
 	"apihelp-query+watchlist-paramvalue-prop-loginfo": "Engade información do rexistro cando sexa axeitado.",
 	"apihelp-query+watchlist-param-show": "Só mostrar elementos que cumpran esos criterios. Por exemplo, para ver só edicións menores feitas por usuarios conectados, activar $1show=minor|!anon.",
-	"apihelp-query+watchlist-param-type": "Que tipos de cambios mostrar:\n;edit:Modificacións normais de páxina.\n;external:Modificacións externas.\n;new:Creación de páxinas.\n;log:Entradas no rexistro.\n;categorize:Modificacións na pertenza a categorías.",
+	"apihelp-query+watchlist-param-type": "Que tipos de cambios mostrar:\n;edit:Modificacións normais de páxina.\n;external:Modificacións externas.\n;new:Creación de páxinas.\n;log:Entradas no rexistro.",
 	"apihelp-query+watchlist-param-owner": "Usado con $1token para acceder á lista de páxinas de vixiancia doutro usuario.",
 	"apihelp-query+watchlist-param-token": "Identificador de seguridade (dispoñible nas [[Special:Preferences#mw-prefsection-watchlist|preferencias]] de usuario) para permitir o acceso a outros á súa páxina de vixiancia.",
 	"apihelp-query+watchlist-example-simple": "Listar a última revisión das páxinas recentemente modificadas da lista de vixiancia do usuario actual.",

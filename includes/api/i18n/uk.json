@@ -1110,7 +1110,7 @@
 	"apihelp-query+watchlist-paramvalue-prop-notificationtimestamp": "Додає мітку часу, коли користувач був востаннє сповіщений про редагування.",
 	"apihelp-query+watchlist-paramvalue-prop-loginfo": "Додає інформацію журналу, де це доречно.",
 	"apihelp-query+watchlist-param-show": "Показати лише елементи, що задовільняють ці критерії. Наприклад, для перегляду лише незначних змін, здійснених користувачами, що увійшли до системи, вкажіть $1show=minor|!anon.",
-	"apihelp-query+watchlist-param-type": "Які типи змін показувати:\n;edit:Звичайні редагування сторінки.\n;external:Зовнішні зміни.\n;new:Створення сторінок.\n;log:Записи журналу.\n;categorize:Зміни в членстві в категоріях.",
+	"apihelp-query+watchlist-param-type": "Які типи змін показувати:\n;edit:Звичайні редагування сторінки.\n;external:Зовнішні зміни.\n;new:Створення сторінок.\n;log:Записи журналу.",
 	"apihelp-query+watchlist-param-owner": "Використовується разом з $1token для доступу до списку спостереження різних користувачів.",
 	"apihelp-query+watchlist-param-token": "Токен безпеки (доступний у [[Special:Preferences#mw-prefsection-watchlist|налаштуваннях]] користувача) для отримання доступу до списку спостереження іншого користувача.",
 	"apihelp-query+watchlist-example-simple": "Перелічити верхні версії для нещодавно змінених сторінок у списку спостереження поточного користувача.",

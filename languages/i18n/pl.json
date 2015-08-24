@@ -79,7 +79,8 @@
 			"Kszapsza",
 			"Openbk",
 			"Doctore",
-			"PiotrAntosz"
+			"PiotrAntosz",
+			"The Polish"
 		]
 	},
 	"tog-underline": "Podkreślenie linków:",
@@ -1386,13 +1387,16 @@
 	"upload-copy-upload-invalid-domain": "Przesyłanie kopii z tej domeny nie jest dostępne.",
 	"upload-dialog-title": "Prześlij plik",
 	"upload-dialog-error": "Wystąpił błąd",
+	"upload-dialog-warning": "Pojawiło się ostrzeżenie",
 	"upload-dialog-button-cancel": "Anuluj",
 	"upload-dialog-button-done": "Gotowe",
 	"upload-dialog-button-save": "Zapisz",
 	"upload-dialog-button-upload": "Prześlij",
 	"upload-dialog-label-select-file": "Wybierz plik",
 	"upload-dialog-label-infoform-title": "Szczegóły",
+	"upload-dialog-label-infoform-name": "Nazwa",
 	"upload-dialog-label-infoform-description": "Opis",
+	"upload-dialog-label-usage-title": "Korzystanie",
 	"upload-dialog-label-usage-filename": "Nazwa pliku",
 	"backend-fail-stream": "Nie można odczytać pliku $1.",
 	"backend-fail-backup": "Nie można utworzyć kopii zapasowej pliku  $1 .",
