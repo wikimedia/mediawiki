@@ -337,7 +337,7 @@
 				return false;
 			}
 
-			dialog.upload.finishStashUpload().then( function () {
+			dialog.upload.finishStashUpload().always( function () {
 				var name;
 
 				if ( dialog.upload.getState() === mw.Upload.State.ERROR ) {

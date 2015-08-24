@@ -331,7 +331,12 @@
 					return $.Deferred().reject( 'Filename not included in file data.' );
 				}
 
-				return api.postWithEditToken( data );
+				return api.postWithEditToken( data ).then( function ( result ) {
+					if ( result.upload && ( result.upload.error || result.upload.warnings ) ) {
+						return $.Deferred().reject( result.upload.error || result.upload.warnings ).promise();
+					}
+					return result;
+				} );
 			}
 
 			return this.upload( file, { stash: true, filename: data.filename } ).then( function ( result ) {
