@@ -495,7 +495,13 @@ class MediaWiki {
 	public function doPreOutputCommit() {
 		// Either all DBs should commit or none
 		ignore_user_abort( true );
-		wfGetLBFactory()->commitMasterChanges();
+
+		// Commit all changes and record ChronologyProtector positions
+		$factory = wfGetLBFactory();
+		$factory->commitMasterChanges();
+		$factory->shutdown();
+
+		wfDebug( __METHOD__ . ' completed; all transactions committed' );
 	}
 
 	/**
