@@ -383,6 +383,7 @@ $wgAutoloadLocalClasses = array(
 	'EnotifNotifyJob' => __DIR__ . '/includes/jobqueue/jobs/EnotifNotifyJob.php',
 	'EnqueueJob' => __DIR__ . '/includes/jobqueue/jobs/EnqueueJob.php',
 	'EraseArchivedFile' => __DIR__ . '/maintenance/eraseArchivedFile.php',
+	'ErrorHandlerStack' => __DIR__ . '/includes/libs/ErrorHandlerStack.php',
 	'ErrorPageError' => __DIR__ . '/includes/exception/ErrorPageError.php',
 	'EventRelayer' => __DIR__ . '/includes/libs/eventrelayer/EventRelayer.php',
 	'EventRelayerMCRD' => __DIR__ . '/includes/libs/eventrelayer/EventRelayerMCRD.php',
