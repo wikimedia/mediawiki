@@ -169,9 +169,23 @@ class ApiParse extends ApiBase {
 
 				$popts = $this->makeParserOptions( $pageObj, $params );
 
-				// Potentially cached
-				$p_result = $this->getParsedContent( $pageObj, $popts, $pageid,
-					isset( $prop['wikitext'] ) );
+				// Don't pollute the parser cache when setting options that aren't
+				// in ParserOptions::optionsHash()
+				$suppressCache =
+					$params['disablepp'] ||
+					$params['disablelimitreport'] ||
+					$params['preview'] ||
+					$params['sectionpreview'] ||
+					$params['disabletidy'];
+
+				if ( $suppressCache ) {
+					$this->content = $this->getContent( $pageObj, $pageid );
+					$p_result = $this->content->getParserOutput( $titleObj, null, $popts );
+				} else {
+					// Potentially cached
+					$p_result = $this->getParsedContent( $pageObj, $popts, $pageid,
+						isset( $prop['wikitext'] ) );
+				}
 			}
 		} else { // Not $oldid, $pageid, $page. Hence based on $text
 			$titleObj = Title::newFromText( $title );
@@ -464,10 +478,13 @@ class ApiParse extends ApiBase {
 	protected function makeParserOptions( WikiPage $pageObj, array $params ) {
 
 		$popts = $pageObj->makeParserOptions( $this->getContext() );
-		$popts->enableLimitReport( !$params['disablepp'] );
+		$popts->enableLimitReport( !$params['disablepp'] && !$params['disablelimitreport'] );
 		$popts->setIsPreview( $params['preview'] || $params['sectionpreview'] );
 		$popts->setIsSectionPreview( $params['sectionpreview'] );
 		$popts->setEditSection( !$params['disableeditsection'] );
+		if ( $params['disabletidy'] ) {
+			$popts->setTidy( false );
+		}
 
 		return $popts;
 	}
@@ -480,14 +497,9 @@ class ApiParse extends ApiBase {
 	 * @return ParserOutput
 	 */
 	private function getParsedContent( WikiPage $page, $popts, $pageId = null, $getWikitext = false ) {
-		$this->content = $page->getContent( Revision::RAW ); //XXX: really raw?
+		$this->content = $this->getContent( $page, $pageId );
 
 		if ( $this->section !== false && $this->content !== null ) {
-			$this->content = $this->getSectionContent(
-				$this->content,
-				!is_null( $pageId ) ? 'page id ' . $pageId : $page->getTitle()->getPrefixedText()
-			);
-
 			// Not cached (save or load)
 			return $this->content->getParserOutput( $page->getTitle(), null, $popts );
 		}
@@ -506,6 +518,27 @@ class ApiParse extends ApiBase {
 	}
 
 	/**
+	 * Get the content for the given page and the requested section.
+	 *
+	 * @param WikiPage $page
+	 * @param int $pageId
+	 * @return Content
+	 */
+	private function getContent( WikiPage $page, $pageId = null ) {
+		$content = $page->getContent( Revision::RAW ); //XXX: really raw?
+
+		if ( $this->section !== false && $content !== null ) {
+			$content = $this->getSectionContent(
+				$content,
+				!is_null( $pageId ) ? 'page id ' . $pageId : $page->getTitle()->getPrefixedText()
+			);
+		}
+		return $content;
+	}
+
+	/**
+	 * Extract the requested section from the given Content
+	 *
 	 * @param Content $content
 	 * @param string $what Identifies the content in error messages, e.g. page title.
 	 * @return Content|bool
@@ -762,8 +795,13 @@ class ApiParse extends ApiBase {
 			'sectiontitle' => array(
 				ApiBase::PARAM_TYPE => 'string',
 			),
-			'disablepp' => false,
+			'disablepp' => array(
+				ApiBase::PARAM_DFLT => false,
+				ApiBase::PARAM_DEPRECATED => true,
+			),
+			'disablelimitreport' => false,
 			'disableeditsection' => false,
+			'disabletidy' => false,
 			'generatexml' => array(
 				ApiBase::PARAM_DFLT => false,
 				ApiBase::PARAM_HELP_MSG => array(
