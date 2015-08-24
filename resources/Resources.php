@@ -982,6 +982,7 @@ return array(
 		),
 	),
 	'mediawiki.ForeignApi' => array(
+		'targets' => array( 'desktop', 'mobile' ),
 		'class' => 'ResourceLoaderForeignApiModule',
 		// Additional dependencies generated dynamically
 		'dependencies' => 'mediawiki.ForeignApi.core',
@@ -992,6 +993,7 @@ return array(
 			'mediawiki.api',
 			'oojs',
 		),
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.helplink' => array(
 		'position' => 'top',
