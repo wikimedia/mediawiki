@@ -279,9 +279,11 @@ class MediaWiki {
 	 *   /w/index.php?title= -> /wiki/Main
 	 * - Don't redirect anything with query parameters other than 'title' or 'action=view'.
 	 *
+	 * @param Title $title
 	 * @return bool True if a redirect was set.
+	 * @throws HttpError
 	 */
-	private function tryNormaliseRedirect( $title ) {
+	private function tryNormaliseRedirect( Title $title ) {
 		global $wgUsePathInfo;
 
 		$request = $this->context->getRequest();
