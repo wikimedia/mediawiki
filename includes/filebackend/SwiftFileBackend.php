@@ -138,13 +138,12 @@ class SwiftFileBackend extends FileBackendStore {
 			if ( PHP_SAPI === 'cli' ) {
 				$this->srvCache = wfGetMainCache(); // preferrably memcached
 			} else {
-				try { // look for APC, XCache, WinCache, ect...
-					$this->srvCache = ObjectCache::newAccelerator();
-				} catch ( Exception $e ) {
-				}
+				// look for APC, XCache, WinCache, ect...
+				$this->srvCache = ObjectCache::newAccelerator( CACHE_NONE );
 			}
+		} else {
+			$this->srvCache = new EmptyBagOStuff();
 		}
-		$this->srvCache = $this->srvCache ?: new EmptyBagOStuff();
 	}
 
 	public function getFeatures() {

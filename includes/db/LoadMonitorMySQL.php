@@ -34,12 +34,10 @@ class LoadMonitorMySQL implements LoadMonitor {
 	protected $mainCache;
 
 	public function __construct( $parent ) {
-		global $wgMemc;
-
 		$this->parent = $parent;
 
 		$this->srvCache = ObjectCache::newAccelerator( 'hash' );
-		$this->mainCache = $wgMemc ?: wfGetMainCache();
+		$this->mainCache = wfGetMainCache();
 	}
 
 	public function scaleLoads( &$loads, $group = false, $wiki = false ) {
