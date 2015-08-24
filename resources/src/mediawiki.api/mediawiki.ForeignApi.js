@@ -76,9 +76,9 @@
 	 * @return {string}
 	 */
 	CoreForeignApi.prototype.getOrigin = function () {
-		var origin = window.location.protocol + '//' + window.location.hostname;
-		if ( window.location.port ) {
-			origin += ':' + window.location.port;
+		var origin = location.protocol + '//' + location.hostname;
+		if ( location.port ) {
+			origin += ':' + location.port;
 		}
 		return origin;
 	};
