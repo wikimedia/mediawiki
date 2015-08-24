@@ -74,6 +74,20 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 		$this->assertEquals( '', $html );
 	}
 
+	public function testCategorizationLineFormatting() {
+		$html = $this->createCategorizationLine(
+			$this->getCategorizationChange( '20150629191735', 0, 0 )
+		);
+		$this->assertNotContains( '(diff | hist)', strip_tags( $html ) );
+	}
+
+	public function testCategorizationLineFormattingWithRevision() {
+		$html = $this->createCategorizationLine(
+			$this->getCategorizationChange( '20150629191735', 1025, 1024 )
+		);
+		$this->assertContains( '(diff | hist)', strip_tags( $html ) );
+	}
+
 	/**
 	 * @todo more tests for actual formatting, this is more of a smoke test
 	 */
@@ -116,6 +130,24 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @return RecentChange
+	 */
+	private function getCategorizationChange( $timestamp, $thisId, $lastId ) {
+		$wikiPage = new WikiPage( Title::newFromText( 'Testpage' ) );
+		$wikiPage->doEditContent( new WikitextContent( 'Some random text' ), 'page created' );
+
+		$wikiPage = new WikiPage( Title::newFromText( 'Category:Foo' ) );
+		$wikiPage->doEditContent( new WikitextContent( 'Some random text' ), 'category page created' );
+
+		$user = $this->getTestUser();
+		$recentChange = $this->testRecentChangesHelper->makeCategorizationRecentChange(
+			$user, 'Category:Foo', $wikiPage->getId(), $thisId, $lastId, $timestamp
+		);
+
+		return $recentChange;
+	}
+
+	/**
 	 * @return User
 	 */
 	private function getTestUser() {
@@ -126,6 +158,17 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 		}
 
 		return $user;
+	}
+
+	private function createCategorizationLine( $recentChange ) {
+		$enhancedChangesList = $this->newEnhancedChangesList();
+		$cacheEntry = $this->testRecentChangesHelper->getCacheEntry( $recentChange );
+
+		$reflection = new \ReflectionClass( get_class( $enhancedChangesList ) );
+		$method = $reflection->getMethod( 'recentChangesBlockLine' );
+		$method->setAccessible( true );
+
+		return $method->invokeArgs( $enhancedChangesList, array( $cacheEntry ) );
 	}
 
 }
