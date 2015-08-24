@@ -617,7 +617,7 @@ class WANObjectCache {
 	 * moves from $lowTTL to 0 seconds. This handles widely varying
 	 * levels of cache access traffic.
 	 *
-	 * @param float|INF $curTTL Approximate TTL left on the key if present
+	 * @param float $curTTL Approximate TTL left on the key if present
 	 * @param float $lowTTL Consider a refresh when $curTTL is less than this
 	 * @return bool
 	 */
