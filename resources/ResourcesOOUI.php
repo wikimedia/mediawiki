@@ -114,8 +114,9 @@ return call_user_func( function () {
 
 		if ( substr( $name, 0, 5 ) === 'icons' ) {
 			$module['selectorWithoutVariant'] = '.oo-ui-icon-{name}, .mw-ui-icon-{name}:before';
-			$module['selectorWithVariant'] = '.oo-ui-image-{variant} .oo-ui-icon-{name},
+			$module['selectorWithVariant'] = '
 				.oo-ui-image-{variant}.oo-ui-icon-{name}, .mw-ui-icon-{name}-{variant}:before,
+				/* Hack for Flow, see T110051 */
 				.mw-ui-hovericon:hover .mw-ui-icon-{name}-{variant}-hover:before,
 				.mw-ui-hovericon.mw-ui-icon-{name}-{variant}-hover:hover:before';
 		}
