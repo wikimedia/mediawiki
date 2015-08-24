@@ -163,8 +163,8 @@ class OldLocalFile extends LocalFile {
 	/**
 	 * @return bool
 	 */
-	function isOld() {
-		return true;
+	function isCurrent() {
+		return false;
 	}
 
 	/**

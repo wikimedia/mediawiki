@@ -512,7 +512,7 @@ class ArchivedFile {
 	 *
 	 * @return string
 	 */
-	public function getDescription() {
+	public function getComment() {
 		$this->load();
 		if ( $this->isDeleted( File::DELETED_COMMENT ) ) {
 			return 0;

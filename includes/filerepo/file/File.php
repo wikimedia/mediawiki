@@ -64,7 +64,7 @@ abstract class File implements IDBAccessObject {
 
 	const DELETE_SOURCE = 1;
 
-	// Audience options for File::getDescription()
+	// Audience options for File::getComment()
 	const FOR_PUBLIC = 1;
 	const FOR_THIS_USER = 2;
 	const RAW = 3;
@@ -1833,13 +1833,24 @@ abstract class File implements IDBAccessObject {
 	}
 
 	/**
+	 * Returns true if the image is the current version
+	 * STUB
+	 *
+	 * @return bool
+	 */
+	public function isCurrent() {
+		return true;
+	}
+
+	/**
 	 * Returns true if the image is an old version
 	 * STUB
 	 *
 	 * @return bool
 	 */
 	function isOld() {
-		return false;
+		wfDeprecated( __METHOD__, '1.26' );
+		return !$this->isCurrent();
 	}
 
 	/**
@@ -2061,8 +2072,25 @@ abstract class File implements IDBAccessObject {
 	 *   passed to the $audience parameter
 	 * @return string
 	 */
-	function getDescription( $audience = self::FOR_PUBLIC, User $user = null ) {
+	public function getComment( $audience = self::FOR_PUBLIC, User $user = null ) {
 		return null;
+	}
+
+	/**
+	 * Get description of file revision
+	 * STUB
+	 *
+	 * @param int $audience One of:
+	 *   File::FOR_PUBLIC       to be displayed to all users
+	 *   File::FOR_THIS_USER    to be displayed to the given user
+	 *   File::RAW              get the description regardless of permissions
+	 * @param User $user User object to check for, only if FOR_THIS_USER is
+	 *   passed to the $audience parameter
+	 * @return string
+	 */
+	function getDescription( $audience = self::FOR_PUBLIC, User $user = null ) {
+		wfDeprecated( __METHOD__, '1.26' );
+		return $this->getComment( $audience, $user );
 	}
 
 	/**

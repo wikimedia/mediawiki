@@ -235,7 +235,7 @@ class ForeignAPIFile extends File {
 	 * @param User $user
 	 * @return null|string
 	 */
-	public function getDescription( $audience = self::FOR_PUBLIC, User $user = null ) {
+	public function getComment( $audience = self::FOR_PUBLIC, User $user = null ) {
 		return isset( $this->mInfo['comment'] ) ? strval( $this->mInfo['comment'] ) : null;
 	}
 
