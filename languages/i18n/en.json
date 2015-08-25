@@ -2427,6 +2427,8 @@
 	"ipb_blocked_as_range": "Error: The IP address $1 is not blocked directly and cannot be unblocked.\nIt is, however, blocked as part of the range $2, which can be unblocked.",
 	"ip_range_invalid": "Invalid IP address range.",
 	"ip_range_toolarge": "Range blocks larger than /$1 are not allowed.",
+	"ip_range_exceeded": "The IP range exceeds its maximum range. Allowed range: /$1.",
+	"ip_range_toolow": "IP ranges are effectively not allowed.",
 	"proxyblocker": "Proxy blocker",
 	"proxyblockreason": "Your IP address has been blocked because it is an open proxy.\nPlease contact your Internet service provider or technical support of your organization and inform them of this serious security problem.",
 	"sorbs": "DNSBL",
