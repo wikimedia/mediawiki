@@ -1130,7 +1130,7 @@
 	"watchlistedit-clear-explain": "तमरा ध्यान सूचीबठे सम्पूर्ण पाना हटाइया",
 	"watchlistedit-clear-done": "तमरो ध्यान सूची खाली गरीयाको छ।",
 	"watchlisttools-view": "आधारित फेरबदलीहरू हेर",
-	"signature": "[[{{एनस:प्रयोगकर्ता}}:$1|$2]]([[{{एनस:प्रयोगकर्ता_कुरडी}}:$1|कुरडी]])",
+	"signature": "[[{{ns:प्रयोगकर्ता}}:$1|$2]]([[{{ns:प्रयोगकर्ता_कुरडी}}:$1|कुरडी]])",
 	"specialpages": "खास पानो",
 	"specialpages-note": "* साधारण खास पानाहरू।\n* <span class=\"mw-specialpagerestricted\">निषेधित खास पानाहरू।</span>",
 	"specialpages-group-changes": "अल्लैका परिवर्तन लगहरू",

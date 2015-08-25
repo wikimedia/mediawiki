@@ -1607,7 +1607,6 @@
 	"emailuser": "Stuur e-pos na hierdie gebruiker",
 	"emailuser-title-target": "E-pos die {{GENDER:$1|gebruiker}}",
 	"emailuser-title-notarget": "E-pos gebruiker",
-	"emailpage": "Stuur e-pos na gebruiker",
 	"emailpagetext": "As {{GENDER:$1|dié gebruiker}} 'n geldige e-posadres in sy/haar gebruikersvoorkeure het, sal hierdie vorm 'n enkele boodskap stuur. Die e-posadres in u [[Special:Preferences|gebruikersvoorkeure]] sal verskyn as die \"Van\"-adres van die pos. Dus sal die ontvanger kan terug antwoord.",
 	"defemailsubject": "E-pos van {{SITENAME}}-gebruiker \"$1\"",
 	"usermaildisabled": "E-pos deur gebruikers is gedeaktiveer.",

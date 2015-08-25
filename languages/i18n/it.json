@@ -509,6 +509,7 @@
 	"createacct-benefit-body2": "{{PLURAL:$1|pagina|pagine}}",
 	"createacct-benefit-body3": "{{PLURAL:$1|contributore recente|contributori recenti}}",
 	"badretype": "Le password inserite non coincidono tra loro.",
+	"usernameinprogress": "La creazione di account con questo nome utente è già in corso.\nSi prega di attendere.",
 	"userexists": "Il nome utente inserito è già utilizzato.\nScegli un nome utente diverso.",
 	"loginerror": "Errore durante l'accesso",
 	"createacct-error": "Errore durante la creazione dell'utenza",

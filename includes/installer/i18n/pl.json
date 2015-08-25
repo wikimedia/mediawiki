@@ -18,7 +18,8 @@
 			"Alan ffm",
 			"Matik7",
 			"Pio387",
-			"Darellur"
+			"Darellur",
+			"The Polish"
 		]
 	},
 	"config-desc": "Instalator MediaWiki",
@@ -321,6 +322,7 @@
 	"config-install-keys": "Generowanie tajnych kluczy",
 	"config-insecure-keys": "'''Ostrzeżenie:''' {{PLURAL:$2|Klucz bezpieczeństwa|Klucze bezpieczeństwa|Klucze bezpieczeństwa}} ($1) utworzone podczas instalacji {{PLURAL:$2|utworzony podczas instalacji nie jest|utworzone podczas instalacji nie są|utworzone podczas instalacji nie są}} w pełni bezpieczne. Być może warto wygenerować {{PLURAL:$2|własny klucz|własne klucze|własne klucze}}.",
 	"config-install-updates": "Zapobieganie uruchamianiu niepotrzebnych aktualizacji",
+	"config-install-updates-failed": "<strong>Błąd:</strong> Wstawianie kluczy aktualizacji d0 tabeli nie powiodło się z powodu następującego błędu: $1",
 	"config-install-sysop": "Tworzenie konta administratora",
 	"config-install-subscribe-fail": "Nie można zapisać na listę „mediawiki-announce” – $1",
 	"config-install-subscribe-notpossible": "cURL nie jest zainstalowany, więc <code>allow_url_fopen</code> nie jest dostępne.",
