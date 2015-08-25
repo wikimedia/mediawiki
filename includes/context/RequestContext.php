@@ -62,7 +62,7 @@ class RequestContext implements IContextSource, MutableContext {
 	private $skin;
 
 	/**
-	 * @var StatsdDataFactory
+	 * @var \Liuggio\StatsdClient\Factory\StatsdDataFactory
 	 */
 	private $stats;
 
@@ -427,6 +427,7 @@ class RequestContext implements IContextSource, MutableContext {
 	 * Get a Message object with context set
 	 * Parameters are the same as wfMessage()
 	 *
+	 * @param mixed ...
 	 * @return Message
 	 */
 	public function msg() {

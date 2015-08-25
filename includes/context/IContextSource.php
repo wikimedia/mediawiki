@@ -134,6 +134,7 @@ interface IContextSource {
 	/**
 	 * Get a Message object with context set.  See wfMessage for parameters.
 	 *
+	 * @param mixed ...
 	 * @return Message
 	 */
 	public function msg();
