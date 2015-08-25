@@ -18,6 +18,7 @@ class HTMLUserTextField extends HTMLTextField {
 		$params += array(
 			'exists' => false,
 			'ipallowed' => false,
+			'iprangeallowed' => false,
 		);
 
 		parent::__construct( $params );
@@ -26,17 +27,60 @@ class HTMLUserTextField extends HTMLTextField {
 	public function validate( $value, $alldata ) {
 		// check, if a user exists with the given username
 		$user = User::newFromName( $value, false );
+		$rangeerror = null;
 
 		if ( !$user ) {
 			return $this->msg( 'htmlform-user-not-valid', $value )->parse();
 		} elseif (
+			// check, if the user exists, if requested
 			( $this->mParams['exists'] && $user->getId() === 0 ) &&
-			!( $this->mParams['ipallowed'] && User::isIP( $value ) )
+			// check, if the username is a valid IP address, otherweise save the error message
+			!( $this->mParams['ipallowed'] && IP::isValid( $value ) ) &&
+			// check, if the username is a valid IP range, otherweise save the error message
+			!( $this->mParams['iprangeallowed'] && ( $rangeerror = $this->isValidIPRange( $value ) ) === true )
 		) {
+			if ( is_string( $rangeerror ) ) {
+				return $rangeerror;
+			}
 			return $this->msg( 'htmlform-user-not-exists', $user->getName() )->parse();
 		}
 
 		return parent::validate( $value, $alldata );
+	}
+
+	protected function isValidIPRange( $value ) {
+		$blockCIDRLimit = $this->mParent->getConfig()->get( 'BlockCIDRLimit' );
+
+		if ( !IP::isValidBlock( $value ) ) {
+			return false;
+		}
+
+		list( $ip, $range ) = explode( '/', $value, 2 );
+
+		if (
+			( IP::isIPv4( $ip ) && $blockCIDRLimit['IPv4'] == 32 ) ||
+			( IP::isIPv6( $ip ) && $blockCIDRLimit['IPv6'] == 128 )
+		) {
+			// Range block effectively disabled
+			return $this->msg( 'range_block_disabled' )->parse();
+		}
+
+		if (
+			( IP::isIPv4( $ip ) && $range > 32 ) ||
+			( IP::isIPv6( $ip ) && $range > 128 )
+		) {
+			// Dodgy range
+			return $this->msg( 'ip_range_invalid' )->parse();
+		}
+
+		if ( IP::isIPv4( $ip ) && $range < $blockCIDRLimit['IPv4'] ) {
+			return $this->msg( 'ip_range_toolarge', $blockCIDRLimit['IPv4'] )->parse();
+		}
+
+		if ( IP::isIPv6( $ip ) && $range < $blockCIDRLimit['IPv6'] ) {
+			return $this->msg( 'ip_range_toolarge', $blockCIDRLimit['IPv6'] )->parse();
+		}
+		return true;
 	}
 
 	protected function getInputWidget( $params ) {
