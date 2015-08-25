@@ -154,3 +154,7 @@
 	path = extensions/MultiUpload
 	url = https://github.com/wikimedia/mediawiki-extensions-MultiUpload
 	branch = REL1_25
+[submodule "extensions/Timeline"]
+	path = extensions/Timeline
+	url = https://github.com/wikimedia/mediawiki-extensions-Timeline
+	branch = REL1_25
