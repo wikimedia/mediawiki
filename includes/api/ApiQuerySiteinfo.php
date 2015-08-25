@@ -599,6 +599,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				if ( isset( $ext['url'] ) ) {
 					$ret['url'] = $ext['url'];
 				}
+				if ( isset( $ext['urlmsg'] ) ) {
+					$ret['urlmsg'] = $ext['urlmsg'];
+				}
 				if ( isset( $ext['version'] ) ) {
 					$ret['version'] = $ext['version'];
 				} elseif ( isset( $ext['svn-revision'] ) &&
