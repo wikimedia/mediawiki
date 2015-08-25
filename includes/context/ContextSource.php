@@ -168,6 +168,7 @@ abstract class ContextSource implements IContextSource {
 	 * Parameters are the same as wfMessage()
 	 *
 	 * @since 1.18
+	 * @param mixed ...
 	 * @return Message
 	 */
 	public function msg( /* $args */ ) {
