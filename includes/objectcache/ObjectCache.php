@@ -28,14 +28,44 @@ use MediaWiki\Logger\LoggerFactory;
  *
  * The word "cache" has two main dictionary meanings, and both
  * are used in this factory class. They are:
- *   - a) A place to store copies or computations on existing data
- *        for higher access speeds (the computer science definition)
- *   - b) A place to store lightweight data that is not canonically
- *        stored anywhere else (e.g. a "hoard" of objects)
+ *
+ *   - a) Cache (the computer science definition).
+ *        A place to store copies or computations on existing data for
+ *        higher access speeds.
+ *   - b) Storage.
+ *        A place to store lightweight data that is not canonically
+ *        stored anywhere else (e.g. a "hoard" of objects).
  *
  * The former should always use strongly consistent stores, so callers don't
  * have to deal with stale reads. The later may be eventually consistent, but
  * callers can use BagOStuff:READ_LATEST to see the latest available data.
+ *
+ * Primary entry points:
+ *
+ * - ObjectCache::newAccelerator( $fallbackType )
+ *   Purpose: Cache.
+ *   Stored only on the individual web server.
+ *   Not associated with other servers.
+ *
+ * - wfGetMainCache()
+ *   Purpose: Cache.
+ *   Stored centrally within the local data-center.
+ *   Not replicated to other DCs.
+ *   Also known as $wgMemc. Configured by $wgMainCacheType.
+ *
+ * - ObjectCache::getMainWANInstance()
+ *   Purpose: Cache.
+ *   Stored in the local data-center's main cache (uses different cache keys).
+ *   Delete events are broadcasted to other DCs. See WANObjectCache for details.
+ *
+ * - ObjectCache::getMainStashInstance()
+ *   Purpose: Storage.
+ *   Stored centrally within the local data-center.
+ *   Changes are replicated to other DCs (eventually consistent).
+ *   To retrieve the latest value (e.g. not from a slave), use BagOStuff:READ_LATEST.
+ *
+ * - wfGetCache( $cacheType )
+ *   Get a specific cache type by key in $wgObjectCaches.
  *
  * @ingroup Cache
  */
@@ -49,10 +79,10 @@ class ObjectCache {
 	/**
 	 * Get a cached instance of the specified type of cache object.
 	 *
-	 * @param string $id
+	 * @param string $id A key in $wgObjectCaches.
 	 * @return BagOStuff
 	 */
-	static function getInstance( $id ) {
+	public static function getInstance( $id ) {
 		if ( !isset( self::$instances[$id] ) ) {
 			self::$instances[$id] = self::newFromId( $id );
 		}
@@ -61,13 +91,13 @@ class ObjectCache {
 	}
 
 	/**
-	 * Get a cached instance of the specified type of cache object.
+	 * Get a cached instance of the specified type of WAN cache object.
 	 *
 	 * @since 1.26
-	 * @param string $id
+	 * @param string $id A key in $wgWANObjectCaches.
 	 * @return WANObjectCache
 	 */
-	static function getWANInstance( $id ) {
+	public static function getWANInstance( $id ) {
 		if ( !isset( self::$wanInstances[$id] ) ) {
 			self::$wanInstances[$id] = self::newWANCacheFromId( $id );
 		}
@@ -76,21 +106,13 @@ class ObjectCache {
 	}
 
 	/**
-	 * Clear all the cached instances.
-	 */
-	static function clear() {
-		self::$instances = array();
-		self::$wanInstances = array();
-	}
-
-	/**
 	 * Create a new cache object of the specified type.
 	 *
-	 * @param string $id
+	 * @param string $id A key in $wgObjectCaches.
 	 * @return BagOStuff
 	 * @throws MWException
 	 */
-	static function newFromId( $id ) {
+	public static function newFromId( $id ) {
 		global $wgObjectCaches;
 
 		if ( !isset( $wgObjectCaches[$id] ) ) {
@@ -102,13 +124,17 @@ class ObjectCache {
 	}
 
 	/**
-	 * Create a new cache object from parameters
+	 * Create a new cache object from parameters.
 	 *
-	 * @param array $params
+	 * @param array $params Must have 'factory' or 'class' property.
+	 *  - factory: Callback passed $params that returns BagOStuff.
+	 *  - class: BagOStuff subclass constructed with $params.
+	 *  - loggroup: Alias to set 'logger' key with LoggerFactory group.
+	 *  - .. Other parameters passed to factory or class.
 	 * @return BagOStuff
 	 * @throws MWException
 	 */
-	static function newFromParams( $params ) {
+	public static function newFromParams( $params ) {
 		if ( isset( $params['loggroup'] ) ) {
 			$params['logger'] = LoggerFactory::getInstance( $params['loggroup'] );
 		} else {
@@ -129,7 +155,7 @@ class ObjectCache {
 	}
 
 	/**
-	 * Factory function referenced from DefaultSettings.php for CACHE_ANYTHING
+	 * Factory function for CACHE_ANYTHING (referenced from DefaultSettings.php)
 	 *
 	 * CACHE_ANYTHING means that stuff has to be cached, not caching is not an option.
 	 * If a caching method is configured for any of the main caches ($wgMainCacheType,
@@ -141,7 +167,7 @@ class ObjectCache {
 	 * @param array $params
 	 * @return BagOStuff
 	 */
-	static function newAnything( $params ) {
+	public static function newAnything( $params ) {
 		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType;
 		$candidates = array( $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType );
 		foreach ( $candidates as $candidate ) {
@@ -153,7 +179,7 @@ class ObjectCache {
 	}
 
 	/**
-	 * Factory function referenced from DefaultSettings.php for CACHE_ACCEL.
+	 * Factory function for CACHE_ACCEL (referenced from DefaultSettings.php)
 	 *
 	 * This will look for any APC style server-local cache.
 	 * A fallback cache can be specified if none is found.
@@ -163,7 +189,7 @@ class ObjectCache {
 	 * @return BagOStuff
 	 * @throws MWException
 	 */
-	static function newAccelerator( $params = array(), $fallback = null ) {
+	public static function newAccelerator( $params = array(), $fallback = null ) {
 		if ( !is_array( $params ) && $fallback === null ) {
 			$fallback = $params;
 		}
@@ -193,19 +219,19 @@ class ObjectCache {
 	 * @param array $params
 	 * @return MemcachedPhpBagOStuff
 	 */
-	static function newMemcached( $params ) {
+	public static function newMemcached( $params ) {
 		return new MemcachedPhpBagOStuff( $params );
 	}
 
 	/**
-	 * Create a new cache object of the specified type
+	 * Create a new cache object of the specified type.
 	 *
 	 * @since 1.26
-	 * @param string $id
+	 * @param string $id A key in $wgWANObjectCaches.
 	 * @return WANObjectCache
 	 * @throws MWException
 	 */
-	static function newWANCacheFromId( $id ) {
+	public static function newWANCacheFromId( $id ) {
 		global $wgWANObjectCaches;
 
 		if ( !isset( $wgWANObjectCaches[$id] ) ) {
@@ -223,18 +249,20 @@ class ObjectCache {
 	}
 
 	/**
-	 * Get the main WAN cache object
+	 * Get the main WAN cache object.
 	 *
 	 * @since 1.26
 	 * @return WANObjectCache
 	 */
-	static function getMainWANInstance() {
+	public static function getMainWANInstance() {
 		global $wgMainWANCache;
 
 		return self::getWANInstance( $wgMainWANCache );
 	}
 
 	/**
+	 * Get the cache object for the main stash.
+	 *
 	 * Stash objects are BagOStuff instances suitable for storing light
 	 * weight data that is not canonically stored elsewhere (such as RDBMS).
 	 * Stashes should be configured to propagate changes to all data-centers.
@@ -250,9 +278,17 @@ class ObjectCache {
 	 * @return BagOStuff
 	 * @since 1.26
 	 */
-	static function getMainStashInstance() {
+	public static function getMainStashInstance() {
 		global $wgMainStash;
 
 		return self::getInstance( $wgMainStash );
+	}
+
+	/**
+	 * Clear all the cached instances.
+	 */
+	public static function clear() {
+		self::$instances = array();
+		self::$wanInstances = array();
 	}
 }
