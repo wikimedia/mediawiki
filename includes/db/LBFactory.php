@@ -208,7 +208,7 @@ abstract class LBFactory {
 	 */
 	public function hasMasterChanges() {
 		$ret = false;
-		$this->forEachLB( function ( $lb ) use ( &$ret ) {
+		$this->forEachLB( function ( LoadBalancer $lb ) use ( &$ret ) {
 			$ret = $ret || $lb->hasMasterChanges();
 		} );
 		return $ret;
