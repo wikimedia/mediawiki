@@ -4,6 +4,9 @@
 	<file>.</file>
 	<arg name="encoding" value="utf8"/>
 	<arg name="extensions" value="php,php5,inc,sample"/>
+	<rule ref="Generic.Files.LineLength">
+		<exclude-pattern>*/languages/messages/Message*.php</exclude-pattern>
+	</rule>
 	<exclude-pattern>node_modules</exclude-pattern>
 	<exclude-pattern>vendor</exclude-pattern>
 	<exclude-pattern>extensions</exclude-pattern>
