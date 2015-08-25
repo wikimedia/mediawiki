@@ -735,8 +735,18 @@ class SpecialVersion extends SpecialPage {
 			$extensionName = $this->msg( 'version-no-ext-name' )->text();
 		}
 
-		if ( isset( $extension['url'] ) ) {
+		if ( isset( $extension['urlmsg'] ) ) {
 			$extensionNameLink = Linker::makeExternalLink(
+				// Localized name of url
+				$this->msg( $extension['urlmsg'] )->text(),
+				$extensionName,
+				true,
+				'',
+				array( 'class' => 'mw-version-ext-name' )
+			);
+		} elseif ( isset( $extension['url'] ) ) {
+			$extensionNameLink = Linker::makeExternalLink(
+				// Non localized version
 				$extension['url'],
 				$extensionName,
 				true,
