@@ -90,9 +90,7 @@ jQuery( function ( $ ) {
 	if ( $( '#mw-preferences-success' ).length ) {
 		notif = mediaWiki.notification.notify( mediaWiki.message( 'savedprefs' ), { autoHide: false } );
 		$( '#preftoc, .prefsection' ).one( 'change keydown mousedown', function () { // 'change' event not reliable!
-			if ( notif ) {
-				notif.close();
-			}
+			notif.close();
 		} );
 
 		// Remove now-unnecessary success=1 querystring to prevent reappearance of notification on reload
