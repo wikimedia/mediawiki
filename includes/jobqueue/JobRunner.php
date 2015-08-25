@@ -195,13 +195,20 @@ class JobRunner implements LoggerAwareInterface {
 				$timeMs = intval( ( microtime( true ) - $jobStartTime ) * 1000 );
 				$timeMsTotal += $timeMs;
 
+				// Record how long jobs wait before getting popped
 				$readyTs = $job->getReadyTimestamp();
 				if ( $readyTs ) {
-					// Record time to run for the job type
 					$pickupDelay = $popTime - $readyTs;
 					$stats->timing( 'jobqueue.pickup_delay.all', 1000 * $pickupDelay );
 					$stats->timing( "jobqueue.pickup_delay.$jType", 1000 * $pickupDelay );
 				}
+				// Record root job age for jobs being run
+				$root = $job->getRootJobParams();
+				if ( $root['rootJobTimestamp'] ) {
+					$age = $popTime - wfTimestamp( TS_UNIX, $root['rootJobTimestamp'] );
+					$stats->timing( "jobqueue.pickup_root_age.$jType", 1000 * $age );
+				}
+				// Track the execution time for jobs
 				$stats->timing( "jobqueue.run.$jType", $timeMs );
 
 				// Mark the job as done on success or when the job cannot be retried
