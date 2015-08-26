@@ -2838,7 +2838,7 @@ class Language {
 	 * @return bool
 	 */
 	function isMultibyte( $str ) {
-		return (bool)preg_match( '/[\x80-\xff]/', $str );
+		return strlen( $str ) !== mb_strlen( $str );
 	}
 
 	/**
