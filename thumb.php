@@ -221,7 +221,7 @@ function wfStreamThumb( array $params ) {
 		wfThumbErrorText( 404, "The source file '$fileName' does not exist." );
 		return;
 	} elseif ( $img->getPath() === false ) {
-		wfThumbErrorText( 500, "The source file '$fileName' is not locally accessible." );
+		wfThumbErrorText( 400, "The source file '$fileName' is not locally accessible." );
 		return;
 	}
 
@@ -316,10 +316,10 @@ function wfStreamThumb( array $params ) {
 
 	$user = RequestContext::getMain()->getUser();
 	if ( !wfThumbIsStandard( $img, $params ) && $user->pingLimiter( 'renderfile-nonstandard' ) ) {
-		wfThumbError( 500, wfMessage( 'actionthrottledtext' )->parse() );
+		wfThumbError( 429, wfMessage( 'actionthrottledtext' )->parse() );
 		return;
 	} elseif ( $user->pingLimiter( 'renderfile' ) ) {
-		wfThumbError( 500, wfMessage( 'actionthrottledtext' )->parse() );
+		wfThumbError( 429, wfMessage( 'actionthrottledtext' )->parse() );
 		return;
 	}
 
@@ -555,7 +555,7 @@ function wfExtractThumbParams( $file, $params ) {
  * @return void
  */
 function wfThumbErrorText( $status, $msgText ) {
-	return wfThumbError( $status, htmlspecialchars( $msgText ) );
+	wfThumbError( $status, htmlspecialchars( $msgText ) );
 }
 
 /**
@@ -570,10 +570,8 @@ function wfThumbError( $status, $msgHtml ) {
 
 	header( 'Cache-Control: no-cache' );
 	header( 'Content-Type: text/html; charset=utf-8' );
-	if ( $status == 400 ) {
-		HttpStatus::header( 400 );
-	} elseif ( $status == 404 ) {
-		HttpStatus::header( 404 );
+	if ( $status == 400 || $status == 404 || $status == 429 ) {
+		HttpStatus::header( $status );
 	} elseif ( $status == 403 ) {
 		HttpStatus::header( 403 );
 		header( 'Vary: Cookie' );
