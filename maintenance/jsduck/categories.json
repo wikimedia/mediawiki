@@ -60,7 +60,9 @@
 				"name": "Interfaces",
 				"classes": [
 					"mw.Feedback*",
-					"mw.Upload*"
+					"mw.Upload*",
+					"mw.ForeignUpload",
+					"mw.ForeignStructuredUpload"
 				]
 			},
 			{
