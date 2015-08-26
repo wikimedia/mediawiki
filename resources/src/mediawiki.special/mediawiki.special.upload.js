@@ -68,7 +68,7 @@
 				titles: ( new mw.Title( this.nameToCheck, mw.config.get( 'wgNamespaceIds' ).file ) ).getPrefixedText(),
 				prop: 'imageinfo',
 				iiprop: 'uploadwarning',
-				indexpageids: ''
+				indexpageids: true
 			} ).done( function ( result ) {
 				var resultOut = '';
 				if ( result.query ) {
@@ -119,7 +119,7 @@
 				text: '{{' + license + '}}',
 				title: $( '#wpDestFile' ).val() || 'File:Sample.jpg',
 				prop: 'text',
-				pst: ''
+				pst: true
 			} ).done( function ( result ) {
 				$spinnerLicense.remove();
 				uploadLicense.processResult( result, license );

@@ -72,7 +72,7 @@
 			if ( grouped.length ) {
 				deferreds.push( this.postWithToken( 'options', {
 					action: 'options',
-					change: grouped.join( '|' )
+					change: grouped
 				} ) );
 			}
 
