@@ -64,7 +64,7 @@
 		return this.api.get( {
 			action: 'query',
 			prop: 'info',
-			indexpageids: 1,
+			indexpageids: true,
 			titles: title.getPrefixedDb()
 		} ).then( function ( result ) {
 			if ( result.query.pageids && result.query.pageids.length > 0 ) {

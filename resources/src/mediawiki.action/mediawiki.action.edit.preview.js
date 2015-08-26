@@ -74,39 +74,33 @@
 			uselang: mw.config.get( 'wgUserLanguage' ),
 			title: mw.config.get( 'wgPageName' ),
 			text: $textbox.textSelection( 'getContents' ),
-			summary: $summary.textSelection( 'getContents' )
+			summary: $summary.textSelection( 'getContents' ),
+			sectionpreview: section !== ''
 		};
 
-		if ( section !== '' ) {
-			postData.sectionpreview = '';
-			if ( section === 'new' ) {
-				postData.section = section;
-				postData.sectiontitle = postData.summary;
-			}
+		if ( section === 'new' ) {
+			postData.section = 'new';
+			postData.sectiontitle = postData.summary;
 		}
 
 		if ( isDiff ) {
 			$wikiPreview.hide();
 
 			// First PST the input, then diff it
-			postData.onlypst = '';
+			postData.onlypst = true;
 			request = api.post( postData );
 			request.done( function ( response ) {
-				var postData;
-				postData = {
+				return api.post( {
 					action: 'query',
-					indexpageids: '',
+					indexpageids: true,
 					prop: 'revisions',
 					titles: mw.config.get( 'wgPageName' ),
 					rvdifftotext: response.parse.text['*'],
-					rvprop: ''
-				};
-				if ( section !== '' ) {
-					postData.rvsection = section;
-				}
-				return api.post( postData ).done( function ( result2 ) {
+					rvprop: [],
+					rvsection: section === '' ? undefined : section
+				} ).done( function ( response ) {
 					try {
-						var diffHtml = result2.query.pages[result2.query.pageids[0]]
+						var diffHtml = response.query.pages[response.query.pageids[0]]
 							.revisions[0].diff['*'];
 						$wikiDiff.find( 'table.diff tbody' ).html( diffHtml );
 					} catch ( e ) {
@@ -119,8 +113,8 @@
 		} else {
 			$wikiDiff.hide();
 			$.extend( postData, {
-				pst: '',
-				preview: '',
+				pst: true,
+				preview: true,
 				prop: 'text|displaytitle|modules|jsconfigvars|categorieshtml|templates|langlinks|limitreporthtml',
 				disableeditsection: true
 			} );

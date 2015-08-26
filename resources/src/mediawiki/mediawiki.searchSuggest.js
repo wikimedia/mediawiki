@@ -177,7 +177,7 @@
 						search: query,
 						namespace: 0,
 						limit: maxRows,
-						suggest: ''
+						suggest: true
 					} ).done( function ( data ) {
 						response( data[ 1 ] );
 					} ) );
