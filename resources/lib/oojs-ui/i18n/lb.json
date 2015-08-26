@@ -22,5 +22,6 @@
 	"ooui-dialog-process-dismiss": "Verwerfen",
 	"ooui-dialog-process-retry": "Nach eng Kéier probéieren",
 	"ooui-dialog-process-continue": "Virufueren",
-	"ooui-selectfile-placeholder": "Et ass kee Fichier erausgesicht"
+	"ooui-selectfile-placeholder": "Et ass kee Fichier erausgesicht",
+	"ooui-selectfile-dragdrop-placeholder": "Fichier hei deposéieren (oder klickt fir ze sichen)"
 }

@@ -16,7 +16,8 @@
 			"Tifinaghes",
 			"Ата",
 			"Piramidion",
-			"A1"
+			"A1",
+			"Dars"
 		]
 	},
 	"ooui-outline-control-move-down": "Перемістити елемент униз",
@@ -32,5 +33,6 @@
 	"ooui-dialog-process-retry": "Спробуйте ще раз",
 	"ooui-dialog-process-continue": "Продовжити",
 	"ooui-selectfile-not-supported": "Вибір файлу не підтримується",
-	"ooui-selectfile-placeholder": "Жодного файлу не вибрано"
+	"ooui-selectfile-placeholder": "Жодного файлу не вибрано",
+	"ooui-selectfile-dragdrop-placeholder": "Помістіть файл сюди (або натисніть, щоб переглянути)"
 }

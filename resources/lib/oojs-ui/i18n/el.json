@@ -8,7 +8,8 @@
 			"Geraki",
 			"Glavkos",
 			"Nikosguard",
-			"Tifa93"
+			"Tifa93",
+			"Stam.nikos"
 		]
 	},
 	"ooui-outline-control-move-down": "Μετακίνηση στοιχείου προς τα κάτω",
@@ -24,5 +25,6 @@
 	"ooui-dialog-process-retry": "Δοκιμάστε ξανά",
 	"ooui-dialog-process-continue": "Συνέχεια",
 	"ooui-selectfile-not-supported": "Επιλογή αρχείου δεν υποστηρίζεται",
-	"ooui-selectfile-placeholder": "Κανένα αρχείο δεν είναι επιλεγμένο"
+	"ooui-selectfile-placeholder": "Κανένα αρχείο δεν είναι επιλεγμένο",
+	"ooui-selectfile-dragdrop-placeholder": "Σύρετε ένα αρχείο εδώ (ή κάντε κλικ για αναζήτηση)"
 }
