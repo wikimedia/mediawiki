@@ -166,11 +166,11 @@ class UploadFromUrlJob extends Job {
 	}
 
 	/**
-	 * Initialize the session data. Sets the intial result to queued.
+	 * Initialize the session data. Sets the initial result to queued.
 	 */
 	public function initializeSessionData() {
 		$session =& self::getSessionData( $this->params['sessionKey'] );
-		$$session['result'] = 'Queued';
+		$session['result'] = 'Queued';
 	}
 
 	/**
