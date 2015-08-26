@@ -1,12 +1,12 @@
 /*!
- * OOjs v1.1.8 optimised for jQuery
+ * OOjs v1.1.9 optimised for jQuery
  * https://www.mediawiki.org/wiki/OOjs
  *
  * Copyright 2011-2015 OOjs Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-07-23T19:16:00Z
+ * Date: 2015-08-25T21:35:29Z
  */
 ( function ( global ) {
 
@@ -22,7 +22,21 @@ var
 	oo = {},
 	// Optimisation: Local reference to Object.prototype.hasOwnProperty
 	hasOwn = oo.hasOwnProperty,
-	toString = oo.toString;
+	toString = oo.toString,
+	// Object.create() is impossible to fully polyfill, so don't require it
+	createObject = Object.create || ( function () {
+		// Reusable constructor function
+		function Empty() {}
+		return function ( prototype, properties ) {
+			var obj;
+			Empty.prototype = prototype;
+			obj = new Empty();
+			if ( properties && hasOwn.call( properties, 'constructor' ) ) {
+				obj.constructor = properties.constructor.value;
+			}
+			return obj;
+		};
+	} )();
 
 /* Class Methods */
 
@@ -88,7 +102,7 @@ oo.inheritClass = function ( targetFn, originFn ) {
 	// allows people to comply with their style guide.
 	targetFn['super'] = targetFn.parent = originFn;
 
-	targetFn.prototype = Object.create( originFn.prototype, {
+	targetFn.prototype = createObject( originFn.prototype, {
 		// Restore constructor property of targetFn
 		constructor: {
 			value: targetConstructor,
@@ -100,7 +114,7 @@ oo.inheritClass = function ( targetFn, originFn ) {
 
 	// Extend static properties - always initialize both sides
 	oo.initClass( originFn );
-	targetFn.static = Object.create( originFn.static );
+	targetFn.static = createObject( originFn.static );
 };
 
 /**
@@ -242,7 +256,7 @@ oo.setProp = function ( obj ) {
 oo.cloneObject = function ( origin ) {
 	var key, r;
 
-	r = Object.create( origin.constructor.prototype );
+	r = createObject( origin.constructor.prototype );
 
 	for ( key in origin ) {
 		if ( hasOwn.call( origin, key ) ) {
@@ -891,6 +905,8 @@ oo.Registry.prototype.lookup = function ( name ) {
 	}
 };
 
+/*global createObject */
+
 /**
  * @class OO.Factory
  * @extends OO.Registry
@@ -991,7 +1007,7 @@ oo.Factory.prototype.create = function ( name ) {
 	// the constructor's prototype (which also makes it an "instanceof" the constructor),
 	// then invoke the constructor with the object as context, and return it (ignoring
 	// the constructor's return value).
-	obj = Object.create( constructor.prototype );
+	obj = createObject( constructor.prototype );
 	constructor.apply( obj, args );
 	return obj;
 };
