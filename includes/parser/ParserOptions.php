@@ -372,18 +372,17 @@ class ParserOptions {
 	}
 
 	/**
-	 * Get the user language used by the parser for this page and record the
-	 * userlang parser option, which splits parser cache.
+	 * Get the user language used by the parser for this page and split the parser cache.
 	 *
-	 * You shouldn't use this. Really. $parser->getFunctionLang() is all you need.
+	 * @warning: Calling this causes the parser cache to be fragmented by user language!
+	 * To avoid cache fragmentation, output should not depend on the user language.
+	 * Use Parser::getFunctionLang() or Parser::getTargetLanguage() instead!
 	 *
-	 * To avoid side-effects where the page will be rendered based on the language
-	 * of the user who last saved, this function will trigger a cache fragmentation.
-	 * For that reason, usage of this method is discouraged unless it is desired to
-	 * split caches based on user language, such as for multilingual content.
+	 * @note This function will trigger a cache fragmentation by recording the
+	 * 'userlang' option, see optionUsed(). This is done to avoid cache pollution
+	 * when the page is rendered based on the language of the user.
 	 *
-	 * When saving, this will return the default language instead of the user's.
-	 *
+	 * @note When saving, this will return the default language instead of the user's.
 	 * {{int: }} uses this which used to produce inconsistent link tables (bug 14404).
 	 *
 	 * @return Language
@@ -396,6 +395,12 @@ class ParserOptions {
 
 	/**
 	 * Same as getUserLangObj() but returns a string instead.
+	 *
+	 * @warning: Calling this causes the parser cache to be fragmented by user language!
+	 * To avoid cache fragmentation, output should not depend on the user language.
+	 * Use Parser::getFunctionLang() or Parser::getTargetLanguage() instead!
+	 *
+	 * @see getUserLangObj()
 	 *
 	 * @return string Language code
 	 * @since 1.17
@@ -702,6 +707,10 @@ class ParserOptions {
 
 	/**
 	 * Called when an option is accessed.
+	 * Calls the watcher that was set using registerWatcher().
+	 * Typically, the watcher callback is ParserOutput::registerOption().
+	 * The information registered that way will be used by ParserCache::save().
+	 *
 	 * @param string $optionName Name of the option
 	 */
 	public function optionUsed( $optionName ) {
