@@ -142,8 +142,12 @@ class PoolWorkArticleView extends PoolCounterWork {
 
 		// Timing hack
 		if ( $time > 3 ) {
-			wfDebugLog( 'slow-parse', sprintf( "%-5.2f %s", $time,
-				$this->page->getTitle()->getPrefixedDBkey() ) );
+			// TODO: Use Parser's logger (once it has one)
+			$logger = MediaWiki\Logger\LoggerFactory::getInstance( 'slow-parse' );
+			$logger->info( '{time} {title}', array(
+				'time' => number_format( $time, 2 ),
+				'title' => $this->page->getTitle()->getPrefixedDBkey(),
+			) );
 		}
 
 		if ( $this->cacheable && $this->parserOutput->isCacheable() && $isCurrent ) {
