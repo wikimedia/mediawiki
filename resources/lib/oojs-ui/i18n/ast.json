@@ -19,5 +19,6 @@
 	"ooui-dialog-process-retry": "Vuelvi a intentalo",
 	"ooui-dialog-process-continue": "Siguir",
 	"ooui-selectfile-not-supported": "Nun hai encontu pa la seleición de ficheros",
-	"ooui-selectfile-placeholder": "Nun se seleicionó nengún ficheru"
+	"ooui-selectfile-placeholder": "Nun se seleicionó nengún ficheru",
+	"ooui-selectfile-dragdrop-placeholder": "Soltar el ficheru equí (o facer clic pa restolar)"
 }

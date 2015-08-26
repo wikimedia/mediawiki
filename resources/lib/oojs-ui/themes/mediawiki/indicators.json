@@ -1,6 +1,6 @@
 {
 	"selectorWithoutVariant": ".oo-ui-indicator-{name}",
-	"selectorWithVariant": ".oo-ui-image-{variant} .oo-ui-indicator-{name}, .oo-ui-image-{variant}.oo-ui-indicator-{name}",
+	"selectorWithVariant": ".oo-ui-image-{variant}.oo-ui-indicator-{name}",
 	"intro": "@import '../../../../src/styles/common';",
 	"variants": {
 		"invert": {

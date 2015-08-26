@@ -11,6 +11,10 @@
 		"alignCentre": { "file": "images/icons/align-center.svg" },
 		"alignLeft": { "file": "images/icons/align-float-left.svg" },
 		"alignRight": { "file": "images/icons/align-float-right.svg" },
+		"calendar": { "file": {
+			"ltr": "images/icons/calendar-ltr.svg",
+			"rtl": "images/icons/calendar-rtl.svg"
+		} },
 		"find": { "file": {
 			"ltr": "images/icons/find-ltr.svg",
 			"rtl": "images/icons/find-rtl.svg"

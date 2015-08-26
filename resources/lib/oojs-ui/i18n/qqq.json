@@ -34,5 +34,6 @@
 	"ooui-dialog-process-continue": "Label for process dialog retry action button, visible when describing only warnings\n{{Identical|Continue}}",
 	"ooui-selectfile-not-supported": "Label for the file selection dialog if file selection is not supported",
 	"ooui-selectfile-placeholder": "Label for the file selection dialog when no file is currently selected",
+	"ooui-selectfile-dragdrop-placeholder": "Label for the file selection dialog when no file is currently selected in the drag drop UI. Suggests clicking to open the browse dialog.",
 	"ooui-semicolon-separator": "{{optional}} Semicolon used as a separator"
 }

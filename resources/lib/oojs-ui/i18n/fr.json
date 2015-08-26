@@ -45,5 +45,6 @@
 	"ooui-dialog-process-retry": "Réessayer",
 	"ooui-dialog-process-continue": "Continuer",
 	"ooui-selectfile-not-supported": "La sélection de fichier n’est pas prise en charge",
-	"ooui-selectfile-placeholder": "Aucun fichier sélectionné"
+	"ooui-selectfile-placeholder": "Aucun fichier sélectionné",
+	"ooui-selectfile-dragdrop-placeholder": "Déposer le fichier ici (ou cliquez pour parcourir)"
 }

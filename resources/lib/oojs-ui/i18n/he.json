@@ -28,5 +28,6 @@
 	"ooui-dialog-process-retry": "לנסות שוב",
 	"ooui-dialog-process-continue": "המשך",
 	"ooui-selectfile-not-supported": "בחירת קבצים אינה נתמכת",
-	"ooui-selectfile-placeholder": "לא נבחר שום קובץ"
+	"ooui-selectfile-placeholder": "לא נבחר שום קובץ",
+	"ooui-selectfile-dragdrop-placeholder": "נא לשחרר את הקובץ כאן (או ללחוץ לעיון)"
 }

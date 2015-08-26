@@ -26,5 +26,6 @@
 	"ooui-dialog-process-retry": "Erneut versuchen",
 	"ooui-dialog-process-continue": "Fortfahren",
 	"ooui-selectfile-not-supported": "Die Dateiauswahl wird nicht unterstützt",
-	"ooui-selectfile-placeholder": "Keine Datei ausgewählt"
+	"ooui-selectfile-placeholder": "Keine Datei ausgewählt",
+	"ooui-selectfile-dragdrop-placeholder": "Dateien hier ablegen (oder klicken zum Durchsuchen)"
 }

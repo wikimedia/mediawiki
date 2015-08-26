@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.12.5
+ * OOjs UI v0.12.6
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-08-19T02:10:17Z
+ * Date: 2015-08-26T00:14:36Z
  */
 /**
  * @class
@@ -54,6 +54,12 @@ OO.ui.MediaWikiTheme.prototype.getElementClasses = function ( element ) {
 			variants.constructive = element.hasFlag( 'constructive' );
 			variants.destructive = element.hasFlag( 'destructive' );
 			variants.warning = element.hasFlag( 'warning' );
+		}
+	}
+
+	if ( element instanceof OO.ui.SelectFileWidget ) {
+		if ( !element.isDisabled() && element.active ) {
+			variants.invert = true;
 		}
 	}
 

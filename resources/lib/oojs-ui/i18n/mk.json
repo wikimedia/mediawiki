@@ -19,5 +19,6 @@
 	"ooui-dialog-process-retry": "Обиди се пак",
 	"ooui-dialog-process-continue": "Продолжи",
 	"ooui-selectfile-not-supported": "Изборот на податотеки не е поддржан",
-	"ooui-selectfile-placeholder": "Немате одбрано податотека"
+	"ooui-selectfile-placeholder": "Немате одбрано податотека",
+	"ooui-selectfile-dragdrop-placeholder": "Тука пуштете ја податотеката (или стиснете за да прелистате)"
 }

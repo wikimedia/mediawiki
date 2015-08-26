@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.12.5
+ * OOjs UI v0.12.6
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-08-19T02:10:25Z
+ * Date: 2015-08-26T00:14:44Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -2111,6 +2111,24 @@
 .oo-ui-selectFileWidget-empty.oo-ui-indicatorElement .oo-ui-selectFileWidget-handle,
 .oo-ui-selectFileWidget-notsupported.oo-ui-indicatorElement .oo-ui-selectFileWidget-handle {
 	padding-right: 2em;
+}
+.oo-ui-selectFileWidget.oo-ui-selectFileWidget-dragdrop-ui .oo-ui-selectFileWidget-handle {
+	height: 3.5em;
+	border: 1px dashed #aaaaaa;
+	padding: 0.5em 1em;
+	background: #ffffff;
+	text-align: center;
+	vertical-align: middle;
+}
+.oo-ui-selectFileWidget.oo-ui-selectFileWidget-dragdrop-ui .oo-ui-selectFileWidget-handle .oo-ui-iconElement-icon {
+	margin: 0.6em 0;
+}
+.oo-ui-selectFileWidget.oo-ui-selectFileWidget-dragdrop-ui .oo-ui-selectFileWidget-handle .oo-ui-selectFileWidget-label {
+	color: #000000;
+}
+.oo-ui-selectFileWidget.oo-ui-selectFileWidget-dragdrop-ui .oo-ui-selectFileWidget-handle:hover,
+.oo-ui-selectFileWidget.oo-ui-selectFileWidget-dragdrop-ui.oo-ui-selectFileWidget-canDrop .oo-ui-selectFileWidget-handle {
+	background-color: #eeeeee;
 }
 .oo-ui-outlineOptionWidget {
 	position: relative;

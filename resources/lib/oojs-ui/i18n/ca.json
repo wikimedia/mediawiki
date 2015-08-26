@@ -28,5 +28,6 @@
 	"ooui-dialog-process-retry": "Torneu-ho a provar",
 	"ooui-dialog-process-continue": "Continua",
 	"ooui-selectfile-not-supported": "El tipus de fitxer no és compatible",
-	"ooui-selectfile-placeholder": "No s'ha seleccionat cap fitxer"
+	"ooui-selectfile-placeholder": "No s'ha seleccionat cap fitxer",
+	"ooui-selectfile-dragdrop-placeholder": "Deixeu-hi anar el fitxer (o feu clic a navega)"
 }

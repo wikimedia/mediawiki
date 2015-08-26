@@ -16,7 +16,8 @@
 			"Jacenty359",
 			"Matik7",
 			"Gloria sah",
-			"Andrzej aa"
+			"Andrzej aa",
+			"The Polish"
 		]
 	},
 	"ooui-outline-control-move-down": "Przenieś niżej",
@@ -32,5 +33,6 @@
 	"ooui-dialog-process-retry": "Spróbuj ponownie",
 	"ooui-dialog-process-continue": "Kontynuuj",
 	"ooui-selectfile-not-supported": "Wybór pliku nie jest obsługiwany",
-	"ooui-selectfile-placeholder": "Nie wybrano pliku"
+	"ooui-selectfile-placeholder": "Nie wybrano pliku",
+	"ooui-selectfile-dragdrop-placeholder": "Umieść plik tutaj (lub kliknij, aby je przeglądać)"
 }
