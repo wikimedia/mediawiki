@@ -205,6 +205,7 @@
 	'jbo' => 'Lojban',		# Lojban
 	'jut' => 'jysk',	# Jutish / Jutlandic
 	'jv' => 'Basa Jawa',	# Javanese
+	'jv-latn' => 'Basa Jawa (Latin)',	# Javanese (Latin)
 	'ka' => 'ქართული',	# Georgian
 	'kaa' => 'Qaraqalpaqsha',	# Karakalpak
 	'kab' => 'Taqbaylit',	# Kabyle
