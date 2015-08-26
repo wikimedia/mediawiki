@@ -10,17 +10,17 @@
 	 * "fobo", not "foba". Basically emulating the native maxlength by
 	 * reconstructing where the insertion occurred.
 	 *
-	 * @private
+	 * @static
 	 * @param {string} safeVal Known value that was previously returned by this
 	 * function, if none, pass empty string.
 	 * @param {string} newVal New value that may have to be trimmed down.
 	 * @param {number} byteLimit Number of bytes the value may be in size.
-	 * @param {Function} [fn] See jQuery.byteLimit.
+	 * @param {Function} [fn] See jQuery#byteLimit.
 	 * @return {Object}
 	 * @return {string} return.newVal
 	 * @return {boolean} return.trimmed
 	 */
-	function trimValueForByteLength( safeVal, newVal, byteLimit, fn ) {
+	$.trimByteLength = function ( safeVal, newVal, byteLimit, fn ) {
 		var startMatches, endMatches, matchesLen, inpParts,
 			oldVal = safeVal;
 
@@ -92,7 +92,7 @@
 			newVal: newVal,
 			trimmed: true
 		};
-	}
+	};
 
 	var eventKeys = [
 		'keyup.byteLimit',
@@ -206,7 +206,7 @@
 			// See http://www.w3.org/TR/DOM-Level-3-Events/#events-keyboard-event-order for
 			// the order and characteristics of the key events.
 			$el.on( eventKeys, function () {
-				var res = trimValueForByteLength(
+				var res = $.trimByteLength(
 					prevSafeVal,
 					this.value,
 					elLimit,
@@ -221,14 +221,12 @@
 					this.value = res.newVal;
 				}
 				// Always adjust prevSafeVal to reflect the input value. Not doing this could cause
-				// trimValueForByteLength to compare the new value to an empty string instead of the
+				// trimByteLength to compare the new value to an empty string instead of the
 				// old value, resulting in trimming always from the end (bug 40850).
 				prevSafeVal = res.newVal;
 			} );
 		} );
 	};
-
-	$.fn.byteLimit.trimValueForByteLength = trimValueForByteLength;
 
 	/**
 	 * @class jQuery

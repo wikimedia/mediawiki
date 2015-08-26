@@ -302,7 +302,7 @@
 	mw.widgets.TitleInputWidget.prototype.cleanUpValue = function ( value ) {
 		var widget = this;
 		value = mw.widgets.TitleInputWidget.parent.prototype.cleanUpValue.call( this, value );
-		return $.fn.byteLimit.trimValueForByteLength( this.value, value, this.maxLength, function ( value ) {
+		return $.trimByteLength( this.value, value, this.maxLength, function ( value ) {
 			var title = widget.getTitle( value );
 			return title ? title.getMain() : value;
 		} ).newVal;
