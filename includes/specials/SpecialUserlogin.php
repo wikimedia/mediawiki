@@ -1657,46 +1657,46 @@ class LoginForm extends SpecialPage {
 			$lang = trim( $lang, '* ' );
 			$parts = explode( '|', $lang );
 			if ( count( $parts ) >= 2 ) {
-				$links[] = $this->makeLanguageSelectorLink( $parts[0], trim( $parts[1] ) );
+				if ( $this->getLanguage()->getCode() == $parts[1] ) {
+					// no entry for current language
+					continue;
+				}
+
+				// don't add the current language to the select field
+				$links[$parts[0]] = trim( $parts[1] );
 			}
 		}
+		if ( count( $links ) > 0 ) {
+			$form = array(
+				'languagelinks' => array(
+					'type' => 'select',
+					'name' => 'uselang',
+					'options' => $links,
+					'label-message' => $this->msg( 'loginlanguagelabel' ),
+				),
+				'submit' => array(
+					'type' => 'submit',
+					'default' => 'Choose',
+					'flags' => array(),
+				),
+			);
 
-		return count( $links ) > 0 ? $this->msg( 'loginlanguagelabel' )->rawParams(
-			$this->getLanguage()->pipeList( $links ) )->escaped() : '';
-	}
-
-	/**
-	 * Create a language selector link for a particular language
-	 * Links back to this page preserving type and returnto
-	 *
-	 * @param string $text Link text
-	 * @param string $lang Language code
-	 * @return string
-	 */
-	function makeLanguageSelectorLink( $text, $lang ) {
-		if ( $this->getLanguage()->getCode() == $lang ) {
-			// no link for currently used language
-			return htmlspecialchars( $text );
+			$htmlForm = HTMLForm::factory( 'inline', $form, $this->getContext() );
+			$htmlForm->setTitle( $this->getTitle() );
+			$htmlForm->setMethod( 'get' );
+			// add returnto and returntoquery, if there is any
+			if ( $this->mReturnTo !== '' ) {
+				$htmlForm->addHiddenFields( array(
+					'returnto' => $this->mReturnTo,
+					'returntoquery' => $this->mReturnToQuery,
+				) );
+			}
+			// suppress submit button, we add our own one, as a neutral button
+			$htmlForm->suppressDefaultSubmit();
+			// show the form, but don't process the data
+			return $htmlForm->prepareForm()->getHTML( false );
 		}
-		$query = array( 'uselang' => $lang );
-		if ( $this->mType == 'signup' ) {
-			$query['type'] = 'signup';
-		}
-		if ( $this->mReturnTo !== '' ) {
-			$query['returnto'] = $this->mReturnTo;
-			$query['returntoquery'] = $this->mReturnToQuery;
-		}
-
-		$attr = array();
-		$targetLanguage = Language::factory( $lang );
-		$attr['lang'] = $attr['hreflang'] = $targetLanguage->getHtmlCode();
-
-		return Linker::linkKnown(
-			$this->getPageTitle(),
-			htmlspecialchars( $text ),
-			$attr,
-			$query
-		);
+		return '';
 	}
 
 	protected function getGroupName() {
