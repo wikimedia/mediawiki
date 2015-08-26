@@ -2350,7 +2350,7 @@
 	"javascripttest-pagetext-frameworks": "请选择以下的框架之一：$1",
 	"javascripttest-pagetext-skins": "选择外观来运行测试：",
 	"javascripttest-qunit-intro": "请见mediawiki.org的[$1 测试说明文件]。",
-	"tooltip-pt-userpage": "你的用户页面",
+	"tooltip-pt-userpage": "您的用户页",
 	"tooltip-pt-anonuserpage": "你用于编辑的IP地址的用户页面",
 	"tooltip-pt-mytalk": "你的讨论页面",
 	"tooltip-pt-anontalk": "有关本IP地址的编辑的讨论",

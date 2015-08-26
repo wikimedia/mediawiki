@@ -238,6 +238,7 @@
 	"apihelp-query+info-paramvalue-prop-readable": "Czy użytkownik może przeczytać tę stronę.",
 	"apihelp-query+iwbacklinks-param-prefix": "Prefix interwiki.",
 	"apihelp-query+iwbacklinks-param-limit": "Łączna ilość stron do zwrócenia.",
+	"apihelp-query+iwlinks-paramvalue-prop-url": "Dodaje pełny adres URL.",
 	"apihelp-query+links-param-limit": "Ilość linków do zwrócenia.",
 	"apihelp-query+linkshere-paramvalue-prop-title": "Nazwa każdej strony.",
 	"apihelp-query+linkshere-param-limit": "Ilość do zwrócenia.",

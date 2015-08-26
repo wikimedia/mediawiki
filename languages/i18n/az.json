@@ -1360,7 +1360,7 @@
 	"emailmessage": "Mesaj:",
 	"emailsend": "Göndər",
 	"emailccme": "Məktubun surətini elektron ünvanıma göndər.",
-	"emailccsubject": " $1: $2-yə olan ismarıclarınızın surəti",
+	"emailccsubject": "$1 adlı istifadəçiyə olan ismarıcınızın surəti: $2",
 	"emailsent": "E-məktub göndərildi",
 	"emailsenttext": "E-məktub mesajınız göndərildi.",
 	"usermessage-summary": "Sistem mesajı qoyun.",

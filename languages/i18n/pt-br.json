@@ -1688,7 +1688,7 @@
 	"log": "Registros",
 	"all-logs-page": "Todos os registros públicos",
 	"alllogstext": "Exibição combinada de todos registros disponíveis para o {{SITENAME}}.\nVocê pode diminuir a lista escolhendo um tipo de registro, um nome de usuário (sensível a maiúsculas e minúsculas), ou uma página afetada (também sensível a maiúsculas e minúsculas).",
-	"logempty": "Nenhum item idêntico no registro.",
+	"logempty": "Nenhum item correspondente no registro.",
 	"log-title-wildcard": "Procurar por títulos que sejam iniciados com o seguinte texto",
 	"showhideselectedlogentries": "Exibir/ocultar os itens de registros selecionados",
 	"log-edit-tags": "Editar etiquetas das entradas selecionadas",

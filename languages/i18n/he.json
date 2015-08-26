@@ -925,7 +925,7 @@
 	"prefs-watchlist-days": "מספר הימים המרבי שיוצגו ברשימת המעקב:",
 	"prefs-watchlist-days-max": "לכל היותר {{PLURAL:$1|יום אחד|יומיים|$1 ימים}}",
 	"prefs-watchlist-edits": "מספר העריכות המרבי שיוצגו ברשימת המעקב המורחבת:",
-	"prefs-watchlist-edits-max": "מספר מירבי: 1000",
+	"prefs-watchlist-edits-max": "מספר מרבי: 1000",
 	"prefs-watchlist-token": "אסימון לרשימת המעקב:",
 	"prefs-misc": "שונות",
 	"prefs-resetpass": "שינוי סיסמה",

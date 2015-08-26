@@ -1676,7 +1676,7 @@
 	"log": "Registos",
 	"all-logs-page": "Todos os registos públicos",
 	"alllogstext": "Apresentação combinada de todos os registos disponíveis na wiki {{SITENAME}}.\nPode reduzir a lista escolhendo um tipo de registo, um nome de utilizador ou um título de página. Respeite maiúsculas e minúsculas.",
-	"logempty": "Não há dados a apresentar.",
+	"logempty": "Nenhum item correspondente no registo.",
 	"log-title-wildcard": "Procurar títulos iniciados por este texto",
 	"showhideselectedlogentries": "Mostrar ou ocultar as entradas selecionadas",
 	"log-edit-tags": "Editar etiquetas das entradas de registo selecionadas",
