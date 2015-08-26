@@ -118,7 +118,7 @@
 
 		if ( mw.Title.newFromText( this.value ) ) {
 			return this.interwikiPrefixesPromise.then( function () {
-				var params, props,
+				var params,
 					interwiki = widget.value.substring( 0, widget.value.indexOf( ':' ) );
 				if (
 					interwiki && interwiki !== '' &&
@@ -132,26 +132,26 @@
 				} else {
 					params = {
 						action: 'query',
+						prop: [ 'info', 'pageprops' ],
 						generator: 'prefixsearch',
 						gpssearch: widget.value,
 						gpsnamespace: widget.namespace !== null ? widget.namespace : undefined,
 						gpslimit: widget.limit,
 						ppprop: 'disambiguation'
 					};
-					props = [ 'info', 'pageprops' ];
+					params.prop = [];
 					if ( widget.showRedirectTargets ) {
 						params.redirects = '1';
 					}
 					if ( widget.showImages ) {
-						props.push( 'pageimages' );
+						params.prop.push( 'pageimages' );
 						params.pithumbsize = 80;
 						params.pilimit = widget.limit;
 					}
 					if ( widget.showDescriptions ) {
-						props.push( 'pageterms' );
+						params.prop.push( 'pageterms' );
 						params.wbptterms = 'description';
 					}
-					params.prop = props.join( '|' );
 					req = new mw.Api().get( params );
 					promiseAbortObject.abort = req.abort.bind( req ); // todo: ew
 					return req;
