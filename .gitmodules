@@ -158,3 +158,15 @@
 	path = extensions/Timeline
 	url = https://github.com/wikimedia/mediawiki-extensions-Timeline
 	branch = REL1_25
+[submodule "extensions/CategoryTree"]
+	path = extensions/CategoryTree
+	url = https://github.com/wikimedia/mediawiki-extensions-CategoryTree
+	branch = REL1_25
+[submodule "extensions/CiteThisPage"]
+	path = extensions/CiteThisPage
+	url = https://github.com/wikimedia/mediawiki-extensions-CiteThisPage
+	branch = REL1_25
+[submodule "extensions/Disambiguator"]
+	path = extensions/Disambiguator
+	url = https://github.com/wikimedia/mediawiki-extensions-Disambiguator
+	branch = REL1_25
