@@ -332,6 +332,9 @@ function wfStreamThumb( array $params ) {
 	$errorCode = 500;
 	if ( !$thumb ) {
 		$errorMsg = $errorMsg ?: $msg->rawParams( 'File::transform() returned false' )->escaped();
+		if ( $errorMsg instanceof MessageSpecifier && $errorMsg->getKey() === 'thumbnail_image-failure-limit' ) {
+			$errorCode = 429;
+		}
 	} elseif ( $thumb->isError() ) {
 		$errorMsg = $thumb->getHtmlMsg();
 	} elseif ( !$thumb->hasFile() ) {
