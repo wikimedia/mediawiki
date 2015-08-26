@@ -171,6 +171,7 @@ class ApiParse extends ApiBase {
 
 				// Don't pollute the parser cache when setting options that aren't
 				// in ParserOptions::optionsHash()
+				/// @todo: This should be handled closer to the actual cache instead of here, see T110269
 				$suppressCache =
 					$params['disablepp'] ||
 					$params['disablelimitreport'] ||
