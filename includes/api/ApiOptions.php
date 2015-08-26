@@ -52,6 +52,14 @@ class ApiOptions extends ApiBase {
 			$this->dieUsageMsg( array( 'missingparam', 'optionname' ) );
 		}
 
+		// Load the user from the master to reduce CAS errors on double post (T95839)
+		if ( wfGetLB()->getServerCount() > 1 ) {
+			$user = User::newFromId( $user->getId() );
+			if ( !$user->loadFromId( User::READ_LATEST ) ) {
+				$this->dieUsage( 'Anonymous users cannot change preferences', 'notloggedin' );
+			}
+		}
+
 		if ( $params['reset'] ) {
 			$user->resetOptions( $params['resetkinds'], $this->getContext() );
 			$changed = true;
