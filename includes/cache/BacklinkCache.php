@@ -157,7 +157,7 @@ class BacklinkCache {
 	 * @param string $table
 	 * @param int|bool $startId
 	 * @param int|bool $endId
-	 * @param int|INF $max
+	 * @param int $max
 	 * @return TitleArrayFromResult
 	 */
 	public function getLinks( $table, $startId = false, $endId = false, $max = INF ) {
@@ -169,7 +169,7 @@ class BacklinkCache {
 	 * @param string $table
 	 * @param int|bool $startId
 	 * @param int|bool $endId
-	 * @param int|INF $max
+	 * @param int $max
 	 * @param string $select 'all' or 'ids'
 	 * @return ResultWrapper
 	 */
@@ -319,7 +319,7 @@ class BacklinkCache {
 	/**
 	 * Get the approximate number of backlinks
 	 * @param string $table
-	 * @param int|INF $max Only count up to this many backlinks
+	 * @param int $max Only count up to this many backlinks
 	 * @return int
 	 */
 	public function getNumLinks( $table, $max = INF ) {
