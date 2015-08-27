@@ -1901,9 +1901,6 @@ abstract class DatabaseBase implements IDatabase {
 	 *     This causes a multi-row INSERT on DBMSs that support it. The keys in
 	 *     each subarray must be identical to each other, and in the same order.
 	 *
-	 * Usually throws a DBQueryError on failure. If errors are explicitly ignored,
-	 * returns success.
-	 *
 	 * $options is an array of options, with boolean options encoded as values
 	 * with numeric keys, in the same style as $options in
 	 * DatabaseBase::select(). Supported options are:
@@ -1918,6 +1915,9 @@ abstract class DatabaseBase implements IDatabase {
 	 * @param array $a Array of rows to insert
 	 * @param string $fname Calling function name (use __METHOD__) for logs/profiling
 	 * @param array $options Array of options
+	 *
+	 * @throws DBQueryError Usually throws a DBQueryError on failure. If errors are explicitly ignored,
+	 * returns success.
 	 *
 	 * @return bool
 	 */
