@@ -4273,3 +4273,28 @@ function wfThumbIsStandard( File $file, array $params ) {
 
 	return true;
 }
+
+/**
+ * Merges two (possibly) 2 dimensional arrays into the target array ($baseArray).
+ *
+ * Values that exist in both values will be combined with += (all values of the array
+ * of $newValues will be added to the values of the array of $baseArray, while values,
+ * that exists in both, the value of $baseArray will be used).
+ *
+ * @param array $baseArray The array where you want to add the values of $newValues to
+ * @param array $newValues An array with new values
+ * @return array The combined array
+ * @since 1.26
+ */
+function wfArrayPlus2d( array $baseArray, array $newValues ) {
+	// First merge items that are in both arrays
+	foreach ( $baseArray as $name => &$groupVal ) {
+		if ( isset( $newValues[$name] ) ) {
+			$groupVal += $newValues[$name];
+		}
+	}
+	// Now add items that didn't exist yet
+	$baseArray += $newValues;
+
+	return $baseArray;
+}
