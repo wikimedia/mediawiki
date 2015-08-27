@@ -210,6 +210,8 @@ class MWNamespace {
 		if ( $namespaces === null || $rebuild ) {
 			global $wgExtraNamespaces, $wgCanonicalNamespaceNames;
 			$namespaces = array( NS_MAIN => '' ) + $wgCanonicalNamespaceNames;
+			// Add extension namespaces
+			$namespaces += ExtensionRegistry::getInstance()->getAttribute( 'ExtensionNamespaces' );
 			if ( is_array( $wgExtraNamespaces ) ) {
 				$namespaces += $wgExtraNamespaces;
 			}
