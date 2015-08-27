@@ -3225,10 +3225,10 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Purge squid for this page only
 		$title->purgeSquid();
-
-		$revid = $revision ? $revision->getId() : null;
 		// Clear file cache for this page only
 		HTMLFileCache::clearFileCache( $title );
+
+		$revid = $revision ? $revision->getId() : null;
 		DeferredUpdates::addCallableUpdate( function() use ( $title, $revid ) {
 			InfoAction::invalidateCache( $title, $revid );
 		} );
