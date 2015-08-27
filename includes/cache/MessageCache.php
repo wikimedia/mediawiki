@@ -559,14 +559,14 @@ class MessageCache {
 		if ( $text === false ) {
 			# Article was deleted
 			$this->mCache[$code][$title] = '!NONEXISTENT';
-			$this->mMemc->delete( $titleKey );
+			$this->wanCache->delete( $titleKey );
 		} elseif ( strlen( $text ) > $wgMaxMsgCacheEntrySize ) {
 			# Check for size
 			$this->mCache[$code][$title] = '!TOO BIG';
-			$this->mMemc->set( $titleKey, ' ' . $text, $this->mExpiry );
+			$this->wanCache->set( $titleKey, ' ' . $text, $this->mExpiry );
 		} else {
 			$this->mCache[$code][$title] = ' ' . $text;
-			$this->mMemc->delete( $titleKey );
+			$this->wanCache->delete( $titleKey );
 		}
 
 		# Update caches
@@ -920,7 +920,7 @@ class MessageCache {
 
 		# Try the individual message cache
 		$titleKey = wfMemcKey( 'messages', 'individual', $title );
-		$entry = $this->mMemc->get( $titleKey );
+		$entry = $this->wanCache->get( $titleKey );
 		if ( $entry ) {
 			if ( substr( $entry, 0, 1 ) === ' ' ) {
 				$this->mCache[$code][$title] = $entry;
@@ -934,7 +934,7 @@ class MessageCache {
 				return false;
 			} else {
 				# Corrupt/obsolete entry, delete it
-				$this->mMemc->delete( $titleKey );
+				$this->wanCache->delete( $titleKey );
 			}
 		}
 
@@ -968,7 +968,7 @@ class MessageCache {
 					$message = false; // negative caching
 				} else {
 					$this->mCache[$code][$title] = ' ' . $message;
-					$this->mMemc->set( $titleKey, ' ' . $message, $this->mExpiry );
+					$this->wanCache->set( $titleKey, ' ' . $message, $this->mExpiry );
 				}
 			}
 		} else {
@@ -977,7 +977,7 @@ class MessageCache {
 
 		if ( $message === false ) { // negative caching
 			$this->mCache[$code][$title] = '!NONEXISTENT';
-			$this->mMemc->set( $titleKey, '!NONEXISTENT', $this->mExpiry );
+			$this->wanCache->set( $titleKey, '!NONEXISTENT', $this->mExpiry );
 		}
 
 		return $message;
