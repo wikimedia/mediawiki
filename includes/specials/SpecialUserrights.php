@@ -389,6 +389,10 @@ class UserrightsPage extends SpecialPage {
 			return Status::newFatal( 'nosuchusershort', $username );
 		}
 
+		if ( $user instanceof User ) {
+			$this->getSkin()->setRelevantUser( $user );
+		}
+
 		return Status::newGood( $user );
 	}
 
