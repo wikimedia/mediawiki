@@ -28,12 +28,6 @@
 define( 'MSG_CACHE_VERSION', 2 );
 
 /**
- * Memcached timeout when loading a key.
- * See MessageCache::load()
- */
-define( 'MSG_LOAD_TIMEOUT', 60 );
-
-/**
  * Message cache
  * Performs various MediaWiki namespace-related functions
  * @ingroup Cache
@@ -41,9 +35,9 @@ define( 'MSG_LOAD_TIMEOUT', 60 );
 class MessageCache {
 	const FOR_UPDATE = 1; // force message reload
 
-	/** How long memcached locks last */
-	const WAIT_SEC = 30;
 	/** How long to wait for memcached locks */
+	const WAIT_SEC = 15;
+	/** How long memcached locks last */
 	const LOCK_TTL = 30;
 
 	/**
@@ -283,7 +277,7 @@ class MessageCache {
 			# Try the global cache. If it is empty, try to acquire a lock. If
 			# the lock can't be acquired, wait for the other thread to finish
 			# and then try the global cache a second time.
-			for ( $failedAttempts = 0; $failedAttempts < 2; $failedAttempts++ ) {
+			for ( $failedAttempts = 0; $failedAttempts <= 1; $failedAttempts++ ) {
 				if ( $hashVolatile && $staleCache ) {
 					# Do not bother fetching the whole cache blob to avoid I/O.
 					# Instead, just try to get the non-blocking $statusKey lock
@@ -317,8 +311,9 @@ class MessageCache {
 
 				# We need to call loadFromDB. Limit the concurrency to one process.
 				# This prevents the site from going down when the cache expires.
-				# Note that the slam-protection lock here is non-blocking.
-				if ( $this->loadFromDBWithLock( $code, $where ) ) {
+				# Note that the DB slam protection lock here is non-blocking.
+				$loadStatus = $this->loadFromDBWithLock( $code, $where, $mode );
+				if ( $loadStatus === true ) {
 					$success = true;
 					break;
 				} elseif ( $staleCache ) {
@@ -328,23 +323,19 @@ class MessageCache {
 					$success = true;
 					break;
 				} elseif ( $failedAttempts > 0 ) {
-					# Already retried once, still failed, so don't do another lock/unlock cycle
+					# Already blocked once, so avoid another lock/unlock cycle.
 					# This case will typically be hit if memcached is down, or if
-					# loadFromDB() takes longer than MSG_WAIT_TIMEOUT
+					# loadFromDB() takes longer than LOCK_WAIT.
 					$where[] = "could not acquire status key.";
 					break;
+				} elseif ( $loadStatus === 'cantacquire' ) {
+					# Wait for the other thread to finish, then retry. Normally,
+					# the memcached get() will then yeild the other thread's result.
+					$where[] = 'waited for other thread to complete';
+					$this->getReentrantScopedLock( $cacheKey );
 				} else {
-					$statusKey = wfMemcKey( 'messages', $code, 'status' );
-					$status = $this->mMemc->get( $statusKey );
-					if ( $status === 'error' ) {
-						# Disable cache
-						break;
-					} else {
-						# Wait for the other thread to finish, then retry. Normally,
-						# the memcached get() will then yeild the other thread's result.
-						$where[] = 'waited for other thread to complete';
-						$this->getReentrantScopedLock( $cacheKey );
-					}
+					# Disable cache; $loadStatus is 'disabled'
+					break;
 				}
 			}
 		}
@@ -369,46 +360,38 @@ class MessageCache {
 	/**
 	 * @param string $code
 	 * @param array $where List of wfDebug() comments
-	 * @return bool Lock acquired and loadFromDB() called
+	 * @param integer $mode Use MessageCache::FOR_UPDATE to use DB_MASTER
+	 * @return bool|string True on success or one of ("cantacquire", "disabled")
 	 */
-	protected function loadFromDBWithLock( $code, array &$where ) {
+	protected function loadFromDBWithLock( $code, array &$where, $mode = null ) {
 		global $wgUseLocalMessageCache;
 
-		$memCache = $this->mMemc;
-
-		# Get the non-blocking status key lock. This lets the caller quickly know
-		# to use any stale cache lying around. Otherwise, it may do a blocking
-		# lock to try to obtain the messages.
+		# If cache updates on all levels fail, give up on message overrides.
+		# This is to avoid easy site outages; see $saveSuccess comments below.
 		$statusKey = wfMemcKey( 'messages', $code, 'status' );
-		if ( !$memCache->add( $statusKey, 'loading', MSG_LOAD_TIMEOUT ) ) {
-			return false; // could not acquire lock
+		$status = $this->mMemc->get( $statusKey );
+		if ( $status === 'error' ) {
+			$where[] = "could not load; method is still globally disabled";
+			return 'disabled';
 		}
-
-		# Unlock the status key if there is an exception
-		$statusUnlocker = new ScopedCallback( function () use ( $memCache, $statusKey ) {
-			$memCache->delete( $statusKey );
-		} );
 
 		# Now let's regenerate
 		$where[] = 'loading from database';
 
+		# Lock the cache to prevent conflicting writes.
+		# This lock is non-blocking so stale cache can quickly be used.
+		# Note that load() will call a blocking getReentrantScopedLock()
+		# after this if it really need to wait for any current thread.
 		$cacheKey = wfMemcKey( 'messages', $code );
-		# Lock the cache to prevent conflicting writes
-		# If this lock fails, it doesn't really matter, it just means the
-		# write is potentially non-atomic, e.g. the results of a replace()
-		# may be discarded.
-		$mainUnlocker = $this->getReentrantScopedLock( $cacheKey );
-		if ( !$mainUnlocker ) {
+		$scopedLock = $this->getReentrantScopedLock( $cacheKey, 0 );
+		if ( !$scopedLock ) {
 			$where[] = 'could not acquire main lock';
+			return 'cantacquire';
 		}
 
-		$cache = $this->loadFromDB( $code );
+		$cache = $this->loadFromDB( $code, $mode );
 		$this->mCache[$code] = $cache;
 		$saveSuccess = $this->saveToCaches( $cache, 'all', $code );
-
-		# Unlock
-		ScopedCallback::consume( $mainUnlocker );
-		ScopedCallback::consume( $statusUnlocker );
 
 		if ( !$saveSuccess ) {
 			# Cache save has failed.
@@ -427,7 +410,7 @@ class MessageCache {
 			# overhead on every request, and thus saves the wiki from
 			# complete downtime under moderate traffic conditions.
 			if ( !$wgUseLocalMessageCache ) {
-				$memCache->set( $statusKey, 'error', 60 * 5 );
+				$this->mMemc->set( $statusKey, 'error', 60 * 5 );
 				$where[] = 'could not save cache, disabled globally for 5 minutes';
 			} else {
 				$where[] = "could not save global cache";
@@ -442,13 +425,15 @@ class MessageCache {
 	 * $wgMaxMsgCacheEntrySize are assigned a special value, and are loaded
 	 * on-demand from the database later.
 	 *
-	 * @param string $code Language code.
-	 * @return array Loaded messages for storing in caches.
+	 * @param string $code Language code
+	 * @param integer $mode Use MessageCache::FOR_UPDATE to skip process cache
+	 * @return array Loaded messages for storing in caches
 	 */
-	function loadFromDB( $code ) {
+	function loadFromDB( $code, $mode = null ) {
 		global $wgMaxMsgCacheEntrySize, $wgLanguageCode, $wgAdaptiveMessageCache;
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( ( $mode == self::FOR_UPDATE ) ? DB_MASTER : DB_SLAVE );
+
 		$cache = array();
 
 		# Common conditions
@@ -529,7 +514,7 @@ class MessageCache {
 	/**
 	 * Updates cache as necessary when message page is changed
 	 *
-	 * @param string $title Name of the page changed.
+	 * @param string|bool $title Name of the page changed (false if deleted)
 	 * @param mixed $text New contents of the page.
 	 */
 	public function replace( $title, $text ) {
@@ -555,7 +540,6 @@ class MessageCache {
 		$this->load( $code, self::FOR_UPDATE );
 
 		$titleKey = wfMemcKey( 'messages', 'individual', $title );
-
 		if ( $text === false ) {
 			# Article was deleted
 			$this->mCache[$code][$title] = '!NONEXISTENT';
@@ -569,8 +553,11 @@ class MessageCache {
 			$this->mMemc->delete( $titleKey );
 		}
 
-		# Update caches
-		$this->saveToCaches( $this->mCache[$code], 'all', $code );
+		if ( $scopedLock ) {
+			# Update caches
+			$this->saveToCaches( $this->mCache[$code], 'all', $code );
+		}
+
 		ScopedCallback::consume( $scopedLock );
 		$this->wanCache->touchCheckKey( wfMemcKey( 'messages', $code ) );
 
@@ -673,10 +660,11 @@ class MessageCache {
 
 	/**
 	 * @param string $key A language message cache key that stores blobs
+	 * @param integer $timeout Wait timeout in seconds
 	 * @return null|ScopedCallback
 	 */
-	protected function getReentrantScopedLock( $key ) {
-		return $this->mMemc->getScopedLock( $key, self::WAIT_SEC, self::LOCK_TTL, __METHOD__ );
+	protected function getReentrantScopedLock( $key, $timeout = self::WAIT_SEC ) {
+		return $this->mMemc->getScopedLock( $key, $timeout, self::LOCK_TTL, __METHOD__ );
 	}
 
 	/**
