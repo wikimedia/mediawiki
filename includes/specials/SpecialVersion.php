@@ -92,7 +92,14 @@ class SpecialVersion extends SpecialPage {
 					if ( $file ) {
 						$wikiText = file_get_contents( $file );
 						if ( substr( $file, -4 ) === '.txt' ) {
-							$wikiText = Html::element( 'pre', array(), $wikiText );
+							$wikiText = Html::element(
+								'pre',
+								array(
+									'lang' => 'en',
+									'dir' => 'ltr',
+								),
+								$wikiText
+							);
 						}
 					}
 				}
