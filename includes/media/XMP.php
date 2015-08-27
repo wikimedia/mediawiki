@@ -348,7 +348,7 @@ class XMPReader implements LoggerAwareInterface {
 			// could declare entities unsafe to parse with xml_parse (T85848/T71210).
 			if ( $this->parsable !== self::PARSABLE_OK ) {
 				if ( $this->parsable === self::PARSABLE_NO ) {
-					throw new Exception( 'Unsafe doctype declaration in XML.' );
+					throw new RuntimeException( 'Unsafe doctype declaration in XML.' );
 				}
 
 				$content = $this->xmlParsableBuffer . $content;
@@ -361,24 +361,43 @@ class XMPReader implements LoggerAwareInterface {
 					$msg = ( $this->parsable === self::PARSABLE_NO ) ?
 						'Unsafe doctype declaration in XML.' :
 						'No root element found in XML.';
-					throw new Exception( $msg );
+					throw new RuntimeException( $msg );
 				}
 			}
 
 			$ok = xml_parse( $this->xmlParser, $content, $allOfIt );
 			if ( !$ok ) {
-				$error = xml_error_string( xml_get_error_code( $this->xmlParser ) );
-				$where = 'line: ' . xml_get_current_line_number( $this->xmlParser )
-					. ' column: ' . xml_get_current_column_number( $this->xmlParser )
-					. ' byte offset: ' . xml_get_current_byte_index( $this->xmlParser );
+				$code = xml_get_error_code( $this->xmlParser );
+				$error = xml_error_string( $code );
+				$line = xml_get_current_line_number( $this->xmlParser );
+				$col = xml_get_current_column_number( $this->xmlParser );
+				$offset = xml_get_current_byte_index( $this->xmlParser );
 
-				$this->logger->info( "XMPReader::parse : Error reading XMP content: $error ($where)" );
+				$this->logger->warning(
+					'{method} : Error reading XMP content: {error} ' .
+					'(line: {line} column: {column} byte offset: {offset})',
+					array(
+						'method' => __METHOD__,
+						'error_code' => $code,
+						'error' => $error,
+						'line' => $line,
+						'column' => $col,
+						'offset' => $offset,
+						'content' => $content,
+				) );
 				$this->results = array(); // blank if error.
 				$this->destroyXMLParser();
 				return false;
 			}
 		} catch ( Exception $e ) {
-			$this->logger->info( 'XMP parse error: ' . $e );
+			$this->logger->warning(
+				'{method} Exception caught while parsing: ' . $e->getMessage(),
+				array(
+					'method' => __METHOD__,
+					'exception' => $e,
+					'content' => $content,
+				)
+			);
 			$this->results = array();
 
 			if ( $allOfIt ) {
