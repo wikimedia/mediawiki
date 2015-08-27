@@ -75,11 +75,11 @@ class MigrateFileRepoLayoutTest extends MediaWikiTestCase {
 	}
 
 	protected function tearDown() {
-    	foreach ( glob( $this->tmpPrefix . '*' ) as $directory ) {
-    		$this->deleteFilesRecursively( $directory );
-    	}
+		foreach ( glob( $this->tmpPrefix . '*' ) as $directory ) {
+			$this->deleteFilesRecursively( $directory );
+		}
 
-    	unlink( $this->tmpFilepath );
+		unlink( $this->tmpFilepath );
 
 		parent::tearDown();
 	}
