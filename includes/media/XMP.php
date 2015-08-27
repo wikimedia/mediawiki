@@ -380,10 +380,6 @@ class XMPReader implements LoggerAwareInterface {
 		} catch ( Exception $e ) {
 			$this->logger->info( 'XMP parse error: ' . $e );
 			$this->results = array();
-
-			if ( $allOfIt ) {
-				$this->destroyXMLParser();
-			}
 			return false;
 		}
 		if ( $allOfIt ) {
