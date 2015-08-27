@@ -3237,6 +3237,7 @@
 	"logentry-newusers-create2": "Användarkonto $3 har {{GENDER:$2|skapats}} av $1",
 	"logentry-newusers-byemail": "Användarkontot $3 har {{GENDER:$2|skapats}} av $1 och lösenordet skickades via e-post",
 	"logentry-newusers-autocreate": "Användarkontot $1 {{GENDER:$2|skapades}} automatiskt",
+	"logentry-protect-move_prot": "$1 {{GENDER:$2|flyttade}} skyddsinställningarna från $4 till $3",
 	"logentry-rights-rights": "$1 {{GENDER:$2|ändrade}} gruppmedlemskapet för $3 från $4 till $5",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|ändrade}} gruppmedlemskapet för $3",
 	"logentry-rights-autopromote": "$1 {{GENDER:$2|befordrades}} automatiskt från $4 till $5",

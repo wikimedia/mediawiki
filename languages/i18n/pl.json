@@ -3266,6 +3266,7 @@
 	"logentry-newusers-create2": "$1 {{GENDER:$2|utworzył|utworzyła}} konto użytkownika $3",
 	"logentry-newusers-byemail": "Konto $3 zostało utworzone przez użytkownika $1, hasło wysłano e-mailem",
 	"logentry-newusers-autocreate": "$1 automatycznie {{GENDER:$2|utworzył|utworzyła|utworzył}} konto użytkownika",
+	"logentry-protect-move_prot": "$1 {{GENDER:$2|przeniósł|przeniosła}} ustawienia zabezpieczeń z $4 do $3",
 	"logentry-rights-rights": "$1 {{GENDER:$2|zmienił|zmieniła}} przynależność $3 do grup ($4 → $5)",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|zmienił|zmieniła}} przynależność $3 do grup",
 	"logentry-rights-autopromote": "$1 automatycznie {{GENDER:$2|zmienił|zmieniła}} przynależność ($4 → $5)",

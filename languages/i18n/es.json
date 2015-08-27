@@ -2468,7 +2468,7 @@
 	"anonymous": "{{PLURAL:$1|Usuario anónimo|Usuarios anónimos}} de {{SITENAME}}",
 	"siteuser": "{{GENDER:$1|el usuario|la usuaria}} $1 de {{SITENAME}}",
 	"anonuser": "el usuario anónimo $1 de {{SITENAME}}",
-	"lastmodifiedatby": "Esta página fue modificada por última vez en $2, $1 por $3.",
+	"lastmodifiedatby": "Esta página fue modificada por última vez el $1 a las $2 por $3.",
 	"othercontribs": "Basado en el trabajo de $1.",
 	"others": "otros",
 	"siteusers": "{{PLURAL:$2|el usuario|los usuarios}} $1 de {{SITENAME}}",

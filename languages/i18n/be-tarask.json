@@ -1336,6 +1336,7 @@
 	"upload-dialog-button-done": "Зроблена",
 	"upload-dialog-button-save": "Захаваць",
 	"upload-dialog-button-upload": "Загрузіць",
+	"upload-dialog-label-select-file": "Абраць файл",
 	"backend-fail-stream": "Немагчыма накіраваць файл $1.",
 	"backend-fail-backup": "Немагчыма зрабіць рэзэрвовую копію файла $1.",
 	"backend-fail-notexists": "Файл $1 не існуе.",
