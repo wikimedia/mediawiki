@@ -108,11 +108,23 @@ class ApiResult implements ApiSerializable {
 	const META_TYPE = '_type';
 
 	/**
-	 * Key (rather than "name" or other default) for when META_TYPE is 'kvp' or
-	 * 'BCkvp'. Value is string.
+	 * Key for the metatata item whose value specifies the name used for the
+	 * kvp key in the alternative output format with META_TYPE 'kvp' or
+	 * 'BCkvp', i.e. the "name" in <container><item name="key">value</item></container>.
+	 * Value is string.
 	 * @since 1.25
 	 */
 	const META_KVP_KEY_NAME = '_kvpkeyname';
+
+	/**
+	 * Key for the metadata item that indicates that the KVP key should be
+	 * added into an assoc value, i.e. {"key":{"val1":"a","val2":"b"}}
+	 * transforms to {"name":"key","val1":"a","val2":"b"} rather than
+	 * {"name":"key","value":{"val1":"a","val2":"b"}}.
+	 * Value is boolean.
+	 * @since 1.26
+	 */
+	const META_KVP_MERGE = '_kvpmerge';
 
 	/**
 	 * Key for the 'BC bools' metadata item. Value is string[].
@@ -941,19 +953,43 @@ class ApiResult implements ApiSerializable {
 						: $transformTypes['ArmorKVP'];
 					$valKey = isset( $transforms['BC'] ) ? '*' : 'value';
 					$assocAsObject = !empty( $transformTypes['AssocAsObject'] );
+					$merge = !empty( $metadata[self::META_KVP_MERGE] );
 
 					$ret = array();
 					foreach ( $data as $k => $v ) {
-						$item = array(
-							$key => $k,
-							$valKey => $v,
-						);
-						if ( $strip === 'none' ) {
-							$item += array(
-								self::META_PRESERVE_KEYS => array( $key ),
-								self::META_CONTENT => $valKey,
-								self::META_TYPE => 'assoc',
+						if ( $merge && ( is_array( $v ) || is_object( $v ) ) ) {
+							$vArr = (array)$v;
+							if ( isset( $vArr[self::META_TYPE] ) ) {
+								$mergeType = $vArr[self::META_TYPE];
+							} elseif ( is_object( $v ) ) {
+								$mergeType = 'assoc';
+							} else {
+								$keys = array_keys( $vArr );
+								sort( $keys, SORT_NUMERIC );
+								$mergeType = ( $keys === array_keys( $keys ) ) ? 'array' : 'assoc';
+							}
+						} else {
+							$mergeType = 'n/a';
+						}
+						if ( $mergeType === 'assoc' ) {
+							$item = $vArr + array(
+								$key => $k,
 							);
+							if ( $strip === 'none' ) {
+								self::setPreserveKeysList( $item, array( $key ) );
+							}
+						} else {
+							$item = array(
+								$key => $k,
+								$valKey => $v,
+							);
+							if ( $strip === 'none' ) {
+								$item += array(
+									self::META_PRESERVE_KEYS => array( $key ),
+									self::META_CONTENT => $valKey,
+									self::META_TYPE => 'assoc',
+								);
+							}
 						}
 						$ret[] = $assocAsObject ? (object)$item : $item;
 					}
