@@ -170,3 +170,7 @@
 	path = extensions/Disambiguator
 	url = https://github.com/wikimedia/mediawiki-extensions-Disambiguator
 	branch = REL1_25
+[submodule "extensions/ImageMap"]
+	path = extensions/ImageMap
+	url = https://github.com/wikimedia/mediawiki-extensions-Imagemap
+	branch = REL1_25
