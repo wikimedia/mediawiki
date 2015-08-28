@@ -829,7 +829,7 @@ return array(
 			'resources/src/mediawiki/mediawiki.errorLogger.js',
 			'resources/src/mediawiki/mediawiki.startUp.js',
 		),
-		'debugScripts' => 'resources/src/mediawiki/mediawiki.log.js',
+		'debugScripts' => 'resources/src/mediawiki/mediawiki.logger.js',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.apihelp' => array(
