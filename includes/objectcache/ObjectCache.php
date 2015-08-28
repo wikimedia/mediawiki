@@ -59,10 +59,11 @@ use MediaWiki\Logger\LoggerFactory;
  *   Delete events are broadcasted to other DCs. See WANObjectCache for details.
  *
  * - ObjectCache::getMainStashInstance()
- *   Purpose: Storage.
+ *   Purpose: Ephemeral storage.
  *   Stored centrally within the local data-center.
  *   Changes are replicated to other DCs (eventually consistent).
  *   To retrieve the latest value (e.g. not from a slave), use BagOStuff:READ_LATEST.
+ *   This store may be subject to LRU style evictions.
  *
  * - wfGetCache( $cacheType )
  *   Get a specific cache type by key in $wgObjectCaches.
