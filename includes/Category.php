@@ -304,11 +304,11 @@ class Category {
 			return false;
 		}
 
-		# Note, we must use names for this, since categorylinks does.
-		if ( $this->mName === null ) {
-			if ( !$this->initialize() ) {
-				return false;
-			}
+		# If we have just a category name, find out whether there is an
+		# existing row. Or if we have just an ID, get the name, because
+		# that's what categorylinks uses.
+		if ( !$this->initialize() ) {
+			return false;
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -327,25 +327,38 @@ class Category {
 			array( 'LOCK IN SHARE MODE' )
 		);
 
-		# TODO: This will cause lots and lots of gaps on MySQL unless
-		# innodb_autoinc_lock_mode is 0 (and also on some non-MySQL
-		# DBMSes) if you run populateCategory.php repeatedly.
-		$dbw->upsert(
-			'category',
-			array(
-				'cat_title' => $this->mName,
-				'cat_pages' => $result->pages,
-				'cat_subcats' => $result->subcats,
-				'cat_files' => $result->files
-			),
-			array( 'cat_title' ),
-			array(
-				'cat_pages' => $result->pages,
-				'cat_subcats' => $result->subcats,
-				'cat_files' => $result->files
-			),
-			__METHOD__
-		);
+		if ( $this->mId ) {
+			# The category row already exists, so do a plain UPDATE instead
+			# of INSERT...ON DUPLICATE KEY UPDATE to avoid creating a gap
+			# in the cat_id sequence. The row may or may not be "affected".
+			$dbw->update(
+				'category',
+				array(
+					'cat_pages' => $result->pages,
+					'cat_subcats' => $result->subcats,
+					'cat_files' => $result->files
+				),
+				array( 'cat_title' => $this->mName ),
+				__METHOD__
+			);
+		} else {
+			$dbw->upsert(
+				'category',
+				array(
+					'cat_title' => $this->mName,
+					'cat_pages' => $result->pages,
+					'cat_subcats' => $result->subcats,
+					'cat_files' => $result->files
+				),
+				array( 'cat_title' ),
+				array(
+					'cat_pages' => $result->pages,
+					'cat_subcats' => $result->subcats,
+					'cat_files' => $result->files
+				),
+				__METHOD__
+			);
+		}
 
 		$dbw->endAtomic( __METHOD__ );
 

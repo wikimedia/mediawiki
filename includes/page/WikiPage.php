@@ -3395,22 +3395,44 @@ class WikiPage implements Page, IDBAccessObject {
 				}
 
 				if ( count( $added ) ) {
-					$insertRows = array();
-					foreach ( $added as $cat ) {
-						$insertRows[] = array(
-							'cat_title'   => $cat,
-							'cat_pages'   => 1,
-							'cat_subcats' => ( $ns == NS_CATEGORY ) ? 1 : 0,
-							'cat_files'   => ( $ns == NS_FILE ) ? 1 : 0,
+					$existingAdded = $dbw->selectFieldValues(
+						'category',
+						'cat_title',
+						array( 'cat_title' => $added ),
+						__METHOD__
+					);
+
+					// For category rows that already exist, do a plain
+					// UPDATE instead of INSERT...ON DUPLICATE KEY UPDATE
+					// to avoid creating gaps in the cat_id sequence.
+					if ( count( $existingAdded ) ) {
+						$dbw->update(
+							'category',
+							$addFields,
+							array( 'cat_title' => $existingAdded ),
+							__METHOD__
 						);
 					}
-					$dbw->upsert(
-						'category',
-						$insertRows,
-						array( 'cat_title' ),
-						$addFields,
-						$method
-					);
+
+					$missingAdded = array_diff( $added, $existingAdded );
+					if ( count( $missingAdded ) ) {
+						$insertRows = array();
+						foreach ( $missingAdded as $cat ) {
+							$insertRows[] = array(
+								'cat_title'   => $cat,
+								'cat_pages'   => 1,
+								'cat_subcats' => ( $ns == NS_CATEGORY ) ? 1 : 0,
+								'cat_files'   => ( $ns == NS_FILE ) ? 1 : 0,
+							);
+						}
+						$dbw->upsert(
+							'category',
+							$insertRows,
+							array( 'cat_title' ),
+							$addFields,
+							$method
+						);
+					}
 				}
 
 				if ( count( $deleted ) ) {
