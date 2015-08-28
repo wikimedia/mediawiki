@@ -182,7 +182,7 @@ abstract class ApiFormatBase extends ApiBase {
 			$out = new OutputPage( $context );
 			$context->setOutput( $out );
 
-			$out->addModules( 'mediawiki.apipretty' );
+			$out->addModuleStyles( 'mediawiki.apipretty' );
 			$out->setPageTitle( $context->msg( 'api-format-title' ) );
 
 			// When the format without suffix 'fm' is defined, there is a non-html version
