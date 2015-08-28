@@ -677,6 +677,63 @@ table.wikitable > caption {
 	background-color: #eeeeff;
 }
 
+/**
+ * Autonumbered tables
+ */
+
+table.mw-autonumber {
+	counter-reset: mw-autonumber;
+}
+
+/* make sure that the following rule that hides the fallback
+ * is not parsed by browsers that don't support :first-child and :before
+ */
+does-not-exist:first-child:before, .mw-autonumber-fallback {
+	display: none;
+}
+
+table.mw-autonumber tr td:first-child:before {
+	counter-increment: mw-autonumber;
+	content: counter(mw-autonumber);
+}
+
+table.mw-autonumber:lang(azb) tr td:first-child:before,
+table.mw-autonumber:lang(bcc) tr td:first-child:before,
+table.mw-autonumber:lang(bgn) tr td:first-child:before,
+table.mw-autonumber:lang(bqi) tr td:first-child:before,
+table.mw-autonumber:lang(fa) tr td:first-child:before,
+table.mw-autonumber:lang(glk) tr td:first-child:before,
+table.mw-autonumber:lang(kk-arab) tr td:first-child:before,
+table.mw-autonumber:lang(lrc) tr td:first-child:before,
+table.mw-autonumber:lang(luz) tr td:first-child:before,
+table.mw-autonumber:lang(mzn) tr td:first-child:before {
+	content: counter(mw-autonumber, -moz-persian);
+	content: counter(mw-autonumber, persian);
+}
+
+table.mw-autonumber:lang(ckb) tr td:first-child:before,
+table.mw-autonumber:lang(sdh) tr td:first-child:before {
+	content: counter(mw-autonumber, -moz-arabic-indic);
+	content: counter(mw-autonumber, arabic-indic);
+}
+
+table.mw-autonumber:lang(hi) tr td:first-child:before,
+table.mw-autonumber:lang(mr) tr td:first-child:before {
+	content: counter(mw-autonumber, -moz-devanagari);
+	content: counter(mw-autonumber, devanagari);
+}
+
+table.mw-autonumber:lang(as) tr td:first-child:before,
+table.mw-autonumber:lang(bn) tr td:first-child:before {
+	content: counter(mw-autonumber, -moz-bengali);
+	content: counter(mw-autonumber, bengali);
+}
+
+table.mw-autonumber:lang(or) tr td:first-child:before {
+	content: counter(mw-autonumber, -moz-oriya);
+	content: counter(mw-autonumber, oriya);
+}
+
 /* filetoc */
 ul#filetoc {
 	text-align: center;
