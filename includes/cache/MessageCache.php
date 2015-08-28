@@ -190,6 +190,7 @@ class MessageCache {
 	 */
 	protected function getLocalCache( $code ) {
 		$cacheKey = wfMemcKey( __CLASS__, $code );
+
 		return $this->localCache->get( $cacheKey );
 	}
 
@@ -226,8 +227,6 @@ class MessageCache {
 	 * @return bool
 	 */
 	function load( $code = false, $mode = null ) {
-		global $wgUseLocalMessageCache;
-
 		if ( !is_string( $code ) ) {
 			# This isn't really nice, so at least make a note about it and try to
 			# fall back
@@ -260,25 +259,23 @@ class MessageCache {
 		# or local cache goes out of date (e.g. due to replace() on some other server)
 		list( $hash, $hashVolatile ) = $this->getValidationHash( $code );
 
-		if ( $wgUseLocalMessageCache && $hash ) {
-			# Try the local cache and check against the cluster hash key...
-			$cache = $this->getLocalCache( $code );
-			if ( !$cache ) {
-				$where[] = 'local cache is empty';
-			} elseif ( !isset( $cache['HASH'] ) || $cache['HASH'] !== $hash ) {
-				$where[] = 'local cache has the wrong hash';
-				$staleCache = $cache;
-			} elseif ( $this->isCacheExpired( $cache ) ) {
-				$where[] = 'local cache is expired';
-				$staleCache = $cache;
-			} elseif ( $hashVolatile ) {
-				$where[] = 'local cache validation key is expired/volatile';
-				$staleCache = $cache;
-			} else {
-				$where[] = 'got from local cache';
-				$success = true;
-				$this->mCache[$code] = $cache;
-			}
+		# Try the local cache and check against the cluster hash key...
+		$cache = $this->getLocalCache( $code );
+		if ( !$cache ) {
+			$where[] = 'local cache is empty';
+		} elseif ( !isset( $cache['HASH'] ) || $cache['HASH'] !== $hash ) {
+			$where[] = 'local cache has the wrong hash';
+			$staleCache = $cache;
+		} elseif ( $this->isCacheExpired( $cache ) ) {
+			$where[] = 'local cache is expired';
+			$staleCache = $cache;
+		} elseif ( $hashVolatile ) {
+			$where[] = 'local cache validation key is expired/volatile';
+			$staleCache = $cache;
+		} else {
+			$where[] = 'got from local cache';
+			$success = true;
+			$this->mCache[$code] = $cache;
 		}
 
 		if ( !$success ) {
@@ -627,8 +624,6 @@ class MessageCache {
 	 * @return bool
 	 */
 	protected function saveToCaches( $cache, $dest, $code = false ) {
-		global $wgUseLocalMessageCache;
-
 		if ( $dest === 'all' ) {
 			$cacheKey = wfMemcKey( 'messages', $code );
 			$success = $this->mMemc->set( $cacheKey, $cache );
@@ -639,9 +634,7 @@ class MessageCache {
 		$this->setValidationHash( $code, $cache['HASH'] );
 
 		# Save to local cache
-		if ( $wgUseLocalMessageCache ) {
-			$this->saveToLocalCache( $code, $cache );
-		}
+		$this->saveToLocalCache( $code, $cache );
 
 		return $success;
 	}
