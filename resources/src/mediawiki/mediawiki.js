@@ -1245,7 +1245,7 @@
 				registry[module].state = 'loading';
 
 				// Add localizations to message system
-				if ( $.isPlainObject( registry[module].messages ) ) {
+				if ( registry[module].messages ) {
 					mw.messages.set( registry[module].messages );
 				}
 
@@ -1283,7 +1283,7 @@
 				// * back-compat: { <media>: [url, ..] }
 				// * { "css": [css, ..] }
 				// * { "url": { <media>: [url, ..] } }
-				if ( $.isPlainObject( registry[module].style ) ) {
+				if ( registry[module].style ) {
 					for ( key in registry[module].style ) {
 						value = registry[module].style[key];
 						media = undefined;
