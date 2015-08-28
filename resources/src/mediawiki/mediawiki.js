@@ -1210,9 +1210,8 @@
 							} else if ( $.isFunction( script ) ) {
 								// Pass jQuery twice so that the signature of the closure which wraps
 								// the script can bind both '$' and 'jQuery'.
-								registry[module].state = 'ready';
 								script( $, $ );
-								handlePending( module );
+								markModuleReady();
 							} else if ( typeof script === 'string' ) {
 								// Site and user modules are a legacy scripts that run in the global scope.
 								// This is transported as a string instead of a function to avoid needing
@@ -1221,14 +1220,12 @@
 									// Implicit dependency on the site module. Not real dependency because
 									// it should run after 'site' regardless of whether it succeeds or fails.
 									mw.loader.using( 'site' ).always( function () {
-										registry[module].state = 'ready';
 										$.globalEval( script );
-										handlePending( module );
+										markModuleReady();
 									} );
 								} else {
-									registry[module].state = 'ready';
 									$.globalEval( script );
-									handlePending( module );
+									markModuleReady();
 								}
 							}
 						} );

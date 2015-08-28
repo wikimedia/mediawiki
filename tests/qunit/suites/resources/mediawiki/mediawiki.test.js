@@ -630,20 +630,20 @@
 	} );
 
 	// @import (bug 31676)
-	QUnit.asyncTest( 'mw.loader.implement( styles has @import)', 5, function ( assert ) {
+	QUnit.asyncTest( 'mw.loader.implement( styles has @import)', 7, function ( assert ) {
 		var isJsExecuted, $element;
 
 		mw.loader.implement(
 			'test.implement.import',
 			function () {
-				assert.strictEqual( isJsExecuted, undefined, 'javascript not executed multiple times' );
+				assert.strictEqual( isJsExecuted, undefined, 'script not executed multiple times' );
 				isJsExecuted = true;
 
-				assert.equal( mw.loader.getState( 'test.implement.import' ), 'ready', 'module state is "ready" while implement() is executing javascript' );
+				assert.equal( mw.loader.getState( 'test.implement.import' ), 'loading', 'module state during implement() script execution' );
 
 				$element = $( '<div class="mw-test-implement-import">Foo bar</div>' ).appendTo( '#qunit-fixture' );
 
-				assert.equal( mw.msg( 'test-foobar' ), 'Hello Foobar, $1!', 'Messages are loaded before javascript execution' );
+				assert.equal( mw.msg( 'test-foobar' ), 'Hello Foobar, $1!', 'messages load before script execution' );
 
 				assertStyleAsync( assert, $element, 'float', 'right', function () {
 					assert.equal( $element.css( 'text-align' ), 'center',
@@ -666,8 +666,10 @@
 			}
 		);
 
-		mw.loader.load( 'test.implement' );
-
+		mw.loader.using( 'test.implement.import' ).always( function () {
+			assert.strictEqual( isJsExecuted, true, 'script executed' );
+			assert.equal( mw.loader.getState( 'test.implement.import' ), 'ready', 'module state after script execution' );
+		} );
 	} );
 
 	QUnit.asyncTest( 'mw.loader.implement( dependency with styles )', 4, function ( assert ) {
