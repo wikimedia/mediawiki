@@ -11,7 +11,8 @@
 			"Tupikovs",
 			"Urhixidur",
 			"Игорь Бродский",
-			"아라"
+			"아라",
+			"Denö"
 		]
 	},
 	"tog-underline": "Сюлмавома петнень алга черькстамс:",
@@ -776,6 +777,7 @@
 	"rcshowhideminor-hide": "Кекшемс",
 	"rcshowhidebots": "$1 ботт",
 	"rcshowhidebots-show": "Невтемс",
+	"rcshowhidebots-hide": "Кекшемс",
 	"rcshowhideliu": "$1 совавтозь теицят",
 	"rcshowhideliu-hide": "Кекшемс",
 	"rcshowhideanons": "$1 лемтеме теицят",
@@ -1030,7 +1032,6 @@
 	"listgrouprights-removegroup-all": "Весе куротнень нардамс",
 	"mailnologin": "Кучомс сёрма парго арась",
 	"emailuser": "Кучомс е-сёрма те теицянтень",
-	"emailpage": "Кучт э-сёрма теицянтень",
 	"defemailsubject": "{{SITENAME}} е-сёрма \"$1\"-нь пельде",
 	"usermaildisabled": "Теицянь е-сёрмась пекстазь",
 	"noemailtitle": "Е-сёрма парго арась",
