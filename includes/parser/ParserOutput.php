@@ -686,6 +686,8 @@ class ParserOutput extends CacheTime {
 	/**
 	 * Tags a parser option for use in the cache key for this parser output.
 	 * Registered as a watcher at ParserOptions::registerWatcher() by Parser::clearState().
+	 * The information gathered here is available via getUsedOptions(),
+	 * and is used by ParserCache::save().
 	 *
 	 * @see ParserCache::getKey
 	 * @see ParserCache::save
