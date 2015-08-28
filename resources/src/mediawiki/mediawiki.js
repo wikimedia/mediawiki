@@ -1428,10 +1428,7 @@
 					currReqBase
 				);
 				request = sortQuery( request );
-				// Support: IE6
-				// Append &* to satisfy load.php's WebRequest::checkUrlExtension test.
-				// This script isn't actually used in IE6, but MediaWiki enforces it in general.
-				addScript( sourceLoadScript + '?' + $.param( request ) + '&*' );
+				addScript( sourceLoadScript + '?' + $.param( request ) );
 			}
 
 			/**

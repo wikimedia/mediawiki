@@ -1486,9 +1486,7 @@ MESSAGE;
 		$query = self::createLoaderQuery( $context, $extraQuery );
 		$script = $this->getLoadScript( $source );
 
-		// Prevent the IE6 extension check from being triggered (bug 28840)
-		// by appending a character that's invalid in Windows extensions ('*')
-		return wfExpandUrl( wfAppendQuery( $script, $query ) . '&*', PROTO_RELATIVE );
+		return wfExpandUrl( wfAppendQuery( $script, $query ), PROTO_RELATIVE );
 	}
 
 	/**
@@ -1516,9 +1514,7 @@ MESSAGE;
 			$only, $printable, $handheld, $extraQuery
 		);
 
-		// Prevent the IE6 extension check from being triggered (bug 28840)
-		// by appending a character that's invalid in Windows extensions ('*')
-		return wfExpandUrl( wfAppendQuery( $wgLoadScript, $query ) . '&*', PROTO_RELATIVE );
+		return wfExpandUrl( wfAppendQuery( $wgLoadScript, $query ), PROTO_RELATIVE );
 	}
 
 	/**
