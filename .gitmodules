@@ -174,3 +174,7 @@
 	path = extensions/ImageMap
 	url = https://github.com/wikimedia/mediawiki-extensions-Imagemap
 	branch = REL1_25
+[submodule "extentions/GlobalCssJs"]
+	path = extentions/GlobalCssJs
+	url = https://github.com/wikimedia/mediawiki-extensions-GlobalCssJs
+	branch = REL1_25
