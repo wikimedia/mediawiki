@@ -92,7 +92,14 @@ class SpecialVersion extends SpecialPage {
 					if ( $file ) {
 						$wikiText = file_get_contents( $file );
 						if ( substr( $file, -4 ) === '.txt' ) {
-							$wikiText = Html::element( 'pre', array(), $wikiText );
+							$wikiText = Html::element(
+								'pre',
+								array(
+									'lang' => 'en',
+									'dir' => 'ltr',
+								),
+								$wikiText
+							);
 						}
 					}
 				}
@@ -109,7 +116,14 @@ class SpecialVersion extends SpecialPage {
 					$file = $this->getExtLicenseFileName( dirname( $extNode['path'] ) );
 					if ( $file ) {
 						$wikiText = file_get_contents( $file );
-						$wikiText = "<pre>$wikiText</pre>";
+						$wikiText = Html::element(
+							'pre',
+							array(
+								'lang' => 'en',
+								'dir' => 'ltr',
+							),
+							$wikiText
+						);
 					}
 				}
 
