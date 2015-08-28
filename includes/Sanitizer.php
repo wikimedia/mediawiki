@@ -1809,7 +1809,7 @@ class Sanitizer {
 			$host = preg_replace( $strip, '', $host );
 
 			// IPv6 host names are bracketed with [].  Url-decode these.
-			if ( substr_compare( "//%5B", $host, 0, 5 ) === 0 && preg_match( '!^//%5B(.*?)%5D((:\d+)?)$!', $host, $matches ) ) {
+			if ( substr_compare( "//%5B", $host, 0, 5 ) === 0 && preg_match( '!^//%5B([0-9A-Fa-f:.]+)%5D((:\d+)?)$!', $host, $matches ) ) {
 				$host = '//[' . $matches[1] . ']' . $matches[2];
 			}
 
