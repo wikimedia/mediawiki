@@ -49,7 +49,7 @@ class CssContentHandler extends CodeContentHandler {
 	 *
 	 * @param Title $destination
 	 * @param string $text ignored
-	 * @return JavaScriptContent
+	 * @return CssContent
 	 */
 	public function makeRedirectContent( Title $destination, $text = '' ) {
 		// The parameters are passed as a string so the / is not url-encoded by wfArrayToCgi
