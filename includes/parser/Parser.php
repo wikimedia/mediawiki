@@ -509,6 +509,9 @@ class Parser {
 			if ( $wgShowHostnames ) {
 				$limitReport .= 'Parsed by ' . wfHostname() . "\n";
 			}
+			$limitReport .= 'Cached time: ' . $this->mOutput->getCacheTime() . "\n";
+			$limitReport .= 'Cache expiry: ' . $this->mOutput->getCacheExpiry() . "\n";
+			$limitReport .= 'Dyanmic content: ' . ( $this->mOutput->hasDynamicContent() ? 'true' : 'false' ) . "\n";
 			foreach ( $this->mOutput->getLimitReportData() as $key => $value ) {
 				if ( Hooks::run( 'ParserLimitReportFormat',
 					array( $key, &$value, &$limitReport, false, false )
