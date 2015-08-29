@@ -129,7 +129,7 @@
 	"hidden-category-category": "تصنيفات مستخبية",
 	"category-subcat-count": "{{PLURAL:$2| التصنيف دا فيه  التصنيف الفرعى الجاى بس.|التصنيف دا فيه {{PLURAL:$1|تصنيف فرعى|$1 تصنيف فرعى}}، من إجمالى $2.}}",
 	"category-subcat-count-limited": " التصنيف دا فيه {{PLURAL:$1|تصنيف فرعي|$1 تصنيف فرعي}} كدا.",
-	"category-article-count": "{{PLURAL:$2| التصنيف دا فيه  الصفحة دى بس.|تحت {{PLURAL:$1|ملف|$1 ملف}} فى  التصنيف دا ، من إجمالى $2.}}",
+	"category-article-count": "{{PLURAL:$2|التصنيف دا فيه الصفحه دى بس.|{{PLURAL:$1|الصفحه دى|$1 الصفحات دول}} فى التصنيف دا، من إجمالى $2.}}",
 	"category-article-count-limited": "تحت {{PLURAL:$1|صفحة|$1 صفحة}} فى التصنيف الحالى.",
 	"category-file-count": "{{PLURAL:$2| التصنيف دا  فيه الملف الجاى دا بس.|تحت {{PLURAL:$1|ملف|$1 ملف}} فى  التصنيف دا، من إجمالى $2.}}",
 	"category-file-count-limited": "تحت {{PLURAL:$1|ملف|$1 ملف}} فى التصنيف الحالى.",
