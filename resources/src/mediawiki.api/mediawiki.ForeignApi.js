@@ -90,7 +90,7 @@
 		var url, origin, newAjaxOptions;
 
 		// 'origin' query parameter must be part of the request URI, and not just POST request body
-		if ( ajaxOptions.type !== 'GET' ) {
+		if ( ajaxOptions.type === 'POST' ) {
 			url = ( ajaxOptions && ajaxOptions.url ) || this.defaults.ajax.url;
 			origin = ( parameters && parameters.origin ) || this.defaults.parameters.origin;
 			url += ( url.indexOf( '?' ) !== -1 ? '&' : '?' ) +
