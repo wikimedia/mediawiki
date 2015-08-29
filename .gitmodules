@@ -178,3 +178,7 @@
 	path = extensions/GlobalCssJs
 	url = https://github.com/wikimedia/mediawiki-extensions-GlobalCssJs
 	branch = REL1_25
+[submodule "extensions/DynamicPageList"]
+	path = extensions/DynamicPageList
+	url = https://github.com/wikimedia/mediawiki-extensions-DynamicPageList
+	branch = REL1_25
