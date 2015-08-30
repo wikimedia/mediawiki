@@ -526,26 +526,26 @@ class MessageCache {
 
 		list( $msg, $code ) = $this->figureMessage( $title );
 		if ( strpos( $title, '/' ) !== false && $code === $wgLanguageCode ) {
-			# Content language overrides do not use the /<code> suffix
+			// Content language overrides do not use the /<code> suffix
 			return;
 		}
 
-		# Note that if the cache is volatile, load() may trigger a DB fetch.
-		# In that case we reenter/reuse the existing cache key lock to avoid
-		# a self-deadlock. This is safe as no reads happen *directly* in this
-		# method between getReentrantScopedLock() and load() below. There is
-		# no risk of data "changing under our feet" for replace().
+		// Note that if the cache is volatile, load() may trigger a DB fetch.
+		// In that case we reenter/reuse the existing cache key lock to avoid
+		// a self-deadlock. This is safe as no reads happen *directly* in this
+		// method between getReentrantScopedLock() and load() below. There is
+		// no risk of data "changing under our feet" for replace().
 		$cacheKey = wfMemcKey( 'messages', $code );
 		$scopedLock = $this->getReentrantScopedLock( $cacheKey );
 		$this->load( $code, self::FOR_UPDATE );
 
 		$titleKey = wfMemcKey( 'messages', 'individual', $title );
 		if ( $text === false ) {
-			# Article was deleted
+			// Article was deleted
 			$this->mCache[$code][$title] = '!NONEXISTENT';
 			$this->wanCache->delete( $titleKey );
 		} elseif ( strlen( $text ) > $wgMaxMsgCacheEntrySize ) {
-			# Check for size
+			// Check for size
 			$this->mCache[$code][$title] = '!TOO BIG';
 			$this->wanCache->set( $titleKey, ' ' . $text, $this->mExpiry );
 		} else {
@@ -553,12 +553,17 @@ class MessageCache {
 			$this->wanCache->delete( $titleKey );
 		}
 
+		// Mark this cache as definitely "latest" (non-volatile) so
+		// load() calls do try to refresh the cache with slave data
+		$this->mCache[$code]['LATEST'] = time();
+
+		// Update caches if the lock was acquired
 		if ( $scopedLock ) {
-			# Update caches
 			$this->saveToCaches( $this->mCache[$code], 'all', $code );
+			ScopedCallback::consume( $scopedLock );
 		}
 
-		ScopedCallback::consume( $scopedLock );
+		// Relay the purge to APC and other DCs
 		$this->wanCache->touchCheckKey( wfMemcKey( 'messages', $code ) );
 
 		// Also delete cached sidebar... just in case it is affected
@@ -610,7 +615,7 @@ class MessageCache {
 	 * @param string|bool $code Language code (default: false)
 	 * @return bool
 	 */
-	protected function saveToCaches( $cache, $dest, $code = false ) {
+	protected function saveToCaches( array $cache, $dest, $code = false ) {
 		if ( $dest === 'all' ) {
 			$cacheKey = wfMemcKey( 'messages', $code );
 			$success = $this->mMemc->set( $cacheKey, $cache );
@@ -618,16 +623,14 @@ class MessageCache {
 			$success = true;
 		}
 
-		$this->setValidationHash( $code, $cache['HASH'] );
-
-		# Save to local cache
+		$this->setValidationHash( $code, $cache );
 		$this->saveToLocalCache( $code, $cache );
 
 		return $success;
 	}
 
 	/**
-	 * Get the md5 used to validate the local disk cache
+	 * Get the md5 used to validate the local APC cache
 	 *
 	 * @param string $code
 	 * @return array (hash or false, bool expiry/volatility status)
@@ -635,25 +638,41 @@ class MessageCache {
 	protected function getValidationHash( $code ) {
 		$curTTL = null;
 		$value = $this->wanCache->get(
-			wfMemcKey( 'messages', $code, 'hash' ),
+			wfMemcKey( 'messages', $code, 'hash', 'v1' ),
 			$curTTL,
 			array( wfMemcKey( 'messages', $code ) )
 		);
-		$expired = ( $curTTL === null || $curTTL < 0 );
 
-		return array( $value, $expired );
+		if ( !$value ) {
+			// No hash found at all; cache must regenerate to be safe
+			$expired = true;
+		} elseif ( ( time() - $value['latest'] ) < WANObjectCache::HOLDOFF_TTL ) {
+			// Cache was recently updated via replace() and should be up-to-date
+			$expired = false;
+		} else {
+			// See if the "check" key was bumped after the hash was generated
+			$expired = ( $curTTL < 0 );
+		}
+
+		return array( $value['hash'], $expired );
 	}
 
 	/**
 	 * Set the md5 used to validate the local disk cache
 	 *
+	 * If $cache has a 'LATEST' UNIX timestamp key, then the hash will not
+	 * be treated as "volatile" by getValidationHash() for the next few seconds
+	 *
 	 * @param string $code
-	 * @param string $hash
+	 * @param array $cache Cached messages with a version
 	 */
-	protected function setValidationHash( $code, $hash ) {
+	protected function setValidationHash( $code, array $cache ) {
 		$this->wanCache->set(
-			wfMemcKey( 'messages', $code, 'hash' ),
-			$hash,
+			wfMemcKey( 'messages', $code, 'hash', 'v1' ),
+			array(
+				'hash' => $cache['HASH'],
+				'latest' => isset( $cache['LATEST'] ) ? $cache['LATEST'] : 0
+			),
 			WANObjectCache::TTL_NONE
 		);
 	}
