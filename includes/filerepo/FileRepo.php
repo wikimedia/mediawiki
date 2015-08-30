@@ -1592,13 +1592,25 @@ class FileRepo {
 	 *
 	 * @param string $virtualUrl
 	 * @param array $headers Additional HTTP headers to send on success
-	 * @return bool Success
+	 * @return Status
 	 */
-	public function streamFile( $virtualUrl, $headers = array() ) {
+	public function streamFileWithStatus( $virtualUrl, $headers = array() ) {
 		$path = $this->resolveToStoragePath( $virtualUrl );
 		$params = array( 'src' => $path, 'headers' => $headers );
 
-		return $this->backend->streamFile( $params )->isOK();
+		return $this->backend->streamFile( $params );
+	}
+
+	/**
+	 * Attempt to stream a file with the given virtual URL/storage path
+	 *
+	 * @deprecated since 1.26, use streamFileWithStatus
+	 * @param string $virtualUrl
+	 * @param array $headers Additional HTTP headers to send on success
+	 * @return bool Success
+	 */
+	public function streamFile( $virtualUrl, $headers = array() ) {
+		return $this->streamFileWithStatus( $virtualUrl, $headers )->isOK();
 	}
 
 	/**

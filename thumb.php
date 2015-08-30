@@ -21,6 +21,8 @@
  * @ingroup Media
  */
 
+use MediaWiki\Logger\LoggerFactory;
+
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
 require __DIR__ . '/includes/WebStart.php';
 
@@ -256,7 +258,8 @@ function wfStreamThumb( array $params ) {
 		wfThumbError( 400, 'The specified thumbnail parameters are not valid: ' . $e->getMessage() );
 		return;
 	} catch ( MWException $e ) {
-		wfThumbError( 500, $e->getHTML() );
+		wfThumbError( 500, $e->getHTML(), 'Exception caught while extracting thumb name',
+			array( 'exception' => $e ) );
 		return;
 	}
 
@@ -303,13 +306,14 @@ function wfStreamThumb( array $params ) {
 	$thumbPath = $img->getThumbPath( $thumbName );
 	if ( $img->getRepo()->fileExists( $thumbPath ) ) {
 		$starttime = microtime( true );
-		$success = $img->getRepo()->streamFile( $thumbPath, $headers );
+		$status = $img->getRepo()->streamFileWithStatus( $thumbPath, $headers );
 		$streamtime = microtime( true ) - $starttime;
 
-		if ( !$success ) {
-			wfThumbError( 500, 'Could not stream the file' );
-		} else {
+		if ( $status->isOK() ) {
 			RequestContext::getMain()->getStats()->timing( 'media.thumbnail.stream', $streamtime );
+		} else {
+			wfThumbError( 500, 'Could not stream the file', null, array( 'file' => $thumbName,
+				'path' => $thumbPath, 'error' => $status->getWikiText() ) );
 		}
 		return;
 	}
@@ -343,12 +347,13 @@ function wfStreamThumb( array $params ) {
 	}
 
 	if ( $errorMsg !== false ) {
-		wfThumbError( $errorCode, $errorMsg );
+		wfThumbError( $errorCode, $errorMsg, null, array( 'file' => $thumbName, 'path' => $thumbPath ) );
 	} else {
 		// Stream the file if there were no errors
-		$success = $thumb->streamFile( $headers );
-		if ( !$success ) {
-			wfThumbError( 500, 'Could not stream the file' );
+		$status = $thumb->streamFileWithStatus( $headers );
+		if ( !$status->isOK() ) {
+			wfThumbError( 500, 'Could not stream the file', null, array(
+				'file' => $thumbName, 'path' => $thumbPath, 'error' => $status->getWikiText() ) );
 		}
 	}
 }
@@ -563,9 +568,12 @@ function wfThumbErrorText( $status, $msgText ) {
  *
  * @param int $status
  * @param string $msgHtml HTML
+ * @param string $msgText Short error description, for internal logging. Defaults to $msgHtml.
+ *   Only used for HTTP 500 errors.
+ * @param array $context Error context, for internal logging. Only used for HTTP 500 errors.
  * @return void
  */
-function wfThumbError( $status, $msgHtml ) {
+function wfThumbError( $status, $msgHtml, $msgText = null, $context = array() ) {
 	global $wgShowHostnames;
 
 	header( 'Cache-Control: no-cache' );
@@ -576,6 +584,7 @@ function wfThumbError( $status, $msgHtml ) {
 		HttpStatus::header( 403 );
 		header( 'Vary: Cookie' );
 	} else {
+		LoggerFactory::getInstance( 'thumb' )->error( $msgText ?: $msgHtml, $context );
 		HttpStatus::header( 500 );
 	}
 	if ( $wgShowHostnames ) {
