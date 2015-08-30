@@ -1592,13 +1592,15 @@ class FileRepo {
 	 *
 	 * @param string $virtualUrl
 	 * @param array $headers Additional HTTP headers to send on success
+	 * @param null $status Ugly hack to return a Status object while keeping B/C
 	 * @return bool Success
 	 */
-	public function streamFile( $virtualUrl, $headers = array() ) {
+	public function streamFile( $virtualUrl, $headers = array(), &$status = null ) {
 		$path = $this->resolveToStoragePath( $virtualUrl );
 		$params = array( 'src' => $path, 'headers' => $headers );
 
-		return $this->backend->streamFile( $params )->isOK();
+		$status = $this->backend->streamFile( $params );
+		return $status->isOK();
 	}
 
 	/**

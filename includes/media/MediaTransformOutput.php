@@ -194,17 +194,21 @@ abstract class MediaTransformOutput {
 	 * Stream the file if there were no errors
 	 *
 	 * @param array $headers Additional HTTP headers to send on success
+	 * @param null $status Ugly hack to return a Status object while keeping B/C
 	 * @return bool Success
 	 */
-	public function streamFile( $headers = array() ) {
+	public function streamFile( $headers = array(), &$status = null ) {
 		if ( !$this->path ) {
+			$status = Status::newFatal( 'backend-fail-stream', '<no path>' );
 			return false;
 		} elseif ( FileBackend::isStoragePath( $this->path ) ) {
 			$be = $this->file->getRepo()->getBackend();
-
-			return $be->streamFile( array( 'src' => $this->path, 'headers' => $headers ) )->isOK();
+			$status = $be->streamFile( array( 'src' => $this->path, 'headers' => $headers ) );
+			return $status->isOK();
 		} else { // FS-file
-			return StreamFile::stream( $this->getLocalCopyPath(), $headers );
+			$success = StreamFile::stream( $this->getLocalCopyPath(), $headers );
+			$status = $success ? Status::newGood() : Status::newFatal( 'backend-fail-stream', $this->path );
+			return $success;
 		}
 	}
 
