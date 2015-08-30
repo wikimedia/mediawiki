@@ -1075,6 +1075,7 @@
 	"undelete-show-file-submit": "Ары",
 	"namespace": "ЦӀэчӀыпӀ:",
 	"invert": "Зэшъхьатегъэуцу хэгъэщыгъэр",
+	"tooltip-invert": "Мы плIэмыер гъэнаф, хэхыгъэ цIэчIыпIэм щыщ нэкIубгъомэ яеIэзэнхэр бгъэбылъынэу (ыкIи ехьылIэгъэ цIэчIыпIэр, гъэнэфагъэмэ)",
 	"namespace_association": "ЕхьылӀэгъэ цӀэчӀыпӀэр",
 	"blanknamespace": "(ШъхьаӀ)",
 	"contributions": "{{GENDER:$1|ХэлэжьакIом}} и лэжьыгъэ Iахь",

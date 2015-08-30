@@ -2349,7 +2349,7 @@
 	"tooltip-ca-watch": "Bu sayfayı izleme listenize ekleyin",
 	"tooltip-ca-unwatch": "Bu sayfayı izleme listenizden çıkarın",
 	"tooltip-search": "{{SITENAME}} içinde ara",
-	"tooltip-search-go": "Eğer varsa, tam bu addaki bir sayfaya git",
+	"tooltip-search-go": "Eğer varsa, aynı isimli sayfaya gidin",
 	"tooltip-search-fulltext": "Sayfalarda bu metni ara",
 	"tooltip-p-logo": "Ana sayfayı ziyaret edin",
 	"tooltip-n-mainpage": "Ana sayfaya git",

@@ -1038,7 +1038,7 @@
 	"group-autoconfirmed-member": "Potvrđeni korisnik",
 	"group-bot-member": "bot",
 	"group-sysop-member": "{{GENDER:$1|administrator|administratorica}}",
-	"group-bureaucrat-member": "Birokrat",
+	"group-bureaucrat-member": "{{GENDER:$1|birokrat|birokratica}}",
 	"group-suppress-member": "Nadzornik",
 	"grouppage-user": "{{ns:project}}:Korisnici",
 	"grouppage-autoconfirmed": "{{ns:project}}:Potvrđeni korisnici",
