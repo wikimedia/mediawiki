@@ -194,18 +194,29 @@ abstract class MediaTransformOutput {
 	 * Stream the file if there were no errors
 	 *
 	 * @param array $headers Additional HTTP headers to send on success
+	 * @return Status
+	 */
+	public function streamFileWithStatus( $headers = array() ) {
+		if ( !$this->path ) {
+			return Status::newFatal( 'backend-fail-stream', '<no path>' );
+		} elseif ( FileBackend::isStoragePath( $this->path ) ) {
+			$be = $this->file->getRepo()->getBackend();
+			return $be->streamFile( array( 'src' => $this->path, 'headers' => $headers ) );
+		} else { // FS-file
+			$success = StreamFile::stream( $this->getLocalCopyPath(), $headers );
+			return $success ? Status::newGood() : Status::newFatal( 'backend-fail-stream', $this->path );
+		}
+	}
+
+	/**
+	 * Stream the file if there were no errors
+	 *
+	 * @deprecated since 1.26, use streamFileWithStatus
+	 * @param array $headers Additional HTTP headers to send on success
 	 * @return bool Success
 	 */
 	public function streamFile( $headers = array() ) {
-		if ( !$this->path ) {
-			return false;
-		} elseif ( FileBackend::isStoragePath( $this->path ) ) {
-			$be = $this->file->getRepo()->getBackend();
-
-			return $be->streamFile( array( 'src' => $this->path, 'headers' => $headers ) )->isOK();
-		} else { // FS-file
-			return StreamFile::stream( $this->getLocalCopyPath(), $headers );
-		}
+		$this->streamFileWithStatus( $headers )->isOK();
 	}
 
 	/**
