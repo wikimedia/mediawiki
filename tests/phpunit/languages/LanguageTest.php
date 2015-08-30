@@ -1030,7 +1030,7 @@ class LanguageTest extends LanguageClassesTestCase {
 		return array(
 			array(
 				0,
-				"0 B",
+				"0 bytes",
 				"Zero bytes"
 			),
 			array(
@@ -1046,7 +1046,7 @@ class LanguageTest extends LanguageClassesTestCase {
 			array(
 				1024 * 1024 * 1024,
 				"1 GB",
-				"1 gigabytes"
+				"1 gigabyte"
 			),
 			array(
 				pow( 1024, 4 ),
