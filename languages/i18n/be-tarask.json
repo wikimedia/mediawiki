@@ -1339,6 +1339,7 @@
 	"upload-dialog-label-select-file": "Абраць файл",
 	"upload-dialog-label-infoform-title": "Падрабязнасьці",
 	"upload-dialog-label-infoform-name": "Назва",
+	"upload-dialog-label-infoform-description": "Апісаньне",
 	"backend-fail-stream": "Немагчыма накіраваць файл $1.",
 	"backend-fail-backup": "Немагчыма зрабіць рэзэрвовую копію файла $1.",
 	"backend-fail-notexists": "Файл $1 не існуе.",

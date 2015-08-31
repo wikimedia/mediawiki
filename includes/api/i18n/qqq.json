@@ -509,7 +509,7 @@
 	"apihelp-query+backlinks-param-dir": "{{doc-apihelp-param|query+backlinks|dir}}",
 	"apihelp-query+backlinks-param-filterredir": "{{doc-apihelp-param|query+backlinks|filterredir}}",
 	"apihelp-query+backlinks-param-limit": "{{doc-apihelp-param|query+backlinks|limit}}",
-	"apihelp-query+backlinks-param-redirect": "{{doc-apihelp-param|query+backlinks|redirect}}",
+	"apihelp-query+backlinks-param-redirect": "\"Is halved\" means that the limits are half of the usual ones.\n----\n{{doc-apihelp-param|query+backlinks|redirect}}",
 	"apihelp-query+backlinks-example-simple": "{{doc-apihelp-example|query+backlinks}}",
 	"apihelp-query+backlinks-example-generator": "{{doc-apihelp-example|query+backlinks}}",
 	"apihelp-query+blocks-description": "{{doc-apihelp-description|query+blocks}}",

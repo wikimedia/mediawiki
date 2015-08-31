@@ -999,7 +999,7 @@
 	"rows": "Righe:",
 	"columns": "Colonne:",
 	"searchresultshead": "Ricerca",
-	"stub-threshold": "Valore minimo per i <a href=\"#\" class=\"stub\">link agli abbozzi</a> (in byte):",
+	"stub-threshold": "Valore minimo per i <a href=\"#\" class=\"stub\">collegamenti agli abbozzi</a> (in byte):",
 	"stub-threshold-disabled": "Disattivato",
 	"recentchangesdays": "Numero di giorni da mostrare nelle ultime modifiche:",
 	"recentchangesdays-max": "(massimo $1 {{PLURAL:$1|giorno|giorni}})",
