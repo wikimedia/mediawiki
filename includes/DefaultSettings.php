@@ -7721,6 +7721,24 @@ $wgVirtualRestConfig = array(
 $wgSearchRunSuggestedQueryPercent = 1;
 
 /**
+ * When set, prompts mediawiki to use a thumbnailing service instead of its built-in
+ * thumbnailing
+ *
+ * Example config for thumbor:
+ *
+ * $wgThumbnailingService = array(
+ * 	'type' => 'thumbor',
+ * 	'uri' => 'http://127.0.0.1:8888/unsafe/',
+ * 	'dimensionsSeparator' => 'x',
+ * 	'sourceParameter' => '/',
+ * );
+ *
+ * @var array|bool
+ * @since 1.26
+ */
+$wgThumbnailingService = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}

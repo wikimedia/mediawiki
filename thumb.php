@@ -87,7 +87,7 @@ function wfThumbHandle404() {
  * @return void
  */
 function wfStreamThumb( array $params ) {
-	global $wgVaryOnXFP;
+	global $wgVaryOnXFP, $wgThumbnailingService;
 
 	$headers = array(); // HTTP headers to send
 
@@ -314,6 +314,10 @@ function wfStreamThumb( array $params ) {
 		return;
 	}
 
+	if ( $wgThumbnailingService && wfStreamFromService( $img, $params, $headers ) ) {
+		return;
+	}
+
 	$user = RequestContext::getMain()->getUser();
 	if ( !wfThumbIsStandard( $img, $params ) && $user->pingLimiter( 'renderfile-nonstandard' ) ) {
 		wfThumbError( 429, wfMessage( 'actionthrottledtext' )->parse() );
@@ -354,6 +358,74 @@ function wfStreamThumb( array $params ) {
 			wfThumbError( 500, 'Could not stream the file' );
 		}
 	}
+}
+
+/**
+ * Streams the thumbnail from a configured thumbnailing service
+ *
+ * @param File $img Original
+ * @param array $params Thumbnailing parameters
+ * @param array $headers HTTP headers to return with the thumbnail
+ * @return bool True if successful, false otherwise
+ */
+function wfStreamFromService( File $img, array $params, array $headers ) {
+	global $wgThumbnailingService, $wgSharpenParameter, $wgSharpenReductionThreshold;
+
+	// Only simple thumbnailing requests are currently supported
+	if ( !isset( $params['width'] ) || count( $params ) !== 1 ) {
+		return false;
+	}
+
+	$width = $params['width'];
+	$height = File::scaleHeight( $img->getWidth(), $img->getHeight(), $width );
+
+	$type = StreamFile::contentTypeFromPath( $img->getUrl() );
+
+	$supportedFormats = array( 'image/jpeg', 'image/png' );
+
+	// Service thumbnailing is only supported for some formats at the moment
+	if ( !$type || !in_array( $type, $supportedFormats ) ) {
+		return false;
+	}
+
+	$headers[] = "Content-type: $type";
+
+	$serviceExtraParameters = '';
+
+	if ( $wgThumbnailingService['type'] === 'thumbor' ) {
+		if ( $type === 'image/jpeg' ) {
+			if ( ( $width + $height )
+				/ ( $img->getWidth() + $img->getHeight() )
+				< $wgSharpenReductionThreshold
+			) {
+				list( $radius, $sigma ) = explode( 'x', $wgSharpenParameter );
+				$sigma /= 10;
+
+				$serviceExtraParameters = '/filters:sharpen(' . $sigma . ',0,false)';
+			}
+		}
+	}
+
+	$serviceUrl = $wgThumbnailingService['uri'] . $width
+		. $wgThumbnailingService['dimensionsSeparator'] . $height . $serviceExtraParameters
+		. $wgThumbnailingService['sourceParameter'] . $img->getCanonicalUrl();
+
+	foreach ( $headers as $header ) {
+		header( $header );
+	}
+
+	$ch = curl_init();
+
+	curl_setopt( $ch, CURLOPT_URL, $serviceUrl );
+
+	if ( !curl_exec( $ch ) ) {
+		curl_close( $ch );
+		return false;
+	}
+
+	curl_close( $ch );
+
+	return true;
 }
 
 /**
