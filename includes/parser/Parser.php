@@ -1283,8 +1283,6 @@ class Parser {
 	 * @return string
 	 */
 	private function internalParseHalfParsed( $text, $isMain = true, $linestart = true ) {
-		global $wgUseTidy, $wgAlwaysUseTidy;
-
 		$text = $this->mStripState->unstripGeneral( $text );
 
 		if ( $isMain ) {
@@ -1335,7 +1333,7 @@ class Parser {
 
 		$text = Sanitizer::normalizeCharReferences( $text );
 
-		if ( ( $wgUseTidy && $this->mOptions->getTidy() ) || $wgAlwaysUseTidy ) {
+		if ( MWTidy::isEnabled() && $this->mOptions->getTidy() ) {
 			$text = MWTidy::tidy( $text );
 		} else {
 			# attempt to sanitize at least some nesting problems

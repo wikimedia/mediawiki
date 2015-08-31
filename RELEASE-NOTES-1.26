@@ -29,6 +29,7 @@ production.
 * Fields in ParserOptions are now private. Use the accessors instead.
 * Custom LESS functions (defined via $wgResourceLoaderLESSFunctions)
   have been removed, after being deprecated in 1.24.
+* $wgAlwaysUseTidy has been removed.
 
 === New features in 1.26 ===
 * (T51506) Now action=info gives estimates of actual watchers for a page.
