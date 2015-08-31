@@ -7,8 +7,7 @@ class TidyTest extends MediaWikiTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		$check = MWTidy::tidy( '' );
-		if ( strpos( $check, '<!--' ) !== false ) {
+		if ( !MWTidy::isEnabled() ) {
 			$this->markTestSkipped( 'Tidy not found' );
 		}
 	}

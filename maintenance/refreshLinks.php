@@ -73,7 +73,7 @@ class RefreshLinks extends Maintenance {
 	private function doRefreshLinks( $start, $newOnly = false,
 		$end = null, $redirectsOnly = false, $oldRedirectsOnly = false
 	) {
-		global $wgParser, $wgUseTidy;
+		global $wgParser;
 
 		$reportingInterval = 100;
 		$dbr = wfGetDB( DB_SLAVE );
@@ -87,9 +87,6 @@ class RefreshLinks extends Maintenance {
 
 		# Don't generate extension images (e.g. Timeline)
 		$wgParser->clearTagHooks();
-
-		# Don't use HTML tidy
-		$wgUseTidy = false;
 
 		$what = $redirectsOnly ? "redirects" : "links";
 

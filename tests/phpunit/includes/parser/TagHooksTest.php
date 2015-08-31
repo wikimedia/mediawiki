@@ -19,12 +19,6 @@ class TagHookTest extends MediaWikiTestCase {
 		return array( array( "foo<bar" ), array( "foo>bar" ), array( "foo\nbar" ), array( "foo\rbar" ) );
 	}
 
-	protected function setUp() {
-		parent::setUp();
-
-		$this->setMwGlobals( 'wgAlwaysUseTidy', false );
-	}
-
 	/**
 	 * @dataProvider provideValidNames
 	 * @covers Parser::setHook
