@@ -10,6 +10,8 @@ THIS IS NOT YET A RELEASE!
 * (T98975) Fix having multiple callbacks for a single hook.
 * (T107632) maintenance/refreshLinks.php did not always remove all links
   pointing to nonexistent pages.
+* (T104142) $wgEmergencyContact and $wgPasswordSender now use their default
+  value if set to an empty string.
 
 == MediaWiki 1.25.2 ==
 

@@ -502,11 +502,11 @@ unset( $serverParts );
 
 // Set defaults for configuration variables
 // that are derived from the server name by default
-if ( $wgEmergencyContact === false ) {
+// Note: $wgEmergencyContact and $wgPasswordSender may be false or empty string (T104142)
+if ( !$wgEmergencyContact ) {
 	$wgEmergencyContact = 'wikiadmin@' . $wgServerName;
 }
-
-if ( $wgPasswordSender === false ) {
+if ( !$wgPasswordSender ) {
 	$wgPasswordSender = 'apache@' . $wgServerName;
 }
 
