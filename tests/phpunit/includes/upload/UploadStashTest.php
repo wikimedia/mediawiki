@@ -20,7 +20,7 @@ class UploadStashTest extends MediaWikiTestCase {
 		parent::setUp();
 
 		// Setup a file for bug 29408
-		$this->bug29408File = __DIR__ . '/bug29408';
+		$this->bug29408File = wfTempDir() . '/bug29408';
 		file_put_contents( $this->bug29408File, "\x00" );
 
 		self::$users = array(
