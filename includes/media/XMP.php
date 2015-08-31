@@ -399,10 +399,6 @@ class XMPReader implements LoggerAwareInterface {
 				)
 			);
 			$this->results = array();
-
-			if ( $allOfIt ) {
-				$this->destroyXMLParser();
-			}
 			return false;
 		}
 		if ( $allOfIt ) {
