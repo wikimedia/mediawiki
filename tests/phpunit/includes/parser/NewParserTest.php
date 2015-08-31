@@ -160,10 +160,11 @@ class NewParserTest extends MediaWikiTestCase {
 		$this->djVuSupport = new DjVuSupport();
 		// Tidy support
 		$this->tidySupport = new TidySupport();
+		$tmpGlobals['wgTidyConfig'] = null;
 		$tmpGlobals['wgUseTidy'] = false;
 		$tmpGlobals['wgAlwaysUseTidy'] = false;
 		$tmpGlobals['wgDebugTidy'] = false;
-		$tmpGlobals['wgTidyConf'] = $IP . '/includes/tidy.conf';
+		$tmpGlobals['wgTidyConf'] = $IP . '/includes/tidy/tidy.conf';
 		$tmpGlobals['wgTidyOpts'] = '';
 		$tmpGlobals['wgTidyInternal'] = $this->tidySupport->isInternal();
 
@@ -184,6 +185,8 @@ class NewParserTest extends MediaWikiTestCase {
 
 		$wgNamespaceAliases['Image'] = $this->savedWeirdGlobals['image_alias'];
 		$wgNamespaceAliases['Image_talk'] = $this->savedWeirdGlobals['image_talk_alias'];
+
+		MWTidy::destroySingleton();
 
 		// Restore backends
 		RepoGroup::destroySingleton();
@@ -454,6 +457,7 @@ class NewParserTest extends MediaWikiTestCase {
 			$GLOBALS[$var] = $val;
 		}
 
+		MWTidy::destroySingleton();
 		MagicWord::clearCache();
 
 		# The entries saved into RepoGroup cache with previous globals will be wrong.

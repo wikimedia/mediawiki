@@ -4116,44 +4116,60 @@ $wgEnableImageWhitelist = true;
 $wgAllowImageTag = false;
 
 /**
- * $wgUseTidy: use tidy to make sure HTML output is sane.
- * Tidy is a free tool that fixes broken HTML.
- * See http://www.w3.org/People/Raggett/tidy/
+ * Configuration for HTML postprocessing tool. Set this to a configuration
+ * array to enable an external tool. Dave Raggett's "HTML Tidy" is typically
+ * used. See http://www.w3.org/People/Raggett/tidy/
  *
- * - $wgTidyBin should be set to the path of the binary and
- * - $wgTidyConf to the path of the configuration file.
- * - $wgTidyOpts can include any number of parameters.
- * - $wgTidyInternal controls the use of the PECL extension or the
- *   libtidy (PHP >= 5) extension to use an in-process tidy library instead
- *   of spawning a separate program.
- *   Normally you shouldn't need to override the setting except for
- *   debugging. To install, use 'pear install tidy' and add a line
- *   'extension=tidy.so' to php.ini.
+ * If this is null and $wgUseTidy is true, the deprecated configuration
+ * parameters will be used instead.
+ *
+ * If this is null and $wgUseTidy is false, a pure PHP fallback will be used.
+ *
+ * Keys are:
+ *  - driver: May be:
+ *    - RaggettInternalHHVM: Use the limited-functionality HHVM extension
+ *    - RaggettInternalPHP: Use the PECL extension
+ *    - RaggettExternal: Shell out to an external binary (tidyBin)
+ *
+ *  - tidyConfigFile: Path to configuration file for any of the Raggett drivers
+ *  - debugComment: True to add a comment to the output with warning messages
+ *  - tidyBin: For RaggettExternal, the path to the tidy binary.
+ *  - tidyCommandLine: For RaggettExternal, additional command line options.
+ */
+$wgTidyConfig = null;
+
+/**
+ * Set this to true to use the deprecated tidy configuration parameters.
+ * @deprecated use $wgTidyConfig
  */
 $wgUseTidy = false;
 
 /**
- * @see $wgUseTidy
+ * Validate the complete skin output using Tidy
  */
 $wgAlwaysUseTidy = false;
 
 /**
- * @see $wgUseTidy
+ * The path to the tidy binary.
+ * @deprecated Use $wgTidyConfig['tidyBin']
  */
 $wgTidyBin = 'tidy';
 
 /**
- * @see $wgUseTidy
+ * The path to the tidy config file
+ * @deprecated Use $wgTidyConfig['tidyConfigFile']
  */
-$wgTidyConf = $IP . '/includes/tidy.conf';
+$wgTidyConf = $IP . '/includes/tidy/tidy.conf';
 
 /**
- * @see $wgUseTidy
+ * The command line options to the tidy binary
+ * @deprecated Use $wgTidyConfig['tidyCommandLine']
  */
 $wgTidyOpts = '';
 
 /**
- * @see $wgUseTidy
+ * Set this to true to use the tidy extension
+ * @deprecated Use $wgTidyConfig['driver']
  */
 $wgTidyInternal = extension_loaded( 'tidy' );
 
