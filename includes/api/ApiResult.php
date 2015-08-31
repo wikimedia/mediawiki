@@ -108,7 +108,7 @@ class ApiResult implements ApiSerializable {
 	const META_TYPE = '_type';
 
 	/**
-	 * Key for the metatata item whose value specifies the name used for the
+	 * Key for the metadata item whose value specifies the name used for the
 	 * kvp key in the alternative output format with META_TYPE 'kvp' or
 	 * 'BCkvp', i.e. the "name" in <container><item name="key">value</item></container>.
 	 * Value is string.
