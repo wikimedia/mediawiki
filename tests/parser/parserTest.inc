@@ -889,9 +889,10 @@ class ParserTest {
 			'wgDisableTitleConversion' => false,
 			// Tidy options.
 			'wgUseTidy' => isset( $opts['tidy'] ),
+			'wgTidyConfig' => null,
 			'wgAlwaysUseTidy' => false,
 			'wgDebugTidy' => false,
-			'wgTidyConf' => $IP . '/includes/tidy.conf',
+			'wgTidyConf' => $IP . '/includes/tidy/tidy.conf',
 			'wgTidyOpts' => '',
 			'wgTidyInternal' => $this->tidySupport->isInternal(),
 		);
@@ -936,6 +937,7 @@ class ParserTest {
 		$wgHooks['ParserGetVariableValueTs'][] = 'ParserTest::getFakeTimestamp';
 
 		MagicWord::clearCache();
+		MWTidy::destroySingleton();
 
 		return $context;
 	}
@@ -1218,6 +1220,7 @@ class ParserTest {
 		FileBackendGroup::destroySingleton();
 		LockManagerGroup::destroySingletons();
 		LinkCache::singleton()->clear();
+		MWTidy::destroySingleton();
 
 		foreach ( $this->savedGlobals as $var => $val ) {
 			$GLOBALS[$var] = $val;
