@@ -38,8 +38,8 @@ $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Special',
 	NS_TALK             => 'Diskusija',
-	NS_USER             => 'Lietotājs',
-	NS_USER_TALK        => 'Lietotāja_diskusija',
+	NS_USER             => 'Dalībnieks',
+	NS_USER_TALK        => 'Dalībnieka_diskusija',
 	NS_PROJECT_TALK     => '{{grammar:ģenitīvs|$1}}_diskusija',
 	NS_FILE             => 'Attēls',
 	NS_FILE_TALK        => 'Attēla_diskusija',
@@ -52,6 +52,17 @@ $namespaceNames = array(
 	NS_CATEGORY         => 'Kategorija',
 	NS_CATEGORY_TALK    => 'Kategorijas_diskusija',
 );
+
+$namespaceAliases = array(
+	'Lietotājs' => NS_USER,
+	'Lietotāja_diskusija' => NS_USER_TALK,
+);
+
+$wgExtraGenderNamespaces = array(
+	NS_USER => array( 'male' => 'Dalībnieks', 'female' => 'Dalībniece' ),
+	NS_USER_TALK => array( 'male' => 'Dalībnieka_diskusija', 'female' => 'Dalībnieces_diskusija' )
+);
+
 $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 
 /**
