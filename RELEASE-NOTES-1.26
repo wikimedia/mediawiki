@@ -79,6 +79,8 @@ production.
 * (T53283) load.php sometimes sends 304 response without full headers
 * (T65198) Talk page tabs now have a "rel=discussion" attribute
 * (T98841) {{msgnw:}} now preserves comments even when subst: is not used.
+* (T104142) $wgEmergencyContact and $wgPasswordSender now use their default
+  value if set to an empty string.
 
 === Action API changes in 1.26 ===
 * New-style continuation is now the default for action=continue. Clients may
