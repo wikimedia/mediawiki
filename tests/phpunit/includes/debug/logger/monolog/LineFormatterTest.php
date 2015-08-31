@@ -28,6 +28,13 @@ use TestingAccessWrapper;
 
 class LineFormatterTest extends MediaWikiTestCase {
 
+	public function setUp() {
+		if ( !class_exists( 'Monolog\Formatter\LineFormatter' ) ) {
+			$this->markTestSkipped( 'This test requires monolog to be installed' );
+		}
+		parent::setUp();
+	}
+
 	/**
 	 * @covers LineFormatter::normalizeException
 	 */
