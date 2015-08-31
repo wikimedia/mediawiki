@@ -457,10 +457,9 @@ class WANObjectCache {
 	 *               Other threads will try to use stale values if possible.
 	 *               If, on miss, the time since expiration is low, the assumption
 	 *               is that the key is hot and that a stampede is worth avoiding.
-	 *   - tempTTL : when 'lockTSE' is set, this determines the TTL of the temp
-	 *               key used to cache values while a key is tombstoned.
-	 *               This avoids excessive regeneration of hot keys on delete() but
-	 *               may result in stale values.
+	 *   - tempTTL : TTL of the temp key used to cache values while a key is tombstoned.
+	 *               This avoids excessive regeneration of hot keys on delete() but may
+	 *               result in stale values.
 	 * @return mixed Value to use for the key
 	 */
 	final public function getWithSetCallback(
