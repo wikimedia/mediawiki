@@ -711,25 +711,27 @@
 			/**
 			 * Mapping of registered modules.
 			 *
-			 * See #implement for exact details on support for script, style and messages.
+			 * See #implement and #execute for exact details on support for script, style and messages.
 			 *
 			 * Format:
 			 *
 			 *     {
 			 *         'moduleName': {
-			 *             // From startup mdoule
-			 *             'version': '################' (Hash)
+			 *             // From mw.loader.register() in startup module
+			 *             'version': '########' (hash)
 			 *             'dependencies': ['required.foo', 'bar.also', ...], (or) function () {}
 			 *             'group': 'somegroup', (or) null
 			 *             'source': 'local', (or) 'anotherwiki'
 			 *             'skip': 'return !!window.Example', (or) null
+			 *
+			 *             // Set from execute() or mw.loader.state()
 			 *             'state': 'registered', 'loaded', 'loading', 'ready', 'error', or 'missing'
 			 *
-			 *             // Added during implementation
+			 *             // Optionally added at run-time by mw.loader.implement()
 			 *             'skipped': true
-			 *             'script': ...
-			 *             'style': ...
-			 *             'messages': { 'key': 'value' }
+			 *             'script': closure, array of urls, or string
+			 *             'style': { ... } (see #execute)
+			 *             'messages': { 'key': 'value', ... }
 			 *         }
 			 *     }
 			 *
@@ -1755,10 +1757,10 @@
 				 * The reason css strings are not concatenated anymore is bug 31676. We now check
 				 * whether it's safe to extend the stylesheet.
 				 *
-				 * @param {Object} [msgs] List of key/value pairs to be added to mw#messages.
+				 * @param {Object} [messages] List of key/value pairs to be added to mw#messages.
 				 * @param {Object} [templates] List of key/value pairs to be added to mw#templates.
 				 */
-				implement: function ( module, script, style, msgs, templates ) {
+				implement: function ( module, script, style, messages, templates ) {
 					// Validate input
 					if ( typeof module !== 'string' ) {
 						throw new Error( 'module must be of type string, not ' + typeof module );
@@ -1769,8 +1771,8 @@
 					if ( style && !$.isPlainObject( style ) ) {
 						throw new Error( 'style must be of type object, not ' + typeof style );
 					}
-					if ( msgs && !$.isPlainObject( msgs ) ) {
-						throw new Error( 'msgs must be of type object, not a ' + typeof msgs );
+					if ( messages && !$.isPlainObject( messages ) ) {
+						throw new Error( 'messages must be of type object, not a ' + typeof messages );
 					}
 					if ( templates && !$.isPlainObject( templates ) ) {
 						throw new Error( 'templates must be of type object, not a ' + typeof templates );
@@ -1786,7 +1788,7 @@
 					// Attach components
 					registry[module].script = script || [];
 					registry[module].style = style || {};
-					registry[module].messages = msgs || {};
+					registry[module].messages = messages || {};
 					registry[module].templates = templates || {};
 					// The module may already have been marked as erroneous
 					if ( $.inArray( registry[module].state, ['error', 'missing'] ) === -1 ) {
