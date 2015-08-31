@@ -31,6 +31,13 @@ class TextContentTest extends MediaWikiLangTestCase {
 			'wgCapitalLinks' => true,
 			'wgHooks' => array(), // bypass hook ContentGetParserOutput that force custom rendering
 		) );
+
+		MWTidy::destroySingleton();
+	}
+
+	protected function tearDown() {
+		MWTidy::destroySingleton();
+		parent::tearDown();
 	}
 
 	public function newContent( $text ) {

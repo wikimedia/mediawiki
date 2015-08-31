@@ -454,15 +454,13 @@ class Sanitizer {
 	public static function removeHTMLtags( $text, $processCallback = null,
 		$args = array(), $extratags = array(), $removetags = array()
 	) {
-		global $wgUseTidy;
-
 		extract( self::getRecognizedTagData( $extratags, $removetags ) );
 
 		# Remove HTML comments
 		$text = Sanitizer::removeHTMLcomments( $text );
 		$bits = explode( '<', $text );
 		$text = str_replace( '>', '&gt;', array_shift( $bits ) );
-		if ( !$wgUseTidy ) {
+		if ( !MWTidy::isEnabled() ) {
 			$tagstack = $tablestack = array();
 			foreach ( $bits as $x ) {
 				$regs = array();
