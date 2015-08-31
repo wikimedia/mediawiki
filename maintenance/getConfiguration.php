@@ -184,7 +184,7 @@ class GetConfiguration extends Maintenance {
 			}
 
 			return true;
-		} elseif ( is_scalar( $value ) ) {
+		} elseif ( is_scalar( $value ) || $value === null ) {
 			return true;
 		}
 
