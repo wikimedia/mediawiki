@@ -71,6 +71,11 @@ class HTMLTextAreaField extends HTMLFormField {
 			'readonly' => 'readOnly',
 		) );
 
+		if ( isset( $attribs['readOnly'] ) ) {
+			// this needs to be set to a boolean value - hack??
+			$attribs['readOnly'] = true;
+		}
+
 		return new OOUI\TextInputWidget( array(
 			'id' => $this->mID,
 			'name' => $this->mName,
