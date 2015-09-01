@@ -292,4 +292,55 @@ class ObjectCache {
 		self::$instances = array();
 		self::$wanInstances = array();
 	}
+
+	/**
+	 * Make a cache key for the local wiki.
+	 *
+	 * @param string $args,...
+	 * @return string
+	 */
+	public static function key( /*...*/ ) {
+		global $wgCachePrefix;
+		$prefix = $wgCachePrefix === false ? wfWikiID() : $wgCachePrefix;
+		$args = func_get_args();
+		$key = $prefix . ':' . implode( ':', $args );
+		return strtr( $key, ' ', '_' );
+	}
+
+	/**
+	 * Make a cache key for a foreign wiki.
+	 *
+	 * Must match what key() would produce in context of the foreign wiki.
+	 *
+	 * @param string $dbName
+	 * @param string $dbPrefix
+	 * @param string $args,...
+	 * @return string
+	 */
+	public static function foreignKey( $dbName, $dbPrefix /*...*/ ) {
+		$args = array_slice( func_get_args(), 2 );
+		if ( $dbPrefix ) {
+			// Match wfWikiID() logic
+			$key = "$dbName-$dbPrefix:" . implode( ':', $args );
+		} else {
+			$key = "$dbName:" . implode( ':', $args );
+		}
+		return strtr( $key, ' ', '_' );
+	}
+
+	/**
+	 * Make a cache key with a database-agnostic prefix.
+	 *
+	 * Use this for values that may be read and written by other wikis.
+	 *
+	 * @since 1.26
+	 * @param string $args,...
+	 * @return string
+	 */
+	public static function sharedKey( /*...*/ ) {
+		$args = func_get_args();
+		$key = 'global:' . implode( ':', $args );
+		return strtr( $key, ' ', '_' );
+	}
+
 }

@@ -3512,53 +3512,39 @@ function wfGetPrecompiledData( $name ) {
 /**
  * Make a cache key for the local wiki.
  *
+ * @deprecated since 1.26 Use ObjectCache::key.
  * @param string $args,...
  * @return string
  */
 function wfMemcKey( /*...*/ ) {
-	global $wgCachePrefix;
-	$prefix = $wgCachePrefix === false ? wfWikiID() : $wgCachePrefix;
 	$args = func_get_args();
-	$key = $prefix . ':' . implode( ':', $args );
-	return strtr( $key, ' ', '_' );
+	return call_user_func_array( 'ObjectCache::key', $args );
 }
 
 /**
  * Make a cache key for a foreign DB.
  *
- * Must match what wfMemcKey() would produce in context of the foreign wiki.
- *
+ * @deprecated since 1.26 Use ObjectCache::foreignKey.
  * @param string $db
  * @param string $prefix
  * @param string $args,...
  * @return string
  */
 function wfForeignMemcKey( $db, $prefix /*...*/ ) {
-	$args = array_slice( func_get_args(), 2 );
-	if ( $prefix ) {
-		// Match wfWikiID() logic
-		$key = "$db-$prefix:" . implode( ':', $args );
-	} else {
-		$key = $db . ':' . implode( ':', $args );
-	}
-	return strtr( $key, ' ', '_' );
+	$args = func_get_args();
+	return call_user_func_array( 'ObjectCache::foreignKey', $args );
 }
 
 /**
- * Make a cache key with database-agnostic prefix.
+ * Make a cache key with a database-agnostic prefix.
  *
- * Doesn't have a wiki-specific namespace. Uses a generic 'global' prefix
- * instead. Must have a prefix as otherwise keys that use a database name
- * in the first segment will clash with wfMemcKey/wfForeignMemcKey.
- *
- * @since 1.26
+ * @deprecated since 1.26 Use ObjectCache::sharedKey.
  * @param string $args,...
  * @return string
  */
 function wfGlobalCacheKey( /*...*/ ) {
 	$args = func_get_args();
-	$key = 'global:' . implode( ':', $args );
-	return strtr( $key, ' ', '_' );
+	return call_user_func_array( 'ObjectCache::sharedKey', $args );
 }
 
 /**
