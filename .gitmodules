@@ -182,3 +182,7 @@
 	path = extensions/DynamicPageList
 	url = https://github.com/wikimedia/mediawiki-extensions-intersection
 	branch = REL1_25
+[submodule "extensions/TemplateData"]
+	path = extensions/TemplateData
+	url = https://github.com/wikimedia/mediawiki-extensions-TemplateData
+	branch = REL1_25
