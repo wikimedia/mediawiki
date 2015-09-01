@@ -751,7 +751,11 @@ class Preferences {
 			'type' => 'select',
 			'section' => 'rendering/advancedrendering',
 			'options' => $stubThresholdOptions,
-			'label-raw' => $context->msg( 'stub-threshold' )->text(), // Raw HTML message. Yay?
+			// This is not a raw HTML message; label-raw is needed for the manual <a></a>
+			'label-raw' => $context->msg( 'stub-threshold' )->rawParams(
+				'<a href="#" class="stub">' .
+				$context->msg( 'stub-threshold-sample-link' )->parse() .
+				'</a>' )->parse(),
 		);
 
 		$defaultPreferences['showhiddencats'] = array(
