@@ -2270,30 +2270,33 @@ class Language {
 
 	/**
 	 * Get a format string for a given type and preference
-	 * @param string $type May be date, time or both
-	 * @param string $pref The format name as it appears in Messages*.php
+	 * @param string $type May be 'date', 'time', 'both', or 'pretty'.
+	 * @param string $pref The format name as it appears in Messages*.php under
+	 *  $datePreferences.
 	 *
 	 * @since 1.22 New type 'pretty' that provides a more readable timestamp format
 	 *
 	 * @return string
 	 */
 	function getDateFormatString( $type, $pref ) {
+		$wasDefault = false;
+		if ( $pref == 'default' ) {
+			$wasDefault = true;
+			$pref = $this->getDefaultDateFormat();
+		}
+
 		if ( !isset( $this->dateFormatStrings[$type][$pref] ) ) {
-			if ( $pref == 'default' ) {
+			$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
+
+			if ( $type === 'pretty' && $df === null ) {
+				$df = $this->getDateFormatString( 'date', $pref );
+			}
+
+			if ( !$wasDefault && $df === null ) {
 				$pref = $this->getDefaultDateFormat();
 				$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
-			} else {
-				$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
-
-				if ( $type === 'pretty' && $df === null ) {
-					$df = $this->getDateFormatString( 'date', $pref );
-				}
-
-				if ( $df === null ) {
-					$pref = $this->getDefaultDateFormat();
-					$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
-				}
 			}
+
 			$this->dateFormatStrings[$type][$pref] = $df;
 		}
 		return $this->dateFormatStrings[$type][$pref];
