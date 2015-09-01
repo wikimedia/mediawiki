@@ -21,5 +21,6 @@
 	"ooui-dialog-process-retry": "Thử lại",
 	"ooui-dialog-process-continue": "Tiếp tục",
 	"ooui-selectfile-not-supported": "Không hỗ trợ việc chọn tập tin",
-	"ooui-selectfile-placeholder": "Không có tập tin nào được chọn"
+	"ooui-selectfile-placeholder": "Không có tập tin nào được chọn",
+	"ooui-selectfile-dragdrop-placeholder": "Thả tập tin vào đây (hoặc nhấn chuột để duyệt)"
 }
