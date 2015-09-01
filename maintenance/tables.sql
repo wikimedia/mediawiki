@@ -3,7 +3,9 @@
 -- not have to run it by itself unless doing a manual install.
 
 -- This is a shared schema file used for both MySQL and SQLite installs.
-
+--
+-- For more documentation on the database schema, see
+-- https://www.mediawiki.org/wiki/Manual:Database_layout
 --
 -- General notes:
 --
