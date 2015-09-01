@@ -190,6 +190,7 @@ function wfStreamThumb( array $params ) {
 				if ( $targetFile->exists() ) {
 					$newThumbName = $targetFile->thumbName( $params );
 					if ( $isOld ) {
+						/** @var array $bits */
 						$newThumbUrl = $targetFile->getArchiveThumbUrl(
 							$bits[0] . '!' . $targetFile->getName(), $newThumbName );
 					} else {
@@ -325,7 +326,7 @@ function wfStreamThumb( array $params ) {
 
 	list( $thumb, $errorMsg ) = wfGenerateThumbnail( $img, $params, $thumbName, $thumbPath );
 
-	/** @var MediaTransformOutput|bool $thumb */
+	/** @var MediaTransformOutput|MediaTransformError|bool $thumb */
 
 	// Check for thumbnail generation errors...
 	$msg = wfMessage( 'thumbnail_error' );
@@ -415,7 +416,7 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath 
 				'fallback' => function () {
 					return wfMessage( 'generic-pool-error' )->parse();
 				},
-				'error' => function ( $status ) {
+				'error' => function ( Status $status ) {
 					return $status->getHTML();
 				}
 			)
@@ -430,6 +431,7 @@ function wfGenerateThumbnail( File $file, array $params, $thumbName, $thumbPath 
 		// Tried to select a page on a non-paged file?
 	}
 
+	/** @noinspection PhpUnusedLocalVariableInspection */
 	$done = true; // no PHP fatal occured
 
 	if ( !$thumb || $thumb->isError() ) {
@@ -500,7 +502,7 @@ function wfExtractThumbRequestInfo( $thumbRel ) {
  */
 function wfExtractThumbParams( $file, $params ) {
 	if ( !isset( $params['thumbName'] ) ) {
-		throw new MWException( "No thumbnail name passed to wfExtractThumbParams" );
+		throw new InvalidArgumentException( "No thumbnail name passed to wfExtractThumbParams" );
 	}
 
 	$thumbname = $params['thumbName'];
@@ -539,7 +541,7 @@ function wfExtractThumbParams( $file, $params ) {
 
 	// As a last ditch fallback, use the traditional common parameters
 	if ( preg_match( '!^(page(\d*)-)*(\d*)px-[^/]*$!', $thumbname, $matches ) ) {
-		list( /* all */, $pagefull, $pagenum, $size ) = $matches;
+		list( /* all */, /* pagefull */, $pagenum, $size ) = $matches;
 		$params['width'] = $size;
 		if ( $pagenum ) {
 			$params['page'] = $pagenum;
@@ -554,7 +556,7 @@ function wfExtractThumbParams( $file, $params ) {
  * Output a thumbnail generation error message
  *
  * @param int $status
- * @param string $msg Plain text (will be html escaped)
+ * @param string $msgText Plain text (will be html escaped)
  * @return void
  */
 function wfThumbErrorText( $status, $msgText ) {
