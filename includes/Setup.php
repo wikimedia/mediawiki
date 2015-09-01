@@ -68,17 +68,18 @@ if ( !empty( $wgActionPaths ) && !isset( $wgActionPaths['view'] ) ) {
 	$wgActionPaths['view'] = $wgArticlePath;
 }
 
+if ( $wgResourceBasePath === null ) {
+	$wgResourceBasePath = $wgScriptPath;
+}
 if ( $wgStylePath === false ) {
-	$wgStylePath = "$wgScriptPath/skins";
+	$wgStylePath = "$wgResourceBasePath/skins";
 }
 if ( $wgLocalStylePath === false ) {
+	// Avoid wgResourceBasePath here since that may point to a different domain (e.g. CDN)
 	$wgLocalStylePath = "$wgScriptPath/skins";
 }
 if ( $wgExtensionAssetsPath === false ) {
-	$wgExtensionAssetsPath = "$wgScriptPath/extensions";
-}
-if ( $wgResourceBasePath === null ) {
-	$wgResourceBasePath = $wgScriptPath;
+	$wgExtensionAssetsPath = "$wgResourceBasePath/extensions";
 }
 
 if ( $wgLogo === false ) {
