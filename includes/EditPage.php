@@ -655,6 +655,9 @@ class EditPage {
 			$this->getContextTitle()->getPrefixedText()
 		) );
 		$wgOut->addBacklinkSubtitle( $this->getContextTitle() );
+		$wgOut->addHTML( $this->editFormPageTop );
+		$wgOut->addHTML( $this->editFormTextTop );
+
 		$wgOut->addWikiText( $wgOut->formatPermissionsErrorMessage( $permErrors, 'edit' ) );
 		$wgOut->addHTML( "<hr />\n" );
 
@@ -668,13 +671,16 @@ class EditPage {
 			$wgOut->addWikiMsg( 'viewsourcetext' );
 		}
 
+		$wgOut->addHTML( $this->editFormTextBeforeContent );
 		$this->showTextbox( $text, 'wpTextbox1', array( 'readonly' ) );
+		$wgOut->addHTML( $this->editFormTextAfterContent );
 
 		$wgOut->addHTML( Html::rawElement( 'div', array( 'class' => 'templatesUsed' ),
 			Linker::formatTemplates( $this->getTemplates() ) ) );
 
 		$wgOut->addModules( 'mediawiki.action.edit.collapsibleFooter' );
 
+		$wgOut->addHTML( $this->editFormTextBottom );
 		if ( $this->mTitle->exists() ) {
 			$wgOut->returnToMain( null, $this->mTitle );
 		}
