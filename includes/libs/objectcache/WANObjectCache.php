@@ -256,11 +256,19 @@ class WANObjectCache {
 	/**
 	 * Purge a key from all clusters
 	 *
-	 * This instantiates a hold-off period where the key cannot be
-	 * written to avoid race conditions where dependent keys get updated
-	 * with a stale value (e.g. from a DB slave). This is implemented by
-	 * storing a special "tombstone" value at the cache key that this
-	 * class recognizes; get() calls will return false for the key.
+	 * This deletes the key and instantiates a hold-off period where the key
+	 * cannot be written to for the next few seconds (HOLDOFF_TTL). This is to
+	 * avoid the following race condition:
+	 *   a) Some DB data changes and delete() is called on a corresponding key
+	 *   b) A request refills the key with a stale value from a lagged DB
+	 *   c) The stale value is stuck there until the key is expired/evicted
+	 *
+	 * This is implemented by storing a special "tombstone" value at the cache
+	 * key that this class recognizes; get() calls will return false for the key
+	 * and any set() calls will refuse to replace tombstone values at the key.
+	 * For this to always avoid writing stale values, the following must hold:
+	 *   a) Replication lag is bounded to being less than HOLDOFF_TTL; or
+	 *   b) If lag is higher, the DB will have gone into read-only mode already
 	 *
 	 * This should only be called when the underlying data (being cached)
 	 * changes in a significant way. If called twice on the same key, then
