@@ -806,7 +806,7 @@
 	"shown-title": "Erakutsi {{PLURAL:$1|emaitza $1|$1 emaitza}} orrialdeko",
 	"viewprevnext": "Ikusi ($1 {{int:pipe-separator}} $2) ($3).",
 	"searchmenu-exists": "'''«[[:$1]]» izena duen orri bat bada wiki honetan.''' {{PLURAL:$2|0=|Ikus, gainera, aurkitutako beste bilaketa emaitzak.}}",
-	"searchmenu-new": "'''Sortu «[[:$1]]» orria wiki honetan!''' {{PLURAL:$2|0=|Ikus, gainera, zure bilaketarekin aurkitutako orria.|Ikus, gainera, bilaketaren emaitzak.}}",
+	"searchmenu-new": "<strong>Sortu «[[:$1]]» orria wiki honetan!<strong> {{PLURAL:$2|0=|Ikus, gainera, zure bilaketarekin aurkitutako orria.|Ikus, gainera, bilaketaren emaitzak.}}",
 	"searchprofile-articles": "Eduki-orriak",
 	"searchprofile-images": "Multimedia",
 	"searchprofile-everything": "Guztia",

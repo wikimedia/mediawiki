@@ -1581,7 +1581,7 @@
 	"upload-dialog-label-infoform-title": "Title for the information form\n{{Identical|Detail}}",
 	"upload-dialog-label-infoform-name": "Label for the file name input\n{{Identical|Name}}",
 	"upload-dialog-label-infoform-description": "Label for the file description input\n{{Identical|Description}}",
-	"upload-dialog-label-usage-title": "Title for the usage form\n{{Identical|Usage}}",
+	"upload-dialog-label-usage-title": "Title for the insert form showing how to use the uploaded item.\n{{Identical|Usage}}",
 	"upload-dialog-label-usage-filename": "Label for the file name input\n{{Identical|Filename}}",
 	"backend-fail-stream": "Parameters:\n* $1 - a filename",
 	"backend-fail-backup": "Parameters:\n* $1 - a filename",

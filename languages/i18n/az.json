@@ -804,7 +804,7 @@
 	"recentchangesdays-max": "Maksimum $1 {{PLURAL:$1|gün|gün}}",
 	"recentchangescount": "Son dəyişikliklərdə başlıq sayı:",
 	"prefs-help-recentchangescount": "Buraya yeni dəyişikliklər, səhifələrin və jurnalların tarixçəsi daxildir.",
-	"savedprefs": "Seçiminiz qeyd edildi.",
+	"savedprefs": "Seçiminiz qəbul edildi.",
 	"timezonelegend": "Vaxt zonası:",
 	"localtime": "Yerli vaxt:",
 	"timezoneuseserverdefault": "Susmaya görə serverdən istifadə ($1)",
