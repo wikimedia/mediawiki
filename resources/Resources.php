@@ -1126,6 +1126,20 @@ return array(
 			'mediawiki.api.upload',
 		),
 	),
+	'mediawiki.ForeignUpload' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.ForeignUpload.js',
+		'dependencies' => array(
+			'mediawiki.ForeignApi',
+			'mediawiki.Upload',
+			'oojs',
+		),
+	),
+	'mediawiki.ForeignStructuredUpload' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.ForeignStructuredUpload.js',
+		'dependencies' => array(
+			'mediawiki.ForeignUpload',
+		),
+	),
 	'mediawiki.Upload.Dialog' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.Upload.Dialog.js',
 		'dependencies' => array(
