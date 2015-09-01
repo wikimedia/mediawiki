@@ -1,7 +1,25 @@
-/*!
+/**
  * Add search suggestions to the search form.
  */
 ( function ( mw, $ ) {
+	/**
+	 * @class mw.searchSuggest
+	 * @singleton
+	 */
+	mw.searchSuggest = {
+		request: function ( api, query, response, maxRows ) {
+			return api.get( {
+				action: 'opensearch',
+				search: query,
+				namespace: 0,
+				limit: maxRows,
+				suggest: ''
+			} ).done( function ( data ) {
+				response( data[ 1 ] );
+			} );
+		}
+	};
+
 	$( function () {
 		var api, map, searchboxesSelectors,
 			// Region where the suggestions box will appear directly below
@@ -172,15 +190,7 @@
 
 					api = api || new mw.Api();
 
-					$.data( node, 'request', api.get( {
-						action: 'opensearch',
-						search: query,
-						namespace: 0,
-						limit: maxRows,
-						suggest: ''
-					} ).done( function ( data ) {
-						response( data[ 1 ] );
-					} ) );
+					$.data( node, 'request', mw.searchSuggest.request( api, query, response, maxRows ) );
 				},
 				cancel: function () {
 					var node = this[0],
