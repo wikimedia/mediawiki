@@ -905,6 +905,11 @@ return array(
 			'mediawiki.api',
 		),
 	),
+	'mediawiki.autonumber' => array(
+		'position' => 'top',
+		'styles' => 'resources/src/mediawiki/mediawiki.autonumber.css',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 	'mediawiki.content.json' => array(
 		'position' => 'top',
 		'styles' => 'resources/src/mediawiki/mediawiki.content.json.css',
