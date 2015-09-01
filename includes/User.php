@@ -3211,7 +3211,7 @@ class User implements IDBAccessObject {
 	 * @param string $permissions,... Permissions to test
 	 * @return bool True if user is allowed to perform *any* of the given actions
 	 */
-	public function isAllowedAny( /*...*/ ) {
+	public function isAllowedAny( $permissions = null ) {
 		$permissions = func_get_args();
 		foreach ( $permissions as $permission ) {
 			if ( $this->isAllowed( $permission ) ) {
@@ -3226,7 +3226,7 @@ class User implements IDBAccessObject {
 	 * @param string $permissions,... Permissions to test
 	 * @return bool True if the user is allowed to perform *all* of the given actions
 	 */
-	public function isAllowedAll( /*...*/ ) {
+	public function isAllowedAll( $permissions = null ) {
 		$permissions = func_get_args();
 		foreach ( $permissions as $permission ) {
 			if ( !$this->isAllowed( $permission ) ) {
