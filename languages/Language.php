@@ -2278,22 +2278,24 @@ class Language {
 	 * @return string
 	 */
 	function getDateFormatString( $type, $pref ) {
+		$wasDefault = false;
+		if ( $pref == 'default' ) {
+			$wasDefault = true;
+			$pref = $this->getDefaultDateFormat();
+		}
+
 		if ( !isset( $this->dateFormatStrings[$type][$pref] ) ) {
-			if ( $pref == 'default' ) {
+			$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
+
+			if ( $type === 'pretty' && $df === null ) {
+				$df = $this->getDateFormatString( 'date', $pref );
+			}
+
+			if ( !$wasDefault && $df === null ) {
 				$pref = $this->getDefaultDateFormat();
 				$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
-			} else {
-				$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
-
-				if ( $type === 'pretty' && $df === null ) {
-					$df = $this->getDateFormatString( 'date', $pref );
-				}
-
-				if ( $df === null ) {
-					$pref = $this->getDefaultDateFormat();
-					$df = self::$dataCache->getSubitem( $this->mCode, 'dateFormats', "$pref $type" );
-				}
 			}
+
 			$this->dateFormatStrings[$type][$pref] = $df;
 		}
 		return $this->dateFormatStrings[$type][$pref];
