@@ -1,0 +1,22 @@
+@import "mediawiki.mixins";
+@import "mediawiki.ui/variables";
+
+.mw-ui-button {
+	.box-sizing(border-box);
+	margin: 0;
+	display: inline-block;
+	padding: .5em 1em;
+	min-width: 4em;
+}
+
+.mw-ui-icon {
+	min-height: @iconSize;
+	min-width: @iconSize;
+
+	&.mw-ui-icon-element {
+		@width: @iconSize + ( 2 * @iconGutterWidth );
+		width: @width;
+		text-indent: -999px;
+		overflow: hidden;
+	}
+}
