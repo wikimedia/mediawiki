@@ -28,8 +28,9 @@
 	"ooui-dialog-process-dismiss": "Dismiss",
 	"ooui-dialog-process-retry": "Try again",
 	"ooui-dialog-process-continue": "Continue",
+	"ooui-selectfile-button-select": "Select a file",
 	"ooui-selectfile-not-supported": "File selection is not supported",
 	"ooui-selectfile-placeholder": "No file is selected",
-	"ooui-selectfile-dragdrop-placeholder": "Drop file here (or click to browse)",
+	"ooui-selectfile-dragdrop-placeholder": "Drop file here",
 	"ooui-semicolon-separator": "; "
 }

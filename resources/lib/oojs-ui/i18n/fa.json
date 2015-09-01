@@ -13,7 +13,8 @@
 			"Armin1392",
 			"Alirezaaa",
 			"Leyth",
-			"الناز"
+			"الناز",
+			"فلورانس"
 		]
 	},
 	"ooui-outline-control-move-down": "انتقال مورد به پایین",
@@ -29,5 +30,6 @@
 	"ooui-dialog-process-retry": "دوباره امتحان کنید",
 	"ooui-dialog-process-continue": "ادامه",
 	"ooui-selectfile-not-supported": "انتخاب پرونده پشتیبانی نمی‌شود",
-	"ooui-selectfile-placeholder": "هیچ پرونده‌ای انتخاب نشده است"
+	"ooui-selectfile-placeholder": "هیچ پرونده‌ای انتخاب نشده است",
+	"ooui-selectfile-dragdrop-placeholder": "رها کردن فایل در اینجا (و یا کلیک کنید به فهرست)"
 }

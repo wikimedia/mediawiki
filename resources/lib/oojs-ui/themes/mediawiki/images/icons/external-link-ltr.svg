@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
     <g id="external">
-        <path id="box" d="M2 2h3v1H3v6h6V7h1v3H2z"/>
-        <path id="arrow" d="M6.21 2H10v3.79L8.58 4.367 6.446 6.5 5.5 5.553 7.632 3.42z"/>
+        <path id="box" d="M4 4h6v2H6v12h12v-4h2v6H4z"/>
+        <path id="arrow" d="M12.42 4H20v7.58l-2.84-2.846L12.892 13 11 11.106l4.264-4.266z"/>
     </g>
 </svg>
