@@ -1362,6 +1362,7 @@ class LoginForm extends SpecialPage {
 		// Generic styles and scripts for both login and signup form
 		$out->addModuleStyles( array(
 			'mediawiki.ui',
+			'mediawiki.ui.base',
 			'mediawiki.ui.button',
 			'mediawiki.ui.checkbox',
 			'mediawiki.ui.input',

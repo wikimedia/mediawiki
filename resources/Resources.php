@@ -1804,6 +1804,7 @@ return array(
 	),
 	// Lightweight module for anchor styles
 	'mediawiki.ui.anchor' => array(
+		'position' => 'bottom',
 		'position' => 'top',
 		'skinStyles' => array(
 			'default' => array(
@@ -1814,7 +1815,7 @@ return array(
 	),
 	// Lightweight module for button styles
 	'mediawiki.ui.button' => array(
-		'position' => 'top',
+		'position' => 'bottom',
 		'skinStyles' => array(
 			'default' => array(
 				'resources/src/mediawiki.ui/components/buttons.less',
@@ -1832,10 +1833,19 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.ui.icon' => array(
-		'position' => 'top',
+		'position' => 'bottom',
 		'skinStyles' => array(
 			'default' => array(
 				'resources/src/mediawiki.ui/components/icons.less',
+			),
+		),
+		'targets' => array( 'desktop', 'mobile' ),
+	),
+	'mediawiki.ui.base' => array(
+		'position' => 'top',
+		'skinStyles' => array(
+			'default' => array(
+				'resources/src/mediawiki.ui/components/base.less',
 			),
 		),
 		'targets' => array( 'desktop', 'mobile' ),
