@@ -3886,7 +3886,10 @@ class User implements IDBAccessObject {
 		// Clear instance cache other than user table data, which is already accurate
 		$this->clearInstanceCache();
 
+		// Set watchlist token now rather than on Special:Preferences view
+		$this->resetTokenFromOption( 'watchlisttoken' );
 		$this->saveOptions();
+
 		return Status::newGood();
 	}
 
