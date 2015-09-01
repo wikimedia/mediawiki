@@ -211,7 +211,7 @@ $wgLoadScript = false;
 
 /**
  * The URL path of the skins directory.
- * Defaults to "{$wgScriptPath}/skins".
+ * Defaults to "{$wgResourceBasePath}/skins".
  * @since 1.3
  */
 $wgStylePath = false;
@@ -226,7 +226,7 @@ $wgLocalStylePath = false;
 
 /**
  * The URL path of the extensions directory.
- * Defaults to "{$wgScriptPath}/extensions".
+ * Defaults to "{$wgResourceBasePath}/extensions".
  * @since 1.16
  */
 $wgExtensionAssetsPath = false;
@@ -3473,8 +3473,8 @@ $wgResourceModuleSkinStyles = array();
 $wgResourceLoaderSources = array();
 
 /**
- * Default 'remoteBasePath' value for instances of ResourceLoaderFileModule.
- * If not set, then $wgScriptPath will be used as a fallback.
+ * The default 'remoteBasePath' value for instances of ResourceLoaderFileModule.
+ * Defaults to $wgScriptPath.
  */
 $wgResourceBasePath = null;
 
