@@ -59,10 +59,13 @@
 	 *
 	 * @constructor
 	 * @param {Object} config Configuration options
+	 * @cfg {jQuery} [$overlay] Overlay to use for widgets in the booklet
 	 */
 	mw.Upload.BookletLayout = function ( config ) {
 		// Parent constructor
 		mw.Upload.BookletLayout.parent.call( this, config );
+
+		this.$overlay = config.$overlay;
 
 		this.renderUploadForm();
 		this.renderInfoForm();

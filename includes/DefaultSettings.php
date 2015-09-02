@@ -526,6 +526,14 @@ $wgForeignFileRepos = array();
 $wgUseInstantCommons = false;
 
 /**
+ * Name of the remote repository to which users will be allowed to upload
+ * files in their editors. Used to find a set of message names to describe
+ * the legal requirements for uploading to that wiki, and suggestions for
+ * when those requirements are not met.
+ */
+$wgRemoteUploadTarget = 'default';
+
+/**
  * File backend structure configuration.
  *
  * This is an array of file backend configuration arrays.
