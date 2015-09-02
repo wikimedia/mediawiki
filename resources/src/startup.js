@@ -75,6 +75,7 @@ function isCompatible( ua ) {
 		// See OutputPage::getHeadScripts().
 		document.documentElement.className = document.documentElement.className
 			.replace( /(^|\s)client-js(\s|$)/, '$1client-nojs$2' );
+		return;
 	}
 
 	/**
