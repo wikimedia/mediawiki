@@ -991,6 +991,7 @@
 	"columns": "Kolumny:",
 	"searchresultshead": "Wyszukiwanie",
 	"stub-threshold": "Maksymalny (w bajtach) rozmiar strony oznaczanej jako <a href=\"#\" class=\"stub\">zalążek (stub)</a>:",
+	"stub-threshold-sample-link": "przykład",
 	"stub-threshold-disabled": "Wyłączone",
 	"recentchangesdays": "Liczba dni prezentowanych w ostatnich zmianach:",
 	"recentchangesdays-max": "(maksymalnie $1 {{PLURAL:$1|dzień|dni}})",

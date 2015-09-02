@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ammartivari"
+		]
+	},
+	"apihelp-block-param-reason": "Arsyeja për bllokim.",
+	"apihelp-move-param-reason": "Arsyeja për riemërim.",
+	"apihelp-tag-param-reason": "Arsyeja për ndërrimin."
+}

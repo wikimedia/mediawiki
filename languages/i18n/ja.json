@@ -979,7 +979,7 @@
 	"rows": "行数:",
 	"columns": "列数:",
 	"searchresultshead": "検索",
-	"stub-threshold": "<a href=\"#\" class=\"stub\">スタブリンク</a>として表示する閾値 (バイト):",
+	"stub-threshold": "スタブリンク形式 ($1)として表示する閾値 :",
 	"stub-threshold-disabled": "無効",
 	"recentchangesdays": "最近の更新に表示する日数:",
 	"recentchangesdays-max": "(最大 $1 {{PLURAL:$1|日|日間}})",
