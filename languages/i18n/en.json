@@ -1413,6 +1413,8 @@
 	"upload-dialog-label-infoform-description": "Description",
 	"upload-dialog-label-usage-title": "Usage",
 	"upload-dialog-label-usage-filename": "File name",
+	"foreign-structured-upload-dialog-label-infoform-categories": "Categories",
+	"foreign-structured-upload-dialog-label-infoform-date": "Date",
 	"backend-fail-stream": "Could not stream file \"$1\".",
 	"backend-fail-backup": "Could not backup file \"$1\".",
 	"backend-fail-notexists": "The file $1 does not exist.",
