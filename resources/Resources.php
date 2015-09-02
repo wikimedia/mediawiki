@@ -848,6 +848,10 @@ return array(
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'mediawiki.template.regexp' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.template.regexp.js',
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 	'mediawiki.apipretty' => array(
 		'styles' => 'resources/src/mediawiki/mediawiki.apipretty.css',
 		'targets' => array( 'desktop', 'mobile' ),
@@ -1170,6 +1174,10 @@ return array(
 	),
 	'mediawiki.Uri' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.Uri.js',
+		'templates' => array(
+			'strict.regexp' => 'resources/src/mediawiki/mediawiki.Uri.strict.regexp',
+			'loose.regexp' => 'resources/src/mediawiki/mediawiki.Uri.loose.regexp',
+		),
 		'dependencies' => 'mediawiki.util',
 		'targets' => array( 'desktop', 'mobile' ),
 	),
