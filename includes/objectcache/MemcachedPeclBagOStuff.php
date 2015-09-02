@@ -236,8 +236,13 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	public function getMulti( array $keys, $flags = 0 ) {
 		$this->debugLog( 'getMulti(' . implode( ', ', $keys ) . ')' );
 		$callback = array( $this, 'encodeKey' );
-		$result = $this->client->getMulti( array_map( $callback, $keys ) );
-		$result = $result ?: array(); // must be an array
+		$encodedResult = $this->client->getMulti( array_map( $callback, $keys ) );
+		$encodedResult = $encodedResult ?: array(); // must be an array
+		$result = array();
+		foreach ( $encodedResult as $key => $value ) {
+			$key = $this->decodeKey( $key );
+			$result[$key] = $value;
+		}
 		return $this->checkResult( false, $result );
 	}
 
