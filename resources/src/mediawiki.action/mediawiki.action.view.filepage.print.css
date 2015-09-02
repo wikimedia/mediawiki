@@ -1,0 +1,8 @@
+/*!
+ * File description page - print style
+ */
+
+span.mw-filepage-other-resolutions,
+#filetoc {
+	display: none;
+}
