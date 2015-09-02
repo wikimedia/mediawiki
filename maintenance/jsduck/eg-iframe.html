@@ -34,6 +34,9 @@
 		};
 	</script>
 	<script>
+		// Emulate startup.js
+		var mwPerformance = { mark: function () {} };
+
 		function startUp() {
 			mw.config = new mw.Map();
 		}
@@ -43,7 +46,15 @@
 	<script src="modules/src/mediawiki/mediawiki.js"></script>
 	<script src="modules/src/mediawiki/mediawiki.errorLogger.js"></script>
 	<script src="modules/src/mediawiki/mediawiki.startUp.js"></script>
+	<script src="modules/lib/oojs/oojs.jquery.js"></script>
+	<script src="modules/lib/oojs-ui/oojs-ui.js"></script>
+	<script src="modules/lib/oojs-ui/oojs-ui-mediawiki.js"></script>
 	<style>
+		body {
+			font-size: 0.8em;
+			font-family: sans-serif;
+		}
+
 		.mw-jsduck-log {
 			position: relative;
 			min-height: 3em;
@@ -74,16 +85,14 @@
 			background: #fff;
 		}
 	</style>
+	<link rel="stylesheet" href="modules/lib/oojs-ui/oojs-ui-local.css">
+	<link rel="stylesheet" href="modules/lib/oojs-ui/oojs-ui-mediawiki-noimages.css">
 </head>
 <body>
 <script>
 	if ( window.mw ) {
 		mw.log = log;
 	}
-
-	window.onerror = function ( error, filePath, linerNr ) {
-		log( filePath + ':' + linerNr  );
-	};
 
 	/**
 	 * Method called by jsduck to execute the example code.
