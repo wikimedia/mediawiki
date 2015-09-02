@@ -91,7 +91,7 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 				// $revision (optional)
 			) = $parts;
 
-			if ( $this->params['restbaseCompat'] ) {
+			if ( isset( $this->params['restbaseCompat'] ) && $this->params['restbaseCompat'] ) {
 				if ( $version !== 'v1' ) {
 					throw new Exception( "Only RESTBase v1 API is supported." );
 				}
