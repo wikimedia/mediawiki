@@ -191,6 +191,7 @@ class ResourceLoader implements LoggerAwareInterface {
 		}
 		// Defaults
 		$options += array( 'cache' => true, 'cacheReport' => false );
+		$stats = RequestContext::getMain()->getStats();
 
 		// Don't filter empty content
 		if ( trim( $data ) === '' ) {
@@ -211,18 +212,16 @@ class ResourceLoader implements LoggerAwareInterface {
 			$cache = wfGetCache( wfIsHHVM() ? CACHE_ACCEL : CACHE_ANYTHING );
 			$cacheEntry = $cache->get( $key );
 			if ( is_string( $cacheEntry ) ) {
-				wfIncrStats( "resourceloader_cache.$filter.hit" );
+				$stats->increment( "resourceloader_cache.$filter.hit" );
 				return $cacheEntry;
 			}
 			$result = '';
 			try {
-				$stats = RequestContext::getMain()->getStats();
 				$statStart = microtime( true );
-
 				$result = self::applyFilter( $filter, $data, $this->config );
-
 				$statTiming = microtime( true ) - $statStart;
-				$stats->timing( "resourceloader_cache.$filter.miss", 1000 * $statTiming );
+				$stats->increment( "resourceloader_cache.$filter.miss" );
+				$stats->timing( "resourceloader_cache.$filter.timing", 1000 * $statTiming );
 				if ( $options['cacheReport'] ) {
 					$result .= "\n/* cache key: $key */";
 				}
