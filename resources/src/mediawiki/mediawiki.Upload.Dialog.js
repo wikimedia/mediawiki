@@ -19,10 +19,19 @@
 	 * @class mw.Upload.Dialog
 	 * @uses mw.Upload
 	 * @extends OO.ui.ProcessDialog
+	 * @cfg {OO.ui.BookletLayout} [uploadBooklet=mw.Upload.BookletLayout] Booklet to be used for the steps
 	 */
 	mw.Upload.Dialog = function ( config ) {
+		// Config initialization
+		config = $.extend( {
+			uploadBooklet: new mw.Upload.BookletLayout()
+		}, config );
+
 		// Parent constructor
 		mw.Upload.Dialog.parent.call( this, config );
+
+		// Initialize
+		this.uploadBooklet = config.uploadBooklet;
 	};
 
 	/* Setup */
@@ -80,7 +89,6 @@
 		// Parent method
 		mw.Upload.Dialog.parent.prototype.initialize.call( this );
 
-		this.uploadBooklet = this.createUploadBooklet();
 		this.uploadBooklet.connect( this, {
 			set: 'onUploadBookletSet',
 			uploadValid: 'onUploadValid',
@@ -88,16 +96,6 @@
 		} );
 
 		this.$body.append( this.uploadBooklet.$element );
-	};
-
-	/**
-	 * Create an upload booklet
-	 *
-	 * @protected
-	 * @return {mw.Upload.BookletLayout} An upload booklet
-	 */
-	mw.Upload.Dialog.prototype.createUploadBooklet = function () {
-		return new mw.Upload.BookletLayout();
 	};
 
 	/**
