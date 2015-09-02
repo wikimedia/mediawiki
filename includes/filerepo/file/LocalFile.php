@@ -502,8 +502,16 @@ class LocalFile extends File {
 			$decoded['mime'] = $decoded['major_mime'] . '/' . $decoded['minor_mime'];
 		}
 
-		# Trim zero padding from char/binary field
+		// Trim zero padding from char/binary field
 		$decoded['sha1'] = rtrim( $decoded['sha1'], "\0" );
+
+		// Normalize some fields to integer type, per their database definition.
+		// Use unary + so that overflows will be upgraded to double instead of
+		// being trucated as with intval(). This is important to allow >2GB
+		// files on 32-bit systems.
+		foreach ( array( 'size', 'width', 'height', 'bits' ) as $field ) {
+			$decoded[$field] = +$decoded[$field];
+		}
 
 		return $decoded;
 	}
