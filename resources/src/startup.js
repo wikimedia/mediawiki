@@ -68,48 +68,39 @@ function isCompatible( ua ) {
 	);
 }
 
-// Conditional script injection
-( function () {
-	if ( !isCompatible() ) {
-		// Undo class swapping in case of an unsupported browser.
-		// See OutputPage::getHeadScripts().
-		document.documentElement.className = document.documentElement.className
-			.replace( /(^|\s)client-js(\s|$)/, '$1client-nojs$2' );
+/**
+ * The $CODE and $VARS placeholders are substituted in ResourceLoaderStartUpModule.php.
+ */
+function startUp() {
+	mw.config = new mw.Map( $VARS.wgLegacyJavaScriptGlobals );
+
+	$CODE.registrations();
+
+	mw.config.set( $VARS.configuration );
+
+	// Must be after mw.config.set because these callbacks may use mw.loader which
+	// needs to have values 'skin', 'debug' etc. from mw.config.
+	window.RLQ = window.RLQ || [];
+	while ( RLQ.length ) {
+		RLQ.shift()();
 	}
-
-	/**
-	 * The $CODE and $VARS placeholders are substituted in ResourceLoaderStartUpModule.php.
-	 */
-	function startUp() {
-		mw.config = new mw.Map( $VARS.wgLegacyJavaScriptGlobals );
-
-		$CODE.registrations();
-
-		mw.config.set( $VARS.configuration );
-
-		// Must be after mw.config.set because these callbacks may use mw.loader which
-		// needs to have values 'skin', 'debug' etc. from mw.config.
-		window.RLQ = window.RLQ || [];
-		while ( RLQ.length ) {
-			RLQ.shift()();
-		}
-		window.RLQ = {
-			push: function ( fn ) {
-				fn();
-			}
-		};
-	}
-
-	var script = document.createElement( 'script' );
-	script.src = $VARS.baseModulesUri;
-	script.onload = script.onreadystatechange = function () {
-		if ( !script.readyState || /loaded|complete/.test( script.readyState ) ) {
-			// Clean up
-			script.onload = script.onreadystatechange = null;
-			script = null;
-			// Callback
-			startUp();
+	window.RLQ = {
+		push: function ( fn ) {
+			fn();
 		}
 	};
-	document.getElementsByTagName( 'head' )[0].appendChild( script );
-}() );
+}
+
+// Conditional script injection
+if ( isCompatible() ) {
+	( function () {
+		var script = document.createElement( 'script' );
+		script.src = $VARS.baseModulesUri;
+		document.getElementsByTagName( 'head' )[0].appendChild( script );
+	}() );
+} else {
+	// Undo class swapping in case of an unsupported browser.
+	// See OutputPage::getHeadScripts().
+	document.documentElement.className = document.documentElement.className
+		.replace( /(^|\s)client-js(\s|$)/, '$1client-nojs$2' );
+}
