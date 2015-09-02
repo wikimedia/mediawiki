@@ -82,12 +82,13 @@
 	 * Sets the filename based on the filename as it was on the upload.
 	 */
 	UP.setFilenameFromFile = function () {
-		if ( this.file.nodeType && this.file.nodeType === Node.ELEMENT_NODE ) {
+		var file = this.getFile();
+		if ( file.nodeType && file.nodeType === Node.ELEMENT_NODE ) {
 			// File input element, use getBasename to cut out the path
-			this.setFilename( this.getBasename( this.file.value ) );
-		} else if ( this.file.name && this.file.lastModified ) {
+			this.setFilename( this.getBasename( file.value ) );
+		} else if ( file.name && file.lastModified ) {
 			// HTML5 FileAPI File object, but use getBasename to be safe
-			this.setFilename( this.getBasename( this.file.name ) );
+			this.setFilename( this.getBasename( file.name ) );
 		}
 	};
 
@@ -200,21 +201,21 @@
 	UP.upload = function () {
 		var upload = this;
 
-		if ( !this.file ) {
+		if ( !this.getFile() ) {
 			return $.Deferred().reject( 'No file to upload. Call setFile to add one.' );
 		}
 
-		if ( !this.filename ) {
+		if ( !this.getFilename() ) {
 			return $.Deferred().reject( 'No filename set. Call setFilename to add one.' );
 		}
 
 		this.state = Upload.State.UPLOADING;
 
-		return this.api.upload( this.file, {
-			watchlist: ( this.watchlist === true ) ? 1 : undefined,
-			comment: this.comment,
-			filename: this.filename,
-			text: this.text
+		return this.api.upload( this.getFile(), {
+			watchlist: ( this.getWatchlist() ) ? 1 : undefined,
+			comment: this.getComment(),
+			filename: this.getFilename(),
+			text: this.getText()
 		} ).then( function ( result ) {
 			upload.state = Upload.State.UPLOADED;
 			upload.imageinfo = result.upload.imageinfo;
@@ -231,18 +232,18 @@
 	UP.uploadToStash = function () {
 		var upload = this;
 
-		if ( !this.file ) {
+		if ( !this.getFile() ) {
 			return $.Deferred().reject( 'No file to upload. Call setFile to add one.' );
 		}
 
-		if ( !this.filename ) {
+		if ( !this.getFilename() ) {
 			this.setFilenameFromFile();
 		}
 
 		this.state = Upload.State.UPLOADING;
 
-		this.stashPromise = this.api.uploadToStash( this.file, {
-			filename: this.filename
+		this.stashPromise = this.api.uploadToStash( this.getFile(), {
+			filename: this.getFilename()
 		} ).then( function ( finishStash ) {
 			upload.state = Upload.State.STASHED;
 			return finishStash;
@@ -268,7 +269,7 @@
 			upload.state = Upload.State.UPLOADING;
 
 			return finishStash( {
-				watchlist: ( upload.watchlist === true ) ? 1 : undefined,
+				watchlist: ( upload.getWatchlist() ) ? 1 : undefined,
 				comment: upload.getComment(),
 				filename: upload.getFilename(),
 				text: upload.getText()
