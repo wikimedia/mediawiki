@@ -1,0 +1,71 @@
+/*!
+ * File description page
+ */
+
+div.mw-filepage-resolutioninfo {
+	font-size: smaller;
+}
+
+/*
+ * File histories
+ */
+h2#filehistory {
+	clear: both;
+}
+
+table.filehistory th,
+table.filehistory td {
+	vertical-align: top;
+}
+
+table.filehistory th {
+	text-align: left;
+}
+
+table.filehistory td.mw-imagepage-filesize,
+table.filehistory th.mw-imagepage-filesize {
+	white-space: nowrap;
+}
+
+table.filehistory td.filehistory-selected {
+	font-weight: bold;
+}
+
+/*
+ * Add a checkered background image on hover for file
+ * description pages. (bug 26470)
+ */
+.filehistory a img,
+#file img:hover {
+	/* @embed */
+	background: white url(images/checker.png) repeat;
+}
+
+/*
+ * filetoc
+ */
+ul#filetoc {
+	text-align: center;
+	border: 1px solid #aaaaaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	font-size: 95%;
+	margin-bottom: 0.5em;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+#filetoc li {
+	display: inline;
+	list-style-type: none;
+	padding-right: 2em;
+}
+
+/*
+ * Shared images hint
+ */
+#shared-image-dup,
+#shared-image-conflict {
+	font-style: italic;
+}
+
