@@ -59,3 +59,7 @@ table.mw-enhanced-rc td.mw-enhanced-rc-nested {
 .mw-enhanced-watched .mw-enhanced-rc-time {
 	font-weight: bold;
 }
+
+span.changedby {
+	font-size: 95%;
+}
