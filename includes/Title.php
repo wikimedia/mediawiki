@@ -1939,7 +1939,6 @@ class Title {
 	 *   - quick  : does cheap permission checks from slaves (usable for GUI creation)
 	 *   - full   : does cheap and expensive checks possibly from a slave
 	 *   - secure : does cheap and expensive checks, using the master as needed
-	 * @param bool $short Set this to true to stop after the first permission error.
 	 * @param array $ignoreErrors Array of Strings Set this to a list of message keys
 	 *   whose corresponding errors may be ignored.
 	 * @return array Array of arguments to wfMessage to explain permissions problems.
