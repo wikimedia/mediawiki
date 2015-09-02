@@ -1358,8 +1358,8 @@ abstract class ApiBase extends ContextSource {
 	 * @param string $errorCode Brief, arbitrary, stable string to allow easy
 	 *   automated identification of the error, e.g., 'unknown_action'
 	 * @param int $httpRespCode HTTP response code
-	 * @param array $extradata Data to add to the "<error>" element; array in ApiResult format
-	 * @throws UsageException
+	 * @param array|null $extradata Data to add to the "<error>" element; array in ApiResult format
+	 * @throws UsageException always
 	 */
 	public function dieUsage( $description, $errorCode, $httpRespCode = 0, $extradata = null ) {
 		throw new UsageException(
@@ -1415,10 +1415,9 @@ abstract class ApiBase extends ContextSource {
 	 *
 	 * @since 1.22
 	 * @param Status $status
-	 * @throws MWException
+	 * @throws UsageException always
 	 */
 	public function dieStatus( $status ) {
-
 		list( $code, $msg ) = $this->getErrorFromStatus( $status );
 		$this->dieUsage( $msg, $code );
 	}
@@ -1932,6 +1931,8 @@ abstract class ApiBase extends ContextSource {
 
 	/**
 	 * Helper function for readonly errors
+	 *
+	 * @throws UsageException always
 	 */
 	public function dieReadOnly() {
 		$parsed = $this->parseMsg( array( 'readonlytext' ) );
@@ -1942,6 +1943,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Output the error message related to a certain array
 	 * @param array|string $error Element of a getUserPermissionsErrors()-style array
+	 * @throws UsageException always
 	 */
 	public function dieUsageMsg( $error ) {
 		# most of the time we send a 1 element, so we might as well send it as
@@ -1957,6 +1959,7 @@ abstract class ApiBase extends ContextSource {
 	 * Will only set a warning instead of failing if the global $wgDebugAPI
 	 * is set to true. Otherwise behaves exactly as dieUsageMsg().
 	 * @param array|string $error Element of a getUserPermissionsErrors()-style array
+	 * @throws UsageException
 	 * @since 1.21
 	 */
 	public function dieUsageMsgOrDebug( $error ) {
@@ -1975,6 +1978,7 @@ abstract class ApiBase extends ContextSource {
 	 * Die with the $prefix.'badcontinue' error. This call is common enough to
 	 * make it into the base method.
 	 * @param bool $condition Will only die if this value is true
+	 * @throws UsageException
 	 * @since 1.21
 	 */
 	protected function dieContinueUsageIf( $condition ) {
@@ -2016,7 +2020,7 @@ abstract class ApiBase extends ContextSource {
 	 * Internal code errors should be reported with this method
 	 * @param string $method Method or function name
 	 * @param string $message Error message
-	 * @throws MWException
+	 * @throws MWException always
 	 */
 	protected static function dieDebug( $method, $message ) {
 		throw new MWException( "Internal error in $method: $message" );
