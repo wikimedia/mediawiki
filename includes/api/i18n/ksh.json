@@ -418,6 +418,7 @@
 	"apihelp-query+backlinks-param-namespace": "Dat Appachtemang zom opzälle.",
 	"apihelp-query+backlinks-param-dir": "En wälsche Reijefollsch?",
 	"apihelp-query+backlinks-param-limit": "Wi vill Sigge ensjesamp ußjävve. Wann „<var lang=\"en\" xml:lang=\"en\" dir=\"ltr\">$1redirect</var>“ ennjeschalld es, weed di Beschrängkong op jehden Nivoh äxtra aanjwandt, wat bedügg, dat bes op 2 * „<var lang=\"en\" xml:lang=\"en\" dir=\"ltr\">$1limit</var> ußjejovve wähde künne.",
+	"apihelp-query+backlinks-param-redirect": "Wann de Sigg emt dämm Lengk dren en Ömlijdong änthält, fengk derzoh och alle Sigge, di doh drop lengke. De Bovverjränz för de Aanzahl Sigge för opzeleßte weed hallbehrt.",
 	"apihelp-query+backlinks-example-simple": "Zeijsch Lengks op de Sigg <kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">Main page<kbd>.",
 	"apihelp-query+backlinks-example-generator": "Holl Ennfommazjuhne övver Sigge, di op de Sigg „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">Main Page</code>“ lengke donn.",
 	"apihelp-query+blocks-description": "Donn alle jeschpächte Metmaacher un <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Internet Protocol\">IP</i>-Adräße opleßte.",

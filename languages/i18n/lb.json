@@ -915,6 +915,7 @@
 	"columns": "Kolonnen",
 	"searchresultshead": "Sichen",
 	"stub-threshold": "Maximum (a Byte) bei deem e Link nach ëmmer am <a href=\"#\" class=\"stub\">Skizze-Format</a> gewise gëtt:",
+	"stub-threshold-sample-link": "Beispill",
 	"stub-threshold-disabled": "Desaktivéiert",
 	"recentchangesdays": "Deeg déi an de Rezenten Ännerungen ugewise ginn:",
 	"recentchangesdays-max": "(Maximal $1 {{PLURAL:$1|Dag|Deeg}})",

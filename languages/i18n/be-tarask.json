@@ -923,7 +923,7 @@
 	"rows": "Радкоў:",
 	"columns": "Слупкоў:",
 	"searchresultshead": "Пошук",
-	"stub-threshold": "Максымальны памер старонкі для паказу спасылак <a href=\"#\" class=\"stub\">як на накід</a> (у байтах):",
+	"stub-threshold": "Максымальны памер старонкі для паказу спасылак як на накід ($1):",
 	"stub-threshold-disabled": "Выключаны",
 	"recentchangesdays": "Колькасьць дзён для паказу ў апошніх зьменах:",
 	"recentchangesdays-max": "(максымальна $1 {{PLURAL:$1|дзень|дні|дзён}})",
