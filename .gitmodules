@@ -186,3 +186,7 @@
 	path = extensions/TemplateData
 	url = https://github.com/wikimedia/mediawiki-extensions-TemplateData
 	branch = REL1_25
+[submodule "extensions/EmbedVideo"]
+	path = extensions/EmbedVideo
+	url = https://github.com/Alexia/mediawiki-embedvideo.git
+	branch = master
