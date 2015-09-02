@@ -1172,6 +1172,21 @@ return array(
 			'upload-dialog-label-usage-filename',
 		),
 	),
+	'mediawiki.ForeignStructuredUpload.Dialog' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.ForeignStructuredUpload.Dialog.js',
+		'dependencies' => array(
+			'mediawiki.ForeignStructuredUpload',
+			'mediawiki.Upload.Dialog',
+			'mediawiki.widgets',
+		),
+		'messages' => array(
+			'foreign-structured-upload-dialog-label-infoform-categories',
+			'foreign-structured-upload-dialog-label-infoform-date',
+			'foreign-structured-upload-dialog-label-infoform-legal',
+			'foreign-structured-upload-dialog-label-own-work-message',
+			'foreign-structured-upload-dialog-label-not-own-work-message',
+		),
+	),
 	'mediawiki.toc' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.toc.js',
 		'dependencies' => 'mediawiki.cookie',
