@@ -718,7 +718,7 @@
 			 *
 			 *     {
 			 *         'moduleName': {
-			 *             // From mw.loader.register() in startup module
+			 *             // From mw.loader.register()
 			 *             'version': '########' (hash)
 			 *             'dependencies': ['required.foo', 'bar.also', ...], (or) function () {}
 			 *             'group': 'somegroup', (or) null
@@ -735,6 +735,31 @@
 			 *             'messages': { 'key': 'value', ... }
 			 *         }
 			 *     }
+			 *
+			 * State machine:
+			 *
+			 * - `registered`:
+			 *    The module is known to the system but not yet requested.
+			 *    Meta data is registered via mw.loader#register. Calls to that method are
+			 *    generated server-side by the startup module.
+			 * - `loading` (1):
+			 *    The module is requested through mw.loader (either directly or as dependency of
+			 *    another module). The client will be fetching module contents from the server.
+			 *    The contents are then stashed in the registry via mw.loader#implement.
+			 * - `loaded`:
+			 *    The module has been requested from the server and stashed via mw.loader#implement.
+			 *    If the module has no more dependencies in-fight, the module will be executed
+			 *    right away. Otherwise execution is deferred, controlled via #handlePending.
+			 * - `loading` (2):
+			 *    The module is being executed.
+			 *    TODO: Create a new state instead of re-using the "loading" state.
+			 * - `ready`:
+			 *    The module has been successfully executed.
+			 * - `error`:
+			 *    The module (or one of its dependencies) produced an error during execution.
+			 * - `missing`:p
+			 *    The module was registered client-side and requested, but the server denied knowledge
+			 *    of the module's existence.
 			 *
 			 * @property
 			 * @private
