@@ -2057,13 +2057,28 @@ Tabs don't trigger preformatted text
 	 preformatted text.
  This is preformatted text.
  	So is this.
-!! html
+!! html/php
 <p>	This is not
 	 preformatted text.
 </p>
 <pre>This is preformatted text.
 	So is this.
 </pre>
+!! html/parsoid
+<p>	This is not
+	 preformatted text.</p>
+<pre>This is preformatted text.
+	So is this.</pre>
+!! end
+
+!! test
+Space before tab needs nowiki pre protection
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p> 	a</p>
+!! wikitext
+<nowiki> </nowiki>	a
 !! end
 
 !! test
@@ -5234,38 +5249,6 @@ External link containing a single quote. (bug 63947)
 <p><a rel="mw:ExtLink" href="//foo.org/bar'baz">bang</a></p>
 !! end
 
-
-!! test
-External link containing a period in the anchor. (bug 63947)
-!! wikitext
-[//foo.org/bar#baz. bang]
-
-[//foo.org/bar. bang]
-!! html/php
-<p><a rel="nofollow" class="external text" href="//foo.org/bar#baz.">bang</a>
-</p><p><a rel="nofollow" class="external text" href="//foo.org/bar.">bang</a>
-</p>
-!! html/parsoid
-<p><a rel="mw:ExtLink" href="//foo.org/bar#baz.">bang</a></p>
-<p><a rel="mw:ExtLink" href="//foo.org/bar.">bang</a></p>
-!! end
-
-!! test
-External link containing a single quote. (bug 63947)
-!! wikitext
-[//foo.org/bar'baz]
-
-[//foo.org/bar'baz bang]
-!! html/php
-<p><a rel="nofollow" class="external autonumber" href="//foo.org/bar'baz">[1]</a>
-</p><p><a rel="nofollow" class="external text" href="//foo.org/bar'baz">bang</a>
-</p>
-!! html/parsoid
-<p><a rel="mw:ExtLink" href="//foo.org/bar'baz"></a></p>
-<p><a rel="mw:ExtLink" href="//foo.org/bar'baz">bang</a></p>
-!! end
-
-
 !! test
 External link containing double-single-quotes in text '' (bug 4598 sanity check)
 !! wikitext
@@ -5301,9 +5284,22 @@ External link containing double-single-quotes with no space separating the url f
 External link with comments in link text
 !! wikitext
 [http://www.google.com Google <!-- comment -->]
-!! html
+!! html/php
 <p><a rel="nofollow" class="external text" href="http://www.google.com">Google </a>
 </p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://www.google.com">Google <!-- comment --></a></p>
+!! end
+
+!! test
+External link to bare IPv4 address
+!! wikitext
+[http://192.168.0.1 Link]
+!! html/php
+<p><a rel="nofollow" class="external text" href="http://192.168.0.1">Link</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://192.168.0.1">Link</a></p>
 !! end
 
 !! test
@@ -5345,7 +5341,7 @@ IPv6 urls, autolink format (T23261)
 !! wikitext
 http://[2404:130:0:1000::187:2]/index.php
 
-Examples from RFC2373, section 2.2:
+Examples from RFC 2373, section 2.2:
 * http://[1080::8:800:200C:417A]/unicast
 * http://[FF01::101]/multicast
 * http://[::1]/loopback
@@ -5362,9 +5358,9 @@ Examples from RFC 2732, section 2:
 * http://[::FFFF:129.144.52.38]:80/index.html
 * http://[2010:836B:4179::836B:4179]
 
-!! html
+!! html/php
 <p><a rel="nofollow" class="external free" href="http://[2404:130:0:1000::187:2]/index.php">http://[2404:130:0:1000::187:2]/index.php</a>
-</p><p>Examples from RFC2373, section 2.2:
+</p><p>Examples from <a class="external mw-magiclink-rfc" rel="nofollow" href="//tools.ietf.org/html/rfc2373">RFC 2373</a>, section 2.2:
 </p>
 <ul><li> <a rel="nofollow" class="external free" href="http://[1080::8:800:200C:417A]/unicast">http://[1080::8:800:200C:417A]/unicast</a></li>
 <li> <a rel="nofollow" class="external free" href="http://[FF01::101]/multicast">http://[FF01::101]/multicast</a></li>
@@ -5382,6 +5378,25 @@ Examples from RFC 2732, section 2:
 <li> <a rel="nofollow" class="external free" href="http://[::FFFF:129.144.52.38]:80/index.html">http://[::FFFF:129.144.52.38]:80/index.html</a></li>
 <li> <a rel="nofollow" class="external free" href="http://[2010:836B:4179::836B:4179]">http://[2010:836B:4179::836B:4179]</a></li></ul>
 
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://[2404:130:0:1000::187:2]/index.php">http://[2404:130:0:1000::187:2]/index.php</a></p>
+
+<p>Examples from <a href="//tools.ietf.org/html/rfc2373" rel="mw:ExtLink">RFC 2373</a>, section 2.2:</p>
+<ul><li> <a rel="mw:ExtLink" href="http://[1080::8:800:200C:417A]/unicast">http://[1080::8:800:200C:417A]/unicast</a></li>
+<li> <a rel="mw:ExtLink" href="http://[FF01::101]/multicast">http://[FF01::101]/multicast</a></li>
+<li> <a rel="mw:ExtLink" href="http://[::1]/loopback">http://[::1]/loopback</a></li>
+<li> <a rel="mw:ExtLink" href="http://[::]/unspecified">http://[::]/unspecified</a></li>
+<li> <a rel="mw:ExtLink" href="http://[::13.1.68.3]/ipv4compat">http://[::13.1.68.3]/ipv4compat</a></li>
+<li> <a rel="mw:ExtLink" href="http://[::FFFF:129.144.52.38]/ipv4compat">http://[::FFFF:129.144.52.38]/ipv4compat</a></li></ul>
+
+<p>Examples from <a href="//tools.ietf.org/html/rfc2732" rel="mw:ExtLink">RFC 2732</a>, section 2:</p>
+<ul><li> <a rel="mw:ExtLink" href="http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html">http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html</a></li>
+<li> <a rel="mw:ExtLink" href="http://[1080:0:0:0:8:800:200C:417A]/index.html">http://[1080:0:0:0:8:800:200C:417A]/index.html</a></li>
+<li> <a rel="mw:ExtLink" href="http://[3ffe:2a00:100:7031::1]">http://[3ffe:2a00:100:7031::1]</a></li>
+<li> <a rel="mw:ExtLink" href="http://[1080::8:800:200C:417A]/foo">http://[1080::8:800:200C:417A]/foo</a></li>
+<li> <a rel="mw:ExtLink" href="http://[::192.9.5.5]/ipng">http://[::192.9.5.5]/ipng</a></li>
+<li> <a rel="mw:ExtLink" href="http://[::FFFF:129.144.52.38]:80/index.html">http://[::FFFF:129.144.52.38]:80/index.html</a></li>
+<li> <a rel="mw:ExtLink" href="http://[2010:836B:4179::836B:4179]">http://[2010:836B:4179::836B:4179]</a></li></ul>
 !! end
 
 !! test
@@ -5389,7 +5404,7 @@ IPv6 urls, bracketed format (T23261)
 !! wikitext
 [http://[2404:130:0:1000::187:2]/index.php test]
 
-Examples from RFC2373, section 2.2:
+Examples from RFC 2373, section 2.2:
 * [http://[1080::8:800:200C:417A] unicast]
 * [http://[FF01::101] multicast]
 * [http://[::1]/ loopback]
@@ -5406,9 +5421,9 @@ Examples from RFC 2732, section 2:
 * [http://[::FFFF:129.144.52.38]:80/index.html 6]
 * [http://[2010:836B:4179::836B:4179] 7]
 
-!! html
+!! html/php
 <p><a rel="nofollow" class="external text" href="http://[2404:130:0:1000::187:2]/index.php">test</a>
-</p><p>Examples from RFC2373, section 2.2:
+</p><p>Examples from <a class="external mw-magiclink-rfc" rel="nofollow" href="//tools.ietf.org/html/rfc2373">RFC 2373</a>, section 2.2:
 </p>
 <ul><li> <a rel="nofollow" class="external text" href="http://[1080::8:800:200C:417A]">unicast</a></li>
 <li> <a rel="nofollow" class="external text" href="http://[FF01::101]">multicast</a></li>
@@ -5426,6 +5441,25 @@ Examples from RFC 2732, section 2:
 <li> <a rel="nofollow" class="external text" href="http://[::FFFF:129.144.52.38]:80/index.html">6</a></li>
 <li> <a rel="nofollow" class="external text" href="http://[2010:836B:4179::836B:4179]">7</a></li></ul>
 
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://[2404:130:0:1000::187:2]/index.php">test</a></p>
+
+<p>Examples from <a href="//tools.ietf.org/html/rfc2373" rel="mw:ExtLink">RFC 2373</a>, section 2.2:</p>
+<ul><li> <a rel="mw:ExtLink" href="http://[1080::8:800:200C:417A]">unicast</a></li>
+<li> <a rel="mw:ExtLink" href="http://[FF01::101]">multicast</a></li>
+<li> <a rel="mw:ExtLink" href="http://[::1]/">loopback</a></li>
+<li> <a rel="mw:ExtLink" href="http://[::]">unspecified</a></li>
+<li> <a rel="mw:ExtLink" href="http://[::13.1.68.3]">ipv4compat</a></li>
+<li> <a rel="mw:ExtLink" href="http://[::FFFF:129.144.52.38]">ipv4compat</a></li></ul>
+
+<p>Examples from <a href="//tools.ietf.org/html/rfc2732" rel="mw:ExtLink">RFC 2732</a>, section 2:</p>
+<ul><li> <a rel="mw:ExtLink" href="http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html">1</a></li>
+<li> <a rel="mw:ExtLink" href="http://[1080:0:0:0:8:800:200C:417A]/index.html">2</a></li>
+<li> <a rel="mw:ExtLink" href="http://[3ffe:2a00:100:7031::1]">3</a></li>
+<li> <a rel="mw:ExtLink" href="http://[1080::8:800:200C:417A]/foo">4</a></li>
+<li> <a rel="mw:ExtLink" href="http://[::192.9.5.5]/ipng">5</a></li>
+<li> <a rel="mw:ExtLink" href="http://[::FFFF:129.144.52.38]:80/index.html">6</a></li>
+<li> <a rel="mw:ExtLink" href="http://[2010:836B:4179::836B:4179]">7</a></li></ul>
 !! end
 
 !! test
@@ -5443,7 +5477,8 @@ Non-extlinks in brackets
 [{{echo|foo}}l's errand]
 [url={{echo|foo}}]
 [url=http://example.com]
-!! html
+[http:// bare protocols don't count]
+!! html/php
 <p>[foo]
 [foo bar]
 [foo <i>bar</i>]
@@ -5456,7 +5491,22 @@ Non-extlinks in brackets
 [fool's errand]
 [url=foo]
 [url=<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>]
+[http:// bare protocols don't count]
 </p>
+!! html/parsoid
+<p>[foo]
+[foo bar]
+[foo <i>bar</i>]
+[fool's] errand
+[fool's errand]
+[<span typeof="mw:Placeholder" data-parsoid='{"src":"{{echo|foo}}"}'>foo</span>]
+[<span typeof="mw:Placeholder" data-parsoid='{"src":"{{echo|foo}}"}'>foo</span> bar]
+[<span typeof="mw:Placeholder" data-parsoid='{"src":"{{echo|foo}}"}'>foo</span> <i>bar</i>]
+[<span typeof="mw:Placeholder" data-parsoid='{"src":"{{echo|foo}}l&#39;s"}'>fool's</span>] errand
+[<span typeof="mw:Placeholder" data-parsoid='{"src":"{{echo|foo}}l&#39;s"}'>fool's</span> errand]
+[<span typeof="mw:Placeholder" data-parsoid='{"src":"url={{echo|foo}}"}'>url=foo</span>]
+[url=<a rel="mw:ExtLink" href="http://example.com">http://example.com</a>]
+[http:// bare protocols don't count]</p>
 !! end
 
 !! test
@@ -9874,27 +9924,33 @@ __proto__
 Magic links: internal link to RFC (bug 479)
 !! wikitext
 [[RFC 123]]
-!! html
+!! html/php
 <p><a href="/index.php?title=RFC_123&amp;action=edit&amp;redlink=1" class="new" title="RFC 123 (page does not exist)">RFC 123</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./RFC_123" title="RFC 123">RFC 123</a></p>
 !! end
 
 !! test
 Magic links: RFC (bug 479)
 !! wikitext
 RFC 822
-!! html
+!! html/php
 <p><a class="external mw-magiclink-rfc" rel="nofollow" href="//tools.ietf.org/html/rfc822">RFC 822</a>
 </p>
+!! html/parsoid
+<p><a href="//tools.ietf.org/html/rfc822" rel="mw:ExtLink">RFC 822</a></p>
 !! end
 
 !! test
 Magic links: RFC (bug 65278)
 !! wikitext
 This is RFC 822 but thisRFC 822 is not RFC 822linked.
-!! html
+!! html/php
 <p>This is <a class="external mw-magiclink-rfc" rel="nofollow" href="//tools.ietf.org/html/rfc822">RFC 822</a> but thisRFC 822 is not RFC 822linked.
 </p>
+!! html/parsoid
+<p>This is <a href="//tools.ietf.org/html/rfc822" rel="mw:ExtLink">RFC 822</a> but thisRFC 822 is not RFC 822linked.</p>
 !! end
 
 !! test
@@ -9903,20 +9959,26 @@ Magic links: RFC (w/ non-newline whitespace, bug 28950/29025)
 RFC &nbsp;&#160;&#0160;&#xA0;&#Xa0; 822
 RFC
 822
-!! html
+!! html/php
 <p><a class="external mw-magiclink-rfc" rel="nofollow" href="//tools.ietf.org/html/rfc822">RFC 822</a>
 RFC
 822
 </p>
+!! html/parsoid
+<p><a href="//tools.ietf.org/html/rfc822" rel="mw:ExtLink">RFC <span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#160;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#0160;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#xA0;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#Xa0;","srcContent":" "}'> </span> 822</a>
+RFC
+822</p>
 !! end
 
 !! test
 Magic links: ISBN (bug 1937)
 !! wikitext
 ISBN 0-306-40615-2
-!! html
+!! html/php
 <p><a href="/wiki/Special:BookSources/0306406152" class="internal mw-magiclink-isbn">ISBN 0-306-40615-2</a>
 </p>
+!! html/parsoid
+<p><a href="./Special:BookSources/0306406152" rel="mw:WikiLink">ISBN 0-306-40615-2</a></p>
 !! end
 
 !! test
@@ -9927,7 +9989,7 @@ This is ISBN 978-0-316-09811-3 but thisISBN 978-0-316-09811-3 is not ISBN 978-0-
 <p>This is <a href="/wiki/Special:BookSources/9780316098113" class="internal mw-magiclink-isbn">ISBN 978-0-316-09811-3</a> but thisISBN 978-0-316-09811-3 is not ISBN 978-0-316-09811-3linked.
 </p>
 !! html/parsoid
-<p>This is <a href="./Special:BookSources/9780316098113" rel="mw:ExtLink">ISBN 978-0-316-09811-3</a> but thisISBN 978-0-316-09811-3 is not ISBN 978-0-316-09811-3linked.</p>
+<p>This is <a href="./Special:BookSources/9780316098113" rel="mw:WikiLink">ISBN 978-0-316-09811-3</a> but thisISBN 978-0-316-09811-3 is not ISBN 978-0-316-09811-3linked.</p>
 !! end
 
 !! test
@@ -9938,31 +10000,41 @@ ISBN
 9780316098113
 ISBN 978
 0316098113
-!! html
+!! html/php
 <p><a href="/wiki/Special:BookSources/9780316098113" class="internal mw-magiclink-isbn">ISBN 978 0 316 09811 3</a>
 ISBN
 9780316098113
 ISBN 978
 0316098113
 </p>
+!! html/parsoid
+<p><a href="./Special:BookSources/9780316098113" rel="mw:WikiLink">ISBN <span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#160;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#0160;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#xA0;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#Xa0;","srcContent":" "}'> </span> 978<span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span>0<span typeof="mw:Entity" data-parsoid='{"src":"&amp;#160;","srcContent":" "}'> </span>316<span typeof="mw:Entity" data-parsoid='{"src":"&amp;#0160;","srcContent":" "}'> </span>09811<span typeof="mw:Entity" data-parsoid='{"src":"&amp;#xA0;","srcContent":" "}'> </span>3</a>
+ISBN
+9780316098113
+ISBN 978
+0316098113</p>
 !! end
 
 !! test
 Magic links: PMID incorrectly converts space to underscore
 !! wikitext
 PMID 1234
-!! html
+!! html/php
 <p><a class="external mw-magiclink-pmid" rel="nofollow" href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract">PMID 1234</a>
 </p>
+!! html/parsoid
+<p><a href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract" rel="mw:ExtLink">PMID 1234</a></p>
 !! end
 
 !! test
 Magic links: PMID (bug 65278)
 !! wikitext
 This is PMID 1234 but thisPMID 1234 is not PMID 1234linked.
-!! html
+!! html/php
 <p>This is <a class="external mw-magiclink-pmid" rel="nofollow" href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract">PMID 1234</a> but thisPMID 1234 is not PMID 1234linked.
 </p>
+!! html/parsoid
+<p>This is <a href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract" rel="mw:ExtLink">PMID 1234</a> but thisPMID 1234 is not PMID 1234linked.</p>
 !! end
 
 !! test
@@ -9971,11 +10043,15 @@ Magic links: PMID (w/ non-newline whitespace, bug 28950/29025)
 PMID &nbsp;&#160;&#0160;&#xA0;&#Xa0; 1234
 PMID
 1234
-!! html
+!! html/php
 <p><a class="external mw-magiclink-pmid" rel="nofollow" href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract">PMID 1234</a>
 PMID
 1234
 </p>
+!! html/parsoid
+<p><a href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract" rel="mw:ExtLink">PMID <span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#160;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#0160;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#xA0;","srcContent":" "}'> </span><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#Xa0;","srcContent":" "}'> </span> 1234</a>
+PMID
+1234</p>
 !! end
 
 ###
@@ -13264,7 +13340,7 @@ BUG 1887: A ISBN with a thumbnail
 <div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div><a href="/wiki/Special:BookSources/1235467890" class="internal mw-magiclink-isbn">ISBN 1235467890</a></div></div></div>
 
 !! html/parsoid
-<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption><a href="./Special:BookSources/1235467890" rel="mw:ExtLink">ISBN 1235467890</a></figcaption></figure>
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption><a href="./Special:BookSources/1235467890" rel="mw:WikiLink">ISBN 1235467890</a></figcaption></figure>
 !! end
 
 !! test
@@ -18234,7 +18310,7 @@ ISBN  978-0-1234-56&#x20;789
 !! html+tidy
 <p><a href="/wiki/Special:BookSources/9780123456" class="internal mw-magiclink-isbn">ISBN 978-0-1234-56</a> 789</p>
 !! html/parsoid
-<p><a href="./Special:BookSources/9780123456" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>ISBN 978-0-1234-56</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#x20;","srcContent":" "}'> </span>789</p>
+<p><a href="./Special:BookSources/9780123456" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 978-0-1234-56</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#x20;","srcContent":" "}'> </span>789</p>
 !! end
 
 !! test
@@ -18254,7 +18330,7 @@ ISBN ISBN 1234567890
 <p>ISBN <a href="/wiki/Special:BookSources/1234567890" class="internal mw-magiclink-isbn">ISBN 1234567890</a>
 </p>
 !! html/parsoid
-<p>ISBN <a href="./Special:BookSources/1234567890" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>ISBN 1234567890</a></p>
+<p>ISBN <a href="./Special:BookSources/1234567890" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 1234567890</a></p>
 !! end
 
 # Uppercase X and lowercase x as well
@@ -18276,12 +18352,12 @@ ISBN 978080442957x
 <a href="/wiki/Special:BookSources/978080442957X" class="internal mw-magiclink-isbn">ISBN 978080442957x</a>
 </p>
 !! html/parsoid
-<p><a href="./Special:BookSources/346204561X" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>ISBN 3-462-04561-X</a>
-<a href="./Special:BookSources/346204561X" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>ISBN 3-462-04561-x</a>
-<a href="./Special:BookSources/080442957X" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>ISBN 080442957X</a>
-<a href="./Special:BookSources/080442957X" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>ISBN 080442957x</a>
-<a href="./Special:BookSources/978080442957X" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>ISBN 978080442957X</a>
-<a href="./Special:BookSources/978080442957X" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>ISBN 978080442957x</a></p>
+<p><a href="./Special:BookSources/346204561X" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 3-462-04561-X</a>
+<a href="./Special:BookSources/346204561X" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 3-462-04561-x</a>
+<a href="./Special:BookSources/080442957X" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 080442957X</a>
+<a href="./Special:BookSources/080442957X" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 080442957x</a>
+<a href="./Special:BookSources/978080442957X" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 978080442957X</a>
+<a href="./Special:BookSources/978080442957X" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 978080442957x</a></p>
 !! end
 
 !! test
@@ -18292,7 +18368,7 @@ ISBN 1234567890
 <p><a href="/wiki/Special:BookSources/1234567890" class="internal mw-magiclink-isbn">ISBN 1234567890</a>
 </p>
 !! html/parsoid
-<p><a href="./Special:BookSources/1234567890" rel="mw:ExtLink">ISBN 1234567890</a></p>
+<p><a href="./Special:BookSources/1234567890" rel="mw:WikiLink">ISBN 1234567890</a></p>
 !! end
 
 !! test
@@ -18303,7 +18379,7 @@ Bug 22905: <abbr> followed by ISBN followed by </a>
 <p><abbr>(fr)</abbr> <a href="/wiki/Special:BookSources/2753300917" class="internal mw-magiclink-isbn">ISBN 2753300917</a> <a rel="nofollow" class="external text" href="http://www.example.com">example.com</a>
 </p>
 !! html/parsoid
-<p><abbr data-parsoid='{"stx":"html"}'>(fr)</abbr> <a href="./Special:BookSources/2753300917" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>ISBN 2753300917</a> <a rel="mw:ExtLink" href="http://www.example.com">example.com</a></p>
+<p><abbr data-parsoid='{"stx":"html"}'>(fr)</abbr> <a href="./Special:BookSources/2753300917" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 2753300917</a> <a rel="mw:ExtLink" href="http://www.example.com">example.com</a></p>
 !! end
 
 !! test
@@ -22927,9 +23003,9 @@ PMID 123&foo
 !! test
 Links 12. Add <nowiki/>s between text-nodes and ISBN-links when required (bug 64300)
 !! html/parsoid
-<p><a href="./Special:BookSources/1234567890" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>ISBN 1234567890</a>1
-<a href="./Special:BookSources/1234567890" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>ISBN 1234567890</a>x
-a<a href="./Special:BookSources/1234567890" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>ISBN 1234567890</a>b
+<p><a href="./Special:BookSources/1234567890" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 1234567890</a>1
+<a href="./Special:BookSources/1234567890" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 1234567890</a>x
+a<a href="./Special:BookSources/1234567890" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 1234567890</a>b
 </p>
 !! wikitext
 ISBN 1234567890<nowiki/>1
@@ -22940,7 +23016,7 @@ a<nowiki/>ISBN 1234567890<nowiki/>b
 !! test
 Links 13. Don't add spurious <nowiki/>s between text-nodes and ISBN-links (bug 64300)
 !! html/parsoid
-<p>-<a href="./Special:BookSources/1234567890" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>ISBN 1234567890</a>'s
+<p>-<a href="./Special:BookSources/1234567890" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 1234567890</a>'s
 !! wikitext
 -ISBN 1234567890's
 !! html/php
@@ -23123,38 +23199,58 @@ bar <span><nowiki>[[foo]]</nowiki></span>
 !! test
 1. Leading whitespace in SOL context should be escaped
 !! options
-parsoid
+parsoid=html2wt,wt2wt
+!! html/php
+<p> a
+</p><p>  a
+</p><p>	a(tab)
+</p><p> 	a
+  a
+</p><p>a
+ b
+</p><p>a
+	b
+</p><p>a
+	 b
+</p>
+!! html/parsoid
+<p> a</p>
+
+<p>  a</p>
+
+<p>	a(tab)</p>
+
+<p> 	a
+<!--cmt-->
+  a</p>
+
+<p>a
+ b</p>
+
+<p>a
+	b</p>
+
+<p>a
+	 b</p>
 !! wikitext
 <nowiki> </nowiki>a
 
 <nowiki> </nowiki> a
 
-<nowiki>	</nowiki>a(tab)
+	a(tab)
 
 <nowiki> </nowiki>	a
 <!--cmt-->
-<nowiki> </nowiki> a
+<nowiki>  </nowiki>a
 
 a
 <nowiki> </nowiki>b
 
 a
-<nowiki>	</nowiki>b
+	b
 
 a
-<nowiki>	</nowiki> b
-!! html
-<p> a</p>
-<p>  a</p>
-<p>	a(tab)</p>
-<p> 	a</p>
-<p><!--cmt-->  a</p>
-<p>a
- b</p>
-<p>a
-	b</p>
-<p>a
-	 b</p>
+	 b
 !! end
 
 !! test
@@ -23456,7 +23552,7 @@ Table with broken attribute value quoting on consecutive lines
 !! end
 
 !! test
-Parsoid-only: Don't wrap broken template tags in <nowiki> on wt2wt (Bug 42353)
+2. Parsoid-only: Don't wrap broken template tags in <nowiki> on wt2wt (Bug 42353)
 !! options
 parsoid
 !! wikitext
@@ -23466,7 +23562,7 @@ parsoid
 !! end
 
 !! test
-Parsoid-only: Don't wrap broken template tags in <nowiki> on wt2wt (Bug 42353)
+1. Parsoid-only: Don't wrap broken template tags in <nowiki> on wt2wt (Bug 42353)
 !! options
 parsoid
 !! wikitext
@@ -24515,7 +24611,7 @@ parsoid={
 
 ==  [[Category:A2]] hi pal ==
 
-== <!--foo-->   [[Category:A3]]    how goes it ==
+==  <!--foo-->  [[Category:A3]]    how goes it ==
 
 == it goes well    [[Category:A4]]  <!--bar-->  ==
 
@@ -24967,7 +25063,7 @@ Edited ISBN links not serializable as ISBN links should serialize as wikilinks
 !! options
 parsoid=html2wt
 !! html/parsoid
-<a rel="mw:ExtLink" href="./Special:BookSources/1234567890">ISBN 1234567895</a>
+<a href="./Special:BookSources/1234567890" rel="mw:ExtLink">ISBN 1234567895</a>
 !! wikitext
 [[Special:BookSources/1234567890|ISBN 1234567895]]
 !! end
@@ -25075,6 +25171,92 @@ parsoid=html2wt
 <p><a rel="mw:ExtLink" href="http://example.com">http://example.com</a> http://example.com is not a link.</p>
 !! wikitext
 http://example.com<nowiki> http://example.com is not a link.</nowiki>
+!! end
+
+!! test
+Magic links inside links (not autolinked)
+!! wikitext
+[[Foo|http://example.com]]
+[[Foo|RFC 1234]]
+[[Foo|PMID 1234]]
+[[Foo|ISBN 123456789x]]
+
+[http://foo.com http://example.com]
+[http://foo.com RFC 1234]
+[http://foo.com PMID 1234]
+[http://foo.com ISBN 123456789x]
+!! html+tidy
+<p><a href="/wiki/Foo" title="Foo">http://example.com</a> <a href="/wiki/Foo" title="Foo">RFC 1234</a> <a href="/wiki/Foo" title="Foo">PMID 1234</a> <a href="/wiki/Foo" title="Foo">ISBN 123456789x</a></p>
+<p><a rel="nofollow" class="external text" href="http://foo.com">http://example.com</a> <a rel="nofollow" class="external text" href="http://foo.com">RFC 1234</a> <a rel="nofollow" class="external text" href="http://foo.com">PMID 1234</a> <a rel="nofollow" class="external text" href="http://foo.com">ISBN 123456789x</a></p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Foo" title="Foo">http://example.com</a>
+<a rel="mw:WikiLink" href="./Foo" title="Foo">RFC 1234</a>
+<a rel="mw:WikiLink" href="./Foo" title="Foo">PMID 1234</a>
+<a rel="mw:WikiLink" href="./Foo" title="Foo">ISBN 123456789x</a></p>
+
+<p><a rel="mw:ExtLink" href="http://foo.com">http://example.com</a>
+<a rel="mw:ExtLink" href="http://foo.com">RFC 1234</a>
+<a rel="mw:ExtLink" href="http://foo.com">PMID 1234</a>
+<a rel="mw:ExtLink" href="http://foo.com">ISBN 123456789x</a></p>
+!! end
+
+!! test
+Magic links inside image captions (autolinked)
+!! wikitext
+[[File:Foobar.jpg|thumb|http://example.com]]
+[[File:Foobar.jpg|thumb|RFC 1234]]
+[[File:Foobar.jpg|thumb|PMID 1234]]
+[[File:Foobar.jpg|thumb|ISBN 123456789x]]
+!! html+tidy
+<div class="thumb tright">
+<div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>
+<div class="thumbcaption">
+<div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>
+<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a></div>
+</div>
+</div>
+<div class="thumb tright">
+<div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>
+<div class="thumbcaption">
+<div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>
+<a class="external mw-magiclink-rfc" rel="nofollow" href="//tools.ietf.org/html/rfc1234">RFC 1234</a></div>
+</div>
+</div>
+<div class="thumb tright">
+<div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>
+<div class="thumbcaption">
+<div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>
+<a class="external mw-magiclink-pmid" rel="nofollow" href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract">PMID 1234</a></div>
+</div>
+</div>
+<div class="thumb tright">
+<div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>
+<div class="thumbcaption">
+<div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>
+<a href="/wiki/Special:BookSources/123456789X" class="internal mw-magiclink-isbn">ISBN 123456789x</a></div>
+</div>
+</div>
+!! html/parsoid
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption><a rel="mw:ExtLink" href="http://example.com">http://example.com</a></figcaption></figure>
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption><a href="//tools.ietf.org/html/rfc1234" rel="mw:ExtLink">RFC 1234</a></figcaption></figure>
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption><a href="//www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract" rel="mw:ExtLink">PMID 1234</a></figcaption></figure>
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="//example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption><a href="./Special:BookSources/123456789X" rel="mw:WikiLink">ISBN 123456789x</a></figcaption></figure>
+!! end
+
+!! test
+WTS of magic word text (T109371)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>RFC 1234</p>
+<p><a href="http://foo.com" rel="mw:ExtLink">RFC 1234</a></p>
+<p><a href="./Foo" rel="mw:WikiLink">RFC 1234</a></p>
+!! wikitext
+<nowiki>RFC 1234</nowiki>
+
+[http://foo.com RFC 1234]
+
+[[Foo|RFC 1234]]
 !! end
 
 !! test
@@ -25780,6 +25962,16 @@ parsoid={
 <table>
 <tr><td>-</td></tr>
 </table>
+!! end
+
+!! test
+Escape nowiki DOM elements
+!! options
+parsoid=html2wt
+!! html/parsoid
+<nowiki><i>foo</i></nowiki>
+!! wikitext
+&lt;nowiki&gt;''foo''&lt;/nowiki&gt;
 !! end
 
 # ---------------------------------------------------
