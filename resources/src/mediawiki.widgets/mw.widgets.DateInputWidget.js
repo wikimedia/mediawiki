@@ -88,7 +88,7 @@
 			}
 		}
 
-		var placeholder;
+		var placeholder, mustBeAfter, mustBeBefore;
 		if ( config.placeholder ) {
 			placeholder = config.placeholder;
 		} else if ( config.inputFormat ) {
@@ -114,18 +114,20 @@
 		this.displayFormat = config.displayFormat;
 
 		// Validate and set min and max dates as properties
+		mustBeAfter = moment( config.mustBeAfter, 'YYYY-MM-DD' );
+		mustBeBefore = moment( config.mustBeBefore, 'YYYY-MM-DD' );
 		if (
 			config.mustBeAfter !== undefined &&
-			moment( config.mustBeAfter, 'YYYY-MM-DD' ).isValid()
+			mustBeAfter.isValid()
 		) {
-			this.mustBeAfter = moment( config.mustBeAfter, 'YYYY-MM-DD' );
+			this.mustBeAfter = mustBeAfter;
 		}
 
 		if (
 			config.mustBeBefore !== undefined &&
-			moment( config.mustBeBefore, 'YYYY-MM-DD' ).isValid()
+			mustBeBefore.isValid()
 		) {
-			this.mustBeBefore = moment( config.mustBeBefore, 'YYYY-MM-DD' );
+			this.mustBeBefore = mustBeBefore;
 		}
 
 		// Parent constructor
@@ -488,7 +490,7 @@
 			flags = mom.parsingFlags();
 
 		return mom.isValid() && flags.charsLeftOver === 0 && flags.unusedTokens.length === 0;
-	}
+	};
 
 	/**
 	 * Validates if the date is within the range configured with {@link #cfg-mustBeAfter}
