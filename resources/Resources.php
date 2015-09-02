@@ -1184,6 +1184,27 @@ return array(
 			'upload-form-label-usage-filename',
 		),
 	),
+	'mediawiki.ForeignStructuredUpload.BookletLayout' => array(
+		'scripts' => 'resources/src/mediawiki/mediawiki.ForeignStructuredUpload.BookletLayout.js',
+		'dependencies' => array(
+			'mediawiki.ForeignStructuredUpload',
+			'mediawiki.Upload.BookletLayout',
+			'mediawiki.widgets',
+			'mediawiki.jqueryMsg',
+		),
+		'messages' => array(
+			'foreign-structured-upload-form-label-own-work',
+			'foreign-structured-upload-form-label-infoform-categories',
+			'foreign-structured-upload-form-label-infoform-date',
+			'foreign-structured-upload-form-label-infoform-legal',
+			'foreign-structured-upload-form-label-own-work-message-default',
+			'foreign-structured-upload-form-label-not-own-work-message-default',
+			'foreign-structured-upload-form-label-not-own-work-local-default',
+			'foreign-structured-upload-form-label-own-work-message-wikimediacommons',
+			'foreign-structured-upload-form-label-not-own-work-message-wikimediacommons',
+			'foreign-structured-upload-form-label-not-own-work-local-wikimediacommons',
+		),
+	),
 	'mediawiki.toc' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.toc.js',
 		'dependencies' => 'mediawiki.cookie',
