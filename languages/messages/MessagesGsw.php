@@ -68,7 +68,6 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'Neji_Syte' ),
 	'PasswordReset'             => array( 'Passwort_zruggsetze' ),
 	'PermanentLink'             => array( 'Permalink' ),
-	'Popularpages'              => array( 'Beliebteschti_Syte' ),
 	'Preferences'               => array( 'Ystellige' ),
 	'Prefixindex'               => array( 'Vorsilbeverzeichnis' ),
 	'Protectedpages'            => array( 'Gschitzti_Syte' ),

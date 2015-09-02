@@ -153,7 +153,6 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'YeniSayfalar' ),
 	'PasswordReset'             => array( 'ParolaSıfırlama' ),
 	'PermanentLink'             => array( 'KalıcıBağ' ),
-	'Popularpages'              => array( 'PopülerSayfalar' ),
 	'Preferences'               => array( 'Tercihler', 'Ayarlar' ),
 	'Prefixindex'               => array( 'ÖnekDizini' ),
 	'Protectedpages'            => array( 'KorunanSayfalar' ),

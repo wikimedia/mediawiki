@@ -106,7 +106,6 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( 'بألگە_زوٙن' ),
 	'PasswordReset'             => array( 'د_نۊ_زئنە_کئردئن_رازینە_گوڤاردئن' ),
 	'PermanentLink'             => array( 'ھوم_پئیڤأند_دایئمی' ),
-	'Popularpages'              => array( 'بألگە_یا_حاستئنی' ),
 	'Preferences'               => array( 'میزوٙنکاریا' ),
 	'Prefixindex'               => array( 'دئماڤأن_سیاأ' ),
 	'Protectedpages'            => array( 'بألگە_یا_پور_و_پیم_بیە' ),

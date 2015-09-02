@@ -110,7 +110,6 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'PaginePiùRecenti' ),
 	'PasswordReset'             => array( 'ReimpostaPassword' ),
 	'PermanentLink'             => array( 'LinkPermanente' ),
-	'Popularpages'              => array( 'PaginePiùVisitate' ),
 	'Preferences'               => array( 'Preferenze' ),
 	'Prefixindex'               => array( 'Prefissi' ),
 	'Protectedpages'            => array( 'PagineProtette' ),

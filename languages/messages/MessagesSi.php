@@ -107,7 +107,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'මගේ_සාකච්ඡාව' ),
 	'Newimages'                 => array( 'නව_ගොනු', 'නව_රූප' ),
 	'Newpages'                  => array( 'නව_පිටුව' ),
-	'Popularpages'              => array( 'ජනප්‍රිය_පිටු' ),
 	'Preferences'               => array( 'අභිරුචියන්' ),
 	'Prefixindex'               => array( 'උපසර්ග_සූචිය' ),
 	'Protectedpages'            => array( 'ආරක්‍ෂිත_පිටුව' ),

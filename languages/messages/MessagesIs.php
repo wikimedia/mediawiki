@@ -169,7 +169,6 @@ $specialPageAliases = array(
 	'Newimages'                 => array( 'Nýjar_myndir' ),
 	'Newpages'                  => array( 'Nýjustu_greinar' ),
 	'PasswordReset'             => array( 'Endursetja_lykilorð' ),
-	'Popularpages'              => array( 'Vinsælar_síður' ),
 	'Preferences'               => array( 'Stillingar' ),
 	'Prefixindex'               => array( 'Forskeyti' ),
 	'Protectedpages'            => array( 'Verndaðar_síður' ),

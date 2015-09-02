@@ -274,7 +274,6 @@ $specialPageAliases = array(
 	'Newimages'                 => array( 'Nye_filer' ),
 	'Newpages'                  => array( 'Nye_sider' ),
 	'PermanentLink'             => array( 'Permanent_lenkje', 'Permanent_lenke' ),
-	'Popularpages'              => array( 'Populære_sider' ),
 	'Preferences'               => array( 'Innstillingar' ),
 	'Prefixindex'               => array( 'Prefiksindeks' ),
 	'Protectedpages'            => array( 'Verna_sider' ),

@@ -44,7 +44,6 @@ $namespaceGenderAliases = array(
 );
 
 $specialPageAliases = array(
-	'Popularpages'              => array( 'Faqe të famshme' ),
 	'Search'                    => array( 'Kërko' ),
 );
 

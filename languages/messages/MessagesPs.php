@@ -64,7 +64,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'زما_خبرې_اترې' ),
 	'Newimages'                 => array( 'نوي_انځورونه' ),
 	'Newpages'                  => array( 'نوي_مخونه' ),
-	'Popularpages'              => array( 'نامتومخونه' ),
 	'Preferences'               => array( 'غوره_توبونه' ),
 	'Prefixindex'               => array( 'د_مختاړيو_ليکلړ' ),
 	'Protectedpages'            => array( 'ژغورلي_مخونه' ),

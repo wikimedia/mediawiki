@@ -70,7 +70,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'Menin\' sa\'wbetim' ),
 	'Newimages'                 => array( 'Taza su\'wretler' ),
 	'Newpages'                  => array( 'Taza betler' ),
-	'Popularpages'              => array( 'Ko\'p ko\'rilgen betler' ),
 	'Preferences'               => array( 'Sazlawlar' ),
 	'Protectedpages'            => array( 'Qorg\'alg\'an betler' ),
 	'Randompage'                => array( 'Qa\'legen', 'Qa\'legen bet' ),

@@ -117,7 +117,6 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'PagineNove' ),
 	'PasswordReset'             => array( 'ReinpostaPassword' ),
 	'PermanentLink'             => array( 'LinkParmanente' ),
-	'Popularpages'              => array( 'PaginePiassèVisità' ),
 	'Preferences'               => array( 'Preferense' ),
 	'Prefixindex'               => array( 'Prefissi' ),
 	'Protectedpages'            => array( 'PagineProtete' ),

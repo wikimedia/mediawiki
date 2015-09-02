@@ -98,7 +98,6 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( 'Sivun_kieli' ),
 	'PasswordReset'             => array( 'Unohtuneen_salasanan_vaihto' ),
 	'PermanentLink'             => array( 'Ikilinkki' ),
-	'Popularpages'              => array( 'Suositut_sivut' ),
 	'Preferences'               => array( 'Asetukset' ),
 	'Prefixindex'               => array( 'Etuliiteluettelo' ),
 	'Protectedpages'            => array( 'Suojatut_sivut' ),

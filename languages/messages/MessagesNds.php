@@ -179,7 +179,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'Miene Diskuschoonssiet' ),
 	'Newimages'                 => array( 'Nee Datein' ),
 	'Newpages'                  => array( 'Nee Sieden' ),
-	'Popularpages'              => array( 'Veel besöchte Sieden' ),
 	'Preferences'               => array( 'Instellungen' ),
 	'Prefixindex'               => array( 'Sieden de anfangt mit' ),
 	'Protectedpages'            => array( 'Schuulte Sieden' ),

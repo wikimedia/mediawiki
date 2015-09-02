@@ -113,7 +113,6 @@ $specialPageAliases = array(
 	'PagesWithProp'             => array( 'Páxinas_con_propiedades' ),
 	'PasswordReset'             => array( 'Restablecer_o_contrasinal', 'Restablecer_contrasinal' ),
 	'PermanentLink'             => array( 'Ligazón_permanente' ),
-	'Popularpages'              => array( 'Páxinas_populares' ),
 	'Preferences'               => array( 'Preferencias' ),
 	'Prefixindex'               => array( 'Índice_de_prefixos' ),
 	'Protectedpages'            => array( 'Páxinas_protexidas' ),

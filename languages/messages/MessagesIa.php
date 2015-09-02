@@ -93,7 +93,6 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'Paginas_nove', 'Nove_paginas' ),
 	'PasswordReset'             => array( 'Reinitialisar_contrasigno' ),
 	'PermanentLink'             => array( 'Ligamine_permanente' ),
-	'Popularpages'              => array( 'Paginas_popular' ),
 	'Preferences'               => array( 'Preferentias' ),
 	'Prefixindex'               => array( 'Indice_de_prefixos' ),
 	'Protectedpages'            => array( 'Paginas_protegite' ),

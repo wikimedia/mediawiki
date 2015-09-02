@@ -176,7 +176,6 @@ $specialPageAliases = array(
 	'Newpages'                  => array( 'Нові_сторінки' ),
 	'PasswordReset'             => array( 'Скинути_пароль' ),
 	'PermanentLink'             => array( 'Постійне_посилання' ),
-	'Popularpages'              => array( 'Популярні_сторінки' ),
 	'Preferences'               => array( 'Налаштування' ),
 	'Prefixindex'               => array( 'Покажчик_за_початком_назви' ),
 	'Protectedpages'            => array( 'Захищені_сторінки' ),

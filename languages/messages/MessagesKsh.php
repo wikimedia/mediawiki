@@ -158,7 +158,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'Ming_Klaafsigg', 'Klaaf' ),
 	'Newimages'                 => array( 'Neu_Dateie' ),
 	'Newpages'                  => array( 'Neu_Atikelle' ),
-	'Popularpages'              => array( 'Miehts_affjeroofe_Sigge' ),
 	'Preferences'               => array( 'Ming_Enstellunge', 'Enstellunge' ),
 	'Prefixindex'               => array( 'Sigge_met_Aanfang' ),
 	'Protectedpages'            => array( 'Siggeschotz' ),

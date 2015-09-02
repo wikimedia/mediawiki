@@ -100,7 +100,6 @@ $specialPageAliases = array(
 	'PagesWithProp'             => array( 'Pages_avec_la_propriété' ),
 	'PasswordReset'             => array( 'Réinitialisation_du_mot_de_passe', 'RéinitialisationDuMotDePasse' ),
 	'PermanentLink'             => array( 'LienPermanent', 'Lien_permanent' ),
-	'Popularpages'              => array( 'Pages_les_plus_visitées', 'Pages_les_plus_visitees', 'Pageslesplusvisitées', 'Pageslesplusvisitees' ),
 	'Preferences'               => array( 'Préférences' ),
 	'Prefixindex'               => array( 'Index', 'Préfixes', 'Prefixes' ),
 	'Protectedpages'            => array( 'Pages_protégées', 'PagesProtégées', 'Pages_protegees', 'PagesProtegees' ),

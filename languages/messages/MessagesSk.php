@@ -81,7 +81,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'MojaDiskusia' ),
 	'Newimages'                 => array( 'NovéSúbory' ),
 	'Newpages'                  => array( 'NovéStránky' ),
-	'Popularpages'              => array( 'PopulárneStránky' ),
 	'Preferences'               => array( 'Nastavenia' ),
 	'Prefixindex'               => array( 'IndexPredpon' ),
 	'Protectedpages'            => array( 'ZamknutéStránky' ),

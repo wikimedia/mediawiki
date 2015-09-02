@@ -117,7 +117,6 @@ $specialPageAliases = array(
 	'Myuploads'                 => array( 'ΤαΑρχείαΜου', 'ΤαΑνεβάσματάΜου', 'ΟιΕπιφορτώσειςΜου' ),
 	'Newimages'                 => array( 'ΝέαΑρχεία', 'ΝέεςΕικόνες' ),
 	'Newpages'                  => array( 'ΝέεςΣελίδες' ),
-	'Popularpages'              => array( 'ΔημοφιλείςΣελίδες' ),
 	'Preferences'               => array( 'Προτιμήσεις' ),
 	'Prefixindex'               => array( 'ΕυρετήριοΠροθεμάτων' ),
 	'Protectedpages'            => array( 'ΠροστατευμένεςΣελίδες' ),

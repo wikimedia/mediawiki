@@ -60,7 +60,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'Минии_хэлэлсэл' ),
 	'Myuploads'                 => array( 'Минии_ашаалһан_зүйл' ),
 	'Newpages'                  => array( 'Шэнэ_хуудаһан' ),
-	'Popularpages'              => array( 'Оло_уншагдаһан_хуудаһан' ),
 	'Protectedpages'            => array( 'Хамгаалалтатай_хуудаһан' ),
 	'Protectedtitles'           => array( 'Хамгаалалтатай_гаршаг' ),
 	'Recentchanges'             => array( 'Сайтдахи_хубилалтанууд' ),

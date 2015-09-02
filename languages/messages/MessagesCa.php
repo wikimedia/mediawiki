@@ -82,7 +82,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'Discussió_personal' ),
 	'Newimages'                 => array( 'Imatges_noves', 'Fitxers_nous' ),
 	'Newpages'                  => array( 'Pàgines_noves' ),
-	'Popularpages'              => array( 'Pàgines_populars' ),
 	'Preferences'               => array( 'Preferències' ),
 	'Prefixindex'               => array( 'Cerca_per_prefix' ),
 	'Protectedpages'            => array( 'Pàgines_protegides' ),

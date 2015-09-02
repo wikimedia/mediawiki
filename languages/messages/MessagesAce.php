@@ -116,7 +116,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'Peugah_haba_lon' ),
 	'Newimages'                 => array( 'Beureukaih_baro' ),
 	'Newpages'                  => array( 'On_baro' ),
-	'Popularpages'              => array( 'On_meuceuhu' ),
 	'Preferences'               => array( 'Geunalak' ),
 	'Prefixindex'               => array( 'Dapeuta_neuaway' ),
 	'Protectedpages'            => array( 'On_nyang_geupeulindong' ),

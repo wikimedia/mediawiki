@@ -148,7 +148,6 @@ $specialPageAliases = array(
 	'PageLanguage'              => array( 'താളിന്റെഭാഷ' ),
 	'PasswordReset'             => array( 'രഹസ്യവാക്ക്‌‌പുനക്രമീകരണം' ),
 	'PermanentLink'             => array( 'സ്ഥിരംകണ്ണി' ),
-	'Popularpages'              => array( 'ജനപ്രിയതാളുകൾ' ),
 	'Preferences'               => array( 'ക്രമീകരണങ്ങൾ' ),
 	'Prefixindex'               => array( 'പൂർവ്വപദസൂചിക' ),
 	'Protectedpages'            => array( 'സംരക്ഷിത_താളുകൾ' ),

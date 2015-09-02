@@ -96,7 +96,6 @@ $specialPageAliases = array(
 	'Myuploads'                 => array( 'NgarkimeteMia' ),
 	'Newimages'                 => array( 'SkedaTëReja' ),
 	'Newpages'                  => array( 'FaqeteReja' ),
-	'Popularpages'              => array( 'FaqetëFamshme' ),
 	'Preferences'               => array( 'Preferencat' ),
 	'Protectedpages'            => array( 'FaqeteMbrojtura' ),
 	'Protectedtitles'           => array( 'TitujteMbrojtur' ),
