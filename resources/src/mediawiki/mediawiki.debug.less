@@ -187,3 +187,14 @@ a.mw-debug-panelabel:visited {
 .mw-debug-backtrace li:nth-child(-n+3) {
 	display: none;
 }
+
+.foo {
+	/* @embed */
+	background-image: url(foo.png);
+}
+
+.foo2 {
+	.background-image(foo2.png);
+}
+
+@import "foo3";
