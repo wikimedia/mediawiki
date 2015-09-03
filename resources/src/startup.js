@@ -12,7 +12,7 @@ if ( !window.performance ) {
 if ( !performance.mark ) {
 	performance.mark = function () {};
 }
-performance.mark( 'mediaWikiStartUp' );
+performance.mark( 'mwLoadStart' );
 
 /**
  * Returns false for Grade C supported browsers.
