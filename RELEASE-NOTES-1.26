@@ -103,6 +103,13 @@ production.
 * Added mediawiki/at-ease 1.0.0.
 * Update QUnit from v1.17.1 to v1.18.0.
 * Added wikimedia/cldr-plural-rule-parser 1.0.0
+* Update liuggio/statsd-php-client from v1.0.12 to v1.0.16
+* Update wikimedia/utfnormal from v1.0.2 to v1.0.3
+* Added wikimedia/assert 0.2.2.
+* Update wikimedia/composer-merge-plugin from v1.0.0 to v1.2.1.
+* Added wikimedia/ip-set 1.0.1.
+* Update zordius/lightncandy from v0.18 to v0.21.
+* Added wikimedia/wrappedstring 2.0.0.
 
 === Bug fixes in 1.26 ===
 * (T53283) load.php sometimes sends 304 response without full headers
