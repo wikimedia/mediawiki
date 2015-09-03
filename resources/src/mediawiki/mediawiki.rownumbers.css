@@ -1,0 +1,56 @@
+/**
+ * Autonumbered tables
+ */
+
+table.rownumbers {
+	counter-reset: rownumbers;
+}
+
+/* make sure that the following rule that hides the fallback
+ * is not parsed by browsers that don't support :first-child and :before
+ */
+x-thereisnoelementwiththisname:first-child:before, .rownumbers-fallback {
+	display: none;
+}
+
+table.rownumbers tr td:first-child:before {
+	counter-increment: rownumbers;
+	content: counter(rownumbers);
+}
+
+table.rownumbers:lang(azb) tr td:first-child:before,
+table.rownumbers:lang(bcc) tr td:first-child:before,
+table.rownumbers:lang(bgn) tr td:first-child:before,
+table.rownumbers:lang(bqi) tr td:first-child:before,
+table.rownumbers:lang(fa) tr td:first-child:before,
+table.rownumbers:lang(glk) tr td:first-child:before,
+table.rownumbers:lang(kk-arab) tr td:first-child:before,
+table.rownumbers:lang(lrc) tr td:first-child:before,
+table.rownumbers:lang(luz) tr td:first-child:before,
+table.rownumbers:lang(mzn) tr td:first-child:before {
+	content: counter(rownumbers, -moz-persian);
+	content: counter(rownumbers, persian);
+}
+
+table.rownumbers:lang(ckb) tr td:first-child:before,
+table.rownumbers:lang(sdh) tr td:first-child:before {
+	content: counter(rownumbers, -moz-arabic-indic);
+	content: counter(rownumbers, arabic-indic);
+}
+
+table.rownumbers:lang(hi) tr td:first-child:before,
+table.rownumbers:lang(mr) tr td:first-child:before {
+	content: counter(rownumbers, -moz-devanagari);
+	content: counter(rownumbers, devanagari);
+}
+
+table.rownumbers:lang(as) tr td:first-child:before,
+table.rownumbers:lang(bn) tr td:first-child:before {
+	content: counter(rownumbers, -moz-bengali);
+	content: counter(rownumbers, bengali);
+}
+
+table.rownumbers:lang(or) tr td:first-child:before {
+	content: counter(rownumbers, -moz-oriya);
+	content: counter(rownumbers, oriya);
+}

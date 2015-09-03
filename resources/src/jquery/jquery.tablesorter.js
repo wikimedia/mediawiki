@@ -279,7 +279,8 @@
 	}
 
 	function buildHeaders( table, msg ) {
-		var config = $( table ).data( 'tablesorter' ).config,
+		var $table = $( table ),
+			config = $table.data( 'tablesorter' ).config,
 			maxSeen = 0,
 			colspanOffset = 0,
 			columns,
@@ -355,7 +356,10 @@
 				count: 0
 			} );
 
-			if ( $cell.hasClass( config.unsortableClass ) ) {
+			if (
+				$cell.hasClass( config.unsortableClass ) ||
+				( headerIndex === 0 && $table.hasClass( config.rownumbersClass ) )
+			) {
 				$cell.data( 'sortDisabled', true );
 			}
 
@@ -714,6 +718,7 @@
 				cssChildRow: 'expand-child',
 				sortMultiSortKey: 'shiftKey',
 				unsortableClass: 'unsortable',
+				rownumbersClass: 'rownumbers',
 				parsers: {},
 				cancelSelection: true,
 				sortList: [],
