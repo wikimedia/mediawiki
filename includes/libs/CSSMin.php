@@ -60,13 +60,15 @@ class CSSMin {
 	/* Static Methods */
 
 	/**
-	 * Gets a list of local file paths which are referenced in a CSS style sheet
+	 * Gets a list of local file paths which are referenced in a CSS style sheet.
 	 *
-	 * This function will always return an empty array if the second parameter is not given or null
-	 * for backwards-compatibility.
+	 * If you wish non-existent files to be listed too, use getAllLocalFileReferences().
 	 *
-	 * @param string $source CSS data to remap
-	 * @param string $path File path where the source was read from (optional)
+	 * For backwards-compatibility, if the second parameter is not given or null,
+	 * this function will return an empty array instead of erroring out.
+	 *
+	 * @param string $source CSS stylesheet source to process
+	 * @param string $path File path where the source was read from
 	 * @return array List of local file references
 	 */
 	public static function getLocalFileReferences( $source, $path = null ) {
@@ -74,6 +76,25 @@ class CSSMin {
 			return array();
 		}
 
+		$files = self::getAllLocalFileReferences( $source, $path );
+
+		// Skip non-existent files
+		$files = array_filter( $files, function ( $file ) {
+			return file_exists( $file );
+		} );
+
+		return $files;
+	}
+
+	/**
+	 * Gets a list of local file paths which are referenced in a CSS style sheet, including
+	 * non-existent files.
+	 *
+	 * @param string $source CSS stylesheet source to process
+	 * @param string $path File path where the source wa
+	 * @return array List of local file references
+	 */
+	public static function getAllLocalFileReferences( $source, $path ) {
 		$path = rtrim( $path, '/' ) . '/';
 		$files = array();
 
@@ -87,13 +108,7 @@ class CSSMin {
 					break;
 				}
 
-				$file = $path . $url;
-				// Skip non-existent files
-				if ( file_exists( $file ) ) {
-					break;
-				}
-
-				$files[] = $file;
+				$files[] = $path . $url;
 			}
 		}
 		return $files;
