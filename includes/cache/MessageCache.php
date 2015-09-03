@@ -645,16 +645,20 @@ class MessageCache {
 
 		if ( !$value ) {
 			// No hash found at all; cache must regenerate to be safe
+			$hash = false;
 			$expired = true;
-		} elseif ( ( time() - $value['latest'] ) < WANObjectCache::HOLDOFF_TTL ) {
-			// Cache was recently updated via replace() and should be up-to-date
-			$expired = false;
 		} else {
-			// See if the "check" key was bumped after the hash was generated
-			$expired = ( $curTTL < 0 );
+			$hash = $value['hash'];
+			if ( ( time() - $value['latest'] ) < WANObjectCache::HOLDOFF_TTL ) {
+				// Cache was recently updated via replace() and should be up-to-date
+				$expired = false;
+			} else {
+				// See if the "check" key was bumped after the hash was generated
+				$expired = ( $curTTL < 0 );
+			}
 		}
 
-		return array( $value['hash'], $expired );
+		return array( $hash, $expired );
 	}
 
 	/**
