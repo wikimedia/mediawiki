@@ -166,6 +166,9 @@ changes to languages because of Phabricator reports.
   a lengthy deprecation period.
 * The ScopedPHPTimeout class was removed.
 * Removed maintenance script fixSlaveDesync.php.
+* Watchlist tokens, SpecialResetTokens, and User::getTokenFromOption()
+  are deprecated. Applications using those can work via the OAuth
+  extension instead. New tokens types should not be added.
 
 == Compatibility ==
 
