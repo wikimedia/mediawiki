@@ -1,10 +1,10 @@
 {
 	"preset": "wikimedia",
 
-	"disallowQuotedKeysInObjects": null,
 	"requireVarDeclFirst": null,
 	"jsDoc": null,
 
+	"disallowQuotedKeysInObjects": "allButReserved",
 	"requireDotNotation": { "allExcept": [ "keywords" ] },
 
 	"excludeFiles": [

@@ -160,7 +160,7 @@
 								context.fn.restoreCursorAndScrollTop();
 							}
 							if ( options.selectionStart !== undefined ) {
-								$( this ).textSelection( 'setSelection', { 'start': options.selectionStart, 'end': options.selectionEnd } );
+								$( this ).textSelection( 'setSelection', { start: options.selectionStart, end: options.selectionEnd } );
 							}
 
 							selText = $( this ).textSelection( 'getSelection' );
@@ -203,7 +203,7 @@
 
 							$( this ).focus();
 							if ( options.selectionStart !== undefined ) {
-								$( this ).textSelection( 'setSelection', { 'start': options.selectionStart, 'end': options.selectionEnd } );
+								$( this ).textSelection( 'setSelection', { start: options.selectionStart, end: options.selectionEnd } );
 							}
 
 							selText = $( this ).textSelection( 'getSelection' );

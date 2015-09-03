@@ -15,7 +15,7 @@
 		slice = Array.prototype.slice,
 		parserDefaults = {
 			magic: {
-				'SITENAME': mw.config.get( 'wgSiteName' )
+				SITENAME: mw.config.get( 'wgSiteName' )
 			},
 			// Whitelist for allowed HTML elements in wikitext.
 			// Self-closing tags are not currently supported.
@@ -1224,6 +1224,7 @@
 			return word && form && this.language.convertGrammar( word, form );
 		},
 
+		// jscs: disable disallowQuotedKeysInObjects
 		/**
 		 * Tranform parsed structure into a int: (interface language) message include
 		 * Invoked by putting `{{int:othermessage}}` into a message
@@ -1234,6 +1235,7 @@
 			var msg = nodes[ 0 ];
 			return mw.jqueryMsg.getMessageFunction()( msg.charAt( 0 ).toLowerCase() + msg.slice( 1 ) );
 		},
+		// jscs: enable disallowQuotedKeysInObjects
 
 		/**
 		 * Takes an unformatted number (arab, no group separators and . as decimal separator)
@@ -1279,9 +1281,9 @@
 		}
 
 		messageFunction = mw.jqueryMsg.getMessageFunction( {
-			'messages': this.map,
+			messages: this.map,
 			// For format 'escaped', escaping part is handled by mediawiki.js
-			'format': this.format
+			format: this.format
 		} );
 		return messageFunction( this.key, this.parameters );
 	};

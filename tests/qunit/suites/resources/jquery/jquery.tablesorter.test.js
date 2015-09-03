@@ -159,19 +159,19 @@
 		setup: function () {
 			this.liveMonths = mw.language.months;
 			mw.language.months = {
-				'keys': {
-					'names': [ 'january', 'february', 'march', 'april', 'may_long', 'june',
+				keys: {
+					names: [ 'january', 'february', 'march', 'april', 'may_long', 'june',
 						'july', 'august', 'september', 'october', 'november', 'december' ],
-					'genitive': [ 'january-gen', 'february-gen', 'march-gen', 'april-gen', 'may-gen', 'june-gen',
+					genitive: [ 'january-gen', 'february-gen', 'march-gen', 'april-gen', 'may-gen', 'june-gen',
 						'july-gen', 'august-gen', 'september-gen', 'october-gen', 'november-gen', 'december-gen' ],
-					'abbrev': [ 'jan', 'feb', 'mar', 'apr', 'may', 'jun',
+					abbrev: [ 'jan', 'feb', 'mar', 'apr', 'may', 'jun',
 						'jul', 'aug', 'sep', 'oct', 'nov', 'dec' ]
 				},
-				'names': [ 'January', 'February', 'March', 'April', 'May', 'June',
+				names: [ 'January', 'February', 'March', 'April', 'May', 'June',
 						'July', 'August', 'September', 'October', 'November', 'December' ],
-				'genitive': [ 'January', 'February', 'March', 'April', 'May', 'June',
+				genitive: [ 'January', 'February', 'March', 'April', 'May', 'June',
 						'July', 'August', 'September', 'October', 'November', 'December' ],
-				'abbrev': [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+				abbrev: [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
 						'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ]
 			};
 		},
@@ -654,10 +654,10 @@
 		umlautWordsSorted,
 		function ( $table ) {
 			mw.config.set( 'tableSorterCollation', {
-				'ä': 'ae',
-				'ö': 'oe',
-				'ß': 'ss',
-				'ü': 'ue'
+				ä: 'ae',
+				ö: 'oe',
+				ß: 'ss',
+				ü: 'ue'
 			} );
 
 			$table.tablesorter();

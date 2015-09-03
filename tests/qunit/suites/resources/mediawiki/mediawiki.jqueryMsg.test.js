@@ -513,7 +513,7 @@
 			'curly-brace': '{{int:message}}',
 			'single-square-bracket': '[https://www.mediawiki.org/ MediaWiki]',
 			'double-square-bracket': '[[Some page]]',
-			'regular': 'Other message'
+			regular: 'Other message'
 		} );
 
 		oldGMF = mw.jqueryMsg.getMessageFunction;
