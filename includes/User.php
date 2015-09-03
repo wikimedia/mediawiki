@@ -2438,6 +2438,7 @@ class User implements IDBAccessObject {
 	 */
 	public function setInternalPassword( $str ) {
 		$this->setToken();
+		$this->setOption( 'watchlisttoken', false );
 
 		$passwordFactory = self::getPasswordFactory();
 		$this->mPassword = $passwordFactory->newFromPlaintext( $str );
@@ -2715,20 +2716,24 @@ class User implements IDBAccessObject {
 	 * @return string|bool User's current value for the option, or false if this option is disabled.
 	 * @see resetTokenFromOption()
 	 * @see getOption()
+	 * @deprecated 1.26 Applications should use the OAuth extension
 	 */
 	public function getTokenFromOption( $oname ) {
 		global $wgHiddenPrefs;
-		if ( in_array( $oname, $wgHiddenPrefs ) ) {
+
+		$id = $this->getId();
+		if ( !$id || in_array( $oname, $wgHiddenPrefs ) ) {
 			return false;
 		}
 
 		$token = $this->getOption( $oname );
 		if ( !$token ) {
-			$token = $this->resetTokenFromOption( $oname );
-			if ( !wfReadOnly() ) {
-				$this->saveSettings();
-			}
+			// Default to a value based on the user token to avoid space
+			// wasted on storing tokens for all users. When this option
+			// is set manually by the user, only then is it stored.
+			$token = hash_hmac( 'sha1', "$oname:$id", $this->getToken() );
 		}
+
 		return $token;
 	}
 
