@@ -110,6 +110,9 @@ class MWTidy {
 				case 'RaggettExternal':
 					self::$instance = new MediaWiki\Tidy\RaggettExternal( $config );
 					break;
+				case 'Html5Depurate':
+					self::$instance = new MediaWiki\Tidy\Html5Depurate( $config );
+					break;
 				default:
 					throw new MWException( "Invalid tidy driver: \"{$config['driver']}\"" );
 			}
