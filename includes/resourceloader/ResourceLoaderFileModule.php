@@ -906,6 +906,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		if ( $this->getStyleSheetLang( $localPath ) === 'less' ) {
 			$compiler = $this->getLessCompiler( $context );
 			$style = $this->compileLessFile( $localPath, $compiler );
+			// Any remaining @import statements for .less files indicate missing dependencies
+			$this->detectMissingImports( $style );
 			$this->hasGeneratedStyles = true;
 		} else {
 			$style = file_get_contents( $localPath );
@@ -924,6 +926,30 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		return CSSMin::remap(
 			$style, $localDir, $remoteDir, true
 		);
+	}
+
+	/**
+	 * Find Less @import statements that point to non-existent files.
+	 * @param string $style CSS stylesheet compiled from Less
+	 * @throws MWException If any file doesn't exist
+	 */
+	protected function detectMissingImports( $style ) {
+		$matches = array();
+		if ( preg_match_all( '/@import.+/i', $style, $matches, PREG_SET_ORDER ) ) {
+			foreach ( $matches as $match ) {
+				$importStmt = $match[0];
+				// There are two cases where '@import' statements may be present in Less output:
+				// * A fully-qualified or protocol-relative URL was given
+				// * The @import is for a CSS file
+				// In other cases, we assume it was left as-is because the file to import couldn't be found.
+				if ( strstr( $importStmt, '//' ) === false && strstr( $importStmt, '.css' ) === false ) {
+					$name = $this->getName();
+					$msg = __METHOD__ . ": Tried to import missing file in $name: $importStmt";
+					wfDebugLog( 'resourceloader', $msg );
+					throw new MWException( $msg );
+				}
+			}
+		}
 	}
 
 	/**
