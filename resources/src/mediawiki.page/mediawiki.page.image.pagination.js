@@ -96,6 +96,7 @@
 		} );
 	}
 
+	/* jshint latedef:false */
 	function bindPageNavigation( $container ) {
 		$container.find( '.multipageimagenavbox' ).one( 'click', 'a', function ( e ) {
 			var page, uri;

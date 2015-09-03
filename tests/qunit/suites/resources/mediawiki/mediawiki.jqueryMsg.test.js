@@ -102,6 +102,7 @@
 			tasks.splice( 0, tasks.length );
 			next();
 		}
+		/* jshint latedef:false */
 		function next() {
 			if ( !tasks ) {
 				// This happens if after the process is completed, one of our callbacks is
