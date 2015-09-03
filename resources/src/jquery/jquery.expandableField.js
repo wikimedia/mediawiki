@@ -23,7 +23,7 @@
 		expandField: function ( e, context ) {
 			context.config.beforeExpand.call( context.data.$field, context );
 			context.data.$field
-				.animate( { 'width': context.data.expandedWidth }, 'fast', function () {
+				.animate( { width: context.data.expandedWidth }, 'fast', function () {
 					context.config.afterExpand.call( this, context );
 				} );
 		},
@@ -33,7 +33,7 @@
 		condenseField: function ( e, context ) {
 			context.config.beforeCondense.call( context.data.$field, context );
 			context.data.$field
-				.animate( { 'width': context.data.condensedWidth }, 'fast', function () {
+				.animate( { width: context.data.condensedWidth }, 'fast', function () {
 					context.config.afterCondense.call( this, context );
 				} );
 		},
