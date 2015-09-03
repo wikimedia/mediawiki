@@ -52,10 +52,10 @@ jQuery._farbtastic = function (container, callback) {
 			if (this.currentStyle.backgroundImage != 'none') {
 				var image = this.currentStyle.backgroundImage;
 				image = this.currentStyle.backgroundImage.slice(5, image.length - 2);
-				$(this).css({
-					'backgroundImage': 'none',
-					'filter': "progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=crop, src='" + image + "')"
-				});
+				$(this).css( {
+					backgroundImage: 'none',
+					filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=crop, src='" + image + "')"
+				} );
 			}
 		});
 	}

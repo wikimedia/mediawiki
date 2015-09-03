@@ -100,33 +100,35 @@
 				// testing custom / localized namespace
 				100: 'Penguins'
 			},
+			// jscs: disable requireCamelCaseOrUpperCaseIdentifiers
 			wgNamespaceIds: {
-				'media': -2,
-				'special': -1,
+				media: -2,
+				special: -1,
 				'': 0,
-				'talk': 1,
-				'user': 2,
-				'user_talk': 3,
-				'wikipedia': 4,
-				'wikipedia_talk': 5,
-				'file': 6,
-				'file_talk': 7,
-				'mediawiki': 8,
-				'mediawiki_talk': 9,
-				'template': 10,
-				'template_talk': 11,
-				'help': 12,
-				'help_talk': 13,
-				'category': 14,
-				'category_talk': 15,
-				'image': 6,
-				'image_talk': 7,
-				'project': 4,
-				'project_talk': 5,
+				talk: 1,
+				user: 2,
+				user_talk: 3,
+				wikipedia: 4,
+				wikipedia_talk: 5,
+				file: 6,
+				file_talk: 7,
+				mediawiki: 8,
+				mediawiki_talk: 9,
+				template: 10,
+				template_talk: 11,
+				help: 12,
+				help_talk: 13,
+				category: 14,
+				category_talk: 15,
+				image: 6,
+				image_talk: 7,
+				project: 4,
+				project_talk: 5,
 				// Testing custom namespaces and aliases
-				'penguins': 100,
-				'antarctic_waterfowl': 100
+				penguins: 100,
+				antarctic_waterfowl: 100
 			},
+			// jscs: enable requireCamelCaseOrUpperCaseIdentifiers
 			wgCaseSensitiveNamespaces: []
 		}
 	} ) );

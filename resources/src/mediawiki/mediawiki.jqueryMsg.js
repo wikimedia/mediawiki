@@ -15,7 +15,7 @@
 		slice = Array.prototype.slice,
 		parserDefaults = {
 			magic: {
-				'SITENAME': mw.config.get( 'wgSiteName' )
+				SITENAME: mw.config.get( 'wgSiteName' )
 			},
 			// Whitelist for allowed HTML elements in wikitext.
 			// Self-closing tags are not currently supported.
@@ -1279,9 +1279,9 @@
 		}
 
 		messageFunction = mw.jqueryMsg.getMessageFunction( {
-			'messages': this.map,
+			messages: this.map,
 			// For format 'escaped', escaping part is handled by mediawiki.js
-			'format': this.format
+			format: this.format
 		} );
 		return messageFunction( this.key, this.parameters );
 	};
