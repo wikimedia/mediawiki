@@ -211,6 +211,7 @@ class ResourcesTest extends MediaWikiTestCase {
 				'debugScripts',
 				'loaderScripts',
 				'styles',
+				'localFileRefs',
 			),
 
 			// Collated lists of file paths
