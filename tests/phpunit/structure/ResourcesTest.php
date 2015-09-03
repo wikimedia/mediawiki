@@ -276,6 +276,25 @@ class ResourcesTest extends MediaWikiTestCase {
 					( $file instanceof ResourceLoaderFilePath ? $file->getPath() : $file ),
 				);
 			}
+
+			// To populate missingLocalFileRefs. Not sure how sane this is inside this test...
+			$module->readStyleFiles(
+				$module->getStyleFiles( $data['context'] ),
+				$module->getFlip( $data['context'] ),
+				$data['context']
+			);
+
+			$property = $reflectedModule->getProperty( 'missingLocalFileRefs' );
+			$property->setAccessible( true );
+			$missingLocalFileRefs = $property->getValue( $module );
+
+			foreach ( $missingLocalFileRefs as $file ) {
+				$cases[] = array(
+					$file,
+					$moduleName,
+					$file,
+				);
+			}
 		}
 
 		return $cases;
