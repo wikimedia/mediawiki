@@ -17,6 +17,7 @@
 		$editform = $( '#editform' );
 		$textbox = $editform.find( '#wpTextbox1' );
 		$summary = $editform.find( '#wpSummary' );
+		$spinner = $( '.mw-spinner-preview' );
 		$errorBox = $( '.errorbox' );
 		section = $editform.find( '[name="wpSection"]' ).val();
 
@@ -55,14 +56,17 @@
 		// Not shown during normal preview, to be removed if present
 		$( '.mw-newarticletext' ).remove();
 
-		$spinner = $.createSpinner( {
-			size: 'large',
-			type: 'block'
-		} );
-		$wikiPreview.before( $spinner );
-		$spinner.css( {
-			marginTop: $spinner.height()
-		} );
+		if ( $spinner.length === 0 ) {
+			$spinner = $.createSpinner( {
+				size: 'large',
+				type: 'block'
+			} )
+				.addClass( 'mw-spinner-preview' )
+				.css( 'margin-top', '1em' );
+			$wikiPreview.before( $spinner );
+		} else {
+			$spinner.show();
+		}
 
 		// Can't use fadeTo because it calls show(), and we might want to keep some elements hidden
 		// (e.g. empty #catlinks)
@@ -227,7 +231,7 @@
 			mw.hook( 'wikipage.editform' ).fire( $editform );
 		} );
 		request.always( function () {
-			$spinner.remove();
+			$spinner.hide();
 			$copyElements.animate( {
 				opacity: 1
 			}, 'fast' );
