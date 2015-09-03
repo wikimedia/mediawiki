@@ -38,7 +38,8 @@ class MWTidy {
 	 * If tidy isn't able to correct the markup, the original will be
 	 * returned in all its glory with a warning comment appended.
 	 *
-	 * @param string $text Hideous HTML input
+	 * @param string $text HTML input fragment. This should not contain a
+	 *                     <body> or <html> tag.
 	 * @return string Corrected HTML output
 	 */
 	public static function tidy( $text ) {
@@ -109,6 +110,9 @@ class MWTidy {
 					break;
 				case 'RaggettExternal':
 					self::$instance = new MediaWiki\Tidy\RaggettExternal( $config );
+					break;
+				case 'Html5Depurate':
+					self::$instance = new MediaWiki\Tidy\Html5Depurate( $config );
 					break;
 				default:
 					throw new MWException( "Invalid tidy driver: \"{$config['driver']}\"" );
