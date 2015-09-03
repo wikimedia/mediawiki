@@ -4,6 +4,7 @@
  * @since 1.18
  */
 ( function ( mw, $ ) {
+	/*jshint latedef:false */
 
 	/**
 	 * @class mw.Title
