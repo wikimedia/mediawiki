@@ -7,6 +7,26 @@
 	 */
 
 	/**
+	 * Replicate a string 'n' times.
+	 *
+	 * @private
+	 * @param {string} str The string to replicate
+	 * @param {number} num Number of times to replicate the string
+	 * @return {string}
+	 */
+	function replicate( str, num ) {
+		if ( num <= 0 || !str ) {
+			return '';
+		}
+
+		var buf = [];
+		while ( num-- ) {
+			buf.push( str );
+		}
+		return buf.join( '' );
+	}
+
+	/**
 	 * Pad a string to guarantee that it is at least `size` length by
 	 * filling with the character `ch` at either the start or end of the
 	 * string. Pads at the start, by default.
@@ -31,26 +51,6 @@
 			padStr = replicate( ch, Math.ceil( ( size - out.length ) / ch.length ) );
 
 		return end ? out + padStr : padStr + out;
-	}
-
-	/**
-	 * Replicate a string 'n' times.
-	 *
-	 * @private
-	 * @param {string} str The string to replicate
-	 * @param {number} num Number of times to replicate the string
-	 * @return {string}
-	 */
-	function replicate( str, num ) {
-		if ( num <= 0 || !str ) {
-			return '';
-		}
-
-		var buf = [];
-		while ( num-- ) {
-			buf.push( str );
-		}
-		return buf.join( '' );
 	}
 
 	/**

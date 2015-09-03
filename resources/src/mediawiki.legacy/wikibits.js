@@ -164,13 +164,6 @@
 	 * See https://www.mediawiki.org/wiki/ResourceLoader/Legacy_JavaScript#wikibits.js
 	 */
 
-	function importScript( page ) {
-		var uri = mw.config.get( 'wgScript' ) + '?title=' +
-			mw.util.wikiUrlencode( page ) +
-			'&action=raw&ctype=text/javascript';
-		return importScriptURI( uri );
-	}
-
 	/**
 	 * @deprecated since 1.17 Use mw.loader instead. Warnings added in 1.25.
 	 */
@@ -186,11 +179,11 @@
 		return s;
 	}
 
-	function importStylesheet( page ) {
+	function importScript( page ) {
 		var uri = mw.config.get( 'wgScript' ) + '?title=' +
 			mw.util.wikiUrlencode( page ) +
-			'&action=raw&ctype=text/css';
-		return importStylesheetURI( uri );
+			'&action=raw&ctype=text/javascript';
+		return importScriptURI( uri );
 	}
 
 	/**
@@ -205,6 +198,13 @@
 		}
 		document.getElementsByTagName( 'head' )[0].appendChild( l );
 		return l;
+	}
+
+	function importStylesheet( page ) {
+		var uri = mw.config.get( 'wgScript' ) + '?title=' +
+			mw.util.wikiUrlencode( page ) +
+			'&action=raw&ctype=text/css';
+		return importStylesheetURI( uri );
 	}
 
 	msg = 'Use mw.loader instead.';
