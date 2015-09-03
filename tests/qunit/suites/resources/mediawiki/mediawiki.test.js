@@ -108,21 +108,21 @@
 
 		// Multiple values at once
 		someValues = {
-			'foo': 'bar',
-			'lorem': 'ipsum',
-			'MediaWiki': true
+			foo: 'bar',
+			lorem: 'ipsum',
+			MediaWiki: true
 		};
 		assert.strictEqual( conf.set( someValues ), true, 'Map.set returns boolean true if multiple values were set by passing an object' );
 		assert.deepEqual( conf.get( [ 'foo', 'lorem' ] ), {
-			'foo': 'bar',
-			'lorem': 'ipsum'
+			foo: 'bar',
+			lorem: 'ipsum'
 		}, 'Map.get returns multiple values correctly as an object' );
 
 		assert.deepEqual( conf, new mw.Map( conf.values ), 'new mw.Map maps over existing values-bearing object' );
 
 		assert.deepEqual( conf.get( [ 'foo', 'notExist' ] ), {
-			'foo': 'bar',
-			'notExist': null
+			foo: 'bar',
+			notExist: null
 		}, 'Map.get return includes keys that were not found as null values' );
 
 		// Interacting with globals and accessing the values object
@@ -491,7 +491,7 @@
 				QUnit.start();
 			},
 			{
-				'all': '.mw-test-implement-a { float: right; }'
+				all: '.mw-test-implement-a { float: right; }'
 			}
 		);
 
@@ -546,9 +546,9 @@
 				} );
 			},
 			{
-				'url': {
-					'print': [ urlStyleTest( '.mw-test-implement-b1', 'text-align', 'center' ) ],
-					'screen': [
+				url: {
+					print: [ urlStyleTest( '.mw-test-implement-b1', 'text-align', 'center' ) ],
+					screen: [
 						// bug 40834: Make sure it actually works with more than 1 stylesheet reference
 						urlStyleTest( '.mw-test-implement-b2', 'float', 'left' ),
 						urlStyleTest( '.mw-test-implement-b3', 'float', 'right' )
@@ -583,7 +583,7 @@
 				QUnit.start();
 			},
 			{
-				'all': '.mw-test-implement-c { float: right; }'
+				all: '.mw-test-implement-c { float: right; }'
 			}
 		);
 
@@ -619,8 +619,8 @@
 				} );
 			},
 			{
-				'all': [ urlStyleTest( '.mw-test-implement-d', 'float', 'right' ) ],
-				'print': [ urlStyleTest( '.mw-test-implement-d2', 'text-align', 'center' ) ]
+				all: [ urlStyleTest( '.mw-test-implement-d', 'float', 'right' ) ],
+				print: [ urlStyleTest( '.mw-test-implement-d2', 'text-align', 'center' ) ]
 			}
 		);
 
@@ -654,7 +654,7 @@
 				} );
 			},
 			{
-				'css': [
+				css: [
 					'@import url(\''
 						+ urlStyleTest( '.mw-test-implement-import', 'float', 'right' )
 						+ '\');\n'
@@ -703,7 +703,7 @@
 				QUnit.start();
 			},
 			{
-				'all': '.mw-test-implement-e { float: right; }'
+				all: '.mw-test-implement-e { float: right; }'
 			}
 		);
 
@@ -717,7 +717,7 @@
 				);
 			},
 			{
-				'all': '.mw-test-implement-e2 { float: left; }'
+				all: '.mw-test-implement-e2 { float: left; }'
 			}
 		);
 
@@ -734,7 +734,9 @@
 	QUnit.asyncTest( 'mw.loader.implement( only messages )', 2, function ( assert ) {
 		assert.assertFalse( mw.messages.exists( 'bug_29107' ), 'Verify that the test message doesn\'t exist yet' );
 
-		mw.loader.implement( 'test.implement.msgs', [], {}, { 'bug_29107': 'loaded' } );
+		// jscs: disable requireCamelCaseOrUpperCaseIdentifiers
+		mw.loader.implement( 'test.implement.msgs', [], {}, { bug_29107: 'loaded' } );
+		// jscs: enable requireCamelCaseOrUpperCaseIdentifiers
 		mw.loader.using( 'test.implement.msgs', function () {
 			QUnit.start();
 			assert.ok( mw.messages.exists( 'bug_29107' ), 'Bug 29107: messages-only module should implement ok' );

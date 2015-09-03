@@ -76,8 +76,8 @@
 		html = '<div><span title-msg="title"><html:msg key="label" /></span></div>';
 		$lc = $( html ).localize( {
 			keys: {
-				'title': 'foo-' + x + '-title',
-				'label': 'foo-' + x + '-label'
+				title: 'foo-' + x + '-title',
+				label: 'foo-' + x + '-label'
 			}
 		} ).find( 'span' );
 
@@ -100,12 +100,12 @@
 		$lc = $( html ).localize( {
 			prefix: 'foo-',
 			keys: {
-				'title': x + '-title',
-				'label': x + '-label'
+				title: x + '-title',
+				label: x + '-label'
 			},
 			params: {
-				'title': [ sitename, '3 minutes ago' ],
-				'label': [ sitename, '3 minutes ago' ]
+				title: [ sitename, '3 minutes ago' ],
+				label: [ sitename, '3 minutes ago' ]
 
 			}
 		} ).find( 'span' );
