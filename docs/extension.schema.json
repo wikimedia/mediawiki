@@ -639,6 +639,13 @@
 		"config": {
 			"type": "object",
 			"description": "Configuration options for this extension",
+			"properties": {
+				"_prefix": {
+					"type": "string",
+					"default": "wg",
+					"description": "Prefix to put in front of configuration settings when exporting them to $GLOBALS"
+				}
+			},
 			"patternProperties": {
 				"^[a-zA-Z_\u007f-\u00ff][a-zA-Z0-9_\u007f-\u00ff]*$": {
 					"type": ["object", "array", "string", "integer", "null", "boolean"],
