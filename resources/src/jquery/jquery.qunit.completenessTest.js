@@ -291,8 +291,11 @@
 			// Make the spy inherit from the original so that its static methods are also
 			// visible in the spy (e.g. when we inject a check into mw.log, mw.log.warn
 			// must remain accessible).
+			// XXX: https://github.com/jshint/jshint/issues/2656
+			/*jshint ignore:start */
 			/*jshint proto:true */
 			spy.__proto__ = val;
+			/*jshint ignore:end */
 
 			// Objects are by reference, members (unless objects) are not.
 			obj[ key ] = spy;

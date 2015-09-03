@@ -278,6 +278,16 @@
 		}
 	}
 
+	function uniqueElements( array ) {
+		var uniques = [];
+		$.each( array, function ( index, elem ) {
+			if ( elem !== undefined && $.inArray( elem, uniques ) === -1 ) {
+				uniques.push( elem );
+			}
+		} );
+		return uniques;
+	}
+
 	function buildHeaders( table, msg ) {
 		var config = $( table ).data( 'tablesorter' ).config,
 			maxSeen = 0,
@@ -377,6 +387,17 @@
 
 	}
 
+	function isValueInArray( v, a ) {
+		var i,
+				len = a.length;
+		for ( i = 0; i < len; i++ ) {
+			if ( a[i][0] === v ) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	/**
 	 * Sets the sort count of the columns that are not affected by the sorting to have them sorted
 	 * in default (ascending) order when their header cell is clicked the next time.
@@ -414,27 +435,6 @@
 			} );
 
 		} );
-	}
-
-	function isValueInArray( v, a ) {
-		var i,
-			len = a.length;
-		for ( i = 0; i < len; i++ ) {
-			if ( a[i][0] === v ) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	function uniqueElements( array ) {
-		var uniques = [];
-		$.each( array, function ( index, elem ) {
-			if ( elem !== undefined && $.inArray( elem, uniques ) === -1 ) {
-				uniques.push( elem );
-			}
-		} );
-		return uniques;
 	}
 
 	function setHeadersCss( table, $headers, list, css, msg, columnToHeader ) {

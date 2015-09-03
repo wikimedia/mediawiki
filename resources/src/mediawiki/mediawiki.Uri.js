@@ -68,7 +68,9 @@
 		if ( val === undefined || val === null || val === '' ) {
 			return '';
 		}
+		/* jshint latedef:false */
 		return pre + ( raw ? val : mw.Uri.encode( val ) ) + post;
+		/* jshint latedef:true */
 	}
 
 	/**
@@ -173,6 +175,7 @@
 		 * @param {boolean} [options.overrideKeys=false] Whether to let duplicate query parameters
 		 *  override each other (`true`) or automagically convert them to an array (`false`).
 		 */
+		/* jshint latedef:false */
 		function Uri( uri, options ) {
 			var prop,
 				defaultUri = getDefaultUri();

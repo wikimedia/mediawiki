@@ -98,6 +98,7 @@
 	 * @return
 	 */
 	function process( tasks, complete ) {
+		/*jshint latedef:false */
 		function abort() {
 			tasks.splice( 0, tasks.length );
 			next();
