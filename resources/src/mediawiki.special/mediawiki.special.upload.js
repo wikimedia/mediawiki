@@ -6,6 +6,7 @@
  * @singleton
  */
 ( function ( mw, $ ) {
+	/*jshint latedef:false */
 	var uploadWarning, uploadLicense,
 		ajaxUploadDestCheck = mw.config.get( 'wgAjaxUploadDestCheck' ),
 		$license = $( '#wpLicense' );
@@ -274,6 +275,23 @@
 		}
 
 		/**
+		 * Format a file size attractively.
+		 *
+		 * TODO: Match numeric formatting
+		 *
+		 * @param {number} s
+		 * @return {string}
+		 */
+		function prettySize( s ) {
+			var sizeMsgs = ['size-bytes', 'size-kilobytes', 'size-megabytes', 'size-gigabytes'];
+			while ( s >= 1024 && sizeMsgs.length > 1 ) {
+				s /= 1024;
+				sizeMsgs = sizeMsgs.slice( 1 );
+			}
+			return mw.msg( sizeMsgs[0], Math.round( s ) );
+		}
+
+		/**
 		 * Show a thumbnail preview of PNG, JPEG, GIF, and SVG files prior to upload
 		 * in browsers supporting HTML5 FileAPI.
 		 *
@@ -452,23 +470,6 @@
 				};
 				reader.readAsDataURL( file );
 			}
-		}
-
-		/**
-		 * Format a file size attractively.
-		 *
-		 * TODO: Match numeric formatting
-		 *
-		 * @param {number} s
-		 * @return {string}
-		 */
-		function prettySize( s ) {
-			var sizeMsgs = ['size-bytes', 'size-kilobytes', 'size-megabytes', 'size-gigabytes'];
-			while ( s >= 1024 && sizeMsgs.length > 1 ) {
-				s /= 1024;
-				sizeMsgs = sizeMsgs.slice( 1 );
-			}
-			return mw.msg( sizeMsgs[0], Math.round( s ) );
 		}
 
 		/**
