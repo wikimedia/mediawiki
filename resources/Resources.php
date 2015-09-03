@@ -925,6 +925,7 @@ return array(
 		),
 		'styles' => array(
 			'resources/src/mediawiki/mediawiki.debug.less',
+			'foo0.less',
 		),
 		'dependencies' => array(
 			'jquery.footHovzer',
