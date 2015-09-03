@@ -73,7 +73,6 @@ help:
 	#
 	# Targets:
 	#   phpunit (default)   Run all the tests with phpunit
-	#   install             Install PHPUnit from phpunit.de
 	#   tap                 Run the tests individually through Test::Harness's prove(1)
 	#   help                You're looking at it!
 	#   coverage            Run the tests and generates an HTML code coverage report
