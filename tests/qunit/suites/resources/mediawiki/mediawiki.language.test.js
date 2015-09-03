@@ -11,7 +11,7 @@
 		},
 		messages: {
 			// mw.language.listToText test
-			'and': ' and',
+			and: ' and',
 			'comma-separator': ', ',
 			'word-separator': ' '
 		}

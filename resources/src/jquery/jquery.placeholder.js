@@ -74,9 +74,9 @@
 			if ( input.type === 'password' ) {
 				if ( !$input.data( 'placeholder-textinput' ) ) {
 					try {
-						$replacement = $input.clone().attr( { 'type': 'text' } );
+						$replacement = $input.clone().attr( { type: 'text' } );
 					} catch ( e ) {
-						$replacement = $( '<input>' ).attr( $.extend( args( this ), { 'type': 'text' } ) );
+						$replacement = $( '<input>' ).attr( $.extend( args( this ), { type: 'text' } ) );
 					}
 					$replacement
 							.removeAttr( 'name' )
@@ -157,7 +157,7 @@
 		placeholder.textarea = isTextareaSupported;
 
 		hooks = {
-			'get': function ( element ) {
+			get: function ( element ) {
 				var $element = $( element ),
 					$passwordInput = $element.data( 'placeholder-password' );
 				if ( $passwordInput ) {
@@ -166,7 +166,7 @@
 
 				return $element.data( 'placeholder-enabled' ) && $element.hasClass( 'placeholder' ) ? '' : element.value;
 			},
-			'set': function ( element, value ) {
+			set: function ( element, value ) {
 				var $element = $( element ),
 					$passwordInput = $element.data( 'placeholder-password' );
 				if ( $passwordInput ) {

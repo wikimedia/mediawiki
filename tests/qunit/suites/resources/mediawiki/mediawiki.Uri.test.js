@@ -270,7 +270,7 @@
 
 		assert.deepEqual(
 			original.query,
-			{ 'one': '1', 'two': '2' },
+			{ one: '1', two: '2' },
 			'Properties is deep cloned (bug 37708)'
 		);
 	} );
@@ -367,7 +367,7 @@
 				host: 'example.com',
 				port: undefined,
 				path: '/wiki/Foo',
-				query: { 'v': '2' },
+				query: { v: '2' },
 				fragment: undefined
 			},
 			'basic object properties'

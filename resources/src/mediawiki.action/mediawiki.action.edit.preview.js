@@ -159,7 +159,7 @@
 						li = $( '<li>' )
 							.append( $( '<a>' )
 								.attr( {
-									'href': mw.util.getUrl( template[ '*' ] ),
+									href: mw.util.getUrl( template[ '*' ] ),
 									'class': ( template.exists !== undefined ? '' : 'new' )
 								} )
 								.text( template[ '*' ] )
@@ -179,10 +179,10 @@
 							.addClass( 'interlanguage-link interwiki-' + langlink.lang )
 							.append( $( '<a>' )
 								.attr( {
-									'href': langlink.url,
-									'title': langlink[ '*' ] + ' - ' + langlink.langname,
-									'lang': langlink.lang,
-									'hreflang': langlink.lang
+									href: langlink.url,
+									title: langlink[ '*' ] + ' - ' + langlink.langname,
+									lang: langlink.lang,
+									hreflang: langlink.lang
 								} )
 								.text( langlink.autonym )
 							);
@@ -268,9 +268,9 @@
 			$( '.portal:last' ).after(
 				$( '<div>' ).attr( {
 					'class': 'portal',
-					'id': 'p-lang',
-					'role': 'navigation',
-					'title': mw.msg( 'tooltip-p-lang' ),
+					id: 'p-lang',
+					role: 'navigation',
+					title: mw.msg( 'tooltip-p-lang' ),
 					'aria-labelledby': 'p-lang-label'
 				} )
 				.append( $( '<h3>' ).attr( 'id', 'p-lang-label' ).text( mw.msg( 'otherlanguages' ) ) )

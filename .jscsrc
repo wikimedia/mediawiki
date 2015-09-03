@@ -1,7 +1,6 @@
 {
 	"preset": "wikimedia",
 
-	"disallowQuotedKeysInObjects": null,
 	"requireVarDeclFirst": null,
 	"jsDoc": null,
 

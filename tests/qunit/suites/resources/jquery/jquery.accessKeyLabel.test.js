@@ -1,7 +1,7 @@
 ( function ( $ ) {
 	QUnit.module( 'jquery.accessKeyLabel', QUnit.newMwEnvironment( {
 		messages: {
-			'brackets': '[$1]',
+			brackets: '[$1]',
 			'word-separator': ' '
 		}
 	} ) );
