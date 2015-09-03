@@ -734,8 +734,12 @@ class Preprocessor_Hash implements Preprocessor {
 		// Cache
 		if ( $cacheable ) {
 			$cacheValue = sprintf( "%08d", self::CACHE_VERSION ) . serialize( $rootNode );
-			$wgMemc->set( $cacheKey, $cacheValue, 86400 );
-			wfDebugLog( "Preprocessor", "Saved preprocessor Hash to memcached (key $cacheKey)" );
+
+			// T111289: Cache values should not exceed 1 Mb, but they do.
+			if ( strlen( $cacheValue ) <= 1e6 ) {
+				$wgMemc->set( $cacheKey, $cacheValue, 86400 );
+				wfDebugLog( "Preprocessor", "Saved preprocessor Hash to memcached (key $cacheKey)" );
+			}
 		}
 
 		return $rootNode;
