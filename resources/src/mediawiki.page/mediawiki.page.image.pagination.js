@@ -2,6 +2,7 @@
  * Implement AJAX navigation for multi-page images so the user may browse without a full page reload.
  */
 ( function ( mw, $ ) {
+	/*jshint latedef:false */
 	var jqXhr, $multipageimage, $spinner,
 		cache = {},
 		cacheOrder = [];
