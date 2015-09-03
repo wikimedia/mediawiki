@@ -7,6 +7,7 @@
  * @alternateClassName mediaWiki
  * @singleton
  */
+/*jshint latedef:false */
 /*global sha1 */
 ( function ( $ ) {
 	'use strict';
@@ -17,6 +18,26 @@
 		trackCallbacks = $.Callbacks( 'memory' ),
 		trackHandlers = [],
 		trackQueue = [];
+
+	/**
+	 * Alias property to the global object.
+	 *
+	 * @private
+	 * @static
+	 * @param {mw.Map} map
+	 * @param {string} key
+	 * @param {Mixed} value
+	 */
+	function setGlobalMapValue( map, key, value ) {
+		map.values[key] = value;
+		mw.log.deprecate(
+				window,
+				key,
+				value,
+				// Deprecation notice for mw.config globals (T58550, T72470)
+				map === mw.config && 'Use mw.config instead.'
+		);
+	}
 
 	/**
 	 * Create an object that can be read from or written to from methods that allow
@@ -83,26 +104,6 @@
 		}
 
 		this.values = values || {};
-	}
-
-	/**
-	 * Alias property to the global object.
-	 *
-	 * @private
-	 * @static
-	 * @param {mw.Map} map
-	 * @param {string} key
-	 * @param {Mixed} value
-	 */
-	function setGlobalMapValue( map, key, value ) {
-		map.values[key] = value;
-		mw.log.deprecate(
-			window,
-			key,
-			value,
-			// Deprecation notice for mw.config globals (T58550, T72470)
-			map === mw.config && 'Use mw.config instead.'
-		);
 	}
 
 	Map.prototype = {
@@ -920,93 +921,6 @@
 			}
 
 			/**
-			 * Resolve dependencies and detect circular references.
-			 *
-			 * @private
-			 * @param {string} module Name of the top-level module whose dependencies shall be
-			 *  resolved and sorted.
-			 * @param {Array} resolved Returns a topological sort of the given module and its
-			 *  dependencies, such that later modules depend on earlier modules. The array
-			 *  contains the module names. If the array contains already some module names,
-			 *  this function appends its result to the pre-existing array.
-			 * @param {Object} [unresolved] Hash used to track the current dependency
-			 *  chain; used to report loops in the dependency graph.
-			 * @throws {Error} If any unregistered module or a dependency loop is encountered
-			 */
-			function sortDependencies( module, resolved, unresolved ) {
-				var n, deps, len, skip;
-
-				if ( !hasOwn.call( registry, module ) ) {
-					throw new Error( 'Unknown dependency: ' + module );
-				}
-
-				if ( registry[module].skip !== null ) {
-					/*jshint evil:true */
-					skip = new Function( registry[module].skip );
-					registry[module].skip = null;
-					if ( skip() ) {
-						registry[module].skipped = true;
-						registry[module].dependencies = [];
-						registry[module].state = 'ready';
-						handlePending( module );
-						return;
-					}
-				}
-
-				// Resolves dynamic loader function and replaces it with its own results
-				if ( $.isFunction( registry[module].dependencies ) ) {
-					registry[module].dependencies = registry[module].dependencies();
-					// Ensures the module's dependencies are always in an array
-					if ( typeof registry[module].dependencies !== 'object' ) {
-						registry[module].dependencies = [registry[module].dependencies];
-					}
-				}
-				if ( $.inArray( module, resolved ) !== -1 ) {
-					// Module already resolved; nothing to do
-					return;
-				}
-				// Create unresolved if not passed in
-				if ( !unresolved ) {
-					unresolved = {};
-				}
-				// Tracks down dependencies
-				deps = registry[module].dependencies;
-				len = deps.length;
-				for ( n = 0; n < len; n += 1 ) {
-					if ( $.inArray( deps[n], resolved ) === -1 ) {
-						if ( unresolved[deps[n]] ) {
-							throw new Error(
-								'Circular reference detected: ' + module +
-								' -> ' + deps[n]
-							);
-						}
-
-						// Add to unresolved
-						unresolved[module] = true;
-						sortDependencies( deps[n], resolved, unresolved );
-						delete unresolved[module];
-					}
-				}
-				resolved[resolved.length] = module;
-			}
-
-			/**
-			 * Get a list of module names that a module depends on in their proper dependency
-			 * order.
-			 *
-			 * @private
-			 * @param {string[]} module Array of string module names
-			 * @return {Array} List of dependencies, including 'module'.
-			 */
-			function resolve( modules ) {
-				var resolved = [];
-				$.each( modules, function ( idx, module ) {
-					sortDependencies( module, resolved );
-				} );
-				return resolved;
-			}
-
-			/**
 			 * Determine whether all dependencies are in state 'ready', which means we may
 			 * execute the module or job now.
 			 *
@@ -1110,6 +1024,93 @@
 						}
 					}
 				}
+			}
+
+			/**
+			 * Resolve dependencies and detect circular references.
+			 *
+			 * @private
+			 * @param {string} module Name of the top-level module whose dependencies shall be
+			 *  resolved and sorted.
+			 * @param {Array} resolved Returns a topological sort of the given module and its
+			 *  dependencies, such that later modules depend on earlier modules. The array
+			 *  contains the module names. If the array contains already some module names,
+			 *  this function appends its result to the pre-existing array.
+			 * @param {Object} [unresolved] Hash used to track the current dependency
+			 *  chain; used to report loops in the dependency graph.
+			 * @throws {Error} If any unregistered module or a dependency loop is encountered
+			 */
+			function sortDependencies( module, resolved, unresolved ) {
+				var n, deps, len, skip;
+
+				if ( !hasOwn.call( registry, module ) ) {
+					throw new Error( 'Unknown dependency: ' + module );
+				}
+
+				if ( registry[module].skip !== null ) {
+					/*jshint evil:true */
+					skip = new Function( registry[module].skip );
+					registry[module].skip = null;
+					if ( skip() ) {
+						registry[module].skipped = true;
+						registry[module].dependencies = [];
+						registry[module].state = 'ready';
+						handlePending( module );
+						return;
+					}
+				}
+
+				// Resolves dynamic loader function and replaces it with its own results
+				if ( $.isFunction( registry[module].dependencies ) ) {
+					registry[module].dependencies = registry[module].dependencies();
+					// Ensures the module's dependencies are always in an array
+					if ( typeof registry[module].dependencies !== 'object' ) {
+						registry[module].dependencies = [registry[module].dependencies];
+					}
+				}
+				if ( $.inArray( module, resolved ) !== -1 ) {
+					// Module already resolved; nothing to do
+					return;
+				}
+				// Create unresolved if not passed in
+				if ( !unresolved ) {
+					unresolved = {};
+				}
+				// Tracks down dependencies
+				deps = registry[module].dependencies;
+				len = deps.length;
+				for ( n = 0; n < len; n += 1 ) {
+					if ( $.inArray( deps[n], resolved ) === -1 ) {
+						if ( unresolved[deps[n]] ) {
+							throw new Error(
+								'Circular reference detected: ' + module +
+								' -> ' + deps[n]
+							);
+						}
+
+						// Add to unresolved
+						unresolved[module] = true;
+						sortDependencies( deps[n], resolved, unresolved );
+						delete unresolved[module];
+					}
+				}
+				resolved[resolved.length] = module;
+			}
+
+			/**
+			 * Get a list of module names that a module depends on in their proper dependency
+			 * order.
+			 *
+			 * @private
+			 * @param {string[]} module Array of string module names
+			 * @return {Array} List of dependencies, including 'module'.
+			 */
+			function resolve( modules ) {
+				var resolved = [];
+				$.each( modules, function ( idx, module ) {
+					sortDependencies( module, resolved );
+				} );
+				return resolved;
 			}
 
 			/**

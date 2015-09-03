@@ -23,6 +23,98 @@
 		hooks,
 		placeholder;
 
+	function safeActiveElement() {
+		// Avoid IE9 `document.activeElement` of death
+		// https://github.com/mathiasbynens/jquery-placeholder/pull/99
+		try {
+			return document.activeElement;
+		} catch (err) {}
+	}
+
+	function args(elem) {
+		// Return an object of element attributes
+		var newAttrs = {},
+				rinlinejQuery = /^jQuery\d+$/;
+		$.each(elem.attributes, function (i, attr) {
+			if (attr.specified && !rinlinejQuery.test(attr.name)) {
+				newAttrs[attr.name] = attr.value;
+			}
+		});
+		return newAttrs;
+	}
+
+	function clearPlaceholder(event, value) {
+		var input = this,
+				$input = $(input);
+		if (input.value === $input.attr('placeholder') && $input.hasClass('placeholder')) {
+			if ($input.data('placeholder-password')) {
+				$input = $input.hide().next().show().attr('id', $input.removeAttr('id').data('placeholder-id'));
+				// If `clearPlaceholder` was called from `$.valHooks.input.set`
+				if (event === true) {
+					$input[0].value = value;
+					return value;
+				}
+				$input.focus();
+			} else {
+				input.value = '';
+				$input.removeClass('placeholder');
+				if (input === safeActiveElement()) {
+					input.select();
+				}
+			}
+		}
+	}
+
+	function setPlaceholder() {
+		var $replacement,
+				input = this,
+				$input = $(input),
+				id = this.id;
+		if (!input.value) {
+			if (input.type === 'password') {
+				if (!$input.data('placeholder-textinput')) {
+					try {
+						$replacement = $input.clone().attr({ 'type': 'text' });
+					} catch (e) {
+						$replacement = $('<input>').attr($.extend(args(this), { 'type': 'text' }));
+					}
+					$replacement
+							.removeAttr('name')
+							.data({
+								'placeholder-password': $input,
+								'placeholder-id': id
+							})
+							.bind('focus.placeholder drop.placeholder', clearPlaceholder);
+					$input
+							.data({
+								'placeholder-textinput': $replacement,
+								'placeholder-id': id
+							})
+							.before($replacement);
+				}
+				$input = $input.removeAttr('id').hide().prev().attr('id', id).show();
+				// Note: `$input[0] != input` now!
+			}
+			$input.addClass('placeholder');
+			$input[0].value = $input.attr('placeholder');
+		} else {
+			$input.removeClass('placeholder');
+		}
+	}
+
+	function changePlaceholder(text) {
+		var hasArgs = arguments.length,
+				$input = this;
+		if (hasArgs) {
+			if ($input.attr('placeholder') !== text) {
+				$input.prop('placeholder', text);
+				if ($input.hasClass('placeholder')) {
+					$input[0].value = text;
+				}
+			}
+		}
+	}
+
 	if (isInputSupported && isTextareaSupported) {
 
 		placeholder = prototype.placeholder = function (text) {
@@ -133,97 +225,4 @@
 		});
 
 	}
-
-	function args(elem) {
-		// Return an object of element attributes
-		var newAttrs = {},
-			rinlinejQuery = /^jQuery\d+$/;
-		$.each(elem.attributes, function (i, attr) {
-			if (attr.specified && !rinlinejQuery.test(attr.name)) {
-				newAttrs[attr.name] = attr.value;
-			}
-		});
-		return newAttrs;
-	}
-
-	function clearPlaceholder(event, value) {
-		var input = this,
-			$input = $(input);
-		if (input.value === $input.attr('placeholder') && $input.hasClass('placeholder')) {
-			if ($input.data('placeholder-password')) {
-				$input = $input.hide().next().show().attr('id', $input.removeAttr('id').data('placeholder-id'));
-				// If `clearPlaceholder` was called from `$.valHooks.input.set`
-				if (event === true) {
-					$input[0].value = value;
-					return value;
-				}
-				$input.focus();
-			} else {
-				input.value = '';
-				$input.removeClass('placeholder');
-				if (input === safeActiveElement()) {
-					input.select();
-				}
-			}
-		}
-	}
-
-	function setPlaceholder() {
-		var $replacement,
-			input = this,
-			$input = $(input),
-			id = this.id;
-		if (!input.value) {
-			if (input.type === 'password') {
-				if (!$input.data('placeholder-textinput')) {
-					try {
-						$replacement = $input.clone().attr({ 'type': 'text' });
-					} catch (e) {
-						$replacement = $('<input>').attr($.extend(args(this), { 'type': 'text' }));
-					}
-					$replacement
-						.removeAttr('name')
-						.data({
-							'placeholder-password': $input,
-							'placeholder-id': id
-						})
-						.bind('focus.placeholder drop.placeholder', clearPlaceholder);
-					$input
-						.data({
-							'placeholder-textinput': $replacement,
-							'placeholder-id': id
-						})
-						.before($replacement);
-				}
-				$input = $input.removeAttr('id').hide().prev().attr('id', id).show();
-				// Note: `$input[0] != input` now!
-			}
-			$input.addClass('placeholder');
-			$input[0].value = $input.attr('placeholder');
-		} else {
-			$input.removeClass('placeholder');
-		}
-	}
-
-	function safeActiveElement() {
-		// Avoid IE9 `document.activeElement` of death
-		// https://github.com/mathiasbynens/jquery-placeholder/pull/99
-		try {
-			return document.activeElement;
-		} catch (err) {}
-	}
-
-	function changePlaceholder(text) {
-		var hasArgs = arguments.length,
-			$input = this;
-		if (hasArgs) {
-			if ($input.attr('placeholder') !== text) {
-				$input.prop('placeholder', text);
-				if ($input.hasClass('placeholder')) {
-					$input[0].value = text;
-				}
-			}
-		}
-	}
-
 }(jQuery));
