@@ -130,7 +130,7 @@ jQuery( function ( $ ) {
 	// Disable the button to save preferences unless preferences have changed
 	$( '#prefcontrol' ).prop( 'disabled', true );
 	$( '.prefsection' ).one( 'change keydown mousedown', function () {
-		$( '#prefcontrol' ).prop( 'disabled', false);
+		$( '#prefcontrol' ).prop( 'disabled', false );
 	} );
 
 	// Enable keyboard users to use left and right keys to switch tabs

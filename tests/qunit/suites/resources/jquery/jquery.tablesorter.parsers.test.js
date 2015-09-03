@@ -57,7 +57,7 @@
 		QUnit.test( msg, data.length * 2, function ( assert ) {
 			var extractedR, extractedF, parser;
 
-			if (callback !== undefined ) {
+			if ( callback !== undefined ) {
 				callback();
 			}
 

@@ -7,7 +7,7 @@
 			errorUrl = 'http://example.com',
 			errorLine = '123',
 			errorColumn = '45',
-			errorObject = new Error( 'Foo'),
+			errorObject = new Error( 'Foo' ),
 			oldHandler = this.sandbox.stub();
 
 		this.sandbox.stub( mw, 'track' );

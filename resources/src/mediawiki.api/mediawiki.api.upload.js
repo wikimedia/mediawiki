@@ -42,7 +42,7 @@
 	 * @return {jQuery}
 	 */
 	function getHiddenInput( name, val ) {
-		return $( '<input type="hidden" />')
+		return $( '<input type="hidden" />' )
 			.attr( 'name', name )
 			.val( val );
 	}

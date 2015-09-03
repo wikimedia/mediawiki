@@ -74,7 +74,7 @@
 			decimal: '.'
 		};
 
-		if ( isNaN( value) ) {
+		if ( isNaN( value ) ) {
 			return value;
 		}
 
