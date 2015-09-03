@@ -68,7 +68,9 @@
 		if ( val === undefined || val === null || val === '' ) {
 			return '';
 		}
+		/* jshint latedef:false */
 		return pre + ( raw ? val : mw.Uri.encode( val ) ) + post;
+		/* jshint latedef:true */
 	}
 
 	/**
@@ -150,7 +152,9 @@
 					return uri;
 				}
 				href = hrefCur;
+				/* jshint latedef:false */
 				uri = new Uri( href );
+				/* jshint latedef:true */
 				return uri;
 			};
 		}() );
