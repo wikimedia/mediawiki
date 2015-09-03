@@ -967,7 +967,7 @@ class MessageCache {
 					wfDebugLog(
 						'MessageCache',
 						__METHOD__ . ": message content doesn't provide wikitext "
-							. "(content model: " . $content->getContentHandler() . ")"
+							. "(content model: " . $content->getModel() . ")"
 					);
 
 					$message = false; // negative caching
