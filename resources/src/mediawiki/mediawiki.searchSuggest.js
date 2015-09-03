@@ -32,14 +32,14 @@
 		// Compatibility map
 		map = {
 			// SimpleSearch is broken in Opera < 9.6
-			opera: [['>=', 9.6]],
+			opera: [ [ '>=', 9.6 ] ],
 			// Older Konquerors are unable to position the suggestions correctly (bug 50805)
-			konqueror: [['>=', '4.11']],
+			konqueror: [ [ '>=', '4.11' ] ],
 			docomo: false,
 			blackberry: false,
 			// Support for iOS 6 or higher. It has not been tested on iOS 5 or lower
-			ipod: [['>=', 6]],
-			iphone: [['>=', 6]]
+			ipod: [ [ '>=', 6 ] ],
+			iphone: [ [ '>=', 6 ] ]
 		};
 
 		if ( !$.client.test( map ) ) {
@@ -182,14 +182,14 @@
 		$( searchboxesSelectors.join( ', ' ) )
 			.suggestions( {
 				fetch: function ( query, response, maxRows ) {
-					var node = this[0];
+					var node = this[ 0 ];
 
 					api = api || new mw.Api();
 
 					$.data( node, 'request', mw.searchSuggest.request( api, query, response, maxRows ) );
 				},
 				cancel: function () {
-					var node = this[0],
+					var node = this[ 0 ],
 						request = $.data( node, 'request' );
 
 					if ( request ) {

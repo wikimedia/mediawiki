@@ -362,7 +362,7 @@
 		$notifications.each( function () {
 			var notif = $( this ).data( 'mw.notification' );
 			if ( notif ) {
-				notif[fn]();
+				notif[ fn ]();
 			}
 		} );
 	}

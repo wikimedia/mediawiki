@@ -10,8 +10,8 @@ mediaWiki.language.convertGrammar = function ( word, form ) {
 	'use strict';
 
 	var grammarForms = mediaWiki.language.getData( 'ru', 'grammarForms' );
-	if ( grammarForms && grammarForms[form] ) {
-		return grammarForms[form][word];
+	if ( grammarForms && grammarForms[ form ] ) {
+		return grammarForms[ form ][ word ];
 	}
 	switch ( form ) {
 		case 'genitive': // родительный падеж

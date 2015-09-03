@@ -231,7 +231,7 @@
 		setTimeout( function () {
 			var $focussed = $( ':focus' );
 			// Deactivate unless the focus moved to something else inside this widget
-			if ( !OO.ui.contains( widget.$element[ 0 ], $focussed[0], true ) ) {
+			if ( !OO.ui.contains( widget.$element[ 0 ], $focussed[ 0 ], true ) ) {
 				widget.deactivate();
 			}
 		}, 0 );

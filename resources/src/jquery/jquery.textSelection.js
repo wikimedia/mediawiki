@@ -138,7 +138,7 @@
 							insertText = '',
 							selTextArr = selText.split( '\n' );
 						for ( i = 0; i < selTextArr.length; i++ ) {
-							insertText += pre + selTextArr[i] + post;
+							insertText += pre + selTextArr[ i ] + post;
 							if ( i !== selTextArr.length - 1 ) {
 								insertText += '\n';
 							}
@@ -576,7 +576,7 @@
 			context.fn.restoreSelection();
 			needSave = true;
 		}
-		retval = ( alternateFn && alternateFn[command] || fn[command] ).call( this, options );
+		retval = ( alternateFn && alternateFn[ command ] || fn[ command ] ).call( this, options );
 		if ( hasWikiEditor && needSave ) {
 			context.fn.saveSelection();
 		}

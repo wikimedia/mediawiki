@@ -5,8 +5,8 @@
 mediaWiki.language.convertGrammar = function ( word, form ) {
 	/*jshint onecase:true */
 	var grammarForms = mediaWiki.language.getData( 'hy', 'grammarForms' );
-	if ( grammarForms && grammarForms[form] ) {
-		return grammarForms[form][word];
+	if ( grammarForms && grammarForms[ form ] ) {
+		return grammarForms[ form ][ word ];
 	}
 
 	// These rules are not perfect, but they are currently only used for site names so it doesn't

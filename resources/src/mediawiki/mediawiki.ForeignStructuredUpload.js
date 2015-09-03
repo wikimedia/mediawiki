@@ -34,7 +34,7 @@
 		var i, category;
 
 		for ( i = 0; i < categories.length; i++ ) {
-			category = categories[i];
+			category = categories[ i ];
 			this.categories.push( category );
 		}
 	};
@@ -116,7 +116,7 @@
 		var i, desc, templateCalls = [];
 
 		for ( i = 0; i < this.descriptions.length; i++ ) {
-			desc = this.descriptions[i];
+			desc = this.descriptions[ i ];
 			templateCalls.push( '{{' + desc.language + '|' + desc.text + '}}' );
 		}
 
@@ -133,7 +133,7 @@
 		var i, cat, categoryLinks = [];
 
 		for ( i = 0; i < this.categories.length; i++ ) {
-			cat = this.categories[i];
+			cat = this.categories[ i ];
 			categoryLinks.push( '[[Category:' + cat + ']]' );
 		}
 

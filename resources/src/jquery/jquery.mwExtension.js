@@ -44,11 +44,11 @@
 				return false;
 			}
 			for ( var i = 0; i < arrThis.length; i++ ) {
-				if ( $.isArray( arrThis[i] ) ) {
-					if ( !$.compareArray( arrThis[i], arrAgainst[i] ) ) {
+				if ( $.isArray( arrThis[ i ] ) ) {
+					if ( !$.compareArray( arrThis[ i ], arrAgainst[ i ] ) ) {
 						return false;
 					}
-				} else if ( arrThis[i] !== arrAgainst[i] ) {
+				} else if ( arrThis[ i ] !== arrAgainst[ i ] ) {
 					return false;
 				}
 			}
@@ -71,24 +71,24 @@
 							// Check if this property is also present in the other object
 							if ( prop in objectB ) {
 								// Compare the types of the properties
-								type = typeof objectA[prop];
-								if ( type === typeof objectB[prop] ) {
+								type = typeof objectA[ prop ];
+								if ( type === typeof objectB[ prop ] ) {
 									// Recursively check objects inside this one
 									switch ( type ) {
 										case 'object' :
-											if ( !$.compareObject( objectA[prop], objectB[prop] ) ) {
+											if ( !$.compareObject( objectA[ prop ], objectB[ prop ] ) ) {
 												return false;
 											}
 											break;
 										case 'function' :
 											// Functions need to be strings to compare them properly
-											if ( objectA[prop].toString() !== objectB[prop].toString() ) {
+											if ( objectA[ prop ].toString() !== objectB[ prop ].toString() ) {
 												return false;
 											}
 											break;
 										default:
 											// Strings, numbers
-											if ( objectA[prop] !== objectB[prop] ) {
+											if ( objectA[ prop ] !== objectB[ prop ] ) {
 												return false;
 											}
 											break;

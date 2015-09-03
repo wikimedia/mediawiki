@@ -85,7 +85,7 @@
 
 		// Execute the queued functions
 		for ( i = 0; i < functs.length; i++ ) {
-			functs[i]();
+			functs[ i ]();
 		}
 	} );
 
@@ -168,14 +168,14 @@
 	 * @deprecated since 1.17 Use mw.loader instead. Warnings added in 1.25.
 	 */
 	function importScriptURI( url ) {
-		if ( loadedScripts[url] ) {
+		if ( loadedScripts[ url ] ) {
 			return null;
 		}
-		loadedScripts[url] = true;
+		loadedScripts[ url ] = true;
 		var s = document.createElement( 'script' );
 		s.setAttribute( 'src', url );
 		s.setAttribute( 'type', 'text/javascript' );
-		document.getElementsByTagName( 'head' )[0].appendChild( s );
+		document.getElementsByTagName( 'head' )[ 0 ].appendChild( s );
 		return s;
 	}
 
@@ -196,7 +196,7 @@
 		if ( media ) {
 			l.media = media;
 		}
-		document.getElementsByTagName( 'head' )[0].appendChild( l );
+		document.getElementsByTagName( 'head' )[ 0 ].appendChild( l );
 		return l;
 	}
 

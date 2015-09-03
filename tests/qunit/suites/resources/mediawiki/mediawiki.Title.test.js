@@ -134,14 +134,14 @@
 	QUnit.test( 'constructor', cases.invalid.length, function ( assert ) {
 		var i, title;
 		for ( i = 0; i < cases.valid.length; i++ ) {
-			title = new mw.Title( cases.valid[i] );
+			title = new mw.Title( cases.valid[ i ] );
 		}
 		for ( i = 0; i < cases.invalid.length; i++ ) {
 			/*jshint loopfunc:true */
-			title = cases.invalid[i];
+			title = cases.invalid[ i ];
 			assert.throws( function () {
 				return new mw.Title( title );
-			}, cases.invalid[i] );
+			}, cases.invalid[ i ] );
 		}
 	} );
 
@@ -149,16 +149,16 @@
 		var i;
 		for ( i = 0; i < cases.valid.length; i++ ) {
 			assert.equal(
-				$.type( mw.Title.newFromText( cases.valid[i] ) ),
+				$.type( mw.Title.newFromText( cases.valid[ i ] ) ),
 				'object',
-				cases.valid[i]
+				cases.valid[ i ]
 			);
 		}
 		for ( i = 0; i < cases.invalid.length; i++ ) {
 			assert.equal(
-				$.type( mw.Title.newFromText( cases.invalid[i] ) ),
+				$.type( mw.Title.newFromText( cases.invalid[ i ] ) ),
 				'null',
-				cases.invalid[i]
+				cases.invalid[ i ]
 			);
 		}
 	} );
@@ -277,7 +277,7 @@
 		assert.equal( title.toString(), 'Article', 'Default config: No sensitive namespaces by default. First-letter becomes uppercase' );
 
 		// $wgCapitalLinks = false;
-		mw.config.set( 'wgCaseSensitiveNamespaces', [0, -2, 1, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15] );
+		mw.config.set( 'wgCaseSensitiveNamespaces', [ 0, -2, 1, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15 ] );
 
 		title = new mw.Title( 'article' );
 		assert.equal( title.toString(), 'article', '$wgCapitalLinks=false: Article namespace is sensitive, first-letter case stays lowercase' );
@@ -320,8 +320,8 @@
 		assert.strictEqual( title.exists(), null, 'Return null with empty existance registry' );
 
 		// Basic registry, checks default to boolean
-		mw.Title.exist.set( ['Does_exist', 'User_talk:NeilK', 'Wikipedia:Sandbox_rules'], true );
-		mw.Title.exist.set( ['Does_not_exist', 'User:John', 'Foobar'], false );
+		mw.Title.exist.set( [ 'Does_exist', 'User_talk:NeilK', 'Wikipedia:Sandbox_rules' ], true );
+		mw.Title.exist.set( [ 'Does_not_exist', 'User:John', 'Foobar' ], false );
 
 		title = new mw.Title( 'Project:Sandbox rules' );
 		assert.assertTrue( title.exists(), 'Return true for page titles marked as existing' );
@@ -431,7 +431,7 @@
 			];
 
 		for ( i = 0; i < cases.length; i++ ) {
-			thisCase = cases[i];
+			thisCase = cases[ i ];
 			title = mw.Title.newFromImg( { src: thisCase.url } );
 
 			if ( thisCase.nameText !== undefined ) {
@@ -478,7 +478,7 @@
 			];
 
 		for ( i = 0; i < cases.length; i++ ) {
-			thisCase = cases[i];
+			thisCase = cases[ i ];
 
 			title = mw.Title.newFromText( thisCase.text );
 			assert.equal( title.getRelativeText( thisCase.relativeTo ), thisCase.expectedResult );
@@ -521,7 +521,7 @@
 			];
 
 		for ( i = 0; i < cases.length; i++ ) {
-			thisCase = cases[i];
+			thisCase = cases[ i ];
 			title = mw.Title.newFromUserInput( thisCase.title, thisCase.defaultNamespace, thisCase.options );
 
 			if ( thisCase.expected !== undefined ) {
@@ -643,7 +643,7 @@
 			];
 
 		for ( i = 0; i < cases.length; i++ ) {
-			thisCase = cases[i];
+			thisCase = cases[ i ];
 			title = mw.Title.newFromFileName( thisCase.fileName, thisCase.extensionDesired );
 
 			if ( thisCase.nameText !== undefined ) {

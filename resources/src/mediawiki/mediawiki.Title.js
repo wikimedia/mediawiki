@@ -109,7 +109,7 @@
 			return false;
 		}
 		ns = ns.toLowerCase();
-		id = mw.config.get( 'wgNamespaceIds' )[ns];
+		id = mw.config.get( 'wgNamespaceIds' )[ ns ];
 		if ( id === undefined ) {
 			return false;
 		}
@@ -235,7 +235,7 @@
 			.replace( rUnderscoreTrim, '' );
 
 		// Process initial colon
-		if ( title !== '' && title[0] === ':' ) {
+		if ( title !== '' && title[ 0 ] === ':' ) {
 			// Initial colon means main namespace instead of specified default
 			namespace = NS_MAIN;
 			title = title
@@ -252,16 +252,16 @@
 		// Process namespace prefix (if any)
 		m = title.match( rSplit );
 		if ( m ) {
-			id = getNsIdByName( m[1] );
+			id = getNsIdByName( m[ 1 ] );
 			if ( id !== false ) {
 				// Ordinary namespace
 				namespace = id;
-				title = m[2];
+				title = m[ 2 ];
 
 				// For Talk:X pages, make sure X has no "namespace" prefix
 				if ( namespace === NS_TALK && ( m = title.match( rSplit ) ) ) {
 					// Disallow titles like Talk:File:x (subject should roundtrip: talk:file:x -> file:x -> file_talk:x)
-					if ( getNsIdByName( m[1] ) !== false ) {
+					if ( getNsIdByName( m[ 1 ] ) !== false ) {
 						return false;
 					}
 				}
@@ -326,7 +326,7 @@
 		}
 
 		// Any remaining initial :s are illegal.
-		if ( title[0] === ':' ) {
+		if ( title[ 0 ] === ':' ) {
 			return false;
 		}
 
@@ -381,9 +381,9 @@
 			rules = sanitationRules;
 
 		for ( i = 0, ruleLength = rules.length; i < ruleLength; ++i ) {
-			rule = rules[i];
+			rule = rules[ i ];
 			for ( m = 0, filterLength = filter.length; m < filterLength; ++m ) {
-				if ( rule[filter[m]] ) {
+				if ( rule[ filter[ m ] ] ) {
 					s = s.replace( rule.pattern, rule.replace );
 				}
 			}
@@ -519,7 +519,7 @@
 		title = $.trim( title.replace( rWhitespace, ' ' ) );
 
 		// Process initial colon
-		if ( title !== '' && title[0] === ':' ) {
+		if ( title !== '' && title[ 0 ] === ':' ) {
 			// Initial colon means main namespace instead of specified default
 			namespace = NS_MAIN;
 			title = title
@@ -532,11 +532,11 @@
 		// Process namespace prefix (if any)
 		m = title.match( rSplit );
 		if ( m ) {
-			id = getNsIdByName( m[1] );
+			id = getNsIdByName( m[ 1 ] );
 			if ( id !== false ) {
 				// Ordinary namespace
 				namespace = id;
-				title = m[2];
+				title = m[ 2 ];
 			}
 		}
 
@@ -656,7 +656,7 @@
 
 			recount = regexes.length;
 
-		src = img.jquery ? img[0].src : img.src;
+		src = img.jquery ? img[ 0 ].src : img.src;
 
 		matches = src.match( thumbPhpRegex );
 
@@ -667,11 +667,11 @@
 		decodedSrc = decodeURIComponent( src );
 
 		for ( i = 0; i < recount; i++ ) {
-			regex = regexes[i];
+			regex = regexes[ i ];
 			matches = decodedSrc.match( regex );
 
-			if ( matches && matches[1] ) {
-				return mw.Title.newFromText( 'File:' + matches[1] );
+			if ( matches && matches[ 1 ] ) {
+				return mw.Title.newFromText( 'File:' + matches[ 1 ] );
 			}
 		}
 
@@ -691,9 +691,9 @@
 			obj = Title.exist.pages;
 
 		if ( type === 'string' ) {
-			match = obj[title];
+			match = obj[ title ];
 		} else if ( type === 'object' && title instanceof Title ) {
-			match = obj[title.toString()];
+			match = obj[ title.toString() ];
 		} else {
 			throw new Error( 'mw.Title.exists: title must be a string or an instance of Title' );
 		}
@@ -730,14 +730,14 @@
 		pages: {},
 
 		set: function ( titles, state ) {
-			titles = $.isArray( titles ) ? titles : [titles];
+			titles = $.isArray( titles ) ? titles : [ titles ];
 			state = state === undefined ? true : !!state;
 			var i,
 				pages = this.pages,
 				len = titles.length;
 
 			for ( i = 0; i < len; i++ ) {
-				pages[ titles[i] ] = state;
+				pages[ titles[ i ] ] = state;
 			}
 			return true;
 		}
@@ -789,7 +789,7 @@
 			) {
 				return this.title;
 			}
-			return this.title[0].toUpperCase() + this.title.slice( 1 );
+			return this.title[ 0 ].toUpperCase() + this.title.slice( 1 );
 		},
 
 		/**

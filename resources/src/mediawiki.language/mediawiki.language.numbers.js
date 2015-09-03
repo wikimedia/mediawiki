@@ -85,62 +85,62 @@
 			off,
 			remainder,
 			patternParts = pattern.split( '.' ),
-			maxPlaces = ( patternParts[1] || [] ).length,
+			maxPlaces = ( patternParts[ 1 ] || [] ).length,
 			valueParts = String( Math.abs( value ) ).split( '.' ),
-			fractional = valueParts[1] || '',
+			fractional = valueParts[ 1 ] || '',
 			groupSize = 0,
 			groupSize2 = 0,
 			pieces = [];
 
-		if ( patternParts[1] ) {
+		if ( patternParts[ 1 ] ) {
 			// Pad fractional with trailing zeros
-			padLength = ( patternParts[1] && patternParts[1].lastIndexOf( '0' ) + 1 );
+			padLength = ( patternParts[ 1 ] && patternParts[ 1 ].lastIndexOf( '0' ) + 1 );
 
 			if ( padLength > fractional.length ) {
-				valueParts[1] = pad( fractional, padLength, '0', true );
+				valueParts[ 1 ] = pad( fractional, padLength, '0', true );
 			}
 
 			// Truncate fractional
 			if ( maxPlaces < fractional.length ) {
-				valueParts[1] = fractional.slice( 0, maxPlaces );
+				valueParts[ 1 ] = fractional.slice( 0, maxPlaces );
 			}
 		} else {
-			if ( valueParts[1] ) {
+			if ( valueParts[ 1 ] ) {
 				valueParts.pop();
 			}
 		}
 
 		// Pad whole with leading zeros
-		patternDigits = patternParts[0].replace( ',', '' );
+		patternDigits = patternParts[ 0 ].replace( ',', '' );
 
 		padLength = patternDigits.indexOf( '0' );
 
 		if ( padLength !== -1 ) {
 			padLength = patternDigits.length - padLength;
 
-			if ( padLength > valueParts[0].length ) {
-				valueParts[0] = pad( valueParts[0], padLength );
+			if ( padLength > valueParts[ 0 ].length ) {
+				valueParts[ 0 ] = pad( valueParts[ 0 ], padLength );
 			}
 
 			// Truncate whole
 			if ( patternDigits.indexOf( '#' ) === -1 ) {
-				valueParts[0] = valueParts[0].slice( valueParts[0].length - padLength );
+				valueParts[ 0 ] = valueParts[ 0 ].slice( valueParts[ 0 ].length - padLength );
 			}
 		}
 
 		// Add group separators
-		index = patternParts[0].lastIndexOf( ',' );
+		index = patternParts[ 0 ].lastIndexOf( ',' );
 
 		if ( index !== -1 ) {
-			groupSize = patternParts[0].length - index - 1;
-			remainder = patternParts[0].slice( 0, index );
+			groupSize = patternParts[ 0 ].length - index - 1;
+			remainder = patternParts[ 0 ].slice( 0, index );
 			index = remainder.lastIndexOf( ',' );
 			if ( index !== -1 ) {
 				groupSize2 = remainder.length - index - 1;
 			}
 		}
 
-		for ( whole = valueParts[0]; whole; ) {
+		for ( whole = valueParts[ 0 ]; whole; ) {
 			off = groupSize ? whole.length - groupSize : 0;
 			pieces.push( ( off > 0 ) ? whole.slice( off ) : whole );
 			whole = ( off > 0 ) ? whole.slice( 0, off ) : '';
@@ -150,7 +150,7 @@
 				groupSize2 = null;
 			}
 		}
-		valueParts[0] = pieces.reverse().join( options.group );
+		valueParts[ 0 ] = pieces.reverse().join( options.group );
 
 		return valueParts.join( options.decimal );
 	}
@@ -198,10 +198,10 @@
 
 			convertedNumber = '';
 			for ( i = 0; i < numberString.length; i++ ) {
-				if ( transformTable[ numberString[i] ] ) {
-					convertedNumber += transformTable[numberString[i]];
+				if ( transformTable[ numberString[ i ] ] ) {
+					convertedNumber += transformTable[ numberString[ i ] ];
 				} else {
-					convertedNumber += numberString[i];
+					convertedNumber += numberString[ i ];
 				}
 			}
 			return integer ? parseInt( convertedNumber, 10 ) : convertedNumber;
@@ -238,20 +238,20 @@
 		commafy: function ( value, pattern ) {
 			var numberPattern,
 				transformTable = mw.language.getSeparatorTransformTable(),
-				group = transformTable[','] || ',',
+				group = transformTable[ ',' ] || ',',
 				numberPatternRE = /[#0,]*[#0](?:\.0*#*)?/, // not precise, but good enough
-				decimal = transformTable['.'] || '.',
+				decimal = transformTable[ '.' ] || '.',
 				patternList = pattern.split( ';' ),
-				positivePattern = patternList[0];
+				positivePattern = patternList[ 0 ];
 
-			pattern = patternList[ ( value < 0 ) ? 1 : 0] || ( '-' + positivePattern );
+			pattern = patternList[ ( value < 0 ) ? 1 : 0 ] || ( '-' + positivePattern );
 			numberPattern = positivePattern.match( numberPatternRE );
 
 			if ( !numberPattern ) {
 				throw new Error( 'unable to find a number expression in pattern: ' + pattern );
 			}
 
-			return pattern.replace( numberPatternRE, commafyNumber( value, numberPattern[0], {
+			return pattern.replace( numberPatternRE, commafyNumber( value, numberPattern[ 0 ], {
 				decimal: decimal,
 				group: group
 			} ) );

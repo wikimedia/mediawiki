@@ -88,7 +88,7 @@
 		html = '<div><span><html:msg key="foo-welcome" /></span></div>';
 		$lc = $( html ).localize( {
 			params: {
-				'foo-welcome': [sitename, 'yesterday']
+				'foo-welcome': [ sitename, 'yesterday' ]
 			}
 		} ).find( 'span' );
 
@@ -104,8 +104,8 @@
 				'label': x + '-label'
 			},
 			params: {
-				'title': [sitename, '3 minutes ago'],
-				'label': [sitename, '3 minutes ago']
+				'title': [ sitename, '3 minutes ago' ],
+				'label': [ sitename, '3 minutes ago' ]
 
 			}
 		} ).find( 'span' );

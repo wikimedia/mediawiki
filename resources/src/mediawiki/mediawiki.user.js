@@ -16,7 +16,7 @@
 	 */
 	function getUserInfo( info ) {
 		var api;
-		if ( !deferreds[info] ) {
+		if ( !deferreds[ info ] ) {
 
 			deferreds.rights = $.Deferred();
 			deferreds.groups = $.Deferred();
@@ -38,13 +38,13 @@
 
 		}
 
-		return deferreds[info].promise();
+		return deferreds[ info ].promise();
 	}
 
 	// Map from numbers 0-255 to a hex string (with padding)
 	for ( i = 0; i < 256; i++ ) {
 		// Padding: Add a full byte (0x100, 256) and strip the extra character
-		byteToHex[i] = ( i + 256 ).toString( 16 ).slice( 1 );
+		byteToHex[ i ] = ( i + 256 ).toString( 16 ).slice( 1 );
 	}
 
 	// mw.user with the properties options and tokens gets defined in mediawiki.js.
@@ -89,12 +89,12 @@
 					if ( ( i & 3 ) === 0 ) {
 						r = Math.random() * 0x100000000;
 					}
-					rnds[i] = r >>> ( ( i & 3 ) << 3 ) & 255;
+					rnds[ i ] = r >>> ( ( i & 3 ) << 3 ) & 255;
 				}
 			}
 			// Convert from number to hex
 			for ( i = 0; i < 8; i++ ) {
-				hexRnds[i] = byteToHex[rnds[i]];
+				hexRnds[ i ] = byteToHex[ rnds[ i ] ];
 			}
 
 			// Concatenation of two random integers with entrophy n and m
@@ -213,9 +213,9 @@
 			// Bucket information is stored as 2 integers, together as version:bucket like: "1:2"
 			if ( typeof cookie === 'string' && cookie.length > 2 && cookie.indexOf( ':' ) !== -1 ) {
 				parts = cookie.split( ':' );
-				if ( parts.length > 1 && Number( parts[0] ) === options.version ) {
-					version = Number( parts[0] );
-					bucket = String( parts[1] );
+				if ( parts.length > 1 && Number( parts[ 0 ] ) === options.version ) {
+					version = Number( parts[ 0 ] );
+					bucket = String( parts[ 1 ] );
 				}
 			}
 
@@ -229,7 +229,7 @@
 				// Find range
 				range = 0;
 				for ( k in options.buckets ) {
-					range += options.buckets[k];
+					range += options.buckets[ k ];
 				}
 
 				// Select random value within range
@@ -239,7 +239,7 @@
 				total = 0;
 				for ( k in options.buckets ) {
 					bucket = k;
-					total += options.buckets[k];
+					total += options.buckets[ k ];
 					if ( total >= rand ) {
 						break;
 					}

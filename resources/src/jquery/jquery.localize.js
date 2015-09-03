@@ -12,9 +12,9 @@
  * @return {string} Localized message
  */
 function msg( options, key ) {
-	var args = options.params[key] || [];
+	var args = options.params[ key ] || [];
 	// Format: mw.msg( key [, p1, p2, ...] )
-	args.unshift( options.prefix + ( options.keys[key] || key ) );
+	args.unshift( options.prefix + ( options.keys[ key ] || key ) );
 	return mw.msg.apply( mw, args );
 }
 
@@ -108,7 +108,7 @@ function msg( options, key ) {
  */
 $.fn.localize = function ( options ) {
 	var $target = this,
-		attributes = ['title', 'alt', 'placeholder'];
+		attributes = [ 'title', 'alt', 'placeholder' ];
 
 	// Extend options
 	options = $.extend( {

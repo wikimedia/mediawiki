@@ -174,7 +174,7 @@
 		$toolbar = $( '#toolbar' );
 
 		for ( i = 0; i < queue.length; i++ ) {
-			button = queue[i];
+			button = queue[ i ];
 			if ( $.isArray( button ) ) {
 				// Forwarded arguments array from mw.toolbar.addButton
 				insertButton.apply( toolbar, button );

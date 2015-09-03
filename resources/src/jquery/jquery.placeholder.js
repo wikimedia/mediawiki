@@ -37,7 +37,7 @@
 				rinlinejQuery = /^jQuery\d+$/;
 		$.each( elem.attributes, function ( i, attr ) {
 			if ( attr.specified && !rinlinejQuery.test( attr.name ) ) {
-				newAttrs[attr.name] = attr.value;
+				newAttrs[ attr.name ] = attr.value;
 			}
 		} );
 		return newAttrs;
@@ -51,7 +51,7 @@
 				$input = $input.hide().next().show().attr( 'id', $input.removeAttr( 'id' ).data( 'placeholder-id' ) );
 				// If `clearPlaceholder` was called from `$.valHooks.input.set`
 				if ( event === true ) {
-					$input[0].value = value;
+					$input[ 0 ].value = value;
 					return value;
 				}
 				$input.focus();
@@ -96,7 +96,7 @@
 				// Note: `$input[0] != input` now!
 			}
 			$input.addClass( 'placeholder' );
-			$input[0].value = $input.attr( 'placeholder' );
+			$input[ 0 ].value = $input.attr( 'placeholder' );
 		} else {
 			$input.removeClass( 'placeholder' );
 		}
@@ -109,7 +109,7 @@
 			if ( $input.attr( 'placeholder' ) !== text ) {
 				$input.prop( 'placeholder', text );
 				if ( $input.hasClass( 'placeholder' ) ) {
-					$input[0].value = text;
+					$input[ 0 ].value = text;
 				}
 			}
 		}
@@ -161,7 +161,7 @@
 				var $element = $( element ),
 					$passwordInput = $element.data( 'placeholder-password' );
 				if ( $passwordInput ) {
-					return $passwordInput[0].value;
+					return $passwordInput[ 0 ].value;
 				}
 
 				return $element.data( 'placeholder-enabled' ) && $element.hasClass( 'placeholder' ) ? '' : element.value;
@@ -170,7 +170,7 @@
 				var $element = $( element ),
 					$passwordInput = $element.data( 'placeholder-password' );
 				if ( $passwordInput ) {
-					$passwordInput[0].value = value;
+					$passwordInput[ 0 ].value = value;
 					return value;
 				}
 
