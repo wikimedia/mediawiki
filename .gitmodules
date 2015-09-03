@@ -190,3 +190,11 @@
 	path = extensions/EmbedVideo
 	url = https://github.com/Alexia/mediawiki-embedvideo.git
 	branch = master
+[submodule "extensions/TimedMediaHandler"]
+	path = extensions/TimedMediaHandler
+	url = https://github.com/wikimedia/mediawiki-extensions-TimedMediaHandler
+	branch = REL1_25
+[submodule "extensions/MwEmbedSupport"]
+	path = extensions/MwEmbedSupport
+	url = https://github.com/wikimedia/mediawiki-extensions-MwEmbedSupport
+	branch = REL1_25
