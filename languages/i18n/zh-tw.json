@@ -414,7 +414,6 @@
     "sp-contributions-blocklog": "封鎖記錄",
     "sp-contributions-userrights": "使用者權限管理",
     "sp-contributions-username": "IP位址或使用者名稱：",
-    "whatlinkshere-title": "鏈接到$1的頁面",
     "blockip": "封鎖使用者",
     "ipadressorusername": "IP地址或使用者名:",
     "ipbreason-dropdown": "*一般的封鎖理由\n** 屢次增加不實資料\n** 刪除頁面內容\n** 外部連結廣告\n** 在頁面中增加無意義文字\n** 無禮的行為、攻擊／騷擾別人\n** 濫用多個帳號\n** 不能接受的使用者名",
