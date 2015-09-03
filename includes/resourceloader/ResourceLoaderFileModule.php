@@ -152,6 +152,12 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	protected $localFileRefs = array();
 
+	/**
+	 * @var array Place where readStyleFile() tracks file dependencies for non-existent files.
+	 * Used in tests to detect missing dependencies.
+	 */
+	protected $missingLocalFileRefs = array();
+
 	/* Methods */
 
 	/**
@@ -917,10 +923,14 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$localDir = dirname( $localPath );
 		$remoteDir = dirname( $remotePath );
 		// Get and register local file references
-		$this->localFileRefs = array_merge(
-			$this->localFileRefs,
-			CSSMin::getLocalFileReferences( $style, $localDir )
-		);
+		$localFileRefs = CSSMin::getAllLocalFileReferences( $style, $localDir );
+		foreach ( $localFileRefs as $file ) {
+			if ( file_exists( $file ) ) {
+				$this->localFileRefs[] = $file;
+			} else {
+				$this->missingLocalFileRefs[] = $file;
+			}
+		}
 		return CSSMin::remap(
 			$style, $localDir, $remoteDir, true
 		);
