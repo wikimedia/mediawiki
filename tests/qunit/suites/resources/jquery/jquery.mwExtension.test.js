@@ -8,7 +8,7 @@
 		teardown: function () {
 			this.restoreWarnings();
 		}
-	}) );
+	} ) );
 
 	QUnit.test( 'String functions', 7, function ( assert ) {
 		assert.equal( $.trimLeft( '  foo bar  ' ), 'foo bar  ', 'trimLeft' );

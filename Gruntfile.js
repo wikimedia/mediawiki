@@ -87,7 +87,7 @@ module.exports = function ( grunt ) {
 		}
 		if ( !process.env.MW_SCRIPT_PATH ) {
 			grunt.log.error( 'Environment variable MW_SCRIPT_PATH must be set.\n' +
-				'Set this like $wgScriptPath, e.g. "/w"');
+				'Set this like $wgScriptPath, e.g. "/w"' );
 		}
 		return !!( process.env.MW_SERVER && process.env.MW_SCRIPT_PATH );
 	} );

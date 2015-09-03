@@ -143,7 +143,7 @@
 		this.restoreWarnings();
 
 		// Change value via global Map
-		globalConf.set('anotherGlobalMapChecker', 'Again');
+		globalConf.set( 'anotherGlobalMapChecker', 'Again' );
 		assert.equal( globalConf.get( 'anotherGlobalMapChecker' ), 'Again', 'Change in global Map reflected via get()' );
 		this.suppressWarnings();
 		assert.equal( window.anotherGlobalMapChecker, 'Again', 'Change in global Map reflected window object' );
