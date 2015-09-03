@@ -291,14 +291,12 @@
 			for ( i = 0, length = this.data.queries.length; i < length; i += 1 ) {
 				query = this.data.queries[i];
 
-				// jscs: disable requireDotNotation
 				$( '<tr>' )
 					.append( $( '<td>' ).text( i + 1 ) )
 					.append( $( '<td>' ).text( query.sql ) )
 					.append( $( '<td class="stats">' ).text( ( query.time * 1000 ).toFixed( 4 ) + 'ms' ) )
 					.append( $( '<td>' ).text( query['function'] ) )
 				.appendTo( $table );
-				// jscs: enable requireDotNotation
 			}
 
 			return $table;

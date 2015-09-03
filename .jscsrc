@@ -8,6 +8,8 @@
 	"requireSpacesInsideBrackets": null,
 	"jsDoc": null,
 
+	"requireDotNotation": { "allExcept": [ "keywords" ] },
+
 	"excludeFiles": [
 		"docs/**",
 		"extensions/**",
