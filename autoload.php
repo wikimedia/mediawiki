@@ -760,6 +760,7 @@ $wgAutoloadLocalClasses = array(
 	'MediaWiki\\Logger\\Monolog\\WikiProcessor' => __DIR__ . '/includes/debug/logger/monolog/WikiProcessor.php',
 	'MediaWiki\\Logger\\NullSpi' => __DIR__ . '/includes/debug/logger/NullSpi.php',
 	'MediaWiki\\Logger\\Spi' => __DIR__ . '/includes/debug/logger/Spi.php',
+	'MediaWiki\\Tidy\\Html5Depurate' => __DIR__ . '/includes/tidy/Html5Depurate.php',
 	'MediaWiki\\Tidy\\RaggettBase' => __DIR__ . '/includes/tidy/RaggettBase.php',
 	'MediaWiki\\Tidy\\RaggettExternal' => __DIR__ . '/includes/tidy/RaggettExternal.php',
 	'MediaWiki\\Tidy\\RaggettInternalHHVM' => __DIR__ . '/includes/tidy/RaggettInternalHHVM.php',
