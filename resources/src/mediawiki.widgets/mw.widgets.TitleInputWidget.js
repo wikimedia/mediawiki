@@ -125,9 +125,9 @@
 					widget.interwikiPrefixes.indexOf( interwiki ) !== -1
 				) {
 					return $.Deferred().resolve( { query: {
-						pages: [{
+						pages: [ {
 							title: widget.value
-						}]
+						} ]
 					} } ).promise( promiseAbortObject );
 				} else {
 					params = {
@@ -190,15 +190,15 @@
 
 		if ( data.redirects ) {
 			for ( i = 0, len = data.redirects.length; i < len; i++ ) {
-				redirect = data.redirects[i];
-				redirectsTo[redirect.to] = redirectsTo[redirect.to] || [];
-				redirectsTo[redirect.to].push( redirect.from );
+				redirect = data.redirects[ i ];
+				redirectsTo[ redirect.to ] = redirectsTo[ redirect.to ] || [];
+				redirectsTo[ redirect.to ].push( redirect.from );
 			}
 		}
 
 		for ( index in data.pages ) {
-			suggestionPage = data.pages[index];
-			pageData[suggestionPage.title] = {
+			suggestionPage = data.pages[ index ];
+			pageData[ suggestionPage.title ] = {
 				missing: suggestionPage.missing !== undefined,
 				redirect: suggestionPage.redirect !== undefined,
 				disambiguation: OO.getProp( suggestionPage, 'pageprops', 'disambiguation' ) !== undefined,
@@ -212,15 +212,15 @@
 				titles.push( suggestionPage.title );
 			}
 
-			redirects = redirectsTo[suggestionPage.title] || [];
+			redirects = redirectsTo[ suggestionPage.title ] || [];
 			for ( i = 0, len = redirects.length; i < len; i++ ) {
-				pageData[redirects[i]] = {
+				pageData[ redirects[ i ] ] = {
 					missing: false,
 					redirect: true,
 					disambiguation: false,
 					description: mw.msg( 'mw-widgets-titleinput-description-redirect', suggestionPage.title )
 				};
-				titles.push( redirects[i] );
+				titles.push( redirects[ i ] );
 			}
 		}
 
@@ -233,7 +233,7 @@
 		);
 
 		if ( !pageExists ) {
-			pageData[this.value] = {
+			pageData[ this.value ] = {
 				missing: true, redirect: false, disambiguation: false,
 				description: mw.msg( 'mw-widgets-titleinput-description-new-page' )
 			};
@@ -252,8 +252,8 @@
 			titles.push( this.value );
 		}
 		for ( i = 0, len = titles.length; i < len; i++ ) {
-			page = pageData[titles[i]] || {};
-			items.push( new mw.widgets.TitleOptionWidget( this.getOptionWidgetData( titles[i], page ) ) );
+			page = pageData[ titles[ i ] ] || {};
+			items.push( new mw.widgets.TitleOptionWidget( this.getOptionWidgetData( titles[ i ], page ) ) );
 		}
 
 		return items;

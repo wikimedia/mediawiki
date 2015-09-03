@@ -146,7 +146,7 @@ var ProtectionForm = window.ProtectionForm = {
 	 */
 	matchAttribute: function ( objects, attrName ) {
 		return $.map( objects, function ( object ) {
-			return object[attrName];
+			return object[ attrName ];
 		} ).filter( function ( item, index, a ) {
 			return index === a.indexOf( item );
 		} ).length === 1;

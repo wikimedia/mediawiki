@@ -44,7 +44,7 @@
 		 */
 		configure: function ( context, property, value ) {
 			// TODO: Validate creation using fallback values
-			context.config[property] = value;
+			context.config[ property ] = value;
 		}
 
 	};
@@ -87,20 +87,20 @@
 			/* API */
 			// Handle various calling styles
 			if ( args.length > 0 ) {
-				if ( typeof args[0] === 'object' ) {
+				if ( typeof args[ 0 ] === 'object' ) {
 					// Apply set of properties
-					for ( key in args[0] ) {
-						$.expandableField.configure( context, key, args[0][key] );
+					for ( key in args[ 0 ] ) {
+						$.expandableField.configure( context, key, args[ 0 ][ key ] );
 					}
-				} else if ( typeof args[0] === 'string' ) {
+				} else if ( typeof args[ 0 ] === 'string' ) {
 					if ( args.length > 1 ) {
 						// Set property values
-						$.expandableField.configure( context, args[0], args[1] );
+						$.expandableField.configure( context, args[ 0 ], args[ 1 ] );
 
 					// TODO: Do we need to check both null and undefined?
 					} else if ( returnValue === null || returnValue === undefined ) {
 						// Get property values, but don't give access to internal data - returns only the first
-						returnValue = ( args[0] in context.config ? undefined : context.config[args[0]] );
+						returnValue = ( args[ 0 ] in context.config ? undefined : context.config[ args[ 0 ] ] );
 					}
 				}
 			}

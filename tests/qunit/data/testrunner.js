@@ -66,7 +66,7 @@
 	sinon.config = {
 		injectIntoThis: true,
 		injectInto: null,
-		properties: ['spy', 'stub', 'mock', 'sandbox'],
+		properties: [ 'spy', 'stub', 'mock', 'sandbox' ],
 		// Don't fake timers by default
 		useFakeTimers: false,
 		useFakeServer: false
@@ -333,7 +333,7 @@
 			children = $node.contents();
 			processedChildren = [];
 			for ( i = 0, len = children.length; i < len; i++ ) {
-				el = children[i];
+				el = children[ i ];
 				if ( el.nodeType === Node.ELEMENT_NODE || el.nodeType === Node.TEXT_NODE ) {
 					processedChildren.push( getDomStructure( el ) );
 				}
@@ -356,7 +356,7 @@
 	 * @param {string} html HTML markup for one or more nodes.
 	 */
 	function getHtmlStructure( html ) {
-		var el = $( '<div>' ).append( html )[0];
+		var el = $( '<div>' ).append( html )[ 0 ];
 		return getDomStructure( el );
 	}
 
@@ -488,11 +488,11 @@
 			missing = [];
 
 		for ( i = 0, len = modules.length; i < len; i++ ) {
-			state = mw.loader.getState( modules[i] );
+			state = mw.loader.getState( modules[ i ] );
 			if ( state === 'error' ) {
-				error.push( modules[i] );
+				error.push( modules[ i ] );
 			} else if ( state === 'missing' ) {
-				missing.push( modules[i] );
+				missing.push( modules[ i ] );
 			}
 		}
 

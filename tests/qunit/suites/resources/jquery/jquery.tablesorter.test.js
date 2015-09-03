@@ -8,9 +8,9 @@
 		b1 = [ 'B', '1' ],
 		b2 = [ 'B', '2' ],
 		b3 = [ 'B', '3' ],
-		simple = [a2, b3, a1, a3, b2, b1],
-		simpleAsc = [a1, a2, a3, b1, b2, b3],
-		simpleDescasc = [b1, b2, b3, a1, a2, a3],
+		simple = [ a2, b3, a1, a3, b2, b1 ],
+		simpleAsc = [ a1, a2, a3, b1, b2, b3 ],
+		simpleDescasc = [ b1, b2, b3, a1, a2, a3 ],
 
 		// Data set "colspan"
 		aaa1 = [ 'A', 'A', 'A', '1' ],
@@ -27,9 +27,9 @@
 		mars = [ 'Mars', '3390.0' ],
 		jupiter = [ 'Jupiter', '69911' ],
 		saturn = [ 'Saturn', '58232' ],
-		planets = [mercury, venus, earth, mars, jupiter, saturn],
-		planetsAscName = [earth, jupiter, mars, mercury, saturn, venus],
-		planetsAscRadius = [mercury, mars, venus, earth, saturn, jupiter],
+		planets = [ mercury, venus, earth, mars, jupiter, saturn ],
+		planetsAscName = [ earth, jupiter, mars, mercury, saturn, venus ],
+		planetsAscRadius = [ mercury, mars, venus, earth, saturn, jupiter ],
 		planetsRowspan,
 		planetsRowspanII,
 		planetsAscNameLegacy,
@@ -37,122 +37,122 @@
 		// Data set "ipv4"
 		ipv4 = [
 			// Some randomly generated fake IPs
-			['45.238.27.109'],
-			['44.172.9.22'],
-			['247.240.82.209'],
-			['204.204.132.158'],
-			['170.38.91.162'],
-			['197.219.164.9'],
-			['45.68.154.72'],
-			['182.195.149.80']
+			[ '45.238.27.109' ],
+			[ '44.172.9.22' ],
+			[ '247.240.82.209' ],
+			[ '204.204.132.158' ],
+			[ '170.38.91.162' ],
+			[ '197.219.164.9' ],
+			[ '45.68.154.72' ],
+			[ '182.195.149.80' ]
 		],
 		ipv4Sorted = [
 			// Sort order should go octet by octet
-			['44.172.9.22'],
-			['45.68.154.72'],
-			['45.238.27.109'],
-			['170.38.91.162'],
-			['182.195.149.80'],
-			['197.219.164.9'],
-			['204.204.132.158'],
-			['247.240.82.209']
+			[ '44.172.9.22' ],
+			[ '45.68.154.72' ],
+			[ '45.238.27.109' ],
+			[ '170.38.91.162' ],
+			[ '182.195.149.80' ],
+			[ '197.219.164.9' ],
+			[ '204.204.132.158' ],
+			[ '247.240.82.209' ]
 		],
 
 		// Data set "umlaut"
 		umlautWords = [
-			['Günther'],
-			['Peter'],
-			['Björn'],
-			['Bjorn'],
-			['Apfel'],
-			['Äpfel'],
-			['Strasse'],
-			['Sträßschen']
+			[ 'Günther' ],
+			[ 'Peter' ],
+			[ 'Björn' ],
+			[ 'Bjorn' ],
+			[ 'Apfel' ],
+			[ 'Äpfel' ],
+			[ 'Strasse' ],
+			[ 'Sträßschen' ]
 		],
 		umlautWordsSorted = [
-			['Äpfel'],
-			['Apfel'],
-			['Björn'],
-			['Bjorn'],
-			['Günther'],
-			['Peter'],
-			['Sträßschen'],
-			['Strasse']
+			[ 'Äpfel' ],
+			[ 'Apfel' ],
+			[ 'Björn' ],
+			[ 'Bjorn' ],
+			[ 'Günther' ],
+			[ 'Peter' ],
+			[ 'Sträßschen' ],
+			[ 'Strasse' ]
 		],
 
 		complexMDYDates = [
-			['January, 19 2010'],
-			['April 21 1991'],
-			['04 22 1991'],
-			['5.12.1990'],
-			['December 12 \'10']
+			[ 'January, 19 2010' ],
+			[ 'April 21 1991' ],
+			[ '04 22 1991' ],
+			[ '5.12.1990' ],
+			[ 'December 12 \'10' ]
 		],
 		complexMDYSorted = [
-			['5.12.1990'],
-			['April 21 1991'],
-			['04 22 1991'],
-			['January, 19 2010'],
-			['December 12 \'10']
+			[ '5.12.1990' ],
+			[ 'April 21 1991' ],
+			[ '04 22 1991' ],
+			[ 'January, 19 2010' ],
+			[ 'December 12 \'10' ]
 		],
 
 		currencyUnsorted = [
-			['1.02 $'],
-			['$ 3.00'],
-			['€ 2,99'],
-			['$ 1.00'],
-			['$3.50'],
-			['$ 1.50'],
-			['€ 0.99']
+			[ '1.02 $' ],
+			[ '$ 3.00' ],
+			[ '€ 2,99' ],
+			[ '$ 1.00' ],
+			[ '$3.50' ],
+			[ '$ 1.50' ],
+			[ '€ 0.99' ]
 		],
 		currencySorted = [
-			['€ 0.99'],
-			['$ 1.00'],
-			['1.02 $'],
-			['$ 1.50'],
-			['$ 3.00'],
-			['$3.50'],
+			[ '€ 0.99' ],
+			[ '$ 1.00' ],
+			[ '1.02 $' ],
+			[ '$ 1.50' ],
+			[ '$ 3.00' ],
+			[ '$3.50' ],
 			// Comma's sort after dots
 			// Not intentional but test to detect changes
-			['€ 2,99']
+			[ '€ 2,99' ]
 		],
 
 		numbers = [
-			[ '12'    ],
-			[  '7'    ],
-			[ '13,000'],
-			[  '9'    ],
-			[ '14'    ],
-			[  '8.0'  ]
+			[ '12' ],
+			[ '7' ],
+			[ '13,000' ],
+			[ '9' ],
+			[ '14' ],
+			[ '8.0' ]
 		],
 		numbersAsc = [
-			[  '7'    ],
-			[  '8.0'  ],
-			[  '9'    ],
-			[ '12'    ],
-			[ '14'    ],
-			[ '13,000']
+			[ '7' ],
+			[ '8.0' ],
+			[ '9' ],
+			[ '12' ],
+			[ '14' ],
+			[ '13,000' ]
 		],
 
 		correctDateSorting1 = [
-			['01 January 2010'],
-			['05 February 2010'],
-			['16 January 2010']
+			[ '01 January 2010' ],
+			[ '05 February 2010' ],
+			[ '16 January 2010' ]
 		],
 		correctDateSortingSorted1 = [
-			['01 January 2010'],
-			['16 January 2010'],
-			['05 February 2010']
+			[ '01 January 2010' ],
+			[ '16 January 2010' ],
+			[ '05 February 2010' ]
 		],
 
 		correctDateSorting2 = [
-			['January 01 2010'],
-			['February 05 2010'],
-			['January 16 2010']
+			[ 'January 01 2010' ],
+			[ 'February 05 2010' ],
+			[ 'January 16 2010' ]
 		],
 		correctDateSortingSorted2 = [
-			['January 01 2010'],
-			['January 16 2010'],
-			['February 05 2010']
+			[ 'January 01 2010' ],
+			[ 'January 16 2010' ],
+			[ 'February 05 2010' ]
 		];
 
 	QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
@@ -160,19 +160,19 @@
 			this.liveMonths = mw.language.months;
 			mw.language.months = {
 				'keys': {
-					'names': ['january', 'february', 'march', 'april', 'may_long', 'june',
-						'july', 'august', 'september', 'october', 'november', 'december'],
-					'genitive': ['january-gen', 'february-gen', 'march-gen', 'april-gen', 'may-gen', 'june-gen',
-						'july-gen', 'august-gen', 'september-gen', 'october-gen', 'november-gen', 'december-gen'],
-					'abbrev': ['jan', 'feb', 'mar', 'apr', 'may', 'jun',
-						'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
+					'names': [ 'january', 'february', 'march', 'april', 'may_long', 'june',
+						'july', 'august', 'september', 'october', 'november', 'december' ],
+					'genitive': [ 'january-gen', 'february-gen', 'march-gen', 'april-gen', 'may-gen', 'june-gen',
+						'july-gen', 'august-gen', 'september-gen', 'october-gen', 'november-gen', 'december-gen' ],
+					'abbrev': [ 'jan', 'feb', 'mar', 'apr', 'may', 'jun',
+						'jul', 'aug', 'sep', 'oct', 'nov', 'dec' ]
 				},
-				'names': ['January', 'February', 'March', 'April', 'May', 'June',
-						'July', 'August', 'September', 'October', 'November', 'December'],
-				'genitive': ['January', 'February', 'March', 'April', 'May', 'June',
-						'July', 'August', 'September', 'October', 'November', 'December'],
-				'abbrev': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-						'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+				'names': [ 'January', 'February', 'March', 'April', 'May', 'June',
+						'July', 'August', 'September', 'October', 'November', 'December' ],
+				'genitive': [ 'January', 'February', 'March', 'April', 'May', 'June',
+						'July', 'August', 'September', 'October', 'November', 'December' ],
+				'abbrev': [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+						'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ]
 			};
 		},
 		teardown: function () {
@@ -180,8 +180,8 @@
 		},
 		config: {
 			wgDefaultDateFormat: 'dmy',
-			wgSeparatorTransformTable: ['', ''],
-			wgDigitTransformTable: ['', ''],
+			wgSeparatorTransformTable: [ '', '' ],
+			wgDigitTransformTable: [ '', '' ],
 			wgPageContentLanguage: 'en'
 		}
 	} ) );
@@ -210,7 +210,7 @@
 		for ( i = 0; i < data.length; i++ ) {
 			/*jshint loopfunc: true */
 			$tr = $( '<tr>' );
-			$.each( data[i], function ( j, str ) {
+			$.each( data[ i ], function ( j, str ) {
 				var $td = $( '<td>' );
 				$td.text( str ).appendTo( $tr );
 			} );
@@ -302,7 +302,7 @@
 	}
 
 	// Sample data set using planets named and their radius
-	header = [ 'Planet', 'Radius (km)'];
+	header = [ 'Planet', 'Radius (km)' ];
 
 	tableTest(
 		'Basic planet table: sorting initially - ascending by name',
@@ -466,7 +466,7 @@
 
 			// Pretend to click while pressing the multi-sort key
 			var event = $.Event( 'click' );
-			event[$table.data( 'tablesorter' ).config.sortMultiSortKey] = true;
+			event[ $table.data( 'tablesorter' ).config.sortMultiSortKey ] = true;
 			$table.find( '.headerSort:eq(1)' ).trigger( event );
 		}
 	);
@@ -573,22 +573,22 @@
 	// Regression tests!
 	tableTest(
 		'Bug 28775: German-style (dmy) short numeric dates',
-		['Date'],
+		[ 'Date' ],
 		[
 			// German-style dates are day-month-year
-			['11.11.2011'],
-			['01.11.2011'],
-			['02.10.2011'],
-			['03.08.2011'],
-			['09.11.2011']
+			[ '11.11.2011' ],
+			[ '01.11.2011' ],
+			[ '02.10.2011' ],
+			[ '03.08.2011' ],
+			[ '09.11.2011' ]
 		],
 		[
 			// Sorted by ascending date
-			['03.08.2011'],
-			['02.10.2011'],
-			['01.11.2011'],
-			['09.11.2011'],
-			['11.11.2011']
+			[ '03.08.2011' ],
+			[ '02.10.2011' ],
+			[ '01.11.2011' ],
+			[ '09.11.2011' ],
+			[ '11.11.2011' ]
 		],
 		function ( $table ) {
 			mw.config.set( 'wgDefaultDateFormat', 'dmy' );
@@ -601,22 +601,22 @@
 
 	tableTest(
 		'Bug 28775: American-style (mdy) short numeric dates',
-		['Date'],
+		[ 'Date' ],
 		[
 			// American-style dates are month-day-year
-			['11.11.2011'],
-			['01.11.2011'],
-			['02.10.2011'],
-			['03.08.2011'],
-			['09.11.2011']
+			[ '11.11.2011' ],
+			[ '01.11.2011' ],
+			[ '02.10.2011' ],
+			[ '03.08.2011' ],
+			[ '09.11.2011' ]
 		],
 		[
 			// Sorted by ascending date
-			['01.11.2011'],
-			['02.10.2011'],
-			['03.08.2011'],
-			['09.11.2011'],
-			['11.11.2011']
+			[ '01.11.2011' ],
+			[ '02.10.2011' ],
+			[ '03.08.2011' ],
+			[ '09.11.2011' ],
+			[ '11.11.2011' ]
 		],
 		function ( $table ) {
 			mw.config.set( 'wgDefaultDateFormat', 'mdy' );
@@ -628,7 +628,7 @@
 
 	tableTest(
 		'Bug 17141: IPv4 address sorting',
-		['IP'],
+		[ 'IP' ],
 		ipv4,
 		ipv4Sorted,
 		function ( $table ) {
@@ -638,7 +638,7 @@
 	);
 	tableTest(
 		'Bug 17141: IPv4 address sorting (reverse)',
-		['IP'],
+		[ 'IP' ],
 		ipv4,
 		reversed( ipv4Sorted ),
 		function ( $table ) {
@@ -649,7 +649,7 @@
 
 	tableTest(
 		'Accented Characters with custom collation',
-		['Name'],
+		[ 'Name' ],
 		umlautWords,
 		umlautWordsSorted,
 		function ( $table ) {
@@ -749,7 +749,7 @@
 
 	tableTest(
 		'Complex date parsing I',
-		['date'],
+		[ 'date' ],
 		complexMDYDates,
 		complexMDYSorted,
 		function ( $table ) {
@@ -762,7 +762,7 @@
 
 	tableTest(
 		'Currency parsing I',
-		['currency'],
+		[ 'currency' ],
 		currencyUnsorted,
 		currencySorted,
 		function ( $table ) {
@@ -772,7 +772,7 @@
 	);
 
 	planetsAscNameLegacy = planetsAscName.slice( 0 );
-	planetsAscNameLegacy[4] = planetsAscNameLegacy[5];
+	planetsAscNameLegacy[ 4 ] = planetsAscNameLegacy[ 5 ];
 	planetsAscNameLegacy.pop();
 
 	tableTest(
@@ -801,7 +801,7 @@
 		$table.find( '.headerSort:eq(0)' ).click();
 
 		assert.equal(
-			$table.data( 'tablesorter' ).config.parsers[0].id,
+			$table.data( 'tablesorter' ).config.parsers[ 0 ].id,
 			'number',
 			'Correctly detected column content skipping sortbottom'
 		);
@@ -989,7 +989,7 @@
 	} );
 
 	tableTest( 'bug 8115: sort numbers with commas (ascending)',
-		['Numbers'], numbers, numbersAsc,
+		[ 'Numbers' ], numbers, numbersAsc,
 		function ( $table ) {
 			$table.tablesorter();
 			$table.find( '.headerSort:eq(0)' ).click();
@@ -997,7 +997,7 @@
 	);
 
 	tableTest( 'bug 8115: sort numbers with commas (descending)',
-		['Numbers'], numbers, reversed( numbersAsc ),
+		[ 'Numbers' ], numbers, reversed( numbersAsc ),
 		function ( $table ) {
 			$table.tablesorter();
 			$table.find( '.headerSort:eq(0)' ).click().click();
@@ -1032,7 +1032,7 @@
 
 	tableTest(
 		'Correct date sorting I',
-		['date'],
+		[ 'date' ],
 		correctDateSorting1,
 		correctDateSortingSorted1,
 		function ( $table ) {
@@ -1045,7 +1045,7 @@
 
 	tableTest(
 		'Correct date sorting II',
-		['date'],
+		[ 'date' ],
 		correctDateSorting2,
 		correctDateSortingSorted2,
 		function ( $table ) {

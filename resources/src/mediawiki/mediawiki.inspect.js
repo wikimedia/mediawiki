@@ -13,7 +13,7 @@
 	function sortByProperty( array, prop, descending ) {
 		var order = descending ? -1 : 1;
 		return array.sort( function ( a, b ) {
-			return a[prop] > b[prop] ? order : a[prop] < b[prop] ? -order : 0;
+			return a[ prop ] > b[ prop ] ? order : a[ prop ] < b[ prop ] ? -order : 0;
 		} );
 	}
 
@@ -25,7 +25,7 @@
 		for ( ; bytes >= 1024; bytes /= 1024 ) { i++; }
 		// Maintain one decimal for kB and above, but don't
 		// add ".0" for bytes.
-		return bytes.toFixed( i > 0 ? 1 : 0 ) + units[i];
+		return bytes.toFixed( i > 0 ? 1 : 0 ) + units[ i ];
 	}
 
 	/**
@@ -45,18 +45,18 @@
 				graph = {};
 
 			$.each( modules, function ( moduleIndex, moduleName ) {
-				var dependencies = mw.loader.moduleRegistry[moduleName].dependencies || [];
+				var dependencies = mw.loader.moduleRegistry[ moduleName ].dependencies || [];
 
 				if ( !hasOwn.call( graph, moduleName ) ) {
-					graph[moduleName] = { requiredBy: [] };
+					graph[ moduleName ] = { requiredBy: [] };
 				}
-				graph[moduleName].requires = dependencies;
+				graph[ moduleName ].requires = dependencies;
 
 				$.each( dependencies, function ( depIndex, depName ) {
 					if ( !hasOwn.call( graph, depName ) ) {
-						graph[depName] = { requiredBy: [] };
+						graph[ depName ] = { requiredBy: [] };
 					}
-					graph[depName].requiredBy.push( moduleName );
+					graph[ depName ].requiredBy.push( moduleName );
 				} );
 			} );
 			return graph;
@@ -173,7 +173,7 @@
 				$.map( inspect.reports, function ( v, k ) { return k; } );
 
 			$.each( reports, function ( index, name ) {
-				inspect.dumpTable( inspect.reports[name]() );
+				inspect.dumpTable( inspect.reports[ name ]() );
 			} );
 		},
 
@@ -214,7 +214,7 @@
 				var modules = [];
 
 				$.each( inspect.getLoadedModules(), function ( index, name ) {
-					var css, stats, module = mw.loader.moduleRegistry[name];
+					var css, stats, module = mw.loader.moduleRegistry[ name ];
 
 					try {
 						css = module.style.css.join();
@@ -247,7 +247,7 @@
 						stats.totalSize = humanSize( $.byteLength( raw ) );
 					} catch ( e ) {}
 				}
-				return [stats];
+				return [ stats ];
 			}
 		},
 
@@ -265,7 +265,7 @@
 			}
 
 			return $.grep( inspect.getLoadedModules(), function ( moduleName ) {
-				var module = mw.loader.moduleRegistry[moduleName];
+				var module = mw.loader.moduleRegistry[ moduleName ];
 
 				// Grep module's JavaScript
 				if ( $.isFunction( module.script ) && pattern.test( module.script.toString() ) ) {

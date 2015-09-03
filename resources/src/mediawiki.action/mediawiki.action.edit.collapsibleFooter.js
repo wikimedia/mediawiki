@@ -53,9 +53,9 @@
 		for ( i = 0; i < collapsibleLists.length; i++ ) {
 			// Pass to a function for iteration-local variables
 			handleOne(
-				$editForm.find( collapsibleLists[i].listSel ),
-				$editForm.find( collapsibleLists[i].togglerSel ),
-				collapsibleLists[i].cookieName
+				$editForm.find( collapsibleLists[ i ].listSel ),
+				$editForm.find( collapsibleLists[ i ].togglerSel ),
+				collapsibleLists[ i ].cookieName
 			);
 		}
 	} );

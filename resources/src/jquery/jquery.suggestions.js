@@ -246,10 +246,10 @@ $.suggestions = {
 			case 'update':
 			case '$region':
 			case 'expandFrom':
-				context.config[property] = value;
+				context.config[ property ] = value;
 				break;
 			case 'suggestions':
-				context.config[property] = value;
+				context.config[ property ] = value;
 				// Update suggestions
 				if ( context.data !== undefined ) {
 					if ( context.data.$textbox.val().length === 0 ) {
@@ -277,7 +277,7 @@ $.suggestions = {
 								expandFrom = 'left';
 
 							// Catch invalid values, default to 'auto'
-							} else if ( $.inArray( expandFrom, ['left', 'right', 'start', 'end', 'auto'] ) === -1 ) {
+							} else if ( $.inArray( expandFrom, [ 'left', 'right', 'start', 'end', 'auto' ] ) === -1 ) {
 								expandFrom = 'auto';
 							}
 
@@ -336,11 +336,11 @@ $.suggestions = {
 						expWidth = -1;
 						for ( i = 0; i < context.config.suggestions.length; i++ ) {
 							/*jshint loopfunc:true */
-							text = context.config.suggestions[i];
+							text = context.config.suggestions[ i ];
 							$result = $( '<div>' )
 								.addClass( 'suggestions-result' )
 								.attr( 'rel', i )
-								.data( 'text', context.config.suggestions[i] )
+								.data( 'text', context.config.suggestions[ i ] )
 								.mousemove( function () {
 									context.data.selectedWithMouse = true;
 									$.suggestions.highlight(
@@ -352,7 +352,7 @@ $.suggestions = {
 								.appendTo( $results );
 							// Allow custom rendering
 							if ( typeof context.config.result.render === 'function' ) {
-								context.config.result.render.call( $result, context.config.suggestions[i], context );
+								context.config.result.render.call( $result, context.config.suggestions[ i ], context );
 							} else {
 								$result.text( text );
 							}
@@ -393,22 +393,22 @@ $.suggestions = {
 				}
 				break;
 			case 'maxRows':
-				context.config[property] = Math.max( 1, Math.min( 100, value ) );
+				context.config[ property ] = Math.max( 1, Math.min( 100, value ) );
 				break;
 			case 'delay':
-				context.config[property] = Math.max( 0, Math.min( 1200, value ) );
+				context.config[ property ] = Math.max( 0, Math.min( 1200, value ) );
 				break;
 			case 'cacheMaxAge':
-				context.config[property] = Math.max( 1, value );
+				context.config[ property ] = Math.max( 1, value );
 				break;
 			case 'maxExpandFactor':
-				context.config[property] = Math.max( 1, value );
+				context.config[ property ] = Math.max( 1, value );
 				break;
 			case 'cache':
 			case 'submitOnClick':
 			case 'positionFromLeft':
 			case 'highlightInput':
-				context.config[property] = !!value;
+				context.config[ property ] = !!value;
 				break;
 		}
 	},
@@ -595,18 +595,18 @@ $.fn.suggestions = function () {
 
 		// Handle various calling styles
 		if ( args.length > 0 ) {
-			if ( typeof args[0] === 'object' ) {
+			if ( typeof args[ 0 ] === 'object' ) {
 				// Apply set of properties
-				for ( key in args[0] ) {
-					$.suggestions.configure( context, key, args[0][key] );
+				for ( key in args[ 0 ] ) {
+					$.suggestions.configure( context, key, args[ 0 ][ key ] );
 				}
-			} else if ( typeof args[0] === 'string' ) {
+			} else if ( typeof args[ 0 ] === 'string' ) {
 				if ( args.length > 1 ) {
 					// Set property values
-					$.suggestions.configure( context, args[0], args[1] );
+					$.suggestions.configure( context, args[ 0 ], args[ 1 ] );
 				} else if ( returnValue === null || returnValue === undefined ) {
 					// Get property values, but don't give access to internal data - returns only the first
-					returnValue = ( args[0] in context.config ? undefined : context.config[args[0]] );
+					returnValue = ( args[ 0 ] in context.config ? undefined : context.config[ args[ 0 ] ] );
 				}
 			}
 		}

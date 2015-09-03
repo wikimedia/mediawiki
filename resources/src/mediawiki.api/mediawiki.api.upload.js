@@ -58,7 +58,7 @@
 	 */
 	function processIframeResult( iframe ) {
 		var json,
-			doc = iframe.contentDocument || frames[iframe.id].document;
+			doc = iframe.contentDocument || frames[ iframe.id ].document;
 
 		if ( doc.XMLDocument ) {
 			// The response is a document property in IE
@@ -108,7 +108,7 @@
 			isFileInput = file && file.nodeType === Node.ELEMENT_NODE;
 
 			if ( formDataAvailable() && isFileInput && file.files ) {
-				file = file.files[0];
+				file = file.files[ 0 ];
 			}
 
 			if ( !file ) {
@@ -159,8 +159,8 @@
 				$iframe = $( iframe );
 
 			for ( key in data ) {
-				if ( !fieldsAllowed[key] ) {
-					delete data[key];
+				if ( !fieldsAllowed[ key ] ) {
+					delete data[ key ];
 				}
 			}
 
@@ -245,8 +245,8 @@
 				deferred = $.Deferred();
 
 			for ( key in data ) {
-				if ( !fieldsAllowed[key] ) {
-					delete data[key];
+				if ( !fieldsAllowed[ key ] ) {
+					delete data[ key ];
 				}
 			}
 

@@ -53,7 +53,7 @@
 	function hideIfParse( $el, spec ) {
 		var op, i, l, v, $field, $fields, fields, func, funcs, getVal;
 
-		op = spec[0];
+		op = spec[ 0 ];
 		l = spec.length;
 		switch ( op ) {
 			case 'AND':
@@ -63,12 +63,12 @@
 				funcs = [];
 				fields = [];
 				for ( i = 1; i < l; i++ ) {
-					if ( !$.isArray( spec[i] ) ) {
+					if ( !$.isArray( spec[ i ] ) ) {
 						throw new Error( op + ' parameters must be arrays' );
 					}
-					v = hideIfParse( $el, spec[i] );
-					fields = fields.concat( v[0].toArray() );
-					funcs.push( v[1] );
+					v = hideIfParse( $el, spec[ i ] );
+					fields = fields.concat( v[ 0 ].toArray() );
+					funcs.push( v[ 1 ] );
 				}
 				$fields = $( fields );
 
@@ -78,7 +78,7 @@
 						func = function () {
 							var i;
 							for ( i = 0; i < l; i++ ) {
-								if ( !funcs[i]() ) {
+								if ( !funcs[ i ]() ) {
 									return false;
 								}
 							}
@@ -90,7 +90,7 @@
 						func = function () {
 							var i;
 							for ( i = 0; i < l; i++ ) {
-								if ( funcs[i]() ) {
+								if ( funcs[ i ]() ) {
 									return true;
 								}
 							}
@@ -102,7 +102,7 @@
 						func = function () {
 							var i;
 							for ( i = 0; i < l; i++ ) {
-								if ( !funcs[i]() ) {
+								if ( !funcs[ i ]() ) {
 									return true;
 								}
 							}
@@ -114,7 +114,7 @@
 						func = function () {
 							var i;
 							for ( i = 0; i < l; i++ ) {
-								if ( funcs[i]() ) {
+								if ( funcs[ i ]() ) {
 									return false;
 								}
 							}
@@ -129,12 +129,12 @@
 				if ( l !== 2 ) {
 					throw new Error( 'NOT takes exactly one parameter' );
 				}
-				if ( !$.isArray( spec[1] ) ) {
+				if ( !$.isArray( spec[ 1 ] ) ) {
 					throw new Error( 'NOT parameters must be arrays' );
 				}
-				v = hideIfParse( $el, spec[1] );
-				$fields = v[0];
-				func = v[1];
+				v = hideIfParse( $el, spec[ 1 ] );
+				$fields = v[ 0 ];
+				func = v[ 1 ];
 				return [ $fields, function () {
 					return !func();
 				} ];
@@ -144,13 +144,13 @@
 				if ( l !== 3 ) {
 					throw new Error( op + ' takes exactly two parameters' );
 				}
-				$field = hideIfGetField( $el, spec[1] );
+				$field = hideIfGetField( $el, spec[ 1 ] );
 				if ( !$field ) {
 					return [ $(), function () {
 						return false;
 					} ];
 				}
-				v = spec[2];
+				v = spec[ 2 ];
 
 				if ( $field.first().prop( 'type' ) === 'radio' ||
 					$field.first().prop( 'type' ) === 'checkbox'
@@ -304,8 +304,8 @@
 			}
 
 			v = hideIfParse( $el, spec );
-			$fields = v[0];
-			test = v[1];
+			$fields = v[ 0 ];
+			test = v[ 1 ];
 			func = function () {
 				if ( test() ) {
 					$el.hide();

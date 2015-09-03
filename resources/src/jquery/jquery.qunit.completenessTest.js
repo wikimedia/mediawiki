@@ -132,7 +132,7 @@
 				elOutputWrapper.appendChild( elContainer );
 
 				util.each( style, function ( key, value ) {
-					elOutputWrapper.style[key] = value;
+					elOutputWrapper.style[ key ] = value;
 				} );
 				return elOutputWrapper;
 			}
@@ -201,7 +201,7 @@
 
 			if ( currName ) {
 				currPathArray.push( currName );
-				currVal = currObj[currName];
+				currVal = currObj[ currName ];
 			} else {
 				currName = '(root)';
 				currVal = currObj;
@@ -263,7 +263,7 @@
 		 */
 		hasTest: function ( fnName ) {
 			if ( !( fnName in this.methodCallTracker ) ) {
-				this.missingTests[fnName] = true;
+				this.missingTests[ fnName ] = true;
 				return false;
 			}
 			return true;

@@ -21,7 +21,7 @@
 		getPluralForm: function ( number, pluralRules ) {
 			var i;
 			for ( i = 0; i < pluralRules.length; i++ ) {
-				if ( mw.libs.pluralRuleParser( pluralRules[i], number ) ) {
+				if ( mw.libs.pluralRuleParser( pluralRules[ i ], number ) ) {
 					break;
 				}
 			}

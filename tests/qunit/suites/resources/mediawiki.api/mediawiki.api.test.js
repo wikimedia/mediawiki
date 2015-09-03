@@ -14,7 +14,7 @@
 	function sequence( responses ) {
 		var i = 0;
 		return function ( request ) {
-			var response = responses[i];
+			var response = responses[ i ];
 			if ( response ) {
 				i++;
 				request.respond.apply( request, response );
@@ -24,7 +24,7 @@
 
 	function sequenceBodies( status, headers, bodies ) {
 		jQuery.each( bodies, function ( i, body ) {
-			bodies[i] = [ status, headers, body ];
+			bodies[ i ] = [ status, headers, body ];
 		} );
 		return sequence( bodies );
 	}
@@ -268,7 +268,7 @@
 		} );
 
 		assert.equal( this.server.requests.length, 2, 'Request made' );
-		assert.equal( this.server.requests[0].requestHeaders['X-Foo'], 'Bar', 'Header sent' );
+		assert.equal( this.server.requests[ 0 ].requestHeaders[ 'X-Foo' ], 'Bar', 'Header sent' );
 	} );
 
 	QUnit.test( 'postWithToken() - badtoken', function ( assert ) {

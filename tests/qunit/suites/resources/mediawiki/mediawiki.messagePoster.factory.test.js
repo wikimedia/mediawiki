@@ -12,7 +12,7 @@
 
 		mw.messagePoster.factory.register( TEST_MODEL, testMessagePosterConstructor );
 		assert.strictEqual(
-			mw.messagePoster.factory.contentModelToClass[TEST_MODEL],
+			mw.messagePoster.factory.contentModelToClass[ TEST_MODEL ],
 			testMessagePosterConstructor,
 			'Constructor is registered'
 		);

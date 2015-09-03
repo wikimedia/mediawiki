@@ -106,11 +106,11 @@ $.matchSrcSet = function ( devicePixelRatio, srcset ) {
 		selectedSrc = null;
 	candidates = srcset.split( / *, */ );
 	for ( i = 0; i < candidates.length; i++ ) {
-		candidate = candidates[i];
+		candidate = candidates[ i ];
 		bits = candidate.split( / +/ );
-		src = bits[0];
-		if ( bits.length > 1 && bits[1].charAt( bits[1].length - 1 ) === 'x' ) {
-			ratioStr = bits[1].slice( 0, -1 );
+		src = bits[ 0 ];
+		if ( bits.length > 1 && bits[ 1 ].charAt( bits[ 1 ].length - 1 ) === 'x' ) {
+			ratioStr = bits[ 1 ].slice( 0, -1 );
 			ratio = parseFloat( ratioStr );
 			if ( ratio <= devicePixelRatio && ratio > selectedRatio ) {
 				selectedRatio = ratio;

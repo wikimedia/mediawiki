@@ -12,7 +12,7 @@ module.exports = function ( grunt ) {
 		wgScriptPath = process.env.MW_SCRIPT_PATH,
 		karmaProxy = {};
 
-	karmaProxy[wgScriptPath] = wgServer + wgScriptPath;
+	karmaProxy[ wgScriptPath ] = wgServer + wgScriptPath;
 
 	grunt.initConfig( {
 		jshint: {
@@ -92,9 +92,9 @@ module.exports = function ( grunt ) {
 		return !!( process.env.MW_SERVER && process.env.MW_SCRIPT_PATH );
 	} );
 
-	grunt.registerTask( 'lint', ['jshint', 'jscs', 'jsonlint', 'banana'] );
+	grunt.registerTask( 'lint', [ 'jshint', 'jscs', 'jsonlint', 'banana' ] );
 	grunt.registerTask( 'qunit', [ 'assert-mw-env', 'karma:main' ] );
 
-	grunt.registerTask( 'test', ['lint'] );
+	grunt.registerTask( 'test', [ 'lint' ] );
 	grunt.registerTask( 'default', 'test' );
 };

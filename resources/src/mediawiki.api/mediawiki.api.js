@@ -122,12 +122,12 @@
 			// Handle common MediaWiki API idioms for passing parameters
 			for ( key in parameters ) {
 				// Multiple values are pipe-separated
-				if ( $.isArray( parameters[key] ) ) {
-					parameters[key] = parameters[key].join( '|' );
+				if ( $.isArray( parameters[ key ] ) ) {
+					parameters[ key ] = parameters[ key ].join( '|' );
 				}
 				// Boolean values are only false when not given at all
-				if ( parameters[key] === false || parameters[key] === undefined ) {
-					delete parameters[key];
+				if ( parameters[ key ] === false || parameters[ key ] === undefined ) {
+					delete parameters[ key ];
 				}
 			}
 		},
@@ -166,7 +166,7 @@
 				formData = new FormData();
 
 				for ( key in parameters ) {
-					formData.append( key, parameters[key] );
+					formData.append( key, parameters[ key ] );
 				}
 				// If we extracted a token parameter, add it back in.
 				if ( token ) {
@@ -295,8 +295,8 @@
 
 				d = apiPromise
 					.then( function ( data ) {
-						if ( data.tokens && data.tokens[type + 'token'] ) {
-							return data.tokens[type + 'token'];
+						if ( data.tokens && data.tokens[ type + 'token' ] ) {
+							return data.tokens[ type + 'token' ];
 						}
 
 						// If token type is not available for this user,

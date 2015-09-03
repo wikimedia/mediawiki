@@ -173,7 +173,7 @@
 		}
 		this.$oldBody = this.$body.addClass( 'mw-widget-calendarWidget-old-body' );
 		// Clone without children
-		this.$body = $( this.$body[0].cloneNode( false ) )
+		this.$body = $( this.$body[ 0 ].cloneNode( false ) )
 			.removeClass( 'mw-widget-calendarWidget-old-body' )
 			.toggleClass( 'mw-widget-calendarWidget-body-month', this.displayLayer === 'month' )
 			.toggleClass( 'mw-widget-calendarWidget-body-year', this.displayLayer === 'year' )

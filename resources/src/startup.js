@@ -35,18 +35,18 @@ function isCompatible( ua ) {
 	// Browsers with outdated or limited JavaScript engines get the no-JS experience
 	return !(
 		// Internet Explorer < 8
-		( ua.indexOf( 'MSIE' ) !== -1 && parseFloat( ua.split( 'MSIE' )[1] ) < 8 ) ||
+		( ua.indexOf( 'MSIE' ) !== -1 && parseFloat( ua.split( 'MSIE' )[ 1 ] ) < 8 ) ||
 		// Firefox < 3
-		( ua.indexOf( 'Firefox/' ) !== -1 && parseFloat( ua.split( 'Firefox/' )[1] ) < 3 ) ||
+		( ua.indexOf( 'Firefox/' ) !== -1 && parseFloat( ua.split( 'Firefox/' )[ 1 ] ) < 3 ) ||
 		// Opera < 12
 		( ua.indexOf( 'Opera/' ) !== -1 && ( ua.indexOf( 'Version/' ) === -1 ?
 			// "Opera/x.y"
-			parseFloat( ua.split( 'Opera/' )[1] ) < 10 :
+			parseFloat( ua.split( 'Opera/' )[ 1 ] ) < 10 :
 			// "Opera/9.80 ... Version/x.y"
-			parseFloat( ua.split( 'Version/' )[1] ) < 12
+			parseFloat( ua.split( 'Version/' )[ 1 ] ) < 12
 		) ) ||
 		// "Mozilla/0.0 ... Opera x.y"
-		( ua.indexOf( 'Opera ' ) !== -1 && parseFloat( ua.split( ' Opera ' )[1] ) < 10 ) ||
+		( ua.indexOf( 'Opera ' ) !== -1 && parseFloat( ua.split( ' Opera ' )[ 1 ] ) < 10 ) ||
 		// BlackBerry < 6
 		ua.match( /BlackBerry[^\/]*\/[1-5]\./ ) ||
 		// Open WebOS < 1.5
@@ -112,5 +112,5 @@ function isCompatible( ua ) {
 			startUp();
 		}
 	};
-	document.getElementsByTagName( 'head' )[0].appendChild( script );
+	document.getElementsByTagName( 'head' )[ 0 ].appendChild( script );
 }() );
