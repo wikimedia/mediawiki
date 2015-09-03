@@ -2388,7 +2388,7 @@
 	"tooltip-t-recentchangeslinked": "链自本页的页面的最近更改",
 	"tooltip-feed-rss": "本页面的RSS源",
 	"tooltip-feed-atom": "本页面的Atom源",
-	"tooltip-t-contributions": "该用户的贡献的列表",
+	"tooltip-t-contributions": "由此用户做出的贡献列表",
 	"tooltip-t-emailuser": "给该用户发送电子邮件",
 	"tooltip-t-info": "关于此页面的更多信息",
 	"tooltip-t-upload": "上传文件",

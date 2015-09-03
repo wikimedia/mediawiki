@@ -919,6 +919,7 @@
 	"columns": "Culonne:",
 	"searchresultshead": "Truova",
 	"stub-threshold": "Valore minimo p' 'e <a href=\"#\" class=\"stub\">cullegamiente a 'e stub</a>, 'n byte:",
+	"stub-threshold-sample-link": "mostra",
 	"stub-threshold-disabled": "Stutato",
 	"recentchangesdays": "Nummero 'e juorne a mmustà dint'a l'urdeme cagnamiente:",
 	"recentchangesdays-max": "Massimo $1 {{PLURAL:$1|juorno|juorne}}",

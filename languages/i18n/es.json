@@ -1035,6 +1035,7 @@
 	"columns": "Columnas:",
 	"searchresultshead": "Búsquedas",
 	"stub-threshold": "Límite para cambiar a formato de <a href=\"#\" class=\"stub\">enlace a esbozo</a> (en bytes):",
+	"stub-threshold-sample-link": "muestra",
 	"stub-threshold-disabled": "Desactivado",
 	"recentchangesdays": "Días que mostrar en los cambios recientes:",
 	"recentchangesdays-max": "Máximo {{PLURAL:$1|un día|$1 días}}",

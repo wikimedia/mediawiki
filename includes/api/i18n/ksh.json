@@ -784,6 +784,7 @@
 	"apihelp-query+watchlist-paramvalue-prop-user": "Deiht dä Metmaacher derbei, dä di Änderong jemaat hät.",
 	"apihelp-query+watchlist-paramvalue-prop-userid": "Deiht de kännong vn äm Metmaacher derbei, dä di Änderong jemaat hät.",
 	"apihelp-query+watchlist-paramvalue-prop-timestamp": "Deihd et Dattom un de Uhrzigg vun dä Änderong derbei.",
+	"apihelp-query+watchlist-param-type": "Wat för en Änderonge aanzeije:\n;<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">edit</code>:Jewöhnlejje Änderonge aan Sigge.\n;<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">external</code>:Änderonge vun Ußerhallef.\n;<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">new</code>:Neu aanjelahte Sigge.\n;<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">log</code>:Enndrähsch em Logbohch.",
 	"apihelp-query+watchlistraw-description": "Donn alle Sigge uß dem aktälle Metmaacher sing Oppaßleß holle.",
 	"apihelp-query+watchlistraw-param-namespace": "Donn blohß Sigge en heh däm Appachtemang opleßte.",
 	"apihelp-query+watchlistraw-example-simple": "Donn alle Sigge uß dem aktälle Metmaacher sing Oppaßleß opleßte.",
