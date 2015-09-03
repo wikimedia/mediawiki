@@ -71,12 +71,12 @@
 		var i, len;
 
 		if ( !$.isArray( children ) ) {
-			children = [children];
+			children = [ children ];
 		}
 
 		for ( i = 0, len = children.length; i < len; i++ ) {
-			if ( typeof children[i] !== 'object' ) {
-				children[i] = document.createTextNode( children[i] );
+			if ( typeof children[ i ] !== 'object' ) {
+				children[ i ] = document.createTextNode( children[ i ] );
 			}
 		}
 
@@ -116,8 +116,8 @@
 
 		return function ( args ) {
 			var fallback,
-				key = args[0],
-				argsArray = $.isArray( args[1] ) ? args[1] : slice.call( args, 1 );
+				key = args[ 0 ],
+				argsArray = $.isArray( args[ 1 ] ) ? args[ 1 ] : slice.call( args, 1 );
 			try {
 				return parser.parse( key, argsArray );
 			} catch ( e ) {
@@ -282,7 +282,7 @@
 		 */
 		getAst: function ( key ) {
 			var wikiText,
-				cacheKey = [key, this.settings.onlyCurlyBraceTransform].join( ':' );
+				cacheKey = [ key, this.settings.onlyCurlyBraceTransform ].join( ':' );
 
 			if ( this.astCache[ cacheKey ] === undefined ) {
 				wikiText = this.settings.messages.get( key );
@@ -335,7 +335,7 @@
 				return function () {
 					var i, result;
 					for ( i = 0; i < ps.length; i++ ) {
-						result = ps[i]();
+						result = ps[ i ]();
 						if ( result !== null ) {
 							return result;
 						}
@@ -356,7 +356,7 @@
 					originalPos = pos,
 					result = [];
 				for ( i = 0; i < ps.length; i++ ) {
-					res = ps[i]();
+					res = ps[ i ]();
 					if ( res === null ) {
 						pos = originalPos;
 						return null;
@@ -443,8 +443,8 @@
 					if ( matches === null ) {
 						return null;
 					}
-					pos += matches[0].length;
-					return matches[0];
+					pos += matches[ 0 ].length;
+					return matches[ 0 ];
 				};
 			}
 
@@ -484,7 +484,7 @@
 					backslash,
 					anyCharacter
 				] );
-				return result === null ? null : result[1];
+				return result === null ? null : result[ 1 ];
 			}
 			escapedOrLiteralWithoutSpace = choice( [
 				escapedLiteral,
@@ -543,7 +543,7 @@
 				if ( result === null ) {
 					return null;
 				}
-				return [ 'REPLACE', parseInt( result[1], 10 ) - 1 ];
+				return [ 'REPLACE', parseInt( result[ 1 ], 10 ) - 1 ];
 			}
 			openExtlink = makeStringParser( '[' );
 			closeExtlink = makeStringParser( ']' );
@@ -559,13 +559,13 @@
 					closeExtlink
 				] );
 				if ( parsedResult !== null ) {
-					result = [ 'EXTLINK', parsedResult[1] ];
+					result = [ 'EXTLINK', parsedResult[ 1 ] ];
 					// TODO (mattflaschen, 2013-03-22): Clean this up if possible.
 					// It's avoiding CONCAT for single nodes, so they at least doesn't get the htmlEmitter span.
-					if ( parsedResult[3].length === 1 ) {
-						result.push( parsedResult[3][0] );
+					if ( parsedResult[ 3 ].length === 1 ) {
+						result.push( parsedResult[ 3 ][ 0 ] );
 					} else {
-						result.push( ['CONCAT'].concat( parsedResult[3] ) );
+						result.push( [ 'CONCAT' ].concat( parsedResult[ 3 ] ) );
 					}
 				}
 				return result;
@@ -583,7 +583,7 @@
 				if ( result === null ) {
 					return null;
 				}
-				return [ 'EXTLINKPARAM', parseInt( result[2], 10 ) - 1, result[4] ];
+				return [ 'EXTLINKPARAM', parseInt( result[ 2 ], 10 ) - 1, result[ 4 ] ];
 			}
 			openWikilink = makeStringParser( '[[' );
 			closeWikilink = makeStringParser( ']]' );
@@ -595,7 +595,7 @@
 					templateContents,
 					closeTemplate
 				] );
-				return result === null ? null : result[1];
+				return result === null ? null : result[ 1 ];
 			}
 
 			wikilinkPage = choice( [
@@ -609,7 +609,7 @@
 					pipe,
 					expression
 				] );
-				return result === null ? null : [ result[0], result[2] ];
+				return result === null ? null : [ result[ 0 ], result[ 2 ] ];
 			}
 
 			wikilinkContents = choice( [
@@ -627,7 +627,7 @@
 					closeWikilink
 				] );
 				if ( parsedResult !== null ) {
-					parsedLinkContents = parsedResult[1];
+					parsedLinkContents = parsedResult[ 1 ];
 					result = [ 'WIKILINK' ].concat( parsedLinkContents );
 				}
 				return result;
@@ -640,7 +640,7 @@
 					htmlDoubleQuoteAttributeValue,
 					doubleQuote
 				] );
-				return parsedResult === null ? null : parsedResult[1];
+				return parsedResult === null ? null : parsedResult[ 1 ];
 			}
 
 			function singleQuotedHtmlAttributeValue() {
@@ -649,7 +649,7 @@
 					htmlSingleQuoteAttributeValue,
 					singleQuote
 				] );
-				return parsedResult === null ? null : parsedResult[1];
+				return parsedResult === null ? null : parsedResult[ 1 ];
 			}
 
 			function htmlAttribute() {
@@ -662,7 +662,7 @@
 						singleQuotedHtmlAttributeValue
 					] )
 				] );
-				return parsedResult === null ? null : [parsedResult[1], parsedResult[3]];
+				return parsedResult === null ? null : [ parsedResult[ 1 ], parsedResult[ 3 ] ];
 			}
 
 			/**
@@ -684,9 +684,9 @@
 				}
 
 				for ( i = 0, len = attributes.length; i < len; i += 2 ) {
-					attributeName = attributes[i];
+					attributeName = attributes[ i ];
 					if ( $.inArray( attributeName, settings.allowedHtmlCommonAttributes ) === -1 &&
-						$.inArray( attributeName, settings.allowedHtmlAttributesByElement[startTagName] || [] ) === -1 ) {
+						$.inArray( attributeName, settings.allowedHtmlAttributesByElement[ startTagName ] || [] ) === -1 ) {
 						return false;
 					}
 				}
@@ -697,7 +697,7 @@
 			function htmlAttributes() {
 				var parsedResult = nOrMore( 0, htmlAttribute )();
 				// Un-nest attributes array due to structure of jQueryMsg operations (see emit).
-				return concat.apply( ['HTMLATTRIBUTES'], parsedResult );
+				return concat.apply( [ 'HTMLATTRIBUTES' ], parsedResult );
 			}
 
 			// Subset of allowed HTML markup.
@@ -728,7 +728,7 @@
 				}
 
 				endOpenTagPos = pos;
-				startTagName = parsedOpenTagResult[1];
+				startTagName = parsedOpenTagResult[ 1 ];
 
 				parsedHtmlContents = nOrMore( 0, expression )();
 
@@ -746,8 +746,8 @@
 				}
 
 				endCloseTagPos = pos;
-				endTagName = parsedCloseTagResult[1];
-				wrappedAttributes = parsedOpenTagResult[2];
+				endTagName = parsedCloseTagResult[ 1 ];
+				wrappedAttributes = parsedOpenTagResult[ 2 ];
 				attributes = wrappedAttributes.slice( 1 );
 				if ( isAllowedHtml( startTagName, endTagName, attributes ) ) {
 					result = [ 'HTMLELEMENT', startTagName, wrappedAttributes ]
@@ -787,9 +787,9 @@
 				if ( result === null ) {
 					return null;
 				}
-				expr = result[1];
+				expr = result[ 1 ];
 				// use a CONCAT operator if there are multiple nodes, otherwise return the first node, raw.
-				return expr.length > 1 ? [ 'CONCAT' ].concat( expr ) : expr[0];
+				return expr.length > 1 ? [ 'CONCAT' ].concat( expr ) : expr[ 0 ];
 			}
 
 			function templateWithReplacement() {
@@ -798,7 +798,7 @@
 					colon,
 					replacement
 				] );
-				return result === null ? null : [ result[0], result[2] ];
+				return result === null ? null : [ result[ 0 ], result[ 2 ] ];
 			}
 			function templateWithOutReplacement() {
 				var result = sequence( [
@@ -806,14 +806,14 @@
 					colon,
 					paramExpression
 				] );
-				return result === null ? null : [ result[0], result[2] ];
+				return result === null ? null : [ result[ 0 ], result[ 2 ] ];
 			}
 			function templateWithOutFirstParameter() {
 				var result = sequence( [
 					templateName,
 					colon
 				] );
-				return result === null ? null : [ result[0], '' ];
+				return result === null ? null : [ result[ 0 ], '' ];
 			}
 			colon = makeStringParser( ':' );
 			templateContents = choice( [
@@ -824,7 +824,7 @@
 						choice( [ templateWithReplacement, templateWithOutReplacement, templateWithOutFirstParameter ] ),
 						nOrMore( 0, templateParam )
 					] );
-					return res === null ? null : res[0].concat( res[1] );
+					return res === null ? null : res[ 0 ].concat( res[ 1 ] );
 				},
 				function () {
 					var res = sequence( [
@@ -834,7 +834,7 @@
 					if ( res === null ) {
 						return null;
 					}
-					return [ res[0] ].concat( res[1] );
+					return [ res[ 0 ] ].concat( res[ 1 ] );
 				}
 			] );
 			openTemplate = makeStringParser( '{{' );
@@ -939,8 +939,8 @@
 					subnodes = $.map( node.slice( 1 ), function ( n ) {
 						return jmsg.emit( n, replacements );
 					} );
-					operation = node[0].toLowerCase();
-					if ( typeof jmsg[operation] === 'function' ) {
+					operation = node[ 0 ].toLowerCase();
+					if ( typeof jmsg[ operation ] === 'function' ) {
 						ret = jmsg[ operation ]( subnodes, replacements );
 					} else {
 						throw new Error( 'Unknown operation "' + operation + '"' );
@@ -1002,10 +1002,10 @@
 		 * @return {String} replacement
 		 */
 		replace: function ( nodes, replacements ) {
-			var index = parseInt( nodes[0], 10 );
+			var index = parseInt( nodes[ 0 ], 10 );
 
 			if ( index < replacements.length ) {
-				return replacements[index];
+				return replacements[ index ];
 			} else {
 				// index not found, fallback to displaying variable
 				return '$' + ( index + 1 );
@@ -1029,7 +1029,7 @@
 		wikilink: function ( nodes ) {
 			var page, anchor, url;
 
-			page = nodes[0];
+			page = nodes[ 0 ];
 			url = mw.util.getUrl( page );
 
 			if ( nodes.length === 1 ) {
@@ -1037,7 +1037,7 @@
 				anchor = page;
 			} else {
 				// [[Some Page|anchor text]] or [[Namespace:Some Page|anchor]]
-				anchor = nodes[1];
+				anchor = nodes[ 1 ];
 			}
 
 			return $( '<a>' ).attr( {
@@ -1056,7 +1056,7 @@
 		htmlattributes: function ( nodes ) {
 			var i, len, mapping = {};
 			for ( i = 0, len = nodes.length; i < len; i += 2 ) {
-				mapping[nodes[i]] = decodePrimaryHtmlEntities( nodes[i + 1] );
+				mapping[ nodes[ i ] ] = decodePrimaryHtmlEntities( nodes[ i + 1 ] );
 			}
 			return mapping;
 		},
@@ -1091,8 +1091,8 @@
 		 */
 		extlink: function ( nodes ) {
 			var $el,
-				arg = nodes[0],
-				contents = nodes[1];
+				arg = nodes[ 0 ],
+				contents = nodes[ 1 ];
 			if ( arg instanceof jQuery ) {
 				$el = arg;
 			} else {
@@ -1124,13 +1124,13 @@
 		 */
 		extlinkparam: function ( nodes, replacements ) {
 			var replacement,
-				index = parseInt( nodes[0], 10 );
+				index = parseInt( nodes[ 0 ], 10 );
 			if ( index < replacements.length ) {
-				replacement = replacements[index];
+				replacement = replacements[ index ];
 			} else {
 				replacement = '$' + ( index + 1 );
 			}
-			return this.extlink( [ replacement, nodes[1] ] );
+			return this.extlink( [ replacement, nodes[ 1 ] ] );
 		},
 
 		/**
@@ -1144,10 +1144,10 @@
 			var forms, firstChild, firstChildText, explicitPluralFormNumber, formIndex, form, count,
 				explicitPluralForms = {};
 
-			count = parseFloat( this.language.convertNumber( nodes[0], true ) );
+			count = parseFloat( this.language.convertNumber( nodes[ 0 ], true ) );
 			forms = nodes.slice( 1 );
 			for ( formIndex = 0; formIndex < forms.length; formIndex++ ) {
-				form = forms[formIndex];
+				form = forms[ formIndex ];
 
 				if ( form.jquery && form.hasClass( 'mediaWiki_htmlEmitter' ) ) {
 					// This is a nested node, may be an explicit plural form like 5=[$2 linktext]
@@ -1155,19 +1155,19 @@
 					if ( firstChild && firstChild.nodeType === Node.TEXT_NODE ) {
 						firstChildText = firstChild.textContent;
 						if ( /^\d+=/.test( firstChildText ) ) {
-							explicitPluralFormNumber = parseInt( firstChildText.split( /=/ )[0], 10 );
+							explicitPluralFormNumber = parseInt( firstChildText.split( /=/ )[ 0 ], 10 );
 							// Use the digit part as key and rest of first text node and
 							// rest of child nodes as value.
 							firstChild.textContent = firstChildText.slice( firstChildText.indexOf( '=' ) + 1 );
-							explicitPluralForms[explicitPluralFormNumber] = form;
-							forms[formIndex] = undefined;
+							explicitPluralForms[ explicitPluralFormNumber ] = form;
+							forms[ formIndex ] = undefined;
 						}
 					}
 				} else if ( /^\d+=/.test( form ) ) {
 					// Simple explicit plural forms like 12=a dozen
-					explicitPluralFormNumber = parseInt( form.split( /=/ )[0], 10 );
-					explicitPluralForms[explicitPluralFormNumber] = form.slice( form.indexOf( '=' ) + 1 );
-					forms[formIndex] = undefined;
+					explicitPluralFormNumber = parseInt( form.split( /=/ )[ 0 ], 10 );
+					explicitPluralForms[ explicitPluralFormNumber ] = form.slice( form.indexOf( '=' ) + 1 );
+					forms[ formIndex ] = undefined;
 				}
 			}
 
@@ -1194,7 +1194,7 @@
 		 */
 		gender: function ( nodes ) {
 			var gender,
-				maybeUser = nodes[0],
+				maybeUser = nodes[ 0 ],
 				forms = nodes.slice( 1 );
 
 			if ( maybeUser === '' ) {
@@ -1219,8 +1219,8 @@
 		 * @return {string} selected grammatical form according to current language
 		 */
 		grammar: function ( nodes ) {
-			var form = nodes[0],
-				word = nodes[1];
+			var form = nodes[ 0 ],
+				word = nodes[ 1 ];
 			return word && form && this.language.convertGrammar( word, form );
 		},
 
@@ -1231,7 +1231,7 @@
 		 * @return {string} Other message
 		 */
 		'int': function ( nodes ) {
-			var msg = nodes[0];
+			var msg = nodes[ 0 ];
 			return mw.jqueryMsg.getMessageFunction()( msg.charAt( 0 ).toLowerCase() + msg.slice( 1 ) );
 		},
 
@@ -1243,8 +1243,8 @@
 		 * @return {number|string} Formatted number
 		 */
 		formatnum: function ( nodes ) {
-			var isInteger = ( nodes[1] && nodes[1] === 'R' ) ? true : false,
-				number = nodes[0];
+			var isInteger = ( nodes[ 1 ] && nodes[ 1 ] === 'R' ) ? true : false,
+				number = nodes[ 0 ];
 
 			return this.language.convertNumber( number, isInteger );
 		}

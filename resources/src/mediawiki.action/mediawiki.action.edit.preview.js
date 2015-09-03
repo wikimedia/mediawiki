@@ -36,7 +36,7 @@
 		$wikiPreview.show();
 
 		// Jump to where the preview will appear
-		$wikiPreview[0].scrollIntoView();
+		$wikiPreview[ 0 ].scrollIntoView();
 
 		copySelectors = [
 			// Main
@@ -98,7 +98,7 @@
 					indexpageids: '',
 					prop: 'revisions',
 					titles: mw.config.get( 'wgPageName' ),
-					rvdifftotext: response.parse.text['*'],
+					rvdifftotext: response.parse.text[ '*' ],
 					rvprop: ''
 				};
 				if ( section !== '' ) {
@@ -106,8 +106,8 @@
 				}
 				return api.post( postData ).done( function ( result2 ) {
 					try {
-						var diffHtml = result2.query.pages[result2.query.pageids[0]]
-							.revisions[0].diff['*'];
+						var diffHtml = result2.query.pages[ result2.query.pageids[ 0 ] ]
+							.revisions[ 0 ].diff[ '*' ];
 						$wikiDiff.find( 'table.diff tbody' ).html( diffHtml );
 					} catch ( e ) {
 						// "result.blah is undefined" error, ignore
@@ -151,7 +151,7 @@
 					);
 				}
 				if ( response.parse.categorieshtml ) {
-					$( '#catlinks' ).replaceWith( response.parse.categorieshtml['*'] );
+					$( '#catlinks' ).replaceWith( response.parse.categorieshtml[ '*' ] );
 				}
 				if ( response.parse.templates ) {
 					newList = [];
@@ -159,10 +159,10 @@
 						li = $( '<li>' )
 							.append( $( '<a>' )
 								.attr( {
-									'href': mw.util.getUrl( template['*'] ),
+									'href': mw.util.getUrl( template[ '*' ] ),
 									'class': ( template.exists !== undefined ? '' : 'new' )
 								} )
-								.text( template['*'] )
+								.text( template[ '*' ] )
 							);
 						newList.push( li );
 					} );
@@ -170,7 +170,7 @@
 					$editform.find( '.templatesUsed .mw-editfooter-list' ).detach().empty().append( newList ).appendTo( '.templatesUsed' );
 				}
 				if ( response.parse.limitreporthtml ) {
-					$( '.limitreport' ).html( response.parse.limitreporthtml['*'] );
+					$( '.limitreport' ).html( response.parse.limitreporthtml[ '*' ] );
 				}
 				if ( response.parse.langlinks && mw.config.get( 'skin' ) === 'vector' ) {
 					newList = [];
@@ -180,7 +180,7 @@
 							.append( $( '<a>' )
 								.attr( {
 									'href': langlink.url,
-									'title': langlink['*'] + ' - ' + langlink.langname,
+									'title': langlink[ '*' ] + ' - ' + langlink.langname,
 									'lang': langlink.lang,
 									'hreflang': langlink.lang
 								} )
@@ -193,11 +193,11 @@
 					$list.detach().empty().append( newList ).prependTo( $parent );
 				}
 
-				if ( response.parse.text['*'] ) {
+				if ( response.parse.text[ '*' ] ) {
 					$content = $wikiPreview.children( '.mw-content-ltr,.mw-content-rtl' );
 					$content
 						.detach()
-						.html( response.parse.text['*'] );
+						.html( response.parse.text[ '*' ] );
 
 					mw.hook( 'wikipage.content' ).fire( $content );
 
@@ -213,14 +213,14 @@
 			var isSubject = ( section === 'new' ),
 				summaryMsg = isSubject ? 'subject-preview' : 'summary-preview',
 				$summaryPreview = $editform.find( '.mw-summary-preview' ).empty();
-			if ( response.parse.parsedsummary && response.parse.parsedsummary['*'] !== '' ) {
+			if ( response.parse.parsedsummary && response.parse.parsedsummary[ '*' ] !== '' ) {
 				$summaryPreview.append(
 					mw.message( summaryMsg ).parse(),
 					' ',
 					$( '<span>' ).addClass( 'comment' ).html(
 						// There is no equivalent to rawParams
 						mw.message( 'parentheses' ).escaped()
-							.replace( '$1', response.parse.parsedsummary['*'] )
+							.replace( '$1', response.parse.parsedsummary[ '*' ] )
 					)
 				);
 			}

@@ -150,14 +150,14 @@ function updateTooltip( element ) {
 		if ( id ) {
 			$label = $( 'label[for="' + id + '"]' );
 			if ( $label.length === 1 ) {
-				updateTooltipOnElement( element, $label[0] );
+				updateTooltipOnElement( element, $label[ 0 ] );
 			}
 		}
 
 		// Search it as parent, because the form control can also be inside the label element itself
 		$labelParent = $element.parents( 'label' );
 		if ( $labelParent.length === 1 ) {
-			updateTooltipOnElement( element, $labelParent[0] );
+			updateTooltipOnElement( element, $labelParent[ 0 ] );
 		}
 	}
 }

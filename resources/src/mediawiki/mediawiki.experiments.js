@@ -91,14 +91,14 @@
 			}
 
 			for ( key in buckets ) {
-				range += buckets[key];
+				range += buckets[ key ];
 			}
 
 			hash = hashString( experiment.name + ':' + token );
 			max = ( hash / MAX_INT32_UNSIGNED ) * range;
 
 			for ( key in buckets ) {
-				acc += buckets[key];
+				acc += buckets[ key ];
 
 				if ( max <= acc ) {
 					return key;

@@ -80,7 +80,7 @@
 			list: 'allusers',
 			// Prefix of list=allusers is case sensitive. Normalise first
 			// character to uppercase so that "fo" may yield "Foo".
-			auprefix: inputValue[0].toUpperCase() + inputValue.slice( 1 ),
+			auprefix: inputValue[ 0 ].toUpperCase() + inputValue.slice( 1 ),
 			aulimit: this.limit
 		} );
 	};
@@ -106,7 +106,7 @@
 			items = [];
 
 		for ( i = 0, len = data.length; i < len; i++ ) {
-			user = data[i] || {};
+			user = data[ i ] || {};
 			items.push( new OO.ui.MenuOptionWidget( {
 				label: user.name,
 				data: user.name

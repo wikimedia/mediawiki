@@ -21,7 +21,7 @@
 
 			return apiPromise
 				.then( function ( data ) {
-					return data.parse.text['*'];
+					return data.parse.text[ '*' ];
 				} )
 				.promise( { abort: apiPromise.abort } );
 		}

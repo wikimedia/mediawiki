@@ -206,15 +206,15 @@ jQuery( function ( $ ) {
 		var minutes,
 			arr = hour.split( ':' );
 
-		arr[0] = parseInt( arr[0], 10 );
+		arr[ 0 ] = parseInt( arr[ 0 ], 10 );
 
 		if ( arr.length === 1 ) {
 			// Specification is of the form [-]XX
-			minutes = arr[0] * 60;
+			minutes = arr[ 0 ] * 60;
 		} else {
 			// Specification is of the form [-]XX:XX
-			minutes = Math.abs( arr[0] ) * 60 + parseInt( arr[1], 10 );
-			if ( arr[0] < 0 ) {
+			minutes = Math.abs( arr[ 0 ] ) * 60 + parseInt( arr[ 1 ], 10 );
+			if ( arr[ 0 ] < 0 ) {
 				minutes *= -1;
 			}
 		}
@@ -241,7 +241,7 @@ jQuery( function ( $ ) {
 			minuteDiff = hoursToMinutes( $tzTextbox.val() );
 		} else {
 			// Grab data from the $tzSelect value
-			minuteDiff = parseInt( type.split( '|' )[1], 10 ) || 0;
+			minuteDiff = parseInt( type.split( '|' )[ 1 ], 10 ) || 0;
 			$tzTextbox.val( minutesToHours( minuteDiff ) );
 		}
 

@@ -22,7 +22,7 @@
 		'</form>',
 	testElement = function ( $el, assert ) {
 
-		var el = $el[0],
+		var el = $el[ 0 ],
 			placeholder = el.getAttribute( 'placeholder' );
 
 		assert.strictEqual( $el.placeholder(), $el, 'should be chainable' );
@@ -97,14 +97,14 @@
 
 		var selector = '#input-type-password',
 			$el = $( selector ),
-			el = $el[0],
+			el = $el[ 0 ],
 			placeholder = el.getAttribute( 'placeholder' );
 
 		assert.strictEqual( $el.placeholder(), $el, 'should be chainable' );
 
 		// Re-select the element, as it gets replaced by another one in some browsers
 		$el = $( selector );
-		el = $el[0];
+		el = $el[ 0 ];
 
 		assert.strictEqual( el.value, placeholder, 'should set `placeholder` text as `value`' );
 		assert.strictEqual( $el.prop( 'value' ), '', 'propHooks works properly' );
@@ -116,7 +116,7 @@
 
 		// Re-select the element, as it gets replaced by another one in some browsers
 		$el = $( selector );
-		el = $el[0];
+		el = $el[ 0 ];
 
 		assert.strictEqual( el.value, '', '`value` should be the empty string on focus' );
 		assert.strictEqual( $el.prop( 'value' ), '', 'propHooks works properly' );
@@ -128,7 +128,7 @@
 
 		// Re-select the element, as it gets replaced by another one in some browsers
 		$el = $( selector );
-		el = $el[0];
+		el = $el[ 0 ];
 
 		assert.strictEqual( el.value, placeholder, 'should set `placeholder` text as `value`' );
 		assert.strictEqual( $el.prop( 'value' ), '', 'propHooks works properly' );

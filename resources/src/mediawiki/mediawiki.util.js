@@ -33,7 +33,7 @@
 				];
 
 				for ( i = 0, l = selectors.length; i < l; i++ ) {
-					$node = $( selectors[i] );
+					$node = $( selectors[ i ] );
 					if ( $node.length ) {
 						return $node.first();
 					}
@@ -165,7 +165,7 @@
 			if ( m ) {
 				// Beware that decodeURIComponent is not required to understand '+'
 				// by spec, as encodeURIComponent does not produce it.
-				return decodeURIComponent( m[1].replace( /\+/g, '%20' ) );
+				return decodeURIComponent( m[ 1 ].replace( /\+/g, '%20' ) );
 			}
 			return null;
 		},
@@ -299,7 +299,7 @@
 					// Error: Invalid nextnode
 					nextnode = undefined;
 				}
-				if ( nextnode && ( nextnode.length !== 1 || nextnode[0].parentNode !== $ul[0] ) ) {
+				if ( nextnode && ( nextnode.length !== 1 || nextnode[ 0 ].parentNode !== $ul[ 0 ] ) ) {
 					// Error: nextnode must resolve to a single node
 					// Error: nextnode must have the associated <ul> as its parent
 					nextnode = undefined;
@@ -318,7 +318,7 @@
 			// to get a localized access key label (bug 67946).
 			$link.updateTooltipAccessKeys();
 
-			return $item[0];
+			return $item[ 0 ];
 		},
 
 		/**

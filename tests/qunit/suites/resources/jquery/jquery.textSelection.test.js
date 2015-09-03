@@ -237,8 +237,8 @@
 			}
 
 			pos = $textarea.textSelection( 'getCaretPosition', { startAndEnd: true } );
-			among( pos[0], options.start, 'Caret start should be where we set it.' );
-			among( pos[1], options.end, 'Caret end should be where we set it.' );
+			among( pos[ 0 ], options.start, 'Caret start should be where we set it.' );
+			among( pos[ 1 ], options.end, 'Caret end should be where we set it.' );
 		} );
 	}
 

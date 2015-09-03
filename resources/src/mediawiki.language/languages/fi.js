@@ -7,8 +7,8 @@ mediaWiki.language.convertGrammar = function ( word, form ) {
 	var grammarForms, aou, origWord;
 
 	grammarForms = mediaWiki.language.getData( 'fi', 'grammarForms' );
-	if ( grammarForms && grammarForms[form] ) {
-		return grammarForms[form][word];
+	if ( grammarForms && grammarForms[ form ] ) {
+		return grammarForms[ form ][ word ];
 	}
 
 	// vowel harmony flag

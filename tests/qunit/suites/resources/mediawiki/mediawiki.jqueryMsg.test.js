@@ -70,7 +70,7 @@
 	 */
 	function getMwLanguage( langCode ) {
 		if ( !hasOwn.call( mwLanguageCache, langCode ) ) {
-			mwLanguageCache[langCode] = $.ajax( {
+			mwLanguageCache[ langCode ] = $.ajax( {
 				url: mw.util.wikiScript( 'load' ),
 				data: {
 					skin: mw.config.get( 'skin' ),
@@ -88,7 +88,7 @@
 				return mw.language;
 			} );
 		}
-		return mwLanguageCache[langCode];
+		return mwLanguageCache[ langCode ];
 	}
 
 	/**
@@ -402,14 +402,14 @@
 	QUnit.test( 'Curly brace transformation', 16, function ( assert ) {
 		var oldUserLang = mw.config.get( 'wgUserLanguage' );
 
-		assertBothModes( assert, ['gender-msg', 'Bob', 'male'], 'Bob: blue', 'gender is resolved' );
+		assertBothModes( assert, [ 'gender-msg', 'Bob', 'male' ], 'Bob: blue', 'gender is resolved' );
 
-		assertBothModes( assert, ['plural-msg', 5], 'Found 5 items', 'plural is resolved' );
+		assertBothModes( assert, [ 'plural-msg', 5 ], 'Found 5 items', 'plural is resolved' );
 
-		assertBothModes( assert, ['grammar-msg'], 'Przeszukaj ' + mw.config.get( 'wgSiteName' ), 'grammar is resolved' );
+		assertBothModes( assert, [ 'grammar-msg' ], 'Przeszukaj ' + mw.config.get( 'wgSiteName' ), 'grammar is resolved' );
 
 		mw.config.set( 'wgUserLanguage', 'en' );
-		assertBothModes( assert, ['formatnum-msg', '987654321.654321'], '987,654,321.654', 'formatnum is resolved' );
+		assertBothModes( assert, [ 'formatnum-msg', '987654321.654321' ], '987,654,321.654', 'formatnum is resolved' );
 
 		// Test non-{{ wikitext, where behavior differs
 
@@ -530,7 +530,7 @@
 			outerCalled = false;
 			innerCalled = false;
 			message = mw.message( key );
-			message[format]();
+			message[ format ]();
 			assert.strictEqual( outerCalled, shouldCall, 'Outer function called for ' + key );
 			assert.strictEqual( innerCalled, shouldCall, 'Inner function called for ' + key );
 		}
@@ -682,16 +682,16 @@
 	QUnit.test( 'HTML', 26, function ( assert ) {
 		mw.messages.set( 'jquerymsg-italics-msg', '<i>Very</i> important' );
 
-		assertBothModes( assert, ['jquerymsg-italics-msg'], mw.messages.get( 'jquerymsg-italics-msg' ), 'Simple italics unchanged' );
+		assertBothModes( assert, [ 'jquerymsg-italics-msg' ], mw.messages.get( 'jquerymsg-italics-msg' ), 'Simple italics unchanged' );
 
 		mw.messages.set( 'jquerymsg-bold-msg', '<b>Strong</b> speaker' );
-		assertBothModes( assert, ['jquerymsg-bold-msg'], mw.messages.get( 'jquerymsg-bold-msg' ), 'Simple bold unchanged' );
+		assertBothModes( assert, [ 'jquerymsg-bold-msg' ], mw.messages.get( 'jquerymsg-bold-msg' ), 'Simple bold unchanged' );
 
 		mw.messages.set( 'jquerymsg-bold-italics-msg', 'It is <b><i>key</i></b>' );
-		assertBothModes( assert, ['jquerymsg-bold-italics-msg'], mw.messages.get( 'jquerymsg-bold-italics-msg' ), 'Bold and italics nesting order preserved' );
+		assertBothModes( assert, [ 'jquerymsg-bold-italics-msg' ], mw.messages.get( 'jquerymsg-bold-italics-msg' ), 'Bold and italics nesting order preserved' );
 
 		mw.messages.set( 'jquerymsg-italics-bold-msg', 'It is <i><b>vital</b></i>' );
-		assertBothModes( assert, ['jquerymsg-italics-bold-msg'], mw.messages.get( 'jquerymsg-italics-bold-msg' ), 'Italics and bold nesting order preserved' );
+		assertBothModes( assert, [ 'jquerymsg-italics-bold-msg' ], mw.messages.get( 'jquerymsg-italics-bold-msg' ), 'Italics and bold nesting order preserved' );
 
 		mw.messages.set( 'jquerymsg-italics-with-link', 'An <i>italicized [[link|wiki-link]]</i>' );
 

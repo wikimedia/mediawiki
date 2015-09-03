@@ -2,9 +2,7 @@
 	"preset": "wikimedia",
 
 	"disallowQuotedKeysInObjects": null,
-	"requireSpacesInsideArrayBrackets": null,
 	"requireVarDeclFirst": null,
-	"requireSpacesInsideBrackets": null,
 	"jsDoc": null,
 
 	"excludeFiles": [

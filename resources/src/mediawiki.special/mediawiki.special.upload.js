@@ -36,7 +36,7 @@
 			}
 			// Check response cache
 			if ( this.responseCache.hasOwnProperty( this.nameToCheck ) ) {
-				this.setWarning( this.responseCache[this.nameToCheck] );
+				this.setWarning( this.responseCache[ this.nameToCheck ] );
 				return;
 			}
 
@@ -72,7 +72,7 @@
 			} ).done( function ( result ) {
 				var resultOut = '';
 				if ( result.query ) {
-					resultOut = result.query.pages[result.query.pageids[0]].imageinfo[0];
+					resultOut = result.query.pages[ result.query.pageids[ 0 ] ].imageinfo[ 0 ];
 				}
 				$spinnerDestCheck.remove();
 				uploadWarning.processResult( resultOut, uploadWarning.nameToCheck );
@@ -81,7 +81,7 @@
 
 		processResult: function ( result, fileName ) {
 			this.setWarning( result.html );
-			this.responseCache[fileName] = result.html;
+			this.responseCache[ fileName ] = result.html;
 		},
 
 		setWarning: function ( warning ) {
@@ -108,7 +108,7 @@
 				return;
 			}
 			if ( this.responseCache.hasOwnProperty( license ) ) {
-				this.showPreview( this.responseCache[license] );
+				this.showPreview( this.responseCache[ license ] );
 				return;
 			}
 
@@ -127,8 +127,8 @@
 		},
 
 		processResult: function ( result, license ) {
-			this.responseCache[license] = result.parse.text['*'];
-			this.showPreview( this.responseCache[license] );
+			this.responseCache[ license ] = result.parse.text[ '*' ];
+			this.showPreview( this.responseCache[ license ] );
 		},
 
 		showPreview: function ( preview ) {
@@ -229,7 +229,7 @@
 				fname = fname.replace( / /g, '_' );
 				// Capitalise first letter if needed
 				if ( mw.config.get( 'wgCapitalizeUploads' ) ) {
-					fname = fname[0].toUpperCase() + fname.slice( 1 );
+					fname = fname[ 0 ].toUpperCase() + fname.slice( 1 );
 				}
 
 				// Output result
@@ -269,7 +269,7 @@
 		 * @return boolean
 		 */
 		function fileIsPreviewable( file ) {
-			var known = ['image/png', 'image/gif', 'image/jpeg', 'image/svg+xml'],
+			var known = [ 'image/png', 'image/gif', 'image/jpeg', 'image/svg+xml' ],
 				tooHuge = 10 * 1024 * 1024;
 			return ( $.inArray( file.type, known ) !== -1 ) && file.size > 0 && file.size < tooHuge;
 		}
@@ -283,12 +283,12 @@
 		 * @return {string}
 		 */
 		function prettySize( s ) {
-			var sizeMsgs = ['size-bytes', 'size-kilobytes', 'size-megabytes', 'size-gigabytes'];
+			var sizeMsgs = [ 'size-bytes', 'size-kilobytes', 'size-megabytes', 'size-gigabytes' ];
 			while ( s >= 1024 && sizeMsgs.length > 1 ) {
 				s /= 1024;
 				sizeMsgs = sizeMsgs.slice( 1 );
 			}
-			return mw.msg( sizeMsgs[0], Math.round( s ) );
+			return mw.msg( sizeMsgs[ 0 ], Math.round( s ) );
 		}
 
 		/**
@@ -319,7 +319,7 @@
 				.find( '.thumbinner' ).prepend( $spinner ).end();
 
 			$canvas = $( '<canvas>' ).attr( { width: previewSize, height: previewSize } );
-			ctx = $canvas[0].getContext( '2d' );
+			ctx = $canvas[ 0 ].getContext( '2d' );
 			$( '#mw-htmlform-source' ).parent().prepend( thumb );
 
 			fetchPreview( file, function ( dataURL ) {
@@ -443,7 +443,7 @@
 						buffer = new Uint8Array( reader.result ),
 						string = '';
 					for ( i = 0; i < buffer.byteLength; i++ ) {
-						string += String.fromCharCode( buffer[i] );
+						string += String.fromCharCode( buffer[ i ] );
 					}
 					callbackBinary( string );
 
@@ -488,10 +488,10 @@
 			function getMaxUploadSize( type ) {
 				var sizes = mw.config.get( 'wgMaxUploadSize' );
 
-				if ( sizes[type] !== undefined ) {
-					return sizes[type];
+				if ( sizes[ type ] !== undefined ) {
+					return sizes[ type ];
 				}
-				return sizes['*'];
+				return sizes[ '*' ];
 			}
 
 			$( '.mw-upload-source-error' ).remove();
@@ -516,7 +516,7 @@
 				clearPreview();
 				if ( this.files && this.files.length ) {
 					// Note: would need to be updated to handle multiple files.
-					var file = this.files[0];
+					var file = this.files[ 0 ];
 
 					if ( !checkMaxUploadSize( file ) ) {
 						return;

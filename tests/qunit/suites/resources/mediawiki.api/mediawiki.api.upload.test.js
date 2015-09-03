@@ -18,7 +18,7 @@
 			return $.Deferred().promise();
 		} );
 
-		api.uploadWithIframe( $( '<input>' )[0], { filename: 'Testing API upload.jpg' } );
+		api.uploadWithIframe( $( '<input>' )[ 0 ], { filename: 'Testing API upload.jpg' } );
 
 		$iframe = $( 'iframe' );
 		$form = $( 'form.mw-api-upload-form' );

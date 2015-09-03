@@ -69,7 +69,7 @@
 
 				if ( $.isPlainObject( selection ) ) {
 					for ( s in selection ) {
-						setGlobalMapValue( this, s, selection[s] );
+						setGlobalMapValue( this, s, selection[ s ] );
 					}
 					return true;
 				}
@@ -96,7 +96,7 @@
 	 * @param {Mixed} value
 	 */
 	function setGlobalMapValue( map, key, value ) {
-		map.values[key] = value;
+		map.values[ key ] = value;
 		mw.log.deprecate(
 				window,
 				key,
@@ -129,7 +129,7 @@
 				selection = slice.call( selection );
 				results = {};
 				for ( i = 0; i < selection.length; i++ ) {
-					results[selection[i]] = this.get( selection[i], fallback );
+					results[ selection[ i ] ] = this.get( selection[ i ], fallback );
 				}
 				return results;
 			}
@@ -138,7 +138,7 @@
 				if ( !hasOwn.call( this.values, selection ) ) {
 					return fallback;
 				}
-				return this.values[selection];
+				return this.values[ selection ];
 			}
 
 			if ( selection === undefined ) {
@@ -161,12 +161,12 @@
 
 			if ( $.isPlainObject( selection ) ) {
 				for ( s in selection ) {
-					this.values[s] = selection[s];
+					this.values[ s ] = selection[ s ];
 				}
 				return true;
 			}
 			if ( typeof selection === 'string' && arguments.length > 1 ) {
-				this.values[selection] = value;
+				this.values[ selection ] = value;
 				return true;
 			}
 			return false;
@@ -183,7 +183,7 @@
 
 			if ( $.isArray( selection ) ) {
 				for ( s = 0; s < selection.length; s++ ) {
-					if ( typeof selection[s] !== 'string' || !hasOwn.call( this.values, selection[s] ) ) {
+					if ( typeof selection[ s ] !== 'string' || !hasOwn.call( this.values, selection[ s ] ) ) {
 						return false;
 					}
 				}
@@ -285,7 +285,7 @@
 		params: function ( parameters ) {
 			var i;
 			for ( i = 0; i < parameters.length; i += 1 ) {
-				this.parameters.push( parameters[i] );
+				this.parameters.push( parameters[ i ] );
 			}
 			return this;
 		},
@@ -423,7 +423,7 @@
 			var parameters = slice.call( arguments, 1 );
 			return formatString.replace( /\$(\d+)/g, function ( str, match ) {
 				var index = parseInt( match, 10 ) - 1;
-				return parameters[index] !== undefined ? parameters[index] : '$' + match;
+				return parameters[ index ] !== undefined ? parameters[ index ] : '$' + match;
 			} );
 		},
 
@@ -486,8 +486,8 @@
 		 */
 		trackUnsubscribe: function ( callback ) {
 			trackHandlers = $.grep( trackHandlers, function ( fns ) {
-				if ( fns[1] === callback ) {
-					trackCallbacks.remove( fns[0] );
+				if ( fns[ 1 ] === callback ) {
+					trackCallbacks.remove( fns[ 0 ] );
 					// Ensure the tuple is removed to avoid holding on to closures
 					return false;
 				}
@@ -633,7 +633,7 @@
 			 * @param {string} [msg] Optional text to include in the deprecation message
 			 */
 			log.deprecate = !Object.defineProperty ? function ( obj, key, val ) {
-				obj[key] = val;
+				obj[ key ] = val;
 			} : function ( obj, key, val, msg ) {
 				msg = 'Use of "' + key + '" is deprecated.' + ( msg ? ( ' ' + msg ) : '' );
 				// Support: IE8
@@ -655,7 +655,7 @@
 					} );
 				} catch ( err ) {
 					// Fallback to creating a copy of the value to the object.
-					obj[key] = val;
+					obj[ key ] = val;
 				}
 			};
 
@@ -796,7 +796,7 @@
 				if ( nextnode ) {
 					$( nextnode ).before( s );
 				} else {
-					document.getElementsByTagName( 'head' )[0].appendChild( s );
+					document.getElementsByTagName( 'head' )[ 0 ].appendChild( s );
 				}
 				if ( s.styleSheet ) {
 					// Support: IE6-10
@@ -912,7 +912,7 @@
 			 */
 			function getCombinedVersion( modules ) {
 				var hashes = $.map( modules, function ( module ) {
-					return registry[module].version;
+					return registry[ module ].version;
 				} );
 				// Trim for consistency with server-side ResourceLoader::makeHash. It also helps
 				// save precious space in the limited query string. Otherwise modules are more
@@ -931,7 +931,7 @@
 			function allReady( modules ) {
 				var i;
 				for ( i = 0; i < modules.length; i++ ) {
-					if ( mw.loader.getState( modules[i] ) !== 'ready' ) {
+					if ( mw.loader.getState( modules[ i ] ) !== 'ready' ) {
 						return false;
 					}
 				}
@@ -949,7 +949,7 @@
 			function anyFailed( modules ) {
 				var i, state;
 				for ( i = 0; i < modules.length; i++ ) {
-					state = mw.loader.getState( modules[i] );
+					state = mw.loader.getState( modules[ i ] );
 					if ( state === 'error' || state === 'missing' ) {
 						return true;
 					}
@@ -971,16 +971,16 @@
 			function handlePending( module ) {
 				var j, job, hasErrors, m, stateChange;
 
-				if ( registry[module].state === 'error' || registry[module].state === 'missing' ) {
+				if ( registry[ module ].state === 'error' || registry[ module ].state === 'missing' ) {
 					// If the current module failed, mark all dependent modules also as failed.
 					// Iterate until steady-state to propagate the error state upwards in the
 					// dependency tree.
 					do {
 						stateChange = false;
 						for ( m in registry ) {
-							if ( registry[m].state !== 'error' && registry[m].state !== 'missing' ) {
-								if ( anyFailed( registry[m].dependencies ) ) {
-									registry[m].state = 'error';
+							if ( registry[ m ].state !== 'error' && registry[ m ].state !== 'missing' ) {
+								if ( anyFailed( registry[ m ].dependencies ) ) {
+									registry[ m ].state = 'error';
 									stateChange = true;
 								}
 							}
@@ -990,16 +990,16 @@
 
 				// Execute all jobs whose dependencies are either all satisfied or contain at least one failed module.
 				for ( j = 0; j < jobs.length; j += 1 ) {
-					hasErrors = anyFailed( jobs[j].dependencies );
-					if ( hasErrors || allReady( jobs[j].dependencies ) ) {
+					hasErrors = anyFailed( jobs[ j ].dependencies );
+					if ( hasErrors || allReady( jobs[ j ].dependencies ) ) {
 						// All dependencies satisfied, or some have errors
-						job = jobs[j];
+						job = jobs[ j ];
 						jobs.splice( j, 1 );
 						j -= 1;
 						try {
 							if ( hasErrors ) {
 								if ( $.isFunction( job.error ) ) {
-									job.error( new Error( 'Module ' + module + ' has failed dependencies' ), [module] );
+									job.error( new Error( 'Module ' + module + ' has failed dependencies' ), [ module ] );
 								}
 							} else {
 								if ( $.isFunction( job.ready ) ) {
@@ -1014,12 +1014,12 @@
 					}
 				}
 
-				if ( registry[module].state === 'ready' ) {
+				if ( registry[ module ].state === 'ready' ) {
 					// The current module became 'ready'. Set it in the module store, and recursively execute all
 					// dependent modules that are loaded and now have all dependencies satisfied.
-					mw.loader.store.set( module, registry[module] );
+					mw.loader.store.set( module, registry[ module ] );
 					for ( m in registry ) {
-						if ( registry[m].state === 'loaded' && allReady( registry[m].dependencies ) ) {
+						if ( registry[ m ].state === 'loaded' && allReady( registry[ m ].dependencies ) ) {
 							execute( m );
 						}
 					}
@@ -1047,25 +1047,25 @@
 					throw new Error( 'Unknown dependency: ' + module );
 				}
 
-				if ( registry[module].skip !== null ) {
+				if ( registry[ module ].skip !== null ) {
 					/*jshint evil:true */
-					skip = new Function( registry[module].skip );
-					registry[module].skip = null;
+					skip = new Function( registry[ module ].skip );
+					registry[ module ].skip = null;
 					if ( skip() ) {
-						registry[module].skipped = true;
-						registry[module].dependencies = [];
-						registry[module].state = 'ready';
+						registry[ module ].skipped = true;
+						registry[ module ].dependencies = [];
+						registry[ module ].state = 'ready';
 						handlePending( module );
 						return;
 					}
 				}
 
 				// Resolves dynamic loader function and replaces it with its own results
-				if ( $.isFunction( registry[module].dependencies ) ) {
-					registry[module].dependencies = registry[module].dependencies();
+				if ( $.isFunction( registry[ module ].dependencies ) ) {
+					registry[ module ].dependencies = registry[ module ].dependencies();
 					// Ensures the module's dependencies are always in an array
-					if ( typeof registry[module].dependencies !== 'object' ) {
-						registry[module].dependencies = [registry[module].dependencies];
+					if ( typeof registry[ module ].dependencies !== 'object' ) {
+						registry[ module ].dependencies = [ registry[ module ].dependencies ];
 					}
 				}
 				if ( $.inArray( module, resolved ) !== -1 ) {
@@ -1077,24 +1077,24 @@
 					unresolved = {};
 				}
 				// Tracks down dependencies
-				deps = registry[module].dependencies;
+				deps = registry[ module ].dependencies;
 				len = deps.length;
 				for ( n = 0; n < len; n += 1 ) {
-					if ( $.inArray( deps[n], resolved ) === -1 ) {
-						if ( unresolved[deps[n]] ) {
+					if ( $.inArray( deps[ n ], resolved ) === -1 ) {
+						if ( unresolved[ deps[ n ] ] ) {
 							throw new Error(
 								'Circular reference detected: ' + module +
-								' -> ' + deps[n]
+								' -> ' + deps[ n ]
 							);
 						}
 
 						// Add to unresolved
-						unresolved[module] = true;
-						sortDependencies( deps[n], resolved, unresolved );
-						delete unresolved[module];
+						unresolved[ module ] = true;
+						sortDependencies( deps[ n ], resolved, unresolved );
+						delete unresolved[ module ];
 					}
 				}
-				resolved[resolved.length] = module;
+				resolved[ resolved.length ] = module;
 			}
 
 			/**
@@ -1147,13 +1147,13 @@
 				if ( !hasOwn.call( registry, module ) ) {
 					throw new Error( 'Module has not been registered yet: ' + module );
 				}
-				if ( registry[module].state === 'registered' ) {
+				if ( registry[ module ].state === 'registered' ) {
 					throw new Error( 'Module has not been requested from the server yet: ' + module );
 				}
-				if ( registry[module].state === 'loading' ) {
+				if ( registry[ module ].state === 'loading' ) {
 					throw new Error( 'Module has not completed loading yet: ' + module );
 				}
-				if ( registry[module].state === 'ready' ) {
+				if ( registry[ module ].state === 'ready' ) {
 					throw new Error( 'Module has already been executed: ' + module );
 				}
 
@@ -1182,9 +1182,9 @@
 						// and their dependencies from the legacyWait (to prevent a circular dependency).
 						legacyModules = resolve( mw.config.get( 'wgResourceLoaderLegacyModules', [] ) );
 					try {
-						script = registry[module].script;
+						script = registry[ module ].script;
 						markModuleReady = function () {
-							registry[module].state = 'ready';
+							registry[ module ].state = 'ready';
 							handlePending( module );
 						};
 						nestedAddScript = function ( arr, callback, i ) {
@@ -1196,7 +1196,7 @@
 								return;
 							}
 
-							addScript( arr[i], function () {
+							addScript( arr[ i ], function () {
 								nestedAddScript( arr, callback, i + 1 );
 							} );
 						};
@@ -1233,7 +1233,7 @@
 					} catch ( e ) {
 						// This needs to NOT use mw.log because these errors are common in production mode
 						// and not in debug mode, such as when a symbol that should be global isn't exported
-						registry[module].state = 'error';
+						registry[ module ].state = 'error';
 						mw.track( 'resourceloader.exception', { exception: e, module: module, source: 'module-execute' } );
 						handlePending( module );
 					}
@@ -1243,16 +1243,16 @@
 				// (after CSS is loaded) we need to set it here right away. It is crucial that
 				// when execute() is called this is set synchronously, otherwise modules will get
 				// executed multiple times as the registry will state that it isn't loading yet.
-				registry[module].state = 'loading';
+				registry[ module ].state = 'loading';
 
 				// Add localizations to message system
-				if ( registry[module].messages ) {
-					mw.messages.set( registry[module].messages );
+				if ( registry[ module ].messages ) {
+					mw.messages.set( registry[ module ].messages );
 				}
 
 				// Initialise templates
-				if ( registry[module].templates ) {
-					mw.templates.set( module, registry[module].templates );
+				if ( registry[ module ].templates ) {
+					mw.templates.set( module, registry[ module ].templates );
 				}
 
 				// Make sure we don't run the scripts until all stylesheet insertions have completed.
@@ -1284,9 +1284,9 @@
 				// * back-compat: { <media>: [url, ..] }
 				// * { "css": [css, ..] }
 				// * { "url": { <media>: [url, ..] } }
-				if ( registry[module].style ) {
-					for ( key in registry[module].style ) {
-						value = registry[module].style[key];
+				if ( registry[ module ].style ) {
+					for ( key in registry[ module ].style ) {
+						value = registry[ module ].style[ key ];
 						media = undefined;
 
 						if ( key !== 'url' && key !== 'css' ) {
@@ -1311,10 +1311,10 @@
 							for ( i = 0; i < value.length; i += 1 ) {
 								if ( key === 'bc-url' ) {
 									// back-compat: { <media>: [url, ..] }
-									addLink( media, value[i] );
+									addLink( media, value[ i ] );
 								} else if ( key === 'css' ) {
 									// { "css": [css, ..] }
-									addEmbeddedCSS( value[i], cssHandle() );
+									addEmbeddedCSS( value[ i ], cssHandle() );
 								}
 							}
 						// Not an array, but a regular object
@@ -1322,9 +1322,9 @@
 						} else if ( typeof value === 'object' ) {
 							// { "url": { <media>: [url, ..] } }
 							for ( media in value ) {
-								urls = value[media];
+								urls = value[ media ];
 								for ( i = 0; i < urls.length; i += 1 ) {
-									addLink( media, urls[i] );
+									addLink( media, urls[ i ] );
 								}
 							}
 						}
@@ -1348,12 +1348,12 @@
 			function request( dependencies, ready, error ) {
 				// Allow calling by single module name
 				if ( typeof dependencies === 'string' ) {
-					dependencies = [dependencies];
+					dependencies = [ dependencies ];
 				}
 
 				// Add ready and error callbacks if they were given
 				if ( ready !== undefined || error !== undefined ) {
-					jobs[jobs.length] = {
+					jobs[ jobs.length ] = {
 						dependencies: $.grep( dependencies, function ( module ) {
 							var state = mw.loader.getState( module );
 							return state === 'registered' || state === 'loaded' || state === 'loading';
@@ -1370,8 +1370,8 @@
 					if ( state === 'registered' && $.inArray( module, queue ) === -1 ) {
 						// Private modules must be embedded in the page. Don't bother queuing
 						// these as the server will deny them anyway (T101806).
-						if ( registry[module].group === 'private' ) {
-							registry[module].state = 'error';
+						if ( registry[ module ].group === 'private' ) {
+							registry[ module ].state = 'error';
 							handlePending( module );
 							return;
 						}
@@ -1394,7 +1394,7 @@
 				}
 				a.sort();
 				for ( key = 0; key < a.length; key += 1 ) {
-					sorted[a[key]] = o[a[key]];
+					sorted[ a[ key ] ] = o[ a[ key ] ];
 				}
 				return sorted;
 			}
@@ -1410,7 +1410,7 @@
 
 				for ( prefix in moduleMap ) {
 					p = prefix === '' ? '' : prefix + '.';
-					arr.push( p + moduleMap[prefix].join( ',' ) );
+					arr.push( p + moduleMap[ prefix ].join( ',' ) );
 				}
 				return arr.join( '|' );
 			}
@@ -1444,9 +1444,9 @@
 			 */
 			function resolveIndexedDependencies( modules ) {
 				$.each( modules, function ( idx, module ) {
-					if ( module[2] ) {
-						module[2] = $.map( module[2], function ( dep ) {
-							return typeof dep === 'number' ? modules[dep][0] : dep;
+					if ( module[ 2 ] ) {
+						module[ 2 ] = $.map( module[ 2 ], function ( dep ) {
+							return typeof dep === 'number' ? modules[ dep ][ 0 ] : dep;
 						} );
 					}
 				} );
@@ -1492,12 +1492,12 @@
 					// Appends a list of modules from the queue to the batch
 					for ( q = 0; q < queue.length; q += 1 ) {
 						// Only request modules which are registered
-						if ( hasOwn.call( registry, queue[q] ) && registry[queue[q]].state === 'registered' ) {
+						if ( hasOwn.call( registry, queue[ q ] ) && registry[ queue[ q ] ].state === 'registered' ) {
 							// Prevent duplicate entries
-							if ( $.inArray( queue[q], batch ) === -1 ) {
-								batch[batch.length] = queue[q];
+							if ( $.inArray( queue[ q ], batch ) === -1 ) {
+								batch[ batch.length ] = queue[ q ];
 								// Mark registered modules as loading
-								registry[queue[q]].state = 'loading';
+								registry[ queue[ q ] ].state = 'loading';
 							}
 						}
 					}
@@ -1533,7 +1533,7 @@
 							// the error) instead of all of them.
 							mw.track( 'resourceloader.exception', { exception: err, source: 'store-eval' } );
 							origBatch = $.grep( origBatch, function ( module ) {
-								return registry[module].state === 'loading';
+								return registry[ module ].state === 'loading';
 							} );
 							batch = batch.concat( origBatch );
 						}
@@ -1553,16 +1553,16 @@
 
 					// Split batch by source and by group.
 					for ( b = 0; b < batch.length; b += 1 ) {
-						bSource = registry[batch[b]].source;
-						bGroup = registry[batch[b]].group;
+						bSource = registry[ batch[ b ] ].source;
+						bGroup = registry[ batch[ b ] ].group;
 						if ( !hasOwn.call( splits, bSource ) ) {
-							splits[bSource] = {};
+							splits[ bSource ] = {};
 						}
-						if ( !hasOwn.call( splits[bSource], bGroup ) ) {
-							splits[bSource][bGroup] = [];
+						if ( !hasOwn.call( splits[ bSource ], bGroup ) ) {
+							splits[ bSource ][ bGroup ] = [];
 						}
-						bSourceGroup = splits[bSource][bGroup];
-						bSourceGroup[bSourceGroup.length] = batch[b];
+						bSourceGroup = splits[ bSource ][ bGroup ];
+						bSourceGroup[ bSourceGroup.length ] = batch[ b ];
 					}
 
 					// Clear the batch - this MUST happen before we append any
@@ -1574,13 +1574,13 @@
 
 					for ( source in splits ) {
 
-						sourceLoadScript = sources[source];
+						sourceLoadScript = sources[ source ];
 
-						for ( group in splits[source] ) {
+						for ( group in splits[ source ] ) {
 
 							// Cache access to currently selected list of
 							// modules for this group from this source.
-							modules = splits[source][group];
+							modules = splits[ source ][ group ];
 
 							currReqBase = $.extend( {
 								version: getCombinedVersion( modules )
@@ -1598,15 +1598,15 @@
 
 							for ( i = 0; i < modules.length; i += 1 ) {
 								// Determine how many bytes this module would add to the query string
-								lastDotIndex = modules[i].lastIndexOf( '.' );
+								lastDotIndex = modules[ i ].lastIndexOf( '.' );
 
 								// If lastDotIndex is -1, substr() returns an empty string
-								prefix = modules[i].substr( 0, lastDotIndex );
-								suffix = modules[i].slice( lastDotIndex + 1 );
+								prefix = modules[ i ].substr( 0, lastDotIndex );
+								suffix = modules[ i ].slice( lastDotIndex + 1 );
 
 								bytesAdded = hasOwn.call( moduleMap, prefix )
 									? suffix.length + 3 // '%2C'.length == 3
-									: modules[i].length + 3; // '%7C'.length == 3
+									: modules[ i ].length + 3; // '%7C'.length == 3
 
 								// If the request would become too long, create a new one,
 								// but don't create empty requests
@@ -1619,9 +1619,9 @@
 									mw.track( 'resourceloader.splitRequest', { maxQueryLength: maxQueryLength } );
 								}
 								if ( !hasOwn.call( moduleMap, prefix ) ) {
-									moduleMap[prefix] = [];
+									moduleMap[ prefix ] = [];
 								}
-								moduleMap[prefix].push( suffix );
+								moduleMap[ prefix ].push( suffix );
 								l += bytesAdded;
 							}
 							// If there's anything left in moduleMap, request that too
@@ -1649,7 +1649,7 @@
 					// Allow multiple additions
 					if ( typeof id === 'object' ) {
 						for ( source in id ) {
-							mw.loader.addSource( source, id[source] );
+							mw.loader.addSource( source, id[ source ] );
 						}
 						return true;
 					}
@@ -1662,7 +1662,7 @@
 						loadUrl = loadUrl.loadScript;
 					}
 
-					sources[id] = loadUrl;
+					sources[ id ] = loadUrl;
 
 					return true;
 				},
@@ -1693,11 +1693,11 @@
 						resolveIndexedDependencies( module );
 						for ( i = 0, len = module.length; i < len; i++ ) {
 							// module is an array of module names
-							if ( typeof module[i] === 'string' ) {
-								mw.loader.register( module[i] );
+							if ( typeof module[ i ] === 'string' ) {
+								mw.loader.register( module[ i ] );
 							// module is an array of arrays
-							} else if ( typeof module[i] === 'object' ) {
-								mw.loader.register.apply( mw.loader, module[i] );
+							} else if ( typeof module[ i ] === 'object' ) {
+								mw.loader.register.apply( mw.loader, module[ i ] );
 							}
 						}
 						return;
@@ -1710,7 +1710,7 @@
 						throw new Error( 'module already registered: ' + module );
 					}
 					// List the module as registered
-					registry[module] = {
+					registry[ module ] = {
 						version: version !== undefined ? String( version ) : '',
 						dependencies: [],
 						group: typeof group === 'string' ? group : null,
@@ -1720,11 +1720,11 @@
 					};
 					if ( typeof dependencies === 'string' ) {
 						// Allow dependencies to be given as a single module name
-						registry[module].dependencies = [ dependencies ];
+						registry[ module ].dependencies = [ dependencies ];
 					} else if ( typeof dependencies === 'object' || $.isFunction( dependencies ) ) {
 						// Allow dependencies to be given as an array of module names
 						// or a function which returns an array
-						registry[module].dependencies = dependencies;
+						registry[ module ].dependencies = dependencies;
 					}
 				},
 
@@ -1777,18 +1777,18 @@
 						mw.loader.register( module );
 					}
 					// Check for duplicate implementation
-					if ( hasOwn.call( registry, module ) && registry[module].script !== undefined ) {
+					if ( hasOwn.call( registry, module ) && registry[ module ].script !== undefined ) {
 						throw new Error( 'module already implemented: ' + module );
 					}
 					// Attach components
-					registry[module].script = script || [];
-					registry[module].style = style || {};
-					registry[module].messages = messages || {};
-					registry[module].templates = templates || {};
+					registry[ module ].script = script || [];
+					registry[ module ].style = style || {};
+					registry[ module ].messages = messages || {};
+					registry[ module ].templates = templates || {};
 					// The module may already have been marked as erroneous
-					if ( $.inArray( registry[module].state, ['error', 'missing'] ) === -1 ) {
-						registry[module].state = 'loaded';
-						if ( allReady( registry[module].dependencies ) ) {
+					if ( $.inArray( registry[ module ].state, [ 'error', 'missing' ] ) === -1 ) {
+						registry[ module ].state = 'loaded';
+						if ( allReady( registry[ module ].dependencies ) ) {
 							execute( module );
 						}
 					}
@@ -1922,21 +1922,21 @@
 
 					if ( typeof module === 'object' ) {
 						for ( m in module ) {
-							mw.loader.state( m, module[m] );
+							mw.loader.state( m, module[ m ] );
 						}
 						return;
 					}
 					if ( !hasOwn.call( registry, module ) ) {
 						mw.loader.register( module );
 					}
-					if ( $.inArray( state, ['ready', 'error', 'missing'] ) !== -1
-						&& registry[module].state !== state ) {
+					if ( $.inArray( state, [ 'ready', 'error', 'missing' ] ) !== -1
+						&& registry[ module ].state !== state ) {
 						// Make sure pending modules depending on this one get executed if their
 						// dependencies are now fulfilled!
-						registry[module].state = state;
+						registry[ module ].state = state;
 						handlePending( module );
 					} else {
-						registry[module].state = state;
+						registry[ module ].state = state;
 					}
 				},
 
@@ -1948,10 +1948,10 @@
 				 *  in the registry.
 				 */
 				getVersion: function ( module ) {
-					if ( !hasOwn.call( registry, module ) || registry[module].version === undefined ) {
+					if ( !hasOwn.call( registry, module ) || registry[ module ].version === undefined ) {
 						return null;
 					}
-					return registry[module].version;
+					return registry[ module ].version;
 				},
 
 				/**
@@ -1962,10 +1962,10 @@
 				 *  in the registry.
 				 */
 				getState: function ( module ) {
-					if ( !hasOwn.call( registry, module ) || registry[module].state === undefined ) {
+					if ( !hasOwn.call( registry, module ) || registry[ module ].state === undefined ) {
 						return null;
 					}
-					return registry[module].state;
+					return registry[ module ].state;
 				},
 
 				/**
@@ -2053,7 +2053,7 @@
 					 */
 					getModuleKey: function ( module ) {
 						return hasOwn.call( registry, module ) ?
-							( module + '@' + registry[module].version ) : null;
+							( module + '@' + registry[ module ].version ) : null;
 					},
 
 					/**
@@ -2125,7 +2125,7 @@
 						key = mw.loader.store.getModuleKey( module );
 						if ( key in mw.loader.store.items ) {
 							mw.loader.store.stats.hits++;
-							return mw.loader.store.items[key];
+							return mw.loader.store.items[ key ];
 						}
 						mw.loader.store.stats.misses++;
 						return false;
@@ -2173,8 +2173,8 @@
 							];
 							// Attempted workaround for a possible Opera bug (bug T59567).
 							// This regex should never match under sane conditions.
-							if ( /^\s*\(/.test( args[1] ) ) {
-								args[1] = 'function' + args[1];
+							if ( /^\s*\(/.test( args[ 1 ] ) ) {
+								args[ 1 ] = 'function' + args[ 1 ];
 								mw.track( 'resourceloader.assert', { source: 'bug-T59567' } );
 							}
 						} catch ( e ) {
@@ -2186,7 +2186,7 @@
 						if ( src.length > mw.loader.store.MODULE_SIZE_MAX ) {
 							return false;
 						}
-						mw.loader.store.items[key] = src;
+						mw.loader.store.items[ key ] = src;
 						mw.loader.store.update();
 					},
 
@@ -2205,10 +2205,10 @@
 							module = key.slice( 0, key.indexOf( '@' ) );
 							if ( mw.loader.store.getModuleKey( module ) !== key ) {
 								mw.loader.store.stats.expired++;
-								delete mw.loader.store.items[key];
-							} else if ( mw.loader.store.items[key].length > mw.loader.store.MODULE_SIZE_MAX ) {
+								delete mw.loader.store.items[ key ];
+							} else if ( mw.loader.store.items[ key ].length > mw.loader.store.MODULE_SIZE_MAX ) {
 								// This value predates the enforcement of a size limit on cached modules.
-								delete mw.loader.store.items[key];
+								delete mw.loader.store.items[ key ];
 							}
 						}
 					},
@@ -2337,7 +2337,7 @@
 					var v, attrName, s = '<' + name;
 
 					for ( attrName in attrs ) {
-						v = attrs[attrName];
+						v = attrs[ attrName ];
 						// Convert name=true, to name=name
 						if ( v === true ) {
 							v = attrName;
@@ -2458,8 +2458,8 @@
 			 */
 			return function ( name ) {
 				var list = hasOwn.call( lists, name ) ?
-					lists[name] :
-					lists[name] = $.Callbacks( 'memory' );
+					lists[ name ] :
+					lists[ name ] = $.Callbacks( 'memory' );
 
 				return {
 					/**

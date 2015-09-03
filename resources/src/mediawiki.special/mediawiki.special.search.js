@@ -39,12 +39,12 @@
 				var parts = $( this ).attr( 'href' ).split( 'search=' ),
 					lastpart = '',
 					prefix = 'search=';
-				if ( parts.length > 1 && parts[1].indexOf( '&' ) !== -1 ) {
-					lastpart = parts[1].slice( parts[1].indexOf( '&' ) );
+				if ( parts.length > 1 && parts[ 1 ].indexOf( '&' ) !== -1 ) {
+					lastpart = parts[ 1 ].slice( parts[ 1 ].indexOf( '&' ) );
 				} else {
 					prefix = '&search=';
 				}
-				this.href = parts[0] + prefix + encodeURIComponent( searchterm ) + lastpart;
+				this.href = parts[ 0 ] + prefix + encodeURIComponent( searchterm ) + lastpart;
 			} );
 		} ).trigger( 'change' );
 

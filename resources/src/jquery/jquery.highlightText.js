@@ -12,10 +12,10 @@
 			var i,
 				patArray = pat.split( ' ' );
 			for ( i = 0; i < patArray.length; i++ ) {
-				if ( patArray[i].length === 0 ) {
+				if ( patArray[ i ].length === 0 ) {
 					continue;
 				}
-				$.highlightText.innerHighlight( node, patArray[i] );
+				$.highlightText.innerHighlight( node, patArray[ i ] );
 			}
 			return node;
 		},
@@ -30,7 +30,7 @@
 				// look for an occurrence of our pattern and store the starting position
 				match = node.data.match( new RegExp( '(^|\\s)' + mw.RegExp.escape( pat ), 'i' ) );
 				if ( match ) {
-					pos = match.index + match[1].length; // include length of any matched spaces
+					pos = match.index + match[ 1 ].length; // include length of any matched spaces
 					// create the span wrapper for the matched text
 					spannode = document.createElement( 'span' );
 					spannode.className = 'highlight';
@@ -55,7 +55,7 @@
 			) {
 				for ( i = 0; i < node.childNodes.length; ++i ) {
 					// call the highlight function for each child node
-					$.highlightText.innerHighlight( node.childNodes[i], pat );
+					$.highlightText.innerHighlight( node.childNodes[ i ], pat );
 				}
 			}
 		}
