@@ -1757,8 +1757,6 @@ return array(
 		'styles' => array(
 			// @todo: Remove mediawiki.page.gallery when cache has cleared
 			'resources/src/mediawiki.page/mediawiki.page.gallery.print.css' => array( 'media' => 'print' ),
-			// @todo: Remove mediawiki.action.view.filepage.print.css when cache has cleared
-			'resources/src/mediawiki.action/mediawiki.action.view.filepage.print.css' => array( 'media' => 'print' ),
 			'resources/src/mediawiki.legacy/commonPrint.css' => array( 'media' => 'print' )
 		),
 		'group' => 'print',
@@ -1774,9 +1772,6 @@ return array(
 		'styles' => array(
 			// @todo: Remove when mediawiki.page.gallery in cached html.
 			'resources/src/mediawiki.page/mediawiki.page.gallery.css',
-			// @todo: Remove mediawiki.action.view.filepage.css
-			// and mediawiki.legacy/images/checker.png when cache has cleared
-			'resources/src/mediawiki.action/mediawiki.action.view.filepage.css',
 			'resources/src/mediawiki.legacy/shared.css' => array( 'media' => 'screen' )
 		),
 	),
