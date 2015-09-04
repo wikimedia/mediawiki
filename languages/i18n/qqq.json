@@ -1120,6 +1120,7 @@
 	"opensearch-desc": "{{ignored}}Link description of the [www.opensearch.org/ OpenSearch] link in the HTML head of pages.",
 	"preferences": "Title of the [[Special:Preferences]] page.\n{{Identical|Preferences}}",
 	"preferences-summary": "{{doc-specialpagesummary|preferences}}",
+	"prefs-section-warning": "Shown when the user navigates to a non existence section e.g. [[Special:Preferences/section/asjsahsas]].",
 	"mypreferences": "Action link label that leads to [[Special:Preferences]]; appears in the top menu (e.g. \"Username Talk Preferences Watchlist Contributions Log out\").\n\nSee also:\n* {{msg-mw|Mypreferences}}\n* {{msg-mw|Accesskey-pt-preferences}}\n* {{msg-mw|Tooltip-pt-preferences}}\n{{Identical|Preferences}}",
 	"prefs-edits": "In user preferences.\n{{Identical|Number of edits}}",
 	"prefsnologintext2": "Showed on Special:Userlogin when user tries to access their preferences before logging in",
