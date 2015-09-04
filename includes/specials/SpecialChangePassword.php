@@ -301,8 +301,8 @@ class SpecialChangePassword extends FormSpecialPage {
 			$remember = $this->getRequest()->getCookie( 'Token' ) !== null;
 			$user->setCookies( null, null, $remember );
 		}
-		$user->resetPasswordExpiration();
 		$user->saveSettings();
+		$this->resetPasswordExpiration( $user );
 	}
 
 	public function requiresUnblock() {
@@ -311,5 +311,29 @@ class SpecialChangePassword extends FormSpecialPage {
 
 	protected function getGroupName() {
 		return 'users';
+	}
+
+	/**
+	 * For resetting user password expiration, until AuthManager comes along
+	 * @param User $user
+	 */
+	private function resetPasswordExpiration( User $user ) {
+		global $wgPasswordExpirationDays;
+		$newExpire = null;
+		if ( $wgPasswordExpirationDays ) {
+			$newExpire = wfTimestamp(
+				TS_MW,
+				time() + ( $wgPasswordExpirationDays * 24 * 3600 )
+			);
+		}
+		// Give extensions a chance to force an expiration
+		Hooks::run( 'ResetPasswordExpiration', array( $this, &$newExpire ) );
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->update(
+			'user',
+			array( 'user_password_expires' => $dbw->timestampOrNull( $newExpire ) ),
+			array( 'user_id' => $user->getID() ),
+			__METHOD__
+		);
 	}
 }

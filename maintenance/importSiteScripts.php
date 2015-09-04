@@ -41,7 +41,12 @@ class ImportSiteScripts extends Maintenance {
 	public function execute() {
 		global $wgUser;
 
-		$user = User::newFromName( $this->getOption( 'username', 'ScriptImporter' ) );
+		$username = $this->getOption( 'username', false );
+		if ( $username === false ) {
+			$user = User::newSystemUser( 'ScriptImporter', array( 'steal' => true ) );
+		} else {
+			$user = User::newFromName( $username );
+		}
 		$wgUser = $user;
 
 		$baseUrl = $this->getArg( 1 );

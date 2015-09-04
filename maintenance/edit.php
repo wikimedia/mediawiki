@@ -46,14 +46,18 @@ class EditCLI extends Maintenance {
 	public function execute() {
 		global $wgUser;
 
-		$userName = $this->getOption( 'user', 'Maintenance script' );
+		$userName = $this->getOption( 'user', false );
 		$summary = $this->getOption( 'summary', '' );
 		$minor = $this->hasOption( 'minor' );
 		$bot = $this->hasOption( 'bot' );
 		$autoSummary = $this->hasOption( 'autosummary' );
 		$noRC = $this->hasOption( 'no-rc' );
 
-		$wgUser = User::newFromName( $userName );
+		if ( $userName === false ) {
+			$wgUser = User::newSystemUser( 'Maintenance script', array( 'steal' => true ) );
+		} else {
+			$wgUser = User::newFromName( $userName );
+		}
 		if ( !$wgUser ) {
 			$this->error( "Invalid username", true );
 		}
