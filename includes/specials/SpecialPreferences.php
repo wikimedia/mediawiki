@@ -27,8 +27,101 @@
  * @ingroup SpecialPage
  */
 class SpecialPreferences extends SpecialPage {
+	/**
+	 * An array mapping tabs to preferences.
+	 * @var array mPrefs
+	 */
+	protected $mPrefs = array();
+	/**
+	 * List of preference panes that can be displayed.
+	 * @var string[] $validTabs
+	 */
+	protected $mSections = array();
+
 	function __construct() {
 		parent::__construct( 'Preferences' );
+	}
+
+	/**
+	 * @param string $key valid key as specified in validTabs private property
+	 * @return HTMLForm
+	 */
+	protected function getSectionPreferencesForm( $key ) {
+		$prefs = array();
+		$user = $this->getUser();
+		$ctx = $this->getContext();
+		switch ( $key ) {
+			case 'rendering':
+				Preferences::renderingPreferences( $user, $ctx, $prefs );
+				break;
+			case 'skin':
+				Preferences::skinPreferences( $user, $ctx, $prefs );
+				break;
+			case 'dateformat':
+				Preferences::datetimePreferences( $user, $ctx, $prefs );
+				break;
+			case 'editing':
+				Preferences::editingPreferences( $user, $ctx, $prefs );
+				break;
+			case 'personal':
+				Preferences::profilePreferences( $user, $ctx, $prefs );
+				break;
+			case 'files':
+				Preferences::filesPreferences( $user, $ctx, $prefs );
+				break;
+			case 'rc':
+				Preferences::rcPreferences( $user, $ctx, $prefs );
+				break;
+			default:
+				$prefs = $this->mPrefs[$key];
+				break;
+		}
+		Preferences::loadPreferenceValues( $user, $ctx, $prefs );
+		$htmlForm = new PreferencesForm( $prefs, $ctx, 'prefs' );
+		$htmlForm->suppressReset();
+		$htmlForm->setModifiedUser( $user );
+		$htmlForm->setId( 'mw-prefs-form' );
+		$htmlForm->setSubmitText( $ctx->msg( 'saveprefs' )->text() );
+		$htmlForm->setAction( SpecialPage::getTitleFor( $this->getName(), $key )->getLocalUrl() );
+		return $htmlForm;
+	}
+
+	/**
+	 * Obtains the preferences to be displayed and identifies the sections that are
+	 * valid for display.
+	 */
+	protected function loadTabs() {
+		$defaults = Preferences::getPreferences( $this->getUser(), $this->getContext() );
+		foreach ( $defaults as $key => $row ) {
+			if ( isset( $row["section"] ) ) {
+				$section = explode( '/', $row["section"] );
+				$section = $section[0];
+				if ( !in_array( $section, $this->mSections ) ) {
+					$this->mSections[] = $section;
+					$this->mPrefs[$section] = array();
+				}
+				$this->mPrefs[$section][$key] = $row;
+			}
+		}
+	}
+
+	/**
+	 * Return a HTML list of OOUI buttons linking to available preference sections.
+	 * @param string $activeSection the section which is currently selected.
+	 * @return string
+	 */
+	protected function getSectionLinksHTML( $activeSection ) {
+		$html = Html::openElement( 'div', array( 'class' => 'pref-section-tabs' ) );
+		foreach ( $this->mSections as $section ) {
+			$html .= new OOUI\ButtonWidget( array(
+				'flags' => $activeSection === $section ? array( 'progressive' ) : array(),
+				'href' => SpecialPage::getTitleFor( 'Preferences', 'sections/' . $section )
+						->getLocalURL(),
+				'label' => $this->msg( 'prefs-' . $section )->text(),
+			) );
+		}
+		$html .= Html::closeElement( 'div' );
+		return $html;
 	}
 
 	public function execute( $par ) {
@@ -46,8 +139,6 @@ class SpecialPreferences extends SpecialPage {
 			return;
 		}
 
-		$out->addModules( 'mediawiki.special.preferences' );
-
 		if ( $this->getRequest()->getCheck( 'success' ) ) {
 			$out->wrapWikiMsg(
 				Html::rawElement(
@@ -64,10 +155,36 @@ class SpecialPreferences extends SpecialPage {
 
 		$this->addHelpLink( 'Help:Preferences' );
 
-		$htmlForm = Preferences::getFormObject( $this->getUser(), $this->getContext() );
-		$htmlForm->setSubmitCallback( array( 'Preferences', 'tryUISubmit' ) );
+		$this->loadTabs();
 
-		$htmlForm->show();
+		if ( $par && substr( $par, 0, 8 ) === 'sections' ) {
+			$out->enableOOUI();
+			$route = explode( '/', $par );
+			$htmlForm = false;
+			if ( isset( $route[1] ) && $route[1] ) {
+				$section = $route[1];
+			} else {
+				$section = 'personal';
+			}
+			$out->addHTML( $this->getSectionLinksHTML( $section ) );
+
+			if ( in_array( $section, $this->mSections ) ) {
+				$htmlForm = $this->getSectionPreferencesForm( $section );
+			} elseif ( $section ){
+				$out->addHtml(
+					Html::element( 'div', array( 'class' => 'warningbox' ),
+						$this->msg( 'prefs-section-warning' ) )
+				);
+			}
+		} else {
+			$out->addModules( 'mediawiki.special.preferences' );
+			$htmlForm = Preferences::getFormObject( $this->getUser(), $this->getContext() );
+		}
+
+		if ( $htmlForm ) {
+			$htmlForm->setSubmitCallback( array( 'Preferences', 'tryUISubmit' ) );
+			$htmlForm->show();
+		}
 	}
 
 	private function showResetForm() {
