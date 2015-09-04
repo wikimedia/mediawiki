@@ -1844,6 +1844,10 @@ optional localisation messages
 &$ignored: Array of ignored message keys
 &$optional: Array of optional message keys
 
+'LocalUserCreated': Called when a local user has been created
+$user: User object for the created user
+$autocreated: Boolean, whether this was an auto-creation
+
 'LogEventsListGetExtraInputs': When getting extra inputs to display on
 Special:Log for a specific log type
 $type: String of log type being displayed
@@ -2446,10 +2450,6 @@ $context: (IContextSource) The RequestContext the skin is being created for.
 'ResetPasswordExpiration': Allow extensions to set a default password expiration
 $user: The user having their password expiration reset
 &$newExpire: The new expiration date
-
-'ResetSessionID': Called from wfResetSessionID
-$oldSessionID: old session id
-$newSessionID: new session id
 
 'ResourceLoaderForeignApiModules': Called from ResourceLoaderForeignApiModule.
 Use this to add dependencies to 'mediawiki.ForeignApi' module when you wish
@@ -3203,6 +3203,11 @@ $context: IContextSource object
 $user: User to get rights for
 &$rights: Current rights
 
+'UserGroupsChanged': Called after user groups are changed.
+$user: User whose groups changed
+$added: Groups added
+$removed: Groups removed
+
 'UserIsBlockedFrom': Check if a user is blocked from a specific page (for
 specific block exemptions).
 $user: User in question
@@ -3219,6 +3224,14 @@ $ip: User's IP address
 'UserIsEveryoneAllowed': Check if all users are allowed some user right; return
 false if a UserGetRights hook might remove the named right.
 $right: The user right being checked
+
+'UserIsHidden': Check if the user's name should be hidden. See User::isHidden().
+$user: User in question.
+&$hidden: Set true if the user's name should be hidden.
+
+'UserIsLocked': Check if the user is locked. See User::isLocked().
+$user: User in question.
+&$locked: Set true if the user should be locked.
 
 'UserLoadAfterLoadFromSession': Called to authenticate users on external or
 environmental means; occurs after session is loaded.
@@ -3242,6 +3255,9 @@ $user: user object being loaded
 database.
 $user: User object
 &$options: Options, can be modified.
+
+'UserLoggedIn': Called after a user is logged in
+$user: User object for the logged-in user
 
 'UserLoginComplete': After a user has logged in.
 $user: the user object that was created on login
@@ -3288,8 +3304,9 @@ message(s).
 $user: user retrieving new talks messages
 $talks: array of new talks page(s)
 
-'UserRights': After a user's group memberships are changed.
-$user: User object that was changed
+'UserRights': DEPRECATED! Use UserGroupsChanged instead.
+After a user's group memberships are changed.
+&$user: User object that was changed
 $add: Array of strings corresponding to groups added
 $remove: Array of strings corresponding to groups removed
 
