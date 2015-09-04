@@ -41,7 +41,7 @@ class Protect extends Maintenance {
 	}
 
 	public function execute() {
-		$userName = $this->getOption( 'u', 'Maintenance script' );
+		$userName = $this->getOption( 'u', false );
 		$reason = $this->getOption( 'r', '' );
 
 		$cascade = $this->hasOption( 'cascade' );
@@ -53,7 +53,11 @@ class Protect extends Maintenance {
 			$protection = "";
 		}
 
-		$user = User::newFromName( $userName );
+		if ( $userName === false ) {
+			$user = User::newSystemUser( 'Maintenance script', array( 'steal' => true ) );
+		} else {
+			$user = User::newFromName( $userName );
+		}
 		if ( !$user ) {
 			$this->error( "Invalid username", true );
 		}
