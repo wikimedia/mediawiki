@@ -847,10 +847,12 @@ return array(
 			'resources/src/mediawiki/mediawiki.template.mustache.js',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
+		'dependencies' => 'mediawiki.template',
 	),
 	'mediawiki.template.regexp' => array(
 		'scripts' => 'resources/src/mediawiki/mediawiki.template.regexp.js',
 		'targets' => array( 'desktop', 'mobile' ),
+		'dependencies' => 'mediawiki.template',
 	),
 	'mediawiki.apipretty' => array(
 		'styles' => 'resources/src/mediawiki/mediawiki.apipretty.css',
