@@ -429,10 +429,6 @@
 			"type": "object",
 			"description": "ResourceLoader LESS variables"
 		},
-		"ResourceLoaderLESSFunctions": {
-			"type": "object",
-			"description": "ResourceLoader LESS functions"
-		},
 		"ResourceLoaderLESSImportPaths": {
 			"type": "object",
 			"description": "ResourceLoader import paths"
