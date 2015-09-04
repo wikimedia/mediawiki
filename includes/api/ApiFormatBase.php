@@ -32,6 +32,7 @@
 abstract class ApiFormatBase extends ApiBase {
 	private $mIsHtml, $mFormat, $mUnescapeAmps, $mHelp;
 	private $mBuffer, $mDisabled = false;
+	private $mFailWithHTTPError = false;
 	protected $mForceDefaultParams = false;
 
 	/**
@@ -171,6 +172,10 @@ abstract class ApiFormatBase extends ApiBase {
 		}
 
 		$mime = $this->getMimeType();
+		$data = $this->getResult()->getResultData();
+		if ( $this->mFailWithHTTPError && isset( $data['error'] ) ) {
+			$this->getMain()->getRequest()->response()->statusHeader( 400 );
+		}
 		if ( $this->getIsHtml() && $mime !== null ) {
 			$format = $this->getFormat();
 			$lcformat = strtolower( $format );
@@ -255,6 +260,14 @@ abstract class ApiFormatBase extends ApiBase {
 		$name = $this->getModuleName();
 		$this->logFeatureUsage( "format=$name" );
 		$this->setWarning( "format=$name has been deprecated. Please use format=json$fm instead." );
+	}
+
+	/**
+	 * Configure the output to respond with an HTTP error status code.
+	 * @param bool $fail
+	 */
+	public function setFailWithHTTPError( $fail ) {
+		$this->mFailWithHTTPError = $fail;
 	}
 
 	/************************************************************************//**
