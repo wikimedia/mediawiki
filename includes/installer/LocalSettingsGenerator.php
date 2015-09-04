@@ -153,7 +153,7 @@ class LocalSettingsGenerator {
 
 		if ( count( $this->extensions ) ) {
 			$localSettings .= "
-# Enabled Extensions. Most extensions are enabled by including the base extension file here
+# Enabled Extensions.Add the wfLoadExtensions('extension_name') to LocalSettings.php file.
 # but check specific extension documentation for more details
 # The following extensions were automatically enabled:\n";
 
