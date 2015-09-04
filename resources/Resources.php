@@ -1759,8 +1759,6 @@ return array(
 	'mediawiki.legacy.commonPrint' => array(
 		'position' => 'top',
 		'styles' => array(
-			// @todo: Remove mediawiki.action.view.filepage.print.css when cache has cleared
-			'resources/src/mediawiki.action/mediawiki.action.view.filepage.print.css' => array( 'media' => 'print' ),
 			'resources/src/mediawiki.legacy/commonPrint.css' => array( 'media' => 'print' )
 		),
 	),
@@ -1773,9 +1771,6 @@ return array(
 	'mediawiki.legacy.shared' => array(
 		'position' => 'top',
 		'styles' => array(
-			// @todo: Remove mediawiki.action.view.filepage.css
-			// and mediawiki.legacy/images/checker.png when cache has cleared
-			'resources/src/mediawiki.action/mediawiki.action.view.filepage.css',
 			'resources/src/mediawiki.legacy/shared.css' => array( 'media' => 'screen' )
 		),
 	),
