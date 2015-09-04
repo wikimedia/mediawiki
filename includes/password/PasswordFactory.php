@@ -188,4 +188,38 @@ final class PasswordFactory {
 			return $password->needsUpdate();
 		}
 	}
+
+	/**
+	 * Generate a random string suitable for a password
+	 *
+	 * @param int $minLength Minimum length of password to generate
+	 * @return string
+	 */
+	public static function generateRandomPasswordString( $minLength = 10 ) {
+		// Decide the final password length based on our min password length,
+		// stopping at a minimum of 10 chars.
+		$length = max( 10, $minLength );
+		// Multiply by 1.25 to get the number of hex characters we need
+		$length = $length * 1.25;
+		// Generate random hex chars
+		$hex = MWCryptRand::generateHex( $length );
+		// Convert from base 16 to base 32 to get a proper password like string
+		return wfBaseConvert( $hex, 16, 32 );
+	}
+
+	/**
+	 * Create an InvalidPassword
+	 *
+	 * @return InvalidPassword
+	 */
+	public static function newInvalidPassword() {
+		static $password = null;
+
+		if ( $password === null ) {
+			$factory = new self();
+			$password = new InvalidPassword( $factory, array( 'type' => '' ), null );
+		}
+
+		return $password;
+	}
 }

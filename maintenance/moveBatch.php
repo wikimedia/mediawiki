@@ -61,7 +61,7 @@ class MoveBatch extends Maintenance {
 		chdir( $oldCwd );
 
 		# Options processing
-		$user = $this->getOption( 'u', 'Move page script' );
+		$user = $this->getOption( 'u', false );
 		$reason = $this->getOption( 'r', '' );
 		$interval = $this->getOption( 'i', 0 );
 		$noredirects = $this->getOption( 'noredirects', false );
@@ -75,7 +75,11 @@ class MoveBatch extends Maintenance {
 		if ( !$file ) {
 			$this->error( "Unable to read file, exiting", true );
 		}
-		$wgUser = User::newFromName( $user );
+		if ( $user === false ) {
+			$wgUser = User::newSystemUser( 'Move page script', array( 'steal' => true ) );
+		} else {
+			$wgUser = User::newFromName( $user );
+		}
 		if ( !$wgUser ) {
 			$this->error( "Invalid username", true );
 		}

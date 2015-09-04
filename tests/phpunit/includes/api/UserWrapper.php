@@ -15,7 +15,7 @@ class UserWrapper {
 				"email" => "test@example.com",
 				"real_name" => "Test User" ) );
 		}
-		$this->user->setPassword( $this->password );
+		TestUser::setPasswordForUser( $this->user, $this->password );
 
 		if ( $group !== '' ) {
 			$this->user->addGroup( $group );

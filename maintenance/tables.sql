@@ -130,8 +130,7 @@ CREATE TABLE /*_*/user (
   --
   user_editcount int,
 
-  -- Expiration date for user password. Use $user->expirePassword()
-  -- to force a password reset.
+  -- Expiration date for user password.
   user_password_expires varbinary(14) DEFAULT NULL
 
 ) /*$wgDBTableOptions*/;

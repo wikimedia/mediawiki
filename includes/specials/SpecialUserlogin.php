@@ -826,7 +826,7 @@ class LoginForm extends SpecialPage {
 		} elseif ( $wgBlockDisablesLogin && $u->isBlocked() ) {
 			// If we've enabled it, make it so that a blocked user cannot login
 			$retval = self::USER_BLOCKED;
-		} elseif ( $u->getPasswordExpired() == 'hard' ) {
+		} elseif ( $this->checkUserPasswordExpired( $u ) == 'hard' ) {
 			// Force reset now, without logging in
 			$retval = self::RESET_PASS;
 			$this->mAbortLoginErrorMsg = 'resetpass-expired';
@@ -994,7 +994,7 @@ class LoginForm extends SpecialPage {
 					$this->getContext()->setLanguage( $userLang );
 					// Reset SessionID on Successful login (bug 40995)
 					$this->renewSessionId();
-					if ( $this->getUser()->getPasswordExpired() == 'soft' ) {
+					if ( $this->checkUserPasswordExpired( $this->getUser() ) == 'soft' ) {
 						$this->resetLoginForm( $this->msg( 'resetpass-expired-soft' ) );
 					} elseif ( $wgInvalidPasswordReset
 						&& !$user->isValidPassword( $this->mPassword )
@@ -1121,7 +1121,7 @@ class LoginForm extends SpecialPage {
 	function mailPasswordInternal( $u, $throttle = true, $emailTitle = 'passwordremindertitle',
 		$emailText = 'passwordremindertext'
 	) {
-		global $wgNewPasswordExpiry;
+		global $wgNewPasswordExpiry, $wgMinimalPasswordLength;
 
 		if ( $u->getEmail() == '' ) {
 			return Status::newFatal( 'noemail', $u->getName() );
@@ -1134,7 +1134,7 @@ class LoginForm extends SpecialPage {
 		$currentUser = $this->getUser();
 		Hooks::run( 'User::mailPasswordInternal', array( &$currentUser, &$ip, &$u ) );
 
-		$np = $u->randomPassword();
+		$np = PasswordFactory::generateRandomPasswordString( $wgMinimalPasswordLength );
 		$u->setNewpassword( $np, $throttle );
 		$u->saveSettings();
 		$userLanguage = $u->getOption( 'language' );
@@ -1717,4 +1717,25 @@ class LoginForm extends SpecialPage {
 	protected function getGroupName() {
 		return 'login';
 	}
+
+	/**
+	 * Private function to check password expiration, until AuthManager comes
+	 * along to handle that.
+	 * @param User $user
+	 * @return string|bool
+	 */
+	private function checkUserPasswordExpired( User $user ) {
+		global $wgPasswordExpireGrace;
+		$dbr = wfGetDB( DB_SLAVE );
+		$ts = $dbr->selectField( 'user', 'user_password_expires', array( 'user_id' => $user->getId() ) );
+
+		$expired = false;
+		$now = wfTimestamp();
+		$expUnix = wfTimestamp( TS_UNIX, $ts );
+		if ( $ts !== null && $expUnix < $now ) {
+			$expired = ( $expUnix + $wgPasswordExpireGrace < $now ) ? 'hard' : 'soft';
+		}
+		return $expired;
+	}
+
 }
