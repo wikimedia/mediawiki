@@ -55,11 +55,15 @@ class DeleteBatch extends Maintenance {
 		chdir( $oldCwd );
 
 		# Options processing
-		$username = $this->getOption( 'u', 'Delete page script' );
+		$username = $this->getOption( 'u', false );
 		$reason = $this->getOption( 'r', '' );
 		$interval = $this->getOption( 'i', 0 );
 
-		$user = User::newFromName( $username );
+		if ( $username === false ) {
+			$user = User::newSystemUser( 'Delete page script', array( 'steal' => true ) );
+		} else {
+			$user = User::newFromName( $username );
+		}
 		if ( !$user ) {
 			$this->error( "Invalid username", true );
 		}

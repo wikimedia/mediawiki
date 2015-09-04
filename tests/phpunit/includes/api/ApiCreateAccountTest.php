@@ -29,7 +29,7 @@ class ApiCreateAccountTest extends ApiTestCase {
 			$this->markTestIncomplete( 'This test needs $wgServer to be set in LocalSettings.php' );
 		}
 
-		$password = User::randomPassword();
+		$password = PasswordFactory::generateRandomPasswordString();
 
 		$ret = $this->doApiRequest( array(
 			'action' => 'createaccount',

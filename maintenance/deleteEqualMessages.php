@@ -162,7 +162,7 @@ class DeleteEqualMessages extends Maintenance {
 			return;
 		}
 
-		$user = User::newFromName( 'MediaWiki default' );
+		$user = User::newSystemUser( 'MediaWiki default', array( 'steal' => true ) );
 		if ( !$user ) {
 			$this->error( "Invalid username", true );
 		}

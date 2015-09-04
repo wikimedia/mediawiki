@@ -76,7 +76,7 @@ class RollbackEdits extends Maintenance {
 			return;
 		}
 
-		$doer = User::newFromName( 'Maintenance script' );
+		$doer = User::newSystemUser( 'Maintenance script', array( 'steal' => true ) );
 
 		foreach ( $titles as $t ) {
 			$page = WikiPage::factory( $t );
