@@ -1143,10 +1143,10 @@
 			 *
 			 * @private
 			 * @param {string} src URL to script, will be used as the src attribute in the script tag
-			 * @param {Function} [callback] Callback which will be run when the script is done
+			 * @return {jQuery.Promise}
 			 */
-			function addScript( src, callback ) {
-				$.ajax( {
+			function addScript( src ) {
+				return $.ajax( {
 					url: src,
 					dataType: 'script',
 					// Force jQuery behaviour to be for crossDomain. Otherwise jQuery would use
@@ -1156,7 +1156,7 @@
 					// text, so we'd need to $.globalEval, which then messes up line numbers.
 					crossDomain: true,
 					cache: true
-				} ).always( callback );
+				} );
 			}
 
 			/**
@@ -1217,7 +1217,7 @@
 								return;
 							}
 
-							addScript( arr[ i ], function () {
+							addScript( arr[ i ] ).always( function () {
 								nestedAddScript( arr, callback, i + 1 );
 							} );
 						};
