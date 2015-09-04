@@ -35,7 +35,7 @@ class Undelete extends Maintenance {
 	public function execute() {
 		global $wgUser;
 
-		$user = $this->getOption( 'user', 'Command line script' );
+		$user = $this->getOption( 'user', false );
 		$reason = $this->getOption( 'reason', '' );
 		$pageName = $this->getArg();
 
@@ -43,7 +43,11 @@ class Undelete extends Maintenance {
 		if ( !$title ) {
 			$this->error( "Invalid title", true );
 		}
-		$wgUser = User::newFromName( $user );
+		if ( $user === false ) {
+			$wgUser = User::newSystemUser( 'Command line script', array( 'steal' => true ) );
+		} else {
+			$wgUser = User::newFromName( $user );
+		}
 		if ( !$wgUser ) {
 			$this->error( "Invalid username", true );
 		}

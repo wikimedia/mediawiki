@@ -70,9 +70,9 @@ $files = findFiles( $dir, $extensions, isset( $options['search-recursively'] ) )
 # Initialise the user for this operation
 $user = isset( $options['user'] )
 	? User::newFromName( $options['user'] )
-	: User::newFromName( 'Maintenance script' );
+	: User::newSystemUser( 'Maintenance script', array( 'steal' => true ) );
 if ( !$user instanceof User ) {
-	$user = User::newFromName( 'Maintenance script' );
+	$user = User::newSystemUser( 'Maintenance script', array( 'steal' => true ) );
 }
 $wgUser = $user;
 

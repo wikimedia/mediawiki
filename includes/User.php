@@ -28,7 +28,7 @@ define( 'EDIT_TOKEN_SUFFIX', '+\\' );
 
 /**
  * The User object encapsulates all of the user-specific settings (user_id,
- * name, rights, password, email address, options, last login time). Client
+ * name, rights, email address, options, last login time). Client
  * classes use the getXXX() functions to access these fields. These functions
  * do all the work of determining whether the user is logged in,
  * whether the requested option can be satisfied from cookies or
@@ -63,11 +63,6 @@ class User implements IDBAccessObject {
 	 * @since 1.25
 	 */
 	const GETOPTIONS_EXCLUDE_DEFAULTS = 1;
-
-	/**
-	 * @var PasswordFactory Lazily loaded factory object for passwords
-	 */
-	private static $mPasswordFactory = null;
 
 	/**
 	 * Array of Strings List of member variables which are saved to the
@@ -190,20 +185,22 @@ class User implements IDBAccessObject {
 	public $mName;
 	/** @var string */
 	public $mRealName;
+
 	/**
-	 * @todo Make this actually private
-	 * @private
-	 * @var Password
+	 * These fields were marked "@private", but were defined as public to
+	 * maintain compatibility with PHP4 code since PHP4 didn't support access
+	 * restrictions. AuthManager makes password handling pluggable, meaning
+	 * these fields don't make sense anymore. If this broke something, see
+	 * T89459 for the context of the change.
+	 * @deprecated These are mostly unused, but kept for now to raise errors on attempted access.
 	 */
-	public $mPassword;
-	/**
-	 * @todo Make this actually private
-	 * @private
-	 * @var Password
-	 */
-	public $mNewpassword;
-	/** @var string */
-	public $mNewpassTime;
+	// @{
+	private $mPassword = null;
+	private $mNewpassword;
+	private $mNewpassTime;
+	private $mPasswordExpires;
+	// @}
+
 	/** @var string */
 	public $mEmail;
 	/** @var string TS_MW timestamp from the DB */
@@ -226,8 +223,6 @@ class User implements IDBAccessObject {
 	public $mGroups;
 	/** @var array */
 	protected $mOptionOverrides;
-	/** @var string */
-	protected $mPasswordExpires;
 	// @}
 
 	/**
@@ -559,7 +554,7 @@ class User implements IDBAccessObject {
 	 * The row should have the following fields from the user table in it:
 	 * - either user_name or user_id to load further data if needed (or both)
 	 * - user_real_name
-	 * - all other fields (email, password, etc.)
+	 * - all other fields (email, etc.)
 	 * It is useless to provide the remaining fields if either user_id,
 	 * user_name and user_real_name are not provided because the whole row
 	 * will be loaded once more from the database when accessing them.
@@ -571,6 +566,97 @@ class User implements IDBAccessObject {
 	public static function newFromRow( $row, $data = null ) {
 		$user = new User;
 		$user->loadFromRow( $row, $data );
+		return $user;
+	}
+
+	/**
+	 * Static factory method for creation of a "system" user from username.
+	 *
+	 * A "system" user is an account that's used to attribute logged actions
+	 * taken by MediaWiki itself, as opposed to a bot or human user. Examples
+	 * might include the 'Maintenance script' or 'Conversion script' accounts
+	 * used by various scripts in the maintenance/ directory or accounts such
+	 * as 'MediaWiki message delivery' used by the MassMessage extension.
+	 *
+	 * This can optionally create the user if it doesn't exist, and "steal" the
+	 * account if it does exist.
+	 *
+	 * @param string $name Username
+	 * @param array $options Options are:
+	 *  - validate: As for User::getCanonicalName(), default 'valid'
+	 *  - create: Whether to create the user if it doesn't already exist, default true
+	 *  - steal: Whether to reset the account's password and email if it
+	 *    already exists, default false
+	 * @return User|null
+	 */
+	public static function newSystemUser( $name, $options = array() ) {
+		$options += array(
+			'validate' => 'valid',
+			'create' => true,
+			'steal' => false,
+		);
+
+		$name = self::getCanonicalName( $name, $options['validate'] );
+		if ( $name === false ) {
+			return null;
+		}
+
+		$dbw = wfGetDB( DB_MASTER );
+		$row = $dbw->selectRow(
+			'user',
+			array_merge(
+				self::selectFields(),
+				array( 'user_password', 'user_newpassword' )
+			),
+			array( 'user_name' => $name ),
+			__METHOD__
+		);
+		if ( !$row ) {
+			// No user. Create it?
+			return $options['create'] ? self::createNew( $name ) : null;
+		}
+		$user = self::newFromRow( $row );
+
+		// A user is considered to exist as a non-system user if it has a
+		// password set, or a temporary password set, or an email set.
+		$passwordFactory = new PasswordFactory();
+		$passwordFactory->init( RequestContext::getMain()->getConfig() );
+		try {
+			$password = $passwordFactory->newFromCiphertext( $row->user_password );
+		} catch ( PasswordError $e ) {
+			wfDebug( 'Invalid password hash found in database.' );
+			$password = PasswordFactory::newInvalidPassword();
+		}
+		try {
+			$newpassword = $passwordFactory->newFromCiphertext( $row->user_newpassword );
+		} catch ( PasswordError $e ) {
+			wfDebug( 'Invalid password hash found in database.' );
+			$newpassword = PasswordFactory::newInvalidPassword();
+		}
+		if ( !$password instanceof InvalidPassword || !$newpassword instanceof InvalidPassword
+			|| $user->mEmail
+		) {
+			// User exists. Steal it?
+			if ( !$options['steal'] ) {
+				return null;
+			}
+
+			$nopass = PasswordFactory::newInvalidPassword()->toString();
+
+			$dbw->update(
+				'user',
+				array(
+					'user_password' => $nopass,
+					'user_newpassword' => $nopass,
+					'user_newpass_time' => null,
+				),
+				array( 'user_id' => $user->getId() ),
+				__METHOD__
+			);
+			$user->invalidateEmail();
+			$user->saveSettings();
+		}
+
 		return $user;
 	}
 
@@ -876,73 +962,6 @@ class User implements IDBAccessObject {
 	}
 
 	/**
-	 * Expire a user's password
-	 * @since 1.23
-	 * @param int $ts Optional timestamp to convert, default 0 for the current time
-	 */
-	public function expirePassword( $ts = 0 ) {
-		$this->loadPasswords();
-		$timestamp = wfTimestamp( TS_MW, $ts );
-		$this->mPasswordExpires = $timestamp;
-		$this->saveSettings();
-	}
-
-	/**
-	 * Clear the password expiration for a user
-	 * @since 1.23
-	 * @param bool $load Ensure user object is loaded first
-	 */
-	public function resetPasswordExpiration( $load = true ) {
-		global $wgPasswordExpirationDays;
-		if ( $load ) {
-			$this->load();
-		}
-		$newExpire = null;
-		if ( $wgPasswordExpirationDays ) {
-			$newExpire = wfTimestamp(
-				TS_MW,
-				time() + ( $wgPasswordExpirationDays * 24 * 3600 )
-			);
-		}
-		// Give extensions a chance to force an expiration
-		Hooks::run( 'ResetPasswordExpiration', array( $this, &$newExpire ) );
-		$this->mPasswordExpires = $newExpire;
-	}
-
-	/**
-	 * Check if the user's password is expired.
-	 * TODO: Put this and password length into a PasswordPolicy object
-	 * @since 1.23
-	 * @return string|bool The expiration type, or false if not expired
-	 * 	hard: A password change is required to login
-	 *	soft: Allow login, but encourage password change
-	 *	false: Password is not expired
-	 */
-	public function getPasswordExpired() {
-		global $wgPasswordExpireGrace;
-		$expired = false;
-		$now = wfTimestamp();
-		$expiration = $this->getPasswordExpireDate();
-		$expUnix = wfTimestamp( TS_UNIX, $expiration );
-		if ( $expiration !== null && $expUnix < $now ) {
-			$expired = ( $expUnix + $wgPasswordExpireGrace < $now ) ? 'hard' : 'soft';
-		}
-		return $expired;
-	}
-
-	/**
-	 * Get this user's password expiration date. Since this may be using
-	 * the cached User object, we assume that whatever mechanism is setting
-	 * the expiration date is also expiring the User cache.
-	 * @since 1.23
-	 * @return string|bool The datestamp of the expiration, or null if not set
-	 */
-	public function getPasswordExpireDate() {
-		$this->load();
-		return $this->mPasswordExpires;
-	}
-
-	/**
 	 * Given unvalidated user input, return a canonical username, or false if
 	 * the username is invalid.
 	 * @param string $name User input
@@ -1022,19 +1041,12 @@ class User implements IDBAccessObject {
 	/**
 	 * Return a random password.
 	 *
+	 * @deprecated since 1.27, use PasswordFactory::generateRandomPasswordString()
 	 * @return string New random password
 	 */
 	public static function randomPassword() {
 		global $wgMinimalPasswordLength;
-		// Decide the final password length based on our min password length,
-		// stopping at a minimum of 10 chars.
-		$length = max( 10, $wgMinimalPasswordLength );
-		// Multiply by 1.25 to get the number of hex characters we need
-		$length = $length * 1.25;
-		// Generate random hex chars
-		$hex = MWCryptRand::generateHex( $length );
-		// Convert from base 16 to base 32 to get a proper password like string
-		return wfBaseConvert( $hex, 16, 32 );
+		return PasswordFactory::generateRandomPasswordString( $wgMinimalPasswordLength );
 	}
 
 	/**
@@ -1046,15 +1058,9 @@ class User implements IDBAccessObject {
 	 * @param string|bool $name
 	 */
 	public function loadDefaults( $name = false ) {
-
-		$passwordFactory = self::getPasswordFactory();
-
 		$this->mId = 0;
 		$this->mName = $name;
 		$this->mRealName = '';
-		$this->mPassword = $passwordFactory->newFromCiphertext( null );
-		$this->mNewpassword = $passwordFactory->newFromCiphertext( null );
-		$this->mNewpassTime = null;
 		$this->mEmail = '';
 		$this->mOptionOverrides = null;
 		$this->mOptionsLoaded = false;
@@ -1070,8 +1076,6 @@ class User implements IDBAccessObject {
 		$this->mEmailAuthenticated = null;
 		$this->mEmailToken = '';
 		$this->mEmailTokenExpires = null;
-		$this->mPasswordExpires = null;
-		$this->resetPasswordExpiration( false );
 		$this->mRegistration = wfTimestamp( TS_MW );
 		$this->mGroups = array();
 
@@ -1243,7 +1247,6 @@ class User implements IDBAccessObject {
 	 */
 	protected function loadFromRow( $row, $data = null ) {
 		$all = true;
-		$passwordFactory = self::getPasswordFactory();
 
 		$this->mGroups = null; // deferred
 
@@ -1278,31 +1281,6 @@ class User implements IDBAccessObject {
 			$this->mEditCount = $row->user_editcount;
 		} else {
 			$all = false;
-		}
-
-		if ( isset( $row->user_password ) ) {
-			// Check for *really* old password hashes that don't even have a type
-			// The old hash format was just an md5 hex hash, with no type information
-			if ( preg_match( '/^[0-9a-f]{32}$/', $row->user_password ) ) {
-				$row->user_password = ":A:{$this->mId}:{$row->user_password}";
-			}
-
-			try {
-				$this->mPassword = $passwordFactory->newFromCiphertext( $row->user_password );
-			} catch ( PasswordError $e ) {
-				wfDebug( 'Invalid password hash found in database.' );
-				$this->mPassword = $passwordFactory->newFromCiphertext( null );
-			}
-
-			try {
-				$this->mNewpassword = $passwordFactory->newFromCiphertext( $row->user_newpassword );
-			} catch ( PasswordError $e ) {
-				wfDebug( 'Invalid password hash found in database.' );
-				$this->mNewpassword = $passwordFactory->newFromCiphertext( null );
-			}
-
-			$this->mNewpassTime = wfTimestampOrNull( TS_MW, $row->user_newpass_time );
-			$this->mPasswordExpires = wfTimestampOrNull( TS_MW, $row->user_password_expires );
 		}
 
 		if ( isset( $row->user_email ) ) {
@@ -1364,33 +1342,6 @@ class User implements IDBAccessObject {
 			foreach ( $res as $row ) {
 				$this->mGroups[] = $row->ug_group;
 			}
-		}
-	}
-
-	/**
-	 * Load the user's password hashes from the database
-	 *
-	 * This is usually called in a scenario where the actual User object was
-	 * loaded from the cache, and then password comparison needs to be performed.
-	 * Password hashes are not stored in memcached.
-	 *
-	 * @since 1.24
-	 */
-	private function loadPasswords() {
-		if ( $this->getId() !== 0 &&
-			( $this->mPassword === null || $this->mNewpassword === null )
-		) {
-			$db = ( $this->queryFlagsUsed & self::READ_LATEST )
-				? wfGetDB( DB_MASTER )
-				: wfGetDB( DB_SLAVE );
-
-			$this->loadFromRow( $db->selectRow(
-				'user',
-				array( 'user_password', 'user_newpassword',
-					'user_newpass_time', 'user_password_expires' ),
-				array( 'user_id' => $this->getId() ),
-				__METHOD__
-			) );
 		}
 	}
 
@@ -2383,23 +2334,21 @@ class User implements IDBAccessObject {
 	}
 
 	/**
+	 * @deprecated Removed in 1.27.
 	 * @return Password
 	 * @since 1.24
 	 */
 	public function getPassword() {
-		$this->loadPasswords();
-
-		return $this->mPassword;
+		throw new BadMethodCallException( __METHOD__ . ' has been removed in 1.27' );
 	}
 
 	/**
+	 * @deprecated Removed in 1.27.
 	 * @return Password
 	 * @since 1.24
 	 */
 	public function getTemporaryPassword() {
-		$this->loadPasswords();
-
-		return $this->mNewpassword;
+		throw new BadMethodCallException( __METHOD__ . ' has been removed in 1.27' );
 	}
 
 	/**
@@ -2413,15 +2362,13 @@ class User implements IDBAccessObject {
 	 * wipes it, so the account cannot be logged in until
 	 * a new password is set, for instance via e-mail.
 	 *
+	 * @deprecated since 1.27. AuthManager is coming.
 	 * @param string $str New password to set
 	 * @throws PasswordError On failure
-	 *
 	 * @return bool
 	 */
 	public function setPassword( $str ) {
 		global $wgAuth;
-
-		$this->loadPasswords();
 
 		if ( $str !== null ) {
 			if ( !$wgAuth->allowPasswordChange() ) {
@@ -2438,7 +2385,9 @@ class User implements IDBAccessObject {
 			throw new PasswordError( wfMessage( 'externaldberror' )->text() );
 		}
 
-		$this->setInternalPassword( $str );
+		$this->setToken();
+		$this->setOption( 'watchlisttoken', false );
+		$this->setPasswordInternal( $str );
 
 		return true;
 	}
@@ -2446,19 +2395,49 @@ class User implements IDBAccessObject {
 	/**
 	 * Set the password and reset the random token unconditionally.
 	 *
+	 * @deprecated since 1.27. AuthManager is coming.
 	 * @param string|null $str New password to set or null to set an invalid
 	 *  password hash meaning that the user will not be able to log in
 	 *  through the web interface.
 	 */
 	public function setInternalPassword( $str ) {
-		$this->setToken();
-		$this->setOption( 'watchlisttoken', false );
+		global $wgAuth;
 
-		$passwordFactory = self::getPasswordFactory();
-		$this->mPassword = $passwordFactory->newFromPlaintext( $str );
+		if ( $wgAuth->allowSetLocalPassword() ) {
+			$this->setToken();
+			$this->setOption( 'watchlisttoken', false );
+			$this->setPasswordInternal( $str );
+		}
+	}
 
-		$this->mNewpassword = $passwordFactory->newFromCiphertext( null );
-		$this->mNewpassTime = null;
+	/**
+	 * Actually set the password and such
+	 * @param string|null $str New password to set or null to set an invalid
+	 *  password hash meaning that the user will not be able to log in
+	 *  through the web interface.
+	 */
+	private function setPasswordInternal( $str ) {
+		$id = self::idFromName( $this->getName() );
+		if ( $id ) {
+			$passwordFactory = new PasswordFactory();
+			$passwordFactory->init( RequestContext::getMain()->getConfig() );
+			$dbw = wfGetDB( DB_MASTER );
+			$dbw->update(
+				'user',
+				array(
+					'user_password' => $passwordFactory->newFromPlaintext( $str )->toString(),
+					'user_newpassword' => PasswordFactory::newInvalidPassword()->toString(),
+					'user_newpass_time' => $dbw->timestampOrNull( null ),
+				),
+				array(
+					'user_id' => $id,
+				),
+				__METHOD__
+			);
+			$this->mPassword = null;
+		} else {
+			$this->mPassword = $str;
+		}
 	}
 
 	/**
@@ -2493,19 +2472,27 @@ class User implements IDBAccessObject {
 	/**
 	 * Set the password for a password reminder or new account email
 	 *
+	 * @deprecated since 1.27, AuthManager is coming
 	 * @param string $str New password to set or null to set an invalid
 	 *  password hash meaning that the user will not be able to use it
 	 * @param bool $throttle If true, reset the throttle timestamp to the present
 	 */
 	public function setNewpassword( $str, $throttle = true ) {
-		$this->loadPasswords();
+		$dbw = wfGetDB( DB_MASTER );
 
-		$this->mNewpassword = self::getPasswordFactory()->newFromPlaintext( $str );
+		$passwordFactory = new PasswordFactory();
+		$passwordFactory->init( RequestContext::getMain()->getConfig() );
+		$update = array(
+			'user_newpassword' => $passwordFactory->newFromPlaintext( $str )->toString(),
+		);
+
 		if ( $str === null ) {
-			$this->mNewpassTime = null;
+			$update['user_newpass_time'] = null;
 		} elseif ( $throttle ) {
-			$this->mNewpassTime = wfTimestampNow();
+			$update['user_newpass_time'] = $dbw->timestamp();
 		}
+
+		$dbw->update( 'user', $update, array( 'user_id' => $id ), __METHOD__ );
 	}
 
 	/**
@@ -2515,11 +2502,27 @@ class User implements IDBAccessObject {
 	 */
 	public function isPasswordReminderThrottled() {
 		global $wgPasswordReminderResendTime;
-		$this->load();
-		if ( !$this->mNewpassTime || !$wgPasswordReminderResendTime ) {
+
+		if ( !$wgPasswordReminderResendTime ) {
 			return false;
 		}
-		$expiry = wfTimestamp( TS_UNIX, $this->mNewpassTime ) + $wgPasswordReminderResendTime * 3600;
+
+		$this->load();
+
+		$db = ( $this->queryFlagsUsed & self::READ_LATEST )
+			? wfGetDB( DB_MASTER )
+			: wfGetDB( DB_SLAVE );
+		$newpassTime = $db->selectField(
+			'user',
+			'user_newpass_time',
+			array( 'user_id' => $this->getId() ),
+			__METHOD__
+		);
+
+		if ( $newpassTime === null ) {
+			return false;
+		}
+		$expiry = wfTimestamp( TS_UNIX, $newpassTime ) + $wgPasswordReminderResendTime * 3600;
 		return time() < $expiry;
 	}
 
@@ -3657,8 +3660,6 @@ class User implements IDBAccessObject {
 	 * @todo Only rarely do all these fields need to be set!
 	 */
 	public function saveSettings() {
-		global $wgAuth;
-
 		if ( wfReadOnly() ) {
 			// @TODO: caller should deal with this instead!
 			// This should really just be an exception.
@@ -3670,7 +3671,6 @@ class User implements IDBAccessObject {
 		}
 
 		$this->load();
-		$this->loadPasswords();
 		if ( 0 == $this->mId ) {
 			return; // anon
 		}
@@ -3681,17 +3681,10 @@ class User implements IDBAccessObject {
 		$oldTouched = $this->mTouched;
 		$newTouched = $this->newTouchedTimestamp();
 
-		if ( !$wgAuth->allowSetLocalPassword() ) {
-			$this->mPassword = self::getPasswordFactory()->newFromCiphertext( null );
-		}
-
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->update( 'user',
 			array( /* SET */
 				'user_name' => $this->mName,
-				'user_password' => $this->mPassword->toString(),
-				'user_newpassword' => $this->mNewpassword->toString(),
-				'user_newpass_time' => $dbw->timestampOrNull( $this->mNewpassTime ),
 				'user_real_name' => $this->mRealName,
 				'user_email' => $this->mEmail,
 				'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
@@ -3699,7 +3692,6 @@ class User implements IDBAccessObject {
 				'user_token' => strval( $this->mToken ),
 				'user_email_token' => $this->mEmailToken,
 				'user_email_token_expires' => $dbw->timestampOrNull( $this->mEmailTokenExpires ),
-				'user_password_expires' => $dbw->timestampOrNull( $this->mPasswordExpires ),
 			), array( /* WHERE */
 				'user_id' => $this->mId,
 				'user_touched' => $dbw->timestamp( $oldTouched ) // CAS check
@@ -3757,10 +3749,6 @@ class User implements IDBAccessObject {
 	 * @param string $name Username to add
 	 * @param array $params Array of Strings Non-default parameters to save to
 	 *   the database as user_* fields:
-	 *   - password: The user's password hash. Password logins will be disabled
-	 *     if this is omitted.
-	 *   - newpassword: Hash for a temporary password that has been mailed to
-	 *     the user.
 	 *   - email: The user's email address.
 	 *   - email_authenticated: The email authentication timestamp.
 	 *   - real_name: The user's real name.
@@ -3771,9 +3759,15 @@ class User implements IDBAccessObject {
 	 * @return User|null User object, or null if the username already exists.
 	 */
 	public static function createNew( $name, $params = array() ) {
+		foreach ( array( 'password', 'newpassword', 'newpass_time', 'password_expires' ) as $field ) {
+			if ( isset( $params[$field] ) ) {
+				wfDeprecated( __METHOD__ . " with param '$field'", '1.27' );
+				unset( $params[$field] );
+			}
+		}
+
 		$user = new User;
 		$user->load();
-		$user->loadPasswords();
 		$user->setToken(); // init token
 		if ( isset( $params['options'] ) ) {
 			$user->mOptions = $params['options'] + (array)$user->mOptions;
@@ -3782,12 +3776,13 @@ class User implements IDBAccessObject {
 		$dbw = wfGetDB( DB_MASTER );
 		$seqVal = $dbw->nextSequenceValue( 'user_user_id_seq' );
 
+		$noPass = PasswordFactory::newInvalidPassword()->toString();
+
 		$fields = array(
 			'user_id' => $seqVal,
 			'user_name' => $name,
-			'user_password' => $user->mPassword->toString(),
-			'user_newpassword' => $user->mNewpassword->toString(),
-			'user_newpass_time' => $dbw->timestampOrNull( $user->mNewpassTime ),
+			'user_password' => $noPass,
+			'user_newpassword' => $noPass,
 			'user_email' => $user->mEmail,
 			'user_email_authenticated' => $dbw->timestampOrNull( $user->mEmailAuthenticated ),
 			'user_real_name' => $user->mRealName,
@@ -3836,12 +3831,13 @@ class User implements IDBAccessObject {
 	 */
 	public function addToDatabase() {
 		$this->load();
-		$this->loadPasswords();
 		if ( !$this->mToken ) {
 			$this->setToken(); // init token
 		}
 
 		$this->mTouched = $this->newTouchedTimestamp();
+
+		$noPass = PasswordFactory::newInvalidPassword()->toString();
 
 		$dbw = wfGetDB( DB_MASTER );
 		$inWrite = $dbw->writesOrCallbacksPending();
@@ -3850,9 +3846,8 @@ class User implements IDBAccessObject {
 			array(
 				'user_id' => $seqVal,
 				'user_name' => $this->mName,
-				'user_password' => $this->mPassword->toString(),
-				'user_newpassword' => $this->mNewpassword->toString(),
-				'user_newpass_time' => $dbw->timestampOrNull( $this->mNewpassTime ),
+				'user_password' => $noPass,
+				'user_newpassword' => $noPass,
 				'user_email' => $this->mEmail,
 				'user_email_authenticated' => $dbw->timestampOrNull( $this->mEmailAuthenticated ),
 				'user_real_name' => $this->mRealName,
@@ -3893,6 +3888,11 @@ class User implements IDBAccessObject {
 			return Status::newFatal( 'userexists' );
 		}
 		$this->mId = $dbw->insertId();
+
+		// Set the password now that it's in the DB, if applicable
+		if ( $this->mPassword !== null ) {
+			$this->setPasswordInternal( $this->mPassword );
+		}
 
 		// Clear instance cache other than user table data, which is already accurate
 		$this->clearInstanceCache();
@@ -4002,13 +4002,14 @@ class User implements IDBAccessObject {
 
 	/**
 	 * Check to see if the given clear-text password is one of the accepted passwords
+	 * @deprecated since 1.27. AuthManager is coming.
 	 * @param string $password User password
 	 * @return bool True if the given password is correct, otherwise False
 	 */
 	public function checkPassword( $password ) {
 		global $wgAuth, $wgLegacyEncoding;
 
-		$this->loadPasswords();
+		$this->load();
 
 		// Some passwords will give a fatal Status, which means there is
 		// some sort of technical or security reason for this password to
@@ -4030,12 +4031,27 @@ class User implements IDBAccessObject {
 			return false;
 		}
 
-		if ( !$this->mPassword->equals( $password ) ) {
+		$passwordFactory = new PasswordFactory();
+		$passwordFactory->init( RequestContext::getMain()->getConfig() );
+		$db = ( $this->queryFlagsUsed & self::READ_LATEST )
+			? wfGetDB( DB_MASTER )
+			: wfGetDB( DB_SLAVE );
+
+		try {
+			$mPassword = $passwordFactory->newFromCiphertext( $db->selectField(
+				'user', 'user_password', array( 'user_id' => $this->getId() ), __METHOD__
+			) );
+		} catch ( PasswordError $e ) {
+			wfDebug( 'Invalid password hash found in database.' );
+			$mPassword = PasswordFactory::newInvalidPassword();
+		}
+
+		if ( !$mPassword->equals( $password ) ) {
 			if ( $wgLegacyEncoding ) {
 				// Some wikis were converted from ISO 8859-1 to UTF-8, the passwords can't be converted
 				// Check for this with iconv
 				$cp1252Password = iconv( 'UTF-8', 'WINDOWS-1252//TRANSLIT', $password );
-				if ( $cp1252Password === $password || !$this->mPassword->equals( $cp1252Password ) ) {
+				if ( $cp1252Password === $password || !$mPassword->equals( $cp1252Password ) ) {
 					return false;
 				}
 			} else {
@@ -4043,10 +4059,8 @@ class User implements IDBAccessObject {
 			}
 		}
 
-		$passwordFactory = self::getPasswordFactory();
-		if ( $passwordFactory->needsUpdate( $this->mPassword ) && !wfReadOnly() ) {
-			$this->mPassword = $passwordFactory->newFromPlaintext( $password );
-			$this->saveSettings();
+		if ( $passwordFactory->needsUpdate( $mPassword ) && !wfReadOnly() ) {
+			$this->setPasswordInternal( $password );
 		}
 
 		return true;
@@ -4056,20 +4070,39 @@ class User implements IDBAccessObject {
 	 * Check if the given clear-text password matches the temporary password
 	 * sent by e-mail for password reset operations.
 	 *
+	 * @deprecated since 1.27. AuthManager is coming.
 	 * @param string $plaintext
-	 *
 	 * @return bool True if matches, false otherwise
 	 */
 	public function checkTemporaryPassword( $plaintext ) {
 		global $wgNewPasswordExpiry;
 
 		$this->load();
-		$this->loadPasswords();
-		if ( $this->mNewpassword->equals( $plaintext ) ) {
-			if ( is_null( $this->mNewpassTime ) ) {
+
+		$passwordFactory = new PasswordFactory();
+		$passwordFactory->init( RequestContext::getMain()->getConfig() );
+		$db = ( $this->queryFlagsUsed & self::READ_LATEST )
+			? wfGetDB( DB_MASTER )
+			: wfGetDB( DB_SLAVE );
+
+		$row = $db->selectRow(
+			'user',
+			array( 'user_newpassword', 'user_newpass_time' ),
+			array( 'user_id' => $this->getId() ),
+			__METHOD__
+		);
+		try {
+			$mNewpassword = $passwordFactory->newFromCiphertext( $row->user_newpassword );
+		} catch ( PasswordError $e ) {
+			wfDebug( 'Invalid password hash found in database.' );
+			$mNewpassword = PasswordFactory::newInvalidPassword();
+		}
+
+		if ( $mNewpassword->equals( $plaintext ) ) {
+			if ( is_null( $row->user_newpass_time ) ) {
 				return true;
 			}
-			$expiry = wfTimestamp( TS_UNIX, $this->mNewpassTime ) + $wgNewPasswordExpiry;
+			$expiry = wfTimestamp( TS_UNIX, $row->user_newpass_time ) + $wgNewPasswordExpiry;
 			return ( time() < $expiry );
 		} else {
 			return false;
@@ -4927,7 +4960,9 @@ class User implements IDBAccessObject {
 	 */
 	public static function crypt( $password, $salt = false ) {
 		wfDeprecated( __METHOD__, '1.24' );
-		$hash = self::getPasswordFactory()->newFromPlaintext( $password );
+		$passwordFactory = new PasswordFactory();
+		$passwordFactory->init( RequestContext::getMain()->getConfig() );
+		$hash = $passwordFactory->newFromPlaintext( $password );
 		return $hash->toString();
 	}
 
@@ -4956,7 +4991,9 @@ class User implements IDBAccessObject {
 			}
 		}
 
-		$hash = self::getPasswordFactory()->newFromCiphertext( $hash );
+		$passwordFactory = new PasswordFactory();
+		$passwordFactory->init( RequestContext::getMain()->getConfig() );
+		$hash = $passwordFactory->newFromCiphertext( $hash );
 		return $hash->equals( $password );
 	}
 
@@ -5166,15 +5203,14 @@ class User implements IDBAccessObject {
 	/**
 	 * Lazily instantiate and return a factory object for making passwords
 	 *
+	 * @deprecated since 1.27, create a PasswordFactory directly instead
 	 * @return PasswordFactory
 	 */
 	public static function getPasswordFactory() {
-		if ( self::$mPasswordFactory === null ) {
-			self::$mPasswordFactory = new PasswordFactory();
-			self::$mPasswordFactory->init( RequestContext::getMain()->getConfig() );
-		}
-
-		return self::$mPasswordFactory;
+		wfDeprecated( __METHOD__, '1.27' );
+		$ret = new PasswordFactory();
+		$ret->init( RequestContext::getMain()->getConfig() );
+		return $ret;
 	}
 
 	/**
@@ -5196,6 +5232,7 @@ class User implements IDBAccessObject {
 	 *
 	 * @todo FIXME: This does not belong here; put it in Html or Linker or somewhere
 	 *
+	 * @deprecated since 1.27
 	 * @return array Array of HTML attributes suitable for feeding to
 	 *   Html::element(), directly or indirectly.  (Don't feed to Xml::*()!
 	 *   That will get confused by the boolean attribute syntax used.)
