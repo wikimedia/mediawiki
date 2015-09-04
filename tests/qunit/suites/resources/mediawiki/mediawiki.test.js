@@ -639,7 +639,7 @@
 				assert.strictEqual( isJsExecuted, undefined, 'script not executed multiple times' );
 				isJsExecuted = true;
 
-				assert.equal( mw.loader.getState( 'test.implement.import' ), 'loading', 'module state during implement() script execution' );
+				assert.equal( mw.loader.getState( 'test.implement.import' ), 'executing', 'module state during implement() script execution' );
 
 				$element = $( '<div class="mw-test-implement-import">Foo bar</div>' ).appendTo( '#qunit-fixture' );
 
