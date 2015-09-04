@@ -346,4 +346,33 @@
 				assert.deepEqual( data, { example: { value: 'B' } } );
 			} );
 	} );
+
+	QUnit.module( 'mediawiki.api (2)', {
+		setup: function () {
+			var self = this,
+				requests = this.requests = [];
+			this.api = new mw.Api();
+			this.sandbox.stub( jQuery, 'ajax', function () {
+				var request = $.extend( {
+					abort: self.sandbox.spy()
+				}, $.Deferred() );
+				requests.push( request );
+				return request;
+			} );
+		}
+	} );
+
+	QUnit.test( '#abort', 3, function ( assert ) {
+		this.api.get( {
+			a: 1
+		} );
+		this.api.post( {
+			b: 2
+		} );
+		this.api.abort();
+		assert.ok( this.requests.length === 2, 'Check both requests triggered' );
+		$.each( this.requests, function ( i, request ) {
+			assert.ok( request.abort.calledOnce, 'abort request number ' + i );
+		} );
+	} );
 }( mediaWiki ) );
