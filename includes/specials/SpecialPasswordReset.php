@@ -139,7 +139,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 	 * @return bool|array
 	 */
 	public function onSubmit( array $data ) {
-		global $wgAuth;
+		global $wgAuth, $wgMinimalPasswordLength;
 
 		if ( isset( $data['Domain'] ) ) {
 			if ( $wgAuth->validDomain( $data['Domain'] ) ) {
@@ -254,7 +254,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 		$passwords = array();
 		foreach ( $users as $user ) {
-			$password = $user->randomPassword();
+			$password = PasswordFactory::generateRandomPasswordString( $wgMinimalPasswordLength );
 			$user->setNewpassword( $password );
 			$user->saveSettings();
 			$passwords[] = $this->msg( 'passwordreset-emailelement', $user->getName(), $password )
