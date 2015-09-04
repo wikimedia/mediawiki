@@ -32,6 +32,25 @@ production.
 * ResetSessionID hook has been removed. Nothing seems to use it.
 * AuthPlugin::initUser() and AuthPlugin::updateUser() should no longer replace
   the passed User object.
+* Password handling via the User object has been deprecated and partially
+  removed, pending the future introduction of AuthManager. In particular:
+** expirePassword(), getPasswordExpireDate(), resetPasswordExpiration(), and
+   getPasswordExpired() have been removed. They were unused outside of core.
+** The mPassword, mNewpassword, mNewpassTime, and mPasswordExpires fields are
+   now private and will be removed in the future.
+** The getPassword() and getTemporaryPassword() methods now throw
+   BadMethodCallException and will be removed in the future.
+** The ability to pass 'password' and 'newpassword' to createNew() has been
+   removed. The only users of it seem to have been using it to set invalid
+   passwords, and so shouldn't be greatly affected.
+** setPassword(), setInternalPassword(), and setNewpassword() have been
+   deprecated, pending the introduction of AuthManager.
+** User::randomPassword() is deprecated in favor of a new method
+   PasswordFactory::generateRandomPasswordString()
+** User::getPasswordFactory() is deprecated, callers should just create a
+   PasswordFactory themselves.
+** A new constructor, User::newSystemUser(), has been added to simplify the
+   creation of passwordless "system" users for logged actions.
 
 === New features in 1.26 ===
 * (T51506) Now action=info gives estimates of actual watchers for a page.
@@ -75,6 +94,8 @@ production.
   page. During the deprecation period, the styles will only be loaded on pages
   which contain 'mw-ui-button' in their HTML. Starting in 1.28, the styles will
   only be loaded if explicitly required.
+* User::newSystemUser() may be used to simplify the creation of passwordless
+  "system" users for logged actions from extensions.
 
 ==== External libraries ====
 * Update es5-shim from v4.0.0 to v4.1.5.
