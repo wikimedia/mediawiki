@@ -3637,18 +3637,6 @@ $wgResourceLoaderValidateStaticJS = false;
 $wgResourceLoaderLESSVars = array();
 
 /**
- * Custom LESS functions. An associative array mapping function name to PHP
- * callable.
- *
- * Changes to LESS functions do not trigger cache invalidation.
- *
- * @since 1.22
- * @deprecated since 1.24 Questionable usefulness and problematic to support,
- *     will be removed in the future.
- */
-$wgResourceLoaderLESSFunctions = array();
-
-/**
  * Default import paths for LESS modules. LESS files referenced in @import
  * statements will be looked up here first, and relative to the importing file
  * second. To avoid collisions, it's important for the LESS files in these
