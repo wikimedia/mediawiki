@@ -89,25 +89,17 @@
 			$wikiPreview.hide();
 
 			// First PST the input, then diff it
-			postData.onlypst = '';
-			request = api.post( postData );
-			request.done( function ( response ) {
-				var postData;
 				postData = {
-					action: 'query',
-					indexpageids: '',
-					prop: 'revisions',
-					titles: mw.config.get( 'wgPageName' ),
-					rvdifftotext: response.parse.text['*'],
-					rvprop: ''
+					action: 'compare',
+					fromtitle: mw.config.get( 'wgPageName' ),
+					totext: $textbox.textSelection( 'getContents' ),
 				};
 				if ( section !== '' ) {
-					postData.rvsection = section;
+					postData.section = section;
 				}
-				return api.post( postData ).done( function ( result2 ) {
+				request = api.post( postData ).done( function ( result ) {
 					try {
-						var diffHtml = result2.query.pages[result2.query.pageids[0]]
-							.revisions[0].diff['*'];
+						var diffHtml = result.compare['*'];
 						$wikiDiff.find( 'table.diff tbody' ).html( diffHtml );
 					} catch ( e ) {
 						// "result.blah is undefined" error, ignore
@@ -115,7 +107,6 @@
 					}
 					$wikiDiff.show();
 				} );
-			} );
 		} else {
 			$wikiDiff.hide();
 			$.extend( postData, {
@@ -213,7 +204,7 @@
 			var isSubject = ( section === 'new' ),
 				summaryMsg = isSubject ? 'subject-preview' : 'summary-preview',
 				$summaryPreview = $editform.find( '.mw-summary-preview' ).empty();
-			if ( response.parse.parsedsummary && response.parse.parsedsummary['*'] !== '' ) {
+			if ( response.parse && response.parse.parsedsummary && response.parse.parsedsummary['*'] !== '' ) {
 				$summaryPreview.append(
 					mw.message( summaryMsg ).parse(),
 					' ',

@@ -31,20 +31,70 @@ class ApiComparePages extends ApiBase {
 		$rev1 = $this->revisionOrTitleOrId( $params['fromrev'], $params['fromtitle'], $params['fromid'] );
 		$rev2 = $this->revisionOrTitleOrId( $params['torev'], $params['totitle'], $params['toid'] );
 
-		$revision = Revision::newFromId( $rev1 );
+		if ( !is_null( $params['fromtitle'] ) ) {
+			$fromTitle = Title::newFromText( $params['fromtitle'] );
+			if ( !$fromTitle->exists() ) {
+				$fromContent = ContentHandler::getForModelID( $fromTitle->getContentModel() )->makeEmptyContent();
+			}
+		}
+		$fromRevision = Revision::newFromId( $rev1 );
+		if ( $fromRevision ) {
+			$fromTitle = $fromRevision->getTitle();
+			$fromContent = $fromRevision->getContent( Revision::FOR_THIS_USER, $this->getUser() );
+			$section = isset( $params['section'] ) ? $params['section'] : false;
+			if ( $fromContent && $section !== false ) {
+				$fromContent = $fromContent->getSection( $section, false );
+				if ( !$fromContent ) {
+					$this->dieUsage(
+						"There is no section {$section} in r" . $fromRevision->getId(),
+						'nosuchsection'
+					);
+				}
+			}
+		}
 
-		if ( !$revision ) {
+		if ( !$fromContent ) {
 			$this->dieUsage( 'The diff cannot be retrieved, ' .
 				'one revision does not exist or you do not have permission to view it.', 'baddiff' );
 		}
 
-		$contentHandler = $revision->getContentHandler();
-		$de = $contentHandler->createDifferenceEngine( $this->getContext(),
-			$rev1,
-			$rev2,
-			null, // rcid
-			true,
-			false );
+		$toRevision = Revision::newFromId( $rev2 );
+		if ( $toRevision ) {
+			$toContent = $toRevision->getContent( Revision::FOR_THIS_USER, $this->getUser() );
+			if ( $toContent && $section !== false ) {
+				$toContent = $toContent->getSection( $section, false );
+				if ( !$toContent ) {
+					$this->dieUsage(
+						"There is no section {$section} in r" . $toRevision->getId(),
+						'nosuchsection'
+					);
+				}
+			}
+		} else if ( !is_null( $params['totext'] ) ) {
+			$toContent = ContentHandler::makeContent(
+				$params['totext'],
+				$fromTitle,
+				$fromTitle->getContentModel(),
+				$fromRevision ? $fromRevision->getContentFormat() : $fromContent->getContentHandler()->getDefaultFormat()
+			);
+			$popts = ParserOptions::newFromUserAndLang( $this->getUser(), $fromContent->getContentHandler()->getPageViewLanguage( $fromTitle ) );
+	        $toContent = $toContent->preSaveTransform( $fromTitle, $this->getUser(), $popts );
+		}
+
+		if ( ( $fromContent && !$fromContent->isEmpty() ) || ( $toContent && !$toContent->isEmpty() ) ) {
+			if ( !$fromContent ) {
+				$fromContent = $toContent->getContentHandler()->makeEmptyContent();
+			}
+			if ( !$toContent ) {
+				$toContent = $fromContent->getContentHandler()->makeEmptyContent();
+			}
+		} else {
+			$this->dieUsage( 'The diff cannot be retrieved, ' .
+				'one revision does not exist or you do not have permission to view it.', 'baddiff' );
+		}
+
+		$de = $fromContent->getContentHandler()->createDifferenceEngine( $this->getContext(), $rev1, $rev2 );
+		$de->setContent( $fromContent, $toContent );
 
 		$vals = array();
 		if ( isset( $params['fromtitle'] ) ) {
@@ -53,15 +103,19 @@ class ApiComparePages extends ApiBase {
 		if ( isset( $params['fromid'] ) ) {
 			$vals['fromid'] = $params['fromid'];
 		}
-		$vals['fromrevid'] = $rev1;
+		if ( $rev1 ) {
+			$vals['fromrevid'] = $rev1;
+		}
+
 		if ( isset( $params['totitle'] ) ) {
 			$vals['totitle'] = $params['totitle'];
 		}
 		if ( isset( $params['toid'] ) ) {
 			$vals['toid'] = $params['toid'];
 		}
-		$vals['torevid'] = $rev2;
-
+		if ( $rev2 ) {
+			$vals['torevid'] = $rev2;
+		}
 		$difftext = $de->getDiffBody();
 
 		if ( $difftext === false ) {
@@ -101,10 +155,10 @@ class ApiComparePages extends ApiBase {
 
 			return $title->getLatestRevID();
 		}
-		$this->dieUsage(
-			'A title, a page ID, or a revision number is needed for both the from and the to parameters',
-			'inputneeded'
-		);
+		#$this->dieUsage(
+		#	'A title, a page ID, or a revision number is needed for both the from and the to parameters',
+		#	'inputneeded'
+		#);
 	}
 
 	public function getAllowedParams() {
@@ -122,6 +176,10 @@ class ApiComparePages extends ApiBase {
 			),
 			'torev' => array(
 				ApiBase::PARAM_TYPE => 'integer'
+			),
+			'totext' => null,
+			'section' => array(
+				ApiBase::PARAM_DFLT => null,
 			),
 		);
 	}
