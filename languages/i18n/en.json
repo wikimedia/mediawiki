@@ -944,6 +944,7 @@
 	"opensearch-desc": "{{SITENAME}} ({{CONTENTLANGUAGE}})",
 	"preferences": "Preferences",
 	"preferences-summary": "",
+	"prefs-section-warning": "The section requested is unknown. Please choose a section from the options below.",
 	"mypreferences": "Preferences",
 	"prefs-edits": "Number of edits:",
 	"prefsnologintext2": "Please log in to change your preferences.",
