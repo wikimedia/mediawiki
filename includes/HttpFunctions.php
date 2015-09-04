@@ -821,6 +821,8 @@ class CurlHttpRequest extends MWHttpRequest {
 
 class PhpHttpRequest extends MWHttpRequest {
 
+	private $fopenErrors = array();
+
 	/**
 	 * @param string $url
 	 * @return string
@@ -873,6 +875,16 @@ class PhpHttpRequest extends MWHttpRequest {
 		}
 
 		return $certOptions;
+	}
+
+	/**
+	 * Custom error handler for dealing with fopen() errors. fopen() tends to fire multiple errors in succession, and the last one
+	 * is completely useless (something like "fopen: failed to open stream") so normal methods of handling errors programmatically
+	 * like get_last_error() don't work.
+	 */
+	public function errorHandler( $errno, $errstr ) {
+		$n = count( $this->fopenErrors ) + 1;
+		$this->fopenErrors += array( "errno$n" => $errno, "errstr$n" => $errstr );
 	}
 
 	public function execute() {
@@ -943,9 +955,10 @@ class PhpHttpRequest extends MWHttpRequest {
 
 		do {
 			$reqCount++;
-			wfSuppressWarnings();
+			$this->fopenErrors = array();
+			set_error_handler( array( $this, 'errorHandler' ) );
 			$fh = fopen( $url, "r", false, $context );
-			wfRestoreWarnings();
+			restore_error_handler();
 
 			if ( !$fh ) {
 				break;
@@ -975,6 +988,10 @@ class PhpHttpRequest extends MWHttpRequest {
 		$this->setStatus();
 
 		if ( $fh === false ) {
+			if ( $this->fopenErrors ) {
+				LoggerFactory::getInstance( 'http' )->warning( __CLASS__
+					. ': error opening connection: {errstr1}', $this->fopenErrors );
+			}
 			$this->status->fatal( 'http-request-error' );
 			wfProfileOut( __METHOD__ );
 			return $this->status;
