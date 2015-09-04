@@ -30,6 +30,9 @@ production.
 * Custom LESS functions (defined via $wgResourceLoaderLESSFunctions)
   have been removed, after being deprecated in 1.24.
 * $wgAlwaysUseTidy has been removed.
+* ResetSessionID hook has been removed. Nothing seems to use it.
+* AuthPlugin::initUser() and AuthPlugin::updateUser() should no longer replace
+  the passed User object.
 
 === New features in 1.26 ===
 * (T51506) Now action=info gives estimates of actual watchers for a page.
