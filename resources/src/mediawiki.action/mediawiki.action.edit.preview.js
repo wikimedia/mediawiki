@@ -88,23 +88,16 @@
 			}
 
 			diffRequest = api.post( {
-				action: 'query',
-				indexpageids: true,
-				prop: 'revisions',
-				titles: mw.config.get( 'wgPageName' ),
-				rvdifftotext: $textbox.textSelection( 'getContents' ),
-				rvdifftotextpst: true,
-				rvprop: '',
-				rvsection: section === '' ? undefined : section
+				action: 'compare',
+				fromtitle: mw.config.get( 'wgPageName' ),
+				totext: $textbox.textSelection( 'getContents' ),
+				section: section ? undefined : section
 			} );
 
 			// Wait for the summary before showing the diff so the page doesn't jump twice
 			$.when( diffRequest, parseRequest ).done( function ( response ) {
-				var diffHtml,
-					query = response[ 0 ].query;
 				try {
-					diffHtml = query.pages[ query.pageids[ 0 ] ]
-						.revisions[ 0 ].diff[ '*' ];
+					var diffHtml = response[0].compare['*'];
 					$wikiDiff.find( 'table.diff tbody' ).html( diffHtml );
 				} catch ( e ) {
 					// "result.blah is undefined" error, ignore
