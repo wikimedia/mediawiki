@@ -22,7 +22,7 @@ class ApiBlockTest extends ApiTestCase {
 
 		if ( $user->getId() == 0 ) {
 			$user->addToDatabase();
-			$user->setPassword( 'UTApiBlockeePassword' );
+			TestUser::setPasswordForUser( $user, 'UTApiBlockeePassword' );
 
 			$user->saveSettings();
 		}

@@ -10,8 +10,29 @@ production.
 
 === Configuration changes in 1.27 ===
 * Removed $wgUseLinkNamespaceDBFields
+* Password handling via the User object has been deprecated and partially
+  removed, pending the future introduction of AuthManager. In particular:
+** expirePassword(), getPasswordExpireDate(), resetPasswordExpiration(), and
+   getPasswordExpired() have been removed. They were unused outside of core.
+** The mPassword, mNewpassword, mNewpassTime, and mPasswordExpires fields are
+   now private and will be removed in the future.
+** The getPassword() and getTemporaryPassword() methods now throw
+   BadMethodCallException and will be removed in the future.
+** The ability to pass 'password' and 'newpassword' to createNew() has been
+   removed. The only users of it seem to have been using it to set invalid
+   passwords, and so shouldn't be greatly affected.
+** setPassword(), setInternalPassword(), and setNewpassword() have been
+   deprecated, pending the introduction of AuthManager.
+** User::randomPassword() is deprecated in favor of a new method
+   PasswordFactory::generateRandomPasswordString()
+** User::getPasswordFactory() is deprecated, callers should just create a
+   PasswordFactory themselves.
+** A new constructor, User::newSystemUser(), has been added to simplify the
+   creation of passwordless "system" users for logged actions.
 
 === New features in 1.27 ===
+* User::newSystemUser() may be used to simplify the creation of passwordless
+  "system" users for logged actions from scripts and extensions.
 
 ==== External libraries ====
 
