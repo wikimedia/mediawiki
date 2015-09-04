@@ -3453,7 +3453,6 @@ function wfResetSessionID() {
 		$_SESSION = $tmp;
 	}
 	$newSessionId = session_id();
-	Hooks::run( 'ResetSessionID', array( $oldSessionId, $newSessionId ) );
 }
 
 /**
