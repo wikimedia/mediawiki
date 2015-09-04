@@ -1625,9 +1625,6 @@ MESSAGE;
 		$less->setPreserveComments( true );
 		$less->setVariables( self::getLessVars( $config ) );
 		$less->setImportDir( $config->get( 'ResourceLoaderLESSImportPaths' ) );
-		foreach ( $config->get( 'ResourceLoaderLESSFunctions' ) as $name => $func ) {
-			$less->registerFunction( $name, $func );
-		}
 		return $less;
 	}
 
