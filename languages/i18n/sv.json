@@ -977,7 +977,7 @@
 	"rows": "Rader:",
 	"columns": "Kolumner:",
 	"searchresultshead": "Sökning",
-	"stub-threshold": "Gräns för <a href=\"#\" class=\"stub\">stubblänk</a>-formatering (byte):",
+	"stub-threshold": "Gräns för formatering av stubblänk ($1):",
 	"stub-threshold-disabled": "Avaktiverat",
 	"recentchangesdays": "Antal dygn som skall visas i \"senaste ändringarna\":",
 	"recentchangesdays-max": "Maximalt $1 {{PLURAL:$1|dygn}}",

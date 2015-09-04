@@ -227,7 +227,7 @@
 	"redirectedfrom": "(Pāradresēts no $1)",
 	"redirectpagesub": "Pāradresācijas lapa",
 	"redirectto": "Pāradresēt uz:",
-	"lastmodifiedat": "Šajā lapā pēdējās izmaiņas izdarītas $2, $1.",
+	"lastmodifiedat": "Šajā lapā pēdējo izmaiņu izdarīšanas brīdis: $2, $1.",
 	"viewcount": "Šī lapa ir tikusi apskatīta $1 {{PLURAL:$1|reizes|reizi|reizes}}.",
 	"protectedpage": "Aizsargāta lapa",
 	"jumpto": "Pārlēkt uz:",

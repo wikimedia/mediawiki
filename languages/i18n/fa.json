@@ -961,6 +961,7 @@
 	"columns": "تعداد ستون‌ها:",
 	"searchresultshead": "جستجو",
 	"stub-threshold": "آستانهٔ ویرایش پیوندهای <a href=\"#\" class=\"stub\">ناقص</a> (بایت):",
+	"stub-threshold-sample-link": "نمونه",
 	"stub-threshold-disabled": "غیرفعال",
 	"recentchangesdays": "تعداد روزهای نمایش داده‌شده در تغییرات اخیر:",
 	"recentchangesdays-max": "حداکثر $1 {{PLURAL:$1|روز}}",

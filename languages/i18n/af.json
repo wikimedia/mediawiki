@@ -592,7 +592,7 @@
 	"updated": "(Gewysig)",
 	"note": "'''Nota:'''",
 	"previewnote": "'''Onthou dat hierdie slegs 'n voorskou is.'''\nU teks is nog nie gestoor nie!",
-	"continue-editing": "Wysig verder",
+	"continue-editing": "Gaan na redigeerarea",
 	"previewconflict": "Hierdie voorskou vertoon die teks in die boonste teksarea soos dit sou lyk as u die bladsy stoor.",
 	"session_fail_preview": "'''Jammer! Weens verlies aan sessie-inligting is die wysiging nie verwerk nie.\nProbeer asseblief weer. As dit steeds nie werk nie, probeer om [[Special:UserLogout|af te teken]] en dan weer aan te meld.'''",
 	"session_fail_preview_html": "'''Jammer! U wysigings is nie verwerk nie omdat sessie-data verlore gegaan het.'''\n\n''Omrede rou HTML hier by {{SITENAME}} ingevoer kan word, kan die voorskou nie gesien word nie ter beskerming teen aanvalle met JavaScript.''\n\n'''As dit 'n regmatige wysiging is, probeer asseblief weer. As dit daarna nog nie werk nie, [[Special:UserLogout|teken dan af]] en weer aan.'''",
