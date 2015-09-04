@@ -13,7 +13,7 @@
 	 * @return {String} Such as 'data/foo.js?131031765087663960'
 	 */
 	QUnit.fixurl = function ( value ) {
-		return value + (/\?/.test( value ) ? '&' : '?')
+		return value + ( /\?/.test( value ) ? '&' : '?' )
 			+ String( new Date().getTime() )
 			+ String( parseInt( Math.random() * 100000, 10 ) );
 	};
@@ -268,7 +268,7 @@
 						$.each( $.timers, function ( i, timer ) {
 							var node = timer.elem;
 							mw.log.warn( 'Unfinished animation #' + i + ' in ' + timer.queue + ' queue on ' +
-								mw.html.element( node.nodeName.toLowerCase(), $(node).getAttrs() )
+								mw.html.element( node.nodeName.toLowerCase(), $( node ).getAttrs() )
 							);
 						} );
 						// Force animations to stop to give the next test a clean start
