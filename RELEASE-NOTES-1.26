@@ -72,6 +72,7 @@ production.
   page. During the deprecation period, the styles will only be loaded on pages
   which contain 'mw-ui-button' in their HTML. Starting in 1.28, the styles will
   only be loaded if explicitly required.
+* (T47731) Allow <noscript> tag in wikitext.
 
 ==== External libraries ====
 * Update es5-shim from v4.0.0 to v4.1.5.

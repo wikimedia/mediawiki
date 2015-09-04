@@ -377,7 +377,7 @@ class Sanitizer {
 				'strike', 'strong', 'tt', 'var', 'div', 'center',
 				'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
 				'ruby', 'rb', 'rp', 'rt', 'rtc', 'p', 'span', 'abbr', 'dfn',
-				'kbd', 'samp', 'data', 'time', 'mark'
+				'kbd', 'samp', 'data', 'time', 'mark', 'noscript' /* bug 45731 */
 			);
 			$htmlsingle = array(
 				'br', 'wbr', 'hr', 'li', 'dt', 'dd'
