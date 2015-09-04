@@ -1161,6 +1161,24 @@
 			}
 
 			/**
+			 * Utility function for execute()
+			 * @ignore
+			 */
+			function addLink( media, url ) {
+				var el = document.createElement( 'link' );
+				// Support: IE
+				// Insert in document *before* setting href
+				getMarker().before( el );
+				el.rel = 'stylesheet';
+				if ( media && media !== 'all' ) {
+					el.media = media;
+				}
+				// If you end up here from an IE exception "SCRIPT: Invalid property value.",
+				// see #addEmbeddedCSS, bug 31676, and bug 47277 for details.
+				el.href = url;
+			}
+
+			/**
 			 * Executes a loaded module, making it ready to use
 			 *
 			 * @private
@@ -1183,25 +1201,11 @@
 					throw new Error( 'Module has already been executed: ' + module );
 				}
 
-				/**
-				 * Define loop-function here for efficiency
-				 * and to avoid re-using badly scoped variables.
-				 *
-				 * @ignore
-				 */
-				function addLink( media, url ) {
-					var el = document.createElement( 'link' );
-					// Support: IE
-					// Insert in document *before* setting href
-					getMarker().before( el );
-					el.rel = 'stylesheet';
-					if ( media && media !== 'all' ) {
-						el.media = media;
-					}
-					// If you end up here from an IE exception "SCRIPT: Invalid property value.",
-					// see #addEmbeddedCSS, bug 31676, and bug 47277 for details.
-					el.href = url;
-				}
+				// This used to be inside runScript, but since that is now fired asychronously
+				// (after CSS is loaded) we need to set it here right away. It is crucial that
+				// when execute() is called this is set synchronously, otherwise modules will get
+				// executed multiple times as the registry will state that it isn't loading yet.
+				registry[ module ].state = 'loading';
 
 				runScript = function () {
 					var script, markModuleReady, nestedAddScript, legacyWait,
@@ -1265,12 +1269,6 @@
 						handlePending( module );
 					}
 				};
-
-				// This used to be inside runScript, but since that is now fired asychronously
-				// (after CSS is loaded) we need to set it here right away. It is crucial that
-				// when execute() is called this is set synchronously, otherwise modules will get
-				// executed multiple times as the registry will state that it isn't loading yet.
-				registry[ module ].state = 'loading';
 
 				// Add localizations to message system
 				if ( registry[ module ].messages ) {
