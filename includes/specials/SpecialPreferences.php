@@ -29,6 +29,85 @@
 class SpecialPreferences extends SpecialPage {
 	function __construct() {
 		parent::__construct( 'Preferences' );
+		$this->validTabs = array(
+			'profile',
+			'rendering',
+			'skin',
+			'dateformat',
+			'files',
+			'editing',
+			'rc',
+			'personal',
+			'misc',
+		);
+		$this->externalPrefs = array();
+	}
+
+	/**
+	 * @param {String} $key valid key as specified in validTabs private property
+	 * @return {HtmlForm}
+	 */
+	public function getSectionPreferencesForm( $key ) {
+		$prefs = array();
+		$user = $this->getUser();
+		$ctx = $this->getContext();
+		switch ( $key ) {
+			case 'rendering':
+				Preferences::renderingPreferences( $user, $ctx, $prefs );
+				break;
+			case 'profile':
+				Preferences::profilePreferences( $user, $ctx, $prefs );
+				break;
+			case 'skin':
+				Preferences::skinPreferences( $user, $ctx, $prefs );
+				break;
+			case 'dateformat':
+				Preferences::datetimePreferences( $user, $ctx, $prefs );
+				break;
+			case 'editing':
+				Preferences::editingPreferences( $user, $ctx, $prefs );
+				break;
+			case 'personal':
+				Preferences::profilePreferences( $user, $ctx, $prefs );
+				break;
+			case 'files':
+				Preferences::filesPreferences( $user, $ctx, $prefs );
+				break;
+			case 'rc':
+				Preferences::rcPreferences( $user, $ctx, $prefs );
+				break;
+			default:
+				$prefs = $this->externalPrefs[$key];
+				break;
+		}
+		Preferences::loadPreferenceValues( $user, $ctx, $prefs );
+		$htmlForm = new PreferencesForm( $prefs, $ctx, 'prefs' );
+		$htmlForm->suppressReset();
+		$htmlForm->setModifiedUser( $user );
+		$htmlForm->setId( 'mw-prefs-form' );
+		$htmlForm->setSubmitText( $ctx->msg( 'saveprefs' )->text() );
+		$htmlForm->setAction( SpecialPage::getTitleFor( $this->getName(), $key )->getLocalUrl() );
+		return $htmlForm;
+	}
+
+	/**
+	 * Runs GetPreferences hook and constructs a mechanism for rendering preferences from other extensions as a
+	 * separate preference pane.
+	 */
+	public function loadExternalPreferences() {
+		$defaults = array();
+		Hooks::run( 'GetPreferences', array( $this->getUser(), &$defaults ) );
+		$this->externalPrefs = $defaults;
+		foreach( $defaults as $key => $row ) {
+			if ( isset( $row["section"] ) ) {
+				$section = explode( '/', $row["section"] )[0];
+				if ( !in_array( $section, $this->validTabs ) ) {
+					$this->validTabs[]  = $section;
+					$this->externalPrefs[$section] = array();
+				}
+				$this->externalPrefs[$section][$key] = $row;
+			}
+		}
 	}
 
 	public function execute( $par ) {
@@ -61,12 +140,18 @@ class SpecialPreferences extends SpecialPage {
 
 		$this->addHelpLink( 'Help:Preferences' );
 
-		$htmlForm = Preferences::getFormObject( $this->getUser(), $this->getContext() );
+		$this->loadExternalPreferences();
+
+		if ( $par && in_array( $par, $this->validTabs ) ) {
+			$htmlForm = $this->getSectionPreferencesForm( $par );
+		} else {
+			$htmlForm = Preferences::getFormObject( $this->getUser(), $this->getContext() );
+		}
 		$htmlForm->setSubmitCallback( array( 'Preferences', 'tryUISubmit' ) );
 
 		$htmlForm->show();
 	}
-
+	
 	private function showResetForm() {
 		if ( !$this->getUser()->isAllowed( 'editmyoptions' ) ) {
 			throw new PermissionsError( 'editmyoptions' );
