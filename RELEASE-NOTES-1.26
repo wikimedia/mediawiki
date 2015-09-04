@@ -27,6 +27,8 @@ production.
   MediaWiki 1.26, in where ResourceLoader became fully asynchronous.
 * $wgMasterWaitTimeout was removed (deprecated in 1.24).
 * Fields in ParserOptions are now private. Use the accessors instead.
+* Custom LESS functions (defined via $wgResourceLoaderLESSFunctions)
+  have been removed, after being deprecated in 1.24.
 
 === New features in 1.26 ===
 * (T51506) Now action=info gives estimates of actual watchers for a page.
