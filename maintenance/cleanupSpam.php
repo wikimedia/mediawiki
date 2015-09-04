@@ -45,7 +45,7 @@ class CleanupSpam extends Maintenance {
 		global $IP, $wgLocalDatabases, $wgUser;
 
 		$username = wfMessage( 'spambot_username' )->text();
-		$wgUser = User::newFromName( $username );
+		$wgUser = User::newSystemUser( $username );
 		if ( !$wgUser ) {
 			$this->error( "Invalid username specified in 'spambot_username' message: $username", true );
 		}
