@@ -14,7 +14,7 @@
 		 * Retrieve value from device storage.
 		 *
 		 * @param {string} key of item to retrieve
-		 * @returns {string|boolean} false when localStorage not available, otherwise string
+		 * @return {string|boolean} false when localStorage not available, otherwise string
 		 */
 		get: function ( key ) {
 			if ( this.isLocalStorageSupported ) {
@@ -29,7 +29,7 @@
 		 *
 		 * @param {string} key key name to store under.
 		 * @param {string} value to be stored.
-		 * @returns {boolean} whether the save succeeded or not.
+		 * @return {boolean} whether the save succeeded or not.
 		 */
 		set: function ( key, value ) {
 			try {
@@ -44,7 +44,7 @@
 		 * Remove a value from device storage.
 		 *
 		 * @param {string} key of item to remove.
-		 * @returns {boolean} whether the save succeeded or not.
+		 * @return {boolean} whether the save succeeded or not.
 		 */
 		remove: function ( key ) {
 			if ( this.isLocalStorageSupported ) {

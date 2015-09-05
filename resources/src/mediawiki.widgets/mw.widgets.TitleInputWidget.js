@@ -178,7 +178,7 @@
 	 * Get list of menu items from a server response.
 	 *
 	 * @param {Object} data Query result
-	 * @returns {OO.ui.MenuOptionWidget[]} Menu items
+	 * @return {OO.ui.MenuOptionWidget[]} Menu items
 	 */
 	mw.widgets.TitleInputWidget.prototype.getLookupMenuOptionsFromData = function ( data ) {
 		var i, len, index, pageExists, pageExistsExact, suggestionPage, page, redirect, redirects,
@@ -286,7 +286,7 @@
 	 * Get title object corresponding to given value, or #getValue if not given.
 	 *
 	 * @param {string} [value] Value to get a title for
-	 * @returns {mw.Title|null} Title object, or null if value is invalid
+	 * @return {mw.Title|null} Title object, or null if value is invalid
 	 */
 	mw.widgets.TitleInputWidget.prototype.getTitle = function ( value ) {
 		var title = value !== undefined ? value : this.getValue(),
