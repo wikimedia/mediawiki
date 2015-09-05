@@ -2535,7 +2535,7 @@
 	"tooltip-ca-nstab-main": "View the content page",
 	"tooltip-ca-nstab-user": "View the user page",
 	"tooltip-ca-nstab-media": "View the media page",
-	"tooltip-ca-nstab-special": "This is a special page, you cannot edit the page itself",
+	"tooltip-ca-nstab-special": "This is a special page, and it cannot be edited",
 	"tooltip-ca-nstab-project": "View the project page",
 	"tooltip-ca-nstab-image": "View the file page",
 	"tooltip-ca-nstab-mediawiki": "View the system message",
