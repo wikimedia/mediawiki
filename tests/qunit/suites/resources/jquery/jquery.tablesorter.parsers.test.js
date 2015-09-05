@@ -44,9 +44,9 @@
 	/**
 	 * For a value, check if the parser recognizes it and how it transforms it
 	 *
-	 * @param {String} msg text to pass on to qunit describing the test case
-	 * @param {String[]} parserId of the parser that will be tested
-	 * @param {String[][]} data Array of testcases. Each testcase, array of
+	 * @param {string} msg text to pass on to qunit describing the test case
+	 * @param {string[]} parserId of the parser that will be tested
+	 * @param {string[][]} data Array of testcases. Each testcase, array of
 	 *		inputValue: The string value that we want to test the parser for
 	 *		recognized: If we expect that this value's type is detectable by the parser
 	 *		outputValue: The value the parser has converted the input to
