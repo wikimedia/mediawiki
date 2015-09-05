@@ -24,7 +24,7 @@
 		 * Get the name of the compiler associated with a template based on its name.
 		 *
 		 * @param {string} templateName Name of template (including file suffix)
-		 * @return {String} Name of compiler
+		 * @return {string} Name of compiler
 		 */
 		getCompilerName: function ( templateName ) {
 			var templateParts = templateName.split( '.' );
