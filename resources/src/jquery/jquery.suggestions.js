@@ -142,6 +142,7 @@ $.suggestions = {
 	 * call to this function still pending will be canceled. If the value in the
 	 * textbox is empty or hasn't changed since the last time suggestions were fetched,
 	 * this function does nothing.
+	 *
 	 * @param {boolean} delayed Whether or not to delay this by the currently configured amount of time
 	 */
 	update: function ( context, delayed ) {
@@ -229,6 +230,7 @@ $.suggestions = {
 
 	/**
 	 * Sets the value of a property, and updates the widget accordingly
+	 *
 	 * @param {string} property Name of property
 	 * @param {Mixed} value Value to set property with
 	 */
@@ -415,6 +417,7 @@ $.suggestions = {
 
 	/**
 	 * Highlight a result in the results table
+	 *
 	 * @param {jQuery|string} result `<tr>` to highlight, or 'prev' or 'next'
 	 * @param {boolean} updateTextbox If true, put the suggestion in the textbox
 	 */
@@ -484,6 +487,7 @@ $.suggestions = {
 
 	/**
 	 * Respond to keypress event
+	 *
 	 * @param {number} key Code of key pressed
 	 */
 	keypress: function ( e, context, key ) {

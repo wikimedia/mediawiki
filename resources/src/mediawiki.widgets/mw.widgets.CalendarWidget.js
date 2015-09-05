@@ -310,6 +310,7 @@
 
 	/**
 	 * Handle click events on the "up" button, switching to less precise view.
+	 *
 	 * @private
 	 */
 	mw.widgets.CalendarWidget.prototype.onUpButtonClick = function () {
@@ -327,6 +328,7 @@
 
 	/**
 	 * Handle click events on the "previous" button, switching to previous pane.
+	 *
 	 * @private
 	 */
 	mw.widgets.CalendarWidget.prototype.onPrevButtonClick = function () {
@@ -346,6 +348,7 @@
 
 	/**
 	 * Handle click events on the "next" button, switching to next pane.
+	 *
 	 * @private
 	 */
 	mw.widgets.CalendarWidget.prototype.onNextButtonClick = function () {
@@ -367,6 +370,7 @@
 	 * Handle click events anywhere in the body of the widget, which contains the matrix of days,
 	 * months or years to choose. Maybe change the pane or switch to more precise view, depending on
 	 * what gets clicked.
+	 *
 	 * @private
 	 */
 	mw.widgets.CalendarWidget.prototype.onBodyClick = function ( e ) {

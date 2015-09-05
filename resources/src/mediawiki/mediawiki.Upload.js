@@ -64,6 +64,7 @@
 
 	/**
 	 * Set the text of the file page, to be created on file upload.
+	 *
 	 * @param {string} text
 	 */
 	UP.setText = function ( text ) {
@@ -72,6 +73,7 @@
 
 	/**
 	 * Set the filename, to be finalized on upload.
+	 *
 	 * @param {string} filename
 	 */
 	UP.setFilename = function ( filename ) {
@@ -94,6 +96,7 @@
 
 	/**
 	 * Set the file to be uploaded.
+	 *
 	 * @param {HTMLInputElement|File} file
 	 */
 	UP.setFile = function ( file ) {
@@ -102,6 +105,7 @@
 
 	/**
 	 * Set whether the file should be watchlisted after upload.
+	 *
 	 * @param {boolean} watchlist
 	 */
 	UP.setWatchlist = function ( watchlist ) {
@@ -110,6 +114,7 @@
 
 	/**
 	 * Set the edit comment for the upload.
+	 *
 	 * @param {string} comment
 	 */
 	UP.setComment = function ( comment ) {
@@ -118,6 +123,7 @@
 
 	/**
 	 * Get the text of the file page, to be created on file upload.
+	 *
 	 * @return {string}
 	 */
 	UP.getText = function () {
@@ -126,6 +132,7 @@
 
 	/**
 	 * Get the filename, to be finalized on upload.
+	 *
 	 * @return {string}
 	 */
 	UP.getFilename = function () {
@@ -134,6 +141,7 @@
 
 	/**
 	 * Get the file being uploaded.
+	 *
 	 * @return {HTMLInputElement|File}
 	 */
 	UP.getFile = function () {
@@ -142,6 +150,7 @@
 
 	/**
 	 * Get the boolean for whether the file will be watchlisted after upload.
+	 *
 	 * @return {boolean}
 	 */
 	UP.getWatchlist = function () {
@@ -150,6 +159,7 @@
 
 	/**
 	 * Get the current value of the edit comment for the upload.
+	 *
 	 * @return {string}
 	 */
 	UP.getComment = function () {
@@ -158,6 +168,7 @@
 
 	/**
 	 * Gets the base filename from a path name.
+	 *
 	 * @param {string} path
 	 * @return {string}
 	 */
@@ -178,6 +189,7 @@
 
 	/**
 	 * Gets the state of the upload.
+	 *
 	 * @return {mw.Upload.State}
 	 */
 	UP.getState = function () {
@@ -188,6 +200,7 @@
 	 * Get the imageinfo object for the finished upload.
 	 * Only available once the upload is finished! Don't try to get it
 	 * beforehand.
+	 *
 	 * @return {Object|undefined}
 	 */
 	UP.getImageInfo = function () {
@@ -196,6 +209,7 @@
 
 	/**
 	 * Upload the file directly.
+	 *
 	 * @return {jQuery.Promise}
 	 */
 	UP.upload = function () {
@@ -227,6 +241,7 @@
 
 	/**
 	 * Upload the file to the stash to be completed later.
+	 *
 	 * @return {jQuery.Promise}
 	 */
 	UP.uploadToStash = function () {
@@ -256,6 +271,7 @@
 
 	/**
 	 * Finish a stash upload.
+	 *
 	 * @return {jQuery.Promise}
 	 */
 	UP.finishStashUpload = function () {

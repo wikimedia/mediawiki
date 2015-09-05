@@ -370,6 +370,7 @@
 	/**
 	 * Initialisation.
 	 * Must only be called once, and not before the document is ready.
+	 *
 	 * @ignore
 	 */
 	function init() {
@@ -420,6 +421,7 @@
 		/**
 		 * Pause auto-hide timers for all notifications.
 		 * Notifications will not auto-hide until resume is called.
+		 *
 		 * @see mw.Notification#pause
 		 */
 		pause: function () {

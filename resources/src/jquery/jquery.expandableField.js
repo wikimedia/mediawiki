@@ -39,6 +39,7 @@
 		},
 		/**
 		 * Sets the value of a property, and updates the widget accordingly
+		 *
 		 * @param {String} property Name of property
 		 * @param {Mixed} value Value to set property with
 		 */

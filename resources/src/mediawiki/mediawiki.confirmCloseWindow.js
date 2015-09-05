@@ -77,12 +77,14 @@
 
 		/**
 		 * Return the object with functions to release and manually trigger the confirm alert
+		 *
 		 * @ignore
 		 */
 		return {
 			/**
 			 * Remove all event listeners and don't show an alert anymore, if the user wants to leave
 			 * the page.
+			 *
 			 * @ignore
 			 */
 			release: function () {
@@ -92,6 +94,7 @@
 			 * Trigger the module's function manually: Check, if options.test() returns true and show
 			 * an alert to the user if he/she want to leave this page. Returns false, if options.test() returns
 			 * false or the user cancelled the alert window (~don't leave the page), true otherwise.
+			 *
 			 * @ignore
 			 * @return {boolean}
 			 */
