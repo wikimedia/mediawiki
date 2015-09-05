@@ -9,9 +9,9 @@
 	 * @cfg {string} Description
 	 * @cfg {string} Input
 	 * @cfg {string} Output
-	 * @cfg {int} start Starting char for selection
-	 * @cfg {int} end Ending char for selection
-	 * @cfg {object} params Additional parameters for $().textSelection( 'encapsulateText' )
+	 * @cfg {number} start Starting char for selection
+	 * @cfg {number} end Ending char for selection
+	 * @cfg {Object} params Additional parameters for $().textSelection( 'encapsulateText' )
 	 */
 	function encapsulateTest( options ) {
 		var opt = $.extend( {
