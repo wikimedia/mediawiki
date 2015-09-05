@@ -2398,7 +2398,7 @@
 	"tooltip-ca-nstab-main": "查看内容页面",
 	"tooltip-ca-nstab-user": "查看用户页面",
 	"tooltip-ca-nstab-media": "查看媒体文件页面",
-	"tooltip-ca-nstab-special": "这是特殊页面，你无法编辑该页",
+	"tooltip-ca-nstab-special": "这是特殊页面，并且它不能被编辑",
 	"tooltip-ca-nstab-project": "查看项目页面",
 	"tooltip-ca-nstab-image": "查看文件页面",
 	"tooltip-ca-nstab-mediawiki": "查看系统消息",

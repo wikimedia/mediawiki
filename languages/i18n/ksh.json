@@ -7,7 +7,8 @@
 			"Reedy",
 			"Rentenirer",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"TTO"
 		]
 	},
 	"tog-underline": "Dun de Lengks ongerschtriische:",
@@ -2923,7 +2924,7 @@
 	"autoredircomment": "Leit öm op „[[$1]]“",
 	"autosumm-new": "De Sigg wood neu aanjelaat met däm Aanfang: $1",
 	"autosumm-newblank": "En läddijje Sigg wood aanjelaat",
-	"size-bytes": "{{PLURAL:$1|$1&nbsp;<i lang=\"en\" xml:lang=\"en\" dir=\"ltr\">{{PLURAL:$1|Byte|Bytes|Bytes}}</i>",
+	"size-bytes": "$1 {{PLURAL:$1|Byte|Bytes}}",
 	"size-kilobytes": "$1&nbsp;KB",
 	"size-megabytes": "$1&nbsp;MB",
 	"size-gigabytes": "$1&nbsp;GB",

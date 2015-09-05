@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Fasouzafreitas",
-			"Dianakc"
+			"Dianakc",
+			"Cainamarques"
 		]
 	},
 	"apihelp-main-param-action": "Qual ação executar.",
@@ -148,7 +149,7 @@
 	"apihelp-parse-paramvalue-prop-sections": "Fornece as seções no wikitexto analisado.",
 	"apihelp-parse-paramvalue-prop-headitems": "Fornece itens para colocar no <code>&lt;head&gt;</code> da página.",
 	"apihelp-parse-paramvalue-prop-headhtml": "Fornece <code>&lt;head&gt;</code> analisado da página.",
-	"apihelp-parse-paramvalue-prop-modules": "Fornece os módulos ResourceLoader usados na página.",
+	"apihelp-parse-paramvalue-prop-modules": "Fornece os módulos do ResourceLoader usados na página. Ou <kbd>jsconfigvars</kbd> ou <kbd>encodedjsconfigvars</kbd> deve ser solicitado conjuntamente com <kbd>modules</kbd>.",
 	"apihelp-parse-paramvalue-prop-jsconfigvars": "Fornece as variáveis de configuração JavaScript específicas da página.",
 	"apihelp-parse-paramvalue-prop-encodedjsconfigvars": "Fornece as variáveis de configuração JavaScript específicas da página como uma string JSON.",
 	"apihelp-parse-paramvalue-prop-indicators": "Fornece o HTML de indicadores de ''status'' de página utilizados na página.",
@@ -262,7 +263,7 @@
 	"apihelp-query+imageusage-param-namespace": "O espaço nominal a se enumerar.",
 	"apihelp-query+info-paramvalue-prop-readable": "Se o usuário pode ler esta página.",
 	"apihelp-query+info-paramvalue-prop-preload": "Fornece o texto retornado por EditFormPreloadText.",
-	"apihelp-query+info-paramvalue-prop-displaytitle": "Fornece a forma como o título da página é exibido atualmente.",
+	"apihelp-query+info-paramvalue-prop-displaytitle": "Fornece o modo como o título da página é exibido.",
 	"apihelp-query+info-param-testactions": "Testa se o usuário atual pode executar determinadas ações na página.",
 	"apihelp-query+info-example-simple": "Obtém informações sobre a página <kbd>Página principal</kbd>.",
 	"apihelp-query+iwbacklinks-description": "Encontra todas as páginas que apontam para o determinado link interwiki.\n\nPode ser usado para encontrar todos os links com um prefixo, ou todos os links para um título (com um determinado prefixo). Usar nenhum parâmetro é efetivamente \"todos os links interwiki\".",

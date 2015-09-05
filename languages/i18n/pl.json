@@ -2372,7 +2372,7 @@
 	"tooltip-ca-nstab-main": "Zobacz stronę treści",
 	"tooltip-ca-nstab-user": "Zobacz stronę osobistą użytkownika",
 	"tooltip-ca-nstab-media": "Zobacz stronę pliku",
-	"tooltip-ca-nstab-special": "To jest strona specjalna. Nie możesz jej edytować.",
+	"tooltip-ca-nstab-special": "To jest strona specjalna i nie można jej edytować.",
 	"tooltip-ca-nstab-project": "Zobacz stronę projektu",
 	"tooltip-ca-nstab-image": "Zobacz stronę grafiki",
 	"tooltip-ca-nstab-mediawiki": "Zobacz komunikat systemowy",

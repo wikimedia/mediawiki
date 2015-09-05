@@ -881,7 +881,7 @@
 	"revdelete-legend": "Establecer restricciones de visibilidad",
 	"revdelete-hide-text": "Texto de la revisión",
 	"revdelete-hide-image": "Ocultar el contenido del archivo",
-	"revdelete-hide-name": "Ocultar la selección y sus parámetros.",
+	"revdelete-hide-name": "Ocultar la selección y sus parámetros",
 	"revdelete-hide-comment": "Resumen de edición",
 	"revdelete-hide-user": "Nombre/IP del editor",
 	"revdelete-hide-restricted": "Suprimir para todos los usuarios, incluidos administradores",
