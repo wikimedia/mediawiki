@@ -192,7 +192,7 @@
 	 *
 	 * @param {String[]} header
 	 * @param {String[][]} data
-	 * @return jQuery
+	 * @return {jQuery}
 	 */
 	function tableCreate( header, data ) {
 		var i,
@@ -223,7 +223,7 @@
 	 * Extract text from table.
 	 *
 	 * @param {jQuery} $table
-	 * @return String[][]
+	 * @return {String[][]}
 	 */
 	function tableExtract( $table ) {
 		var data = [];
