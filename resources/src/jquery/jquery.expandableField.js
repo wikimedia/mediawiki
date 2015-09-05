@@ -41,7 +41,7 @@
 		 * Sets the value of a property, and updates the widget accordingly
 		 *
 		 * @param {jquery.expandableField} context
-		 * @param {String} property Name of property
+		 * @param {string} property Name of property
 		 * @param {Mixed} value Value to set property with
 		 */
 		configure: function ( context, property, value ) {
