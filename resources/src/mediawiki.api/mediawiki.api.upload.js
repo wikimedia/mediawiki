@@ -1,5 +1,6 @@
 /**
  * Provides an interface for uploading files to MediaWiki.
+ *
  * @class mw.Api.plugin.upload
  * @singleton
  */
@@ -18,6 +19,7 @@
 	/**
 	 * @private
 	 * Get nonce for iframe IDs on the page.
+	 *
 	 * @return {number}
 	 */
 	function getNonce() {
@@ -27,6 +29,7 @@
 	/**
 	 * @private
 	 * Get new iframe object for an upload.
+	 *
 	 * @return {HTMLIframeElement}
 	 */
 	function getNewIframe( id ) {
@@ -39,6 +42,7 @@
 	/**
 	 * @private
 	 * Shortcut for getting hidden inputs
+	 *
 	 * @return {jQuery}
 	 */
 	function getHiddenInput( name, val ) {
@@ -296,7 +300,10 @@
 		 *
 		 * This function will return a promise, which when resolved, will pass back a function
 		 * to finish the stash upload. You can call that function with an argument containing
-		 * more, or conflicting, data to pass to the server. For example:
+		 * more, or conflicting, data to pass to the server.
+		 *
+		 * @example
+		 *
 		 *     // upload a file to the stash with a placeholder filename
 		 *     api.uploadToStash( file, { filename: 'testing.png' } ).done( function ( finish ) {
 		 *         // finish is now the function we can use to finalize the upload
@@ -305,6 +312,7 @@
 		 *             // the upload is complete, data holds the API response
 		 *         } );
 		 *     } );
+		 *
 		 * @param {File|HTMLInputElement} file
 		 * @param {Object} [data]
 		 * @return {jQuery.Promise}

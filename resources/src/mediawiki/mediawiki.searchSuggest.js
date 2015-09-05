@@ -72,6 +72,7 @@
 		/**
 		 * Callback that's run when the user changes the search input text
 		 * 'this' is the search input box (jQuery object)
+		 *
 		 * @ignore
 		 */
 		function onBeforeUpdate() {
@@ -88,6 +89,7 @@
 		/**
 		 * Callback that's run when suggestions have been updated either from the cache or the API
 		 * 'this' is the search input box (jQuery object)
+		 *
 		 * @ignore
 		 */
 		function onAfterUpdate() {
