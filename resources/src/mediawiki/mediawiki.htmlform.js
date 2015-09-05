@@ -213,6 +213,7 @@
 		return this.stop( true, true ).fadeOut();
 	};
 
+	// jscs: disable jsDoc
 	/**
 	 * Bind a function to the jQuery object via live(), and also immediately trigger
 	 * the function on the objects with an 'instant' parameter set to true.
@@ -222,9 +223,10 @@
 	 * @param {Function} callback
 	 * @param {boolean|jQuery.Event} callback.immediate True when the event is called immediately,
 	 *  an event object when triggered from an event.
-	 * @return {jQuery}
 	 * @chainable
+	 * @return {jQuery}
 	 */
+	// jscs: enable jsDoc
 	mw.log.deprecate( $.fn, 'liveAndTestAtStart', function ( callback ) {
 		this
 			// Can't really migrate to .on() generically, needs knowledge of
