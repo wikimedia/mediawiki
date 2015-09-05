@@ -201,5 +201,4 @@
 				this.uploadBooklet.clear();
 			}, this );
 	};
-
 }( jQuery, mediaWiki ) );

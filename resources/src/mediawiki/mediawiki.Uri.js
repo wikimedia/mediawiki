@@ -158,12 +158,11 @@
 		}() );
 
 		/**
-		 * @class mw.Uri
-		 * @constructor
-		 *
 		 * Construct a new URI object. Throws error if arguments are illegal/impossible, or
 		 * otherwise don't parse.
 		 *
+		 * @class mw.Uri
+		 * @constructor
 		 * @param {Object|string} [uri] URI string, or an Object with appropriate properties (especially
 		 *  another URI object to clone). Object must have non-blank `protocol`, `host`, and `path`
 		 *  properties. If omitted (or set to `undefined`, `null` or empty string), then an object

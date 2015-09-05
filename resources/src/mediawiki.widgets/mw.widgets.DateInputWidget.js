@@ -517,7 +517,7 @@
 	 * @private
 	 * @param {string} date Date string, to be valid, must be in 'YYYY-MM-DD' or 'YYYY-MM' format or
 	 *     (unless the field is required) empty
-	 * @returns {boolean}
+	 * @return {boolean}
 	 */
 	mw.widgets.DateInputWidget.prototype.validateDate = function ( date ) {
 		var isValid;
@@ -532,7 +532,7 @@
 	/**
 	 * @private
 	 * @param {string} date Date string, to be valid, must be in 'YYYY-MM-DD' or 'YYYY-MM' format
-	 * @returns {boolean}
+	 * @return {boolean}
 	 */
 	mw.widgets.DateInputWidget.prototype.isValidDate = function ( date ) {
 		// "Half-strict mode": for example, for the format 'YYYY-MM-DD', 2015-1-3 instead of 2015-01-03
@@ -552,7 +552,7 @@
 	 * @private
 	 * @param {string} date Date string, to be valid, must be empty (no date selected) or in
 	 *     'YYYY-MM-DD' or 'YYYY-MM' format to be valid
-	 * @returns {boolean}
+	 * @return {boolean}
 	 */
 	mw.widgets.DateInputWidget.prototype.isInRange = function ( date ) {
 		var momentDate = moment( date, 'YYYY-MM-DD' ),

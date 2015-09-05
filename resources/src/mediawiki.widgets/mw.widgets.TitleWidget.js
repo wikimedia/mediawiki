@@ -155,7 +155,7 @@
 	 * Get option widgets from the server response
 	 *
 	 * @param {Object} data Query result
-	 * @returns {OO.ui.OptionWidget[]} Menu items
+	 * @return {OO.ui.OptionWidget[]} Menu items
 	 */
 	mw.widgets.TitleWidget.prototype.getOptionsFromData = function ( data ) {
 		var i, len, index, pageExists, pageExistsExact, suggestionPage, page, redirect, redirects,
@@ -263,7 +263,7 @@
 	 * Get title object corresponding to given value, or #getQueryValue if not given.
 	 *
 	 * @param {string} [value] Value to get a title for
-	 * @returns {mw.Title|null} Title object, or null if value is invalid
+	 * @return {mw.Title|null} Title object, or null if value is invalid
 	 */
 	mw.widgets.TitleWidget.prototype.getTitle = function ( value ) {
 		var title = value !== undefined ? value : this.getQueryValue(),

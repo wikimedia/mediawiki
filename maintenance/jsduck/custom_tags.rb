@@ -31,6 +31,14 @@ class CommonTag < JsDuck::Tag::Tag
   end
 end
 
+class ThisTag < CommonTag
+  def initialize
+    @tagname = :this
+    @pattern = 'this'
+    super
+  end
+end
+
 class SourceTag < CommonTag
   def initialize
     @tagname = :source
