@@ -8,7 +8,7 @@
 	/**
 	 * Add bogus to url to prevent IE crazy caching
 	 *
-	 * @param value {String} a relative path (eg. 'data/foo.js'
+	 * @param {String} value a relative path (eg. 'data/foo.js'
 	 * or 'data/test.php?foo=bar').
 	 * @return {String} Such as 'data/foo.js?131031765087663960'
 	 */
@@ -164,7 +164,7 @@
 	/**
 	 * Reset mw.config and others to a fresh copy of the live config for each test(),
 	 * and restore it back to the live one afterwards.
-	 * @param localEnv {Object} [optional]
+	 * @param {Object} [localEnv]
 	 * @example (see test suite at the bottom of this file)
 	 * </code>
 	 */

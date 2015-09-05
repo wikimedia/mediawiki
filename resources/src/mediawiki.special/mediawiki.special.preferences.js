@@ -51,8 +51,8 @@ jQuery( function ( $ ) {
 	 * It uses document.getElementById for security reasons (HTML injections in $()).
 	 *
 	 * @ignore
-	 * @param String name: the name of a tab without the prefix ("mw-prefsection-")
-	 * @param String mode: [optional] A hash will be set according to the current
+	 * @param {String} name the name of a tab without the prefix ("mw-prefsection-")
+	 * @param {String} [mode] A hash will be set according to the current
 	 *  open section. Set mode 'noHash' to surpress this.
 	 */
 	function switchPrefTab( name, mode ) {

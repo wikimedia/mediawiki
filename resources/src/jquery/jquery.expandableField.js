@@ -39,8 +39,8 @@
 		},
 		/**
 		 * Sets the value of a property, and updates the widget accordingly
-		 * @param property String Name of property
-		 * @param value Mixed Value to set property with
+		 * @param {String} property Name of property
+		 * @param {Mixed} value Value to set property with
 		 */
 		configure: function ( context, property, value ) {
 			// TODO: Validate creation using fallback values
