@@ -76,7 +76,7 @@
 		 *  that the user will be assigned to that bucket
 		 * @param {string} token A token that uniquely identifies the user for the
 		 *  duration of the experiment
-		 * @returns {string} The bucket
+		 * @return {string} The bucket
 		 */
 		getBucket: function ( experiment, token ) {
 			var buckets = experiment.buckets,

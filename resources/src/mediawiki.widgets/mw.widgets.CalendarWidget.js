@@ -116,7 +116,7 @@
 	 * internally and for dates accepted by #setDate and returned by #getDate.
 	 *
 	 * @private
-	 * @returns {string} Format
+	 * @return {string} Format
 	 */
 	mw.widgets.CalendarWidget.prototype.getDateFormat = function () {
 		return {
@@ -129,7 +129,7 @@
 	 * Get the date precision this calendar uses, 'day' or 'month'.
 	 *
 	 * @private
-	 * @returns {string} Precision, 'day' or 'month'
+	 * @return {string} Precision, 'day' or 'month'
 	 */
 	mw.widgets.CalendarWidget.prototype.getPrecision = function () {
 		return this.precision;
@@ -139,7 +139,7 @@
 	 * Get list of possible display layers.
 	 *
 	 * @private
-	 * @returns {string[]} Layers
+	 * @return {string[]} Layers
 	 */
 	mw.widgets.CalendarWidget.prototype.getDisplayLayers = function () {
 		return [ 'month', 'year', 'duodecade' ].slice( this.precision === 'month' ? 1 : 0 );
@@ -459,7 +459,7 @@
 	 * Get current date, in the format 'YYYY-MM-DD' or 'YYYY-MM', depending on precision. Digits will
 	 * not be localised.
 	 *
-	 * @returns {string|null} Date string
+	 * @return {string|null} Date string
 	 */
 	mw.widgets.CalendarWidget.prototype.getDate = function () {
 		return this.date;
