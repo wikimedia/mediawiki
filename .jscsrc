@@ -6,6 +6,7 @@
 	"disallowQuotedKeysInObjects": "allButReserved",
 	"requireDotNotation": { "allExcept": [ "keywords" ] },
 	"jsDoc": {
+		"checkParamNames": true,
 		"checkRedundantReturns": true,
 		"requireNewlineAfterDescription": true,
 		"requireParamTypes": true,
