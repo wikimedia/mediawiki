@@ -112,8 +112,8 @@
 		 * For index.php use `mw.config.get( 'wgScript' )`.
 		 *
 		 * @since 1.18
-		 * @param str string Name of script (eg. 'api'), defaults to 'index'
-		 * @return {string} Address to script (eg. '/w/api.php' )
+		 * @param {string} str Name of script (e.g. 'api'), defaults to 'index'
+		 * @return {string} Address to script (e.g. '/w/api.php' )
 		 */
 		wikiScript: function ( str ) {
 			str = str || 'index';
