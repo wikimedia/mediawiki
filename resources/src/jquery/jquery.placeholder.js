@@ -1,8 +1,4 @@
-/**
- * HTML5 placeholder emulation for jQuery plugin
- *
- * This will automatically use the HTML5 placeholder attribute if supported, or emulate this behavior if not.
- *
+/*!
  * This is a fork from Mathias Bynens' jquery.placeholder as of this commit
  * https://github.com/mathiasbynens/jquery-placeholder/blob/47f05d400e2dd16b59d144141a2cf54a9a77c502/jquery.placeholder.js
  *
@@ -12,6 +8,12 @@
  * @author Alex Ivanov <alexivanov97@gmail.com>, 2013
  * @version 2.1.0
  * @license MIT
+ */
+
+/**
+ * HTML5 placeholder emulation for jQuery plugin
+ *
+ * This will automatically use the HTML5 placeholder attribute if supported, or emulate this behavior if not.
  */
 ( function ( $ ) {
 

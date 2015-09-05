@@ -15,11 +15,12 @@
 	 * The underscore in the name is to avoid a bug <https://github.com/senchalabs/jsduck/issues/304>.
 	 * It is not part of the actual class name.
 	 *
+	 * The constructor is not publicly accessible; use mw.notification#notify instead.
+	 * This does not insert anything into the document (see #start).
+	 *
 	 * @class mw.Notification_
 	 * @alternateClassName mw.Notification
-	 *
-	 * @constructor The constructor is not publicly accessible; use mw.notification#notify instead.
-	 *  This does not insert anything into the document (see #start).
+	 * @constructor
 	 * @private
 	 */
 	function Notification( message, options ) {
