@@ -315,7 +315,7 @@
 	 *
 	 * @protected
 	 * @fires fileSaved
-	 * @returns {jQuery.Promise} Rejects the promise with an
+	 * @return {jQuery.Promise} Rejects the promise with an
 	 * {@link OO.ui.Error error}, or resolves if the upload was successful.
 	 */
 	mw.Upload.Dialog.prototype.saveFile = function () {
@@ -373,7 +373,7 @@
 	 * for the dialog accordingly.
 	 *
 	 * @protected
-	 * @returns {OO.ui.FormLayout}
+	 * @return {OO.ui.FormLayout}
 	 */
 	mw.Upload.Dialog.prototype.renderUploadForm = function () {
 		var fieldset,
@@ -401,7 +401,7 @@
 	 * for the dialog accordingly.
 	 *
 	 * @protected
-	 * @returns {OO.ui.FormLayout}
+	 * @return {OO.ui.FormLayout}
 	 */
 	mw.Upload.Dialog.prototype.renderInfoForm = function () {
 		var fieldset,
@@ -457,7 +457,7 @@
 	 * sets the {@link mw.Upload.Dialog#insertForm insertForm} property.
 	 *
 	 * @protected
-	 * @returns {OO.ui.FormLayout}
+	 * @return {OO.ui.FormLayout}
 	 */
 	mw.Upload.Dialog.prototype.renderInsertForm = function () {
 		var fieldset;
@@ -484,7 +484,7 @@
 	 * {@link mw.Upload.Dialog#uploadForm upload form}.
 	 *
 	 * @protected
-	 * @returns {File|null}
+	 * @return {File|null}
 	 */
 	mw.Upload.Dialog.prototype.getFile = function () {
 		return this.selectFileWidget.getValue();
@@ -495,7 +495,7 @@
 	 * {@link mw.Upload.Dialog#infoForm information form}.
 	 *
 	 * @protected
-	 * @returns {string}
+	 * @return {string}
 	 */
 	mw.Upload.Dialog.prototype.getFilename = function () {
 		return this.filenameWidget.getValue();
@@ -506,7 +506,7 @@
 	 * {@link mw.Upload.Dialog#infoForm information form}.
 	 *
 	 * @protected
-	 * @returns {string}
+	 * @return {string}
 	 */
 	mw.Upload.Dialog.prototype.getText = function () {
 		return this.descriptionWidget.getValue();
