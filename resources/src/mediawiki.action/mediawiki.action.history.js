@@ -8,7 +8,7 @@ jQuery( function ( $ ) {
 
 	/**
 	 * @ignore
-	 * @context {Element} input
+	 * @this {Element} input
 	 * @param {jQuery.Event} e
 	 */
 	function updateDiffRadios() {
