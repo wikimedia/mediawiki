@@ -1024,7 +1024,7 @@
 		 * from the server, since the replacement is done at save time.
 		 * It may, though, if the wikitext appears in extension-controlled content.
 		 *
-		 * @param nodes
+		 * @param {String[]} nodes
 		 */
 		wikilink: function ( nodes ) {
 			var page, anchor, url;

@@ -248,7 +248,7 @@
 	 *
 	 * After this, it will look at all rows at the bottom for footer rows
 	 * And place these in a tfoot using similar rules.
-	 * @param $table jQuery object for a <table>
+	 * @param {jQuery} $table jQuery object for a <table>
 	 */
 	function emulateTHeadAndFoot( $table ) {
 		var $thead, $tfoot, i, len,
@@ -545,7 +545,7 @@
 	 * Replace all rowspanned cells in the body with clones in each row, so sorting
 	 * need not worry about them.
 	 *
-	 * @param $table jQuery object for a <table>
+	 * @param {jQuery} $table jQuery object for a <table>
 	 */
 	function explodeRowspans( $table ) {
 		var spanningRealCellIndex, rowSpan, colSpan,
@@ -726,8 +726,8 @@
 			monthNames: {},
 
 			/**
-			 * @param $tables {jQuery}
-			 * @param settings {Object} (optional)
+			 * @param {jQuery} $tables
+			 * @param {Object} [settings]
 			 */
 			construct: function ( $tables, settings ) {
 				return $tables.each( function ( i, table ) {
@@ -907,7 +907,7 @@
 					 * Passing an empty array will reset sorting (basically just reset the headers
 					 * making the table appear unsorted).
 					 *
-					 * @param sortList {Array} (optional) List of sort objects.
+					 * @param {Array} [sortList] List of sort objects.
 					 */
 					$table.data( 'tablesorter' ).sort = function ( sortList ) {
 
