@@ -269,9 +269,9 @@
 	 * running some callback on it, then checking the results.
 	 *
 	 * @param {String} msg text to pass on to qunit for the comparison
-	 * @param {String} HTML to make the table
-	 * @param {String[][]} expected rows/cols to compare against at end
-	 * @param {function($table)} callback something to do with the table before we compare
+	 * @param {String} html HTML to make the table
+	 * @param {String[][]} expected Rows/cols to compare against at end
+	 * @param {function($table)} callback Something to do with the table before we compare
 	 */
 	function tableTestHTML( msg, html, expected, callback ) {
 		QUnit.test( msg, 1, function ( assert ) {
