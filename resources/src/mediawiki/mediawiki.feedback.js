@@ -86,6 +86,7 @@
 	 * Respond to dialog submit event. If the information was
 	 * submitted, either successfully or with an error, open
 	 * a MessageDialog to thank the user.
+	 *
 	 * @param {string} [status] A status of the end of operation
 	 *  of the main feedback dialog. Empty if the dialog was
 	 *  dismissed with no action or the user followed the button
@@ -486,6 +487,7 @@
 
 	/**
 	 * Set the bug report link
+	 *
 	 * @param {string} link Link to the external bug report form
 	 */
 	mw.Feedback.Dialog.prototype.setBugReportLink = function ( link ) {
@@ -494,6 +496,7 @@
 
 	/**
 	 * Get the bug report link
+	 *
 	 * @returns {string} Link to the external bug report form
 	 */
 	mw.Feedback.Dialog.prototype.getBugReportLink = function () {

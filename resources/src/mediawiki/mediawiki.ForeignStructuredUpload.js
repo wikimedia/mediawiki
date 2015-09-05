@@ -28,6 +28,7 @@
 
 	/**
 	 * Add categories to the upload.
+	 *
 	 * @param {string[]} categories Array of categories to which this upload will be added.
 	 */
 	ForeignStructuredUpload.prototype.addCategories = function ( categories ) {
@@ -41,6 +42,7 @@
 
 	/**
 	 * Add a description to the upload.
+	 *
 	 * @param {string} language The language code for the description's language. Must have a template on the target wiki to work properly.
 	 * @param {string} description The description of the file.
 	 */
@@ -53,6 +55,7 @@
 
 	/**
 	 * Set the date of creation for the upload.
+	 *
 	 * @param {Date} date
 	 */
 	ForeignStructuredUpload.prototype.setDate = function ( date ) {
@@ -62,6 +65,7 @@
 	/**
 	 * Get the text of the file page, to be created on upload. Brings together
 	 * several different pieces of information to create useful text.
+	 *
 	 * @return {string}
 	 */
 	ForeignStructuredUpload.prototype.getText = function () {
@@ -85,6 +89,7 @@
 
 	/**
 	 * Gets the wikitext for the creation date of this upload.
+	 *
 	 * @private
 	 * @return {string}
 	 */
@@ -99,6 +104,7 @@
 	/**
 	 * Gets the name of the template to use for creating the file metadata.
 	 * Override in subclasses for other templates.
+	 *
 	 * @private
 	 * @return {string}
 	 */
@@ -109,6 +115,7 @@
 	/**
 	 * Fetches the wikitext for any descriptions that have been added
 	 * to the upload.
+	 *
 	 * @private
 	 * @return {string}
 	 */
@@ -126,6 +133,7 @@
 	/**
 	 * Fetches the wikitext for the categories to which the upload will
 	 * be added.
+	 *
 	 * @private
 	 * @return {string}
 	 */
@@ -142,6 +150,7 @@
 
 	/**
 	 * Gets the wikitext for the license of the upload. Abstract for now.
+	 *
 	 * @private
 	 * @return {string}
 	 */
@@ -151,6 +160,7 @@
 
 	/**
 	 * Get the username.
+	 *
 	 * @private
 	 * @return {string}
 	 */

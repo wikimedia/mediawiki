@@ -340,8 +340,9 @@
 	 * The sync style load test (for @import). This is, in a way, also an open bug for
 	 * ResourceLoader ("execute js after styles are loaded"), but browsers don't offer a
 	 * way to get a callback from when a stylesheet is loaded (that is, including any
-	 * @import rules inside). To work around this, we'll have a little time loop to check
+	 * `@import` rules inside). To work around this, we'll have a little time loop to check
 	 * if the styles apply.
+	 *
 	 * Note: This test originally used new Image() and onerror to get a callback
 	 * when the url is loaded, but that is fragile since it doesn't monitor the
 	 * same request as the css @import, and Safari 4 has issues with

@@ -208,7 +208,8 @@
 		},
 
 		/**
-		 * Get the  digit transform table for current UI language.
+		 * Get the digit transform table for current UI language.
+		 *
 		 * @return {Object|Array}
 		 */
 		getDigitTransformTable: function () {
@@ -217,7 +218,8 @@
 		},
 
 		/**
-		 * Get the  separator transform table for current UI language.
+		 * Get the separator transform table for current UI language.
+		 *
 		 * @return {Object|Array}
 		 */
 		getSeparatorTransformTable: function () {
