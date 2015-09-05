@@ -18,10 +18,11 @@
  *
  * @class jQuery.plugin.suggestions
  */
+// jscs: disable jsDoc
 /**
  * @method suggestions
- * @return {jQuery}
  * @chainable
+ * @return {jQuery}
  *
  * @param {Object} options
  *
@@ -92,6 +93,7 @@
  * @param {boolean} [options.highlightInput=false] Whether to highlight matched portions of the
  *  input or not.
  */
+// jscs: enable jsDoc
 ( function ( $ ) {
 
 var hasOwn = Object.hasOwnProperty;
