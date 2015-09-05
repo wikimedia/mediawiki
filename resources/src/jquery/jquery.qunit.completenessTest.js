@@ -186,9 +186,9 @@
 		 * Depending on the action it either injects our listener into the methods, or
 		 * reads from our tracker and records which methods have not been called by the test suite.
 		 *
-		 * @param {String|Null} currName Name of the given object member (Initially this is null).
-		 * @param {mixed} currVar The variable to check (initially an object,
+		 * @param {mixed} currObj The variable to check (initially an object,
 		 *  further down it could be anything).
+		 * @param {String|Null} currName Name of the given object member (Initially this is null).
 		 * @param {Object} masterVariable Throughout our interation, always keep track of the master/root.
 		 *  Initially this is the same as currVar.
 		 * @param {Array} parentPathArray Array of names that indicate our breadcrumb path starting at
@@ -275,9 +275,9 @@
 		 * Injects a function (such as a spy that updates methodCallTracker when
 		 * it's called) inside another function.
 		 *
-		 * @param {Object} masterVariable
-		 * @param {Array} objectPathArray
-		 * @param {Function} injectFn
+		 * @param {Object} obj The function into which `injectFn` will be inserted
+		 * @param {Array} key The key by which `injectFn` will be known in `obj`
+		 * @param {Function} injectFn The function to insert
 		 */
 		injectCheck: function ( obj, key, injectFn ) {
 			var spy,

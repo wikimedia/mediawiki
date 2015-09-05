@@ -415,7 +415,7 @@
 		 * Used by Message#parser().
 		 *
 		 * @since 1.25
-		 * @param {string} fmt Format string
+		 * @param {string} formatString Format string
 		 * @param {Mixed...} parameters Values for $N replacements
 		 * @return {string} Formatted string
 		 */
@@ -951,7 +951,7 @@
 			 * execute the module or job now.
 			 *
 			 * @private
-			 * @param {Array} module Names of modules to be checked
+			 * @param {Array} modules Names of modules to be checked
 			 * @return {boolean} True if all modules are in state 'ready', false otherwise
 			 */
 			function allReady( modules ) {
@@ -1128,7 +1128,7 @@
 			 * order.
 			 *
 			 * @private
-			 * @param {string[]} module Array of string module names
+			 * @param {string[]} modules Array of string module names
 			 * @return {Array} List of dependencies, including 'module'.
 			 */
 			function resolve( modules ) {
