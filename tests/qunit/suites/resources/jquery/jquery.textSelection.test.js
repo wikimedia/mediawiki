@@ -5,13 +5,13 @@
 	/**
 	 * Test factory for $.fn.textSelection( 'encapsulateText' )
 	 *
-	 * @param options {object} associative array containing:
-	 *   description {string}
-	 *   input {string}
-	 *   output {string}
-	 *   start {int} starting char for selection
-	 *   end {int} ending char for selection
-	 *   params {object} add'l parameters for $().textSelection( 'encapsulateText' )
+	 * @param {Object} options Associative configuration array
+	 * @cfg {string} Description
+	 * @cfg {string} Input
+	 * @cfg {string} Output
+	 * @cfg {int} start Starting char for selection
+	 * @cfg {int} end Ending char for selection
+	 * @cfg {object} params Additional parameters for $().textSelection( 'encapsulateText' )
 	 */
 	function encapsulateTest( options ) {
 		var opt = $.extend( {
