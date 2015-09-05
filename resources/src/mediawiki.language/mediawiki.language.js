@@ -90,7 +90,7 @@ $.extend( mw.language, {
 	 *
 	 * @param {string} gender 'male', 'female', or anything else for neutral.
 	 * @param {Array} forms List of gender forms
-	 * @return string
+	 * @return {string}
 	 */
 	gender: function ( gender, forms ) {
 		if ( !forms || forms.length === 0 ) {

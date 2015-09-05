@@ -266,7 +266,7 @@
 		 * TODO: Put SVG back after working around Firefox 7 bug <https://bugzilla.wikimedia.org/show_bug.cgi?id=31643>
 		 *
 		 * @param {File} file
-		 * @return boolean
+		 * @return {boolean}
 		 */
 		function fileIsPreviewable( file ) {
 			var known = [ 'image/png', 'image/gif', 'image/jpeg', 'image/svg+xml' ],

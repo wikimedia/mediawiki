@@ -203,7 +203,7 @@
 	 * jQuery plugin to fade or snap to hiding state.
 	 *
 	 * @param {boolean} [instantToggle=false]
-	 * @return jQuery
+	 * @return {jQuery}
 	 * @chainable
 	 */
 	$.fn.goOut = function ( instantToggle ) {
@@ -222,7 +222,7 @@
 	 * @param {Function} callback
 	 * @param {boolean|jQuery.Event} callback.immediate True when the event is called immediately,
 	 *  an event object when triggered from an event.
-	 * @return jQuery
+	 * @return {jQuery}
 	 * @chainable
 	 */
 	mw.log.deprecate( $.fn, 'liveAndTestAtStart', function ( callback ) {

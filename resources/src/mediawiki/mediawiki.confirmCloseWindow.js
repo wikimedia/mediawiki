@@ -93,7 +93,7 @@
 			 * an alert to the user if he/she want to leave this page. Returns false, if options.test() returns
 			 * false or the user cancelled the alert window (~don't leave the page), true otherwise.
 			 * @ignore
-			 * @return boolean
+			 * @return {boolean}
 			 */
 			trigger: function () {
 				// use confirm to show the message to the user (if options.text() is true)

@@ -101,7 +101,7 @@
 		 * document.
 		 *
 		 * @param {string} css CSS source
-		 * @return Selector counts
+		 * @return {Object} Selector counts
 		 * @return {number} return.selectors Total number of selectors
 		 * @return {number} return.matched Number of matched selectors
 		 */

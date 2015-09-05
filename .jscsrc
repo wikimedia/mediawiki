@@ -2,10 +2,12 @@
 	"preset": "wikimedia",
 
 	"requireVarDeclFirst": null,
-	"jsDoc": null,
 
 	"disallowQuotedKeysInObjects": "allButReserved",
 	"requireDotNotation": { "allExcept": [ "keywords" ] },
+	"jsDoc": {
+		"requireReturnTypes": true
+	},
 
 	"excludeFiles": [
 		"docs/**",
