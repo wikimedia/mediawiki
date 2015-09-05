@@ -28,7 +28,7 @@
  * @author Rob Church <robchur@gmail.com>
  * @ingroup SpecialPage
  */
-class SpecialBookSources extends SpecialPage {
+class SpecialBookSources extends FormSpecialPage {
 	/**
 	 * ISBN passed to the page, if any
 	 */
@@ -42,15 +42,13 @@ class SpecialBookSources extends SpecialPage {
 	}
 
 	/**
-	 * Show the special page
-	 *
 	 * @param string $isbn ISBN passed as a subpage parameter
 	 */
-	public function execute( $isbn ) {
-		$this->setHeaders();
-		$this->outputHeader();
+	protected function setParameter( $isbn ) {
 		$this->isbn = self::cleanIsbn( $isbn ? $isbn : $this->getRequest()->getText( 'isbn' ) );
-		$this->getOutput()->addHTML( $this->makeForm() );
+	}
+
+	public function onSubmit( array $data ) {
 		if ( strlen( $this->isbn ) > 0 ) {
 			if ( !self::isValidISBN( $this->isbn ) ) {
 				$this->getOutput()->wrapWikiMsg(
@@ -116,37 +114,51 @@ class SpecialBookSources extends SpecialPage {
 	}
 
 	/**
-	 * Generate a form to allow users to enter an ISBN
+	 * Get an HTMLForm descriptor array
+	 * @return array
+	 */
+	protected function getFormFields() {
+		return array(
+			'isbn' => array(
+				'name' => 'isbn',
+				'default' => $this->isbn,
+				'type' => 'text',
+				'id' => 'isbn',
+				'size' => 20,
+				'autofocus' => true,
+				'cssclass' => 'mw-ui-input-inline',
+				'label-message' => 'booksources-isbn'
+			)
+		);
+	}
+
+	/**
+	 * @param HTMLForm $form
+	 */
+	protected function alterForm( HTMLForm $form ) {
+		$form
+		->setMethod( 'get' )
+		->setSubmitTextMsg( 'booksources-search' )
+		->setWrapperLegendMsg( 'booksources-search-legend' );
+
+		$form->setSubmitProgressive();
+	}
+
+	/**
+	 * Get display format for the form. See HTMLForm documentation for available values.
 	 *
 	 * @return string
 	 */
-	private function makeForm() {
-		$form = Html::openElement( 'fieldset' ) . "\n";
-		$form .= Html::element(
-			'legend',
-			array(),
-			$this->msg( 'booksources-search-legend' )->text()
-		) . "\n";
-		$form .= Html::openElement( 'form', array( 'method' => 'get', 'action' => wfScript() ) ) . "\n";
-		$form .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() ) . "\n";
-		$form .= '<p>' . Xml::inputLabel(
-			$this->msg( 'booksources-isbn' )->text(),
-			'isbn',
-			'isbn',
-			20,
-			$this->isbn,
-			array( 'autofocus' => '', 'class' => 'mw-ui-input-inline' )
-		);
+	protected function getDisplayFormat() {
+		return 'inline';
+	}
 
-		$form .= '&#160;' . Html::submitButton(
-			$this->msg( 'booksources-search' )->text(),
-			array(), array( 'mw-ui-progressive' )
-		) . "</p>\n";
-
-		$form .= Html::closeElement( 'form' ) . "\n";
-		$form .= Html::closeElement( 'fieldset' ) . "\n";
-
-		return $form;
+	/**
+	 * Get message prefix for HTMLForm
+	 * @return string
+	 */
+	protected function getMessagePrefix() {
+		return '';
 	}
 
 	/**
