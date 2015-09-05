@@ -31,6 +31,7 @@
 
 		/**
 		 * Post a new section to the page.
+		 *
 		 * @see #postWithEditToken
 		 * @param {mw.Title|String} title Target page
 		 * @param {string} header

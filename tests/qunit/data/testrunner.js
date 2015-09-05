@@ -164,6 +164,7 @@
 	/**
 	 * Reset mw.config and others to a fresh copy of the live config for each test(),
 	 * and restore it back to the live one afterwards.
+	 *
 	 * @param {Object} [localEnv]
 	 * @example (see test suite at the bottom of this file)
 	 * </code>

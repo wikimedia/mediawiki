@@ -105,6 +105,7 @@
 	 * Try to parse a key and optional replacements, returning a jQuery object that may be a tree of jQuery nodes.
 	 * If there was an error parsing, return the key and the error message (wrapped in jQuery). This should put the error right into
 	 * the interface, without causing the page to halt script execution, and it hopefully should be clearer how to fix it.
+	 *
 	 * @private
 	 * @param {Object} options Parser options
 	 * @return {Function}
@@ -266,6 +267,7 @@
 		 * Where the magic happens.
 		 * Parses a message from the key, and swaps in replacements as necessary, wraps in jQuery
 		 * If an error is thrown, returns original key, and logs the error
+		 *
 		 * @param {string} key Message key.
 		 * @param {Array} replacements Variable replacements for $1, $2... $n
 		 * @return {jQuery}
@@ -277,6 +279,7 @@
 		/**
 		 * Fetch the message string associated with a key, return parsed structure. Memoized.
 		 * Note that we pass '[' + key + ']' back for a missing message here.
+		 *
 		 * @param {string} key
 		 * @return {string|Array} string of '[key]' if message missing, simple string if possible, array of arrays if needs parsing
 		 */
@@ -327,6 +330,7 @@
 
 			/**
 			 * Try parsers until one works, if none work return null
+			 *
 			 * @private
 			 * @param {Function[]} ps
 			 * @return {string|null}
@@ -347,6 +351,7 @@
 			/**
 			 * Try several ps in a row, all must succeed or return null.
 			 * This is the only eager one.
+			 *
 			 * @private
 			 * @param {Function[]} ps
 			 * @return {string|null}
@@ -369,6 +374,7 @@
 			/**
 			 * Run the same parser over and over until it fails.
 			 * Must succeed a minimum of n times or return null.
+			 *
 			 * @private
 			 * @param {number} n
 			 * @param {Function} p
@@ -411,6 +417,7 @@
 
 			/**
 			 * Just make parsers out of simpler JS builtin types
+			 *
 			 * @private
 			 * @param {string} s
 			 * @return {Function}
@@ -921,6 +928,7 @@
 		/**
 		 * (We put this method definition here, and not in prototype, to make sure it's not overwritten by any magic.)
 		 * Walk entire node structure, applying replacements and template functions when appropriate
+		 *
 		 * @param {Mixed} node Abstract syntax tree (top node or subnode)
 		 * @param {Array} replacements for $1, $2, ... $n
 		 * @return {Mixed} single-string node or array of nodes suitable for jQuery appending
@@ -970,6 +978,7 @@
 		 * Parsing has been applied depth-first we can assume that all nodes here are single nodes
 		 * Must return a single node to parents -- a jQuery with synthetic span
 		 * However, unwrap any other synthetic spans in our children and pass them upwards
+		 *
 		 * @param {Mixed[]} nodes Some single nodes, some arrays of nodes
 		 * @return {jQuery}
 		 */
@@ -1137,6 +1146,7 @@
 		 * Transform parsed structure into pluralization
 		 * n.b. The first node may be a non-integer (for instance, a string representing an Arabic number).
 		 * So convert it back with the current language's convertNumber.
+		 *
 		 * @param {Array} nodes List of nodes, [ {string|number}, {string}, {string} ... ]
 		 * @return {string} selected pluralized form according to current language
 		 */
@@ -1215,6 +1225,7 @@
 		/**
 		 * Transform parsed structure into grammar conversion.
 		 * Invoked by putting `{{grammar:form|word}}` in a message
+		 *
 		 * @param {Array} nodes List of nodes [{Grammar case eg: genitive}, {string word}]
 		 * @return {string} selected grammatical form according to current language
 		 */
@@ -1228,6 +1239,7 @@
 		/**
 		 * Tranform parsed structure into a int: (interface language) message include
 		 * Invoked by putting `{{int:othermessage}}` into a message
+		 *
 		 * @param {Array} nodes List of nodes
 		 * @return {string} Other message
 		 */
@@ -1241,6 +1253,7 @@
 		 * Takes an unformatted number (arab, no group separators and . as decimal separator)
 		 * and outputs it in the localized digit script and formatted with decimal
 		 * separator, according to the current language.
+		 *
 		 * @param {Array} nodes List of nodes
 		 * @return {number|string} Formatted number
 		 */

@@ -582,6 +582,7 @@
 
 		/**
 		 * Dummy placeholder for {@link mw.log}
+		 *
 		 * @method
 		 */
 		log: ( function () {
@@ -1185,6 +1186,7 @@
 				/**
 				 * Define loop-function here for efficiency
 				 * and to avoid re-using badly scoped variables.
+				 *
 				 * @ignore
 				 */
 				function addLink( media, url ) {
@@ -1427,6 +1429,7 @@
 			/**
 			 * Converts a module map of the form { foo: [ 'bar', 'baz' ], bar: [ 'baz, 'quux' ] }
 			 * to a query string of the form foo.bar,baz|bar.baz,quux
+			 *
 			 * @private
 			 */
 			function buildModulesString( moduleMap ) {
@@ -1442,6 +1445,7 @@
 
 			/**
 			 * Load modules from load.php
+			 *
 			 * @private
 			 * @param {Object} moduleMap Module map, see #buildModulesString
 			 * @param {Object} currReqBase Object with other parameters (other than 'modules') to use in the request
@@ -2042,6 +2046,7 @@
 
 					/**
 					 * Construct a JSON-serializable object representing the content of the store.
+					 *
 					 * @return {Object} Module store contents.
 					 */
 					toJSON: function () {
@@ -2060,6 +2065,7 @@
 
 					/**
 					 * Get a key on which to vary the module cache.
+					 *
 					 * @return {string} String of concatenated vary conditions.
 					 */
 					getVary: function () {
@@ -2409,6 +2415,7 @@
 
 				/**
 				 * Wrapper object for raw HTML passed to mw.html.element().
+				 *
 				 * @class mw.html.Raw
 				 */
 				Raw: function ( value ) {
@@ -2417,6 +2424,7 @@
 
 				/**
 				 * Wrapper object for CDATA element contents passed to mw.html.element()
+				 *
 				 * @class mw.html.Cdata
 				 */
 				Cdata: function ( value ) {
@@ -2489,6 +2497,7 @@
 				return {
 					/**
 					 * Register a hook handler
+					 *
 					 * @param {Function...} handler Function to bind.
 					 * @chainable
 					 */
@@ -2496,6 +2505,7 @@
 
 					/**
 					 * Unregister a hook handler
+					 *
 					 * @param {Function...} handler Function to unbind.
 					 * @chainable
 					 */
@@ -2503,6 +2513,7 @@
 
 					/**
 					 * Run a hook.
+					 *
 					 * @param {Mixed...} data
 					 * @chainable
 					 */

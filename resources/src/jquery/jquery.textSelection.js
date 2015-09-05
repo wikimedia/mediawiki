@@ -411,6 +411,7 @@
 			 *
 			 * Scroll a textarea to the current cursor position. You can set the cursor
 			 * position with setSelection()
+			 *
 			 * @param {boolean} options Whether to force a scroll even if the caret position
 			 *  is already visible. Defaults to false
 			 *

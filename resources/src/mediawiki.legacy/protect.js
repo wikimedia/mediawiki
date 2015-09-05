@@ -177,6 +177,7 @@ var ProtectionForm = window.ProtectionForm = {
 
 	/**
 	 * Find the highest protection level in any selector
+	 *
 	 * @return {number}
 	 */
 	getMaxLevel: function () {
