@@ -1008,7 +1008,7 @@
 		 *
 		 * @param {Array} nodes List of one element, integer, n >= 0
 		 * @param {Array} replacements List of at least n strings
-		 * @return {String} replacement
+		 * @return {string} replacement
 		 */
 		replace: function ( nodes, replacements ) {
 			var index = parseInt( nodes[ 0 ], 10 );
@@ -1033,7 +1033,7 @@
 		 * from the server, since the replacement is done at save time.
 		 * It may, though, if the wikitext appears in extension-controlled content.
 		 *
-		 * @param {String[]} nodes
+		 * @param {string[]} nodes
 		 */
 		wikilink: function ( nodes ) {
 			var page, anchor, url;
@@ -1095,7 +1095,7 @@
 		 *
 		 * TODO: throw an error if nodes.length > 2 ?
 		 *
-		 * @param {Array} nodes List of two elements, {jQuery|Function|String} and {String}
+		 * @param {Array} nodes List of two elements, {jQuery|Function|String} and {string}
 		 * @return {jQuery}
 		 */
 		extlink: function ( nodes ) {
