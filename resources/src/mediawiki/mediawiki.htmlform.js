@@ -16,7 +16,7 @@
 	 * "foo[bar][baz]").
 	 *
 	 * @private
-	 * @param {jQuery} element
+	 * @param {jQuery} $el
 	 * @param {string} name
 	 * @return {jQuery|null}
 	 */
@@ -44,8 +44,8 @@
 	 * dependent fields for a hide-if specification.
 	 *
 	 * @private
-	 * @param {jQuery} element
-	 * @param {Array} hide-if spec
+	 * @param {jQuery} $el
+	 * @param {Array} spec
 	 * @return {Array}
 	 * @return {jQuery} return.0 Dependent fields
 	 * @return {Function} return.1 Test function
