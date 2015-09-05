@@ -6,7 +6,17 @@
 	"disallowQuotedKeysInObjects": "allButReserved",
 	"requireDotNotation": { "allExcept": [ "keywords" ] },
 	"jsDoc": {
+		"checkAnnotations": {
+			"preset": "jsduck5",
+			"extra": {
+				"this": true,
+				"source": true,
+				"see": true,
+				"private": true
+			}
+		},
 		"checkParamNames": true,
+		"checkRedundantAccess": true,
 		"checkRedundantReturns": true,
 		"checkTypes": "strictNativeCase",
 		"requireNewlineAfterDescription": true,
