@@ -9,6 +9,7 @@
 	"jsDoc": {
 		"checkParamNames": true,
 		"checkRedundantReturns": true,
+		"checkTypes": "strictNativeCase",
 		"requireNewlineAfterDescription": true,
 		"requireParamTypes": true,
 		"requireReturnTypes": true

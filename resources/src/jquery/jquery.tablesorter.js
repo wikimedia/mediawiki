@@ -426,8 +426,8 @@
 	 * in default (ascending) order when their header cell is clicked the next time.
 	 *
 	 * @param {jQuery} $headers
-	 * @param {Number[][]} sortList
-	 * @param {Number[][]} headerToColumns
+	 * @param {number[][]} sortList
+	 * @param {number[][]} headerToColumns
 	 */
 	function setHeadersOrder( $headers, sortList, headerToColumns ) {
 		// Loop through all headers to retrieve the indices of the columns the header spans across:
