@@ -218,7 +218,7 @@
 	 *
 	 * @protected
 	 * @fires fileSaved
-	 * @returns {jQuery.Promise} Rejects the promise with an
+	 * @return {jQuery.Promise} Rejects the promise with an
 	 * {@link OO.ui.Error error}, or resolves if the upload was successful.
 	 */
 	mw.Upload.BookletLayout.prototype.saveFile = function () {
@@ -253,7 +253,7 @@
 	 * state and state details.
 	 *
 	 * @protected
-	 * @returns {OO.ui.Error} Error to display for given state and details.
+	 * @return {OO.ui.Error} Error to display for given state and details.
 	 */
 	mw.Upload.BookletLayout.prototype.getErrorMessageForStateDetails = function () {
 		var message,
@@ -370,7 +370,7 @@
 	 *
 	 * @protected
 	 * @fires selectFile
-	 * @returns {OO.ui.FormLayout}
+	 * @return {OO.ui.FormLayout}
 	 */
 	mw.Upload.BookletLayout.prototype.renderUploadForm = function () {
 		var fieldset;
@@ -402,7 +402,7 @@
 	 * property.
 	 *
 	 * @protected
-	 * @returns {OO.ui.FormLayout}
+	 * @return {OO.ui.FormLayout}
 	 */
 	mw.Upload.BookletLayout.prototype.renderInfoForm = function () {
 		var fieldset;
@@ -464,7 +464,7 @@
 	 * sets the {@link #insertForm insertForm} property.
 	 *
 	 * @protected
-	 * @returns {OO.ui.FormLayout}
+	 * @return {OO.ui.FormLayout}
 	 */
 	mw.Upload.BookletLayout.prototype.renderInsertForm = function () {
 		var fieldset;
@@ -491,7 +491,7 @@
 	 * {@link #uploadForm upload form}.
 	 *
 	 * @protected
-	 * @returns {File|null}
+	 * @return {File|null}
 	 */
 	mw.Upload.BookletLayout.prototype.getFile = function () {
 		return this.selectFileWidget.getValue();
@@ -502,7 +502,7 @@
 	 * {@link #infoForm information form}.
 	 *
 	 * @protected
-	 * @returns {string}
+	 * @return {string}
 	 */
 	mw.Upload.BookletLayout.prototype.getFilename = function () {
 		return this.filenameWidget.getValue();
@@ -513,7 +513,7 @@
 	 * {@link #infoForm information form}.
 	 *
 	 * @protected
-	 * @returns {string}
+	 * @return {string}
 	 */
 	mw.Upload.BookletLayout.prototype.getText = function () {
 		return this.descriptionWidget.getValue();

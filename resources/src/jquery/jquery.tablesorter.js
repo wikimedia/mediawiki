@@ -1,4 +1,4 @@
-/**
+/*!
  * TableSorter for MediaWiki
  *
  * Written 2011 Leo Koppelkamm
@@ -12,52 +12,37 @@
  * and mw.language.months.
  *
  * Uses 'tableSorterCollation' in mw.config (if available)
- */
-/**
  *
- * @description Create a sortable table with multi-column sorting capabilities
+ * Create a sortable table with multi-column sorting capabilities
  *
- * @example $( 'table' ).tablesorter();
- * @desc Create a simple tablesorter interface.
+ *      // Create a simple tablesorter interface
+ *      $( 'table' ).tablesorter();
  *
- * @example $( 'table' ).tablesorter( { sortList: [ { 0: 'desc' }, { 1: 'asc' } ] } );
- * @desc Create a tablesorter interface initially sorting on the first and second column.
+ *      // Create a tablesorter interface, initially sorting on the first and second column
+ *      $( 'table' ).tablesorter( { sortList: [ { 0: 'desc' }, { 1: 'asc' } ] } );
  *
- * @option String cssHeader ( optional ) A string of the class name to be appended
- *         to sortable tr elements in the thead of the table. Default value:
- *         "header"
+ * @param {string} [cssHeader="header"] A string of the class name to be appended to sortable
+ *         tr elements in the thead of the table.
  *
- * @option String cssAsc ( optional ) A string of the class name to be appended to
- *         sortable tr elements in the thead on a ascending sort. Default value:
- *         "headerSortUp"
+ * @param {string} [cssAsc="headerSortUp"] A string of the class name to be appended to
+ *         sortable tr elements in the thead on a ascending sort.
  *
- * @option String cssDesc ( optional ) A string of the class name to be appended
- *         to sortable tr elements in the thead on a descending sort. Default
- *         value: "headerSortDown"
+ * @param {string} [cssDesc="headerSortDown"] A string of the class name to be appended to
+ *         sortable tr elements in the thead on a descending sort.
  *
- * @option String sortMultisortKey ( optional ) A string of the multi-column sort
- *         key. Default value: "shiftKey"
+ * @param {string} [sortMultisortKey="shiftKey"] A string of the multi-column sort key.
  *
- * @option Boolean cancelSelection ( optional ) Boolean flag indicating if
- *         tablesorter should cancel selection of the table headers text.
- *         Default value: true
+ * @param {boolean} [cancelSelection=true] Boolean flag indicating iftablesorter should cancel
+ *         selection of the table headers text.
  *
- * @option Array sortList ( optional ) An array containing objects specifying sorting.
- *         By passing more than one object, multi-sorting will be applied. Object structure:
+ * @param {Array} [sortList] An array containing objects specifying sorting. By passing more
+ *         than one object, multi-sorting will be applied. Object structure:
  *         { <Integer column index>: <String 'asc' or 'desc'> }
- *         Default value: []
  *
  * @event sortEnd.tablesorter: Triggered as soon as any sorting has been applied.
  *
- * @type jQuery
- *
- * @name tablesorter
- *
- * @cat Plugins/Tablesorter
- *
  * @author Christian Bach/christian.bach@polyester.se
  */
-
 ( function ( $, mw ) {
 	var ts,
 		parsers = [];
