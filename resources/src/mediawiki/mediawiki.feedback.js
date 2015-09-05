@@ -497,7 +497,7 @@
 	/**
 	 * Get the bug report link
 	 *
-	 * @returns {string} Link to the external bug report form
+	 * @return {string} Link to the external bug report form
 	 */
 	mw.Feedback.Dialog.prototype.getBugReportLink = function () {
 		return this.bugReportLink;
