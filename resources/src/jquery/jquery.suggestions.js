@@ -20,7 +20,6 @@
  */
 /**
  * @method suggestions
- * @return {jQuery}
  * @chainable
  *
  * @param {Object} options

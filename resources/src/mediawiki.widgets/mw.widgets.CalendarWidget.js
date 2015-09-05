@@ -151,7 +151,6 @@
 	 * @private
 	 * @param {string|null} [fade=null] Direction in which to fade out current calendar contents, 'previous',
 	 *     'next' or 'up'
-	 * @returns {string} Format
 	 */
 	mw.widgets.CalendarWidget.prototype.updateUI = function ( fade ) {
 		var items, today, selected, currentMonth, currentYear, currentDay, i, needsFade,

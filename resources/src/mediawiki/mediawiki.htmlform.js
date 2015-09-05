@@ -222,7 +222,6 @@
 	 * @param {Function} callback
 	 * @param {boolean|jQuery.Event} callback.immediate True when the event is called immediately,
 	 *  an event object when triggered from an event.
-	 * @return {jQuery}
 	 * @chainable
 	 */
 	mw.log.deprecate( $.fn, 'liveAndTestAtStart', function ( callback ) {
