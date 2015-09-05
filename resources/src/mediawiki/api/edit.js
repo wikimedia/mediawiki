@@ -33,7 +33,7 @@
 		 * Post a new section to the page.
 		 *
 		 * @see #postWithEditToken
-		 * @param {mw.Title|String} title Target page
+		 * @param {mw.Title|string} title Target page
 		 * @param {string} header
 		 * @param {string} message wikitext message
 		 * @param {Object} [additionalParams] Additional API parameters, e.g. `{ redirect: true }`

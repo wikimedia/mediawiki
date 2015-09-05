@@ -416,7 +416,7 @@
 		 *
 		 * @since 1.25
 		 * @param {string} formatString Format string
-		 * @param {Mixed...} parameters Values for $N replacements
+		 * @param {...Mixed} parameters Values for $N replacements
 		 * @return {string} Formatted string
 		 */
 		format: function ( formatString ) {
@@ -558,7 +558,7 @@
 		 *
 		 * @see mw.Message
 		 * @param {string} key Key of message to get
-		 * @param {Mixed...} parameters Values for $N replacements
+		 * @param {...Mixed} parameters Values for $N replacements
 		 * @return {mw.Message}
 		 */
 		message: function ( key ) {
@@ -573,7 +573,7 @@
 		 *
 		 * @see mw.Message
 		 * @param {string} key Key of message to get
-		 * @param {Mixed...} parameters Values for $N replacements
+		 * @param {...Mixed} parameters Values for $N replacements
 		 * @return {string}
 		 */
 		msg: function () {
@@ -599,7 +599,7 @@
 			 * Write a message the console's warning channel.
 			 * Actions not supported by the browser console are silently ignored.
 			 *
-			 * @param {string...} msg Messages to output to console
+			 * @param {...string} msg Messages to output to console
 			 */
 			log.warn = function () {
 				var console = window.console;
@@ -615,7 +615,7 @@
 			 * is a caught Error object.
 			 *
 			 * @since 1.26
-			 * @param {Error|string...} msg Messages to output to console
+			 * @param {Error|...string} msg Messages to output to console
 			 */
 			log.error = function () {
 				var console = window.console;
@@ -2528,7 +2528,7 @@
 					/**
 					 * Register a hook handler
 					 *
-					 * @param {Function...} handler Function to bind.
+					 * @param {...Function} handler Function to bind.
 					 * @chainable
 					 */
 					add: list.add,
@@ -2536,7 +2536,7 @@
 					/**
 					 * Unregister a hook handler
 					 *
-					 * @param {Function...} handler Function to unbind.
+					 * @param {...Function} handler Function to unbind.
 					 * @chainable
 					 */
 					remove: list.remove,
@@ -2544,7 +2544,7 @@
 					/**
 					 * Run a hook.
 					 *
-					 * @param {Mixed...} data
+					 * @param {...Mixed} data
 					 * @chainable
 					 */
 					fire: function () {
