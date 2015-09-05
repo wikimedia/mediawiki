@@ -12,6 +12,7 @@
 
 	/**
 	 * Perform the layout justification.
+	 *
 	 * @ignore
 	 * @context {HTMLElement} A `ul.mw-gallery-*` element
 	 */

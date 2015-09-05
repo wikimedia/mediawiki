@@ -5,8 +5,8 @@
 
 /**
  * Gets a localized message, using parameters from options if present.
- * @ignore
  *
+ * @ignore
  * @param {Object} options
  * @param {string} key
  * @return {string} Localized message

@@ -51,8 +51,8 @@
 
 	/**
 	 * CompletenessTest
-	 * @constructor
 	 *
+	 * @constructor
 	 * @example
 	 *  var myTester = new CompletenessTest( myLib );
 	 * @param {Object} masterVariable The root variable that contains all object
