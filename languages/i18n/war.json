@@ -8,7 +8,8 @@
 			"Wiki indio",
 			"לערי ריינהארט",
 			"Kolega2357",
-			"아라"
+			"아라",
+			"MarcoAurelio"
 		]
 	},
 	"tog-underline": "Bagisa ha ilarom an mga sumpay:",
@@ -794,7 +795,7 @@
 	"prefs-reset-intro": "Puydi nimo ini gamiton nga pakli para makareset han imo mga preperensya nga ginbutang nga daan han sityo. Diri ini puydi mapawaray-buhat.",
 	"prefs-emailconfirm-label": "Kompirmasyon han email:",
 	"youremail": "E-mail:",
-	"username": "{{HENERO:$1|Agnay hit gumaramit}}:",
+	"username": "{{GENDER:$1|Agnay hit gumaramit}}:",
 	"prefs-memberingroups": "{{GENDER:$2|Api}} han {{PLURAL:$1|grupo|mga grupo}}:",
 	"prefs-registration": "Oras han pagrehistro:",
 	"yourrealname": "Tinuod nga ngaran:",

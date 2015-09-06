@@ -1795,7 +1795,7 @@
 	"enotif_subject_moved": "Страницу $1 на {{SITENAME}} {{GENDER:$2|преместио је|преместила је}} $2",
 	"enotif_subject_restored": "Страницу $1 на {{SITENAME}} {{GENDER:$2|вратио је|вратила је|вратио је}} $2",
 	"enotif_subject_changed": "Страницу $1 на {{SITENAME}} {{GENDER:$2|променио је|променила је|променио је}} $2",
-	"enotif_body_intro_deleted": "Страницу $1 на {{SITENAME}} {{GENDER:$2|обрисао је|обрисала је|обрисао је}} $2 дана $PAGEEDITDATE. Погледајте $3.",
+	"enotif_body_intro_deleted": "Страницу $1 на {{SITENAME}} {{GENDER:$2|обрисао|обрисала}} је $2 дана $PAGEEDITDATE Погледајте $3.",
 	"enotif_body_intro_created": "Страницу $1 на {{SITENAME}} {{GENDER:$2|направио|направила}} је $2 дана $PAGEEDITDATE Тренутна измена налази се на $3.",
 	"enotif_body_intro_moved": "Страницу $1 на {{SITENAME}} {{GENDER:$2|преместио|преместила}} је $2 дана $PAGEEDITDATE Тренутна измена налази се на  $3.",
 	"enotif_body_intro_restored": "Страницу $1 на {{SITENAME}} {{GENDER:$2|вратио|вратила}} је $2 дана $PAGEEDITDATE Тренутна измена налази се на $3.",

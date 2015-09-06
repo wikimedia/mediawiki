@@ -5,7 +5,7 @@
 		]
 	},
 	"apihelp-block-param-reason": "Arsyeja për bllokim.",
-	"apihelp-move-param-reason": "Arsyeja për riemërim.",
+	"apihelp-move-param-reason": "Arsyeja për riemërtim.",
 	"apihelp-tag-param-reason": "Arsyeja për ndërrimin.",
 	"apihelp-unblock-description": "Zhblloko një përdorues."
 }

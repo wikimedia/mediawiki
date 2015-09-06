@@ -980,7 +980,7 @@
 	"gender-unknown": "«Der Benutzer», «der {dy Name}», «syni Bearbeitig», «är schrybt» etc.",
 	"gender-male": "«Der Benutzer», «der {dy Name}», «syni Bearbeitig», «är schrybt» etc.",
 	"gender-female": "«D Benutzerin», «d {dy Name}», «iri Bearbeitig», «si schrybt» etc.",
-	"prefs-help-gender": "Die Agab isch freiwillig.\nD Software bruucht se, für im korräkte grammatische Genus vo dir z rede.\nDas isch öffetlech z gseh.\nBy der ersten Option wird normalerwys ds generische Maskulinum azeigt. Es chunt also uf ds glychen use, wi we me di zwöüti Option wählt.",
+	"prefs-help-gender": "* Die Agab isch freiwillig. D Software bruucht se, für mit em korräkte grammatische Genus azrede oder gägenüber anderne z erwähne. Die Information isch öffetlech z gseh.\n\n* By der ersten Option wird ds generische Maskulinum azeigt. Es chunt also uf ds Glychen use, wi we me di dritti Option wählt.",
 	"email": "E-Mail",
 	"prefs-help-realname": "Der ächt Namen isch optional.\nWe d’nen agisch, de lö sech dyni Byträg uf di la zrüggfüere.",
 	"prefs-help-email": "D Aagab vun ere E-Mail isch optional, macht aber s Zueschicke vun eme Ersatzpasswort meglig, wänn Du dyy Passwort vergässe hesch.",

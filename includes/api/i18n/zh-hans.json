@@ -705,6 +705,7 @@
 	"apihelp-query+info-paramvalue-prop-watchers": "监视人员数，如果允许。",
 	"apihelp-query+info-paramvalue-prop-notificationtimestamp": "每个页面的监视列表通知时间戳。",
 	"apihelp-query+info-paramvalue-prop-subjectid": "每个讨论页的母页面的页面ID。",
+	"apihelp-query+info-paramvalue-prop-url": "为每个页面提供一个完整URL、一个编辑URL和规范URL。",
 	"apihelp-query+info-paramvalue-prop-readable": "用户是否可以阅读此页面。",
 	"apihelp-query+info-paramvalue-prop-preload": "提供由EditFormPreloadText返回的文本。",
 	"apihelp-query+info-paramvalue-prop-displaytitle": "在页面标题实际显示的地方提供方式。",

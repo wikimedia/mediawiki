@@ -12,7 +12,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Macofe",
-			"Carlos Cristia"
+			"Carlos Cristia",
+			"MarcoAurelio"
 		]
 	},
 	"tog-underline": "Subrayar os vinclos:",
@@ -789,7 +790,7 @@
 	"prefs-reset-intro": "Puet emplegar ista pachina ta restaurar as suyas preferencias a las valuras por defecto d'o sitio.\nNo se podrá desfer iste cambio.",
 	"prefs-emailconfirm-label": "Confirmación de correu electronico:",
 	"youremail": "Adreza de correu electronico:",
-	"username": "Nombre d'usuario:",
+	"username": "{{GENDER:$1|Nombre d'usuario|Nombre d'usuaria|Nombre d'usuario}}:",
 	"prefs-memberingroups": "Miembro {{PLURAL:$1|d'a colla|d'as collas}}:",
 	"prefs-memberingroups-type": "$1",
 	"prefs-registration": "Tiempo de rechistro:",
@@ -1405,7 +1406,6 @@
 	"mailnologin": "No ninviar l'adreza",
 	"mailnologintext": "Ha d'haber [[Special:UserLogin|encetato una sesión]] y tener una adreza conforme de correu-e en as suyas [[Special:Preferences|preferencias]] ta ninviar un correu electronico ta atros usuarios.",
 	"emailuser": "Ninviar un correu electronico ta iste usuario",
-	"emailpage": "Ninviar correu ta l'usuario",
 	"emailpagetext": "Puede fer servir o formulario que bi ye contino ta ninviar un correu electronico a iste usuario.\nL'adreza de correu-e que endicó en as suyas [[Special:Preferences|preferencias d'usuario]] amaneixerá en o campo \"Remitent\" ta que o destinatario pueda responder-le.",
 	"defemailsubject": "Correu de {{SITENAME}} de l'usuario $1",
 	"usermaildisabled": "S'ha desactivau o ninvío de correus electronicos a os usuarios",

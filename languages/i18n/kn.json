@@ -24,7 +24,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Pavanaja",
-			"Ananth subray"
+			"Ananth subray",
+			"MarcoAurelio"
 		]
 	},
 	"tog-underline": "ಕೊಂಡಿಗಳ ಕೆಳಗೆ ಗೆರೆ ತೋರಿಸಿ",
@@ -807,7 +808,7 @@
 	"prefs-custom-js": "ಕಸ್ಟಮ್ ಜಾವಾಸ್ಕ್ರಿಪ್ಟ್",
 	"prefs-emailconfirm-label": "ಮಿಂಚಂಚೆ ದೃಢೀಕರಣ",
 	"youremail": "ಇ-ಅಂಚೆ:",
-	"username": "{{ಲಿಂಗ:$1|ಸದಸ್ಯತ್ವದ ಹೆಸರು}}:",
+	"username": "{{GENDER:$1|ಸದಸ್ಯತ್ವದ ಹೆಸರು}}:",
 	"prefs-memberingroups": "ಈ {{PLURAL:$1|ಗುಂಪಿನ|ಗುಂಪುಗಳ}} ಸದಸ್ಯ:",
 	"prefs-registration": "ನೋಂದಣಿ ಸಮಯ:",
 	"yourrealname": "ನಿಜ ಹೆಸರು:",
@@ -1280,7 +1281,6 @@
 	"mailnologintext": "ಇತರ ಬಳಕೆದಾರರಿಗೆ ಇ-ಅಂಚೆ ಕಳುಹಿಸಲು ನೀವು [[Special:UserLogin|ಲಾಗ್ ಇನ್]] ಆಗಿರಬೇಕು ಮತ್ತು ನಿಮ್ಮ [[Special:Preferences|ಪ್ರಾಶಸ್ತ್ಯಗಳ ಪುಟದಲ್ಲಿ]] ಒಂದು ಧೃಡೀಕೃತ ಇ-ಅಂಚೆ ವಿಳಾಸ ನೀಡಿರಬೇಕು.",
 	"emailuser": "ಈ ಸದಸ್ಯರಿಗೆ ಇ-ಅಂಚೆ ಕಳಿಸಿ",
 	"emailuser-title-notarget": "ಸದಸ್ಯರಿಗೆ ವಿ-ಅ೦ಚೆ ಕಳಿಸಿ",
-	"emailpage": "ಸದಸ್ಯರಿಗೆ ವಿ-ಅ೦ಚೆ ಕಳಿಸಿ",
 	"defemailsubject": "ವಿಕಿಪೀಡಿಯ ವಿ-ಅ೦ಚೆ",
 	"usermaildisabled": "ಬಳಕೆದಾರರ ಮಿಂಚಂಚೆಯನ್ನು ನಿಷ್ಕ್ತಿಯಗೊಳಿಸಲಾಗಿದೆ",
 	"noemailtitle": "ಯಾವುದೇ ಇ-ಅಂಚೆ ವಿಳಾಸ ಇಲ್ಲ",

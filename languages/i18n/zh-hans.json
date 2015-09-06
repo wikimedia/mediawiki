@@ -1719,7 +1719,7 @@
 	"booksources-text": "下面是销售新书和二手书的其他网站的链接的列表，也可能有关于你正在寻找的图书的更多信息：",
 	"booksources-invalid-isbn": "提供的ISBN号码并不正确，请检查原始复制来源号码是否有误。",
 	"specialloguserlabel": "执行者：",
-	"speciallogtitlelabel": "目标（标题或用户）：",
+	"speciallogtitlelabel": "目标（标题，或对于用户使用{{ns:user}}:用户名）：",
 	"log": "日志",
 	"all-logs-page": "所有公开日志",
 	"alllogstext": "所有{{SITENAME}}公开日志的联合展示。您可以通过选择日志类型、输入用户名（区分大小写）或相关页面（区分大小写）筛选日志条目。",
