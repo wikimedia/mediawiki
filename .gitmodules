@@ -198,3 +198,7 @@
 	path = extensions/MwEmbedSupport
 	url = https://github.com/wikimedia/mediawiki-extensions-MwEmbedSupport
 	branch = REL1_25
+[submodule "extensions/CollapsibleVector"]
+	path = extensions/CollapsibleVector
+	url = https://github.com/wikimedia/mediawiki-extensions-CollapsibleVector
+	branch = REL1_25
