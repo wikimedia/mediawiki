@@ -1325,14 +1325,6 @@ class FauxRequest extends WebRequest {
 	}
 
 	/**
-	 * @param string $method
-	 * @throws MWException
-	 */
-	private function notImplemented( $method ) {
-		throw new MWException( "{$method}() not implemented" );
-	}
-
-	/**
 	 * @param string $name
 	 * @param string $default
 	 * @return string
@@ -1423,10 +1415,6 @@ class FauxRequest extends WebRequest {
 
 	public function getProtocol() {
 		return $this->protocol;
-	}
-
-	private function initHeaders() {
-		return;
 	}
 
 	/**
