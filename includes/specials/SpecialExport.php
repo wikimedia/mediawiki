@@ -30,7 +30,6 @@
  */
 class SpecialExport extends SpecialPage {
 	private $curonly, $doExport, $pageLinkDepth, $templates;
-	private $images;
 
 	public function __construct() {
 		parent::__construct( 'Export' );
@@ -46,7 +45,6 @@ class SpecialExport extends SpecialPage {
 		$this->doExport = false;
 		$request = $this->getRequest();
 		$this->templates = $request->getCheck( 'templates' );
-		$this->images = $request->getCheck( 'images' ); // Doesn't do anything yet
 		$this->pageLinkDepth = $this->validateLinkDepth(
 			$request->getIntOrNull( 'pagelink-depth' )
 		);
@@ -279,13 +277,6 @@ class SpecialExport extends SpecialPage {
 		}
 
 		$formDescriptor += array(
-			/* Enable this when we can do something useful exporting/importing image information.
-			'images' => array(
-				'type' => 'check',
-				'name' => 'images',
-				'id' => 'wpExportImages',
-				'default' => false,
-			),*/
 			'wpDownload' => array(
 				'type' => 'check',
 				'name' =>'wpDownload',
@@ -358,11 +349,6 @@ class SpecialExport extends SpecialPage {
 			if ( $linkDepth ) {
 				$pageSet = $this->getPageLinks( $inputPages, $pageSet, $linkDepth );
 			}
-
-			// Enable this when we can do something useful exporting/importing image information.
-			// if( $this->images ) ) {
-			// $pageSet = $this->getImages( $inputPages, $pageSet );
-			// }
 
 			$pages = array_keys( $pageSet );
 
@@ -547,24 +533,6 @@ class SpecialExport extends SpecialPage {
 		}
 
 		return $pageSet;
-	}
-
-	/**
-	 * Expand a list of pages to include images used in those pages.
-	 *
-	 * @param array $inputPages List of titles to look up
-	 * @param array $pageSet Associative array indexed by titles for output
-	 *
-	 * @return array Associative array index by titles
-	 */
-	private function getImages( $inputPages, $pageSet ) {
-		return $this->getLinks(
-			$inputPages,
-			$pageSet,
-			'imagelinks',
-			array( 'namespace' => NS_FILE, 'title' => 'il_to' ),
-			array( 'page_id=il_from' )
-		);
 	}
 
 	/**
