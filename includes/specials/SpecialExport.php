@@ -359,11 +359,6 @@ class SpecialExport extends SpecialPage {
 				$pageSet = $this->getPageLinks( $inputPages, $pageSet, $linkDepth );
 			}
 
-			// Enable this when we can do something useful exporting/importing image information.
-			// if( $this->images ) ) {
-			// $pageSet = $this->getImages( $inputPages, $pageSet );
-			// }
-
 			$pages = array_keys( $pageSet );
 
 			// Normalize titles to the same format and remove dupes, see bug 17374
@@ -547,24 +542,6 @@ class SpecialExport extends SpecialPage {
 		}
 
 		return $pageSet;
-	}
-
-	/**
-	 * Expand a list of pages to include images used in those pages.
-	 *
-	 * @param array $inputPages List of titles to look up
-	 * @param array $pageSet Associative array indexed by titles for output
-	 *
-	 * @return array Associative array index by titles
-	 */
-	private function getImages( $inputPages, $pageSet ) {
-		return $this->getLinks(
-			$inputPages,
-			$pageSet,
-			'imagelinks',
-			array( 'namespace' => NS_FILE, 'title' => 'il_to' ),
-			array( 'page_id=il_from' )
-		);
 	}
 
 	/**
