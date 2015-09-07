@@ -1276,9 +1276,11 @@ class Linker {
 	 * @param string $comment
 	 * @param Title|null $title Title object (to generate link to the section in autocomment) or null
 	 * @param bool $local Whether section links should refer to local page
+	 * @param string|null $wikiId Id (as used by WikiMap) of the wiki to generate links to. For use with external changes.
+	 *
 	 * @return mixed|string
 	 */
-	public static function formatComment( $comment, $title = null, $local = false ) {
+	public static function formatComment( $comment, $title = null, $local = false, $wikiId = null ) {
 
 		# Sanitize text a bit:
 		$comment = str_replace( "\n", " ", $comment );
@@ -1287,7 +1289,7 @@ class Linker {
 
 		# Render autocomments and make links:
 		$comment = self::formatAutocomments( $comment, $title, $local );
-		$comment = self::formatLinksInComment( $comment, $title, $local );
+		$comment = self::formatLinksInComment( $comment, $title, $local, $wikiId );
 
 		return $comment;
 	}
@@ -1304,7 +1306,7 @@ class Linker {
 	 * @param string $comment Comment text
 	 * @param Title|null $title An optional title object used to links to sections
 	 * @param bool $local Whether section links should refer to local page
-	 * @return string Formatted comment
+	 * @return string Formatted comment (wikitext)
 	 */
 	private static function formatAutocomments( $comment, $title = null, $local = false ) {
 		// @todo $append here is something of a hack to preserve the status
@@ -1349,9 +1351,8 @@ class Linker {
 								$title->getDBkey(), $section );
 						}
 						if ( $sectionTitle ) {
-							$link = Linker::link( $sectionTitle,
-								$wgLang->getArrow(), array(), array(),
-								'noclasses' );
+							// the wiki link will be formatted by formatLinksInComment()
+							$link = '[[' . $sectionTitle->getFullText() . '|' .  $wgLang->getArrow() . ']]';
 						} else {
 							$link = '';
 						}
@@ -1384,7 +1385,7 @@ class Linker {
 	 * @param string $comment Text to format links in
 	 * @param Title|null $title An optional title object used to links to sections
 	 * @param bool $local Whether section links should refer to local page
-	 * @param string|null $wikiId Id of the wiki to link to (if not the local wiki), as used by WikiMap
+	 * @param string|null $wikiId Id of the wiki to link to (if not the local wiki), as used by WikiMap.
 	 *
 	 * @return string
 	 */
@@ -1459,12 +1460,11 @@ class Linker {
 							$newTarget = clone ( $title );
 							$newTarget->setFragment( '#' . $target->getFragment() );
 							$target = $newTarget;
-
 						}
 
-						if ( $wikiId !== null ) {
+						if ( $wikiId !== null && !$target->isExternal() ) {
 							$thelink = Linker::makeExternalLink(
-								WikiMap::getForeignURL( $wikiId, $target->getFullText() ),
+								WikiMap::getForeignURL( $wikiId, $target->getPrefixedText(), $target->getFragment() ),
 								$linkText . $inside,
 								/* escape = */ false // Already escaped
 							) . $trail;
@@ -1579,17 +1579,18 @@ class Linker {
 	 * @param string $comment
 	 * @param Title|null $title Title object (to generate link to section in autocomment) or null
 	 * @param bool $local Whether section links should refer to local page
+	 * @param string|null $wikiId Id (as used by WikiMap) of the wiki to generate links to. For use with external changes.
 	 *
 	 * @return string
 	 */
-	public static function commentBlock( $comment, $title = null, $local = false ) {
+	public static function commentBlock( $comment, $title = null, $local = false, $wikiId = null ) {
 		// '*' used to be the comment inserted by the software way back
 		// in antiquity in case none was provided, here for backwards
 		// compatibility, acc. to brion -ævar
 		if ( $comment == '' || $comment == '*' ) {
 			return '';
 		} else {
-			$formatted = self::formatComment( $comment, $title, $local );
+			$formatted = self::formatComment( $comment, $title, $local, $wikiId );
 			$formatted = wfMessage( 'parentheses' )->rawParams( $formatted )->escaped();
 			return " <span class=\"comment\">$formatted</span>";
 		}
