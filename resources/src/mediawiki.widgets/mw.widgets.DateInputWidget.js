@@ -75,10 +75,16 @@
 	 *     field when it's empty. Should be the same as `inputFormat`, but translated to the user's
 	 *     language. When not given, defaults to a translated version of 'YYYY-MM-DD' or 'YYYY-MM',
 	 *     depending on `precision`.
+	 * @cfg {boolean} [required=false] Mark the field as required. Implies `indicator: 'required'`.
 	 */
 	mw.widgets.DateInputWidget = function MWWDateInputWidget( config ) {
 		// Config initialization
 		config = $.extend( { precision: 'day' }, config );
+		if ( config.required ) {
+			if ( config.indicator === undefined ) {
+				config.indicator = 'required';
+			}
+		}
 
 		var placeholder;
 		if ( config.placeholder ) {
@@ -128,6 +134,10 @@
 		} );
 
 		// Initialization
+		if ( config.required ) {
+			this.$input.attr( 'required', 'required' );
+			this.$input.attr( 'aria-required', 'true' );
+		}
 		// Move 'tabindex' from this.$input (which is invisible) to the visible handle
 		this.setTabIndexedElement( this.handle.$element );
 		this.handle.$element
