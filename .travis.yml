@@ -9,7 +9,7 @@
 language: php
 
 php:
-  - hhvm-nightly
+  - hhvm
   - 5.3
 
 env:
@@ -19,7 +19,7 @@ env:
 # TODO: Travis CI's hhvm does not support PostgreSQL at the moment.
 matrix:
   exclude:
-    - php: hhvm-nightly
+    - php: hhvm
       env: dbtype=postgres
 
 services:
