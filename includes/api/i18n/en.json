@@ -725,7 +725,7 @@
 	"apihelp-query+imageinfo-param-prop": "Which file information to get:",
 	"apihelp-query+imageinfo-paramvalue-prop-timestamp": "Adds timestamp for the uploaded version.",
 	"apihelp-query+imageinfo-paramvalue-prop-user": "Adds the user who uploaded each file version.",
-	"apihelp-query+imageinfo-paramvalue-prop-userid": "Add the user ID that uploaded each file version.",
+	"apihelp-query+imageinfo-paramvalue-prop-userid": "Add the ID of the user that uploaded each file version.",
 	"apihelp-query+imageinfo-paramvalue-prop-comment": "Comment on the version.",
 	"apihelp-query+imageinfo-paramvalue-prop-parsedcomment": "Parse the comment on the version.",
 	"apihelp-query+imageinfo-paramvalue-prop-canonicaltitle": "Adds the canonical title of the file.",
