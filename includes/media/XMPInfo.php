@@ -34,8 +34,6 @@ class XMPInfo {
 		return self::$items;
 	}
 
-	static private $ranHooks = false;
-
 	/**
 	 * XMPInfo::$items keeps a list of all the items
 	 * we are interested to extract, as well as
