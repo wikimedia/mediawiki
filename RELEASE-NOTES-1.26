@@ -118,6 +118,7 @@ changes to languages because of Phabricator reports.
 * ChangeTags::tagDescription() will return false if the interface message
   for the tag is disabled.
 * Added PageHistoryPager::doBatchLookups hook.
+* Added $wikiId parameter to FormatAutocomments hook.
 * Added ParserCacheSaveComplete to ParserCache
 * supportsDirectEditing and supportsDirectApiEditing methods added to
   ContentHandler, to provide a way for ApiEditPage and EditPage to check

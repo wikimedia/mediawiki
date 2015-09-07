@@ -108,13 +108,15 @@ class WikiMap {
 	 *
 	 * @param string $wikiID Wiki'd id (generally database name)
 	 * @param string $page Page name (must be normalised before calling this function!)
+	 * @param string|null $fragment
+	 *
 	 * @return string|bool URL or false if the wiki was not found
 	 */
-	public static function getForeignURL( $wikiID, $page ) {
+	public static function getForeignURL( $wikiID, $page, $fragment = null ) {
 		$wiki = WikiMap::getWiki( $wikiID );
 
 		if ( $wiki ) {
-			return $wiki->getFullUrl( $page );
+			return $wiki->getFullUrl( $page, $fragment );
 		}
 
 		return false;
@@ -181,21 +183,32 @@ class WikiReference {
 	 * Helper function for getUrl()
 	 *
 	 * @todo FIXME: This may be generalized...
-	 * @param string $page Page name (must be normalised before calling this function!)
+	 *
+	 * @param string $page Page name (must be normalised before calling this function! May contain a section part.)
+	 * @param string|null $fragment
+	 *
 	 * @return string Url fragment
 	 */
-	private function getLocalUrl( $page ) {
-		return str_replace( '$1', wfUrlEncode( str_replace( ' ', '_', $page ) ), $this->mPath );
+	private function getLocalUrl( $page, $fragment = null ) {
+		$page = wfUrlEncode( str_replace( ' ', '_', $page ) );
+
+		if ( is_string( $fragment ) && $fragment !== '' ) {
+			$page .= '#' . wfUrlEncode( $fragment );
+		}
+
+		return str_replace( '$1', $page, $this->mPath );
 	}
 
 	/**
 	 * Get a canonical (i.e. based on $wgCanonicalServer) URL to a page on this foreign wiki
 	 *
 	 * @param string $page Page name (must be normalised before calling this function!)
+	 * @param string|null $fragment
+	 *
 	 * @return string Url
 	 */
-	public function getCanonicalUrl( $page ) {
-		return $this->mCanonicalServer . $this->getLocalUrl( $page );
+	public function getCanonicalUrl( $page, $fragment = null ) {
+		return $this->mCanonicalServer . $this->getLocalUrl( $page, $fragment );
 	}
 
 	/**
@@ -209,10 +222,12 @@ class WikiReference {
 	/**
 	 * Alias for getCanonicalUrl(), for backwards compatibility.
 	 * @param string $page
+	 * @param string|null $fragment
+	 *
 	 * @return string
 	 */
-	public function getUrl( $page ) {
-		return $this->getCanonicalUrl( $page );
+	public function getUrl( $page, $fragment = null ) {
+		return $this->getCanonicalUrl( $page, $fragment );
 	}
 
 	/**
@@ -220,10 +235,12 @@ class WikiReference {
 	 * when called locally on the wiki.
 	 *
 	 * @param string $page Page name (must be normalized before calling this function!)
+	 * @param string|null $fragment
+	 *
 	 * @return string URL
 	 */
-	public function getFullUrl( $page ) {
+	public function getFullUrl( $page, $fragment = null ) {
 		return $this->mServer .
-			$this->getLocalUrl( $page );
+			$this->getLocalUrl( $page, $fragment );
 	}
 }
