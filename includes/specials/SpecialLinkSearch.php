@@ -91,7 +91,7 @@ class LinkSearchPage extends QueryPage {
 
 		$request = $this->getRequest();
 		$target = $request->getVal( 'target', $par );
-		$namespace = $request->getIntOrNull( 'namespace', null );
+		$namespace = $request->getIntOrNull( 'namespace' );
 
 		$protocols_list = array();
 		foreach ( $this->getConfig()->get( 'UrlProtocols' ) as $prot ) {
