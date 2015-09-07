@@ -83,7 +83,7 @@
 		},
 		messages: {
 			// Used by accessKeyLabel in test for addPortletLink
-			'brackets': '[$1]',
+			brackets: '[$1]',
 			'word-separator': ' '
 		}
 	} ) );
@@ -133,10 +133,10 @@
 
 	QUnit.test( 'wikiScript', 4, function ( assert ) {
 		mw.config.set( {
-			'wgScript': '/w/i.php', // customized wgScript for bug 39103
-			'wgLoadScript': '/w/l.php', // customized wgLoadScript for bug 39103
-			'wgScriptPath': '/w',
-			'wgScriptExtension': '.php'
+			wgScript: '/w/i.php', // customized wgScript for bug 39103
+			wgLoadScript: '/w/l.php', // customized wgLoadScript for bug 39103
+			wgScriptPath: '/w',
+			wgScriptExtension: '.php'
 		} );
 
 		assert.equal( mw.util.wikiScript(), mw.config.get( 'wgScript' ),
@@ -175,10 +175,10 @@
 		url = 'http://example.org/#&foo=bad';
 		assert.strictEqual( mw.util.getParamValue( 'foo', url ), null, 'Ignore hash if param is not in querystring but in hash (bug 27427)' );
 
-		url = 'example.org?' + $.param( { 'TEST': 'a b+c' } );
+		url = 'example.org?' + $.param( { TEST: 'a b+c' } );
 		assert.strictEqual( mw.util.getParamValue( 'TEST', url ), 'a b+c', 'Bug 30441: getParamValue must understand "+" encoding of space' );
 
-		url = 'example.org?' + $.param( { 'TEST': 'a b+c d' } ); // check for sloppy code from r95332 :)
+		url = 'example.org?' + $.param( { TEST: 'a b+c d' } ); // check for sloppy code from r95332 :)
 		assert.strictEqual( mw.util.getParamValue( 'TEST', url ), 'a b+c d', 'Bug 30441: getParamValue must understand "+" encoding of space (multiple spaces)' );
 	} );
 
