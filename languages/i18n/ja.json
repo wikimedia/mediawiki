@@ -1904,7 +1904,7 @@
 	"sessionfailure": "ログインのセッションに問題が発生しました。\nセッション乗っ取りを防ぐため、操作を取り消しました。\n前のページへ戻って再度読み込んだ後に、もう一度試してください。",
 	"changecontentmodel": "ページのコンテント・モデルの変更",
 	"changecontentmodel-legend": "コンテンツモデルを変更",
-	"changecontentmodel-title-label": "ページ タイトル",
+	"changecontentmodel-title-label": "ページ名",
 	"changecontentmodel-model-label": "新しい コンテンツ モデル",
 	"changecontentmodel-reason-label": "理由:",
 	"changecontentmodel-success-title": "コンテント・モデルは変更されました",

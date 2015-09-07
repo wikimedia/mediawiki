@@ -2115,7 +2115,7 @@
 	"imagetypemismatch": "Ekstenzija nove datoteke se ne poklapa s njenom vrstom",
 	"imageinvalidfilename": "Ciljani naziv datoteke je neispravan",
 	"fix-double-redirects": "Ažurirajte sva preusmerenja koja vode do prvobitnog naslova",
-	"move-leave-redirect": "Napravi preusmerenje",
+	"move-leave-redirect": "Ostavi preusmerenje",
 	"protectedpagemovewarning": "'''Upozorenje:''' ova stranica je zaštićena, tako da samo korisnici s administratorskim ovlašćenjima mogu da je premeste.\nZa više informacija, poslednji zapis u dnevniku izmena je prikazan ispod:",
 	"semiprotectedpagemovewarning": "'''Napomena:''' ova stranica je zaštićena, tako da samo registrovani korisnici mogu da je premeste.\nZa više informacija, poslednji zapis u dnevniku izmena je prikazan ispod:",
 	"move-over-sharedrepo": "== Datoteka postoji ==\n[[:$1]] se nalazi na deljenom skladištu. Ako premestite datoteku na ovaj naslov, to će zameniti deljenu datoteku.",

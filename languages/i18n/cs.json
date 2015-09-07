@@ -1651,7 +1651,7 @@
 	"booksources-text": "Níže je seznam odkazů na servery prodávající knihy, nebo které mohou mít další informace o knihách, které hledáte.",
 	"booksources-invalid-isbn": "Zadané ISBN se zdá být neplatné. Zkontrolujte jej s originálním zdrojem.",
 	"specialloguserlabel": "Původce:",
-	"speciallogtitlelabel": "Cíl (název nebo uživatel):",
+	"speciallogtitlelabel": "Cíl (název nebo {{ns:user}}:Jméno pro uživatele):",
 	"log": "Protokolovací záznamy",
 	"all-logs-page": "Všechny veřejné záznamy",
 	"alllogstext": "Společné zobrazení všech dostupných protokolovacích záznamů pro {{grammar:4sg|{{SITENAME}}}}.\nZobrazení můžete zúžit výběrem typu záznamu, uživatelského jména (záleží na velikosti písmen) nebo dotčené stránky (také záleží na velikosti písmen).",
