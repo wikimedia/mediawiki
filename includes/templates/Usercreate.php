@@ -38,8 +38,6 @@ class UsercreateTemplate extends BaseTemplate {
 	}
 
 	function execute() {
-		global $wgCookieExpiration;
-		$expirationDays = ceil( $wgCookieExpiration / ( 3600 * 24 ) );
 ?>
 <div class="mw-ui-container">
 	<?php if ( $this->haveData( 'languages' ) ) { ?>
