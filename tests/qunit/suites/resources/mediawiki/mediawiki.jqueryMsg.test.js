@@ -95,7 +95,6 @@
 	 * @param {Function[]} tasks List of functions that perform tasks
 	 *  that may be asynchronous. Invoke the callback parameter when done.
 	 * @param {Function} complete Called when all tasks are done, or when the sequence is aborted.
-	 * @return
 	 */
 	function process( tasks, complete ) {
 		/*jshint latedef:false */

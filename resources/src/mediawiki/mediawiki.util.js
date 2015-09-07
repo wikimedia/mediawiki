@@ -114,7 +114,7 @@
 		 *
 		 * @since 1.18
 		 * @param str string Name of script (eg. 'api'), defaults to 'index'
-		 * @return string Address to script (eg. '/w/api.php' )
+		 * @return {string} Address to script (eg. '/w/api.php' )
 		 */
 		wikiScript: function ( str ) {
 			str = str || 'index';
