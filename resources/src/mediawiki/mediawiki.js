@@ -743,7 +743,7 @@
 			 *    The module is known to the system but not yet requested.
 			 *    Meta data is registered via mw.loader#register. Calls to that method are
 			 *    generated server-side by the startup module.
-			 * - `loading` (1):
+			 * - `loading`:
 			 *    The module is requested through mw.loader (either directly or as dependency of
 			 *    another module). The client will be fetching module contents from the server.
 			 *    The contents are then stashed in the registry via mw.loader#implement.
@@ -751,9 +751,8 @@
 			 *    The module has been requested from the server and stashed via mw.loader#implement.
 			 *    If the module has no more dependencies in-fight, the module will be executed
 			 *    right away. Otherwise execution is deferred, controlled via #handlePending.
-			 * - `loading` (2):
+			 * - `executing`:
 			 *    The module is being executed.
-			 *    TODO: Create a new state instead of re-using the "loading" state.
 			 * - `ready`:
 			 *    The module has been successfully executed.
 			 * - `error`:
@@ -1191,21 +1190,11 @@
 				if ( !hasOwn.call( registry, module ) ) {
 					throw new Error( 'Module has not been registered yet: ' + module );
 				}
-				if ( registry[ module ].state === 'registered' ) {
-					throw new Error( 'Module has not been requested from the server yet: ' + module );
-				}
-				if ( registry[ module ].state === 'loading' ) {
-					throw new Error( 'Module has not completed loading yet: ' + module );
-				}
-				if ( registry[ module ].state === 'ready' ) {
-					throw new Error( 'Module has already been executed: ' + module );
+				if ( registry[ module ].state !== 'loaded' ) {
+					throw new Error( 'Module in state "' + registry[ module ].state + '" may not be executed: ' + module );
 				}
 
-				// This used to be inside runScript, but since that is now fired asychronously
-				// (after CSS is loaded) we need to set it here right away. It is crucial that
-				// when execute() is called this is set synchronously, otherwise modules will get
-				// executed multiple times as the registry will state that it isn't loading yet.
-				registry[ module ].state = 'loading';
+				registry[ module ].state = 'executing';
 
 				runScript = function () {
 					var script, markModuleReady, nestedAddScript, legacyWait,
