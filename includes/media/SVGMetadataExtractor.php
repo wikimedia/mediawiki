@@ -319,16 +319,6 @@ class SVGReader {
 		}
 	}
 
-	// @todo FIXME: Unused, remove?
-	private function warn( $data ) {
-		wfDebug( "SVGReader: $data\n" );
-	}
-
-	// @todo FIXME: Unused, remove?
-	private function notice( $data ) {
-		wfDebug( "SVGReader WARN: $data\n" );
-	}
-
 	/**
 	 * Parse the attributes of an SVG element
 	 *
