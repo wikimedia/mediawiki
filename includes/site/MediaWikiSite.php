@@ -136,8 +136,13 @@ class MediaWikiSite extends Site {
 			$url = wfAppendQuery( $this->getFileUrl( 'api.php' ), $args );
 
 			// Go on call the external site
-			// @todo we need a good way to specify a timeout here.
-			$ret = Http::get( $url, array(), __METHOD__ );
+			// XXX: what timeout should we use here?
+			$options = array(
+				'followRedirects' => true,
+				'timeout' => 'default',
+				'connectTimeout' => 'default',
+			);
+			$ret = Http::get( $url, $options, __METHOD__ );
 		}
 
 		if ( $ret === false ) {
