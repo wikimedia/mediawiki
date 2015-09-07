@@ -17,6 +17,8 @@ matrix:
       php: 5.3
     - env: dbtype=mysql
       php: hhvm
+    - env: dbtype=mysql
+      php: 7
 
 services:
   - mysql
