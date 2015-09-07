@@ -1,5 +1,6 @@
 /**
  * Make the two-step login easier.
+ *
  * @author Niklas Laxström
  * @class mw.Api.plugin.login
  * @since 1.22

@@ -248,6 +248,7 @@
 	 *
 	 * After this, it will look at all rows at the bottom for footer rows
 	 * And place these in a tfoot using similar rules.
+	 *
 	 * @param {jQuery} $table jQuery object for a <table>
 	 */
 	function emulateTHeadAndFoot( $table ) {
