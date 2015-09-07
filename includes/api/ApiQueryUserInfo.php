@@ -78,7 +78,6 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 	protected function getCurrentUserInfo() {
 		$user = $this->getUser();
-		$result = $this->getResult();
 		$vals = array();
 		$vals['id'] = intval( $user->getId() );
 		$vals['name'] = $user->getName();
