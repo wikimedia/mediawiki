@@ -56,9 +56,9 @@ class MWExceptionHandler {
 
 	/**
 	 * Report an exception to the user
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 */
-	protected static function report( Exception $e ) {
+	protected static function report( $e ) {
 		global $wgShowExceptionDetails;
 
 		$cmdLine = MWException::isCommandLine();
@@ -132,9 +132,9 @@ class MWExceptionHandler {
 	 * transaction could be aborted properly.
 	 *
 	 * @since 1.23
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 */
-	public static function rollbackMasterChangesAndLog( Exception $e ) {
+	public static function rollbackMasterChangesAndLog( $e ) {
 		$factory = wfGetLBFactory();
 		if ( $factory->hasMasterChanges() ) {
 			$logger = LoggerFactory::getInstance( 'Bug56269' );
@@ -159,9 +159,9 @@ class MWExceptionHandler {
 	 *   }
 	 *
 	 * @since 1.25
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 */
-	public static function handleException( Exception $e ) {
+	public static function handleException( $e ) {
 		try {
 			// Rollback DBs to avoid transaction notices. This may fail
 			// to rollback some DB due to connection issues or exceptions.
@@ -350,11 +350,11 @@ TXT;
 	 * Like Exception::getTraceAsString, but replaces argument values with
 	 * argument type or class name.
 	 *
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 * @return string
 	 * @see prettyPrintTrace()
 	 */
-	public static function getRedactedTraceAsString( Exception $e ) {
+	public static function getRedactedTraceAsString( $e ) {
 		return self::prettyPrintTrace( self::getRedactedTrace( $e ) );
 	}
 
@@ -407,10 +407,10 @@ TXT;
 	 * or its type (if the element is a PHP primitive).
 	 *
 	 * @since 1.22
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 * @return array
 	 */
-	public static function getRedactedTrace( Exception $e ) {
+	public static function getRedactedTrace( $e ) {
 		return static::redactTrace( $e->getTrace() );
 	}
 
@@ -442,10 +442,10 @@ TXT;
 	 * $wgShowExceptionDetails is set to false), to the entry in the debug log.
 	 *
 	 * @since 1.22
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 * @return string
 	 */
-	public static function getLogId( Exception $e ) {
+	public static function getLogId( $e ) {
 		if ( !isset( $e->_mwLogId ) ) {
 			$e->_mwLogId = wfRandomString( 8 );
 		}
@@ -471,10 +471,10 @@ TXT;
 	 * Get a message formatting the exception message and its origin.
 	 *
 	 * @since 1.22
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 * @return string
 	 */
-	public static function getLogMessage( Exception $e ) {
+	public static function getLogMessage( $e ) {
 		$id = self::getLogId( $e );
 		$type = get_class( $e );
 		$file = $e->getFile();
@@ -492,10 +492,10 @@ TXT;
 	 * exception that can be used to augment a log message sent to a PSR-3
 	 * logger.
 	 *
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 * @return array
 	 */
-	public static function getLogContext( Exception $e ) {
+	public static function getLogContext( $e ) {
 		return array(
 			'exception' => $e,
 			'exception_id' => static::getLogId( $e ),
@@ -509,11 +509,11 @@ TXT;
 	 * backtrace) derived from the given exception. The backtrace information
 	 * will be redacted as per getRedactedTraceAsArray().
 	 *
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 * @return array
 	 * @since 1.26
 	 */
-	public static function getStructuredExceptionData( Exception $e ) {
+	public static function getStructuredExceptionData( $e ) {
 		global $wgLogExceptionBacktrace;
 		$data = array(
 			'id' => self::getLogId( $e ),
@@ -592,12 +592,12 @@ TXT;
 	 * @endcode
 	 *
 	 * @since 1.23
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 * @param bool $pretty Add non-significant whitespace to improve readability (default: false).
 	 * @param int $escaping Bitfield consisting of FormatJson::.*_OK class constants.
 	 * @return string|false JSON string if successful; false upon failure
 	 */
-	public static function jsonSerializeException( Exception $e, $pretty = false, $escaping = 0 ) {
+	public static function jsonSerializeException( $e, $pretty = false, $escaping = 0 ) {
 		$data = self::getStructuredExceptionData( $e );
 		return FormatJson::encode( $data, $pretty, $escaping );
 	}
@@ -609,9 +609,9 @@ TXT;
 	 * it is also used to handle PHP exceptions or exceptions from other libraries.
 	 *
 	 * @since 1.22
-	 * @param Exception $e
+	 * @param Exception|Throwable $e
 	 */
-	public static function logException( Exception $e ) {
+	public static function logException( $e ) {
 		if ( !( $e instanceof MWException ) || $e->isLoggable() ) {
 			$logger = LoggerFactory::getInstance( 'exception' );
 			$logger->error(
