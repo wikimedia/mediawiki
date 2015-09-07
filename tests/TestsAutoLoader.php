@@ -123,6 +123,7 @@ $wgAutoloadClasses += array(
 	'NewParserTest' => "$testDir/phpunit/includes/parser/NewParserTest.php",
 	'MediaWikiParserTest' => "$testDir/phpunit/includes/parser/MediaWikiParserTest.php",
 	'ParserTest' => "$testDir/parser/parserTest.inc",
+	'ParserTestResultNormalizer' => "$testDir/parser/parserTest.inc",
 	'ParserTestParserHook' => "$testDir/parser/parserTestsParserHook.php",
 
 	# tests/phpunit/includes/site
