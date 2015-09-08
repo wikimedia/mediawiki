@@ -259,6 +259,90 @@ class OutputPageTest extends MediaWikiTestCase {
 		$actualHtml = implode( "\n", $links['html'] );
 		$this->assertEquals( $expectedHtml, $actualHtml );
 	}
+
+	/**
+	 * @dataProvider provideVaryHeaders
+	 * @covers OutputPage::addVaryHeader
+	 * @covers OutputPage::getVaryHeader
+	 * @covers OutputPage::getXVO
+	 */
+	public function testVaryHeaders( $calls, $vary, $xvo ) {
+		// get rid of default Vary fields
+		$outputPage = $this->getMockBuilder( 'OutputPage' )
+			->setConstructorArgs( array( new RequestContext() ) )
+			->setMethods( array( 'getCacheVaryCookies' ) )
+			->getMock();
+		$outputPage->expects( $this->any() )
+			->method( 'getCacheVaryCookies' )
+			->will( $this->returnValue( array() ) );
+		// TestingAccessWrapper does not play nice with mock objects
+		$reflectionClass = new ReflectionClass( 'OutputPage' );
+		$reflectionProperty = $reflectionClass->getProperty( 'mVaryHeader' );
+		$reflectionProperty->setAccessible( true );
+		$reflectionProperty->setValue( $outputPage, array() );
+		
+		foreach ( $calls as $call ) {
+			call_user_func_array( array( $outputPage, 'addVaryHeader' ), $call );
+		}
+		$this->assertEquals( $vary, $outputPage->getVaryHeader(), 'Vary:' );
+		$this->assertEquals( $xvo, $outputPage->getXVO(), 'X-Vary-Options:' );
+	}
+
+	public function provideVaryHeaders() {
+		// note: getXVO() automatically adds Vary: Cookie
+		return array(
+			array( // single header
+				array(
+					array( 'Cookie' ),
+				),
+				'Vary: Cookie',
+				'X-Vary-Options: Cookie',
+			),
+			array( // non-unique headers
+				array(
+					array( 'Cookie' ),
+					array( 'Accept-Language' ),
+					array( 'Cookie' ),
+				),
+				'Vary: Cookie, Accept-Language',
+				'X-Vary-Options: Cookie,Accept-Language',
+			),
+			array( // two headers with single options
+				array(
+					array( 'Cookie', array( 'string-contains=phpsessid' ) ),
+					array( 'Accept-Language', array( 'string-contains=en' ) ),
+				),
+				'Vary: Cookie, Accept-Language',
+				'X-Vary-Options: Cookie;string-contains=phpsessid,Accept-Language;string-contains=en',
+			),
+			array( // one header with multiple options
+				array(
+					array( 'Cookie', array( 'string-contains=phpsessid', 'string-contains=userId' ) ),
+				),
+				'Vary: Cookie',
+				'X-Vary-Options: Cookie;string-contains=phpsessid;string-contains=userId',
+			),
+			array( // Duplicate option
+				array(
+					array( 'Cookie', array( 'string-contains=phpsessid' ) ),
+					array( 'Cookie', array( 'string-contains=phpsessid' ) ),
+					array( 'Accept-Language', array( 'string-contains=en', 'string-contains=en' ) ),
+
+
+				),
+				'Vary: Cookie, Accept-Language',
+				'X-Vary-Options: Cookie;string-contains=phpsessid,Accept-Language;string-contains=en',
+			),
+			array( // Same header, different options
+				array(
+					array( 'Cookie', array( 'string-contains=phpsessid' ) ),
+					array( 'Cookie', array( 'string-contains=userId' ) ),
+				),
+				'Vary: Cookie',
+				'X-Vary-Options: Cookie;string-contains=phpsessid;string-contains=userId',
+			),
+		);
+	}
 }
 
 /**
