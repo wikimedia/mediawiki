@@ -728,13 +728,14 @@ class WikiImporter {
 					$title = $this->processTitle( $pageInfo['title'],
 						isset( $pageInfo['ns'] ) ? $pageInfo['ns'] : null );
 
-					if ( !$title ) {
+					// $title is either an array of two titles or false.
+					if ( is_array( $title ) ) {
+						$this->pageCallback( $title );
+						list( $pageInfo['_title'], $foreignTitle ) = $title;
+					} else {
 						$badTitle = true;
 						$skip = true;
 					}
-
-					$this->pageCallback( $title );
-					list( $pageInfo['_title'], $foreignTitle ) = $title;
 				}
 
 				if ( $title ) {
@@ -750,10 +751,17 @@ class WikiImporter {
 			}
 		}
 
-		$this->pageOutCallback( $pageInfo['_title'], $foreignTitle,
+		// @note $pageInfo is only set if a valid $title is processed above with
+		//       no error. If we have a valid $title, then pageCallback is called
+		//       above, $pageInfo['title'] is set and we do pageOutCallback here.
+		//       If $pageInfo['_title'] is not set, then $foreignTitle is also not
+		//       set since they both come from $title above.
+		if ( array_key_exists( '_title', $pageInfo ) ) {
+			$this->pageOutCallback( $pageInfo['_title'], $foreignTitle,
 					$pageInfo['revisionCount'],
 					$pageInfo['successfulRevisionCount'],
 					$pageInfo );
+		}
 	}
 
 	/**
