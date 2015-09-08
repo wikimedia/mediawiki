@@ -71,6 +71,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 		$this->outputHeader();
 		$this->outputSubtitle();
+		$out->addModuleStyles( 'mediawiki.special' );
 
 		# B/C: $mode used to be waaay down the parameter list, and the first parameter
 		# was $wgUser
