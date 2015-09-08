@@ -39,6 +39,9 @@ ul.mw-allpages-chunk li {
 	vertical-align: top;
 	width: 31%;
 }
+.allpagesredirect {
+	font-style: italic;
+}
 
 /* Special:BlockList */
 table.mw-blocklist span.mw-usertoollinks,
@@ -50,6 +53,11 @@ span.mw-blocklist-actions {
 /* Special:Contributions */
 .mw-uctop {
 	font-weight: bold;
+}
+
+/* Special:EditWatchlist */
+.watchlistredir {
+	font-style: italic;
 }
 
 /* Special:EmailUser */
