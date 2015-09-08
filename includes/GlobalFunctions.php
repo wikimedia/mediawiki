@@ -3940,12 +3940,13 @@ function wfTransactionalTimeLimit() {
  * Converts shorthand byte notation to integer form
  *
  * @param string $string
+ * @param int $default Returned if $string is empty
  * @return int
  */
-function wfShorthandToInteger( $string = '' ) {
+function wfShorthandToInteger( $string = '', $default = -1 ) {
 	$string = trim( $string );
 	if ( $string === '' ) {
-		return -1;
+		return $default;
 	}
 	$last = $string[strlen( $string ) - 1];
 	$val = intval( $string );
