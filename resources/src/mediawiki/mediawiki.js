@@ -1249,6 +1249,9 @@
 									$.globalEval( script );
 									markModuleReady();
 								}
+							} else {
+								// Module without script
+								markModuleReady();
 							}
 						} );
 					} catch ( e ) {
@@ -1798,10 +1801,10 @@
 						throw new Error( 'module already implemented: ' + module );
 					}
 					// Attach components
-					registry[ module ].script = script || [];
-					registry[ module ].style = style || {};
-					registry[ module ].messages = messages || {};
-					registry[ module ].templates = templates || {};
+					registry[ module ].script = script || null;
+					registry[ module ].style = style || null;
+					registry[ module ].messages = messages || null;
+					registry[ module ].templates = templates || null;
 					// The module may already have been marked as erroneous
 					if ( $.inArray( registry[ module ].state, [ 'error', 'missing' ] ) === -1 ) {
 						registry[ module ].state = 'loaded';
