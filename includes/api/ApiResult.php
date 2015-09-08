@@ -288,7 +288,7 @@ class ApiResult implements ApiSerializable {
 	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP.
 	 */
 	public static function setValue( array &$arr, $name, $value, $flags = 0 ) {
-		if ( !( $flags & ApiResult::NO_VALIDATE ) ) {
+		if ( ( $flags & ApiResult::NO_VALIDATE ) !== ApiResult::NO_VALIDATE ) {
 			$value = self::validateValue( $value );
 		}
 
@@ -402,6 +402,11 @@ class ApiResult implements ApiSerializable {
 		$arr = &$this->path( $path, ( $flags & ApiResult::ADD_ON_TOP ) ? 'prepend' : 'append' );
 
 		if ( $this->checkingSize && !( $flags & ApiResult::NO_SIZE_CHECK ) ) {
+			// self::valueSize needs the validated value. Then flag
+			// to not re-validate later.
+			$value = self::validateValue( $value );
+			$flags |= ApiResult::NO_VALIDATE;
+
 			$newsize = $this->size + self::valueSize( $value );
 			if ( $this->maxSize !== false && $newsize > $this->maxSize ) {
 				/// @todo Add i18n message when replacing calls to ->setWarning()
@@ -1079,14 +1084,12 @@ class ApiResult implements ApiSerializable {
 	 * or the sum of the strlen()s of the elements if the item is an array.
 	 * @note Once the deprecated public self::size is removed, we can rename
 	 *       this back to a less awkward name.
-	 * @param mixed $value
+	 * @param mixed $value Validated value (see self::validateValue())
 	 * @return int
 	 */
 	private static function valueSize( $value ) {
 		$s = 0;
-		if ( is_array( $value ) ||
-			is_object( $value ) && !is_callable( array( $value, '__toString' ) )
-		) {
+		if ( is_array( $value ) ) {
 			foreach ( $value as $k => $v ) {
 				if ( !self::isMetadataKey( $s ) ) {
 					$s += self::valueSize( $v );
@@ -1488,7 +1491,7 @@ class ApiResult implements ApiSerializable {
 	 */
 	public static function size( $value ) {
 		wfDeprecated( __METHOD__, '1.25' );
-		return self::valueSize( $value );
+		return self::valueSize( self::validateValue( $value ) );
 	}
 
 	/**
