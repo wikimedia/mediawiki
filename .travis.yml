@@ -8,19 +8,15 @@
 #
 language: php
 
-php:
-  - hhvm
-  - 5.3
-
-env:
-  - dbtype=mysql
-  - dbtype=postgres
-
-# TODO: Travis CI's hhvm does not support PostgreSQL at the moment.
 matrix:
-  exclude:
-    - php: hhvm
-      env: dbtype=postgres
+  fast_finish: true
+  include:
+    - env: dbtype=mysql
+      php: 5.3
+    - env: dbtype=postgres
+      php: 5.3
+    - env: dbtype=mysql
+      php: hhvm
 
 services:
   - mysql
