@@ -26,24 +26,32 @@ use MediaWiki\Logger\LoggerFactory;
  */
 class MWExceptionHandler {
 
+	/**
+	 * @var string $reservedMemory
+	 */
 	protected static $reservedMemory;
+	/**
+	 * @var array $fatalErrorTypes
+	 */
 	protected static $fatalErrorTypes = array(
 		E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR,
 		/* HHVM's FATAL_ERROR level */ 16777217,
 	);
+	/**
+	 * @var bool $handledFatalCallback
+	 */
+	protected static $handledFatalCallback = false;
 
 	/**
 	 * Install handlers with PHP.
 	 */
 	public static function installHandler() {
-		set_exception_handler( array( 'MWExceptionHandler', 'handleException' ) );
-		set_error_handler( array( 'MWExceptionHandler', 'handleError' ) );
+		set_exception_handler( 'MWExceptionHandler::handleException' );
+		set_error_handler( 'MWExceptionHandler::handleError' );
 
 		// Reserve 16k of memory so we can report OOM fatals
 		self::$reservedMemory = str_repeat( ' ', 16384 );
-		register_shutdown_function(
-			array( 'MWExceptionHandler', 'handleFatalError' )
-		);
+		register_shutdown_function( 'MWExceptionHandler::handleFatalError' );
 	}
 
 	/**
@@ -176,24 +184,36 @@ class MWExceptionHandler {
 	}
 
 	/**
+	 * Handler for set_error_handler() callback notifications.
+	 *
+	 * Receive a callback from the interpreter for a raised error, create an
+	 * ErrorException, and log the exception to the 'error' logging
+	 * channel(s). If the raised error is a fatal error type (only under HHVM)
+	 * delegate to handleFatalError() instead.
+	 *
 	 * @since 1.25
+	 *
 	 * @param int $level Error level raised
 	 * @param string $message
 	 * @param string $file
 	 * @param int $line
+	 *
+	 * @see logError()
 	 */
-	public static function handleError( $level, $message, $file = null, $line = null ) {
-		// Map error constant to error name (reverse-engineer PHP error reporting)
-		$channel = 'error';
+	public static function handleError(
+		$level, $message, $file = null, $line = null
+	) {
+		if ( in_array( $level, self::$fatalErrorTypes ) ) {
+			return call_user_func_array(
+				'MWExceptionHandler::handleFatalError', func_get_args()
+			);
+		}
+
+		// Map error constant to error name (reverse-engineer PHP error
+		// reporting)
 		switch ( $level ) {
-			case E_ERROR:
-			case E_CORE_ERROR:
-			case E_COMPILE_ERROR:
-			case E_USER_ERROR:
 			case E_RECOVERABLE_ERROR:
-			case E_PARSE:
 				$levelName = 'Error';
-				$channel = 'fatal';
 				break;
 			case E_WARNING:
 			case E_CORE_WARNING:
@@ -212,17 +232,13 @@ class MWExceptionHandler {
 			case E_USER_DEPRECATED:
 				$levelName = 'Deprecated';
 				break;
-			case /* HHVM's FATAL_ERROR */ 16777217:
-				$levelName = 'Fatal';
-				$channel = 'fatal';
-				break;
 			default:
 				$levelName = 'Unknown error';
 				break;
 		}
 
 		$e = new ErrorException( "PHP $levelName: $message", 0, $level, $file, $line );
-		self::logError( $e, $channel );
+		self::logError( $e, 'error' );
 
 		// This handler is for logging only. Return false will instruct PHP
 		// to continue regular handling.
@@ -231,42 +247,101 @@ class MWExceptionHandler {
 
 
 	/**
-	 * Look for a fatal error as the cause of the request termination and log
-	 * as an exception.
+	 * Dual purpose callback used as both a set_error_handler() callback and
+	 * a registered shutdown function. Receive a callback from the interpreter
+	 * for a raised error or system shutdown, check for a fatal error, and log
+	 * to the 'fatal' logging channel.
 	 *
 	 * Special handling is included for missing class errors as they may
 	 * indicate that the user needs to install 3rd-party libraries via
 	 * Composer or other means.
 	 *
 	 * @since 1.25
+	 *
+	 * @param int $level Error level raised
+	 * @param string $message Error message
+	 * @param string $file File that error was raised in
+	 * @param int $line Line number error was raised at
+	 * @param array $context Active symbol table point of error
+	 * @param array $trace Backtrace at point of error (undocumented HHVM
+	 *     feature)
+	 * @return bool Always returns false
 	 */
-	public static function handleFatalError() {
+	public static function handleFatalError(
+		$level = null, $message = null, $file = null, $line = null,
+		$context = null, $trace = null
+	) {
+		// Free reserved memory so that we have space to process OOM
+		// errors
 		self::$reservedMemory = null;
-		$lastError = error_get_last();
 
-		if ( $lastError &&
-			isset( $lastError['type'] ) &&
-			in_array( $lastError['type'], self::$fatalErrorTypes )
-		) {
-			$msg = "Fatal Error: {$lastError['message']}";
-			// HHVM: Class undefined: foo
-			// PHP5: Class 'foo' not found
-			if ( preg_match( "/Class (undefined: \w+|'\w+' not found)/",
-				$lastError['message']
-			) ) {
-				// @codingStandardsIgnoreStart Generic.Files.LineLength.TooLong
-				$msg = <<<TXT
+		if ( $level === null ) {
+			// Called as a shutdown handler, get data from error_get_last()
+			if ( static::$handledFatalCallback ) {
+				// Already called once (probably as an error handler callback
+				// under HHVM) so don't log again.
+				return false;
+			}
+
+			$lastError = error_get_last();
+			if ( $lastError !== null ) {
+				$level = $lastError['type'];
+				$message = $lastError['message'];
+				$file = $lastError['file'];
+				$line = $lastError['line'];
+			} else {
+				$level = 0;
+				$message = '';
+			}
+		}
+
+		if ( !in_array( $level, self::$fatalErrorTypes ) ) {
+			// Only interested in fatal errors, others should have been
+			// handled by MWExceptionHandler::handleError
+			return false;
+		}
+
+		$msg = "[{exception_id}] PHP Fatal Error: {$message}";
+
+		// Look at message to see if this is a class not found failure
+		// HHVM: Class undefined: foo
+		// PHP5: Class 'foo' not found
+		if ( preg_match( "/Class (undefined: \w+|'\w+' not found)/", $msg ) ) {
+			// @codingStandardsIgnoreStart Generic.Files.LineLength.TooLong
+			$msg = <<<TXT
 {$msg}
 
 MediaWiki or an installed extension requires this class but it is not embedded directly in MediaWiki's git repository and must be installed separately by the end user.
 
 Please see <a href="https://www.mediawiki.org/wiki/Download_from_Git#Fetch_external_libraries">mediawiki.org</a> for help on installing the required components.
 TXT;
-				// @codingStandardsIgnoreEnd
-			}
-			$e = new ErrorException( $msg, 0, $lastError['type'] );
-			self::logError( $e, 'fatal' );
+			// @codingStandardsIgnoreEnd
 		}
+
+		// We can't just create an exception and log it as it is likely that
+		// the interpreter has unwound the stack already. If that is true the
+		// stacktrace we would get would be functionally empty. If however we
+		// have been called as an error handler callback *and* HHVM is in use
+		// we will have been provided with a useful stacktrace that we can
+		// log.
+		$trace = $trace ?: debug_backtrace();
+		$logger = LoggerFactory::getInstance( 'fatal' );
+		$logger->error( $msg, array(
+			'exception' => array(
+				'class' => 'ErrorException',
+				'message' => "PHP Fatal Error: {$message}",
+				'code' => $level,
+				'file' => $file,
+				'line' => $line,
+				'trace' => static::redactTrace( $trace ),
+			),
+			'exception_id' => wfRandomString( 8 ),
+		) );
+
+		// Remember call so we don't double process via HHVM's fatal
+		// notifications and the shutdown hook behavior
+		static::$handledFatalCallback = true;
+		return false;
 	}
 
 	/**
@@ -336,6 +411,20 @@ TXT;
 	 * @return array
 	 */
 	public static function getRedactedTrace( Exception $e ) {
+		return static::redactTrace( $e->getTrace() );
+	}
+
+	/**
+	 * Redact a stacktrace generated by Exception::getTrace(),
+	 * debug_backtrace() or similar means. Replaces each element in each
+	 * frame's argument array with the name of its class (if the element is an
+	 * object) or its type (if the element is a PHP primitive).
+	 *
+	 * @since 1.26
+	 * @param array $trace Stacktrace
+	 * @return array Stacktrace with arugment values converted to data types
+	 */
+	public static function redactTrace( array $trace ) {
 		return array_map( function ( $frame ) {
 			if ( isset( $frame['args'] ) ) {
 				$frame['args'] = array_map( function ( $arg ) {
@@ -343,7 +432,7 @@ TXT;
 				}, $frame['args'] );
 			}
 			return $frame;
-		}, $e->getTrace() );
+		}, $trace );
 	}
 
 	/**
@@ -409,6 +498,7 @@ TXT;
 	public static function getLogContext( Exception $e ) {
 		return array(
 			'exception' => $e,
+			'exception_id' => static::getLogId( $e ),
 		);
 	}
 
@@ -548,7 +638,8 @@ TXT;
 	*/
 	protected static function logError( ErrorException $e, $channel ) {
 		// The set_error_handler callback is independent from error_reporting.
-		// Filter out unwanted errors manually (e.g. when MediaWiki\suppressWarnings is active).
+		// Filter out unwanted errors manually (e.g. when
+		// MediaWiki\suppressWarnings is active).
 		$suppressed = ( error_reporting() & $e->getSeverity() ) === 0;
 		if ( !$suppressed ) {
 			$logger = LoggerFactory::getInstance( $channel );
