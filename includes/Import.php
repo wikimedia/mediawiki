@@ -731,6 +731,8 @@ class WikiImporter {
 					if ( !$title ) {
 						$badTitle = true;
 						$skip = true;
+
+						continue;
 					}
 
 					$this->pageCallback( $title );
@@ -750,10 +752,12 @@ class WikiImporter {
 			}
 		}
 
-		$this->pageOutCallback( $pageInfo['_title'], $foreignTitle,
+		if ( array_key_exists( '_title', $pageInfo ) ) {
+			$this->pageOutCallback( $pageInfo['_title'], $foreignTitle,
 					$pageInfo['revisionCount'],
 					$pageInfo['successfulRevisionCount'],
 					$pageInfo );
+		}
 	}
 
 	/**
