@@ -331,7 +331,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 	 * @deprecated since 1.23
 	 */
 	public function handleException( $server, RedisConnRef $cref, RedisException $e ) {
-		return $this->handleError( $cref, $e );
+		$this->handleError( $cref, $e );
 	}
 
 	/**

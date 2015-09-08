@@ -194,7 +194,7 @@ class StubUserLang extends StubObject {
 	public function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
 		global $wgLang;
 		$this->_unstub( 'findVariantLink', 3 );
-		return $wgLang->findVariantLink( $link, $nt, $ignoreOtherCond );
+		$wgLang->findVariantLink( $link, $nt, $ignoreOtherCond );
 	}
 
 	/**
