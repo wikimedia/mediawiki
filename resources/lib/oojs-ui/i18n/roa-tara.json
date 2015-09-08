@@ -16,6 +16,8 @@
 	"ooui-dialog-process-dismiss": "Scitte",
 	"ooui-dialog-process-retry": "Pruève arrete",
 	"ooui-dialog-process-continue": "Condinue",
+	"ooui-selectfile-button-select": "Scacchie 'nu file",
 	"ooui-selectfile-not-supported": "'U scacchiamende d'u file non g'è supportate",
-	"ooui-selectfile-placeholder": "Nisciune file scacchiate"
+	"ooui-selectfile-placeholder": "Nisciune file scacchiate",
+	"ooui-selectfile-dragdrop-placeholder": "Scitte 'u file aqquà"
 }

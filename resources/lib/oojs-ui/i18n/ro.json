@@ -20,7 +20,8 @@
 	"ooui-dialog-process-dismiss": "Renunțare",
 	"ooui-dialog-process-retry": "Reîncearcă",
 	"ooui-dialog-process-continue": "Continuă",
+	"ooui-selectfile-button-select": "Alege un fișier",
 	"ooui-selectfile-not-supported": "Selecția de fișiere nu este acceptată",
 	"ooui-selectfile-placeholder": "Niciun fișier selectat",
-	"ooui-selectfile-dragdrop-placeholder": "Trageți fișierul aici (sau faceți clic pentru a răsfoi)"
+	"ooui-selectfile-dragdrop-placeholder": "Trageți fișierul aici"
 }

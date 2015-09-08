@@ -30,6 +30,8 @@
 	"ooui-dialog-process-dismiss": "關閉",
 	"ooui-dialog-process-retry": "再試一次",
 	"ooui-dialog-process-continue": "繼續",
+	"ooui-selectfile-button-select": "選擇一個檔案",
 	"ooui-selectfile-not-supported": "無法支援所選擇的檔案",
-	"ooui-selectfile-placeholder": "未選擇檔案"
+	"ooui-selectfile-placeholder": "未選擇檔案",
+	"ooui-selectfile-dragdrop-placeholder": "拖曳檔案到此處"
 }

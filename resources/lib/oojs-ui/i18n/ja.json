@@ -6,7 +6,8 @@
 			"Penn Station",
 			"Shirayuki",
 			"Takot",
-			"Los688"
+			"Los688",
+			"Sujiniku"
 		]
 	},
 	"ooui-outline-control-move-down": "項目を下に移動させる",
@@ -21,6 +22,8 @@
 	"ooui-dialog-process-dismiss": "閉じる",
 	"ooui-dialog-process-retry": "もう一度お試しください",
 	"ooui-dialog-process-continue": "続行",
+	"ooui-selectfile-button-select": "ファイルを選択",
 	"ooui-selectfile-not-supported": "ファイルの選択はサポートされていません",
-	"ooui-selectfile-placeholder": "ファイルが選択されていません"
+	"ooui-selectfile-placeholder": "ファイルが選択されていません",
+	"ooui-selectfile-dragdrop-placeholder": "ファイルをここにドロップ"
 }

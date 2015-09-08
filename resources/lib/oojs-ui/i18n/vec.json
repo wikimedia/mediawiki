@@ -9,5 +9,9 @@
 	"ooui-outline-control-move-down": "Sposta in baso",
 	"ooui-outline-control-move-up": "Sposta in sima",
 	"ooui-toolbar-more": "Altro",
-	"ooui-dialog-message-accept": "Va ben"
+	"ooui-dialog-message-accept": "Va ben",
+	"ooui-dialog-process-error": "Xe 'ndà storto calcossa",
+	"ooui-dialog-process-dismiss": "Scondi",
+	"ooui-dialog-process-retry": "Proa da novo",
+	"ooui-dialog-process-continue": "Và vanti"
 }

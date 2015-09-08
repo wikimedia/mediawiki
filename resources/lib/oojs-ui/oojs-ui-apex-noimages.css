@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.12.7
+ * OOjs UI v0.12.8
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-09-01T23:25:39Z
+ * Date: 2015-09-08T20:56:08Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -125,7 +125,7 @@
 }
 .oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon {
 	/* Don't animate opacities for now, causes wiggling in Chrome (bug 63020) */
-	/*.oo-ui-transition(opacity 200ms);*/
+	/*.oo-ui-transition(opacity @medium-ease);*/
 }
 .oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button:hover,
 .oo-ui-buttonElement-frameless > .oo-ui-buttonElement-button:focus {
@@ -174,11 +174,11 @@
 	border-radius: 0.3em;
 	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
 	border: 1px #c9c9c9 solid;
-	-webkit-transition: border-color 100ms ease-in-out;
-	   -moz-transition: border-color 100ms ease-in-out;
-	    -ms-transition: border-color 100ms ease-in-out;
-	     -o-transition: border-color 100ms ease-in-out;
-	        transition: border-color 100ms ease-in-out;
+	-webkit-transition: border-color 100ms ease;
+	   -moz-transition: border-color 100ms ease;
+	    -ms-transition: border-color 100ms ease;
+	     -o-transition: border-color 100ms ease;
+	        transition: border-color 100ms ease;
 	background: #eeeeee;
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#ffffff', endColorstr='#dddddd');
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #ffffff), color-stop(100%, #dddddd));
@@ -573,11 +573,11 @@
 .oo-ui-menuLayout-menu,
 .oo-ui-menuLayout-content {
 	position: absolute;
-	-webkit-transition: all ease-in-out 200ms;
-	   -moz-transition: all ease-in-out 200ms;
-	    -ms-transition: all ease-in-out 200ms;
-	     -o-transition: all ease-in-out 200ms;
-	        transition: all ease-in-out 200ms;
+	-webkit-transition: all 200ms ease;
+	   -moz-transition: all 200ms ease;
+	    -ms-transition: all 200ms ease;
+	     -o-transition: all 200ms ease;
+	        transition: all 200ms ease;
 }
 .oo-ui-menuLayout-menu {
 	height: 18em;
@@ -722,11 +722,11 @@
 	margin: 0.375em;
 	border-radius: 0.3125em;
 	border: 1px solid transparent;
-	-webkit-transition: border-color 300ms ease-in-out;
-	   -moz-transition: border-color 300ms ease-in-out;
-	    -ms-transition: border-color 300ms ease-in-out;
-	     -o-transition: border-color 300ms ease-in-out;
-	        transition: border-color 300ms ease-in-out;
+	-webkit-transition: border-color 250ms ease;
+	   -moz-transition: border-color 250ms ease;
+	    -ms-transition: border-color 250ms ease;
+	     -o-transition: border-color 250ms ease;
+	        transition: border-color 250ms ease;
 }
 .oo-ui-toolGroup-empty {
 	display: none;
@@ -1178,11 +1178,11 @@
 	bottom: -9px;
 	height: 9px;
 	opacity: 0.5;
-	-webkit-transition: opacity 500ms ease-in-out;
-	   -moz-transition: opacity 500ms ease-in-out;
-	    -ms-transition: opacity 500ms ease-in-out;
-	     -o-transition: opacity 500ms ease-in-out;
-	        transition: opacity 500ms ease-in-out;
+	-webkit-transition: opacity 500ms ease;
+	   -moz-transition: opacity 500ms ease;
+	    -ms-transition: opacity 500ms ease;
+	     -o-transition: opacity 500ms ease;
+	        transition: opacity 500ms ease;
 }
 .oo-ui-optionWidget {
 	position: relative;
@@ -1449,11 +1449,11 @@
 	border-radius: 1em;
 	box-shadow: 0 0.1em 0.25em rgba(0, 0, 0, 0.1);
 	border: 1px #c9c9c9 solid;
-	-webkit-transition: left 200ms ease-in-out, margin-left 200ms ease-in-out;
-	   -moz-transition: left 200ms ease-in-out, margin-left 200ms ease-in-out;
-	    -ms-transition: left 200ms ease-in-out, margin-left 200ms ease-in-out;
-	     -o-transition: left 200ms ease-in-out, margin-left 200ms ease-in-out;
-	        transition: left 200ms ease-in-out, margin-left 200ms ease-in-out;
+	-webkit-transition: left 250ms ease, margin-left 250ms ease;
+	   -moz-transition: left 250ms ease, margin-left 250ms ease;
+	    -ms-transition: left 250ms ease, margin-left 250ms ease;
+	     -o-transition: left 250ms ease, margin-left 250ms ease;
+	        transition: left 250ms ease, margin-left 250ms ease;
 	background: #eeeeee;
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#ffffff', endColorstr='#dddddd');
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #ffffff), color-stop(100%, #dddddd));
@@ -1469,11 +1469,11 @@
 .oo-ui-toggleSwitchWidget .oo-ui-toggleSwitchWidget-glow {
 	border-radius: 1em;
 	box-shadow: inset 0 1px 4px 0 rgba(0, 0, 0, 0.07);
-	-webkit-transition: opacity 200ms ease-in-out;
-	   -moz-transition: opacity 200ms ease-in-out;
-	    -ms-transition: opacity 200ms ease-in-out;
-	     -o-transition: opacity 200ms ease-in-out;
-	        transition: opacity 200ms ease-in-out;
+	-webkit-transition: opacity 250ms ease;
+	   -moz-transition: opacity 250ms ease;
+	    -ms-transition: opacity 250ms ease;
+	     -o-transition: opacity 250ms ease;
+	        transition: opacity 250ms ease;
 	background: #cde7f4;
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#b0d9ee', endColorstr='#eaf4fa');
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #b0d9ee), color-stop(100%, #eaf4fa));
@@ -1506,11 +1506,11 @@
 .oo-ui-progressBarWidget-bar {
 	height: 1em;
 	border-right: 1px solid #cccccc;
-	-webkit-transition: width 200ms, margin-left 200ms;
-	   -moz-transition: width 200ms, margin-left 200ms;
-	    -ms-transition: width 200ms, margin-left 200ms;
-	     -o-transition: width 200ms, margin-left 200ms;
-	        transition: width 200ms, margin-left 200ms;
+	-webkit-transition: width 250ms ease, margin-left 250ms ease;
+	   -moz-transition: width 250ms ease, margin-left 250ms ease;
+	    -ms-transition: width 250ms ease, margin-left 250ms ease;
+	     -o-transition: width 250ms ease, margin-left 250ms ease;
+	        transition: width 250ms ease, margin-left 250ms ease;
 	background: #cde7f4;
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#eaf4fa', endColorstr='#b0d9ee');
 	background-image: -webkit-gradient(linear, right top, right bottom, color-stop(0%, #eaf4fa), color-stop(100%, #b0d9ee));
@@ -1607,11 +1607,11 @@
 	border-width: 6px;
 }
 .oo-ui-popupWidget-transitioning .oo-ui-popupWidget-popup {
-	-webkit-transition: width 100ms ease-in-out, height 100ms ease-in-out, left 100ms ease-in-out;
-	   -moz-transition: width 100ms ease-in-out, height 100ms ease-in-out, left 100ms ease-in-out;
-	    -ms-transition: width 100ms ease-in-out, height 100ms ease-in-out, left 100ms ease-in-out;
-	     -o-transition: width 100ms ease-in-out, height 100ms ease-in-out, left 100ms ease-in-out;
-	        transition: width 100ms ease-in-out, height 100ms ease-in-out, left 100ms ease-in-out;
+	-webkit-transition: width 100ms ease, height 100ms ease, left 100ms ease;
+	   -moz-transition: width 100ms ease, height 100ms ease, left 100ms ease;
+	    -ms-transition: width 100ms ease, height 100ms ease, left 100ms ease;
+	     -o-transition: width 100ms ease, height 100ms ease, left 100ms ease;
+	        transition: width 100ms ease, height 100ms ease, left 100ms ease;
 }
 .oo-ui-popupWidget-head {
 	height: 2.5em;
@@ -1782,11 +1782,11 @@
 	border: 1px solid #cccccc;
 	box-shadow: 0 0 0 white, inset 0 0.1em 0.2em #dddddd;
 	border-radius: 0.25em;
-	-webkit-transition: border-color 200ms, box-shadow 200ms;
-	   -moz-transition: border-color 200ms, box-shadow 200ms;
-	    -ms-transition: border-color 200ms, box-shadow 200ms;
-	     -o-transition: border-color 200ms, box-shadow 200ms;
-	        transition: border-color 200ms, box-shadow 200ms;
+	-webkit-transition: border-color 250ms ease, box-shadow 250ms ease;
+	   -moz-transition: border-color 250ms ease, box-shadow 250ms ease;
+	    -ms-transition: border-color 250ms ease, box-shadow 250ms ease;
+	     -o-transition: border-color 250ms ease, box-shadow 250ms ease;
+	        transition: border-color 250ms ease, box-shadow 250ms ease;
 }
 .oo-ui-textInputWidget input.oo-ui-pendingElement-pending,
 .oo-ui-textInputWidget textarea.oo-ui-pendingElement-pending {
@@ -2016,6 +2016,14 @@
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
 }
+.oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-label {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-overflow: ellipsis;
+}
 .oo-ui-selectFileWidget-info > .oo-ui-indicatorElement-indicator,
 .oo-ui-selectFileWidget-info > .oo-ui-iconElement-icon,
 .oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-clearButton {
@@ -2044,7 +2052,6 @@
 	height: 2.4em;
 	border: 1px solid rgba(0, 0, 0, 0.1);
 	border-radius: 0.25em;
-	padding: 0 0.5em;
 }
 .oo-ui-selectFileWidget-info > .oo-ui-indicatorElement-indicator {
 	right: 0;
@@ -2056,12 +2063,13 @@
 	line-height: 2.3em;
 	margin: 0;
 	overflow: hidden;
-	width: 100%;
 	white-space: nowrap;
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
 	text-overflow: ellipsis;
+	left: 0.5em;
+	right: 0.5em;
 }
 .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-clearButton {
 	top: 0;
@@ -2094,28 +2102,28 @@
 .oo-ui-selectFileWidget-empty .oo-ui-selectFileWidget-label {
 	color: #cccccc;
 }
-.oo-ui-selectFileWidget.oo-ui-iconElement .oo-ui-selectFileWidget-info {
-	padding-left: 3em;
+.oo-ui-selectFileWidget.oo-ui-iconElement .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-label {
+	left: 2.75em;
 }
-.oo-ui-selectFileWidget .oo-ui-selectFileWidget-info {
-	padding-right: 3em;
+.oo-ui-selectFileWidget .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-label {
+	right: 3em;
 }
 .oo-ui-selectFileWidget .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-clearButton {
 	right: 0;
 }
-.oo-ui-selectFileWidget.oo-ui-indicatorElement .oo-ui-selectFileWidget-info {
-	padding-right: 5em;
+.oo-ui-selectFileWidget.oo-ui-indicatorElement .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-label {
+	right: 5em;
 }
 .oo-ui-selectFileWidget.oo-ui-indicatorElement .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-clearButton {
 	right: 2em;
 }
-.oo-ui-selectFileWidget-empty .oo-ui-selectFileWidget-info,
-.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-info {
-	padding-right: 1em;
+.oo-ui-selectFileWidget-empty .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-label,
+.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-label {
+	right: 1em;
 }
-.oo-ui-selectFileWidget-empty.oo-ui-indicatorElement .oo-ui-selectFileWidget-info,
-.oo-ui-selectFileWidget-notsupported.oo-ui-indicatorElement .oo-ui-selectFileWidget-info {
-	padding-right: 2em;
+.oo-ui-selectFileWidget-empty.oo-ui-indicatorElement .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-label,
+.oo-ui-selectFileWidget-notsupported.oo-ui-indicatorElement .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-label {
+	right: 2em;
 }
 .oo-ui-selectFileWidget-dropTarget {
 	line-height: 3.5em;
@@ -2888,11 +2896,11 @@
 .oo-ui-windowManager-modal > .oo-ui-dialog {
 	background-color: rgba(255, 255, 255, 0.5);
 	opacity: 0;
-	-webkit-transition: opacity 250ms ease-in-out;
-	   -moz-transition: opacity 250ms ease-in-out;
-	    -ms-transition: opacity 250ms ease-in-out;
-	     -o-transition: opacity 250ms ease-in-out;
-	        transition: opacity 250ms ease-in-out;
+	-webkit-transition: opacity 250ms ease;
+	   -moz-transition: opacity 250ms ease;
+	    -ms-transition: opacity 250ms ease;
+	     -o-transition: opacity 250ms ease;
+	        transition: opacity 250ms ease;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog > .oo-ui-window-frame {
 	top: 1em;
@@ -2904,11 +2912,11 @@
 	    -ms-transform: scale(0.5);
 	     -o-transform: scale(0.5);
 	        transform: scale(0.5);
-	-webkit-transition: all 250ms ease-in-out;
-	   -moz-transition: all 250ms ease-in-out;
-	    -ms-transition: all 250ms ease-in-out;
-	     -o-transition: all 250ms ease-in-out;
-	        transition: all 250ms ease-in-out;
+	-webkit-transition: all 250ms ease;
+	   -moz-transition: all 250ms ease;
+	    -ms-transition: all 250ms ease;
+	     -o-transition: all 250ms ease;
+	        transition: all 250ms ease;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-ready {
 	/* Fade window overlay */

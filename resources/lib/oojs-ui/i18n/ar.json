@@ -11,7 +11,8 @@
 			"مشعل الحربي",
 			"ترجمان05",
 			"Abanima",
-			"محمد أحمد عبد الفتاح"
+			"محمد أحمد عبد الفتاح",
+			"Hiba Alshawi"
 		]
 	},
 	"ooui-outline-control-move-down": "انقل العنصر للأسفل",
@@ -26,6 +27,8 @@
 	"ooui-dialog-process-dismiss": "أغلق",
 	"ooui-dialog-process-retry": "حاول مرة أخرى",
 	"ooui-dialog-process-continue": "استمر",
+	"ooui-selectfile-button-select": "أختر ملف",
 	"ooui-selectfile-not-supported": "تحديد الملفات غير مدعوم",
-	"ooui-selectfile-placeholder": "لم يختر أي ملف"
+	"ooui-selectfile-placeholder": "لم يختر أي ملف",
+	"ooui-selectfile-dragdrop-placeholder": "ترك ملف هنا"
 }

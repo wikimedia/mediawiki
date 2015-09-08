@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.12.7
+ * OOjs UI v0.12.8
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-09-01T23:25:30Z
+ * Date: 2015-09-08T20:55:55Z
  */
 ( function ( OO ) {
 
@@ -7559,10 +7559,12 @@ OO.ui.Toolbar.prototype.onWindowResize = function () {
  * This must be called after it is attached to a visible document and before doing anything else.
  */
 OO.ui.Toolbar.prototype.initialize = function () {
-	this.initialized = true;
-	this.narrowThreshold = this.$group.width() + this.$actions.width();
-	$( this.getElementWindow() ).on( 'resize', this.onWindowResizeHandler );
-	this.onWindowResize();
+	if ( !this.initialized ) {
+		this.initialized = true;
+		this.narrowThreshold = this.$group.width() + this.$actions.width();
+		$( this.getElementWindow() ).on( 'resize', this.onWindowResizeHandler );
+		this.onWindowResize();
+	}
 };
 
 /**

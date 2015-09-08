@@ -18,7 +18,8 @@
 	"ooui-dialog-process-dismiss": "Hülga",
 	"ooui-dialog-process-retry": "Proovi uuesti",
 	"ooui-dialog-process-continue": "Jätka",
+	"ooui-selectfile-button-select": "Vali fail",
 	"ooui-selectfile-not-supported": "Faili valiku tugi puudub",
 	"ooui-selectfile-placeholder": "Faili ei ole valitud",
-	"ooui-selectfile-dragdrop-placeholder": "Lohista fail siia (või klõpsa, et sirvida)"
+	"ooui-selectfile-dragdrop-placeholder": "Lohista fail siia"
 }
