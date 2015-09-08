@@ -142,9 +142,6 @@ class OutputPage extends ContextSource {
 	/** @var string Inline CSS styles. Use addInlineStyle() sparingly */
 	protected $mInlineStyles = '';
 
-	/** @todo Unused? */
-	private $mLinkColours;
-
 	/**
 	 * @var string Used by skin template.
 	 * Example: $tpl->set( 'displaytitle', $out->mPageLinkTitle );
