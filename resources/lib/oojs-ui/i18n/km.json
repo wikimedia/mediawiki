@@ -17,7 +17,8 @@
 	"ooui-dialog-process-dismiss": "បិទ",
 	"ooui-dialog-process-retry": "ព្យាយាមម្ដងទៀត",
 	"ooui-dialog-process-continue": "បន្ត",
+	"ooui-selectfile-button-select": "ជ្រើសរើសឯកសារ",
 	"ooui-selectfile-not-supported": "ការជ្រើសរើសឯកសារមិនអាចប្រើបានទេ",
 	"ooui-selectfile-placeholder": "គ្មានឯកសារណាមួយត្រូវបានជ្រើសរើស",
-	"ooui-selectfile-dragdrop-placeholder": "ទម្លាក់ឯកសារនៅទីនេះ(ឬចុចដើម្បីរាវរក)"
+	"ooui-selectfile-dragdrop-placeholder": "ទម្លាក់ឯកសារនៅទីនេះ"
 }

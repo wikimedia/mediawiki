@@ -32,7 +32,8 @@
 	"ooui-dialog-process-dismiss": "Приховати",
 	"ooui-dialog-process-retry": "Спробуйте ще раз",
 	"ooui-dialog-process-continue": "Продовжити",
+	"ooui-selectfile-button-select": "Оберіть файл",
 	"ooui-selectfile-not-supported": "Вибір файлу не підтримується",
 	"ooui-selectfile-placeholder": "Жодного файлу не вибрано",
-	"ooui-selectfile-dragdrop-placeholder": "Помістіть файл сюди (або натисніть, щоб переглянути)"
+	"ooui-selectfile-dragdrop-placeholder": "Помістіть файл сюди"
 }

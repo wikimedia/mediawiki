@@ -27,7 +27,8 @@
 	"ooui-dialog-process-dismiss": "Stäng",
 	"ooui-dialog-process-retry": "Försök igen",
 	"ooui-dialog-process-continue": "Fortsätt",
+	"ooui-selectfile-button-select": "Välj en fil",
 	"ooui-selectfile-not-supported": "Filval stöds inte",
 	"ooui-selectfile-placeholder": "Ingen fil är vald",
-	"ooui-selectfile-dragdrop-placeholder": "Släpp filen här (eller klicka för att bläddra)"
+	"ooui-selectfile-dragdrop-placeholder": "Släpp filen här"
 }

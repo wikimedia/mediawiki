@@ -32,7 +32,8 @@
 	"ooui-dialog-process-dismiss": "关闭",
 	"ooui-dialog-process-retry": "重试",
 	"ooui-dialog-process-continue": "继续",
+	"ooui-selectfile-button-select": "选择一个文件",
 	"ooui-selectfile-not-supported": "文件选择不受支持",
 	"ooui-selectfile-placeholder": "没有选定文件",
-	"ooui-selectfile-dragdrop-placeholder": "将文件拖动至此（或点击以浏览）"
+	"ooui-selectfile-dragdrop-placeholder": "将文件拖动至此"
 }

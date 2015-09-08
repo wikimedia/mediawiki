@@ -1,12 +1,12 @@
 /*!
- * OOjs UI v0.12.7
+ * OOjs UI v0.12.8
  * https://www.mediawiki.org/wiki/OOjs_UI
  *
  * Copyright 2011–2015 OOjs UI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2015-09-01T23:25:39Z
+ * Date: 2015-09-08T20:56:08Z
  */
 @-webkit-keyframes oo-ui-progressBarWidget-slide {
 	from {
@@ -194,11 +194,11 @@
 	margin: 0.1em 0;
 	padding: 0.2em 0.8em;
 	border-radius: 2px;
-	-webkit-transition: background 0.1s ease-in-out, color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
-	   -moz-transition: background 0.1s ease-in-out, color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
-	    -ms-transition: background 0.1s ease-in-out, color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
-	     -o-transition: background 0.1s ease-in-out, color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
-	        transition: background 0.1s ease-in-out, color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+	-webkit-transition: background 100ms ease, color 100ms ease, box-shadow 100ms ease;
+	   -moz-transition: background 100ms ease, color 100ms ease, box-shadow 100ms ease;
+	    -ms-transition: background 100ms ease, color 100ms ease, box-shadow 100ms ease;
+	     -o-transition: background 100ms ease, color 100ms ease, box-shadow 100ms ease;
+	        transition: background 100ms ease, color 100ms ease, box-shadow 100ms ease;
 }
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button:hover,
 .oo-ui-buttonElement-framed > .oo-ui-buttonElement-button:focus {
@@ -651,11 +651,11 @@
 .oo-ui-menuLayout-menu,
 .oo-ui-menuLayout-content {
 	position: absolute;
-	-webkit-transition: all ease-in-out 200ms;
-	   -moz-transition: all ease-in-out 200ms;
-	    -ms-transition: all ease-in-out 200ms;
-	     -o-transition: all ease-in-out 200ms;
-	        transition: all ease-in-out 200ms;
+	-webkit-transition: all 200ms ease;
+	   -moz-transition: all 200ms ease;
+	    -ms-transition: all 200ms ease;
+	     -o-transition: all 200ms ease;
+	        transition: all 200ms ease;
 }
 .oo-ui-menuLayout-menu {
 	height: 18em;
@@ -1431,11 +1431,11 @@
 	border-radius: 1em;
 	border: 1px #555555 solid;
 	background: #ffffff;
-	-webkit-transition: background-color 0.1s ease-in-out;
-	   -moz-transition: background-color 0.1s ease-in-out;
-	    -ms-transition: background-color 0.1s ease-in-out;
-	     -o-transition: background-color 0.1s ease-in-out;
-	        transition: background-color 0.1s ease-in-out;
+	-webkit-transition: background-color 100ms ease;
+	   -moz-transition: background-color 100ms ease;
+	    -ms-transition: background-color 100ms ease;
+	     -o-transition: background-color 100ms ease;
+	        transition: background-color 100ms ease;
 	margin-right: 0.5em;
 }
 .oo-ui-toggleSwitchWidget.oo-ui-widget-disabled {
@@ -1474,11 +1474,11 @@
 	margin-top: -1px;
 	border-radius: 1em;
 	background: #555555;
-	-webkit-transition: left 0.1s ease-in-out, margin-left 0.1s ease-in-out;
-	   -moz-transition: left 0.1s ease-in-out, margin-left 0.1s ease-in-out;
-	    -ms-transition: left 0.1s ease-in-out, margin-left 0.1s ease-in-out;
-	     -o-transition: left 0.1s ease-in-out, margin-left 0.1s ease-in-out;
-	        transition: left 0.1s ease-in-out, margin-left 0.1s ease-in-out;
+	-webkit-transition: left 100ms ease, margin-left 100ms ease;
+	   -moz-transition: left 100ms ease, margin-left 100ms ease;
+	    -ms-transition: left 100ms ease, margin-left 100ms ease;
+	     -o-transition: left 100ms ease, margin-left 100ms ease;
+	        transition: left 100ms ease, margin-left 100ms ease;
 }
 .oo-ui-toggleSwitchWidget-glow {
 	display: none;
@@ -1624,11 +1624,11 @@
 	border-width: 9px;
 }
 .oo-ui-popupWidget-transitioning .oo-ui-popupWidget-popup {
-	-webkit-transition: width 0.1s ease-in-out, height 0.1s ease-in-out, left 0.1s ease-in-out;
-	   -moz-transition: width 0.1s ease-in-out, height 0.1s ease-in-out, left 0.1s ease-in-out;
-	    -ms-transition: width 0.1s ease-in-out, height 0.1s ease-in-out, left 0.1s ease-in-out;
-	     -o-transition: width 0.1s ease-in-out, height 0.1s ease-in-out, left 0.1s ease-in-out;
-	        transition: width 0.1s ease-in-out, height 0.1s ease-in-out, left 0.1s ease-in-out;
+	-webkit-transition: width 100ms ease, height 100ms ease, left 100ms ease;
+	   -moz-transition: width 100ms ease, height 100ms ease, left 100ms ease;
+	    -ms-transition: width 100ms ease, height 100ms ease, left 100ms ease;
+	     -o-transition: width 100ms ease, height 100ms ease, left 100ms ease;
+	        transition: width 100ms ease, height 100ms ease, left 100ms ease;
 }
 .oo-ui-popupWidget-head {
 	height: 2.5em;
@@ -1693,11 +1693,11 @@
 }
 .oo-ui-checkboxInputWidget input[type="checkbox"] + span {
 	cursor: pointer;
-	-webkit-transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	   -moz-transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	    -ms-transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	     -o-transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	        transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	-webkit-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	   -moz-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	    -ms-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	     -o-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	        transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
@@ -1799,11 +1799,11 @@
 }
 .oo-ui-radioInputWidget input[type="radio"] + span {
 	cursor: pointer;
-	-webkit-transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	   -moz-transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	    -ms-transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	     -o-transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	        transition: background-size 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	-webkit-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	   -moz-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	    -ms-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	     -o-transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	        transition: background-size 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
@@ -1939,11 +1939,11 @@
 	border: solid 1px #cccccc;
 	box-shadow: inset 0 0 0 0 #347bff;
 	border-radius: 0.1em;
-	-webkit-transition: box-shadow 0.1s ease-in-out;
-	   -moz-transition: box-shadow 0.1s ease-in-out;
-	    -ms-transition: box-shadow 0.1s ease-in-out;
-	     -o-transition: box-shadow 0.1s ease-in-out;
-	        transition: box-shadow 0.1s ease-in-out;
+	-webkit-transition: box-shadow 100ms ease;
+	   -moz-transition: box-shadow 100ms ease;
+	    -ms-transition: box-shadow 100ms ease;
+	     -o-transition: box-shadow 100ms ease;
+	        transition: box-shadow 100ms ease;
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
@@ -1961,11 +1961,11 @@
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled input,
 .oo-ui-textInputWidget.oo-ui-widget-enabled textarea {
-	-webkit-transition: border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
-	   -moz-transition: border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
-	    -ms-transition: border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
-	     -o-transition: border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
-	        transition: border 0.2s cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+	-webkit-transition: border 200ms cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
+	   -moz-transition: border 200ms cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
+	    -ms-transition: border 200ms cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
+	     -o-transition: border 200ms cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
+	        transition: border 200ms cubic-bezier(0.39, 0.575, 0.565, 1), box-shadow 200ms cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 .oo-ui-textInputWidget.oo-ui-widget-enabled input:focus,
 .oo-ui-textInputWidget.oo-ui-widget-enabled textarea:focus {
@@ -2213,6 +2213,14 @@
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
 }
+.oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-label {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-overflow: ellipsis;
+}
 .oo-ui-selectFileWidget-info > .oo-ui-indicatorElement-indicator,
 .oo-ui-selectFileWidget-info > .oo-ui-iconElement-icon,
 .oo-ui-selectFileWidget-info > .oo-ui-selectFileWidget-clearButton {
@@ -2241,7 +2249,6 @@
 	height: 2.4em;
 	border: 1px solid #cccccc;
 	border-radius: 0.1em;
-	padding: 0 1em;
 }
 .oo-ui-selectFileWidget-info > .oo-ui-indicatorElement-indicator {
 	right: 0;
@@ -2253,12 +2260,13 @@
 	line-height: 2.3em;
 	margin: 0;
 	overflow: hidden;
-	width: 100%;
 	white-space: nowrap;
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 	        box-sizing: border-box;
 	text-overflow: ellipsis;
+	left: 1em;
+	right: 1em;
 }
 .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-clearButton {
 	top: 0;
@@ -2291,28 +2299,28 @@
 .oo-ui-selectFileWidget-empty .oo-ui-selectFileWidget-label {
 	color: #cccccc;
 }
-.oo-ui-selectFileWidget.oo-ui-iconElement .oo-ui-selectFileWidget-info {
-	padding-left: 3em;
+.oo-ui-selectFileWidget.oo-ui-iconElement .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-label {
+	left: 2.75em;
 }
-.oo-ui-selectFileWidget .oo-ui-selectFileWidget-info {
-	padding-right: 3em;
+.oo-ui-selectFileWidget .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-label {
+	right: 3em;
 }
 .oo-ui-selectFileWidget .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-clearButton {
 	right: 0;
 }
-.oo-ui-selectFileWidget.oo-ui-indicatorElement .oo-ui-selectFileWidget-info {
-	padding-right: 5em;
+.oo-ui-selectFileWidget.oo-ui-indicatorElement .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-label {
+	right: 5em;
 }
 .oo-ui-selectFileWidget.oo-ui-indicatorElement .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-clearButton {
 	right: 2em;
 }
-.oo-ui-selectFileWidget-empty .oo-ui-selectFileWidget-info,
-.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-info {
-	padding-right: 1em;
+.oo-ui-selectFileWidget-empty .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-label,
+.oo-ui-selectFileWidget-notsupported .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-label {
+	right: 1em;
 }
-.oo-ui-selectFileWidget-empty.oo-ui-indicatorElement .oo-ui-selectFileWidget-info,
-.oo-ui-selectFileWidget-notsupported.oo-ui-indicatorElement .oo-ui-selectFileWidget-info {
-	padding-right: 2em;
+.oo-ui-selectFileWidget-empty.oo-ui-indicatorElement .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-label,
+.oo-ui-selectFileWidget-notsupported.oo-ui-indicatorElement .oo-ui-selectFileWidget-info .oo-ui-selectFileWidget-label {
+	right: 2em;
 }
 .oo-ui-selectFileWidget-dropTarget {
 	line-height: 3.5em;
@@ -3060,11 +3068,11 @@
 .oo-ui-windowManager-modal > .oo-ui-dialog {
 	background-color: rgba(255, 255, 255, 0.5);
 	opacity: 0;
-	-webkit-transition: opacity 250ms ease-in-out;
-	   -moz-transition: opacity 250ms ease-in-out;
-	    -ms-transition: opacity 250ms ease-in-out;
-	     -o-transition: opacity 250ms ease-in-out;
-	        transition: opacity 250ms ease-in-out;
+	-webkit-transition: opacity 250ms ease;
+	   -moz-transition: opacity 250ms ease;
+	    -ms-transition: opacity 250ms ease;
+	     -o-transition: opacity 250ms ease;
+	        transition: opacity 250ms ease;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog > .oo-ui-window-frame {
 	top: 1em;
@@ -3076,11 +3084,11 @@
 	    -ms-transform: scale(0.5);
 	     -o-transform: scale(0.5);
 	        transform: scale(0.5);
-	-webkit-transition: all 250ms ease-in-out;
-	   -moz-transition: all 250ms ease-in-out;
-	    -ms-transition: all 250ms ease-in-out;
-	     -o-transition: all 250ms ease-in-out;
-	        transition: all 250ms ease-in-out;
+	-webkit-transition: all 250ms ease;
+	   -moz-transition: all 250ms ease;
+	    -ms-transition: all 250ms ease;
+	     -o-transition: all 250ms ease;
+	        transition: all 250ms ease;
 }
 .oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-ready {
 	/* Fade window overlay */

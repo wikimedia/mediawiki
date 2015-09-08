@@ -19,7 +19,8 @@
 	"ooui-dialog-process-dismiss": "Paslėpti",
 	"ooui-dialog-process-retry": "Bandykite dar kartą",
 	"ooui-dialog-process-continue": "Tęsti",
+	"ooui-selectfile-button-select": "Pasirinkti failą",
 	"ooui-selectfile-not-supported": "Failų pasirinkimas nepalaikomas",
 	"ooui-selectfile-placeholder": "Nėra pasirinktų failų",
-	"ooui-selectfile-dragdrop-placeholder": "Atitempkite failą čia (arba paspauskite paieškai)"
+	"ooui-selectfile-dragdrop-placeholder": "Atitempkite failą čia"
 }
