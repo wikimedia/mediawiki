@@ -1277,7 +1277,7 @@ class ApiResult implements ApiSerializable {
 	 */
 	public static function setElement( &$arr, $name, $value, $flags = 0 ) {
 		wfDeprecated( __METHOD__, '1.25' );
-		return self::setValue( $arr, $name, $value, $flags );
+		self::setValue( $arr, $name, $value, $flags );
 	}
 
 	/**
