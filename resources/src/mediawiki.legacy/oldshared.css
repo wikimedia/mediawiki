@@ -256,14 +256,6 @@ div.htmlform-tip {
 	color: #666;
 }
 
-fieldset.prefsection {
-	margin-top: 1em;
-}
-
-fieldset.operaprefsection {
-	margin-left: 15em;
-}
-
 /* emulate center */
 .center {
 	width: 100%;
