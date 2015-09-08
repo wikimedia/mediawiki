@@ -1,0 +1,51 @@
+/* HTMLForm styles */
+
+table.mw-htmlform-nolabel td.mw-label {
+	width: 1px;
+}
+
+.mw-htmlform-invalid-input td.mw-input input {
+	border-color: red;
+}
+
+.mw-htmlform-flatlist div.mw-htmlform-flatlist-item {
+	display: inline;
+	margin-right: 1em;
+	white-space: nowrap;
+}
+
+/* HTMLCheckMatrix */
+
+.mw-htmlform-matrix td {
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+}
+
+tr.mw-htmlform-vertical-label td.mw-label {
+	text-align: left !important;
+}
+
+.mw-icon-question {
+	/* SVG support using a transparent gradient to guarantee cross-browser
+	 * compatibility (browsers able to understand gradient syntax support also SVG).
+	 * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique */
+	background-image: url(images/question.png);
+	/* @embed */
+	background-image: -webkit-linear-gradient(transparent, transparent), url(images/question.svg);
+	/* @embed */
+	background-image: linear-gradient(transparent, transparent), url(images/question.svg);
+	background-repeat: no-repeat;
+	background-size: 13px 13px;
+	display: inline-block;
+	height: 13px;
+	width: 13px;
+	margin-left: 4px;
+}
+
+.mw-icon-question:lang(ar),
+.mw-icon-question:lang(fa),
+.mw-icon-question:lang(ur) {
+	-webkit-transform: scaleX(-1);
+	-ms-transform: scaleX(-1);
+	transform: scaleX(-1);
+}

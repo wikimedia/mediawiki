@@ -1030,6 +1030,10 @@ return array(
 			'colon-separator',
 		),
 	),
+	'mediawiki.htmlform.styles' => array(
+		'styles' => 'resources/src/mediawiki/mediawiki.htmlform.css',
+		'position' => 'top',
+	),
 	'mediawiki.htmlform.ooui.styles' => array(
 		'styles' => 'resources/src/mediawiki/mediawiki.htmlform.ooui.css',
 		'position' => 'top',
