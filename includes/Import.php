@@ -731,6 +731,8 @@ class WikiImporter {
 					if ( !$title ) {
 						$badTitle = true;
 						$skip = true;
+
+						continue;
 					}
 
 					$this->pageCallback( $title );
@@ -750,10 +752,15 @@ class WikiImporter {
 			}
 		}
 
-		$this->pageOutCallback( $pageInfo['_title'], $foreignTitle,
+		// @note $pageInfo is only set if a valid $title is processed above with
+		//       no error. If we have a valid $title, then pageCallback is called
+		//       above, $pageInfo['title'] is set and we do pageOutCallback here.
+		if ( array_key_exists( '_title', $pageInfo ) ) {
+			$this->pageOutCallback( $pageInfo['_title'], $foreignTitle,
 					$pageInfo['revisionCount'],
 					$pageInfo['successfulRevisionCount'],
 					$pageInfo );
+		}
 	}
 
 	/**
