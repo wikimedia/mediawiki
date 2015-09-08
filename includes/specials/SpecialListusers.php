@@ -263,6 +263,8 @@ class UsersPager extends AlphabeticPager {
 	function getPageHeader() {
 		list( $self ) = explode( '/', $this->getTitle()->getPrefixedDBkey() );
 
+		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
+
 		# Form tag
 		$out = Xml::openElement(
 			'form',
@@ -271,13 +273,14 @@ class UsersPager extends AlphabeticPager {
 			Xml::fieldset( $this->msg( 'listusers' )->text() ) .
 			Html::hidden( 'title', $self );
 
-		# Username field
+		# Username field (with autocompletion support)
 		$out .= Xml::label( $this->msg( 'listusersfrom' )->text(), 'offset' ) . ' ' .
 			Html::input(
 				'username',
 				$this->requestedUser,
 				'text',
 				array(
+					'class' => 'mw-autocomplete-user',
 					'id' => 'offset',
 					'size' => 20,
 					'autofocus' => $this->requestedUser === ''
