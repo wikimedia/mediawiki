@@ -4,7 +4,8 @@
 			"Meno25",
 			"أحمد المحمودي",
 			"Khaled",
-			"Fatz"
+			"Fatz",
+			"Hiba Alshawi"
 		]
 	},
 	"apihelp-main-param-format": "صيغة الخرج.",
@@ -24,5 +25,6 @@
 	"apihelp-edit-param-watch": "أضف الصفحة إلى لائحة مراقبة المستعمل الحالي",
 	"apihelp-emailuser-description": "مراسلة المستخدم",
 	"apihelp-patrol-example-rcid": "ابحث عن تغيير جديد",
+	"apihelp-query+imageinfo-paramvalue-prop-userid": "إضافة هوية المستخدم الذي قام بتحميل كل إصدار ملف.",
 	"apihelp-query+prefixsearch-param-offset": "عدد النتائج المراد تخطيها."
 }

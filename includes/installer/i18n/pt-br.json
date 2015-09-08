@@ -16,7 +16,8 @@
 			"Marcos dias de oliveira",
 			"Fasouzafreitas",
 			"TheEduGobi",
-			"Dianakc"
+			"Dianakc",
+			"Walesson"
 		]
 	},
 	"config-desc": "O instalador do MediaWiki",
@@ -65,7 +66,7 @@
 	"config-unicode-using-intl": "Usando a [http://pecl.php.net/intl extensão intl PECL] para a normalização Unicode.",
 	"config-unicode-pure-php-warning": "<strong>Aviso</strong>: A [http://pecl.php.net/intl extensão intl PECL] não está disponível para efetuar a normalização Unicode, abortando e passando para a lenta implementação de PHP puro.\nSe o seu site tem um alto volume de tráfego, informe-se sobre a [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations normalização Unicode].",
 	"config-unicode-update-warning": "<strong>Aviso:</strong> A versão instalada do wrapper de normalização Unicode usa uma versão mais antiga da biblioteca do [//www.site.icu-project.org/projeto ICU].\nVocê deve [//www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations atualizar] se você tem quaisquer preocupações com o uso do Unicode.",
-	"config-no-db": "Não foi possível encontrar um driver de banco de dados adequado! É necessário instalar um driver de banco de dados para o PHP.\nSão suportados os seguintes tipos de bancos de dados: $1.\n\nSe você mesmo tiver compilado o PHP, reconfigure-o com um cliente de banco de dados ativado usando, por exemplo <code>./configure --with-mysqli</code>.\nSe você instalou o PHP a partir de um pacote do Debian ou do Ubuntu, então será também necessário instalar, por exemplo, o pacote <code>php5-mysql</code>.",
+	"config-no-db": "Não foi possível localizar um driver de banco de dados apropriado! Você precisa instalar um driver de banco de dados para PHP. O banco de dados seguinte {{PLURAL: $ 2 | | tipo é tipos são}} suportado: $ 1. Se você compilou o PHP mesmo, reconfigurá-lo com um cliente de banco de dados ativada, por exemplo, usando <code> ./ configure --with-mysqli </ code>. Se você instalou o PHP a partir de um pacote Debian ou Ubuntu, então você também precisa instalar, por exemplo, o <code> php5-mysql </ code> pacote.",
 	"config-outdated-sqlite": "<strong>Aviso:</strong> você tem o SQLite versão $1, que é menor do que a versão mínima necessária $2. O SQLite não estará disponível.",
 	"config-no-fts3": "<strong>Aviso</strong> O SQLite foi compilado sem o [//sqlite.org/fts3.html módulo FTS3], as funcionalidades de pesquisa não estarão disponíveis nesta instalação.",
 	"config-register-globals-error": "<strong>Erro: a opção <code>[http://php.net/register_globals register_globals]</code> do PHP está ativada.\nA mesma deve ser desativada para continuar a instalação.</strong>\nVeja [https://www.mediawiki.org/wiki/register_globals https://www.mediawiki.org/wiki/register_globals] para obter ajuda com isto.",
@@ -74,7 +75,7 @@
 	"config-magic-quotes-sybase": "<strong>Erro fatal: A opção [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase] está ativada!</strong>\nEsta opção corrompe os dados de entrada de forma imprevisível.\nVocê não pode instalar ou utilizar o MediaWiki a menos que esta opção seja desativada.",
 	"config-mbstring": "<strong>Erro fatal: A opção [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload] está ativada!</strong>\nEsta opção causa erros e pode corromper os dados de forma imprevisível.\nVocê não pode instalar ou utilizar o MediaWiki a menos que esta opção seja desativada.",
 	"config-safe-mode": "<strong>Aviso:</strong> O [http://www.php.net/features.safe-mode safe mode] do PHP está ativado.\nEste modo pode causar problemas, especialmente no upload de arquivos e no suporte a <code>math</code>.",
-	"config-xml-bad": "O módulo XML do PHP está ausente.\nO MediaWiki necessita de funções deste módulo e não funcionará com esta configuração.\nSe está utilizando o Mandrake, instale o pacote php-xml.",
+	"config-xml-bad": "Módulo XML do PHP está faltando. MediaWiki requer funções deste módulo e não vai funcionar nesta configuração. Pode ser necessário instalar o pacote RPM php-xml.",
 	"config-pcre-old": "<strong>Erro fatal:</strong> É necessário o PCRE $1 ou versão posterior.\nO binário do seu PHP foi vinculado com o PCRE $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Mais informações].",
 	"config-pcre-no-utf8": "<strong>Erro fatal:</strong> O módulo PCRE do PHP parece ser compilado sem suporte a PCRE_UTF8.\nO MediaWiki requer suporte a UTF-8 para funcionar corretamente.",
 	"config-memory-raised": "A configuração <code>memory_limit</code> do PHP era $1; foi aumentada para $2.",
@@ -110,8 +111,6 @@
 	"config-db-install-account": "Conta de usuário para instalação",
 	"config-db-username": "Nome de usuário do banco de dados:",
 	"config-db-password": "Senha do banco de dados:",
-	"config-db-password-empty": "Por favor digite uma senha para o novo usuário do banco de dados: $1. Embora seja possível criar usuários sem senha, isto não é seguro.",
-	"config-db-username-empty": "É necessário entrar um valor para \"{{int:config-db-username}}\".",
 	"config-db-install-username": "Digite o nome de usuário que será utilizado para conectar com o banco de dados durante o processo de instalação.\nEste não é a conta de usuário do MediaWiki; este é o nome de usuário para sua base de dados.",
 	"config-db-install-password": "Digite a senha que será utilizada para conectar com o banco de dados durante o processo de instalação.\nEsta não é a senha de usuário da conta do MediaWiki; esta será a senha para seu banco de dados.",
 	"config-db-install-help": "Digite o nome de usuário e a senha que serão utilizados para conectar com o banco de dados durante o processo de instalação.",

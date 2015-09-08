@@ -39,7 +39,8 @@
 			"Ahdan",
 			"Macofe",
 			"Totosunarto",
-			"Mirws"
+			"Mirws",
+			"Ilham"
 		]
 	},
 	"tog-underline": "Garis bawahi pranala:",
@@ -1642,7 +1643,7 @@
 	"booksources-text": "Di bawah ini adalah daftar pranala ke situs lain yang menjual buku baru dan bekas, dan mungkin juga mempunyai informasi lebih lanjut mengenai buku yang sedang Anda cari:",
 	"booksources-invalid-isbn": "ISBN yang diberikan tampaknya tidak valid; periksa kesalahan penyalinan dari sumber asli.",
 	"specialloguserlabel": "Pengguna:",
-	"speciallogtitlelabel": "Target (judul atau pengguna):",
+	"speciallogtitlelabel": "Target (judul atau{{ns:pengguna}}:nama pengguna untuk pengguna)",
 	"log": "Catatan (Log)",
 	"all-logs-page": "Semua log publik",
 	"alllogstext": "Gabungan tampilan semua log yang tersedia di {{SITENAME}}.\nAnda dapat melakukan pembatasan tampilan dengan memilih jenis log, nama pengguna (sensitif kapitalisasi), atau judul halaman (juga sensitif kapitalisasi).",
@@ -2309,7 +2310,7 @@
 	"tooltip-ca-nstab-main": "Lihat halaman isi",
 	"tooltip-ca-nstab-user": "Lihat halaman pengguna",
 	"tooltip-ca-nstab-media": "Lihat halaman media",
-	"tooltip-ca-nstab-special": "Ini adalah halaman istimewa yang tidak dapat disunting.",
+	"tooltip-ca-nstab-special": "Ini adalah halaman istimewa, dan tidak dapat disunting.",
 	"tooltip-ca-nstab-project": "Lihat halaman proyek",
 	"tooltip-ca-nstab-image": "Lihat halaman berkas",
 	"tooltip-ca-nstab-mediawiki": "Lihat pesan sistem",

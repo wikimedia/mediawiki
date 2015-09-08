@@ -2393,7 +2393,7 @@
 	"tooltip-ca-nstab-main": "Vedi la voce",
 	"tooltip-ca-nstab-user": "Vedi la pagina utente",
 	"tooltip-ca-nstab-media": "Vedi la pagina del file multimediale",
-	"tooltip-ca-nstab-special": "Questa è una pagina speciale, non può essere modificata",
+	"tooltip-ca-nstab-special": "Questa è una pagina speciale e non può essere modificata",
 	"tooltip-ca-nstab-project": "Vedi la pagina di servizio",
 	"tooltip-ca-nstab-image": "Vedi la pagina del file",
 	"tooltip-ca-nstab-mediawiki": "Vedi il messaggio di sistema",

@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Rahuldeshmukh101"
+		]
+	},
+	"apihelp-main-param-action": "कोणति कारवाई करायचि",
+	"apihelp-main-param-curtimestamp": "निकालात आताच्या वेळेचि नोन्द घ्या",
+	"apihelp-block-description": "सदस्यास ब्यान करा",
+	"apihelp-block-param-user": "सदस्याचे नाव, अंक पत्त्ता अथवा अंकपत्यांनचि मालिका प्रतिबांधित करा"
+}
