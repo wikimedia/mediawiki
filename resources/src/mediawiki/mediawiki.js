@@ -2556,9 +2556,32 @@
 		}
 	}
 
-	// subscribe to error streams
+	// Subscribe to error streams
 	mw.trackSubscribe( 'resourceloader.exception', log );
 	mw.trackSubscribe( 'resourceloader.assert', log );
+
+	/**
+	 * Fired when all modules associated with the page have finished loading.
+	 *
+	 * @event resourceloader_loadEnd
+	 * @member mw.hook
+	 */
+	$( function () {
+		var loading = $.grep( mw.loader.getModuleNames(), function ( module ) {
+			return mw.loader.getState( module ) === 'loading';
+		} );
+		// In order to use jQuery.when (which stops early if one of the promises got rejected)
+		// cast any loading failures into successes. We only need a callback, not the module.
+		loading = $.map( loading, function ( module ) {
+			return mw.loader.using( module ).then( null, function () {
+				return $.Deferred().resolve();
+			} );
+		} );
+		$.when.apply( $, loading ).then( function () {
+			performance.mark( 'mwLoadEnd' );
+			mw.hook( 'resourceloader.loadEnd' ).fire();
+		} );
+	} );
 
 	// Attach to window and globally alias
 	window.mw = window.mediaWiki = mw;
