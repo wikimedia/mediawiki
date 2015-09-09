@@ -1,6 +1,11 @@
 <?xml version="1.0"?>
 <ruleset name="MediaWiki">
-	<rule ref="vendor/mediawiki/mediawiki-codesniffer/MediaWiki"/>
+	<rule ref="vendor/mediawiki/mediawiki-codesniffer/MediaWiki" />
+	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">
+		<properties>
+			<property name="ignoreList" type="array" value="bfNormalizeTitleStrReplace,bfNormalizeTitleStrTr,cdbShowHelp,codepointToUtf8,compare_point,cssfilter,escapeSingleString,findAuxFile,findFiles,getEscapedProfileUrl,getFileCommentFromSourceWiki,getFileUserFromSourceWiki,hexSequenceToUtf8,mccGetHelp,mccShowUsage,mimeTypeMatch,moveToExternal,NothingFunction,NothingFunctionData,resolveStub,resolveStubs,showUsage,splitFilename,utf8ToCodepoint,utf8ToHexSequence" />
+		</properties>
+	</rule>
 	<file>.</file>
 	<arg name="encoding" value="utf8"/>
 	<arg name="extensions" value="php,php5,inc,sample"/>
