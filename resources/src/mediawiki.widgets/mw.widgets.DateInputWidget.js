@@ -76,6 +76,8 @@
 	 *     language. When not given, defaults to a translated version of 'YYYY-MM-DD' or 'YYYY-MM',
 	 *     depending on `precision`.
 	 * @cfg {boolean} [required=false] Mark the field as required. Implies `indicator: 'required'`.
+	 * @cfg {string} minDate Validates the date to be after this. Should be `YYYY-MM-DD` format.
+	 * @cfg {string} maxDate Validates the date to be before this. Should be `YYYY-MM-DD` format.
 	 */
 	mw.widgets.DateInputWidget = function MWWDateInputWidget( config ) {
 		// Config initialization
@@ -110,6 +112,21 @@
 		this.inTextInput = 0;
 		this.inputFormat = config.inputFormat;
 		this.displayFormat = config.displayFormat;
+
+		// Validate and set min and max dates as properties
+		if (
+			config.minDate !== undefined &&
+			moment( config.minDate, 'YYYY-MM-DD' ).isValid()
+		) {
+			this.minDate = moment( config.minDate, 'YYYY-MM-DD' );
+		}
+
+		if (
+			config.maxDate !== undefined &&
+			moment( config.maxDate, 'YYYY-MM-DD' ).isValid()
+		) {
+			this.maxDate = moment( config.maxDate, 'YYYY-MM-DD' );
+		}
 
 		// Parent constructor
 		mw.widgets.DateInputWidget.parent.call( this, config );
@@ -443,6 +460,7 @@
 	 * @private
 	 * @param {string} date Date string, to be valid, must be empty (no date selected) or in
 	 *     'YYYY-MM-DD' or 'YYYY-MM' format to be valid
+	 * @returns {boolean}
 	 */
 	mw.widgets.DateInputWidget.prototype.validateDate = function ( date ) {
 		if ( date === '' ) {
@@ -454,9 +472,28 @@
 		// parsing flags for the details (stoled from implementation of #isValid).
 		var
 			mom = moment( date, this.getInputFormat() ),
-			flags = mom.parsingFlags();
+			flags = mom.parsingFlags(),
+			isValid = mom.isValid() && flags.charsLeftOver === 0 && flags.unusedTokens.length === 0;
 
-		return mom.isValid() && flags.charsLeftOver === 0 && flags.unusedTokens.length === 0;
+		return isValid && this.validateRange( date );
 	};
+
+	/**
+	 * Validates if the date is within the range configured with {@link #cfg-minDate}
+	 * and {@link #cfg-maxDate}.
+	 *
+	 * @private
+	 * @param {string} date Date string, to be valid, must be empty (no date selected) or in
+	 *     'YYYY-MM-DD' or 'YYYY-MM' format to be valid
+	 * @returns {boolean}
+	 */
+	mw.widgets.DateInputWidget.prototype.validateRange = function ( date ) {
+		var momentDate = moment( date, 'YYYY-MM-DD' ),
+			isAfterMinDate = ( this.minDate === undefined || momentDate.isAfter( this.minDate ) ),
+			isBeforeMaxDate = ( this.maxDate === undefined || momentDate.isBefore( this.maxDate ) ),
+			isInRange = ( isAfterMinDate && isBeforeMaxDate );
+
+		return isInRange;
+	}
 
 }( jQuery, mediaWiki ) );
