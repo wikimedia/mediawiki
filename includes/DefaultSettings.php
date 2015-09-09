@@ -7706,7 +7706,7 @@ $wgVirtualRestConfig = array(
  * @var float
  * @since 1.26
  */
-$wgSearchRunSuggestedQueryPercent = 1;
+$wgSearchRunSuggestedQueryPercent = 0;
 
 /**
  * For really cool vim folding this needs to be at the end:

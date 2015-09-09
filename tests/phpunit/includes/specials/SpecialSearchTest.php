@@ -181,6 +181,9 @@ class SpecialSearchTest extends MediaWikiTestCase {
 	 * @dataProvider provideRewriteQueryWithSuggestion
 	 */
 	public function testRewriteQueryWithSuggestion( $message, $expectRegex, $fromResults ) {
+		$this->setMwGlobals( array(
+			'wgSearchRunSuggestedQueryPercent' => 1,
+		) );
 		$mockSearchEngine = $this->mockSearchEngine( $fromResults );
 		$search = $this->getMockBuilder( 'SpecialSearch' )
 			->setMethods( array( 'getSearchEngine' ) )
