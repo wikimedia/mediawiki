@@ -181,6 +181,19 @@ class ApiResultTest extends MediaWikiTestCase {
 			);
 		}
 
+		ApiResult::setValue( $arr, null, NAN, ApiResult::NO_VALIDATE );
+
+		try {
+			ApiResult::setValue( $arr, null, NAN, ApiResult::NO_SIZE_CHECK );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( InvalidArgumentException $ex ) {
+			$this->assertSame(
+				'Cannot add non-finite floats to ApiResult',
+				$ex->getMessage(),
+				'Expected exception'
+			);
+		}
+
 		$arr = array();
 		$result2 = new ApiResult( 8388608 );
 		$result2->addValue( null, 'foo', 'bar' );
@@ -408,6 +421,19 @@ class ApiResultTest extends MediaWikiTestCase {
 			);
 		}
 
+		$result->addValue( null, null, NAN, ApiResult::NO_VALIDATE );
+
+		try {
+			$result->addValue( null, null, NAN, ApiResult::NO_SIZE_CHECK );
+			$this->fail( 'Expected exception not thrown' );
+		} catch ( InvalidArgumentException $ex ) {
+			$this->assertSame(
+				'Cannot add non-finite floats to ApiResult',
+				$ex->getMessage(),
+				'Expected exception'
+			);
+		}
+
 		$result->reset();
 		$result->addParsedLimit( 'foo', 12 );
 		$this->assertSame( array(
@@ -443,6 +469,12 @@ class ApiResultTest extends MediaWikiTestCase {
 		$this->assertFalse( $result->addValue( null, 'foo', '1' ) );
 		$result->removeValue( null, 'foo' );
 		$this->assertTrue( $result->addValue( null, 'foo', '1' ) );
+
+		$result = new ApiResult( 10 );
+		$obj = new ApiResultTestSerializableObject( 'ok' );
+		$obj->foobar = 'foobaz';
+		$this->assertTrue( $result->addValue( null, 'foo', $obj ) );
+		$this->assertSame( 2, $result->getSize() );
 
 		$result = new ApiResult( 8388608 );
 		$result2 = new ApiResult( 8388608 );
