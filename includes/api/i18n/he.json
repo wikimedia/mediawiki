@@ -809,7 +809,7 @@
 	"apihelp-query+logevents-paramvalue-prop-details": "הוספת פרטים נוספים על האירוע.",
 	"apihelp-query+logevents-paramvalue-prop-tags": "רשימת התגים של האירוע.",
 	"apihelp-query+logevents-param-type": "סינון עיולי יומן רק לסוג הזה.",
-	"apihelp-query+logevents-param-action": "סינון פעולות יומן רק לפעולה הזאת. ברשימת הערכים האפשריים, ערכים עם תו־כל כוכבית כגון <kbd>action/*</kbd> יכולים להיות מחרוזות שונות אחרי הקו הנטוי (/).",
+	"apihelp-query+logevents-param-action": "סינון פעולות יומן רק לפעולה הזאת. דורס את <var>$1type</var>. ברשימת הערכים האפשריים, ערכים עם תו־כל כוכבית כגון <kbd>action/*</kbd> יכולים להיות מחרוזות שונות אחרי הקו הנטוי (/).",
 	"apihelp-query+logevents-param-start": "מאיזה חותם־זמן להתחיל למנות.",
 	"apihelp-query+logevents-param-end": "באיזה חותם זמן להפסיק לרשום.",
 	"apihelp-query+logevents-param-user": "לסנן את העיולים שעשה המשתמש הנתון.",

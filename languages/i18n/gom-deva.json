@@ -766,7 +766,7 @@
 	"tag-list-wrapper": "([[Special:Tags|{{PLURAL:$1|कुरवेचीट|कुरवेचीटी}}]]: $2)",
 	"htmlform-title-not-exists": "[[:$1]] अस्तित्वांत ना.",
 	"logentry-delete-delete": "$1 {{GENDER:$2|काडून उडयल्ले पान}} $3",
-	"logentry-move-move": "$1 न $3 पानाचेर $4 {{GENDER:$2|हालयला}}",
+	"logentry-move-move": "$1 हाणें $3 पानाक $4 {{GENDER:$2|हालयला}}",
 	"logentry-newusers-create": "उपयोगकत्याचें $1 {{GENDER:$2|तयार केलें}}",
 	"logentry-upload-upload": "$1 {{GENDER:$2|अपलोड केला}} $3",
 	"searchsuggest-search": "सोद",

@@ -1764,7 +1764,7 @@
 	"booksources-text": "Voici une liste indicative de liens vers d’autres sites vendant des livres neufs et d’occasion et sur lesquels vous trouverez peut-être des informations sur les ouvrages que vous cherchez :",
 	"booksources-invalid-isbn": "L’ISBN donné ne semble pas être correct ; vérifiez si vous avez fait une erreur en copiant la source originale.",
 	"specialloguserlabel": "Auteur :",
-	"speciallogtitlelabel": "Cible (titre ou utilisateur):",
+	"speciallogtitlelabel": "Cible (titre ou {{ns:user}}:nom d'utilisateur) :",
 	"log": "Journaux d’opérations",
 	"all-logs-page": "Tous les journaux publics",
 	"alllogstext": "Affichage combiné de tous les journaux disponibles sur {{SITENAME}}.<br />\nVous pouvez personnaliser l'affichage en sélectionnant le type de journal, le nom d'utilisateur ou la page concernée (ces deux derniers étant sensibles à la casse).",
