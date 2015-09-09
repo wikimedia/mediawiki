@@ -437,19 +437,13 @@
 
 		// Validation
 		function checkValidity() {
-			var validityPromises = [
-				dialog.filenameWidget.isValid(),
-				dialog.descriptionWidget.isValid()
-			];
-
-			$.when.apply( $, validityPromises ).done( function () {
-				var allValid,
-					values = Array.prototype.slice.apply( arguments );
-				allValid = values.every( function ( value ) {
-					return value;
-				} );
-
-				dialog.actions.setAbilities( { save: allValid } );
+			$.when(
+				dialog.filenameWidget.getValidity(),
+				dialog.descriptionWidget.getValidity()
+			).done( function () {
+				dialog.actions.setAbilities( { save: true } );
+			} ).fail( function () {
+				dialog.actions.setAbilities( { save: false } );
 			} );
 		}
 		this.filenameWidget.on( 'change', checkValidity );
