@@ -3326,7 +3326,8 @@ class Parser {
 	 */
 	public function replaceVariables( $text, $frame = false, $argsOnly = false ) {
 		# Is there any text? Also, Prevent too big inclusions!
-		if ( strlen( $text ) < 1 || strlen( $text ) > $this->mOptions->getMaxIncludeSize() ) {
+		$textSize = strlen( $text );
+		if ( $textSize < 1 || $textSize > $this->mOptions->getMaxIncludeSize() ) {
 			return $text;
 		}
 
