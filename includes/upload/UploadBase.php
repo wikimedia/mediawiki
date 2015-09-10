@@ -1706,7 +1706,7 @@ abstract class UploadBase {
 	 * Check if a user is the last uploader
 	 *
 	 * @param User $user
-	 * @param string $img Image name
+	 * @param string|File $img Image name
 	 * @return bool
 	 */
 	public static function userCanReUpload( User $user, $img ) {
@@ -1723,7 +1723,7 @@ abstract class UploadBase {
 			return false;
 		}
 
-		$img->load( File::READ_LATEST );
+		$img->load();
 
 		return $user->getId() == $img->getUser( 'id' );
 	}
