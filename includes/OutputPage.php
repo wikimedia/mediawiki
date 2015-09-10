@@ -2015,17 +2015,14 @@ class OutputPage extends ContextSource {
 	 *  - "list-contains=$XXX" varies on whether the header value as a
 	 *    comma-separated list contains $XXX as one of the list items.
 	 */
-	public function addVaryHeader( $header, $option = null ) {
+	public function addVaryHeader( $header, array $option = null ) {
 		if ( !array_key_exists( $header, $this->mVaryHeader ) ) {
-			$this->mVaryHeader[$header] = (array)$option;
-		} elseif ( is_array( $option ) ) {
-			if ( is_array( $this->mVaryHeader[$header] ) ) {
-				$this->mVaryHeader[$header] = array_merge( $this->mVaryHeader[$header], $option );
-			} else {
-				$this->mVaryHeader[$header] = $option;
-			}
+			$this->mVaryHeader[$header] = array();
 		}
-		$this->mVaryHeader[$header] = array_unique( (array)$this->mVaryHeader[$header] );
+		if ( !is_array( $option ) ) {
+			$option = array();
+		}
+		$this->mVaryHeader[$header] = array_unique( array_merge( $this->mVaryHeader[$header], $option ) );
 	}
 
 	/**
