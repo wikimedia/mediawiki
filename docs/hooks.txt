@@ -369,6 +369,11 @@ $user: Current user
  * 1.27+: IApiMessage, or a key or key+parameters in ApiBase::$messageMap.
  * Earlier: A key or key+parameters in ApiBase::$messageMap.
 
+'APICopyrightWarning': Allow for site and per-namespace customization of
+contribution/copyright notice.
+&$msg: Message object, overridable.
+$context: IContextSource object.
+
 'ApiDeprecationHelp': Add messages to the 'deprecation-help' warning generated
 from ApiBase::addDeprecation().
 &$msgs: Message[] Messages to include in the help. Multiple messages will be

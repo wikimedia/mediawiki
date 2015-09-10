@@ -141,6 +141,8 @@ class ApiHelp extends ApiBase {
 			if ( !$msg->isDisabled() ) {
 				$out->addHTML( $msg->parseAsBlock() );
 			}
+
+			$out->addHTML( self::getRightsMessage( $context )->parseAsBlock() );
 		}
 
 		$haveModules = [];
@@ -793,6 +795,28 @@ class ApiHelp extends ApiBase {
 		}
 
 		return $out;
+	}
+
+	/**
+	 * Fetch the Message for the API terms
+	 * @param IContextSource $context
+	 */
+	public static function getRightsMessage( IContextSource $context ) {
+		$rightsText = $context->getConfig()->get( 'RightsText' );
+		if ( $rightsText ) {
+			$msg = $context->msg(
+				array( 'api-terms', 'copyrightwarning' ),
+				'[[' . $context->msg( 'copyrightpage' )->inContentLanguage()->text() . ']]',
+				$rightsText
+			);
+		} else {
+			$msg = $context->msg(
+				array( 'api-terms2', 'copyrightwarning2' ),
+				'[[' . $context->msg( 'copyrightpage' )->inContentLanguage()->text() . ']]'
+			);
+		}
+		Hooks::run( 'APICopyrightWarning', array( &$msg, $context ) );
+		return $msg;
 	}
 
 	public function shouldCheckMaxlag() {

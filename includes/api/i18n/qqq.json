@@ -1698,6 +1698,9 @@
 	"api-usage-docref": "\n\nParameters:\n* $1 - URL of the API auto-generated documentation.",
 	"api-usage-mailinglist-ref": "{{doc-apierror}} Also used in the error response.",
 	"api-exception-trace": "\n\nParameters:\n* $1 - Exception class.\n* $2 - File from which the exception was thrown.\n* $3 - Line number from which the exception was thrown.\n* $4 - Exception backtrace.",
+	"api-terms-header": "Header for the API terms section in the API help output",
+	"api-terms": "{{notranslate}} Copyright warning displayed on action API auto-generated help pages. If empty, {{msg-mw|copyrightwarning}} will be used. Parameters:\n* $1 - link\n* $2 - license name",
+	"api-terms2": "{{notranslate}} Copyright warning displayed on action API auto-generated help pages. If empty, {{msg-mw|copyrightwarning2}} will be used. Parameters:\n* $1 - link",
 	"api-credits-header": "Header for the API credits section in the API help output\n{{Identical|Credit}}",
 	"api-credits": "API credits text, displayed in the API help output"
 }
