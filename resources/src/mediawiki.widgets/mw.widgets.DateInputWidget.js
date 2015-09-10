@@ -76,6 +76,8 @@
 	 *     language. When not given, defaults to a translated version of 'YYYY-MM-DD' or 'YYYY-MM',
 	 *     depending on `precision`.
 	 * @cfg {boolean} [required=false] Mark the field as required. Implies `indicator: 'required'`.
+	 * @cfg {string} mustBeAfter Validates the date to be after this. Should be `YYYY-MM-DD` format.
+	 * @cfg {string} mustBeBefore Validates the date to be before this. Should be `YYYY-MM-DD` format.
 	 */
 	mw.widgets.DateInputWidget = function MWWDateInputWidget( config ) {
 		// Config initialization
@@ -86,7 +88,7 @@
 			}
 		}
 
-		var placeholder;
+		var placeholder, mustBeAfter, mustBeBefore;
 		if ( config.placeholder ) {
 			placeholder = config.placeholder;
 		} else if ( config.inputFormat ) {
@@ -110,6 +112,23 @@
 		this.inTextInput = 0;
 		this.inputFormat = config.inputFormat;
 		this.displayFormat = config.displayFormat;
+
+		// Validate and set min and max dates as properties
+		mustBeAfter = moment( config.mustBeAfter, 'YYYY-MM-DD' );
+		mustBeBefore = moment( config.mustBeBefore, 'YYYY-MM-DD' );
+		if (
+			config.mustBeAfter !== undefined &&
+			mustBeAfter.isValid()
+		) {
+			this.mustBeAfter = mustBeAfter;
+		}
+
+		if (
+			config.mustBeBefore !== undefined &&
+			mustBeBefore.isValid()
+		) {
+			this.mustBeBefore = mustBeBefore;
+		}
 
 		// Parent constructor
 		mw.widgets.DateInputWidget.parent.call( this, config );
@@ -185,31 +204,32 @@
 	 * @private
 	 */
 	mw.widgets.DateInputWidget.prototype.onTextInputChange = function () {
-		var
+		var mom,
 			widget = this,
-			value = this.textInput.getValue();
+			value = this.textInput.getValue(),
+			valid = this.isValidDate( value );
 		this.inTextInput++;
-		this.textInput.isValid().done( function ( valid ) {
-			if ( value === '' ) {
-				// No date selected
-				widget.setValue( '' );
-			} else if ( valid ) {
-				// Well-formed date value, parse and set it
-				var mom = moment( value, widget.getInputFormat() );
-				// Use English locale to avoid number formatting
-				widget.setValue( mom.locale( 'en' ).format( widget.getInternalFormat() ) );
-			} else {
-				// Not well-formed, but possibly partial? Try updating the calendar, but do not set the
-				// internal value. Generally this only makes sense when 'inputFormat' is little-endian (e.g.
-				// 'YYYY-MM-DD'), but that's hard to check for, and might be difficult to handle the parsing
-				// right for weird formats. So limit this trick to only when we're using the default
-				// 'inputFormat', which is the same as the internal format, 'YYYY-MM-DD'.
-				if ( widget.getInputFormat() === widget.getInternalFormat() ) {
-					widget.calendar.setDate( widget.textInput.getValue() );
-				}
+
+		if ( value === '' ) {
+			// No date selected
+			widget.setValue( '' );
+		} else if ( valid ) {
+			// Well-formed date value, parse and set it
+			mom = moment( value, widget.getInputFormat() );
+			// Use English locale to avoid number formatting
+			widget.setValue( mom.locale( 'en' ).format( widget.getInternalFormat() ) );
+		} else {
+			// Not well-formed, but possibly partial? Try updating the calendar, but do not set the
+			// internal value. Generally this only makes sense when 'inputFormat' is little-endian (e.g.
+			// 'YYYY-MM-DD'), but that's hard to check for, and might be difficult to handle the parsing
+			// right for weird formats. So limit this trick to only when we're using the default
+			// 'inputFormat', which is the same as the internal format, 'YYYY-MM-DD'.
+			if ( widget.getInputFormat() === widget.getInternalFormat() ) {
+				widget.calendar.setDate( widget.textInput.getValue() );
 			}
-			widget.inTextInput--;
-		} );
+		}
+		widget.inTextInput--;
+
 	};
 
 	/**
@@ -443,12 +463,25 @@
 	 * @private
 	 * @param {string} date Date string, to be valid, must be empty (no date selected) or in
 	 *     'YYYY-MM-DD' or 'YYYY-MM' format to be valid
+	 * @returns {boolean}
 	 */
 	mw.widgets.DateInputWidget.prototype.validateDate = function ( date ) {
 		if ( date === '' ) {
 			return true;
 		}
 
+		var isValid = this.isValidDate( date ) && this.isInRange( date );
+		this.setValidityFlag( isValid );
+		return isValid;
+	};
+
+	/**
+	 * @private
+	 * @param {string} date Date string, to be valid, must be empty (no date selected) or in
+	 *     'YYYY-MM-DD' or 'YYYY-MM' format to be valid
+	 * @returns {boolean}
+	 */
+	mw.widgets.DateInputWidget.prototype.isValidDate = function ( date ) {
 		// "Half-strict mode": for example, for the format 'YYYY-MM-DD', 2015-1-3 instead of 2015-01-03
 		// is okay, but 2015-01 isn't, and neither is 2015-01-foo. Use Moment's "fuzzy" mode and check
 		// parsing flags for the details (stoled from implementation of #isValid).
@@ -457,6 +490,68 @@
 			flags = mom.parsingFlags();
 
 		return mom.isValid() && flags.charsLeftOver === 0 && flags.unusedTokens.length === 0;
+	};
+
+	/**
+	 * Validates if the date is within the range configured with {@link #cfg-mustBeAfter}
+	 * and {@link #cfg-mustBeBefore}.
+	 *
+	 * @private
+	 * @param {string} date Date string, to be valid, must be empty (no date selected) or in
+	 *     'YYYY-MM-DD' or 'YYYY-MM' format to be valid
+	 * @returns {boolean}
+	 */
+	mw.widgets.DateInputWidget.prototype.isInRange = function ( date ) {
+		var momentDate = moment( date, 'YYYY-MM-DD' ),
+			isAfter = ( this.mustBeAfter === undefined || momentDate.isAfter( this.mustBeAfter ) ),
+			isBefore = ( this.mustBeBefore === undefined || momentDate.isBefore( this.mustBeBefore ) );
+
+		return isAfter && isBefore;
+	};
+
+	/**
+	 * Get the validity of current value.
+	 *
+	 * This method returns a promise that resolves if the value is valid and rejects if
+	 * it isn't. Uses {@link #validateDate}.
+	 *
+	 * @return {jQuery.Promise} A promise that resolves if the value is valid, rejects if not.
+	 */
+	mw.widgets.DateInputWidget.prototype.getValidity = function () {
+		var isValid = this.validateDate( this.getValue() );
+
+		if ( isValid ) {
+			return $.Deferred().resolve().promise();
+		} else {
+			return $.Deferred().reject().promise();
+		}
+	};
+
+	/**
+	 * Sets the 'invalid' flag appropriately.
+	 *
+	 * @param {boolean} [isValid] Optionally override validation result
+	 */
+	mw.widgets.DateInputWidget.prototype.setValidityFlag = function ( isValid ) {
+		var widget = this,
+			setFlag = function ( valid ) {
+				if ( !valid ) {
+					widget.$input.attr( 'aria-invalid', 'true' );
+				} else {
+					widget.$input.removeAttr( 'aria-invalid' );
+				}
+				widget.setFlags( { invalid: !valid } );
+			};
+
+		if ( isValid !== undefined ) {
+			setFlag( isValid );
+		} else {
+			this.getValidity().then( function () {
+				setFlag( true );
+			}, function () {
+				setFlag( false );
+			} );
+		}
 	};
 
 }( jQuery, mediaWiki ) );
