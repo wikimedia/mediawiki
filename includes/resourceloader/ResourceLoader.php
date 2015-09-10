@@ -1608,24 +1608,22 @@ MESSAGE;
 	 * @param Config $config
 	 * @throws MWException
 	 * @since 1.22
-	 * @return lessc
+	 * @return Less_Parser
 	 */
 	public static function getLessCompiler( Config $config ) {
 		// When called from the installer, it is possible that a required PHP extension
 		// is missing (at least for now; see bug 47564). If this is the case, throw an
 		// exception (caught by the installer) to prevent a fatal error later on.
-		if ( !class_exists( 'lessc' ) ) {
-			throw new MWException( 'MediaWiki requires the lessphp compiler' );
-		}
-		if ( !function_exists( 'ctype_digit' ) ) {
-			throw new MWException( 'lessc requires the Ctype extension' );
+		if ( !class_exists( 'Less_Parser' ) ) {
+			throw new MWException( 'MediaWiki requires the less.php parser' );
 		}
 
-		$less = new lessc();
-		$less->setPreserveComments( true );
-		$less->setVariables( self::getLessVars( $config ) );
-		$less->setImportDir( $config->get( 'ResourceLoaderLESSImportPaths' ) );
-		return $less;
+		$parser = new Less_Parser( array( 'relativeUrls' => false ) );
+		$parser->ModifyVars( self::getLessVars( $config ) );
+		$importPaths = $config->get( 'ResourceLoaderLESSImportPaths' );
+		$parser->SetImportDirs( array_fill_keys( $importPaths, '' ) );
+
+		return $parser;
 	}
 
 	/**

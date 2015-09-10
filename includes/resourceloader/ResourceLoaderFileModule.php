@@ -950,17 +950,17 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * Keeps track of all used files and adds them to localFileRefs.
 	 *
 	 * @since 1.22
-	 * @throws Exception If lessc encounters a parse error
+	 * @throws Exception If less.php encounters a parse error
 	 * @param string $fileName File path of LESS source
-	 * @param lessc $compiler Compiler to use, if not default
+	 * @param Less_Parser $parser Compiler to use, if not default
 	 * @return string CSS source
 	 */
 	protected function compileLessFile( $fileName, $compiler = null ) {
 		if ( !$compiler ) {
 			$compiler = $this->getLessCompiler();
 		}
-		$result = $compiler->compileFile( $fileName );
-		$this->localFileRefs += array_keys( $compiler->allParsedFiles() );
+		$result = $compiler->parseFile( $fileName )->getCss();
+		$this->localFileRefs += array_keys( $compiler->AllParsedFiles() );
 		return $result;
 	}
 
@@ -972,7 +972,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 * @throws MWException
 	 * @since 1.24
-	 * @return lessc
+	 * @return Less_Parser
 	 */
 	protected function getLessCompiler( ResourceLoaderContext $context = null ) {
 		return ResourceLoader::getLessCompiler( $this->getConfig() );
