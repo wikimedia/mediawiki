@@ -52,7 +52,7 @@
 .list-style-image-svg(@svg, @fallback) {
 	list-style-image: e('/* @embed */') url(@svg);
 	/* Fallback to PNG bullet for IE 8 and below using CSS hack */
-	list-style-image: e('/* @embed */') url(@fallback)\9;
+	list-style-image: e('/* @embed */') url(@fallback) e('\9');
 }
 
 .transition(@value) {
