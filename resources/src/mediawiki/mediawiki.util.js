@@ -78,7 +78,6 @@
 				.replace( /%24/g, '$' )
 				.replace( /%21/g, '!' )
 				.replace( /%2A/g, '*' )
-				.replace( /%27/g, '\'' )
 				.replace( /%28/g, '(' )
 				.replace( /%29/g, ')' )
 				.replace( /%2C/g, ',' )
