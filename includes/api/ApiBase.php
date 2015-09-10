@@ -345,6 +345,22 @@ abstract class ApiBase extends ContextSource {
 		return null;
 	}
 
+	/**
+	 * Returns data for HTTP conditional request mechanisms.
+	 *
+	 * @since 1.26
+	 * @param string $condition Condition being queried:
+	 *  - last-modified: Return a timestamp representing the maximum of the
+	 *    last-modified dates for all resources involved in the request. See
+	 *    RFC 7232 § 2.2 for semantics.
+	 *  - etag: Return an entity-tag representing the state of all resources involved
+	 *    in the request. Quotes must be included. See RFC 7232 § 2.3 for semantics.
+	 * @return string|boolean|null As described above, or null if no value is available.
+	 */
+	public function getConditionalRequestData( $condition ) {
+		return null;
+	}
+
 	/**@}*/
 
 	/************************************************************************//**

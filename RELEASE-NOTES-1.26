@@ -110,10 +110,17 @@ production.
   rnfilterredir parameter that also allows for listing both redirects and
   non-redirects.
 * list=random now supports continuation.
+* API responses to GET requests may now include ETag and Last-Modified headers,
+  and will honor corresponding If-None-Match and If-Modified-Since on such
+  requests.
 
 === Action API internal changes in 1.26 ===
 * New metadata item ApiResult::META_KVP_MERGE to allow for merging the KVP key
   into the value when the value is an assoc.
+* API action modules may now provide values for the RFC 7232 ETag and
+  Last-Modified headers. The API will check these against If-None-Match and
+  If-Modified-Since request headers on GET requests and avoid executing the
+  module when appropriate.
 
 === Languages updated in 1.26 ===
 
