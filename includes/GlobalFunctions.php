@@ -2180,10 +2180,16 @@ function wfResetOutputBuffers( $resetGzipEncoding = true ) {
 		$wgDisableOutputCompression = true;
 	}
 	while ( $status = ob_get_status() ) {
-		if ( $status['type'] == 0 /* PHP_OUTPUT_HANDLER_INTERNAL */ ) {
-			// Probably from zlib.output_compression or other
-			// PHP-internal setting which can't be removed.
-			//
+		if ( isset( $status['flags'] ) ) {
+			$flags = PHP_OUTPUT_HANDLER_CLEANABLE | PHP_OUTPUT_HANDLER_REMOVABLE;
+			$deleteable = ( $status['flags'] & $flags ) === $flags;
+		} elseif ( isset( $status['del'] ) ) {
+			$deleteable = $status['del'];
+		} else {
+			// Guess that any PHP-internal setting can't be removed.
+			$deleteable = $status['type'] !== 0; /* PHP_OUTPUT_HANDLER_INTERNAL */
+		}
+		if ( !$deleteable ) {
 			// Give up, and hope the result doesn't break
 			// output behavior.
 			break;
