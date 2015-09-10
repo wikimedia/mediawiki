@@ -56,7 +56,7 @@ class ResourceLoaderEditToolbarModule extends ResourceLoaderFileModule {
 		// This is very conveniently formatted and we can pass it right through
 		$vars = $language->getImageFiles();
 
-		// lessc tries to be helpful and parse our variables as LESS source code
+		// less.php tries to be helpful and parse our variables as LESS source code
 		foreach ( $vars as $key => &$value ) {
 			$value = self::cssSerializeString( $value );
 		}
@@ -78,11 +78,11 @@ class ResourceLoaderEditToolbarModule extends ResourceLoaderFileModule {
 	 *
 	 * @throws MWException
 	 * @param ResourceLoaderContext $context
-	 * @return lessc
+	 * @return Less_Parser
 	 */
 	protected function getLessCompiler( ResourceLoaderContext $context = null ) {
-		$compiler = parent::getLessCompiler();
-		$compiler->setVariables( $this->getLessVars( $context ) );
-		return $compiler;
+		$parser = parent::getLessCompiler();
+		$parser->ModifyVars( $this->getLessVars( $context ) );
+		return $parser;
 	}
 }
