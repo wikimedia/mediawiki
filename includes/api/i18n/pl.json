@@ -10,7 +10,8 @@
 			"Pio387",
 			"Peter Bowman",
 			"Darellur",
-			"The Polish"
+			"The Polish",
+			"Matma Rex"
 		]
 	},
 	"apihelp-main-param-action": "Wybierz akcję do wykonania.",
@@ -329,8 +330,8 @@
 	"api-help-param-list": "{{PLURAL:$1|1=Jedna wartość|2=Wartości (oddziel za pomocą <kbd>{{!}}</kbd>)}}: $2",
 	"api-help-param-limit": "Nie więcej niż $1 dozwolone.",
 	"api-help-param-limit2": "Nie więcej niż $1 ($2 dla botów) dozwolone.",
-	"api-help-param-integer-min": "{{PLURAL:$1|1=Wartość|2=Wartości}} musza być mniejsze niż $2.",
-	"api-help-param-integer-max": "{{PLURAL:$1|1=Wartość musi|2=Wartości muszą}} być nie większa niż $3.",
+	"api-help-param-integer-min": "{{PLURAL:$1|1=Wartość musi być nie mniejsza|2=Wartości muszą być nie mniejsze}} niż $2.",
+	"api-help-param-integer-max": "{{PLURAL:$1|1=Wartość musi być nie większa|2=Wartości muszą być nie większe}} niż $3.",
 	"api-help-param-integer-minmax": "{{PLURAL:$1|1=Wartość musi|2=Wartości muszą}} być pomiędzy $2 a $3.",
 	"api-help-param-multi-separate": "Oddziel wartości za pomocą <kbd>|</kbd>.",
 	"api-help-param-multi-max": "Maksymalna liczba wartości to {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} dla botów).",

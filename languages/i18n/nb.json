@@ -44,7 +44,8 @@
 			"Chameleon222",
 			"Helland",
 			"Macofe",
-			"Kingu"
+			"Kingu",
+			"Tarjeimo"
 		]
 	},
 	"tog-underline": "Strek under lenker:",
@@ -251,7 +252,7 @@
 	"lastmodifiedat": "Denne siden ble sist endret $1 kl. $2.",
 	"viewcount": "Denne siden er vist {{PLURAL:$1|én gang|$1 ganger}}.",
 	"protectedpage": "Låst side",
-	"jumpto": "Gå til:",
+	"jumpto": "Hopp til:",
 	"jumptonavigation": "navigasjon",
 	"jumptosearch": "søk",
 	"view-pool-error": "Beklager, serverne er overbelastet for øyeblikket.\nFor mange brukere forsøker å se denne siden.\nVennligst vent en stund før du prøver å besøke denne siden på nytt.\n\n$1",
@@ -2277,7 +2278,7 @@
 	"tooltip-pt-logout": "Logg ut",
 	"tooltip-pt-createaccount": "Du oppfordres til å opprette en konto og logge inn, men det er ikke obligatorisk.",
 	"tooltip-ca-talk": "Diskusjon om innholdssiden",
-	"tooltip-ca-edit": "Du kan redigere denne siden. Vennligst bruk forhåndsvisningsknappen før du lagrer.",
+	"tooltip-ca-edit": "Rediger denne siden",
 	"tooltip-ca-addsection": "Start et nytt avsnitt",
 	"tooltip-ca-viewsource": "Denne siden er beskyttet.\nDu kan se på kildeteksten",
 	"tooltip-ca-history": "Tidligere revisjoner av denne siden",
@@ -2354,7 +2355,7 @@
 	"spam_reverting": "Tilbakestiller til siste versjon uten lenke til $1",
 	"spam_blanking": "Alle revisjoner inneholdt lenke til $1, tømmer siden",
 	"spam_deleting": "Sletter alle revisjoner med lenker til $1",
-	"simpleantispam-label": "Antispamsjekk.\n'''IKKE''' fyll inn dette feltet!",
+	"simpleantispam-label": "Antispamsjekk.\n<strong>IKKE</strong> fyll inn dette feltet!",
 	"pageinfo-title": "Informasjon om «$1»",
 	"pageinfo-not-current": "Beklager, det er ikke mulig å vise denne informasjonen for gamle revisjoner.",
 	"pageinfo-header-basic": "Grunnleggende informasjon",
