@@ -2909,8 +2909,7 @@ class OutputPage extends ContextSource {
 
 				// Automatically select style/script elements
 				if ( $only === ResourceLoaderModule::TYPE_STYLES ) {
-					$media = $group === 'print' ? 'print' : 'all';
-					$link = Html::linkedStyle( $url, $media );
+					$link = Html::linkedStyle( $url );
 				} else {
 					if ( $context->getRaw() || $isRaw ) {
 						// Startup module can't load itself, needs to use <script> instead of mw.loader.load
