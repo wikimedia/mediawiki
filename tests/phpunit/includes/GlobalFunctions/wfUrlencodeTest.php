@@ -105,8 +105,8 @@ class WfUrlencodeTest extends MediaWikiTestCase {
 
 			// remaining chars do not need encoding
 			array(
-				';@$-_.!*\'',
-				';@$-_.!*\'',
+				';@$-_.!*',
+				';@$-_.!*',
 			),
 
 			### Other tests
@@ -118,6 +118,9 @@ class WfUrlencodeTest extends MediaWikiTestCase {
 			// Other 'funnies' chars
 			array( '[]', '%5B%5D' ),
 			array( '<>', '%3C%3E' ),
+
+			// Apostrophe is encoded
+			array( '\'', '%27' ),
 		);
 	}
 }
