@@ -6240,7 +6240,7 @@ Table cell attributes: Pipes protected by nowikis should be treated as a plain c
 | title="foo<nowiki>|</nowiki>" |bar
 | title="foo<nowiki>|</nowiki>" bar
 |}
-!! html
+!! html/php
 <table>
 <tr>
 <td title="foo">bar
@@ -6250,12 +6250,19 @@ Table cell attributes: Pipes protected by nowikis should be treated as a plain c
 <td> title="foo|" bar
 </td></tr></table>
 
+!! html/parsoid
+<table>
+<tbody><tr><td title="foo">bar</td>
+<td title="foo|" data-parsoid='{"a":{"title":"foo|"},"sa":{"title":"foo&lt;nowiki>|&lt;/nowiki>"},"autoInsertedEnd":true}'>bar</td>
+<td> title="foo<span typeof="mw:Nowiki">|</span>" bar</td></tr>
+</tbody></table>
 !! end
 
-# The "|}" to close the table is missing from the input, so parsoid's
-# *2wt modes will fail.
+# See: http://lists.wikimedia.org/mailman/htdig/wikitech-l/2006-April/022293.html
+# N.B. The "|}" to close the table is missing from the input, so parsoid's
+#      *2wt modes will fail.
 !! test
-Table security: embedded pipes (http://lists.wikimedia.org/mailman/htdig/wikitech-l/2006-April/022293.html)
+Table security: embedded pipes
 !! options
 parsoid=wt2html,html2html
 !! wikitext
@@ -6273,12 +6280,14 @@ parsoid=wt2html,html2html
 !! html/parsoid
 <table><tbody>
 <tr>
-<td><a rel="mw:ExtLink" href="ftp://|x||"></a>" onmouseover="alert(document.cookie)">test</td></tr></tbody></table>
+<td data-parsoid='{"startTagSrc":"| ","attrSepSrc":"|","autoInsertedEnd":true}'><a rel="mw:ExtLink" href="ftp://|x||"></a>" onmouseover="alert(document.cookie)">test</td></tr></tbody></table>
 !! end
 
-# FIXME: The php output is broken.
+# FIXME: The output seems broken. Filed as T110268.
 !! test
 ! and || in td attributes should not be parsed as <th>/<td>
+!! options
+parsoid=wt2html
 !! wikitext
 {|
 | style="color: red !important;" data-contrived="put this here ||" | foo
@@ -6292,7 +6301,7 @@ parsoid=wt2html,html2html
 
 !! html/parsoid
 <table>
-<tbody><tr><td style="color: red !important;" data-contrived="put this here ||" data-parsoid='{"autoInsertedEnd":true}'> foo</td></tr>
+<tbody><tr><td> style="color: red !important;" data-contrived="put this here </td><td data-parsoid='{"stx_v":"row","a":{"\"":null},"sa":{"\"":""},"autoInsertedEnd":true}'> foo</td></tr>
 </tbody></table>
 !! end
 
@@ -7161,8 +7170,10 @@ Link with HTML entity in suffix / tail
 Link with 3 brackets
 !! wikitext
 [[[Main Page]]]
+Foo [[[Main Page]]]
 !! html
 <p>[[[Main Page]]]
+Foo [[[Main Page]]]
 </p>
 !! end
 
@@ -15892,6 +15903,7 @@ MSIE 6 CSS safety test: sup/sub script (bug 55332)
 
 !! end
 
+# FIXME: Parsoid fails to sanitize this! See T58846.
 !! test
 Opera -o-link CSS
 !! wikitext
@@ -20714,14 +20726,18 @@ __TOC__
 <p><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Foo Bar">edit</a><span class="mw-editsection-bracket">]</span></span></p>
 !! end
 
+# Don't expect Parsoid to roundtrip this until the php parser comes closer to
+# html5 tag parsing.
 !! test
 Tags with parameters in TOC
+!! options
+parsoid=wt2html
 !! wikitext
 __TOC__
 == <sup class="in-h2">Hello</sup> ==
 
 == <sup class="a > b">Evilbye</sup> ==
-!! html
+!! html/php
 <div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Hello"><span class="tocnumber">1</span> <span class="toctext"><sup>Hello</sup></span></a></li>
@@ -20732,6 +20748,11 @@ __TOC__
 <h2><span class="mw-headline" id="Hello"><sup class="in-h2">Hello</sup></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Hello">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="b.22.3EEvilbye"><sup class="a"> b"&gt;Evilbye</sup></span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: b&quot;&gt;Evilbye">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 
+!! html/parsoid
+<meta property="mw:PageProp/toc" />
+<h2> <sup class="in-h2" data-parsoid='{"stx":"html"}'>Hello</sup> </h2>
+
+<h2> <sup class="a " data-parsoid='{"stx":"html"}'> b">Evilbye</sup> </h2>
 !! end
 
 !! test
@@ -22418,8 +22439,8 @@ parsoid=html2wt
 |}
 </p>
 !! wikitext
-<nowiki>{|
-|}</nowiki>
+<nowiki>{|</nowiki>
+|}
 !! end
 
 !! test
@@ -22745,7 +22766,7 @@ parsoid=html2wt
 |** Make this another long long long sentence forcing the nowiki algo to split up the nowikis.</p>
 !! wikitext
 <nowiki>*</nowiki>This is a long sentence here that will make the nowiki algo split up the nowikis into multiple pairs
-<nowiki>|</nowiki>** Make this another long long long sentence forcing the nowiki algo to split up the nowikis.
+|** Make this another long long long sentence forcing the nowiki algo to split up the nowikis.
 !! end
 
 !! test
