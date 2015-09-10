@@ -8,6 +8,11 @@
 //
 // See <http://lesscss.org/#-mixins> for more information about how to write mixins.
 
+// Some LESS parsers choke on the '\9' CSS hack. It is possible to route
+// around this limitation by assigning '\9' to a variable and using the
+// variable wherever the literal '\9' is desired.
+@slashNine: \9;
+
 .background-image(@url) {
 	background-image: e('/* @embed */') url(@url);
 }
@@ -52,7 +57,7 @@
 .list-style-image-svg(@svg, @fallback) {
 	list-style-image: e('/* @embed */') url(@svg);
 	/* Fallback to PNG bullet for IE 8 and below using CSS hack */
-	list-style-image: e('/* @embed */') url(@fallback)\9;
+	list-style-image: e('/* @embed */') url(@fallback)@slashNine;
 }
 
 .transition(@value) {
