@@ -76,8 +76,8 @@
 	 *     language. When not given, defaults to a translated version of 'YYYY-MM-DD' or 'YYYY-MM',
 	 *     depending on `precision`.
 	 * @cfg {boolean} [required=false] Mark the field as required. Implies `indicator: 'required'`.
-	 * @cfg {string} mustBeAfter Validates the date to be after this. Should be `YYYY-MM-DD` format.
-	 * @cfg {string} mustBeBefore Validates the date to be before this. Should be `YYYY-MM-DD` format.
+	 * @cfg {string} [mustBeAfter] Validates the date to be after this. In the 'YYYY-MM-DD' format.
+	 * @cfg {string} [mustBeBefore] Validates the date to be before this. In the 'YYYY-MM-DD' format.
 	 */
 	mw.widgets.DateInputWidget = function MWWDateInputWidget( config ) {
 		// Config initialization
