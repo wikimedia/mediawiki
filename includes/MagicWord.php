@@ -718,9 +718,6 @@ class MagicWordArray {
 
 	private $regex;
 
-	/** @todo Unused? */
-	private $matches;
-
 	/**
 	 * @param array $names
 	 */
