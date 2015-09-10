@@ -138,21 +138,25 @@ class BagOStuffTest extends MediaWikiTestCase {
 	public function testGetMulti() {
 		$value1 = array( 'this' => 'is', 'a' => 'test' );
 		$value2 = array( 'this' => 'is', 'another' => 'test' );
+		$value3 = array( 'testing a key that may be encoded when sent to cache backend' );
 
 		$key1 = wfMemcKey( 'test1' );
 		$key2 = wfMemcKey( 'test2' );
+		$key3 = wfMemcKey( 'will-%-encode' ); // internally, MemcachedBagOStuffs will encode to will-%25-encode
 
 		$this->cache->add( $key1, $value1 );
 		$this->cache->add( $key2, $value2 );
+		$this->cache->add( $key3, $value3 );
 
 		$this->assertEquals(
-			$this->cache->getMulti( array( $key1, $key2 ) ),
-			array( $key1 => $value1, $key2 => $value2 )
+			array( $key1 => $value1, $key2 => $value2, $key3 => $value3 ),
+			$this->cache->getMulti( array( $key1, $key2, $key3 ) )
 		);
 
 		// cleanup
 		$this->cache->delete( $key1 );
 		$this->cache->delete( $key2 );
+		$this->cache->delete( $key3 );
 	}
 
 	/**
