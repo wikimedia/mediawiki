@@ -1853,6 +1853,7 @@ class ApiMain extends ApiBase {
 			$help[$k] = $v;
 		}
 		$help['datatypes'] = '';
+		$help['terms'] = '';
 		$help['credits'] = '';
 
 		// Fill 'permissions'
@@ -1885,7 +1886,7 @@ class ApiMain extends ApiBase {
 		$help['permissions'] .= Html::closeElement( 'dl' );
 		$help['permissions'] .= Html::closeElement( 'div' );
 
-		// Fill 'datatypes' and 'credits', if applicable
+		// Fill 'datatypes', 'terms', and 'credits', if applicable
 		if ( empty( $options['nolead'] ) ) {
 			$level = $options['headerlevel'];
 			$tocnumber = &$options['tocnumber'];
@@ -1910,6 +1911,30 @@ class ApiMain extends ApiBase {
 					'anchor' => 'main/datatypes',
 					'line' => $header,
 					'number' => implode( '.', $tocnumber ),
+					'index' => false,
+				];
+			}
+
+			// Add an additional span with sanitized ID
+			if ( !$this->getConfig()->get( 'ExperimentalHtmlIds' ) ) {
+				$header = Html::element( 'span', [ 'id' => Sanitizer::escapeId( 'main/terms' ) ] ) .
+					$header;
+			}
+			$header = $this->msg( 'api-terms-header' )->parse();
+			$help['terms'] .= Html::rawelement( 'h' . min( 6, $level ),
+				[ 'id' => 'main/terms', 'class' => 'apihelp-header' ],
+				Html::element( 'span', [ 'id' => Sanitizer::escapeId( 'main/terms' ) ] ) .
+				$header
+			);
+			$help['terms'] .= ApiHelp::getRightsMessage( $this )->parseAsBlock();
+			if ( !isset( $tocData['main/terms'] ) ) {
+				$tocnumber[$level]++;
+				$tocData['main/terms'] = [
+					'toclevel' => count( $tocnumber ),
+					'level' => $level,
+					'anchor' => 'main/terms',
+					'line' => $header,
+					'number' => join( '.', $tocnumber ),
 					'index' => false,
 				];
 			}
