@@ -694,9 +694,9 @@ class SpecialSearch extends SpecialPage {
 			$titleSnippet
 		);
 
-		//If page content is not readable, just return the title.
-		//This is not quite safe, but better than showing excerpts from non-readable pages
-		//Note that hiding the entry entirely would screw up paging.
+		// If page content is not readable, just return the title.
+		// This is not quite safe, but better than showing excerpts from non-readable pages
+		// Note that hiding the entry entirely would screw up paging.
 		if ( !$title->userCan( 'read', $this->getUser() ) ) {
 			return "<li>{$link}</li>\n";
 		}

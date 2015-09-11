@@ -163,7 +163,7 @@ class UsersPager extends AlphabeticPager {
 	 * @return string
 	 */
 	function formatRow( $row ) {
-		if ( $row->user_id == 0 ) { #Bug 16487
+		if ( $row->user_id == 0 ) { # Bug 16487
 			return '';
 		}
 

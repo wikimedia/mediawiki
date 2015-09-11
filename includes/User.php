@@ -129,7 +129,7 @@ class User implements IDBAccessObject {
 		'editmyuserjs',
 		'editmywatchlist',
 		'editsemiprotected',
-		'editusercssjs', #deprecated
+		'editusercssjs', # deprecated
 		'editusercss',
 		'edituserjs',
 		'hideuser',
@@ -184,7 +184,7 @@ class User implements IDBAccessObject {
 	protected static $mAllRights = false;
 
 	/** Cache variables */
-	//@{
+	// @{
 	public $mId;
 	/** @var string */
 	public $mName;
@@ -228,19 +228,19 @@ class User implements IDBAccessObject {
 	protected $mOptionOverrides;
 	/** @var string */
 	protected $mPasswordExpires;
-	//@}
+	// @}
 
 	/**
 	 * Bool Whether the cache variables have been loaded.
 	 */
-	//@{
+	// @{
 	public $mOptionsLoaded;
 
 	/**
 	 * Array with already loaded items or true if all items have been loaded.
 	 */
 	protected $mLoadedItems = array();
-	//@}
+	// @}
 
 	/**
 	 * String Initialization data source if mLoadedItems!==true. May be one of:
@@ -462,7 +462,7 @@ class User implements IDBAccessObject {
 	}
 
 	/** @name newFrom*() static factory methods */
-	//@{
+	// @{
 
 	/**
 	 * Static factory method for creation from username.
@@ -573,7 +573,7 @@ class User implements IDBAccessObject {
 		return $user;
 	}
 
-	//@}
+	// @}
 
 	/**
 	 * Get the username corresponding to a given user ID
@@ -799,7 +799,7 @@ class User implements IDBAccessObject {
 	 * @return bool
 	 */
 	public function isValidPassword( $password ) {
-		//simple boolean wrapper for getPasswordValidity
+		// simple boolean wrapper for getPasswordValidity
 		return $this->getPasswordValidity( $password ) === true;
 	}
 
@@ -856,7 +856,7 @@ class User implements IDBAccessObject {
 		);
 
 		$status = Status::newGood();
-		$result = false; //init $result to false for the internal checks
+		$result = false; // init $result to false for the internal checks
 
 		if ( !Hooks::run( 'isValidPassword', array( $password, &$result, $this ) ) ) {
 			$status->error( $result );
@@ -870,7 +870,7 @@ class User implements IDBAccessObject {
 			return $status;
 		} else {
 			$status->error( $result );
-			return $status; //the isValidPassword hook set a string $result and returned true
+			return $status; // the isValidPassword hook set a string $result and returned true
 		}
 	}
 
@@ -5209,7 +5209,7 @@ class User implements IDBAccessObject {
 		# is b0rked anyway in some browsers, just return nothing.  When it's
 		# re-enabled, fix this code to not output required for e-mail
 		# registration.
-		#$ret = array( 'required' );
+		# $ret = array( 'required' );
 		$ret = array();
 
 		# We can't actually do this right now, because Opera 9.6 will print out

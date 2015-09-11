@@ -297,7 +297,7 @@ class RecentChange {
 		$this->mAttribs['rc_timestamp'] = $dbw->timestamp( $this->mAttribs['rc_timestamp'] );
 		$this->mAttribs['rc_id'] = $dbw->nextSequenceValue( 'recentchanges_rc_id_seq' );
 
-		## If we are using foreign keys, an entry of 0 for the page_id will fail, so use NULL
+		# # If we are using foreign keys, an entry of 0 for the page_id will fail, so use NULL
 		if ( $dbw->cascadingDeletes() && $this->mAttribs['rc_cur_id'] == 0 ) {
 			unset( $this->mAttribs['rc_cur_id'] );
 		}
@@ -692,7 +692,7 @@ class RecentChange {
 		$type, $action, $target, $logComment, $params, $newId = 0, $actionCommentIRC = '' ) {
 		global $wgRequest;
 
-		## Get pageStatus for email notification
+		# # Get pageStatus for email notification
 		switch ( $type . '-' . $action ) {
 			case 'delete-delete':
 				$pageStatus = 'deleted';

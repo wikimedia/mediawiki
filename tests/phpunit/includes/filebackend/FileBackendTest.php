@@ -1517,7 +1517,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			array( "$base/unittest-cont1/e/a/z/some_file1.txt", true ),
 			array( "$base/unittest-cont2/a/z/some_file2.txt", true ),
 			# Specific to FS backend with no basePath field set
-			#array( "$base/unittest-cont3/a/z/some_file3.txt", false ),
+			# array( "$base/unittest-cont3/a/z/some_file3.txt", false ),
 		);
 	}
 
@@ -2347,7 +2347,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			$this->assertEquals( true, $status->isOK(),
 				"Locking of files succeeded with OK status ($backendName) ($i)." );
 
-			## Flip the acquire/release ordering around ##
+			# # Flip the acquire/release ordering around ##
 
 			$status = $this->backend->lockFiles( $paths, LockManager::LOCK_SH );
 			$this->assertEquals( print_r( array(), true ), print_r( $status->errors, true ),

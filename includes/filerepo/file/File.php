@@ -382,7 +382,7 @@ abstract class File implements IDBAccessObject {
 				wfDebug( __METHOD__ . ': supposed to render ' . $this->getName() .
 					' (' . $this->getMimeType() . "), but can't!\n" );
 
-				return $this->getURL(); #hm... return NULL?
+				return $this->getURL(); # hm... return NULL?
 			}
 		} else {
 			return $this->getURL();
@@ -805,17 +805,17 @@ abstract class File implements IDBAccessObject {
 
 		$type = $this->getMediaType();
 		$mime = $this->getMimeType();
-		#wfDebug( "LocalFile::isSafeFile: type= $type, mime= $mime\n" );
+		# wfDebug( "LocalFile::isSafeFile: type= $type, mime= $mime\n" );
 
 		if ( !$type || $type === MEDIATYPE_UNKNOWN ) {
-			return false; #unknown type, not trusted
+			return false; # unknown type, not trusted
 		}
 		if ( in_array( $type, $wgTrustedMediaFormats ) ) {
 			return true;
 		}
 
 		if ( $mime === "unknown/unknown" ) {
-			return false; #unknown type, not trusted
+			return false; # unknown type, not trusted
 		}
 		if ( in_array( $mime, $wgTrustedMediaFormats ) ) {
 			return true;
@@ -838,8 +838,8 @@ abstract class File implements IDBAccessObject {
 	 * @return bool
 	 */
 	function isTrustedFile() {
-		#this could be implemented to check a flag in the database,
-		#look for signatures, etc
+		# this could be implemented to check a flag in the database,
+		# look for signatures, etc
 		return false;
 	}
 

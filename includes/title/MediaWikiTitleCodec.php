@@ -76,7 +76,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 			MWNamespace::hasGenderDistinction( $namespace )
 		) {
 
-			//NOTE: we are assuming here that the title text is a user name!
+			// NOTE: we are assuming here that the title text is a user name!
 			$gender = $this->genderCache->getGenderOf( $text, __METHOD__ );
 			$name = $this->language->getGenderNsText( $namespace, $gender );
 		} else {
@@ -265,7 +265,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 							# Disallow Talk:File:x type titles...
 							throw new MalformedTitleException( 'title-invalid-talk-namespace', $text );
 						} elseif ( Interwiki::isValidInterwiki( $x[1] ) ) {
-							//TODO: get rid of global state!
+							// TODO: get rid of global state!
 							# Disallow Talk:Interwiki:x type titles...
 							throw new MalformedTitleException( 'title-invalid-talk-namespace', $text );
 						}

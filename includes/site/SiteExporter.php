@@ -105,8 +105,8 @@ class SiteExporter {
 			}
 		}
 
-		//@todo: export <data>
-		//@todo: export <config>
+		// @todo: export <data>
+		// @todo: export <config>
 
 		fwrite( $this->sink, "\t" . Xml::closeElement( 'site' ) . "\n" );
 	}

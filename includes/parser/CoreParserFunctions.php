@@ -696,15 +696,15 @@ class CoreParserFunctions {
 
 		// split the given option to its variable
 		if ( self::matchAgainstMagicword( 'rawsuffix', $arg1 ) ) {
-			//{{pagesincategory:|raw[|type]}}
+			// {{pagesincategory:|raw[|type]}}
 			$raw = $arg1;
 			$type = $magicWords->matchStartToEnd( $arg2 );
 		} else {
-			//{{pagesincategory:[|type[|raw]]}}
+			// {{pagesincategory:[|type[|raw]]}}
 			$type = $magicWords->matchStartToEnd( $arg1 );
 			$raw = $arg2;
 		}
-		if ( !$type ) { //backward compatibility
+		if ( !$type ) { // backward compatibility
 			$type = 'pagesincategory_all';
 		}
 

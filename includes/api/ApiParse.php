@@ -526,7 +526,7 @@ class ApiParse extends ApiBase {
 	 * @return Content
 	 */
 	private function getContent( WikiPage $page, $pageId = null ) {
-		$content = $page->getContent( Revision::RAW ); //XXX: really raw?
+		$content = $page->getContent( Revision::RAW ); // XXX: really raw?
 
 		if ( $this->section !== false && $content !== null ) {
 			$content = $this->getSectionContent(

@@ -167,7 +167,7 @@ class XMPValidate implements LoggerAwareInterface {
 			return;
 		}
 
-		//check if its in a numeric range
+		// check if its in a numeric range
 		$inRange = false;
 		if ( isset( $info['rangeLow'] )
 			&& isset( $info['rangeHigh'] )
@@ -231,7 +231,7 @@ class XMPValidate implements LoggerAwareInterface {
 			return;
 		}
 		if ( !preg_match( '/^[-A-Za-z0-9]{2,}$/D', $val ) ) {
-			//this is a rather naive check.
+			// this is a rather naive check.
 			$this->logger->info( __METHOD__ . " Expected Lang code but got $val" );
 			$val = null;
 		}
@@ -292,8 +292,8 @@ class XMPValidate implements LoggerAwareInterface {
 				return;
 			}
 
-			if ( !isset( $res[4] ) ) { //hour
-				//just have the year month day (if that)
+			if ( !isset( $res[4] ) ) { // hour
+				// just have the year month day (if that)
 				$val = $res[1];
 				if ( isset( $res[2] ) ) {
 					$val .= ':' . $res[2];
@@ -306,7 +306,7 @@ class XMPValidate implements LoggerAwareInterface {
 			}
 
 			if ( !isset( $res[7] ) || $res[7] === 'Z' ) {
-				//if hour is set, then minute must also be or regex above will fail.
+				// if hour is set, then minute must also be or regex above will fail.
 				$val = $res[1] . ':' . $res[2] . ':' . $res[3]
 					. ' ' . $res[4] . ':' . $res[5];
 				if ( isset( $res[6] ) && $res[6] !== '' ) {

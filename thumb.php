@@ -38,7 +38,7 @@ if ( defined( 'THUMB_HANDLER' ) ) {
 $mediawiki = new MediaWiki();
 $mediawiki->doPostOutputShutdown( 'fast' );
 
-//--------------------------------------------------------------------------
+// --------------------------------------------------------------------------
 
 /**
  * Handle a thumbnail request via thumbnail file URL

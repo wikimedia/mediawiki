@@ -75,7 +75,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			);
 		}
 
-		//FIXME: (follow-up) To allow extensions to add to the language links, we need
+		// FIXME: (follow-up) To allow extensions to add to the language links, we need
 		//       to load them all, add the extra links, then apply paging.
 		//       Should not be terrible, it's not going to be more than a few hundred links.
 

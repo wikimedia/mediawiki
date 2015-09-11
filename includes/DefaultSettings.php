@@ -867,12 +867,12 @@ $wgUploadSizeWarning = false;
  * [[media:...]] links for non-trusted formats.
  */
 $wgTrustedMediaFormats = array(
-	MEDIATYPE_BITMAP, //all bitmap formats
-	MEDIATYPE_AUDIO, //all audio formats
-	MEDIATYPE_VIDEO, //all plain video formats
-	"image/svg+xml", //svg (only needed if inline rendering of svg is not supported)
-	"application/pdf", //PDF files
-	#"application/x-shockwave-flash", //flash/shockwave movie
+	MEDIATYPE_BITMAP, // all bitmap formats
+	MEDIATYPE_AUDIO, // all audio formats
+	MEDIATYPE_VIDEO, // all plain video formats
+	"image/svg+xml", // svg (only needed if inline rendering of svg is not supported)
+	"application/pdf", // PDF files
+	# "application/x-shockwave-flash", //flash/shockwave movie
 );
 
 /**
@@ -1173,7 +1173,7 @@ $wgAntivirus = null;
  */
 $wgAntivirusSetup = array(
 
-	#setup for clamav
+	# setup for clamav
 	'clamav' => array(
 		'command' => 'clamscan --no-summary ',
 		'codemap' => array(
@@ -4003,7 +4003,7 @@ $wgInvalidRedirectTargets = array( 'Filepath', 'Mypage', 'Mytalk', 'Redirect' );
  */
 $wgParserConf = array(
 	'class' => 'Parser',
-	#'preprocessorClass' => 'Preprocessor_Hash',
+	# 'preprocessorClass' => 'Preprocessor_Hash',
 );
 
 /**
@@ -4702,7 +4702,7 @@ $wgGroupPermissions['*']['editmywatchlist'] = true;
 $wgGroupPermissions['*']['viewmyprivateinfo'] = true;
 $wgGroupPermissions['*']['editmyprivateinfo'] = true;
 $wgGroupPermissions['*']['editmyoptions'] = true;
-#$wgGroupPermissions['*']['patrolmarks'] = false; // let anons see what was patrolled
+# $wgGroupPermissions['*']['patrolmarks'] = false; // let anons see what was patrolled
 
 // Implicit group for all logged-in accounts
 $wgGroupPermissions['user']['move'] = true;
@@ -4780,8 +4780,8 @@ $wgGroupPermissions['sysop']['noratelimit'] = true;
 $wgGroupPermissions['sysop']['movefile'] = true;
 $wgGroupPermissions['sysop']['unblockself'] = true;
 $wgGroupPermissions['sysop']['suppressredirect'] = true;
-#$wgGroupPermissions['sysop']['pagelang'] = true;
-#$wgGroupPermissions['sysop']['upload_by_url'] = true;
+# $wgGroupPermissions['sysop']['pagelang'] = true;
+# $wgGroupPermissions['sysop']['upload_by_url'] = true;
 $wgGroupPermissions['sysop']['mergehistory'] = true;
 $wgGroupPermissions['sysop']['managechangetags'] = true;
 
@@ -4789,20 +4789,20 @@ $wgGroupPermissions['sysop']['managechangetags'] = true;
 $wgGroupPermissions['bureaucrat']['userrights'] = true;
 $wgGroupPermissions['bureaucrat']['noratelimit'] = true;
 // Permission to change users' groups assignments across wikis
-#$wgGroupPermissions['bureaucrat']['userrights-interwiki'] = true;
+# $wgGroupPermissions['bureaucrat']['userrights-interwiki'] = true;
 // Permission to export pages including linked pages regardless of $wgExportMaxLinkDepth
-#$wgGroupPermissions['bureaucrat']['override-export-depth'] = true;
+# $wgGroupPermissions['bureaucrat']['override-export-depth'] = true;
 
-#$wgGroupPermissions['sysop']['deletelogentry'] = true;
-#$wgGroupPermissions['sysop']['deleterevision'] = true;
+# $wgGroupPermissions['sysop']['deletelogentry'] = true;
+# $wgGroupPermissions['sysop']['deleterevision'] = true;
 // To hide usernames from users and Sysops
-#$wgGroupPermissions['suppress']['hideuser'] = true;
+# $wgGroupPermissions['suppress']['hideuser'] = true;
 // To hide revisions/log items from users and Sysops
-#$wgGroupPermissions['suppress']['suppressrevision'] = true;
+# $wgGroupPermissions['suppress']['suppressrevision'] = true;
 // To view revisions/log items hidden from users and Sysops
-#$wgGroupPermissions['suppress']['viewsuppressed'] = true;
+# $wgGroupPermissions['suppress']['viewsuppressed'] = true;
 // For private suppression log access
-#$wgGroupPermissions['suppress']['suppressionlog'] = true;
+# $wgGroupPermissions['suppress']['suppressionlog'] = true;
 
 /**
  * The developer group is deprecated, but can be activated if need be

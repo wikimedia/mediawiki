@@ -323,7 +323,7 @@ class MimeMagic {
 				continue;
 			}
 
-			#print "processing MIME INFO line $s<br>";
+			# print "processing MIME INFO line $s<br>";
 
 			$match = array();
 			if ( preg_match( '!\[\s*(\w+)\s*\]!', $s, $match ) ) {
@@ -957,7 +957,7 @@ class MimeMagic {
 
 		if ( $m ) {
 			# normalize
-			$m = preg_replace( '![;, ].*$!', '', $m ); #strip charset, etc
+			$m = preg_replace( '![;, ].*$!', '', $m ); # strip charset, etc
 			$m = trim( $m );
 			$m = strtolower( $m );
 

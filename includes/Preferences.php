@@ -112,20 +112,20 @@ class Preferences {
 	 * @return array|null
 	 */
 	static function loadPreferenceValues( $user, $context, &$defaultPreferences ) {
-		## Remove preferences that wikis don't want to use
+		# # Remove preferences that wikis don't want to use
 		foreach ( $context->getConfig()->get( 'HiddenPrefs' ) as $pref ) {
 			if ( isset( $defaultPreferences[$pref] ) ) {
 				unset( $defaultPreferences[$pref] );
 			}
 		}
 
-		## Make sure that form fields have their parent set. See bug 41337.
+		# # Make sure that form fields have their parent set. See bug 41337.
 		$dummyForm = new HTMLForm( array(), $context );
 
 		$disable = !$user->isAllowed( 'editmyoptions' );
 
 		$defaultOptions = User::getDefaultOptions();
-		## Prod in defaults from the user
+		# # Prod in defaults from the user
 		foreach ( $defaultPreferences as $name => &$info ) {
 			$prefFromUser = self::getOptionFromUser( $name, $info, $user );
 			if ( $disable && !in_array( $name, self::$saveBlacklist ) ) {
@@ -211,7 +211,7 @@ class Preferences {
 		// retrieving user name for GENDER and misc.
 		$userName = $user->getName();
 
-		## User info #####################################
+		# # User info #####################################
 		// Information panel
 		$defaultPreferences['username'] = array(
 			'type' => 'info',
@@ -427,7 +427,7 @@ class Preferences {
 			'section' => 'personal/signature'
 		);
 
-		## Email stuff
+		# # Email stuff
 
 		if ( $config->get( 'EnableEmail' ) ) {
 			if ( $canViewPrivateInfo ) {
@@ -571,7 +571,7 @@ class Preferences {
 	 * @return void
 	 */
 	static function skinPreferences( $user, IContextSource $context, &$defaultPreferences ) {
-		## Skin #####################################
+		# # Skin #####################################
 
 		// Skin selector, if there is at least one valid skin
 		$skinOptions = self::generateSkinOptions( $user, $context );
@@ -620,7 +620,7 @@ class Preferences {
 	 * @param array $defaultPreferences
 	 */
 	static function filesPreferences( $user, IContextSource $context, &$defaultPreferences ) {
-		## Files #####################################
+		# # Files #####################################
 		$defaultPreferences['imagesize'] = array(
 			'type' => 'select',
 			'options' => self::getImageSizes( $context ),
@@ -642,7 +642,7 @@ class Preferences {
 	 * @return void
 	 */
 	static function datetimePreferences( $user, IContextSource $context, &$defaultPreferences ) {
-		## Date and time #####################################
+		# # Date and time #####################################
 		$dateOptions = self::getDateOptions( $context );
 		if ( $dateOptions ) {
 			$defaultPreferences['date'] = array(
@@ -715,7 +715,7 @@ class Preferences {
 	 * @param array $defaultPreferences
 	 */
 	static function renderingPreferences( $user, IContextSource $context, &$defaultPreferences ) {
-		## Diffs ####################################
+		# # Diffs ####################################
 		$defaultPreferences['diffonly'] = array(
 			'type' => 'toggle',
 			'section' => 'rendering/diffs',
@@ -727,7 +727,7 @@ class Preferences {
 			'label-message' => 'tog-norollbackdiff',
 		);
 
-		## Page Rendering ##############################
+		# # Page Rendering ##############################
 		if ( $context->getConfig()->get( 'AllowUserCssPrefs' ) ) {
 			$defaultPreferences['underline'] = array(
 				'type' => 'select',
@@ -777,7 +777,7 @@ class Preferences {
 	 * @param array $defaultPreferences
 	 */
 	static function editingPreferences( $user, IContextSource $context, &$defaultPreferences ) {
-		## Editing #####################################
+		# # Editing #####################################
 		$defaultPreferences['editsectiononrightclick'] = array(
 			'type' => 'toggle',
 			'section' => 'editing/advancedediting',
@@ -865,7 +865,7 @@ class Preferences {
 	static function rcPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		$config = $context->getConfig();
 		$rcMaxAge = $config->get( 'RCMaxAge' );
-		## RecentChanges #####################################
+		# # RecentChanges #####################################
 		$defaultPreferences['rcdays'] = array(
 			'type' => 'float',
 			'label-message' => 'recentchangesdays',
@@ -926,7 +926,7 @@ class Preferences {
 		$config = $context->getConfig();
 		$watchlistdaysMax = ceil( $config->get( 'RCMaxAge' ) / ( 3600 * 24 ) );
 
-		## Watchlist #####################################
+		# # Watchlist #####################################
 		if ( $user->isAllowed( 'editmywatchlist' ) ) {
 			$editWatchlistLinks = array();
 			$editWatchlistModes = array(

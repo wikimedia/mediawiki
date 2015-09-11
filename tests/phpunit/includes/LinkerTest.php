@@ -30,7 +30,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 		# - optional message
 		return array(
 
-			### ANONYMOUS USER ########################################
+			# ## ANONYMOUS USER ########################################
 			array(
 				'<a href="/wiki/Special:Contributions/JohnDoe" '
 					. 'title="Special:Contributions/JohnDoe" '
@@ -82,7 +82,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 				'Anonymous with IPv4 and an alternative username'
 			),
 
-			### Regular user ##########################################
+			# ## Regular user ##########################################
 			# TODO!
 		);
 	}

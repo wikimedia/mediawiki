@@ -265,7 +265,7 @@ class WikiImporter {
 			// No rootpage
 			$this->setImportTitleFactory( new NaiveImportTitleFactory() );
 		} elseif ( $rootpage !== '' ) {
-			$rootpage = rtrim( $rootpage, '/' ); //avoid double slashes
+			$rootpage = rtrim( $rootpage, '/' ); // avoid double slashes
 			$title = Title::newFromText( $rootpage );
 
 			if ( !$title || $title->isExternal() ) {
@@ -1605,7 +1605,7 @@ class WikiRevision {
 			'page' => $pageId,
 			'content_model' => $this->getModel(),
 			'content_format' => $this->getFormat(),
-			//XXX: just set 'content' => $this->getContent()?
+			// XXX: just set 'content' => $this->getContent()?
 			'text' => $this->getContent()->serialize( $this->getFormat() ),
 			'comment' => $this->getComment(),
 			'user' => $userId,
@@ -1646,7 +1646,7 @@ class WikiRevision {
 				'log_namespace' => $this->getTitle()->getNamespace(),
 				'log_title' => $this->getTitle()->getDBkey(),
 				'log_comment' => $this->getComment(),
-				#'log_user_text' => $this->user_text,
+				# 'log_user_text' => $this->user_text,
 				'log_params' => $this->params ),
 			__METHOD__
 		);
@@ -1664,7 +1664,7 @@ class WikiRevision {
 			'log_action' => $this->action,
 			'log_timestamp' => $dbw->timestamp( $this->timestamp ),
 			'log_user' => User::idFromName( $this->user_text ),
-			#'log_user_text' => $this->user_text,
+			# 'log_user_text' => $this->user_text,
 			'log_namespace' => $this->getTitle()->getNamespace(),
 			'log_title' => $this->getTitle()->getDBkey(),
 			'log_comment' => $this->getComment(),

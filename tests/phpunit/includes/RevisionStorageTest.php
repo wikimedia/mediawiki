@@ -226,7 +226,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 
 		$res = Revision::fetchRevision( $page->getTitle() );
 
-		#note: order is unspecified
+		# note: order is unspecified
 		$rows = array();
 		while ( ( $row = $res->fetchObject() ) ) {
 			$rows[$row->rev_id] = $row;
@@ -297,7 +297,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$this->assertNull( $rev->getContent(),
 			"getContent() should return null if the revision's text blob could not be loaded." );
 
-		//NOTE: check this twice, once for lazy initialization, and once with the cached value.
+		// NOTE: check this twice, once for lazy initialization, and once with the cached value.
 		$this->assertNull( $rev->getContent(),
 			"getContent() should return null if the revision's text blob could not be loaded." );
 	}
@@ -462,16 +462,16 @@ class RevisionStorageTest extends MediaWikiTestCase {
 
 	public static function provideUserWasLastToEdit() {
 		return array(
-			array( #0
+			array( # 0
 				3, true, # actually the last edit
 			),
-			array( #1
+			array( # 1
 				2, true, # not the current edit, but still by this user
 			),
-			array( #2
+			array( # 2
 				1, false, # edit by another user
 			),
-			array( #3
+			array( # 3
 				0, false, # first edit, by this user, but another user edited in the mean time
 			),
 		);

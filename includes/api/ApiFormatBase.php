@@ -155,7 +155,7 @@ abstract class ApiFormatBase extends ApiBase {
 
 		$this->getMain()->getRequest()->response()->header( "Content-Type: $mime; charset=utf-8" );
 
-		//Set X-Frame-Options API results (bug 39180)
+		// Set X-Frame-Options API results (bug 39180)
 		$apiFrameOptions = $this->getConfig()->get( 'ApiFrameOptions' );
 		if ( $apiFrameOptions ) {
 			$this->getMain()->getRequest()->response()->header( "X-Frame-Options: $apiFrameOptions" );

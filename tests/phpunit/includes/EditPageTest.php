@@ -138,7 +138,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 			$page->doEditContent( $content, "base text for test" );
 			$this->forceRevisionDate( $page, '20120101000000' );
 
-			//sanity check
+			// sanity check
 			$page->clear();
 			$currentText = ContentHandler::getContentText( $page->getContent() );
 
@@ -335,7 +335,7 @@ hello
 		$textWithNewSectionAdded = "$text\n$newSection";
 
 		return array(
-			array( #0
+			array( # 0
 				$text,
 				'',
 				'hello',
@@ -343,7 +343,7 @@ hello
 				'hello'
 			),
 
-			array( #1
+			array( # 1
 				$text,
 				'1',
 				$sectionOne,
@@ -351,7 +351,7 @@ hello
 				$textWithNewSectionOne,
 			),
 
-			array( #2
+			array( # 2
 				$text,
 				'new',
 				'hello',
@@ -380,14 +380,14 @@ hello
 	public static function provideAutoMerge() {
 		$tests = array();
 
-		$tests[] = array( #0: plain conflict
+		$tests[] = array( # 0: plain conflict
 			"Elmo", # base edit user
 			"one\n\ntwo\n\nthree\n",
-			array( #adam's edit
+			array( # adam's edit
 				'wpStarttime' => 1,
 				'wpTextbox1' => "ONE\n\ntwo\n\nthree\n",
 			),
-			array( #berta's edit
+			array( # berta's edit
 				'wpStarttime' => 2,
 				'wpTextbox1' => "(one)\n\ntwo\n\nthree\n",
 			),
@@ -396,14 +396,14 @@ hello
 			'expected edit conflict', # message
 		);
 
-		$tests[] = array( #1: successful merge
+		$tests[] = array( # 1: successful merge
 			"Elmo", # base edit user
 			"one\n\ntwo\n\nthree\n",
-			array( #adam's edit
+			array( # adam's edit
 				'wpStarttime' => 1,
 				'wpTextbox1' => "ONE\n\ntwo\n\nthree\n",
 			),
-			array( #berta's edit
+			array( # berta's edit
 				'wpStarttime' => 2,
 				'wpTextbox1' => "one\n\ntwo\n\nTHREE\n",
 			),
@@ -424,15 +424,15 @@ hello
 		// generate expected text after merge
 		$expected = str_replace( 'one', 'ONE', str_replace( 'three', 'THREE', $text ) );
 
-		$tests[] = array( #2: merge in section
+		$tests[] = array( # 2: merge in section
 			"Elmo", # base edit user
 			$text,
-			array( #adam's edit
+			array( # adam's edit
 				'wpStarttime' => 1,
 				'wpTextbox1' => str_replace( 'one', 'ONE', $section ),
 				'wpSection' => '1'
 			),
-			array( #berta's edit
+			array( # berta's edit
 				'wpStarttime' => 2,
 				'wpTextbox1' => str_replace( 'three', 'THREE', $section ),
 				'wpSection' => '1'
@@ -465,7 +465,7 @@ hello
 	) {
 		$this->checkHasDiff3();
 
-		//create page
+		// create page
 		$ns = $this->getDefaultWikitextNS();
 		$title = Title::newFromText( 'EditPageTest_testAutoMerge', $ns );
 		$page = WikiPage::factory( $title );

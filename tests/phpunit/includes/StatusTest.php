@@ -439,14 +439,14 @@ class StatusTest extends MediaWikiLangTestCase {
 		// and the first call to the setUp method. Because of that you can't access any variables
 		// you create there from within a data provider."
 		// http://phpunit.de/manual/3.7/en/writing-tests-for-phpunit.html
-//		$status = new Status();
-//		$status->warning( 'fooBar!' );
-//		$status->warning( 'fooBar2!' );
-//		$testCases[ '2StringWarnings' ] = array(
-//			$status,
-//			array( new Message( 'fooBar!' ), new Message( 'fooBar2!' ) ),
-//			"* \$1\n* \$2"
-//		);
+// 		$status = new Status();
+// 		$status->warning( 'fooBar!' );
+// 		$status->warning( 'fooBar2!' );
+// 		$testCases[ '2StringWarnings' ] = array(
+// 			$status,
+// 			array( new Message( 'fooBar!' ), new Message( 'fooBar2!' ) ),
+// 			"* \$1\n* \$2"
+// 		);
 
 		$status = new Status();
 		$status->warning( new Message( 'fooBar!', array( 'foo', 'bar' ) ) );

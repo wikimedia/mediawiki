@@ -104,7 +104,7 @@ class PHPUnitMaintClass extends Maintenance {
 
 		# Make sure we have --configuration or PHPUnit might complain
 		if ( !in_array( '--configuration', $_SERVER['argv'] ) ) {
-			//Hack to eliminate the need to use the Makefile (which sucks ATM)
+			// Hack to eliminate the need to use the Makefile (which sucks ATM)
 			array_splice( $_SERVER['argv'], 1, 0,
 				array( '--configuration', $IP . '/tests/phpunit/suite.xml' ) );
 		}

@@ -183,8 +183,8 @@ class SiteImporter {
 			$site->addLocalId( $idType, $id );
 		}
 
-		//@todo: import <data>
-		//@todo: import <config>
+		// @todo: import <data>
+		// @todo: import <config>
 
 		return $site;
 	}

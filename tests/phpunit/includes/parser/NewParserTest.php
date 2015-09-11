@@ -27,7 +27,7 @@ class NewParserTest extends MediaWikiTestCase {
 	public $functionHooks = array();
 	public $transparentHooks = array();
 
-	//Fuzz test
+	// Fuzz test
 	public $maxFuzzTestLength = 300;
 	public $fuzzSeed = 0;
 	public $memoryLimit = 50;
@@ -54,7 +54,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 		parent::setUp();
 
-		//Setup CLI arguments
+		// Setup CLI arguments
 		if ( $this->getCliArg( 'regex' ) ) {
 			$this->regex = $this->getCliArg( 'regex' );
 		} else {
@@ -211,7 +211,7 @@ class NewParserTest extends MediaWikiTestCase {
 	function addDBData() {
 		$this->tablesUsed[] = 'site_stats';
 		# disabled for performance
-		#$this->tablesUsed[] = 'image';
+		# $this->tablesUsed[] = 'image';
 
 		# Update certain things in site_stats
 		$this->db->insert( 'site_stats',
@@ -347,7 +347,7 @@ class NewParserTest extends MediaWikiTestCase {
 		}
 	}
 
-	//ParserTest setup/teardown functions
+	// ParserTest setup/teardown functions
 
 	/**
 	 * Set up the global variables for a consistent environment for each test.
@@ -427,7 +427,7 @@ class NewParserTest extends MediaWikiTestCase {
 			foreach ( $configLines as $line ) {
 				list( $var, $value ) = explode( '=', $line, 2 );
 
-				$settings[$var] = eval( "return $value;" ); //???
+				$settings[$var] = eval( "return $value;" ); // ???
 			}
 		}
 
@@ -683,7 +683,7 @@ class NewParserTest extends MediaWikiTestCase {
 	public function testParserTest( $desc, $input, $result, $opts, $config ) {
 		if ( $this->regex != '' && !preg_match( '/' . $this->regex . '/', $desc ) ) {
 			$this->assertTrue( true ); // XXX: don't flood output with "test made no assertions"
-			//$this->markTestSkipped( 'Filtered out by the user' );
+			// $this->markTestSkipped( 'Filtered out by the user' );
 			return;
 		}
 
@@ -866,7 +866,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 			if ( $id % 100 == 0 ) {
 				$usage = intval( memory_get_usage( true ) / $this->memoryLimit / 1048576 * 100 );
-				//echo "{$this->fuzzSeed}: $numSuccess/$numTotal (mem: $usage%)\n";
+				// echo "{$this->fuzzSeed}: $numSuccess/$numTotal (mem: $usage%)\n";
 				if ( $usage > 90 ) {
 					$ret = "Out of memory:\n";
 					$memStats = $this->getMemoryBreakdown();
@@ -883,7 +883,7 @@ class NewParserTest extends MediaWikiTestCase {
 		}
 	}
 
-	//Various getter functions
+	// Various getter functions
 
 	/**
 	 * Get an input dictionary from a set of parser test files
@@ -957,7 +957,7 @@ class NewParserTest extends MediaWikiTestCase {
 		return $parser;
 	}
 
-	//Various action functions
+	// Various action functions
 
 	public function addArticle( $name, $text, $line ) {
 		self::$articles[$name] = array( $text, $line );
@@ -1000,7 +1000,7 @@ class NewParserTest extends MediaWikiTestCase {
 		return isset( $wgParser->mTransparentTagHooks[$name] );
 	}
 
-	//Various "cleanup" functions
+	// Various "cleanup" functions
 
 	/**
 	 * Remove last character if it is a newline
@@ -1015,7 +1015,7 @@ class NewParserTest extends MediaWikiTestCase {
 		}
 	}
 
-	//Test options parser functions
+	// Test options parser functions
 
 	protected function parseOptions( $instring ) {
 		$opts = array();

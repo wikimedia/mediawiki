@@ -678,7 +678,7 @@ class MWHttpRequest {
 	public function getFinalUrl() {
 		$headers = $this->getResponseHeaders();
 
-		//return full url (fix for incorrect but handled relative location)
+		// return full url (fix for incorrect but handled relative location)
 		if ( isset( $headers['location'] ) ) {
 			$locations = $headers['location'];
 			$domain = '';
@@ -690,7 +690,7 @@ class MWHttpRequest {
 
 				if ( isset( $url['host'] ) ) {
 					$domain = $url['scheme'] . '://' . $url['host'];
-					break; //found correct URI (with host)
+					break; // found correct URI (with host)
 				} else {
 					$foundRelativeURI = true;
 				}

@@ -630,7 +630,7 @@ abstract class ContentHandler {
 	 * @return DifferenceEngine
 	 */
 	public function createDifferenceEngine( IContextSource $context, $old = 0, $new = 0,
-		$rcid = 0, //FIXME: Deprecated, no longer used
+		$rcid = 0, // FIXME: Deprecated, no longer used
 		$refreshCache = false, $unhide = false ) {
 
 		// hook: get difference engine

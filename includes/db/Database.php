@@ -1359,9 +1359,9 @@ abstract class DatabaseBase implements IDatabase {
 		$preLimitTail .= $this->makeOrderBy( $options );
 
 		// if (isset($options['LIMIT'])) {
-		//	$tailOpts .= $this->limitResult('', $options['LIMIT'],
-		//		isset($options['OFFSET']) ? $options['OFFSET']
-		//		: false);
+		// 	$tailOpts .= $this->limitResult('', $options['LIMIT'],
+		// 		isset($options['OFFSET']) ? $options['OFFSET']
+		// 		: false);
 		// }
 
 		if ( isset( $noKeyOptions['FOR UPDATE'] ) ) {
@@ -2449,7 +2449,7 @@ abstract class DatabaseBase implements IDatabase {
 		if ( !$alias || (string)$alias === (string)$name ) {
 			return $name;
 		} else {
-			return $name . ' AS ' . $alias; //PostgreSQL needs AS
+			return $name . ' AS ' . $alias; // PostgreSQL needs AS
 		}
 	}
 

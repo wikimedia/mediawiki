@@ -199,8 +199,8 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 	}
 
 	public static function provideParseTitle() {
-		//TODO: test capitalization and trimming
-		//TODO: test unicode normalization
+		// TODO: test capitalization and trimming
+		// TODO: test unicode normalization
 
 		return array(
 			array( '  : Hansi_Maier _ ', NS_MAIN, 'en',
@@ -233,7 +233,7 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 			array( ' _ Foo __ Bar_ _', NS_MAIN, 'en',
 				new TitleValue( NS_MAIN, 'Foo_Bar' ) ),
 
-			//NOTE: cases copied from TitleTest::testSecureAndSplit. Keep in sync.
+			// NOTE: cases copied from TitleTest::testSecureAndSplit. Keep in sync.
 			array( 'Sandbox', NS_MAIN, 'en', ),
 			array( 'A "B"', NS_MAIN, 'en', ),
 			array( 'A \'B\'', NS_MAIN, 'en', ),
@@ -284,7 +284,7 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 	}
 
 	public static function provideParseTitle_invalid() {
-		//TODO: test unicode errors
+		// TODO: test unicode errors
 
 		return array(
 			array( '#' ),
@@ -299,7 +299,7 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 			array( '::1' ), // only valid in user namespace
 			array( 'User::x' ), // leading ":" in a user name is only valid of IPv6 addresses
 
-			//NOTE: cases copied from TitleTest::testSecureAndSplit. Keep in sync.
+			// NOTE: cases copied from TitleTest::testSecureAndSplit. Keep in sync.
 			array( '' ),
 			array( ':' ),
 			array( '__  __' ),
@@ -319,9 +319,9 @@ class MediaWikiTitleCodecTest extends MediaWikiTestCase {
 			// XML/HTML character entity references
 			// Note: Commented out because they are not marked invalid by the PHP test as
 			// Title::newFromText runs Sanitizer::decodeCharReferencesAndNormalize first.
-			//array( 'A &eacute; B' ),
-			//array( 'A &#233; B' ),
-			//array( 'A &#x00E9; B' ),
+			// array( 'A &eacute; B' ),
+			// array( 'A &#233; B' ),
+			// array( 'A &#x00E9; B' ),
 			// Subject of NS_TALK does not roundtrip to NS_MAIN
 			array( 'Talk:File:Example.svg' ),
 			// Directory navigation

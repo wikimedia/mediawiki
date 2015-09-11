@@ -335,7 +335,7 @@ class DatabaseOracle extends DatabaseBase {
 		MediaWiki\restoreWarnings();
 
 		if ( $this->mUser != $this->mDBname ) {
-			//change current schema in session
+			// change current schema in session
 			$this->selectDB( $this->mDBname );
 		}
 
@@ -996,7 +996,7 @@ class DatabaseOracle extends DatabaseBase {
 	 * @return string Version information from the database
 	 */
 	function getServerVersion() {
-		//better version number, fallback on driver
+		// better version number, fallback on driver
 		$rset = $this->doQuery(
 			'SELECT version FROM product_component_version ' .
 				'WHERE UPPER(product) LIKE \'ORACLE DATABASE%\''

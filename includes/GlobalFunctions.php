@@ -2538,7 +2538,7 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 	MediaWiki\restoreWarnings();
 
 	if ( !$ok ) {
-		//directory may have been created on another request since we last checked
+		// directory may have been created on another request since we last checked
 		if ( is_dir( $dir ) ) {
 			return true;
 		}

@@ -38,7 +38,7 @@ class MediaWikiSiteTest extends SiteTest {
 		$site = new MediaWikiSite();
 		$site->setGlobalId( 'enwiki' );
 
-		//NOTE: this does not actually call out to the enwiki site to perform the normalization,
+		// NOTE: this does not actually call out to the enwiki site to perform the normalization,
 		//      but uses a local Title object to do so. This is hardcoded on SiteLink::normalizePageTitle
 		//      for the case that MW_PHPUNIT_TEST is set.
 		$this->assertEquals( 'Foo', $site->normalizePageName( ' foo ' ) );

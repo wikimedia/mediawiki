@@ -1661,7 +1661,7 @@ class ParserTest {
 	}
 
 	static function getFakeTimestamp( &$parser, &$ts ) {
-		$ts = 123; //parsed as '1970-01-01T00:02:03Z'
+		$ts = 123; // parsed as '1970-01-01T00:02:03Z'
 		return true;
 	}
 }
