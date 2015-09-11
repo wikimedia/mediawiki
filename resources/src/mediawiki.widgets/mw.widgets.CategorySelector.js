@@ -16,8 +16,13 @@
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
+	 * @cfg {number} [limit=10] Maximum number of results to load
 	 */
 	mw.widgets.CategorySelector = function ( config ) {
+		// Config initialization
+		config = $.extend( { limit: 10 }, config );
+		this.limit = config.limit;
+
 		// Parent constructor
 		mw.widgets.CategorySelector.parent.call( this, config );
 
@@ -82,7 +87,7 @@
 		api.get( {
 			action: 'opensearch',
 			namespace: catNsId,
-			limit: 10,
+			limit: this.limit,
 			search: input
 		} ).done( function ( res ) {
 			var categoryNames = res[ 1 ].map( function ( name ) {
