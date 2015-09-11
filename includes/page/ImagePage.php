@@ -709,7 +709,7 @@ EOT
 		$out->addHTML( "<ul>\n" );
 
 		# "Upload a new version of this file" link
-		$canUpload = $this->getTitle()->userCan( 'upload', $this->getContext()->getUser() );
+		$canUpload = $this->getTitle()->quickUserCan( 'upload', $this->getContext()->getUser() );
 		if ( $canUpload && UploadBase::userCanReUpload(
 				$this->getContext()->getUser(),
 				$this->mPage->getFile()->name )
