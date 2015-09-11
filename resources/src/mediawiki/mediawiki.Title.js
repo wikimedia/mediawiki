@@ -493,7 +493,7 @@
 	 * @return {mw.Title|null} A valid Title object or null if the input cannot be turned into a valid title
 	 */
 	Title.newFromUserInput = function ( title, defaultNamespace, options ) {
-		var namespace, m, id, ext, parts, normalizeExtension;
+		var namespace, m, id, ext, parts;
 
 		// defaultNamespace is optional; check whether options moves up
 		if ( arguments.length < 3 && $.type( defaultNamespace ) === 'object' ) {
@@ -506,12 +506,6 @@
 			fileExtension: '',
 			forUploading: true
 		}, options );
-
-		normalizeExtension = function ( extension ) {
-			// Remove only trailing space (that is removed by MW anyway)
-			extension = extension.toLowerCase().replace( /\s*$/, '' );
-			return extension;
-		};
 
 		namespace = defaultNamespace === undefined ? NS_MAIN : defaultNamespace;
 
@@ -556,15 +550,14 @@
 				// Get the last part, which is supposed to be the file extension
 				ext = parts.pop();
 
-				// Does the supplied file name carry the desired file extension?
-				if ( options.fileExtension
-					&& normalizeExtension( ext ) !== normalizeExtension( options.fileExtension )
-				) {
+				if ( options.fileExtension ) {
+					// Does the supplied file name carry the desired file extension?
+					if ( Title.normalizeExtension( ext ) !== Title.normalizeExtension( options.fileExtension ) ) {
+						// No, push back, whatever there was after the dot
+						parts.push( ext );
+					}
 
-					// No, push back, whatever there was after the dot
-					parts.push( ext );
-
-					// And add the desired file extension later
+					// Always canonicalize to the desired file extension (e.g. 'jpeg' to 'jpg')
 					ext = options.fileExtension;
 				}
 
@@ -740,6 +733,33 @@
 				pages[ titles[ i ] ] = state;
 			}
 			return true;
+		}
+	};
+
+	/**
+	 * Normalize a file extension to the common form, making it lowercase and checking some synonyms,
+	 * and ensure it's clean. Extensions with non-alphanumeric characters will be discarded.
+	 * Keep in sync with File::normalizeExtension() in PHP.
+	 *
+	 * @param {string} extension File extension (without the leading dot)
+	 * @return {string} File extension in canonical form
+	 */
+	Title.normalizeExtension = function ( extension ) {
+		var
+			lower = extension.toLowerCase(),
+			squish = {
+				htm: 'html',
+				jpeg: 'jpg',
+				mpeg: 'mpg',
+				tiff: 'tif',
+				ogv: 'ogg'
+			};
+		if ( squish.hasOwnProperty( lower ) ) {
+			return squish[ lower ];
+		} else if ( /^[0-9a-z]+$/.test( lower ) ) {
+			return lower;
+		} else {
+			return '';
 		}
 	};
 
