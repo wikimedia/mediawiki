@@ -234,7 +234,7 @@ class SpecialListGroupRights extends SpecialPage {
 	private function formatPermissions( $permissions, $revoke, $add, $remove, $addSelf, $removeSelf ) {
 		$r = array();
 		foreach ( $permissions as $permission => $granted ) {
-			//show as granted only if it isn't revoked to prevent duplicate display of permissions
+			// show as granted only if it isn't revoked to prevent duplicate display of permissions
 			if ( $granted && ( !isset( $revoke[$permission] ) || !$revoke[$permission] ) ) {
 				$r[] = $this->msg( 'listgrouprights-right-display',
 					User::getRightDescription( $permission ),

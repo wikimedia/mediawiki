@@ -110,7 +110,7 @@ class ExifBitmapHandler extends BitmapHandler {
 			if ( isset( $exif['MEDIAWIKI_EXIF_VERSION'] )
 				&& $exif['MEDIAWIKI_EXIF_VERSION'] == 1
 			) {
-				//back-compatible but old
+				// back-compatible but old
 				wfDebug( __METHOD__ . ": back-compat version\n" );
 
 				return self::METADATA_COMPATIBLE;

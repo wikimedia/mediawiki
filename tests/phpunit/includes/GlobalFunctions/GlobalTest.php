@@ -306,7 +306,7 @@ class GlobalTest extends MediaWikiTestCase {
 
 		$this->setMwGlobals( array(
 			'wgDebugLogFile' => $debugLogFile,
-			# @todo FIXME: $wgDebugTimestamps should be tested
+			#  @todo FIXME: $wgDebugTimestamps should be tested
 			'wgDebugTimestamps' => false
 		) );
 
@@ -353,7 +353,7 @@ class GlobalTest extends MediaWikiTestCase {
 			'gzip;q=1.0' => true,
 			'foozip' => false,
 			'foo*zip' => false,
-			'gzip;q=abcde' => true, //is this REALLY valid?
+			'gzip;q=abcde' => true, // is this REALLY valid?
 			'gzip;q=12345678.9' => true,
 			' gzip' => true,
 		);

@@ -79,7 +79,7 @@ class TestSites {
 		$languageCodes = array(
 			'de',
 			'en',
-			'fa', //right-to-left
+			'fa', // right-to-left
 			'nl',
 			'nn',
 			'no',

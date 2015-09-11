@@ -59,7 +59,7 @@ class NewUsersLogFormatter extends LogFormatter {
 	public function getPreloadTitles() {
 		$subtype = $this->entry->getSubtype();
 		if ( $subtype === 'create2' || $subtype === 'byemail' ) {
-			//add the user talk to LinkBatch for the userLink
+			// add the user talk to LinkBatch for the userLink
 			return array( Title::makeTitle( NS_USER_TALK, $this->entry->getTarget()->getText() ) );
 		}
 

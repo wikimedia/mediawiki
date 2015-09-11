@@ -93,15 +93,15 @@ class MediaWikiPageLinkRendererTest extends MediaWikiTestCase {
 				'!<a .*href=".*?Foo_Bar.*?".*?>Foo Bar</a>!'
 			),
 			array(
-				//NOTE: Linker doesn't include fragments in "broken" links
-				//NOTE: once this no longer uses Linker, we will get "2" instead of "User" for the namespace.
+				// NOTE: Linker doesn't include fragments in "broken" links
+				// NOTE: once this no longer uses Linker, we will get "2" instead of "User" for the namespace.
 				new TitleValue( NS_USER, 'Hansi_Maier', 'stuff' ),
 				'Hansi Maier\'s Stuff',
 				'!<a .*href=".*?User:Hansi_Maier.*?>Hansi Maier\'s Stuff</a>!'
 			),
 			array(
-				//NOTE: Linker doesn't include fragments in "broken" links
-				//NOTE: once this no longer uses Linker, we will get "2" instead of "User" for the namespace.
+				// NOTE: Linker doesn't include fragments in "broken" links
+				// NOTE: once this no longer uses Linker, we will get "2" instead of "User" for the namespace.
 				new TitleValue( NS_USER, 'Hansi_Maier', 'stuff' ),
 				null,
 				'!<a .*href=".*?User:Hansi_Maier.*?>User:Hansi Maier#stuff</a>!'

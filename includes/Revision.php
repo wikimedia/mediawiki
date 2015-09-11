@@ -773,7 +773,7 @@ class Revision implements IDBAccessObject {
 		if ( $this->mTitle !== null ) {
 			return $this->mTitle;
 		}
-		//rev_id is defined as NOT NULL, but this revision may not yet have been inserted.
+		// rev_id is defined as NOT NULL, but this revision may not yet have been inserted.
 		if ( $this->mId !== null ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$row = $dbr->selectRow(
@@ -1418,8 +1418,8 @@ class Revision implements IDBAccessObject {
 		);
 
 		if ( $wgContentHandlerUseDB ) {
-			//NOTE: Store null for the default model and format, to save space.
-			//XXX: Makes the DB sensitive to changed defaults.
+			// NOTE: Store null for the default model and format, to save space.
+			// XXX: Makes the DB sensitive to changed defaults.
 			// Make this behavior optional? Only in miser mode?
 
 			$model = $this->getContentModel();
@@ -1459,7 +1459,7 @@ class Revision implements IDBAccessObject {
 	protected function checkContentModel() {
 		global $wgContentHandlerUseDB;
 
-		$title = $this->getTitle(); //note: may return null for revisions that have not yet been inserted.
+		$title = $this->getTitle(); // note: may return null for revisions that have not yet been inserted.
 
 		$model = $this->getContentModel();
 		$format = $this->getContentFormat();

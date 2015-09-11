@@ -128,11 +128,11 @@ class FeedUtils {
 
 		if ( $oldid ) {
 
-			#$diffText = $de->getDiff( wfMessage( 'revisionasof',
-			#	$wgLang->timeanddate( $timestamp ),
-			#	$wgLang->date( $timestamp ),
-			#	$wgLang->time( $timestamp ) )->text(),
-			#	wfMessage( 'currentrev' )->text() );
+			# $diffText = $de->getDiff( wfMessage( 'revisionasof',
+			# 	$wgLang->timeanddate( $timestamp ),
+			# 	$wgLang->date( $timestamp ),
+			# 	$wgLang->time( $timestamp ) )->text(),
+			# 	wfMessage( 'currentrev' )->text() );
 
 			$diffText = '';
 			// Don't bother generating the diff if we won't be able to show it
@@ -185,10 +185,10 @@ class FeedUtils {
 					$html = nl2br( htmlspecialchars( $text ) );
 				}
 			} else {
-				//XXX: we could get an HTML representation of the content via getParserOutput, but that may
+				// XXX: we could get an HTML representation of the content via getParserOutput, but that may
 				//     contain JS magic and generally may not be suitable for inclusion in a feed.
 				//     Perhaps Content should have a getDescriptiveHtml method and/or a getSourceText method.
-				//Compare also ApiFeedContributions::feedItemDesc
+				// Compare also ApiFeedContributions::feedItemDesc
 				$html = null;
 			}
 

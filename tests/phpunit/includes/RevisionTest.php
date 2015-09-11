@@ -211,7 +211,7 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	function dataGetContentModel() {
-		//NOTE: we expect the help namespace to always contain wikitext
+		// NOTE: we expect the help namespace to always contain wikitext
 		return array(
 			array( 'hello world', 'Help:Hello', null, null, CONTENT_MODEL_WIKITEXT ),
 			array( 'hello world', 'User:hello/there.css', null, null, CONTENT_MODEL_CSS ),
@@ -231,7 +231,7 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	function dataGetContentFormat() {
-		//NOTE: we expect the help namespace to always contain wikitext
+		// NOTE: we expect the help namespace to always contain wikitext
 		return array(
 			array( 'hello world', 'Help:Hello', null, null, CONTENT_FORMAT_WIKITEXT ),
 			array( 'hello world', 'Help:Hello', CONTENT_MODEL_CSS, null, CONTENT_FORMAT_CSS ),
@@ -252,7 +252,7 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	function dataGetContentHandler() {
-		//NOTE: we expect the help namespace to always contain wikitext
+		// NOTE: we expect the help namespace to always contain wikitext
 		return array(
 			array( 'hello world', 'Help:Hello', null, null, 'WikitextContentHandler' ),
 			array( 'hello world', 'User:hello/there.css', null, null, 'CssContentHandler' ),
@@ -272,7 +272,7 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	function dataGetContent() {
-		//NOTE: we expect the help namespace to always contain wikitext
+		// NOTE: we expect the help namespace to always contain wikitext
 		return array(
 			array( 'hello world', 'Help:Hello', null, null, Revision::FOR_PUBLIC, 'hello world' ),
 			array(
@@ -312,7 +312,7 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	function dataGetText() {
-		//NOTE: we expect the help namespace to always contain wikitext
+		// NOTE: we expect the help namespace to always contain wikitext
 		return array(
 			array( 'hello world', 'Help:Hello', null, null, Revision::FOR_PUBLIC, 'hello world' ),
 			array( serialize( 'hello world' ), 'Hello', "testing", null, Revision::FOR_PUBLIC, null ),

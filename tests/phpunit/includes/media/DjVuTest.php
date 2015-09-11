@@ -13,7 +13,7 @@ class DjVuTest extends MediaWikiMediaTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		//cli tool setup
+		// cli tool setup
 		$djvuSupport = new DjVuSupport();
 
 		if ( !$djvuSupport->isEnabled() ) {

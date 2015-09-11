@@ -7,7 +7,7 @@
  * @covers ::wfUrlencode
  */
 class WfUrlencodeTest extends MediaWikiTestCase {
-	#### TESTS ##############################################################
+	# ### TESTS ##############################################################
 
 	/**
 	 * @dataProvider provideURLS
@@ -23,7 +23,7 @@ class WfUrlencodeTest extends MediaWikiTestCase {
 		$this->verifyEncodingFor( 'Microsoft-IIS/7', $input, $expected );
 	}
 
-	#### HELPERS #############################################################
+	# ### HELPERS #############################################################
 
 	/**
 	 * Internal helper that actually run the test.
@@ -76,7 +76,7 @@ class WfUrlencodeTest extends MediaWikiTestCase {
 		}
 	}
 
-	#### PROVIDERS ###########################################################
+	# ### PROVIDERS ###########################################################
 
 	/**
 	 * Format is either:
@@ -91,7 +91,7 @@ class WfUrlencodeTest extends MediaWikiTestCase {
 	 */
 	public static function provideURLS() {
 		return array(
-			### RFC 1738 chars
+			# ## RFC 1738 chars
 			// + is not safe
 			array( '+', '%2B' ),
 			// & and = not safe in queries
@@ -109,7 +109,7 @@ class WfUrlencodeTest extends MediaWikiTestCase {
 				';@$-_.!*',
 			),
 
-			### Other tests
+			# ## Other tests
 			// slash remain unchanged. %2F seems to break things
 			array( '/', '/' ),
 			// T105265

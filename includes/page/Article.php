@@ -379,7 +379,7 @@ class Article implements Page {
 
 		# Pre-fill content with error message so that if something
 		# fails we'll have something telling us what we intended.
-		//XXX: this isn't page content but a UI message. horrible.
+		// XXX: this isn't page content but a UI message. horrible.
 		$this->mContentObject = new MessageContent( 'missing-revision', array( $oldid ) );
 
 		if ( $oldid ) {
@@ -1937,7 +1937,7 @@ class Article implements Page {
 	 * @return ParserOutput|bool ParserOutput or false if the given revision ID is not found
 	 */
 	public function getParserOutput( $oldid = null, User $user = null ) {
-		//XXX: bypasses mParserOptions and thus setParserOptions()
+		// XXX: bypasses mParserOptions and thus setParserOptions()
 
 		if ( $user === null ) {
 			$parserOptions = $this->getParserOptions();
@@ -2010,7 +2010,7 @@ class Article implements Page {
 	 */
 	public function __get( $fname ) {
 		if ( property_exists( $this->mPage, $fname ) ) {
-			#wfWarn( "Access to raw $fname field " . __CLASS__ );
+			# wfWarn( "Access to raw $fname field " . __CLASS__ );
 			return $this->mPage->$fname;
 		}
 		trigger_error( 'Inaccessible property via __get(): ' . $fname, E_USER_NOTICE );
@@ -2025,7 +2025,7 @@ class Article implements Page {
 	 */
 	public function __set( $fname, $fvalue ) {
 		if ( property_exists( $this->mPage, $fname ) ) {
-			#wfWarn( "Access to raw $fname field of " . __CLASS__ );
+			# wfWarn( "Access to raw $fname field of " . __CLASS__ );
 			$this->mPage->$fname = $fvalue;
 		// Note: extensions may want to toss on new fields
 		} elseif ( !in_array( $fname, array( 'mContext', 'mPage' ) ) ) {
@@ -2045,7 +2045,7 @@ class Article implements Page {
 	 */
 	public function __call( $fname, $args ) {
 		if ( is_callable( array( $this->mPage, $fname ) ) ) {
-			#wfWarn( "Call to " . __CLASS__ . "::$fname; please use WikiPage instead" );
+			# wfWarn( "Call to " . __CLASS__ . "::$fname; please use WikiPage instead" );
 			return call_user_func_array( array( $this->mPage, $fname ), $args );
 		}
 		trigger_error( 'Inaccessible function via __call(): ' . $fname, E_USER_ERROR );

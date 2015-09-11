@@ -39,7 +39,7 @@ abstract class DataUpdate implements DeferrableUpdate {
 	 * This default implementation does nothing.
 	 */
 	public function beginTransaction() {
-		//noop
+		// noop
 	}
 
 	/**
@@ -47,7 +47,7 @@ abstract class DataUpdate implements DeferrableUpdate {
 	 * This default implementation does nothing.
 	 */
 	public function commitTransaction() {
-		//noop
+		// noop
 	}
 
 	/**
@@ -55,7 +55,7 @@ abstract class DataUpdate implements DeferrableUpdate {
 	 * This default implementation does nothing.
 	 */
 	public function rollbackTransaction() {
-		//noop
+		// noop
 	}
 
 	/**

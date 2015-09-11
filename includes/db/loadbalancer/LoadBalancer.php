@@ -192,7 +192,7 @@ class LoadBalancer {
 			return false;
 		}
 
-		#wfDebugLog( 'connect', var_export( $loads, true ) );
+		# wfDebugLog( 'connect', var_export( $loads, true ) );
 
 		# Return a random representative of the remainder
 		return ArrayUtils::pickRandom( $loads );

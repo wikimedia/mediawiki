@@ -1581,11 +1581,11 @@ SQL;
 
 		$preLimitTail .= $this->makeOrderBy( $options );
 
-		//if ( isset( $options['LIMIT'] ) ) {
-		//	$tailOpts .= $this->limitResult( '', $options['LIMIT'],
-		//		isset( $options['OFFSET'] ) ? $options['OFFSET']
-		//		: false );
-		//}
+		// if ( isset( $options['LIMIT'] ) ) {
+		// 	$tailOpts .= $this->limitResult( '', $options['LIMIT'],
+		// 		isset( $options['OFFSET'] ) ? $options['OFFSET']
+		// 		: false );
+		// }
 
 		if ( isset( $options['FOR UPDATE'] ) ) {
 			$postLimitTail .= ' FOR UPDATE OF ' .

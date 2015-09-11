@@ -119,9 +119,9 @@ class FormatMetadata extends ContextSource {
 				$type = 'ul'; // default unordered list.
 			}
 
-			//This is done differently as the tag is an array.
+			// This is done differently as the tag is an array.
 			if ( $tag == 'GPSTimeStamp' && count( $vals ) === 3 ) {
-				//hour min sec array
+				// hour min sec array
 
 				$h = explode( '/', $vals[0] );
 				$m = explode( '/', $vals[1] );
@@ -415,7 +415,7 @@ class FormatMetadata extends ContextSource {
 							'mode' => ( $val & bindec( '00011000' ) ) >> 3,
 							'function' => ( $val & bindec( '00100000' ) ) >> 5,
 							'redeye' => ( $val & bindec( '01000000' ) ) >> 6,
-//						'reserved' => ($val & bindec( '10000000' )) >> 7,
+// 						'reserved' => ($val & bindec( '10000000' )) >> 7,
 						);
 						$flashMsgs = array();
 						# We do not need to handle unknown values since all are used.
@@ -599,7 +599,7 @@ class FormatMetadata extends ContextSource {
 						}
 						break;
 
-					//The GPS...Ref values are kept for compatibility, probably won't be reached.
+					// The GPS...Ref values are kept for compatibility, probably won't be reached.
 					case 'GPSLatitudeRef':
 					case 'GPSDestLatitudeRef':
 						switch ( $val ) {
@@ -732,7 +732,7 @@ class FormatMetadata extends ContextSource {
 
 					case 'Software':
 						if ( is_array( $val ) ) {
-							//if its a software, version array.
+							// if its a software, version array.
 							$val = $this->msg( 'exif-software-version-value', $val[0], $val[1] )->text();
 						} else {
 							$val = $this->exifMsg( $tag, '', $val );
@@ -1171,7 +1171,7 @@ class FormatMetadata extends ContextSource {
 		$lowLang = strtolower( $lang );
 		$langName = Language::fetchLanguageName( $lowLang );
 		if ( $langName === '' ) {
-			//try just the base language name. (aka en-US -> en ).
+			// try just the base language name. (aka en-US -> en ).
 			list( $langPrefix ) = explode( '-', $lowLang, 2 );
 			$langName = Language::fetchLanguageName( $langPrefix );
 			if ( $langName === '' ) {

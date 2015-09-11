@@ -29,7 +29,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		) );
 	}
 
-#### START OF TESTS #########################################################
+# ### START OF TESTS #########################################################
 
 	/**
 	 * @todo Write more texts, handle $wgAllowImageMoving setting
@@ -137,9 +137,9 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		$this->assertEquals( NS_MAIN, MWNamespace::getAssociated( NS_TALK ) );
 	}
 
-	### Exceptions with getAssociated()
-	### NS_MEDIA and NS_SPECIAL do not have talk pages. MediaWiki raises
-	### an exception for them.
+	# ## Exceptions with getAssociated()
+	# ## NS_MEDIA and NS_SPECIAL do not have talk pages. MediaWiki raises
+	# ## an exception for them.
 	/**
 	 * @expectedException MWException
 	 * @covers MWNamespace::getAssociated
@@ -565,7 +565,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		$this->assertFalse( MWNamespace::isNonincludable( NS_TEMPLATE ) );
 	}
 
-	####### HELPERS ###########################################################
+	# ###### HELPERS ###########################################################
 	function __call( $method, $args ) {
 		// Call the real method if it exists
 		if ( method_exists( $this, $method ) ) {

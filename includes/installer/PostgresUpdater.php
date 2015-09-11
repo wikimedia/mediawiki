@@ -691,8 +691,8 @@ END;
 	}
 
 	protected function changeFieldPurgeTable( $table, $field, $newtype, $default ) {
-		## For a cache table, empty it if the field needs to be changed, because the old contents
-		## may be corrupted.  If the column is already the desired type, refrain from purging.
+		# # For a cache table, empty it if the field needs to be changed, because the old contents
+		# # may be corrupted.  If the column is already the desired type, refrain from purging.
 		$fi = $this->db->fieldInfo( $table, $field );
 		if ( is_null( $fi ) ) {
 			$this->output( "...ERROR: expected column $table.$field to exist\n" );

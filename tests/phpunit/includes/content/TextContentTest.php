@@ -93,12 +93,12 @@ class TextContentTest extends MediaWikiLangTestCase {
 	public static function dataPreSaveTransform() {
 		return array(
 			array(
-				#0: no signature resolution
+				# 0: no signature resolution
 				'hello this is ~~~',
 				'hello this is ~~~',
 			),
 			array(
-				#1: rtrim
+				# 1: rtrim
 				" Foo \n ",
 				' Foo',
 			),
@@ -421,7 +421,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 			$update = $updates[$class];
 
 			foreach ( $fieldValues as $field => $value ) {
-				$v = $update->$field; #if the field doesn't exist, just crash and burn
+				$v = $update->$field; # if the field doesn't exist, just crash and burn
 				$this->assertEquals( $value, $v, "unexpected value for field $field in instance of $class" );
 			}
 		}

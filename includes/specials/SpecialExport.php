@@ -385,7 +385,7 @@ class SpecialExport extends SpecialPage {
 			$exporter->allPages();
 		} else {
 			foreach ( $pages as $page ) {
-				#Bug 8824: Only export pages the user can read
+				# Bug 8824: Only export pages the user can read
 				$title = Title::newFromText( $page );
 				if ( is_null( $title ) ) {
 					// @todo Perhaps output an <error> tag or something.

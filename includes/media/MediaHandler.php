@@ -180,7 +180,7 @@ abstract class MediaHandler {
 	function convertMetadataVersion( $metadata, $version = 1 ) {
 		if ( !is_array( $metadata ) ) {
 
-			//unserialize to keep return parameter consistent.
+			// unserialize to keep return parameter consistent.
 			MediaWiki\suppressWarnings();
 			$ret = unserialize( $metadata );
 			MediaWiki\restoreWarnings();
