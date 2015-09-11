@@ -93,6 +93,7 @@ class WikiMapTest extends MediaWikiLangTestCase {
 		return array(
 			'unknown' => array( false, 'xyzzy', 'Foo' ),
 			'enwiki' => array( 'http://en.example.org/w/Foo', 'enwiki', 'Foo',  ),
+			'ruwiki with fragement' => array( '//ru.example.org/wiki/%D0%A4%D1%83#%D0%B2%D0%B0%D1%80', 'ruwiki', 'Фу', 'вар' ),
 		);
 	}
 
