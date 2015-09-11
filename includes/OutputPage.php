@@ -1435,11 +1435,12 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Adds help link with an icon via page indicators.
+	 * Adds help button link with an icon via page indicators.
 	 * Link target can be overridden by a local message containing a wikilink:
 	 * the message key is: lowercase action or special page name + '-helppage'.
 	 * @param string $to Target MediaWiki.org page title or encoded URL.
 	 * @param bool $overrideBaseUrl Whether $url is a full URL, to avoid MW.o.
+	 *
 	 * @since 1.25
 	 */
 	public function addHelpLink( $to, $overrideBaseUrl = false ) {
@@ -1453,15 +1454,14 @@ class OutputPage extends ContextSource {
 			$helpUrl = "//www.mediawiki.org/wiki/Special:MyLanguage/$toUrlencoded";
 		}
 
-		$link = Html::rawElement(
-			'a',
-			[
-				'href' => $helpUrl,
-				'target' => '_blank',
-				'class' => 'mw-helplink',
-			],
-			$text
-		);
+		$this->enableOOUI();
+		$link = new OOUI\ButtonWidget( array(
+			'framed' => false,
+			'icon' => 'help',
+			'label' => $text,
+			'href' => $helpUrl,
+			'target' => '_blank',
+		) );
 
 		$this->setIndicators( [ 'mw-helplink' => $link ] );
 	}
