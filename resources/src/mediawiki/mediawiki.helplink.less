@@ -1,6 +1,12 @@
 @import "mediawiki.mixins";
 
-#mw-indicator-mw-helplink a {
+/**
+ * @deprecated since 1.26
+ *
+ * Use OOUI\ButtonWidget with icon=help instead. See OutputPage#addHelpLink.
+ */
+
+#mw-indicator-mw-helplink .mw-helplink {
 	.background-image-svg('images/help.svg', 'images/help.png');
 	background-repeat: no-repeat;
 	background-position: left center;
