@@ -925,6 +925,31 @@
 		mw.loader.load( target );
 	} );
 
+	QUnit.asyncTest( 'mw.loader() executing race (T112232)', 2, function ( assert ) {
+		var done = false;
+
+		// The red herring schedules its CSS buffer first. In T112232, a bug in the
+		// state machine would cause the job for testRaceLoadMe to run with an earlier job.
+		mw.loader.implement(
+			'testRaceRedHerring',
+			function () {},
+			{ css: [ '.mw-testRaceRedHerring {}' ] }
+		);
+		mw.loader.implement(
+			'testRaceLoadMe',
+			function () {
+				done = true;
+			},
+			{ css: [ '.mw-testRaceLoadMe { float: left; }' ] }
+		);
+
+		mw.loader.load( [ 'testRaceRedHerring', 'testRaceLoadMe' ] );
+		mw.loader.using( 'testRaceLoadMe', function () {
+			assert.strictEqual( done, true, 'script ran' );
+			assert.strictEqual( mw.loader.getState( 'testRaceLoadMe' ), 'ready', 'state' );
+		} ).always( QUnit.start );
+	} );
+
 	QUnit.test( 'mw.html', 13, function ( assert ) {
 		assert.throws( function () {
 			mw.html.escape();
