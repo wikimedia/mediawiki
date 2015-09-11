@@ -101,6 +101,7 @@
 	"config-license-cc-by": "المشاع الإبداعي النسبة للمؤلف",
 	"config-license-cc-by-nc-sa": "المشاع الإبداعي النسبة للمؤلف غير تجاري المشاركة بالمثل",
 	"config-license-pd": "ملكية عامة",
+	"config-license-cc-choose": "اختر ترخيص مشاع إبداعي مخصص",
 	"config-email-settings": "إعدادات البريد الإلكتروني",
 	"config-email-usertalk": "فعل إخطارات صفحات نقاش المستخدمين",
 	"config-email-watchlist": "تمكين إشعارات قائمة المراقبة",

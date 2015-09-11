@@ -496,7 +496,7 @@
 	"createacct-captcha": "Sicherheitsprüfung",
 	"createacct-imgcaptcha-ph": "Gib den Text ein, den du oben siehst.",
 	"createacct-submit": "Benutzerkonto erstellen",
-	"createacct-another-submit": "Anderes Benutzerkonto erstellen",
+	"createacct-another-submit": "Benutzerkonto erstellen",
 	"createacct-benefit-heading": "{{SITENAME}} wird von Menschen wie dir geschaffen.",
 	"createacct-benefit-body1": "{{PLURAL:$1|Bearbeitung|Bearbeitungen}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|Seite|Seiten}}",
