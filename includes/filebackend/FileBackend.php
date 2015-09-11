@@ -387,6 +387,8 @@ abstract class FileBackend {
 
 	/**
 	 * @see FileBackend::doOperations()
+	 * @param array $ops
+	 * @param array $opts
 	 */
 	abstract protected function doOperationsInternal( array $ops, array $opts );
 
@@ -620,6 +622,7 @@ abstract class FileBackend {
 
 	/**
 	 * @see FileBackend::doQuickOperations()
+	 * @param array $ops
 	 * @since 1.20
 	 */
 	abstract protected function doQuickOperationsInternal( array $ops );
@@ -765,6 +768,7 @@ abstract class FileBackend {
 
 	/**
 	 * @see FileBackend::prepare()
+	 * @param array $params
 	 */
 	abstract protected function doPrepare( array $params );
 
@@ -795,6 +799,7 @@ abstract class FileBackend {
 
 	/**
 	 * @see FileBackend::secure()
+	 * @param array $params
 	 */
 	abstract protected function doSecure( array $params );
 
@@ -827,6 +832,7 @@ abstract class FileBackend {
 
 	/**
 	 * @see FileBackend::publish()
+	 * @param array $params
 	 */
 	abstract protected function doPublish( array $params );
 
@@ -852,6 +858,7 @@ abstract class FileBackend {
 
 	/**
 	 * @see FileBackend::clean()
+	 * @param array $params
 	 */
 	abstract protected function doClean( array $params );
 
