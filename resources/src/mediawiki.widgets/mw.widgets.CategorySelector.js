@@ -51,14 +51,14 @@
 
 			// Remove if items' data already exists
 			filteredItems = items.filter( function ( item ) {
-				return existingItems.indexOf( item.data ) === -1;
+				return existingItems.indexOf( item ) === -1;
 			} );
 
 			// Map to an array of OO.ui.MenuOptionWidgets
 			filteredItems = filteredItems.map( function ( item ) {
 				return new OO.ui.MenuOptionWidget( {
-					data: item.data,
-					label: item.label
+					data: item,
+					label: item
 				} );
 			} );
 
@@ -89,12 +89,7 @@
 				return mw.Title.newFromText( name, catNsId ).getMainText();
 			} );
 
-			deferred.resolve( categoryNames.map( function ( category ) {
-				return {
-					data: category,
-					label: category
-				};
-			} ) );
+			deferred.resolve( categoryNames );
 		} );
 
 		return deferred.promise();
