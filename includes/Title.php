@@ -206,7 +206,7 @@ class Title {
 	 * @return TitleFormatter
 	 */
 	private static function getTitleFormatter() {
-		//NOTE: we know that getTitleParser() returns a MediaWikiTitleCodec,
+		// NOTE: we know that getTitleParser() returns a MediaWikiTitleCodec,
 		//      which implements TitleFormatter.
 		return self::getTitleParser();
 	}
@@ -2944,7 +2944,7 @@ class Title {
 					$this->mRestrictions['move'] = explode( ',', trim( $temp[0] ) );
 				} else {
 					$restriction = trim( $temp[1] );
-					if ( $restriction != '' ) { //some old entries are empty
+					if ( $restriction != '' ) { // some old entries are empty
 						$this->mRestrictions[$temp[0]] = explode( ',', $restriction );
 					}
 				}

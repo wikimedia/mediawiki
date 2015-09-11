@@ -58,7 +58,7 @@ class ExtensionProcessor implements Processor {
 		'wgRevokePermissions' => 'array_plus_2d',
 		'wgHooks' => 'array_merge_recursive',
 		// credits are handled in the ExtensionRegistry
-		//'wgExtensionCredits' => 'array_merge_recursive',
+		// 'wgExtensionCredits' => 'array_merge_recursive',
 		'wgExtraGenderNamespaces' => 'array_plus',
 		'wgNamespacesWithSubpages' => 'array_plus',
 		'wgNamespaceContentModels' => 'array_plus',

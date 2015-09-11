@@ -7,7 +7,7 @@
 class GenderCacheTest extends MediaWikiLangTestCase {
 
 	function addDBData() {
-		//ensure the correct default gender
+		// ensure the correct default gender
 		$this->mergeMwGlobalArrayValue( 'wgDefaultUserOptions', array( 'gender' => 'unknown' ) );
 
 		$user = User::newFromName( 'UTMale' );
@@ -15,7 +15,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 			$user->addToDatabase();
 			$user->setPassword( 'UTMalePassword' );
 		}
-		//ensure the right gender
+		// ensure the right gender
 		$user->setOption( 'gender', 'male' );
 		$user->saveSettings();
 
@@ -24,7 +24,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 			$user->addToDatabase();
 			$user->setPassword( 'UTFemalePassword' );
 		}
-		//ensure the right gender
+		// ensure the right gender
 		$user->setOption( 'gender', 'female' );
 		$user->saveSettings();
 
@@ -33,7 +33,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 			$user->addToDatabase();
 			$user->setPassword( 'UTDefaultGenderPassword' );
 		}
-		//ensure the default gender
+		// ensure the default gender
 		$user->setOption( 'gender', null );
 		$user->saveSettings();
 	}
@@ -69,7 +69,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 			array( 'UTFemale', 'female' ),
 			array( 'UTDefaultGender', 'unknown' ),
 			array( 'UTNotExist', 'unknown' ),
-			//some not valid user
+			// some not valid user
 			array( '127.0.0.1', 'unknown' ),
 			array( 'user@test', 'unknown' ),
 		);

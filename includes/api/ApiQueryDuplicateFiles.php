@@ -107,7 +107,7 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 		// iterate over $images to handle continue param correct
 		foreach ( $images as $image => $pageId ) {
 			if ( !isset( $sha1s[$image] ) ) {
-				continue; //file does not exist
+				continue; // file does not exist
 			}
 			$sha1 = $sha1s[$image];
 			$dupFiles = $filesBySha1s[$sha1];
@@ -118,14 +118,14 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 			foreach ( $dupFiles as $dupFile ) {
 				$dupName = $dupFile->getName();
 				if ( $image == $dupName && $dupFile->isLocal() ) {
-					continue; //ignore the local file itself
+					continue; // ignore the local file itself
 				}
 				if ( $skipUntilThisDup !== false && $dupName < $skipUntilThisDup ) {
-					continue; //skip to pos after the image from continue param
+					continue; // skip to pos after the image from continue param
 				}
 				$skipUntilThisDup = false;
 				if ( ++$count > $params['limit'] ) {
-					$fit = false; //break outer loop
+					$fit = false; // break outer loop
 					// We're one over limit which shows that
 					// there are additional images to be had. Stop here...
 					$this->setContinueEnumParameter( 'continue', $image . '|' . $dupName );

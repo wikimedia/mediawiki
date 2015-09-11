@@ -215,7 +215,7 @@ class ConvertLinks extends Maintenance {
 				}
 				$dbw->freeResult( $res );
 				# $this->output( "rowOffset: $rowOffset\ttuplesAdded: "
-				#	. "$tuplesAdded\tnumBadLinks: $numBadLinks\n" );
+				# 	. "$tuplesAdded\tnumBadLinks: $numBadLinks\n" );
 				if ( $tuplesAdded != 0 ) {
 					if ( $reportLinksConvProgress ) {
 						$this->output( "Inserting $tuplesAdded tuples into $links_temp..." );

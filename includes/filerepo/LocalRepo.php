@@ -251,12 +251,12 @@ class LocalRepo extends FileRepo {
 		$dbr = $this->getSlaveDB();
 		$id = $dbr->selectField(
 			'page', // Table
-			'page_id', //Field
-			array( //Conditions
+			'page_id', // Field
+			array( // Conditions
 				'page_namespace' => $title->getNamespace(),
 				'page_title' => $title->getDBkey(),
 			),
-			__METHOD__ //Function name
+			__METHOD__ // Function name
 		);
 
 		return $id;
@@ -424,7 +424,7 @@ class LocalRepo extends FileRepo {
 	 */
 	function findBySha1s( array $hashes ) {
 		if ( !count( $hashes ) ) {
-			return array(); //empty parameter
+			return array(); // empty parameter
 		}
 
 		$dbr = $this->getSlaveDB();

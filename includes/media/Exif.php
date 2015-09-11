@@ -390,8 +390,8 @@ class Exif {
 		$this->charCodeString( 'GPSProcessingMethod' );
 		$this->charCodeString( 'GPSAreaInformation' );
 
-		//ComponentsConfiguration should really be an array instead of a string...
-		//This turns a string of binary numbers into an array of numbers.
+		// ComponentsConfiguration should really be an array instead of a string...
+		// This turns a string of binary numbers into an array of numbers.
 
 		if ( isset( $this->mFilteredExifData['ComponentsConfiguration'] ) ) {
 			$val = $this->mFilteredExifData['ComponentsConfiguration'];
@@ -401,16 +401,16 @@ class Exif {
 			for ( $i = 0; $i < $strLen; $i++ ) {
 				$ccVals[$i] = ord( substr( $val, $i, 1 ) );
 			}
-			$ccVals['_type'] = 'ol'; //this is for formatting later.
+			$ccVals['_type'] = 'ol'; // this is for formatting later.
 			$this->mFilteredExifData['ComponentsConfiguration'] = $ccVals;
 		}
 
-		//GPSVersion(ID) is treated as the wrong type by php exif support.
-		//Go through each byte turning it into a version string.
-		//For example: "\x02\x02\x00\x00" -> "2.2.0.0"
+		// GPSVersion(ID) is treated as the wrong type by php exif support.
+		// Go through each byte turning it into a version string.
+		// For example: "\x02\x02\x00\x00" -> "2.2.0.0"
 
-		//Also change exif tag name from GPSVersion (what php exif thinks it is)
-		//to GPSVersionID (what the exif standard thinks it is).
+		// Also change exif tag name from GPSVersion (what php exif thinks it is)
+		// to GPSVersionID (what the exif standard thinks it is).
 
 		if ( isset( $this->mFilteredExifData['GPSVersion'] ) ) {
 			$val = $this->mFilteredExifData['GPSVersion'];
@@ -448,7 +448,7 @@ class Exif {
 		if ( isset( $this->mFilteredExifData[$prop] ) ) {
 
 			if ( strlen( $this->mFilteredExifData[$prop] ) <= 8 ) {
-				//invalid. Must be at least 9 bytes long.
+				// invalid. Must be at least 9 bytes long.
 
 				$this->debug( $this->mFilteredExifData[$prop], __FUNCTION__, false );
 				unset( $this->mFilteredExifData[$prop] );
@@ -460,13 +460,13 @@ class Exif {
 
 			switch ( $charCode ) {
 				case "\x4A\x49\x53\x00\x00\x00\x00\x00":
-					//JIS
+					// JIS
 					$charset = "Shift-JIS";
 					break;
 				case "UNICODE\x00":
 					$charset = "UTF-16" . $this->byteOrder;
 					break;
-				default: //ascii or undefined.
+				default: // ascii or undefined.
 					$charset = "";
 					break;
 			}
@@ -477,7 +477,7 @@ class Exif {
 			} else {
 				// if valid utf-8, assume that, otherwise assume windows-1252
 				$valCopy = $val;
-				UtfNormal\Validator::quickIsNFCVerify( $valCopy ); //validates $valCopy.
+				UtfNormal\Validator::quickIsNFCVerify( $valCopy ); // validates $valCopy.
 				if ( $valCopy !== $val ) {
 					MediaWiki\suppressWarnings();
 					$val = iconv( 'Windows-1252', 'UTF-8//IGNORE', $val );
@@ -485,17 +485,17 @@ class Exif {
 				}
 			}
 
-			//trim and check to make sure not only whitespace.
+			// trim and check to make sure not only whitespace.
 			$val = trim( $val );
 			if ( strlen( $val ) === 0 ) {
-				//only whitespace.
+				// only whitespace.
 				$this->debug( $this->mFilteredExifData[$prop], __FUNCTION__, "$prop: Is only whitespace" );
 				unset( $this->mFilteredExifData[$prop] );
 
 				return;
 			}
 
-			//all's good.
+			// all's good.
 			$this->mFilteredExifData[$prop] = $val;
 		}
 	}

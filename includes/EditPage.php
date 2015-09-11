@@ -980,7 +980,7 @@ class EditPage {
 		global $wgUser;
 		$this->edittime = $this->mArticle->getTimestamp();
 
-		$content = $this->getContentObject( false ); #TODO: track content object?!
+		$content = $this->getContentObject( false ); # TODO: track content object?!
 		if ( $content === false ) {
 			return false;
 		}
@@ -1228,7 +1228,7 @@ class EditPage {
 		$title = Title::newFromText( $preload );
 		# Check for existence to avoid getting MediaWiki:Noarticletext
 		if ( $title === null || !$title->exists() || !$title->userCan( 'read', $wgUser ) ) {
-			//TODO: somehow show a warning to the user!
+			// TODO: somehow show a warning to the user!
 			return $handler->makeEmptyContent();
 		}
 
@@ -1237,7 +1237,7 @@ class EditPage {
 			$title = $page->getRedirectTarget();
 			# Same as before
 			if ( $title === null || !$title->exists() || !$title->userCan( 'read', $wgUser ) ) {
-				//TODO: somehow show a warning to the user!
+				// TODO: somehow show a warning to the user!
 				return $handler->makeEmptyContent();
 			}
 			$page = WikiPage::factory( $title );
@@ -1247,7 +1247,7 @@ class EditPage {
 		$content = $page->getContent( Revision::RAW );
 
 		if ( !$content ) {
-			//TODO: somehow show a warning to the user!
+			// TODO: somehow show a warning to the user!
 			return $handler->makeEmptyContent();
 		}
 
@@ -1255,7 +1255,7 @@ class EditPage {
 			$converted = $content->convert( $handler->getModelID() );
 
 			if ( !$converted ) {
-				//TODO: somehow show a warning to the user!
+				// TODO: somehow show a warning to the user!
 				wfDebug( "Attempt to preload incompatible content: " .
 					"can't convert " . $content->getModel() .
 					" to " . $handler->getModelID() );
@@ -2514,7 +2514,7 @@ class EditPage {
 		# user preference is active, pass a hidden tag as wpIgnoreBlankSummary. This will stop the
 		# user being bounced back more than once in the event that a summary
 		# is not required.
-		#####
+		# ####
 		# For a bit more sophisticated detection of blank summaries, hash the
 		# automatic one and pass that in the hidden field wpAutoSummary.
 		if ( $this->missingSummary || ( $this->section == 'new' && $this->nosummary ) ) {
@@ -2681,7 +2681,7 @@ class EditPage {
 
 			if ( $this->section != '' && $this->section != 'new' ) {
 				if ( !$this->summary && !$this->preview && !$this->diff ) {
-					$sectionTitle = self::extractSectionTitle( $this->textbox1 ); //FIXME: use Content object
+					$sectionTitle = self::extractSectionTitle( $this->textbox1 ); // FIXME: use Content object
 					if ( $sectionTitle !== false ) {
 						$this->summary = "/* $sectionTitle */ ";
 					}

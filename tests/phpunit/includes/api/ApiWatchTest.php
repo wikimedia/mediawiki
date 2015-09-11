@@ -98,7 +98,7 @@ class ApiWatchTest extends ApiTestCase {
 		$this->getTokens();
 
 		if ( !Title::newFromText( 'Help:UTPage' )->exists() ) {
-			$this->markTestSkipped( "The article [[Help:UTPage]] does not exist" ); //TODO: just create it?
+			$this->markTestSkipped( "The article [[Help:UTPage]] does not exist" ); // TODO: just create it?
 		}
 
 		$data = $this->doApiRequest( array(

@@ -103,7 +103,7 @@ class HtmlTest extends MediaWikiTestCase {
 	 */
 	public function testExpandAttributesSkipsNullAndFalse() {
 
-		### EMPTY ########
+		# ## EMPTY ########
 		$this->assertEmpty(
 			Html::expandAttributes( array( 'foo' => null ) ),
 			'skip keys with null value'
@@ -187,7 +187,7 @@ class HtmlTest extends MediaWikiTestCase {
 	 * @covers Html::expandAttributes
 	 */
 	public function testExpandAttributesVariousExpansions() {
-		### NOT EMPTY ####
+		# ## NOT EMPTY ####
 		$this->assertEquals(
 			' empty_string=""',
 			Html::expandAttributes( array( 'empty_string' => '' ) ),
@@ -240,7 +240,7 @@ class HtmlTest extends MediaWikiTestCase {
 	 * @covers Html::expandAttributes
 	 */
 	public function testExpandAttributesListValueAttributes() {
-		### STRING VALUES
+		# ## STRING VALUES
 		$this->assertEquals(
 			' class="redundant spaces here"',
 			Html::expandAttributes( array( 'class' => ' redundant  spaces  here  ' ) ),
@@ -251,7 +251,7 @@ class HtmlTest extends MediaWikiTestCase {
 			Html::expandAttributes( array( 'class' => 'foo bar foo bar bar' ) ),
 			'Normalization should remove duplicates in string-lists'
 		);
-		### "EMPTY" ARRAY VALUES
+		# ## "EMPTY" ARRAY VALUES
 		$this->assertEquals(
 			' class=""',
 			Html::expandAttributes( array( 'class' => array() ) ),
@@ -262,7 +262,7 @@ class HtmlTest extends MediaWikiTestCase {
 			Html::expandAttributes( array( 'class' => array( null, '', ' ', '  ' ) ) ),
 			'Array with null, empty string and spaces'
 		);
-		### NON-EMPTY ARRAY VALUES
+		# ## NON-EMPTY ARRAY VALUES
 		$this->assertEquals(
 			' class="foo bar"',
 			Html::expandAttributes( array( 'class' => array(
@@ -528,7 +528,7 @@ class HtmlTest extends MediaWikiTestCase {
 		# Will be mapped to Html::element()
 		$cases = array();
 
-		### Generic cases, match $attribDefault static array
+		# ## Generic cases, match $attribDefault static array
 		$cases[] = array( '<area>',
 			'area', array( 'shape' => 'rect' )
 		);
@@ -602,7 +602,7 @@ class HtmlTest extends MediaWikiTestCase {
 			'textarea', array( 'wrap' => 'soft' )
 		);
 
-		### SPECIFIC CASES
+		# ## SPECIFIC CASES
 
 		# <link type="text/css">
 		$cases[] = array( '<link>',

@@ -255,7 +255,7 @@ class LinksUpdateTest extends MediaWikiTestCase {
 	) {
 		$update = new LinksUpdate( $title, $parserOutput );
 
-		//NOTE: make sure LinksUpdate does not generate warnings when called inside a transaction.
+		// NOTE: make sure LinksUpdate does not generate warnings when called inside a transaction.
 		$update->beginTransaction();
 		$update->doUpdate();
 		$update->commitTransaction();

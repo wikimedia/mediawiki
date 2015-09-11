@@ -307,7 +307,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			$text = null;
 
 			if ( $this->expandTemplates && !$this->parseContent ) {
-				#XXX: implement template expansion for all content types in ContentHandler?
+				# XXX: implement template expansion for all content types in ContentHandler?
 				if ( $content->getModel() === CONTENT_MODEL_WIKITEXT ) {
 					$text = $content->getNativeData();
 

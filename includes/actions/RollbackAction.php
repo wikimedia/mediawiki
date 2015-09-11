@@ -78,13 +78,13 @@ class RollbackAction extends FormlessAction {
 			return;
 		}
 
-		#NOTE: Permission errors already handled by Action::checkExecute.
+		# NOTE: Permission errors already handled by Action::checkExecute.
 
 		if ( $result == array( array( 'readonlytext' ) ) ) {
 			throw new ReadOnlyError;
 		}
 
-		#XXX: Would be nice if ErrorPageError could take multiple errors, and/or a status object.
+		# XXX: Would be nice if ErrorPageError could take multiple errors, and/or a status object.
 		#     Right now, we only show the first error
 		foreach ( $result as $error ) {
 			throw new ErrorPageError( 'rollbackfailed', $error[0], array_slice( $error, 1 ) );

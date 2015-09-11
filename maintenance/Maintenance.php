@@ -460,7 +460,7 @@ abstract class Maintenance {
 		}
 
 		# Save additional script dependant options to display
-		# them separately in help
+		#  them separately in help
 		$this->mDependantParameters = array_diff_key( $this->mParams, $this->mGenericParameters );
 	}
 

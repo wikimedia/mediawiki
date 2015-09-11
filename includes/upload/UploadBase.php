@@ -1118,10 +1118,10 @@ abstract class UploadBase {
 			'<a href',
 			'<body',
 			'<head',
-			'<html', #also in safari
+			'<html', # also in safari
 			'<img',
 			'<pre',
-			'<script', #also in safari
+			'<script', # also in safari
 			'<table'
 		);
 
@@ -1492,7 +1492,7 @@ abstract class UploadBase {
 			}
 		}
 
-		return false; //No scripts detected
+		return false; // No scripts detected
 	}
 
 	/**
@@ -1655,7 +1655,7 @@ abstract class UploadBase {
 			$output = trim( $output );
 
 			if ( !$output ) {
-				$output = true; #if there's no output, return true
+				$output = true; # if there's no output, return true
 			} elseif ( $msgPattern ) {
 				$groups = array();
 				if ( preg_match( $msgPattern, $output, $groups ) ) {

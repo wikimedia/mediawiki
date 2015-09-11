@@ -108,7 +108,7 @@ class UserArrayFromResultTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $object->valid() );
 	}
 
-	//@todo unit test for key()
-	//@todo unit test for next()
-	//@todo unit test for rewind()
+	// @todo unit test for key()
+	// @todo unit test for next()
+	// @todo unit test for rewind()
 }

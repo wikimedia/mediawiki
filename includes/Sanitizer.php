@@ -536,7 +536,7 @@ class Sanitizer {
 							$badtag = true;
 						} elseif ( in_array( $t, $tagstack ) && !isset( $htmlnest[$t] ) ) {
 							$badtag = true;
-						# Is it a self closed htmlpair ? (bug 5487)
+						#  Is it a self closed htmlpair ? (bug 5487)
 						} elseif ( $brace == '/>' && isset( $htmlpairs[$t] ) ) {
 							$badtag = true;
 						} elseif ( isset( $htmlsingleonly[$t] ) ) {
@@ -738,7 +738,7 @@ class Sanitizer {
 
 		$out = array();
 		foreach ( $attribs as $attribute => $value ) {
-			#allow XML namespace declaration if RDFa is enabled
+			# allow XML namespace declaration if RDFa is enabled
 			if ( $wgAllowRdfaAttributes && preg_match( self::XMLNS_ATTRIBUTE_PATTERN, $attribute ) ) {
 				if ( !preg_match( self::EVIL_URI_PATTERN, $value ) ) {
 					$out[$attribute] = $value;
@@ -784,7 +784,7 @@ class Sanitizer {
 				|| $attribute === 'itemref' || $attribute === 'itemscope'
 				|| $attribute === 'itemtype'
 			) {
-				//Paranoia. Allow "simple" values but suppress javascript
+				// Paranoia. Allow "simple" values but suppress javascript
 				if ( preg_match( self::EVIL_URI_PATTERN, $value ) ) {
 					continue;
 				}
@@ -794,7 +794,7 @@ class Sanitizer {
 			#       validation code that can be used by tag hook handlers, etc
 			if ( $attribute === 'href' || $attribute === 'src' ) {
 				if ( !preg_match( $hrefExp, $value ) ) {
-					continue; //drop any href or src attributes not using an allowed protocol.
+					continue; // drop any href or src attributes not using an allowed protocol.
 					// NOTE: this also drops all relative URLs
 				}
 			}
@@ -1697,7 +1697,7 @@ class Sanitizer {
 			# rbc
 			'rb'         => $common,
 			'rp'         => $common,
-			'rt'         => $common, #array_merge( $common, array( 'rbspan' ) ),
+			'rt'         => $common, # array_merge( $common, array( 'rbspan' ) ),
 			'rtc'         => $common,
 
 			# MathML root element, where used for extensions

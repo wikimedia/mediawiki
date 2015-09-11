@@ -1092,13 +1092,13 @@ class LanguageConverter {
 			// text should be splited by ";" only if a valid variant
 			// name exist after the markup, for example:
 			//  -{zh-hans:<span style="font-size:120%;">xxx</span>;zh-hant:\
-			//	<span style="font-size:120%;">yyy</span>;}-
+			// 	<span style="font-size:120%;">yyy</span>;}-
 			// we should split it as:
 			//  array(
-			//	  [0] => 'zh-hans:<span style="font-size:120%;">xxx</span>'
-			//	  [1] => 'zh-hant:<span style="font-size:120%;">yyy</span>'
-			//	  [2] => ''
-			//	 )
+			// 	  [0] => 'zh-hans:<span style="font-size:120%;">xxx</span>'
+			// 	  [1] => 'zh-hant:<span style="font-size:120%;">yyy</span>'
+			// 	  [2] => ''
+			// 	 )
 			$pat = '/;\s*(?=';
 			foreach ( $this->mVariants as $variant ) {
 				// zh-hans:xxx;zh-hant:yyy
