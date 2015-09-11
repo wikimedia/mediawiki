@@ -646,6 +646,10 @@ abstract class UploadBase {
 			$warnings['exists'] = $exists;
 		}
 
+		if ( $localFile->wasDeleted() && !$localFile->exists() ) {
+			$warnings['was-deleted'] = $filename;
+		}
+
 		// Check dupes against existing files
 		$hash = $this->getTempFileSha1Base36();
 		$dupes = RepoGroup::singleton()->findBySha1( $hash );
@@ -1746,10 +1750,6 @@ abstract class UploadBase {
 
 		if ( $file->getTitle()->getArticleID() ) {
 			return array( 'warning' => 'page-exists', 'file' => $file );
-		}
-
-		if ( $file->wasDeleted() && !$file->exists() ) {
-			return array( 'warning' => 'was-deleted', 'file' => $file );
 		}
 
 		if ( strpos( $file->getName(), '.' ) == false ) {

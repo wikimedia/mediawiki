@@ -263,7 +263,7 @@ class SpecialUpload extends SpecialPage {
 		}
 
 		# Give a notice if the user is uploading a file that has been deleted or moved
-		# Note that this is independent from the message 'filewasdeleted' that requires JS
+		# Note that this is independent from the message 'filewasdeleted'
 		$desiredTitleObj = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );
 		$delNotice = ''; // empty by default
 		if ( $desiredTitleObj instanceof Title && !$desiredTitleObj->exists() ) {
@@ -366,6 +366,19 @@ class SpecialUpload extends SpecialPage {
 			}
 			if ( $warning == 'exists' ) {
 				$msg = "\t<li>" . self::getExistsWarning( $args ) . "</li>\n";
+			} elseif ( $warning == 'was-deleted' ) {
+				# If the file existed before and was deleted, warn the user of this
+				$ltitle = SpecialPage::getTitleFor( 'Log' );
+				$llink = Linker::linkKnown(
+					$ltitle,
+					wfMessage( 'deletionlog' )->escaped(),
+					array(),
+					array(
+						'type' => 'delete',
+						'page' => $args
+					)
+				);
+				$msg = "\t<li>" . wfMessage( 'filewasdeleted' )->rawParams( $llink )->parse() . "</li>\n";
 			} elseif ( $warning == 'duplicate' ) {
 				$msg = $this->getDupeWarning( $args );
 			} elseif ( $warning == 'duplicate-archive' ) {
@@ -711,19 +724,6 @@ class SpecialUpload extends SpecialPage {
 			$warning = wfMessage( 'file-thumbnail-no', $badPart )->parse();
 		} elseif ( $exists['warning'] == 'bad-prefix' ) {
 			$warning = wfMessage( 'filename-bad-prefix', $exists['prefix'] )->parse();
-		} elseif ( $exists['warning'] == 'was-deleted' ) {
-			# If the file existed before and was deleted, warn the user of this
-			$ltitle = SpecialPage::getTitleFor( 'Log' );
-			$llink = Linker::linkKnown(
-				$ltitle,
-				wfMessage( 'deletionlog' )->escaped(),
-				array(),
-				array(
-					'type' => 'delete',
-					'page' => $filename
-				)
-			);
-			$warning = wfMessage( 'filewasdeleted' )->rawParams( $llink )->parseAsBlock();
 		}
 
 		return $warning;
