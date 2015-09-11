@@ -487,12 +487,50 @@
 		}
 	} );
 
-	QUnit.test( 'newFromUserInput', 8, function ( assert ) {
+	QUnit.test( 'normalizeExtension', 4, function ( assert ) {
+		var extension, i, thisCase, prefix,
+			cases = [
+				{
+					extension: 'png',
+					expected: 'png',
+					description: 'Extension already in canonical form'
+				},
+				{
+					extension: 'PNG',
+					expected: 'png',
+					description: 'Extension lowercased in canonical form'
+				},
+				{
+					extension: 'jpeg',
+					expected: 'jpg',
+					description: 'Extension changed in canonical form'
+				},
+				{
+					extension: 'JPEG',
+					expected: 'jpg',
+					description: 'Extension lowercased and changed in canonical form'
+				},
+				{
+					extension: '~~~',
+					expected: '',
+					description: 'Extension invalid and discarded'
+				}
+			];
+
+		for ( i = 0; i < cases.length; i++ ) {
+			thisCase = cases[ i ];
+			extension = mw.Title.normalizeExtension( thisCase.extension );
+
+			prefix = '[' + thisCase.description + '] ';
+			assert.equal( extension, thisCase.expected, prefix + 'Extension as expected' );
+		}
+	} );
+
+	QUnit.test( 'newFromUserInput', 12, function ( assert ) {
 		var title, i, thisCase, prefix,
 			cases = [
 				{
 					title: 'DCS0001557854455.JPG',
-					defaultNamespace: 0,
 					options: {
 						fileExtension: 'PNG'
 					},
@@ -501,7 +539,6 @@
 				},
 				{
 					title: 'MediaWiki:Msg-awesome',
-					defaultNamespace: undefined,
 					expected: 'MediaWiki:Msg-awesome',
 					description: 'Full title (page in MediaWiki namespace) supplied as string'
 				},
@@ -519,6 +556,22 @@
 					},
 					expected: 'File:The/Mw/Sound.kml',
 					description: 'Page in File-namespace without explicit options'
+				},
+				{
+					title: 'File:Foo.JPEG',
+					options: {
+						fileExtension: 'jpg'
+					},
+					expected: 'File:Foo.jpg',
+					description: 'Page in File-namespace with non-canonical extension'
+				},
+				{
+					title: 'File:Foo.JPEG  ',
+					options: {
+						fileExtension: 'jpg'
+					},
+					expected: 'File:Foo.jpg',
+					description: 'Page in File-namespace with trailing whitespace'
 				}
 			];
 
@@ -537,7 +590,7 @@
 		}
 	} );
 
-	QUnit.test( 'newFromFileName', 62, function ( assert ) {
+	QUnit.test( 'newFromFileName', 77, function ( assert ) {
 		var title, i, thisCase, prefix,
 			cases = [
 				{
@@ -654,6 +707,7 @@
 				assert.notStrictEqual( title, null, prefix + 'Parses successfully' );
 				assert.equal( title.getNameText(), thisCase.nameText, prefix + 'Filename matches original' );
 				assert.equal( title.getPrefixedText(), thisCase.prefixedText, prefix + 'File page title matches original' );
+				assert.equal( title.getExtension(), thisCase.extensionDesired, prefix + 'Extension matches desired' );
 				assert.equal( title.getNamespaceId(), 6, prefix + 'Namespace ID matches File namespace' );
 			} else {
 				assert.strictEqual( title, null, thisCase.typeOfName + ', should not produce an mw.Title object' );

@@ -213,14 +213,15 @@ abstract class File implements IDBAccessObject {
 	}
 
 	/**
-	 * Normalize a file extension to the common form, and ensure it's clean.
-	 * Extensions with non-alphanumeric characters will be discarded.
+	 * Normalize a file extension to the common form, making it lowercase and checking some synonyms,
+	 * and ensure it's clean. Extensions with non-alphanumeric characters will be discarded.
+	 * Keep in sync with mw.Title.normalizeExtension() in JS.
 	 *
-	 * @param string $ext (without the .)
-	 * @return string
+	 * @param string $extension File extension (without the leading dot)
+	 * @return string File extension in canonical form
 	 */
-	static function normalizeExtension( $ext ) {
-		$lower = strtolower( $ext );
+	static function normalizeExtension( $extension ) {
+		$lower = strtolower( $extension );
 		$squish = array(
 			'htm' => 'html',
 			'jpeg' => 'jpg',
