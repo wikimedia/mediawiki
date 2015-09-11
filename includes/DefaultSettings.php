@@ -7237,12 +7237,6 @@ $wgAPIPropModules = array();
 $wgAPIListModules = array();
 
 /**
- * This variable is ignored. To add your module to the API, please add it to $wgAPI*Modules
- * @deprecated since 1.21
- */
-$wgAPIGeneratorModules = array();
-
-/**
  * Maximum amount of rows to scan in a DB query in the API
  * The default value is generally fine
  */
