@@ -1446,15 +1446,12 @@ class OutputPage extends ContextSource {
 			$helpUrl = "//www.mediawiki.org/wiki/Special:MyLanguage/$toUrlencoded";
 		}
 
-		$link = Html::rawElement(
-			'a',
-			array(
-				'href' => $helpUrl,
-				'target' => '_blank',
-				'class' => 'mw-helplink',
-			),
-			$text
-		);
+		$link = new OOUI\ButtonWidget( array(
+			'framed' => false,
+			'icon' => 'help',
+			'label' => $text,
+			'href' => $helpUrl,
+		) );
 
 		$this->setIndicators( array( 'mw-helplink' => $link ) );
 	}
