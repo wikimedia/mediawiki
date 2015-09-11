@@ -25,6 +25,8 @@ production.
 === Bug fixes in 1.27 ===
 
 === Action API changes in 1.27 ===
+* prop=imageinfo&iiprop=uploadwarning will no longer include the possibility of
+  "was-deleted" warning.
 
 === Action API internal changes in 1.27 ===
 
