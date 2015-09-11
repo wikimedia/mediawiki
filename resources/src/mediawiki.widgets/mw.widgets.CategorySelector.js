@@ -5,12 +5,13 @@
  * @license The MIT License (MIT); see LICENSE.txt
  */
 ( function ( $, mw ) {
+	var CSP;
 
 	/**
 	 * Category selector widget. Displays an OO.ui.CapsuleMultiSelectWidget
 	 * and autocompletes with available categories.
 	 *
-	 * @class
+	 * @class mw.widgets.CategorySelector
 	 * @uses mw.Api
 	 * @extends OO.ui.CapsuleMultiSelectWidget
 	 *
@@ -18,7 +19,7 @@
 	 * @param {Object} [config] Configuration options
 	 * @cfg {number} [limit=10] Maximum number of results to load
 	 */
-	mw.widgets.CategorySelector = function ( config ) {
+	function CategorySelector( config ) {
 		// Config initialization
 		config = $.extend( { limit: 10 }, config );
 		this.limit = config.limit;
@@ -28,11 +29,17 @@
 
 		// Event handler to call the autocomplete methods
 		this.$input.on( 'change input cut paste', OO.ui.debounce( this.updateMenuItems.bind( this ), 100 ) );
-	};
+
+		// Initialize
+		this.catNsId = mw.config.get( 'wgNamespaceIds' ).category;
+		this.api = new mw.Api();
+
+	}
 
 	/* Setup */
 
-	OO.inheritClass( mw.widgets.CategorySelector, OO.ui.CapsuleMultiSelectWidget );
+	OO.inheritClass( CategorySelector, OO.ui.CapsuleMultiSelectWidget );
+	CSP = CategorySelector.prototype;
 
 	/* Methods */
 
@@ -44,7 +51,7 @@
 	 * @private
 	 * @method
 	 */
-	mw.widgets.CategorySelector.prototype.updateMenuItems = function () {
+	CSP.updateMenuItems = function () {
 		this.getNewMenuItems( this.$input.val() ).then( function ( items ) {
 			var existingItems, filteredItems,
 				menu = this.getMenu();
@@ -79,24 +86,114 @@
 	 * @param {string} input The input used to prefix search categories
 	 * @return {jQuery.Promise} Resolves with an array of categories
 	 */
-	mw.widgets.CategorySelector.prototype.getNewMenuItems = function ( input ) {
-		var deferred = new $.Deferred(),
-			catNsId = mw.config.get( 'wgNamespaceIds' ).category,
-			api = new mw.Api();
+	CSP.getNewMenuItems = function ( input ) {
+		var deferred = new $.Deferred();
 
-		api.get( {
-			action: 'opensearch',
-			namespace: catNsId,
-			limit: this.limit,
-			search: input
-		} ).done( function ( res ) {
-			var categoryNames = res[ 1 ].map( function ( name ) {
-				return mw.Title.newFromText( name, catNsId ).getMainText();
+		this.searchCategories( input, CategorySelector.SearchType.OpenSearch ).done( function ( categories ) {
+			var categoryNames = categories.map( function ( name ) {
+				return mw.Title.newFromText( name, this.catNsId ).getMainText();
 			} );
 
 			deferred.resolve( categoryNames );
-		} );
+		}.bind( this ) );
 
 		return deferred.promise();
 	};
+
+	/**
+	 * TODO
+	 *
+	 * @private
+	 * @method
+	 * @param {string} input The input used to prefix search categories
+	 * @param {mw.widgets.CategorySelector.SearchType} searchType
+	 * @return {jQuery.Promise} Resolves with an array of categories
+	 */
+	CSP.searchCategories = function ( input, searchType ) {
+		var deferred = new $.Deferred();
+
+		switch ( searchType ) {
+			case CategorySelector.SearchType.OpenSearch:
+				this.api.get( {
+					action: 'opensearch',
+					namespace: this.catNsId,
+					limit: this.limit,
+					search: input
+				} ).done( function ( res ) {
+					var categories = res[ 1 ];
+					deferred.resolve( categories );
+				} );
+				break;
+
+			case CategorySelector.SearchType.InternalSearch:
+				this.api.get( {
+					action: 'query',
+					list: 'allpages',
+					apnamespace: this.catNsId,
+					aplimit: this.limit,
+					apfrom: input,
+					apprefix: input
+				} ).done( function ( res ) {
+					var categories = res.query.allpages.map( function ( page ) {
+						return page.title;
+					} );
+					deferred.resolve( categories );
+				} );
+				break;
+
+			case CategorySelector.SearchType.Exists:
+				this.api.get( {
+					action: 'query',
+					prop: 'info',
+					titles: 'Category:' + input
+					// TODO: How do I apply a limit here? Er, I don't think I need to.
+				} ).done( function ( res ) {
+					var page,
+						categories = [];
+
+					for ( page in res.query.pages ) {
+						if ( page !== '-1' ) {
+							categories.push( res.query.pages[ page ].title );
+						}
+					}
+
+					deferred.resolve( categories );
+				} );
+				break;
+
+			case CategorySelector.SearchType.SubCategories:
+				throw new Error( 'prtksxna is lazy' );
+
+			case CategorySelector.SearchType.ParentCategories:
+				throw new Error( 'prtksxna is lazy' );
+
+			default:
+				throw new Error( 'Unknown searchType' );
+		}
+
+		return deferred.promise();
+	};
+
+	/**
+	 * @enum mw.widgets.CategorySelector.SearchType
+	 * TODO: Write something here
+	 */
+	CategorySelector.SearchType = {
+		/** TODO: Write something here */
+		OpenSearch: 0,
+
+		/** TODO: Write something here */
+		InternalSearch: 1,
+
+		/** TODO: Write something here */
+		Exists: 2,
+
+		/** TODO: Write something here */
+		SubCategories: 3,
+
+		/** TODO: Write something here */
+		ParentCategories: 4
+	};
+
+	mw.widgets.CategorySelector = CategorySelector;
 }( jQuery, mediaWiki ) );
