@@ -1076,6 +1076,7 @@ $wgAutoloadLocalClasses = array(
 	'SearchDump' => __DIR__ . '/maintenance/dumpIterator.php',
 	'SearchEngine' => __DIR__ . '/includes/search/SearchEngine.php',
 	'SearchEngineDummy' => __DIR__ . '/includes/search/SearchEngine.php',
+	'SearchExactMatchRescorer' => __DIR__ . '/includes/search/SearchExactMatchRescorer.php',
 	'SearchHighlighter' => __DIR__ . '/includes/search/SearchHighlighter.php',
 	'SearchMssql' => __DIR__ . '/includes/search/SearchMssql.php',
 	'SearchMySQL' => __DIR__ . '/includes/search/SearchMySQL.php',

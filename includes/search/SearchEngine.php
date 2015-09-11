@@ -77,6 +77,22 @@ class SearchEngine {
 	}
 
 	/**
+	 * Search suggestions.
+	 *
+	 * Default implementation is based on TitlePrefixSearch.
+	 *
+	 * NOTE: offset parameter is ignored.
+	 *
+	 * @since 1.26
+	 * @param string $query Raw search term
+	 * @return array of Title objects
+	 */
+	public function searchSuggestions( $query ) {
+		$searcher = new TitlePrefixSearch();
+		return $searcher->searchWithVariants( $query, $this->limit, $this->namespaces );
+	}
+
+	/**
 	 * @since 1.18
 	 * @param string $feature
 	 * @return bool
