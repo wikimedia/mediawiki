@@ -1372,9 +1372,10 @@
 				// Add ready and error callbacks if they were given
 				if ( ready !== undefined || error !== undefined ) {
 					jobs[ jobs.length ] = {
+						// Narrow down the list to modules that are worth waiting for
 						dependencies: $.grep( dependencies, function ( module ) {
 							var state = mw.loader.getState( module );
-							return state === 'registered' || state === 'loaded' || state === 'loading';
+							return state === 'registered' || state === 'loaded' || state === 'loading' || state === 'executing';
 						} ),
 						ready: ready,
 						error: error
