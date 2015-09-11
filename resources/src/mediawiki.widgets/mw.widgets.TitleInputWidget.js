@@ -29,7 +29,10 @@
 		var widget = this;
 
 		// Config initialization
-		config = $.extend( { maxLength: 255 }, config );
+		config = $.extend( {
+			maxLength: 255,
+			limit: 10
+		}, config );
 
 		// Parent constructor
 		mw.widgets.TitleInputWidget.parent.call( this, $.extend( {}, config, { autocomplete: false } ) );
@@ -38,7 +41,7 @@
 		OO.ui.mixin.LookupElement.call( this, config );
 
 		// Properties
-		this.limit = config.limit || 10;
+		this.limit = config.limit;
 		this.maxLength = config.maxLength;
 		this.namespace = config.namespace !== undefined ? config.namespace : null;
 		this.relative = config.relative !== undefined ? config.relative : true;
