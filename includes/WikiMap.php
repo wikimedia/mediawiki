@@ -151,13 +151,12 @@ class WikiReference {
 	 * @throws MWException
 	 */
 	public function getHostname() {
-		$prefixes = array( 'http://', 'https://' );
-		foreach ( $prefixes as $prefix ) {
-			if ( substr( $this->mCanonicalServer, 0, strlen( $prefix ) ) ) {
-				return substr( $this->mCanonicalServer, strlen( $prefix ) );
-			}
+		$parsed = wfParseUrl( $this->mCanonicalServer );
+		if ( $parsed ) {
+			return $parsed['host'];
+		} else {
+			throw new MWException( "Invalid hostname for wiki {$this->mMinor}.{$this->mMajor}" );
 		}
-		throw new MWException( "Invalid hostname for wiki {$this->mMinor}.{$this->mMajor}" );
 	}
 
 	/**
@@ -167,13 +166,13 @@ class WikiReference {
 	 * @return string
 	 */
 	public function getDisplayName() {
-		$url = $this->getUrl( '' );
+		$url = $this->getUrl( $this->mCanonicalServer );
 		$parsed = wfParseUrl( $url );
 		if ( $parsed ) {
 			return $parsed['host'];
 		} else {
-			// Invalid URL. There's no sane thing to do here, so just return it
-			return $url;
+			// Invalid server spec. There's no sane thing to do here, so just return the canonical server name in full
+			return $this->mCanonicalServer;
 		}
 	}
 

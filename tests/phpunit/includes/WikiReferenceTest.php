@@ -17,8 +17,6 @@ class WikiReferenceTest extends PHPUnit_Framework_TestCase {
 	 * @dataProvider provideGetHostname
 	 */
 	public function testGetHostname( $expected, $canonicalServer ) {
-		$this->markTestSkipped( 'The implementation is patently broken.' );
-
 		$reference = new WikiReference( 'wiki', 'xx', $canonicalServer, '/wiki/$1' );
 		$this->assertEquals( $expected, $reference->getHostname() );
 	}
@@ -29,7 +27,7 @@ class WikiReferenceTest extends PHPUnit_Framework_TestCase {
 			'https' => array( 'foo.bar', 'http://foo.bar' ),
 
 			// apparently, this is the expected behavior
-			'invalid' => array( 'purple kittens/wiki/', 'purple kittens' ),
+			'invalid' => array( 'purple kittens', 'purple kittens' ),
 		);
 	}
 
@@ -63,6 +61,7 @@ class WikiReferenceTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider provideGetCanonicalUrl
+	 * @note getUrl is an alias for getCanonicalUrl
 	 */
 	public function testGetUrl( $expected, $canonicalServer, $server, $path, $page ) {
 		$reference = new WikiReference( 'wiki', 'xx', $canonicalServer, $path, $server );
