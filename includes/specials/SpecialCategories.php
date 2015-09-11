@@ -134,7 +134,7 @@ class CategoryPager extends AlphabeticPager {
 	}
 
 	function getIndexField() {
-#		return array( 'abc' => 'cat_title', 'count' => 'cat_pages' );
+# 		return array( 'abc' => 'cat_title', 'count' => 'cat_pages' );
 		return 'cat_title';
 	}
 
@@ -145,13 +145,13 @@ class CategoryPager extends AlphabeticPager {
 		return $this->mDefaultQuery;
 	}
 
-#	protected function getOrderTypeMessages() {
-#		return array( 'abc' => 'special-categories-sort-abc',
-#			'count' => 'special-categories-sort-count' );
-#	}
+# 	protected function getOrderTypeMessages() {
+# 		return array( 'abc' => 'special-categories-sort-abc',
+# 			'count' => 'special-categories-sort-count' );
+# 	}
 
 	protected function getDefaultDirections() {
-#		return array( 'abc' => false, 'count' => true );
+# 		return array( 'abc' => false, 'count' => true );
 		return false;
 	}
 

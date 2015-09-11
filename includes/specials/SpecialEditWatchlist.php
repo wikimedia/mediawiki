@@ -403,7 +403,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 */
 	private function cleanupWatchlist() {
 		if ( !count( $this->badItems ) ) {
-			return; //nothing to do
+			return; // nothing to do
 		}
 
 		$dbw = wfGetDB( DB_MASTER );

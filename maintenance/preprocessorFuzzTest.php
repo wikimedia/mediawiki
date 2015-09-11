@@ -212,7 +212,7 @@ class PPFuzzTest {
 
 	function getReport() {
 		$s = "Title: " . $this->title->getPrefixedDBkey() . "\n" .
-//			"Output type: {$this->outputType}\n" .
+// 			"Output type: {$this->outputType}\n" .
 			"Entry point: {$this->entryPoint}\n" .
 			"User: " . ( $this->fancySig ? 'fancy' : 'no-fancy' ) .
 			' ' . var_export( $this->nickname, true ) . "\n" .

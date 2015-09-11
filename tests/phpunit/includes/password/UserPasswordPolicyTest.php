@@ -191,41 +191,41 @@ class UserPasswordPolicyTest extends MediaWikiTestCase {
 	public function provideMaxOfPolicies() {
 		return array(
 			array(
-				array( 'MinimalPasswordLength' => 8 ), //p1
-				array( 'MinimalPasswordLength' => 2 ), //p2
-				array( 'MinimalPasswordLength' => 8 ), //max
+				array( 'MinimalPasswordLength' => 8 ), // p1
+				array( 'MinimalPasswordLength' => 2 ), // p2
+				array( 'MinimalPasswordLength' => 8 ), // max
 				'Basic max in p1'
 			),
 			array(
-				array( 'MinimalPasswordLength' => 2 ), //p1
-				array( 'MinimalPasswordLength' => 8 ), //p2
-				array( 'MinimalPasswordLength' => 8 ), //max
+				array( 'MinimalPasswordLength' => 2 ), // p1
+				array( 'MinimalPasswordLength' => 8 ), // p2
+				array( 'MinimalPasswordLength' => 8 ), // max
 				'Basic max in p2'
 			),
 			array(
-				array( 'MinimalPasswordLength' => 8 ), //p1
+				array( 'MinimalPasswordLength' => 8 ), // p1
 				array(
 					'MinimalPasswordLength' => 2,
 					'PasswordCannotMatchUsername' => 1,
-				), //p2
+				), // p2
 				array(
 					'MinimalPasswordLength' => 8,
 					'PasswordCannotMatchUsername' => 1,
-				), //max
+				), // max
 				'Missing items in p1'
 			),
 			array(
 				array(
 					'MinimalPasswordLength' => 8,
 					'PasswordCannotMatchUsername' => 1,
-				), //p1
+				), // p1
 				array(
 					'MinimalPasswordLength' => 2,
-				), //p2
+				), // p2
 				array(
 					'MinimalPasswordLength' => 8,
 					'PasswordCannotMatchUsername' => 1,
-				), //max
+				), // max
 				'Missing items in p2'
 			),
 		);

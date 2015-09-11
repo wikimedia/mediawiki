@@ -26,7 +26,7 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 		$this->rc->setContext( $context );
 		$formOptions = $this->rc->setup( null );
 
-		# Filter out rc_timestamp conditions which depends on the test runtime
+		#  Filter out rc_timestamp conditions which depends on the test runtime
 		# This condition is not needed as of march 2, 2011 -- hashar
 		# @todo FIXME: Find a way to generate the correct rc_timestamp
 		$queryConditions = array_filter(

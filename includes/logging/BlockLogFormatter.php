@@ -125,7 +125,7 @@ class BlockLogFormatter extends LogFormatter {
 	public static function formatBlockFlags( $flags, $lang ) {
 		$flags = trim( $flags );
 		if ( $flags === '' ) {
-			return ''; //nothing to do
+			return ''; // nothing to do
 		}
 		$flags = explode( ',', $flags );
 		$flagsCount = count( $flags );

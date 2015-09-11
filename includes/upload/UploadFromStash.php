@@ -36,7 +36,7 @@ class UploadFromStash extends UploadBase {
 	// an instance of UploadStash
 	private $stash;
 
-	//LocalFile repo
+	// LocalFile repo
 	private $repo;
 
 	/**

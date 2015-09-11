@@ -329,7 +329,7 @@ class XMPReader implements LoggerAwareInterface {
 							$this->charset = 'UTF-8';
 							break;
 						default:
-							//this should be impossible to get to
+							// this should be impossible to get to
 							throw new RuntimeException( "Invalid BOM" );
 					}
 				} else {
@@ -338,7 +338,7 @@ class XMPReader implements LoggerAwareInterface {
 				}
 			}
 			if ( $this->charset !== 'UTF-8' ) {
-				//don't convert if already utf-8
+				// don't convert if already utf-8
 				MediaWiki\suppressWarnings();
 				$content = iconv( $this->charset, 'UTF-8//IGNORE', $content );
 				MediaWiki\restoreWarnings();

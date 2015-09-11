@@ -189,7 +189,7 @@ class CompressOld extends Maintenance {
 		if ( false !== strpos( $row->old_flags, 'gzip' )
 			|| false !== strpos( $row->old_flags, 'object' )
 		) {
-			#print "Already compressed row {$row->old_id}\n";
+			# print "Already compressed row {$row->old_id}\n";
 			return false;
 		}
 		$dbw = wfGetDB( DB_MASTER );
@@ -303,8 +303,8 @@ class CompressOld extends Maintenance {
 
 		# Don't work with current revisions
 		# Don't lock the page table for update either -- TS 2006-04-04
-		#$tables[] = 'page';
-		#$conds[] = 'page_id=rev_page AND rev_id != page_latest';
+		# $tables[] = 'page';
+		# $conds[] = 'page_id=rev_page AND rev_id != page_latest';
 
 		for ( $pageId = $startId; $pageId <= $maxPageId; $pageId++ ) {
 			wfWaitForSlaves();
@@ -384,7 +384,7 @@ class CompressOld extends Maintenance {
 
 					if ( $text === false ) {
 						$this->error( "\nError, unable to get text in old_id $oldid" );
-						#$dbw->delete( 'old', array( 'old_id' => $oldid ) );
+						# $dbw->delete( 'old', array( 'old_id' => $oldid ) );
 					}
 
 					if ( $extdb == "" && $j == 0 ) {

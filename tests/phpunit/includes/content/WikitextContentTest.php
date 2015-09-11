@@ -89,7 +89,7 @@ more stuff
 			$update = $updates[$class];
 
 			foreach ( $fieldValues as $field => $value ) {
-				$v = $update->$field; #if the field doesn't exist, just crash and burn
+				$v = $update->$field; # if the field doesn't exist, just crash and burn
 				$this->assertEquals( $value, $v, "unexpected value for field $field in instance of $class" );
 			}
 		}

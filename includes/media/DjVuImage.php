@@ -410,11 +410,11 @@ EOT;
 				$xml .= Xml::tags(
 					'OBJECT',
 					array(
-						#'data' => '',
-						#'type' => 'image/x.djvu',
+						# 'data' => '',
+						# 'type' => 'image/x.djvu',
 						'height' => $m[2],
 						'width' => $m[1],
-						#'usemap' => '',
+						# 'usemap' => '',
 					),
 					"\n" .
 						Xml::element( 'PARAM', array( 'name' => 'DPI', 'value' => $m[3] ) ) . "\n" .

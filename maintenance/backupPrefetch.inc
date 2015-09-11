@@ -193,7 +193,7 @@ class BaseDump {
 		while ( $this->reader->read() ) {
 			switch ( $this->reader->nodeType ) {
 				case XMLReader::TEXT:
-				//case XMLReader::WHITESPACE:
+				// case XMLReader::WHITESPACE:
 				case XMLReader::SIGNIFICANT_WHITESPACE:
 					$buffer .= $this->reader->value;
 					break;

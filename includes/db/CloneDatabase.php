@@ -98,7 +98,7 @@ class CloneDatabase {
 				}
 				$this->db->dropTable( $tbl, __METHOD__ );
 				wfDebug( __METHOD__ . " dropping {$newTableName}\n" );
-				//Dropping the oldTable because the prefix was changed
+				// Dropping the oldTable because the prefix was changed
 			}
 
 			# Create new table

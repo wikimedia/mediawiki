@@ -93,7 +93,7 @@ class PNGHandlerTest extends MediaWikiMediaTestCase {
 	public function testGetMetadata( $filename, $expected ) {
 		$file = $this->dataFile( $filename, 'image/png' );
 		$actual = $this->handler->getMetadata( $file, "$this->filePath/$filename" );
-//		$this->assertEquals( unserialize( $expected ), unserialize( $actual ) );
+// 		$this->assertEquals( unserialize( $expected ), unserialize( $actual ) );
 		$this->assertEquals( ( $expected ), ( $actual ) );
 	}
 

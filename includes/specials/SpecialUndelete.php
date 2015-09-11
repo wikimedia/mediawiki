@@ -555,7 +555,7 @@ class PageArchive {
 		$user = User::newFromName( $revision->getUserText( Revision::RAW ), false );
 		$content = $revision->getContent( Revision::RAW );
 
-		//NOTE: article ID may not be known yet. prepareSave() should not modify the database.
+		// NOTE: article ID may not be known yet. prepareSave() should not modify the database.
 		$status = $content->prepareSave( $article, 0, -1, $user );
 
 		if ( !$status->isOK() ) {

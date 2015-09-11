@@ -480,7 +480,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 
 		if ( !$canShowField( File::DELETED_FILE ) ) {
-			//Early return, tidier than indenting all following things one level
+			// Early return, tidier than indenting all following things one level
 			return $vals;
 		}
 
