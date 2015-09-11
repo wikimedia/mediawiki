@@ -12,7 +12,7 @@ class RaggettInternalHHVM extends RaggettBase {
 	 * @param int &$retval Exit code (-1 on internal error)
 	 * @return string|null
 	 */
-	protected function cleanWrapped( $text, $stderr = false, &$retval ) {
+	protected function cleanWrapped( $text, $stderr = false, &$retval = null ) {
 		if ( $stderr ) {
 			throw new Exception( "\$stderr cannot be used with RaggettInternalHHVM" );
 		}
