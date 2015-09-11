@@ -781,7 +781,25 @@
 				// List of modules to be loaded
 				queue = [],
 
-				// List of callback functions waiting for modules to be ready to be called
+				/**
+				 * List of callback jobs waiting for modules to be ready.
+				 *
+				 * Jobs are created by #request() and run by #handlePending().
+				 *
+				 * Typically when a job is created for a module, the job's dependencies contain
+				 * both the module being requested and all its recursive dependencies.
+				 *
+				 * Format:
+				 *
+				 *     {
+				 *         'dependencies': [ module names ],
+				 *         'ready': Function callback
+				 *         'error': Function callback
+				 *     }
+				 *
+				 * @property {Object[]} jobs
+				 * @private
+				 */
 				jobs = [],
 
 				// Selector cache for the marker element. Use getMarker() to get/use the marker!
@@ -1371,14 +1389,14 @@
 
 				// Add ready and error callbacks if they were given
 				if ( ready !== undefined || error !== undefined ) {
-					jobs[ jobs.length ] = {
+					jobs.push( {
 						dependencies: $.grep( dependencies, function ( module ) {
 							var state = mw.loader.getState( module );
 							return state === 'registered' || state === 'loaded' || state === 'loading';
 						} ),
 						ready: ready,
 						error: error
-					};
+					} );
 				}
 
 				$.each( dependencies, function ( idx, module ) {
