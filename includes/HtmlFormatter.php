@@ -75,7 +75,7 @@ class HtmlFormatter {
 
 			// Workaround for bug that caused spaces before references
 			// to disappear during processing:
-			// https://bugzilla.wikimedia.org/show_bug.cgi?id=53086
+			// https://phabricator.wikimedia.org/T55086
 			//
 			// Please replace with a better fix if one can be found.
 			$html = str_replace( ' <', '&#32;<', $html );

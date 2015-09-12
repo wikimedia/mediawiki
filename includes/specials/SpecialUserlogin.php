@@ -1370,7 +1370,7 @@ class LoginForm extends SpecialPage {
 
 		if ( $this->mType == 'signup' ) {
 			// XXX hack pending RL or JS parse() support for complex content messages
-			// https://bugzilla.wikimedia.org/show_bug.cgi?id=25349
+			// https://phabricator.wikimedia.org/T27349
 			$out->addJsConfigVars( 'wgCreateacctImgcaptchaHelp',
 				$this->msg( 'createacct-imgcaptcha-help' )->parse() );
 

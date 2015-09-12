@@ -19,7 +19,7 @@
  *
  * @file
  * @author TyA <tya.wiki@gmail.com>
- * @see [[bugzilla:30976]]
+ * @see https://phabricator.wikimedia.org/T32976
  * @ingroup Maintenance
  */
 
