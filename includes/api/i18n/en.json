@@ -1393,7 +1393,7 @@
 	"api-help-param-type-password": "",
 	"api-help-param-type-timestamp": "Type: {{PLURAL:$1|1=timestamp|2=list of timestamps}} ([[Special:ApiHelp/main#main/datatypes|allowed formats]])",
 	"api-help-param-type-user": "Type: {{PLURAL:$1|1=user name|2=list of user names}}",
-	"api-help-param-list": "{{PLURAL:$1|1=One value|2=Values (separate with <kbd>{{!}}</kbd>)}}: $2",
+	"api-help-param-list": "{{PLURAL:$1|1=One of the following values|2=Values (separate with <kbd>{{!}}</kbd>)}}: $2",
 	"api-help-param-list-can-be-empty": "{{PLURAL:$1|0=Must be empty|Can be empty, or $2}}",
 	"api-help-param-limit": "No more than $1 allowed.",
 	"api-help-param-limit2": "No more than $1 ($2 for bots) allowed.",
