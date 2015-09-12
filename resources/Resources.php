@@ -1998,6 +1998,19 @@ return array(
 		),
 		'targets' => array( 'desktop', 'mobile' ),
 	),
+	'mediawiki.widgets.userlistinputwidget' => array(
+		'scripts' => array(
+			'resources/src/mediawiki.widgets/mw.widgets.UserListInputWidget.js',
+		),
+		'dependencies' => array(
+			'oojs-ui',
+			// FIXME: This widget needs UserInputWidget only, it shouldn't need to load
+			// all available widgets - Bug T108733
+			'mediawiki.widgets',
+			'mediawiki.widgets.styles',
+		),
+		'targets' => array( 'desktop', 'mobile' ),
+	),
 	'mediawiki.widgets.styles' => array(
 		'skinStyles' => array(
 			'default' => array(

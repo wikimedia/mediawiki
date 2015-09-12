@@ -155,6 +155,7 @@ class HTMLForm extends ContextSource {
 		'url' => 'HTMLTextField',
 		'title' => 'HTMLTitleTextField',
 		'user' => 'HTMLUserTextField',
+		'userlistinput' => 'HTMLUserListInputField',
 	);
 
 	public $mFieldData;
