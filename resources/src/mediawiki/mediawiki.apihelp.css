@@ -3,6 +3,16 @@
 	margin-bottom: 0.1em;
 }
 
+.apihelp-header.apihelp-module-name {
+	/*
+	 * This element is explicitly set to dir="ltr" in HTML.
+	 * Set explicit alignment so that CSSJanus will flip it to "right";
+	 * otherwise the alignment will be automatically set to "left" according
+	 * to the element's direction, and this will have an inconsistent look.
+	 */
+	text-align: left;
+}
+
 div.apihelp-linktrail {
 	font-size: smaller;
 }

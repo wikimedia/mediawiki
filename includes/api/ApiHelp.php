@@ -251,28 +251,43 @@ class ApiHelp extends ApiBase {
 				}
 
 				if ( $module->isMain() ) {
-					$header = $context->msg( 'api-help-main-header' )->parse();
+					$headerText = $context->msg( 'api-help-main-header' )->parse();
+					$headerAttr = array(
+						'class' => 'apihelp-header',
+					);
 				} else {
 					$name = $module->getModuleName();
-					$header = $module->getParent()->getModuleManager()->getModuleGroup( $name ) .
+					$headerText = $module->getParent()->getModuleManager()->getModuleGroup( $name ) .
 						"=$name";
 					if ( $module->getModulePrefix() !== '' ) {
-						$header .= ' ' .
+						$headerText .= ' ' .
 							$context->msg( 'parentheses', $module->getModulePrefix() )->parse();
 					}
+					// Module names are always in English and not localized,
+					// so English language and direction must be set explicitly,
+					// otherwise parentheses will get broken in RTL wikis
+					$headerAttr = array(
+						'class' => 'apihelp-header apihelp-module-name',
+						'dir' => 'ltr',
+						'lang' => 'en',
+					);
 				}
+
+				$headerAttr['id'] = $anchor;
+
 				$haveModules[$anchor] = array(
 					'toclevel' => count( $tocnumber ),
 					'level' => $level,
 					'anchor' => $anchor,
-					'line' => $header,
+					'line' => $headerText,
 					'number' => join( '.', $tocnumber ),
 					'index' => false,
 				);
 				if ( empty( $options['noheader'] ) ) {
-					$help['header'] .= Html::element( 'h' . min( 6, $level ),
-						array( 'id' => $anchor, 'class' => 'apihelp-header' ),
-						$header
+					$help['header'] .= Html::element(
+						'h' . min( 6, $level ),
+						$headerAttr,
+						$headerText
 					);
 				}
 			} else {
