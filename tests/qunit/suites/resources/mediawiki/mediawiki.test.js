@@ -186,7 +186,7 @@
 
 		hello = mw.message( 'hello' );
 
-		// https://bugzilla.wikimedia.org/show_bug.cgi?id=44459
+		// https://phabricator.wikimedia.org/T46459
 		assert.equal( hello.format, 'text', 'Message property "format" defaults to "text"' );
 
 		assert.strictEqual( hello.map, mw.messages, 'Message property "map" defaults to the global instance in mw.messages' );

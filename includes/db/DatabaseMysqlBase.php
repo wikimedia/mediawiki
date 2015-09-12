@@ -302,7 +302,7 @@ abstract class DatabaseMysqlBase extends DatabaseBase {
 		// We are not checking for any errors here, since
 		// these are no errors mysql_num_rows can cause.
 		// See http://dev.mysql.com/doc/refman/5.0/en/mysql-fetch-row.html.
-		// See https://bugzilla.wikimedia.org/42430
+		// See https://phabricator.wikimedia.org/T44430
 		return $n;
 	}
 
