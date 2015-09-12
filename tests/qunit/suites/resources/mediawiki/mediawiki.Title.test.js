@@ -590,15 +590,14 @@
 		}
 	} );
 
-	QUnit.test( 'newFromFileName', 66, function ( assert ) {
+	QUnit.test( 'newFromFileName', 74, function ( assert ) {
 		var title, i, thisCase, prefix,
 			cases = [
 				{
 					fileName: 'DCS0001557854455.JPG',
 					typeOfName: 'Standard camera output',
 					nameText: 'DCS0001557854455',
-					prefixedText: 'File:DCS0001557854455.jpg',
-					extensionDesired: 'jpg'
+					prefixedText: 'File:DCS0001557854455.JPG'
 				},
 				{
 					fileName: 'File:Sample.png',
@@ -610,8 +609,7 @@
 					fileName: 'Treppe 2222 Test upload.jpg',
 					typeOfName: 'File name with spaces in it and lower case file extension',
 					nameText: 'Treppe 2222 Test upload',
-					prefixedText: 'File:Treppe 2222 Test upload.JPG',
-					extensionDesired: 'JPG'
+					prefixedText: 'File:Treppe 2222 Test upload.jpg'
 				},
 				{
 					fileName: 'I contain a \ttab.jpg',
@@ -682,6 +680,28 @@
 					extensionDesired: 'png'
 				},
 				{
+					fileName: 'Example.SVG',
+					extensionDesired: 'JPG',
+					typeOfName: 'File name with different extension than desired',
+					nameText: 'Example.SVG',
+					// Keeps original (uppercase) ext and adds normalized desired ext
+					prefixedText: 'File:Example.SVG.jpg'
+				},
+				{
+					fileName: 'Example.JPG',
+					typeOfName: 'File name with non-normalised extension',
+					nameText: 'Example',
+					prefixedText: 'File:Example.JPG'
+				},
+				{
+					fileName: 'Example.JPG',
+					extensionDesired: 'JPEG',
+					typeOfName: 'File name with non-normalised extension',
+					nameText: 'Example',
+					// Keeps normalised variant
+					prefixedText: 'File:Example.jpg'
+				},
+				{
 					fileName: '𠜎𠜱𠝹𠱓𠱸𠲖𠳏𠳕𠴕𠵼𠵿𠸎𠸏𠹷𠺝𠺢𠻗𠻹𠻺𠼭𠼮𠽌𠾴𠾼𠿪𡁜𡁯𡁵𡁶𡁻𡃁𡃉𡇙𢃇𢞵𢫕𢭃𢯊𢱑𢱕𢳂𠻹𠻺𠼭𠼮𠽌𠾴𠾼𠿪𡁜𡁯𡁵𡁶𡁻𡃁𡃉𡇙𢃇𢞵𢫕𢭃𢯊𢱑𢱕𢳂.png',
 					typeOfName: 'File name longer than 240 bytes',
 					nameText: '𠜎𠜱𠝹𠱓𠱸𠲖𠳏𠳕𠴕𠵼𠵿𠸎𠸏𠹷𠺝𠺢𠻗𠻹𠻺𠼭𠼮𠽌𠾴𠾼𠿪𡁜𡁯𡁵𡁶𡁻𡃁𡃉𡇙𢃇𢞵𢫕𢭃𢯊𢱑𢱕𢳂𠻹𠻺𠼭𠼮𠽌𠾴𠾼𠿪𡁜𡁯𡁵𡁶𡁻𡃁𡃉𡇙𢃇𢞵',
@@ -707,9 +727,6 @@
 				assert.notStrictEqual( title, null, prefix + 'Parses successfully' );
 				assert.equal( title.getNameText(), thisCase.nameText, prefix + 'Filename matches original' );
 				assert.equal( title.getPrefixedText(), thisCase.prefixedText, prefix + 'File page title matches original' );
-				if ( thisCase.extensionDesired !== undefined ) {
-					assert.equal( title.getExtension(), thisCase.extensionDesired, prefix + 'Extension matches desired' );
-				}
 				assert.equal( title.getNamespaceId(), 6, prefix + 'Namespace ID matches File namespace' );
 			} else {
 				assert.strictEqual( title, null, thisCase.typeOfName + ', should not produce an mw.Title object' );
