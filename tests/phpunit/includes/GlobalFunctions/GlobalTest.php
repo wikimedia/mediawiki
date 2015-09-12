@@ -553,8 +553,8 @@ class GlobalTest extends MediaWikiTestCase {
 		return array(
 			array(
 				// just a regular :)
-				'https://bugzilla.wikimedia.org/show_bug.cgi?id=28627',
-				array( 'https://org.wikimedia.bugzilla./show_bug.cgi?id=28627' )
+				'https://phabricator.wikimedia.org/show_bug.cgi?id=28627',
+				array( 'https://org.wikimedia.phabricator./show_bug.cgi?id=28627' )
 			),
 			array(
 				// mailtos are handled special
@@ -589,10 +589,10 @@ class GlobalTest extends MediaWikiTestCase {
 
 			// protocol-relative URL cases per bug 29854...
 			array(
-				'//bugzilla.wikimedia.org/show_bug.cgi?id=28627',
+				'//phabricator.wikimedia.org/show_bug.cgi?id=28627',
 				array(
-					'http://org.wikimedia.bugzilla./show_bug.cgi?id=28627',
-					'https://org.wikimedia.bugzilla./show_bug.cgi?id=28627'
+					'http://org.wikimedia.phabricator./show_bug.cgi?id=28627',
+					'https://org.wikimedia.phabricator./show_bug.cgi?id=28627'
 				)
 			),
 		);

@@ -2678,7 +2678,7 @@ class Language {
 		# Even with //IGNORE iconv can whine about illegal characters in
 		# *input* string. We just ignore those too.
 		# REF: http://bugs.php.net/bug.php?id=37166
-		# REF: https://bugzilla.wikimedia.org/show_bug.cgi?id=16885
+		# REF: https://phabricator.wikimedia.org/T18885
 		MediaWiki\suppressWarnings();
 		$text = iconv( $in, $out . '//IGNORE', $string );
 		MediaWiki\restoreWarnings();

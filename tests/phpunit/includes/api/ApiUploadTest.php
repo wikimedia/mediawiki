@@ -11,7 +11,7 @@
  * @todo Port the other Upload tests, and other API tests to this framework
  *
  * @todo Broken test, reports false errors from time to time.
- * See https://bugzilla.wikimedia.org/26169
+ * See https://phabricator.wikimedia.org/T28169
  *
  * @todo This is pretty sucky... needs to be prettified.
  *

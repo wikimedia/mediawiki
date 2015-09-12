@@ -193,7 +193,7 @@ class PreprocessorTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Tests from Bug 28642 · https://bugzilla.wikimedia.org/28642
+	 * Tests from T30642 · https://phabricator.wikimedia.org/T30642
 	 */
 	public static function provideHeadings() {
 		// @codingStandardsIgnoreStart Ignore Generic.Files.LineLength.TooLong

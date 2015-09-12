@@ -534,7 +534,7 @@ abstract class Installer {
 		// then some poorly-formed extensions try to call their own classes
 		// after immediately registering them. We really need to get extension
 		// registration out of the global scope and into a real format.
-		// @see https://bugzilla.wikimedia.org/67440
+		// @see https://phabricator.wikimedia.org/T69440
 		global $wgAutoloadClasses;
 		$wgAutoloadClasses = array();
 
@@ -1477,7 +1477,7 @@ abstract class Installer {
 		 * want here is $wgHooks['LoadExtensionSchemaUpdates']. This won't work
 		 * if the extension has hidden hook registration in $wgExtensionFunctions,
 		 * but we're not opening that can of worms
-		 * @see https://bugzilla.wikimedia.org/show_bug.cgi?id=26857
+		 * @see https://phabricator.wikimedia.org/T28857
 		 */
 		global $wgAutoloadClasses;
 		$wgAutoloadClasses = array();
