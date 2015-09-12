@@ -3,6 +3,11 @@
 	margin-bottom: 0.1em;
 }
 
+.apihelp-header.apihelp-module-name {
+	/* To ensure correct flipping in RTL wikis */
+	text-align: left;
+}
+
 div.apihelp-linktrail {
 	font-size: smaller;
 }
