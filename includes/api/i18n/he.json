@@ -962,10 +962,10 @@
 	"apihelp-query+search-paramvalue-prop-sectiontitle": "הוספת שם הפסקה התואמת.",
 	"apihelp-query+search-paramvalue-prop-categorysnippet": "הוספת קטע קצר מפוענח של הקטגוריה התואמת.",
 	"apihelp-query+search-paramvalue-prop-isfilematch": "הוספת בוליאני שמציין אם החיפוש תאם לתוכן של קובץ.",
-	"apihelp-query+search-paramvalue-prop-score": "<span class=\"apihelp-deprecated\">מיושן וחסר־תוקן.</span>",
-	"apihelp-query+search-paramvalue-prop-hasrelated": "<span class=\"apihelp-deprecated\">מיושן וחסר־תוקן.</span>",
+	"apihelp-query+search-paramvalue-prop-score": "<span class=\"apihelp-deprecated\">מיושן וחסר־השפעה.</span>",
+	"apihelp-query+search-paramvalue-prop-hasrelated": "<span class=\"apihelp-deprecated\">מיושן וחסר־השפעה.</span>",
 	"apihelp-query+search-param-limit": "כמה דפים להחזיר בסך הכול.",
-	"apihelp-query+search-param-interwiki": "לכלול תוצאות בינוויקי בחיפוש ם זמין.",
+	"apihelp-query+search-param-interwiki": "לכלול תוצאות בינוויקי בחיפוש, אם זמין.",
 	"apihelp-query+search-param-backend": "באיזה שרת חיפוש להשתמש אם לא בבררת המחדל.",
 	"apihelp-query+search-example-simple": "חיפוש <kbd>meaning</kbd>.",
 	"apihelp-query+search-example-text": "חיפוש טקסטים עבור <kbd>meaning</kbd>.",
@@ -1312,5 +1312,5 @@
 	"api-help-permissions-granted-to": "{{PLURAL:$1|הוענק ל|הוענקו ל}}: $2",
 	"api-help-right-apihighlimits": "להשתמש במגבלות גבוהות יותר בשאילתות API (שאילתות אטיות: $1; שאילתות מהירות: $2). המגבלות לשאילתות אטיות חלות גם על פרמטרים מרובי־ערכים.",
 	"api-credits-header": "קרדיטים",
-	"api-credits": "מפתחי ה־API:\n* רואן קטאו (מפתח מוביל 2007–2009)\n* ויקטור וסילייב\n* בריאן טונג מין\n* סאם ריד\n* יורי אסטרחן (יוצר, מפתח מוביל מספטמבר 2006 עד ספטמבר 2007)\n* בראד יורש (מפתח מוביל מאז 2013)\n\nאנא שלחו הערות, הצעות ושאלות לכתובת mediawiki-api@lists.wikimedia.org או כתבו דיווח באג באתר https://bugzilla.wikimedia.org."
+	"api-credits": "מפתחי ה־API:\n* רואן קטאו (מפתח מוביל 2007–2009)\n* ויקטור וסילייב\n* בריאן טונג מין\n* סאם ריד\n* יורי אסטרחן (יוצר, מפתח מוביל מספטמבר 2006 עד ספטמבר 2007)\n* בראד יורש (מפתח מוביל מאז 2013)\n\nאנא שלחו הערות, הצעות ושאלות לכתובת mediawiki-api@lists.wikimedia.org או כתבו דיווח באג באתר https://phabricator.wikimedia.org."
 }

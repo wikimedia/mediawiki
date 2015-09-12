@@ -680,7 +680,7 @@
 	"apihelp-query+imageinfo-paramvalue-prop-userid": "Imageinfo returns information about file revisions (normally the last revision since <code>iilimit</code> defaults to 1). <code>userid</code> includes the ID of the user who made the (re)upload which created that revision. So there will be one user ID per imageinfo item; if you set the limit high enough, you will get all revisions of all files as separate imageinfo items.\n\n{{doc-apihelp-paramvalue|query+imageinfo|prop|userid}}",
 	"apihelp-query+imageinfo-paramvalue-prop-comment": "{{doc-apihelp-paramvalue|query+imageinfo|prop|comment}}",
 	"apihelp-query+imageinfo-paramvalue-prop-parsedcomment": "{{doc-apihelp-paramvalue|query+imageinfo|prop|parsedcomment}}",
-	"apihelp-query+imageinfo-paramvalue-prop-canonicaltitle": "{{doc-apihelp-paramvalue|query+imageinfo|prop|canonicaltitle}}",
+	"apihelp-query+imageinfo-paramvalue-prop-canonicaltitle": "A canonocal title is aa title formatted in the same way you would see it on the top of the page (localized namespace name, first letters capitalized, spaces instead of underscores). \n{{doc-apihelp-paramvalue|query+imageinfo|prop|canonicaltitle}}",
 	"apihelp-query+imageinfo-paramvalue-prop-url": "{{doc-apihelp-paramvalue|query+imageinfo|prop|url}}",
 	"apihelp-query+imageinfo-paramvalue-prop-size": "{{doc-apihelp-paramvalue|query+imageinfo|prop|size}}",
 	"apihelp-query+imageinfo-paramvalue-prop-dimensions": "{{doc-apihelp-paramvalue|query+imageinfo|prop|dimensions}}",

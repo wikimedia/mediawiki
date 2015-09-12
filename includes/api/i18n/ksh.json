@@ -562,7 +562,7 @@
 	"apihelp-query+imageinfo-paramvalue-prop-userid": "Deiht de Kännong vun jehdem Metmaacher derbei, dä en Väsohn vun dä Dattei huh jelaahde hät.",
 	"apihelp-query+imageinfo-paramvalue-prop-comment": "Aanmärkonge bei dä Väsjohn.",
 	"apihelp-query+imageinfo-paramvalue-prop-parsedcomment": "Donn di Aanmärkonge bei dä Väsjohn paase.",
-	"apihelp-query+imageinfo-paramvalue-prop-canonicaltitle": "Deiht de kannohnesche Överschreff vun dä Dattei derbei.",
+	"apihelp-query+imageinfo-paramvalue-prop-canonicaltitle": "Deiht de kannohnesche, schtandattmähßejje, Överschreff vun dä Dattei derbei.",
 	"apihelp-query+imageinfo-paramvalue-prop-url": "Jitt dä <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"Uniform Ressource Locator\">URL</i> för di Dattei un de Sigg met däh iere Äkliehrong uß.",
 	"apihelp-query+imageinfo-paramvalue-prop-size": "Deiht de Jrühße vun dä Dattei en \n<i lang=\"en\" xml:lang=\"en\" dir=\"ltr\">Bytes</i>, de Hühde, de Breide, un, woh et se jitt, de Aanzahl Sigge derbei.",
 	"apihelp-query+imageinfo-paramvalue-prop-dimensions": "Et sällve, wi de Jrühße.",

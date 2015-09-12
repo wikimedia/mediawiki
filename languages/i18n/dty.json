@@ -706,6 +706,7 @@
 	"powersearch-togglelabel": "जाँच्ने :",
 	"powersearch-toggleall": "सबै",
 	"powersearch-togglenone": "कोइ लै होइनन",
+	"powersearch-remember": "चयन गर्याकोलाई भविष्यमी गरिन्या खोजहरूमी सम्झन्या",
 	"search-external": "भाइरका खोज",
 	"searchdisabled": "{{SITENAME}} खोज निस्क्रिय पारियाको छ ।\nअहिल तमी गूगलद्वारा खोज्न सकन्छौ ।\nयाद गर्या उनीहरूको {{SITENAME}}को सूची सामग्री पुरानो भयाको हुनसकन्छ ।",
 	"preferences": "मेरी रोजाई",

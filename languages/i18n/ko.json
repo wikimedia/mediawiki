@@ -2329,7 +2329,7 @@
 	"tooltip-ca-nstab-main": "본문 보기",
 	"tooltip-ca-nstab-user": "사용자 문서 보기",
 	"tooltip-ca-nstab-media": "미디어 문서 보기",
-	"tooltip-ca-nstab-special": "이 문서는 특수 문서로, 문서 자체를 편집할 수 없습니다",
+	"tooltip-ca-nstab-special": "이 문서는 특수 문서로, 편집할 수 없습니다",
 	"tooltip-ca-nstab-project": "프로젝트 문서 보기",
 	"tooltip-ca-nstab-image": "파일 문서 보기",
 	"tooltip-ca-nstab-mediawiki": "시스템 메시지 보기",

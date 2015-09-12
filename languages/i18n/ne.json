@@ -893,7 +893,7 @@
 	"powersearch-togglelabel": "जाँच्ने :",
 	"powersearch-toggleall": "सबै",
 	"powersearch-togglenone": "कुनै पनि होइन",
-	"powersearch-remember": "चयन गरिएको लाई भविष्यमा गरिने खोजहरूको लागि सम्झिने",
+	"powersearch-remember": "चयन गरिएकोलाई भविष्यमा गरिने खोजहरूको लागि सम्झिने",
 	"search-external": "बाह्य खोज",
 	"searchdisabled": "{{SITENAME}} खोज निस्क्रिय पारिएको छ ।\nहाललाई तपाईं गूगलद्वारा खोज्न सक्नुहुन्छ ।\nयाद गर्नुहोस् उनीहरूको {{SITENAME}}को सूची सामग्री पुरानो भएको हुनसक्छ ।",
 	"search-error": "खोज्ने क्रममा समस्या देखियोः $1",
