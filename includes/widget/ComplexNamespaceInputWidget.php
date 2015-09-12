@@ -89,6 +89,7 @@ class ComplexNamespaceInputWidget extends \OOUI\Widget {
 
 		// Initialization
 		$this
+			// FIXME: This shouldn't have the complexNamespaceInputWidget
 			->addClasses( array( 'mw-widget-complexNamespaceInputWidget' ) )
 			->appendContent( $this->namespace, $this->associatedLabel, $this->invertLabel );
 	}
