@@ -437,7 +437,7 @@
 	"createacct-imgcaptcha-help": "",
 	"createacct-imgcaptcha-ph": "Enter the text you see above",
 	"createacct-submit": "Create your account",
-	"createacct-another-submit": "Create another account",
+	"createacct-another-submit": "Create account",
 	"createacct-benefit-heading": "{{SITENAME}} is made by people like you.",
 	"createacct-benefit-icon1": "icon-edits",
 	"createacct-benefit-head1": "{{NUMBEROFEDITS}}",
