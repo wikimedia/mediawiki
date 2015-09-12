@@ -531,9 +531,6 @@
 			cases = [
 				{
 					title: 'DCS0001557854455.JPG',
-					options: {
-						fileExtension: 'PNG'
-					},
 					expected: 'DCS0001557854455.JPG',
 					description: 'Title in normal namespace without anything invalid but with "file extension"'
 				},
@@ -559,18 +556,12 @@
 				},
 				{
 					title: 'File:Foo.JPEG',
-					options: {
-						fileExtension: 'jpg'
-					},
-					expected: 'File:Foo.jpg',
+					expected: 'File:Foo.JPEG',
 					description: 'Page in File-namespace with non-canonical extension'
 				},
 				{
 					title: 'File:Foo.JPEG  ',
-					options: {
-						fileExtension: 'jpg'
-					},
-					expected: 'File:Foo.jpg',
+					expected: 'File:Foo.JPEG',
 					description: 'Page in File-namespace with trailing whitespace'
 				}
 			];
@@ -590,15 +581,14 @@
 		}
 	} );
 
-	QUnit.test( 'newFromFileName', 66, function ( assert ) {
+	QUnit.test( 'newFromFileName', 54, function ( assert ) {
 		var title, i, thisCase, prefix,
 			cases = [
 				{
 					fileName: 'DCS0001557854455.JPG',
 					typeOfName: 'Standard camera output',
 					nameText: 'DCS0001557854455',
-					prefixedText: 'File:DCS0001557854455.jpg',
-					extensionDesired: 'jpg'
+					prefixedText: 'File:DCS0001557854455.JPG'
 				},
 				{
 					fileName: 'File:Sample.png',
@@ -610,8 +600,7 @@
 					fileName: 'Treppe 2222 Test upload.jpg',
 					typeOfName: 'File name with spaces in it and lower case file extension',
 					nameText: 'Treppe 2222 Test upload',
-					prefixedText: 'File:Treppe 2222 Test upload.JPG',
-					extensionDesired: 'JPG'
+					prefixedText: 'File:Treppe 2222 Test upload.jpg'
 				},
 				{
 					fileName: 'I contain a \ttab.jpg',
@@ -668,20 +657,6 @@
 					prefixedText: 'File:Dot. dot. dot'
 				},
 				{
-					fileName: 'dot. dot ._dot',
-					typeOfName: 'File name with different file extension desired',
-					nameText: 'Dot. dot . dot',
-					prefixedText: 'File:Dot. dot . dot.png',
-					extensionDesired: 'png'
-				},
-				{
-					fileName: 'fileWOExt',
-					typeOfName: 'File W/O extension with extension desired',
-					nameText: 'FileWOExt',
-					prefixedText: 'File:FileWOExt.png',
-					extensionDesired: 'png'
-				},
-				{
 					fileName: '𠜎𠜱𠝹𠱓𠱸𠲖𠳏𠳕𠴕𠵼𠵿𠸎𠸏𠹷𠺝𠺢𠻗𠻹𠻺𠼭𠼮𠽌𠾴𠾼𠿪𡁜𡁯𡁵𡁶𡁻𡃁𡃉𡇙𢃇𢞵𢫕𢭃𢯊𢱑𢱕𢳂𠻹𠻺𠼭𠼮𠽌𠾴𠾼𠿪𡁜𡁯𡁵𡁶𡁻𡃁𡃉𡇙𢃇𢞵𢫕𢭃𢯊𢱑𢱕𢳂.png',
 					typeOfName: 'File name longer than 240 bytes',
 					nameText: '𠜎𠜱𠝹𠱓𠱸𠲖𠳏𠳕𠴕𠵼𠵿𠸎𠸏𠹷𠺝𠺢𠻗𠻹𠻺𠼭𠼮𠽌𠾴𠾼𠿪𡁜𡁯𡁵𡁶𡁻𡃁𡃉𡇙𢃇𢞵𢫕𢭃𢯊𢱑𢱕𢳂𠻹𠻺𠼭𠼮𠽌𠾴𠾼𠿪𡁜𡁯𡁵𡁶𡁻𡃁𡃉𡇙𢃇𢞵',
@@ -699,7 +674,7 @@
 
 		for ( i = 0; i < cases.length; i++ ) {
 			thisCase = cases[ i ];
-			title = mw.Title.newFromFileName( thisCase.fileName, thisCase.extensionDesired );
+			title = mw.Title.newFromFileName( thisCase.fileName );
 
 			if ( thisCase.nameText !== undefined ) {
 				prefix = '[' + thisCase.typeOfName + '] ';
@@ -707,9 +682,6 @@
 				assert.notStrictEqual( title, null, prefix + 'Parses successfully' );
 				assert.equal( title.getNameText(), thisCase.nameText, prefix + 'Filename matches original' );
 				assert.equal( title.getPrefixedText(), thisCase.prefixedText, prefix + 'File page title matches original' );
-				if ( thisCase.extensionDesired !== undefined ) {
-					assert.equal( title.getExtension(), thisCase.extensionDesired, prefix + 'Extension matches desired' );
-				}
 				assert.equal( title.getNamespaceId(), 6, prefix + 'Namespace ID matches File namespace' );
 			} else {
 				assert.strictEqual( title, null, thisCase.typeOfName + ', should not produce an mw.Title object' );
