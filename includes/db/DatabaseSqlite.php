@@ -806,7 +806,7 @@ class DatabaseSqlite extends DatabaseBase {
 			// https://bugs.php.net/bug.php?id=62361
 			// There is an additional bug regarding sorting this data after insert
 			// on older versions of sqlite shipped with ubuntu 12.04
-			// https://bugzilla.wikimedia.org/show_bug.cgi?id=72367
+			// https://phabricator.wikimedia.org/T74367
 			wfDebugLog( __CLASS__, __FUNCTION__ . ': Quoting value containing null byte. For consistency all binary data should have been first processed with self::encodeBlob()' );
 			return "x'" . bin2hex( $s ) . "'";
 		} else {

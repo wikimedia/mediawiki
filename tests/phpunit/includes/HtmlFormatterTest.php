@@ -114,7 +114,7 @@ class HtmlFormatterTest extends MediaWikiTestCase {
 				array(),
 				$removeTags, // Have some rules to trigger a DOM parse
 			),
-			// https://bugzilla.wikimedia.org/show_bug.cgi?id=53086
+			// https://phabricator.wikimedia.org/T55086
 			array(
 				'Foo<sup id="cite_ref-1" class="reference"><a href="#cite_note-1">[1]</a></sup>'
 					. ' <a href="/wiki/Bar" title="Bar" class="mw-redirect">Bar</a>',
