@@ -635,7 +635,7 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 	$bits = wfParseUrl( $url );
 
 	// ensure proper port for HTTPS arrives in URL
-	// https://bugzilla.wikimedia.org/show_bug.cgi?id=65184
+	// https://phabricator.wikimedia.org/T67184
 	if ( $defaultProto === PROTO_HTTPS && $wgHttpsPort != 443 ) {
 		$bits['port'] = $wgHttpsPort;
 	}

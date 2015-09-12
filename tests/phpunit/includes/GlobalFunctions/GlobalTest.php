@@ -551,10 +551,10 @@ class GlobalTest extends MediaWikiTestCase {
 
 	public static function provideMakeUrlIndexes() {
 		return array(
+			// Testcase for T30627
 			array(
-				// just a regular :)
-				'https://bugzilla.wikimedia.org/show_bug.cgi?id=28627',
-				array( 'https://org.wikimedia.bugzilla./show_bug.cgi?id=28627' )
+				'https://example.org/test.cgi?id=12345',
+				array( 'https://org.example/test.cgi?id=12345' )
 			),
 			array(
 				// mailtos are handled special
@@ -563,7 +563,7 @@ class GlobalTest extends MediaWikiTestCase {
 				array( 'mailto:org.wikimedia@wiki.' )
 			),
 
-			// file URL cases per bug 28627...
+			// file URL cases per T30627...
 			array(
 				// three slashes: local filesystem path Unix-style
 				'file:///whatever/you/like.txt',
@@ -587,12 +587,12 @@ class GlobalTest extends MediaWikiTestCase {
 			// Those will survive the algorithm but with results that
 			// are less consistent.
 
-			// protocol-relative URL cases per bug 29854...
+			// protocol-relative URL cases per T31854...
 			array(
-				'//bugzilla.wikimedia.org/show_bug.cgi?id=28627',
+				'//example.org/test.cgi?id=12345',
 				array(
-					'http://org.wikimedia.bugzilla./show_bug.cgi?id=28627',
-					'https://org.wikimedia.bugzilla./show_bug.cgi?id=28627'
+					'http://org.example./test.cgi?id=12345',
+					'https://org.example./test.cgi?id=12345'
 				)
 			),
 		);

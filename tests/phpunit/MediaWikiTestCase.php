@@ -1151,7 +1151,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * Note: we are overriding this method to remove the deprecated error
-	 * @see https://bugzilla.wikimedia.org/show_bug.cgi?id=69505
+	 * @see https://phabricator.wikimedia.org/T71505
 	 * @see https://github.com/sebastianbergmann/phpunit/issues/1292
 	 * @deprecated
 	 *

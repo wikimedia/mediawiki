@@ -92,7 +92,7 @@ class ActionTest extends MediaWikiTestCase {
 	}
 
 	public function testGetActionName_editredlinkWorkaround() {
-		// See https://bugzilla.wikimedia.org/show_bug.cgi?id=20966
+		// See https://phabricator.wikimedia.org/T22966
 		$context = $this->getContext( 'editredlink' );
 		$actionName = Action::getActionName( $context );
 
@@ -100,7 +100,7 @@ class ActionTest extends MediaWikiTestCase {
 	}
 
 	public function testGetActionName_historysubmitWorkaround() {
-		// See https://bugzilla.wikimedia.org/show_bug.cgi?id=20966
+		// See https://phabricator.wikimedia.org/T22966
 		$context = $this->getContext( 'historysubmit' );
 		$actionName = Action::getActionName( $context );
 
@@ -108,7 +108,7 @@ class ActionTest extends MediaWikiTestCase {
 	}
 
 	public function testGetActionName_revisiondeleteWorkaround() {
-		// See https://bugzilla.wikimedia.org/show_bug.cgi?id=20966
+		// See https://phabricator.wikimedia.org/T22966
 		$context = $this->getContext( 'historysubmit' );
 		$context->getRequest()->setVal( 'revisiondelete', true );
 		$actionName = Action::getActionName( $context );
