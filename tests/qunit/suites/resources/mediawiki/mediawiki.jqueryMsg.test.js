@@ -41,7 +41,7 @@
 			'gender-msg-currentuser': '{{GENDER:|blue|pink|green}}',
 
 			'plural-msg': 'Found $1 {{PLURAL:$1|item|items}}',
-			// See https://bugzilla.wikimedia.org/69993
+			// See https://phabricator.wikimedia.org/T71993
 			'plural-msg-explicit-forms-nested': 'Found {{PLURAL:$1|$1 results|0=no results in {{SITENAME}}|1=$1 result}}',
 			// Assume the grammar form grammar_case_foo is not valid in any language
 			'grammar-msg': 'Przeszukaj {{GRAMMAR:grammar_case_foo|{{SITENAME}}}}',

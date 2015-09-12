@@ -2,7 +2,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 /**
- * Fixes all rows affected by https://bugzilla.wikimedia.org/show_bug.cgi?id=37714
+ * Fixes all rows affected by https://phabricator.wikimedia.org/T39714
  */
 class TidyUpBug37714 extends Maintenance {
 	public function execute() {

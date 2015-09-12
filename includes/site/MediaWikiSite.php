@@ -115,7 +115,7 @@ class MediaWikiSite extends Site {
 
 			// Make sure the string is normalized into NFC (due to the bug 40017)
 			// but do nothing to the whitespaces, that should work appropriately.
-			// @see https://bugzilla.wikimedia.org/show_bug.cgi?id=40017
+			// @see https://phabricator.wikimedia.org/T42017
 			$pageName = UtfNormal\Validator::cleanUp( $pageName );
 
 			// Build the args for the specific call

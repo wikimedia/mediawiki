@@ -69,7 +69,7 @@ class ApiFormatPhp extends ApiFormatBase {
 		) {
 			$this->dieUsage(
 				'This response cannot be represented using format=php. ' .
-				'See https://bugzilla.wikimedia.org/show_bug.cgi?id=66776',
+				'See https://phabricator.wikimedia.org/T68776',
 				'internalerror'
 			);
 		}
