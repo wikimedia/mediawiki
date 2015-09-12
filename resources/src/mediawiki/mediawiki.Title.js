@@ -557,8 +557,8 @@
 						parts.push( ext );
 					}
 
-					// Always canonicalize to the desired file extension (e.g. 'jpeg' to 'jpg')
-					ext = options.fileExtension;
+					// Always canonicalize to the desired file extension (e.g. 'JPEG' to 'jpg')
+					ext = Title.normalizeExtension( options.fileExtension );
 				}
 
 				// Remove whitespace of the name part (that W/O extension)
