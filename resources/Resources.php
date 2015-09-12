@@ -1870,9 +1870,13 @@ return array(
 		'targets' => array( 'desktop', 'mobile' ),
 	),
 
-	'mediawiki.widgets' => array(
+	'mediawiki.widgets.base' => array(
 		'scripts' => array(
 			'resources/src/mediawiki.widgets/mw.widgets.js',
+		),
+	),
+	'mediawiki.widgets' => array(
+		'scripts' => array(
 			'resources/src/mediawiki.widgets/mw.widgets.CalendarWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.DateInputWidget.js',
 			'resources/src/mediawiki.widgets/mw.widgets.NamespaceInputWidget.js',
@@ -1892,6 +1896,7 @@ return array(
 		),
 		'dependencies' => array(
 			'oojs-ui',
+			'mediawiki.widgets.base',
 			'mediawiki.widgets.styles',
 			// DateInputWidget
 			'moment',
@@ -1915,6 +1920,18 @@ return array(
 			'mw-widgets-titleinput-description-redirect',
 		),
 		'targets' => array( 'desktop', 'mobile' ),
+	),
+	'mediawiki.widgets.userlistinputwidget' => array(
+		'scripts' => array(
+			'resources/src/mediawiki.widgets/mw.widgets.UserListInputWidget.js',
+		),
+		'dependencies' => array(
+			'oojs-ui',
+			// FIXME: This widget needs UserInputWidget only, it shouldn't need to load
+			// all available widgets - Bug T108733
+			'mediawiki.widgets',
+			'mediawiki.widgets.styles',
+		),
 	),
 	'mediawiki.widgets.styles' => array(
 		'skinStyles' => array(

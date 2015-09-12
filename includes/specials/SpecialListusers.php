@@ -263,69 +263,89 @@ class UsersPager extends AlphabeticPager {
 	function getPageHeader() {
 		list( $self ) = explode( '/', $this->getTitle()->getPrefixedDBkey() );
 
-		$this->getOutput()->addModules( 'mediawiki.userSuggest' );
-
-		# Form tag
-		$out = Xml::openElement(
-			'form',
-			array( 'method' => 'get', 'action' => wfScript(), 'id' => 'mw-listusers-form' )
-		) .
-			Xml::fieldset( $this->msg( 'listusers' )->text() ) .
-			Html::hidden( 'title', $self );
-
-		# Username field (with autocompletion support)
-		$out .= Xml::label( $this->msg( 'listusersfrom' )->text(), 'offset' ) . ' ' .
-			Html::input(
-				'username',
-				$this->requestedUser,
-				'text',
-				array(
-					'class' => 'mw-autocomplete-user',
-					'id' => 'offset',
-					'size' => 20,
-					'autofocus' => $this->requestedUser === ''
-				)
-			) . ' ';
-
 		# Group drop-down list
-		$sel = new XmlSelect( 'group', 'group', $this->requestedGroup );
-		$sel->addOption( $this->msg( 'group-all' )->text(), '' );
+		$options = array( array( 
+			'data' => '',
+			'label' => $this->msg( 'group-all' )->text(),
+		) );
 		foreach ( $this->getAllGroups() as $group => $groupText ) {
-			$sel->addOption( $groupText, $group );
+			$options[] = array(
+				'data' => $group,
+				'label' => $groupText,
+			);
 		}
 
-		$out .= Xml::label( $this->msg( 'group' )->text(), 'group' ) . ' ';
-		$out .= $sel->getHTML() . '<br />';
-		$out .= Xml::checkLabel(
-			$this->msg( 'listusers-editsonly' )->text(),
-			'editsOnly',
-			'editsOnly',
-			$this->editsOnly
+		$descriptor = array(
+			'userlistinput' => array(
+				'type' => 'userlistinput',
+				'fieldconfig' => array(
+					'userinput' => array(
+						'name' => 'username',
+						'value' => $this->requestedUser,
+						'id' => 'offset',
+						'maxLength' => 20,
+						'autofocus' => $this->requestedUser === '',
+					),
+					'userinputLabel' => array(
+						'label' => $this->msg( 'listusersfrom' )->text()
+					),
+					'groupinput' => array(
+						'name' => 'group',
+						'id' => 'group',
+						'options' => $options,
+						'value' => $this->requestedGroup
+					),
+					'groupinputLabel' => array(
+						'label' => $this->msg( 'group' )->text(),
+					),
+					'editsonlyCheck' => array(
+						'name' => 'editsOnly',
+						'id' => 'editsOnly',
+						'selected' => $this->editsOnly,
+					),
+					'editsonlyCheckLabel' => array(
+						'label' => $this->msg( 'listusers-editsonly' )->text(),
+					),
+					'creationsortCheck' => array(
+						'name' => 'creationSort',
+						'id' => 'creationSort',
+						'selected' => $this->creationSort,
+					),
+					'creationsortCheckLabel' => array(
+						'label' => $this->msg( 'listusers-creationsort' )->text(),
+					),
+					'descsortCheck' => array(
+						'name' => 'desc',
+						'id' => 'desc',
+						'selected' => $this->mDefaultDirection,
+					),
+					'descsortCheckLabel' => array(
+						'label' => $this->msg( 'listusers-desc' )->text(),
+					),
+				),
+			),
 		);
-		$out .= '&#160;';
-		$out .= Xml::checkLabel(
-			$this->msg( 'listusers-creationsort' )->text(),
-			'creationSort',
-			'creationSort',
-			$this->creationSort
-		);
-		$out .= '&#160;';
-		$out .= Xml::checkLabel(
-			$this->msg( 'listusers-desc' )->text(),
-			'desc',
-			'desc',
-			$this->mDefaultDirection
-		);
-		$out .= '<br />';
 
-		Hooks::run( 'SpecialListusersHeaderForm', array( $this, &$out ) );
+		$hiddenFields = array(
+			'title' => $self,
+			'limit' => $this->mLimit,
+		);
 
-		# Submit button and form bottom
-		$out .= Html::hidden( 'limit', $this->mLimit );
-		$out .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() );
+		Hooks::run( 'SpecialListusersHeaderFormFields', array( $this, &$out, &$descriptor, &$hiddenFields ) );
+
+		$htmlForm = HTMLForm::factory( 'ooui', $descriptor, $this->getContext() );
+		$out = $htmlForm
+			->addHiddenFields( $hiddenFields )
+			->setId( 'mw-listusers-form' )
+			->setWrapperLegendMsg( 'listusers' )
+			->setMethod( 'get' )
+			->setSubmitTextMsg( 'allpagessubmit' )
+			->prepareForm()
+			->getHtml( false );
+
+		// deprecated, use SpecialListusersHeader or SpecialListusersHeaderFormFields instead
+		ContentHandler::runLegacyHooks( 'SpecialListusersHeaderForm', array( $this, &$out ) );
 		Hooks::run( 'SpecialListusersHeader', array( $this, &$out ) );
-		$out .= Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' );
 
 		return $out;
 	}
