@@ -290,8 +290,16 @@ class UsersPager extends AlphabeticPager {
 		# Group drop-down list
 		$sel = new XmlSelect( 'group', 'group', $this->requestedGroup );
 		$sel->addOption( $this->msg( 'group-all' )->text(), '' );
+		$options = array( array( 
+			'data' => '',
+			'label' => $this->msg( 'group-all' )->text(),
+		) );
 		foreach ( $this->getAllGroups() as $group => $groupText ) {
 			$sel->addOption( $groupText, $group );
+			$options[] = array(
+				'data' => $group,
+				'label' => $groupText,
+			);
 		}
 
 		$out .= Xml::label( $this->msg( 'group' )->text(), 'group' ) . ' ';
@@ -326,6 +334,52 @@ class UsersPager extends AlphabeticPager {
 		Hooks::run( 'SpecialListusersHeader', array( $this, &$out ) );
 		$out .= Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' );
+
+		$this->getOutput()->enableOOUI();
+		$out .= new MediaWIki\Widget\UserListInputWidget( array(
+			'userinput' => array(
+				'name' => 'username',
+				'value' => $this->requestedUser,
+				'id' => 'offset',
+				'maxLength' => 20,
+				'autofocus' => $this->requestedUser === '',
+			),
+			'userinputLabel' => array(
+				'label' => $this->msg( 'listusersfrom' )->text()
+			),
+			'groupinput' => array(
+				'name' => 'group',
+				'id' => 'group',
+				'options' => $options
+			),
+			'groupinputLabel' => array(
+				'label' => $this->msg( 'group' )->text(),
+			),
+			'editsonlyCheck' => array(
+				'name' => 'editsOnly',
+				'id' => 'editsOnly',
+				'selected' => $this->editsOnly,
+			),
+			'editsonlyCheckLabel' => array(
+				'label' => $this->msg( 'listusers-editsonly' )->text(),
+			),
+			'creationsortCheck' => array(
+				'name' => 'creationSort',
+				'id' => 'creationSort',
+				'selected' => $this->creationSort,
+			),
+			'creationsortCheckLabel' => array(
+				'label' => $this->msg( 'listusers-creationsort' )->text(),
+			),
+			'descsortCheck' => array(
+				'name' => 'desc',
+				'id' => 'desc',
+				'selected' => $this->mDefaultDirection,
+			),
+			'descsortCheckLabel' => array(
+				'label' => $this->msg( 'listusers-desc' )->text(),
+			),
+		) );
 
 		return $out;
 	}

@@ -771,6 +771,7 @@ $wgAutoloadLocalClasses = array(
 	'MediaWiki\\Widget\\NamespaceInputWidget' => __DIR__ . '/includes/widget/NamespaceInputWidget.php',
 	'MediaWiki\\Widget\\TitleInputWidget' => __DIR__ . '/includes/widget/TitleInputWidget.php',
 	'MediaWiki\\Widget\\UserInputWidget' => __DIR__ . '/includes/widget/UserInputWidget.php',
+	'MediaWiki\\Widget\\UserListInputWidget' => __DIR__ . '/includes/widget/UserListInputWidget.php',
 	'MemCachedClientforWiki' => __DIR__ . '/includes/objectcache/MemcachedClient.php',
 	'MemcLockManager' => __DIR__ . '/includes/filebackend/lockmanager/MemcLockManager.php',
 	'MemcachedBagOStuff' => __DIR__ . '/includes/objectcache/MemcachedBagOStuff.php',
