@@ -531,7 +531,7 @@
 	"api-help-parameters": "{{PLURAL:$1|パラメーター}}:",
 	"api-help-param-deprecated": "廃止予定です。",
 	"api-help-param-required": "このパラメーターは必須です。",
-	"api-help-param-list": "{{PLURAL:$1|1=値 (いずれか1つ)|2=値 (<kbd>{{!}}</kbd>で区切る)}}: $2",
+	"api-help-param-list": "{{PLURAL:$1|1=値 (次の値のいずれか1つ)|2=値 (<kbd>{{!}}</kbd>で区切る)}}: $2",
 	"api-help-param-list-can-be-empty": "{{PLURAL:$1|0=空欄にしてください|空欄にするか、または $2}}",
 	"api-help-param-integer-min": "{{PLURAL:$1|値}}は $2 以上にしてください。",
 	"api-help-param-integer-max": "{{PLURAL:$1|値}}は $3 以下にしてください。",

@@ -1288,7 +1288,7 @@
 	"api-help-param-type-boolean": "סוג: בוליאני ([[Special:ApiHelp/main#main/datatypes|פרטים]])",
 	"api-help-param-type-timestamp": "סוג: {{PLURAL:$1|חותם־זמן|רשימת חותמי־זמן}} ([[Special:ApiHelp/main#main/datatypes|תסדירים מורשים]])",
 	"api-help-param-type-user": "סוג: {{PLURAL:$1|1=שם משתמש|2=רשימת שמות משתמשים}}",
-	"api-help-param-list": "{{PLURAL:$1|1=ערך אחד|2=ערכים (מופרדים באמצעות \"<kbd>{{!}}</kbd>\")}}: $2",
+	"api-help-param-list": "{{PLURAL:$1|1=אחד מהערכים הבאים|2=ערכים (מופרדים באמצעות \"<kbd>{{!}}</kbd>\")}}: $2",
 	"api-help-param-list-can-be-empty": "{{PLURAL:$1|0=חייב להיות ריק|יכול להיות ריק או $2}}",
 	"api-help-param-limit": "מספר הפרמטרים לא יכול להיות גדול מ־$1.",
 	"api-help-param-limit2": "המספר המרבי המותר הוא $1 (עבור בוטים – $2).",

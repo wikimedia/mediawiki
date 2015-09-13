@@ -2365,7 +2365,7 @@
 	"markedaspatrollederrortext": "Morate izabrati izmenu da biste je označili kao patroliranu.",
 	"markedaspatrollederror-noautopatrol": "Ne možete da označite svoje izmene kao patrolirane.",
 	"markedaspatrollednotify": "Ova izmena na stranici „$1“ je označena kao patrolirana.",
-	"markedaspatrollederrornotify": "Označavanje ove stranice patroliranom nije uspelo.",
+	"markedaspatrollederrornotify": "Označavanje ove izmene patroliranom nije uspelo.",
 	"patrol-log-page": "Dnevnik patroliranja",
 	"patrol-log-header": "Ovo je dnevnik patroliranih izmena.",
 	"log-show-hide-patrol": "$1 dnevnik patroliranja",

@@ -327,7 +327,7 @@
 	"api-help-param-type-boolean": "Typ: wartość logiczna ([[Special:ApiHelp/main#main/datatypes|szczegóły]])",
 	"api-help-param-type-timestamp": "Typ: {{PLURAL:$1|1=znacznik czasu|2=lista znaczników czasu}} ([[Special:ApiHelp/main#main/datatypes|dozwolone formaty]])",
 	"api-help-param-type-user": "Typ: {{PLURAL:$1|1=nazwa użytkownika|2=lista nazw uzytkowników}}",
-	"api-help-param-list": "{{PLURAL:$1|1=Jedna wartość|2=Wartości (oddziel za pomocą <kbd>{{!}}</kbd>)}}: $2",
+	"api-help-param-list": "{{PLURAL:$1|1=Jedna z następujących wartość|2=Wartości (oddziel za pomocą <kbd>{{!}}</kbd>)}}: $2",
 	"api-help-param-limit": "Nie więcej niż $1 dozwolone.",
 	"api-help-param-limit2": "Nie więcej niż $1 ($2 dla botów) dozwolone.",
 	"api-help-param-integer-min": "{{PLURAL:$1|1=Wartość musi być nie mniejsza|2=Wartości muszą być nie mniejsze}} niż $2.",

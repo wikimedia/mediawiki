@@ -2427,7 +2427,7 @@
 	"markedaspatrollederrortext": "Морате изабрати измену да бисте је означили као патролирану.",
 	"markedaspatrollederror-noautopatrol": "Не можете да означите своје измене као патролиране.",
 	"markedaspatrollednotify": "Ова измена на страници „$1“ је означена као патролирана.",
-	"markedaspatrollederrornotify": "Означавање ове странице патролираном није успело.",
+	"markedaspatrollederrornotify": "Означавање ове измене патролираном није успело.",
 	"patrol-log-page": "Дневник патролирања",
 	"patrol-log-header": "Ово је дневник патролираних измена.",
 	"log-show-hide-patrol": "$1 дневник патролирања",

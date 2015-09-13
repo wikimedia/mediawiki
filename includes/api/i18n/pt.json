@@ -96,6 +96,7 @@
 	"api-help-param-deprecated": "Obsoleto.",
 	"api-help-param-required": "Este parâmetro é obrigatório.",
 	"api-help-datatypes-header": "Tipo de dados",
+	"api-help-param-list": "{{PLURAL:$1|1=Um dos seguintes valores|2=Valores (separar com <kbd>{{!}}</kbd>)}}: $2",
 	"api-help-param-multi-separate": "Separe os valores com <kbd>|</kbd>.",
 	"api-help-param-default": "Padrão: $1",
 	"api-help-param-default-empty": "Padrão: <span class=\"apihelp-empty\">(vazio)</span>",
