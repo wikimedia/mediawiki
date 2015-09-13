@@ -349,20 +349,18 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	protected function getTagSelect( $selectedTags, $label ) {
 		$result = array();
 		$result[0] = Xml::label( $label, 'mw-edittags-tag-list' );
-		$result[1] = Xml::openElement( 'select', array(
-			'name' => 'wpTagList[]',
-			'id' => 'mw-edittags-tag-list',
-			'multiple' => 'multiple',
-			'size' => '8',
-		) );
+
+		$select = new XmlSelect( 'wpTagList[]', 'mw-edittags-tag-list', $selectedTags );
+		$select->setAttribute( 'multiple', 'multiple' );
+		$select->setAttribute( 'size', '8' );
 
 		$tags = ChangeTags::listExplicitlyDefinedTags();
 		$tags = array_unique( array_merge( $tags, $selectedTags ) );
-		foreach ( $tags as $tag ) {
-			$result[1] .= Xml::option( $tag, $tag, in_array( $tag, $selectedTags ) );
-		}
 
-		$result[1] .= Xml::closeElement( 'select' );
+		// Values of $tags are also used as <option> labels
+		$select->addOptions( array_combine( $tags, $tags ) );
+
+		$result[1] = $select->getHTML();
 		return $result;
 	}
 
