@@ -43,7 +43,7 @@ class XmlSelect {
 	}
 
 	/**
-	 * @param string $default
+	 * @param string|array $default
 	 */
 	public function setDefault( $default ) {
 		$this->default = $default;
@@ -95,7 +95,7 @@ class XmlSelect {
 	 * label => ( label => value, label => value )
 	 *
 	 * @param array $options
-	 * @param string $default
+	 * @param string|array $default
 	 * @return string
 	 */
 	static function formatOptions( $options, $default = false ) {
@@ -106,7 +106,11 @@ class XmlSelect {
 				$contents = self::formatOptions( $value, $default );
 				$data .= Html::rawElement( 'optgroup', array( 'label' => $label ), $contents ) . "\n";
 			} else {
-				$data .= Xml::option( $label, $value, $value === $default ) . "\n";
+				// If $default is an array, then the <select> probably has the multiple attribute,
+				// so we should check if each $value is in $default, rather than checking if
+				// $value is equal to $default.
+				$selected = is_array( $default ) ? in_array( $value, $default ) : $value === $default;
+				$data .= Xml::option( $label, $value, $selected ) . "\n";
 			}
 		}
 
