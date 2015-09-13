@@ -891,14 +891,16 @@ class SkinTemplate extends Skin {
 					);
 				}
 
+				// Whether the user is editing the page
+				$isEditing = $onPage && ( $action == 'edit' || $action == 'submit' );
+
 				// Checks if user can edit the current page if it exists or create it otherwise
 				if ( $title->quickUserCan( 'edit', $user )
 					&& ( $title->exists() || $title->quickUserCan( 'create', $user ) )
+					&& $this->isEditableRevision( $title, $isEditing )
 				) {
 					// Builds CSS class for talk page links
 					$isTalkClass = $isTalk ? ' istalk' : '';
-					// Whether the user is editing the page
-					$isEditing = $onPage && ( $action == 'edit' || $action == 'submit' );
 					// Whether to show the "Add a new section" tab
 					// Checks if this is a current rev of talk page and is not forced to be hidden
 					$showNewSection = !$out->forceHideNewSectionLink()
@@ -1115,6 +1117,34 @@ class SkinTemplate extends Skin {
 		}
 
 		return $content_navigation;
+	}
+
+	/**
+	 * Return if the revision has the same content model as the latest revision,
+	 * which is required for it to be editable.
+	 * @param Title $title Page title
+	 * @param bool $isEditing Whether the user is editing the page
+	 * @return bool
+	 */
+	protected function isEditableRevision( Title $title, $isEditing ) {
+		if ( $isEditing ) {
+			// getRevisionId() doesn't work for action=edit
+			$oldid = $this->getRequest()->getInt( 'oldid' );
+			if ( !$oldid || $oldid === $title->getLatestRevId() ) {
+				return true; // Editing the latest revision
+			}
+			$revision = Revision::newFromId( $oldid );
+			if ( !$revision || !$revision->getTitle()->equals( $title ) ) {
+				return true; // Invalid oldid
+			}
+			return $revision->getContentModel() === $title->getContentModel();
+		} else {
+			if ( $this->isRevisionCurrent() ) {
+				return true;
+			}
+			$revision = Revision::newFromId( $this->getRevisionId() );
+			return $revision->getContentModel() === $title->getContentModel();
+		}
 	}
 
 	/**

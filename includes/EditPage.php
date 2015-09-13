@@ -537,6 +537,15 @@ class EditPage {
 			return;
 		}
 
+		$revision = $this->mArticle->getRevisionFetched();
+		if ( $revision && $revision->getContentModel() !== $this->contentModel ) {
+			$this->displayViewSourcePage(
+				$this->getContentObject(),
+				wfMessage( 'contentmodelediterror' )->plain()
+			);
+			return;
+		}
+
 		$this->isConflict = false;
 		// css / js subpages of user pages get a special treatment
 		$this->isCssJsSubpage = $this->mTitle->isCssJsSubpage();
@@ -647,6 +656,20 @@ class EditPage {
 			throw new PermissionsError( $action, $permErrors );
 		}
 
+		$this->displayViewSourcePage(
+			$content,
+			$wgOut->formatPermissionsErrorMessage( $permErrors, 'edit' )
+		);
+	}
+
+	/**
+	 * Display a read-only View Source page
+	 * @param Content $content content object
+	 * @param $errorMessage additional error message to display
+	 */
+	protected function displayViewSourcePage( Content $content, $errorMessage = '' ) {
+		global $wgOut;
+
 		Hooks::run( 'EditPage::showReadOnlyForm:initial', array( $this, &$wgOut ) );
 
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
@@ -658,8 +681,10 @@ class EditPage {
 		$wgOut->addHTML( $this->editFormPageTop );
 		$wgOut->addHTML( $this->editFormTextTop );
 
-		$wgOut->addWikiText( $wgOut->formatPermissionsErrorMessage( $permErrors, 'edit' ) );
-		$wgOut->addHTML( "<hr />\n" );
+		if ( $errorMessage !== '' ) {
+			$wgOut->addWikiText( $errorMessage );
+			$wgOut->addHTML( "<hr />\n" );
+		}
 
 		# If the user made changes, preserve them when showing the markup
 		# (This happens when a user is blocked during edit, for instance)
@@ -667,7 +692,13 @@ class EditPage {
 			$text = $this->textbox1;
 			$wgOut->addWikiMsg( 'viewyourtext' );
 		} else {
-			$text = $this->toEditText( $content );
+			try {
+				$text = $this->toEditText( $content );
+			} catch ( MWException $e ) {
+				# Serialize using the default format if the content model is not supported
+				# (e.g. for an old revision with a different model)
+				$text = $content->serialize();
+			}
 			$wgOut->addWikiMsg( 'viewsourcetext' );
 		}
 

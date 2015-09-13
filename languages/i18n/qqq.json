@@ -862,6 +862,7 @@
 	"permissionserrors": "Used as title of error message.\n\nSee also:\n* {{msg-mw|loginreqtitle}}\n{{Identical|Permission error}}",
 	"permissionserrorstext": "This message is \"without action\" version of {{msg-mw|Permissionserrorstext-withaction}}.\n\nParameters:\n* $1 - the number of reasons that were found why ''the action'' cannot be performed",
 	"permissionserrorstext-withaction": "This message is \"with action\" version of {{msg-mw|Permissionserrorstext}}.\n\nParameters:\n* $1 - the number of reasons that were found why the action cannot be performed\n* $2 - one of the action-* messages (for example {{msg-mw|action-edit}}) or other such messages tagged with {{tl|doc-action}} in their documentation\n\nPlease report at [[Support]] if you are unable to properly translate this message. Also see [[phab:T16246]] (now closed) for background.",
+	"contentmodelediterror": "Error message shown when trying to edit an old revision with a content model different from that of the current revision",
 	"recreate-moveddeleted-warn": "Warning shown when creating a page which has already been deleted. See for example [[Test]].",
 	"moveddeleted-notice": "Shown on top of a deleted page in normal view modus ([{{canonicalurl:Test}} example]).",
 	"log-fulllog": "Used as link text.",
