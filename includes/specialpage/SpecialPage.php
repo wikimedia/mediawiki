@@ -434,8 +434,13 @@ class SpecialPage {
 	/**
 	 * Outputs a summary message on top of special pages
 	 * Per default the message key is the canonical name of the special page
+	 * prefixed by "-summary"
 	 * May be overridden, i.e. by extensions to stick with the naming conventions
 	 * for message keys: 'extensionname-xxx'
+	 *
+	 * Note that the canonical name of the special page can also be prefixed with
+	 * "text". This is to ensure backward compatibility. If both "-summary" and
+	 * "text" are enabled, the message prefixed by "-summary" has higher priority.
 	 *
 	 * @param string $summaryMessageKey Message key of the summary
 	 */
@@ -444,6 +449,10 @@ class SpecialPage {
 
 		if ( $summaryMessageKey == '' ) {
 			$msg = $wgContLang->lc( $this->getName() ) . '-summary';
+			print_r($this->msg( $msg ));
+			if ( $this->msg( $msg )->isDisabled() ) {
+				$msg = $wgContLang->lc( $this->getName() ) . 'text';
+			}
 		} else {
 			$msg = $summaryMessageKey;
 		}
