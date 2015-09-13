@@ -33,10 +33,6 @@ class UnusedCategoriesPage extends QueryPage {
 		return true;
 	}
 
-	function getPageHeader() {
-		return $this->msg( 'unusedcategoriestext' )->parseAsBlock();
-	}
-
 	public function getQueryInfo() {
 		return array(
 			'tables' => array( 'page', 'categorylinks' ),

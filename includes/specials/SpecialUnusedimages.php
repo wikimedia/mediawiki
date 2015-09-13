@@ -77,10 +77,6 @@ class UnusedimagesPage extends ImageQueryPage {
 		return true;
 	}
 
-	function getPageHeader() {
-		return $this->msg( 'unusedimagestext' )->parseAsBlock();
-	}
-
 	protected function getGroupName() {
 		return 'maintenance';
 	}

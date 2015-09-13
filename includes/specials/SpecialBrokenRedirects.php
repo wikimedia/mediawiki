@@ -44,10 +44,6 @@ class BrokenRedirectsPage extends QueryPage {
 		return false;
 	}
 
-	function getPageHeader() {
-		return $this->msg( 'brokenredirectstext' )->parseAsBlock();
-	}
-
 	public function getQueryInfo() {
 		$dbr = wfGetDB( DB_SLAVE );
 

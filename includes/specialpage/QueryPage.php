@@ -246,6 +246,8 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * The content returned by this function will be output before any result
 	 *
+	 * Note that if the output is simply a static summary/informational message
+	 * using a mesage key, outputHeader() should be used instead of this.
 	 * @return string
 	 */
 	function getPageHeader() {

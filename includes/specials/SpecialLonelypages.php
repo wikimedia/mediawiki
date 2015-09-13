@@ -32,10 +32,6 @@ class LonelyPagesPage extends PageQueryPage {
 		parent::__construct( $name );
 	}
 
-	function getPageHeader() {
-		return $this->msg( 'lonelypagestext' )->parseAsBlock();
-	}
-
 	function sortDescending() {
 		return false;
 	}
