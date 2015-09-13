@@ -175,7 +175,6 @@
 	"prefs-help-watchlist-token2": "Dies ist der geheime Schlüssel zum Webfeed Ihrer Beobachtungsliste.\nJeder, der ihn kennt, kann Ihre Beobachtungsliste lesen. Teilen Sie ihn deshalb nicht Anderen mit.\nSofern notwendig, [[Special:ResetTokens|können Sie ihn zurücksetzen]].",
 	"savedprefs": "Ihre Einstellungen wurden gespeichert.",
 	"prefs-reset-intro": "Sie können diese Seite verwenden, um die Einstellungen auf die Standards zurückzusetzen.\nDies kann nicht mehr rückgängig gemacht werden.",
-	"yourgender": "Welches Geschlecht haben Sie?",
 	"prefs-help-gender": "Dies ist eine freiwillige Angabe.\nDie Software nutzt sie, um Sie anzureden sowie als Hinweis für andere durch Verwendung des zutreffenden grammatikalischen Geschlechts.\nDiese Information ist öffentlich.",
 	"prefs-help-realname": "Dies ist eine freiwillige Angabe. Damit kann Ihr bürgerlicher Name Ihren Beiträgen zugeordnet werden.",
 	"prefs-help-email": "Die Angabe einer E-Mail-Adresse ist optional, ermöglicht aber die Zusendung eines Ersatzpasswortes, sofern Sie Ihr Passwort vergessen haben.",
