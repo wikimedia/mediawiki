@@ -692,6 +692,7 @@
 	"permissionserrors": "Permission error",
 	"permissionserrorstext": "You do not have permission to do that, for the following {{PLURAL:$1|reason|reasons}}:",
 	"permissionserrorstext-withaction": "You do not have permission to $2, for the following {{PLURAL:$1|reason|reasons}}:",
+	"contentmodelediterror": "You cannot edit this revision because its content model is <code>$1</code>, but the current content model of the page is <code>$2</code>.",
 	"recreate-moveddeleted-warn": "<strong>Warning: You are recreating a page that was previously deleted.</strong>\n\nYou should consider whether it is appropriate to continue editing this page.\nThe deletion and move log for this page are provided here for convenience:",
 	"moveddeleted-notice": "This page has been deleted.\nThe deletion and move log for the page are provided below for reference.",
 	"moveddeleted-notice-recent": "Sorry, this page was recently deleted (within the last 24 hours).\nThe deletion and move log for the page are provided below for reference.",
