@@ -894,6 +894,7 @@ class SkinTemplate extends Skin {
 				// Checks if user can edit the current page if it exists or create it otherwise
 				if ( $title->quickUserCan( 'edit', $user )
 					&& ( $title->exists() || $title->quickUserCan( 'create', $user ) )
+					&& $this->isEditableRevision( $title )
 				) {
 					// Builds CSS class for talk page links
 					$isTalkClass = $isTalk ? ' istalk' : '';
@@ -1115,6 +1116,19 @@ class SkinTemplate extends Skin {
 		}
 
 		return $content_navigation;
+	}
+
+	/**
+	 * Return if the revision has a content model that allows it to be edited
+	 * @param Title $title Page title
+	 * @return bool
+	 */
+	protected function isEditableRevision( Title $title ) {
+		if ( $this->isRevisionCurrent() ) {
+			return true;
+		}
+		$revision = Revision::newFromId( $this->getRevisionId() );
+		return $revision->getContentModel() === $title->getContentModel();
 	}
 
 	/**
