@@ -982,7 +982,7 @@
 	"double-redirect-fixed-move": "[[$1]] mota est et nunc redirigit ad [[$2]]",
 	"double-redirect-fixer": "Rectificator redirectionum",
 	"brokenredirects": "Redirectiones fractae",
-	"brokenredirectstext": "Hae redirectiones ad paginas inexistentes nectunt:",
+	"brokenredirects-summary": "Hae redirectiones ad paginas inexistentes nectunt:",
 	"brokenredirects-edit": "recensere",
 	"brokenredirects-delete": "delere",
 	"withoutinterwiki": "Paginae sine nexibus ad linguas alias",

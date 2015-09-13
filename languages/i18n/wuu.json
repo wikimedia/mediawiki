@@ -1057,7 +1057,7 @@
 	"statistics-users-active": "活跃用户",
 	"pageswithprop-submit": "去",
 	"brokenredirects": "坏脱个重定向",
-	"brokenredirectstext": "下向個轉戳鏈接到朆見個頁面：",
+	"brokenredirects-summary": "下向個轉戳鏈接到朆見個頁面：",
 	"brokenredirects-edit": "编辑",
 	"brokenredirects-delete": "删除",
 	"withoutinterwiki": "嘸語言鏈接個頁面",

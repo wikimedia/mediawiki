@@ -770,7 +770,7 @@
 	"doubleredirects": "ܨܘܝܒ̈ܐ ܥܦܝܦ̈ܐ",
 	"double-redirect-fixed-move": "[[$1]] ܐܫܬܢܝܬ.\nܗܫܐ ܐܝܬܝܗܝ  ܨܘܝܒܐ ܠ [[$2]].",
 	"brokenredirects": "ܨܘܝܒ̈ܐ ܬܒܝܪ̈ܐ",
-	"brokenredirectstext": "ܨܘ̈ܝܒܐ ܗܠܝܢ ܡܛܝܢ ܠܦܐܬܬ̈ܐ ܕܠܝܬܠܗܝܢ ܐܝܬܘܬܐ:",
+	"brokenredirects-summary": "ܨܘ̈ܝܒܐ ܗܠܝܢ ܡܛܝܢ ܠܦܐܬܬ̈ܐ ܕܠܝܬܠܗܝܢ ܐܝܬܘܬܐ:",
 	"brokenredirects-edit": "ܫܚܠܦ",
 	"brokenredirects-delete": "ܫܘܦ",
 	"withoutinterwiki": "ܦܐܬܬ̈ܐ ܕܠܐ ܐܣܘܪ̈ܐ ܕܠܫܢ̈ܐ ܐܚܪ̈ܢܐ",

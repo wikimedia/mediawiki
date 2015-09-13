@@ -86,10 +86,6 @@ class UnusedtemplatesPage extends QueryPage {
 		return $this->getLanguage()->specialList( $pageLink, $wlhLink );
 	}
 
-	function getPageHeader() {
-		return $this->msg( 'unusedtemplatestext' )->parseAsBlock();
-	}
-
 	protected function getGroupName() {
 		return 'maintenance';
 	}

@@ -1216,7 +1216,7 @@
 	"ntransclusions": "used on $1 {{PLURAL:$1|पन्ना|पन्ना सभ}}",
 	"specialpage-empty": "एह रिपोर्ट खातिर कौनों रिजल्ट नइखे",
 	"lonelypages": "अनाथ पन्ना",
-	"lonelypagestext": "ई पन्ना कुल कौनों दूसर पन्ना से नइखें जुड़ल न कौनों में ट्रांसक्लूड बाड़ें",
+	"lonelypages-summary": "ई पन्ना कुल कौनों दूसर पन्ना से नइखें जुड़ल न कौनों में ट्रांसक्लूड बाड़ें",
 	"uncategorizedpages": "बिना श्रेणी के पन्ना",
 	"uncategorizedcategories": "बिना श्रेणी के श्रेणी",
 	"uncategorizedimages": "बिना श्रेणी के फाइल",

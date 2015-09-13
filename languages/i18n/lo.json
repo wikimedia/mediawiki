@@ -414,7 +414,7 @@
 	"statistics": "ສະຖິຕິ",
 	"doubleredirects": "ໂອນໜ້າ 2 ຄັ້ງ",
 	"brokenredirects": "ການໂອນບໍ່ມີໜ້າປາຍທາງ",
-	"brokenredirectstext": "ການໂອນໜ້ານີ້ ເຊື່ອມຕໍ່ໄປຫາໜ້າ ທີ່ ຍັງບໍ່ມີເທື່ອ:",
+	"brokenredirects-summary": "ການໂອນໜ້ານີ້ ເຊື່ອມຕໍ່ໄປຫາໜ້າ ທີ່ ຍັງບໍ່ມີເທື່ອ:",
 	"brokenredirects-edit": "ດັດແກ້",
 	"brokenredirects-delete": "ລຶບ",
 	"withoutinterwiki": "ບັນດາໜ້າ ທີ່ບໍ່ມີລິ້ງຄ໌ ຫາ ສະບັບພາສາອື່ນ",

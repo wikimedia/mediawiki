@@ -1164,7 +1164,7 @@
 	"ntransclusions": "gingamit ha $1 {{PLURAL:$1|nga pakli|nga mga pakli}}",
 	"specialpage-empty": "Waray mga resulta para hini nga report.",
 	"lonelypages": "Mga nahibulag nga mga pakli",
-	"lonelypagestext": "An masunod nga pakli in diri nakasumpay tikang o nakatranscluderer ngada ha iba nga mga pakli ha {{SITENAME}}.",
+	"lonelypages-summary": "An masunod nga pakli in diri nakasumpay tikang o nakatranscluderer ngada ha iba nga mga pakli ha {{SITENAME}}.",
 	"uncategorizedpages": "Mga nagkikinahanglan hin pakli",
 	"uncategorizedcategories": "Waray kaarangay nga mga kaarangay",
 	"uncategorizedimages": "Waray kaarangay nga mga paypay",

@@ -614,7 +614,7 @@
 	"statistics": "Statistiche",
 	"doubleredirects": "Rindirissamenti doggi",
 	"brokenredirects": "Rindirissamenti sballiæ",
-	"brokenredirectstext": "De sotta unn-a lista de reindirissi a pagine che non existàn:",
+	"brokenredirects-summary": "De sotta unn-a lista de reindirissi a pagine che non existàn:",
 	"brokenredirects-edit": "cangia",
 	"brokenredirects-delete": "scassa",
 	"withoutinterwiki": "Paggine sensa interwiki",

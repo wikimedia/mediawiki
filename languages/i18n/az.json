@@ -1227,7 +1227,7 @@
 	"double-redirect-fixed-maintenance": "[[$1]] səhifəsindən [[$2]] səhifəsinə ikiqat yönləndirmə avtomatik düzəldilir.",
 	"double-redirect-fixer": "Yönləndirmə səhvdir",
 	"brokenredirects": "Xətalı istiqamətləndirmə",
-	"brokenredirectstext": "Aşağıdakı istiqamətləndirmələr mövcud olmayan səhifələrə keçid verir:",
+	"brokenredirects-summary": "Aşağıdakı istiqamətləndirmələr mövcud olmayan səhifələrə keçid verir:",
 	"brokenredirects-edit": "redaktə",
 	"brokenredirects-delete": "sil",
 	"withoutinterwiki": "Dil keçidləri olmayan səhifələr",

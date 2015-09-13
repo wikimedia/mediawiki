@@ -1116,7 +1116,7 @@
 	"statistics-users-active-desc": "{{PLURAL:$1|$1 көн }} өчендә нинди дә булса үзгәртүләр керткән кулланучылар",
 	"doubleredirects": "Икеләтә юнәлтүләр",
 	"brokenredirects": "Бәйләнешсез юнәлтүләр",
-	"brokenredirectstext": "Бу юнәлтүләр булмаган битләргә сылтыйлар:",
+	"brokenredirects-summary": "Бу юнәлтүләр булмаган битләргә сылтыйлар:",
 	"brokenredirects-edit": "үзгәртү",
 	"brokenredirects-delete": "бетерү",
 	"withoutinterwiki": "Телләрара сылтамасыз битләр",

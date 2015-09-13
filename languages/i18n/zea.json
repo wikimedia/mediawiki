@@ -732,7 +732,7 @@
 	"sharedupload-desc-here": "Dit bestand kom von $1 en kan oôk in aorre project'n gebruukt worr'n.\nDe [$2 pagina mè de bestandsbeschrievienge] wòdt hieronder weergegeev'n.",
 	"randompage": "Bladzie op goed geluk",
 	"statistics": "Stattistiek'n",
-	"brokenredirectstext": "De volgende deuverwieziengen stiere deu nae bladzie die nie bestae:",
+	"brokenredirects-summary": "De volgende deuverwieziengen stiere deu nae bladzie die nie bestae:",
 	"nbytes": "$1 {{PLURAL:$1|byte|bytes}}",
 	"nmembers": "$1 {{PLURAL:$1|bladzie|bladzies}}",
 	"prefixindex": "Alle pagina's op vòvoegsel",

@@ -471,7 +471,7 @@
 	"nviews": "$1 {{PLURAL:$1|kamukile|kamukile}}",
 	"specialpage-empty": "Kamukile ni sa bundau.",
 	"lonelypages": "Petulo coni ling'ki di a",
-	"lonelypagestext": "Petulo kamukile ni sa con ling'ki di xeti petulo di {{SITENAME}}.",
+	"lonelypages-summary": "Petulo kamukile ni sa con ling'ki di xeti petulo di {{SITENAME}}.",
 	"uncategorizedpages": "Petulo coni kattegori",
 	"uncategorizedcategories": "Kattegori coni kattegori",
 	"uncategorizedimages": "Imegi coni kattegori",

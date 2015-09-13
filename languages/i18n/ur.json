@@ -945,7 +945,7 @@
 	"ncategories": "{{PLURAL:$1|زمرہ|زمرہ جات}} $1",
 	"nmembers": "{{PLURAL:$1|رکن|اراکین}}",
 	"lonelypages": "يتيم صفحات",
-	"lonelypagestext": "مندرجہ ذیل صفحات وہ صفحات ہیں جنھیں اس وکی میں موجود صفحوں سے کوئی ربط حاصل نہیں ہوپارہا۔",
+	"lonelypages-summary": "مندرجہ ذیل صفحات وہ صفحات ہیں جنھیں اس وکی میں موجود صفحوں سے کوئی ربط حاصل نہیں ہوپارہا۔",
 	"uncategorizedpages": "بے زمرہ صفحات",
 	"uncategorizedcategories": "بے زمرہ زمرہ جات",
 	"uncategorizedimages": "بے زمرہ تصاویر",

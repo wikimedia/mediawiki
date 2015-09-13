@@ -592,7 +592,7 @@
 	"statistics-header-users": "Caitom statisticám",
 	"doubleredirects": "Meniitomöx daj ti zon",
 	"brokenredirects": "Meniitomöx linkám nedireccion",
-	"brokenredirectstext": "Jan meniitomöx linkomde neday ti camiintivuatl páhinám:",
+	"brokenredirects-summary": "Jan meniitomöx linkomde neday ti camiintivuatl páhinám:",
 	"brokenredirects-edit": "ticpatlöx",
 	"brokenredirects-delete": "delatom",
 	"nbytes": "$1 {{PLURAL:$1|byte|bytenám}}",

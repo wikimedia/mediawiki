@@ -907,7 +907,7 @@
 	"statistics-users-active-desc": "{{PLURAL:$1|$1 kön }} öçendä nindi dä bulsa üzgärtülär kertkän qullanuçılar",
 	"doubleredirects": "İkelätä yünältülär",
 	"brokenredirects": "Bäyläneşsez yünältülär",
-	"brokenredirectstext": "Bu yünältülär bulmağan bitlärgä sıltıylar:",
+	"brokenredirects-summary": "Bu yünältülär bulmağan bitlärgä sıltıylar:",
 	"brokenredirects-edit": "üzgärtü",
 	"brokenredirects-delete": "beterü",
 	"withoutinterwiki": "Tellärara sıltamasız bitlär",

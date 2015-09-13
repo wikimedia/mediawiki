@@ -952,7 +952,7 @@
 	"double-redirect-fixed-maintenance": "[[$1]] aṭanga [[$2]] hruailuhna phír chinfel.",
 	"double-redirect-fixer": "Hruailuhna chingfeltu",
 	"brokenredirects": "Hruailuhna kehchhia",
-	"brokenredirectstext": "Ahnuaia hruailuhnate hian phêk awm lova hruailuh an tum:",
+	"brokenredirects-summary": "Ahnuaia hruailuhnate hian phêk awm lova hruailuh an tum:",
 	"brokenredirects-edit": "siamţhatna",
 	"brokenredirects-delete": "paihna",
 	"withoutinterwiki-legend": "Thuhmabet",

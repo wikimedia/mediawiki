@@ -44,10 +44,6 @@ class DoubleRedirectsPage extends QueryPage {
 		return false;
 	}
 
-	function getPageHeader() {
-		return $this->msg( 'doubleredirectstext' )->parseAsBlock();
-	}
-
 	function reallyGetQueryInfo( $namespace = null, $title = null ) {
 		$limitToTitle = !( $namespace === null && $title === null );
 		$dbr = wfGetDB( DB_SLAVE );

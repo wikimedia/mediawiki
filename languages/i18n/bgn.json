@@ -1358,7 +1358,7 @@
 	"doubleredirects": "ڈبل گردینتێن",
 	"double-redirect-fixer": "تغیرمسیرئانی تئمیرکار",
 	"brokenredirects": "خرابین تغیرمسیر",
-	"brokenredirectstext": "جهلگین تغییرمسیرئان بئ یک ناموجودین دیمی لینک دارنت:",
+	"brokenredirects-summary": "جهلگین تغییرمسیرئان بئ یک ناموجودین دیمی لینک دارنت:",
 	"brokenredirects-edit": "ایڈیٹ",
 	"brokenredirects-delete": "پاک کورتین",
 	"withoutinterwiki": "تاکدیمان بی شه زبانئ لینک ئان",
