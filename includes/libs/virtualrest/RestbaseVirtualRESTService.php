@@ -48,6 +48,7 @@ class RestbaseVirtualRESTService extends VirtualRESTService {
 	public function __construct( array $params ) {
 		// set up defaults and merge them with the given params
 		$mparams = array_merge( array(
+			'name' => 'restbase',
 			'url' => 'http://localhost:7231/',
 			'domain' => 'localhost',
 			'timeout' => 100,

@@ -54,6 +54,7 @@ class ParsoidVirtualRESTService extends VirtualRESTService {
 		}
 		// set up defaults and merge them with the given params
 		$mparams = array_merge( array(
+			'name' => 'parsoid',
 			'url' => 'http://localhost:8000/',
 			'prefix' => 'localhost',
 			'domain' => 'localhost',

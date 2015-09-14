@@ -45,7 +45,11 @@ class SwiftVirtualRESTService extends VirtualRESTService {
 	 *   - swiftAuthTTL       : Swift authentication TTL (seconds)
 	 */
 	public function __construct( array $params ) {
-		parent::__construct( $params );
+		// set up defaults and merge them with the given params
+		$mparams = array_merge( array(
+			'name' => 'swift'
+		), $params );
+		parent::__construct( $mparams );
 	}
 
 	/**
