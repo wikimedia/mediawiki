@@ -1870,7 +1870,7 @@
 	"emailccsubject": "Copy of your message to $1: $2",
 	"emailsent": "Email sent",
 	"emailsenttext": "Your email message has been sent.",
-	"emailuserfooter": "This email was sent by $1 to $2 by the \"{{int:emailuser}}\" function at {{SITENAME}}.",
+	"emailuserfooter": "This email was sent by $1 to $2 by the \"{{int:emailuser}}\" function at {{SITENAME}} {{GENDER:$1|$2}}",
 	"usermessage-summary": "Leaving system message.",
 	"usermessage-editor": "System messenger",
 	"usermessage-template": "MediaWiki:UserMessage",
