@@ -187,6 +187,14 @@ div.patrollink {
 	text-align: right;
 }
 
+/* Disable patrol link while loading for JavaScript clients. */
+.client-js .patrollink a,
+/* Disable watch/unwatch links while loading for JavaScript clients. */
+.client-js #ca-unwatch.icon a,
+.client-js #ca-watch.icon a {
+	pointer-events: none;
+}
+
 /**
  * Forms
  */
