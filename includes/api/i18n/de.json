@@ -472,7 +472,7 @@
 	"api-help-param-deprecated": "Veraltet.",
 	"api-help-param-required": "Dieser Parameter ist erforderlich.",
 	"api-help-datatypes-header": "Datentypen",
-	"api-help-param-list": "{{PLURAL:$1|1=Ein Wert|2=Werte (mit <kbd>{{!}}</kbd> trennen)}}: $2",
+	"api-help-param-list": "{{PLURAL:$1|1=Einer der folgenden Werte|2=Werte (mit <kbd>{{!}}</kbd> trennen)}}: $2",
 	"api-help-param-list-can-be-empty": "{{PLURAL:$1|0=Muss leer sein|Kann leer sein oder $2}}",
 	"api-help-param-limit": "Nicht mehr als $1 erlaubt.",
 	"api-help-param-limit2": "Nicht mehr als $1 ($2 für Bots) erlaubt.",

@@ -1288,7 +1288,7 @@
 	"api-help-param-type-boolean": "Tipo: booleano ([[Special:ApiHelp/main#main/datatypes|detalles]])",
 	"api-help-param-type-timestamp": "Tipo: {{PLURAL:$1|1=selo de tempo|2=lista de selos de tempo}} ([[Special:ApiHelp/main#main/datatypes|formatos permitidos]])",
 	"api-help-param-type-user": "Tipo: {{PLURAL:$1|1=nome de usuario|2=lista de nomes de usuarios}}",
-	"api-help-param-list": "{{PLURAL:$1|1=Un valor|2=Valores (separados con <kbd>{{!}}</kbd>)}}: $2",
+	"api-help-param-list": "{{PLURAL:$1|1=Un valor dos seguintes valores|2=Valores (separados con <kbd>{{!}}</kbd>)}}: $2",
 	"api-help-param-list-can-be-empty": "{{PLURAL:$1|0=Debe ser baleiro|Pode ser baleiro, ou $2}}",
 	"api-help-param-limit": "Non se permiten máis de $1.",
 	"api-help-param-limit2": "Non se permiten máis de $1 ($2 para bots).",

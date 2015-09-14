@@ -1221,7 +1221,7 @@
 	"api-help-param-type-boolean": "类型：布尔值（[[Special:ApiHelp/main#main/datatypes|详细信息]]）",
 	"api-help-param-type-timestamp": "类型：{{PLURAL:$1|1=时间戳|2=时间戳列表}}（[[Special:ApiHelp/main#main/datatypes|允许格式]]）",
 	"api-help-param-type-user": "类型：{{PLURAL:$1|1=用户名|2=用户名列表}}",
-	"api-help-param-list": "{{PLURAL:$1|1=一个值|2=值（以<kbd>{{!}}</kbd>分隔）}}：$2",
+	"api-help-param-list": "{{PLURAL:$1|1=以下值中的一个|2=值（以<kbd>{{!}}</kbd>分隔）}}：$2",
 	"api-help-param-list-can-be-empty": "{{PLURAL:$1|0=必须为空|可以为空，或$2}}",
 	"api-help-param-limit": "不允许超过$1。",
 	"api-help-param-limit2": "不允许超过$1个（对于机器人则是$2个）。",
