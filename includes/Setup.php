@@ -192,7 +192,8 @@ if ( !$wgLocalFileRepo ) {
 		'thumbScriptUrl' => $wgThumbnailScriptPath,
 		'transformVia404' => !$wgGenerateThumbnailOnParse,
 		'deletedDir' => $wgDeletedDirectory,
-		'deletedHashLevels' => $wgHashedUploadDirectory ? 3 : 0
+		'deletedHashLevels' => $wgHashedUploadDirectory ? 3 : 0,
+		'supportsSha1URLs' => $wgIncludeOriginalSha1InThumbnailUrl,
 	);
 }
 /**
