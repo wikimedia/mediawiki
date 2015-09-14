@@ -32,6 +32,11 @@ module.exports = function ( grunt ) {
 			]
 		},
 		banana: {
+			options: {
+				disallowBlankTranslations: false,
+				disallowDuplicateTranslations: false,
+				disallowUnusedTranslations: false
+			},
 			core: 'languages/i18n/',
 			api: 'includes/api/i18n/',
 			installer: 'includes/installer/i18n/'
