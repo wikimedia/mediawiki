@@ -62,5 +62,8 @@
 
 			e.preventDefault();
 		} );
+
+		// Reactivate while loading disabled buttons
+		$patrolLinks.css( 'pointer-events', 'auto' );
 	} );
 }( mediaWiki, jQuery ) );
