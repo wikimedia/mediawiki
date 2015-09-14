@@ -946,9 +946,16 @@ abstract class File implements IDBAccessObject {
 		$extension = $this->getExtension();
 		list( $thumbExt, ) = $this->getHandler()->getThumbType(
 			$extension, $this->getMimeType(), $params );
-		$thumbName = $this->getHandler()->makeParamString( $params ) . '-' . $name;
-		if ( $thumbExt != $extension ) {
-			$thumbName .= ".$thumbExt";
+		$thumbName = $this->getHandler()->makeParamString( $params );
+
+		if ( $this->repo->supportsSha1URLs() ) {
+			$thumbName .= '-' . $this->getSha1() . '.' . $thumbExt;
+		} else {
+			$thumbName .= '-' . $name;
+
+			if ( $thumbExt != $extension ) {
+				$thumbName .= ".$thumbExt";
+			}
 		}
 
 		return $thumbName;
