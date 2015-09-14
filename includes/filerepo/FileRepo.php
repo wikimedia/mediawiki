@@ -52,6 +52,9 @@ class FileRepo {
 	/** @var bool */
 	protected $hasSha1Storage = false;
 
+	/** @var bool */
+	protected $supportsSha1URLs = false;
+
 	/** @var FileBackend */
 	protected $backend;
 
@@ -200,6 +203,8 @@ class FileRepo {
 				$this->zones[$zone]['urlsByExt'] = array();
 			}
 		}
+
+		$this->supportsSha1URLs = !empty( $info['supportsSha1URLs'] );
 	}
 
 	/**
@@ -1895,6 +1900,14 @@ class FileRepo {
 	 */
 	public function hasSha1Storage() {
 		return $this->hasSha1Storage;
+	}
+
+	/**
+	 * Returns whether or not repo supports having originals SHA-1s in the thumb URLs
+	 * @return boolean
+	 */
+	public function supportsSha1URLs() {
+		return $this->supportsSha1URLs;
 	}
 }
 
