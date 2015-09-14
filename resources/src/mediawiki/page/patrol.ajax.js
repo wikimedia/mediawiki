@@ -62,5 +62,8 @@
 
 			e.preventDefault();
 		} );
+
+		// Remove class that indicates that the JavaScript handler is not yet attached.
+		$patrolLinks.parents( '.mw-js-handled' ).removeClass( 'mw-js-handled' );
 	} );
 }( mediaWiki, jQuery ) );
