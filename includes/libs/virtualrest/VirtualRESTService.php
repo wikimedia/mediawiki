@@ -45,6 +45,17 @@ abstract class VirtualRESTService {
 	}
 
 	/**
+	 * Return the name of this service, in a form suitable for error
+	 * reporting or debugging.
+	 *
+	 * @return string The name of the service behind this VRS object.
+	 */
+	public function getName() {
+		return isset( $this->params['name'] ) ? $this->params['name'] :
+			get_class( $this );
+	}
+
+	/**
 	 * Prepare virtual HTTP(S) requests (for this service) for execution
 	 *
 	 * This method should mangle any of the $reqs entry fields as needed:
