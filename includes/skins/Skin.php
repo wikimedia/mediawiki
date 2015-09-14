@@ -204,6 +204,7 @@ abstract class Skin extends ContextSource {
 			if ( $wgEnableAPI ) {
 				if ( $wgEnableWriteAPI && $wgAjaxWatch && $user->isLoggedIn()
 					&& $user->isAllowed( 'writeapi' )
+					&& $this->getRelevantTitle()->canExist()
 				) {
 					$modules['watch'][] = 'mediawiki.page.watch.ajax';
 				}
