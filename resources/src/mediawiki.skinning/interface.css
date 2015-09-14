@@ -79,3 +79,8 @@ textarea {
 span.subpages {
 	display: block;
 }
+
+/* Disable buttons while loading for JavaScript clients until JavaScript handler is attached. */
+.client-js .mw-js-handled a {
+	pointer-events: none;
+}
