@@ -79,3 +79,8 @@ textarea {
 span.subpages {
 	display: block;
 }
+
+/* Gray out buttons while loading for JavaScript clients until JavaScript handler is attached. */
+.client-js .mw-js-handled a {
+	opacity: 0.5;
+}
