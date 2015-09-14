@@ -7714,6 +7714,14 @@ $wgVirtualRestConfig = array(
 $wgSearchRunSuggestedQueryPercent = 1;
 
 /**
+ * This exposes the original file's sha1 hash in the thumbnail URL.
+ *
+ * @var bool
+ * @since 1.26
+ */
+$wgIncludeOriginalSha1InThumbnailUrl = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}

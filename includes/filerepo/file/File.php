@@ -940,13 +940,22 @@ abstract class File implements IDBAccessObject {
 	 * @return string
 	 */
 	public function generateThumbName( $name, $params ) {
+		global $wgIncludeOriginalSha1InThumbnailUrl;
+
 		if ( !$this->getHandler() ) {
 			return null;
 		}
 		$extension = $this->getExtension();
 		list( $thumbExt, ) = $this->getHandler()->getThumbType(
 			$extension, $this->getMimeType(), $params );
-		$thumbName = $this->getHandler()->makeParamString( $params ) . '-' . $name;
+		$thumbName = $this->getHandler()->makeParamString( $params );
+
+		if ( $wgIncludeOriginalSha1InThumbnailUrl ) {
+			$thumbName .= '-' . $this->getSha1();
+		}
+
+		$thumbName .= '-' . $name;
+
 		if ( $thumbExt != $extension ) {
 			$thumbName .= ".$thumbExt";
 		}
