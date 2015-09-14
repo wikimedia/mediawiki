@@ -48,7 +48,8 @@ return call_user_func( function () {
 			'es5-shim',
 			'oojs',
 			'oojs-ui.styles',
-			'oojs-ui.styles.icons',
+			// FIXME: icons should be includable, but it's way too large right now
+			//'oojs-ui.styles.icons',
 			'oojs-ui.styles.indicators',
 			'oojs-ui.styles.textures',
 		),
