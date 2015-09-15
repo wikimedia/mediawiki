@@ -908,7 +908,7 @@
 		// This bug was actually already fixed in 1.18 and later when discovered in 1.17.
 		// Test is for regressions!
 
-		// Forge an URL to the test callback script
+		// Forge a URL to the test callback script
 		var target = QUnit.fixurl(
 			mw.config.get( 'wgServer' ) + mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/qunitOkCall.js'
 		);
@@ -919,6 +919,20 @@
 		assert.equal( target.slice( 0, 2 ), '//',
 			'URL must be relative to test relative URLs!'
 		);
+
+		// Async!
+		// The target calls QUnit.start
+		mw.loader.load( target );
+	} );
+
+	QUnit.asyncTest( 'mw.loader( "/absolute-path" )', 2, function ( assert ) {
+		// Forge a URL to the test callback script
+		var target = QUnit.fixurl(
+			mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/qunitOkCall.js'
+		);
+
+		// Confirm that mw.loader.load() works with absolute-paths (relative to current hostname)
+		assert.equal( target.slice( 0, 1 ), '/', 'URL is relative to document root' );
 
 		// Async!
 		// The target calls QUnit.start
