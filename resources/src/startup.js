@@ -3,16 +3,16 @@
  * continue loading jQuery and the MediaWiki modules. This code should work on
  * even the most ancient of browsers, so be very careful when editing.
  */
+/*jshint unused: false, evil: true */
+/*globals mw, RLQ: true, $VARS, $CODE, performance */
 
-var mediaWikiLoadStart = ( new Date() ).getTime();
+var mediaWikiLoadStart = ( new Date() ).getTime(),
 
-if ( !window.performance ) {
-	window.performance = {};
-}
-if ( !performance.mark ) {
-	performance.mark = function () {};
-}
-performance.mark( 'mwLoadStart' );
+	mwPerformance = ( window.performance && performance.mark ) ? performance : {
+		mark: function () {}
+	};
+
+mwPerformance.mark( 'mwLoadStart' );
 
 /**
  * Returns false for Grade C supported browsers.
@@ -24,9 +24,6 @@ performance.mark( 'mwLoadStart' );
  * - https://www.mediawiki.org/wiki/Compatibility#Browsers
  * - https://jquery.com/browser-support/
  */
-
-/*jshint unused: false, evil: true */
-/*globals mw, RLQ: true, $VARS, $CODE */
 function isCompatible( ua ) {
 	if ( ua === undefined ) {
 		ua = navigator.userAgent;
