@@ -251,7 +251,7 @@ abstract class RevDelList extends RevisionListBase {
 		if ( !$field ) {
 			throw new MWException( "Bad log URL param type!" );
 		}
-		// Put things hidden from sysops in the oversight log
+		// Put things hidden from sysops in the suppression log
 		if ( ( $params['newBits'] | $params['oldBits'] ) & $this->getSuppressBit() ) {
 			$logType = 'suppress';
 		} else {

@@ -2854,7 +2854,7 @@ class WikiPage implements Page, IDBAccessObject {
 		// Clone the title, so we have the information we need when we log
 		$logTitle = clone $this->mTitle;
 
-		// Log the deletion, if the page was suppressed, log it at Oversight instead
+		// Log the deletion, if the page was suppressed, put it in the suppression log instead
 		$logtype = $suppress ? 'suppress' : 'delete';
 
 		$logEntry = new ManualLogEntry( $logtype, 'delete' );
