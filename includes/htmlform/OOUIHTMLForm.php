@@ -158,7 +158,12 @@ class OOUIHTMLForm extends HTMLForm {
 				$msg = $error;
 				$error = array();
 			}
-			$error = $this->msg( $msg, $error )->parse();
+			// if the error is already a message object, don't use it as a message key
+			if ( !$msg instanceof Message ) {
+				$error = $this->msg( $msg, $error )->parse();
+			} else {
+				$error = $msg->parse();
+			}
 			$error = new OOUI\HtmlSnippet( $error );
 		}
 
