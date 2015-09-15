@@ -34,7 +34,7 @@
 	 * To use, setup a {@link OO.ui.WindowManager window manager} like for normal
 	 * dialogs:
 	 *
-	 *     var uploadDialog = new mw.Upload.Dialog( { size: 'small' } );
+	 *     var uploadDialog = new mw.Upload.Dialog();
 	 *     var windowManager = new OO.ui.WindowManager();
 	 *     $( 'body' ).append( windowManager.$element );
 	 *     windowManager.addWindows( [ uploadDialog ] );
