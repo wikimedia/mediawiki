@@ -768,6 +768,7 @@ $wgAutoloadLocalClasses = array(
 	'MediaWiki\\Tidy\\RaggettWrapper' => __DIR__ . '/includes/tidy/RaggettWrapper.php',
 	'MediaWiki\\Tidy\\TidyDriverBase' => __DIR__ . '/includes/tidy/TidyDriverBase.php',
 	'MediaWiki\\Widget\\ComplexNamespaceInputWidget' => __DIR__ . '/includes/widget/ComplexNamespaceInputWidget.php',
+	'MediaWiki\\Widget\\ComplexTitleInputWidget' => __DIR__ . '/includes/widget/ComplexTitleInputWidget.php',
 	'MediaWiki\\Widget\\NamespaceInputWidget' => __DIR__ . '/includes/widget/NamespaceInputWidget.php',
 	'MediaWiki\\Widget\\TitleInputWidget' => __DIR__ . '/includes/widget/TitleInputWidget.php',
 	'MediaWiki\\Widget\\UserInputWidget' => __DIR__ . '/includes/widget/UserInputWidget.php',
