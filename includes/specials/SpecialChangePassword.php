@@ -190,20 +190,17 @@ class SpecialChangePassword extends FormSpecialPage {
 			return true;
 		}
 
-		try {
-			$this->mUserName = $request->getVal( 'wpName', $this->getUser()->getName() );
-			$this->mDomain = $wgAuth->getDomain();
+		$this->mUserName = $request->getVal( 'wpName', $this->getUser()->getName() );
+		$this->mDomain = $wgAuth->getDomain();
 
-			if ( !$wgAuth->allowPasswordChange() ) {
-				throw new ErrorPageError( 'changepassword', 'resetpass_forbidden' );
-			}
-
-			$this->attemptReset( $data['Password'], $data['NewPassword'], $data['Retype'] );
-
-			return true;
-		} catch ( PasswordError $e ) {
-			return $e->getMessage();
+		if ( !$wgAuth->allowPasswordChange() ) {
+			throw new ErrorPageError( 'changepassword', 'resetpass_forbidden' );
 		}
+
+		$status = Status::newGood();
+		$this->attemptReset( $data['Password'], $data['NewPassword'], $data['Retype'], $status );
+
+		return $status;
 	}
 
 	public function onSuccess() {
@@ -231,12 +228,16 @@ class SpecialChangePassword extends FormSpecialPage {
 	}
 
 	/**
-	 * @param string $oldpass
-	 * @param string $newpass
-	 * @param string $retype
-	 * @throws PasswordError When cannot set the new password because requirements not met.
+	 * Checks the new password if it meets the requirements for passwords and set
+	 * it as a current password, otherwise set the passed Status object to fatal
+	 * and doesn't change anything
+	 *
+	 * @param string $oldpass The current (temporary) password.
+	 * @param string $newpass The password to set.
+	 * @param string $retype The string of the retype password field to check with newpass
+	 * @param Status $status A good status object to change to fatal, if $newpass doesn't meet the requirement.
 	 */
-	protected function attemptReset( $oldpass, $newpass, $retype ) {
+	protected function attemptReset( $oldpass, $newpass, $retype, Status &$status ) {
 		$isSelf = ( $this->mUserName === $this->getUser()->getName() );
 		if ( $isSelf ) {
 			$user = $this->getUser();
@@ -245,33 +246,36 @@ class SpecialChangePassword extends FormSpecialPage {
 		}
 
 		if ( !$user || $user->isAnon() ) {
-			throw new PasswordError( $this->msg( 'nosuchusershort', $this->mUserName )->text() );
+			return $status->fatal( $this->msg( 'nosuchusershort', $this->mUserName ) );
 		}
 
 		if ( $newpass !== $retype ) {
 			Hooks::run( 'PrefsPasswordAudit', array( $user, $newpass, 'badretype' ) );
-			throw new PasswordError( $this->msg( 'badretype' )->text() );
+			$status->fatal( $this->msg( 'badretype' ) );
+			return;
 		}
 
 		$throttleCount = LoginForm::incLoginThrottle( $this->mUserName );
 		if ( $throttleCount === true ) {
 			$lang = $this->getLanguage();
 			$throttleInfo = $this->getConfig()->get( 'PasswordAttemptThrottle' );
-			throw new PasswordError( $this->msg( 'changepassword-throttled' )
+			$status->fatal( $this->msg( 'changepassword-throttled' )
 				->params( $lang->formatDuration( $throttleInfo['seconds'] ) )
-				->text()
 			);
+			return;
 		}
 
 		// @todo Make these separate messages, since the message is written for both cases
 		if ( !$user->checkTemporaryPassword( $oldpass ) && !$user->checkPassword( $oldpass ) ) {
 			Hooks::run( 'PrefsPasswordAudit', array( $user, $newpass, 'wrongpassword' ) );
-			throw new PasswordError( $this->msg( 'resetpass-wrong-oldpass' )->text() );
+			$status->fatal( $this->msg( 'resetpass-wrong-oldpass' ) );
+			return;
 		}
 
 		// User is resetting their password to their old password
 		if ( $oldpass === $newpass ) {
-			throw new PasswordError( $this->msg( 'resetpass-recycled' )->text() );
+			$status->fatal( $this->msg( 'resetpass-recycled' ) );
+			return;
 		}
 
 		// Do AbortChangePassword after checking mOldpass, so we don't leak information
@@ -279,7 +283,8 @@ class SpecialChangePassword extends FormSpecialPage {
 		$abortMsg = 'resetpass-abort-generic';
 		if ( !Hooks::run( 'AbortChangePassword', array( $user, $oldpass, $newpass, &$abortMsg ) ) ) {
 			Hooks::run( 'PrefsPasswordAudit', array( $user, $newpass, 'abortreset' ) );
-			throw new PasswordError( $this->msg( $abortMsg )->text() );
+			$status->fatal( $this->msg( $abortMsg ) );
+			return;
 		}
 
 		// Please reset throttle for successful logins, thanks!
@@ -292,7 +297,8 @@ class SpecialChangePassword extends FormSpecialPage {
 			Hooks::run( 'PrefsPasswordAudit', array( $user, $newpass, 'success' ) );
 		} catch ( PasswordError $e ) {
 			Hooks::run( 'PrefsPasswordAudit', array( $user, $newpass, 'error' ) );
-			throw new PasswordError( $e->getMessage() );
+			$status->fatal( new RawMessage( $e->getMessage() ) );
+			return;
 		}
 
 		if ( $isSelf ) {
@@ -335,5 +341,9 @@ class SpecialChangePassword extends FormSpecialPage {
 			array( 'user_id' => $user->getID() ),
 			__METHOD__
 		);
+	}
+
+	protected function getDisplayFormat() {
+		return 'ooui';
 	}
 }
