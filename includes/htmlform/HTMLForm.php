@@ -537,6 +537,12 @@ class HTMLForm extends ContextSource {
 	 *       params) or strings (message keys)
 	 */
 	function trySubmit() {
+		$valid = true;
+		$hoistedErrors = array();
+		$hoistedErrors[] = isset( $this->mValidationErrorMessage )
+			? $this->mValidationErrorMessage
+			: array( 'htmlform-invalid-input' );
+
 		$this->mWasSubmitted = true;
 
 		# Check for cancelled submission
@@ -558,15 +564,20 @@ class HTMLForm extends ContextSource {
 			if ( $field->isHidden( $this->mFieldData ) ) {
 				continue;
 			}
-			if ( $field->validate(
-					$this->mFieldData[$fieldname],
-					$this->mFieldData )
-				!== true
-			) {
-				return isset( $this->mValidationErrorMessage )
-					? $this->mValidationErrorMessage
-					: array( 'htmlform-invalid-input' );
+			$res = $field->validate( $this->mFieldData[$fieldname], $this->mFieldData );
+			if ( $res !== true ) {
+				$valid = false;
+				if ( $res !== false && !$field->canDisplayErrors() ) {
+					$hoistedErrors[] = array( 'rawmessage', $res );
+				}
 			}
+		}
+
+		if ( !$valid ) {
+			if ( count( $hoistedErrors ) === 1 ) {
+				$hoistedErrors = $hoistedErrors[0];
+			}
+			return $hoistedErrors;
 		}
 
 		$callback = $this->mSubmitCallback;

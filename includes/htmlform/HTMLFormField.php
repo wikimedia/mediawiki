@@ -56,6 +56,15 @@ abstract class HTMLFormField {
 	}
 
 	/**
+	 * True if this field type is able to display errors; false if validation errors need to be
+	 * displayed in the main HTMLForm error area.
+	 * @return bool
+	 */
+	public function canDisplayErrors() {
+		return true;
+	}
+
+	/**
 	 * Get a translated interface message
 	 *
 	 * This is a wrapper around $this->mParent->msg() if $this->mParent is set

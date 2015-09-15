@@ -3554,6 +3554,7 @@
 	"htmlform-title-not-exists": "[[:$1]] does not exist.",
 	"htmlform-user-not-exists": "<strong>$1</strong> does not exist.",
 	"htmlform-user-not-valid": "<strong>$1</strong> isn't a valid username.",
+	"rawmessage": "$1",
 	"sqlite-has-fts": "$1 with full-text search support",
 	"sqlite-no-fts": "$1 without full-text search support",
 	"logentry-delete-delete": "$1 {{GENDER:$2|deleted}} page $3",
