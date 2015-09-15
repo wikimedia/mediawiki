@@ -89,7 +89,7 @@ class ParserDiffTest
 				}
 				$diff = new Diff( explode( "\n", $resultsList[0] ), explode( "\n", $resultsList[1] ) );
 				$format = new UnifiedDiffFormatter();
-				$format->format( $format );
+				$format->format( $diff );
 			} else {
 				$diff = '[too many parsers]';
 			}
@@ -98,7 +98,7 @@ class ParserDiffTest
 				$msg .= 'Arguments: ' . $this->formatArray( $args ) . "\n";
 			}
 			$msg .= 'Results: ' . $this->formatArray( $results ) . "\n" .
-				"Diff: $diff\n";
+				"Diff: " . serialize($diff) . "\n";
 			throw new MWException( $msg );
 		}
 		return $lastResult;
