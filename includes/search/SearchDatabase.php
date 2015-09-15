@@ -35,8 +35,11 @@ class SearchDatabase extends SearchEngine {
 	/**
 	 * Constructor
 	 * @param DatabaseBase $db The database to search from
+	 * @param PrefixSearch $prefixSearch
 	 */
-	public function __construct( DatabaseBase $db = null ) {
+	public function __construct( DatabaseBase $db = null, PrefixSearch $prefixSearch = null ) {
+		parent::__construct( $db, $prefixSearch );
+
 		if ( $db ) {
 			$this->db = $db;
 		} else {

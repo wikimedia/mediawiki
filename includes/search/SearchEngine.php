@@ -52,6 +52,21 @@ class SearchEngine {
 	/** @var array Feature values */
 	protected $features = array();
 
+	/** @var PrefixSearch */
+	private $prefixSearch;
+
+	/**
+	 * @param DatabaseBase $db
+	 * @param PrefixSearch $prefixSearch
+	 */
+	public function __construct( DatabaseBase $db = null, PrefixSearch $prefixSearch = null ) {
+		if ( $prefixSearch === null ) {
+			$prefixSearch = new TitlePrefixSearch();
+		}
+
+		$this->prefixSearch = $prefixSearch;
+	}
+
 	/**
 	 * Perform a full text search query and return a result set.
 	 * If title searches are not supported or disabled, return null.
@@ -88,8 +103,12 @@ class SearchEngine {
 	 * @return SearchSuggestionSet
 	 */
 	public function searchSuggestions( $query ) {
-		$searcher = new TitlePrefixSearch();
-		$titles = $searcher->searchWithVariants( $query, $this->limit, $this->namespaces );
+		$titles = $this->prefixSearch->searchWithVariants(
+			$query,
+			$this->limit,
+			$this->namespaces
+		);
+
 		$suggestions = array();
 		foreach ( $titles as $t ) {
 			$suggestions[] = new SearchTitleSuggestion( $t );
