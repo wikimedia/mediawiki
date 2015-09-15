@@ -1902,9 +1902,10 @@
 					if ( typeof modules !== 'object' && typeof modules !== 'string' ) {
 						throw new Error( 'modules must be a string or an array, not a ' + typeof modules );
 					}
-					// Allow calling with an external url or single dependency as a string
+					// Allow calling with a url or single dependency as a string
 					if ( typeof modules === 'string' ) {
-						if ( /^(https?:)?\/\//.test( modules ) ) {
+						// "https://example.org/x.js", "http://example.org/x.js", "//example.org/x.js", "/x.js"
+						if ( /^(https?:)?\/?\//.test( modules ) ) {
 							if ( type === 'text/css' ) {
 								// Support: IE 7-8
 								// Use properties instead of attributes as IE throws security
