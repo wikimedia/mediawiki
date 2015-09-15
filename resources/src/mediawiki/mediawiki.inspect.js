@@ -117,9 +117,15 @@
 			rules = sheet.cssRules || sheet.rules;
 			$.each( rules, function ( index, rule ) {
 				selectors.total++;
-				if ( document.querySelector( rule.selectorText ) !== null ) {
-					selectors.matched++;
-				}
+				// document.querySelector() on prefixed pseudo-elements can throw exceptions
+				// in Firefox and Safari. Ignore these exceptions.
+				// https://bugs.webkit.org/show_bug.cgi?id=149160
+				// https://bugzilla.mozilla.org/show_bug.cgi?id=1204880
+				try {
+					if ( document.querySelector( rule.selectorText ) !== null ) {
+						selectors.matched++;
+					}
+				} catch ( e ) {}
 			} );
 			document.body.removeChild( style );
 			return selectors;
