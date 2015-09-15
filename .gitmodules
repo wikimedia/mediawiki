@@ -169,7 +169,7 @@
 [submodule "extensions/Echo"]
 	path = extensions/Echo
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Echo.git
-	branch = wmf/1.26wmf23
+	branch = wmf/1.26wmf21
 [submodule "extensions/EducationProgram"]
 	path = extensions/EducationProgram
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/EducationProgram.git
