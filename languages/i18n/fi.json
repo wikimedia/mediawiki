@@ -1675,7 +1675,7 @@
 	"booksources-text": "Alla linkkejä ulkopuolisiin sivustoihin, joilla myydään uusia ja käytettyjä kirjoja. Sivuilla voi myös olla lisätietoa kirjoista.",
 	"booksources-invalid-isbn": "Annettu ISBN-numero ei ole kelvollinen. Tarkista alkuperäisestä lähteestä kirjoitusvirheiden varalta.",
 	"specialloguserlabel": "Suorittaja:",
-	"speciallogtitlelabel": "Kohde (sivu tai {{ns:user}}:käyttäjänimi käyttäjää varten):",
+	"speciallogtitlelabel": "Kohde (sivu tai {{ns:user}}:käyttäjänimi):",
 	"log": "Lokit",
 	"all-logs-page": "Kaikki julkiset lokit",
 	"alllogstext": "Tämä on yhdistetty lokien näyttö.\nVoit rajoittaa listaa valitsemalla lokityypin, käyttäjän tai sivun johon muutos on kohdistunut. Jälkimmäiset ovat kirjainkokoherkkiä.",

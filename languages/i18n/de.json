@@ -1045,7 +1045,7 @@
 	"gender-unknown": "„Der Benutzer“, „seine Diskussion“, „er bearbeitet“ usw.",
 	"gender-male": "„Der Benutzer“, „seine Diskussion“, „er bearbeitet“ usw. (männlich)",
 	"gender-female": "„Die Benutzerin“, „ihre Diskussion“, „sie bearbeitet“ usw. (weiblich)",
-	"prefs-help-gender": "Dies ist eine freiwillige Angabe.\nDie Software nutzt sie, um dich mit dem zutreffenden grammatikalischen Geschlecht anzureden oder gegenüber anderen zu erwähnen.\nDiese Information ist öffentlich zugänglich.\n\nBei der ersten Option wird das generische Maskulinum verwendet, so dass sich das gleiche Resultat ergibt wie bei der dritten Option.",
+	"prefs-help-gender": "Dies ist eine freiwillige Angabe.\nDie Software nutzt sie, um dich mit dem zutreffenden grammatikalischen Geschlecht anzureden oder gegenüber anderen zu erwähnen.\nDiese Information ist öffentlich zugänglich.",
 	"email": "E-Mail",
 	"prefs-help-realname": "Der bürgerliche Name ist optional.\nFalls angegeben, kann er verwendet werden, um dir eine Zuordnung für deine Beiträge zu geben.",
 	"prefs-help-email": "Die Angabe einer E-Mail-Adresse ist optional, ermöglicht aber die Zusendung eines Ersatzpasswortes, sofern du dein Passwort vergessen hast.",

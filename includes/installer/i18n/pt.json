@@ -76,7 +76,7 @@
 	"config-memory-raised": "A configuração <code>memory_limit</code> do PHP era $1; foi aumentada para $2.",
 	"config-memory-bad": "'''Aviso:''' A configuração <code>memory_limit</code> do PHP é $1.\nIsto é provavelmente demasiado baixo.\nA instalação poderá falhar!",
 	"config-ctype": "'''Erro fatal''': O PHP tem de ser compilado com suporte para a [http://www.php.net/manual/en/ctype.installation.php extensão Ctype].",
-	"config-iconv": "<strong>Fatal:</strong> PHP deve ser compilado com suporte à [http://www.php.net/manual/en/iconv.installation.php extensão iconv].",
+	"config-iconv": "<strong>Erro fatal:</strong> O PHP deve ser compilado com suporte à [http://www.php.net/manual/en/iconv.installation.php extensão iconv].",
 	"config-json": "<strong>Erro fatal:</strong> O PHP foi compilado sem suporte de JSON.\nTem de instalar a extensão JSON do PHP (incluída no PHP 5.2 ou posterior) ou a extensão [http://pecl.php.net/package/jsonc PECL jsonc] antes de instalar o MediaWiki.\n* A extensão JSON do PHP está incluída nas distribuções 5 e 6 do Red Hat Enterprise Linux (CentOS), mas tem de estar ativa nos ficheiros <code>/etc/php.ini</code> ou <code>/etc/php.d/json.ini</code>.\n* Algumas distribuições do Linux posteriores a maio de 2013 omitem a extensão JSON do PHP e substituem-na pela extensão PECL chamando-lhe <code>php5-json</code> ou <code>php-pecl-jsonc</code>.",
 	"config-xcache": "[http://xcache.lighttpd.net/ XCache] instalada",
 	"config-apc": "[http://www.php.net/apc APC] instalada",

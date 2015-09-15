@@ -89,7 +89,8 @@
 			"Fringio",
 			"Aquatech",
 			"Statix64",
-			"CassiodoroVicinetti"
+			"CassiodoroVicinetti",
+			"Bultro"
 		]
 	},
 	"tog-underline": "Sottolinea i collegamenti:",
@@ -1253,7 +1254,7 @@
 	"recentchanges-label-unpatrolled": "Modifica non ancora verificata",
 	"recentchanges-label-plusminus": "Variazione della pagina in numero di byte",
 	"recentchanges-legend-heading": "'''Legenda:'''",
-	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (vedi [[Special:NewPages|le nuove pagine]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (vedi le [[Special:NewPages|nuove pagine]])",
 	"recentchanges-legend-plusminus": "(''±123'')",
 	"rcnotefrom": "Di seguito {{PLURAL:$5|è elencata la modifica apportata|sono elencate le modifiche apportate}} a partire da <strong>$3, $4</strong> (mostrate fino a <strong>$1</strong>).",
 	"rclistfrom": "Mostra le modifiche apportate a partire da $3 $2",
@@ -1715,7 +1716,7 @@
 	"booksources-text": "Di seguito sono elencati alcuni collegamenti verso siti esterni che vendono libri nuovi e usati, attraverso i quali è possibile ottenere maggiori informazioni sul testo cercato.",
 	"booksources-invalid-isbn": "L'ISBN inserito sembra non essere valido; verificare che non siano stati commessi errori nel copiarlo dalla fonte originale.",
 	"specialloguserlabel": "Azione effettuata da:",
-	"speciallogtitlelabel": "Azione effettuata su:",
+	"speciallogtitlelabel": "Azione effettuata su (titolo della pagina o {{ns:user}}:Nome utente):",
 	"log": "Registri",
 	"all-logs-page": "Tutti i registri pubblici",
 	"alllogstext": "Presentazione unificata di tutti i registri di {{SITENAME}}.\nÈ possibile restringere i criteri di ricerca selezionando il tipo di registro, l'utente che ha eseguito l'azione, e/o la pagina interessata (entrambi i campi sono sensibili al maiuscolo/minuscolo).",
@@ -3269,6 +3270,7 @@
 	"logentry-newusers-create2": "L'utenza $3 è stata {{GENDER:$2|creata}} da $1",
 	"logentry-newusers-byemail": "L'utenza $3 è stata {{GENDER:$2|creata}} da $1 e la password è stata inviata via email",
 	"logentry-newusers-autocreate": "L'utenza $1 è stata {{GENDER:$2|creata}} automaticamente",
+	"logentry-protect-move_prot": "$1 {{GENDER:$2|ha spostato}} le impostazioni di protezione da $4 a $3",
 	"logentry-rights-rights": "$1 {{GENDER:$2|ha modificato}} l'appartenenza di $3 dal gruppo $4 al gruppo $5",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|ha modificato}} l'appartenenza a gruppi di $3",
 	"logentry-rights-autopromote": "$1 è {{GENDER:$2|stato promosso|stata promossa|stato/a promosso/a}} automaticamente da $4 a $5",

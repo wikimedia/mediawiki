@@ -2336,7 +2336,7 @@
 	"tooltip-ca-nstab-main": "Rodyti puslapio turinį",
 	"tooltip-ca-nstab-user": "Rodyti naudotojo puslapį",
 	"tooltip-ca-nstab-media": "Rodyti media puslapį",
-	"tooltip-ca-nstab-special": "Šis puslapis yra specialusis - jo negalima redaguoti",
+	"tooltip-ca-nstab-special": "Šis puslapis yra specialusis ir jo negalima redaguoti",
 	"tooltip-ca-nstab-project": "Rodyti projekto puslapį",
 	"tooltip-ca-nstab-image": "Rodyti rinkmenos puslapį",
 	"tooltip-ca-nstab-mediawiki": "Rodyti sisteminį pranešimą",
