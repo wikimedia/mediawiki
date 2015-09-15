@@ -37,8 +37,14 @@ class SpecialChangePassword extends FormSpecialPage {
 	protected $mOldPassMsg = null;
 
 	public function __construct() {
+		global $wgUseMediaWikiUIEverywhere;
 		parent::__construct( 'ChangePassword', 'editmyprivateinfo' );
 		$this->listed( false );
+
+		// Override UseMediaWikiEverywhere to true (it will be proxied by Special:UserLogin,
+		// which forces this, too, and to avoid visual inconsistency, force it here, too) - bug T78373
+		// FIXME: This shouldn't be needed, rewrite the form to OOUI
+		$wgUseMediaWikiUIEverywhere = true;
 	}
 
 	/**
