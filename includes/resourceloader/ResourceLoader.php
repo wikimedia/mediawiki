@@ -1485,7 +1485,7 @@ MESSAGE;
 		$query = self::createLoaderQuery( $context, $extraQuery );
 		$script = $this->getLoadScript( $source );
 
-		return wfExpandUrl( wfAppendQuery( $script, $query ), PROTO_RELATIVE );
+		return wfAppendQuery( $script, $query );
 	}
 
 	/**
@@ -1513,7 +1513,7 @@ MESSAGE;
 			$only, $printable, $handheld, $extraQuery
 		);
 
-		return wfExpandUrl( wfAppendQuery( $wgLoadScript, $query ), PROTO_RELATIVE );
+		return wfAppendQuery( $wgLoadScript, $query );
 	}
 
 	/**
