@@ -89,7 +89,7 @@ class ParserDiffTest
 				}
 				$diff = new Diff( explode( "\n", $resultsList[0] ), explode( "\n", $resultsList[1] ) );
 				$format = new UnifiedDiffFormatter();
-				$format->format( $diff );
+				$format->format( $format );
 			} else {
 				$diff = '[too many parsers]';
 			}
