@@ -3709,14 +3709,6 @@ class User implements IDBAccessObject {
 		Hooks::run( 'UserSaveSettings', array( $this ) );
 		$this->clearSharedCache();
 		$this->getUserPage()->invalidateCache();
-
-		// T95839: clear the cache again post-commit to reduce race conditions
-		// where stale values are written back to the cache by other threads.
-		// Note: this *still* doesn't deal with REPEATABLE-READ snapshot lag...
-		$that = $this;
-		$dbw->onTransactionIdle( function() use ( $that ) {
-			$that->clearSharedCache();
-		} );
 	}
 
 	/**
