@@ -662,8 +662,8 @@ class SpecialBlock extends FormSpecialPage {
 		if ( $data['HideUser'] ) {
 			if ( !$performer->isAllowed( 'hideuser' ) ) {
 				# this codepath is unreachable except by a malicious user spoofing forms,
-				# or by race conditions (user has oversight and sysop, loads block form,
-				# and is de-oversighted before submission); so need to fail completely
+				# or by race conditions (user has hideuser and block rights, loads block form,
+				# and loses hideuser rights before submission); so need to fail completely
 				# rather than just silently disable hiding
 				return array( 'badaccess-group0' );
 			}
@@ -787,7 +787,7 @@ class SpecialBlock extends FormSpecialPage {
 		$logParams['5::duration'] = $data['Expiry'];
 		$logParams['6::flags'] = self::blockLogFlags( $data, $type );
 
-		# Make log entry, if the name is hidden, put it in the oversight log
+		# Make log entry, if the name is hidden, put it in the suppression log
 		$log_type = $data['HideUser'] ? 'suppress' : 'block';
 		$logEntry = new ManualLogEntry( $log_type, $logaction );
 		$logEntry->setTarget( Title::makeTitle( NS_USER, $target ) );
