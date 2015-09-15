@@ -20,6 +20,11 @@
  * @file
  */
 
+/**
+ * Redis-based caching module for redis server >= 2.6.12
+ *
+ * @note: avoid use of Redis::MULTI transactions for twemproxy support
+ */
 class RedisBagOStuff extends BagOStuff {
 	/** @var RedisConnectionPool */
 	protected $redisPool;
@@ -81,7 +86,6 @@ class RedisBagOStuff extends BagOStuff {
 	}
 
 	public function get( $key, &$casToken = null, $flags = 0 ) {
-
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
@@ -100,7 +104,6 @@ class RedisBagOStuff extends BagOStuff {
 	}
 
 	public function set( $key, $value, $expiry = 0 ) {
-
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
@@ -123,7 +126,6 @@ class RedisBagOStuff extends BagOStuff {
 	}
 
 	protected function cas( $casToken, $key, $value, $expiry = 0 ) {
-
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
@@ -156,7 +158,6 @@ class RedisBagOStuff extends BagOStuff {
 	}
 
 	public function delete( $key ) {
-
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
@@ -175,7 +176,6 @@ class RedisBagOStuff extends BagOStuff {
 	}
 
 	public function getMulti( array $keys, $flags = 0 ) {
-
 		$batches = array();
 		$conns = array();
 		foreach ( $keys as $key ) {
@@ -220,7 +220,6 @@ class RedisBagOStuff extends BagOStuff {
 	 * @return bool
 	 */
 	public function setMulti( array $data, $expiry = 0 ) {
-
 		$batches = array();
 		$conns = array();
 		foreach ( $data as $key => $value ) {
@@ -265,7 +264,6 @@ class RedisBagOStuff extends BagOStuff {
 	}
 
 	public function add( $key, $value, $expiry = 0 ) {
-
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
@@ -273,11 +271,11 @@ class RedisBagOStuff extends BagOStuff {
 		$expiry = $this->convertToRelative( $expiry );
 		try {
 			if ( $expiry ) {
-				$conn->multi();
-				$conn->setnx( $key, $this->serialize( $value ) );
-				// @FIXME: this always bumps the TTL; use Redis 2.8 or Lua
-				$conn->expire( $key, $expiry );
-				$result = ( $conn->exec() == array( true, true ) );
+				$result = $conn->set(
+					$key,
+					$this->serialize( $value ),
+					array( 'nx', 'ex' => $expiry )
+				);
 			} else {
 				$result = $conn->setnx( $key, $this->serialize( $value ) );
 			}
@@ -303,7 +301,6 @@ class RedisBagOStuff extends BagOStuff {
 	 * @return int|bool New value or false on failure
 	 */
 	public function incr( $key, $value = 1 ) {
-
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
@@ -321,14 +318,6 @@ class RedisBagOStuff extends BagOStuff {
 
 		$this->logRequest( 'incr', $key, $server, $result );
 		return $result;
-	}
-
-	public function merge( $key, $callback, $exptime = 0, $attempts = 10 ) {
-		if ( !is_callable( $callback ) ) {
-			throw new Exception( "Got invalid callback." );
-		}
-
-		return $this->mergeViaCas( $key, $callback, $exptime, $attempts );
 	}
 
 	public function modifySimpleRelayEvent( array $event ) {
