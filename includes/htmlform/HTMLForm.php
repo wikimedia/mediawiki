@@ -558,14 +558,13 @@ class HTMLForm extends ContextSource {
 			if ( $field->isHidden( $this->mFieldData ) ) {
 				continue;
 			}
-			if ( $field->validate(
-					$this->mFieldData[$fieldname],
-					$this->mFieldData )
-				!== true
-			) {
+			$res = $field->validate( $this->mFieldData[$fieldname], $this->mFieldData );
+			if ( $res === false ) {
 				return isset( $this->mValidationErrorMessage )
 					? $this->mValidationErrorMessage
 					: array( 'htmlform-invalid-input' );
+			} else if ( $res !== true ) {
+				return $res;
 			}
 		}
 
