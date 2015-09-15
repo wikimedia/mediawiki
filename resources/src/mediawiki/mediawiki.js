@@ -2600,7 +2600,7 @@
 			} );
 		} );
 		$.when.apply( $, loading ).then( function () {
-			performance.mark( 'mwLoadEnd' );
+			mwPerformance.mark( 'mwLoadEnd' );
 			mw.hook( 'resourceloader.loadEnd' ).fire();
 		} );
 	} );
