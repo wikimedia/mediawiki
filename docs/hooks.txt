@@ -1376,6 +1376,9 @@ $auto: The extracted part of the parsed comment before the call to the hook.
 $post: Boolean, true if there is text after this autocomment
 $title: An optional title object used to links to sections. Can be null.
 $local: Boolean indicating whether section links should refer to local page.
+$wikiId: String containing the ID (as used by WikiMap) of the wiki from which the
+  autocomment originated; null for the local wiki. Added in 1.26, should default
+  to null in handler functions, for backwards compatibility.
 
 'GalleryGetModes': Get list of classes that can render different modes of a
 gallery.
