@@ -940,11 +940,11 @@ class ResourceLoader implements LoggerAwareInterface {
 	protected static function formatExceptionNoComment( $e ) {
 		global $wgShowExceptionDetails;
 
-		if ( $wgShowExceptionDetails ) {
-			return $e->__toString();
-		} else {
-			return wfMessage( 'internalerror' )->text();
+		if ( !$wgShowExceptionDetails ) {
+			return 'Internal error';
 		}
+
+		return $e->__toString();
 	}
 
 	/**
