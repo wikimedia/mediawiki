@@ -87,9 +87,9 @@ class ParserDiffTest
 				foreach ( $this->parsers as $i => $parser ) {
 					$resultsList[] = var_export( $results[$i], true );
 				}
-				$diffs = new Diff( explode( "\n", $resultsList[0] ), explode( "\n", $resultsList[1] ) );
+				$diff = new Diff( explode( "\n", $resultsList[0] ), explode( "\n", $resultsList[1] ) );
 				$format = new UnifiedDiffFormatter();
-				$format->format( $diffs );
+				$format->format( $diff );
 			} else {
 				$diff = '[too many parsers]';
 			}
