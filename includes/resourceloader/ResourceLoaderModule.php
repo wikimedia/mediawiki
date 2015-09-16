@@ -849,15 +849,25 @@ abstract class ResourceLoaderModule {
 	}
 
 	/**
-	 * Safe version of sha1_file(), which doesn't throw a PHP warning if the file doesn't exist.
-	 * Defaults to empty string.
+	 * Compute a non-cryptographic string hash of a file's contents.
+	 * If the file does not exist or cannot be read, returns an empty string.
 	 *
+	 * @since 1.26 Uses MurmurHash on HHVM and MD5 on PHP (previously SHA1).
 	 * @param string $filePath File path
 	 * @return string Hash
 	 */
 	protected static function safeFileHash( $filePath ) {
 		MediaWiki\suppressWarnings();
-		$hash = sha1_file( $filePath ) ?: '';
+		if ( function_exists( 'hphp_murmurhash' ) ) {
+			$contents = file_get_contents( $filePath );
+			if ( $contents !== false ) {
+				$hash = dechex( hphp_murmurhash( $contents, strlen( $contents ), 1 ) );
+			} else {
+				$hash = '';
+			}
+		} else {
+			$hash = md5_file( $filePath ) ?: '';
+		}
 		MediaWiki\restoreWarnings();
 		return $hash;
 	}
