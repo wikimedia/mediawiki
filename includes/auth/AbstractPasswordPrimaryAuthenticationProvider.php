@@ -135,10 +135,10 @@ abstract class AbstractPasswordPrimaryAuthenticationProvider extends AbstractPri
 
 	public function getAuthenticationRequestTypes( $which ) {
 		switch ( $which ) {
-			case 'login':
-			case 'create':
-			case 'change':
-			case 'all':
+			case AuthManager::ACTION_LOGIN:
+			case AuthManager::ACTION_CREATE:
+			case AuthManager::ACTION_CHANGE:
+			case AuthManager::ACTION_ALL:
 				return array( 'PasswordAuthenticationRequest' );
 
 			default:

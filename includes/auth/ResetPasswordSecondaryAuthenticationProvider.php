@@ -36,10 +36,10 @@ class ResetPasswordSecondaryAuthenticationProvider extends AbstractSecondaryAuth
 
 	public function getAuthenticationRequestTypes( $which ) {
 		switch ( $which ) {
-			case 'login-continue':
+			case AuthManager::ACTION_LOGIN_CONTINUE:
 				return (array)$this->getUIType();
 
-			case 'all':
+			case AuthManager::ACTION_ALL:
 				return array(
 					'SoftResetPasswordAuthenticationRequest',
 					'HardResetPasswordAuthenticationRequest'

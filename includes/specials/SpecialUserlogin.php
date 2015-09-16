@@ -86,8 +86,11 @@ class LoginForm extends SpecialPage {
 
 	public $mAbortLoginErrorMsg = null;
 
+	/** @deprecated */
 	protected $mUsername;
+	/** @deprecated */
 	protected $mPassword;
+	/** @deprecated */
 	protected $mRetype;
 	protected $mReturnTo;
 	protected $mCookieCheck;
@@ -97,22 +100,35 @@ class LoginForm extends SpecialPage {
 	protected $mCreateaccountMail;
 	protected $mLoginattempt;
 	protected $mRemember;
+	/** @deprecated */
 	protected $mEmail;
+	/** @deprecated */
 	protected $mDomain;
 	protected $mLanguage;
 	protected $mSkipCookieCheck;
 	protected $mReturnToQuery;
 	protected $mToken;
 	protected $mStickHTTPS;
+	/** @deprecated */
 	protected $mType;
+	/** @deprecated */
 	protected $mReason;
+	/** @deprecated */
 	protected $mRealName;
+	protected $mFromHTTP;
 	protected $mEntryError = '';
 	protected $mEntryErrorType = 'error';
 
+	/** @deprecated */
 	private $mTempPasswordUsed;
 	private $mLoaded = false;
 	private $mSecureLoginUrl;
+
+	/** @var string One of the AuthManager::ACTION_* constants */
+	protected $mAuthAction;
+
+	/** @var array A list of AuthenticationRequest class names */
+	protected $mAuthTypes;
 
 	/** @var WebRequest */
 	private $mOverrideRequest = null;
@@ -120,12 +136,17 @@ class LoginForm extends SpecialPage {
 	/** @var WebRequest Effective request; set at the beginning of load */
 	private $mRequest = null;
 
+	/** @var AuthManager */
+	private $mAuthManager;
+
 	/**
 	 * @param WebRequest $request
 	 */
 	public function __construct( $request = null ) {
 		global $wgUseMediaWikiUIEverywhere;
 		parent::__construct( 'Userlogin' );
+
+		$this->mAuthManager = AuthManager::singleton();
 
 		$this->mOverrideRequest = $request;
 		// Override UseMediaWikiEverywhere to true, to force login and create form to use mw ui
@@ -137,7 +158,7 @@ class LoginForm extends SpecialPage {
 	 *
 	 * @return array
 	 */
-	public static function getValidErrorMessages() {
+	public function getValidErrorMessages() {
 		static $messages = null;
 		if ( !$messages ) {
 			$messages = self::$validErrorMessages;
@@ -148,9 +169,11 @@ class LoginForm extends SpecialPage {
 	}
 
 	/**
-	 * Loader
+	 * Load data from request.
+	 * @param string $subPage Subpage of Special:Userlogin
+	 * FIXME make this private once that does not break the createaccount API
 	 */
-	function load() {
+	function load( $subPage ) {
 		global $wgAuth, $wgHiddenPrefs, $wgEnableEmail;
 
 		if ( $this->mLoaded ) {
@@ -165,14 +188,8 @@ class LoginForm extends SpecialPage {
 		}
 		$this->mRequest = $request;
 
-		$this->mType = $request->getText( 'type' );
-		$this->mUsername = $request->getText( 'wpName' );
-		$this->mPassword = $request->getText( 'wpPassword' );
-		$this->mRetype = $request->getText( 'wpRetype' );
-		$this->mDomain = $request->getText( 'wpDomain' );
-		$this->mReason = $request->getText( 'wpReason' );
 		$this->mCookieCheck = $request->getVal( 'wpCookieCheck' );
-		$this->mPosted = $request->wasPosted();
+		$this->mPosted = $request->wasPosted() || $subPage === 'return';
 		$this->mCreateaccountMail = $request->getCheck( 'wpCreateaccountMail' )
 			&& $wgEnableEmail;
 		$this->mCreateaccount = $request->getCheck( 'wpCreateaccount' ) && !$this->mCreateaccountMail;
@@ -185,11 +202,16 @@ class LoginForm extends SpecialPage {
 			|| $request->getBool( 'wpForceHttps', false );
 		$this->mLanguage = $request->getText( 'uselang' );
 		$this->mSkipCookieCheck = $request->getCheck( 'wpSkipCookieCheck' );
-		$this->mToken = $this->mType == 'signup'
-			? $request->getVal( 'wpCreateaccountToken' )
-			: $request->getVal( 'wpLoginToken' );
 		$this->mReturnTo = $request->getVal( 'returnto', '' );
 		$this->mReturnToQuery = $request->getVal( 'returntoquery', '' );
+
+		$this->loadAuth( $subPage );
+
+		$this->mType = $request->getText( 'type' );
+		$this->mReason = $request->getText( 'wpReason' );
+		$this->mToken = $this->isSignup()
+			? $request->getVal( 'wpCreateaccountToken' )
+			: $request->getVal( 'wpLoginToken' );
 
 		// Show an error or warning passed on from a previous page
 		$entryError = $this->msg( $request->getVal( 'error', '' ) );
@@ -222,22 +244,6 @@ class LoginForm extends SpecialPage {
 			$this->mEntryError = $entryWarning->rawParams( $loginreqlink )->parse();
 		}
 
-		if ( $wgEnableEmail ) {
-			$this->mEmail = $request->getText( 'wpEmail' );
-		} else {
-			$this->mEmail = '';
-		}
-		if ( !in_array( 'realname', $wgHiddenPrefs ) ) {
-			$this->mRealName = $request->getText( 'wpRealName' );
-		} else {
-			$this->mRealName = '';
-		}
-
-		if ( !$wgAuth->validDomain( $this->mDomain ) ) {
-			$this->mDomain = $wgAuth->getDomain();
-		}
-		$wgAuth->setDomain( $this->mDomain );
-
 		# 1. When switching accounts, it sucks to get automatically logged out
 		# 2. Do not return to PasswordReset after a successful password change
 		#    but goto Wiki start page (Main_Page) instead ( bug 33997 )
@@ -251,29 +257,118 @@ class LoginForm extends SpecialPage {
 		}
 	}
 
+	/**
+	 * Load AuthManager-rekated data from the request
+	 * @param string $subPage Subpage of Special:Userlogin
+	 */
+	protected function loadAuth( $subPage ) {
+		$type = $subPage ?: $this->mRequest->getText( 'type' );
+
+		// set sane defaults in case continuation data is not present or corrupt
+		$this->mAuthAction = ( $type === 'signup' ) ? AuthManager::ACTION_CREATE : AuthManager::ACTION_LOGIN;
+		$this->mAuthTypes = $this->mAuthManager->getAuthenticationRequestTypes( $this->mAuthAction );
+		if ( $this->mAuthAction === AuthManager::ACTION_CREATE ) {
+			$this->mAuthTypes[] = 'UserDataAuthenticationRequest';
+		}
+
+		if ( $type === 'return' ) {
+			$this->mAuthAction = $this->mRequest->getText( 'authAction' );
+		}
+
+		$allAuthTypes = $this->mAuthManager->getAuthenticationRequestTypes( AuthManager::ACTION_ALL );
+		$authTypes = explode( ',', $this->mRequest->getText( 'authTypes' ) );
+		if ( array_diff( $authTypes, $allAuthTypes ) ) {
+			return;
+		}
+		$this->mAuthTypes = $authTypes;
+		$this->mAuthAction = ( $this->mAuthAction === AuthManager::ACTION_LOGIN )
+			? AuthManager::ACTION_LOGIN_CONTINUE : AuthManager::ACTION_CREATE_CONTINUE;
+	}
+
 	function getDescription() {
-		if ( $this->mType === 'signup' ) {
+		if ( $this->isSignup() ) {
 			return $this->msg( 'createaccount' )->text();
 		} else {
 			return $this->msg( 'login' )->text();
 		}
 	}
 
+	protected function isSignup() {
+		return in_array( $this->mAuthAction,
+			array( AuthManager::ACTION_CREATE, AuthManager::ACTION_CREATE_CONTINUE ), true );
+	}
+
+	/**
+	 * Checks whether AuthManager is ready to perform the action.
+	 * @param string $action One of the AuthManager::ACTION_* constants
+	 * @return bool
+	 * @throws Exception
+	 */
+	protected function isActionAllowed( $action ) {
+		switch ( $action ) {
+			case AuthManager::ACTION_LOGIN:
+			case AuthManager::ACTION_LOGIN_CONTINUE:
+				return $this->mAuthManager->canAuthenticateNow();
+			case AuthManager::ACTION_CREATE:
+			case AuthManager::ACTION_CREATE_CONTINUE:
+				return $this->mAuthManager->canCreateAccounts();
+			default:
+				throw new LogicException( 'invalid action' );
+		}
+	}
+
+	/**
+	 * @param string $action One of the AuthManager::ACTION_* constants
+	 * @param AuthenticationRequest[] $requests
+	 * @return AuthenticationResponse
+	 * @throws Exception
+	 */
+	protected function performAuthenticationStep( $action, array $requests ) {
+		switch ( $action ) {
+			case AuthManager::ACTION_LOGIN:
+				return $this->mAuthManager->beginAuthentication( $requests );
+			case AuthManager::ACTION_LOGIN_CONTINUE:
+				return $this->mAuthManager->continueAuthentication( $requests );
+			case AuthManager::ACTION_CREATE:
+				return $this->mAuthManager->beginAccountCreation(
+					AuthFrontend::getUsernameFromRequests( $requests ),
+					$this->mContext->getUser(), $requests );
+			case AuthManager::ACTION_CREATE_CONTINUE:
+				return $this->mAuthManager->continueAccountCreation( $requests );
+			default:
+				throw new LogicException( 'invalid action' );
+		}
+	}
+
+	/**
+	 * Returns URL query parameters which can be used to reload the page (or leave and return) while
+	 * preserving all information that is necessary for authentication to continue.
+	 * @param bool $withToken Include CSRF token
+	 * @return array
+	 * FIXME should not add action/type when they can be deduced anyway
+	 */
+	protected function getReturnToParams( $withToken = false ) {
+		$params = array(
+			'returnto' => $this->mReturnTo ?: null,
+			'returntoquery' => $this->mReturnToQuery ?: null,
+			'authAction' => $this->mAuthAction,
+			'authTypes' => implode( ',', $this->mAuthTypes ),
+		);
+		if ( $withToken ) {
+			if ( $this->isSignup() ) {
+				$params['wpCreateaccountToken'] = $this->mToken;
+			} else {
+				$params['wpLoginToken'] = $this->mToken;
+			}
+		}
+		return $params;
+	}
+
 	/**
 	 * @param string|null $subPage
 	 */
 	public function execute( $subPage ) {
-		if ( session_id() == '' ) {
-			wfSetupSession();
-		}
-
-		$this->load();
-
-		// Check for [[Special:Userlogin/signup]]. This affects form display and
-		// page title.
-		if ( $subPage == 'signup' ) {
-			$this->mType = 'signup';
-		}
+		$this->load( $subPage );
 		$this->setHeaders();
 
 		// In the case where the user is already logged in, and was redirected to the login form from a
@@ -284,10 +379,10 @@ class LoginForm extends SpecialPage {
 		// However, do show the form if it was visited intentionally (no 'returnto' is present). People
 		// who often switch between several accounts have grown accustomed to this behavior.
 		if (
-			$this->mType !== 'signup' &&
-			!$this->mPosted &&
-			$this->getUser()->isLoggedIn() &&
-			( $this->mReturnTo !== '' || $this->mReturnToQuery !== '' )
+			!$this->isSignup() &&
+			!$this->mPosted && !$this->mAuthTypes &&
+			( $this->mReturnTo !== '' || $this->mReturnToQuery !== '' )  &&
+			$this->getUser()->isLoggedIn()
 		) {
 			$this->successfulLogin();
 		}
@@ -296,17 +391,14 @@ class LoginForm extends SpecialPage {
 		global $wgSecureLogin;
 		if ( $this->mRequest->getProtocol() !== 'https' ) {
 			$title = $this->getFullTitle();
-			$query = array(
-				'returnto' => $this->mReturnTo !== '' ? $this->mReturnTo : null,
-				'returntoquery' => $this->mReturnToQuery !== '' ?
-					$this->mReturnToQuery : null,
-				'title' => null,
-				( $this->mEntryErrorType === 'error' ? 'error' : 'warning' ) => $this->mEntryError,
-			) + $this->mRequest->getQueryValues();
+			$query = $this->getReturnToParams() + array(
+				 'title' => null,
+				 ( $this->mEntryErrorType === 'error' ? 'error' : 'warning' ) => $this->mEntryError,
+			 ) + $this->mRequest->getQueryValues();
 			$url = $title->getFullURL( $query, false, PROTO_HTTPS );
 			if ( $wgSecureLogin
-				&& wfCanIPUseHTTPS( $this->getRequest()->getIP() )
-				&& !$this->mFromHTTP ) // Avoid infinite redirect
+				 && wfCanIPUseHTTPS( $this->getRequest()->getIP() )
+				 && !$this->mFromHTTP ) // Avoid infinite redirect
 			{
 				$url = wfAppendQuery( $url, 'fromhttp=1' );
 				$this->getOutput()->redirect( $url );
@@ -324,6 +416,56 @@ class LoginForm extends SpecialPage {
 			}
 		}
 
+		// FIXME cookie redirect check
+
+		if ( $this->mPosted ) {
+			$this->handleSubmit();
+			return;
+		}
+
+		$this->mainLoginForm( $this->mAuthTypes, $this->mEntryError, $this->mEntryErrorType );
+	}
+
+	// FIXME migrate any addNewAccount() / addNewAccountMailPassword() / processLogin() logic not included in AuthManager
+	protected function handleSubmit() {
+		$requests = AuthenticationRequest::requestsFromSubmission( $this->mAuthTypes, $this->mRequest->getValues(),
+			$this->getPageTitle( 'return' )->getFullURL( $this->getReturnToParams( true ), null, PROTO_HTTPS ) );
+
+		if ( !$this->isActionAllowed( $this->mAuthAction ) ) {
+			// FIXME how do we explain this to the user? Should there be an AuthenticationSession::diagnose()?
+			$this->mainLoginForm( array(), 'userlogin-cannot-' . $this->mAuthAction ); // TODO i18n
+			return;
+		}
+
+		$response = $this->performAuthenticationStep( $this->mAuthAction, $requests );
+		switch ( $response->status ) {
+			case AuthenticationResponse::PASS:
+				if ( $this->isSignup() ) {
+					$this->successfulCreation();
+				} else {
+					$this->successfulLogin();
+				}
+				break;
+			case AuthenticationResponse::FAIL:
+				$restartAction = $this->isSignup() ? AuthManager::ACTION_CREATE : AuthManager::ACTION_LOGIN;
+				$restartTypes = $this->mAuthManager->getAuthenticationRequestTypes( $restartAction );
+				$this->mainLoginForm( $restartTypes, $response->message );
+				break;
+			case AuthenticationResponse::REDIRECT:
+				$this->getOutput()->redirect( $response->redirectTarget );
+				return;
+			case AuthenticationResponse::UI:
+				$this->mainLoginForm( $response->neededRequests );
+				break;
+			default:
+				throw new Exception( 'invalid AuthenticationResponse' );
+		}
+	}
+
+	/**
+	 * @param string|null $subPage
+	 */
+	public function oldexecute( $subPage ) {
 		if ( !is_null( $this->mCookieCheck ) ) {
 			$this->onCookieRedirectCheck( $this->mCookieCheck );
 
@@ -1332,6 +1474,9 @@ class LoginForm extends SpecialPage {
 	}
 
 	/**
+	 * @param AuthenticationRequest[]|string[] $requestsOrTypes A list of AuthorizationRequest
+	 *   objects or subclass names, used to generate the form fields. An empty array means a fatal
+	 *   error (authentication cannot continue).
 	 * @param string $msg
 	 * @param string $msgtype
 	 * @throws ErrorPageError
@@ -1342,7 +1487,7 @@ class LoginForm extends SpecialPage {
 	 * @throws ReadOnlyError
 	 * @private
 	 */
-	function mainLoginForm( $msg, $msgtype = 'error' ) {
+	protected function mainLoginForm( array $requestsOrTypes, $msg = '', $msgtype = 'error' ) {
 		global $wgEnableEmail, $wgEnableUserEmail;
 		global $wgHiddenPrefs, $wgLoginLanguageSelector;
 		global $wgAuth, $wgEmailConfirmToEdit;
@@ -1353,28 +1498,19 @@ class LoginForm extends SpecialPage {
 		$user = $this->getUser();
 		$out = $this->getOutput();
 
-		if ( $this->mType == 'signup' ) {
+		if ( $this->isSignup() ) {
 			// Block signup here if in readonly. Keeps user from
 			// going through the process (filling out data, etc)
 			// and being informed later.
+			// FIXME should this be part of AuthManager::canCreateAccount()?
 			$permErrors = $titleObj->getUserPermissionsErrors( 'createaccount', $user, true );
 			if ( count( $permErrors ) ) {
 				throw new PermissionsError( 'createaccount', $permErrors );
 			} elseif ( $user->isBlockedFromCreateAccount() ) {
 				$this->userBlockedMessage( $user->isBlockedFromCreateAccount() );
-
 				return;
 			} elseif ( wfReadOnly() ) {
 				throw new ReadOnlyError;
-			}
-		}
-
-		// Pre-fill username (if not creating an account, bug 44775).
-		if ( $this->mUsername == '' && $this->mType != 'signup' ) {
-			if ( $user->isLoggedIn() ) {
-				$this->mUsername = $user->getName();
-			} else {
-				$this->mUsername = $this->getRequest()->getCookie( 'UserName' );
 			}
 		}
 
@@ -1387,7 +1523,11 @@ class LoginForm extends SpecialPage {
 			'mediawiki.special.userlogin.common.styles'
 		) );
 
-		if ( $this->mType == 'signup' ) {
+		// TODO handle empty $requestsOrTypes - no form, just an error message
+
+		$form = $this->getAuthForm( $requestsOrTypes );
+
+		if ( $this->isSignup() ) {
 			// XXX hack pending RL or JS parse() support for complex content messages
 			// https://bugzilla.wikimedia.org/show_bug.cgi?id=25349
 			$out->addJsConfigVars( 'wgCreateacctImgcaptchaHelp',
@@ -1442,9 +1582,11 @@ class LoginForm extends SpecialPage {
 			$template->set( 'link', '' );
 		}
 
-		$resetLink = $this->mType == 'signup'
+		$resetLink = $this->isSignup()
 			? null
 			: is_array( $wgPasswordResetRoutes ) && in_array( true, array_values( $wgPasswordResetRoutes ) );
+
+		$template->set( 'form', $form );
 
 		$template->set( 'header', '' );
 		$template->set( 'formheader', '' );
@@ -1476,7 +1618,7 @@ class LoginForm extends SpecialPage {
 		$template->set( 'loggedin', $user->isLoggedIn() );
 		$template->set( 'loggedinuser', $user->getName() );
 
-		if ( $this->mType == 'signup' ) {
+		if ( $this->isSignup() ) {
 			if ( !self::getCreateaccountToken() ) {
 				self::setCreateaccountToken();
 			}
@@ -1511,9 +1653,8 @@ class LoginForm extends SpecialPage {
 			$template->set( 'fromhttp', $this->mFromHTTP );
 		}
 
-		// Give authentication and captcha plugins a chance to modify the form
-		$wgAuth->modifyUITemplate( $template, $this->mType );
-		if ( $this->mType == 'signup' ) {
+		// TODO look at which extensions will be broken by field data not being directly accessible
+		if ( $this->isSignup() ) {
 			Hooks::run( 'UserCreateForm', array( &$template ) );
 		} else {
 			Hooks::run( 'UserLoginForm', array( &$template ) );
@@ -1524,6 +1665,98 @@ class LoginForm extends SpecialPage {
 	}
 
 	/**
+	 * Generates a form from the given request types.
+	 * @param AuthenticationRequest[]|string[] $requestsOrTypes An array of AuthorizationRequest
+	 *   objects or subclass names.
+	 * @return HTMLForm
+	 */
+	protected function getAuthForm( array $requestsOrTypes ) {
+		$fieldInfo = AuthFrontend::mergeFieldInfo( $requestsOrTypes );
+		$formDescriptor = AuthFrontend::fieldInfoToFormDescriptor( $fieldInfo, $this->mAuthAction );
+
+		if ( $requestsOrTypes && is_object( $requestsOrTypes[0] ) ) {
+			$types = array_map( 'get_class', $requestsOrTypes );
+			// inherit data from previous request
+			foreach ( $requestsOrTypes as $request ) {
+				foreach ( $request->getFieldInfo() as $field => $_ ) {
+					if ( $formDescriptor[$field]['type'] === 'password' ) {
+						continue;
+					}
+					$formDescriptor[$field]['default'] = $request->$field;
+				}
+			}
+		} else {
+			$types = $requestsOrTypes;
+		}
+
+		$formDescriptor['authAction'] = array(
+			'type' => 'hidden',
+			'default' => $this->mAuthAction,
+		);
+		$formDescriptor['authTypes'] = array(
+			'type' => 'hidden',
+			'default' => implode( ',', $types ),
+		);
+
+		// Pre-fill username (if not creating an account, bug 44775).
+		if (
+			isset( $formDescriptor['username'] ) &&
+			!isset( $formDescriptor['username']['default'] ) &&
+			!$this->isSignup()
+		) {
+			$user = $this->getUser();
+			if ( $user->isLoggedIn() ) {
+				$formDescriptor['username']['default'] = $user->getName();
+			} else {
+				$formDescriptor['username']['default'] = $this->getRequest()->getCookie( 'UserName' );
+			}
+		}
+
+		// TODO add reason field when creating user while logged in
+		// TODO add checkbox for sending random password via email
+
+		// FIXME apply field definitions that used to be in the template. Probably not the right place for it.
+		$formDescriptor = array_merge_recursive( $this->getFieldDefinitions(), $formDescriptor );
+
+		$form = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
+
+		switch ( $this->mAuthAction ) {
+			case AuthManager::ACTION_LOGIN:
+				$msg = 'pt-login-button';
+				break;
+			case AuthManager::ACTION_LOGIN_CONTINUE:
+				$msg = 'pt-login-continue-button';
+				break;
+			case AuthManager::ACTION_CREATE:
+				if ( $this->getContext()->getUser()->isLoggedIn() ) {
+					$msg = 'createacct-submit';
+				} else {
+					$msg = 'createacct-another-submit';
+				}
+				break;
+			case AuthManager::ACTION_CREATE_CONTINUE:
+				if ( $this->getContext()->getUser()->isLoggedIn() ) {
+					$msg = 'createacct-continue-submit';
+				} else {
+					$msg = 'createacct-another-continue-submit';
+				}
+				break;
+		}
+		$form->setSubmitTextMsg( $msg );
+		return $form;
+	}
+
+	/**
+	 * A HTMLForm descriptor for the core login fields.
+	 * @return array
+	 */
+	protected function getFieldDefinitions() {
+		array(
+			// TODO
+		);
+	}
+
+	/**
 	 * Whether the login/create account form should display a link to the
 	 * other form (in addition to whatever the skin provides).
 	 *
@@ -1531,7 +1764,7 @@ class LoginForm extends SpecialPage {
 	 * @return bool
 	 */
 	private function showCreateOrLoginLink( &$user ) {
-		if ( $this->mType == 'signup' ) {
+		if ( $this->isSignup() ) {
 			return true;
 		} elseif ( $user->isAllowed( 'createaccount' ) ) {
 			return true;
@@ -1695,7 +1928,7 @@ class LoginForm extends SpecialPage {
 			return htmlspecialchars( $text );
 		}
 		$query = array( 'uselang' => $lang );
-		if ( $this->mType == 'signup' ) {
+		if ( $this->isSignup() ) {
 			$query['type'] = 'signup';
 		}
 		if ( $this->mReturnTo !== '' ) {
@@ -1737,5 +1970,4 @@ class LoginForm extends SpecialPage {
 		}
 		return $expired;
 	}
-
 }

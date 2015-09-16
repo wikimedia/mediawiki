@@ -40,14 +40,14 @@ class TemporaryPasswordPrimaryAuthenticationProvider extends AbstractPasswordPri
 
 	public function getAuthenticationRequestTypes( $which ) {
 		switch ( $which ) {
-			case 'login':
+			case AuthManager::ACTION_LOGIN:
 				return array( 'PasswordAuthenticationRequest' );
 
-			case 'change':
-			case 'create':
+			case AuthManager::ACTION_CHANGE:
+			case AuthManager::ACTION_CREATE:
 				return array( 'TemporaryPasswordAuthenticationRequest' );
 
-			case 'all':
+			case AuthManager::ACTION_ALL:
 				return array(
 					'PasswordAuthenticationRequest',
 					'TemporaryPasswordAuthenticationRequest'

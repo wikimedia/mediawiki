@@ -117,12 +117,12 @@ class AuthPluginPrimaryAuthenticationProvider extends AbstractPasswordPrimaryAut
 
 	public function getAuthenticationRequestTypes( $which ) {
 		switch ( $which ) {
-			case 'login':
-			case 'create':
-			case 'all':
+			case AuthManager::ACTION_LOGIN:
+			case AuthManager::ACTION_CREATE:
+			case AuthManager::ACTION_ALL:
 				return array( $this->requestType );
 
-			case 'change':
+			case AuthManager::ACTION_CHANGE:
 				return $this->auth->allowPasswordChange() ? array( $this->requestType ) : array();
 
 			default:

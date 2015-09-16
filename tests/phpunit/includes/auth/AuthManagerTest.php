@@ -1919,9 +1919,9 @@ class AuthManagerTest extends MediaWikiTestCase {
 		$this->managerPriv->session = $session;
 
 		if ( $state ) {
-			if ( $which === 'login-continue' ) {
+			if ( $which === AuthManager::ACTION_LOGIN_CONTINUE ) {
 				$this->manager->getRequest()->setSessionData( 'AuthManager::authnState', $state );
-			} elseif ( $which === 'create-continue' ) {
+			} elseif ( $which === AuthManager::ACTION_CREATE_CONTINUE ) {
 				$this->manager->getRequest()->setSessionData( 'AuthManager::accountCreationState', $state );
 			}
 		}
@@ -1934,27 +1934,27 @@ class AuthManagerTest extends MediaWikiTestCase {
 	public static function provideGetAuthenticationRequestTypes() {
 		return array(
 			array(
-				'login',
+				AuthManager::ACTION_LOGIN,
 				array( 'pre-login', 'primary-login', 'secondary-login', 'session', 'generic' ),
 			),
 			array(
-				'create',
+				AuthManager::ACTION_CREATE,
 				array( 'pre-create', 'primary-create', 'secondary-create', 'generic' ),
 			),
 			array(
-				'all',
+				AuthManager::ACTION_ALL,
 				array( 'pre-all', 'primary-all', 'secondary-all', 'session', 'generic' ),
 			),
 			array(
-				'change',
+				AuthManager::ACTION_CHANGE,
 				array( 'primary-change' ),
 			),
 			array(
-				'login-continue',
+				AuthManager::ACTION_LOGIN_CONTINUE,
 				array(),
 			),
 			array(
-				'login-continue',
+				AuthManager::ACTION_LOGIN_CONTINUE,
 				array(),
 				array(
 					'primary' => null,
@@ -1963,7 +1963,7 @@ class AuthManagerTest extends MediaWikiTestCase {
 				),
 			),
 			array(
-				'login-continue',
+				AuthManager::ACTION_LOGIN_CONTINUE,
 				array( 'primary-login-continue', 'generic' ),
 				array(
 					'primary' => 'primary',
@@ -1972,7 +1972,7 @@ class AuthManagerTest extends MediaWikiTestCase {
 				),
 			),
 			array(
-				'login-continue',
+				AuthManager::ACTION_LOGIN_CONTINUE,
 				array(),
 				array(
 					'primary' => 'primary2',
@@ -1981,7 +1981,7 @@ class AuthManagerTest extends MediaWikiTestCase {
 				),
 			),
 			array(
-				'login-continue',
+				AuthManager::ACTION_LOGIN_CONTINUE,
 				array(),
 				array(
 					'primary' => 'primary2',
@@ -1990,7 +1990,7 @@ class AuthManagerTest extends MediaWikiTestCase {
 				),
 			),
 			array(
-				'login-continue',
+				AuthManager::ACTION_LOGIN_CONTINUE,
 				array( 'secondary-login-continue', 'generic' ),
 				array(
 					'primary' => 'primary2',
@@ -1999,7 +1999,7 @@ class AuthManagerTest extends MediaWikiTestCase {
 				),
 			),
 			array(
-				'login-continue',
+				AuthManager::ACTION_LOGIN_CONTINUE,
 				array(),
 				array(
 					'primary' => 'primary2',
@@ -2008,11 +2008,11 @@ class AuthManagerTest extends MediaWikiTestCase {
 				),
 			),
 			array(
-				'create-continue',
+				AuthManager::ACTION_CREATE_CONTINUE,
 				array(),
 			),
 			array(
-				'create-continue',
+				AuthManager::ACTION_CREATE_CONTINUE,
 				array(),
 				array(
 					'primary' => null,
@@ -2021,7 +2021,7 @@ class AuthManagerTest extends MediaWikiTestCase {
 				),
 			),
 			array(
-				'create-continue',
+				AuthManager::ACTION_CREATE_CONTINUE,
 				array( 'primary-create-continue', 'generic' ),
 				array(
 					'primary' => 'primary',
@@ -2030,7 +2030,7 @@ class AuthManagerTest extends MediaWikiTestCase {
 				),
 			),
 			array(
-				'create-continue',
+				AuthManager::ACTION_CREATE_CONTINUE,
 				array(),
 				array(
 					'primary' => 'primary2',
@@ -2039,7 +2039,7 @@ class AuthManagerTest extends MediaWikiTestCase {
 				),
 			),
 			array(
-				'create-continue',
+				AuthManager::ACTION_CREATE_CONTINUE,
 				array(),
 				array(
 					'primary' => 'primary2',
@@ -2048,7 +2048,7 @@ class AuthManagerTest extends MediaWikiTestCase {
 				),
 			),
 			array(
-				'create-continue',
+				AuthManager::ACTION_CREATE_CONTINUE,
 				array( 'secondary-create-continue', 'generic' ),
 				array(
 					'primary' => 'primary2',
@@ -2057,7 +2057,7 @@ class AuthManagerTest extends MediaWikiTestCase {
 				),
 			),
 			array(
-				'create-continue',
+				AuthManager::ACTION_CREATE_CONTINUE,
 				array(),
 				array(
 					'primary' => 'primary2',

@@ -134,12 +134,12 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends MediaWikiTestCa
 
 	public static function provideGetAuthenticationRequestTypes() {
 		return array(
-			array( 'login', array( 'PasswordAuthenticationRequest' ) ),
-			array( 'create', array( 'TemporaryPasswordAuthenticationRequest' ) ),
-			array( 'change', array( 'TemporaryPasswordAuthenticationRequest' ) ),
-			array( 'all', array( 'PasswordAuthenticationRequest', 'TemporaryPasswordAuthenticationRequest' ) ),
-			array( 'login-continue', array() ),
-			array( 'create-continue', array() ),
+			array( AuthManager::ACTION_LOGIN, array( 'PasswordAuthenticationRequest' ) ),
+			array( AuthManager::ACTION_CREATE, array( 'TemporaryPasswordAuthenticationRequest' ) ),
+			array( AuthManager::ACTION_CHANGE, array( 'TemporaryPasswordAuthenticationRequest' ) ),
+			array( AuthManager::ACTION_ALL, array( 'PasswordAuthenticationRequest', 'TemporaryPasswordAuthenticationRequest' ) ),
+			array( AuthManager::ACTION_LOGIN_CONTINUE, array() ),
+			array( AuthManager::ACTION_CREATE_CONTINUE, array() ),
 		);
 	}
 

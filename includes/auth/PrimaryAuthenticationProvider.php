@@ -45,7 +45,7 @@
  */
 interface PrimaryAuthenticationProvider extends AuthenticationProvider {
 	/** Provider can create accounts */
-	const TYPE_CREATE = 'create';
+	const TYPE_CREATE = AuthManager::ACTION_CREATE;
 	/** Provider can link to existing accounts elsewhere */
 	const TYPE_LINK = 'link';
 	/** Provider cannot create or link to accounts */

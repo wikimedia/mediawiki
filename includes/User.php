@@ -2409,7 +2409,7 @@ class User implements IDBAccessObject {
 			'username' => $this->getName(),
 			'password' => $str,
 		);
-		$types = $manager->getAuthenticationRequestTypes( 'change' );
+		$types = $manager->getAuthenticationRequestTypes( AuthManager::ACTION_CHANGE );
 		$reqs = AuthenticationRequest::requestsFromSubmission( $types, $data, null );
 		foreach ( $reqs as $req ) {
 			$status = $manager->allowsAuthenticationDataChange( $req );

@@ -39,7 +39,7 @@ class AuthManagerAuthPlugin extends AuthPlugin {
 		if ( $this->domain !== null ) {
 			$data['username'] .= '@' . $this->domain;
 		}
-		$types = AuthManager::singleton()->getAuthenticationRequestTypes( 'login' );
+		$types = AuthManager::singleton()->getAuthenticationRequestTypes( AuthManager::ACTION_LOGIN );
 		$reqs = AuthenticationRequest::requestsFromSubmission( $types, $data, null );
 
 		$res = AuthManager::singleton()->beginAuthentication( $reqs );
@@ -94,7 +94,7 @@ class AuthManagerAuthPlugin extends AuthPlugin {
 	public function allowPasswordChange() {
 		$need = 'PasswordAuthenticationRequest';
 
-		foreach ( AuthManager::singleton()->getAuthenticationRequestTypes( 'change' ) as $type ) {
+		foreach ( AuthManager::singleton()->getAuthenticationRequestTypes( AuthManager::ACTION_CHANGE ) as $type ) {
 			if ( $type === $need || is_subclass_of( $type, $need ) ) {
 				return true;
 			}
@@ -116,7 +116,7 @@ class AuthManagerAuthPlugin extends AuthPlugin {
 		if ( $this->domain !== null ) {
 			$data['username'] .= '@' . $this->domain;
 		}
-		$types = AuthManager::singleton()->getAuthenticationRequestTypes( 'change' );
+		$types = AuthManager::singleton()->getAuthenticationRequestTypes( AuthManager::ACTION_CHANGE );
 		$reqs = AuthenticationRequest::requestsFromSubmission( $types, $data, null );
 		foreach ( $reqs as $req ) {
 			$status = AuthManager::singleton()->allowsAuthenticationDataChange( $req );
@@ -156,7 +156,7 @@ class AuthManagerAuthPlugin extends AuthPlugin {
 		if ( $this->domain !== null ) {
 			$data['username'] .= '@' . $this->domain;
 		}
-		$types = AuthManager::singleton()->getAuthenticationRequestTypes( 'create' );
+		$types = AuthManager::singleton()->getAuthenticationRequestTypes( AuthManager::ACTION_CREATE );
 		$reqs = AuthenticationRequest::requestsFromSubmission( $types, $data, null );
 
 		$userData = new UserDataAuthenticationRequest();

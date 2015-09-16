@@ -739,6 +739,16 @@ viewing.
 redirect was followed.
 $article: target article (object)
 
+'AuthChangeFieldInfo': Before converting a field information array obtained
+from a set of AuthenticationRequest classes into a form descriptor; hooks
+can tweak the array to change how login etc. forms should look, or they can
+take over the conversion completely by removing the field from $fieldInfo
+and setting the field in $formDescriptor to the converted value.
+&$fieldInfo: field information array.
+&$formDescriptor: HTMLForm descriptor. The special key 'weight' can be set to
+change the order of the fields.
+$action: one of the AuthManager::ACTION_* constants.
+
 'AuthPluginAutoCreate': DEPRECATED! Use the 'LocalUserCreated' hook instead.
 Called when creating a local account for an user logged in from an external
 authentication method.

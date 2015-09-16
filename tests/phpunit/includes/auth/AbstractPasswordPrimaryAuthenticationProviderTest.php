@@ -153,12 +153,12 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends MediaWikiTestCas
 
 	public static function provideGetAuthenticationRequestTypes() {
 		return array(
-			array( 'login', array( 'PasswordAuthenticationRequest' ) ),
-			array( 'create', array( 'PasswordAuthenticationRequest' ) ),
-			array( 'change', array( 'PasswordAuthenticationRequest' ) ),
-			array( 'all', array( 'PasswordAuthenticationRequest' ) ),
-			array( 'login-continue', array() ),
-			array( 'create-continue', array() ),
+			array( AuthManager::ACTION_LOGIN, array( 'PasswordAuthenticationRequest' ) ),
+			array( AuthManager::ACTION_CREATE, array( 'PasswordAuthenticationRequest' ) ),
+			array( AuthManager::ACTION_CHANGE, array( 'PasswordAuthenticationRequest' ) ),
+			array( AuthManager::ACTION_ALL, array( 'PasswordAuthenticationRequest' ) ),
+			array( AuthManager::ACTION_LOGIN_CONTINUE, array() ),
+			array( AuthManager::ACTION_CREATE_CONTINUE, array() ),
 		);
 	}
 

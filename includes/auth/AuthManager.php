@@ -38,6 +38,21 @@ use Psr\Log\NullLogger;
  * @since 1.26
  */
 final class AuthManager implements LoggerAwareInterface {
+	/** Log in with an existing (not necessarily local) user */
+	const ACTION_LOGIN = 'login';
+	/** Continue a login process that was interrupted by the need for user input or communication
+	 * with an external provider */
+	const ACTION_LOGIN_CONTINUE = 'login-continue';
+	/** Create a new user */
+	const ACTION_CREATE = 'create';
+	/** Continue a user creation process that was interrupted by the need for user input or
+	 * communication with an external provider */
+	const ACTION_CREATE_CONTINUE = 'create-continue';
+	/** Change a user's credentials */
+	const ACTION_CHANGE = 'change';
+	/** An unspecified action that might be any of the above */
+	const ACTION_ALL = 'all';
+
 	/** @var AuthManager|null */
 	private static $instance = null;
 
@@ -1297,31 +1312,32 @@ final class AuthManager implements LoggerAwareInterface {
 	/**
 	 * Return the applicable list of AuthenticationRequests
 	 *
-	 * Possible values for $which:
-	 *  - login: Valid for passing to beginAuthentication
-	 *  - login-continue: Valid for passing to continueAuthentication in the current state
-	 *  - change: Valid for changeAuthenticationData
-	 *  - create: Valid for passing to beginAccountCreation
-	 *  - create-continue: Valid for passing to continueAccountCreation in the current state
-	 *  - all: All possible
+	 * Possible values for $action:
 	 *
-	 * @param string $which
+	 *  - ACTION_LOGIN: Valid for passing to beginAuthentication
+	 *  - ACTION_LOGIN_CONTINUE: Valid for passing to continueAuthentication in the current state
+	 *  - ACTION_CHANGE: Valid for changeAuthenticationData
+	 *  - ACTION_CREATE: Valid for passing to beginAccountCreation
+	 *  - ACTION_CREATE_CONTINUE: Valid for passing to continueAccountCreation in the current state
+	 *  - ALL: All possible
+	 *
+	 * @param string $action One of the AuthManager::ACTION_* constants
 	 * @return string[] AuthenticationRequest class names
 	 */
-	public function getAuthenticationRequestTypes( $which ) {
+	public function getAuthenticationRequestTypes( $action ) {
 		// Figure out which providers to query
-		switch ( $which ) {
-			case 'login':
-			case 'create':
-			case 'all':
+		switch ( $action ) {
+			case self::ACTION_LOGIN:
+			case self::ACTION_CREATE:
+			case self::ACTION_ALL:
 				$providers = $this->getPreAuthenticationProviders() +
 					$this->getPrimaryAuthenticationProviders() +
 					$this->getSecondaryAuthenticationProviders();
 				break;
 
-			case 'login-continue':
-			case 'create-continue':
-				if ( $which === 'login-continue' ) {
+			case self::ACTION_LOGIN_CONTINUE:
+			case self::ACTION_CREATE_CONTINUE:
+				if ( $action === self::ACTION_LOGIN_CONTINUE ) {
 					$key = 'AuthManager::authnState';
 				} else {
 					$key = 'AuthManager::accountCreationState';
@@ -1350,24 +1366,24 @@ final class AuthManager implements LoggerAwareInterface {
 				}
 				break;
 
-			case 'change':
+			case self::ACTION_CHANGE:
 				$providers = $this->getPrimaryAuthenticationProviders();
 				break;
 
 				// @codeCoverageIgnoreStart
 			default:
-				throw new DomainException( __METHOD__ . ": Invalid which \"$which\"" );
+				throw new DomainException( __METHOD__ . ": Invalid which \"$action\"" );
 		}
 				// @codeCoverageIgnoreEnd
 
 		// Query them and merge results
 		$types = array();
 		foreach ( $providers as $provider ) {
-			$types += array_flip( $provider->getAuthenticationRequestTypes( $which ) );
+			$types += array_flip( $provider->getAuthenticationRequestTypes( $action ) );
 		}
 
 		// Add the AuthenticationSession's type, if applicable.
-		if ( $which === 'login' || $which === 'all' ) {
+		if ( $action === self::ACTION_LOGIN || $action === self::ACTION_ALL ) {
 			$type = $this->getSession()->getAuthenticationRequestType();
 			if ( $type !== null ) {
 				$types[$type] = 1;
@@ -1376,8 +1392,8 @@ final class AuthManager implements LoggerAwareInterface {
 
 		$types = array_keys( $types );
 
-		// For 'change', filter out any that something else *doesn't* allow changing
-		if ( $which === 'change' ) {
+		// For self::ACTION_CHANGE, filter out any that something else *doesn't* allow changing
+		if ( $action === self::ACTION_CHANGE ) {
 			$types = array_values( array_filter(
 				$types, array( $this, 'allowsAuthenticationDataChangeType' )
 			) );

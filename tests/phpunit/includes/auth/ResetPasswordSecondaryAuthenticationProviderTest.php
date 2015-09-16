@@ -116,33 +116,33 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends MediaWikiTestCase
 
 	public static function provideGetAuthenticationRequestTypes() {
 		return array(
-			array( 'login', true, array() ),
-			array( 'login', false, array() ),
-			array( 'login', null, array() ),
-			array( 'create', true, array() ),
-			array( 'create', false, array() ),
-			array( 'create', null, array() ),
-			array( 'change', true, array() ),
-			array( 'change', false, array() ),
-			array( 'change', null, array() ),
-			array( 'all', true, array(
+			array( AuthManager::ACTION_LOGIN, true, array() ),
+			array( AuthManager::ACTION_LOGIN, false, array() ),
+			array( AuthManager::ACTION_LOGIN, null, array() ),
+			array( AuthManager::ACTION_CREATE, true, array() ),
+			array( AuthManager::ACTION_CREATE, false, array() ),
+			array( AuthManager::ACTION_CREATE, null, array() ),
+			array( AuthManager::ACTION_CHANGE, true, array() ),
+			array( AuthManager::ACTION_CHANGE, false, array() ),
+			array( AuthManager::ACTION_CHANGE, null, array() ),
+			array( AuthManager::ACTION_ALL, true, array(
 				'SoftResetPasswordAuthenticationRequest',
 				'HardResetPasswordAuthenticationRequest'
 			) ),
-			array( 'all', false, array(
+			array( AuthManager::ACTION_ALL, false, array(
 				'SoftResetPasswordAuthenticationRequest',
 				'HardResetPasswordAuthenticationRequest'
 			) ),
-			array( 'all', null, array(
+			array( AuthManager::ACTION_ALL, null, array(
 				'SoftResetPasswordAuthenticationRequest',
 				'HardResetPasswordAuthenticationRequest'
 			) ),
-			array( 'login-continue', true, array( 'HardResetPasswordAuthenticationRequest' ) ),
-			array( 'login-continue', false, array( 'SoftResetPasswordAuthenticationRequest' ) ),
-			array( 'login-continue', null, array() ),
-			array( 'create-continue', true, array() ),
-			array( 'create-continue', false, array() ),
-			array( 'create-continue', null, array() ),
+			array( AuthManager::ACTION_LOGIN_CONTINUE, true, array( 'HardResetPasswordAuthenticationRequest' ) ),
+			array( AuthManager::ACTION_LOGIN_CONTINUE, false, array( 'SoftResetPasswordAuthenticationRequest' ) ),
+			array( AuthManager::ACTION_LOGIN_CONTINUE, null, array() ),
+			array( AuthManager::ACTION_CREATE_CONTINUE, true, array() ),
+			array( AuthManager::ACTION_CREATE_CONTINUE, false, array() ),
+			array( AuthManager::ACTION_CREATE_CONTINUE, null, array() ),
 		);
 	}
 

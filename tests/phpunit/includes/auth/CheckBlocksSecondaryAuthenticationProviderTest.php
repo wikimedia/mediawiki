@@ -49,12 +49,12 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends MediaWikiTestCase {
 
 	public static function provideGetAuthenticationRequestTypes() {
 		return array(
-			array( 'login', array() ),
-			array( 'create', array() ),
-			array( 'change', array() ),
-			array( 'all', array() ),
-			array( 'login-continue', array() ),
-			array( 'create-continue', array() ),
+			array( AuthManager::ACTION_LOGIN, array() ),
+			array( AuthManager::ACTION_CREATE, array() ),
+			array( AuthManager::ACTION_CHANGE, array() ),
+			array( AuthManager::ACTION_ALL, array() ),
+			array( AuthManager::ACTION_LOGIN_CONTINUE, array() ),
+			array( AuthManager::ACTION_CREATE_CONTINUE, array() ),
 		);
 	}
 
