@@ -427,7 +427,7 @@
 	 * Reset the user interface of this widget to reflect selected date.
 	 */
 	mw.widgets.CalendarWidget.prototype.resetUI = function () {
-		this.moment = moment( this.getDate(), this.getDateFormat() );
+		this.moment = this.getDate() !== null ? moment( this.getDate(), this.getDateFormat() ) : moment();
 		this.displayLayer = this.getDisplayLayers()[ 0 ];
 		this.updateUI();
 	};
