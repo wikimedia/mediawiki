@@ -1765,7 +1765,6 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$dbw = wfGetDB( DB_MASTER );
 		$now = wfTimestampNow();
-		$this->mTimestamp = $now;
 
 		if ( $flags & EDIT_UPDATE ) {
 			// Update article, but only if changed.
@@ -1844,6 +1843,7 @@ class WikiPage implements Page, IDBAccessObject {
 				$user->incEditCount();
 
 				$dbw->commit( __METHOD__ );
+				$this->mTimestamp = $now;
 			} else {
 				// Bug 32948: revision ID must be set to page {{REVISIONID}} and
 				// related variables correctly
@@ -1938,6 +1938,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$user->incEditCount();
 
 			$dbw->commit( __METHOD__ );
+			$this->mTimestamp = $now;
 
 			// Update links, etc.
 			$this->doEditUpdates( $revision, $user, array( 'created' => true ) );
