@@ -481,10 +481,6 @@
 	 * @param {number} [defaultNamespace=NS_MAIN]
 	 *  If given, will used as default namespace for the given title.
 	 * @param {Object} [options] additional options
-	 *  If the title is about to be created for the Media or File namespace,
-	 *  ensures the resulting Title has the correct extension. Useful, for example
-	 *  on systems that predict the type by content-sniffing, not by file extension.
-	 *  If different from empty string, `forUploading` is assumed.
 	 * @param {boolean} [options.forUploading=true]
 	 *  Makes sure that a file is uploadable under the title returned.
 	 *  There are pages in the file namespace under which file upload is impossible.
