@@ -120,7 +120,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 					strtolower( $likeObj->getDBkey() ),
 					$dbr->anyString()
 				);
-				$conds[] = "LOWER(img_name) $like";
+				$conds[] = "CONVERT(img_name USING latin1) $like";
 			}
 		}
 
