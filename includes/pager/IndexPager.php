@@ -196,7 +196,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	public function doQuery() {
 		# Use the child class name for profiling
 		$fname = __METHOD__ . ' (' . get_class( $this ) . ')';
-		$section = Profiler::instance()->scopedProfileIn( $fname );
+		Profiler::instance()->scopedProfileIn( $fname );
 
 		// @todo This should probably compare to DIR_DESCENDING and DIR_ASCENDING constants
 		$descending = ( $this->mIsBackwards == $this->mDefaultDirection );
