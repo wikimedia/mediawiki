@@ -481,7 +481,6 @@
 	 * @param {number} [defaultNamespace=NS_MAIN]
 	 *  If given, will used as default namespace for the given title.
 	 * @param {Object} [options] additional options
-	 * @param {string} [options.fileExtension='']
 	 *  If the title is about to be created for the Media or File namespace,
 	 *  ensures the resulting Title has the correct extension. Useful, for example
 	 *  on systems that predict the type by content-sniffing, not by file extension.
@@ -503,7 +502,6 @@
 
 		// merge options into defaults
 		options = $.extend( {
-			fileExtension: '',
 			forUploading: true
 		}, options );
 
@@ -535,7 +533,7 @@
 		}
 
 		if ( namespace === NS_MEDIA
-			|| ( ( options.forUploading || options.fileExtension ) && ( namespace === NS_FILE ) )
+			|| ( options.forUploading && ( namespace === NS_FILE ) )
 		) {
 
 			title = sanitize( title, [ 'generalRule', 'fileRule' ] );
@@ -550,17 +548,6 @@
 				// Get the last part, which is supposed to be the file extension
 				ext = parts.pop();
 
-				if ( options.fileExtension ) {
-					// Does the supplied file name carry the desired file extension?
-					if ( Title.normalizeExtension( ext ) !== Title.normalizeExtension( options.fileExtension ) ) {
-						// No, push back, whatever there was after the dot
-						parts.push( ext );
-					}
-
-					// Always canonicalize to the desired file extension (e.g. 'jpeg' to 'jpg')
-					ext = options.fileExtension;
-				}
-
 				// Remove whitespace of the name part (that W/O extension)
 				title = $.trim( parts.join( '.' ) );
 
@@ -572,16 +559,8 @@
 				// Missing file extension
 				title = $.trim( parts.join( '.' ) );
 
-				if ( options.fileExtension ) {
-
-					// Cut, if too long and append the desired file extension
-					title = trimFileNameToByteLength( title, options.fileExtension );
-
-				} else {
-
-					// Name has no file extension and a fallback wasn't provided either
-					return null;
-				}
+				// Name has no file extension and a fallback wasn't provided either
+				return null;
 			}
 		} else {
 
@@ -608,13 +587,11 @@
 	 * @static
 	 * @param {string} uncleanName The unclean file name including file extension but
 	 *   without namespace
-	 * @param {string} [fileExtension] the desired file extension
 	 * @return {mw.Title|null} A valid Title object or null if the title is invalid
 	 */
-	Title.newFromFileName = function ( uncleanName, fileExtension ) {
+	Title.newFromFileName = function ( uncleanName ) {
 
 		return Title.newFromUserInput( 'File:' + uncleanName, {
-			fileExtension: fileExtension,
 			forUploading: true
 		} );
 	};
