@@ -439,6 +439,7 @@
 	"session_fail_preview_html": "'''Jéegalu ! manu noo denc say coppite ngir ñakkug ay njoxe ñeel sag dugg.'''\n\n''Segam ci bii dal dañ fee doxal HTML bu ñumm, ngir ay ngirtey kaaraange, wonendi gi du gisu.''\n\n'''Su tolof-tolof bi wéyee, man nga jéem a génn te duggaat .'''",
 	"token_suffix_mismatch": "'''Votre modification n’a pas été acceptée car votre navigateur a mal codé les caractères de ponctuation dans l’identifiant de modification.'''\nCe rejet est nécessaire pour empêcher la corruption du texte de la page.\nCe problème se produit parfois lorsque vous utilisez un serveur mandataire anonyme problématique basé sur le web.",
 	"editing": "Coppiteg $1",
+	"creating": "Moo ngi sos $1",
 	"editingsection": "Coppiteg $1 (xaaj)",
 	"editingcomment": "Coppiteg $1 (xaaj bu bees)",
 	"editconflict": "jàppanteb coppite ci: $1",

@@ -7,6 +7,10 @@
 			"Mashoi7"
 		]
 	},
+	"tog-underline": "Linkien alleviivuamine:",
+	"tog-hideminor": "Peittiä pienet muutokset uuvet muutokset -listaspäi",
+	"tog-hidepatrolled": "Peittiä tarkastetut muutokset uvvet muutokset -listaspäi",
+	"tog-newpageshidepatrolled": "Peittiä tarkastetut sivut uuzien sivuloin listalpäi",
 	"tog-watchcreations": "Ližiä minun luajitut sivut da ližätyt failat minun valvonduluvetteloh",
 	"tog-watchdefault": "Ližiä minun kohendetut sivut da failat minun valvonduluvetteloh",
 	"tog-watchmoves": "Ližiä minun siirretyt sivut da failat minun valvonduluvetteloh",
@@ -179,6 +183,7 @@
 	"portal-url": "Project:Portualu",
 	"privacy": "Luottamuksen periuateh",
 	"privacypage": "Project:Luottamuksen periuateh",
+	"ok": "OK",
 	"retrievedfrom": "Lähteh - \"$1\"",
 	"youhavenewmessages": "{{PLURAL:$3|Sinule on}} $1 ($2).",
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Sinule on}} $1 {{PLURAL:$3|toizel käyttäjälpäi|$3 käyttäjältä}} ($2).",

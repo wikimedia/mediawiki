@@ -2303,7 +2303,7 @@
 	"tooltip-ca-nstab-main": "Vidi la artikolon",
 	"tooltip-ca-nstab-user": "Vidi la personan paĝon de la uzanto",
 	"tooltip-ca-nstab-media": "Vidi la paĝon de la dosiero",
-	"tooltip-ca-nstab-special": "Estas speciala paĝo, vi ne rajtas redakti ĝin.",
+	"tooltip-ca-nstab-special": "Tio ĉi estas speciala paĝo kaj ĝi ne povas esti redaktita",
 	"tooltip-ca-nstab-project": "Rigardi la paĝon de la projekto",
 	"tooltip-ca-nstab-image": "Rigardi la dosierpaĝon",
 	"tooltip-ca-nstab-mediawiki": "Rigardi la sisteman mesaĝon",

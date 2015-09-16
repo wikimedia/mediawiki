@@ -1642,7 +1642,7 @@
 	"booksources-text": "Infra es un lista de ligamines a altere sitos que vende libros nove e usate, e pote etiam haber altere informationes super libros que tu cerca:",
 	"booksources-invalid-isbn": "Le ISBN date non pare esser valide; verifica que tu non ha facite errores copiante lo del fonte original.",
 	"specialloguserlabel": "Executor:",
-	"speciallogtitlelabel": "Objectivo (titulo o usator):",
+	"speciallogtitlelabel": "Objectivo (titulo o {{ns:user}}:nomine de usator):",
 	"log": "Registros",
 	"all-logs-page": "Tote le registros public",
 	"alllogstext": "Presentation combinate de tote le registros disponibile de {{SITENAME}}.\nPro restringer le presentation, selige un typo de registro, le nomine de usator (sensibile al majusculas e minusculas), o le pagina in question (etiam sensibile al majusculas e minusculas).",

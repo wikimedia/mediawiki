@@ -2216,7 +2216,7 @@
 	"unlockconfirm": "Sí, realmente quiero desbloquear la base de datos.",
 	"lockbtn": "Bloquear la base de datos",
 	"unlockbtn": "Desbloquear la base de datos",
-	"locknoconfirm": "No ha confirmado lo que desea hacer.",
+	"locknoconfirm": "No has confirmado lo que quieres hacer.",
 	"lockdbsuccesssub": "El bloqueo se ha realizado con éxito",
 	"unlockdbsuccesssub": "El desbloqueo se ha realizado con éxito",
 	"lockdbsuccesstext": "La base de datos de {{SITENAME}} ha sido bloqueada.\n<br />Recuerde retirar el bloqueo después de completar las tareas de mantenimiento.",
