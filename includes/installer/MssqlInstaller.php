@@ -537,7 +537,6 @@ class MssqlInstaller extends DatabaseInstaller {
 		$this->setupSchemaVars();
 		$dbName = $this->getVar( 'wgDBname' );
 		$this->db->selectDB( $dbName );
-		$server = $this->getVar( 'wgDBserver' );
 		$password = $this->getVar( 'wgDBpassword' );
 		$schemaName = $this->getVar( 'wgDBmwschema' );
 
