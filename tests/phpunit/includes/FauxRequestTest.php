@@ -20,4 +20,16 @@ class FauxRequestTest extends MediaWikiTestCase {
 			array( 'text/plain', 'text/html' )
 		);
 	}
+
+	/**
+	 * @covers FauxRequest::getHeader
+	 */
+	public function testGetHeader() {
+		$_SERVER['HTTP_TEST'] = 'Example';
+
+		$request = new FauxRequest();
+
+		$this->assertEquals( $request->getAllHeaders(), array() );
+		$this->assertEquals( $request->getHeader( 'Test' ), false );
+	}
 }
