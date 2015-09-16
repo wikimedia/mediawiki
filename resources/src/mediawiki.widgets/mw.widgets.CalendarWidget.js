@@ -15,6 +15,7 @@
 	 * @class
 	 * @extends OO.ui.Widget
 	 * @mixins OO.ui.mixin.TabIndexedElement
+	 * @mixins OO.ui.mixin.FloatableElement
 	 *
 	 * @constructor
 	 * @param {Object} [config] Configuration options
@@ -22,6 +23,7 @@
 	 * @cfg {string|null} [date=null] Day or month date (depending on `precision`), in the format
 	 *     'YYYY-MM-DD' or 'YYYY-MM'. When null, the calendar will show today's date, but not select
 	 *     it.
+	 * @cfg {jQuery} [$container] Element to render the calendar under
 	 */
 	mw.widgets.CalendarWidget = function MWWCalendarWidget( config ) {
 		// Config initialization
@@ -32,6 +34,7 @@
 
 		// Mixin constructors
 		OO.ui.mixin.TabIndexedElement.call( this, $.extend( {}, config, { $tabIndexed: this.$element } ) );
+		OO.ui.mixin.FloatableElement.call( this, $.extend( {}, config, { $floatableContainer: config.$container } ) );
 
 		// Properties
 		this.precision = config.precision || 'day';
@@ -98,6 +101,7 @@
 
 	OO.inheritClass( mw.widgets.CalendarWidget, OO.ui.Widget );
 	OO.mixinClass( mw.widgets.CalendarWidget, OO.ui.mixin.TabIndexedElement );
+	OO.mixinClass( mw.widgets.CalendarWidget, OO.ui.mixin.FloatableElement );
 
 	/* Events */
 
@@ -416,8 +420,11 @@
 	 * @param {string|null} [date=null] Day or month date, in the format 'YYYY-MM-DD' or 'YYYY-MM'.
 	 *     When null, the calendar will show today's date, but not select it. When invalid, the date
 	 *     is not changed.
+	 * @param {Object} [options]
+	 * @param {boolean} [options.animate=false] Whether to perform a transition between the dates, or
+	 *     switch the view immediately.
 	 */
-	mw.widgets.CalendarWidget.prototype.setDate = function ( date ) {
+	mw.widgets.CalendarWidget.prototype.setDate = function ( date, options ) {
 		var mom = date !== null ? moment( date, this.getDateFormat() ) : moment();
 		if ( mom.isValid() ) {
 			this.moment = mom;
@@ -428,7 +435,7 @@
 				this.emit( 'change', this.date );
 			}
 			this.displayLayer = this.getDisplayLayers()[ 0 ];
-			this.updateUI();
+			this.updateUI( options && options.animate ? 'auto' : null );
 		}
 	};
 
@@ -536,6 +543,20 @@
 				return false;
 			}
 		}
+	};
+
+	/**
+	 * @inheritdoc
+	 */
+	mw.widgets.CalendarWidget.prototype.toggle = function ( visible ) {
+		// Parent method
+		mw.widgets.CalendarWidget.parent.prototype.toggle.call( this, visible );
+
+		if ( this.$floatableContainer ) {
+			this.togglePositioning( this.isVisible() );
+		}
+
+		return this;
 	};
 
 }( jQuery, mediaWiki ) );

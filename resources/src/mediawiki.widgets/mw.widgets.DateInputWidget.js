@@ -78,6 +78,10 @@
 	 * @cfg {boolean} [required=false] Mark the field as required. Implies `indicator: 'required'`.
 	 * @cfg {string} [mustBeAfter] Validates the date to be after this. In the 'YYYY-MM-DD' format.
 	 * @cfg {string} [mustBeBefore] Validates the date to be before this. In the 'YYYY-MM-DD' format.
+	 * @cfg {jQuery} [$overlay] Render the calendar into a separate layer. This configuration is
+	 *     useful in cases where the expanded calendar is larger than its containing `<div>`. The
+	 *     specified overlay layer is usually on top of the containing `<div>` and has a larger area.
+	 *     By default, the calendar uses relative positioning.
 	 */
 	mw.widgets.DateInputWidget = function MWWDateInputWidget( config ) {
 		// Config initialization
@@ -161,9 +165,45 @@
 		this.setTabIndexedElement( this.handle.$element );
 		this.handle.$element
 			.addClass( 'mw-widget-dateInputWidget-handle' );
+		this.calendar.$element
+			.addClass( 'mw-widget-dateInputWidget-calendar' );
 		this.$element
 			.addClass( 'mw-widget-dateInputWidget' )
 			.append( this.handle.$element, this.textInput.$element, this.calendar.$element );
+
+		if ( config.$overlay ) {
+			// We can't put this.calendar into the overlay, as we rely on tab order between it and the
+			// text field. We could try to fake it, but it would be difficult to implement, likely
+			// unreliable, and likely more confusing to screen readers.
+			//
+			// Let's just render a second calendar, displayed on top of the first, but within $overlay.
+			// The original calendar still gets keyboard focus and handles keypresses. The overlay
+			// calendar handles mouse clicks and generally pretends to be the only one. They are
+			// synchronised in #onCalendarChange, which is hooked up as event handler to both.
+
+			this.overlayCalendar = new mw.widgets.CalendarWidget( {
+				tabIndex: -1,
+				$container: this.$element,
+				precision: config.precision
+			} );
+			this.overlayCalendar.$element
+				.addClass( 'mw-widget-dateInputWidget-calendar' );
+
+			this.overlayCalendar.connect( this, {
+				change: 'onCalendarChange'
+			} );
+			this.calendar.$element.on( {
+				focus: function () {
+					this.overlayCalendar.$element.addClass( 'mw-widget-dateInputWidget-fakeFocus' );
+				}.bind( this ),
+				blur: function () {
+					this.overlayCalendar.$element.removeClass( 'mw-widget-dateInputWidget-fakeFocus' );
+				}.bind( this )
+			} );
+
+			config.$overlay.append( this.overlayCalendar.$element );
+		}
+
 		// Set handle label and hide stuff
 		this.updateUI();
 		this.deactivate();
@@ -186,16 +226,24 @@
 	/**
 	 * Respond to calendar date change events.
 	 *
+	 * This methods is an event handler for both this.calendar and this.overlayCalendar.
+	 *
+	 * @param {string} date Day or month date, in the format 'YYYY-MM-DD' or 'YYYY-MM'.
 	 * @private
 	 */
-	mw.widgets.DateInputWidget.prototype.onCalendarChange = function () {
+	mw.widgets.DateInputWidget.prototype.onCalendarChange = function ( date ) {
 		this.inCalendar++;
 		if ( !this.inTextInput ) {
 			// If this is caused by user typing in the input field, do not set anything.
 			// The value may be invalid (see #onTextInputChange), but displayable on the calendar.
-			this.setValue( this.calendar.getDate() );
+			this.setValue( date );
 		}
 		this.inCalendar--;
+
+		this.calendar.setDate( date, { animate: true } );
+		if ( this.overlayCalendar ) {
+			this.overlayCalendar.setDate( date, { animate: true } );
+		}
 	};
 
 	/**
@@ -313,9 +361,14 @@
 	 */
 	mw.widgets.DateInputWidget.prototype.deactivate = function () {
 		this.$element.removeClass( 'mw-widget-dateInputWidget-active' );
+		this.calendar.$element.removeClass( 'mw-widget-dateInputWidget-calendar-active' );
 		this.handle.toggle( true );
 		this.textInput.toggle( false );
 		this.calendar.toggle( false );
+		if ( this.overlayCalendar ) {
+			this.overlayCalendar.$element.removeClass( 'mw-widget-dateInputWidget-calendar-active' );
+			this.overlayCalendar.toggle( false );
+		}
 	};
 
 	/**
@@ -326,9 +379,15 @@
 	mw.widgets.DateInputWidget.prototype.activate = function () {
 		this.calendar.resetUI();
 		this.$element.addClass( 'mw-widget-dateInputWidget-active' );
+		this.calendar.$element.addClass( 'mw-widget-dateInputWidget-calendar-active' );
 		this.handle.toggle( false );
 		this.textInput.toggle( true );
 		this.calendar.toggle( true );
+		if ( this.overlayCalendar ) {
+			this.overlayCalendar.resetUI();
+			this.overlayCalendar.$element.addClass( 'mw-widget-dateInputWidget-calendar-active' );
+			this.overlayCalendar.toggle( true );
+		}
 
 		this.textInput.$input.focus();
 	};
