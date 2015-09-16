@@ -849,15 +849,21 @@ abstract class ResourceLoaderModule {
 	}
 
 	/**
-	 * Safe version of sha1_file(), which doesn't throw a PHP warning if the file doesn't exist.
-	 * Defaults to empty string.
+	 * Compute a non-cryptographic string hash of a file's contents.
+	 * If the file does not exist or cannot be read, returns an empty string.
 	 *
+	 * @since 1.26 Uses MD4 instead of SHA1.
 	 * @param string $filePath File path
 	 * @return string Hash
 	 */
 	protected static function safeFileHash( $filePath ) {
 		MediaWiki\suppressWarnings();
-		$hash = sha1_file( $filePath ) ?: '';
+		$contents = file_get_contents( $filePath );
+		if ( $contents !== false ) {
+			$hash = hash( 'md4', $contents );
+		} else {
+			$hash = '';
+		}
 		MediaWiki\restoreWarnings();
 		return $hash;
 	}
