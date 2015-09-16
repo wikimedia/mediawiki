@@ -2344,6 +2344,7 @@ function wfNegotiateType( $cprefs, $sprefs ) {
  * @param bool $end
  */
 function wfSuppressWarnings( $end = false ) {
+	wfDeprecated( __METHOD__, '1.26' );
 	MediaWiki\suppressWarnings( $end );
 }
 
@@ -2352,6 +2353,7 @@ function wfSuppressWarnings( $end = false ) {
  * Restore error level to previous value
  */
 function wfRestoreWarnings() {
+	wfDeprecated( __METHOD__, '1.26' );
 	MediaWiki\suppressWarnings( true );
 }
 
@@ -4015,6 +4017,7 @@ function wfGetParserCacheStorage() {
  * @deprecated 1.25 - use Hooks::run
  */
 function wfRunHooks( $event, array $args = array(), $deprecatedVersion = null ) {
+	wfDeprecated( __METHOD__, '1.25' );
 	return Hooks::run( $event, $args, $deprecatedVersion );
 }
 
