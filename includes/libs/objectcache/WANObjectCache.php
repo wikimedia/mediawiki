@@ -73,6 +73,10 @@ class WANObjectCache {
 	const CHECK_KEY_TTL = 31536000; // 1 year
 	/** Seconds to keep lock keys around */
 	const LOCK_TTL = 5;
+	/** Default remaining TTL at which to consider pre-emptive regeneration */
+	const LOW_TTL = 10;
+	/** Default TTL for temporarily caching tombstoned keys */
+	const TEMP_TTL = 5;
 
 	/** Idiom for set()/getWithSetCallback() TTL */
 	const TTL_NONE = 0;
@@ -473,9 +477,9 @@ class WANObjectCache {
 	final public function getWithSetCallback(
 		$key, $callback, $ttl, array $checkKeys = array(), array $opts = array()
 	) {
-		$lowTTL = isset( $opts['lowTTL'] ) ? $opts['lowTTL'] : min( 10, $ttl );
+		$lowTTL = isset( $opts['lowTTL'] ) ? $opts['lowTTL'] : min( self::LOW_TTL, $ttl );
 		$lockTSE = isset( $opts['lockTSE'] ) ? $opts['lockTSE'] : -1;
-		$tempTTL = isset( $opts['tempTTL'] ) ? $opts['tempTTL'] : 5;
+		$tempTTL = isset( $opts['tempTTL'] ) ? $opts['tempTTL'] : self::TEMP_TTL;
 
 		// Get the current key value
 		$curTTL = null;
