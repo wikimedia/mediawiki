@@ -123,7 +123,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 
 		// Either submit or create our form
 		if ( $this->isAllowed && $this->submitClicked ) {
-			$this->submit( $request );
+			$this->submit();
 		} else {
 			$this->showForm();
 		}
