@@ -1011,7 +1011,7 @@ MESSAGE;
 							$out .= $scripts;
 						} elseif ( is_array( $scripts ) ) {
 							// ...except when $scripts is an array of URLs
-							$out .= self::makeLoaderImplementScript( $name, $scripts, array(), array() );
+							$out .= self::makeLoaderImplementScript( $name, $scripts, array(), array(), array() );
 						}
 						break;
 					case 'styles':
