@@ -234,8 +234,10 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 					}
 				}
 				if ( !isset( $pageMap[$row->ar_namespace][$row->ar_title] ) ) {
-					ApiBase::dieDebug( "Found row in archive (ar_id={$row->ar_id}) that didn't " .
-						"get processed by ApiPageSet" );
+					ApiBase::dieDebug(
+						__METHOD__,
+						"Found row in archive (ar_id={$row->ar_id}) that didn't get processed by ApiPageSet"
+					);
 				}
 
 				$fit = $this->addPageSubItem(
