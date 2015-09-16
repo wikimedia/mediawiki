@@ -171,6 +171,7 @@ if ( !function_exists( 'hash_equals' ) ) {
  *
  * @param string $ext Name of the extension to load
  * @param string|null $path Absolute path of where to find the extension.json file
+ * @since 1.25
  */
 function wfLoadExtension( $ext, $path = null ) {
 	if ( !$path ) {
@@ -191,6 +192,7 @@ function wfLoadExtension( $ext, $path = null ) {
  *
  * @see wfLoadExtension
  * @param string[] $exts Array of extension names to load
+ * @since 1.25
  */
 function wfLoadExtensions( array $exts ) {
 	global $wgExtensionDirectory;
@@ -206,6 +208,7 @@ function wfLoadExtensions( array $exts ) {
  * @see wfLoadExtension
  * @param string $skin Name of the extension to load
  * @param string|null $path Absolute path of where to find the skin.json file
+ * @since 1.25
  */
 function wfLoadSkin( $skin, $path = null ) {
 	if ( !$path ) {
@@ -220,6 +223,7 @@ function wfLoadSkin( $skin, $path = null ) {
  *
  * @see wfLoadExtensions
  * @param string[] $skins Array of extension names to load
+ * @since 1.25
  */
 function wfLoadSkins( array $skins ) {
 	global $wgStyleDirectory;
