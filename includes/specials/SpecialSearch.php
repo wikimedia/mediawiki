@@ -369,13 +369,13 @@ class SpecialSearch extends SpecialPage {
 				$out->wrapWikiMsg( "==$1==\n", 'textmatches' );
 			}
 
-			// show interwiki results if any
-			if ( $textMatches->hasInterwikiResults() ) {
-				$out->addHTML( $this->showInterwiki( $textMatches->getInterwikiResults(), $term ) );
-			}
 			// show results
 			if ( $numTextMatches > 0 ) {
 				$out->addHTML( $this->showMatches( $textMatches ) );
+			}
+			// show interwiki results if any
+			if ( $textMatches->hasInterwikiResults() ) {
+				$out->addHTML( $this->showInterwiki( $textMatches->getInterwikiResults(), $term ) );
 			}
 
 			$textMatches->free();
@@ -391,6 +391,7 @@ class SpecialSearch extends SpecialPage {
 			}
 		}
 
+		$out->addHTML( '<div class="visualClear"></div>\n' );
 		if ( $prevnext ) {
 			$out->addHTML( "<p class='mw-search-pager-bottom'>{$prevnext}</p>\n" );
 		}
