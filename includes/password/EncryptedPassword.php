@@ -47,7 +47,7 @@ class EncryptedPassword extends ParameterizedPassword {
 					$secret, 0, base64_decode( $this->args[0] )
 				) );
 		} else {
-			$underlyingPassword = $this->factory->newFromType( $this->config['underlying'], $this->config );
+			$underlyingPassword = $this->factory->newFromType( $this->config['underlying'] );
 		}
 
 		$underlyingPassword->crypt( $password );
