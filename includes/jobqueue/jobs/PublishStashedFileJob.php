@@ -35,7 +35,6 @@ class PublishStashedFileJob extends Job {
 	}
 
 	public function run() {
-		$scope = RequestContext::importScopedSession( $this->params['session'] );
 		$context = RequestContext::getMain();
 		$user = $context->getUser();
 		try {
