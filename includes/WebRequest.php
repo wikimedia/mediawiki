@@ -871,7 +871,7 @@ class WebRequest {
 	/**
 	 * Initialise the header list
 	 */
-	private function initHeaders() {
+	protected function initHeaders() {
 		if ( count( $this->headers ) ) {
 			return;
 		}
@@ -1322,6 +1322,13 @@ class FauxRequest extends WebRequest {
 			$this->session = $session;
 		}
 		$this->protocol = $protocol;
+	}
+
+	/**
+	 * Initialise the header list
+	 */
+	protected function initHeaders() {
+		// Nothing to init
 	}
 
 	/**
