@@ -417,22 +417,65 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		);
 		// Collect referenced files
 		$this->localFileRefs = array_unique( $this->localFileRefs );
-		// If the list has been modified since last time we cached it, update the cache
+		$this->setFileDependencies( $context->getSkin(), $this->localFileRefs );
+
+		return $styles;
+	}
+
+	/**
+	 * Set the files this module depends on indirectly for a given skin.
+	 *
+	 * @param string $skin Skin name
+	 * @param array $localFileRefs List of files
+	 */
+	protected function setFileDependencies( $skin, $localFileRefs ) {
 		try {
-			if ( $this->localFileRefs !== $this->getFileDependencies( $context->getSkin() ) ) {
+			// If the list has been modified since last time we cached it, update the cache
+			if ( $localFileRefs !== $this->getFileDependencies( $skin ) ) {
 				$dbw = wfGetDB( DB_MASTER );
 				$dbw->replace( 'module_deps',
 					array( array( 'md_module', 'md_skin' ) ), array(
 						'md_module' => $this->getName(),
-						'md_skin' => $context->getSkin(),
-						'md_deps' => FormatJson::encode( $this->localFileRefs ),
+						'md_skin' => $skin,
+						'md_deps' => FormatJson::encode( $localFileRefs ),
 					)
 				);
 			}
 		} catch ( Exception $e ) {
 			wfDebugLog( 'resourceloader', __METHOD__ . ": failed to update DB: $e" );
 		}
-		return $styles;
+	}
+
+	/**
+	 * Get the files this module depends on indirectly for a given skin.
+	 * Currently these are only image files referenced by the module's CSS.
+	 *
+	 * @param string $skin Skin name
+	 * @return array List of files
+	 */
+	protected function getFileDependencies( $skin ) {
+		// Try in-object cache first
+		if ( isset( $this->fileDeps[$skin] ) ) {
+			return $this->fileDeps[$skin];
+		}
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$deps = $dbr->selectField( 'module_deps',
+			'md_deps',
+			array(
+				'md_module' => $this->getName(),
+				'md_skin' => $skin,
+			),
+			__METHOD__
+		);
+
+		if ( !is_null( $deps ) ) {
+			$this->fileDeps[$skin] = (array)FormatJson::decode( $deps, true );
+		} else {
+			$this->fileDeps[$skin] = array();
+		}
+
+		return $this->fileDeps[$skin];
 	}
 
 	/**
