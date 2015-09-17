@@ -924,7 +924,7 @@ class SpecialSearch extends SpecialPage {
 	/**
 	 * Show results from other wikis
 	 *
-	 * @param SearchResultSet|array $matches
+	 * @param SearchResultSet|array|null $matches
 	 * @param string $query
 	 *
 	 * @return string
@@ -932,16 +932,20 @@ class SpecialSearch extends SpecialPage {
 	protected function showInterwiki( $matches, $query ) {
 		global $wgContLang;
 
+		if ( empty( $matches ) ) {
+			# Something went wrong with hasInterwikiResults() earlier.
+			return '';
+		}
+		if ( !is_array( $matches ) ) {
+			$matches = array( $matches );
+		}
+
 		$out = "<div id='mw-search-interwiki'><div id='mw-search-interwiki-caption'>" .
 			$this->msg( 'search-interwiki-caption' )->text() . "</div>\n";
 		$out .= "<ul class='mw-search-iwresults'>\n";
 
 		// work out custom project captions
 		$this->getCustomCaptions();
-
-		if ( !is_array( $matches ) ) {
-			$matches = [ $matches ];
-		}
 
 		foreach ( $matches as $set ) {
 			$prev = null;

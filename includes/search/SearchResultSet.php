@@ -152,7 +152,7 @@ class SearchResultSet {
 	/**
 	 * Return a result set of hits on other (multiple) wikis associated with this one
 	 *
-	 * @return SearchResultSet[]
+	 * @return SearchResultSet[]|null
 	 */
 	function getInterwikiResults( $type = self::SECONDARY_RESULTS ) {
 		return null;
