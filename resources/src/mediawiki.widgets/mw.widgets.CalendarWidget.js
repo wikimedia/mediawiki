@@ -149,8 +149,9 @@
 	 * Update the calendar.
 	 *
 	 * @private
-	 * @param {string|null} [fade=null] Direction in which to fade out current calendar contents, 'previous',
-	 *     'next' or 'up'
+	 * @param {string|null} [fade=null] Direction in which to fade out current calendar contents,
+	 *     'previous', 'next', 'up' or 'down'; or 'auto', which has the same result as 'previous' or
+	 *     'next' depending on whether the current date is later or earlier than the previous.
 	 * @returns {string} Format
 	 */
 	mw.widgets.CalendarWidget.prototype.updateUI = function ( fade ) {
@@ -165,6 +166,18 @@
 		) {
 			// Already displayed
 			return;
+		}
+
+		if ( fade === 'auto' ) {
+			if ( !this.previousMoment ) {
+				fade = null;
+			} else if ( this.previousMoment.isBefore( this.moment, this.precision === 'month' ? 'month' : 'day' ) ) {
+				fade = 'next';
+			} else if ( this.previousMoment.isAfter( this.moment, this.precision === 'month' ? 'month' : 'day' ) ) {
+				fade = 'previous';
+			} else {
+				fade = null;
+			}
 		}
 
 		items = [];
@@ -375,7 +388,6 @@
 	 */
 	mw.widgets.CalendarWidget.prototype.onBodyClick = function ( e ) {
 		var
-			previousMoment = moment( this.moment ),
 			$target = $( e.target ),
 			layers = this.getDisplayLayers(),
 			currentLayer = layers.indexOf( this.displayLayer );
@@ -390,10 +402,7 @@
 		}
 		if ( currentLayer === 0 ) {
 			this.setDateFromMoment();
-			this.updateUI(
-				this.precision === 'day' && this.moment.isBefore( previousMoment, 'month' ) ? 'previous' :
-					this.precision === 'day' && this.moment.isAfter( previousMoment, 'month' ) ? 'next' : null
-			);
+			this.updateUI( 'auto' );
 		} else {
 			// One layer down
 			this.displayLayer = layers[ currentLayer - 1 ];
@@ -493,40 +502,37 @@
 			/*jshint +W024*/
 			nextDirectionKey = dir === 'ltr' ? OO.ui.Keys.RIGHT : OO.ui.Keys.LEFT,
 			prevDirectionKey = dir === 'ltr' ? OO.ui.Keys.LEFT : OO.ui.Keys.RIGHT,
-			updateInDirection = null;
+			changed = true;
 
 		if ( !this.isDisabled() ) {
 			switch ( e.which ) {
 			case prevDirectionKey:
 				this.moment.subtract( 1, this.precision === 'month' ? 'month' : 'day' );
-				updateInDirection = 'previous';
 				break;
 			case nextDirectionKey:
 				this.moment.add( 1, this.precision === 'month' ? 'month' : 'day' );
-				updateInDirection = 'next';
 				break;
 			case OO.ui.Keys.UP:
 				this.moment.subtract( 1, this.precision === 'month' ? 'month' : 'week' );
-				updateInDirection = 'previous';
 				break;
 			case OO.ui.Keys.DOWN:
 				this.moment.add( 1, this.precision === 'month' ? 'month' : 'week' );
-				updateInDirection = 'next';
 				break;
 			case OO.ui.Keys.PAGEUP:
 				this.moment.subtract( 1, this.precision === 'month' ? 'year' : 'month' );
-				updateInDirection = 'previous';
 				break;
 			case OO.ui.Keys.PAGEDOWN:
 				this.moment.add( 1, this.precision === 'month' ? 'year' : 'month' );
-				updateInDirection = 'next';
+				break;
+			default:
+				changed = false;
 				break;
 			}
 
-			if ( updateInDirection ) {
+			if ( changed ) {
 				this.displayLayer = this.getDisplayLayers()[ 0 ];
 				this.setDateFromMoment();
-				this.updateUI( updateInDirection );
+				this.updateUI( 'auto' );
 				return false;
 			}
 		}
