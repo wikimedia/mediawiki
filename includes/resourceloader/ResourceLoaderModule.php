@@ -373,13 +373,23 @@ abstract class ResourceLoaderModule {
 	}
 
 	/**
+	 * Set preloaded file dependency information. Used so we can load this
+	 * information for all modules at once.
+	 * @param string $skin Skin name
+	 * @param array $deps Array of file names
+	 */
+	public function setFileDependencies( $skin, $deps ) {
+		$this->fileDeps[$skin] = $deps;
+	}
+
+	/**
 	 * Get the files this module depends on indirectly for a given skin.
 	 * Currently these are only image files referenced by the module's CSS.
 	 *
 	 * @param string $skin Skin name
 	 * @return array List of files
 	 */
-	public function getFileDependencies( $skin ) {
+	protected function getFileDependencies( $skin ) {
 		// Try in-object cache first
 		if ( isset( $this->fileDeps[$skin] ) ) {
 			return $this->fileDeps[$skin];
@@ -405,13 +415,27 @@ abstract class ResourceLoaderModule {
 	}
 
 	/**
-	 * Set preloaded file dependency information. Used so we can load this
-	 * information for all modules at once.
+	 * Set the files this module depends on indirectly for a given skin.
+	 *
 	 * @param string $skin Skin name
-	 * @param array $deps Array of file names
+	 * @param array $localFileRefs List of files
 	 */
-	public function setFileDependencies( $skin, $deps ) {
-		$this->fileDeps[$skin] = $deps;
+	protected function saveFileDependencies( $skin, $localFileRefs ) {
+		try {
+			// If the list has been modified since last time we cached it, update the cache
+			if ( $localFileRefs !== $this->getFileDependencies( $skin ) ) {
+				$dbw = wfGetDB( DB_MASTER );
+				$dbw->replace( 'module_deps',
+					array( array( 'md_module', 'md_skin' ) ), array(
+						'md_module' => $this->getName(),
+						'md_skin' => $skin,
+						'md_deps' => FormatJson::encode( $localFileRefs ),
+					)
+				);
+			}
+		} catch ( Exception $e ) {
+			wfDebugLog( 'resourceloader', __METHOD__ . ": failed to update DB: $e" );
+		}
 	}
 
 	/**
