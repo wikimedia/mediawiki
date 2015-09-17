@@ -9,4 +9,8 @@ a.feedlink {
 	background-image: -webkit-linear-gradient(transparent, transparent), url(images/feed-icon.svg);
 	/* @embed */
 	background-image: linear-gradient(transparent, transparent), url(images/feed-icon.svg);
+	background-position: center left;
+	background-repeat: no-repeat;
+	background-size: 12px 12px;
+	padding-left: 16px;
 }
