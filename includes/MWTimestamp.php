@@ -77,7 +77,7 @@ class MWTimestamp {
 		$m = array();
 		$da = array();
 		$strtime = '';
-
+		$settz = false;
 		// We want to catch 0, '', null... but not date strings starting with a letter.
 		if ( !$ts || $ts === "\0\0\0\0\0\0\0\0\0\0\0\0\0\0" ) {
 			$uts = time();
@@ -96,10 +96,14 @@ class MWTimestamp {
 			$strtime = preg_replace( '/(\d\d)\.(\d\d)\.(\d\d)(\.(\d+))?/', "$1:$2:$3",
 					str_replace( '+00:00', 'UTC', $ts ) );
 		} elseif ( preg_match(
-			'/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.*\d*)?Z?$/',
+			'/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.*\d*)?([+\-]\d{2}:\d{2}|Z)?$/',
 			$ts,
 			$da
 		) ) {
+			// Check whether the given timestamp has a timezone offset.
+			if ( isset( $da[7] ) && $da[7] != "Z" ) {
+				$settz = true;
+			}
 			# TS_ISO_8601
 		} elseif ( preg_match(
 			'/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})(?:\.*\d*)?Z?$/',
@@ -143,8 +147,11 @@ class MWTimestamp {
 		}
 
 		if ( !$strtime ) {
-			$da = array_map( 'intval', $da );
-			$da[0] = "%04d-%02d-%02dT%02d:%02d:%02d.00+00:00";
+			// If the timezone offset is not specified.
+			if(!$settz){
+				$da[7] = "+00:00";
+			}
+			$da[0] = "%04d-%02d-%02dT%02d:%02d:%02d%s";
 			$strtime = call_user_func_array( "sprintf", $da );
 		}
 
@@ -176,7 +183,7 @@ class MWTimestamp {
 		if ( !isset( self::$formats[$style] ) ) {
 			throw new TimestampException( __METHOD__ . ': Illegal timestamp output type.' );
 		}
-
+		$this->timestamp->setTimeZone( new DateTimeZone( 'GMT' ) );
 		$output = $this->timestamp->format( self::$formats[$style] );
 
 		if ( ( $style == TS_RFC2822 ) || ( $style == TS_POSTGRES ) ) {
