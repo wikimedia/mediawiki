@@ -89,6 +89,16 @@ class RecentChange {
 	 */
 	public $counter = -1;
 
+	/**
+	 * @var array Array of change types
+	 */
+	private static $changeTypes = array(
+		'edit' => RC_EDIT,
+		'new' => RC_NEW,
+		'log' => RC_LOG,
+		'external' => RC_EXTERNAL,
+	);
+
 	# Factory methods
 
 	/**
@@ -119,18 +129,10 @@ class RecentChange {
 			return $retval;
 		}
 
-		switch ( $type ) {
-			case 'edit':
-				return RC_EDIT;
-			case 'new':
-				return RC_NEW;
-			case 'log':
-				return RC_LOG;
-			case 'external':
-				return RC_EXTERNAL;
-			default:
-				throw new MWException( "Unknown type '$type'" );
+		if ( !array_key_exists( $type, self::$changeTypes ) ) {
+			throw new MWException( "Unknown type '$type'" );
 		}
+		return self::$changeTypes[$type];
 	}
 
 	/**
@@ -140,24 +142,18 @@ class RecentChange {
 	 * @return string $type
 	 */
 	public static function parseFromRCType( $rcType ) {
-		switch ( $rcType ) {
-			case RC_EDIT:
-				$type = 'edit';
-				break;
-			case RC_NEW:
-				$type = 'new';
-				break;
-			case RC_LOG:
-				$type = 'log';
-				break;
-			case RC_EXTERNAL:
-				$type = 'external';
-				break;
-			default:
-				$type = "$rcType";
-		}
+		return array_search( $rcType, self::$changeTypes, true ) ?: "$rcType";
+	}
 
-		return $type;
+	/**
+	 * Get an array of all change types
+	 *
+	 * @since 1.26
+	 *
+	 * @return array
+	 */
+	public static function getChangeTypes() {
+		return array_keys( self::$changeTypes );
 	}
 
 	/**
