@@ -827,6 +827,14 @@ class SpecialSearch extends SpecialPage {
 	protected function showInterwiki( $matches, $query ) {
 		global $wgContLang;
 
+		if ( !is_array( $matches ) ) {
+			$matches = array( $matches );
+		}
+		if ( empty( $matches ) ) {
+			# Something went wrong with hasInterwikiResults() earlier.
+			return '';
+		}
+
 		$out = "<div id='mw-search-interwiki'><div id='mw-search-interwiki-caption'>" .
 			$this->msg( 'search-interwiki-caption' )->text() . "</div>\n";
 		$out .= "<ul class='mw-search-iwresults'>\n";
@@ -840,10 +848,6 @@ class SpecialSearch extends SpecialPage {
 			if ( count( $parts ) == 2 ) { // validate line
 				$customCaptions[$parts[0]] = $parts[1];
 			}
-		}
-
-		if ( !is_array( $matches ) ) {
-			$matches = array( $matches );
 		}
 
 		foreach ( $matches as $set ) {
