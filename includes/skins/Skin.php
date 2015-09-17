@@ -200,16 +200,15 @@ abstract class Skin extends ContextSource {
 		);
 
 		// Add various resources if required
-		if ( $wgUseAjax ) {
-			if ( $wgEnableAPI ) {
-				if ( $wgEnableWriteAPI && $wgAjaxWatch && $user->isLoggedIn()
-					&& $user->isAllowed( 'writeapi' )
-				) {
-					$modules['watch'][] = 'mediawiki.page.watch.ajax';
-				}
-
-				$modules['search'][] = 'mediawiki.searchSuggest';
+		if ( $wgUseAjax && $wgEnableAPI ) {
+			if ( $wgEnableWriteAPI && $wgAjaxWatch && $user->isLoggedIn()
+				&& $user->isAllowedAll( 'writeapi', 'viewmywatchlist', 'editmywatchlist' )
+				&& $this->getRelevantTitle()->canExist()
+			) {
+				$modules['watch'][] = 'mediawiki.page.watch.ajax';
 			}
+
+			$modules['search'][] = 'mediawiki.searchSuggest';
 		}
 
 		if ( $user->getBoolOption( 'editsectiononrightclick' ) ) {
