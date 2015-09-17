@@ -225,7 +225,7 @@ class ExtensionRegistry {
 					$GLOBALS[$key] = wfArrayPlus2d( $GLOBALS[$key], $val );
 					break;
 				case 'array_plus':
-					$GLOBALS[$key] = $val + $GLOBALS[$key];
+					$GLOBALS[$key] += $val;
 					break;
 				case 'array_merge':
 					$GLOBALS[$key] = array_merge( $val, $GLOBALS[$key] );
