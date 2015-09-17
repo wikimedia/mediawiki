@@ -324,6 +324,7 @@
 	 * @private
 	 */
 	mw.widgets.DateInputWidget.prototype.activate = function () {
+		this.calendar.resetUI();
 		this.$element.addClass( 'mw-widget-dateInputWidget-active' );
 		this.handle.toggle( false );
 		this.textInput.toggle( true );
