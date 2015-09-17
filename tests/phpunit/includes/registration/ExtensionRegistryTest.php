@@ -123,7 +123,7 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 				)
 			),
 			array(
-				'Global already set, 2d array with integer keys',
+				'Global already set, array with integer keys',
 				array(
 					'mwNamespacesFoo' => array(
 						100 => true,
@@ -139,7 +139,7 @@ class ExtensionRegistryTest extends MediaWikiTestCase {
 				),
 				array(
 					'mwNamespacesFoo' => array(
-						100 => false,
+						100 => true,
 						102 => false,
 						500 => true,
 					),
