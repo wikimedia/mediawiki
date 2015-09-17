@@ -1091,16 +1091,17 @@ class Article implements Page {
 		// to get the recentchanges row belonging to that entry
 		// (with rc_new = 1).
 
-		// Check for cached results
-		if ( $cache->get( wfMemcKey( 'NotPatrollablePage', $this->getTitle()->getArticleID() ) ) ) {
-			return false;
-		}
-
 		if ( $this->mRevision
 			&& !RecentChange::isInRCLifespan( $this->mRevision->getTimestamp(), 21600 )
 		) {
 			// The current revision is already older than what could be in the RC table
 			// 6h tolerance because the RC might not be cleaned out regularly
+			return false;
+		}
+
+		// Check for cached results
+		$key = wfMemcKey( 'NotPatrollablePage', $this->getTitle()->getArticleID() );
+		if ( $cache->get( $key ) ) {
 			return false;
 		}
 
@@ -1134,7 +1135,7 @@ class Article implements Page {
 
 			// Cache the information we gathered above in case we can't patrol
 			// Don't cache in case we can patrol as this could change
-			$cache->set( wfMemcKey( 'NotPatrollablePage', $this->getTitle()->getArticleID() ), '1' );
+			$cache->set( $key, '1' );
 
 			return false;
 		}
