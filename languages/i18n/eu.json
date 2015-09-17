@@ -509,7 +509,7 @@
 	"passwordreset-capture-help": "Kutxa hau hautatzen baduzu behin-behineko pasahitza duen e-posta erakutsiko zatzaizu, eta erabiltzaileari bidaliko zaio.",
 	"passwordreset-email": "E-mail helbidea:",
 	"passwordreset-emailtitle": "{{SITENAME}}-rako kontuaren xehetasunak",
-	"passwordreset-emailelement": "Erabiltzaile izena: $1\nBehin-behineko pasahitza: $2",
+	"passwordreset-emailelement": "Erabiltzaile izena: \n$1\n\nBehin-behineko pasahitza: \n$2",
 	"passwordreset-emailsent": "Pasahitza berrezartzeko e-posta bidali da.",
 	"passwordreset-emailsent-capture": "Pasahitza berrezartzeko e-posta bat bidali dizugu, behean erakusten dena.",
 	"changeemail": "Aldatu e-mail helbidea",

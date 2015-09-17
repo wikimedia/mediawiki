@@ -537,7 +537,7 @@
 	"passwordreset-emailtitle": "{{GRAMMAR:genitive|{{SITENAME}}}} konto andmed",
 	"passwordreset-emailtext-ip": "Keegi, arvatavasti sina ise, IP-aadressilt $1 palus lähtestada sinu {{GRAMMAR:genitive|{{SITENAME}}}} ($4) parooli. Selle e-posti aadressiga on seotud {{PLURAL:$3|järgmine konto|järgmised kontod}}:\n\n$2\n\n{{PLURAL:$3|See ajutine parool aegub|Need ajutised paroolid aeguvad}} {{PLURAL:$5|ühe|$5}} päeva pärast.\nPeaksid nüüd sisse logima ja uue parooli valima. Kui selle palve esitas keegi teine või kui sulle meenus su parool ja sa ei soovi seda enam muuta, võid teadet eirata ja jätkata vana parooli kasutamist.",
 	"passwordreset-emailtext-user": "{{GRAMMAR:genitive|{{SITENAME}}}} kasutaja $1 palus lähtestada sinu {{GRAMMAR:genitive|{{SITENAME}}}} ($4) parooli. Selle e-posti aadressiga on seotud {{PLURAL:$3|järgmine konto|järgmised kontod}}:\n\n$2\n\n{{PLURAL:$3|See ajutine parool aegub|Need ajutised paroolid aeguvad}} {{PLURAL:$5|ühe|$5}} päeva pärast.\nPeaksid nüüd sisse logima ja uue parooli valima. Kui selle palve esitas keegi teine või kui sulle meenus su parool ja sa ei soovi seda enam muuta, võid teadet eirata ja jätkata vana parooli kasutamist.",
-	"passwordreset-emailelement": "Kasutajanimi: $1\nAjutine parool: $2",
+	"passwordreset-emailelement": "Kasutajanimi: \n$1\n\nAjutine parool: \n$2",
 	"passwordreset-emailsent": "Parooli lähtestamise e-kiri on saadetud.",
 	"passwordreset-emailsent-capture": "E-kirjatsi on saadetud allpool näidatav parooli lähtestuskiri.",
 	"passwordreset-emailerror-capture": "Koostati allpool näidatav parooli lähtestuskiri, aga selle e-kirjatsi {{GENDER:$2|kasutajale}} saatmine ebaõnnestus: $1",

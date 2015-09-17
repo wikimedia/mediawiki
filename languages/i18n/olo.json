@@ -302,7 +302,7 @@
 	"passwordreset-username": "Käyttäinimi:",
 	"passwordreset-domain": "Domain:",
 	"passwordreset-email": "Sähköpoštuadressu:",
-	"passwordreset-emailelement": "Käyttäinimi: $1\nVäliaigaine peittosana: $2",
+	"passwordreset-emailelement": "Käyttäinimi: \n$1\n\nVäliaigaine peittosana: \n$2",
 	"changeemail": "Vaihta sähköpoštuadressu",
 	"changeemail-oldemail": "Nygöine sähköpoštuadressu:",
 	"changeemail-newemail": "Uuzi sähköpoštuadressu:",

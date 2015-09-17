@@ -598,7 +598,7 @@
 	"passwordreset-emailtitle": "Detalhes da conta em {{SITENAME}}",
 	"passwordreset-emailtext-ip": "Alguém (provavelmente você, a partir do endereço IP $1)\nsolicitou um lembrete dos seus detalhes de conta para {{SITENAME}} ($4).\n{{PLURAL:$3|A seguinte conta está associada|As seguintes contas estão associadas}} a este e-mail:\n\n$2\n\n{{PLURAL:$3|Esta senha temporária vai|Essas senhas temporárias vão}} expirar em {{PLURAL:$5|um dia|$5 dias}}.\nVocê deve efetuar login e escolher uma nova senha agora.\nSe você conseguir lembrar da senha, ignore este e-mail e continue\nusando sua senha anterior. Caso contrário, prossiga com as instruções\ndisponíveis no link.",
 	"passwordreset-emailtext-user": "O usuário $1 da {{SITENAME}} pediu a recuperação dos detalhes da sua conta na {{SITENAME}} ($4). {{PLURAL:$3|A seguinte conta está associada|As seguintes contas estão associadas}} a este e-mail:\n\n$2\n\n{{PLURAL:$3|Esta senha temporária irá|Estas senhas temporárias irão}} expirar dentro de {{PLURAL:$5|um dia|$5 dias}}. Deve autenticar-se e escolher uma senha nova agora. Se este pedido não foi feito por si, ou se entretanto se recordou da sua senha original e já não deseja alterá-la, pode ignorar esta mensagem e continuar a usar a senha antiga.",
-	"passwordreset-emailelement": "Usuário: $1\nSenha temporária: $2",
+	"passwordreset-emailelement": "Usuário: \n$1\n\nSenha temporária: \n$2",
 	"passwordreset-emailsent": "Foi enviado um e-mail de lembrete.",
 	"passwordreset-emailsent-capture": "Foi enviado um e-mail de lembrete, que é mostrado abaixo.",
 	"passwordreset-emailerror-capture": "Foi gerado um e-mail de recuperação da senha, conforme mostrado abaixo, mas o envio {{GENDER:$2|ao usuário|à usuária}} falhou. $1",

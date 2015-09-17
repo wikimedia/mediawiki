@@ -510,7 +510,7 @@
 	"passwordreset-domain": "Domen:",
 	"passwordreset-email": "E-mail ünvanı:",
 	"passwordreset-emailtitle": "{{SITENAME}} hesabın yaradılması",
-	"passwordreset-emailelement": "İstifadəçi adı: $1\nMüvəqqəti parol: $2",
+	"passwordreset-emailelement": "İstifadəçi adı: \n$1\n\nMüvəqqəti parol: \n$2",
 	"passwordreset-emailsent": "Xəbərdarlıq məktubu e-maillə göndərildi.",
 	"changeemail": "E-məktub ünvanını dəyiş",
 	"changeemail-oldemail": "Hazırkı e-poçt ünvanı:",

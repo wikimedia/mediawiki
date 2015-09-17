@@ -487,7 +487,7 @@
 	"passwordreset-domain": "Դոմեն՝",
 	"passwordreset-email": "Էլ-փոստի հասցեն՝",
 	"passwordreset-emailtitle": "{{SITENAME}} հաշվի մանրամասները",
-	"passwordreset-emailelement": "Մասնակցային անունը՝ $1\nԺամանակավոր գաղտնաբառը՝ $2",
+	"passwordreset-emailelement": "Մասնակցային անունը՝ \n$1\n\nԺամանակավոր գաղտնաբառը՝ \n$2",
 	"passwordreset-emailsent": "Ուղարկվեց հիշեցնող էլ․ նամակ։",
 	"passwordreset-emailsent-capture": "Ուղարկվեց հիշեցնող էլ․ նամակ։ Այն ներկայացված է ստորև։",
 	"passwordreset-emailerror-capture": "Ուղարկվեց հիշեցնող էլ․ նամակ։ Այն ներկայացված է ստորև։ Սակայն մասնակցին ուղարկելը չհաջողվեց․",

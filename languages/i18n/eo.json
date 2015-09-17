@@ -550,7 +550,7 @@
 	"passwordreset-emailtitle": "Kontaj detaloj en {{SITENAME}}",
 	"passwordreset-emailtext-ip": "Iu (verŝajne vi, de IP-adreso $1) petis restarigon de via pasvorto por {{SITENAME}} ($4). La {{PLURAL:$3|jena uzanto-konto estas asociita|jenaj uzanto-kontoj estas asociitaj}} kun ĉi tiu retpoŝtadreso:\n\n$2\n\nĈi {{PLURAL:$3|tiu provizora pasvorto|tiuj provizoraj pasvortoj}} findatiĝos {{PLURAL:$5|unu tagon|$5 tagojn}}.\nVi ensalutu kaj elektu novan pasvorton nun. Se iu alia petis ĉi tion,\naŭ se vi memoris vian originalan pasvorton, kaj vi ne plu volas\nŝanĝi ĝin, vi povas ignori ĉi tiun mesaĝon kaj plu uzi vian \nmalnovan pasvorton.",
 	"passwordreset-emailtext-user": "Uzanto $1 de {{SITENAME}} petis restarigo de via pasvorto por {{SITENAME}}\n($4). La {{PLURAL:$3|jena uzanto-konto estas asociita|jenaj uzanto-kontoj estas asociitaj}} kun ĉi tiu retpoŝtadreso:\n\n$2\n\nĈi {{PLURAL:$3|tiu provizora pasvorto|tiuj provizoraj pasvortoj}} findatiĝos {{PLURAL:$5|unu tagon|$5 tagojn}}.\nVi devas ensaluti kaj elekti novan pasvorton nun. Se iu alia petis ĉi tion,\naŭ se vi memoris vian originalan pasvorton, kaj vi ne plu volas ŝanĝi\nĝin, vi povas ignori ĉi tiun mesaĝon kaj uzi vian malnovan pasvorton.",
-	"passwordreset-emailelement": "Salutnomo: $1\nProvizora pasvorto: $2",
+	"passwordreset-emailelement": "Salutnomo: \n$1\n\nProvizora pasvorto: \n$2",
 	"passwordreset-emailsent": "Renovigita pasvorto estis retpoŝte sendita.",
 	"passwordreset-emailsent-capture": "Retpoŝto kun renovigita pasvorto estis sendita, kiu estas montrata malsupre.",
 	"passwordreset-emailerror-capture": "Retpoŝto kun renovigita pasvorto estis generita, montrata sube, sed sendado al la {{GENDER:$2|uzanto}} malsukcesis: $1",

@@ -496,7 +496,7 @@
 	"passwordreset-email": "E-mail adres:",
 	"passwordreset-emailtitle": "Mga detalye han akawnt ha {{SITENAME}}",
 	"passwordreset-emailtext-ip": "Mayda gumaramit (bangin hi ikaw, tikang han IP adres nga $1) nga naghangyo hin reset han imo tigaman-pansulod han {{SITENAME}} ($4). An nasunod nga gumaramit {{PLURAL:$3|nga akawnt|nga mga akawnt}} nahanungod hini nga email nga adres: \n\n$2\n\n{{PLURAL:$3|Iní nga temporaryo nga tigaman-pansulod|Iní nga mga temporaryo nga tigaman-pansulod}} ma-waray bali hin {{PLURAL:$5|usa ka adlaw|$5 nga mga adlaw}}.\nAngay ka sumakob ngan pumílì hin bag-o nga tigaman-pansulod ha yanâ.  Kun mayda lain nga naghatag hini nga hangyo, o kun nahinumdoman mo an imo orihinal nga tigaman-pansulod, ngan nadírì ka na pagbalyo hiní, puyde mo pasagdan ini nga sumat ngan magpadayon hin paggamit han imo daan nga tigaman-pansulod.",
-	"passwordreset-emailelement": "Agnay han gumaramit: $1\nTemporaryo nga tigaman han pagsakob: $2",
+	"passwordreset-emailelement": "Agnay han gumaramit: \n$1\n\nTemporaryo nga tigaman han pagsakob: \n$2",
 	"passwordreset-emailsent": "Ginpadangat an password reset email.",
 	"passwordreset-emailsent-capture": "Ginpadangat an password reset email, nga ginpakita ha ubos.",
 	"passwordreset-emailerror-capture": "Ginhimo an password reset email, kun diin nakikita ha ubos, pero pakyas an pagpadara ha  {{GENDER:$2|gumaramit}}: $1",

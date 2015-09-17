@@ -484,7 +484,7 @@
 	"passwordreset-capture": "د پايلې برېښليک کتل غواړې؟",
 	"passwordreset-email": "برېښليک پته:",
 	"passwordreset-emailtitle": "د {{SITENAME}} د گڼون څرگندنې",
-	"passwordreset-emailelement": "کارن-نوم: $1\nلنډمهاله پټنوم: $2",
+	"passwordreset-emailelement": "کارن-نوم: \n$1\n\nلنډمهاله پټنوم: \n$2",
 	"passwordreset-emailsent": "د پټنوم بيا پرځای کېدنې لپاره برېښليک درولېږل شو.",
 	"passwordreset-emailsent-capture": "د پټنوم بياپرځای کېدنې لپار مو يو برېښليک درولېږه، برېښليک په لاندې توگه ښودل شوی.",
 	"changeemail": "برېښليک پته بدلول",

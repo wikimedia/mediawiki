@@ -420,7 +420,7 @@
 	"passwordreset": "Одов ладямс салававал",
 	"passwordreset-username": "Теиця леметь:",
 	"passwordreset-email": "Е-сёрмапаргот:",
-	"passwordreset-emailelement": "Теицянь леметь: $1\nНурькине шкань салававалот: $2",
+	"passwordreset-emailelement": "Теицянь леметь: \n$1\n\nНурькине шкань салававалот: \n$2",
 	"changeemail-oldemail": "Неень е-сёрмапаргот:",
 	"changeemail-newemail": "Од е-сёрмапаргот:",
 	"changeemail-none": "(арась мезе невтемс)",

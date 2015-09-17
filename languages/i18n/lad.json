@@ -396,7 +396,7 @@
 	"passwordreset-username": "Nombre de usador:",
 	"passwordreset-domain": "Dominio:",
 	"passwordreset-email": "Adresso de letral:",
-	"passwordreset-emailelement": "Usuario: $1\nKontrasenya temporal: $2",
+	"passwordreset-emailelement": "Usuario: \n$1\n\nKontrasenya temporal: \n$2",
 	"changeemail": "Kambiar adreso de korreo elektroniko",
 	"changeemail-oldemail": "Adreso de korreo elektroniko aktual:",
 	"changeemail-newemail": "Muevo adreso de korreo elektroniko:",

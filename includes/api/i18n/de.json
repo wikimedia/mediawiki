@@ -314,6 +314,7 @@
 	"apihelp-query+allfileusages-param-from": "Titel der Datei, bei der die Aufzählung beginnen soll.",
 	"apihelp-query+allfileusages-param-to": "Titel der Datei, bei der die Aufzählung enden soll.",
 	"apihelp-query+allfileusages-param-prop": "Informationsteile zum Einbinden:",
+	"apihelp-query+allfileusages-paramvalue-prop-title": "Ergänzt den Titel der Datei.",
 	"apihelp-query+allfileusages-param-limit": "Wie viele Gesamtobjekte zurückgegeben werden sollen.",
 	"apihelp-query+allfileusages-param-dir": "Aufzählungsrichtung.",
 	"apihelp-query+allfileusages-example-unique": "Einheitliche Dateititel auflisten",

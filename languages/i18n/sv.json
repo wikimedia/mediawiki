@@ -577,7 +577,7 @@
 	"passwordreset-emailtitle": "Kontouppgifter på {{SITENAME}}",
 	"passwordreset-emailtext-ip": "Någon (förmodligen du, från IP-adressen $1) begärde en återställning av ditt lösenord för {{SITENAME}} ($4). Följande användar{{PLURAL:$3|konto är förknippad|konton är förknippade}} med denna e-postadress:\n\n$2\n\n{{PLURAL:$3|Detta|Dessa}} tillfälliga lösenord kommer att gå ut om {{PLURAL:$5|en dag|$5 dagar}}.\nDu bör logga in och välja ett nytt lösenord nu. Om någon annan gjorde denna begäran, eller om du kommer ihåg ditt ursprungliga lösenord, och inte längre önskar ändra det, kan du ignorera detta meddelande och fortsätta använda ditt gamla lösenord.",
 	"passwordreset-emailtext-user": "Användaren $1 på {{SITENAME}} begärde en återställning av ditt lösenord för {{SITENAME}} ($4). Följande användar{{PLURAL:$3|konto är förknippad|konton är förknippade}} med denna e-postadress:\n\n$2\n\n{{PLURAL:$3|Detta|Dessa}} tillfälliga lösenord kommer att gå ut om {{PLURAL:$5|en dag|$5 dagar}}.\nDu bör logga in och välja ett nytt lösenord nu. Om någon annan gjorde denna begäran, eller om du kommer ihåg ditt ursprungliga lösenord, och inte längre önskar ändra det, kan du ignorera detta meddelande och fortsätta använda ditt gamla lösenord.",
-	"passwordreset-emailelement": "Användarnamn: $1\nTillfälligt lösenord: $2",
+	"passwordreset-emailelement": "Användarnamn: \n$1\n\nTillfälligt lösenord: \n$2",
 	"passwordreset-emailsent": "En lösenordsåterställning via e-post har skickats.",
 	"passwordreset-emailsent-capture": "En lösenordsåterställning via e-post har skickats, som visas nedan.",
 	"passwordreset-emailerror-capture": "En lösenordsåterställning via e-post har skapats, som visas nedan, men det gick inte att skicka den till {{GENDER:$2|användaren}}: $1",

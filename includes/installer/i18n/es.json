@@ -237,7 +237,7 @@
 	"config-admin-error-bademail": "Has escrito una dirección de correo electrónico no válida.",
 	"config-subscribe": "Suscribirse a la [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce lista de correo de anuncios de versiones].",
 	"config-subscribe-help": "Esta es una lista de divulgación de bajo volumen para anuncios de lanzamiento de versiones nuevas, incluyendo anuncios de seguridad importantes.\nTe recomendamos suscribirte y actualizar tu instalación MediaWiki cada vez que se lance una nueva versión.",
-	"config-subscribe-noemail": "Ha intentado suscribirse a la lista de correo de anuncios de nuevos lanzamientos sin proporcionar una dirección de correo electrónico.\nProporcione una dirección de correo electrónico si desea suscribirse a la lista de correo.",
+	"config-subscribe-noemail": "Has intentado suscribirte a la lista de correo de anuncios de nuevos lanzamientos sin proporcionar una dirección de correo electrónico.\nProporciona una dirección de correo electrónico si quieres suscribirte a la lista de correo.",
 	"config-almost-done": "¡Ya casi has terminado!\nAhora puedes saltarte el resto de los pasos e instalar el wiki ya.",
 	"config-optional-continue": "Hazme más preguntas.",
 	"config-optional-skip": "Ya estoy aburrido, sólo instala el wiki.",

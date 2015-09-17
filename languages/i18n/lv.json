@@ -498,7 +498,7 @@
 	"passwordreset-capture": "Apskatīt izveidoto e-pastu?",
 	"passwordreset-email": "E-pasta adrese:",
 	"passwordreset-emailtitle": "Konta informācija {{SITENAME}}",
-	"passwordreset-emailelement": "Lietotājvārds: $1\nPagaidu parole: $2",
+	"passwordreset-emailelement": "Lietotājvārds: \n$1\n\nPagaidu parole: \n$2",
 	"passwordreset-emailsent": "Paroles atiestatīšanas e-pasts ir nosūtīts.",
 	"passwordreset-emailsent-capture": "Atgādinājuma e-pasta ziņojums ir nosūtīts, tas parādīts zemāk.",
 	"passwordreset-emailerror-capture": "Atgādinājuma e-pasta ziņojums tika izveidots, tas parādīts zemāk, bet nosūtīšana lietotājam neizdevās: $1",

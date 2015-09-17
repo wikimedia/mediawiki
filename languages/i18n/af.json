@@ -514,7 +514,7 @@
 	"passwordreset-emailtitle": "Gebruiker se details op {{site name}}",
 	"passwordreset-emailtext-ip": "Iemand, waarskynlik u vanaf die IP-adres $1, het u gebruikersgegewens vir {{SITENAME}} ($4) opgevra.\nDie volgende {{PLURAL:$3|gebruiker is|gebruikers is}} aan die e-posadres gekoppel:\n\n$2\n\n{{PLURAL:$3|Die tydelike wagwoord verval|Hierdie tydelike wagwoorde verval}} oor {{PLURAL:$5|een dag|$5 dae}}.\nMeld asseblief nou aan en wysig u wagwoord. As u dit nie versoek het nie, of as u die oorspronklike wagwoord nog ken en dit nie wil verander nie, ignoreer die berig en hou aan om u ou wagwoord te gebruik.",
 	"passwordreset-emailtext-user": "Gebruiker $1 op die webtuiste {{SITENAME}} het u gebruikersgegewens vir {{SITENAME}} ($4) opgevra.\nDie volgende {{PLURAL:$3|gebruiker is|gebruikers is}} aan die e-posadres gekoppel:\n\n$2\n\n{{PLURAL:$3|Die tydelike wagwoord verval|Hierdie tydelike wagwoorde verval}} oor {{PLURAL:$5|een dag|$5 dae}}.\nMeld asseblief aan en verander u wagwoord nou. As u dit nie versoek het nie, of as u die oorspronklike wagwoord nog ken en dit nie wil verander nie, ignoreer die berig en hou aan om u ou wagwoord te gebruik.",
-	"passwordreset-emailelement": "Gebruikersnaam: $1\nTydelike wagwoord: $2",
+	"passwordreset-emailelement": "Gebruikersnaam: \n$1\n\nTydelike wagwoord: \n$2",
 	"passwordreset-emailsent": "'n E-pos is gestuur om u wagwoord te herstel.",
 	"passwordreset-emailsent-capture": "'n E-pos vir die herstel van 'n wagwoord is gestuur. Dit word hieronder vertoon.",
 	"passwordreset-emailerror-capture": "'n E-pos vir die herstel van 'n wagwoord is saamgestel. Dit word hieronder vertoon. Die uitstuur daarvan na die {{GENDER:$2|gebruiker}} het egter gefaal: $1",

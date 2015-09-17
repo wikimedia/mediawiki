@@ -351,7 +351,7 @@
 	"passwordreset-username": "Vapurpeache nanv:",
 	"passwordreset-domain": "Domain:",
 	"passwordreset-email": "Email potto:",
-	"passwordreset-emailelement": "Vapurpeachem nanv: $1\nTatpurtem gupitutor: $2",
+	"passwordreset-emailelement": "Vapurpeachem nanv: \n$1\n\nTatpurtem gupitutor: \n$2",
 	"passwordreset-emailsent": "Gupitutor portun tharaipacho email dhadla.",
 	"changeemail": "Email potto bodol",
 	"changeemail-oldemail": "Sodhyacho email potto:",

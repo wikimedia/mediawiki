@@ -516,7 +516,7 @@
 	"passwordreset-emailtitle": "Accoont details oan {{SITENAME}}",
 	"passwordreset-emailtext-ip": "Somebodie (likely ye, fae IP address $1) requested ae reset o yer passwaird fer {{SITENAME}} ($4). The follaein uiser {{PLURAL:$3|accoont is|accoonts ar}}\nassociated wi this wab-mail address:\n\n$2\n\n{{PLURAL:$3|This temperie passwaird|Thir temperie passwairds}} will expire in {{PLURAL:$5|yin day|$5 days}}.\nYe shid log in n chuise ae new passwaird nou. Gif some ither bodie makit this request, or gif ye'v mynded yer oreeginal passwaird, n ye nae longer\nwish tae chynge it, ye can ignore this message n continue uisin yer auld passwaird.",
 	"passwordreset-emailtext-user": "Uiser $1 oan {{SITENAME}} requested ae reset o yer passwaird fer {{SITENAME}}\n($4). The follaein uiser {{PLURAL:$3|accoont is|accoonts ar}} associated wi this wab-mail address:\n\n$2\n\n{{PLURAL:$3|This temperie passwaird|Thir temperie passwairds}} will expire in {{PLURAL:$5|yin day|$5 days}}.\nYe shid log in n chuise ae new password nou. Gif some ither bodie haes makit this request, or gif ye'v mynded yer oreeginal passwaird, n ye nae langer wish tae chynge it, ye can ignore this message n continue uisin yer auld passwaird.",
-	"passwordreset-emailelement": "Uisername: $1\nTemperie passwaird: $2",
+	"passwordreset-emailelement": "Uisername: \n$1\n\nTemperie passwaird: \n$2",
 	"passwordreset-emailsent": "Ae passwaird reset wab-mail haes been sent.",
 	"passwordreset-emailsent-capture": "Ae passwaird reset wab-mail haas been sent, this is shawn ablow.",
 	"passwordreset-emailerror-capture": "Ae passwaird reset wab-mail wis generated, (this is shawn ablow), but sendin it til the {{GENDER:$2|uiser}} failed: $1",

@@ -535,7 +535,7 @@
 	"passwordreset-emailtitle": "{{SITENAME}}嘅戶口資料",
 	"passwordreset-emailtext-ip": "有人（可能係閣下自己，來自IP地址$1）請求更改閣下喺{{SITENAME}}（$4）嘅密碼。同爾個電子郵件有關聯嘅用戶包括：\n\n$2\n\n{{PLURAL:$3|爾個|爾啲}}臨時密碼會喺{{$5}}日之後失效。\n\n如果係閣下自己請求改密碼嘅，請馬上登錄{{SITENAME}}並且更改密碼。如果閣下諗返起自己個密碼，或者根本無申請過改密碼嘅話，請忽略爾條訊息，繼續用返舊密碼。",
 	"passwordreset-emailtext-user": "{{SITENAME}}用戶$1請求更改閣下喺{{SITENAME}}道嘅密碼$4。同爾個電子郵件有關聯嘅用戶包括：\n\n$2\n\n{{PLURAL:$3|爾個|爾啲}}臨時密碼會喺{{$5}}日之後失效。\n\n如果係閣下自己請求改密碼嘅，請馬上登錄{{SITENAME}}並且更改密碼。如果閣下諗返起自己個密碼，或者根本無申請過改密碼嘅話，請忽略爾條訊息，繼續用返舊密碼。",
-	"passwordreset-emailelement": "用戶名：$1\n臨時密碼：$2",
+	"passwordreset-emailelement": "用戶名：\n$1\n\n臨時密碼：\n$2",
 	"passwordreset-emailsent": "密碼重設電郵經已送出。",
 	"passwordreset-emailsent-capture": "密碼重設電郵經已送出，下面有顯示。",
 	"passwordreset-emailerror-capture": "密碼重設電郵經已送出，下面有顯示，但送畀{{GENDER:$2|user}}時失敗： $1",

@@ -391,7 +391,7 @@
 	"passwordreset-domain": "Huamchin:",
 	"passwordreset-email": "E-chenhmun:",
 	"passwordreset-emailtitle": "{{SITENAME}}-a siangchan chanchin kim",
-	"passwordreset-emailelement": "Hmangtuhming: $1\nThurûk lailâwk: $2",
+	"passwordreset-emailelement": "Hmangtuhming: \n$1\n\nThurûk lailâwk: \n$2",
 	"passwordreset-emailsent": "Hriat nawntirna e-lehkha thawn fel a ni.",
 	"passwordreset-emailsent-capture": "Hriat nawntirna e-lehkha thawn a ni, a hnuaia tarlan ang khuan.",
 	"passwordreset-emailerror-capture": "Hriat nawntirna e-lehkha siam chhuah a ni a, a hnuaia tarlan ang khuan; mahsé thawn hlawhchham a ni: $1",

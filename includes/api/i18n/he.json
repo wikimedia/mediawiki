@@ -967,6 +967,7 @@
 	"apihelp-query+search-param-limit": "כמה דפים להחזיר בסך הכול.",
 	"apihelp-query+search-param-interwiki": "לכלול תוצאות בינוויקי בחיפוש, אם זמין.",
 	"apihelp-query+search-param-backend": "באיזה שרת חיפוש להשתמש אם לא בבררת המחדל.",
+	"apihelp-query+search-param-enablerewrites": "הפעלת שכתוב שאילתות פנימי. שרתי חיפוש אחדים יכולים לשכתב את השאילתה לצורה שלדעתם נותנת תוצאות טובות יותר, למשל תיקון שגיאות כתיב.",
 	"apihelp-query+search-example-simple": "חיפוש <kbd>meaning</kbd>.",
 	"apihelp-query+search-example-text": "חיפוש טקסטים עבור <kbd>meaning</kbd>.",
 	"apihelp-query+search-example-generator": "קבלת מידע על הדף עבור שמוחזרים מחיפוש אחרי <kbd>meaning</kbd>.",

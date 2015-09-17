@@ -452,7 +452,7 @@
 	"passwordreset-capture": "निस्कने इमेलको नमुना हेर्ने ?",
 	"passwordreset-email": "इमेल ठेगाना:",
 	"passwordreset-emailtitle": "{{SITENAME}}मा खाता विवरण",
-	"passwordreset-emailelement": "प्रयोगकर्ताको नाम: $1\nअस्थाई पासवर्ड: $2",
+	"passwordreset-emailelement": "प्रयोगकर्ताको नाम: \n$1\n\nअस्थाई पासवर्ड: \n$2",
 	"passwordreset-emailsent": "पासवर्ड परिवर्तनका लागि इमेल पठाइया छ।",
 	"changeemail": "इमेल ठेगाना बदेल",
 	"changeemail-text": "आफ्नो इमेल ठेगाना परिवर्तन गद्द यो फारम भर । यैलाई पुष्टि गद्द तमीले आफ्नो पासवर्ड हाल्नु पडन्छ।",

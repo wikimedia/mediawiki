@@ -348,7 +348,7 @@
 	"passwordreset-username": "वापरप्याचे नांव",
 	"passwordreset-domain": "डोमेन:",
 	"passwordreset-email": "ईमेल नामो:",
-	"passwordreset-emailelement": "वापरप्याचें नांव: $1\nतात्पुरतें गुपीत उतर: $2",
+	"passwordreset-emailelement": "वापरप्याचें नांव: \n$1\n\nतात्पुरतें गुपीत उतर: \n$2",
 	"passwordreset-emailsent": "गुपीत उतर परतून तयार करपाचो ईमेल धाडला",
 	"changeemail": "ईमेल संदेश बदल्ला",
 	"changeemail-oldemail": "सद्याचो ईमेल नामो:",

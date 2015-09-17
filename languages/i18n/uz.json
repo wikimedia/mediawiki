@@ -435,7 +435,7 @@
 	"passwordreset-domain": "Domen:",
 	"passwordreset-capture": "Xatni koʻrmoqchimisiz?",
 	"passwordreset-email": "Elektron pochta manzilingiz:",
-	"passwordreset-emailelement": "Foydalanuvchi ismi: $1\nVaqtinchalik maxfiy so'z: $2",
+	"passwordreset-emailelement": "Foydalanuvchi ismi: \n$1\n\nVaqtinchalik maxfiy so'z: \n$2",
 	"changeemail": "Elektron pochta manzilini oʻzgartirish",
 	"changeemail-oldemail": "Joriy elektron pochta manzili",
 	"changeemail-newemail": "Elektron pochtaning yangi manzili",

@@ -519,7 +519,7 @@
 	"passwordreset-emailtitle": "Dettalji tal-kont fuq {{SITENAME}}",
 	"passwordreset-emailtext-ip": "Xi ħadd (probabbilment int, mill-indirizz IP $1) għamel rikjesta sabiex jingħata password ġdida sabiex jaċċessa l-{{SITENAME}} ($4). L-{{PLURAL:$3|utent assoċjat|utenti assoċjati}} ma' dan l-indirizz elettroniku {{PLURAL:$3|huwa|huma}}:\n\n$2\n\n{{PLURAL:$3|Din il-password temporanja se tiskadi|Dawn il-passwords temporanji se jiskadu}} fi żmien {{PLURAL:$5|ġurnata|$5 jum}}. Inti għadek tidħol fil-kont tiegħek u tagħżel password ġdida issa. Jekk xi ħadd ieħor għamel din ir-rikjesta, jew jekk ftakart il-password oriġinali, u m'għadekx trid tbiddilha, inti tista' tinjora dan il-messaġġ u tibqa' tuża' l-password il-qadima.",
 	"passwordreset-emailtext-user": "{{PLURAL:$3|Din il-password temporanja se tiskadi|Dawn il-passwords temporanji se jiskadu}} fi żmien {{PLURAL:$5|ġurnata|$5 jum}}. Inti għadek tidħol fil-kont tiegħek u tagħżel password ġdida issa. Jekk xi ħadd ieħor għamel din ir-rikjesta, jew jekk ftakart il-password oriġinali, u m'għadikx trid tbiddilha, inti tista' tinjora dan il-messaġġ u tibqa' tuża' l-password il-qadima.",
-	"passwordreset-emailelement": "Isem tal-utent: $1\nPassword temporanja: $2",
+	"passwordreset-emailelement": "Isem tal-utent: \n$1\n\nPassword temporanja: \n$2",
 	"passwordreset-emailsent": "Intbagħtet ittra-e għall-issettjar mill-ġdid tal-password.",
 	"passwordreset-emailsent-capture": "Intbagħtet ittra-e għall-ssettjar mill-ġdid tal-password u l-kontenut jidher hawn taħt.",
 	"passwordreset-emailerror-capture": "Ġiet ġenerata ittra-e ta' tfakkira, li l-kontenut tagħha jidher hawn taħt. Madanakollu, il-posta ma ntbagħtitx lill-utent: $1",

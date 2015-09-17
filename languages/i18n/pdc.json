@@ -240,7 +240,7 @@
 	"passwordreset": "Paesswatt zerricksetze",
 	"passwordreset-username": "Yuuser-Naame:",
 	"passwordreset-email": "E-Poschd:",
-	"passwordreset-emailelement": "Yuusernaame: $1\nPaesswatt fer nau: $2",
+	"passwordreset-emailelement": "Yuusernaame: \n$1\n\nPaesswatt fer nau: \n$2",
 	"changeemail-none": "(ken)",
 	"changeemail-submit": "E-Poschd ennere",
 	"bold_sample": "Wadde fett gmarrickt",

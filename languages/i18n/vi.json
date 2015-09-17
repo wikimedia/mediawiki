@@ -543,7 +543,7 @@
 	"passwordreset-emailtitle": "Thông tin tài khoản tại {{SITENAME}}",
 	"passwordreset-emailtext-ip": "Ai đó (có thể là bạn, từ địa chỉ IP $1) đã yêu cầu tái tạo mật khẩu của bạn \ntại {{SITENAME}} ($4). {{PLURAL:$3|Tài khoản|Các tài khoản}} dưới đây gắn liền \nvới địa chỉ thư điện tử này:\n\n$2\n\n{{PLURAL:$3|Mật khẩu|Các mật khẩu}} tạm này sẽ hết hạn trong vòng {{PLURAL:$5|một ngày|$5 ngày}}. Bạn nên đăng nhập\nngay bây giờ để chọn mật khẩu mới. Nếu bạn không phải là người yêu cầu\nhoặc đã nhớ lại mật khẩu hiện hành, và bạn không còn\nmuốn thay đổi nó, xin vui lòng bỏ qua thông điệp này và tiếp tục sử dụng\nmật khẩu cũ.",
 	"passwordreset-emailtext-user": "Thành viên $1 tại {{SITENAME}} đã yêu cầu tái tạo mật khẩu tại {{SITENAME}} \n($4). {{PLURAL:$3|Tài khoản|Các tài khoản}} dưới đây gắn liền với địa chỉ thư điện tử này:\n\n$2\n\n{{PLURAL:$3|Mật khẩu|Các mật khẩu}} tạm này sẽ hết hạn trong vòng {{PLURAL:$5|một ngày|$5 ngày}}. Bạn nên đăng nhập\nngay bây giờ để chọn mật khẩu mới. Nếu bạn không phải là người yêu cầu hoặc đã nhớ lại mật khẩu hiện hành, và bạn không còn\nmuốn thay đổi nó, xin vui lòng bỏ qua thông điệp này và tiếp tục sử dụng\nmật khẩu cũ.",
-	"passwordreset-emailelement": "Tên người dùng: $1\nMật khẩu tạm: $2",
+	"passwordreset-emailelement": "Tên người dùng: \n$1\n\nMật khẩu tạm: \n$2",
 	"passwordreset-emailsent": "Đã gửi thư điện tử để tái tạo mật khẩu.",
 	"passwordreset-emailsent-capture": "Thư điện tử để tái tạo mật khẩu đã được gửi, nội dung như sau.",
 	"passwordreset-emailerror-capture": "Chúng tôi đã tạo thư tái tạo mật khẩu dưới đây, nhưng không thể gửi đến {{GENDER:$2}}người dùng: $1",

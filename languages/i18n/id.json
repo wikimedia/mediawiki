@@ -549,7 +549,7 @@
 	"passwordreset-emailtitle": "Detail akun di {{SITENAME}}",
 	"passwordreset-emailtext-ip": "Seseorang (mungkin Anda, dari alamat IP $1) meminta pengingat\ndetail akun untuk {{SITENAME}} ($4). {{PLURAL:$3|Akun|Akun-akun}} berikut\nterkait dengan alamat surel ini:\n\n$2\n\n{{PLURAL:$3|Sandi sementara}} berikut akan kedaluwarsa dalam {{PLURAL:$5|$5 hari}}.\nAnda harus masuk dan memilih sandi baru sekarang. Jika orang lain membuat\npermintaan ini atau jika Anda ingat sandi asli dan tidak lagi\ningin mengubahnya, Anda dapat mengabaikan pesan ini dan terus menggunakan sandi lama.",
 	"passwordreset-emailtext-user": "Seseorang (mungkin Anda, dari alamat IP $1) meminta pengingat detail akun untuk {{SITENAME}} ($4).\n{{PLURAL:$3|Akun|Akun-akun}} berikut terkait dengan alamat surel ini:\n\n$2\n\n{{PLURAL:$3|Sandi sementara}} berikut akan kedaluwarsa dalam {{PLURAL:$5|$5 hari}}.\nAnda harus masuk dan memilih sandi baru sekarang. Jika orang lain membuat\npermintaan ini atau jika Anda ingat sandi asli dan tidak lagi\ningin mengubahnya, Anda dapat mengabaikan pesan ini dan terus menggunakan sandi lama.",
-	"passwordreset-emailelement": "Nama pengguna: $1\nSandi sementara: $2",
+	"passwordreset-emailelement": "Nama pengguna: \n$1\n\nSandi sementara: \n$2",
 	"passwordreset-emailsent": "Surel setel ulang kata sandi telah dikirimkan.",
 	"passwordreset-emailsent-capture": "Surel setel ulang kata sandi telah dikirim, yang ditampilkan di bawah.",
 	"passwordreset-emailerror-capture": "Surel setel ulang kata sandi telah dibuat, yang ditampilkan di bawah, namun pengiriman pada {{GENDER:$2|pengguna}} gagal: $1",

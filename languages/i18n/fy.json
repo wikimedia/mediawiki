@@ -447,7 +447,7 @@
 	"passwordreset-domain": "Domein:",
 	"passwordreset-email": "E-mailadres:",
 	"passwordreset-emailtitle": "Akkountdetails op {{SITENAME}}",
-	"passwordreset-emailelement": "Brûkersnamme: $1\nTydlik wachtwurd: $2",
+	"passwordreset-emailelement": "Brûkersnamme: \n$1\n\nTydlik wachtwurd: \n$2",
 	"changeemail": "Feroarje e-mailadres",
 	"changeemail-newemail": "Nij e-mailadres:",
 	"changeemail-none": "(gjin)",

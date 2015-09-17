@@ -20,7 +20,8 @@
 			"Wladek92",
 			"Ash Crow",
 			"L",
-			"Umherirrender"
+			"Umherirrender",
+			"Elfix"
 		]
 	},
 	"apihelp-main-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:API:Main_page|Documentation]]\n* [[mw:API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Liste de diffusion]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Annonces de l’API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bogues et demandes]\n</div>\n<strong>État :</strong> Toutes les fonctionnalités affichées sur cette page devraient fonctionner, mais l’API est encore en cours de développement et peut changer à tout moment. Inscrivez-vous à [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ la liste de diffusion mediawiki-api-announce] pour être informé des mises à jour.\n\n<strong>Requêtes erronées :</strong> Si des requêtes erronées sont envoyées à l’API, un en-tête HTTP sera renvoyé avec la clé « MediaWiki-API-Error ». La valeur de cet en-tête et le code d’erreur renvoyé prendront la même valeur. Pour plus d’information, voyez [[mw:API:Errors_and_warnings|API: Errors and warnings]].",
@@ -917,7 +918,7 @@
 	"apihelp-query+redirects-param-show": "Afficher uniquement les éléments correspondant à ces critères :\n;fragment:Afficher uniquement les redirections avec un fragment.\n;!fragment:Afficher uniquement les redirections sans fragment.",
 	"apihelp-query+redirects-example-simple": "Obtenir une liste des redirections vers [[Main Page]]",
 	"apihelp-query+redirects-example-generator": "Obtenir des informations sur toutes les redirections vers [[Main Page]]",
-	"apihelp-query+revisions-description": "Obtenir des informations sur la révision.\n\nPeut être utilisé de différentes manières :\n# Obtenir des données sur un ensemble de pages (dernière révision), en mettant les titres ou les ids de page.\n# Obtenir les révisions d’une page donnée, en utilisant les titres ou les ids de page avec début, fin ou limite.\n# Obtenir des données sur un ensemble de révisions en donnant leurs IDs et leurs ids de révision.",
+	"apihelp-query+revisions-description": "Obtenir des informations sur la révision.\n\nPeut être utilisé de différentes manières :\n# Obtenir des données sur un ensemble de pages (dernière révision), en mettant les titres ou les ids de page.\n# Obtenir les révisions d’une page donnée, en utilisant les titres ou les ids de page avec rvstart, rvend ou rvlimit.\n# Obtenir des données sur un ensemble de révisions en donnant leurs IDs avec revids.",
 	"apihelp-query+revisions-paraminfo-singlepageonly": "Utilisable uniquement avec une seule page (mode #2).",
 	"apihelp-query+revisions-param-startid": "À quel ID de révision démarrer l’énumération.",
 	"apihelp-query+revisions-param-endid": "Arrêter l’énumération des révisions à cet ID.",

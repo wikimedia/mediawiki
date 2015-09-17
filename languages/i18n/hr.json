@@ -526,7 +526,7 @@
 	"passwordreset-emailtitle": "Pojedinosti o računu na {{SITENAME}}",
 	"passwordreset-emailtext-ip": "Netko (vjerojatno Vi, s IP adrese $1) zatražio je podsjetnik za Vaše detalje računa\nza {{SITENAME}} ($4). Sljedeći {{PLURAL:$3|račun suradnika je|računi suradnika su}}\npovezani s ovom e-mail adresom:\n\n$2\n\n{{PLURAL:$3|Ova privremena lozinka|Ove privremene lozinke}} će isteći u {{PLURAL:$5|jedan dan|$5 dana}}.\nTrebate se prijaviti i odabrati novu lozinku. Ukoliko je netko drugi napravio ovaj\nzahtjev, ili ako ste sjeti Vaše izvorne lozinke, a vi je više ne želite promijeniti, \nmožete zanemariti ovu poruku i nastavite koristiti staru lozinku.",
 	"passwordreset-emailtext-user": "Suradnik $1 na {{SITENAME}} zatražio podsjetnik o pojedinostima vašeg računa za {{SITENAME}}\n($4). Sljedeći {{PLURAL:$3|račun suradnika je|računi suradnika su}} povezani s ovom e-mail adresom:\n\n$2\n\n{{PLURAL:$3|Ova privremena lozinka|Ove privremene lozinke}} će isteći u {{PLURAL:$5|jedan dan|$5 dana}}.\nTrebate se prijaviti i odabrati novu lozinku. Ukoliko je netko drugi napravio ovaj\nzahtjev, ili ako ste sjeti Vaše izvorne lozinke, a vi je više ne želite promijeniti, \nmožete zanemariti ovu poruku i nastavite koristiti staru lozinku.",
-	"passwordreset-emailelement": "Suradničko ime: $1\nPrivremena lozinka: $2",
+	"passwordreset-emailelement": "Suradničko ime: \n$1\n\nPrivremena lozinka: \n$2",
 	"passwordreset-emailsent": "E-mail podsjetnik zaporke je poslan.",
 	"passwordreset-emailsent-capture": "Poslan Vam je podsjetnik kao e-pošta (tekst je prikazan dolje).",
 	"passwordreset-emailerror-capture": "Napravljena je e-poruka za ponovno postavljanje zaporke (prikazana ispod), ali njeno slanje suradniku nije uspjelo: $1",
