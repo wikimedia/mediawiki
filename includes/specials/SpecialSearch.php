@@ -73,6 +73,12 @@ class SpecialSearch extends SpecialPage {
 	 */
 	protected $runSuggestion = true;
 
+	/**
+	 * Names of the wikis, in format: Interwiki prefix -> caption
+	 * @var array
+	 */
+	protected $customCaptions;
+
 	const NAMESPACES_CURRENT = 'sense';
 
 	public function __construct() {
@@ -371,25 +377,44 @@ class SpecialSearch extends SpecialPage {
 			if ( $numTextMatches > 0 ) {
 				$out->addHTML( $this->showMatches( $textMatches ) );
 			}
-			// show interwiki results if any
-			if ( $textMatches->hasInterwikiResults() ) {
-				$out->addHTML( $this->showInterwiki( $textMatches->getInterwikiResults(), $term ) );
+
+			// show secondary interwiki results if any
+			if ( $textMatches->hasInterwikiResults( SearchResultSet::SECONDARY_RESULTS ) ) {
+				$out->addHTML( $this->showInterwiki( $textMatches->getInterwikiResults(
+						SearchResultSet::SECONDARY_RESULTS ), $term ) );
 			}
 
 			$textMatches->free();
 		}
+
+		$hasOtherResults = $textMatches->hasInterwikiResults( SearchResultSet::INLINE_RESULTS );
+
 		if ( $num === 0 ) {
 			if ( $textStatus ) {
 				$out->addHTML( '<div class="error">' .
 					$textStatus->getMessage( 'search-error' ) . '</div>' );
 			} else {
-				$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>",
-					array( 'search-nonefound', wfEscapeWikiText( $term ) ) );
 				$this->showCreateLink( $title, $num, $titleMatches, $textMatches );
+				$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>",
+					array( $hasOtherResults ? 'search-nonefound-thiswiki' : 'search-nonefound',
+							wfEscapeWikiText( $term )
+					) );
+			}
+		}
+
+		if ( $hasOtherResults ) {
+			foreach ( $textMatches->getInterwikiResults( SearchResultSet::INLINE_RESULTS ) as $interwiki => $interwikiResult ) {
+				if ( $interwikiResult instanceof Status || $interwikiResult->numRows() == 0 ) {
+					// ignore bad interwikis for now
+					continue;
+				}
+				// TODO: wiki header
+				$out->addHTML( $this->showMatches( $interwikiResult, $interwiki ) );
 			}
 		}
 
 		$out->addHTML( '<div class="visualClear"></div>' );
+
 		if ( $prevnext ) {
 			$out->addHTML( "<p class='mw-search-pager-bottom'>{$prevnext}</p>\n" );
 		}
@@ -398,6 +423,17 @@ class SpecialSearch extends SpecialPage {
 
 		Hooks::run( 'SpecialSearchResultsAppend', array( $this, $out, $term ) );
 
+	}
+
+	/**
+	 * Produce wiki header for interwiki results
+	 * @param string $interwiki Interwiki name
+	 * @param SearchResultSet $interwikiResult The result set
+	 */
+	protected function interwikiHeader( $interwiki, $interwikiResult ) {
+		// TODO: we need to figure out how to name wikis correctly
+		$wikiMsg = $this->msg( 'search-interwiki-results-' . $interwiki )->parse();
+		return "<p class=\"mw-search-interwiki-header\">\n$wikiMsg</p>";
 	}
 
 	/**
@@ -636,17 +672,23 @@ class SpecialSearch extends SpecialPage {
 	 * Show whole set of results
 	 *
 	 * @param SearchResultSet $matches
+	 * @param string $interwiki Interwiki name
 	 *
 	 * @return string
 	 */
-	protected function showMatches( &$matches ) {
+	protected function showMatches( &$matches, $interwiki = null ) {
 		global $wgContLang;
 
 		$terms = $wgContLang->convertForSearchResult( $matches->termMatches() );
-
-		$out = "<ul class='mw-search-results'>\n";
+		$out = '';
 		$result = $matches->next();
 		$pos = $this->offset;
+
+		if ( $result && $interwiki ) {
+			$out .= $this->interwikiHeader( $interwiki, $result );
+		}
+
+		$out .= "<ul class='mw-search-results'>\n";
 		while ( $result ) {
 			$out .= $this->showHit( $result, $terms, ++$pos );
 			$result = $matches->next();
@@ -683,14 +725,16 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		$link_t = clone $title;
+		$query = array();
 
 		Hooks::run( 'ShowSearchHitTitle',
-			array( &$link_t, &$titleSnippet, $result, $terms, $this ) );
+			array( &$link_t, &$titleSnippet, $result, $terms, $this, &$query ) );
 
 		$link = Linker::linkKnown(
 			$link_t,
 			$titleSnippet,
-			array( 'data-serp-pos' => $position ) // HTML attributes
+			array( 'data-serp-pos' => $position ), // HTML attributes
+			$query
 		);
 
 		// If page content is not readable, just return the title.
@@ -819,6 +863,23 @@ class SpecialSearch extends SpecialPage {
 	}
 
 	/**
+	 * Extract custom captions from search-interwiki-custom message
+	 */
+	protected function getCustomCaptions() {
+		if ( is_null( $this->customCaptions ) ) {
+			$this->customCaptions = array();
+			// format per line <iwprefix>:<caption>
+			$customLines = explode( "\n", $this->msg( 'search-interwiki-custom' )->text() );
+			foreach ( $customLines as $line ) {
+				$parts = explode( ":", $line, 2 );
+				if ( count( $parts ) == 2 ) { // validate line
+					$this->customCaptions[$parts[0]] = $parts[1];
+				}
+			}
+		}
+	}
+
+	/**
 	 * Show results from other wikis
 	 *
 	 * @param SearchResultSet|array $matches
@@ -834,15 +895,7 @@ class SpecialSearch extends SpecialPage {
 		$out .= "<ul class='mw-search-iwresults'>\n";
 
 		// work out custom project captions
-		$customCaptions = array();
-		// format per line <iwprefix>:<caption>
-		$customLines = explode( "\n", $this->msg( 'search-interwiki-custom' )->text() );
-		foreach ( $customLines as $line ) {
-			$parts = explode( ":", $line, 2 );
-			if ( count( $parts ) == 2 ) { // validate line
-				$customCaptions[$parts[0]] = $parts[1];
-			}
-		}
+		$this->getCustomCaptions();
 
 		if ( !is_array( $matches ) ) {
 			$matches = array( $matches );
@@ -852,7 +905,7 @@ class SpecialSearch extends SpecialPage {
 			$prev = null;
 			$result = $set->next();
 			while ( $result ) {
-				$out .= $this->showInterwikiHit( $result, $prev, $query, $customCaptions );
+				$out .= $this->showInterwikiHit( $result, $prev, $query );
 				$prev = $result->getInterwikiPrefix();
 				$result = $set->next();
 			}
@@ -873,11 +926,10 @@ class SpecialSearch extends SpecialPage {
 	 * @param SearchResult $result
 	 * @param string $lastInterwiki
 	 * @param string $query
-	 * @param array $customCaptions Interwiki prefix -> caption
 	 *
 	 * @return string
 	 */
-	protected function showInterwikiHit( $result, $lastInterwiki, $query, $customCaptions ) {
+	protected function showInterwikiHit( $result, $lastInterwiki, $query ) {
 
 		if ( $result->isBrokenTitle() ) {
 			return '';
@@ -914,9 +966,9 @@ class SpecialSearch extends SpecialPage {
 		$out = "";
 		// display project name
 		if ( is_null( $lastInterwiki ) || $lastInterwiki != $title->getInterwiki() ) {
-			if ( array_key_exists( $title->getInterwiki(), $customCaptions ) ) {
+			if ( array_key_exists( $title->getInterwiki(), $this->customCaptions ) ) {
 				// captions from 'search-interwiki-custom'
-				$caption = $customCaptions[$title->getInterwiki()];
+				$caption = $this->customCaptions[$title->getInterwiki()];
 			} else {
 				// default is to show the hostname of the other wiki which might suck
 				// if there are many wikis on one hostname
